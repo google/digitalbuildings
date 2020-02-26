@@ -1,6 +1,6 @@
 # Digital Buildings Ontology
 
-The Digital Buildings ontology is an open-source, Apache-licensed development effort to create a uniform schema for representing metadata in Google's buildings real estate portfolio. It is inspired from [Project Haystack](https://project-haystack.org/tag) and [BrickSchema](https://brickschema.org/).
+The Digital Buildings ontology is an open-source, Apache-licensed development effort to create a uniform schema for representing metadata in Google's buildings real estate portfolio. It is inspired by [Project Haystack](https://project-haystack.org/tag) and [BrickSchema](https://brickschema.org/).
 
 This repository tracks the main schema development of the Digital Buildings Ontology.
 
