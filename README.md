@@ -36,7 +36,7 @@ The ontology description and organization is [here](./ontology/ontology.md).
 
 The ontology is released in two formats:
 
-* RDF: An RDF class hierarchy describing the various building subsystems and the entities and equipment therein A minimal, principled set of relationships for connecting these entities together into a directed graph representing a building A method of encapsulation for composing complex components from a set of lower-level ones. The rdf content can be found [here](/rdf)
+* RDF: An RDF class hierarchy describing the various building subsystems and the entities and equipment therein A minimal, principled set of relationships for connecting these entities together into a directed graph representing a building A method of encapsulation for composing complex components from a set of lower-level ones. The rdf content can be found [here](/ontology/rdf)
 
-* Yaml: An equivalent yaml representation of the RDF version for non-RDF experts. The yaml content can be found [here](/yaml)
+* Yaml: An equivalent yaml representation of the RDF version for non-RDF experts. The yaml content can be found [here](/ontology/yaml)
 
