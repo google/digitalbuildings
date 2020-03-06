@@ -1,0 +1,13 @@
+ROOM:
+  id: "9223372036854775808"
+  description: "This is a type for ROOM facilities object"
+
+FLOOR:
+  id: "7349874591868649472"
+  description: "This is a type for FLOOR facilities object"
+  implements:
+  - CARSON/COORDINATE_BASIS
+
+BUILDING:
+  id: "15204152342002794496"
+  description: "This is a type for BUILDING facilities object"

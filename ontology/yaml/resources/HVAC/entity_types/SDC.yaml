@@ -1,0 +1,60 @@
+########################
+### Canonical Types  ###
+########################
+
+SDC_EXT:
+  id: "6117654796838109184"
+  description: "Simple shade with extension control only."
+  is_canonical: true
+  implements:
+  - SDC
+  uses:
+  - shade_extent_percentage_command
+
+SDC_EXT_TLT:
+  id: "14075515338401775616"
+  description: "Simple shade with extension and tilt control."
+  is_canonical: true
+  implements:
+  - SDC_EXT
+  uses:
+  - shade_tilt_percentage_command
+
+SDC_EXT_TLT_WEST:
+  id: "11859744321735491584"
+  description: "Directional shade (West)."
+  is_canonical: true
+  implements:
+  - SDC_EXT_TLT
+  uses:
+  - west_illuminance_sensor
+  - west_wind_linearvelocity_sensor
+
+SDC_EXT_TLT_EAST:
+  id: "4640474119060586496"
+  description: "Directional shade (East)."
+  is_canonical: true
+  implements:
+  - SDC_EXT_TLT
+  uses:
+  - east_illuminance_sensor
+  - east_wind_linearvelocity_sensor
+
+SDC_EXT_TLT_EAST_SOUTHEAST:
+  id: "11521974349682704384"
+  description: "Multi-directional shade (East and Southeast)."
+  is_canonical: true
+  implements:
+  - SDC_EXT_TLT_EAST
+  uses:
+  - southeast_illuminance_sensor
+
+SDC_EXT_TLT_WEST_SOUTHWEST:
+  id: "15341026833692884992"
+  description: "Multi-directional shade (West and Southwest)."
+  is_canonical: true
+  implements:
+  - SDC_EXT_TLT_WEST
+  uses:
+  - southwest_illuminance_sensor
+

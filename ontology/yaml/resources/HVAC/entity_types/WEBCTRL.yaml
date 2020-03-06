@@ -1,0 +1,6 @@
+WEBCTRL_FLOOR:
+  id: "9046313968582262784"
+  description: "A basis entity for all webctrl entities on a floor."
+  implements:
+  - CARSON/COORDINATE_BASIS
+

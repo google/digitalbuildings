@@ -1,0 +1,196 @@
+########################
+### Canonical Types  ###
+########################
+
+BLR_SS_SWTC_CPC:
+  id: "11386136285140746240"
+  description: "Simple boiler with onboard circulation pump."
+  is_canonical: true
+  implements:
+  - BLR
+  - SS
+  - SWTC
+  - CPC
+
+BLR_SS_SWTC:
+  id: "10759740112750247936"
+  description: "Simple boiler with start/stop and supply temperature control"
+  implements:
+  - BLR
+  - SS
+  - SWTC
+
+BLR_SS_SWTC_SWISOVPM:
+  id: "12785066919392706560"
+  description: "Simple boiler with supply control and supply isolation."
+  is_canonical: true
+  implements:
+  - BLR
+  - SS
+  - SWTC
+  - SWISOVPM
+
+BLR_SS_SWTC_RWISOVM:
+  id: "14496434777793495040"
+  description: "Simple boiler with supply control and return isolation."
+  is_canonical: true
+  implements:
+  - BLR
+  - SS
+  - SWTC
+  - RWISOVM
+
+BLR_SS_SWTC_SWISOVM:
+  id: "2883340188665249792"
+  description: "Simple boiler with supply control and supply isolation."
+  is_canonical: true
+  implements:
+  - BLR
+  - SS
+  - SWTC
+  - SWISOVM
+
+BLR_SS_SWTC_HT2SWC:
+  id: "6774450266713358336"
+  description: "Two-stage boiler with supply control and supply isolation."
+  is_canonical: true
+  implements:
+  - BLR
+  - SS
+  - SWTC
+  - HT2SWC
+
+BLR_SS_SWTC_RWISOVPM:
+  id: "7214114180335403008"
+  description: "Simple boiler with supply control and return isolation."
+  is_canonical: true
+  implements:
+  - BLR
+  - SS
+  - SWTC
+  - RWISOVPM
+
+BLR_SS_SWTC_HT4SWC:
+  id: "8173380900965318656"
+  description: "Four-stage boiler with supply control."
+  is_canonical: true
+  implements:
+  - BLR
+  - SS
+  - SWTC
+  - HT4SWC
+
+BLR_SS_SWTC_HTSWC:
+  id: "2967219731725025280"
+  description: "Single-stage boiler with supply control."
+  is_canonical: true
+  implements:
+  - BLR
+  - SS
+  - SWTC
+  - HTSWC
+
+BLR_SS_SWTC_RWISOVM_HT2SWC:
+  id: "12106712225520025600"
+  description: "Two-stage boiler with supply control and return isolation."
+  is_canonical: true
+  implements:
+  - BLR
+  - SS
+  - SWTC
+  - RWISOVM
+  - HT2SWC
+
+BLR_SS_SWTC_RWISOVPM_RWISOVM:
+  id: "15997822303568134144"
+  description: "Boiler with supply control and two return isolation valves."
+  is_canonical: true # Maybe not... not very common to have two valves.
+  implements:
+  - BLR
+  - SS
+  - SWTC
+  - RWISOVPM
+  - RWISOVM
+
+BLR_SS_SWTC_HTSWC_RWISOVM:
+  id: "16437486217190178816"
+  description: "Boiler with single stage heat and return isolation."
+  is_canonical: true
+  implements:
+  - BLR
+  - SS
+  - SWTC
+  - HTSWC
+  - RWISOVM
+
+BLR_SS_SWTC_SWISOVM_HTSWC:
+  id: "17396752937820094464"
+  description: "Boiler with single stage heat and supply isolation"
+  is_canonical: true
+  implements:
+  - BLR
+  - SS
+  - SWTC
+  - SWISOVM
+  - HTSWC
+
+BLR_SS_SWTC_HTSWC_RWISOVPM:
+  id: "12190591768579801088"
+  description: "Boiler with single stage heat and return isolation."
+  is_canonical: true
+  implements:
+  - BLR
+  - SS
+  - SWTC
+  - HTSWC
+  - RWISOVPM
+
+
+###################################
+### Existing Non-standard Types ###
+###################################
+
+BLR_US_MTV_1201_1:
+  id: "3859257913386205184"
+  description: "Entities: US-MTV-1201:BLR:BLR-1, US-MTV-1201:BLR:BLR-2"
+  implements:
+  - BLR_SS_SWTC_SWISOVM
+  - INCOMPLETE
+  uses:
+  - heating_stage_run_count
+
+BLR_US_MTV_45_1:
+  id: "10031511571441647616"
+  description: "Entities: US-MTV-45:BLR:BLR-1"
+  implements:
+  - BLR_SS_SWTC
+  - INCOMPLETE
+  uses:
+  - bypass_valve_percentage_command
+
+BLR_US_MTV_QD4_1:
+  id: "9468332919601758208"
+  description: "Hash:7f5552f4a94d6160fea9b8c7a44ec39c4339b8c29bc23a92995bb5942c165bf4;Entities:US-MTV-QD4:BLR:BLR-1, US-MTV-QD4:BLR:BLR-2"
+  implements:
+  - BLR_SS_SWTC
+  - INCOMPLETE
+  uses:
+  - heating_stage_run_count
+
+BLR_US_SBO_1000_1:
+  id: "5763154655857082368"
+  description: "Entities: US-SBO-1000:BLR:BLR-1, US-SBO-1000:BLR:BLR-2, US-SBO-1000:BLR:BLR-3"
+  implements:
+  - BLR_SS_SWTC_SWISOVM
+  - INCOMPLETE
+  uses:
+  - heating_percentage_command
+
+BLR_US_SVL_BORD1212_1:
+  id: "16471430340162879488"
+  description: "Hash:325a8c5601b53852a9b5697b33957f7f87776dd1a8ef1398ab530bb025cd4941;Entities:US-SVL-BORD1212:BLR:BLR-1, US-SVL-BORD1212:BLR:BLR-2"
+  implements:
+  - BLR_SS_SWTC_HTSWC_RWISOVPM
+  - INCOMPLETE
+  uses:
+  - flue_gas_temperature_sensor

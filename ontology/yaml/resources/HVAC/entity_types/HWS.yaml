@@ -1,0 +1,180 @@
+########################
+### Canonical Types  ###
+########################
+
+HWS_SWTC:
+  id: "17871319748554260480"
+  description: "Simple heating water system with supply temp control."
+  is_canonical: true
+  implements:
+  - HWS
+  - SWTC
+
+HWS_SWTC_WDPC:
+  id: "15732109925553274880"
+  description: "Simple heating water system with supply temp and differential pressure control."
+  is_canonical: true
+  implements:
+  - HWS
+  - SWTC
+  - WDPC
+
+HWS_SWTC_WDPC_WFRM:
+  id: "11488030226710003712"
+  description: "Simple heating water system with supply temp and differential pressure control."
+  is_canonical: true
+  implements:
+  - HWS
+  - SWTC
+  - WDPC
+  - WFRM
+
+HWS_RWTC:
+  id: "16423975418308067328"
+  description: "Simple heating water system with return temp control."
+  is_canonical: true
+  implements:
+  - HWS
+  - RWTC
+
+HWS_RWTC_WDPC:
+  id: "12738553179491270656"
+  description: "Simple heating water system with return temp control and differential pressure control."
+  is_canonical: true
+  implements:
+  - HWS
+  - RWTC
+  - WDPC
+
+HWS_SWTC_WDPC_PWDT:
+  id: "4202894879484805120"
+  description: "Primary/secondary heating water system with differential pressure and supply temp control."
+  is_canonical: true
+  implements:
+  - HWS
+  - SWTC
+  - WDPC
+  - PWDT
+
+HWS_SWTC_WFRM:
+  id: "6876344208282615808"
+  description: "Simple heating water system with supply temp control."
+  is_canonical: true
+  implements:
+  - HWS
+  - SWTC
+  - WFRM
+
+HWS_SWTC_MXVPM:
+  id: "1435995858419056640"
+  description: "Heating water system with mixed supply temp control."
+  is_canonical: true
+  implements:
+  - HWS
+  - SWTC
+  - MXVPM
+
+HWS_RWTC_MXVPM:
+  id: "9512638840154619904"
+  description: "Heating water system with mixed return temp control."
+  is_canonical: true
+  implements:
+  - HWS
+  - RWTC
+  - MXVPM
+
+HWS_SWTC_BYPVPM:
+  id: "13426266916339580928"
+  description: "Heating water system with supply temp control and bypass."
+  is_canonical: true
+  implements:
+  - HWS
+  - SWTC
+  - BYPVPM
+
+HWS_SWTC_WDPC2X:
+  id: "16099716245137391616"
+  description: "Heating water system with supply temp control and two differential pressure controlled headers."
+  is_canonical: true
+  implements:
+  - HWS
+  - SWTC
+  - WDPC2X
+
+HWS_SWTC_WDPC_CGRWTC:
+  id: "10659367895273832448"
+  description: "Heating water system with supply temp and differential pressure control, with cogen tie-in."
+  is_canonical: true
+  implements:
+  - HWS
+  - SWTC
+  - WDPC
+  - CGRWTC
+
+HWS_SWTC_WDPC_WFRM_PWDT:
+  id: "4900952821727232000"
+  description: "Primary/secondary heating water system with differential pressure and supply temp control."
+  is_canonical: true
+  implements:
+  - HWS
+  - SWTC
+  - WDPC
+  - WFRM
+  - PWDT
+
+HWS_SWTC_WDPC_BYPVPM_MXVPM:
+  id: "8814580897912193024"
+  description: "Heating water system with differential pressure and supply temp control; bypass and mixing utilized."
+  is_canonical: true
+  implements:
+  - HWS
+  - SWTC
+  - WDPC
+  - BYPVPM
+  - MXVPM
+
+HWS_SWTC_SWISOVPM_RWISOVPM:
+  id: "4570501199068921856"
+  description: "Simple heating water system with supply temp control and return/supply isolation."
+  is_canonical: true
+  implements:
+  - HWS
+  - SWTC
+  - SWISOVPM
+  - RWISOVPM
+
+HWS_SWTC_WDPC_WFRC_BYPVPM_PWDT:
+  id: "13908152076468224000"
+  description: "Primary secondary heating water system with operable decoupler."
+  is_canonical: true
+  implements:
+  - HWS
+  - SWTC
+  - WDPC
+  - WFRC
+  - BYPVPM
+  - PWDT
+
+###################################
+### Existing Non-standard Types ###
+###################################
+
+HWS_US_SVL_MAT2_1:
+  id: "8016273883495661568"
+  description: 'Hash:ac3ef04b52cebab8d703b694a7f7c6f2891f5b10b1a93016d6afc1df406efe6a;Entities: US-SVL-MAT2/HW SYSTEM'
+  implements:
+  - HWS_SWTC_WDPC2X
+  - DEPRECATED
+  uses:
+  - return_water_temperature_sensor_1
+  - return_water_temperature_sensor_2
+
+HWS_US_MTV_2000_2:
+  id: "17278858903043440640"
+  description: 'Entities: US-MTV-2000:HW SYSTEM:HW SYSTEM-COGEN'
+  implements:
+  - HWS_RWTC_MXVPM
+  - DEPRECATED
+  uses:
+  - mixing_valve_percentage_command
+  - heat_exchange_supply_water_isolation_valve_command

@@ -1,0 +1,16 @@
+########################
+### Canonical Types  ###
+########################
+
+DC_SS_SWTC:
+  id: "14928780342021062656"
+  description: "Typical dry-cooler (closed loop sensible cooler)."
+  is_canonical: true
+  implements:
+  - DC
+  - SS
+  - SWTC
+
+
+
+

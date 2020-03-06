@@ -1,0 +1,29 @@
+fixed_camera:
+  id: "8326908046013890560"
+  description: "A physical security camera with a fixed position and pose"
+
+DOOR:
+  id: "13631635897198837760"
+  description: "A physical door"
+
+SECURE_DOOR:
+  id: "17470332255950864384"
+  description: "A physical door that has an associated RTE, Door Strike, and Badge Reader"
+  implements:
+  - DOOR
+
+REQUEST_TO_EXIT:
+  id: "3274986230479060992"
+  description: "A request to exit sensor that reports if someone wants to exit the door"
+
+DOOR_STRIKE:
+  id: "11021177589556314112"
+  description: "A door strike monitor that reads if the door is open or closed"
+
+PANIC_BUTTON:
+  id: "9147680144570187776"
+  description: "A panic button"
+
+BADGE_READER:
+  id: "14407884509338927104"
+  description: "A badge reader that unlocks a door"

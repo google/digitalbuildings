@@ -1,0 +1,13 @@
+OS:
+  id: "5263290281591046144"
+  description: "Occupancy status for a specific zone."
+  uses:
+  - zone_occupancy_status
+
+PM:
+  id: "14453888075845074944"
+  description: "Power monitoring."
+  is_abstract: true
+  uses:
+  - power_sensor
+
