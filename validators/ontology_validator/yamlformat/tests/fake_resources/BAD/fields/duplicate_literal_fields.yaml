@@ -1,0 +1,6 @@
+# This is a bad fields file. Duplicate literals blocks are defined
+literals:
+- zone_temperature_sensor
+
+literals:
+- zone_temperature_setpoint

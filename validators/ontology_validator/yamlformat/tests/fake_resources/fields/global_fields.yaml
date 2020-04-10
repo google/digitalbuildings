@@ -1,0 +1,5 @@
+literals:
+- current_sensor
+- fan_run_status
+- dryer_run_status
+- fan_run_command
