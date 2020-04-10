@@ -1,0 +1,52 @@
+########################
+### Canonical Types  ###
+########################
+
+PMP_SS: # Entities: 123
+  id: "13517139353352011776"
+  description: "Typical pump."
+  is_canonical: true
+  implements:
+  - PMP
+  - SS
+
+PMP_SS_VSC:
+  id: "6133109532278128640"
+  description: "Typical variable speed pump."
+  is_canonical: true
+  implements:
+  - PMP
+  - SS
+  - VSC
+
+
+###################################
+### Existing Non-standard Types ###
+###################################
+
+PMP_S_VFCF: # Entities: 3
+  id: "9598937308795502592"
+  description: "Variable speed pump."
+  implements:
+  - PMP_SS_VSC
+  - INCOMPLETE
+  uses:
+  - speed_frequency_command
+
+PMP_S_VSCF_ISV:
+  id: "8905453334924623872"
+  description: "One-off pump that performs chilled water blending."
+  implements:
+  - PMP_SS_VSC
+  uses:
+  - mixing_valve_percentage_command
+  - chilled_supply_water_temperature_setpoint
+  - chilled_supply_water_temperature_sensor
+
+PMP_US_MTV_1667_1: # Instances: 4
+  id: "8295303546346143744"
+  description: "Entities: US-MTV-1667:PUMP:CHWP-1, US-MTV-1667:PUMP:CHWP-2, US-MTV-1667:PUMP:PCWP-1, US-MTV-1667:PUMP:PCWP-2"
+  implements:
+  - PMP_SS_VSC
+  uses:
+  - differential_pressure_sensor

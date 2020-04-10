@@ -1,0 +1,25 @@
+### TODO: Create standard versions when we have more examples
+
+HUM_US_MTV_946_1:
+  id: "3434529765715869696"
+  description: "Hash:858f0e5a0249cbc5d4831923bb56bf4436f9a2cd795b0dd77ddb744cf4ea8d1f; Entities: US-MTV-946:HUM:HUM-1-1, US-MTV-946:HUM:HUM-1-2, US-MTV-946:HUM:HUM-1-3, US-MTV-946:HUM:HUM-1-4"
+  implements:
+  - HUM
+  uses:
+  - discharge_air_relative_humidity_sensor
+  - humidification_percentage_command
+  - humidification_percentage_sensor
+
+
+HUM_US_SVL_BRG1_1:
+  id: "5330809091629514752"
+  description: "Entities: DEV:3100307, DEV:3100315"
+  implements:
+  - HUM
+  uses:
+  - humidification_percentage_command
+  - humidification_run_command
+  - zone_air_relative_humidity_sensor
+  - zone_air_temperature_sensor
+
+

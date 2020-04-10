@@ -1,0 +1,163 @@
+# EntityType in YAML (7 types)
+# Sheets ID: 1G6uhrR8j8vVokB_z8Dx_BnNlRXIJl0HzP4gOOi5-m9U
+# Sheets Range: 'US-NC-POWER!A1:R3405'
+
+EM_US_MTV_1200_1:
+  id: "2029916855371563008"
+  description: "Entities: US-MTV-1200:power-meter-MAIN_Meter, US-MTV-E475:power-meter-MAIN_Meter, US-MTV-GWC4:power-meter-MAIN_Meter, US-MTV-LMK5:power-meter-MAIN_Meter, US-MTV-SB75:power-meter-MAIN_Meter, US-PAO-1010:power-meter-MAIN_Meter, US-PAO-1129:power-meter-MAIN_Meter, US-SVL-CRSM1265:power-meter-MAIN_Meter, US-SVL-MP2:power-meter-MAIN_Meter, US-SVL-MP4:power-meter-MAIN_Meter, US-SVL-MP5:power-meter-MAIN_Meter"
+  implements:
+  - EM
+  uses:
+  - average_line_current_sensor
+  - average_line_voltage_sensor
+  - energy_accumulator
+  - power_sensor
+  - powerfactor_sensor
+
+EM_US_MTV_2000_1:
+  id: "15252485361331339264"
+  description: "Entities: US-MTV-2000:power-meter-MAIN_Meter, US-MTV-40:power-meter-MAIN_Meter, US-MTV-CL3:power-meter-MAIN_Meter"
+  implements:
+  - EM
+  uses:
+  - average_line_current_sensor
+  - average_line_neutral_voltage_sensor
+  - average_line_voltage_sensor
+  - energy_accumulator
+  - phase1_line_current_sensor
+  - phase1_neutral_line_voltage_sensor
+  - phase1_phase2_line_voltage_sensor
+  - phase1_phase3_line_voltage_sensor
+  - phase2_line_current_sensor
+  - phase2_neutral_line_voltage_sensor
+  - phase2_phase3_line_voltage_sensor
+  - phase3_line_current_sensor
+  - phase3_neutral_line_voltage_sensor
+  - power_sensor
+  - powerfactor_sensor
+
+EM_US_MTV_CL4_1:
+  id: "13342959119326248960"
+  description: "Entities: US-MTV-CL4:power-meter-MAIN_Meter"
+  implements:
+  - EM
+  uses:
+  - apparent_power_sensor
+  - average_line_current_sensor
+  - average_line_neutral_voltage_sensor
+  - average_line_voltage_sensor
+  - energy_accumulator
+  - phase1_line_current_sensor
+  - phase1_neutral_line_voltage_sensor
+  - phase1_phase2_line_voltage_sensor
+  - phase1_phase3_line_voltage_sensor
+  - phase1_power_sensor
+  - phase1_powerfactor_sensor
+  - phase2_line_current_sensor
+  - phase2_neutral_line_voltage_sensor
+  - phase2_phase3_line_voltage_sensor
+  - phase2_power_sensor
+  - phase2_powerfactor_sensor
+  - phase3_line_current_sensor
+  - phase3_neutral_line_voltage_sensor
+  - phase3_power_sensor
+  - phase3_powerfactor_sensor
+  - power_sensor
+  - reactive_power_sensor
+
+EM_US_MTV_PR55_1:
+  id: "4660019037755932672"
+  description: "Entities: US-MTV-PR55:power-meter-MAIN_Meter"
+  implements:
+  - EM
+  uses:
+  - apparent_power_sensor
+  - average_line_neutral_voltage_sensor
+  - average_line_voltage_sensor
+  - energy_accumulator
+  - phase1_line_current_sensor
+  - phase1_neutral_line_voltage_sensor
+  - phase1_phase2_line_voltage_sensor
+  - phase1_phase3_line_voltage_sensor
+  - phase1_power_sensor
+  - phase1_powerfactor_sensor
+  - phase2_line_current_sensor
+  - phase2_neutral_line_voltage_sensor
+  - phase2_phase3_line_voltage_sensor
+  - phase2_power_sensor
+  - phase2_powerfactor_sensor
+  - phase3_line_current_sensor
+  - phase3_neutral_line_voltage_sensor
+  - phase3_power_sensor
+  - phase3_powerfactor_sensor
+  - power_sensor
+  - powerfactor_sensor
+  - reactive_power_sensor
+
+EM_US_MTV_SB10_1:
+  id: "16621579648051970048"
+  description: "Entities: US-MTV-SB10:power-meter-MAIN_Meter"
+  implements:
+  - EM
+  uses:
+  - apparent_power_sensor
+  - average_line_current_sensor
+  - average_line_neutral_voltage_sensor
+  - average_line_voltage_sensor
+  - energy_accumulator
+  - phase1_line_current_sensor
+  - phase1_neutral_line_voltage_sensor
+  - phase1_phase2_line_voltage_sensor
+  - phase1_phase3_line_voltage_sensor
+  - phase1_powerfactor_sensor
+  - phase2_line_current_sensor
+  - phase2_neutral_line_voltage_sensor
+  - phase2_phase3_line_voltage_sensor
+  - phase2_powerfactor_sensor
+  - phase3_line_current_sensor
+  - phase3_neutral_line_voltage_sensor
+  - phase3_powerfactor_sensor
+  - power_sensor
+  - powerfactor_sensor
+  - reactive_power_sensor
+
+EM_US_MTV_SB65_1:
+  id: "11253288892226338816"
+  description: "Entities: US-MTV-SB65:power-meter-MAIN_Meter"
+  implements:
+  - EM
+  uses:
+  - apparent_power_sensor
+  - average_line_current_sensor
+  - average_line_neutral_voltage_sensor
+  - average_line_voltage_sensor
+  - energy_accumulator
+  - phase1_line_current_sensor
+  - phase1_neutral_line_voltage_sensor
+  - phase1_phase2_line_voltage_sensor
+  - phase1_phase3_line_voltage_sensor
+  - phase2_line_current_sensor
+  - phase2_neutral_line_voltage_sensor
+  - phase2_phase3_line_voltage_sensor
+  - phase3_line_current_sensor
+  - phase3_neutral_line_voltage_sensor
+  - power_sensor
+  - powerfactor_sensor
+  - reactive_power_sensor
+
+EM_US_SVL_TC1_1:
+  id: "3723270315262869504"
+  description: "Entities: US-SVL-TC1:power-meter-MAIN_Meter, US-SVL-TC3:power-meter-MAIN_Meter, US-SVL-TC4:power-meter-MAIN_Meter"
+  implements:
+  - EM
+  uses:
+  - apparent_power_sensor
+  - average_line_current_sensor
+  - average_line_voltage_sensor
+  - energy_accumulator
+  - power_sensor
+  - powerfactor_sensor
+  - reactive_power_sensor
+
+
+

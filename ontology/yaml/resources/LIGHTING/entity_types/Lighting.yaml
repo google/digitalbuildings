@@ -1,0 +1,5 @@
+ENLIGHTED_FLOOR:
+  id: "4890265568705249280"
+  description: "A basis entity for all enlighted entities."
+  implements:
+  - CARSON/COORDINATE_BASIS

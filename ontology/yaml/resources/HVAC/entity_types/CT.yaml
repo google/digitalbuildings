@@ -1,0 +1,134 @@
+########################
+### Canonical Types  ###
+########################
+
+CT_SS_SWTC:
+  id: "6342104702485790720"
+  description: "Simple supply temp controlling cooling tower."
+  is_canonical: true
+  implements:
+  - CT
+  - SS
+  - SWTC
+
+CT_SS_VSC_SWTC:
+  id: "16885031430160121856"
+  description: "Variable speed supply temp controlling cooling tower."
+  is_canonical: true
+  implements:
+  - CT
+  - SS
+  - VSC
+  - SWTC
+
+CT_SS_SPSS_SWTC_RWISOVM:
+  id: "4894760372239597568"
+  description: "Evaporative cooler with onboard spray pump."
+  is_canonical: true
+  implements:
+  - CT
+  - SS
+  - SPSS
+  - SWTC
+  - RWISOVM
+
+CT_SS_VSC_SWTC_BYPVPM:
+  id: "15565476739340566528"
+  description: "Cooling tower with bypass."
+  is_canonical: true
+  implements:
+  - CT
+  - SS
+  - VSC
+  - SWTC
+  - BYPVPM
+
+CT_SS_VSC_SWTC_RWISOVM:
+  id: "1897051870271111168"
+  description: "Variable speed supply temp controlling cooling tower."
+  is_canonical: true
+  implements:
+  - CT
+  - SS
+  - VSC
+  - SWTC
+  - RWISOVM
+
+CT_SS_VSC_SWTC_SWISOVM:
+  id: "13691979294354440192"
+  description: "Variable speed supply temp controlling cooling tower."
+  is_canonical: true
+  implements:
+  - CT
+  - SS
+  - VSC
+  - SWTC
+  - SWISOVM
+
+CT_SS_VSC_SWTC_SWISOVM_RWISOVM:
+  id: "14118132409094373376"
+  description: "Variable speed supply temp controlling cooling tower."
+  is_canonical: true
+  implements:
+  - CT
+  - SS
+  - VSC
+  - SWTC
+  - SWISOVM
+  - RWISOVM
+
+CT_SS_VSC_SWTC_SWISOVPM_RWISOVPM_MWVPM:
+  id: "9080293275927052288"
+  description: "Variable speed supply temp controlling cooling tower."
+  is_canonical: true
+  implements:
+  - CT
+  - SS
+  - VSC
+  - SWTC
+  - SWISOVPM
+  - RWISOVPM
+  - MWVPM
+
+CT_SS_VSC_SWTC_SWISOVPM_RWISOVPM_SWISOVM_MWVPM:
+  id: "2588917363025903616"
+  description: "Variable speed supply temp controlling cooling tower."
+  is_canonical: true
+  implements:
+  - CT
+  - SS
+  - VSC
+  - SWTC
+  - SWISOVPM
+  - RWISOVPM
+  - SWISOVM
+  - MWVPM
+
+
+###################################
+### Existing Non-standard Types ###
+###################################
+
+CT_US_SBO_901_1:
+  id: "6975748855526588416"
+  description: "Entities: US-SBO-901:CT:CT-1"
+  implements:
+  - CT_SS_SWTC
+  - INCOMPLETE
+  uses:
+  - fan_speed_mode
+
+CT_US_SVL_MP3_1:
+  id: "605248852936622080"
+  description: "Hash:19bf0bb8d73256a7c933e77b2e66ef48292d61948929358639f26e7bbf0cd677;Entities: US-SVL-MP3:CT:CT-1, US-SVL-MP3:CT:CT-2"
+  implements:
+  - CT_SS_VSC_SWTC
+  - INCOMPLETE
+  uses:
+  - speed_frequency_command
+
+
+
+
+
+

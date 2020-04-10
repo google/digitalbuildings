@@ -1,0 +1,14 @@
+LIGHTING_FIXTURE:
+  id: "10696883232013549568"
+  description: "Lighting fixture."
+  implements:
+  - PM
+  - HVAC/ZTM
+  uses:
+  - dimmer_percentage_command # in % indicating brightness
+  - illuminance_sensor
+
+SWITCH_GROUP:
+  id: "11579588758978166784"
+  description: "A group containing one or more lighting fixtures."
+

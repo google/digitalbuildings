@@ -1,0 +1,26 @@
+########################
+### Canonical Types  ###
+########################
+
+UH_SS_DSP_HWZC:
+  id: "14412555234733719552"
+  description: "Heating water zone unit heater."
+  is_canonical: true
+  implements:
+  - UH
+  - SS
+  - DSP
+  - HWZC
+
+UH_SS_DSP_HTZC:
+  id: "11825800198762790912"
+  description: "Electric/gas zone unit heater."
+  is_canonical: true
+  implements:
+  - UH
+  - SS
+  - DSP
+  - HTZC
+
+
+

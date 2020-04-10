@@ -1,0 +1,26 @@
+#### GENERAL TYPES (BROAD CATEGORIES OF COMMON EQUIPMENT) ####
+MTR:
+  id: "4119587082471473152"
+  description: "Tag for all the meters."
+  is_abstract: true
+
+EM:
+  id: "9271705056183320576"
+  description: "Tag for all the electrical meter types."
+  implements:
+  - MTR
+  is_abstract: true
+
+GM:
+  id: "15356481569132904448"
+  description: "Tag for all gas meters."
+  implements:
+  - MTR
+  is_abstract: true
+
+WM:
+  id: "18022612548536238080"
+  description: "Tag for all water meters."
+  implements:
+  - MTR
+  is_abstract: true

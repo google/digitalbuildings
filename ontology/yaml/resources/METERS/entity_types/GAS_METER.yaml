@@ -1,0 +1,10 @@
+GM_STANDARD:
+  id: "9159528481871101952"
+  description: "The typical building gas meter."
+  implements:
+  - GM
+  is_canonical: true
+  uses:
+  - gas_flowrate_sensor
+  - gas_volume_accumulator
+  - gas_temperature_sensor

@@ -1,0 +1,53 @@
+########################
+### Canonical Types  ###
+########################
+
+DH_SS_HWSC:
+  id: "7661659393305346048"
+  description: "Hydronic duct heater."
+  is_canonical: true
+  implements:
+  - DH
+  - SS
+  - HWSC
+
+DH_SS_HWZC:
+  id: "8851946701070532608"
+  description: "Hydronic duct heater."
+  is_canonical: true
+  implements:
+  - DH
+  - SS
+  - HWZC
+
+DH_SS_DSP_HTZC:
+  id: "12640951731316850688"
+  description: "Electric single-zone duct heater."
+  is_canonical: true
+  implements:
+  - DH
+  - SS
+  - DSP
+  - HTZC
+
+
+############################
+### Need to Remap These  ###
+############################
+
+DFR_US_PAO_HV4_2:
+  id: "8271659648302448640"
+  description: "Entities: US-PAO-HV4:DF:H-1"
+  uses:
+  - discharge_air_relative_humidity_sensor
+  - discharge_air_temperature_sensor
+  - discharge_air_temperature_setpoint
+  - heater_run_command
+  - heating_percentage_command
+  - humidification_percentage_command
+  - zone_air_relative_humidity_sensor_1
+  - zone_air_relative_humidity_sensor_2
+  - zone_air_relative_humidity_sensor_3
+  implements:
+  - HUM
+  - REMAP_REQUIRED

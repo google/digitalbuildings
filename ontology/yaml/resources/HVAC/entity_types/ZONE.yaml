@@ -1,0 +1,13 @@
+ZONE_HVAC:
+  id: "3515181142636494848"
+  description: "A zone entity representing the area served by connected HVAC entities."
+  implements:
+  - ZONE
+
+# DEPRECATED
+ZONE_ZTM:
+  id: "11967901081536561152"
+  description: "Zone with only temperature monitoring."
+  implements:
+  - ZONE
+  - ZTM

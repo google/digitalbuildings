@@ -1,0 +1,21 @@
+# ANALYSIS TYPES
+
+# Simple tags to explicitly indicate the completeness of a subtype.
+# The goal is to use these tags to filter analyses to subtypes that
+# represent similar portions of the control process.
+
+
+CONTROL:
+  id: "14773441339248869376"
+  description: "A tag to represent that the subtype forms a control unit. Ex: temperature, setpoint, heater output"
+  is_abstract: true
+
+OPERATIONAL:
+  id: "799897595425062912"
+  description: "A tag to represent that the subtype forms an operational group. Ex: temperature and setpoint."
+  is_abstract: true
+
+MONITORING:
+  id: "8216200281797427200"
+  description: "A tag to represent that the subtype forms a monitoring group. Ex: temperature sensor only. "
+  is_abstract: true

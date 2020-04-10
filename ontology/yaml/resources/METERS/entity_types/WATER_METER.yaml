@@ -1,0 +1,8 @@
+WM_STANDARD:
+  id: "440559603281821696"
+  description: "Standard building water meter."
+  implements:
+  - WM
+  is_canonical: true
+  uses:
+  - water_volume_accumulator

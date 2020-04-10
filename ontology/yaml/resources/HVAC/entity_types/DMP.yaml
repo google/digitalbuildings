@@ -1,0 +1,45 @@
+########################
+### Canonical Types  ###
+########################
+
+DMP_EDBPC:
+  id: "2931964990892015616"
+  description: "Stand-alone building pressure control damper."
+  implements:
+  - DMP
+  - EDBPC
+
+DMP_EDM:
+  id: "17221675502306066432"
+  description: "Exhaust damper monitoring."
+  implements:
+  - DMP
+  - EDM
+
+
+###################################
+### Existing Non-standard Types ###
+###################################
+
+DMP_US_MTV_900_1:
+  id: "715815742225776640"
+  description: "Entities: DEV:2800116, US-MTV-900:DMPR:DMPR-NORTH"
+  implements:
+  - DMP
+  uses:
+  - east_building_air_static_pressure_sensor
+  - return_air_damper_command
+  - supply_air_damper_percentage_command_1
+  - supply_air_damper_percentage_command_2
+  - west_building_air_static_pressure_sensor
+
+DMP_US_SBO_901_1:
+  id: "12983550758438830080"
+  description: "Entities: US-SBO-901:DMPR:Atrium 1 Relief Dampers, US-SBO-901:DMPR:Atrium 2 Relief Dampers, US-SBO-901:DMPR:Atrium 3 Relief Dampers"
+  implements:
+  - DMP
+  - BPC
+  - REMAP_REQUIRED # Should probably be split into two separate dampers. Will then match canonical.
+  uses:
+  - east_exhaust_air_damper_percentage_command
+  - west_exhaust_air_damper_percentage_command
