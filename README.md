@@ -13,7 +13,7 @@ In creating the Digital Buildings project, we have considered the following:
 * Correctness validation
 * Cross compatibility
 
-The project consists of an [**ontology**](./ontology/ontology.md) that defines the parameters of the semantic data model and tools for building, validating and associating real equipment with a specific model.  
+The project consists of an [**ontology**](/ontology/README.md) that defines the parameters of the semantic data model and tools for building, validating and associating real equipment with a specific model.  
 
 ## Discussion
 Discussion takes place primarily on the Digital Buildings User Form: [google-digital-building-discuss@googlegroups.com](mailto:google-digital-building-discuss@googlegroups.com)
