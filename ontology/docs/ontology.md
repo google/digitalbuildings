@@ -402,25 +402,25 @@ constrains are TBD.
 ### Notes
 
 [^5]: We deliberately do not use camel case here because it makes conversion of
-    _ to Camels ambiguous.
+    _ to Camels ambiguous. \
 [^6]: We do allow individual namespaces to override global definitions, as this
     does not break globally unique naming and has unambiguous meaning (the
     relevant subfield definition can be found directly in the namespace of the
     field). We do not, however, anticipate needing namespaced subfields in
-    Carson.
-[^7]: see a discussion of namespace elevation in the [Fields](#fields) section.
+    Carson. \
+[^7]: see a discussion of namespace elevation in [Fields](#fields). \
 [^13]: The `_<num>` field is used for cases when a particular entity type has
     more than one field with a particular semantic value. Any field may have
     this suffix. It does not need to be explicitly defined in the
-    configuration.
+    configuration. \
 [^14]: This is the case because we explicitly prohibit different orderings of
     the same descriptors to have meaning and actively purge them at
-    validation time.
+    validation time. \
 [^18]: NB: there is likely some additional logic needed here to deal with
     different types of subfields, ex: `max_zone_air_temperature_sensor`might
-    be treated differently because it is an aggregation.
+    be treated differently because it is an aggregation. \
 [^23]: The configuration syntax takes this ambiguity into account in such a way
-    to minimize the amount of namespace qualification required.
+    to minimize the amount of namespace qualification required. \
 [^24]: Validation currently depends on comparing the fist segment of the name
     for determining whether certain types should be compared with each other
     for certain configuration linter warnings. This should be replced with a

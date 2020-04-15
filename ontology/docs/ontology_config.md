@@ -284,8 +284,8 @@ The validator source code can be found [here](TODO:ADD PATH).
 
 The Validator is python based, it takes the following arguments:
 
-* original: a path pointing to the original files of the ontology
-* changed (optional): a path pointing to the changed files of the ontology.
+*   original: a path pointing to the original files of the ontology
+*   changed (optional): a path pointing to the changed files of the ontology.
 
 The validator can be run as following: `python3 validator.py
 --original=Users/foo/ontology/`
@@ -293,14 +293,14 @@ The validator can be run as following: `python3 validator.py
 ## Notes
 
 [^2]: The reason for this requirement is so that compiled code for the ontology
-    have clean enumerations.
-[^3]: The "literals" list would also be in its own document, if used.
+    have clean enumerations. \
+[^3]: The "literals" list would also be in its own document, if used. \
 [^4]: An unstated assumption here is that the local version of a field is
     assumed to be used when a conflict exists between the local and global
     namespace. A user could explicitly specify a global namespace to override
-    this with a leading "/'".
+    this with a leading "/'". \
 [^5]: A construction syntax was originally envisioned to help related subfield
     permutations to auto-generate, but we found that in practice the number of
-    fields was small enough that it was never implemented.
+    fields was small enough that it was never implemented. \
 [^6]: longer form with `description` added as a separate key anticipates
-    additional configuration functionaity for fields
+    additional configuration functionaity for fields \

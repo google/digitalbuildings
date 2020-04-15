@@ -416,18 +416,18 @@ will be added soon.
 ## Notes
 
 [^1]: Practically speaking, the entry typically corresponds to the controller,
-    which may or may not map to exactly one complete piece of equipment.
+    which may or may not map to exactly one complete piece of equipment. \
 [^2]:
-     It is anticipated that non 1:1 mapping will only apply to HVAC equipment.
+     It is anticipated that non 1:1 mapping will only apply to HVAC equipment. \
 [^3]:
      A fully compliant UDMI payload uses standard names for units, formatted
      with points in the payload using the fully qualified path
      `points.<name>.present_value` and units in metadata with the path `
      pointset.points.<name>.units`.  A UDMI compliant field will use the exact
-     text (case insensitive) for multi-states, and all states defined for the f
-     ield will be used.
+     text (case insensitive) for multi-states, and all states defined for the
+     field will be used. \
 [^5]: A user would almost never define all the sections in a single entity, but
-    all are shown below for illistration purposes.
+    all are shown below for illistration purposes. \
 [^6]: An unstated assumption here is that the CDM registry scope and the scope
     of the config file are the same. This guarantees that a unique ID can
     befound in the CDM registry for each entity.
