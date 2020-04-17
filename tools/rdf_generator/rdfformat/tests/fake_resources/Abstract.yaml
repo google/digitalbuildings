@@ -1,0 +1,13 @@
+### ABSTRACT TYPES
+DD:
+  id: "8927971333061476352"
+  description: "Dual duct flow control (hot deck, cold deck)."
+  is_abstract: true
+  uses:
+  - heating_air_flowrate_sensor
+  - heating_air_flowrate_setpoint
+  opt_uses:
+  - discharge_air_temperature_sensor
+  - run_command
+  implements:
+  - CONTROL

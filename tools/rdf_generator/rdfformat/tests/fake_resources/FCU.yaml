@@ -1,0 +1,6 @@
+FCU_DFST_VSC_DSP_CH_DTC: # Entities: 3 --> FCU_DFSS_DFVSC_DSP_CHWDC
+  id: "17286652241461116928"
+  description: "CHW fan coil unit with multi-speed control."
+  implements:
+  - FCU_DFSS_DFVSC_DSP_CHWDC
+  - INCOMPLETE

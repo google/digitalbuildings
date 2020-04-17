@@ -1,0 +1,8 @@
+PUMP_SS_VSC_CM:
+  id: "10837427206322388992"
+  description: "Variable speed pump with current monitoring."
+  implements:
+  - PUMP_SS
+  uses:
+  - speed_percentage_command
+  - current_sensor

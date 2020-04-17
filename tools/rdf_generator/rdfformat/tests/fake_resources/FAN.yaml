@@ -1,0 +1,440 @@
+### FAN RUN CONTROL ###############################################################################
+
+FAN_SS:
+  id: "4726112880724803584"
+  description: "Basic fan with start/stop and status."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  opt_uses: # this is not true, just to pass the test coverage
+  - discharge_air_temperature_sensor
+  - run_command
+
+# Deprecated by FAN_SS
+FAN_MO:
+  id: "1145751176965259264"
+  description: "Fan with only a status"
+  implements:
+  - FAN_SS
+  - INCOMPLETE
+
+### FAN SPEED CONTROL #############################################################################
+
+FAN_SS_VSC:
+  id: "11689733435802255360"
+  description: "Fan with start/stop status and open-loop speed control."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - VSC
+
+# Deprecated by FAN_SS
+FAN_SS_CM:
+  id: "13949484917579579392"
+  description: "Fan with current sensor."
+  implements:
+  - FAN_SS
+  - DEPRECATED
+
+# Deprecated by FAN_SS_VSC
+FAN_SS_FFB:
+  id: "2420269871511109632"
+  description: "Basic fan with start/stop and status and freq feedback."
+  implements:
+  - FAN_SS_VSC
+  - INCOMPLETE
+
+# Deprecated by FAN_SS_VSC
+FAN_S_VSCF:
+  id: "11643641908365885440"
+  description: "Fan with no feedback but speed and freq."
+  implements:
+  - FAN_SS_VSC
+  - INCOMPLETE
+
+### ZONE TEMPERATURE CONTROL ######################################################################
+
+FAN_SS_ZTM:
+  id: "12256131457688272896"
+  description: "Fan with zone temperature monitoring."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - ZTM
+
+FAN_SS_CSP:
+  id: "17863112993764540416"
+  description: "Single cooling setpoint fan."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - CSP
+
+FAN_SS_DSP:
+  id: "8689280552810840064"
+  description: "Fan with dual setpoint control."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - DSP
+
+FAN_SS_REFM:
+  description: "Refrigerant monitoring fan."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - REFM
+
+FAN_SS_REFC:
+  description: "Refrigerant control fan."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - REFC
+
+FAN_SS_REFM_ZTM:
+  id: "6707696716767821824"
+  description: "Refrigerant level and zone temp monitoring fan."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - ZTM
+  - REFM
+
+FAN_SS_REFM_CSP:
+  description: "Cooling control fan with refrigerant monitoring."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - CSP
+  - REFM
+
+### INTERLOCKED FANS #############################################################################
+
+FAN_SS_DRI:
+  id: "3032759420833497088"
+  description: "Dryer-interlocked fan."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  uses:
+  - dryer_run_status
+
+FAN_MDRI:
+  id: "5757437195392647168"
+  description: "Fan with multiple interlocked driers."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - VSC
+  - WDPC
+  uses:
+  - dryer_run_status_1
+  - dryer_run_status_2
+  - dryer_run_status_3
+  - dryer_run_status_4
+  - dryer_run_status_5
+
+FAN_SS_DWI:
+  id: "11319382735195209728"
+  description: "Dishwasher-interlocked fan."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  uses:
+  - dishwasher_run_status
+
+### BUILDING STATIC PRESSURE CONTROL #############################################################
+
+FAN_SS_VSC_BSPC:
+  description: "Variable-speed fan for controlling space static pressure."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - VSC
+  - BPC
+
+# Deprecated by FAN_SS_VSC_BSPC VALIDATED
+FAN_SS_VSCF_BSPC_CM:
+  id: "7644445439260884992"
+  description: "Basic fan with start/stop and status and freq feedback and current monitoring."
+  implements:
+  - FAN_SS_VSC_BSPC
+  - DEPRECATED
+
+# Deprecated by FAN_SS_VSC_BSPC VALIDATED
+FAN_SS_VSCF_BSPC:
+  id: "8904257066273603584"
+  description: "Basic fan with start/stop and status and freq feedback."
+  implements:
+  - FAN_SS_VSC_BSPC
+  - DEPRECATED
+
+# Deprecated by FAN_SS_VSC_BSPC VERIFIED
+FAN_SS_VSC_BSPC_CM_SFB:
+  id: "10369123213820035072"
+  description: "Variable speed fan with speed feedback."
+  implements:
+  - FAN_SS_VSC_BSPC
+  - DEPRECATED
+
+FAN_SS_VSC_EPC:
+  description: "Fan with exhaust static pressure control."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - VSC
+  - EPC
+
+FAN_SS_DSP_VSC:
+  description: "Fan with dual setpoint control and variable speed."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - DSP
+  - VSC
+
+FAN_SS_CSP_VSC:
+  id: "15931068753622597632"
+  description: "Cooling fan with variable speed command (no feedback)."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - CSP
+  - VSC
+
+FAN_SS_VSC_ZTM:
+  description: "Fan with zone temp monitoring and independent variable speed control (such as a kitchen hood, where the setpoints may be hidden)."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - ZTM
+  - VSC
+
+FAN_SS_COC:
+  description: "On/off fan with carbon monoxide control."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - COC
+
+FAN_SS_VSC_COC:
+  description: "Variable speed ventilation fan (for carbon monoxide control)."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - VSC
+  - COC
+
+# Deprecated by FAN_SS_VSC_COC
+FAN_SS_VSCF_COC:
+  id: "330599644411199488"
+  description: "Garage exhaust fan with multiple zones."
+  implements:
+  - FAN_SS_VSC_COC
+  - DEPRECATED
+
+### ONE-OFF AND DEPRECATED TYPES ###################################################################
+
+FAN_SS_EATC:
+  id: "17912652589665615872"
+  description: "Exhaust air temp control fan (one-off)."
+  implements:
+  - FAN
+  - SS
+  - RTM
+  uses:
+  - exhaust_air_temperature_sensor
+  - heating_water_valve_percentage_command
+  - return_air_relative_humidity_sensor
+
+FAN_US_MTV_1215_1:
+  id: "8505354247716470784"
+  description: "Hash:fc2439ffd226e324ef67f8d1d12b443a87c0ad0453bb6383932b831dbccce49f; Entities: US-MTV-1215:FAN:CF-1, US-MTV-1215:FAN:CF-2"
+  implements:
+  - FAN_SS_VSC
+  - INCOMPLETE
+
+FAN_US_MTV_1395_2:
+  id: "7236465052704833536"
+  description: "Entities: US-MTV-1395:FAN:KEF-1"
+  implements:
+  - FAN_SS_VSC
+  - INCOMPLETE
+
+
+FAN_US_MTV_2000_2:
+  id: "18215607625536503808"
+  description: "Entities: US-MTV-2000:FAN:EF-8, US-MTV-2000:FAN:EF-9"
+  implements:
+  - FAN_SS_VSC_EPC
+  - DEPRECATED
+
+
+FAN_US_MTV_2644_1:
+  id: "4539301457119150080"
+  description: "Entities: US-MTV-2644:FAN:EF-11"
+  implements:
+  - FAN_SS_DSP_VSC
+  - DEPRECATED
+
+FAN_US_MTV_C440_1:
+  id: "9919713229129383936"
+  description: "Hash:6bd6200d1b667f88d9fa54dfa7d5f55f138ce3f695489507c112520e2ab64543; Entities: DEV:2908107, DEV:2908109, DEV:2908112"
+  implements:
+  - FAN_SS_VSC
+  - INCOMPLETE
+
+FAN_US_MTV_C440_2:
+  id: "8046215784143257600"
+  description: "Hash:26b59bf0c24408a07d56c5b67ac3a85aab6049790bcd8d0b4b63e9da09c728d0; Entities: DEV:2908108, DEV:2908111"
+  implements:
+  - FAN_SS_CSP_VSC
+  - INCOMPLETE
+
+FAN_US_MTV_E475_1:
+  id: "12467888601104908288"
+  description: "Entities: US-MTV-E475:FAN:EF 1-1, US-MTV-E475:FAN:EF 1-2"
+  implements:
+  - FAN_SS_VSC_BSPC
+  - DEPRECATED
+
+FAN_US_MTV_E475_2:
+  id: "4970521121439875072"
+  description: "Entities: US-MTV-E475:FAN:EF-6, US-MTV-E475:FAN:EF-7, US-MTV-E475:FAN:EF-8"
+  implements:
+  - FAN_SS_REFM_CSP
+  - DEPRECATED
+
+FAN_US_MTV_GWC7_1:
+  id: "14390784904503754752"
+  description: "Entities: US-MTV-GWC7:FAN:EF-1, US-MTV-GWC7:FAN:EF-9"
+  implements:
+  - FAN_SS_VSC_EPC
+  - DEPRECATED
+
+
+FAN_US_MTV_QD4_1:
+  id: "7270576301444956160"
+  description: "Hash:46bbc73e1c53913d955779ac0617255c359220db05f6b1b82ab20d8cacf717d5; Entities: US-MTV-QD4:FAN:EF-3"
+  implements:
+  - FAN_SS_VSC
+  - INCOMPLETE
+
+
+FAN_US_MTV_SB10_2:
+  id: "14559388415553437696"
+  description: "Entities: US-MTV-SB10:FAN:CF-1, US-MTV-SB10:FAN:CF-2, US-MTV-SB10:FAN:CF-3, US-MTV-SB10:FAN:CF-4"
+  implements:
+  - FAN_SS
+  - INCOMPLETE
+
+FAN_US_MTV_SL1001_2:
+  id: "12298845285404114944"
+  description: "Hash:ee265f5af920d5534f55ed7ee8894d9550e229eec5e2a43a4ad488f04b515b14; Entities: US-MTV-SL1001:FAN:EF-4"
+  implements:
+  - FAN_SS_VSC_EPC
+  - DEPRECATED
+
+FAN_US_PAO_HV5_2:
+  id: "3236635264902234112"
+  description: "Entities: DEV:3203506, DEV:3203516"
+  implements:
+  - FAN_SS_CSP_VSC
+  - INCOMPLETE
+
+FAN_US_PAO_HV5_7:
+  id: "12460007301757009920"
+  description: "Entities: DEV:3203519"
+  implements:
+  - FAN_SS_VSC_EPC
+  - INCOMPLETE
+
+FAN_US_SBO_1000_1:
+  id: "16863401837418512384"
+  description: "Entities: DEV:3300211, DEV:3300212, DEV:3300305, DEV:3300308, DEV:3300401, DEV:3300417, DEV:3300518, DEV:3300622, DEV:3300701, DEV:3300717, DEV:3300815"
+  implements:
+  - FAN_SS_ZTM
+  - INCOMPLETE
+
+FAN_US_SVL_BRG1_3:
+  id: "9009124087284367360"
+  description: "Entities: DEV:3100115"
+  implements:
+  - FAN_SS_CSP
+  - DEPRECATED
+
+FAN_US_SVL_MP1_1:
+  id: "5108848480307118080"
+  description: "Hash:40af1ba0c016d0d389f2b5b7dc8b09c943bc3e03321c587cf8da0182be819748; Entities: DEV:3604804"
+  implements:
+  - FAN_SS_VSC
+  - DEPRECATED
+
+FAN_US_SVL_MP1_2:
+  id: "13787284962250063872"
+  description: "Hash:8e5554031dce06d26472e75e4f7b50a23a34684539d0fce99963bbd01a3dca2f; Entities: DEV:3604838"
+  implements:
+  - FAN_SS_VSC
+  - DEPRECATED
+
+FAN_US_SVL_MP2_1:
+  id: "5433107653477793792"
+  description: "Hash:179a1c28ec670d8f9693c53ca740176f6373df46eb953b29c1e756edc689c3e1; Entities: US-SVL-MP2:FAN:KEF-1"
+  implements:
+  - FAN_SS_VSC
+  - INCOMPLETE
+
+FAN_US_SVL_MP3_4:
+  id: "9828620889791397888"
+  description: "Hash:e84b10c52873831e5ba1a607f251aa3d490c0e18977bdc439c6911fba9783666; Entities: US-SVL-MP3:FAN:EF-4"
+  implements:
+  - FAN_SS_VSC_BSPC
+  - INCOMPLETE
+
+FAN_US_SVL_MP5_6:
+  id: "970040422753632256"
+  description: "Hash:29417a1feaade6bbec23fa6069f71dd1a572f10a468b9071eee752db04c23e5d; Entities: US-SVL-MP5:FAN:KEF-1"
+  implements:
+  - FAN_SS_VSC
+  - INCOMPLETE
+
+FAN_US_SVL_TC4_2:
+  id: "2679508325061623808"
+  description: "Hash:e72a188a58c37708abe51fcc01d8cc84c8d441f5e1fbd3522ec7431a32c2017a; Entities: US-SVL-TC4/KEF 4-5-11, US-SVL-TC4/KEF 4-5-12"
+  implements:
+  - FAN_SS_VSC_BSPC
+  - DEPRECATED
+
+FAN_US_MTV_2000_3:
+  id: "1606332199794114560"
+  description: "Entities: US-MTV-2000:FAN:SF-10-2, US-MTV-2000:FAN:SF-10-3, US-MTV-2000:FAN:SF-10-4, US-MTV-2000:FAN:SF-11-1, US-MTV-2000:FAN:SF-11-2, US-MTV-2000:FAN:SF-11-6, US-MTV-2000:FAN:SF-12-2, US-MTV-2000:FAN:SF-12-3, US-MTV-2000:FAN:SF-12-4"
+  implements:
+  - FAN_SS_COC
+  - DEPRECATED
+
+FAN_US_SBO_901_2:
+  id: "6741561674903322624"
+  description: "Entities: DEV:3304312, DEV:3304313"
+  implements:
+  - FAN_SS_CSP_VSC
+  - INCOMPLETE

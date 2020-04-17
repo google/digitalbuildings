@@ -1,0 +1,7 @@
+VAV_SD:
+  id: "11733643532169117696"
+  description: "Simple constant volume unit (no temp control, just flow)."
+  is_canonical: true
+  implements:
+  - VAV
+  - SD
