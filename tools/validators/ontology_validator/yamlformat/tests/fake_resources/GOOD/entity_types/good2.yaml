@@ -1,0 +1,4 @@
+FAN_4:
+ description: 'some device.'
+ uses:
+ - fan_run_command

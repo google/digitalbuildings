@@ -1,0 +1,10 @@
+literals:
+- field_one
+- field_two:
+  - GOOD
+  - BETTER
+  - BEST
+- field_three:
+  - ON
+  - OFF
+  - AUTO

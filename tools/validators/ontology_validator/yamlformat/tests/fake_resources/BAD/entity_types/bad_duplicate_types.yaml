@@ -1,0 +1,17 @@
+FAN_1:
+  description: 'some device.'
+  uses:
+  - zone_air_temperature_sensor
+
+FAN_2:
+  description: 'some device.'
+  implements:
+  - FAN_1
+  uses:
+  - current_sensor
+
+FAN_1:
+  description: 'duplicate type name.'
+  uses:
+  - dryer_run_status
+  - fan_run_command

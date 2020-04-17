@@ -1,0 +1,6 @@
+component:
+  sensor: blah.
+
+point_type:
+  sensor: blah.
+  command: blah.
