@@ -11,16 +11,13 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-LIGHTING_FIXTURE:
-  id: "10696883232013549568"
-  description: "Lighting fixture."
-  implements:
-  - PM
-  - HVAC/ZTM
-  uses:
-  - dimmer_percentage_command # in % indicating brightness
-  - illuminance_sensor
-
-SWITCH_GROUP:
-  id: "11579588758978166784"
-  description: "A group containing one or more lighting fixtures."
+CONTAINS:
+  description: "Source physically encapsulates at least part of Target."
+CONTROLS:
+  description: "Source determines or affects the internal state or behavior of Target."
+FEEDS:
+  description: "Source provides some media (ex: water or air) to Target."
+HAS_PART:
+  description: "Source has some component or part defined by Target."
+HAS_RANGE:
+  description: "Source has a coverage or detection range defined by Target."

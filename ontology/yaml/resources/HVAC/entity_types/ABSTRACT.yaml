@@ -1,3 +1,16 @@
+# Copyright 2020 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the License);
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#    https://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an AS IS BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 ### ABSTRACT TYPES
 
 # This defines subtypes by function. They are not necessarily specific to any type of equipment.
@@ -2997,8 +3010,24 @@ REFSM:
   - MONITORING
 
 
+PDSCV:
+  description: "Pressure-dependent supply damper control for ventilation purposes (CO2 or VOC)."
+  is_abstract: true
+  uses:
+  - supply_air_damper_percentage_command
+  - supply_air_damper_percentage_sensor
+  implements:
+  - CONTROL
 
-
-
-
-
+SDBPC:
+  description: "Back-pressure controlling supply damper."
+  is_abstract: true
+  opt_uses:
+  - supply_air_flowrate_sensor
+  uses:
+  - supply_air_static_pressure_sensor
+  - supply_air_static_pressure_setpoint
+  - supply_air_damper_percentage_command
+  - supply_air_damper_percentage_sensor
+  implements:
+  - MONITORING

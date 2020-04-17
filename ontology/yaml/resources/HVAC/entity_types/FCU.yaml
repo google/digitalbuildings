@@ -1,3 +1,16 @@
+# Copyright 2020 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the License);
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#    https://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an AS IS BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 ########################
 ### Canonical Types  ###
 ########################
@@ -553,6 +566,21 @@ FCU_DFSS_RTC_CHWRC_RHC:
   - CHWRC
   - RHC
 
+FCU_DFSS_DFVSC_ZTC_CHWZTC:
+  description: "Hydronic varaible speed fan coil with cooling and heating (zone temp control)."
+  is_canonical: true
+  opt_uses:
+  - discharge_air_static_pressure_sensor
+  - zone_air_co2_concentration_sensor
+  - filter_differential_pressure_sensor
+  implements:
+  - FCU
+  - DFSS
+  - DFVSC
+  - ZTC
+  - CHWZTC
+
+
 
 ###################################
 ### Existing Non-standard Types ###
@@ -821,4 +849,3 @@ FCU_US_MTV_1950_3:
   - INCOMPLETE
   uses:
   - cooling_stage_run_count
-
