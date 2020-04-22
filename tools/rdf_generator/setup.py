@@ -10,6 +10,6 @@ setup(
     author_email='charbelk@google.com',
     description='',
     packages=find_packages(),
-    install_requires=['absl-py', 'pyglib', 'ruamel.yaml', 'absl-py', 'rdflib'],
+    install_requires=['absl-py', 'pyglib', 'ruamel.yaml', 'rdflib'],
     python_requires='>=3.6',
 )
