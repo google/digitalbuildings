@@ -10,6 +10,6 @@ setup(
     author_email='',
     description='',
     packages=find_packages(),
-    install_requires=['absl-py', 'pyglib', 'pyyaml', 'absl-py'],
+    install_requires=['absl-py', 'pyglib', 'pyyaml'],
     python_requires='>=3.6',
 )
