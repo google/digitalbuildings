@@ -63,7 +63,7 @@ These should all be defined in a complete configuration.
 ## Typical Data Elements {#typical-data-elements}
 
 While there is basically infinite diversity in what can be defined for a
-building, some elements are more ore less expected in every model:
+building, some elements are more or less expected in every model:
 
 *   All the logical spaces in the building with their unique names (Building,
     Rooms, Floors).
