@@ -24,7 +24,7 @@ This project is structured as following:
   * [RDF/OWL Generator](/tools/rdf_generator/README.md) which allows to generate an RDF version from the yaml ontology files.
 
 ## Discussion
-Discussion takes place primarily on the Digital Buildings User Form: [google-digital-building-discuss@googlegroups.com](mailto:google-digital-building-discuss@googlegroups.com)
+Please post issues or discussion topics in [Issues](https://github.com/google/digitalbuildings/issues) section.
 
 
 ## How to Contribute
