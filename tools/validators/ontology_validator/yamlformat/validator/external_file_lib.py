@@ -22,8 +22,8 @@ from __future__ import print_function
 
 import os
 
-from yamlformat.validator import base_lib
-from yamlformat.validator import presubmit_validate_types_lib
+from validation.validator import base_lib
+from validation.validator import presubmit_validate_types_lib
 
 
 def Validate(filter_text, original_directory, changed_directory):

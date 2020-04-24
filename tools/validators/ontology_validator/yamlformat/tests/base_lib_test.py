@@ -18,7 +18,7 @@ from __future__ import division
 from __future__ import print_function
 
 from absl.testing import absltest
-from yamlformat.validator import base_lib
+from validation.validator import base_lib
 
 
 class BaseLibTest(absltest.TestCase):

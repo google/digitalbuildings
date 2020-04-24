@@ -21,16 +21,16 @@ import os
 
 from absl import flags
 
-from yamlformat.validator import base_lib
-from yamlformat.validator import entity_type_lib
-from yamlformat.validator import field_lib
-from yamlformat.validator import findings_lib
-from yamlformat.validator import namespace_validator
-from yamlformat.validator import presubmit_validate_types_lib
-from yamlformat.validator import state_lib
-from yamlformat.validator import subfield_lib
-from yamlformat.validator import test_helpers_lib
-from yamlformat.validator import unit_lib
+from validation.validator import base_lib
+from validation.validator import entity_type_lib
+from validation.validator import field_lib
+from validation.validator import findings_lib
+from validation.validator import namespace_validator
+from validation.validator import presubmit_validate_types_lib
+from validation.validator import state_lib
+from validation.validator import subfield_lib
+from validation.validator import test_helpers_lib
+from validation.validator import unit_lib
 from absl.testing import absltest
 
 FLAGS = flags.FLAGS

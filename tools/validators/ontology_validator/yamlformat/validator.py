@@ -20,7 +20,7 @@ from __future__ import print_function
 from absl import app
 from absl import flags
 
-from yamlformat.validator import external_file_lib
+from validation.validator import external_file_lib
 
 FLAGS = flags.FLAGS
 

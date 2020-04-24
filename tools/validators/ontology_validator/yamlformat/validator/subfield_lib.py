@@ -23,9 +23,9 @@ import re
 
 import enum
 
-from yamlformat.validator import base_lib
-from yamlformat.validator import config_folder_lib
-from yamlformat.validator import findings_lib
+from validation.validator import base_lib
+from validation.validator import config_folder_lib
+from validation.validator import findings_lib
 
 _SUBFIELD_NAME_VALIDATOR = re.compile(r'^[a-z]+[a-z0-9]*$')
 

@@ -17,9 +17,9 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
-from yamlformat.validator import entity_type_lib
-from yamlformat.validator import findings_lib
-from yamlformat.validator import test_helpers_lib
+from validation.validator import entity_type_lib
+from validation.validator import findings_lib
+from validation.validator import test_helpers_lib
 from absl.testing import absltest
 
 _F = test_helpers_lib.Fields

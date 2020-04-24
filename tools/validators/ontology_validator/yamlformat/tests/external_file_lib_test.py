@@ -19,7 +19,7 @@ from __future__ import print_function
 
 from absl.testing import absltest
 
-from yamlformat.validator import external_file_lib
+from validation.validator import external_file_lib
 
 DIR_ONE_LEVEL = 'fake_resources/dir1/'
 DIR_MULTI_DIR = 'fake_resources/dir2/'

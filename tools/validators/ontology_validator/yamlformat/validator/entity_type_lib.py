@@ -20,10 +20,10 @@ from __future__ import print_function
 import re
 import typing
 
-from yamlformat.validator import base_lib
-from yamlformat.validator import config_folder_lib
-from yamlformat.validator import field_lib
-from yamlformat.validator import findings_lib
+from validation.validator import base_lib
+from validation.validator import config_folder_lib
+from validation.validator import field_lib
+from validation.validator import findings_lib
 
 ENTITY_TYPE_NAME_REGEX = re.compile(
     r'^[a-zA-Z]+[a-zA-Z0-9]*(?:_[a-zA-Z0-9]+)*$')

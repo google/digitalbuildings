@@ -19,11 +19,11 @@ from __future__ import print_function
 
 import os
 
-from yamlformat.validator import entity_type_lib
-from yamlformat.validator import entity_type_manager
-from yamlformat.validator import field_lib
-from yamlformat.validator import findings_lib
-from yamlformat.validator import namespace_validator
+from validation.validator import entity_type_lib
+from validation.validator import entity_type_manager
+from validation.validator import field_lib
+from validation.validator import findings_lib
+from validation.validator import namespace_validator
 from absl.testing import absltest
 
 # Overwrite thresholds for grouping to ensure stability

@@ -17,8 +17,8 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
-from yamlformat.validator import findings_lib
-from yamlformat.validator import state_lib
+from validation.validator import findings_lib
+from validation.validator import state_lib
 from absl.testing import absltest
 
 _GOOD_PATH = '{0}/states/anyfolder'.format('mynamespace')

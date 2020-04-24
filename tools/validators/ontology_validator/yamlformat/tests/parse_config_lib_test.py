@@ -23,13 +23,13 @@ import re
 
 from absl import flags
 
-from yamlformat.validator import base_lib
-from yamlformat.validator import field_lib
-from yamlformat.validator import findings_lib
-from yamlformat.validator import parse_config_lib as parse
-from yamlformat.validator import state_lib
-from yamlformat.validator import subfield_lib
-from yamlformat.validator import unit_lib
+from validation.validator import base_lib
+from validation.validator import field_lib
+from validation.validator import findings_lib
+from validation.validator import parse_config_lib as parse
+from validation.validator import state_lib
+from validation.validator import subfield_lib
+from validation.validator import unit_lib
 from absl.testing import absltest
 
 FLAGS = flags.FLAGS

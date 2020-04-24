@@ -22,8 +22,8 @@ import os
 from absl import app
 from absl import flags
 
-from yamlformat.validator import internal_file_lib
-from yamlformat.validator import presubmit_validate_types_lib
+from validation.validator import internal_file_lib
+from validation.validator import presubmit_validate_types_lib
 
 FLAGS = flags.FLAGS
 

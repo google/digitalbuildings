@@ -21,11 +21,11 @@ import re
 
 import typing
 
-from yamlformat.validator import base_lib
-from yamlformat.validator import config_folder_lib
-from yamlformat.validator import findings_lib
-from yamlformat.validator import state_lib
-from yamlformat.validator import subfield_lib
+from validation.validator import base_lib
+from validation.validator import config_folder_lib
+from validation.validator import findings_lib
+from validation.validator import state_lib
+from validation.validator import subfield_lib
 
 # We currently are enforcing that fields are lower case only.
 FIELD_CHARACTER_REGEX = re.compile(

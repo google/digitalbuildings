@@ -24,8 +24,8 @@ from __future__ import print_function
 import collections
 import itertools
 
-from yamlformat.validator import base_lib
-from yamlformat.validator import findings_lib
+from validation.validator import base_lib
+from validation.validator import findings_lib
 
 # Smallest set of fieldset we consider for automated matching. Must be >=1
 MIN_SET_SIZE = 1

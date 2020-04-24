@@ -27,16 +27,16 @@ import time
 from six.moves import input
 import typing
 
-from yamlformat.validator import base_lib
-from yamlformat.validator import entity_type_lib
-from yamlformat.validator import entity_type_manager
-from yamlformat.validator import field_lib
-from yamlformat.validator import findings_lib
-from yamlformat.validator import namespace_validator
-from yamlformat.validator import parse_config_lib as parse
-from yamlformat.validator import state_lib
-from yamlformat.validator import subfield_lib
-from yamlformat.validator import unit_lib
+from validation.validator import base_lib
+from validation.validator import entity_type_lib
+from validation.validator import entity_type_manager
+from validation.validator import field_lib
+from validation.validator import findings_lib
+from validation.validator import namespace_validator
+from validation.validator import parse_config_lib as parse
+from validation.validator import state_lib
+from validation.validator import subfield_lib
+from validation.validator import unit_lib
 
 # Define namedtuple Config to store the different kinds of config files
 # All attributes should be tuples.

@@ -32,7 +32,7 @@ SUBFOLDER_NAMES = frozenset(
 # Ontology Metadata information
 DCTERMS = rdflib.Namespace('http://purl.org/dc/terms#')
 AUTHORS = ('Keith Berkoben, Trevor Sodorff')
-CONTRIBUTORS = ('Charbel El Kaed, ?')
+CONTRIBUTORS = ('Charbel El Kaed')
 ONT_DESCRIPTION = ('The Digital Buildings ontology is an open-source, '
                    'Apache-licensed development effort to create a uniform '
                    'schema for representing metadata in Google\'s buildings '

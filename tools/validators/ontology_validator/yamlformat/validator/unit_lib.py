@@ -19,9 +19,9 @@ from __future__ import print_function
 
 import re
 
-from yamlformat.validator import base_lib
-from yamlformat.validator import config_folder_lib
-from yamlformat.validator import findings_lib
+from validation.validator import base_lib
+from validation.validator import config_folder_lib
+from validation.validator import findings_lib
 
 UNIT_NAME_VALIDATOR = re.compile(r'^[a-z]+(_[a-z]+)*$')
 

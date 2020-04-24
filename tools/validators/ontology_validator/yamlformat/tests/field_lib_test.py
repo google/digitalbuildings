@@ -17,9 +17,9 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
-from yamlformat.validator import field_lib
-from yamlformat.validator import findings_lib
-from yamlformat.validator import subfield_lib
+from validation.validator import field_lib
+from validation.validator import findings_lib
+from validation.validator import subfield_lib
 from absl.testing import absltest
 
 AGGREGATION = subfield_lib.SubfieldCategory.AGGREGATION

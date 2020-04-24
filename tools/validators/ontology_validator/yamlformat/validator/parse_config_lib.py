@@ -22,13 +22,13 @@ import os
 
 import yaml
 
-from yamlformat.validator import base_lib
-from yamlformat.validator import entity_type_lib
-from yamlformat.validator import field_lib
-from yamlformat.validator import findings_lib
-from yamlformat.validator import state_lib
-from yamlformat.validator import subfield_lib
-from yamlformat.validator import unit_lib
+from validation.validator import base_lib
+from validation.validator import entity_type_lib
+from validation.validator import field_lib
+from validation.validator import findings_lib
+from validation.validator import state_lib
+from validation.validator import subfield_lib
+from validation.validator import unit_lib
 
 
 class ParseError(Exception):
