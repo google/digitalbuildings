@@ -5,7 +5,7 @@ The Digital Buildings Ontology defines both
 and concrete constructions of these primitives to model physical spaces and
 equipment. The sections below outline the conceptual model of the ontology.
 
-*   For an explanation of the concrete model see [model](model.md)
+*   For an explanation of the existing abstract model see [model](model.md)
 *   For an explanation of the model configuration files see
     [config](ontology_config.md)
 
@@ -32,12 +32,12 @@ discussed in [onboarding](building_config.md)
 ## Namespaces {#namespaces}
 
 All elements of the ontology are organized into namespaces, with some
-constriants. There is a global namespace that all other namespaces can reference
+constraints. There is a global namespace that all other namespaces can reference
 directly. Below the global namespace, the ontology allows exactly one level of
-additional namespaces. Hie rarchical namespacing is explicitly disallowed. In
+additional namespaces. Hierarchical namespacing is explicitly disallowed. In
 the interest of cross-compatibility, certain components are elevated to the
 global namespace when possible (more details on this in individual component
-sections)
+sections).
 
 ## Components
 
@@ -122,7 +122,7 @@ self-describing based on the composition of subfield definitions.
 
 A field:
 
-*   is unique per-namespace
+*   is unique within its namespace
 *   has subfields used in their correct locations based on their categories.
 *   follows the construction format
 *   has each subfield used no more than once
@@ -156,11 +156,20 @@ set)
 
 #### Enumeration {#enumeration}
 
-In some cases a device may have two point s with semantically identical meaning
+In some cases a device may have two points with semantically identical meaning
 (ex: if a device has two identical zone temperature sensors). In this case, the
 two sensors must use the same field name. To differentiate them we allow a
 numeric increment to be added to the name, ex: `<field>_1`. Multiple increments
-are allowed to indecate subgrouping as well, ex: `<field>_2_1`.
+are allowed to indicate subgrouping as well, ex: `<field>_2_1`.
+
+NB: Modelers should be careful with applying enumerations, as the analysis
+applied will be unable to apply meaningful distinctions to such fields. This
+shouldn't be a problem normally since, if two points are functionally different,
+they shouldn't have the same name (e.g. if supply_air_temperature_sensor_1 is
+the real control sensor while supply_air_temperature_sensor_2 is redundnant for
+monitoring, they should have separate names; for ease of integration, omission
+of the redundant point is acceptable, but if that is not desired an additional
+descriptor should be added).
 
 #### Structural Flexibility and Ambiguity {#structural-flexibility-and-ambiguity}
 
@@ -183,8 +192,8 @@ for further discussion.
 Any set of adjacent subfields can be considered a root concept from which fields
 with longer names inherit. Depending on the fields added, this relationship can
 extend on multiple axes, forming a graph of related concepts. This graph can be
-used to navigate related concepts with different names. For instance a search
-engine could use the graph to fan out the search for `zone_air_temperature`out
+used to navigate related concepts with different names. For instance, a search
+engine could use the graph to fan out the search for `zone_air_temperature` out
 across all fields that have a superset of the tags `zone`, `air` and
 `temperature`[^18].
 
@@ -268,9 +277,9 @@ of the set of states without needing to update the global namespace.
 
 Multi-state groups are defined on a field-by-field basis. Fields with point type
 `status` or `mode` are always multistates whereas ones with type `command`
-should be if not given a measurement subfield. All allowed states for a field
-across all devices are listed, however individual devices may or may not use all
-states (TODO: link to translations doc).
+should be interpreted as multistate if not given a measurement subfield. All
+allowed states for a field across all devices are listed, however individual
+devices may or may not use all states (TODO: link to translations doc).
 
 #### Effect on Namespace Elevation {#effect-on-namespace-elevation}
 
@@ -313,8 +322,8 @@ TODO
 
 Type names have no structureal meaning in the ontology, but because this is the
 most visibile identifier of the type, the concrete types adhere to the
-convention of starting with an equipment class (TODO: structurally define how
-equipment classes are identified) followed by an `_` separated list of parent
+convention of starting with an umbrella type (TODO: structurally define how
+umbrella types are identified) followed by an `_` separated list of parent
 types[^24]. Type names my change from version to version independent of
 [GUID](#guid).
 
@@ -324,8 +333,8 @@ Fields on types can be defined either as required or optional. The intent of
 this is to minimize the number of distinct entity types that are required to
 cover the equipment set. This is especially true in the HVAC domain when there
 may be a large number of minor (unimportant) variations in a perticular
-equipment class but there is a set of common fields across all of the devices
-that ware used for analysis.
+umbrella type but there is a set of common fields across all of the devices
+that are used for analysis.
 
 #### Inheritance {#inheritance}
 
@@ -336,11 +345,11 @@ inheritance is allowed with the following combination rules:
     the child
 *   If a field is associated to a type directly or through inheritance as both
     required and optional, the resulting definition shows the field as required.
-*   field increments are preserved and same fields with different increments are
+*   Field increments are preserved and same fields with different increments are
     considered unique
-*   relationship requirements are additive, with the strictest requirement
+*   Relationship requirements are additive, with the strictest requirement
     prevailing
-*   conflicting relationships constraints are construction errors
+*   Conflicting relationships constraints are construction errors
 *   attributes (`description`, `id`, `is_canonical`, `is_abstract`) are not
     inherited.
 
@@ -367,10 +376,10 @@ constructions to cover the excepetions. To take a concrete example, we often see
 device controllers in the HVAC world that carry sets of points for multiple
 logical pieces of equipment. Because we use the convention of creating a type
 for every device that sends data to the system, we end up with a lot of types
-that have odd collections of points that don't map to any specirfic equipment
+that have odd collections of points that don't map to any specific equipment
 concept.
 
-the `is_canonical` flag lets the modeler differentiate between 'official'
+The `is_canonical` flag lets the modeler differentiate between 'official'
 curated types (canonical) and everything else (not canonical).
 
 #### Relationship Constraints {#relationships}
@@ -395,7 +404,7 @@ can be found here. **TODO add link**.
 ### Change Management {#change-management}
 
 Versioning is anticipated for the ontology, though the exact process and
-constrains are TBD.
+constraints are TBD.
 
 <!-- Footnotes themselves at the bottom. -->
 

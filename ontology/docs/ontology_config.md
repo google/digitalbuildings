@@ -6,9 +6,8 @@ states, units and connections in multiple namespaces. Files written in the
 format can be strictly validated for consistency and backwards compatibility
 with ealier versions.
 
-*   For an explanation of the concrete model see [model](model.md)
-*   For an explanation of the conceptual model of the ontology see
-    [config](ontology.md)
+*   For an explanation of the existing abstract model see [model](model.md)
+*   For a conceptual explanation of the ontology see [ontology](ontology.md)
 
 [TOC]
 
@@ -25,9 +24,9 @@ reserved folder names are, obviously, not allowed. Only one level of child
 namespaces is allowed.
 
 File names and subfolder hierarchy below the reserved folder names are ignored
-for thep purposes of constructing the ontology. All definition filed is all
+for the purposes of constructing the ontology. All files in all
 folders under a reserved folder will be read and consolidated into the model as
-if they had be defined in a single file.
+if they had been defined in a single file.
 
 ## Namespace-aware Components {#namespace-aware-components}
 
@@ -36,7 +35,7 @@ user defines any of these components in a namespace and it cannot be
 [elevated](#elevating-names) to the global namespace, it carries that qualifier
 everywhere in the system. Ex: `HVAC/zone_temperature_sensor`.
 
-Because of namespace elevation, states if field files and fields in entity type
+Because of namespace elevation, states in field files and fields in entity type
 files can always be written with the namespace omitted. The only case where a
 namespace is required is when a user is referring to a non-elevated field in
 another namespace. This imposes a few constraints on components, which will be
@@ -44,10 +43,10 @@ discussed later.
 
 ## Namespace Agnostic Components {#namespace-agnostic-components}
 
-**Subfields:** Unlike other components, are not namespace aware. As a result,
-they are always used verbatim and should be defined in the global namespace
-whenever possible. Subfields defined in a non-global namespace are only
-available for use in that namespace and conflicting subfields in the local
+**Subfields**: Unlike other components, are Subfields are not namespace aware.
+As a result, they are always used verbatim and should be defined in the global
+namespace whenever possible. Subfields defined in a non-global namespace are
+only available for use in that namespace and conflicting subfields in the local
 namespace will override the definition of the globally defined versions for any
 fields defined in that namespace.
 
@@ -203,10 +202,10 @@ variable_air_volume_terminal:
 *   `description`: A plain-text explantion of what this type represents. The
     definition is particularly important because types have inherent meaning
     independent of the fields they contain.
-*   `is_abstrract`: set true if this type cannot be assigned directly to an
+*   `is_abstract`: set true if this type cannot be assigned directly to an
     entity
 *   `is_canonical`: set true if this is a preferred type in your model
-*   `implemments`: lists parents that this type will inherit fields and
+*   `implements`: lists parents that this type will inherit fields and
     relationship constraints from
 *   `uses`: required fields for this type
 *   `opt_uses`: optional fields for this type
@@ -229,8 +228,8 @@ Validation enforces:
 ### Connections (coming soon) {#connections}
 
 Connections are described in a folder with the name `connections`. Connections
-can **only** be described in the global namespace,and the set of connections is
-intended to gorw infrequently.
+can **only** be described in the global namespace, and the set of connections is
+intended to grow infrequently.
 
 Connections are defined by name with an associated description[^6]:
 
@@ -282,7 +281,7 @@ all the constrains outlined above.
 
 The validator source code can be found [here](TODO:ADD PATH).
 
-The Validator is python based, it takes the following arguments:
+The Validator is Python based, it takes the following arguments:
 
 *   original: a path pointing to the original files of the ontology
 *   changed (optional): a path pointing to the changed files of the ontology.
