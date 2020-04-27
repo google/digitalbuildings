@@ -121,7 +121,7 @@ ENTITY-NAME:
       ? CONTAINS
       ? FEEDS
   links:
-    A-FOUTH-ENTITY:
+    A-FOURTH-ENTITY:
       # source_device_field:this_device_field
       supply_air_damper_position_command_1: supply_air_damper_command
       zone_air_temperature_1: zone_air_temperature_sensor
