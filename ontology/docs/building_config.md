@@ -314,6 +314,27 @@ FCU-123:
   translation:COMPLIANT
 ```
 
+##### Metadata {#metadata}
+
+Often it is useful to include metadata about devices in our model (and the
+provided abstract model includes metadata points in its types).  To do this in
+the building config, one can add a `metadata` block on an entity description:
+
+```
+FCU-123:
+  ...
+  metadata:
+    discharge_air_flowrate_capacity:
+      present_value:"300"
+      units: "cubic_feet_per_minute"
+    manufacturer_label: "Carrier"
+```
+
+For entries with dimensional units, `present_value` and `units` subentries must
+be specified.  For strings or point types with implied units, the value may be
+inlined.  Because metadata is user-specified, it is required that fields and
+unit names all be in standard form.
+
 #### Virtual Devices {#virtual-devices}
 
 In many cases the logical device and the reporting device are the same thing
