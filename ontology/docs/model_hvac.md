@@ -210,7 +210,7 @@ This section outlines **umbrella types** for specific equipment.
     distribution system. TODO: update VAV to TU for improved generality (?).
 *   **Unit Heater (`UH`)**: a stand-alone, air-side device that heats air. It
     must not be part of any larger air-side distribution system.
-*   **Weather Station (WEATHER)**: a group of sensors used to measure ambient
+*   **Weather Station (`WEATHER`)**: a group of sensors used to measure ambient
     weather conditions (dry bulb temperature, relative humidity, enthalpy,
     carbon dioxide levels, etc.).
 *   **Zone (`ZONE`)**: a group of sensors associated to an individual zone,
