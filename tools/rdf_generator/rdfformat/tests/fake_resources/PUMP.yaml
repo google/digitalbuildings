@@ -11,6 +11,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
 PUMP_SS_VSC_CM:
   id: "10837427206322388992"
   description: "Variable speed pump with current monitoring."

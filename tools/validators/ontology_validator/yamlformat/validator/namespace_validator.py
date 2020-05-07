@@ -11,6 +11,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
 """Class for validating entity types for consistency across their namespaces.
 """
 
@@ -18,8 +19,8 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
-from validation.validator import base_lib
-from validation.validator import findings_lib
+from yamlformat.validator import base_lib
+from yamlformat.validator import findings_lib
 
 
 MIN_SIZE_FOR_LOCAL_FIELD_DUPES = 2

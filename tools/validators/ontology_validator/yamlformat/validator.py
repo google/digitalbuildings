@@ -11,16 +11,19 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
 """Standalone, rdf generator from ontology yaml files."""
 
 from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
+from os import path
+
 from absl import app
 from absl import flags
 
-from validation.validator import external_file_lib
+from yamlformat.validator import external_file_lib
 
 FLAGS = flags.FLAGS
 
@@ -37,9 +40,13 @@ def main(args):
       if commands[0] == 'match':
         filter_text = commands[1].strip()
 
-  if (FLAGS.original) is not None:
-    print('Starting Yaml Validator!')
-    external_file_lib.Validate(filter_text, FLAGS.original, FLAGS.changed)
+  changed = FLAGS.changed
+  if (changed) is not None:
+    changed = path.expanduser(FLAGS.changed)
+
+  print('Starting Yaml Validator!')
+  external_file_lib.Validate(filter_text, path.expanduser(FLAGS.original),
+                             changed)
 
 
 if __name__ == '__main__':

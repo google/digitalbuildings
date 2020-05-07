@@ -11,6 +11,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
 """Standalone, interactive runner for Entity type validation."""
 
 from __future__ import absolute_import
@@ -22,8 +23,8 @@ import os
 from absl import app
 from absl import flags
 
-from validation.validator import internal_file_lib
-from validation.validator import presubmit_validate_types_lib
+from yamlformat.validator import internal_file_lib
+from yamlformat.validator import presubmit_validate_types_lib
 
 FLAGS = flags.FLAGS
 

@@ -11,6 +11,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
 """Object wrapper class to represent entity types in phred."""
 
 from __future__ import absolute_import
@@ -20,10 +21,10 @@ from __future__ import print_function
 import re
 import typing
 
-from validation.validator import base_lib
-from validation.validator import config_folder_lib
-from validation.validator import field_lib
-from validation.validator import findings_lib
+from yamlformat.validator import base_lib
+from yamlformat.validator import config_folder_lib
+from yamlformat.validator import field_lib
+from yamlformat.validator import findings_lib
 
 ENTITY_TYPE_NAME_REGEX = re.compile(
     r'^[a-zA-Z]+[a-zA-Z0-9]*(?:_[a-zA-Z0-9]+)*$')
@@ -515,7 +516,7 @@ class EntityType(findings_lib.Findings):
     """
 
     if not (self.inherited_fields_expanded or run_unsafe):
-      raise RuntimeError('Type has not been expanded')
+      raise RuntimeError('Type {0} has not been expanded'.format(self.typename))
     if self._all_fields is None:
       tmp = self.local_field_names.copy()
       tmp.update(self.inherited_field_names)

@@ -11,6 +11,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
 """Helpers for use in tests. DON NOT USE IN PRODUCTION CODE.
 """
 
@@ -18,7 +19,7 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
-from validation.validator import entity_type_lib
+from yamlformat.validator import entity_type_lib
 
 
 def Field(fq_name, optional):
