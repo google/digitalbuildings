@@ -11,12 +11,12 @@ on:
 
 jobs:
   build:
-
-    #runs-on: ubuntu-latest
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [macos-latest, windows-latest, ubuntu-latest]
+    runs-on: windows-latest
+#     runs-on: ${{ matrix.os }}
+#     strategy:
+#       matrix:
+#         os: [macos-latest, windows-latest, ubuntu-latest]
+    
     
     steps:
     - uses: actions/checkout@v2
@@ -29,15 +29,21 @@ jobs:
         python -m pip install --upgrade pip
         python setup.py install
       working-directory: ./tools/rdf_generator
-    - name:  RDF Generator Tests 
-      if: (matrix.os == 'ubuntu-latest' || matrix.os == 'macos-latest') 
-      run: find . -name '*_test*py' -exec python '{}' \;
+#     - name:  RDF Generator Tests Ubuntu & MacOs
+#       if: (matrix.os == 'ubuntu-latest' || matrix.os == 'macos-latest') 
+#       run: |
+#         find . -name '*_test.py' -exec python '{}' \;       
+#       working-directory: ./tools/rdf_generator/rdfformat/tests
+    - name:  RDF Generator Tests Windows
+      if: matrix.os == 'windows-latest'
+      run: |
+        dir  '*_test.py' -exec python '{}' \;       
       working-directory: ./tools/rdf_generator/rdfformat/tests
-    - name:  Ontology Yaml Validator Install dependencies
-      run: |
-        python setup.py install
-      working-directory: ./tools/validators/ontology_validator
-    - name: Ontology Yaml Validator Generator Tests 
-      run: |
-       find . -name '*_test*py' -exec python '{}' \;
-      working-directory: ./tools/validators/ontology_validator/yamlformat/tests
+#     - name:  Ontology Yaml Validator Install dependencies
+#       run: |
+#         python setup.py install
+#       working-directory: ./tools/validators/ontology_validator
+#     - name: Ontology Yaml Validator Generator Tests 
+#       if: (matrix.os == 'ubuntu-latest' || matrix.os == 'macos-latest') 
+#       run: find . -name '*_test.py' -exec python '{}' \;
+#       working-directory: ./tools/validators/ontology_validator/yamlformat/tests
