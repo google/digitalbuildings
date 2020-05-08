@@ -30,8 +30,8 @@ jobs:
         python setup.py install
       working-directory: ./tools/rdf_generator
     - name:  RDF Generator Tests 
-      run: |
-       find . -name '*_test*py' -exec python '{}' \;
+      if: (matrix.os == 'ubuntu-latest' || matrix.os == 'macos-latest') 
+      run: find . -name '*_test*py' -exec python '{}' \;
       working-directory: ./tools/rdf_generator/rdfformat/tests
     - name:  Ontology Yaml Validator Install dependencies
       run: |
