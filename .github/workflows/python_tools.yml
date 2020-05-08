@@ -29,5 +29,11 @@ jobs:
       run: |
        find . -name '*_test*py' -exec python '{}' \;
       working-directory: ./tools/rdf_generator/rdfformat/tests
-       # pip install unittest
-       # python -m unittest discover -s tests -t ./tools/rdf_generator/rdfformat/tests/
+    - name:  Ontology Yaml Validator Install dependencies
+      run: |
+        python setup.py install
+      working-directory: ./tools/validators/ontology_validator
+    - name: Ontology Yaml Validator Generator Tests 
+      run: |
+       find . -name '*_test*py' -exec python '{}' \;
+      working-directory: ./tools/validators/ontology_validator/yamlformat/tests
