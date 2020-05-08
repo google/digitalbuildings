@@ -27,4 +27,4 @@ jobs:
       working-directory: ./tools/rdf_generator
     - name:  RDF Generator Tests 
       run: |
-        python -m unittest discover -s tests -t ./tools/rdf_generator/rdfformat/tests
+        python -m unittest discover -s tests -t ./tools/rdf_generator/rdfformat
