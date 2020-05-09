@@ -11,40 +11,38 @@ on:
 
 jobs:
   build:
-    runs-on: windows-latest
-#     runs-on: ${{ matrix.os }}
-#     strategy:
-#       matrix:
-#         os: [macos-latest, windows-latest, ubuntu-latest]
-    
-    
+  
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest, ubuntu-latest]
     steps:
-#     - uses: actions/checkout@v2
-#     - name: Set up Python 3.7
-#       uses: actions/setup-python@v1
-#       with:
-#         python-version: 3.7
-#     - name:  RDF Generator Install dependencies
-#       run: |
-#         python -m pip install --upgrade pip
-#         python setup.py install
-#       working-directory: ./tools/rdf_generator
-# #     - name:  RDF Generator Tests Ubuntu & MacOs
-# #       if: (matrix.os == 'ubuntu-latest' || matrix.os == 'macos-latest') 
-# #       run: |
-# #         find . -name '*_test.py' -exec python '{}' \;       
-# #       working-directory: ./tools/rdf_generator/rdfformat/tests
-    - name:  RDF Generator Tests Windows
-#       if: matrix.os == 'windows-latest'
+    - uses: actions/checkout@v2
+    - name: Set up Python 3.7
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.7
+    - name:  RDF Generator Install dependencies
       run: |
-        echo The current directory is %CD%
-#         for %%G in (*test.py); do echo %%G       
+        python -m pip install --upgrade pip
+        python setup.py install
+      working-directory: ./tools/rdf_generator
+    - name:  RDF Generator Tests Ubuntu & MacOs
+      if: (matrix.os == 'ubuntu-latest' || matrix.os == 'macos-latest') 
+      run: |
+        find . -name '*_test.py' -exec python '{}' \;       
       working-directory: ./tools/rdf_generator/rdfformat/tests
-#     - name:  Ontology Yaml Validator Install dependencies
+    - name:  Ontology Yaml Validator Install dependencies
+      run: |
+        python setup.py install
+      working-directory: ./tools/validators/ontology_validator
+    - name: Ontology Yaml Validator Generator Tests 
+      if: (matrix.os == 'ubuntu-latest' || matrix.os == 'macos-latest') 
+      run: find . -name '*_test.py' -exec python '{}' \;
+      working-directory: ./tools/validators/ontology_validator/yamlformat/tests
+      #     - name:  RDF Generator Tests Windows
+#       if: matrix.os == 'windows-latest'
 #       run: |
-#         python setup.py install
-#       working-directory: ./tools/validators/ontology_validator
-#     - name: Ontology Yaml Validator Generator Tests 
-#       if: (matrix.os == 'ubuntu-latest' || matrix.os == 'macos-latest') 
-#       run: find . -name '*_test.py' -exec python '{}' \;
-#       working-directory: ./tools/validators/ontology_validator/yamlformat/tests
+#          for %%G in (*test.py); do python.exe %%G       
+#       working-directory: ./tools/rdf_generator/rdfformat/tests
+
