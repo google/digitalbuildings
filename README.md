@@ -1,3 +1,6 @@
+![](https://github.com/google/digitalbuildings/workflows/python_tools/badge.svg)
+
+
 # Digital Buildings Project
 
 The Digital Buildings project is an open-source, Apache-licensed effort to create a uniform schema and toolset for representing structured information about buildings and building-inatalled equipment.  A version of the Digital Buildings ontology and toolset is currently being used by Google to manage buildings in its portfolio. 
