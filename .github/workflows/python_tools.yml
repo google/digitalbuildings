@@ -35,7 +35,7 @@ jobs:
 #         find . -name '*_test.py' -exec python '{}' \;       
 #       working-directory: ./tools/rdf_generator/rdfformat/tests
     - name:  RDF Generator Tests Windows
-      if: matrix.os == 'windows-latest'
+#       if: matrix.os == 'windows-latest'
       run: |
         dir  '*_test.py' -exec python '{}' \;       
       working-directory: ./tools/rdf_generator/rdfformat/tests
