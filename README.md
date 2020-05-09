@@ -1,4 +1,4 @@
-![](https://github.com/google/digitalbuildings/workflows/python_tools.yml/badge.svg)
+![](https://github.com/actions/digitalbuildings/workflows/PythonTests/badge.svg)
 
 
 # Digital Buildings Project
