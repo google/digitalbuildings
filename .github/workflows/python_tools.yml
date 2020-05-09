@@ -36,7 +36,7 @@ jobs:
 #       working-directory: ./tools/rdf_generator/rdfformat/tests
     - name:  RDF Generator Tests Windows
 #       if: matrix.os == 'windows-latest'
-      run: for %G in (*test.py); do python.exe %G       
+      run: for %G in (*test.py); do echo %G       
       working-directory: ./tools/rdf_generator/rdfformat/tests
 #     - name:  Ontology Yaml Validator Install dependencies
 #       run: |
