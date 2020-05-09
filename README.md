@@ -1,6 +1,6 @@
 ![](https://github.com/google/digitalbuildings/workflows/Tools/badge.svg)
-[![GitHub stars](https://img.shields.io/github/stars/google/digitalbuildings.svg)](https://github.com/google/digitalbuildings/stargazers)
 [![HitCount](http://hits.dwyl.com/google/digitalbuildings.svg)](http://hits.dwyl.com/google/digitalbuildings)
+[![GitHub stars](https://img.shields.io/github/stars/google/digitalbuildings.svg)](https://github.com/google/digitalbuildings/stargazers)
 
 # Digital Buildings Project
 
