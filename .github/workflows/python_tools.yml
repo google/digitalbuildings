@@ -18,18 +18,6 @@ jobs:
         os: [macos-latest, ubuntu-latest, windows-latest]
     steps:
     - uses: actions/checkout@v2
-    - name: Get Changed Files
-      if: (matrix.os == 'ubuntu-latest' || matrix.os == 'macos-latest') 
-      id: changed_files
-      uses: trilom/file-changes-action@v1.2.3
-      with:
-        fileOutput: ' '
-    - name: Select files to check
-      if: (matrix.os == 'ubuntu-latest' || matrix.os == 'macos-latest') 
-      run: |
-        cat $HOME/files_added.txt $HOME/files_modified.txt | tr ' ' '\n' | grep '\.py$' > py_files.txt || true
-        cat py_files.txt | grep '_test\.py$' | grep -v _e2e_ | grep -v integration | grep -v 'examples/' > py_test_files.txt || true
-        less py_test_files
     - name: Set up Python 3.7
       uses: actions/setup-python@v1
       with:
@@ -42,10 +30,8 @@ jobs:
     - name:  Python Tests Ubuntu & MacOs
       if: (matrix.os == 'ubuntu-latest' || matrix.os == 'macos-latest') 
       shell: bash
-      run: |
-         [ ! -s "py_test_files.txt" ] || cat py_test_files.txt | xargs -I {} python {}
-      #  find . -name '*_test.py' -exec python '{}' \;       
-        
+      run: |  
+       find . -name '*_test.py' -exec python '{}' \;       
       working-directory: ./tools/rdf_generator/rdfformat/tests
     - name:  Ontology Yaml Validator Install dependencies
       run: |
@@ -55,8 +41,8 @@ jobs:
       if: (matrix.os == 'ubuntu-latest' || matrix.os == 'macos-latest') 
       run: find . -name '*_test.py' -exec python '{}' \;
       working-directory: ./tools/validators/ontology_validator/yamlformat/tests
-      #     - name:  RDF Generator Tests Windows
-#       if: matrix.os == 'windows-latest'
-#       run: |
-#          for %%G in (*test.py); do python.exe %%G       
-#       working-directory: ./tools/rdf_generator/rdfformat/tests
+    - name:  RDF Generator Tests Windows
+      if: matrix.os == 'windows-latest'
+      run: |
+       for %%G in ./tools/rdf_generator/rdfformat/tests/(*test.py); do python.exe %%G       
+      working-directory: ./tools/rdf_generator/rdfformat/tests
