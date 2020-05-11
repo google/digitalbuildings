@@ -27,11 +27,18 @@ jobs:
         python -m pip install --upgrade pip
         python setup.py install
       working-directory: ./tools/rdf_generator
-    - name:  RDF Generator Tests Ubuntu & MacOs
+    - name: Prepare Test files
       if: (matrix.os == 'ubuntu-latest' || matrix.os == 'macos-latest') 
+      shell: bash
       run: |
+         # Filter out non-python files.
+         cat $HOME/files_added.txt $HOME/files_modified.txt | tr ' ' '\n' | grep '\.py$' > py_files.txt || true
          # Filter out non-test python files and e2e or integration tests.
          cat py_files.txt | grep '_test\.py$' | grep -v _e2e_ | grep -v integration | grep -v 'examples/' > py_test_files.txt || true
+    - name:  Python Tests Ubuntu & MacOs
+      if: (matrix.os == 'ubuntu-latest' || matrix.os == 'macos-latest') 
+      shell: bash
+      run: |
          [ ! -s "py_test_files.txt" ] || cat py_test_files.txt | xargs -I {} python {}
       #  find . -name '*_test.py' -exec python '{}' \;       
         
