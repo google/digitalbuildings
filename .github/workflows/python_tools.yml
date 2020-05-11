@@ -32,7 +32,7 @@ jobs:
       shell: bash
       run: |  
        find . -name '*_test.py' -exec python '{}' \;       
-      working-directory: ./tools/rdf_generator/rdfformat/tests
+      working-directory: ./tools/
     - name:  Ontology Yaml Validator Install dependencies
       run: |
         python setup.py install
