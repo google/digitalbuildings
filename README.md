@@ -1,6 +1,7 @@
 ![](https://github.com/google/digitalbuildings/workflows/Tools/badge.svg)
 [![HitCount](http://hits.dwyl.com/google/digitalbuildings.svg)](http://hits.dwyl.com/google/digitalbuildings)
 [![GitHub stars](https://img.shields.io/github/stars/google/digitalbuildings.svg)](https://github.com/google/digitalbuildings/stargazers)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 # Digital Buildings Project
 
