@@ -41,8 +41,8 @@ jobs:
       if: (matrix.os == 'ubuntu-latest' || matrix.os == 'macos-latest') 
       run: find . -name '*_test.py' -exec python '{}' \;
       working-directory: ./tools/validators/ontology_validator/yamlformat/tests
-    - name:  RDF Generator Tests Windows
-      if: matrix.os == 'windows-latest'
-      run: |
-       for %%G in ./tools/rdf_generator/rdfformat/tests/(*test.py); do python.exe %%G       
-      working-directory: ./tools/rdf_generator/rdfformat/tests
+#     - name:  RDF Generator Tests Windows
+#       if: matrix.os == 'windows-latest'
+#       run: |
+#        for %%G in ./tools/rdf_generator/rdfformat/tests/(*test.py); do python.exe %%G       
+#       working-directory: ./tools/rdf_generator/rdfformat/tests
