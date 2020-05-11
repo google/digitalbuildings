@@ -27,9 +27,7 @@ jobs:
     - name: Select files to check
       if: (matrix.os == 'ubuntu-latest' || matrix.os == 'macos-latest') 
       run: |
-        # Filter out non-python files.
         cat $HOME/files_added.txt $HOME/files_modified.txt | tr ' ' '\n' | grep '\.py$' > py_files.txt || true
-        # Filter out non-test python files and e2e or integration tests.
         cat py_files.txt | grep '_test\.py$' | grep -v _e2e_ | grep -v integration | grep -v 'examples/' > py_test_files.txt || true
         less py_test_files
     - name: Set up Python 3.7
