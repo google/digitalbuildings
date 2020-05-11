@@ -18,6 +18,19 @@ jobs:
         os: [macos-latest, ubuntu-latest, windows-latest]
     steps:
     - uses: actions/checkout@v2
+    - name: Get Changed Files
+      if: (matrix.os == 'ubuntu-latest' || matrix.os == 'macos-latest') 
+      id: changed_files
+      uses: trilom/file-changes-action@v1.2.3
+      with:
+        fileOutput: ' '
+    - name: Select files to check
+      if: (matrix.os == 'ubuntu-latest' || matrix.os == 'macos-latest') 
+      run: |
+        # Filter out non-python files.
+        cat $HOME/files_added.txt $HOME/files_modified.txt | tr ' ' '\n' | grep '\.py$' > py_files.txt || true
+        # Filter out non-test python files and e2e or integration tests.
+        cat py_files.txt | grep '_test\.py$' | grep -v _e2e_ | grep -v integration | grep -v 'examples/' > py_test_files.txt || true
     - name: Set up Python 3.7
       uses: actions/setup-python@v1
       with:
@@ -27,14 +40,6 @@ jobs:
         python -m pip install --upgrade pip
         python setup.py install
       working-directory: ./tools/rdf_generator
-    - name: Prepare Test files
-      if: (matrix.os == 'ubuntu-latest' || matrix.os == 'macos-latest') 
-      shell: bash
-      run: |
-         # Filter out non-python files.
-         cat $HOME/files_added.txt $HOME/files_modified.txt | tr ' ' '\n' | grep '\.py$' > py_files.txt || true
-         # Filter out non-test python files and e2e or integration tests.
-         cat py_files.txt | grep '_test\.py$' | grep -v _e2e_ | grep -v integration | grep -v 'examples/' > py_test_files.txt || true
     - name:  Python Tests Ubuntu & MacOs
       if: (matrix.os == 'ubuntu-latest' || matrix.os == 'macos-latest') 
       shell: bash
