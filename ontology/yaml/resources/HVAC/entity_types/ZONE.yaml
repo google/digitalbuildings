@@ -11,6 +11,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
 ZONE_HVAC:
   id: "3515181142636494848"
   description: "A zone entity representing the area served by connected HVAC entities."

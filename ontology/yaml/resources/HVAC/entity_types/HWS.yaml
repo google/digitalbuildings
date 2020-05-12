@@ -11,6 +11,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
 ########################
 ### Canonical Types  ###
 ########################
@@ -174,7 +175,7 @@ HWS_SWTC_WDPC_WFRC_BYPVPM_PWDT:
 
 HWS_US_SVL_MAT2_1:
   id: "8016273883495661568"
-  description: 'Hash:ac3ef04b52cebab8d703b694a7f7c6f2891f5b10b1a93016d6afc1df406efe6a;Entities: US-SVL-MAT2/HW SYSTEM'
+  description: "Non-standard type for MAT2"
   implements:
   - HWS_SWTC_WDPC2X
   - DEPRECATED
@@ -184,7 +185,7 @@ HWS_US_SVL_MAT2_1:
 
 HWS_US_MTV_2000_2:
   id: "17278858903043440640"
-  description: 'Entities: US-MTV-2000:HW SYSTEM:HW SYSTEM-COGEN'
+  description: "Non-standard type for 2000"
   implements:
   - HWS_RWTC_MXVPM
   - DEPRECATED

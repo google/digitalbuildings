@@ -11,6 +11,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
 ########################
 ### Canonical Types  ###
 ########################
@@ -50,7 +51,7 @@ DH_SS_DSP_HTZC:
 
 DFR_US_PAO_HV4_2:
   id: "8271659648302448640"
-  description: "Entities: US-PAO-HV4:DF:H-1"
+  description: "Non-standard type for HV4"
   uses:
   - discharge_air_relative_humidity_sensor
   - discharge_air_temperature_sensor

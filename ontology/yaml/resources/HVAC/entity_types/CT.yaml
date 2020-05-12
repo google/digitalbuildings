@@ -11,6 +11,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
 ########################
 ### Canonical Types  ###
 ########################
@@ -124,7 +125,7 @@ CT_SS_VSC_SWTC_SWISOVPM_RWISOVPM_SWISOVM_MWVPM:
 
 CT_US_SBO_901_1:
   id: "6975748855526588416"
-  description: "Entities: US-SBO-901:CT:CT-1"
+  description: "Non-standard type for SBO-901"
   implements:
   - CT_SS_SWTC
   - INCOMPLETE
@@ -133,7 +134,7 @@ CT_US_SBO_901_1:
 
 CT_US_SVL_MP3_1:
   id: "605248852936622080"
-  description: "Hash:19bf0bb8d73256a7c933e77b2e66ef48292d61948929358639f26e7bbf0cd677;Entities: US-SVL-MP3:CT:CT-1, US-SVL-MP3:CT:CT-2"
+  description: "Non-standard type for MP3"
   implements:
   - CT_SS_VSC_SWTC
   - INCOMPLETE

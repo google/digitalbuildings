@@ -11,6 +11,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
 ########################
 ### Canonical Types  ###
 ########################
@@ -335,7 +336,7 @@ VAV_PDSCV_VOCC_ZHM_CO2C:
 
 VAV_US_MTV_1250_1:
   id: "17018776024562794496"
-  description: "Entities: DEV:2827311"
+  description: "Non-standard type for 1250"
   implements:
   - VAV_SD_DSP_HWDC
   - INCOMPLETE
@@ -344,7 +345,7 @@ VAV_US_MTV_1250_1:
 
 VAV_US_MTV_2017_2:
   id: "1012842211399696384"
-  description: "Entities: DEV:2919307"
+  description: "Non-standard type for 2017"
   implements:
   - VAV_SD_DSP_HTDC
   - INCOMPLETE
@@ -353,7 +354,7 @@ VAV_US_MTV_2017_2:
 
 VAV_US_MTV_43_1:
   id: "16125937398436593664"
-  description: "Entities: US-MTV-43:VAV:VAV CO 2-2-14, US-MTV-43:VAV:VAV CO 2-2-15"
+  description: "Non-standard type for B43"
   implements:
   - VAV_SD_CSP
   uses:
@@ -361,7 +362,7 @@ VAV_US_MTV_43_1:
 
 VAV_US_PAO_MIR3_2:
   id: "1877251864878120960"
-  description: "Entities: US-PAO-MIR3:VAV:VAV CO 2-1-14"
+  description: "Non-standard type for MIR3"
   implements:
   - VAV_SD_CSP
   uses:
@@ -369,7 +370,7 @@ VAV_US_PAO_MIR3_2:
 
 DMP_US_MTV_1708_2: # Is Actually a VAV
   id: "1373130181589336064"
-  description: "Entities: US-MTV-1708:DMPR:CD-1, US-MTV-1708:DMPR:CD-2, US-MTV-1708:DMPR:CD-3, US-MTV-1708:DMPR:CD-4, US-MTV-1708:DMPR:CD-5"
+  description: "Non-standard type for 1700 CDs"
   implements:
   - VAV
   - SD

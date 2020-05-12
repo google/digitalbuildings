@@ -11,6 +11,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
 ########################
 ### Canonical Types  ###
 ########################
@@ -165,7 +166,7 @@ BLR_SS_SWTC_HTSWC_RWISOVPM:
 
 BLR_US_MTV_1201_1:
   id: "3859257913386205184"
-  description: "Entities: US-MTV-1201:BLR:BLR-1, US-MTV-1201:BLR:BLR-2"
+  description: "Non-standard type for 1201 BLRs"
   implements:
   - BLR_SS_SWTC_SWISOVM
   - INCOMPLETE
@@ -174,7 +175,7 @@ BLR_US_MTV_1201_1:
 
 BLR_US_MTV_45_1:
   id: "10031511571441647616"
-  description: "Entities: US-MTV-45:BLR:BLR-1"
+  description: "Non-standard type for B45 BLR"
   implements:
   - BLR_SS_SWTC
   - INCOMPLETE
@@ -183,7 +184,7 @@ BLR_US_MTV_45_1:
 
 BLR_US_MTV_QD4_1:
   id: "9468332919601758208"
-  description: "Hash:7f5552f4a94d6160fea9b8c7a44ec39c4339b8c29bc23a92995bb5942c165bf4;Entities:US-MTV-QD4:BLR:BLR-1, US-MTV-QD4:BLR:BLR-2"
+  description: "Non-standard type for QD4 BLRs"
   implements:
   - BLR_SS_SWTC
   - INCOMPLETE
@@ -192,7 +193,7 @@ BLR_US_MTV_QD4_1:
 
 BLR_US_SBO_1000_1:
   id: "5763154655857082368"
-  description: "Entities: US-SBO-1000:BLR:BLR-1, US-SBO-1000:BLR:BLR-2, US-SBO-1000:BLR:BLR-3"
+  description: "Non-standard type for SBO-1000 BLRs"
   implements:
   - BLR_SS_SWTC_SWISOVM
   - INCOMPLETE
@@ -201,7 +202,7 @@ BLR_US_SBO_1000_1:
 
 BLR_US_SVL_BORD1212_1:
   id: "16471430340162879488"
-  description: "Hash:325a8c5601b53852a9b5697b33957f7f87776dd1a8ef1398ab530bb025cd4941;Entities:US-SVL-BORD1212:BLR:BLR-1, US-SVL-BORD1212:BLR:BLR-2"
+  description: "Non-standard type for BORD1212 BLRs"
   implements:
   - BLR_SS_SWTC_HTSWC_RWISOVPM
   - INCOMPLETE

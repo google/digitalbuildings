@@ -41,7 +41,7 @@ def main(args):
         filter_text = commands[1].strip()
 
   changed = FLAGS.changed
-  if (changed) is not None:
+  if changed is not None:
     changed = path.expanduser(FLAGS.changed)
 
   print('Starting Yaml Validator!')

@@ -11,6 +11,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
 ########################
 ### Canonical Types  ###
 ########################
@@ -241,7 +242,7 @@ FAN_SS_EATC:
 
 FAN_US_MTV_1950_1:
   id: "1697530092248367104"
-  description: "Entities: DEV:2704513"
+  description: "Non-standard type for 1950"
   implements:
   - FAN_SS
   uses:
@@ -250,7 +251,7 @@ FAN_US_MTV_1950_1:
 
 FAN_US_MTV_2081_1:
   id: "4273589079104290816"
-  description: "Entities: DEV:248607"
+  description: "Non-standard type for 2081"
   implements:
   - FAN_SS_VSC
   uses:
@@ -259,7 +260,7 @@ FAN_US_MTV_2081_1:
 
 FAN_US_MTV_FRC1_2:
   id: "8479792801393934336"
-  description: "Hash:c953a107b6e0228c84095363fadf6848925ae89d37a3a9c7a0e540a88077d67e; Entities: US-MTV-FRC1:FAN:EF-8"
+  description: "Non-standard type for FRC1 EFs"
   implements:
   - FAN_SS
   - INCOMPLETE
@@ -268,7 +269,7 @@ FAN_US_MTV_FRC1_2:
 
 FAN_US_PAO_HV5_1:
   id: "2182792952097538048"
-  description: "Entities: DEV:3203503"
+  description: "Non-standard type for HV5"
   implements:
   - FAN_SS_VSC_BSPC
   uses:
@@ -278,7 +279,7 @@ FAN_US_PAO_HV5_1:
 
 FAN_US_PAO_HV5_3:
   id: "7722220493763248128"
-  description: "Entities: DEV:3203512"
+  description: "Non-standard type for HV5"
   implements:
   - FAN_SS_VSC_BSPC
   uses:
@@ -290,7 +291,7 @@ FAN_US_PAO_HV5_3:
 
 FAN_US_PAO_HV5_8:
   id: "16945592530618023936"
-  description: "Entities: US-PAO-HV5:FAN:EF 5-10, US-PAO-HV5:FAN:EF 5-11"
+  description: "Non-standard type for HV5 EFs"
   implements:
   - FAN_SS_VSC
   uses:
@@ -300,7 +301,7 @@ FAN_US_PAO_HV5_8:
 
 FAN_US_SVL_BRG1_1:
   id: "17292369701925552128"
-  description: "Entities: DEV:3100106"
+  description: "Non-standard type for BRG1"
   implements:
   - FAN_SS
   uses:
@@ -308,7 +309,7 @@ FAN_US_SVL_BRG1_1:
 
 FAN_US_SVL_BRG1_2:
   id: "15710480332811665408"
-  description: "Entities: DEV:3100112"
+  description: "Non-standard type for BRG1"
   implements:
   - FAN_SS
   uses:
@@ -317,15 +318,15 @@ FAN_US_SVL_BRG1_2:
 
 FAN_US_SVL_CSPN222_5:
   id: "1313439894340632576"
-  description: "Hash:f8c11bb917edf448359a16079a86a43e4f4982c66822fc36d3c89bd57ad98e15; Entities: US-SVL-CSPN222:FAN:KEF-2, US-SVL-CSPN222:FAN:KEF-3, US-SVL-CSPN222:FAN:KEF-4, US-SVL-CSPN222:FAN:KEF-5, US-SVL-CSPN222:FAN:KEF-6"
+  description: "Non-standard type for CSPN222 KEFs"
   implements:
   - FAN_SS_VSC
   uses:
-  - exhaust_air_temperature_sensor # change from zone to exhaust
+  - exhaust_air_temperature_sensor
 
 FAN_US_SVL_MP1_3:
   id: "10022275673768329216"
-  description: "Hash:e9b6db1cbd1f9ad6df7af6610a4c72be1e7355cd81a06ff351322558707bb926; Entities: DEV:3604907"
+  description: "Non-standard type for MP1"
   implements:
   - FAN_SS_VSC
   - INCOMPLETE
@@ -339,7 +340,7 @@ FAN_US_SVL_MP1_3:
 
 FAN_US_SVL_MP3_1:
   id: "7518274280950333440"
-  description: "Hash:cbd56970f367629ab3965380d9756662433557f68e5b03dae73de85929f8d119; Entities: DEV:3609804, DEV:3609805"
+  description: "Non-standard type for MP3"
   implements:
   - FAN_SS_VSC
   - INCOMPLETE
@@ -349,7 +350,7 @@ FAN_US_SVL_MP3_1:
 
 FAN_US_SVL_MP3_3:
   id: "2681408281154420736"
-  description: "Hash:037db9bd1f3b96a3dc8ebf6edce6d081165e5bb53841cc1e3481eedb8ee86bae; Entities: DEV:3609913"
+  description: "Non-standard type for MP3"
   implements:
   - FAN_SS
   - DEPRECATED
@@ -363,7 +364,7 @@ FAN_US_SVL_MP3_3:
 
 FAN_US_SVL_MP4_3:
   id: "16746149917432479744"
-  description: "Hash:6f926cc2b57d8e20117f1cae35e2483aec5c575433066bfb0608fe1776e91b22; Entities: US-SVL-MP4:FAN:EF 1-6"
+  description: "Non-standard type for MP4"
   implements:
   - FAN_SS_VSC_BSPC
   uses:
@@ -396,7 +397,7 @@ FAN_US_SVL_MP5_3:
 
 FAN_US_SVL_MP5_4:
   id: "8806303774378295296"
-  description: "Hash:70240d5b9f866343611ebec1f34ee01e1dc961fa8c934de6e545554384cf8ebe; Entities: US-SVL-MP5:FAN:EF-6"
+  description: "Non-standard type for MP5"
   implements:
   - FAN_SS_VSC
   - INCOMPLETE
@@ -406,7 +407,7 @@ FAN_US_SVL_MP5_4:
 
 FAN_US_SVL_MP5_5:
   id: "425104867841802240"
-  description: "Hash:a8ac287c2ccccd8c445d58e00d51e1d8aaee96871630a1c137c9d37c777e3618; Entities: US-SVL-MP5:FAN:ELEV-1"
+  description: "Non-standard type for MP5"
   implements:
   - FAN_SS
   - INCOMPLETE
@@ -416,7 +417,7 @@ FAN_US_SVL_MP5_5:
 
 FAN_US_SVL_MP7_2:
   id: "2357149107983745024"
-  description: "Hash:8290ab58eef6915234efa71277bc9e261155f20dc8ff7fc73a1d91477e72341f; Entities: US-SVL-MP7:FAN:EF-2"
+  description: "Non-standard type for MP7"
   implements:
   - FAN_SS_VSC
   uses:

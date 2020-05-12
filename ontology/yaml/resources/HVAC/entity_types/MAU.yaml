@@ -11,6 +11,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
 ########################
 ### Canonical Types  ###
 ########################
@@ -369,7 +370,7 @@ MAU_SFSS_SFVSC_HWSC_DX2SC_HT4SC_SSPC:
 
 MAU_US_MTV_1225_1: # Needs remapping -- actually an AHU.
   id: "4444233283735126016"
-  description: "Entities: US-MTV-1225:MAU:AC-4"
+  description: "Non-standard type for 1225 ACs"
   implements:
   - REMAP_REQUIRED # Actually an AHU.
   uses:
@@ -388,7 +389,7 @@ MAU_US_MTV_1225_1: # Needs remapping -- actually an AHU.
 
 MAU_US_MTV_900_1: # Looks removed from the controller (no graphics left).
   id: "14298672218375192576"
-  description: "Entities: US-MTV-900:MAU:MAU-1"
+  description: "Non-standard type for 900"
   implements:
   - REMAP_REQUIRED
   uses:
@@ -396,7 +397,7 @@ MAU_US_MTV_900_1: # Looks removed from the controller (no graphics left).
 
 MAU_US_MTV_QD7_2: # Changed in the BMS
   id: "17838431156744224768"
-  description: "Entities: B147:MAU:MAU 7-1"
+  description: "Non-standard type for QD7"
   implements:
   - REMAP_REQUIRED # Changed in the BMS
   uses:
@@ -404,7 +405,7 @@ MAU_US_MTV_QD7_2: # Changed in the BMS
 
 MAU_US_PAO_HV3_2: # Actually an AHU.
   id: "13847115986987122688"
-  description: "Entities: US-PAO-HV3:MAU:MAU-3-1"
+  description: "Non-standard type for HV3"
   implements:
   - REMAP_REQUIRED # Actually an AHU.
   uses:
@@ -435,7 +436,7 @@ MAU_US_PAO_HV3_2: # Actually an AHU.
 
 MAU_US_MTV_1201_1:
   id: "6867662464469696512"
-  description: 'Entities: US-MTV-1201:MAU:MAU-1, US-MTV-1201:MAU:MAU-2'
+  description: "Non-standard type for 1201"
   implements:
   - MAU_DFSS_DFVSC_BPC_DXDC_HTDC_DSP
   - INCOMPLETE
@@ -444,7 +445,7 @@ MAU_US_MTV_1201_1:
 
 MAU_US_MTV_2000_1:
   id: "201209116054519808"
-  description: "Entities: US-MTV-2000:MAU:MAU-1"
+  description: "Non-standard type for 2000"
   implements:
   - MAU_DFSS_DFVSC_DSP_CHWZC_HWZC
   - DEPRECATED
@@ -454,7 +455,7 @@ MAU_US_MTV_2000_1:
 
 MAU_US_MTV_2015_1:
   id: "1786546553633112064"
-  description: 'Entities: US-MTV-2015:MAU:MAU-1'
+  description: "Non-standard type for 2015"
   implements:
   - MAU_SFSS_SFVSC_HWSC_DX2SC_HT4SC_SSPC
   - INCOMPLETE
@@ -463,7 +464,7 @@ MAU_US_MTV_2015_1:
 
 MAU_US_MTV_2644_2:
   id: "15104746182930333696"
-  description: 'Entities: US-MTV-2644:MAU:MAU-1'
+  description: "Non-standard type for 2644"
   implements:
   - MAU_SFSS_SFVSC_DXSC_SSPC_HTSC
   - INCOMPLETE
@@ -472,7 +473,7 @@ MAU_US_MTV_2644_2:
 
 MAU_US_MTV_2644_3:
   id: "5656194164707033088"
-  description: 'Entities: US-MTV-2644:MAU:MAU-2'
+  description: "Non-standard type for 2644"
   implements:
   - MAU_SFSS_SFVSC_DXSC_HTSC
   - INCOMPLETE
@@ -481,7 +482,7 @@ MAU_US_MTV_2644_3:
 
 MAU_US_MTV_43_2:
   id: "1507253007991963648"
-  description: 'Entities: US-MTV-43:MAU:MAU-2'
+  description: "Non-standard type for B43"
   implements:
   - MAU_SFSS_CHWSC_HT4SC
   - INCOMPLETE
@@ -490,7 +491,7 @@ MAU_US_MTV_43_2:
 
 MAU_US_MTV_CL4_1:
   id: "16140644465969725440"
-  description: 'Entities: US-MTV-CL4:MAU:MAU-1'
+  description: "Non-standard type for CL4"
   implements:
   - MAU_DFSS_DFVSC_DSP_HTSC
   - INCOMPLETE
@@ -499,7 +500,7 @@ MAU_US_MTV_CL4_1:
 
 MAU_US_MTV_PR55_1:
   id: "6795604870431768576"
-  description: 'Entities: DEV:2819715'
+  description: "Non-standard type for PR55"
   implements:
   - MAU_SFSS_SFVSC_HTSC_BPC
   - INCOMPLETE
@@ -508,7 +509,7 @@ MAU_US_MTV_PR55_1:
 
 MAU_US_MTV_QD7_3:
   id: "8853749900140085248"
-  description: 'Entities: US-MTV-QD7:MAU:MAU 7-1'
+  description: "Non-standard type for QD7"
   implements:
   - MAU_SFSS_SFVSC_SSPC_HT2SC_DX2SC
   - INCOMPLETE
@@ -518,7 +519,7 @@ MAU_US_MTV_QD7_3:
 
 MAU_US_MTV_SB65_1:
   id: "12506169197937557504"
-  description: 'Entities: US-MTV-SB65:MAU:MAU-1, US-MTV-SB65:MAU:MAU-2'
+  description: "Non-standard type for SB65"
   implements:
   - MAU_SFSS_SFVSC_HTSC_DX2SC_SSPC
   - INCOMPLETE
@@ -528,7 +529,7 @@ MAU_US_MTV_SB65_1:
 
 MAU_US_PAO_MIR1_1:
   id: "11307085797150162944"
-  description: 'Entities: US-PAO-MIR1:MAU:MUA-1'
+  description: "Non-standard type for MIR1"
   implements:
   - MAU_SFSS_SFVSC_HTSC_BPC_SHM
   - DEPRECATED
@@ -537,7 +538,7 @@ MAU_US_PAO_MIR1_1:
 
 MAU_US_SBO_1000_1:
   id: "6703281078070673408"
-  description: 'Entities: US-SBO-1000:MAU:MAU-1'
+  description: "Non-standard type for SBO-1000"
   implements:
   - MAU_SFSS_SFVSC_HTSC_BPC_SHM
   - DEPRECATED

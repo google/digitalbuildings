@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Object wrapper class to represent entity types in phred."""
+"""Classes and methods for working with entity types in the ontology."""
 
 from __future__ import absolute_import
 from __future__ import division

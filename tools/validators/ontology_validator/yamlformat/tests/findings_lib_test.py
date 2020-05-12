@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Tests for ...phred.tools.typegenerator.typevalidator.base_lib."""
+"""Tests for findings_lib."""
 
 from __future__ import absolute_import
 from __future__ import division

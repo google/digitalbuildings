@@ -11,14 +11,13 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
 ### ABSTRACT TYPES
 
 # This defines subtypes by function. They are not necessarily specific to any type of equipment.
-# TODO: Segment the doc by function.
-# TODO: Improve Naming. See Types Investigation sheet https://docs.google.com/spreadsheets/d/1wfSIz28kplY4OOIDDjik4sbHr3z8YEQbWmF5Euxd1D0/edit#gid=1292552416
 # TODO: Variable speed compressors?
-# TODO: For types which use multiple sensors as control points (e.g. differential_pressure_sensor_1 and _2)
-#       they should be reconstructed using virtual points (and the 2X types should be deprecated).
+# TODO: For types which use multiple sensors as control points (e.g. differential_pressure_sensor_1
+# and _2) they should be reconstructed using virtual points (and the 2X types should be deprecated).
 
 SD:
   id: "11449987124388954112"

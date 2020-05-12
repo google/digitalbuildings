@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Tests for bizapps.rews.carson.ontology.validation.parse_config_lib."""
+"""Tests for parse_config_lib."""
 
 from __future__ import absolute_import
 from __future__ import division
