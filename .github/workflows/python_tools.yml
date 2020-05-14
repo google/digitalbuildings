@@ -27,7 +27,7 @@ jobs:
         python -m pip install --upgrade pip
         python setup.py install
       working-directory: ./tools/rdf_generator
-    - name:  RDF Generator Tests Ubuntu & MacOs
+    - name:  RDF Generator Tests
       run: |  
        python -m unittest discover -p '*_test.py' --failfast -v
       working-directory: ./tools/rdf_generator/rdfformat/tests
