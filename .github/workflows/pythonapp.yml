@@ -25,8 +25,11 @@ jobs:
         python -m pip install --upgrade pip
         pip install flake8 pytest
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-  
+    - name:  RDF Generator Install dependencies
+      run: |
+        python setup.py install
+      working-directory: ./tools/rdf_generator
     - name: Test with unittest
-      shell: bash
-      run: python -m unittest discover --pattern *_test.py --failfast -v  
+      run: |
+       python -m unittest discover --pattern *_test.py --failfast -v  
       working-directory: ./tools/rdf_generator/rdfformat/tests
