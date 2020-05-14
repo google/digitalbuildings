@@ -31,5 +31,5 @@ jobs:
       working-directory: ./tools/rdf_generator
     - name: Test with unittest
       run: |
-       python -m unittest discover --pattern *_test.py --failfast -v  
+       python -m unittest *_test.py --failfast -v 
       working-directory: ./tools/rdf_generator/rdfformat/tests
