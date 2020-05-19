@@ -45,7 +45,7 @@ class RdfHelperLibTest(absltest.TestCase):
                   updated_graph)
     self.assertIn((clazz, rdflib.RDFS.label, rdflib.Literal('class_name')),
                   updated_graph)
-    self.assertIn((clazz, rdflib.RDFS.comment, rdflib.Literal('description')),
+    self.assertIn((clazz, rdflib.RDFS.comment, rdflib.Literal('description2')),
                   updated_graph)
 
   def testClassHelperNoDescription(self):
