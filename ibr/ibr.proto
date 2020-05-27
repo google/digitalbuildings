@@ -1,0 +1,99 @@
+syntax = "proto3";
+
+message ImageData {
+  // The length of the image (in meters?).
+  float length = 1;
+
+  // The width of the image (in meters?).
+  float width = 2;
+
+  // base 64 encoded png representing a layer.
+  bytes image = 3;
+}
+
+message InternalBuildingRepresentation {
+  enum StructuralType {
+    UNKNOWN = 0;
+    BUILDING = 1;
+  }
+
+  message BuildingMetadata {
+    // A unique identifier/code for the building e.g. US-SVL-TC2
+    string code = 1;
+
+    // The map address of the building e.g. 807 11th Avenue
+    string address = 2;
+
+    // The address city e.g. Sunnyvale
+    string city = 3;
+
+    // The two letter state code e.g. CA
+    string state = 4;
+
+    // The ISO 3166 alpha-3 country code e.g. USA
+    string country = 5;
+  }
+
+  message BlockingGrid {
+    //  A unique identifier for the blocking grid.
+    string id = 1;
+
+    // The cooresponding layer id for the given blocking grid.
+    string layer_id = 2;
+
+    // The raw image of the blocking grid.
+    ImageData image_data = 3;
+  }
+
+  message Visualization {
+    enum EncodingType {
+      UNKNOWN = 0;
+      VECTOR_2D = 1;
+      VECTOR_3D = 2;
+      BITMAP_IMAGE = 3;
+    }
+
+    // A unique identifier
+    string id = 1;
+
+    // The encoding type of the data to distinguish 2D vs 3D coordinates vs raw bitmap image.
+    EncodingType encoding_type = 2;
+
+    // The representation of the layer, either a VectorCoordinate map or raw bitmap image.
+    oneof data {
+      ImageData image_data = 3;
+      VectorCoordinates coordinates = 4;
+    }
+  }
+
+  // A base64 encoded ordered list of coordinates.
+  // Visualization and other layers index into CoordinatesLookup to determine coordinate segments.
+  message CoordinatesLookup {
+    bytes encoded_data = 1;
+    string debug_string = 2;
+  }
+
+  // A representation of the layer in coordinate indices.
+  // Composed of a list of pairs of start/end indices to represent line segments.
+  message VectorCoordinates {
+    repeated int32 coordinate_index = 1;
+  }
+
+  // The global unique id for the building.
+  string guid = 1;
+
+  // A human-readable string identifier for the building.
+  string name = 2;
+
+  // The structural type represented in this message (e.g. building vs floor).
+  StructuralType structural_type = 3;
+
+  // The human readable metadata for the building.
+  BuildingMetadata metadata = 4;
+
+  // The compressed coordinates that is referenced throughout the message.
+  CoordinatesLookup coordinates_lookup = 5;
+
+  // A contained layer/visualization data (e.g. tri gross area layer, external/internal walls, blocking geometry etc.)
+  repeated Visualization visualization = 6;
+}
