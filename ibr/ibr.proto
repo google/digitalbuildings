@@ -17,7 +17,7 @@ message InternalBuildingRepresentation {
     BUILDING = 1;
   }
 
-  message BuildingMetadata {
+  message Metadata {
     // A unique identifier/code for the building e.g. US-SVL-TC2
     string code = 1;
 
@@ -89,7 +89,7 @@ message InternalBuildingRepresentation {
   StructuralType structural_type = 3;
 
   // The human readable metadata for the building.
-  BuildingMetadata metadata = 4;
+  Metadata metadata = 4;
 
   // The compressed coordinates that is referenced throughout the message.
   CoordinatesLookup coordinates_lookup = 5;
