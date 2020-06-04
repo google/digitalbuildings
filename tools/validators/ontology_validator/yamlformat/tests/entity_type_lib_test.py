@@ -151,9 +151,6 @@ class EntityTypeLibTest(absltest.TestCase):
     self.assertTrue(
         type_folder.HasFindingTypes([findings_lib.UnrecognizedFormatError]))
 
-    # i think it should also have InconsistentFileLocationError? adding check
-    print(type_folder.HasFindingTypes([findings_lib.InconsistentFileLocationError]))
-
   def testAddFromConfig(self):
     folderpath = 'ANIMAL/entity_types'
     # don't supply a fields_universe
@@ -172,10 +169,18 @@ class EntityTypeLibTest(absltest.TestCase):
         }
     }
 
+    type_folder.AddFromConfig([yaml_doc], good_filepath)
+
+    print('---------- BEGIN DEBUGGING ----------')
+
     print('type_folder path:', folderpath)
     print('good_filepath:', good_filepath)
+    findings = type_folder.GetFindings()
+    for f in findings:
+        print(f)
 
-    type_folder.AddFromConfig([yaml_doc], good_filepath)
+    print('---------- END DEBUGGING ----------')
+
     self.assertFalse(type_folder.GetFindings())
     self.assertFalse(type_folder.local_namespace.GetFindings())
     self.assertLen(type_folder.local_namespace.valid_types_map, 1)
