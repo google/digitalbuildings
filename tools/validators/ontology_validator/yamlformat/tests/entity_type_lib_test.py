@@ -156,7 +156,7 @@ class EntityTypeLibTest(absltest.TestCase):
     # folderpath = 'ANIMAL/entity_types'
     folderpath_root = 'ANIMAL'
     folderpath_child = 'entity_types'
-    folderpath = os.path.join(folderpath_root, folderpath_child)
+    folderpath = os.path.join(folderpath_root + os.sep, folderpath_child)
     print('MODIFIED FOLDERPATH:', folderpath)
     # don't supply a fields_universe
     type_folder = entity_type_lib.EntityTypeFolder(folderpath)
