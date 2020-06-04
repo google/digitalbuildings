@@ -32,6 +32,7 @@ _GOOD_PATH_2 = _GOOD_PATH_FORMAT.format('mynamespace2')
 _FS = test_helpers_lib.Fields
 _F = test_helpers_lib.Field
 
+print('test')
 
 class EntityTypeLibTest(absltest.TestCase):
 
