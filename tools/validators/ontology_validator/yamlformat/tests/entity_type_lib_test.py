@@ -32,6 +32,7 @@ _GOOD_PATH_2 = _GOOD_PATH_FORMAT.format('mynamespace2')
 _FS = test_helpers_lib.Fields
 _F = test_helpers_lib.Field
 
+
 class EntityTypeLibTest(absltest.TestCase):
 
   def testEntityTypeUniverseGetFindings(self):
@@ -136,9 +137,6 @@ class EntityTypeLibTest(absltest.TestCase):
     type_folder = entity_type_lib.EntityTypeFolder(folderpath)
     self.assertFalse(type_folder.GetFindings())
 
-    # good_filepath = os.path.join(folderpath, 'mammal.yaml')
-
-    # once again experiment with hardcoding folderpath
     good_filepath = folderpath + '/mammal.yaml'
 
     # Build test proto
@@ -152,8 +150,6 @@ class EntityTypeLibTest(absltest.TestCase):
     }
 
     type_folder.AddFromConfig([yaml_doc], good_filepath)
-    print('CHECK FOR InconsistentFileLocationError')
-    print(type_folder.HasFindingTypes([findings_lib.InconsistentFileLocationError]))
     self.assertTrue(
         type_folder.HasFindingTypes([findings_lib.UnrecognizedFormatError]))
 
@@ -163,9 +159,6 @@ class EntityTypeLibTest(absltest.TestCase):
     type_folder = entity_type_lib.EntityTypeFolder(folderpath)
     self.assertFalse(type_folder.GetFindings())
 
-    # good_filepath = os.path.join(folderpath, 'mammal.yaml')
-
-    # experiment with hardcoding the filepath separator 
     good_filepath = folderpath + '/mammal.yaml'
 
     # Build test proto
@@ -179,17 +172,6 @@ class EntityTypeLibTest(absltest.TestCase):
     }
 
     type_folder.AddFromConfig([yaml_doc], good_filepath)
-
-    print('---------- BEGIN DEBUGGING ----------')
-
-    print('type_folder path:', folderpath)
-    print('good_filepath:', good_filepath)
-    findings = type_folder.GetFindings()
-    for f in findings:
-        print(f)
-
-    print('---------- END DEBUGGING ----------')
-
     self.assertFalse(type_folder.GetFindings())
     self.assertFalse(type_folder.local_namespace.GetFindings())
     self.assertLen(type_folder.local_namespace.valid_types_map, 1)
