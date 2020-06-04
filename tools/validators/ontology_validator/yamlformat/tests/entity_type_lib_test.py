@@ -152,17 +152,15 @@ class EntityTypeLibTest(absltest.TestCase):
         type_folder.HasFindingTypes([findings_lib.UnrecognizedFormatError]))
 
   def testAddFromConfig(self):
-    # experiment with letting Python choose slashes
-    # folderpath = 'ANIMAL/entity_types'
-    folderpath_root = 'ANIMAL'
-    folderpath_child = 'entity_types'
-    folderpath = os.path.join(folderpath_root + os.sep, folderpath_child)
-    print('MODIFIED FOLDERPATH:', folderpath)
+    folderpath = 'ANIMAL/entity_types'
     # don't supply a fields_universe
     type_folder = entity_type_lib.EntityTypeFolder(folderpath)
     self.assertFalse(type_folder.GetFindings())
 
-    good_filepath = os.path.join(folderpath, 'mammal.yaml')
+    # good_filepath = os.path.join(folderpath, 'mammal.yaml')
+
+    # experiment with hardcoding the filepath separator 
+    good_filepath = folderpath + '/mammal.yaml'
 
     # Build test proto
     yaml_doc = {
