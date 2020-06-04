@@ -160,6 +160,7 @@ class EntityTypeLibTest(absltest.TestCase):
     self.assertFalse(type_folder.GetFindings())
 
     good_filepath = os.path.join(folderpath, 'mammal.yaml')
+
     # Build test proto
     yaml_doc = {
         'cat': {
@@ -169,6 +170,9 @@ class EntityTypeLibTest(absltest.TestCase):
             'implements': ['fuzzy']
         }
     }
+
+    print('type_folder path:', folderpath)
+    print('good_filepath:', good_filepath)
 
     type_folder.AddFromConfig([yaml_doc], good_filepath)
     self.assertFalse(type_folder.GetFindings())
