@@ -148,6 +148,8 @@ class EntityTypeLibTest(absltest.TestCase):
     }
 
     type_folder.AddFromConfig([yaml_doc], good_filepath)
+    print('CHECK FOR InconsistentFileLocationError')
+    print(type_folder.HasFindingTypes([findings_lib.InconsistentFileLocationError]))
     self.assertTrue(
         type_folder.HasFindingTypes([findings_lib.UnrecognizedFormatError]))
 
