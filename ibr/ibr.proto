@@ -1,14 +1,14 @@
 syntax = "proto3";
 
 message ImageData {
-  // The length of the image (in meters?).
+  // The length of the image (in pixels).
   float length = 1;
 
-  // The width of the image (in meters?).
+  // The width of the image (in pixels).
   float width = 2;
 
   // base 64 encoded png representing a layer.
-  bytes image = 3;
+  string image = 3;
 }
 
 message InternalBuildingRepresentation {
@@ -34,17 +34,6 @@ message InternalBuildingRepresentation {
     string country = 5;
   }
 
-  message BlockingGrid {
-    //  A unique identifier for the blocking grid.
-    string id = 1;
-
-    // The cooresponding layer id for the given blocking grid.
-    string layer_id = 2;
-
-    // The raw image of the blocking grid.
-    ImageData image_data = 3;
-  }
-
   message Visualization {
     enum EncodingType {
       UNKNOWN = 0;
@@ -67,9 +56,11 @@ message InternalBuildingRepresentation {
   }
 
   // A base64 encoded ordered list of coordinates.
+  // The decoded string comes in the form of comma separated coordinates which are space separated floats.
+  // e.g. "<x> <y>,<x> <y>,<x> <y>"
   // Visualization and other layers index into CoordinatesLookup to determine coordinate segments.
   message CoordinatesLookup {
-    bytes encoded_data = 1;
+    string encoded_data = 1;
     string debug_string = 2;
   }
 
