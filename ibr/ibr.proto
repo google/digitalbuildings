@@ -51,7 +51,7 @@ message InternalBuildingRepresentation {
     // The representation of the layer, either a VectorCoordinate map or raw bitmap image.
     oneof data {
       ImageData image_data = 3;
-      VectorCoordinates coordinates = 4;
+      bytes coordinates = 4;
     }
   }
 
@@ -61,7 +61,6 @@ message InternalBuildingRepresentation {
   // Visualization and other layers index into CoordinatesLookup to determine coordinate segments.
   message CoordinatesLookup {
     string encoded_data = 1;
-    string debug_string = 2;
   }
 
   // A representation of the layer in coordinate indices.
