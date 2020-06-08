@@ -7,8 +7,8 @@ message ImageData {
   // The width of the image (in pixels).
   float width = 2;
 
-  // base 64 encoded png representing a layer.
-  string image = 3;
+  // base64 encoded png representing a layer.
+  bytes image = 3;
 }
 
 message InternalBuildingRepresentation {
@@ -60,7 +60,7 @@ message InternalBuildingRepresentation {
   // e.g. "<x> <y>,<x> <y>,<x> <y>"
   // Visualization and other layers index into CoordinatesLookup to determine coordinate segments.
   message CoordinatesLookup {
-    string encoded_data = 1;
+    bytes encoded_data = 1;
   }
 
   // A representation of the layer in coordinate indices.
