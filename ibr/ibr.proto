@@ -1,0 +1,81 @@
+syntax = "proto3";
+
+message ImageData {
+  // The length of the image (in pixels).
+  float length = 1;
+
+  // The width of the image (in pixels).
+  float width = 2;
+
+  // base64 encoded png representing a layer.
+  bytes image = 3;
+}
+
+message InternalBuildingRepresentation {
+  enum StructuralType {
+    UNKNOWN = 0;
+    BUILDING = 1;
+  }
+
+  message Metadata {
+    message FieldValue {
+      string key = 1;
+      string value = 2;
+    }
+
+    repeated FieldValue field_values = 1;
+  }
+
+  message Visualization {
+    enum EncodingType {
+      UNKNOWN = 0;
+      VECTOR_2D = 1;
+      VECTOR_3D = 2;
+      BITMAP_IMAGE = 3;
+    }
+
+    // A unique identifier
+    string id = 1;
+
+    // The encoding type of the data to distinguish 2D vs 3D coordinates vs raw bitmap image.
+    EncodingType encoding_type = 2;
+
+    // The representation of the layer, either a VectorCoordinate map or raw bitmap image.
+    oneof data {
+      ImageData image_data = 3;
+      bytes coordinates = 4;
+    }
+  }
+
+  // A base64 encoded ordered list of coordinates.
+  // The decoded string comes in the form of comma separated coordinates which are space separated floats.
+  // e.g. "<x> <y>,<x> <y>,<x> <y>"
+  // Visualization and other layers index into CoordinatesLookup to determine coordinate segments.
+  message CoordinatesLookup {
+    bytes encoded_data = 1;
+  }
+
+  // A representation of the layer in coordinate indices.
+  // Composed of a list of pairs of start/end indices to represent line segments.
+  message VectorCoordinates {
+    repeated int32 coordinate_index = 1;
+  }
+
+  // The global unique id for the building.
+  string guid = 1;
+
+  // A human-readable string identifier for the building.
+  string name = 2;
+
+  // The structural type represented in this message (e.g. building vs floor).
+  StructuralType structural_type = 3;
+
+  // The human readable metadata for the building.
+  Metadata metadata = 4;
+
+  // The compressed coordinates that is referenced throughout the message.
+  CoordinatesLookup coordinates_lookup = 5;
+
+  // A contained layer/visualization data (e.g. tri gross area layer, external/internal walls, blocking geometry etc.)
+  repeated Visualization visualization = 6;
+}
