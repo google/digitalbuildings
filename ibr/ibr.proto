@@ -52,7 +52,7 @@ message InternalBuildingRepresentation {
   // e.g. "<x> <y>,<x> <y>,<x> <y>"
   // Visualization and other layers index into CoordinatesLookup to determine coordinate segments.
   message CoordinatesLookup {
-    bytesgi encoded_data = 1;
+    bytes encoded_data = 1;
   }
 
   // A representation of the layer in coordinate indices.
