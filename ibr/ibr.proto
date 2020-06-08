@@ -1,13 +1,13 @@
 syntax = "proto3";
 
 message ImageData {
-  // The length of the image (in meters?).
+  // The length of the image (in pixels).
   float length = 1;
 
-  // The width of the image (in meters?).
+  // The width of the image (in pixels).
   float width = 2;
 
-  // base 64 encoded png representing a layer.
+  // base64 encoded png representing a layer.
   bytes image = 3;
 }
 
@@ -17,32 +17,13 @@ message InternalBuildingRepresentation {
     BUILDING = 1;
   }
 
-  message BuildingMetadata {
-    // A unique identifier/code for the building e.g. US-SVL-TC2
-    string code = 1;
+  message Metadata {
+    message FieldValue {
+      string key = 1;
+      string value = 2;
+    }
 
-    // The map address of the building e.g. 807 11th Avenue
-    string address = 2;
-
-    // The address city e.g. Sunnyvale
-    string city = 3;
-
-    // The two letter state code e.g. CA
-    string state = 4;
-
-    // The ISO 3166 alpha-3 country code e.g. USA
-    string country = 5;
-  }
-
-  message BlockingGrid {
-    //  A unique identifier for the blocking grid.
-    string id = 1;
-
-    // The cooresponding layer id for the given blocking grid.
-    string layer_id = 2;
-
-    // The raw image of the blocking grid.
-    ImageData image_data = 3;
+    repeated FieldValue field_values = 1;
   }
 
   message Visualization {
@@ -62,15 +43,16 @@ message InternalBuildingRepresentation {
     // The representation of the layer, either a VectorCoordinate map or raw bitmap image.
     oneof data {
       ImageData image_data = 3;
-      VectorCoordinates coordinates = 4;
+      bytes coordinates = 4;
     }
   }
 
   // A base64 encoded ordered list of coordinates.
+  // The decoded string comes in the form of comma separated coordinates which are space separated floats.
+  // e.g. "<x> <y>,<x> <y>,<x> <y>"
   // Visualization and other layers index into CoordinatesLookup to determine coordinate segments.
   message CoordinatesLookup {
     bytes encoded_data = 1;
-    string debug_string = 2;
   }
 
   // A representation of the layer in coordinate indices.
@@ -89,7 +71,7 @@ message InternalBuildingRepresentation {
   StructuralType structural_type = 3;
 
   // The human readable metadata for the building.
-  BuildingMetadata metadata = 4;
+  Metadata metadata = 4;
 
   // The compressed coordinates that is referenced throughout the message.
   CoordinatesLookup coordinates_lookup = 5;
