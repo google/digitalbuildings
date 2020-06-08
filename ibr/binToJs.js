@@ -5,14 +5,11 @@
 
 function onFileLoad(event) {
     var deserializedData = InternalBuildingRepresentation.read(new Pbf(event.target.result));
-    console.log(deserializedData);
     var coordsIndexList = deserializedData.visualization[0].coordinates.coordinate_index;
 
     // Decode Coordinates from data.coordinatesLookup.encodedData
     var decoder = new TextDecoder('utf8');
     var decodedCoordsString = atob(decoder.decode(deserializedData.coordinates_lookup.encoded_data));
-    console.log("decodedCoordsString: ");
-    console.log(typeof decodedCoordsString);
 
     // Put coordinates in data structure
     coords = decodedCoordsString.split(",");
@@ -26,9 +23,7 @@ function onFileLoad(event) {
 
     // Generate data to be visualized
     var layerCoordinates = [];
-    console.log("decoded coordinates data: ");
     for (x in coordsIndexList){
-        console.log(decodedCoordsList[coordsIndexList[x]]);
         layerCoordinates.push(decodedCoordsList[coordsIndexList[x]])
     }
 

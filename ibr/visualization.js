@@ -16,7 +16,6 @@ var points = [];
 layerCoordinates = JSON.parse(sessionStorage.getItem('layerCoordinates'));
 for (x in layerCoordinates){
     points.push( new THREE.Vector3( layerCoordinates[x][0], layerCoordinates[x][1], 0 ) );
-    console.log(layerCoordinates[x]);
 }
 
 var geometry = new THREE.BufferGeometry().setFromPoints( points );
