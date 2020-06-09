@@ -3,9 +3,23 @@
  * @author Shuang Li
  */
 
+function swap32(val) {
+    return ((val & 0xFF) << 24)
+           | ((val & 0xFF00) << 8)
+           | ((val >> 8) & 0xFF00)
+           | ((val >> 24) & 0xFF);
+}
+
 function onFileLoad(event) {
     var deserializedData = InternalBuildingRepresentation.read(new Pbf(event.target.result));
-    var coordsIndexList = deserializedData.visualization[0].coordinates.coordinate_index;
+    var coordsIndexList = deserializedData.visualization[0].coordinates;
+    var coordsRangeBuffer = coordsIndexList.buffer.slice(coordsIndexList.byteOffset, coordsIndexList.buffer.byteLength);
+    var coordsRange = new Uint32Array(coordsRangeBuffer);
+    var i;
+    for (i = 0; i < coordsRange.length; i++){
+        coordsRange[i] = swap32(coordsRange[i]);
+    }
+
 
     // Decode Coordinates from data.coordinatesLookup.encodedData
     var decoder = new TextDecoder('utf8');
@@ -23,8 +37,10 @@ function onFileLoad(event) {
 
     // Generate data to be visualized
     var layerCoordinates = [];
-    for (x in coordsIndexList){
-        layerCoordinates.push(decodedCoordsList[coordsIndexList[x]])
+    for (i = 0; i < coordsRange.length; i += 2){
+        for (x = coordsRange[i]; x < coordsRange[i+1]; x++){
+            layerCoordinates.push(decodedCoordsList[x]);
+        }
     }
 
     sessionStorage.setItem('layerCoordinates', JSON.stringify(layerCoordinates));
