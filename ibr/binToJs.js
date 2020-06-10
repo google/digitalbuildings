@@ -1,6 +1,6 @@
 /**
  * @fileoverview This file takes a binary wire format ibr file, decode the information and store data in sessionStorage for visualization use
- * @author Shuang Li
+ * @author shuanglihtk@google.com (Shuang Li)
  */
 
 function swap32(val) {
@@ -15,8 +15,7 @@ function onFileLoad(event) {
     var coordsIndexList = deserializedData.visualization[0].coordinates;
     var coordsRangeBuffer = coordsIndexList.buffer.slice(coordsIndexList.byteOffset, coordsIndexList.buffer.byteLength);
     var coordsRange = new Uint32Array(coordsRangeBuffer);
-    var i;
-    for (i = 0; i < coordsRange.length; i++){
+    for (var i = 0; i < coordsRange.length; i++) {
         coordsRange[i] = swap32(coordsRange[i]);
     }
 
@@ -28,22 +27,23 @@ function onFileLoad(event) {
     // Put coordinates in data structure
     coords = decodedCoordsString.split(",");
     var decodedCoordsList = [];
-    for (x in coords){
-        coordinate = coords[x].split(" ");
-        if (coordinate.length === 2){
+    for (const coord of coords) {
+        coordinate = coord.split(" ");
+        if (coordinate.length === 2) {
             decodedCoordsList.push(coordinate);
         }
     }
 
-    // Generate data to be visualized
+    // Read multiple ranges from Visualization.coordinates array and store them in sessionStorage for visualization later
     var layerCoordinates = [];
-    for (i = 0; i < coordsRange.length; i += 2){
-        for (x = coordsRange[i]; x < coordsRange[i+1]; x++){
-            layerCoordinates.push(decodedCoordsList[x]);
+    sessionStorage.setItem('numOfLines', coordsRange.length/2);
+    for (var i = 0; i < coordsRange.length; i += 2) {
+        layerCoordinates[i/2] = [];
+        for (var x = coordsRange[i]; x < coordsRange[i+1]; x++) {
+            layerCoordinates[i/2].push(decodedCoordsList[x]);
         }
+        sessionStorage.setItem('layerCoordinates' + i/2, JSON.stringify(layerCoordinates[i/2]));
     }
-
-    sessionStorage.setItem('layerCoordinates', JSON.stringify(layerCoordinates));
 
     window.location.href = "visualization.html";
 }
