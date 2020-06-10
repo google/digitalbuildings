@@ -1,0 +1,57 @@
+name: generic_entity
+type: map
+matching-rule: 'all'
+mapping:
+  regex;(^[a-zA-Z0-9-_]+$):
+    type: map
+    matching-rule: 'any'
+    mapping:
+      type:
+        type: str
+      id:
+        type: str
+      connections:
+        type: map
+        mapping:
+          regex;(^[a-zA-Z0-9-_]+$): 
+            type: str
+      links:
+        type: map
+        matching-rule: 'any'
+        mapping:
+          regex;(^[a-zA-Z0-9-_]+$): 
+            type: map
+            matching-rule: 'any'
+            mapping:
+              regex;(^[a-zA-Z0-9-_]+$): 
+                type: str
+      translation:
+        type: map
+        matching-rule: 'any'
+        mapping:
+          regex;(^[a-zA-Z0-9-_]+$): 
+            type: map
+            matching-rule: 'any'
+            mapping:
+              present_value:
+                type: str
+              states:
+                type: map
+                matching-rule: 'any'
+                mapping:
+                  OPEN:
+                    type: str
+                  CLOSED:
+                    type: str
+              units:
+                type: map
+                matching-rule: 'any'
+                mapping:
+                  key:
+                    type: str
+                  values:
+                    type: map
+                    matching-rule: 'any'
+                    mapping:
+                      regex;(^[a-zA-Z0-9-_]+$):
+                        type: str
