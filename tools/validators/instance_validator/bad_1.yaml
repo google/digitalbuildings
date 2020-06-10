@@ -1,0 +1,6 @@
+# HVAC Zone
+ZONE-123:
+  type: HVAC/ZONE
+  connections:
+  - UK-LON-6PS-1:CONTAINS
+  -

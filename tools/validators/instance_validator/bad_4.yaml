@@ -1,0 +1,5 @@
+UK-LON-S2-1
+  type: FACILITIES/FLOOR
+  id: FACILITIES/3456789
+  connections:
+    UK-LON-S2: CONTAINS

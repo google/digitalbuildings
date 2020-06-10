@@ -1,6 +1,6 @@
 name: generic_entity
 type: map
-matching-rule: 'all'
+matching-rule: 'all' # add documentation in comments!
 mapping:
   regex;(^[a-zA-Z0-9-_]+$):
     type: map
@@ -10,11 +10,6 @@ mapping:
         type: str
       id:
         type: str
-      connections:
-        type: map
-        mapping:
-          regex;(^[a-zA-Z0-9-_]+$): 
-            type: str
       links:
         type: map
         matching-rule: 'any'
@@ -25,33 +20,46 @@ mapping:
             mapping:
               regex;(^[a-zA-Z0-9-_]+$): 
                 type: str
+      connections:
+        type: any # diff valid formats of sequence and mapping
       translation:
-        type: map
-        matching-rule: 'any'
-        mapping:
-          regex;(^[a-zA-Z0-9-_]+$): 
-            type: map
-            matching-rule: 'any'
-            mapping:
-              present_value:
-                type: str
-              states:
-                type: map
-                matching-rule: 'any'
-                mapping:
-                  OPEN:
-                    type: str
-                  CLOSED:
-                    type: str
-              units:
-                type: map
-                matching-rule: 'any'
-                mapping:
-                  key:
-                    type: str
-                  values:
-                    type: map
-                    matching-rule: 'any'
-                    mapping:
-                      regex;(^[a-zA-Z0-9-_]+$):
-                        type: str
+        type: any # several diff valid formats depending on UDMI compliance
+      metadata:
+        type: any # unsure if metadata is standardized
+
+      # translation:
+      #   type: map
+      #   matching-rule: 'any'
+      #   mapping:
+      #     regex;(^[a-zA-Z0-9-_]+$): 
+      #       type: map
+      #       matching-rule: 'any'
+      #       mapping:
+      #         present_value:
+      #           type: str
+      #         states:
+      #           type: map
+      #           matching-rule: 'any'
+      #           mapping:
+      #             OPEN:
+      #               type: str
+      #             CLOSED:
+      #               type: str
+      #         units:
+      #           type: map
+      #           matching-rule: 'any'
+      #           mapping:
+      #             key:
+      #               type: str
+      #             values:
+      #               type: map
+      #               matching-rule: 'any'
+      #               mapping:
+      #                 regex;(^[a-zA-Z0-9-_]+$):
+      #                   type: str
+      #         unit_values:
+      #           type: map
+      #           matching-rule: 'any'
+      #           mapping:
+      #             regex;(^[a-zA-Z0-9-_]+$):
+      #               type: str

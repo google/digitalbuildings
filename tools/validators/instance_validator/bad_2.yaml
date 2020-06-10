@@ -1,0 +1,9 @@
+ENTITY-NAME:
+  type: NAMESPACE/A_DIGITAL_BUILDINGS_ENTITY_TYPE
+  id: SYSTEM/ID1234
+  connections:
+    # Listed entities are sources on connections
+    ANOTHER-ENTITY: FEEDS
+    A-THIRD-ENTITY:
+      ? CONTAINS
+      ? FEEDS
