@@ -1,0 +1,14 @@
+# missing some required keys in translation
+FCU-123:
+  type: BUILDING/SOMETHING
+  id: as/3123
+  translation:
+    zone_air_temperature_sensor:
+      present_value: "temp_1"
+      unit_values:
+        degrees_celsius: "degC"
+        degrees_fahrenheit: "degF"
+    supply_air_isolation_damper_command:
+      states:
+        OPEN: "1"
+        CLOSED: "2"

@@ -2,7 +2,7 @@ name: generic_entity
 type: map
 matching-rule: 'all' # add documentation in comments!
 mapping:
-  regex;(^[a-zA-Z0-9-_]+$):
+  regex;(^[a-zA-Z0-9-_]+$): # ENTITY_NAME
     type: map
     matching-rule: 'any'
     mapping:
@@ -21,9 +21,9 @@ mapping:
               regex;(^[a-zA-Z0-9-_]+$): 
                 type: str
       connections:
-        type: any # diff valid formats of sequence and mapping
+        type: any # several valid formats of sequence and mapping
       translation:
-        type: any # several diff valid formats depending on UDMI compliance
+        type: any # several valid formats depending on UDMI compliance
       metadata:
         type: any # unsure if metadata is standardized
 

@@ -1,4 +1,4 @@
-# HVAC Zone
+# incomplete list of connections
 ZONE-123:
   type: HVAC/ZONE
   connections:
