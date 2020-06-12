@@ -34,7 +34,7 @@ message InternalBuildingRepresentation {
       BITMAP_IMAGE = 3;
     }
 
-    // A unique image_dataentifier
+    // A unique identifier
     string id = 1;
 
     // The encoding type of the data to distinguish 2D vs 3D coordinates vs raw
