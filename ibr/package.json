@@ -1,0 +1,16 @@
+{
+  "name": "ibr",
+  "description": "JavaScript's functional programming helper library.",
+  "homepage": "https://github.com/google/digitalbuildings",
+  "author": "Shuang Li <shuanglihtk@google.com>",
+  "contributors": [
+    "Kevin Wang <realkevinwang@google.com>",
+    "Daniel Miller <danielmi@google.com>"
+  ],
+  "dependencies": [],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/google/digitalbuildings.git"
+  },
+  "version": "0.0.0"
+}
