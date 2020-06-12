@@ -34,7 +34,7 @@ message InternalBuildingRepresentation {
       BITMAP_IMAGE = 3;
     }
 
-    // A unique identifier
+    // A unique image_dataentifier
     string id = 1;
 
     // The encoding type of the data to distinguish 2D vs 3D coordinates vs raw
@@ -46,20 +46,11 @@ message InternalBuildingRepresentation {
     oneof data {
       ImageData image_data = 3;
 
-      // A byte array of coordinate indices that references CoordinatesLookup.
+      // A byte array of coordinate indices that references coordinates_lookup.
       // Should be interpreted in pairs as start and end indices of a continuous
       // coordinates list that represents a polyline.
       bytes coordinate_indices = 4;
     }
-  }
-
-  // A base64 encoded ordered list of coordinates.
-  // The decoded string comes in the form of comma separated coordinates which
-  // are space separated floats. e.g. "<x> <y>,<x> <y>,<x> <y>" Visualization
-  // and other layers index into CoordinatesLookup to determine coordinate
-  // segments.
-  message CoordinatesLookup {
-    bytes encoded_data = 1;
   }
 
   // The global unique id for the building.
@@ -75,7 +66,12 @@ message InternalBuildingRepresentation {
   Metadata metadata = 4;
 
   // The compressed coordinates that is referenced throughout the message.
-  CoordinatesLookup coordinates_lookup = 5;
+  // A base64 encoded ordered list of coordinates.
+  // The decoded string comes in the form of comma separated coordinates which
+  // are space separated floats. e.g. "<x> <y>,<x> <y>,<x> <y>".
+  // Visualization and other layers index into coordinates_lookup to determine coordinate
+  // segments.
+  bytes coordinates_lookup = 5;
 
   // A contained layer/visualization data (e.g. tri gross area layer,
   // external/internal walls, blocking geometry etc.)
