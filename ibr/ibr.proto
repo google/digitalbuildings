@@ -71,16 +71,16 @@ message InternalBuildingRepresentation {
     string name = 3;
   }
 
-  // The global unique id for the building.
+  // The global unique id for the structure.
   string guid = 1;
 
-  // A human-readable string identifier for the building.
+  // A human-readable string identifier for the structure.
   string name = 2;
 
   // The structural type represented in this message (e.g. building vs floor).
   StructuralType structural_type = 3;
 
-  // The human readable metadata for the building.
+  // The human readable metadata for the structure.
   Metadata metadata = 4;
 
   // The compressed coordinates that is referenced throughout the message.
