@@ -8,6 +8,12 @@
 	typeof define === 'function' && define.amd ? define(['exports'], factory) :
 	(global = global || self, factory(global.IBRSDK = {}));
 }(this, (function (exports) { 'use strict';
+
+    /**
+     * Converts raw ibr visualization data into three.js Line objects.
+     * @param {Byte} data Binary data read directly from .ibr file
+     * @return {Array.<Line>} lines List of three.js Line objects generated from input ibr data
+     */
     function renderLayer(data) {
 
         var deserializedData = InternalBuildingRepresentation.read(new Pbf(data));
