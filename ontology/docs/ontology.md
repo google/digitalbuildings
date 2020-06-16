@@ -9,12 +9,44 @@ equipment. The sections below outline the conceptual model of the ontology.
 *   For an explanation of the model configuration files see
     [config](ontology_config.md)
 
-[TOC]
+- [Digital Buildings Ontology](#digital-buildings-ontology)
+  * [Overview](#overview)
+  * [Namespaces](#namespaces)
+  * [Components](#components)
+    + [Subfields](#subfields)
+    + [Fields](#fields)
+      - [Equivalence](#equivalence)
+      - [Namespace Elevation](#namespace-elevation)
+      - [Enumeration](#enumeration)
+      - [Structural Flexibility and Ambiguity](#structural-flexibility-and-ambiguity)
+      - [Implicit Inheritance](#implicit-inheritance)
+      - [Alternate Approaches and Future Extensions {#alternate-approaches-and-future-extensions}](#alternate-approaches-and-future-extensions---alternate-approaches-and-future-extensions-)
+        * [Equipment Composition](#equipment-composition)
+        * [Display Name](#display-name)
+    + [Dimensional Units](#dimensional-units)
+    + [Multi-State Values](#multi-state-values)
+      - [Individual States](#individual-states)
+      - [Multi-State groups {#multi-state-groups}](#multi-state-groups---multi-state-groups-)
+      - [Effect on Namespace Elevation {#effect-on-namespace-elevation}](#effect-on-namespace-elevation---effect-on-namespace-elevation-)
+    + [Entity types](#entity-types)
+      - [GUIDs](#guids)
+      - [Type names](#type-names)
+      - [Field Definitions](#field-definitions)
+      - [Inheritance](#inheritance)
+      - [Abstract Types](#abstract-types)
+      - [Canonical Types](#canonical-types)
+      - [Relationship Constraints](#relationship-constraints)
+    + [Relationships](#relationships)
+    + [Change Management](#change-management)
+    + [Notes](#notes)
 
-## Overview {#overview}
+<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
+
+
+## Overview
 
 The Digital Buildings project is concerned with modeling the characteristics and
-telemtry of **entities**, and their relationships with each other. An entity is
+telemetry of **entities**, and their relationships with each other. An entity is
 any instance of a "thing" in the model. The ontology is concerned with
 "describing the thing".
 
@@ -29,7 +61,7 @@ Relationships between entities are defined by directed, named **connections**.
 Other components of the model stack, such as translations and links are
 discussed in [onboarding](building_config.md)
 
-## Namespaces {#namespaces}
+## Namespaces
 
 All elements of the ontology are organized into namespaces, with some
 constraints. There is a global namespace that all other namespaces can reference
@@ -41,7 +73,7 @@ sections).
 
 ## Components
 
-### Subfields {#subfields}
+### Subfields
 
 The subfield is the basic unit of meaning in the ontology. Each subfield
 consists of a single or compounded word[^5] with a very specific human-readable
@@ -51,7 +83,7 @@ or Haystack, but with a few more constraints.
 Subfields:
 
 *   are typically globally defined
-*   are uniqely named in their namespace (typically the global namepspace)
+*   are uniquely named in their namespace (typically the global namespace)
 *   each have a unique and specific meaning.
 *   may be camelCased for readability, but are not case sensitive.
 *   should be used nearly universally across different namespaces and
@@ -77,13 +109,13 @@ Subfields are grouped into categories that add structure to field composition:
   <tr>
    <td><p style="text-align: right">Aggregation</p></td>
    <td>
-     An aggregation in the spatial domain, for instance the average value of multiple tepmerature sensors. This is not the same as an operating limit.
+     An aggregation in the spatial domain, for instance the average value of multiple temperature sensors. This is not the same as an operating limit.
    </td>
    <td>Average, Max, Min</td>
   </tr>
   <tr>
    <td><p style="text-align: right">Descriptor</p></td>
-   <td>General puprose modifier that specifies the exact function of the field within the context of the entity. The number of descriptors used should be limited by the context (i.e., if a descriptor is extraneous it should be omitted).
+   <td>General purpose modifier that specifies the exact function of the field within the context of the entity. The number of descriptors used should be limited by the context (i.e., if a descriptor is extraneous it should be omitted).
    </td>
    <td>Discharge, Return, Zone, Primary, Chilled etc...</td>
   </tr>
@@ -114,7 +146,7 @@ Subfields are grouped into categories that add structure to field composition:
   </tr>
 </table>
 
-### Fields {#fields}
+### Fields
 
 Fields are constructed by combining subfields in a structured way to define very
 specific semantic concepts. Field names are intended to read naturally and be
@@ -138,23 +170,23 @@ descr>_)?(<meas>_)?<PointType>(_<num> )*`[^13]
 
 Ex: `max_discharge_air_temperature_setpoint`
 
-#### Equivalence {#equivalence}
+#### Equivalence
 
 While the ordering of subfields within a field has value in communicating the
 field's semantic meaning to a human reader, we enforce that it is only the set
 of contained subfields that is necessary for equivalence testing[^14].
 Applications should depend on the field set, not the string value.
 
-#### Namespace Elevation {#namespace-elevation}
+#### Namespace Elevation
 
-The ontology prefers elevating fields to the global namepsace whenever possible.
+The ontology prefers elevating fields to the global namespace whenever possible.
 This means that any field using only globally defined subfields and multistate
 values can be referenced by any namespace as if it is global, even if it is
 defined in a child namespace. Identically defined fields in different child
 namespaces are therefore equivalent[^23] (equivalence is defined by the subfield
 set)
 
-#### Enumeration {#enumeration}
+#### Enumeration
 
 In some cases a device may have two points with semantically identical meaning
 (ex: if a device has two identical zone temperature sensors). In this case, the
@@ -166,12 +198,12 @@ NB: Modelers should be careful with applying enumerations, as the analysis
 applied will be unable to apply meaningful distinctions to such fields. This
 shouldn't be a problem normally since, if two points are functionally different,
 they shouldn't have the same name (e.g. if supply_air_temperature_sensor_1 is
-the real control sensor while supply_air_temperature_sensor_2 is redundnant for
+the real control sensor while supply_air_temperature_sensor_2 is redundant for
 monitoring, they should have separate names; for ease of integration, omission
 of the redundant point is acceptable, but if that is not desired an additional
 descriptor should be added).
 
-#### Structural Flexibility and Ambiguity {#structural-flexibility-and-ambiguity}
+#### Structural Flexibility and Ambiguity
 
 A very strict naming convention can have the unintended consequence of creating
 redundant or unnecessarily long names. For instance, a
@@ -187,7 +219,7 @@ conventions for how to break up equipment and name points. See
 [Alternate Approaches and Future Extensions](#alternate-approaches-and-future-extensions)
 for further discussion.
 
-#### Implicit Inheritance {#implicit-inheritance}
+#### Implicit Inheritance
 
 Any set of adjacent subfields can be considered a root concept from which fields
 with longer names inherit. Depending on the fields added, this relationship can
@@ -199,7 +231,7 @@ across all fields that have a superset of the tags `zone`, `air` and
 
 #### Alternate Approaches and Future Extensions {#alternate-approaches-and-future-extensions}
 
-##### Equipment Composition {#equipment-composition}
+##### Equipment Composition
 
 As with most systems models, the decision of how to draw boundaries around
 entities is subjective, and to some degree arbitrary. In building the ontology,
@@ -228,7 +260,7 @@ generally favor the flatter modeling approach. This decision is driven by the
 reality that each piece of equipment is generally analyzed as a unit, and
 therefore decomposing it simply means more difficult retrieval.
 
-##### Display Name {#display-name}
+##### Display Name
 
 The current design imposes that the entire set of subfields associated with a
 field be part of the visible field name. The challenge with this approach is
@@ -239,10 +271,10 @@ component subfields or subset descriptors. This would allow fields to be more
 fully qualified on the backend for lookup and comparison without making them
 unwieldy for the user.
 
-### Dimensional Units {#dimensional-units}
+### Dimensional Units
 
 In the ontology, measurement subfields identify what dimensional units apply to
-a field. the meaurement subfield must be provided any time a field describes a
+a field. the measurement subfield must be provided any time a field describes a
 numeric value, unless the point type is `count`
 
 Each measurement subfield maps to one and only one quantity kind. For instance
@@ -252,21 +284,21 @@ calls out all the supported units for each subfield as well as a _standard_ unit
 for each. Standard units should all be from the same unit family to ease
 standardization. The ontology currently standardizes on SI as the unit family.
 
-While the current ontology configuration does not explixtly call out conversion
-factors, it gnerally tries to conform to unit names from
+While the current ontology configuration does not explicitly call out conversion
+factors, it generally tries to conform to unit names from
 [QUDT](http://www.qudt.org/release2/qudt-catalog.html) so that their conversion
 factors can be used. Future development may integrate a unit ontology more
 directly.
 
-### Multi-State Values {#multi-state-values}
+### Multi-State Values
 
 A multi-state is a data type that consists of an enumerated set of states with
 specific meanings, such as {ON, OFF, AUTO}.
 
-#### Individual States {#individual-states}
+#### Individual States
 
 Like subfields, states are intended to be global whenever possible, but can be
-defined only within a namespace as well. Each state has a specifc definition
+defined only within a namespace as well. Each state has a specific definition
 that is the same wherever it is used.
 
 In order to maximize interoperability each possible state must have one
@@ -287,7 +319,7 @@ States can affect whether fields are elevated to the global namespace. Like with
 subfields, only fields having globally defined states can be elevated to the
 global namespace.
 
-### Entity types {#entity-types}
+### Entity types
 
 An entity type is a grouping of fields with a specific description that
 represents a "thing" in the building model. Obvious examples include a room, an
@@ -309,34 +341,33 @@ Entities have:
 *   Required Relationships (Coming soon)
 
 A type has meaning beyond its defined fields. For instance an entity of type X
-and type Y, bothi having field A are distiguishable from each other, even though
+and type Y, bothi having field A are distinguishable from each other, even though
 they have the exact same fields.
 
-#### GUIDs {#guids}
-
+#### GUIDs 
 Each type has a numeric ID that is version independent
 
 TODO
 
-#### Type names {#type-names}
+#### Type names 
 
-Type names have no structureal meaning in the ontology, but because this is the
-most visibile identifier of the type, the concrete types adhere to the
+Type names have no structural meaning in the ontology, but because this is the
+most visible identifier of the type, the concrete types adhere to the
 convention of starting with an umbrella type (TODO: structurally define how
 umbrella types are identified) followed by an `_` separated list of parent
 types[^24]. Type names my change from version to version independent of
 [GUID](#guid).
 
-#### Field Definitions {#field-definitions}
+#### Field Definitions
 
 Fields on types can be defined either as required or optional. The intent of
 this is to minimize the number of distinct entity types that are required to
 cover the equipment set. This is especially true in the HVAC domain when there
-may be a large number of minor (unimportant) variations in a perticular
+may be a large number of minor (unimportant) variations in a particular
 umbrella type but there is a set of common fields across all of the devices
 that are used for analysis.
 
-#### Inheritance {#inheritance}
+#### Inheritance
 
 Types in the ontology can inherit field associations from other types. Multiple
 inheritance is allowed with the following combination rules:
@@ -354,25 +385,25 @@ inheritance is allowed with the following combination rules:
     inherited.
 
 As with individual types, inheritance trees are meaningful independent of
-resulting field set. For instance Type X, inherting from V and W is
+resulting field set. For instance Type X, inheriting from V and W is
 distinguishable from type Y inheriting from only V, even if both types only have
 field A.
 
-Composable inheritance is primarily inteded to encourage users to define
+Composable inheritance is primarily intended to encourage users to define
 subunits of functionality with associated fields, and build types by composing
 the subunits.
 
-#### Abstract Types {#abstract-types}
+#### Abstract Types
 
 Designating a type as abstract indicates that it should only be used in
 inheritance and not directly associated with any entities. This is typically
 used for abstract units of functionality that are used to compose other types.
 
-#### Canonical Types {#canonical-types}
+#### Canonical Types
 
 In real modeling environments we find there are often exceptions to our
-idelaized picture of the world. When this occurs we need to create one-off
-constructions to cover the excepetions. To take a concrete example, we often see
+idealized picture of the world. When this occurs we need to create one-off
+constructions to cover the exceptions. To take a concrete example, we often see
 device controllers in the HVAC world that carry sets of points for multiple
 logical pieces of equipment. Because we use the convention of creating a type
 for every device that sends data to the system, we end up with a lot of types
@@ -382,7 +413,7 @@ concept.
 The `is_canonical` flag lets the modeler differentiate between 'official'
 curated types (canonical) and everything else (not canonical).
 
-#### Relationship Constraints {#relationships}
+#### Relationship Constraints
 
 Each entity type may define requirements for what connections must be made
 between an entity of a certain type and entities of other types. For instance,
@@ -401,7 +432,7 @@ entities are connected. This may be a physical (ex: `FEEDS`) or logical (ex:
 `HAS_PART`). Connections are always global. Connections and their descriptions
 can be found here. **TODO add link**.
 
-### Change Management {#change-management}
+### Change Management
 
 Versioning is anticipated for the ontology, though the exact process and
 constraints are TBD.
@@ -432,5 +463,5 @@ constraints are TBD.
     to minimize the amount of namespace qualification required. \
 [^24]: Validation currently depends on comparing the fist segment of the name
     for determining whether certain types should be compared with each other
-    for certain configuration linter warnings. This should be replced with a
+    for certain configuration linter warnings. This should be replaced with a
     check on some aspect of the type structure rather than the name.
