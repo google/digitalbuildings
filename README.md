@@ -34,7 +34,7 @@ Please post issues or discussion topics in [Issues](https://github.com/google/di
 ## Discussion 
 Open mailing list to discuss Google's Digital Building effort. Discussion could include general questions, standards, APIs, and more. [google-digital-building-discuss@googlegroups.com](mailto:google-digital-building-discuss@googlegroups.com)
 
-Members are expected to adhere to this code of conduct: https://opensource.google.com/conduct
+Members are expected to adhere to this code of conduct: [https://opensource.google.com/conduct](https://opensource.google.com/conduct)
 
 ## How to Contribute
 
