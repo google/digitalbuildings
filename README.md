@@ -28,9 +28,13 @@ This project is structured as following:
   * [Yaml Validator](/tools/validators/ontology_validator/README.md) which allows to validate the yaml ontology upon a change or an extension.
   * [RDF/OWL Generator](/tools/rdf_generator/README.md) which allows to generate an RDF version from the yaml ontology files.
 
-## Discussion
+## Issues
 Please post issues or discussion topics in [Issues](https://github.com/google/digitalbuildings/issues) section.
 
+## Discussion 
+Open mailing list to discuss Google's Digital Building effort. Discussion could include general questions, standards, APIs, and more. [google-digital-building-discuss@googlegroups.com](mailto:google-digital-building-discuss@googlegroups.com)
+
+Members are expected to adhere to this code of conduct: https://opensource.google.com/conduct
 
 ## How to Contribute
 
