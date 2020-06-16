@@ -12,7 +12,6 @@ function renderLayer(data) {
 
     // Decode Indices from data.visualization[].coordinate_indices
     var deserializedData = InternalBuildingRepresentation.read(new Pbf(data));
-    console.log(deserializedData);
     var coordsIndexList, coordsRangeBuffer, coordsRange;
     var coordsRangeList = [];
     for (const visLayer of deserializedData.visualization) {
@@ -24,7 +23,6 @@ function renderLayer(data) {
         }
         coordsRangeList.push(coordsRange);
     }
-    console.log(coordsRangeList);
 
     // Decode Coordinates from data.coordinates_lookup
     var coordsLookup = deserializedData.coordinates_lookup;
@@ -34,7 +32,6 @@ function renderLayer(data) {
     for (var i = 0; i < coordsLookup.length/4; i+=4) {
         coordsLookupList.push(coordsLookupDV.getFloat32(i, false));
     }
-    console.log(coordsLookupList);
 
     // Read multiple ranges from Visualization.coordinates array and store them in sessionStorage for visualization later
     var layerCoordinates = [], layerPH = [], coordsLine = [];
@@ -51,7 +48,6 @@ function renderLayer(data) {
         }
         layerCoordinates.push(layerPH);
     }
-    console.log(layerCoordinates);
 
     // Render data into three.js objects
     var materials = [new THREE.LineBasicMaterial( { color: 0x00ffff } ), new THREE.LineBasicMaterial( { color: 0xff0000 } )];
