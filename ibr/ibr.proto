@@ -88,11 +88,11 @@ message InternalBuildingRepresentation {
   repeated Visualization visualization = 6;
   
   // Boundary of the structure
-  VectorCoordinates boundary = 7;
-  
+  bytes boundary = 7;
+
   // Child structures
   repeated InternalBuildingRepresentation structures = 8;
-  
+
   // External references
-  repeated StructureReference = 9;
+  repeated StructureReference external_reference = 9;
 }
