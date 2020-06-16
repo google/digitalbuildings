@@ -11,41 +11,25 @@ function swap32(val) {
 }
 
 function onFileLoad(event) {
-    var deserializedData = InternalBuildingRepresentation.read(new Pbf(event.target.result));
-    var coordsIndexList = deserializedData.visualization[0].coordinates;
-    var coordsRangeBuffer = coordsIndexList.buffer.slice(coordsIndexList.byteOffset, coordsIndexList.buffer.byteLength);
-    var coordsRange = new Uint32Array(coordsRangeBuffer);
-    for (var i = 0; i < coordsRange.length; i++) {
-        coordsRange[i] = swap32(coordsRange[i]);
+    var ibrData = event.target.result;
+    var scene = new THREE.Scene();
+    var camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 10000 );
+    var renderer = new THREE.WebGLRenderer();
+    renderer.setSize( window.innerWidth, window.innerHeight );
+    document.body.appendChild( renderer.domElement );
+    var lines = IBRSDK.renderLayer( ibrData );
+    for (const line of lines) {
+        scene.add(line);
     }
+    camera.position.set( 0, 0, 7000 );
+    camera.lookAt( 0, 0, 0 );
+    animate();
 
-
-    // Decode Coordinates from data.coordinatesLookup.encodedData
-    var decoder = new TextDecoder('utf8');
-    var decodedCoordsString = atob(decoder.decode(deserializedData.coordinates_lookup.encoded_data));
-
-    // Put coordinates in data structure
-    coords = decodedCoordsString.split(",");
-    var decodedCoordsList = [];
-    for (const coord of coords) {
-        coordinate = coord.split(" ");
-        if (coordinate.length === 2) {
-            decodedCoordsList.push(coordinate);
-        }
+    // Rendering the scene
+    function animate() {
+        requestAnimationFrame( animate );
+        renderer.render( scene, camera );
     }
-
-    // Read multiple ranges from Visualization.coordinates array and store them in sessionStorage for visualization later
-    var layerCoordinates = [];
-    sessionStorage.setItem('numOfLines', coordsRange.length/2);
-    for (var i = 0; i < coordsRange.length; i += 2) {
-        layerCoordinates[i/2] = [];
-        for (var x = coordsRange[i]; x < coordsRange[i+1]; x++) {
-            layerCoordinates[i/2].push(decodedCoordsList[x]);
-        }
-        sessionStorage.setItem('layerCoordinates' + i/2, JSON.stringify(layerCoordinates[i/2]));
-    }
-
-    window.location.href = "visualization.html";
 }
 
 function onChooseFile(event, onLoadFileHandler) {
