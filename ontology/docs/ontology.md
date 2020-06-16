@@ -40,8 +40,6 @@ equipment. The sections below outline the conceptual model of the ontology.
     + [Change Management](#change-management)
     + [Notes](#notes)
 
-<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
-
 
 ## Overview
 
