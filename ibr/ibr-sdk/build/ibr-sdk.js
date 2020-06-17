@@ -28,7 +28,6 @@
 
         // Decode Indices from data.visualization[].coordinate_indices
         var deserializedData = InternalBuildingRepresentation.read(new Pbf(data));
-        console.log(deserializedData);
         var coordsIndexList, coordsRangeBuffer, coordsRange;
         var coordsRangeList = [];
         for (const visLayer of deserializedData.visualization) {
@@ -67,7 +66,11 @@
         }
 
         // Render data into three.js objects
-        var materials = [new THREE.LineBasicMaterial( { color: 0x00ffff } ), new THREE.LineBasicMaterial( { color: 0xff0000 } )];
+        var materials1 = new THREE.LineBasicMaterial( { color: 0xff0000 } );
+        var materials = [new THREE.LineBasicMaterial( { color: 0x00ffff } )];
+        for (var i = 0; i < deserializedData.visualization.length-1; i++) {
+            materials.push(materials1);
+        }
         var points = [], lines = [];
         var geometry, line;
         for (var i = 0; i < layerCoordinates.length; i++) {
