@@ -10,6 +10,16 @@
 }(this, (function (exports) { 'use strict';
 
     /**
+     * Swap endianness of 32bit numbers.
+     */
+    function swap32(val) {
+        return ((val & 0xFF) << 24)
+               | ((val & 0xFF00) << 8)
+               | ((val >> 8) & 0xFF00)
+               | ((val >> 24) & 0xFF);
+    }
+
+    /**
      * Converts raw ibr visualization data into three.js Line objects.
      * @param {Byte} data Binary data read directly from .ibr file
      * @return {Array.<Line>} lines List of three.js Line objects generated from input ibr data
@@ -18,6 +28,7 @@
 
         // Decode Indices from data.visualization[].coordinate_indices
         var deserializedData = InternalBuildingRepresentation.read(new Pbf(data));
+        console.log(deserializedData);
         var coordsIndexList, coordsRangeBuffer, coordsRange;
         var coordsRangeList = [];
         for (const visLayer of deserializedData.visualization) {
