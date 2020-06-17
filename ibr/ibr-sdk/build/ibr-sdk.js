@@ -10,6 +10,16 @@
 }(this, (function (exports) { 'use strict';
 
     /**
+     * Swap endianness of 32bit numbers.
+     */
+    function swap32(val) {
+        return ((val & 0xFF) << 24)
+               | ((val & 0xFF00) << 8)
+               | ((val >> 8) & 0xFF00)
+               | ((val >> 24) & 0xFF);
+    }
+
+    /**
      * Converts raw ibr visualization data into three.js Line objects.
      * @param {Byte} data Binary data read directly from .ibr file
      * @return {Array.<Line>} lines List of three.js Line objects generated from input ibr data
@@ -56,7 +66,11 @@
         }
 
         // Render data into three.js objects
-        var materials = [new THREE.LineBasicMaterial( { color: 0x00ffff } ), new THREE.LineBasicMaterial( { color: 0xff0000 } )];
+        var materials1 = new THREE.LineBasicMaterial( { color: 0xff0000 } );
+        var materials = [new THREE.LineBasicMaterial( { color: 0x00ffff } )];
+        for (var i = 0; i < deserializedData.visualization.length-1; i++) {
+            materials.push(materials1);
+        }
         var points = [], lines = [];
         var geometry, line;
         for (var i = 0; i < layerCoordinates.length; i++) {
