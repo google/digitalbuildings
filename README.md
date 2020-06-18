@@ -14,7 +14,7 @@ In creating the Digital Buildings project, we have considered the following:
 * Human Readability
 * Machine readability and interpretation
 * Composable functionality
-* Dimesional Analysis
+* Dimensional Analysis
 * Correctness validation
 * Cross compatibility
 
