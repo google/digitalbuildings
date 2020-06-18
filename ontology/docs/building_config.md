@@ -134,9 +134,7 @@ ENTITY-NAME:
   connections:
     # Listed entities are sources on connections
     ANOTHER-ENTITY: FEEDS
-    A-THIRD-ENTITY:
-      ? CONTAINS
-      ? FEEDS
+    A-THIRD-ENTITY: CONTAINS
   links:
     A-FOURTH-ENTITY:
       # source_device_field: this_device_field
