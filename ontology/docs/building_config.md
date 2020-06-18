@@ -139,7 +139,7 @@ ENTITY-NAME:
       ? FEEDS
   links:
     A-FOURTH-ENTITY:
-      # source_device_field:this_device_field
+      # source_device_field: this_device_field
       supply_air_damper_position_command_1: supply_air_damper_command
       zone_air_temperature_1: zone_air_temperature_sensor
   translation:
@@ -198,7 +198,6 @@ UK-LON-S2-1-1C3G:
   id: FACILITIES/2345678
   connections:
     UK-LON-S2-2: CONTAINS
-
 ```
 
 *   Buildings shall have `CONTAINS` connections to Floors
@@ -299,12 +298,12 @@ FCU-123:
   ...
   translation:
     zone_air_temperature_sensor:
-      present_value:"temp_1"
+      present_value: "temp_1"
       unit_values:
         degrees_celsius: "degC"
         degrees_fahrenheit: "degF"
     supply_air_isolation_damper_command:
-      present_value:"damper_1"
+      present_value: "damper_1"
       states:
         OPEN: "1"
         CLOSED: "2"
@@ -318,8 +317,8 @@ like:
 FCU-123:
   ...
   translation:
-    zone_air_temperature_sensor:"temp_1"
-    supply_air_isolation_damper_command:"damper_1"
+    zone_air_temperature_sensor: "temp_1"
+    supply_air_isolation_damper_command: "damper_1"
 ```
 
 A device that is UDMI compliant and uses standard values from the ontology can
@@ -328,7 +327,7 @@ simply specify:
 ```
 FCU-123:
   ...
-  translation:COMPLIANT
+  translation: COMPLIANT
 ```
 
 ##### Metadata
@@ -342,7 +341,7 @@ FCU-123:
   ...
   metadata:
     discharge_air_flowrate_capacity:
-      present_value:"300"
+      present_value: "300"
       units: "cubic_feet_per_minute"
     manufacturer_label: "Carrier"
 ```
@@ -373,7 +372,7 @@ VAV-32:
   id: SOME_GUID_12345  # optional
   links:
     ANOTHER-ENTITY:
-      # source_device_field:this_device_field
+      # source_device_field: this_device_field
       supply_air_damper_position_command_1: supply_air_damper_command
       ...
 ```
@@ -400,15 +399,14 @@ Expanding the VAV definition from the previous section, and adding some lights:
 VAV-32:
   type: HVAC/VAV
   connections:
-  - UK-LON-6PS-1:CONTAINS
-  - AHU-123:FEEDS
+  - UK-LON-6PS-1: CONTAINS
+  - AHU-123: FEEDS
 
 LF-123:
   type: LIGHTING/LIGHTING_FIXTURE
   connections:
-  - UK-LON-6PS-1-1A2:CONTAINS
-  - LCG-234:HAS_PART
-
+  - UK-LON-6PS-1-1A2: CONTAINS
+  - LCG-234: HAS_PART
 ```
 
 ### Zones and Control Groups
@@ -425,16 +423,15 @@ Here are some examples:
 ZONE-123:
   type: HVAC/ZONE
   connections:
-  - UK-LON-6PS-1:CONTAINS
-  - VAV-123:FEEDS
+  - UK-LON-6PS-1: CONTAINS
+  - VAV-123: FEEDS
 
 # Lighting Control Group
 LCG-234:
   type: LIGHTING/SWITCH_GROUP
   connections:
-  - UK-LON-6PS-1:CONTAINS
-  - SW-456:CONTROLS
-
+  - UK-LON-6PS-1: CONTAINS
+  - SW-456: CONTROLS
 ```
 
 ### Relationships
