@@ -55,11 +55,11 @@ const TWO_POINTS = 6;
         }
 
         // Read multiple ranges from Visualization.coordinates array and store them in sessionStorage for visualization later
-        var layerCoordinates = [], layerPH = [], coordsLine = [];
+        var layerCoordinates = [];
         for (const coordsRangeItem of coordsRangeList) {
-            layerPH = [];
+            var layerPH = [];
             for (var i = 0; i < coordsRangeItem.length; i+=2) {
-                coordsLine = [];
+                var coordsLine = [];
                 for (var j = coordsRangeItem[i]; j <= coordsRangeItem[i+1]; j+=ONE_POINT) {
                     coordsLine.push(coordsLookupList[j]);
                     coordsLine.push(coordsLookupList[j+1]);
@@ -76,11 +76,11 @@ const TWO_POINTS = 6;
         for (var i = 0; i < deserializedData.visualization.length-1; i++) {
             materials.push(materials1);
         }
-        var linePoints = [], lineSegments = [], objects = [];
+        var objects = [];
         for (var i = 0; i < layerCoordinates.length; i++) {
-            lineSegments = [];
+            var lineSegments = [];
             for (const line of layerCoordinates[i]) {
-                linePoints = [];
+                var linePoints = [];
                 for (var j = 0; j < line.length; j+=ONE_POINT) {
                     linePoints.push( new THREE.Vector3( line[j], line[j+1], line[j+2] ) );
                 }
