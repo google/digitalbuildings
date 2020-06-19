@@ -3,7 +3,10 @@
  * @author shuanglihtk@google.com (Shuang Li)
  */
 
-const TWOPOINTS = 6;
+// the length of one 3D coordinates (x, y, z) in the coordinate lookup float array
+const ONE_POINT = 3;
+// the length of two 3D coordinates (x, y, z) in the coordinate lookup float array
+const TWO_POINTS = 6;
 
 (function (global, factory) {
 	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
@@ -57,7 +60,7 @@ const TWOPOINTS = 6;
             layerPH = [];
             for (var i = 0; i < coordsRangeItem.length; i+=2) {
                 coordsLine = [];
-                for (var j = coordsRangeItem[i]; j <= coordsRangeItem[i+1]; j+=3) {
+                for (var j = coordsRangeItem[i]; j <= coordsRangeItem[i+1]; j+=ONE_POINT) {
                     coordsLine.push(coordsLookupList[j]);
                     coordsLine.push(coordsLookupList[j+1]);
                     coordsLine.push(coordsLookupList[j+2]);
@@ -73,24 +76,21 @@ const TWOPOINTS = 6;
         for (var i = 0; i < deserializedData.visualization.length-1; i++) {
             materials.push(materials1);
         }
-        var lineLoopPoints = [], lineSegmentPoints = [], lineSegments = [], objects = [];
+        var lineLoopPoints = [], lineSegmentPoints = [], linePoints = [], lineSegments = [], objects = [];
         var geometry, geometries;
         for (var i = 0; i < layerCoordinates.length; i++) {
             lineSegments = [];
             for (const line of layerCoordinates[i]) {
                 lineSegmentPoints = [];
                 lineLoopPoints = [];
-                if (line.length === TWOPOINTS) {
-                    for (var j = 0; j < line.length; j+=3) {
-                        lineSegmentPoints.push( new THREE.Vector3( line[j], line[j+1], line[j+2] ) );
-                    }
-                    geometry = new THREE.BufferGeometry().setFromPoints( lineSegmentPoints );
-                    lineSegments.push( geometry );
+                linePoints = [];
+                for (var j = 0; j < line.length; j+=ONE_POINT) {
+                    linePoints.push( new THREE.Vector3( line[j], line[j+1], line[j+2] ) );
+                }
+                geometry = new THREE.BufferGeometry().setFromPoints( linePoints );
+                if (line.length === TWO_POINTS) {
+                    lineSegments.push( geometry ); // group geometries for performance reason
                 } else {
-                    for (var j = 0; j < line.length; j+=3) {
-                        lineLoopPoints.push( new THREE.Vector3( line[j], line[j+1], line[j+2] ) );
-                    }
-                    geometry = new THREE.BufferGeometry().setFromPoints( lineLoopPoints );
                     objects.push( new THREE.LineLoop( geometry, materials[i] ) );
                 }
             }
@@ -99,7 +99,6 @@ const TWOPOINTS = 6;
                 objects.push( new THREE.LineSegments( geometries, materials[i] ) );
             }
         }
-
         return objects;
     }
     exports.renderLayer = renderLayer;
