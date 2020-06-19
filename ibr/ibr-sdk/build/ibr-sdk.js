@@ -76,18 +76,15 @@ const TWO_POINTS = 6;
         for (var i = 0; i < deserializedData.visualization.length-1; i++) {
             materials.push(materials1);
         }
-        var lineLoopPoints = [], lineSegmentPoints = [], linePoints = [], lineSegments = [], objects = [];
-        var geometry, geometries;
+        var linePoints = [], lineSegments = [], objects = [];
         for (var i = 0; i < layerCoordinates.length; i++) {
             lineSegments = [];
             for (const line of layerCoordinates[i]) {
-                lineSegmentPoints = [];
-                lineLoopPoints = [];
                 linePoints = [];
                 for (var j = 0; j < line.length; j+=ONE_POINT) {
                     linePoints.push( new THREE.Vector3( line[j], line[j+1], line[j+2] ) );
                 }
-                geometry = new THREE.BufferGeometry().setFromPoints( linePoints );
+                var geometry = new THREE.BufferGeometry().setFromPoints( linePoints );
                 if (line.length === TWO_POINTS) {
                     lineSegments.push( geometry ); // group geometries for performance reason
                 } else {
@@ -95,7 +92,7 @@ const TWO_POINTS = 6;
                 }
             }
             if (lineSegments.length > 0) {
-                geometries = THREE.BufferGeometryUtils.mergeBufferGeometries( lineSegments );
+                var geometries = THREE.BufferGeometryUtils.mergeBufferGeometries( lineSegments );
                 objects.push( new THREE.LineSegments( geometries, materials[i] ) );
             }
         }
