@@ -3,6 +3,8 @@
  * @author shuanglihtk@google.com (Shuang Li)
  */
 
+const TWOPOINTS = 6;
+
 (function (global, factory) {
 	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
 	typeof define === 'function' && define.amd ? define(['exports'], factory) :
@@ -72,21 +74,21 @@
             materials.push(materials1);
         }
         var lineLoopPoints = [], lineSegmentPoints = [], lineSegments = [], objects = [];
-        var geometry, line, geometries;
+        var geometry, geometries;
         for (var i = 0; i < layerCoordinates.length; i++) {
             lineSegments = [];
-            for (const l of layerCoordinates[i]) {
+            for (const line of layerCoordinates[i]) {
                 lineSegmentPoints = [];
                 lineLoopPoints = [];
-                if (l.length === 6) {
-                    for (var j = 0; j < l.length; j+=3) {
-                        lineSegmentPoints.push( new THREE.Vector3( l[j], l[j+1], l[j+2] ) );
+                if (line.length === TWOPOINTS) {
+                    for (var j = 0; j < line.length; j+=3) {
+                        lineSegmentPoints.push( new THREE.Vector3( line[j], line[j+1], line[j+2] ) );
                     }
                     geometry = new THREE.BufferGeometry().setFromPoints( lineSegmentPoints );
                     lineSegments.push( geometry );
                 } else {
-                    for (var j = 0; j < l.length; j+=3) {
-                        lineLoopPoints.push( new THREE.Vector3( l[j], l[j+1], l[j+2] ) );
+                    for (var j = 0; j < line.length; j+=3) {
+                        lineLoopPoints.push( new THREE.Vector3( line[j], line[j+1], line[j+2] ) );
                     }
                     geometry = new THREE.BufferGeometry().setFromPoints( lineLoopPoints );
                     objects.push( new THREE.LineLoop( geometry, materials[i] ) );
