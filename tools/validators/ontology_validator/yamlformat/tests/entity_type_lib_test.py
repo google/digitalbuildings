@@ -137,7 +137,7 @@ class EntityTypeLibTest(absltest.TestCase):
     type_folder = entity_type_lib.EntityTypeFolder(folderpath)
     self.assertFalse(type_folder.GetFindings())
 
-    good_filepath = folderpath + '/mammal.yaml'
+    good_filepath = os.path.normpath(os.path.join(folderpath, 'mammal.yaml'))
     # Build test proto
     yaml_doc = {
         'cat': {
@@ -158,7 +158,7 @@ class EntityTypeLibTest(absltest.TestCase):
     type_folder = entity_type_lib.EntityTypeFolder(folderpath)
     self.assertFalse(type_folder.GetFindings())
 
-    good_filepath = folderpath + '/mammal.yaml'
+    good_filepath = os.path.normpath(os.path.join(folderpath, 'mammal.yaml'))
     # Build test proto
     yaml_doc = {
         'cat': {
