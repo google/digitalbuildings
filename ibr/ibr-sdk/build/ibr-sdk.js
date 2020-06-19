@@ -81,8 +81,6 @@
                 if (l.length === 6) {
                     for (var j = 0; j < l.length; j+=3) {
                         lineSegmentPoints.push( new THREE.Vector3( l[j], l[j+1], l[j+2] ) );
-                        if (l[j] === 0 && l[j+1] === 0 && l[j+2] === 0) {
-                        }
                     }
                     geometry = new THREE.BufferGeometry().setFromPoints( lineSegmentPoints );
                     lineSegments.push( geometry );
