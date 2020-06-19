@@ -71,20 +71,36 @@
         for (var i = 0; i < deserializedData.visualization.length-1; i++) {
             materials.push(materials1);
         }
-        var points = [], lines = [];
-        var geometry, line;
+        var lineLoopPoints = [], lineSegmentPoints = [], lineSegments = [], objects = [];
+        var geometry, line, geometries;
         for (var i = 0; i < layerCoordinates.length; i++) {
+            lineSegments = [];
             for (const l of layerCoordinates[i]) {
-                points = [];
-                for (var j = 0; j < l.length; j+=3) {
-                    points.push( new THREE.Vector3( l[j], l[j+1], l[j+2] ) );
+                lineSegmentPoints = [];
+                lineLoopPoints = [];
+                if (l.length === 6) {
+                    for (var j = 0; j < l.length; j+=3) {
+                        lineSegmentPoints.push( new THREE.Vector3( l[j], l[j+1], l[j+2] ) );
+                        if (l[j] === 0 && l[j+1] === 0 && l[j+2] === 0) {
+                        }
+                    }
+                    geometry = new THREE.BufferGeometry().setFromPoints( lineSegmentPoints );
+                    lineSegments.push( geometry );
+                } else {
+                    for (var j = 0; j < l.length; j+=3) {
+                        lineLoopPoints.push( new THREE.Vector3( l[j], l[j+1], l[j+2] ) );
+                    }
+                    geometry = new THREE.BufferGeometry().setFromPoints( lineLoopPoints );
+                    objects.push( new THREE.LineLoop( geometry, materials[i] ) );
                 }
-                geometry = new THREE.BufferGeometry().setFromPoints( points );
-                line = new THREE.LineLoop( geometry, materials[i] );
-                lines.push( line );
+            }
+            if (lineSegments.length > 0) {
+                geometries = THREE.BufferGeometryUtils.mergeBufferGeometries( lineSegments );
+                objects.push( new THREE.LineSegments( geometries, materials[i] ) );
             }
         }
-        return lines;
+
+        return objects;
     }
     exports.renderLayer = renderLayer;
 
