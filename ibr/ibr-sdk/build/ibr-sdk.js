@@ -12,7 +12,24 @@ const TWO_POINTS = 6;
 	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
 	typeof define === 'function' && define.amd ? define(['exports'], factory) :
 	(global = global || self, factory(global.IBRSDK = {}));
-}(this, (function (exports) { 'use strict';
+}(this, (function (exports) {
+    'use strict';
+
+    /**
+     * Decode raw ibr data into structures.
+     * @param {Byte} data Binary data read directly from .ibr file
+     * @return {Array.<Object>} structures List of structure objects generated from input ibr data
+     */
+    function renderStructure(data) {
+        var deserializedData = InternalBuildingRepresentation.read(new Pbf(data));
+        var structures = [];
+        if ( deserializedData.structures.length > 0 ) {
+            structures = deserializedData.structures;
+        } else {
+            structures.push( deserializedData );
+        }
+        return structures;
+    }
 
     /**
      * Swap endianness of 32bit numbers.
@@ -25,17 +42,16 @@ const TWO_POINTS = 6;
     }
 
     /**
-     * Converts raw ibr visualization data into three.js Line objects.
-     * @param {Byte} data Binary data read directly from .ibr file
+     * Converts decoded ibr structure data into three.js Line objects.
+     * @param {Object} structure structures decoded from raw ibr data
      * @return {Array.<Line>} lines List of three.js Line objects generated from input ibr data
      */
-    function renderLayer(data) {
+    function renderLayer(structure) {
 
         // Decode Indices from data.visualization[].coordinate_indices
-        var deserializedData = InternalBuildingRepresentation.read(new Pbf(data));
         var coordsIndexList, coordsRangeBuffer, coordsRange;
         var coordsRangeList = [];
-        for (const visLayer of deserializedData.visualization) {
+        for (const visLayer of structure.visualization) {
             coordsIndexList = visLayer.coordinate_indices;
             coordsRangeBuffer = coordsIndexList.buffer.slice(coordsIndexList.byteOffset, coordsIndexList.byteOffset+coordsIndexList.length);
             coordsRange = new Uint32Array(coordsRangeBuffer);
@@ -46,7 +62,7 @@ const TWO_POINTS = 6;
         }
 
         // Decode Coordinates from data.coordinates_lookup
-        var coordsLookup = deserializedData.coordinates_lookup;
+        var coordsLookup = structure.coordinates_lookup;
         var coordsLookupBuffer = coordsLookup.buffer.slice(coordsLookup.byteOffset, coordsLookup.byteOffset+coordsLookup.length);
         var coordsLookupDV = new DataView(coordsLookupBuffer);
         var coordsLookupList = [];
@@ -73,7 +89,7 @@ const TWO_POINTS = 6;
         // Render data into three.js objects
         var materials1 = new THREE.LineBasicMaterial( { color: 0xff0000 } );
         var materials = [new THREE.LineBasicMaterial( { color: 0x00ffff } )];
-        for (var i = 0; i < deserializedData.visualization.length-1; i++) {
+        for (var i = 0; i < structure.visualization.length-1; i++) {
             materials.push(materials1);
         }
         var objects = [];
@@ -99,6 +115,7 @@ const TWO_POINTS = 6;
         return objects;
     }
     exports.renderLayer = renderLayer;
+    exports.renderStructure = renderStructure;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 })));

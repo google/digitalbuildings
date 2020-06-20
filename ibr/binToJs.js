@@ -23,9 +23,15 @@ function onChooseFile() {
             controls.update();
             controls.enablePan = false;
             controls.enableDamping = true;
-            var lines = IBRSDK.renderLayer( ibrData );
-            for (const line of lines) {
-                scene.add(line);
+            var structures = IBRSDK.renderStructure( ibrData );
+            var layers = [];
+            for ( const structure of structures ) {
+                layers.push( IBRSDK.renderLayer (structure) );
+            }
+            for ( const layer of layers ) {
+                for ( const line of layer ) {
+                    scene.add( line );
+                }
             }
             camera.position.set( 0, 0, 7000 );
             camera.lookAt( 0, 0, 0 );
