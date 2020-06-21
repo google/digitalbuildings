@@ -41,6 +41,58 @@ const TWO_POINTS = 6;
                | ((val >> 24) & 0xFF);
     }
 
+    // List of colors from jquery.color.js plugin
+    var Colors = {};
+    Colors.names = ["#00ffff",
+        "#f0ffff",
+        "#f5f5dc",
+        "#000000",
+        "#0000ff",
+        "#a52a2a",
+        "#00ffff",
+        "#00008b",
+        "#008b8b",
+        "#a9a9a9",
+        "#006400",
+        "#bdb76b",
+        "#8b008b",
+        "#556b2f",
+        "#ff8c00",
+        "#9932cc",
+        "#8b0000",
+        "#e9967a",
+        "#9400d3",
+        "#ff00ff",
+        "#ffd700",
+        "#008000",
+        "#4b0082",
+        "#f0e68c",
+        "#add8e6",
+        "#e0ffff",
+        "#90ee90",
+        "#d3d3d3",
+        "#ffb6c1",
+        "#ffffe0",
+        "#00ff00",
+        "#ff00ff",
+        "#800000",
+        "#000080",
+        "#808000",
+        "#ffa500",
+        "#ffc0cb",
+        "#800080",
+        "#800080",
+        "#ff0000",
+        "#c0c0c0",
+        "#ffffff",
+        "#ffff00"
+    ];
+
+    Colors.random = function() {
+        var result = this.names[Math.floor( Math.random() * (this.names.length - 1) )];
+        return result;
+    };
+
     /**
      * Converts decoded ibr structure data into three.js Line objects.
      * @param {Object} structure structures decoded from raw ibr data
@@ -87,10 +139,9 @@ const TWO_POINTS = 6;
         }
 
         // Render data into three.js objects
-        var materials1 = new THREE.LineBasicMaterial( { color: 0xff0000 } );
-        var materials = [new THREE.LineBasicMaterial( { color: 0x00ffff } )];
+        var materials = [];
         for (var i = 0; i < structure.visualization.length-1; i++) {
-            materials.push(materials1);
+            materials.push(new THREE.LineBasicMaterial( { color: Colors.random() } ));
         }
         var objects = [];
         for (var i = 0; i < layerCoordinates.length; i++) {
@@ -114,6 +165,7 @@ const TWO_POINTS = 6;
         }
         return objects;
     }
+
     exports.renderLayer = renderLayer;
     exports.renderStructure = renderStructure;
 
