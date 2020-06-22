@@ -18,6 +18,8 @@ aggregation:
   min: "Minimum value (e.g. Min_Ventilation_Air_Flow_Setpoint)"
   total: "Sum total of some set of values (e.g. total_request_heating_count)"
 component:
+  tank : "Storage device for media."
+  lighting : "artificial light source devices or natural illumination by capturing daylight."
   coil: "Component that exchanges heat between two media streams."
   compressor: "Component which drives refrigerant compression (and thus cooling processes) within a device or system."
   condenser: "The component of a refrigeration system that condenses refrigerant."
@@ -41,7 +43,14 @@ component:
   valve: "Component which meters the flow of water within a system or device."
   vane: "Component for guiding media flow."
   wheel: "Component used for transfer of heat from incoming to outgoing air streams. "
-descriptor:
+descriptor: 
+  emergency : "a situation that poses an immediate risk to health, life property,  or environment."
+  scene : "a combination of objects or events in view or happening of an event that attracts attention."
+  leak : "Media leaving the system abnormally."
+  detection : "Process of identifying conditions."
+  fire : "a potential to cause physical damage through burning"
+  suppression : "a range of firefighting tactics used to suppress fire"
+  Photocatalyst : "a material that uses absorbed light energy (usually UV) to drive desired reactions that would not otherwise proceed under ambient conditions"
   air: "Atmospheric air, either conditioned or unconditioned"
   aisle: "Passage between two rows of server racks."
   blowdown: "Process of expelling water filled with mineral deposits for the purposes of water treatment. "
@@ -152,6 +161,7 @@ descriptor:
   winter: "Method or process used during colder weather (i.e. winter season)."
   zone: "Region of building which is conditioned."
 measurement:
+  fault : "Signal that a fault (low/medium) priority warning is present; can compromise system operation, but not necessarily imminently."
   concentration: "Concentration of chemical (usually in parts per million or parts per billion)."
   current: "Flow of electric charge."
   energy: " The quantitative property that must be transferred to an object to perform work (default electrical unless otherwise modified)."
