@@ -20,13 +20,13 @@ const TWO_POINTS = 6;
      * @param {Byte} data Binary data read directly from .ibr file
      * @return {Array.<Object>} structures List of structure objects generated from input ibr data
      */
-    function renderStructure(data) {
+    function unpackStructure(data) {
         var deserializedData = InternalBuildingRepresentation.read(new Pbf(data));
+        console.log(deserializedData);
         var structures = [];
+        structures.push( deserializedData );
         if ( deserializedData.structures.length > 0 ) {
             structures = deserializedData.structures;
-        } else {
-            structures.push( deserializedData );
         }
         return structures;
     }
@@ -167,7 +167,7 @@ const TWO_POINTS = 6;
     }
 
     exports.renderLayer = renderLayer;
-    exports.renderStructure = renderStructure;
+    exports.unpackStructure = unpackStructure;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 })));

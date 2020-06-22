@@ -23,7 +23,7 @@ function onChooseFile() {
             controls.update();
             controls.enablePan = false;
             controls.enableDamping = true;
-            var structures = IBRSDK.renderStructure( ibrData );
+            var structures = IBRSDK.unpackStructure( ibrData );
             var layers = [];
             for ( const structure of structures ) {
                 layers.push( IBRSDK.renderLayer (structure) );
