@@ -12,7 +12,23 @@ const TWO_POINTS = 6;
 	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
 	typeof define === 'function' && define.amd ? define(['exports'], factory) :
 	(global = global || self, factory(global.IBRSDK = {}));
-}(this, (function (exports) { 'use strict';
+}(this, (function (exports) {
+    'use strict';
+
+    /**
+     * Decode raw ibr data into structures.
+     * @param {Byte} data Binary data read directly from .ibr file
+     * @return {Array.<Object>} structures List of structure objects generated from input ibr data
+     */
+    function unpackStructure(data) {
+        var deserializedData = InternalBuildingRepresentation.read(new Pbf(data));
+        var structures = [];
+        structures.push( deserializedData );
+        if ( deserializedData.structures.length > 0 ) {
+            structures = deserializedData.structures;
+        }
+        return structures;
+    }
 
     /**
      * Swap endianness of 32bit numbers.
@@ -24,18 +40,69 @@ const TWO_POINTS = 6;
                | ((val >> 24) & 0xFF);
     }
 
+    // List of colors from jquery.color.js plugin
+    var Colors = {};
+    Colors.names = ["#00ffff",
+        "#f0ffff",
+        "#f5f5dc",
+        "#000000",
+        "#0000ff",
+        "#a52a2a",
+        "#00ffff",
+        "#00008b",
+        "#008b8b",
+        "#a9a9a9",
+        "#006400",
+        "#bdb76b",
+        "#8b008b",
+        "#556b2f",
+        "#ff8c00",
+        "#9932cc",
+        "#8b0000",
+        "#e9967a",
+        "#9400d3",
+        "#ff00ff",
+        "#ffd700",
+        "#008000",
+        "#4b0082",
+        "#f0e68c",
+        "#add8e6",
+        "#e0ffff",
+        "#90ee90",
+        "#d3d3d3",
+        "#ffb6c1",
+        "#ffffe0",
+        "#00ff00",
+        "#ff00ff",
+        "#800000",
+        "#000080",
+        "#808000",
+        "#ffa500",
+        "#ffc0cb",
+        "#800080",
+        "#800080",
+        "#ff0000",
+        "#c0c0c0",
+        "#ffffff",
+        "#ffff00"
+    ];
+
+    Colors.random = function() {
+        var result = this.names[Math.floor( Math.random() * (this.names.length - 1) )];
+        return result;
+    };
+
     /**
-     * Converts raw ibr visualization data into three.js Line objects.
-     * @param {Byte} data Binary data read directly from .ibr file
+     * Converts decoded ibr structure data into three.js Line objects.
+     * @param {Object} structure structures decoded from raw ibr data
      * @return {Array.<Line>} lines List of three.js Line objects generated from input ibr data
      */
-    function renderLayer(data) {
+    function renderLayer(structure) {
 
         // Decode Indices from data.visualization[].coordinate_indices
-        var deserializedData = InternalBuildingRepresentation.read(new Pbf(data));
         var coordsIndexList, coordsRangeBuffer, coordsRange;
         var coordsRangeList = [];
-        for (const visLayer of deserializedData.visualization) {
+        for (const visLayer of structure.visualization) {
             coordsIndexList = visLayer.coordinate_indices;
             coordsRangeBuffer = coordsIndexList.buffer.slice(coordsIndexList.byteOffset, coordsIndexList.byteOffset+coordsIndexList.length);
             coordsRange = new Uint32Array(coordsRangeBuffer);
@@ -46,7 +113,7 @@ const TWO_POINTS = 6;
         }
 
         // Decode Coordinates from data.coordinates_lookup
-        var coordsLookup = deserializedData.coordinates_lookup;
+        var coordsLookup = structure.coordinates_lookup;
         var coordsLookupBuffer = coordsLookup.buffer.slice(coordsLookup.byteOffset, coordsLookup.byteOffset+coordsLookup.length);
         var coordsLookupDV = new DataView(coordsLookupBuffer);
         var coordsLookupList = [];
@@ -71,10 +138,9 @@ const TWO_POINTS = 6;
         }
 
         // Render data into three.js objects
-        var materials1 = new THREE.LineBasicMaterial( { color: 0xff0000 } );
-        var materials = [new THREE.LineBasicMaterial( { color: 0x00ffff } )];
-        for (var i = 0; i < deserializedData.visualization.length-1; i++) {
-            materials.push(materials1);
+        var materials = [];
+        for (var i = 0; i < structure.visualization.length-1; i++) {
+            materials.push(new THREE.LineBasicMaterial( { color: Colors.random() } ));
         }
         var objects = [];
         for (var i = 0; i < layerCoordinates.length; i++) {
@@ -98,7 +164,9 @@ const TWO_POINTS = 6;
         }
         return objects;
     }
+
     exports.renderLayer = renderLayer;
+    exports.unpackStructure = unpackStructure;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 })));
