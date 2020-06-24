@@ -27,9 +27,10 @@ This project is structured as following:
 * Tools which allow the following:
   * [Yaml Validator](/tools/validators/ontology_validator/README.md) which allows to validate the yaml ontology upon a change or an extension.
   * [RDF/OWL Generator](/tools/rdf_generator/README.md) which allows to generate an RDF version from the yaml ontology files.
+* Internal Building Representation (IBR) File Format.
 
-## Internal Building Representation (IBR) File Format
 
+### Internal Building Representation (IBR) File Format
 IBR implements single file format that can be adapted to multiple use cases in any building.
 
 Data in different verticals such as spatial, assets, and ontology often come from different source systems. This presents a challenge when a developer wants ensure updated data in downstream systems, especially when they want to combine data across multiple verticals. IBR is a solution that allows all of it to be combined in a meaningful, portable way.
