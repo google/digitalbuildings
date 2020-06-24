@@ -11,16 +11,17 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-"""Tests for phred.tools.typegenerator.typevalidator.namespace_validator."""
+
+"""Tests for namespace_validator."""
 
 from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
-from validation.validator import entity_type_lib
-from validation.validator import findings_lib
-from validation.validator import namespace_validator
-from validation.validator import test_helpers_lib
+from yamlformat.validator import entity_type_lib
+from yamlformat.validator import findings_lib
+from yamlformat.validator import namespace_validator
+from yamlformat.validator import test_helpers_lib
 from absl.testing import absltest
 
 _F = test_helpers_lib.Fields

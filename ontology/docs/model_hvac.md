@@ -7,18 +7,40 @@ models could be created for the same physical thing. However, there are certain
 preferences which manifest as one begins to model the systems and justification
 for certain choices will be made here.
 
-[TOC]
+- [Digital Buildings HVAC Model](#digital-buildings-hvac-model)
+  * [Guiding Principles](#guiding-principles)
+  * [Fields](#fields)
+  * [Types](#types)
+    + [Umbrella Types](#umbrella-types)
+      - [Umbrella Equipment Types](#umbrella-equipment-types)
+      - [Umbrella System Types](#umbrella-system-types)
+        * [Notes on System Design](#notes-on-system-design)
+      - [Abstract Types](#abstract-types)
+        * [Specific Abstract Type Models](#specific-abstract-type-models)
+          + [Air Flow Control](#air-flow-control)
+          + [Air Temperature Control and Monitoring](#air-temperature-control-and-monitoring)
+          + [Air Pressure Control](#air-pressure-control)
+          + [Humidity Control](#humidity-control)
+          + [Air Quality Control](#air-quality-control)
+          + [Fan Control](#fan-control)
+          + [Mechanical Heating and Cooling Controls](#mechanical-heating-and-cooling-controls)
+          + [Economizer Control](#economizer-control)
+          + [Water Temperature Control](#water-temperature-control)
+          + [Water Differential Pressure Control](#water-differential-pressure-control)
+          + [Flow Control](#flow-control)
+          + [Isolation Damper and Valve Control](#isolation-damper-and-valve-control)
+  * [Connections](#connections)
 
-## Guiding Principles {#principles}
+## Guiding Principles
 
 Our philosophy follows a few basic principles (with certain exceptions that we
 will call out as they occur):
 
 *   **Model with an end use in mind**: know *why* you are modeling a device
     before doing so. For this deployment, the purpose of modeling was to enable
-    machine learning, engineering analytics, and interoperative app development;
+    machine learning, engineering analytics, and intraoperative app development;
     therefore, the fields we mapped were those we anticipated most relevant to
-    those uses. It's not necessary to integrate every avaialble field (for
+    those uses. It's not necessary to integrate every available field (for
     instance, PID gains may be available but are rarely required for analysis);
     what is required varies by use case, so have those use cases in mind before
     setting out to model.
@@ -57,7 +79,7 @@ will call out as they occur):
     modeler to understand what ramifications their decisions will have on the
     end-use of the applied ontology.
 
-## Fields {#fields}
+## Fields
 
 This section outlines some frequently asked questions on how to properly build
 certain fields, specifically which subfields should be used in different
@@ -110,7 +132,7 @@ models, not just the particular model to which they are useful):
     `zone_air_co2_concentration_setpoint`, where it is very clearly an upper
     boundary condition, it is unnecessary to add additional descriptors.
 
-## Types {#types}
+## Types
 
 As stated previously, types define the properties and behavior of entities in
 the real world. In a basic sense, they are the set of all standard fields of a
@@ -127,7 +149,7 @@ The syntax for defining these types is discussed in
 [entity types](ontology_config.md#entitytypes); this section discusses actual
 application and provides basic guidelines for constructing new types.
 
-### Umbrella Types {#umbrella-types}
+### Umbrella Types
 
 The concept of an **umbrella type** (see
 [umbrella types](model.md#umbrella-types) for model details) is used to broadly
@@ -145,7 +167,7 @@ device doesn't report the damper commands or positions); the modeler should
 apply the umbrella type that properly describes the physical device, not simply
 the telemetry representation of the device:
 
-#### Umbrella Equipment Types {#umbrella-equipment-types}
+#### Umbrella Equipment Types
 
 This section outlines **umbrella types** for specific equipment.
 
@@ -216,7 +238,7 @@ This section outlines **umbrella types** for specific equipment.
 *   **Zone (`ZONE`)**: a group of sensors associated to an individual zone,
     rather than to an HVAC asset.
 
-#### Umbrella System Types {#umbrella-system-types}
+#### Umbrella System Types
 
 This section defines **umbrella types** for systems (interconnected groups of
 equipment, but not the equipment itself):
@@ -230,7 +252,7 @@ equipment, but not the equipment itself):
 *   HEATING WATER SYSTEM (`HWS`): a system that produces heated water for the
     purpose of conditioning air.
 
-##### Notes on System Design {#umbrella-system-type-design}
+##### Notes on System Design
 
 All equipment is interconnected in some way to other equipment via systems; this
 can be indirect (such as FCUs serving adjacent zones) or direct (a pump serves a
@@ -250,7 +272,7 @@ risers and a production loop) it is valid to break the system down into multiple
 individual systems (e.g. `PRODUCTION`, `SECONDARY_UPPER_FLOORS`,
 `SECONDARY_LOWER_FLOORS`) and then link them to a common system.
 
-#### Abstract Types {#abstract-types}
+#### Abstract Types
 
 Modeling types begins with defining functional groups based on what particular
 pieces of equipment (or systems) typically possess. For HVAC, these can be
@@ -294,7 +316,7 @@ In general, attempt to follow a few rules when creating new abstract types:
         incomplete abstract types simply to support a bespoke 1:1 field mapping
         for a device.
 
-##### Specific Abstract Type Models {#abstract-type-specific-models}
+##### Specific Abstract Type Models
 
 The following sections will outline some of (but expressly not all) defined
 **abstract types** found most commonly within this deployment. This forms the
@@ -302,9 +324,9 @@ body of precedent which will be extended to model different, novel scenarios.
 
 (Note the small variations in acronyms among the defined abstract types; it is
 acknowledged that some variations will exist, but consistency should be
-attmepted when adding new types here.)
+attempted when adding new types here.)
 
-###### Air Flow Control {#air-flow-control}
+###### Air Flow Control
 
 This section outlines typical air-side control. Some were intended to apply to
 specific mechanical devices (e.g. VAVs) and others were intended to be more
@@ -354,9 +376,9 @@ flow is either monitored by a flow sensor in the duct (`SFM`) or controlled by
 the flow sensor and flow setpoint (`SFC`, `RFC`). Most entities control to duct
 static pressure rather than air flow.
 
-###### Air Temperature Control and Monitoring {#air-temperature-control}
+###### Air Temperature Control and Monitoring
 
-This section outlines different types of temperature contol for air-side
+This section outlines different types of temperature control for air-side
 processes. Most types have heating and cooling components (like chilled water
 valves) that control to temp. Zone temp controlled subtypes are represented with
 the suffixes `ZTC` (eg. `CHWZTC`) and `DSP` as `ZC` (e.g. `CHWZC`).
@@ -416,7 +438,7 @@ monitored by sensors. Weather stations monitor outside air, along with some
 boilers, chillers, and air handler units. Some weather stations also measure
 outside air dewpoint and wetbulb temps, which are included as optional fields.
 
-###### Air Pressure Control {#air-pressure-control}
+###### Air Pressure Control
 
 **Supply Air Static Pressure Control (`SSPC`,`SSPM`)** Supply air static
 pressure (in the duct) is either monitored by a pressure sensor (`SSPM`) or
@@ -445,10 +467,10 @@ debris, and other particulates, their differential pressure increases. Pressure
 sensors indicate when the filter requires cleaning or replacement. This is an
 example of a stand-alone sensor that warrants its own type.
 
-###### Humidity Control {#air-humidity-control}
+###### Humidity Control
 
 **Zone Humidity (`ZHM`, `ZHC`)** Zone humidity is monitored by a sensor, or
-controls to a humidification or dehumidifcation setpoint. Most units with `ZHC`
+controls to a humidification or dehumidification setpoint. Most units with `ZHC`
 serve labs or cafeteria spaces for the buildings currently modeled.
 
 **Return Air Humidity (`RHM`, `RHC`)** Return air humidity is monitored by a
@@ -459,10 +481,10 @@ units with `RHC` serve labs or cafeteria spaces.
 controls to a humidification or dehumidification setpoint. Most units with `RHC`
 serve labs or cafeteria spaces.
 
-###### Air Quality Control {#air-quality-control}
+###### Air Quality Control
 
 **Carbon Dioxide Control (`CO2M`, `CO2C`, `CO2C2X`)** The concentration of
-carbon ioxide in the zone air is monitored by sensors. For units that control
+carbon dioxide in the zone air is monitored by sensors. For units that control
 CO2, CO2 levels are used to determine when additional ventilation is required
 (when levels exceed the setpoint) and increase the ventilation. Some zones have
 multiple CO2 sensors (`CO2C2X`). TODO: explain how virtual fields to reduce the
@@ -476,7 +498,7 @@ ventilation.
 **Volatile Organic Compound Control (`VOCM`, `VOCC`)** Similar to CO2C, but unit
 monitors or controls zone volatile organic compound levels.
 
-###### Fan Control {#fan-control}
+###### Fan Control
 
 **Fan Types (`SS`, `SFSS`, `DFSS`, `EFSS`, `RFSS`)** There are four basic fan
 types. Supply fans (`SF`) deliver air from the unit to downstream units (such as
@@ -500,7 +522,7 @@ Some also operate with high and low speed commands (`HLC`), or high, medium, and
 low speed commands (`HMLC`). These subtypes also optionally used run command and
 run status fields.
 
-###### Mechanical Heating and Cooling Controls {#heating-cooling-control}
+###### Mechanical Heating and Cooling Controls
 
 **Chilled Water Valve Control (`CHWSC`, `CHWDC`, etc.)** Chilled water valve
 control based on a specific temperature sensor. All iterations of this abstract
@@ -533,7 +555,7 @@ water coil. Note that the fields don't include the keywords `gas` or `electric`
 because there isn't often a reason to differentiate between them on the same
 unit.
 
-###### Economizer Control {#economizer-control}
+###### Economizer Control
 
 **Economizer Control (`ECON`, `ECOND`, `ECONM`)** Economizer is an energy saving
 control strategy where the AHU brings in more outside air than is necessary for
@@ -543,7 +565,7 @@ outside air temp, return air temp, mixed air temp, and supply air temp setpoint.
 The type variants indicate which sensor and setpoint pair are used for outside
 air damper control (D = discharge, etc.).
 
-###### Water Temperature Control {#hydronic-temperature-control}
+###### Water Temperature Control
 
 **Supply Water Temp (`SWTM`, `SWTC`, `CHWSTM`, `CHWSTC`)** Supply water temp is
 either monitored by a temp sensor (`SWTM`) or controlled by a sensor and
@@ -558,7 +580,7 @@ chilled water.
 used for process cooling (i.e. sensible). This is sometimes needed for process
 side modeling on heat exchangers.
 
-###### Water Differential Pressure Control {#hydronic-pressure-control}
+###### Water Differential Pressure Control
 
 **Differential Pressure Control (`WDPC`)** Differential pressure sensors are
 mounted on water pipes and measure the pressure drop between two points along
@@ -566,7 +588,7 @@ the pipe. Most commonly, this DP measures pressure drop between supply and
 return water lines. Differential pressure is controlled to a setpoint through
 the modulation of pump speed and bypass valve position.
 
-###### Flow Control {#hydronic-flow-control}
+###### Flow Control
 
 **Water Flow Rate (`WFRM`, `WFRC`, `CHWFRM`)** A water flow sensor is mounted on
 or in the pipe and monitors water flow rate (`WFRM`). Some entities and systems
@@ -578,7 +600,7 @@ lower limit) flowrate when they are in operation. Some systems guarantee this
 through a minimum flow setpoint and modulating bypass valve. This type has flow
 sensor, min flowrate setpoint, and bypass valve command as required fields.
 
-###### Isolation Damper and Valve Control {#isolation-control}
+###### Isolation Damper and Valve Control
 
 **Isolation Valves (`ISOVM`, `ISOVPM`)** Isolation dampers and valves allow
 components of an HVAC system to be isolated during certain parts of the
@@ -604,7 +626,7 @@ valves may also be labeled `CHWBYPVPM` (chilled water bypass valve).
 water valves that supply additional water to the system to make for water losses
 from evaporation.
 
-## Connections {#connections}
+## Connections
 
 This section discusses (what will be) required connections for particular types
 of entities. More details to be added when this feature is implemented.

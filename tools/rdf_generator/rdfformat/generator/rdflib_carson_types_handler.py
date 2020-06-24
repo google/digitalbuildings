@@ -11,6 +11,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
 """Carson Types RDF handler.
 
 Takes as input any Carson yaml file such as VAV, PUMP, FCU, etc and populate the

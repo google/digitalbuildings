@@ -11,11 +11,12 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
 """Shared base class for all configuration folders."""
 import re
 
-from validation.validator import base_lib
-from validation.validator import findings_lib
+from yamlformat.validator import base_lib
+from yamlformat.validator import findings_lib
 
 
 def IsValidFolderForType(path, component_type):

@@ -1,0 +1,19 @@
+{
+  "name": "ibr-sdk",
+  "version": "0.1.0",
+  "description": "This package will take ibr binary data and convert them into three.js object(s).",
+  "main": "build/ibr-sdk.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "three": "^0.117.1",
+    "pbf": "^3.2.1"
+  },
+  "keywords": [
+    "node",
+    "npm"
+  ],
+  "author": "Shuang Li",
+  "license": "Apache-2.0"
+}

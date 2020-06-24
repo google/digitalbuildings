@@ -4,14 +4,28 @@ The Digital Buildings ontology uses [YAML](http://yaml.org) syntax to define its
 models. The format allows users to specify subfields, fields, entity types,
 states, units and connections in multiple namespaces. Files written in the
 format can be strictly validated for consistency and backwards compatibility
-with ealier versions.
+with earlier versions.
 
 *   For an explanation of the existing abstract model see [model](model.md)
 *   For a conceptual explanation of the ontology see [ontology](ontology.md)
 
-[TOC]
+- [Digital Buildings Ontology Configuration](#digital-buildings-ontology-configuration)
+  * [Namespaces and File Structure](#namespaces-and-file-structure)
+  * [Namespace-aware Components](#namespace-aware-components)
+  * [Namespace Agnostic Components](#namespace-agnostic-components)
+  * [Namespace Elevation](#namespace-elevation)
+  * [Configuration Syntax](#configuration-syntax)
+    + [Subfields](#subfields)
+    + [Fields and Multi-state groups](#fields-and-multi-state-groups)
+      - [Elevating Fields](#elevating-fields)
+    + [States](#states)
+    + [EntityTypes](#entitytypes)
+    + [Connections (coming soon)](#connections--coming-soon-)
+    + [Units](#units)
+  * [Validation](#validation)
+  * [Notes](#notes)
 
-## Namespaces and File Structure {#namespaces-and-file-structure}
+## Namespaces and File Structure
 
 Each namespace in the ontology has folders with reserved names for each type
 component: `fields`, `subfields`, `entity_types` and `states`. The global
@@ -28,7 +42,7 @@ for the purposes of constructing the ontology. All files in all
 folders under a reserved folder will be read and consolidated into the model as
 if they had been defined in a single file.
 
-## Namespace-aware Components {#namespace-aware-components}
+## Namespace-aware Components
 
 Fields, EntityTypes and MultiStates all carry explicit namespaces. That is, if a
 user defines any of these components in a namespace and it cannot be
@@ -41,7 +55,7 @@ namespace is required is when a user is referring to a non-elevated field in
 another namespace. This imposes a few constraints on components, which will be
 discussed later.
 
-## Namespace Agnostic Components {#namespace-agnostic-components}
+## Namespace Agnostic Components
 
 **Subfields**: Unlike other components, are Subfields are not namespace aware.
 As a result, they are always used verbatim and should be defined in the global
@@ -52,19 +66,19 @@ fields defined in that namespace.
 
 **Units and Connections**: Units and connections are always defined globally.
 
-## Namespace Elevation {#namespace-elevation}
+## Namespace Elevation
 
 [Namespace elevation](ontology.md#namespace-elevation) is the concept of pushing
-definitions from child namespces to the global namespace when doing so is
+definitions from child namespaces to the global namespace when doing so is
 guaranteed safe. Field definitions are subject to namespace elevation.
 Functionally this means that a field, regardless of where it is defined, will be
 considered global if it only uses subfields in the global namespace. From a
 syntax perspective, an elevated field can always be referenced without being
 fully qualified.
 
-## Configuration Syntax {#configuration-syntax}
+## Configuration Syntax
 
-### Subfields {#subfields}
+### Subfields
 
 Subfields are described in a folder with the name `subfields`. Subfields are
 primarily defined at the top level of the BOS ontology, but top level
@@ -98,12 +112,12 @@ meaning.
 
 The validation enforces that:
 
-*   All subfields begin with a lowercase alpha claracter
+*   All subfields begin with a lowercase alpha character
 *   No subfield names are duplicated within the namespace
 *   Measurement subfields are defined only in the global namespace
 *   All Measurement subfields have mappings in the [units](#units) config
 
-### Fields and Multi-state groups {#fields-and-multi-state-groups}
+### Fields and Multi-state groups
 
 Fields are described in a folder with the name `fields`. They can be configured
 in the global namespace or in individual namespaces. There is no particular
@@ -139,17 +153,17 @@ The validation enforces that:
 
 *   fields only use defined subfields
 *   only one instance of a subfield set exists in each namespace
-*   fields follow costruction rules
+*   fields follow construction rules
 *   only defined states are assigned to fields
 *   each state is only defined once in a multi-state group for a field
 
-#### Elevating Fields {#elevating-fields}
+#### Elevating Fields
 
 When building the ontology, any fields using all globally defined subcomponents
 are created in the global namespace. Field validation for duplicates is done in
-the namepsace the field arrives in after elevation.
+the namespace the field arrives in after elevation.
 
-### States {#multistates}
+### States
 
 States are described in a folder with the name `states`. States may be defined
 globally or in local namespaces, with a preference for global definitions for
@@ -164,16 +178,16 @@ ON: This thing is running
 OFF: This thing is not running
 ```
 
-Valdation enforces:
+Validation enforces:
 
 *   Keys are unique per namespace.
 *   Keys begin with a alpha-character
 *   A test description is provided
 
-### EntityTypes {#entitytypes}
+### EntityTypes
 
 Entity types are described in a folder with the name `entity_types`. Entity
-types are the mose often namespaced component. Each Entity Type specifies the
+types are the most often namespaced component. Each Entity Type specifies the
 fields and inherited types that compose it. Entity Types are namespaced like
 fields and can used both locally and globally namespaced fields and types in
 their construction.
@@ -199,7 +213,7 @@ variable_air_volume_terminal:
 
 ```
 
-*   `description`: A plain-text explantion of what this type represents. The
+*   `description`: A plain-text explanation of what this type represents. The
     definition is particularly important because types have inherent meaning
     independent of the fields they contain.
 *   `is_abstract`: set true if this type cannot be assigned directly to an
@@ -225,7 +239,7 @@ Validation enforces:
 *   all type names are unique per-namespace
 *   types have text descriptions (warning)
 
-### Connections (coming soon) {#connections}
+### Connections (coming soon)
 
 Connections are described in a folder with the name `connections`. Connections
 can **only** be described in the global namespace, and the set of connections is
@@ -245,7 +259,7 @@ Validation enforces:
 *   All connections are unique
 *   All connections have definitions provided
 
-### Units {#units}
+### Units
 
 Units are described in a folder with the name `units`. They are **only** defined
 in the global namespace and are grouped by measurement subfield. For example:
@@ -274,10 +288,10 @@ Validation enforces:
 *   Each dimensional unit is defined only once in the file
 *   Exactly one `STANDARD` designation is made per subfield
 
-## Validation {#validation}
+## Validation
 
-The Digital Buiildings ontology contains a configuration validator that enforces
-all the constrains outlined above.
+The Digital Buildings ontology contains a configuration validator that enforces
+all the constraints outlined above.
 
 The validator source code can be found [here](TODO:ADD PATH).
 
@@ -302,4 +316,4 @@ The validator can be run as following: `python3 validator.py
     permutations to auto-generate, but we found that in practice the number of
     fields was small enough that it was never implemented. \
 [^6]: longer form with `description` added as a separate key anticipates
-    additional configuration functionaity for fields \
+    additional configuration functionality for fields \

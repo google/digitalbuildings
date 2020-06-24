@@ -11,6 +11,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
 ########################
 ### Canonical Types  ###
 ########################
@@ -2241,7 +2242,7 @@ AHU_BSPC_CHWSC_ECON_EFSS_EFVSC_HWSC_PHWSC_SFSS_SFVSC_SSPC:
 
 AHU_US_LVK_7633_1: # This building isnt found in the BMS anymore... Where is it?
   id: "5764350924508102656"
-  description: "Entities: DEV:4000104"
+  description: "Non-standard type for 7633"
   implements:
   - REMAP_REQUIRED
   uses:
@@ -2275,7 +2276,7 @@ AHU_US_LVK_7633_1: # This building isnt found in the BMS anymore... Where is it?
 
 AHU_US_LVK_7633_2: # This building isnt found in the BMS anymore... Where is it?
   id: "6039492714242768896"
-  description: "Entities: US-LVK-7633:AHU:AC-5"
+  description: "Non-standard type for 7633"
   implements:
   - REMAP_REQUIRED
   uses:
@@ -2291,7 +2292,7 @@ AHU_US_LVK_7633_2: # This building isnt found in the BMS anymore... Where is it?
 
 AHU_US_MTV_1015_2:
   id: "15369403029782528000"
-  description: "Entities: US-MTV-1015:AHU:AC-3A, US-MTV-1015:AHU:AC-3B"
+  description: "Non-standard type for 1015 ACs"
   implements:
   - AHU_BSPC_DX4SC_ECON_EFSS_SFSS_SFVSC_SSPC
   - INCOMPLETE
@@ -2302,7 +2303,7 @@ AHU_US_MTV_1015_2:
 
 AHU_US_MTV_1201_2:
   id: "2255976446042308608"
-  description: "Entities: US-MTV-1201:AHU:AC-1, US-MTV-1201:AHU:AC-5"
+  description: "Non-standard type for 1201 ACs"
   implements:
   - AHU_BSPC_DX4SC_ECON_EFSS_SFSS_SFVSC_SSPC
   - INCOMPLETE
@@ -2312,7 +2313,7 @@ AHU_US_MTV_1201_2:
 
 AHU_US_MTV_1210_10:
   id: "833331545002475520"
-  description: "Entities: DEV:2802337, DEV:2802340"
+  description: "Non-standard type for 1210"
   implements:
   - AHU_BSPC_DX3SC_ECON_EFSS_EFVSC_HTSC_SFSS_SFVSC_SSPC
   - INCOMPLETE
@@ -2323,7 +2324,7 @@ AHU_US_MTV_1210_10:
 
 AHU_US_MTV_1210_2:
   id: "3512973323287920640"
-  description: "Entities: DEV:2802316"
+  description: "Non-standard type for 1210"
   implements:
   - AHU_DX2SC_ECON_HT2SC_SFSS_SFVSC_SSPC
   - INCOMPLETE
@@ -2334,7 +2335,7 @@ AHU_US_MTV_1210_2:
 
 AHU_US_MTV_1210_5: # Appears changed in the controller.
   id: "10056703581857251328"
-  description: "Entities: DEV:2802320"
+  description: "Non-standard type for 1210"
   implements:
   - REMAP_REQUIRED
   uses:
@@ -2355,7 +2356,7 @@ AHU_US_MTV_1210_5: # Appears changed in the controller.
 
 AHU_US_MTV_1210_7:
   id: "12736345360142696448"
-  description: "Entities: DEV:2802326"
+  description: "Non-standard type for 1210"
   implements:
   - AHU_DX2SC_ECON_EFSS_HT2SC_SFSS_SFVSC_SSPC
   - INCOMPLETE
@@ -2366,7 +2367,7 @@ AHU_US_MTV_1210_7:
 
 AHU_US_MTV_1210_9:
   id: "12957021741883850752"
-  description: "Entities: DEV:2802330"
+  description: "Non-standard type for 1210"
   implements:
   - AHU_BYPSSPC_DX2SC_ECON_HT2SC_SFSS
   - INCOMPLETE
@@ -2376,7 +2377,7 @@ AHU_US_MTV_1210_9:
 
 AHU_US_MTV_1220_4:
   id: "2699440271849947136"
-  description: "Entities: DEV:2803111"
+  description: "Non-standard type for 1220"
   implements:
   - AHU_DXSC_ECON_EFSS_HTSC_SFSS_SFVSC_SSPC
   - INCOMPLETE
@@ -2387,7 +2388,7 @@ AHU_US_MTV_1220_4:
 
 AHU_US_MTV_1230_10:
   id: "328295068039380992"
-  description: "Entities: US-MTV-1230:AHU:AC-5"
+  description: "Non-standard type for 1230 ACs"
   implements:
   - AHU_BYPSSPC_ECON_EFSS_HP2SC_SFSS
   - INCOMPLETE
@@ -2396,9 +2397,9 @@ AHU_US_MTV_1230_10:
   - zone_air_heating_temperature_setpoint
   - zone_air_temperature_sensor
 
-AHU_US_MTV_1230_2: # SUPPLY --> DISCHARGE
+AHU_US_MTV_1230_2:
   id: "5329542454234316800"
-  description: "Entities: DEV:2804010"
+  description: "Non-standard type for 1230"
   implements:
   - AHU_DFSS_DSP_DXDC_ECOND_EFSS_HTDC
   - INCOMPLETE
@@ -2407,7 +2408,7 @@ AHU_US_MTV_1230_2: # SUPPLY --> DISCHARGE
 
 AHU_US_MTV_1230_6:
   id: "9551667104894156800"
-  description: "Entities: DEV:2804028, US-MTV-1230:AHU:AC-22"
+  description: "Non-standard type for 1230 ACs"
   implements:
   - AHU_BSPC_DX2SC_ECON_EFSS_EFVSC_HTSC_SFSS_SFVSC_SSPC
   - INCOMPLETE
@@ -2416,7 +2417,7 @@ AHU_US_MTV_1230_6:
 
 AHU_US_MTV_1250_12:
   id: "14240055054475198464"
-  description: "Entities: US-MTV-1250:AHU:AC-1, US-MTV-1250:AHU:AC-11, US-MTV-1250:AHU:AC-13,US-MTV-1250:AHU:AC-15"
+  description: "Non-standard type for 1250 ACs"
   implements:
   - AHU_DX2SC_ECON_EFSS_EFVSC_HTSC_SFSS_SFVSC_SSPC
   - INCOMPLETE
@@ -2427,7 +2428,7 @@ AHU_US_MTV_1250_12:
 
 AHU_US_MTV_1250_13:
   id: "3724149924565090304"
-  description: "Entities: US-MTV-1250:AHU:AC-14"
+  description: "Non-standard type for 1250 ACs"
   implements:
   - AHU_BSPC_DX2SC_ECON_EFSS_EFVSC_HTSC_SFSS_SFVSC_SSPC
   - INCOMPLETE
@@ -2436,16 +2437,16 @@ AHU_US_MTV_1250_13:
 
 AHU_US_MTV_1250_15:
   id: "5394985386319544320"
-  description: "Entities: US-MTV-1250:AHU:AC-20"
+  description: "Non-standard type for 1250"
   implements:
   - AHU_BSPC_DX2SC_ECON_EFSS_EFVSC_HTSC_SFSS_SFVSC_SSPC
   - INCOMPLETE
   uses:
   - zone_air_temperature_sensor
 
-AHU_US_MTV_1250_16: # SUPPLY --> DISCHARGE for non-pressure points; the pressure points should be removed.
+AHU_US_MTV_1250_16:
   id: "12407090006135406592"
-  description: "Entities: US-MTV-1250:AHU:AC-21"
+  description: "Non-standard type for 1250 ACs"
   implements:
   - AHU_CO2C_DFSS_DFVSC_DSP_DX2DC_ECOND_EFSS_EFVSC_HTDC
   - REMAP_REQUIRED
@@ -2453,9 +2454,9 @@ AHU_US_MTV_1250_16: # SUPPLY --> DISCHARGE for non-pressure points; the pressure
   - supply_air_static_pressure_setpoint # Remove
   - supply_air_static_pressure_sensor # Remove
 
-AHU_US_MTV_1250_8: # Supply --> Discharge
+AHU_US_MTV_1250_8:
   id: "8335835942992478208"
-  description: "Entities: DEV:2804617"
+  description: "Non-standard type for 1250"
   implements:
   - AHU_DFSS_DSP_DX2DC_ECOND_EFSS_HT2DC
   - INCOMPLETE
@@ -2464,16 +2465,16 @@ AHU_US_MTV_1250_8: # Supply --> Discharge
 
 AHU_US_MTV_1295_1:
   id: "787310386310283264"
-  description: "Entities: DEV:2804706, DEV:2804707, DEV:2804708, DEV:2804709, DEV:2804710,DEV:2804711, DEV:2804712"
+  description: "Non-standard type for 1295"
   implements:
   - AHU_DX2SC_ECON_SFSS_SFVSC_SSPC
   - INCOMPLETE
   uses:
   - building_air_static_pressure_sensor
-  
+
 AHU_US_MTV_1300_10:
   id: "10010682423165059072"
-  description: "Entities: DEV:2805227"
+  description: "Non-standard type for 1300"
   implements:
   - AHU_BYPSSPC_DXSC_ECON_HP2SC_SFSS
   - INCOMPLETE
@@ -2482,7 +2483,7 @@ AHU_US_MTV_1300_10:
 
 AHU_US_MTV_1300_2:
   id: "9055919302162513920"
-  description: "Entities: DEV:2805203"
+  description: "Non-standard type for 1300"
   implements:
   - AHU_BYPSSPC_ECON_HP2SC_HT2SC_SFSS
   - INCOMPLETE
@@ -2491,7 +2492,7 @@ AHU_US_MTV_1300_2:
 
 AHU_US_MTV_1667_1:
   id: "5989460537132449792"
-  description: "Entities: US-MTV-1667:AHU:AC 1.1, US-MTV-1667:AHU:AC 1.2"
+  description: "Non-standard type for 1667 ACs"
   implements:
   - AHU_BSPC_DX4SC_ECON_EFSS_SFSS_SSPC
   - INCOMPLETE
@@ -2500,7 +2501,7 @@ AHU_US_MTV_1667_1:
 
 AHU_US_MTV_1708_5:
   id: "8308673607739899904"
-  description: "Entities: US-MTV-1708:AHU:AHU-3"
+  description: "Non-standard type for 1708"
   implements:
   - AHU_BSPC_CHWSC_ECON_EFSS_EFVSC_HWSC_PHWSC_SFSS_SFVSC_SSPC
   - INCOMPLETE
@@ -2509,7 +2510,7 @@ AHU_US_MTV_1708_5:
 
 AHU_US_MTV_1708_7:
   id: "7137737704623570944"
-  description: "Entities: US-MTV-1708:AHU:AHU-6"
+  description: "Non-standard type for 1708"
   implements:
   - AHU_BSPC_CHWSC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC
   - INCOMPLETE
@@ -2518,7 +2519,7 @@ AHU_US_MTV_1708_7:
 
 AHU_US_MTV_1950_2:
   id: "16685509652137377792"
-  description: "Entities: US-MTV-1950:AHU:AC-1A, US-MTV-1950:AHU:AC-1B, US-MTV-1950:AHU:AC-2A,US-MTV-1950:AHU:AC-2B"
+  description: "Non-standard type for 1950 ACs"
   implements:
   - AHU_BSPC_DX4SC_ECONM_EFSS_EFVSC_SFSS2X_SFVSC_SSPC
   - INCOMPLETE
@@ -2528,7 +2529,7 @@ AHU_US_MTV_1950_2:
 
 AHU_US_MTV_2000_2:
   id: "14973015893829746688"
-  description: "Entities: US-MTV-2000:AHU:AHU-1"
+  description: "Non-standard type for 2000"
   implements:
   - AHU_CHWSC_ECON_HWSC_SFSS_SFVSC_SSPC
   - INCOMPLETE
@@ -2538,7 +2539,7 @@ AHU_US_MTV_2000_2:
 
 AHU_US_MTV_2000_3:
   id: "4380549570254340096"
-  description: "Entities: US-MTV-2000:AHU:AHU-2, US-MTV-2000:AHU:AHU-3"
+  description: "Non-standard type for 2000"
   implements:
   - AHU_CHWSC_ECON_SFC_SFSS_SFVSC_SSPC
   - INCOMPLETE
@@ -2547,7 +2548,7 @@ AHU_US_MTV_2000_3:
 
 AHU_US_MTV_2011_10:
   id: "14410065940408434688"
-  description: "Entities: US-MTV-2011:AHU:AHU-BL1, US-MTV-2011:AHU:AHU-BL2"
+  description: "Non-standard type for 2011"
   implements:
   - AHU_BSPC_CHWSC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC
   - INCOMPLETE
@@ -2560,7 +2561,7 @@ AHU_US_MTV_2011_10:
 
 AHU_US_MTV_2015_3:
   id: "17459073256882438144"
-  description: "Entities: US-MTV-2015:AHU:AC-2"
+  description: "Non-standard type for 2015 ACs"
   implements:
   - AHU_BSPC_DXSC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC
   - INCOMPLETE
@@ -2569,16 +2570,16 @@ AHU_US_MTV_2015_3:
 
 AHU_US_MTV_2081_12:
   id: "6930712859252883456"
-  description: "Entities: US-MTV-2081:AHU:Trane AHU-9"
+  description: "Non-standard type for 2081"
   implements:
   - AHU_BSPC_CHWSC_ECON_EFSS_HWSC_SFSS_SSPC
   - INCOMPLETE
   uses:
   - zone_air_cooling_temperature_setpoint
 
-AHU_US_MTV_2081_2: # Supply --> Discharge
+AHU_US_MTV_2081_2:
   id: "14866055402679697408"
-  description: "Entities: DEV:241264"
+  description: "Non-standard type for 2081"
   implements:
   - AHU_CHWZC_DFSS_DSP_ECONZ
   - INCOMPLETE
@@ -2587,7 +2588,7 @@ AHU_US_MTV_2081_2: # Supply --> Discharge
 
 AHU_US_MTV_2081_5:
   id: "5030193816502534144"
-  description: "Entities: DEV:2919706"
+  description: "Non-standard type for 2081"
   implements:
   - AHU_BSPC_CHWSC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC
   - INCOMPLETE
@@ -2596,7 +2597,7 @@ AHU_US_MTV_2081_5:
 
 AHU_US_MTV_2081_6:
   id: "16154084896107659264"
-  description: "Entities: US-MTV-2081:AHU:AC-24"
+  description: "Non-standard type for 2081 ACs"
   implements:
   - AHU_BSPC_DX4SC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC
   - INCOMPLETE
@@ -2606,7 +2607,7 @@ AHU_US_MTV_2081_6:
 
 AHU_US_MTV_2171_3:
   id: "11391598658907537408"
-  description: "Entities: DEV:2812612"
+  description: "Non-standard type for 2171"
   implements:
   - AHU_BYPSSPC2X_DX2SC_ECON_HT2SC_SFSS
   - INCOMPLETE
@@ -2614,9 +2615,9 @@ AHU_US_MTV_2171_3:
   - supply_air_static_pressure_sensor_1
   - supply_air_static_pressure_sensor_2
 
-AHU_US_MTV_2637_1: # Supply --> Discharge
+AHU_US_MTV_2637_1:
   id: "12044391906457681920"
-  description: "Hash:9b1d03cac42d51dd346177ede39d78d365514d95362562749a71741cc6f4137c;Entities: DEV:3400103, DEV:3400105, DEV:3400110, DEV:3400111, DEV:3400112, DEV:3400120"
+  description: "Non-standard type for 2637"
   implements:
   - AHU_DFSS_DSP_DX2ZC_ECONZ_HTZC
   - INCOMPLETE
@@ -2625,9 +2626,9 @@ AHU_US_MTV_2637_1: # Supply --> Discharge
   - supply_fan_run_status
   - supply_air_temperature_sensor
 
-AHU_US_MTV_2637_5: # Supply --> Discharge
+AHU_US_MTV_2637_5:
   id: "2768102573981302784"
-  description: "Hash:e833eabd2050b2a46816f732faf69ff613dc3ac3b0720af509beea60aee8b9c0;Entities: US-MTV-2637/AC-16, US-MTV-2637/AC-17"
+  description: "Non-standard type for 2637 ACs"
   implements:
   - AHU_DSP_DFSS_DXZC_ECONMD
   - INCOMPLETE
@@ -2637,7 +2638,7 @@ AHU_US_MTV_2637_5: # Supply --> Discharge
 
 AHU_US_MTV_2644_1:
   id: "5881374146075557888"
-  description: "Entities: DEV:3402905, DEV:3402906"
+  description: "Non-standard type for 2644"
   implements:
   - AHU_DFSS_DSP_DX2ZC_ECONZ_HT2ZC
   - INCOMPLETE
@@ -2646,7 +2647,7 @@ AHU_US_MTV_2644_1:
 
 AHU_US_MTV_2644_2:
   id: "10267880183134420992"
-  description: "Entities: DEV:3402907, DEV:3402910, DEV:3402912, US-MTV-2644:AHU:AC-2"
+  description: "Non-standard type for 2644 ACs"
   implements:
   - AHU_BYPSSPC_DX2SDC_ECON_HT2SDC_SFSS
   - INCOMPLETE
@@ -2656,7 +2657,7 @@ AHU_US_MTV_2644_2:
 
 AHU_US_MTV_41_2:
   id: "14050903870125637632"
-  description: "Entities: US-MTV-41:AHU:AC-1, US-MTV-41:AHU:AC-2, US-MTV-41:AHU:AC-3,US-MTV-41:AHU:AC-4"
+  description: "Non-standard type for B41 ACs"
   implements:
   - AHU_BSPC_DX4SC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC
   - INCOMPLETE
@@ -2665,7 +2666,7 @@ AHU_US_MTV_41_2:
 
 AHU_US_MTV_45_3:
   id: "10225166355418578944"
-  description: "Entities: US-MTV-45:AHU:AC-1, US-MTV-45:AHU:AC-2, US-MTV-45:AHU:AC-3,US-MTV-45:AHU:AC-4"
+  description: "Non-standard type for B45 ACs"
   implements:
   - AHU_BSPC_DXSC_ECON_EFSS_EFVSC_FDPM_SFSS3X_SFVSC2X_SSPC
   - INCOMPLETE
@@ -2677,7 +2678,7 @@ AHU_US_MTV_45_3:
 
 AHU_US_MTV_946_3:
   id: "5740372774929563648"
-  description: "Hash:dbb8ac9450fa85dab94176b5d67912c50e67b9e16e180526f5a8bafca173d106;Entities: US-MTV-946:AHU:AC-1A, US-MTV-946:AHU:AC-1B"
+  description: "Non-standard type for 946 ACs"
   implements:
   - AHU_BSPC_DX4SC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC
   - INCOMPLETE
@@ -2687,7 +2688,7 @@ AHU_US_MTV_946_3:
 
 AHU_US_MTV_E475_1:
   id: "17940888048266903552"
-  description: "Entities: DEV:2920909"
+  description: "Non-standard type for E475"
   implements:
   - AHU_BSPC_CHWSC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC
   - INCOMPLETE
@@ -2697,7 +2698,7 @@ AHU_US_MTV_E475_1:
 
 AHU_US_MTV_E475_2: # Is actually a MAU
   id: "2448505330112397312"
-  description: "Entities: DEV:2927913"
+  description: "Non-standard type for E475"
   implements:
   - REMAP_REQUIRED
   uses:
@@ -2715,7 +2716,7 @@ AHU_US_MTV_E475_2: # Is actually a MAU
 
 AHU_US_MTV_FRC1_5: # Supply --> Discharge
   id: "4480596332288933888"
-  description: "Hash:9c250d997f4895b94a36a089d06723a14bcf64257a4e2ff3a2c46fa767e8ce17;Entities: US-MTV-FRC1:AHU:AC-6A, US-MTV-FRC1:AHU:AC-7A"
+  description: "Non-standard type for FRC1 ACs"
   implements:
   - AHU_DFSS_DSP_DX2ZC_ECONZ
   - INCOMPLETE
@@ -2725,7 +2726,7 @@ AHU_US_MTV_FRC1_5: # Supply --> Discharge
 
 AHU_US_MTV_PR55_2: # Why does it only have 2 points?
   id: "14037393071243526144"
-  description: "Entities: US-MTV-PR55:AHU:AC-1A, US-MTV-PR55:AHU:AC-1B, US-MTV-PR55:AHU:AC-2A, US-MTV-PR55:AHU:AC-2B"
+  description: "Non-standard type for PR55 ACs"
   implements:
   - REMAP_REQUIRED
   uses:
@@ -2734,7 +2735,7 @@ AHU_US_MTV_PR55_2: # Why does it only have 2 points?
 
 AHU_US_MTV_QD5_1: # This has only one point.
   id: "11745060860911943680"
-  description: "Entities: B146:AHU:AC 2-2"
+  description: "Non-standard type for QD5 ACs"
   implements:
   - REMAP_REQUIRED
   uses:
@@ -2742,24 +2743,24 @@ AHU_US_MTV_QD5_1: # This has only one point.
 
 AHU_US_MTV_QD7_2: # This device has only one point?
   id: "7759375190689054720"
-  description: "Entities: B147:AHU:AC-3, B147:AHU:AC-4"
+  description: "Non-standard type for QD7 ACs"
   implements:
   - REMAP_REQUIRED
   uses:
   - outside_air_damper_percentage_command
 
-AHU_US_MTV_SB10_5: # Supply --> Discharge
+AHU_US_MTV_SB10_5:
   id: "14623986922708533248"
-  description: "Entities: US-MTV-SB10:AHU:AC-4"
+  description: "Non-standard type for SB10 ACs"
   implements:
   - AHU_CO2M_DFSS_DSP_ECONZ_HP2ZC
   - INCOMPLETE
   uses:
   - discharge_air_damper_command
 
-AHU_US_MTV_SB10_6: # Supply --> Discharge
+AHU_US_MTV_SB10_6:
   id: "11381395191001776128"
-  description: "Entities: US-MTV-SB10:AHU:AC-5"
+  description: "Non-standard type for SB10 ACs"
   implements:
   - AHU_CO2M_DFSS_DSP_DX2ZC_ECONZ
   - INCOMPLETE
@@ -2768,7 +2769,7 @@ AHU_US_MTV_SB10_6: # Supply --> Discharge
 
 AHU_US_MTV_SB30_2:
   id: "10236214248254472192"
-  description: "Entities: US-MTV-SB30:AHU:AC-1A"
+  description: "Non-standard type for SB30 ACs"
   implements:
   - AHU_BSPC_DX2SC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC
   - INCOMPLETE
@@ -2779,7 +2780,7 @@ AHU_US_MTV_SB30_2:
 
 AHU_US_MTV_SB30_3:
   id: "5984816200016723968"
-  description: "Entities: US-MTV-SB30:AHU:AC-1B"
+  description: "Non-standard type for SB30 ACs"
   implements:
   - AHU_BSPC_DX4SC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC
   - INCOMPLETE
@@ -2790,7 +2791,7 @@ AHU_US_MTV_SB30_3:
 
 AHU_US_MTV_SB50_3:
   id: "11758430922305699840"
-  description: "Entities: US-MTV-SB50:AHU:AC-3"
+  description: "Non-standard type for SB50 ACs"
   implements:
   - AHU_BSPC_CO2C_DX2SC_ECON_EFSS_SFSS_SFVSC_SSPC
   - INCOMPLETE
@@ -2799,7 +2800,7 @@ AHU_US_MTV_SB50_3:
 
 AHU_US_MTV_SB55_1:
   id: "18018434404350689280"
-  description: "Entities: DEV:2815807, DEV:2815808"
+  description: "Non-standard type for SB55"
   implements:
   - AHU_BSPC_DXSC_ECON_SFSS_SFVSC_SSPC
   - INCOMPLETE
@@ -2808,7 +2809,7 @@ AHU_US_MTV_SB55_1:
 
 AHU_US_MTV_SB65_4:
   id: "17518675583200919552"
-  description: "Entities: US-MTV-SB65:AHU:AC-1, US-MTV-SB65:AHU:AC-2, US-MTV-SB65:AHU:AC-3,US-MTV-SB65:AHU:AC-4"
+  description: "Non-standard type for SP65 ACs"
   implements:
   - AHU_BSPC_DX4SC_ECON_EFSS_EFVSC_SARC_SFSS_SFVSC_SSPC
   - INCOMPLETE
@@ -2818,25 +2819,25 @@ AHU_US_MTV_SB65_4:
 
 AHU_US_MTV_SL1001_5:
   id: "5858697818264305664"
-  description: "Hash:b2ef526157d0f47b822d962f38b987ca867b56cc3a5545c184208206440259b7;Entities: US-MTV-SL1001:AHU:AC-2"
+  description: "Non-standard type for SL1001 ACs"
   implements:
   - AHU_BSPC_DX2SC_ECON_EFSS_EFVSC_HWSC_SFSS_SFVSC_SSPC
   - INCOMPLETE
   uses:
   - exhaust_air_damper_command
 
-AHU_US_MTV_SP40_2: # Supply --> Discharge
+AHU_US_MTV_SP40_2:
   id: "12057931704958976"
-  description: "Entities: US-MTV-SP40:AHU:AC-4"
+  description: "Non-standard type for SP40 ACs"
   implements:
   - AHU_DFSS_DSP_DXZC_ECONZ_HTZC
   - INCOMPLETE
   uses:
   - discharge_air_damper_command
 
-AHU_US_PAO_MIR1_3: # Supply --> Discharge
+AHU_US_PAO_MIR1_3:
   id: "2083713760295387136"
-  description: "Entities: US-PAO-MIR1:AHU:AC-3"
+  description: "Non-standard type for MIR1 ACs"
   implements:
   - AHU_CSP_DFSS_DXZC_ECONZ
   - INCOMPLETE
@@ -2845,7 +2846,7 @@ AHU_US_PAO_MIR1_3: # Supply --> Discharge
 
 AHU_US_PAO_MIR3_3:
   id: "284525709160873984"
-  description: "Entities: US-PAO-MIR3:AHU:AC-1A, US-PAO-MIR3:AHU:AC-1B"
+  description: "Non-standard type for MIR3 ACs"
   implements:
   - AHU_BSPC_DX4SC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC
   - INCOMPLETE
@@ -2854,7 +2855,7 @@ AHU_US_PAO_MIR3_3:
 
 AHU_US_PAO_MIR3_4:
   id: "16865231424767131648"
-  description: "Entities: US-PAO-MIR3:AHU:AC-3"
+  description: "Non-standard type for MIr3 ACs"
   implements:
   - AHU_DFSS_DXZC_ECOND_ZHM
   - INCOMPLETE
@@ -2864,7 +2865,7 @@ AHU_US_PAO_MIR3_4:
 
 AHU_US_SBO_900_2:
   id: "3457311646643388416"
-  description: "Entities: US-SBO-900:AHU:AHU-1"
+  description: "Non-standard type for SBO-900"
   implements:
   - AHU_CHWSC_ECONM2X_MOAFC_SFSS_SFVSC_SSPC
   - INCOMPLETE
@@ -2873,7 +2874,7 @@ AHU_US_SBO_900_2:
 
 AHU_US_SBO_901_2: # This is actually a MAU
   id: "10024685803256414208"
-  description: "Entities: DEV:3304002"
+  description: "Non-standard type for SBO-901"
   implements:
   - REMAP_REQUIRED
   uses:
@@ -2890,7 +2891,7 @@ AHU_US_SBO_901_2: # This is actually a MAU
 
 AHU_US_SBO_901_4:
   id: "2364062837099200512"
-  description: "Entities: US-SBO-901:AHU:AHU-07"
+  description: "Non-standard type for SBO-901"
   implements:
   - AHU_CHWSC_ECON_FDPM_SFSS_SFVSC_SSPC
   - INCOMPLETE
@@ -2899,7 +2900,7 @@ AHU_US_SBO_901_4:
 
 AHU_US_SBO_901_7:
   id: "5412999784829026304"
-  description: "Entities: US-SBO-901:AHU:AHU-10"
+  description: "Non-standard type for SBO-901"
   implements:
   - AHU_CHWSC_ECON_EFSS_EFVSC_FDPM_RFC_SFSS_SFVSC_SSPC
   - INCOMPLETE
@@ -2908,7 +2909,7 @@ AHU_US_SBO_901_7:
 
 AHU_US_SVL_BORD1212_1:
   id: "3811811787624415232"
-  description: "Hash:103f676ab82e7b0f87c614aaf890ae720ee85f264ad042df39a3121e3ef3b142;Entities: US-SVL-BORD1212:AHU:AC-1, US-SVL-BORD1212:AHU:AC-2, US-SVL-BORD1212:AHU:AC-3"
+  description: "Non-standard type for BORD1212 ACs"
   implements:
   - AHU_BSPC_DX5SC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC
   - INCOMPLETE
@@ -2917,16 +2918,16 @@ AHU_US_SVL_BORD1212_1:
 
 AHU_US_SVL_BRG1_1:
   id: "15346814662901497856"
-  description: "Entities: DEV:3100104"
+  description: "Non-standard type for BRG1"
   implements:
   - AHU_DX4ZC_ECON_EFSS_HT3ZC_SFSS_SFVSC_ZHC
   - INCOMPLETE
   uses:
   - zone_air_dehumidification_relative_humidity_setpoint
 
-AHU_US_SVL_BRG1_4: # Supply --> Discharge
+AHU_US_SVL_BRG1_4:
   id: "6487108295956889600"
-  description: "Entities: US-SVL-BRG1:AHU:AC-04"
+  description: "Non-standard type for BRG1 ACs"
   implements:
   - AHU_DFSS_DFVSC_DX4ZC_ECONZ_HT3ZC_ZHM
   - INCOMPLETE
@@ -2935,7 +2936,7 @@ AHU_US_SVL_BRG1_4: # Supply --> Discharge
 
 AHU_US_SVL_CSPN222_3:
   id: "2682534181061263360"
-  description: "Hash:627eed57d37803b952798646b4182f7e73703af2495892657eb0c099da000319;Entities: US-SVL-CSPN222:AHU:AC-1"
+  description: "Non-standard type for CSPN222 ACs"
   implements:
   - AHU_BSPC_DX2SC_ECON_EFSS_SFSS_SFVSC_SSPC
   - INCOMPLETE
@@ -2944,7 +2945,7 @@ AHU_US_SVL_CSPN222_3:
 
 AHU_US_SVL_CSPN222_4:
   id: "11860870221642334208"
-  description: "Hash:721013c06c84f6a08086df4693a0db02de648845394b517f33a88ab62af8f496;Entities: US-SVL-CSPN222:AHU:AC-2, US-SVL-CSPN222:AHU:AC-5"
+  description: "Non-standard type for CSPN222 ACs"
   implements:
   - AHU_BSPC_DX2SC_ECON_EFSS_SFSS_SFVSC_SSPC
   - INCOMPLETE
@@ -2953,7 +2954,7 @@ AHU_US_SVL_CSPN222_4:
 
 AHU_US_SVL_CSPN222_5:
   id: "14157706031601287168"
-  description: "Hash:9d3c920ada59806760ca9fd9cfbd02af0a73ecab47c0c590b34b4ec31a927fd7;Entities: US-SVL-CSPN222:AHU:AC-3"
+  description: "Non-standard type for CSPN222"
   implements:
   - AHU_BSPC_DX3SC_ECONM_EFSS4X_EFVSC4X_SFSS2X_SFVSC2X_SSPC
   - INCOMPLETE
@@ -2962,7 +2963,7 @@ AHU_US_SVL_CSPN222_5:
 
 AHU_US_SVL_CSPN222_6:
   id: "10603240025699123200"
-  description: "Hash:3b50a7bdccb4927b839afed99dcfdc1c309ac9f0023c1a68f0d1ea8ec587e957;Entities: US-SVL-CSPN222:AHU:AC-4"
+  description: "Non-standard type for CSPN222 ACs"
   implements:
   - AHU_BSPC_DX2SC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC
   - INCOMPLETE
@@ -2971,7 +2972,7 @@ AHU_US_SVL_CSPN222_6:
 
 AHU_US_SVL_JAVA111_1:
   id: "5679679733076328448"
-  description: "Hash:fcfefa70abf4e89ee3e4b2431e20938cf9888808e5d1b28d6d648d0ca64f7379;Entities: US-SVL-JAVA111:AHU:AC-1A, US-SVL-JAVA111:AHU:AC-1B, US-SVL-JAVA111:AHU:AC-2A,US-SVL-JAVA111:AHU:AC-2B"
+  description: "Non-standard type for JAVA111 ACs"
   implements:
   - AHU_BSPC_DX4SC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC
   - INCOMPLETE
@@ -2982,7 +2983,7 @@ AHU_US_SVL_JAVA111_1:
 
 AHU_US_SVL_JAVA111_2:
   id: "18127629103128379392"
-  description: "Hash:ef2bcfb057a570208a1a55e39de70fb891d99b0f6e942c5457c93338a4100fab;Entities: US-SVL-JAVA111:AHU:AC-3"
+  description: "Non-standard type for JAVA111 ACs"
   implements:
   - AHU_BSPC_DX4SC_ECON_EFSS_SFSS_SFVSC_SSPC
   - INCOMPLETE
@@ -2991,7 +2992,7 @@ AHU_US_SVL_JAVA111_2:
 
 AHU_US_SVL_MAT1_5:
   id: "1242860043930435584"
-  description: "Hash:b9a34f0aa2f786cc069b3ec2b0163754ab2f5adaff6326cabbb3e3b88b628986;Entities: US-SVL-MAT1/AC-1A, US-SVL-MAT1/AC-1B, US-SVL-MAT1/AC-2A, US-SVL-MAT1/AC-2B"
+  description: "Non-standard type for MAT1 ACs"
   implements:
   - AHU_BSPC_DXSC_ECONM_EFSS_SFSS_SFVSC_SSPC_STC
   - INCOMPLETE
@@ -3001,7 +3002,7 @@ AHU_US_SVL_MAT1_5:
 
 AHU_US_SVL_MP1_2:
   id: "6869755934608982016"
-  description: "Hash:d0d91462d152b2dc2dbeb968a5b1bd3665bfb74bdae3cab00b50a40423451368;Entities: US-SVL-MP1:AHU:AHU-1, US-SVL-MP1:AHU:AHU-2"
+  description: "Non-standard type for MP1"
   implements:
   - AHU_BSPC_CHWSC_ECON_EFSS_EFSS4X_EFVSC_EFVSC4X_FDPM_HWSC_MOAFC_SFSS2X_SFVSC2X_SSPC
   - INCOMPLETE
@@ -3011,7 +3012,7 @@ AHU_US_SVL_MP1_2:
 
 AHU_US_SVL_MP2_1: # Actually a FCU.
   id: "136874491690090496"
-  description: "Hash:e3c72bd8f7ccc961d4bb0207d13f6173d13153531f7ff371938432ee88c8c868; Entities: DEV:3607404, US-SVL-MP2:AHU:AHU-1-1"
+  description: "Non-standard type for MP2"
   implements:
   - REMAP_REQUIRED
   uses:
@@ -3030,7 +3031,7 @@ AHU_US_SVL_MP2_1: # Actually a FCU.
 
 AHU_US_SVL_MP3_3:
   id: "2906588262522945536"
-  description: "Hash:83bbd67d901bade4870842fc84338d7d98cd5b2546a79384b8296a78120c6a55;Entities: US-SVL-MP3:AHU:AHU-1, US-SVL-MP3:AHU:AHU-2"
+  description: "Non-standard type for MP3"
   implements:
   - AHU_BPC_CHWSC_ECONM_EFSS4X_EFVSC4X_FDPM_HWSC_MOAFC_SFSS2X_SFVSC2X_SSPC
   - INCOMPLETE
@@ -3040,7 +3041,7 @@ AHU_US_SVL_MP3_3:
 
 AHU_US_SVL_MP4_3:
   id: "12134463899005091840"
-  description: "Hash:21ef5379e4c352d7d2e70308689f96e84bf967e54b56a7df6b623d3a17b786ef;Entities: US-SVL-MP4:AHU:AHU-1, US-SVL-MP4:AHU:AHU-2"
+  description: "Non-standard type for MP4"
   implements:
   - AHU_BSPC_CHWSC_ECON_EFSS4X_EFVSC4X_FDPM_HWSC_SFSS2X_SFVSC2X_SSPC
   - INCOMPLETE
@@ -3051,7 +3052,7 @@ AHU_US_SVL_MP4_3:
 
 AHU_US_SVL_MP7_3:
   id: "11413887958625812480"
-  description: "Hash:b6f00690bbbfb4a2ff0cc164e561ce438955c203eccd9c3700e799f754d42039;Entities: US-SVL-MP7:AHU:AC-1, US-SVL-MP7:AHU:AC-2"
+  description: "Non-standard type for MP7 ACs"
   implements:
   - AHU_BSPC_DX4SC_ECONM_EFSS_EFVSC_SFSS_SFVSC_SSPC
   - INCOMPLETE
@@ -3061,7 +3062,7 @@ AHU_US_SVL_MP7_3:
 
 AHU_US_SVL_MP7_5: # Appears changed in the controller
   id: "5059308884406042624"
-  description: "Hash:c99e443d0431ab41b60ddd374144950548045428ac2b5fd32f5a2ad89a5d32e2; Entities: US-SVL-MP7:AHU:AC-4, US-SVL-MP7:AHU:AC-5"
+  description: "Non-standard type for MP7"
   implements:
   - REMAP_REQUIRED
   uses:
@@ -3094,7 +3095,7 @@ AHU_US_SVL_MP7_5: # Appears changed in the controller
 
 AHU_US_SVL_TC4_1:
   id: "14578018540574474240"
-  description: "Hash:ddab1d366b0bad69811949d85dc66976d86da1f35c70600b0cd518e941853379;Entities: US-SVL-TC4/ACU 4-5-1, US-SVL-TC4/ACU 4-5-3"
+  description: "Non-standard type for TC4 ACUs"
   implements:
   - AHU_BSPC_ECON_EFSS_SARC_SFSS_SFVSC_SSPC
   - INCOMPLETE
@@ -3102,9 +3103,9 @@ AHU_US_SVL_TC4_1:
   - supply_fan_speed_frequency_command
   - ventilation_outside_air_flowrate_setpoint
 
-AHU_US_SVL_TC5_1: # Supply --> Discharge
+AHU_US_SVL_TC5_1:
   id: "17775574276007526400"
-  description: "Hash:5f7f3ddb153da32f21d9e9793842c0ae0d5aa7a65ebd185886037c5dcc2139d1;Entities: 3106701, 3106703, 3106704, 3106705"
+  description: "Non-standard type for TC5"
   implements:
   - AHU_CO2M_DFSS_DSP_DX2ZC_ECONZ_HT2ZC
   - INCOMPLETE
@@ -3113,7 +3114,7 @@ AHU_US_SVL_TC5_1: # Supply --> Discharge
 
 AHU_US_SVL_MAT2_4:
   id: "12627959901923049472"
-  description: "Hash:8f29628a0e42f7b3fd88dad22efe3eccd869320b3375ebaa5c22f6acf571fa87; Entities: US-SVL-MAT2/AC-1A, US-SVL-MAT2/AC-1B, US-SVL-MAT2/AC-2A, US-SVL-MAT2/AC-2B"
+  description: "Non-standard type for MAT2 ACs"
   implements:
   - AHU
   uses:

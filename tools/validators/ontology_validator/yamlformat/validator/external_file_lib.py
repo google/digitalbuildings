@@ -11,6 +11,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
 """external_file_lib relies on external pyhton libraries non-dependent on g3.
 
  It contains helper methods to run this validator outside of g3.
@@ -22,8 +23,8 @@ from __future__ import print_function
 
 import os
 
-from validation.validator import base_lib
-from validation.validator import presubmit_validate_types_lib
+from yamlformat.validator import base_lib
+from yamlformat.validator import presubmit_validate_types_lib
 
 
 def Validate(filter_text, original_directory, changed_directory):

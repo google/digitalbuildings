@@ -11,6 +11,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
 ########################
 ### Canonical Types  ###
 ########################
@@ -295,7 +296,7 @@ CH_SS_SCHWTC_DXSWC_IGM_CWDT_CHWRWISOVPM_CWRISOVPM_CHPM_REFSM:
 
 CH_US_MTV_41_1:
   id: "16032487706168655872"
-  description: "Entities: US-MTV-41:CH:CH-1, US-MTV-41:CH:CH-2, US-MTV-41:CH:CH-3"
+  description: "Non-standard type for B41 CHs"
   implements:
   - CH_SS_SWTC_DX4SWC_SWISOVPM
   - INCOMPLETE
@@ -305,7 +306,7 @@ CH_US_MTV_41_1:
 
 CH_US_SBO_900_1:
   id: "17436484890001408000"
-  description: "Entities: US-SBO-900:CH:CH-1, US-SBO-900:CH:CH-2"
+  description: "Non-standard type for SBO-900 CHs"
   implements:
   - CH_SS_SWTC
   - INCOMPLETE
@@ -314,7 +315,7 @@ CH_US_SBO_900_1:
 
 CH_US_SBO_901_1:
   id: "11353247693330710528"
-  description: "Entities: US-SBO-901:CH:CH-1-1, US-SBO-901:CH:CH-1-2"
+  description: "Non-standard type for SBO-901 CHs"
   implements:
   - CH_SS_SCHWTC_CWDT
   - INCOMPLETE

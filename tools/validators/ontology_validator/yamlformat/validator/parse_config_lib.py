@@ -11,6 +11,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
 """Library for parsing config files for subfields, fields, entity types."""
 
 from __future__ import absolute_import
@@ -22,13 +23,13 @@ import os
 
 import yaml
 
-from validation.validator import base_lib
-from validation.validator import entity_type_lib
-from validation.validator import field_lib
-from validation.validator import findings_lib
-from validation.validator import state_lib
-from validation.validator import subfield_lib
-from validation.validator import unit_lib
+from yamlformat.validator import base_lib
+from yamlformat.validator import entity_type_lib
+from yamlformat.validator import field_lib
+from yamlformat.validator import findings_lib
+from yamlformat.validator import state_lib
+from yamlformat.validator import subfield_lib
+from yamlformat.validator import unit_lib
 
 
 class ParseError(Exception):

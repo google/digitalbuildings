@@ -11,6 +11,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
 ########################
 ### Canonical Types  ###
 ########################
@@ -53,7 +54,7 @@ DMP_SDBPC:
 
 DMP_US_MTV_900_1:
   id: "715815742225776640"
-  description: "Entities: DEV:2800116, US-MTV-900:DMPR:DMPR-NORTH"
+  description: "Non-standard type for SBO-900"
   implements:
   - DMP
   uses:
@@ -65,7 +66,7 @@ DMP_US_MTV_900_1:
 
 DMP_US_SBO_901_1:
   id: "12983550758438830080"
-  description: "Entities: US-SBO-901:DMPR:Atrium 1 Relief Dampers, US-SBO-901:DMPR:Atrium 2 Relief Dampers, US-SBO-901:DMPR:Atrium 3 Relief Dampers"
+  description: "Non-standard type for SBO-901"
   implements:
   - DMP
   - BPC

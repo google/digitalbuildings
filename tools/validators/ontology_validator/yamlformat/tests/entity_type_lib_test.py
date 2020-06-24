@@ -11,6 +11,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
 """Tests for bizapps.rews.carson.ontology.validation.entity_type_lib."""
 
 from __future__ import absolute_import
@@ -18,10 +19,10 @@ from __future__ import division
 from __future__ import print_function
 import os
 from absl.testing import absltest
-from validation.validator import entity_type_lib
-from validation.validator import field_lib
-from validation.validator import findings_lib
-from validation.validator import test_helpers_lib
+from yamlformat.validator import entity_type_lib
+from yamlformat.validator import field_lib
+from yamlformat.validator import findings_lib
+from yamlformat.validator import test_helpers_lib
 
 
 _GOOD_PATH_FORMAT = '{0}/entity_types/anyfolder'

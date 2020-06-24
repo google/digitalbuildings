@@ -11,11 +11,14 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
 """Standalone, rdf generator from ontology yaml files."""
 
 from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
+
+from os import path
 
 from absl import app
 from absl import flags
@@ -31,9 +34,9 @@ flags.DEFINE_string('input', None, 'The path of the input file')
 def main(unused_argv):
   del unused_argv  # Unused.
   print('Starting RDF Extractor!')
-  graph = rdf_manager.Generate(FLAGS.input)
-  rdf_manager.SerializeToFile(graph, FLAGS.output)
-  print('RDF File generated:', FLAGS.output)
+  graph = rdf_manager.Generate(path.expanduser(FLAGS.input))
+  rdf_manager.SerializeToFile(graph, path.expanduser(FLAGS.output))
+  print('RDF File generated:', path.expanduser(FLAGS.output))
 
 
 if __name__ == '__main__':

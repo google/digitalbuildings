@@ -11,11 +11,12 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
 ########################
 ### Canonical Types  ###
 ########################
 
-PMP_SS: # Entities: 123
+PMP_SS:
   id: "13517139353352011776"
   description: "Typical pump."
   is_canonical: true
@@ -37,9 +38,9 @@ PMP_SS_VSC:
 ### Existing Non-standard Types ###
 ###################################
 
-PMP_S_VFCF: # Entities: 3
+PMP_S_VFCF:
   id: "9598937308795502592"
-  description: "Variable speed pump."
+  description: "Non-standard variable speed pump."
   implements:
   - PMP_SS_VSC
   - INCOMPLETE
@@ -56,9 +57,9 @@ PMP_S_VSCF_ISV:
   - chilled_supply_water_temperature_setpoint
   - chilled_supply_water_temperature_sensor
 
-PMP_US_MTV_1667_1: # Instances: 4
+PMP_US_MTV_1667_1:
   id: "8295303546346143744"
-  description: "Entities: US-MTV-1667:PUMP:CHWP-1, US-MTV-1667:PUMP:CHWP-2, US-MTV-1667:PUMP:PCWP-1, US-MTV-1667:PUMP:PCWP-2"
+  description: "Non-standard type for 1667 PCWPs and CHWPs"
   implements:
   - PMP_SS_VSC
   uses:

@@ -11,6 +11,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
 """Code to dentify type hierarchy and naming suggestions in config files.
 
 The classes here help to keep the ontology clean by highlighting places where
@@ -24,8 +25,8 @@ from __future__ import print_function
 import collections
 import itertools
 
-from validation.validator import base_lib
-from validation.validator import findings_lib
+from yamlformat.validator import base_lib
+from yamlformat.validator import findings_lib
 
 # Smallest set of fieldset we consider for automated matching. Must be >=1
 MIN_SET_SIZE = 1

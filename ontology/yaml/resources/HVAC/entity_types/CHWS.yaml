@@ -11,6 +11,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
 ########################
 ### Canonical Types  ###
 ########################
@@ -170,7 +171,7 @@ CHWS_SWTC_WDPC_WFRM_PSWTC_PWVPM_MINFC_CLPM:
 
 CHWS_US_MTV_E475_1:
   id: "6339615408160505856"
-  description: "Entities: US-MTV-E475:CHW SYSTEM:CHW SYSTEM"
+  description: "Non-standard type for E475"
   implements:
   - CHWS_SWTC_WDPC_BYPVPM
   - INCOMPLETE
@@ -184,7 +185,7 @@ CHWS_US_MTV_E475_1:
 
 CHWS_US_SVL_MP4_1: #NEEDS FIXING, NOT SURE WHERE CHILLED POINTS CAME FROM...
   id: "10652779621600198656"
-  description: "Hash:5c671b5de7fc263671eb040ca9206b9c705799aa82bd790e5409a66d55293287; Entities: US-SVL-MP4:CHW SYSTEM:CHW SYSTEM"
+  description: "Non-standard type for MP4"
   implements:
   - CHWS_SWTC_WDPC2X_BYPVPM_WFRM
   - INCOMPLETE
@@ -195,7 +196,7 @@ CHWS_US_SVL_MP4_1: #NEEDS FIXING, NOT SURE WHERE CHILLED POINTS CAME FROM...
 
 CHWS_US_MTV_1667_1:
   id: "3683617527918755840"
-  description: "Entities: US-MTV-1667:CHW SYSTEM:CHW SYSTEM"
+  description: "Non-standard type for 1667"
   implements:
   - CHWS_SWTC_WDPC_WFRM_PSWTC_PWVPM_MINFC_CLPM
   - DEPRECATED
@@ -206,7 +207,7 @@ CHWS_US_MTV_1667_1:
 
 CHWS_US_SVL_TC6_1:
   id: "16982940741590319104"
-  description: "Hash:a63cb3f651cac6a014c9ebfa79c2281701e9c38aa0629f4dd7bd90bc3c387433; Entities: US-SVL-TC6/CHW SYSTEM"
+  description: "Non-standard type for TC6"
   implements:
   - CHWS_SWTC_WDPC_BYPVPM_WFRM
   - INCOMPLETE

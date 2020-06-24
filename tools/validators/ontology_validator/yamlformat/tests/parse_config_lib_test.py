@@ -11,7 +11,8 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-"""Tests for bizapps.rews.carson.ontology.validation.parse_config_lib."""
+
+"""Tests for parse_config_lib."""
 
 from __future__ import absolute_import
 from __future__ import division
@@ -23,13 +24,13 @@ import re
 
 from absl import flags
 
-from validation.validator import base_lib
-from validation.validator import field_lib
-from validation.validator import findings_lib
-from validation.validator import parse_config_lib as parse
-from validation.validator import state_lib
-from validation.validator import subfield_lib
-from validation.validator import unit_lib
+from yamlformat.validator import base_lib
+from yamlformat.validator import field_lib
+from yamlformat.validator import findings_lib
+from yamlformat.validator import parse_config_lib as parse
+from yamlformat.validator import state_lib
+from yamlformat.validator import subfield_lib
+from yamlformat.validator import unit_lib
 from absl.testing import absltest
 
 FLAGS = flags.FLAGS
