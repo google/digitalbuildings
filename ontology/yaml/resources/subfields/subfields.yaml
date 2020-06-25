@@ -38,6 +38,7 @@ component:
   humidifier: "Component which humidifies."
   pump: "Component used for the distribution of liquid media."
   shade: "Window covering."
+  tank : "Storage device for media."
   valve: "Component which meters the flow of water within a system or device."
   vane: "Component for guiding media flow."
   wheel: "Component used for transfer of heat from incoming to outgoing air streams. "
