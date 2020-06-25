@@ -16,18 +16,18 @@ const TWO_POINTS = 6;
     'use strict';
 
     /**
-     * Decode raw ibr data into structures.
-     * @param {Byte} data Binary data read directly from .ibr file
-     * @return {Array.<Object>} structures List of structure objects generated from input ibr data
+     * Parse top level of decoded IBR Object into structures.
+     * @param {Object} deserializedData Decoded IBR Object.
+     * @return {Map.<String, List.<Object>>} Map of list of layers and structures.
      */
-    function unpackStructure(data) {
-        var deserializedData = InternalBuildingRepresentation.read(new Pbf(data));
-        var structures = [];
-        structures.push( deserializedData );
-        if ( deserializedData.structures.length > 0 ) {
-            structures = deserializedData.structures;
+    function unpackStructure(deserializedData) {
+        var curStructure = {};
+        curStructure['layers'] = IBRSDK.renderLayer( deserializedData ); // Visualization layers of current structure
+        curStructure['structures'] = [];
+        for ( const struct of deserializedData.structures ) {
+            curStructure['structures'].push( struct ); // Sub-structures of the current structure
         }
-        return structures;
+        return curStructure;
     }
 
     /**
@@ -58,7 +58,6 @@ const TWO_POINTS = 6;
         "#556b2f",
         "#ff8c00",
         "#9932cc",
-        "#8b0000",
         "#e9967a",
         "#9400d3",
         "#ff00ff",
@@ -99,6 +98,11 @@ const TWO_POINTS = 6;
      */
     function renderLayer(structure) {
 
+        // Check if structure contains any visualization data
+        if ( structure.visualization.length === 0 || structure.coordinates_lookup == null) {
+            return [];
+        }
+
         // Decode Indices from data.visualization[].coordinate_indices
         var coordsIndexList, coordsRangeBuffer, coordsRange;
         var coordsRangeList = [];
@@ -121,7 +125,7 @@ const TWO_POINTS = 6;
             coordsLookupList.push(coordsLookupDV.getFloat32(i, false));
         }
 
-        // Read multiple ranges from Visualization.coordinates array and store them in sessionStorage for visualization later
+        // Read multiple ranges from Visualization.coordinates array
         var layerCoordinates = [];
         for (const coordsRangeItem of coordsRangeList) {
             var layerPH = [];
@@ -142,8 +146,9 @@ const TWO_POINTS = 6;
         for (var i = 0; i < structure.visualization.length-1; i++) {
             materials.push(new THREE.LineBasicMaterial( { color: Colors.random() } ));
         }
-        var objects = [];
+        var objects = {};
         for (var i = 0; i < layerCoordinates.length; i++) {
+            objects[structure.visualization[i].id] = [];
             var lineSegments = [];
             for (const line of layerCoordinates[i]) {
                 var linePoints = [];
@@ -154,12 +159,12 @@ const TWO_POINTS = 6;
                 if (line.length === TWO_POINTS) {
                     lineSegments.push( geometry ); // group geometries for performance reason
                 } else {
-                    objects.push( new THREE.LineLoop( geometry, materials[i] ) );
+                    objects[structure.visualization[i].id].push( new THREE.LineLoop( geometry, materials[i] ) );
                 }
             }
             if (lineSegments.length > 0) {
                 var geometries = THREE.BufferGeometryUtils.mergeBufferGeometries( lineSegments );
-                objects.push( new THREE.LineSegments( geometries, materials[i] ) );
+                objects[structure.visualization[i].id].push( new THREE.LineSegments( geometries, materials[i] ) );
             }
         }
         return objects;

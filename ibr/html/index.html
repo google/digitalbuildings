@@ -10,11 +10,37 @@
 		<script src="../node_modules/three/examples/js/utils/BufferGeometryUtils.js"></script>
 		<script src="../node_modules/ibr-sdk/build/ibr-sdk.js"></script>
 	    <style>
-			body { margin: 0; }
+			body {
+			  margin: 0;
+			  font-family: roboto;
+			}
+
 			canvas { display: block; }
+
+			.sidebar {
+			  height: 100%;
+			  width: 250px;
+			  position: fixed;
+			  z-index: 1;
+			  top: 0;
+			  left: 0;
+			  background-color: #949494;
+			  overflow-x: hidden;
+			  padding-top: 20px;
+			}
+
+			.main {
+			  margin-left: 250px;
+			}
 	    </style>
 	</head>
 	<body>
-		<input type="file" id="fileForUpload"/>
+		<div id="sideBar" class="sidebar">
+			<h2 style="text-align: center;">Layer Tree</h2>
+			<div id="layerList"></div>
+		</div>
+		<div id="mainCanvas" class="main">
+			<input type="file" id="fileForUpload"/>
+		</div>
 	</body>
 </html>
