@@ -32,7 +32,7 @@ function extractSingleStructureData(structureData, curStructureId, scene) {
 
     var curStructure = IBRSDK.unpackStructure( structureData );
     // Create checkbox for each layer
-    if (curStructure['layers'].length !== 0) {
+    if (curStructure['layers'].size !== 0) {
         for ( const [layerName, layer] of Object.entries(curStructure['layers']) ) {
             for ( const line of layer ) {
                 line.visible = false;
@@ -43,7 +43,6 @@ function extractSingleStructureData(structureData, curStructureId, scene) {
             checkBox.setAttribute('type', 'checkbox');
             checkBox.setAttribute('id', layerName);
             div.appendChild(checkBox);
-            //debug
             div.style.padding = "0px 0px 0px 10px";
             createLabel(layerName, div, layerName);
             document.getElementById(curStructureId).appendChild(div);
@@ -105,7 +104,7 @@ function onChooseFile() {
             var div = document.createElement('DIV');
             div.setAttribute('id', ibrData.name);
             document.getElementById('layerList').appendChild(div);
-            extractSingleStructureData(ibrData, ibrData.name, scene, 1);
+            extractSingleStructureData(ibrData, ibrData.name, scene);
 
             camera.position.set( 0, 0, 7000 );
             camera.lookAt( 0, 0, 0 );

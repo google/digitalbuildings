@@ -94,13 +94,13 @@ const TWO_POINTS = 6;
     /**
      * Converts decoded ibr structure data into three.js Line objects.
      * @param {Object} structure structures decoded from raw ibr data
-     * @return {Array.<Line>} lines List of three.js Line objects generated from input ibr data
+     * @return {Map.<String, List.<Object>>} objects Layer name and corresponding list of three.js Line objects
      */
     function renderLayer(structure) {
 
         // Check if structure contains any visualization data
         if ( structure.visualization.length === 0 || structure.coordinates_lookup == null) {
-            return [];
+            return {};
         }
 
         // Decode Indices from data.visualization[].coordinate_indices
@@ -167,6 +167,7 @@ const TWO_POINTS = 6;
                 objects[structure.visualization[i].id].push( new THREE.LineSegments( geometries, materials[i] ) );
             }
         }
+        console.log(objects)
         return objects;
     }
 
