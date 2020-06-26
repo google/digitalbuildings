@@ -41,10 +41,10 @@ function extractSingleStructureData(structureData, curStructureId, scene) {
             var checkBox = document.createElement('INPUT');
             var div = document.createElement('DIV');
             checkBox.setAttribute('type', 'checkbox');
-            checkBox.setAttribute('id', layerName);
+            checkBox.setAttribute('id', structureData.name + '_' + layerName);
             div.appendChild(checkBox);
             div.style.padding = "0px 0px 0px 10px";
-            createLabel(layerName, div, layerName);
+            createLabel(layerName, div, structureData.name + '_' + layerName);
             document.getElementById(curStructureId).appendChild(div);
             checkBox.addEventListener('change', function() {
                 if (this.checked) {
