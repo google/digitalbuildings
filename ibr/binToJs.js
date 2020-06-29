@@ -3,7 +3,7 @@
  * @author shuanglihtk@google.com (Shuang Li)
  */
 
-import { OrbitControls } from './node_modules/three/examples/jsm/controls/OrbitControls.js';
+import {OrbitControls} from './node_modules/three/examples/jsm/controls/OrbitControls.js';
 
 /**
  * Create a new HTML Label Tag based on given name string and attach it to given parent tag.
@@ -133,7 +133,7 @@ function onChooseFile() {
                 controls.update();
                 renderer.render( scene, camera );
             }
-        }
+        };
         fr.readAsArrayBuffer(file);
     }
 }
