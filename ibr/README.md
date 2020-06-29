@@ -16,3 +16,4 @@ IBR comes with a rendering library built on THREE.js that can be used to easily 
 3. Click on "Choose File" button to open your ibr data file
 ##### Developer Note: 
 *The ibr-sdk npm package is not published, hence it cannot yet be installed in other projects.*
+*Run `npx eslint \[filename\] --fix` to check efore Pull Request.*
