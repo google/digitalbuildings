@@ -7,13 +7,14 @@ import { OrbitControls } from './node_modules/three/examples/jsm/controls/OrbitC
 
 /**
  * Create a new HTML Label Tag based on given name string and attach it to given parent tag.
+ * @param {String} tagName Type of tag to be created.
  * @param {String} name InnerHTML of the Label tag.
  * @param {Tag} parentTag Tag to be attached to by the newly created label tag.
  * @param {String} forId ID to be set as the value of the newly created label tag's for attribute. Needed if Label tag is created for a checkbox.
  * @return {Tag} label Newly created Label tag.
  */
-function createLabel(name, parentTag, forId=undefined) {
-    var label = document.createElement('LABEL');
+function createLabel(tagName, name, parentTag, forId=undefined) {
+    var label = document.createElement(tagName);
     if (forId) {
         label.setAttribute('for', forId);
     }
@@ -43,8 +44,7 @@ function extractSingleStructureData(structureData, curStructureId, scene) {
             checkBox.setAttribute('type', 'checkbox');
             checkBox.setAttribute('id', structureData.name + '_' + layerName);
             div.appendChild(checkBox);
-            div.style.padding = "0px 0px 0px 10px";
-            createLabel(layerName, div, structureData.name + '_' + layerName);
+            createLabel('label', layerName, div, structureData.name + '_' + layerName);
             document.getElementById(curStructureId).appendChild(div);
             checkBox.addEventListener('change', function() {
                 if (this.checked) {
@@ -62,15 +62,23 @@ function extractSingleStructureData(structureData, curStructureId, scene) {
 
     // Create label for each child structure
     for ( const structure of curStructure['structures'] ) {
-        var div = document.createElement('DIV');
-        div.setAttribute('id', structure.name);
-        var label = createLabel(structure.name, document.getElementById(curStructureId));
-        div.style.padding = "0px 0px 0px 10px";
-        label.style.padding = "0px 0px 0px 10px";
-        document.getElementById(curStructureId).appendChild(div);
-        label.addEventListener('click', function(event) {
-            event.stopPropagation();
-            extractSingleStructureData(structure, structure.name, scene);
+        var li = document.createElement('li');
+        document.getElementById(curStructureId).appendChild(li);
+        var label = createLabel('span', structure.name, li);
+        label.setAttribute('class', 'arrow');
+        li.appendChild(label);
+        var ul = document.createElement('ul');
+        ul.setAttribute('class', 'nested');
+        ul.setAttribute('id', structure.name);
+        li.appendChild(ul);
+        label.addEventListener("click", function() {
+            this.parentElement.querySelector(".nested").classList.toggle("active");
+            this.classList.toggle("expanded-arrow");
+            if (this.getAttribute('value') == null) {
+                event.stopPropagation();
+                extractSingleStructureData(structure, structure.name, scene);
+            }
+            this.setAttribute('value', '1');
         });
     }
 }
@@ -100,10 +108,19 @@ function onChooseFile() {
             if (ibrData.name === "") {
                 ibrData.name = "ibrData.name"; // for datafiles that have top level name is ""
             }
-            createLabel(ibrData.name, document.getElementById('layerList'));
-            var div = document.createElement('DIV');
-            div.setAttribute('id', ibrData.name);
-            document.getElementById('layerList').appendChild(div);
+            var li = document.createElement('li'); // list element container
+            document.getElementById('layerList').appendChild(li);
+            var rootSpan = createLabel('span', ibrData.name, li);
+            rootSpan.setAttribute('class', 'arrow');
+            li.appendChild(rootSpan);
+            var ul = document.createElement('ul');
+            ul.setAttribute('class', 'nested');
+            ul.setAttribute('id', ibrData.name);
+            li.appendChild(ul);
+            rootSpan.addEventListener("click", function() {
+                this.parentElement.querySelector(".nested").classList.toggle("active");
+                this.classList.toggle("expanded-arrow");
+            });
             extractSingleStructureData(ibrData, ibrData.name, scene);
 
             camera.position.set( 0, 0, 7000 );

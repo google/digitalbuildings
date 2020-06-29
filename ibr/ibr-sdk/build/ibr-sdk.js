@@ -167,7 +167,6 @@ const TWO_POINTS = 6;
                 objects[structure.visualization[i].id].push( new THREE.LineSegments( geometries, materials[i] ) );
             }
         }
-        console.log(objects)
         return objects;
     }
 
