@@ -14,18 +14,17 @@ const TWO_POINTS = 6;
 (function(global, factory) {
 typeof exports === 'object' && typeof module !== 'undefined' ?
 factory(exports) :
-typeof define === 'function' && define.amd ?
-define(['exports'], factory) :
+typeof define === 'function' && define.amd ? define(['exports'], factory) :
 (global = global || self, factory(global.IBRSDK = {}));
 }(window, (function(exports) {
   'use strict';
 
   /**
-     * Parse top level of decoded IBR Object into structures.
-     * @param {Object} deserializedData Decoded IBR Object.
-     * @return {Map.<String, List.<Object>>} Map of list of layers and
-     structures.
-     */
+   * Parse top level of decoded IBR Object into structures.
+   * @param {Object} deserializedData Decoded IBR Object.
+   * @return {Map.<String, List.<Object>>} Map of list of layers and
+   structures.
+   */
   function unpackStructure(deserializedData) {
     const curStructure = {};
     // Visualization layers of current structure
@@ -39,10 +38,10 @@ define(['exports'], factory) :
   }
 
   /**
-     * Swap endianness of 32bit numbers.
-     * @param {number} val 32 bit number to be swapped.
-     * @return {number} 32bit number in swapped endianness
-     */
+   * Swap endianness of 32bit numbers.
+   * @param {number} val 32 bit number to be swapped.
+   * @return {number} 32bit number in swapped endianness
+   */
   function swap32(val) {
     return ((val & 0xFF) << 24) |
                ((val & 0xFF00) << 8) |
