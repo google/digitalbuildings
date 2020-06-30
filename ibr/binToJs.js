@@ -96,6 +96,90 @@ function extractSingleStructureData(structureData, curStructureId, scene, thisSt
 }
 
 /**
+ * Create a new HTML Label Tag based on given name string and attach it to
+ * given parent tag.
+ * @param {string} tagName Type of tag to be created.
+ * @param {string} name InnerHTML of the Label tag.
+ * @param {tag} parentTag Tag to be attached to by the newly created label
+  tag.
+ * @param {string} [forId=undefined] ID to be set as the value of the newly
+  created label tag's for attribute. Needed if Label tag is created for a
+  checkbox.
+ * @return {tag} Newly created Label tag.
+ */
+function createLabel(tagName, name, parentTag, forId=undefined) {
+  const label = document.createElement(tagName);
+  if (forId) {
+    label.setAttribute('for', forId);
+  }
+  label.innerHTML = name;
+  parentTag.appendChild(label);
+  return label;
+}
+
+/**
+ * Create checkboxes for given structure's layers and child structures.
+ * @param {Object} structureData Structure to be extracted and visualized.
+ * @param {String} curStructureId ID of the HTML div element to attach the
+ * new structure's data.
+ * @param {Object} scene object to attach the THREE.js objects
+ * generated from structure layer data
+ */
+function extractSingleStructureData(structureData, curStructureId, scene) {
+  const curStructure = IBRSDK.unpackStructure( structureData );
+  // Create checkbox for each layer
+  if (curStructure['layers'].size !== 0) {
+    for ( const [layerName, layer] of Object.entries(curStructure['layers']) ) {
+      for ( const line of layer ) {
+        line.visible = false;
+        scene.add( line );
+      }
+      const checkBox = document.createElement('INPUT');
+      const div = document.createElement('DIV');
+      checkBox.setAttribute('type', 'checkbox');
+      checkBox.setAttribute('id', structureData.name + '_' + layerName);
+      div.appendChild(checkBox);
+      createLabel('label', layerName, div, structureData.name + '_' +
+      layerName);
+      document.getElementById(curStructureId).appendChild(div);
+      checkBox.addEventListener('change', function() {
+        if (checkBox.checked) {
+          for ( const line of layer ) {
+            line.visible = true;
+          }
+        } else {
+          for ( const line of layer ) {
+            line.visible = false;
+          }
+        }
+      });
+    }
+  }
+
+  // Create label for each child structure
+  for ( const structure of curStructure['structures'] ) {
+    const li = document.createElement('li');
+    document.getElementById(curStructureId).appendChild(li);
+    const label = createLabel('span', structure.name, li);
+    label.setAttribute('class', 'arrow');
+    li.appendChild(label);
+    const ul = document.createElement('ul');
+    ul.setAttribute('class', 'nested');
+    ul.setAttribute('id', structure.name);
+    li.appendChild(ul);
+    label.addEventListener('click', function() {
+      label.parentElement.querySelector('.nested').classList.toggle('active');
+      label.classList.toggle('expanded-arrow');
+      if (label.getAttribute('value') == null) {
+        event.stopPropagation();
+        extractSingleStructureData(structure, structure.name, scene);
+      }
+      label.setAttribute('value', '1');
+    });
+  }
+}
+
+/**
  * Setup THREE.js environment and extract top level structure once an IBR
  file is given.
  */

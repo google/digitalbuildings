@@ -31,7 +31,8 @@ typeof define === 'function' && define.amd ? define(['exports'], factory) :
   function unpackStructure(deserializedData, structureIndex) {
     const curStructure = {};
     // Visualization layers of current structure
-    curStructure['layers'] = IBRSDK.renderLayer( deserializedData, structureIndex );
+    curStructure['layers'] = IBRSDK.renderLayer( deserializedData,
+    structureIndex );
     curStructure['structures'] = [];
     for ( const struct of deserializedData.structures ) {
       // Sub-structures of the current structure
