@@ -20,26 +20,27 @@ typeof define === 'function' && define.amd ? define(['exports'], factory) :
   'use strict';
 
   /**
-     * Decode raw ibr data into structures.
-     * @param {Byte} data Binary data read directly from .ibr file
-     * @return {Array.<Object>} structures List of structure objects
-     generated from input ibr data
-     */
-  function unpackStructure(data) {
-    const deserializedData = InternalBuildingRepresentation.read(
-        new Pbf(data));
-    let structures = [];
-    structures.push( deserializedData );
-    if ( deserializedData.structures.length > 0 ) {
-      structures = deserializedData.structures;
+   * Parse top level of decoded IBR Object into structures.
+   * @param {Object} deserializedData Decoded IBR Object.
+   * @return {Map.<String, List.<Object>>} Map of list of layers and
+   structures.
+   */
+  function unpackStructure(deserializedData) {
+    const curStructure = {};
+    // Visualization layers of current structure
+    curStructure['layers'] = IBRSDK.renderLayer( deserializedData );
+    curStructure['structures'] = [];
+    for ( const struct of deserializedData.structures ) {
+      // Sub-structures of the current structure
+      curStructure['structures'].push( struct );
     }
-    return structures;
+    return curStructure;
   }
 
   /**
    * Swap endianness of 32bit numbers.
-   * @param {number} val Number to be converted endianness.
-   * @return {number} 32 bit number with reverse engianness.
+   * @param {number} val 32 bit number to be swapped.
+   * @return {number} 32bit number in swapped endianness
    */
   function swap32(val) {
     return ((val & 0xFF) << 24) |
@@ -66,7 +67,6 @@ typeof define === 'function' && define.amd ? define(['exports'], factory) :
     '#556b2f',
     '#ff8c00',
     '#9932cc',
-    '#8b0000',
     '#e9967a',
     '#9400d3',
     '#ff00ff',
@@ -104,10 +104,16 @@ typeof define === 'function' && define.amd ? define(['exports'], factory) :
   /**
      * Converts decoded ibr structure data into three.js Line objects.
      * @param {Object} structure structures decoded from raw ibr data
-     * @return {Array.<Line>} lines List of three.js Line objects generated
-     from input ibr data
+     * @return {Map.<String, List.<Object>>} objects Layer name and
+     corresponding list of three.js Line objects
      */
   function renderLayer(structure) {
+    // Check if structure contains any visualization data
+    if ( structure.visualization.length === 0 ||
+    structure.coordinates_lookup == null) {
+      return {};
+    }
+
     // Decode Indices from data.visualization[].coordinate_indices
     let coordsIndexList; let coordsRangeBuffer; let coordsRange;
     const coordsRangeList = [];
@@ -133,8 +139,7 @@ typeof define === 'function' && define.amd ? define(['exports'], factory) :
       coordsLookupList.push(coordsLookupDV.getFloat32(i, false));
     }
 
-    // Read multiple ranges from Visualization.coordinates array and store
-    // them in sessionStorage for visualization later
+    // Read multiple ranges from Visualization.coordinates array
     const layerCoordinates = [];
     for (const coordsRangeItem of coordsRangeList) {
       const layerPH = [];
@@ -154,10 +159,12 @@ typeof define === 'function' && define.amd ? define(['exports'], factory) :
     // Render data into three.js objects
     const materials = [];
     for (let i = 0; i < structure.visualization.length-1; i++) {
-      materials.push(new THREE.LineBasicMaterial( {color: Colors.random()} ));
+      materials.push(new THREE.LineBasicMaterial(
+          {color: Colors.random()} ));
     }
-    const objects = [];
+    const objects = {};
     for (let i = 0; i < layerCoordinates.length; i++) {
+      objects[structure.visualization[i].id] = [];
       const lineSegments = [];
       for (const line of layerCoordinates[i]) {
         const linePoints = [];
@@ -171,13 +178,15 @@ typeof define === 'function' && define.amd ? define(['exports'], factory) :
           // group geometries for performance reason
           lineSegments.push( geometry );
         } else {
-          objects.push( new THREE.LineLoop( geometry, materials[i] ) );
+          objects[structure.visualization[i].id].push( new THREE.LineLoop(
+              geometry, materials[i] ) );
         }
       }
       if (lineSegments.length > 0) {
         const geometries = THREE.BufferGeometryUtils.mergeBufferGeometries(
             lineSegments );
-        objects.push( new THREE.LineSegments( geometries, materials[i] ) );
+        objects[structure.visualization[i].id].push( new THREE.LineSegments(
+            geometries, materials[i] ) );
       }
     }
     return objects;
