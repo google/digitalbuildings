@@ -29,6 +29,17 @@ message InternalBuildingRepresentation {
     repeated FieldValue field_values = 1;
   }
 
+  // A combined dedicated visual layer per floor that represents the unreacahble
+  // walking space.
+  message BlockingGrid {
+    // The grid id of this particular blocking grid.
+    string id = 1;
+
+    // The layer (floor) id that this blocking grid belongs to.
+    string layer_id = 2;
+
+    Visualization visualization = 3;
+  }
   message Visualization {
     enum EncodingType {
       UNKNOWN = 0;
@@ -55,7 +66,7 @@ message InternalBuildingRepresentation {
       bytes coordinate_indices = 4;
     }
   }
-  
+
   // A reference to an external structure to which this structure belongs.
   message StructureReference {
     string guid = 1;
@@ -79,14 +90,14 @@ message InternalBuildingRepresentation {
   // A base64 encoded ordered list of coordinates.
   // The decoded string comes in the form of comma separated coordinates which
   // are space separated floats. e.g. "<x> <y>,<x> <y>,<x> <y>".
-  // Visualization and other layers index into coordinates_lookup to determine coordinate
-  // segments.
+  // Visualization and other layers index into coordinates_lookup to determine
+  // coordinate segments.
   bytes coordinates_lookup = 5;
 
   // A contained layer/visualization data (e.g. tri gross area layer,
   // external/internal walls, blocking geometry etc.)
   repeated Visualization visualization = 6;
-  
+
   // Boundary of the structure
   bytes boundary = 7;
 
@@ -95,4 +106,6 @@ message InternalBuildingRepresentation {
 
   // External references
   repeated StructureReference external_reference = 9;
+
+  BlockingGrid blocking_grid = 10;
 }
