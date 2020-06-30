@@ -25,6 +25,7 @@ typeof define === 'function' && define.amd ? define(['exports'], factory) :
   /**
    * Parse top level of decoded IBR Object into structures.
    * @param {Object} deserializedData Decoded IBR Object.
+   * @param {number} structureIndex Index of current structure(floor).
    * @return {Map.<String, List.<Object>>} Map of list of layers and
    structures.
    */
@@ -32,7 +33,7 @@ typeof define === 'function' && define.amd ? define(['exports'], factory) :
     const curStructure = {};
     // Visualization layers of current structure
     curStructure['layers'] = IBRSDK.renderLayer( deserializedData,
-    structureIndex );
+        structureIndex );
     curStructure['structures'] = [];
     for ( const struct of deserializedData.structures ) {
       // Sub-structures of the current structure
@@ -108,6 +109,7 @@ typeof define === 'function' && define.amd ? define(['exports'], factory) :
   /**
      * Converts decoded ibr structure data into three.js Line objects.
      * @param {Object} structure structures decoded from raw ibr data
+     * @param {number} structureIndex overall index of the structure
      * @return {Map.<String, List.<Object>>} objects Layer name and
      corresponding list of three.js Line objects
      */
