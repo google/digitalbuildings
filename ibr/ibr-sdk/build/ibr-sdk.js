@@ -11,6 +11,9 @@ const ONE_POINT = 3;
 // array
 const TWO_POINTS = 6;
 
+// separate floor's z-coordinate by 100 unit length
+const FLOOR_HEIGHT = 300;
+
 (function(global, factory) {
 typeof exports === 'object' && typeof module !== 'undefined' ?
 factory(exports) :
@@ -25,10 +28,10 @@ typeof define === 'function' && define.amd ? define(['exports'], factory) :
    * @return {Map.<String, List.<Object>>} Map of list of layers and
    structures.
    */
-  function unpackStructure(deserializedData) {
+  function unpackStructure(deserializedData, structureIndex) {
     const curStructure = {};
     // Visualization layers of current structure
-    curStructure['layers'] = IBRSDK.renderLayer( deserializedData );
+    curStructure['layers'] = IBRSDK.renderLayer( deserializedData, structureIndex );
     curStructure['structures'] = [];
     for ( const struct of deserializedData.structures ) {
       // Sub-structures of the current structure
@@ -107,7 +110,7 @@ typeof define === 'function' && define.amd ? define(['exports'], factory) :
      * @return {Map.<String, List.<Object>>} objects Layer name and
      corresponding list of three.js Line objects
      */
-  function renderLayer(structure) {
+  function renderLayer(structure, structureIndex) {
     // Check if structure contains any visualization data
     if ( structure.visualization.length === 0 ||
     structure.coordinates_lookup == null) {
@@ -170,7 +173,7 @@ typeof define === 'function' && define.amd ? define(['exports'], factory) :
         const linePoints = [];
         for (let j = 0; j < line.length; j+=ONE_POINT) {
           linePoints.push( new THREE.Vector3( line[j], line[j+1],
-              line[j+2] ) );
+              line[j+2]+FLOOR_HEIGHT*structureIndex ) );
         }
         const geometry = new THREE.BufferGeometry().setFromPoints(
             linePoints );

@@ -7,6 +7,9 @@
 import {OrbitControls} from
   './node_modules/three/examples/jsm/controls/OrbitControls.js';
 
+// global variable to keep track of structure's index for height adjustment
+var structureIndex = 0;
+
 /**
  * Create a new HTML Label Tag based on given name string and attach it to
  * given parent tag.
@@ -37,8 +40,8 @@ function createLabel(tagName, name, parentTag, forId=undefined) {
  * @param {Object} scene object to attach the THREE.js objects
  * generated from structure layer data
  */
-function extractSingleStructureData(structureData, curStructureId, scene) {
-  const curStructure = IBRSDK.unpackStructure( structureData );
+function extractSingleStructureData(structureData, curStructureId, scene, thisStructureIndex) {
+  const curStructure = IBRSDK.unpackStructure( structureData, thisStructureIndex );
   // Create checkbox for each layer
   if (curStructure['layers'].size !== 0) {
     for ( const [layerName, layer] of Object.entries(curStructure['layers']) ) {
@@ -84,9 +87,10 @@ function extractSingleStructureData(structureData, curStructureId, scene) {
       label.classList.toggle('expanded-arrow');
       if (label.getAttribute('value') == null) {
         event.stopPropagation();
-        extractSingleStructureData(structure, structure.name, scene);
+        extractSingleStructureData(structure, structure.name, scene, structureIndex);
+        label.setAttribute('value', '0');
+        structureIndex++;
       }
-      label.setAttribute('value', '1');
     });
   }
 }
