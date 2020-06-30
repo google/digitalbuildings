@@ -7,9 +7,6 @@
 import {OrbitControls} from
   './node_modules/three/examples/jsm/controls/OrbitControls.js';
 
-// global variable to keep track of structure's index for height adjustment
-let structureIndex = 0;
-
 /**
  * Create a new HTML Label Tag based on given name string and attach it to
  * given parent tag.
@@ -76,25 +73,27 @@ function extractSingleStructureData(structureData, curStructureId, scene,
   }
 
   // Create label for each child structure
-  for ( const structure of curStructure['structures'] ) {
+  for ( let structureIndex = 0; structureIndex <
+  curStructure['structures'].length; structureIndex++ ) {
     const li = document.createElement('li');
     document.getElementById(curStructureId).appendChild(li);
-    const label = createLabel('span', structure.name, li);
+    const label = createLabel('span',
+        curStructure['structures'][structureIndex].name, li);
     label.setAttribute('class', 'arrow');
     li.appendChild(label);
     const ul = document.createElement('ul');
     ul.setAttribute('class', 'nested');
-    ul.setAttribute('id', structure.name);
+    ul.setAttribute('id', curStructure['structures'][structureIndex].name);
     li.appendChild(ul);
     label.addEventListener('click', function() {
       label.parentElement.querySelector('.nested').classList.toggle('active');
       label.classList.toggle('expanded-arrow');
       if (label.getAttribute('value') == null) {
         event.stopPropagation();
-        extractSingleStructureData(structure, structure.name, scene,
+        extractSingleStructureData(curStructure['structures'][structureIndex],
+            curStructure['structures'][structureIndex].name, scene,
             structureIndex);
         label.setAttribute('value', '0');
-        structureIndex++;
       }
     });
   }
