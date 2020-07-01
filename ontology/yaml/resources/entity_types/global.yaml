@@ -24,3 +24,25 @@ PM:
   is_abstract: true
   uses:
   - power_sensor
+
+EQUIPMENT:
+  id: "9693662434551660544"
+  description: "A piece of equipment."
+  is_abstract: true
+  opt_uses:
+  - manufacturer_label
+  - model_label
+
+MTS:
+  id: "####################"
+  description: "Multi-sensor device."
+  is_abstract: true
+  implements:
+  - EQUIPMENT
+
+USER_INTERFACE:
+  id: "####################"
+  description: "Generic user interface."
+  is_abstract: true
+  implements:
+  - EQUIPMENT

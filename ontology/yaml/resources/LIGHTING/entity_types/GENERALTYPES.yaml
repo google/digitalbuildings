@@ -1,0 +1,65 @@
+# Copyright 2020 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the License);
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#    https://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an AS IS BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+LT:
+  id: "####################"
+  description: "Luminaire, lighting fixture."
+  implements:
+  - EQUIPMENT
+  uses:
+  - dimmer_percentage_command # in % indicating brightness
+
+LPS:
+  id: "####################"
+  description: "Lighting photocell sensor."
+  implements:
+  - MTS	
+
+LMS:
+  id: "####################"
+  description: "Lighting motion sensor."
+  implements:
+  - MTS	
+
+LTGW:
+  id: "####################"
+  description: "Lighting gateway."
+  implements:
+  - EQUIPMENT			
+  
+LAC:
+  id: "####################"
+  description: "lighting area controller."
+  implements:
+  - EQUIPMENT	
+
+LCM:
+  id: "####################"
+  description: "Lighting control module."
+  implements:
+  - EQUIPMENT	
+
+LKP:
+  id: "####################"
+  description: "Lighting keypad."
+  implements:
+  - USER_INTERFACE		
+
+LIGHTING_GROUP:
+  id: "####################"
+  description: "A group containing one or more luminaires."
+
+LIGHTING_SCENE:
+  id: "####################"
+  description: "A scene containing brightness values for each luminaire."
