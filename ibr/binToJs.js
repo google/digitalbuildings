@@ -19,7 +19,7 @@ import {OrbitControls} from
   checkbox.
  * @return {tag} Newly created Label tag.
  */
-function createLabel(tagName, name, parentTag, forId=undefined) {
+function createLabel(tagName, name, parentTag, forId = undefined) {
   const label = document.createElement(tagName);
   if (forId) {
     label.setAttribute('for', forId);

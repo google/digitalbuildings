@@ -127,7 +127,7 @@ typeof define === 'function' && define.amd ? define(['exports'], factory) :
       coordsIndexList = visLayer.coordinate_indices;
       coordsRangeBuffer = coordsIndexList.buffer.slice(
           coordsIndexList.byteOffset,
-          coordsIndexList.byteOffset+coordsIndexList.length);
+          coordsIndexList.byteOffset + coordsIndexList.length);
       coordsRange = new Uint32Array(coordsRangeBuffer);
       for (let i = 0; i < coordsRange.length; i++) {
         coordsRange[i] = swap32(coordsRange[i]);
@@ -138,10 +138,10 @@ typeof define === 'function' && define.amd ? define(['exports'], factory) :
     // Decode Coordinates from data.coordinates_lookup
     const coordsLookup = structure.coordinates_lookup;
     const coordsLookupBuffer = coordsLookup.buffer.slice(
-        coordsLookup.byteOffset, coordsLookup.byteOffset+coordsLookup.length);
+        coordsLookup.byteOffset, coordsLookup.byteOffset + coordsLookup.length);
     const coordsLookupDV = new DataView(coordsLookupBuffer);
     const coordsLookupList = [];
-    for (let i = 0; i < coordsLookup.length/4; i+=4) {
+    for (let i = 0; i < coordsLookup.length / 4; i += 4) {
       coordsLookupList.push(coordsLookupDV.getFloat32(i, false));
     }
 
@@ -149,13 +149,13 @@ typeof define === 'function' && define.amd ? define(['exports'], factory) :
     const layerCoordinates = [];
     for (const coordsRangeItem of coordsRangeList) {
       const layerPH = [];
-      for (let i = 0; i < coordsRangeItem.length; i+=2) {
+      for (let i = 0; i < coordsRangeItem.length; i += 2) {
         const coordsLine = [];
-        for (let j = coordsRangeItem[i]; j <= coordsRangeItem[i+1];
-          j+=ONE_POINT) {
+        for (let j = coordsRangeItem[i]; j <= coordsRangeItem[i + 1];
+          j += ONE_POINT) {
           coordsLine.push(coordsLookupList[j]);
-          coordsLine.push(coordsLookupList[j+1]);
-          coordsLine.push(coordsLookupList[j+2]);
+          coordsLine.push(coordsLookupList[j + 1]);
+          coordsLine.push(coordsLookupList[j + 2]);
         }
         layerPH.push(coordsLine);
       }
@@ -164,7 +164,7 @@ typeof define === 'function' && define.amd ? define(['exports'], factory) :
 
     // Render data into three.js objects
     const materials = [];
-    for (let i = 0; i < structure.visualization.length-1; i++) {
+    for (let i = 0; i < structure.visualization.length - 1; i++) {
       materials.push(new THREE.LineBasicMaterial(
           {color: Colors.random()} ));
     }
@@ -174,9 +174,9 @@ typeof define === 'function' && define.amd ? define(['exports'], factory) :
       const lineSegments = [];
       for (const line of layerCoordinates[i]) {
         const linePoints = [];
-        for (let j = 0; j < line.length; j+=ONE_POINT) {
-          linePoints.push( new THREE.Vector3( line[j], line[j+1],
-              line[j+2]+FLOOR_HEIGHT*structureIndex ) );
+        for (let j = 0; j < line.length; j += ONE_POINT) {
+          linePoints.push( new THREE.Vector3( line[j], line[j + 1],
+              line[j + 2] + FLOOR_HEIGHT * structureIndex ) );
         }
         const geometry = new THREE.BufferGeometry().setFromPoints(
             linePoints );
