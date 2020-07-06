@@ -1,5 +1,5 @@
-*/node_modules/
-*/temp/
+*/node_modules/*
+*/temp/*
 
 *.DS_Store
 package-lock.json
