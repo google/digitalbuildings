@@ -1,4 +1,13 @@
 def validate_type(entity: dict, entities_map):
+    """Uses information from the generated ontology universe to validate an entity's type.
+
+    Args:
+        entity: parsed instance YAML file formatted as dictionary
+        entities_map: valid universe entity types generated from ontology
+
+    Returns:
+        Throws Exceptions if entity type is invalid.
+    """
     entity_type_str = str(entity['type'])
     type_parse = entity_type_str.split('/')
 
@@ -15,4 +24,17 @@ def validate_type(entity: dict, entities_map):
         raise Exception('invalid entity type:', entity_type)
 
 def validate_entity(entity: dict, fields, subfields_map, states_map, units_map, entities_map):
+    """Uses information from the generated ontology universe to validate an entity.
+
+    Args:
+        entity: parsed instance YAML file formatted as dictionary
+        fields: valid universe field types generated from ontology
+        subfields_map: valid universe subfield types generated from ontology
+        states_map: valid universe state types generated from ontology
+        units_map:  valid universe unit types generated from ontology
+        entities_map:  valid universe entity types generated from ontology
+
+    Returns:
+        Throws Exceptions if entity is invalid.
+    """
     validate_type(entity, entities_map)

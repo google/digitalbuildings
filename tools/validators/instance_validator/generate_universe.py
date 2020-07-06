@@ -2,6 +2,11 @@ import sys
 import os
 
 def build_universe():
+    """Generates ontology universe.
+
+    Returns:
+        Generated universe object.
+    """
     # add universe building packages to path
     sys.path.append(os.path.abspath(os.path.join('..', 'ontology_validator'))) 
     # add ontology files to path
@@ -18,6 +23,18 @@ def build_universe():
     return universe
 
 def parse_universe(universe):
+    """Parses generated ontology universe object into its subcomponents
+
+    Args:
+        universe: generated ontology universe object
+
+    Returns:
+        fields: valid universe field types generated from ontology
+        subfields_map: valid universe subfield types generated from ontology
+        states_map: valid universe state types generated from ontology
+        units_map:  valid universe unit types generated from ontology
+        entities_map:  valid universe entity types generated from ontology
+    """
     states = universe.state_universe
     entities = universe.entity_type_universe
     units = universe.unit_universe
