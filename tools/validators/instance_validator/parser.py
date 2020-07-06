@@ -28,6 +28,16 @@ translation_data_schema = Str() | Map({
                                 })
 
 def load_yaml_with_schema(filepath, schema):
+    """Loads an instance YAML file and parses it based on a strictyaml-formatted YAML schema.
+
+    Args:
+        filepath: filepath location of the YAML file
+        schema: YAML schema in strictyaml format
+
+    Returns:
+        Returns the parsed YAML data in a stricyaml-provided 
+        datastructure which is similar to a Python dictionary.
+    """
     f = open(filepath).read()
 
     try:
@@ -37,6 +47,15 @@ def load_yaml_with_schema(filepath, schema):
         raise error
 
 def parse_yaml(filename: str):
+    """Loads an instance YAML file and parses it with multiple strictyaml-formatted YAML schemas.
+
+    Args:
+        filename: filepath location of the YAML file
+
+    Returns:
+        Returns the parsed YAML data in a stricyaml-provided 
+        datastructure which is similar to a Python dictionary.
+    """
     yaml = load_yaml_with_schema(filename, schema)
 
     top_name = yaml.keys()[0]
