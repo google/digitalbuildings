@@ -1,8 +1,7 @@
-# from strictyaml import Map, MapPattern, Str, Optional, Any, load, Enum, Regex, Seq, YAMLValidationError
 import strictyaml
 
 # TODO check all valid states and ontological references in next validation steps
-schema = strictyaml.MapPattern(strictyaml.Str(), 
+_SCHEMA = strictyaml.MapPattern(strictyaml.Str(), 
     strictyaml.Map({
         'type': strictyaml.Str(), 
         'id': strictyaml.Str(), 
@@ -14,11 +13,11 @@ schema = strictyaml.MapPattern(strictyaml.Str(),
         strictyaml.Optional('metadata'): strictyaml.Any()
     }))
 
-translation_schema = strictyaml.Str() | strictyaml.Any()
+_TRANSLATION_SCHEMA = strictyaml.Str() | strictyaml.Any()
 
 # TODO add manual check for translation_data_schema to de-duplicate units/unit_values/states
 # TODO add all units/unit_values/states to translation_data_schema
-translation_data_schema = strictyaml.Str() | strictyaml.Map({
+_TRANSLATION_DATA_SCHEMA = strictyaml.Str() | strictyaml.Map({
                                     'present_value': strictyaml.Str(),
                                     strictyaml.Optional('states'): strictyaml.MapPattern(strictyaml.Str(), strictyaml.Str()),
                                     strictyaml.Optional('units'): strictyaml.Map({
@@ -42,7 +41,7 @@ def load_yaml_with_schema(filepath, schema):
     f = open(filepath).read()
 
     try:
-        parsed = load(f, schema)
+        parsed = strictyaml.load(f, schema)
         return parsed
     except strictyaml.YAMLValidationError as error:
         raise error
@@ -57,13 +56,13 @@ def parse_yaml(filename: str):
         Returns the parsed YAML data in a stricyaml-provided 
         datastructure which is similar to a Python dictionary.
     """
-    yaml = load_yaml_with_schema(filename, schema)
+    yaml = load_yaml_with_schema(filename, _SCHEMA)
 
     top_name = yaml.keys()[0]
 
     if 'translation' in yaml[top_name].keys():
         translation = yaml[top_name]['translation']
-        translation.revalidate(translation_schema)
+        translation.revalidate(_TRANSLATION_SCHEMA)
 
         # TODO can this be automatically verified based on ontology?
         # if translation is not UDMI compliant
@@ -71,6 +70,6 @@ def parse_yaml(filename: str):
             translation_keys = translation.keys()
 
             for k in translation_keys:
-                translation[k].revalidate(translation_data_schema)
+                translation[k].revalidate(_TRANSLATION_DATA_SCHEMA)
 
     return yaml
