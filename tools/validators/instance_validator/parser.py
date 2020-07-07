@@ -1,30 +1,31 @@
-from strictyaml import Map, MapPattern, Str, Optional, Any, load, Enum, Regex, Seq, YAMLValidationError
+# from strictyaml import Map, MapPattern, Str, Optional, Any, load, Enum, Regex, Seq, YAMLValidationError
+import strictyaml
 
 # TODO check all valid states and ontological references in next validation steps
-schema = MapPattern(Str(), 
-    Map({
-        'type': Str(), 
-        'id': Str(), 
-        Optional('connections'): MapPattern(Str(), Str())
-                               | Seq(MapPattern(Str(), Str())),
-        Optional('links'): MapPattern(Str(), 
-            MapPattern(Str(), Str())),
-        Optional('translation'): Any(),
-        Optional('metadata'): Any()
+schema = strictyaml.MapPattern(strictyaml.Str(), 
+    strictyaml.Map({
+        'type': strictyaml.Str(), 
+        'id': strictyaml.Str(), 
+        strictyaml.Optional('connections'): strictyaml.MapPattern(strictyaml.Str(), strictyaml.Str())
+                               | strictyaml.Seq(strictyaml.MapPattern(strictyaml.Str(), strictyaml.Str())),
+        strictyaml.Optional('links'): strictyaml.MapPattern(strictyaml.Str(), 
+            strictyaml.MapPattern(strictyaml.Str(), strictyaml.Str())),
+        strictyaml.Optional('translation'): strictyaml.Any(),
+        strictyaml.Optional('metadata'): strictyaml.Any()
     }))
 
-translation_schema = Str() | Any()
+translation_schema = strictyaml.Str() | strictyaml.Any()
 
 # TODO add manual check for translation_data_schema to de-duplicate units/unit_values/states
 # TODO add all units/unit_values/states to translation_data_schema
-translation_data_schema = Str() | Map({
-                                    'present_value': Str(),
-                                    Optional('states'): MapPattern(Str(), Str()),
-                                    Optional('units'): Map({
-                                        'key': Str(),
-                                        'values': MapPattern(Str(), Str())
+translation_data_schema = strictyaml.Str() | strictyaml.Map({
+                                    'present_value': strictyaml.Str(),
+                                    strictyaml.Optional('states'): strictyaml.MapPattern(strictyaml.Str(), strictyaml.Str()),
+                                    strictyaml.Optional('units'): strictyaml.Map({
+                                        'key': strictyaml.Str(),
+                                        'values': strictyaml.MapPattern(strictyaml.Str(), strictyaml.Str())
                                     }),
-                                    Optional('unit_values'): MapPattern(Str(), Str())
+                                    strictyaml.Optional('unit_values'): strictyaml.MapPattern(strictyaml.Str(), strictyaml.Str())
                                 })
 
 def load_yaml_with_schema(filepath, schema):
@@ -43,7 +44,7 @@ def load_yaml_with_schema(filepath, schema):
     try:
         parsed = load(f, schema)
         return parsed
-    except YAMLValidationError as error:
+    except strictyaml.YAMLValidationError as error:
         raise error
 
 def parse_yaml(filename: str):
