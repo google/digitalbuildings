@@ -16,9 +16,10 @@ function onChooseFile() {
   if (file) {
     const fr = new FileReader();
     fr.onload = function(evt) {
-      const scene = IBRSDK.generateScene(document.body);
-      IBRSDK.createSidebar(evt.target.result,
-          document.getElementById('layerList'), scene);
+      const bin = evt.target.result;
+      IBRSDK.renderTopIBRStructure( bin,
+          0, document.getElementById('mainCanvas') ); //top level, index 0
+      IBRSDK.createSidebar( bin, document.getElementById('layerList') );
     };
     fr.readAsArrayBuffer(file);
   }

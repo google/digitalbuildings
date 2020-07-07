@@ -25,13 +25,14 @@ typeof define === 'function' && define.amd ? define(['exports'], factory) :
 }(window, (function(exports) {
   'use strict';
 
+  let scene;
+
   /**
    * Create a side bar for layer and structure navigation.
    * @param {binary} IBRRawData Raw data from IBR binary data file.
    * @param {HTMLElement} parentElement Parent element to attach the sidebar to.
-   * @param {Object} scene Scene to draw the THREE.js visualization
    */
-  function createSidebar(IBRRawData, parentElement, scene) {
+  function createSidebar(IBRRawData, parentElement) {
     const ibrData = InternalBuildingRepresentation.read(
         new Pbf(IBRRawData));
     // for datafiles that have top level name is ""
@@ -53,7 +54,8 @@ typeof define === 'function' && define.amd ? define(['exports'], factory) :
       rootSpan.classList.toggle('expanded-arrow');
     });
     // root structure index 0
-    extractSingleStructureData(ibrData, ibrData.name, scene, 0);
+    const curStructure = renderSingleIBRStructure(ibrData, 0);
+    drawSingleStructureSidebar(curStructure, ibrData.name);
   }
 
   /**
@@ -112,36 +114,27 @@ typeof define === 'function' && define.amd ? define(['exports'], factory) :
     return label;
   }
 
+  //  function renderLayer
+
   /**
    * Create checkboxes for given structure's layers and child structures.
-   * @param {Object} structureData Structure to be extracted and visualized.
-   * @param {String} curStructureId ID of the HTML div element to attach the
-   * new structure's data.
-   * @param {Object} scene object to attach the THREE.js objects
-   * @param {number} thisStructureIndex the index of the structure being
-   processed
-   * generated from structure layer data
+   * @param {Object} curStructure the structure generated from
+   renderSingleIBRStructure() that will be added to sidebar.
+   * @param {String} structureName the name of the structure being processed.
    */
-  function extractSingleStructureData(structureData, curStructureId, scene,
-      thisStructureIndex) {
-    const curStructure = IBRSDK.unpackStructure( structureData,
-        thisStructureIndex );
+  function drawSingleStructureSidebar(curStructure, structureName) {
     // Create checkbox for each layer
     if (curStructure['layers'].size !== 0) {
       for ( const [layerName, layer] of
         Object.entries(curStructure['layers']) ) {
-        for ( const line of layer ) {
-          line.visible = false;
-          scene.add( line );
-        }
         const checkBox = document.createElement('INPUT');
         const div = document.createElement('DIV');
         checkBox.setAttribute('type', 'checkbox');
-        checkBox.setAttribute('id', structureData.name + '_' + layerName);
+        checkBox.setAttribute('id', structureName + '_' + layerName);
         div.appendChild(checkBox);
-        createLabel('label', layerName, div, structureData.name + '_' +
+        createLabel('label', layerName, div, structureName + '_' +
         layerName);
-        document.getElementById(curStructureId).appendChild(div);
+        document.getElementById(structureName).appendChild(div);
         checkBox.addEventListener('change', function() {
           if (checkBox.checked) {
             for ( const line of layer ) {
@@ -160,7 +153,7 @@ typeof define === 'function' && define.amd ? define(['exports'], factory) :
     for ( let structureIndex = 0; structureIndex <
     curStructure['structures'].length; structureIndex++ ) {
       const li = document.createElement('li');
-      document.getElementById(curStructureId).appendChild(li);
+      document.getElementById(structureName).appendChild(li);
       const label = createLabel('span',
           curStructure['structures'][structureIndex].name, li);
       label.setAttribute('class', 'arrow');
@@ -174,9 +167,11 @@ typeof define === 'function' && define.amd ? define(['exports'], factory) :
         label.classList.toggle('expanded-arrow');
         if (label.getAttribute('value') == null) {
           event.stopPropagation();
-          extractSingleStructureData(curStructure['structures'][structureIndex],
-              curStructure['structures'][structureIndex].name, scene,
-              structureIndex);
+          const structure = renderSingleIBRStructure(
+              curStructure['structures'][structureIndex],
+              structureIndex, scene);
+          drawSingleStructureSidebar(structure,
+              curStructure['structures'][structureIndex].name);
           label.setAttribute('value', '0');
         }
       });
@@ -185,19 +180,41 @@ typeof define === 'function' && define.amd ? define(['exports'], factory) :
 
   /**
    * Parse top level of decoded IBR Object into structures.
-   * @param {Object} deserializedData Decoded IBR Object.
+   * @param {binary} IBRRawData Raw data from IBR binary data file.
+   * @param {number} structureIndex Index of current structure(floor).
+   * @param {HTMLElement} parentElement parent HTML element that the
+    visualization will be append on.
+   */
+  function renderTopIBRStructure(IBRRawData, structureIndex, parentElement) {
+    scene = generateScene(parentElement);
+    const ibrData = InternalBuildingRepresentation.read(
+        new Pbf(IBRRawData));
+    const curStructure = {};
+    // Visualization layers of current structure
+    curStructure['layers'] = renderLayerAndSetToInvisible( ibrData,
+        structureIndex, scene );
+    // Sub-structures of the current structure
+    curStructure['structures'] = [];
+    for ( const struct of ibrData.structures ) {
+      curStructure['structures'].push( struct );
+    }
+  }
+
+  /**
+   * Parse current IBR Object into structures.
+   * @param {Object} ibrData decoded IBR object.
    * @param {number} structureIndex Index of current structure(floor).
    * @return {Map.<String, List.<Object>>} Map of list of layers and
    structures.
    */
-  function unpackStructure(deserializedData, structureIndex) {
+  function renderSingleIBRStructure(ibrData, structureIndex) {
     const curStructure = {};
     // Visualization layers of current structure
-    curStructure['layers'] = IBRSDK.renderLayer( deserializedData,
-        structureIndex );
+    curStructure['layers'] = renderLayerAndSetToInvisible( ibrData,
+        structureIndex);
+    // Sub-structures of the current structure
     curStructure['structures'] = [];
-    for ( const struct of deserializedData.structures ) {
-      // Sub-structures of the current structure
+    for ( const struct of ibrData.structures ) {
       curStructure['structures'].push( struct );
     }
     return curStructure;
@@ -206,7 +223,7 @@ typeof define === 'function' && define.amd ? define(['exports'], factory) :
   /**
    * Swap endianness of 32bit numbers.
    * @param {number} val 32 bit number to be swapped.
-   * @return {number} 32bit number in swapped endianness
+   * @return {number} 32bit number in swapped endianness.
    */
   function swap32(val) {
     return ((val & 0xFF) << 24) |
@@ -268,13 +285,14 @@ typeof define === 'function' && define.amd ? define(['exports'], factory) :
   };
 
   /**
-     * Converts decoded ibr structure data into three.js Line objects.
-     * @param {Object} structure structures decoded from raw ibr data
-     * @param {number} structureIndex overall index of the structure
+     * Converts decoded ibr structure data into three.js Line objects
+     and add them to scene.
+     * @param {Object} structure structures decoded from raw ibr data.
+     * @param {number} structureIndex overall index of the structure.
      * @return {Map.<String, List.<Object>>} objects Layer name and
-     corresponding list of three.js Line objects
+     corresponding list of three.js Line objects.
      */
-  function renderLayer(structure, structureIndex) {
+  function renderLayerAndSetToInvisible(structure, structureIndex) {
     // Check if structure contains any visualization data
     if ( structure.visualization.length === 0 ||
     structure.coordinates_lookup == null) {
@@ -333,7 +351,7 @@ typeof define === 'function' && define.amd ? define(['exports'], factory) :
     const objects = {};
     for (let i = 0; i < layerCoordinates.length; i++) {
       objects[structure.visualization[i].id] = [];
-      const lineSegments = [];
+      const lineSegmentsGeometry = [];
       for (const line of layerCoordinates[i]) {
         const linePoints = [];
         for (let j = 0; j < line.length; j += ONE_POINT) {
@@ -344,27 +362,31 @@ typeof define === 'function' && define.amd ? define(['exports'], factory) :
             linePoints );
         if (line.length === TWO_POINTS) {
           // group geometries for performance reason
-          lineSegments.push( geometry );
+          lineSegmentsGeometry.push( geometry );
         } else {
-          objects[structure.visualization[i].id].push( new THREE.LineLoop(
-              geometry, materials[i] ) );
+          const lineLoop = new THREE.LineLoop( geometry, materials[i] );
+          lineLoop.visible = false;
+          scene.add( lineLoop );
+          objects[structure.visualization[i].id].push( lineLoop );
         }
       }
-      if (lineSegments.length > 0) {
+      if (lineSegmentsGeometry.length > 0) {
         const geometries = THREE.BufferGeometryUtils.mergeBufferGeometries(
-            lineSegments );
-        objects[structure.visualization[i].id].push( new THREE.LineSegments(
-            geometries, materials[i] ) );
+            lineSegmentsGeometry );
+        const lineSegments = new THREE.LineSegments( geometries, materials[i] );
+        lineSegments.visible = false;
+        scene.add( lineSegments );
+        objects[structure.visualization[i].id].push( lineSegments );
       }
     }
     return objects;
   }
 
-  exports.renderLayer = renderLayer;
-  exports.unpackStructure = unpackStructure;
-  exports.generateScene = generateScene;
-  exports.extractSingleStructureData = extractSingleStructureData;
   exports.createSidebar = createSidebar;
+  exports.generateScene = generateScene;
+  exports.drawSingleStructureSidebar = drawSingleStructureSidebar;
+  exports.renderTopIBRStructure = renderTopIBRStructure;
+  exports.renderLayerAndSetToInvisible = renderLayerAndSetToInvisible;
 
   Object.defineProperty(exports, '__esModule', {value: true});
 })));
