@@ -27,7 +27,7 @@ _TRANSLATION_DATA_SCHEMA = strictyaml.Str() | strictyaml.Map({
                                     strictyaml.Optional('unit_values'): strictyaml.MapPattern(strictyaml.Str(), strictyaml.Str())
                                 })
 
-def load_yaml_with_schema(filepath, schema):
+def _load_yaml_with_schema(filepath, schema):
     """Loads an instance YAML file and parses it based on a strictyaml-formatted YAML schema.
 
     Args:
@@ -56,7 +56,7 @@ def parse_yaml(filename: str):
         Returns the parsed YAML data in a stricyaml-provided 
         datastructure which is similar to a Python dictionary.
     """
-    yaml = load_yaml_with_schema(filename, _SCHEMA)
+    yaml = _load_yaml_with_schema(filename, _SCHEMA)
 
     top_name = yaml.keys()[0]
 
