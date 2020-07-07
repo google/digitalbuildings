@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import parser
+import instance_parser 
 import sys
 # ONTOLOGY VALIDATION
 # import ontology_validation
@@ -30,7 +30,7 @@ if __name__ == '__main__':
     filename = sys.argv[1]
 
     # throws errors for syntax
-    parsed = dict(parser.parse_yaml(filename))
+    parsed = dict(instance_parser.parse_yaml(filename))
 
     print('Passed syntax checks!')
 

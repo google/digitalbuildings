@@ -19,7 +19,11 @@ from __future__ import division
 from __future__ import print_function
 
 import os
-import parser
+import sys
+
+sys.path.append('..')
+
+import instance_parser
 from absl.testing import absltest
 
 _TESTCASE_PATH = os.path.join('.', 'tests', 'fake_instances')
@@ -27,19 +31,19 @@ _TESTCASE_PATH = os.path.join('.', 'tests', 'fake_instances')
 class ParserTest(absltest.TestCase):
   
   def testInstanceValidatorDetectDuplicateKeys(self):
-    self.assertIsNone(parser.parse_yaml(os.path.join(_TESTCASE_PATH, 'BAD', 'bad_duplicate_keys.yaml')))
+    self.assertIsNone(instance_parser.parse_yaml(os.path.join(_TESTCASE_PATH, 'BAD', 'bad_duplicate_keys.yaml')))
 
   def testInstanceValidatorDetectMissingColon(self):
-    self.assertIsNone(parser.parse_yaml(os.path.join(_TESTCASE_PATH, 'BAD', 'bad_missing_colon.yaml')))
+    self.assertIsNone(instance_parser.parse_yaml(os.path.join(_TESTCASE_PATH, 'BAD', 'bad_missing_colon.yaml')))
 
   def testInstanceValidatorDetectImproperSpacing(self):
-    self.assertIsNone(parser.parse_yaml(os.path.join(_TESTCASE_PATH, 'BAD', 'bad_spacing.yaml')))
+    self.assertIsNone(instance_parser.parse_yaml(os.path.join(_TESTCASE_PATH, 'BAD', 'bad_spacing.yaml')))
 
   def testInstanceValidatorDetectImproperTabbing(self):
-    self.assertIsNone(parser.parse_yaml(os.path.join(_TESTCASE_PATH, 'BAD', 'bad_tabbing.yaml')))
+    self.assertIsNone(instance_parser.parse_yaml(os.path.join(_TESTCASE_PATH, 'BAD', 'bad_tabbing.yaml')))
 
   def testInstanceValidatorParseProperFormat(self):
-    parsed_yaml = parser.parse_yaml(os.path.join(_TESTCASE_PATH, 'GOOD', 'good_building_type.yaml'))
+    parsed_yaml = instance_parser.parse_yaml(os.path.join(_TESTCASE_PATH, 'GOOD', 'good_building_type.yaml'))
     self.assertTrue(parsed_yaml.data)
 
 if __name__ == '__main__':
