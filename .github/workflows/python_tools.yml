@@ -40,3 +40,8 @@ jobs:
       run: |
        python -m unittest discover -p '*_test.py' --failfast -v
       working-directory: ./tools/validators/ontology_validator/yamlformat/tests
+    - name: Instance Yaml Validator Tests 
+      if: (matrix.os == 'ubuntu-latest' || matrix.os == 'macos-latest')
+      run: |
+       python -m unittest discover -p '*_test.py' --failfast -v
+      working-directory: ./tools/validators/instance_validator/tests

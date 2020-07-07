@@ -1,3 +1,17 @@
+# Copyright 2020 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the License);
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#    https://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an AS IS BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 import strictyaml
 
 # TODO check all valid states and ontological references in next validation steps
@@ -38,13 +52,16 @@ def _load_yaml_with_schema(filepath, schema):
         Returns the parsed YAML data in a stricyaml-provided 
         datastructure which is similar to a Python dictionary.
     """
-    f = open(filepath).read()
+    f = open(filepath)
+    content = f.read()
+    f.close()
 
     try:
-        parsed = strictyaml.load(f, schema)
+        parsed = strictyaml.load(content, schema)
+
         return parsed
-    except strictyaml.YAMLValidationError as error:
-        raise error
+    except:
+        return None
 
 def parse_yaml(filename: str):
     """Loads an instance YAML file and parses it with multiple strictyaml-formatted YAML schemas.
@@ -57,6 +74,9 @@ def parse_yaml(filename: str):
         datastructure which is similar to a Python dictionary.
     """
     yaml = _load_yaml_with_schema(filename, _SCHEMA)
+
+    if yaml == None:
+        return None
 
     top_name = yaml.keys()[0]
 
