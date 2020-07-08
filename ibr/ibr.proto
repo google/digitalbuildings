@@ -36,7 +36,7 @@ message InternalBuildingRepresentation {
       // Unrestricted bi-directional access between origin and destination.
       UNRESTRICTED = 1;
 
-      // Restricted access to external structure, does not guarentee access from
+      // Restricted access to external structure, does not guarantee access from
       // destination back to origin.
       ONE_WAY = 2;
 
