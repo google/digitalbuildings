@@ -52,7 +52,7 @@ canvas { display: block; }
   left: 0;
   background-color: #949494;
   overflow-x: hidden;
-  padding-top: 20px;
+  padding-top: 0px;
 }
 
 .main {
