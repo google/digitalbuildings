@@ -35,10 +35,14 @@ function createLabel(tagName, name, parentTag, forId=undefined) {
  * @param {String} curStructureId ID of the HTML div element to attach the
  * new structure's data.
  * @param {Object} scene object to attach the THREE.js objects
+ * @param {number} thisStructureIndex the index of the structure being
+ processed
  * generated from structure layer data
  */
-function extractSingleStructureData(structureData, curStructureId, scene) {
-  const curStructure = IBRSDK.unpackStructure( structureData );
+function extractSingleStructureData(structureData, curStructureId, scene,
+    thisStructureIndex) {
+  const curStructure = IBRSDK.unpackStructure( structureData,
+      thisStructureIndex );
   // Create checkbox for each layer
   if (curStructure['layers'].size !== 0) {
     for ( const [layerName, layer] of Object.entries(curStructure['layers']) ) {
@@ -69,24 +73,28 @@ function extractSingleStructureData(structureData, curStructureId, scene) {
   }
 
   // Create label for each child structure
-  for ( const structure of curStructure['structures'] ) {
+  for ( let structureIndex = 0; structureIndex <
+  curStructure['structures'].length; structureIndex++ ) {
     const li = document.createElement('li');
     document.getElementById(curStructureId).appendChild(li);
-    const label = createLabel('span', structure.name, li);
+    const label = createLabel('span',
+        curStructure['structures'][structureIndex].name, li);
     label.setAttribute('class', 'arrow');
     li.appendChild(label);
     const ul = document.createElement('ul');
     ul.setAttribute('class', 'nested');
-    ul.setAttribute('id', structure.name);
+    ul.setAttribute('id', curStructure['structures'][structureIndex].name);
     li.appendChild(ul);
     label.addEventListener('click', function() {
       label.parentElement.querySelector('.nested').classList.toggle('active');
       label.classList.toggle('expanded-arrow');
       if (label.getAttribute('value') == null) {
         event.stopPropagation();
-        extractSingleStructureData(structure, structure.name, scene);
+        extractSingleStructureData(curStructure['structures'][structureIndex],
+            curStructure['structures'][structureIndex].name, scene,
+            structureIndex);
+        label.setAttribute('value', '0');
       }
-      label.setAttribute('value', '1');
     });
   }
 }
