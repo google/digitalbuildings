@@ -183,7 +183,7 @@ typeof define === 'function' && define.amd ? define(['exports'], factory) :
    * @param {HTMLElement} parentElement parent HTML element that the
     visualization will be append on.
    */
-  function renderTopIBRStructure(ibrRawData, structureIndex, parentElement) {
+  function render(ibrRawData, structureIndex, parentElement) {
     scene = generateScene(parentElement);
     const ibrData = InternalBuildingRepresentation.read(
         new Pbf(ibrRawData));
@@ -381,7 +381,7 @@ typeof define === 'function' && define.amd ? define(['exports'], factory) :
   }
 
   exports.createSidebar = createSidebar;
-  exports.renderTopIBRStructure = renderTopIBRStructure;
+  exports.render = render;
 
   Object.defineProperty(exports, '__esModule', {value: true});
 })));
