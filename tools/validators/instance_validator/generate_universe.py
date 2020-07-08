@@ -1,3 +1,17 @@
+# Copyright 2020 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the License);
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#    https://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an AS IS BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 import sys
 import os
 
@@ -7,10 +21,18 @@ def build_universe():
     Returns:
         Generated universe object.
     """
+
+    ontology_validator_exists = os.path.exists(os.path.join('..', 'ontology_validator'))
+    ontology_exists = os.path.exists(os.path.join('..', '..', '..', 'ontology'))
+
+    if not (ontology_validator_exists and ontology_exists):
+        print('ERROR: cannot generate universe, ontology validator or ontology has changed locations')
+        return None
+
     # add universe building packages to path
     sys.path.append(os.path.abspath(os.path.join('..', 'ontology_validator'))) 
     # add ontology files to path
-    sys.path.append(os.path.abspath(os.path.join('../../../', 'ontology')))
+    sys.path.append(os.path.exists(os.path.join('..', '..', '..', 'ontology')))
 
     from yamlformat.validator import external_file_lib
     from yamlformat.validator import namespace_validator
