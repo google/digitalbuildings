@@ -32,13 +32,9 @@ message InternalBuildingRepresentation {
   // A combined dedicated visual layer per floor that represents the unreacahble
   // walking space.
   message BlockingGrid {
-    // The grid id of this particular blocking grid.
     string id = 1;
 
-    // The layer (floor) id that this blocking grid belongs to.
-    string layer_id = 2;
-
-    Visualization visualization = 3;
+    Visualization visualization = 2;
   }
   message Visualization {
     enum EncodingType {
