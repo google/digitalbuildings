@@ -15,6 +15,15 @@
 import sys
 import os
 
+# add universe building packages to path
+sys.path.append(os.path.abspath(os.path.join('..', 'ontology_validator'))) 
+# add ontology files to path
+sys.path.append(os.path.exists(os.path.join('..', '..', '..', 'ontology')))
+
+from yamlformat.validator import external_file_lib
+from yamlformat.validator import namespace_validator
+from yamlformat.validator import presubmit_validate_types_lib
+
 def build_universe():
     """Generates ontology universe.
 
@@ -29,16 +38,7 @@ def build_universe():
         print('ERROR: cannot generate universe, ontology validator or ontology has changed locations')
         return None
 
-    # add universe building packages to path
-    sys.path.append(os.path.abspath(os.path.join('..', 'ontology_validator'))) 
-    # add ontology files to path
-    sys.path.append(os.path.exists(os.path.join('..', '..', '..', 'ontology')))
-
-    from yamlformat.validator import external_file_lib
-    from yamlformat.validator import namespace_validator
-    from yamlformat.validator import presubmit_validate_types_lib
-
-    yaml_files = external_file_lib._RecursiveDirWalk('../../../ontology/yaml/resources/')
+    yaml_files = external_file_lib._RecursiveDirWalk(os.path.join('..', '..', '..', 'ontology', 'yaml', 'resources'))
     config = presubmit_validate_types_lib.SeparateConfigFiles(yaml_files)
     universe = presubmit_validate_types_lib.BuildUniverse(config)
 
