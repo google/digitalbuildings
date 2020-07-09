@@ -290,7 +290,7 @@ typeof define === 'function' && define.amd ? define(['exports'], factory) :
      * @return {Map.<String, List.<Object>>} objects Layer name and
      corresponding list of three.js Line objects.
      */
-  function renderLayer(structure, structureIndex) {
+  function renderLayerAndSetToInvisible(structure, structureIndex) {
     // Check if structure contains any visualization data
     if ( structure.visualization.length === 0 ||
     structure.coordinates_lookup == null) {
