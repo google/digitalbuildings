@@ -12,13 +12,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import sys
+from sys import path
 import os
 
 # add universe building packages to path
-sys.path.append(os.path.abspath(os.path.join('..', 'ontology_validator'))) 
+path.append(os.path.abspath(os.path.join('..', 'ontology_validator'))) 
 # add ontology files to path
-sys.path.append(os.path.exists(os.path.join('..', '..', '..', 'ontology')))
+path.append(os.path.exists(os.path.join('..', '..', '..', 'ontology')))
 
 from yamlformat.validator import external_file_lib
 from yamlformat.validator import namespace_validator

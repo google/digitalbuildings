@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Tests for generate_universe.py"""
+"""Tests for ontology_validation.py"""
 
 from __future__ import absolute_import
 from __future__ import division
@@ -25,12 +25,8 @@ path.append('..')
 from instance_validator import generate_universe
 from absl.testing import absltest
 
-class GenerateUniverseTest(absltest.TestCase):
+class OntologyValidationTest(absltest.TestCase):
 
-  def testCanGenerateUniverse(self):
-    universe = generate_universe.build_universe()
-    self.assertTrue(universe)
-  
   def testCanParseUniverse(self):
     universe = generate_universe.build_universe()
     fields, subfields_map, states_map, units_map, entities_map = generate_universe.parse_universe(universe)
@@ -39,6 +35,12 @@ class GenerateUniverseTest(absltest.TestCase):
     self.assertTrue(states_map)
     self.assertTrue(units_map)
     self.assertTrue(entities_map)
+  
+  def testValidateGoodExample(self):
+    pass
+
+  def testValidateBadExample(self):
+    pass
 
 if __name__ == '__main__':
   absltest.main()
