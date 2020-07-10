@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Main driver file of the instance validator."""
+"""Main of the instance validator."""
 
 from __future__ import print_function
 

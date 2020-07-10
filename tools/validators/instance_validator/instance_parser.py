@@ -16,6 +16,9 @@
 
 import strictyaml as syaml
 
+_COMPLIANT = 'COMPLIANT'
+_TRANSLATION = 'translation'
+
 # TODO check valid ontological content in next validation steps
 """strictyaml schema parses a YAML instance from its first level of keys
 github.com/google/digitalbuildings/blob/master/ontology/docs/building_config.md#config-format"""
@@ -54,7 +57,6 @@ _TRANSLATION_DATA_SCHEMA = syaml.Str() | syaml.Map({
     syaml.Optional('unit_values'): syaml.MapPattern(syaml.Str(), syaml.Str())
     })
 
-_COMPLIANT = 'COMPLIANT'
 
 def _load_yaml_with_schema(filepath, schema):
   """Loads an instance YAML file and parses
@@ -98,8 +100,8 @@ def parse_yaml(filename):
 
   top_name = yaml.keys()[0]
 
-  if 'translation' in yaml[top_name].keys():
-    translation = yaml[top_name]['translation']
+  if _TRANSLATION in yaml[top_name].keys():
+    translation = yaml[top_name][_TRANSLATION]
     translation.revalidate(_TRANSLATION_SCHEMA)
 
     # TODO can this be automatically verified based on ontology?
