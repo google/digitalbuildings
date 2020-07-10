@@ -12,7 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Building
-UK-LON-S2:
-  type: FACILITIES/BUILDING
+UK-LON-S3:
+  type: NONEXISTENT/BUILDING
   id: FACILITIES/123456

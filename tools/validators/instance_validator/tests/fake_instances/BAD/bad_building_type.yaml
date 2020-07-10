@@ -13,6 +13,6 @@
 # limitations under the License.
 
 # Building
-UK-LON-S2:
-  type: FACILITIES/BUILDING
+UK-LON-S3:
+  type: FACILITIES/BUILDING/ERRORORO
   id: FACILITIES/123456
