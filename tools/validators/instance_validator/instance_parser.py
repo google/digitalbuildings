@@ -12,84 +12,93 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import strictyaml
+"""Parses and validates YAML instance files for syntax"""
 
-# TODO check all valid states and ontological references in next validation steps
-_SCHEMA = strictyaml.MapPattern(strictyaml.Str(), 
-    strictyaml.Map({
-        'type': strictyaml.Str(), 
-        'id': strictyaml.Str(), 
-        strictyaml.Optional('connections'): strictyaml.MapPattern(strictyaml.Str(), strictyaml.Str())
-                               | strictyaml.Seq(strictyaml.MapPattern(strictyaml.Str(), strictyaml.Str())),
-        strictyaml.Optional('links'): strictyaml.MapPattern(strictyaml.Str(), 
-            strictyaml.MapPattern(strictyaml.Str(), strictyaml.Str())),
-        strictyaml.Optional('translation'): strictyaml.Any(),
-        strictyaml.Optional('metadata'): strictyaml.Any()
-    }))
+import strictyaml as syaml
 
-_TRANSLATION_SCHEMA = strictyaml.Str() | strictyaml.Any()
+# TODO check valid ontological content in next validation steps
+_SCHEMA = syaml.MapPattern(syaml.Str(),
+                           syaml.Map({
+                               'type': syaml.Str(),
+                               'id': syaml.Str(),
+                               syaml.Optional('connections'):
+                               syaml.MapPattern(syaml.Str(),
+                                                syaml.Str()) |
+                               syaml.Seq(
+                                   syaml.MapPattern(syaml.Str(),
+                                                    syaml.Str())),
+                               syaml.Optional('links'): syaml.MapPattern(
+                                   syaml.Str(),
+                                   syaml.MapPattern(syaml.Str(), syaml.Str())),
+                               syaml.Optional('translation'): syaml.Any(),
+                               syaml.Optional('metadata'): syaml.Any()
+                               }))
 
-# TODO add manual check for translation_data_schema to de-duplicate units/unit_values/states
+_TRANSLATION_SCHEMA = syaml.Str() | syaml.Any()
+
+# TODO add manual check to de-duplicate units/unit_values/states
 # TODO add all units/unit_values/states to translation_data_schema
-_TRANSLATION_DATA_SCHEMA = strictyaml.Str() | strictyaml.Map({
-                                    'present_value': strictyaml.Str(),
-                                    strictyaml.Optional('states'): strictyaml.MapPattern(strictyaml.Str(), strictyaml.Str()),
-                                    strictyaml.Optional('units'): strictyaml.Map({
-                                        'key': strictyaml.Str(),
-                                        'values': strictyaml.MapPattern(strictyaml.Str(), strictyaml.Str())
-                                    }),
-                                    strictyaml.Optional('unit_values'): strictyaml.MapPattern(strictyaml.Str(), strictyaml.Str())
-                                })
+_TRANSLATION_DATA_SCHEMA = syaml.Str() | syaml.Map({
+    'present_value': syaml.Str(),
+    syaml.Optional('states'): syaml.MapPattern(syaml.Str(), syaml.Str()),
+    syaml.Optional('units'): syaml.Map({
+        'key': syaml.Str(),
+        'values': syaml.MapPattern(syaml.Str(), syaml.Str())
+    }),
+    syaml.Optional('unit_values'): syaml.MapPattern(syaml.Str(), syaml.Str())
+    })
 
 def _load_yaml_with_schema(filepath, schema):
-    """Loads an instance YAML file and parses it based on a strictyaml-formatted YAML schema.
+  """Loads an instance YAML file and parses
+  it based on a syaml-formatted YAML schema.
 
-    Args:
-        filepath: filepath location of the YAML file
-        schema: YAML schema in strictyaml format
+  Args:
+    filepath: filepath location of the YAML file
+    schema: YAML schema in syaml format
 
-    Returns:
-        Returns the parsed YAML data in a stricyaml-provided 
-        datastructure which is similar to a Python dictionary.
-    """
-    f = open(filepath)
-    content = f.read()
-    f.close()
+  Returns:
+    Returns the parsed YAML data in a stricyaml-provided
+    datastructure which is similar to a Python dictionary.
+  """
+  f = open(filepath)
+  content = f.read()
+  f.close()
 
-    try:
-        parsed = strictyaml.load(content, schema)
+  try:
+    parsed = syaml.load(content, schema)
 
-        return parsed
-    except:
-        return None
+    return parsed
+  except Exception:
+    return None
 
-def parse_yaml(filename: str):
-    """Loads an instance YAML file and parses it with multiple strictyaml-formatted YAML schemas.
+def parse_yaml(filename):
+  """Loads an instance YAML file and parses it with
+  multiple strictyaml-formatted YAML schemas.
 
-    Args:
-        filename: filepath location of the YAML file
+  Args:
+    filename: filepath location of the YAML file
 
-    Returns:
-        Returns the parsed YAML data in a stricyaml-provided 
-        datastructure which is similar to a Python dictionary.
-    """
-    yaml = _load_yaml_with_schema(filename, _SCHEMA)
+  Returns:
+    Returns the parsed YAML data in a stricyaml-provided
+    datastructure which is similar to a Python dictionary.
+  """
+  yaml = _load_yaml_with_schema(filename, _SCHEMA)
 
-    if yaml == None:
-        return None
+  if yaml is None:
+    return None
 
-    top_name = yaml.keys()[0]
+  top_name = yaml.keys()[0]
 
-    if 'translation' in yaml[top_name].keys():
-        translation = yaml[top_name]['translation']
-        translation.revalidate(_TRANSLATION_SCHEMA)
+  if 'translation' in yaml[top_name].keys():
+    translation = yaml[top_name]['translation']
+    translation.revalidate(_TRANSLATION_SCHEMA)
 
-        # TODO can this be automatically verified based on ontology?
-        # if translation is not UDMI compliant
-        if translation.data != 'COMPLIANT':
-            translation_keys = translation.keys()
+    # TODO can this be automatically verified based on ontology?
+    # if translation is not UDMI compliant
+    if translation.data != 'COMPLIANT':
+      translation_keys = translation.keys()
 
-            for k in translation_keys:
-                translation[k].revalidate(_TRANSLATION_DATA_SCHEMA)
+      for k in translation_keys:
+        translation[k].revalidate(_TRANSLATION_DATA_SCHEMA)
 
-    return yaml
+  return yaml
