@@ -12,43 +12,47 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-def _validate_type(entity: dict, entities_map):
-    """Uses information from the generated ontology universe to validate an entity's type.
+"""Uses ontology universe to validate parsed instance ."""
 
-    Args:
-        entity: parsed instance YAML file formatted as dictionary
-        entities_map: valid universe entity types generated from ontology
+def _validate_type(entity, entities_map):
+  """Uses information from the generated ontology universe to validate
+  an entity's type.
 
-    Returns:
-        Throws Exceptions if entity type is invalid.
-    """
-    entity_type_str = str(entity['type'])
-    type_parse = entity_type_str.split('/')
+  Args:
+    entity: parsed instance YAML file formatted as dictionary
+    entities_map: valid universe entity types generated from ontology
 
-    if len(type_parse) != 2:
-        raise Exception('type improperly formatted:', entity_type_str)
+  Returns:
+    Throws Exceptions if entity type is invalid.
+  """
+  entity_type_str = str(entity['type'])
+  type_parse = entity_type_str.split('/')
 
-    namespace = type_parse[0]
-    entity_type = type_parse[1]
+  if len(type_parse) != 2:
+    raise Exception('type improperly formatted:', entity_type_str)
 
-    if namespace not in entities_map.keys():
-        raise Exception('invalid namespace:', namespace)
-    
-    if entity_type not in entities_map[namespace].keys():
-        raise Exception('invalid entity type:', entity_type)
+  namespace = type_parse[0]
+  entity_type = type_parse[1]
 
-def validate_entity(entity: dict, fields, subfields_map, states_map, units_map, entities_map):
-    """Uses information from the generated ontology universe to validate an entity.
+  if namespace not in entities_map.keys():
+    raise Exception('invalid namespace:', namespace)
 
-    Args:
-        entity: parsed instance YAML file formatted as dictionary
-        fields: valid universe field types generated from ontology
-        subfields_map: valid universe subfield types generated from ontology
-        states_map: valid universe state types generated from ontology
-        units_map:  valid universe unit types generated from ontology
-        entities_map:  valid universe entity types generated from ontology
+  if entity_type not in entities_map[namespace].keys():
+    raise Exception('invalid entity type:', entity_type)
 
-    Returns:
-        Throws Exceptions if entity is invalid.
-    """
-    _validate_type(entity, entities_map)
+def validate_entity(entity, fields,
+                    subfields_map, states_map, units_map, entities_map):
+  """Uses information from generated ontology universe to validate an entity.
+
+  Args:
+    entity: parsed instance YAML file formatted as dictionary
+    fields: valid universe field types generated from ontology
+    subfields_map: valid universe subfield types generated from ontology
+    states_map: valid universe state types generated from ontology
+    units_map:  valid universe unit types generated from ontology
+    entities_map:  valid universe entity types generated from ontology
+
+  Returns:
+    Throws Exceptions if entity is invalid.
+  """
+  _validate_type(entity, entities_map)
