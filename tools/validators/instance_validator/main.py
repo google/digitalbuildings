@@ -12,8 +12,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import instance_parser 
-import sys
+"""Main driver file of the instance validator."""
+
+from __future__ import print_function
+
+import instance_parser
+import argparse
 # ONTOLOGY VALIDATION
 # import ontology_validation
 # import generate_universe
@@ -21,31 +25,42 @@ import sys
 # TODO add input and return type checks in all functions
 
 if __name__ == '__main__':
-    if len(sys.argv) != 2:
-        print('USAGE: python3 schema.py yaml_file_path')
-        sys.exit(1)
-    
-    # SYNTAX VALIDATION
-    print('\nValidator starting ...')
-    filename = sys.argv[1]
+  parser = argparse.ArgumentParser(
+      description='Validate a YAML building configuration file')
+  parser.add_argument('-i', '--input',
+                      dest='filename',
+                      required=True,
+                      help='Filepath to YAML building configuration',
+                      metavar='FILE')
+  arg = parser.parse_args()
 
-    # throws errors for syntax
-    parsed = dict(instance_parser.parse_yaml(filename))
+  # SYNTAX VALIDATION
+  print('\nValidator starting ...')
+  filename = arg.filename
 
-    print('Passed syntax checks!')
+  # throws errors for syntax
+  parsed = dict(instance_parser.parse_yaml(filename))
 
-    # ONTOLOGY VALIDATION
-    '''
-    print('Building ontology universe ...')
+  print('Passed syntax checks!')
 
-    universe = generate_universe.build_universe()
-    fields, subfields_map, states_map, units_map, entities_map = generate_universe.parse_universe(universe)
+  # ONTOLOGY VALIDATION
+  '''
+  print('Building ontology universe ...')
 
-    entity_names = list(parsed.keys())
+  universe = generate_universe.build_universe()
+  parsed_univ = generate_universe.parse_universe(universe)
+  fields, subfields_map, states_map, units_map, entities_map = parsed_univ
 
-    for name in entity_names:
-        entity = dict(parsed[name])
-        ontology_validation.validate_entity(entity, fields, subfields_map, states_map, units_map, entities_map)
+  entity_names = list(parsed.keys())
 
-    print('Passed all checks!\n')
-    '''
+  for name in entity_names:
+    entity = dict(parsed[name])
+    ontology_validation.validate_entity(entity,
+                                        fields,
+                                        subfields_map,
+                                        states_map,
+                                        units_map,
+                                        entities_map)
+
+  print('Passed all checks!\n')
+  '''

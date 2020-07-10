@@ -17,6 +17,8 @@
 import strictyaml as syaml
 
 # TODO check valid ontological content in next validation steps
+"""strictyaml schema parses a YAML instance from its first level of keys
+github.com/google/digitalbuildings/blob/master/ontology/docs/building_config.md#config-format"""
 _SCHEMA = syaml.MapPattern(syaml.Str(),
                            syaml.Map({
                                'type': syaml.Str(),
@@ -34,10 +36,14 @@ _SCHEMA = syaml.MapPattern(syaml.Str(),
                                syaml.Optional('metadata'): syaml.Any()
                                }))
 
+"""schema separately parses translation to account for multiple valid formats
+github.com/google/digitalbuildings/blob/master/ontology/docs/building_config.md#defining-translations"""
 _TRANSLATION_SCHEMA = syaml.Str() | syaml.Any()
 
 # TODO add manual check to de-duplicate units/unit_values/states
 # TODO add all units/unit_values/states to translation_data_schema
+"""further account for multiple valid translation formats
+github.com/google/digitalbuildings/blob/master/ontology/docs/building_config.md#defining-translations"""
 _TRANSLATION_DATA_SCHEMA = syaml.Str() | syaml.Map({
     'present_value': syaml.Str(),
     syaml.Optional('states'): syaml.MapPattern(syaml.Str(), syaml.Str()),
@@ -47,6 +53,8 @@ _TRANSLATION_DATA_SCHEMA = syaml.Str() | syaml.Map({
     }),
     syaml.Optional('unit_values'): syaml.MapPattern(syaml.Str(), syaml.Str())
     })
+
+_COMPLIANT = 'COMPLIANT'
 
 def _load_yaml_with_schema(filepath, schema):
   """Loads an instance YAML file and parses
@@ -73,7 +81,8 @@ def _load_yaml_with_schema(filepath, schema):
 
 def parse_yaml(filename):
   """Loads an instance YAML file and parses it with
-  multiple strictyaml-formatted YAML schemas.
+  multiple strictyaml-formatted YAML schemas. Expected format:
+  github.com/google/digitalbuildings/blob/master/ontology/docs/building_config.md#config-format
 
   Args:
     filename: filepath location of the YAML file
@@ -95,7 +104,7 @@ def parse_yaml(filename):
 
     # TODO can this be automatically verified based on ontology?
     # if translation is not UDMI compliant
-    if translation.data != 'COMPLIANT':
+    if translation.data != _COMPLIANT:
       translation_keys = translation.keys()
 
       for k in translation_keys:
