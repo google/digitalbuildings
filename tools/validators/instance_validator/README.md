@@ -1,9 +1,9 @@
 # Instance Validator
 
-The Instance Validator allows you to validate YAML instance files to make sure they comform to the given ontology model.
+The Instance Validator allows validation of YAML instance files to make sure they conform to the given ontology model.
 
 ## Usage
-The Instance Validator is written in Python3 and takes as a CLI argument the path pointing to the instance files.
+The Instance Validator is written in Python3 and takes as an argument the path pointing to the instance files.
 
 The validator can be run as following: `python3 main.py path/to/test_file.yaml`
 
