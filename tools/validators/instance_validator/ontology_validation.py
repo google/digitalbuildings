@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Uses ontology universe to validate parsed instance ."""
+"""Uses ontology universe to validate parsed instance data."""
 
 def _validate_type(entity, entities_map):
   """Uses information from the generated ontology universe to validate

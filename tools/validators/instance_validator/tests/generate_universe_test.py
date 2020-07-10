@@ -30,10 +30,11 @@ class GenerateUniverseTest(absltest.TestCase):
   def testCanGenerateUniverse(self):
     universe = generate_universe.build_universe()
     self.assertTrue(universe)
-  
+
   def testCanParseUniverse(self):
     universe = generate_universe.build_universe()
-    fields, subfields_map, states_map, units_map, entities_map = generate_universe.parse_universe(universe)
+    parsed_univ = generate_universe.parse_universe(universe)
+    fields, subfields_map, states_map, units_map, entities_map = parsed_univ
     self.assertTrue(fields)
     self.assertTrue(subfields_map)
     self.assertTrue(states_map)
