@@ -20,7 +20,7 @@ def _validate_type(entity, entities_map):
 
   Args:
     entity: parsed instance YAML file formatted as dictionary
-    entities_map: valid universe entity types generated from ontology
+    entities_map: valid universe entity types generated from the ontology
 
   Returns:
     Throws Exceptions if entity type is invalid.
@@ -46,11 +46,11 @@ def validate_entity(entity, fields,
 
   Args:
     entity: parsed instance YAML file formatted as dictionary
-    fields: valid universe field types generated from ontology
-    subfields_map: valid universe subfield types generated from ontology
-    states_map: valid universe state types generated from ontology
-    units_map:  valid universe unit types generated from ontology
-    entities_map:  valid universe entity types generated from ontology
+    fields: valid universe field types generated from the ontology
+    subfields_map: valid universe subfield types generated from the ontology
+    states_map: valid universe state types generated from the ontology
+    units_map:  valid universe unit types generated from the ontology
+    entities_map:  valid universe entity types generated from the ontology
 
   Returns:
     Throws Exceptions if entity is invalid.

@@ -28,7 +28,7 @@ from yamlformat.validator import external_file_lib
 from yamlformat.validator import presubmit_validate_types_lib
 
 def build_universe():
-  """Generates ontology universe.
+  """Generates the ontology universe.
 
   Returns:
     Generated universe object.
@@ -39,7 +39,7 @@ def build_universe():
   ontology_exists = os.path.exists(os.path.join('..', '..', '..', 'ontology'))
 
   if not (ontology_validator_exists and ontology_exists):
-    print('ERROR: ontology validator or ontology has changed locations')
+    print('ERROR: ontology validator or ontology have changed locations')
     return None
 
   yaml_files = external_file_lib._RecursiveDirWalk(os.path.join(
@@ -50,17 +50,17 @@ def build_universe():
   return universe
 
 def parse_universe(universe):
-  """Parses generated ontology universe object into its subcomponents
+  """Parses generated the ontology universe object into its subcomponents
 
   Args:
-    universe: generated ontology universe object
+    universe: generated the ontology universe object
 
   Returns:
-    fields: valid universe field types generated from ontology
-    subfields_map: valid universe subfield types generated from ontology
-    states_map: valid universe state types generated from ontology
-    units_map:  valid universe unit types generated from ontology
-    entities_map:  valid universe entity types generated from ontology
+    fields: valid universe field types generated from the ontology
+    subfields_map: valid universe subfield types generated from the ontology
+    states_map: valid universe state types generated from the ontology
+    units_map:  valid universe unit types generated from the ontology
+    entities_map:  valid universe entity types generated from the ontology
   """
   states = universe.state_universe
   entities = universe.entity_type_universe
@@ -73,15 +73,17 @@ def parse_universe(universe):
   # consolidate all entity information into dictionary
   entities_map = {}
   entity_type_namespaces = entities.type_namespaces_map
-  for k in entity_type_namespaces.keys():
-    valid_types_map = entity_type_namespaces[k].valid_types_map
+  for namespace in entity_type_namespaces.keys():
+    valid_types_map = entity_type_namespaces[namespace].valid_types_map
 
-    namespace = entity_type_namespaces[k].namespace
-    entities_map[namespace] = {}
+    namespace_name = entity_type_namespaces[namespace].namespace
+    entities_map[namespace_name] = {}
 
-    for v_k in valid_types_map.keys():
-      entity_type = valid_types_map[v_k]
-      entities_map[namespace][v_k] = entity_type.GetAllFields(run_unsafe=True)
+    for valid_type_key in valid_types_map.keys():
+      entity_type = valid_types_map[valid_type_key]
+      # run_unsafe b/c function is otherwise blocked from running
+      entities_map[namespace_name][valid_type_key] = entity_type.GetAllFields(
+          run_unsafe=True)
 
   subfields_map = subfields.GetSubfieldsMap('')
   states_map = states.GetStatesMap('')
