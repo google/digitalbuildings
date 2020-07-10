@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-def validate_type(entity: dict, entities_map):
+def _validate_type(entity: dict, entities_map):
     """Uses information from the generated ontology universe to validate an entity's type.
 
     Args:
@@ -51,4 +51,4 @@ def validate_entity(entity: dict, fields, subfields_map, states_map, units_map, 
     Returns:
         Throws Exceptions if entity is invalid.
     """
-    validate_type(entity, entities_map)
+    _validate_type(entity, entities_map)
