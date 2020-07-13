@@ -29,12 +29,12 @@ typeof define === 'function' && define.amd ? define(['exports'], factory) :
 
   /**
    * Create a side bar for layer and structure navigation.
-   * @param {binary} IBRRawData Raw data from IBR binary data file.
+   * @param {binary} ibrRawData Raw data from IBR binary data file.
    * @param {HTMLElement} parentElement Parent element to attach the sidebar to.
    */
-  function createSidebar(IBRRawData, parentElement) {
+  function createSidebar(ibrRawData, parentElement) {
     const ibrData = InternalBuildingRepresentation.read(
-        new Pbf(IBRRawData));
+        new Pbf(ibrRawData));
     // for datafiles that have top level name is ""
     if (ibrData.name === '') {
       ibrData.name = 'ibrData.name';
@@ -114,8 +114,6 @@ typeof define === 'function' && define.amd ? define(['exports'], factory) :
     return label;
   }
 
-  //  function renderLayer
-
   /**
    * Create checkboxes for given structure's layers and child structures.
    * @param {Object} curStructure the structure generated from
@@ -180,18 +178,18 @@ typeof define === 'function' && define.amd ? define(['exports'], factory) :
 
   /**
    * Parse top level of decoded IBR Object into structures.
-   * @param {binary} IBRRawData Raw data from IBR binary data file.
+   * @param {binary} ibrRawData Raw data from IBR binary data file.
    * @param {number} structureIndex Index of current structure(floor).
    * @param {HTMLElement} parentElement parent HTML element that the
     visualization will be append on.
    */
-  function renderTopIBRStructure(IBRRawData, structureIndex, parentElement) {
+  function render(ibrRawData, structureIndex, parentElement) {
     scene = generateScene(parentElement);
     const ibrData = InternalBuildingRepresentation.read(
-        new Pbf(IBRRawData));
+        new Pbf(ibrRawData));
     const curStructure = {};
     // Visualization layers of current structure
-    curStructure['layers'] = renderLayerAndSetToInvisible( ibrData,
+    curStructure['layers'] = renderLayer( ibrData,
         structureIndex, scene );
     // Sub-structures of the current structure
     curStructure['structures'] = [];
@@ -210,7 +208,7 @@ typeof define === 'function' && define.amd ? define(['exports'], factory) :
   function renderSingleIBRStructure(ibrData, structureIndex) {
     const curStructure = {};
     // Visualization layers of current structure
-    curStructure['layers'] = renderLayerAndSetToInvisible( ibrData,
+    curStructure['layers'] = renderLayer( ibrData,
         structureIndex);
     // Sub-structures of the current structure
     curStructure['structures'] = [];
@@ -286,13 +284,13 @@ typeof define === 'function' && define.amd ? define(['exports'], factory) :
 
   /**
      * Converts decoded ibr structure data into three.js Line objects
-     and add them to scene.
+     and add them to scene with visibility set to false.
      * @param {Object} structure structures decoded from raw ibr data.
      * @param {number} structureIndex overall index of the structure.
      * @return {Map.<String, List.<Object>>} objects Layer name and
      corresponding list of three.js Line objects.
      */
-  function renderLayerAndSetToInvisible(structure, structureIndex) {
+  function renderLayer(structure, structureIndex) {
     // Check if structure contains any visualization data
     if ( structure.visualization.length === 0 ||
     structure.coordinates_lookup == null) {
@@ -383,10 +381,7 @@ typeof define === 'function' && define.amd ? define(['exports'], factory) :
   }
 
   exports.createSidebar = createSidebar;
-  exports.generateScene = generateScene;
-  exports.drawSingleStructureSidebar = drawSingleStructureSidebar;
-  exports.renderTopIBRStructure = renderTopIBRStructure;
-  exports.renderLayerAndSetToInvisible = renderLayerAndSetToInvisible;
+  exports.render = render;
 
   Object.defineProperty(exports, '__esModule', {value: true});
 })));
