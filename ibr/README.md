@@ -7,14 +7,20 @@ IBR has no opinion of data requirements. If a developer wants to use IBR as an a
 
 IBR comes with a rendering library built on THREE.js that can be used to easily create a custom UI to visualize and edit the compact data. This allows developers to build custom features and have more control over their tooling. 
 
-## Instructions for running the IBR UI:
+## Instructions for Running the IBR UI:
 1. Open terminal and run following commands:
     - `cd digitalbuildings/ibr`
     - `npm i`
     - `npm i ibr-sdk`
     - `mkdir -p temp/ && node_modules/.bin/pbf ibr.proto --browser > temp/ibr_pb_browser.js`
-2. Open html/index.html in your browser
+2. Open html/index.html in your browser. (On Mac, start chrome from terminal using this command instead: `open -a "Google Chrome" html/index.html --args --allow-file-access-from-files`)
 3. Click on "Choose File" button to open your ibr data file
+
+## Potential Issues and Fix
+1. When using Chrome browser, see error "Blocked by CORS policy : Cross origin requests are only supported for protocol schemes: http, data, chrome, chrome-extension, https" in console
+
+   Fix: exit Chrome browser and relaunch Chrome from command line with flag `--allow-file-access-from-files`
+
 ##### Developer Note: 
 *The ibr-sdk npm package is not published, hence it cannot yet be installed in other projects.*
 *Run `npx eslint \[filename\] --fix` to check efore Pull Request.*
