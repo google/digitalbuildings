@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Tests google3.corp.bizapps.rews.carson.tools.validators.instance_validator.parser"""
+"""Tests tools.validators.instance_validator.instance_parser"""
 
 from __future__ import absolute_import
 from __future__ import division
@@ -29,21 +29,26 @@ from absl.testing import absltest
 _TESTCASE_PATH = os.path.join('.', 'tests', 'fake_instances')
 
 class ParserTest(absltest.TestCase):
-  
+
   def testInstanceValidatorDetectDuplicateKeys(self):
-    self.assertIsNone(instance_parser.parse_yaml(os.path.join(_TESTCASE_PATH, 'BAD', 'bad_duplicate_keys.yaml')))
+    self.assertIsNone(instance_parser.parse_yaml(os.path.join(
+        _TESTCASE_PATH, 'BAD', 'bad_duplicate_keys.yaml')))
 
   def testInstanceValidatorDetectMissingColon(self):
-    self.assertIsNone(instance_parser.parse_yaml(os.path.join(_TESTCASE_PATH, 'BAD', 'bad_missing_colon.yaml')))
+    self.assertIsNone(instance_parser.parse_yaml(os.path.join(
+        _TESTCASE_PATH, 'BAD', 'bad_missing_colon.yaml')))
 
   def testInstanceValidatorDetectImproperSpacing(self):
-    self.assertIsNone(instance_parser.parse_yaml(os.path.join(_TESTCASE_PATH, 'BAD', 'bad_spacing.yaml')))
+    self.assertIsNone(instance_parser.parse_yaml(os.path.join(
+        _TESTCASE_PATH, 'BAD', 'bad_spacing.yaml')))
 
   def testInstanceValidatorDetectImproperTabbing(self):
-    self.assertIsNone(instance_parser.parse_yaml(os.path.join(_TESTCASE_PATH, 'BAD', 'bad_tabbing.yaml')))
+    self.assertIsNone(instance_parser.parse_yaml(os.path.join(
+        _TESTCASE_PATH, 'BAD', 'bad_tabbing.yaml')))
 
   def testInstanceValidatorParseProperFormat(self):
-    parsed_yaml = instance_parser.parse_yaml(os.path.join(_TESTCASE_PATH, 'GOOD', 'good_building_type.yaml'))
+    parsed_yaml = instance_parser.parse_yaml(os.path.join(
+        _TESTCASE_PATH, 'GOOD', 'good_building_type.yaml'))
     self.assertTrue(parsed_yaml.data)
 
 if __name__ == '__main__':

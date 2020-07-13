@@ -12,7 +12,16 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Main of the instance validator."""
+"""Main of the instance validator. This script takes a YAML building
+configuration file as an argument and validates it for coherence with the
+Digital Buildings ontology.
+
+This is done by first ensuring the file syntax is valid YAML, then by
+generating the ontology and comparing it with the file contents.
+
+This tool allows clients to independently validate their configuration files,
+and thus streamlines the onboarding process through automation. It saves time
+and provides more accuracy than manual error checks."""
 
 from __future__ import print_function
 
@@ -49,6 +58,8 @@ if __name__ == '__main__':
 
   universe = generate_universe.build_universe()
   parsed_univ = generate_universe.parse_universe(universe)
+
+  # TODO replace this assignment logic with NamedTuple ontology generation
   fields, subfields_map, states_map, units_map, entities_map = parsed_univ
 
   entity_names = list(parsed.keys())
