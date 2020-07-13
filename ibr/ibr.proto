@@ -29,6 +29,38 @@ message InternalBuildingRepresentation {
     repeated FieldValue field_values = 1;
   }
 
+  message Connection {
+    enum Type {
+      UNKNOWN = 0;
+
+      // Unrestricted bi-directional access between origin and destination.
+      UNRESTRICTED = 1;
+
+      // Restricted access to external structure, does not guarantee access from
+      // destination back to origin.
+      ONE_WAY = 2;
+
+      // Restricted access to certain time periods.
+      TIME_LIMITED = 3;
+
+      // Emergency access only.
+      EMERGENCY = 4;
+
+      // Restricted access to privileged users only.
+      PRIVILEGED = 5;
+    }
+
+    // The destination IBR SPACE structure.
+    string external_structure_id = 1;
+
+    // The connection type from origin to destination.
+    Type type = 2;
+
+    // https://tools.ietf.org/html/rfc5545
+    // spaces only available at certain times, public/nonpublic
+    string recurrence = 3;
+  }
+
   // A combined dedicated visual layer per floor that represents the unreacahble
   // walking space.
   message BlockingGrid {
@@ -36,6 +68,7 @@ message InternalBuildingRepresentation {
 
     Visualization visualization = 2;
   }
+
   message Visualization {
     enum EncodingType {
       UNKNOWN = 0;
@@ -85,7 +118,7 @@ message InternalBuildingRepresentation {
   // The compressed coordinates that is referenced throughout the message.
   // A base64 encoded ordered list of coordinates.
   // The decoded string comes in the form of comma separated coordinates which
-  // are space separated floats. e.g. "<x> <y>,<x> <y>,<x> <y>".
+  // are space separated floats. e.g. "<x> <y> <z>,<x> <y> <z>,<x> <y> <z>".
   // Visualization and other layers index into coordinates_lookup to determine
   // coordinate segments.
   bytes coordinates_lookup = 5;
@@ -94,7 +127,7 @@ message InternalBuildingRepresentation {
   // external/internal walls, blocking geometry etc.)
   repeated Visualization visualization = 6;
 
-  // Boundary of the structure
+  // Boundary of the structure, coordinates stored in lookup.
   bytes boundary = 7;
 
   // Child structures
@@ -104,4 +137,6 @@ message InternalBuildingRepresentation {
   repeated StructureReference external_reference = 9;
 
   BlockingGrid blocking_grid = 10;
+
+  repeated Connection connections = 11;
 }
