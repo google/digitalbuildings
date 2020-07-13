@@ -131,7 +131,7 @@ descriptor:
   return: "Measurement or process of media as it is returned from the end-use equipment within the system."
   reversing: "Reverses direction of flow (e.g. reversing valve on heat pump)."
   room: "A space that can be occupied, or a part or division of a building or floor enclosed by walls."
-  scene : "a combination of objects or events in view or happening of an event that attracts attention."
+  scene : "One of many stored setpoints that may be recalled to apply predetermined lighting levels across a number of fixtures."
   schedule: "Refers to the time-of-day run-time requirements for the equipment."
   season: "Weather conditions under which certain systems or processes are enabled."
   secondary: "Associated with the secondary (distribution) loop of a produciton process."
