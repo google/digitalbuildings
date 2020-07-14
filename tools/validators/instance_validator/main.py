@@ -58,7 +58,8 @@ if __name__ == '__main__':
   universe = generate_universe.build_universe()
   parsed_univ = generate_universe.parse_universe(universe)
 
-  # TODO replace this assignment logic with NamedTuple ontology generation
+  # TODO(https://github.com/google/digitalbuildings/issues/42): 
+      replace this assignment logic with NamedTuple ontology generation
   fields, subfields_map, states_map, units_map, entities_map = parsed_univ
 
   entity_names = list(parsed.keys())
