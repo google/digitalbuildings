@@ -14,6 +14,8 @@
 
 """Uses ontology universe to validate parsed instance data."""
 
+from __future__ import print_function
+
 def _validate_type(entity, entities_map):
   """Uses information from the generated ontology universe to validate
   an entity's type.
@@ -29,16 +31,21 @@ def _validate_type(entity, entities_map):
   type_parse = entity_type_str.split('/')
 
   if len(type_parse) != 2:
-    raise Exception('type improperly formatted:', entity_type_str)
+    print('type improperly formatted:', entity_type_str)
+    return False
 
   namespace = type_parse[0]
   entity_type = type_parse[1]
 
   if namespace not in entities_map.keys():
-    raise Exception('invalid namespace:', namespace)
+    print('invalid namespace:', namespace)
+    return False
 
   if entity_type not in entities_map[namespace].keys():
-    raise Exception('invalid entity type:', entity_type)
+      print('invalid entity type:', entity_type)
+      return False
+  
+  return True
 
 def validate_entity(entity, fields,
                     subfields_map, states_map, units_map, entities_map):
@@ -55,4 +62,4 @@ def validate_entity(entity, fields,
   Returns:
     Throws Exceptions if entity is invalid.
   """
-  _validate_type(entity, entities_map)
+  return _validate_type(entity, entities_map)

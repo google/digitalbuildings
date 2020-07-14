@@ -58,14 +58,13 @@ class OntologyValidationTest(absltest.TestCase):
 
     for name in entity_names:
       entity = dict(_GOOD_EXAMPLE[name])
-      try:
-        ontology_validation.validate_entity(entity,
+      result = ontology_validation.validate_entity(entity,
                                             _UNIVERSE['fields'],
                                             _UNIVERSE['subfields_map'],
                                             _UNIVERSE['states_map'],
                                             _UNIVERSE['units_map'],
                                             _UNIVERSE['entities_map'])
-      except Exception:
+      if result == False:
         self.fail('exception incorrectly raised')
 
   def testValidateBadNamespaceExample(self):
@@ -73,48 +72,42 @@ class OntologyValidationTest(absltest.TestCase):
 
     for name in entity_names:
       entity = dict(_BAD_NAMESPACE_EXAMPLE[name])
-      try:
-        ontology_validation.validate_entity(entity,
+      result = ontology_validation.validate_entity(entity,
                                             _UNIVERSE['fields'],
                                             _UNIVERSE['subfields_map'],
                                             _UNIVERSE['states_map'],
                                             _UNIVERSE['units_map'],
                                             _UNIVERSE['entities_map'])
+      if result == True:
         self.fail('exception failed to raise')
-      except Exception:
-        pass
 
   def testValidateBadTypeExample(self):
     entity_names = list(_BAD_TYPE_EXAMPLE.keys())
 
     for name in entity_names:
       entity = dict(_BAD_TYPE_EXAMPLE[name])
-      try:
-        ontology_validation.validate_entity(entity,
+      result = ontology_validation.validate_entity(entity,
                                             _UNIVERSE['fields'],
                                             _UNIVERSE['subfields_map'],
                                             _UNIVERSE['states_map'],
                                             _UNIVERSE['units_map'],
                                             _UNIVERSE['entities_map'])
+      if result == True:
         self.fail('exception failed to raise')
-      except Exception:
-        pass
 
   def testValidateBadEntityExample(self):
     entity_names = list(_BAD_ENTITY_EXAMPLE.keys())
 
     for name in entity_names:
       entity = dict(_BAD_ENTITY_EXAMPLE[name])
-      try:
-        ontology_validation.validate_entity(entity,
+      result = ontology_validation.validate_entity(entity,
                                             _UNIVERSE['fields'],
                                             _UNIVERSE['subfields_map'],
                                             _UNIVERSE['states_map'],
                                             _UNIVERSE['units_map'],
                                             _UNIVERSE['entities_map'])
+      if result == True:
         self.fail('exception failed to raise')
-      except Exception:
-        pass
 
 if __name__ == '__main__':
   absltest.main()
