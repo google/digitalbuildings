@@ -18,11 +18,6 @@ from __future__ import print_function
 from __future__ import absolute_import
 
 from os import path
-import sys
-
-sys.path.append(path.abspath(path.join('..', 'ontology_validator')))
-# add ontology files to path
-sys.path.append(path.exists(path.join('..', '..', '..', 'ontology')))
 
 from yamlformat.validator import external_file_lib
 from yamlformat.validator import presubmit_validate_types_lib

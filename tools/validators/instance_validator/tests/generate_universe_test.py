@@ -18,7 +18,7 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
-import generate_universe
+from universe_generation import generate_universe
 from absl.testing import absltest
 
 class GenerateUniverseTest(absltest.TestCase):
