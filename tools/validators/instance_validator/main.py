@@ -17,11 +17,10 @@ configuration file as an argument and validates it for coherence with the
 Digital Buildings ontology.
 
 This is done by first ensuring the file syntax is valid YAML, then by
-generating the ontology and comparing it with the file contents.
+parsing the ontology and comparing it with the file contents.
 
-This tool allows clients to independently validate their configuration files,
-and thus streamlines the onboarding process through automation. It saves time
-and provides more accuracy than manual error checks."""
+This tool allows clients to independently validate their configuration files. 
+It saves time and provides more accuracy than manual error checks."""
 
 from __future__ import print_function
 
