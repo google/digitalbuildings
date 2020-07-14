@@ -18,7 +18,7 @@ IBR comes with a rendering library built on THREE.js that can be used to easily 
     - Open your command prompt (Windows)/ terminal (macOS/ Linux). To check Python is installed, enter the following command: `python -V`.
     - If python is installed, you should see a version number. If not, go to [python.org]() and install python3.
     - Once python3 is installed, run command `python3 -m http.server`.
-    - Then navigate to http://0.0.0.0:8000/ in your browser.
+    - Then navigate to http://0.0.0.0:8000/html/ in your browser.
 
 3. Click on "Choose File" button to open your ibr data file
 
