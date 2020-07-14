@@ -319,7 +319,7 @@ typeof define === 'function' && define.amd ? define(['exports'], factory) :
         coordsLookup.length);
     const coordsLookupDV = new DataView(coordsLookupBuffer);
     const coordsLookupList = [];
-    for (let i = 0; i < coordsLookup.length / 4; i += 4) {
+    for (let i = 0; i < coordsLookup.length; i += 4) {
       coordsLookupList.push(coordsLookupDV.getFloat32(i, false));
     }
 
