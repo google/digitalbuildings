@@ -15,14 +15,14 @@
 """Generates the ontology universe for the instance validator."""
 
 from __future__ import print_function
+from __future__ import absolute_import
 
-from sys import path
-import os
+from os import path
+import sys
 
-# add universe building packages to path
-path.append(os.path.abspath(os.path.join('..', 'ontology_validator')))
+sys.path.append(path.abspath(path.join('..', 'ontology_validator')))
 # add ontology files to path
-path.append(os.path.exists(os.path.join('..', '..', '..', 'ontology')))
+sys.path.append(path.exists(path.join('..', '..', '..', 'ontology')))
 
 from yamlformat.validator import external_file_lib
 from yamlformat.validator import presubmit_validate_types_lib
@@ -35,15 +35,15 @@ def build_universe():
     Generated universe object.
   """
 
-  ontology_validator_exists = os.path.exists(os.path.join(
+  ontology_validator_exists = path.exists(path.join(
       '..', 'ontology_validator'))
-  ontology_exists = os.path.exists(os.path.join('..', '..', '..', 'ontology'))
+  ontology_exists = path.exists(path.join('..', '..', '..', 'ontology'))
 
   if not (ontology_validator_exists and ontology_exists):
     print('ERROR: ontology validator or ontology have changed locations')
     return None
 
-  yaml_files = external_file_lib._RecursiveDirWalk(os.path.join(
+  yaml_files = external_file_lib._RecursiveDirWalk(path.join(
       '..', '..', '..', 'ontology', 'yaml', 'resources'))
   config = presubmit_validate_types_lib.SeparateConfigFiles(yaml_files)
   universe = presubmit_validate_types_lib.BuildUniverse(config)

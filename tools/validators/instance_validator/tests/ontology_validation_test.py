@@ -18,12 +18,8 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
-from sys import path
-
-path.append('..')
-
-from instance_validator import generate_universe
-from instance_validator import ontology_validation
+import generate_universe
+import ontology_validation
 from absl.testing import absltest
 
 _GOOD_EXAMPLE = {'UK-LON-S2': {'type': 'FACILITIES/BUILDING',

@@ -18,11 +18,7 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
-from sys import path
-
-path.append('..')
-
-from instance_validator import generate_universe
+import generate_universe
 from absl.testing import absltest
 
 class GenerateUniverseTest(absltest.TestCase):
