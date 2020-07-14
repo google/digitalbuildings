@@ -6,6 +6,8 @@
 
 import {OrbitControls} from
   './../../../node_modules/three/examples/jsm/controls/OrbitControls.js';
+import {IBRObject} from
+  './../class/IBRObject.js';
 
 // the length of one 3D coordinates (x, y, z) in the coordinate lookup float
 // array
@@ -35,18 +37,15 @@ typeof define === 'function' && define.amd ? define(['exports'], factory) :
   function createSidebar(ibrRawData, parentElement) {
     const ibrData = InternalBuildingRepresentation.read(
         new Pbf(ibrRawData));
-    // for datafiles that have top level name is ""
-    if (ibrData.name === '') {
-      ibrData.name = 'ibrData.name';
-    }
+    const curIBR = new IBRObject( ibrData );
     const li = document.createElement('li'); // list element container
     parentElement.appendChild(li);
-    const rootSpan = createLabel('span', ibrData.name, li);
+    const rootSpan = createLabel('span', curIBR.getName(), li);
     rootSpan.setAttribute('class', 'arrow');
     li.appendChild(rootSpan);
     const ul = document.createElement('ul');
     ul.setAttribute('class', 'nested');
-    ul.setAttribute('id', ibrData.name);
+    ul.setAttribute('id', curIBR.getName());
     li.appendChild(ul);
     rootSpan.addEventListener('click', function() {
       rootSpan.parentElement.querySelector('.nested').classList
@@ -54,8 +53,8 @@ typeof define === 'function' && define.amd ? define(['exports'], factory) :
       rootSpan.classList.toggle('expanded-arrow');
     });
     // root structure index 0
-    const curStructure = renderSingleIBRStructure(ibrData, 0);
-    drawSingleStructureSidebar(curStructure, ibrData.name);
+    const curStructure = renderSingleIBRStructure(curIBR, 0);
+    drawSingleStructureSidebar(curStructure, curIBR.getName());
   }
 
   /**
@@ -166,7 +165,7 @@ typeof define === 'function' && define.amd ? define(['exports'], factory) :
         if (label.getAttribute('value') == null) {
           event.stopPropagation();
           const structure = renderSingleIBRStructure(
-              curStructure['structures'][structureIndex],
+              new IBRObject( curStructure['structures'][structureIndex] ),
               structureIndex, scene);
           drawSingleStructureSidebar(structure,
               curStructure['structures'][structureIndex].name);
@@ -345,47 +344,30 @@ typeof define === 'function' && define.amd ? define(['exports'], factory) :
     scene = generateScene(parentElement);
     const ibrData = InternalBuildingRepresentation.read(
         new Pbf(ibrRawData));
+    const ibrObject = new IBRObject( ibrData );
     const curStructure = {};
     // Visualization layers of current structure
-    curStructure['layers'] = renderLayer( ibrData,
+    curStructure['layers'] = renderLayer( ibrObject,
         structureIndex, scene );
     // Sub-structures of the current structure
-    curStructure['structures'] = [];
-    for ( const struct of ibrData.structures ) {
-      curStructure['structures'].push( struct );
-    }
+    curStructure['structures'] = ibrObject.getSubStructures();
   }
 
   /**
    * Parse current IBR Object into structures.
-   * @param {Object} ibrData decoded IBR object.
+   * @param {IBRObject} ibrObject IBRObject created from current structure data.
    * @param {number} structureIndex Index of current structure(floor).
    * @return {Map.<String, List.<Object>>} Map of list of layers and
    structures.
    */
-  function renderSingleIBRStructure(ibrData, structureIndex) {
+  function renderSingleIBRStructure(ibrObject, structureIndex) {
     const curStructure = {};
     // Visualization layers of current structure
-    curStructure['layers'] = renderLayer( ibrData,
+    curStructure['layers'] = renderLayer( ibrObject,
         structureIndex);
     // Sub-structures of the current structure
-    curStructure['structures'] = [];
-    for ( const struct of ibrData.structures ) {
-      curStructure['structures'].push( struct );
-    }
+    curStructure['structures'] = ibrObject.getSubStructures();
     return curStructure;
-  }
-
-  /**
-   * Swap endianness of 32bit numbers.
-   * @param {number} val 32 bit number to be swapped.
-   * @return {number} 32bit number in swapped endianness.
-   */
-  function swap32(val) {
-    return ((val & 0xFF) << 24) |
-               ((val & 0xFF00) << 8) |
-               ((val >> 8) & 0xFF00) |
-               ((val >> 24) & 0xFF);
   }
 
   // List of colors from jquery.color.js plugin
@@ -443,55 +425,31 @@ typeof define === 'function' && define.amd ? define(['exports'], factory) :
   /**
      * Converts decoded ibr structure data into three.js Line objects
      and add them to scene with visibility set to false.
-     * @param {Object} structure structures decoded from raw ibr data.
+     * @param {IBRObject} curStructure IBRObject generated from current
+     structure data.
      * @param {number} structureIndex overall index of the structure.
      * @return {Map.<String, List.<Object>>} objects Layer name and
      corresponding list of three.js Line objects.
      */
-  function renderLayer(structure, structureIndex) {
+  function renderLayer(curStructure, structureIndex) {
     // Check if structure contains any visualization data
-    if ( structure.visualization.length === 0 ||
-    structure.coordinates_lookup == null) {
+    if ( !curStructure.hasLayers ||
+    !curStructure.hasCoordinatesLookup ) {
       return {};
-    }
-
-    // Decode Indices from data.visualization[].coordinate_indices
-    let coordsIndexList; let coordsRangeBuffer; let coordsRange;
-    const coordsRangeList = [];
-    for (const visLayer of structure.visualization) {
-      coordsIndexList = visLayer.coordinate_indices;
-      coordsRangeBuffer = coordsIndexList.buffer.slice(
-          coordsIndexList.byteOffset,
-          coordsIndexList.byteOffset + coordsIndexList.length);
-      coordsRange = new Uint32Array(coordsRangeBuffer);
-      for (let i = 0; i < coordsRange.length; i++) {
-        coordsRange[i] = swap32(coordsRange[i]);
-      }
-      coordsRangeList.push(coordsRange);
-    }
-
-    // Decode Coordinates from data.coordinates_lookup
-    const coordsLookup = structure.coordinates_lookup;
-    const coordsLookupBuffer = coordsLookup.buffer.slice(
-        coordsLookup.byteOffset, coordsLookup.byteOffset +
-        coordsLookup.length);
-    const coordsLookupDV = new DataView(coordsLookupBuffer);
-    const coordsLookupList = [];
-    for (let i = 0; i < coordsLookup.length; i += 4) {
-      coordsLookupList.push(coordsLookupDV.getFloat32(i, false));
     }
 
     // Read multiple ranges from Visualization.coordinates array
     const layerCoordinates = [];
-    for (const coordsRangeItem of coordsRangeList) {
+    for (const layer of curStructure.getLayers().values()) {
       const layerPH = [];
+      const coordsRangeItem = layer.getCoordinatesIndices();
       for (let i = 0; i < coordsRangeItem.length; i += 2) {
         const coordsLine = [];
         for (let j = coordsRangeItem[i]; j <= coordsRangeItem[i + 1];
           j += ONE_POINT) {
-          coordsLine.push(coordsLookupList[j]);
-          coordsLine.push(coordsLookupList[j + 1]);
-          coordsLine.push(coordsLookupList[j + 2]);
+          coordsLine.push(curStructure.coordinatesLookup[j]);
+          coordsLine.push(curStructure.coordinatesLookup[j + 1]);
+          coordsLine.push(curStructure.coordinatesLookup[j + 2]);
         }
         layerPH.push(coordsLine);
       }
@@ -500,13 +458,13 @@ typeof define === 'function' && define.amd ? define(['exports'], factory) :
 
     // Render data into three.js objects
     const materials = [];
-    for (let i = 0; i < structure.visualization.length - 1; i++) {
+    for (let i = 0; i < curStructure.getLayers().size - 1; i++) {
       materials.push(new THREE.LineBasicMaterial(
           {color: Colors.random()} ));
     }
     const objects = {};
     for (let i = 0; i < layerCoordinates.length; i++) {
-      objects[structure.visualization[i].id] = [];
+      objects[curStructure.getLayerNames()[i]] = [];
       const lineSegmentsGeometry = [];
       for (const line of layerCoordinates[i]) {
         const linePoints = [];
@@ -523,7 +481,7 @@ typeof define === 'function' && define.amd ? define(['exports'], factory) :
           const lineLoop = new THREE.LineLoop( geometry, materials[i] );
           lineLoop.visible = false;
           scene.add( lineLoop );
-          objects[structure.visualization[i].id].push( lineLoop );
+          objects[curStructure.getLayerNames()[i]].push( lineLoop );
         }
       }
       if (lineSegmentsGeometry.length > 0) {
@@ -532,7 +490,7 @@ typeof define === 'function' && define.amd ? define(['exports'], factory) :
         const lineSegments = new THREE.LineSegments( geometries, materials[i] );
         lineSegments.visible = false;
         scene.add( lineSegments );
-        objects[structure.visualization[i].id].push( lineSegments );
+        objects[curStructure.getLayerNames()[i]].push( lineSegments );
       }
     }
     return objects;
