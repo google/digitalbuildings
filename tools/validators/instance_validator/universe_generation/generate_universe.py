@@ -22,6 +22,127 @@ from os import path
 from yamlformat.validator import external_file_lib
 from yamlformat.validator import presubmit_validate_types_lib
 from yamlformat.validator import namespace_validator
+from yamlformat.validator import state_lib
+from yamlformat.validator import subfield_lib
+from yamlformat.validator import unit_lib
+from yamlformat.validator import entity_type_lib
+from yamlformat.validator import field_lib
+from yamlformat.validator import parse_config_lib as parse
+
+def build_config():
+  """Builds and returns config for use in generating universes.
+
+  Returns:
+    config: a Config namedtuple containing lists of localpaths to config files.
+  """
+
+  yaml_files = external_file_lib._RecursiveDirWalk(path.join(
+      '..', '..', '..', 'ontology', 'yaml', 'resources'))
+  config = presubmit_validate_types_lib.SeparateConfigFiles(yaml_files)
+
+  return config
+
+def build_state_universe(config):
+  """Builds StateUniverse object.
+
+  Args:
+    config: a Config namedtuple containing lists of localpaths to config files.
+
+  Returns:
+     A StateUniverse that is fully populated with state content specified in
+     the config.
+  """
+
+  state_universe = None
+
+  if config.states:
+    state_folders = parse.ParseStateFoldersFromFiles(config.states)
+    state_universe = state_lib.StateUniverse(state_folders)
+  
+  return state_universe
+
+def build_subfield_universe(config):
+  """Builds SubfieldUniverse object
+
+  Args:
+    config: a Config namedtuple containing lists of localpaths to config files.
+
+  Returns:
+     A SubfieldUniverse that is fully populated with subfield content
+     specified in the config.
+  """
+
+  subfield_universe = None
+
+  if config.subfields:
+    subfield_folders = parse.ParseSubfieldFoldersFromFiles(config.subfields)
+    subfield_universe = subfield_lib.SubfieldUniverse(subfield_folders)
+
+  return subfield_universe
+
+def build_unit_universe(config, subfield_universe):
+  """Builds 
+
+  Args:
+    config: a Config namedtuple containing lists of localpaths to config files.
+    subfield_universe: a SubfieldUniverse object to validate UnitUniverse.
+
+  Returns:
+     A UnitUniverse that is fully populated with unit content specified
+     in the config.
+  """
+
+  unit_universe = None
+
+  if config.units:
+    unit_folders = parse.ParseUnitFoldersFromFiles(config.units,
+                                                   subfield_universe)
+    unit_universe = unit_lib.UnitUniverse(unit_folders)
+    if subfield_universe:
+      subfield_universe.ValidateUnits(unit_universe)
+
+  return unit_universe
+
+def build_field_universe(config, subfield_universe, state_universe):
+  """Builds 
+
+  Args:
+    config: a Config namedtuple containing lists of localpaths to config files.
+    subfield_universe: a SubfieldUniverse object to validate the FieldUniverse.
+    state_universe: a StateUniverse object to validate the FieldUniverse.
+
+  Returns:
+     A FieldUniverse that is fully populated with unit content specified
+     in the config.
+  """
+
+  field_universe = None
+
+  if config.fields:
+    field_folders = parse.ParseFieldFoldersFromFiles(config.fields,
+                                                     subfield_universe,
+                                                     state_universe)
+    field_universe = field_lib.FieldUniverse(field_folders)
+  
+  return field_universe
+
+def build_type_universe(config, field_universe):
+  """Builds 
+
+  Args:
+    config: a Config namedtuple containing lists of localpaths to config files.
+    field_universe: a FieldUniverse object to validate the TypeUniverse.
+
+  Returns:
+     A TypeUniverse that is fully populated with unit content specified
+     in the config.
+  """
+
+  type_folders = parse.ParseTypeFoldersFromFiles(config.type_defs,
+                                                 field_universe)
+  type_universe = entity_type_lib.EntityTypeUniverse(type_folders)
+
+  return type_universe
 
 def build_universe():
   """Generates the ontology universe.
