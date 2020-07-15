@@ -90,4 +90,4 @@ Object.assign( Layer.prototype, {
 
 } );
 
-export {Layer};
+export { Layer };

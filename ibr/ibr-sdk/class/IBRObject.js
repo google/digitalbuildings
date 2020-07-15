@@ -1,4 +1,4 @@
-import {Layer} from './Layer.js';
+import { Layer } from './Layer.js';
 /**
  * Constructor of IBRObject Class.
  * @param {Objecy} pbfDecodedJsonObject JSON Object decoded using Pbf library
