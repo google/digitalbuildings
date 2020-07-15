@@ -14,12 +14,9 @@
 
 
 EXIT:
-  id: "####################"
   description: "Illuminated exit signs"
   is_abstract: true
   implements:
   - LT
 
-LIGHTING_GROUP:
-  id: "####################"
-  description: "A group containing one or more luminaires."
+

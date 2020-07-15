@@ -13,7 +13,6 @@
 # limitations under the License.
 
 LT:
-  id: "####################"
   description: "Luminaire, lighting fixture."
   implements:
   - EQUIPMENT
@@ -21,45 +20,37 @@ LT:
   - dimmer_percentage_command # in % indicating brightness
 
 LPS:
-  id: "####################"
   description: "Lighting photocell sensor."
   implements:
   - MTS	
 
 LMS:
-  id: "####################"
   description: "Lighting motion sensor."
   implements:
   - MTS	
 
 LTGW:
-  id: "####################"
   description: "Lighting gateway."
   implements:
   - EQUIPMENT			
   
 LAC:
-  id: "####################"
   description: "lighting area controller."
   implements:
   - EQUIPMENT	
 
 LCM:
-  id: "####################"
   description: "Lighting control module."
   implements:
   - EQUIPMENT	
 
 LKP:
-  id: "####################"
   description: "Lighting keypad."
   implements:
   - USER_INTERFACE		
 
 LIGHTING_GROUP:
-  id: "####################"
   description: "A group containing one or more luminaires."
 
 LIGHTING_SCENE:
-  id: "####################"
   description: "A scene containing brightness values for each luminaire."
