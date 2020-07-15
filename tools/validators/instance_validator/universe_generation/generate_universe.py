@@ -43,7 +43,7 @@ def build_config():
   return config
 
 def build_state_universe(config):
-  """Builds StateUniverse object.
+  """Builds a StateUniverse object.
 
   Args:
     config: a Config namedtuple containing lists of localpaths to config files.
@@ -58,11 +58,11 @@ def build_state_universe(config):
   if config.states:
     state_folders = parse.ParseStateFoldersFromFiles(config.states)
     state_universe = state_lib.StateUniverse(state_folders)
-  
+
   return state_universe
 
 def build_subfield_universe(config):
-  """Builds SubfieldUniverse object
+  """Builds SubfieldUniverse object.
 
   Args:
     config: a Config namedtuple containing lists of localpaths to config files.
@@ -81,7 +81,7 @@ def build_subfield_universe(config):
   return subfield_universe
 
 def build_unit_universe(config, subfield_universe):
-  """Builds 
+  """Builds UnitUniverse object.
 
   Args:
     config: a Config namedtuple containing lists of localpaths to config files.
@@ -104,7 +104,7 @@ def build_unit_universe(config, subfield_universe):
   return unit_universe
 
 def build_field_universe(config, subfield_universe, state_universe):
-  """Builds 
+  """Builds FieldUniverse object.
 
   Args:
     config: a Config namedtuple containing lists of localpaths to config files.
@@ -112,7 +112,7 @@ def build_field_universe(config, subfield_universe, state_universe):
     state_universe: a StateUniverse object to validate the FieldUniverse.
 
   Returns:
-     A FieldUniverse that is fully populated with unit content specified
+     A FieldUniverse that is fully populated with field content specified
      in the config.
   """
 
@@ -123,18 +123,18 @@ def build_field_universe(config, subfield_universe, state_universe):
                                                      subfield_universe,
                                                      state_universe)
     field_universe = field_lib.FieldUniverse(field_folders)
-  
+
   return field_universe
 
 def build_type_universe(config, field_universe):
-  """Builds 
+  """Builds TypeUniverse object.
 
   Args:
     config: a Config namedtuple containing lists of localpaths to config files.
     field_universe: a FieldUniverse object to validate the TypeUniverse.
 
   Returns:
-     A TypeUniverse that is fully populated with unit content specified
+     A TypeUniverse that is fully populated with type content specified
      in the config.
   """
 
@@ -163,10 +163,10 @@ def build_universe():
       '..', '..', '..', 'ontology', 'yaml', 'resources'))
   config = presubmit_validate_types_lib.SeparateConfigFiles(yaml_files)
   universe = presubmit_validate_types_lib.BuildUniverse(config)
-  
+
   namespace_validation = namespace_validator.NamespaceValidator(
       universe.GetEntityTypeNamespaces())
-  
+
   if not namespace_validation.IsValid():
     return None
 

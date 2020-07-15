@@ -26,7 +26,7 @@ class GenerateUniverseTest(absltest.TestCase):
   def testCanGenerateConfig(self):
     config = generate_universe.build_config()
     self.assertTrue(config)
-  
+
   def testCanGenerateStateUniverse(self):
     config = generate_universe.build_config()
     state_universe = generate_universe.build_state_universe(config)
@@ -40,25 +40,28 @@ class GenerateUniverseTest(absltest.TestCase):
   def testCanGenerateUnitUniverse(self):
     config = generate_universe.build_config()
     subfield_universe = generate_universe.build_subfield_universe(config)
-    unit_universe = generate_universe.build_unit_universe(config, subfield_universe)
+    unit_universe = generate_universe.build_unit_universe(config,
+                                                          subfield_universe)
     self.assertTrue(unit_universe)
-  
+
   def testCanGenerateFieldUniverse(self):
     config = generate_universe.build_config()
     subfield_universe = generate_universe.build_subfield_universe(config)
     state_universe = generate_universe.build_state_universe(config)
-    field_universe = generate_universe.build_field_universe(config, 
-        subfield_universe, state_universe)
+    field_universe = generate_universe.build_field_universe(config,
+                                                            subfield_universe,
+                                                            state_universe)
     self.assertTrue(field_universe)
 
   def testCanGenerateTypeUniverse(self):
     config = generate_universe.build_config()
     subfield_universe = generate_universe.build_subfield_universe(config)
     state_universe = generate_universe.build_state_universe(config)
-    field_universe = generate_universe.build_field_universe(config, 
-        subfield_universe, state_universe)
+    field_universe = generate_universe.build_field_universe(config,
+                                                            subfield_universe,
+                                                            state_universe)
     type_universe = generate_universe.build_type_universe(config,
-        field_universe)
+                                                          field_universe)
     self.assertTrue(type_universe)
 
   def testCanGenerateUniverse(self):
