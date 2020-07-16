@@ -8,10 +8,6 @@ import { Layer } from './Layer.js';
 function IBRObject( pbfDecodedJsonObject ) {
   // format: Map.<layerName{String}, layerData{Layer}>
   this.layers = new Map();
-//  if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
-////    console.log("node");
-//    const Layer = require('./Layer');
-//  }
   // Check if structure contains any visualization data
   if ( pbfDecodedJsonObject.visualization.length === 0) {
     this.hasLayers = false;
@@ -104,8 +100,4 @@ Object.assign( IBRObject.prototype, {
   },
 
 } );
-
-//if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
-//  module.exports = IBRObject;
-//}
 export {IBRObject};
