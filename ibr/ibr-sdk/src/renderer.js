@@ -10,49 +10,59 @@
  */
 function renderLayer(data) {
 
-    // Extract coordinates range from ibr data
-    var deserializedData = InternalBuildingRepresentation.read( new Pbf( data ) );
-    var coordsIndexList = deserializedData.visualization[0].coordinates;
-    var coordsRangeBuffer = coordsIndexList.buffer.slice( coordsIndexList.byteOffset, coordsIndexList.buffer.byteLength );
-    var coordsRange = new Uint32Array( coordsRangeBuffer );
-    for (var i = 0; i < coordsRange.length; i++) {
-        coordsRange[i] = swap32( coordsRange[i] );
+    // Decode Indices from data.visualization[].coordinate_indices
+    var deserializedData = InternalBuildingRepresentation.read(new Pbf(data));
+    var coordsIndexList, coordsRangeBuffer, coordsRange;
+    var coordsRangeList = [];
+    for (const visLayer of deserializedData.visualization) {
+        coordsIndexList = visLayer.coordinate_indices;
+        coordsRangeBuffer = coordsIndexList.buffer.slice(coordsIndexList.byteOffset, coordsIndexList.byteOffset+coordsIndexList.length);
+        coordsRange = new Uint32Array(coordsRangeBuffer);
+        for (var i = 0; i < coordsRange.length; i++) {
+            coordsRange[i] = swap32(coordsRange[i]);
+        }
+        coordsRangeList.push(coordsRange);
     }
 
-    // Decode coordinates from data.coordinatesLookup.encodedData
-    var decoder = new TextDecoder('utf8');
-    var decodedCoordsString = atob( decoder.decode( deserializedData.coordinates_lookup.encoded_data ) );
-
-    // Put coordinates in data structure
-    var coords = decodedCoordsString.split(",");
-    var decodedCoordsList = [];
-    for (const coord of coords) {
-        var coordinate = coord.split(" ");
-        if (coordinate.length === 2) {
-            decodedCoordsList.push( coordinate );
-        }
+    // Decode Coordinates from data.coordinates_lookup
+    var coordsLookup = deserializedData.coordinates_lookup;
+    var coordsLookupBuffer = coordsLookup.buffer.slice(coordsLookup.byteOffset, coordsLookup.byteOffset+coordsLookup.length);
+    var coordsLookupDV = new DataView(coordsLookupBuffer);
+    var coordsLookupList = [];
+    for (var i = 0; i < coordsLookup.length/4; i+=4) {
+        coordsLookupList.push(coordsLookupDV.getFloat32(i, false));
     }
 
     // Read multiple ranges from Visualization.coordinates array and store them in sessionStorage for visualization later
-    var layerCoordinates = [];
-    for (var i = 0; i < coordsRange.length; i += 2) {
-        layerCoordinates[i/2] = [];
-        for (var x = coordsRange[i]; x < coordsRange[i+1]; x++) {
-            layerCoordinates[i/2].push( decodedCoordsList[x] );
+    var layerCoordinates = [], layerPH = [], coordsLine = [];
+    for (const coordsRangeItem of coordsRangeList) {
+        layerPH = [];
+        for (var i = 0; i < coordsRangeItem.length; i+=2) {
+            coordsLine = [];
+            for (var j = coordsRangeItem[i]; j <= coordsRangeItem[i+1]; j+=3) {
+                coordsLine.push(coordsLookupList[j]);
+                coordsLine.push(coordsLookupList[j+1]);
+                coordsLine.push(coordsLookupList[j+2]);
+            }
+            layerPH.push(coordsLine);
         }
+        layerCoordinates.push(layerPH);
     }
 
-    // Construct three.js objects from decoded coordinates
-    var material1 = new THREE.LineBasicMaterial( { color: 0x0000ff } );
+    // Render data into three.js objects
+    var materials = [new THREE.LineBasicMaterial( { color: 0x00ffff } ), new THREE.LineBasicMaterial( { color: 0xff0000 } )];
     var points = [], lines = [];
     var geometry, line;
-    for (const layer of layerCoordinates) {
-        for (const coordinate of layer) {
-            points.push( new THREE.Vector3( coordinate[0], coordinate[1], 0 ) );
+    for (var i = 0; i < layerCoordinates.length; i++) {
+        for (const l of layerCoordinates[i]) {
+            points = [];
+            for (var j = 0; j < l.length; j+=3) {
+                points.push( new THREE.Vector3( l[j], l[j+1], l[j+2] ) );
+            }
+            geometry = new THREE.BufferGeometry().setFromPoints( points );
+            line = new THREE.LineLoop( geometry, materials[i] );
+            lines.push( line );
         }
-        geometry = new THREE.BufferGeometry().setFromPoints( points );
-        line = new THREE.LineLoop( geometry, material1 );
-        lines.push( line );
     }
     return lines;
 }
