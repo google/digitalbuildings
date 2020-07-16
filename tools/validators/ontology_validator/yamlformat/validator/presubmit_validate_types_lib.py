@@ -561,7 +561,7 @@ def RunPresubmit(unmodified, modified_base, modified_client):
   """
 
   findings, _ = _ValidateConfigInner(unmodified, modified_base, modified_client, False)
-  _printFindings(findings, _)
+  _printFindings(findings, '')
   return findings
 
 
