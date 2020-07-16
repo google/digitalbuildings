@@ -50,7 +50,8 @@ def Validate(filter_text, original_directory, changed_directory, interactive=Tru
     presubmit_validate_types_lib.RunInteractive(filter_text, modified_base,
                                               modified_client)
   else:
-    presubmit_validate_types_lib.RunPresubmit([], modified_base, modified_client)
+    findings = presubmit_validate_types_lib.RunPresubmit([], modified_base, modified_client)
+    presubmit_validate_types_lib.PrintFindings(findings, '')
 
 def _RecursiveDirWalk(directory):
   """Walks recursively a directory and returns a list of PathParts.

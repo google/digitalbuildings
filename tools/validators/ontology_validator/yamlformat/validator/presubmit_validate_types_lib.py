@@ -561,7 +561,6 @@ def RunPresubmit(unmodified, modified_base, modified_client):
   """
 
   findings, _ = _ValidateConfigInner(unmodified, modified_base, modified_client, False)
-  _printFindings(findings, '')
   return findings
 
 
@@ -595,13 +594,13 @@ def _PrintType(ns, et):
     print('  HAS REDUNDANT LOCAL FIELDS')
 
 
-def _printFindings(findings, filter_text):
+def PrintFindings(findings, filter_text):
   """Prints the findings of the ontology validation
 
   Args:
     findings: a list of Finding objects.
     filter_text: command line arguments. The only available argument is
-      match:<value>' which will simply perform a simple string 'contains' on
+      'match:<value>' which will simply perform a simple string 'contains' on
       the finding output and cause only matching findings to print.
 
   """
@@ -640,7 +639,7 @@ def RunInteractive(filter_text, modified_base, modified_client):
   findings, universe = _ValidateConfigInner([], modified_base, modified_client,
                                             True)
 
-  _printFindings(findings, filter_text)
+  PrintFindings(findings, filter_text)
 
   end_time = time.time()
   print('Elapsed time: {0} seconds.\n'.format(str(end_time - start_time)))
