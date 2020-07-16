@@ -15,6 +15,78 @@ function swap32(val) {
  * @param {Objecy} layerData single layer data from JSON Object decoded using
  Pbf library from raw ibr binary data.
  */
+//class Layer {
+//
+//  constructor( layerData ) {
+//    this.id = layerData.id;
+//    this.data = layerData.data;
+//
+//    // Decode Indices from data.visualization[].coordinate_indices
+//    const coordsIndexList = layerData.coordinate_indices;
+//    const coordsRangeBuffer = coordsIndexList.buffer.slice(
+//        coordsIndexList.byteOffset,
+//        coordsIndexList.byteOffset + coordsIndexList.length);
+//    const coordsRange = new Uint32Array(coordsRangeBuffer);
+//    for (let i = 0; i < coordsRange.length; i++) {
+//      coordsRange[i] = swap32(coordsRange[i]);
+//    }
+//    this.coordinateIndices = coordsRange;
+//
+//    this.encodingType = layerData.encoding_type;
+//    this.imageData = layerData.image_data;
+//  }
+//
+//  /**
+//   * Get the ID of the layer.
+//   * @return {String} ID of the layer.
+//   */
+//  getID() {
+//    return this.id;
+//  }
+//
+//  /**
+//   * Get the data of the layer.
+//   * @return {String} data of the layer.
+//   */
+//  getData() {
+//    return this.data;
+//  }
+//
+//  /**
+//   * Get the coordinates indices of the layer.
+//   * @return {List.<number>} coordinates indices of the layer.
+//   */
+//  getCoordinatesIndices() {
+//    return this.coordinateIndices;
+//  }
+//
+//  /**
+//   * Get the encoding type of the layer.
+//   * @return {number} encoding type of the layer.
+//   */
+//  getEncodingType() {
+//    return this.encodingType;
+//  }
+//
+//  /**
+//   * Get the image data of the layer.
+//   * @return {Object} image data of the layer.
+//   */
+//  getImageData() {
+//    return this.imageData;
+//  }
+//
+//  /**
+//   * Append indices of new coordinates onto the coordinates indices of the
+//   layer.
+//   * @param {number} coordinateIndices indices of mew coordinates to be
+//   appended to the coordinates indices of the layer.
+//   */
+//  appendCoordinatesIndices( coordinateIndices ) {
+//    this.coordinateIndices.append(coordinateIndices);
+//  }
+//}
+
 function Layer( layerData ) {
   this.id = layerData.id;
   this.data = layerData.data;
@@ -99,4 +171,7 @@ Object.assign( Layer.prototype, {
 
 } );
 
+//if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
+//  module.exports = Layer;
+//}
 export { Layer };
