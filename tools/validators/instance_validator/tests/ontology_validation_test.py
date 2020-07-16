@@ -21,6 +21,8 @@ from __future__ import print_function
 from universe_generation import generate_universe
 from universe_generation import ontology_validation
 from absl.testing import absltest
+from os.path import join
+import strictyaml
 
 _GOOD_EXAMPLE = {'UK-LON-S2': {'type': 'FACILITIES/BUILDING',
                                'id': 'FACILITIES/123456'}}
@@ -33,6 +35,12 @@ _BAD_NAMESPACE_EXAMPLE = {'UK-LON-S2': {'type': 'NONEXISTENT/BUILDING',
 _UNIVERSE = {}
 
 class OntologyValidationTest(absltest.TestCase):
+  
+  def setUp(self):
+    self._good_example = dict(strictyaml.load(join('.',
+                                              'fake_instances',
+                                              'GOOD',
+                                              'good_building_type.yaml')).data)
 
   def testCanParseUniverse(self):
     universe = generate_universe.build_universe()
@@ -54,10 +62,13 @@ class OntologyValidationTest(absltest.TestCase):
     _UNIVERSE['entities_map'] = entities_map
 
   def testValidateGoodExample(self):
-    entity_names = list(_GOOD_EXAMPLE.keys())
+    # entity_names = list(_GOOD_EXAMPLE.keys())
+    entity_names = list(self._good_example.keys())
+    print('LOGGING')
+    print(entity_names)
 
     for name in entity_names:
-      entity = dict(_GOOD_EXAMPLE[name])
+      entity = dict(self_good_example[name])
       result = ontology_validation.validate_entity(entity,
                                             _UNIVERSE['fields'],
                                             _UNIVERSE['subfields_map'],
