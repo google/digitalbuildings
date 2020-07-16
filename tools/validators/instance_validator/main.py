@@ -26,9 +26,6 @@ from __future__ import print_function
 
 import instance_parser
 import argparse
-# ONTOLOGY VALIDATION
-# import ontology_validation
-# import generate_universe
 
 # TODO add input and return type checks in all functions
 

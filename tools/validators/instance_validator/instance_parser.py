@@ -69,9 +69,9 @@ def _load_yaml_with_schema(filepath, schema):
     Returns the parsed YAML data in a stricyaml-provided
     datastructure which is similar to a Python dictionary.
   """
-  f = open(filepath)
-  content = f.read()
-  f.close()
+  yaml_file = open(filepath)
+  content = yaml_file.read()
+  yaml_file.close()
 
   try:
     parsed = syaml.load(content, schema)
@@ -108,7 +108,7 @@ def parse_yaml(filename):
     if translation.data != _COMPLIANT:
       translation_keys = translation.keys()
 
-      for k in translation_keys:
-        translation[k].revalidate(_TRANSLATION_DATA_SCHEMA)
+      for key in translation_keys:
+        translation[key].revalidate(_TRANSLATION_DATA_SCHEMA)
 
   return yaml
