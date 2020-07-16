@@ -17,7 +17,7 @@ function onChooseFile() {
     const fr = new FileReader();
     fr.onload = function(evt) {
       const bin = evt.target.result;
-      IBRSDK.renderTopIBRStructure( bin,
+      IBRSDK.render( bin,
           0, document.getElementById('mainCanvas') ); //top level, index 0
       IBRSDK.createSidebar( bin, document.getElementById('layerList') );
     };
