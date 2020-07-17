@@ -560,8 +560,7 @@ def RunPresubmit(unmodified, modified_base, modified_client):
 
   """
 
-  findings, _ = _ValidateConfigInner(unmodified, modified_base, modified_client)
-
+  findings, _ = _ValidateConfigInner(unmodified, modified_base, modified_client, False)
   return findings
 
 
@@ -595,6 +594,30 @@ def _PrintType(ns, et):
     print('  HAS REDUNDANT LOCAL FIELDS')
 
 
+def PrintFindings(findings, filter_text):
+  """Prints the findings of the ontology validation
+
+  Args:
+    findings: a list of Finding objects.
+    filter_text: command line arguments. The only available argument is
+      'match:<value>' which will simply perform a simple string 'contains' on
+      the finding output and cause only matching findings to print.
+
+  """
+  findings_by_file = OrganizeFindingsByFile(findings)
+  for filepath in findings_by_file:
+    findings_for_file = findings_by_file[filepath]
+    if not findings_for_file:
+      print('no Findings in {0}'.format(filepath))
+      continue
+    print('Findings in {0}'.format(filepath))
+    for finding in findings_for_file:
+      if not filter_text or filter_text in str(finding):
+        print(finding)
+
+  print('\n' + str(len(findings)) + ' findings.\n')
+
+
 def RunInteractive(filter_text, modified_base, modified_client):
   """Runs interactive mode when presubmit is run as a standalone application.
 
@@ -616,18 +639,8 @@ def RunInteractive(filter_text, modified_base, modified_client):
   findings, universe = _ValidateConfigInner([], modified_base, modified_client,
                                             True)
 
-  findings_by_file = OrganizeFindingsByFile(findings)
-  for filepath in findings_by_file:
-    findings_for_file = findings_by_file[filepath]
-    if not findings_for_file:
-      print('no Findings in {0}'.format(filepath))
-      continue
-    print('Findings in {0}'.format(filepath))
-    for finding in findings_for_file:
-      if not filter_text or filter_text in str(finding):
-        print(finding)
+  PrintFindings(findings, filter_text)
 
-  print('\n' + str(len(findings)) + ' findings.\n')
   end_time = time.time()
   print('Elapsed time: {0} seconds.\n'.format(str(end_time - start_time)))
 

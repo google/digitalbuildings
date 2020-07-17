@@ -1,0 +1,39 @@
+# This workflow validates the ontology types
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
+
+name: Ontology Type Validator
+
+on:
+  push:
+    branches: [ master ]
+    paths: 
+      - 'ontology/yaml/resources/**'
+  pull_request:
+    branches: [ master ]
+    paths: 
+      - 'ontology/yaml/resources/**'
+
+jobs:
+  build:
+  
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest, ubuntu-latest]
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python 3.7
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.7
+        
+    - name:  Ontology Type Yaml Validator Install dependencies
+      run: |
+        python setup.py install
+      working-directory: ./tools/validators/ontology_validator
+    
+    - name:  Ontology Type Yaml Validator Run on Ontology Type Extensions
+      run: |
+        python validator.py --original=./ontology/yaml/resources --interactive=False
+      working-directory: ./tools/validators/ontology_validator/yamlformat

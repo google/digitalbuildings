@@ -12,16 +12,17 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-LIGHTING_FIXTURE:
-  id: "10696883232013549568"
-  description: "Lighting fixture."
-  implements:
-  - PM
-  - HVAC/ZTM
-  uses:
-  - dimmer_percentage_command # in % indicating brightness
-  - illuminance_sensor
+from setuptools import setup, find_packages
 
-SWITCH_GROUP:
-  id: "11579588758978166784"
-  description: "A group containing one or more lighting fixtures."
+setup(
+    name='instance-yaml-validator',
+    version='0.0.1',
+    url='https://github.com/google/digitalbuildings',
+    license='Apache License',
+    author='Raymond Li',
+    author_email='',
+    description='',
+    packages=find_packages(),
+    install_requires=['strictyaml'],
+    python_requires='>=3.6',
+)
