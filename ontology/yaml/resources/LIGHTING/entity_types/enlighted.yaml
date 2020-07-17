@@ -12,15 +12,16 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-OS:
-  id: "5263290281591046144"
-  description: "Occupancy status for a specific zone."
+LIGHTING_FIXTURE:
+  id: "10696883232013549568"
+  description: "Lighting fixture."
+  implements:
+  - PM
+  - HVAC/ZTM
   uses:
-  - zone_occupancy_status
+  - dimmer_percentage_command # in % indicating brightness
+  - illuminance_sensor
 
-PM:
-  id: "14453888075845074944"
-  description: "Power monitoring."
-  is_abstract: true
-  uses:
-  - power_sensor
+SWITCH_GROUP:
+  id: "11579588758978166784"
+  description: "A group containing one or more lighting fixtures."
