@@ -29,7 +29,7 @@ FLAGS = flags.FLAGS
 
 flags.DEFINE_string('changed', None, 'The path of the changed files')
 flags.DEFINE_string('original', None, 'The path of the original files')
-
+flags.DEFINE_boolean('interactive', True, 'interactive mode')
 
 def main(args):
   filter_text = None
@@ -46,7 +46,7 @@ def main(args):
 
   print('Starting Yaml Validator!')
   external_file_lib.Validate(filter_text, path.expanduser(FLAGS.original),
-                             changed)
+                             changed, interactive=FLAGS.interactive)
 
 
 if __name__ == '__main__':
