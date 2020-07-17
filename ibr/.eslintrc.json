@@ -11,5 +11,6 @@
         "sourceType": "module"
     },
     "rules": {
+        "space-infix-ops": ["error", { "int32Hint": false }]
     }
 }
