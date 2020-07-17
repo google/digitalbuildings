@@ -12,8 +12,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-ENLIGHTED_FLOOR:
-  id: "4890265568705249280"
-  description: "A basis entity for all enlighted entities."
+
+EXIT:
+  description: "Illuminated exit signs"
+  is_abstract: true
   implements:
-  - CARSON/COORDINATE_BASIS
+  - LT
+
+
