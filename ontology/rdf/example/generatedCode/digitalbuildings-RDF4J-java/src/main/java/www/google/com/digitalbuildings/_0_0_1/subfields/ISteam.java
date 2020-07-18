@@ -1,0 +1,12 @@
+package www.google.com.digitalbuildings._0_0_1.subfields;
+
+import org.eclipse.rdf4j.model.IRI;
+/**
+* Class Steam 
+* Water in gaseous form.
+*/
+public interface ISteam extends IDescriptor{
+
+	public IRI iri();
+
+}
