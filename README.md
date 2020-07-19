@@ -59,3 +59,6 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ```
 
+## Publications & Citations:
+* [LDAC 2020](http://linkedbuildingdata.net/ldac2020/abstracts.html#industry10). 
+
