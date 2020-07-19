@@ -21,7 +21,7 @@ For this example you will need the following:
 3. _Apache Maven_ a software project management 
 [download Maven](https://maven.apache.org/download.cgi).
 
-## [Step 1]: Extend the Ontology
+## 1. Extend the Ontology
 
 The Digital Buildings repo proposes two formats: [yaml](https://github.com/google/digitalbuildings/blob/master/ontology/yaml/README.md), and [rdf/owl](https://github.com/google/digitalbuildings/blob/master/ontology/rdf/README.md).
 We have two possible options:
@@ -42,7 +42,7 @@ In this example, we will associate a `Physical Location` to the `Fan_ss` equipme
 
 ![](./figures/hasLocation.png)
 
-## [Step 2]: Code Generation with OLGA
+## 2. Code Generation with OLGA
 In this step 2, we will generate code from the RDF model by relying on 
 [OLGA](https://ecostruxure.github.io/OLGA/).
 
@@ -67,7 +67,7 @@ In this example, we already generated the code for you using
 [OLGA](https://ecostruxure.github.io/OLGA/).
 
 The generated source code is in the [generatedCode](./generatedCode) folder.
-It is in Java and relies on the  [RDF4J](https://rdf4j.org/) existing library.
+It is in Java and relies on the [RDF4J](https://rdf4j.org/) existing library.
 
 In case you want to generate the code from OLGA use the following options:
 ```shell script
@@ -181,7 +181,7 @@ The version in the generated code is extracted from the ontology version.
 In the following step, the generated code will be used to instantiate 
 a simple example of a building with floors and an equipment.
 
-## [Step 3] Instantiate the Ontology Model with the Generated Code
+## 3. Instantiate the Ontology Model with the Generated Code
 The previous steps allowed us to generate one or several libraries that are 
 conform with the ontology.
  
@@ -192,6 +192,144 @@ start writing the business logic to instantiate a building.
 This business logic can then be deployed on a gateway or a _BMS_ as shown in this 
 paper [link](https://docs.google.com/viewer?a=v&pid=sites&srcid=ZGVmYXVsdGRvbWFpbnxjaGFyYmVsd2VifGd4OjQwN2FiY2M2MWQ3ZDA2MTY).
 
+
 ### Import the Generated Library
 
-The first step is to import the generated library in your _IDE_
+* Create a new maven project with your favorite _IDE_
+* Import the generated library by adding the `dependency` shown previously to your `pom.xml` file
+* Once add, run `maven clean install` with your _IDE_ to pull all the required dependencies.
+* Upon completion, the digitalbuildings-RDF4J will appear under the Maven Dependencies as shown in figure below.
+
+![](./figures/mavenDependencies.png)
+
+### Implementing the Business Logic
+
+In this example, we will create a very simple business logic to instantiate a building. However, such business logic needs to be correlated with the underlying system. For example, a BMS or a Gateway which is connected and manages the equipment and devices as demonstrated in this paper [link](https://docs.google.com/viewer?a=v&pid=sites&srcid=ZGVmYXVsdGRvbWFpbnxjaGFyYmVsd2VifGd4OjQwN2FiY2M2MWQ3ZDA2MTY).
+
+Such business logic can be deployed on a gateway or a BMS to discover the data through various ways such as a BMS SDK or allow the gateway to discover devices on the network and instantiate the ontology.
+
+Once the generated library is imported, you can benefit from the auto-completion feature provided by the _IDE_. It will allow you to explore the list of possible relations and methods which can be applied on a specific class, as shown in the figure below, for the class `Building`.
+
+![](./figures/autoCompletion.png)
+
+In the following, an example of instantiation of a building with some floors and rooms are provided. The business logic can be driven by the discovery results from a BMS which can render information about the building and its floors.
+
+```java
+String exampleNamespace = "http://www.example.com/ont/tc2#";
+
+		// Physical Location
+		Building building = new Building(exampleNamespace, "12345");
+		building.setCode("US-SVL-TC2");
+		building.setFriendlyName("TC2 Building");
+
+		Floor floor1 = new Floor(exampleNamespace, "floor1");
+		floor1.setCode("US-SVL-TC2-1");
+		//...
+		Room room11 = new Room(exampleNamespace, "room11");
+		room11.setCode("Room on floor 1");
+		//...
+		Room room21 = new Room(exampleNamespace, "room21");
+		room21.setCode("Room on floor 2");
+		// Connect Building and Floor
+		building.addFloor(floor3);
+		building.addFloor(floor2);
+		building.addFloor(floor1);
+```
+
+The possible methods applied are generated from the ontology. Refer to the figure above showing a snippet of the ontology in protege where the focus is on the building class and its relations.
+
+The following example shows how a fan_ss type from the Carson ontology can be instantiated.
+As shown in the figure above, where a snippet of the ontology rendered by Protege, a _Fan_ss_ is a subclass of the two classes _Fan_ and _Ss_ and has two mandatory fields: _Run_command_ and _Run_status_. The code snippet below shows an example of instantiation of the _Fan_ss_ class in addition to setting a physical location and timeseries ids.
+
+```java
+
+Fan_ss fan_ss1 = new Fan_ss(ns, "fan_ss1");
+// Mandatory fields for fan ss
+Run_command runCommand = new Run_command(ns, "rc1");
+runCommand.setTimeSeriesId("ts-1"); //GUID
+
+Run_status runStatus = new Run_status(ns, "rs1");
+runStatus.setTimeSeriesId("ts-2"); //GUID
+
+// Connect Fields to commands
+fan_ss1.addUsesRun_command(runCommand);
+fan_ss1.addUsesRun_status(runStatus);
+
+// Add a location for the fan
+fan_ss1.addPhysicalLocation(room32);
+…
+```
+
+### Generated Payload: Ontology Instance & Telemetry
+
+From each building two types of data payloads are required to be collected: topology and telemetry data.
+
+The topology data consists of capturing information from the building and its systems (BMS, devices, equipment) which is generated using the generated libraries as detailed previously.
+
+Such topology payload can be generated either periodically and sent to a remote cloud endpoint platform or on demand upon the occurrence of an event such as a device is added and discovered or a device is no longer visible on the network. The strategy to generate such payload depends on where the business logic is deployed, gateway or _BMS_ and how many features are already implemented to support detecting a change in the network topology.
+
+The topology data can have various serialization formats which are provided by the W3C standards. The figure below shows a list of formats supported that the partner can choose from to serialize the ontology instance. Such serialization relies on Apache Eclipse [RDF4J](https://rdf4j.org/) library which is part of the generated library by OLGA.
+ 
+![](./figures/serialization.png)
+
+
+For example, a generated [json-ld](https://json-ld.org) serialization is provided below:
+
+```json
+[ {
+  "@id" : "12345",
+  "@type" : [ "http://www.google.com/digitalbuildings/0.0.1#EntityType", 
+  "http://www.google.com/digitalbuildings/0.0.1/facilities#PhysicalLocation", 
+  "http://www.google.com/digitalbuildings/0.0.1/facilities#Building" ],
+  "http://www.google.com/digitalbuildings/0.0.1#hasCode" : [ {
+    "@value" : "US-SVL-TC2"
+  } ],
+  "http://www.google.com/digitalbuildings/0.0.1#hasFloor" : [ {
+    "@id" : "floor3"
+  }, {
+    "@id" : "floor2"
+  }, {
+    "@id" : "floor1"
+  } ],
+  "http://www.google.com/digitalbuildings/0.0.1#hasFriendlyName" : [ {
+    "@value" : "TC2 Building"
+  } ]
+  ...
+```
+
+Regarding telemetry data, you can also rely on the generated code to add timestamp and value pairs as shown in the code snippet below:
+
+```java
+TimeSeriesId ts_rs = runStatus.getTimeSeriesId();
+ts_rs.setValue("ON")
+ts_rs.setTimeStamp(new Date());
+...
+
+```
+
+The generated output of the telemetry data can simply be an unique timeseries id such as a GUID and a set of key:value pairs of timestamp and value, for example:
+```json
+{ "132654546-guid": [
+        {
+            "ts": "2019-08-16T02:00:39.000Z",
+            "v":  "ON"
+        },
+        {
+           "ts": "2019-08-16T02:10:39.000Z",
+            "v":  "OFF"
+        }, ...]
+}
+```
+
+The two payloads can be inserted in an envelope which is sent to the remote platform.
+It can be conform to the following json format:
+```json
+{"content-Type": "Topology or Telemetry",
+"Building-Code": "US-SVL-TC2",
+"operation": "Init or Update",
+"generatedBy": "(BMS or Gateway) ID",
+"ontology-Uri": //Ontology instance url
+"http://www.example.com/ont/tc2#",
+"payload":
+{"ontology(json-ld) or timeseries(json)"}}
+```
