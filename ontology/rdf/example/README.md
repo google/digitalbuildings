@@ -4,12 +4,21 @@ This example steps, depicted in the figure below, consists of the following:
 
 ![](./figures/overallsteps.png)
 
+  * [Prerequisites](#prerequisites)
+  * [1. Extend the Ontology](#1-extend-the-ontology)
+    + [Equipment and a Physical Location](#equipment-and-a-physical-location)
+  * [2. Code Generation with OLGA](#2-code-generation-with-olga)
+    + [OLGA](#olga)
+    + [Generated Code](#generated-code)
+    + [Compile the Generated code](#compile-the-generated-code)
+    + [The Generated Code Overview](#the-generated-code-overview)
+  * [3. Instantiate the Ontology Model with the Generated Code](#3-instantiate-the-ontology-model-with-the-generated-code)
+    + [Import the Generated Library](#import-the-generated-library)
+    + [Implementing the Business Logic](#implementing-the-business-logic)
+  * [4. Serialize the Ontology Instance](#4-serialize-the-ontology-instance)
+  * [5. Telemetry](#5-telemetry)
+  * [6. Graph RDF Store](#6-graph-rdf-store)
 
-1. Extend the Ontology
-2. Automatically Generate Code with [OLGA](https://ecostruxure.github.io/OLGA/)
-3. Instantiate the Ontology Model with the Generated Code
-4. Serialize the Ontology Instance into one of the [W3C standards]() such as 
-[Json-Ld](https://json-ld.org/) for example  
 
 ## Prerequisites
 
@@ -215,25 +224,25 @@ Once the generated library is imported, you can benefit from the auto-completion
 In the following, an example of instantiation of a building with some floors and rooms are provided. The business logic can be driven by the discovery results from a BMS which can render information about the building and its floors.
 
 ```java
-String exampleNamespace = "http://www.example.com/ont/tc2#";
+ String exampleNamespace = "http://www.example.com/ont/tc2#";
 
-		// Physical Location
-		Building building = new Building(exampleNamespace, "12345");
-		building.setCode("US-SVL-TC2");
-		building.setFriendlyName("TC2 Building");
+ // Physical Location
+ Building building = new Building(exampleNamespace, "12345");
+ building.setCode("US-SVL-TC2");
+ building.setFriendlyName("TC2 Building");
 
-		Floor floor1 = new Floor(exampleNamespace, "floor1");
-		floor1.setCode("US-SVL-TC2-1");
-		//...
-		Room room11 = new Room(exampleNamespace, "room11");
-		room11.setCode("Room on floor 1");
-		//...
-		Room room21 = new Room(exampleNamespace, "room21");
-		room21.setCode("Room on floor 2");
-		// Connect Building and Floor
-		building.addFloor(floor3);
-		building.addFloor(floor2);
-		building.addFloor(floor1);
+ Floor floor1 = new Floor(exampleNamespace, "floor1");
+ floor1.setCode("US-SVL-TC2-1");
+ //...
+ Room room11 = new Room(exampleNamespace, "room11");
+ room11.setCode("Room on floor 1");
+ //...
+ Room room21 = new Room(exampleNamespace, "room21");
+ room21.setCode("Room on floor 2");
+ // Connect Building and Floor
+ building.addFloor(floor3);
+ building.addFloor(floor2);
+ building.addFloor(floor1);
 ```
 
 The possible methods applied are generated from the ontology. Refer to the figure above showing a snippet of the ontology in protege where the focus is on the building class and its relations.
@@ -242,7 +251,6 @@ The following example shows how a fan_ss type from the Carson ontology can be in
 As shown in the figure above, where a snippet of the ontology rendered by Protege, a _Fan_ss_ is a subclass of the two classes _Fan_ and _Ss_ and has two mandatory fields: _Run_command_ and _Run_status_. The code snippet below shows an example of instantiation of the _Fan_ss_ class in addition to setting a physical location and timeseries ids.
 
 ```java
-
 Fan_ss fan_ss1 = new Fan_ss(ns, "fan_ss1");
 // Mandatory fields for fan ss
 Run_command runCommand = new Run_command(ns, "rc1");
@@ -260,7 +268,7 @@ fan_ss1.addPhysicalLocation(room32);
 …
 ```
 
-### Generated Payload: Ontology Instance & Telemetry
+## 4. Serialize the Ontology Instance
 
 From each building two types of data payloads are required to be collected: topology and telemetry data.
 
@@ -297,14 +305,14 @@ For example, a generated [json-ld](https://json-ld.org) serialization is provide
   ...
 ```
 
+## 5. Telemetry
 Regarding telemetry data, you can also rely on the generated code to add timestamp and value pairs as shown in the code snippet below:
 
 ```java
 TimeSeriesId ts_rs = runStatus.getTimeSeriesId();
 ts_rs.setValue("ON")
 ts_rs.setTimeStamp(new Date());
-...
-
+//...
 ```
 
 The generated output of the telemetry data can simply be an unique timeseries id such as a GUID and a set of key:value pairs of timestamp and value, for example:
@@ -317,19 +325,91 @@ The generated output of the telemetry data can simply be an unique timeseries id
         {
            "ts": "2019-08-16T02:10:39.000Z",
             "v":  "OFF"
-        }, ...]
+        }, "..."]
 }
 ```
 
-The two payloads can be inserted in an envelope which is sent to the remote platform.
+The two payloads can be inserted in an envelope which is sent to the remote
+ platform, as shown in this paper [link](https://docs.google.com/viewer?a=v&pid=sites&srcid=ZGVmYXVsdGRvbWFpbnxjaGFyYmVsd2VifGd4OjQwN2FiY2M2MWQ3ZDA2MTY).
+ 
 It can be conform to the following json format:
 ```json
 {"content-Type": "Topology or Telemetry",
 "Building-Code": "US-SVL-TC2",
 "operation": "Init or Update",
 "generatedBy": "(BMS or Gateway) ID",
-"ontology-Uri": //Ontology instance url
-"http://www.example.com/ont/tc2#",
+"ontology-Uri": "http://www.example.com/ont/tc2#",
 "payload":
-{"ontology(json-ld) or timeseries(json)"}}
+"ontology(json-ld) or timeseries(json)"}
+```
+## 6. Graph RDF Store
+An ontology store allows to persist both the ontology model and the generated instance.
+
+The graph traversal is one form of reasoning and is offered by a reasoner usually 
+built in the database with no development or engineering effort.
+
+The ontology database persists both the ontology model and the ontology instance. It would have an entry for each onboarded building.
+SPARQL the W3C standard query language is used to query such stores.
+In the following, some SPARQL queries are provided to depict some capabilities.
+
+During the instantiation of the ontology in previous sections, instances of Building, Floor, and Room are created but not explicitly of type PhysicalLocation.
+With a reasoner, it is possible to query all instances of an abstract class such as PhysicalLocation.
+
+```sql
+select ?a ?code {
+   ?a rdf:type facilities:PhysicalLocation.
+   ?a db:hasCode ?code. }
+```
+
+The query would return the following results:
+```
+?a          ,  ?code
+------------,--------------
+tc2:12345   , "US-SVL-TC2"
+Tc2:floor1  , "US-SVL-TC2-1"
+Tc2:floor2  , "US-SVL-TC2-2"
+Tc2:room11  , "Room on floor 1"
+…
+```
+
+Another example can be to return all instances of type Fan while the instances are of type Fan_ss and others.
+```
+select ?a {
+    ?a rdf:type hvac:Fan. }
+```
+The query would return the following results:
+```
+?a
+-----------------
+tc2:fan_ss1
+tc2:fan_ss_dri1
+```
+
+The following example queries all the instances of type Fan with their location and their mandatory fields:
+```
+select ?a ?location ?field {
+    ?a rdf:type hvac:Fan.
+    ?a db:has ?location.
+    ?a db:uses ?field.}
+```
+
+The query would return the following results:
+```
+?a         , ?location , ?field
+-----------,-----------,--------
+tc2:fan_ss1, tc2:room32, tc2:rc1
+…
+```
+
+It is also possible to use the generated libraries to write queries instead of SPARQL using ORMs. 
+For example in C# it is possible to rely on LINQ and use classes from the generated library, 
+as shown in the code below which retrieves a building with a specific code and iterates on the floors. 
+LINQ will handle the SPARQL query generation based on the Trinity RDF underlying library.
+```
+foreach (IBuilding building in context.GetResources<IBuilding>()
+.Where( x => x.Code == "US-SVL-TC2").ToList()){
+  foreach (Floor floor in building.Floors) {
+    //do something
+  }
+}
 ```
