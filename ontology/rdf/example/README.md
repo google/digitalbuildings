@@ -302,7 +302,7 @@ For example, a generated [json-ld](https://json-ld.org) serialization is provide
   "http://www.google.com/digitalbuildings/0.0.1#hasFriendlyName" : [ {
     "@value" : "TC2 Building"
   } ]
-  ...
+  "..."
 ```
 
 ## 5. Telemetry
