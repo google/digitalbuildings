@@ -1,4 +1,8 @@
-import { Layer } from './Layer.js';
+import {Layer} from './Layer.js';
+
+// the length of one 3D coordinates (x, y, z) in the coordinate lookup float
+// array
+export const ONE_POINT = 3;
 
 /**
  * Constructor of IBRObject Class.
@@ -44,6 +48,26 @@ function IBRObject( pbfDecodedJsonObject ) {
   }
 
   this.subStructures = pbfDecodedJsonObject.structures;
+
+  if ( this.hasLayers && this.hasCoordinatesLookup ) {
+    // Read multiple ranges from Visualization.coordinates array
+    for (const layer of this.layers.values()) {
+      const layerPH = [];
+      const coordsRangeItem = layer.getCoordinatesIndices();
+      for (let i = 0; i < coordsRangeItem.length; i += 2) {
+        const coordsLine = [];
+        for (let j = coordsRangeItem[i]; j <= coordsRangeItem[i + 1];
+          j += ONE_POINT) {
+          coordsLine.push(this.coordinates[j]);
+          coordsLine.push(this.coordinates[j + 1]);
+          coordsLine.push(this.coordinates[j + 2]);
+        }
+        layerPH.push(coordsLine);
+      }
+      layer.setLineCoordinates(layerPH);
+      console.log(layerPH);
+    }
+  }
 }
 
 Object.assign( IBRObject.prototype, {

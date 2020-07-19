@@ -32,6 +32,7 @@ function Layer( layerData ) {
 
   this.encodingType = layerData.encoding_type;
   this.imageData = layerData.image_data;
+  this.lineCoordinates = null;
 }
 
 Object.assign( Layer.prototype, {
@@ -79,15 +80,23 @@ Object.assign( Layer.prototype, {
   },
 
   /**
-   * Append indices of new coordinates onto the coordinates indices of the
-   layer.
-   * @param {number} coordinateIndices indices of mew coordinates to be
-   appended to the coordinates indices of the layer.
+   * Set the line coordinates of the layer during IBRObject construction.
+   * @param {List.<List.<number>>} lineCoordinates list of list of end point
+    coordinates that each represent a line during rendering.
    */
-  appendCoordinatesIndices: function( coordinateIndices ) {
-    this.coordinateIndices.append(coordinateIndices);
+  setLineCoordinates: function( lineCoordinates ) {
+    this.lineCoordinates = lineCoordinates;
+  },
+
+  /**
+   * Get the line coordinates of the layer.
+   * @return {List.<List.<number>>} list of list of end point coordinates that
+    each represent a line during rendering.
+   */
+  getLineCoordinates: function() {
+    return this.lineCoordinates;
   },
 
 } );
 
-export { Layer };
+export {Layer};
