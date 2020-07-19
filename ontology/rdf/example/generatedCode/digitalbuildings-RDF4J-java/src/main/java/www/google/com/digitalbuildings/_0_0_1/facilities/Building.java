@@ -29,20 +29,20 @@ public class Building extends www.google.com.digitalbuildings._0_0_1.facilities.
 	}
 
 
-  public void addFloorsFloor (IFloor parameter)
+  public void addFloor(IFloor parameter)
 	{
 		GLOBAL.model.add(this, GLOBAL.factory.createIRI("http://www.google.com/digitalbuildings/0.0.1#hasFloor"), parameter);
 	}
 
-	public Set<IFloor> getFloorsFloor (){
-		Set<IFloor> FloorsFloor = new HashSet<>();
+	public Set<IFloor> getFloors (){
+		Set<IFloor> floors = new HashSet<>();
 		GLOBAL.model.filter(this, GLOBAL.factory.createIRI("http://www.google.com/digitalbuildings/0.0.1#hasFloor"), null)
 		.objects().forEach(action->{
 			if(action instanceof Floor) {
-				FloorsFloor.add((Floor)action);
+				floors.add((Floor)action);
 			}
 		});
-		return FloorsFloor;
+		return floors;
 	}
 
 	public static Set<IBuilding> getAllBuildingsObjectsCreated(){

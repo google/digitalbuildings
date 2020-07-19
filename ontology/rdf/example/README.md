@@ -173,7 +173,7 @@ The version in the generated code is extracted from the ontology version.
 <dependency>
  <groupId>OLGA-RDF4J</groupId>                      
  <artifactId>digitalbuildings-RDF4J</artifactId>
- <version>0.0.1</version>
+ <version>0.0.1.alpha</version>
 </dependency>
 ```   
 

@@ -10,8 +10,8 @@ public interface IFloor extends IPhysicalLocation{
 
 	public IRI iri();
 
-    public void addRoomsRoom (IRoom parameter);
+    public void addRoom(IRoom parameter);
 
-	public Set<IRoom> getRoomsRoom();
+	public Set<IRoom> getRooms();
 
 }
