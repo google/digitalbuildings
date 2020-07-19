@@ -31,20 +31,20 @@ public class Fan_ss extends www.google.com.digitalbuildings._0_0_1.hvac.Ss imple
 	}
 
 
-  public void addPhysicalLocationPhysicalLocation (IPhysicalLocation parameter)
+  public void addPhysicalLocation(IPhysicalLocation parameter)
 	{
 		GLOBAL.model.add(this, GLOBAL.factory.createIRI("http://www.google.com/digitalbuildings/0.0.1#hasPhysicalLocation"), parameter);
 	}
 
-	public Set<IPhysicalLocation> getPhysicalLocationPhysicalLocation (){
-		Set<IPhysicalLocation> PhysicalLocationPhysicalLocation = new HashSet<>();
+	public Set<IPhysicalLocation> getPhysicalLocation(){
+		Set<IPhysicalLocation> physicalLocations = new HashSet<>();
 		GLOBAL.model.filter(this, GLOBAL.factory.createIRI("http://www.google.com/digitalbuildings/0.0.1#hasPhysicalLocation"), null)
 		.objects().forEach(action->{
 			if(action instanceof PhysicalLocation) {
-				PhysicalLocationPhysicalLocation.add((PhysicalLocation)action);
+				physicalLocations.add((PhysicalLocation)action);
 			}
 		});
-		return PhysicalLocationPhysicalLocation;
+		return physicalLocations;
 	}
 
 	public static Set<IFan_ss> getAllFan_sssObjectsCreated(){

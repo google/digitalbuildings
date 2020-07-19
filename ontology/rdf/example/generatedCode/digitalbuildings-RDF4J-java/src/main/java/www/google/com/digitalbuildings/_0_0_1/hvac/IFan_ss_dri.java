@@ -16,8 +16,8 @@ public interface IFan_ss_dri extends IFan, ISs{
 
 	public Set<IDryer_run_status> getUsesDryer_run_status();
 
-    public void addPhysicalLocationPhysicalLocation (IPhysicalLocation parameter);
+    public void addPhysicalLocation(IPhysicalLocation parameter);
 
-	public Set<IPhysicalLocation> getPhysicalLocationPhysicalLocation();
+	public Set<IPhysicalLocation> getPhysicalLocation();
 
 }

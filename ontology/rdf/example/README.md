@@ -81,6 +81,7 @@ Run the following command using `Apache Maven` to generate a .jar:
 cd digitalbuildings-RDF4J-java
 mvn clean install
 ```
+OLGA takes the `digital buildings` RDF format ontology and generates `2667` Java classes.
 
 Explore the generated code to see all generated components from the ontology.
 

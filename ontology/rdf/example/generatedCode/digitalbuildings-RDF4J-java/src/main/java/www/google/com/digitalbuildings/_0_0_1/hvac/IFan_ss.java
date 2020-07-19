@@ -11,8 +11,8 @@ public interface IFan_ss extends IFan, ISs{
 
 	public IRI iri();
 
-    public void addPhysicalLocationPhysicalLocation (IPhysicalLocation parameter);
+    public void addPhysicalLocation (IPhysicalLocation parameter);
 
-	public Set<IPhysicalLocation> getPhysicalLocationPhysicalLocation();
+	public Set<IPhysicalLocation> getPhysicalLocation();
 
 }
