@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>OLGA-RDF4J</groupId>
 	<artifactId>digitalbuildings-RDF4J</artifactId>
-	<version>0.0.5</version>
+	<version>0.0.1.alpha</version>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
