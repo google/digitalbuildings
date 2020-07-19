@@ -75,6 +75,8 @@ and how they are related to each other.
 In this example, we already generated the code for you using 
 [OLGA](https://ecostruxure.github.io/OLGA/).
 
+There a minor bug with OLGA where the code generation fails, a bug has been created [bug-17](https://github.com/EcoStruxure/OLGA/issues/17)
+
 The generated source code is in the [generatedCode](./generatedCode) folder.
 It is in Java and relies on the [RDF4J](https://rdf4j.org/) existing library.
 
