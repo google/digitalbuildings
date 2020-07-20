@@ -5,7 +5,7 @@ This example steps, depicted in the figure below, consists of the following:
 ![](./figures/overallsteps.png)
 
   * [Prerequisites](#prerequisites)
-  * [1. Extend the Ontology](#1-extend-the-ontology)
+  * [1. The RDF Ontology](#1-the-rdf-ontology)
     + [Equipment and a Physical Location](#equipment-and-a-physical-location)
   * [2. Code Generation with OLGA](#2-code-generation-with-olga)
     + [OLGA](#olga)
@@ -33,23 +33,10 @@ For this example you will need the following:
 ## 1. Extend the Ontology
 
 The Digital Buildings repo proposes two formats: [yaml](https://github.com/google/digitalbuildings/blob/master/ontology/yaml/README.md), and [rdf/owl](https://github.com/google/digitalbuildings/blob/master/ontology/rdf/README.md).
-We have two possible options:
-* If you are not familiar with the W3C standards, extend the Yaml format. 
-  Then, use the [RDF Generator](https://github.com/google/digitalbuildings/blob/master/tools/rdf_generator/README.md) to generate an RDF Format, similar to the one on the [repo](https://github.com/google/digitalbuildings/tree/master/ontology/rdf/README.md).
-* If you are familiar with RDF and OWL, you can extend the [RDF version](https://github.com/google/digitalbuildings/tree/master/ontology/rdf) using any W3C compliant ontology editor.
-In this example, we rely on [Protege](https://protege.stanford.edu/) to extend it.
 
-### Equipment and a Physical Location
+Use the [RDF Generator](https://github.com/google/digitalbuildings/blob/master/tools/rdf_generator/README.md) to generate an RDF Format, similar to the one on the [repo](https://github.com/google/digitalbuildings/tree/master/ontology/rdf/README.md).
 
-In this example, we will associate a `Physical Location` to the `Fan_ss` equipment.
-
-* In the Protege `Classes` view locate `Fan` then `Fan_ss`
-* In the `Description` widget Click on the `+` sign new `SubClass Of`
-* A window will pop up, select `Class expression editor`
-* Enter the following: `hasPhysicalLocation exactly 1 PhysicalLocation`
-* Click `Ok` and `Save`
-
-![](./figures/hasLocation.png)
+In this example, we rely on [Protege](https://protege.stanford.edu/) to visualize it.
 
 ## 2. Code Generation with OLGA
 In this step 2, we will generate code from the RDF model by relying on 
