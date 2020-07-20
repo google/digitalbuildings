@@ -21,8 +21,6 @@ from __future__ import print_function
 from universe_generation import generate_universe
 from universe_generation import ontology_validation
 from absl.testing import absltest
-from os.path import join
-import strictyaml
 
 _GOOD_EXAMPLE = {'UK-LON-S2': {'type': 'FACILITIES/BUILDING',
                                'id': 'FACILITIES/123456'}}
@@ -32,50 +30,20 @@ _BAD_ENTITY_EXAMPLE = {'UK-LON-S2': {'type': 'LIGHTING/NOT_A_LAMP',
                                      'id': 'FACILITIES/123456'}}
 _BAD_NAMESPACE_EXAMPLE = {'UK-LON-S2': {'type': 'NONEXISTENT/BUILDING',
                                         'id': 'FACILITIES/123456'}}
-_UNIVERSE = {}
 
 class OntologyValidationTest(absltest.TestCase):
-  
+
   def setUp(self):
-    self._good_example = dict(strictyaml.load(join('.',
-                                              'fake_instances',
-                                              'GOOD',
-                                              'good_building_type.yaml')).data)
-
-  def testCanParseUniverse(self):
-    universe = generate_universe.build_universe()
-    parsed_univ = generate_universe.parse_universe(universe)
-    fields, subfields_map, states_map, units_map, entities_map = parsed_univ
-    self.assertTrue(fields)
-    _UNIVERSE['fields'] = fields
-
-    self.assertTrue(subfields_map)
-    _UNIVERSE['subfields_map'] = subfields_map
-
-    self.assertTrue(states_map)
-    _UNIVERSE['states_map'] = states_map
-
-    self.assertTrue(units_map)
-    _UNIVERSE['units_map'] = units_map
-
-    self.assertTrue(entities_map)
-    _UNIVERSE['entities_map'] = entities_map
+    self.universe = generate_universe.build_universe()
 
   def testValidateGoodExample(self):
-    # entity_names = list(_GOOD_EXAMPLE.keys())
-    entity_names = list(self._good_example.keys())
-    print('LOGGING')
-    print(entity_names)
+    entity_names = list(_GOOD_EXAMPLE.keys())
 
     for name in entity_names:
-      entity = dict(self_good_example[name])
-      result = ontology_validation.validate_entity(entity,
-                                            _UNIVERSE['fields'],
-                                            _UNIVERSE['subfields_map'],
-                                            _UNIVERSE['states_map'],
-                                            _UNIVERSE['units_map'],
-                                            _UNIVERSE['entities_map'])
-      if result == False:
+      entity = dict(_GOOD_EXAMPLE[name])
+      result = ontology_validation.validate_entity(entity, self.universe)
+
+      if result is False:
         self.fail('exception incorrectly raised')
 
   def testValidateBadNamespaceExample(self):
@@ -83,13 +51,9 @@ class OntologyValidationTest(absltest.TestCase):
 
     for name in entity_names:
       entity = dict(_BAD_NAMESPACE_EXAMPLE[name])
-      result = ontology_validation.validate_entity(entity,
-                                            _UNIVERSE['fields'],
-                                            _UNIVERSE['subfields_map'],
-                                            _UNIVERSE['states_map'],
-                                            _UNIVERSE['units_map'],
-                                            _UNIVERSE['entities_map'])
-      if result == True:
+      result = ontology_validation.validate_entity(entity, self.universe)
+
+      if result:
         self.fail('exception failed to raise')
 
   def testValidateBadTypeExample(self):
@@ -97,13 +61,9 @@ class OntologyValidationTest(absltest.TestCase):
 
     for name in entity_names:
       entity = dict(_BAD_TYPE_EXAMPLE[name])
-      result = ontology_validation.validate_entity(entity,
-                                            _UNIVERSE['fields'],
-                                            _UNIVERSE['subfields_map'],
-                                            _UNIVERSE['states_map'],
-                                            _UNIVERSE['units_map'],
-                                            _UNIVERSE['entities_map'])
-      if result == True:
+      result = ontology_validation.validate_entity(entity, self.universe)
+
+      if result:
         self.fail('exception failed to raise')
 
   def testValidateBadEntityExample(self):
@@ -111,13 +71,9 @@ class OntologyValidationTest(absltest.TestCase):
 
     for name in entity_names:
       entity = dict(_BAD_ENTITY_EXAMPLE[name])
-      result = ontology_validation.validate_entity(entity,
-                                            _UNIVERSE['fields'],
-                                            _UNIVERSE['subfields_map'],
-                                            _UNIVERSE['states_map'],
-                                            _UNIVERSE['units_map'],
-                                            _UNIVERSE['entities_map'])
-      if result == True:
+      result = ontology_validation.validate_entity(entity, self.universe)
+
+      if result:
         self.fail('exception failed to raise')
 
 if __name__ == '__main__':

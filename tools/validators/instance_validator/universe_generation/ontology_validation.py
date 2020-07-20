@@ -16,13 +16,13 @@
 
 from __future__ import print_function
 
-def _validate_type(entity, entities_map):
+def _validate_type(entity, universe):
   """Uses information from the generated ontology universe to validate
   an entity's type.
 
   Args:
     entity: parsed instance YAML file formatted as dictionary
-    entities_map: valid universe entity types generated from the ontology
+    universe: ConfigUniverse generated from the ontology
 
   Returns:
     Throws Exceptions if entity type is invalid.
@@ -37,29 +37,24 @@ def _validate_type(entity, entities_map):
   namespace = type_parse[0]
   entity_type = type_parse[1]
 
-  if namespace not in entities_map.keys():
+  if universe.GetEntityTypeNamespace(namespace) is None:
     print('invalid namespace:', namespace)
     return False
 
-  if entity_type not in entities_map[namespace].keys():
-      print('invalid entity type:', entity_type)
-      return False
-  
+  if universe.GetEntityType(namespace, entity_type) is None:
+    print('invalid entity type:', entity_type)
+    return False
+
   return True
 
-def validate_entity(entity, fields,
-                    subfields_map, states_map, units_map, entities_map):
+def validate_entity(entity, universe):
   """Uses information from generated ontology universe to validate an entity.
 
   Args:
     entity: parsed instance YAML file formatted as dictionary
-    fields: valid universe field types generated from the ontology
-    subfields_map: valid universe subfield types generated from the ontology
-    states_map: valid universe state types generated from the ontology
-    units_map:  valid universe unit types generated from the ontology
-    entities_map:  valid universe entity types generated from the ontology
+    universe: ConfigUniverse generated from the ontology
 
   Returns:
     Throws Exceptions if entity is invalid.
   """
-  return _validate_type(entity, entities_map)
+  return _validate_type(entity, universe)

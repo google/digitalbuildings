@@ -69,10 +69,12 @@ class EntityTypeUniverse(findings_lib.Findings):
     """Finds entity_type by namespace and typename and returns it or None."""
     if namespace_name not in self.type_namespaces_map:
       return None
+    print('namespace_name, typename', namespace_name, typename)
+    print('type_namespaces_map[namespace_name]', self.type_namespaces_map[namespace_name])
     return self.type_namespaces_map[namespace_name].GetType(typename)
 
   def GetNamespace(self, namespace_name):
-    """Finds namesepace in the universe by name and returns it or None."""
+    """Finds namespace in the universe by name and returns it or None."""
     return self.type_namespaces_map.get(namespace_name, None)
 
   def GetNamespaces(self):
