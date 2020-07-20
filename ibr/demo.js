@@ -4,6 +4,8 @@
  * @author shuanglihtk@google.com (Shuang Li)
  */
 
+import { IBRSDK } from './../../../node_modules/ibr-sdk/build/ibr-sdk.js';
+
 /**
  * Setup THREE.js environment and extract top level structure once an IBR
  file is given.

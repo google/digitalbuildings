@@ -4,7 +4,7 @@
  * @author shuanglihtk@google.com (Shuang Li)
  */
 
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+import { OrbitControls } from './../../../node_modules/three/examples/jsm/controls/OrbitControls.js';
 import {IBRObject} from './../class/IBRObject.js';
 
 // the length of one 3D coordinates (x, y, z) in the coordinate lookup float
