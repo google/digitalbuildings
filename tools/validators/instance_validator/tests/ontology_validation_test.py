@@ -38,7 +38,6 @@ class OntologyValidationTest(absltest.TestCase):
 
   def testValidateGoodExample(self):
     entity_names = list(_GOOD_EXAMPLE.keys())
-
     for name in entity_names:
       entity = dict(_GOOD_EXAMPLE[name])
       result = ontology_validation.validate_entity(entity, self.universe)
@@ -48,7 +47,6 @@ class OntologyValidationTest(absltest.TestCase):
 
   def testValidateBadNamespaceExample(self):
     entity_names = list(_BAD_NAMESPACE_EXAMPLE.keys())
-
     for name in entity_names:
       entity = dict(_BAD_NAMESPACE_EXAMPLE[name])
       result = ontology_validation.validate_entity(entity, self.universe)
@@ -58,7 +56,6 @@ class OntologyValidationTest(absltest.TestCase):
 
   def testValidateBadTypeExample(self):
     entity_names = list(_BAD_TYPE_EXAMPLE.keys())
-
     for name in entity_names:
       entity = dict(_BAD_TYPE_EXAMPLE[name])
       result = ontology_validation.validate_entity(entity, self.universe)
@@ -68,7 +65,6 @@ class OntologyValidationTest(absltest.TestCase):
 
   def testValidateBadEntityExample(self):
     entity_names = list(_BAD_ENTITY_EXAMPLE.keys())
-
     for name in entity_names:
       entity = dict(_BAD_ENTITY_EXAMPLE[name])
       result = ontology_validation.validate_entity(entity, self.universe)
