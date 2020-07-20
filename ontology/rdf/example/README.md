@@ -6,7 +6,6 @@ This example steps, depicted in the figure below, consists of the following:
 
   * [Prerequisites](#prerequisites)
   * [1. The RDF Ontology](#1-the-rdf-ontology)
-    + [Equipment and a Physical Location](#equipment-and-a-physical-location)
   * [2. Code Generation with OLGA](#2-code-generation-with-olga)
     + [OLGA](#olga)
     + [Generated Code](#generated-code)
@@ -64,13 +63,9 @@ In this example, we already generated the code for you using
 
 There is a minor bug with OLGA where the code generation fails, a bug has been created [bug-17](https://github.com/EcoStruxure/OLGA/issues/17)
 
-The generated source code is in the [generatedCode](./generatedCode) folder.
-It is in Java and relies on the [RDF4J](https://rdf4j.org/) existing library.
+An example of a generated source code can be found [here](https://github.com/charbull/OLGA-GeneratedCode-DigitalBuildingsOntology/blob/master/README.md).
+It is in Java and relies on the [RDF4J](https://rdf4j.org/) existing library. This code is not expected to be in sync.
 
-In case you want to generate the code from OLGA use the following options:
-```shell script
--preserve --code java --library rdf4j --name DigitalBuildings --path PATH_TO_ONTOLOGY
-```
 
 ### Compile the Generated code
  
