@@ -5,6 +5,7 @@
  */
 
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+import {IBRObject} from './../class/IBRObject.js';
 
 // the length of one 3D coordinates (x, y, z) in the coordinate lookup float
 // array
@@ -34,18 +35,15 @@ typeof define === 'function' && define.amd ? define(['exports'], factory) :
   function createSidebar(ibrRawData, parentElement) {
     const ibrData = InternalBuildingRepresentation.read(
         new Pbf(ibrRawData));
-    // for datafiles that have top level name is ""
-    if (ibrData.name === '') {
-      ibrData.name = 'ibrData.name';
-    }
+    const ibrObject = new IBRObject( ibrData );
     const li = document.createElement('li'); // list element container
     parentElement.appendChild(li);
-    const rootSpan = createLabel('span', ibrData.name, li);
+    const rootSpan = createLabel('span', ibrObject.getName(), li);
     rootSpan.setAttribute('class', 'arrow');
     li.appendChild(rootSpan);
     const ul = document.createElement('ul');
     ul.setAttribute('class', 'nested');
-    ul.setAttribute('id', ibrData.name);
+    ul.setAttribute('id', ibrObject.getName());
     li.appendChild(ul);
     rootSpan.addEventListener('click', function() {
       rootSpan.parentElement.querySelector('.nested').classList
@@ -53,8 +51,8 @@ typeof define === 'function' && define.amd ? define(['exports'], factory) :
       rootSpan.classList.toggle('expanded-arrow');
     });
     // root structure index 0
-    const curStructure = renderSingleIBRStructure(ibrData, 0);
-    drawSingleStructureSidebar(curStructure, ibrData.name);
+    const structure = renderSingleIBRStructure(ibrObject, 0);
+    drawSingleStructureSidebar(structure, ibrObject.getName());
   }
 
   /**
@@ -115,15 +113,15 @@ typeof define === 'function' && define.amd ? define(['exports'], factory) :
 
   /**
    * Create checkboxes for given structure's layers and child structures.
-   * @param {Object} curStructure the structure generated from
+   * @param {Object} structure the structure generated from
    renderSingleIBRStructure() that will be added to sidebar.
    * @param {String} structureName the name of the structure being processed.
    */
-  function drawSingleStructureSidebar(curStructure, structureName) {
+  function drawSingleStructureSidebar(structure, structureName) {
     // Create checkbox for each layer
-    if (curStructure['layers'].size !== 0) {
+    if (structure['layers'].size !== 0) {
       for ( const [layerName, layer] of
-        Object.entries(curStructure['layers']) ) {
+        Object.entries(structure['layers']) ) {
         const checkBox = document.createElement('INPUT');
         const div = document.createElement('DIV');
         checkBox.setAttribute('type', 'checkbox');
@@ -148,27 +146,27 @@ typeof define === 'function' && define.amd ? define(['exports'], factory) :
 
     // Create label for each child structure
     for ( let structureIndex = 0; structureIndex <
-    curStructure['structures'].length; structureIndex++ ) {
+    structure['structures'].length; structureIndex++ ) {
       const li = document.createElement('li');
       document.getElementById(structureName).appendChild(li);
       const label = createLabel('span',
-          curStructure['structures'][structureIndex].name, li);
+          structure['structures'][structureIndex].name, li);
       label.setAttribute('class', 'arrow');
       li.appendChild(label);
       const ul = document.createElement('ul');
       ul.setAttribute('class', 'nested');
-      ul.setAttribute('id', curStructure['structures'][structureIndex].name);
+      ul.setAttribute('id', structure['structures'][structureIndex].name);
       li.appendChild(ul);
       label.addEventListener('click', function() {
         label.parentElement.querySelector('.nested').classList.toggle('active');
         label.classList.toggle('expanded-arrow');
         if (label.getAttribute('value') == null) {
           event.stopPropagation();
-          const structure = renderSingleIBRStructure(
-              curStructure['structures'][structureIndex],
+          const curStructure = renderSingleIBRStructure(
+              new IBRObject( structure['structures'][structureIndex] ),
               structureIndex, scene);
-          drawSingleStructureSidebar(structure,
-              curStructure['structures'][structureIndex].name);
+          drawSingleStructureSidebar(curStructure,
+              structure['structures'][structureIndex].name);
           label.setAttribute('value', '0');
         }
       });
@@ -186,47 +184,30 @@ typeof define === 'function' && define.amd ? define(['exports'], factory) :
     scene = generateScene(parentElement);
     const ibrData = InternalBuildingRepresentation.read(
         new Pbf(ibrRawData));
-    const curStructure = {};
+    const ibrObject = new IBRObject( ibrData );
+    const structure = {};
     // Visualization layers of current structure
-    curStructure['layers'] = renderLayer( ibrData,
+    structure['layers'] = renderLayer( ibrObject,
         structureIndex, scene );
     // Sub-structures of the current structure
-    curStructure['structures'] = [];
-    for ( const struct of ibrData.structures ) {
-      curStructure['structures'].push( struct );
-    }
+    structure['structures'] = ibrObject.getSubStructures();
   }
 
   /**
    * Parse current IBR Object into structures.
-   * @param {Object} ibrData decoded IBR object.
+   * @param {IBRObject} ibrObject IBRObject created from current structure data.
    * @param {number} structureIndex Index of current structure(floor).
    * @return {Map.<String, List.<Object>>} Map of list of layers and
    structures.
    */
-  function renderSingleIBRStructure(ibrData, structureIndex) {
-    const curStructure = {};
+  function renderSingleIBRStructure(ibrObject, structureIndex) {
+    const structure = {};
     // Visualization layers of current structure
-    curStructure['layers'] = renderLayer( ibrData,
+    structure['layers'] = renderLayer( ibrObject,
         structureIndex);
     // Sub-structures of the current structure
-    curStructure['structures'] = [];
-    for ( const struct of ibrData.structures ) {
-      curStructure['structures'].push( struct );
-    }
-    return curStructure;
-  }
-
-  /**
-   * Swap endianness of 32bit numbers.
-   * @param {number} val 32 bit number to be swapped.
-   * @return {number} 32bit number in swapped endianness.
-   */
-  function swap32(val) {
-    return ((val & 0xFF) << 24) |
-               ((val & 0xFF00) << 8) |
-               ((val >> 8) & 0xFF00) |
-               ((val >> 24) & 0xFF);
+    structure['structures'] = ibrObject.getSubStructures();
+    return structure;
   }
 
   // List of colors from jquery.color.js plugin
@@ -284,70 +265,35 @@ typeof define === 'function' && define.amd ? define(['exports'], factory) :
   /**
      * Converts decoded ibr structure data into three.js Line objects
      and add them to scene with visibility set to false.
-     * @param {Object} structure structures decoded from raw ibr data.
+     * @param {IBRObject} structure IBRObject generated from current
+     structure data.
      * @param {number} structureIndex overall index of the structure.
      * @return {Map.<String, List.<Object>>} objects Layer name and
      corresponding list of three.js Line objects.
      */
   function renderLayer(structure, structureIndex) {
     // Check if structure contains any visualization data
-    if ( structure.visualization.length === 0 ||
-    structure.coordinates_lookup == null) {
+    if ( !structure.hasLayers ||
+    !structure.hasCoordinatesLookup ) {
       return {};
-    }
-
-    // Decode Indices from data.visualization[].coordinate_indices
-    let coordsIndexList; let coordsRangeBuffer; let coordsRange;
-    const coordsRangeList = [];
-    for (const visLayer of structure.visualization) {
-      coordsIndexList = visLayer.coordinate_indices;
-      coordsRangeBuffer = coordsIndexList.buffer.slice(
-          coordsIndexList.byteOffset,
-          coordsIndexList.byteOffset + coordsIndexList.length);
-      coordsRange = new Uint32Array(coordsRangeBuffer);
-      for (let i = 0; i < coordsRange.length; i++) {
-        coordsRange[i] = swap32(coordsRange[i]);
-      }
-      coordsRangeList.push(coordsRange);
-    }
-
-    // Decode Coordinates from data.coordinates_lookup
-    const coordsLookup = structure.coordinates_lookup;
-    const coordsLookupBuffer = coordsLookup.buffer.slice(
-        coordsLookup.byteOffset, coordsLookup.byteOffset +
-        coordsLookup.length);
-    const coordsLookupDV = new DataView(coordsLookupBuffer);
-    const coordsLookupList = [];
-    for (let i = 0; i < coordsLookup.length / 4; i += 4) {
-      coordsLookupList.push(coordsLookupDV.getFloat32(i, false));
     }
 
     // Read multiple ranges from Visualization.coordinates array
     const layerCoordinates = [];
-    for (const coordsRangeItem of coordsRangeList) {
-      const layerPH = [];
-      for (let i = 0; i < coordsRangeItem.length; i += 2) {
-        const coordsLine = [];
-        for (let j = coordsRangeItem[i]; j <= coordsRangeItem[i + 1];
-          j += ONE_POINT) {
-          coordsLine.push(coordsLookupList[j]);
-          coordsLine.push(coordsLookupList[j + 1]);
-          coordsLine.push(coordsLookupList[j + 2]);
-        }
-        layerPH.push(coordsLine);
-      }
+    for (const layer of structure.getLayers().values()) {
+      const layerPH = layer.getLineCoordinates();
       layerCoordinates.push(layerPH);
     }
 
     // Render data into three.js objects
     const materials = [];
-    for (let i = 0; i < structure.visualization.length - 1; i++) {
+    for (let i = 0; i < structure.getLayers().size - 1; i++) {
       materials.push(new THREE.LineBasicMaterial(
           {color: Colors.random()} ));
     }
     const objects = {};
     for (let i = 0; i < layerCoordinates.length; i++) {
-      objects[structure.visualization[i].id] = [];
+      objects[structure.getLayerNames()[i]] = [];
       const lineSegmentsGeometry = [];
       for (const line of layerCoordinates[i]) {
         const linePoints = [];
@@ -358,13 +304,13 @@ typeof define === 'function' && define.amd ? define(['exports'], factory) :
         const geometry = new THREE.BufferGeometry().setFromPoints(
             linePoints );
         if (line.length === TWO_POINTS) {
-          // group geometries for performance reason
+          // group geometries for performance improvement
           lineSegmentsGeometry.push( geometry );
         } else {
           const lineLoop = new THREE.LineLoop( geometry, materials[i] );
           lineLoop.visible = false;
           scene.add( lineLoop );
-          objects[structure.visualization[i].id].push( lineLoop );
+          objects[structure.getLayerNames()[i]].push( lineLoop );
         }
       }
       if (lineSegmentsGeometry.length > 0) {
@@ -373,7 +319,7 @@ typeof define === 'function' && define.amd ? define(['exports'], factory) :
         const lineSegments = new THREE.LineSegments( geometries, materials[i] );
         lineSegments.visible = false;
         scene.add( lineSegments );
-        objects[structure.visualization[i].id].push( lineSegments );
+        objects[structure.getLayerNames()[i]].push( lineSegments );
       }
     }
     return objects;

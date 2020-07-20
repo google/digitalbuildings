@@ -26,7 +26,13 @@ On Mac, start chrome from terminal using this command instead:
 
 1. When using Chrome browser, see error "Blocked by CORS policy : Cross origin requests are only supported for protocol schemes: http, data, chrome, chrome-extension, https" in console
 
-   Fix: exit Chrome browser and relaunch Chrome from command line with flag `--allow-file-access-from-files`
+2. Start a local server in python
+    - Open your command prompt (Windows)/ terminal (macOS/ Linux). To check Python is installed, enter the following command: `python -V`.
+    - If python is installed, you should see a version number. If not, go to [python.org]() and install python3.
+    - Once python3 is installed, run command `python3 -m http.server`.
+    - Then navigate to http://0.0.0.0:8000/html/ in your browser.
+
+3. Click on "Choose File" button to open your ibr data file
 
 ##### Developer Note: 
 
