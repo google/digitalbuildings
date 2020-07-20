@@ -30,7 +30,7 @@ For this example you will need the following:
 3. _Apache Maven_ a software project management 
 [download Maven](https://maven.apache.org/download.cgi).
 
-## 1. Extend the Ontology
+## 1. The RDF Ontology
 
 The Digital Buildings repo proposes two formats: [yaml](https://github.com/google/digitalbuildings/blob/master/ontology/yaml/README.md), and [rdf/owl](https://github.com/google/digitalbuildings/blob/master/ontology/rdf/README.md).
 
