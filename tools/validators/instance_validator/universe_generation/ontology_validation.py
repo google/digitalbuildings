@@ -48,7 +48,8 @@ def _validate_type(entity, universe):
   return True
 
 def validate_entity(entity, universe):
-  """Uses information from generated ontology universe to validate an entity.
+  """Uses information from the generated ontology universe to validate an
+  entity.
 
   Args:
     entity: parsed instance YAML file formatted as dictionary

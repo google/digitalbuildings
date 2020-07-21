@@ -23,9 +23,14 @@ from absl.testing import absltest
 
 class GenerateUniverseTest(absltest.TestCase):
 
+  def setUp(self):
+    self.universe = generate_universe.build_universe()
+
   def testCanGenerateUniverse(self):
-    universe = generate_universe.build_universe()
-    self.assertTrue(universe)
+    self.assertTrue(self.universe)
+
+  def testUniverseDetectsBadEntityTypeNamespace(self):
+    self.assertIsNone(self.universe.GetEntityTypeNamespace('NONEXISTENT'))
 
 if __name__ == '__main__':
   absltest.main()
