@@ -18,6 +18,21 @@
 
 ### FAN RUN CONTROL ###
 
+FAN_2:
+  description: 'A type with a badly formatted field'
+  uses:
+  - NAMESPACE/blah/dryer_run_status
+  - fan_run_command
+
+FAN_3:
+  description: 'A type with duplicate parent ids.'
+  implements:
+  - FAN_2
+  - FAN_2
+  uses:
+  - current_sensor
+  - current_sensor
+
 FAN_SS:
   id: "4726112880724803584"
   description: "Basic fan with start/stop and status."
