@@ -61,4 +61,5 @@ limitations under the License.
 
 ## Publications & Citations:
 * [LDAC 2020](http://linkedbuildingdata.net/ldac2020/abstracts.html#industry10). 
+* [ICML 2020](https://proceedings.icml.cc/static/paper_files/icml/2020/2557-Paper.pdf).
 
