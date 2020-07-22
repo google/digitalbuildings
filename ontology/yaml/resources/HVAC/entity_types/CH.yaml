@@ -15,7 +15,9 @@
 ########################
 ### Canonical Types  ###
 ########################
-
+SOMETHING_WRONG:
+ id: "123"
+ 
 CH_SS_SWTC:
   id: "6390729504712556544"
   description: " Simple air cooled chiller."
