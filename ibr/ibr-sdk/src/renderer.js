@@ -8,14 +8,14 @@
  * @param {Byte} data Binary data read directly from .ibr file
  * @return {Array.<Line>} lines List of three.js Line objects generated from input ibr data
  */
-function renderLayer(data) {
+function renderVisualization(data) {
 
     // Decode Indices from data.visualization[].coordinate_indices
     var deserializedData = InternalBuildingRepresentation.read(new Pbf(data));
     var coordsIndexList, coordsRangeBuffer, coordsRange;
     var coordsRangeList = [];
-    for (const visLayer of deserializedData.visualization) {
-        coordsIndexList = visLayer.coordinate_indices;
+    for (const visVisualization of deserializedData.visualization) {
+        coordsIndexList = visVisualization.coordinate_indices;
         coordsRangeBuffer = coordsIndexList.buffer.slice(coordsIndexList.byteOffset, coordsIndexList.byteOffset+coordsIndexList.length);
         coordsRange = new Uint32Array(coordsRangeBuffer);
         for (var i = 0; i < coordsRange.length; i++) {
@@ -34,9 +34,9 @@ function renderLayer(data) {
     }
 
     // Read multiple ranges from Visualization.coordinates array and store them in sessionStorage for visualization later
-    var layerCoordinates = [], layerPH = [], coordsLine = [];
+    var visualizationCoordinates = [], visualizationPH = [], coordsLine = [];
     for (const coordsRangeItem of coordsRangeList) {
-        layerPH = [];
+        visualizationPH = [];
         for (var i = 0; i < coordsRangeItem.length; i+=2) {
             coordsLine = [];
             for (var j = coordsRangeItem[i]; j <= coordsRangeItem[i+1]; j+=3) {
@@ -44,17 +44,17 @@ function renderLayer(data) {
                 coordsLine.push(coordsLookupList[j+1]);
                 coordsLine.push(coordsLookupList[j+2]);
             }
-            layerPH.push(coordsLine);
+            visualizationPH.push(coordsLine);
         }
-        layerCoordinates.push(layerPH);
+        visualizationCoordinates.push(visualizationPH);
     }
 
     // Render data into three.js objects
     var materials = [new THREE.LineBasicMaterial( { color: 0x00ffff } ), new THREE.LineBasicMaterial( { color: 0xff0000 } )];
     var points = [], lines = [];
     var geometry, line;
-    for (var i = 0; i < layerCoordinates.length; i++) {
-        for (const l of layerCoordinates[i]) {
+    for (var i = 0; i < visualizationCoordinates.length; i++) {
+        for (const l of visualizationCoordinates[i]) {
             points = [];
             for (var j = 0; j < l.length; j+=3) {
                 points.push( new THREE.Vector3( l[j], l[j+1], l[j+2] ) );
@@ -67,4 +67,4 @@ function renderLayer(data) {
     return lines;
 }
 
-export { renderLayer };
+export { renderVisualization };

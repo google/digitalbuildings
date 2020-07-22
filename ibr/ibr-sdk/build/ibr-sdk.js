@@ -30,7 +30,7 @@ typeof define === 'function' && define.amd ? define(['exports'], factory) :
   let scene;
 
   /**
-   * Create a side bar for layer and structure navigation.
+   * Create a side bar for visualization and structure navigation.
    * @param {binary} ibrRawData Raw data from IBR binary data file.
    * @param {HTMLElement} parentElement Parent element to attach the sidebar to.
    */
@@ -114,31 +114,31 @@ typeof define === 'function' && define.amd ? define(['exports'], factory) :
   }
 
   /**
-   * Create checkboxes for given structure's layers and child structures.
+   * Create checkboxes for given structure's visualizations and child structures.
    * @param {Object} structure the structure generated from
    renderSingleIBRStructure() that will be added to sidebar.
    * @param {String} structureName the name of the structure being processed.
    */
   function drawSingleStructureSidebar(structure, structureName) {
-    // Create checkbox for each layer
-    if (structure['layers'].size !== 0) {
-      for ( const [layerName, layer] of
-        Object.entries(structure['layers']) ) {
+    // Create checkbox for each visualization
+    if (structure['visualizations'].size !== 0) {
+      for ( const [visName, visualization] of
+        Object.entries(structure['visualizations']) ) {
         const checkBox = document.createElement('INPUT');
         const div = document.createElement('DIV');
         checkBox.setAttribute('type', 'checkbox');
-        checkBox.setAttribute('id', structureName + '_' + layerName);
+        checkBox.setAttribute('id', structureName + '_' + visName);
         div.appendChild(checkBox);
-        createLabel('label', layerName, div, structureName + '_' +
-        layerName);
+        createLabel('label', visName, div, structureName + '_' +
+        visName);
         document.getElementById(structureName).appendChild(div);
         checkBox.addEventListener('change', function() {
           if (checkBox.checked) {
-            for ( const line of layer ) {
+            for ( const line of visualization ) {
               line.visible = true;
             }
           } else {
-            for ( const line of layer ) {
+            for ( const line of visualization ) {
               line.visible = false;
             }
           }
@@ -187,25 +187,27 @@ typeof define === 'function' && define.amd ? define(['exports'], factory) :
     const ibrData = InternalBuildingRepresentation.read(
         new Pbf(ibrRawData));
     const ibrObject = new IBRObject( ibrData );
+    document.getElementById('dwn-btn').style.display = 'block';
     const structure = {};
-    // Visualization layers of current structure
-    structure['layers'] = renderLayer( ibrObject,
+    // Visualization visualizations of current structure
+    structure['visualizations'] = renderVisualization( ibrObject,
         structureIndex, scene );
     // Sub-structures of the current structure
     structure['structures'] = ibrObject.getSubStructures();
+    return saveToBinary( ibrObject );
   }
 
   /**
    * Parse current IBR Object into structures.
    * @param {IBRObject} ibrObject IBRObject created from current structure data.
    * @param {number} structureIndex Index of current structure(floor).
-   * @return {Map.<String, List.<Object>>} Map of list of layers and
+   * @return {Map.<String, List.<Object>>} Map of list of visualizations and
    structures.
    */
   function renderSingleIBRStructure(ibrObject, structureIndex) {
     const structure = {};
-    // Visualization layers of current structure
-    structure['layers'] = renderLayer( ibrObject,
+    // Visualization visualizations of current structure
+    structure['visualizations'] = renderVisualization( ibrObject,
         structureIndex);
     // Sub-structures of the current structure
     structure['structures'] = ibrObject.getSubStructures();
@@ -270,34 +272,34 @@ typeof define === 'function' && define.amd ? define(['exports'], factory) :
      * @param {IBRObject} structure IBRObject generated from current
      structure data.
      * @param {number} structureIndex overall index of the structure.
-     * @return {Map.<String, List.<Object>>} objects Layer name and
+     * @return {Map.<String, List.<Object>>} objects Visualization name and
      corresponding list of three.js Line objects.
      */
-  function renderLayer(structure, structureIndex) {
+  function renderVisualization(structure, structureIndex) {
     // Check if structure contains any visualization data
-    if ( !structure.hasLayers ||
+    if ( !structure.hasVisualizations ||
     !structure.hasCoordinatesLookup ) {
       return {};
     }
 
     // Read multiple ranges from Visualization.coordinates array
-    const layerCoordinates = [];
-    for (const layer of structure.getLayers().values()) {
-      const layerPH = layer.getLineCoordinates();
-      layerCoordinates.push(layerPH);
+    const visualizationCoordinates = [];
+    for (const visualization of structure.getVisualizations().values()) {
+      const visualizationPH = visualization.getLineCoordinates();
+      visualizationCoordinates.push(visualizationPH);
     }
 
     // Render data into three.js objects
     const materials = [];
-    for (let i = 0; i < structure.getLayers().size - 1; i++) {
+    for (let i = 0; i < structure.getVisualizations().size - 1; i++) {
       materials.push(new THREE.LineBasicMaterial(
           {color: Colors.random()} ));
     }
     const objects = {};
-    for (let i = 0; i < layerCoordinates.length; i++) {
-      objects[structure.getLayerNames()[i]] = [];
+    for (let i = 0; i < visualizationCoordinates.length; i++) {
+      objects[structure.getVisualizationNames()[i]] = [];
       const lineSegmentsGeometry = [];
-      for (const line of layerCoordinates[i]) {
+      for (const line of visualizationCoordinates[i]) {
         const linePoints = [];
         for (let j = 0; j < line.length; j += ONE_POINT) {
           linePoints.push( new THREE.Vector3( line[j], line[j + 1],
@@ -312,7 +314,7 @@ typeof define === 'function' && define.amd ? define(['exports'], factory) :
           const lineLoop = new THREE.LineLoop( geometry, materials[i] );
           lineLoop.visible = false;
           scene.add( lineLoop );
-          objects[structure.getLayerNames()[i]].push( lineLoop );
+          objects[structure.getVisualizationNames()[i]].push( lineLoop );
         }
       }
       if (lineSegmentsGeometry.length > 0) {
@@ -321,10 +323,22 @@ typeof define === 'function' && define.amd ? define(['exports'], factory) :
         const lineSegments = new THREE.LineSegments( geometries, materials[i] );
         lineSegments.visible = false;
         scene.add( lineSegments );
-        objects[structure.getLayerNames()[i]].push( lineSegments );
+        objects[structure.getVisualizationNames()[i]].push( lineSegments );
       }
     }
     return objects;
+  }
+
+  /**
+   * Serialize IBRObject object to binary format.
+   * @return {Buffer} binary representation of IBRObject object.
+   */
+  function saveToBinary( ibrObject ) {
+    const json = ibrObject.toJson();
+    const pbf = new Pbf();
+    InternalBuildingRepresentation.write(json, pbf);
+    var buffer = pbf.finish();
+    return buffer;
   }
 
   exports.createSidebar = createSidebar;

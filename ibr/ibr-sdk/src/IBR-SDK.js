@@ -1,1 +1,1 @@
-export { renderLayer } from './renderer.js';
+export { renderVisualization } from './renderer.js';
