@@ -48,7 +48,7 @@ if __name__ == '__main__':
   raw_parse = instance_parser.parse_yaml(filename)
 
   if raw_parse is None:
-    print('\Syntax Error, logging provided above.')
+    print('\Syntax Error.')
     exit(0)
 
   parsed = dict(raw_parse)
