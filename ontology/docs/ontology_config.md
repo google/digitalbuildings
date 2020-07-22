@@ -277,7 +277,7 @@ energy:
 
 Under each subfield name, the configuration defines a list of dimensional units
 of a single
-[Quantity Kind](qudt.org),
+[Quantity Kind](https://qudt.org),
 One of the listed units must be listed as the `STANDARD` unit for the type. All
 of the `STANDARD` units for all subfields must belong to the same unit family,
 such as standard SI units.
