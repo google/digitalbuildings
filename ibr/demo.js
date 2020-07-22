@@ -38,7 +38,6 @@ function download( filename, bin ) {
 
   const element = document.createElement('a');
   const blob = new Blob([bin], {type: 'application/octet-stream'});
-  console.log(blob);
   const url = window.URL.createObjectURL(blob);
   element.setAttribute('href', url);
   element.setAttribute('download', filename);
