@@ -1,4 +1,4 @@
-import {Layer} from './Layer.js';
+import {Visualization, swap32} from './Visualization.js';
 
 // the length of one 3D coordinates (x, y, z) in the coordinate lookup float
 // array
@@ -6,25 +6,41 @@ export const ONE_POINT = 3;
 
 /**
  * Constructor of IBRObject Class.
- * @param {Objecy} pbfDecodedJsonObject JSON Object decoded using Pbf library
- from raw ibr binary data.
+ * @param {Buffer} ibrRawData binary data read from input IBR file.
  */
 function IBRObject( pbfDecodedJsonObject ) {
-  // format: Map.<layerName{String}, layerData{Layer}>
-  this.layers = new Map();
+
+  this.blockingGrid = pbfDecodedJsonObject.blocking_grid;
+
+  this.boundary = pbfDecodedJsonObject.boundary;
+
+  this.connections = pbfDecodedJsonObject.connections;
+
+  this.externalReference = pbfDecodedJsonObject.external_reference;
+
+  this.guid = pbfDecodedJsonObject.guid;
+
+  this.metadata = pbfDecodedJsonObject.metadata;
+
+  this.name = pbfDecodedJsonObject.name;
+
+  this.structuralType = pbfDecodedJsonObject.structural_type;
+
+  // format: Map.<visName{String}, visualizationData{Visualization}>
+  this.visualizations = new Map();
   // Check if structure contains any visualization data
   if ( pbfDecodedJsonObject.visualization.length === 0) {
-    this.hasLayers = false;
+    this.hasVisualizations = false;
   } else {
-    this.hasLayers = true;
+    this.hasVisualizations = true;
     for ( let i = 0; i < pbfDecodedJsonObject.visualization.length; i++) {
-      this.layers.set(pbfDecodedJsonObject.visualization[i].id,
-          new Layer(pbfDecodedJsonObject.visualization[i]));
+      this.visualizations.set(pbfDecodedJsonObject.visualization[i].id,
+          new Visualization(pbfDecodedJsonObject.visualization[i]));
     }
   }
 
   // Check if structure contains any coordinates lookup data
-  if (pbfDecodedJsonObject.coordinates_lookup == null) {
+  if (pbfDecodedJsonObject.coordinates_lookup === null) {
     this.hasCoordinatesLookup = false;
   } else {
     this.hasCoordinatesLookup = true;
@@ -38,22 +54,21 @@ function IBRObject( pbfDecodedJsonObject ) {
     for (let i = 0; i < coordsLookup.length; i += 4) {
       coordsLookupList.push(coordsLookupDV.getFloat32(i, false));
     }
-    this.coordinates = coordsLookupList;
+    this.coordinates = Float32Array.from( coordsLookupList );
   }
 
-  this.name = pbfDecodedJsonObject.name;
   // for datafiles that have top level name is ""
-  if (pbfDecodedJsonObject.name === '' || pbfDecodedJsonObject.name == null) {
+  if (pbfDecodedJsonObject.name === '' || pbfDecodedJsonObject.name === null) {
     this.name = 'ibrData.name';
   }
 
   this.subStructures = pbfDecodedJsonObject.structures;
 
-  if ( this.hasLayers && this.hasCoordinatesLookup ) {
+  if ( this.hasVisualizations && this.hasCoordinatesLookup ) {
     // Read multiple ranges from Visualization.coordinates array
-    for (const layer of this.layers.values()) {
-      const layerPH = [];
-      const coordsRangeItem = layer.getCoordinatesIndices();
+    for (const visualization of this.visualizations.values()) {
+      const visualizationPH = [];
+      const coordsRangeItem = visualization.getCoordinatesIndices();
       for (let i = 0; i < coordsRangeItem.length; i += 2) {
         const coordsLine = [];
         for (let j = coordsRangeItem[i]; j <= coordsRangeItem[i + 1];
@@ -62,10 +77,9 @@ function IBRObject( pbfDecodedJsonObject ) {
           coordsLine.push(this.coordinates[j + 1]);
           coordsLine.push(this.coordinates[j + 2]);
         }
-        layerPH.push(coordsLine);
+        visualizationPH.push(coordsLine);
       }
-      layer.setLineCoordinates(layerPH);
-      console.log(layerPH);
+      visualization.setLineCoordinates(visualizationPH);
     }
   }
 }
@@ -83,20 +97,20 @@ Object.assign( IBRObject.prototype, {
   },
 
   /**
-   * Get a list of names of the IBRObject layers.
-   * @return {List.<String>} list of names of the IBRObject layers.
+   * Get a list of names of the IBRObject visualizations.
+   * @return {List.<String>} list of names of the IBRObject visualizations.
    */
-  getLayerNames: function() {
-    return Array.from( this.layers.keys() );
+  getVisualizationNames: function() {
+    return Array.from( this.visualizations.keys() );
   },
 
   /**
-   * Get a layer of the IBRObject based on given layer ID.
-   * @param {String} layerID ID of the layer requested.
-   * @return {Layer} the layer with the name layerID in IBRObject.
+   * Get a visualization of the IBRObject based on given visualization ID.
+   * @param {String} visualizationID ID of the visualization requested.
+   * @return {Visualization} the visualization with the name visualizationID in IBRObject.
    */
-  getLayer: function( layerID ) {
-    return this.layers.get( layerID );
+  getVisualization: function( visualizationID ) {
+    return this.visualizations.get( visualizationID );
   },
 
   /**
@@ -108,11 +122,11 @@ Object.assign( IBRObject.prototype, {
   },
 
   /**
-   * Get a list of layers of the IBRObject.
-   * @return {List.<Layer>} list of layers of the IBRObject.
+   * Get a list of visualizations of the IBRObject.
+   * @return {List.<Visualization>} list of visualizations of the IBRObject.
    */
-  getLayers: function() {
-    return this.layers;
+  getVisualizations: function() {
+    return this.visualizations;
   },
 
   /**
@@ -122,6 +136,47 @@ Object.assign( IBRObject.prototype, {
   getCoordinates: function() {
     return this.coordinates;
   },
+
+  /**
+   * Convert IBRObject object to JSON format.
+   * @return {JSONObject} json format of IBRObject object.
+   */
+  toJson: function() {
+    let json = {};
+    json.blocking_grid = this.blockingGrid;
+    json.boundary = this.boundary;
+    json.connections = this.connections;
+    json.coordinates_lookup = null;
+    if ( this.hasCoordinatesLookup ) {
+      const tempCoordinates = this.coordinates;
+      const coordsDV = new DataView( tempCoordinates.buffer );
+      const coordsList = [];
+      for (let i = 0; i < tempCoordinates.length; i += 1) {
+        coordsList.push(coordsDV.getFloat32(i * 4, false));
+      }
+      json.coordinates_lookup = new Uint8Array( Float32Array.from( coordsList ).buffer );
+    }
+    json.external_reference = this.externalReference;
+    json.guid = this.guid;
+    json.metadata = this.metadata;
+    if (this.name === "ibrData.name") {
+      json.name = null;
+    } else {
+      json.name = this.name;
+    }
+    json.structural_type = this.structuralType;
+    json.structures = [];
+    if ( this.subStructures.length != 0 ) {
+      for (const struct of this.subStructures) {
+        json.structures.push( new IBRObject( struct ).toJson() );
+      }
+    }
+    json.visualization = [];
+    for (const visualization of Array.from( this.visualizations.values() )) {
+      json.visualization.push( visualization.toJson() );
+    }
+    return json;
+  }
 
 } );
 export {IBRObject};

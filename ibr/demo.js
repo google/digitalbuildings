@@ -17,12 +17,39 @@ function onChooseFile() {
     const fr = new FileReader();
     fr.onload = function(evt) {
       const bin = evt.target.result;
-      IBRSDK.render( bin,
-          0, document.getElementById('mainCanvas') ); //top level, index 0
+      const out = IBRSDK.render( bin,
+          0, document.getElementById('mainCanvas') ); // top level, index 0
       IBRSDK.createSidebar( bin, document.getElementById('layerList') );
+      document.getElementById('dwn-btn')
+          .addEventListener('click', function(){
+            download( "out.ibr", out );
+          });
     };
     fr.readAsArrayBuffer(file);
   }
+}
+
+/**
+ * Create binary file from data and download the file in browser.
+ * @param {String} filename name of the binary file that will be created.
+ * @param {Buffer} bin binary data that will be saved in the file.
+ */
+function download( filename, bin ) {
+
+  const element = document.createElement('a');
+  const blob = new Blob([bin], {type: 'application/octet-stream'});
+  console.log(blob);
+  const url = window.URL.createObjectURL(blob);
+  element.setAttribute('href', url);
+  element.setAttribute('download', filename);
+
+  element.style.display = 'none';
+  document.body.appendChild(element);
+
+  element.click();
+
+  document.body.removeChild(element);
+
 }
 
 document.getElementById('fileForUpload')

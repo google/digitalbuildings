@@ -1,15 +1,14 @@
 import test from 'ava';
-import { IBRObject } from '../ibr-sdk/class/IBRObject.js';
-import { Layer } from '../ibr-sdk/class/Layer.js';
+import {IBRObject} from '../ibr-sdk/class/IBRObject.js';
 
-test.before( t => {
+test.before( (t) => {
   t.context.defaultName = 'ibrData.name';
-  const coordsLookup = new Int8Array([67, 134, 214, 158, 67, 37, 6, 17, 0, 0, 0, 0,
-      67, 147, 214, 158, 67, 37, 6, 17]);
-  const blockingCoordsIndices = new Int8Array([0, 0, 8, 31, 0, 0, 8, 34]);
-  const coordsIndices1 = new Int8Array([0, 0, 0, 0, 0, 0, 8, 28]);
-  const coordsIndices2 = new Int8Array([0, 0, 8, 31, 0, 0, 8,
-      34, 0, 0, 8, 37, 0, 0, 8, 40]);
+  const coordsLookup = new Uint8Array([67, 134, 214, 158, 67, 37, 6, 17,
+    0, 0, 0, 0, 67, 147, 214, 158, 67, 37, 6, 17]);
+  const blockingCoordsIndices = new Uint8Array([0, 0, 8, 31, 0, 0, 8, 34]);
+  const coordsIndices1 = new Uint8Array([0, 0, 0, 0, 0, 0, 8, 28]);
+  const coordsIndices2 = new Uint8Array([0, 0, 8, 31, 0, 0, 8,
+    34, 0, 0, 8, 37, 0, 0, 8, 40]);
   t.context.jsonData1 = {
     blocking_grid: null,
     boundary: null,
@@ -19,7 +18,7 @@ test.before( t => {
     coordinates_lookup: null,
     external_reference: [],
     metadata: null,
-    structuralType: 0,
+    structural_type: undefined,
     visualization: [],
     structures:
     [
@@ -41,7 +40,7 @@ test.before( t => {
         coordinates_lookup: coordsLookup,
         external_reference: [],
         metadata: null,
-        structuralType: 0,
+        structural_type: undefined,
         structures: [],
         visualization:
         [
@@ -66,39 +65,48 @@ test.before( t => {
 
   t.context.ibrObject1 = new IBRObject( t.context.jsonData1 );
   t.context.ibrObject2 = new IBRObject( t.context.jsonData1.structures[0] );
-
 });
 
-test('IBRObject default name', t => {
+test('IBRObject default name', (t) => {
   t.is( t.context.ibrObject1.getName(), t.context.defaultName );
 });
 
-test('IBRObject call getLayers() when no layers', t => {
-  t.deepEqual( t.context.ibrObject1.getLayers(), new Map() );
+test('IBRObject call getVisualizations() when no visualizations', (t) => {
+  t.deepEqual( t.context.ibrObject1.getVisualizations(), new Map() );
 });
 
-test('IBRObject does not have layers', t => {
-  t.false( t.context.ibrObject1.hasLayers );
+test('IBRObject does not have visualizations', (t) => {
+  t.false( t.context.ibrObject1.hasVisualizations );
 });
 
-test('IBRObject has layers size', t => {
-  t.is( t.context.ibrObject2.getLayers().size, 2 );
+test('IBRObject has visualizations size', (t) => {
+  t.is( t.context.ibrObject2.getVisualizations().size, 2 );
 });
 
-test('IBRObject has layers', t => {
-  t.true(t.context.ibrObject2.hasLayers);
+test('IBRObject has visualizations', (t) => {
+  t.true(t.context.ibrObject2.hasVisualizations);
 });
 
-test('IBRObject does not have coordinate lookup', t => {
+test('IBRObject does not have coordinate lookup', (t) => {
   t.false(t.context.ibrObject1.hasCoordinatesLookup);
   t.is(t.context.ibrObject1.getCoordinates(), undefined);
 });
 
-test('IBRObject has coordinate lookup', t => {
+test('IBRObject has coordinate lookup', (t) => {
   t.true(t.context.ibrObject2.hasCoordinatesLookup);
-  t.deepEqual(t.context.ibrObject2.getCoordinates(), [269.67669677734375, 165.02369689941406, 0, 295.67669677734375, 165.02369689941406]);
+  t.deepEqual(t.context.ibrObject2.getCoordinates(), Float32Array.from(
+      [269.67669677734375, 165.02369689941406, 0, 295.67669677734375,
+        165.02369689941406] ));
 });
 
-test('record sub structures', t => {
-  t.is( t.context.ibrObject1.getSubStructures(), t.context.jsonData1.structures );
+test('record sub structures', (t) => {
+  t.is( t.context.ibrObject1.getSubStructures(),
+      t.context.jsonData1.structures );
+});
+
+test('should be converted back to JSON format', (t) => {
+  t.deepEqual(t.context.ibrObject1.toJson(),
+      t.context.jsonData1 );
+  t.deepEqual(t.context.ibrObject2.toJson(),
+        t.context.jsonData1.structures[0] );
 });
