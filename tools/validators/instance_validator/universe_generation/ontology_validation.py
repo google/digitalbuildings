@@ -15,47 +15,53 @@
 """Uses ontology universe to validate parsed instance data."""
 
 from __future__ import print_function
+from yamlformat.validator import findings_lib
 
-def _validate_type(entity, universe):
+class EntityInstance(findings_lib.Findings):
   """Uses information from the generated ontology universe to validate
-  an entity's type.
+  an entity.
 
   Args:
     entity: parsed instance YAML file formatted as dictionary
     universe: ConfigUniverse generated from the ontology
-
-  Returns:
-    Throws Exceptions if entity type is invalid.
   """
-  entity_type_str = str(entity['type'])
-  type_parse = entity_type_str.split('/')
 
-  if len(type_parse) != 2:
-    print('type improperly formatted:', entity_type_str)
-    return False
+  def __init__(self, entity, universe):
+    self.entity = entity
+    self.universe = universe
 
-  namespace = type_parse[0]
-  entity_type = type_parse[1]
+  def _validate_type(self):
+    """Uses information from the generated ontology universe to validate
+    an entity's type.
 
-  if universe.GetEntityTypeNamespace(namespace) is None:
-    print('invalid namespace:', namespace)
-    return False
+    Returns:
+      Returns boolean for validity of entity type.
+    """
+    entity_type_str = str(self.entity['type'])
+    type_parse = entity_type_str.split('/')
 
-  if universe.GetEntityType(namespace, entity_type) is None:
-    print('invalid entity type:', entity_type)
-    return False
+    if len(type_parse) != 2:
+      print('type improperly formatted:', entity_type_str)
+      return False
 
-  return True
+    namespace = type_parse[0]
+    entity_type = type_parse[1]
 
-def validate_entity(entity, universe):
-  """Uses information from the generated ontology universe to validate an
-  entity.
+    if self.universe.GetEntityTypeNamespace(namespace) is None:
+      print('invalid namespace:', namespace)
+      return False
 
-  Args:
-    entity: parsed instance YAML file formatted as dictionary
-    universe: ConfigUniverse generated from the ontology
+    if self.universe.GetEntityType(namespace, entity_type) is None:
+      print('invalid entity type:', entity_type)
+      return False
 
-  Returns:
-    Throws Exceptions if entity is invalid.
-  """
-  return _validate_type(entity, universe)
+    return True
+
+  def validate_entity(self):
+    """Uses information from the generated ontology universe to validate an
+    entity.
+
+    Returns:
+      Returns boolean for validity of entity.
+    """
+    return self._validate_type()

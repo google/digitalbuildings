@@ -40,36 +40,36 @@ class OntologyValidationTest(absltest.TestCase):
     entity_names = list(_GOOD_EXAMPLE.keys())
     for name in entity_names:
       entity = dict(_GOOD_EXAMPLE[name])
-      result = ontology_validation.validate_entity(entity, self.universe)
+      entity_instance = ontology_validation.EntityInstance(entity, self.universe)
 
-      if result is False:
+      if entity_instance.validate_entity() is False:
         self.fail('exception incorrectly raised')
 
   def testValidateBadNamespaceExample(self):
     entity_names = list(_BAD_NAMESPACE_EXAMPLE.keys())
     for name in entity_names:
       entity = dict(_BAD_NAMESPACE_EXAMPLE[name])
-      result = ontology_validation.validate_entity(entity, self.universe)
+      entity_instance = ontology_validation.EntityInstance(entity, self.universe)
 
-      if result:
+      if entity_instance.validate_entity():
         self.fail('exception failed to raise')
 
   def testValidateBadTypeExample(self):
     entity_names = list(_BAD_TYPE_EXAMPLE.keys())
     for name in entity_names:
       entity = dict(_BAD_TYPE_EXAMPLE[name])
-      result = ontology_validation.validate_entity(entity, self.universe)
+      entity_instance = ontology_validation.EntityInstance(entity, self.universe)
 
-      if result:
+      if entity_instance.validate_entity():
         self.fail('exception failed to raise')
 
   def testValidateBadEntityExample(self):
     entity_names = list(_BAD_ENTITY_EXAMPLE.keys())
     for name in entity_names:
       entity = dict(_BAD_ENTITY_EXAMPLE[name])
-      result = ontology_validation.validate_entity(entity, self.universe)
+      entity_instance = ontology_validation.EntityInstance(entity, self.universe)
 
-      if result:
+      if entity_instance.validate_entity():
         self.fail('exception failed to raise')
 
 if __name__ == '__main__':
