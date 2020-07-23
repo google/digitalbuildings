@@ -43,18 +43,18 @@ class EntityInstance(findings_lib.Findings):
     type_parse = entity_type_str.split('/')
 
     if len(type_parse) != 2:
-      print('type improperly formatted:', entity_type_str)
+      print('Type improperly formatted:', entity_type_str)
       return False
 
     namespace = type_parse[0]
     entity_type = type_parse[1]
 
     if self.universe.GetEntityTypeNamespace(namespace) is None:
-      print('invalid namespace:', namespace)
+      print('Invalid namespace:', namespace)
       return False
 
     if self.universe.GetEntityType(namespace, entity_type) is None:
-      print('invalid entity type:', entity_type)
+      print('Invalid entity type:', entity_type)
       return False
 
     return True
@@ -68,7 +68,7 @@ class EntityInstance(findings_lib.Findings):
     """
     for req_key in self.required_keys:
       if req_key not in self.entity.keys():
-        print('missing required key:', req_key)
+        print('Missing required key:', req_key)
         return False
 
     return self._validate_type()
