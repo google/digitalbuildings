@@ -19,7 +19,7 @@ from yamlformat.validator import findings_lib
 
 class EntityInstance(findings_lib.Findings):
   """Uses information from the generated ontology universe to validate
-  an entity instance. An entity instance is composed of at least an is and a
+  an entity instance. An entity instance is composed of at least an id and a
   type. For example: {'id': 'FACILITIES/12345', 'type': 'FACILITIES/BUILDING'}.
 
   Args:
