@@ -12,19 +12,22 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Setup file for Instance Validator"""
+"""Tests for generate_universe.py"""
 
-from setuptools import setup, find_packages
+from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
 
-setup(
-    name='instance-yaml-validator',
-    version='0.0.1',
-    url='https://github.com/google/digitalbuildings',
-    license='Apache License',
-    author='Raymond Li',
-    author_email='',
-    description='',
-    packages=find_packages(),
-    install_requires=['strictyaml'],
-    python_requires='>=3.6',
-)
+from validate import generate_universe
+from absl.testing import absltest
+
+class GenerateUniverseTest(absltest.TestCase):
+
+  def setUp(self):
+    self.universe = generate_universe.BuildUniverse()
+
+  def testCanGenerateUniverse(self):
+    self.assertTrue(self.universe)
+
+if __name__ == '__main__':
+  absltest.main()
