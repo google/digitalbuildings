@@ -37,7 +37,6 @@ class EntityInstanceTest(absltest.TestCase):
       os.path.join(_TESTCASE_PATH,
                    'GOOD',
                    'good_building_type.yaml')))
-
     entity_names = list(parsed.keys())
 
     for name in entity_names:
@@ -52,7 +51,6 @@ class EntityInstanceTest(absltest.TestCase):
       os.path.join(_TESTCASE_PATH,
                    'BAD',
                    'bad_building_type.yaml')))
-
     entity_names = list(parsed.keys())
 
     for name in entity_names:
@@ -67,7 +65,6 @@ class EntityInstanceTest(absltest.TestCase):
       os.path.join(_TESTCASE_PATH,
                    'BAD',
                    'bad_building_type_namespace.yaml')))
-
     entity_names = list(parsed.keys())
 
     for name in entity_names:
@@ -82,7 +79,6 @@ class EntityInstanceTest(absltest.TestCase):
       os.path.join(_TESTCASE_PATH,
                    'BAD',
                    'bad_building_type_entity.yaml')))
-
     entity_names = list(parsed.keys())
 
     for name in entity_names:
