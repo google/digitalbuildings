@@ -90,6 +90,7 @@ class ConfigUniverse(findings_lib.Findings):
       A list of EntityTypeNamespaces or empty list if none are defined
     """
     if not self.entity_type_universe:
+      print('EntityTypeUniverse undefined in ConfigUniverse')
       return []
     return self.entity_type_universe.GetNamespaces()
 
@@ -100,6 +101,7 @@ class ConfigUniverse(findings_lib.Findings):
       A namespace name or None if not defined
     """
     if not self.entity_type_universe:
+      print('EntityTypeUniverse undefined in ConfigUniverse')
       return None
     return self.entity_type_universe.GetNamespace(namespace_name)
 
@@ -110,6 +112,7 @@ class ConfigUniverse(findings_lib.Findings):
       An entity_type or None if not defined
     """
     if not self.entity_type_universe:
+      print('EntityTypeUniverse undefined in ConfigUniverse')
       return None
     return self.entity_type_universe.GetEntityType(namespace_name, typename)
 
