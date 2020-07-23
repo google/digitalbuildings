@@ -6,12 +6,12 @@ name: Ontology Type Validator
 on:
   push:
     branches: [ master ]
-    paths: 
-      - 'ontology/yaml/resources/**'
+#     paths: 
+#       - 'ontology/yaml/resources/**'
   pull_request:
     branches: [ master ]
-    paths: 
-      - 'ontology/yaml/resources/**'
+#     paths: 
+#       - 'ontology/yaml/resources/**'
 
 jobs:
   build:
