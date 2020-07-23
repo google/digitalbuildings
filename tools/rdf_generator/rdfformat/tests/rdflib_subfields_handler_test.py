@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Tests for google3.corp.bizapps.rews.carson.ontology.rdfextractor.rdf_subfields_handler."""
+"""Tests for generator.rdf_subfields_handler."""
 
 import rdflib
 from rdflib import namespace

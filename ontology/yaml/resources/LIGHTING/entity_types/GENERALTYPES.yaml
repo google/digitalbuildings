@@ -22,32 +22,32 @@ LT:
 LPS:
   description: "Lighting photocell sensor."
   implements:
-  - MTS	
+  - MTS
 
 LMS:
   description: "Lighting motion sensor."
   implements:
-  - MTS	
+  - MTS
 
 LTGW:
   description: "Lighting gateway."
   implements:
-  - EQUIPMENT			
+  - EQUIPMENT
   
 LAC:
   description: "lighting area controller."
   implements:
-  - EQUIPMENT	
+  - EQUIPMENT
 
 LCM:
   description: "Lighting control module."
   implements:
-  - EQUIPMENT	
+  - EQUIPMENT
 
 LKP:
   description: "Lighting keypad."
   implements:
-  - USER_INTERFACE		
+  - USER_INTERFACE
 
 LIGHTING_GROUP:
   description: "A group containing one or more luminaires."
