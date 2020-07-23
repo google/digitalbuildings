@@ -20,7 +20,7 @@ with earlier versions.
       - [Elevating Fields](#elevating-fields)
     + [States](#states)
     + [EntityTypes](#entitytypes)
-    + [Connections (coming soon)](#connections--coming-soon-)
+    + [Connections(#connections)
     + [Units](#units)
   * [Validation](#validation)
   * [Notes](#notes)
@@ -239,7 +239,7 @@ Validation enforces:
 *   all type names are unique per-namespace
 *   types have text descriptions (warning)
 
-### Connections (coming soon)
+### Connections
 
 Connections are described in a folder with the name `connections`. Connections
 can **only** be described in the global namespace, and the set of connections is
