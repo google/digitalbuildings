@@ -73,7 +73,7 @@ typeof define === 'function' && define.amd ? define(['exports'], factory) :
     const controls = new OrbitControls( camera, renderer.domElement );
     controls.target.set( 0, 0.5, 0 );
     controls.update();
-    controls.enablePan = false;
+    controls.enablePan = true;
     controls.enableDamping = true;
     camera.position.set( 0, 0, 7000 );
     camera.lookAt( 0, 0, 0 );
@@ -300,8 +300,8 @@ typeof define === 'function' && define.amd ? define(['exports'], factory) :
       for (const line of layerCoordinates[i]) {
         const linePoints = [];
         for (let j = 0; j < line.length; j += ONE_POINT) {
-          linePoints.push( new THREE.Vector3( line[j], line[j + 1],
-              line[j + 2] + FLOOR_HEIGHT * structureIndex ) );
+          linePoints.push( new THREE.Vector3( line[j],
+              line[j + 2] + FLOOR_HEIGHT * structureIndex, line[j + 1] ) );
         }
         const geometry = new THREE.BufferGeometry().setFromPoints(
             linePoints );
