@@ -20,7 +20,7 @@ with earlier versions.
       - [Elevating Fields](#elevating-fields)
     + [States](#states)
     + [EntityTypes](#entitytypes)
-    + [Connections(#connections)
+    + [Connections](#connections)
     + [Units](#units)
   * [Validation](#validation)
   * [Notes](#notes)
