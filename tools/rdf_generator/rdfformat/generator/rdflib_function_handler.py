@@ -25,7 +25,8 @@ from rdfformat.generator import rdf_helper
 
 
 def GenerateGraph(yaml_object, graph):
-  """Utility function updates an RDF graph with the yaml content of the Abstract.yaml.
+  """Utility function updates an RDF graph with
+  the yaml content of the Abstract.yaml.
 
   The content of each object is similar to the following:
     DXRC:

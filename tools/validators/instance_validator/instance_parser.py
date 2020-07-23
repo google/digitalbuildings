@@ -77,7 +77,8 @@ def _load_yaml_with_schema(filepath, schema):
     parsed = syaml.load(content, schema)
 
     return parsed
-  except Exception:
+  except Exception as e:
+    print(e)
     return None
 
 def parse_yaml(filename):

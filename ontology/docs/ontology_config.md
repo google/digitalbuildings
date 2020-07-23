@@ -277,7 +277,7 @@ energy:
 
 Under each subfield name, the configuration defines a list of dimensional units
 of a single
-[Quantity Kind](https://github.com/TopQuadrant/qudt-dev/blob/master/r2.0/vocab/quantitykinds/VOCAB_QUDT-BASE-QUANTITY-KINDS-v2.0.ttl),
+[Quantity Kind](qudt.org),
 One of the listed units must be listed as the `STANDARD` unit for the type. All
 of the `STANDARD` units for all subfields must belong to the same unit family,
 such as standard SI units.
