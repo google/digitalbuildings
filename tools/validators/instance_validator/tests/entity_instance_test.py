@@ -30,7 +30,7 @@ _TESTCASE_PATH = os.path.join('.', 'tests', 'fake_instances')
 class EntityInstanceTest(absltest.TestCase):
 
   def setUp(self):
-    self.universe = generate_universe.build_universe()
+    self.universe = generate_universe.BuildUniverse()
 
   def testValidateGoodExample(self):
     parsed = dict(instance_parser.parse_yaml(
@@ -44,7 +44,7 @@ class EntityInstanceTest(absltest.TestCase):
       entity = dict(parsed[name])
       instance = entity_instance.EntityInstance(entity, self.universe)
 
-      if instance.is_valid_entity_instance() is False:
+      if instance.IsValidEntityInstance() is False:
         self.fail('exception incorrectly raised')
 
   def testValidateBadEntityTypeFormat(self):
@@ -59,7 +59,7 @@ class EntityInstanceTest(absltest.TestCase):
       entity = dict(parsed[name])
       instance = entity_instance.EntityInstance(entity, self.universe)
 
-      if instance.is_valid_entity_instance() is not False:
+      if instance.IsValidEntityInstance() is not False:
         self.fail('exception not raised')
 
   def testValidateBadEntityNamespace(self):
@@ -74,7 +74,7 @@ class EntityInstanceTest(absltest.TestCase):
       entity = dict(parsed[name])
       instance = entity_instance.EntityInstance(entity, self.universe)
 
-      if instance.is_valid_entity_instance() is not False:
+      if instance.IsValidEntityInstance() is not False:
         self.fail('exception not raised')
 
   def testValidateBadEntityType(self):
@@ -89,7 +89,7 @@ class EntityInstanceTest(absltest.TestCase):
       entity = dict(parsed[name])
       instance = entity_instance.EntityInstance(entity, self.universe)
 
-      if instance.is_valid_entity_instance() is not False:
+      if instance.IsValidEntityInstance() is not False:
         self.fail('exception not raised')
 
 if __name__ == '__main__':

@@ -23,7 +23,7 @@ from yamlformat.validator import external_file_lib
 from yamlformat.validator import presubmit_validate_types_lib
 from yamlformat.validator import namespace_validator
 
-def build_universe():
+def BuildUniverse():
   """Generates the ontology universe.
 
   Returns:

@@ -24,7 +24,7 @@ from absl.testing import absltest
 class GenerateUniverseTest(absltest.TestCase):
 
   def setUp(self):
-    self.universe = generate_universe.build_universe()
+    self.universe = generate_universe.BuildUniverse()
 
   def testCanGenerateUniverse(self):
     self.assertTrue(self.universe)
