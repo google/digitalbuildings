@@ -32,7 +32,7 @@ LMS:
 LTGW:
   description: "Lighting gateway."
   implements:
-  - EQUIPMENT			
+  - EQUIPMENT
   
 LAC:
   description: "lighting area controller."
