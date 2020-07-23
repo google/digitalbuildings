@@ -135,6 +135,9 @@ class PresubmitValidateTypesTest(absltest.TestCase):
         ]))
     self.assertFalse(config_universe.IsValid())
 
+    self.assertIsNone(config_universe.GetEntityTypeNamespace('NONEXISTENT'))
+    self.assertIsNone(config_universe.GetEntityType('NONEXISTENT', 'NONEXISTENT'))
+
   def testValidateUndefinedFields(self):
     # bad3_file declares an undefined field
     findings = presubmit_validate_types_lib.RunPresubmit(
@@ -522,7 +525,6 @@ class PresubmitValidateTypesTest(absltest.TestCase):
     self.assertIn(field1, str(findings[0]))
     self.assertIsInstance(findings[1], findings_lib.RemovedFieldWarning)
     self.assertIn(field2, str(findings[1]))
-
 
 if __name__ == '__main__':
   absltest.main()

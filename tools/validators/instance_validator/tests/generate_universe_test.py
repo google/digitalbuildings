@@ -29,11 +29,5 @@ class GenerateUniverseTest(absltest.TestCase):
   def testCanGenerateUniverse(self):
     self.assertTrue(self.universe)
 
-  def testUniverseDetectsBadEntityTypeNamespace(self):
-    self.assertIsNone(self.universe.GetEntityTypeNamespace('NONEXISTENT'))
-  
-  def testUniverseDetectsBadEntityType(self):
-    self.assertIsNone(self.universe.GetEntityType('NONEXISTENT', 'NONEXISTENT'))
-
 if __name__ == '__main__':
   absltest.main()
