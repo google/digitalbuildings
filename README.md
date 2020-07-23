@@ -31,7 +31,7 @@ This project is structured as following:
 * [Internal Building Representation](/ibr/README.md) (IBR) File Format to represent data from different verticals such as spatial, assets.
 
 ## Issues
-Please post issues or discussion topics in [Issues](https://github.com/google/digitalbuildings/issues) section.
+Please post issues in [Issues](https://github.com/google/digitalbuildings/issues) section.
 
 ## Discussion 
 Open mailing list to discuss Google's Digital Building effort. Discussion could include general questions, standards, APIs, and more. [google-digital-building-discuss@googlegroups.com](mailto:google-digital-building-discuss@googlegroups.com)
