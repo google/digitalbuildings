@@ -18,7 +18,7 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
-from universe_generation import generate_universe
+from validate import generate_universe
 from absl.testing import absltest
 
 class GenerateUniverseTest(absltest.TestCase):
@@ -31,6 +31,9 @@ class GenerateUniverseTest(absltest.TestCase):
 
   def testUniverseDetectsBadEntityTypeNamespace(self):
     self.assertIsNone(self.universe.GetEntityTypeNamespace('NONEXISTENT'))
+  
+  def testUniverseDetectsBadEntityType(self):
+    self.assertIsNone(self.universe.GetEntityType('NONEXISTENT', 'NONEXISTENT'))
 
 if __name__ == '__main__':
   absltest.main()

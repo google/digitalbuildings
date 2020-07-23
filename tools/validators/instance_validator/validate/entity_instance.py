@@ -19,10 +19,11 @@ from yamlformat.validator import findings_lib
 
 class EntityInstance(findings_lib.Findings):
   """Uses information from the generated ontology universe to validate
-  an entity.
+  an entity instance. An entity instance is composed of at least an is and a
+  type. For example: {'id': 'FACILITIES/12345', 'type': 'FACILITIES/BUILDING'}.
 
   Args:
-    entity: parsed instance YAML file formatted as dictionary
+    entity instance: parsed instance YAML file formatted as dictionary
     universe: ConfigUniverse generated from the ontology
   """
 
@@ -57,7 +58,7 @@ class EntityInstance(findings_lib.Findings):
 
     return True
 
-  def validate_entity(self):
+  def is_valid_entity_instance(self):
     """Uses information from the generated ontology universe to validate an
     entity.
 
