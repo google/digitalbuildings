@@ -114,7 +114,8 @@ typeof define === 'function' && define.amd ? define(['exports'], factory) :
   }
 
   /**
-   * Create checkboxes for given structure's visualizations and child structures.
+   * Create checkboxes for given structure's visualizations and child
+    structures.
    * @param {Object} structure the structure generated from
    renderSingleIBRStructure() that will be added to sidebar.
    * @param {String} structureName the name of the structure being processed.
@@ -176,25 +177,31 @@ typeof define === 'function' && define.amd ? define(['exports'], factory) :
   }
 
   /**
-   * Parse top level of decoded IBR Object into structures.
-   * @param {binary} ibrRawData Raw data from IBR binary data file.
+   * Initialize IBRObject from input IBR raw data in binary format.
+   * @param {Buffer} ibrRawData binary IBR data from uploaded IBR file.
+   * @return {IBRObject} ibrObject IBRObject generated from input binary.
+   */
+  function init(ibrRawData) {
+    const ibrData = InternalBuildingRepresentation.read(
+        new Pbf(ibrRawData));
+    const ibrObject = new IBRObject( ibrData );
+    return ibrObject;
+  }
+
+  /**
+   * Enable Export and parse top level of decoded IBR Object into structures.
+   * @param {binary} ibrObject IBRObject created from input IBR binary data
+   file.
    * @param {number} structureIndex Index of current structure(floor).
    * @param {HTMLElement} parentElement parent HTML element that the
     visualization will be append on.
    */
-  function render(ibrRawData, structureIndex, parentElement) {
+  function render(ibrObject, structureIndex, parentElement) {
     scene = generateScene(parentElement);
-    const ibrData = InternalBuildingRepresentation.read(
-        new Pbf(ibrRawData));
-    const ibrObject = new IBRObject( ibrData );
     document.getElementById('dwn-btn').style.display = 'block';
-    const structure = {};
+    document.getElementById('filename').style.display = 'block';
     // Visualization visualizations of current structure
-    structure['visualizations'] = renderVisualization( ibrObject,
-        structureIndex, scene );
-    // Sub-structures of the current structure
-    structure['structures'] = ibrObject.getSubStructures();
-    return saveToBinary( ibrObject );
+    renderVisualization( ibrObject, structureIndex, scene );
   }
 
   /**
@@ -331,18 +338,22 @@ typeof define === 'function' && define.amd ? define(['exports'], factory) :
 
   /**
    * Serialize IBRObject object to binary format.
-   * @return {Buffer} binary representation of IBRObject object.
+   * @param {IBRObject} ibrObject The IBRObject to be saved back to binary
+   format.
+   * @return {Buffer} buffer binary representation of IBRObject object.
    */
-  function saveToBinary( ibrObject ) {
+  function saveToIBR( ibrObject ) {
     const json = ibrObject.toJson();
     const pbf = new Pbf();
     InternalBuildingRepresentation.write(json, pbf);
-    var buffer = pbf.finish();
+    const buffer = pbf.finish();
     return buffer;
   }
 
+  exports.init = init;
   exports.createSidebar = createSidebar;
   exports.render = render;
+  exports.saveToIBR = saveToIBR;
 
   Object.defineProperty(exports, '__esModule', {value: true});
 })));

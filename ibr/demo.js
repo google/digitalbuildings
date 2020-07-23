@@ -17,12 +17,13 @@ function onChooseFile() {
     const fr = new FileReader();
     fr.onload = function(evt) {
       const bin = evt.target.result;
-      const out = IBRSDK.render( bin,
+      const ibrObject = IBRSDK.init(bin);
+      IBRSDK.render( ibrObject,
           0, document.getElementById('mainCanvas') ); // top level, index 0
       IBRSDK.createSidebar( bin, document.getElementById('layerList') );
       document.getElementById('dwn-btn')
           .addEventListener('click', function(){
-            download( "out.ibr", out );
+            download(document.getElementById('filename').value, ibrObject);
           });
     };
     fr.readAsArrayBuffer(file);
@@ -34,19 +35,16 @@ function onChooseFile() {
  * @param {String} filename name of the binary file that will be created.
  * @param {Buffer} bin binary data that will be saved in the file.
  */
-function download( filename, bin ) {
-
+function download(filename, ibrObject) {
+  const bin = IBRSDK.saveToIBR(ibrObject)
   const element = document.createElement('a');
   const blob = new Blob([bin], {type: 'application/octet-stream'});
   const url = window.URL.createObjectURL(blob);
   element.setAttribute('href', url);
-  element.setAttribute('download', filename);
-
+  element.setAttribute('download', filename+'.ibr');
   element.style.display = 'none';
   document.body.appendChild(element);
-
   element.click();
-
   document.body.removeChild(element);
 
 }
