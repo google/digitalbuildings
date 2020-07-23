@@ -37,56 +37,52 @@ class EntityInstanceTest(absltest.TestCase):
       os.path.join(_TESTCASE_PATH,
                    'GOOD',
                    'good_building_type.yaml')))
-    entity_names = list(parsed.keys())
+    entity_name = list(parsed.keys())[0]
 
-    for name in entity_names:
-      entity = dict(parsed[name])
-      instance = entity_instance.EntityInstance(entity, self.universe)
+    entity = dict(parsed[entity_name])
+    instance = entity_instance.EntityInstance(entity, self.universe)
 
-      if not instance.IsValidEntityInstance():
-        self.fail('exception incorrectly raised')
+    if not instance.IsValidEntityInstance():
+      self.fail('exception incorrectly raised')
 
   def testValidateBadEntityTypeFormat(self):
     parsed = dict(instance_parser.parse_yaml(
       os.path.join(_TESTCASE_PATH,
                    'BAD',
                    'bad_building_type.yaml')))
-    entity_names = list(parsed.keys())
+    entity_name = list(parsed.keys())[0]
 
-    for name in entity_names:
-      entity = dict(parsed[name])
-      instance = entity_instance.EntityInstance(entity, self.universe)
+    entity = dict(parsed[entity_name])
+    instance = entity_instance.EntityInstance(entity, self.universe)
 
-      if instance.IsValidEntityInstance():
-        self.fail('exception not raised')
+    if instance.IsValidEntityInstance():
+      self.fail('exception not raised')
 
   def testValidateBadEntityNamespace(self):
     parsed = dict(instance_parser.parse_yaml(
       os.path.join(_TESTCASE_PATH,
                    'BAD',
                    'bad_building_type_namespace.yaml')))
-    entity_names = list(parsed.keys())
+    entity_name = list(parsed.keys())[0]
 
-    for name in entity_names:
-      entity = dict(parsed[name])
-      instance = entity_instance.EntityInstance(entity, self.universe)
+    entity = dict(parsed[entity_name])
+    instance = entity_instance.EntityInstance(entity, self.universe)
 
-      if instance.IsValidEntityInstance():
-        self.fail('exception not raised')
+    if instance.IsValidEntityInstance():
+      self.fail('exception not raised')
 
   def testValidateBadEntityType(self):
     parsed = dict(instance_parser.parse_yaml(
       os.path.join(_TESTCASE_PATH,
                    'BAD',
                    'bad_building_type_entity.yaml')))
-    entity_names = list(parsed.keys())
+    entity_name = list(parsed.keys())[0]
 
-    for name in entity_names:
-      entity = dict(parsed[name])
-      instance = entity_instance.EntityInstance(entity, self.universe)
+    entity = dict(parsed[entity_name])
+    instance = entity_instance.EntityInstance(entity, self.universe)
 
-      if instance.IsValidEntityInstance():
-        self.fail('exception not raised')
+    if instance.IsValidEntityInstance():
+      self.fail('exception not raised')
 
 if __name__ == '__main__':
   absltest.main()

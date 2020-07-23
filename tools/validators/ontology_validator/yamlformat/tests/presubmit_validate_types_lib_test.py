@@ -154,7 +154,9 @@ class PresubmitValidateTypesTest(absltest.TestCase):
         entity_type_universe=type_universe, state_universe=state_universe,
         unit_universe=unit_universe)
 
-    self.assertIsNone(config_universe.GetEntityTypeNamespace('NONEXISTENT'))
+    entity_type_namespace = config_universe.GetEntityTypeNamespace('NONEXISTENT')
+
+    self.assertIsNone(entity_type_namespace)
 
   def testConfigUniverseGetEntityType(self):
     context = findings_lib.FileContext('')
@@ -174,7 +176,9 @@ class PresubmitValidateTypesTest(absltest.TestCase):
         entity_type_universe=type_universe, state_universe=state_universe,
         unit_universe=unit_universe)
 
-    self.assertIsNone(config_universe.GetEntityType('NONEXISTENT', 'NONEXISTENT'))
+    entity_type = config_universe.GetEntityType('NONEXISTENT', 'NONEXISTENT')
+
+    self.assertIsNone(entity_type)
 
   def testValidateUndefinedFields(self):
     # bad3_file declares an undefined field

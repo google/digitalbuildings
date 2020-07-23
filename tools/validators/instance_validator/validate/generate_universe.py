@@ -47,6 +47,7 @@ def BuildUniverse():
       universe.GetEntityTypeNamespaces())
 
   if not namespace_validation.IsValid():
+    print('Universe is not valid')
     return None
 
   return universe
