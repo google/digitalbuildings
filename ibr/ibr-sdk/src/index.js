@@ -4,8 +4,8 @@
  * @author shuanglihtk@google.com (Shuang Li)
  */
 
-import { OrbitControls } from './../../../node_modules/three/examples/jsm/controls/OrbitControls.js';
-import {IBRObject} from './../class/IBRObject.js';
+import { OrbitControls } from './../node_modules/three/examples/jsm/controls/OrbitControls.js';
+import { IBRObject } from './../class/IBRObject.js';
 
 // the length of one 3D coordinates (x, y, z) in the coordinate lookup float
 // array
@@ -17,13 +17,14 @@ const TWO_POINTS = 6;
 // separate floor's z-coordinate by 100 unit length
 const FLOOR_HEIGHT = 300;
 
-(function(global, factory) {
-typeof exports === 'object' && typeof module !== 'undefined' ?
-factory(exports) :
-typeof define === 'function' && define.amd ? define(['exports'], factory) :
-(global = global || self, factory(global.IBRSDK = {}));
-}(window, (function(exports) {
+
+(function (global, factory) {
+  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
+  typeof define === 'function' && define.amd ? define(['exports'], factory) :
+  (global = global || self, factory(global.IBRSDK = {}));
+}(this, (function (exports) {
   'use strict';
+
 
   let scene;
 

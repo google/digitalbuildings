@@ -9,6 +9,7 @@
   ],
   "dependencies": {
     "ibr-sdk": "file:ibr-sdk",
+    "pbf": "^3.2.1",
     "three": "^0.118.3",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.12"
