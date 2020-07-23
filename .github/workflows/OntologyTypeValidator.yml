@@ -35,5 +35,5 @@ jobs:
     
     - name:  Ontology Type Yaml Validator Run on Ontology Type Extensions
       run: |
-        python validator.py --original=./ontology/yaml/resources --interactive=False
+        python validator.py --original=../../../../ontology/yaml/resources  --interactive=False
       working-directory: ./tools/validators/ontology_validator/yamlformat
