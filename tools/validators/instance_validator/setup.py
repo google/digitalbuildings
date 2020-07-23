@@ -12,6 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+"""Setup file for Instance Validator"""
+
 from setuptools import setup, find_packages
 
 setup(

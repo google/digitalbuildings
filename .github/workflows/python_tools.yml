@@ -37,7 +37,7 @@ jobs:
       working-directory: ./tools/rdf_generator/rdfformat/tests
     - name: Run Pylint on RDF Generator
       run: |
-         pylint --rcfile=./styles/pylintrc ./tools/rdf_generator
+        pylint --rcfile=./styles/pylintrc ./tools/rdf_generator
     #---------- Ontology Yaml Type Validator ----------# 
     - name:  Ontology Yaml Type Validator Install dependencies
       run: |
@@ -53,7 +53,10 @@ jobs:
       run: |
         python setup.py install
       working-directory: ./tools/validators/instance_validator
-    - name: Instance Yaml Validator Tests 
+    - name: Run Pylint on Instance Validator
+      run: |
+        pylint --rcfile=./styles/pylintrc ./tools/validators/instance_validator
+    - name: Instance Yaml Validator Tests
       if: (matrix.os == 'ubuntu-latest' || matrix.os == 'macos-latest')
       run: |
        python -m unittest discover -p '*_test.py' --failfast -v
