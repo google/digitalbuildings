@@ -5,7 +5,7 @@ name: Tools
 
 on:
   push:
-    branches: [ master, pylint_instance_validator ]
+    branches: [ master ]
   pull_request:
     branches: [ master ]
 
