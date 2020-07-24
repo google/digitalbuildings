@@ -256,7 +256,7 @@ function renderLayer(structure, structureIndex) {
       const linePoints = [];
       for (let j = 0; j < line.length; j += ONE_POINT) {
         linePoints.push( new THREE.Vector3( line[j],
-            line[j + 2] + FLOOR_HEIGHT * structureIndex, line[j + 1] ) );
+            line[j + 2] + FLOOR_HEIGHT * structureIndex, -line[j + 1] ) );
       }
       const geometry = new THREE.BufferGeometry().setFromPoints(
           linePoints );
