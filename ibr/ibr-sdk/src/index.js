@@ -260,10 +260,9 @@ function renderVisualization(structure, structureIndex) {
     for (const line of visualizationCoordinates[i]) {
       const linePoints = [];
       for (let j = 0; j < line.length; j += ONE_POINT) {
-        /* Swapped y, z coordinates of all visualization points to allow
-           x-y plane rotation */
-        /* changed sign of z coordinates to make y-z plane rotation more
-           intuitive */
+
+        // Swapped y, z coordinates of all points to allow x-y plane rotation
+        // changed sign of z coordinates to improve y-z plane rotation
         linePoints.push( new THREE.Vector3( line[j],
             line[j + 2] + FLOOR_HEIGHT * structureIndex, -line[j + 1] ) );
       }
