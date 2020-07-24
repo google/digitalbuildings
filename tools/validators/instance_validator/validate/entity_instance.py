@@ -60,7 +60,7 @@ class EntityInstance(findings_lib.Findings):
 
     return True
 
-  def isValidEntityInstance(self):
+  def is_valid_entity_instance(self):
     """Uses information from the generated ontology universe to validate an
     entity.
 

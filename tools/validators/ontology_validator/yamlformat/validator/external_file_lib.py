@@ -85,3 +85,16 @@ def _RecursiveDirWalk(directory):
           base_lib.PathParts(root=directory, relative_path=relative_path_yaml))
 
   return path_parts
+
+def RecursiveDirWalkPublic(directory):
+  """Walks recursively a directory and returns a list of PathParts.
+  Public wrapper for private function.
+
+  Args:
+    directory: a directory with the ontology yaml files.
+
+  Returns:
+    path_parts: a list of PathParts.
+  """
+
+  return _RecursiveDirWalk(directory)

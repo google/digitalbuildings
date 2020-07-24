@@ -14,18 +14,21 @@
 
 """Parses and validates YAML instance files for syntax"""
 
+from __future__ import print_function
 import strictyaml as syaml
 
 _COMPLIANT = 'COMPLIANT'
 _TRANSLATION = 'translation'
 
 """Schema separately parses translation to account for multiple valid formats
-github.com/google/digitalbuildings/blob/master/ontology/docs/building_config.md#defining-translations"""
+github.com/google/digitalbuildings/blob/master/ontology/docs/building_config.md
+#defining-translations"""
 _TRANSLATION_SCHEMA = syaml.Str() | syaml.Any()
 
 # TODO check valid ontological content in next validation steps
 """strictyaml schema parses a YAML instance from its first level of keys
-github.com/google/digitalbuildings/blob/master/ontology/docs/building_config.md#config-format"""
+github.com/google/digitalbuildings/blob/master/ontology/docs/building_config.md
+#config-format"""
 _SCHEMA = syaml.MapPattern(syaml.Str(),
                            syaml.Map({
                                'type': syaml.Str(),
@@ -46,7 +49,8 @@ _SCHEMA = syaml.MapPattern(syaml.Str(),
 # TODO add manual check to de-duplicate units/unit_values/states
 # TODO add all units/unit_values/states to translation_data_schema
 """Further account for multiple valid translation formats
-github.com/google/digitalbuildings/blob/master/ontology/docs/building_config.md#defining-translations"""
+github.com/google/digitalbuildings/blob/master/ontology/docs/building_config.md
+#defining-translations"""
 _TRANSLATION_DATA_SCHEMA = syaml.Str() | syaml.Map({
     'present_value': syaml.Str(),
     syaml.Optional('states'): syaml.MapPattern(syaml.Str(), syaml.Str()),
@@ -77,14 +81,15 @@ def _load_yaml_with_schema(filepath, schema):
     parsed = syaml.load(content, schema)
 
     return parsed
-  except Exception as e:
+  except syaml.YAMLValidationError as e:
     print(e)
     return None
 
 def parse_yaml(filename):
   """Loads an instance YAML file and parses it with
   multiple strictyaml-formatted YAML schemas. Expected format:
-  github.com/google/digitalbuildings/blob/master/ontology/docs/building_config.md#config-format
+  github.com/google/digitalbuildings/blob/master/ontology/docs/
+  building_config.md#config-format
 
   Args:
     filename: filepath location of the YAML file

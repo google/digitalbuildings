@@ -38,7 +38,7 @@ def BuildUniverse():
     print('ERROR: ontology validator or ontology have changed locations')
     return None
 
-  yaml_files = external_file_lib._RecursiveDirWalk(path.join(
+  yaml_files = external_file_lib.RecursiveDirWalkPublic(path.join(
       '..', '..', '..', 'ontology', 'yaml', 'resources'))
   config = presubmit_validate_types_lib.SeparateConfigFiles(yaml_files)
   universe = presubmit_validate_types_lib.BuildUniverse(config)

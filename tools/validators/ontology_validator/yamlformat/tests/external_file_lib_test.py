@@ -71,6 +71,29 @@ class ExternalFileLibTest(absltest.TestCase):
     self.assertEqual(path_part_modified_client_fan.relative_path,
                      'entity_types/another_entity_types2/' + FAN)
 
+  def test_RecursiveDirWalkPublic_multiLevel(self):
+    path_parts = external_file_lib.RecursiveDirWalkPublic(DIR_MULTI_DIR)
+    path_parts.sort()
+
+    self.assertLen(path_parts, 4)
+    path_part_modified_client_fan = path_parts[0]
+    self.assertEqual(path_part_modified_client_fan.root, DIR_MULTI_DIR)
+    self.assertEqual(path_part_modified_client_fan.relative_path, FAN_2)
+
+    path_part_modified_client_fan = path_parts[1]
+    self.assertEqual(path_part_modified_client_fan.root, DIR_MULTI_DIR)
+    self.assertEqual(path_part_modified_client_fan.relative_path,
+                     'entity_types/' + FAN)
+
+    path_part_modified_client_fan = path_parts[2]
+    self.assertEqual(path_part_modified_client_fan.root, DIR_MULTI_DIR)
+    self.assertEqual(path_part_modified_client_fan.relative_path,
+                     'entity_types/another_entity_types/' + FAN)
+
+    path_part_modified_client_fan = path_parts[3]
+    self.assertEqual(path_part_modified_client_fan.root, DIR_MULTI_DIR)
+    self.assertEqual(path_part_modified_client_fan.relative_path,
+                     'entity_types/another_entity_types2/' + FAN)
 
 if __name__ == '__main__':
   absltest.main()
