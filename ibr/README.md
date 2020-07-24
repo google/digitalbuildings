@@ -11,7 +11,7 @@ IBR comes with a rendering library built on THREE.js that can be used to easily 
 
 1. Open terminal and run following commands:
 	- cd digitalbuildings/ibr/ibr-sdk
-	- run `npm build`
+	- run `npm run build`
 
 2. Open html/index.html in your browser.
 
