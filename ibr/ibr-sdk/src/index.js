@@ -72,9 +72,10 @@ function generateScene(parentElement) {
   controls.update();
   controls.enablePan = true;
   controls.enableDamping = true;
-  camera.position.set( 0, 0, 7000 );
+  camera.position.set( 0, 7000, 0 );
   camera.lookAt( 0, 0, 0 );
   animate();
+  window.addEventListener( 'resize', onWindowResize, false );
 
   /**
   * Renders the scene.
@@ -83,6 +84,15 @@ function generateScene(parentElement) {
     requestAnimationFrame( animate );
     controls.update();
     renderer.render( scene, camera );
+  }
+
+  /**
+  * Resize the scene.
+  */
+  function onWindowResize() {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize( window.innerWidth, window.innerHeight );
   }
 
   return scene;
@@ -245,8 +255,10 @@ function renderLayer(structure, structureIndex) {
     for (const line of layerCoordinates[i]) {
       const linePoints = [];
       for (let j = 0; j < line.length; j += ONE_POINT) {
+        // Swapped y, z coordinates of all visualization points to allow x-y plane rotation
+        // changed sign of z coordinates to make y-z plane rotation more intuitive
         linePoints.push( new THREE.Vector3( line[j],
-            line[j + 2] + FLOOR_HEIGHT * structureIndex, line[j + 1] ) );
+            line[j + 2] + FLOOR_HEIGHT * structureIndex, -line[j + 1] ) );
       }
       const geometry = new THREE.BufferGeometry().setFromPoints(
           linePoints );
