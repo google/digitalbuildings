@@ -297,7 +297,7 @@ function renderVisualization(structure, structureIndex) {
  format.
  * @return {Buffer} buffer binary representation of IBRObject object.
  */
-function saveToIBR( ibrObject ) {
+function saveToBuffer( ibrObject ) {
   const json = ibrObject.toJson();
   const pbf = new Pbf();
   InternalBuildingRepresentation.write(json, pbf);
@@ -305,4 +305,4 @@ function saveToIBR( ibrObject ) {
   return buffer;
 }
 
-export {init, createSidebar, render, saveToIBR};
+export {init, createSidebar, render, saveToBuffer};

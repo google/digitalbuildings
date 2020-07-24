@@ -50,7 +50,7 @@
 		 * @param {Buffer} bin binary data that will be saved in the file.
 		 */
 		function download(filename, ibrObject) {
-		  const bin = IBRSDK.saveToIBR(ibrObject)
+		  const bin = IBRSDK.saveToBuffer(ibrObject)
 		  const element = document.createElement('a');
 		  const blob = new Blob([bin], {type: 'application/octet-stream'});
 		  const url = window.URL.createObjectURL(blob);
