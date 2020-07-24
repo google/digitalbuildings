@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Tests for google3.corp.bizapps.rews.carson.ontology.rdfextractor.rdflib_carson_types_handler."""
+"""Tests for generator.rdflib_carson_types_handler."""
 
 from __future__ import absolute_import
 from __future__ import division

@@ -23,6 +23,7 @@ This tool allows clients to independently validate their configuration files.
 It saves time and provides more accuracy than manual error checks."""
 
 from __future__ import print_function
+from sys import exit
 
 import instance_parser
 import argparse
@@ -40,11 +41,17 @@ if __name__ == '__main__':
   arg = parser.parse_args()
 
   # SYNTAX VALIDATION
-  print('\nValidator starting ...')
+  print('\nValidator starting ...\n')
   filename = arg.filename
 
   # throws errors for syntax
-  parsed = dict(instance_parser.parse_yaml(filename))
+  raw_parse = instance_parser.parse_yaml(filename)
+
+  if raw_parse is None:
+    print('\Syntax Error.')
+    exit(0)
+
+  parsed = dict(raw_parse)
 
   print('Passed syntax checks!')
 
