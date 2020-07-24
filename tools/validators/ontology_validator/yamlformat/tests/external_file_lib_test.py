@@ -32,7 +32,7 @@ FAN_2 = 'FAN2.yaml'
 class ExternalFileLibTest(absltest.TestCase):
 
   def test_RecursiveDirWalk_oneLevel(self):
-    path_parts = external_file_lib._RecursiveDirWalk(DIR_ONE_LEVEL)
+    path_parts = external_file_lib.RecursiveDirWalk(DIR_ONE_LEVEL)
     path_parts.sort()
 
     self.assertLen(path_parts, 2)
@@ -48,7 +48,7 @@ class ExternalFileLibTest(absltest.TestCase):
                      'entity_types/' + FAN_2)
 
   def test_RecursiveDirWalk_multiLevel(self):
-    path_parts = external_file_lib._RecursiveDirWalk(DIR_MULTI_DIR)
+    path_parts = external_file_lib.RecursiveDirWalk(DIR_MULTI_DIR)
     path_parts.sort()
 
     self.assertLen(path_parts, 4)
@@ -70,7 +70,6 @@ class ExternalFileLibTest(absltest.TestCase):
     self.assertEqual(path_part_modified_client_fan.root, DIR_MULTI_DIR)
     self.assertEqual(path_part_modified_client_fan.relative_path,
                      'entity_types/another_entity_types2/' + FAN)
-
 
 if __name__ == '__main__':
   absltest.main()

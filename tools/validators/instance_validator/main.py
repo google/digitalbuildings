@@ -19,14 +19,14 @@ Digital Buildings ontology.
 This is done by first ensuring the file syntax is valid YAML, then by
 parsing the ontology and comparing it with the file contents.
 
-This tool allows clients to independently validate their configuration files. 
+This tool allows clients to independently validate their configuration files.
 It saves time and provides more accuracy than manual error checks."""
 
 from __future__ import print_function
-from sys import exit
 
 import instance_parser
 import argparse
+import sys
 
 # TODO add input and return type checks in all functions
 
@@ -48,34 +48,9 @@ if __name__ == '__main__':
   raw_parse = instance_parser.parse_yaml(filename)
 
   if raw_parse is None:
-    print('\Syntax Error.')
-    exit(0)
+    print('\nSyntax Error.')
+    sys.exit(0)
 
   parsed = dict(raw_parse)
 
   print('Passed syntax checks!')
-
-  # ONTOLOGY VALIDATION
-  '''
-  print('Building ontology universe ...')
-
-  universe = generate_universe.build_universe()
-  parsed_univ = generate_universe.parse_universe(universe)
-
-  # TODO(https://github.com/google/digitalbuildings/issues/42): 
-      replace this assignment logic with NamedTuple ontology generation
-  fields, subfields_map, states_map, units_map, entities_map = parsed_univ
-
-  entity_names = list(parsed.keys())
-
-  for name in entity_names:
-    entity = dict(parsed[name])
-    ontology_validation.validate_entity(entity,
-                                        fields,
-                                        subfields_map,
-                                        states_map,
-                                        units_map,
-                                        entities_map)
-
-  print('Passed all checks!\n')
-  '''

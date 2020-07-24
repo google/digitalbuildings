@@ -53,6 +53,9 @@ jobs:
       run: |
         python setup.py install
       working-directory: ./tools/validators/instance_validator
+    - name: Run Pylint on Instance Validator
+      run: |
+        pylint --rcfile=./styles/pylintrc ./tools/validators/instance_validator
     - name: Instance Yaml Validator Tests
       if: (matrix.os == 'ubuntu-latest' || matrix.os == 'macos-latest')
       run: |
