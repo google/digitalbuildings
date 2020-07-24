@@ -1,5 +1,6 @@
 import test from 'ava';
-import {IBRObject} from '../ibr-sdk/class/IBRObject.js';
+import { IBRObject } from '../src/IBRObject.js';
+import { Visualization } from '../src/Visualization.js';
 
 test.before( (t) => {
   t.context.defaultName = 'ibrData.name';
