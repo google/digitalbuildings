@@ -26,7 +26,8 @@ jobs:
         node-version: ${{ matrix.node-version }}
 
     - name: ESLint Action
-      uses: hallee/eslint-action@1.0.3
+      run: npm run lint
+      working-directory: ./ibr/ibr-sdk/
 
     - name: Build IBR dist package
       run: npm run build
