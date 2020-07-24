@@ -9,7 +9,8 @@
     "build": "npm install && npm run build-proto && rollup -c rollup.config.js",
     "build-proto": " mkdir -p temp/ && node_modules/.bin/pbf proto/ibr.proto --browser > temp/ibr_pb_browser.js",
     "cleanup": "rm -rf dist && rm -rf node_modules && rm -rf temp && rm -rf package-lock.json",
-    "lint": "npm install --only=dev && npx eslint src/** --fix",
+    "install-linter": "npm install -g eslint eslint-config-google",
+    "lint": "npm run install-linter && npx eslint src/** --fix",
     "test": "ava"
   },
   "dependencies": {
