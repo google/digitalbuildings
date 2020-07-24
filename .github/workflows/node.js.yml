@@ -27,7 +27,7 @@ jobs:
 
     - name: Build IBR dist package
       run: npm run build
-      working-directory: ./ibr
+      working-directory: ./ibr/ibr-sdk
     - name: Tests
       run: npm test
-      working-directory: ./ibr
+      working-directory: ./ibr/ibr-sdk
