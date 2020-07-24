@@ -28,6 +28,7 @@ class EntityInstance(findings_lib.Findings):
   """
 
   def __init__(self, entity, universe):
+    super(EntityInstance, self).__init__()
     self.entity = entity
     self.universe = universe
     self.required_keys = ('id', 'type')
@@ -59,7 +60,7 @@ class EntityInstance(findings_lib.Findings):
 
     return True
 
-  def IsValidEntityInstance(self):
+  def isValidEntityInstance(self):
     """Uses information from the generated ontology universe to validate an
     entity.
 
