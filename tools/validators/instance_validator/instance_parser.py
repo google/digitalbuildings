@@ -17,7 +17,6 @@
 from __future__ import print_function
 import strictyaml as syaml
 import ruamel
-import sys
 
 _COMPLIANT = 'COMPLIANT'
 _TRANSLATION = 'translation'

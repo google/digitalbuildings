@@ -26,6 +26,7 @@ from __future__ import print_function
 
 import instance_parser
 import argparse
+import sys
 
 # TODO add input and return type checks in all functions
 
@@ -48,7 +49,7 @@ if __name__ == '__main__':
 
   if raw_parse is None:
     print('\nSyntax Error.')
-    exit(0)
+    sys.exit(0)
 
   parsed = dict(raw_parse)
 
