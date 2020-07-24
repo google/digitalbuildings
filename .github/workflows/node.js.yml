@@ -25,6 +25,9 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
 
+    - name: Run Google es-linter
+      run: npm run lint
+      working-directory: ./ibr/ibr-sdk/
     - name: Build IBR dist package
       run: npm run build
       working-directory: ./ibr/ibr-sdk/
