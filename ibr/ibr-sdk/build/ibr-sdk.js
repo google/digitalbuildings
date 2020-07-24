@@ -63,7 +63,7 @@ typeof define === 'function' && define.amd ? define(['exports'], factory) :
    visualization will be append on.
    * @return {Object} scene Scene generated to
    */
-  function generateScene(parentElement) {
+  function generateScene(parentElement, window) {
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(
         75, window.innerWidth / window.innerHeight, 0.1, 10000 );
@@ -75,9 +75,10 @@ typeof define === 'function' && define.amd ? define(['exports'], factory) :
     controls.update();
     controls.enablePan = true;
     controls.enableDamping = true;
-    camera.position.set( 0, 0, 7000 );
+    camera.position.set( 0, 7000, 0 );
     camera.lookAt( 0, 0, 0 );
     animate();
+    window.addEventListener( 'resize', onWindowResize, false );
 
     /**
     * Renders the scene.
@@ -86,6 +87,12 @@ typeof define === 'function' && define.amd ? define(['exports'], factory) :
       requestAnimationFrame( animate );
       controls.update();
       renderer.render( scene, camera );
+    }
+
+    function onWindowResize() {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize( window.innerWidth, window.innerHeight );
     }
 
     return scene;
@@ -182,8 +189,8 @@ typeof define === 'function' && define.amd ? define(['exports'], factory) :
    * @param {HTMLElement} parentElement parent HTML element that the
     visualization will be append on.
    */
-  function render(ibrRawData, structureIndex, parentElement) {
-    scene = generateScene(parentElement);
+  function render(ibrRawData, structureIndex, parentElement, window) {
+    scene = generateScene(parentElement, window);
     const ibrData = InternalBuildingRepresentation.read(
         new Pbf(ibrRawData));
     const ibrObject = new IBRObject( ibrData );
@@ -300,8 +307,10 @@ typeof define === 'function' && define.amd ? define(['exports'], factory) :
       for (const line of layerCoordinates[i]) {
         const linePoints = [];
         for (let j = 0; j < line.length; j += ONE_POINT) {
+          /* Swapped y, z coordinates when creating points to allow x-y
+             plane rotation */
           linePoints.push( new THREE.Vector3( line[j],
-              line[j + 2] + FLOOR_HEIGHT * structureIndex, line[j + 1] ) );
+              line[j + 2] + FLOOR_HEIGHT * structureIndex, -line[j + 1] ) );
         }
         const geometry = new THREE.BufferGeometry().setFromPoints(
             linePoints );
