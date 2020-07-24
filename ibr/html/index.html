@@ -10,36 +10,60 @@
         <link href="index.css" rel="stylesheet">
     </head>
     <body>
-        <div id="sideBar" class="sidebar">
-            <h4>Select an IBR data file: </h4>
-            <input type="file" id="fileForUpload"/>
-            <h2 style="text-align: center;">Layer Tree</h2>
-            <ul id="layerList"></ul>
-        </div>
+		<div id="sideBar" class="sidebar">
+			<h4>Select an IBR data file: </h4>
+			<input type="file" id="fileForUpload"/>
+			<input type="text" id="filename" placeholder="Output File Name" style="display: none;"/>
+			<button id="dwn-btn" style="display: none;">Save and Export to IBR</button>
+			<h2 style="text-align: center;">Layer Tree</h2>
+			<ul id="layerList"></ul>
+		</div>
         <div id="mainCanvas" class="main">
         </div>
     </body>
     <script>
         function onChooseFile() {
-            if (typeof window.FileReader !== 'function') {
-                throw new Error('The file API isn\'t supported on this browser.');
-            }
+		  if (typeof window.FileReader !== 'function') {
+			throw new Error('The file API isn\'t supported on this browser.');
+		  }
+		  const file = document.getElementById('fileForUpload').files[0];
+		  if (file) {
+			const fr = new FileReader();
+			fr.onload = function(evt) {
+			  const bin = evt.target.result;
+			  const ibrObject = IBRSDK.init(bin);
+			  IBRSDK.render( ibrObject,
+				  0, document.getElementById('mainCanvas') ); // top level, index 0
+			  IBRSDK.createSidebar( ibrObject, document.getElementById('layerList') );
+			  document.getElementById('dwn-btn')
+				  .addEventListener('click', function(){
+					download(document.getElementById('filename').value, ibrObject);
+				  });
+			};
+			fr.readAsArrayBuffer(file);
+		  }
+		}
 
-            const file = document.getElementById('fileForUpload').files[0];
+		/**
+		 * Create binary file from data and download the file in browser.
+		 * @param {String} filename name of the binary file that will be created.
+		 * @param {Buffer} bin binary data that will be saved in the file.
+		 */
+		function download(filename, ibrObject) {
+		  const bin = IBRSDK.saveToBuffer(ibrObject)
+		  const element = document.createElement('a');
+		  const blob = new Blob([bin], {type: 'application/octet-stream'});
+		  const url = window.URL.createObjectURL(blob);
+		  element.setAttribute('href', url);
+		  element.setAttribute('download', filename+'.ibr');
+		  element.style.display = 'none';
+		  document.body.appendChild(element);
+		  element.click();
+		  document.body.removeChild(element);
 
-            if (file) {
-                const fr = new FileReader();
-                fr.onload = function(evt) {
-                    const bin = evt.target.result;
-                    IBRSDK.render(bin, 0, document.getElementById('mainCanvas')); // top level, index 0
-                    IBRSDK.createSidebar(bin, document.getElementById('layerList'));
-                };
+		}
 
-                fr.readAsArrayBuffer(file);
-            }
-        }
-
-        document.getElementById('fileForUpload')
-            .addEventListener('change', onChooseFile);
+		document.getElementById('fileForUpload')
+			.addEventListener('change', onChooseFile);
     </script>
 </html>

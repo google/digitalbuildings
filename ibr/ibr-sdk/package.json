@@ -6,16 +6,17 @@
   "author": "Shuang Li",
   "license": "Apache-2.0",
   "scripts": {
-    "build": "npm run lint && npm install && npm run build-proto && rollup -c rollup.config.js",
+    "build": "npm install && npm run build-proto && rollup -c rollup.config.js",
     "build-proto": " mkdir -p temp/ && node_modules/.bin/pbf proto/ibr.proto --browser > temp/ibr_pb_browser.js",
     "cleanup": "rm -rf dist && rm -rf node_modules && rm -rf temp && rm -rf package-lock.json",
+    "install-linter": "npm install -g eslint eslint-config-google",
     "lint": "npx eslint src/** --fix",
     "test": "ava"
   },
   "dependencies": {
+    "pbf": "^3.2.1",
     "three": "^0.117.1",
-    "three-buffer-geometry-utils": "^1.0.0",
-    "pbf": "^3.2.1"
+    "three-buffer-geometry-utils": "^1.0.0"
   },
   "devDependencies": {
     "ava": "^3.10.1",
