@@ -31,8 +31,3 @@ On Mac, start chrome from terminal using this command instead:
     - Then navigate to http://0.0.0.0:8000/html/ in your browser.
 
 3. Click on "Choose File" button to open your ibr data file
-
-##### Developer Note: 
-
-* The ibr-sdk npm package is not published, hence it cannot yet be installed in other projects.*
-* Run `npx eslint \[filename\] --fix` to check efore Pull Request.*

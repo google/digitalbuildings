@@ -13,9 +13,9 @@
     "test": "ava"
   },
   "dependencies": {
-    "pbf": "^3.2.1",
     "three": "^0.117.1",
-    "three-buffer-geometry-utils": "^1.0.0"
+    "three-buffer-geometry-utils": "^1.0.0",
+    "pbf": "^3.2.1"
   },
   "devDependencies": {
     "@webpack-cli/init": "^0.3.0",
