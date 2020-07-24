@@ -16,6 +16,8 @@
 
 from __future__ import print_function
 import strictyaml as syaml
+import ruamel
+import sys
 
 _COMPLIANT = 'COMPLIANT'
 _TRANSLATION = 'translation'
@@ -81,7 +83,11 @@ def _load_yaml_with_schema(filepath, schema):
     parsed = syaml.load(content, schema)
 
     return parsed
-  except syaml.YAMLValidationError as e:
+  except (ruamel.yaml.parser.ParserError,
+          ruamel.yaml.scanner.ScannerError,
+          syaml.exceptions.YAMLValidationError,
+          syaml.exceptions.DuplicateKeysDisallowed,
+          syaml.exceptions.InconsistentIndentationDisallowed) as e:
     print(e)
     return None
 
