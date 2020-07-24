@@ -25,12 +25,13 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
 
-    - name: Run Google es-linter
-      run: npm run lint
-      working-directory: ./ibr/ibr-sdk/
+    - name: ESLint Action
+      uses: hallee/eslint-action@1.0.3
+
     - name: Build IBR dist package
       run: npm run build
       working-directory: ./ibr/ibr-sdk/
+
     - name: Tests
       run: npm test
       working-directory: ./ibr/ibr-sdk/
