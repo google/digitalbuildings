@@ -26,7 +26,8 @@ from rdfformat.generator import constants
 
 
 def GenerateGraph(graph):
-  """Utility function prepares the RDF graph with owl classes before the yaml content gets converted.
+  """Utility function prepares the RDF graph with owl
+  classes before the yaml content gets converted.
 
   Updates an RDF graph with the yaml content
 

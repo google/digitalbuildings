@@ -72,7 +72,7 @@ class EntityTypeUniverse(findings_lib.Findings):
     return self.type_namespaces_map[namespace_name].GetType(typename)
 
   def GetNamespace(self, namespace_name):
-    """Finds namesepace in the universe by name and returns it or None."""
+    """Finds namespace in the universe by name and returns it or None."""
     return self.type_namespaces_map.get(namespace_name, None)
 
   def GetNamespaces(self):
