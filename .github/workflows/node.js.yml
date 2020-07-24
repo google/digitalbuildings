@@ -5,9 +5,17 @@ name: Node.js CI
 
 on:
   push:
+    paths:
+      - '**.js'
+      - ./ibr
     branches: [ master ]
+    tags: [ ibr ]
   pull_request:
+    paths:
+      - '**.js'
+      - ./ibr
     branches: [ master ]
+    tags: [ ibr ]
 
 jobs:
   build:
