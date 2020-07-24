@@ -1,6 +1,6 @@
 import test from 'ava';
-import { IBRObject } from '../ibr-sdk/src/IBRObject.js';
-import { Layer } from '../ibr-sdk/src/Layer.js';
+import { IBRObject } from '../src/IBRObject.js';
+import { Layer } from '../src/Layer.js';
 
 test.before( t => {
   t.context.defaultName = 'ibrData.name';
