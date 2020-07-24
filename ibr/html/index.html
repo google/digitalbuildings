@@ -1,45 +1,42 @@
 <!DOCTYPE html>
 <html>
-	<head>
-	    <meta charset="utf-8">
-	    <title>IBR Demo</title>
-	    <script src="../node_modules/pbf/dist/pbf.js"></script>
-	    <script src="../node_modules/three/build/three.js"></script>
-	    <script src="../node_modules/three/examples/js/utils/BufferGeometryUtils.js"></script>
-		<script src="../ibr-sdk/dist/main.js"></script>
-		<script src="../temp/ibr_pb_browser.js"></script>
-		<link href="index.css" rel="stylesheet">
-	</head>
-	<body>
-		<div id="sideBar" class="sidebar">
-			<h4>Select an IBR data file: </h4>
-			<input type="file" id="fileForUpload"/>
-			<h2 style="text-align: center;">Layer Tree</h2>
-			<ul id="layerList"></ul>
-		</div>
-		<div id="mainCanvas" class="main">
-		</div>
-	</body>
-	<script>
-		function onChooseFile() {
-		  if (typeof window.FileReader !== 'function') {
-		    throw new Error('The file API isn\'t supported on this browser.');
-		  }
+    <head>
+        <meta charset="utf-8">
+        <title>IBR Demo</title>
+        <script src="../ibr-sdk/dist/main.js"></script>
+        <link href="index.css" rel="stylesheet">
+    </head>
+    <body>
+        <div id="sideBar" class="sidebar">
+            <h4>Select an IBR data file: </h4>
+            <input type="file" id="fileForUpload"/>
+            <h2 style="text-align: center;">Layer Tree</h2>
+            <ul id="layerList"></ul>
+        </div>
+        <div id="mainCanvas" class="main">
+        </div>
+    </body>
+    <script>
+        function onChooseFile() {
+            if (typeof window.FileReader !== 'function') {
+                throw new Error('The file API isn\'t supported on this browser.');
+            }
 
-		  const file = document.getElementById('fileForUpload').files[0];
-		  if (file) {
-		    const fr = new FileReader();
-		    fr.onload = function(evt) {
-		      const bin = evt.target.result;
-		      IBRSDK.render( bin,
-		          0, document.getElementById('mainCanvas') ); // top level, index 0
-		      IBRSDK.createSidebar( bin, document.getElementById('layerList') );
-		    };
-		    fr.readAsArrayBuffer(file);
-		  }
-		}
+            const file = document.getElementById('fileForUpload').files[0];
 
-		document.getElementById('fileForUpload')
-			.addEventListener('change', onChooseFile);
-	</script>
+            if (file) {
+                const fr = new FileReader();
+                fr.onload = function(evt) {
+                    const bin = evt.target.result;
+                    IBRSDK.render(bin, 0, document.getElementById('mainCanvas')); // top level, index 0
+                    IBRSDK.createSidebar(bin, document.getElementById('layerList'));
+                };
+
+                fr.readAsArrayBuffer(file);
+            }
+        }
+
+        document.getElementById('fileForUpload')
+            .addEventListener('change', onChooseFile);
+    </script>
 </html>

@@ -1,7 +1,7 @@
 {
   "name": "ibr-sdk",
   "version": "0.1.0",
-  "description": "This package will take ibr binary data and convert them into three.js object(s).",
+  "description": "Internal Building Representation SDK",
   "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -9,20 +9,16 @@
     "start": "webpack-dev-server"
   },
   "dependencies": {
-    "eslint": "^7.5.0",
-    "eslint-config-google": "^0.14.0",
     "pbf": "^3.2.1",
     "three": "^0.117.1"
   },
-  "keywords": [
-    "node",
-    "npm"
-  ],
   "author": "Shuang Li",
   "license": "Apache-2.0",
   "devDependencies": {
     "@webpack-cli/init": "^0.3.0",
     "babel-plugin-syntax-dynamic-import": "^6.18.0",
+    "eslint": "^7.5.0",
+    "eslint-config-google": "^0.14.0",
     "html-webpack-plugin": "^4.3.0",
     "terser-webpack-plugin": "^3.0.7",
     "webpack": "^4.43.0",
