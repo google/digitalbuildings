@@ -3,6 +3,5 @@
 **/dist/main.js
 
 *.DS_Store
-.eslintrc.json
 package-lock.json
 yarn.lock
