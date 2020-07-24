@@ -1,4 +1,4 @@
-import {Visualization, swap32} from './Visualization.js';
+import {Visualization} from './Visualization.js';
 
 // the length of one 3D coordinates (x, y, z) in the coordinate lookup float
 // array
@@ -6,10 +6,9 @@ export const ONE_POINT = 3;
 
 /**
  * Constructor of IBRObject Class.
- * @param {Buffer} ibrRawData binary data read from input IBR file.
+ * @param {JSONObject} pbfDecodedJsonObject JSON decoded from input IBR file.
  */
 function IBRObject( pbfDecodedJsonObject ) {
-
   this.blockingGrid = pbfDecodedJsonObject.blocking_grid;
 
   this.boundary = pbfDecodedJsonObject.boundary;
@@ -107,7 +106,8 @@ Object.assign( IBRObject.prototype, {
   /**
    * Get a visualization of the IBRObject based on given visualization ID.
    * @param {String} visualizationID ID of the visualization requested.
-   * @return {Visualization} the visualization with the name visualizationID in IBRObject.
+   * @return {Visualization} the visualization with the name visualizationID
+    in IBRObject.
    */
   getVisualization: function( visualizationID ) {
     return this.visualizations.get( visualizationID );
@@ -142,7 +142,7 @@ Object.assign( IBRObject.prototype, {
    * @return {JSONObject} json format of IBRObject object.
    */
   toJson: function() {
-    let json = {};
+    const json = {};
     json.blocking_grid = this.blockingGrid;
     json.boundary = this.boundary;
     json.connections = this.connections;
@@ -154,12 +154,13 @@ Object.assign( IBRObject.prototype, {
       for (let i = 0; i < tempCoordinates.length; i += 1) {
         coordsList.push(coordsDV.getFloat32(i * 4, false));
       }
-      json.coordinates_lookup = new Uint8Array( Float32Array.from( coordsList ).buffer );
+      json.coordinates_lookup = new Uint8Array(
+          Float32Array.from( coordsList ).buffer );
     }
     json.external_reference = this.externalReference;
     json.guid = this.guid;
     json.metadata = this.metadata;
-    if (this.name === "ibrData.name") {
+    if (this.name === 'ibrData.name') {
       json.name = null;
     } else {
       json.name = this.name;
@@ -176,7 +177,7 @@ Object.assign( IBRObject.prototype, {
       json.visualization.push( visualization.toJson() );
     }
     return json;
-  }
+  },
 
 } );
 export {IBRObject};

@@ -12,8 +12,8 @@ function swap32(val) {
 
 /**
  * Constructor of Visualization Class.
- * @param {Object} visualizationData single visualization data from JSON Object decoded using
- Pbf library from raw ibr binary data.
+ * @param {Object} visualizationData single visualization data from JSON
+ Object decoded using Pbf library from raw ibr binary data.
  */
 function Visualization( visualizationData ) {
   this.id = visualizationData.id;
@@ -80,7 +80,8 @@ Object.assign( Visualization.prototype, {
   },
 
   /**
-   * Set the line coordinates of the visualization during IBRObject construction.
+   * Set the line coordinates of the visualization during IBRObject
+   construction.
    * @param {List.<List.<number>>} lineCoordinates list of list of end point
     coordinates that each represent a line during rendering.
    */
