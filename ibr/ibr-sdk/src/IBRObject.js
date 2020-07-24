@@ -65,7 +65,6 @@ function IBRObject( pbfDecodedJsonObject ) {
         layerPH.push(coordsLine);
       }
       layer.setLineCoordinates(layerPH);
-      console.log(layerPH);
     }
   }
 }

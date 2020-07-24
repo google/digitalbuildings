@@ -6,10 +6,12 @@
 
 'use strict';
 
-import * as THREE from './../node_modules/three/build/three.js';
-import { OrbitControls } from './../node_modules/three/examples/jsm/controls/OrbitControls.js';
-import { IBRObject } from './../class/IBRObject.js';
-import { Colors } from './colors.js';
+import {OrbitControls} from
+  './../node_modules/three/examples/jsm/controls/OrbitControls.js';
+import {BufferGeometryUtils} from
+  './../node_modules/three/examples/jsm/utils/BufferGeometryUtils.js';
+import {IBRObject} from './IBRObject.js';
+import {Colors} from './colors.js';
 
 // the length of one 3D coordinates (x, y, z) in the coordinate lookup float
 // array
@@ -259,7 +261,7 @@ function renderLayer(structure, structureIndex) {
       }
     }
     if (lineSegmentsGeometry.length > 0) {
-      const geometries = THREE.BufferGeometryUtils.mergeBufferGeometries(
+      const geometries = BufferGeometryUtils.mergeBufferGeometries(
           lineSegmentsGeometry );
       const lineSegments = new THREE.LineSegments( geometries, materials[i] );
       lineSegments.visible = false;
@@ -270,4 +272,4 @@ function renderLayer(structure, structureIndex) {
   return objects;
 }
 
-export { createSidebar, render };
+export {createSidebar, render};

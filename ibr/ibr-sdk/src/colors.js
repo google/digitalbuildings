@@ -52,4 +52,4 @@ Colors.random = function() {
   return result;
 };
 
-export { Colors };
+export {Colors};

@@ -1,5 +1,5 @@
 import test from 'ava';
-import {Layer} from '../ibr-sdk/class/Layer.js';
+import {Layer} from '../ibr-sdk/src/Layer.js';
 
 test.before( (t) => {
   const coordsIndices1 = new Int8Array([0, 0, 0, 0, 0, 0, 8, 28]);

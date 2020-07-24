@@ -10,17 +10,15 @@ IBR comes with a rendering library built on THREE.js that can be used to easily 
 ## Instructions for Running the IBR UI:
 
 1. Open terminal and run following commands:
-    - `cd digitalbuildings/ibr`
-    - `npm i`
-    - `npm i ibr-sdk`
-    - `mkdir -p temp/ && node_modules/.bin/pbf ibr.proto --browser > temp/ibr_pb_browser.js`
+	- cd digitalbuildings/ibr/ibr-sdk
+	- run `npm build`
 
 2. Open html/index.html in your browser.
 
 On Mac, start chrome from terminal using this command instead:
     - `open -a "Google Chrome" html/index.html --args --allow-file-access-from-files`
 
-3. Click on "Choose File" button to open your ibr data file
+3. Navigate to localhost:8000/html
 
 ## Potential Issues and Fix
 
