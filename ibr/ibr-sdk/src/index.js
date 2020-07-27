@@ -117,7 +117,17 @@ function createLabel(tagName, name, parentTag, forId = undefined) {
   return label;
 }
 
-function createCheckboxForVisualization(visualizationName, visualization, structureName) {
+/**
+ * Create checkboxes for given visualization.
+ * @param {Object} visualization the visualization object to be
+ added to the sidebar.
+ * @param {String} visualizationName the name of the visualization being
+ processed.
+ * @param {String} structureName the name of parent structure of the
+ visualization.
+ */
+function createCheckboxForVisualization(visualization, visualizationName,
+    structureName) {
   const checkBox = document.createElement('INPUT');
   const div = document.createElement('DIV');
   checkBox.setAttribute('type', 'checkbox');
@@ -147,34 +157,16 @@ function createCheckboxForVisualization(visualizationName, visualization, struct
  */
 function drawSingleStructureSidebar(structure, structureName) {
   // Create checkbox for Blocking Grid
-//  if (structure['blockingGrid']) {
-//    createCheckboxForVisualization(structure['blockingGrid'].getID(),
-//        structure['blockingGrid'].getVisualization(), structureName);
-//  }
+  if (structure['blockingGrid']) {
+    createCheckboxForVisualization(structure['blockingGrid'],
+        structure['visualizations'][structure['blockingGrid']], structureName);
+  }
   // Create checkbox for each visualization
   if (structure['visualizations'].size !== 0) {
     for ( const [visualizationName, visualization] of
       Object.entries(structure['visualizations']) ) {
-//      createCheckboxForVisualization(visualizationName, visualization, structureName);
-      const checkBox = document.createElement('INPUT');
-      const div = document.createElement('DIV');
-      checkBox.setAttribute('type', 'checkbox');
-      checkBox.setAttribute('id', structureName + '_' + visualizationName);
-      div.appendChild(checkBox);
-      createLabel('label', visualizationName, div, structureName + '_' +
-      visualizationName);
-      document.getElementById(structureName).appendChild(div);
-      checkBox.addEventListener('change', function() {
-        if (checkBox.checked) {
-          for ( const line of visualization ) {
-            line.visible = true;
-          }
-        } else {
-          for ( const line of visualization ) {
-            line.visible = false;
-          }
-        }
-      });
+      createCheckboxForVisualization(visualizationName, visualization,
+          structureName);
     }
   }
 
@@ -215,7 +207,6 @@ function drawSingleStructureSidebar(structure, structureName) {
 function init(ibrRawData) {
   const ibrData = InternalBuildingRepresentation.read(
       new Pbf(ibrRawData));
-  console.log(ibrData);
   const ibrObject = new IBRObject( ibrData );
   return ibrObject;
 }
@@ -233,7 +224,7 @@ function render(ibrObject, structureIndex, parentElement) {
   document.getElementById('dwn-btn').style.display = 'block';
   document.getElementById('filename').style.display = 'block';
   // Visualization visualizations of current structure
-  renderVisualization( ibrObject, structureIndex, scene );
+  renderVisualizations( ibrObject, structureIndex, scene );
 }
 
 /**
@@ -245,9 +236,11 @@ function render(ibrObject, structureIndex, parentElement) {
  */
 function renderSingleIBRStructure(ibrObject, structureIndex) {
   const structure = {};
-//  structure['blockingGrid'] = ibrObject.getBlockingGrid();
-  // Visualization visualizations of current structure
-  structure['visualizations'] = renderVisualization( ibrObject,
+  if (ibrObject.hasBlockingGrid) {
+    structure['blockingGridID'] = ibrObject.getBlockingGrid().getID();
+  }
+  // Visualizations of current structure
+  structure['visualizations'] = renderVisualizations( ibrObject,
       structureIndex);
   // Sub-structures of the current structure
   structure['structures'] = ibrObject.getSubStructures();
@@ -255,67 +248,84 @@ function renderSingleIBRStructure(ibrObject, structureIndex) {
 }
 
 /**
- * Converts decoded ibr structure data into three.js Line objects
- and add them to scene with visibility set to false.
+ * Render all visualization layers (including blocking grid if applicable)
+ in the given IBRObject.
  * @param {IBRObject} structure IBRObject generated from current
  structure data.
  * @param {number} structureIndex overall index of the structure.
  * @return {Map.<String, List.<Object>>} objects Visualization name and
  corresponding list of three.js Line objects.
  */
-function renderVisualization(structure, structureIndex) {
+function renderVisualizations(structure, structureIndex) {
+  const objects = {};
+
   // Check if structure contains any visualization data
   if ( !structure.hasVisualizations ||
   !structure.hasCoordinatesLookup ) {
-    return {};
+    return objects;
   }
 
-  // Read multiple ranges from Visualization.coordinates array
-  const visualizationCoordinates = [];
+  // Render blocking grid in the structure
+  if (structure.hasBlockingGrid) {
+    const visualizationPH = structure.getBlockingGrid().getVisualization().
+        getLineCoordinates();
+    const visualizationObjects = renderVisualization(visualizationPH,
+        structure, structureIndex);
+    objects[structure.getBlockingGrid().getVisualization().getID()] =
+    visualizationObjects;
+  }
+
+  // Render visualizations in the structure
   for (const visualization of structure.getVisualizations().values()) {
     const visualizationPH = visualization.getLineCoordinates();
-    visualizationCoordinates.push(visualizationPH);
+    const visualizationObjects = renderVisualization(visualizationPH,
+        structure, structureIndex);
+    objects[visualization.getID()] = visualizationObjects;
   }
 
+  return objects;
+}
+
+/**
+ * Converts the visualization data into three.js Line objects
+ and add them to scene with visibility set to false.
+ * @param {List.<List.<Number>>} visualizationCoordinates List of line
+ coordinates of the visualization to be rendered.
+ * @param {number} structureIndex overall index of the structure.
+ * @return {List.<Object>} objects List of three.js Line objects.
+ */
+function renderVisualization(visualizationCoordinates, structureIndex) {
   // Render data into three.js objects
-  const materials = [];
-  for (let i = 0; i < structure.getVisualizations().size - 1; i++) {
-    materials.push(new THREE.LineBasicMaterial(
-        {color: Colors.random()} ));
+  const material = new THREE.LineBasicMaterial( {color: Colors.random()} );
+  const objects = [];
+  const lineSegmentsGeometry = [];
+  for (const line of visualizationCoordinates) {
+    const linePoints = [];
+    for (let j = 0; j < line.length; j += ONE_POINT) {
+      // Swapped y, z coordinates of all points to allow x-y plane rotation
+      // changed sign of z coordinates to improve y-z plane rotation
+      linePoints.push( new THREE.Vector3( line[j],
+          line[j + 2] + FLOOR_HEIGHT * structureIndex, -line[j + 1] ) );
+    }
+    const geometry = new THREE.BufferGeometry().setFromPoints(
+        linePoints );
+    if (line.length === TWO_POINTS) {
+      // group geometries for performance improvement
+      lineSegmentsGeometry.push( geometry );
+    } else {
+      const lineLoop = new THREE.LineLoop( geometry, material );
+      lineLoop.visible = false;
+      scene.add( lineLoop );
+      objects.push( lineLoop );
+    }
   }
-  const objects = {};
-  for (let i = 0; i < visualizationCoordinates.length; i++) {
-    objects[structure.getVisualizationNames()[i]] = [];
-    const lineSegmentsGeometry = [];
-    for (const line of visualizationCoordinates[i]) {
-      const linePoints = [];
-      for (let j = 0; j < line.length; j += ONE_POINT) {
-
-        // Swapped y, z coordinates of all points to allow x-y plane rotation
-        // changed sign of z coordinates to improve y-z plane rotation
-        linePoints.push( new THREE.Vector3( line[j],
-            line[j + 2] + FLOOR_HEIGHT * structureIndex, -line[j + 1] ) );
-      }
-      const geometry = new THREE.BufferGeometry().setFromPoints(
-          linePoints );
-      if (line.length === TWO_POINTS) {
-        // group geometries for performance improvement
-        lineSegmentsGeometry.push( geometry );
-      } else {
-        const lineLoop = new THREE.LineLoop( geometry, materials[i] );
-        lineLoop.visible = false;
-        scene.add( lineLoop );
-        objects[structure.getVisualizationNames()[i]].push( lineLoop );
-      }
-    }
-    if (lineSegmentsGeometry.length > 0) {
-      const geometries = BufferGeometryUtils.mergeBufferGeometries(
-          lineSegmentsGeometry );
-      const lineSegments = new THREE.LineSegments( geometries, materials[i] );
-      lineSegments.visible = false;
-      scene.add( lineSegments );
-      objects[structure.getVisualizationNames()[i]].push( lineSegments );
-    }
+  if (lineSegmentsGeometry.length > 0) {
+    const geometries = BufferGeometryUtils.mergeBufferGeometries(
+        lineSegmentsGeometry );
+    const lineSegments = new THREE.LineSegments( geometries, material );
+    lineSegments.visible = false;
+    scene.add( lineSegments );
+    objects.push( lineSegments );
   }
   return objects;
 }

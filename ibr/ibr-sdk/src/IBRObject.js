@@ -1,12 +1,11 @@
 import {BlockingGrid} from './BlockingGrid.js';
-import {Visualization, ONE_POINT} from './Visualization.js';
+import {Visualization} from './Visualization.js';
 
 /**
  * Constructor of IBRObject Class.
  * @param {JSONObject} pbfDecodedJsonObject JSON decoded from input IBR file.
  */
 function IBRObject( pbfDecodedJsonObject ) {
-
   this.boundary = pbfDecodedJsonObject.boundary;
 
   this.connections = pbfDecodedJsonObject.connections;
@@ -42,13 +41,15 @@ function IBRObject( pbfDecodedJsonObject ) {
   // format: Map.<visName{String}, visualizationData{Visualization}>
   this.visualizations = new Map();
   // Check if structure contains any visualization data
-  if (pbfDecodedJsonObject.visualization.length === 0 || (!this.hasCoordinatesLookup)) {
+  if (pbfDecodedJsonObject.visualization.length === 0 ||
+      (!this.hasCoordinatesLookup)) {
     this.hasVisualizations = false;
   } else {
     this.hasVisualizations = true;
     for (let i = 0; i < pbfDecodedJsonObject.visualization.length; i++) {
       this.visualizations.set(pbfDecodedJsonObject.visualization[i].id,
-          new Visualization(pbfDecodedJsonObject.visualization[i], this.coordinates));
+          new Visualization(pbfDecodedJsonObject.visualization[i],
+              this.coordinates));
     }
   }
 
@@ -61,10 +62,11 @@ function IBRObject( pbfDecodedJsonObject ) {
 
   this.hasBlockingGrid = false;
   this.blockingGrid = pbfDecodedJsonObject.blocking_grid;
-  if (pbfDecodedJsonObject.blocking_grid !== null && this.hasCoordinatesLookup) {
+  if (pbfDecodedJsonObject.blocking_grid !== null &&
+  this.hasCoordinatesLookup) {
     this.hasBlockingGrid = true;
     this.blockingGrid = new BlockingGrid( pbfDecodedJsonObject.blocking_grid,
-    this.coordinates );
+        this.coordinates );
   }
 }
 

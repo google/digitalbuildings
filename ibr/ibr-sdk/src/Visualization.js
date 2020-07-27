@@ -18,6 +18,7 @@ function swap32(val) {
  * Constructor of Visualization Class.
  * @param {Object} visualizationData single visualization data from JSON
  Object decoded using Pbf library from raw ibr binary data.
+ * @param {List.<Number>} coordsLookup Coords Lookup from the parent structure.
  */
 function Visualization( visualizationData, coordsLookup ) {
   this.id = visualizationData.id;
@@ -39,16 +40,18 @@ function Visualization( visualizationData, coordsLookup ) {
 
   // Set Line Coordinates for Visualization
   const coordsRangeItem = this.coordinateIndices;
-  const coordsLine = [];
+  const visualizationPH = [];
   for (let i = 0; i < coordsRangeItem.length; i += 2) {
+    const coordsLine = [];
     for (let j = coordsRangeItem[i]; j <= coordsRangeItem[i + 1];
       j += ONE_POINT) {
       coordsLine.push(coordsLookup[j]);
       coordsLine.push(coordsLookup[j + 1]);
       coordsLine.push(coordsLookup[j + 2]);
     }
+    visualizationPH.push(coordsLine);
   }
-  this.setLineCoordinates(coordsLine);
+  this.setLineCoordinates(visualizationPH);
 }
 
 Object.assign( Visualization.prototype, {

@@ -2,7 +2,7 @@ import test from 'ava';
 import {Visualization} from '../src/Visualization.js';
 
 test.before( (t) => {
-  const coordsIndices1 = new Int8Array([0, 0, 0, 0, 0, 0, 8, 28]);
+  const coordsIndices1 = new Uint8Array([0, 0, 0, 0, 0, 0, 8, 28]);
   t.context.jsonData1 = {
     coordinate_indices: coordsIndices1,
     data: 'coordinate_indices',
@@ -10,8 +10,10 @@ test.before( (t) => {
     id: 'US-SVL-TC2-1',
     image_data: null,
   };
-
-  t.context.visualization = new Visualization( t.context.jsonData1 );
+  const coordsLookup = Float32Array.from(
+     [269.67669677734375, 165.02369689941406, 0, 295.67669677734375,
+      165.02369689941406] );
+  t.context.visualization = new Visualization( t.context.jsonData1, coordsLookup );
 });
 
 test('should have an ID', t => {
