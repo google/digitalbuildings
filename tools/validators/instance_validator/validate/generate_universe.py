@@ -43,7 +43,13 @@ def BuildUniverse(modified_types_filepath=None):
 
     external_file_lib.Validate(filter_text=None,
                                changed_directory=modified_types_filepath,
-                               original_directory=None, interactive=False)
+                               original_directory=path.join('..',
+                                                            '..',
+                                                            '..',
+                                                            'ontology',
+                                                            'yaml',
+                                                            'resources'),
+                               interactive=False)
     yaml_files = external_file_lib.RecursiveDirWalk(modified_types_filepath)
   else:
     # use default location for ontology files
