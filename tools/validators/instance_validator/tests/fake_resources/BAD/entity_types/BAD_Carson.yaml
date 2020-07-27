@@ -13,7 +13,8 @@
 # limitations under the License.
 
 """This is an improperly written ontology file to test the validation in
-the universe generation."""
+the universe generation. It has duplicate parent ids and a badly formatted
+field."""
 
 COORDINATE_BASIS:
   id: "17248142946209890304"

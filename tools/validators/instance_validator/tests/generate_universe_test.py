@@ -24,7 +24,7 @@ from os import path
 
 _DEFAULT_ONTOLOGY_LOCATION = path.join('..', '..', '..',
                                        'ontology', 'yaml', 'resources')
-_BAD_MODIFIED_ONTOLOGY = path.join('.', 'bad_fake_modified_ontology')
+_BAD_MODIFIED_ONTOLOGY = path.join('.', 'fake_resources', 'BAD')
 
 class GenerateUniverseTest(absltest.TestCase):
 

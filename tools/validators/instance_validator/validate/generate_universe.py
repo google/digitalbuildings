@@ -27,13 +27,14 @@ def BuildUniverse(modified_types_filepath=None):
   """Generates the ontology universe.
 
   Args:
-    modified_types_filepath: filepath to modified ontology types
+    modified_types_filepath: filepath to the modified ontology types
 
   Returns:
     Generated universe object.
   """
 
   if modified_types_filepath:
+    modified_types_filepath = path.expanduser(modified_types_filepath)
     modified_ontology_exists = path.exists(modified_types_filepath)
 
     if not modified_ontology_exists:
