@@ -1,3 +1,7 @@
+// the length of one 3D coordinates (x, y, z) in the coordinate lookup float
+// array
+const ONE_POINT = 3;
+
 /**
 * Swap endianness of 32bit numbers.
 * @param {number} val 32 bit number to be swapped.
@@ -15,7 +19,7 @@ function swap32(val) {
  * @param {Object} visualizationData single visualization data from JSON
  Object decoded using Pbf library from raw ibr binary data.
  */
-function Visualization( visualizationData ) {
+function Visualization( visualizationData, coordsLookup ) {
   this.id = visualizationData.id;
   this.data = visualizationData.data;
 
@@ -32,7 +36,19 @@ function Visualization( visualizationData ) {
 
   this.encodingType = visualizationData.encoding_type;
   this.imageData = visualizationData.image_data;
-  this.lineCoordinates = null;
+
+  // Set Line Coordinates for Visualization
+  const coordsRangeItem = this.coordinateIndices;
+  const coordsLine = [];
+  for (let i = 0; i < coordsRangeItem.length; i += 2) {
+    for (let j = coordsRangeItem[i]; j <= coordsRangeItem[i + 1];
+      j += ONE_POINT) {
+      coordsLine.push(coordsLookup[j]);
+      coordsLine.push(coordsLookup[j + 1]);
+      coordsLine.push(coordsLookup[j + 2]);
+    }
+  }
+  this.setLineCoordinates(coordsLine);
 }
 
 Object.assign( Visualization.prototype, {
@@ -118,4 +134,4 @@ Object.assign( Visualization.prototype, {
 
 } );
 
-export {Visualization, swap32};
+export {Visualization, swap32, ONE_POINT};

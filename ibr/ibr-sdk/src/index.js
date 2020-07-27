@@ -117,6 +117,28 @@ function createLabel(tagName, name, parentTag, forId = undefined) {
   return label;
 }
 
+function createCheckboxForVisualization(visualizationName, visualization, structureName) {
+  const checkBox = document.createElement('INPUT');
+  const div = document.createElement('DIV');
+  checkBox.setAttribute('type', 'checkbox');
+  checkBox.setAttribute('id', structureName + '_' + visualizationName);
+  div.appendChild(checkBox);
+  createLabel('label', visualizationName, div, structureName + '_' +
+  visualizationName);
+  document.getElementById(structureName).appendChild(div);
+  checkBox.addEventListener('change', function() {
+    if (checkBox.checked) {
+      for ( const line of visualization ) {
+        line.visible = true;
+      }
+    } else {
+      for ( const line of visualization ) {
+        line.visible = false;
+      }
+    }
+  });
+}
+
 /**
  * Create checkboxes for given structure's visualizations and child structures.
  * @param {Object} structure the structure generated from
@@ -124,10 +146,16 @@ function createLabel(tagName, name, parentTag, forId = undefined) {
  * @param {String} structureName the name of the structure being processed.
  */
 function drawSingleStructureSidebar(structure, structureName) {
+  // Create checkbox for Blocking Grid
+//  if (structure['blockingGrid']) {
+//    createCheckboxForVisualization(structure['blockingGrid'].getID(),
+//        structure['blockingGrid'].getVisualization(), structureName);
+//  }
   // Create checkbox for each visualization
   if (structure['visualizations'].size !== 0) {
     for ( const [visualizationName, visualization] of
       Object.entries(structure['visualizations']) ) {
+//      createCheckboxForVisualization(visualizationName, visualization, structureName);
       const checkBox = document.createElement('INPUT');
       const div = document.createElement('DIV');
       checkBox.setAttribute('type', 'checkbox');
@@ -180,25 +208,26 @@ function drawSingleStructureSidebar(structure, structureName) {
 }
 
 /**
-   * Initialize IBRObject from input IBR raw data in binary format.
-   * @param {Buffer} ibrRawData binary IBR data from uploaded IBR file.
-   * @return {IBRObject} ibrObject IBRObject generated from input binary.
-   */
+ * Initialize IBRObject from input IBR raw data in binary format.
+ * @param {Buffer} ibrRawData binary IBR data from uploaded IBR file.
+ * @return {IBRObject} ibrObject IBRObject generated from input binary.
+ */
 function init(ibrRawData) {
   const ibrData = InternalBuildingRepresentation.read(
       new Pbf(ibrRawData));
+  console.log(ibrData);
   const ibrObject = new IBRObject( ibrData );
   return ibrObject;
 }
 
 /**
-   * Enable Export and parse top level of decoded IBR Object into structures.
-   * @param {binary} ibrObject IBRObject created from input IBR binary data
-   file.
-   * @param {number} structureIndex Index of current structure(floor).
-   * @param {HTMLElement} parentElement parent HTML element that the
-    visualization will be append on.
-   */
+ * Enable Export and parse top level of decoded IBR Object into structures.
+ * @param {IBRObject} ibrObject IBRObject created from input IBR binary data
+ file.
+ * @param {number} structureIndex Index of current structure(floor).
+ * @param {HTMLElement} parentElement parent HTML element that the
+  visualization will be append on.
+ */
 function render(ibrObject, structureIndex, parentElement) {
   scene = generateScene(parentElement);
   document.getElementById('dwn-btn').style.display = 'block';
@@ -216,6 +245,7 @@ function render(ibrObject, structureIndex, parentElement) {
  */
 function renderSingleIBRStructure(ibrObject, structureIndex) {
   const structure = {};
+//  structure['blockingGrid'] = ibrObject.getBlockingGrid();
   // Visualization visualizations of current structure
   structure['visualizations'] = renderVisualization( ibrObject,
       structureIndex);
@@ -225,14 +255,14 @@ function renderSingleIBRStructure(ibrObject, structureIndex) {
 }
 
 /**
-   * Converts decoded ibr structure data into three.js Line objects
-   and add them to scene with visibility set to false.
-   * @param {IBRObject} structure IBRObject generated from current
-   structure data.
-   * @param {number} structureIndex overall index of the structure.
-   * @return {Map.<String, List.<Object>>} objects Visualization name and
-   corresponding list of three.js Line objects.
-   */
+ * Converts decoded ibr structure data into three.js Line objects
+ and add them to scene with visibility set to false.
+ * @param {IBRObject} structure IBRObject generated from current
+ structure data.
+ * @param {number} structureIndex overall index of the structure.
+ * @return {Map.<String, List.<Object>>} objects Visualization name and
+ corresponding list of three.js Line objects.
+ */
 function renderVisualization(structure, structureIndex) {
   // Check if structure contains any visualization data
   if ( !structure.hasVisualizations ||
