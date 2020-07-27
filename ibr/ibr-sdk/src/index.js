@@ -158,14 +158,15 @@ function createCheckboxForVisualization(visualization, visualizationName,
 function drawSingleStructureSidebar(structure, structureName) {
   // Create checkbox for Blocking Grid
   if (structure['blockingGrid']) {
-    createCheckboxForVisualization(structure['blockingGrid'],
-        structure['visualizations'][structure['blockingGrid']], structureName);
+    createCheckboxForVisualization(
+        structure['visualizations'][structure['blockingGrid']],
+        structure['blockingGrid'], structureName);
   }
   // Create checkbox for each visualization
   if (structure['visualizations'].size !== 0) {
     for ( const [visualizationName, visualization] of
       Object.entries(structure['visualizations']) ) {
-      createCheckboxForVisualization(visualizationName, visualization,
+      createCheckboxForVisualization(visualization, visualizationName,
           structureName);
     }
   }
@@ -270,7 +271,7 @@ function renderVisualizations(structure, structureIndex) {
     const visualizationPH = structure.getBlockingGrid().getVisualization().
         getLineCoordinates();
     const visualizationObjects = renderVisualization(visualizationPH,
-        structure, structureIndex);
+        structureIndex);
     objects[structure.getBlockingGrid().getVisualization().getID()] =
     visualizationObjects;
   }
@@ -279,7 +280,7 @@ function renderVisualizations(structure, structureIndex) {
   for (const visualization of structure.getVisualizations().values()) {
     const visualizationPH = visualization.getLineCoordinates();
     const visualizationObjects = renderVisualization(visualizationPH,
-        structure, structureIndex);
+        structureIndex);
     objects[visualization.getID()] = visualizationObjects;
   }
 
