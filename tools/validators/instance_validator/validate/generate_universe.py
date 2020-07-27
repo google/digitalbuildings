@@ -40,7 +40,7 @@ def BuildUniverse(modified_types_filepath=None):
       print('Specified filepath for modified ontology does not exist')
       return None
 
-    external_file_lib.Validate(filter_text=None, 
+    external_file_lib.Validate(filter_text=None,
                                original_directory=modified_types_filepath,
                                changed_directory=None, interactive=False)
     yaml_files = external_file_lib.RecursiveDirWalk(modified_types_filepath)
