@@ -22,7 +22,7 @@ from validate import generate_universe
 from absl.testing import absltest
 from os import path
 
-_DEFAULT_ONTOLOGY_LOCATION = path.join('..', '..', '..', 
+_DEFAULT_ONTOLOGY_LOCATION = path.join('..', '..', '..',
                                        'ontology', 'yaml', 'resources')
 _BAD_MODIFIED_ONTOLOGY = path.join('.', 'fake_modified_ontology')
 
@@ -39,7 +39,7 @@ class GenerateUniverseTest(absltest.TestCase):
     self.assertTrue(test_universe)
 
   def testCatchInvalidModifiedOntology(self):
-    self.assertRaises(Exception, 
+    self.assertRaises(Exception,
                       generate_universe.BuildUniverse(_BAD_MODIFIED_ONTOLOGY))
 
 if __name__ == '__main__':
