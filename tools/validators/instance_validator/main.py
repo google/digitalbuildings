@@ -24,6 +24,8 @@ It saves time and provides more accuracy than manual error checks."""
 
 from __future__ import print_function
 
+from validate import generate_universe
+from validate import entity_instance
 import instance_parser
 import argparse
 import sys
@@ -38,6 +40,11 @@ if __name__ == '__main__':
                       required=True,
                       help='Filepath to YAML building configuration',
                       metavar='FILE')
+  parser.add_argument('-m', '--modified-ontology-types',
+                      dest='modified_types_filepath',
+                      required=False,
+                      help='Filepath to modified type filepaths',
+                      metavar='MODIFIED_TYPE_FILEPATHS')
   arg = parser.parse_args()
 
   # SYNTAX VALIDATION
@@ -48,9 +55,31 @@ if __name__ == '__main__':
   raw_parse = instance_parser.parse_yaml(filename)
 
   if raw_parse is None:
-    print('\nSyntax Error.')
+    print('\nSyntax error')
     sys.exit(0)
+
+  print('Passed syntax checks!')
+
+  modified_types_filepath = arg.modified_types_filepath
+
+  print('Generating universe ...')
+  universe = generate_universe.BuildUniverse(modified_types_filepath)
+
+  if universe is None:
+    print('\nError generating universe')
+    sys.exit(0)
+
+  print('Universe generated successfully')
 
   parsed = dict(raw_parse)
 
-  print('Passed syntax checks!')
+  entity_names = list(parsed.keys())
+  for entity_name in entity_names:
+    entity = dict(parsed[entity_name])
+    instance = entity_instance.EntityInstance(entity, universe)
+
+    if not instance.IsValidEntityInstance():
+      print(entity_name, 'is not a valid instance')
+      sys.exit(0)
+
+  print('File passes all checks!')
