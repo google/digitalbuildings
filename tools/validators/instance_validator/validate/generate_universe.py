@@ -42,8 +42,8 @@ def BuildUniverse(modified_types_filepath=None):
       return None
 
     external_file_lib.Validate(filter_text=None,
-                               original_directory=modified_types_filepath,
-                               changed_directory=None, interactive=False)
+                               changed_directory=modified_types_filepath,
+                               original_directory=None, interactive=False)
     yaml_files = external_file_lib.RecursiveDirWalk(modified_types_filepath)
   else:
     # use default location for ontology files
