@@ -34,13 +34,13 @@ class GenerateUniverseTest(absltest.TestCase):
   def testCanGenerateUniverse(self):
     self.assertTrue(self.universe)
 
-  def testModifiedTypesFilepathWorks(self):
-    test_universe = generate_universe.BuildUniverse(_DEFAULT_ONTOLOGY_LOCATION)
-    self.assertTrue(test_universe)
-
   def testCatchInvalidModifiedOntology(self):
     self.assertRaises(Exception,
                       generate_universe.BuildUniverse(_BAD_MODIFIED_ONTOLOGY))
+
+  def testModifiedTypesFilepathWorks(self):
+    test_universe = generate_universe.BuildUniverse(_DEFAULT_ONTOLOGY_LOCATION)
+    self.assertTrue(test_universe)
 
 if __name__ == '__main__':
   absltest.main()
