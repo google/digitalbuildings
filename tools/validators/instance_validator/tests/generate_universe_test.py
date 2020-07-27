@@ -40,8 +40,8 @@ class GenerateUniverseTest(absltest.TestCase):
 
   def testModifiedTypesFilepathWorks(self):
     test_universe = generate_universe.BuildUniverse(_DEFAULT_ONTOLOGY_LOCATION)
-    self.assertTrue(test_universe)
 
+    self.assertTrue(test_universe)
 
 if __name__ == '__main__':
   absltest.main()
