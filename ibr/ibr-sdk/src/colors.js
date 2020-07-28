@@ -47,8 +47,8 @@ Colors.names = ['#00ffff',
 ];
 
 Colors.random = function() {
-  const result = this.names[Math.floor( Math.random() *
-  (this.names.length - 1) )];
+  const result = this.names[Math.floor(Math.random() *
+  (this.names.length - 1))];
   return result;
 };
 

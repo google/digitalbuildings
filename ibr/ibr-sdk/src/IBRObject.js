@@ -5,7 +5,7 @@ import {Visualization} from './Visualization.js';
  * Constructor of IBRObject Class.
  * @param {JSONObject} pbfDecodedJsonObject JSON decoded from input IBR file.
  */
-function IBRObject( pbfDecodedJsonObject ) {
+function IBRObject(pbfDecodedJsonObject) {
   this.boundary = pbfDecodedJsonObject.boundary;
 
   this.connections = pbfDecodedJsonObject.connections;
@@ -35,7 +35,7 @@ function IBRObject( pbfDecodedJsonObject ) {
     for (let i = 0; i < coordsLookup.length; i += 4) {
       coordsLookupList.push(coordsLookupDV.getFloat32(i, false));
     }
-    this.coordinates = Float32Array.from( coordsLookupList );
+    this.coordinates = Float32Array.from(coordsLookupList);
   }
 
   // format: Map.<visName{String}, visualizationData{Visualization}>
@@ -65,12 +65,12 @@ function IBRObject( pbfDecodedJsonObject ) {
   if (pbfDecodedJsonObject.blocking_grid !== null &&
   this.hasCoordinatesLookup) {
     this.hasBlockingGrid = true;
-    this.blockingGrid = new BlockingGrid( pbfDecodedJsonObject.blocking_grid,
-        this.coordinates );
+    this.blockingGrid = new BlockingGrid(pbfDecodedJsonObject.blocking_grid,
+        this.coordinates);
   }
 }
 
-Object.assign( IBRObject.prototype, {
+Object.assign(IBRObject.prototype, {
 
   constructor: IBRObject,
 
@@ -87,7 +87,7 @@ Object.assign( IBRObject.prototype, {
    * @return {List.<String>} list of names of the IBRObject visualizations.
    */
   getVisualizationNames: function() {
-    return Array.from( this.visualizations.keys() );
+    return Array.from(this.visualizations.keys());
   },
 
   /**
@@ -96,8 +96,8 @@ Object.assign( IBRObject.prototype, {
    * @return {Visualization} the visualization with the name visualizationID
     in IBRObject.
    */
-  getVisualization: function( visualizationID ) {
-    return this.visualizations.get( visualizationID );
+  getVisualization: function(visualizationID) {
+    return this.visualizations.get(visualizationID);
   },
 
   /**
@@ -146,15 +146,15 @@ Object.assign( IBRObject.prototype, {
     json.boundary = this.boundary;
     json.connections = this.connections;
     json.coordinates_lookup = null;
-    if ( this.hasCoordinatesLookup ) {
+    if (this.hasCoordinatesLookup) {
       const tempCoordinates = this.coordinates;
-      const coordsDV = new DataView( tempCoordinates.buffer );
+      const coordsDV = new DataView(tempCoordinates.buffer);
       const coordsList = [];
       for (let i = 0; i < tempCoordinates.length; i += 1) {
         coordsList.push(coordsDV.getFloat32(i * 4, false));
       }
       json.coordinates_lookup = new Uint8Array(
-          Float32Array.from( coordsList ).buffer );
+          Float32Array.from(coordsList).buffer);
     }
     json.external_reference = this.externalReference;
     json.guid = this.guid;
@@ -166,17 +166,17 @@ Object.assign( IBRObject.prototype, {
     }
     json.structural_type = this.structuralType;
     json.structures = [];
-    if ( this.subStructures.length != 0 ) {
+    if (this.subStructures.length != 0) {
       for (const struct of this.subStructures) {
-        json.structures.push( new IBRObject( struct ).toJson() );
+        json.structures.push(new IBRObject(struct).toJson());
       }
     }
     json.visualization = [];
-    for (const visualization of Array.from( this.visualizations.values() )) {
-      json.visualization.push( visualization.toJson() );
+    for (const visualization of Array.from(this.visualizations.values())) {
+      json.visualization.push(visualization.toJson());
     }
     return json;
   },
 
-} );
+});
 export {IBRObject};

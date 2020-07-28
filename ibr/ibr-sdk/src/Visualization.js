@@ -20,7 +20,7 @@ function swap32(val) {
  Object decoded using Pbf library from raw ibr binary data.
  * @param {List.<Number>} coordsLookup Coords Lookup from the parent structure.
  */
-function Visualization( visualizationData, coordsLookup ) {
+function Visualization(visualizationData, coordsLookup) {
   this.id = visualizationData.id;
   this.data = visualizationData.data;
 
@@ -54,7 +54,7 @@ function Visualization( visualizationData, coordsLookup ) {
   this.setLineCoordinates(visualizationPH);
 }
 
-Object.assign( Visualization.prototype, {
+Object.assign(Visualization.prototype, {
 
   constructor: Visualization,
 
@@ -104,7 +104,7 @@ Object.assign( Visualization.prototype, {
    * @param {List.<List.<number>>} lineCoordinates list of list of end point
     coordinates that each represent a line during rendering.
    */
-  setLineCoordinates: function( lineCoordinates ) {
+  setLineCoordinates: function(lineCoordinates) {
     this.lineCoordinates = lineCoordinates;
   },
 
@@ -131,10 +131,10 @@ Object.assign( Visualization.prototype, {
     for (let i = 0; i < tempCoordinateIndices.length; i++) {
       tempCoordinateIndices[i] = swap32(tempCoordinateIndices[i]);
     }
-    json.coordinate_indices = new Uint8Array( tempCoordinateIndices.buffer );
+    json.coordinate_indices = new Uint8Array(tempCoordinateIndices.buffer);
     return json;
   },
 
-} );
+});
 
 export {Visualization, swap32, ONE_POINT};

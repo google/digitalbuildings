@@ -3,7 +3,7 @@ import {BlockingGrid} from '../src/BlockingGrid.js';
 import {Visualization} from '../src/Visualization.js';
 
 test.before( (t) => {
-  const coordsIndices1 = new Int8Array([0, 0, 0, 0, 0, 0, 0, 2]);
+  const coordsIndices1 = new Uint8Array([0, 0, 0, 0, 0, 0, 0, 2]);
   t.context.visualizationJson = {
     coordinate_indices: coordsIndices1,
     data: 'coordinate_indices',
@@ -19,7 +19,6 @@ test.before( (t) => {
     visualization: t.context.visualizationJson
   };
   t.context.blockingGrid = new BlockingGrid( t.context.blockingGridJson, t.context.coordsLookup );
-//  console.log(t.context.blockingGrid);
 });
 
 test('should have an ID', t => {
@@ -31,7 +30,7 @@ test('should have a Visualization', t => {
   new Visualization( t.context.visualizationJson, t.context.coordsLookup ));
 });
 
-//test('should be converted back to JSON format', (t) => {
-//  t.deepEqual(t.context.visualization.toJson(),
-//      t.context.jsonData1 );
-//});
+test('should be converted back to JSON format', (t) => {
+  t.deepEqual(t.context.blockingGrid.toJson(),
+      t.context.blockingGridJson );
+});

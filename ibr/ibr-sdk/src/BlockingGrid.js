@@ -5,11 +5,11 @@ import {Visualization} from './Visualization.js';
  * @param {JSONObject} pbfDecodedJsonObject JSON decoded from input IBR file.
  * @param {List.<Number>} coordsLookup Coords Lookup from the parent structure.
  */
-function BlockingGrid( pbfDecodedJsonObject, coordsLookup ) {
+function BlockingGrid(pbfDecodedJsonObject, coordsLookup) {
   this.id = pbfDecodedJsonObject.id;
 
   // Check if structure contains any visualization data
-  if ( pbfDecodedJsonObject.visualization === null) {
+  if (pbfDecodedJsonObject.visualization === null) {
     this.hasVisualizations = false;
   } else {
     this.hasVisualizations = true;
@@ -18,7 +18,7 @@ function BlockingGrid( pbfDecodedJsonObject, coordsLookup ) {
   }
 }
 
-Object.assign( BlockingGrid.prototype, {
+Object.assign(BlockingGrid.prototype, {
 
   constructor: BlockingGrid,
 
@@ -45,5 +45,5 @@ Object.assign( BlockingGrid.prototype, {
     return json;
   },
 
-} );
+});
 export {BlockingGrid};
