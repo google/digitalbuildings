@@ -18,6 +18,7 @@ aggregation:
   min: "Minimum value (e.g. Min_Ventilation_Air_Flow_Setpoint)"
   total: "Sum total of some set of values (e.g. total_request_heating_count)"
 component:
+  ballast: "a type of electrical resistor or reactance, fixed in-line with the circuits that supply mains power to a light bulb."
   coil: "Component that exchanges heat between two media streams."
   compressor: "Component which drives refrigerant compression (and thus cooling processes) within a device or system."
   condenser: "The component of a refrigeration system that condenses refrigerant."
@@ -36,6 +37,7 @@ component:
   guidevane: "Control vanes that meter refrigerant (on a centrifugal chiller) or air (on an AHU)."
   heater: "Component which provides heat to media."
   humidifier: "Component which humidifies."
+  lighting: "artificial light source devices or natural illumination by capturing daylight."
   pump: "Component used for the distribution of liquid media."
   shade: "Window covering."
   tank : "Storage device for media."
@@ -45,6 +47,7 @@ component:
 descriptor: 
   air: "Atmospheric air, either conditioned or unconditioned"
   aisle: "Passage between two rows of server racks."
+  auto: "a device or process working by itself with little or no direct human control."
   blowdown: "Process of expelling water filled with mineral deposits for the purposes of water treatment. "
   boost: "Component used to boost pressure."
   building: "Applies to the entire building or group of zones within building (e.g. Building_Air_Static_Pressure_Sensor)"
@@ -97,6 +100,7 @@ descriptor:
   loop: "Recirculating loop."
   low: "Level of control or measurement; below medium and high; opposite of high."
   makeup: "Process of adding (\"making-up\") water that has been lost due to blowdown or evaporation."
+  manual: "a device or process operate, done, worked by human hands rather than by an electrical or electronics device"
   manufacturer: "The company which produces the asset or device."
   matched: "A collection of things that are put together as being equal, similar, or complementary."
   master: "Highest priority (or primary control) device, sensor, etc."
@@ -216,3 +220,4 @@ point_type:
   status: "The multistate value indicating an observed state in a piece of equipment, often indicating if a command was effected."
   specification: "The specified design value for a particular operating condition (differential pressure specification)."
   timestamp: "An instant in time, represented as a numeric offset from the epoch."
+  
