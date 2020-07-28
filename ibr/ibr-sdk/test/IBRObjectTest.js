@@ -1,5 +1,6 @@
 import test from 'ava';
 import { IBRObject } from '../src/IBRObject.js';
+import {BlockingGrid} from '../src/BlockingGrid.js';
 import { Visualization } from '../src/Visualization.js';
 
 test.before( (t) => {
@@ -103,6 +104,12 @@ test('IBRObject has coordinate lookup', (t) => {
 test('record sub structures', (t) => {
   t.is( t.context.ibrObject1.getSubStructures(),
       t.context.jsonData1.structures );
+});
+
+test('has blocking grid', (t) => {
+  t.deepEqual( t.context.ibrObject2.getBlockingGrid(),
+      new BlockingGrid(t.context.jsonData1.structures[0].blocking_grid,
+      t.context.ibrObject2.getCoordinates()));
 });
 
 test('should be converted back to JSON format', (t) => {
