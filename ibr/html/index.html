@@ -1,24 +1,69 @@
 <!DOCTYPE html>
 <html>
-	<head>
-	    <meta charset="utf-8">
-	    <title>IBR Demo</title>
-		<script src="../node_modules/pbf/dist/pbf.js"></script>
-		<script src="../temp/ibr_pb_browser.js"></script>
-		<script type="module" src="../demo.js"></script>
-		<script src="../node_modules/three/build/three.js"></script>
-		<script src="../node_modules/three/examples/js/utils/BufferGeometryUtils.js"></script>
-		<script type="module" src="../node_modules/ibr-sdk/build/ibr-sdk.js"></script>
-		<link href="index.css" rel="stylesheet">
-	</head>
-	<body>
+    <head>
+        <meta charset="utf-8">
+        <title>IBR Demo</title>
+        <script src="https://unpkg.com/pbf@3.0.5/dist/pbf.js"></script>
+        <script src="https://unpkg.com/three@0.118.3/build/three.js"></script>
+        <script src="../temp/ibr_pb_browser.js"></script>
+        <script src="../ibr-sdk/dist/main.js"></script>
+        <link href="index.css" rel="stylesheet">
+    </head>
+    <body>
 		<div id="sideBar" class="sidebar">
 			<h4>Select an IBR data file: </h4>
 			<input type="file" id="fileForUpload"/>
+			<input type="text" id="filename" placeholder="Output File Name" style="display: none;"/>
+			<button id="dwn-btn" style="display: none;">Save and Export to IBR</button>
 			<h2 style="text-align: center;">Layer Tree</h2>
 			<ul id="layerList"></ul>
 		</div>
-		<div id="mainCanvas" class="main">
-		</div>
-	</body>
+        <div id="mainCanvas" class="main">
+        </div>
+    </body>
+    <script>
+        function onChooseFile() {
+		  if (typeof window.FileReader !== 'function') {
+			throw new Error('The file API isn\'t supported on this browser.');
+		  }
+		  const file = document.getElementById('fileForUpload').files[0];
+		  if (file) {
+			const fr = new FileReader();
+			fr.onload = function(evt) {
+			  const bin = evt.target.result;
+			  const ibrObject = IBRSDK.init(bin);
+			  IBRSDK.render( ibrObject,
+				  0, document.getElementById('mainCanvas') ); // top level, index 0
+			  IBRSDK.createSidebar( ibrObject, document.getElementById('layerList') );
+			  document.getElementById('dwn-btn')
+				  .addEventListener('click', function(){
+					download(document.getElementById('filename').value, ibrObject);
+				  });
+			};
+			fr.readAsArrayBuffer(file);
+		  }
+		}
+
+		/**
+		 * Create binary file from data and download the file in browser.
+		 * @param {String} filename name of the binary file that will be created.
+		 * @param {Buffer} bin binary data that will be saved in the file.
+		 */
+		function download(filename, ibrObject) {
+		  const bin = IBRSDK.saveToBuffer(ibrObject)
+		  const element = document.createElement('a');
+		  const blob = new Blob([bin], {type: 'application/octet-stream'});
+		  const url = window.URL.createObjectURL(blob);
+		  element.setAttribute('href', url);
+		  element.setAttribute('download', filename+'.ibr');
+		  element.style.display = 'none';
+		  document.body.appendChild(element);
+		  element.click();
+		  document.body.removeChild(element);
+
+		}
+
+		document.getElementById('fileForUpload')
+			.addEventListener('change', onChooseFile);
+    </script>
 </html>

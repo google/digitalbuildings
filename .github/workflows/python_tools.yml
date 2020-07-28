@@ -22,6 +22,10 @@ jobs:
       uses: actions/setup-python@v1
       with:
         python-version: 3.7
+    - name: Install Pylint 
+      run: |
+        python -m pip install pylint
+     #---------- RDF Generator ----------# 
     - name:  RDF Generator Install dependencies
       run: |
         python -m pip install --upgrade pip
@@ -31,7 +35,11 @@ jobs:
       run: |  
        python -m unittest discover -p '*_test.py' --failfast -v
       working-directory: ./tools/rdf_generator/rdfformat/tests
-    - name:  Ontology Yaml Validator Install dependencies
+    - name: Run Pylint on RDF Generator
+      run: |
+        pylint --rcfile=./styles/pylintrc ./tools/rdf_generator
+    #---------- Ontology Yaml Type Validator ----------# 
+    - name:  Ontology Yaml Type Validator Install dependencies
       run: |
         python setup.py install
       working-directory: ./tools/validators/ontology_validator
@@ -40,11 +48,15 @@ jobs:
       run: |
        python -m unittest discover -p '*_test.py' --failfast -v
       working-directory: ./tools/validators/ontology_validator/yamlformat/tests
+    #---------- Ontology Yaml Instance Validator ----------# 
     - name: Instance Yaml Validator Install dependencies
       run: |
         python setup.py install
       working-directory: ./tools/validators/instance_validator
-    - name: Instance Yaml Validator Tests 
+    - name: Run Pylint on Instance Validator
+      run: |
+        pylint --rcfile=./styles/pylintrc ./tools/validators/instance_validator
+    - name: Instance Yaml Validator Tests
       if: (matrix.os == 'ubuntu-latest' || matrix.os == 'macos-latest')
       run: |
        python -m unittest discover -p '*_test.py' --failfast -v

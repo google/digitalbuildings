@@ -90,9 +90,31 @@ class ConfigUniverse(findings_lib.Findings):
       A list of EntityTypeNamespaces or empty list if none are defined
     """
     if not self.entity_type_universe:
+      print('EntityTypeUniverse undefined in ConfigUniverse')
       return []
     return self.entity_type_universe.GetNamespaces()
 
+  def GetEntityTypeNamespace(self, namespace_name):
+    """Get entity type namespace_name in this universe if defined.
+
+    Returns:
+      A namespace name or None if not defined
+    """
+    if not self.entity_type_universe:
+      print('EntityTypeUniverse undefined in ConfigUniverse')
+      return None
+    return self.entity_type_universe.GetNamespace(namespace_name)
+
+  def GetEntityType(self, namespace_name, typename):
+    """Finds entity_type by namespace and typename and returns it or None.
+
+    Returns:
+      An entity_type or None if not defined
+    """
+    if not self.entity_type_universe:
+      print('EntityTypeUniverse undefined in ConfigUniverse')
+      return None
+    return self.entity_type_universe.GetEntityType(namespace_name, typename)
 
 def BuildUniverse(config):
   """Verifies that the ontology config is consistent and valid.

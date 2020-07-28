@@ -46,11 +46,17 @@ def GenerateGraph(yaml_object, graph):
       'Class of all units',
       rdflib.OWL.Thing,
       entity_namespace=constants.UNITS_NS)
-  graph, standard_unit_data_property_object = rdf_helper.CreateDataPropertyInGraph(
-      graph,
-      data_property_name='is_standard_unit',
-      data_property_description='The International System of Units (abbreviated SI from systeme internationale , the French version of the name) is a scientific method of expressing the magnitudes or quantities of important natural phenomena. There are seven base units in the system, from which other units are derived.'
-  )
+  graph, standard_unit_data_property_object = \
+      rdf_helper.CreateDataPropertyInGraph(
+          graph,
+          data_property_name='is_standard_unit',
+          data_property_description=
+          'The International System of Units '
+          '(abbreviated SI from systeme internationale , '
+          'the French version of the name) is a scientific '
+          'method of expressing the magnitudes or quantities'
+          ' of important natural phenomena. There are seven '
+          'base units in the system, from which other units are derived.')
 
   # Construct the classes and the subclasses
   for clazz in yaml_object.keys():
