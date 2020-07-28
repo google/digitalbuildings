@@ -32,9 +32,9 @@
 			fr.onload = function(evt) {
 			  const bin = evt.target.result;
 			  const ibrObject = IBRSDK.init(bin);
-			  IBRSDK.render( ibrObject,
-				  0, document.getElementById('mainCanvas') ); // top level, index 0
-			  IBRSDK.createSidebar( ibrObject, document.getElementById('layerList') );
+			  IBRSDK.renderAndCreateSidebar( ibrObject, 0,
+			  document.getElementById('mainCanvas'),
+			  document.getElementById('layerList') ); // top level, index 0
 			  document.getElementById('dwn-btn')
 				  .addEventListener('click', function(){
 					download(document.getElementById('filename').value, ibrObject);
