@@ -34,12 +34,12 @@ def BuildUniverse(modified_types_filepath=None):
   """
 
   if modified_types_filepath:
-    modified_types_filepath = path.expanduser(modified_types_filepath)
     modified_ontology_exists = path.exists(modified_types_filepath)
-
     if not modified_ontology_exists:
       print('Specified filepath for modified ontology does not exist')
       return None
+
+    modified_types_filepath = path.expanduser(modified_types_filepath)
 
     external_file_lib.Validate(filter_text=None,
                                changed_directory=modified_types_filepath,
