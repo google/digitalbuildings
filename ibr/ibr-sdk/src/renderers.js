@@ -12,16 +12,7 @@ import {BufferGeometryUtils} from
   './../node_modules/three/examples/jsm/utils/BufferGeometryUtils.js';
 import {IBRObject} from './IBRObject.js';
 import {Colors} from './colors.js';
-
-// the length of one 3D coordinates (x, y, z) in the coordinate lookup float
-// array
-const ONE_POINT = 3;
-// the length of two 3D coordinates (x, y, z) in the coordinate lookup float
-// array
-const TWO_POINTS = 6;
-
-// separate floor's z-coordinate by 100 unit length
-const FLOOR_HEIGHT = 300;
+import {ONE_POINT, TWO_POINTS, FLOOR_HEIGHT} from './constants.js';
 
 /**
  * Generate Scene configured to display IBR data.

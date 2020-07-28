@@ -141,7 +141,7 @@ Object.assign(IBRObject.prototype, {
     if (this.hasBlockingGrid) {
       json.blocking_grid = this.blockingGrid.toJson();
     } else {
-      json.blocking_grid = this.blockingGrid;
+      json.blocking_grid = null;
     }
     json.boundary = this.boundary;
     json.connections = this.connections;
