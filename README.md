@@ -1,5 +1,6 @@
 ![](https://github.com/google/digitalbuildings/workflows/Tools/badge.svg)
 ![Ontology Type Validator](https://github.com/google/digitalbuildings/workflows/Ontology%20Type%20Validator/badge.svg)
+![Node.js CI](https://github.com/google/digitalbuildings/workflows/Node.js%20CI/badge.svg)
 [![HitCount](http://hits.dwyl.com/google/digitalbuildings.svg)](http://hits.dwyl.com/google/digitalbuildings)
 [![GitHub stars](https://img.shields.io/github/stars/google/digitalbuildings.svg)](https://github.com/google/digitalbuildings/stargazers)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
@@ -31,7 +32,7 @@ This project is structured as following:
 * [Internal Building Representation](/ibr/README.md) (IBR) File Format to represent data from different verticals such as spatial, assets.
 
 ## Issues
-Please post issues or discussion topics in [Issues](https://github.com/google/digitalbuildings/issues) section.
+Please post issues in [Issues](https://github.com/google/digitalbuildings/issues) section.
 
 ## Discussion 
 Open mailing list to discuss Google's Digital Building effort. Discussion could include general questions, standards, APIs, and more. [google-digital-building-discuss@googlegroups.com](mailto:google-digital-building-discuss@googlegroups.com)
@@ -59,7 +60,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ```
 
-## Publications & Citations:
+## Publications:
 * [LDAC 2020](http://linkedbuildingdata.net/ldac2020/abstracts.html#industry10). 
 * [ICML 2020](https://proceedings.icml.cc/static/paper_files/icml/2020/2557-Paper.pdf).
 

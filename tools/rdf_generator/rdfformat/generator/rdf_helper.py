@@ -68,7 +68,8 @@ def CreateInstanceInGraph(graph,
                           instance_description,
                           parent_clazz,
                           entity_namespace=constants.DIGITAL_BUILDINGS_NS):
-  """Utility function to create an RDF OWL Instance and adds to the provided graph.
+  """Utility function to create an RDF OWL Instance
+  and adds to the provided graph.
 
   Creates an RDF OWL Instance with the input parameters
   OWL: Ontology Web Language
@@ -104,7 +105,8 @@ def CreateDataPropertyInGraph(graph,
                               data_property_name,
                               data_property_description,
                               entity_namespace=constants.DIGITAL_BUILDINGS_NS):
-  """Utility function to create an OWL Data Property relation and adds to the provided graph.
+  """Utility function to create an OWL Data Property relation
+  and adds to the provided graph.
 
   Creates an RDF OWL Data Property with the input parameters
   OWL: Ontology Web Language
@@ -141,7 +143,8 @@ def CreateObjectPropertyInGraph(
     object_property_name,
     object_property_description,
     entity_namespace=constants.DIGITAL_BUILDINGS_NS):
-  """Utility function to create an OWL Object Property relation and adds to the provided graph.
+  """Utility function to create an OWL Object Property relation
+   and adds to the provided graph.
 
   Creates an RDF OWL Object Property with the input parameters
   OWL: Ontology Web Language
@@ -176,7 +179,8 @@ def CreateObjectPropertyInGraph(
 def CreatesStandardFieldNameCompositionInGraph(list_composition,
                                                standard_field_name,
                                                is_composed_of_property, graph):
-  """Utility function takes a standard_field_name from the ontology and returns its composition constraint.
+  """Utility function takes a standard_field_name from the ontology
+   and returns its composition constraint.
 
   Args:
     list_composition: a list of composition of standard field name defined by
@@ -215,7 +219,8 @@ def CreateCompositionInGraph(list_standard_field_names,
                              graph,
                              entity_namespace=constants.DIGITAL_BUILDINGS_NS,
                              sub_class_of=None):
-  """Utility function that creates composition from a given list based on a composition operator and a restriction.
+  """Utility function that creates composition from a given list
+  based on a composition operator and a restriction.
 
      the created composition is conform to the following pattern:
      class_owl = [composition_property  | restriction |
@@ -287,7 +292,8 @@ def CreateCompositionInGraph(list_standard_field_names,
 
 
 def DecomposeStandardFieldName(standard_field_name):
-  """Utility function takes a standard_field_name from the ontology and returns its composition.
+  """Utility function takes a standard_field_name from the ontology
+   and returns its composition.
 
   Example: [run_command_1] -> ['Run', 'Command']
   Args:
@@ -306,7 +312,8 @@ def DecomposeStandardFieldName(standard_field_name):
 
 def CreatesImplementsInGraph(graph, implements_list, applications_set,
                              application_class, class_object):
-  """Utility function to handle the inheritance of types when the implements relation is used in the yaml file.
+  """Utility function to handle the inheritance of types
+  when the implements relation is used in the yaml file.
 
   Example: class_object subClassOf implements_list['CONTROL', 'MONITORING'].
 
@@ -341,7 +348,8 @@ def CreatesImplementsInGraph(graph, implements_list, applications_set,
 
 
 def GetTimeNow():
-  """Utility function returns the time in the following format %Y/%m/%d-%H:%M:%S.
+  """Utility function returns the time in the
+   following format %Y/%m/%d-%H:%M:%S.
 
   Returns:
     dt_string: an updated graph.

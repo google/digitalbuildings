@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Tests for google3.corp.bizapps.rews.carson.ontology.rdfextractor.rdflib_generaltypes_handler_test."""
+"""Tests for generator.rdflib_generaltypes_handler_test."""
 import rdflib
 
 from rdfformat.generator import constants

@@ -19,14 +19,16 @@ Digital Buildings ontology.
 This is done by first ensuring the file syntax is valid YAML, then by
 parsing the ontology and comparing it with the file contents.
 
-This tool allows clients to independently validate their configuration files. 
+This tool allows clients to independently validate their configuration files.
 It saves time and provides more accuracy than manual error checks."""
 
 from __future__ import print_function
-from sys import exit
 
+from validate import generate_universe
+from validate import entity_instance
 import instance_parser
 import argparse
+import sys
 
 # TODO add input and return type checks in all functions
 
@@ -38,6 +40,11 @@ if __name__ == '__main__':
                       required=True,
                       help='Filepath to YAML building configuration',
                       metavar='FILE')
+  parser.add_argument('-m', '--modified-ontology-types',
+                      dest='modified_types_filepath',
+                      required=False,
+                      help='Filepath to modified type filepaths',
+                      metavar='MODIFIED_TYPE_FILEPATHS')
   arg = parser.parse_args()
 
   # SYNTAX VALIDATION
@@ -48,34 +55,31 @@ if __name__ == '__main__':
   raw_parse = instance_parser.parse_yaml(filename)
 
   if raw_parse is None:
-    print('\Syntax Error.')
-    exit(0)
-
-  parsed = dict(raw_parse)
+    print('\nSyntax error')
+    sys.exit(0)
 
   print('Passed syntax checks!')
 
-  # ONTOLOGY VALIDATION
-  '''
-  print('Building ontology universe ...')
+  modified_types_filepath = arg.modified_types_filepath
 
-  universe = generate_universe.build_universe()
-  parsed_univ = generate_universe.parse_universe(universe)
+  print('Generating universe ...')
+  universe = generate_universe.BuildUniverse(modified_types_filepath)
 
-  # TODO(https://github.com/google/digitalbuildings/issues/42): 
-      replace this assignment logic with NamedTuple ontology generation
-  fields, subfields_map, states_map, units_map, entities_map = parsed_univ
+  if universe is None:
+    print('\nError generating universe')
+    sys.exit(0)
+
+  print('Universe generated successfully')
+
+  parsed = dict(raw_parse)
 
   entity_names = list(parsed.keys())
+  for entity_name in entity_names:
+    entity = dict(parsed[entity_name])
+    instance = entity_instance.EntityInstance(entity, universe)
 
-  for name in entity_names:
-    entity = dict(parsed[name])
-    ontology_validation.validate_entity(entity,
-                                        fields,
-                                        subfields_map,
-                                        states_map,
-                                        units_map,
-                                        entities_map)
+    if not instance.IsValidEntityInstance():
+      print(entity_name, 'is not a valid instance')
+      sys.exit(0)
 
-  print('Passed all checks!\n')
-  '''
+  print('File passes all checks!')
