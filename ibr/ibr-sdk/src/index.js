@@ -27,14 +27,11 @@ const FLOOR_HEIGHT = 300;
 let scene;
 
 /**
- * Create a side bar for layer and structure navigation.
- * @param {binary} ibrRawData Raw data from IBR binary data file.
+ * Create a side bar for visualization and structure navigation.
+ * @param {IBRObject} ibrObject IBRObject created from IBR binary data file.
  * @param {HTMLElement} parentElement Parent element to attach the sidebar to.
  */
-function createSidebar(ibrRawData, parentElement) {
-  const ibrData = InternalBuildingRepresentation.read(
-      new Pbf(ibrRawData));
-  const ibrObject = new IBRObject( ibrData );
+function createSidebar(ibrObject, parentElement) {
   const li = document.createElement('li'); // list element container
   parentElement.appendChild(li);
   const rootSpan = createLabel('span', ibrObject.getName(), li);
@@ -72,9 +69,10 @@ function generateScene(parentElement) {
   controls.update();
   controls.enablePan = true;
   controls.enableDamping = true;
-  camera.position.set( 0, 0, 7000 );
+  camera.position.set( 0, 7000, 0 );
   camera.lookAt( 0, 0, 0 );
   animate();
+  window.addEventListener( 'resize', onWindowResize, false );
 
   /**
   * Renders the scene.
@@ -83,6 +81,15 @@ function generateScene(parentElement) {
     requestAnimationFrame( animate );
     controls.update();
     renderer.render( scene, camera );
+  }
+
+  /**
+  * Resize the scene.
+  */
+  function onWindowResize() {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize( window.innerWidth, window.innerHeight );
   }
 
   return scene;
@@ -111,31 +118,31 @@ function createLabel(tagName, name, parentTag, forId = undefined) {
 }
 
 /**
- * Create checkboxes for given structure's layers and child structures.
+ * Create checkboxes for given structure's visualizations and child structures.
  * @param {Object} structure the structure generated from
  renderSingleIBRStructure() that will be added to sidebar.
  * @param {String} structureName the name of the structure being processed.
  */
 function drawSingleStructureSidebar(structure, structureName) {
-  // Create checkbox for each layer
-  if (structure['layers'].size !== 0) {
-    for ( const [layerName, layer] of
-      Object.entries(structure['layers']) ) {
+  // Create checkbox for each visualization
+  if (structure['visualizations'].size !== 0) {
+    for ( const [visualizationName, visualization] of
+      Object.entries(structure['visualizations']) ) {
       const checkBox = document.createElement('INPUT');
       const div = document.createElement('DIV');
       checkBox.setAttribute('type', 'checkbox');
-      checkBox.setAttribute('id', structureName + '_' + layerName);
+      checkBox.setAttribute('id', structureName + '_' + visualizationName);
       div.appendChild(checkBox);
-      createLabel('label', layerName, div, structureName + '_' +
-      layerName);
+      createLabel('label', visualizationName, div, structureName + '_' +
+      visualizationName);
       document.getElementById(structureName).appendChild(div);
       checkBox.addEventListener('change', function() {
         if (checkBox.checked) {
-          for ( const line of layer ) {
+          for ( const line of visualization ) {
             line.visible = true;
           }
         } else {
-          for ( const line of layer ) {
+          for ( const line of visualization ) {
             line.visible = false;
           }
         }
@@ -173,36 +180,44 @@ function drawSingleStructureSidebar(structure, structureName) {
 }
 
 /**
- * Parse top level of decoded IBR Object into structures.
- * @param {binary} ibrRawData Raw data from IBR binary data file.
- * @param {number} structureIndex Index of current structure(floor).
- * @param {HTMLElement} parentElement parent HTML element that the
-  visualization will be append on.
- */
-function render(ibrRawData, structureIndex, parentElement) {
-  scene = generateScene(parentElement);
+   * Initialize IBRObject from input IBR raw data in binary format.
+   * @param {Buffer} ibrRawData binary IBR data from uploaded IBR file.
+   * @return {IBRObject} ibrObject IBRObject generated from input binary.
+   */
+function init(ibrRawData) {
   const ibrData = InternalBuildingRepresentation.read(
       new Pbf(ibrRawData));
   const ibrObject = new IBRObject( ibrData );
-  const structure = {};
-  // Visualization layers of current structure
-  structure['layers'] = renderLayer( ibrObject,
-      structureIndex, scene );
-  // Sub-structures of the current structure
-  structure['structures'] = ibrObject.getSubStructures();
+  return ibrObject;
+}
+
+/**
+   * Enable Export and parse top level of decoded IBR Object into structures.
+   * @param {binary} ibrObject IBRObject created from input IBR binary data
+   file.
+   * @param {number} structureIndex Index of current structure(floor).
+   * @param {HTMLElement} parentElement parent HTML element that the
+    visualization will be append on.
+   */
+function render(ibrObject, structureIndex, parentElement) {
+  scene = generateScene(parentElement);
+  document.getElementById('dwn-btn').style.display = 'block';
+  document.getElementById('filename').style.display = 'block';
+  // Visualization visualizations of current structure
+  renderVisualization( ibrObject, structureIndex, scene );
 }
 
 /**
  * Parse current IBR Object into structures.
  * @param {IBRObject} ibrObject IBRObject created from current structure data.
  * @param {number} structureIndex Index of current structure(floor).
- * @return {Map.<String, List.<Object>>} Map of list of layers and
+ * @return {Map.<String, List.<Object>>} Map of list of visualizations and
  structures.
  */
 function renderSingleIBRStructure(ibrObject, structureIndex) {
   const structure = {};
-  // Visualization layers of current structure
-  structure['layers'] = renderLayer( ibrObject,
+  // Visualization visualizations of current structure
+  structure['visualizations'] = renderVisualization( ibrObject,
       structureIndex);
   // Sub-structures of the current structure
   structure['structures'] = ibrObject.getSubStructures();
@@ -215,38 +230,41 @@ function renderSingleIBRStructure(ibrObject, structureIndex) {
    * @param {IBRObject} structure IBRObject generated from current
    structure data.
    * @param {number} structureIndex overall index of the structure.
-   * @return {Map.<String, List.<Object>>} objects Layer name and
+   * @return {Map.<String, List.<Object>>} objects Visualization name and
    corresponding list of three.js Line objects.
    */
-function renderLayer(structure, structureIndex) {
+function renderVisualization(structure, structureIndex) {
   // Check if structure contains any visualization data
-  if ( !structure.hasLayers ||
+  if ( !structure.hasVisualizations ||
   !structure.hasCoordinatesLookup ) {
     return {};
   }
 
   // Read multiple ranges from Visualization.coordinates array
-  const layerCoordinates = [];
-  for (const layer of structure.getLayers().values()) {
-    const layerPH = layer.getLineCoordinates();
-    layerCoordinates.push(layerPH);
+  const visualizationCoordinates = [];
+  for (const visualization of structure.getVisualizations().values()) {
+    const visualizationPH = visualization.getLineCoordinates();
+    visualizationCoordinates.push(visualizationPH);
   }
 
   // Render data into three.js objects
   const materials = [];
-  for (let i = 0; i < structure.getLayers().size - 1; i++) {
+  for (let i = 0; i < structure.getVisualizations().size - 1; i++) {
     materials.push(new THREE.LineBasicMaterial(
         {color: Colors.random()} ));
   }
   const objects = {};
-  for (let i = 0; i < layerCoordinates.length; i++) {
-    objects[structure.getLayerNames()[i]] = [];
+  for (let i = 0; i < visualizationCoordinates.length; i++) {
+    objects[structure.getVisualizationNames()[i]] = [];
     const lineSegmentsGeometry = [];
-    for (const line of layerCoordinates[i]) {
+    for (const line of visualizationCoordinates[i]) {
       const linePoints = [];
       for (let j = 0; j < line.length; j += ONE_POINT) {
+
+        // Swapped y, z coordinates of all points to allow x-y plane rotation
+        // changed sign of z coordinates to improve y-z plane rotation
         linePoints.push( new THREE.Vector3( line[j],
-            line[j + 2] + FLOOR_HEIGHT * structureIndex, line[j + 1] ) );
+            line[j + 2] + FLOOR_HEIGHT * structureIndex, -line[j + 1] ) );
       }
       const geometry = new THREE.BufferGeometry().setFromPoints(
           linePoints );
@@ -257,7 +275,7 @@ function renderLayer(structure, structureIndex) {
         const lineLoop = new THREE.LineLoop( geometry, materials[i] );
         lineLoop.visible = false;
         scene.add( lineLoop );
-        objects[structure.getLayerNames()[i]].push( lineLoop );
+        objects[structure.getVisualizationNames()[i]].push( lineLoop );
       }
     }
     if (lineSegmentsGeometry.length > 0) {
@@ -266,10 +284,24 @@ function renderLayer(structure, structureIndex) {
       const lineSegments = new THREE.LineSegments( geometries, materials[i] );
       lineSegments.visible = false;
       scene.add( lineSegments );
-      objects[structure.getLayerNames()[i]].push( lineSegments );
+      objects[structure.getVisualizationNames()[i]].push( lineSegments );
     }
   }
   return objects;
 }
 
-export {createSidebar, render};
+/**
+ * Serialize IBRObject object to binary format.
+ * @param {IBRObject} ibrObject The IBRObject to be saved back to binary
+ format.
+ * @return {Buffer} buffer binary representation of IBRObject object.
+ */
+function saveToBuffer( ibrObject ) {
+  const json = ibrObject.toJson();
+  const pbf = new Pbf();
+  InternalBuildingRepresentation.write(json, pbf);
+  const buffer = pbf.finish();
+  return buffer;
+}
+
+export {init, createSidebar, render, saveToBuffer};

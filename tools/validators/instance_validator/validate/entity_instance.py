@@ -28,11 +28,12 @@ class EntityInstance(findings_lib.Findings):
   """
 
   def __init__(self, entity, universe):
+    super(EntityInstance, self).__init__()
     self.entity = entity
     self.universe = universe
     self.required_keys = ('id', 'type')
 
-  def _validate_type(self):
+  def _ValidateType(self):
     """Uses information from the generated ontology universe to validate
     an entity's type.
 
@@ -71,4 +72,4 @@ class EntityInstance(findings_lib.Findings):
         print('Missing required key:', req_key)
         return False
 
-    return self._validate_type()
+    return self._ValidateType()

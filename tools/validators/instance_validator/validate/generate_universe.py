@@ -23,23 +23,39 @@ from yamlformat.validator import external_file_lib
 from yamlformat.validator import presubmit_validate_types_lib
 from yamlformat.validator import namespace_validator
 
-def BuildUniverse():
+def BuildUniverse(modified_types_filepath=None):
   """Generates the ontology universe.
+
+  Args:
+    modified_types_filepath: filepath to the modified ontology types
 
   Returns:
     Generated universe object.
   """
 
-  ontology_validator_exists = path.exists(path.join(
-      '..', 'ontology_validator'))
-  ontology_exists = path.exists(path.join('..', '..', '..', 'ontology'))
+  if modified_types_filepath:
+    modified_ontology_exists = path.exists(modified_types_filepath)
+    if not modified_ontology_exists:
+      print('Specified filepath for modified ontology does not exist')
+      return None
 
-  if not (ontology_validator_exists and ontology_exists):
-    print('ERROR: ontology validator or ontology have changed locations')
-    return None
+    modified_types_filepath = path.expanduser(modified_types_filepath)
 
-  yaml_files = external_file_lib._RecursiveDirWalk(path.join(
-      '..', '..', '..', 'ontology', 'yaml', 'resources'))
+    external_file_lib.Validate(filter_text=None,
+                               changed_directory=modified_types_filepath,
+                               original_directory=path.join('..',
+                                                            '..',
+                                                            '..',
+                                                            'ontology',
+                                                            'yaml',
+                                                            'resources'),
+                               interactive=False)
+    yaml_files = external_file_lib.RecursiveDirWalk(modified_types_filepath)
+  else:
+    # use default location for ontology files
+    yaml_files = external_file_lib.RecursiveDirWalk(path.join(
+        '..', '..', '..', 'ontology', 'yaml', 'resources'))
+
   config = presubmit_validate_types_lib.SeparateConfigFiles(yaml_files)
   universe = presubmit_validate_types_lib.BuildUniverse(config)
 

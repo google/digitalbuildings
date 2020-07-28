@@ -34,9 +34,9 @@ class EntityInstanceTest(absltest.TestCase):
 
   def testValidateGoodExample(self):
     parsed = dict(instance_parser.parse_yaml(
-      os.path.join(_TESTCASE_PATH,
-                   'GOOD',
-                   'good_building_type.yaml')))
+        os.path.join(_TESTCASE_PATH,
+                     'GOOD',
+                     'good_building_type.yaml')))
     entity_name = list(parsed.keys())[0]
 
     entity = dict(parsed[entity_name])
@@ -47,9 +47,9 @@ class EntityInstanceTest(absltest.TestCase):
 
   def testValidateBadEntityTypeFormat(self):
     parsed = dict(instance_parser.parse_yaml(
-      os.path.join(_TESTCASE_PATH,
-                   'BAD',
-                   'bad_building_type.yaml')))
+        os.path.join(_TESTCASE_PATH,
+                     'BAD',
+                     'bad_building_type.yaml')))
     entity_name = list(parsed.keys())[0]
 
     entity = dict(parsed[entity_name])
@@ -60,9 +60,9 @@ class EntityInstanceTest(absltest.TestCase):
 
   def testValidateBadEntityNamespace(self):
     parsed = dict(instance_parser.parse_yaml(
-      os.path.join(_TESTCASE_PATH,
-                   'BAD',
-                   'bad_building_type_namespace.yaml')))
+        os.path.join(_TESTCASE_PATH,
+                     'BAD',
+                     'bad_building_type_namespace.yaml')))
     entity_name = list(parsed.keys())[0]
 
     entity = dict(parsed[entity_name])
@@ -73,9 +73,9 @@ class EntityInstanceTest(absltest.TestCase):
 
   def testValidateBadEntityType(self):
     parsed = dict(instance_parser.parse_yaml(
-      os.path.join(_TESTCASE_PATH,
-                   'BAD',
-                   'bad_building_type_entity.yaml')))
+        os.path.join(_TESTCASE_PATH,
+                     'BAD',
+                     'bad_building_type_entity.yaml')))
     entity_name = list(parsed.keys())[0]
 
     entity = dict(parsed[entity_name])
