@@ -15,6 +15,33 @@ import {Colors} from './colors.js';
 import {ONE_POINT, TWO_POINTS, FLOOR_HEIGHT} from './constants.js';
 
 /**
+ * Create a side bar for visualization and structure navigation.
+ * @param {IBRObject} ibrObject IBRObject created from IBR binary data file.
+ * @param {HTMLElement} parentElement Parent element to attach the sidebar to.
+ * @param {Object} scene The Scene Object that all THREE objects are
+  rendered on.
+ */
+function createSidebar(ibrObject, parentElement, scene) {
+  const li = document.createElement('li'); // list element container
+  parentElement.appendChild(li);
+  const rootSpan = createLabel('span', ibrObject.getName(), li);
+  rootSpan.setAttribute('class', 'arrow');
+  li.appendChild(rootSpan);
+  const ul = document.createElement('ul');
+  ul.setAttribute('class', 'nested');
+  ul.setAttribute('id', ibrObject.getName());
+  li.appendChild(ul);
+  rootSpan.addEventListener('click', function() {
+    rootSpan.parentElement.querySelector('.nested').classList
+        .toggle('active');
+    rootSpan.classList.toggle('expanded-arrow');
+  });
+  // root structure index 0
+  const structure = renderSingleIBRStructure(ibrObject, 0, scene);
+  drawSingleStructureSidebar(structure, ibrObject.getName(), scene);
+}
+
+/**
  * Generate Scene configured to display IBR data.
  * @param {HTMLElement} parentElement parent HTML element that the
  visualization will be append on.
@@ -56,6 +83,81 @@ function generateScene(parentElement) {
   }
 
   return scene;
+}
+
+/**
+ * Create a new HTML Label Tag based on given name string and attach it to
+ * given parent tag.
+ * @param {string} tagName Type of tag to be created.
+ * @param {string} name InnerHTML of the Label tag.
+ * @param {tag} parentTag Tag to be attached to by the newly created label
+  tag.
+ * @param {string} [forId=undefined] ID to be set as the value of the newly
+  created label tag's for attribute. Needed if Label tag is created for a
+  checkbox.
+ * @return {tag} Newly created Label tag.
+ */
+function createLabel(tagName, name, parentTag, forId = undefined) {
+  const label = document.createElement(tagName);
+  if (forId) {
+    label.setAttribute('for', forId);
+  }
+  label.innerHTML = name;
+  parentTag.appendChild(label);
+  return label;
+}
+
+/**
+ * Create checkboxes for given structure's visualizations and child structures.
+ * @param {Object} structure the structure generated from
+ renderSingleIBRStructure() that will be added to sidebar.
+ * @param {String} structureName the name of the structure being processed.
+ * @param {Object} scene The Scene Object that all THREE objects are
+  rendered on.
+ */
+function drawSingleStructureSidebar(structure, structureName, scene) {
+  // Create checkbox for Blocking Grid
+  if (structure['blockingGrid']) {
+    createCheckboxForVisualization(
+        structure['visualizations'][structure['blockingGrid']],
+        structure['blockingGrid'], structureName);
+  }
+  // Create checkbox for each visualization
+  if (structure['visualizations'].size !== 0) {
+    for (const [visualizationName, visualization] of
+      Object.entries(structure['visualizations'])) {
+      createCheckboxForVisualization(visualization, visualizationName,
+          structureName);
+    }
+  }
+
+  // Create label for each child structure
+  for (let structureIndex = 0; structureIndex <
+  structure['structures'].length; structureIndex++) {
+    const li = document.createElement('li');
+    document.getElementById(structureName).appendChild(li);
+    const label = createLabel('span',
+        structure['structures'][structureIndex].name, li);
+    label.setAttribute('class', 'arrow');
+    li.appendChild(label);
+    const ul = document.createElement('ul');
+    ul.setAttribute('class', 'nested');
+    ul.setAttribute('id', structure['structures'][structureIndex].name);
+    li.appendChild(ul);
+    label.addEventListener('click', function() {
+      label.parentElement.querySelector('.nested').classList.toggle('active');
+      label.classList.toggle('expanded-arrow');
+      if (label.getAttribute('value') == null) {
+        event.stopPropagation();
+        const curStructure = renderSingleIBRStructure(
+            new IBRObject(structure['structures'][structureIndex]),
+            structureIndex, scene);
+        drawSingleStructureSidebar(curStructure,
+            structure['structures'][structureIndex].name, scene);
+        label.setAttribute('value', '0');
+      }
+    });
+  }
 }
 
 /**
@@ -214,54 +316,6 @@ function saveToBuffer(ibrObject) {
   return buffer;
 }
 
-/**
- * Create a side bar for visualization and structure navigation.
- * @param {IBRObject} ibrObject IBRObject created from IBR binary data file.
- * @param {HTMLElement} parentElement Parent element to attach the sidebar to.
- * @param {Object} scene The Scene Object that all THREE objects are
-  rendered on.
- */
-function createSidebar(ibrObject, parentElement, scene) {
-  const li = document.createElement('li'); // list element container
-  parentElement.appendChild(li);
-  const rootSpan = createLabel('span', ibrObject.getName(), li);
-  rootSpan.setAttribute('class', 'arrow');
-  li.appendChild(rootSpan);
-  const ul = document.createElement('ul');
-  ul.setAttribute('class', 'nested');
-  ul.setAttribute('id', ibrObject.getName());
-  li.appendChild(ul);
-  rootSpan.addEventListener('click', function() {
-    rootSpan.parentElement.querySelector('.nested').classList
-        .toggle('active');
-    rootSpan.classList.toggle('expanded-arrow');
-  });
-  // root structure index 0
-  const structure = renderSingleIBRStructure(ibrObject, 0, scene);
-  drawSingleStructureSidebar(structure, ibrObject.getName(), scene);
-}
-
-/**
- * Create a new HTML Label Tag based on given name string and attach it to
- * given parent tag.
- * @param {string} tagName Type of tag to be created.
- * @param {string} name InnerHTML of the Label tag.
- * @param {tag} parentTag Tag to be attached to by the newly created label
-  tag.
- * @param {string} [forId=undefined] ID to be set as the value of the newly
-  created label tag's for attribute. Needed if Label tag is created for a
-  checkbox.
- * @return {tag} Newly created Label tag.
- */
-function createLabel(tagName, name, parentTag, forId = undefined) {
-  const label = document.createElement(tagName);
-  if (forId) {
-    label.setAttribute('for', forId);
-  }
-  label.innerHTML = name;
-  parentTag.appendChild(label);
-  return label;
-}
 
 /**
  * Create checkboxes for given visualization.
@@ -293,59 +347,6 @@ function createCheckboxForVisualization(visualization, visualizationName,
       }
     }
   });
-}
-
-/**
- * Create checkboxes for given structure's visualizations and child structures.
- * @param {Object} structure the structure generated from
- renderSingleIBRStructure() that will be added to sidebar.
- * @param {String} structureName the name of the structure being processed.
- * @param {Object} scene The Scene Object that all THREE objects are
-  rendered on.
- */
-function drawSingleStructureSidebar(structure, structureName, scene) {
-  // Create checkbox for Blocking Grid
-  if (structure['blockingGrid']) {
-    createCheckboxForVisualization(
-        structure['visualizations'][structure['blockingGrid']],
-        structure['blockingGrid'], structureName);
-  }
-  // Create checkbox for each visualization
-  if (structure['visualizations'].size !== 0) {
-    for (const [visualizationName, visualization] of
-      Object.entries(structure['visualizations'])) {
-      createCheckboxForVisualization(visualization, visualizationName,
-          structureName);
-    }
-  }
-
-  // Create label for each child structure
-  for (let structureIndex = 0; structureIndex <
-  structure['structures'].length; structureIndex++) {
-    const li = document.createElement('li');
-    document.getElementById(structureName).appendChild(li);
-    const label = createLabel('span',
-        structure['structures'][structureIndex].name, li);
-    label.setAttribute('class', 'arrow');
-    li.appendChild(label);
-    const ul = document.createElement('ul');
-    ul.setAttribute('class', 'nested');
-    ul.setAttribute('id', structure['structures'][structureIndex].name);
-    li.appendChild(ul);
-    label.addEventListener('click', function() {
-      label.parentElement.querySelector('.nested').classList.toggle('active');
-      label.classList.toggle('expanded-arrow');
-      if (label.getAttribute('value') == null) {
-        event.stopPropagation();
-        const curStructure = renderSingleIBRStructure(
-            new IBRObject(structure['structures'][structureIndex]),
-            structureIndex, scene);
-        drawSingleStructureSidebar(curStructure,
-            structure['structures'][structureIndex].name, scene);
-        label.setAttribute('value', '0');
-      }
-    });
-  }
 }
 
 /**
