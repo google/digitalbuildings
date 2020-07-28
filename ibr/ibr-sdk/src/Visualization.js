@@ -127,4 +127,4 @@ Object.assign(Visualization.prototype, {
 
 });
 
-export {Visualization, swap32, ONE_POINT};
+export {Visualization};
