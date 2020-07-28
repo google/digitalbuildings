@@ -1,21 +1,16 @@
-/**
-* Swap endianness of 32bit numbers.
-* @param {number} val 32 bit number to be swapped.
-* @return {number} 32bit number in swapped endianness.
-*/
-function swap32(val) {
-  return ((val & 0xFF) << 24) |
-           ((val & 0xFF00) << 8) |
-           ((val >> 8) & 0xFF00) |
-           ((val >> 24) & 0xFF);
-}
+// the length of one 3D coordinates (x, y, z) in the coordinate lookup float
+// array
+//const ONE_POINT = 3;
+import {ONE_POINT} from './constants.js';
+import {swap32} from './util.js';
 
 /**
  * Constructor of Visualization Class.
  * @param {Object} visualizationData single visualization data from JSON
  Object decoded using Pbf library from raw ibr binary data.
+ * @param {List.<Number>} coordsLookup Coords Lookup from the parent structure.
  */
-function Visualization( visualizationData ) {
+function Visualization(visualizationData, coordsLookup) {
   this.id = visualizationData.id;
   this.data = visualizationData.data;
 
@@ -32,10 +27,24 @@ function Visualization( visualizationData ) {
 
   this.encodingType = visualizationData.encoding_type;
   this.imageData = visualizationData.image_data;
-  this.lineCoordinates = null;
+
+  // Set Line Coordinates for Visualization
+  const coordsRangeItem = this.coordinateIndices;
+  const visualizationPH = [];
+  for (let i = 0; i < coordsRangeItem.length; i += 2) {
+    const coordsLine = [];
+    for (let j = coordsRangeItem[i]; j <= coordsRangeItem[i + 1];
+      j += ONE_POINT) {
+      coordsLine.push(coordsLookup[j]);
+      coordsLine.push(coordsLookup[j + 1]);
+      coordsLine.push(coordsLookup[j + 2]);
+    }
+    visualizationPH.push(coordsLine);
+  }
+  this.setLineCoordinates(visualizationPH);
 }
 
-Object.assign( Visualization.prototype, {
+Object.assign(Visualization.prototype, {
 
   constructor: Visualization,
 
@@ -85,7 +94,7 @@ Object.assign( Visualization.prototype, {
    * @param {List.<List.<number>>} lineCoordinates list of list of end point
     coordinates that each represent a line during rendering.
    */
-  setLineCoordinates: function( lineCoordinates ) {
+  setLineCoordinates: function(lineCoordinates) {
     this.lineCoordinates = lineCoordinates;
   },
 
@@ -112,10 +121,10 @@ Object.assign( Visualization.prototype, {
     for (let i = 0; i < tempCoordinateIndices.length; i++) {
       tempCoordinateIndices[i] = swap32(tempCoordinateIndices[i]);
     }
-    json.coordinate_indices = new Uint8Array( tempCoordinateIndices.buffer );
+    json.coordinate_indices = new Uint8Array(tempCoordinateIndices.buffer);
     return json;
   },
 
-} );
+});
 
-export {Visualization, swap32};
+export {Visualization};

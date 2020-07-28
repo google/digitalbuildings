@@ -6,4 +6,6 @@ extends:
 parserOptions:
   ecmaVersion: 11
   sourceType: module
-rules: {}
+rules: {
+  "space-in-parens": ["error", "never"]
+}
