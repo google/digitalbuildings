@@ -1,16 +1,11 @@
+import {BlockingGrid} from './BlockingGrid.js';
 import {Visualization} from './Visualization.js';
-
-// the length of one 3D coordinates (x, y, z) in the coordinate lookup float
-// array
-export const ONE_POINT = 3;
 
 /**
  * Constructor of IBRObject Class.
  * @param {JSONObject} pbfDecodedJsonObject JSON decoded from input IBR file.
  */
-function IBRObject( pbfDecodedJsonObject ) {
-  this.blockingGrid = pbfDecodedJsonObject.blocking_grid;
-
+function IBRObject(pbfDecodedJsonObject) {
   this.boundary = pbfDecodedJsonObject.boundary;
 
   this.connections = pbfDecodedJsonObject.connections;
@@ -24,19 +19,6 @@ function IBRObject( pbfDecodedJsonObject ) {
   this.name = pbfDecodedJsonObject.name;
 
   this.structuralType = pbfDecodedJsonObject.structural_type;
-
-  // format: Map.<visName{String}, visualizationData{Visualization}>
-  this.visualizations = new Map();
-  // Check if structure contains any visualization data
-  if ( pbfDecodedJsonObject.visualization.length === 0) {
-    this.hasVisualizations = false;
-  } else {
-    this.hasVisualizations = true;
-    for ( let i = 0; i < pbfDecodedJsonObject.visualization.length; i++) {
-      this.visualizations.set(pbfDecodedJsonObject.visualization[i].id,
-          new Visualization(pbfDecodedJsonObject.visualization[i]));
-    }
-  }
 
   // Check if structure contains any coordinates lookup data
   if (pbfDecodedJsonObject.coordinates_lookup === null) {
@@ -53,7 +35,22 @@ function IBRObject( pbfDecodedJsonObject ) {
     for (let i = 0; i < coordsLookup.length; i += 4) {
       coordsLookupList.push(coordsLookupDV.getFloat32(i, false));
     }
-    this.coordinates = Float32Array.from( coordsLookupList );
+    this.coordinates = Float32Array.from(coordsLookupList);
+  }
+
+  // format: Map.<visName{String}, visualizationData{Visualization}>
+  this.visualizations = new Map();
+  // Check if structure contains any visualization data
+  if (pbfDecodedJsonObject.visualization.length === 0 ||
+      (!this.hasCoordinatesLookup)) {
+    this.hasVisualizations = false;
+  } else {
+    this.hasVisualizations = true;
+    for (let i = 0; i < pbfDecodedJsonObject.visualization.length; i++) {
+      this.visualizations.set(pbfDecodedJsonObject.visualization[i].id,
+          new Visualization(pbfDecodedJsonObject.visualization[i],
+              this.coordinates));
+    }
   }
 
   // for datafiles that have top level name is ""
@@ -63,27 +60,17 @@ function IBRObject( pbfDecodedJsonObject ) {
 
   this.subStructures = pbfDecodedJsonObject.structures;
 
-  if ( this.hasVisualizations && this.hasCoordinatesLookup ) {
-    // Read multiple ranges from Visualization.coordinates array
-    for (const visualization of this.visualizations.values()) {
-      const visualizationPH = [];
-      const coordsRangeItem = visualization.getCoordinatesIndices();
-      for (let i = 0; i < coordsRangeItem.length; i += 2) {
-        const coordsLine = [];
-        for (let j = coordsRangeItem[i]; j <= coordsRangeItem[i + 1];
-          j += ONE_POINT) {
-          coordsLine.push(this.coordinates[j]);
-          coordsLine.push(this.coordinates[j + 1]);
-          coordsLine.push(this.coordinates[j + 2]);
-        }
-        visualizationPH.push(coordsLine);
-      }
-      visualization.setLineCoordinates(visualizationPH);
-    }
+  this.hasBlockingGrid = false;
+  this.blockingGrid = pbfDecodedJsonObject.blocking_grid;
+  if (pbfDecodedJsonObject.blocking_grid !== null &&
+  this.hasCoordinatesLookup) {
+    this.hasBlockingGrid = true;
+    this.blockingGrid = new BlockingGrid(pbfDecodedJsonObject.blocking_grid,
+        this.coordinates);
   }
 }
 
-Object.assign( IBRObject.prototype, {
+Object.assign(IBRObject.prototype, {
 
   constructor: IBRObject,
 
@@ -100,7 +87,7 @@ Object.assign( IBRObject.prototype, {
    * @return {List.<String>} list of names of the IBRObject visualizations.
    */
   getVisualizationNames: function() {
-    return Array.from( this.visualizations.keys() );
+    return Array.from(this.visualizations.keys());
   },
 
   /**
@@ -109,8 +96,8 @@ Object.assign( IBRObject.prototype, {
    * @return {Visualization} the visualization with the name visualizationID
     in IBRObject.
    */
-  getVisualization: function( visualizationID ) {
-    return this.visualizations.get( visualizationID );
+  getVisualization: function(visualizationID) {
+    return this.visualizations.get(visualizationID);
   },
 
   /**
@@ -138,24 +125,36 @@ Object.assign( IBRObject.prototype, {
   },
 
   /**
+   * Get blocking grid.
+   * @return {BlockingGrid} Blocking grid of the IBRObject.
+   */
+  getBlockingGrid: function() {
+    return this.blockingGrid;
+  },
+
+  /**
    * Convert IBRObject object to JSON format.
    * @return {JSONObject} json format of IBRObject object.
    */
   toJson: function() {
     const json = {};
-    json.blocking_grid = this.blockingGrid;
+    if (this.hasBlockingGrid) {
+      json.blocking_grid = this.blockingGrid.toJson();
+    } else {
+      json.blocking_grid = null;
+    }
     json.boundary = this.boundary;
     json.connections = this.connections;
     json.coordinates_lookup = null;
-    if ( this.hasCoordinatesLookup ) {
+    if (this.hasCoordinatesLookup) {
       const tempCoordinates = this.coordinates;
-      const coordsDV = new DataView( tempCoordinates.buffer );
+      const coordsDV = new DataView(tempCoordinates.buffer);
       const coordsList = [];
       for (let i = 0; i < tempCoordinates.length; i += 1) {
         coordsList.push(coordsDV.getFloat32(i * 4, false));
       }
       json.coordinates_lookup = new Uint8Array(
-          Float32Array.from( coordsList ).buffer );
+          Float32Array.from(coordsList).buffer);
     }
     json.external_reference = this.externalReference;
     json.guid = this.guid;
@@ -167,17 +166,17 @@ Object.assign( IBRObject.prototype, {
     }
     json.structural_type = this.structuralType;
     json.structures = [];
-    if ( this.subStructures.length != 0 ) {
+    if (this.subStructures.length != 0) {
       for (const struct of this.subStructures) {
-        json.structures.push( new IBRObject( struct ).toJson() );
+        json.structures.push(new IBRObject(struct).toJson());
       }
     }
     json.visualization = [];
-    for (const visualization of Array.from( this.visualizations.values() )) {
-      json.visualization.push( visualization.toJson() );
+    for (const visualization of Array.from(this.visualizations.values())) {
+      json.visualization.push(visualization.toJson());
     }
     return json;
   },
 
-} );
+});
 export {IBRObject};
