@@ -215,3 +215,4 @@ function saveToBuffer(ibrObject) {
 }
 
 export {init, render, saveToBuffer, renderSingleIBRStructure};
+
