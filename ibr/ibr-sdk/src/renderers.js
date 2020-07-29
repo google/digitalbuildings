@@ -12,7 +12,8 @@ import {BufferGeometryUtils} from
   './../node_modules/three/examples/jsm/utils/BufferGeometryUtils.js';
 import {IBRObject} from './IBRObject.js';
 import {Colors} from './colors.js';
-import {ONE_POINT, TWO_POINTS, FLOOR_HEIGHT, BLOCKING_GRID_NAME} from './constants.js';
+import {ONE_POINT, TWO_POINTS, FLOOR_HEIGHT, BLOCKING_GRID_NAME}
+  from './constants.js';
 
 /**
  * Generate Scene configured to display IBR data.

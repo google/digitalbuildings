@@ -1,6 +1,5 @@
 import {BlockingGrid} from './BlockingGrid.js';
 import {Visualization} from './Visualization.js';
-import {swap32} from './util.js';
 
 /**
  * Constructor of IBRObject Class.
