@@ -1,12 +1,28 @@
 import {BlockingGrid} from './BlockingGrid.js';
 import {Visualization} from './Visualization.js';
+import {swap32} from './util.js';
 
 /**
  * Constructor of IBRObject Class.
  * @param {JSONObject} pbfDecodedJsonObject JSON decoded from input IBR file.
  */
 function IBRObject(pbfDecodedJsonObject) {
-  this.boundary = pbfDecodedJsonObject.boundary;
+  // Check if structure contains any boundary data
+  if (pbfDecodedJsonObject.boundary === null) {
+    this.hasBoundary = false;
+  } else {
+    this.hasBoundary = true;
+    // Decode Indices from data.visualization[].coordinate_indices
+    const boundaryList = pbfDecodedJsonObject.boundary;
+    const boundaryBuffer = boundaryList.buffer.slice(
+        boundaryList.byteOffset,
+        boundaryList.byteOffset + boundaryList.length);
+    const boundaryRange = new Uint32Array(boundaryBuffer);
+    for (let i = 0; i < boundaryRange.length; i++) {
+      boundaryRange[i] = swap32(boundaryRange[i]);
+    }
+    this.boundary = boundaryRange;
+  }
 
   this.connections = pbfDecodedJsonObject.connections;
 
@@ -106,6 +122,14 @@ Object.assign(IBRObject.prototype, {
    */
   getSubStructures: function() {
     return this.subStructures;
+  },
+
+  /**
+   * Get the structural type of the IBRObject.
+   * @return {Number} structural type of the IBRObject.
+   */
+  getStructuralType: function() {
+    return this.structuralType;
   },
 
   /**

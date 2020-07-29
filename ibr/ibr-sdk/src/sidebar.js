@@ -8,6 +8,7 @@
 
 import {IBRObject} from './IBRObject.js';
 import {renderSingleIBRStructure, render} from './renderers.js';
+import {SPACE} from './constants.js';
 
 /**
  * Create a side bar for visualization and structure navigation.
@@ -102,30 +103,73 @@ function drawSingleStructureSidebar(structure, structureName, scene) {
   // Create checkbox for Blocking Grid
   if (structure['blockingGrid']) {
     createCheckboxForVisualization(
-        structure['visualizations'][structure['blockingGrid']],
-        structure['blockingGrid'], structureName);
+        structure['blockingGrid']['Blocking Grid'], 'Blocking Grid',
+        structureName);
   }
+
+  // Create Visualization tag, then in the next section add the Visualizations
+  // under space tag.
+  const visLi = document.createElement('li');
+  document.getElementById(structureName).appendChild(visLi);
+  const visSpan = createLabel('span', 'Visualizations', visLi);
+  visSpan.setAttribute('class', 'arrow');
+  const visUl = document.createElement('ul');
+  visUl.setAttribute('class', 'nested');
+  const visUlName = structureName+'_visualizations';
+  visUl.setAttribute('id', visUlName);
+  visLi.appendChild(visUl);
+  visLi.style.display = 'none';
+  visSpan.addEventListener('click', function() {
+    visSpan.parentElement.querySelector('.nested').classList.toggle('active');
+    visSpan.classList.toggle('expanded-arrow');
+  });
+
   // Create checkbox for each visualization
-  if (structure['visualizations'].size !== 0) {
+  if (structure['visualizations'].size) {
+    visLi.style.display = 'block';
     for (const [visualizationName, visualization] of
-      Object.entries(structure['visualizations'])) {
+      structure['visualizations']) {
       createCheckboxForVisualization(visualization, visualizationName,
-          structureName);
+          visUlName);
     }
   }
+
+  // Create Space tag, then in the next section add the SPACE sub structures
+  // under space tag.
+  const spaceLi = document.createElement('li');
+  document.getElementById(structureName).appendChild(spaceLi);
+  const spaceSpan = createLabel('span', 'Spaces', spaceLi);
+  spaceSpan.setAttribute('class', 'arrow');
+  const spaceUl = document.createElement('ul');
+  spaceUl.setAttribute('class', 'nested');
+  const spaceUlName = structureName+'_spaces';
+  spaceUl.setAttribute('id', spaceUlName);
+  spaceLi.appendChild(spaceUl);
+  spaceLi.style.display = 'none';
+  spaceSpan.addEventListener('click', function() {
+    spaceSpan.parentElement.querySelector('.nested').classList.toggle('active');
+    spaceSpan.classList.toggle('expanded-arrow');
+  });
 
   // Create label for each child structure
   for (let structureIndex = 0; structureIndex <
   structure['structures'].length; structureIndex++) {
+    let parentTagName = '';
+    const curIBRObject = new IBRObject(structure['structures'][structureIndex]);
+    if (curIBRObject.getStructuralType() === SPACE) {
+      parentTagName = spaceUlName;
+      spaceLi.style.display = 'block';
+    } else {
+      parentTagName = structureName;
+    }
     const li = document.createElement('li');
-    document.getElementById(structureName).appendChild(li);
+    document.getElementById(parentTagName).appendChild(li);
     const label = createLabel('span',
-        structure['structures'][structureIndex].name, li);
+        curIBRObject.getName(), li);
     label.setAttribute('class', 'arrow');
-    li.appendChild(label);
     const ul = document.createElement('ul');
     ul.setAttribute('class', 'nested');
-    ul.setAttribute('id', structure['structures'][structureIndex].name);
+    ul.setAttribute('id', curIBRObject.getName());
     li.appendChild(ul);
     label.addEventListener('click', function() {
       label.parentElement.querySelector('.nested').classList.toggle('active');
@@ -133,10 +177,9 @@ function drawSingleStructureSidebar(structure, structureName, scene) {
       if (label.getAttribute('value') == null) {
         event.stopPropagation();
         const curStructure = renderSingleIBRStructure(
-            new IBRObject(structure['structures'][structureIndex]),
-            structureIndex, scene);
+            curIBRObject, structureIndex, scene);
         drawSingleStructureSidebar(curStructure,
-            structure['structures'][structureIndex].name, scene);
+            curIBRObject.getName(), scene);
         label.setAttribute('value', '0');
       }
     });
@@ -155,6 +198,9 @@ function drawSingleStructureSidebar(structure, structureName, scene) {
  */
 function renderAndCreateSidebar(ibrObject, structureIndex,
     renderParentElement, sidebarParentElement) {
+  /* Each of the two functions are also published. Understanding of usage of
+     scene in THREE is required if user desires to use any one function
+     without the other. */
   const scene = render(ibrObject, structureIndex, renderParentElement);
   createSidebar(ibrObject, sidebarParentElement, scene);
 }
