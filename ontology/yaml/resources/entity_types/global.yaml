@@ -12,6 +12,26 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+EQUIPMENT:
+  id: "9693662434551660544"
+  description: "A piece of equipment."
+  is_abstract: true
+  opt_uses:
+  - manufacturer_label
+  - model_label
+
+MTS:
+  description: "Multi-sensor device."
+  is_abstract: true
+  implements:
+  - EQUIPMENT
+
+USER_INTERFACE:
+  description: "Generic user interface."
+  is_abstract: true
+  implements:
+  - EQUIPMENT
+
 OS:
   id: "5263290281591046144"
   description: "Occupancy status for a specific zone."
@@ -24,3 +44,24 @@ PM:
   is_abstract: true
   uses:
   - power_sensor
+
+NO_ANALYSIS:
+  id: "10044943205486559232"
+  description: "Devices which are not useful in and of themselves. Can be ignored by analysis."
+  is_abstract: true
+
+DEPRECATED:
+  id: "10951011155518160896"
+  description: "Used to clean up deprecated types."
+  is_abstract: true
+
+REMAP_REQUIRED:
+  id: "9663931640136597504"
+  description: "A type which requires some remapping in order to convert it to a standard type."
+  is_abstract: true
+
+INCOMPLETE:
+  id: "4665780478685478912"
+  description: "A known incomplete type."
+  is_abstract: true
+

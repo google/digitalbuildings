@@ -12,9 +12,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+""" Setup file """
+
 from setuptools import setup, find_packages
-# with open("README.md", "r") as fh:
-#   long_description = fh.read()
+
 setup(
     name='ontology-rdf-generator',
     version='0.0.1',

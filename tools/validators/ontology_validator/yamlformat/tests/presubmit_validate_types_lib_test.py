@@ -123,8 +123,9 @@ class PresubmitValidateTypesTest(absltest.TestCase):
     state_universe = state_lib.StateUniverse([])
     unit_universe = unit_lib.UnitUniverse([])
     config_universe = presubmit_validate_types_lib.ConfigUniverse(
-        subfield_universe, field_universe, type_universe, state_universe,
-        unit_universe)
+        subfield_universe=subfield_universe, field_universe=field_universe,
+        entity_type_universe=type_universe, state_universe=state_universe,
+        unit_universe=unit_universe)
 
     findings = config_universe.GetFindings()
     self.assertLen(findings, 3)
@@ -134,6 +135,50 @@ class PresubmitValidateTypesTest(absltest.TestCase):
             findings_lib.IllegalCharacterError, findings_lib.CapitalizationError
         ]))
     self.assertFalse(config_universe.IsValid())
+
+  def testConfigUniverseGetEntityTypeNamespace(self):
+    context = findings_lib.FileContext('')
+    type_universe = entity_type_lib.EntityTypeUniverse([])
+    type_universe.AddFinding(
+        findings_lib.IllegalCharacterError('stuff', context))
+    field_universe = field_lib.FieldUniverse([])
+    field_universe.AddFinding(
+        findings_lib.InconsistentFileLocationError('', context))
+    subfield_universe = subfield_lib.SubfieldUniverse([])
+    subfield_universe.AddFinding(
+        findings_lib.CapitalizationError('Hi', context))
+    state_universe = state_lib.StateUniverse([])
+    unit_universe = unit_lib.UnitUniverse([])
+    config_universe = presubmit_validate_types_lib.ConfigUniverse(
+        subfield_universe=subfield_universe, field_universe=field_universe,
+        entity_type_universe=type_universe, state_universe=state_universe,
+        unit_universe=unit_universe)
+
+    entity_type_namespace = config_universe.GetEntityTypeNamespace('NONEXISTENT')
+
+    self.assertIsNone(entity_type_namespace)
+
+  def testConfigUniverseGetEntityType(self):
+    context = findings_lib.FileContext('')
+    type_universe = entity_type_lib.EntityTypeUniverse([])
+    type_universe.AddFinding(
+        findings_lib.IllegalCharacterError('stuff', context))
+    field_universe = field_lib.FieldUniverse([])
+    field_universe.AddFinding(
+        findings_lib.InconsistentFileLocationError('', context))
+    subfield_universe = subfield_lib.SubfieldUniverse([])
+    subfield_universe.AddFinding(
+        findings_lib.CapitalizationError('Hi', context))
+    state_universe = state_lib.StateUniverse([])
+    unit_universe = unit_lib.UnitUniverse([])
+    config_universe = presubmit_validate_types_lib.ConfigUniverse(
+        subfield_universe=subfield_universe, field_universe=field_universe,
+        entity_type_universe=type_universe, state_universe=state_universe,
+        unit_universe=unit_universe)
+
+    entity_type = config_universe.GetEntityType('NONEXISTENT', 'NONEXISTENT')
+
+    self.assertIsNone(entity_type)
 
   def testValidateUndefinedFields(self):
     # bad3_file declares an undefined field
@@ -522,7 +567,6 @@ class PresubmitValidateTypesTest(absltest.TestCase):
     self.assertIn(field1, str(findings[0]))
     self.assertIsInstance(findings[1], findings_lib.RemovedFieldWarning)
     self.assertIn(field2, str(findings[1]))
-
 
 if __name__ == '__main__':
   absltest.main()

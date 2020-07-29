@@ -18,14 +18,6 @@
 ####      See model_hvac.md for detailed definitions      ####
 ##############################################################
 
-EQUIPMENT:
-  id: "9693662434551660544"
-  description: "A piece of equipment."
-  is_abstract: true
-  opt_uses:
-  - manufacturer_label
-  - model_label
-
 VAV:
   id: "6599610325710929920"
   description: "Tag for terminal units with variable volume control."
@@ -225,22 +217,4 @@ HUM:
   implements:
   - EQUIPMENT
 
-NO_ANALYSIS:
-  id: "10044943205486559232"
-  description: "Devices which are not useful in and of themselves. Can be ignored by analysis."
-  is_abstract: true
 
-DEPRECATED:
-  id: "10951011155518160896"
-  description: "Used to clean up deprecated types."
-  is_abstract: true
-
-REMAP_REQUIRED:
-  id: "9663931640136597504"
-  description: "A type which requires some remapping in order to convert it to a standard type."
-  is_abstract: true
-
-INCOMPLETE:
-  id: "4665780478685478912"
-  description: "A known incomplete type."
-  is_abstract: true

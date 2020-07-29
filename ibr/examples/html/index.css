@@ -45,7 +45,7 @@ canvas { display: block; }
 
 .sidebar {
   height: 100%;
-  width: 250px;
+  width: 300px;
   position: fixed;
   z-index: 1;
   top: 0;
@@ -56,5 +56,5 @@ canvas { display: block; }
 }
 
 .main {
-  margin-left: 250px;
+  margin-left: 300px;
 }
