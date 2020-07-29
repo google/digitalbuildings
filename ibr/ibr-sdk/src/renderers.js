@@ -12,7 +12,7 @@ import {BufferGeometryUtils} from
   './../node_modules/three/examples/jsm/utils/BufferGeometryUtils.js';
 import {IBRObject} from './IBRObject.js';
 import {Colors} from './colors.js';
-import {ONE_POINT, TWO_POINTS, FLOOR_HEIGHT} from './constants.js';
+import {ONE_POINT, TWO_POINTS, FLOOR_HEIGHT, BLOCKING_GRID_NAME} from './constants.js';
 
 /**
  * Generate Scene configured to display IBR data.
@@ -66,7 +66,6 @@ function generateScene(parentElement) {
 function init(ibrRawData) {
   const ibrData = InternalBuildingRepresentation.read(
       new Pbf(ibrRawData));
-  console.log(ibrData);
   const ibrObject = new IBRObject(ibrData);
   return ibrObject;
 }
@@ -164,7 +163,7 @@ function renderBlockingGrid(structure, structureIndex, scene) {
         getLineCoordinates();
     const visualizationObjects = renderVisualization(visualizationPH,
         structureIndex, scene);
-    objects['Blocking Grid'] = visualizationObjects;
+    objects[BLOCKING_GRID_NAME] = visualizationObjects;
   }
 
   return objects;

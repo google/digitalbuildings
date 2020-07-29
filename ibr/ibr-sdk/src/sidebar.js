@@ -8,7 +8,7 @@
 
 import {IBRObject} from './IBRObject.js';
 import {renderSingleIBRStructure, render} from './renderers.js';
-import {SPACE} from './constants.js';
+import {SPACE, BLOCKING_GRID_NAME} from './constants.js';
 
 /**
  * Create a side bar for visualization and structure navigation.
@@ -103,7 +103,7 @@ function drawSingleStructureSidebar(structure, structureName, scene) {
   // Create checkbox for Blocking Grid
   if (structure['blockingGrid']) {
     createCheckboxForVisualization(
-        structure['blockingGrid']['Blocking Grid'], 'Blocking Grid',
+        structure['blockingGrid'][BLOCKING_GRID_NAME], BLOCKING_GRID_NAME,
         structureName);
   }
 
