@@ -12,7 +12,8 @@ import {BufferGeometryUtils} from
   './../node_modules/three/examples/jsm/utils/BufferGeometryUtils.js';
 import {IBRObject} from './IBRObject.js';
 import {Colors} from './colors.js';
-import {ONE_POINT, TWO_POINTS, FLOOR_HEIGHT} from './constants.js';
+import {ONE_POINT, TWO_POINTS, FLOOR_HEIGHT, BLOCKING_GRID_NAME}
+  from './constants.js';
 
 /**
  * Generate Scene configured to display IBR data.
@@ -102,9 +103,8 @@ function render(ibrObject, structureIndex, parentElement) {
  */
 function renderSingleIBRStructure(ibrObject, structureIndex, scene) {
   const structure = {};
-  if (ibrObject.hasBlockingGrid) {
-    structure['blockingGridID'] = ibrObject.getBlockingGrid().getID();
-  }
+  structure['blockingGrid'] = renderBlockingGrid(ibrObject,
+      structureIndex, scene);
   // Visualizations of current structure
   structure['visualizations'] = renderVisualizations(ibrObject,
       structureIndex, scene);
@@ -125,7 +125,7 @@ function renderSingleIBRStructure(ibrObject, structureIndex, scene) {
  corresponding list of three.js Line objects.
  */
 function renderVisualizations(structure, structureIndex, scene) {
-  const objects = {};
+  const objects = new Map();
 
   // Check if structure contains any visualization data
   if (!structure.hasVisualizations ||
@@ -133,22 +133,38 @@ function renderVisualizations(structure, structureIndex, scene) {
     return objects;
   }
 
-  // Render blocking grid in the structure
-  if (structure.hasBlockingGrid) {
-    const visualizationPH = structure.getBlockingGrid().getVisualization().
-        getLineCoordinates();
-    const visualizationObjects = renderVisualization(visualizationPH,
-        structureIndex, scene);
-    objects[structure.getBlockingGrid().getVisualization().getID()] =
-    visualizationObjects;
-  }
-
   // Render visualizations in the structure
   for (const visualization of structure.getVisualizations().values()) {
     const visualizationPH = visualization.getLineCoordinates();
     const visualizationObjects = renderVisualization(visualizationPH,
         structureIndex, scene);
-    objects[visualization.getID()] = visualizationObjects;
+    objects.set(visualization.getID(), visualizationObjects);
+  }
+
+  return objects;
+}
+
+/**
+ * Render blocking grid in the given IBRObject.
+ * @param {IBRObject} structure IBRObject generated from current
+ structure data.
+ * @param {number} structureIndex overall index of the structure.
+ * @param {Object} scene The Scene Object that all THREE objects are
+  rendered on.
+ * @return {Map.<String, List.<Object>>} objects Blocking grid name and
+ corresponding list of three.js Line objects.
+ */
+function renderBlockingGrid(structure, structureIndex, scene) {
+  let objects = null;
+
+  // Render blocking grid in the structure
+  if (structure.hasBlockingGrid) {
+    objects = {};
+    const visualizationPH = structure.getBlockingGrid().getVisualization().
+        getLineCoordinates();
+    const visualizationObjects = renderVisualization(visualizationPH,
+        structureIndex, scene);
+    objects[BLOCKING_GRID_NAME] = visualizationObjects;
   }
 
   return objects;

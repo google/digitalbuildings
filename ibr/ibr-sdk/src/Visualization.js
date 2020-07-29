@@ -1,6 +1,3 @@
-// the length of one 3D coordinates (x, y, z) in the coordinate lookup float
-// array
-//const ONE_POINT = 3;
 import {ONE_POINT} from './constants.js';
 import {swap32} from './util.js';
 
