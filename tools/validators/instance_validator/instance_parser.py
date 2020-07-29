@@ -114,12 +114,23 @@ def parse_yaml(filename):
     translation = yaml[top_name][_TRANSLATION]
     translation.revalidate(_TRANSLATION_SCHEMA)
 
-    # TODO can this be automatically verified based on ontology?
     # if translation is not UDMI compliant
-    if translation.data != _COMPLIANT:
+    if isinstance(translation.data, str):
+      if translation.data != _COMPLIANT:
+        print('Translation compliance improperly defined')
+        return None
+    else:
       translation_keys = translation.keys()
 
       for key in translation_keys:
-        translation[key].revalidate(_TRANSLATION_DATA_SCHEMA)
+        try:
+          translation[key].revalidate(_TRANSLATION_DATA_SCHEMA)
+        except (ruamel.yaml.parser.ParserError,
+                ruamel.yaml.scanner.ScannerError,
+                syaml.exceptions.YAMLValidationError,
+                syaml.exceptions.DuplicateKeysDisallowed,
+                syaml.exceptions.InconsistentIndentationDisallowed) as e:
+          print(e)
+          return None
 
   return yaml

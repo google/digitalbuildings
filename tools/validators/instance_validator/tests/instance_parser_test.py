@@ -48,5 +48,18 @@ class ParserTest(absltest.TestCase):
         _TESTCASE_PATH, 'GOOD', 'good_building_type.yaml'))
     self.assertTrue(parsed_yaml.data)
 
+  def testInstanceValidatorParseProperConnections(self):
+    parsed_yaml = instance_parser.parse_yaml(os.path.join(
+        _TESTCASE_PATH, 'GOOD', 'good_building_connections.yaml'))
+    self.assertTrue(parsed_yaml.data)
+
+  def testInstanceValidatorDetectImproperTranslationCompliance(self):
+    self.assertIsNone(instance_parser.parse_yaml(os.path.join(
+        _TESTCASE_PATH, 'BAD', 'bad_translation_compliant.yaml')))
+
+  def testInstanceValidatorDetectImproperTranslationKeys(self):
+    self.assertIsNone(instance_parser.parse_yaml(os.path.join(
+        _TESTCASE_PATH, 'BAD', 'bad_translation_keys.yaml')))
+
 if __name__ == '__main__':
   absltest.main()

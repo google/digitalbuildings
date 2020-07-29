@@ -62,25 +62,6 @@ class EntityInstance(findings_lib.Findings):
 
     return True
 
-  def _TranslationDeviceMapHasProperKeys(self, device_map):
-    """Determine whether the translation map of a device has proper keys.
-
-      Returns:
-        Returns boolean for whether a device translation follows one of the
-        valid provided formats.
-    """
-    units_long_form = set(['present_value', 'units'])
-    units_short_form = set(['present_value', 'unit_values'])
-    states = set(['present_value', 'states'])
-    valid_keysets = [units_short_form, units_long_form, states]
-
-    device_map_keys = device_map.keys()
-    for keyset in valid_keysets:
-      if device_map_keys.intersection(keyset) == set():
-        return True
-
-    return False
-
   def _ValidateTranslation(self):
     """Uses information from the generated ontology universe to validate
     an entity's translation if it exists.
@@ -93,10 +74,11 @@ class EntityInstance(findings_lib.Findings):
       return True
 
     translation_body = self.entity[self.translation_key]
-
-    # check if translation is fully UDMI compliant
-    if translation_body == self.translation_compliant:
-      return True
+    if isinstance(translation_body, str):
+      if translation_body == self.translation_compliant:
+        return True
+      else:
+        return False
 
     # iterate through each translation device key and determine its form
     for device_name in translation_body.keys():
@@ -105,17 +87,22 @@ class EntityInstance(findings_lib.Findings):
         continue
 
       device_map = translation_body[device_name]
-      if not self._TranslationDeviceMapHasProperKeys(device_map):
-        print('Translation has improper keys:', device_name)
-        return False
+      valid_units = self.universe.unit_universe.GetUnitsMap('').keys()
+      valid_states = self.universe.state_universe.GetStatesMap('').keys()
 
       # three remaining possibilities for translation format
       if 'unit_values' in device_map.keys():
-        # check that each of the `unit_value` map keys are proper units
-        pass
+        unit_values_map = device_map['unit_values']
+        for unit in unit_values_map.keys():
+          print(unit)
+          if unit not in valid_units:
+            return False
       elif 'states' in device_map.keys():
         # check that the `states` map keys are proper states
-        pass
+        states_map = device_map['states']
+        for state in states_map.keys():
+          if state not in valid_states:
+            return False
       elif 'units' in device_map.keys():
         # check that the unit map has keys named `keys`, `values`, and that `values` map keys are proper units
         pass
@@ -137,4 +124,4 @@ class EntityInstance(findings_lib.Findings):
         print('Missing required key:', req_key)
         return False
 
-    return self._ValidateType()
+    return self._ValidateType() and self._ValidateTranslation()
