@@ -8,7 +8,7 @@
 
 import {IBRObject} from './IBRObject.js';
 import {renderSingleIBRStructure, render} from './renderers.js';
-import {SPACE, BLOCKING_GRID_NAME} from './constants.js';
+import {SPACE, BLOCKING_GRID_NAME, BOUNDARY_NAME} from './constants.js';
 
 /**
  * Create a side bar for visualization and structure navigation.
@@ -34,7 +34,7 @@ function createSidebar(ibrObject, parentElement, scene) {
   });
   // root structure index 0
   const structure = renderSingleIBRStructure(ibrObject, 0, scene);
-  drawSingleStructureSidebar(structure, ibrObject.getName(), scene);
+  drawSingleStructureSidebar(structure, ibrObject.getName(), 0, scene);
 }
 
 /**
@@ -96,14 +96,21 @@ function createCheckboxForVisualization(visualization, visualizationName,
  * @param {Object} structure the structure generated from
  renderSingleIBRStructure() that will be added to sidebar.
  * @param {String} structureName the name of the structure being processed.
+ * @param {Number} level The level of the parent structure.
  * @param {Object} scene The Scene Object that all THREE objects are
   rendered on.
  */
-function drawSingleStructureSidebar(structure, structureName, scene) {
+function drawSingleStructureSidebar(structure, structureName, level, scene) {
   // Create checkbox for Blocking Grid
   if (structure['blockingGrid']) {
     createCheckboxForVisualization(
         structure['blockingGrid'][BLOCKING_GRID_NAME], BLOCKING_GRID_NAME,
+        structureName);
+  }
+
+  if (structure['boundary']) {
+    createCheckboxForVisualization(
+        structure['boundary'][BOUNDARY_NAME], BOUNDARY_NAME,
         structureName);
   }
 
@@ -171,15 +178,21 @@ function drawSingleStructureSidebar(structure, structureName, scene) {
     ul.setAttribute('class', 'nested');
     ul.setAttribute('id', curIBRObject.getName());
     li.appendChild(ul);
+    let height;
+    if (curIBRObject.getStructuralType() === SPACE) {
+      height = level;
+    } else {
+      height = structureIndex;
+    }
     label.addEventListener('click', function() {
       label.parentElement.querySelector('.nested').classList.toggle('active');
       label.classList.toggle('expanded-arrow');
       if (label.getAttribute('value') == null) {
         event.stopPropagation();
         const curStructure = renderSingleIBRStructure(
-            curIBRObject, structureIndex, scene);
+            curIBRObject, height, scene);
         drawSingleStructureSidebar(curStructure,
-            curIBRObject.getName(), scene);
+            curIBRObject.getName(), height, scene);
         label.setAttribute('value', '0');
       }
     });

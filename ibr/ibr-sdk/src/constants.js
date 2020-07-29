@@ -17,3 +17,6 @@ export const PARTIAL_FLOOR = 3;
 export const SPACE = 4;
 
 export const BLOCKING_GRID_NAME = 'Blocking Grid';
+export const BOUNDARY_NAME = 'Boundary';
+
+export const ONE_TRIANGLE = 3;

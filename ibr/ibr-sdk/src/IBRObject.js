@@ -8,7 +8,21 @@ import {swap32} from './util.js';
  */
 function IBRObject(pbfDecodedJsonObject) {
   // Check if structure contains any boundary data
-  this.boundary = pbfDecodedJsonObject.boundary;
+  if (pbfDecodedJsonObject.boundary === null) {
+    this.hasBoundary = false;
+  } else {
+    this.hasBoundary = true;
+    // Decode Indices from data.visualization[].coordinate_indices
+    const boundaryList = pbfDecodedJsonObject.boundary;
+    const boundaryBuffer = boundaryList.buffer.slice(
+        boundaryList.byteOffset,
+        boundaryList.byteOffset + boundaryList.length);
+    const boundaryRange = new Uint32Array(boundaryBuffer);
+    for (let i = 0; i < boundaryRange.length; i++) {
+      boundaryRange[i] = swap32(boundaryRange[i]);
+    }
+    this.boundary = boundaryRange;
+  }
 
   this.connections = pbfDecodedJsonObject.connections;
 
@@ -140,6 +154,18 @@ Object.assign(IBRObject.prototype, {
    */
   getBlockingGrid: function() {
     return this.blockingGrid;
+  },
+
+  /**
+   * Get boundary.
+   * @return {List.<Number>} boundary of the IBRObject.
+   */
+  getBoundary: function() {
+    if (this.hasBoundary) {
+      return this.boundary;
+    } else {
+      return null;
+    }
   },
 
   /**

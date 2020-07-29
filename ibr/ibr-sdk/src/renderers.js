@@ -12,7 +12,9 @@ import {BufferGeometryUtils} from
   './../node_modules/three/examples/jsm/utils/BufferGeometryUtils.js';
 import {IBRObject} from './IBRObject.js';
 import {Colors} from './colors.js';
-import {ONE_POINT, TWO_POINTS, FLOOR_HEIGHT, BLOCKING_GRID_NAME} from './constants.js';
+// import {earcut} from './../node_modules/earcut/dist/earcut.dev.js';
+import {ONE_POINT, TWO_POINTS, FLOOR_HEIGHT, BLOCKING_GRID_NAME, BOUNDARY_NAME,
+  ONE_TRIANGLE} from './constants.js';
 
 /**
  * Generate Scene configured to display IBR data.
@@ -104,6 +106,8 @@ function renderSingleIBRStructure(ibrObject, structureIndex, scene) {
   const structure = {};
   structure['blockingGrid'] = renderBlockingGrid(ibrObject,
       structureIndex, scene);
+  structure['boundary'] = renderBoundary(ibrObject,
+      structureIndex, scene);
   // Visualizations of current structure
   structure['visualizations'] = renderVisualizations(ibrObject,
       structureIndex, scene);
@@ -135,7 +139,7 @@ function renderVisualizations(structure, structureIndex, scene) {
   // Render visualizations in the structure
   for (const visualization of structure.getVisualizations().values()) {
     const visualizationPH = visualization.getLineCoordinates();
-    const visualizationObjects = renderVisualization(visualizationPH,
+    const visualizationObjects = renderLines(visualizationPH,
         structureIndex, scene);
     objects.set(visualization.getID(), visualizationObjects);
   }
@@ -161,9 +165,43 @@ function renderBlockingGrid(structure, structureIndex, scene) {
     objects = {};
     const visualizationPH = structure.getBlockingGrid().getVisualization().
         getLineCoordinates();
-    const visualizationObjects = renderVisualization(visualizationPH,
+    const visualizationObjects = renderLines(visualizationPH,
         structureIndex, scene);
     objects[BLOCKING_GRID_NAME] = visualizationObjects;
+  }
+
+  return objects;
+}
+/**
+ * Render boundary in the given IBRObject.
+ * @param {IBRObject} structure IBRObject generated from current
+ structure data.
+ * @param {number} structureIndex overall index of the structure.
+ * @param {Object} scene The Scene Object that all THREE objects are
+  rendered on.
+ * @return {Map.<String, List.<Object>>} objects Boundary name and
+ corresponding list of three.js Line objects.
+ */
+function renderBoundary(structure, structureIndex, scene) {
+  let objects = null;
+
+  // Render boundary in the structure
+  if (structure.hasBoundary) {
+    objects = {};
+    const coordsRangeItem = structure.getBoundary();
+    const visualizationPH = [];
+    for (let i = 0; i < coordsRangeItem.length; i += 2) {
+      const coordsLine = [];
+      for (let j = coordsRangeItem[i]; j <= coordsRangeItem[i + 1];
+        j += ONE_POINT) {
+        coordsLine.push(structure.getCoordinates()[j]);
+        coordsLine.push(structure.getCoordinates()[j + 1]);
+        coordsLine.push(structure.getCoordinates()[j + 2]);
+      }
+      visualizationPH.push(coordsLine);
+    }
+    objects[BOUNDARY_NAME] = renderLines(visualizationPH,
+        structureIndex, scene, true);
   }
 
   return objects;
@@ -177,11 +215,16 @@ function renderBlockingGrid(structure, structureIndex, scene) {
  * @param {number} structureIndex overall index of the structure.
  * @param {Object} scene The Scene Object that all THREE objects are
   rendered on.
+ * @param {Boolean} isBoundary If the lines currently being rendered are
+ from the boundary field of the ibrObject.
  * @return {List.<Object>} objects List of three.js Line objects.
  */
-function renderVisualization(visualizationCoordinates, structureIndex, scene) {
+function renderLines(visualizationCoordinates, structureIndex, scene,
+    isBoundary=false) {
   // Render data into three.js objects
-  const material = new THREE.LineBasicMaterial({color: Colors.random()});
+  const color = Colors.random();
+  const lineMaterial = new THREE.LineBasicMaterial({color: color});
+  const meshMaterial = new THREE.MeshBasicMaterial({color: color});
   const objects = [];
   const lineSegmentsGeometry = [];
   for (const line of visualizationCoordinates) {
@@ -198,7 +241,17 @@ function renderVisualization(visualizationCoordinates, structureIndex, scene) {
       // group geometries for performance improvement
       lineSegmentsGeometry.push(geometry);
     } else {
-      const lineLoop = new THREE.LineLoop(geometry, material);
+      let lineLoop = null;
+      //      planeGeom.vertices = linePoints;
+      //      planeGeom.computeFaceNormals();
+      //      planeGeom.computeVertexNormals();
+      //      const mesh = createPolygon(linePoints, material);
+      if (isBoundary) {
+        lineLoop = createPolygon(linePoints, meshMaterial);
+        //        lineLoop = mockTriangle();
+      } else {
+        lineLoop = new THREE.LineLoop(geometry, lineMaterial);
+      }
       lineLoop.visible = false;
       scene.add(lineLoop);
       objects.push(lineLoop);
@@ -207,12 +260,45 @@ function renderVisualization(visualizationCoordinates, structureIndex, scene) {
   if (lineSegmentsGeometry.length > 0) {
     const geometries = BufferGeometryUtils.mergeBufferGeometries(
         lineSegmentsGeometry);
-    const lineSegments = new THREE.LineSegments(geometries, material);
+    const lineSegments = new THREE.LineSegments(geometries, lineMaterial);
     lineSegments.visible = false;
     scene.add(lineSegments);
     objects.push(lineSegments);
   }
   return objects;
+}
+
+/**
+ * Create Polygon Mesh Object from list of vertices.
+ * @param {List.<Vector3>} poly List of vertices of the polygon.
+ * @param {Object} material The material Mesh is going to be rendered in.
+ * @return {Object} Polygon Mesh Object generated from vertices.
+ */
+function createPolygon(poly, material) {
+  const shape = new THREE.Geometry();
+  shape.vertices = poly;
+  shape.faces = triangulatePoints(poly);
+  return new THREE.Mesh(shape, material);
+}
+
+/**
+ * Triangulate given vertices.
+ * @param {List.<Vector3>} poly List of vertices of the polygon.
+ * @return {List.<Face3>} faces List of triangles of the triangulation
+ of the given vertices.
+ */
+function triangulatePoints(poly) {
+  const pointsXZ = [];
+  for (const point of poly) {
+    pointsXZ.push(point.x, point.z * -1);
+  }
+  const triangles = earcut(pointsXZ);
+  const faces = [];
+  for (let i = 0; i < triangles.length; i+=ONE_TRIANGLE) {
+    faces.push(new THREE.Face3(triangles[i], triangles[i+1],
+        triangles[i+2]));
+  }
+  return faces;
 }
 
 /**
