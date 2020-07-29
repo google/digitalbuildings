@@ -8,7 +8,7 @@
 
 import {IBRObject} from './IBRObject.js';
 import {renderSingleIBRStructure, render} from './renderers.js';
-import {SPACE, BLOCKING_GRID_NAME} from './constants.js';
+import {BLOCKING_GRID_NAME} from './constants.js';
 
 /**
  * Create a side bar for visualization and structure navigation.
@@ -156,7 +156,8 @@ function drawSingleStructureSidebar(structure, structureName, scene) {
   structure['structures'].length; structureIndex++) {
     let parentTagName = '';
     const curIBRObject = new IBRObject(structure['structures'][structureIndex]);
-    if (curIBRObject.getStructuralType() === SPACE) {
+    if (curIBRObject.getStructuralType() ===
+    InternalBuildingRepresentation.StructuralType['SPACE']) {
       parentTagName = spaceUlName;
       spaceLi.style.display = 'block';
     } else {
