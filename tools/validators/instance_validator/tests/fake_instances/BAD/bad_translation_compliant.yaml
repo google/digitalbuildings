@@ -12,6 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# This is an invalid config file because the content of translation needs to
+# case-sensitive match the string `COMPLIANT` if the translation is compliant.
+
 UK-LON-S2:
   type: FACILITIES/BUILDING
   id: FACILITIES/123456

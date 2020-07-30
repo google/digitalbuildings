@@ -12,6 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# This config file is invalid because the subkeys of the `unit_values` key
+# need to be members of the units ontology. `invalid_unit` is not.
+
 UK-LON-S2:
   type: FACILITIES/BUILDING
   id: FACILITIES/123456
