@@ -398,14 +398,14 @@ Expanding the VAV definition from the previous section, and adding some lights:
 VAV-32:
   type: HVAC/VAV
   connections:
-  - UK-LON-6PS-1: CONTAINS
-  - AHU-123: FEEDS
+    UK-LON-6PS-1: CONTAINS
+    AHU-123: FEEDS
 
 LF-123:
   type: LIGHTING/LIGHTING_FIXTURE
   connections:
-  - UK-LON-6PS-1-1A2: CONTAINS
-  - LCG-234: HAS_PART
+    UK-LON-6PS-1-1A2: CONTAINS
+    LCG-234: HAS_PART
 ```
 
 ### Zones and Control Groups
@@ -422,15 +422,15 @@ Here are some examples:
 ZONE-123:
   type: HVAC/ZONE
   connections:
-  - UK-LON-6PS-1:CONTAINS
-  - VAV-123: FEEDS
+    UK-LON-6PS-1:CONTAINS
+    VAV-123: FEEDS
 
 # Lighting Control Group
 LCG-234:
   type: LIGHTING/SWITCH_GROUP
   connections:
-  - UK-LON-6PS-1: CONTAINS
-  - SW-456: CONTROLS
+    UK-LON-6PS-1: CONTAINS
+    SW-456: CONTROLS
 ```
 
 ### Relationships
@@ -441,8 +441,7 @@ always defined on the target of the connection. Here's an example
 
 ## Validation
 The building config can be machine validated for consistency and adherence to
-the rules defined in the data model. This tool is still under development and
-will be added soon.
+the rules defined in the data model. This tool is available [here][https://github.com/google/digitalbuildings/tree/master/tools/validators/instance_validator].
 
 <!-- Footnotes themselves at the bottom. -->
 
