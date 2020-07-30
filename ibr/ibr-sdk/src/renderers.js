@@ -12,7 +12,6 @@ import {BufferGeometryUtils} from
   './../node_modules/three/examples/jsm/utils/BufferGeometryUtils.js';
 import {IBRObject} from './IBRObject.js';
 import {Colors} from './colors.js';
-// import {earcut} from './../node_modules/earcut/dist/earcut.dev.js';
 import {ONE_POINT, TWO_POINTS, FLOOR_HEIGHT, BLOCKING_GRID_NAME, BOUNDARY_NAME,
   ONE_TRIANGLE} from './constants.js';
 
@@ -172,6 +171,7 @@ function renderBlockingGrid(structure, structureIndex, scene) {
 
   return objects;
 }
+
 /**
  * Render boundary in the given IBRObject.
  * @param {IBRObject} structure IBRObject generated from current
