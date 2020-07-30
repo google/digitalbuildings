@@ -20,12 +20,12 @@ they are confusing feel free to post an issue in the project.
 - [Model Instance Configuration](#model-instance-configuration)
   * [Key Concepts](#key-concepts)
   * [Typical Data Elements](#typical-data-elements)
-  * [Configuration Detail {#configuration-detail}](#configuration-detail---configuration-detail-)
-    + [Contents {#contents}](#contents---contents-)
+  * [Configuration Detail](#configuration-detail)
+    + [Contents](#contents)
     + [Config Format](#config-format)
     + [Spaces](#spaces)
     + [Devices](#devices)
-      - [Reporting (Physical) Devices {#reporting-physical-devices}](#reporting--physical--devices---reporting-physical-devices-)
+      - [Reporting Physical Devices](#reporting-physical-devices)
         * [Defining Translations](#defining-translations)
           + [Translation Shortcuts](#translation-shortcuts)
           + [UDMI Short form](#udmi-short-form)
@@ -34,7 +34,7 @@ they are confusing feel free to post an issue in the project.
       - [Device Relationships](#device-relationships)
     + [Zones and Control Groups](#zones-and-control-groups)
     + [Relationships](#relationships)
-  * [Validation (Coming Soon)](#validation--coming-soon-)
+  * [Validation](#validation)
   * [Notes](#notes)
 
 ## Key Concepts
@@ -102,9 +102,9 @@ building, some elements are more or less expected in every model:
     space, if known).
 *   `CONTAINS` relationships between Buildings and floors, and floors and rooms.
 
-## Configuration Detail {#configuration-detail}
+## Configuration Detail
 
-### Contents {#contents}
+### Contents
 
 Each configuration file should contain the contents for one building (or other
 logical division of your universe). The reason for this is that the definitions
@@ -211,7 +211,7 @@ Types for spaces are contained in the `FACILITIES` namespace of the ontology.
 
 ### Devices
 
-#### Reporting (Physical) Devices {#reporting-physical-devices}
+#### Reporting Physical Devices
 
 When sending data from a building via Cloud IoT, a reporting device is any
 device with its own entry in Cloud Device Manager (CDM)[^1].
@@ -439,7 +439,7 @@ System and spatial relationships are defined with the `connections` block.
 Connection definitions work the same way for all entities, with connections
 always defined on the target of the connection. Here's an example
 
-## Validation (Coming Soon)
+## Validation
 The building config can be machine validated for consistency and adherence to
 the rules defined in the data model. This tool is still under development and
 will be added soon.
