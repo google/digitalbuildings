@@ -18,7 +18,7 @@ aggregation:
   min: "Minimum value (e.g. Min_Ventilation_Air_Flow_Setpoint)"
   total: "Sum total of some set of values (e.g. total_request_heating_count)"
 component:
-  ballast: "a type of electrical resistor or reactance, fixed in-line with the circuits that supply mains power to a light bulb."
+  ballast: "An electrical ballast is a device placed in series with a load to limit the amount of current in an electrical circuit. Commonly a component of light fixtures."
   coil: "Component that exchanges heat between two media streams."
   compressor: "Component which drives refrigerant compression (and thus cooling processes) within a device or system."
   condenser: "The component of a refrigeration system that condenses refrigerant."
@@ -37,7 +37,7 @@ component:
   guidevane: "Control vanes that meter refrigerant (on a centrifugal chiller) or air (on an AHU)."
   heater: "Component which provides heat to media."
   humidifier: "Component which humidifies."
-  lighting: "artificial light source devices or natural illumination by capturing daylight."
+  light: "Artificial light source devices or natural illumination by capturing daylight."
   pump: "Component used for the distribution of liquid media."
   shade: "Window covering."
   tank : "Storage device for media."
