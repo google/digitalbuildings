@@ -6,6 +6,7 @@ import {Visualization} from './Visualization.js';
  * @param {JSONObject} pbfDecodedJsonObject JSON decoded from input IBR file.
  */
 function IBRObject(pbfDecodedJsonObject) {
+  // Check if structure contains any boundary data
   this.boundary = pbfDecodedJsonObject.boundary;
 
   this.connections = pbfDecodedJsonObject.connections;
@@ -106,6 +107,14 @@ Object.assign(IBRObject.prototype, {
    */
   getSubStructures: function() {
     return this.subStructures;
+  },
+
+  /**
+   * Get the structural type of the IBRObject.
+   * @return {Number} structural type of the IBRObject.
+   */
+  getStructuralType: function() {
+    return this.structuralType;
   },
 
   /**
