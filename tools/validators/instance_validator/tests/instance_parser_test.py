@@ -61,5 +61,9 @@ class ParserTest(absltest.TestCase):
     self.assertIsNone(instance_parser.parse_yaml(os.path.join(
         _TESTCASE_PATH, 'BAD', 'bad_translation_keys.yaml')))
 
+  def testInstanceValidatorDetectImproperUnitsKeys(self):
+    self.assertIsNone(instance_parser.parse_yaml(os.path.join(
+        _TESTCASE_PATH, 'BAD', 'bad_translation_units_format.yaml')))
+
 if __name__ == '__main__':
   absltest.main()

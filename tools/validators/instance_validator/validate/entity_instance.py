@@ -74,16 +74,17 @@ class EntityInstance(findings_lib.Findings):
       return True
 
     translation_body = self.entity[self.translation_key]
-    if isinstance(translation_body, str):
-      if translation_body == self.translation_compliant:
+    if isinstance(translation_body.data, str):
+      if translation_body.data == self.translation_compliant:
         return True
       else:
+        print('Invalid translation compliance string', translation_body.data)
         return False
 
     # iterate through each translation device key and determine its form
     for device_name in translation_body.keys():
       # check if keys are UDMI compliant
-      if isinstance(translation_body[device_name], str):
+      if isinstance(translation_body[device_name].data, str):
         continue
 
       device_map = translation_body[device_name]
@@ -94,18 +95,30 @@ class EntityInstance(findings_lib.Findings):
       if 'unit_values' in device_map.keys():
         unit_values_map = device_map['unit_values']
         for unit in unit_values_map.keys():
-          print(unit)
           if unit not in valid_units:
+            print('Invalid translation unit', unit)
             return False
       elif 'states' in device_map.keys():
-        # check that the `states` map keys are proper states
         states_map = device_map['states']
         for state in states_map.keys():
           if state not in valid_states:
+            print('Invalid translation state', state)
             return False
       elif 'units' in device_map.keys():
-        # check that the unit map has keys named `keys`, `values`, and that `values` map keys are proper units
-        pass
+        # check that the unit map has keys named `keys`, `values`
+        units_map = device_map['units']
+        if 'key' not in units_map.keys():
+          print('Invalid units translation is missing key')
+          return False
+        if 'values' not in units_map.keys():
+          print('Invalid units translation is missing values')
+          return False
+
+        unit_values_map = units_map['values']
+        for unit in unit_values_map.keys():
+          if unit not in valid_units:
+            print('Invalid translation unit', unit)
+            return False
       else:
         print('Translation has improper keys:', device_name)
         return False
