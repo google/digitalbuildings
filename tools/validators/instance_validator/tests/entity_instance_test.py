@@ -33,7 +33,7 @@ class EntityInstanceTest(absltest.TestCase):
     self.universe = generate_universe.BuildUniverse()
 
   def testValidateGoodExample(self):
-    parsed, err = instance_parser.parse_yaml(
+    parsed, _ = instance_parser.parse_yaml(
         os.path.join(_TESTCASE_PATH,
                      'GOOD',
                      'good_building_type.yaml'))
@@ -47,7 +47,7 @@ class EntityInstanceTest(absltest.TestCase):
       self.fail('exception incorrectly raised')
 
   def testValidateBadEntityTypeFormat(self):
-    parsed, err = instance_parser.parse_yaml(
+    parsed, _ = instance_parser.parse_yaml(
         os.path.join(_TESTCASE_PATH,
                      'BAD',
                      'bad_building_type.yaml'))
@@ -61,7 +61,7 @@ class EntityInstanceTest(absltest.TestCase):
       self.fail('exception not raised')
 
   def testValidateBadEntityNamespace(self):
-    parsed, err = instance_parser.parse_yaml(
+    parsed, _ = instance_parser.parse_yaml(
         os.path.join(_TESTCASE_PATH,
                      'BAD',
                      'bad_building_type_namespace.yaml'))
@@ -75,7 +75,7 @@ class EntityInstanceTest(absltest.TestCase):
       self.fail('exception not raised')
 
   def testValidateBadEntityType(self):
-    parsed, err = instance_parser.parse_yaml(
+    parsed, _ = instance_parser.parse_yaml(
         os.path.join(_TESTCASE_PATH,
                      'BAD',
                      'bad_building_type_entity.yaml'))
@@ -89,7 +89,7 @@ class EntityInstanceTest(absltest.TestCase):
       self.fail('exception not raised')
 
   def testValidateCompliantTranslation(self):
-    parsed, err = instance_parser.parse_yaml(
+    parsed, _ = instance_parser.parse_yaml(
         os.path.join(_TESTCASE_PATH,
                      'GOOD',
                      'good_translation_compliant.yaml'))
@@ -103,7 +103,7 @@ class EntityInstanceTest(absltest.TestCase):
       self.fail('exception incorrectly raised')
 
   def testValidateMultipleCompliantTranslation(self):
-    parsed, err = instance_parser.parse_yaml(
+    parsed, _ = instance_parser.parse_yaml(
         os.path.join(_TESTCASE_PATH,
                      'GOOD',
                      'good_translation_multiple_compliant.yaml'))
@@ -117,7 +117,7 @@ class EntityInstanceTest(absltest.TestCase):
       self.fail('exception incorrectly raised')
 
   def testValidateTranslationUnitValues(self):
-    parsed, err = instance_parser.parse_yaml(
+    parsed, _ = instance_parser.parse_yaml(
         os.path.join(_TESTCASE_PATH,
                      'GOOD',
                      'good_translation_unit_values.yaml'))
@@ -131,7 +131,7 @@ class EntityInstanceTest(absltest.TestCase):
       self.fail('exception incorrectly raised')
 
   def testValidateTranslationStates(self):
-    parsed, err = instance_parser.parse_yaml(
+    parsed, _ = instance_parser.parse_yaml(
         os.path.join(_TESTCASE_PATH,
                      'GOOD',
                      'good_translation_states.yaml'))
@@ -145,7 +145,7 @@ class EntityInstanceTest(absltest.TestCase):
       self.fail('exception incorrectly raised')
 
   def testValidateTranslationStatesAndUnitValues(self):
-    parsed, err = instance_parser.parse_yaml(
+    parsed, _ = instance_parser.parse_yaml(
         os.path.join(_TESTCASE_PATH,
                      'GOOD',
                      'good_translation_states_and_unit_values.yaml'))
@@ -159,7 +159,7 @@ class EntityInstanceTest(absltest.TestCase):
       self.fail('exception incorrectly raised')
 
   def testValidateTranslationUnits(self):
-    parsed, err = instance_parser.parse_yaml(
+    parsed, _ = instance_parser.parse_yaml(
         os.path.join(_TESTCASE_PATH,
                      'GOOD',
                      'good_translation_units.yaml'))
@@ -173,7 +173,7 @@ class EntityInstanceTest(absltest.TestCase):
       self.fail('exception incorrectly raised')
 
   def testValidateTranslationUnitsAndStates(self):
-    parsed, err = instance_parser.parse_yaml(
+    parsed, _ = instance_parser.parse_yaml(
         os.path.join(_TESTCASE_PATH,
                      'GOOD',
                      'good_translation_units_and_states.yaml'))
@@ -187,7 +187,7 @@ class EntityInstanceTest(absltest.TestCase):
       self.fail('exception incorrectly raised')
 
   def testValidateBadTranslationUnitValues(self):
-    parsed, err = instance_parser.parse_yaml(
+    parsed, _ = instance_parser.parse_yaml(
         os.path.join(_TESTCASE_PATH,
                      'BAD',
                      'bad_translation_unit_values.yaml'))
