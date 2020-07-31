@@ -87,8 +87,8 @@ def _load_yaml_with_schema(filepath, schema):
           ruamel.yaml.scanner.ScannerError,
           syaml.exceptions.YAMLValidationError,
           syaml.exceptions.DuplicateKeysDisallowed,
-          syaml.exceptions.InconsistentIndentationDisallowed) as e:
-    return (None, e)
+          syaml.exceptions.InconsistentIndentationDisallowed) as exception:
+    return (None, exception)
 
 def parse_yaml(filename):
   """Loads an instance YAML file and parses it with
@@ -129,7 +129,7 @@ def parse_yaml(filename):
                 ruamel.yaml.scanner.ScannerError,
                 syaml.exceptions.YAMLValidationError,
                 syaml.exceptions.DuplicateKeysDisallowed,
-                syaml.exceptions.InconsistentIndentationDisallowed) as e:
-          return (None, e)
+                syaml.exceptions.InconsistentIndentationDisallowed) as exception:
+          return (None, exception)
 
   return (yaml, None)
