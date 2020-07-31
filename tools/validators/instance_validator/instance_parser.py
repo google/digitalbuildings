@@ -126,10 +126,10 @@ def parse_yaml(filename):
         try:
           translation[key].revalidate(_TRANSLATION_DATA_SCHEMA)
         except (ruamel.yaml.parser.ParserError,
-                ruamel.yaml.scanner.ScannerError,
                 syaml.exceptions.YAMLValidationError,
                 syaml.exceptions.DuplicateKeysDisallowed,
-                syaml.exceptions.InconsistentIndentationDisallowed) as exception:
+                syaml.exceptions.InconsistentIndentationDisallowed,
+                ruamel.yaml.scanner.ScannerError) as exception:
           return (None, exception)
 
   return (yaml, None)
