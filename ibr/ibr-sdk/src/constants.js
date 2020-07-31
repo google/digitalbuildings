@@ -10,3 +10,6 @@ export const TWO_POINTS = 6;
 export const FLOOR_HEIGHT = 300;
 
 export const BLOCKING_GRID_NAME = 'Blocking Grid';
+export const BOUNDARY_NAME = 'Boundary';
+
+export const ONE_TRIANGLE = 3;

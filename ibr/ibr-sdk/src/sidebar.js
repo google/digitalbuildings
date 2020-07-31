@@ -8,7 +8,7 @@
 
 import {IBRObject} from './IBRObject.js';
 import {renderSingleIBRStructure, render} from './renderers.js';
-import {BLOCKING_GRID_NAME} from './constants.js';
+import {BLOCKING_GRID_NAME, BOUNDARY_NAME} from './constants.js';
 
 /**
  * Create a side bar for visualization and structure navigation.
@@ -16,8 +16,13 @@ import {BLOCKING_GRID_NAME} from './constants.js';
  * @param {HTMLElement} parentElement Parent element to attach the sidebar to.
  * @param {Object} scene The Scene Object that all THREE objects are
   rendered on.
+ * @param {Map.<String, List<Mesh>>} spaceLib Space library stores space
+ name and mesh object(s).
+ * @param {Map.<String, List.<String, Line>>} connectionLib Boundary name and
+ corresponding list of neighbor names and three.js Line object.
  */
-function createSidebar(ibrObject, parentElement, scene) {
+function createSidebar(ibrObject, parentElement, scene, spaceLib,
+    connectionLib) {
   const li = document.createElement('li'); // list element container
   parentElement.appendChild(li);
   const rootSpan = createLabel('span', ibrObject.getName(), li);
@@ -33,8 +38,10 @@ function createSidebar(ibrObject, parentElement, scene) {
     rootSpan.classList.toggle('expanded-arrow');
   });
   // root structure index 0
-  const structure = renderSingleIBRStructure(ibrObject, 0, scene);
-  drawSingleStructureSidebar(structure, ibrObject.getName(), scene);
+  const structure = renderSingleIBRStructure(ibrObject, 0, scene, spaceLib,
+      connectionLib);
+  drawSingleStructureSidebar(structure, ibrObject.getName(), 0, scene,
+      spaceLib, connectionLib);
 }
 
 /**
@@ -67,9 +74,18 @@ function createLabel(tagName, name, parentTag, forId = undefined) {
  processed.
  * @param {String} structureName the name of parent structure of the
  visualization.
+ * @param {Boolean} isBoundary If the visualization currently being rendered is
+ from the boundary field of the ibrObject.
+ * @param {List.<Object>} connections List of connections of the current
+ structure.
+ * @param {Map.<String, List<Mesh>>} spaceLib Space library stores space
+ name and mesh object(s).
+ * @param {Map.<String, List.<String, Line>>} connectionLib Boundary name and
+ corresponding list of neighbor names and three.js Line object.
  */
 function createCheckboxForVisualization(visualization, visualizationName,
-    structureName) {
+    structureName, isBoundary=false, connections=null, spaceLib=null,
+    connectionLib=null) {
   const checkBox = document.createElement('INPUT');
   const div = document.createElement('DIV');
   checkBox.setAttribute('type', 'checkbox');
@@ -78,14 +94,34 @@ function createCheckboxForVisualization(visualization, visualizationName,
   createLabel('label', visualizationName, div, structureName + '_' +
   visualizationName);
   document.getElementById(structureName).appendChild(div);
+  const neighbors = [];
+  if (isBoundary && connectionLib) {
+    for (const connection of connectionLib.get(structureName)) {
+      neighbors.push([spaceLib.get(connection[0]), connection[1]]);
+    }
+  }
   checkBox.addEventListener('change', function() {
     if (checkBox.checked) {
       for (const line of visualization) {
         line.visible = true;
       }
+      // If space, check connection visibility
+      if (isBoundary) {
+        for (const connection of connectionLib.get(structureName)) {
+          if (spaceLib.get(connection[0])[0].visible) {
+            connection[1].visible = true;
+          }
+        }
+      }
     } else {
       for (const line of visualization) {
         line.visible = false;
+      }
+      // If space, check connection visibility
+      if (isBoundary) {
+        for (const connection of connectionLib.get(structureName)) {
+          connection[1].visible = false;
+        }
       }
     }
   });
@@ -96,15 +132,28 @@ function createCheckboxForVisualization(visualization, visualizationName,
  * @param {Object} structure the structure generated from
  renderSingleIBRStructure() that will be added to sidebar.
  * @param {String} structureName the name of the structure being processed.
+ * @param {Number} level The level of the parent structure.
  * @param {Object} scene The Scene Object that all THREE objects are
   rendered on.
+ * @param {Map.<String, List<Mesh>>} spaceLib Space library stores space
+ name and mesh object(s).
+ * @param {Map.<String, List.<String, Line>>} connectionLib Boundary name and
+ corresponding list of neighbor names and three.js Line object.
  */
-function drawSingleStructureSidebar(structure, structureName, scene) {
+function drawSingleStructureSidebar(structure, structureName, level, scene,
+    spaceLib, connectionLib) {
   // Create checkbox for Blocking Grid
   if (structure['blockingGrid']) {
     createCheckboxForVisualization(
         structure['blockingGrid'][BLOCKING_GRID_NAME], BLOCKING_GRID_NAME,
         structureName);
+  }
+
+  if (structure['boundary']) {
+    createCheckboxForVisualization(
+        structure['boundary'][BOUNDARY_NAME], BOUNDARY_NAME,
+        structureName, true, structure['boundary']['connections'], spaceLib,
+        connectionLib);
   }
 
   // Create Visualization tag, then in the next section add the Visualizations
@@ -157,7 +206,7 @@ function drawSingleStructureSidebar(structure, structureName, scene) {
     let parentTagName = '';
     const curIBRObject = new IBRObject(structure['structures'][structureIndex]);
     if (curIBRObject.getStructuralType() ===
-    InternalBuildingRepresentation.StructuralType['SPACE']) {
+    InternalBuildingRepresentation.StructuralType['SPACE'].value) {
       parentTagName = spaceUlName;
       spaceLi.style.display = 'block';
     } else {
@@ -172,15 +221,22 @@ function drawSingleStructureSidebar(structure, structureName, scene) {
     ul.setAttribute('class', 'nested');
     ul.setAttribute('id', curIBRObject.getName());
     li.appendChild(ul);
+    let height;
+    if (curIBRObject.getStructuralType() ===
+    InternalBuildingRepresentation.StructuralType['SPACE'].value) {
+      height = level;
+    } else {
+      height = structureIndex;
+    }
     label.addEventListener('click', function() {
       label.parentElement.querySelector('.nested').classList.toggle('active');
       label.classList.toggle('expanded-arrow');
-      if (label.getAttribute('value') == null) {
+      if (!label.getAttribute('value')) {
         event.stopPropagation();
         const curStructure = renderSingleIBRStructure(
-            curIBRObject, structureIndex, scene);
+            curIBRObject, height, scene, spaceLib, connectionLib);
         drawSingleStructureSidebar(curStructure,
-            curIBRObject.getName(), scene);
+            curIBRObject.getName(), height, scene, spaceLib, connectionLib);
         label.setAttribute('value', '0');
       }
     });
@@ -191,19 +247,22 @@ function drawSingleStructureSidebar(structure, structureName, scene) {
  * Render top level structure in IBRObject and create a side bar for
  visualization and structure navigation.
  * @param {IBRObject} ibrObject IBRObject created from IBR binary data file.
- * @param {number} structureIndex Index of current structure(floor).
  * @param {HTMLElement} renderParentElement Parent element to attach the
  rendering to.
  * @param {HTMLElement} sidebarParentElement Parent element to attach the
  sidebar to.
  */
-function renderAndCreateSidebar(ibrObject, structureIndex,
+function renderAndCreateSidebar(ibrObject,
     renderParentElement, sidebarParentElement) {
   /* Each of the two functions are also published. Understanding of usage of
      scene in THREE is required if user desires to use any one function
      without the other. */
-  const scene = render(ibrObject, structureIndex, renderParentElement);
-  createSidebar(ibrObject, sidebarParentElement, scene);
+  const spaceLib = new Map();
+  const connectionLib = new Map();
+  const scene = render(ibrObject, renderParentElement, spaceLib,
+      connectionLib);
+  createSidebar(ibrObject, sidebarParentElement, scene, spaceLib,
+      connectionLib);
 }
 
 export {createSidebar, renderAndCreateSidebar};
