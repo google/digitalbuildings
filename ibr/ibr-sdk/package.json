@@ -16,6 +16,7 @@
   "dependencies": {
     "pbf": "^3.2.1",
     "three": "^0.117.1",
+    "earcut": "^2.2.2",
     "three-buffer-geometry-utils": "^1.0.0"
   },
   "devDependencies": {
