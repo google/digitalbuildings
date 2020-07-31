@@ -71,8 +71,9 @@ def _load_yaml_with_schema(filepath, schema):
     schema: YAML schema in syaml format
 
   Returns:
-    Returns the parsed YAML data in a stricyaml-provided
-    datastructure which is similar to a Python dictionary.
+    Returns a tuple with the parsed YAML data in a stricyaml-provided
+    datastructure which is similar to a Python dictionary, and a
+    possible exception.
   """
   yaml_file = open(filepath)
   content = yaml_file.read()
@@ -81,14 +82,13 @@ def _load_yaml_with_schema(filepath, schema):
   try:
     parsed = syaml.load(content, schema)
 
-    return parsed
+    return (parsed, None)
   except (ruamel.yaml.parser.ParserError,
           ruamel.yaml.scanner.ScannerError,
           syaml.exceptions.YAMLValidationError,
           syaml.exceptions.DuplicateKeysDisallowed,
           syaml.exceptions.InconsistentIndentationDisallowed) as e:
-    print(e)
-    return None
+    return (None, e)
 
 def parse_yaml(filename):
   """Loads an instance YAML file and parses it with
@@ -100,13 +100,14 @@ def parse_yaml(filename):
     filename: filepath location of the YAML file
 
   Returns:
-    Returns the parsed YAML data in a stricyaml-provided
-    datastructure which is similar to a Python dictionary.
+    Returns a tuple with the parsed YAML data in a stricyaml-provided
+    datastructure which is similar to a Python dictionary, and a
+    possible exception.
   """
-  yaml = _load_yaml_with_schema(filename, _SCHEMA)
+  yaml, err = _load_yaml_with_schema(filename, _SCHEMA)
 
   if yaml is None:
-    return None
+    return (None, err)
 
   top_name = yaml.keys()[0]
 
@@ -117,8 +118,7 @@ def parse_yaml(filename):
     # if translation is not UDMI compliant
     if isinstance(translation.data, str):
       if translation.data != _COMPLIANT:
-        print('Translation compliance improperly defined')
-        return None
+        return (None, Exception('Translation compliance improperly defined'))
     else:
       translation_keys = translation.keys()
 
@@ -130,7 +130,6 @@ def parse_yaml(filename):
                 syaml.exceptions.YAMLValidationError,
                 syaml.exceptions.DuplicateKeysDisallowed,
                 syaml.exceptions.InconsistentIndentationDisallowed) as e:
-          print(e)
-          return None
+          return (None, e)
 
-  return yaml
+  return (yaml, None)

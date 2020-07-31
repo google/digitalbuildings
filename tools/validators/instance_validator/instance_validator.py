@@ -52,10 +52,10 @@ if __name__ == '__main__':
   filename = arg.filename
 
   # throws errors for syntax
-  raw_parse = instance_parser.parse_yaml(filename)
+  raw_parse, err = instance_parser.parse_yaml(filename)
 
   if raw_parse is None:
-    print('\nSyntax error')
+    print(err)
     sys.exit(0)
 
   print('Passed syntax checks!')
