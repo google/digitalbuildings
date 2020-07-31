@@ -5,6 +5,7 @@
         <title>IBR Demo</title>
         <script src="https://unpkg.com/pbf@3.0.5/dist/pbf.js"></script>
         <script src="https://unpkg.com/three@0.118.3/build/three.js"></script>
+        <script src="https://unpkg.com/earcut@2.2.2/dist/earcut.min.js"></script>
         <script src="../../temp/ibr_pb_browser.js"></script>
         <script src="../../ibr-sdk/dist/main.js"></script>
         <link href="index.css" rel="stylesheet">
@@ -32,7 +33,7 @@
 			fr.onload = function(evt) {
 			  const bin = evt.target.result;
 			  const ibrObject = IBRSDK.init(bin);
-			  IBRSDK.renderAndCreateSidebar( ibrObject, 0,
+			  IBRSDK.renderAndCreateSidebar( ibrObject,
 			  document.getElementById('mainCanvas'),
 			  document.getElementById('layerList') ); // top level, index 0
 			  document.getElementById('dwn-btn')
