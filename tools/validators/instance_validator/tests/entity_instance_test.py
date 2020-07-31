@@ -201,7 +201,7 @@ class EntityInstanceTest(absltest.TestCase):
       self.fail('exception not raised')
 
   def testValidateBadTranslationStates(self):
-    parsed, err = instance_parser.parse_yaml(
+    parsed, _ = instance_parser.parse_yaml(
         os.path.join(_TESTCASE_PATH,
                      'BAD',
                      'bad_translation_states.yaml'))
