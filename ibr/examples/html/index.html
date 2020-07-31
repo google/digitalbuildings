@@ -33,7 +33,7 @@
 			fr.onload = function(evt) {
 			  const bin = evt.target.result;
 			  const ibrObject = IBRSDK.init(bin);
-			  IBRSDK.renderAndCreateSidebar( ibrObject, 0,
+			  IBRSDK.renderAndCreateSidebar( ibrObject,
 			  document.getElementById('mainCanvas'),
 			  document.getElementById('layerList') ); // top level, index 0
 			  document.getElementById('dwn-btn')

@@ -117,6 +117,14 @@ Object.assign(IBRObject.prototype, {
   },
 
   /**
+   * Get all connections of the IBRObject.
+   * @return {List.<Object>} List of all connections of the IBRObject.
+   */
+  getConnections: function() {
+    return this.connections;
+  },
+
+  /**
    * Get a list of sub structures of the IBRObject.
    * @return {List.<Object>} list of sub structures of the IBRObject.
    */
