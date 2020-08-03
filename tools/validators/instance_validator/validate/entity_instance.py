@@ -32,6 +32,7 @@ class EntityInstance(findings_lib.Findings):
     self.entity = entity
     self.universe = universe
     self.required_keys = ('id', 'type')
+    self.links = 'links'
 
   def _ValidateType(self):
     """Uses information from the generated ontology universe to validate
@@ -60,6 +61,27 @@ class EntityInstance(findings_lib.Findings):
 
     return True
 
+  def _ValidateLinks(self):
+    """Uses information from the generated ontology universe to validate
+    the links key of an entity.
+
+    Returns:
+      Returns boolean for validity of links key, defaulting to True if the
+      key is not present.
+    """
+    links = dict(self.entity[self.links])
+
+    for entity_name in links.keys():
+      # TODO ensure first level keys refer to other entities in config file
+
+      # scan all standard fields and ensure they're defined
+      fields_map = dict(links[entity_name])
+      for sourcename in fields_map.keys():
+        if not self.universe.field_universe.IsFieldDefined(fields_map[sourcename], '')):
+          return False
+
+    return True
+
   def IsValidEntityInstance(self):
     """Uses information from the generated ontology universe to validate an
     entity.
@@ -71,5 +93,7 @@ class EntityInstance(findings_lib.Findings):
       if req_key not in self.entity.keys():
         print('Missing required key:', req_key)
         return False
+
+    self._ValidateLinks()
 
     return self._ValidateType()
