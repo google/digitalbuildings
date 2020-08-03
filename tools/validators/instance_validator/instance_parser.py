@@ -69,9 +69,8 @@ def _load_yaml_with_schema(filepath, schema):
     schema: YAML schema in syaml format
 
   Returns:
-    Returns a tuple with the parsed YAML data in a stricyaml-provided
-    datastructure which is similar to a Python dictionary, and a
-    possible exception.
+    Returns the parsed YAML data in a strictyaml-provided datastructure
+    which is similar to a Python dictionary.
   """
   yaml_file = open(filepath)
   content = yaml_file.read()
@@ -99,9 +98,8 @@ def parse_yaml(filename):
     filename: filepath location of the YAML file
 
   Returns:
-    Returns a tuple with the parsed YAML data in a stricyaml-provided
-    datastructure which is similar to a Python dictionary, and a
-    possible exception.
+    Returns the parsed YAML data in a strictyaml-provided datastructure
+    which is similar to a Python dictionary.
   """
   yaml = _load_yaml_with_schema(filename, _SCHEMA)
 
