@@ -12,7 +12,8 @@ import {BufferGeometryUtils} from
   './../node_modules/three/examples/jsm/utils/BufferGeometryUtils.js';
 import {IBRObject} from './IBRObject.js';
 import {Colors} from './colors.js';
-import {ONE_POINT, TWO_POINTS, FLOOR_HEIGHT} from './constants.js';
+import {ONE_POINT, TWO_POINTS, FLOOR_HEIGHT, BLOCKING_GRID_NAME, BOUNDARY_NAME,
+  ONE_TRIANGLE} from './constants.js';
 
 /**
  * Generate Scene configured to display IBR data.
@@ -74,18 +75,21 @@ function init(ibrRawData) {
  * Enable Export and parse top level of decoded IBR Object into structures.
  * @param {IBRObject} ibrObject IBRObject created from input IBR binary data
  file.
- * @param {number} structureIndex Index of current structure(floor).
  * @param {HTMLElement} parentElement parent HTML element that the
   visualization will be append on.
+ * @param {Map.<String, List<Mesh>>} spaceLib Space library stores space
+ name and mesh object(s).
+ * @param {Map.<String, List.<String, Line>>} connectionLib Boundary name and
+ corresponding list of neighbor names and three.js Line object.
  * @return {Object} scene The Scene Object that all THREE objects are
  rendered on.
  */
-function render(ibrObject, structureIndex, parentElement) {
+function render(ibrObject, parentElement, spaceLib, connectionLib) {
   const scene = generateScene(parentElement);
   document.getElementById('dwn-btn').style.display = 'block';
   document.getElementById('filename').style.display = 'block';
-  // Visualization visualizations of current structure
-  renderVisualizations(ibrObject, structureIndex, scene);
+  // Render current structure
+  renderSingleIBRStructure(ibrObject, 0, scene, spaceLib, connectionLib);
   // scene for createSidebar use, both functions need to use the
   // same scene object to associate checkboxes with visualizations.
   return scene;
@@ -97,14 +101,20 @@ function render(ibrObject, structureIndex, parentElement) {
  * @param {number} structureIndex Index of current structure(floor).
  * @param {Object} scene The Scene Object that all THREE objects are
   rendered on.
+ * @param {Map.<String, List<Mesh>>} spaceLib Space library stores space
+ name and mesh object(s).
+ * @param {Map.<String, List.<String, Line>>} connectionLib Boundary name and
+ corresponding list of neighbor names and three.js Line object.
  * @return {Map.<String, List.<Object>>} Map of list of visualizations and
  structures.
  */
-function renderSingleIBRStructure(ibrObject, structureIndex, scene) {
+function renderSingleIBRStructure(ibrObject, structureIndex, scene, spaceLib,
+    connectionLib) {
   const structure = {};
-  if (ibrObject.hasBlockingGrid) {
-    structure['blockingGridID'] = ibrObject.getBlockingGrid().getID();
-  }
+  structure['blockingGrid'] = renderBlockingGrid(ibrObject,
+      structureIndex, scene);
+  structure['boundary'] = renderBoundary(ibrObject,
+      structureIndex, scene, spaceLib, connectionLib);
   // Visualizations of current structure
   structure['visualizations'] = renderVisualizations(ibrObject,
       structureIndex, scene);
@@ -125,7 +135,7 @@ function renderSingleIBRStructure(ibrObject, structureIndex, scene) {
  corresponding list of three.js Line objects.
  */
 function renderVisualizations(structure, structureIndex, scene) {
-  const objects = {};
+  const objects = new Map();
 
   // Check if structure contains any visualization data
   if (!structure.hasVisualizations ||
@@ -133,25 +143,191 @@ function renderVisualizations(structure, structureIndex, scene) {
     return objects;
   }
 
-  // Render blocking grid in the structure
-  if (structure.hasBlockingGrid) {
-    const visualizationPH = structure.getBlockingGrid().getVisualization().
-        getLineCoordinates();
-    const visualizationObjects = renderVisualization(visualizationPH,
-        structureIndex, scene);
-    objects[structure.getBlockingGrid().getVisualization().getID()] =
-    visualizationObjects;
-  }
-
   // Render visualizations in the structure
   for (const visualization of structure.getVisualizations().values()) {
     const visualizationPH = visualization.getLineCoordinates();
-    const visualizationObjects = renderVisualization(visualizationPH,
+    const visualizationObjects = renderLines(visualizationPH,
         structureIndex, scene);
-    objects[visualization.getID()] = visualizationObjects;
+    objects.set(visualization.getID(), visualizationObjects);
   }
 
   return objects;
+}
+
+/**
+ * Render blocking grid in the given IBRObject.
+ * @param {IBRObject} structure IBRObject generated from current
+ structure data.
+ * @param {number} structureIndex overall index of the structure.
+ * @param {Object} scene The Scene Object that all THREE objects are
+  rendered on.
+ * @return {Map.<String, List.<Object>>} objects Blocking grid name and
+ corresponding list of three.js Line objects.
+ */
+function renderBlockingGrid(structure, structureIndex, scene) {
+  let objects = null;
+
+  // Render blocking grid in the structure
+  if (structure.hasBlockingGrid) {
+    objects = {};
+    const visualizationPH = structure.getBlockingGrid().getVisualization().
+        getLineCoordinates();
+    const visualizationObjects = renderLines(visualizationPH,
+        structureIndex, scene);
+    objects[BLOCKING_GRID_NAME] = visualizationObjects;
+  }
+
+  return objects;
+}
+
+/**
+ * Render boundary in the given IBRObject.
+ * 1. find neighbors
+ * 2. check if any neighbors are rendered, if yes, take its color from spaceLib
+ * 3. render this space with the color
+ * 4. render connection with the color
+ * @param {IBRObject} ibrObject IBRObject generated from current
+ structure data.
+ * @param {number} structureIndex overall index of the structure.
+ * @param {Object} scene The Scene Object that all THREE objects are
+  rendered on.
+ * @param {Map.<String, List<Mesh>>} spaceLib Space library stores space
+ name and mesh object(s).
+ * @param {Map.<String, List.<String, Line>>} connectionLib Boundary name and
+ corresponding list of neighbor names and three.js Line object.
+ * @return {Map.<String, List.<Object>>} objects Boundary name and
+ corresponding list of three.js Line objects.
+ */
+function renderBoundary(ibrObject, structureIndex, scene, spaceLib,
+    connectionLib) {
+  let objects = null;
+  if (ibrObject.hasBoundary) {
+    const curName = ibrObject.getName();
+    connectionLib.set(curName, []);
+    objects = {};
+    const coordsRangeItem = ibrObject.getBoundary();
+    const visualizationPH = [];
+    for (let i = 0; i < coordsRangeItem.length; i += 2) {
+      const coordsLine = [];
+      for (let j = coordsRangeItem[i]; j <= coordsRangeItem[i + 1];
+        j += ONE_POINT) {
+        coordsLine.push(ibrObject.getCoordinates()[j]);
+        coordsLine.push(ibrObject.getCoordinates()[j + 1]);
+        coordsLine.push(ibrObject.getCoordinates()[j + 2]);
+      }
+      visualizationPH.push(coordsLine);
+    }
+    // Find neighbors
+    const connections = ibrObject.getConnections();
+    // Temporary way to retrieve floor number
+    const floorNumber = Number(curName.split('-')[3]);
+    const leftNeighborName = findLeftNeighbor(floorNumber, connections);
+    const rightNeighborName = findRightNeighbor(floorNumber, connections);
+    // check if any neighbors are rendered, if yes, take its color from spaceLib
+    let color;
+    for (const connection of connections) {
+      const connectionName = connection.external_structure_id;
+      if (connectionName && spaceLib.has(connectionName)) {
+        color = spaceLib.get(connectionName)[0].material.color;
+        break;
+      }
+    }
+    // Render this space with the color
+    objects[BOUNDARY_NAME] = renderLines(visualizationPH,
+        structureIndex, scene, true, color);
+    objects[BOUNDARY_NAME][0].name = curName;
+    // Calculate current space center
+    objects[BOUNDARY_NAME][0].geometry.computeBoundingBox();
+    const thisCenter =
+    objects[BOUNDARY_NAME][0].geometry.boundingBox.getCenter();
+    // Calculate neighbor space center and create connectors
+    if (leftNeighborName && spaceLib.has(leftNeighborName)) {
+      if (!spaceLib.get(leftNeighborName)[0].geometry.boundingBox) {
+        spaceLib.get(leftNeighborName)[0].geometry.computeBoundingBox();
+      }
+      const leftNeighborCenter =
+      spaceLib.get(leftNeighborName)[0].geometry.boundingBox.getCenter();
+      renderConnections(thisCenter, leftNeighborCenter, curName,
+          leftNeighborName, connectionLib, color, scene);
+    }
+    if (rightNeighborName && spaceLib.has(rightNeighborName)) {
+      if (!spaceLib.get(rightNeighborName)[0].geometry.boundingBox) {
+        spaceLib.get(rightNeighborName)[0].geometry.computeBoundingBox();
+      }
+      const rightNeighborCenter =
+      spaceLib.get(rightNeighborName)[0].geometry.boundingBox.getCenter();
+      renderConnections(thisCenter, rightNeighborCenter, curName,
+          rightNeighborName, connectionLib, color, scene);
+    }
+    spaceLib.set(curName, objects[BOUNDARY_NAME]);
+  }
+  return objects;
+}
+
+/**
+ * Find the left neighbor of the structure in it's connections.
+ * @param {Number} floorNumber Current structure's floor number.
+ * @param {List<Object>} connections List of connections of the structure.
+ * @return {String} Name of the left neighbor structure.
+ */
+function findLeftNeighbor(floorNumber, connections) {
+  let left = -1;
+  let leftNeighborName = null;
+  for (const connection of connections) {
+    const num = Number(connection.external_structure_id.split('-')[3]);
+    if (num < floorNumber && num > left) {
+      left = num;
+      leftNeighborName = connection.external_structure_id;
+    }
+  }
+  return leftNeighborName;
+}
+
+/**
+ * Find the right neighbor of the structure in it's connections.
+ * @param {Number} floorNumber Current structure's floor number.
+ * @param {List<Object>} connections List of connections of the structure.
+ * @return {String} Name of the right neighbor structure.
+ */
+function findRightNeighbor(floorNumber, connections) {
+  let right = Number.MAX_SAFE_INTEGER;
+  let rightNeighborName = null;
+  for (const connection of connections) {
+    const num = Number(connection.external_structure_id.split('-')[3]);
+    if (num > floorNumber && num < right) {
+      right = num;
+      rightNeighborName = connection.external_structure_id;
+    }
+  }
+  return rightNeighborName;
+}
+
+/**
+ * Render a vertical connector with two end points.
+ * @param {Vector3} thisCenter The center of the current structure.
+ * @param {Vector3} neighborCenter The center of its neighbor structure.
+ * @param {String} curName The name of the current structure.
+ * @param {String} neighborName The name of its neighbor structure.
+ * @param {Map.<String, List.<String, Line>>} connectionLib Boundary name and
+ corresponding list of neighbor names and three.js Line object.
+ * @param {Color} color Color of the vertical connector.
+ * @param {Object} scene The Scene Object that all THREE objects are
+  rendered on.
+ */
+function renderConnections(thisCenter, neighborCenter, curName, neighborName,
+    connectionLib, color, scene) {
+  const endPoints = [];
+  endPoints.push(thisCenter);
+  endPoints.push(neighborCenter);
+  const geometry = new THREE.BufferGeometry().setFromPoints(endPoints);
+  const material = new THREE.LineBasicMaterial({
+    color: color,
+  });
+  const connector = new THREE.Line(geometry, material);
+  connector.visible = false;
+  scene.add(connector);
+  connectionLib.get(curName).push([neighborName, connector]);
+  connectionLib.get(neighborName).push([curName, connector]);
 }
 
 /**
@@ -162,11 +338,19 @@ function renderVisualizations(structure, structureIndex, scene) {
  * @param {number} structureIndex overall index of the structure.
  * @param {Object} scene The Scene Object that all THREE objects are
   rendered on.
+ * @param {Boolean} isBoundary If the lines currently being rendered are
+ from the boundary field of the ibrObject.
+ * @param {Color} color The color of the lines being rendered.
  * @return {List.<Object>} objects List of three.js Line objects.
  */
-function renderVisualization(visualizationCoordinates, structureIndex, scene) {
+function renderLines(visualizationCoordinates, structureIndex, scene,
+    isBoundary=false, color=null) {
   // Render data into three.js objects
-  const material = new THREE.LineBasicMaterial({color: Colors.random()});
+  if (!color) {
+    color = Colors.random();
+  }
+  const lineMaterial = new THREE.LineBasicMaterial({color: color});
+  const meshMaterial = new THREE.MeshBasicMaterial({color: color});
   const objects = [];
   const lineSegmentsGeometry = [];
   for (const line of visualizationCoordinates) {
@@ -183,7 +367,12 @@ function renderVisualization(visualizationCoordinates, structureIndex, scene) {
       // group geometries for performance improvement
       lineSegmentsGeometry.push(geometry);
     } else {
-      const lineLoop = new THREE.LineLoop(geometry, material);
+      let lineLoop = null;
+      if (isBoundary) {
+        lineLoop = createPolygon(linePoints, meshMaterial);
+      } else {
+        lineLoop = new THREE.LineLoop(geometry, lineMaterial);
+      }
       lineLoop.visible = false;
       scene.add(lineLoop);
       objects.push(lineLoop);
@@ -192,12 +381,47 @@ function renderVisualization(visualizationCoordinates, structureIndex, scene) {
   if (lineSegmentsGeometry.length > 0) {
     const geometries = BufferGeometryUtils.mergeBufferGeometries(
         lineSegmentsGeometry);
-    const lineSegments = new THREE.LineSegments(geometries, material);
+    const lineSegments = new THREE.LineSegments(geometries, lineMaterial);
     lineSegments.visible = false;
     scene.add(lineSegments);
     objects.push(lineSegments);
   }
   return objects;
+}
+
+/**
+ * Create Polygon Mesh Object from list of vertices.
+ * @param {List.<Vector3>} poly List of vertices of the polygon.
+ * @param {Object} material The material Mesh is going to be rendered in.
+ * @return {Object} Polygon Mesh Object generated from vertices.
+ */
+function createPolygon(poly, material) {
+  const shape = new THREE.Geometry();
+  shape.vertices = poly;
+  shape.faces = triangulatePoints(poly);
+  return new THREE.Mesh(shape, material);
+}
+
+/**
+ * Triangulate given vertices.
+ * @param {List.<Vector3>} poly List of vertices of the polygon.
+ * @return {List.<Face3>} faces List of triangles of the triangulation
+ of the given vertices.
+ */
+function triangulatePoints(poly) {
+  const pointsXZ = [];
+  for (const point of poly) {
+    pointsXZ.push(point.x, point.z * -1);
+  }
+  const triangles = earcut(pointsXZ);
+  const faces = [];
+  for (let i = 0; i < triangles.length; i+=ONE_TRIANGLE) {
+    faces.push(new THREE.Face3(triangles[i], triangles[i+1],
+        triangles[i+2]));
+    faces.push(new THREE.Face3(triangles[i+2], triangles[i+1],
+        triangles[i]));
+  }
+  return faces;
 }
 
 /**
