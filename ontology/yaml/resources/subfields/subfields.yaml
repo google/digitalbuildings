@@ -30,6 +30,7 @@ component:
   dial: "Adjustment device (e.g. setpoint dial)."
   dimmer: "Adjustment device of dimming light level for controlling output of a lighting fixture."
   dishwasher: "Device that washes dishes."
+  driver: "A circuit or component used to control another circuit or component, such as a high-power transistor, light-emitting diode(LED), and numerous others.
   dryer: "A component used for drying clothes."
   evaporator: "The component of a refrigeration system that evaporates refrigerant."
   fan: "Component used for the distribution of air."
@@ -37,7 +38,7 @@ component:
   guidevane: "Control vanes that meter refrigerant (on a centrifugal chiller) or air (on an AHU)."
   heater: "Component which provides heat to media."
   humidifier: "Component which humidifies."
-  light: "Artificial light source devices or natural illumination by capturing daylight."
+  lamp: "Artificial light source devices that produce light."
   pump: "Component used for the distribution of liquid media."
   shade: "Window covering."
   tank : "Storage device for media."
@@ -47,7 +48,7 @@ component:
 descriptor: 
   air: "Atmospheric air, either conditioned or unconditioned"
   aisle: "Passage between two rows of server racks."
-  auto: "A device or process working by itself with little or no direct human control."
+  automatic: "A device or process working by itself with little or no direct human control."
   blowdown: "Process of expelling water filled with mineral deposits for the purposes of water treatment. "
   boost: "Component used to boost pressure."
   building: "Applies to the entire building or group of zones within building (e.g. Building_Air_Static_Pressure_Sensor)"
