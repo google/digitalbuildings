@@ -17,6 +17,7 @@
 from __future__ import print_function
 import strictyaml as syaml
 import ruamel
+import sys
 
 _COMPLIANT = 'COMPLIANT'
 _TRANSLATION = 'translation'
@@ -26,7 +27,6 @@ github.com/google/digitalbuildings/blob/master/ontology/docs/building_config.md
 #defining-translations"""
 _TRANSLATION_SCHEMA = syaml.Str() | syaml.Any()
 
-# TODO check valid ontological content in next validation steps
 """strictyaml schema parses a YAML instance from its first level of keys
 github.com/google/digitalbuildings/blob/master/ontology/docs/building_config.md
 #config-format"""
@@ -47,8 +47,6 @@ _SCHEMA = syaml.MapPattern(syaml.Str(),
                                syaml.Optional('metadata'): syaml.Any()
                                }))
 
-# TODO add manual check to de-duplicate units/unit_values/states
-# TODO add all units/unit_values/states to translation_data_schema
 """Further account for multiple valid translation formats
 github.com/google/digitalbuildings/blob/master/ontology/docs/building_config.md
 #defining-translations"""
@@ -82,13 +80,14 @@ def _load_yaml_with_schema(filepath, schema):
   try:
     parsed = syaml.load(content, schema)
 
-    return (parsed, None)
+    return parsed
   except (ruamel.yaml.parser.ParserError,
           ruamel.yaml.scanner.ScannerError,
           syaml.exceptions.YAMLValidationError,
           syaml.exceptions.DuplicateKeysDisallowed,
           syaml.exceptions.InconsistentIndentationDisallowed) as exception:
-    return (None, exception)
+    print(exception)
+    sys.exit(0)
 
 def parse_yaml(filename):
   """Loads an instance YAML file and parses it with
@@ -104,10 +103,7 @@ def parse_yaml(filename):
     datastructure which is similar to a Python dictionary, and a
     possible exception.
   """
-  yaml, err = _load_yaml_with_schema(filename, _SCHEMA)
-
-  if yaml is None:
-    return (None, err)
+  yaml = _load_yaml_with_schema(filename, _SCHEMA)
 
   top_name = yaml.keys()[0]
 
@@ -118,7 +114,8 @@ def parse_yaml(filename):
     # if translation is not UDMI compliant
     if isinstance(translation.data, str):
       if translation.data != _COMPLIANT:
-        return (None, Exception('Translation compliance improperly defined'))
+        print('Translation compliance improperly defined')
+        sys.exit(0)
     else:
       translation_keys = translation.keys()
 
@@ -130,6 +127,7 @@ def parse_yaml(filename):
                 syaml.exceptions.DuplicateKeysDisallowed,
                 syaml.exceptions.InconsistentIndentationDisallowed,
                 ruamel.yaml.scanner.ScannerError) as exception:
-          return (None, exception)
+          print(exception)
+          sys.exit(0)
 
-  return (yaml, None)
+  return yaml

@@ -51,12 +51,8 @@ if __name__ == '__main__':
   print('\nValidator starting ...\n')
   filename = arg.filename
 
-  # throws errors for syntax
-  raw_parse, err = instance_parser.parse_yaml(filename)
-
-  if raw_parse is None:
-    print(err)
-    sys.exit(0)
+  # prints for syntax errors and exits gracefully
+  raw_parse = instance_parser.parse_yaml(filename)
 
   print('Passed syntax checks!')
 

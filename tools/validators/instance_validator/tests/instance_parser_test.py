@@ -28,76 +28,67 @@ _TESTCASE_PATH = os.path.join('.', 'tests', 'fake_instances')
 class ParserTest(absltest.TestCase):
 
   def testInstanceValidatorDetectDuplicateKeys(self):
-    parse, err = instance_parser.parse_yaml(
-        os.path.join(_TESTCASE_PATH,
-                     'BAD',
-                     'bad_duplicate_keys.yaml'))
-    self.assertIsNone(parse)
-    self.assertIsNotNone(err)
+    with self.assertRaises(SystemExit):
+      parse = instance_parser.parse_yaml(
+          os.path.join(_TESTCASE_PATH,
+                      'BAD',
+                      'bad_duplicate_keys.yaml'))
 
   def testInstanceValidatorDetectMissingColon(self):
-    parse, err = instance_parser.parse_yaml(
-        os.path.join(_TESTCASE_PATH,
-                     'BAD',
-                     'bad_missing_colon.yaml'))
-    self.assertIsNone(parse)
-    self.assertIsNotNone(err)
+    with self.assertRaises(SystemExit):
+      parse = instance_parser.parse_yaml(
+          os.path.join(_TESTCASE_PATH,
+                      'BAD',
+                      'bad_missing_colon.yaml'))
 
   def testInstanceValidatorDetectImproperSpacing(self):
-    parse, err = instance_parser.parse_yaml(
-        os.path.join(_TESTCASE_PATH,
-                     'BAD',
-                     'bad_spacing.yaml'))
-    self.assertIsNone(parse)
-    self.assertIsNotNone(err)
+    with self.assertRaises(SystemExit):
+      parse = instance_parser.parse_yaml(
+          os.path.join(_TESTCASE_PATH,
+                        'BAD',
+                        'bad_spacing.yaml'))
 
   def testInstanceValidatorDetectImproperTabbing(self):
-    parse, err = instance_parser.parse_yaml(
-        os.path.join(_TESTCASE_PATH,
-                     'BAD',
-                     'bad_tabbing.yaml'))
-    self.assertIsNone(parse)
-    self.assertIsNotNone(err)
+    with self.assertRaises(SystemExit):
+      parse = instance_parser.parse_yaml(
+          os.path.join(_TESTCASE_PATH,
+                      'BAD',
+                      'bad_tabbing.yaml'))
 
   def testInstanceValidatorParseProperFormat(self):
-    parse, err = instance_parser.parse_yaml(
+    parse = instance_parser.parse_yaml(
         os.path.join(_TESTCASE_PATH,
                      'GOOD',
                      'good_building_type.yaml'))
-    self.assertIsNone(err)
     self.assertIsNotNone(parse)
 
   def testInstanceValidatorParseProperConnections(self):
-    parse, err = instance_parser.parse_yaml(
+    parse = instance_parser.parse_yaml(
         os.path.join(_TESTCASE_PATH,
                      'GOOD',
                      'good_building_connections.yaml'))
-    self.assertIsNone(err)
     self.assertIsNotNone(parse)
 
   def testInstanceValidatorDetectImproperTranslationCompliance(self):
-    parse, err = instance_parser.parse_yaml(
-        os.path.join(_TESTCASE_PATH,
-                     'BAD',
-                     'bad_translation_compliant.yaml'))
-    self.assertIsNone(parse)
-    self.assertIsNotNone(err)
+    with self.assertRaises(SystemExit):
+      parse = instance_parser.parse_yaml(
+          os.path.join(_TESTCASE_PATH,
+                      'BAD',
+                      'bad_translation_compliant.yaml'))
 
   def testInstanceValidatorDetectImproperTranslationKeys(self):
-    parse, err = instance_parser.parse_yaml(
-        os.path.join(_TESTCASE_PATH,
-                     'BAD',
-                     'bad_translation_keys.yaml'))
-    self.assertIsNone(parse)
-    self.assertIsNotNone(err)
+    with self.assertRaises(SystemExit):
+      parse = instance_parser.parse_yaml(
+          os.path.join(_TESTCASE_PATH,
+                      'BAD',
+                      'bad_translation_keys.yaml'))
 
   def testInstanceValidatorDetectImproperUnitsKeys(self):
-    parse, err = instance_parser.parse_yaml(
-        os.path.join(_TESTCASE_PATH,
-                     'BAD',
-                     'bad_translation_units_format.yaml'))
-    self.assertIsNone(parse)
-    self.assertIsNotNone(err)
+    with self.assertRaises(SystemExit):
+      parse = instance_parser.parse_yaml(
+          os.path.join(_TESTCASE_PATH,
+                      'BAD',
+                      'bad_translation_units_format.yaml'))
 
 if __name__ == '__main__':
   absltest.main()
