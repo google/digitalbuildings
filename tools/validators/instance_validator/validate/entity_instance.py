@@ -27,10 +27,11 @@ class EntityInstance(findings_lib.Findings):
     universe: ConfigUniverse generated from the ontology
   """
 
-  def __init__(self, entity, universe):
+  def __init__(self, entity, universe, config_entity_names):
     super(EntityInstance, self).__init__()
     self.entity = entity
     self.universe = universe
+    self.config_entity_names = config_entity_names
     self.required_keys = ('id', 'type')
     self.links = 'links'
 
@@ -69,15 +70,19 @@ class EntityInstance(findings_lib.Findings):
       Returns boolean for validity of links key, defaulting to True if the
       key is not present.
     """
-    links = dict(self.entity[self.links])
+    if self.links not in self.entity.keys():
+      return True
 
+    links = dict(self.entity[self.links])
     for entity_name in links.keys():
       # TODO ensure first level keys refer to other entities in config file
+      if entity_name not in self.config_entity_names:
+        return False
 
       # scan all standard fields and ensure they're defined
       fields_map = dict(links[entity_name])
       for sourcename in fields_map.keys():
-        if not self.universe.field_universe.IsFieldDefined(fields_map[sourcename], '')):
+        if not self.universe.field_universe.IsFieldDefined(fields_map[sourcename], ''):
           return False
 
     return True
@@ -94,6 +99,8 @@ class EntityInstance(findings_lib.Findings):
         print('Missing required key:', req_key)
         return False
 
-    self._ValidateLinks()
+    if not self._ValidateLinks():
+      print('Invalid links key')
+      return False
 
     return self._ValidateType()
