@@ -9,6 +9,6 @@ To use to ontology defined in this repository, run the validator as following: `
 
 If you want to use a modified ontology, run the following: `python3 instance_validator.py --input path/to/YOUR_BUILDING_CONFIG.yaml --modified-ontology-types path/to/modified/ontology/types/folder`
 
-When using a modified ontology in this way, ensure you follow the folder-naming convention like that of `digitalbuildings/ontology/yaml`. This will allow the ontology validation components of this validator to properly generate.
+When using a modified ontology, ensure you follow the folder-naming convention: `digitalbuildings/ontology/yaml`. This will allow the instance validator to rely on the new types in the ontology.
 
 Note: as of the current development stage, you must clone the entire repository and run this instance validator script from this directory.
