@@ -17,6 +17,7 @@
 from __future__ import print_function
 import strictyaml as syaml
 import ruamel
+import sys
 
 _COMPLIANT = 'COMPLIANT'
 _TRANSLATION = 'translation'
@@ -26,7 +27,6 @@ github.com/google/digitalbuildings/blob/master/ontology/docs/building_config.md
 #defining-translations"""
 _TRANSLATION_SCHEMA = syaml.Str() | syaml.Any()
 
-# TODO check valid ontological content in next validation steps
 """strictyaml schema parses a YAML instance from its first level of keys
 github.com/google/digitalbuildings/blob/master/ontology/docs/building_config.md
 #config-format"""
@@ -47,8 +47,6 @@ _SCHEMA = syaml.MapPattern(syaml.Str(),
                                syaml.Optional('metadata'): syaml.Any()
                                }))
 
-# TODO add manual check to de-duplicate units/unit_values/states
-# TODO add all units/unit_values/states to translation_data_schema
 """Further account for multiple valid translation formats
 github.com/google/digitalbuildings/blob/master/ontology/docs/building_config.md
 #defining-translations"""
@@ -71,8 +69,8 @@ def _load_yaml_with_schema(filepath, schema):
     schema: YAML schema in syaml format
 
   Returns:
-    Returns the parsed YAML data in a stricyaml-provided
-    datastructure which is similar to a Python dictionary.
+    Returns the parsed YAML data in a strictyaml-provided datastructure
+    which is similar to a Python dictionary.
   """
   yaml_file = open(filepath)
   content = yaml_file.read()
@@ -86,9 +84,9 @@ def _load_yaml_with_schema(filepath, schema):
           ruamel.yaml.scanner.ScannerError,
           syaml.exceptions.YAMLValidationError,
           syaml.exceptions.DuplicateKeysDisallowed,
-          syaml.exceptions.InconsistentIndentationDisallowed) as e:
-    print(e)
-    return None
+          syaml.exceptions.InconsistentIndentationDisallowed) as exception:
+    print(exception)
+    sys.exit(0)
 
 def parse_yaml(filename):
   """Loads an instance YAML file and parses it with
@@ -100,13 +98,10 @@ def parse_yaml(filename):
     filename: filepath location of the YAML file
 
   Returns:
-    Returns the parsed YAML data in a stricyaml-provided
-    datastructure which is similar to a Python dictionary.
+    Returns the parsed YAML data in a strictyaml-provided datastructure
+    which is similar to a Python dictionary.
   """
   yaml = _load_yaml_with_schema(filename, _SCHEMA)
-
-  if yaml is None:
-    return None
 
   top_name = yaml.keys()[0]
 
@@ -114,12 +109,23 @@ def parse_yaml(filename):
     translation = yaml[top_name][_TRANSLATION]
     translation.revalidate(_TRANSLATION_SCHEMA)
 
-    # TODO can this be automatically verified based on ontology?
     # if translation is not UDMI compliant
-    if translation.data != _COMPLIANT:
+    if isinstance(translation.data, str):
+      if translation.data != _COMPLIANT:
+        print('Translation compliance improperly defined')
+        sys.exit(0)
+    else:
       translation_keys = translation.keys()
 
       for key in translation_keys:
-        translation[key].revalidate(_TRANSLATION_DATA_SCHEMA)
+        try:
+          translation[key].revalidate(_TRANSLATION_DATA_SCHEMA)
+        except (ruamel.yaml.parser.ParserError,
+                syaml.exceptions.YAMLValidationError,
+                syaml.exceptions.DuplicateKeysDisallowed,
+                syaml.exceptions.InconsistentIndentationDisallowed,
+                ruamel.yaml.scanner.ScannerError) as exception:
+          print(exception)
+          sys.exit(0)
 
   return yaml
