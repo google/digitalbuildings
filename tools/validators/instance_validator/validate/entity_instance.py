@@ -88,8 +88,9 @@ class EntityInstance(findings_lib.Findings):
 
       # scan all standard fields and ensure they're defined
       fields_map = dict(links[entity_name])
+      field_universe = self.universe.field_universe
       for sourcename in fields_map.keys():
-        if not self.universe.field_universe.IsFieldDefined(fields_map[sourcename], ''):
+        if not field_universe.IsFieldDefined(fields_map[sourcename], ''):
           return False
 
     return True
