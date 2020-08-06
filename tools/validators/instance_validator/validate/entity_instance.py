@@ -82,7 +82,7 @@ class EntityInstance(findings_lib.Findings):
 
     links = dict(self.entity[self.links])
     for entity_name in links.keys():
-      # TODO ensure first level keys refer to other entities in config file
+      # ensure first level keys refer to other entities in config file
       if entity_name not in self.config_entity_names:
         return False
 
@@ -91,6 +91,8 @@ class EntityInstance(findings_lib.Findings):
       for sourcename in fields_map.keys():
         if not self.universe.field_universe.IsFieldDefined(fields_map[sourcename], ''):
           return False
+
+    return True
 
   def _ValidateTranslation(self):
     """Uses information from the generated ontology universe to validate
