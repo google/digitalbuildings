@@ -5,5 +5,8 @@ package(default_visibility = ["//visibility:public"])
 py_library(
     name = 'boundary_extraction',
     srcs = ['boundary_extraction.py'],
-    deps = [requirement("numpy")],
+    deps = [
+        requirement("numpy"),
+        requirement("opencv-python"),
+    ],
 )
