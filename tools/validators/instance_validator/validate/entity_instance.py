@@ -25,6 +25,7 @@ class EntityInstance(findings_lib.Findings):
   Args:
     entity instance: parsed instance YAML file formatted as dictionary
     universe: ConfigUniverse generated from the ontology
+    config_entity_names: list of entity names in instance YAML file
   """
 
   def __init__(self, entity, universe, config_entity_names):
@@ -84,6 +85,7 @@ class EntityInstance(findings_lib.Findings):
     for entity_name in links.keys():
       # ensure first level keys refer to other entities in config file
       if entity_name not in self.config_entity_names:
+        print('Invalid links entity name', entity_name)
         return False
 
       # scan all standard fields and ensure they're defined
@@ -91,6 +93,7 @@ class EntityInstance(findings_lib.Findings):
       field_universe = self.universe.field_universe
       for sourcename in fields_map.keys():
         if not field_universe.IsFieldDefined(fields_map[sourcename], ''):
+          print('Invalid links field source', sourcename)
           return False
 
     return True
@@ -141,10 +144,10 @@ class EntityInstance(findings_lib.Findings):
         # check that the unit map has keys named `keys`, `values`
         units_map = device_map[self.units]
         if self.key not in units_map.keys():
-          print('Invalid units translation is missing key')
+          print('Invalid units translation is missing key', self.key)
           return False
         if self.values not in units_map.keys():
-          print('Invalid units translation is missing values')
+          print('Invalid units translation is missing values', self.values)
           return False
 
         unit_values_map = units_map[self.values]
