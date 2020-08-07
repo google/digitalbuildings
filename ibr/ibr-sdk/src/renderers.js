@@ -70,7 +70,6 @@ function generateScene(parentElement) {
 function init(ibrRawData) {
   const ibrData = InternalBuildingRepresentation.read(
       new Pbf(ibrRawData));
-  console.log(ibrData);
   const ibrObject = new IBRObject(ibrData);
   return ibrObject;
 }
@@ -92,8 +91,7 @@ function render(ibrObject, parentElement, spaceLib, connectionLib) {
   const scene = generateScene(parentElement);
   document.getElementById('dwn-btn').style.display = 'block';
   document.getElementById('filename').style.display = 'block';
-  // Render current structure
-  renderSingleIBRStructure(ibrObject, 0, scene, spaceLib, connectionLib);
+  document.getElementById('sidebar-title').innerHTML = ibrObject.getName();
   // scene for createSidebar use, both functions need to use the
   // same scene object to associate checkboxes with visualizations.
   return scene;
