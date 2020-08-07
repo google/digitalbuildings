@@ -1,4 +1,5 @@
-# Dockerfile for instance validator
+# Dockerfile for instance validator, docs available at
+# tools/validators/instance_validator/README.md
 
 FROM python:3
 COPY ./ ./
