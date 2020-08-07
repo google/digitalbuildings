@@ -92,7 +92,7 @@ function render(ibrObject, parentElement, spaceLib, connectionLib) {
   document.getElementById('dwn-btn').style.display = 'block';
   document.getElementById('filename').style.display = 'block';
   // Render current structure
-  //  renderSingleIBRStructure(ibrObject, 0, scene, spaceLib, connectionLib);
+  renderSingleIBRStructure(ibrObject, 0, scene, spaceLib, connectionLib);
   // scene for createSidebar use, both functions need to use the
   // same scene object to associate checkboxes with visualizations.
   return scene;
