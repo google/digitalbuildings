@@ -51,12 +51,8 @@ if __name__ == '__main__':
   print('\nValidator starting ...\n')
   filename = arg.filename
 
-  # throws errors for syntax
+  # prints for syntax errors and exits gracefully
   raw_parse = instance_parser.parse_yaml(filename)
-
-  if raw_parse is None:
-    print('\nSyntax error')
-    sys.exit(0)
 
   print('Passed syntax checks!')
 
@@ -76,7 +72,9 @@ if __name__ == '__main__':
   entity_names = list(parsed.keys())
   for entity_name in entity_names:
     entity = dict(parsed[entity_name])
-    instance = entity_instance.EntityInstance(entity, universe)
+    instance = entity_instance.EntityInstance(entity,
+                                              universe,
+                                              set(entity_names))
 
     if not instance.IsValidEntityInstance():
       print(entity_name, 'is not a valid instance')

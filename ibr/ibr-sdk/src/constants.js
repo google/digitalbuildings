@@ -13,3 +13,7 @@ export const BLOCKING_GRID_NAME = 'Blocking Grid';
 export const BOUNDARY_NAME = 'Boundary';
 
 export const ONE_TRIANGLE = 3;
+
+// Move original image to the back by 20 units to allow boundary to be
+// fully displayed
+export const IMAGE_PADDING = -40;

@@ -33,56 +33,260 @@ class EntityInstanceTest(absltest.TestCase):
     self.universe = generate_universe.BuildUniverse()
 
   def testValidateGoodExample(self):
-    parsed = dict(instance_parser.parse_yaml(
+    parsed = instance_parser.parse_yaml(
         os.path.join(_TESTCASE_PATH,
                      'GOOD',
-                     'good_building_type.yaml')))
+                     'good_building_type.yaml'))
+    parsed = dict(parsed)
     entity_name = list(parsed.keys())[0]
 
     entity = dict(parsed[entity_name])
-    instance = entity_instance.EntityInstance(entity, self.universe)
+    instance = entity_instance.EntityInstance(entity,
+                                              self.universe,
+                                              parsed.keys())
 
     if not instance.IsValidEntityInstance():
       self.fail('exception incorrectly raised')
 
   def testValidateBadEntityTypeFormat(self):
-    parsed = dict(instance_parser.parse_yaml(
+    parsed = instance_parser.parse_yaml(
         os.path.join(_TESTCASE_PATH,
                      'BAD',
-                     'bad_building_type.yaml')))
+                     'bad_building_type.yaml'))
+    parsed = dict(parsed)
     entity_name = list(parsed.keys())[0]
 
     entity = dict(parsed[entity_name])
-    instance = entity_instance.EntityInstance(entity, self.universe)
+    instance = entity_instance.EntityInstance(entity,
+                                              self.universe,
+                                              parsed.keys())
 
     if instance.IsValidEntityInstance():
       self.fail('exception not raised')
 
   def testValidateBadEntityNamespace(self):
-    parsed = dict(instance_parser.parse_yaml(
+    parsed = instance_parser.parse_yaml(
         os.path.join(_TESTCASE_PATH,
                      'BAD',
-                     'bad_building_type_namespace.yaml')))
+                     'bad_building_type_namespace.yaml'))
+    parsed = dict(parsed)
     entity_name = list(parsed.keys())[0]
 
     entity = dict(parsed[entity_name])
-    instance = entity_instance.EntityInstance(entity, self.universe)
+    instance = entity_instance.EntityInstance(entity,
+                                              self.universe,
+                                              parsed.keys())
 
     if instance.IsValidEntityInstance():
       self.fail('exception not raised')
 
   def testValidateBadEntityType(self):
-    parsed = dict(instance_parser.parse_yaml(
+    parsed = instance_parser.parse_yaml(
         os.path.join(_TESTCASE_PATH,
                      'BAD',
-                     'bad_building_type_entity.yaml')))
+                     'bad_building_type_entity.yaml'))
+    parsed = dict(parsed)
     entity_name = list(parsed.keys())[0]
 
     entity = dict(parsed[entity_name])
-    instance = entity_instance.EntityInstance(entity, self.universe)
+    instance = entity_instance.EntityInstance(entity,
+                                              self.universe,
+                                              parsed.keys())
 
     if instance.IsValidEntityInstance():
       self.fail('exception not raised')
+
+  def testValidateCompliantTranslation(self):
+    parsed = instance_parser.parse_yaml(
+        os.path.join(_TESTCASE_PATH,
+                     'GOOD',
+                     'good_translation_compliant.yaml'))
+    parsed = dict(parsed)
+    entity_name = list(parsed.keys())[0]
+
+    entity = dict(parsed[entity_name])
+    instance = entity_instance.EntityInstance(entity,
+                                              self.universe,
+                                              parsed.keys())
+
+    if not instance.IsValidEntityInstance():
+      self.fail('exception incorrectly raised')
+
+  def testValidateMultipleCompliantTranslation(self):
+    parsed = instance_parser.parse_yaml(
+        os.path.join(_TESTCASE_PATH,
+                     'GOOD',
+                     'good_translation_multiple_compliant.yaml'))
+    parsed = dict(parsed)
+    entity_name = list(parsed.keys())[0]
+
+    entity = dict(parsed[entity_name])
+    instance = entity_instance.EntityInstance(entity,
+                                              self.universe,
+                                              parsed.keys())
+
+    if not instance.IsValidEntityInstance():
+      self.fail('exception incorrectly raised')
+
+  def testValidateTranslationUnitValues(self):
+    parsed = instance_parser.parse_yaml(
+        os.path.join(_TESTCASE_PATH,
+                     'GOOD',
+                     'good_translation_unit_values.yaml'))
+    parsed = dict(parsed)
+    entity_name = list(parsed.keys())[0]
+
+    entity = dict(parsed[entity_name])
+    instance = entity_instance.EntityInstance(entity,
+                                              self.universe,
+                                              parsed.keys())
+
+    if not instance.IsValidEntityInstance():
+      self.fail('exception incorrectly raised')
+
+  def testValidateTranslationStates(self):
+    parsed = instance_parser.parse_yaml(
+        os.path.join(_TESTCASE_PATH,
+                     'GOOD',
+                     'good_translation_states.yaml'))
+    parsed = dict(parsed)
+    entity_name = list(parsed.keys())[0]
+
+    entity = dict(parsed[entity_name])
+    instance = entity_instance.EntityInstance(entity,
+                                              self.universe,
+                                              parsed.keys())
+
+    if not instance.IsValidEntityInstance():
+      self.fail('exception incorrectly raised')
+
+  def testValidateTranslationStatesAndUnitValues(self):
+    parsed = instance_parser.parse_yaml(
+        os.path.join(_TESTCASE_PATH,
+                     'GOOD',
+                     'good_translation_states_and_unit_values.yaml'))
+    parsed = dict(parsed)
+    entity_name = list(parsed.keys())[0]
+
+    entity = dict(parsed[entity_name])
+    instance = entity_instance.EntityInstance(entity,
+                                              self.universe,
+                                              parsed.keys())
+
+    if not instance.IsValidEntityInstance():
+      self.fail('exception incorrectly raised')
+
+  def testValidateTranslationUnits(self):
+    parsed = instance_parser.parse_yaml(
+        os.path.join(_TESTCASE_PATH,
+                     'GOOD',
+                     'good_translation_units.yaml'))
+    parsed = dict(parsed)
+    entity_name = list(parsed.keys())[0]
+
+    entity = dict(parsed[entity_name])
+    instance = entity_instance.EntityInstance(entity,
+                                              self.universe,
+                                              parsed.keys())
+
+    if not instance.IsValidEntityInstance():
+      self.fail('exception incorrectly raised')
+
+  def testValidateTranslationUnitsAndStates(self):
+    parsed = instance_parser.parse_yaml(
+        os.path.join(_TESTCASE_PATH,
+                     'GOOD',
+                     'good_translation_units_and_states.yaml'))
+    parsed = dict(parsed)
+    entity_name = list(parsed.keys())[0]
+
+    entity = dict(parsed[entity_name])
+    instance = entity_instance.EntityInstance(entity,
+                                              self.universe,
+                                              parsed.keys())
+
+    if not instance.IsValidEntityInstance():
+      self.fail('exception incorrectly raised')
+
+  def testValidateBadTranslationUnitValues(self):
+    parsed = instance_parser.parse_yaml(
+        os.path.join(_TESTCASE_PATH,
+                     'BAD',
+                     'bad_translation_unit_values.yaml'))
+    parsed = dict(parsed)
+    entity_name = list(parsed.keys())[0]
+
+    entity = dict(parsed[entity_name])
+    instance = entity_instance.EntityInstance(entity,
+                                              self.universe,
+                                              parsed.keys())
+
+    if instance.IsValidEntityInstance():
+      self.fail('exception not raised')
+
+  def testValidateBadTranslationStates(self):
+    parsed = instance_parser.parse_yaml(
+        os.path.join(_TESTCASE_PATH,
+                     'BAD',
+                     'bad_translation_states.yaml'))
+    parsed = dict(parsed)
+    entity_name = list(parsed.keys())[0]
+
+    entity = dict(parsed[entity_name])
+    instance = entity_instance.EntityInstance(entity,
+                                              self.universe,
+                                              parsed.keys())
+
+    if instance.IsValidEntityInstance():
+      self.fail('exception not raised')
+
+  def testValidateBadLinkFields(self):
+    parsed = instance_parser.parse_yaml(
+        os.path.join(_TESTCASE_PATH,
+                     'BAD',
+                     'bad_building_links_fields.yaml'))
+    parsed = dict(parsed)
+    entity_name = list(parsed.keys())[0]
+
+    entity = dict(parsed[entity_name])
+    instance = entity_instance.EntityInstance(entity,
+                                              self.universe,
+                                              parsed.keys())
+
+    if instance.IsValidEntityInstance():
+      self.fail('exception not raised')
+
+  def testValidateBadLinkEntityName(self):
+    parsed = instance_parser.parse_yaml(
+        os.path.join(_TESTCASE_PATH,
+                     'BAD',
+                     'bad_building_links_entity_name.yaml'))
+    parsed = dict(parsed)
+    entity_name = list(parsed.keys())[0]
+
+    entity = dict(parsed[entity_name])
+    instance = entity_instance.EntityInstance(entity,
+                                              self.universe,
+                                              parsed.keys())
+
+    if instance.IsValidEntityInstance():
+      self.fail('exception not raised')
+
+  def testValidateLinks(self):
+    parsed = instance_parser.parse_yaml(
+        os.path.join(_TESTCASE_PATH,
+                     'GOOD',
+                     'good_building_links.yaml'))
+    parsed = dict(parsed)
+    entity_name = list(parsed.keys())[0]
+
+    entity = dict(parsed[entity_name])
+    instance = entity_instance.EntityInstance(entity,
+                                              self.universe,
+                                              parsed.keys())
+
+    if not instance.IsValidEntityInstance():
+      self.fail('exception incorrectly raised')
 
 if __name__ == '__main__':
   absltest.main()
