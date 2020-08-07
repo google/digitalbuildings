@@ -1,3 +1,2 @@
-protobuf>=3.12
 numpy>=1.19
 opencv-python>=1.0
