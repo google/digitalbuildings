@@ -70,6 +70,7 @@ function generateScene(parentElement) {
 function init(ibrRawData) {
   const ibrData = InternalBuildingRepresentation.read(
       new Pbf(ibrRawData));
+  console.log(ibrData);
   const ibrObject = new IBRObject(ibrData);
   return ibrObject;
 }

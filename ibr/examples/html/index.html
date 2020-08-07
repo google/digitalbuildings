@@ -35,7 +35,7 @@
 			  const ibrObject = IBRSDK.init(bin);
 			  IBRSDK.renderAndCreateSidebar( ibrObject,
 			  document.getElementById('mainCanvas'),
-			  document.getElementById('layerList') ); // top level, index 0
+			  document.getElementById('layerList') );
 			  document.getElementById('dwn-btn')
 				  .addEventListener('click', function(){
 					download(document.getElementById('filename').value, ibrObject);
