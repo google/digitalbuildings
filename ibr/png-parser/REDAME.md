@@ -8,9 +8,9 @@
 	    - unzip downloaded file
 	    - place bin/protoc somewhere in your $PATH
 	- move to current directory `cd digitalbuildings/ibr/png-parser`
-	- compile the proto definition: `protoc -I=../ibr-sdk/proto/ --python_out=. ibr.proto`
+	- compile the proto definition (default output name: ibr_pb2.py): `protoc -I=../ibr-sdk/proto/ --python_out=. ibr.proto`
 
 2. Run the PNG Parser
-    - `bazel build`
-    - `bazel-bin/CreateIBR [PATH_TO_INPUT_BITMAP]`
-    - You will see output IBR file is created in the current directory with the name new_ibr.ibr
+    - `bazel build create_ibr`
+    - `bazel-bin/create_ibr [PATH_TO_INPUT_BITMAP]`
+    - You will see output IBR file is created in the current directory with the name $INPUT_FILE_NAME.ibr

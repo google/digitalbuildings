@@ -33,10 +33,10 @@ def set_IBR_blocking_grid(structure, blocking_grid):
 def add_IBR_connection(structure, connection):
     structure.connections.append(connection)
 
-def set_visualization_image_data(visualization, image_data_raw):
+def set_visualization_image_data(visualization, image_data_raw, encoded_image):
     visualization.image_data.length = image_data_raw[0]
     visualization.image_data.width = image_data_raw[1]
-    visualization.image_data.image = image_data_raw[2]
+    visualization.image_data.image = encoded_image
 
 def list_to_bytearray(lst, dtype):
     return np.array(lst, dtype=dtype).tobytes()
