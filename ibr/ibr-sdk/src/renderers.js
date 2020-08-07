@@ -23,6 +23,9 @@ import {ONE_POINT, TWO_POINTS, FLOOR_HEIGHT, BLOCKING_GRID_NAME, BOUNDARY_NAME,
  */
 function generateScene(parentElement) {
   const scene = new THREE.Scene();
+  const light = new THREE.DirectionalLight(0xffffff, 1);
+  light.position.setScalar(10);
+  scene.add(light);
   const camera = new THREE.PerspectiveCamera(
       75, window.innerWidth / window.innerHeight, 0.1, 10000);
   const renderer = new THREE.WebGLRenderer();
@@ -89,7 +92,7 @@ function render(ibrObject, parentElement, spaceLib, connectionLib) {
   document.getElementById('dwn-btn').style.display = 'block';
   document.getElementById('filename').style.display = 'block';
   // Render current structure
-  renderSingleIBRStructure(ibrObject, 0, scene, spaceLib, connectionLib);
+//  renderSingleIBRStructure(ibrObject, 0, scene, spaceLib, connectionLib);
   // scene for createSidebar use, both functions need to use the
   // same scene object to associate checkboxes with visualizations.
   return scene;
@@ -145,9 +148,34 @@ function renderVisualizations(structure, structureIndex, scene) {
 
   // Render visualizations in the structure
   for (const visualization of structure.getVisualizations().values()) {
-    const visualizationPH = visualization.getLineCoordinates();
-    const visualizationObjects = renderLines(visualizationPH,
-        structureIndex, scene);
+    let visualizationObjects;
+    if (visualization.getEncodingType() !==
+        InternalBuildingRepresentation.Visualization.EncodingType['BITMAP_IMAGE']
+        .value){
+      const visualizationPH = visualization.getLineCoordinates();
+      visualizationObjects = renderLines(visualizationPH,
+          structureIndex, scene);
+    } else {
+      const image_bytes = visualization.getImageData().image;
+      var binary = '';
+      var len = image_bytes.byteLength;
+      for (var i = 0; i < len; i++) {
+        binary += String.fromCharCode(image_bytes[i]);
+      }
+      var image_b64encoded = btoa( binary );
+      var planeGeometry = new THREE.PlaneGeometry(visualization.getImageData().length,
+          visualization.getImageData().width);
+      var texture = new THREE.TextureLoader().load('data:image/jpeg;base64,' + image_b64encoded);
+      var planeMaterial = new THREE.MeshLambertMaterial( { map: texture } );
+      var plane = new THREE.Mesh(planeGeometry, planeMaterial);
+      plane.receiveShadow = true;
+      plane.position.set((visualization.getImageData().length)/2,-10,-(visualization.getImageData().width)/2);
+      plane.rotation.x = -0.5 * Math.PI;
+      plane.rotation.z = -1 * Math.PI;
+      plane.visible = false;
+      scene.add(plane);
+      visualizationObjects = [plane];
+    }
     objects.set(visualization.getID(), visualizationObjects);
   }
 

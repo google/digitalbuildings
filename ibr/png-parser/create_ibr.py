@@ -1,4 +1,6 @@
 import sys
+import os
+from PIL import Image
 
 import ibr_pb2
 
@@ -25,8 +27,14 @@ if __name__ == '__main__':
 
     # Get image data
     image_data_raw = get_image_data(filename)
-    with open(filename, 'rb') as image_file:
+    # Flip the original image for display
+    image_obj = Image.open(filename)
+    flipped_image = image_obj.transpose(Image.FLIP_LEFT_RIGHT)
+    flipped_image_name = ''.join(filename.split('.')[:-1]) + '_flipped.' + filename.split('.')[-1]
+    flipped_image.save(flipped_image_name)
+    with open(flipped_image_name, 'rb') as image_file:
         image_bytes = image_file.read()
+    os.remove(flipped_image_name)
 
     # Create Visualization Layer
     vis.id = 'temp'

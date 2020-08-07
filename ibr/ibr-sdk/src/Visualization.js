@@ -10,35 +10,39 @@ import {swap32} from './util.js';
 function Visualization(visualizationData, coordsLookup) {
   this.id = visualizationData.id;
   this.data = visualizationData.data;
-
-  // Decode Indices from data.visualization[].coordinate_indices
-  const coordsIndexList = visualizationData.coordinate_indices;
-  const coordsRangeBuffer = coordsIndexList.buffer.slice(
-      coordsIndexList.byteOffset,
-      coordsIndexList.byteOffset + coordsIndexList.length);
-  const coordsRange = new Uint32Array(coordsRangeBuffer);
-  for (let i = 0; i < coordsRange.length; i++) {
-    coordsRange[i] = swap32(coordsRange[i]);
-  }
-  this.coordinateIndices = coordsRange;
-
   this.encodingType = visualizationData.encoding_type;
-  this.imageData = visualizationData.image_data;
 
-  // Set Line Coordinates for Visualization
-  const coordsRangeItem = this.coordinateIndices;
-  const visualizationPH = [];
-  for (let i = 0; i < coordsRangeItem.length; i += 2) {
-    const coordsLine = [];
-    for (let j = coordsRangeItem[i]; j <= coordsRangeItem[i + 1];
-      j += ONE_POINT) {
-      coordsLine.push(coordsLookup[j]);
-      coordsLine.push(coordsLookup[j + 1]);
-      coordsLine.push(coordsLookup[j + 2]);
+  if (this.encodingType ===
+  InternalBuildingRepresentation.Visualization.EncodingType['BITMAP_IMAGE']
+  .value){
+    this.imageData = visualizationData.image_data;
+  } else {
+    // Decode Indices from data.visualization[].coordinate_indices
+    const coordsIndexList = visualizationData.coordinate_indices;
+    const coordsRangeBuffer = coordsIndexList.buffer.slice(
+        coordsIndexList.byteOffset,
+        coordsIndexList.byteOffset + coordsIndexList.length);
+    const coordsRange = new Uint32Array(coordsRangeBuffer);
+    for (let i = 0; i < coordsRange.length; i++) {
+      coordsRange[i] = swap32(coordsRange[i]);
     }
-    visualizationPH.push(coordsLine);
+    this.coordinateIndices = coordsRange;
+
+    // Set Line Coordinates for Visualization
+    const coordsRangeItem = this.coordinateIndices;
+    const visualizationPH = [];
+    for (let i = 0; i < coordsRangeItem.length; i += 2) {
+      const coordsLine = [];
+      for (let j = coordsRangeItem[i]; j <= coordsRangeItem[i + 1];
+        j += ONE_POINT) {
+        coordsLine.push(coordsLookup[j]);
+        coordsLine.push(coordsLookup[j + 1]);
+        coordsLine.push(coordsLookup[j + 2]);
+      }
+      visualizationPH.push(coordsLine);
+    }
+    this.setLineCoordinates(visualizationPH);
   }
-  this.setLineCoordinates(visualizationPH);
 }
 
 Object.assign(Visualization.prototype, {
