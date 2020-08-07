@@ -13,7 +13,7 @@ import {BufferGeometryUtils} from
 import {IBRObject} from './IBRObject.js';
 import {Colors} from './colors.js';
 import {ONE_POINT, TWO_POINTS, FLOOR_HEIGHT, BLOCKING_GRID_NAME, BOUNDARY_NAME,
-  ONE_TRIANGLE} from './constants.js';
+  ONE_TRIANGLE, IMAGE_PADDING} from './constants.js';
 
 /**
  * Generate Scene configured to display IBR data.
@@ -23,6 +23,9 @@ import {ONE_POINT, TWO_POINTS, FLOOR_HEIGHT, BLOCKING_GRID_NAME, BOUNDARY_NAME,
  */
 function generateScene(parentElement) {
   const scene = new THREE.Scene();
+  const light = new THREE.DirectionalLight(0xffffff, 1);
+  light.position.setScalar(10);
+  scene.add(light);
   const camera = new THREE.PerspectiveCamera(
       75, window.innerWidth / window.innerHeight, 0.1, 10000);
   const renderer = new THREE.WebGLRenderer();
@@ -145,12 +148,53 @@ function renderVisualizations(structure, structureIndex, scene) {
 
   // Render visualizations in the structure
   for (const visualization of structure.getVisualizations().values()) {
-    const visualizationPH = visualization.getLineCoordinates();
-    const visualizationObjects = renderLines(visualizationPH,
-        structureIndex, scene);
+    let visualizationObjects;
+    if (visualization.getEncodingType() !==
+        InternalBuildingRepresentation.Visualization.EncodingType[
+            'BITMAP_IMAGE'].value) {
+      const visualizationPH = visualization.getLineCoordinates();
+      visualizationObjects = renderLines(visualizationPH,
+          structureIndex, scene);
+    } else {
+      visualizationObjects = renderImages(visualization, scene);
+    }
     objects.set(visualization.getID(), visualizationObjects);
   }
 
+  return objects;
+}
+
+/**
+ * Converts visualization image data into three.js Plane objects
+ and add them to scene with visibility set to false.
+ * @param {Object} visualization The visualization object from IBR structure.
+ * @param {Object} scene The Scene Object that all THREE objects are
+  rendered on.
+ * @return {List.<Object>} objects List of three.js Plane objects.
+ */
+function renderImages(visualization, scene) {
+  const objects = [];
+  const imageBytes = visualization.getImageData().image;
+  let binary = '';
+  const len = imageBytes.byteLength;
+  for (let i = 0; i < len; i++) {
+    binary += String.fromCharCode(imageBytes[i]);
+  }
+  const imageBase64Encoded = btoa(binary);
+  const planeGeometry = new THREE.PlaneGeometry(visualization.
+      getImageData().length, visualization.getImageData().width);
+  const texture = new THREE.TextureLoader().load(
+      'data:image/jpeg;base64,' + imageBase64Encoded);
+  const planeMaterial = new THREE.MeshLambertMaterial({map: texture});
+  const plane = new THREE.Mesh(planeGeometry, planeMaterial);
+  plane.receiveShadow = true;
+  plane.position.set((visualization.getImageData().length)/2, IMAGE_PADDING,
+      -(visualization.getImageData().width)/2);
+  plane.rotation.x = -0.5 * Math.PI;
+  plane.rotation.z = -1 * Math.PI;
+  plane.visible = false;
+  scene.add(plane);
+  objects.push(plane);
   return objects;
 }
 
