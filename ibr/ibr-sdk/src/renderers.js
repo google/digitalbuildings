@@ -479,14 +479,11 @@ function triangulatePoints(poly) {
  */
 function saveToBuffer(ibrObject, floorToSave) {
   const json = ibrObject.toJson();
-  console.log(floorToSave);
   for (const i in floorToSave) {
     if (!floorToSave[floorToSave.length - 1 - i]) {
       json.structures.splice(floorToSave.length - 1 - i, 1);
-      console.log(floorToSave.length - 1 - i);
     }
   }
-  console.log(json.structures);
   const pbf = new Pbf();
   InternalBuildingRepresentation.write(json, pbf);
   const buffer = pbf.finish();

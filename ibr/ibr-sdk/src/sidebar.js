@@ -232,7 +232,6 @@ function drawSingleStructureSidebar(structure, structureName, level, scene,
         } else {
           floorsToSave[structureIndex] = false;
         }
-        console.log(floorsToSave);
       });
     }
     const label = createLabel('span',
