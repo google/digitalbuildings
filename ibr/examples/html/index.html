@@ -42,7 +42,9 @@
 			  let floorsToSave = [];
               IBRSDK.renderAndCreateSidebar(ibrObject,
 			  document.getElementById('mainCanvas'),
-			  document.getElementById('layerList'), floorsToSave);
+			  document.getElementById('layerList'),
+        floorsToSave);
+
 			  document.getElementById('dwn-btn')
 				  .addEventListener('click', function(){
 					download(document.getElementById('filename').value, ibrObject, floorsToSave);
