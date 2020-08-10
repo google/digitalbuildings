@@ -14,6 +14,12 @@
 		<div id="sideBar" class="sidebar">
 			<h4>Select an IBR data file: </h4>
 			<input type="file" id="fileForUpload"/>
+            <div id="export-inst" style="display: none;">
+                <h4>To Export selected floors as a separate IBR: </h4>
+                <p>1. Check the checkbox in front of each floor structure you would like to include in the new IBR file<br>
+                2. Give a name to the exported IBR<br>
+                3. Click on the 'Save and Export to IBR' button</p>
+            </div>
 			<input type="text" id="filename" placeholder="Output File Name" style="display: none;"/>
 			<button id="dwn-btn" style="display: none;">Save and Export to IBR</button>
 			<h2 style="text-align: center;" id="sidebar-title"></h2>
@@ -33,12 +39,16 @@
 			fr.onload = function(evt) {
 			  const bin = evt.target.result;
 			  const ibrObject = IBRSDK.init(bin);
-			  IBRSDK.renderAndCreateSidebar( ibrObject,
+			  let floorsToSave = [];
+              IBRSDK.renderAndCreateSidebar(ibrObject,
 			  document.getElementById('mainCanvas'),
-			  document.getElementById('layerList') );
+			  document.getElementById('layerList'),
+        floorsToSave);
+
 			  document.getElementById('dwn-btn')
 				  .addEventListener('click', function(){
-					download(document.getElementById('filename').value, ibrObject);
+					download(document.getElementById('filename').value, ibrObject, floorsToSave);
+					console.log(floorsToSave);
 				  });
 			};
 			fr.readAsArrayBuffer(file);
@@ -50,8 +60,8 @@
 		 * @param {String} filename name of the binary file that will be created.
 		 * @param {Buffer} bin binary data that will be saved in the file.
 		 */
-		function download(filename, ibrObject) {
-		  const bin = IBRSDK.saveToBuffer(ibrObject)
+		function download(filename, ibrObject, floorsToSave) {
+		  const bin = IBRSDK.saveToBuffer(ibrObject, floorsToSave);
 		  const element = document.createElement('a');
 		  const blob = new Blob([bin], {type: 'application/octet-stream'});
 		  const url = window.URL.createObjectURL(blob);
@@ -61,7 +71,6 @@
 		  document.body.appendChild(element);
 		  element.click();
 		  document.body.removeChild(element);
-
 		}
 
 		document.getElementById('fileForUpload')

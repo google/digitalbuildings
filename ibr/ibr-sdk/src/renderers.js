@@ -91,6 +91,7 @@ function render(ibrObject, parentElement, spaceLib, connectionLib) {
   const scene = generateScene(parentElement);
   document.getElementById('dwn-btn').style.display = 'block';
   document.getElementById('filename').style.display = 'block';
+  document.getElementById('export-inst').style.display = 'block';
   document.getElementById('sidebar-title').innerHTML = ibrObject.getName();
   // scene for createSidebar use, both functions need to use the
   // same scene object to associate checkboxes with visualizations.
@@ -471,10 +472,18 @@ function triangulatePoints(poly) {
  * Serialize IBRObject object to binary format.
  * @param {IBRObject} ibrObject The IBRObject to be saved back to binary
  format.
+ * @param {List.<Boolean>} floorToSave Boolean array representing the floors
+ to be exported. If element at index i is true, the i-th floor will be
+ exported.
  * @return {Buffer} buffer binary representation of IBRObject object.
  */
-function saveToBuffer(ibrObject) {
+function saveToBuffer(ibrObject, floorToSave) {
   const json = ibrObject.toJson();
+  for (const i in floorToSave) {
+    if (!floorToSave[floorToSave.length - 1 - i]) {
+      json.structures.splice(floorToSave.length - 1 - i, 1);
+    }
+  }
   const pbf = new Pbf();
   InternalBuildingRepresentation.write(json, pbf);
   const buffer = pbf.finish();
