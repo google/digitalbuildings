@@ -10,19 +10,19 @@ Colors.names =
   '#1967d2',
   '#1a73e8',
   '#4285f4',
-// Google Red
+  // Google Red
   '#a50e0e',
   '#b31412',
   '#c5221f',
   '#d93025',
   '#ea4335',
-// Google Yello
+  // Google Yello
   '#e37400',
   '#ea8600',
   '#f29900',
   '#f9ab00',
   '#fbbc04',
-// Google Green
+  // Google Green
   '#0d652d',
   '#137333',
   '#188038',
