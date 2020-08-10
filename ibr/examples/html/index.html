@@ -16,7 +16,7 @@
 			<input type="file" id="fileForUpload"/>
 			<input type="text" id="filename" placeholder="Output File Name" style="display: none;"/>
 			<button id="dwn-btn" style="display: none;">Save and Export to IBR</button>
-			<h2 style="text-align: center;">Layer Tree</h2>
+			<h2 style="text-align: center;" id="sidebar-title"></h2>
 			<ul id="layerList"></ul>
 		</div>
         <div id="mainCanvas" class="main">
@@ -35,7 +35,7 @@
 			  const ibrObject = IBRSDK.init(bin);
 			  IBRSDK.renderAndCreateSidebar( ibrObject,
 			  document.getElementById('mainCanvas'),
-			  document.getElementById('layerList') ); // top level, index 0
+			  document.getElementById('layerList') );
 			  document.getElementById('dwn-btn')
 				  .addEventListener('click', function(){
 					download(document.getElementById('filename').value, ibrObject);
