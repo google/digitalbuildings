@@ -64,6 +64,6 @@ jobs:
     - name: Dockerized Instance Yaml Validator Test
       run: |
         cp ./validators/instance_validator/tests/fake_instances/GOOD/good_building_type.yaml ./validators/instance_validator/config.yaml
-        docker build -t instance_validator_dockerized .
-        docker run instance_validator_dockerized
+        sudo docker build -t instance_validator_dockerized .
+        sudo docker run instance_validator_dockerized
       working-directory: ./tools
