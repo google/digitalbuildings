@@ -61,3 +61,10 @@ jobs:
       run: |
        python -m unittest discover -p '*_test.py' --failfast -v
       working-directory: ./tools/validators/instance_validator
+    - name: Dockerized Instance Yaml Validator Test
+      run: |
+        cp ./tools/validators/instance_validator/tests/fake_instances/GOOD/good_building_type.yaml ./tools/validators/instance_validator/config.yaml
+      runs:
+        using: 'docker'
+        image: 'Dockerfile'
+      working-directory: ./tools
