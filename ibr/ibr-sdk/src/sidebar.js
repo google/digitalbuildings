@@ -20,9 +20,12 @@ import {BLOCKING_GRID_NAME, BOUNDARY_NAME} from './constants.js';
  name and mesh object(s).
  * @param {Map.<String, List.<String, Line>>} connectionLib Boundary name and
  corresponding list of neighbor names and three.js Line object.
+ * @param {List.<Boolean>} floorsToSave Boolean array representing the floors
+ to be exported. If element at index i is true, the i-th floor will be
+ exported.
  */
 function createSidebar(ibrObject, parentElement, scene, spaceLib,
-    connectionLib) {
+    connectionLib, floorsToSave) {
   const li = document.createElement('li'); // list element container
   parentElement.appendChild(li);
   const rootSpan = createLabel('span', ibrObject.getName(), li);
@@ -41,7 +44,7 @@ function createSidebar(ibrObject, parentElement, scene, spaceLib,
   const structure = renderSingleIBRStructure(ibrObject, 0, scene, spaceLib,
       connectionLib);
   drawSingleStructureSidebar(structure, ibrObject.getName(), 0, scene,
-      spaceLib, connectionLib);
+      spaceLib, connectionLib, floorsToSave);
 }
 
 /**
@@ -139,9 +142,12 @@ function createCheckboxForVisualization(visualization, visualizationName,
  name and mesh object(s).
  * @param {Map.<String, List.<String, Line>>} connectionLib Boundary name and
  corresponding list of neighbor names and three.js Line object.
+ * @param {List.<Boolean>} floorsToSave Boolean array representing the floors
+ to be exported. If element at index i is true, the i-th floor will be
+ exported.
  */
 function drawSingleStructureSidebar(structure, structureName, level, scene,
-    spaceLib, connectionLib) {
+    spaceLib, connectionLib, floorsToSave) {
   // Create checkbox for Blocking Grid
   if (structure['blockingGrid']) {
     createCheckboxForVisualization(
@@ -214,6 +220,20 @@ function drawSingleStructureSidebar(structure, structureName, level, scene,
     }
     const li = document.createElement('li');
     document.getElementById(parentTagName).appendChild(li);
+    if (level === 0 && curIBRObject.getStructuralType() !==
+        InternalBuildingRepresentation.StructuralType['SPACE'].value) {
+      floorsToSave[structureIndex] = false;
+      const checkBox = document.createElement('INPUT');
+      checkBox.setAttribute('type', 'checkbox');
+      li.appendChild(checkBox);
+      checkBox.addEventListener('change', function() {
+        if (checkBox.checked) {
+          floorsToSave[structureIndex] = true;
+        } else {
+          floorsToSave[structureIndex] = false;
+        }
+      });
+    }
     const label = createLabel('span',
         curIBRObject.getName(), li);
     label.setAttribute('class', 'arrow');
@@ -236,7 +256,8 @@ function drawSingleStructureSidebar(structure, structureName, level, scene,
         const curStructure = renderSingleIBRStructure(
             curIBRObject, height, scene, spaceLib, connectionLib);
         drawSingleStructureSidebar(curStructure,
-            curIBRObject.getName(), height, scene, spaceLib, connectionLib);
+            curIBRObject.getName(), height, scene, spaceLib, connectionLib,
+            floorsToSave);
         label.setAttribute('value', '0');
       }
     });
@@ -251,9 +272,12 @@ function drawSingleStructureSidebar(structure, structureName, level, scene,
  rendering to.
  * @param {HTMLElement} sidebarParentElement Parent element to attach the
  sidebar to.
+ * @param {List.<Boolean>} floorsToSave Boolean array representing the floors
+ to be exported. If element at index i is true, the i-th floor will be
+ exported.
  */
 function renderAndCreateSidebar(ibrObject,
-    renderParentElement, sidebarParentElement) {
+    renderParentElement, sidebarParentElement, floorsToSave) {
   /* Each of the two functions are also published. Understanding of usage of
      scene in THREE is required if user desires to use any one function
      without the other. */
@@ -262,7 +286,7 @@ function renderAndCreateSidebar(ibrObject,
   const scene = render(ibrObject, renderParentElement, spaceLib,
       connectionLib);
   createSidebar(ibrObject, sidebarParentElement, scene, spaceLib,
-      connectionLib);
+      connectionLib, floorsToSave);
 }
 
 export {createSidebar, renderAndCreateSidebar};
