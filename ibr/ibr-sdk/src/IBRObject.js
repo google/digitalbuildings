@@ -12,8 +12,9 @@ function IBRObject(pbfDecodedJsonObject) {
     this.hasBoundary = false;
   } else {
     this.hasBoundary = true;
+    this.boundary_raw = pbfDecodedJsonObject.boundary;
     // Decode Indices from data.visualization[].coordinate_indices
-    const boundaryList = pbfDecodedJsonObject.boundary;
+    const boundaryList = this.boundary_raw;
     const boundaryBuffer = boundaryList.buffer.slice(
         boundaryList.byteOffset,
         boundaryList.byteOffset + boundaryList.length);
@@ -187,7 +188,7 @@ Object.assign(IBRObject.prototype, {
     } else {
       json.blocking_grid = null;
     }
-    json.boundary = this.boundary;
+    json.boundary = this.boundary_raw;
     json.connections = this.connections;
     json.coordinates_lookup = null;
     if (this.hasCoordinatesLookup) {
