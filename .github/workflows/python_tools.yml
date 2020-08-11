@@ -63,8 +63,7 @@ jobs:
       working-directory: ./tools/validators/instance_validator
     - name: Dockerized Instance Yaml Validator Test
       run: |
-        pip install --trusted-host pypi.org --trusted-host files.pythonhosted.org pip setuptools
         cp ./validators/instance_validator/tests/fake_instances/GOOD/good_building_type.yaml ./validators/instance_validator/config.yaml
-        docker build . -t instance_validator_dockerized
+        docker build . -t instance_validator_dockerized 
         docker run instance_validator_dockerized
       working-directory: ./tools
