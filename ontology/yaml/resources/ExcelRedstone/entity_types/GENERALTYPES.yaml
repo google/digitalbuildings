@@ -1,0 +1,84 @@
+# Zone/Room Sensor
+TSTAT:
+  id: "9dcff676-add3-4934-82e7-1a43c56de29c"
+  description: "Wall mounted temperature sensor with adjustment."
+  is_abstract: true
+  implements:
+  - EQUIPMENT
+
+# Zone/Room Controller type
+TSTAT_ZTHCO2M:
+  id: "a9f5134f-a04b-4815-8cd2-a9e348ee6f1d"
+  description: "Zone/Room wall mounted controller measuring zone temperature, humidity & CO2 with temperature adjustment"
+  is_canonical: true
+  implements:
+  - TSTAT # New abstract created for S2
+  - ZTHCO2M # New abstract created for S2
+
+
+# Valve - GENERALTYPES Entity
+VLV:
+  id: "047e0a91-ce44-44cc-8967-f865cbccdac1"
+  description: "Valve used in HVAC & DHW systems"
+  is_abstract: true
+  implements:
+  - EQUIPMENT
+
+
+# CHW Valve 
+VLV_CHWVLVM_DTM_RTM:
+  id: "6f595874-1214-42f5-a0d9-da64a36cd58b"
+  description: "CHW control valve with flowrate sensor monitoring, discharge and return air monitoring."
+  is_canonical: true
+  implements:
+  - VLV # New abstract created for S2
+  - CHWVLVC # New abstract created for S2
+  - DTM # Existing with optional points added for S2
+  - RTM # Existing with optional points added for S2
+
+
+# LTHW Valve 
+VLV_LTHWVLVM:
+  id: "50a1faee-a54b-46c6-9710-7919c22dc127"
+  description: "LTHW control valve with flowrate sensor monitoring."
+  is_canonical: true
+  implements:
+  - VLV # New abstract created for S2
+  - LTHWVLVC # New abstract created for S2
+
+
+# Fresh Air Riser - GENERALTYPES Entity
+FARSR:
+  id: "c7af2926-a614-47c1-8f79-5dfdd2e43970"
+  description: "Fresh air riser for HVAC systems"
+  is_abstract: true
+  implements:
+  - EQUIPMENT
+
+
+# Return Air Riser - GENERALTYPES Entity
+RARSR:
+  id: "746f16da-6768-4dd8-883a-cb9e3e43889c"
+  description: "Return air riser for HVAC systems"
+  is_abstract: true
+  implements:
+  - EQUIPMENT
+
+
+# CHW Riser - GENERALTYPES Entity
+CHWRSR:
+  id: "b03b1789-570c-41a8-a864-d75b535606f9"
+  description: "Chilled water riser for HVAC systems"
+  is_abstract: true
+  implements:
+  - EQUIPMENT
+
+
+# LTHW Riser - GENERALTYPES Entity
+LHWRSR:
+  id: "788b1072-cd9c-41ff-ba05-f39be254829f"
+  description: "Low temperature hot water riser for HVAC systems"
+  is_abstract: true
+  implements:
+  - EQUIPMENT
+
