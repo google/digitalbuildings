@@ -282,7 +282,7 @@ translation definitions:
 1.  Substitute the `translation` block with `translate_like:ENTITY-NAME` to use
     a translation that is already defined on another entity.
 2.  For devices that comply with
-    [UDMI](https://github.com/faucetsdn/daq/blob/master/schemas/udmi/README.md)
+    [UDMI](https://github.com/faucetsdn/udmi)
     a short form can be used.
 
 ###### UDMI Short form

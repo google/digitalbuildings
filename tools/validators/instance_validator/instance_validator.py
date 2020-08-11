@@ -72,7 +72,9 @@ if __name__ == '__main__':
   entity_names = list(parsed.keys())
   for entity_name in entity_names:
     entity = dict(parsed[entity_name])
-    instance = entity_instance.EntityInstance(entity, universe)
+    instance = entity_instance.EntityInstance(entity,
+                                              universe,
+                                              set(entity_names))
 
     if not instance.IsValidEntityInstance():
       print(entity_name, 'is not a valid instance')
