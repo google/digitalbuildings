@@ -1,10 +1,10 @@
 # Dockerfile for instance validator, docs available at
 # tools/validators/instance_validator/README.md
 
-FROM python:3
+FROM ubuntu:18.04
 COPY ./ ./
 ENV PYTHONPATH ./
-RUN pip install --trusted-host pypi.org --trusted-host files.pythonhosted.org pip setuptools
+RUN unset DOCKER_TLS_VERIFY
 RUN python ./rdf_generator/setup.py install
 RUN python ./validators/instance_validator/setup.py install
 RUN python ./validators/ontology_validator/setup.py install
