@@ -24,8 +24,6 @@ import {ONE_POINT, TWO_POINTS, FLOOR_HEIGHT, BLOCKING_GRID_NAME, BOUNDARY_NAME,
 function generateScene(parentElement) {
   const scene = new THREE.Scene();
   scene.background = new THREE.Color(0xffffff);
-  scene.translateX(-2500);
-  scene.translateZ(1500);
   const light = new THREE.DirectionalLight(0xffffff, 1);
   light.position.setScalar(10);
   scene.add(light);
