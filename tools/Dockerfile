@@ -8,5 +8,4 @@ RUN pip install certifi
 RUN python ./rdf_generator/setup.py install
 RUN python ./validators/instance_validator/setup.py install
 RUN python ./validators/ontology_validator/setup.py install
-WORKDIR ./validators/instance_validator
-CMD ["python", "instance_validator.py", "-i", "building_config.yaml"]
+CMD ["python", "./validators/instance_validator/instance_validator.py", "-i", "building_config.yaml"]

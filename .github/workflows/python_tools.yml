@@ -62,8 +62,9 @@ jobs:
        python -m unittest discover -p '*_test.py' --failfast -v
       working-directory: ./tools/validators/instance_validator
     - name: Dockerized Instance Yaml Validator Test
+      if: (matrix.os == 'windows-latest')
       run: |
         cp ./validators/instance_validator/tests/fake_instances/GOOD/good_building_type.yaml ./validators/instance_validator/building_config.yaml
-        docker build . -t instance_validator_dockerized 
+        docker build -t instance_validator_dockerized .
         docker run instance_validator_dockerized
       working-directory: ./tools
