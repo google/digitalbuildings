@@ -60,7 +60,7 @@ class EntityInstance(findings_lib.Findings):
     namespace = type_parse[0]
     entity_type = type_parse[1]
 
-    print('LOGGING :: [GetEntityTypeNamespaces]', self.universe.GetEntityTypeNamespaces())
+    print('LOGGING [TypeNamespaces]', self.universe.GetEntityTypeNamespaces())
 
     if self.universe.GetEntityTypeNamespace(namespace) is None:
       print('Invalid namespace:', namespace)
