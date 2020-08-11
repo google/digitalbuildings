@@ -1,7 +1,7 @@
 # Dockerfile for instance validator, docs available at
 # tools/validators/instance_validator/README.md
 
-FROM python:3.8-slim-buster
+FROM python:3.6-buster
 COPY ./ ./
 ENV PYTHONPATH ./
 RUN python ./rdf_generator/setup.py install
