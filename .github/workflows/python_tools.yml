@@ -63,7 +63,7 @@ jobs:
       working-directory: ./tools/validators/instance_validator
     - name: Dockerized Instance Yaml Validator Test
       run: |
-        cp ./validators/instance_validator/tests/fake_instances/GOOD/good_building_type.yaml ./validators/instance_validator/config.yaml
+        cp ./validators/instance_validator/tests/fake_instances/GOOD/good_building_type.yaml ./validators/instance_validator/building_config.yaml
         docker build . -t instance_validator_dockerized 
         docker run instance_validator_dockerized
       working-directory: ./tools
