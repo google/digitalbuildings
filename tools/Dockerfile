@@ -4,7 +4,6 @@
 FROM python:3
 COPY ./ ./
 ENV PYTHONPATH ./
-RUN unset DOCKER_TLS_VERIFY
 RUN python ./rdf_generator/setup.py install
 RUN python ./validators/instance_validator/setup.py install
 RUN python ./validators/ontology_validator/setup.py install
