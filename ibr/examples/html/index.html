@@ -11,9 +11,8 @@
         <link href="index.css" rel="stylesheet">
     </head>
     <body>
+        <div id="dashboard"></div>
 		<div id="sideBar" class="sidebar">
-			<h4>Select an IBR data file: </h4>
-			<input type="file" id="fileForUpload"/>
             <div id="export-inst" style="display: none;">
                 <h4>To Export selected floors as a separate IBR: </h4>
                 <p>1. Check the checkbox in front of each floor structure you would like to include in the new IBR file<br>
@@ -25,35 +24,9 @@
 			<h2 style="text-align: center;" id="sidebar-title"></h2>
 			<ul id="layerList"></ul>
 		</div>
-        <div id="mainCanvas" class="main">
-        </div>
     </body>
     <script>
-        function onChooseFile() {
-		  if (typeof window.FileReader !== 'function') {
-			throw new Error('The file API isn\'t supported on this browser.');
-		  }
-		  const file = document.getElementById('fileForUpload').files[0];
-		  if (file) {
-			const fr = new FileReader();
-			fr.onload = function(evt) {
-			  const bin = evt.target.result;
-			  const ibrObject = IBRSDK.init(bin);
-			  let floorsToSave = [];
-              IBRSDK.renderAndCreateSidebar(ibrObject,
-			  document.getElementById('mainCanvas'),
-			  document.getElementById('layerList'),
-        floorsToSave);
-
-			  document.getElementById('dwn-btn')
-				  .addEventListener('click', function(){
-					download(document.getElementById('filename').value, ibrObject, floorsToSave);
-					console.log(floorsToSave);
-				  });
-			};
-			fr.readAsArrayBuffer(file);
-		  }
-		}
+        IBRSDK.createDashboard();
 
 		/**
 		 * Create binary file from data and download the file in browser.
@@ -73,7 +46,7 @@
 		  document.body.removeChild(element);
 		}
 
-		document.getElementById('fileForUpload')
-			.addEventListener('change', onChooseFile);
+		// document.getElementById('fileForUpload')
+		//	.addEventListener('change', onChooseFile);
     </script>
 </html>

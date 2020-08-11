@@ -23,6 +23,9 @@ import {ONE_POINT, TWO_POINTS, FLOOR_HEIGHT, BLOCKING_GRID_NAME, BOUNDARY_NAME,
  */
 function generateScene(parentElement) {
   const scene = new THREE.Scene();
+  scene.background = new THREE.Color(0xffffff);
+  scene.translateX(-2500);
+  scene.translateZ(1500);
   const light = new THREE.DirectionalLight(0xffffff, 1);
   light.position.setScalar(10);
   scene.add(light);
@@ -36,7 +39,7 @@ function generateScene(parentElement) {
   controls.update();
   controls.enablePan = true;
   controls.enableDamping = true;
-  camera.position.set(0, 7000, 0);
+  camera.position.set(0, 5000, 0);
   camera.lookAt(0, 0, 0);
   animate();
   window.addEventListener('resize', onWindowResize, false);

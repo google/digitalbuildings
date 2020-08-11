@@ -50,11 +50,7 @@ canvas { display: block; }
   z-index: 1;
   top: 0;
   left: 0;
-  background-color: #949494;
+  background-color: #d2d2d2;
   overflow-x: hidden;
-  padding-top: 0px;
-}
-
-.main {
-  margin-left: 300px;
+  padding-top: 64px;
 }

@@ -283,6 +283,8 @@ function renderAndCreateSidebar(ibrObject,
      without the other. */
   const spaceLib = new Map();
   const connectionLib = new Map();
+  renderParentElement.innerHTML = '';
+  sidebarParentElement.innerHTML = '';
   const scene = render(ibrObject, renderParentElement, spaceLib,
       connectionLib);
   createSidebar(ibrObject, sidebarParentElement, scene, spaceLib,
