@@ -1,7 +1,7 @@
 # Dockerfile for instance validator, docs available at
 # tools/validators/instance_validator/README.md
 
-FROM alpine
+FROM ubuntu:18.04 
 COPY ./ ./
 ENV PYTHONPATH ./
 RUN unset DOCKER_TLS_VERIFY
