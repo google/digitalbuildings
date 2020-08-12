@@ -102,7 +102,7 @@ function Dashboard() {
         };
         fr.readAsArrayBuffer(file);
       }
-    }, 800);
+    }, 500);
 
     $.LoadingOverlay('hide');
   }
@@ -129,7 +129,7 @@ function Dashboard() {
                 Dashboard.ibrObject,
                 floorsToSave);
           });
-    }, 800);
+    }, 500);
 
     $.LoadingOverlay('hide');
   }
