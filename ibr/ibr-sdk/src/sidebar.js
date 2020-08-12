@@ -103,12 +103,14 @@ function createCheckboxForVisualization(visualization, visualizationName,
   createLabel('label', visualizationName, div, structureName + '_' +
   visualizationName);
   document.getElementById(structureName).appendChild(div);
+
   const neighbors = [];
   if (isBoundary && connectionLib) {
     for (const connection of connectionLib.get(structureName)) {
       neighbors.push([spaceLib.get(connection[0]), connection[1]]);
     }
   }
+
   checkBox.addEventListener('change', function() {
     if (checkBox.checked) {
       for (const line of visualization) {
@@ -174,11 +176,13 @@ function drawSingleStructureSidebar(structure, structureName, level, scene,
   document.getElementById(structureName).appendChild(visLi);
   const visSpan = createLabel('span', 'Layers', visLi);
   visSpan.setAttribute('class', 'arrow');
+
   const visUl = document.createElement('ul');
   visUl.setAttribute('class', 'nested');
-  const visUlName = structureName+'_visualizations';
+  const visUlName = structureName + '_visualizations';
   visUl.setAttribute('id', visUlName);
   visLi.appendChild(visUl);
+
   visLi.style.display = 'none';
   visSpan.addEventListener('click', function() {
     visSpan.parentElement.querySelector('.nested').classList.toggle('active');

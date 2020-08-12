@@ -97,6 +97,7 @@ function Dashboard() {
           const bin = evt.target.result;
           const ibrObject = IBRSDK.init(bin, filename);
           Dashboard.ibrObject = ibrObject;
+          Dashboard.floorsToSave = [];
           rerenderSidebar();
         };
         fr.readAsArrayBuffer(file);
@@ -113,13 +114,12 @@ function Dashboard() {
     $.LoadingOverlay('show');
 
     setTimeout(function() {
-      const floorsToSave = [];
 
       IBRSDK.renderAndCreateSidebar(
           Dashboard.ibrObject,
           document.getElementById('mainCanvas'),
           document.getElementById('layerList'),
-          floorsToSave);
+          Dashboard.floorsToSave);
       if (document.getElementById('dwn-btn').getAttribute('listener')
           !== 'true') {
         document.getElementById('dwn-btn')
@@ -127,11 +127,21 @@ function Dashboard() {
             download(
                 document.getElementById('filename').value,
                 Dashboard.ibrObject,
-                floorsToSave);
+                Dashboard.floorsToSave);
           });
         document.getElementById('dwn-btn').setAttribute('listener', 'true');
       }
     }, 500);
+
+    if (document.getElementById('mode').checked) {
+      document.getElementById('dwn-btn').style.display = 'block';
+      document.getElementById('filename').style.display = 'block';
+      document.getElementById('export-inst').style.display = 'block';
+    } else {
+      document.getElementById('dwn-btn').style.display = 'none';
+      document.getElementById('filename').style.display = 'none';
+      document.getElementById('export-inst').style.display = 'none';
+    }
 
     $.LoadingOverlay('hide');
   }
