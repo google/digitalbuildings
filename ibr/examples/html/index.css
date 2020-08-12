@@ -86,10 +86,9 @@ ul, #layerList {
 }
 
 .overlayContainer {
-  border: 1px solid red;
-  position:absolute;
-  top:0px;
-  right:0px;
-  bottom:0px;
-  left:0px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
 }
