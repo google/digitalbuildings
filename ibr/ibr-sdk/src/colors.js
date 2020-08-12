@@ -15,7 +15,7 @@ Colors.names =
   '#c5221f',
   '#d93025',
   '#ea4335',
-  // Google Yello
+  // Google Yellow
   '#e37400',
   '#ea8600',
   '#f29900',

@@ -76,3 +76,11 @@ ul, #layerList {
     width: 100%;
   }
 }
+
+.mode-toggle {
+  display: flex;
+  flex-direction: row;
+  font-size: 16px;
+  justify-content: space-around;
+  padding: 8px;
+}
