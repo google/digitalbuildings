@@ -79,34 +79,32 @@ function Dashboard() {
    * Parse the input IBR file using IBRSDK.
    */
   function onChooseFile() {
-    if (typeof window.FileReader !== 'function') {
-      throw new Error('The file API isn\'t supported on this browser.');
-    }
+    $.LoadingOverlay('show');
 
-    const file = document.getElementById('fileForUpload').files[0];
-    const filename = document.getElementById('fileForUpload')
-        .value.split('\\')
-        .pop()
-        .split('.')[0];
-    if (file) {
-      const fr = new FileReader();
-      fr.onload = function(evt) {
-        const bin = evt.target.result;
-        const ibrObject = IBRSDK.init(bin, filename);
-        Dashboard.ibrObject = ibrObject;
-        Dashboard.floorsToSave = [];
+    setTimeout(function() {
+      if (typeof window.FileReader !== 'function') {
+        throw new Error('The file API isn\'t supported on this browser.');
+      }
 
-        rerenderSidebar();
-        document.getElementById('dwn-btn')
-          .addEventListener('click', function() {
-            download(
-                document.getElementById('filename').value,
-                Dashboard.ibrObject,
-                Dashboard.floorsToSave);
-          });
-      };
-      fr.readAsArrayBuffer(file);
-    }
+      const file = document.getElementById('fileForUpload').files[0];
+      const filename = document.getElementById('fileForUpload')
+          .value.split('\\')
+          .pop()
+          .split('.')[0];
+      if (file) {
+        const fr = new FileReader();
+        fr.onload = function(evt) {
+          const bin = evt.target.result;
+          const ibrObject = IBRSDK.init(bin, filename);
+          Dashboard.ibrObject = ibrObject;
+          Dashboard.floorsToSave = [];
+          rerenderSidebar();
+        };
+        fr.readAsArrayBuffer(file);
+      }
+    }, 500);
+
+    $.LoadingOverlay('hide');
   }
 
   /**
@@ -114,6 +112,26 @@ function Dashboard() {
    */
   function rerenderSidebar() {
     $.LoadingOverlay('show');
+
+    setTimeout(function() {
+
+      IBRSDK.renderAndCreateSidebar(
+          Dashboard.ibrObject,
+          document.getElementById('mainCanvas'),
+          document.getElementById('layerList'),
+          Dashboard.floorsToSave);
+      if (document.getElementById('dwn-btn').getAttribute('listener')
+          !== 'true') {
+        document.getElementById('dwn-btn')
+          .addEventListener('click', function() {
+            download(
+                document.getElementById('filename').value,
+                Dashboard.ibrObject,
+                Dashboard.floorsToSave);
+          });
+        document.getElementById('dwn-btn').setAttribute('listener', 'true');
+      }
+    }, 500);
 
     if (document.getElementById('mode').checked) {
       document.getElementById('dwn-btn').style.display = 'block';
@@ -125,15 +143,7 @@ function Dashboard() {
       document.getElementById('export-inst').style.display = 'none';
     }
 
-    IBRSDK.renderAndCreateSidebar(
-        Dashboard.ibrObject,
-        document.getElementById('mainCanvas'),
-        document.getElementById('layerList'),
-        Dashboard.floorsToSave);
-
-    setTimeout(function() {
-      $.LoadingOverlay('hide');
-    }, 500);
+    $.LoadingOverlay('hide');
   }
 
   return (
