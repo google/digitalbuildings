@@ -66,9 +66,9 @@ function onChooseFile() {
           document.getElementById('layerList'), floorsToSave);
       document.getElementById('dwn-btn')
           .addEventListener('click', function() {
+            // TODO(realkevinwang): why is download defined in index.html?
             download(document.getElementById('filename').value, ibrObject,
                 floorsToSave);
-            console.log(floorsToSave);
           });
     };
     fr.readAsArrayBuffer(file);

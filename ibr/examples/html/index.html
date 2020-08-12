@@ -9,10 +9,19 @@
         <script src="../../ibr-sdk/temp/ibr_pb_browser.js"></script>
         <script src="../../ibr-sdk/dist/main.js"></script>
         <link href="index.css" rel="stylesheet">
+        <link href="slider.css" rel="stylesheet">
     </head>
     <body>
         <div id="dashboard"></div>
 		<div id="sideBar" class="sidebar">
+			<div class="mode-toggle">
+				<p>Visual Mode</p>
+				<label class="switch">
+				  <input type="checkbox" id="mode">
+				  <span class="slider round"></span>
+				</label>
+				<p>Export Mode</p>
+			</div>
 			<h2 style="text-align: center;" id="sidebar-title"></h2>
 			<div id="layerListContainer">
 				<ul id="layerList"></ul>
@@ -32,12 +41,24 @@
 		</div>
     </body>
     <script>
+     	const bin = evt.target.result;
+     	const ibrObject = IBRSDK.init(bin);
+
         IBRSDK.createDashboard();
+
+        document.getElementById('mode').addEventListener('change', function () {
+        	// i want to refresh the sidebar here, is there an easy way without getting the ibrObject?
+	        IBRSDK.renderAndCreateSidebar(
+	        	ibrObject,
+	         	document.getElementById('mainCanvas'),
+	         	document.getElementById('layerList'),
+	         	[]);
+        })
 
 		/**
 		 * Create binary file from data and download the file in browser.
 		 * @param {String} filename name of the binary file that will be created.
-		 * @param {Buffer} bin binary data that will be saved in the file.
+		 * @param {Buffer} binary data that will be saved in the file.
 		 */
 		function download(filename, ibrObject, floorsToSave) {
 		  const bin = IBRSDK.saveToBuffer(ibrObject, floorsToSave);
