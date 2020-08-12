@@ -79,42 +79,55 @@ function Dashboard() {
    * Parse the input IBR file using IBRSDK.
    */
   function onChooseFile() {
-    if (typeof window.FileReader !== 'function') {
-      throw new Error('The file API isn\'t supported on this browser.');
-    }
-    const file = document.getElementById('fileForUpload').files[0];
-    if (file) {
-      const fr = new FileReader();
-      fr.onload = function(evt) {
-        const bin = evt.target.result;
-        const ibrObject = IBRSDK.init(bin);
-        Dashboard.ibrObject = ibrObject;
+    $('.overlayContainer').LoadingOverlay("show");
 
-        rerenderSidebar();
-      };
-      fr.readAsArrayBuffer(file);
-    }
+    setTimeout(function () {
+      if (typeof window.FileReader !== 'function') {
+        throw new Error('The file API isn\'t supported on this browser.');
+      }
+
+      const file = document.getElementById('fileForUpload').files[0];
+      if (file) {
+        const fr = new FileReader();
+        fr.onload = function(evt) {
+          const bin = evt.target.result;
+          const ibrObject = IBRSDK.init(bin);
+          Dashboard.ibrObject = ibrObject;
+
+          rerenderSidebar();
+        };
+        fr.readAsArrayBuffer(file);
+      }
+    }, 500);
+
+    $('.overlayContainer').LoadingOverlay("hide");
   }
 
   /**
    * Calls rerender to the sidebar.
    */
   function rerenderSidebar() {
-    const floorsToSave = [];
+    $('.overlayContainer').LoadingOverlay("show");
 
-    IBRSDK.renderAndCreateSidebar(
-        Dashboard.ibrObject,
-        document.getElementById('mainCanvas'),
-        document.getElementById('layerList'),
-        floorsToSave);
+    setTimeout(function () {
+      const floorsToSave = [];
 
-    document.getElementById('dwn-btn')
-        .addEventListener('click', function() {
-          download(
-            document.getElementById('filename').value,
-            Dashboard.ibrObject,
-            floorsToSave);
-        });
+      IBRSDK.renderAndCreateSidebar(
+          Dashboard.ibrObject,
+          document.getElementById('mainCanvas'),
+          document.getElementById('layerList'),
+          floorsToSave);
+
+      document.getElementById('dwn-btn')
+          .addEventListener('click', function() {
+            download(
+              document.getElementById('filename').value,
+              Dashboard.ibrObject,
+              floorsToSave);
+          });
+    }, 500);
+
+    $('.overlayContainer').LoadingOverlay("hide");
   }
 
   return (

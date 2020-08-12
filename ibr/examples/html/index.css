@@ -84,3 +84,12 @@ ul, #layerList {
   justify-content: space-around;
   padding: 8px;
 }
+
+.overlayContainer {
+  border: 1px solid red;
+  position:absolute;
+  top:0px;
+  right:0px;
+  bottom:0px;
+  left:0px;
+}
