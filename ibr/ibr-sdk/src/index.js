@@ -3,7 +3,16 @@
  * @author shuanglihtk@google.com (Shuang Li)
  */
 
-export {createSidebar, renderAndCreateSidebar} from './sidebar.js';
-export {init, render, saveToBuffer, renderSingleIBRStructure}
-  from './renderers.js';
-export {createDashboard} from './Dashboard.js';
+export {
+	createSidebar,
+	renderAndCreateSidebar
+} from './sidebar.js';
+export {
+	init,
+	render,
+	saveToBuffer,
+	renderSingleIBRStructure
+} from './renderers.js';
+export {
+	createDashboard
+} from './Dashboard.js';

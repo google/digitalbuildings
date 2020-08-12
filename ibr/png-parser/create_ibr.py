@@ -22,7 +22,7 @@ if __name__ == '__main__':
     filename = filepath.split('/')[-1]
     filename_no_extension = ''.join(filename.split('.')[:-1])
     utils.set_IBR_name(new_ibr, filename_no_extension)
-    utils.set_IBR_structural_type(new_ibr, ibr_pb2.InternalBuildingRepresentation.StructuralType.SPACE)
+    utils.set_IBR_structural_type(new_ibr, ibr_pb2.InternalBuildingRepresentation.StructuralType.FLOOR)
 
     # Store boundary data in IBR
     coords = extract_boundary(filepath)

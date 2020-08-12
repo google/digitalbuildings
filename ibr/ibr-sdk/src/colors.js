@@ -1,10 +1,9 @@
-
 // List of colors from jquery.color.js plugin
 const Colors = {};
 
 Colors.names =
 [
-// Google Blue
+  // Google Blue
   '#174ea6',
   '#185abc',
   '#1967d2',
@@ -16,7 +15,7 @@ Colors.names =
   '#c5221f',
   '#d93025',
   '#ea4335',
-  // Google Yello
+  // Google Yellow
   '#e37400',
   '#ea8600',
   '#f29900',

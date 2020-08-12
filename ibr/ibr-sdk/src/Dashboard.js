@@ -14,7 +14,8 @@ const useStyles = makeStyles((theme) => ({
   },
   toolbar: {
     paddingRight: 24, // keep right padding when drawer closed
-    background: '#2d2d2d',
+    flexDirection: 'row',
+    justifyContent: 'spaceBetween',
   },
   main: {
     marginLeft: 300,
@@ -48,32 +49,24 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 /**
- * Parse the input IBR file using IBRSDK.
+ * Create binary file from data and download the file in browser.
+ * @param {String} filename name of the binary file that will be created.
+ * @param {Buffer} ibrObject binary data that will be saved in the file.
+ * @param {Array<String>} floorsToSave list of floors selected for export.
  */
-function onChooseFile() {
-  if (typeof window.FileReader !== 'function') {
-    throw new Error('The file API isn\'t supported on this browser.');
-  }
-  const file = document.getElementById('fileForUpload').files[0];
-  if (file) {
-    const fr = new FileReader();
-    fr.onload = function(evt) {
-      const bin = evt.target.result;
-      const ibrObject = IBRSDK.init(bin);
-      const floorsToSave = [];
-      IBRSDK.renderAndCreateSidebar(ibrObject,
-          document.getElementById('mainCanvas'),
-          document.getElementById('layerList'), floorsToSave);
-      document.getElementById('dwn-btn')
-          .addEventListener('click', function() {
-            download(document.getElementById('filename').value, ibrObject,
-                floorsToSave);
-            console.log(floorsToSave);
-          });
-    };
-    fr.readAsArrayBuffer(file);
-  }
+function download(filename, ibrObject, floorsToSave) {
+  const bin = IBRSDK.saveToBuffer(ibrObject, floorsToSave);
+  const element = document.createElement('a');
+  const blob = new Blob([bin], {type: 'application/octet-stream'});
+  const url = window.URL.createObjectURL(blob);
+  element.setAttribute('href', url);
+  element.setAttribute('download', filename+'.ibr');
+  element.style.display = 'none';
+  document.body.appendChild(element);
+  element.click();
+  document.body.removeChild(element);
 }
+
 
 /**
  * Create the Dashboard UI components.
@@ -82,6 +75,77 @@ function onChooseFile() {
 function Dashboard() {
   const classes = useStyles();
 
+  /**
+   * Parse the input IBR file using IBRSDK.
+   */
+  function onChooseFile() {
+    $.LoadingOverlay('show');
+
+    setTimeout(function() {
+      if (typeof window.FileReader !== 'function') {
+        throw new Error('The file API isn\'t supported on this browser.');
+      }
+
+      const file = document.getElementById('fileForUpload').files[0];
+      const filename = document.getElementById('fileForUpload')
+          .value.split('\\')
+          .pop()
+          .split('.')[0];
+      if (file) {
+        const fr = new FileReader();
+        fr.onload = function(evt) {
+          const bin = evt.target.result;
+          const ibrObject = IBRSDK.init(bin, filename);
+          Dashboard.ibrObject = ibrObject;
+          Dashboard.floorsToSave = [];
+          rerenderSidebar();
+        };
+        fr.readAsArrayBuffer(file);
+      }
+    }, 500);
+
+    $.LoadingOverlay('hide');
+  }
+
+  /**
+   * Calls rerender to the sidebar.
+   */
+  function rerenderSidebar() {
+    $.LoadingOverlay('show');
+
+    setTimeout(function() {
+
+      IBRSDK.renderAndCreateSidebar(
+          Dashboard.ibrObject,
+          document.getElementById('mainCanvas'),
+          document.getElementById('layerList'),
+          Dashboard.floorsToSave);
+      if (document.getElementById('dwn-btn').getAttribute('listener')
+          !== 'true') {
+        document.getElementById('dwn-btn')
+          .addEventListener('click', function() {
+            download(
+                document.getElementById('filename').value,
+                Dashboard.ibrObject,
+                Dashboard.floorsToSave);
+          });
+        document.getElementById('dwn-btn').setAttribute('listener', 'true');
+      }
+    }, 500);
+
+    if (document.getElementById('mode').checked) {
+      document.getElementById('dwn-btn').style.display = 'block';
+      document.getElementById('filename').style.display = 'block';
+      document.getElementById('export-inst').style.display = 'block';
+    } else {
+      document.getElementById('dwn-btn').style.display = 'none';
+      document.getElementById('filename').style.display = 'none';
+      document.getElementById('export-inst').style.display = 'none';
+    }
+
+    $.LoadingOverlay('hide');
+  }
+
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -89,16 +153,26 @@ function Dashboard() {
         <Toolbar className={classes.toolbar}>
           <Typography component="h1" variant="h6" color="inherit" noWrap
             className={classes.title} style={{flex: 1}}>
-            IBR Visualization
+            IBR Demo
           </Typography>
-          <label htmlFor="fileForUpload">
+          <label htmlFor="fileForUpload" style={{flex: 1}}>
             <input type="file" id="fileForUpload" onChange={onChooseFile}
               style={{display: 'none'}}/>
-            <Button variant="contained" style={{background: '#d34836'}}
+            <Button
+              variant="contained"
+              style={{background: '#1a73e8', color: 'white'}}
               component="span">
               Upload IBR
             </Button>
           </label>
+          <div className="mode-toggle">
+            <p>Visual</p>
+            <label className="switch">
+              <input type="checkbox" id="mode" onChange={rerenderSidebar}/>
+              <span className="slider round"></span>
+            </label>
+            <p>Export</p>
+          </div>
         </Toolbar>
       </AppBar>
       <main className={classes.content}>
