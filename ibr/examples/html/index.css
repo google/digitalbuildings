@@ -1,3 +1,26 @@
+body {
+  margin: 0;
+  font-family: roboto;
+}
+
+canvas {
+  display: block;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 350px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #d2d2d2;
+  overflow-x: hidden;
+  padding: 64px 24px 24px 24px;
+}
+
 ul, #layerList {
   list-style-type: none;
 }
@@ -31,26 +54,25 @@ ul, #layerList {
   display: block;
 }
 
+#layerListContainer {
+  display: block;
+  height: 75%;
+  overflow: scroll;
+  padding: 4px;
+}
+
 #layerList {
   margin: 0;
   padding: 0;
 }
 
-body {
-  margin: 0;
-  font-family: roboto;
-}
 
-canvas { display: block; }
+.saveToIbr {
+  input#filename {
+    width: 100%;
+  }
 
-.sidebar {
-  height: 100%;
-  width: 300px;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  background-color: #d2d2d2;
-  overflow-x: hidden;
-  padding-top: 64px;
+  #dwn-btn {
+    width: 100%;
+  }
 }
