@@ -15,21 +15,12 @@
 ROOM:
   id: "9223372036854775808"
   description: "This is a type for ROOM facilities object"
-  connections:
-    VAV: HAS_LOCATION
-    FCU: HAS_LOCATION
-    UH: HAS_LOCATION
-    HUM: HAS_LOCATION
-    FAN: FEEDS
 
 FLOOR:
   id: "7349874591868649472"
   description: "This is a type for FLOOR facilities object"
   implements:
   - CARSON/COORDINATE_BASIS
-  connections:
-    FAN: HAS_LOCATION
-    MAU: HAS_LOCATION
 
 BUILDING:
   id: "15204152342002794496"

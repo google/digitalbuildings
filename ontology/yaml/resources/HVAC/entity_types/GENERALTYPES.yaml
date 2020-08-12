@@ -29,6 +29,7 @@ VAV:
   opt_uses:
   - zone_use_label # Needed until the zones can are joined to assets with connections.
   connections:
+    ROOM: CONTAINS
     AHU: FEEDS
     DFR: FEEDS
     HWS: FEEDS
@@ -48,6 +49,9 @@ FAN:
   is_abstract: true
   implements:
   - EQUIPMENT
+  connections:
+    FLOOR: CONTAINS
+    ROOM: FEEDS
 
 FCU:
   id: "16867817476115660800"
@@ -62,6 +66,7 @@ FCU:
   implements:
   - EQUIPMENT
   connections:
+    ROOM: CONTAINS
     CDWS: FEEDS
     CHWS: FEEDS
     HWS: FEEDS
@@ -80,8 +85,10 @@ AHU:
   opt_uses:
   - outside_air_flowrate_requirement # Included at AHU because, regardless of avaiable data for OAD, it will have ventilation requirements.
   connections:
+    LOCATION: CONTAINS
     CHWS: FEEDS
     HWS: FEEDS
+    LOCATION: FEEDS
 
 HX:
   id: "9849494018533097472"
@@ -114,6 +121,8 @@ MAU:
   is_abstract: true
   implements:
   - EQUIPMENT
+  connections:
+    FLOOR: CONTAINS
 
 UH:
   id: "15102406422186426368"
@@ -122,6 +131,8 @@ UH:
   is_abstract: true
   implements:
   - EQUIPMENT
+  connections:
+    ROOM: CONTAINS
 
 IGNORE:
   id: "15822982362565705728"
@@ -254,6 +265,8 @@ DMP:
   is_abstract: true
   implements:
   - EQUIPMENT
+  connections:
+    LOCATION: CONTAINS
 
 DHWT:  # Proposed in v2.3 naming standard
   id: "1614204703048990720"
@@ -283,12 +296,5 @@ HUM:
   is_abstract: true
   implements:
   - EQUIPMENT
-
-LOCATION:
-  id: "id_placeholder"
-  description: "description placeholder"
-  is_abstract: true
   connections:
-    AHU: HAS_LOCATION
-    DMP: HAS_LOCATION
-    AHU: FEEDS
+    ROOM: CONTAINS

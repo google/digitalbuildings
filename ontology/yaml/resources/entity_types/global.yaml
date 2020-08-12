@@ -20,7 +20,7 @@ EQUIPMENT:
   - manufacturer_label
   - model_label
   connections:
-    EQUIPMENT: CONTROLS
+    EQUIPMENT: EQUIPMENT
 
 MTS:
   description: "Multi-sensor device."
