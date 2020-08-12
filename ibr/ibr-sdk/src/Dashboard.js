@@ -51,7 +51,8 @@ const useStyles = makeStyles((theme) => ({
 /**
  * Create binary file from data and download the file in browser.
  * @param {String} filename name of the binary file that will be created.
- * @param {Buffer} binary data that will be saved in the file.
+ * @param {Buffer} ibrObject binary data that will be saved in the file.
+ * @param {Array<String>} floorsToSave list of floors selected for export.
  */
 function download(filename, ibrObject, floorsToSave) {
   const bin = IBRSDK.saveToBuffer(ibrObject, floorsToSave);
@@ -107,12 +108,15 @@ function Dashboard() {
     }
   }
 
+  /**
+   * Calls rerender to the sidebar.
+   */
   function rerenderSidebar() {
     IBRSDK.renderAndCreateSidebar(
-      Dashboard.ibrObject,
-      document.getElementById('mainCanvas'),
-      document.getElementById('layerList'),
-      []);
+        Dashboard.ibrObject,
+        document.getElementById('mainCanvas'),
+        document.getElementById('layerList'),
+        []);
   }
 
   return (
