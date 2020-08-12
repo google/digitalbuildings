@@ -5,8 +5,9 @@ import {swap32} from './util.js';
 /**
  * Constructor of IBRObject Class.
  * @param {JSONObject} pbfDecodedJsonObject JSON decoded from input IBR file.
+ * @param {String} filename Name of the input IBR file.
  */
-function IBRObject(pbfDecodedJsonObject) {
+function IBRObject(pbfDecodedJsonObject, filename) {
   // Check if structure contains any boundary data
   if (pbfDecodedJsonObject.boundary === null) {
     this.hasBoundary = false;
@@ -72,7 +73,7 @@ function IBRObject(pbfDecodedJsonObject) {
 
   // for datafiles that have top level name is ""
   if (pbfDecodedJsonObject.name === '' || pbfDecodedJsonObject.name === null) {
-    this.name = 'ibrData.name';
+    this.name = filename;
   }
 
   this.subStructures = pbfDecodedJsonObject.structures;
