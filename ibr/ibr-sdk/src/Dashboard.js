@@ -109,13 +109,17 @@ function Dashboard() {
         document.getElementById('layerList'),
         floorsToSave);
 
-    document.getElementById('dwn-btn')
-        .addEventListener('click', function() {
-          download(
-            document.getElementById('filename').value,
-            Dashboard.ibrObject,
-            floorsToSave);
-        });
+    if (document.getElementById('dwn-btn').getAttribute('listener')
+    !== 'true') {
+      document.getElementById('dwn-btn')
+          .addEventListener('click', function() {
+            download(
+              document.getElementById('filename').value,
+              Dashboard.ibrObject,
+              floorsToSave);
+          });
+      document.getElementById('dwn-btn').setAttribute('listener', 'true');
+    }
   }
 
   return (
