@@ -8,5 +8,6 @@ parserOptions:
   ecmaVersion: 11
   sourceType: module
 rules: {
-  "space-in-parens": ["error", "never"]
+  "space-in-parens": ["error", "never"],
+  "new-cap": "off"
 }
