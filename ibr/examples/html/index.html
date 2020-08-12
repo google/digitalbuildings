@@ -13,16 +13,22 @@
     <body>
         <div id="dashboard"></div>
 		<div id="sideBar" class="sidebar">
-            <div id="export-inst" style="display: none;">
-                <h4>To Export selected floors as a separate IBR: </h4>
-                <p>1. Check the checkbox in front of each floor structure you would like to include in the new IBR file<br>
-                2. Give a name to the exported IBR<br>
-                3. Click on the 'Save and Export to IBR' button</p>
-            </div>
-			<input type="text" id="filename" placeholder="Output File Name" style="display: none;"/>
-			<button id="dwn-btn" style="display: none;">Save and Export to IBR</button>
 			<h2 style="text-align: center;" id="sidebar-title"></h2>
-			<ul id="layerList"></ul>
+			<div id="layerListContainer">
+				<ul id="layerList"></ul>
+			</div>
+			<div class="saveToIbr">
+	            <div id="export-inst" style="display: none;">
+	                <h4>To Export selected floors as a separate IBR: </h4>
+	                <p>1. Check the checkbox in front of each floor structure you would like to include in the new IBR file<br>
+	                2. Give a name to the exported IBR<br>
+	                3. Click on the 'Save and Export to IBR' button</p>
+	            </div>
+	            <div class="buttons">
+					<input type="text" id="filename" placeholder="Output File Name" style="display: none;"/>
+					<button id="dwn-btn" style="display: none;">Save and Export to IBR</button>
+				</div>
+			</div>
 		</div>
     </body>
     <script>

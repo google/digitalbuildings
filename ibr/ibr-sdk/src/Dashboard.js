@@ -89,12 +89,14 @@ function Dashboard() {
         <Toolbar className={classes.toolbar}>
           <Typography component="h1" variant="h6" color="inherit" noWrap
             className={classes.title} style={{flex: 1}}>
-            IBR Visualization
+            IBR Demo
           </Typography>
           <label htmlFor="fileForUpload">
             <input type="file" id="fileForUpload" onChange={onChooseFile}
               style={{display: 'none'}}/>
-            <Button variant="contained" style={{background: '#d34836'}}
+            <Button
+                variant="contained"
+                style={{background: '#1a73e8', color: 'white'}}
               component="span">
               Upload IBR
             </Button>

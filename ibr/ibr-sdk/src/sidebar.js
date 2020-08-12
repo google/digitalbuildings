@@ -26,7 +26,7 @@ import {BLOCKING_GRID_NAME, BOUNDARY_NAME} from './constants.js';
  */
 function createSidebar(ibrObject, parentElement, scene, spaceLib,
     connectionLib, floorsToSave) {
-  const li = document.createElement('li'); // list element container
+  const li = document.createElement('li');
   parentElement.appendChild(li);
   const rootSpan = createLabel('span', ibrObject.getName(), li);
   rootSpan.setAttribute('class', 'arrow');
