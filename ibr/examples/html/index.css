@@ -57,7 +57,7 @@ ul, #layerList {
 #layerListContainer {
   display: block;
   height: 75%;
-  overflow: scroll;
+  overflow: auto;
   padding: 4px;
 }
 
