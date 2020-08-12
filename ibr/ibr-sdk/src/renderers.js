@@ -278,8 +278,14 @@ function renderBoundary(ibrObject, structureIndex, scene, spaceLib,
       }
     }
     // Render this space with the color
-    objects[BOUNDARY_NAME] = renderLines(visualizationPH,
-        structureIndex, scene, true, color);
+    const renderAsPolygon = ibrObject.structuralType ===
+      InternalBuildingRepresentation.StructuralType['SPACE'].value;
+    objects[BOUNDARY_NAME] = renderLines(
+        visualizationPH,
+        structureIndex,
+        scene,
+        renderAsPolygon,
+        color);
     objects[BOUNDARY_NAME][0].name = curName;
     // Calculate current space center
     objects[BOUNDARY_NAME][0].geometry.computeBoundingBox();
@@ -383,13 +389,13 @@ function renderConnections(thisCenter, neighborCenter, curName, neighborName,
  * @param {number} structureIndex overall index of the structure.
  * @param {Object} scene The Scene Object that all THREE objects are
   rendered on.
- * @param {Boolean} isBoundary If the lines currently being rendered are
+ * @param {Boolean} renderAsPolygon If the lines currently being rendered are
  from the boundary field of the ibrObject.
  * @param {Color} color The color of the lines being rendered.
  * @return {List.<Object>} objects List of three.js Line objects.
  */
 function renderLines(visualizationCoordinates, structureIndex, scene,
-    isBoundary=false, color=null) {
+    renderAsPolygon=false, color=null) {
   // Render data into three.js objects
   if (!color) {
     color = Colors.random();
@@ -413,7 +419,7 @@ function renderLines(visualizationCoordinates, structureIndex, scene,
       lineSegmentsGeometry.push(geometry);
     } else {
       let lineLoop = null;
-      if (isBoundary) {
+      if (renderAsPolygon) {
         lineLoop = createPolygon(linePoints, meshMaterial);
       } else {
         lineLoop = new THREE.LineLoop(geometry, lineMaterial);
