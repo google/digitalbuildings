@@ -89,7 +89,7 @@ function Dashboard() {
         <Toolbar className={classes.toolbar}>
           <Typography component="h1" variant="h6" color="inherit" noWrap
             className={classes.title} style={{flex: 1}}>
-            IBR Visualization
+            IBR Demo
           </Typography>
           <label htmlFor="fileForUpload">
             <input type="file" id="fileForUpload" onChange={onChooseFile}
