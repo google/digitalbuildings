@@ -88,21 +88,9 @@ function Dashboard() {
       fr.onload = function(evt) {
         const bin = evt.target.result;
         const ibrObject = IBRSDK.init(bin);
-
-        console.log(Dashboard);
         Dashboard.ibrObject = ibrObject;
-        console.log(Dashboard.ibrObject);
 
-        const floorsToSave = [];
-        IBRSDK.renderAndCreateSidebar(ibrObject,
-            document.getElementById('mainCanvas'),
-            document.getElementById('layerList'), floorsToSave);
-        document.getElementById('dwn-btn')
-            .addEventListener('click', function() {
-              // TODO(realkevinwang): why is download defined in index.html?
-              download(document.getElementById('filename').value, ibrObject,
-                  floorsToSave);
-            });
+        rerenderSidebar();
       };
       fr.readAsArrayBuffer(file);
     }
@@ -112,11 +100,21 @@ function Dashboard() {
    * Calls rerender to the sidebar.
    */
   function rerenderSidebar() {
+    const floorsToSave = [];
+
     IBRSDK.renderAndCreateSidebar(
         Dashboard.ibrObject,
         document.getElementById('mainCanvas'),
         document.getElementById('layerList'),
-        []);
+        floorsToSave);
+
+    document.getElementById('dwn-btn')
+        .addEventListener('click', function() {
+          download(
+            document.getElementById('filename').value,
+            Dashboard.ibrObject,
+            floorsToSave);
+        });
   }
 
   return (

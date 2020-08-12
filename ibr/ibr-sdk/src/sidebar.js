@@ -232,7 +232,7 @@ function drawSingleStructureSidebar(structure, structureName, level, scene,
         InternalBuildingRepresentation.StructuralType['SPACE'].value) {
       floorsToSave[structureIndex] = false;
       const checkBox = document.createElement('INPUT');
-      checkBox.setAttribute('type', 'radio');
+      checkBox.setAttribute('type', 'checkbox');
       checkBox.setAttribute('class', 'exportMode');
 
       // only show if in export mode
