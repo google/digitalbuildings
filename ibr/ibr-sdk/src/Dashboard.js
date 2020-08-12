@@ -79,16 +79,18 @@ function Dashboard() {
    * Parse the input IBR file using IBRSDK.
    */
   function onChooseFile() {
-    $('.overlayContainer').LoadingOverlay("show");
+    $.LoadingOverlay('show');
 
-    setTimeout(function () {
+    setTimeout(function() {
       if (typeof window.FileReader !== 'function') {
         throw new Error('The file API isn\'t supported on this browser.');
       }
 
       const file = document.getElementById('fileForUpload').files[0];
-      const filename = document.getElementById('fileForUpload').value.split('\\')
-        .pop().split('.')[0];
+      const filename = document.getElementById('fileForUpload')
+          .value.split('\\')
+          .pop()
+          .split('.')[0];
       if (file) {
         const fr = new FileReader();
         fr.onload = function(evt) {
@@ -100,18 +102,18 @@ function Dashboard() {
         };
         fr.readAsArrayBuffer(file);
       }
-    }, 500);
+    }, 800);
 
-    $('.overlayContainer').LoadingOverlay("hide");
+    $.LoadingOverlay('hide');
   }
 
   /**
    * Calls rerender to the sidebar.
    */
   function rerenderSidebar() {
-    $('.overlayContainer').LoadingOverlay("show");
+    $.LoadingOverlay('show');
 
-    setTimeout(function () {
+    setTimeout(function() {
       const floorsToSave = [];
 
       IBRSDK.renderAndCreateSidebar(
@@ -123,13 +125,13 @@ function Dashboard() {
       document.getElementById('dwn-btn')
           .addEventListener('click', function() {
             download(
-              document.getElementById('filename').value,
-              Dashboard.ibrObject,
-              floorsToSave);
+                document.getElementById('filename').value,
+                Dashboard.ibrObject,
+                floorsToSave);
           });
-    }, 500);
+    }, 800);
 
-    $('.overlayContainer').LoadingOverlay("hide");
+    $.LoadingOverlay('hide');
   }
 
   return (
