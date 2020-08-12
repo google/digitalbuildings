@@ -79,32 +79,34 @@ function Dashboard() {
    * Parse the input IBR file using IBRSDK.
    */
   function onChooseFile() {
-    $.LoadingOverlay('show');
+    if (typeof window.FileReader !== 'function') {
+      throw new Error('The file API isn\'t supported on this browser.');
+    }
 
-    setTimeout(function() {
-      if (typeof window.FileReader !== 'function') {
-        throw new Error('The file API isn\'t supported on this browser.');
-      }
+    const file = document.getElementById('fileForUpload').files[0];
+    const filename = document.getElementById('fileForUpload')
+        .value.split('\\')
+        .pop()
+        .split('.')[0];
+    if (file) {
+      const fr = new FileReader();
+      fr.onload = function(evt) {
+        const bin = evt.target.result;
+        const ibrObject = IBRSDK.init(bin, filename);
+        Dashboard.ibrObject = ibrObject;
+        Dashboard.floorsToSave = [];
 
-      const file = document.getElementById('fileForUpload').files[0];
-      const filename = document.getElementById('fileForUpload')
-          .value.split('\\')
-          .pop()
-          .split('.')[0];
-      if (file) {
-        const fr = new FileReader();
-        fr.onload = function(evt) {
-          const bin = evt.target.result;
-          const ibrObject = IBRSDK.init(bin, filename);
-          Dashboard.ibrObject = ibrObject;
-
-          rerenderSidebar();
-        };
-        fr.readAsArrayBuffer(file);
-      }
-    }, 500);
-
-    $.LoadingOverlay('hide');
+        rerenderSidebar();
+        document.getElementById('dwn-btn')
+          .addEventListener('click', function() {
+            download(
+                document.getElementById('filename').value,
+                Dashboard.ibrObject,
+                Dashboard.floorsToSave);
+          });
+      };
+      fr.readAsArrayBuffer(file);
+    }
   }
 
   /**
@@ -113,25 +115,25 @@ function Dashboard() {
   function rerenderSidebar() {
     $.LoadingOverlay('show');
 
+    if (document.getElementById('mode').checked) {
+      document.getElementById('dwn-btn').style.display = 'block';
+      document.getElementById('filename').style.display = 'block';
+      document.getElementById('export-inst').style.display = 'block';
+    } else {
+      document.getElementById('dwn-btn').style.display = 'none';
+      document.getElementById('filename').style.display = 'none';
+      document.getElementById('export-inst').style.display = 'none';
+    }
+
+    IBRSDK.renderAndCreateSidebar(
+        Dashboard.ibrObject,
+        document.getElementById('mainCanvas'),
+        document.getElementById('layerList'),
+        Dashboard.floorsToSave);
+
     setTimeout(function() {
-      const floorsToSave = [];
-
-      IBRSDK.renderAndCreateSidebar(
-          Dashboard.ibrObject,
-          document.getElementById('mainCanvas'),
-          document.getElementById('layerList'),
-          floorsToSave);
-
-      document.getElementById('dwn-btn')
-          .addEventListener('click', function() {
-            download(
-                document.getElementById('filename').value,
-                Dashboard.ibrObject,
-                floorsToSave);
-          });
+      $.LoadingOverlay('hide');
     }, 500);
-
-    $.LoadingOverlay('hide');
   }
 
   return (
