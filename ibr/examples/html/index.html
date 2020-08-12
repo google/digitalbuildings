@@ -9,6 +9,7 @@
         <script src="../../ibr-sdk/temp/ibr_pb_browser.js"></script>
         <script src="../../ibr-sdk/dist/main.js"></script>
         <link href="index.css" rel="stylesheet">
+        <link href="slider.css" rel="stylesheet">
     </head>
     <body>
         <div id="dashboard"></div>
@@ -33,26 +34,5 @@
     </body>
     <script>
         IBRSDK.createDashboard();
-
-		/**
-		 * Create binary file from data and download the file in browser.
-		 * @param {String} filename name of the binary file that will be created.
-		 * @param {Buffer} bin binary data that will be saved in the file.
-		 */
-		function download(filename, ibrObject, floorsToSave) {
-		  const bin = IBRSDK.saveToBuffer(ibrObject, floorsToSave);
-		  const element = document.createElement('a');
-		  const blob = new Blob([bin], {type: 'application/octet-stream'});
-		  const url = window.URL.createObjectURL(blob);
-		  element.setAttribute('href', url);
-		  element.setAttribute('download', filename+'.ibr');
-		  element.style.display = 'none';
-		  document.body.appendChild(element);
-		  element.click();
-		  document.body.removeChild(element);
-		}
-
-		// document.getElementById('fileForUpload')
-		//	.addEventListener('change', onChooseFile);
     </script>
 </html>

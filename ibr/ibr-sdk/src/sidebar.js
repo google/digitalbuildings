@@ -92,8 +92,14 @@ function createCheckboxForVisualization(visualization, visualizationName,
   const checkBox = document.createElement('INPUT');
   const div = document.createElement('DIV');
   checkBox.setAttribute('type', 'checkbox');
+  checkBox.setAttribute('class', 'visualMode');
   checkBox.setAttribute('id', structureName + '_' + visualizationName);
-  div.appendChild(checkBox);
+
+  // only show if in visual mode
+  if (!document.getElementById('mode').checked) {
+    div.appendChild(checkBox);
+  }
+
   createLabel('label', visualizationName, div, structureName + '_' +
   visualizationName);
   document.getElementById(structureName).appendChild(div);
@@ -166,7 +172,7 @@ function drawSingleStructureSidebar(structure, structureName, level, scene,
   // under space tag.
   const visLi = document.createElement('li');
   document.getElementById(structureName).appendChild(visLi);
-  const visSpan = createLabel('span', 'Visualizations', visLi);
+  const visSpan = createLabel('span', 'Layers', visLi);
   visSpan.setAttribute('class', 'arrow');
   const visUl = document.createElement('ul');
   visUl.setAttribute('class', 'nested');
@@ -220,12 +226,20 @@ function drawSingleStructureSidebar(structure, structureName, level, scene,
     }
     const li = document.createElement('li');
     document.getElementById(parentTagName).appendChild(li);
+
+    // creates checkbox for save back to IBR feature
     if (level === 0 && curIBRObject.getStructuralType() !==
         InternalBuildingRepresentation.StructuralType['SPACE'].value) {
       floorsToSave[structureIndex] = false;
       const checkBox = document.createElement('INPUT');
-      checkBox.setAttribute('type', 'checkbox');
-      li.appendChild(checkBox);
+      checkBox.setAttribute('type', 'radio');
+      checkBox.setAttribute('class', 'exportMode');
+
+      // only show if in export mode
+      if (document.getElementById('mode').checked) {
+        li.appendChild(checkBox);
+      }
+
       checkBox.addEventListener('change', function() {
         if (checkBox.checked) {
           floorsToSave[structureIndex] = true;
@@ -234,6 +248,7 @@ function drawSingleStructureSidebar(structure, structureName, level, scene,
         }
       });
     }
+
     const label = createLabel('span',
         curIBRObject.getName(), li);
     label.setAttribute('class', 'arrow');
