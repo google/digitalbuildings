@@ -95,8 +95,8 @@ function Dashboard() {
             <input type="file" id="fileForUpload" onChange={onChooseFile}
               style={{display: 'none'}}/>
             <Button
-                variant="contained"
-                style={{background: '#1a73e8', color: 'white'}}
+              variant="contained"
+              style={{background: '#1a73e8', color: 'white'}}
               component="span">
               Upload IBR
             </Button>
