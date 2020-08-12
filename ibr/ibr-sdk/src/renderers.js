@@ -66,12 +66,13 @@ function generateScene(parentElement) {
 /**
  * Initialize IBRObject from input IBR raw data in binary format.
  * @param {Buffer} ibrRawData binary IBR data from uploaded IBR file.
+ * @param {String} filename Name of the input IBR file.
  * @return {IBRObject} ibrObject IBRObject generated from input binary.
  */
-function init(ibrRawData) {
+function init(ibrRawData, filename) {
   const ibrData = InternalBuildingRepresentation.read(
       new Pbf(ibrRawData));
-  const ibrObject = new IBRObject(ibrData);
+  const ibrObject = new IBRObject(ibrData, filename);
   return ibrObject;
 }
 

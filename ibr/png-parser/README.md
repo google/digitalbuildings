@@ -18,6 +18,7 @@
 
 3. Run the PNG Parser
     - Install protobuf Python runtime library `pip3 install --upgrade protobuf`
-    - `bazel build //...`
+    - Temporary fix for not able to install opencv inside bazel: `pip3 install opencv`
+    - `bazel build ...`
     - `bazel-bin/create_ibr [PATH_TO_INPUT_BITMAP]`
-    - You will see output IBR file is created in the current directory with the name $INPUT_FILE_NAME.ibr
+    - Output IBR file is created in the same directory as the given input image file with the name $INPUT_FILE_NAME.ibr

@@ -7,6 +7,5 @@ py_library(
     srcs = ['boundary_extraction.py'],
     deps = [
         requirement("numpy"),
-        requirement("opencv-python"),
     ],
 )

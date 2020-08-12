@@ -87,11 +87,13 @@ function Dashboard() {
       }
 
       const file = document.getElementById('fileForUpload').files[0];
+      const filename = document.getElementById('fileForUpload').value.split('\\')
+        .pop().split('.')[0];
       if (file) {
         const fr = new FileReader();
         fr.onload = function(evt) {
           const bin = evt.target.result;
-          const ibrObject = IBRSDK.init(bin);
+          const ibrObject = IBRSDK.init(bin, filename);
           Dashboard.ibrObject = ibrObject;
 
           rerenderSidebar();
