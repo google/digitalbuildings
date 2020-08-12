@@ -36,6 +36,8 @@ function IBRObject(pbfDecodedJsonObject, filename) {
 
   this.name = pbfDecodedJsonObject.name;
 
+  this.filename = filename;
+
   this.structuralType = pbfDecodedJsonObject.structural_type;
 
   // Check if structure contains any coordinates lookup data
@@ -205,7 +207,7 @@ Object.assign(IBRObject.prototype, {
     json.external_reference = this.externalReference;
     json.guid = this.guid;
     json.metadata = this.metadata;
-    if (this.name === 'ibrData.name') {
+    if (this.name === this.filename) {
       json.name = null;
     } else {
       json.name = this.name;
