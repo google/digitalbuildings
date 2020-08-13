@@ -19,6 +19,8 @@ EQUIPMENT:
   opt_uses:
   - manufacturer_label
   - model_label
+  connections:
+    EQUIPMENT: EQUIPMENT
 
 MTS:
   description: "Multi-sensor device."
