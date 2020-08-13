@@ -85,7 +85,6 @@ AHU:
   opt_uses:
   - outside_air_flowrate_requirement # Included at AHU because, regardless of avaiable data for OAD, it will have ventilation requirements.
   connections:
-    LOCATION: CONTAINS
     CHWS: FEEDS
     HWS: FEEDS
     LOCATION: FEEDS
