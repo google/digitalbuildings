@@ -192,7 +192,7 @@ class EntityTypeFolder(config_folder_lib.ConfigFolder):
 
     expected_keys = set([
         'description', 'implements', 'uses', 'opt_uses', 'is_abstract', 'id',
-        'is_canonical'
+        'is_canonical', 'connections'
     ])
 
     if 'description' in type_contents:
