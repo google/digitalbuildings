@@ -4,7 +4,7 @@ descriptor:
 
 measurement_descriptor:
   offline: "indication that a device is not communicating via network (this can be IP or serial)"
-  reset: "act of resetting parameters of a device or control strategy (typically for alarms and setpoints)
+  reset: "act of resetting parameters of a device or control strategy (typically for alarms and setpoints)"
   exercise: "exercise routine used for valves, carried out on a daily/weekly basis in order to ensure valves do not seize"
   
    
