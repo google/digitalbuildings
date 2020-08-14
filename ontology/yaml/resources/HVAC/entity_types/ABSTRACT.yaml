@@ -136,6 +136,13 @@ ZTC:
   opt_uses:
   - zone_air_deadband_temperature_setpoint
   - zone_air_relative_humidity_sensor
+  - zone_air_relative_humidity_alarm_status
+  - zone_air_temperature_alarm_status
+  - zone_controller_alarm 
+  - zone_air_cooling_temperature_setpoint # Temperature setpoint for cooling loop initiation
+  - max_zone_air_temperature_sensor # Maximum temperature sensor reading in a zone
+  - avg_zone_air_temperature_sensor # Average of temperature sensor readings in a zone
+  - max_zone_air_temperature_setpoint # High level temperature setpoint for fan speed increase
   uses:
   - zone_air_temperature_setpoint
   - zone_air_temperature_sensor
@@ -174,6 +181,9 @@ CO2C:
   is_abstract: true
   implements:
   - OPERATIONAL
+  opt_uses:
+  - zone_air_co2_concentration_alarm_status
+  - total_air_co2_concentration_setpoint # CO2 set point used for control (product of zone_air_co2_concentration_setpoint + outside air CO2)
   uses:
   - zone_air_co2_concentration_sensor
   - zone_air_co2_concentration_setpoint
@@ -202,9 +212,17 @@ EDPM:
   id: "18075318737925308416"
   description: "Exhaust air damper percentage monitoring."
   is_abstract: true
+  opt_uses:
+  - exhaust_air_damper_percentage_sensor
+  - exhaust_air_damper_reset_command
+  - exhaust_air_damper_override_status
+  - exhaust_air_damper_alarm_status
+  - exhaust_air_damper_override_percentage_status
   uses:
   - exhaust_air_damper_percentage_command
   - exhaust_air_damper_percentage_sensor
+  implements:
+  - MONITORING
 
 EDM:
   id: "3621015733879701504"
@@ -296,6 +314,15 @@ DFVSC:
   - discharge_fan_power_sensor
   - discharge_fan_speed_frequency_sensor
   - discharge_fan_speed_percentage_sensor
+  - min_discharge_fan_speed_percentage_setpoint # Minimum fan speed percentage setpoint
+  - discharge_fan_alarm_status
+  - discharge_fan_speed_override_status
+  - runtime_discharge_fan_alarm_status
+  - max_discharge_fan_speed_percentage_setpoint # Maximum fan speed percentage setpoint
+  - discharge_fan_runtime_sensor
+  - discharge_fan_override_status
+  - runtime_discharge_fan_reset_command
+  - runtime_discharge_fan_setpoint # High level runtime setpoint to initiate an alarm
   uses:
   - discharge_fan_speed_percentage_command
   - discharge_fan_run_status
@@ -318,6 +345,8 @@ ZHM:
   is_abstract: true
   implements:
   - MONITORING
+  opt_uses:
+  - zone_air_relative_humidity_alarm_status
   uses:
   - zone_air_relative_humidity_sensor
 
@@ -325,6 +354,12 @@ DTM:
   id: "7968704612431560704"
   description: "Discharge temperature monitoring."
   is_abstract: true
+  opt_uses:
+  - discharge_air_heating_high_alarm_status
+  - discharge_air_heating_alarm_status
+  - discharge_air_cooling_low_alarm_status
+  - discharge_air_cooling_alarm_status
+  - discharge_air_temperature_alarm_status
   uses:
   - discharge_air_temperature_sensor
   implements:
@@ -400,6 +435,7 @@ DFSS:
   - discharge_fan_power_capacity
   - discharge_fan_current_sensor
   - discharge_fan_power_sensor
+  - discharge_fan_fault_status
   uses:
   - discharge_fan_run_command
   - discharge_fan_run_status
@@ -433,15 +469,19 @@ RTM:
   description: "Return air temperature monitoring"
   implements:
   - MONITORING
+  opt_uses:
+  - return_air_temperature_alarm_status
   uses:
   - return_air_temperature_sensor
 
 DTC:
   id: "14404348479943999488"
-  description: "Discharge air temperatore control"
+  description: "Discharge air temperature control"
   is_abstract: true
   implements:
   - OPERATIONAL
+  opt_uses:
+  - discharge_air_temperature_alarm_status
   uses:
   - discharge_air_temperature_setpoint
   - discharge_air_temperature_sensor
@@ -465,6 +505,8 @@ RTC:
   is_abstract: true
   implements:
   - OPERATIONAL
+  opt_uses:
+  - return_air_temperature_alarm_status
   uses:
   - return_air_temperature_sensor
   - return_air_temperature_setpoint
@@ -644,6 +686,13 @@ ED:
   id: "8438952541491822592"
   description: "Exhaust air flow control."
   is_abstract: true
+  opt_uses:
+  - exhaust_air_flow_rate_alarm_status
+  - exhaust_air_damper_percentage_sensor
+  - exhaust_air_damper_reset_command
+  - exhaust_air_damper_override_status
+  - exhaust_air_damper_alarm_status
+  - exhaust_air_damper_override_percentage_status
   uses:
   - exhaust_air_flowrate_setpoint
   - exhaust_air_flowrate_sensor
@@ -722,6 +771,13 @@ ZHC:
   id: "7286031036884975616"
   description: "Zone relative humidity control."
   is_abstract: true
+  opt_uses:
+  - min_zone_air_relative_humidity_setpoint # Relative humidity setpoint for fan at minimum speed
+  - max_zone_air_relative_humidity_setpoint # Relative humidity setpoint for fan at maximum speed
+  - max_zone_air_relative_humidity_alarm_setpoint
+  - zone_air_relative_humidity_run_status # Humidity control is enabled
+  - high_zone_air_relative_humidity_alarm_status # Humidity control is in alarm
+  - discharge_air_temperature_setpoint # Discharge air temperature setpoint when humidity control is enabled
   uses:
   - zone_air_relative_humidity_sensor
   - zone_air_relative_humidity_setpoint
@@ -828,6 +884,8 @@ VOCC:
   id: "2097884266154164224"
   description: "Volatile organic compound control."
   is_abstract: true
+  opt_uses:
+  - zone_air_voc_concentration_alarm_status
   uses:
   - zone_air_voc_concentration_setpoint
   - zone_air_voc_concentration_sensor
@@ -891,6 +949,8 @@ SSPM:
   id: "15932942321436327936"
   description: "Supply static pressure monitoring."
   is_abstract: true
+  opt_uses:
+  - supply_air_static_pressure_setpoint
   uses:
   - supply_air_static_pressure_sensor
   implements:
@@ -959,6 +1019,11 @@ FDPM:
   id: "9447758858022813696"
   description: "Filter pressure monitoring."
   is_abstract: true
+  opt_uses:
+  - filter_differential_pressure_setpoint # High level setpoint to initiate filter dirty alarm
+  - filter_alarm_status
+  - filter_differential_alarm_status
+  - filter_reset_command # Reset command for latched filter dirty alarm
   uses:
   - filter_differential_pressure_sensor
   implements:
@@ -1063,6 +1128,14 @@ CHWZTC:
   - discharge_air_temperature_sensor
   - leaving_cooling_coil_temperature_sensor
   - cooling_thermal_power_capacity
+  - chilled_water_valve_exercise_status
+  - chilled_water_valve_override_status
+  - chilled_water_valve_alarm_status
+  - chilled_water_valve_offline_status
+  - min_chilled_water_valve_percentage_setpoint # Low temperature setpoint for valve at minimum position
+  - chilled_water_request_status
+  - chilled_water_flowrate_sensor
+  - max_chilled_water_valve_percentage_setpoint # High temperature setpoint for valve at maximum position
   uses:
   - zone_air_temperature_setpoint
   - zone_air_temperature_sensor
@@ -1659,12 +1732,20 @@ HWZTC:
   - discharge_air_temperature_sensor
   - heating_water_valve_percentage_sensor
   - heating_thermal_power_capacity
+  - max_heating_water_valve_percentage_setpoint # High temperature setpoint for valve at minimum position
+  - heating_water_valve_exercise_status
+  - heating_water_valve_alarm_status
+  - heating_water_request_status
+  - heating_water_valve_offline_status
+  - heating_water_valve_override_status
+  - heating_water_flowrate_sensor
+  - min_heating_water_valve_percentage_setpoint  # Low temperature setpoint for valve at maximum position
   uses:
   - heating_water_valve_percentage_command
   - zone_air_temperature_setpoint
   - zone_air_temperature_sensor
   implements:
-  - CONTROL
+  - CONTROL 
 
 HWSWC:
   id: "8294837353415966720"
@@ -3019,14 +3100,25 @@ PDSCV:
   - CONTROL
 
 SDBPC:
+  id: "eab2e3a7-aec5-45d6-bd22-cd743a51cefb"
   description: "Back-pressure controlling supply damper."
   is_abstract: true
   opt_uses:
   - supply_air_flowrate_sensor
+  - supply_air_static_pressure_alarm_status_failure
+  - supply_air_flow_rate_alarm_status_failure
+  - supply_air_low_offset_static_pressure_setpoint # Sets increments by which the static pressure setpoint will be decreased
+  - supply_air_high_offset_static_pressure_setpoint # Sets increments by which the static pressure setpoint will be increased
+  - supply_air_damper_override_percentage_status
+  - supply_air_damper_override_status
+  - supply_air_damper_low_offset_percentage_command # Sets the number of down stream VAVs above setpoint used to reset up the static pressure setpoint
+  - supply_air_damper_high_offset_percentage_command # Sets the number of down stream VAVs below setpoint used to reset down the static pressure setpoint
+  - supply_air_damper_reset_command
+  - supply_air_damper_alarm_status
   uses:
   - supply_air_static_pressure_sensor
   - supply_air_static_pressure_setpoint
   - supply_air_damper_percentage_command
   - supply_air_damper_percentage_sensor
   implements:
-  - MONITORING
+  - CONTROL # Previously MONITORING
