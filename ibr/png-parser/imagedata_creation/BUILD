@@ -6,6 +6,5 @@ py_library(
     name = 'imagedata_creation',
     srcs = ['imagedata_creation.py'],
     deps = [
-        requirement("opencv-python"),
     ],
 )

@@ -66,12 +66,13 @@ function generateScene(parentElement) {
 /**
  * Initialize IBRObject from input IBR raw data in binary format.
  * @param {Buffer} ibrRawData binary IBR data from uploaded IBR file.
+ * @param {String} filename Name of the input IBR file.
  * @return {IBRObject} ibrObject IBRObject generated from input binary.
  */
-function init(ibrRawData) {
+function init(ibrRawData, filename) {
   const ibrData = InternalBuildingRepresentation.read(
       new Pbf(ibrRawData));
-  const ibrObject = new IBRObject(ibrData);
+  const ibrObject = new IBRObject(ibrData, filename);
   return ibrObject;
 }
 
@@ -90,9 +91,6 @@ function init(ibrRawData) {
  */
 function render(ibrObject, parentElement, spaceLib, connectionLib) {
   const scene = generateScene(parentElement);
-  document.getElementById('dwn-btn').style.display = 'block';
-  document.getElementById('filename').style.display = 'block';
-  document.getElementById('export-inst').style.display = 'block';
   document.getElementById('sidebar-title').innerHTML = ibrObject.getName();
   // scene for createSidebar use, both functions need to use the
   // same scene object to associate checkboxes with visualizations.
@@ -278,8 +276,14 @@ function renderBoundary(ibrObject, structureIndex, scene, spaceLib,
       }
     }
     // Render this space with the color
-    objects[BOUNDARY_NAME] = renderLines(visualizationPH,
-        structureIndex, scene, true, color);
+    const renderAsPolygon = ibrObject.structuralType ===
+      InternalBuildingRepresentation.StructuralType['SPACE'].value;
+    objects[BOUNDARY_NAME] = renderLines(
+        visualizationPH,
+        structureIndex,
+        scene,
+        renderAsPolygon,
+        color);
     objects[BOUNDARY_NAME][0].name = curName;
     // Calculate current space center
     objects[BOUNDARY_NAME][0].geometry.computeBoundingBox();
@@ -383,13 +387,13 @@ function renderConnections(thisCenter, neighborCenter, curName, neighborName,
  * @param {number} structureIndex overall index of the structure.
  * @param {Object} scene The Scene Object that all THREE objects are
   rendered on.
- * @param {Boolean} isBoundary If the lines currently being rendered are
+ * @param {Boolean} renderAsPolygon If the lines currently being rendered are
  from the boundary field of the ibrObject.
  * @param {Color} color The color of the lines being rendered.
  * @return {List.<Object>} objects List of three.js Line objects.
  */
 function renderLines(visualizationCoordinates, structureIndex, scene,
-    isBoundary=false, color=null) {
+    renderAsPolygon=false, color=null) {
   // Render data into three.js objects
   if (!color) {
     color = Colors.random();
@@ -413,7 +417,7 @@ function renderLines(visualizationCoordinates, structureIndex, scene,
       lineSegmentsGeometry.push(geometry);
     } else {
       let lineLoop = null;
-      if (isBoundary) {
+      if (renderAsPolygon) {
         lineLoop = createPolygon(linePoints, meshMaterial);
       } else {
         lineLoop = new THREE.LineLoop(geometry, lineMaterial);
@@ -473,21 +477,32 @@ function triangulatePoints(poly) {
  * Serialize IBRObject object to binary format.
  * @param {IBRObject} ibrObject The IBRObject to be saved back to binary
  format.
- * @param {List.<Boolean>} floorToSave Boolean array representing the floors
+ * @param {List.<Boolean>} floorsToSave Boolean array representing the floors
  to be exported. If element at index i is true, the i-th floor will be
  exported.
  * @return {Buffer} buffer binary representation of IBRObject object.
  */
-function saveToBuffer(ibrObject, floorToSave) {
-  const json = ibrObject.toJson();
-  for (const i in floorToSave) {
-    if (!floorToSave[floorToSave.length - 1 - i]) {
-      json.structures.splice(floorToSave.length - 1 - i, 1);
+function saveToBuffer(ibrObject, floorsToSave) {
+  console.log('saving to buffer');
+  console.log(floorsToSave);
+  let json = ibrObject.toJson();
+  const structuresToSave = [];
+  for (const i in floorsToSave) {
+    if (floorsToSave[i]) {
+      structuresToSave.push(json.structures[i]);
     }
   }
+
+  if (structuresToSave.length === 1) {
+    json = structuresToSave[0];
+  } else {
+    json.structures = structuresToSave;
+  }
+
   const pbf = new Pbf();
   InternalBuildingRepresentation.write(json, pbf);
   const buffer = pbf.finish();
+
   return buffer;
 }
 
