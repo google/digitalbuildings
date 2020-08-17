@@ -26,7 +26,7 @@ from __future__ import print_function
 
 from validate import generate_universe
 from validate import entity_instance
-import instance_parser
+from instance_parser import instance_parser
 import argparse
 import sys
 

@@ -22,7 +22,7 @@ from validate import generate_universe
 from validate import entity_instance
 from absl.testing import absltest
 
-import instance_parser
+from instance_parser import instance_parser
 import os
 
 _TESTCASE_PATH = os.path.join('.', 'tests', 'fake_instances')
