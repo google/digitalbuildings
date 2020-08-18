@@ -30,7 +30,7 @@ component:
   dial: "Adjustment device (e.g. setpoint dial)."
   dimmer: "Adjustment device of dimming light level for controlling output of a lighting fixture."
   dishwasher: "Device that washes dishes."
-  driver: "A circuit or component used to control another circuit or component, such as a high-power transistor, light-emitting diode(LED), and numerous others.
+  driver: "A circuit or component that provides the motor (or lighting board) with power, but doesn't handle logical control of the device."
   dryer: "A component used for drying clothes."
   evaporator: "The component of a refrigeration system that evaporates refrigerant."
   fan: "Component used for the distribution of air."
