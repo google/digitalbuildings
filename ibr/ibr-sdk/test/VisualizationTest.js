@@ -8,7 +8,7 @@ test.before( (t) => {
     data: 'coordinate_indices',
     encoding_type: 1,
     id: 'US-SVL-TC2-1',
-    image_data: null,
+    image_data: undefined,
   };
   const coordsLookup = Float32Array.from(
      [269.67669677734375, 165.02369689941406, 0, 295.67669677734375,

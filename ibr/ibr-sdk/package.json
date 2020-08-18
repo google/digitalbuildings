@@ -36,6 +36,7 @@
     "eslint": "^7.5.0",
     "eslint-config-google": "^0.14.0",
     "eslint-plugin-react": "^7.20.5",
+    "esm": "^3.2.25",
     "rollup": "^2.23.0",
     "rollup-plugin-commonjs": "^10.1.0"
   },
