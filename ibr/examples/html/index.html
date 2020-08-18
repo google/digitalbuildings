@@ -91,10 +91,10 @@
 		<div id="header">
 			<div id="title">IBR Demo</div>
 
-			<div id="upload-button">
+			<label id="upload-button-container" htmlFor="fileForUpload">
 				<input type="file" id="fileForUpload" onChange="onChooseFile()" />
-				<button>Upload IBR file</button>
-			</div>
+				<a id="upload-button" class="disable">Upload IBR file</a>
+			</label>
 
 			<div class="mode-toggle">
 				<p>Visual</p>

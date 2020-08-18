@@ -14,7 +14,7 @@ canvas {
   height: 100%;
   left: 0;
   overflow-x: hidden;
-  padding: 64px 24px 24px 24px;
+  padding: 0 8px;
   position: fixed;
   top: 72px;
   width: 350px;
@@ -55,7 +55,7 @@ ul, #layerList {
 
 #layerListContainer {
   display: block;
-  height: 75%;
+  height: 60%;
   overflow: auto;
   padding: 4px;
 }
@@ -67,6 +67,8 @@ ul, #layerList {
 
 
 .saveToIbr {
+  bottom: 12px;
+  height: 100px;
   input#filename {
     width: 100%;
   }
@@ -89,17 +91,28 @@ ul, #layerList {
   font-size: 36px;
 }
 
-#upload-button {
+#upload-button-container {
   padding: 24px;
 }
 
+#upload-button {
+  background-color: #174ea6;
+  color: white;
+  padding: 8px;
+}
+
+#upload-button-container:hover {
+  cursor: pointer;
+}
+
 #fileForUpload {
+  height: 100%;
+  width: 100%;
   display: none;
 }
 
 #header {
   background-color: #4285f4;
-  border: 1px solid red;
   color: white;
   display: flex;
   flex-direction: row;
@@ -115,4 +128,10 @@ ul, #layerList {
   display: block;
   position: fixed;
   top: 72px;
+}
+
+.disable {
+  height: 100%;
+  width: 100%;
+  pointer-events: none;
 }
