@@ -43,6 +43,8 @@ component:
   vane: "Component for guiding media flow."
   wheel: "Component used for transfer of heat from incoming to outgoing air streams. "
 descriptor: 
+  runtime: "accumulation of time a device or system has been running (quite often used for maintenance/servicing purposes)" # Added 18/08/20
+  condensate: "descriptor for pump used to remove liquid collected by condensation"  # Added 18/08/20
   air: "Atmospheric air, either conditioned or unconditioned"
   aisle: "Passage between two rows of server racks."
   blowdown: "Process of expelling water filled with mineral deposits for the purposes of water treatment. "
@@ -160,6 +162,7 @@ descriptor:
   winter: "Method or process used during colder weather (i.e. winter season)."
   zone: "Region of building which is conditioned."
 measurement:
+  time: "measurement of time (often associated with runtime of devices)"  # Added 18/08/20
   concentration: "Concentration of chemical (usually in parts per million or parts per billion)."
   current: "Flow of electric charge."
   energy: " The quantitative property that must be transferred to an object to perform work (default electrical unless otherwise modified)."
@@ -178,6 +181,8 @@ measurement:
   voltage: "Electrical potential difference between two reference points."
   volume: "The quantity of three-dimensional space contained by a closed surface."
 measurement_descriptor:
+  offline: "indication that a device is not communicating via network (this can be IP or serial)"  # Added 18/08/20
+  reset: "act of resetting parameters of a device or control strategy (typically for alarms and setpoints)"  # Added 18/08/20
   absolute: "Quality of media with respect to non-relativistic boudaries (e.g. absolute temperature)."
   alarm: "Signal that an alarm is present."
   apparent: "The combination of reactive and real components (power)."

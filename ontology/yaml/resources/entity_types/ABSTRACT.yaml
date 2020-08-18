@@ -1,0 +1,3391 @@
+# Copyright 2020 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the License);
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#    https://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an AS IS BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+### ABSTRACT TYPES
+
+# This defines subtypes by function. They are not necessarily specific to any type of equipment.
+# TODO: Variable speed compressors?
+# TODO: For types which use multiple sensors as control points (e.g. differential_pressure_sensor_1
+# and _2) they should be reconstructed using virtual points (and the 2X types should be deprecated).
+
+SD:
+  id: "11449987124388954112"
+  description: "Single duct VAV type, with basic airflow control."
+  is_abstract: true
+  opt_uses:
+  - run_command
+  - supply_air_ventilation_flowrate_requirement
+  - supply_air_cooling_flowrate_capacity
+  - supply_air_heating_flowrate_capacity
+  - cooling_thermal_power_capacity
+  - supply_air_temperature_sensor
+  uses:
+  - supply_air_flowrate_sensor
+  - supply_air_flowrate_setpoint
+  - supply_air_damper_percentage_command
+  implements:
+  - CONTROL
+
+DD:
+  id: "8927971333061476352"
+  description: "Dual duct flow control (hot deck, cold deck)."
+  is_abstract: true
+  opt_uses:
+  - supply_air_ventilation_flowrate_requirement
+  - supply_air_cooling_flowrate_capacity
+  - supply_air_heating_flowrate_capacity
+  - cooling_thermal_power_capacity
+  - heating_thermal_power_capacity
+  - discharge_air_temperature_sensor
+  - run_command
+  uses:
+  - cooling_air_damper_percentage_command
+  - cooling_air_flowrate_sensor
+  - cooling_air_flowrate_setpoint
+  - heating_air_damper_percentage_command
+  - heating_air_flowrate_sensor
+  - heating_air_flowrate_setpoint
+  implements:
+  - CONTROL
+
+# Not deprecated but probably not useful
+OADM:
+  id: "13985513714598543360"
+  description: "Outside air damper monitoring."
+  uses:
+  - outside_air_damper_command
+
+MOAFC:
+  id: "1519549946037010432"
+  description: "Minimum (ventilation) outside air flow control."
+  is_abstract: true
+  opt_uses:
+  - economizer_mode
+  uses:
+  - ventilation_outside_air_damper_percentage_command
+  - ventilation_outside_air_flowrate_setpoint
+  - ventilation_outside_air_flowrate_sensor
+  implements:
+  - CONTROL
+
+OAFC:
+  id: "12724505818934804480"
+  description: "Outside Air Flow Control"
+  is_abstract: true
+  opt_uses:
+  - economizer_mode
+  - mixed_air_temperature_sensor
+  uses:
+  - outside_air_flowrate_setpoint
+  - outside_air_flowrate_sensor
+  - outside_air_damper_percentage_command
+  implements:
+  - CONTROL
+
+ZTM:
+  id: "5662861603217866752"
+  description: "Zone temperature monitoring."
+  is_abstract: true
+  opt_uses:
+  - discharge_air_temperature_sensor
+  uses:
+  - zone_air_temperature_sensor
+  implements:
+  - MONITORING
+
+REFM:
+  id: "18151343369916252160"
+  description: "Refrigerant leak monitoring."
+  is_abstract: true
+  implements:
+  - MONITORING
+  uses:
+  - zone_air_refrigerant_concentration_sensor
+
+
+CSP:
+  id: "2456298668530073600"
+  description: "Single cooling setpoint control (IDF room typically)."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  opt_uses:
+  - zone_air_relative_humidity_sensor
+  - discharge_air_temperature_sensor
+  uses:
+  - zone_air_temperature_sensor
+  - zone_air_cooling_temperature_setpoint
+
+ZTC:
+  id: "10742921982891786240"
+  description: "Single control setpoint with deadband."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  opt_uses:
+  - zone_air_deadband_temperature_setpoint
+  - zone_air_relative_humidity_sensor
+  - zone_air_relative_humidity_status
+  - zone_air_temperature_status
+  - zone_controller_alarm_status 
+  - zone_air_cooling_temperature_setpoint # Temperature setpoint for cooling loop initiation
+  - max_zone_air_temperature_sensor # Maximum temperature sensor reading in a zone
+  - average_zone_air_temperature_sensor # Average of temperature sensor readings in a zone
+  - max_zone_air_temperature_setpoint # High level temperature setpoint for fan speed increase
+  uses:
+  - zone_air_temperature_setpoint
+  - zone_air_temperature_sensor
+
+DSP:
+  id: "8112819800507416576"
+  description: "Dual setpoint control (heating/cooling thresholds with deadband in between)."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  opt_uses:
+  - discharge_air_temperature_sensor
+  - zone_air_relative_humidity_sensor
+  uses:
+  - zone_air_temperature_sensor
+  - zone_air_cooling_temperature_setpoint
+  - zone_air_heating_temperature_setpoint
+
+DDSP:
+  id: "15044396188704964608"
+  description: "Dual setpoint control (heating/cooling thresholds with deadband in between) with two zone temp sensors."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  opt_uses:
+  - discharge_air_temperature_sensor
+  uses:
+  - zone_air_temperature_sensor_1
+  - zone_air_temperature_sensor_2
+  - zone_air_cooling_temperature_setpoint
+  - zone_air_heating_temperature_setpoint
+
+CO2C:
+  id: "14886233640072642560"
+  description: "Carbon dioxide control."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  opt_uses:
+  - zone_air_co2_concentration_status
+  - total_air_co2_concentration_setpoint # CO2 set point used for control (product of zone_air_co2_concentration_setpoint + outside air CO2)
+  uses:
+  - zone_air_co2_concentration_sensor
+  - zone_air_co2_concentration_setpoint
+
+COC:
+  id: "11679670705384849408"
+  description: "Carbon monoxide control."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  uses:
+  - zone_air_co_concentration_sensor
+  - zone_air_co_concentration_setpoint
+
+BPC:
+  id: "16869691043929391104"
+  description: "Building pressure control (stand-alone fan)."
+  is_abstract: true
+  uses:
+  - building_air_static_pressure_sensor
+  - building_air_static_pressure_setpoint
+  implements:
+  - OPERATIONAL
+
+EDPM:
+  id: "18075318737925308416"
+  description: "Exhaust air damper percentage monitoring."
+  is_abstract: true
+  opt_uses:
+  - exhaust_air_damper_reset_command
+  - exhaust_air_damper_override_status
+  - exhaust_air_damper_alarm_status
+  - exhaust_air_damper_override_percentage_status
+  uses:
+  - exhaust_air_damper_percentage_command
+  - exhaust_air_damper_percentage_sensor
+  implements:
+  - MONITORING
+
+EDM:
+  id: "3621015733879701504"
+  description: "Exhaust air damper monitoring."
+  is_abstract: true
+  uses:
+  - exhaust_air_damper_command
+  - exhaust_air_damper_status
+
+EDBPC:
+  id: "15769475728711614464"
+  description: "Building static control with exhaust damper."
+  is_abstract: true
+  uses:
+  - building_air_static_pressure_sensor
+  - building_air_static_pressure_setpoint
+  - exhaust_air_damper_percentage_command
+  implements:
+  - CONTROL
+
+BSPC:
+  id: "6131235964464398336"
+  description: "Building static pressure control (as part of a composite device)."
+  is_abstract: true
+  opt_uses:
+  - exhaust_air_damper_percentage_command
+  - exhaust_fan_run_status
+  uses:
+  - building_air_static_pressure_sensor
+  - building_air_static_pressure_setpoint
+  - exhaust_fan_run_command
+  implements:
+  - CONTROL
+
+VSC:
+  id: "3357018594004172800"
+  description: "Variable speed control generic."
+  is_abstract: true
+  opt_uses:
+  - current_sensor
+  - speed_percentage_sensor
+  - speed_frequency_sensor
+  - power_sensor
+  uses:
+  - speed_percentage_command
+  - run_status
+  - run_command
+  implements:
+  - OPERATIONAL
+
+EFVSC:
+  id: "12580390630858948608"
+  description: "Variable speed control for exhaust fans."
+  is_abstract: true
+  opt_uses:
+  - exhaust_fan_speed_frequency_sensor
+  - exhaust_fan_speed_percentage_sensor
+  - exhaust_fan_current_sensor
+  - exhaust_fan_power_sensor
+  uses:
+  - exhaust_fan_run_command
+  - exhaust_fan_run_status
+  - exhaust_fan_speed_percentage_command
+  implements:
+  - OPERATIONAL
+
+SFVSC:
+  id: "16291356723812237312"
+  description: "Variable speed control for supply fans."
+  is_abstract: true
+  opt_uses:
+  - supply_fan_speed_frequency_sensor
+  - supply_fan_speed_percentage_sensor
+  - supply_fan_current_sensor
+  - supply_fan_power_sensor
+  uses:
+  - supply_fan_run_command
+  - supply_fan_run_status
+  - supply_fan_speed_percentage_command
+  implements:
+  - OPERATIONAL
+
+DFVSC:
+  id: "3825392955250704384"
+  description: "Variable speed control for discharge fans."
+  is_abstract: true
+  opt_uses:
+  - discharge_fan_current_sensor
+  - discharge_fan_power_sensor
+  - discharge_fan_speed_frequency_sensor
+  - discharge_fan_speed_percentage_sensor
+  - min_discharge_fan_speed_percentage_setpoint # Minimum fan speed percentage setpoint
+  - discharge_fan_alarm_status
+  - discharge_fan_speed_status
+  - runtime_discharge_fan_alarm_status
+  - max_discharge_fan_speed_percentage_setpoint # Maximum fan speed percentage setpoint
+  - discharge_fan_run_time_sensor
+  - discharge_fan_override_status
+  - runtime_discharge_fan_reset_command
+  - discharge_fan_run_time_setpoint # High level runtime setpoint to initiate an alarm
+  uses:
+  - discharge_fan_speed_percentage_command
+  - discharge_fan_run_status
+  - discharge_fan_run_command
+  implements:
+  - OPERATIONAL
+
+DFMSC:
+  id: "13122696153957138432"
+  description: "Discharge fan multi-speed control."
+  is_abstract: true
+  uses:
+  - discharge_fan_run_command
+  - discharge_fan_run_status
+  - discharge_fan_speed_mode
+
+ZHM:
+  id: "17192076649286336512"
+  description: "Zone humidity monitoring."
+  is_abstract: true
+  implements:
+  - MONITORING
+  opt_uses:
+  - zone_air_relative_humidity_status
+  uses:
+  - zone_air_relative_humidity_sensor
+
+DTM:
+  id: "7968704612431560704"
+  description: "Discharge temperature monitoring."
+  is_abstract: true
+  opt_uses:
+  - discharge_air_heating_high_alarm_status
+  - discharge_air_heating_alarm_status
+  - discharge_air_cooling_low_alarm_status
+  - discharge_air_cooling_alarm_status
+  - discharge_air_temperature_status
+  uses:
+  - discharge_air_temperature_sensor
+  implements:
+  - MONITORING
+
+SS:
+  id: "2875133433875529728"
+  description: "Basic combination of run command and status (start/stop)."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  opt_uses:
+  - power_capacity
+  - flowrate_capacity
+  - powerfactor_sensor
+  - current_sensor
+  - power_sensor
+  uses:
+  - run_command
+  - run_status
+
+SSPC:
+  id: "10526749200778002432"
+  description: "Supply static pressure control via supply fan speed"
+  is_abstract: true
+  opt_uses:
+  - supply_fan_speed_frequency_sensor
+  - supply_fan_run_command
+  - supply_fan_run_status
+  - pressurization_request_count
+  - supply_air_damper_percentage_command
+  - supply_air_flowrate_sensor
+  - supply_fan_speed_percentage_command
+  uses:
+  - supply_air_static_pressure_sensor
+  - supply_air_static_pressure_setpoint
+  implements:
+  - OPERATIONAL
+
+SPSS:
+  id: "8029265712889462784"
+  description: "Spray pump start stop monitoring."
+  is_abstract: true
+  uses:
+  - spray_pump_run_command
+  - spray_pump_run_status
+  implements:
+  - OPERATIONAL
+
+EFSS:
+  id: "618830020562911232"
+  description: "Basic combination of exhaust fan run command and status (start/stop)."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  opt_uses:
+  - exhaust_fan_current_sensor
+  - exhaust_fan_power_sensor
+  - exhaust_air_flowrate_capacity
+  - exhaust_fan_power_capacity
+  uses:
+  - exhaust_fan_run_command
+  - exhaust_fan_run_status
+
+DFSS:
+  id: "8437078973678092288"
+  description: "Basic combination of discharge fan run command and status (start/stop)."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  opt_uses:
+  - discharge_air_flowrate_capacity
+  - discharge_fan_power_capacity
+  - discharge_fan_current_sensor
+  - discharge_fan_power_sensor
+  - discharge_fan_fault_status
+  uses:
+  - discharge_fan_run_command
+  - discharge_fan_run_status
+
+SFSS:
+  id: "5180976443089223680"
+  description: "Basic combination of supply fan run command and status (start/stop)."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  opt_uses:
+  - supply_air_flowrate_capacity
+  - supply_fan_power_capacity
+  - supply_fan_current_sensor
+  - supply_fan_power_sensor
+  uses:
+  - supply_fan_run_command
+  - supply_fan_run_status
+
+RHM:
+  id: "14781568929201389568"
+  description: "Return air humidity monitoring."
+  is_abstract: true
+  implements:
+  - MONITORING
+  uses:
+  - return_air_relative_humidity_sensor
+
+RTM:
+  id: "2924673029776605184"
+  description: "Return air temperature monitoring"
+  implements:
+  - MONITORING
+  opt_uses:
+  - return_air_temperature_status
+  uses:
+  - return_air_temperature_sensor
+
+DTC:
+  id: "14404348479943999488"
+  description: "Discharge air temperature control"
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  opt_uses:
+  - discharge_air_temperature_status
+  uses:
+  - discharge_air_temperature_setpoint
+  - discharge_air_temperature_sensor
+
+STC:
+  id: "2204097089397325824"
+  description: "Supply air temperature control"
+  is_abstract: true
+  opt_uses:
+  - heating_request_count
+  - cooling_request_count
+  uses:
+  - supply_air_temperature_setpoint
+  - supply_air_temperature_sensor
+  implements:
+  - OPERATIONAL
+
+RTC:
+  id: "7486819452302917632"
+  description: "Return air temperature control"
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  opt_uses:
+  - return_air_temperature_status
+  uses:
+  - return_air_temperature_sensor
+  - return_air_temperature_setpoint
+
+# Rename to OTM
+OA:
+  id: "15138435219205390336"
+  description: "Basic weather station (drybulb temp and humidity)."
+  is_abstract: true
+  opt_uses:
+  - outside_air_relative_humidity_sensor
+  - outside_air_dewpoint_temperature_sensor
+  - outside_air_wetbulb_temperature_sensor
+  - outside_air_specificenthalpy_sensor
+  uses:
+  - outside_air_temperature_sensor
+  implements:
+  - MONITORING
+
+WDT:
+  id: "12148045066631380992"
+  description: "Temperature differential across water."
+  is_abstract: true
+  implements:
+  - MONITORING
+  uses:
+  - return_water_temperature_sensor
+  - supply_water_temperature_sensor
+
+CHWDT:
+  id: "6815783107824713728"
+  description: "Temperature differential across chilled water."
+  is_abstract: true
+  implements:
+  - MONITORING
+  uses:
+  - chilled_return_water_temperature_sensor
+  - chilled_supply_water_temperature_sensor
+
+CWDT:
+  id: "16710191489157693440"
+  description: "Temperature differential across condenser water."
+  is_abstract: true
+  implements:
+  - MONITORING
+  uses:
+  - condensing_return_water_temperature_sensor
+  - condensing_supply_water_temperature_sensor
+
+# Rename SFN TOTAL_
+SWTC:
+  id: "3609220173136920576"
+  description: "Supply water temperature control."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  opt_uses:
+  - cooling_request_count
+  - heating_request_count
+  - return_water_temperature_sensor
+  - run_command
+  uses:
+  - supply_water_temperature_setpoint
+  - supply_water_temperature_sensor
+
+RWTC:
+  id: "4684780039613448192"
+  description: "Return water temperature control."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  opt_uses:
+  - supply_water_temperature_sensor
+  - run_command
+  uses:
+  - return_water_temperature_setpoint
+  - return_water_temperature_sensor
+
+
+PSWTC:
+  id: "10474579573063286784"
+  description: "Process water temperature control."
+  is_abstract: true
+  opt_uses:
+  - process_return_water_temperature_sensor
+  uses:
+  - process_supply_water_temperature_sensor
+  - process_supply_water_temperature_setpoint
+  implements:
+  - OPERATIONAL
+
+SCHWTC:
+  id: "10166461230588362752"
+  description: "Supply chilled water temperature control."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  opt_uses:
+  - cooling_request_count
+  - chilled_return_water_temperature_sensor
+  - cooling_percentage_command
+  uses:
+  - chilled_supply_water_temperature_setpoint
+  - chilled_supply_water_temperature_sensor
+
+WDPC:
+  id: "7536359048203993088"
+  description: "Differential pressure control in whichever system."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  opt_uses:
+  - pressurization_request_count
+  uses:
+  - differential_pressure_sensor
+  - differential_pressure_setpoint
+
+CGRWTC:
+  id: "8601082128077160448"
+  description: "Cogeneration return water temperature control."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  opt_uses:
+  - cogeneration_supply_water_temperature_sensor
+  uses:
+  - cogeneration_return_water_temperature_sensor
+  - cogeneration_return_water_temperature_setpoint
+
+WDPC2X:
+  id: "14149516868997611520"
+  description: "Differential pressure control in whichever system, 2 sensors."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  opt_uses:
+  - pressurization_request_count
+  - run_command
+  uses:
+  - differential_pressure_sensor_1
+  - differential_pressure_sensor_2
+  - differential_pressure_setpoint
+
+# Change to low_limit_flowrate_setpoint
+MINFC:
+  id: "16039155144679489536"
+  description: "Minimum flow control for entire loop."
+  is_abstract: true
+  implements:
+  - CONTROL
+  uses:
+  - bypass_valve_percentage_command
+  - min_flowrate_setpoint
+  - flowrate_sensor
+
+# Rename to CPSS
+CPC:
+  id: "1722211929268682752"
+  description: "Circulation pump control"
+  is_abstract: true
+  uses:
+  - circulation_pump_run_status
+  - circulation_pump_run_command
+
+
+### NET NEW TYPES
+ETM:
+  id: "13050638559919210496"
+  description: "Basic exhaust temperature monitoring."
+  is_abstract: true
+  uses:
+  - exhaust_air_temperature_sensor
+  implements:
+  - MONITORING
+
+ED:
+  id: "8438952541491822592"
+  description: "Exhaust air flow control."
+  is_abstract: true
+  opt_uses:
+  - exhaust_air_flowrate_status
+  - exhaust_air_damper_percentage_sensor
+  - exhaust_air_damper_reset_command
+  - exhaust_air_damper_override_status
+  - exhaust_air_damper_alarm_status
+  - exhaust_air_damper_override_percentage_status
+  uses:
+  - exhaust_air_flowrate_setpoint
+  - exhaust_air_flowrate_sensor
+  - exhaust_air_damper_percentage_command
+  implements:
+  - CONTROL
+
+RD:
+  id: "17662324578346598400"
+  description: "Return damper flow control."
+  is_abstract: true
+  uses:
+  - return_air_flowrate_setpoint
+  - return_air_flowrate_sensor
+  - return_air_damper_percentage_command
+  implements:
+  - CONTROL
+
+MTM:
+  id: "944962761547317248"
+  description: "Mixed air temperature monitoring."
+  is_abstract: true
+  uses:
+  - mixed_air_temperature_sensor
+  implements:
+  - MONITORING
+
+MTC:
+  id: "10168334798402093056"
+  description: "Mixed air temperature control."
+  is_abstract: true
+  uses:
+  - mixed_air_temperature_sensor
+  - mixed_air_temperature_setpoint
+  implements:
+  - OPERATIONAL
+
+STM:
+  id: "5556648779974705152"
+  description: "Basic supply temperature monitoring."
+  is_abstract: true
+  uses:
+  - supply_air_temperature_sensor
+  implements:
+  - MONITORING
+
+STDSPC:
+  id: "14780020816829480960"
+  description: "Supply temperature control dual setpoint."
+  is_abstract: true
+  opt_uses:
+  - heating_request_count
+  - cooling_request_count
+  uses:
+  - supply_air_cooling_temperature_setpoint
+  - supply_air_heating_temperature_setpoint
+  - supply_air_temperature_sensor
+  implements:
+  - OPERATIONAL
+
+DSPRTC:
+  id: "3250805770761011200"
+  description: "Dual setpoint return air temp control."
+  is_abstract: true
+  opt_uses:
+  - discharge_air_temperature_sensor
+  - return_air_relative_humidity_sensor
+  uses:
+  - return_air_temperature_sensor
+  - return_air_cooling_temperature_setpoint
+  - return_air_heating_temperature_setpoint
+  implements:
+  - OPERATIONAL
+
+ZHC:
+  id: "7286031036884975616"
+  description: "Zone relative humidity control."
+  is_abstract: true
+  opt_uses:
+  - min_zone_air_relative_humidity_setpoint # Relative humidity setpoint for fan at minimum speed
+  - max_zone_air_relative_humidity_setpoint # Relative humidity setpoint for fan at maximum speed
+  - zone_air_relative_humidity_mode # Humidity control is enabled
+  - high_zone_air_relative_humidity_status # Humidity control is in alarm
+  - discharge_air_temperature_setpoint # Discharge air temperature setpoint when humidity control is enabled
+  uses:
+  - zone_air_relative_humidity_sensor
+  - zone_air_relative_humidity_setpoint
+  implements:
+  - OPERATIONAL
+
+RHC:
+  id: "2169941860192092160"
+  description: "Return air relative humidity control."
+  is_abstract: true
+  uses:
+  - return_air_relative_humidity_sensor
+  - return_air_relative_humidity_setpoint
+  implements:
+  - OPERATIONAL
+
+RHDHC:
+  id: "18310842924687949824"
+  description: "Return humidification/dehumidification control."
+  is_abstract: true
+  opt_uses:
+  - economizer_mode
+  uses:
+  - return_air_relative_humidity_sensor
+  - return_air_relative_humidity_setpoint
+  - dehumidification_run_command
+  - humidification_run_command
+  implements:
+  - CONTROL
+
+ZHDHC:
+  id: "4475784869405786112"
+  description: "Zone humidification/dehumidification control."
+  is_abstract: true
+  uses:
+  - zone_air_relative_humidity_sensor
+  - zone_air_relative_humidity_setpoint
+  - dehumidification_run_command
+  - humidification_run_command
+  implements:
+  - CONTROL
+
+SHC:
+  id: "12474177807615787008"
+  description: "Supply air relative humidity control."
+  is_abstract: true
+  uses:
+  - dehumidification_run_command
+  - humidification_run_command
+  - supply_air_dehumidification_relative_humidity_setpoint
+  - supply_air_humidification_relative_humidity_setpoint
+  - supply_air_relative_humidity_sensor
+  implements:
+  - OPERATIONAL
+
+SHM:
+  id: "2378937030399754240"
+  description: "Supply air relative humidity monitoring."
+  is_abstract: true
+  uses:
+  - supply_air_relative_humidity_sensor
+  implements:
+  - MONITORING
+
+REFC:
+  id: "3034632988647227392"
+  description: "Refrigerant leak control."
+  is_abstract: true
+  uses:
+  - zone_air_refrigerant_concentration_setpoint
+  - zone_air_refrigerant_concentration_sensor
+  implements:
+  - OPERATIONAL
+
+EPC:
+  id: "11105083520895156224"
+  description: "Exhaust pressure control."
+  is_abstract: true
+  uses:
+  - exhaust_air_static_pressure_sensor
+  - exhaust_air_static_pressure_setpoint
+  implements:
+  - OPERATIONAL
+
+CO2M:
+  id: "7862491789188399104"
+  description: "Basic carbon dioxide monitoring."
+  is_abstract: true
+  uses:
+  - zone_air_co2_concentration_sensor
+  implements:
+  - MONITORING
+
+VOCM:
+  id: "17085863826043174912"
+  description: "Volatile organic compound monitoring."
+  is_abstract: true
+  uses:
+  - zone_air_voc_concentration_sensor
+  implements:
+  - MONITORING
+
+VOCC:
+  id: "2097884266154164224"
+  description: "Volatile organic compound control."
+  is_abstract: true
+  opt_uses:
+  - zone_air_voc_concentration_status
+  uses:
+  - zone_air_voc_concentration_setpoint
+  - zone_air_voc_concentration_sensor
+  implements:
+  - OPERATIONAL
+
+BFSS:
+  id: "11321256303008940032"
+  description: "Booster fan start-stop and feedback."
+  is_abstract: true
+  uses:
+  - boost_fan_run_command
+  - boost_fan_run_status
+  implements:
+  - OPERATIONAL
+
+DFHLC:
+  id: "3539036146912722944"
+  description: "Discharge fan three-speed (high/low/off) speed control."
+  is_abstract: true
+  opt_uses:
+  - discharge_fan_run_status
+  - discharge_fan_run_command
+  uses:
+  - low_discharge_fan_speed_command
+  - high_discharge_fan_speed_command
+  implements:
+  - OPERATIONAL
+  - REMAP_REQUIRED
+
+DFHMLC:
+  id: "8727182917643534336"
+  description: "Discharge fan three-speed (high/medium/low/off) speed control."
+  is_abstract: true
+  opt_uses:
+  - discharge_fan_run_status
+  - discharge_fan_run_command
+  uses:
+  - low_discharge_fan_speed_command
+  - medium_discharge_fan_speed_command
+  - high_discharge_fan_speed_command
+  implements:
+  - OPERATIONAL
+  - REMAP_REQUIRED
+
+ESPC:
+  id: "6709570284581552128"
+  description: "Exhaust air static pressure control."
+  is_abstract: true
+  uses:
+  - exhaust_air_damper_percentage_command
+  - exhaust_fan_run_command
+  - exhaust_fan_run_status
+  - exhaust_fan_speed_percentage_command
+  - exhaust_air_static_pressure_sensor
+  - exhaust_air_static_pressure_setpoint
+  implements:
+  - OPERATIONAL
+
+SSPM:
+  id: "15932942321436327936"
+  description: "Supply static pressure monitoring."
+  is_abstract: true
+  opt_uses:
+  - supply_air_static_pressure_setpoint
+  uses:
+  - supply_air_static_pressure_sensor
+  implements:
+  - MONITORING
+
+ZSPC:
+  id: "4403727275367858176"
+  description: "Zone static pressure control."
+  is_abstract: true
+  uses:
+  - zone_air_static_pressure_setpoint
+  - zone_air_static_pressure_sensor
+  implements:
+  - OPERATIONAL
+
+ZSPM:
+  id: "13627099312222633984"
+  description: "Zone static pressure monitoring."
+  is_abstract: true
+  uses:
+  - zone_air_static_pressure_sensor
+  implements:
+  - MONITORING
+
+RSPC:
+  id: "9015413293795246080"
+  description: "Return air static pressure control."
+  is_abstract: true
+  uses:
+  - return_air_static_pressure_sensor
+  - return_air_static_pressure_setpoint
+  implements:
+  - OPERATIONAL
+
+PWDPC:
+  id: "18238785330650021888"
+  description: "Process water differential pressure control."
+  is_abstract: true
+  uses:
+  - process_water_differential_pressure_sensor
+  - process_water_differential_pressure_setpoint
+  implements:
+  - OPERATIONAL
+
+PWDT:
+  id: "289266803299844096"
+  description: "Primary-side water delta-T monitoring."
+  is_abstract: true
+  uses:
+  - primary_supply_water_temperature_sensor
+  - primary_return_water_temperature_sensor
+
+
+CHPM:
+  id: "224386821168037888"
+  description: "Chiller pressure monitoring."
+  is_abstract: true
+  uses:
+  - evaporator_pressure_sensor
+  - condenser_pressure_sensor
+  - differential_pressure_sensor # consider removing or renaming, may not be descriptive enough for WCC
+  implements:
+  - MONITORING
+
+FDPM:
+  id: "9447758858022813696"
+  description: "Filter pressure monitoring."
+  is_abstract: true
+  opt_uses:
+  - filter_differential_pressure_setpoint # High level setpoint to initiate filter dirty alarm
+  - filter_alarm_status
+  - filter_differential_pressure_status
+  - filter_reset_command # Reset command for latched filter dirty alarm
+  uses:
+  - filter_differential_pressure_sensor
+  implements:
+  - MONITORING
+
+# Chilled water valve control
+
+CHWDC:
+  id: "16581460667777679360"
+  description: "Chilled water valve monitoring on discharge side."
+  is_abstract: true
+  opt_uses:
+  - leaving_cooling_coil_temperature_sensor
+  - cooling_thermal_power_capacity
+  uses:
+  - discharge_air_temperature_sensor
+  - discharge_air_temperature_setpoint
+  - chilled_water_valve_percentage_command
+  implements:
+  - CONTROL
+
+CHWSC:
+  id: "4836072839595425792"
+  description: "Chilled water valve monitoring on supply side."
+  is_abstract: true
+  opt_uses:
+  - leaving_cooling_coil_temperature_sensor
+  - cooling_thermal_power_capacity
+  uses:
+  - supply_air_temperature_sensor
+  - supply_air_temperature_setpoint
+  - chilled_water_valve_percentage_command
+  implements:
+  - CONTROL
+
+CHWSDC:
+  id: "2207518769582964736"
+  description: "Chilled water valve monitoring on supply side."
+  is_abstract: true
+  opt_uses:
+  - leaving_cooling_coil_temperature_sensor
+  - cooling_thermal_power_capacity
+  uses:
+  - supply_air_temperature_sensor
+  - supply_air_heating_temperature_setpoint
+  - supply_air_cooling_temperature_setpoint
+  - chilled_water_valve_percentage_command
+  implements:
+  - CONTROL
+
+CHW2XSC:
+  id: "14565396147087605760"
+  description: "Two chilled water valves."
+  is_abstract: true
+  opt_uses:
+  - leaving_cooling_coil_temperature_sensor
+  - cooling_thermal_power_capacity
+  uses:
+  - supply_air_temperature_sensor
+  - supply_air_temperature_setpoint
+  - chilled_water_valve_percentage_command_1
+  - chilled_water_valve_percentage_command_2
+  implements:
+  - CONTROL
+
+CHWRC:
+  id: "10816853144743444480"
+  description: "Chilled water valve monitoring on return side."
+  is_abstract: true
+  opt_uses:
+  - discharge_air_temperature_sensor
+  - leaving_cooling_coil_temperature_sensor
+  - cooling_thermal_power_capacity
+  - return_air_relative_humidity_sensor
+  uses:
+  - return_air_temperature_setpoint
+  - return_air_temperature_sensor
+  - chilled_water_valve_percentage_command
+  implements:
+  - CONTROL
+
+CHWZC:
+  id: "2746402612495515648"
+  description: "Chilled water valve monitoring on zone side (DSP, CSP)."
+  is_abstract: true
+  opt_uses:
+  - discharge_air_temperature_sensor
+  - leaving_cooling_coil_temperature_sensor
+  - cooling_thermal_power_capacity
+  uses:
+  - zone_air_cooling_temperature_setpoint
+  - zone_air_temperature_sensor
+  - chilled_water_valve_percentage_command
+  implements:
+  - CONTROL
+
+CHWZTC:
+  id: "14203560064526057472"
+  description: "Chilled water valve monitoring on zone side (ZTC)."
+  is_abstract: true
+  opt_uses:
+  - discharge_air_temperature_sensor
+  - leaving_cooling_coil_temperature_sensor
+  - cooling_thermal_power_capacity
+  - chilled_water_exercise_valve_status
+  - chilled_water_valve_override_status
+  - chilled_water_valve_alarm_status
+  - chilled_water_valve_offline_status
+  - min_chilled_water_valve_percentage_setpoint # Low temperature setpoint for valve at minimum position
+  - chilled_water_request_status
+  - chilled_water_flowrate_sensor
+  - max_chilled_water_valve_percentage_setpoint # High temperature setpoint for valve at maximum position
+  uses:
+  - zone_air_temperature_setpoint
+  - zone_air_temperature_sensor
+  - chilled_water_valve_percentage_command
+  implements:
+  - CONTROL
+
+
+# DX Control
+
+DXZTC:
+  id: "13699156906260561920"
+  description: "Compressor run control on zone side (ZTC)."
+  is_abstract: true
+  opt_uses:
+  - discharge_air_temperature_sensor
+  - leaving_cooling_coil_temperature_sensor
+  - cooling_thermal_power_capacity
+  - cooling_percentage_command
+  - compressor_speed_percentage_command
+  uses:
+  - zone_air_temperature_setpoint
+  - zone_air_temperature_sensor
+  - compressor_run_command
+  - compressor_run_status
+  implements:
+  - CONTROL
+
+DX2ZTC:
+  id: "7764960709758156800"
+  description: "Compressor run control on zone side (ZTC)."
+  is_abstract: true
+  opt_uses:
+  - discharge_air_temperature_sensor
+  - leaving_cooling_coil_temperature_sensor
+  - cooling_thermal_power_capacity
+  - cooling_percentage_command
+  - compressor_speed_percentage_command
+  uses:
+  - zone_air_temperature_setpoint
+  - zone_air_temperature_sensor
+  - compressor_run_command_1
+  - compressor_run_command_2
+  - compressor_run_status_1
+  - compressor_run_status_2
+  implements:
+  - CONTROL
+
+DXZC:
+  id: "5052245621709209600"
+  description: "Compressor run control on zone side (DSP, CSP)."
+  is_abstract: true
+  opt_uses:
+  - discharge_air_temperature_sensor
+  - leaving_cooling_coil_temperature_sensor
+  - cooling_thermal_power_capacity
+  - cooling_percentage_command
+  - compressor_speed_percentage_command
+  uses:
+  - zone_air_cooling_temperature_setpoint
+  - zone_air_temperature_sensor
+  - compressor_run_command
+  - compressor_run_status
+  implements:
+  - CONTROL
+
+
+DXDSPRTC:
+  id: "13463632719497920512"
+  description: "Compressor run control with dual return temp control."
+  is_abstract: true
+  opt_uses:
+  - discharge_air_temperature_sensor
+  - leaving_cooling_coil_temperature_sensor
+  - cooling_thermal_power_capacity
+  - cooling_percentage_command
+  - compressor_speed_percentage_command
+  uses:
+  - return_air_cooling_temperature_setpoint
+  - return_air_heating_temperature_setpoint
+  - return_air_temperature_sensor
+  - compressor_run_command
+  - compressor_run_status
+  implements:
+  - CONTROL
+
+
+DX2ZC:
+  id: "5844879156126416896"
+  description: "Two compressor run control on zone side (DSP, CSP)."
+  is_abstract: true
+  opt_uses:
+  - discharge_air_temperature_sensor
+  - leaving_cooling_coil_temperature_sensor
+  - cooling_thermal_power_capacity
+  - cooling_percentage_command
+  - compressor_speed_percentage_command
+  uses:
+  - zone_air_cooling_temperature_setpoint
+  - zone_air_temperature_sensor
+  - compressor_run_command_1
+  - compressor_run_command_2
+  - compressor_run_status_1
+  - compressor_run_status_2
+  implements:
+  - CONTROL
+
+DX3ZC:
+  id: "14059444876450201600"
+  description: "Three compressor run control on zone side."
+  is_abstract: true
+  opt_uses:
+  - discharge_air_temperature_sensor
+  - leaving_cooling_coil_temperature_sensor
+  - cooling_thermal_power_capacity
+  - cooling_percentage_command
+  - compressor_speed_percentage_command
+  uses:
+  - compressor_run_command_1
+  - compressor_run_command_2
+  - compressor_run_command_3
+  - compressor_run_status_1
+  - compressor_run_status_2
+  - compressor_run_status_3
+  - zone_air_temperature_sensor
+  - zone_air_cooling_temperature_setpoint
+  implements:
+  - CONTROL
+
+DX4ZC:
+  id: "7395665540313776128"
+  description: "Four compressor run control on zone side."
+  is_abstract: true
+  opt_uses:
+  - discharge_air_temperature_sensor
+  - leaving_cooling_coil_temperature_sensor
+  - cooling_thermal_power_capacity
+  - cooling_percentage_command
+  - compressor_speed_percentage_command
+  uses:
+  - compressor_run_command_1
+  - compressor_run_command_2
+  - compressor_run_command_3
+  - compressor_run_command_4
+  - compressor_run_status_1
+  - compressor_run_status_2
+  - compressor_run_status_3
+  - compressor_run_status_4
+  - zone_air_temperature_sensor
+  - zone_air_cooling_temperature_setpoint
+  implements:
+  - CONTROL
+
+DX2ZC2X:
+  id: "2288583562875633664"
+  description: "Two compressor run control on zone side (DSP, CSP) with two zone temp sensors."
+  is_abstract: true
+  opt_uses:
+  - discharge_air_temperature_sensor
+  - leaving_cooling_coil_temperature_sensor
+  - cooling_thermal_power_capacity
+  - cooling_percentage_command
+  - compressor_speed_percentage_command
+  uses:
+  - zone_air_cooling_temperature_setpoint
+  - zone_air_temperature_sensor_1
+  - zone_air_temperature_sensor_2
+  - compressor_run_command_1
+  - compressor_run_command_2
+  - compressor_run_status_1
+  - compressor_run_status_2
+  implements:
+  - CONTROL
+
+DXSC:
+  id: "2530229830381731840"
+  description: "Compressor run control on supply air side (STC)."
+  opt_uses:
+  - leaving_cooling_coil_temperature_sensor
+  - cooling_thermal_power_capacity
+  - cooling_percentage_command #Serves as a duty cycle for single-stage DX sections.
+  - compressor_speed_percentage_command
+  uses:
+  - compressor_run_status
+  - compressor_run_command
+  - supply_air_temperature_sensor
+  - supply_air_temperature_setpoint
+  implements:
+  - CONTROL
+
+DX2SC:
+  id: "11753601867236507648"
+  description: "Two compressor run control on supply air side."
+  is_abstract: true
+  opt_uses:
+  - leaving_cooling_coil_temperature_sensor
+  - cooling_thermal_power_capacity
+  - cooling_percentage_command
+  - compressor_speed_percentage_command
+  uses:
+  - compressor_run_command_1
+  - compressor_run_command_2
+  - compressor_run_status_1
+  - compressor_run_status_2
+  - supply_air_temperature_sensor
+  - supply_air_temperature_setpoint
+  implements:
+  - CONTROL
+
+DX3SC:
+  id: "7141915848809119744"
+  description: "Three compressor run control on supply air side."
+  is_abstract: true
+  opt_uses:
+  - leaving_cooling_coil_temperature_sensor
+  - cooling_thermal_power_capacity
+  - cooling_percentage_command
+  - compressor_speed_percentage_command
+  uses:
+  - compressor_run_command_1
+  - compressor_run_command_2
+  - compressor_run_command_3
+  - compressor_run_status_1
+  - compressor_run_status_2
+  - compressor_run_status_3
+  - supply_air_temperature_sensor
+  - supply_air_temperature_setpoint
+  implements:
+  - CONTROL
+
+DX4SC:
+  id: "16365287885663895552"
+  description: "Four compressor run control on supply air side."
+  is_abstract: true
+  opt_uses:
+  - leaving_cooling_coil_temperature_sensor
+  - cooling_thermal_power_capacity
+  - cooling_percentage_command
+  - compressor_speed_percentage_command
+  uses:
+  - compressor_run_status_1
+  - compressor_run_status_2
+  - compressor_run_status_3
+  - compressor_run_status_4
+  - compressor_run_command_1
+  - compressor_run_command_2
+  - compressor_run_command_3
+  - compressor_run_command_4
+  - supply_air_temperature_sensor
+  - supply_air_temperature_setpoint
+  implements:
+  - CONTROL
+
+
+DX2SDC:
+  id: "17195498329471975424"
+  description: "Two compressor run control on supply air side (dual temp setpoint)."
+  is_abstract: true
+  opt_uses:
+  - leaving_cooling_coil_temperature_sensor
+  - cooling_thermal_power_capacity
+  - cooling_percentage_command
+  - compressor_speed_percentage_command
+  uses:
+  - compressor_run_command_1
+  - compressor_run_command_2
+  - compressor_run_status_1
+  - compressor_run_status_2
+  - supply_air_temperature_sensor
+  - supply_air_heating_temperature_setpoint
+  - supply_air_cooling_temperature_setpoint
+  implements:
+  - CONTROL
+
+
+DX4SWC:
+  id: "1377308325774884864"
+  description: "Four compressor run control on supply water side."
+  is_abstract: true
+  opt_uses:
+  - cooling_thermal_power_capacity
+  - cooling_percentage_command
+  - compressor_speed_percentage_command
+  - compressor_speed_percentage_sensor
+  uses:
+  - compressor_run_command_1
+  - compressor_run_command_2
+  - compressor_run_command_3
+  - compressor_run_command_4
+  - compressor_run_status_1
+  - compressor_run_status_2
+  - compressor_run_status_3
+  - compressor_run_status_4
+  - supply_water_temperature_sensor
+  - supply_water_temperature_setpoint
+  implements:
+  - CONTROL
+
+DX2SWC:
+  id: "8232701752307089408"
+  description: "Two compressor run control on supply water side."
+  is_abstract: true
+  opt_uses:
+  - cooling_thermal_power_capacity
+  - cooling_percentage_command
+  - compressor_speed_percentage_command
+  - compressor_speed_percentage_sensor
+  uses:
+  - compressor_run_command_1
+  - compressor_run_command_2
+  - compressor_run_status_1
+  - compressor_run_status_2
+  - supply_water_temperature_sensor
+  - supply_water_temperature_setpoint
+  implements:
+  - CONTROL
+
+
+DXSWC:
+  id: "11457067979271831552"
+  description: "Compressor run control on supply water side."
+  is_abstract: true
+  opt_uses:
+  - cooling_thermal_power_capacity
+  - cooling_percentage_command
+  - compressor_speed_percentage_command
+  - compressor_speed_percentage_sensor
+  uses:
+  - compressor_run_command
+  - compressor_run_status
+  - supply_water_temperature_sensor
+  - supply_water_temperature_setpoint
+  implements:
+  - CONTROL
+
+DX5SC:
+  id: "10600680362629660672"
+  description: "Five compressor run control on supply side."
+  is_abstract: true
+  opt_uses:
+  - leaving_cooling_coil_temperature_sensor
+  - cooling_thermal_power_capacity
+  - cooling_percentage_command
+  - compressor_speed_percentage_command
+  uses:
+  - compressor_run_command_1
+  - compressor_run_command_2
+  - compressor_run_command_3
+  - compressor_run_command_4
+  - compressor_run_command_5
+  - compressor_run_status_1
+  - compressor_run_status_2
+  - compressor_run_status_3
+  - compressor_run_status_4
+  - compressor_run_status_5
+  - supply_air_temperature_sensor
+  - supply_air_temperature_setpoint
+  implements:
+  - CONTROL
+
+DXRC:
+  id: "5628706374012633088"
+  description: "Compressor run control on return air side (RC)."
+  opt_uses:
+  - discharge_air_temperature_sensor
+  - leaving_cooling_coil_temperature_sensor
+  - cooling_thermal_power_capacity
+  - cooling_percentage_command
+  - compressor_speed_percentage_command
+  uses:
+  - return_air_temperature_setpoint
+  - return_air_temperature_sensor
+  - compressor_run_command
+  - compressor_run_status
+  implements:
+  - CONTROL
+
+DXDC:
+  id: "5988994344202272768"
+  description: "Compressor run control on discharge air side (DTC)."
+  opt_uses:
+  - leaving_cooling_coil_temperature_sensor
+  - cooling_thermal_power_capacity
+  - cooling_percentage_command
+  - compressor_speed_percentage_command
+  uses:
+  - compressor_run_status
+  - compressor_run_command
+  - discharge_air_temperature_sensor
+  - discharge_air_temperature_setpoint
+  implements:
+  - CONTROL
+
+DX2DC:
+  id: "8944903812129226752"
+  description: "Two compressor run control on discharge side (DTC)."
+  is_abstract: true
+  opt_uses:
+  - leaving_cooling_coil_temperature_sensor
+  - cooling_thermal_power_capacity
+  - cooling_percentage_command
+  - compressor_speed_percentage_command
+  uses:
+  - discharge_air_temperature_sensor
+  - discharge_air_temperature_setpoint
+  - compressor_run_command_1
+  - compressor_run_command_2
+  - compressor_run_status_1
+  - compressor_run_status_2
+  implements:
+  - CONTROL
+
+DX3DC:
+  id: "13988935394784182272"
+  description: "Three compressor run control on discharge side (DTC)."
+  is_abstract: true
+  opt_uses:
+  - leaving_cooling_coil_temperature_sensor
+  - cooling_thermal_power_capacity
+  - cooling_percentage_command
+  - compressor_speed_percentage_command
+  uses:
+  - discharge_air_temperature_sensor
+  - discharge_air_temperature_setpoint
+  - compressor_run_command_1
+  - compressor_run_command_2
+  - compressor_run_command_3
+  - compressor_run_status_1
+  - compressor_run_status_2
+  - compressor_run_status_3
+  implements:
+  - CONTROL
+
+HPSC:
+  id: "15212366381057048576"
+  description: "Supply side heat pump control."
+  is_abstract: true
+  opt_uses:
+  - cooling_thermal_power_capacity
+  - heating_thermal_power_capacity
+  - compressor_speed_percentage_command
+  uses:
+  - supply_air_temperature_sensor
+  - supply_air_temperature_setpoint
+  - compressor_run_command
+  - compressor_run_status
+  - reversing_valve_command
+  implements:
+  - CONTROL
+
+HP2SC:
+  id: "3360440274189811712"
+  description: "Supply side heat pump control."
+  is_abstract: true
+  opt_uses:
+  - cooling_thermal_power_capacity
+  - heating_thermal_power_capacity
+  - compressor_speed_percentage_command
+  uses:
+  - supply_air_temperature_sensor
+  - supply_air_temperature_setpoint
+  - compressor_run_command_1
+  - compressor_run_command_2
+  - compressor_run_status_1
+  - compressor_run_status_2
+  - reversing_valve_command
+  implements:
+  - CONTROL
+
+HPDC:
+  id: "3683151334988578816"
+  description: "Discharge side heat pump control."
+  is_abstract: true
+  opt_uses:
+  - cooling_thermal_power_capacity
+  - heating_thermal_power_capacity
+  - compressor_speed_percentage_command
+  uses:
+  - discharge_air_temperature_sensor
+  - discharge_air_temperature_setpoint
+  - compressor_run_command
+  - compressor_run_status
+  - reversing_valve_command
+  implements:
+  - CONTROL
+
+HPZTC:
+  id: "4115496899216146432"
+  description: "Zone temp heat pump control (ZTC)."
+  is_abstract: true
+  opt_uses:
+  - discharge_air_temperature_sensor
+  - cooling_thermal_power_capacity
+  - heating_thermal_power_capacity
+  - compressor_speed_percentage_command
+  uses:
+  - zone_air_temperature_setpoint
+  - zone_air_temperature_sensor
+  - compressor_run_command
+  - compressor_run_status
+  - reversing_valve_command
+  implements:
+  - CONTROL
+
+HPZC:
+  id: "15428539163170832384"
+  description: "Zone temp heat pump control (CSP or DSP)."
+  is_abstract: true
+  opt_uses:
+  - discharge_air_temperature_sensor
+  - cooling_thermal_power_capacity
+  - heating_thermal_power_capacity
+  - compressor_speed_percentage_command
+  uses:
+  - zone_air_cooling_temperature_setpoint
+  - zone_air_heating_temperature_setpoint
+  - zone_air_temperature_sensor
+  - compressor_run_command
+  - compressor_run_status
+  - reversing_valve_command
+  implements:
+  - CONTROL
+
+HP2ZC:
+  id: "16221172697588039680"
+  description: "Zone temp heat pump control with two compressors."
+  is_abstract: true
+  opt_uses:
+  - discharge_air_temperature_sensor
+  - cooling_thermal_power_capacity
+  - heating_thermal_power_capacity
+  - compressor_speed_percentage_command
+  uses:
+  - zone_air_cooling_temperature_setpoint
+  - zone_air_heating_temperature_setpoint
+  - zone_air_temperature_sensor
+  - compressor_run_command_1
+  - compressor_run_command_2
+  - compressor_run_status_1
+  - compressor_run_status_2
+  - reversing_valve_command
+  implements:
+  - CONTROL
+
+HWDC:
+  id: "16507327195786510336"
+  description: "Heating water valve monitoring on discharge air side."
+  is_abstract: true
+  opt_uses:
+  - heating_water_valve_percentage_sensor
+  - heating_thermal_power_capacity
+  - discharge_air_relative_humidity_sensor
+  uses:
+  - heating_water_valve_percentage_command
+  - discharge_air_temperature_setpoint
+  - discharge_air_temperature_sensor
+  implements:
+  - CONTROL
+
+HWSC:
+  id: "12906523371843354624"
+  description: "Heating water valve monitoring on supply air side."
+  is_abstract: true
+  opt_uses:
+  - heating_water_valve_percentage_sensor
+  - heating_thermal_power_capacity
+  uses:
+  - heating_water_valve_percentage_command
+  - supply_air_temperature_setpoint
+  - supply_air_temperature_sensor
+  implements:
+  - CONTROL
+
+HWZC:
+  id: "12546235401653714944"
+  description: "Heating water valve monitoring on zone side (DSP/CSP)."
+  is_abstract: true
+  opt_uses:
+  - discharge_air_temperature_sensor
+  - heating_water_valve_percentage_sensor
+  - heating_thermal_power_capacity
+  uses:
+  - heating_water_valve_percentage_command
+  - zone_air_heating_temperature_setpoint
+  - zone_air_temperature_sensor
+  implements:
+  - CONTROL
+
+HWZTC:
+  id: "2674345018457587712"
+  description: "Heating water valve monitoring on zone side (ZTC)."
+  is_abstract: true
+  opt_uses:
+  - discharge_air_temperature_sensor
+  - heating_water_valve_percentage_sensor
+  - heating_thermal_power_capacity
+  - max_heating_water_valve_percentage_setpoint # High temperature setpoint for valve at minimum position
+  - heating_water_exercise_valve_status
+  - heating_water_valve_alarm_status
+  - heating_water_request_status
+  - heating_water_valve_offline_status
+  - heating_water_valve_override_status
+  - heating_water_flowrate_sensor
+  - min_heating_water_valve_percentage_setpoint  # Low temperature setpoint for valve at maximum position
+  uses:
+  - heating_water_valve_percentage_command
+  - zone_air_temperature_setpoint
+  - zone_air_temperature_sensor
+  implements:
+  - CONTROL
+
+HWSWC:
+  id: "8294837353415966720"
+  description: "Heating water valve monitoring on supply water side."
+  is_abstract: true
+  opt_uses:
+  - heating_water_valve_percentage_sensor
+  - heating_thermal_power_capacity
+  uses:
+  - heating_water_valve_percentage_command
+  - supply_water_temperature_setpoint
+  - supply_water_temperature_sensor
+  implements:
+  - CONTROL
+
+PHWSC:
+  id: "17518209390270742528"
+  description: "Preheating water valve monitoring on supply air side."
+  is_abstract: true
+  opt_uses:
+  - leaving_air_preheating_coil_temperature_sensor
+  uses:
+  - preheating_water_valve_percentage_command
+  - supply_air_temperature_setpoint
+  - supply_air_temperature_sensor
+  implements:
+  - CONTROL
+
+HTDC:
+  id: "656732385395605504"
+  description: "Gas or electric heater control on discharge side."
+  is_abstract: true
+  opt_uses:
+  - heating_thermal_power_capacity
+  - heating_percentage_command
+  - heater_run_status
+  uses:
+  - heater_run_command
+  - discharge_air_temperature_setpoint
+  - discharge_air_temperature_sensor
+  implements:
+  - CONTROL
+
+HT2DC:
+  id: "5268418403822993408"
+  description: "Two gas or electric heater control on discharge control."
+  is_abstract: true
+  opt_uses:
+  - heating_thermal_power_capacity
+  - heating_percentage_command
+  - leaving_heating_coil_temperature_sensor
+  uses:
+  - heater_run_command_1
+  - heater_run_command_2
+  - discharge_air_heating_temperature_setpoint
+  - discharge_air_temperature_sensor
+  implements:
+  - CONTROL
+
+
+HTSC:
+  id: "800847573471461376"
+  description: "Gas or electric heater control on supply side."
+  is_abstract: true
+  opt_uses:
+  - heating_thermal_power_capacity
+  - heating_percentage_command
+  - heater_run_status
+  uses:
+  - heater_run_command
+  - supply_air_temperature_setpoint
+  - supply_air_temperature_sensor
+  implements:
+  - CONTROL
+
+
+HTSDC:
+  id: "16700102370461220864"
+  description: "Gas or electric heater control on supply side."
+  is_abstract: true
+  opt_uses:
+  - heating_thermal_power_capacity
+  - heater_run_status
+  - heating_percentage_command
+  uses:
+  - heater_run_command
+  - supply_air_heating_temperature_setpoint
+  - supply_air_cooling_temperature_setpoint
+  - supply_air_temperature_sensor
+  implements:
+  - CONTROL
+
+
+
+HTRC:
+  id: "80271633092182016"
+  description: "Gas or electric heater control on return side (RC)."
+  is_abstract: true
+  opt_uses:
+  - heating_thermal_power_capacity
+  - discharge_air_temperature_sensor
+  - heating_percentage_command
+  - heater_run_status
+  uses:
+  - heater_run_command
+  - return_air_temperature_setpoint
+  - return_air_temperature_sensor
+  implements:
+  - CONTROL
+
+HTZC:
+  id: "2386114642305875968"
+  description: "Gas or electric heater control on zone side (ZC)."
+  is_abstract: true
+  opt_uses:
+  - heating_thermal_power_capacity
+  - discharge_air_temperature_sensor
+  - heating_percentage_command
+  - heater_run_status
+  uses:
+  - heater_run_command
+  - zone_air_heating_temperature_setpoint
+  - zone_air_temperature_sensor
+  implements:
+  - CONTROL
+
+HT2ZC:
+  id: "6997800660733263872"
+  description: "Two gas or electric heater control on zone side (HSP, DSP)."
+  is_abstract: true
+  opt_uses:
+  - discharge_air_temperature_sensor
+  - heating_thermal_power_capacity
+  - heating_percentage_command
+  uses:
+  - heater_run_command_1
+  - heater_run_command_2
+  - zone_air_heating_temperature_setpoint
+  - zone_air_temperature_sensor
+  implements:
+  - CONTROL
+
+HT3ZC:
+  id: "3504555462265667584"
+  description: "Two gas or electric heater control on zone side (HSP, DSP)."
+  is_abstract: true
+  opt_uses:
+  - discharge_air_temperature_sensor
+  - heating_thermal_power_capacity
+  uses:
+  - heater_run_command_1
+  - heater_run_command_2
+  - heater_run_command_3
+  - zone_air_heating_temperature_setpoint
+  - zone_air_temperature_sensor
+  implements:
+  - CONTROL
+
+
+
+HTSWC:
+  id: "2162764248285970432"
+  description: "Two gas or electric heater control on supply water side."
+  is_abstract: true
+  opt_uses:
+  - heating_thermal_power_capacity
+  - heating_percentage_command
+  uses:
+  - heater_run_command
+  - supply_water_temperature_sensor
+  - supply_water_temperature_setpoint
+  implements:
+  - CONTROL
+
+
+HT2SWC:
+  id: "10024219610326237184"
+  description: "Two gas or electric heater control on supply water side."
+  is_abstract: true
+  opt_uses:
+  - heating_thermal_power_capacity
+  - heating_percentage_command
+  uses:
+  - heater_run_command_1
+  - heater_run_command_2
+  - supply_water_temperature_sensor
+  - supply_water_temperature_setpoint
+  implements:
+  - CONTROL
+
+HT4SWC:
+  id: "15090909928606400512"
+  description: "Four gas or electric heater control on supply water side."
+  is_abstract: true
+  opt_uses:
+  - heating_thermal_power_capacity
+  - heating_percentage_command
+  uses:
+  - heater_run_command_1
+  - heater_run_command_2
+  - heater_run_command_3
+  - heater_run_command_4
+  - supply_water_temperature_sensor
+  - supply_water_temperature_setpoint
+  implements:
+  - CONTROL
+
+
+HT2SC:
+  id: "5412533591898849280"
+  description: "Two gas or electric heater control on supply side."
+  is_abstract: true
+  opt_uses:
+  - heating_thermal_power_capacity
+  - heating_percentage_command
+  uses:
+  - heater_run_command_1
+  - heater_run_command_2
+  - supply_air_temperature_sensor
+  - supply_air_temperature_setpoint
+  implements:
+  - CONTROL
+
+
+HT3SC:
+  id: "10953790720913178624"
+  description: "Three gas or electric heater control on supply side."
+  is_abstract: true
+  opt_uses:
+  - heating_thermal_power_capacity
+  - heating_percentage_command
+  uses:
+  - heater_run_command_1
+  - heater_run_command_2
+  - heater_run_command_3
+  - supply_air_temperature_sensor
+  - supply_air_temperature_setpoint
+  implements:
+  - CONTROL
+
+
+HT4SC:
+  id: "13793873235923697664"
+  description: "Four gas or electric heater control on supply side."
+  is_abstract: true
+  opt_uses:
+  - heating_thermal_power_capacity
+  - heating_percentage_command
+  uses:
+  - heater_run_command_1
+  - heater_run_command_2
+  - heater_run_command_3
+  - heater_run_command_4
+  - supply_air_temperature_sensor
+  - supply_air_temperature_setpoint
+  implements:
+  - CONTROL
+
+HT2SDC:
+  id: "7476730333606445056"
+  description: "Two gas or electric heater control on supply side (dual setpoint)."
+  is_abstract: true
+  opt_uses:
+  - heating_thermal_power_capacity
+  - heating_percentage_command
+  uses:
+  - heater_run_command_1
+  - heater_run_command_2
+  - supply_air_temperature_sensor
+  - supply_air_heating_temperature_setpoint
+  - supply_air_cooling_temperature_setpoint
+  implements:
+  - CONTROL
+
+HTVSC:
+  id: "14635905628753625088"
+  description: "Variable gas to electric control on supply air side."
+  is_abstract: true
+  opt_uses:
+  - heating_thermal_power_capacity
+  uses:
+  - heater_run_command
+  - heater_run_status
+  - heating_percentage_command
+  - supply_air_temperature_setpoint
+  - supply_air_temperature_sensor
+  implements:
+  - CONTROL
+
+ECON:
+  id: "3106690582685155328"
+  description: "Economizer mode control"
+  is_abstract: true
+  opt_uses:
+  - supply_air_temperature_sensor
+  - outside_air_flowrate_sensor
+  - outside_air_flowrate_setpoint
+  uses:
+  - outside_air_temperature_sensor
+  - economizer_mode
+  - mixed_air_temperature_sensor
+  - supply_air_temperature_setpoint
+  - outside_air_damper_percentage_command
+  - return_air_temperature_sensor
+  implements:
+  - CONTROL
+
+
+ECOND:
+  id: "2000353186723921920"
+  description: "Economizer mode control - single zone"
+  is_abstract: true
+  opt_uses:
+  - return_air_temperature_sensor
+  - outside_air_flowrate_sensor
+  - outside_air_flowrate_setpoint
+  - mixed_air_temperature_sensor
+  - outside_air_damper_percentage_sensor
+  uses:
+  - outside_air_temperature_sensor
+  - economizer_mode
+  - discharge_air_temperature_sensor
+  - discharge_air_temperature_setpoint
+  - outside_air_damper_percentage_command
+  implements:
+  - CONTROL
+
+ECONM:
+  id: "8728731030015442944"
+  description: "Economizer mode control"
+  is_abstract: true
+  opt_uses:
+  - outside_air_flowrate_sensor
+  - outside_air_flowrate_setpoint
+  - supply_air_temperature_sensor
+  - outside_air_damper_percentage_sensor
+  uses:
+  - outside_air_temperature_sensor
+  - economizer_mode
+  - mixed_air_temperature_sensor
+  - mixed_air_temperature_setpoint
+  - outside_air_damper_percentage_command
+  - return_air_temperature_sensor
+  implements:
+  - CONTROL
+
+ECONM2X:
+  id: "10998545242210172928"
+  description: "Economizer mode control"
+  is_abstract: true
+  opt_uses:
+  - outside_air_flowrate_sensor
+  - outside_air_flowrate_setpoint
+  - supply_air_temperature_sensor
+  - outside_air_damper_percentage_sensor
+  uses:
+  - outside_air_temperature_sensor
+  - economizer_mode
+  - mixed_air_temperature_sensor_1
+  - mixed_air_temperature_sensor_2
+  - mixed_air_temperature_setpoint
+  - outside_air_damper_percentage_command
+  - return_air_temperature_sensor
+  implements:
+  - CONTROL
+
+ECONMD:
+  id: "15646260057656524800"
+  description: "Economizer mode control - single zone"
+  is_abstract: true
+  opt_uses:
+  - discharge_air_temperature_sensor
+  - outside_air_flowrate_sensor
+  - outside_air_flowrate_setpoint
+  - return_air_temperature_sensor
+  - outside_air_damper_percentage_sensor
+  uses:
+  - outside_air_temperature_sensor
+  - economizer_mode
+  - mixed_air_temperature_sensor
+  - mixed_air_temperature_setpoint
+  - outside_air_damper_percentage_command
+  implements:
+  - CONTROL
+
+ECONZ:
+  id: "10070803718971850752"
+  description: "Economizer mode control - single room"
+  is_abstract: true
+  opt_uses:
+  - discharge_air_temperature_sensor
+  - outside_air_flowrate_sensor
+  - outside_air_flowrate_setpoint
+  - return_air_temperature_sensor
+  - mixed_air_temperature_sensor
+  - outside_air_damper_percentage_sensor
+  uses:
+  - outside_air_temperature_sensor
+  - economizer_mode
+  - zone_air_temperature_sensor
+  - zone_air_cooling_temperature_setpoint
+  - outside_air_damper_percentage_command
+  implements:
+  - CONTROL
+VOADM:
+  id: "12330062619539931136"
+  description: "Variable outside air damper monitoring."
+  is_abstract: true
+  opt_uses:
+  - economizer_mode
+  - mixed_air_temperature_sensor
+  - outside_air_damper_percentage_sensor
+  uses:
+  - outside_air_temperature_sensor
+  - outside_air_damper_percentage_command
+  implements:
+  - MONITORING
+
+BYPDM:
+  id: "7718376601112543232"
+  description: "Bypass damper monitoring."
+  is_abstract: true
+  uses:
+  - bypass_air_damper_percentage_command
+  implements:
+  - MONITORING
+
+OAFMC:
+  id: "16941748637967319040"
+  description: "Outside air flow control with minimum setpoint."
+  is_abstract: true
+  opt_uses:
+  - economizer_mode
+  - mixed_air_temperature_sensor
+  uses:
+  - ventilation_outside_air_flowrate_setpoint
+  - outside_air_flowrate_sensor
+  - outside_air_damper_percentage_command
+  implements:
+  - CONTROL
+
+SFM:
+  id: "1953769078078308352"
+  description: "Supply air flow monitoring."
+  is_abstract: true
+  uses:
+  - supply_air_flowrate_sensor
+  implements:
+  - MONITORING
+
+SFC:
+  id: "11177141114933084160"
+  description: "Supply air flow control."
+  is_abstract: true
+  uses:
+  - supply_air_flowrate_setpoint
+  - supply_air_flowrate_sensor
+  implements:
+  - OPERATIONAL
+
+RFC:
+  id: "6565455096505696256"
+  description: "Return air flow control."
+  is_abstract: true
+  uses:
+  - return_air_flowrate_setpoint
+  - return_air_flowrate_sensor
+  implements:
+  - OPERATIONAL
+
+SARC:
+  id: "15788827133360472064"
+  description: "AHU supply air reset control."
+  is_abstract: true
+  opt_uses:
+  - supply_air_flowrate_sensor
+  - heating_request_count
+  uses:
+  - supply_air_temperature_setpoint
+  - supply_air_static_pressure_setpoint
+  - cooling_request_count
+  - pressurization_request_count
+  implements:
+  - CONTROL
+
+RWISOVPC:
+  id: "13482984124146778112"
+  description: "Return water isolation valve percentage monitoring."
+  is_abstract: true
+  opt_uses:
+  - run_command
+  uses:
+  - return_water_valve_percentage_sensor
+  - return_water_valve_percentage_command
+  implements:
+  - OPERATIONAL
+
+CHWISOVM:
+  id: "8871298105719390208"
+  description: "Chilled water isolation valve monitoring."
+  is_abstract: true
+  opt_uses:
+  - run_command
+  uses:
+  - chilled_water_isolation_valve_command
+  - chilled_water_isolation_valve_status
+  implements:
+  - MONITORING
+
+CDWISOVM:
+  id: "18094670142574166016"
+  description: "Condensing water isolation valve monitoring."
+  is_abstract: true
+  opt_uses:
+  - run_command
+  uses:
+  - condensing_water_isolation_valve_command
+  - condensing_water_isolation_valve_status
+  implements:
+  - MONITORING
+
+CDWISOVPM:
+  id: "512617197319749632"
+  description: "Condensing water isolation valve percentage monitoring."
+  is_abstract: true
+  opt_uses:
+  - run_command
+  uses:
+  - condensing_water_isolation_valve_percentage_command
+  - condensing_water_isolation_valve_percentage_sensor
+  implements:
+  - MONITORING
+
+BYPVPM:
+  id: "9735989234174525440"
+  description: "Bypass water valve percentage monitoring."
+  is_abstract: true
+  opt_uses:
+  - bypass_valve_percentage_sensor
+  uses:
+  - bypass_valve_percentage_command
+  implements:
+  - MONITORING
+
+MWVPM:
+  id: "5124303215747137536"
+  description: "Make-up water valve percentage monitoring."
+  is_abstract: true
+  uses:
+  - makeup_water_valve_percentage_command
+  implements:
+  - MONITORING
+
+HXSWISOVPM:
+  id: "11812289399880679424"
+  description: "Heat exchanger supply isolation water valve percentage monitoring."
+  is_abstract: true
+  uses:
+  - heat_exchange_supply_water_isolation_valve_percentage_command
+  - heat_exchange_supply_water_isolation_valve_percentage_sensor
+  implements:
+  - MONITORING
+
+HXRWISOVPM:
+  id: "14124324858582007808"
+  description: "Heat exchanger return isolation water valve percentage monitoring."
+  is_abstract: true
+  uses:
+  - heat_exchange_return_water_isolation_valve_percentage_command
+  - heat_exchange_return_water_isolation_valve_percentage_sensor
+  implements:
+  - MONITORING
+
+HXSWISOVM:
+  id: "18037952934766968832"
+  description: "Heat exchanger supply isolation water valve monitoring."
+  is_abstract: true
+  uses:
+  - heat_exchange_supply_water_isolation_valve_command
+  - heat_exchange_supply_water_isolation_valve_status
+  implements:
+  - MONITORING
+
+HXRWISOVM:
+  id: "9182187217496309760"
+  description: "Heat exchanger return isolation water valve monitoring."
+  is_abstract: true
+  uses:
+  - heat_exchange_return_water_isolation_valve_command
+  - heat_exchange_return_water_isolation_valve_status
+  implements:
+  - MONITORING
+
+PWISOVM:
+  id: "2818460206533443584"
+  description: "Process water iso valve monitoring."
+  is_abstract: true
+  uses:
+  - process_water_isolation_valve_command
+  implements:
+  - MONITORING
+
+PWVPM:
+  id: "12041832243388219392"
+  description: "Process water valve percentage monitoring."
+  is_abstract: true
+  uses:
+  - process_water_valve_percentage_command
+  implements:
+  - MONITORING
+
+CHWBYPVPM:
+  id: "7430146224960831488"
+  description: "Chilled water bypass valve percentage monitoring."
+  is_abstract: true
+  uses:
+  - chilled_water_bypass_valve_percentage_sensor
+  - chilled_water_bypass_valve_percentage_command
+  implements:
+  - MONITORING
+
+MXVPM:
+  id: "16653518261815607296"
+  description: "Mixing valve percent monitoring."
+  is_abstract: true
+  uses:
+  - mixing_valve_percentage_command
+  implements:
+  - MONITORING
+
+WFRM:
+  id: "1665538701926596608"
+  description: "Water flowrate monitoring."
+  is_abstract: true
+  uses:
+  - flowrate_sensor
+  implements:
+  - MONITORING
+
+WFRC:
+  id: "10888910738781372416"
+  description: "Water flowrate control."
+  is_abstract: true
+  uses:
+  - flowrate_sensor
+  - flowrate_setpoint
+  implements:
+  - OPERATIONAL
+
+MWFRC:
+  id: "6277224720353984512"
+  description: "Minimum water flowrate control."
+  is_abstract: true
+  uses:
+  - flowrate_sensor
+  - low_limit_flowrate_setpoint
+  implements:
+  - OPERATIONAL
+
+CHWFRM:
+  id: "15500596757208760320"
+  description: "Chilled water flowrate monitoring."
+  is_abstract: true
+  uses:
+  - chilled_water_flowrate_sensor
+  implements:
+  - MONITORING
+
+SEPM:
+  id: "3971381711140290560"
+  description: "Shade extent monitoring."
+  is_abstract: true
+  uses:
+  - shade_extent_percentage_command
+  implements:
+  - MONITORING
+
+STPM:
+  id: "13194753747995066368"
+  description: "Shade tilt monitoring."
+  is_abstract: true
+  uses:
+  - shade_tilt_percentage_command
+  implements:
+  - MONITORING
+
+IGM:
+  id: "8583067729567678464"
+  description: "Inlet guidevane monitoring."
+  is_abstract: true
+  uses:
+  - inlet_guidevane_percentage_sensor
+  implements:
+  - OPERATIONAL
+
+CLPM:
+  id: "17806439766422454272"
+  description: "Cooling thermal monitoring."
+  is_abstract: true
+  uses:
+  - cooling_thermal_power_sensor
+  implements:
+  - MONITORING
+
+PCLPM:
+  id: "1089077949623173120"
+  description: "Process cooling thermal monitoring."
+  is_abstract: true
+  uses:
+  - process_cooling_thermal_power_sensor
+  implements:
+  - MONITORING
+
+
+### POTENTIALLY ONE-OFF TYPES ###
+DDCO:
+  id: "10312449986477948928"
+  description: "Flow control - dual duct, but only cooling."
+  is_abstract: true
+  uses:
+  - cooling_air_flowrate_setpoint_2
+  - cooling_air_flowrate_setpoint_1
+  - cooling_air_flowrate_sensor_2
+  - cooling_air_flowrate_sensor_1
+  - cooling_air_damper_percentage_command_2
+  - cooling_air_damper_percentage_command_1
+  implements:
+  - CONTROL
+
+FDPM4X:
+  id: "5700763968050561024"
+  description: "Filter pressure monitoring (4 sensors)."
+  is_abstract: true
+  uses:
+  - filter_differential_pressure_sensor_1
+  - filter_differential_pressure_sensor_2
+  - filter_differential_pressure_sensor_3
+  - filter_differential_pressure_sensor_4
+  implements:
+  - MONITORING
+
+CO2C2X:
+  id: "14924136004905336832"
+  description: "Carbon dioxide control with dual zone sensors."
+  is_abstract: true
+  uses:
+  - zone_air_co2_concentration_setpoint
+  - zone_air_co2_concentration_sensor_1
+  - zone_air_co2_concentration_sensor_2
+  implements:
+  - OPERATIONAL
+
+DSP3X:
+  id: "3394920958836867072"
+  description: "Dual setpoint zone temp control with 3 temp sensors."
+  is_abstract: true
+  opt_uses:
+  - discharge_air_temperature_sensor
+  uses:
+  - zone_air_temperature_sensor_1
+  - zone_air_temperature_sensor_2
+  - zone_air_temperature_sensor_3
+  - zone_air_cooling_temperature_setpoint
+  - zone_air_heating_temperature_setpoint
+  implements:
+  - OPERATIONAL
+
+
+EFSS2X:
+  id: "12618292995691642880"
+  description: "Exhaust fan start-stop and feedback with two fans."
+  is_abstract: true
+  opt_uses:
+  - exhaust_fan_current_sensor_1
+  - exhaust_fan_power_sensor_1
+  - exhaust_fan_current_sensor_2
+  - exhaust_fan_power_sensor_2
+  - exhaust_air_flowrate_capacity
+  - exhaust_fan_power_capacity
+  uses:
+  - exhaust_fan_run_command_1
+  - exhaust_fan_run_status_1
+  - exhaust_fan_run_command_2
+  - exhaust_fan_run_status_2
+  implements:
+  - OPERATIONAL
+
+EFSS3X:
+  id: "8006606977264254976"
+  description: "Exhaust fan start-stop and feedback with three fans."
+  is_abstract: true
+  opt_uses:
+  - exhaust_fan_current_sensor_1
+  - exhaust_fan_power_sensor_1
+  - exhaust_fan_current_sensor_2
+  - exhaust_fan_power_sensor_2
+  - exhaust_fan_current_sensor_3
+  - exhaust_fan_power_sensor_3
+  - exhaust_air_flowrate_capacity
+  - exhaust_fan_power_capacity
+  uses:
+  - exhaust_fan_run_command_1
+  - exhaust_fan_run_status_1
+  - exhaust_fan_run_command_2
+  - exhaust_fan_run_status_2
+  - exhaust_fan_run_command_3
+  - exhaust_fan_run_status_3
+  implements:
+  - OPERATIONAL
+
+EFSS4X:
+  id: "17229979014119030784"
+  description: "Exhaust fan start-stop and feedback with four fans."
+  is_abstract: true
+  opt_uses:
+  - exhaust_air_flowrate_capacity
+  - exhaust_fan_power_capacity
+  - exhaust_fan_current_sensor_1
+  - exhaust_fan_power_sensor_1
+  - exhaust_fan_current_sensor_2
+  - exhaust_fan_power_sensor_2
+  - exhaust_fan_current_sensor_3
+  - exhaust_fan_power_sensor_3
+  - exhaust_fan_current_sensor_4
+  - exhaust_fan_power_sensor_4
+  uses:
+  - exhaust_fan_run_command_1
+  - exhaust_fan_run_status_1
+  - exhaust_fan_run_command_2
+  - exhaust_fan_run_status_2
+  - exhaust_fan_run_command_3
+  - exhaust_fan_run_status_3
+  - exhaust_fan_run_command_4
+  - exhaust_fan_run_status_4
+  implements:
+  - OPERATIONAL
+
+DF2XSS:
+  id: "9591874046098669568"
+  description: "Discharge fan start-stop and feedback (2 pts)."
+  is_abstract: true
+  opt_uses:
+  - discharge_fan_current_sensor
+  - discharge_fan_power_sensor
+  uses:
+  - discharge_fan_run_status_1
+  - discharge_fan_run_status_2
+  - discharge_fan_run_command_1
+  - discharge_fan_run_command_2
+  implements:
+  - OPERATIONAL
+
+SFSS2X:
+  id: "2241999454230020096"
+  description: "Supply fan start-stop and feedback for two fans."
+  is_abstract: true
+  opt_uses:
+  - supply_air_flowrate_capacity
+  - supply_fan_power_capacity
+  - supply_fan_current_sensor_1
+  - supply_fan_current_sensor_2
+  - supply_fan_power_sensor_1
+  - supply_fan_power_sensor_2
+  uses:
+  - supply_fan_run_command_1
+  - supply_fan_run_status_1
+  - supply_fan_run_command_2
+  - supply_fan_run_status_2
+  implements:
+  - OPERATIONAL
+
+SFSS3X:
+  id: "11465371491084795904"
+  description: "Supply fan start-stop and feedback for three fans."
+  is_abstract: true
+  opt_uses:
+  - supply_air_flowrate_capacity
+  - supply_fan_power_capacity
+  - supply_fan_current_sensor_1
+  - supply_fan_current_sensor_2
+  - supply_fan_current_sensor_3
+  - supply_fan_power_sensor_1
+  - supply_fan_power_sensor_2
+  - supply_fan_power_sensor_3
+  uses:
+  - supply_fan_run_command_1
+  - supply_fan_run_status_1
+  - supply_fan_run_command_2
+  - supply_fan_run_status_2
+  - supply_fan_run_command_3
+  - supply_fan_run_status_3
+  implements:
+  - OPERATIONAL
+
+EFVSC2X:
+  id: "6853685472657408000"
+  description: "Exhaust fan variable speed control with feedback and sensoring for two fans."
+  is_abstract: true
+  opt_uses:
+  - exhaust_fan_speed_frequency_sensor_1
+  - exhaust_fan_speed_percentage_sensor_1
+  - exhaust_fan_current_sensor_1
+  - exhaust_fan_power_sensor_1
+  - exhaust_fan_speed_frequency_sensor_2
+  - exhaust_fan_speed_percentage_sensor_2
+  - exhaust_fan_current_sensor_2
+  - exhaust_fan_power_sensor_2
+  uses:
+  - exhaust_fan_run_command_1
+  - exhaust_fan_run_status_1
+  - exhaust_fan_speed_percentage_command_1
+  - exhaust_fan_run_command_2
+  - exhaust_fan_run_status_2
+  - exhaust_fan_speed_percentage_command_2
+  implements:
+  - OPERATIONAL
+
+EFVSC3X:
+  id: "16077057509512183808"
+  description: "Exhaust fan variable speed control with feedback and sensoring for three fans."
+  is_abstract: true
+  opt_uses:
+  - exhaust_fan_speed_frequency_sensor_1
+  - exhaust_fan_speed_percentage_sensor_1
+  - exhaust_fan_current_sensor_1
+  - exhaust_fan_power_sensor_1
+  - exhaust_fan_speed_frequency_sensor_2
+  - exhaust_fan_speed_percentage_sensor_2
+  - exhaust_fan_current_sensor_2
+  - exhaust_fan_power_sensor_2
+  - exhaust_fan_speed_frequency_sensor_3
+  - exhaust_fan_speed_percentage_sensor_3
+  - exhaust_fan_current_sensor_3
+  - exhaust_fan_power_sensor_3
+  uses:
+  - exhaust_fan_run_command_1
+  - exhaust_fan_run_status_1
+  - exhaust_fan_speed_percentage_command_1
+  - exhaust_fan_run_command_2
+  - exhaust_fan_run_status_2
+  - exhaust_fan_speed_percentage_command_2
+  - exhaust_fan_run_command_3
+  - exhaust_fan_run_status_3
+  - exhaust_fan_speed_percentage_command_3
+  implements:
+  - OPERATIONAL
+
+EFVSC4X:
+  id: "4547842463443714048"
+  description: "Exhaust fan variable speed control with feedback and sensoring for four fans."
+  is_abstract: true
+  opt_uses:
+  - exhaust_fan_speed_frequency_sensor_1
+  - exhaust_fan_speed_percentage_sensor_1
+  - exhaust_fan_current_sensor_1
+  - exhaust_fan_power_sensor_1
+  - exhaust_fan_speed_frequency_sensor_2
+  - exhaust_fan_speed_percentage_sensor_2
+  - exhaust_fan_current_sensor_2
+  - exhaust_fan_power_sensor_2
+  - exhaust_fan_speed_frequency_sensor_3
+  - exhaust_fan_speed_percentage_sensor_3
+  - exhaust_fan_current_sensor_3
+  - exhaust_fan_power_sensor_3
+  - exhaust_fan_speed_frequency_sensor_4
+  - exhaust_fan_speed_percentage_sensor_4
+  - exhaust_fan_current_sensor_4
+  - exhaust_fan_power_sensor_4
+  uses:
+  - exhaust_fan_run_command_1
+  - exhaust_fan_run_status_1
+  - exhaust_fan_speed_percentage_command_1
+  - exhaust_fan_run_command_2
+  - exhaust_fan_run_status_2
+  - exhaust_fan_speed_percentage_command_2
+  - exhaust_fan_run_command_3
+  - exhaust_fan_run_status_3
+  - exhaust_fan_speed_percentage_command_3
+  - exhaust_fan_run_command_4
+  - exhaust_fan_run_status_4
+  - exhaust_fan_speed_percentage_command_4
+  implements:
+  - OPERATIONAL
+
+SFVSC2X:
+  id: "13771214500298489856"
+  description: "Supply fan variable speed control with feedback and sensoring with two fans."
+  is_abstract: true
+  opt_uses:
+  - supply_fan_speed_frequency_sensor_1
+  - supply_fan_speed_percentage_sensor_1
+  - supply_fan_current_sensor_1
+  - supply_fan_power_sensor_1
+  - supply_fan_speed_frequency_sensor_2
+  - supply_fan_speed_percentage_sensor_2
+  - supply_fan_current_sensor_2
+  - supply_fan_power_sensor_2
+  uses:
+  - supply_fan_run_command_1
+  - supply_fan_run_status_1
+  - supply_fan_speed_percentage_command_1
+  - supply_fan_run_command_2
+  - supply_fan_run_status_2
+  - supply_fan_speed_percentage_command_2
+  implements:
+  - OPERATIONAL
+
+BYPSSPC:
+  id: "622251700748550144"
+  description: "Supply static pressure control with bypass damper."
+  is_abstract: true
+  opt_uses:
+  - supply_air_flowrate_sensor
+  uses:
+  - supply_air_static_pressure_sensor
+  - supply_air_static_pressure_setpoint
+  - supply_fan_run_command
+  - supply_fan_run_status
+  - bypass_air_damper_percentage_command
+  implements:
+  - CONTROL
+
+BYPSSPC2X: # Consider virtual point for instances where dampers control to same value.
+  id: "7071406367143100416"
+  description: "Supply static pressure control with bypass damper."
+  is_abstract: true
+  opt_uses:
+  - supply_air_flowrate_sensor
+  uses:
+  - supply_air_static_pressure_sensor
+  - supply_air_static_pressure_setpoint
+  - supply_fan_run_command
+  - supply_fan_run_status
+  - bypass_air_damper_percentage_command_1
+  - bypass_air_damper_percentage_command_2
+  implements:
+  - CONTROL
+
+SWISOVM:
+  id: "5867537891751624704"
+  description: "Supply side isolation valve monitoring."
+  is_abstract: true
+  uses:
+  - supply_water_isolation_valve_command
+  - supply_water_isolation_valve_status
+  implements:
+  - MONITORING
+
+SWISOVPM:
+  id: "3561694882537930752"
+  description: "Supply side isolation valve monitoring."
+  is_abstract: true
+  uses:
+  - supply_water_isolation_valve_percentage_command
+  - supply_water_isolation_valve_percentage_sensor
+  implements:
+  - MONITORING
+
+RWISOVM:
+  id: "9884748759366107136"
+  description: "Return side isolation valve monitoring."
+  is_abstract: true
+  uses:
+  - return_water_isolation_valve_command
+  - return_water_isolation_valve_status
+  implements:
+  - MONITORING
+
+RWISOVPM:
+  id: "5273062740938719232"
+  description: "Return side isolation valve monitoring."
+  is_abstract: true
+  uses:
+  - return_water_isolation_valve_percentage_command
+  - return_water_isolation_valve_percentage_sensor
+  implements:
+  - MONITORING
+
+CHWRWISOVPM:
+  id: "10432710170277576704"
+  description: "Return side isolation valve monitoring."
+  is_abstract: true
+  uses:
+  - chilled_return_water_isolation_valve_percentage_command
+  - chilled_return_water_isolation_valve_percentage_sensor
+  implements:
+  - MONITORING
+
+CHWRWISOVM:
+  id: "10538544761520783360"
+  description: "Return side isolation valve monitoring."
+  is_abstract: true
+  uses:
+  - chilled_return_water_isolation_valve_command
+  - chilled_return_water_isolation_valve_status
+  implements:
+  - MONITORING
+
+
+CHWSWISOVPM:
+  id: "493265792670892032"
+  description: "Supply side isolation valve monitoring."
+  is_abstract: true
+  uses:
+  - chilled_supply_water_isolation_valve_percentage_command
+  - chilled_supply_water_isolation_valve_percentage_sensor
+  implements:
+  - MONITORING
+
+CHWSWISOVM:
+  id: "16767023046174179328"
+  description: "Supply side isolation valve monitoring."
+  is_abstract: true
+  uses:
+  - chilled_supply_water_isolation_valve_command
+  - chilled_supply_water_isolation_valve_status
+  implements:
+  - MONITORING
+
+
+PRWDT:
+  id: "73094021186060288"
+  description: "Temperature differential across process water."
+  is_abstract: true
+  implements:
+  - MONITORING
+  opt_uses:
+  - process_cooling_thermal_power_sensor
+  uses:
+  - process_return_water_temperature_sensor
+  - process_supply_water_temperature_sensor
+
+PRWDT2X:
+  id: "2264658189855227904"
+  description: "Temperature differential across 2 process water headers."
+  is_abstract: true
+  implements:
+  - MONITORING
+  opt_uses:
+  - process_cooling_thermal_power_sensor_1
+  - process_cooling_thermal_power_sensor_2
+  uses:
+  - process_return_water_temperature_sensor_1
+  - process_return_water_temperature_sensor_2
+  - process_supply_water_temperature_sensor_1
+  - process_supply_water_temperature_sensor_2
+
+
+PWFRM:
+  id: "2595109812513538048"
+  description: "Flowrate monitoring for process water."
+  is_abstract: true
+  implements:
+  - MONITORING
+  uses:
+  - process_water_flowrate_sensor
+
+PWFRM2X:
+  id: "9296466058040836096"
+  description: "Flowrate monitoring for 2 process water headers."
+  is_abstract: true
+  implements:
+  - MONITORING
+  uses:
+  - process_water_flowrate_sensor_1
+  - process_water_flowrate_sensor_2
+
+PWDPM:
+  id: "455899989512552448"
+  description: "Differential pressure monitoring for process water."
+  is_abstract: true
+  implements:
+  - MONITORING
+  uses:
+  - process_water_differential_pressure_sensor
+
+PWDPM2X:
+  id: "7200603381453291520"
+  description: "Differential pressure monitoring for 2 process water headers."
+  is_abstract: true
+  implements:
+  - MONITORING
+  uses:
+  - process_water_differential_pressure_sensor_1
+  - process_water_differential_pressure_sensor_2
+
+
+CWRISOVPM:
+  id: "5821024151850188800"
+  description: "Condensing water return isolation monitoring."
+  is_abstract: true
+  uses:
+  - condensing_return_water_isolation_valve_percentage_sensor
+  - condensing_return_water_isolation_valve_percentage_command
+  implements:
+  - MONITORING
+
+CWRISOVM:
+  id: "8126867161063882752"
+  description: "Condensing water return isolation monitoring."
+  is_abstract: true
+  uses:
+  - condensing_return_water_isolation_valve_status
+  - condensing_return_water_isolation_valve_command
+  implements:
+  - MONITORING
+
+
+CWSISOVPM:
+  id: "9716637829525667840"
+  description: "Condensing water supply isolation monitoring."
+  is_abstract: true
+  uses:
+  - condensing_supply_water_isolation_valve_percentage_sensor
+  - condensing_supply_water_isolation_valve_percentage_command
+  implements:
+  - MONITORING
+
+CWSISOVM:
+  id: "1779043486285168640"
+  description: "Condensing water supply isolation monitoring."
+  is_abstract: true
+  uses:
+  - condensing_supply_water_isolation_valve_status
+  - condensing_supply_water_isolation_valve_command
+  implements:
+  - MONITORING
+
+
+
+
+CHWRISOVPM:
+  id: "17456073789161865216"
+  description: "Chilled water return isolation monitoring."
+  is_abstract: true
+  uses:
+  - chilled_return_water_isolation_valve_percentage_sensor
+  - chilled_return_water_isolation_valve_percentage_command
+  implements:
+  - MONITORING
+
+
+WDPM:
+  id: "6845381960844443648"
+  description: "Differential pressure monitoring."
+  is_abstract: true
+  uses:
+  - differential_pressure_sensor
+
+
+CHWDPM:
+  id: "17350239197918658560"
+  description: "Differential pressure monitoring for chilled water."
+  is_abstract: true
+  uses:
+  - chilled_water_differential_pressure_sensor
+
+
+CHDX4SC:
+  id: "5104951811098279936"
+  description: "Chiller control."
+  is_abstract: true
+  opt_uses:
+  - chilled_return_water_temperature_sensor
+  - cooling_percentage_command
+  - compressor_speed_frequency_sensor
+  - compressor_speed_percentage_command
+  - compressor_speed_percentage_sensor
+  uses:
+  - compressor_run_command_1
+  - compressor_run_command_2
+  - compressor_run_command_3
+  - compressor_run_command_4
+  - compressor_run_status_1
+  - compressor_run_status_2
+  - compressor_run_status_3
+  - compressor_run_status_4
+  - chilled_supply_water_temperature_sensor
+  - chilled_supply_water_temperature_setpoint
+
+CHDX2SC:
+  id: "11002415523139944448"
+  description: "Chiller control."
+  is_abstract: true
+  opt_uses:
+  - chilled_return_water_temperature_sensor
+  - cooling_percentage_command
+  - compressor_speed_frequency_sensor
+  - compressor_speed_percentage_command
+  - compressor_speed_percentage_sensor
+  uses:
+  - compressor_run_command_1
+  - compressor_run_command_2
+  - compressor_run_status_1
+  - compressor_run_status_2
+  - chilled_supply_water_temperature_sensor
+  - chilled_supply_water_temperature_setpoint
+
+
+CHDXSC:
+  id: "738711972362584064"
+  description: "Chiller control single stage."
+  is_abstract: true
+  opt_uses:
+  - chilled_return_water_temperature_sensor
+  - cooling_percentage_command
+  - compressor_speed_frequency_sensor
+  - compressor_speed_percentage_command
+  - compressor_speed_percentage_sensor
+  uses:
+  - compressor_run_command
+  - compressor_run_status
+  - chilled_supply_water_temperature_sensor
+  - chilled_supply_water_temperature_setpoint
+
+CHDXVSC:
+  id: "16068753997699219456"
+  description: "Variable speed compressor control."
+  is_abstract: true
+  uses:
+  - compressor_speed_percentage_sensor
+  - compressor_run_command
+  - compressor_run_status
+
+CDWFRM:
+  id: "632877381119377408"
+  description: "Condenser water flowrate monitoring."
+  is_abstract: true
+  uses:
+  - condensing_water_flowrate_sensor
+  implements:
+  - MONITORING
+
+REFSM:
+  id: "14328323847953055744"
+  description: "Refrigerant saturation monitoring."
+  is_abstract: true
+  uses:
+  - refrigerant_condenser_saturation_temperature_sensor
+  - refrigerant_evaporator_saturation_temperature_sensor
+  implements:
+  - MONITORING
+
+
+PDSCV:
+  description: "Pressure-dependent supply damper control for ventilation purposes (CO2 or VOC)."
+  is_abstract: true
+  uses:
+  - supply_air_damper_percentage_command
+  - supply_air_damper_percentage_sensor
+  implements:
+  - CONTROL
+
+SDBPC:
+  id: "eab2e3a7-aec5-45d6-bd22-cd743a51cefb"
+  description: "Back-pressure controlling supply damper."
+  is_abstract: true
+  opt_uses:
+  - supply_air_flowrate_sensor
+  - supply_air_static_pressure_status
+  - supply_air_flowrate_status
+  - low_supply_air_offset_pressure_setpoint # Sets increments by which the static pressure setpoint will be decreased
+  - high_supply_air_offset_pressure_setpoint # Sets increments by which the static pressure setpoint will be increased
+  - supply_air_damper_override_percentage_status
+  - supply_air_damper_override_status
+  - low_supply_air_damper_offset_percentage_command # Sets the number of down stream VAVs above setpoint used to reset up the static pressure setpoint
+  - high_supply_air_damper_offset_percentage_command # Sets the number of down stream VAVs below setpoint used to reset down the static pressure setpoint
+  - supply_air_damper_reset_command
+  - supply_air_damper_alarm_status
+  uses:
+  - supply_air_static_pressure_sensor
+  - supply_air_static_pressure_setpoint
+  - supply_air_damper_percentage_command
+  - supply_air_damper_percentage_sensor
+  implements:
+  - CONTROL # Previously MONITORING
+
+# New Types added on the 18/08/20
+CO2FC:
+  id: "af5da501-d8bd-4e10-9ef8-ea1876027147"
+  description: "Carbon dioxide fan speed override control."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  opt_uses:
+  - zone_air_co2_concentration_status
+  - zone_air_co2_concentration_sensor
+  uses:
+  - zone_air_co2_run_command # Command for fan speed to change to CO2 control
+
+CPM:
+  id: "7e906b25-1b98-479b-88f5-8bef8d6883fc"
+  description: "Condensation pump monitoring."
+  is_abstract: true
+  uses:
+  - condensate_pump_alarm_status
+  implements:
+  - MONITORING
+
+CHGOVTC:
+  id: "f2ee8e14-b94a-4793-b2b0-63040b2cdd74"
+  description: "Changeover control setpoint for optional zone, discharge or return methods of temperature control. If primary sensor fails, control will automatically switch over to the secondary sensor."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  opt_uses:
+  - return_air_temperature_sensor  
+  - return_air_temperature_status
+  - zone_air_temperature_sensor
+  - zone_air_temperature_status
+  - discharge_air_temperature_sensor
+  - discharge_air_temperature_status
+  uses:
+  - temperature_setpoint # Temperature setpoint used based on required control method
+
+CHWRTC:
+  id: "9dc23977-d49b-4ba1-bf3d-f4f75a83f04d"
+  description: "Chilled water valve monitoring on return side (RTC)."
+  is_abstract: true
+  opt_uses:
+  - discharge_air_temperature_sensor
+  - leaving_cooling_coil_temperature_sensor
+  - cooling_thermal_power_capacity
+  - chilled_water_exercise_valve_status
+  - chilled_water_valve_override_status
+  - chilled_water_valve_alarm_status
+  - chilled_water_valve_offline_status
+  - min_chilled_water_valve_percentage_setpoint # Low temperature setpoint for valve at minimum position
+  - chilled_water_request_status
+  - chilled_water_flowrate_sensor
+  - max_chilled_water_valve_percentage_setpoint # High temperature setpoint for valve at maximum position
+  uses:
+  - return_air_temperature_setpoint
+  - return_air_temperature_sensor
+  - chilled_water_valve_percentage_command
+  implements:
+  - CONTROL
+
+HWRTC:
+  id: "d0382dac-c6d3-43c7-9e74-400855408ef8"
+  description: "Heating water valve monitoring on return side (RTC)."
+  is_abstract: true
+  opt_uses:
+  - discharge_air_temperature_sensor
+  - heating_water_valve_percentage_sensor
+  - heating_thermal_power_capacity
+  - max_heating_water_valve_percentage_setpoint # High temperature setpoint for valve at minimum position
+  - heating_water_exercise_valve_status
+  - heating_water_valve_alarm_status
+  - heating_water_request_status
+  - heating_water_valve_offline_status
+  - heating_water_valve_override_status
+  - heating_water_flowrate_sensor
+  - min_heating_water_valve_percentage_setpoint # Low temperature setpoint for valve at maximum position
+  uses:
+  - heating_water_valve_percentage_command
+  - return_air_temperature_setpoint
+  - return_air_temperature_sensor
+  implements:
+  - CONTROL 
+
+MSDM:
+  id: "758fbcd5-a22e-4c3e-9c86-d1639d54e708"
+  description: "Maximum supply damper position monitoring."
+  is_abstract: true
+  uses:
+  - max_supply_air_damper_percentage_sensor # Maximum position of damper for systems monitoring multiple dampers
+  implements:
+  - MONITORING
+
+
+CHWDTC:
+  id: "c1d6885c-3d5d-4eff-8d4c-404acedfafe7"
+  description: "Chilled water valve monitoring on discharge side (RDC)."
+  is_abstract: true
+  opt_uses:
+  - discharge_air_temperature_sensor
+  - leaving_cooling_coil_temperature_sensor
+  - cooling_thermal_power_capacity
+  - chilled_water_exercise_valve_status
+  - chilled_water_valve_override_status
+  - chilled_water_valve_alarm_status
+  - chilled_water_valve_offline_status
+  - min_chilled_water_valve_percentage_setpoint # Low temperature setpoint for valve at minimum position
+  - chilled_water_request_status
+  - chilled_water_flowrate_sensor
+  - max_chilled_water_valve_percentage_setpoint # High temperature setpoint for valve at maximum position
+  uses:
+  - return_air_temperature_setpoint
+  - return_air_temperature_sensor
+  - chilled_water_valve_percentage_command
+  implements:
+  - CONTROL
+
+HWDTC:
+  id: "9a248b63-362b-4f51-8c7b-d0ebe83042ff"
+  description: "Heating water valve monitoring on discharge side (DTC)."
+  is_abstract: true
+  opt_uses:
+  - discharge_air_temperature_sensor
+  - heating_water_valve_percentage_sensor
+  - heating_thermal_power_capacity
+  - max_heating_water_valve_percentage_setpoint # High temperature setpoint for valve at minimum position
+  - heating_water_exercise_valve_status
+  - heating_water_valve_alarm_status
+  - heating_water_request_status
+  - heating_water_valve_offline_status
+  - heating_water_valve_override_status
+  - heating_water_flowrate_sensor
+  - min_heating_water_valve_percentage_setpoint # Low temperature setpoint for valve at maximum position 
+  uses:
+  - heating_water_valve_percentage_command
+  - return_air_temperature_setpoint
+  - return_air_temperature_sensor
+  implements:
+  - CONTROL 
+
+UNOCTC:
+  id: "a0ca04e8-4545-4f24-af2f-0487c62f9928"
+  description: "Unoccupied temperature control setpoints and demand for fabric protection."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  uses:
+  - min_unoccupied_temperature_setpoint # Low temperature setpoint to enable system in heating when unoccupied
+  - max_unoccupied_temperature_setpoint # High temperature setpoint to disable system in heating when unoccupied
+  - unoccupied_run_command # Command to enable system in heating when unoccupied
+
+DARC:
+  id: "50744a1b-b097-461d-804d-b3e28b1cd9be"
+  description: "Alarm reset command switches for latched alarms in device."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  uses:
+  - device_reset_command # Command to reset latched alarms in device
+
+ZTHCO2M:
+  id: "16bcbe60-0fce-4a4b-a3ac-04cb855837b0"
+  description: "Zone/Room temperature, humidity & CO2 monitoring."
+  is_abstract: true
+  uses:
+  - zone_air_temperature_sensor
+  - zone_air_relative_humidity_sensor
+  - zone_air_co2_concentration_sensor
+  implements:
+  - MONITORING
+
+FAM:
+  id: "4852a6bc-08f5-458f-9736-715a045b76f1"
+  description: "Fire alarm monitoring."
+  is_abstract: true
+  uses:
+  - fire_alarm_status
+  implements:
+  - MONITORING
+
+HOA:
+  id: "b639ba0c-7c36-4eb7-a9c2-2b7b5d0e3466"
+  description: "Device hand/off/auto mode selector switch."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  uses:
+  - device_mode
+
+ZCMD:
+  id: "561d3d10-0439-456e-8048-f13a5fda7edc"
+  description: "Zone occupied command for device grouping."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  uses:
+  - zone_command # Enable command for all devices in a zone, based on zone occupancy timeclock
+
+DFVSCO2C:
+  id: "1bc3e342-1a4c-4876-bd41-a6ea8450aa10"
+  description: "Variable speed CO2 control for discharge fans. Fan speed command related to FCU to override temperature control when CO2 levels increase above set point"
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  opt_uses:
+  - zone_air_co2_concentration_status
+  - total_air_co2_concentration_setpoint # CO2 set point used for control (product of zone_air_co2_concentration_setpoint + outside air CO2)
+  uses:
+  - zone_air_co2_concentration_sensor
+  - zone_air_co2_concentration_setpoint
+  - discharge_fan_speed_percentage_command # Fan speed command to FCU 
+
+OPTM:
+  id: "43c10176-2f0a-4965-9780-aaea4f35f773"
+  description: "Optimisation mode control."
+  is_abstract: true
+  implements:
+  - CONTROL
+  opt_uses:
+  - max_economizer_limit_time_setpoint # Maximum time before occupancy schedule that optimizer can start the system
+  uses:
+  - zone_mode # Unoccupied, occupied, cooling boost, heating boost, fabric protection & optimum stop modes
+
+EPM:
+  id: "a1e995fe-7852-495c-b5f7-97bc3d8154c9"
+  description: "Exhaust pressure monitoring."
+  is_abstract: true
+  opt_uses:
+  - exhaust_air_flowrate_status
+  uses:
+  - exhaust_air_static_pressure_sensor
+  implements:
+  - MONITORING
+
+ZTHCO2AM:
+  id: "d6ee5a78-7126-4ab9-95ab-c030b3254cc5"
+  description: "Zone/Room temperature, humidity & CO2 alarm monitoring."
+  is_abstract: true
+  uses:
+  - zone_air_co2_concentration_status
+  - zone_air_voc_concentration_status
+  - zone_air_relative_humidity_status
+  implements:
+  - MONITORING
+
+HWVLVM:
+  id: "08c03b39-64fc-4f73-9768-21e9eb563a07"
+  description: "Heating water control valve monitoring"
+  is_abstract: true
+  opt_uses:
+  - heating_water_flowrate_sensor
+  uses:
+  - heating_water_valve_percentage_command # Command signal from FCU controller
+  - heating_water_valve_percentage_sensor
+  implements:
+  - MONITORING
+
+CHWVLVM:
+  id: "ddd6fb0a-a2ea-49ad-8a8f-35e6bf95cad1"
+  description: "Chilled water control valve monitoring"
+  is_abstract: true
+  opt_uses:
+  - chilled_water_flowrate_sensor
+  uses:
+  - chilled_water_valve_percentage_command # Command signal from FCU controller
+  - chilled_water_valve_percentage_sensor
+  implements:
+  - MONITORING

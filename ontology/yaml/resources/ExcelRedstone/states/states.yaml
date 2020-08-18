@@ -1,9 +1,0 @@
-HEALTHY: Healthy state generally used with alarm fields
-ALARM: Alarm state
-RUNNING: Indication that a device is running. Often used with fans & pumps
-NOT_RUNNING: Indication that a device is not running. Often used with fans & pumps
-COOLING_BOOST: Optimization mode for enabling system in cooling
-HEATING_BOOST: Optimization mode for enabling system in heating
-FABRIC_PROTECTION: Optimization mode for enabling system in fabric protection
-OPTIMUM_STOP: Optimization mode for stopping the system
-HAND: Running under non automatic control (ignoring timeclock/optimizer)
