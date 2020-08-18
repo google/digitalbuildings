@@ -13,6 +13,3 @@ export {
 	saveToBuffer,
 	renderSingleIBRStructure
 } from './renderers.js';
-export {
-	createDashboard
-} from './Dashboard.js';

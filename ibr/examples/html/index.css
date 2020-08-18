@@ -8,17 +8,16 @@ canvas {
 }
 
 .sidebar {
+  background-color: #d2d2d2;
   display: flex;
   flex-direction: column;
   height: 100%;
-  width: 350px;
-  position: fixed;
-  z-index: 1;
-  top: 0;
   left: 0;
-  background-color: #d2d2d2;
   overflow-x: hidden;
   padding: 64px 24px 24px 24px;
+  position: fixed;
+  top: 72px;
+  width: 350px;
 }
 
 ul, #layerList {
@@ -83,4 +82,37 @@ ul, #layerList {
   font-size: 16px;
   justify-content: space-around;
   padding: 8px;
+}
+
+#title {
+  padding: 12px;
+  font-size: 36px;
+}
+
+#upload-button {
+  padding: 24px;
+}
+
+#fileForUpload {
+  display: none;
+}
+
+#header {
+  background-color: #4285f4;
+  border: 1px solid red;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  height: 72px;
+  justify-content: space-between;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+#canvasContainer {
+  bottom: 0;
+  display: block;
+  position: fixed;
+  top: 72px;
 }
