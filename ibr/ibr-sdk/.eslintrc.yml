@@ -3,7 +3,6 @@ env:
   es2020: true
 extends:
   - google
-  - "plugin:react/recommended"
 parserOptions:
   ecmaVersion: 11
   sourceType: module
