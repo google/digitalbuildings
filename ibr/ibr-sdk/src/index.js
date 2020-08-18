@@ -4,12 +4,12 @@
  */
 
 export {
-	createSidebar,
-	renderAndCreateSidebar
+  createSidebar,
+  renderAndCreateSidebar,
 } from './sidebar.js';
 export {
-	init,
-	render,
-	saveToBuffer,
-	renderSingleIBRStructure
+  init,
+  render,
+  saveToBuffer,
+  renderSingleIBRStructure,
 } from './renderers.js';

@@ -9,8 +9,8 @@ import {swap32} from './util.js';
  */
 function IBRObject(pbfDecodedJsonObject, filename) {
   // Check if structure contains any boundary data
-  if (pbfDecodedJsonObject.boundary === null
-      || pbfDecodedJsonObject.boundary === undefined) {
+  if (pbfDecodedJsonObject.boundary === null ||
+      pbfDecodedJsonObject.boundary === undefined) {
     this.hasBoundary = false;
   } else {
     this.hasBoundary = true;
