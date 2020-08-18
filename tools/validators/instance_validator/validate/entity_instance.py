@@ -42,6 +42,32 @@ class EntityInstance(findings_lib.Findings):
     self.units = 'units'
     self.values = 'values'
     self.key = 'key'
+    self.connections = 'connections'
+
+  def _ValidateConnections(self):
+    """Uses information from the generated ontology universe to validate
+    an entity's connections. Connections are not currently generated in the
+    ontology universe, so this code assumes the contents are a set.
+
+    Returns:
+      Returns boolean for validity of entity connections.
+    """
+    if self.universe.connections_universe is None:
+      # connections are not being generated
+      return True
+
+    if self.connections not in self.entity.keys():
+      # connections are not included in this building config
+      return True
+
+    connections_map = dict(self.entity[self.connections])
+    for device_name in connections_map.keys():
+      connection = connections_map[device_name]
+      if connection not in self.universe.connections_universe:
+        print('Invalid connection:', connection)
+        return False
+
+    return True
 
   def _ValidateType(self):
     """Uses information from the generated ontology universe to validate
@@ -183,6 +209,10 @@ class EntityInstance(findings_lib.Findings):
 
     if not self._ValidateTranslation():
       print('Invalid translation key')
+      return False
+
+    if not self._ValidateConnections():
+      print('Invalid connections key')
       return False
 
     return True
