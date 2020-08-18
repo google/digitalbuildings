@@ -20,9 +20,9 @@ from __future__ import print_function
 
 from validate import generate_universe
 from validate import entity_instance
+from validate import instance_parser
 from absl.testing import absltest
 
-import instance_parser
 import os
 
 _TESTCASE_PATH = os.path.join('.', 'tests', 'fake_instances')

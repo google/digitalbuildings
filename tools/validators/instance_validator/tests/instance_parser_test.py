@@ -20,7 +20,7 @@ from __future__ import print_function
 
 import os
 
-import instance_parser
+from validate import instance_parser
 from absl.testing import absltest
 
 _TESTCASE_PATH = os.path.join('.', 'tests', 'fake_instances')
