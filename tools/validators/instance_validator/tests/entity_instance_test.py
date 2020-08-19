@@ -297,8 +297,13 @@ class EntityInstanceTest(absltest.TestCase):
                      'good_building_connections.yaml'))
     parsed = dict(parsed)
     entity_name = list(parsed.keys())[0]
-
     entity = dict(parsed[entity_name])
+
+    if 'connections' not in entity.keys():
+      self.fail('entity does not have connections when expected')
+    if self.universe.connections_universe is None:
+      self.fail('universe does not valid connections universe')
+
     instance = entity_instance.EntityInstance(entity,
                                               self.universe,
                                               parsed.keys())

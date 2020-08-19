@@ -61,11 +61,11 @@ class EntityInstance(findings_lib.Findings):
       return True
 
     connections_map = dict(self.entity[self.connections])
-    for device_name in connections_map.keys():
-      connection = connections_map[device_name]
-      if connection not in self.universe.connections_universe:
-        print('Invalid connection:', connection)
-        return False
+    connections = set(connections_map.values())
+    diff = connections.difference(self.universe.connections_universe)
+    if diff != set():
+      print('Invalid connections:', diff)
+      return False
 
     return True
 
