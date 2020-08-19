@@ -9,7 +9,8 @@ import {swap32} from './util.js';
  */
 function IBRObject(pbfDecodedJsonObject, filename) {
   // Check if structure contains any boundary data
-  if (pbfDecodedJsonObject.boundary === null) {
+  if (pbfDecodedJsonObject.boundary === null ||
+      pbfDecodedJsonObject.boundary === undefined) {
     this.hasBoundary = false;
   } else {
     this.hasBoundary = true;
@@ -207,11 +208,7 @@ Object.assign(IBRObject.prototype, {
     json.external_reference = this.externalReference;
     json.guid = this.guid;
     json.metadata = this.metadata;
-    if (this.name === this.filename) {
-      json.name = null;
-    } else {
-      json.name = this.name;
-    }
+    json.name = this.name;
     json.structural_type = this.structuralType;
     json.structures = [];
     if (this.subStructures.length != 0) {
