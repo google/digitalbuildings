@@ -26,11 +26,13 @@ VAV:
   is_abstract: true
   implements:
   - EQUIPMENT
-  opt_uses:
-  - zone_use_label # Needed until the zones can are joined to assets with connections.
   connections:
     ROOM: CONTAINS
-    AHU: FEEDS
+    AHU:
+      type: FEEDS
+      min:
+      max:
+      exact_type: <true/false>
     DFR: FEEDS
     HWS: FEEDS
     DMP: FEEDS
