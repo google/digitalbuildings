@@ -52,7 +52,7 @@ VAV:
       min: 1
       max:
       exact_type: <true/false>
-    DMP: FEEDS 
+    DMP:
       type: FEEDS
       min: 1
       max:
