@@ -4,7 +4,6 @@ import {BlockingGrid} from '../src/BlockingGrid.js';
 import { Visualization } from '../src/Visualization.js';
 
 test.before( (t) => {
-  t.context.defaultName = 'ibrData.name';
   const coordsLookup = new Uint8Array([67, 134, 214, 158, 67, 37, 6, 17,
     0, 0, 0, 0, 67, 147, 214, 158, 67, 37, 6, 17]);
   const blockingCoordsIndices = new Uint8Array([0, 0, 8, 31, 0, 0, 8, 34]);
@@ -13,9 +12,9 @@ test.before( (t) => {
     34, 0, 0, 8, 37, 0, 0, 8, 40]);
   t.context.jsonData1 = {
     blocking_grid: null,
-    boundary: null,
+    boundary: undefined,
     guid: null,
-    name: null,
+    name: undefined,
     connections: [],
     coordinates_lookup: null,
     external_reference: [],
@@ -32,10 +31,10 @@ test.before( (t) => {
             data: 'coordinate_indices',
             encoding_type: 1,
             id: 'US-SVL-TC2-1-blocking-grid',
-            image_data: null,
+            image_data: undefined,
           },
         },
-        boundary: null,
+        boundary: undefined,
         guid: 'US-SVL-TC2-1',
         name: 'US-SVL-TC2-1',
         connections: [],
@@ -51,14 +50,14 @@ test.before( (t) => {
             data: 'coordinate_indices',
             encoding_type: 1,
             id: 'test1',
-            image_data: null,
+            image_data: undefined,
           },
           {
             coordinate_indices: coordsIndices2,
             data: 'coordinate_indices',
             encoding_type: 1,
             id: 'test2',
-            image_data: null,
+            image_data: undefined,
           },
         ],
       },
@@ -70,7 +69,7 @@ test.before( (t) => {
 });
 
 test('IBRObject default name', (t) => {
-  t.is( t.context.ibrObject1.getName(), t.context.defaultName );
+  t.is( t.context.ibrObject1.getName(), undefined );
 });
 
 test('IBRObject call getVisualizations() when no visualizations', (t) => {

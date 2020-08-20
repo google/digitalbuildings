@@ -441,7 +441,7 @@ always defined on the target of the connection. Here's an example
 
 ## Validation
 The building config can be machine validated for consistency and adherence to
-the rules defined in the data model. This tool is available [here][https://github.com/google/digitalbuildings/tree/master/tools/validators/instance_validator].
+the rules defined in the data model. This tool is available [here](https://github.com/google/digitalbuildings/tree/master/tools/validators/instance_validator).
 
 <!-- Footnotes themselves at the bottom. -->
 
