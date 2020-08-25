@@ -604,3 +604,101 @@ literals:
 
 # Added 4/12/20
 - supply_air_damper_percentage_sensor
+
+# Added 25/08/20 For S2 Fire System
+- device_status:
+  - HEALTHY
+  - ALARM
+- device_alarm_status:
+  - HEALTHY
+  - ALARM
+- device_fault_status:
+  - HEALTHY
+  - FAULT
+- isolation_valve_status:
+  - OPEN
+  - CLOSED 
+- fire_zone_alarm_status: # Fire alarm in a specific zone
+  - HEALTHY
+  - ALARM 
+- interface_alarm_status: # Interface device in alarm
+  - HEALTHY
+  - ALARM 
+- smoke_detector_alarm_status: # Smoke detection alarm from smoke detector device
+  - HEALTHY
+  - ALARM 
+- heat_detector_alarm_status: # Heat detection alarm from heat detector device
+  - HEALTHY
+  - ALARM 
+- smoke_detection_beacon_alarm_status: # Smoke detection alarm from smoke detector device with beacon 
+  - HEALTHY
+  - ALARM 
+- beacon_alarm_status: # Beacon in alarm
+  - HEALTHY
+  - ALARM 
+- sprinkler_pump_status: # Status of sprinkler pump
+  - HEALTHY
+  - ALARM 
+- sprinkler_pump_alarm_status: # Sprinkler pump in alarm
+  - HEALTHY
+  - ALARM 
+- sprinkler_pump_run_status: # Sprinkler pump is running
+  - RUNNING
+  - NOT RUNNING
+- low_level_tank_alarm_status: # Water level in tank is low alarm
+  - HEALTHY
+  - ALARM 
+- manual_call_device_alarm_status: # Manual call point is in alarm
+  - HEALTHY
+  - ALARM 
+- high_level_tank_alarm_status: # Water level in tank is high alarm
+  - HEALTHY
+  - ALARM 
+- generator_fault_status: # Generator in fault
+  - HEALTHY
+  - FAULT 
+- generator_status: # Status of generator
+  - HEALTHY
+  - ALARM 
+- access_device_alarm_status: # Access control device is in alarm
+  - HEALTHY
+  - ALARM 
+- sprinkler_tamper_valve_status: # Open/closed status of sprinkler tamper valve
+  - OPEN
+  - CLOSED
+- sprinkler_flow_status: # Status of flow proved in sprinkler system
+  - HEALTHY
+  - ALARM 
+- tamper_valve_status: # Open/closed status of  tamper valve 
+  - OPEN
+  - CLOSED
+- device_flow_status: # Status of flow proved on a water or air device
+  - HEALTHY
+  - ALARM 
+- smoke_exhaust_fan_status: # Smoke exthaust system fan status
+  - HEALTHY
+  - ALARM 
+- pava_alarm_status: # PAVA system is in alarm
+  - HEALTHY
+  - ALARM 
+- pava_fault_status: # PAVA system is in fault
+  - HEALTHY
+  - FAULT
+- pava_reset_status: # PAVA system has been reset
+  - ON
+  - OFF 
+- system_device_shutdown_status: # Status indicating a device on a system has been shutdown
+  - HEALTHY
+  - ALARM 
+- fire_curtain_status: # Open/closed status of the fire curtain
+  - OPEN
+  - CLOSED
+- gas_shutdown_status: # Status indicating the gas has been shutdown
+  - HEALTHY
+  - ALARM 
+- door_release_status: # Status indicating release of door holding to remain open
+  - HEALTHY
+  - ALARM  
+- smoke_damper_status: # Open/closed status of the smoke damper
+  - OPEN
+  - CLOSED 

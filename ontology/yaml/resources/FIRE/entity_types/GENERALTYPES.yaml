@@ -1,0 +1,6 @@
+FAS:
+  id: "306e0301-f059-4031-9407-051a8626fec7"
+  description: "Fire system panel device node for reporting."
+  is_abstract: true
+  implements:
+  - EQUIPMENT

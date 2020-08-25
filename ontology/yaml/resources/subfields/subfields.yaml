@@ -18,24 +18,31 @@ aggregation:
   min: "Minimum value (e.g. Min_Ventilation_Air_Flow_Setpoint)"
   total: "Sum total of some set of values (e.g. total_request_heating_count)"
 component:
+  beacon: “Light serving as a warning in fire systems” # added 25/08/20
   coil: "Component that exchanges heat between two media streams."
   compressor: "Component which drives refrigerant compression (and thus cooling processes) within a device or system."
   condenser: "The component of a refrigeration system that condenses refrigerant."
   controller: "Control loop, such as a PID controller."
   cooler: "Device used to cool product (e.g. walk-in food cooler) or media."
+  curtain: “Material that descends from the ceiling to block an opening and stop fire and smoke spreading between two areas” # added 25/08/20
   damper: "Component which meters the flow of air within a system or device."
   dehumidifier: "Device used to dehumidify air."
+  detector: “Device type used to detect smoke or heat in fire systems” # added 25/08/20
   device: "The core equipment being represented by the Field groupings."
   dial: "Adjustment device (e.g. setpoint dial)."
   dimmer: "Adjustment device of dimming light level for controlling output of a lighting fixture."
   dishwasher: "Device that washes dishes."
+  door: “A hinged, sliding, or revolving barrier at the entrance to a building, room” # added 25/08/20
   dryer: "A component used for drying clothes."
   evaporator: "The component of a refrigeration system that evaporates refrigerant."
   fan: "Component used for the distribution of air."
   filter: "Component used for removing dust and other particulate matter from the air."
+  generator: “Back up power source in a building” # added 25/08/20
   guidevane: "Control vanes that meter refrigerant (on a centrifugal chiller) or air (on an AHU)."
   heater: "Component which provides heat to media."
   humidifier: "Component which humidifies."
+  interface: “A device/point which enables 2 systems/devices to communicate” # added 25/08/20
+  pava: “Public Address and Voice Alarm system” # added 25/08/20
   pump: "Component used for the distribution of liquid media."
   shade: "Window covering."
   tank : "Storage device for media."
@@ -43,6 +50,7 @@ component:
   vane: "Component for guiding media flow."
   wheel: "Component used for transfer of heat from incoming to outgoing air streams. "
 descriptor: 
+  access: “Means to enter a place/area and associated devices are part of fire systems” # added 25/08/20
   air: "Atmospheric air, either conditioned or unconditioned"
   aisle: "Passage between two rows of server racks."
   blowdown: "Process of expelling water filled with mineral deposits for the purposes of water treatment. "
@@ -92,11 +100,13 @@ descriptor:
   isolation: "Process of isolating one component or process from another."
   leak : "Media leaving the system abnormally."
   leaving: "Area where media leaves process."
+  level: “Detailed as low and high to indicate water levels in tanks” # added 25/08/20
   limit: "A boundary condition for a control (e.g. low limit)."
   line: "Refers to the incoming electrical feed (e.g. line current)."
   loop: "Recirculating loop."
   low: "Level of control or measurement; below medium and high; opposite of high."
   makeup: "Process of adding (\"making-up\") water that has been lost due to blowdown or evaporation."
+  manual: “Non-automatic process, often referring to a manual call point in fire systems” # added 25/08/20
   manufacturer: "The company which produces the asset or device."
   matched: "A collection of things that are put together as being equal, similar, or complementary."
   master: "Highest priority (or primary control) device, sensor, etc."
@@ -137,17 +147,21 @@ descriptor:
   secondary: "Associated with the secondary (distribution) loop of a produciton process."
   seismic: "Related to seismic activity (such as seismic gas shutoff valves)."
   side: "Position relative to an an object."
+  smoke: “Visible vapour detected in fire systems and descriptor used specific devices (e.g. dampers, exhaust fans and detectors)” # added 25/08/20
   source: "The upstream source of conditioning (used specifically for heat exchangers)."
   south: "Cardinal direction; opposite of north"
   southeast: "Inter-cardinal direction between South and East."
   southwest: "Inter-cardinal direction between South and West."
   stage: "Discrete step (stage) of device activity (such as heating and cooling outputs)."
   spray: "Spray of water through air."
+  sprinkler: “Automatic fire extinguisher installed in the ceilings of a building and descriptor used specific devices (e.g. pumps and valves)” # added 25/08/20
   steam: "Water in gaseous form."
   summer: "Method or process used during warmer weather (i.e. summer season)."
   supply: "Measurement or process of media as it is supplied to the end-use equipment within the system."
   suppression : "a range of firefighting tactics used to suppress fire"
   sync: "The simultaneous operation or activity of two or more things."
+  system: “Set of items/devices which work together to make a whole system within a building (e.g. BMS, Lighting, Fire)” # added 25/08/20
+  tamper: “Tamper proof valves are often associated with fire systems for safety” # added 25/08/20
   tertiary: "Associated with the tertiary (peripheral) loops of a production process."
   unoccupied: "State of being outside of scheduled (time of day or week) run-time parameters."
   use: "A descriptor for how the entity in question is used (e.g. zone_use_label = 'office') "
@@ -188,20 +202,23 @@ measurement_descriptor:
   efficiency: "The ratio of required input to actual output. "
   end: "Indicates a final part of something, especially a period of time."
   fault : "Signal that a fault (low/medium) priority warning is present; can compromise system operation, but not necessarily imminently."
+  flow: “Indication of moving water/air in a system” # added 25/08/20
   extent: "Distance travelled."
   match: "A function that matches something against others."
   offset: "The amount or distance by which something is out of line"
   open: "Indicates full open (for two-position actuators).  This is the default sense if unspecified"
   override: "An action that interrupts, cancels, or changes the current action or status."
   relative: "Quality of media with respect to theoretical minimum or maximum value for a given condition (e.g. relative humidity)."
+  release: “To allow or enable to escape from an area/building” # added 25/08/20
   run: "State of being active or operating. By default applies to control program for system (eg VAV program run_command)."
   saturation: "Point at which no more of a material can be absorbed into another material."
+  shutdown: “Switching off or disabling of a system” # added 25/08/20
   speed: "Numeric setting of how fast to run a device, in the specified untis. Typically used to describe revolutions of a motor as a fraction of nominal or maximum."
   start: "Indicates a point in time or space at which something has its origin or beginning."
   static: "Resting or stagnant value (e.g. static_pressure_sensor)."
   thermal: "Relating to the transfer of heat."
   tilt: "Degree of radial rotation."
-  wetbulb: "Describes air temperature measured at 100% relative humidity (saturation)."
+  wetbulb: "Describes air temperature measured at 100% relative humidity (saturation)."  
 point_type:
   accumulator: "The total accumulated quantity (e.g. total energy accumulated)."
   capacity: "A design parameter quantity. Ex: design motor power capacity. Is always a maximum limit."
