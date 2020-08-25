@@ -54,3 +54,14 @@ LIGHTING_GROUP:
 
 LIGHTING_SCENE:
   description: "A scene containing brightness values for each luminaire."
+
+# Added 25/08/2020
+LOS:
+  id: "f8b937de-a363-4e30-bf7a-93cda4a4c02b"
+  description: "Lighting occupancy sensor. Light level sensor included in some instances"
+  implements:
+  - MTS
+  opt_uses:
+  - illuminance_sensor # in lux indicating light level for a specific zone/group
+  uses:
+  - zone_occupancy_status # indicating status of occupancy for a specific zone/group

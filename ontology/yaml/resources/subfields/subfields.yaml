@@ -79,6 +79,7 @@ descriptor:
   ## TODO: make it so gas only has one meaning
   gas: "Process or component driven by natural gas (as to distinguish from electric)."
   glycol: "Liquid mixture consisting of glycol and water "
+  group: "Type of light dimming command point."  # Added 25/08/20
   guide: "Component used to guide flow of media or movement of component."
   hash: "A computed value that is converted from an original value."
   heating: "Process, measured effect or requirement for heating."
@@ -90,6 +91,7 @@ descriptor:
   inlet: "Area of media entrance."
   input: "The input to a system."
   isolation: "Process of isolating one component or process from another."
+  lamp: "Type of light dimming command point."  # Added 25/08/20
   leak : "Media leaving the system abnormally."
   leaving: "Area where media leaves process."
   limit: "A boundary condition for a control (e.g. low limit)."
