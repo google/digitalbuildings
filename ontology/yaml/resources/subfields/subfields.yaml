@@ -24,7 +24,6 @@ component:
   condenser: "The component of a refrigeration system that condenses refrigerant."
   controller: "Control loop, such as a PID controller."
   cooler: "Device used to cool product (e.g. walk-in food cooler) or media."
-  curtain: “Material that descends from the ceiling to block an opening and stop fire and smoke spreading between two areas” # added 25/08/20
   damper: "Component which meters the flow of air within a system or device."
   dehumidifier: "Device used to dehumidify air."
   detector: “Device type used to detect smoke or heat in fire systems” # added 25/08/20
@@ -44,6 +43,7 @@ component:
   interface: “A device/point which enables 2 systems/devices to communicate” # added 25/08/20
   pava: “Public Address and Voice Alarm system” # added 25/08/20
   pump: "Component used for the distribution of liquid media."
+  rack: "Component used in comms rooms for mounting servers & switches" # Added 25/08/20
   shade: "Window covering."
   tank : "Storage device for media."
   valve: "Component which meters the flow of water within a system or device."
@@ -51,6 +51,8 @@ component:
   wheel: "Component used for transfer of heat from incoming to outgoing air streams. "
 descriptor: 
   access: “Means to enter a place/area and associated devices are part of fire systems” # added 25/08/20
+  runtime: "accumulation of time a device or system has been running (quite often used for maintenance/servicing purposes)" # Added 18/08/20
+  condensate: "descriptor for pump used to remove liquid collected by condensation"  # Added 18/08/20
   air: "Atmospheric air, either conditioned or unconditioned"
   aisle: "Passage between two rows of server racks."
   blowdown: "Process of expelling water filled with mineral deposits for the purposes of water treatment. "
@@ -68,6 +70,7 @@ descriptor:
   condensing: "Process of gaseous refrigerant changing to liquid."
   conference: "An instance of speaking or meeting among multiple people."
   cooling: "Process, measured effect or requirement for cooling."
+  critical: "Level of measurement to indicate that something needs urgent attention" # Added 24/08/20
   dehumidification: "Process of removing moisture from air."
   detection : "Process of identifying conditions."
   discharge: "Media leaving system to enter ambient conditioned space. Typically applies only to air-side systems."
@@ -152,9 +155,9 @@ descriptor:
   south: "Cardinal direction; opposite of north"
   southeast: "Inter-cardinal direction between South and East."
   southwest: "Inter-cardinal direction between South and West."
+  sprinkler: “Automatic fire extinguisher installed in the ceilings of a building and descriptor used specific devices (e.g. pumps and valves)” # added 25/08/20
   stage: "Discrete step (stage) of device activity (such as heating and cooling outputs)."
   spray: "Spray of water through air."
-  sprinkler: “Automatic fire extinguisher installed in the ceilings of a building and descriptor used specific devices (e.g. pumps and valves)” # added 25/08/20
   steam: "Water in gaseous form."
   summer: "Method or process used during warmer weather (i.e. summer season)."
   supply: "Measurement or process of media as it is supplied to the end-use equipment within the system."
@@ -163,6 +166,7 @@ descriptor:
   system: “Set of items/devices which work together to make a whole system within a building (e.g. BMS, Lighting, Fire)” # added 25/08/20
   tamper: “Tamper proof valves are often associated with fire systems for safety” # added 25/08/20
   tertiary: "Associated with the tertiary (peripheral) loops of a production process."
+  transfer: "Media moving system from one space to another. Typically applies only to air-side systems." # Added 25/08/20
   unoccupied: "State of being outside of scheduled (time of day or week) run-time parameters."
   use: "A descriptor for how the entity in question is used (e.g. zone_use_label = 'office') "
   user: "A person who uses or operates something."
@@ -174,6 +178,7 @@ descriptor:
   winter: "Method or process used during colder weather (i.e. winter season)."
   zone: "Region of building which is conditioned."
 measurement:
+  time: "measurement of time (often associated with runtime of devices)"  # Added 18/08/20
   concentration: "Concentration of chemical (usually in parts per million or parts per billion)."
   current: "Flow of electric charge."
   energy: " The quantitative property that must be transferred to an object to perform work (default electrical unless otherwise modified)."
@@ -192,6 +197,8 @@ measurement:
   voltage: "Electrical potential difference between two reference points."
   volume: "The quantity of three-dimensional space contained by a closed surface."
 measurement_descriptor:
+  offline: "indication that a device is not communicating via network (this can be IP or serial)"  # Added 18/08/20
+  reset: "act of resetting parameters of a device or control strategy (typically for alarms and setpoints)"  # Added 18/08/20
   absolute: "Quality of media with respect to non-relativistic boudaries (e.g. absolute temperature)."
   alarm: "Signal that an alarm is present."
   apparent: "The combination of reactive and real components (power)."
@@ -209,16 +216,16 @@ measurement_descriptor:
   open: "Indicates full open (for two-position actuators).  This is the default sense if unspecified"
   override: "An action that interrupts, cancels, or changes the current action or status."
   relative: "Quality of media with respect to theoretical minimum or maximum value for a given condition (e.g. relative humidity)."
-  release: “To allow or enable to escape from an area/building” # added 25/08/20
+  release: “To allow or enable to escape from an area/building” # added 25/08/20 
   run: "State of being active or operating. By default applies to control program for system (eg VAV program run_command)."
   saturation: "Point at which no more of a material can be absorbed into another material."
-  shutdown: “Switching off or disabling of a system” # added 25/08/20
   speed: "Numeric setting of how fast to run a device, in the specified untis. Typically used to describe revolutions of a motor as a fraction of nominal or maximum."
+  shutdown: “Switching off or disabling of a system” # added 25/08/20
   start: "Indicates a point in time or space at which something has its origin or beginning."
   static: "Resting or stagnant value (e.g. static_pressure_sensor)."
   thermal: "Relating to the transfer of heat."
   tilt: "Degree of radial rotation."
-  wetbulb: "Describes air temperature measured at 100% relative humidity (saturation)."  
+  wetbulb: "Describes air temperature measured at 100% relative humidity (saturation)."
 point_type:
   accumulator: "The total accumulated quantity (e.g. total energy accumulated)."
   capacity: "A design parameter quantity. Ex: design motor power capacity. Is always a maximum limit."

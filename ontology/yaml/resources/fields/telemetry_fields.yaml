@@ -124,6 +124,7 @@ literals:
 - power_sensor
 - return_air_relative_humidity_sensor
 - return_air_temperature_sensor
+- max_supply_air_damper_percentage_sensor
 - return_air_temperature_setpoint
 - return_water_temperature_sensor
 - reversing_valve_command:
@@ -605,6 +606,184 @@ literals:
 # Added 4/12/20
 - supply_air_damper_percentage_sensor
 
+# Added 18/08/20 for S2
+- average_zone_air_temperature_sensor
+- max_zone_air_temperature_setpoint
+- zone_air_relative_humidity_status:
+  - HEALTHY
+  - ALARM
+- zone_air_temperature_status:
+  - HEALTHY
+  - ALARM    
+- zone_controller_alarm_status: 
+  - HEALTHY
+  - ALARM  
+- max_zone_air_temperature_sensor:  
+- zone_air_co2_concentration_status:
+  - HEALTHY
+  - ALARM
+- total_air_co2_concentration_setpoint:
+- min_discharge_fan_speed_percentage_setpoint:
+- discharge_fan_run_time_sensor:
+- discharge_fan_override_status:
+  - HEALTHY
+  - ALARM  
+- runtime_discharge_fan_reset_command:
+  - ON
+  - OFF
+- discharge_fan_run_time_setpoint:
+- discharge_air_heating_high_alarm_status:
+  - HEALTHY
+  - ALARM
+- discharge_air_heating_alarm_status:
+  - HEALTHY
+  - ALARM
+- discharge_air_cooling_low_alarm_status:
+  - HEALTHY
+  - ALARM
+- discharge_air_cooling_alarm_status:
+  - HEALTHY
+  - ALARM
+- discharge_air_temperature_status:
+  - HEALTHY
+  - ALARM
+- discharge_fan_fault_status:
+  - HEALTHY
+  - ALARM
+- discharge_fan_alarm_status:
+  - HEALTHY
+  - ALARM  
+- discharge_fan_speed_status:
+  - HEALTHY
+  - ALARM
+- max_discharge_fan_speed_percentage_setpoint:
+- runtime_discharge_fan_alarm_status:
+  - HEALTHY
+  - ALARM
+- return_air_temperature_status:
+  - HEALTHY
+  - ALARM
+- exhaust_air_flowrate_status:
+  - HEALTHY
+  - ALARM
+- exhaust_air_damper_reset_command:
+  - ON
+  - OFF
+- exhaust_air_damper_override_status:
+  - HEALTHY
+  - ALARM
+- exhaust_air_damper_alarm_status:
+  - HEALTHY
+  - ALARM
+- exhaust_air_damper_override_percentage_status:
+  - HEALTHY
+  - ALARM
+- min_zone_air_relative_humidity_setpoint:
+- max_zone_air_relative_humidity_setpoint:
+- zone_air_relative_humidity_mode:
+  - ON
+  - OFF
+- high_zone_air_relative_humidity_status:
+  - HEALTHY
+  - ALARM
+- zone_air_voc_concentration_status:
+  - HEALTHY
+  - ALARM
+- filter_differential_pressure_setpoint:
+- filter_differential_pressure_status:
+  - HEALTHY
+  - ALARM
+- filter_reset_command:
+  - ON
+  - OFF
+- chilled_water_exercise_valve_status:
+  - ON
+  - OFF
+- chilled_water_valve_override_status:
+  - HEALTHY
+  - ALARM
+- chilled_water_valve_alarm_status:
+  - HEALTHY
+  - ALARM
+- chilled_water_valve_offline_status:
+  - HEALTHY
+  - ALARM
+- min_chilled_water_valve_percentage_setpoint:
+- chilled_water_request_status:
+  - ON
+  - OFF
+- max_chilled_water_valve_percentage_setpoint:
+- max_heating_water_valve_percentage_setpoint:
+- heating_water_exercise_valve_status:
+  - ON
+  - OFF   
+- heating_water_valve_alarm_status:
+  - HEALTHY
+  - ALARM
+- heating_water_request_status:
+  - ON
+  - OFF
+- heating_water_valve_offline_status:
+  - HEALTHY
+  - ALARM
+- heating_water_valve_override_status:
+  - HEALTHY
+  - ALARM
+- min_heating_water_valve_percentage_setpoint:
+- supply_air_static_pressure_status:
+  - HEALTHY
+  - ALARM
+- supply_air_flowrate_status:
+  - HEALTHY
+  - ALARM
+- low_supply_air_offset_pressure_setpoint:
+- high_supply_air_offset_pressure_setpoint:
+- supply_air_damper_override_percentage_status:
+  - HEALTHY
+  - ALARM
+- supply_air_damper_override_status:
+  - HEALTHY
+  - ALARM
+- low_supply_air_damper_offset_percentage_command:
+- high_supply_air_damper_offset_percentage_command:
+- supply_air_damper_reset_command:
+  - ON
+  - OFF
+- supply_air_damper_alarm_status:
+  - HEALTHY
+  - ALARM
+- zone_air_co2_run_command:
+  - ON
+  - OFF
+- fire_alarm_status:
+  - HEALTHY
+  - ALARM
+- condensate_pump_alarm_status:
+  - HEALTHY
+  - ALARM
+- device_mode:
+  - OFF
+  - AUTO
+  - HAND
+- zone_mode:
+  - UNOCCUPIED
+  - OCCUPIED
+  - COOLING_BOOST
+  - HEATING_BOOST
+  - FABRIC_PROTECTION
+  - OPTIMUM_STOP
+- max_economizer_limit_time_setpoint:
+- temperature_setpoint:
+- min_unoccupied_temperature_setpoint:
+- max_unoccupied_temperature_setpoint:
+- unoccupied_run_command:
+- device_reset_command:
+  - ON
+  - OFF
+- zone_command:
+  - ON
+  - OFF
+  
 # Added 25/08/20 For S2 Fire System
 - device_status:
   - HEALTHY
@@ -701,4 +880,4 @@ literals:
   - ALARM  
 - smoke_damper_status: # Open/closed status of the smoke damper
   - OPEN
-  - CLOSED 
+  - CLOSED

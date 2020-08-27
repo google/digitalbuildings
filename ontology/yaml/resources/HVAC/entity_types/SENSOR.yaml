@@ -1,0 +1,17 @@
+# Zone/Room Sensor
+TSTAT:
+  id: "9dcff676-add3-4934-82e7-1a43c56de29c"
+  description: "Wall mounted temperature sensor with adjustment."
+  is_abstract: true
+  implements:
+  - EQUIPMENT
+
+# Zone/Room Controller type
+TSTAT_ZTHCO2M:
+  id: "a9f5134f-a04b-4815-8cd2-a9e348ee6f1d"
+  description: "Zone/Room wall mounted controller measuring zone temperature, humidity & CO2 with temperature adjustment"
+  is_canonical: true
+  implements:
+  - TSTAT # New abstract created for S2
+  - ZTHCO2M # New abstract created for S2
+

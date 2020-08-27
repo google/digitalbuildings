@@ -848,3 +848,174 @@ FCU_US_MTV_1950_3:
   - INCOMPLETE
   uses:
   - cooling_stage_run_count
+
+FCU_DFSS_DFVSC_ZTC_CHWZTC_CO2FC_DTM_RTM_FDPM_SSPM_FAM_CPM_HOA_OPTM_CHGOVTC_DARC:
+  id: "5784129a-e09e-4c51-896f-659f723ab082"
+  description: "Hydronic varaible speed fan coil with cooling (zone temp control) and fan speed CO2 override. If the zone air temperature sensor fails, the unit will automatically change over to return air temperature control. Hand/Off/Auto operation is provided, with optimizer control. Discharge air temperature, return air temperature, supply static pressure, filter differential pressure, condensation pump status and fire alarm status are all monitored by this unit. There are also latching alarms which can be reset with a command."
+  is_canonical: true
+  implements:
+  - FCU # Existing
+  - DFSS # Existing with optional points added for S2
+  - DFVSC # Existing with optional points added for S2
+  - ZTC # Existing with optional points added for S2
+  - CHWZTC # Existing with optional points added for S2
+  - CO2FC # New abstract created for S2
+  - DTM # Existing with optional points added for S2
+  - RTM # Existing with optional points added for S2
+  - FDPM # Existing with optional points added for S2
+  - SSPM # Existing with optional points added for S2
+  - FAM # New abstract created for S2
+  - CPM # New abstract created for S2
+  - HOA # New abstract created for S2
+  - OPTM # New abstract created for S2
+  - CHGOVTC # New abstract created for S2
+  - DARC # New abstract created for S2  
+
+# FCU Type 1B & 1D
+FCU_DFSS_DFVSC_ZTC_CHWZTC_HWZTC_CO2FC_DTM_RTM_FDPM_SSPM_FAM_CPM_HOA_OPTM_CHGOVTC_UNOCTC_DARC:
+  id: "12b7b7f1-d467-4c01-bde8-ef8e3f199349"
+  description: "Hydronic varaible speed fan coil with cooling and heating (zone temp control) and fan speed CO2 override. If the zone air temperature sensor fails, the unit will automatically change over to return air temperature control. Hand/Off/Auto operation is provided, with optimizer control and fabric protection. Discharge air temperature, return air temperature, supply static pressure, filter differential pressure, condensation pump status and fire alarm status are all monitored by this unit. There are also latching alarms which can be reset with a command."
+  is_canonical: true
+  implements:
+  - FCU # Existing
+  - DFSS # Existing with optional points added for S2
+  - DFVSC # Existing with optional points added for S2
+  - ZTC # Existing with optional points added for S2
+  - CHWZTC # Existing with optional points added for S2
+  - HWZTC # Existing with optional points added for S2
+  - CO2FC # New abstract created for S2
+  - DTM # Existing with optional points added for S2
+  - RTM # Existing with optional points added for S2
+  - FDPM # Existing with optional points added for S2
+  - SSPM # Existing with optional points added for S2
+  - FAM # New abstract created for S2
+  - CPM # New abstract created for S2
+  - HOA # New abstract created for S2
+  - OPTM # New abstract created for S2
+  - CHGOVTC # New abstract created for S2
+  - UNOCTC # New abstract created for S2
+  - DARC # New abstract created for S2  
+
+# FCU Type 1C
+FCU_DFSS_DFVSC_RTC_CHWRTC_CO2FC_DTM_RTM_FDPM_SSPM_FAM_CPM_HOA_OPTM_CHGOVTC_DARC:
+  id: "4f7b9d58-83e5-41c3-bd8e-c04192085ee1"
+  description: "Hydronic varaible speed fan coil with cooling (return temp control) and fan speed CO2 override. If the return air temperature sensor fails, the unit will automatically change over to discharge air temperature control. Hand/Off/Auto operation is provided, with optimizer control. Discharge air temperature, return air temperature, supply static pressure, filter differential pressure, condensation pump status and fire alarm status are all monitored by this unit. There are also latching alarms which can be reset with a command."
+  is_canonical: true
+  implements:
+  - FCU # Existing
+  - DFSS # Existing with optional points added for S2
+  - DFVSC # Existing with optional points added for S2
+  - RTC # Existing with optional points added for S2
+  - CHWRTC # New abstract created for S2 
+  - CO2FC # New abstract created for S2 
+  - DTM # Existing with optional points added for S2
+  - RTM # Existing with optional points added for S2
+  - FDPM # Existing with optional points added for S2
+  - SSPM # Existing with optional points added for S2
+  - FAM # New abstract created for S2 
+  - CPM # New abstract created for S2 
+  - HOA # New abstract created for S2 
+  - OPTM # New abstract created for S2
+  - CHGOVTC # New abstract created for S2 
+  - DARC # New abstract created for S2   
+
+# FCU Type 1E
+FCU_DFSS_DFVSC_RTC_CHWRTC_HWRTC_CO2FC_DTM_RTM_FDPM_SSPM_FAM_CPM_HOA_OPTM_CHGOVTC_UNOCTC_DARC:
+  id: "6218e931-f508-4a24-8b21-5f19e0c1f747"
+  description: "Hydronic varaible speed fan coil with cooling and heating (return temp control) and fan speed CO2 override. If the return air temperature sensor fails, the unit will automatically change over to discharge air temperature control. Hand/Off/Auto operation is provided, with optimizer control and fabric protection. Discharge air temperature, return air temperature, supply static pressure, filter differential pressure, condensation pump status and fire alarm status are all monitored by this unit. There are also latching alarms which can be reset with a command."
+  is_canonical: true
+  implements:
+  - FCU # Existing
+  - DFSS # Existing with optional points added for S2
+  - DFVSC # Existing with optional points added for S2
+  - RTC # Existing with optional points added for S2
+  - CHWRTC # New abstract created for S2 
+  - HWRTC # New abstract created for S2 
+  - CO2FC # New abstract created for S2 
+  - DTM # Existing with optional points added for S2
+  - RTM # Existing with optional points added for S2
+  - FDPM # Existing with optional points added for S2
+  - SSPM # Existing with optional points added for S2
+  - FAM # New abstract created for S2 
+  - CPM # New abstract created for S2 
+  - HOA # New abstract created for S2 
+  - OPTM # New abstract created for S2
+  - CHGOVTC # New abstract created for S2 
+  - UNOCTC # New abstract created for S2 
+  - DARC # New abstract created for S2   
+
+# FCU Type 2 & Type SP
+FCU_DFSS_DFVSC_DTC_CHWDTC_HWDTC_CO2FC_DTM_RTM_FDPM_SSPM_FAM_CPM_HOA_OPTM_CHGOVTC_UNOCTC_DARC_ZTC_MSDM:
+  id: "a3002cb2-6302-4da1-bccf-c06b08f42e2b"
+  description: "Hydronic variable speed fan coil with cooling and heating (discharge temp control) feeding multiple VAV’s for individual rooms (Coding Caves & Sleeping Pods) and fan speed CO2 overrideIf the discharge air temperature sensor fails, the unit will automatically change over to zone air temperature control with the option for average or maximum zone air temperature control. Hand/Off/Auto operation is provided, with optimizer control and fabric protection. Discharge air temperature, return air temperature, supply static pressure, filter differential pressure, condensation pump status, fire alarm status and maximum vav supply damper position are all monitored by this unit. There are also latching alarms which can be reset with a command."
+  is_canonical: true
+  implements:
+  - FCU # Existing
+  - DFSS # Existing with optional points added for S2
+  - DFVSC # Existing with optional points added for S2
+  - DTC # Existing with optional points added for S2
+  - CHWDTC # New abstract created for S2 
+  - HWDTC # New abstract created for S2 
+  - CO2FC # New abstract created for S2 
+  - DTM # Existing with optional points added for S2
+  - RTM # Existing with optional points added for S2
+  - FDPM # Existing with optional points added for S2
+  - SSPM # Existing with optional points added for S2
+  - FAM # New abstract created for S2 
+  - CPM # New abstract created for S2 
+  - HOA # New abstract created for S2
+  - OPTM # New abstract created for S2  
+  - CHGOVTC # New abstract created for S2 
+  - UNOCTC # New abstract created for S2 
+  - DARC  # New abstract created for S2  
+  - ZTC # Existing with optional points added for S2
+  - MSDM # New abstract created for S2 
+
+# FCU Type 3A
+FCU_DFSS_DFVSC_ZTC_CHWZTC_HWZTC_CO2FC_DTM_RTM_FDPM_SSPM_FAM_CPM_HOA_OPTM_CHGOVTC_UNOCTC_DARC_ZHC:
+  id: "843b8104-a086-4fc6-8d73-c98e88f74f69"
+  description: "Hydronic varaible speed fan coil with cooling and heating (zone temp control) and fan speed CO2 override. If the zone air temperature sensor fails, the unit will automatically change over to return air temperature control. Zone air relative humidity control will take over the fan speed control when initiated. Hand/Off/Auto operation is provided, with optimizer control and fabric protection. Discharge air temperature, return air temperature, supply static pressure, filter differential pressure, condensation pump status and fire alarm status are all monitored by this unit. There are also latching alarms which can be reset with a command."
+  is_canonical: true
+  implements:
+  - FCU # Existing
+  - DFSS # Existing with optional points added for S2
+  - DFVSC # Existing with optional points added for S2
+  - ZTC # Existing with optional points added for S2
+  - CHWZTC # Existing with optional points added for S2
+  - HWZTC # Existing with optional points added for S2
+  - CO2FC # New abstract created for S2 
+  - DTM # Existing with optional points added for S2
+  - RTM # Existing with optional points added for S2
+  - FDPM # Existing with optional points added for S2
+  - SSPM # Existing with optional points added for S2
+  - FAM # New abstract created for S2 
+  - CPM # New abstract created for S2 
+  - HOA # New abstract created for S2 
+  - OPTM # New abstract created for S2
+  - CHGOVTC # New abstract created for S2 
+  - UNOCTC # New abstract created for S2 
+  - DARC   # New abstract created for S2 
+  - ZHC # Existing with optional points added for S2
+
+# FCU Type 3B
+FCU_DFSS_DFVSC_ZTC_CHWZTC_CO2FC_DTM_RTM_FDPM_SSPM_FAM_CPM_HOA_OPTM_CHGOVTC_DARC_ZHC:
+  id: "a5b87596-7c6a-4e8d-aeab-ae747bfba3ee"
+  description: "Hydronic varaible speed fan coil with cooling (zone temp control) and fan speed CO2 override. If the zone air temperature sensor fails, the unit will automatically change over to return air temperature control. Zone air relative humidity control will take over the fan speed control when initiated. Hand/Off/Auto operation is provided, with optimizer control. Discharge air temperature, return air temperature, supply static pressure, filter differential pressure, condensation pump status and fire alarm status are all monitored by this unit. There are also latching alarms which can be reset with a command."
+  is_canonical: true
+  implements:
+  - FCU # Existing
+  - DFSS # Existing with optional points added for S2
+  - DFVSC # Existing with optional points added for S2
+  - ZTC # Existing with optional points added for S2
+  - CHWZTC # Existing with optional points added for S2
+  - CO2FC # New abstract created for S2 
+  - DTM # Existing with optional points added for S2
+  - RTM # Existing with optional points added for S2
+  - FDPM # Existing with optional points added for S2
+  - SSPM # Existing with optional points added for S2
+  - FAM # New abstract created for S2 
+  - CPM # New abstract created for S2 
+  - HOA # New abstract created for S2 
+  - CHGOVTC # New abstract created for S2 
+  - DARC   # New abstract created for S2 
+  - ZHC # Existing with optional points added for S2
