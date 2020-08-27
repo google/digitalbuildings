@@ -1,0 +1,96 @@
+# Copyright 2020 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the License);
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#    https://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an AS IS BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+########################
+### Canonical Types  ###
+########################
+
+DFR_SFSS_BYPSSPC_HT2SC:
+  id: "4468607257499664384"
+  description: "Two-stage gas/electric duct furnace."
+  is_canonical: true
+  implements:
+  - DFR
+  - SFSS
+  - BYPSSPC
+  - HT2SC
+
+DFR_SFSS_BYPSSPC_HT2SC_RTM:
+  id: "9506446390666985472"
+  description: "Two-stage gas/electric duct furnace."
+  is_canonical: true
+  implements:
+  - DFR
+  - SFSS
+  - BYPSSPC
+  - HT2SC
+  - RTM
+
+DFR_SFSS_BYPSSPC_HT3SC_RTM:
+  id: "12273345411732733952"
+  description: "Three-stage gas/electric duct furnace."
+  is_canonical: true
+  implements:
+  - DFR
+  - SFSS
+  - BYPSSPC
+  - HT3SC
+  - RTM
+
+DFR_SFSS_SFVSC_BYPSSPC_HTSC:
+  id: "3417579694462074880"
+  description: "VFD converted gas/electric duct furnace."
+  is_canonical: true
+  implements:
+  - DFR
+  - SFSS
+  - SFVSC
+  - BYPSSPC
+  - HTSC
+
+
+###################################
+### Existing Non-standard Types ###
+###################################
+
+DFR_US_MTV_1098_1: # Instances: 1
+  id: "13937821298232131584"
+  description: "Non-standard type for 1098"
+  implements:
+  - DFR_SFSS_BYPSSPC_HT2SC_RTM
+  - DEPRECATED
+  uses:
+  - heating_percentage_command_1
+  - heating_percentage_command_2
+
+DH_US_MTV_1965_1: # Instances: 3 actually a DF
+  id: "7551154076667346944"
+  description: "Non-standard type for 1965"
+  implements:
+  - DFR_SFSS_BYPSSPC_HT2SC_RTM
+  - DEPRECATED
+  uses:
+  - heating_percentage_command_1
+  - heating_percentage_command_2
+
+DH_US_MTV_1965_2: # Instances: 2 actually a DF
+  id: "16053950173142843392"
+  description: "Non-standard type for 1965"
+  implements:
+  - DFR_SFSS_BYPSSPC_HT3SC_RTM
+  - DEPRECATED
+  uses:
+  - heating_percentage_command_1
+  - heating_percentage_command_2
+  - heating_percentage_command_3

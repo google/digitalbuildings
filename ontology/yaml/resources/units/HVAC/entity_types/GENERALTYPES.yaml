@@ -245,34 +245,4 @@ HUM:
   implements:
   - EQUIPMENT
 
-  
-FARSR: # Fresh Air Riser - Added for S2
-  id: "c7af2926-a614-47c1-8f79-5dfdd2e43970"
-  description: "Fresh air riser for HVAC systems"
-  is_abstract: true
-  implements:
-  - EQUIPMENT
 
-
-RARSR: # Return Air Riser - Added for S2
-  id: "746f16da-6768-4dd8-883a-cb9e3e43889c"
-  description: "Return air riser for HVAC systems"
-  is_abstract: true
-  implements:
-  - EQUIPMENT
-
-
-CHWRSR: # CHW Riser - Added for S2
-  id: "b03b1789-570c-41a8-a864-d75b535606f9"
-  description: "Chilled water riser for HVAC systems"
-  is_abstract: true
-  implements:
-  - EQUIPMENT
-
-
-LHWRSR: # LTHW Riser - Added for S2
-  id: "788b1072-cd9c-41ff-ba05-f39be254829f"
-  description: "Low temperature hot water riser for HVAC systems"
-  is_abstract: true
-  implements:
-  - EQUIPMENT

@@ -1,0 +1,66 @@
+# Copyright 2020 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the License);
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#    https://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an AS IS BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+########################
+### Canonical Types  ###
+########################
+
+PMP_SS:
+  id: "13517139353352011776"
+  description: "Typical pump."
+  is_canonical: true
+  implements:
+  - PMP
+  - SS
+
+PMP_SS_VSC:
+  id: "6133109532278128640"
+  description: "Typical variable speed pump."
+  is_canonical: true
+  implements:
+  - PMP
+  - SS
+  - VSC
+
+
+###################################
+### Existing Non-standard Types ###
+###################################
+
+PMP_S_VFCF:
+  id: "9598937308795502592"
+  description: "Non-standard variable speed pump."
+  implements:
+  - PMP_SS_VSC
+  - INCOMPLETE
+  uses:
+  - speed_frequency_command
+
+PMP_S_VSCF_ISV:
+  id: "8905453334924623872"
+  description: "One-off pump that performs chilled water blending."
+  implements:
+  - PMP_SS_VSC
+  uses:
+  - mixing_valve_percentage_command
+  - chilled_supply_water_temperature_setpoint
+  - chilled_supply_water_temperature_sensor
+
+PMP_US_MTV_1667_1:
+  id: "8295303546346143744"
+  description: "Non-standard type for 1667 PCWPs and CHWPs"
+  implements:
+  - PMP_SS_VSC
+  uses:
+  - differential_pressure_sensor

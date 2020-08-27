@@ -1,0 +1,48 @@
+# Copyright 2020 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the License);
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#    https://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an AS IS BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+## Metadata Field Definitions
+
+literals:
+# Labels: names and manufacturfer codes only
+- manufacturer_label
+- model_label
+- zone_use_label # Indicates the type of zone (e.g. lab, office, etc.)
+
+# Capacities: upper limits on specific capability
+- cooling_thermal_power_capacity
+- discharge_air_flowrate_capacity
+- discharge_fan_power_capacity
+- exhaust_air_flowrate_capacity
+- exhaust_fan_power_capacity
+- flowrate_capacity # Maximum flowrate
+- heating_input_thermal_power_capacity # For BLRs, it is typical to have input and output ratings (which define the efficiency of the unit and therefore necessitate two SFNs with input and output (where output is implied)
+- heating_thermal_power_capacity
+- thermal_power_capacity # Used for HW or CHW systems, where 'heating' and 'cooling' are implied.
+- power_capacity # Motor capacity
+- return_air_flowrate_capacity
+- return_fan_power_capacity
+- supply_air_flowrate_capacity
+- supply_air_cooling_flowrate_capacity
+- supply_air_heating_flowrate_capacity
+- supply_fan_power_capacity
+
+# Specifications: general pointType for metadata
+- differential_pressure_specification # Design differential pressure - not a limit, per se
+- efficiency_percentage_specification
+
+# Requirements: lower limits on specific asset properties
+- flowrate_requirement # Minimum flowrate
+- outside_air_flowrate_requirement
+- supply_air_ventilation_flowrate_requirement

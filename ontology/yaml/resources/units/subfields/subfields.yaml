@@ -37,15 +37,12 @@ component:
   heater: "Component which provides heat to media."
   humidifier: "Component which humidifies."
   pump: "Component used for the distribution of liquid media."
-  rack: "Component used in comms rooms for mounting servers & switches" # Added 25/08/20
   shade: "Window covering."
   tank : "Storage device for media."
   valve: "Component which meters the flow of water within a system or device."
   vane: "Component for guiding media flow."
   wheel: "Component used for transfer of heat from incoming to outgoing air streams. "
 descriptor: 
-  runtime: "accumulation of time a device or system has been running (quite often used for maintenance/servicing purposes)" # Added 18/08/20
-  condensate: "descriptor for pump used to remove liquid collected by condensation"  # Added 18/08/20
   air: "Atmospheric air, either conditioned or unconditioned"
   aisle: "Passage between two rows of server racks."
   blowdown: "Process of expelling water filled with mineral deposits for the purposes of water treatment. "
@@ -63,7 +60,6 @@ descriptor:
   condensing: "Process of gaseous refrigerant changing to liquid."
   conference: "An instance of speaking or meeting among multiple people."
   cooling: "Process, measured effect or requirement for cooling."
-  critical: "Level of measurement to indicate that something needs urgent attention" # Added 24/08/20
   dehumidification: "Process of removing moisture from air."
   detection : "Process of identifying conditions."
   discharge: "Media leaving system to enter ambient conditioned space. Typically applies only to air-side systems."
@@ -155,7 +151,6 @@ descriptor:
   suppression : "a range of firefighting tactics used to suppress fire"
   sync: "The simultaneous operation or activity of two or more things."
   tertiary: "Associated with the tertiary (peripheral) loops of a production process."
-  transfer: "Media moving system from one space to another. Typically applies only to air-side systems." # Added 25/08/20
   unoccupied: "State of being outside of scheduled (time of day or week) run-time parameters."
   use: "A descriptor for how the entity in question is used (e.g. zone_use_label = 'office') "
   user: "A person who uses or operates something."
@@ -167,7 +162,6 @@ descriptor:
   winter: "Method or process used during colder weather (i.e. winter season)."
   zone: "Region of building which is conditioned."
 measurement:
-  time: "measurement of time (often associated with runtime of devices)"  # Added 18/08/20
   concentration: "Concentration of chemical (usually in parts per million or parts per billion)."
   current: "Flow of electric charge."
   energy: " The quantitative property that must be transferred to an object to perform work (default electrical unless otherwise modified)."
@@ -186,8 +180,6 @@ measurement:
   voltage: "Electrical potential difference between two reference points."
   volume: "The quantity of three-dimensional space contained by a closed surface."
 measurement_descriptor:
-  offline: "indication that a device is not communicating via network (this can be IP or serial)"  # Added 18/08/20
-  reset: "act of resetting parameters of a device or control strategy (typically for alarms and setpoints)"  # Added 18/08/20
   absolute: "Quality of media with respect to non-relativistic boudaries (e.g. absolute temperature)."
   alarm: "Signal that an alarm is present."
   apparent: "The combination of reactive and real components (power)."

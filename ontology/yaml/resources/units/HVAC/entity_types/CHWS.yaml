@@ -1,0 +1,216 @@
+# Copyright 2020 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the License);
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#    https://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an AS IS BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+########################
+### Canonical Types  ###
+########################
+
+CHWS_WDT:
+  id: "1917740281059344384"
+  description: "Chilled water system with only basic delta-T monitoring."
+  is_canonical: true
+  implements:
+  - CHWS
+  - WDT
+
+CHWS_SWTC:
+  id: "13663128109241597952"
+  description: "Chilled water system with basic supply water temperature control. "
+  is_canonical: true
+  implements:
+  - CHWS
+  - SWTC
+
+CHWS_SWTC_WDPC:
+  id: "4926144832142835712"
+  description: "Chilled water system with supply temperature and differential pressure control."
+  is_canonical: true
+  implements:
+  - CHWS
+  - SWTC
+  - WDPC
+
+CHWS_SWTC_WDPC_BYPVPM:
+  id: "11141112317914120192"
+  description: "Chilled water system (temp/pressure control) with bypass control."
+  is_canonical: true
+  implements:
+  - CHWS
+  - SWTC
+  - WDPC
+  - BYPVPM
+
+CHWS_SWTC_WDPC_BYPVPM_WFRM:
+  id: "9051442090814210048"
+  description: "Chilled water system (temp/pressure control) with bypass control and flow monitoring."
+  is_canonical: true
+  implements:
+  - CHWS
+  - SWTC
+  - WDPC
+  - BYPVPM
+  - WFRM
+
+CHWS_SWTC_WDPC2X_BYPVPM_WFRM:
+  id: "16239187096097521664"
+  description: "Chilled water system with dual differential pressure control."
+  is_canonical: true
+  implements:
+  - CHWS
+  - SWTC
+  - WDPC2X
+  - BYPVPM
+  - WFRM
+
+CHWS_SWTC_WDPC2X_BYPVPM_WFRC:
+  id: "3989396109649772544"
+  description: "Chilled water system with dual differential pressure control."
+  is_canonical: true
+  implements:
+  - CHWS
+  - SWTC
+  - WDPC2X
+  - BYPVPM
+  - WFRC
+
+CHWS_SWTC_WDPC_CLPM:
+  id: "2620301822929141760"
+  description: "Chilled water system with supply temp and pressure control."
+  is_canonical: true
+  implements:
+  - CHWS
+  - SWTC
+  - WDPC
+  - CLPM
+
+CHWS_SWTC_WDPC_WFRM:
+  id: "1251207536208510976"
+  description: "Chilled water system with supply temp and pressure control."
+  is_canonical: true
+  implements:
+  - CHWS
+  - SWTC
+  - WDPC
+  - WFRM
+
+CHWS_SWTC_WDPC_CLPM_WFRM:
+  id: "6529426299486732288"
+  description: "Chilled water system with supply temp, pressure control, and flowrate monitoring."
+  is_canonical: true
+  implements:
+  - CHWS
+  - SWTC
+  - WDPC
+  - CLPM
+  - WFRM
+
+CHWS_SWTC_WDPC_CLPM_WFRC:
+  id: "13212768146504548352"
+  description: "Chilled water system with supply temp and pressure control."
+  is_canonical: true
+  implements:
+  - CHWS
+  - SWTC
+  - WDPC
+  - CLPM
+  - WFRC
+
+CHWS_SWTC_WDPC_CLPM_WFRM_BYPVPM:
+  id: "18274814127668985856"
+  description: "Chilled water system with supply temp, pressure and bypass control."
+  is_canonical: true
+  implements:
+  - CHWS
+  - SWTC
+  - WDPC
+  - CLPM
+  - WFRM
+  - BYPVPM
+
+CHWS_SWTC_WDPC_CLPM_WFRC_BYPVPM:
+  id: "11843673859783917568"
+  description: "Chilled water system with supply water temp, pressure, flow and bypass control."
+  is_canonical: true
+  implements:
+  - CHWS
+  - SWTC
+  - WDPC
+  - CLPM
+  - WFRC
+  - BYPVPM
+
+CHWS_SWTC_WDPC_WFRM_PSWTC_PWVPM_MINFC_CLPM:
+  id: "260415618187001856"
+  description: "Chilled and process water system."
+  is_canonical: true
+  implements:
+  - CHWS
+  - SWTC
+  - WDPC
+  - WFRM
+  - PSWTC
+  - PWVPM
+  - MINFC
+  - CLPM
+
+
+###################################
+### Existing Non-standard Types ###
+###################################
+
+CHWS_US_MTV_E475_1:
+  id: "6339615408160505856"
+  description: "Non-standard type for E475"
+  implements:
+  - CHWS_SWTC_WDPC_BYPVPM
+  - INCOMPLETE
+  uses:
+  - west_supply_water_temperature_sensor
+  - east_supply_water_temperature_sensor
+  - west_differential_pressure_sensor
+  - east_differential_pressure_sensor
+  - west_flowrate_sensor
+  - east_flowrate_sensor
+
+CHWS_US_SVL_MP4_1: #NEEDS FIXING, NOT SURE WHERE CHILLED POINTS CAME FROM...
+  id: "10652779621600198656"
+  description: "Non-standard type for MP4"
+  implements:
+  - CHWS_SWTC_WDPC2X_BYPVPM_WFRM
+  - INCOMPLETE
+  uses:
+  - chilled_supply_water_temperature_sensor
+  - chilled_supply_water_temperature_setpoint
+  - chilled_return_water_temperature_sensor
+
+CHWS_US_MTV_1667_1:
+  id: "3683617527918755840"
+  description: "Non-standard type for 1667"
+  implements:
+  - CHWS_SWTC_WDPC_WFRM_PSWTC_PWVPM_MINFC_CLPM
+  - DEPRECATED
+  uses:
+  - return_water_isolation_valve_status
+  - process_water_flowrate_setpoint
+  - process_cooling_thermal_power_sensor
+
+CHWS_US_SVL_TC6_1:
+  id: "16982940741590319104"
+  description: "Non-standard type for TC6"
+  implements:
+  - CHWS_SWTC_WDPC_BYPVPM_WFRM
+  - INCOMPLETE
+  uses:
+  - production_differential_pressure_sensor
+  - supply_water_flowrate_sensor # Need to rename to flowrate_sensor

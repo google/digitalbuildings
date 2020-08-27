@@ -1,0 +1,323 @@
+# Copyright 2020 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the License);
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#    https://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an AS IS BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+########################
+### Canonical Types  ###
+########################
+
+CH_SS_SWTC:
+  id: "6390729504712556544"
+  description: " Simple air cooled chiller."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - SWTC
+
+CH_SS_SCHWTC_RWISOVPM:
+  id: "9962084009217359872"
+  description: "Simple water-cooled chiller with condenser isolation."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - SWTC
+  - RWISOVPM
+
+CH_SS_SWTC_DX4SWC_CHWDPM: # HERE
+  id: "4539538951630749696"
+  description: "Air cooled chiller with 4 stages cooling."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - SWTC
+  - DX4SWC
+  - CHWDPM
+
+CH_SS_SCHWTC_CWDT_IGM_CWRISOVPM_CHWRWISOVPM_CHWRWISOVM_CHDXSC_CDWFRM_CHWDPM_CHPM_REFSM_CHWBYPVPM:
+  id: "9856249417974153216"
+  description: "Complex water cooled chiller."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - SCHWTC
+  - CWDT
+  - IGM
+  - CWRISOVPM
+  - CHWRWISOVPM
+  - CHWRWISOVM
+  - CHDXSC
+  - CDWFRM
+  - CHWDPM
+  - CHPM
+  - REFSM
+  - CHWBYPVPM
+
+CH_SS_SWTC_DX2SWC:
+  id: "2799108801884585984"
+  description: "Two stage air cooled chiller."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - SWTC
+  - DX2SWC
+
+CH_SS_SWTC_DX4SWC:
+  id: "15614101541567332352"
+  description: "Four stage air cooled chiller."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - SWTC
+  - DX4SWC
+
+CH_SS_SCHWTC_CWDT:
+  id: "5350397990789971968"
+  description: "Simple water cooled chiller."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - SCHWTC
+  - CWDT
+
+CH_SS_SCHWTC_CHWSWISOVM:
+  id: "13762910988485525504"
+  description: "Simple water cooled chiller."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - SCHWTC
+  - CHWSWISOVM
+
+CH_SS_SCHWTC_CWRISOVPM:
+  id: "5244563399546765312"
+  description: "Simple water cooled chiller."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - SCHWTC
+  - CWRISOVPM
+
+CH_SS_SCHWTC_CHWRWISOVM:
+  id: "12022480838739361792"
+  description: "Simple water cooled chiller."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - SCHWTC
+  - CHWRWISOVM
+
+CH_SS_SCHWTC_CHWRWISOVM_DX2SWC:
+  id: "4084886495498862592"
+  description: "Tw-stage air cooled chiller."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - SCHWTC
+  - CHWRWISOVM
+  - DX2SWC
+
+CH_SS_SCHWTC_CHWRWISOVM_CWSISOVM:
+  id: "14573770027644747776"
+  description: "Two stage water cooled chiller."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - SCHWTC
+  - CHWRWISOVM
+  - CWSISOVM
+
+CH_SS_SWTC_DX4SWC_SWISOVPM:
+  id: "9151224970058137600"
+  description: "Four stage air cooled cooled chiller."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - SWTC
+  - DX4SWC
+  - SWISOVPM
+
+CH_SS_SWTC_DX2SWC_SWISOVM:
+  id: "14467935436401541120"
+  description: "Two stage air cooled chiller."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - SWTC
+  - DX2SWC
+  - SWISOVM
+
+CH_SS_CHWRWISOVPM_SCHWTC_CHWDPM:
+  id: "7410794820311973888"
+  description: "Simple air cooled chiller."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - CHWRWISOVPM
+  - SCHWTC
+  - CHWDPM
+
+CH_SS_SCHWTC_CHWSWISOVM_CHWDPM:
+  id: "13308258532353638400"
+  description: "Simple air cooled chiller."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - SCHWTC
+  - CHWSWISOVM
+  - CHWDPM
+
+CH_SS_SCHWTC_DX2SWC_CWSISOVPM_CHWRWISOVPM:
+  id: "3044554981576278016"
+  description: "Two stage water cooled chiller."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - SCHWTC
+  - DX2SWC
+  - CWSISOVPM
+  - CHWRWISOVPM
+
+CH_SS_SCHWTC_DX2SWC_CHWSWISOVM_CWSISOVM:
+  id: "18374597006912913408"
+  description: "Two stage water cooled chiller."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - SCHWTC
+  - DX2SWC
+  - CHWSWISOVM
+  - CWSISOVM
+
+CH_SS_SCHWTC_CWDT_CHWSWISOVM_CWSISOVM_CHWFRM:
+  id: "2938720390333071360"
+  description: "Water cooled chiller."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - SCHWTC
+  - CWDT
+  - CHWSWISOVM
+  - CWSISOVM
+  - CHWFRM
+
+CH_SS_SCHWTC_CHPM_REFSM_DXSWC_CHWRWISOVM_IGM:
+  id: "16634166857166749696"
+  description: "Water cooled chiller."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - SCHWTC
+  - CHPM
+  - REFSM
+  - DXSWC
+  - CHWRWISOVM
+  - IGM
+
+CH_SS_SCHWTC_CHWRWISOVPM_CWRISOVPM_CHPM_CWDT_REFSM_CHWDPM:
+  id: "8696572513926250496"
+  description: "Water cooled chiller."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - SCHWTC
+  - CHWRWISOVPM
+  - CWRISOVPM
+  - CHPM
+  - CWDT
+  - REFSM
+  - CHWDPM
+
+CH_SS_SCHWTC_CHPM_REFSM_IGM_DXSWC_CHWSWISOVM_CHWDPM:
+  id: "12267927018431053824"
+  description: "Water cooled chiller."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - SCHWTC
+  - CHPM
+  - REFSM
+  - IGM
+  - DXSWC
+  - CHWSWISOVM
+  - CHWDPM
+
+CH_SS_SCHWTC_DXSWC_IGM_CWDT_CHWRWISOVPM_CWRISOVPM_CHPM_REFSM:
+  id: "144025715317145600"
+  description: "Water cooled chiller."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - SCHWTC
+  - DXSWC
+  - IGM
+  - CWDT
+  - CHWRWISOVPM
+  - CWRISOVPM
+  - CHPM
+  - REFSM
+
+
+###################################
+### Existing Non-standard Types ###
+###################################
+
+CH_US_MTV_41_1:
+  id: "16032487706168655872"
+  description: "Non-standard type for B41 CHs"
+  implements:
+  - CH_SS_SWTC_DX4SWC_SWISOVPM
+  - INCOMPLETE
+  uses:
+  - supply_water_isolation_valve_percentage_command
+  - supply_water_isolation_valve_percentage_sensor
+
+CH_US_SBO_900_1:
+  id: "17436484890001408000"
+  description: "Non-standard type for SBO-900 CHs"
+  implements:
+  - CH_SS_SWTC
+  - INCOMPLETE
+  uses:
+  - cooling_percentage_sensor
+
+CH_US_SBO_901_1:
+  id: "11353247693330710528"
+  description: "Non-standard type for SBO-901 CHs"
+  implements:
+  - CH_SS_SCHWTC_CWDT
+  - INCOMPLETE
+  uses:
+  - cooling_percentage_sensor
