@@ -1,0 +1,114 @@
+# Copyright 2020 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the License);
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#    https://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an AS IS BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+
+# LTGW-15
+LTGW_GLC1G7_GLC1G8_GLC1G9_GLC1G10_GLC1G11_GLC1G12_GLC1G13_GLC1G14_GLC1G15_LLM1:
+  id: ""
+  description: "Lighting gateway using module 1 on the dali device to control multiple lighting groups. Each group consists of a lighting occupancy sensor which is used to control the the light fitting or fittings within the group. Some groups also monitor light level."
+  is_canonical: true
+  implements:
+  - LTGW
+  - GLC1G7
+  - GLC1G8
+  - GLC1G9
+  - GLC1G10
+  - GLC1G11
+  - GLC1G12
+  - GLC1G13
+  - GLC1G14
+  - GLC1G15
+  - LLM1
+
+# LTGW-16
+LTGW_GLC1G1_GLC1G2_GLC1G3_GLC1G4_GLC1G5_GLC1G6_GLC1G7_GLC1G8_GLC1G9_GLC1G10_GLC1G11_GLC1G12_GLC1G13_GLC1G14_GLC1G15_LLM1:
+  id: ""
+  description: "Lighting gateway using module 1 on the dali device to control multiple lighting groups. Each group consists of a lighting occupancy sensor which is used to control the the light fitting or fittings within the group. Some groups also monitor light level."
+  is_canonical: true
+  implements:
+  - LTGW
+  - GLC1G1
+  - GLC1G2
+  - GLC1G3
+  - GLC1G4
+  - GLC1G5
+  - GLC1G6
+  - GLC1G7
+  - GLC1G8
+  - GLC1G9
+  - GLC1G10
+  - GLC1G11
+  - GLC1G12
+  - GLC1G13
+  - GLC1G14
+  - GLC1G15
+  - LLM1
+
+# LTGW-17, LTGW-18
+LTGW_GLC1G1_GLC1G2_GLC1G3_GLC1G4_GLC1G5_GLC1G6_GLC1G7_GLC1G8_GLC1G9_GLC1G10_GLC1G11_GLC1G12_LLM1:
+  id: ""
+  description: "Lighting gateway using module 1 on the dali device to control multiple lighting groups. Each group consists of a lighting occupancy sensor which is used to control the the light fitting or fittings within the group. Some groups also monitor light level."
+  is_canonical: true
+  implements:
+  - LTGW
+  - GLC1G1
+  - GLC1G2
+  - GLC1G3
+  - GLC1G4
+  - GLC1G5
+  - GLC1G6
+  - GLC1G7
+  - GLC1G8
+  - GLC1G9
+  - GLC1G10
+  - GLC1G11
+  - GLC1G12
+  - GLC1G13
+  - GLC1G14
+  - GLC1G15
+  - LLM1
+
+# LTGW-19
+LTGW_GLC1G1_GLC1G2_GLC1G3_GLC1G4:
+  id: ""
+  description: "Lighting gateway using module 1 on the dali device to control multiple lighting groups. Each group consists of a lighting occupancy sensor which is used to control the the light fitting or fittings within the group."
+  is_canonical: true
+  implements:
+  - LTGW
+  - GLC1G1
+  - GLC1G2
+  - GLC1G3
+  - GLC1G4
+
+# LTGW-21, LTGW-25, LTGW-13, 
+LTGW_GLC1G1_GLC1G2:
+  id: ""
+  description: "Lighting gateway using module 1 on the dali device to control multiple lighting groups. Each group consists of a lighting occupancy sensor which is used to control the the light fitting or fittings within the group."
+  is_canonical: true
+  implements:
+  - LTGW
+  - GLC1G1
+  - GLC1G2
+
+# LTGW-15
+LTGW_GLC1G1_GLC1G2_GLC1G4_GLC1G5:
+  id: ""
+  description: "Lighting gateway using module 1 on the dali device to control multiple lighting groups. Each group consists of a lighting occupancy sensor which is used to control the the light fitting or fittings within the group."
+  is_canonical: true
+  implements:
+  - LTGW
+  - GLC1G1
+  - GLC1G2
+  - GLC1G4
+  - GLC1G5
