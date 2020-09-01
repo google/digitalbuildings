@@ -30,7 +30,9 @@ _TESTCASE_PATH = os.path.join('.', 'tests', 'fake_instances')
 class EntityInstanceTest(absltest.TestCase):
 
   def setUp(self):
-    self.universe = generate_universe.BuildUniverse()
+    temp_universe = generate_universe.BuildUniverse()
+    temp_universe.connections_universe = set(['CONTAINS', 'CONTROLS', 'FEEDS'])
+    self.universe = temp_universe
 
   def testValidateGoodExample(self):
     parsed = instance_parser.parse_yaml(
@@ -287,6 +289,43 @@ class EntityInstanceTest(absltest.TestCase):
 
     if not instance.IsValidEntityInstance():
       self.fail('exception incorrectly raised')
+
+  def testGoodConnections(self):
+    parsed = instance_parser.parse_yaml(
+        os.path.join(_TESTCASE_PATH,
+                     'GOOD',
+                     'good_building_connections.yaml'))
+    parsed = dict(parsed)
+    entity_name = list(parsed.keys())[0]
+    entity = dict(parsed[entity_name])
+
+    if 'connections' not in entity.keys():
+      self.fail('entity does not have connections when expected')
+    if self.universe.connections_universe is None:
+      self.fail('universe does not valid connections universe')
+
+    instance = entity_instance.EntityInstance(entity,
+                                              self.universe,
+                                              parsed.keys())
+
+    if not instance.IsValidEntityInstance():
+      self.fail('exception incorrectly raised')
+
+  def testBadConnections(self):
+    parsed = instance_parser.parse_yaml(
+        os.path.join(_TESTCASE_PATH,
+                     'BAD',
+                     'bad_building_connections.yaml'))
+    parsed = dict(parsed)
+    entity_name = list(parsed.keys())[0]
+
+    entity = dict(parsed[entity_name])
+    instance = entity_instance.EntityInstance(entity,
+                                              self.universe,
+                                              parsed.keys())
+
+    if instance.IsValidEntityInstance():
+      self.fail('exception not raised')
 
 if __name__ == '__main__':
   absltest.main()
