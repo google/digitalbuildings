@@ -157,8 +157,8 @@ class EntityInstanceTest(absltest.TestCase):
 
     entity = dict(parsed[entity_name])
     instance = entity_instance.EntityInstance(entity,
-                                                self.universe,
-                                                parsed.keys())
+                                              self.universe,
+                                              parsed.keys())
 
     if instance.IsValidEntityInstance():
         self.fail('exception not raised')
