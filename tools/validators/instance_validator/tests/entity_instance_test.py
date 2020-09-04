@@ -161,7 +161,7 @@ class EntityInstanceTest(absltest.TestCase):
                                               parsed.keys())
 
     if instance.IsValidEntityInstance():
-        self.fail('exception not raised')
+      self.fail('exception not raised')
 
 
   def testValidateMultipleCompliantTranslationWithExtraField(self):
@@ -178,7 +178,7 @@ class EntityInstanceTest(absltest.TestCase):
                                                 parsed.keys())
 
     if instance.IsValidEntityInstance():
-        self.fail('exception not raised')
+      self.fail('exception not raised')
 
 
   def testValidateTranslationUnitValues(self):
