@@ -130,6 +130,57 @@ class EntityInstanceTest(absltest.TestCase):
     if not instance.IsValidEntityInstance():
       self.fail('exception incorrectly raised')
 
+
+  def testValidateMultipleCompliantTranslationWithFields(self):
+    parsed = instance_parser.parse_yaml(
+        os.path.join(_TESTCASE_PATH,
+                     'GOOD',
+                     'good_building_translation_fields.yaml'))
+    parsed = dict(parsed)
+    entity_name = list(parsed.keys())[0]
+
+    entity = dict(parsed[entity_name])
+    instance = entity_instance.EntityInstance(entity,
+                                              self.universe,
+                                              parsed.keys())
+
+    if not instance.IsValidEntityInstance():
+      self.fail('exception incorrectly raised')
+
+  def testValidateMultipleCompliantTranslationWithRequiredFieldMissing(self):
+      parsed = instance_parser.parse_yaml(
+          os.path.join(_TESTCASE_PATH,
+                       'BAD',
+                       'bad_translation_with_required_field_missing.yaml'))
+      parsed = dict(parsed)
+      entity_name = list(parsed.keys())[0]
+
+      entity = dict(parsed[entity_name])
+      instance = entity_instance.EntityInstance(entity,
+                                                self.universe,
+                                                parsed.keys())
+
+      if instance.IsValidEntityInstance():
+          self.fail('exception not raised')
+
+
+  def testValidateMultipleCompliantTranslationWithExtraField(self):
+      parsed = instance_parser.parse_yaml(
+          os.path.join(_TESTCASE_PATH,
+                       'BAD',
+                       'bad_translation_with_extra_field.yaml'))
+      parsed = dict(parsed)
+      entity_name = list(parsed.keys())[0]
+
+      entity = dict(parsed[entity_name])
+      instance = entity_instance.EntityInstance(entity,
+                                                self.universe,
+                                                parsed.keys())
+
+      if instance.IsValidEntityInstance():
+          self.fail('exception not raised')
+
+
   def testValidateTranslationUnitValues(self):
     parsed = instance_parser.parse_yaml(
         os.path.join(_TESTCASE_PATH,
