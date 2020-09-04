@@ -154,9 +154,6 @@ class EntityInstance(findings_lib.Findings):
 
     # iterate through each translation device key and determine its form
     for field_name in translation_body.keys():
-      # check if keys are UDMI compliant
-      if isinstance(translation_body[field_name].data, str):
-        continue
 
       #check if the field_name is on the type
       # TODO(charbull), the key in the dictionary all_fields_dict
@@ -171,6 +168,10 @@ class EntityInstance(findings_lib.Findings):
       translation_map = translation_body[field_name]
       valid_units = self.universe.unit_universe.GetUnitsMap('').keys()
       valid_states = self.universe.state_universe.GetStatesMap('').keys()
+
+      # check if keys are UDMI compliant then skip the units and states
+      if isinstance(translation_body[field_name].data, str):
+        continue
 
       # three remaining possibilities for translation format
       if self.unit_values in translation_map.keys():
