@@ -159,7 +159,8 @@ class EntityInstance(findings_lib.Findings):
         continue
 
       #check if the field_name is on the type
-      # TODO(charbull), the key in the dictionary all_fields_dict starts with `/`, needs to be cleaned
+      # TODO(charbull), the key in the dictionary 
+      #   all_fields_dict starts with `/`, needs to be cleaned
       # pop the field out
       key_field_name = '/'+field_name.data
       opt_wrapper_field = all_fields_dict.pop(key_field_name, None)
@@ -206,7 +207,8 @@ class EntityInstance(findings_lib.Findings):
     #check if the rest of the fields not included are optional
     for optional_field_name in all_fields_dict.values():
       if not optional_field_name.optional:
-        print('Translation does not use the mandatory field: ', optional_field_name.field.field)
+        print('Translation does not use the mandatory field: ',
+              optional_field_name.field.field)
         return False
 
 
