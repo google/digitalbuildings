@@ -160,7 +160,7 @@ class EntityInstance(findings_lib.Findings):
 
       #check if the field_name is on the type
       # TODO(charbull), the key in the dictionary 
-      #   all_fields_dict starts with `/`, needs to be cleaned
+      # all_fields_dict starts with `/`, needs to be cleaned
       # pop the field out
       key_field_name = '/'+field_name.data
       opt_wrapper_field = all_fields_dict.pop(key_field_name, None)
