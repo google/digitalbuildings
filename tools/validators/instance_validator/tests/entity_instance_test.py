@@ -187,19 +187,19 @@ class EntityInstanceTest(absltest.TestCase):
       self.fail('exception incorrectly raised')
 
   def testValidateMultipleCompliantTranslationWithNamespaceOther(self):
-      parsed = instance_parser.parse_yaml(os.path.join(_TESTCASE_PATH,
+    parsed = instance_parser.parse_yaml(os.path.join(_TESTCASE_PATH,
                                                        'GOOD',
                                                        'good_translation.yaml'))
-      parsed = dict(parsed)
-      entity_name_lighting = list(parsed.keys())[0]
+    parsed = dict(parsed)
+    entity_name_lighting = list(parsed.keys())[0]
 
-      entity_lighting = dict(parsed[entity_name_lighting])
-      instance_lighting = entity_instance.EntityInstance(entity_lighting,
+    entity_lighting = dict(parsed[entity_name_lighting])
+    instance_lighting = entity_instance.EntityInstance(entity_lighting,
                                                          self.universe,
                                                          parsed.keys())
 
-      if not instance_lighting.IsValidEntityInstance():
-        self.fail('exception incorrectly raised')
+    if not instance_lighting.IsValidEntityInstance():
+      self.fail('exception incorrectly raised')
 
   def testValidateMultipleCompliantTranslationWithExtraField(self):
     parsed = instance_parser.parse_yaml(
