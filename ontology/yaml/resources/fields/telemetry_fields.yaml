@@ -637,7 +637,7 @@ literals:
 - low_supply_fan_speed_status
 - schedule_command
 - device_fault_status
-- uv_filter_run_status
+- photocatalyst_filter_run_status
 - total_water_flowrate_sensor
 - water_leak_alarm_status
 - water_leak_alarm_sensor
