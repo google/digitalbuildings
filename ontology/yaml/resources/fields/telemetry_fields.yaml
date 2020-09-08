@@ -607,8 +607,6 @@ literals:
 
 # Added 9/8/20 for SG-SIN-MBC2
 - supply_air_linearvelocity_sensor
-- auto_mode
-- manual_mode
 - water_leak_detection_fault_status
 - chilled_return_water_flowrate_sensor
 - cooling_air_damper_percentage_sensor
@@ -627,9 +625,6 @@ literals:
 - leaving_air_cooling_coil_temperature_sensor
 - outside_air_damper_open_status
 - electric_power_status
-- filter_alarm_status_1
-- filter_alarm_status_2
-- energy_sensor
 - fire_suppression_fault_status
 - secondary_device_run_command
 - fire_alarm_status
@@ -640,7 +635,6 @@ literals:
 - photocatalyst_filter_run_status
 - total_water_flowrate_sensor
 - water_leak_alarm_status
-- water_leak_alarm_sensor
 - water_high_tank_alarm_status
 - request_run_command
 - pump_run_status
