@@ -604,3 +604,52 @@ literals:
 
 # Added 4/12/20
 - supply_air_damper_percentage_sensor
+
+# Added 9/8/20 for SG-SIN-MBC2
+- supply_air_linearvelocity_sensor
+- automatic_mode
+- manual_mode
+- water_leak_detection_fault_status
+- chilled_return_water_flowrate_sensor
+- cooling_air_damper_percentage_sensor
+- filter_alarm_status
+- filter_run_status
+- exhaust_air_damper_status
+- high_exhaust_fan_speed_status
+- low_exhaust_fan_speed_status
+- device_alarm_status
+- recovery_alarm_command
+- fire_alarm_status
+- fire_fault_status
+- zone_command
+- device_status
+- run_status
+- makeup_water_high_tank_percentage_status
+- makeup_water_low_tank_percentage_status
+- max_cooling_air_flowrate_setpoint
+- min_cooling_air_flowrate_setpoint
+- heating_water_valve_status
+- leaving_air_cooling_coil_temperature_sensor
+- outside_air_damper_open_status
+- electric_power_status
+- filter_alarm_status_1
+- filter_alarm_status_2
+- return_air_damper_status
+- energy_sensor
+- fire_suppression_fault_status
+- secondary_device_run_command
+- run_command
+- supply_air_isolation_damper_status
+- high_supply_fan_speed_status
+- low_supply_fan_speed_status
+- schedule_command
+- device_fault_status
+- photocatalyst_filter_run_status
+- total_water_flowrate_sensor
+- water_leak_alarm_status
+- water_leak_alarm_sensor
+- water_high_tank_alarm_status
+- request_run_command
+- pump_run_status
+- pump_fault_status
+
