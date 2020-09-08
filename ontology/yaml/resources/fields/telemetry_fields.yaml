@@ -618,7 +618,6 @@ literals:
 - high_exhaust_fan_speed_status
 - low_exhaust_fan_speed_status
 - device_alarm_status
-- recovery_alarm_command
 - fire_alarm_status
 - fire_fault_status
 - zone_command
@@ -652,4 +651,3 @@ literals:
 - request_run_command
 - pump_run_status
 - pump_fault_status
-
