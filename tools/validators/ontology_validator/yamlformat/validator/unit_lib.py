@@ -55,6 +55,7 @@ class UnitUniverse(findings_lib.FindingsUniverse):
     """
     return self._namespace_map.get(namespace_name, {})
 
+
 class UnitFolder(config_folder_lib.ConfigFolder):
   """Class representing a folder of Units.
 
