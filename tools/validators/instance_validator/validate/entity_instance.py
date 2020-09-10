@@ -192,7 +192,7 @@ class EntityInstance(findings_lib.Findings):
               print('Invalid translation unit:', unit)
               print('Field translation: ', field_name.data)
               return False
-       
+
       if valid_states:
         if self.states in translation_map.keys():
           states_map = translation_map[self.states]
