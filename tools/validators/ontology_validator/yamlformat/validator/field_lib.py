@@ -80,7 +80,6 @@ class FieldUniverse(findings_lib.FindingsUniverse):
     """
     return fieldname in self._namespace_map.get(namespace_name, set())
 
-
 class FieldFolder(config_folder_lib.ConfigFolder):
   """Class representing a folder of Fields.
 

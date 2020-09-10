@@ -168,8 +168,9 @@ class EntityInstance(findings_lib.Findings):
         print('Invalid extra field present:', field_name)
         return False
 
+      valid_units = self.universe.GetUnitsMapByMeasurement(field_name.data)
       translation_map = translation_body[field_name]
-      valid_units = self.universe.unit_universe.GetUnitsMap('').keys()
+      # valid_units = self.universe.unit_universe.GetUnitsMap('').keys()
       valid_states = self.universe.state_universe.GetStatesMap('').keys()
 
       # check if keys are UDMI compliant then skip the units and states
