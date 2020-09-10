@@ -26,7 +26,7 @@ import {BLOCKING_GRID_NAME, BOUNDARY_NAME} from './constants.js';
  */
 function createSidebar(ibrObject, parentElement, scene, spaceLib,
     connectionLib, floorsToSave) {
-  const li = document.createElement('li'); // list element container
+  const li = document.createElement('li');
   parentElement.appendChild(li);
   const rootSpan = createLabel('span', ibrObject.getName(), li);
   rootSpan.setAttribute('class', 'arrow');
@@ -92,17 +92,25 @@ function createCheckboxForVisualization(visualization, visualizationName,
   const checkBox = document.createElement('INPUT');
   const div = document.createElement('DIV');
   checkBox.setAttribute('type', 'checkbox');
+  checkBox.setAttribute('class', 'visualMode');
   checkBox.setAttribute('id', structureName + '_' + visualizationName);
-  div.appendChild(checkBox);
+
+  // only show if in visual mode
+  if (!document.getElementById('mode').checked) {
+    div.appendChild(checkBox);
+  }
+
   createLabel('label', visualizationName, div, structureName + '_' +
   visualizationName);
   document.getElementById(structureName).appendChild(div);
+
   const neighbors = [];
   if (isBoundary && connectionLib) {
     for (const connection of connectionLib.get(structureName)) {
       neighbors.push([spaceLib.get(connection[0]), connection[1]]);
     }
   }
+
   checkBox.addEventListener('change', function() {
     if (checkBox.checked) {
       for (const line of visualization) {
@@ -166,13 +174,15 @@ function drawSingleStructureSidebar(structure, structureName, level, scene,
   // under space tag.
   const visLi = document.createElement('li');
   document.getElementById(structureName).appendChild(visLi);
-  const visSpan = createLabel('span', 'Visualizations', visLi);
+  const visSpan = createLabel('span', 'Layers', visLi);
   visSpan.setAttribute('class', 'arrow');
+
   const visUl = document.createElement('ul');
   visUl.setAttribute('class', 'nested');
-  const visUlName = structureName+'_visualizations';
+  const visUlName = structureName + '_visualizations';
   visUl.setAttribute('id', visUlName);
   visLi.appendChild(visUl);
+
   visLi.style.display = 'none';
   visSpan.addEventListener('click', function() {
     visSpan.parentElement.querySelector('.nested').classList.toggle('active');
@@ -220,12 +230,20 @@ function drawSingleStructureSidebar(structure, structureName, level, scene,
     }
     const li = document.createElement('li');
     document.getElementById(parentTagName).appendChild(li);
+
+    // creates checkbox for save back to IBR feature
     if (level === 0 && curIBRObject.getStructuralType() !==
         InternalBuildingRepresentation.StructuralType['SPACE'].value) {
       floorsToSave[structureIndex] = false;
       const checkBox = document.createElement('INPUT');
       checkBox.setAttribute('type', 'checkbox');
-      li.appendChild(checkBox);
+      checkBox.setAttribute('class', 'exportMode');
+
+      // only show if in export mode
+      if (document.getElementById('mode').checked) {
+        li.appendChild(checkBox);
+      }
+
       checkBox.addEventListener('change', function() {
         if (checkBox.checked) {
           floorsToSave[structureIndex] = true;
@@ -234,6 +252,7 @@ function drawSingleStructureSidebar(structure, structureName, level, scene,
         }
       });
     }
+
     const label = createLabel('span',
         curIBRObject.getName(), li);
     label.setAttribute('class', 'arrow');
@@ -283,6 +302,8 @@ function renderAndCreateSidebar(ibrObject,
      without the other. */
   const spaceLib = new Map();
   const connectionLib = new Map();
+  renderParentElement.innerHTML = '';
+  sidebarParentElement.innerHTML = '';
   const scene = render(ibrObject, renderParentElement, spaceLib,
       connectionLib);
   createSidebar(ibrObject, sidebarParentElement, scene, spaceLib,

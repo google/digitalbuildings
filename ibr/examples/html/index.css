@@ -1,3 +1,25 @@
+body {
+  margin: 0;
+  font-family: roboto;
+}
+
+canvas {
+  display: block;
+}
+
+.sidebar {
+  background-color: #d2d2d2;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  left: 0;
+  overflow-x: hidden;
+  padding: 0 8px;
+  position: fixed;
+  top: 72px;
+  width: 350px;
+}
+
 ul, #layerList {
   list-style-type: none;
 }
@@ -31,30 +53,85 @@ ul, #layerList {
   display: block;
 }
 
+#layerListContainer {
+  display: block;
+  height: 60%;
+  overflow: auto;
+  padding: 4px;
+}
+
 #layerList {
   margin: 0;
   padding: 0;
 }
 
-body {
-  margin: 0;
-  font-family: roboto;
+
+.saveToIbr {
+  bottom: 12px;
+  height: 100px;
+  input#filename {
+    width: 100%;
+  }
+
+  #dwn-btn {
+    width: 100%;
+  }
 }
 
-canvas { display: block; }
+.mode-toggle {
+  display: flex;
+  flex-direction: row;
+  font-size: 16px;
+  justify-content: space-around;
+  padding: 8px;
+}
 
-.sidebar {
+#title {
+  padding: 12px;
+  font-size: 36px;
+}
+
+#upload-button-container {
+  padding: 24px;
+}
+
+#upload-button {
+  background-color: #174ea6;
+  color: white;
+  padding: 8px;
+}
+
+#upload-button-container:hover {
+  cursor: pointer;
+}
+
+#fileForUpload {
   height: 100%;
-  width: 300px;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  background-color: #949494;
-  overflow-x: hidden;
-  padding-top: 0px;
+  width: 100%;
+  display: none;
 }
 
-.main {
-  margin-left: 300px;
+#header {
+  background-color: #4285f4;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  height: 72px;
+  justify-content: space-between;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+#canvasContainer {
+  bottom: 0;
+  display: block;
+  position: fixed;
+  top: 72px;
+}
+
+.disable {
+  height: 100%;
+  width: 100%;
+  pointer-events: none;
 }

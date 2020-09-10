@@ -68,6 +68,8 @@ class ConfigUniverse(findings_lib.Findings):
     self.subfield_universe = subfield_universe
     self.state_universe = state_universe
     self.unit_universe = unit_universe
+    # temporary placeholder for instance validator
+    self.connections_universe = None
 
   def _GetDynamicFindings(self, filter_old_warnings):
     findings = []

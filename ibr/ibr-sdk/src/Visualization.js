@@ -12,9 +12,7 @@ function Visualization(visualizationData, coordsLookup) {
   this.data = visualizationData.data;
   this.encodingType = visualizationData.encoding_type;
 
-  if (this.encodingType ===
-  InternalBuildingRepresentation.Visualization.EncodingType['BITMAP_IMAGE']
-      .value) {
+  if (visualizationData.image_data) {
     this.imageData = visualizationData.image_data;
   } else {
     // Decode Indices from data.visualization[].coordinate_indices

@@ -5,10 +5,12 @@ import {swap32} from './util.js';
 /**
  * Constructor of IBRObject Class.
  * @param {JSONObject} pbfDecodedJsonObject JSON decoded from input IBR file.
+ * @param {String} filename Name of the input IBR file.
  */
-function IBRObject(pbfDecodedJsonObject) {
+function IBRObject(pbfDecodedJsonObject, filename) {
   // Check if structure contains any boundary data
-  if (pbfDecodedJsonObject.boundary === null) {
+  if (pbfDecodedJsonObject.boundary === null ||
+      pbfDecodedJsonObject.boundary === undefined) {
     this.hasBoundary = false;
   } else {
     this.hasBoundary = true;
@@ -34,6 +36,8 @@ function IBRObject(pbfDecodedJsonObject) {
   this.metadata = pbfDecodedJsonObject.metadata;
 
   this.name = pbfDecodedJsonObject.name;
+
+  this.filename = filename;
 
   this.structuralType = pbfDecodedJsonObject.structural_type;
 
@@ -72,7 +76,7 @@ function IBRObject(pbfDecodedJsonObject) {
 
   // for datafiles that have top level name is ""
   if (pbfDecodedJsonObject.name === '' || pbfDecodedJsonObject.name === null) {
-    this.name = 'ibrData.name';
+    this.name = filename;
   }
 
   this.subStructures = pbfDecodedJsonObject.structures;
@@ -204,11 +208,7 @@ Object.assign(IBRObject.prototype, {
     json.external_reference = this.externalReference;
     json.guid = this.guid;
     json.metadata = this.metadata;
-    if (this.name === 'ibrData.name') {
-      json.name = null;
-    } else {
-      json.name = this.name;
-    }
+    json.name = this.name;
     json.structural_type = this.structuralType;
     json.structures = [];
     if (this.subStructures.length != 0) {

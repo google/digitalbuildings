@@ -12,18 +12,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-CHWS_WDT-17:
-  type: HVAC/CHWS_WDT
-  id: CDM/123456
-  translation:
-    return_water_temperature_sensor:
-      present_value: "points.return_water_temperature_sensor.present_value"
-      states:
-        OPEN: "1"
-        CLOSED: "2"
-    supply_water_temperature_sensor:
-      present_value: "points.supply_water_temperature_sensor.present_value"
-      units:
-        key: "pointset.points.supply_water_temperature_sensor.units"
-        values:
-          degrees_celsius: "degC"
+# INVALID is not a valid connection for an entity to have.
+
+UK-LON-S2:
+  type: FACILITIES/BUILDING
+  id: FACILITIES/123456
+  connections:
+    # Listed entities are sources on connections
+    ANOTHER-ENTITY: FEEDS
+    A-THIRD-ENTITY: INVALID 

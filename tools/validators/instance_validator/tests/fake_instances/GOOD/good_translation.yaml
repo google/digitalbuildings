@@ -12,18 +12,22 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-CHWS_WDT-17:
-  type: HVAC/CHWS_WDT
+SDC_EXT-17:
+  type: HVAC/SDC_EXT
   id: CDM/123456
   translation:
-    return_water_temperature_sensor:
-      present_value: "points.return_water_temperature_sensor.present_value"
+    shade_extent_percentage_command:
+      present_value: "points.shade_extent_percentage_command.present_value"
       states:
         OPEN: "1"
         CLOSED: "2"
-    supply_water_temperature_sensor:
-      present_value: "points.supply_water_temperature_sensor.present_value"
-      units:
-        key: "pointset.points.supply_water_temperature_sensor.units"
-        values:
-          degrees_celsius: "degC"
+
+LT-17:
+  type: LIGHTING/EXIT
+  id: CDM/123456
+  translation:
+    dimmer_percentage_command:
+      present_value: "points.dimmer_percentage_command.present_value"
+      states:
+        OPEN: "1"
+        CLOSED: "2"
