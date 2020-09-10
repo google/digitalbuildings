@@ -177,37 +177,29 @@ class EntityInstance(findings_lib.Findings):
         continue
 
       # three remaining possibilities for translation format
-      if self.units in translation_map.keys():
-        unit_values_map = translation_map[self.units]
-        for unit in unit_values_map['values']:
-          if unit not in valid_units:
-            print('Invalid translation unit:', unit)
-            print('Field translation: ', field_name.data)
+      if valid_units:
+        if self.units in translation_map.keys():
+          unit_values_map = translation_map[self.units]
+          for unit in unit_values_map['values']:
+            if unit not in valid_units:
+              print('Invalid translation unit:', unit)
+              print('Field translation: ', field_name.data)
+              return False
+        elif self.states in translation_map.keys():
+          states_map = translation_map[self.states]
+          for state in states_map.keys():
+            if state not in valid_states:
+              print('Invalid translation state', state)
+              return False
+        elif self.units in translation_map.keys():
+          # check that the unit map has keys named `keys`, `values`
+          units_map = translation_map[self.units]
+          if self.key not in units_map.keys():
+            print('Invalid units translation is missing key', self.key)
             return False
-      elif self.states in translation_map.keys():
-        states_map = translation_map[self.states]
-        for state in states_map.keys():
-          if state not in valid_states:
-            print('Invalid translation state', state)
+          if self.values not in units_map.keys():
+            print('Invalid units translation is missing values', self.values)
             return False
-      elif self.units in translation_map.keys():
-        # check that the unit map has keys named `keys`, `values`
-        units_map = translation_map[self.units]
-        if self.key not in units_map.keys():
-          print('Invalid units translation is missing key', self.key)
-          return False
-        if self.values not in units_map.keys():
-          print('Invalid units translation is missing values', self.values)
-          return False
-
-        unit_values_map = units_map[self.values]
-        for unit in unit_values_map.keys():
-          if unit not in valid_units:
-            print('Invalid translation unit', unit)
-            return False
-      else:
-        print('Translation has improper keys:', field_name)
-        return False
 
     #check if the rest of the fields not included are optional
     for optional_field_name in all_fields_dict.values():
