@@ -150,7 +150,7 @@ class EntityInstance(findings_lib.Findings):
     namespace = type_parse[0]
     entity_type = type_parse[1]
     entity_type = self.universe.GetEntityType(namespace, entity_type)
-    all_fields_dict = entity_type.GetAllFields()
+    all_fields_dict = entity_type.GetAllFields().copy()
 
     # iterate through each translation device key and determine its form
     for field_name in translation_body.keys():
