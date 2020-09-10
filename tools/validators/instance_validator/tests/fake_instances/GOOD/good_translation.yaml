@@ -18,9 +18,8 @@ SDC_EXT-17:
   translation:
     shade_extent_percentage_command:
       present_value: "points.shade_extent_percentage_command.present_value"
-      states:
-        OPEN: "1"
-        CLOSED: "2"
+      unit_values:
+        percent: "%"
 
 LT-17:
   type: LIGHTING/EXIT
@@ -28,6 +27,5 @@ LT-17:
   translation:
     dimmer_percentage_command:
       present_value: "points.dimmer_percentage_command.present_value"
-      states:
-        OPEN: "1"
-        CLOSED: "2"
+      unit_values:
+        percent: "%"

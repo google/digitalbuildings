@@ -18,9 +18,8 @@ SDC_EXT-17:
   translation:
     shade_extent_percentage_command:
       present_value: "points.shade_extent_percentage_command.present_value"
-      states:
-        OPEN: "1"
-        CLOSED: "2"
+      unit_values:
+        percent: "%"
 
 SDC_EXT-18:
   type: HVAC/SDC_EXT
@@ -28,6 +27,5 @@ SDC_EXT-18:
   translation:
     shade_extent_percentage_command:
       present_value: "points.shade_extent_percentage_command.present_value"
-      states:
-        OPEN: "1"
-        CLOSED: "2"
+      unit_values:
+        percent: "%"
