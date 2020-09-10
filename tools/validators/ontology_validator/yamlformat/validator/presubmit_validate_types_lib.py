@@ -72,7 +72,11 @@ class ConfigUniverse(findings_lib.Findings):
     # temporary placeholder for instance validator
     self.connections_universe = None
 
-  def _ArragenUnitsByMeasurement(self, ):
+  def _ArragenUnitsByMeasurement(self):
+    if not self.unit_universe_reverse_map:
+      print('UnitUniverse undefined in ConfigUniverse')
+      return None
+    
     unitsByMeasurement = dict()
     units = self.unit_universe.GetUnitsMap('')
     for key, unit in units.items():
@@ -132,7 +136,7 @@ class ConfigUniverse(findings_lib.Findings):
     Args:
 		  field_name: string.
 		"""
-    if not self.unit_universe:
+    if not self.unit_universe_reverse_map:
       print('UnitUniverse undefined in ConfigUniverse')
       return None
     subfields = field_name.split('_')
