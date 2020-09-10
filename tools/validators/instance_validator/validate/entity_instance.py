@@ -170,7 +170,6 @@ class EntityInstance(findings_lib.Findings):
 
       valid_units = self.universe.GetUnitsMapByMeasurement(field_name.data)
       translation_map = translation_body[field_name]
-      # valid_units = self.universe.unit_universe.GetUnitsMap('').keys()
       valid_states = self.universe.state_universe.GetStatesMap('').keys()
 
       # check if keys are UDMI compliant then skip the units and states
@@ -178,11 +177,12 @@ class EntityInstance(findings_lib.Findings):
         continue
 
       # three remaining possibilities for translation format
-      if self.unit_values in translation_map.keys():
-        unit_values_map = translation_map[self.unit_values]
-        for unit in unit_values_map.keys():
+      if self.units in translation_map.keys():
+        unit_values_map = translation_map[self.units]
+        for unit in unit_values_map['values']:
           if unit not in valid_units:
-            print('Invalid translation unit', unit)
+            print('Invalid translation unit:', unit)
+            print('Field translation: ', field_name.data)
             return False
       elif self.states in translation_map.keys():
         states_map = translation_map[self.states]
