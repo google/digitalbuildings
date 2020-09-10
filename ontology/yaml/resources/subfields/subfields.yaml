@@ -37,17 +37,21 @@ component:
   heater: "Component which provides heat to media."
   humidifier: "Component which humidifies."
   pump: "Component used for the distribution of liquid media."
+  rack: "Component used in comms rooms for mounting servers & switches" # Added 25/08/20
   shade: "Window covering."
   tank : "Storage device for media."
   valve: "Component which meters the flow of water within a system or device."
   vane: "Component for guiding media flow."
   wheel: "Component used for transfer of heat from incoming to outgoing air streams. "
 descriptor: 
+  duty: "used to describe device used in duty/standby arrangement" # Added 27/08/20
+  standby: "used to describe device used in duty/standby arrangement" # Added 27/08/20
   runtime: "accumulation of time a device or system has been running (quite often used for maintenance/servicing purposes)" # Added 18/08/20
   condensate: "descriptor for pump used to remove liquid collected by condensation"  # Added 18/08/20
   air: "Atmospheric air, either conditioned or unconditioned"
   aisle: "Passage between two rows of server racks."
   blowdown: "Process of expelling water filled with mineral deposits for the purposes of water treatment. "
+  bag: "used to describe a type of filter" # Added 01/09/20
   boost: "Component used to boost pressure."
   building: "Applies to the entire building or group of zones within building (e.g. Building_Air_Static_Pressure_Sensor)"
   bypass: "Route which fluid takes to bypass process."
@@ -61,7 +65,9 @@ descriptor:
   cold: "Associated with cold area or process."
   condensing: "Process of gaseous refrigerant changing to liquid."
   conference: "An instance of speaking or meeting among multiple people."
+  control: "A means of limiting or regulating something." # Added 07/09/20
   cooling: "Process, measured effect or requirement for cooling."
+  critical: "Level of measurement to indicate that something needs urgent attention" # Added 24/08/20
   dehumidification: "Process of removing moisture from air."
   detection : "Process of identifying conditions."
   discharge: "Media leaving system to enter ambient conditioned space. Typically applies only to air-side systems."
@@ -89,6 +95,8 @@ descriptor:
   hot: "Associated with hot area or process."
   humidification: "Process of adding moisture to air."
   id: "An identification or identifier."
+  increment: "An increase or addition, especially one of a series on a fixed scale" # Added 01/09/20
+  initiation: "the action of beginning something, part of optimisation control" # Added 01/09/20
   inlet: "Area of media entrance."
   input: "The input to a system."
   isolation: "Process of isolating one component or process from another."
@@ -116,6 +124,7 @@ descriptor:
   ongoing: "Hapenning currently, right now."
   output: "The output of a control loop (e.g. PID Loop Output)"
   outside: "Process or measurement of local atmospheric conditions."
+  panel: "used to describe a type of filter" # Added 01/09/20
   phase1: "The first (nominally A) phase of three-phase power distribution systems."
   phase2: "The second (nominally B) phase of three-phase power distribution systems."
   phase3: "The third (nominally C) phase of three-phase power distribution systems."
@@ -139,6 +148,7 @@ descriptor:
   secondary: "Associated with the secondary (distribution) loop of a produciton process."
   seismic: "Related to seismic activity (such as seismic gas shutoff valves)."
   side: "Position relative to an an object."
+  smoke: “Visible vapour detected in fire systems and descriptor used specific devices (e.g. dampers, exhaust fans and detectors)” # added 25/08/20
   source: "The upstream source of conditioning (used specifically for heat exchangers)."
   south: "Cardinal direction; opposite of north"
   southeast: "Inter-cardinal direction between South and East."
@@ -150,7 +160,10 @@ descriptor:
   supply: "Measurement or process of media as it is supplied to the end-use equipment within the system."
   suppression : "a range of firefighting tactics used to suppress fire"
   sync: "The simultaneous operation or activity of two or more things."
+  system: “Set of items/devices which work together to make a system within a building (e.g. BMS, Lighting, Fire, AHU)” # added 25/08/20
   tertiary: "Associated with the tertiary (peripheral) loops of a production process."
+  termination: "the action of terminating something, part of optimisation control" # Added 01/09/20
+  transfer: "Media moving system from one space to another. Typically applies only to air-side systems." # Added 25/08/20
   unoccupied: "State of being outside of scheduled (time of day or week) run-time parameters."
   use: "A descriptor for how the entity in question is used (e.g. zone_use_label = 'office') "
   user: "A person who uses or operates something."
@@ -188,6 +201,7 @@ measurement_descriptor:
   apparent: "The combination of reactive and real components (power)."
   closed: "Indicates full closed (for two-position actuators)"
   deadband: "Represents a range in which the controller does not do anything."
+  delay: "a period of time by which something is late or postponed" # Added 27/08/20
   dewpoint: "The thermodynamic point at which water condenses from standing air."
   differential: "Measured difference between two reference points (e.g. differential_water_pressure)"
   efficiency: "The ratio of required input to actual output. "
@@ -195,6 +209,7 @@ measurement_descriptor:
   fault : "Signal that a fault (low/medium) priority warning is present; can compromise system operation, but not necessarily imminently."
   extent: "Distance travelled."
   match: "A function that matches something against others."
+  mismatch: "A function that represents a mismatch between commands and sensors/states." # Added 27/08/20
   offset: "The amount or distance by which something is out of line"
   open: "Indicates full open (for two-position actuators).  This is the default sense if unspecified"
   override: "An action that interrupts, cancels, or changes the current action or status."

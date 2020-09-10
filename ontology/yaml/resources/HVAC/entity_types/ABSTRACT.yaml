@@ -99,6 +99,13 @@ ZTM:
   is_abstract: true
   opt_uses:
   - discharge_air_temperature_sensor
+  - zone_air_low_temperature_setpoint
+  - zone_air_high_temperature_setpoint
+  - zone_air_heating_high_alarm_status
+  - zone_air_heating_alarm_status
+  - zone_air_cooling_low_alarm_status
+  - zone_air_cooling_alarm_status
+  - zone_air_temperature_status
   uses:
   - zone_air_temperature_sensor
   implements:
@@ -138,6 +145,7 @@ ZTC:
   - zone_air_relative_humidity_sensor
   - zone_air_relative_humidity_status
   - zone_air_temperature_status
+  - zone_air_temperature_mode
   - zone_controller_alarm_status 
   - zone_air_cooling_temperature_setpoint # Temperature setpoint for cooling loop initiation
   - max_zone_air_temperature_sensor # Maximum temperature sensor reading in a zone
@@ -297,6 +305,17 @@ SFVSC:
   - supply_fan_speed_percentage_sensor
   - supply_fan_current_sensor
   - supply_fan_power_sensor
+  - min_supply_fan_speed_percentage_setpoint # Minimum fan speed percentage setpoint
+  - supply_fan_alarm_status
+  - supply_fan_speed_status
+  - runtime_supply_fan_alarm_status
+  - max_supply_fan_speed_percentage_setpoint # Maximum fan speed percentage setpoint
+  - supply_fan_run_time_sensor
+  - supply_fan_override_status
+  - supply_fan_mismatch_status
+  - runtime_supply_fan_reset_command
+  - supply_fan_reset_command
+  - supply_fan_run_time_setpoint # High level runtime setpoint to initiate an alarm
   uses:
   - supply_fan_run_command
   - supply_fan_run_status
@@ -320,7 +339,9 @@ DFVSC:
   - max_discharge_fan_speed_percentage_setpoint # Maximum fan speed percentage setpoint
   - discharge_fan_run_time_sensor
   - discharge_fan_override_status
+  - discharge_fan_mismatch_status
   - runtime_discharge_fan_reset_command
+  - discharge_fan_reset_command
   - discharge_fan_run_time_setpoint # High level runtime setpoint to initiate an alarm
   uses:
   - discharge_fan_speed_percentage_command
@@ -450,6 +471,7 @@ SFSS:
   - supply_fan_power_capacity
   - supply_fan_current_sensor
   - supply_fan_power_sensor
+  - supply_fan_fault_status
   uses:
   - supply_fan_run_command
   - supply_fan_run_status
@@ -460,6 +482,8 @@ RHM:
   is_abstract: true
   implements:
   - MONITORING
+  opt_uses:
+  - return_air_relative_humidity_status
   uses:
   - return_air_relative_humidity_sensor
 
@@ -490,6 +514,10 @@ STC:
   description: "Supply air temperature control"
   is_abstract: true
   opt_uses:
+  - supply_air_control_temperature_sensor
+  - supply_air_temperature_mode
+  - supply_air_deadband_temperature_setpoint
+  - supply_air_increment_temperature_setpoint
   - heating_request_count
   - cooling_request_count
   uses:
@@ -714,6 +742,8 @@ MTM:
   id: "944962761547317248"
   description: "Mixed air temperature monitoring."
   is_abstract: true
+  opt_uses:
+  - mixed_air_temperature_status
   uses:
   - mixed_air_temperature_sensor
   implements:
@@ -733,6 +763,18 @@ STM:
   id: "5556648779974705152"
   description: "Basic supply temperature monitoring."
   is_abstract: true
+  opt_uses:
+  - supply_air_low_temperature_setpoint
+  - supply_air_low_temperature_status
+  - supply_air_high_temperature_setpoint
+  - supply_air_high_temperature_status
+  - supply_air_heating_high_alarm_status
+  - supply_air_heating_alarm_status
+  - supply_air_cooling_low_alarm_status
+  - supply_air_cooling_alarm_status
+  - supply_air_temperature_status
+  - supply_air_delay_time_setpoint
+  - supply_air_alarm_temperature_setpoint
   uses:
   - supply_air_temperature_sensor
   implements:
@@ -835,6 +877,8 @@ SHM:
   id: "2378937030399754240"
   description: "Supply air relative humidity monitoring."
   is_abstract: true
+  opt_uses:
+  - supply_air_relative_humidity_status
   uses:
   - supply_air_relative_humidity_sensor
   implements:
@@ -949,6 +993,9 @@ SSPM:
   is_abstract: true
   opt_uses:
   - supply_air_static_pressure_setpoint
+  - supply_air_static_pressure_status_1
+  - supply_air_static_pressure_status_2
+  - supply_air_alarm_pressure_setpoint
   uses:
   - supply_air_static_pressure_sensor
   implements:
@@ -1022,6 +1069,7 @@ FDPM:
   - filter_alarm_status
   - filter_differential_pressure_status
   - filter_reset_command # Reset command for latched filter dirty alarm
+  - process_filter_run_status
   uses:
   - filter_differential_pressure_sensor
   implements:
@@ -1123,6 +1171,7 @@ CHWZTC:
   description: "Chilled water valve monitoring on zone side (ZTC)."
   is_abstract: true
   opt_uses:
+  - chilled_water_valve_percentage_sensor
   - discharge_air_temperature_sensor
   - leaving_cooling_coil_temperature_sensor
   - cooling_thermal_power_capacity
@@ -1134,6 +1183,8 @@ CHWZTC:
   - chilled_water_request_status
   - chilled_water_flowrate_sensor
   - max_chilled_water_valve_percentage_setpoint # High temperature setpoint for valve at maximum position
+  - zone_air_cooling_low_temperature_setpoint
+  - zone_air_cooling_high_temperature_setpoint
   uses:
   - zone_air_temperature_setpoint
   - zone_air_temperature_sensor
@@ -1738,6 +1789,8 @@ HWZTC:
   - heating_water_valve_override_status
   - heating_water_flowrate_sensor
   - min_heating_water_valve_percentage_setpoint  # Low temperature setpoint for valve at maximum position
+  - zone_air_heating_low_temperature_setpoint
+  - zone_air_heating_high_temperature_setpoint
   uses:
   - heating_water_valve_percentage_command
   - zone_air_temperature_setpoint
@@ -3164,6 +3217,7 @@ CHWRTC:
   description: "Chilled water valve monitoring on return side (RTC)."
   is_abstract: true
   opt_uses:
+  - chilled_water_valve_percentage_sensor
   - discharge_air_temperature_sensor
   - leaving_cooling_coil_temperature_sensor
   - cooling_thermal_power_capacity
@@ -3174,6 +3228,7 @@ CHWRTC:
   - min_chilled_water_valve_percentage_setpoint # Low temperature setpoint for valve at minimum position
   - chilled_water_request_status
   - chilled_water_flowrate_sensor
+  - chilled_water_valve_mismatch_status
   - max_chilled_water_valve_percentage_setpoint # High temperature setpoint for valve at maximum position
   uses:
   - return_air_temperature_setpoint
@@ -3217,10 +3272,11 @@ MSDM:
 
 CHWDTC:
   id: "c1d6885c-3d5d-4eff-8d4c-404acedfafe7"
-  description: "Chilled water valve monitoring on discharge side (RDC)."
+  description: "Chilled water valve monitoring on discharge side (DTC)."
   is_abstract: true
   opt_uses:
-  - discharge_air_temperature_sensor
+  - chilled_water_valve_percentage_sensor
+  - return_air_temperature_sensor
   - leaving_cooling_coil_temperature_sensor
   - cooling_thermal_power_capacity
   - chilled_water_exercise_valve_status
@@ -3230,10 +3286,11 @@ CHWDTC:
   - min_chilled_water_valve_percentage_setpoint # Low temperature setpoint for valve at minimum position
   - chilled_water_request_status
   - chilled_water_flowrate_sensor
+  - chilled_water_valve_mismatch_status
   - max_chilled_water_valve_percentage_setpoint # High temperature setpoint for valve at maximum position
   uses:
-  - return_air_temperature_setpoint
-  - return_air_temperature_sensor
+  - discharge_air_temperature_setpoint
+  - discharge_air_temperature_sensor
   - chilled_water_valve_percentage_command
   implements:
   - CONTROL
@@ -3243,7 +3300,7 @@ HWDTC:
   description: "Heating water valve monitoring on discharge side (DTC)."
   is_abstract: true
   opt_uses:
-  - discharge_air_temperature_sensor
+  - return_air_temperature_sensor
   - heating_water_valve_percentage_sensor
   - heating_thermal_power_capacity
   - max_heating_water_valve_percentage_setpoint # High temperature setpoint for valve at minimum position
@@ -3256,8 +3313,8 @@ HWDTC:
   - min_heating_water_valve_percentage_setpoint # Low temperature setpoint for valve at maximum position 
   uses:
   - heating_water_valve_percentage_command
-  - return_air_temperature_setpoint
-  - return_air_temperature_sensor
+  - discharge_air_temperature_setpoint
+  - discharge_air_temperature_sensor
   implements:
   - CONTROL 
 
@@ -3385,7 +3442,7 @@ CHWVLVM:
   opt_uses:
   - chilled_water_flowrate_sensor
   uses:
-  - chilled_water_valve_percentage_command # Command signal from FCU controller
+  - chilled_water_valve_percentage_command
   - chilled_water_valve_percentage_sensor
   implements:
   - MONITORING

@@ -245,7 +245,6 @@ HUM:
   implements:
   - EQUIPMENT
 
-  
 FARSR: # Fresh Air Riser - Added for S2
   id: "c7af2926-a614-47c1-8f79-5dfdd2e43970"
   description: "Fresh air riser for HVAC systems"
