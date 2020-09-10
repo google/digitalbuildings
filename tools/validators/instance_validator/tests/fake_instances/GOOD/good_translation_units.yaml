@@ -12,12 +12,17 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-UK-LON-S2:
-  type: FACILITIES/BUILDING
-  id: FACILITIES/123456
+CHWS_WDT-17:
+  type: HVAC/CHWS_WDT
+  id: CDM/123456
   translation:
-    zone_air_temperature_sensor:
-      present_value: "points.temp_1.present_value"
+    return_water_temperature_sensor:
+      present_value: "points.return_water_temperature_sensor.present_value"
+      states:
+        OPEN: "1"
+        CLOSED: "2"
+    supply_water_temperature_sensor:
+      present_value: "points.supply_water_temperature_sensor.present_value"
       units:
         key: "pointset.points.temp_1.units"
         values:
