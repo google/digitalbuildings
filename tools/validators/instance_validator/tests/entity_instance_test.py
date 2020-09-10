@@ -200,6 +200,19 @@ class EntityInstanceTest(absltest.TestCase):
 
     if not instance_lighting.IsValidEntityInstance():
       self.fail('exception incorrectly raised')
+      
+  def testValidateMultipleCompliantTranslationWithIdenticalTypes(self):
+    parsed = instance_parser.parse_yaml(os.path.join(_TESTCASE_PATH,
+                                                       'GOOD',
+                                                       'good_translation_identical.yaml'))
+    parsed = dict(parsed)
+    for raw_entity in list(parsed.keys()):
+      entity_parsed = dict(parsed[raw_entity])
+      entity = entity_instance.EntityInstance(entity_parsed,
+                                                         self.universe,
+                                                         parsed.keys())
+      if not entity.IsValidEntityInstance():
+        self.fail('exception incorrectly raised')
 
   def testValidateMultipleCompliantTranslationWithExtraField(self):
     parsed = instance_parser.parse_yaml(
