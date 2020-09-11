@@ -80,7 +80,8 @@ class EntityInstance(findings_lib.Findings):
     type_parse = entity_type_str.split('/')
 
     if len(type_parse) == 1:
-      print('Type improperly formatted, a namespace is missing: ', entity_type_str)
+      print('Type improperly formatted, a namespace is missing: '
+            , entity_type_str)
       return False
 
     if len(type_parse) > 2:
