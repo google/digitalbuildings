@@ -1,0 +1,49 @@
+# Copyright 2020 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the License);
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#    https://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an AS IS BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+
+BLNDBMSC:
+  id: "561ef706-d9fa-411d-a259-b348394a9d74"
+  description: "Blinds override closed control from BMS to reduce temperature in an area."
+  is_abstract: true
+  uses:
+  - high_blinds_status
+  - low_blinds_status
+  - system_blinds_override_command
+  implements:
+  - CONTROL
+
+BLNDM:
+  id: "55d712a2-ee4e-4e55-ac5a-6ab3e89dbc53"
+  description: "General blinds position monitoring"
+  is_abstract: true
+  opt_uses:
+  - blinds_status_1
+  - blinds_status_2
+  - blinds_status_3
+  - blinds_status_4
+  - blinds_status_5
+  - blinds_status_6
+  - blinds_status_7
+  - blinds_status_8
+  - high_blinds_status
+  - low_blinds_status
+  
+BLNDCDM:
+  id: "8a080868-286e-4d03-b49c-c46453f4af9c"
+  description: "Blinds control device monitoring"
+  is_abstract: true
+  opt_uses:
+  - device_alarm_status_1
+  - device_alarm_status_2

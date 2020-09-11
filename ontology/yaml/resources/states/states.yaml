@@ -54,3 +54,4 @@ HEATING_BOOST: Optimization mode for enabling system in heating
 FABRIC_PROTECTION: Optimization mode for enabling system in fabric protection
 OPTIMUM_STOP: Optimization mode for stopping the system
 HAND: Running under non automatic control (ignoring timeclock/optimizer)
+FAULT: Fault state

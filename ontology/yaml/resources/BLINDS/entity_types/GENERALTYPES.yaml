@@ -1,0 +1,40 @@
+# Copyright 2020 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the License);
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#    https://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an AS IS BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+##############################################################
+#### GENERAL TYPES (BROAD CATEGORIES OF COMMON EQUIPMENT) ####
+####                See model.md for context              ####
+####      See model_hvac.md for detailed definitions      ####
+##############################################################
+
+BLNDSYS:
+  id: "b3226c3c-bff9-4e09-beea-93bd788155a4"
+  description: "Blinds control system"
+  is_abstract: true
+  implements:
+  - EQUIPMENT
+
+BLNDSYS_BLNDBMSC_BLNDM_BLNDCDM:
+  id: "e09f004a-7c31-4b0c-80c4-0fe292a51ff4"
+  description: "Blinds control system with override closed command from the BMS, blinds position monitoring and device status monitoring."
+  is_canonical: true
+  implements:
+  - BLNDSYS
+  - BLNDBMSC
+  - BLNDM
+  - BLNDCDM
+  
+BLINDS_ZONE:
+  id: "12c7aa98-34a5-4890-a8ac-d4ba950764ca"
+  description: "A zone containing singular or multiple blinds."

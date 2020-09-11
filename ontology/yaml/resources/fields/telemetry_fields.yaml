@@ -823,7 +823,7 @@ literals:
   - ALARM 
 - sprinkler_pump_run_status: # Sprinkler pump is running
   - RUNNING
-  - NOT RUNNING
+  - NOT_RUNNING
 - low_level_tank_alarm_status: # Water level in tank is low alarm
   - HEALTHY
   - ALARM 
@@ -881,3 +881,19 @@ literals:
 - smoke_damper_status: # Open/closed status of the smoke damper
   - OPEN
   - CLOSED
+
+# Added 27/08/20 For S2 Blinds
+
+- high_blinds_status: # Open/closed status of the upper level blinds in an area
+  - OPEN
+  - CLOSED
+- low_blinds_status: # Open/closed status of the low level blinds in an area
+  - OPEN
+  - CLOSED
+- blinds_status: # Open/closed status of the blinds in an area
+  - OPEN
+  - CLOSED
+- remote_device_alarm_status: # Status of remote control device
+  - HEALTHY
+  - ALARM 
+- system_blinds_override_command: # Override from BMS to close blinds in a particular area

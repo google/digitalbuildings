@@ -1,0 +1,151 @@
+#FAS-1 on S2
+FAS_FSDSM_FSDASM:
+  id: "9b89731b-7737-46be-8e00-29883d9bbfae"
+  description: "Fire system panel device node. Device status, alarms and fault monitoring."
+  is_canonical: true
+  implements:
+  - FAS
+  - FSDSM
+  - FSDASM
+
+#FAS-2 on S2
+FAS_FSDSM_FSDASM_FSDFSM_FZASM_FIASM_SMKDASM_SMKDBASM_FSSPSM_FSSPASM_FSTASM_FSIVLVSM_FSDFLWSM_ACDRAM_GENM_SYSDSSM_MCDASM_FCRTNSM_FSTVLVSM_FSVLVSM_BASM_HTDASM_FSSTVLVSM_FSSFLWSM_SMKEXFSM_PAVASM_GASSSM:
+  id: "39781079-242b-48d3-a301-e0f41c95ffda"
+  description: "Fire system panel device node. Device status, alarms and fault monitoring. Pump status and alarm monitoring. Tank status and alarm monitoring. Isolation valve and valve status monitoring."
+  is_canonical: true
+  implements:
+  - FAS
+  - FSDSM
+  - FSDASM
+  - FSDFSM
+  - FZASM
+  - FIASM
+  - SMKDASM
+  - SMKDBASM
+  - FSSPSM
+  - FSSPASM
+  - FSTASM
+  - FSIVLVSM
+  - FSDFLWSM
+  - ACDRAM
+  - GENM
+  - SYSDSSM
+  - MCDASM
+  - FCRTNSM
+  - FSTVLVSM
+  - FSVLVSM
+  - BASM
+  - HTDASM
+  - FSSTVLVSM
+  - FSSFLWSM
+  - SMKEXFSM
+  - PAVASM
+  - GASSSM
+
+#FAS-3 on S2
+FAS_FSDSM_FSDASM_FSDFSM_FZASM_FIASM_SMKDASM_SMKDBASM_FSDFLWSM_ACDRAM_SYSDSSM_MCDASM_FCRTNSM_FSTVLVSM_BASM_HTDASM_SMKEXFSM_PAVASM_GASSSM:
+  id: "1b157796-acaf-4cc8-a51d-8f0ba8807b78"
+  description: "Fire system panel device node. Device status, alarms and fault monitoring. Valve status monitoring."
+  is_canonical: true
+  implements:
+  - FAS 
+  - FSDSM 
+  - FSDASM 
+  - FSDFSM 
+  - FZASM 
+  - FIASM 
+  - SMKDASM 
+  - SMKDBASM 
+  - FSDFLWSM 
+  - ACDRAM 
+  - SYSDSSM 
+  - MCDASM 
+  - FCRTNSM 
+  - FSTVLVSM 
+  - BASM 
+  - HTDASM 
+  - SMKEXFSM 
+  - PAVASM 
+  - GASSSM 
+
+#FAS-4 on S2
+FAS_FSDSM_FSDASM_FZASM_FIASM_SMKDASM_SMKDBASM_FSDFLWSM_ACDRAM_SYSDSSM_MCDASM_FCRTNSM_FSTVLVSM_BASM_HTDASM_PAVASM:
+  id: "29b13fbc-89c5-4e21-8877-8dd069cd30d9"
+  description: "Fire system panel device node. Device status, alarms and fault monitoring. Damper status monitoring."
+  is_canonical: true
+  implements:
+  - FAS 
+  - FSDSM 
+  - FSDASM 
+  - FZASM 
+  - FIASM 
+  - SMKDASM 
+  - SMKDBASM 
+  - FSDFLWSM 
+  - ACDRAM 
+  - SYSDSSM 
+  - MCDASM 
+  - FCRTNSM
+  - FSTVLVSM 
+  - BASM 
+  - HTDASM 
+  - PAVASM 
+
+#FAS-5 on S2
+FAS_FSDSM_FSDASM_FSDFSM_FZASM_FIASM_SMKDASM_SMKDBASM_FSDFLWSM_ACDRAM_GENM_SYSDSSM_MCDASM_FCRTNSM_FSTVLVSM_BASM_HTDASM_SMKEXFSM_PAVASM:
+  id: "faf4e365-0520-40c3-b443-7b4230a034c4"
+  description: "Fire system panel device node. Device status and alarms monitoring. Damper status monitoring."
+  is_canonical: true
+  implements:
+  - FAS
+  - FSDSM 
+  - FSDASM 
+  - FSDFSM 
+  - FZASM 
+  - FIASM 
+  - SMKDASM 
+  - SMKDBASM 
+  - FSDFLWSM 
+  - ACDRAM 
+  - GENM 
+  - SYSDSSM 
+  - MCDASM 
+  - FCRTNSM 
+  - FSTVLVSM 
+  - BASM 
+  - HTDASM 
+  - SMKEXFSM 
+  - PAVASM
+
+#FAS-6 on S2
+FAS_FSDSM_FSDASM_FSDFSM_FZASM_FIASM_SMKDASM_FSSDMPSM_SYSDSSM_PAVASM_GASSSM:
+  id: "9da2116c-da48-4032-b12f-89c6559ef7c8"
+  description: "Fire system panel device node. Device status, alarms and fault monitoring. Pump status and alarm monitoring. Tank status and alarm monitoring. Isolation valve and valve status monitoring."
+  is_canonical: true
+  implements:
+  - FAS
+  - FSDSM 
+  - FSDASM 
+  - FSDFSM 
+  - FZASM 
+  - FIASM 
+  - SMKDASM 
+  - FSSDMPSM 
+  - SYSDSSM 
+  - PAVASM 
+  - GASSSM 
+
+#FAS-7 on S2
+FAS_FSDSM_FSDASM_FZASM_FIASM_SZASM_PAVASM_FSSDMPSM:
+  id: "36c0501b-aeeb-4d3f-8f5c-650d6a442358"
+  description: "Fire system panel device node. Device status, alarms and fault monitoring. Pump status and alarm monitoring. Tank status and alarm monitoring. Isolation valve and valve status monitoring."
+  is_canonical: true
+  implements:
+  - FAS
+  - FSDSM 
+  - FSDASM 
+  - FZASM 
+  - FIASM 
+  - SZASM
+  - PAVASM  
+  - FSSDMPSM

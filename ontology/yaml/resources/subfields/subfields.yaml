@@ -19,11 +19,13 @@ aggregation:
   total: "Sum total of some set of values (e.g. total_request_heating_count)"
 component:
   beacon: “Light serving as a warning in fire systems” # added 25/08/20
+  blinds: "A screen for a window, especially one on a roller or made of slats" # added 27/08/20
   coil: "Component that exchanges heat between two media streams."
   compressor: "Component which drives refrigerant compression (and thus cooling processes) within a device or system."
   condenser: "The component of a refrigeration system that condenses refrigerant."
   controller: "Control loop, such as a PID controller."
   cooler: "Device used to cool product (e.g. walk-in food cooler) or media."
+  curtain: “Material that descends from the ceiling to block an opening and stop fire and smoke spreading between two areas” # added 25/08/20
   damper: "Component which meters the flow of air within a system or device."
   dehumidifier: "Device used to dehumidify air."
   detector: “Device type used to detect smoke or heat in fire systems” # added 25/08/20
