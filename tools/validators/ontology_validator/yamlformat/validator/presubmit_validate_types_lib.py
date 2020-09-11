@@ -91,9 +91,10 @@ class ConfigUniverse(findings_lib.Findings):
   
     statesByField = dict()
     fields = self.field_universe.GetFieldsMap('')
-    for key, element in fields.items():
-      if element.states:
-        statesByField[element.name] = element.states
+    if fields:
+      for key, element in fields.items():
+        if element.states:
+          statesByField[element.name] = element.states
     return statesByField
 
   def _GetDynamicFindings(self, filter_old_warnings):
