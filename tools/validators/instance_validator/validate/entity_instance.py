@@ -167,13 +167,13 @@ class EntityInstance(findings_lib.Findings):
       if opt_wrapper_field is None: #an extra field that should not be here
         print('Invalid extra field present:', field_name)
         return False
-    
+
       translation_map = translation_body[field_name]
-      
+
       # check if keys are UDMI compliant then skip the units and states
       if isinstance(translation_body[field_name].data, str):
         continue
-        
+
       valid_units = self.universe.GetUnitsMapByMeasurement(field_name.data)
       if valid_units:
         if self.units in translation_map.keys():
@@ -191,7 +191,7 @@ class EntityInstance(findings_lib.Findings):
               print('Invalid translation unit:', unit)
               print('Field translation: ', field_name.data)
               return False
-            
+
       valid_states = self.universe.GetStatesByField(field_name.data)
       if valid_states:
         if self.states in translation_map.keys():
@@ -200,7 +200,7 @@ class EntityInstance(findings_lib.Findings):
             if state not in valid_states:
               print('Invalid translation state', state)
               return False
-
+            
     #check if the rest of the fields not included are optional
     for optional_field_name in all_fields_dict.values():
       if not optional_field_name.optional:
