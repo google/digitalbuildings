@@ -80,7 +80,14 @@ class FieldUniverse(findings_lib.FindingsUniverse):
     """
     return fieldname in self._namespace_map.get(namespace_name, set())
 
+  def GetFieldsMap(self, namespace_name):
+    """Returns the fields defined within namespace.
 
+    Args:
+      namespace_name: string.
+    """
+    return self.folders[0].local_namespace.fields
+  
 class FieldFolder(config_folder_lib.ConfigFolder):
   """Class representing a folder of Fields.
 
@@ -113,7 +120,7 @@ class FieldFolder(config_folder_lib.ConfigFolder):
                parent_namespace=None,
                local_subfields=None,
                local_states=None):
-    super(FieldFolder, self).__init__(folderpath, base_lib.ComponentType.FIELD)
+    super().__init__(folderpath, base_lib.ComponentType.FIELD)
     self.local_namespace = FieldNamespace(self._namespace_name, local_subfields,
                                           local_states, parent_namespace)
     self.parent_namespace = parent_namespace
