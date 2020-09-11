@@ -623,7 +623,7 @@ literals:
   - HEALTHY
   - ALARM
 - total_air_co2_concentration_setpoint:
-- min_discharge_fan_speed_percentage_setpoint:
+- min_discharge_fan_temperature_setpoint:
 - discharge_fan_run_time_sensor:
 - discharge_fan_override_status:
   - HEALTHY
@@ -656,7 +656,7 @@ literals:
 - discharge_fan_speed_status:
   - HEALTHY
   - ALARM
-- max_discharge_fan_speed_percentage_setpoint:
+- max_discharge_fan_temperature_setpoint:
 - runtime_discharge_fan_alarm_status:
   - HEALTHY
   - ALARM
@@ -708,12 +708,12 @@ literals:
 - chilled_water_valve_offline_status:
   - HEALTHY
   - ALARM
-- min_chilled_water_valve_percentage_setpoint:
+- min_chilled_water_valve_temperature_setpoint:
 - chilled_water_request_status:
   - ON
   - OFF
-- max_chilled_water_valve_percentage_setpoint:
-- max_heating_water_valve_percentage_setpoint:
+- max_chilled_water_valve_temperature_setpoint:
+- max_heating_water_valve_temperature_setpoint:
 - heating_water_exercise_valve_status:
   - ON
   - OFF   
@@ -729,7 +729,7 @@ literals:
 - heating_water_valve_override_status:
   - HEALTHY
   - ALARM
-- min_heating_water_valve_percentage_setpoint:
+- min_heating_water_valve_temperature_setpoint:
 - supply_air_static_pressure_status:
   - HEALTHY
   - ALARM
