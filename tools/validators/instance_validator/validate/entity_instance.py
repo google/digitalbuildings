@@ -200,7 +200,7 @@ class EntityInstance(findings_lib.Findings):
             if state not in valid_states:
               print('Invalid translation state', state)
               return False
-            
+
     #check if the rest of the fields not included are optional
     for optional_field_name in all_fields_dict.values():
       if not optional_field_name.optional:
