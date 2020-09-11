@@ -150,6 +150,8 @@ class EntityInstance(findings_lib.Findings):
     namespace = type_parse[0]
     entity_type = type_parse[1]
     entity_type = self.universe.GetEntityType(namespace, entity_type)
+    # TODO(charbull): no need to copy here, just keep the key
+    #  in a set when it is seen, will refactor in the next PR
     all_fields_dict = entity_type.GetAllFields().copy()
 
     # iterate through each translation device key and determine its form
