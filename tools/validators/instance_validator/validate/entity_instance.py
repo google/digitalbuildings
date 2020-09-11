@@ -199,6 +199,7 @@ class EntityInstance(findings_lib.Findings):
           for state in states_map.keys():
             if state not in valid_states:
               print('Invalid translation state', state)
+              print('Field translation: ', field_name.data)
               return False
 
     #check if the rest of the fields not included are optional
@@ -232,7 +233,7 @@ class EntityInstance(findings_lib.Findings):
       return False
 
     if not self._ValidateTranslation():
-      print('Invalid translation key')
+      print('Invalid translation')
       return False
 
     if not self._ValidateConnections():
