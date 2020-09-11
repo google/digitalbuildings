@@ -158,7 +158,7 @@ class ConfigUniverse(findings_lib.Findings):
     while subfields[-1].isnumeric():
       subfields.pop()
       
-    if subfields[-1] in ['setpoint', 'sensor', 'accumulator', 'command']:
+    if subfields[-1] not in ['status', 'label', 'mode', 'counter', 'timestamp']:
       measurement_subfield = subfields[-2] # access the measurement_type subfield
       return self.unit_universe_reverse_map.get(measurement_subfield)
 
