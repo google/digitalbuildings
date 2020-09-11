@@ -28,7 +28,7 @@ class EntityInstance(findings_lib.Findings):
   """
 
   def __init__(self, entity, universe):
-    super(EntityInstance, self).__init__()
+    super().__init__()
     self.entity = entity
     self.universe = universe
     self.required_keys = ('id', 'type')
