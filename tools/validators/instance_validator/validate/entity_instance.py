@@ -29,7 +29,7 @@ class EntityInstance(findings_lib.Findings):
   """
 
   def __init__(self, entity, universe, config_entity_names):
-    super(EntityInstance, self).__init__()
+    super().__init__()
     self.entity = entity
     self.universe = universe
     self.config_entity_names = config_entity_names
