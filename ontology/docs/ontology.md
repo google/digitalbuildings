@@ -20,14 +20,14 @@ equipment. The sections below outline the conceptual model of the ontology.
       - [Enumeration](#enumeration)
       - [Structural Flexibility and Ambiguity](#structural-flexibility-and-ambiguity)
       - [Implicit Inheritance](#implicit-inheritance)
-      - [Alternate Approaches and Future Extensions {#alternate-approaches-and-future-extensions}](#alternate-approaches-and-future-extensions---alternate-approaches-and-future-extensions-)
+      - [Alternate Approaches and Future Extensions](#alternate-approaches-and-future-extensions)
         * [Equipment Composition](#equipment-composition)
         * [Display Name](#display-name)
     + [Dimensional Units](#dimensional-units)
     + [Multi-State Values](#multi-state-values)
       - [Individual States](#individual-states)
-      - [Multi-State groups {#multi-state-groups}](#multi-state-groups---multi-state-groups-)
-      - [Effect on Namespace Elevation {#effect-on-namespace-elevation}](#effect-on-namespace-elevation---effect-on-namespace-elevation-)
+      - [Multi-State groups](#multi-state-groups)
+      - [Effect on Namespace Elevation](#effect-on-namespace-elevation)
     + [Entity types](#entity-types)
       - [GUIDs](#guids)
       - [Type names](#type-names)
@@ -227,7 +227,7 @@ engine could use the graph to fan out the search for `zone_air_temperature` out
 across all fields that have a superset of the tags `zone`, `air` and
 `temperature`[^18].
 
-#### Alternate Approaches and Future Extensions {#alternate-approaches-and-future-extensions}
+#### Alternate Approaches and Future Extensions
 
 ##### Equipment Composition
 
@@ -303,7 +303,7 @@ In order to maximize interoperability each possible state must have one
 canonical definition. For flexibility we would also like to allow modification
 of the set of states without needing to update the global namespace.
 
-#### Multi-State groups {#multi-state-groups}
+#### Multi-State groups
 
 Multi-state groups are defined on a field-by-field basis. Fields with point type
 `status` or `mode` are always multistates whereas ones with type `command`
@@ -311,7 +311,7 @@ should be interpreted as multistate if not given a measurement subfield. All
 allowed states for a field across all devices are listed, however individual
 devices may or may not use all states (TODO: link to translations doc).
 
-#### Effect on Namespace Elevation {#effect-on-namespace-elevation}
+#### Effect on Namespace Elevation
 
 States can affect whether fields are elevated to the global namespace. Like with
 subfields, only fields having globally defined states can be elevated to the

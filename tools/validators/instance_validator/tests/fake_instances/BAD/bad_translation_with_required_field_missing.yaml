@@ -12,17 +12,18 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# Missing return_water_temperature_sensor
+
 CHWS_WDT-17:
   type: HVAC/CHWS_WDT
   id: CDM/123456
   translation:
-    return_water_temperature_sensor:
-      present_value: "points.return_water_temperature_sensor.present_value"
-      unit_values:
-        degrees_celsius: "degC"
-        degrees_fahrenheit: "degF"
     supply_water_temperature_sensor:
       present_value: "points.supply_water_temperature_sensor.present_value"
-      unit_values:
-        degrees_celsius: "degC"
-        degrees_fahrenheit: "degF"
+      units:
+        key: "pointset.points.supply_water_temperature_sensor.units"
+        values:
+          degrees_celsius: "degC"
+    thermal_power_capacity: "t_p_c_1" #optional
+    differential_pressure_specification: "d_p_s_1" #optional
+    #flowrate_requirement optional missing
