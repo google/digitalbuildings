@@ -1057,7 +1057,7 @@ SMKEXFSM:
   - smoke_exhaust_fan_status_8
   - smoke_exhaust_fan_status_9
   - smoke_exhaust_fan_status_10
-   implements:
+  implements:
   - MONITORING
 
 
@@ -1096,7 +1096,7 @@ PAVASM:
   - pava_reset_status_8
   - pava_reset_status_9
   - pava_reset_status_10
-    implements:
+  implements:
   - MONITORING
 
 
@@ -1115,7 +1115,7 @@ SYSDSSM:
   - system_device_shutdown_status_8
   - system_device_shutdown_status_9
   - system_device_shutdown_status_10
-    implements:
+  implements:
   - MONITORING
 
 
@@ -1134,7 +1134,7 @@ GASSSM:
   - gas_shutdown_status_8
   - gas_shutdown_status_9
   - gas_shutdown_status_10
-    implements:
+  implements:
   - MONITORING
 
 
@@ -1153,7 +1153,7 @@ FCRTNSM:
   - fire_curtain_status_8
   - fire_curtain_status_9
   - fire_curtain_status_10
-    implements:
+  implements:
   - MONITORING
 
 SZASM:
@@ -1175,3 +1175,5 @@ SZASM:
   - smoke_zone_alarm_status_12
   - smoke_zone_alarm_status_13
   - smoke_zone_alarm_status_14
+  implements:
+  - MONITORING
