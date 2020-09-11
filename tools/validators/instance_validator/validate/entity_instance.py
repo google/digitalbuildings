@@ -79,8 +79,12 @@ class EntityInstance(findings_lib.Findings):
     entity_type_str = str(self.entity['type'])
     type_parse = entity_type_str.split('/')
 
-    if len(type_parse) != 2:
-      print('Type improperly formatted:', entity_type_str)
+    if len(type_parse) == 1:
+      print('Type improperly formatted, a namespace is missing: ', entity_type_str)
+      return False
+
+    if len(type_parse) > 2:
+      print('Type improperly formatted: ', entity_type_str)
       return False
 
     namespace = type_parse[0]
@@ -227,11 +231,11 @@ class EntityInstance(findings_lib.Findings):
         return False
 
     if not self._ValidateType():
-      print('Invalid type key')
+      print('Invalid type')
       return False
 
     if not self._ValidateLinks():
-      print('Invalid links key')
+      print('Invalid links')
       return False
 
     if not self._ValidateTranslation():
@@ -239,7 +243,7 @@ class EntityInstance(findings_lib.Findings):
       return False
 
     if not self._ValidateConnections():
-      print('Invalid connections key')
+      print('Invalid connections')
       return False
 
     return True
