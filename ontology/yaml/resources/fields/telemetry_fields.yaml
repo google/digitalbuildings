@@ -864,8 +864,6 @@ literals:
 - discharge_air_high_temperature_setpoint:
 - discharge_air_high_delay_temperature_setpoint:
 - discharge_air_critical_temperature_setpoint:
-- min_discharge_fan_temperature_setpoint:
-- max_discharge_fan_temperature_setpoint:
 - duty_device_run_command:
 - duty_device_run_status:
 - standby_device_run_command:
