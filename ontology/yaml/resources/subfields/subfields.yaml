@@ -142,6 +142,7 @@ descriptor:
   reactive: "Power that is returned to the source (not consumed by the load)."
   recovery: "Component or process used for the reclamation of heat."
   refrigerant: "Substance used in the mechanical refrigeration process (e.g. R-134a)"
+  remote: "Situated away from the main part of a device/system." # added 25/08/20
   request: "A signal from a system device that calls for more of a particular conditioning process (e.g. pressure requests from terminal units)."
   return: "Measurement or process of media as it is returned from the end-use equipment within the system."
   reversing: "Reverses direction of flow (e.g. reversing valve on heat pump)."

@@ -797,10 +797,16 @@ literals:
 - isolation_valve_status:
   - OPEN
   - CLOSED 
+- valve_status:
+  - OPEN
+  - CLOSED 
 - fire_zone_alarm_status: # Fire alarm in a specific zone
   - HEALTHY
   - ALARM 
 - interface_alarm_status: # Interface device in alarm
+  - HEALTHY
+  - ALARM 
+- smoke_zone_alarm_status:
   - HEALTHY
   - ALARM 
 - smoke_detector_alarm_status: # Smoke detection alarm from smoke detector device
