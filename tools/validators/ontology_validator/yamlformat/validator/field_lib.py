@@ -86,7 +86,7 @@ class FieldUniverse(findings_lib.FindingsUniverse):
     Args:
       namespace_name: string.
     """
-    if not self.folders:
+    if self.folders:
       return self.folders[0].local_namespace.fields
   
 class FieldFolder(config_folder_lib.ConfigFolder):
