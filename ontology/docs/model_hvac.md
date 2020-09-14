@@ -191,12 +191,6 @@ This section outlines **umbrella types** for specific equipment.
     condensing water.
 *   **Dry Cooler (`DC`)**: a water-side device that cools water sensibly through
     air flow over its coil.
-*   **Dedicated Outside Air System Unit (`DOAS`)**: an air-side device that
-    typically provides conditioned air to other downstream distribution
-    equipment. They typically have heat recover between the supply and exhaust
-    air streams. They must have both supply and exhaust sides, and must provide
-    single pass air flow (i.e. they do not allow recirculation of air). TODO:
-    Define these in the ontology.
 *   **Duct Furnace (`DFR`)**: an air-side device that provides heat to the hot
     deck of a dual-duct system. Must provide hot air to a hot deck.
 *   **Duct Heater (`DH`)**: an air-side device that provides heat to an
