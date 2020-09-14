@@ -180,11 +180,6 @@ This section outlines **umbrella types** for specific equipment.
 *   **Chiller(`CH`)**: a water-side device that chills (cools) water utilizing
     the refrigeration cycle and compressors. Can be either air-condensing or
     water-condensing. Must produced cool water.
-*   **Compartment Unit (`CU`)**: an airside device that delivers both outside
-    and return air but which does not source the outside air itself (i.e. it
-    lives downstream from some other device, like a DOAS, which pre-conditions
-    its outside air for it). This is typical in colder climates, or where
-    ventilation heat recovery is routinely practiced.
 *   **Cooling Tower (`CT`)**: a water-side device that cools water through the
     direct or indirect evaporation of water. Typically (but not always)
     associated with a chiller or water-source fan coil units. Must produce
