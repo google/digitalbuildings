@@ -114,6 +114,7 @@ descriptor:
   ongoing: "Hapenning currently, right now."
   output: "The output of a control loop (e.g. PID Loop Output)"
   outside: "Process or measurement of local atmospheric conditions."
+  particle: "A very small piece of matter; especially the smallest possible part of something. (e.g. Dust)."
   phase1: "The first (nominally A) phase of three-phase power distribution systems."
   phase2: "The second (nominally B) phase of three-phase power distribution systems."
   phase3: "The third (nominally C) phase of three-phase power distribution systems."
