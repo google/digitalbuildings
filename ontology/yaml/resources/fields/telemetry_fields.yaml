@@ -641,12 +641,10 @@ literals:
 - mixing_hot_water_return_temperature_sensor
 - hot_water_circulation_supply_temperature_sensor
 - hot_water_circulation_return_temperature_sensor
-- air_dryer_dewpoint_sensor
+- air_dryer_dewpoint_temperature_sensor
 - air_dryer_pressure_sensor
 - air_dryer_flowrate_sensor
-- air_dryer_saturation_sensor
 - zone_dimmer_percentage_command
-- emergency_lamp_status
 - zone_scene_command
 - zone_scene_dimmer_percentage_command
 - air_differential_pressure_status
@@ -658,12 +656,11 @@ literals:
 - high_heater_power_status
 - low_heater_power_status
 - medium_heater_power_status
-- Photocatalyst_status
+- photocatalyst_status
 - device_alarm_status
 - average_supply_air_temperature_sensor
-- zone_air_co2_concentration_sensor_1
-- zone_air_co2_concentration_sensor_2
 - static_humidity_sensor
+#- emergency_lamp_status
 
 # Added 9/14/20 for MY-KUL-ETIQA
 - supply_fan_alarm_status
