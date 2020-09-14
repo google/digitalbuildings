@@ -29,7 +29,7 @@ class EntityInstance(findings_lib.Findings):
   """
 
   def __init__(self, entity, universe, config_entity_names):
-    super(EntityInstance, self).__init__()
+    super().__init__()
     self.entity = entity
     self.universe = universe
     self.config_entity_names = config_entity_names
@@ -79,8 +79,13 @@ class EntityInstance(findings_lib.Findings):
     entity_type_str = str(self.entity['type'])
     type_parse = entity_type_str.split('/')
 
-    if len(type_parse) != 2:
-      print('Type improperly formatted:', entity_type_str)
+    if len(type_parse) == 1:
+      print('Type improperly formatted, a namespace is missing: '
+            , entity_type_str)
+      return False
+
+    if len(type_parse) > 2:
+      print('Type improperly formatted: ', entity_type_str)
       return False
 
     namespace = type_parse[0]
@@ -143,47 +148,74 @@ class EntityInstance(findings_lib.Findings):
         print('Invalid translation compliance string', translation_body.data)
         return False
 
+    # TODO(charbull): refactor this while refactoring the class
+    # validate fields
+    entity_type_str = str(self.entity['type'])
+    type_parse = entity_type_str.split('/')
+    namespace = type_parse[0]
+    entity_type = type_parse[1]
+    entity_type = self.universe.GetEntityType(namespace, entity_type)
+    # TODO(charbull): no need to copy here, just keep the key
+    #  in a set when it is seen, will refactor in the next PR
+    all_fields_dict = entity_type.GetAllFields().copy()
+
     # iterate through each translation device key and determine its form
-    for device_name in translation_body.keys():
+    for field_name in translation_body.keys():
       # check if keys are UDMI compliant
-      if isinstance(translation_body[device_name].data, str):
+      if isinstance(translation_body[field_name].data, str):
         continue
 
-      device_map = translation_body[device_name]
-      valid_units = self.universe.unit_universe.GetUnitsMap('').keys()
-      valid_states = self.universe.state_universe.GetStatesMap('').keys()
-
-      # three remaining possibilities for translation format
-      if self.unit_values in device_map.keys():
-        unit_values_map = device_map[self.unit_values]
-        for unit in unit_values_map.keys():
-          if unit not in valid_units:
-            print('Invalid translation unit', unit)
-            return False
-      elif self.states in device_map.keys():
-        states_map = device_map[self.states]
-        for state in states_map.keys():
-          if state not in valid_states:
-            print('Invalid translation state', state)
-            return False
-      elif self.units in device_map.keys():
-        # check that the unit map has keys named `keys`, `values`
-        units_map = device_map[self.units]
-        if self.key not in units_map.keys():
-          print('Invalid units translation is missing key', self.key)
-          return False
-        if self.values not in units_map.keys():
-          print('Invalid units translation is missing values', self.values)
-          return False
-
-        unit_values_map = units_map[self.values]
-        for unit in unit_values_map.keys():
-          if unit not in valid_units:
-            print('Invalid translation unit', unit)
-            return False
-      else:
-        print('Translation has improper keys:', device_name)
+      #check if the field_name is on the type
+      #TODO(charbull), the key in the dictionary
+      #all_fields_dict starts with `/`, needs to be cleaned
+      #pop the field out
+      key_field_name = '/'+field_name.data
+      opt_wrapper_field = all_fields_dict.pop(key_field_name, None)
+      if opt_wrapper_field is None: #an extra field that should not be here
+        print('Invalid extra field present:', field_name)
         return False
+
+      translation_map = translation_body[field_name]
+
+      # check if keys are UDMI compliant then skip the units and states
+      if isinstance(translation_body[field_name].data, str):
+        continue
+
+      valid_units = self.universe.GetUnitsMapByMeasurement(field_name.data)
+      if valid_units:
+        if self.units in translation_map.keys():
+          unit_values_map = translation_map[self.units]
+          for unit in unit_values_map['values']:
+            if unit not in valid_units:
+              print('Invalid translation unit:', unit)
+              print('Field translation: ', field_name.data)
+              return False
+        # the UDMI format
+        elif self.unit_values in translation_map.keys():
+          unit_values_map = translation_map[self.unit_values].data
+          for unit in unit_values_map.keys():
+            if unit not in valid_units:
+              print('Invalid translation unit:', unit)
+              print('Field translation: ', field_name.data)
+              return False
+
+      valid_states = self.universe.GetStatesByField(field_name.data)
+      if valid_states:
+        if self.states in translation_map.keys():
+          states_map = translation_map[self.states]
+          for state in states_map.keys():
+            if state not in valid_states:
+              print('Invalid translation state', state)
+              print('Field translation: ', field_name.data)
+              return False
+
+    #check if the rest of the fields not included are optional
+    for optional_field_name in all_fields_dict.values():
+      if not optional_field_name.optional:
+        print('Translation does not use the mandatory field: ',
+              optional_field_name.field.field)
+        return False
+
 
     return True
 
@@ -200,19 +232,19 @@ class EntityInstance(findings_lib.Findings):
         return False
 
     if not self._ValidateType():
-      print('Invalid type key')
+      print('Invalid type')
       return False
 
     if not self._ValidateLinks():
-      print('Invalid links key')
+      print('Invalid links')
       return False
 
     if not self._ValidateTranslation():
-      print('Invalid translation key')
+      print('Invalid translation')
       return False
 
     if not self._ValidateConnections():
-      print('Invalid connections key')
+      print('Invalid connections')
       return False
 
     return True

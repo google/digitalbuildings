@@ -12,17 +12,20 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-DMP_EDM-17:
-  type: HVAC/DMP_EDM
+SDC_EXT-17:
+  type: HVAC/SDC_EXT
   id: CDM/123456
   translation:
-    exhaust_air_damper_command:
-      present_value: "points.exhaust_air_damper_command.present_value"
-      states:
-        OPEN: "1"
-        CLOSED: "0"
-    exhaust_air_damper_status:
-      present_value: "points.exhaust_air_damper_status.present_value"
-      states:
-        OPEN: "1"
-        CLOSED: "0"
+    shade_extent_percentage_command:
+      present_value: "points.shade_extent_percentage_command.present_value"
+      unit_values:
+        percent: "%"
+
+LT-17:
+  type: LIGHTING/EXIT
+  id: CDM/123456
+  translation:
+    dimmer_percentage_command:
+      present_value: "points.dimmer_percentage_command.present_value"
+      unit_values:
+        percent: "%"
