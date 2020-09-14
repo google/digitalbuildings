@@ -623,3 +623,56 @@ literals:
 - water_leak_alarm_status
 - water_leak_detection_fault_status
 - zone_command
+# - automatic_mode
+# - ballast_status
+
+# Added 9/14/20 for TW-NTC-TPKD
+- condensing_water_valve_percentage_sensor
+- primary_speed_percentage_command
+- primary_speed_percentage_sensor
+- secondary_speed_percentage_command
+- secondary_speed_percentage_sensor
+- gas_leak_detection_alarm_status
+- air_discharge_compressor_pressure_sensor
+- mixed_air_discharge_compressor_pressure_sensor
+- hot_water_supply_temperature_sensor
+- hot_water_return_temperature_sensor
+- mixing_hot_water_supply_temperature_sensor
+- mixing_hot_water_return_temperature_sensor
+- hot_water_circulation_supply_temperature_sensor
+- hot_water_circulation_return_temperature_sensor
+- air_dryer_dewpoint_sensor
+- air_dryer_pressure_sensor
+- air_dryer_flowrate_sensor
+- air_dryer_saturation_sensor
+- zone_dimmer_percentage_command
+- emergency_lamp_status
+- zone_scene_command
+- zone_scene_dimmer_percentage_command
+- air_differential_pressure_status
+- air_differential_pressure_sensor
+- air_static_pressure_sensor
+- high_heater_power_command
+- low_heater_power_command
+- medium_heater_power_command
+- high_heater_power_status
+- low_heater_power_status
+- medium_heater_power_status
+- Photocatalyst_status
+- device_alarm_status
+- average_supply_air_temperature_sensor
+- zone_air_co2_concentration_sensor_1
+- zone_air_co2_concentration_sensor_2
+- static_humidity_sensor
+
+# Added 9/14/20 for MY-KUL-ETIQA
+- supply_fan_alarm_status
+- cooling_air_alarm_flowrate_status
+- leak_detection_alarm_status
+- max_supply_air_flowrate_sensor
+- min_supply_air_flowrate_sensor
+- master_alarm_mode
+- open_status
+- emergency_status
+- fault_status
+- alarm_status
