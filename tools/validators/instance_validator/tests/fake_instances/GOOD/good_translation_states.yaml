@@ -12,18 +12,17 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-CHWS_WDT-17:
-  type: HVAC/CHWS_WDT
+DMP_EDM-17:
+  type: HVAC/DMP_EDM
   id: CDM/123456
   translation:
-    return_water_temperature_sensor:
-      present_value: "points.return_water_temperature_sensor.present_value"
+    exhaust_air_damper_command:
+      present_value: "points.exhaust_air_damper_command.present_value"
       states:
         OPEN: "1"
-        CLOSED: "2"
-    supply_water_temperature_sensor:
-      present_value: "points.supply_water_temperature_sensor.present_value"
-      units:
-        key: "pointset.points.supply_water_temperature_sensor.units"
-        values:
-          degrees_celsius: "degC"
+        CLOSED: "0"
+    exhaust_air_damper_status:
+      present_value: "points.exhaust_air_damper_status.present_value"
+      states:
+        OPEN: "1"
+        CLOSED: "0"
