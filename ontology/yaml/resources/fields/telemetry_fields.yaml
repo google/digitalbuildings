@@ -650,8 +650,8 @@ literals:
 - photocatalyst_status
 - device_alarm_status
 - average_supply_air_temperature_sensor
-- static_humidity_sensor
 #- emergency_lamp_status
+#- air_dryer_particle sensor
 
 # Added 9/14/20 for MY-KUL-ETIQA
 - supply_fan_alarm_status
