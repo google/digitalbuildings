@@ -945,7 +945,7 @@ FCU_DFSS_DFVSC_RTC_CHWRTC_HWRTC_CO2FC_DTM_RTM_FDPM_SSPM_FAM_CPM_HOA_OPTM_CHGOVTC
   - DARC # New abstract created for S2   
 
 # FCU Type 2 & Type SP
-FCU_DFSS_DFVSC_DTC_CHWDTC_HWDTC_CO2FC_DTM_RTM_FDPM_SSPM_FAM_CPM_HOA_OPTM_CHGOVTC_UNOCTC_DARC_ZTC_MSDM:
+FCU_DFSS_DFVSC_DTC_CHWDTC_HWDTC_CO2FC_DTM_RTM_FDPM_SSPM_FAM_CPM_HOA_OPTM_CHGOVTC_UNOCTC_DARC_AMZTC_MSDM:
   id: "a3002cb2-6302-4da1-bccf-c06b08f42e2b"
   description: "Hydronic variable speed fan coil with cooling and heating (discharge temp control) feeding multiple VAV’s for individual rooms (Coding Caves & Sleeping Pods) and fan speed CO2 overrideIf the discharge air temperature sensor fails, the unit will automatically change over to zone air temperature control with the option for average or maximum zone air temperature control. Hand/Off/Auto operation is provided, with optimizer control and fabric protection. Discharge air temperature, return air temperature, supply static pressure, filter differential pressure, condensation pump status, fire alarm status and maximum vav supply damper position are all monitored by this unit. There are also latching alarms which can be reset with a command."
   is_canonical: true
@@ -968,7 +968,7 @@ FCU_DFSS_DFVSC_DTC_CHWDTC_HWDTC_CO2FC_DTM_RTM_FDPM_SSPM_FAM_CPM_HOA_OPTM_CHGOVTC
   - CHGOVTC # New abstract created for S2 
   - UNOCTC # New abstract created for S2 
   - DARC  # New abstract created for S2  
-  - ZTC # Existing with optional points added for S2
+  - AMZTC # New abstract created for S2 
   - MSDM # New abstract created for S2 
 
 # FCU Type 3A

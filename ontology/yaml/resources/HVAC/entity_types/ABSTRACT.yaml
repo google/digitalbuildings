@@ -3144,6 +3144,8 @@ REFSM:
 PDSCV:
   description: "Pressure-dependent supply damper control for ventilation purposes (CO2 or VOC)."
   is_abstract: true
+  opt_uses:
+  - min_supply_air_damper_percentage_setpoint
   uses:
   - supply_air_damper_percentage_command
   - supply_air_damper_percentage_sensor

@@ -1006,3 +1006,4 @@ literals:
 - supply_fan_reset_command:
 - heating_water_request_count:
 - chilled_water_request_count:
+- min_supply_air_damper_percentage_setpoint:
