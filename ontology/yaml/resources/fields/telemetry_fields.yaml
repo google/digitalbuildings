@@ -610,8 +610,8 @@ literals:
 - device_fault_status
 - fire_alarm_status
 - fire_fault_status
-- makeup_water_high_tank_percentage_status
-- makeup_water_low_tank_percentage_status
+- makeup_water_high_tank_status
+- makeup_water_low_tank_status
 - max_cooling_air_flowrate_setpoint
 - min_cooling_air_flowrate_setpoint
 - pump_fault_status
@@ -628,17 +628,10 @@ literals:
 
 # Added 9/14/20 for TW-NTC-TPKD
 - condensing_water_valve_percentage_sensor
-- primary_speed_percentage_command
-- primary_speed_percentage_sensor
-- secondary_speed_percentage_command
-- secondary_speed_percentage_sensor
 - gas_leak_detection_alarm_status
-- air_discharge_compressor_pressure_sensor
-- mixed_air_discharge_compressor_pressure_sensor
-- hot_water_supply_temperature_sensor
+- discharge_air_pressure_sensor
+- heating_supply_water_temperature_sensor
 - hot_water_return_temperature_sensor
-- mixing_hot_water_supply_temperature_sensor
-- mixing_hot_water_return_temperature_sensor
 - hot_water_circulation_supply_temperature_sensor
 - hot_water_circulation_return_temperature_sensor
 - air_dryer_dewpoint_temperature_sensor
@@ -647,15 +640,13 @@ literals:
 - zone_dimmer_percentage_command
 - zone_scene_command
 - zone_scene_dimmer_percentage_command
-- air_differential_pressure_status
-- air_differential_pressure_sensor
 - air_static_pressure_sensor
-- high_heater_power_command
-- low_heater_power_command
-- medium_heater_power_command
-- high_heater_power_status
-- low_heater_power_status
-- medium_heater_power_status
+- high_heater_run_command
+- low_heater_run_command
+- medium_heater_run_command
+- high_heater_run_status
+- low_heater_run_status
+- medium_heater_run_status
 - photocatalyst_status
 - device_alarm_status
 - average_supply_air_temperature_sensor
