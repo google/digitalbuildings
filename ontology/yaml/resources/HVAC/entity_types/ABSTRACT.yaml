@@ -918,7 +918,7 @@ VOCM:
   description: "Volatile organic compound monitoring."
   is_abstract: true
   uses:
-  - zone_air_voc_concentration_sensor
+  - zone_air_voc_percentage_sensor
   implements:
   - MONITORING
 
@@ -929,8 +929,8 @@ VOCC:
   opt_uses:
   - zone_air_voc_concentration_status
   uses:
-  - zone_air_voc_concentration_setpoint
-  - zone_air_voc_concentration_sensor
+  - zone_air_voc_percentage_setpoint
+  - zone_air_voc_percentage_sensor
   implements:
   - OPERATIONAL
 
@@ -3446,3 +3446,20 @@ CHWVLVM:
   - chilled_water_valve_percentage_sensor
   implements:
   - MONITORING
+
+AMZTC:
+  id: "39bb9508-3ccf-40b1-8aca-e913df3a8196"
+  description: "Average & maximum zone temperature control."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  opt_uses:
+  - zone_air_deadband_temperature_setpoint
+  - zone_air_temperature_status
+  - zone_air_temperature_mode
+  - zone_controller_alarm_status 
+  - max_zone_air_temperature_setpoint # High level temperature setpoint for fan speed increase
+  uses:
+  - max_zone_air_temperature_sensor # Maximum temperature sensor reading in a zone
+  - average_zone_air_temperature_sensor # Average of temperature sensor readings in a zone
+  - zone_air_temperature_setpoint

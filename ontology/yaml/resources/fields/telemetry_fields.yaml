@@ -420,8 +420,8 @@ literals:
 - west_exhaust_air_damper_percentage_command
 - zone_air_static_pressure_sensor
 - zone_air_static_pressure_setpoint
-- zone_air_voc_concentration_sensor
-- zone_air_voc_concentration_setpoint
+- zone_air_voc_percentage_sensor
+- zone_air_voc_percentage_setpoint
 
 ## Added on 2019/03/12
 - cooling_percentage_command
@@ -947,7 +947,7 @@ literals:
 - return_damper_mismatch_status:
 - return_damper_override_status:
 - return_air_co2_concentration_sensor:
-- return_air_voc_concentration_sensor:
+- return_air_voc_percentage_sensor:
 - return_damper_percentage_command:
 - return_damper_percentage_sensor:
 - supply_air_heating_low_temperature_setpoint:
