@@ -1,0 +1,35 @@
+# Copyright 2020 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the License);
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#    https://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an AS IS BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# ANALYSIS TYPES
+
+# Simple tags to explicitly indicate the completeness of a subtype.
+# The goal is to use these tags to filter analyses to subtypes that
+# represent similar portions of the control process.
+
+
+CONTROL:
+  id: "f6679200-8380-4cfb-9e2b-22ab2641cd5d"
+  description: "A tag to represent that the subtype forms a control unit. Ex: temperature, setpoint, heater output"
+  is_abstract: true
+
+OPERATIONAL:
+  id: "f65018c7-a207-4591-87f7-8a6f4ce08237"
+  description: "A tag to represent that the subtype forms an operational group. Ex: temperature and setpoint."
+  is_abstract: true
+
+MONITORING:
+  id: "2c2b7729-4d5a-427b-8b31-d7f189dafa65"
+  description: "A tag to represent that the subtype forms a monitoring group. Ex: temperature sensor only. "
+  is_abstract: true
