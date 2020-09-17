@@ -10,7 +10,7 @@ This document is intended to provide answers to frequently asked questions regar
 The model takes the form of a building configuration file (see [here](building_config.md)). It contains all the relevant information for the building: what devices exist, what types they apply, which devices connect to which other devices, what devices serve which zone, etc.
 
 ## Why have a building model?
-**It makes building data useful.** 
+**It makes building data useful (it can be understood by a machine or human) and is recognizable across any deployment.** 
 
 Smart building platforms can only give insights into things they can be made to understand -- either implicitly or explicitly. For example, an analysis of all VAV dampers on a floor requires that the data be structured in a way that makes clear what a VAV is, which VAVs have available damper data, and what floor those VAVs reside on. This information must be defined; without it, the analysis cannot be performed (or at least not in a straightforward, repeatable way). The building model provides these connections and definitions which make it easy -- with the right tooling -- to ask sophisticated questions of the relevant building data.  
 
@@ -64,6 +64,11 @@ These are states which the device interprets from underlying data (whether it is
 ### Configuration Information
 These are internal device points which are used to configure the way in which the device attempts to maintain control values, or how its components control internally. Stage up/down timers, PID gains, etc.; configuration information is rarely modeled. 
 
+## Should alarms or faults be modeled?
+**No, unless there is an explicit need to do so.**
+
+Most alarms can be inferred from the sensor data already available (e.g. `supply_fan_run_command` == ON and `supply_fan_run_status` == OFF shows a fan failure, so an additional point that does that inferrence is redundant). Redundancy should always be minimized.
+
 ## How do you extend the ontology?
 **This depends on what needs to be extended.** 
 
@@ -93,6 +98,11 @@ If new subfields, fields, or abstract types are needed in order to be able to co
 **If the extension passes the type validator and passes review by the team, it will be accepted.** 
 
 The type validator checks that additions or changes to the ontology do not break existing rules or compatibility (for example, the type validator will raise errors if a new field is added which is composed of undefined subfields). A review of the proposed extensions will be performed by the Digital Buildings team, which include building systems subject matter experts and software developers. The review covers both the subject matter (e.g. is a subfield too broadly defined for the intended application) and its holistic effect on the ontology (e.g. does it set precedent that makes further extension difficult). These reviews may require some deliberation and can result in proposed changes to the pull request, so it is better to submit pull requests in phases. See the next question for what is advised on ordering of ontology updates.
+
+## How do I run type validator?
+**Either run it locally on your machine (hard way), or submit a pull request (easy way).**
+
+The type validator will issue all warnings and errors when it runs. Run it iteratively, making fixes as necessary, until the validator does not complain anymore.
 
 ## What is the best way to make ontology extensions without significant rework?
 **For small updates, submit them all at once; otherwise, phase the updates, starting with subfields, then fields, then abstract types, and finally canonical types.** 
