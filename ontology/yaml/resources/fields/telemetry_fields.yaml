@@ -1007,3 +1007,4 @@ literals:
 - heating_water_request_count:
 - chilled_water_request_count:
 - min_supply_air_damper_percentage_setpoint:
+- exhaust_air_static_pressure_status:
