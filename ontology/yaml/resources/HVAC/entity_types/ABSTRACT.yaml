@@ -3146,9 +3146,12 @@ PDSCV:
   is_abstract: true
   opt_uses:
   - min_supply_air_damper_percentage_setpoint
+  - supply_air_damper_override_status
   uses:
   - supply_air_damper_percentage_command
   - supply_air_damper_percentage_sensor
+  - supply_air_damper_alarm_status
+  - supply_air_damper_reset_command
   implements:
   - CONTROL
 
@@ -3457,10 +3460,13 @@ AMZTC:
   - OPERATIONAL
   opt_uses:
   - zone_air_deadband_temperature_setpoint
+  - zone_air_relative_humidity_sensor
+  - zone_air_relative_humidity_status
   - zone_air_temperature_status
   - zone_air_temperature_mode
   - zone_controller_alarm_status 
   - max_zone_air_temperature_setpoint # High level temperature setpoint for fan speed increase
+  - zone_air_cooling_temperature_setpoint # Temperature setpoint for cooling loop initiation
   uses:
   - max_zone_air_temperature_sensor # Maximum temperature sensor reading in a zone
   - average_zone_air_temperature_sensor # Average of temperature sensor readings in a zone
