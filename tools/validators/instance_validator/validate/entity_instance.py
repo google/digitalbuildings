@@ -95,8 +95,8 @@ class EntityInstance(findings_lib.Findings):
       print('Invalid namespace:', namespace)
       return False
 
-    entity_type_from_universe = self.universe.GetEntityType(namespace, entity_type)
-    if entity_type_from_universe is None:
+    entity_type_universe = self.universe.GetEntityType(namespace, entity_type)
+    if entity_type_universe is None:
       print('Invalid entity type:', entity_type)
       return False
     elif entity_type_from_universe.is_abstract:
