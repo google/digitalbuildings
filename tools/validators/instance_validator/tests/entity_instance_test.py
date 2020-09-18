@@ -83,7 +83,7 @@ class EntityInstanceTest(absltest.TestCase):
       self.fail('exception not raised')
 
 
-  def testValidateBadAbstractType(self):
+  def testValidateRejectsUseOfAbstractType(self):
     parsed = instance_parser.parse_yaml(
         os.path.join(_TESTCASE_PATH,
                      'BAD',
