@@ -99,7 +99,7 @@ class EntityInstance(findings_lib.Findings):
     if entity_type_universe is None:
       print('Invalid entity type:', entity_type)
       return False
-    elif entity_type_from_universe.is_abstract:
+    elif entity_type_universe.is_abstract:
       print('Abstract types cannot be directly used:', entity_type)
       return False
 
