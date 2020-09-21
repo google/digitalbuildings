@@ -1,0 +1,92 @@
+# Building
+ch-zrh-eurd:
+  type: FACILITIES/BUILDING
+  id: 17400aae-c49a-49d4-a585-8a234f29532d
+
+# Floor 08
+ch-zrh-eurd-08:
+  type: FACILITIES/FLOOR
+  id: 36092aaf-4a0b-4961-b209-6d01f823b440
+  connections:
+    ch-zrh-eurd: CONTAINS
+
+# Room 1100
+ch-zrh-eurd-08-1100:
+  type: FACILITIES/ROOM
+  id: 80435f45-cecf-4faf-8eb7-256eed75532d
+  connections:
+    ch-zrh-eurd-08: CONTAINS
+
+# Room 1103
+ch-zrh-eurd-08-1103:
+  type: FACILITIES/ROOM
+  id: cf317329-24e0-4b54-95a1-ff9976c86629
+  connections:
+    ch-zrh-eurd-08: CONTAINS
+
+# MTS-001
+ch-zrh-eurd-mts-001-08-1100:
+  type: LIGHTNING/LMS
+  id: ee7ea844-d384-4b2c-b540-a7657310e6f8
+  connections:
+    ch-zrh-eurd-08-1100: CONTAINS
+  translation:
+    switch_light_command:
+      present_value: "points.switch_light_command.present_value"
+      states:
+        ON: "1"
+        OFF: "0"
+
+# Fan Coil Unit =310M1
+ch-zrh-eurd-fcu-001-08-1103:
+  type: FCU/FCU_DFSS_CSP_CHWZC
+  id: 149904ea-877e-4bfa-9290-1380bd9b8a70
+  connections:
+    ch-zrh-eurd-08-1103: FEEDS
+  translation:
+    discharge_fan_run_command:
+      present_value: "points.discharge_fan_run_command.present_value"
+      states:
+        ENABLE: "1"
+        DISABLE: "0"
+    discharge_fan_run_status:
+      present_value: "points.discharge_fan_run_status.present_value"
+      states:
+        RUNNING: "1"
+        NOT_RUNNING: "0"
+    zone_air_temperature_sensor:
+      present_value: "points.zone_air_temperature_sensor.present_value"
+      units:
+        key: "pointset.points.zone_air_temperature_sensor.units"
+      values:
+        degrees_celsius: "degC"
+    zone_air_cooling_temperature_setpoint:
+      present_value: "points.zone_air_cooling_temperature_setpoint.present_value"
+      units:
+        key: "pointset.zone_air_cooling_temperature_setpoint.units"
+        values:
+          degrees_celsius: "degC"
+    chilled_water_valve_percentage_command:
+      present_value: "points.chilled_water_valve_percentage_command.present_value"
+      units:
+        key: "pointset.chilled_water_valve_percentage_command.units"
+        values:
+          percent: "%"
+
+# Fan Coil Unit =311M1
+ch-zrh-eurd-fcu-002-08-1103:
+  type: FCU/FCU_DFSS_CSP_CHWZC
+  id: 6ff08afc-0c90-4b66-8c82-6573974e080
+  connections:
+    ch-zrh-eurd-08-1103: FEEDS
+  translation:
+    translate_like: ch-zrh-eurd-fcu-001-08-1103
+
+# Fan Coil Unit =312M1
+ch-zrh-eurd-fcu-003-08-1103:
+  type: FCU/FCU_DFSS_CSP_CHWZC
+  id: 853f2cf5-1fd5-405b-bfa7-db328a77e4a8
+  connections:
+    ch-zrh-eurd-08-1103: FEEDS
+  translation:
+    translate_like: ch-zrh-eurd-fcu-001-08-1103
