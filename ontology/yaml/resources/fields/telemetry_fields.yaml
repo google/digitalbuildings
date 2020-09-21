@@ -607,48 +607,37 @@ literals:
 
 # Added 9/8/20 for SG-SIN-MBC2
 - chilled_return_water_flowrate_sensor
-- device_fault_status
+- run_alarm_status
 - fire_alarm_status
 - fire_fault_status
 - makeup_water_high_tank_status
 - makeup_water_low_tank_status
 - max_cooling_air_flowrate_setpoint
 - min_cooling_air_flowrate_setpoint
-- pump_fault_status
-- pump_run_status
-- recovery_alarm_command
-- schedule_command
 - photocatalyst_filter_run_status
 - water_high_tank_alarm_status
 - water_leak_alarm_status
 - water_leak_detection_fault_status
-- zone_command
-# - automatic_mode
-# - ballast_status
+- zone_scene_command
+#- reset_run_alarm_command
+#- automatic_mode
+#- ballast_status
 
 # Added 9/14/20 for TW-NTC-TPKD
 - condensing_water_valve_percentage_sensor
 - gas_leak_detection_alarm_status
 - discharge_air_pressure_sensor
 - heating_supply_water_temperature_sensor
-- hot_water_return_temperature_sensor
-- hot_water_circulation_supply_temperature_sensor
-- hot_water_circulation_return_temperature_sensor
-- air_dryer_dewpoint_temperature_sensor
-- air_dryer_pressure_sensor
-- air_dryer_flowrate_sensor
+- heating_return_water_temperature_sensor
+- mixing_heating_supply_water_temperature_sensor
+- mixing_heating_return_water_temperature_sensor
+- circulation_heating_supply_water_temperature_sensor
+- circulation_heating_return_water_temperature_sensor
+- dewpoint_temperature_sensor
+- pressure_sensor
 - zone_dimmer_percentage_command
-- zone_scene_command
 - zone_scene_dimmer_percentage_command
-- air_static_pressure_sensor
-- high_heater_run_command
-- low_heater_run_command
-- medium_heater_run_command
-- high_heater_run_status
-- low_heater_run_status
-- medium_heater_run_status
 - photocatalyst_status
-- device_alarm_status
 - average_supply_air_temperature_sensor
 #- emergency_lamp_status
 #- air_dryer_particle sensor
@@ -659,8 +648,8 @@ literals:
 - leak_detection_alarm_status
 - max_supply_air_flowrate_sensor
 - min_supply_air_flowrate_sensor
-- master_alarm_mode
 - open_status
 - emergency_status
 - fault_status
 - alarm_status
+#- reset_master_alarm_status
