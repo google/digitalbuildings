@@ -124,6 +124,7 @@ literals:
 - power_sensor
 - return_air_relative_humidity_sensor
 - return_air_temperature_sensor
+- max_supply_air_damper_percentage_sensor
 - return_air_temperature_setpoint
 - return_water_temperature_sensor
 - reversing_valve_command:
@@ -419,8 +420,8 @@ literals:
 - west_exhaust_air_damper_percentage_command
 - zone_air_static_pressure_sensor
 - zone_air_static_pressure_setpoint
-- zone_air_voc_concentration_sensor
-- zone_air_voc_concentration_setpoint
+- zone_air_voc_percentage_sensor
+- zone_air_voc_percentage_setpoint
 
 ## Added on 2019/03/12
 - cooling_percentage_command
@@ -604,3 +605,701 @@ literals:
 
 # Added 4/12/20
 - supply_air_damper_percentage_sensor
+
+# Added 18/08/20 for S2
+- average_zone_air_temperature_sensor:
+- max_zone_air_temperature_setpoint:
+- zone_air_relative_humidity_status:
+  - HEALTHY
+  - ALARM
+- zone_air_temperature_status:
+  - HEALTHY
+  - ALARM    
+- zone_controller_alarm_status: 
+  - HEALTHY
+  - ALARM  
+- max_zone_air_temperature_sensor:  
+- zone_air_co2_concentration_status:
+  - HEALTHY
+  - ALARM
+- total_air_co2_concentration_setpoint:
+- min_discharge_fan_temperature_setpoint:
+- discharge_fan_run_time_sensor:
+- discharge_fan_override_status:
+  - HEALTHY
+  - ALARM  
+- runtime_discharge_fan_reset_command:
+  - ON
+  - OFF
+- discharge_fan_run_time_setpoint:
+- discharge_air_heating_high_alarm_status:
+  - HEALTHY
+  - ALARM
+- discharge_air_heating_alarm_status:
+  - HEALTHY
+  - ALARM
+- discharge_air_cooling_low_alarm_status:
+  - HEALTHY
+  - ALARM
+- discharge_air_cooling_alarm_status:
+  - HEALTHY
+  - ALARM
+- discharge_air_temperature_status:
+  - HEALTHY
+  - ALARM
+- discharge_fan_fault_status:
+  - HEALTHY
+  - ALARM
+- discharge_fan_alarm_status:
+  - HEALTHY
+  - ALARM  
+- discharge_fan_speed_status:
+  - HEALTHY
+  - ALARM
+- max_discharge_fan_temperature_setpoint:
+- runtime_discharge_fan_alarm_status:
+  - HEALTHY
+  - ALARM
+- return_air_temperature_status:
+  - HEALTHY
+  - ALARM
+- exhaust_air_flowrate_status:
+  - HEALTHY
+  - ALARM
+- exhaust_air_damper_reset_command:
+  - ON
+  - OFF
+- exhaust_air_damper_override_status:
+  - HEALTHY
+  - ALARM
+- exhaust_air_damper_alarm_status:
+  - HEALTHY
+  - ALARM
+- exhaust_air_damper_override_percentage_status:
+  - HEALTHY
+  - ALARM
+- min_zone_air_relative_humidity_setpoint:
+- max_zone_air_relative_humidity_setpoint:
+- zone_air_relative_humidity_mode:
+  - ON
+  - OFF
+- high_zone_air_relative_humidity_status:
+  - HEALTHY
+  - ALARM
+- zone_air_voc_concentration_status:
+  - HEALTHY
+  - ALARM
+- filter_differential_pressure_setpoint:
+- filter_differential_pressure_status:
+  - HEALTHY
+  - ALARM
+- filter_reset_command:
+  - ON
+  - OFF
+- chilled_water_exercise_valve_status:
+  - ON
+  - OFF
+- chilled_water_valve_override_status:
+  - HEALTHY
+  - ALARM
+- chilled_water_valve_alarm_status:
+  - HEALTHY
+  - ALARM
+- chilled_water_valve_offline_status:
+  - HEALTHY
+  - ALARM
+- min_chilled_water_valve_temperature_setpoint:
+- chilled_water_request_status:
+  - ON
+  - OFF
+- max_chilled_water_valve_temperature_setpoint:
+- max_heating_water_valve_temperature_setpoint:
+- heating_water_exercise_valve_status:
+  - ON
+  - OFF   
+- heating_water_valve_alarm_status:
+  - HEALTHY
+  - ALARM
+- heating_water_request_status:
+  - ON
+  - OFF
+- heating_water_valve_offline_status:
+  - HEALTHY
+  - ALARM
+- heating_water_valve_override_status:
+  - HEALTHY
+  - ALARM
+- min_heating_water_valve_temperature_setpoint:
+- supply_air_static_pressure_status:
+  - HEALTHY
+  - ALARM
+- supply_air_flowrate_status:
+  - HEALTHY
+  - ALARM
+- low_supply_air_offset_pressure_setpoint:
+- high_supply_air_offset_pressure_setpoint:
+- supply_air_damper_override_percentage_status:
+  - HEALTHY
+  - ALARM
+- supply_air_damper_override_status:
+  - HEALTHY
+  - ALARM
+- low_supply_air_damper_offset_percentage_command:
+- high_supply_air_damper_offset_percentage_command:
+- supply_air_damper_reset_command:
+  - ON
+  - OFF
+- supply_air_damper_alarm_status:
+  - HEALTHY
+  - ALARM
+- zone_air_co2_run_command:
+  - ON
+  - OFF
+- fire_alarm_status:
+  - HEALTHY
+  - ALARM
+- condensate_pump_alarm_status:
+  - HEALTHY
+  - ALARM
+- device_mode:
+  - OFF
+  - AUTO
+  - HAND
+- zone_mode:
+  - UNOCCUPIED
+  - OCCUPIED
+  - COOLING_BOOST
+  - HEATING_BOOST
+  - FABRIC_PROTECTION
+  - OPTIMUM_STOP
+- max_economizer_limit_time_setpoint:
+- temperature_setpoint:
+- min_unoccupied_temperature_setpoint:
+- max_unoccupied_temperature_setpoint:
+- unoccupied_run_command:
+- device_reset_command:
+  - ON
+  - OFF
+- zone_command:
+  - ON
+  - OFF
+
+# Added 28/08/20 for S2
+- cold_aisle_air_temperature_status:
+- cold_aisle_air_high_temperature_status:
+- cold_aisle_air_critical_temperature_status:
+- cold_aisle_air_relative_humidity_status:
+- cold_aisle_air_low_relative_humidity_status:
+- cold_aisle_air_high_relative_humidity_status:
+- hot_aisle_air_temperature_status:
+- hot_aisle_air_high_temperature_status:
+- hot_aisle_air_relative_humidity_status:
+- cold_aisle_air_high_temperature_setpoint:
+- cold_aisle_air_high_delay_temperature_setpoint:
+- cold_aisle_air_critical_temperature_setpoint:
+- cold_aisle_air_relative_humidity_sensor:
+- cold_aisle_air_low_relative_humidity_setpoint:
+- cold_aisle_air_high_relative_humidity_setpoint:
+- hot_aisle_air_high_temperature_setpoint:
+- hot_aisle_air_high_delay_temperature_setpoint:
+- hot_aisle_air_relative_humidity_sensor:
+- inlet_smoke_damper_status:
+- leaving_smoke_damper_status:
+- inlet_smoke_damper_mismatch_status:
+- leaving_smoke_damper_mismatch_status:
+- gas_suppression_status:
+- gas_suppression_run_status:
+- gas_suppression_fault_status:
+- gas_suppression_alarm_status:
+- device_alarm_status:
+- supply_fan_alarm_status:
+- supply_air_temperature_status:
+- supply_air_low_temperature_status:
+- supply_air_high_temperature_status:
+- discharge_air_low_alarm_status:
+- water_leak_alarm_status:
+- power_status:
+- inlet_air_rack_temperature_sensor:
+- transfer_fan_reset_command:
+- runtime_transfer_fan_reset_command:
+- transfer_fan_run_command:
+- transfer_fan_run_status:
+- transfer_fan_fault_status:
+- transfer_fan_alarm_status:
+- transfer_fan_override_status:
+- transfer_fan_speed_status:
+- transfer_fan_run_time_status:
+- zone_high_differential_pressure_status:
+- transfer_fan_mismatch_status:
+- transfer_fan_speed_percentage_command:
+- transfer_fan_run_time_sensor:
+- transfer_fan_run_time_setpoint:
+- zone_differential_pressure_sensor:
+- zone_differential_pressure_setpoint:
+- critical_device_alarm_status:
+- zone_air_high_temperature_status:
+- zone_air_critical_temperature_status:
+- zone_air_high_temperature_setpoint:
+- zone_air_high_delay_temperature_setpoint:
+- zone_air_critical_temperature_setpoint:
+- device_run_command:
+- device_fault_status:
+- pump_fault_status:
+- exhaust_air_co2_concentration_sensor:
+- exhaust_air_relative_humidity_sensor:
+- discharge_fan_reset_command:
+- discharge_air_high_temperature_status:
+- discharge_air_critical_temperature_status:
+- isolation_damper_alarm_status:
+- isolation_damper_mismatch_status:
+- chilled_water_isolation_valve_alarm_status:
+- chilled_water_isolation_valve_mismatch_status:
+- discharge_fan_mismatch_status:
+- condensate_pump_fault_status:
+- chilled_water_valve_mismatch_status:
+- process_filter_run_status:
+- chilled_water_mismatch_flowrate_status:
+- chilled_water_flowrate_status:
+- isolation_damper_command:
+- discharge_air_high_temperature_setpoint:
+- discharge_air_high_delay_temperature_setpoint:
+- discharge_air_critical_temperature_setpoint:
+- duty_device_run_command:
+- duty_device_run_status:
+- standby_device_run_command:
+- supply_air_cooling_alarm_status:
+- supply_air_cooling_low_alarm_status:
+- supply_fan_override_status:
+- leaving_air_cooling_coil_temperature_status:
+- mixed_air_temperature_status:
+- supply_air_relative_humidity_status:
+- mixed_air_relative_humidity_status:
+- supply_fan_fault_status:
+- supply_fan_mismatch_status:
+- supply_fan_speed_status:
+- supply_fan_run_time_status:
+- runtime_supply_fan_reset_command:
+- leaving_air_cooling_coil_temperature_sensor:
+- mixed_air_relative_humidity_sensor:
+- isolation_damper_percentage_command:
+- supply_fan_run_time_sensor:
+- supply_fan_run_time_setpoint:
+- supply_air_temperature_mode:
+- supply_air_control_temperature_sensor:
+- supply_air_deadband_temperature_setpoint:
+- zone_air_low_temperature_setpoint:
+- supply_air_low_temperature_setpoint:
+- supply_air_high_temperature_setpoint:
+- cooling_stage_initiation_start_time_sensor:
+- cooling_stage_termination_start_time_sensor:
+- cooling_stage_outside_air_start_temperature_sensor:
+- cooling_stage_zone_air_start_temperature_sensor:
+- min_cooling_stage_zone_air_start_temperature_sensor:
+- cooling_stage_zone_air_start_time_sensor:
+- cooling_stage_end_time_sensor:
+- cooling_stage_outside_air_end_temperature_sensor:
+- cooling_stage_zone_air_end_temperature_sensor:
+- min_cooling_stage_zone_air_end_temperature_sensor:
+- cooling_stage_zone_air_end_time_sensor:
+- zone_air_static_pressure_status:
+- zone_air_low_static_pressure_status:
+- zone_air_high_static_pressure_status:
+- zone_air_low_static_pressure_setpoint:
+- zone_air_high_static_pressure_setpoint:
+- leaving_air_heating_coil_temperature_status:
+- heating_water_valve_mismatch_status:
+- supply_air_heating_alarm_status:
+- supply_air_heating_high_alarm_status:
+- cooling_stage_start_status:
+- cooling_stage_end_status:
+- heating_stage_start_status:
+- heating_stage_end_status:
+- leaving_air_heating_coil_temperature_sensor:
+- heating_stage_initiation_start_time_sensor:
+- heating_stage_termination_start_time_sensor:
+- heating_stage_outside_air_start_temperature_sensor:
+- heating_stage_zone_air_start_temperature_sensor:
+- min_heating_stage_zone_air_start_temperature_sensor:
+- heating_stage_zone_air_start_time_sensor:
+- heating_stage_end_time_sensor:
+- heating_stage_outside_air_end_temperature_sensor:
+- heating_stage_zone_air_end_temperature_sensor:
+- min_heating_stage_zone_air_end_temperature_sensor:
+- heating_stage_zone_air_end_time_sensor:
+- outside_air_low_temperature_command:
+- panel_filter_differential_pressure_status:
+- bag_filter_differential_pressure_status:
+- panel_filter_alarm_status:
+- bag_filter_alarm_status:
+- supply_air_delay_time_setpoint:
+- panel_filter_differential_pressure_sensor:
+- panel_filter_differential_pressure_setpoint:
+- bag_filter_differential_pressure_sensor:
+- bag_filter_differential_pressure_setpoint:
+- zone_differential_pressure_status:
+- supply_air_control_temperature_setpoint:
+- supply_air_increment_temperature_setpoint:
+- supply_air_alarm_temperature_setpoint:
+- supply_air_alarm_pressure_setpoint:
+- return_air_co2_concentration_status:
+- return_air_relative_humidity_status:
+- return_air_voc_concentration_status:
+- return_damper_mismatch_status:
+- return_damper_override_status:
+- return_air_co2_concentration_sensor:
+- return_air_voc_percentage_sensor:
+- return_damper_percentage_command:
+- return_damper_percentage_sensor:
+- supply_air_heating_low_temperature_setpoint:
+- supply_air_heating_high_temperature_setpoint:
+- zone_air_temperature_mode:
+- zone_air_cooling_low_temperature_setpoint:
+- zone_air_cooling_high_temperature_setpoint:
+- zone_air_heating_low_temperature_setpoint:
+- zone_air_heating_high_temperature_setpoint:
+- outside_air_temperature_status:
+- outside_air_relative_humidity_status:
+- outside_air_damper_mismatch_status:
+- outside_air_damper_override_status:
+- return_air_co2_concentration_setpoint:
+- return_air_control_co2_concentration_setpoint:
+- outside_air_co2_concentration_sensor:
+- inlet_air_damper_status:
+- inlet_air_damper_mismatch_status:
+- inlet_air_recovery_wheel_temperature_status:
+- leaving_air_recovery_wheel_temperature_status:
+- inlet_air_recovery_wheel_relative_humidity_status:
+- leaving_air_recovery_wheel_relative_humidity_status:
+- inlet_air_damper_percentage_command:
+- inlet_air_damper_percentage_sensor:
+- inlet_air_recovery_wheel_temperature_sensor:
+- leaving_air_recovery_wheel_temperature_sensor:
+- inlet_air_recovery_wheel_relative_humidity_sensor:
+- leaving_air_recovery_wheel_relative_humidity_sensor:
+- exhaust_fan_override_status:
+- exhaust_air_co2_concentration_status:
+- exhaust_air_relative_humidity_status:
+- exhaust_air_temperature_status:
+- recovery_wheel_fault_status:
+- exhaust_air_damper_mismatch_status:
+- exhaust_fan_fault_status:
+- exhaust_fan_alarm_status:
+- exhaust_fan_mismatch_status:
+- exhaust_fan_speed_status:
+- runtime_exhaust_fan_alarm_status:
+- runtime_exhaust_fan_reset_command:
+- mixing_damper_mismatch_status:
+- mixing_damper_override_status:
+- system_command:
+- recovery_wheel_speed_percentage_command:
+- exhaust_fan_run_time_sensor:
+- exhaust_fan_run_time_setpoint:
+- mixing_damper_percentage_command:
+- mixing_damper_percentage_sensor:
+- boosted_cold_water_pump_override_status:
+- boosted_cold_water_pump_run_command:
+- boosted_cold_water_high_alarm_status:
+- boosted_cold_water_pump_fault_status:
+- system_mode:
+- chiller_run_command:
+- chiller_run_status:
+- chiller_fault_status:
+- chilled_water_closing_valve_alarm_status:
+- chilled_water_critical_valve_alarm_status:
+- chilled_supply_water_temperature_status:
+- min_chilled_supply_water_temperature_status:
+- max_chilled_supply_water_temperature_status:
+- chilled_return_water_temperature_status:
+- min_chilled_return_water_temperature_status:
+- max_chilled_return_water_temperature_status:
+- chiller_override_status:
+- chilled_water_limit_valve_override_status:
+- chilled_water_differential_pressure_status:
+- chiller_status:
+- standby_chiller_status:
+- limit_cooling_status:
+- condenser_flow_status:
+- chiller_alarm_status:
+- supply_water_high_chiller_temperature_status:
+- high_chiller_temperature_status:
+- low_chiller_temperature_status:
+- compressor_fault_status:
+- chilled_water_low_level_alarm_status:
+- chilled_water_high_level_alarm_status:
+- low_glycol_alarm_status:
+- service_alarm_status:
+- protection_alarm_status:
+- consumption_alarm_status:
+- free_cooling_status:
+- chilled_water_flowrate_setpoint:
+- chilled_water_start_flowrate_setpoint:
+- chilled_water_control_differential_pressure_sensor:
+- supply_water_chiller_temperature_sensor:
+- return_water_chiller_temperature_sensor:
+- condensing_water_temperature_sensor:
+- evaporative_water_temperature_sensor:
+- compressor_load_percentage_command:
+- compressor_load_percentage_sensor:
+- chilled_supply_water_start_temperature_setpoint:
+- min_chilled_water_temperature_setpoint:
+- max_chilled_water_temperature_setpoint:
+- chilled_water_low_increment_temperature_setpoint:
+- chilled_water_high_increment_temperature_setpoint:
+- chilled_supply_water_control_temperature_setpoint:
+- exhaust_air_voc_concentration_status:
+- mixed_air_co2_concentration_status:
+- mixed_air_voc_concentration_status:
+- return_air_damper_mismatch_status:
+- return_air_damper_override_status:
+- mixed_air_static_pressure_status:
+- exhaust_air_voc_percentage_sensor:
+- mixed_air_co2_concentration_sensor:
+- mixed_air_voc_percentage_sensor:
+- mixed_air_co2_concentration_setpoint:
+- mixed_air_control_co2_concentration_setpoint:
+- return_air_damper_percentage_sensor:
+- mixed_air_static_pressure_sensor:
+- mixed_air_static_pressure_setpoint:
+- min_zone_air_temperature_sensor:
+- chilled_water_request_count:
+- heating_water_request_count:
+- chilled_water_low_leak_alarm_status:
+- heating_water_low_leak_alarm_status:
+- chilled_water_high_leak_alarm_status:
+- heating_water_high_leak_alarm_status:
+- chilled_supply_water_low_flowrate_sensor:
+- chilled_return_water_low_flowrate_sensor:
+- heating_supply_water_low_flowrate_sensor:
+- heating_return_water_low_flowrate_sensor:
+- chilled_water_differential_flowrate_setpoint:
+- heating_water_differential_flowrate_setpoint:
+- chilled_supply_water_high_flowrate_sensor:
+- chilled_return_water_high_flowrate_sensor:
+- heating_supply_water_high_flowrate_sensor:
+- heating_return_water_high_flowrate_sensor:
+- heat_device_run_status:
+- heat_device_fault_status:
+- system_reset_command:
+- hot_water_system_override_status:
+- hot_water_meter_alarm_status:
+- hot_return_water_temperature_status:
+- hot_water_system_run_command:
+- hot_water_flowrate_setpoint:
+- hot_water_flowrate_sensor:
+- hot_return_water_temperature_sensor:
+- chilled_water_system_override_status:
+- chilled_water_system_low_pressure_status:
+- chilled_water_system_shutdown_pressure_status:
+- chilled_water_duty_pump_command:
+- chilled_water_duty_pump_status:
+- chilled_water_meter_alarm_status:
+- chilled_water_critical_pump_alarm_status:
+- chilled_water_start_temperature_setpoint:
+- chilled_water_limit_temperature_setpoint:
+- filter_alarm_pressure_status:
+- total_boosted_cold_water_volume_sensor:
+- boosted_cold_water_flowrate_sensor:
+- total_heating_water_volume_sensor:
+- zone_air_heating_high_alarm_status:
+- zone_air_heating_alarm_status:
+- zone_air_cooling_low_alarm_status:
+- zone_air_cooling_alarm_status:
+- min_exhaust_fan_speed_percentage_setpoint:
+- max_exhaust_fan_speed_percentage_setpoint:
+- exhaust_fan_reset_command:
+- min_supply_fan_speed_percentage_setpoint:
+- runtime_supply_fan_alarm_status:
+- max_supply_fan_speed_percentage_setpoint:
+- supply_fan_reset_command:
+- supply_air_cooling_low_temperature_setpoint:
+- supply_air_cooling_high_temperature_setpoint:
+- return_air_flowrate_status:
+- return_air_damper_reset_command:
+- return_air_damper_alarm_status:
+- return_air_damper_override_percentage_status:
+- transfer_fan_current_sensor:
+- transfer_fan_power_sensor:
+- transfer_fan_speed_frequency_sensor:
+- transfer_fan_speed_percentage_sensor:
+- return_damper_status:
+- return_damper_alarm_status:
+- mixing_damper_status:
+- mixing_damper_alarm_status:
+- outside_air_damper_alarm_status:
+- outside_air_co2_concentration_status:
+- transfer_air_flowrate_capacity:
+- transfer_fan_power_capacity:
+- min_chilled_water_valve_percentage_setpoint:
+- hot_supply_water_temperature_status:
+- hot_supply_water_mismatch_temperature_status:
+- hot_water_tank_temperature_status:
+- max_hot_water_tank_temperature_status:
+- hot_water_heater_mismatch_current_status:
+- hot_water_heater_fault_status:
+- hot_water_pasteurization_run_command:
+- hot_water_pasteurization_alarm_status:
+- hot_water_bypass_system_command:
+- hot_water_exercise_valve_status:
+- hot_supply_water_temperature_sensor:
+- hot_supply_water_temperature_setpoint:
+- hot_return_water_temperature_setpoint:
+- hot_water_tank_temperature_sensor:
+- hot_water_tank_temperature_setpoint:
+- hot_water_heater_percentage_command:
+- hot_water_heater_current_sensor:
+- primary_chilled_water_valve_command:
+- primary_chilled_water_valve_status:
+- primary_chilled_water_valve_mismatch_status:
+- secondary_chilled_water_valve_mismatch_status:
+- secondary_chilled_water_mismatch_flowrate_status:
+- primary_chilled_supply_water_temperature_status:
+- primary_chilled_return_water_temperature_status:
+- secondary_chilled_supply_water_temperature_status:
+- min_secondary_chilled_supply_water_temperature_status:
+- max_secondary_chilled_supply_water_temperature_status:
+- secondary_chilled_return_water_temperature_status:
+- primary_chilled_water_valve_alarm_status:
+- secondary_chilled_water_valve_alarm_status:
+- secondary_chilled_water_differential_pressure_status:
+- secondary_chilled_water_valve_percentage_command:
+- secondary_chilled_water_valve_percentage_sensor:
+- secondary_chilled_water_flowrate_sensor:
+- secondary_chilled_water_flowrate_setpoint:
+- primary_chilled_supply_water_temperature_sensor:
+- primary_chilled_return_water_temperature_sensor:
+- secondary_chilled_supply_water_temperature_sensor:
+- secondary_chilled_return_water_temperature_sensor:
+- chilled_water_stage_pump_time_setpoint:
+- secondary_chilled_water_differential_pressure_sensor:
+- primary_chilled_water_differential_pressure_sensor:
+- secondary_chilled_water_control_differential_pressure_sensor:
+- duty_device_command:
+- duty_device_status:
+- device_override_status:
+- boosted_cold_water_valve_mismatch_status:
+- boosted_cold_water_valve_override_status:
+- inlet_heat_exchange_valve_command:
+- inlet_heat_exchange_valve_status:
+- inlet_heat_exchange_valve_mismatch_status:
+- inlet_heat_exchange_valve_override_status:
+- leaving_heat_exchange_valve_mismatch_status:
+- leaving_heat_exchange_valve_override_status:
+- primary_inlet_heat_exchange_temperature_status:
+- primary_leaving_heat_exchange_temperature_status:
+- secondary_inlet_heat_exchange_temperature_status:
+- secondary_leaving_heat_exchange_temperature_status:
+- max_secondary_leaving_heat_exchange_temperature_status:
+- primary_heat_exchange_differential_pressure_status:
+- boosted_cold_water_valve_percentage_command:
+- boosted_cold_water_valve_percentage_sensor:
+- leaving_heat_exchange_valve_percentage_command:
+- leaving_heat_exchange_valve_percentage_sensor:
+- primary_inlet_heat_exchange_temperature_sensor:
+- primary_leaving_heat_exchange_temperature_sensor:
+- secondary_inlet_heat_exchange_temperature_sensor:
+- secondary_leaving_heat_exchange_temperature_sensor:
+- primary_heat_exchange_differential_pressure_sensor:
+- water_leak_detection_alarm_status:
+- water_leak_detection_fault_status:
+- chilled_water_pump_run_command:
+- chilled_water_pump_run_status:
+- chilled_water_pump_fault_status:
+- chilled_water_pump_alarm_status:
+- chilled_water_pump_mismatch_status:
+- runtime_chilled_water_pump_reset_command:
+- runtime_chilled_water_pump_alarm_status:
+- chilled_water_pump_override_status:
+- chilled_water_pump_speed_status:
+- chilled_water_pump_reset_command:
+- switch_device_status:
+- switch_device_alarm_status:
+- chilled_water_pump_mode:
+- chilled_water_pump_speed_percentage_command:
+- chilled_water_pump_run_time_sensor:
+- chilled_water_pump_run_time_setpoint:
+- chilled_water_pump_speed_percentage_sensor:
+- chilled_water_pump_power_sensor:
+- chilled_water_pump_temperature_sensor:
+- chilled_water_pump_energy_sensor:
+- chilled_water_pump_speed_frequency_sensor:
+- chilled_water_pump_torque_percentage_sensor:
+- chilled_water_exercise_pump_time_setpoint:
+- chilled_water_exercise_pump_status:
+- hot_water_duty_pump_command:
+- hot_water_duty_pump_status:
+- hot_water_pump_override_status:
+- hot_water_pump_run_command:
+- hot_water_pump_run_status:
+- hot_water_pump_fault_status:
+- hot_water_pump_alarm_status:
+- hot_water_pump_mismatch_status:
+- hot_water_pump_speed_status:
+- runtime_hot_water_pump_alarm_status:
+- runtime_hot_water_pump_reset_command:
+- hot_water_pump_differential_pressure_status:
+- hot_water_pump_mode:
+- hot_water_pump_speed_percentage_command:
+- hot_water_pump_run_time_sensor:
+- hot_water_pump_run_time_setpoint:
+- hot_water_pump_differential_pressure_sensor:
+- chilled_water_pressurization_low_alarm_status:
+- chilled_water_pressurization_high_alarm_status:
+- chilled_water_pressurization_device_fault_status:
+- chilled_water_filter_run_command:
+- chilled_water_filter_run_status:
+- chilled_water_filter_fault_status:
+- chilled_water_full_filter_alarm_status:
+- chilled_water_filter_alarm_status:
+- chilled_water_filter_mismatch_status:
+- runtime_chilled_water_filter_reset_command:
+- runtime_chilled_water_filter_alarm_status:
+- chilled_water_filter_run_time_sensor:
+- chilled_water_filter_run_time_setpoint:
+- inlet_air_heat_exchange_temperature_sensor:
+- inlet_air_heat_exchange_relative_humidity_sensor:
+- inlet_air_heat_exchange_dewpoint_temperature_sensor:
+- inlet_air_heat_exchange_enthalpy_sensor:
+- leaving_air_heat_exchange_temperature_sensor:
+- leaving_air_heat_exchange_relative_humidity_sensor:
+- leaving_air_heat_exchange_dewpoint_temperature_sensor:
+- leaving_air_heat_exchange_enthalpy_sensor:
+- supply_air_volume_sensor:
+- supply_fan_mode:
+- exhaust_fan_mode:
+- supply_air_low_static_pressure_setpoint:
+- supply_air_high_static_pressure_setpoint:
+- inlet_air_heat_exchange_temperature_status:
+- inlet_air_heat_exchange_relative_humidity_status:
+- leaving_air_heat_exchange_temperature_status:
+- supply_air_volume_status:
+- heat_exchange_bypass_damper_command:
+- heat_exchange_bypass_damper_open_status:
+- heat_exchange_bypass_damper_mismatch_status:
+- leaving_air_heat_exchange_relative_humidity_status:
+- interface_offline_status:
+- device_temperature_mode:
+- zone_blinds_override_time_sensor:
+- zone_blinds_override_command:
+- zone_blinds_open_status:
+- zone_blinds_mismatch_status:
+- zone_blinds_mode:
+- average_zone_air_temperature_setpoint:
+- precipitation_status:
+- wind_speed_linearvelocity_sensor:
+- wind_direction_sensor:
+- outside_air_barometric_pressure_sensor:
+- outside_air_ultraviolet_sensor:
+- outside_air_voc_percentage_sensor:
+- min_supply_air_damper_percentage_setpoint:
+- exhaust_air_static_pressure_status:
+- chilled_water_pump_offline_status:
+- hot_water_pump_energy_sensor:
+- hot_water_pump_speed_percentage_sensor:
+- hot_water_pump_speed_frequency_sensor:
+- hot_water_pump_power_sensor:
+- hot_water_pump_torque_percentage_sensor:
+- hot_water_pump_temperature_sensor:
+- hot_water_pump_reset_command:
+- hot_water_pump_offline_status:
+- exercise_valve_status:
+- outside_air_temperature_setpoint:

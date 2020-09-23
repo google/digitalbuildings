@@ -99,6 +99,13 @@ ZTM:
   is_abstract: true
   opt_uses:
   - discharge_air_temperature_sensor
+  - zone_air_low_temperature_setpoint
+  - zone_air_high_temperature_setpoint
+  - zone_air_heating_high_alarm_status
+  - zone_air_heating_alarm_status
+  - zone_air_cooling_low_alarm_status
+  - zone_air_cooling_alarm_status
+  - zone_air_temperature_status # Sensor failed
   uses:
   - zone_air_temperature_sensor
   implements:
@@ -136,6 +143,18 @@ ZTC:
   opt_uses:
   - zone_air_deadband_temperature_setpoint
   - zone_air_relative_humidity_sensor
+  - zone_air_relative_humidity_status
+  - zone_air_temperature_status # Sensor failed
+  - zone_air_temperature_mode
+  - zone_controller_alarm_status 
+  - zone_air_cooling_temperature_setpoint # Temperature setpoint for cooling loop initiation
+  - max_zone_air_temperature_sensor # Maximum temperature sensor reading in a zone
+  - average_zone_air_temperature_sensor # Average of temperature sensor readings in a zone
+  - max_zone_air_temperature_setpoint # High level temperature setpoint for fan speed increase
+  - zone_air_cooling_low_temperature_setpoint
+  - zone_air_cooling_high_temperature_setpoint
+  - zone_air_heating_low_temperature_setpoint
+  - zone_air_heating_high_temperature_setpoint
   uses:
   - zone_air_temperature_setpoint
   - zone_air_temperature_sensor
@@ -174,6 +193,9 @@ CO2C:
   is_abstract: true
   implements:
   - OPERATIONAL
+  opt_uses:
+  - zone_air_co2_concentration_status
+  - total_air_co2_concentration_setpoint # CO2 set point used for control (product of zone_air_co2_concentration_setpoint + outside air CO2)
   uses:
   - zone_air_co2_concentration_sensor
   - zone_air_co2_concentration_setpoint
@@ -200,11 +222,20 @@ BPC:
 
 EDPM:
   id: "18075318737925308416"
-  description: "Exhaust air damper percentage monitoring."
+  description: "Exhaust air damper percentage & alarms monitoring."
   is_abstract: true
+  opt_uses:
+  - exhaust_air_damper_reset_command
+  - exhaust_air_damper_override_status
+  - exhaust_air_damper_mismatch_status
+  - exhaust_air_damper_alarm_status
+  - exhaust_air_damper_status
+  - exhaust_air_damper_override_percentage_status
   uses:
   - exhaust_air_damper_percentage_command
   - exhaust_air_damper_percentage_sensor
+  implements:
+  - MONITORING
 
 EDM:
   id: "3621015733879701504"
@@ -264,6 +295,17 @@ EFVSC:
   - exhaust_fan_speed_percentage_sensor
   - exhaust_fan_current_sensor
   - exhaust_fan_power_sensor
+  - min_exhaust_fan_speed_percentage_setpoint # Minimum fan speed percentage setpoint
+  - exhaust_fan_alarm_status
+  - exhaust_fan_speed_status
+  - runtime_exhaust_fan_alarm_status
+  - max_exhaust_fan_speed_percentage_setpoint # Maximum fan speed percentage setpoint
+  - exhaust_fan_run_time_sensor
+  - exhaust_fan_override_status
+  - exhaust_fan_mismatch_status
+  - runtime_exhaust_fan_reset_command
+  - exhaust_fan_reset_command
+  - exhaust_fan_run_time_setpoint # High level runtime setpoint to initiate an alarm
   uses:
   - exhaust_fan_run_command
   - exhaust_fan_run_status
@@ -280,6 +322,17 @@ SFVSC:
   - supply_fan_speed_percentage_sensor
   - supply_fan_current_sensor
   - supply_fan_power_sensor
+  - min_supply_fan_speed_percentage_setpoint # Minimum fan speed percentage setpoint
+  - supply_fan_alarm_status
+  - supply_fan_speed_status
+  - runtime_supply_fan_alarm_status
+  - max_supply_fan_speed_percentage_setpoint # Maximum fan speed percentage setpoint
+  - supply_fan_run_time_sensor
+  - supply_fan_override_status
+  - supply_fan_mismatch_status
+  - runtime_supply_fan_reset_command
+  - supply_fan_reset_command
+  - supply_fan_run_time_setpoint # High level runtime setpoint to initiate an alarm
   uses:
   - supply_fan_run_command
   - supply_fan_run_status
@@ -296,6 +349,17 @@ DFVSC:
   - discharge_fan_power_sensor
   - discharge_fan_speed_frequency_sensor
   - discharge_fan_speed_percentage_sensor
+  - min_discharge_fan_temperature_setpoint # Minimum fan speed percentage setpoint
+  - discharge_fan_alarm_status
+  - discharge_fan_speed_status
+  - runtime_discharge_fan_alarm_status
+  - max_discharge_fan_temperature_setpoint # Maximum fan speed percentage setpoint
+  - discharge_fan_run_time_sensor
+  - discharge_fan_override_status
+  - discharge_fan_mismatch_status
+  - runtime_discharge_fan_reset_command
+  - discharge_fan_reset_command
+  - discharge_fan_run_time_setpoint # High level runtime setpoint to initiate an alarm
   uses:
   - discharge_fan_speed_percentage_command
   - discharge_fan_run_status
@@ -318,6 +382,8 @@ ZHM:
   is_abstract: true
   implements:
   - MONITORING
+  opt_uses:
+  - zone_air_relative_humidity_status
   uses:
   - zone_air_relative_humidity_sensor
 
@@ -325,6 +391,17 @@ DTM:
   id: "7968704612431560704"
   description: "Discharge temperature monitoring."
   is_abstract: true
+  opt_uses:
+  - discharge_air_heating_high_alarm_status
+  - discharge_air_heating_alarm_status
+  - discharge_air_cooling_low_alarm_status
+  - discharge_air_cooling_alarm_status
+  - discharge_air_temperature_status # Sensor failed
+  - discharge_air_high_temperature_status
+  - discharge_air_critical_temperature_status
+  - discharge_air_high_temperature_setpoint
+  - discharge_air_high_delay_temperature_setpoint
+  - discharge_air_critical_temperature_setpoint
   uses:
   - discharge_air_temperature_sensor
   implements:
@@ -385,6 +462,8 @@ EFSS:
   - exhaust_fan_power_sensor
   - exhaust_air_flowrate_capacity
   - exhaust_fan_power_capacity
+  - exhaust_fan_fault_status
+  - exhaust_fan_mode # hand/off/auto mode selector switch
   uses:
   - exhaust_fan_run_command
   - exhaust_fan_run_status
@@ -400,6 +479,7 @@ DFSS:
   - discharge_fan_power_capacity
   - discharge_fan_current_sensor
   - discharge_fan_power_sensor
+  - discharge_fan_fault_status
   uses:
   - discharge_fan_run_command
   - discharge_fan_run_status
@@ -415,6 +495,8 @@ SFSS:
   - supply_fan_power_capacity
   - supply_fan_current_sensor
   - supply_fan_power_sensor
+  - supply_fan_fault_status
+  - supply_fan_mode # hand/off/auto mode selector switch
   uses:
   - supply_fan_run_command
   - supply_fan_run_status
@@ -425,6 +507,8 @@ RHM:
   is_abstract: true
   implements:
   - MONITORING
+  opt_uses:
+  - return_air_relative_humidity_status
   uses:
   - return_air_relative_humidity_sensor
 
@@ -433,15 +517,19 @@ RTM:
   description: "Return air temperature monitoring"
   implements:
   - MONITORING
+  opt_uses:
+  - return_air_temperature_status # Sensor failed
   uses:
   - return_air_temperature_sensor
 
 DTC:
   id: "14404348479943999488"
-  description: "Discharge air temperatore control"
+  description: "Discharge air temperature control"
   is_abstract: true
   implements:
   - OPERATIONAL
+  opt_uses:
+  - discharge_air_temperature_status # Sensor failed
   uses:
   - discharge_air_temperature_setpoint
   - discharge_air_temperature_sensor
@@ -451,8 +539,16 @@ STC:
   description: "Supply air temperature control"
   is_abstract: true
   opt_uses:
+  - supply_air_control_temperature_sensor
+  - supply_air_temperature_mode
+  - supply_air_deadband_temperature_setpoint
+  - supply_air_increment_temperature_setpoint
   - heating_request_count
   - cooling_request_count
+  - supply_air_cooling_low_temperature_setpoint
+  - supply_air_cooling_high_temperature_setpoint
+  - supply_air_heating_low_temperature_setpoint
+  - supply_air_heating_high_temperature_setpoint
   uses:
   - supply_air_temperature_setpoint
   - supply_air_temperature_sensor
@@ -465,6 +561,8 @@ RTC:
   is_abstract: true
   implements:
   - OPERATIONAL
+  opt_uses:
+  - return_air_temperature_status # Sensor failed
   uses:
   - return_air_temperature_sensor
   - return_air_temperature_setpoint
@@ -635,6 +733,8 @@ ETM:
   id: "13050638559919210496"
   description: "Basic exhaust temperature monitoring."
   is_abstract: true
+  opt_uses:
+  - exhaust_air_temperature_status # Sensor failed
   uses:
   - exhaust_air_temperature_sensor
   implements:
@@ -644,6 +744,14 @@ ED:
   id: "8438952541491822592"
   description: "Exhaust air flow control."
   is_abstract: true
+  opt_uses:
+  - exhaust_air_flowrate_status
+  - exhaust_air_damper_percentage_sensor
+  - exhaust_air_damper_reset_command
+  - exhaust_air_damper_override_status
+  - exhaust_air_damper_alarm_status
+  - exhaust_air_damper_override_percentage_status
+  - exhaust_air_damper_mismatch_status
   uses:
   - exhaust_air_flowrate_setpoint
   - exhaust_air_flowrate_sensor
@@ -655,6 +763,14 @@ RD:
   id: "17662324578346598400"
   description: "Return damper flow control."
   is_abstract: true
+  opt_uses:
+  - return_air_flowrate_status
+  - return_air_damper_percentage_sensor
+  - return_air_damper_reset_command
+  - return_air_damper_override_status
+  - return_air_damper_alarm_status
+  - return_air_damper_override_percentage_status
+  - return_air_damper_mismatch_status
   uses:
   - return_air_flowrate_setpoint
   - return_air_flowrate_sensor
@@ -666,6 +782,8 @@ MTM:
   id: "944962761547317248"
   description: "Mixed air temperature monitoring."
   is_abstract: true
+  opt_uses:
+  - mixed_air_temperature_status # Sensor failed
   uses:
   - mixed_air_temperature_sensor
   implements:
@@ -685,6 +803,18 @@ STM:
   id: "5556648779974705152"
   description: "Basic supply temperature monitoring."
   is_abstract: true
+  opt_uses:
+  - supply_air_low_temperature_setpoint
+  - supply_air_low_temperature_status
+  - supply_air_high_temperature_setpoint
+  - supply_air_high_temperature_status
+  - supply_air_heating_high_alarm_status
+  - supply_air_heating_alarm_status
+  - supply_air_cooling_low_alarm_status
+  - supply_air_cooling_alarm_status
+  - supply_air_temperature_status # Sensor failed
+  - supply_air_delay_time_setpoint
+  - supply_air_alarm_temperature_setpoint
   uses:
   - supply_air_temperature_sensor
   implements:
@@ -722,6 +852,12 @@ ZHC:
   id: "7286031036884975616"
   description: "Zone relative humidity control."
   is_abstract: true
+  opt_uses:
+  - min_zone_air_relative_humidity_setpoint # Relative humidity setpoint for fan at minimum speed
+  - max_zone_air_relative_humidity_setpoint # Relative humidity setpoint for fan at maximum speed
+  - zone_air_relative_humidity_mode # Humidity control is enabled
+  - high_zone_air_relative_humidity_status # Humidity control is in alarm
+  - discharge_air_temperature_setpoint # Discharge air temperature setpoint when humidity control is enabled
   uses:
   - zone_air_relative_humidity_sensor
   - zone_air_relative_humidity_setpoint
@@ -781,6 +917,8 @@ SHM:
   id: "2378937030399754240"
   description: "Supply air relative humidity monitoring."
   is_abstract: true
+  opt_uses:
+  - supply_air_relative_humidity_status
   uses:
   - supply_air_relative_humidity_sensor
   implements:
@@ -820,7 +958,7 @@ VOCM:
   description: "Volatile organic compound monitoring."
   is_abstract: true
   uses:
-  - zone_air_voc_concentration_sensor
+  - zone_air_voc_percentage_sensor
   implements:
   - MONITORING
 
@@ -828,9 +966,11 @@ VOCC:
   id: "2097884266154164224"
   description: "Volatile organic compound control."
   is_abstract: true
+  opt_uses:
+  - zone_air_voc_concentration_status
   uses:
-  - zone_air_voc_concentration_setpoint
-  - zone_air_voc_concentration_sensor
+  - zone_air_voc_percentage_setpoint
+  - zone_air_voc_percentage_sensor
   implements:
   - OPERATIONAL
 
@@ -891,6 +1031,12 @@ SSPM:
   id: "15932942321436327936"
   description: "Supply static pressure monitoring."
   is_abstract: true
+  opt_uses:
+  - supply_air_static_pressure_setpoint
+  - supply_air_static_pressure_status
+  - supply_air_alarm_pressure_setpoint
+  - supply_air_low_static_pressure_setpoint
+  - supply_air_high_static_pressure_setpoint
   uses:
   - supply_air_static_pressure_sensor
   implements:
@@ -959,6 +1105,12 @@ FDPM:
   id: "9447758858022813696"
   description: "Filter pressure monitoring."
   is_abstract: true
+  opt_uses:
+  - filter_differential_pressure_setpoint # High level setpoint to initiate filter dirty alarm
+  - filter_alarm_status
+  - filter_differential_pressure_status
+  - filter_reset_command # Reset command for latched filter dirty alarm
+  - process_filter_run_status
   uses:
   - filter_differential_pressure_sensor
   implements:
@@ -1060,9 +1212,20 @@ CHWZTC:
   description: "Chilled water valve monitoring on zone side (ZTC)."
   is_abstract: true
   opt_uses:
+  - chilled_water_valve_percentage_sensor
   - discharge_air_temperature_sensor
   - leaving_cooling_coil_temperature_sensor
   - cooling_thermal_power_capacity
+  - chilled_water_exercise_valve_status
+  - chilled_water_valve_override_status
+  - chilled_water_valve_alarm_status
+  - chilled_water_valve_offline_status
+  - min_chilled_water_valve_temperature_setpoint # Low temperature setpoint for valve at minimum position
+  - chilled_water_request_status
+  - chilled_water_flowrate_sensor
+  - max_chilled_water_valve_temperature_setpoint # High temperature setpoint for valve at maximum position
+  - zone_air_cooling_low_temperature_setpoint
+  - zone_air_cooling_high_temperature_setpoint
   uses:
   - zone_air_temperature_setpoint
   - zone_air_temperature_sensor
@@ -1659,6 +1822,16 @@ HWZTC:
   - discharge_air_temperature_sensor
   - heating_water_valve_percentage_sensor
   - heating_thermal_power_capacity
+  - max_heating_water_valve_temperature_setpoint # High temperature setpoint for valve at minimum position
+  - heating_water_exercise_valve_status
+  - heating_water_valve_alarm_status
+  - heating_water_request_status
+  - heating_water_valve_offline_status
+  - heating_water_valve_override_status
+  - heating_water_flowrate_sensor
+  - min_heating_water_valve_temperature_setpoint  # Low temperature setpoint for valve at maximum position
+  - zone_air_heating_low_temperature_setpoint
+  - zone_air_heating_high_temperature_setpoint
   uses:
   - heating_water_valve_percentage_command
   - zone_air_temperature_setpoint
@@ -2069,6 +2242,7 @@ ECONZ:
   - outside_air_damper_percentage_command
   implements:
   - CONTROL
+  
 VOADM:
   id: "12330062619539931136"
   description: "Variable outside air damper monitoring."
@@ -2168,6 +2342,8 @@ CHWISOVM:
   is_abstract: true
   opt_uses:
   - run_command
+  - chilled_water_isolation_valve_alarm_status
+  - chilled_water_isolation_valve_mismatch_status
   uses:
   - chilled_water_isolation_valve_command
   - chilled_water_isolation_valve_status
@@ -2919,6 +3095,9 @@ CHWDPM:
   id: "17350239197918658560"
   description: "Differential pressure monitoring for chilled water."
   is_abstract: true
+  opt_uses:
+  - chilled_water_differential_pressure_status
+  - chilled_water_control_differential_pressure_sensor
   uses:
   - chilled_water_differential_pressure_sensor
 
@@ -3008,10 +3187,14 @@ REFSM:
   implements:
   - MONITORING
 
-
 PDSCV:
   description: "Pressure-dependent supply damper control for ventilation purposes (CO2 or VOC)."
   is_abstract: true
+  opt_uses:
+  - min_supply_air_damper_percentage_setpoint
+  - supply_air_damper_override_status
+  - supply_air_damper_alarm_status
+  - supply_air_damper_reset_command
   uses:
   - supply_air_damper_percentage_command
   - supply_air_damper_percentage_sensor
@@ -3019,14 +3202,2129 @@ PDSCV:
   - CONTROL
 
 SDBPC:
+  id: "eab2e3a7-aec5-45d6-bd22-cd743a51cefb"
   description: "Back-pressure controlling supply damper."
   is_abstract: true
   opt_uses:
   - supply_air_flowrate_sensor
+  - supply_air_static_pressure_status
+  - supply_air_flowrate_status
+  - low_supply_air_offset_pressure_setpoint # Sets increments by which the static pressure setpoint will be decreased
+  - high_supply_air_offset_pressure_setpoint # Sets increments by which the static pressure setpoint will be increased
+  - supply_air_damper_override_percentage_status
+  - supply_air_damper_override_status
+  - low_supply_air_damper_offset_percentage_command # Sets the number of down stream VAVs above setpoint used to reset up the static pressure setpoint
+  - high_supply_air_damper_offset_percentage_command # Sets the number of down stream VAVs below setpoint used to reset down the static pressure setpoint
+  - supply_air_damper_reset_command
+  - supply_air_damper_alarm_status
   uses:
   - supply_air_static_pressure_sensor
   - supply_air_static_pressure_setpoint
   - supply_air_damper_percentage_command
   - supply_air_damper_percentage_sensor
+  implements:
+  - CONTROL # Previously MONITORING
+
+# New Types added on the 18/08/20
+CO2FC:
+  id: "af5da501-d8bd-4e10-9ef8-ea1876027147"
+  description: "Carbon dioxide fan speed override control."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  opt_uses:
+  - zone_air_co2_concentration_status
+  - zone_air_co2_concentration_sensor
+  uses:
+  - zone_air_co2_run_command # Command for fan speed to change to CO2 control
+
+CPM:
+  id: "7e906b25-1b98-479b-88f5-8bef8d6883fc"
+  description: "Condensation pump monitoring."
+  is_abstract: true
+  uses:
+  - condensate_pump_alarm_status
+  implements:
+  - MONITORING
+
+CHGOVTC:
+  id: "f2ee8e14-b94a-4793-b2b0-63040b2cdd74"
+  description: "Changeover control setpoint for optional zone, discharge or return methods of temperature control. If primary sensor fails, control will automatically switch over to the secondary sensor."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  opt_uses:
+  - return_air_temperature_sensor  
+  - return_air_temperature_status # Sensor failed
+  - zone_air_temperature_sensor
+  - zone_air_temperature_status # Sensor failed
+  - discharge_air_temperature_sensor
+  - discharge_air_temperature_status # Sensor failed
+  uses:
+  - temperature_setpoint # Temperature setpoint used based on required control method
+
+CHWRTC:
+  id: "9dc23977-d49b-4ba1-bf3d-f4f75a83f04d"
+  description: "Chilled water valve monitoring on return side (RTC)."
+  is_abstract: true
+  opt_uses:
+  - chilled_water_valve_percentage_sensor
+  - discharge_air_temperature_sensor
+  - leaving_cooling_coil_temperature_sensor
+  - cooling_thermal_power_capacity
+  - chilled_water_exercise_valve_status
+  - chilled_water_valve_override_status
+  - chilled_water_valve_alarm_status
+  - chilled_water_valve_offline_status
+  - min_chilled_water_valve_temperature_setpoint # Low temperature setpoint for valve at minimum position
+  - chilled_water_request_status
+  - chilled_water_flowrate_sensor
+  - chilled_water_valve_mismatch_status
+  - max_chilled_water_valve_temperature_setpoint # High temperature setpoint for valve at maximum position
+  uses:
+  - return_air_temperature_setpoint
+  - return_air_temperature_sensor
+  - chilled_water_valve_percentage_command
+  implements:
+  - CONTROL
+
+HWRTC:
+  id: "d0382dac-c6d3-43c7-9e74-400855408ef8"
+  description: "Heating water valve monitoring on return side (RTC)."
+  is_abstract: true
+  opt_uses:
+  - discharge_air_temperature_sensor
+  - heating_water_valve_percentage_sensor
+  - heating_thermal_power_capacity
+  - max_heating_water_valve_temperature_setpoint # High temperature setpoint for valve at minimum position
+  - heating_water_exercise_valve_status
+  - heating_water_valve_alarm_status
+  - heating_water_request_status
+  - heating_water_valve_offline_status
+  - heating_water_valve_override_status
+  - heating_water_flowrate_sensor
+  - min_heating_water_valve_temperature_setpoint # Low temperature setpoint for valve at maximum position
+  uses:
+  - heating_water_valve_percentage_command
+  - return_air_temperature_setpoint
+  - return_air_temperature_sensor
+  implements:
+  - CONTROL 
+
+MSDM:
+  id: "758fbcd5-a22e-4c3e-9c86-d1639d54e708"
+  description: "Maximum supply damper position monitoring."
+  is_abstract: true
+  uses:
+  - max_supply_air_damper_percentage_sensor # Maximum position of damper for systems monitoring multiple dampers
+  implements:
+  - MONITORING
+
+
+CHWDTC:
+  id: "c1d6885c-3d5d-4eff-8d4c-404acedfafe7"
+  description: "Chilled water valve monitoring on discharge side (DTC)."
+  is_abstract: true
+  opt_uses:
+  - chilled_water_valve_percentage_sensor
+  - return_air_temperature_sensor
+  - leaving_cooling_coil_temperature_sensor
+  - cooling_thermal_power_capacity
+  - chilled_water_exercise_valve_status
+  - chilled_water_valve_override_status
+  - chilled_water_valve_alarm_status
+  - chilled_water_valve_offline_status
+  - min_chilled_water_valve_temperature_setpoint # Low temperature setpoint for valve at minimum position
+  - chilled_water_request_status
+  - chilled_water_flowrate_sensor
+  - chilled_water_flowrate_status
+  - chilled_water_mismatch_flowrate_status
+  - chilled_water_valve_mismatch_status
+  - max_chilled_water_valve_temperature_setpoint # High temperature setpoint for valve at maximum position
+  uses:
+  - discharge_air_temperature_setpoint
+  - discharge_air_temperature_sensor
+  - chilled_water_valve_percentage_command
+  implements:
+  - CONTROL
+
+HWDTC:
+  id: "9a248b63-362b-4f51-8c7b-d0ebe83042ff"
+  description: "Heating water valve monitoring on discharge side (DTC)."
+  is_abstract: true
+  opt_uses:
+  - return_air_temperature_sensor
+  - heating_water_valve_percentage_sensor
+  - heating_thermal_power_capacity
+  - max_heating_water_valve_temperature_setpoint # High temperature setpoint for valve at minimum position
+  - heating_water_exercise_valve_status
+  - heating_water_valve_alarm_status
+  - heating_water_request_status
+  - heating_water_valve_offline_status
+  - heating_water_valve_override_status
+  - heating_water_flowrate_sensor
+  - min_heating_water_valve_temperature_setpoint # Low temperature setpoint for valve at maximum position 
+  uses:
+  - heating_water_valve_percentage_command
+  - discharge_air_temperature_setpoint
+  - discharge_air_temperature_sensor
+  implements:
+  - CONTROL 
+
+UNOCTC:
+  id: "a0ca04e8-4545-4f24-af2f-0487c62f9928"
+  description: "Unoccupied temperature control setpoints and demand for fabric protection."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  uses:
+  - min_unoccupied_temperature_setpoint # Low temperature setpoint to enable system in heating when unoccupied
+  - max_unoccupied_temperature_setpoint # High temperature setpoint to disable system in heating when unoccupied
+  - unoccupied_run_command # Command to enable system in heating when unoccupied
+
+DARC:
+  id: "50744a1b-b097-461d-804d-b3e28b1cd9be"
+  description: "Alarm reset command switches for latched alarms in device."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  uses:
+  - device_reset_command # Command to reset latched alarms in device
+
+ZTHCO2M:
+  id: "16bcbe60-0fce-4a4b-a3ac-04cb855837b0"
+  description: "Zone/Room temperature, humidity & CO2 monitoring."
+  is_abstract: true
+  uses:
+  - zone_air_temperature_sensor
+  - zone_air_relative_humidity_sensor
+  - zone_air_co2_concentration_sensor
+  implements:
+  - MONITORING
+
+FAM:
+  id: "4852a6bc-08f5-458f-9736-715a045b76f1"
+  description: "Fire alarm monitoring."
+  is_abstract: true
+  uses:
+  - fire_alarm_status
+  implements:
+  - MONITORING
+
+HOA:
+  id: "b639ba0c-7c36-4eb7-a9c2-2b7b5d0e3466"
+  description: "Device hand/off/auto mode selector switch."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  uses:
+  - device_mode
+
+ZCMD:
+  id: "561d3d10-0439-456e-8048-f13a5fda7edc"
+  description: "Zone occupied command for device grouping."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  uses:
+  - zone_command # Enable command for all devices in a zone, based on zone occupancy timeclock
+
+DFVSCO2C:
+  id: "1bc3e342-1a4c-4876-bd41-a6ea8450aa10"
+  description: "Variable speed CO2 control for discharge fans. Fan speed command related to FCU to override temperature control when CO2 levels increase above set point"
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  opt_uses:
+  - zone_air_co2_concentration_status
+  - total_air_co2_concentration_setpoint # CO2 set point used for control (product of zone_air_co2_concentration_setpoint + outside air CO2)
+  uses:
+  - zone_air_co2_concentration_sensor
+  - zone_air_co2_concentration_setpoint
+  - discharge_fan_speed_percentage_command # Fan speed command to FCU 
+
+OPTM:
+  id: "43c10176-2f0a-4965-9780-aaea4f35f773"
+  description: "Optimisation mode control."
+  is_abstract: true
+  implements:
+  - CONTROL
+  opt_uses:
+  - max_economizer_limit_time_setpoint # Maximum time before occupancy schedule that optimizer can start the system
+  uses:
+  - zone_mode # Unoccupied, occupied, cooling boost, heating boost, fabric protection & optimum stop modes
+
+EPM:
+  id: "a1e995fe-7852-495c-b5f7-97bc3d8154c9"
+  description: "Exhaust pressure monitoring."
+  is_abstract: true
+  opt_uses:
+  - exhaust_air_flowrate_status
+  - exhaust_air_static_pressure_status
+  uses:
+  - exhaust_air_static_pressure_sensor
+  implements:
+  - MONITORING
+
+ZTHCO2AM:
+  id: "d6ee5a78-7126-4ab9-95ab-c030b3254cc5"
+  description: "Zone/Room temperature, humidity & CO2 alarm monitoring."
+  is_abstract: true
+  uses:
+  - zone_air_co2_concentration_status
+  - zone_air_voc_concentration_status
+  - zone_air_relative_humidity_status
+  implements:
+  - MONITORING
+
+HWVLVM:
+  id: "08c03b39-64fc-4f73-9768-21e9eb563a07"
+  description: "Heating water control valve monitoring"
+  is_abstract: true
+  opt_uses:
+  - heating_water_flowrate_sensor
+  uses:
+  - heating_water_valve_percentage_command # Command signal from FCU controller
+  - heating_water_valve_percentage_sensor
+  implements:
+  - MONITORING
+
+CHWVLVM:
+  id: "ddd6fb0a-a2ea-49ad-8a8f-35e6bf95cad1"
+  description: "Chilled water control valve monitoring"
+  is_abstract: true
+  opt_uses:
+  - chilled_water_flowrate_sensor
+  uses:
+  - chilled_water_valve_percentage_command
+  - chilled_water_valve_percentage_sensor
+  implements:
+  - MONITORING
+
+AMZTC:
+  id: "39bb9508-3ccf-40b1-8aca-e913df3a8196"
+  description: "Average & maximum zone temperature control."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  opt_uses:
+  - zone_air_deadband_temperature_setpoint
+  - zone_air_relative_humidity_sensor
+  - zone_air_relative_humidity_status
+  - zone_air_temperature_status
+  - zone_air_temperature_mode
+  - zone_controller_alarm_status 
+  - max_zone_air_temperature_setpoint # High level temperature setpoint for fan speed increase
+  - zone_air_cooling_temperature_setpoint # Temperature setpoint for cooling loop initiation
+  uses:
+  - max_zone_air_temperature_sensor # Maximum temperature sensor reading in a zone
+  - average_zone_air_temperature_sensor # Average of temperature sensor readings in a zone
+  - zone_air_temperature_setpoint
+  
+# Added For S2 Main Plant
+
+CLDATAM:
+  id: "188b35d3-e273-441b-b171-434b9ec4994e"
+  description: "Cold aisle temperature monitoring with alarms in comms rooms."
+  is_abstract: true
+  opt_uses:
+  - cold_aisle_air_temperature_status # Sensor failed
+  - cold_aisle_air_high_delay_temperature_setpoint # Delay setpoint for generating high temperature status
+  uses:
+  - cold_aisle_air_temperature_sensor
+  - cold_aisle_air_high_temperature_setpoint # Setpoint for generating high temperature status
+  - cold_aisle_air_high_temperature_status
+  - cold_aisle_air_critical_temperature_setpoint # Setpoint for generating critical temperature status
+  - cold_aisle_air_critical_temperature_status
+  implements:
+  - MONITORING
+
+HOTATAM:
+  id: "6f9864da-1caa-4c58-ac96-24d9a7de90d3"
+  description: "Hot aisle temperature monitoring with alarms in comms rooms."
+  is_abstract: true
+  opt_uses:
+  - hot_aisle_air_temperature_status # Sensor failed
+  - hot_aisle_air_high_delay_temperature_setpoint # Delay setpoint for generating high temperature status
+  uses:
+  - hot_aisle_air_temperature_sensor
+  - hot_aisle_air_high_temperature_setpoint # Setpoint for generating high temperature status
+  - hot_aisle_air_high_temperature_status
+  implements:
+  - MONITORING
+
+CLDAHAM:
+  id: "fd6725cb-8254-4895-a1dd-f0c40f60af89"
+  description: "Cold aisle relative humidity monitoring with alarms in comms rooms."
+  is_abstract: true
+  opt_uses:
+  - cold_aisle_air_relative_humidity_status # Relative humidity sensor failure
+  uses:
+  - cold_aisle_air_relative_humidity_sensor
+  - cold_aisle_air_low_relative_humidity_setpoint # Setpoint for generating low relative humidity status
+  - cold_aisle_air_low_relative_humidity_status
+  - cold_aisle_air_high_relative_humidity_setpoint # Setpoint for generating high relative humidity status
+  - cold_aisle_air_high_relative_humidity_status
+  implements:
+  - MONITORING
+
+HOTAHM:
+  id: "066965f7-d031-4788-a589-54ebc88ef9c3"
+  description: "Hot aisle relative humidity monitoring in comms rooms."
+  is_abstract: true
+  opt_uses:
+  - hot_aisle_air_relative_humidity_status # Relative humidity sensor failure
+  uses:
+  - hot_aisle_air_relative_humidity_sensor
+  implements:
+  - MONITORING
+
+SMKDFAGASM:
+  id: "f4b0db6f-66f8-47ae-915d-2cb1bd34845f"
+  description: "Smoke dampers, fire alarm & gas suppression system monitoring with damper alarms for position mismatch with fire alarm and gas suppression status status."
+  is_abstract: true
+  opt_uses:
+  - gas_suppression_run_status # Gas suppression system clearance initiated
+  - gas_suppression_fault_status # Gas suppression system in fault
+  - gas_suppression_alarm_status # Gas suppression system in alarm  
+  uses:
+  - inlet_smoke_damper_mismatch_status # Damper position mismatch with system status
+  - inlet_smoke_damper_status # Open/Closed status
+  - leaving_smoke_damper_mismatch_status # Damper position mismatch with system status
+  - leaving_smoke_damper_status # Open/Closed status
+  - fire_alarm_status 
+  - gas_suppression_status # Gas suppression system in suppression
+  implements:
+  - MONITORING
+
+ZDPAM:
+  id: "256ddc4d-a6ed-4420-aa2b-354f207f7d7e"
+  description: "Differential pressure monitoring between 2 zones with high differential alarm."
+  is_abstract: true
+  opt_uses:
+  - zone_differential_pressure_sensor
+  - zone_differential_pressure_setpoint
+  - zone_high_differential_pressure_status
+  - zone_differential_pressure_status
+  implements:
+  - MONITORING
+
+STRWCAM:
+  id: "a46db244-e5df-4e9c-b916-da624e8700c7"
+  description: "Supply air temperature read/write control with alarm monitoring"
+  is_abstract: true
+  opt_uses:
+  - supply_air_temperature_status # Sensor failed
+  - supply_air_low_temperature_status
+  - supply_air_high_temperature_status
+  uses:
+  - supply_air_temperature_setpoint_1 # temperature setpoint readback from unit
+  - supply_air_temperature_setpoint_2 # temperature setpoint write to unit
+  - supply_air_temperature_sensor
+  implements:
+  - OPERATIONAL
+  
+SFSSAM:
+  id: "e82117a9-c15a-4854-ba9b-7b99d1b03848"
+  description: "Supply fan status, sensor and alarm monitoring"
+  is_abstract: true
+  uses:
+  - supply_fan_run_status
+  - supply_fan_alarm_status
+  - supply_fan_speed_percentage_sensor
+  implements:
+  - MONITORING
+
+CDASM:
+  id: "a78df662-5930-49b4-9dc1-7ff0115ec9d5"
+  description: "CRAC device alarm status monitoring"
+  is_abstract: true
+  opt_uses:
+   - critical_device_alarm_status # Critical alarm indicating both units are in alarm 
+  uses:
+  - power_status # Power failure monitoring
+  - device_alarm_status # General alarm for unit
+  implements:
+  - MONITORING
+  
+CHWSX2CA:
+  id: "74902e5c-5c55-4898-b693-c65d19934edf"
+  description: "Chilled water valve monitoring on supply side with alarms."
+  is_abstract: true
+  opt_uses:
+  - supply_air_cooling_alarm_status
+  - supply_air_cooling_low_alarm_status
+  - chilled_water_request_status
+  - supply_air_low_temperature_status
+  - supply_air_high_temperature_status
+  uses:
+  - supply_air_temperature_sensor
+  - supply_air_temperature_setpoint_1
+  - supply_air_temperature_setpoint_2
+  - chilled_water_valve_percentage_sensor
+  implements:
+  - OPERATIONAL
+  
+WLASM:
+  id: "9455b81b-fca0-4235-9c02-acc38590035a"
+  description: "Water leak alarm status monitoring"
+  is_abstract: true
+  uses:
+  - water_leak_alarm_status
+  implements:
+  - MONITORING
+  
+RACKTM:
+  id: "93e8b6b5-354b-4d6e-98fa-73bc93610c97"
+  description: "Rack inlet temperature monitoring"
+  is_abstract: true
+  uses:
+  - inlet_air_rack_temperature_sensor_1
+  - inlet_air_rack_temperature_sensor_2
+  implements:
+  - MONITORING
+
+TFVSC:
+  id: "41308625-3cbf-4786-bfe2-d5b9914457b7"
+  description: "Variable speed control for transfer fans with status and alarm monitoring."
+  is_abstract: true
+  opt_uses:
+  - transfer_fan_current_sensor
+  - transfer_fan_power_sensor
+  - transfer_fan_speed_frequency_sensor
+  - transfer_fan_speed_percentage_sensor
+  - transfer_fan_alarm_status
+  - transfer_fan_speed_status
+  - transfer_fan_run_time_status
+  - transfer_fan_run_time_sensor
+  - transfer_fan_mismatch_status_1
+  - transfer_fan_mismatch_status_2
+  - transfer_fan_override_status
+  - runtime_transfer_fan_reset_command
+  - transfer_fan_reset_command # Transfer fan alarm reset command
+  - transfer_fan_run_time_setpoint # High level runtime setpoint to initiate an alarm
+  uses:
+  - transfer_fan_speed_percentage_command
+  - transfer_fan_run_status
+  - transfer_fan_run_command
+  implements:
+  - OPERATIONAL
+
+ZTCAM:
+  id: "7a2ec399-e635-4f5b-9e86-77dca74e4ee8"
+  description: "zone temperature control with alarms."
+  is_abstract: true
+  opt_uses:
+  - zone_air_temperature_status  # Sensor failed
+  - zone_air_high_delay_temperature_setpoint # Delay setpoint for generating high temperature status
+  uses:
+  - zone_air_temperature_sensor
+  - zone_air_temperature_setpoint
+  - zone_air_high_temperature_setpoint # Setpoint for generating high temperature status
+  - zone_air_high_temperature_status
+  - zone_air_critical_temperature_setpoint # Setpoint for generating critical temperature status
+  - zone_air_critical_temperature_status
+  implements:
+  - CONTROL
+
+CHWSTC:
+  id: "7543d86e-3b14-4b2a-a10a-a085de37cfdf"
+  description: "Chilled water valve monitoring on supply side (STC)."
+  is_abstract: true
+  opt_uses:
+  - supply_air_control_temperature_sensor
+  - leaving_air_cooling_coil_temperature_sensor
+  - leaving_air_cooling_coil_temperature_status # Sensor failed
+  - cooling_thermal_power_capacity
+  - chilled_water_exercise_valve_status
+  - chilled_water_valve_override_status
+  - chilled_water_valve_alarm_status
+  - chilled_water_valve_offline_status
+  - min_chilled_water_valve_temperature_setpoint # Low temperature setpoint for valve at minimum position
+  - chilled_water_request_status
+  - chilled_water_flowrate_sensor
+  - chilled_water_valve_mismatch_status
+  - max_chilled_water_valve_temperature_setpoint # High temperature setpoint for valve at maximum position
+  uses:
+  - supply_air_temperature_setpoint
+  - supply_air_temperature_sensor
+  - chilled_water_valve_percentage_command
+  implements:
+  - CONTROL
+
+HWSTC:
+  id: "5cf3b4c9-babe-4419-a10f-fa6d8bc11019"
+  description: "Heating water valve monitoring on supply side (STC)."
+  is_abstract: true
+  opt_uses:
+  - leaving_air_heating_coil_temperature_sensor
+  - leaving_air_heating_coil_temperature_status # Sensor failed
+  - heating_water_valve_percentage_sensor
+  - heating_thermal_power_capacity
+  - max_heating_water_valve_temperature_setpoint # High temperature setpoint for valve at minimum position
+  - heating_water_exercise_valve_status
+  - heating_water_valve_alarm_status
+  - heating_water_request_status
+  - heating_water_valve_offline_status
+  - heating_water_valve_override_status
+  - heating_water_flowrate_sensor
+  - heating_water_valve_mismatch_status
+  - min_heating_water_valve_temperature_setpoint # Low temperature setpoint for valve at maximum position 
+  - supply_air_heating_low_temperature_setpoint
+  - supply_air_heating_high_temperature_setpoint
+  uses:
+  - heating_water_valve_percentage_command
+  - supply_air_temperature_setpoint
+  - supply_air_temperature_sensor
+  implements:
+  - CONTROL 
+
+ZX5TM:
+  id: "af90a355-c531-49cd-b844-78b0ab8958b1"
+  description: "Zone with up to x5 temperature monitoring with alarms."
+  is_abstract: true
+  opt_uses:
+  - zone_air_temperature_setpoint
+  - zone_air_temperature_sensor_2
+  - zone_air_temperature_sensor_3
+  - zone_air_temperature_sensor_4
+  - zone_air_temperature_sensor_5
+  - zone_air_temperature_status_2 # Sensor failed
+  - zone_air_temperature_status_3 # Sensor failed
+  - zone_air_temperature_status_4 # Sensor failed
+  - zone_air_temperature_status_5 # Sensor failed
+  uses:
+  - zone_air_temperature_sensor_1
+  - zone_air_temperature_status_1 # Sensor failed 
+  implements:
+  - MONITORING
+
+ZX6SPM:
+  id: "9c95d1a5-646b-4c5e-a443-bb6a04cc61c6"
+  description: "Zone with up to x6 static pressure monitoring with alarms."
+  is_abstract: true
+  opt_uses:
+  - zone_air_static_pressure_sensor_2
+  - zone_air_low_static_pressure_setpoint_2
+  - zone_air_high_static_pressure_setpoint_2
+  - zone_air_static_pressure_status_2
+  - zone_air_low_static_pressure_status_2
+  - zone_air_high_static_pressure_status_2
+  - zone_air_static_pressure_sensor_3
+  - zone_air_low_static_pressure_setpoint_3
+  - zone_air_high_static_pressure_setpoint_3
+  - zone_air_static_pressure_status_3
+  - zone_air_low_static_pressure_status_3
+  - zone_air_high_static_pressure_status_3
+  - zone_air_static_pressure_sensor_4
+  - zone_air_low_static_pressure_setpoint_4
+  - zone_air_high_static_pressure_setpoint_4
+  - zone_air_static_pressure_status_4
+  - zone_air_low_static_pressure_status_4
+  - zone_air_high_static_pressure_status_4
+  - zone_air_static_pressure_sensor_5
+  - zone_air_low_static_pressure_setpoint_5
+  - zone_air_high_static_pressure_setpoint_5
+  - zone_air_static_pressure_status_5
+  - zone_air_low_static_pressure_status_5
+  - zone_air_high_static_pressure_status_5
+  - zone_air_static_pressure_status_6
+  - zone_air_low_static_pressure_status_6
+  - zone_air_high_static_pressure_status_6
+  uses:
+  - zone_air_static_pressure_sensor_1
+  - zone_air_low_static_pressure_setpoint_1
+  - zone_air_high_static_pressure_setpoint_1
+  - zone_air_static_pressure_status_1
+  - zone_air_low_static_pressure_status_1
+  - zone_air_high_static_pressure_status_1
+  implements:
+  - MONITORING
+
+ISODC:
+  id: "7f1a9e1e-3589-4bd3-9af8-b54544b481a5"
+  description: "Isolation damper control with alarms."
+  is_abstract: true
+  opt_uses:
+  - isolation_damper_status
+  - isolation_damper_mismatch_status
+  uses:
+  - isolation_damper_percentage_command
+  - isolation_damper_percentage_sensor
+  implements:
+  - CONTROL
+
+MHM:
+  id: "9e38baae-dcf4-432a-b91b-693ce7764d5f"
+  description: "Mixed air relative humidity monitoring."
+  is_abstract: true
+  opt_uses:
+  - mixed_air_relative_humidity_status
+  uses:
+  - mixed_air_relative_humidity_sensor
+  implements:
+  - MONITORING
+
+LCCTM:
+  id: "d52eb1f8-9e65-4bcd-8482-8e75c455c34a"
+  description: "Leaving air cooling coil temperature monitoring."
+  is_abstract: true
+  opt_uses:
+  - leaving_air_cooling_coil_temperature_status # Sensor failed
+  uses:
+  - leaving_air_cooling_coil_temperature_sensor
+  implements:
+  - MONITORING
+
+LHCTM:
+  id: "cf8b7374-9017-4ba5-80e3-0f676aed7464"
+  description: "Leaving air heating coil temperature monitoring."
+  is_abstract: true
+  opt_uses:
+  - leaving_air_heating_coil_temperature_status # Sensor failed
+  uses:
+  - leaving_air_heating_coil_temperature_sensor
+  implements:
+  - MONITORING
+
+COPTM:
+  id: "c2e66178-4fcf-4949-9edc-720a07ce3e7f"
+  description: "Cooling optimisation mode control & monitoring."
+  is_abstract: true
+  implements:
+  - CONTROL
+  opt_uses:
+  - cooling_stage_start_status
+  - cooling_stage_end_status
+  - cooling_stage_initiation_start_time_sensor # Cooling optimiser optimum start initiation time 
+  - cooling_stage_termination_start_time_sensor # Cooling optimiser optimum start termination time 
+  - cooling_stage_zone_air_start_time_sensor # Cooling optimiser optimum start zone air setpoint achieved time
+  - cooling_stage_end_time_sensor # Cooling optimiser optimum stop initiation time 
+  - cooling_stage_zone_air_end_time_sensor # Cooling optimiser optimum start zone air setpoint achieved time
+  - max_economizer_limit_time_setpoint # Maximum time before occupancy schedule that optimizer can start the system
+  uses:
+  - cooling_stage_outside_air_start_temperature_sensor # Cooling optimiser outside air temperature at start initiation
+  - cooling_stage_zone_air_start_temperature_sensor # Cooling optimiser zone air temperature at start initiation
+  - min_cooling_stage_zone_air_start_temperature_sensor # Cooling optimiser lowest zone air temperature at start termination
+  - cooling_stage_outside_air_end_temperature_sensor # Cooling optimiser outside air temperature at stop initiation
+  - cooling_stage_zone_air_end_temperature_sensor # Cooling optimiser zone air temperature at stop initiation
+  - min_cooling_stage_zone_air_end_temperature_sensor # Cooling optimiser lowest zone air temperature at stop termination
+
+HOPTM:
+  id: "9b81f013-0ddc-409c-986b-5b36987943d8"
+  description: "Heating optimisation mode control & monitoring."
+  is_abstract: true
+  implements:
+  - CONTROL
+  opt_uses:
+  - heating_stage_start_status
+  - heating_stage_end_status
+  - heating_stage_initiation_start_time_sensor # Heating optimiser optimum start initiation time 
+  - heating_stage_termination_start_time_sensor # Heating optimiser optimum start termination time  
+  - heating_stage_zone_air_start_time_sensor # Heating optimiser optimum start zone air setpoint achieved time
+  - heating_stage_end_time_sensor # Heating optimiser optimum stop initiation time
+  - heating_stage_zone_air_end_time_sensor # Heating optimiser optimum start zone air setpoint achieved time
+  - max_economizer_limit_time_setpoint # Maximum time before occupancy schedule that optimizer can start the system
+  uses:
+  - heating_stage_outside_air_start_temperature_sensor # Heating optimiser outside air temperature at start initiation
+  - heating_stage_zone_air_start_temperature_sensor # Heating optimiser zone air temperature at start initiation
+  - min_heating_stage_zone_air_start_temperature_sensor # Heating optimiser lowest zone air temperature at start termination
+  - heating_stage_outside_air_end_temperature_sensor # Heating optimiser outside air temperature at stop initiation
+  - heating_stage_zone_air_end_temperature_sensor # Heating optimiser zone air temperature at stop initiation
+  - min_heating_stage_zone_air_end_temperature_sensor # Heating optimiser lowest zone air temperature at stop termination
+
+PFDPM:
+  id: "d5b99e53-4b0e-4538-8c04-91c569342e69"
+  description: "Panel Filter pressure monitoring."
+  is_abstract: true
+  opt_uses:
+  - panel_filter_differential_pressure_setpoint # High level setpoint to initiate filter dirty alarm
+  - panel_filter_alarm_status
+  - panel_filter_differential_pressure_status
+  - filter_reset_command # Reset command for latched filter dirty alarm
+  - process_filter_run_status
+  - filter_differential_pressure_setpoint # High level setpoint to initiate filter dirty alarm
+  uses:
+  - panel_filter_differential_pressure_sensor
+  implements:
+  - MONITORING
+
+BFDPM:
+  id: "7efb1e33-8adb-4a55-9783-1f9686443437"
+  description: "Bag Filter pressure monitoring."
+  is_abstract: true
+  opt_uses:
+  - bag_filter_differential_pressure_setpoint # High level setpoint to initiate filter dirty alarm
+  - bag_filter_alarm_status
+  - bag_filter_differential_pressure_status
+  - filter_reset_command # Reset command for latched filter dirty alarm
+  - process_filter_run_status
+  - filter_differential_pressure_setpoint # High level setpoint to initiate filter dirty alarm
+  uses:
+  - bag_filter_differential_pressure_sensor
+  implements:
+  - MONITORING
+
+OATCMD:
+  id: "5f7170c4-06af-41b5-b4d8-25a65661525d"
+  description: "Outside air low temperature command for device start-up."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  uses:
+  - outside_air_low_temperature_command
+
+RDC:
+  id: "f4f60716-d1c6-4179-bc70-8ad81a0941ef"
+  description: "Return air damper control with alarms."
+  is_abstract: true
+  opt_uses:
+  - return_damper_override_status
+  - return_damper_mismatch_status
+  - return_damper_status
+  - return_damper_alarm_status
+  uses:
+  - return_damper_percentage_command
+  - return_damper_percentage_sensor
+  implements:
+  - CONTROL
+
+RCO2M:
+  id: "3ccf2eff-b999-4f5a-b0eb-bbeee2ccfbff"
+  description: "return carbon dioxide monitoring with alarms."
+  is_abstract: true
+  opt_uses:
+  - return_air_co2_concentration_status
+  uses:
+  - return_air_co2_concentration_sensor
+  implements:
+  - MONITORING
+
+RVOCM:
+  id: "d61ada5e-abc1-47aa-84db-c0af4d09ecff"
+  description: "return volatile organic compounds monitoring with alarms."
+  is_abstract: true
+  opt_uses:
+  - return_air_voc_concentration_status
+  uses:
+  - return_air_voc_percentage_sensor
+  implements:
+  - MONITORING
+
+INADC:
+  id: "c9703d46-9a7e-47bb-86c6-3aa94fc29e02"
+  description: "Inlet air damper control with alarms."
+  is_abstract: true
+  opt_uses:
+  - inlet_air_damper_status
+  - inlet_air_damper_mismatch_status
+  uses:
+  - inlet_air_damper_percentage_command
+  - inlet_air_damper_percentage_sensor
+  implements:
+  - CONTROL
+  
+RWHLTM:
+  id: "96d90489-33e6-453f-8e3c-3fac4cdd522c"
+  description: "Recovery wheel temperature monitoring with alarms."
+  is_abstract: true
+  opt_uses:
+  - inlet_air_recovery_wheel_temperature_status # Sensor failed
+  - leaving_air_recovery_wheel_temperature_status # Sensor failed
+  uses:
+  - inlet_air_recovery_wheel_temperature_sensor
+  - leaving_air_recovery_wheel_temperature_sensor
+  implements:
+  - MONITORING
+
+RWHLHM:
+  id: "7e8c3f34-dc4e-49ab-9dd2-f5a711891333"
+  description: "Recovery wheel relative humidity monitoring with alarms."
+  is_abstract: true
+  opt_uses:
+  - inlet_air_recovery_wheel_relative_humidity_status
+  - leaving_air_recovery_wheel_relative_humidity_status
+  uses:
+  - inlet_air_recovery_wheel_relative_humidity_sensor
+  - leaving_air_recovery_wheel_relative_humidity_sensor
+  implements:
+  - MONITORING
+
+RWHLVSCM:
+  id: "4c5752ef-62d3-426b-9f8f-dfb30c319d5b"
+  description: "Recovery wheel variable speed temperature control with monitoring."
+  is_abstract: true
+  opt_uses:
+  - inlet_air_recovery_wheel_temperature_sensor
+  - leaving_air_recovery_wheel_temperature_sensor
+  uses:
+  - recovery_wheel_speed_percentage_command
+  - recovery_wheel_fault_status
+  implements:
+  - MONITORING
+
+SYSC:
+  id: "fef86a92-9715-4c60-bd19-6a5979021556"
+  description: "System command for all devices and control loops within."
+  is_abstract: true
+  opt_uses:
+  uses:
+  - system_command
+  implements:
+  - CONTROL
+
+MDC:
+  id: "8f158986-3cf6-4afd-be1d-8dd460ff21e9"
+  description: "mixing air damper control with alarms."
+  is_abstract: true
+  opt_uses:
+  - mixing_damper_override_status
+  - mixing_damper_mismatch_status
+  - mixing_damper_status
+  - mixing_damper_alarm_status
+  uses:
+  - mixing_damper_percentage_command
+  - mixing_damper_percentage_sensor
+  implements:
+  - CONTROL
+
+ECO2M:
+  id: "97ff042c-bf0e-4d61-b235-54380954845b"
+  description: "exhaust air carbon dioxide monitoring with alarms."
+  is_abstract: true
+  opt_uses:
+  - exhaust_air_co2_concentration_status
+  uses:
+  - exhaust_air_co2_concentration_sensor
+  implements:
+  - MONITORING
+
+EHM:
+  id: "64c739cd-ade4-41f9-82a6-f64e81fdffdf"
+  description: "exhaust air relative humidity monitoring with alarms."
+  is_abstract: true
+  opt_uses:
+  - exhaust_air_relative_humidity_status
+  uses:
+  - exhaust_air_relative_humidity_sensor
+  implements:
+  - MONITORING
+
+OTM:
+  id: "a50aec32-ddd6-4af8-94fd-b37f7a5ac70c"
+  description: "Outside air temperature monitoring."
+  is_abstract: true
+  opt_uses:
+  - outside_air_temperature_status # Sensor failed
+  uses:
+  - outside_air_temperature_sensor
+  implements:
+  - MONITORING
+
+OHM:
+  id: "da52ab5f-2f13-4caf-80e7-a8d8441bfef4"
+  description: "Outside air relative humidity monitoring."
+  is_abstract: true
+  opt_uses:
+  - outside_air_relative_humidity_status
+  uses:
+  - outside_air_relative_humidity_sensor
+  implements:
+  - MONITORING
+
+ODC:
+  id: "92ed07fe-c9e9-4188-87a6-58b9a7b6f15e"
+  description: "Outside air damper control with alarms."
+  is_abstract: true
+  opt_uses:
+  - outside_air_damper_override_status
+  - outside_air_damper_mismatch_status
+  - outside_air_damper_status
+  - outside_air_damper_alarm_status
+  uses:
+  - outside_air_damper_percentage_command
+  - outside_air_damper_percentage_sensor
+  implements:
+  - CONTROL
+
+RCO2C:
+  id: "50971d11-bed3-4a79-9d34-5b42cecbbffe"
+  description: "Return air carbon dioxide control."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  opt_uses:
+  - return_air_control_co2_concentration_setpoint # CO2 set point used for control (product of return_air_co2_concentration_setpoint + outside air CO2)
+  uses:
+  - return_air_co2_concentration_sensor
+  - return_air_co2_concentration_setpoint
+
+OCO2M:
+  id: "d3a2ea7d-7ffa-4f5e-999f-17147feb6316"
+  description: "Outside air relative humidity monitoring."
+  is_abstract: true
+  opt_uses:
+  - outside_air_co2_concentration_status
+  uses:
+  - outside_air_co2_concentration_sensor
+  implements:
+  - MONITORING
+
+FLRZTC:
+  id: "21e26ea4-2bca-4c8e-b691-b0ce8c738cd3"
+  description: "Floor control setpoint with heating & cooling control to minimum & maximum temperatures on the floor."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  opt_uses: 
+  - zone_air_cooling_temperature_setpoint
+  - zone_air_heating_temperature_setpoint
+  - chilled_water_request_count
+  - heating_water_request_count
+  uses:
+  - zone_air_temperature_setpoint
+  - min_zone_air_temperature_sensor
+  - max_zone_air_temperature_sensor
+
+CHWHLLD:
+  id: "c4a5ea67-8dd6-4ed1-8df5-0f458d1825e2"
+  description: "Chilled water high & low level leak detection monitoring. Flowrates are monitored on supply & return to generate leak alarms."
+  is_abstract: true
+  opt_uses:
+  - chilled_supply_water_low_flowrate_sensor
+  - chilled_return_water_low_flowrate_sensor
+  - chilled_water_low_leak_alarm_status
+  - chilled_supply_water_high_flowrate_sensor
+  - chilled_return_water_high_flowrate_sensor
+  - chilled_water_high_leak_alarm_status
+  uses:
+  - chilled_water_differential_flowrate_setpoint
+  implements:
+  - MONITORING
+
+HWHLLD:
+  id: "1c581340-c589-4590-a787-5fb64803a5ca"
+  description: "Heating water high & low level leak detection monitoring. Flowrates are monitored on supply & return to generate leak alarms."
+  is_abstract: true
+  opt_uses:
+  - heating_supply_water_low_flowrate_sensor
+  - heating_return_water_low_flowrate_sensor
+  - heating_water_low_leak_alarm_status
+  - heating_supply_water_high_flowrate_sensor
+  - heating_return_water_high_flowrate_sensor
+  - heating_water_high_leak_alarm_status
+  uses:
+  - heating_water_differential_flowrate_setpoint
+  implements:
+  - MONITORING
+  
+BCWVFM:
+  id: "772dcea5-a20b-45e0-899b-9ac394c4542c"
+  description: "Boosted cold water volume & flowrate monitoring."
+  is_abstract: true
+  uses:
+  - total_boosted_cold_water_volume_sensor
+  - boosted_cold_water_flowrate_sensor
+  implements:
+  - MONITORING
+
+HWVFM:
+  id: "57594205-2847-4b4e-aa5f-40f05fcf0ca1"
+  description: "Heating water volume & flowrate monitoring."
+  is_abstract: true
+  uses:
+  - total_heating_water_volume_sensor
+  - heating_water_flowrate_sensor
+  implements:
+  - MONITORING
+
+ISODCMD:
+  id: "addf3a2a-5db8-4d25-853f-82f113e1e36d"
+  description: "Isolation damper command with alarms."
+  is_abstract: true
+  opt_uses:
+  - isolation_damper_alarm_status
+  - isolation_damper_mismatch_status
+  uses:
+  - isolation_damper_command
+  - isolation_damper_status
+  implements:
+  - CONTROL
+
+CLDATC:
+  id: "de8a034d-c836-4907-8e12-54907510d2a2"
+  description: "Cold aisle temperature control in comms rooms."
+  is_abstract: true
+  opt_uses:
+  - cold_aisle_air_temperature_status  # Sensor failed
+  uses:
+  - cold_aisle_air_temperature_sensor
+  - zone_air_temperature_setpoint
+  implements:
+  - CONTROL
+  
+DUTYC:
+  id: "6d104e35-98a1-402a-a1ed-83be61797911"
+  description: "Duty/standby control with alarm monitoring."
+  is_abstract: true
+  opt_uses:
+  - standby_device_run_command
+  - device_alarm_status
+  uses:
+  - duty_device_run_command
+  - duty_device_run_status
+  implements:
+  - CONTROL
+
+CHSSM:
+  id: "e3ced155-274d-417f-8afa-eab0ec069568"
+  description: "Chiller start/stop command with basic monitoring."
+  is_abstract: true
+  opt_uses:
+  - chiller_fault_status
+  - chiller_override_status
+  uses:
+  - chiller_run_status
+  - chiller_run_command
+  - chilled_supply_water_temperature_sensor
+  - chilled_supply_water_control_temperature_setpoint
+  implements:
+  - OPERATIONAL
+
+SCHWTCBS:
+  id: "04b9e0b4-8631-43c9-a48c-a86f561b1cf8"
+  description: "Supply chilled water temperature control with base setpoint. Up & down increment setpoints control also implemented."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  opt_uses:
+  - chilled_water_low_increment_temperature_setpoint
+  - chilled_water_high_increment_temperature_setpoint
+  - chilled_return_water_temperature_sensor
+  uses:
+  - chilled_supply_water_start_temperature_setpoint
+  - chilled_supply_water_temperature_sensor
+  - chilled_supply_water_control_temperature_setpoint
+
+CHWSFLWC:
+  id: "d090d0f7-8553-439b-9c8e-5526b3279618"
+  description: "Chilled water valve supply side flow rate control with monitoring. Flow rate sensor calculations are based on differential pressure reading across oriface plate."
+  is_abstract: true
+  opt_uses:
+  - chilled_water_control_differential_pressure_sensor
+  - chilled_water_start_flowrate_setpoint
+  - chilled_water_differential_pressure_sensor
+  - chilled_water_mismatch_flowrate_status
+  uses:
+  - chilled_water_flowrate_setpoint
+  - chilled_water_flowrate_sensor
+  - chilled_water_valve_percentage_sensor
+  - chilled_water_valve_percentage_command
+  implements:
+  - CONTROL
+
+CCHWVLVM:
+  id: "b3e6959b-2e96-4b62-9951-e2fcbed67dfa"
+  description: "Critical chilled water control valve monitoring"
+  is_abstract: true
+  opt_uses:
+  - chilled_water_valve_mismatch_status
+  - chilled_water_closing_valve_alarm_status
+  - chilled_water_critical_valve_alarm_status
+  - chilled_water_limit_valve_override_status
+  - chilled_water_valve_override_status
+  uses:
+  - chilled_water_valve_percentage_command
+  - chilled_water_valve_percentage_sensor
+  implements:
+  - MONITORING
+
+CHWSTM:
+  id: "94a82383-5b61-4e2d-9202-979290780571"
+  description: "Supply chilled water temperature monitoring"
+  is_abstract: true
+  opt_uses:
+  - max_chilled_water_temperature_setpoint
+  - min_chilled_water_temperature_setpoint
+  - chilled_supply_water_temperature_status # Sensor failed
+  - min_chilled_supply_water_temperature_status
+  - max_chilled_supply_water_temperature_status
+  uses:
+  - chilled_supply_water_temperature_sensor
+  implements:
+  - MONITORING
+
+CHWRTM:
+  id: "1921bff4-64b0-40d1-8bd8-f88c17e54152"
+  description: "Return chilled water temperature monitoring"
+  is_abstract: true
+  opt_uses:
+  - max_chilled_water_temperature_setpoint
+  - min_chilled_water_temperature_setpoint
+  - chilled_return_water_temperature_status # Sensor failed
+  - min_chilled_return_water_temperature_status
+  - max_chilled_return_water_temperature_status
+  uses:
+  - chilled_return_water_temperature_sensor
+  implements:
+  - MONITORING
+
+CHHLAM:
+  id: "1cbdd9e3-417e-4874-ad25-95c38d420518"
+  description: "Chiller high level alarm monitoring."
+  is_abstract: true
+  uses:
+  - chiller_alarm_status_1
+  - chiller_alarm_status_2
+  - low_glycol_alarm_status
+  - service_alarm_status
+  - protection_alarm_status_1
+  - consumption_alarm_status_1
+  - protection_alarm_status_2
+  - consumption_alarm_status_2
+  implements:
+  - MONITORING
+
+CHHLSM:
+  id: "03a59541-fc25-4486-826f-a53567b1283c"
+  description: "Chiller high level status monitoring."
+  is_abstract: true
+  uses:
+  - chiller_status
+  - standby_chiller_status_1
+  - standby_chiller_status_2
+  - limit_cooling_status
+  - condenser_flow_status
+  - free_cooling_status
+  implements:
+  - MONITORING
+
+COMPLM:
+  id: "617864c7-c2e7-4f14-a3f2-a1c405c6d149"
+  description: "Compressor load monitoring."
+  is_abstract: true
+  uses:
+  - compressor_load_percentage_command_1
+  - compressor_load_percentage_command_2
+  - compressor_load_percentage_command_3
+  - compressor_load_percentage_command_4
+  - compressor_load_percentage_command_5
+  - compressor_load_percentage_command_6
+  - compressor_load_percentage_sensor_1
+  - compressor_load_percentage_sensor_2
+  - compressor_load_percentage_sensor_3
+  - compressor_load_percentage_sensor_4
+  - compressor_load_percentage_sensor_5
+  - compressor_load_percentage_sensor_6
+  implements:
+  - MONITORING
+
+COMPFM:
+  id: "79356500-7010-4226-b135-b1dc56abc536"
+  description: "Compressor fault monitoring."
+  is_abstract: true
+  uses:
+  - compressor_fault_status_1
+  - compressor_fault_status_2
+  - compressor_fault_status_3
+  - compressor_fault_status_4
+  implements:
+  - MONITORING
+
+CHTAM:
+  id: "a1017064-4ce5-418e-9f75-08fb1642283d"
+  description: "Chiller temperature & alarm monitoring."
+  is_abstract: true
+  uses:
+  - supply_water_chiller_temperature_sensor
+  - return_water_chiller_temperature_sensor
+  - condensing_water_temperature_sensor_1
+  - condensing_water_temperature_sensor_2
+  - evaporative_water_temperature_sensor_1
+  - evaporative_water_temperature_sensor_2
+  - supply_water_high_chiller_temperature_status_1
+  - supply_water_high_chiller_temperature_status_2
+  - high_chiller_temperature_status
+  - low_chiller_temperature_status
+  implements:
+  - MONITORING
+
+CHWLAM:
+  id: "af9d3b19-02d3-4e58-bb63-84132f27839b"
+  description: "Chiller water level alarm monitoring."
+  is_abstract: true
+  uses:
+  - chilled_water_low_level_alarm_status
+  - chilled_water_high_level_alarm_status
+  implements:
+  - MONITORING
+
+CHDX6SC:
+  id: "b89c1942-9566-411f-9fe7-aa844946e478"
+  description: "Chiller 6 stage compressoor control."
+  is_abstract: true
+  opt_uses:
+  - chilled_return_water_temperature_sensor
+  - compressor_load_percentage_sensor_1
+  - compressor_load_percentage_sensor_2
+  - compressor_load_percentage_sensor_3
+  - compressor_load_percentage_sensor_4
+  - compressor_load_percentage_sensor_5
+  - compressor_load_percentage_sensor_6
+  uses:
+  - chiller_run_command
+  - chiller_run_status
+  - compressor_load_percentage_command_1
+  - compressor_load_percentage_command_2
+  - compressor_load_percentage_command_3
+  - compressor_load_percentage_command_4
+  - compressor_load_percentage_command_5
+  - compressor_load_percentage_command_6
+  - chilled_supply_water_temperature_sensor
+  - chilled_supply_water_control_temperature_setpoint
+
+MCO2C:
+  id: "33cb84e5-aac1-47eb-b827-9b6b11b19c39"
+  description: "Mixed air carbon dioxide control."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  opt_uses:
+  - mixed_air_control_co2_concentration_setpoint # CO2 set point used for control (product of return_air_co2_concentration_setpoint + outside air CO2)
+  uses:
+  - mixed_air_co2_concentration_sensor
+  - mixed_air_co2_concentration_setpoint
+
+MCO2M:
+  id: "19fe5609-02e0-4024-aee4-e2b88f74d8f4"
+  description: "Mixed air carbon dioxide monitoring with alarms."
+  is_abstract: true
+  opt_uses:
+  - mixed_air_co2_concentration_status
+  uses:
+  - mixed_air_co2_concentration_sensor
+  implements:
+  - MONITORING
+
+ZSPAM:
+  id: "565144cd-5272-4b24-8c0c-bb3031e1aedf"
+  description: "Zone static pressure & alarm monitoring."
+  is_abstract: true
+  opt_uses:
+  - zone_air_static_pressure_status_1 # Sensor failed alarm
+  - zone_air_static_pressure_status_2 # Sensor/setpoint deviation alarm
+  uses:
+  - zone_air_static_pressure_setpoint
+  - zone_air_static_pressure_sensor
+  implements:
+  - MONITORING
+
+MSPAM:
+  id: "23ea2317-f878-4d44-b1c3-061c835b2cf4"
+  description: "Mixed air static pressure & alarm monitoring."
+  is_abstract: true
+  opt_uses:
+  - mixed_air_static_pressure_status_1 # Sensor failed alarm
+  - mixed_air_static_pressure_status_2 # Sensor/setpoint deviation alarm
+  uses:
+  - mixed_air_static_pressure_setpoint
+  - mixed_air_static_pressure_sensor
+  implements:
+  - MONITORING
+
+EVOCM:
+  id: "0fe81971-3ba4-47a3-b5d8-196ebaabe2e6"
+  description: "Exhaust air volatile organic compounds monitoring with alarms."
+  is_abstract: true
+  opt_uses:
+  - exhaust_air_voc_concentration_status
+  uses:
+  - exhaust_air_voc_percentage_sensor
+  implements:
+  - MONITORING
+
+MVOCM:
+  id: "04a30fe9-bcbe-4ea5-a431-8f7b18112c92"
+  description: "Mixed air volatile organic compounds monitoring with alarms."
+  is_abstract: true
+  opt_uses:
+  - mixed_air_voc_concentration_status
+  uses:
+  - mixed_air_voc_percentage_sensor
+  implements:
+  - MONITORING
+
+TFSS:
+  id: "3ae2b1ac-1684-463b-9eea-757d8c2d78e3"
+  description: "Basic combination of transfer fan run command and status (start/stop)."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  opt_uses:
+  - transfer_fan_current_sensor
+  - transfer_fan_power_sensor
+  - transfer_air_flowrate_capacity
+  - transfer_fan_power_capacity
+  - transfer_fan_fault_status
+  uses:
+  - transfer_fan_run_command
+  - transfer_fan_run_status
+
+HTTAPEM:
+  id: "2856a6b3-b2c5-4416-b25d-f11dc5d9d214"
+  description: "Heat tape monitoring."
+  is_abstract: true
+  uses:
+  - heat_device_run_status
+  - heat_device_fault_status
+  implements:
+  - MONITORING
+
+DHWFM:
+  id: "79820fdd-db26-40cd-b4b1-6847c59d04af"
+  description: "Domestic hot water flowrate monitoring."
+  is_abstract: true
+  uses:
+  - hot_water_flowrate_sensor
+  - hot_water_flowrate_setpoint
+  implements:
+  - MONITORING
+
+HWSRTC:
+  id: "3bfa28d5-e161-41ab-aa8f-2bbd70900388"
+  description: "Domestic hot water return temperature control"
+  is_abstract: true
+  opt_uses:
+  - hot_return_water_temperature_status # Sensor failed
+  uses:
+  - hot_return_water_temperature_sensor
+  - hot_return_water_temperature_setpoint
+  implements:
+  - CONTROL
+
+SYSARC:
+  id: "407730b9-fe31-435c-bf27-531fdba73b69"
+  description: "Alarm reset command switches for latched alarms in a system."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  uses:
+  - system_reset_command # Command to reset latched alarms in device
+
+HWSSYSCM:
+  id: "8ddcaad0-f902-4a50-b636-ddca7bd53a28"
+  description: "Domestic hot water system control & monitoring."
+  is_abstract: true
+  opt_uses:
+  - hot_water_system_override_status
+  - hot_water_meter_alarm_status
+  uses:
+  - hot_water_system_run_command
+  implements:
+  - OPERATIONAL
+
+SYSHOA:
+  id: "d954962a-423f-4f06-9925-f10c464e6cf9"
+  description: "System hand/off/auto mode selector switch."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  uses:
+  - system_mode
+
+BCWPCM:
+  id: "e3e02eed-0e86-4c45-b32f-6244936dfe42"
+  description: "Boosted cold water pump control & monitoring."
+  is_abstract: true
+  opt_uses:
+  - boosted_cold_water_pump_fault_status_1
+  - boosted_cold_water_pump_fault_status_2
+  - boosted_cold_water_pump_override_status
+  uses:
+  - boosted_cold_water_pump_run_command
+  implements:
+  - OPERATIONAL
+
+BCWHLM:
+  id: "c9dd0cfb-c553-4c75-8fbf-8f98e133db75"
+  description: "Boosted cold water high level monitoring"
+  is_abstract: true
+  uses:
+  - boosted_cold_water_high_alarm_status
+  implements:
+  - MONITORING
+
+CHWSSP:
+  id: "7a5c6204-3cdb-40e2-a378-9e9854923089"
+  description: "Chilled water system operational setpoints"
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  opt_uses:
+  - chilled_water_low_increment_temperature_setpoint
+  - chilled_water_high_increment_temperature_setpoint
+  - min_chilled_water_temperature_setpoint
+  - max_chilled_water_temperature_setpoint
+  - min_chilled_water_valve_percentage_setpoint
+  uses:
+  - chilled_water_start_temperature_setpoint
+  - chilled_supply_water_control_temperature_setpoint
+
+CHWSPAM:
+  id: "625e75b9-e933-4af6-b468-354487a15f4e"
+  description: "Chilled water system pressure alarm monitoring"
+  is_abstract: true
+  opt_uses:
+  - chilled_water_system_low_pressure_status
+  - chilled_water_system_shutdown_pressure_status
+  implements:
+  - MONITORING
+
+CHWSOM:
+  id: "5cf7b0a2-985c-4777-925a-12910c880f8b"
+  description: "Chilled water system override monitoring"
+  is_abstract: true
+  opt_uses:
+  - chilled_water_system_override_status
+  implements:
+  - MONITORING
+
+CHWPDCM:
+  id: "df911127-cfe9-4e26-ba3c-2a44881d9395"
+  description: "Chilled water system pumps duty rotation command and monitoring."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  opt_uses:
+  - chilled_water_critical_pump_alarm_status # Alarm stating duty and standby pumps have both failed
+  uses:
+  - chilled_water_duty_pump_command # Command to change duty pump
+  - chilled_water_duty_pump_status # Status of which pump is currently duty
+
+CHWSEMM:
+  id: "c9c7ecc0-5bf2-40e6-9d89-e27fc6bac08c"
+  description: "Chilled water system energy meter status monitoring"
+  is_abstract: true
+  opt_uses:
+  - chilled_water_meter_alarm_status_1
+  - chilled_water_meter_alarm_status_2
+  - chilled_water_meter_alarm_status_3
+  - chilled_water_meter_alarm_status_4
+  implements:
+  - MONITORING
+
+HWSSTC:
+  id: "323ffb3e-ece9-4e0e-a3e9-953f037d1fc6"
+  description: "Domestic hot water supply temperature control"
+  is_abstract: true
+  opt_uses:
+  - hot_supply_water_temperature_status # Sensor failed
+  - hot_supply_water_mismatch_temperature_status
+  uses:
+  - hot_supply_water_temperature_sensor
+  - hot_supply_water_temperature_setpoint
+  implements:
+  - CONTROL
+
+HWSTTC:
+  id: "b18e1231-85b2-4832-add1-6348e2bd9de5"
+  description: "Domestic hot water tank temperature control"
+  is_abstract: true
+  opt_uses:
+  - hot_water_tank_temperature_sensor_2
+  - hot_water_tank_temperature_sensor_3
+  uses:
+  - hot_water_tank_temperature_setpoint
+  - hot_water_tank_temperature_sensor_1
+  - hot_water_heater_percentage_command
+  implements:
+  - CONTROL
+
+HWSTTM:
+  id: "4c473532-4d9c-462c-96e6-5fa49f200ba6"
+  description: "Domestic hot water tank temperature monitoring"
+  is_abstract: true
+  opt_uses:
+  - hot_water_tank_temperature_status_1 # Sensor failed
+  - hot_water_tank_temperature_status_2 # Sensor failed
+  - hot_water_tank_temperature_status_3 # Sensor failed
+  - max_hot_water_tank_temperature_status
+  uses:
+  - hot_water_tank_temperature_setpoint
+  - hot_water_tank_temperature_sensor_1
+  - hot_water_tank_temperature_sensor_2
+  - hot_water_tank_temperature_sensor_3
+  implements:
+  - MONITORING
+
+HWSHTRM:
+  id: "fd460c7b-d060-421a-9b33-a7fa339b5ef4"
+  description: "Domestic hot water heater monitoring"
+  is_abstract: true
+  opt_uses:
+  - hot_water_heater_mismatch_current_status
+  - hot_water_heater_percentage_command
+  uses:
+  - hot_water_heater_fault_status
+  - hot_water_heater_current_sensor
+  implements:
+  - MONITORING
+
+HWSPSTC:
+  id: "1a4d2ba8-9cb8-4929-affd-4195aa972dfe"
+  description: "Domestic hot water pasteurization control"
+  is_abstract: true
+  opt_uses:
+  - hot_water_pasteurization_alarm_status
+  - hot_water_tank_temperature_sensor_1
+  - hot_water_tank_temperature_sensor_2
+  - hot_water_tank_temperature_sensor_3
+  uses:
+  - hot_water_pasteurization_run_command
+  - hot_water_tank_temperature_setpoint
+  - hot_water_heater_percentage_command
+  implements:
+  - CONTROL
+
+HWSSBC:
+  id: "95cd2e01-2633-4f1a-b0cd-cf4e98add4ac"
+  description: "Domestic hot water system bypass command"
+  is_abstract: true
+  uses:
+  - hot_water_bypass_system_command
+  implements:
+  - CONTROL
+
+PCHWDT:
+  id: "d80a90ca-adb0-4036-9621-0a9d6e4d4365"
+  description: "Temperature differential across primary chilled water with alarm monitoring."
+  is_abstract: true
+  implements:
+  - MONITORING
+  opt_uses:
+   - primary_chilled_return_water_temperature_status # Sensor failed
+   - primary_chilled_supply_water_temperature_status  # Sensor failed
+  uses:
+  - primary_chilled_return_water_temperature_sensor
+  - primary_chilled_supply_water_temperature_sensor
+
+SCHWDT:
+  id: "5e518f84-c9d5-49d0-a383-300889edeff0"
+  description: "Temperature differential across secondary chilled water with alarm monitoring."
+  is_abstract: true
+  implements:
+  - MONITORING
+  opt_uses:
+   - secondary_chilled_return_water_temperature_status # Sensor failed
+   - secondary_chilled_supply_water_temperature_status  # Sensor failed
+   - min_secondary_chilled_supply_water_temperature_status
+   - max_secondary_chilled_supply_water_temperature_status
+  uses:
+  - secondary_chilled_return_water_temperature_sensor
+  - secondary_chilled_supply_water_temperature_sensor
+
+SCHWSFLWC:
+  id: "916d57fb-e32c-4e6b-9934-9fd83a450db5"
+  description: "Secondary chilled water valve flowrate control with monitoring. Flow rate sensor calculations are based on differential pressure reading across oriface plate."
+  is_abstract: true
+  opt_uses:
+  - secondary_chilled_water_differential_pressure_status
+  - secondary_chilled_water_valve_alarm_status
+  - secondary_chilled_water_mismatch_flowrate_status
+  - secondary_chilled_water_valve_mismatch_status
+  - secondary_chilled_water_control_differential_pressure_sensor
+  - secondary_chilled_water_differential_pressure_sensor
+  uses:
+  - secondary_chilled_water_flowrate_sensor
+  - secondary_chilled_water_flowrate_setpoint
+  - secondary_chilled_water_valve_percentage_sensor
+  - secondary_chilled_water_valve_percentage_command
+  implements:
+  - CONTROL
+
+CHWPVCMD:
+  id: "0d46466c-f0e9-459c-97d9-19b6e71728c0"
+  description: "Primary chilled water valve command with monitoring."
+  is_abstract: true
+  opt_uses:
+  - primary_chilled_water_valve_mismatch_status
+  - primary_chilled_water_valve_alarm_status
+  uses:
+  - primary_chilled_water_valve_command
+  - primary_chilled_water_valve_status
+  implements:
+  - CONTROL
+
+PCHWDP:
+  id: "c7d56c9d-217c-4f31-8228-1be45fe1efec"
+  description: "Pressure differential across primary chilled water."
+  is_abstract: true
+  implements:
+  - MONITORING
+  uses:
+  - primary_chilled_water_differential_pressure_sensor
+
+CHWPVSC:
+  id: "b899bb8d-1bef-4a88-8e15-44cb5c04f1c6"
+  description: "Chilled water pump variable speed control with sensor monitoring."
+  is_abstract: true
+  opt_uses:
+  - chilled_water_pump_energy_sensor
+  - chilled_water_pump_speed_percentage_sensor
+  - chilled_water_pump_speed_frequency_sensor
+  - chilled_water_pump_power_sensor
+  - chilled_water_pump_torque_percentage_sensor
+  - chilled_water_pump_temperature_sensor
+  - chilled_water_pump_run_time_setpoint
+  - chilled_water_pump_run_time_sensor
+  uses:
+  - chilled_water_pump_speed_percentage_command
+  - chilled_water_pump_run_status
+  - chilled_water_pump_run_command
+  implements:
+  - OPERATIONAL
+
+CHWPSS:
+  id: "2006b2f3-d751-44fd-900e-511761986c0f"
+  description: "Chilled water pump run command and status (start/stop) with alarm monitoring."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  opt_uses:
+  - chilled_water_pump_fault_status
+  - chilled_water_pump_alarm_status
+  - chilled_water_pump_mismatch_status # status/command mismatch
+  - chilled_water_pump_override_status # Run command overridden
+  - chilled_water_pump_speed_status # Run speed command overridden
+  - chilled_water_pump_reset_command # Alarm reset command
+  - chilled_water_pump_offline_status
+  - runtime_chilled_water_pump_alarm_status
+  - runtime_chilled_water_pump_reset_command
+  - switch_device_status # Pump switch to hand control at inverter
+  - switch_device_alarm_status # Pump switched off at inverter
+  uses:
+  - chilled_water_pump_run_status
+  - chilled_water_pump_run_command
+
+CHWPHOA:
+  id: "7afd3fd1-b9a7-46cc-b18d-56647396c061"
+  description: "Chilled water pump hand/off/auto mode selector switch."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  uses:
+  - chilled_water_pump_mode
+
+CHWPEXC:
+  id: "15e73cd6-e398-4438-91d1-d60b118aec66"
+  description: "Chilled water pump exercising routine."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  opt_uses:
+  - chilled_water_exercise_pump_status_1
+  - chilled_water_exercise_pump_status_2
+  uses:
+  - chilled_water_exercise_pump_time_setpoint_1
+  - chilled_water_exercise_pump_time_setpoint_2
+
+HWSPDC:
+  id: "e46c7c7b-6121-424e-92c5-5b09dc58562d"
+  description: "Hot water system pumps duty rotation command."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  uses:
+  - hot_water_duty_pump_command # Command to change duty pump
+  - hot_water_duty_pump_status # Status of which pump is currently duty
+
+HWSPDPM:
+  id: "13b57a1e-af31-4d40-938f-a91258e395f0"
+  description: "Pressure differential across how water system pump with alarm monitoring."
+  is_abstract: true
+  implements:
+  - MONITORING
+  opt_uses:
+  - hot_water_pump_differential_pressure_status
+  uses:
+  - hot_water_pump_differential_pressure_sensor
+
+HWSPHOA:
+  id: "01ae0f0a-6eed-4841-b6e5-f2a6bf1862be"
+  description: "Hot water system pump hand/off/auto mode selector switch."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  uses:
+  - hot_water_pump_mode
+
+HWSPVSC:
+  id: "8401b1e6-9fff-488d-a0ad-29553cff93fd"
+  description: "Hot water system pump variable speed control with sensor monitoring."
+  is_abstract: true
+  opt_uses:
+  - hot_water_pump_energy_sensor
+  - hot_water_pump_speed_percentage_sensor
+  - hot_water_pump_speed_frequency_sensor
+  - hot_water_pump_power_sensor
+  - hot_water_pump_torque_percentage_sensor
+  - hot_water_pump_temperature_sensor
+  - hot_water_pump_run_time_setpoint
+  - hot_water_pump_run_time_sensor
+  uses:
+  - hot_water_pump_speed_percentage_command
+  - hot_water_pump_run_status
+  - hot_water_pump_run_command
+  implements:
+  - OPERATIONAL
+
+HWSPSS:
+  id: "76ba191e-568e-495d-a6f6-d2a047b2e187"
+  description: "Hot water system pump run command and status (start/stop) with alarm monitoring."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  opt_uses:
+  - hot_water_pump_fault_status
+  - hot_water_pump_alarm_status
+  - hot_water_pump_mismatch_status # status/command mismatch
+  - hot_water_pump_override_status # Run command overridden
+  - hot_water_pump_speed_status # Run speed command overridden
+  - hot_water_pump_reset_command # Alarm reset command
+  - hot_water_pump_offline_status
+  - runtime_hot_water_pump_alarm_status
+  - runtime_hot_water_pump_reset_command
+  uses:
+  - hot_water_pump_run_status
+  - hot_water_pump_run_command
+  
+CHWSPRZM:
+  id: "20eed10e-be06-413d-83fd-d15090f8be09"
+  description: "chilled water system pressurization monitoring."
+  is_abstract: true
+  implements:
+  - MONITORING
+  opt_uses:
+  - chilled_water_pressurization_device_fault_status
+  uses:
+  - chilled_water_pressurization_low_alarm_status
+  - chilled_water_pressurization_high_alarm_status
+
+CHWFLTSS:
+  id: "46ef30d8-d68d-43d0-814d-f32fc2015239"
+  description: "Chilled water filter run command and status (start/stop) with alarm monitoring."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  opt_uses:
+  - chilled_water_filter_fault_status
+  - chilled_water_full_filter_alarm_status
+  - chilled_water_filter_alarm_status 
+  - chilled_water_filter_mismatch_status
+  - runtime_chilled_water_filter_reset_command
+  - runtime_chilled_water_filter_alarm_status
+  - chilled_water_filter_run_time_sensor
+  - chilled_water_filter_run_time_setpoint
+  uses:
+  - chilled_water_filter_run_status
+  - chilled_water_filter_run_command
+
+BCWVM:
+  id: "00b7f9c5-1962-4834-9308-e6e4c022cd3f"
+  description: "Boosted cold water valve monitoring."
+  is_abstract: true
+  opt_uses:
+  - boosted_cold_water_valve_mismatch_status
+  - boosted_cold_water_valve_override_status
+  uses:
+  - boosted_cold_water_valve_percentage_command
+  - boosted_cold_water_valve_percentage_sensor
+  implements:
+  - MONITORING
+
+PEHXVM:
+  id: "5c4a6313-cd96-44f7-83d9-615bc0e81a05"
+  description: "Primary side inlet heat exchanger valve monitoring."
+  is_abstract: true
+  opt_uses:
+  - inlet_heat_exchange_valve_mismatch_status
+  - inlet_heat_exchange_valve_override_status
+  uses:
+  - inlet_heat_exchange_valve_command
+  - inlet_heat_exchange_valve_status
+  implements:
+  - MONITORING
+
+PLHXVM:
+  id: "aabe3c40-cc6f-45e6-8111-081e89ecec4d"
+  description: "Primary side leaving heat exchanger valve monitoring."
+  is_abstract: true
+  opt_uses:
+  - leaving_heat_exchange_valve_mismatch_status
+  - leaving_heat_exchange_valve_override_status
+  uses:
+  - leaving_heat_exchange_valve_percentage_command
+  - leaving_heat_exchange_valve_percentage_sensor
+  implements:
+  - MONITORING
+ 
+PHXTM:
+  id: "4cf6c518-f684-4caf-8e25-a03c7cca198a"
+  description: "Primary side heat exchanger temperature monitoring."
+  is_abstract: true
+  opt_uses:
+  - primary_inlet_heat_exchange_temperature_status # Sensor failed
+  - primary_leaving_heat_exchange_temperature_status # Sensor failed
+  uses:
+  - primary_inlet_heat_exchange_temperature_sensor
+  - primary_leaving_heat_exchange_temperature_sensor
+  implements:
+  - MONITORING
+
+SHXTM:
+  id: "4524319c-939e-41a7-a3bb-b118ff8ccdd4"
+  description: "Secondary side heat exchanger temperature monitoring."
+  is_abstract: true
+  opt_uses:
+  - secondary_inlet_heat_exchange_temperature_status # Sensor failed
+  - secondary_leaving_heat_exchange_temperature_status # Sensor failed
+  - max_secondary_leaving_heat_exchange_temperature_status
+  uses:
+  - secondary_inlet_heat_exchange_temperature_sensor
+  - secondary_leaving_heat_exchange_temperature_sensor
+  implements:
+  - MONITORING
+
+PHXDPM:
+  id: "b7b45b5f-afb4-4d88-ba04-44c1a20fbec0"
+  description: "Primary side heat exchanger differential pressure monitoring."
+  is_abstract: true
+  opt_uses:
+  - primary_heat_exchange_differential_pressure_status
+  uses:
+  - primary_heat_exchange_differential_pressure_sensor
+  implements:
+  - MONITORING
+
+DOVRDM:
+  id: "c6b1a107-ef03-4402-8853-efbd24ee0e4d"
+  description: "General device overide status monitoring."
+  is_abstract: true
+  uses:
+  - device_override_status
+  implements:
+  - MONITORING
+
+EXCVM:
+  id: "74575e98-2e93-48a3-8387-5295bd8d38cf"
+  description: "General valve exercise status monitoring."
+  is_abstract: true
+  uses:
+  - exercise_valve_status
+  implements:
+  - MONITORING
+
+SVM:
+  id: "4c70e504-2060-4962-99d1-296587de8cad"
+  description: "Supply air volume monitoring."
+  is_abstract: true
+  opt_uses:
+  - supply_air_volume_status
+  uses:
+  - supply_air_volume_sensor
+  implements:
+  - MONITORING
+
+HXMEC:
+  id: "c684bdbc-1858-472a-bff4-88280fa411e7"
+  description: "Heat exchanger mixed air enthalpy control."
+  is_abstract: true
+  opt_uses:
+  - inlet_air_heat_exchange_temperature_sensor
+  - inlet_air_heat_exchange_relative_humidity_sensor
+  - inlet_air_heat_exchange_dewpoint_temperature_sensor
+  - leaving_air_heat_exchange_temperature_sensor
+  - leaving_air_heat_exchange_relative_humidity_sensor
+  - leaving_air_heat_exchange_dewpoint_temperature_sensor
+  - outside_air_temperature_setpoint
+  uses:
+  - heat_exchange_bypass_damper_command
+  - inlet_air_heat_exchange_enthalpy_sensor
+  - leaving_air_heat_exchange_enthalpy_sensor
+  implements:
+  - OPERATIONAL
+
+IAHXTHM:
+  id: "8e9898ca-6be6-4b97-9dbf-7ac42201a93b"
+  description: "Inlet air heat exchanger temperature & humidity monitoring."
+  is_abstract: true
+  opt_uses:
+  - inlet_air_heat_exchange_temperature_status # Sensor failed
+  - inlet_air_heat_exchange_relative_humidity_status
+  uses:
+  - inlet_air_heat_exchange_temperature_sensor
+  - inlet_air_heat_exchange_relative_humidity_sensor
+  implements:
+  - MONITORING
+
+LAHXTHM:
+  id: "fd96c911-4669-4b25-aefd-a7ae7909226e"
+  description: "Leaving air heat exchanger temperature & humidity monitoring."
+  is_abstract: true
+  opt_uses:
+  - leaving_air_heat_exchange_temperature_status # Sensor failed
+  - leaving_air_heat_exchange_relative_humidity_status
+  uses:
+  - leaving_air_heat_exchange_temperature_sensor
+  - leaving_air_heat_exchange_relative_humidity_sensor
+  implements:
+  - MONITORING
+
+HXBDMPM:
+  id: "d67ffb84-3e78-4663-a528-8e65f59a0db4"
+  description: "Heat exchanger bypass damper monitoring."
+  is_abstract: true
+  opt_uses:
+  - heat_exchange_bypass_damper_mismatch_status
+  uses:
+  - heat_exchange_bypass_damper_command
+  - heat_exchange_bypass_damper_open_status
+  implements:
+  - MONITORING
+
+DSS:
+  id: "b6b12353-6c6f-4713-bb9c-38cf0d8dce80"
+  description: "General device start/stop command."
+  is_abstract: true
+  uses:
+  - device_run_command
+  implements:
+  - OPERATIONAL
+
+DXFM:
+  id: "4775f7eb-5b52-49fd-821e-d816aedb2b83"
+  description: "DX FCU fault monitoring."
+  is_abstract: true
+  opt_uses:
+  - pump_fault_status
+  uses:
+  - device_fault_status
+  implements:
+  - MONITORING
+
+DTMODE:
+  id: "ec91a01f-edc8-459e-96ad-0c1349a657d7"
+  description: "Device temperature mode selector switch."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  opt_uses:
+  - device_alarm_status # Alarm to state temperature mode is not in cooling
+  uses:
+  - device_temperature_mode # Cooling/Heating mode selection
+
+ZTSP:
+  id: "0489f7a5-be41-42bb-873c-ee393114404d"
+  description: "Zone air temperature setpoint applied to device without sensor monitoring."
+  is_abstract: true
+  uses:
+  - zone_air_temperature_setpoint
+  implements:
+  - OPERATIONAL
+
+BLNDAZTC:
+  id: "4d53ae05-41dd-424a-adb6-3247a4cd1d29"
+  description: "Blinds override closed command on high zone air temperature."
+  is_abstract: true
+  opt_uses:
+  - zone_blinds_override_time_sensor # When command is removed, timer is set before blinds can re-open.
+  uses:
+  - average_zone_air_temperature_setpoint
+  - average_zone_air_temperature_sensor
+  - zone_blinds_override_command
+  implements:
+  - CONTROL
+
+AZTM:
+  id: "a1e9939e-3b48-48e5-b4ab-7f05bc9ca364"
+  description: "Average zone air temperature monitoring."
+  is_abstract: true
+  uses:
+  - average_zone_air_temperature_sensor
+  implements:
+  - MONITORING
+
+ZBLNDHOA:
+  id: "0a561097-951c-4821-85ec-5185974b885f"
+  description: "blinds temperature control hand/off/auto mode selector switch."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  uses:
+  - zone_blinds_mode
+
+ZBLNDM:
+  id: "19e65f3e-7a22-4d78-84db-e7189074c704"
+  description: "blinds position/command monitoring"
+  is_abstract: true
+  opt_uses:
+  - zone_blinds_mismatch_status
+  uses:
+  - zone_blinds_open_status
+  - zone_blinds_override_command
+  implements:
+  - MONITORING
+
+OTHCVM:
+  id: "14140919-43a7-4d7e-805c-0b057c271b24"
+  description: "Weather station with temperature, relative humidity, carbon dioxide & volatile organic compounds monitoring."
+  is_abstract: true
+  opt_uses:
+  uses:
+  - outside_air_temperature_sensor
+  - outside_air_relative_humidity_sensor
+  - outside_air_voc_percentage_sensor
+  - outside_air_co2_concentration_sensor
+  implements:
+  - MONITORING
+
+OBPM:
+  id: "721f1d63-cf4f-4d16-99bb-ecb65599489d"
+  description: "Outside air barometric pressure monitoring."
+  is_abstract: true
+  opt_uses:
+  uses:
+  - outside_air_barometric_pressure_sensor
+  implements:
+  - MONITORING
+
+WNDSDM:
+  id: "03090f1d-9c9c-40fa-b503-75b11e0a5140"
+  description: "Wind speed & direction monitoring."
+  is_abstract: true
+  opt_uses:
+  uses:
+  - wind_speed_linearvelocity_sensor
+  - wind_direction_sensor
+  implements:
+  - MONITORING
+
+OUVM:
+  id: "df7ebc12-4013-4e72-b8ed-fdca8e3d6191"
+  description: "Outside ultraviolet level monitoring."
+  is_abstract: true
+  opt_uses:
+  uses:
+  - outside_air_ultraviolet_sensor
+  implements:
+  - MONITORING
+
+OPRM:
+  id: "3669e63b-7c0a-4c72-a183-ac496c3f7140"
+  description: "Outside precipitation (rain, snow & hail) monitoring."
+  is_abstract: true
+  opt_uses:
+  uses:
+  - precipitation_status
   implements:
   - MONITORING

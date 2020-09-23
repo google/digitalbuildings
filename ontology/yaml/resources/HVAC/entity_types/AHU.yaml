@@ -3135,3 +3135,239 @@ AHU_US_SVL_MAT2_4:
   - supply_fan_speed_frequency_sensor
   - supply_fan_speed_percentage_command
   - supply_air_flowrate_sensor
+
+# Added For S2
+AHU_SFSS_SFVSC_SSPC_SSPM_CHWSTC_STC_LCCTM_HOA_OPTM_COPTM_STM_MTM_SHM_MHM_ZTM_ZX5TM_ZX6SPM_ISODC_FAM_FDPM_DARC:
+  id: "a87d66b9-6177-4791-bbda-9172d207c1c0"
+  description: "AHU type used for AHU-1 at S2."
+  is_canonical: true
+  implements:
+  - AHU
+  - SFSS
+  - SFVSC
+  - SSPC
+  - SSPM
+  - CHWSTC
+  - STC
+  - LCCTM
+  - HOA
+  - OPTM
+  - COPTM
+  - STM
+  - MTM
+  - SHM
+  - MHM
+  - ZTM
+  - ZX5TM
+  - ZX6SPM
+  - ISODC
+  - FAM
+  - FDPM
+  - DARC
+
+AHU_SFSS_SFVSC_SSPC_SSPM_CHWSTC_STC_LCCTM_HWSTC_LHCTM_HOA_OPTM_COPTM_HOPTM_STM_MTM_SHM_MHM_ZTM_ZX5TM_ZX6SPM_ISODC_FAM_FDPM_DARC:
+  id: "037bdf6a-bbe2-412e-ab74-40c17c4e5288"
+  description: "AHU type used for AHU-2 at S2."
+  is_canonical: true
+  implements:
+  - AHU
+  - SFSS
+  - SFVSC
+  - SSPC
+  - SSPM
+  - CHWSTC
+  - STC
+  - LCCTM
+  - HWSTC
+  - LHCTM
+  - HOA
+  - OPTM
+  - COPTM
+  - HOPTM
+  - STM
+  - MTM
+  - SHM
+  - MHM
+  - ZTM
+  - ZX5TM
+  - ZX6SPM
+  - ISODC
+  - FAM
+  - FDPM
+  - DARC
+
+AHU_SFSS_SFVSC_SSPC_SSPM_CHWSTC_STC_LCCTM_HWSTC_LHCTM_HOA_STM_ISODC_FAM_PFDPM_BFDPM_DARC_OATCMD:
+  id: "2553d53e-2829-492b-88b9-03173a7fd0bb"
+  description: "AHU type used for AHU-3 at S2."
+  is_canonical: true
+  implements:
+  - AHU
+  - SFSS
+  - SFVSC
+  - SSPC
+  - SSPM
+  - CHWSTC
+  - STC
+  - LCCTM
+  - HWSTC
+  - LHCTM
+  - HOA
+  - STM
+  - SHM
+  - ISODC
+  - FAM
+  - PFDPM
+  - BFDPM
+  - DARC
+  - OATCMD
+
+AHU_SFSS_SFVSC_SSPC_SSPM_CHWSTC_CHWZTC_STC_LCCTM_HOA_OPTM_COPTM_HOPTM_STM_RTM_SHM_RHM_ZTC_ISODC_FAM_PFDPM_BFDPM_DARC_ZDPAM_RCO2C_RCO2M_RVOCM_RDC_MSDM:
+  id: "ecb83c18-3e3e-46bc-88df-3e4e4b1d1295"
+  description: "AHU type used for AHU-4 & AHU-5 at S2."
+  is_canonical: true
+  implements:
+  - AHU
+  - SFSS
+  - SFVSC
+  - SSPC
+  - SSPM
+  - CHWSTC
+  - CHWZTC
+  - STC
+  - LCCTM
+  - HOA
+  - OPTM
+  - COPTM
+  - HOPTM
+  - STM
+  - RTM
+  - SHM
+  - RHM
+  - ZTC
+  - ISODC
+  - FAM
+  - PFDPM
+  - BFDPM
+  - DARC
+  - ZDPAM
+  - RCO2C
+  - RCO2M
+  - RVOCM
+  - RDC
+  - MSDM
+
+AHU_SFSS_SFVSC_SSPC_SSPM_CHWSTC_STC_LCCTM_HWSTC_LHCTM_HOA_OPTM_COPTM_HOPTM_STM_MTM_ETM_EHM_ZTM_INADC_FAM_BFDPM_PFDPM_DARC_EFSS_EFVSC_RWHLTM_RWHLHM_RWHLVSCM_ECO2M_EDPM_SYSC_MDC:
+  id: "6cb2ed5c-c8b1-49ed-882e-2522c0fcb170"
+  description: "AHU type used for AHU-6 at S2."
+  is_canonical: true
+  implements:
+  - AHU
+  - SFSS
+  - SFVSC
+  - SSPC
+  - SSPM
+  - CHWSTC
+  - STC
+  - LCCTM
+  - HWSTC
+  - LHCTM
+  - HOA
+  - OPTM
+  - COPTM
+  - HOPTM
+  - STM
+  - MTM
+  - ETM
+  - EHM
+  - ZTM
+  - INADC
+  - FAM
+  - BFDPM
+  - PFDPM
+  - DARC
+  - EFSS
+  - EFVSC
+  - RWHLTM
+  - RWHLHM
+  - RWHLVSCM
+  - ECO2M
+  - EDPM
+  - SYSC
+  - MDC
+  
+AHU_SFSS_SFVSC_SSPC_SSPM_CHWSTC_STC_LCCTM_HWSTC_LHCTM_HOA_OPTM_COPTM_HOPTM_STM_MTM_ETM_EHM_ZTM_INADC_FAM_BFDPM_PFDPM_DARC_EFSS_EFVSC_RWHLTM_RWHLHM_RWHLVSCM_ECO2M_EDPM_SYSC:
+  id: "a87b928a-e38a-4833-af71-ce55df5362db"
+  description: "AHU type used for AHU-7 at S2."
+  is_canonical: true
+  implements:
+  - AHU
+  - SFSS
+  - SFVSC
+  - SSPC
+  - SSPM
+  - CHWSTC
+  - STC
+  - LCCTM
+  - HWSTC
+  - LHCTM
+  - HOA
+  - OPTM
+  - COPTM
+  - HOPTM
+  - STM
+  - MTM
+  - ETM
+  - EHM
+  - ZTM
+  - INADC
+  - FAM
+  - BFDPM
+  - PFDPM
+  - DARC
+  - EFSS
+  - EFVSC
+  - RWHLTM
+  - RWHLHM
+  - RWHLVSCM
+  - ECO2M
+  - EDPM
+  - SYSC
+
+AHU_EFSS_EFVSC_HOA_ISODC_FAM_PFDPM_BFDPM_DARC:
+  id: "ee452ca3-ce04-4e9a-9073-85ee50117db7"
+  description: "AHU type used for AHU-8 & AHU-10 at S2."
+  is_canonical: true
+  implements:
+  - AHU
+  - EFSS
+  - EFVSC
+  - HOA
+  - ISODC
+  - FAM
+  - PFDPM
+  - BFDPM
+  - DARC
+
+AHU_SFSS_SFVSC_SSPC_SSPM_CHWSTC_STC_LCCTM_HWSTC_LHCTM_HOA_OATCMD_STM_ISODC_FAM_PFDPM_BFDPM_DARC:
+  id: "3611f8b5-7268-466d-8f4a-76c759da2073"
+  description: "AHU type used for AHU-9 at S2."
+  is_canonical: true
+  implements:
+  - AHU
+  - SFSS
+  - SFVSC
+  - SSPC
+  - SSPM
+  - CHWSTC
+  - STC
+  - LCCTM
+  - HWSTC
+  - LHCTM
+  - HOA
+  - OATCMD
+  - STM
+  - ISODC
+  - FAM
+  - PFDPM
+  - BFDPM
+  - DARC

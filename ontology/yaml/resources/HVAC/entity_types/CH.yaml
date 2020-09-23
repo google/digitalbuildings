@@ -321,3 +321,27 @@ CH_US_SBO_901_1:
   - INCOMPLETE
   uses:
   - cooling_percentage_sensor
+
+# CCCH-1 & CCCH-2 for S2
+CH_CHSSM_CCHWVLVM_CHWSFLWC_CHWSTM_CHWRTM_CHWDPM_CHHLSM_CHHLAM_CHTAM_COMPFM_CHWLAM_HOA_SCHWTCBS_CHDX6SC_COMPLM_DARC:
+  id: "4a6f61a4-97ad-4717-a277-312b69a3ce5b"
+  description: "Water cooled chiller with 4x compressors and 6 stage control. Supply side flowrate and temperature control. Return side temperature and differential pressure monitoring. Hand/Off/Auto operation is provided."
+  is_canonical: true
+  implements:
+  - CH
+  - CHSSM
+  - CCHWVLVM
+  - CHWSFLWC
+  - CHWSTM
+  - CHWRTM
+  - CHWDPM
+  - CHHLSM
+  - CHHLAM
+  - CHTAM
+  - COMPFM
+  - CHWLAM
+  - HOA
+  - SCHWTCBS
+  - CHDX6SC
+  - COMPLM
+  - DARC

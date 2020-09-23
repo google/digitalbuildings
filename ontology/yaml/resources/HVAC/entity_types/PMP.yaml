@@ -64,3 +64,61 @@ PMP_US_MTV_1667_1:
   - PMP_SS_VSC
   uses:
   - differential_pressure_sensor
+
+# BSP-1 for S2
+PMP_BCWPCM_SYSHOA_BCWHLM:
+  id: "ba78b965-18a4-4fea-8953-1bc8081cc282"
+  description: "Booster set pump with run command and fault/alarm monitoring. System Hand/Off/Auto operation is provided and high water level monitoring."
+  is_canonical: true
+  implements:
+  - PMP
+  - BCWPCM
+  - SYSHOA
+  - BCWHLM
+
+# PMP-1 & PMP-2 for S2
+PMP_CHWPSS_CHWPVSC_CHWPHOA:
+  id: "562a3673-0ccb-4df4-9b58-8a1a1a15b43d"
+  description: "Chilled water variable speed pump with run command/status and fault/alarm monitoring. Hand/Off/Auto operation is provided and pump sensor monitoring."
+  is_canonical: true
+  implements:
+  - PMP
+  - CHWPSS
+  - CHWPVSC
+  - CHWPHOA
+
+# PMP-3 for S2
+PMP_CHWPSS_CHWPVSC_CHWPHOA_CHWPEXC:
+  id: "6fdc94d1-3bda-4f29-8c08-9a2b889fe908"
+  description: "Chilled water variable speed pump with run command/status and fault/alarm monitoring. Hand/Off/Auto operation is provided, with exercise routine and pump sensor monitoring."
+  is_canonical: true
+  implements:
+  - PMP
+  - CHWPSS
+  - CHWPVSC
+  - CHWPHOA
+  - CHWPEXC
+
+# PMP-4 for S2
+PMP_HWSPSS_HWSPVSC_HWSPHOA_HWSPDC_HWSPDPM:
+  id: "a55a2c1f-5b2c-4059-821e-865ac4de27d7"
+  description: "Hot water system variable speed pump with run command/status and fault/alarm monitoring. Hand/Off/Auto operation is provided with pump duty control and pump differentail pressure sensor monitoring."
+  is_canonical: true
+  implements:
+  - PMP
+  - HWSPSS
+  - HWSPVSC
+  - HWSPHOA
+  - HWSPDC
+  - HWSPDPM
+
+# PMP-5 for S2
+PMP_HWSPSS_HWSPVSC_HWSPHOA:
+  id: "9562938f-fc1c-4b74-b081-e941c93f257f"
+  description: "Hot water system variable speed pump with run command/status and fault/alarm monitoring. Hand/Off/Auto operation is provided."
+  is_canonical: true
+  implements:
+  - PMP
+  - HWSPSS
+  - HWSPVSC
+  - HWSPHOA

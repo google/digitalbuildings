@@ -245,4 +245,83 @@ HUM:
   implements:
   - EQUIPMENT
 
+  
+FARSR: # Fresh Air Riser - Added for S2
+  id: "c7af2926-a614-47c1-8f79-5dfdd2e43970"
+  description: "Fresh air riser for HVAC systems"
+  is_abstract: true
+  implements:
+  - EQUIPMENT
 
+
+RARSR: # Return Air Riser - Added for S2
+  id: "746f16da-6768-4dd8-883a-cb9e3e43889c"
+  description: "Return air riser for HVAC systems"
+  is_abstract: true
+  implements:
+  - EQUIPMENT
+
+
+CHWRSR: # CHW Riser - Added for S2
+  id: "b03b1789-570c-41a8-a864-d75b535606f9"
+  description: "Chilled water riser for HVAC systems"
+  is_abstract: true
+  implements:
+  - EQUIPMENT
+
+
+LHWRSR: # LTHW Riser - Added for S2
+  id: "788b1072-cd9c-41ff-ba05-f39be254829f"
+  description: "Low temperature hot water riser for HVAC systems"
+  is_abstract: true
+  implements:
+  - EQUIPMENT
+
+CRAC: # CRAC unit - Added for S2
+  id: "6c94e9db-3db5-4f70-b320-8917c634bbd1"
+  description: "Tag for computer room air conditioning unit. This a device that monitors and maintains the temperature, air distribution and humidity in a network room or data center"
+  is_abstract: true
+  implements:
+  - EQUIPMENT
+
+CTRP: # Control Panel - Added for S2
+  id: "b46f9563-9937-4234-8faa-fe1c13b42e52"
+  description: "Tag for control panel, housing BMS devices for monitorinng/controlling HVAC systems"
+  is_abstract: true
+  implements:
+  - EQUIPMENT
+
+DGWH: # HWS Water Heater - Added for S2
+  id: "c2d59b4a-545b-4047-b598-30beef6250f7"
+  description: "Tag for water heater used for heating tanks in domestic hot water systems"
+  is_abstract: true
+  implements:
+  - EQUIPMENT
+  
+BMS: # BMS Reporting Device - Added for S2
+  id: "d515cf70-9be9-479c-a693-95cd6ddcec51"
+  description: "Tag for BMS controller used as a reporting device for other assets."
+  is_abstract: true
+  implements:
+  - EQUIPMENT
+
+PU:
+  id: "0fd419d9-ed37-4186-8d19-a73e3028229b"
+  description: "Tag for pressurization unit. A mechanical means of pressurising a system, being heating or hot and cold water services."
+  is_abstract: true
+  implements:
+  - EQUIPMENT
+
+SSFLT:
+  id: "0d23d483-ff41-4135-bdac-6a00a3a3c9c7"
+  description: "Tag for side stream filtration unit. A mechanical means of filtering the water in a system, being heating or hot and cold water services."
+  is_abstract: true
+  implements:
+  - EQUIPMENT
+
+HRU:
+  id: "68c973f8-125f-415e-ae9d-588adb0a7732"
+  description: "Tag for heat recovery unit. A system that uses the heat in stale exhaust air to preheat incoming fresh air. This reduces the energy required to bring outside air up to ambient room temperature."
+  is_abstract: true
+  implements:
+  - EQUIPMENT

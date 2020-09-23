@@ -1,0 +1,29 @@
+# Valve
+VLV:
+  id: "047e0a91-ce44-44cc-8967-f865cbccdac1"
+  description: "Valve used in HVAC & DHW systems"
+  is_abstract: true
+  implements:
+  - EQUIPMENT
+
+
+# Chilled Water Valve 
+VLV_CHWVLVM_DTM_RTM:
+  id: "6f595874-1214-42f5-a0d9-da64a36cd58b"
+  description: "Chilled water control valve with flowrate sensor monitoring, discharge and return air monitoring."
+  is_canonical: true
+  implements:
+  - VLV # New abstract created for S2
+  - CHWVLVM # New abstract created for S2
+  - DTM # Existing with optional points added for S2
+  - RTM # Existing with optional points added for S2
+
+
+# Heating Water Valve 
+VLV_HWVLVM:
+  id: "50a1faee-a54b-46c6-9710-7919c22dc127"
+  description: "Heating water control valve with flowrate sensor monitoring."
+  is_canonical: true
+  implements:
+  - VLV # New abstract created for S2
+  - HWVLVM # New abstract created for S2

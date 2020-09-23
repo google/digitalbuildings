@@ -1,0 +1,176 @@
+# Copyright 2020 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the License);
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#    https://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an AS IS BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+########################
+### Canonical Types  ###
+########################
+
+# CTRP-1 at S2
+CTRP_SMKDFAGASM_ZTCAM_FAM:
+  id: "ee150ac1-cf66-4eef-9671-02fe1eb8b267"
+  description: "UPS room control panel with zone temperature control. Smoke dampers, fire alarm & gas suppression system monitoring."
+  is_canonical: true
+  implements:
+  - CTRP
+  - SMKDFAGASM
+  - ZTCAM
+  - FAM
+
+# CTRP-3, CTRP-6, CTRP-8, CTRP-10, CTRP-15, CTRP-17, CTRP-22 at S2
+CTRP_CLDATAM_CLDAHAM_HOTATAM_HOTAHM_SMKDFAGASM_FAM:
+  id: "3f252806-3136-43dc-b4e7-ed2da48efbb4"
+  description: "AV/IDF control panel. Cold aisle temperature & humidity monitoring. Hot aisle temperature & humidity monitoring. Smoke dampers, fire alarm & gas suppression system monitoring."
+  is_canonical: true
+  implements:
+  - CTRP
+  - CLDATAM
+  - CLDAHAM
+  - HOTATAM
+  - HOTAHM
+  - SMKDFAGASM
+  - FAM
+
+# CTRP-4 at S2
+CTRP_CLDATAM_CLDAHAM_HOTATAM_HOTAHM_ZDPAM_SMKDFAGASM_FAM:
+  id: "0818529c-10b5-4aac-977c-b997431733e4"
+  description: "AV/IDF control panel. Cold aisle temperature & humidity monitoring. Hot aisle temperature & humidity monitoring. Zone differential pressure monitoring. Smoke dampers, fire alarm & gas suppression system monitoring."
+  is_canonical: true
+  implements:
+  - CTRP
+  - CLDATAM
+  - CLDAHAM
+  - HOTATAM
+  - HOTAHM
+  - ZDPAM
+  - SMKDFAGASM
+  - FAM
+
+# CTRP-19 at S2
+CTRP_CLDATAM_CLDAHAM:
+  id: "b242350a-9549-4d2a-afa1-ff363d43ef42"
+  description: "AV/IDF control panel. Cold aisle temperature & humidity monitoring."
+  is_canonical: true
+  implements:
+  - CTRP
+  - CLDATAM
+  - CLDAHAM
+
+# CTRP-23 at S2
+CTRP_CLDATAM_CLDAHAM_HOTATAM_HOTAHM_ZDPAM_FAM:
+  id: "440cafd0-4605-4880-8fd6-c320eaf8365f"
+  description: "AV/IDF control panel. Cold aisle temperature & humidity monitoring. Hot aisle temperature & humidity monitoring. Zone differential pressure monitoring. Fire alarm monitoring."
+  is_canonical: true
+  implements:
+  - CTRP
+  - CLDATAM
+  - CLDAHAM
+  - HOTATAM
+  - HOTAHM
+  - ZDPAM
+  - FAM
+
+# CTRP-5, CTRP-7, CTRP-9, CTRP-12, CTRP-14, CTRP-26 at S2
+CTRP_FLRZTC_OPTM_COPTM_HOPTM_FAM:
+  id: "a03dd348-678c-45e9-b117-b960b102568a"
+  description: "Floor optimizer control panel with cooling and heating optimization. Floor zone temperature control and fire alarm monitoring."
+  is_canonical: true
+  implements:
+  - CTRP
+  - FLRZTC
+  - OPTM
+  - COPTM
+  - HOPTM
+  - FAM
+
+# CTRP-16, CTRP-18, CTRP-21 at S2
+CTRP_FLRZTC_OPTM_COPTM_HOPTM_FAM_CHWHLLD_HWHLLD:
+  id: "d479f4c0-1840-42bb-abda-d20ba350f359"
+  description: "Floor optimizer control panel with cooling and heating optimization. Floor zone temperature control and fire alarm monitoring. Chilled water high & low level leak detection monitoring. Heating water high & low level leak detection monitoring."
+  is_canonical: true
+  implements:
+  - CTRP
+  - FLRZTC
+  - OPTM
+  - COPTM
+  - HOPTM
+  - FAM
+  - CHWHLLD
+  - HWHLLD
+
+# CTRP-20 at S2
+CTRP_ODC_OTM_OHM_OCO2M:
+  id: "e6a9e4c9-4549-4934-9bcf-549072dfbc93"
+  description: "Ventilation control panel with outside air damper control. Outside air temperature, relative humidity and carbon dioxide monitoring."
+  is_canonical: true
+  implements:
+  - CTRP
+  - ODC
+  - OTM
+  - OHM
+  - OCO2M
+
+# CTRP-25 at S2
+CTRP_HWSSYSCM_SYSHOA_DHWFM_HTTAPEM_SYSARC_FAM:
+  id: "a2d75b50-ed93-4296-8cea-4c43fad1c60f"
+  description: "Domestic hot water system control panel. System Hand/Off/Auto operation is provided. Flowrate & return temperature monitoring. Heattape and fire alarm monitoring. There are also latching alarms which can be reset with a command."
+  is_canonical: true
+  implements:
+  - CTRP
+  - HWSSYSCM
+  - SYSHOA
+  - DHWFM
+  - HTTAPEM
+  - SYSARC
+  - FAM
+
+# CTRP-27 at S2
+CTRP_CHWSSP_SYSHOA_CHWSEMM_CHWPDCM_CHWSPAM_CHWSOM_DARC:
+  id: "52408316-1801-4524-b8ff-9e0aabcdacb8"
+  description: "Critical chilled water system control panel. Operational system setpoints & system Hand/Off/Auto operation is provided. Pressure & override alarm monitoring. Pump duty control and monitoring. There are also latching alarms which can be reset with a command."
+  is_canonical: true
+  implements:
+  - CTRP
+  - CHWSSP
+  - SYSHOA
+  - CHWSEMM
+  - CHWPDCM
+  - CHWSPAM
+  - CHWSOM
+  - DARC
+
+# CTRP-11 at S2
+CTRP_ED_RD_ODC_MCO2C_ECO2M_OCO2M_ZSPAM_MSPAM_EVOCM_MVOCM_EHM_MHM_BLNDZTC_ZBLNDM_ZBLNDHOA_AZTM_FAM:
+  id: "65a93ac5-a5a0-4c12-b46a-ebdabb55819e"
+  description: "Ventilation control panel with outside, return & exhaust air damper control. Mixed air carbon dioxide control, exhaust, outside & mixed air carbon dioxide monitoring. Zone air & mixed air static pressure monitoring. Exhaust & mixed air volatile organic compounds & relative humidity monitoring. Zone blinds high temperature override, average zone air temperature monitoring & fire alarm monitoring."
+  is_canonical: true
+  implements:
+  - CTRP
+  - ED
+  - RD
+  - ODC
+  - MCO2C
+  - ECO2M
+  - OCO2M
+  - MCO2M
+  - ZSPAM
+  - MSPAM
+  - EVOCM
+  - MVOCM
+  - EHM
+  - MHM
+  - BLNDAZTC
+  - ZBLNDM
+  - ZBLNDHOA
+  - AZTM
+  - FAM

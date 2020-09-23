@@ -16,21 +16,18 @@
 ### Canonical Types  ###
 ########################
 
-WEATHER_OA:
-  id: "8401050176659128320"
-  description: "Typical weather station."
+# All CRAC units at S2
+CRAC_SFSSAM_STRWCAM_CHWSX2CA_CDASM_STM_RTM_RACKTM_WLASM:
+  id: "2e3c0e8a-188f-4538-9ece-89601200c298"
+  description: "CRAC unit with supply air temperature control, supply fan monitoring & chilled water valve monitoring. Supply, return & rack temperature monitoring. Device & water leak alarm monitoring."
+  is_canonical: true
   implements:
-  - WEATHER
-  - OA
-
-# WST-1 at S2
-WEATHER_OTHCVM_OUVM_OBPM_WNDSDM_OPRM:
-  id: "778ea0b7-783d-45f3-a343-55362d5bd1d1"
-  description: "Weather station monitoring temperature, relative humidity, carbon dioxide, volatile organic compounds, ultra violet levels, barometric pressure, wind speed/direction & precipitation."
-  implements:
-  - WEATHER
-  - OTHCVM
-  - OUVM
-  - OBPM
-  - WNDSDM
-  - OPRM
+  - CRAC
+  - SFSSAM
+  - STRWCAM
+  - CHWSX2CA
+  - CDASM
+  - STM
+  - RTM
+  - RACKTM
+  - WLASM

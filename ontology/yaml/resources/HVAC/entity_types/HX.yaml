@@ -97,3 +97,51 @@ HX_CHWDT_CWRISOVPM_CHWRWISOVPM:
   - CHWDT
   - CWRISOVPM
   - CHWRWISOVPM
+
+# PHX-1 at S2
+HX_SCHWSFLWC_CHWPVCMD_PCHWDT_SCHWDT_PCHWDP:
+  id: "0bc38c54-bfac-4cfc-b644-025e63432c94"
+  description: "Chilled water heat exchanger with secondary valve flowrate control and primary valve command. Primary & secondary supply & return temperature monitoring."
+  is_canonical: true
+  implements:
+  - HX
+  - SCHWSFLWC
+  - CHWPVCMD
+  - PCHWDT
+  - SCHWDT
+  - PCHWDP
+
+# PHX-2 at S2
+HX_BCWVM_PEHXVM_PLHXVM_PHXTM_SHXTM_PHXDPM_EXCVM_HOA_DUTYC_DOVRDM:
+  id: "d3569b77-671e-4563-82a0-cabde53fad83"
+  description: "Heating and Hot water heat exchangers with boosted cold water input on hot water side."
+  is_canonical: true
+  implements:
+  - HX
+  - BCWVM
+  - PEHXVM
+  - PLHXVM
+  - PHXTM
+  - SHXTM
+  - PHXDPM
+  - EXCVM
+  - HOA
+  - DUTYC
+  - DOVRDM
+
+# PHX-3 at S2
+HX_BCWVM_PEHXVM_PLHXVM_PHXTM_SHXTM_PHXDPM_EXCVM_HOA_DOVRDM:
+  id: "5bd97186-c30c-4008-9a02-4482def709ab"
+  description: "Heating and Hot water heat exchangers with boosted cold water input on hot water side."
+  is_canonical: true
+  implements:
+  - HX
+  - BCWVM
+  - PEHXVM
+  - PLHXVM
+  - PHXTM
+  - SHXTM
+  - PHXDPM
+  - EXCVM
+  - HOA
+  - DOVRDM

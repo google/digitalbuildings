@@ -16,21 +16,12 @@
 ### Canonical Types  ###
 ########################
 
-WEATHER_OA:
-  id: "8401050176659128320"
-  description: "Typical weather station."
+# PU-1 at S2
+PU_CHWSPRZM:
+  id: "237d2a36-3ae7-4d9e-9682-b695480d38e7"
+  description: "Pressurization unit with chilled water system pressurization monitoring. "
+  is_canonical: true
   implements:
-  - WEATHER
-  - OA
+  - PU
+  - CHWSPRZM
 
-# WST-1 at S2
-WEATHER_OTHCVM_OUVM_OBPM_WNDSDM_OPRM:
-  id: "778ea0b7-783d-45f3-a343-55362d5bd1d1"
-  description: "Weather station monitoring temperature, relative humidity, carbon dioxide, volatile organic compounds, ultra violet levels, barometric pressure, wind speed/direction & precipitation."
-  implements:
-  - WEATHER
-  - OTHCVM
-  - OUVM
-  - OBPM
-  - WNDSDM
-  - OPRM

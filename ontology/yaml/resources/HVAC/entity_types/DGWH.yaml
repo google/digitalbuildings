@@ -16,21 +16,18 @@
 ### Canonical Types  ###
 ########################
 
-WEATHER_OA:
-  id: "8401050176659128320"
-  description: "Typical weather station."
+# DGWH-1 at S2
+DGWH_HWSSTC_HWSTTM_HWSHTRM_HWSPSTC_HWSRTC_HWSTTC_HWSSBC:
+  id: "0a08ca91-7f82-4258-989f-8d5ef3a818eb"
+  description: "Domestic hot water heater with variable percentage control. Supply, return and tank temperature control and monitoring. Pasteurization control and system bypass control. "
+  is_canonical: true
   implements:
-  - WEATHER
-  - OA
+  - DGWH
+  - HWSSTC
+  - HWSTTM
+  - HWSHTRM
+  - HWSPSTC
+  - HWSRTC
+  - HWSTTC
+  - HWSSBC
 
-# WST-1 at S2
-WEATHER_OTHCVM_OUVM_OBPM_WNDSDM_OPRM:
-  id: "778ea0b7-783d-45f3-a343-55362d5bd1d1"
-  description: "Weather station monitoring temperature, relative humidity, carbon dioxide, volatile organic compounds, ultra violet levels, barometric pressure, wind speed/direction & precipitation."
-  implements:
-  - WEATHER
-  - OTHCVM
-  - OUVM
-  - OBPM
-  - WNDSDM
-  - OPRM
