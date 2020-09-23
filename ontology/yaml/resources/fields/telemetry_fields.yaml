@@ -607,7 +607,7 @@ literals:
 
 # Added 9/8/20 for SG-SIN-MBC2
 - chilled_return_water_flowrate_sensor
-- run_alarm_status
+#- run_alarm_status
 - fire_alarm_status
 - fire_fault_status
 - makeup_water_high_tank_status
@@ -633,8 +633,7 @@ literals:
 - mixing_heating_return_water_temperature_sensor
 - circulation_heating_supply_water_temperature_sensor
 - circulation_heating_return_water_temperature_sensor
-- dewpoint_temperature_sensor
-- pressure_sensor
+- supply_air_dewpoint_temperature_sensor
 - zone_dimmer_percentage_command
 - zone_scene_dimmer_percentage_command
 - photocatalyst_status
