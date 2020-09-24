@@ -4291,21 +4291,6 @@ CHSSM:
   implements:
   - OPERATIONAL
 
-SCHWTCBS:
-  id: "04b9e0b4-8631-43c9-a48c-a86f561b1cf8"
-  description: "Supply chilled water temperature control with base setpoint. Up & down increment setpoints control also implemented."
-  is_abstract: true
-  implements:
-  - OPERATIONAL
-  opt_uses:
-  - chilled_water_low_increment_temperature_setpoint
-  - chilled_water_high_increment_temperature_setpoint
-  - chilled_return_water_temperature_sensor
-  uses:
-  - chilled_supply_water_start_temperature_setpoint
-  - chilled_supply_water_temperature_sensor
-  - chilled_supply_water_control_temperature_setpoint
-
 CHWSFLWC:
   id: "d090d0f7-8553-439b-9c8e-5526b3279618"
   description: "Chilled water valve supply side flow rate control with monitoring. Flow rate sensor calculations are based on differential pressure reading across oriface plate."
@@ -5326,5 +5311,34 @@ OPRM:
   opt_uses:
   uses:
   - precipitation_status
+  implements:
+  - MONITORING
+
+SFSM:
+  id: "b5dea6ad-b930-4f05-8b58-cc5fc9a46ca0"
+  description: "Supply fan speed monitoring"
+  is_abstract: true
+  uses:
+  - supply_fan_speed_percentage_sensor
+  implements:
+  - MONITORING
+
+HWSRTSP:
+  id: "744952dc-6279-42dd-b1b6-61a4afdd08a5"
+  description: "Hot water system return temperature setpoint applied to device without sensor monitoring."
+  is_abstract: true
+  uses:
+  - hot_return_water_temperature_setpoint
+  implements:
+  - OPERATIONAL
+
+HWSRTM:
+  id: "ee3bf9ee-9ff4-436f-825d-a8a7d6862d49"
+  description: "Domestic hot water return temperature monitoring"
+  is_abstract: true
+  opt_uses:
+  - hot_return_water_temperature_status # Sensor failed
+  uses:
+  - hot_return_water_temperature_sensor
   implements:
   - MONITORING
