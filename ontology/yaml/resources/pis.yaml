@@ -25,17 +25,17 @@ ch-zrh-eurd-08-1103:
     ch-zrh-eurd-08: CONTAINS
 
 # MTS-001
-ch-zrh-eurd-mts-001-08-1100:
-  type: LIGHTNING/LMS
-  id: ee7ea844-d384-4b2c-b540-a7657310e6f8
-  connections:
-    ch-zrh-eurd-08-1100: CONTAINS
-  translation:
-    switch_light_command:
-      present_value: "points.switch_light_command.present_value"
-      states:
-        ON: "1"
-        OFF: "0"
+# ch-zrh-eurd-mts-001-08-1100:
+#  type: LIGHTNING/LMS
+#  id: ee7ea844-d384-4b2c-b540-a7657310e6f8
+#  connections:
+#    ch-zrh-eurd-08-1100: CONTAINS
+#  translation:
+#    switch_light_command:
+#      present_value: "points.switch_light_command.present_value"
+#      states:
+#        ON: "1"
+#        OFF: "0"
 
 # Fan Coil Unit =310M1
 ch-zrh-eurd-fcu-001-08-1103:
