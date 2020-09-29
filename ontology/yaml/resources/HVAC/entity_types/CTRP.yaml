@@ -150,14 +150,14 @@ CTRP_CHWSSP_SYSHOA_CHWSEMM_CHWPDCM_CHWSPAM_CHWSOM_DARC:
   - DARC
 
 # CTRP-11 at S2
-CTRP_ED_RD_ODC_MCO2C_ECO2M_OCO2M_ZSPAM_MSPAM_EVOCM_MVOCM_EHM_MHM_BLNDZTC_ZBLNDM_ZBLNDHOA_AZTM_FAM:
+CTRP_EDPM_RDC_ODC_MCO2C_ECO2M_OCO2M_ZSPAM_MSPAM_EVOCM_MVOCM_EHM_MHM_BLNDZTC_ZBLNDM_ZBLNDHOA_AZTM_FAM:
   id: "65a93ac5-a5a0-4c12-b46a-ebdabb55819e"
   description: "Ventilation control panel with outside, return & exhaust air damper control. Mixed air carbon dioxide control, exhaust, outside & mixed air carbon dioxide monitoring. Zone air & mixed air static pressure monitoring. Exhaust & mixed air volatile organic compounds & relative humidity monitoring. Zone blinds high temperature override, average zone air temperature monitoring & fire alarm monitoring."
   is_canonical: true
   implements:
   - CTRP
-  - ED
-  - RD
+  - EDPM
+  - RDC
   - ODC
   - MCO2C
   - ECO2M

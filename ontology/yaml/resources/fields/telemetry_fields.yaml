@@ -762,16 +762,7 @@ literals:
   - HEALTHY
   - ALARM
 - device_mode:
-  - OFF
-  - AUTO
-  - HAND
 - zone_mode:
-  - UNOCCUPIED
-  - OCCUPIED
-  - COOLING_BOOST
-  - HEATING_BOOST
-  - FABRIC_PROTECTION
-  - OPTIMUM_STOP
 - max_economizer_limit_time_setpoint:
 - temperature_setpoint:
 - min_unoccupied_temperature_setpoint:
@@ -795,13 +786,13 @@ literals:
 - hot_aisle_air_high_temperature_status:
 - hot_aisle_air_relative_humidity_status:
 - cold_aisle_air_high_temperature_setpoint:
-- cold_aisle_air_high_delay_temperature_setpoint:
+- cold_aisle_air_high_delay_time_setpoint:
 - cold_aisle_air_critical_temperature_setpoint:
 - cold_aisle_air_relative_humidity_sensor:
 - cold_aisle_air_low_relative_humidity_setpoint:
 - cold_aisle_air_high_relative_humidity_setpoint:
 - hot_aisle_air_high_temperature_setpoint:
-- hot_aisle_air_high_delay_temperature_setpoint:
+- hot_aisle_air_high_delay_time_setpoint:
 - hot_aisle_air_relative_humidity_sensor:
 - inlet_smoke_damper_status:
 - leaving_smoke_damper_status:

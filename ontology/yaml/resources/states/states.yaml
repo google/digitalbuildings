@@ -61,3 +61,7 @@ MAX: Maximum control mode for temperature control
 STANDBY:
 YES:
 NO:
+COOLING_VALVE_EXERCISE:
+FIRE:
+HEATING_VALVE_EXERCISE:
+FILTER_TEST:

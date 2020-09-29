@@ -540,6 +540,7 @@ STC:
   is_abstract: true
   opt_uses:
   - supply_air_control_temperature_sensor
+  - supply_air_control_temperature_setpoint
   - supply_air_temperature_mode
   - supply_air_deadband_temperature_setpoint
   - supply_air_increment_temperature_setpoint
@@ -1033,7 +1034,9 @@ SSPM:
   is_abstract: true
   opt_uses:
   - supply_air_static_pressure_setpoint
-  - supply_air_static_pressure_status
+  - supply_air_static_pressure_status # Sensor Failure
+  - supply_air_static_pressure_status_1 # Sensor Failure
+  - supply_air_static_pressure_status_2 # Pressure alarm
   - supply_air_alarm_pressure_setpoint
   - supply_air_low_static_pressure_setpoint
   - supply_air_high_static_pressure_setpoint
@@ -3529,7 +3532,7 @@ CLDATAM:
   is_abstract: true
   opt_uses:
   - cold_aisle_air_temperature_status # Sensor failed
-  - cold_aisle_air_high_delay_temperature_setpoint # Delay setpoint for generating high temperature status
+  - cold_aisle_air_high_delay_time_setpoint # Delay setpoint for generating high temperature status
   uses:
   - cold_aisle_air_temperature_sensor
   - cold_aisle_air_high_temperature_setpoint # Setpoint for generating high temperature status
@@ -3545,7 +3548,7 @@ HOTATAM:
   is_abstract: true
   opt_uses:
   - hot_aisle_air_temperature_status # Sensor failed
-  - hot_aisle_air_high_delay_temperature_setpoint # Delay setpoint for generating high temperature status
+  - hot_aisle_air_high_delay_time_setpoint # Delay setpoint for generating high temperature status
   uses:
   - hot_aisle_air_temperature_sensor
   - hot_aisle_air_high_temperature_setpoint # Setpoint for generating high temperature status
@@ -3733,6 +3736,7 @@ CHWSTC:
   is_abstract: true
   opt_uses:
   - supply_air_control_temperature_sensor
+  - chilled_water_valve_percentage_sensor
   - leaving_air_cooling_coil_temperature_sensor
   - leaving_air_cooling_coil_temperature_status # Sensor failed
   - cooling_thermal_power_capacity
@@ -3793,6 +3797,8 @@ ZX5TM:
   - zone_air_temperature_status_3 # Sensor failed
   - zone_air_temperature_status_4 # Sensor failed
   - zone_air_temperature_status_5 # Sensor failed
+  - zone_air_low_temperature_setpoint
+  - zone_air_high_temperature_setpoint
   uses:
   - zone_air_temperature_sensor_1
   - zone_air_temperature_status_1 # Sensor failed 
@@ -3828,9 +3834,12 @@ ZX6SPM:
   - zone_air_static_pressure_status_5
   - zone_air_low_static_pressure_status_5
   - zone_air_high_static_pressure_status_5
-  - zone_air_static_pressure_status_6
+  - zone_air_static_pressure_sensor_6
   - zone_air_low_static_pressure_status_6
   - zone_air_high_static_pressure_status_6
+  - zone_air_static_pressure_status_6
+  - zone_air_low_static_pressure_setpoint_6
+  - zone_air_high_static_pressure_setpoint_6
   uses:
   - zone_air_static_pressure_sensor_1
   - zone_air_low_static_pressure_setpoint_1
@@ -3902,6 +3911,7 @@ COPTM:
   - cooling_stage_end_time_sensor # Cooling optimiser optimum stop initiation time 
   - cooling_stage_zone_air_end_time_sensor # Cooling optimiser optimum start zone air setpoint achieved time
   - max_economizer_limit_time_setpoint # Maximum time before occupancy schedule that optimizer can start the system
+  - chilled_water_exercise_valve_status
   uses:
   - cooling_stage_outside_air_start_temperature_sensor # Cooling optimiser outside air temperature at start initiation
   - cooling_stage_zone_air_start_temperature_sensor # Cooling optimiser zone air temperature at start initiation
@@ -3925,6 +3935,7 @@ HOPTM:
   - heating_stage_end_time_sensor # Heating optimiser optimum stop initiation time
   - heating_stage_zone_air_end_time_sensor # Heating optimiser optimum start zone air setpoint achieved time
   - max_economizer_limit_time_setpoint # Maximum time before occupancy schedule that optimizer can start the system
+  - heating_water_exercise_valve_status
   uses:
   - heating_stage_outside_air_start_temperature_sensor # Heating optimiser outside air temperature at start initiation
   - heating_stage_zone_air_start_temperature_sensor # Heating optimiser zone air temperature at start initiation
@@ -4270,7 +4281,6 @@ DUTYC:
   opt_uses:
   - standby_device_run_command
   - device_alarm_status
-  uses:
   - duty_device_run_command
   - duty_device_run_status
   implements:
@@ -4651,6 +4661,7 @@ CHWSSP:
   - min_chilled_water_temperature_setpoint
   - max_chilled_water_temperature_setpoint
   - min_chilled_water_valve_percentage_setpoint
+  - chilled_water_limit_temperature_setpoint
   uses:
   - chilled_water_start_temperature_setpoint
   - chilled_supply_water_control_temperature_setpoint
@@ -5181,8 +5192,11 @@ DSS:
   id: "b6b12353-6c6f-4713-bb9c-38cf0d8dce80"
   description: "General device start/stop command."
   is_abstract: true
-  uses:
+  opt_uses:
   - device_run_command
+  - device_run_command_1
+  - device_run_command_2
+  - device_run_command_3
   implements:
   - OPERATIONAL
 
@@ -5192,8 +5206,13 @@ DXFM:
   is_abstract: true
   opt_uses:
   - pump_fault_status
-  uses:
+  - pump_fault_status_1
+  - pump_fault_status_2
+  - pump_fault_status_3  
   - device_fault_status
+  - device_fault_status_1
+  - device_fault_status_2
+  - device_fault_status_3
   implements:
   - MONITORING
 
@@ -5205,15 +5224,25 @@ DTMODE:
   - OPERATIONAL
   opt_uses:
   - device_alarm_status # Alarm to state temperature mode is not in cooling
-  uses:
+  - device_alarm_status_1
+  - device_alarm_status_2
+  - device_alarm_status_3
   - device_temperature_mode # Cooling/Heating mode selection
+  - device_temperature_mode_1
+  - device_temperature_mode_2
+  - device_temperature_mode_3
 
 ZTSP:
   id: "0489f7a5-be41-42bb-873c-ee393114404d"
   description: "Zone air temperature setpoint applied to device without sensor monitoring."
   is_abstract: true
-  uses:
+  opt_uses:
   - zone_air_temperature_setpoint
+  - zone_air_temperature_setpoint_1
+  - zone_air_temperature_setpoint_2
+  - zone_air_temperature_setpoint_3
+  - zone_air_low_temperature_setpoint
+  - zone_air_high_temperature_setpoint  
   implements:
   - OPERATIONAL
 
