@@ -250,7 +250,7 @@ FCU-123:
         key: "pointset.points.temp_1.units"
         values:
           degrees_celsius: "degC"
-          degrees_fahrenheit: "degF"
+         <!-- not yet supported to have multiple-values: degrees_fahrenheit: "degF" -->
     supply_air_isolation_damper_command:
       present_value: "points.damper_1.present_value"
       states:
