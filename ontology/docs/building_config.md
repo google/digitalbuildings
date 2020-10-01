@@ -147,7 +147,6 @@ ENTITY-NAME:
         key: "pointset.points.temp_1.units"
         values:
           degrees_celsius: "degC"
-          degrees_fahrenheit: "degF"
     supply_air_isolation_damper_command:
       present_value: "points.damper_1.present_value"
       states:
@@ -250,7 +249,6 @@ FCU-123:
         key: "pointset.points.temp_1.units"
         values:
           degrees_celsius: "degC"
-          degrees_fahrenheit: "degF"
     supply_air_isolation_damper_command:
       present_value: "points.damper_1.present_value"
       states:
@@ -300,7 +298,6 @@ FCU-123:
       present_value: "temp_1"
       unit_values:
         degrees_celsius: "degC"
-        degrees_fahrenheit: "degF"
     supply_air_isolation_damper_command:
       present_value: "damper_1"
       states:
@@ -310,7 +307,7 @@ FCU-123:
 
 The more compliant data the device has, the smaller the translation can be. The
 same device with Digital Building ontology standard state and unit values looks
-like:
+like (not yet supported):
 
 ```
 FCU-123:
@@ -321,7 +318,7 @@ FCU-123:
 ```
 
 A device that is UDMI compliant and uses standard values from the ontology can
-simply specify:
+simply specify (not yet supported):
 
 ```
 FCU-123:
