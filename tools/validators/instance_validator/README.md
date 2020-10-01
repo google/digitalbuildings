@@ -5,6 +5,10 @@ The Instance Validator allows validation of YAML instance files to make sure the
 ## Usage
 The Instance Validator is written in Python3 and takes as an argument the path pointing to the instance files.
 
+** Bug **
+There is a known bug (issue#125)[https://github.com/google/digitalbuildings/issues/125] which occurs when the validator is called from outside this folder. 
+Please run the instance validator from this folder until the bug is fixed.
+
 To use to ontology defined in this repository, run the validator as following: `python3 instance_validator.py --input path/to/YOUR_BUILDING_CONFIG.yaml`
 
 ### Ontology Types extended
