@@ -4228,26 +4228,6 @@ HWHLLD:
   - heating_water_differential_flowrate_setpoint
   implements:
   - MONITORING
-  
-BCWVFM:
-  id: "772dcea5-a20b-45e0-899b-9ac394c4542c"
-  description: "Boosted cold water volume & flowrate monitoring."
-  is_abstract: true
-  uses:
-  - total_boosted_cold_water_volume_sensor
-  - boosted_cold_water_flowrate_sensor
-  implements:
-  - MONITORING
-
-HWVFM:
-  id: "57594205-2847-4b4e-aa5f-40f05fcf0ca1"
-  description: "Heating water volume & flowrate monitoring."
-  is_abstract: true
-  uses:
-  - total_heating_water_volume_sensor
-  - heating_water_flowrate_sensor
-  implements:
-  - MONITORING
 
 ISODCMD:
   id: "addf3a2a-5db8-4d25-853f-82f113e1e36d"
@@ -4268,8 +4248,8 @@ CLDATC:
   is_abstract: true
   opt_uses:
   - cold_aisle_air_temperature_status  # Sensor failed
-  uses:
   - cold_aisle_air_temperature_sensor
+  uses:
   - zone_air_temperature_setpoint
   implements:
   - CONTROL
@@ -4293,11 +4273,11 @@ CHSSM:
   opt_uses:
   - chiller_fault_status
   - chiller_override_status
+  - chilled_supply_water_temperature_sensor
+  - chilled_supply_water_control_temperature_setpoint
   uses:
   - chiller_run_status
   - chiller_run_command
-  - chilled_supply_water_temperature_sensor
-  - chilled_supply_water_control_temperature_setpoint
   implements:
   - OPERATIONAL
 
@@ -4458,7 +4438,11 @@ CHDX6SC:
   id: "b89c1942-9566-411f-9fe7-aa844946e478"
   description: "Chiller 6 stage compressoor control."
   is_abstract: true
+  implements:
+  - OPERATIONAL
   opt_uses:
+  - chilled_supply_water_temperature_sensor
+  - chilled_supply_water_control_temperature_setpoint
   - chilled_return_water_temperature_sensor
   - compressor_load_percentage_sensor_1
   - compressor_load_percentage_sensor_2
@@ -4475,8 +4459,6 @@ CHDX6SC:
   - compressor_load_percentage_command_4
   - compressor_load_percentage_command_5
   - compressor_load_percentage_command_6
-  - chilled_supply_water_temperature_sensor
-  - chilled_supply_water_control_temperature_setpoint
 
 MCO2C:
   id: "33cb84e5-aac1-47eb-b827-9b6b11b19c39"
