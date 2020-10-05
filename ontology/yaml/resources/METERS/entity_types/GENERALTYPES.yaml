@@ -38,3 +38,27 @@ WM:
   implements:
   - MTR
   is_abstract: true
+
+FM:
+  id: "4b375b43-4e1f-4937-9e89-52b00389cbf3"
+  description: "Tag for all flow meters."
+  implements:
+  - MTR
+  is_abstract: true
+
+MDI: # BMS Reporting Device - Added for S2
+  id: ""
+  description: "Tag for data integrator controller used as a reporting device for meters."
+  is_abstract: true
+  implements:
+  - EQUIPMENT
+
+ATS:
+  id: "b4dde7c7-49a2-4da7-a232-b3de00afad38"
+  description: "Tag for automatic transfer switch."
+  is_abstract: true
+
+UPS:
+  id: "ab647120-83f5-4213-91af-6a4a2e7d3c47"
+  description: "Tag for uninterruptible power supply."
+  is_abstract: true

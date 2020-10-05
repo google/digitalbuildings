@@ -1,0 +1,38 @@
+# Copyright 2020 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the License);
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#    https://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an AS IS BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+##############################################################
+#### GENERAL TYPES (BROAD CATEGORIES OF COMMON EQUIPMENT) ####
+####                See model.md for context              ####
+####      See model_hvac.md for detailed definitions      ####
+##############################################################
+
+LDP:
+  id: "7f53ae73-c200-499e-8761-d9b479a1dde4"
+  description: "Tag for leak detection control panel."
+  is_abstract: true
+  implements:
+  - EQUIPMENT
+
+LD_ZONE:
+  id: "9a97b69f-1a3c-48c9-9723-305ca81bed1c"
+  description: "Tag for a zone containing sensors from the leak detection system."
+  is_abstract: true
+
+LDDI: # BMS Reporting Device - Added for S2
+  id: "0ee36dc7-8cb5-46fb-8245-8b10678004fb"
+  description: "Tag for data integrator controller used as a reporting device for leak detection assets."
+  is_abstract: true
+  implements:
+  - EQUIPMENT

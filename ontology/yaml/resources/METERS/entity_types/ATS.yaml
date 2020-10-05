@@ -1,0 +1,26 @@
+# Copyright 2020 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the License);
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#    https://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an AS IS BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+ATS_STANDARD:
+  id: "b52612db-cc01-40b6-89d0-ae7a5f8f8f71"
+  description: "Automatic transfer switch monitoring."
+  implements:
+  - ATS
+  is_canonical: true
+  uses:
+  - primary_alarm_power_status # Power failure on primary side
+  - secondary_alarm_power_status # Power failure on secondary side
+  - primary_supply_closed_status # Switch closed to primary supply
+  - bypass_closed_status # Switch closed to bypass
+

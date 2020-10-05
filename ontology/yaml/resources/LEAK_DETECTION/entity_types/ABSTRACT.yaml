@@ -1,0 +1,210 @@
+# Copyright 2020 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the License);
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#    https://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an AS IS BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+
+WLDX90:
+  id: "807393aa-f29a-436a-94e2-5e7a47884aa1"
+  description: "Water leak detection monitoring with up to 90 sensors."
+  is_abstract: true
+  opt_uses:
+  - water_leak_detection_alarm_status_1
+  - water_leak_detection_alarm_status_2
+  - water_leak_detection_alarm_status_3
+  - water_leak_detection_alarm_status_4
+  - water_leak_detection_alarm_status_5
+  - water_leak_detection_alarm_status_6
+  - water_leak_detection_alarm_status_7
+  - water_leak_detection_alarm_status_8
+  - water_leak_detection_alarm_status_9
+  - water_leak_detection_alarm_status_10
+  - water_leak_detection_alarm_status_11
+  - water_leak_detection_alarm_status_12
+  - water_leak_detection_alarm_status_13
+  - water_leak_detection_alarm_status_14
+  - water_leak_detection_alarm_status_15
+  - water_leak_detection_alarm_status_16
+  - water_leak_detection_alarm_status_17
+  - water_leak_detection_alarm_status_18
+  - water_leak_detection_alarm_status_19
+  - water_leak_detection_alarm_status_20
+  - water_leak_detection_alarm_status_21
+  - water_leak_detection_alarm_status_22
+  - water_leak_detection_alarm_status_23
+  - water_leak_detection_alarm_status_24
+  - water_leak_detection_alarm_status_25
+  - water_leak_detection_alarm_status_26
+  - water_leak_detection_alarm_status_27
+  - water_leak_detection_alarm_status_28
+  - water_leak_detection_alarm_status_29
+  - water_leak_detection_alarm_status_30
+  - water_leak_detection_alarm_status_31
+  - water_leak_detection_alarm_status_32
+  - water_leak_detection_alarm_status_33
+  - water_leak_detection_alarm_status_34
+  - water_leak_detection_alarm_status_35
+  - water_leak_detection_alarm_status_36
+  - water_leak_detection_alarm_status_37
+  - water_leak_detection_alarm_status_38
+  - water_leak_detection_alarm_status_39
+  - water_leak_detection_alarm_status_40
+  - water_leak_detection_alarm_status_41
+  - water_leak_detection_alarm_status_42
+  - water_leak_detection_alarm_status_43
+  - water_leak_detection_alarm_status_44
+  - water_leak_detection_alarm_status_45
+  - water_leak_detection_alarm_status_46
+  - water_leak_detection_alarm_status_47
+  - water_leak_detection_alarm_status_48
+  - water_leak_detection_alarm_status_49
+  - water_leak_detection_alarm_status_50
+  - water_leak_detection_alarm_status_51
+  - water_leak_detection_alarm_status_52
+  - water_leak_detection_alarm_status_53
+  - water_leak_detection_alarm_status_54
+  - water_leak_detection_alarm_status_55
+  - water_leak_detection_alarm_status_56
+  - water_leak_detection_alarm_status_57
+  - water_leak_detection_alarm_status_58
+  - water_leak_detection_alarm_status_59
+  - water_leak_detection_alarm_status_60
+  - water_leak_detection_alarm_status_61
+  - water_leak_detection_alarm_status_62
+  - water_leak_detection_alarm_status_63
+  - water_leak_detection_alarm_status_64
+  - water_leak_detection_alarm_status_65
+  - water_leak_detection_alarm_status_66
+  - water_leak_detection_alarm_status_67
+  - water_leak_detection_alarm_status_68
+  - water_leak_detection_alarm_status_69
+  - water_leak_detection_alarm_status_70
+  - water_leak_detection_alarm_status_71
+  - water_leak_detection_alarm_status_72
+  - water_leak_detection_alarm_status_73
+  - water_leak_detection_alarm_status_74
+  - water_leak_detection_alarm_status_75
+  - water_leak_detection_alarm_status_76
+  - water_leak_detection_alarm_status_77
+  - water_leak_detection_alarm_status_78
+  - water_leak_detection_alarm_status_79
+  - water_leak_detection_alarm_status_80
+  - water_leak_detection_alarm_status_81
+  - water_leak_detection_alarm_status_82
+  - water_leak_detection_alarm_status_83
+  - water_leak_detection_alarm_status_84
+  - water_leak_detection_alarm_status_85
+  - water_leak_detection_alarm_status_86
+  - water_leak_detection_alarm_status_87
+  - water_leak_detection_alarm_status_88
+  - water_leak_detection_alarm_status_89
+  - water_leak_detection_alarm_status_90
+  implements:
+  - MONITORING
+
+WLDFX90:
+  id: "952b5162-c9f9-4104-b9c4-77d50c025809"
+  description: "Water leak detection sensor fault monitoring for up to 90 sensors."
+  is_abstract: true
+  opt_uses:
+  - water_leak_detection_fault_status_1
+  - water_leak_detection_fault_status_2
+  - water_leak_detection_fault_status_3
+  - water_leak_detection_fault_status_4
+  - water_leak_detection_fault_status_5
+  - water_leak_detection_fault_status_6
+  - water_leak_detection_fault_status_7
+  - water_leak_detection_fault_status_8
+  - water_leak_detection_fault_status_9
+  - water_leak_detection_fault_status_10
+  - water_leak_detection_fault_status_11
+  - water_leak_detection_fault_status_12
+  - water_leak_detection_fault_status_13
+  - water_leak_detection_fault_status_14
+  - water_leak_detection_fault_status_15
+  - water_leak_detection_fault_status_16
+  - water_leak_detection_fault_status_17
+  - water_leak_detection_fault_status_18
+  - water_leak_detection_fault_status_19
+  - water_leak_detection_fault_status_20
+  - water_leak_detection_fault_status_21
+  - water_leak_detection_fault_status_22
+  - water_leak_detection_fault_status_23
+  - water_leak_detection_fault_status_24
+  - water_leak_detection_fault_status_25
+  - water_leak_detection_fault_status_26
+  - water_leak_detection_fault_status_27
+  - water_leak_detection_fault_status_28
+  - water_leak_detection_fault_status_29
+  - water_leak_detection_fault_status_30
+  - water_leak_detection_fault_status_31
+  - water_leak_detection_fault_status_32
+  - water_leak_detection_fault_status_33
+  - water_leak_detection_fault_status_34
+  - water_leak_detection_fault_status_35
+  - water_leak_detection_fault_status_36
+  - water_leak_detection_fault_status_37
+  - water_leak_detection_fault_status_38
+  - water_leak_detection_fault_status_39
+  - water_leak_detection_fault_status_40
+  - water_leak_detection_fault_status_41
+  - water_leak_detection_fault_status_42
+  - water_leak_detection_fault_status_43
+  - water_leak_detection_fault_status_44
+  - water_leak_detection_fault_status_45
+  - water_leak_detection_fault_status_46
+  - water_leak_detection_fault_status_47
+  - water_leak_detection_fault_status_48
+  - water_leak_detection_fault_status_49
+  - water_leak_detection_fault_status_50
+  - water_leak_detection_fault_status_51
+  - water_leak_detection_fault_status_52
+  - water_leak_detection_fault_status_53
+  - water_leak_detection_fault_status_54
+  - water_leak_detection_fault_status_55
+  - water_leak_detection_fault_status_56
+  - water_leak_detection_fault_status_57
+  - water_leak_detection_fault_status_58
+  - water_leak_detection_fault_status_59
+  - water_leak_detection_fault_status_60
+  - water_leak_detection_fault_status_61
+  - water_leak_detection_fault_status_62
+  - water_leak_detection_fault_status_63
+  - water_leak_detection_fault_status_64
+  - water_leak_detection_fault_status_65
+  - water_leak_detection_fault_status_66
+  - water_leak_detection_fault_status_67
+  - water_leak_detection_fault_status_68
+  - water_leak_detection_fault_status_69
+  - water_leak_detection_fault_status_70
+  - water_leak_detection_fault_status_71
+  - water_leak_detection_fault_status_72
+  - water_leak_detection_fault_status_73
+  - water_leak_detection_fault_status_74
+  - water_leak_detection_fault_status_75
+  - water_leak_detection_fault_status_76
+  - water_leak_detection_fault_status_77
+  - water_leak_detection_fault_status_78
+  - water_leak_detection_fault_status_79
+  - water_leak_detection_fault_status_80
+  - water_leak_detection_fault_status_81
+  - water_leak_detection_fault_status_82
+  - water_leak_detection_fault_status_83
+  - water_leak_detection_fault_status_84
+  - water_leak_detection_fault_status_85
+  - water_leak_detection_fault_status_86
+  - water_leak_detection_fault_status_87
+  - water_leak_detection_fault_status_88
+  - water_leak_detection_fault_status_89
+  - water_leak_detection_fault_status_90
+  implements:
+  - MONITORING

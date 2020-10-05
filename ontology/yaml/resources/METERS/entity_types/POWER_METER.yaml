@@ -41,3 +41,71 @@ EM_ION:
   - phase2_power_sensor
   - phase1_power_sensor
   - phase1_neutral_line_voltage_sensor
+
+EM_S2A:
+  id: "f96cfcb5-f795-49a0-8205-7668f6e413fb"
+  description: "Type A electricity meter for S2."
+  implements:
+  - EM
+  uses:
+  - phase1_line_current_sensor
+  - phase2_line_current_sensor
+  - phase3_line_current_sensor
+  - phase1_phase2_line_voltage_sensor
+  - phase2_phase3_line_voltage_sensor
+  - phase1_phase3_line_voltage_sensor
+  - phase1_neutral_line_voltage_sensor
+  - phase2_neutral_line_voltage_sensor
+  - phase3_neutral_line_voltage_sensor
+  - phase1_power_sensor
+  - phase2_power_sensor
+  - phase3_power_sensor
+  - total_power_sensor
+  - phase1_reactive_power_sensor
+  - phase2_reactive_power_sensor
+  - phase3_reactive_power_sensor
+  - total_reactive_power_sensor
+  - phase1_apparent_power_sensor
+  - phase2_apparent_power_sensor
+  - phase3_apparent_power_sensor
+  - total_apparent_power_sensor
+  - reactive_energy_accumulator
+  - apparent_energy_accumulator
+  - frequency_sensor
+  - phase1_neutral_unbalance_percentage_sensor # Phase 1 to Neutral voltage unbalance
+  - phase2_neutral_unbalance_percentage_sensor # Phase 2 to Neutral voltage unbalance
+  - phase3_neutral_unbalance_percentage_sensor # Phase 3 to Neutral voltage unbalance
+  - phase1_unbalance_percentage_sensor # Phase 1 current unbalance
+  - phase2_unbalance_percentage_sensor # Phase 2 current unbalance
+  - phase3_unbalance_percentage_sensor # Phase 3 current unbalance
+  - phase1_powerfactor_sensor
+  - phase2_powerfactor_sensor
+  - phase3_powerfactor_sensor
+  - total_powerfactor_sensor
+  - energy_accumulator
+
+EM_S2B:
+  id: "b185fc89-c9a3-4053-8436-d2c019f44378"
+  description: "Type B electricity meter for S2."
+  implements:
+  - EM
+  uses:
+  - phase1_line_current_sensor
+  - phase2_line_current_sensor
+  - phase3_line_current_sensor
+  - phase1_phase2_line_voltage_sensor
+  - phase2_phase3_line_voltage_sensor
+  - phase1_phase3_line_voltage_sensor
+  - phase1_neutral_line_voltage_sensor
+  - phase2_neutral_line_voltage_sensor
+  - phase3_neutral_line_voltage_sensor
+  - phase1_power_sensor
+  - phase2_power_sensor
+  - phase3_power_sensor
+  - energy_accumulator 
+  - reactive_energy_accumulator
+  - frequency_sensor  
+  - total_apparent_power_sensor  
+  - total_power_sensor
+  - total_reactive_power_sensor
+  - total_powerfactor_sensor

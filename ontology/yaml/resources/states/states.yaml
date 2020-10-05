@@ -43,3 +43,35 @@ MATCHES: Two or more things match.
 SUBSCRIPTION_FAILED: The calendar events subscription has failed.
 UNKNOWN: The state is unknown.
 WAITING_FOR_RESPONSE: The calendar events synchronization process is awaiting response.
+
+# Added 18/08/20
+HEALTHY: Healthy state generally used with alarm fields
+ALARM: Alarm state
+RUNNING: Indication that a device is running. Often used with fans & pumps
+NOT_RUNNING: Indication that a device is not running. Often used with fans & pumps
+COOLING_BOOST: Optimization mode for enabling system in cooling
+HEATING_BOOST: Optimization mode for enabling system in heating
+FABRIC_PROTECTION: Optimization mode for enabling system in fabric protection
+OPTIMUM_STOP: Optimization mode for stopping the system
+HAND: Running under non automatic control (ignoring timeclock/optimizer)
+FAULT: Fault state
+AVERAGE: Average control mode for temperature control
+MIN: Minumin control mode for temperature control
+MAX: Maximum control mode for temperature control
+STANDBY:
+YES:
+NO:
+COOLING_VALVE_EXERCISE:
+FIRE:
+HEATING_VALVE_EXERCISE:
+FILTER_TEST:
+
+# Added for UPS 05/10/20
+OFFLINE:
+NORMAL_OPERATION:
+BATTERY_OPERATION:
+BATTERY_TEST:
+USER_BYPASS_OPERATION:
+TEMPORARY_BYPASS_OPERATION:
+Q3_ACTIVATED_BYPASS_OPERATION:
+HOT_STANDBY:

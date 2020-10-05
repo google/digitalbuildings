@@ -1,0 +1,56 @@
+# Copyright 2020 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the License);
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#    https://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an AS IS BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+UPS_STANDARD:
+  id: "ddc52893-550a-41fe-836b-56c60eca930c"
+  description: "Uninterruptible power supply monitoring."
+  implements:
+  - UPS
+  is_canonical: true
+  uses:
+  - total_power_sensor # total active power output
+  - load_percentage_sensor # total percent load
+  - battery_power_sensor # battery power
+  - energy_accumulator # energy meter kWh
+  - runtime_battery_time_sensor # runtime remaining
+  - battery_time_accumulator # total time on battery
+  - boost_charging_status # boost charging
+  - switch_module_fault_status # bypass static switch warning module fault
+  - critical_switch_device_alarm_status # bypass static switch error critical error
+  - switch_device_disable_status # bypass static switch disabled
+  - switch_device_override_status # forced bypass switch activated
+  - fan_fault_status # power module fan fault
+  - battery_load_power_status # load is being power from battery
+  - switch_device_offline_status # bypass static switch communication error
+  - battery_shutdown_voltage_status # battery voltage error above shutdown level
+  - warning_battery_alarm_voltage_status # battery voltage error above warning level
+  - high_output_voltage_status # output voltage high
+  - low_output_voltage_status # output voltage low
+  - bypass_service_status # in bypass for maintenance
+  - battery_power_status # on battery due to power fail
+  - parallel_mixed_alarm_status # parallel mixed mode error
+  - interface_offline_status # lost local network management interface
+  - critical_device_alarm_status # criticial alarm present
+  - warning_device_alarm_status # warning alarm present
+  - device_fault_power_status # power supply unit failure
+  - switch_device_fault_status # static switch failure
+  - battery_fault_status # battery system failure
+  - module_fault_power_status # power module failure
+  - load_alarm_power_status # load not powered
+  - bypass_status # bypass
+  - low_battery_alarm_status # low battery
+  - device_mode # ups mode operation
+
+
+

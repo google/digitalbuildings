@@ -17,9 +17,15 @@ concentration:
 current:
 - amperes: STANDARD
 - milliamperes
+direction:
+- degrees_angular: STANDARD
 energy:
 - joules: STANDARD
 - kilowatt_hours
+- kilovolt_ampere_hours
+enthalpy:
+- joules_per_kilogram_dry_air: STANDARD
+- kilojoules_per_kilogram_dry_air
 flowrate:
 - cubic_meters_per_second: STANDARD
 - cubic_feet_per_minute
@@ -35,6 +41,8 @@ linearvelocity:
 - meters_per_second: STANDARD
 - feet_per_minute
 - miles_per_hour
+ultraviolet:
+- watts_per_square_meter: STANDARD
 percentage:
 - percent: STANDARD
 powerfactor:
@@ -47,8 +55,10 @@ power:
 - kilovolt_amperes_reactive
 pressure:
 - pascals: STANDARD
+- kilopascals
 - inches_of_water
 - pounds_force_per_square_inch
+- bars
 resistance:
 - ohms: STANDARD
 - kiloohms
@@ -64,3 +74,7 @@ voltage:
 volume:
 - cubic_meters: STANDARD
 - us_gallons
+time: # Added 18/08/20
+- hours: STANDARD
+- minutes
+- seconds

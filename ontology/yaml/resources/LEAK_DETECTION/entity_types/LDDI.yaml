@@ -1,0 +1,27 @@
+# Copyright 2020 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the License);
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#    https://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an AS IS BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+########################
+### Canonical Types  ###
+########################
+
+# BMS-40 at S2
+LDDI_WLDX90_WLDFX90:
+  id: "a65e7721-152d-4bdb-afc2-b82af4e05563"
+  description: "Data integrator reporting device for leak detection."
+  is_canonical: true
+  implements:
+  - LDDI
+  - WLDX90
+  - WLDFX90

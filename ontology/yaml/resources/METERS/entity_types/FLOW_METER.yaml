@@ -1,0 +1,29 @@
+# Copyright 2020 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the License);
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#    https://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an AS IS BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+FM_CHW:
+  id: "3607333c-8b06-4938-a014-ad86e7d73f56"
+  description: "Chilled water flow meter with flowrate, power, energy, volume, fault and temperature differential monitoring."
+  implements:
+  - FM
+  is_canonical: true
+  uses:
+  - chilled_water_flowrate_sensor
+  - chilled_supply_water_temperature_sensor
+  - chilled_return_water_temperature_sensor
+  - chilled_water_differential_temperature_sensor
+  - power_sensor
+  - energy_accumulator
+  - chilled_water_volume_accumulator
+  - meter_fault_sensor

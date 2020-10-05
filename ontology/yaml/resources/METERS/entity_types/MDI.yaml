@@ -1,0 +1,74 @@
+# Copyright 2020 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the License);
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#    https://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an AS IS BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+########################
+### Canonical Types  ###
+########################
+
+# BMS-25 at S2
+MDI_EM_S2A_EM_S2B:
+  id: "f5a07c41-f96f-4a17-b6ba-f8971553cd07"
+  description: "Data integrator reporting device for meters."
+  is_canonical: true
+  implements:
+  - MDI
+  - EM_S2A
+  - EM_S2B
+
+# BMS-27 at S2
+MDI_WM_BCWVFM_WM_HWVFM:
+  id: "b230bd0a-1079-4e64-86cc-2a775f9dba52"
+  description: "Data integrator reporting device for meters."
+  is_canonical: true
+  implements:
+  - MDI
+  - WM_BCWVFM
+  - WM_HWVFM
+
+# BMS-30 at S2
+MDI_WM_BCWVFM:
+  id: "bd4cde4a-c858-4380-a3e5-b0edb45f4a51"
+  description: "Data integrator reporting device for meters."
+  is_canonical: true
+  implements:
+  - MDI
+  - WM_BCWVFM
+
+# BMS-3_1, BMS-3_2, BMS-3_3, BMS-3_4, BMS-55, BMS-1007, BMS-1008_1, BMS-1008_2 at S2
+MDI_EM_S2A:
+  id: "d39dc7ca-5520-4d7c-a204-f9ffd17b0d6c"
+  description: "Data integrator reporting device for meters."
+  is_canonical: true
+  implements:
+  - MDI
+  - EM_S2A
+
+# BMS-59 at S2
+MDI_EM_S2A_ATS_STANDARD:
+  id: "e522894c-486e-4947-8173-efaa08be0b5c"
+  description: "Data integrator reporting device for meters."
+  is_canonical: true
+  implements:
+  - MDI
+  - EM_S2A
+  - ATS_STANDARD
+
+# BMS-60 at S2
+MDI_FM_CHW:
+  id: "541819c4-6f7e-4e64-8d60-4b8d14351284"
+  description: "Data integrator reporting device for meters."
+  is_canonical: true
+  implements:
+  - MDI
+  - FM_CHW

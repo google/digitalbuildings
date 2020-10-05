@@ -20,3 +20,23 @@ WM_STANDARD:
   is_canonical: true
   uses:
   - water_volume_accumulator
+
+WM_BCWVFM:
+  id: "88d429b5-7ae9-41ec-b96b-346da6a20694"
+  description: "Boosted cold water meter with volume & flowrate monitoring."
+  implements:
+  - WM
+  is_canonical: true
+  uses:
+  - total_boosted_cold_water_volume_accumulator
+  - boosted_cold_water_flowrate_sensor
+
+WM_HWVFM:
+  id: "68b8df8d-8c18-4cb9-be94-2814e8aa00f8"
+  description: "Heating water meter with volume & flowrate monitoring."
+  implements:
+  - WM
+  is_canonical: true
+  uses:
+  - total_heating_water_volume_accumulator
+  - heating_water_flowrate_sensor
