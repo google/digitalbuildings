@@ -81,7 +81,8 @@ class FieldUniverse(findings_lib.FindingsUniverse):
       fieldname: string. Name of a field, with namespace and increment removed.
       namespace_name: string.
     """
-    fieldname = re.sub(FIELD_ALPHANUMERIC_PATTERN, '', fieldname)
+    if fieldname[-1].isdigit():
+      fieldname = re.sub(FIELD_ALPHANUMERIC_PATTERN, '', fieldname)
     return fieldname in self._namespace_map.get(namespace_name, set())
 
   def GetFieldsMap(self, namespace_name):
