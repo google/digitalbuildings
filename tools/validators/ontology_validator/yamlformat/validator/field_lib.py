@@ -32,7 +32,7 @@ from yamlformat.validator import subfield_lib
 FIELD_CHARACTER_REGEX = re.compile(
     r'^[a-z]+[a-z0-9]*(?:_[a-z]+[a-z0-9]*)*$')
 
-# We currently are enforcing that fields are lower case only.
+# Pattern to detect the alphanumeric part of a field.
 FIELD_ALPHANUMERIC_PATTERN = re.compile('_([0-9]+)')
 
 def SplitFieldName(field):
