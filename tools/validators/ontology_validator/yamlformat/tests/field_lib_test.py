@@ -76,6 +76,7 @@ class FieldLibTest(absltest.TestCase):
 
     self.assertTrue(fields_universe.IsFieldDefined('meow', 'mynamespace'))
     self.assertTrue(fields_universe.IsFieldDefined('claws', 'mynamespace'))
+    self.assertTrue(fields_universe.IsFieldDefined('claws_1', 'mynamespace'))
     self.assertFalse(fields_universe.IsFieldDefined('clawsss', 'mynamespace'))
 
   def testGetSubFieldList(self):
