@@ -43,3 +43,13 @@ MATCHES: Two or more things match.
 SUBSCRIPTION_FAILED: The calendar events subscription has failed.
 UNKNOWN: The state is unknown.
 WAITING_FOR_RESPONSE: The calendar events synchronization process is awaiting response.
+
+# Added for measured statues (e.g. flowrate_status)
+MEASURED: The ability to measure a fixed threshold of some value (e.g. flowrate > minimum required for equipment to operate).
+NOT_MEASURED: The inability to measure a fixed threshold of some value (e.g. flowrate < minimum required for equipment to operate).
+
+# Added for alarms 
+ALARM: In an active state of alarm.
+NORMAL: In normal operating condition (i.e. not actively in alarm).
+
+
