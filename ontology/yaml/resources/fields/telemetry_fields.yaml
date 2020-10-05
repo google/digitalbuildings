@@ -661,14 +661,16 @@ literals:
 - fabric_protection_alarm:
   - ON
   - OFF
-- failure_alarm
+- failed_alarm:
+  - ON
+  - OFF
 - filter_alarm:
   - ON
   - OFF
 - master_alarm:
   - ON
   - OFF
-- supply_fan_failure_alarm:
+- supply_fan_failed_alarm:
   - ON
   - OFF
 - smoke_alarm:
