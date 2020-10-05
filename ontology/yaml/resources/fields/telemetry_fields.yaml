@@ -671,7 +671,7 @@ literals:
 - supply_fan_failure_alarm:
   - ON
   - OFF
-- smoke_alarm
+- smoke_alarm:
   - ON
   - OFF
 - water_leak_alarm:
