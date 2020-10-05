@@ -81,6 +81,7 @@ literals:
 - exhaust_air_temperature_sensor
 - exhaust_fan_current_sensor
 - exhaust_fan_power_sensor
+- exhaust_fan_run_command_1
 - exhaust_fan_run_command:
   - ON
   - OFF
