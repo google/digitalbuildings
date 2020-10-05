@@ -629,7 +629,7 @@ literals:
 - ultraviolet_lamp_run_command:
   - ON
   - OFF
-- ultraviolet_lamp_run_status
+- ultraviolet_lamp_run_status:
   - ON
   - OFF
 
