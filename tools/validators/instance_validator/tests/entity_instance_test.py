@@ -377,7 +377,7 @@ class EntityInstanceTest(absltest.TestCase):
   def testValidateGoodLinkEntityName(self):
     parsed = instance_parser.parse_yaml(
         os.path.join(_TESTCASE_PATH,
-                     'Good',
+                     'GOOD',
                      'good_links.yaml'))
     entity_instances = {}
     parsed = dict(parsed)
