@@ -111,7 +111,6 @@ class EntityInstance(findings_lib.Findings):
     the links key of an entity.
     Args:
       entity_instances: dictionary containing all instances
-    
     Returns:
       Returns boolean for validity of links key, defaulting to True if the
       key is not present.
@@ -238,7 +237,6 @@ class EntityInstance(findings_lib.Findings):
     
     Args:
       entity_instances: dictionary containing all instances.
-      
     Returns:
       Returns boolean for validity of entity.
     """

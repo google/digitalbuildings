@@ -79,7 +79,8 @@ if __name__ == '__main__':
     entity_instances[entity_name] = instance
 
   for entity_name in entity_instances.keys():
-    if not entity_instances.get(entity_name).IsValidEntityInstance(entity_instances):
+    if not entity_instances.get(entity_name)\
+        .IsValidEntityInstance(entity_instances):
       print(entity_name, 'is not a valid instance')
       sys.exit(0)
 
