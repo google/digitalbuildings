@@ -623,8 +623,11 @@ literals:
 
 - average_supply_air_temperature_sensor
 - control_mode
+  - AUTO
+  - MANUAL
+  - OFF
 - cooling_thermal_energy_accumulator
-- dust_particle_concentration_sensor
+- particle_concentration_sensor
 - high_limit_supply_air_cooling_flowrate_setpoint
 - high_limit_supply_air_heating_flowrate_setpoint
 - low_limit_supply_air_ventilation_flowrate_setpoint
@@ -641,56 +644,56 @@ literals:
 
 # New usage of status as an override for the measurement.
 - chilled_water_flowrate_status:
-  - MEASURED
-  - NOT_MEASURED
+  - PRESENT
+  - ABSENT
 - condensing_water_flowrate_status:
-  - MEASURED
-  - NOT_MEASURED
+  - PRESENT
+  - ABSENT
 - discharge_air_static_pressure_status:
-  - MEASURED
-  - NOT_MEASURED
+  - PRESENT
+  - ABSENT
 - filter_differential_pressure_status:
-  - MEASURED
-  - NOT_MEASURED
+  - PRESENT
+  - ABSENT
 - high_level_status:
-  - MEASURED
-  - NOT_MEASURED
+  - PRESENT
+  - ABSENT
 - low_level_status:
-  - MEASURED
-  - NOT_MEASURED
+  - PRESENT
+  - ABSENT
 - power_status:
-  - MEASURED
-  - NOT_MEASURED
+  - PRESENT
+  - ABSENT
 
 # New alarms using alarm as a point type, and existing alarms moved here
 # TODO (tsodorff): change these to ALARM/NORMAL after determining how this can be done safely to existing translations. 
 - fabric_protection_alarm:
-  - ON
-  - OFF
+  - ACTIVE
+  - INACTIVE
 - failed_alarm:
-  - ON
-  - OFF
+  - ACTIVE
+  - INACTIVE
 - filter_alarm:
-  - ON
-  - OFF
+  - ACTIVE
+  - INACTIVE
 - master_alarm:
-  - ON
-  - OFF
+  - ACTIVE
+  - INACTIVE
 - supply_fan_failed_alarm:
-  - ON
-  - OFF
+  - ACTIVE
+  - INACTIVE
 - smoke_alarm:
-  - ON
-  - OFF
+  - ACTIVE
+  - INACTIVE
 - water_leak_alarm:
-  - ON
-  - OFF
+  - ACTIVE
+  - INACTIVE
 - low_differential_pressure_alarm:
-  - ON
-  - OFF
+  - ACTIVE
+  - INACTIVE
 - lost_power_alarm:
-  - ON
-  - OFF
+  - ACTIVE
+  - INACTIVE
 
 
 
