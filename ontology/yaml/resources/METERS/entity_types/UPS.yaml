@@ -47,10 +47,9 @@ UPS_STANDARD:
   - switch_device_fault_status # static switch failure
   - battery_fault_status # battery system failure
   - module_fault_power_status # power module failure
-  - load_alarm_power_status # load not powered
+  - device_alarm_power_status # device load not powered
   - bypass_status # bypass
   - low_battery_alarm_status # low battery
   - device_mode # ups mode operation
-
-
+  
 

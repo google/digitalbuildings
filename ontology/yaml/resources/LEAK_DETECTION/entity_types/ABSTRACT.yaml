@@ -108,8 +108,6 @@ WLDX90:
   - water_leak_detection_alarm_status_88
   - water_leak_detection_alarm_status_89
   - water_leak_detection_alarm_status_90
-  implements:
-  - MONITORING
 
 WLDFX90:
   id: "952b5162-c9f9-4104-b9c4-77d50c025809"
@@ -206,5 +204,3 @@ WLDFX90:
   - water_leak_detection_fault_status_88
   - water_leak_detection_fault_status_89
   - water_leak_detection_fault_status_90
-  implements:
-  - MONITORING

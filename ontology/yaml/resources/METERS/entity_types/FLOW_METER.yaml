@@ -26,4 +26,4 @@ FM_CHW:
   - power_sensor
   - energy_accumulator
   - chilled_water_volume_accumulator
-  - meter_fault_sensor
+  - meter_fault_status

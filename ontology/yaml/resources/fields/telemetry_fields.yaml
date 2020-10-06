@@ -1294,6 +1294,8 @@ literals:
 - hot_water_pump_offline_status:
 - exercise_valve_status:
 - outside_air_temperature_setpoint:
+- zone_air_voc_concentration_sensor:
+- zone_air_voc_concentration_setpoint:
 
 # Added For EMS & MISC at S2
 - total_power_sensor:
@@ -1317,6 +1319,9 @@ literals:
 - total_powerfactor_sensor:
 - chilled_water_differential_temperature_sensor:
 - total_boosted_cold_water_volume_accumulator:
+- total_heating_water_volume_accumulator:
+- chilled_water_volume_accumulator:
+- meter_fault_status:
 - primary_alarm_power_status:
 - secondary_alarm_power_status:
 - primary_supply_closed_status:
@@ -1345,8 +1350,6 @@ literals:
 - switch_device_fault_status:
 - battery_fault_status:
 - module_fault_power_status:
-- load_alarm_power_status:
+- device_alarm_power_status:
 - bypass_status:
 - low_battery_alarm_status:
-- water_leak_detection_alarm_status:
-- water_leak_detection_fault_status:
