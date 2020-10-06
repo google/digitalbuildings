@@ -622,7 +622,7 @@ literals:
 # Status fields must be distinguished from alarms in that status is an objective qualitative state (flowing/not) whereas alarms are judgmental interpretations of such statuses to draww a conclusion about function (alarm/normal) 
 
 - average_supply_air_temperature_sensor
-- control_mode
+- control_mode:
   - AUTO
   - MANUAL
   - OFF
