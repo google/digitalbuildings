@@ -234,7 +234,6 @@ class EntityInstance(findings_lib.Findings):
   def IsValidEntityInstance(self, entity_instances=None):
     """Uses information from the generated ontology universe to validate an
     entity.
-    
     Args:
       entity_instances: dictionary containing all instances.
     Returns:
