@@ -106,10 +106,12 @@ class EntityInstance(findings_lib.Findings):
 
     return True
 
-  def _ValidateLinks(self):
+  def _ValidateLinks(self, entity_instances):
     """Uses information from the generated ontology universe to validate
     the links key of an entity.
-
+    Args:
+      entity_instances: dictionary containing all instances
+    
     Returns:
       Returns boolean for validity of links key, defaulting to True if the
       key is not present.
@@ -126,9 +128,15 @@ class EntityInstance(findings_lib.Findings):
 
       # scan all standard fields and ensure they're defined
       fields_map = dict(links[entity_name])
-      field_universe = self.universe.field_universe
+      source_entity_instance = entity_instances.get(entity_name)
+      # this is valid type, the check already happened
+      entity_type_str = str(source_entity_instance.entity['type'])
+      type_parse = entity_type_str.split('/')
+      namespace = type_parse[0]
+      entity_type = type_parse[1]
+      entity_type_universe = self.universe.GetEntityType(namespace, entity_type)
       for sourcename in fields_map.keys():
-        if not field_universe.IsFieldDefined(fields_map[sourcename], ''):
+        if not entity_type_universe.HasField('/'+sourcename.data):
           print('Invalid links field source', sourcename)
           return False
 
@@ -224,10 +232,13 @@ class EntityInstance(findings_lib.Findings):
 
     return True
 
-  def IsValidEntityInstance(self):
+  def IsValidEntityInstance(self, entity_instances=None):
     """Uses information from the generated ontology universe to validate an
     entity.
-
+    
+    Args:
+      entity_instances: dictionary containing all instances.
+      
     Returns:
       Returns boolean for validity of entity.
     """
@@ -240,7 +251,7 @@ class EntityInstance(findings_lib.Findings):
       print('Invalid type')
       return False
 
-    if not self._ValidateLinks():
+    if not self._ValidateLinks(entity_instances):
       print('Invalid links')
       return False
 
