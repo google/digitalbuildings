@@ -352,7 +352,8 @@ class EntityInstanceTest(absltest.TestCase):
                                                          parsed.keys())
       entity_instances[raw_entity] = entity
 
-    if entity_instances.get('ENTITY-NAME').IsValidEntityInstance(entity_instances):
+    if entity_instances.get('ENTITY-NAME')\
+        .IsValidEntityInstance(entity_instances):
       self.fail('exception not raised')
 
   def testValidateBadLinkEntityName(self):
@@ -370,8 +371,8 @@ class EntityInstanceTest(absltest.TestCase):
       entity_instances[raw_entity] = entity
 
     if entity_instances.get('ENTITY-NAME')\
-        .IsValidEntityInstance(entity_instances):
-         self.fail('exception not raised')
+  .IsValidEntityInstance(entity_instances):
+      self.fail('exception not raised')
 
   def testValidateGoodLinkEntityName(self):
     parsed = instance_parser.parse_yaml(
