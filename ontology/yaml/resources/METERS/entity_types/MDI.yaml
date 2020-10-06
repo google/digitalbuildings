@@ -72,3 +72,12 @@ MDI_FM_CHW:
   implements:
   - MDI
   - FM_CHW
+
+# DI-4 at S2
+MDI_UPS_STANDARD:
+  id: "091cf482-07f5-4f3d-b8d3-2195c0c0d7c2"
+  description: "Data integrator reporting device for UPS."
+  is_canonical: true
+  implements:
+  - MDI
+  - UPS_STANDARD
