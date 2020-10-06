@@ -624,6 +624,12 @@ literals:
 - average_supply_air_temperature_sensor
 - control_mode
 - cooling_thermal_energy_accumulator
+- dust_particle_concentration_sensor
+- high_limit_supply_air_cooling_flowrate_setpoint
+- high_limit_supply_air_heating_flowrate_setpoint
+- low_limit_supply_air_ventilation_flowrate_setpoint
+- low_limit_supply_air_flowrate_setpoint 
+- high_limit_supply_air_flowrate_setpoint # used when the device doesn't necessarily provide a cooling max flow
 - schedule_run_command
 - supply_air_dewpoint_temperature_sensor
 - ultraviolet_lamp_run_command:
@@ -680,6 +686,9 @@ literals:
   - ON
   - OFF
 - low_differential_pressure_alarm:
+  - ON
+  - OFF
+- lost_power_alarm:
   - ON
   - OFF
 
