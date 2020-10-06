@@ -371,7 +371,7 @@ class EntityInstanceTest(absltest.TestCase):
       entity_instances[raw_entity] = entity
 
     if entity_instances.get('ENTITY-NAME')\
-  .IsValidEntityInstance(entity_instances):
+        .IsValidEntityInstance(entity_instances):
       self.fail('exception not raised')
 
   def testValidateGoodLinkEntityName(self):
@@ -390,7 +390,7 @@ class EntityInstanceTest(absltest.TestCase):
 
     for entity_name, instance in entity_instances.items():
       if not instance.IsValidEntityInstance(entity_instances):
-         self.fail('exception incorrectly raised')
+        self.fail('exception incorrectly raised')
 
 
 
