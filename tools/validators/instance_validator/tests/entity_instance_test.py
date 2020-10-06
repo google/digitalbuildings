@@ -388,7 +388,7 @@ class EntityInstanceTest(absltest.TestCase):
                                                          parsed.keys())
       entity_instances[raw_entity] = entity
 
-    for entity_name, instance in entity_instances.items():
+    for _, instance in entity_instances.items():
       if not instance.IsValidEntityInstance(entity_instances):
         self.fail('exception incorrectly raised')
 
