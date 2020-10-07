@@ -32,20 +32,15 @@ class Subscriber():
 		super().__init__()
 		self.subscription_name = subscription_name
 		self.service_account_info_json_file = service_account_info_json_file
-	
-	def Config(self):
 		service_account_info = json.load(open(self.service_account_info_json_file))
 		audience = "https://pubsub.googleapis.com/google.pubsub.v1.Subscriber"
-		
 		credentials = jwt.Credentials.from_service_account_info(service_account_info, audience=audience)
-		
 		sub_client = pubsub_v1.SubscriberClient(credentials=credentials)
-		return sub_client
+		self.sub_client = sub_client
 	
-		
 	
-	def Listen(self, sub_client):
-		future = sub_client.subscribe(self.subscription_name, callback)
+	def Listen(self):
+		future = self.sub_client.subscribe(self.subscription_name, callback)
 		try:
 			future.result()
 		except KeyboardInterrupt:

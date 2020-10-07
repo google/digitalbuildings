@@ -97,5 +97,4 @@ if __name__ == '__main__':
   print('File passes all checks!')
   
   sub = subscriber.Subscriber(arg.subscription, arg.service_account)
-  sub_client = sub.Config()
-  sub.Listen(sub_client=sub_client)
+  sub.Listen()
