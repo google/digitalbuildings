@@ -163,13 +163,12 @@ class EntityInstance(findings_lib.Findings):
           print('Links error for the following fields (source, target): '
                 , source_field, target_field)
           return False
-        if valid_units_src is not None and \
-            set(valid_units_src) != set(valid_units_target):
-            print('Links dont have the same units: ',
-                  valid_units_src, valid_units_target)
-            print('Links error for the following fields (source, target): '
-                  , source_field, target_field)
-            return False
+        if valid_units_src is not None \
+            and set(valid_units_src) != set(valid_units_target):
+              print('Links dont have the same units: ',valid_units_src, valid_units_target)
+              print('Links error for the following fields (source, target): '
+                    , source_field, target_field)
+              return False
         # check the states are matching
         valid_states_src = source_entity_instance.universe\
           .GetStatesByField(source_field.data)
