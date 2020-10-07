@@ -34,14 +34,14 @@
 
 
 ENTITY-NAME:
-  type: FACILITIES/BUILDING
+  type: HVAC/CHWS_WDT
   id: SYSTEM/ID1234
   links:
     A-FOURTH-ENTITY:
-      return_water_temperature_sensor: return_water_temperature_sensor_en
-      supply_water_temperature_sensor: supply_water_temperature_sensor_en
-      thermal_power_capacity: thermal_power_capacity_en
-      differential_pressure_specification: differential_pressure_specification_en
+      return_water_temperature_sensor: return_water_temperature_sensor
+      supply_water_temperature_sensor: supply_water_temperature_sensor
+      thermal_power_capacity: thermal_power_capacity
+      differential_pressure_specification: differential_pressure_specification
 
 A-FOURTH-ENTITY:
   type: HVAC/CHWS_WDT

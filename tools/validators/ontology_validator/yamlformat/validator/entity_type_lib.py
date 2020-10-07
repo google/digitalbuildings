@@ -531,7 +531,7 @@ class EntityType(findings_lib.Findings):
     
     Args:
       fully_qualified_fieldname: a fully qualified names for example:
-      "HVAC/run_status_1.
+      "HVAC/run_status_1".
       run_unsafe: set true to run against a type before fields are fully
         expanded.  Running in this mode does not memoize the result.
     Returns:
@@ -541,12 +541,14 @@ class EntityType(findings_lib.Findings):
     if len(fqf_parsed) == 1:
       print('Type improperly formatted, a namespace is missing: '
             , fqf_parsed)
-      return False
+      # Todo: raise exception here
+      exit(0)
 
     if len(fqf_parsed) > 2:
       print('Type improperly formatted: ', fqf_parsed)
-      return False
-    
+      # Todo: raise exception here
+      exit(0)
+
     all_fields = self.GetAllFields()
     return fully_qualified_fieldname in all_fields
 
