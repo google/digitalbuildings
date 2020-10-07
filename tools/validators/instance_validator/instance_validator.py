@@ -27,6 +27,7 @@ from __future__ import print_function
 from validate import generate_universe
 from validate import entity_instance
 from validate import instance_parser
+from validate import subscriber
 import argparse
 import sys
 
@@ -45,6 +46,19 @@ if __name__ == '__main__':
                       required=False,
                       help='Filepath to modified type filepaths',
                       metavar='MODIFIED_TYPE_FILEPATHS')
+  
+  parser.add_argument('-s', '--subscription',
+                      dest='subscription',
+                      required=False,
+                      help='pubsub subscription',
+                      metavar='subscription')
+  
+  parser.add_argument('-a', '--service-account',
+                      dest='service_account',
+                      required=False,
+                      help='service account',
+                      metavar='service-account')
+  
   arg = parser.parse_args()
 
   # SYNTAX VALIDATION
@@ -81,3 +95,7 @@ if __name__ == '__main__':
       sys.exit(0)
 
   print('File passes all checks!')
+  
+  sub = subscriber.Subscriber(arg.subscription, arg.service_account)
+  sub_client = sub.Config()
+  sub.Listen(sub_client=sub_client)
