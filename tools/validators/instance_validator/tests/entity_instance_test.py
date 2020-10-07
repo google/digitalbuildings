@@ -399,16 +399,18 @@ class EntityInstanceTest(absltest.TestCase):
         os.path.join(_TESTCASE_PATH,
                      'GOOD',
                      'good_building_links.yaml'))
+    entity_instances = {}
     parsed = dict(parsed)
-    entity_name = list(parsed.keys())[0]
-
-    entity = dict(parsed[entity_name])
-    instance = entity_instance.EntityInstance(entity,
+    for raw_entity in list(parsed.keys()):
+      entity_parsed = dict(parsed[raw_entity])
+      entity = entity_instance.EntityInstance(entity_parsed,
                                               self.universe,
                                               parsed.keys())
+      entity_instances[raw_entity] = entity
 
-    if not instance.IsValidEntityInstance():
-      self.fail('exception incorrectly raised')
+    for _, instance in entity_instances.items():
+      if not instance.IsValidEntityInstance(entity_instances):
+        self.fail('exception incorrectly raised')
 
   def testValidateStates(self):
     parsed = instance_parser.parse_yaml(
