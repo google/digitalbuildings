@@ -135,7 +135,8 @@ class EntityInstance(findings_lib.Findings):
       src_namespace = src_type_parse[0]
       src_type = src_type_parse[1]
       src_entity_type = self.universe.GetEntityType(src_namespace, src_type)
-      target_entity_type = self.universe.GetEntityType(self.namespace, self.entity_type)
+      target_entity_type = self.universe.GetEntityType(self.namespace,
+                                                       self.entity_type)
       all_fields_dict = src_entity_type.GetAllFields().copy()
       for source_field, target_field  in fields_map.items():
         opt_wrapper_field = all_fields_dict.pop('/'+source_field.data, None)
@@ -151,28 +152,42 @@ class EntityInstance(findings_lib.Findings):
           print('Invalid links field target: ', target_field)
           return False
         # check the units are matching
-        valid_units_src = source_entity_instance.universe.GetUnitsMapByMeasurement(source_field.data)
-        valid_units_target = self .universe.GetUnitsMapByMeasurement(target_field.data)
-        if valid_units_src != valid_units_target:  # when one is None and not the other
-          print('Links dont have the same units: ', valid_units_src, valid_units_target)
-          print('Links error for the following fields (source, target): ', source_field, target_field)
+        valid_units_src = source_entity_instance.universe\
+          .GetUnitsMapByMeasurement(source_field.data)
+        valid_units_target = self .universe\
+          .GetUnitsMapByMeasurement(target_field.data)
+        # when one is None and not the other
+        if valid_units_src != valid_units_target:
+          print('Links dont have the same units: ',
+                valid_units_src, valid_units_target)
+          print('Links error for the following fields (source, target): '
+                , source_field, target_field)
           return False
         if valid_units_src is not None and \
             set(valid_units_src) != set(valid_units_target):
-            print('Links dont have the same units: ', valid_units_src, valid_units_target)
-            print('Links error for the following fields (source, target): ', source_field, target_field)
+            print('Links dont have the same units: ',
+                  valid_units_src, valid_units_target)
+            print('Links error for the following fields (source, target): '
+                  , source_field, target_field)
             return False
         # check the states are matching
-        valid_states_src = source_entity_instance.universe.GetStatesByField(source_field.data)
-        valid_states_target = self.universe.GetStatesByField(target_field.data)
-        if valid_units_src != valid_units_target:  # when one is None and not the other
-          print('Links dont have the same states: ', valid_states_src, valid_states_target)
-          print('Links error for the following fields (source, target): ', source_field, target_field)
+        valid_states_src = source_entity_instance.universe\
+          .GetStatesByField(source_field.data)
+        valid_states_target = self.universe\
+          .GetStatesByField(target_field.data)
+        # when one is None and not the other
+        if valid_units_src != valid_units_target:
+          print('Links dont have the same states: '
+                , valid_states_src, valid_states_target)
+          print('Links error for the following fields (source, target): '
+                , source_field, target_field)
           return False
         if valid_states_src is not None and \
             set(valid_states_src) != set(valid_states_target):
-          print('Links dont have the same states: ', valid_states_src, valid_states_target)
-          print('Links error for the following fields (source, target): ', source_field, target_field)
+          print('Links dont have the same states: ',
+                valid_states_src, valid_states_target)
+          print('Links error for the following fields (source, target): '
+                , source_field, target_field)
           return False
       # check if the rest of the links not included are optional
       for optional_field_name in all_fields_dict.values():
