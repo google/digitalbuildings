@@ -45,10 +45,6 @@ SUBSCRIPTION_FAILED: The calendar events subscription has failed.
 UNKNOWN: The state is unknown.
 WAITING_FOR_RESPONSE: The calendar events synchronization process is awaiting response.
 
-# Added for alarms 
-ACTIVE: Presently doing something.
-INACTIVE: Not presently doing anything.
-
 # Added for measured statues (e.g. flowrate_status)
 PRESENT: "Something is currently materialized physically (e.g. flowrate_status is present)."
 ABSENT: "Something is currently not materialized (e.g. flowrate_status is absent). "
