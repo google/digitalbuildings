@@ -53,5 +53,10 @@ class Subscriber():
 
 
 def callback(message):
-	print(message.data)
+	attributes = message.attributes
+	data = message.data
+	print('\nAttributes:\n')
+	print(attributes)
+	print('\nData:\n')
+	print(data)
 	message.ack()
