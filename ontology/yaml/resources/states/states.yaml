@@ -15,7 +15,7 @@
 ON: Powered on.
 OFF: Powered off.
 AUTO: Running under automatic control.
-MANUAL: Running under manual (hand) control.
+MANUAL: "Running under manual (hand) control."
 OPEN: Open position, typically for a valve or other pass-though.
 CLOSED: Closed position, typically for a valve or other pass-though.
 LOW: Low speed or output setting.
@@ -50,8 +50,8 @@ ACTIVE: Presently doing something.
 INACTIVE: Not presently doing anything.
 
 # Added for measured statues (e.g. flowrate_status)
-PRESENT: Something is currently materialized physically (e.g. flowrate_status is present)
-ABSENT:  Something is currently not materialized (e.g. flowrate_status is absent). 
+PRESENT: "Something is currently materialized physically (e.g. flowrate_status is present)."
+ABSENT: "Something is currently not materialized (e.g. flowrate_status is absent). "
 
 
 
