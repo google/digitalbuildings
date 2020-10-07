@@ -17,9 +17,9 @@ ENTITY-NAME:
   id: SYSTEM/ID1234
   links:
     A-FOURTH-ENTITY:
-      supply_air_damper_position_command_1: supply_air_damper_command
-      zone_air_temperature_1: zone_air_temperature_sensor
+      dryer_run_status_1: supply_air_damper_command
+      dryer_run_status_2: zone_air_temperature_sensor
 
 A-FOURTH-ENTITY:
-  type: FACILITIES/BUILDING
-  id: FACILITIES/123456
+  type: HVAC/FAN_MDRI
+  id: cdm/123456
