@@ -156,14 +156,14 @@ class EntityInstance(findings_lib.Findings):
           .GetUnitsMapByMeasurement(source_field.data)
         valid_units_target = self.universe\
           .GetUnitsMapByMeasurement(target_field.data)
-        if valid_units_src is not None \
-            and valid_units_src != valid_units_target:
+        if valid_units_src != valid_units_target:
           print('Links dont have the same units: ',
                 valid_units_src, valid_units_target)
           print('Links error for the following fields (source, target): '
                 , source_field, target_field)
           return False
-        if set(valid_units_src) != set(valid_units_target):
+        if valid_units_src is not None and\
+            set(valid_units_src) != set(valid_units_target):
           print('Links dont have the same units: ',
                 valid_units_src, valid_units_target)
           print('Links error for the following fields (source, target): '
@@ -175,14 +175,14 @@ class EntityInstance(findings_lib.Findings):
           .GetStatesByField(source_field.data)
         valid_states_target = self.universe\
           .GetStatesByField(target_field.data)
-        if valid_states_src is not None \
-            and valid_states_src != valid_states_target:
+        if valid_states_src != valid_states_target:
           print('Links dont have the same states: '
                 , valid_states_src, valid_states_target)
           print('Links error for the following fields (source, target): '
                 , source_field, target_field)
           return False
-        if set(valid_states_src) != set(valid_states_target):
+        if valid_states_src is not None and\
+            set(valid_states_src) != set(valid_states_target):
           print('Links dont have the same states: ',
                 valid_states_src, valid_states_target)
           print('Links error for the following fields (source, target): '
