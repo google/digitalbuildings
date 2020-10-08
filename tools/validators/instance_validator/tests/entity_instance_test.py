@@ -62,9 +62,9 @@ class EntityInstanceTest(absltest.TestCase):
     try:
       entity_instance.EntityInstance(entity, self.universe, parsed.keys())
     except TypeError as e:
-      self.assertEquals(type(e), TypeError)
+      self.assertEqual(type(e), TypeError)
     else:
-      self.fail("{0} was not raised".format(TypeError))
+      self.fail('{0} was not raised'.format(TypeError))
 
   def testValidateBadEntityNamespace(self):
     parsed = instance_parser.parse_yaml(
@@ -166,9 +166,9 @@ class EntityInstanceTest(absltest.TestCase):
 
   def testValidateMultipleCompliantTranslationWithRequiredFieldMissing(self):
     parsed = instance_parser.parse_yaml(
-          os.path.join(_TESTCASE_PATH,
-                       'BAD',
-                       'bad_translation_with_required_field_missing.yaml'))
+        os.path.join(_TESTCASE_PATH,
+                     'BAD',
+                     'bad_translation_with_required_field_missing.yaml'))
     parsed = dict(parsed)
     entity_name = list(parsed.keys())[0]
 
@@ -182,60 +182,60 @@ class EntityInstanceTest(absltest.TestCase):
 
   def testValidateMultipleCompliantTranslationWithNamespaceOtherMultiple(self):
     parsed = instance_parser.parse_yaml(os.path.join(_TESTCASE_PATH,
-                       'GOOD',
-                       'good_translation.yaml'))
+                                                     'GOOD'
+                                                     , 'good_translation.yaml'))
     parsed = dict(parsed)
     entity_name_hvac = list(parsed.keys())[0]
 
     entity_hvac = dict(parsed[entity_name_hvac])
-    instance = entity_instance.EntityInstance(entity_hvac,
-                                                self.universe,
-                                                parsed.keys())
+    instance = entity_instance.EntityInstance(entity_hvac
+                                              , self.universe
+                                              , parsed.keys())
 
     if not instance.IsValidEntityInstance():
       self.fail('exception incorrectly raised')
 
   def testValidateMultipleCompliantTranslationWithNamespaceOther(self):
     parsed = instance_parser.parse_yaml(os.path.join(_TESTCASE_PATH,
-                                                       'GOOD',
-                                                       'good_translation.yaml'))
+                                                     'GOOD'
+                                                     , 'good_translation.yaml'))
     parsed = dict(parsed)
     entity_name_lighting = list(parsed.keys())[0]
 
     entity_lighting = dict(parsed[entity_name_lighting])
-    instance_lighting = entity_instance.EntityInstance(entity_lighting,
-                                                         self.universe,
-                                                         parsed.keys())
+    instance_lighting = entity_instance.EntityInstance(entity_lighting
+                                                       , self.universe
+                                                       , parsed.keys())
 
     if not instance_lighting.IsValidEntityInstance():
       self.fail('exception incorrectly raised')
 
   def testValidateMultipleCompliantTranslationWithIdenticalTypes(self):
-    parsed = instance_parser.parse_yaml(os.path.join(_TESTCASE_PATH,
-                                                       'GOOD',
-                                                       'good_translation'
-                                                       '_identical.yaml'))
+    parsed = instance_parser.parse_yaml(os.path.join(_TESTCASE_PATH
+                                                     , 'GOOD'
+                                                     , 'good_translation'
+                                                     , '_identical.yaml'))
     parsed = dict(parsed)
     for raw_entity in list(parsed.keys()):
       entity_parsed = dict(parsed[raw_entity])
-      entity = entity_instance.EntityInstance(entity_parsed,
-                                                         self.universe,
-                                                         parsed.keys())
+      entity = entity_instance.EntityInstance(entity_parsed
+                                              , self.universe
+                                              , parsed.keys())
       if not entity.IsValidEntityInstance():
         self.fail('exception incorrectly raised')
 
   def testValidateMultipleCompliantTranslationWithExtraField(self):
     parsed = instance_parser.parse_yaml(
-          os.path.join(_TESTCASE_PATH,
-                       'BAD',
-                       'bad_translation_with_extra_field.yaml'))
+        os.path.join(_TESTCASE_PATH
+                     , 'BAD'
+                     , 'bad_translation_with_extra_field.yaml'))
     parsed = dict(parsed)
     entity_name = list(parsed.keys())[0]
 
     entity = dict(parsed[entity_name])
-    instance = entity_instance.EntityInstance(entity,
-                                                self.universe,
-                                                parsed.keys())
+    instance = entity_instance.EntityInstance(entity
+                                              , self.universe
+                                              , parsed.keys())
 
     if instance.IsValidEntityInstance():
       self.fail('exception not raised')
@@ -346,9 +346,9 @@ class EntityInstanceTest(absltest.TestCase):
     parsed = dict(parsed)
     for raw_entity in list(parsed.keys()):
       entity_parsed = dict(parsed[raw_entity])
-      entity = entity_instance.EntityInstance(entity_parsed,
-                                                         self.universe,
-                                                         parsed.keys())
+      entity = entity_instance.EntityInstance(entity_parsed
+                                              , self.universe
+                                              , parsed.keys())
       entity_instances[raw_entity] = entity
 
     if entity_instances.get('ENTITY-NAME')\
@@ -364,9 +364,9 @@ class EntityInstanceTest(absltest.TestCase):
     parsed = dict(parsed)
     for raw_entity in list(parsed.keys()):
       entity_parsed = dict(parsed[raw_entity])
-      entity = entity_instance.EntityInstance(entity_parsed,
-                                                         self.universe,
-                                                         parsed.keys())
+      entity = entity_instance.EntityInstance(entity_parsed
+                                              , self.universe
+                                              , parsed.keys())
       entity_instances[raw_entity] = entity
 
     if entity_instances.get('ENTITY-NAME')\
@@ -382,9 +382,9 @@ class EntityInstanceTest(absltest.TestCase):
     parsed = dict(parsed)
     for raw_entity in list(parsed.keys()):
       entity_parsed = dict(parsed[raw_entity])
-      entity = entity_instance.EntityInstance(entity_parsed,
-                                                         self.universe,
-                                                         parsed.keys())
+      entity = entity_instance.EntityInstance(entity_parsed
+                                              , self.universe
+                                              , parsed.keys())
       entity_instances[raw_entity] = entity
 
     if entity_instances.get('ENTITY-NAME')\
@@ -401,9 +401,9 @@ class EntityInstanceTest(absltest.TestCase):
     parsed = dict(parsed)
     for raw_entity in list(parsed.keys()):
       entity_parsed = dict(parsed[raw_entity])
-      entity = entity_instance.EntityInstance(entity_parsed,
-                                                         self.universe,
-                                                         parsed.keys())
+      entity = entity_instance.EntityInstance(entity_parsed
+                                              , self.universe
+                                              , parsed.keys())
       entity_instances[raw_entity] = entity
 
     if entity_instances.get('ENTITY-NAME')\
@@ -419,9 +419,9 @@ class EntityInstanceTest(absltest.TestCase):
     parsed = dict(parsed)
     for raw_entity in list(parsed.keys()):
       entity_parsed = dict(parsed[raw_entity])
-      entity = entity_instance.EntityInstance(entity_parsed,
-                                                         self.universe,
-                                                         parsed.keys())
+      entity = entity_instance.EntityInstance(entity_parsed
+                                              , self.universe
+                                              , parsed.keys())
       entity_instances[raw_entity] = entity
 
     for _, instance in entity_instances.items():
@@ -437,9 +437,9 @@ class EntityInstanceTest(absltest.TestCase):
     parsed = dict(parsed)
     for raw_entity in list(parsed.keys()):
       entity_parsed = dict(parsed[raw_entity])
-      entity = entity_instance.EntityInstance(entity_parsed,
-                                                         self.universe,
-                                                         parsed.keys())
+      entity = entity_instance.EntityInstance(entity_parsed
+                                              , self.universe
+                                              , parsed.keys())
       if not entity.IsValidEntityInstance():
         self.fail('exception incorrectly raised')
 
