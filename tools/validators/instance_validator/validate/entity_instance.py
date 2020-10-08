@@ -162,13 +162,6 @@ class EntityInstance(findings_lib.Findings):
           print('Links error for the following fields (source, target): '
                 , source_field, target_field)
           return False
-        if valid_units_src is not None and\
-            set(valid_units_src) != set(valid_units_target):
-          print('Links dont have the same units: ',
-                valid_units_src, valid_units_target)
-          print('Links error for the following fields (source, target): '
-                , source_field, target_field)
-          return False
 	      # todo: discuss checks on the measurement descriptors
         # check the states are matching
         valid_states_src = src_entity_instance.universe\
@@ -181,18 +174,11 @@ class EntityInstance(findings_lib.Findings):
           print('Links error for the following fields (source, target): '
                 , source_field, target_field)
           return False
-        if valid_states_src is not None and\
-            set(valid_states_src) != set(valid_states_target):
-          print('Links dont have the same states: ',
-                valid_states_src, valid_states_target)
-          print('Links error for the following fields (source, target): '
-                , source_field, target_field)
-          return False
       # check if the rest of the links not included are optional
-      for optional_field_name in all_fields_dict.values():
-        if not optional_field_name.optional:
+      for field_name in all_fields_dict.values():
+        if not field_name.optional:
           print('Links does not use the mandatory field: ',
-                optional_field_name.field.field)
+                field_name.field.field)
           return False
 
     return True

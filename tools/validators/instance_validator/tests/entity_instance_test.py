@@ -211,9 +211,9 @@ class EntityInstanceTest(absltest.TestCase):
       self.fail('exception incorrectly raised')
 
   def testValidateMultipleCompliantTranslationWithIdenticalTypes(self):
-    parsed = instance_parser.parse_yaml(os.path.join(_TESTCASE_PATH
-                                                     , 'GOOD'
-                                                     , 'good_translation_identical.yaml'))
+    parsed = instance_parser.parse_yaml(
+        os.path.join(_TESTCASE_PATH, 'GOOD'
+                     , 'good_translation_identical.yaml'))
     parsed = dict(parsed)
     for raw_entity in list(parsed.keys()):
       entity_parsed = dict(parsed[raw_entity])

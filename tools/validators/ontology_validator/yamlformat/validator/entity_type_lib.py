@@ -541,14 +541,13 @@ class EntityType(findings_lib.Findings):
     if len(fqf_parsed) == 1:
       print('Type improperly formatted, a namespace is missing: '
             , fqf_parsed)
-      # Todo: raise exception here
-      exit(0)
+      raise TypeError('Type improperly formatted, a namespace is missing: '
+                      , fqf_parsed)
 
     if len(fqf_parsed) > 2:
       print('Type improperly formatted: ', fqf_parsed)
-      # Todo: raise exception here
-      exit(0)
-
+      raise TypeError('Type improperly formatted, a namespace is missing: '
+                    , fqf_parsed)
     all_fields = self.GetAllFields()
     return fully_qualified_fieldname in all_fields
 
