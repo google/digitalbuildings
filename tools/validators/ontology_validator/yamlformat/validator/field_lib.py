@@ -73,6 +73,7 @@ class FieldUniverse(findings_lib.FindingsUniverse):
 
   def IsFieldDefined(self, fieldname, namespace_name):
     """Returns true if fieldname is defined within namespace.
+       If the field ends with a digit, it is removed to check if it exists without it
 
     Args:
       fieldname: string. Name of a field, with namespace and increment removed.
