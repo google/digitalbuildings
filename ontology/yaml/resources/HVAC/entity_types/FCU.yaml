@@ -583,6 +583,8 @@ FCU_DFSS_DFVSC_ZTC_CHWZTC:
 
 
 
+
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
@@ -726,8 +728,8 @@ FCU_UK_LON_6PS_1:
   - thermal_power_sensor
   - dial_resistance_sensor
   - discharge_air_flowrate_sensor
-  - filter_alarm_status
-  - master_alarm_status
+  - filter_alarm
+  - master_alarm
   - run_mode
 
 FCU_UK_LON_6PS_2:
@@ -739,8 +741,8 @@ FCU_UK_LON_6PS_2:
   - thermal_power_sensor
   - dial_resistance_sensor
   - discharge_air_flowrate_sensor
-  - filter_alarm_status
-  - master_alarm_status
+  - filter_alarm
+  - master_alarm
   - run_mode
   - exercise_mode
 
@@ -756,10 +758,10 @@ FCU_UK_LON_6PS_3:
   - discharge_fan_speed_percentage_command_2
   - discharge_fan_speed_percentage_command_3
   - exercise_mode
-  - fabric_protection_alarm_status
-  - filter_alarm_status
+  - fabric_protection_alarm
+  - filter_alarm
   - heating_water_valve_percentage_command
-  - master_alarm_status
+  - master_alarm
   - discharge_fan_run_command
   - run_mode
   - zone_air_temperature_sensor_1
