@@ -37,6 +37,8 @@ ch-zrh-eurd-08-1103:
 #        ON: "1"
 #        OFF: "0"
 
+# Test
+
 # Fan Coil Unit =310M1
 ch-zrh-eurd-fcu-001-08-1103:
   type: HVAC/FCU_DFSS_CSP_CHWZC
