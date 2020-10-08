@@ -43,6 +43,23 @@ class EntityInstance(findings_lib.Findings):
     self.values = 'values'
     self.key = 'key'
     self.connections = 'connections'
+    # set the namespace and the entity
+    entity_type_str = str(self.entity['type'])
+    type_parse = entity_type_str.split('/')
+
+    if len(type_parse) == 1:
+      print('Type improperly formatted, a namespace is missing: '
+            , entity_type_str)
+      raise TypeError('Type improperly formatted, a namespace is missing: '
+                      , entity_type_str)
+
+    if len(type_parse) > 2:
+      print('Type improperly formatted: ', entity_type_str)
+      # todo: raise exception
+      raise TypeError('Type improperly formatted: ', entity_type_str)
+
+    self.namespace = type_parse[0]
+    self.type_name = type_parse[1]
 
   def _ValidateConnections(self):
     """Uses information from the generated ontology universe to validate
@@ -76,32 +93,17 @@ class EntityInstance(findings_lib.Findings):
     Returns:
       Returns boolean for validity of entity type.
     """
-    entity_type_str = str(self.entity['type'])
-    type_parse = entity_type_str.split('/')
-
-    if len(type_parse) == 1:
-      print('Type improperly formatted, a namespace is missing: '
-            , entity_type_str)
-      return False
-
-    if len(type_parse) > 2:
-      print('Type improperly formatted: ', entity_type_str)
-      return False
-
-    self.namespace = type_parse[0]
-    self.entity_type = type_parse[1]
-
     if self.universe.GetEntityTypeNamespace(self.namespace) is None:
       print('Invalid namespace:', self.namespace)
       return False
 
     entity_type_universe = self.universe.GetEntityType(self.namespace,
-                                                       self.entity_type)
+                                                       self.type_name)
     if entity_type_universe is None:
-      print('Invalid entity type:', self.entity_type)
+      print('Invalid entity type:', self.type_name)
       return False
     elif entity_type_universe.is_abstract:
-      print('Abstract types cannot be directly used:', self.entity_type)
+      print('Abstract types cannot be directly used:', self.type_name)
       return False
 
 
@@ -128,62 +130,59 @@ class EntityInstance(findings_lib.Findings):
       # todo:refactor into classes
       # scan all standard fields and ensure they're defined
       fields_map = dict(links[entity_name])
-      source_entity_instance = entity_instances.get(entity_name)
-      # this is valid type, the check already happened
-      src_entity_type_str = str(source_entity_instance.entity['type'])
-      src_type_parse = src_entity_type_str.split('/')
-      src_namespace = src_type_parse[0]
-      src_type = src_type_parse[1]
-      src_entity_type = self.universe.GetEntityType(src_namespace, src_type)
+      src_entity_instance = entity_instances.get(entity_name)
+      src_entity_type = self.universe.\
+	      GetEntityType(src_entity_instance.namespace,
+                     src_entity_instance.type_name)
       target_entity_type = self.universe.GetEntityType(self.namespace,
-                                                       self.entity_type)
-      all_fields_dict = src_entity_type.GetAllFields().copy()
-      for source_field, target_field  in fields_map.items():
-        opt_wrapper_field = all_fields_dict.pop('/'+source_field.data, None)
-        if opt_wrapper_field is None:  # an extra field that should not be here
-          print('Invalid extra link present:', source_field.data)
-          return False
+                                                       self.type_name)
+      all_fields_dict = target_entity_type.GetAllFields().copy()
+      for source_field, target_field in fields_map.items():
         # check the fields are present
         # assumes that the namespace is `` for now
         if not src_entity_type.HasField('/'+source_field.data):
-          print('Invalid links field source: ', source_field)
+          print('Invalid link field source: ', source_field)
           return False
         if not target_entity_type.HasField('/'+target_field.data):
-          print('Invalid links field target: ', target_field)
+          print('Invalid link field target: ', target_field)
           return False
+        # the found field is removed from the dictionary,
+        # once all the links are visited,
+        # check if there are fields that are not linked
+        # the dict fields keys are: namespace/fields, the namespace is empty.
+        all_fields_dict.pop('/' + target_field.data, None)
         # check the units are matching
-        valid_units_src = source_entity_instance.universe\
+        valid_units_src = src_entity_instance.universe\
           .GetUnitsMapByMeasurement(source_field.data)
-        valid_units_target = self .universe\
+        valid_units_target = self.universe\
           .GetUnitsMapByMeasurement(target_field.data)
-        # when one is None and not the other
-        if valid_units_src != valid_units_target:
-          print('Links dont have the same units: ',
-                valid_units_src, valid_units_target)
-          print('Links error for the following fields (source, target): '
-                , source_field, target_field)
-          return False
         if valid_units_src is not None \
-          and set(valid_units_src) != set(valid_units_target):
+            and valid_units_src != valid_units_target:
           print('Links dont have the same units: ',
                 valid_units_src, valid_units_target)
           print('Links error for the following fields (source, target): '
                 , source_field, target_field)
           return False
+        if set(valid_units_src) != set(valid_units_target):
+          print('Links dont have the same units: ',
+                valid_units_src, valid_units_target)
+          print('Links error for the following fields (source, target): '
+                , source_field, target_field)
+          return False
+	      # todo: discuss checks on the measurement descriptors
         # check the states are matching
-        valid_states_src = source_entity_instance.universe\
+        valid_states_src = src_entity_instance.universe\
           .GetStatesByField(source_field.data)
         valid_states_target = self.universe\
           .GetStatesByField(target_field.data)
-        # when one is None and not the other
-        if valid_units_src != valid_units_target:
+        if valid_states_src is not None \
+            and valid_states_src != valid_states_target:
           print('Links dont have the same states: '
                 , valid_states_src, valid_states_target)
           print('Links error for the following fields (source, target): '
                 , source_field, target_field)
           return False
-        if valid_states_src is not None and \
-            set(valid_states_src) != set(valid_states_target):
+        if set(valid_states_src) != set(valid_states_target):
           print('Links dont have the same states: ',
                 valid_states_src, valid_states_target)
           print('Links error for the following fields (source, target): '

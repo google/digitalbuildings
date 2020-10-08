@@ -57,14 +57,14 @@ class EntityInstanceTest(absltest.TestCase):
                      'bad_building_type.yaml'))
     parsed = dict(parsed)
     entity_name = list(parsed.keys())[0]
-
     entity = dict(parsed[entity_name])
-    instance = entity_instance.EntityInstance(entity,
-                                              self.universe,
-                                              parsed.keys())
 
-    if instance.IsValidEntityInstance():
-      self.fail('exception not raised')
+    try:
+      entity_instance.EntityInstance(entity, self.universe, parsed.keys())
+    except TypeError as e:
+      self.assertEquals(type(e), TypeError)
+    else:
+      self.fail("{0} was not raised".format(TypeError))
 
   def testValidateBadEntityNamespace(self):
     parsed = instance_parser.parse_yaml(
@@ -73,7 +73,6 @@ class EntityInstanceTest(absltest.TestCase):
                      'bad_building_type_namespace.yaml'))
     parsed = dict(parsed)
     entity_name = list(parsed.keys())[0]
-
     entity = dict(parsed[entity_name])
     instance = entity_instance.EntityInstance(entity,
                                               self.universe,
