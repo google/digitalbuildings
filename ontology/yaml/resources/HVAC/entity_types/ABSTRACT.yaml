@@ -3788,6 +3788,8 @@ ZX5TM:
   description: "Zone with up to x5 temperature monitoring with alarms."
   is_abstract: true
   opt_uses:
+  - zone_air_temperature_sensor_1
+  - zone_air_temperature_status_1 # Sensor failed 
   - zone_air_temperature_setpoint
   - zone_air_temperature_sensor_2
   - zone_air_temperature_sensor_3
@@ -3799,9 +3801,6 @@ ZX5TM:
   - zone_air_temperature_status_5 # Sensor failed
   - zone_air_low_temperature_setpoint
   - zone_air_high_temperature_setpoint
-  uses:
-  - zone_air_temperature_sensor_1
-  - zone_air_temperature_status_1 # Sensor failed 
   implements:
   - MONITORING
 
@@ -3810,6 +3809,12 @@ ZX6SPM:
   description: "Zone with up to x6 static pressure monitoring with alarms."
   is_abstract: true
   opt_uses:
+  - zone_air_static_pressure_sensor_1
+  - zone_air_low_static_pressure_setpoint_1
+  - zone_air_high_static_pressure_setpoint_1
+  - zone_air_static_pressure_status_1
+  - zone_air_low_static_pressure_status_1
+  - zone_air_high_static_pressure_status_1
   - zone_air_static_pressure_sensor_2
   - zone_air_low_static_pressure_setpoint_2
   - zone_air_high_static_pressure_setpoint_2
@@ -3840,13 +3845,6 @@ ZX6SPM:
   - zone_air_static_pressure_status_6
   - zone_air_low_static_pressure_setpoint_6
   - zone_air_high_static_pressure_setpoint_6
-  uses:
-  - zone_air_static_pressure_sensor_1
-  - zone_air_low_static_pressure_setpoint_1
-  - zone_air_high_static_pressure_setpoint_1
-  - zone_air_static_pressure_status_1
-  - zone_air_low_static_pressure_status_1
-  - zone_air_high_static_pressure_status_1
   implements:
   - MONITORING
 
@@ -5275,7 +5273,6 @@ OTHCVM:
   id: "14140919-43a7-4d7e-805c-0b057c271b24"
   description: "Weather station with temperature, relative humidity, carbon dioxide & volatile organic compounds monitoring."
   is_abstract: true
-  opt_uses:
   uses:
   - outside_air_temperature_sensor
   - outside_air_relative_humidity_sensor
@@ -5288,7 +5285,6 @@ OBPM:
   id: "721f1d63-cf4f-4d16-99bb-ecb65599489d"
   description: "Outside air barometric pressure monitoring."
   is_abstract: true
-  opt_uses:
   uses:
   - outside_air_barometric_pressure_sensor
   implements:
@@ -5298,7 +5294,6 @@ WNDSDM:
   id: "03090f1d-9c9c-40fa-b503-75b11e0a5140"
   description: "Wind speed & direction monitoring."
   is_abstract: true
-  opt_uses:
   uses:
   - wind_speed_linearvelocity_sensor
   - wind_direction_sensor
@@ -5309,7 +5304,6 @@ OUVM:
   id: "df7ebc12-4013-4e72-b8ed-fdca8e3d6191"
   description: "Outside ultraviolet level monitoring."
   is_abstract: true
-  opt_uses:
   uses:
   - outside_air_ultraviolet_sensor
   implements:
@@ -5319,7 +5313,6 @@ OPRM:
   id: "3669e63b-7c0a-4c72-a183-ac496c3f7140"
   description: "Outside precipitation (rain, snow & hail) monitoring."
   is_abstract: true
-  opt_uses:
   uses:
   - precipitation_status
   implements:
@@ -5351,5 +5344,17 @@ HWSRTM:
   - hot_return_water_temperature_status # Sensor failed
   uses:
   - hot_return_water_temperature_sensor
+  implements:
+  - MONITORING
+
+OCO2X4M:
+  id: "b2fab0bc-09ab-4384-a546-e0e913eb8579"
+  description: "Outside air carbon dioxide monitoring on 4 sides of the building."
+  is_abstract: true
+  uses:
+  - outside_air_co2_concentration_sensor_1
+  - outside_air_co2_concentration_sensor_2
+  - outside_air_co2_concentration_sensor_3
+  - outside_air_co2_concentration_sensor_4
   implements:
   - MONITORING

@@ -1021,7 +1021,7 @@ FCU_DFSS_DFVSC_ZTC_CHWZTC_CO2FC_DTM_RTM_FDPM_SSPM_FAM_CPM_HOA_OPTM_CHGOVTC_DARC_
   - DARC   # New abstract created for S2 
   - ZHC # Existing with optional points added for S2
 
-# FCU Type 5A
+# FCU Type 5A V1
 FCU_DFSS_DFVSC_DTC_CHWDTC_CLDATC_DTM_RTM_FDPM_SSPM_DUTYC_CPM_HOA_ISODCMD_CHWISOVM_CLDATAM_CLDAHAM_HOTATAM:
   id: "9757884d-712f-4b99-a3ff-92e576e9a8f3"
   description: "Hydronic varaible speed IDF/UPS room fan coil with cooling (discharge temp control) and cold aisle temperature control. Hand/Off/Auto operation is provided with duty/standy control. Discharge air temperature, return air temperature, supply static pressure, filter differential pressure & condensation pump status are all monitored by this unit. Cold aisle temperature & humidity monitoring & hot asle temperature monitoring."
@@ -1045,8 +1045,31 @@ FCU_DFSS_DFVSC_DTC_CHWDTC_CLDATC_DTM_RTM_FDPM_SSPM_DUTYC_CPM_HOA_ISODCMD_CHWISOV
   - CLDATAM # New abstract created for S2
   - CLDAHAM # New abstract created for S2
   - HOTATAM # New abstract created for S2
+
+# FCU Type 5A V2
+FCU_DFSS_DFVSC_DTC_CHWDTC_CLDATC_DTM_RTM_FDPM_SSPM_CPM_HOA_CHWISOVM_CLDATAM_CLDAHAM_HOTATAM:
+  id: "48ca7c4e-4ddf-49b6-9ba0-74d8a54461c9"
+  description: "Hydronic varaible speed IDF/UPS room fan coil with cooling (discharge temp control) and cold aisle temperature control. Hand/Off/Auto operation is provided with duty/standy control. Discharge air temperature, return air temperature, supply static pressure, filter differential pressure & condensation pump status are all monitored by this unit. Cold aisle temperature & humidity monitoring & hot asle temperature monitoring."
+  is_canonical: true
+  implements:
+  - FCU # Existing
+  - DFSS # Existing with optional points added for S2
+  - DFVSC # Existing with optional points added for S2
+  - DTC # Existing with optional points added for S2
+  - CHWDTC # Existing with optional points added for S2
+  - CLDATC # New abstract created for S2
+  - DTM # Existing with optional points added for S2
+  - RTM # Existing with optional points added for S2
+  - FDPM # Existing with optional points added for S2
+  - SSPM # Existing with optional points added for S2
+  - CPM # New abstract created for S2
+  - HOA # New abstract created for S2
+  - CHWISOVM # New abstract created for S2
+  - CLDATAM # New abstract created for S2
+  - CLDAHAM # New abstract created for S2
+  - HOTATAM # New abstract created for S2
   
-# FCU Type 5B
+# FCU Type 5B V1
 FCU_DFSS_DFVSC_DTC_CHWDTC_CLDATC_DTM_RTM_FDPM_SSPM_DUTYC_CPM_HOA_ISODCMD_CHWISOVM:
   id: "e153b19a-a221-4323-b707-e6236a13967f"
   description: "Hydronic varaible speed IDF/UPS room fan coil with cooling (discharge temp control) and cold aisle temperature control. Hand/Off/Auto operation is provided with duty/standy control. Discharge air temperature, return air temperature, supply static pressure, filter differential pressure & condensation pump status are all monitored by this unit."
@@ -1066,6 +1089,26 @@ FCU_DFSS_DFVSC_DTC_CHWDTC_CLDATC_DTM_RTM_FDPM_SSPM_DUTYC_CPM_HOA_ISODCMD_CHWISOV
   - CPM # New abstract created for S2
   - HOA # New abstract created for S2
   - ISODCMD # New abstract created for S2
+  - CHWISOVM # New abstract created for S2
+
+# FCU Type 5B V2
+FCU_DFSS_DFVSC_DTC_CHWDTC_CLDATC_DTM_RTM_FDPM_SSPM_CPM_HOA_CHWISOVM:
+  id: "113d9042-f9a6-4df4-811d-df9c0cbcf5a9"
+  description: "Hydronic varaible speed IDF/UPS room fan coil with cooling (discharge temp control) and cold aisle temperature control. Hand/Off/Auto operation is provided with duty/standy control. Discharge air temperature, return air temperature, supply static pressure, filter differential pressure & condensation pump status are all monitored by this unit."
+  is_canonical: true
+  implements:
+  - FCU # Existing
+  - DFSS # Existing with optional points added for S2
+  - DFVSC # Existing with optional points added for S2
+  - DTC # Existing with optional points added for S2
+  - CHWDTC # Existing with optional points added for S2
+  - CLDATC # New abstract created for S2
+  - DTM # Existing with optional points added for S2
+  - RTM # Existing with optional points added for S2
+  - FDPM # Existing with optional points added for S2
+  - SSPM # Existing with optional points added for S2
+  - CPM # New abstract created for S2
+  - HOA # New abstract created for S2
   - CHWISOVM # New abstract created for S2
   
 # DX Type FCU at S2

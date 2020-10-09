@@ -438,9 +438,9 @@ VAV_PDSCV_CO2C_VOCC_ZHM_FAM_HOA_OPTM_DFVSCO2C_ZTC_CHGOVTC:
   - CHGOVTC # New abstract created for S2
   
 # VAV Type 2B
-VAV_PDSCV_FAM_HOA_OPTM_MSDM_ZTHCO2AM:
+VAV_PDSCV_FAM_HOA_OPTM_MSDM:
   id: "db21918e-a5cb-405f-860d-d669d9448fd2"
-  description: "Supply air VAV feeding FCU's for coding caves. VAV supply damper is controlled on maximum supply damper position monitored from VAV's feeding coding caves. Hand/Off/Auto operation is provided, with optimizer control. Zone air CO2, VOC & relative humidity failed alarms are monitored from coding caves and fire alarm status is monitored by this unit."
+  description: "Supply air VAV feeding FCU's for coding caves. VAV supply damper is controlled on maximum supply damper position monitored from VAV's feeding coding caves. Hand/Off/Auto operation is provided, with optimizer control. Fire alarm status is monitored by this unit."
   is_canonical: true
   implements:
   - VAV # Existing
@@ -449,7 +449,6 @@ VAV_PDSCV_FAM_HOA_OPTM_MSDM_ZTHCO2AM:
   - HOA # New abstract created for S2
   - OPTM # New abstract created for S2
   - MSDM # New abstract created for S2 
-  - ZTHCO2AM # New abstract created for S2 
 
 # VAV type 1 without heating valve for Event Spaces
 VAV_PDSCV_ZCMD_ZTM_SFM:

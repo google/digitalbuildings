@@ -80,7 +80,7 @@ CTRP_CLDATAM_CLDAHAM_HOTATAM_HOTAHM_ZDPAM_FAM:
   - ZDPAM
   - FAM
 
-# CTRP-5, CTRP-7, CTRP-9, CTRP-12, CTRP-14, CTRP-26 at S2
+# CTRP-5, CTRP-7, CTRP-9, CTRP-12, CTRP-14 at S2
 CTRP_FLRZTC_OPTM_COPTM_HOPTM_FAM:
   id: "a03dd348-678c-45e9-b117-b960b102568a"
   description: "Floor optimizer control panel with cooling and heating optimization. Floor zone temperature control and fire alarm monitoring."
@@ -92,6 +92,20 @@ CTRP_FLRZTC_OPTM_COPTM_HOPTM_FAM:
   - COPTM
   - HOPTM
   - FAM
+
+# CTRP-26 at S2
+CTRP_FLRZTC_OPTM_COPTM_HOPTM_FAM_OCO2X4M:
+  id: "999a5851-ab7c-48c9-a5e2-64c815b9383d"
+  description: "Floor optimizer control panel with cooling and heating optimization. Floor zone temperature control, fire alarm monitoring & outside air carbon dioxide monitoring."
+  is_canonical: true
+  implements:
+  - CTRP
+  - FLRZTC
+  - OPTM
+  - COPTM
+  - HOPTM
+  - FAM
+  - OCO2X4M
 
 # CTRP-16, CTRP-18, CTRP-21 at S2
 CTRP_FLRZTC_OPTM_COPTM_HOPTM_FAM_CHWHLLD_HWHLLD:
