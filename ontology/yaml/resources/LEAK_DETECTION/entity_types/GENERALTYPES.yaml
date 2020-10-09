@@ -25,7 +25,7 @@ LDP:
   implements:
   - EQUIPMENT
 
-LD_ZONE:
+ZONE:
   id: "9a97b69f-1a3c-48c9-9723-305ca81bed1c"
   description: "Tag for a zone containing sensors from the leak detection system."
   is_abstract: true
