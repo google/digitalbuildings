@@ -122,6 +122,10 @@ class EntityInstance(findings_lib.Findings):
       return True
 
     links = dict(self.entity[self.links])
+    target_entity_type = self.universe.GetEntityType(self.namespace,
+                                                     self.type_name)
+    all_fields_dict = target_entity_type.GetAllFields().copy()
+
     for entity_name in links.keys():
       # ensure first level keys refer to other entities in config file
       if entity_name not in self.config_entity_names:
@@ -134,9 +138,7 @@ class EntityInstance(findings_lib.Findings):
       src_entity_type = self.universe.\
 	      GetEntityType(src_entity_instance.namespace,
                      src_entity_instance.type_name)
-      target_entity_type = self.universe.GetEntityType(self.namespace,
-                                                       self.type_name)
-      all_fields_dict = target_entity_type.GetAllFields().copy()
+
       for source_field, target_field in fields_map.items():
         # check the fields are present
         # assumes that the namespace is `` for now
@@ -174,12 +176,12 @@ class EntityInstance(findings_lib.Findings):
           print('Links error for the following fields (source, target): '
                 , source_field, target_field)
           return False
-      # check if the rest of the links not included are optional
-      for field_name in all_fields_dict.values():
-        if not field_name.optional:
-          print('Links does not use the mandatory field: ',
-                field_name.field.field)
-          return False
+    # check if the rest of the links not included are optional
+    for field_name in all_fields_dict.values():
+      if not field_name.optional:
+        print('Links does not use the mandatory field: ',
+              field_name.field.field)
+        return False
 
     return True
 
