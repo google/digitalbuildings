@@ -20,13 +20,13 @@ import json
 from google.auth import jwt
 from google.cloud import pubsub_v1
 
+
 class Subscriber():
 	"""Reads payload from a subscription.
- 
 	Args:
-	 subscription_name: name of the subscription.
-	 service_account_info: service account information from the GCP project.
-	 """
+		subscription_name: name of the subscription.
+		service_account_info: service account information from the GCP project.
+	"""
 	
 	def __init__(self, subscription_name, service_account_info_json_file):
 		super().__init__()
@@ -37,7 +37,6 @@ class Subscriber():
 		credentials = jwt.Credentials.from_service_account_info(service_account_info, audience=audience)
 		sub_client = pubsub_v1.SubscriberClient(credentials=credentials)
 		self.sub_client = sub_client
-	
 	
 	def Listen(self):
 		future = self.sub_client.subscribe(self.subscription_name, callback)
