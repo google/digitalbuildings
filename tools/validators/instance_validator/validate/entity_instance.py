@@ -122,6 +122,8 @@ class EntityInstance(findings_lib.Findings):
       return True
 
     links = dict(self.entity[self.links])
+    target_entity_type = self.universe.GetEntityType(self.namespace,
+                                                     self.type_name)
     all_fields_dict = target_entity_type.GetAllFields().copy()
 
     for entity_name in links.keys():
@@ -136,8 +138,7 @@ class EntityInstance(findings_lib.Findings):
       src_entity_type = self.universe.\
 	      GetEntityType(src_entity_instance.namespace,
                      src_entity_instance.type_name)
-      target_entity_type = self.universe.GetEntityType(self.namespace,
-                                                       self.type_name)
+
       for source_field, target_field in fields_map.items():
         # check the fields are present
         # assumes that the namespace is `` for now
