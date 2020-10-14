@@ -31,8 +31,17 @@ from validate import subscriber
 import argparse
 import sys
 
+# TODO(nkilmer): update as you see good
+def message_handler(message):
+  attributes = message.attributes
+  data = message.data
+  print('\nAttributes:\n')
+  print(attributes)
+  print('\nData:\n')
+  print(data)
+  message.ack()
+  
 # TODO add input and return type checks in all functions
-
 if __name__ == '__main__':
   parser = argparse.ArgumentParser(
       description='Validate a YAML building configuration file')
@@ -65,6 +74,11 @@ if __name__ == '__main__':
   print('\nValidator starting ...\n')
   filename = arg.filename
 
+  # if arg.subscription != arg.service_account:
+  #   print('Subscription and a service account file are both '
+  #         'needed for the telemetry validation!')
+  #   sys.exit(0)
+  #
   # prints for syntax errors and exits gracefully
   raw_parse = instance_parser.parse_yaml(filename)
 
@@ -100,4 +114,4 @@ if __name__ == '__main__':
   print('File passes all checks!')
   
   sub = subscriber.Subscriber(arg.subscription, arg.service_account)
-  sub.Listen()
+  sub.Listen(message_handler)

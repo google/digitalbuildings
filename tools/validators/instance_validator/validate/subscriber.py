@@ -21,36 +21,33 @@ from google.auth import jwt
 from google.cloud import pubsub_v1
 
 
-class Subscriber():
-	"""Reads payload from a subscription.
-	Args:
-		subscription_name: name of the subscription.
-		service_account_info: service account information from the GCP project.
-	"""
-	
-	def __init__(self, subscription_name, service_account_info_json_file):
-		super().__init__()
-		self.subscription_name = subscription_name
-		self.service_account_info_json_file = service_account_info_json_file
-		service_account_info = json.load(open(self.service_account_info_json_file))
-		audience = "https://pubsub.googleapis.com/google.pubsub.v1.Subscriber"
-		credentials = jwt.Credentials.from_service_account_info(service_account_info, audience=audience)
-		sub_client = pubsub_v1.SubscriberClient(credentials=credentials)
-		self.sub_client = sub_client
-	
-	def Listen(self):
-		future = self.sub_client.subscribe(self.subscription_name, callback)
-		try:
-			future.result()
-		except KeyboardInterrupt:
-			future.cancel()
+class Subscriber(object):
+  """Reads payload from a subscription.
+  Args:
+    subscription_name: name of the subscription.
+    service_account_info: service account information from the GCP project.
+  """
 
+  def __init__(self, subscription_name, service_account_info_json_file):
+    super(Subscriber, self).__init__()
+    assert subscription_name
+    assert service_account_info_json_file
+    self.subscription_name = subscription_name
+    self.service_account_info_json_file = service_account_info_json_file
+    service_account_info = json.load(open(self.service_account_info_json_file))
+    audience = "https://pubsub.googleapis.com/google.pubsub.v1.Subscriber"
+    credentials = jwt.Credentials.from_service_account_info(service_account_info
+                                                            , audience=audience)
+    sub_client = pubsub_v1.SubscriberClient(credentials=credentials)
+    self.sub_client = sub_client
 
-def callback(message):
-	attributes = message.attributes
-	data = message.data
-	print('\nAttributes:\n')
-	print(attributes)
-	print('\nData:\n')
-	print(data)
-	message.ack()
+  def Listen(self, callback):
+    """Listens to a pubsub subscription.
+    Args:
+      callback: a callback function to handle the message.
+    """
+    future = self.sub_client.subscribe(self.subscription_name, callback)
+    try:
+      future.result()
+    except KeyboardInterrupt:
+      future.cancel()
