@@ -29,7 +29,7 @@ class Subscriber(object):
   """
 
   def __init__(self, subscription_name, service_account_info_json_file):
-    super(Subscriber, self).__init__()
+    super().__init__()
     assert subscription_name
     assert service_account_info_json_file
     self.subscription_name = subscription_name
