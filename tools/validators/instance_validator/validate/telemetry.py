@@ -38,7 +38,7 @@ class Telemetry(object):
   """
 
   def __init__(self, message):
-    super(Telemetry, self).__init__()
+    super().__init__()
     self.attributes = self._parse_attributes(message.attributes)
     self.version, self.timestamp, self.points = self._parse_data(message.data)
 
