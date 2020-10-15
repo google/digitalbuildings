@@ -22,10 +22,10 @@ DEVICE_ID = 'deviceId'
 DEVICE_REGISTRY_ID = 'deviceRegistryId'
 DEVICE_NUM_ID = 'deviceNumId'
 SUB_FOLDER = 'subFolder'
-VERSION = "version"
-POINTS = "points"
-TIMESTAMP = "timestamp"
-PRESENT_VALUE = "present_value"
+VERSION = 'version'
+POINTS = 'points'
+TIMESTAMP = 'timestamp'
+PRESENT_VALUE = 'present_value'
 
 class Telemetry(object):
   """Creates an Telemetry object from a pubsub message.
@@ -40,7 +40,7 @@ class Telemetry(object):
   def __init__(self, message):
     super(Telemetry, self).__init__()
     self.attributes = self._parse_attributes(message.attributes)
-    self._parse_data(message.data)
+    self.version, self.timestamp, self.points = self._parse_data(message.data)
 
   def _parse_attributes(self, pubsub_message_attributes):
     """Receives a pubsub message data and parses it.
@@ -66,12 +66,20 @@ class Telemetry(object):
 
     Args:
      message: pubsub telemetry payload, UDMI compliant
+
+    Returns:
+     version: the version in the payload
+     timestamp: timestamp of the message in the payload
+     points: a dictionary containing as key the points
+     name and as value a Point class.
   """
     json_object = json.loads(data)
-    self.version = json_object[VERSION]
-    self.timestamp = json_object[TIMESTAMP]
-    self.points = {}
+    version = json_object[VERSION]
+    timestamp = json_object[TIMESTAMP]
+    points = {}
     json_points = json_object[POINTS]
     for point_name, value in json_points.items():
       p = point.Point(point_name, value.get(PRESENT_VALUE))
-      self.points[point_name] = p
+      points[point_name] = p
+    return version, timestamp, points
+  

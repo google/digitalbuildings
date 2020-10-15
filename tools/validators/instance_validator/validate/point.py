@@ -27,7 +27,7 @@ class Point(object):
   """
 
   def __init__(self, point_name, value):
-    super(Point, self).__init__()
+    super().__init__()
     self.point_name = point_name
     self.present_value = value
     

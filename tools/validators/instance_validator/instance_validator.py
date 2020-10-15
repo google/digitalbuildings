@@ -38,12 +38,6 @@ def message_handler(message):
     Args:
       message: a pubsub message containing telemetry payload.
   """
-  attributes = message.attributes
-  data = message.data
-  # print('\nAttributes:\n')
-  # print(attributes)
-  # print('\nData:\n')
-  # print(data)
   t = telemetry.Telemetry(message)
   for key, value in t.points.items():
     print()
