@@ -28,17 +28,28 @@ from validate import generate_universe
 from validate import entity_instance
 from validate import instance_parser
 from validate import subscriber
+from validate import telemetry
 import argparse
 import sys
 
 # TODO(nkilmer): update as you see good
 def message_handler(message):
+  """Handles a pubsub message.
+    Args:
+      message: a pubsub message containing telemetry payload.
+  """
   attributes = message.attributes
   data = message.data
-  print('\nAttributes:\n')
-  print(attributes)
-  print('\nData:\n')
-  print(data)
+  # print('\nAttributes:\n')
+  # print(attributes)
+  # print('\nData:\n')
+  # print(data)
+  t = telemetry.Telemetry(message)
+  for key, value in t.points.items():
+    print()
+    print('-point: ', key)
+    print('-- point_name: ', value.point_name)
+    print('-- present_value: ', value.present_value)
   message.ack()
 
 # TODO add input and return type checks in all functions
