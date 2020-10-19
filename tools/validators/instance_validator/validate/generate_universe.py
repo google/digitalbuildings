@@ -23,6 +23,7 @@ from yamlformat.validator import external_file_lib
 from yamlformat.validator import presubmit_validate_types_lib
 from yamlformat.validator import namespace_validator
 
+# TODO(charbull): clean up the default location
 _DEFAULT_ONTOLOGY_LOCATION = path.join('..', '..', '..',
                                        'ontology', 'yaml', 'resources')
 
