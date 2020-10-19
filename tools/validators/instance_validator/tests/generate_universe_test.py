@@ -22,7 +22,8 @@ from validate import generate_universe
 from absl.testing import absltest
 from os import path
 
-_DEFAULT_ONTOLOGY_LOCATION = path.join('..', '..', '..', 'ontology', 'yaml', 'resources')
+_DEFAULT_ONTOLOGY_LOCATION = path.join('..', '..', '..'
+                                       , 'ontology', 'yaml', 'resources')
 _BAD_MODIFIED_ONTOLOGY = path.join('.', 'fake_resources', 'BAD', 'BAD_FORMAT')
 _NONEXISTENT_LOCATION = path.join('..', 'nonexistent')
 _EMPTY_FOLDER = path.join('.', 'fake_resources', 'BAD', 'BAD_EMPTY')
