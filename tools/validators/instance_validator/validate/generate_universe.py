@@ -23,7 +23,7 @@ from yamlformat.validator import external_file_lib
 from yamlformat.validator import presubmit_validate_types_lib
 from yamlformat.validator import namespace_validator
 
-DEFAULT_ONTOLOGY_LOCATION = path.join('..', '..', '..',
+_DEFAULT_ONTOLOGY_LOCATION = path.join('..', '..', '..',
                                        'ontology', 'yaml', 'resources')
 
 def BuildUniverse(modified_types_filepath=None):
@@ -46,12 +46,12 @@ def BuildUniverse(modified_types_filepath=None):
 
     external_file_lib.Validate(filter_text=None,
                                changed_directory=modified_types_filepath,
-                               original_directory=DEFAULT_ONTOLOGY_LOCATION,
+                               original_directory=_DEFAULT_ONTOLOGY_LOCATION,
                                interactive=False)
     yaml_files = external_file_lib.RecursiveDirWalk(modified_types_filepath)
   else:
     # use default location for ontology files
-    yaml_files = external_file_lib.RecursiveDirWalk(DEFAULT_ONTOLOGY_LOCATION)
+    yaml_files = external_file_lib.RecursiveDirWalk(_DEFAULT_ONTOLOGY_LOCATION)
 
   config = presubmit_validate_types_lib.SeparateConfigFiles(yaml_files)
   universe = presubmit_validate_types_lib.BuildUniverse(config)
