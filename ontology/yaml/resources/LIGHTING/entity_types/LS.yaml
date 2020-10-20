@@ -43,5 +43,5 @@ MTS:
   - SENSOR
   uses:
   - illuminance_sensor
-  - zone_temperature_sensor
+  - zone_air_temperature_sensor
 

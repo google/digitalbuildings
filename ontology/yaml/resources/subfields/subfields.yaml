@@ -19,6 +19,7 @@ aggregation:
   total: "Sum total of some set of values (e.g. total_request_heating_count)"
 component:
   battery: "A device used to store power for use at a later time (e.g. in an emergency where grid power is unavailable)."
+  cable: "A length of wire, sometimes shielded externally, used for some purpose (e.g. steel braided wire for tensile support, CAT5 cable for communications, etc.)."
   coil: "Component that exchanges heat between two media streams."
   compressor: "Component which drives refrigerant compression (and thus cooling processes) within a device or system."
   condenser: "The component of a refrigeration system that condenses refrigerant."
@@ -49,6 +50,7 @@ descriptor:
   aisle: "Passage between two rows of server racks."
   blowdown: "Process of expelling water filled with mineral deposits for the purposes of water treatment. "
   boost: "Component used to boost pressure."
+  broken: "A state of disrepair; fractured or segmented."
   building: "Applies to the entire building or group of zones within building (e.g. Building_Air_Static_Pressure_Sensor)"
   bypass: "Route which fluid takes to bypass process."
   calendar: "A system structured around the days, weeks, and the months, used to manage schedules."
@@ -130,6 +132,7 @@ descriptor:
   protection: "Act of preventing damage to object."
   reactive: "Power that is returned to the source (not consumed by the load)."
   recovery: "Component or process used for the reclamation of heat."
+  release: "To free from constraints (e.g. to release the door from its magnetic lock)."
   refrigerant: "Substance used in the mechanical refrigeration process (e.g. R-134a)"
   request: "A signal from a system device that calls for more of a particular conditioning process (e.g. pressure requests from terminal units)."
   return: "Measurement or process of media as it is returned from the end-use equipment within the system."

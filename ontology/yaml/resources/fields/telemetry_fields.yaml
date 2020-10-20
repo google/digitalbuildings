@@ -709,6 +709,8 @@ literals:
 - fire_alarm
 - emergency_release_status
 - position_status
+- broken_cable_alarm
+- emergency_release_status
 
 
 
