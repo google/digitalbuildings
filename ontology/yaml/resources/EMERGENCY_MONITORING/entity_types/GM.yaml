@@ -12,27 +12,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-
-LT_SS:
-  description: "Standard light."
+# General Types
+GM_STD:
+  description: "Basic natural gas monitoring device."
   is_canonical: true
   implements:
-  - LT
-  - SS
+  - GM
+  uses:
+  - gas_leak_detection_alarm
 
-LT_SS_DC:
-  description: "Standard light with dimming control."
-  is_canonical: true
-  implements:
-  - LT
-  - SS
-  - DC 
 
-LT_SS_DC_SC:
-  description: "Standard light with dimming control."
-  is_canonical: true
-  implements:
-  - LT
-  - SS
-  - DC 
-  - SC

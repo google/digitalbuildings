@@ -13,26 +13,8 @@
 # limitations under the License.
 
 
-LT_SS:
-  description: "Standard light."
-  is_canonical: true
+UPS:
+  description: "Tag for all uninterruptible power supply units."
+  is_abstract: true
   implements:
-  - LT
-  - SS
-
-LT_SS_DC:
-  description: "Standard light with dimming control."
-  is_canonical: true
-  implements:
-  - LT
-  - SS
-  - DC 
-
-LT_SS_DC_SC:
-  description: "Standard light with dimming control."
-  is_canonical: true
-  implements:
-  - LT
-  - SS
-  - DC 
-  - SC
+  - EQUIPMENT

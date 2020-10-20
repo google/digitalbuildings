@@ -12,27 +12,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# Lighting group controllers. 
 
-LT_SS:
-  description: "Standard light."
+LCM_SS:
+  description: "Standard lighting group control module."
   is_canonical: true
   implements:
-  - LT
+  - LCM
   - SS
-
-LT_SS_DC:
-  description: "Standard light with dimming control."
-  is_canonical: true
-  implements:
-  - LT
-  - SS
-  - DC 
-
-LT_SS_DC_SC:
-  description: "Standard light with dimming control."
-  is_canonical: true
-  implements:
-  - LT
-  - SS
-  - DC 
-  - SC

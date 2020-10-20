@@ -695,9 +695,20 @@ literals:
   - ACTIVE
   - INACTIVE
 
+# New fields for lighting and fire systems.
+- motion_status
+- scene_command
+- battery_power_status
+- brightness_percentage_command
 
-
-
+# New fields for emergency systems
+- cable_broken_alarm:
+  - ACTIVE
+  - INACTIVE
+- gas_leak_detection_alarm
+- fire_alarm
+- emergency_release_status
+- position_status
 
 
 

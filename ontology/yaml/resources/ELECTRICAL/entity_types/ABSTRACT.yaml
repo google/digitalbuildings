@@ -13,26 +13,13 @@
 # limitations under the License.
 
 
-LT_SS:
-  description: "Standard light."
-  is_canonical: true
-  implements:
-  - LT
-  - SS
+SS:
+  description: "Basic combination of run command and status (start/stop); indicates the light is active or inactive."
+  is_abstract: true
+  opt_uses:
+  - failed_alarm
+  - lost_power_alarm
+  uses:
+  - run_command
+  - run_status
 
-LT_SS_DC:
-  description: "Standard light with dimming control."
-  is_canonical: true
-  implements:
-  - LT
-  - SS
-  - DC 
-
-LT_SS_DC_SC:
-  description: "Standard light with dimming control."
-  is_canonical: true
-  implements:
-  - LT
-  - SS
-  - DC 
-  - SC

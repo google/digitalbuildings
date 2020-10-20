@@ -20,8 +20,8 @@ EQUIPMENT:
   - manufacturer_label
   - model_label
 
-MTS:
-  description: "Multi-sensor device."
+SENSOR:
+  description: "Stand-alone sensing device. Used to model individual sensors when they don't belong explicitly to one piece of equipment."
   is_abstract: true
   implements:
   - EQUIPMENT
@@ -31,19 +31,6 @@ USER_INTERFACE:
   is_abstract: true
   implements:
   - EQUIPMENT
-
-OS:
-  id: "5263290281591046144"
-  description: "Occupancy status for a specific zone."
-  uses:
-  - zone_occupancy_status
-
-PM:
-  id: "14453888075845074944"
-  description: "Power monitoring."
-  is_abstract: true
-  uses:
-  - power_sensor
 
 NO_ANALYSIS:
   id: "10044943205486559232"

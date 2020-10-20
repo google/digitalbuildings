@@ -13,26 +13,42 @@
 # limitations under the License.
 
 
-LT_SS:
-  description: "Standard light."
+LDS_STD:
+  description: "Basic leak detection device."
   is_canonical: true
   implements:
-  - LT
-  - SS
+  - LDS
+  uses:
+  - water_leak_alarm
 
-LT_SS_DC:
-  description: "Standard light with dimming control."
+LDS_BCM:
+  description: "Leak sensing device with broken cable status. "
   is_canonical: true
   implements:
-  - LT
-  - SS
-  - DC 
+  - LDS
+  uses:
+  - water_leak_alarm
+  - broken_cable_alarm
 
-LT_SS_DC_SC:
-  description: "Standard light with dimming control."
+LDS_BC2X:
+  description: "Leak sensing device with broken cable status. "
   is_canonical: true
   implements:
-  - LT
-  - SS
-  - DC 
-  - SC
+  - LDS
+  uses:
+  - water_leak_alarm
+  - broken_cable_alarm_1
+  - broken_cable_alarm_2
+
+LDS_BC2X_PSM:
+  description: "Leak sensing device with broken cable status. "
+  is_canonical: true
+  implements:
+  - LDS
+  uses:
+  - water_leak_alarm
+  - broken_cable_alarm_1
+  - broken_cable_alarm_2
+  - lost_power_alarm
+
+

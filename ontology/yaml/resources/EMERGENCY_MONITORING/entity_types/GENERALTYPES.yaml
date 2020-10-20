@@ -12,44 +12,69 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-#### GENERAL TYPES (BROAD CATEGORIES OF COMMON EQUIPMENT) ####
-MTR:
-  id: "4119587082471473152"
-  description: "Tag for all the meters."
+# General Types
+
+LDS:
+  description: "Water leak detection systems."
   is_abstract: true
   implements:
   - EQUIPMENT
 
-EM:
-  id: "9271705056183320576"
-  description: "Tag for all the electrical meter types."
+SD:
+  description: "Smoke detector."
+  is_abstract: true
   implements:
-  - MTR
+  - SENSOR
+
+FACP:
+  description: "Fire alarm control panel."
+  is_abstract: true
+  implements:
+  - EQUIPMENT
+
+FHP:
+  description: "Fire suppression system hydrant pump."
+  is_abstract: true
+  implements:
+  - EQUIPMENT
+
+FD:
+  description: "Fire damper."
+  is_abstract: true
+  implements:
+  - EQUIPMENT
+
+HS:
+  description: "Fire system horn strobe."
+  is_abstract: true
+  implements:
+  - EQUIPMENT
+
+BGU:
+  description: "Emergency break-glass unit."
+  is_abstract: true
+  implements:
+  - EQUIPMENT
+
+FDR:
+  description: "Fire door."
+  is_abstract: true
+  implements:
+  - EQUIPMENT
+
+FAS:
+  description: "Fire alarm system"
   is_abstract: true
 
 GM:
-  id: "15356481569132904448"
-  description: "Tag for all gas meters."
-  implements:
-  - MTR
+  description: "Natural gas leak montorng system."
   is_abstract: true
+  implements:
+  - EQUIPMENT
 
-FM:
-  description: "Tag for all closed-loop system flow meters. Distinct from water meters which are open-loop systems."
-  is_abstract: true
-  implements:
-  - MTR  
 
-WM:
-  id: "18022612548536238080"
-  description: "Tag for all water meters (open-loop), such as the main building water consumption meter."
-  implements:
-  - MTR
-  is_abstract: true
 
-HM:
-  description: "Tag for all heat meters (cooling or heating), commonly referred to as BTU meters."
-  is_abstract: true
-  implements:
-  - MTR
+
+
+
 

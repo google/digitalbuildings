@@ -12,27 +12,17 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# General Types
 
-LT_SS:
-  description: "Standard light."
+
+FACP_STD:
+  description: "Basic fire alarm panel."
   is_canonical: true
   implements:
-  - LT
-  - SS
+  - FACP
+  uses:
+  - fire_alarm
 
-LT_SS_DC:
-  description: "Standard light with dimming control."
-  is_canonical: true
-  implements:
-  - LT
-  - SS
-  - DC 
 
-LT_SS_DC_SC:
-  description: "Standard light with dimming control."
-  is_canonical: true
-  implements:
-  - LT
-  - SS
-  - DC 
-  - SC
+
+
