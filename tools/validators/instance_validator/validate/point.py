@@ -12,14 +12,22 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-ENTITY-NAME:
-  type: FACILITIES/BUILDING
-  id: SYSTEM/ID1234
-  links:
-    A-FOURTH-ENTITY:
-      supply_air_damper_position_command_1: supply_air_damper_command
-      zone_air_temperature_1: zone_air_temperature_sensor
+"""Parses Telemetry Payload"""
 
-A-FOURTH-ENTITY:
-  type: FACILITIES/BUILDING
-  id: FACILITIES/123456
+from __future__ import print_function
+
+class Point(object):
+  """A point from a pubsub telemetry message.
+
+  Args:
+    message: a pubsub message
+
+  Returns:
+    An instance of the Telemetry class.
+  """
+
+  def __init__(self, point_name, value):
+    super().__init__()
+    self.point_name = point_name
+    self.present_value = value
+    

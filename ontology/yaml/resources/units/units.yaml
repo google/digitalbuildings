@@ -31,6 +31,9 @@ humidity:
 - percent_relative_humidity: STANDARD
 illuminance:
 - lux: STANDARD
+level:
+- meters: STANDARD
+- feet
 linearvelocity:
 - meters_per_second: STANDARD
 - feet_per_minute

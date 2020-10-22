@@ -330,15 +330,9 @@ literals:
 - exercise_mode:
   - ON
   - OFF
-- fabric_protection_alarm_status:
-  - ON
-  - OFF
-- filter_alarm_status:
-  - ON
-  - OFF
-- master_alarm_status:
-  - ON
-  - OFF
+
+# Alarms updated to convert the alarm subfield to a point type from measurement descriptor.
+
 - run_mode:
   - AUTO
   - COMMISSIONING
@@ -565,14 +559,20 @@ literals:
 
 # Added 2/10/2020
 - supply_water_isolation_valve_command
-- supply_water_isolation_valve_status
+- supply_water_isolation_valve_status:
+  - OPEN
+  - CLOSED
 - return_water_isolation_valve_command
-- return_water_isolation_valve_status
+- return_water_isolation_valve_status:
+  - OPEN
+  - CLOSED
 - chilled_return_water_isolation_valve_command
 - condensing_return_water_isolation_valve_percentage_command
 - condensing_return_water_isolation_valve_percentage_sensor
 - chilled_supply_water_isolation_valve_command
-- chilled_return_water_isolation_valve_status
+- chilled_return_water_isolation_valve_status:
+  - OPEN
+  - CLOSED
 
 # Added 2/11/2020
 - discharge_air_static_pressure_sensor
@@ -582,8 +582,12 @@ literals:
 - heat_exchange_return_water_isolation_valve_command
 - heat_exchange_supply_water_isolation_valve_percentage_command
 - heat_exchange_return_water_isolation_valve_percentage_command
-- heat_exchange_supply_water_isolation_valve_status
-- heat_exchange_return_water_isolation_valve_status
+- heat_exchange_supply_water_isolation_valve_status:
+  - OPEN
+  - CLOSED
+- heat_exchange_return_water_isolation_valve_status:
+  - OPEN
+  - CLOSED
 - heat_exchange_supply_water_isolation_valve_percentage_sensor
 - heat_exchange_return_water_isolation_valve_percentage_sensor
 
@@ -594,13 +598,108 @@ literals:
 # Added 2/24/2020
 - chilled_supply_water_isolation_valve_percentage_sensor
 - chilled_supply_water_isolation_valve_percentage_command
-- chilled_supply_water_isolation_valve_status
-- condensing_return_water_isolation_valve_status
+- chilled_supply_water_isolation_valve_status:
+  - OPEN
+  - CLOSED
+- condensing_return_water_isolation_valve_status:
+  - OPEN
+  - CLOSED
 - condensing_supply_water_isolation_valve_percentage_sensor
 - condensing_supply_water_isolation_valve_percentage_command
-- condensing_supply_water_isolation_valve_status
+- condensing_supply_water_isolation_valve_status:
+  - OPEN
+  - CLOSED
 - condensing_supply_water_isolation_valve_command
 
 
 # Added 4/12/20
 - supply_air_damper_percentage_sensor
+
+
+# Added 10/5/20 for TW-NTC-TPKD
+# Additional functionality for alarms and status points.
+# For alarms, they will end in `alarm` and be two-state. 
+# Status fields must be distinguished from alarms in that status is an objective qualitative state (flowing/not) whereas alarms are judgmental interpretations of such statuses to draww a conclusion about function (alarm/normal) 
+
+- average_supply_air_temperature_sensor
+- control_mode:
+  - AUTO
+  - MANUAL
+  - OFF
+- cooling_thermal_energy_accumulator
+- particle_concentration_sensor
+- high_limit_supply_air_cooling_flowrate_setpoint
+- high_limit_supply_air_heating_flowrate_setpoint
+- low_limit_supply_air_ventilation_flowrate_setpoint
+- low_limit_supply_air_flowrate_setpoint 
+- high_limit_supply_air_flowrate_setpoint # used when the device doesn't necessarily provide a cooling max flow
+- schedule_run_command
+- supply_air_dewpoint_temperature_sensor
+- ultraviolet_lamp_run_command:
+  - ON
+  - OFF
+- ultraviolet_lamp_run_status:
+  - ON
+  - OFF
+
+# New usage of status as an override for the measurement.
+- chilled_water_flowrate_status:
+  - PRESENT
+  - ABSENT
+- condensing_water_flowrate_status:
+  - PRESENT
+  - ABSENT
+- discharge_air_static_pressure_status:
+  - PRESENT
+  - ABSENT
+- filter_differential_pressure_status:
+  - PRESENT
+  - ABSENT
+- high_level_status:
+  - PRESENT
+  - ABSENT
+- low_level_status:
+  - PRESENT
+  - ABSENT
+- power_status:
+  - PRESENT
+  - ABSENT
+
+# New alarms using alarm as a point type, and existing alarms moved here
+# TODO (tsodorff): change these to ALARM/NORMAL after determining how this can be done safely to existing translations. 
+- fabric_protection_alarm:
+  - ACTIVE
+  - INACTIVE
+- failed_alarm:
+  - ACTIVE
+  - INACTIVE
+- filter_alarm:
+  - ACTIVE
+  - INACTIVE
+- master_alarm:
+  - ACTIVE
+  - INACTIVE
+- supply_fan_failed_alarm:
+  - ACTIVE
+  - INACTIVE
+- smoke_alarm:
+  - ACTIVE
+  - INACTIVE
+- water_leak_alarm:
+  - ACTIVE
+  - INACTIVE
+- low_differential_pressure_alarm:
+  - ACTIVE
+  - INACTIVE
+- lost_power_alarm:
+  - ACTIVE
+  - INACTIVE
+
+
+
+
+
+
+
+
+

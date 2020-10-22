@@ -43,6 +43,23 @@ class EntityInstance(findings_lib.Findings):
     self.values = 'values'
     self.key = 'key'
     self.connections = 'connections'
+    # set the namespace and the entity
+    entity_type_str = str(self.entity['type'])
+    type_parse = entity_type_str.split('/')
+
+    if len(type_parse) == 1:
+      print('Type improperly formatted, a namespace is missing: '
+            , entity_type_str)
+      raise TypeError('Type improperly formatted, a namespace is missing: '
+                      , entity_type_str)
+
+    if len(type_parse) > 2:
+      print('Type improperly formatted: ', entity_type_str)
+      # todo: raise exception
+      raise TypeError('Type improperly formatted: ', entity_type_str)
+
+    self.namespace = type_parse[0]
+    self.type_name = type_parse[1]
 
   def _ValidateConnections(self):
     """Uses information from the generated ontology universe to validate
@@ -76,35 +93,27 @@ class EntityInstance(findings_lib.Findings):
     Returns:
       Returns boolean for validity of entity type.
     """
-    entity_type_str = str(self.entity['type'])
-    type_parse = entity_type_str.split('/')
-
-    if len(type_parse) == 1:
-      print('Type improperly formatted, a namespace is missing: '
-            , entity_type_str)
+    if self.universe.GetEntityTypeNamespace(self.namespace) is None:
+      print('Invalid namespace:', self.namespace)
       return False
 
-    if len(type_parse) > 2:
-      print('Type improperly formatted: ', entity_type_str)
+    entity_type_universe = self.universe.GetEntityType(self.namespace,
+                                                       self.type_name)
+    if entity_type_universe is None:
+      print('Invalid entity type:', self.type_name)
+      return False
+    elif entity_type_universe.is_abstract:
+      print('Abstract types cannot be directly used:', self.type_name)
       return False
 
-    namespace = type_parse[0]
-    entity_type = type_parse[1]
-
-    if self.universe.GetEntityTypeNamespace(namespace) is None:
-      print('Invalid namespace:', namespace)
-      return False
-
-    if self.universe.GetEntityType(namespace, entity_type) is None:
-      print('Invalid entity type:', entity_type)
-      return False
 
     return True
 
-  def _ValidateLinks(self):
+  def _ValidateLinks(self, entity_instances):
     """Uses information from the generated ontology universe to validate
     the links key of an entity.
-
+    Args:
+      entity_instances: dictionary containing all instances
     Returns:
       Returns boolean for validity of links key, defaulting to True if the
       key is not present.
@@ -113,19 +122,66 @@ class EntityInstance(findings_lib.Findings):
       return True
 
     links = dict(self.entity[self.links])
+    target_entity_type = self.universe.GetEntityType(self.namespace,
+                                                     self.type_name)
+    all_fields_dict = target_entity_type.GetAllFields().copy()
+
     for entity_name in links.keys():
       # ensure first level keys refer to other entities in config file
       if entity_name not in self.config_entity_names:
         print('Invalid links entity name', entity_name)
         return False
-
+      # todo:refactor into classes
       # scan all standard fields and ensure they're defined
       fields_map = dict(links[entity_name])
-      field_universe = self.universe.field_universe
-      for sourcename in fields_map.keys():
-        if not field_universe.IsFieldDefined(fields_map[sourcename], ''):
-          print('Invalid links field source', sourcename)
+      src_entity_instance = entity_instances.get(entity_name)
+      src_entity_type = self.universe.\
+	      GetEntityType(src_entity_instance.namespace,
+                     src_entity_instance.type_name)
+
+      for source_field, target_field in fields_map.items():
+        # check the fields are present
+        # assumes that the namespace is `` for now
+        if not src_entity_type.HasField('/'+source_field.data):
+          print('Invalid link field source: ', source_field)
           return False
+        if not target_entity_type.HasField('/'+target_field.data):
+          print('Invalid link field target: ', target_field)
+          return False
+        # the found field is removed from the dictionary,
+        # once all the links are visited,
+        # check if there are fields that are not linked
+        # the dict fields keys are: namespace/fields, the namespace is empty.
+        all_fields_dict.pop('/' + target_field.data, None)
+        # check the units are matching
+        valid_units_src = src_entity_instance.universe\
+          .GetUnitsMapByMeasurement(source_field.data)
+        valid_units_target = self.universe\
+          .GetUnitsMapByMeasurement(target_field.data)
+        if valid_units_src != valid_units_target:
+          print('Links dont have the same units: ',
+                valid_units_src, valid_units_target)
+          print('Links error for the following fields (source, target): '
+                , source_field, target_field)
+          return False
+	      # todo: discuss checks on the measurement descriptors
+        # check the states are matching
+        valid_states_src = src_entity_instance.universe\
+          .GetStatesByField(source_field.data)
+        valid_states_target = self.universe\
+          .GetStatesByField(target_field.data)
+        if valid_states_src != valid_states_target:
+          print('Links dont have the same states: '
+                , valid_states_src, valid_states_target)
+          print('Links error for the following fields (source, target): '
+                , source_field, target_field)
+          return False
+    # check if the rest of the links not included are optional
+    for field_name in all_fields_dict.values():
+      if not field_name.optional:
+        print('Links does not use the mandatory field: ',
+              field_name.field.field)
+        return False
 
     return True
 
@@ -219,10 +275,11 @@ class EntityInstance(findings_lib.Findings):
 
     return True
 
-  def IsValidEntityInstance(self):
+  def IsValidEntityInstance(self, entity_instances=None):
     """Uses information from the generated ontology universe to validate an
     entity.
-
+    Args:
+      entity_instances: dictionary containing all instances.
     Returns:
       Returns boolean for validity of entity.
     """
@@ -235,7 +292,7 @@ class EntityInstance(findings_lib.Findings):
       print('Invalid type')
       return False
 
-    if not self._ValidateLinks():
+    if not self._ValidateLinks(entity_instances):
       print('Invalid links')
       return False
 
