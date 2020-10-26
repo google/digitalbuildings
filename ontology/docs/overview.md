@@ -18,28 +18,29 @@ The overall steps for the ontology extension are depicted in the figure below.
 ![](./figures/overallprocess.png)
 
 
-To extend the Ontology with new entity types, fields, or other. 
+To extend the Ontology with new entity types, fields, or other.
 You are required to propose such extensions in yaml files and submit a pull request.
 
+
 * Upon each pull request, the Ontology Types Validator [link](https://github.com/google/digitalbuildings/tree/master/tools/validators/ontology_validator) is triggered by a github action.
-  For example,the following pull request shows that some types are not valid.
-) as shown in the figure below (please expand to see the detailed error message: : [https://github.com/google/digitalbuildings/pull/62/checks?check_run_id=920485160
+  For example, the following pull request shows that some types are not valid.
+) as shown in the figure below (please expand to see the detailed error message: [https://github.com/google/digitalbuildings/pull/62/checks?check_run_id=920485160
 ](https://github.com/google/digitalbuildings/pull/62/checks?check_run_id=920485160)
 
 ![](./figures/type-validator-errors.png)
 
-* Iterate through until the validation is successful.
+* Iterate on your pull request until the validation is successful.
 
 * Ask for a review from the Digital Buildings Ontology team.
 
 ## Building Configuration
 
-The Building configuration is a yaml file containing various information about the building, as detailed [[link]](https://github.com/google/digitalbuildings/blob/master/ontology/docs/building_config.md)
+The Building configuration is a yaml file containing various information and requirements about the building, as detailed [[link]](https://github.com/google/digitalbuildings/blob/master/ontology/docs/building_config.md)
 
 You may generate the building configuration file in yaml using the method of your choice.
 
 ### Validating Building Config
-The ontology instance validator allows to make sure that the building configuration file is consistent with the ontology types.
+The ontology instance validator ensures that the building configuration file is consistent with the ontology types.
 
 #### Case: No changes to the ontology types
 In the case of no change has been done to the ontology types or if the changes are merged in the digitalbuildings master branch, you can apply the following to test your generated building config:
@@ -53,12 +54,9 @@ python3 instance_validator.py --input path/to/YOUR_BUILDING_CONFIG.yaml
 #### Case: Changes to the ontology types
 In the case of changes to the ontology types and they are not merged in the master branch. 
 
-You need to point the Instance Validator to the newly added types by applying the following command:
-``` 
-python3 instance_validator.py --input path/to/YOUR_BUILDING_CONFIG.yaml --modified-ontology-types path/to/modified/ontology/types/folder
-```
-Note: as of the current development stage, you must clone the entire repository and run this instance validator script from this directory.
+* You need to point the Instance Validator to the newly added types.
  
 * Iterate until the instance validator passes.
 
-* Once the building configuration file is valid, please follow the instructions in the SOW.
+#### Next Step
+Once the building configuration file is valid, please follow the instructions in your SOW.
