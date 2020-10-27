@@ -64,13 +64,13 @@ if __name__ == '__main__':
   parser.add_argument('-s', '--subscription',
                       dest='subscription',
                       required=False,
-                      help='pubsub subscription',
+                      help='Pubsub subscription for telemetry to validate',
                       metavar='subscription')
 
   parser.add_argument('-a', '--service-account',
                       dest='service_account',
                       required=False,
-                      help='service account',
+                      help='Service account used to pull messages from the subscription',
                       metavar='service-account')
 
   arg = parser.parse_args()
@@ -82,8 +82,6 @@ if __name__ == '__main__':
   pubsub_validation_set = False
   if arg.subscription is not None and arg.service_account is not None:
     pubsub_validation_set = True
-  elif arg.subscription is None and arg.service_account is None:
-    pubsub_validation_set = False
   else:
     print('Subscription and a service account file are both '
           'needed for the telemetry validation!')
@@ -105,16 +103,15 @@ if __name__ == '__main__':
 
   print('Universe generated successfully')
 
-  parsed = dict(raw_parse)
+  parsed_entities = dict(raw_parse)
   entity_instances = {}
-  entity_names = list(parsed.keys())
+  entity_names = set(parsed_entities.keys())
   # first build all the entity instances
-  for entity_name in entity_names:
-    entity = dict(parsed[entity_name])
+  for name, entity in parsed_entities.items():
     instance = entity_instance.EntityInstance(entity,
                                               universe,
-                                              set(entity_names))
-    entity_instances[entity_name] = instance
+                                              entity_names)
+    entity_instances[name] = instance
 
   for entity_name, entity_instance in entity_instances.items():
     if not entity_instance.IsValidEntityInstance(entity_instances):
@@ -125,4 +122,5 @@ if __name__ == '__main__':
   if pubsub_validation_set:
     print('Connecting to pubsub subscription: ', arg.subscription)
     sub = subscriber.Subscriber(arg.subscription, arg.service_account)
-    sub.Listen(message_handler)
+    validator = telemetry_validator.TelemetryValidator(parsed_entities)
+    sub.Listen(validator.message_handler)
