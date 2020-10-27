@@ -73,6 +73,7 @@ descriptor:
   electric: "Process or component driven by electricity (as to distinguish from natural gas, for instance)."
   email: "A unique identifier address in the Internet."
   emergency : "a situation that poses an immediate risk to health, life property,  or environment."
+  entering: " The process of going into a thing (e.g. entering a heat exchanger)."
   evaporative: "Process associated with the evaporation of water."
   event: "A thing of occassion that happens."
   exchange: "the transfer of heat from one fluid stream to another."
