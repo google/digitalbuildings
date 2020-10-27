@@ -723,5 +723,4 @@ literals:
   - ACTIVE
   - INACTIVE
 - discharge_air_linearvelocity_sensor
-- condensing_water_valve_percentage_sensor
 - condensing_water_bypass_valve_percentage_sensor
