@@ -12,19 +12,22 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Setup file for Instance Validator"""
+"""Parses Telemetry Payload"""
 
-from setuptools import setup, find_packages
+from __future__ import print_function
 
-setup(
-    name='instance-validator',
-    version='0.0.1',
-    url='https://github.com/google/digitalbuildings',
-    license='Apache License',
-    author='Raymond Li',
-    author_email='',
-    description='',
-    packages=find_packages(),
-    install_requires=['strictyaml', 'google-cloud-pubsub', 'google-auth'],
-    python_requires='>=3.6',
-)
+class Point(object):
+  """A point from a pubsub telemetry message.
+
+  Args:
+    message: a pubsub message
+
+  Returns:
+    An instance of the Telemetry class.
+  """
+
+  def __init__(self, point_name, value):
+    super().__init__()
+    self.point_name = point_name
+    self.present_value = value
+    
