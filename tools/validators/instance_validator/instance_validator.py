@@ -27,11 +27,26 @@ from __future__ import print_function
 from validate import generate_universe
 from validate import entity_instance
 from validate import instance_parser
+from validate import subscriber
+from validate import telemetry
 import argparse
 import sys
 
-# TODO add input and return type checks in all functions
+# TODO(nkilmer): update as you see good
+def message_handler(message):
+  """Handles a pubsub message.
+    Args:
+      message: a pubsub message containing telemetry payload.
+  """
+  t = telemetry.Telemetry(message)
+  for key, value in t.points.items():
+    print()
+    print('-point: ', key)
+    print('-- point_name: ', value.point_name)
+    print('-- present_value: ', value.present_value)
+  message.ack()
 
+# TODO add input and return type checks in all functions
 if __name__ == '__main__':
   parser = argparse.ArgumentParser(
       description='Validate a YAML building configuration file')
@@ -45,11 +60,34 @@ if __name__ == '__main__':
                       required=False,
                       help='Filepath to modified type filepaths',
                       metavar='MODIFIED_TYPE_FILEPATHS')
+
+  parser.add_argument('-s', '--subscription',
+                      dest='subscription',
+                      required=False,
+                      help='pubsub subscription',
+                      metavar='subscription')
+
+  parser.add_argument('-a', '--service-account',
+                      dest='service_account',
+                      required=False,
+                      help='service account',
+                      metavar='service-account')
+
   arg = parser.parse_args()
 
   # SYNTAX VALIDATION
   print('\nValidator starting ...\n')
   filename = arg.filename
+
+  pubsub_validation_set = False
+  if arg.subscription is not None and arg.service_account is not None:
+    pubsub_validation_set = True
+  elif arg.subscription is None and arg.service_account is None:
+    pubsub_validation_set = False
+  else:
+    print('Subscription and a service account file are both '
+          'needed for the telemetry validation!')
+    sys.exit(0)
 
   # prints for syntax errors and exits gracefully
   raw_parse = instance_parser.parse_yaml(filename)
@@ -84,3 +122,7 @@ if __name__ == '__main__':
       sys.exit(0)
 
   print('File passes all checks!')
+  if pubsub_validation_set:
+    print('Connecting to pubsub subscription: ', arg.subscription)
+    sub = subscriber.Subscriber(arg.subscription, arg.service_account)
+    sub.Listen(message_handler)
