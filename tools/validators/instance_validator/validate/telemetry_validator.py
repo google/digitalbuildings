@@ -12,32 +12,77 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+TRANSLATION = "translation"
+STATES = "states"
+UNITS = "unit_values"
+
 class TelemetryValidator(object):
   """TODO"""
 
-  def __init__(self, entities, ontology):
+  def __init__(self, entities):
     super().__init__()
     self.entities = entities
-    # track unvalidated entities by name, once no entities are left to be validated (or some timeout period passes), we can call the telemetry 'validated'
     self.validated_entities = {}
+    self.validation_errors = {}
 
-  def message_handler(self, message):
+  def AddError(self, error):
+    self.validation_errors.append(error)
+
+  def AllEntitiesValidated(self):
+    return self.entities.len() == self.validated_entities.len()
+
+  def StartTimer(self):
+    ###
+
+  def MessageValidator(self, message):
     t = telemetry.Telemetry(message)
-    if t.entity_name in self.validated_entities:
+    entity = t.entity_name
+    if entity in self.validated_entities:
       # Already validated telemetry for this entity, so the message can be skipped.
+      return
+    self.validated_entities[entity] = True
+
+    if t.entity_name not in self.entities:
+      self.AddError(TelemetryError(entity, None, "Unknown entity"))
+      message.ack()
       return
 
     entity = entities[t.entity_name]
-    # TODO: check existence of translation key
-    for k, v in entity["translation"]: # TODO: clean
+    for point_name, point_config in entity[TRANSLATION]:
+      if point_name not in t.points.keys():
+        self.AddError(TelemetryError(entity, point_name, "Missing point"))
+        continue
 
+      point = t.points[point_name]
+      pv = point.present_value
 
-    for k, v in t.points.items():
-      print()
+      has_states = STATES in point_config
+      has_units = UNITS in point_config
+
+      if has_states:
+        states = point_config[STATES]
+        if pv not in states.keys():
+          self.AddError(TelemetryError(entity, point_name, "Invalid state: " + pv))
+          continue
+
+      if value_is_numeric(pv):
+        if value_is_integer(pv):
+          if not (has_states or has_units):
+            self.AddError(TelemetryError(entity, point_name, "Integer value without states or units: " + pv))
+        elif not has_units:
+            self.AddError(TelemetryError(entity, point_name, "Numeric value without units: " + pv))
+
     message.ack()
 
-# to validate:
-# - translation exists
-# - all points in entity config are sent in telemetry
-# - numeric points have a unit defined
-# - multistate points have a state map
+  def value_is_numeric(value):
+    try:
+      float(value)
+    except ValueError:
+      return False
+    return True
+
+  def value_is_integer(value):
+    try:
+      return int(value) == float(value)
+    except ValueError:
+      return False

@@ -32,6 +32,9 @@ from validate import telemetry
 import argparse
 import sys
 
+# Default duration for telemetry validation test
+DEFAULT_DURATION = 300
+
 # TODO(nkilmer): update as you see good
 def message_handler(message):
   """Handles a pubsub message.
@@ -50,11 +53,13 @@ def message_handler(message):
 if __name__ == '__main__':
   parser = argparse.ArgumentParser(
       description='Validate a YAML building configuration file')
+
   parser.add_argument('-i', '--input',
                       dest='filename',
                       required=True,
                       help='Filepath to YAML building configuration',
                       metavar='FILE')
+
   parser.add_argument('-m', '--modified-ontology-types',
                       dest='modified_types_filepath',
                       required=False,
@@ -72,6 +77,12 @@ if __name__ == '__main__':
                       required=False,
                       help='Service account used to pull messages from the subscription',
                       metavar='service-account')
+
+  parser.add_argument('-d', '--duration',
+                      dest='duration',
+                      required=False,
+                      help='Duration (in seconds) for telemetry validation test',
+                      metavar='duration')
 
   arg = parser.parse_args()
 
@@ -123,4 +134,8 @@ if __name__ == '__main__':
     print('Connecting to pubsub subscription: ', arg.subscription)
     sub = subscriber.Subscriber(arg.subscription, arg.service_account)
     validator = telemetry_validator.TelemetryValidator(parsed_entities)
-    sub.Listen(validator.message_handler)
+    duration = DEFAULT_DURATION
+    if arg.duration is not None:
+      duration = arg.duration
+    telemetry_validator.StartTimer(duration)
+    sub.Listen(validator.MessageHandler)

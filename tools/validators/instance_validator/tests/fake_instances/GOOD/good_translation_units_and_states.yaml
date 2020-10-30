@@ -21,8 +21,8 @@ CHWS_WDT-17:
       unit_values:
         degrees_celsius: "degC"
         degrees_fahrenheit: "degF"
-    supply_water_temperature_sensor:
-      present_value: "points.supply_water_temperature_sensor.present_value"
-      unit_values:
-        degrees_celsius: "degC"
-        degrees_fahrenheit: "degF"
+    exhaust_air_damper_command:
+      present_value: "points.exhaust_air_damper_command.present_value"
+      states:
+        OPEN: "1"
+        CLOSED: "0"
