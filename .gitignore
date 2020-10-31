@@ -1,0 +1,7 @@
+**/node_modules/*
+**/temp/*
+**/dist/main.js
+
+*.DS_Store
+package-lock.json
+yarn.lock

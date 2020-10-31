@@ -1,0 +1,137 @@
+body {
+  margin: 0;
+  font-family: roboto;
+}
+
+canvas {
+  display: block;
+}
+
+.sidebar {
+  background-color: #d2d2d2;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  left: 0;
+  overflow-x: hidden;
+  padding: 0 8px;
+  position: fixed;
+  top: 72px;
+  width: 350px;
+}
+
+ul, #layerList {
+  list-style-type: none;
+}
+
+.arrow {
+  cursor: pointer;
+  -webkit-user-select: none; /* Safari 3.1+ */
+  -moz-user-select: none; /* Firefox 2+ */
+  -ms-user-select: none; /* IE 10+ */
+  user-select: none;
+}
+
+.arrow::before {
+  content: "\1F892";
+  size: "20px";
+  color: black;
+  display: inline-block;
+  margin-right: 4px;
+  margin-left: 2px;
+}
+
+.expanded-arrow::before {
+  content: "\1F893";
+}
+
+.nested {
+  display: none;
+}
+
+.active {
+  display: block;
+}
+
+#layerListContainer {
+  display: block;
+  height: 60%;
+  overflow: auto;
+  padding: 4px;
+}
+
+#layerList {
+  margin: 0;
+  padding: 0;
+}
+
+
+.saveToIbr {
+  bottom: 12px;
+  height: 100px;
+  input#filename {
+    width: 100%;
+  }
+
+  #dwn-btn {
+    width: 100%;
+  }
+}
+
+.mode-toggle {
+  display: flex;
+  flex-direction: row;
+  font-size: 16px;
+  justify-content: space-around;
+  padding: 8px;
+}
+
+#title {
+  padding: 12px;
+  font-size: 36px;
+}
+
+#upload-button-container {
+  padding: 24px;
+}
+
+#upload-button {
+  background-color: #174ea6;
+  color: white;
+  padding: 8px;
+}
+
+#upload-button-container:hover {
+  cursor: pointer;
+}
+
+#fileForUpload {
+  height: 100%;
+  width: 100%;
+  display: none;
+}
+
+#header {
+  background-color: #4285f4;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  height: 72px;
+  justify-content: space-between;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+#canvasContainer {
+  bottom: 0;
+  display: block;
+  position: fixed;
+  top: 72px;
+}
+
+.disable {
+  height: 100%;
+  width: 100%;
+  pointer-events: none;
+}
