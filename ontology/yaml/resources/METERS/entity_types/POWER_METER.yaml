@@ -12,32 +12,69 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-EM_ION:
+EM_PWM:
+  description: "Power meter with basic power monitoring."
+  is_canonical: true
+  implements:
+  - EM
+  - PWM
+
+EM_PWM_PVCM:
+  description: "Power meter with phase level voltage and current monitoring."
+  is_canonical: true
+  implements:
+  - EM
+  - PWM
+  - PVCM
+
+EM_PWM_AVCM_PVCM:
+  description: "Power meter with phase level voltage and current monitoring (and averaging)."
+  is_canonical: true
+  implements:
+  - EM
+  - PWM
+  - AVCM
+  - PVCM
+
+EM_ION: # TODO: should rename to standard convention. 
   id: "7398207611197194240"
   description: "The typical ION meter (Bay Area standard)."
+  is_canonical: true
   implements:
-  - MTR
+  - EM
+  - PWM
+  - AVCM
+  - PLPM
+  - PVCM
+
+
+#############################
+### Non-Canonical Devices ###
+#############################
+
+EM_ONEOFF_1:
+  description: "Power meter with basic power monitoring and incomplete sets of averaging sensors."
+  implements:
+  - EM_PWM
   uses:
-  - apparent_power_sensor
-  - reactive_power_sensor
-  - phase1_line_current_sensor
-  - phase1_phase3_line_voltage_sensor
-  - power_sensor
-  - phase1_phase2_line_voltage_sensor
-  - phase3_neutral_line_voltage_sensor
-  - phase2_powerfactor_sensor
-  - energy_accumulator
-  - phase1_powerfactor_sensor
-  - phase3_powerfactor_sensor
-  - phase3_power_sensor
-  - phase2_neutral_line_voltage_sensor
+  - average_line_current_sensor
   - average_line_voltage_sensor
-  - phase2_phase3_line_voltage_sensor
-  - average_line_neutral_voltage_sensor
-  - powerfactor_sensor
+
+EM_ONEOFF_2:
+  description: "Power meter with basic power monitoring and incomplete sets of averaging sensors."
+  implements:
+  - EM_PWM_PVCM
+  uses:
+  - average_line_current_sensor
+  - average_line_voltage_sensor
+
+EM_ONEOFF_3:
+  description: "Power meter with basic power monitoring and incomplete sets of averaging sensors."
+  implements:
+  - EM_PWM
+  uses:
+  - average_line_current_sensor
+  - average_line_voltage_sensor
+  - phase1_line_current_sensor
   - phase2_line_current_sensor
   - phase3_line_current_sensor
-  - average_line_current_sensor
-  - phase2_power_sensor
-  - phase1_power_sensor
-  - phase1_neutral_line_voltage_sensor
