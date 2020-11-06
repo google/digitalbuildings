@@ -13,3 +13,6 @@ validate/__init__.py
 validate/entity_instance.py
 validate/generate_universe.py
 validate/instance_parser.py
+validate/point.py
+validate/subscriber.py
+validate/telemetry.py

@@ -1,1 +1,3 @@
+google-auth
+google-cloud-pubsub
 strictyaml
