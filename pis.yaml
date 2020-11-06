@@ -37,8 +37,6 @@ ch-zrh-eurd-08-1103:
 #        ON: "1"
 #        OFF: "0"
 
-# Test
-
 # Fan Coil Unit =310M1
 ch-zrh-eurd-fcu-001-08-1103:
   type: HVAC/FCU_DFSS_CSP_CHWZC
@@ -49,19 +47,19 @@ ch-zrh-eurd-fcu-001-08-1103:
     discharge_fan_run_command:
       present_value: "points.discharge_fan_run_command.present_value"
       states:
-        ENABLE: "1"
-        DISABLE: "0"
+        ON: "1"
+        OFF:  "0"
     discharge_fan_run_status:
       present_value: "points.discharge_fan_run_status.present_value"
       states:
-        RUNNING: "1"
-        NOT_RUNNING: "0"
+        ON: "ON"
+        OFF: "OFF"
     zone_air_temperature_sensor:
       present_value: "points.zone_air_temperature_sensor.present_value"
       units:
         key: "pointset.points.zone_air_temperature_sensor.units"
-      values:
-        degrees_celsius: "degC"
+        values:
+          degrees_celsius: "degC"
     zone_air_cooling_temperature_setpoint:
       present_value: "points.zone_air_cooling_temperature_setpoint.present_value"
       units:
@@ -75,20 +73,21 @@ ch-zrh-eurd-fcu-001-08-1103:
         values:
           percent: "%"
 
-# Fan Coil Unit =311M1
-ch-zrh-eurd-fcu-002-08-1103:
-  type: HVAC/FCU_DFSS_CSP_CHWZC
-  id: 6ff08afc-0c90-4b66-8c82-6573974e080
-  connections:
-    ch-zrh-eurd-08-1103: FEEDS
-  translation:
-    translate_like: ch-zrh-eurd-fcu-001-08-1103
+ #Fan Coil Unit =311M1
+#ch-zrh-eurd-fcu-002-08-1103:
+#  type: HVAC/FCU_DFSS_CSP_CHWZC
+#  id: 6ff08afc-0c90-4b66-8c82-6573974e080
+#  connections:
+#    ch-zrh-eurd-08-1103: FEEDS
+#  translation:
+#    translate_like: ch-zrh-eurd-fcu-001-08-1103
 
-# Fan Coil Unit =312M1
-ch-zrh-eurd-fcu-003-08-1103:
-  type: HVAC/FCU_DFSS_CSP_CHWZC
-  id: 853f2cf5-1fd5-405b-bfa7-db328a77e4a8
-  connections:
-    ch-zrh-eurd-08-1103: FEEDS
-  translation:
-    translate_like: ch-zrh-eurd-fcu-001-08-1103
+## Fan Coil Unit =312M1
+#ch-zrh-eurd-fcu-003-08-1103:
+#  type: HVAC/FCU_DFSS_CSP_CHWZC
+#  id: 853f2cf5-1fd5-405b-bfa7-db328a77e4a8
+#  connections:
+#    ch-zrh-eurd-08-1103: FEEDS
+#  translation:
+#    translate_like: ch-zrh-eurd-fcu-001-08-1103
+#
