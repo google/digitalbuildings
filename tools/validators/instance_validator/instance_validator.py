@@ -29,25 +29,12 @@ from validate import entity_instance
 from validate import instance_parser
 from validate import subscriber
 from validate import telemetry
+from validate import telemetry_validator
 import argparse
 import sys
 
-# Default duration for telemetry validation test
-DEFAULT_DURATION = 300
-
-# TODO(nkilmer): update as you see good
-def message_handler(message):
-  """Handles a pubsub message.
-    Args:
-      message: a pubsub message containing telemetry payload.
-  """
-  t = telemetry.Telemetry(message)
-  for key, value in t.points.items():
-    print()
-    print('-point: ', key)
-    print('-- point_name: ', value.point_name)
-    print('-- present_value: ', value.present_value)
-  message.ack()
+# Default timeout duration for telemetry validation test
+DEFAULT_TIMEOUT = 600
 
 # TODO add input and return type checks in all functions
 if __name__ == '__main__':
@@ -78,11 +65,11 @@ if __name__ == '__main__':
                       help='Service account used to pull messages from the subscription',
                       metavar='service-account')
 
-  parser.add_argument('-d', '--duration',
-                      dest='duration',
+  parser.add_argument('-t', '--timeout',
+                      dest='timeout',
                       required=False,
-                      help='Duration (in seconds) for telemetry validation test',
-                      metavar='duration')
+                      help='Timeout duration (in seconds) for telemetry validation test',
+                      metavar='timeout')
 
   arg = parser.parse_args()
 
@@ -130,12 +117,18 @@ if __name__ == '__main__':
       sys.exit(0)
 
   print('File passes all checks!')
+
   if pubsub_validation_set:
     print('Connecting to pubsub subscription: ', arg.subscription)
     sub = subscriber.Subscriber(arg.subscription, arg.service_account)
-    validator = telemetry_validator.TelemetryValidator(parsed_entities)
-    duration = DEFAULT_DURATION
-    if arg.duration is not None:
-      duration = arg.duration
-    telemetry_validator.StartTimer(duration)
-    sub.Listen(validator.MessageHandler)
+    timeout = arg.timeout if arg.timeout is not None else DEFAULT_TIMEOUT
+    validator =
+      telemetry_validator.TelemetryValidator(parsed_entities, timeout,
+                                             telemetry_validation_callback)
+    validator.StartTimer(timeout)
+    sub.Listen(lambda message: validator.ValidateMessage(message))
+
+def telemetry_validation_callback(validator):
+  errors = validator.GetErrors()
+  # TODO: print the errors
+  sys.exit(0)

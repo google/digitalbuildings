@@ -12,6 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import threading
+
 TRANSLATION = "translation"
 STATES = "states"
 UNITS = "unit_values"
@@ -19,33 +21,40 @@ UNITS = "unit_values"
 class TelemetryValidator(object):
   """TODO"""
 
-  def __init__(self, entities):
+  def __init__(self, entities, timeout, callback):
     super().__init__()
     self.entities = entities
+    self.timeout = timeout
+    self.callback = callback
     self.validated_entities = {}
     self.validation_errors = {}
 
-  def AddError(self, error):
-    self.validation_errors.append(error)
+  def StartTimer(self, timeout):
+    threading.Timer(timeout, lambda: self.callback(self)).start()
 
   def AllEntitiesValidated(self):
     return self.entities.len() == self.validated_entities.len()
 
-  def StartTimer(self):
-    ###
+  def CheckAllEntitiesValidated(self):
+    if self.AllEntitiesValidated():
+      self.callback(self)
 
-  def MessageValidator(self, message):
+  def AddError(self, error):
+    self.validation_errors.append(error)
+
+  def ValidateMessage(self, message):
     t = telemetry.Telemetry(message)
     entity = t.entity_name
+
+    if entity not in self.entities:
+      self.AddError(TelemetryError(entity, None, "Unknown entity"))
+      message.ack()
+      return
+
     if entity in self.validated_entities:
       # Already validated telemetry for this entity, so the message can be skipped.
       return
     self.validated_entities[entity] = True
-
-    if t.entity_name not in self.entities:
-      self.AddError(TelemetryError(entity, None, "Unknown entity"))
-      message.ack()
-      return
 
     entity = entities[t.entity_name]
     for point_name, point_config in entity[TRANSLATION]:
@@ -73,6 +82,7 @@ class TelemetryValidator(object):
             self.AddError(TelemetryError(entity, point_name, "Numeric value without units: " + pv))
 
     message.ack()
+    self.CheckAllEntitiesValidated()
 
   def value_is_numeric(value):
     try:
