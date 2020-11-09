@@ -36,9 +36,8 @@ EM_PWM_AVCM_PVCM:
   - AVCM
   - PVCM
 
-EM_ION: # TODO: should rename to standard convention. 
-  id: "7398207611197194240"
-  description: "The typical ION meter (Bay Area standard)."
+EM_PWM_AVCM_PLPM_PVCM: # TODO: should rename to standard convention. 
+  description: "Meter with phase level monitoring and averaging for voltage, current, and power."
   is_canonical: true
   implements:
   - EM
@@ -52,29 +51,8 @@ EM_ION: # TODO: should rename to standard convention.
 ### Non-Canonical Devices ###
 #############################
 
-EM_ONEOFF_1:
-  description: "Power meter with basic power monitoring and incomplete sets of averaging sensors."
+EM_ION: 
+  id: "7398207611197194240"
+  description: "The typical ION meter (Bay Area standard)."
   implements:
-  - EM_PWM
-  uses:
-  - average_line_current_sensor
-  - average_line_voltage_sensor
-
-EM_ONEOFF_2:
-  description: "Power meter with basic power monitoring and incomplete sets of averaging sensors."
-  implements:
-  - EM_PWM_PVCM
-  uses:
-  - average_line_current_sensor
-  - average_line_voltage_sensor
-
-EM_ONEOFF_3:
-  description: "Power meter with basic power monitoring and incomplete sets of averaging sensors."
-  implements:
-  - EM_PWM
-  uses:
-  - average_line_current_sensor
-  - average_line_voltage_sensor
-  - phase1_line_current_sensor
-  - phase2_line_current_sensor
-  - phase3_line_current_sensor
+  - EM_PWM_AVCM_PLPM_PVCM
