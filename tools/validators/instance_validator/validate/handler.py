@@ -66,14 +66,14 @@ class ValidatorHandler(object):
 
   def __init__(self):
     super().__init__()
-    self._prepare_args()
+    self._PrepareArgs()
 
   def Validate(self):
     universe = self.GenerateUniverse(self.modified_types_filepath)
     entity_instances = deserialize(self.filename, universe)
     self.ValidateEntities(entity_instances)
     self.TelemetryValidation(self.subscription, self.service_account,
-                               message_handler)
+                             message_handler)
 
   @staticmethod
   def GenerateUniverse(modified_types_filepath=None):
@@ -98,13 +98,17 @@ class ValidatorHandler(object):
 
   @staticmethod
   def ValidateEntities(entity_instances):
+    """Validates entity instances that are already deserialized.
+      Args:
+        entity_instances: a list of entity instances.
+    """
     print('Validating entities ...')
     building_found = False
-    for entity_name, entity_instance in entity_instances.items():
-      if not entity_instance.IsValidEntityInstance(entity_instances):
+    for entity_name, current_entity_instance in entity_instances.items():
+      if not current_entity_instance.IsValidEntityInstance(entity_instances):
         print(entity_name, 'is not a valid instance')
         sys.exit(0)
-      if entity_instance.type_name.lower() == 'building':
+      if current_entity_instance.type_name.lower() == 'building':
         building_found = True
 
     if not building_found:
@@ -113,13 +117,20 @@ class ValidatorHandler(object):
     print('Entities Validated !')
 
 
-  def TelemetryValidation(self, subscription, service_account, msg_handler):
+  def TelemetryValidation(self, subscription,
+                          service_account_file, msg_handler):
+    """Validates telemetry payload received from the subscription.
+     Args:
+       subscription: a pubsub subscription.
+       service_account_file: a GCP service account file.
+    """
     if self.pubsub_validation_set:
       print('Connecting to pubsub subscription: ', subscription)
-      sub = subscriber.Subscriber(subscription, service_account)
+      sub = subscriber.Subscriber(subscription, service_account_file)
       sub.Listen(msg_handler)
 
-  def _prepare_args(self):
+  def _PrepareArgs(self):
+    """Prepares the arguments for the user input."""
     parser = argparse.ArgumentParser(
         description='Validate a YAML building configuration file')
 
@@ -160,5 +171,6 @@ class ValidatorHandler(object):
       self.pubsub_validation_set = False
     else:
       print(
-          'Subscription and a service account file are both needed for the telemetry validation!')
+          'Subscription and a service account file are '
+          'both needed for the telemetry validation!')
       sys.exit(0)
