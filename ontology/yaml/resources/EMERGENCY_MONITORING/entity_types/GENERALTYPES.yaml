@@ -55,6 +55,7 @@ BGU:
   is_abstract: true
   implements:
   - EQUIPMENT
+  - PHYSICAL_SECURITY/DOOR
 
 FDR:
   description: "Fire door."

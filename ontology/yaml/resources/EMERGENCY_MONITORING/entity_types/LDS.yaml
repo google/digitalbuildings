@@ -22,7 +22,7 @@ LDS_STD:
   - water_leak_alarm
 
 LDS_BCM:
-  description: "Leak sensing device with broken cable status. "
+  description: "Leak sensing device with broken cable status."
   is_canonical: true
   implements:
   - LDS
@@ -31,7 +31,7 @@ LDS_BCM:
   - broken_cable_alarm
 
 LDS_BC2X:
-  description: "Leak sensing device with broken cable status. "
+  description: "Leak sensing device with broken cable status."
   is_canonical: true
   implements:
   - LDS
@@ -41,7 +41,7 @@ LDS_BC2X:
   - broken_cable_alarm_2
 
 LDS_BC2X_PSM:
-  description: "Leak sensing device with broken cable status. "
+  description: "Leak sensing device with broken cable status."
   is_canonical: true
   implements:
   - LDS
