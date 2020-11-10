@@ -33,7 +33,7 @@ flags.DEFINE_string('input', None, 'The path of the input file')
 
 def main(unused_argv):
   del unused_argv  # Unused.
-  print('Starting RDF Ontology Type Generator!')
+  print('Starting RDF Extractor!')
   graph = rdf_manager.Generate(path.expanduser(FLAGS.input))
   rdf_manager.SerializeToFile(graph, path.expanduser(FLAGS.output))
   print('RDF File generated:', path.expanduser(FLAGS.output))
