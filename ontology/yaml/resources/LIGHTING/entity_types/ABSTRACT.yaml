@@ -17,9 +17,8 @@
 SS:
   description: "Basic combination of run command and status (start/stop); indicates the light is active or inactive."
   is_abstract: true
-  uses:
-  - run_command
-  - run_status
+  implements:
+  - GLOBAL/SS
 
 DC:
   description: "Brightness dimming control."

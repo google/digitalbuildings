@@ -342,9 +342,8 @@ SS:
   - powerfactor_sensor
   - current_sensor
   - power_sensor
-  uses:
-  - run_command
-  - run_status
+  implements:
+  - GLOBAL/SS
 
 SSPC:
   id: "10526749200778002432"
