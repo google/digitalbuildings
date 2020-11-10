@@ -129,7 +129,7 @@ if __name__ == '__main__':
     validator = telemetry_validator.TelemetryValidator(
       parsed_entities, arg.timeout, telemetry_validation_callback)
     validator.StartTimer()
-    sub.Listen(validator.ValidateMessage(message))
+    sub.Listen(validator.ValidateMessage)
 
 def telemetry_validation_callback(telemetry_validator):
   # TODO: check if all entities were validated, and print any errors
