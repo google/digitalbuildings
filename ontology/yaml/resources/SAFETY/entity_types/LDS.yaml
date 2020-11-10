@@ -13,42 +13,50 @@
 # limitations under the License.
 
 
-LDS_STD:
+LDS_WLDS:
   description: "Basic leak detection device."
   is_canonical: true
   implements:
   - LDS
-  uses:
-  - water_leak_alarm
+  - WLDS
 
-LDS_BCM:
+LDS_WLDS_BCM:
   description: "Leak sensing device with broken cable status."
   is_canonical: true
   implements:
   - LDS
-  uses:
-  - water_leak_alarm
-  - broken_cable_alarm
+  - WLDS
+  - BCM
 
 LDS_BC2X:
   description: "Leak sensing device with broken cable status."
   is_canonical: true
   implements:
   - LDS
-  uses:
-  - water_leak_alarm
-  - broken_cable_alarm_1
-  - broken_cable_alarm_2
+  - WLDS
+  - BC2X
 
-LDS_BC2X_PSM:
+LDS_BC2X_LPA:
   description: "Leak sensing device with broken cable status."
   is_canonical: true
   implements:
   - LDS
-  uses:
-  - water_leak_alarm
-  - broken_cable_alarm_1
-  - broken_cable_alarm_2
-  - lost_power_alarm
+  - WLDS
+  - BC2X
+  - LPA
+  
+# General Types
+LDS_GASDET:
+  description: "Basic natural gas monitoring device."
+  is_canonical: true
+  implements:
+  - LDS
+  - GASDET
+
+
+
+
+
+
 
 

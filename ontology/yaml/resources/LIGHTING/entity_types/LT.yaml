@@ -20,14 +20,6 @@ LT_SS:
   - LT
   - SS
 
-LT_SS_DC:
-  description: "Standard light with dimming control."
-  is_canonical: true
-  implements:
-  - LT
-  - SS
-  - DC 
-
 LT_DC:
   description: "Even more standaard light with dimming control."
   is_canonical: true
@@ -35,11 +27,11 @@ LT_DC:
   - LT
   - DC 
 
-LT_SS_DC_SC:
-  description: "Standard light with dimming control."
+LT_DC_SC:
+  description: "Standard light with dimming control and scene control."
   is_canonical: true
   implements:
   - LT
-  - SS
   - DC 
   - SC
+

@@ -12,7 +12,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-### ABSTRACT TYPES
-
+# General Types
+GASDET_STD:
+  description: "Basic natural gas monitoring device."
+  is_canonical: true
+  implements:
+  - GASDET
+  uses:
+  - gas_leak_detection_alarm
 
 

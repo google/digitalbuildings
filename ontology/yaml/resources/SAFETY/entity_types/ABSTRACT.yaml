@@ -12,13 +12,36 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# General Types
-GM_STD:
-  description: "Basic natural gas monitoring device."
-  is_canonical: true
-  implements:
-  - GM
+### ABSTRACT TYPES
+
+
+GASDET:
+  description: "Basic natural gas leak monitoring."
+  is_abstract: true
   uses:
   - gas_leak_detection_alarm
 
+WLDS:
+  description: "Basic watre leak monitoring."
+  is_abstract: true
+  uses:
+  - water_leak_detection_alarm
 
+BCM:
+  description: "Broken cable monitoring."
+  is_abstract: true
+  uses:
+  - broken_cable_alarm
+
+BC2X:
+  description: "Broken cable monitoring."
+  is_abstract: true
+  uses:
+  - broken_cable_alarm_1
+  - broken_cable_alarm_2
+
+LPA: 
+  description: "Loss of power alarming."
+  is_abstract: true
+  uses:
+  - lost_power_alarm

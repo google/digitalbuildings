@@ -55,27 +55,34 @@ BGU:
   is_abstract: true
   implements:
   - EQUIPMENT
-  - PHYSICAL_SECURITY/DOOR
-
+  
 FDR:
   description: "Fire door."
   is_abstract: true
   implements:
   - EQUIPMENT
+  - PHYSICAL_SECURITY/DOOR
 
 FAS:
   description: "Fire alarm system"
   is_abstract: true
 
-GM:
-  description: "Natural gas leak montorng system."
+LDS:
+  description: "Generic leak detection systems."
   is_abstract: true
   implements:
   - EQUIPMENT
 
+# WLDS:
+#   description: "Water leak detection systems."
+#   is_abstract: true
+#   implements:
+#   - LDS
 
-
-
-
+# FLDS:
+#   description: "Fuel leak detection systems."
+#   is_abstract: true
+#   implements:
+#   - LDS
 
 
