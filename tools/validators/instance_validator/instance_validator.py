@@ -28,7 +28,6 @@ from validate import generate_universe
 from validate import entity_instance
 from validate import instance_parser
 from validate import subscriber
-from validate import telemetry
 from validate import telemetry_validator
 import argparse
 import sys
@@ -41,36 +40,41 @@ if __name__ == '__main__':
   parser = argparse.ArgumentParser(
       description='Validate a YAML building configuration file')
 
-  parser.add_argument('-i', '--input',
-                      dest='filename',
-                      required=True,
-                      help='Filepath to YAML building configuration',
-                      metavar='FILE')
+  parser.add_argument(
+    '-i', '--input',
+    dest='filename',
+    required=True,
+    help='Filepath to YAML building configuration',
+    metavar='FILE')
 
-  parser.add_argument('-m', '--modified-ontology-types',
-                      dest='modified_types_filepath',
-                      required=False,
-                      help='Filepath to modified type filepaths',
-                      metavar='MODIFIED_TYPE_FILEPATHS')
+  parser.add_argument(
+    '-m', '--modified-ontology-types',
+    dest='modified_types_filepath',
+    required=False,
+    help='Filepath to modified type filepaths',
+    metavar='MODIFIED_TYPE_FILEPATHS')
 
-  parser.add_argument('-s', '--subscription',
-                      dest='subscription',
-                      required=False,
-                      help='Pubsub subscription for telemetry to validate',
-                      metavar='subscription')
+  parser.add_argument(
+    '-s', '--subscription',
+    dest='subscription',
+    required=False,
+    help='Pubsub subscription for telemetry to validate',
+    metavar='subscription')
 
-  parser.add_argument('-a', '--service-account',
-                      dest='service_account',
-                      required=False,
-                      help='Service account used to pull messages from the subscription',
-                      metavar='service-account')
+  parser.add_argument(
+    '-a', '--service-account',
+    dest='service_account',
+    required=False,
+    help='Service account used to pull messages from the subscription',
+    metavar='service-account')
 
-  parser.add_argument('-t', '--timeout',
-                      dest='timeout',
-                      required=False,
-                      default = DEFAULT_TIMEOUT,
-                      help='Timeout duration (in seconds) for telemetry validation test',
-                      metavar='timeout')
+  parser.add_argument(
+    '-t', '--timeout',
+    dest='timeout',
+    required=False,
+    default = DEFAULT_TIMEOUT,
+    help='Timeout duration (in seconds) for telemetry validation test',
+    metavar='timeout')
 
   arg = parser.parse_args()
 
@@ -128,6 +132,5 @@ if __name__ == '__main__':
     sub.Listen(lambda message: validator.ValidateMessage(message))
 
 def telemetry_validation_callback(validator):
-  errors = validator.GetErrors()
   # TODO: check if all entities were validated, and print any errors
   sys.exit(0)

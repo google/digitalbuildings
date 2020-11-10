@@ -62,14 +62,6 @@ class TelemetryValidator(object):
     """Adds a validation error."""
     self.validation_errors.append(error)
 
-  @staticmethod
-  def ValueIsNumeric(value):
-    try:
-      float(value)
-    except ValueError:
-      return False
-    return True
-
   def ValidateMessage(self, message):
     """Validates a telemetry message."""
     t = telemetry.Telemetry(message)
@@ -113,10 +105,18 @@ class TelemetryValidator(object):
               entity, point_name, "Invalid state: " + pv))
           continue
 
-      if has_units and not ValueIsNumeric(pv):
+      if has_units and not self.ValueIsNumeric(pv):
         self.AddError(
           telemetry_error.TelemetryError(
             entity, point_name, "Invalid number: " + pv))
 
     message.ack()
     self.CheckAllEntitiesValidated()
+
+  def ValueIsNumeric(self, value):
+    """Returns true if the value is numeric."""
+    try:
+      float(value)
+    except ValueError:
+      return False
+    return True
