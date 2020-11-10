@@ -335,7 +335,7 @@ SS:
   description: "Basic combination of run command and status (start/stop)."
   is_abstract: true
   implements:
-  - GLOBAL/SS
+  - /SS
   - OPERATIONAL
   opt_uses:
   - power_capacity

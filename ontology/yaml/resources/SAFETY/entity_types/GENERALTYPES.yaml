@@ -14,12 +14,6 @@
 
 # General Types
 
-LDS:
-  description: "Water leak detection systems."
-  is_abstract: true
-  implements:
-  - EQUIPMENT
-
 SD:
   description: "Smoke detector."
   is_abstract: true
