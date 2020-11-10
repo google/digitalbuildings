@@ -17,7 +17,7 @@ SS:
   description: "Basic combination of run command and status (start/stop); indicates the light is active or inactive."
   is_abstract: true
   implements:
-  - GLOBAL/SS
+  - /SS
   opt_uses:
   - failed_alarm
   - lost_power_alarm

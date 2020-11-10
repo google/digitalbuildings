@@ -12,6 +12,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+BATT:
+  description: "Tag for all batteries (devices used to store and discharge power for the use of a device or group of devices)."
+  is_abstract: true
+  implements:
+  - EQUIPMENT
 
 UPS:
   description: "Tag for all uninterruptible power supply units."
