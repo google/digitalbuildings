@@ -19,6 +19,7 @@ from __future__ import print_function
 
 import os
 import json
+import threading
 
 from validate import instance_parser
 from validate import telemetry_error
@@ -66,16 +67,14 @@ _ENTITIES = dict(
 
 NULL_CALLBACK = lambda: None
 
-POINT_NAME = "return_water_temperature_sensor"
-POINT_NAME_2 = "exhaust_air_damper_command"
+POINT_NAME = 'return_water_temperature_sensor'
+POINT_NAME_2 = 'exhaust_air_damper_command'
 
 class TelemetryValidatorTest(absltest.TestCase):
 
   def testTelemetryValidatorTimesOut(self):
     timeout = False
-    def timeoutCallback(validator):
-      self.assertEmpty(validator.validation_errors)
-      timeout = True
+    timeoutCallback = lambda validator: timeout = True
     telemetry_validator.TelemetryValidator({}, 1, timeoutCallback)
     threading.Timer(2, lambda: self.assertIsTrue(timeout))
 
@@ -129,11 +128,11 @@ class TelemetryValidatorTest(absltest.TestCase):
     self.assertIn(validator.validation_errors, error_two)
 
   def testTelemetryValidatorCallbackWhenAllEntitiesValidated(self):
-    def validationCallback(validator):
+    def ValidationCallback(validator):
       self.assertEmpty(validator.validation_errors)
       self.assertTrue(validator.AllEntitiesValidated)
     validator = telemetry_validator.TelemetryValidator(
-      _ENTITIES, 1, validationCallback)
+      _ENTITIES, 1, ValidationCallback)
     validator.ValidateMessage(_MESSAGE_GOOD)
 
 if __name__ == '__main__':
