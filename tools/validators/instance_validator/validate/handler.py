@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Validator Handler"""
+"""Validation Helper"""
 
 from __future__ import print_function
 import argparse
@@ -61,22 +61,21 @@ def deserialize(yaml_file, universe):
   return entity_instances
 
 
-class ValidatorHandler(object):
-  """A validator handler to coordiante the various steps of the validation."""
+class ValidationHelper(object):
+  """A validation helper to coordiante the various steps of the validation."""
 
   def __init__(self):
     super().__init__()
     self._PrepareArgs()
 
   def Validate(self):
-    universe = self.GenerateUniverse(self.modified_types_filepath)
+    universe = self.GenerateUniverse(self.args.modified_types_filepath)
     entity_instances = deserialize(self.filename, universe)
     self.ValidateEntities(entity_instances)
-    self.TelemetryValidation(self.subscription, self.service_account,
-                             message_handler)
+    self.StartTelemetryValidation(self.subscription, self.service_account,
+                                  message_handler)
 
-  @staticmethod
-  def GenerateUniverse(modified_types_filepath=None):
+  def GenerateUniverse(self, modified_types_filepath=None):
     """Generates the universe from the ontology.
 
     Args:
@@ -96,8 +95,7 @@ class ValidatorHandler(object):
     print('Universe generated successfully')
     return universe
 
-  @staticmethod
-  def ValidateEntities(entity_instances):
+  def ValidateEntities(self, entity_instances):
     """Validates entity instances that are already deserialized.
       Args:
         entity_instances: a list of entity instances.
@@ -117,8 +115,8 @@ class ValidatorHandler(object):
     print('Entities Validated !')
 
 
-  def TelemetryValidation(self, subscription,
-                          service_account_file, msg_handler):
+  def StartTelemetryValidation(self, subscription,
+                               service_account_file, msg_handler):
     """Validates telemetry payload received from the subscription.
      Args:
        subscription: a pubsub subscription.
@@ -160,7 +158,6 @@ class ValidatorHandler(object):
 
     self.args = parser.parse_args()
     self.filename = self.args.filename
-    self.modified_types_filepath = self.args.modified_types_filepath
 
     self.subscription = self.args.subscription
     self.service_account = self.args.service_account

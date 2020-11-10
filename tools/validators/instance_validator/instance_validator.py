@@ -26,8 +26,7 @@ from __future__ import print_function
 
 from validate import handler
 
-# TODO add input and return type checks in all functions
 if __name__ == '__main__':
-  handler = handler.ValidatorHandler()
+  handler = handler.ValidationHelper()
   handler.Validate()
 
