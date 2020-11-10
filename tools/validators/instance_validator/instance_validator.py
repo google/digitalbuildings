@@ -122,9 +122,8 @@ if __name__ == '__main__':
   if pubsub_validation_set:
     print('Connecting to pubsub subscription: ', arg.subscription)
     sub = subscriber.Subscriber(arg.subscription, arg.service_account)
-    validator =
-      telemetry_validator.TelemetryValidator(parsed_entities, arg.timeout,
-                                             telemetry_validation_callback)
+    validator = telemetry_validator.TelemetryValidator(
+      parsed_entities, arg.timeout, telemetry_validation_callback)
     validator.StartTimer()
     sub.Listen(lambda message: validator.ValidateMessage(message))
 

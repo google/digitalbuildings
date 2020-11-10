@@ -12,6 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+"""Container for a telemetry validation error."""
+
 class TelemetryError(object):
   """Container for a telemetry validation error.
 

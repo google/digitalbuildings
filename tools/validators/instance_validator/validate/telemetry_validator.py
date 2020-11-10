@@ -12,8 +12,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+"""Validates telemetry messages against a building config file.
+
+The validator will call a specified callback function if at least one message
+is received for all of the entities in the building config file, or if the
+specfied timeout duration is reached."""
+
 import threading
 
+from validate import telemetry
 from validate import telemetry_error
 
 DEVICE_ID = "deviceId"
@@ -47,13 +54,21 @@ class TelemetryValidator(object):
     return self.entities.len() == self.validated_entities.len()
 
   def CheckAllEntitiesValidated(self):
-    """Checks if all entities have been validated, and calls the callback if so."""
+    """Checks if all entities have been validated, and calls the callback."""
     if self.AllEntitiesValidated():
       self.callback(self)
 
   def AddError(self, error):
     """Adds a validation error."""
     self.validation_errors.append(error)
+
+  @staticmethod
+  def ValueIsNumeric(value):
+    try:
+      float(value)
+    except ValueError:
+      return False
+    return True
 
   def ValidateMessage(self, message):
     """Validates a telemetry message."""
@@ -72,7 +87,7 @@ class TelemetryValidator(object):
       return
     self.validated_entities[entity] = True
 
-    entity = entities[t.entity_name]
+    entity = self.entities[t.entity_name]
     for point_name, point_config in entity[TRANSLATION]:
       if point_name not in t.points.keys():
         self.AddError(
@@ -81,7 +96,7 @@ class TelemetryValidator(object):
 
       point = t.points[point_name]
       pv = point.present_value
-      if pv == None:
+      if pv is None:
         self.AddError(
           telemetry_error.TelemetryError(
             entity, point_name, "Missing present value"))
@@ -98,18 +113,10 @@ class TelemetryValidator(object):
               entity, point_name, "Invalid state: " + pv))
           continue
 
-      if has_units and not value_is_numeric(pv):
+      if has_units and not ValueIsNumeric(pv):
         self.AddError(
           telemetry_error.TelemetryError(
             entity, point_name, "Invalid number: " + pv))
 
     message.ack()
     self.CheckAllEntitiesValidated()
-
-  @staticmethod
-  def value_is_numeric(value):
-    try:
-      float(value)
-    except ValueError:
-      return False
-    return True
