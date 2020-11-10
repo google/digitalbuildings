@@ -13,7 +13,13 @@
 # limitations under the License.
 
 class TelemetryError(object):
-  """TODO"""
+  """Container for a telemetry validation error.
+
+  Args:
+    entity: name of the entity with the error
+    point: name of the point with the error (can be None)
+    message: specific error message
+  """
 
   def __init__(self, entity, point, message):
     super().__init__()

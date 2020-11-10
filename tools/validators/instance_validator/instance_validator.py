@@ -68,6 +68,7 @@ if __name__ == '__main__':
   parser.add_argument('-t', '--timeout',
                       dest='timeout',
                       required=False,
+                      default = DEFAULT_TIMEOUT,
                       help='Timeout duration (in seconds) for telemetry validation test',
                       metavar='timeout')
 
@@ -121,14 +122,13 @@ if __name__ == '__main__':
   if pubsub_validation_set:
     print('Connecting to pubsub subscription: ', arg.subscription)
     sub = subscriber.Subscriber(arg.subscription, arg.service_account)
-    timeout = arg.timeout if arg.timeout is not None else DEFAULT_TIMEOUT
     validator =
-      telemetry_validator.TelemetryValidator(parsed_entities, timeout,
+      telemetry_validator.TelemetryValidator(parsed_entities, arg.timeout,
                                              telemetry_validation_callback)
-    validator.StartTimer(timeout)
+    validator.StartTimer()
     sub.Listen(lambda message: validator.ValidateMessage(message))
 
 def telemetry_validation_callback(validator):
   errors = validator.GetErrors()
-  # TODO: print the errors
+  # TODO: check if all entities were validated, and print any errors
   sys.exit(0)
