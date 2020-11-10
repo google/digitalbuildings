@@ -724,3 +724,9 @@ literals:
   - INACTIVE
 - discharge_air_linearvelocity_sensor
 - condensing_water_bypass_valve_percentage_sensor
+
+
+# For electrical meters:
+- phase1_apparent_power_sensor
+- phase2_apparent_power_sensor
+- phase3_apparent_power_sensor
