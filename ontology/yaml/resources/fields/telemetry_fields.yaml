@@ -706,6 +706,7 @@ literals:
   - ACTIVE
   - INACTIVE
 - gas_leak_detection_alarm
+- water_leak_detection_alarm
 - fire_alarm
 - emergency_release_status
 - position_status
