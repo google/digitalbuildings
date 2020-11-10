@@ -47,6 +47,3 @@ LGRP:
   is_abstract: true
   description: "A group containing one or more luminaires."
 
-LSCN:
-  is_abstract: true
-  description: "A scene containing brightness values for each luminaire."
