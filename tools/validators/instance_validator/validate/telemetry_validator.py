@@ -14,6 +14,7 @@
 
 import threading
 
+DEVICE_ID = "deviceId"
 TRANSLATION = "translation"
 STATES = "states"
 UNITS = "unit_values"
@@ -44,7 +45,7 @@ class TelemetryValidator(object):
 
   def ValidateMessage(self, message):
     t = telemetry.Telemetry(message)
-    entity = t.entity_name
+    entity = t.attributes[DEVICE_ID]
 
     if entity not in self.entities:
       self.AddError(TelemetryError(entity, None, "Unknown entity"))
@@ -64,13 +65,16 @@ class TelemetryValidator(object):
 
       point = t.points[point_name]
       pv = point.present_value
+      if pv == None:
+        self.AddError(TelemetryError(entity, point_name, "Missing present value"))
+        continue
 
       has_states = STATES in point_config
       has_units = UNITS in point_config
 
       if has_states:
         states = point_config[STATES]
-        if pv not in states.keys():
+        if pv not in states.values():
           self.AddError(TelemetryError(entity, point_name, "Invalid state: " + pv))
           continue
 
