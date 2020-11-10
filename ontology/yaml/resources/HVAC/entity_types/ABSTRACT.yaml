@@ -335,6 +335,7 @@ SS:
   description: "Basic combination of run command and status (start/stop)."
   is_abstract: true
   implements:
+  - GLOBAL/SS
   - OPERATIONAL
   opt_uses:
   - power_capacity
@@ -342,8 +343,6 @@ SS:
   - powerfactor_sensor
   - current_sensor
   - power_sensor
-  implements:
-  - GLOBAL/SS
 
 SSPC:
   id: "10526749200778002432"
