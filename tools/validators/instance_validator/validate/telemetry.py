@@ -82,3 +82,4 @@ class Telemetry(object):
       p = point.Point(point_name, value.get(PRESENT_VALUE))
       points[point_name] = p
     return version, timestamp, points
+  

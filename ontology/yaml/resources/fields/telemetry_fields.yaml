@@ -695,11 +695,11 @@ literals:
   - ACTIVE
   - INACTIVE
 
-# Added for new meter points. 
-- phase1_apparent_power_sensor
-- phase2_apparent_power_sensor
-- phase3_apparent_power_sensor
-- line_frequency_sensor
+
+
+
+
+
 
 
 
