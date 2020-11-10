@@ -16,28 +16,40 @@ EM_ION:
   id: "7398207611197194240"
   description: "The typical ION meter (Bay Area standard)."
   implements:
-  - MTR
-  uses:
-  - apparent_power_sensor
-  - reactive_power_sensor
-  - phase1_line_current_sensor
-  - phase1_phase3_line_voltage_sensor
-  - power_sensor
-  - phase1_phase2_line_voltage_sensor
-  - phase3_neutral_line_voltage_sensor
-  - phase2_powerfactor_sensor
-  - energy_accumulator
-  - phase1_powerfactor_sensor
-  - phase3_powerfactor_sensor
-  - phase3_power_sensor
-  - phase2_neutral_line_voltage_sensor
-  - average_line_voltage_sensor
-  - phase2_phase3_line_voltage_sensor
-  - average_line_neutral_voltage_sensor
-  - powerfactor_sensor
-  - phase2_line_current_sensor
-  - phase3_line_current_sensor
-  - average_line_current_sensor
-  - phase2_power_sensor
-  - phase1_power_sensor
-  - phase1_neutral_line_voltage_sensor
+  - EM_PWM_AVCM_PLPM_PVCM
+
+EM_PWM:
+  description: "Power meter with basic power monitoring."
+  is_canonical: true
+  implements:
+  - EM
+  - PWM
+
+EM_PWM_PVCM:
+  description: "Power meter with phase level voltage and current monitoring."
+  is_canonical: true
+  implements:
+  - EM
+  - PWM
+  - PVCM
+
+EM_PWM_AVCM_PVCM:
+  description: "Power meter with phase level voltage and current monitoring (and averaging)."
+  is_canonical: true
+  implements:
+  - EM
+  - PWM
+  - AVCM
+  - PVCM
+
+EM_PWM_AVCM_PLPM_PVCM: 
+  description: "The typical ION meter (Bay Area standard)."
+  is_canonical: true
+  implements:
+  - EM
+  - PWM
+  - AVCM
+  - PLPM
+  - PVCM
+
+
