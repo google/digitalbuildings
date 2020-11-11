@@ -72,13 +72,6 @@ POINT_NAME_2 = 'exhaust_air_damper_command'
 
 class TelemetryValidatorTest(absltest.TestCase):
 
-  def testTelemetryValidatorTimesOut(self):
-    _timeout = False
-    def TimeoutCallback(_):
-      _timeout = True
-    telemetry_validator.TelemetryValidator({}, 1, TimeoutCallback)
-    threading.Timer(2, lambda: self.assertIsTrue(_timeout))
-
   def testTelemetryValidatorDetectsUnknownEntity(self):
     validator = telemetry_validator.TelemetryValidator({}, 1, NULL_CALLBACK)
     validator.ValidateMessage(_MESSAGE_GOOD)
