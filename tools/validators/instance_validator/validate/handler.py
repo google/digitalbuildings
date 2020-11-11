@@ -25,7 +25,7 @@ from validate import subscriber
 from validate import telemetry
 
 
-def message_handler(message):
+def MessageHandler(message):
   """Handles a pubsub message.
     Args:
       message: a pubsub message containing telemetry payload.
@@ -39,7 +39,7 @@ def message_handler(message):
   message.ack()
 
 
-def deserialize(yaml_file, universe):
+def Deserialize(yaml_file, universe):
   """Parses a yaml configuration file and deserialize it.
   Args:
     yaml_file: the building configuration file.
@@ -70,10 +70,10 @@ class ValidationHelper(object):
 
   def Validate(self):
     universe = self.GenerateUniverse(self.args.modified_types_filepath)
-    entity_instances = deserialize(self.filename, universe)
+    entity_instances = Deserialize(self.filename, universe)
     self.ValidateEntities(entity_instances)
     self.StartTelemetryValidation(self.subscription, self.service_account,
-                                  message_handler)
+                                  MessageHandler)
 
   def GenerateUniverse(self, modified_types_filepath=None):
     """Generates the universe from the ontology.
