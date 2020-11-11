@@ -61,9 +61,9 @@ limitations under the License.
 ```
 
 ## Publications
-* [ISWC 2020](http://ceur-ws.org/Vol-2721/paper510.pdf). 
-* [LDAC 2020](http://linkedbuildingdata.net/ldac2020/abstracts.html#industry10). 
-* [ICML 2020](https://proceedings.icml.cc/static/paper_files/icml/2020/2557-Paper.pdf).
-* [Semantics 2019](https://2019.semantics.cc/role-semantics-googles-smart-building-platform).
+* [ISWC 2020](http://ceur-ws.org/Vol-2721/paper510.pdf)
+* [LDAC 2020](http://linkedbuildingdata.net/ldac2020/abstracts.html#industry10)
+* [ICML 2020](https://proceedings.icml.cc/static/paper_files/icml/2020/2557-Paper.pdf)
+* [Semantics 2019](https://2019.semantics.cc/role-semantics-googles-smart-building-platform)
 
 
