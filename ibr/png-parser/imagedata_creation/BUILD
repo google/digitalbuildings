@@ -1,4 +1,4 @@
-load("@imagedata_creation_deps//:requirements.bzl", "requirement")
+#load("@imagedata_creation_deps//:requirements.bzl", "requirement")
 
 package(default_visibility = ["//visibility:public"])
 
