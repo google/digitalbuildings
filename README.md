@@ -60,7 +60,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ```
 
-## Publications
+## Publications & Talks
 * [Québec Bâtiment Vert et Intelligent 2020](https://www.eventbrite.ca/e/billets-rendez-vous-annuel-quebec-bvi-presente-par-google-128034116489)
 * [ISWC 2020](http://ceur-ws.org/Vol-2721/paper510.pdf)
 * [LDAC 2020](http://linkedbuildingdata.net/ldac2020/abstracts.html#industry10)
