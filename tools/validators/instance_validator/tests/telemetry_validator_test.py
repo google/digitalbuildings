@@ -19,7 +19,6 @@ from __future__ import print_function
 
 import os
 import json
-import threading
 
 from validate import instance_parser
 from validate import telemetry_error
