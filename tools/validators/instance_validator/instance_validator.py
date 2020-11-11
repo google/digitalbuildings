@@ -124,17 +124,16 @@ if __name__ == '__main__':
   print('File passes all checks!')
 
   if pubsub_validation_set:
-    validate_telemetry(arg)
+    print('Connecting to pubsub subscription: ', arg.subscription)
+    sub = subscriber.Subscriber(arg.subscription, arg.service_account)
+    validator = telemetry_validator.TelemetryValidator(
+      parsed_entities, arg.timeout, telemetry_validation_callback)
+    validator.StartTimer()
+    sub.Listen(validator.ValidateMessage)
 
-def validate_telemetry(arg):
-  print('Connecting to pubsub subscription: ', arg.subscription)
-  sub = subscriber.Subscriber(arg.subscription, arg.service_account)
-  validator = telemetry_validator.TelemetryValidator(
-    parsed_entities, arg.timeout, telemetry_validation_callback)
-  validator.StartTimer()
-  sub.Listen(validator.ValidateMessage)
-
-def telemetry_validation_callback(validator):
+def telemetry_validation_callback(v):
+  # TODO: rename the parameter to this function after refactoring so the
+  #   above variables aren't in global scope
   # TODO: check if all entities were validated, and print any errors
-  print(validator.AllEntitiesValidated())
+  print(v.AllEntitiesValidated())
   sys.exit(0)
