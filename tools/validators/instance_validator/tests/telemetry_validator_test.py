@@ -74,8 +74,9 @@ class TelemetryValidatorTest(absltest.TestCase):
 
   def testTelemetryValidatorTimesOut(self):
     timeout = False
-    timeoutCallback = lambda validator: timeout = True
-    telemetry_validator.TelemetryValidator({}, 1, timeoutCallback)
+    def TimeoutCallback(validator):
+      timeout = True
+    telemetry_validator.TelemetryValidator({}, 1, TimeoutCallback)
     threading.Timer(2, lambda: self.assertIsTrue(timeout))
 
   def testTelemetryValidatorDetectsUnknownEntity(self):
