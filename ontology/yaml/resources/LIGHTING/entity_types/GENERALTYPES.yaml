@@ -13,7 +13,7 @@
 # limitations under the License.
 
 LT:
-  description: "Luminaire, lighting fixture."
+  description: "Luminaire, lighting fixture. The thing that produces light."
   is_abstract: true
   implements:
   - EQUIPMENT
@@ -25,7 +25,7 @@ LTGW:
   - EQUIPMENT
 
 LCM:
-  description: "Lighting control module."
+  description: "Lighting control module, used for controlling one or more luminaires (LT)."
   is_abstract: true
   implements:
   - EQUIPMENT

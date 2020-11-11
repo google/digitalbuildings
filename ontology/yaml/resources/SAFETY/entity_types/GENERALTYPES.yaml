@@ -67,16 +67,4 @@ LDS:
   implements:
   - EQUIPMENT
 
-# WLDS:
-#   description: "Water leak detection systems."
-#   is_abstract: true
-#   implements:
-#   - LDS
-
-# FLDS:
-#   description: "Fuel leak detection systems."
-#   is_abstract: true
-#   implements:
-#   - LDS
-
 

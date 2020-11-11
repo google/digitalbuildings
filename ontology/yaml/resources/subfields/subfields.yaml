@@ -203,6 +203,7 @@ measurement_descriptor:
   lost: "Indicates that a point has lost some quality or quantity inadvertently."
   match: "A function that matches something against others."
   motion: "Detectable movement of a thing."
+  index: "An integer which indicates the location of a particular data point in a list or numbered set (e.g. index 1 of ['a','b','c'] would return 'b', assuming the indexing starts at 0)."
   offset: "The amount or distance by which something is out of line"
   open: "Indicates full open (for two-position actuators).  This is the default sense if unspecified"
   override: "An action that interrupts, cancels, or changes the current action or status."

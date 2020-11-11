@@ -37,7 +37,7 @@ LMS:
   - motion_status
 
 MTS:
-  description: "Lighting photocell sensor."
+  description: "Lighting multi-sensor, for temperature and brightness."
   is_canonical: true
   implements:
   - SENSOR

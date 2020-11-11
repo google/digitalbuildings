@@ -42,7 +42,7 @@ SC:
   is_abstract: true
   description: "Scene control for a device or group of devices."
   uses:
-  - scene_command
+  - scene_index_command
 
 BM:
   description: " Battery power status monitoring."
