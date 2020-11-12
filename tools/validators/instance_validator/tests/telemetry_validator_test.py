@@ -19,6 +19,7 @@ from __future__ import print_function
 
 import os
 import json
+# import threading
 
 from validate import instance_parser
 from validate import telemetry_error
@@ -70,6 +71,14 @@ POINT_NAME = 'return_water_temperature_sensor'
 POINT_NAME_2 = 'exhaust_air_damper_command'
 
 class TelemetryValidatorTest(absltest.TestCase):
+
+  # TODO: fix this in a way that pylint accepts
+  # def testTelemetryValidatorTimesOut(self):
+  #   timeout = False
+  #   def TimeoutCallback(_):
+  #     timeout = True
+  #   telemetry_validator.TelemetryValidator({}, 1, TimeoutCallback)
+  #   threading.Timer(2, lambda: self.assertIsTrue(timeout))
 
   def testTelemetryValidatorDetectsUnknownEntity(self):
     validator = telemetry_validator.TelemetryValidator({}, 1, NULL_CALLBACK)
