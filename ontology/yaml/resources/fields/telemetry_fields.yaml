@@ -725,6 +725,7 @@ literals:
   - INACTIVE
 - discharge_air_linearvelocity_sensor
 - condensing_water_bypass_valve_percentage_sensor
+- scene_index_command
 
 
 # For electrical meters:
