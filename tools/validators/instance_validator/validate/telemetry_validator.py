@@ -69,7 +69,8 @@ class TelemetryValidator(object):
 
     if entity_name not in self.entities:
       self.AddError(
-        telemetry_error.TelemetryError(entity_name, None, "Unknown entity"))
+        telemetry_error.TelemetryError(
+          entity_name, None, "Unknown entity"))
       message.ack()
       return
 
@@ -83,7 +84,8 @@ class TelemetryValidator(object):
     for point_name, point_config in entity[TRANSLATION].items():
       if point_name not in t.points.keys():
         self.AddError(
-          telemetry_error.TelemetryError(entity_name, point_name, "Missing point"))
+          telemetry_error.TelemetryError(
+            entity_name, point_name, "Missing point"))
         continue
 
       point = t.points[point_name]
