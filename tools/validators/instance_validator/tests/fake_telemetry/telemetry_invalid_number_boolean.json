@@ -3,7 +3,10 @@
   "version": 1,
   "points": {
     "return_water_temperature_sensor": {
-      "present_value": "BAD_NUMBER"
+      "present_value": false
+    },
+    "supply_water_temperature_sensor": {
+      "present_value": 200.0
     }
   }
 }

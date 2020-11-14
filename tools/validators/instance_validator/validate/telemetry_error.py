@@ -28,3 +28,10 @@ class TelemetryError(object):
     self.entity = entity
     self.point = point
     self.message = message
+
+  def __eq__(self, other):
+    if not isinstance(other, TelemetryError):
+      return NotImplemented
+    return (self.entity == other.entity and
+            self.point == other.point and
+            self.message == other.message)

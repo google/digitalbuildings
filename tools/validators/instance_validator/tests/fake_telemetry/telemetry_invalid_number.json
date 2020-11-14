@@ -5,8 +5,8 @@
     "return_water_temperature_sensor": {
       "present_value": "BAD_NUMBER"
     },
-    "exhaust_air_damper_command": {
-      "present_value": 1
+    "supply_water_temperature_sensor": {
+      "present_value": 200.0
     }
   }
 }
