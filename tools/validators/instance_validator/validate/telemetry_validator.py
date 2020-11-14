@@ -53,7 +53,7 @@ class TelemetryValidator(object):
     """Returns true if a message was received for every entity."""
     return len(self.entities) == len(self.validated_entities)
 
-  def CheckAllEntitiesValidated(self):
+  def CallbackIfCompleted(self):
     """Checks if all entities have been validated, and calls the callback."""
     if self.AllEntitiesValidated():
       self.callback(self)
@@ -115,7 +115,7 @@ class TelemetryValidator(object):
             "Invalid number: {}".format(handle_bool(pv))))
 
     message.ack()
-    self.CheckAllEntitiesValidated()
+    self.CallbackIfCompleted()
 
   def ValueIsNumeric(self, value):
     """Returns true if the value is numeric."""

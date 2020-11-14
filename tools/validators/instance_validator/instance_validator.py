@@ -132,6 +132,11 @@ if __name__ == '__main__':
     sub.Listen(validator.ValidateMessage)
 
 def telemetry_validation_callback(v):
+  """Callback when the telemetry validator finishes.
+
+  This could be called due to a timeout or because telemetry messages were
+  received and validated for each entity."""
+
   # TODO: rename the parameter to this function after refactoring so the
   #   above variables aren't in global scope
   # TODO: check if all entities were validated, and print any errors
