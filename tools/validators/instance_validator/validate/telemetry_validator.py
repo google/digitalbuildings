@@ -63,7 +63,11 @@ class TelemetryValidator(object):
     self.validation_errors.append(error)
 
   def ValidateMessage(self, message):
-    """Validates a telemetry message."""
+    """Validates a telemetry message.
+
+    Adds all validation errors for the message to a list of all errors
+    discovered by this validator."""
+
     t = telemetry.Telemetry(message)
     entity_name = t.attributes[DEVICE_ID]
 
