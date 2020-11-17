@@ -135,10 +135,6 @@ class ValidationHelper(object):
       validator.StartTimer()
       sub.Listen(validator.ValidateMessage)
 
-
-
-
-
   def _PrepareArgs(self):
     """Prepares the arguments for the user input."""
     parser = argparse.ArgumentParser(
