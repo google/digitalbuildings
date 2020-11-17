@@ -28,50 +28,53 @@ from validate import generate_universe
 from validate import entity_instance
 from validate import instance_parser
 from validate import subscriber
-from validate import telemetry
+from validate import telemetry_validator
 import argparse
 import sys
 
-# TODO(nkilmer): update as you see good
-def message_handler(message):
-  """Handles a pubsub message.
-    Args:
-      message: a pubsub message containing telemetry payload.
-  """
-  t = telemetry.Telemetry(message)
-  for key, value in t.points.items():
-    print()
-    print('-point: ', key)
-    print('-- point_name: ', value.point_name)
-    print('-- present_value: ', value.present_value)
-  message.ack()
+# Default timeout duration for telemetry validation test
+DEFAULT_TIMEOUT = 600
 
 # TODO add input and return type checks in all functions
 if __name__ == '__main__':
   parser = argparse.ArgumentParser(
       description='Validate a YAML building configuration file')
-  parser.add_argument('-i', '--input',
-                      dest='filename',
-                      required=True,
-                      help='Filepath to YAML building configuration',
-                      metavar='FILE')
-  parser.add_argument('-m', '--modified-ontology-types',
-                      dest='modified_types_filepath',
-                      required=False,
-                      help='Filepath to modified type filepaths',
-                      metavar='MODIFIED_TYPE_FILEPATHS')
 
-  parser.add_argument('-s', '--subscription',
-                      dest='subscription',
-                      required=False,
-                      help='pubsub subscription',
-                      metavar='subscription')
+  parser.add_argument(
+    '-i', '--input',
+    dest='filename',
+    required=True,
+    help='Filepath to YAML building configuration',
+    metavar='FILE')
 
-  parser.add_argument('-a', '--service-account',
-                      dest='service_account',
-                      required=False,
-                      help='service account',
-                      metavar='service-account')
+  parser.add_argument(
+    '-m', '--modified-ontology-types',
+    dest='modified_types_filepath',
+    required=False,
+    help='Filepath to modified type filepaths',
+    metavar='MODIFIED_TYPE_FILEPATHS')
+
+  parser.add_argument(
+    '-s', '--subscription',
+    dest='subscription',
+    required=False,
+    help='Pubsub subscription for telemetry to validate',
+    metavar='subscription')
+
+  parser.add_argument(
+    '-a', '--service-account',
+    dest='service_account',
+    required=False,
+    help='Service account used to pull messages from the subscription',
+    metavar='service-account')
+
+  parser.add_argument(
+    '-t', '--timeout',
+    dest='timeout',
+    required=False,
+    default = DEFAULT_TIMEOUT,
+    help='Timeout duration (in seconds) for telemetry validation test',
+    metavar='timeout')
 
   arg = parser.parse_args()
 
@@ -82,8 +85,6 @@ if __name__ == '__main__':
   pubsub_validation_set = False
   if arg.subscription is not None and arg.service_account is not None:
     pubsub_validation_set = True
-  elif arg.subscription is None and arg.service_account is None:
-    pubsub_validation_set = False
   else:
     print('Subscription and a service account file are both '
           'needed for the telemetry validation!')
@@ -105,16 +106,15 @@ if __name__ == '__main__':
 
   print('Universe generated successfully')
 
-  parsed = dict(raw_parse)
+  parsed_entities = dict(raw_parse)
   entity_instances = {}
-  entity_names = list(parsed.keys())
+  entity_names = set(parsed_entities.keys())
   # first build all the entity instances
-  for entity_name in entity_names:
-    entity = dict(parsed[entity_name])
+  for name, entity in parsed_entities.items():
     instance = entity_instance.EntityInstance(entity,
                                               universe,
-                                              set(entity_names))
-    entity_instances[entity_name] = instance
+                                              entity_names)
+    entity_instances[name] = instance
 
   for entity_name, entity_instance in entity_instances.items():
     if not entity_instance.IsValidEntityInstance(entity_instances):
@@ -122,7 +122,23 @@ if __name__ == '__main__':
       sys.exit(0)
 
   print('File passes all checks!')
+
   if pubsub_validation_set:
     print('Connecting to pubsub subscription: ', arg.subscription)
     sub = subscriber.Subscriber(arg.subscription, arg.service_account)
-    sub.Listen(message_handler)
+    validator = telemetry_validator.TelemetryValidator(
+      parsed_entities, arg.timeout, telemetry_validation_callback)
+    validator.StartTimer()
+    sub.Listen(validator.ValidateMessage)
+
+def telemetry_validation_callback(v):
+  """Callback when the telemetry validator finishes.
+
+  This could be called due to a timeout or because telemetry messages were
+  received and validated for each entity."""
+
+  # TODO: rename the parameter to this function after refactoring so the
+  #   above variables aren't in global scope
+  # TODO: check if all entities were validated, and print any errors
+  print(v.AllEntitiesValidated())
+  sys.exit(0)
