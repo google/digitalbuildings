@@ -23,10 +23,8 @@ This tool allows clients to independently validate their configuration files.
 It saves time and provides more accuracy than manual error checks."""
 
 from __future__ import print_function
-
 from validate import handler
 
 if __name__ == '__main__':
   handler = handler.ValidationHelper()
   handler.Validate()
-
