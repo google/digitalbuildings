@@ -35,6 +35,18 @@ import sys
 # Default timeout duration for telemetry validation test
 DEFAULT_TIMEOUT = 600
 
+def telemetry_validation_callback(v):
+  """Callback when the telemetry validator finishes.
+
+  This could be called due to a timeout or because telemetry messages were
+  received and validated for each entity."""
+
+  # TODO: rename the parameter to this function after refactoring so the
+  #   above variables aren't in global scope
+  # TODO: check if all entities were validated, and print any errors
+  print(v.AllEntitiesValidated())
+  sys.exit(0)
+
 # TODO add input and return type checks in all functions
 if __name__ == '__main__':
   parser = argparse.ArgumentParser(
@@ -85,6 +97,8 @@ if __name__ == '__main__':
   pubsub_validation_set = False
   if arg.subscription is not None and arg.service_account is not None:
     pubsub_validation_set = True
+  elif arg.subscription is None and arg.service_account is None:
+    pubsub_validation_set = False
   else:
     print('Subscription and a service account file are both '
           'needed for the telemetry validation!')
@@ -131,14 +145,4 @@ if __name__ == '__main__':
     validator.StartTimer()
     sub.Listen(validator.ValidateMessage)
 
-def telemetry_validation_callback(v):
-  """Callback when the telemetry validator finishes.
 
-  This could be called due to a timeout or because telemetry messages were
-  received and validated for each entity."""
-
-  # TODO: rename the parameter to this function after refactoring so the
-  #   above variables aren't in global scope
-  # TODO: check if all entities were validated, and print any errors
-  print(v.AllEntitiesValidated())
-  sys.exit(0)
