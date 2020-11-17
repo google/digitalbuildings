@@ -150,7 +150,7 @@ class TelemetryValidatorTest(absltest.TestCase):
       _ENTITY_1, 1, _NULL_CALLBACK)
     validator.ValidateMessage(_MESSAGE_INVALID_NUMBER_BOOLEAN)
     error = telemetry_error.TelemetryError(
-      _ENTITY_NAME_1, _POINT_NAME_1, 'Invalid number: false')
+      _ENTITY_NAME_1, _POINT_NAME_1, 'Invalid number: False')
     self.assertIn(error, validator.validation_errors)
 
   def testTelemetryValidatorDetectsMultipleErrorsInMessage(self):

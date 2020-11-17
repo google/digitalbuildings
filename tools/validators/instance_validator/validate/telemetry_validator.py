@@ -112,11 +112,9 @@ class TelemetryValidator(object):
           continue
 
       if has_units and not self.ValueIsNumeric(pv):
-        handle_bool = lambda x: str(x).lower() if isinstance(x, bool) else x
         self.AddError(
           telemetry_error.TelemetryError(
-            entity_name, point_name,
-            "Invalid number: {}".format(handle_bool(pv))))
+            entity_name, point_name, "Invalid number: {}".format(pv)))
 
     message.ack()
     self.CallbackIfCompleted()
