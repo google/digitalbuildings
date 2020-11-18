@@ -35,7 +35,7 @@ class HandlerTest(absltest.TestCase):
       instance_handler = handler.ValidationHelper(args)
       instance_handler.Validate()
     except SyntaxError:
-      self.fail("ValidationHelper:Validate raised ExceptionType unexpectedly!")
+      self.fail('ValidationHelper:Validate raised ExceptionType unexpectedly!')
 
   def testOneBuildingExistFails(self):
     with self.assertRaises(Exception):
@@ -49,17 +49,17 @@ class HandlerTest(absltest.TestCase):
     try:
       input_file = os.path.join(_TESTCASE_PATH, 'GOOD',
                                 'good_building_type.yaml')
-      args = ['--input', input_file, '--service-account', "file",
+      args = ['--input', input_file, '--service-account', 'file',
               '--subscription', 'some-subscription']
       handler.ValidationHelper(args)
     except SystemExit:
-      self.fail("ValidationHelper:Validate raised ExceptionType unexpectedly!")
+      self.fail('ValidationHelper:Validate raised ExceptionType unexpectedly!')
 
   def testTelemetryArgsMissingSubscription(self):
     with self.assertRaises(SystemExit):
       input_file = os.path.join(_TESTCASE_PATH, 'GOOD',
                                 'good_building_type.yaml')
-      args = ['--input', input_file, '--service-account', "file"]
+      args = ['--input', input_file, '--service-account', 'file']
       handler.ValidationHelper(args)
 
 if __name__ == '__main__':
