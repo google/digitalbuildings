@@ -39,7 +39,7 @@ class HandlerTest(absltest.TestCase):
 
   def testOneBuildingExistFails(self):
     with self.assertRaises(Exception):
-      # missing building type in the test file
+      # there is missing building type in the test file
       input_file = os.path.join(_TESTCASE_PATH, 'GOOD', 'good_links.yaml')
       args = ['--input', input_file]
       instance_handler = handler.ValidationHelper(args)
