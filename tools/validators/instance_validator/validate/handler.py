@@ -71,7 +71,7 @@ class ValidationHelper(object):
 
   def __init__(self, args):
     super().__init__()
-    self.ParseArgs(args)
+    self._ParseArgs(args)
 
   def Validate(self):
     universe = self.GenerateUniverse(self.args.modified_types_filepath)
@@ -137,7 +137,7 @@ class ValidationHelper(object):
       sub.Listen(validator.ValidateMessage)
 
 
-  def ParseArgs(self, args):
+  def _ParseArgs(self, args):
     """Prepares the arguments for the user input."""
     parser = argparse.ArgumentParser(
         description='Validate a YAML building configuration file')
