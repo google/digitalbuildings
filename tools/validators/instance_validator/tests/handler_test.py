@@ -45,7 +45,7 @@ class HandlerTest(absltest.TestCase):
       instance_handler = handler.ValidationHelper(args)
       instance_handler.Validate()
 
-  def testTelemetryArgs(self):
+  def testTelemetryArgsBothSetSuccess(self):
     try:
       input_file = os.path.join(_TESTCASE_PATH, 'GOOD',
                                 'good_building_type.yaml')
@@ -61,6 +61,14 @@ class HandlerTest(absltest.TestCase):
                                 'good_building_type.yaml')
       args = ['--input', input_file, '--service-account', 'file']
       handler.ValidationHelper(args)
+
+  def testTelemetryArgsMissingServiceAccount(self):
+    with self.assertRaises(SystemExit):
+      input_file = os.path.join(_TESTCASE_PATH, 'GOOD',
+                                'good_building_type.yaml')
+      args = ['--input', input_file, '--subscription', 'some-subscription']
+      handler.ValidationHelper(args)
+
 
 if __name__ == '__main__':
   absltest.main()
