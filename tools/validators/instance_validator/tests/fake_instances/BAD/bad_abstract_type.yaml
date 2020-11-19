@@ -12,17 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-CHWS_WDT-17:
-  type: HVAC/CHWS_WDT
-  id: CDM/123456
-  translation:
-    return_water_temperature_sensor:
-      present_value: "points.return_water_temperature_sensor.present_value"
-      unit_values:
-        degrees_celsius: "degC"
-        degrees_fahrenheit: "degF"
-    supply_water_temperature_sensor:
-      present_value: "points.supply_water_temperature_sensor.present_value"
-      unit_values:
-        degrees_celsius: "degC"
-        degrees_fahrenheit: "degF"
+# ZONE is an abstract type.
+ZONE-105:
+  type: HVAC/ZONE
+  id: CDM/f7ed1725-53f9-4978-98c7-648f5d66e98e
