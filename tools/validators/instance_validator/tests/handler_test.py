@@ -27,7 +27,7 @@ _TESTCASE_PATH = os.path.join('.', 'tests', 'fake_instances')
 
 class HandlerTest(absltest.TestCase):
 
-  def testOneBuildingExist(self):
+  def testValidateOneBuildingExist(self):
     try:
       input_file = os.path.join(_TESTCASE_PATH, 'GOOD',
                                 'good_building_type.yaml')
@@ -37,8 +37,8 @@ class HandlerTest(absltest.TestCase):
     except SyntaxError:
       self.fail('ValidationHelper:Validate raised ExceptionType unexpectedly!')
 
-  def testOneBuildingExistFails(self):
-    with self.assertRaises(Exception):
+  def testValidateOneBuildingExistFails(self):
+    with self.assertRaises(SyntaxError):
       # there is missing building type in the test file
       input_file = os.path.join(_TESTCASE_PATH, 'GOOD', 'good_links.yaml')
       args = ['--input', input_file]
