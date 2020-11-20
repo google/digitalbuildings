@@ -50,6 +50,6 @@ LGRP:
 LS:
   is_abstract: true
   description: "Lighting system specific sensor."
-  implement:
+  implements:
   - SENSOR
 

@@ -697,7 +697,6 @@ literals:
 
 # New fields for lighting and fire systems.
 - motion_status
-- scene_command
 - battery_charge_status:
   - CHARGING
   - DISCHARGING
@@ -735,4 +734,8 @@ literals:
 - scene_index_command
 
 # This is a change
+- line_frequency_sensor
+- phase1_apparent_power_sensor
+- phase2_apparent_power_sensor
+- phase3_apparent_power_sensor
 
