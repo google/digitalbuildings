@@ -45,3 +45,22 @@ PANIC_BUTTON:
 BADGE_READER:
   id: "14407884509338927104"
   description: "A badge reader that unlocks a door"
+
+DOOR_STD:
+  description: "Typical door."
+  is_canonical: true
+  implements:
+  - DOOR
+  uses:
+  - position_status
+
+DOOR_EMER:
+  description: "A door with position and emergency release monitoring."
+  is_canonical: true
+  implements:
+  - DOOR
+  uses:
+  - position_status
+  - emergency_release_status
+
+

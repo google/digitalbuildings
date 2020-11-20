@@ -12,26 +12,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-
-LT_SS:
-  description: "Standard light."
-  is_canonical: true
+BATT:
+  description: "Tag for all batteries (devices used to store and discharge power for the use of a device or group of devices)."
+  is_abstract: true
   implements:
-  - LT
-  - SS
+  - EQUIPMENT
 
-LT_DC:
-  description: "Even more standaard light with dimming control."
-  is_canonical: true
+UPS:
+  description: "Tag for all uninterruptible power supply units."
+  is_abstract: true
   implements:
-  - LT
-  - DC 
-
-LT_DC_SC:
-  description: "Standard light with dimming control and scene control."
-  is_canonical: true
-  implements:
-  - LT
-  - DC 
-  - SC
-
+  - EQUIPMENT

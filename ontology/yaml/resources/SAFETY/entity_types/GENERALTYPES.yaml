@@ -12,44 +12,59 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-LT:
-  description: "Luminaire, lighting fixture. The thing that produces light."
-  is_abstract: true
-  implements:
-  - EQUIPMENT
+# General Types
 
-LTGW:
-  description: "Lighting gateway."
+SD:
+  description: "Smoke detector."
   is_abstract: true
-  implements:
-  - EQUIPMENT
-
-LCM:
-  description: "Lighting control module, used for controlling one or more luminaires (LT)."
-  is_abstract: true
-  implements:
-  - EQUIPMENT
-
-LKP:
-  description: "Lighting keypad."
-  is_abstract: true
-  implements:
-  - EQUIPMENT
-  - USER_INTERFACE
-
-LTB: # TODO: inherit from common device when a concrete example emerges.
-  description: "Battery that serves lighting devices. "
-  is_abstract: true
-  implements:
-  - EQUIPMENT
-
-LGRP:
-  is_abstract: true
-  description: "A group containing one or more luminaires."
-
-LS:
-  is_abstract: true
-  description: "Lighting system specific sensor."
   implements:
   - SENSOR
+
+FACP:
+  description: "Fire alarm control panel."
+  is_abstract: true
+  implements:
+  - EQUIPMENT
+
+FHP:
+  description: "Fire suppression system hydrant pump."
+  is_abstract: true
+  implements:
+  - EQUIPMENT
+
+FD:
+  description: "Fire damper."
+  is_abstract: true
+  implements:
+  - EQUIPMENT
+
+HS:
+  description: "Fire system horn strobe."
+  is_abstract: true
+  implements:
+  - EQUIPMENT
+
+BGU:
+  description: "Emergency break-glass unit."
+  is_abstract: true
+  implements:
+  - EQUIPMENT
+  
+FDR:
+  description: "Fire door."
+  is_abstract: true
+  implements:
+  - EQUIPMENT
+  - PHYSICAL_SECURITY/DOOR
+
+FAS:
+  description: "Fire alarm system"
+  is_abstract: true
+
+LDS:
+  description: "Generic leak detection systems."
+  is_abstract: true
+  implements:
+  - EQUIPMENT
+
 

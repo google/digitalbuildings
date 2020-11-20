@@ -12,44 +12,43 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-LT:
-  description: "Luminaire, lighting fixture. The thing that produces light."
+### ABSTRACT TYPES
+
+SS:
+  description: "Basic combination of run command and status (start/stop); indicates the light is active or inactive."
   is_abstract: true
   implements:
-  - EQUIPMENT
+  - /SS
 
-LTGW:
-  description: "Lighting gateway."
+DC:
+  description: "Brightness dimming control."
   is_abstract: true
-  implements:
-  - EQUIPMENT
+  uses:
+  - brightness_percentage_command
 
-LCM:
-  description: "Lighting control module, used for controlling one or more luminaires (LT)."
+MS:
+  description: "Motion sensing monitoring."
   is_abstract: true
-  implements:
-  - EQUIPMENT
+  uses:
+  - motion_status
 
-LKP:
-  description: "Lighting keypad."
+OS:
   is_abstract: true
-  implements:
-  - EQUIPMENT
-  - USER_INTERFACE
+  description: "Occupancy status for a specific zone."
+  uses:
+  - zone_occupancy_status
 
-LTB: # TODO: inherit from common device when a concrete example emerges.
-  description: "Battery that serves lighting devices. "
+SC:
   is_abstract: true
-  implements:
-  - EQUIPMENT
+  description: "Scene control for a device or group of devices."
+  uses:
+  - scene_index_command
 
-LGRP:
+BM:
+  description: " Battery power status monitoring."
   is_abstract: true
-  description: "A group containing one or more luminaires."
+  uses:
+  - battery_charge_status
 
-LS:
-  is_abstract: true
-  description: "Lighting system specific sensor."
-  implements:
-  - SENSOR
+
 

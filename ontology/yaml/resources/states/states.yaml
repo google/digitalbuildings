@@ -49,6 +49,9 @@ WAITING_FOR_RESPONSE: The calendar events synchronization process is awaiting re
 PRESENT: "Something is currently materialized physically (e.g. flowrate_status is present)."
 ABSENT: "Something is currently not materialized (e.g. flowrate_status is absent). "
 
+CHARGING: "The act of storing (e.g. energy stored in a battery)."
+DISCHARGING: "Release of something built up or retained for later use."
+STANDBY: "Waiting in a prepared state."
 
 
 

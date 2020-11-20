@@ -13,25 +13,20 @@
 # limitations under the License.
 
 
-LT_SS:
-  description: "Standard light."
+########################
+### Canonical Types  ###
+########################
+
+# This is used to model individual batteries when those battery statuses don't map nicely to a single lighting device.
+
+LTB_SS:
+  description: "Lighting battery with basic feedback. "
   is_canonical: true
   implements:
-  - LT
+  - ELECTRICAL/BATT
   - SS
 
-LT_DC:
-  description: "Even more standaard light with dimming control."
-  is_canonical: true
-  implements:
-  - LT
-  - DC 
 
-LT_DC_SC:
-  description: "Standard light with dimming control and scene control."
-  is_canonical: true
-  implements:
-  - LT
-  - DC 
-  - SC
+
+
 
