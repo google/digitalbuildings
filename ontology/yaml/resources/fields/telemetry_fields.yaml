@@ -734,10 +734,5 @@ literals:
 - condensing_water_bypass_valve_percentage_sensor
 - scene_index_command
 
-
-# For electrical meters:
-- phase1_apparent_power_sensor
-- phase2_apparent_power_sensor
-- phase3_apparent_power_sensor
-- line_frequency_sensor
+# This is a change
 
