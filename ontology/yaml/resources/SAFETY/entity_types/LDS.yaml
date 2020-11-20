@@ -13,25 +13,50 @@
 # limitations under the License.
 
 
-LT_SS:
-  description: "Standard light."
+LDS_WLDS:
+  description: "Basic leak detection device."
   is_canonical: true
   implements:
-  - LT
-  - SS
+  - LDS
+  - WLDS
 
-LT_DC:
-  description: "Even more standaard light with dimming control."
+LDS_WLDS_BCM:
+  description: "Leak sensing device with broken cable status."
   is_canonical: true
   implements:
-  - LT
-  - DC 
+  - LDS
+  - WLDS
+  - BCM
 
-LT_DC_SC:
-  description: "Standard light with dimming control and scene control."
+LDS_BC2X:
+  description: "Leak sensing device with broken cable status."
   is_canonical: true
   implements:
-  - LT
-  - DC 
-  - SC
+  - LDS
+  - WLDS
+  - BC2X
+
+LDS_BC2X_LPA:
+  description: "Leak sensing device with broken cable status."
+  is_canonical: true
+  implements:
+  - LDS
+  - WLDS
+  - BC2X
+  - LPA
+  
+# General Types
+LDS_GASDET:
+  description: "Basic natural gas monitoring device."
+  is_canonical: true
+  implements:
+  - LDS
+  - GASDET
+
+
+
+
+
+
+
 

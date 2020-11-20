@@ -463,7 +463,7 @@ literals:
 - energy_accumulator
 - average_line_current_sensor
 - average_line_neutral_voltage_sensor
-- average_line_voltage_sensor
+- average_inter_line_voltage_sensor
 - phase1_line_current_sensor
 - phase1_neutral_line_voltage_sensor
 - phase1_phase2_line_voltage_sensor
@@ -483,7 +483,7 @@ literals:
 - reactive_power_sensor
 
 # Added on 2019/06/27 for Enlighted
-- dimmer_percentage_command
+- dimmer_percentage_command # Should be adjusted to brightness_percentage_command
 
 
 # Added on 2019/08/13 primarily for GVC
@@ -695,11 +695,47 @@ literals:
   - ACTIVE
   - INACTIVE
 
-# Added for new meter points. 
+# New fields for lighting and fire systems.
+- motion_status
+- battery_charge_status:
+  - CHARGING
+  - DISCHARGING
+  - STANDBY
+- battery_charge_percentage_sensor
+- brightness_percentage_command
+
+# New fields for emergency systems
+- broken_cable_alarm:
+  - ACTIVE
+  - INACTIVE
+- gas_leak_detection_alarm
+- water_leak_detection_alarm
+- fire_alarm
+- emergency_release_status
+- position_status
+- condensing_water_valve_percentage_sensor
+- entering_cooling_coil_temperature_sensor
+
+ # We should not use this... represents scavenged outside air from near some heat pumps...
+- mixed_outside_air_temperature_sensor
+
+- discharge_fan_lost_power_alarm:
+  - ACTIVE
+  - INACTIVE
+- low_discharge_air_flowrate_alarm:
+  - ACTIVE
+  - INACTIVE
+- frequency_sensor
+- discharge_fan_failed_alarm:
+  - ACTIVE
+  - INACTIVE
+- discharge_air_linearvelocity_sensor
+- condensing_water_bypass_valve_percentage_sensor
+- scene_index_command
+
+# This is a change
+- line_frequency_sensor
 - phase1_apparent_power_sensor
 - phase2_apparent_power_sensor
 - phase3_apparent_power_sensor
-- line_frequency_sensor
-
-
 

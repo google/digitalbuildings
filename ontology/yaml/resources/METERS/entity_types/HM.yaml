@@ -13,25 +13,14 @@
 # limitations under the License.
 
 
-LT_SS:
-  description: "Standard light."
-  is_canonical: true
+HM_CHW:
+  description: "Cooling load heat meter."
   implements:
-  - LT
-  - SS
-
-LT_DC:
-  description: "Even more standaard light with dimming control."
+  - HM
   is_canonical: true
-  implements:
-  - LT
-  - DC 
-
-LT_DC_SC:
-  description: "Standard light with dimming control and scene control."
-  is_canonical: true
-  implements:
-  - LT
-  - DC 
-  - SC
-
+  uses:
+  - chilled_water_flowrate_sensor
+  - chilled_supply_water_temperature_sensor
+  - chilled_return_water_temperature_sensor
+  - cooling_thermal_power_sensor
+  - cooling_thermal_energy_accumulator

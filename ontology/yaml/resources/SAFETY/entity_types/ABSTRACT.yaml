@@ -12,26 +12,36 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+### ABSTRACT TYPES
 
-LT_SS:
-  description: "Standard light."
-  is_canonical: true
-  implements:
-  - LT
-  - SS
 
-LT_DC:
-  description: "Even more standaard light with dimming control."
-  is_canonical: true
-  implements:
-  - LT
-  - DC 
+GASDET:
+  description: "Basic natural gas leak monitoring."
+  is_abstract: true
+  uses:
+  - gas_leak_detection_alarm
 
-LT_DC_SC:
-  description: "Standard light with dimming control and scene control."
-  is_canonical: true
-  implements:
-  - LT
-  - DC 
-  - SC
+WLDS:
+  description: "Basic watre leak monitoring."
+  is_abstract: true
+  uses:
+  - water_leak_detection_alarm
 
+BCM:
+  description: "Broken cable monitoring."
+  is_abstract: true
+  uses:
+  - broken_cable_alarm
+
+BC2X:
+  description: "Broken cable monitoring."
+  is_abstract: true
+  uses:
+  - broken_cable_alarm_1
+  - broken_cable_alarm_2
+
+LPA: 
+  description: "Loss of power alarming."
+  is_abstract: true
+  uses:
+  - lost_power_alarm

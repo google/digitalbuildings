@@ -13,25 +13,35 @@
 # limitations under the License.
 
 
-LT_SS:
-  description: "Standard light."
-  is_canonical: true
-  implements:
-  - LT
-  - SS
+########################
+### Canonical Types  ###
+########################
 
-LT_DC:
-  description: "Even more standaard light with dimming control."
-  is_canonical: true
-  implements:
-  - LT
-  - DC 
+# This document specific types for lighting system sensors (LS). These are used when sensors are not
+# tied directly to an individual luminaire and must be modeled as stand-alone devices.
 
-LT_DC_SC:
-  description: "Standard light with dimming control and scene control."
+LS_LPS:
+  description: "Lighting system photocell sensor."
   is_canonical: true
   implements:
-  - LT
-  - DC 
-  - SC
+  - LS
+  uses:
+  - illuminance_sensor
+
+LS_LMS:
+  description: "Lighting system motion sensor."
+  is_canonical: true
+  implements:
+  - LS
+  - MS
+
+
+LS_MTS:
+  description: "Lighting multi-sensor, for temperature and brightness."
+  is_canonical: true
+  implements:
+  - LS
+  uses:
+  - illuminance_sensor
+  - zone_air_temperature_sensor
 

@@ -1,0 +1,7 @@
+SS:
+  description: "Basic combination of run command and status (start/stop) for an arbitrary device."
+  is_abstract: true
+  uses:
+  - run_command
+  - run_status
+

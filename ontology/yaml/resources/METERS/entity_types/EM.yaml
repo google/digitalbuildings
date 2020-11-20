@@ -12,6 +12,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+EM_ION:
+  id: "7398207611197194240"
+  description: "The typical ION meter (Bay Area standard)."
+  implements:
+  - EM_PWM_AVCM_PLPM_PVCM
+
 EM_PWM:
   description: "Power meter with basic power monitoring."
   is_canonical: true
@@ -36,8 +42,8 @@ EM_PWM_AVCM_PVCM:
   - AVCM
   - PVCM
 
-EM_PWM_AVCM_PLPM_PVCM: # TODO: should rename to standard convention. 
-  description: "Meter with phase level monitoring and averaging for voltage, current, and power."
+EM_PWM_AVCM_PLPM_PVCM: 
+  description: "The typical ION meter (Bay Area standard)."
   is_canonical: true
   implements:
   - EM
@@ -47,12 +53,3 @@ EM_PWM_AVCM_PLPM_PVCM: # TODO: should rename to standard convention.
   - PVCM
 
 
-#############################
-### Non-Canonical Devices ###
-#############################
-
-EM_ION: 
-  id: "7398207611197194240"
-  description: "The typical ION meter (Bay Area standard)."
-  implements:
-  - EM_PWM_AVCM_PLPM_PVCM
