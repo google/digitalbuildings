@@ -698,7 +698,11 @@ literals:
 # New fields for lighting and fire systems.
 - motion_status
 - scene_command
-- battery_power_status
+- battery_charge_status:
+  - CHARGING
+  - DISCHARGING
+  - STANDBY
+- battery_charge_percentage_sensor
 - brightness_percentage_command
 
 # New fields for emergency systems

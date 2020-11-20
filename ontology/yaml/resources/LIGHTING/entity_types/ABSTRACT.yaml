@@ -48,7 +48,7 @@ BM:
   description: " Battery power status monitoring."
   is_abstract: true
   uses:
-  - battery_power_status
+  - battery_charge_status
 
 
 

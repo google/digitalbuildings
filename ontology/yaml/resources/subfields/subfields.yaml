@@ -192,6 +192,7 @@ measurement_descriptor:
   absolute: "Quality of media with respect to non-relativistic boudaries (e.g. absolute temperature)."
   apparent: "The combination of reactive and real components (power)."
   brightness: "Giving out or reflecting light; overall level of light in a space."
+  charge: "The state of power storage (e.g. charged, not charged, discharged, etc.)"
   closed: "Indicates full closed (for two-position actuators)"
   deadband: "Represents a range in which the controller does not do anything."
   dewpoint: "The thermodynamic point at which water condenses from standing air."

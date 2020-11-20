@@ -20,27 +20,27 @@
 # This document specific types for lighting system sensors (LS). These are used when sensors are not
 # tied directly to an individual luminaire and must be modeled as stand-alone devices.
 
-LPS:
+LS_LPS:
   description: "Lighting system photocell sensor."
   is_canonical: true
   implements:
-  - SENSOR
+  - LS
   uses:
   - illuminance_sensor
 
-LMS:
+LS_LMS:
   description: "Lighting system motion sensor."
   is_canonical: true
   implements:
-  - SENSOR
-  uses:
-  - motion_status
+  - LS
+  - MS
 
-MTS:
+
+LS_MTS:
   description: "Lighting multi-sensor, for temperature and brightness."
   is_canonical: true
   implements:
-  - SENSOR
+  - LS
   uses:
   - illuminance_sensor
   - zone_air_temperature_sensor

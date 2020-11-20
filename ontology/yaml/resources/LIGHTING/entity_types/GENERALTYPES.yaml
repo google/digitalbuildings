@@ -37,7 +37,7 @@ LKP:
   - EQUIPMENT
   - USER_INTERFACE
 
-LTB: # May need to add to BOS naming standard
+LTB: # TODO: inherit from common device when a concrete example emerges.
   description: "Battery that serves lighting devices. "
   is_abstract: true
   implements:
@@ -46,4 +46,10 @@ LTB: # May need to add to BOS naming standard
 LGRP:
   is_abstract: true
   description: "A group containing one or more luminaires."
+
+LS:
+  is_abstract: true
+  description: "Lighting system specific sensor."
+  implement:
+  - SENSOR
 
