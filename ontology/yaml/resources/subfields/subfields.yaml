@@ -95,6 +95,7 @@ descriptor:
   id: "An identification or identifier."
   inlet: "Area of media entrance."
   input: "The input to a system."
+  inter: "Represents something in between references (e.g. average_inter_line_voltage, the average voltage between lines)."
   isolation: "Process of isolating one component or process from another."
   leak : "Media leaving the system abnormally."
   leaving: "Area where media leaves process."

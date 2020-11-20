@@ -31,7 +31,7 @@ AVCM:
   description: "Average phase (line) level voltage and current monitoring. "
   is_abstract: true
   uses:
-  - average_line_voltage_sensor # Line to line
+  - average_inter_line_voltage_sensor # Line to line
   - average_line_neutral_voltage_sensor
   - average_line_current_sensor
 

@@ -463,7 +463,7 @@ literals:
 - energy_accumulator
 - average_line_current_sensor
 - average_line_neutral_voltage_sensor
-- average_line_voltage_sensor
+- average_inter_line_voltage_sensor
 - phase1_line_current_sensor
 - phase1_neutral_line_voltage_sensor
 - phase1_phase2_line_voltage_sensor
@@ -716,7 +716,10 @@ literals:
 - position_status
 - condensing_water_valve_percentage_sensor
 - entering_cooling_coil_temperature_sensor
-- mixed_outside_air_temperature_sensor # We should not use this... represents scavenged outside air from the  
+
+ # We should not use this... represents scavenged outside air from near some heat pumps...
+- mixed_outside_air_temperature_sensor
+
 - discharge_fan_lost_power_alarm:
   - ACTIVE
   - INACTIVE
