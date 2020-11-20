@@ -24,8 +24,10 @@ It saves time and provides more accuracy than manual error checks."""
 
 from __future__ import print_function
 
+import sys
+
 from validate import handler
 
 if __name__ == '__main__':
-  handler = handler.ValidationHelper()
+  handler = handler.ValidationHelper(sys.argv[1:])
   handler.Validate()

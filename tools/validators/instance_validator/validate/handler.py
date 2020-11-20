@@ -69,9 +69,9 @@ def deserialize(yaml_file, universe):
 class ValidationHelper(object):
   """A validation helper to coordiante the various steps of the validation."""
 
-  def __init__(self):
+  def __init__(self, args):
     super().__init__()
-    self._PrepareArgs()
+    self._ParseArgs(args)
 
   def Validate(self):
     universe = self.GenerateUniverse(self.args.modified_types_filepath)
@@ -114,8 +114,9 @@ class ValidationHelper(object):
         building_found = True
 
     if not building_found:
-      print('Building Config must contain on entity with a building type')
-      sys.exit(0)
+      print('Building Config must contain an entity with a building type')
+      raise SyntaxError('Building Config must contain an '
+                        'entity with a building type')
     print('Entities Validated !')
 
 
@@ -136,7 +137,7 @@ class ValidationHelper(object):
       sub.Listen(validator.ValidateMessage)
 
 
-  def _PrepareArgs(self):
+  def _ParseArgs(self, args):
     """Prepares the arguments for the user input."""
     parser = argparse.ArgumentParser(
         description='Validate a YAML building configuration file')
@@ -177,7 +178,7 @@ class ValidationHelper(object):
         help='Timeout duration (in seconds) for telemetry validation test',
         metavar='timeout')
 
-    self.args = parser.parse_args()
+    self.args = parser.parse_args(args)
     self.filename = self.args.filename
 
     self.subscription = self.args.subscription
