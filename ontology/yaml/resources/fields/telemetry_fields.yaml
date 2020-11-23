@@ -739,3 +739,12 @@ literals:
 - phase2_apparent_power_sensor
 - phase3_apparent_power_sensor
 
+# Added for UK-LON-S2
+- device_mode:
+  - OFF
+  - AUTO
+  - HAND
+- zone_air_voc_percentage_setpoint
+- zone_air_voc_percentage_sensor
+
+

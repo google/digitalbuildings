@@ -46,6 +46,13 @@ DMP_SDBPC:
   - DMP
   - SDBPC
 
+DMP_SDBPC_DMM:
+  description: "Back-pressure modulating damper (for pressure control of an AHU)."
+  is_canonical: true
+  implements:
+  - DMP
+  - SDBPC
+  - DMM
 
 
 ###################################

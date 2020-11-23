@@ -581,7 +581,122 @@ FCU_DFSS_DFVSC_ZTC_CHWZTC:
   - ZTC
   - CHWZTC
 
+FCU_DFSS_DFVSC_ZTC_ZHC_CHWDC_FDPM_DMM:
+  description: "Hydronic varaible speed fan coil with cooling and heating (zone temp control)."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - DFVSC
+  - ZTC
+  - ZHC
+  - CHWDC
+  - FDPM
+  - DMM
 
+FCU_DFSS_DFVSC_ZTC_ZHC_CHWDC_HWDC_FDPM_DMM:
+  description: "Hydronic varaible speed fan coil with cooling and heating (zone temp control)."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - DFVSC
+  - ZTC
+  - ZHC
+  - CHWDC
+  - HWDC
+  - FDPM
+  - DMM
+
+FCU_DFSS_DFVSC_ZTC_CHWDC_HWDC_FDPM_DMM:
+  description: "Hydronic varaible speed fan coil with cooling and heating (zone temp control)."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - DFVSC
+  - ZTC
+  - CHWDC
+  - HWDC
+  - FDPM
+  - DMM
+
+FCU_DFSS_DFVSC_ZTC_CHWZTC_HWZTC_FDPM_DMM:
+  description: "Hydronic varaible speed fan coil with cooling and heating (zone temp control)."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - DFVSC
+  - ZTC
+  - CHWZTC
+  - HWZTC
+  - FDPM
+  - DMM
+
+FCU_DFSS_DFVSC_ZTC_CHWZTC_HWZTC_FDPM_CO2M_DMM:
+  description: "Hydronic varaible speed fan coil with cooling and heating (zone temp control)."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - DFVSC
+  - ZTC
+  - CHWZTC
+  - HWZTC
+  - FDPM
+  - CO2M
+  - DMM
+
+FCU_DFSS_DFVSC_ZTC_CHWZTC_FDPM_DMM:
+  description: "Hydronic varaible speed fan coil with cooling and heating (zone temp control)."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - DFVSC
+  - ZTC
+  - CHWZTC
+  - FDPM
+  - DMM
+
+FCU_DFSS_DFVSC_ZTC_CHWZTC_FDPM_CO2M_DMM:
+  description: "Hydronic varaible speed fan coil with cooling and heating (zone temp control)."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - DFVSC
+  - ZTC
+  - CHWZTC
+  - FDPM
+  - CO2M
+  - DMM
+
+FCU_DFSS_DFVSC_RTC_CHWRC_HWRC_FDPM_DMM:
+  description: "Hydronic variable speed fan coil with cooling (return control)."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - DFVSC
+  - RTC
+  - CHWRC
+  - HWRC
+  - FDPM
+  - DMM
+
+FCU_DFSS_DFVSC_RTC_CHWRC_FDPM_DMM:
+  description: "Hydronic variable speed fan coil with cooling (return control)."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - DFVSC
+  - RTC
+  - CHWRC
+  - FDPM
+  - DMM
 
 
 
