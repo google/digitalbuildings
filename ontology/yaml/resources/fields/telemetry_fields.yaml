@@ -743,7 +743,7 @@ literals:
 - device_mode:
   - OFF
   - AUTO
-  - HAND
+  - MANUAL
 - zone_air_voc_percentage_setpoint
 - zone_air_voc_percentage_sensor
 
