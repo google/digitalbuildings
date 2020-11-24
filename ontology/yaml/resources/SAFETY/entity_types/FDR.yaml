@@ -17,6 +17,4 @@ FDR_STD:
   is_canonical: true
   implements:
   - FDR
-  uses:
-  - position_status
-  - emergency_release_status
+  - DOOR_EMER
