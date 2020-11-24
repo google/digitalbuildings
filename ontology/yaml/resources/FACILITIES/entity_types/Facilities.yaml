@@ -34,6 +34,6 @@ DOOR_STD:
   description: "Typical door."
   is_canonical: true
   implements:
-  - FACILITIES/DOOR
+  - DOOR
   uses:
   - position_status
