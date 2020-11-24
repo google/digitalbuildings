@@ -25,3 +25,15 @@ FLOOR:
 BUILDING:
   id: "15204152342002794496"
   description: "This is a type for BUILDING facilities object"
+
+DOOR:
+  id: "13631635897198837760"
+  description: "A physical door"
+
+DOOR_STD:
+  description: "Typical door."
+  is_canonical: true
+  implements:
+  - FACILITIES/DOOR
+  uses:
+  - position_status
