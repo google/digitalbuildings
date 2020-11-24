@@ -12,6 +12,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+DOOR_EMER:
+  description: "A door with position and emergency release monitoring."
+  is_canonical: true
+  implements:
+  - FACILITIES/DOOR
+  uses:
+  - position_status
+  - emergency_release_status
+
 FDR_STD:
   description: "Typical fire door."
   is_canonical: true
