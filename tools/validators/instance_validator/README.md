@@ -19,7 +19,7 @@ Note: as of the current development stage, you must clone the entire repository 
 
 ### Telemetry validation
 
-The validator supports a telemetry validation mode. When this mode is enabled, the validator will listen on a provided pubsub subscription for telemetry messages, and validate the message contents against the instance configuration.
+The validator supports a telemetry validation mode. When this mode is enabled, the validator will listen on a provided pubsub subscription for telemetry messages, and validate the message contents against the instance configuration. It is recommended that you first use the instance validator with telemetry validation mode disabled, and then enable it after that passes.
 
 If you would like to use the telemetry validation mode, you must provide the "--subscription" and "--service-account" parameters when running instance_validator.py. Failure to provide both of these parameters will result in early termination of the validator and an error message. If you do not provide either parameter, the validator will run with telemetry validation mode disabled.
 
