@@ -129,7 +129,10 @@ class ValidationHelper(object):
     """Callback when the telemetry validator finishes.
 
     This could be called due to a timeout or because telemetry messages were
-    received and validated for every expected entity."""
+    received and validated for every expected entity.
+
+    Args:
+      validator: the telemetry validator that triggered the callback."""
 
     report = ''
 
