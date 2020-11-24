@@ -54,6 +54,7 @@ FDR:
   description: "Fire door."
   is_abstract: true
   implements:
+  - PHYSICAL_SECURITY/DOOR  #TODO migrate door to new namespace 
   - EQUIPMENT
   - PHYSICAL_SECURITY/DOOR
 
