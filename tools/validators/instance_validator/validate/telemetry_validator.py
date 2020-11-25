@@ -53,6 +53,10 @@ class TelemetryValidator(object):
     """Returns true if a message was received for every entity."""
     return len(self.entities) == len(self.validated_entities)
 
+  def GetUnvalidatedEntities(self):
+    """Returns a set of entities that have not been validated."""
+    return set(self.entities.keys()) - set(self.validated_entities.keys())
+
   def CallbackIfCompleted(self):
     """Checks if all entities have been validated, and calls the callback."""
     if self.AllEntitiesValidated():
@@ -61,6 +65,10 @@ class TelemetryValidator(object):
   def AddError(self, error):
     """Adds a validation error."""
     self.validation_errors.append(error)
+
+  def GetErrors(self):
+    """Returns all validation errors."""
+    return self.validation_errors
 
   def ValidateMessage(self, message):
     """Validates a telemetry message.

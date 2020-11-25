@@ -28,18 +28,6 @@ from validate import telemetry_validator
 
 DEFAULT_TIMEOUT = 600
 
-def telemetry_validation_callback(v):
-  """Callback when the telemetry validator finishes.
-
-  This could be called due to a timeout or because telemetry messages were
-  received and validated for each entity."""
-
-  # TODO: rename the parameter to this function after refactoring so the
-  #   above variables aren't in global scope
-  # TODO: check if all entities were validated, and print any errors
-  print(v.AllEntitiesValidated())
-  sys.exit(0)
-
 
 def deserialize(yaml_file, universe):
   """Parses a yaml configuration file and deserialize it.
@@ -67,7 +55,7 @@ def deserialize(yaml_file, universe):
 
 
 class ValidationHelper(object):
-  """A validation helper to coordiante the various steps of the validation."""
+  """A validation helper to coordinate the various steps of the validation."""
 
   def __init__(self, args):
     super().__init__()
@@ -132,9 +120,41 @@ class ValidationHelper(object):
       print('Connecting to pubsub subscription: ', subscription)
       sub = subscriber.Subscriber(subscription, service_account_file)
       validator = telemetry_validator.TelemetryValidator(
-          parsed_entities, self.timeout, telemetry_validation_callback)
+          parsed_entities, self.timeout, self.TelemetryValidationCallback)
       validator.StartTimer()
       sub.Listen(validator.ValidateMessage)
+
+
+  def TelemetryValidationCallback(self, validator):
+    """Callback when the telemetry validator finishes.
+
+    This could be called due to a timeout or because telemetry messages were
+    received and validated for every expected entity.
+
+    Args:
+      validator: the telemetry validator that triggered the callback."""
+
+    report = ''
+
+    if not validator.AllEntitiesValidated():
+      report += 'No telemetry message was received for the following entities:'
+      report += '\n'
+      for entity_name in validator.GetUnvalidatedEntities():
+        report += '  ' + entity_name + '\n'
+
+    report += '\nTelemetry validation errors:\n'
+    for error in validator.GetErrors():
+      report += error.GetPrintableMessage()
+
+    if self.report_filename:
+      f = open(self.report_filename, 'w')
+      f.write(report)
+      f.close()
+    else:
+      print('\n')
+      print(report)
+
+    sys.exit(0)
 
 
   def _ParseArgs(self, args):
@@ -178,12 +198,21 @@ class ValidationHelper(object):
         help='Timeout duration (in seconds) for telemetry validation test',
         metavar='timeout')
 
+    parser.add_argument(
+        '-r', '--report-filename',
+        dest = 'report_filename',
+        required = False,
+        default = None,
+        help = 'Filename for the validation report',
+        metavar = 'report-filename')
+
     self.args = parser.parse_args(args)
     self.filename = self.args.filename
 
     self.subscription = self.args.subscription
     self.service_account = self.args.service_account
     self.timeout = self.args.timeout
+    self.report_filename = self.args.report_filename
 
     self.pubsub_validation_set = False
     if self.subscription is not None and self.args.service_account is not None:
