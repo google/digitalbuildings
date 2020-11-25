@@ -35,3 +35,12 @@ class TelemetryError(object):
     return (self.entity == other.entity and
             self.point == other.point and
             self.message == other.message)
+
+  def GetPrintableMessage(self):
+    """Returns a human-readable message that explains this error."""
+
+    msg = "Error for entity [" + self.entity + "]"
+    if self.point:
+      msg += ", point [" + self.point + "]"
+    msg += ": " + self.message
+    return msg
