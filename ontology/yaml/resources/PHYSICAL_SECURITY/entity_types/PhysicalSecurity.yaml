@@ -20,15 +20,11 @@ MULTI_IMAGER_CAMERA:
   id: "1591862626772582400"
   description: "A physical security camera with multiple imagers for a wide view"
 
-DOOR:
-  id: "13631635897198837760"
-  description: "A physical door"
-
 SECURE_DOOR:
   id: "17470332255950864384"
   description: "A physical door that has an associated RTE, Door Strike, and Badge Reader"
   implements:
-  - DOOR
+  - FACILITIES/DOOR
 
 REQUEST_TO_EXIT:
   id: "3274986230479060992"
@@ -50,7 +46,7 @@ DOOR_STD:
   description: "Typical door."
   is_canonical: true
   implements:
-  - DOOR
+  - FACILITIES/DOOR
   uses:
   - position_status
 
@@ -58,7 +54,7 @@ DOOR_EMER:
   description: "A door with position and emergency release monitoring."
   is_canonical: true
   implements:
-  - DOOR
+  - FACILITIES/DOOR
   uses:
   - position_status
   - emergency_release_status
