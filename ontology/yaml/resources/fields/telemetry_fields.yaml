@@ -334,7 +334,6 @@ literals:
 # Alarms updated to convert the alarm subfield to a point type from measurement descriptor.
 
 - run_mode:
-  - AUTO
   - COMMISSIONING
   - FLUSHING
   - HEATING
