@@ -272,8 +272,8 @@ FAN_US_PAO_HV5_1:
   description: "Non-standard type for HV5"
   implements:
   - FAN_SS_VSC_BSPC
-  uses:
-  - exhaust_air_damper_percentage_command
+  uses: # Should model as a separate device, not on this fan.
+  - exhaust_air_damper_percentage_command 
   - exhaust_air_static_pressure_sensor
   - exhaust_air_static_pressure_setpoint
 
@@ -282,7 +282,7 @@ FAN_US_PAO_HV5_3:
   description: "Non-standard type for HV5"
   implements:
   - FAN_SS_VSC_BSPC
-  uses:
+  uses: # Should model as a separate device, not on this fan.
   - exhaust_air_damper_percentage_command_1
   - exhaust_air_damper_percentage_command_2
   - exhaust_air_damper_percentage_command_3
@@ -294,7 +294,7 @@ FAN_US_PAO_HV5_8:
   description: "Non-standard type for HV5 EFs"
   implements:
   - FAN_SS_VSC
-  uses:
+  uses: # Should model as a separate device, not on this fan.
   - exhaust_air_damper_percentage_command
   - exhaust_air_static_pressure_sensor
   - exhaust_air_static_pressure_setpoint
@@ -409,11 +409,8 @@ FAN_US_SVL_MP5_5:
   id: "425104867841802240"
   description: "Non-standard type for MP5"
   implements:
-  - FAN_SS
+  - FAN_SS_ZTM
   - INCOMPLETE
-  uses:
-  - discharge_air_temperature_sensor
-  - zone_air_temperature_sensor
 
 FAN_US_SVL_MP7_2:
   id: "2357149107983745024"

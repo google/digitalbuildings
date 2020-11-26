@@ -340,6 +340,9 @@ literals:
   - HEATING
   - COOLING
   - NEUTRAL
+  - OFF
+  - AUTO
+  - MANUAL
 - dial_resistance_sensor
 - zone_occupancy_status:
   - OCCUPIED
@@ -740,10 +743,7 @@ literals:
 - phase3_apparent_power_sensor
 
 # Added for UK-LON-S2
-- device_mode:
-  - OFF
-  - AUTO
-  - MANUAL
+
 - zone_air_voc_percentage_setpoint
 - zone_air_voc_percentage_sensor
 

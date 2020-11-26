@@ -3066,7 +3066,7 @@ SDBPC:
   - MONITORING
 
 HWVM:
-  description: "Heating water valve monitoring on discharge side."
+  description: "Heating water valve command and position monitoring (without regard to what controls it)."
   is_abstract: true
   opt_uses:
   - heating_thermal_power_capacity
@@ -3078,7 +3078,7 @@ HWVM:
   - OPERATIONAL
 
 CHWVM:
-  description: "Chilled water valve monitoring on discharge side."
+  description: "Chilled water valve command and position monitoring (without regard to what controls it)."
   is_abstract: true
   opt_uses:
   - cooling_thermal_power_capacity
@@ -3089,9 +3089,11 @@ CHWVM:
   implements:
   - OPERATIONAL
 
-DMM:
-  description: "Device mode monitoring."
+RMM:
+  description: "Run mode monitoring."
   is_abstract: true
   uses:
-  - device_mode
+  - run_mode
+
+
 

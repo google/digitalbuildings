@@ -300,9 +300,6 @@ CH_US_MTV_41_1:
   implements:
   - CH_SS_SWTC_DX4SWC_SWISOVPM
   - INCOMPLETE
-  uses:
-  - supply_water_isolation_valve_percentage_command
-  - supply_water_isolation_valve_percentage_sensor
 
 CH_US_SBO_900_1:
   id: "17436484890001408000"

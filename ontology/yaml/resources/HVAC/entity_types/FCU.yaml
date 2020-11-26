@@ -568,7 +568,7 @@ FCU_DFSS_RTC_CHWRC_RHC:
   - RHC
 
 FCU_DFSS_DFVSC_ZTC_CHWZTC:
-  description: "Hydronic varaible speed fan coil with cooling and heating (zone temp control)."
+  description: "Hydronic variable speed fan coil with cooling and heating (zone temp control)."
   is_canonical: true
   opt_uses:
   - discharge_air_static_pressure_sensor
@@ -581,8 +581,8 @@ FCU_DFSS_DFVSC_ZTC_CHWZTC:
   - ZTC
   - CHWZTC
 
-FCU_DFSS_DFVSC_ZTC_ZHC_CHWDC_FDPM_DMM:
-  description: "Hydronic varaible speed fan coil with cooling and heating (zone temp control)."
+FCU_DFSS_DFVSC_ZTC_ZHC_CHWDC_FDPM_RMM:
+  description: "Hydronic variable speed fan coil with cooling (zone temp control)."
   is_canonical: true
   implements:
   - FCU
@@ -592,10 +592,10 @@ FCU_DFSS_DFVSC_ZTC_ZHC_CHWDC_FDPM_DMM:
   - ZHC
   - CHWDC
   - FDPM
-  - DMM
+  - RMM
 
-FCU_DFSS_DFVSC_ZTC_ZHC_CHWDC_HWDC_FDPM_DMM:
-  description: "Hydronic varaible speed fan coil with cooling and heating (zone temp control)."
+FCU_DFSS_DFVSC_ZTC_ZHC_CHWDC_HWDC_FDPM_RMM:
+  description: "Hydronic variable speed fan coil with cooling and heating (zone temp and humidity control)."
   is_canonical: true
   implements:
   - FCU
@@ -606,10 +606,10 @@ FCU_DFSS_DFVSC_ZTC_ZHC_CHWDC_HWDC_FDPM_DMM:
   - CHWDC
   - HWDC
   - FDPM
-  - DMM
+  - RMM
 
-FCU_DFSS_DFVSC_ZTC_CHWDC_HWDC_FDPM_DMM:
-  description: "Hydronic varaible speed fan coil with cooling and heating (zone temp control)."
+FCU_DFSS_DFVSC_ZTC_CHWDC_HWDC_FDPM_RMM:
+  description: "Hydronic variable speed fan coil with cooling and heating (discharge temp control)."
   is_canonical: true
   implements:
   - FCU
@@ -619,10 +619,10 @@ FCU_DFSS_DFVSC_ZTC_CHWDC_HWDC_FDPM_DMM:
   - CHWDC
   - HWDC
   - FDPM
-  - DMM
+  - RMM
 
-FCU_DFSS_DFVSC_ZTC_CHWZTC_HWZTC_FDPM_DMM:
-  description: "Hydronic varaible speed fan coil with cooling and heating (zone temp control)."
+FCU_DFSS_DFVSC_ZTC_CHWZTC_HWZTC_FDPM_RMM:
+  description: "Hydronic variable speed fan coil with cooling and heating (zone temp control)."
   is_canonical: true
   implements:
   - FCU
@@ -632,10 +632,10 @@ FCU_DFSS_DFVSC_ZTC_CHWZTC_HWZTC_FDPM_DMM:
   - CHWZTC
   - HWZTC
   - FDPM
-  - DMM
+  - RMM
 
-FCU_DFSS_DFVSC_ZTC_CHWZTC_HWZTC_FDPM_CO2M_DMM:
-  description: "Hydronic varaible speed fan coil with cooling and heating (zone temp control)."
+FCU_DFSS_DFVSC_ZTC_CHWZTC_HWZTC_FDPM_CO2M_RMM:
+  description: "Hydronic variable speed fan coil with cooling and heating (zone temp and co2 control)."
   is_canonical: true
   implements:
   - FCU
@@ -646,10 +646,10 @@ FCU_DFSS_DFVSC_ZTC_CHWZTC_HWZTC_FDPM_CO2M_DMM:
   - HWZTC
   - FDPM
   - CO2M
-  - DMM
+  - RMM
 
-FCU_DFSS_DFVSC_ZTC_CHWZTC_FDPM_DMM:
-  description: "Hydronic varaible speed fan coil with cooling and heating (zone temp control)."
+FCU_DFSS_DFVSC_ZTC_CHWZTC_FDPM_RMM:
+  description: "Hydronic varaible speed fan coil with cooling (zone temp control)."
   is_canonical: true
   implements:
   - FCU
@@ -658,10 +658,10 @@ FCU_DFSS_DFVSC_ZTC_CHWZTC_FDPM_DMM:
   - ZTC
   - CHWZTC
   - FDPM
-  - DMM
+  - RMM
 
-FCU_DFSS_DFVSC_ZTC_CHWZTC_FDPM_CO2M_DMM:
-  description: "Hydronic varaible speed fan coil with cooling and heating (zone temp control)."
+FCU_DFSS_DFVSC_ZTC_CHWZTC_FDPM_CO2M_RMM:
+  description: "Hydronic variable speed fan coil with cooling and heating (zone temp control)."
   is_canonical: true
   implements:
   - FCU
@@ -671,10 +671,10 @@ FCU_DFSS_DFVSC_ZTC_CHWZTC_FDPM_CO2M_DMM:
   - CHWZTC
   - FDPM
   - CO2M
-  - DMM
+  - RMM
 
-FCU_DFSS_DFVSC_RTC_CHWRC_HWRC_FDPM_DMM:
-  description: "Hydronic variable speed fan coil with cooling (return control)."
+FCU_DFSS_DFVSC_RTC_CHWRC_HWRC_FDPM_RMM:
+  description: "Hydronic variable speed fan coil with heating and cooling (return control)."
   is_canonical: true
   implements:
   - FCU
@@ -684,9 +684,9 @@ FCU_DFSS_DFVSC_RTC_CHWRC_HWRC_FDPM_DMM:
   - CHWRC
   - HWRC
   - FDPM
-  - DMM
+  - RMM
 
-FCU_DFSS_DFVSC_RTC_CHWRC_FDPM_DMM:
+FCU_DFSS_DFVSC_RTC_CHWRC_FDPM_RMM:
   description: "Hydronic variable speed fan coil with cooling (return control)."
   is_canonical: true
   implements:
@@ -696,7 +696,7 @@ FCU_DFSS_DFVSC_RTC_CHWRC_FDPM_DMM:
   - RTC
   - CHWRC
   - FDPM
-  - DMM
+  - RMM
 
 
 

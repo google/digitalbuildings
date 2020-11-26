@@ -329,7 +329,7 @@ VAV_PDSCV_VOCC_ZHM_CO2C:
   - ZHM
   - CO2C
 
-VAV_PDSCV_CO2C_VOCPC_ZHM_DMM:
+VAV_PDSCV_CO2C_VOCPC_ZHM_RMM:
   description: "Zone air property sensor (humidity, temperature, CO2 level)."
   is_canonical: true
   implements:
@@ -338,15 +338,15 @@ VAV_PDSCV_CO2C_VOCPC_ZHM_DMM:
   - CO2C
   - VOCPC
   - ZHM
-  - DMM
+  - RMM
 
-VAV_ED_DMM:
+VAV_ED_RMM:
   description: "Exhaust control VAV."
   is_canonical: true
   implements:
   - VAV
   - ED
-  - DMM
+  - RMM
 
 ###################################
 ### Existing Non-standard Types ###
