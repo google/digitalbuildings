@@ -34,7 +34,7 @@ This project is structured as following:
 ## Issues
 Please post issues in [Issues](https://github.com/google/digitalbuildings/issues) section.
 
-## Discussion 
+## Discussion
 Open mailing list to discuss Google's Digital Building effort. Discussion could include general questions, standards, APIs, and more. [google-digital-building-discuss@googlegroups.com](mailto:google-digital-building-discuss@googlegroups.com)
 
 Members are expected to adhere to this code of conduct: [https://opensource.google.com/conduct](https://opensource.google.com/conduct)

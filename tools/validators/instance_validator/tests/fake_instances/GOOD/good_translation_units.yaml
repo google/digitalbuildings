@@ -12,6 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# Test entity with numeric points.
+
 CHWS_WDT-17:
   type: HVAC/CHWS_WDT
   id: CDM/123456

@@ -55,7 +55,7 @@ FDR:
   is_abstract: true
   implements:
   - EQUIPMENT
-  - PHYSICAL_SECURITY/DOOR
+  - FACILITIES/DOOR
 
 FAS:
   description: "Fire alarm system"
