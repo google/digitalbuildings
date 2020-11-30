@@ -5124,7 +5124,6 @@ HXMEC:
   - leaving_air_heat_exchange_dewpoint_temperature_sensor
   - outside_air_temperature_setpoint
   uses:
-  - heat_exchange_bypass_damper_command
   - inlet_air_heat_exchange_enthalpy_sensor
   - leaving_air_heat_exchange_enthalpy_sensor
   implements:
@@ -5358,3 +5357,17 @@ OCO2X4M:
   - outside_air_co2_concentration_sensor_4
   implements:
   - MONITORING
+
+SISODC:
+  id: "77b80515-3146-430b-87b7-8821214a2d41"
+  description: "Supply isolation damper control with alarms."
+  is_abstract: true
+  opt_uses:
+  - supply_air_damper_override_percentage_status
+  - supply_air_damper_alarm_status
+  uses:
+  - supply_air_damper_percentage_command
+  - supply_air_damper_percentage_sensor
+  implements:
+  - CONTROL
+

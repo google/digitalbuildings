@@ -423,7 +423,7 @@ FAN_US_SVL_MP7_2:
   uses:
   - dishwasher_run_status
 
-# FAN-1 at S2
+# FAN-1, FAN-3 & FAN-4 at S2
 FAN_EFSS_EFVSC_HOA_DARC:
   id: "99a8f44f-b1ed-4da3-b3f0-421f227f56c1"
   description: "Exhaust fan with start/stop status, alarm monitoring and variable speed control. Hand/Off/Auto operation is provided and there are also latching alarms which can be reset with a command."
@@ -461,16 +461,3 @@ FAN_EFSS_EFVSC_HOA_DARC_FAM:
   - HOA
   - DARC
   - FAM
-
-# FAN-3 & FAN-4 at S2
-FAN_EFSS_EFVSC_ISODC_HOA_DARC:
-  id: "20ed5862-b33f-4256-a6e9-6d76790c96e8"
-  description: "Exhaust fan with start/stop status, alarm monitoring and variable speed control. Isolation damper control. Hand/Off/Auto operation is provided and there are also latching alarms which can be reset with a command."
-  is_canonical: true
-  implements:
-  - FAN
-  - EFSS
-  - EFVSC
-  - ISODC
-  - HOA
-  - DARC
