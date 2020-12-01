@@ -25,8 +25,8 @@ If you would like to use the telemetry validation mode, you must provide the "--
 
 The --subscription parameter value should be a fully-qualified path to a Google Cloud Pubsub subscription, e.g. projects/google.com:your-project/subscriptions/your-subscription.
 
-The --service-account parameter value should be a JSON file corresponding to a service account that has permission to pull messages from the subscription.
-To download the service account please follow the instructions provided [here](https://cloud.google.com/iam/docs/creating-managing-service-account-keys#creating_service_account_keys)
+The --service-account parameter value should be a path to a service account key file corresponding to an account that has permission to pull messages from the subscription.
+To download the service account key, please follow the instructions provided [here](https://cloud.google.com/iam/docs/creating-managing-service-account-keys#creating_service_account_keys)
 
 Optional parameter for the telemetry validation mode are:
 
