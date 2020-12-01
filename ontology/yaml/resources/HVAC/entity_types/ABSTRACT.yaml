@@ -398,6 +398,7 @@ DFSS:
   - discharge_fan_power_capacity
   - discharge_fan_current_sensor
   - discharge_fan_power_sensor
+  - discharge_air_static_pressure_sensor
   uses:
   - discharge_fan_run_command
   - discharge_fan_run_status
@@ -642,6 +643,9 @@ ED:
   id: "8438952541491822592"
   description: "Exhaust air flow control."
   is_abstract: true
+  opt_uses:
+  - exhaust_air_damper_percentage_sensor
+  - exhaust_air_static_pressure_sensor
   uses:
   - exhaust_air_flowrate_setpoint
   - exhaust_air_flowrate_sensor
@@ -832,6 +836,15 @@ VOCC:
   implements:
   - OPERATIONAL
 
+VOCPC:
+  description: "Volatile organic compound percentage control."
+  is_abstract: true
+  uses:
+  - zone_air_voc_percentage_setpoint
+  - zone_air_voc_percentage_sensor
+  implements:
+  - OPERATIONAL
+
 BFSS:
   id: "11321256303008940032"
   description: "Booster fan start-stop and feedback."
@@ -971,6 +984,8 @@ CHWDC:
   opt_uses:
   - leaving_cooling_coil_temperature_sensor
   - cooling_thermal_power_capacity
+  - chilled_water_valve_percentage_sensor
+  - chilled_water_flowrate_sensor
   uses:
   - discharge_air_temperature_sensor
   - discharge_air_temperature_setpoint
@@ -1031,6 +1046,8 @@ CHWRC:
   - leaving_cooling_coil_temperature_sensor
   - cooling_thermal_power_capacity
   - return_air_relative_humidity_sensor
+  - chilled_water_valve_percentage_sensor
+  - chilled_water_flowrate_sensor
   uses:
   - return_air_temperature_setpoint
   - return_air_temperature_sensor
@@ -1061,6 +1078,8 @@ CHWZTC:
   - discharge_air_temperature_sensor
   - leaving_cooling_coil_temperature_sensor
   - cooling_thermal_power_capacity
+  - chilled_water_flowrate_sensor
+  - chilled_water_valve_percentage_sensor
   uses:
   - zone_air_temperature_setpoint
   - zone_air_temperature_sensor
@@ -1613,10 +1632,26 @@ HWDC:
   - heating_water_valve_percentage_sensor
   - heating_thermal_power_capacity
   - discharge_air_relative_humidity_sensor
+  - heating_water_flowrate_sensor
   uses:
   - heating_water_valve_percentage_command
   - discharge_air_temperature_setpoint
   - discharge_air_temperature_sensor
+  implements:
+  - CONTROL
+
+HWRC:
+  description: "Heating water valve monitoring on discharge air side."
+  is_abstract: true
+  opt_uses:
+  - heating_water_valve_percentage_sensor
+  - heating_thermal_power_capacity
+  - discharge_air_relative_humidity_sensor
+  - heating_water_flowrate_sensor
+  uses:
+  - heating_water_valve_percentage_command
+  - return_air_temperature_setpoint
+  - return_air_temperature_sensor
   implements:
   - CONTROL
 
@@ -1657,6 +1692,7 @@ HWZTC:
   - discharge_air_temperature_sensor
   - heating_water_valve_percentage_sensor
   - heating_thermal_power_capacity
+  - heating_water_flowrate_sensor
   uses:
   - heating_water_valve_percentage_command
   - zone_air_temperature_setpoint
@@ -3028,3 +3064,36 @@ SDBPC:
   - supply_air_damper_percentage_sensor
   implements:
   - MONITORING
+
+HWVM:
+  description: "Heating water valve command and position monitoring (without regard to what controls it)."
+  is_abstract: true
+  opt_uses:
+  - heating_thermal_power_capacity
+  - heating_water_flowrate_sensor
+  uses:
+  - heating_water_valve_percentage_sensor
+  - heating_water_valve_percentage_command
+  implements:
+  - OPERATIONAL
+
+CHWVM:
+  description: "Chilled water valve command and position monitoring (without regard to what controls it)."
+  is_abstract: true
+  opt_uses:
+  - cooling_thermal_power_capacity
+  - chilled_water_flowrate_sensor
+  uses:
+  - chilled_water_valve_percentage_sensor
+  - chilled_water_valve_percentage_command
+  implements:
+  - OPERATIONAL
+
+RMM:
+  description: "Run mode monitoring."
+  is_abstract: true
+  uses:
+  - run_mode
+
+
+

@@ -2410,10 +2410,7 @@ AHU_US_MTV_1230_6:
   id: "9551667104894156800"
   description: "Non-standard type for 1230 ACs"
   implements:
-  - AHU_BSPC_DX2SC_ECON_EFSS_EFVSC_HTSC_SFSS_SFVSC_SSPC
-  - INCOMPLETE
-  uses:
-  - zone_air_temperature_sensor
+  - AHU_US_MTV_1250_15
 
 AHU_US_MTV_1250_12:
   id: "14240055054475198464"
@@ -2430,10 +2427,7 @@ AHU_US_MTV_1250_13:
   id: "3724149924565090304"
   description: "Non-standard type for 1250 ACs"
   implements:
-  - AHU_BSPC_DX2SC_ECON_EFSS_EFVSC_HTSC_SFSS_SFVSC_SSPC
-  - INCOMPLETE
-  uses:
-  - zone_air_temperature_sensor
+  - AHU_US_MTV_1250_15 # Deprecated
 
 AHU_US_MTV_1250_15:
   id: "5394985386319544320"
