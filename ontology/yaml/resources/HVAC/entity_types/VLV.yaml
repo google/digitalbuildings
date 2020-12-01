@@ -17,7 +17,7 @@
 ########################
 
 VLV_CHWVM_RTM_DTM:
-  description: "Hydronic varaible speed fan coil with cooling and heating (zone temp control)."
+  description: "Chilled water valve with DT monitoring."
   is_canonical: true
   implements:
   - VLV
@@ -26,7 +26,7 @@ VLV_CHWVM_RTM_DTM:
   - DTM
 
 VLV_HWVM: # If we want to keep this, should match CHW valve (i.e. add RTM and DTM)
-  description: "Hydronic varaible speed fan coil with cooling and heating (zone temp control)."
+  description: "Heating water valve."
   is_canonical: true
   implements:
   - VLV
