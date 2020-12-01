@@ -245,4 +245,9 @@ HUM:
   implements:
   - EQUIPMENT
 
+VLV:
+  description: "Tag for valves. Valves are devices which control the flow of water. "
+  is_abstract: true
+  implements:
+  - EQUIPMENT
 

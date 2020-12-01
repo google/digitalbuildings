@@ -334,12 +334,14 @@ literals:
 # Alarms updated to convert the alarm subfield to a point type from measurement descriptor.
 
 - run_mode:
-  - AUTO
   - COMMISSIONING
   - FLUSHING
   - HEATING
   - COOLING
   - NEUTRAL
+  - OFF
+  - AUTO
+  - MANUAL
 - dial_resistance_sensor
 - zone_occupancy_status:
   - OCCUPIED
@@ -738,4 +740,10 @@ literals:
 - phase1_apparent_power_sensor
 - phase2_apparent_power_sensor
 - phase3_apparent_power_sensor
+
+# Added for UK-LON-S2
+
+- zone_air_voc_percentage_setpoint
+- zone_air_voc_percentage_sensor
+
 
