@@ -233,9 +233,9 @@ class EntityTypeManager(findings_lib.Findings):
             parent_rollup[parent] = {typename: matching_parents[parent]}
 
         if incomplete_parent_matches:
-          finding = findings_lib.PossibleOverlappingFlexTypeChildWarning(
-              entity_type, best_incomplete_diff, incomplete_parent_matches)
-          entity_type.AddFinding(finding)
+       #  finding = findings_lib.PossibleOverlappingFlexTypeChildWarning(
+       #       entity_type, best_incomplete_diff, incomplete_parent_matches)
+       #   entity_type.AddFinding(finding)
        # TODO(charbull): rework this finding   
        #   findings.append(finding)
 
@@ -245,11 +245,11 @@ class EntityTypeManager(findings_lib.Findings):
 
       for parent in incomplete_parent_rollup:
         entity_type = self._GetTypeByName(parent)
-        finding = findings_lib.PossibleOverlappingFlexTypeParentWarning(
-            entity_type, incomplete_parent_rollup[parent])
-        entity_type.AddFinding(finding)
+       # finding = findings_lib.PossibleOverlappingFlexTypeParentWarning(
+        #    entity_type, incomplete_parent_rollup[parent])
+        # entity_type.AddFinding(finding)
         # TODO(charbull): rework this finding   
-       #   findings.append(finding)
+        #  findings.append(finding)
 
       for parent in parent_rollup:
         parent_type = self._GetTypeByName(parent)
