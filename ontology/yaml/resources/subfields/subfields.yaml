@@ -209,7 +209,7 @@ measurement_descriptor:
   offset: "The amount or distance by which something is out of line"
   open: "Indicates full open (for two-position actuators).  This is the default sense if unspecified"
   override: "An action that interrupts, cancels, or changes the current action or status."
-  position: "T particular way in which something is placed or arranged, such as a door in the open position."
+  position: "A particular way in which something is placed or arranged, such as a door in the open position."
   relative: "Quality of media with respect to theoretical minimum or maximum value for a given condition (e.g. relative humidity)."
   run: "State of being active or operating. By default applies to control program for system (eg VAV program run_command)."
   saturation: "Point at which no more of a material can be absorbed into another material."
