@@ -2230,6 +2230,11 @@ AHU_BSPC_CHWSC_ECON_EFSS_EFVSC_HWSC_PHWSC_SFSS_SFVSC_SSPC:
   - SFVSC
   - SSPC
 
+AHU_UNDEFINED:
+  description: "An AHU with no telemetry data."
+  implements:
+  - AHU
+
 
 ###################################
 ### Existing Non-standard Types ###

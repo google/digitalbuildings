@@ -17,6 +17,7 @@
 from __future__ import print_function
 import argparse
 import sys
+from datetime import datetime
 
 from validate import entity_instance
 from validate import generate_universe
@@ -53,6 +54,12 @@ def deserialize(yaml_file, universe):
     entity_instances[entity_name] = instance
   return entity_instances, parsed
 
+def get_current_time():
+  """ Get the current time for printing."""
+  now = datetime.now()
+  return now.strftime('%H:%M:%S')
+
+
 
 class ValidationHelper(object):
   """A validation helper to coordinate the various steps of the validation."""
@@ -62,11 +69,16 @@ class ValidationHelper(object):
     self._ParseArgs(args)
 
   def Validate(self):
+    print('[INFO]\t{}\tBuilding the stupid ass universe thing.'.format(get_current_time()))
     universe = self.GenerateUniverse(self.args.modified_types_filepath)
+    print('[INFO]\t{}\tDeserializing the thing.'.format(get_current_time()))
     entity_instances, parsed_entities = deserialize(self.filename, universe)
+    print('[INFO]\t{}\tValidating the entities'.format(get_current_time()))
     self.ValidateEntities(entity_instances)
+    print('[INFO]\t{}\tValidating telemetry.'.format(get_current_time()))
     self.StartTelemetryValidation(self.subscription, self.service_account,
                                   parsed_entities)
+    print('[INFO]\t{}\tDone with stuff.'.format(get_current_time()))
 
   def GenerateUniverse(self, modified_types_filepath=None):
     """Generates the universe from the ontology.

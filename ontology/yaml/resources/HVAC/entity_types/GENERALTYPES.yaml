@@ -251,3 +251,36 @@ VLV:
   implements:
   - EQUIPMENT
 
+RSR:
+  description: "A distribution riser."
+  is_abstract: true
+
+RARSR:
+  description: "A distribution riser."
+  is_abstract: true
+  implements:
+  - RSR
+
+FARSR:
+  description: "A distribution riser."
+  is_abstract: true
+  implements:
+  - RSR
+
+CHWRSR:
+  description: "A distribution riser."
+  is_abstract: true
+  implements:
+  - RSR
+  - CHWS
+
+HWSRSR:
+  description: "A distribution riser."
+  is_abstract: true
+  implements:
+  - RSR
+  - HWS
+
+
+
+
