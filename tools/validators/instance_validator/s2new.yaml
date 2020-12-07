@@ -47018,7 +47018,7 @@ VAV-1:
         OFF: '0.0'
         AUTO: '1.0'
         MANUAL: '2.0'
-  type: HVAC/VAV_ED_DMM
+  type: HVAC/VAV_ED_RMM
 VAV-10:
   connections:
     FCU-14: FEEDS
@@ -47222,7 +47222,7 @@ VAV-102:
         OFF: '0.0'
         AUTO: '1.0'
         MANUAL: '2.0'
-  type: HVAC/VAV_ED_DMM
+  type: HVAC/VAV_ED_RMM
 VAV-103:
   connections:
     RARSR-1: FEEDS
@@ -47264,7 +47264,7 @@ VAV-103:
         OFF: '0.0'
         AUTO: '1.0'
         MANUAL: '2.0'
-  type: HVAC/VAV_ED_DMM
+  type: HVAC/VAV_ED_RMM
 VAV-104:
   connections:
     VAV-104: FEEDS
@@ -49351,7 +49351,7 @@ VAV-139:
         OFF: '0.0'
         AUTO: '1.0'
         MANUAL: '2.0'
-  type: HVAC/VAV_ED_DMM
+  type: HVAC/VAV_ED_RMM
 VAV-14:
   connections:
     FCU-20: FEEDS
@@ -49541,7 +49541,7 @@ VAV-142:
         OFF: '0.0'
         AUTO: '1.0'
         MANUAL: '2.0'
-  type: HVAC/VAV_ED_DMM
+  type: HVAC/VAV_ED_RMM
 VAV-143:
   connections:
     VAV-119: FEEDS
@@ -49893,7 +49893,7 @@ VAV-149:
         OFF: '0.0'
         AUTO: '1.0'
         MANUAL: '2.0'
-  type: HVAC/VAV_ED_DMM
+  type: HVAC/VAV_ED_RMM
 VAV-15:
   connections:
     FCU-21: FEEDS
@@ -49989,7 +49989,7 @@ VAV-150:
         OFF: '0.0'
         AUTO: '1.0'
         MANUAL: '2.0'
-  type: HVAC/VAV_ED_DMM
+  type: HVAC/VAV_ED_RMM
 VAV-151:
   connections:
     VAV-122: FEEDS
@@ -50559,7 +50559,7 @@ VAV-160:
         OFF: '0.0'
         AUTO: '1.0'
         MANUAL: '2.0'
-  type: HVAC/VAV_ED_DMM
+  type: HVAC/VAV_ED_RMM
 VAV-161:
   connections:
     RARSR-1: FEEDS
@@ -50601,7 +50601,7 @@ VAV-161:
         OFF: '0.0'
         AUTO: '1.0'
         MANUAL: '2.0'
-  type: HVAC/VAV_ED_DMM
+  type: HVAC/VAV_ED_RMM
 VAV-162:
   connections:
     VAV-157: FEEDS
@@ -52526,7 +52526,7 @@ VAV-196:
         OFF: '0.0'
         AUTO: '1.0'
         MANUAL: '2.0'
-  type: HVAC/VAV_ED_DMM
+  type: HVAC/VAV_ED_RMM
 VAV-197:
   connections:
     VAV-184: FEEDS
@@ -52662,7 +52662,7 @@ VAV-199:
         OFF: '0.0'
         AUTO: '1.0'
         MANUAL: '2.0'
-  type: HVAC/VAV_ED_DMM
+  type: HVAC/VAV_ED_RMM
 VAV-2:
   id: CDM/2wBjeb1eP7lOWPj0re8BUQ
   translation:
@@ -52702,7 +52702,7 @@ VAV-2:
         OFF: '0.0'
         AUTO: '1.0'
         MANUAL: '2.0'
-  type: HVAC/VAV_ED_DMM
+  type: HVAC/VAV_ED_RMM
 VAV-20:
   connections:
     FCU-29: FEEDS
@@ -53009,7 +53009,7 @@ VAV-204:
         OFF: '0.0'
         AUTO: '1.0'
         MANUAL: '2.0'
-  type: HVAC/VAV_ED_DMM
+  type: HVAC/VAV_ED_RMM
 VAV-205:
   connections:
     RARSR-4: FEEDS
@@ -53051,7 +53051,7 @@ VAV-205:
         OFF: '0.0'
         AUTO: '1.0'
         MANUAL: '2.0'
-  type: HVAC/VAV_ED_DMM
+  type: HVAC/VAV_ED_RMM
 VAV-206:
   connections:
     VAV-185: FEEDS
@@ -53236,7 +53236,7 @@ VAV-209:
         OFF: '0.0'
         AUTO: '1.0'
         MANUAL: '2.0'
-  type: HVAC/VAV_ED_DMM
+  type: HVAC/VAV_ED_RMM
 VAV-21:
   connections:
     FCU-30: FEEDS
@@ -53332,7 +53332,7 @@ VAV-210:
         OFF: '0.0'
         AUTO: '1.0'
         MANUAL: '2.0'
-  type: HVAC/VAV_ED_DMM
+  type: HVAC/VAV_ED_RMM
 VAV-211:
   connections:
     VAV-176: FEEDS
@@ -54871,7 +54871,7 @@ VAV-243:
         OFF: '0.0'
         AUTO: '1.0'
         MANUAL: '2.0'
-  type: HVAC/VAV_ED_DMM
+  type: HVAC/VAV_ED_RMM
 VAV-244:
   connections:
     VAV-225: FEEDS
@@ -55009,7 +55009,7 @@ VAV-246:
         OFF: '0.0'
         AUTO: '1.0'
         MANUAL: '2.0'
-  type: HVAC/VAV_ED_DMM
+  type: HVAC/VAV_ED_RMM
 VAV-247:
   id: CDM/3f8Rrt0Ib4JOXqLGyecPqm
   translation:
@@ -55307,7 +55307,7 @@ VAV-251:
         OFF: '0.0'
         AUTO: '1.0'
         MANUAL: '2.0'
-  type: HVAC/VAV_ED_DMM
+  type: HVAC/VAV_ED_RMM
 VAV-252:
   connections:
     RARSR-4: FEEDS
@@ -55349,7 +55349,7 @@ VAV-252:
         OFF: '0.0'
         AUTO: '1.0'
         MANUAL: '2.0'
-  type: HVAC/VAV_ED_DMM
+  type: HVAC/VAV_ED_RMM
 VAV-253:
   connections:
     VAV-223: FEEDS
@@ -55444,7 +55444,7 @@ VAV-254:
         OFF: '0.0'
         AUTO: '1.0'
         MANUAL: '2.0'
-  type: HVAC/VAV_ED_DMM
+  type: HVAC/VAV_ED_RMM
 VAV-255:
   connections:
     RARSR-1: FEEDS
@@ -55486,7 +55486,7 @@ VAV-255:
         OFF: '0.0'
         AUTO: '1.0'
         MANUAL: '2.0'
-  type: HVAC/VAV_ED_DMM
+  type: HVAC/VAV_ED_RMM
 VAV-256:
   connections:
     VAV-222: FEEDS
@@ -57337,7 +57337,7 @@ VAV-287:
         OFF: '0.0'
         AUTO: '1.0'
         MANUAL: '2.0'
-  type: HVAC/VAV_ED_DMM
+  type: HVAC/VAV_ED_RMM
 VAV-288:
   connections:
     VAV-263: FEEDS
@@ -57527,7 +57527,7 @@ VAV-290:
         OFF: '0.0'
         AUTO: '1.0'
         MANUAL: '2.0'
-  type: HVAC/VAV_ED_DMM
+  type: HVAC/VAV_ED_RMM
 VAV-291:
   connections:
     VAV-274: FEEDS
@@ -57879,7 +57879,7 @@ VAV-297:
         OFF: '0.0'
         AUTO: '1.0'
         MANUAL: '2.0'
-  type: HVAC/VAV_ED_DMM
+  type: HVAC/VAV_ED_RMM
 VAV-298:
   connections:
     RARSR-4: FEEDS
@@ -57921,7 +57921,7 @@ VAV-298:
         OFF: '0.0'
         AUTO: '1.0'
         MANUAL: '2.0'
-  type: HVAC/VAV_ED_DMM
+  type: HVAC/VAV_ED_RMM
 VAV-299:
   connections:
     VAV-272: FEEDS
@@ -58368,7 +58368,7 @@ VAV-305:
         OFF: '0.0'
         AUTO: '1.0'
         MANUAL: '2.0'
-  type: HVAC/VAV_ED_DMM
+  type: HVAC/VAV_ED_RMM
 VAV-306:
   connections:
     RARSR-1: FEEDS
@@ -58410,7 +58410,7 @@ VAV-306:
         OFF: '0.0'
         AUTO: '1.0'
         MANUAL: '2.0'
-  type: HVAC/VAV_ED_DMM
+  type: HVAC/VAV_ED_RMM
 VAV-307:
   connections:
     VAV-266: FEEDS
@@ -60336,7 +60336,7 @@ VAV-34:
         OFF: '0.0'
         AUTO: '1.0'
         MANUAL: '2.0'
-  type: HVAC/VAV_ED_DMM
+  type: HVAC/VAV_ED_RMM
 VAV-340:
   connections:
     FCU-360: FEEDS
@@ -60485,7 +60485,7 @@ VAV-342:
         OFF: '0.0'
         AUTO: '1.0'
         MANUAL: '2.0'
-  type: HVAC/VAV_ED_DMM
+  type: HVAC/VAV_ED_RMM
 VAV-343:
   connections:
     VAV-320: FEEDS
@@ -60622,7 +60622,7 @@ VAV-345:
         OFF: '0.0'
         AUTO: '1.0'
         MANUAL: '2.0'
-  type: HVAC/VAV_ED_DMM
+  type: HVAC/VAV_ED_RMM
 VAV-346:
   connections:
     VAV-328: FEEDS
@@ -61020,7 +61020,7 @@ VAV-352:
         OFF: '0.0'
         AUTO: '1.0'
         MANUAL: '2.0'
-  type: HVAC/VAV_ED_DMM
+  type: HVAC/VAV_ED_RMM
 VAV-353:
   connections:
     RARSR-4: FEEDS
@@ -61062,7 +61062,7 @@ VAV-353:
         OFF: '0.0'
         AUTO: '1.0'
         MANUAL: '2.0'
-  type: HVAC/VAV_ED_DMM
+  type: HVAC/VAV_ED_RMM
 VAV-354:
   connections:
     VAV-324: FEEDS
@@ -61459,7 +61459,7 @@ VAV-360:
         OFF: '0.0'
         AUTO: '1.0'
         MANUAL: '2.0'
-  type: HVAC/VAV_ED_DMM
+  type: HVAC/VAV_ED_RMM
 VAV-361:
   connections:
     RARSR-1: FEEDS
@@ -61501,7 +61501,7 @@ VAV-361:
         OFF: '0.0'
         AUTO: '1.0'
         MANUAL: '2.0'
-  type: HVAC/VAV_ED_DMM
+  type: HVAC/VAV_ED_RMM
 VAV-362:
   connections:
     VAV-322: FEEDS
@@ -61956,7 +61956,7 @@ VAV-37:
         OFF: '0.0'
         AUTO: '1.0'
         MANUAL: '2.0'
-  type: HVAC/VAV_ED_DMM
+  type: HVAC/VAV_ED_RMM
 VAV-370:
   connections:
     FCU-382: FEEDS
@@ -63913,7 +63913,7 @@ VAV-406:
         OFF: '0.0'
         AUTO: '1.0'
         MANUAL: '2.0'
-  type: HVAC/VAV_ED_DMM
+  type: HVAC/VAV_ED_RMM
 VAV-407:
   connections:
     VAV-345: FEEDS
@@ -64004,7 +64004,7 @@ VAV-408:
         OFF: '0.0'
         AUTO: '1.0'
         MANUAL: '2.0'
-  type: HVAC/VAV_ED_DMM
+  type: HVAC/VAV_ED_RMM
 VAV-409:
   connections:
     RARSR-4: FEEDS
@@ -64046,7 +64046,7 @@ VAV-409:
         OFF: '0.0'
         AUTO: '1.0'
         MANUAL: '2.0'
-  type: HVAC/VAV_ED_DMM
+  type: HVAC/VAV_ED_RMM
 VAV-41:
   connections:
     VAV-31: FEEDS
@@ -64179,7 +64179,7 @@ VAV-411:
         OFF: '0.0'
         AUTO: '1.0'
         MANUAL: '2.0'
-  type: HVAC/VAV_ED_DMM
+  type: HVAC/VAV_ED_RMM
 VAV-412:
   connections:
     RARSR-1: FEEDS
@@ -64221,7 +64221,7 @@ VAV-412:
         OFF: '0.0'
         AUTO: '1.0'
         MANUAL: '2.0'
-  type: HVAC/VAV_ED_DMM
+  type: HVAC/VAV_ED_RMM
 VAV-413:
   id: CDM/2tlUq0Q9f7l8_xCTioCWqM
   translation:
@@ -65382,7 +65382,7 @@ VAV-432:
         OFF: '0.0'
         AUTO: '1.0'
         MANUAL: '2.0'
-  type: HVAC/VAV_ED_DMM
+  type: HVAC/VAV_ED_RMM
 VAV-433:
   connections:
     VAV-448: FEEDS
@@ -65625,7 +65625,7 @@ VAV-437:
         OFF: '0.0'
         AUTO: '1.0'
         MANUAL: '2.0'
-  type: HVAC/VAV_ED_DMM
+  type: HVAC/VAV_ED_RMM
 VAV-438:
   connections:
     RARSR-4: FEEDS
@@ -65667,7 +65667,7 @@ VAV-438:
         OFF: '0.0'
         AUTO: '1.0'
         MANUAL: '2.0'
-  type: HVAC/VAV_ED_DMM
+  type: HVAC/VAV_ED_RMM
 VAV-439:
   connections:
     VAV-418: FEEDS
@@ -65971,7 +65971,7 @@ VAV-443:
         OFF: '0.0'
         AUTO: '1.0'
         MANUAL: '2.0'
-  type: HVAC/VAV_ED_DMM
+  type: HVAC/VAV_ED_RMM
 VAV-444:
   connections:
     RARSR-1: FEEDS
@@ -66013,7 +66013,7 @@ VAV-444:
         OFF: '0.0'
         AUTO: '1.0'
         MANUAL: '2.0'
-  type: HVAC/VAV_ED_DMM
+  type: HVAC/VAV_ED_RMM
 VAV-445:
   connections:
     VAV-420: FEEDS
@@ -66707,7 +66707,7 @@ VAV-47:
         OFF: '0.0'
         AUTO: '1.0'
         MANUAL: '2.0'
-  type: HVAC/VAV_ED_DMM
+  type: HVAC/VAV_ED_RMM
 VAV-470:
   connections:
     ZONE-501: FEEDS
@@ -68930,7 +68930,7 @@ VAV-83:
         OFF: '0.0'
         AUTO: '1.0'
         MANUAL: '2.0'
-  type: HVAC/VAV_ED_DMM
+  type: HVAC/VAV_ED_RMM
 VAV-84:
   connections:
     VAV-108: FEEDS
@@ -69066,7 +69066,7 @@ VAV-86:
         OFF: '0.0'
         AUTO: '1.0'
         MANUAL: '2.0'
-  type: HVAC/VAV_ED_DMM
+  type: HVAC/VAV_ED_RMM
 VAV-87:
   connections:
     VAV-106: FEEDS
@@ -69421,7 +69421,7 @@ VAV-92:
         OFF: '0.0'
         AUTO: '1.0'
         MANUAL: '2.0'
-  type: HVAC/VAV_ED_DMM
+  type: HVAC/VAV_ED_RMM
 VAV-93:
   connections:
     RARSR-4: FEEDS
@@ -69463,7 +69463,7 @@ VAV-93:
         OFF: '0.0'
         AUTO: '1.0'
         MANUAL: '2.0'
-  type: HVAC/VAV_ED_DMM
+  type: HVAC/VAV_ED_RMM
 VAV-94:
   connections:
     VAV-109: FEEDS
