@@ -44776,16 +44776,16 @@ TSTAT-12:
 #       zone_air_relative_humidity_sensor: zone_air_relative_humidity_sensor
 #       zone_air_temperature_sensor: zone_air_temperature_sensor
 #   type: HVAC/SENSOR_ZTM_ZHM_CO2M
-TSTAT-121:
-  connections:
-    FCU-460: CONTROLS
-  id: CDM/03rcHcm_T6h8OLmivoswJ4
-  links:
-    FCU-460:
-      zone_air_co2_concentration_sensor: zone_air_co2_concentration_sensor
-      zone_air_relative_humidity_sensor: zone_air_relative_humidity_sensor
-      zone_air_temperature_sensor: zone_air_temperature_sensor
-  type: HVAC/SENSOR_ZTM_ZHM_CO2M
+# TSTAT-121:
+#   connections:
+#     FCU-460: CONTROLS
+#   id: CDM/03rcHcm_T6h8OLmivoswJ4
+#   links:
+#     FCU-460:
+#       zone_air_co2_concentration_sensor: zone_air_co2_concentration_sensor
+#       zone_air_relative_humidity_sensor: zone_air_relative_humidity_sensor
+#       zone_air_temperature_sensor: zone_air_temperature_sensor
+#   type: HVAC/SENSOR_ZTM_ZHM_CO2M
 TSTAT-122:
   connections:
     FCU-461: CONTROLS
