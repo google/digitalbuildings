@@ -348,6 +348,11 @@ VAV_ED_RMM:
   - ED
   - RMM
 
+VAV_UNDEFINED:
+  description: "VAV with no defined fields."
+  implements:
+  - VAV
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
