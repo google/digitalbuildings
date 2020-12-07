@@ -30,7 +30,7 @@ def IsValidFolderForType(path, component_type):
   Returns:
     True if the path is valid.
   """
-  m = re.match(r'(\w*)/?{0}'.format(base_lib.SUBFOLDER_NAMES[component_type]),
+  m = re.match(r'(\w*)[/\\]?{0}'.format(base_lib.SUBFOLDER_NAMES[component_type]),
                path)
   if m is None:
     return False
@@ -55,6 +55,7 @@ class ConfigFolder(findings_lib.Findings):
 
   def __init__(self, folderpath, component_type):
     super(ConfigFolder, self).__init__()
+
     if not IsValidFolderForType(folderpath, component_type):
       raise RuntimeError('{0} is not a correct resource path for {1}'.format(
           folderpath,
@@ -62,8 +63,8 @@ class ConfigFolder(findings_lib.Findings):
     self._component_type = component_type
 
     self._folderpath = folderpath
-    self._this_folder_yaml_regex = re.compile(r'^{0}/.*\.yaml'.format(
-        self._folderpath))
+    self._this_folder_yaml_regex = re.compile(r'^{0}[/\\].*\.yaml'.format(
+        self._folderpath.replace('\\', '\\\\')))
 
     self._namespace_name = self._GetNamespaceFromPath()
     if self._namespace_name is None:
@@ -120,7 +121,7 @@ class ConfigFolder(findings_lib.Findings):
     if not self._IsYamlUnderThisFolder(config_filename):
       self.AddFinding(
           findings_lib.InconsistentFileLocationError(
-              self._folderpath + r'/*.yaml', context))
+              self._folderpath + r'[/\\]*.yaml', context))
       return
 
     for document in documents:
@@ -158,7 +159,7 @@ class ConfigFolder(findings_lib.Findings):
     Returns:
       The namespace name or None
     """
-    regex = re.compile(r'^(\w*)/?{0}.*'.format(
+    regex = re.compile(r'^(\w*)[/\\]?{0}.*'.format(
         base_lib.SUBFOLDER_NAMES[self._component_type]))
     m = regex.match(self._folderpath)
     if m is not None:
