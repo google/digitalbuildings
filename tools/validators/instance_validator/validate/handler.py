@@ -98,7 +98,7 @@ class ValidationHelper(object):
     for entity_name, current_entity_instance in entity_instances.items():
       if not current_entity_instance.IsValidEntityInstance(entity_instances):
         print(entity_name, 'is not a valid instance')
-        sys.exit(0)
+        #sys.exit(0)
       if current_entity_instance.type_name.lower() == 'building':
         building_found = True
 
