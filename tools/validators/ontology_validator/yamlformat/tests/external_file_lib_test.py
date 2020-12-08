@@ -19,21 +19,26 @@ from __future__ import division
 from __future__ import print_function
 
 from absl.testing import absltest
-
+from os import path
 from yamlformat.validator import external_file_lib
 
-DIR_ONE_LEVEL = 'fake_resources/dir1/'
-DIR_MULTI_DIR = 'fake_resources/dir2/'
+TEST_DIR = path.dirname(path.realpath(__file__))
+
+DIR_ONE_LEVEL = path.join(TEST_DIR, 'fake_resources', 'dir1')
+DIR_MULTI_DIR = path.join(TEST_DIR, 'fake_resources', 'dir2')
 
 FAN = 'FAN.yaml'
 FAN_2 = 'FAN2.yaml'
-
 
 class ExternalFileLibTest(absltest.TestCase):
 
   def test_RecursiveDirWalk_oneLevel(self):
     path_parts = external_file_lib.RecursiveDirWalk(DIR_ONE_LEVEL)
-    path_parts.sort()
+
+    # In ASCII code order, '/' < '[0-9A-Z]' < '\', so sorting path names
+    # yields different results on different operating systems unless
+    # we sort on a standardized version of the path names.
+    path_parts.sort(key=lambda x: x.relative_path.replace('\\', '/'))
 
     self.assertLen(path_parts, 2)
 
@@ -41,15 +46,15 @@ class ExternalFileLibTest(absltest.TestCase):
     self.assertNotEmpty(path_part_modified_base)
     self.assertEqual(path_part_modified_base.root, DIR_ONE_LEVEL)
     self.assertEqual(path_part_modified_base.relative_path,
-                     'entity_types/' + FAN)
+                     path.join('entity_types', FAN))
     path_part_modified_base = path_parts[1]
     self.assertEqual(path_part_modified_base.root, DIR_ONE_LEVEL)
     self.assertEqual(path_part_modified_base.relative_path,
-                     'entity_types/' + FAN_2)
+                     path.join('entity_types', FAN_2))
 
   def test_RecursiveDirWalk_multiLevel(self):
     path_parts = external_file_lib.RecursiveDirWalk(DIR_MULTI_DIR)
-    path_parts.sort()
+    path_parts.sort(key=lambda x: x.relative_path.replace('\\', '/'))
 
     self.assertLen(path_parts, 4)
     path_part_modified_client_fan = path_parts[0]
@@ -59,17 +64,17 @@ class ExternalFileLibTest(absltest.TestCase):
     path_part_modified_client_fan = path_parts[1]
     self.assertEqual(path_part_modified_client_fan.root, DIR_MULTI_DIR)
     self.assertEqual(path_part_modified_client_fan.relative_path,
-                     'entity_types/' + FAN)
+                     path.join('entity_types', FAN))
 
     path_part_modified_client_fan = path_parts[2]
     self.assertEqual(path_part_modified_client_fan.root, DIR_MULTI_DIR)
     self.assertEqual(path_part_modified_client_fan.relative_path,
-                     'entity_types/another_entity_types/' + FAN)
+                     path.join('entity_types', 'another_entity_types', FAN))
 
     path_part_modified_client_fan = path_parts[3]
     self.assertEqual(path_part_modified_client_fan.root, DIR_MULTI_DIR)
     self.assertEqual(path_part_modified_client_fan.relative_path,
-                     'entity_types/another_entity_types2/' + FAN)
+                     path.join('entity_types', 'another_entity_types2', FAN))
 
 if __name__ == '__main__':
   absltest.main()
