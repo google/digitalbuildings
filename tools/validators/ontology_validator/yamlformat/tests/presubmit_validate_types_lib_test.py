@@ -18,10 +18,9 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
-import os
-
 from absl import flags
-
+from absl.testing import absltest
+from os import path
 from yamlformat.validator import base_lib
 from yamlformat.validator import entity_type_lib
 from yamlformat.validator import field_lib
@@ -32,7 +31,6 @@ from yamlformat.validator import state_lib
 from yamlformat.validator import subfield_lib
 from yamlformat.validator import test_helpers_lib
 from yamlformat.validator import unit_lib
-from absl.testing import absltest
 
 FLAGS = flags.FLAGS
 
@@ -40,10 +38,11 @@ _F = test_helpers_lib.Fields
 _F1 = test_helpers_lib.Field
 
 # Constant to point to test files.
-RESOURCE_PATH = 'fake_resources'
+TEST_DIR = path.dirname(path.realpath(__file__))
+RESOURCE_PATH = path.join(TEST_DIR, 'fake_resources')
+
 # Override this value to keep tests stable
 namespace_validator.MIN_SIZE_FOR_LOCAL_FIELD_DUPES = 1
-
 
 class PresubmitValidateTypesTest(absltest.TestCase):
 
@@ -86,8 +85,8 @@ class PresubmitValidateTypesTest(absltest.TestCase):
     self.good2_file = base_lib.PathParts(
         root=self.base_dir, relative_path='GOOD/entity_types/good2.yaml')
 
-    self.good1_depot_path = os.path.join('//depot/google3', RESOURCE_PATH,
-                                         'GOOD/entity_types/good1.yaml')
+    self.good1_depot_path = path.join('//depot/google3', RESOURCE_PATH,
+                                      'GOOD/entity_types/good1.yaml')
 
   def CreateConfig(self,
                    fields=tuple(),
