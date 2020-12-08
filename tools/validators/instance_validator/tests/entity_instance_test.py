@@ -22,10 +22,10 @@ from validate import generate_universe
 from validate import entity_instance
 from validate import instance_parser
 from absl.testing import absltest
+from os import path
 
-import os
-
-_TESTCASE_PATH = os.path.join('.', 'tests', 'fake_instances')
+_TEST_DIR = path.dirname(path.realpath(__file__))
+_TESTCASE_PATH = path.join(_TEST_DIR, 'fake_instances')
 
 class EntityInstanceTest(absltest.TestCase):
 
@@ -36,7 +36,7 @@ class EntityInstanceTest(absltest.TestCase):
 
   def testValidateGoodExample(self):
     parsed = instance_parser.parse_yaml(
-        os.path.join(_TESTCASE_PATH,
+        path.join(_TESTCASE_PATH,
                      'GOOD',
                      'good_building_type.yaml'))
     parsed = dict(parsed)
@@ -52,7 +52,7 @@ class EntityInstanceTest(absltest.TestCase):
 
   def testValidateBadEntityTypeFormat(self):
     parsed = instance_parser.parse_yaml(
-        os.path.join(_TESTCASE_PATH,
+        path.join(_TESTCASE_PATH,
                      'BAD',
                      'bad_building_type.yaml'))
     parsed = dict(parsed)
@@ -68,7 +68,7 @@ class EntityInstanceTest(absltest.TestCase):
 
   def testValidateBadEntityNamespace(self):
     parsed = instance_parser.parse_yaml(
-        os.path.join(_TESTCASE_PATH,
+        path.join(_TESTCASE_PATH,
                      'BAD',
                      'bad_building_type_namespace.yaml'))
     parsed = dict(parsed)
@@ -84,7 +84,7 @@ class EntityInstanceTest(absltest.TestCase):
 
   def testValidateRejectsUseOfAbstractType(self):
     parsed = instance_parser.parse_yaml(
-        os.path.join(_TESTCASE_PATH,
+        path.join(_TESTCASE_PATH,
                      'BAD',
                      'bad_abstract_type.yaml'))
     parsed = dict(parsed)
@@ -101,7 +101,7 @@ class EntityInstanceTest(absltest.TestCase):
 
   def testValidateBadEntityType(self):
     parsed = instance_parser.parse_yaml(
-        os.path.join(_TESTCASE_PATH,
+        path.join(_TESTCASE_PATH,
                      'BAD',
                      'bad_building_type_entity.yaml'))
     parsed = dict(parsed)
@@ -117,7 +117,7 @@ class EntityInstanceTest(absltest.TestCase):
 
   def testValidateCompliantTranslation(self):
     parsed = instance_parser.parse_yaml(
-        os.path.join(_TESTCASE_PATH,
+        path.join(_TESTCASE_PATH,
                      'GOOD',
                      'good_translation_compliant.yaml'))
     parsed = dict(parsed)
@@ -133,7 +133,7 @@ class EntityInstanceTest(absltest.TestCase):
 
   def testValidateMultipleCompliantTranslation(self):
     parsed = instance_parser.parse_yaml(
-        os.path.join(_TESTCASE_PATH,
+        path.join(_TESTCASE_PATH,
                      'GOOD',
                      'good_translation_multiple_compliant.yaml'))
     parsed = dict(parsed)
@@ -150,7 +150,7 @@ class EntityInstanceTest(absltest.TestCase):
 
   def testValidateMultipleCompliantTranslationWithFields(self):
     parsed = instance_parser.parse_yaml(
-        os.path.join(_TESTCASE_PATH,
+        path.join(_TESTCASE_PATH,
                      'GOOD',
                      'good_building_translation_fields.yaml'))
     parsed = dict(parsed)
@@ -166,7 +166,7 @@ class EntityInstanceTest(absltest.TestCase):
 
   def testValidateMultipleCompliantTranslationWithRequiredFieldMissing(self):
     parsed = instance_parser.parse_yaml(
-        os.path.join(_TESTCASE_PATH,
+        path.join(_TESTCASE_PATH,
                      'BAD',
                      'bad_translation_with_required_field_missing.yaml'))
     parsed = dict(parsed)
@@ -181,7 +181,7 @@ class EntityInstanceTest(absltest.TestCase):
       self.fail('exception not raised')
 
   def testValidateMultipleCompliantTranslationWithNamespaceOtherMultiple(self):
-    parsed = instance_parser.parse_yaml(os.path.join(_TESTCASE_PATH,
+    parsed = instance_parser.parse_yaml(path.join(_TESTCASE_PATH,
                                                      'GOOD'
                                                      , 'good_translation.yaml'))
     parsed = dict(parsed)
@@ -196,7 +196,7 @@ class EntityInstanceTest(absltest.TestCase):
       self.fail('exception incorrectly raised')
 
   def testValidateMultipleCompliantTranslationWithNamespaceOther(self):
-    parsed = instance_parser.parse_yaml(os.path.join(_TESTCASE_PATH,
+    parsed = instance_parser.parse_yaml(path.join(_TESTCASE_PATH,
                                                      'GOOD'
                                                      , 'good_translation.yaml'))
     parsed = dict(parsed)
@@ -212,7 +212,7 @@ class EntityInstanceTest(absltest.TestCase):
 
   def testValidateMultipleCompliantTranslationWithIdenticalTypes(self):
     parsed = instance_parser.parse_yaml(
-        os.path.join(_TESTCASE_PATH, 'GOOD'
+        path.join(_TESTCASE_PATH, 'GOOD'
                      , 'good_translation_identical.yaml'))
     parsed = dict(parsed)
     for raw_entity in list(parsed.keys()):
@@ -225,7 +225,7 @@ class EntityInstanceTest(absltest.TestCase):
 
   def testValidateMultipleCompliantTranslationWithExtraField(self):
     parsed = instance_parser.parse_yaml(
-        os.path.join(_TESTCASE_PATH
+        path.join(_TESTCASE_PATH
                      , 'BAD'
                      , 'bad_translation_with_extra_field.yaml'))
     parsed = dict(parsed)
@@ -242,7 +242,7 @@ class EntityInstanceTest(absltest.TestCase):
 
   def testValidateTranslationUnitValues(self):
     parsed = instance_parser.parse_yaml(
-        os.path.join(_TESTCASE_PATH,
+        path.join(_TESTCASE_PATH,
                      'GOOD',
                      'good_translation_unit_values.yaml'))
     parsed = dict(parsed)
@@ -258,7 +258,7 @@ class EntityInstanceTest(absltest.TestCase):
 
   def testValidateTranslationStatesAndUnitValues(self):
     parsed = instance_parser.parse_yaml(
-        os.path.join(_TESTCASE_PATH,
+        path.join(_TESTCASE_PATH,
                      'GOOD',
                      'good_translation_states_and_unit_values.yaml'))
     parsed = dict(parsed)
@@ -274,7 +274,7 @@ class EntityInstanceTest(absltest.TestCase):
 
   def testValidateTranslationUnits(self):
     parsed = instance_parser.parse_yaml(
-        os.path.join(_TESTCASE_PATH,
+        path.join(_TESTCASE_PATH,
                      'GOOD',
                      'good_translation_units.yaml'))
     parsed = dict(parsed)
@@ -290,7 +290,7 @@ class EntityInstanceTest(absltest.TestCase):
 
   def testValidateTranslationUnitsAndStates(self):
     parsed = instance_parser.parse_yaml(
-        os.path.join(_TESTCASE_PATH,
+        path.join(_TESTCASE_PATH,
                      'GOOD',
                      'good_translation_units_and_states.yaml'))
     parsed = dict(parsed)
@@ -306,7 +306,7 @@ class EntityInstanceTest(absltest.TestCase):
 
   def testValidateBadTranslationUnitValues(self):
     parsed = instance_parser.parse_yaml(
-        os.path.join(_TESTCASE_PATH,
+        path.join(_TESTCASE_PATH,
                      'BAD',
                      'bad_translation_unit_values.yaml'))
     parsed = dict(parsed)
@@ -322,7 +322,7 @@ class EntityInstanceTest(absltest.TestCase):
 
   def testValidateBadTranslationStates(self):
     parsed = instance_parser.parse_yaml(
-        os.path.join(_TESTCASE_PATH,
+        path.join(_TESTCASE_PATH,
                      'BAD',
                      'bad_translation_states.yaml'))
     parsed = dict(parsed)
@@ -338,7 +338,7 @@ class EntityInstanceTest(absltest.TestCase):
 
   def testValidateBadLinkFields(self):
     parsed = instance_parser.parse_yaml(
-        os.path.join(_TESTCASE_PATH,
+        path.join(_TESTCASE_PATH,
                      'BAD',
                      'bad_building_links_fields.yaml'))
     entity_instances = {}
@@ -356,7 +356,7 @@ class EntityInstanceTest(absltest.TestCase):
 
   def testValidateBadLinkEntityName(self):
     parsed = instance_parser.parse_yaml(
-        os.path.join(_TESTCASE_PATH,
+        path.join(_TESTCASE_PATH,
                      'BAD',
                      'bad_building_links_entity_name.yaml'))
     entity_instances = {}
@@ -374,7 +374,7 @@ class EntityInstanceTest(absltest.TestCase):
 
   def testValidateBadLinkWrongField(self):
     parsed = instance_parser.parse_yaml(
-        os.path.join(_TESTCASE_PATH,
+        path.join(_TESTCASE_PATH,
                      'BAD',
                      'bad_links_wrong_link.yaml'))
     entity_instances = {}
@@ -393,7 +393,7 @@ class EntityInstanceTest(absltest.TestCase):
 
   def testValidateBadLinkMissingField(self):
     parsed = instance_parser.parse_yaml(
-        os.path.join(_TESTCASE_PATH,
+        path.join(_TESTCASE_PATH,
                      'BAD',
                      'bad_links_missing_field.yaml'))
     entity_instances = {}
@@ -411,7 +411,7 @@ class EntityInstanceTest(absltest.TestCase):
 
   def testValidateGoodLinkEntityName(self):
     parsed = instance_parser.parse_yaml(
-        os.path.join(_TESTCASE_PATH,
+        path.join(_TESTCASE_PATH,
                      'GOOD',
                      'good_links.yaml'))
     entity_instances = {}
@@ -430,7 +430,7 @@ class EntityInstanceTest(absltest.TestCase):
 
   def testValidateStates(self):
     parsed = instance_parser.parse_yaml(
-        os.path.join(_TESTCASE_PATH,
+        path.join(_TESTCASE_PATH,
                      'GOOD',
                      'good_translation_states.yaml'))
     parsed = dict(parsed)
@@ -445,7 +445,7 @@ class EntityInstanceTest(absltest.TestCase):
 
   def testGoodConnections(self):
     parsed = instance_parser.parse_yaml(
-        os.path.join(_TESTCASE_PATH,
+        path.join(_TESTCASE_PATH,
                      'GOOD',
                      'good_building_connections.yaml'))
     parsed = dict(parsed)
@@ -466,7 +466,7 @@ class EntityInstanceTest(absltest.TestCase):
 
   def testBadConnections(self):
     parsed = instance_parser.parse_yaml(
-        os.path.join(_TESTCASE_PATH,
+        path.join(_TESTCASE_PATH,
                      'BAD',
                      'bad_building_connections.yaml'))
     parsed = dict(parsed)
