@@ -39,8 +39,9 @@ class GenerateUniverseTest(absltest.TestCase):
     self.assertTrue(self.universe)
 
   def testCatchInvalidModifiedOntology(self):
-    self.assertRaises(Exception,
-                      generate_universe.BuildUniverse(_BAD_MODIFIED_ONTOLOGY))
+    with self.assertRaises(Exception) as context:
+      generate_universe.BuildUniverse(_BAD_MODIFIED_ONTOLOGY)
+    self.assertIn('no longer valid', str(context.exception))
 
   def testModifiedTypesFilepathWorks(self):
     test_universe = generate_universe.BuildUniverse(_DEFAULT_ONTOLOGY_LOCATION)
