@@ -252,30 +252,30 @@ VLV:
   - EQUIPMENT
 
 RSR:
-  description: "A distribution riser."
+  description: "A generic distribution riser."
   is_abstract: true
 
 RARSR:
-  description: "A distribution riser."
+  description: "A return air riser."
   is_abstract: true
   implements:
   - RSR
 
 FARSR:
-  description: "A distribution riser."
+  description: "A fresh air (ventilation) riser."
   is_abstract: true
   implements:
   - RSR
 
 CHWRSR:
-  description: "A distribution riser."
+  description: "A chilled water distribution riser."
   is_abstract: true
   implements:
   - RSR
   - CHWS
 
 HWSRSR:
-  description: "A distribution riser."
+  description: "A heating water distribution riser."
   is_abstract: true
   implements:
   - RSR

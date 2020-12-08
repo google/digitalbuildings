@@ -12,21 +12,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-##############################################################
-#### GENERAL TYPES (BROAD CATEGORIES OF COMMON EQUIPMENT) ####
-####                See model.md for context              ####
-####      See model_hvac.md for detailed definitions      ####
-##############################################################
-
-
-
 CHWRSR_UNDEFINED:
   description: "Chilled water distribution riser without any data points."
   implements:
   - CHWRSR
 
 HWSRSR_UNDEFINED:
-  description: "Chilled water distribution riser without any data points."
+  description: "Heating water distribution riser without any data points."
   implements:
   - HWSRSR
 
@@ -36,6 +28,6 @@ FARSR_UNDEFINED:
   - FARSR
 
 RARSR_UNDEFINED:
-  description: "Fresh air distribution riser without any data points."
+  description: "Return air riser without any data points."
   implements:
   - RARSR

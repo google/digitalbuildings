@@ -54,7 +54,6 @@ def deserialize(yaml_file, universe):
   return entity_instances, parsed
 
 
-
 class ValidationHelper(object):
   """A validation helper to coordinate the various steps of the validation."""
 

@@ -349,7 +349,7 @@ VAV_ED_RMM:
   - RMM
 
 VAV_UNDEFINED:
-  description: "VAV with no defined fields."
+  description: "VAV with no defined fields. Note this is non-canonical, as it is typically expected that telemetry will normally be available."
   implements:
   - VAV
 
