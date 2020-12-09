@@ -18,18 +18,18 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
-import os
-
 from absl.testing import absltest
 from validate import handler
+from os import path
 
-_TESTCASE_PATH = os.path.join('.', 'tests', 'fake_instances')
+_TEST_DIR = path.dirname(path.realpath(__file__))
+_TESTCASE_PATH = path.join(_TEST_DIR, 'fake_instances')
 
 class HandlerTest(absltest.TestCase):
 
   def testValidateOneBuildingExist(self):
     try:
-      input_file = os.path.join(_TESTCASE_PATH, 'GOOD',
+      input_file = path.join(_TESTCASE_PATH, 'GOOD',
                                 'good_building_type.yaml')
       args = ['--input', input_file]
       instance_handler = handler.ValidationHelper(args)
@@ -40,14 +40,14 @@ class HandlerTest(absltest.TestCase):
   def testValidateOneBuildingExistFails(self):
     with self.assertRaises(SyntaxError):
       # there is missing building type in the test file
-      input_file = os.path.join(_TESTCASE_PATH, 'GOOD', 'good_links.yaml')
+      input_file = path.join(_TESTCASE_PATH, 'GOOD', 'good_links.yaml')
       args = ['--input', input_file]
       instance_handler = handler.ValidationHelper(args)
       instance_handler.Validate()
 
   def testTelemetryArgsBothSetSuccess(self):
     try:
-      input_file = os.path.join(_TESTCASE_PATH, 'GOOD',
+      input_file = path.join(_TESTCASE_PATH, 'GOOD',
                                 'good_building_type.yaml')
       args = ['--input', input_file, '--service-account', 'file',
               '--subscription', 'some-subscription']
@@ -57,14 +57,14 @@ class HandlerTest(absltest.TestCase):
 
   def testTelemetryArgsMissingSubscription(self):
     with self.assertRaises(SystemExit):
-      input_file = os.path.join(_TESTCASE_PATH, 'GOOD',
+      input_file = path.join(_TESTCASE_PATH, 'GOOD',
                                 'good_building_type.yaml')
       args = ['--input', input_file, '--service-account', 'file']
       handler.ValidationHelper(args)
 
   def testTelemetryArgsMissingServiceAccount(self):
     with self.assertRaises(SystemExit):
-      input_file = os.path.join(_TESTCASE_PATH, 'GOOD',
+      input_file = path.join(_TESTCASE_PATH, 'GOOD',
                                 'good_building_type.yaml')
       args = ['--input', input_file, '--subscription', 'some-subscription']
       handler.ValidationHelper(args)
