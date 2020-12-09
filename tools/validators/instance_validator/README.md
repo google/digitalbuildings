@@ -5,6 +5,9 @@ The Instance Validator allows validation of YAML instance files to make sure the
 ## Usage
 The Instance Validator is written in Python3 and takes as an argument the path pointing to the instance files.
 
+**Performance**: [issue#167](https://github.com/google/digitalbuildings/issues/167) please use python version 3.6.8, we found that higher versions are causing a slow down in the validation. We are investigating the issue.
+
+
 **Known Bug**: [issue#125](https://github.com/google/digitalbuildings/issues/125) which occurs when the validator is called from outside this folder.
 Please run the instance validator from this folder until the bug is fixed.
 
