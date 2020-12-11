@@ -17,6 +17,8 @@
 from __future__ import print_function
 from yamlformat.validator import findings_lib
 
+TRANSLATION_COMPLIANT = 'COMPLIANT'
+
 class EntityInstance(findings_lib.Findings):
   """Uses information from the generated ontology universe to validate
   an entity instance. An entity instance is composed of at least an id and a
@@ -33,19 +35,25 @@ class EntityInstance(findings_lib.Findings):
     self.entity = entity
     self.universe = universe
     self.config_entity_names = config_entity_names
+
     self.required_keys = ('id', 'type')
-    self.links = 'links'
-    self.translation_key = 'translation'
-    self.translation_compliant = 'COMPLIANT'
-    self.unit_values = 'unit_values'
-    self.states = 'states'
-    self.units = 'units'
-    self.values = 'values'
-    self.key = 'key'
-    self.connections = 'connections'
-    # set the namespace and the entity
-    entity_type_str = str(self.entity['type'])
-    type_parse = entity_type_str.split('/')
+
+    self.id = entity['id']
+    self.namespace, self.type_name = self._ParseTypeString(str(entity['type']))
+
+    self.links = entity['links']
+    self.translation = entity['translation']
+    self.connections = entity['connections']
+
+    # if self.translation:
+    #   self.unit_values = 'unit_values'
+    #   self.states = 'states'
+    #   self.units = 'units'
+
+
+  def _ParseTypeString(self, type_str):
+    """TODO"""
+    type_parse = type_str.split('/')
 
     if len(type_parse) == 1:
       print('Type improperly formatted, a namespace is missing: '
@@ -55,11 +63,10 @@ class EntityInstance(findings_lib.Findings):
 
     if len(type_parse) > 2:
       print('Type improperly formatted: ', entity_type_str)
-      # todo: raise exception
       raise TypeError('Type improperly formatted: ', entity_type_str)
 
-    self.namespace = type_parse[0]
-    self.type_name = type_parse[1]
+    return type_parse[0], type_parse[1]
+
 
   def _ValidateConnections(self):
     """Uses information from the generated ontology universe to validate
@@ -86,6 +93,7 @@ class EntityInstance(findings_lib.Findings):
 
     return True
 
+
   def _ValidateType(self):
     """Uses information from the generated ontology universe to validate
     an entity's type.
@@ -106,8 +114,8 @@ class EntityInstance(findings_lib.Findings):
       print('Abstract types cannot be directly used:', self.type_name)
       return False
 
-
     return True
+
 
   def _ValidateLinks(self, entity_instances):
     """Uses information from the generated ontology universe to validate
@@ -185,6 +193,7 @@ class EntityInstance(findings_lib.Findings):
 
     return True
 
+
   def _ValidateTranslation(self):
     """Uses information from the generated ontology universe to validate
     an entity's translation if it exists.
@@ -198,7 +207,7 @@ class EntityInstance(findings_lib.Findings):
 
     translation_body = self.entity[self.translation_key]
     if isinstance(translation_body.data, str):
-      if translation_body.data == self.translation_compliant:
+      if translation_body.data == TRANSLATION_COMPLIANT:
         return True
       else:
         print('Invalid translation compliance string', translation_body.data)
@@ -272,8 +281,8 @@ class EntityInstance(findings_lib.Findings):
               optional_field_name.field.field)
         return False
 
-
     return True
+
 
   def IsValidEntityInstance(self, entity_instances=None):
     """Uses information from the generated ontology universe to validate an
