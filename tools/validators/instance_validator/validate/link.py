@@ -12,20 +12,24 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Data point in a telemetry message."""
+"""Link between two entities."""
 
-class Point(object):
-  """A point from a pubsub telemetry message.
+class Link(object):
+  """A link between a source and target field of two entities.
 
   Args:
-    point_name: name of the point
-    value: value of the point
+    source: source entity
+    target: target entity
+    source_field: name of the field on the source entity
+    target_field: name of the field on the target entity
 
   Returns:
-    A Point instance.
+    A Link instance.
   """
 
-  def __init__(self, point_name, value):
+  def __init__(self, source, target, source_field, target_field):
     super().__init__()
-    self.point_name = point_name
-    self.present_value = value
+    self.source = source
+    self.target = target
+    self.source_field = source_field
+    self.target_field = target_field

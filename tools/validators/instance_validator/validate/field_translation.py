@@ -12,20 +12,27 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Data point in a telemetry message."""
+"""Translation of a single field."""
 
-class Point(object):
-  """A point from a pubsub telemetry message.
+class FieldTranslation(object):
+  """A translation for a single field of an entity.
 
   Args:
-    point_name: name of the point
-    value: value of the point
+    field_name: name of the field the translation corresponds to
 
   Returns:
-    A Point instance.
+    A FieldTranslation instance.
   """
 
-  def __init__(self, point_name, value):
+  def __init__(self, field_name):
     super().__init__()
-    self.point_name = point_name
-    self.present_value = value
+    self.field_name = field_name
+
+  def SetUnitValues(self, unit_values):
+    self.unit_values = unit_values
+
+  def SetUnits(self, units):
+    self.units = units
+
+  def SetStates(self, states):
+    self.states = states

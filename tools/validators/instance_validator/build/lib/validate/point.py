@@ -12,20 +12,22 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Data point in a telemetry message."""
+"""Parses Telemetry Payload"""
+
+from __future__ import print_function
 
 class Point(object):
   """A point from a pubsub telemetry message.
 
   Args:
-    point_name: name of the point
-    value: value of the point
+    message: a pubsub message
 
   Returns:
-    A Point instance.
+    An instance of the Telemetry class.
   """
 
   def __init__(self, point_name, value):
     super().__init__()
     self.point_name = point_name
     self.present_value = value
+    
