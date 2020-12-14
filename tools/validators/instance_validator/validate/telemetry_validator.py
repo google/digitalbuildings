@@ -93,7 +93,7 @@ class TelemetryValidator(object):
     self.validated_entities[entity_name] = True
 
     entity = self.entities[entity_name]
-    print('Validating entity: ', entity_name)
+    print("Validating entity: ", entity_name)
     if TRANSLATION in entity.keys():
       for point_name, point_config in entity[TRANSLATION].items():
         if point_name not in t.points.keys():
