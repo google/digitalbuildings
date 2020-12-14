@@ -93,36 +93,39 @@ class TelemetryValidator(object):
     self.validated_entities[entity_name] = True
 
     entity = self.entities[entity_name]
-    for point_name, point_config in entity[TRANSLATION].items():
-      if point_name not in t.points.keys():
-        self.AddError(
+    print('Validating entity: ', entity_name)
+    if TRANSLATION in entity.keys():
+      for point_name, point_config in entity[TRANSLATION].items():
+        if point_name not in t.points.keys():
+          self.AddError(
           telemetry_error.TelemetryError(
             entity_name, point_name, "Missing point"))
-        continue
-
-      point = t.points[point_name]
-      pv = point.present_value
-      if pv is None:
-        self.AddError(
-          telemetry_error.TelemetryError(
-            entity_name, point_name, "Missing present value"))
-        continue
-
-      has_states = STATES in point_config
-      has_units = UNITS in point_config
-
-      if has_states:
-        states = point_config[STATES]
-        if pv not in states.values():
-          self.AddError(
-            telemetry_error.TelemetryError(
-              entity_name, point_name, "Invalid state: {}".format(pv)))
           continue
 
-      if has_units and not self.ValueIsNumeric(pv):
-        self.AddError(
-          telemetry_error.TelemetryError(
-            entity_name, point_name, "Invalid number: {}".format(pv)))
+        point = t.points[point_name]
+        pv = point.present_value
+        if pv is None:
+          self.AddError(
+            telemetry_error.TelemetryError(
+              entity_name, point_name, "Missing present value"))
+          continue
+
+        has_states = STATES in point_config
+        has_units = UNITS in point_config
+
+        if has_states:
+          states = point_config[STATES]
+          if pv not in states.values():
+            self.AddError(
+              telemetry_error.TelemetryError(
+                entity_name, point_name, "Invalid state: {}".format(pv)))
+            continue
+
+        if has_units and not self.ValueIsNumeric(pv):
+          self.AddError(
+            telemetry_error.TelemetryError(
+              entity_name, point_name, "Invalid number: {}".format(pv)))
+
 
     message.ack()
     self.CallbackIfCompleted()
