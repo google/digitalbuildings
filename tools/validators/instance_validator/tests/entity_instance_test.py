@@ -27,7 +27,7 @@ from os import path
 _TEST_DIR = path.dirname(path.realpath(__file__))
 _TESTCASE_PATH = path.join(_TEST_DIR, 'fake_instances')
 
-# universe shared between tests
+# generate universe once for all the tests
 _UNIVERSE = generate_universe.BuildUniverse()
 _UNIVERSE.connections_universe = set(['CONTAINS', 'CONTROLS', 'FEEDS'])
 
@@ -454,7 +454,7 @@ class EntityInstanceTest(absltest.TestCase):
 
     if 'connections' not in entity.keys():
       self.fail('entity does not have connections when expected')
-    if self.universe.connections_universe is None:
+    if _UNIVERSE.connections_universe is None:
       self.fail('universe does not valid connections universe')
 
     instance = entity_instance.EntityInstance(entity,
