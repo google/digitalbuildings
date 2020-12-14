@@ -28,12 +28,11 @@ _BAD_MODIFIED_ONTOLOGY = path.join(_TEST_DIR,
 _NONEXISTENT_LOCATION = path.join(_TEST_DIR, 'nonexistent')
 _EMPTY_FOLDER = path.join(_TEST_DIR, 'fake_resources', 'BAD', 'BAD_EMPTY')
 
-_UNIVERSE = generate_universe.BuildUniverse()
-
 class GenerateUniverseTest(absltest.TestCase):
-
+  
   def testCanGenerateUniverse(self):
-    self.assertTrue(self.universe)
+    universe = generate_universe.BuildUniverse()
+    self.assertTrue(universe)
 
   def testCatchInvalidModifiedOntology(self):
     with self.assertRaises(Exception) as context:
