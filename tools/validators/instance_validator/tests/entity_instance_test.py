@@ -27,6 +27,12 @@ from os import path
 _TEST_DIR = path.dirname(path.realpath(__file__))
 _TESTCASE_PATH = path.join(_TEST_DIR, 'fake_instances')
 
+# generate the universe only once
+temp_universe = generate_universe.BuildUniverse()
+temp_universe.connections_universe = set(['CONTAINS',
+                                          'CONTROLS',
+                                          'FEEDS'])
+
 class EntityInstanceTest(absltest.TestCase):
 
   def setUp(self):
