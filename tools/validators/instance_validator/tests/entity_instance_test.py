@@ -28,20 +28,20 @@ _TEST_DIR = path.dirname(path.realpath(__file__))
 _TESTCASE_PATH = path.join(_TEST_DIR, 'fake_instances')
 
 # generate the universe only once
-temp_universe = generate_universe.BuildUniverse()
-temp_universe.connections_universe = set(['CONTAINS',
+_UNIVERSE = generate_universe.BuildUniverse()
+_UNIVERSE.connections_universe = set(['CONTAINS',
                                           'CONTROLS',
                                           'FEEDS'])
 
 class EntityInstanceTest(absltest.TestCase):
 
   def setUp(self):
-    if temp_universe is None:
-      temp_universe = generate_universe.BuildUniverse()
-      temp_universe.connections_universe = set(['CONTAINS',
+    if _UNIVERSE is None:
+      _UNIVERSE = generate_universe.BuildUniverse()
+      _UNIVERSE.connections_universe = set(['CONTAINS',
                                                 'CONTROLS',
                                                 'FEEDS'])
-    self.universe = temp_universe
+    self.universe = _UNIVERSE
 
   def testValidateGoodExample(self):
     parsed = instance_parser.parse_yaml(
