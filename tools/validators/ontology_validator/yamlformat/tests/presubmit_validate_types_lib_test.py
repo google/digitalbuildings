@@ -38,8 +38,8 @@ _F = test_helpers_lib.Fields
 _F1 = test_helpers_lib.Field
 
 # Constant to point to test files.
-TEST_DIR = path.dirname(path.realpath(__file__))
-RESOURCE_PATH = path.join(TEST_DIR, 'fake_resources')
+_TEST_DIR = path.dirname(path.realpath(__file__))
+RESOURCE_PATH = path.join(_TEST_DIR, 'fake_resources')
 
 # Override this value to keep tests stable
 namespace_validator.MIN_SIZE_FOR_LOCAL_FIELD_DUPES = 1
