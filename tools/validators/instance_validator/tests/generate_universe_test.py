@@ -29,7 +29,7 @@ _NONEXISTENT_LOCATION = path.join(_TEST_DIR, 'nonexistent')
 _EMPTY_FOLDER = path.join(_TEST_DIR, 'fake_resources', 'BAD', 'BAD_EMPTY')
 
 class GenerateUniverseTest(absltest.TestCase):
-  
+
   def testCanGenerateUniverse(self):
     universe = generate_universe.BuildUniverse()
     self.assertTrue(universe)
