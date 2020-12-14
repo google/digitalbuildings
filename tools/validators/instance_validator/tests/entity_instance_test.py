@@ -28,11 +28,10 @@ _TEST_DIR = path.dirname(path.realpath(__file__))
 _TESTCASE_PATH = path.join(_TEST_DIR, 'fake_instances')
 
 class EntityInstanceTest(absltest.TestCase):
-
-  def setUp(self):
-    temp_universe = generate_universe.BuildUniverse()
-    temp_universe.connections_universe = set(['CONTAINS', 'CONTROLS', 'FEEDS'])
-    self.universe = temp_universe
+  # Global universe shared between tests
+  temp_universe = generate_universe.BuildUniverse()
+  temp_universe.connections_universe = set(['CONTAINS', 'CONTROLS', 'FEEDS'])
+  self.universe = temp_universe
 
   def testValidateGoodExample(self):
     parsed = instance_parser.parse_yaml(
