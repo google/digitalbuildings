@@ -29,9 +29,8 @@ _TESTCASE_PATH = path.join(_TEST_DIR, 'fake_instances')
 
 class EntityInstanceTest(absltest.TestCase):
   # Global universe shared between tests
-  temp_universe = generate_universe.BuildUniverse()
-  temp_universe.connections_universe = set(['CONTAINS', 'CONTROLS', 'FEEDS'])
-  self.universe = temp_universe
+  universe = generate_universe.BuildUniverse()
+  universe.connections_universe = set(['CONTAINS', 'CONTROLS', 'FEEDS'])
 
   def testValidateGoodExample(self):
     parsed = instance_parser.parse_yaml(
@@ -43,7 +42,7 @@ class EntityInstanceTest(absltest.TestCase):
 
     entity = dict(parsed[entity_name])
     instance = entity_instance.EntityInstance(entity,
-                                              self.universe,
+                                              universe,
                                               parsed.keys())
 
     if not instance.IsValidEntityInstance():
@@ -59,7 +58,7 @@ class EntityInstanceTest(absltest.TestCase):
     entity = dict(parsed[entity_name])
 
     try:
-      entity_instance.EntityInstance(entity, self.universe, parsed.keys())
+      entity_instance.EntityInstance(entity, universe, parsed.keys())
     except TypeError as e:
       self.assertEqual(type(e), TypeError)
     else:
@@ -74,7 +73,7 @@ class EntityInstanceTest(absltest.TestCase):
     entity_name = list(parsed.keys())[0]
     entity = dict(parsed[entity_name])
     instance = entity_instance.EntityInstance(entity,
-                                              self.universe,
+                                              universe,
                                               parsed.keys())
 
     if instance.IsValidEntityInstance():
@@ -91,7 +90,7 @@ class EntityInstanceTest(absltest.TestCase):
 
     entity = dict(parsed[entity_name])
     instance = entity_instance.EntityInstance(entity,
-                                              self.universe,
+                                              universe,
                                               parsed.keys())
 
     if instance.IsValidEntityInstance():
@@ -108,7 +107,7 @@ class EntityInstanceTest(absltest.TestCase):
 
     entity = dict(parsed[entity_name])
     instance = entity_instance.EntityInstance(entity,
-                                              self.universe,
+                                              universe,
                                               parsed.keys())
 
     if instance.IsValidEntityInstance():
@@ -124,7 +123,7 @@ class EntityInstanceTest(absltest.TestCase):
 
     entity = dict(parsed[entity_name])
     instance = entity_instance.EntityInstance(entity,
-                                              self.universe,
+                                              universe,
                                               parsed.keys())
 
     if not instance.IsValidEntityInstance():
@@ -140,7 +139,7 @@ class EntityInstanceTest(absltest.TestCase):
 
     entity = dict(parsed[entity_name])
     instance = entity_instance.EntityInstance(entity,
-                                              self.universe,
+                                              universe,
                                               parsed.keys())
 
     if not instance.IsValidEntityInstance():
@@ -157,7 +156,7 @@ class EntityInstanceTest(absltest.TestCase):
 
     entity = dict(parsed[entity_name])
     instance = entity_instance.EntityInstance(entity,
-                                              self.universe,
+                                              universe,
                                               parsed.keys())
 
     if not instance.IsValidEntityInstance():
@@ -173,7 +172,7 @@ class EntityInstanceTest(absltest.TestCase):
 
     entity = dict(parsed[entity_name])
     instance = entity_instance.EntityInstance(entity,
-                                              self.universe,
+                                              universe,
                                               parsed.keys())
 
     if instance.IsValidEntityInstance():
@@ -188,7 +187,7 @@ class EntityInstanceTest(absltest.TestCase):
 
     entity_hvac = dict(parsed[entity_name_hvac])
     instance = entity_instance.EntityInstance(entity_hvac
-                                              , self.universe
+                                              , universe
                                               , parsed.keys())
 
     if not instance.IsValidEntityInstance():
@@ -203,7 +202,7 @@ class EntityInstanceTest(absltest.TestCase):
 
     entity_lighting = dict(parsed[entity_name_lighting])
     instance_lighting = entity_instance.EntityInstance(entity_lighting
-                                                       , self.universe
+                                                       , universe
                                                        , parsed.keys())
 
     if not instance_lighting.IsValidEntityInstance():
@@ -217,7 +216,7 @@ class EntityInstanceTest(absltest.TestCase):
     for raw_entity in list(parsed.keys()):
       entity_parsed = dict(parsed[raw_entity])
       entity = entity_instance.EntityInstance(entity_parsed
-                                              , self.universe
+                                              , universe
                                               , parsed.keys())
       if not entity.IsValidEntityInstance():
         self.fail('exception incorrectly raised')
@@ -232,7 +231,7 @@ class EntityInstanceTest(absltest.TestCase):
 
     entity = dict(parsed[entity_name])
     instance = entity_instance.EntityInstance(entity
-                                              , self.universe
+                                              , universe
                                               , parsed.keys())
 
     if instance.IsValidEntityInstance():
@@ -249,7 +248,7 @@ class EntityInstanceTest(absltest.TestCase):
 
     entity = dict(parsed[entity_name])
     instance = entity_instance.EntityInstance(entity,
-                                              self.universe,
+                                              universe,
                                               parsed.keys())
 
     if not instance.IsValidEntityInstance():
@@ -265,7 +264,7 @@ class EntityInstanceTest(absltest.TestCase):
 
     entity = dict(parsed[entity_name])
     instance = entity_instance.EntityInstance(entity,
-                                              self.universe,
+                                              universe,
                                               parsed.keys())
 
     if not instance.IsValidEntityInstance():
@@ -281,7 +280,7 @@ class EntityInstanceTest(absltest.TestCase):
 
     entity = dict(parsed[entity_name])
     instance = entity_instance.EntityInstance(entity,
-                                              self.universe,
+                                              universe,
                                               parsed.keys())
 
     if not instance.IsValidEntityInstance():
@@ -297,7 +296,7 @@ class EntityInstanceTest(absltest.TestCase):
 
     entity = dict(parsed[entity_name])
     instance = entity_instance.EntityInstance(entity,
-                                              self.universe,
+                                              universe,
                                               parsed.keys())
 
     if not instance.IsValidEntityInstance():
@@ -313,7 +312,7 @@ class EntityInstanceTest(absltest.TestCase):
 
     entity = dict(parsed[entity_name])
     instance = entity_instance.EntityInstance(entity,
-                                              self.universe,
+                                              universe,
                                               parsed.keys())
 
     if instance.IsValidEntityInstance():
@@ -329,7 +328,7 @@ class EntityInstanceTest(absltest.TestCase):
 
     entity = dict(parsed[entity_name])
     instance = entity_instance.EntityInstance(entity,
-                                              self.universe,
+                                              universe,
                                               parsed.keys())
 
     if instance.IsValidEntityInstance():
@@ -345,7 +344,7 @@ class EntityInstanceTest(absltest.TestCase):
     for raw_entity in list(parsed.keys()):
       entity_parsed = dict(parsed[raw_entity])
       entity = entity_instance.EntityInstance(entity_parsed
-                                              , self.universe
+                                              , universe
                                               , parsed.keys())
       entity_instances[raw_entity] = entity
 
@@ -363,7 +362,7 @@ class EntityInstanceTest(absltest.TestCase):
     for raw_entity in list(parsed.keys()):
       entity_parsed = dict(parsed[raw_entity])
       entity = entity_instance.EntityInstance(entity_parsed
-                                              , self.universe
+                                              , universe
                                               , parsed.keys())
       entity_instances[raw_entity] = entity
 
@@ -381,7 +380,7 @@ class EntityInstanceTest(absltest.TestCase):
     for raw_entity in list(parsed.keys()):
       entity_parsed = dict(parsed[raw_entity])
       entity = entity_instance.EntityInstance(entity_parsed
-                                              , self.universe
+                                              , universe
                                               , parsed.keys())
       entity_instances[raw_entity] = entity
 
@@ -400,7 +399,7 @@ class EntityInstanceTest(absltest.TestCase):
     for raw_entity in list(parsed.keys()):
       entity_parsed = dict(parsed[raw_entity])
       entity = entity_instance.EntityInstance(entity_parsed
-                                              , self.universe
+                                              , universe
                                               , parsed.keys())
       entity_instances[raw_entity] = entity
 
@@ -418,7 +417,7 @@ class EntityInstanceTest(absltest.TestCase):
     for raw_entity in list(parsed.keys()):
       entity_parsed = dict(parsed[raw_entity])
       entity = entity_instance.EntityInstance(entity_parsed
-                                              , self.universe
+                                              , universe
                                               , parsed.keys())
       entity_instances[raw_entity] = entity
 
@@ -436,7 +435,7 @@ class EntityInstanceTest(absltest.TestCase):
     for raw_entity in list(parsed.keys()):
       entity_parsed = dict(parsed[raw_entity])
       entity = entity_instance.EntityInstance(entity_parsed
-                                              , self.universe
+                                              , universe
                                               , parsed.keys())
       if not entity.IsValidEntityInstance():
         self.fail('exception incorrectly raised')
@@ -457,7 +456,7 @@ class EntityInstanceTest(absltest.TestCase):
       self.fail('universe does not valid connections universe')
 
     instance = entity_instance.EntityInstance(entity,
-                                              self.universe,
+                                              universe,
                                               parsed.keys())
 
     if not instance.IsValidEntityInstance():
@@ -473,7 +472,7 @@ class EntityInstanceTest(absltest.TestCase):
 
     entity = dict(parsed[entity_name])
     instance = entity_instance.EntityInstance(entity,
-                                              self.universe,
+                                              universe,
                                               parsed.keys())
 
     if instance.IsValidEntityInstance():
