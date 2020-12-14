@@ -32,8 +32,9 @@ class EntityInstanceTest(absltest.TestCase):
   def setUp(self):
     if temp_universe is None:
       temp_universe = generate_universe.BuildUniverse()
-      temp_universe.connections_universe = 
-         set(['CONTAINS', 'CONTROLS', 'FEEDS'])
+      temp_universe.connections_universe = set(['CONTAINS', 
+                                                'CONTROLS', 
+                                                'FEEDS'])
     self.universe = temp_universe
 
   def testValidateGoodExample(self):
