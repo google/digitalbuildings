@@ -28,7 +28,6 @@ _TEST_DIR = path.dirname(path.realpath(__file__))
 _TESTCASE_PATH = path.join(_TEST_DIR, 'fake_instances')
 
 class EntityInstanceTest(absltest.TestCase):
-
 # generate universe once for all the tests
 universe = generate_universe.BuildUniverse()
 universe.connections_universe = set(['CONTAINS', 'CONTROLS', 'FEEDS'])
@@ -49,7 +48,7 @@ universe.connections_universe = set(['CONTAINS', 'CONTROLS', 'FEEDS'])
 
     entity = dict(parsed[entity_name])
     instance = entity_instance.EntityInstance(entity,
-                                              universe,
+                                              self.universe,
                                               parsed.keys())
 
     if not instance.IsValidEntityInstance():
@@ -65,7 +64,9 @@ universe.connections_universe = set(['CONTAINS', 'CONTROLS', 'FEEDS'])
     entity = dict(parsed[entity_name])
 
     try:
-      entity_instance.EntityInstance(entity, universe, parsed.keys())
+      entity_instance.EntityInstance(entity,
+                                     self.universe,
+                                     parsed.keys())
     except TypeError as e:
       self.assertEqual(type(e), TypeError)
     else:
@@ -80,7 +81,7 @@ universe.connections_universe = set(['CONTAINS', 'CONTROLS', 'FEEDS'])
     entity_name = list(parsed.keys())[0]
     entity = dict(parsed[entity_name])
     instance = entity_instance.EntityInstance(entity,
-                                              universe,
+                                              self.universe,
                                               parsed.keys())
 
     if instance.IsValidEntityInstance():
@@ -97,7 +98,7 @@ universe.connections_universe = set(['CONTAINS', 'CONTROLS', 'FEEDS'])
 
     entity = dict(parsed[entity_name])
     instance = entity_instance.EntityInstance(entity,
-                                              universe,
+                                              self.universe,
                                               parsed.keys())
 
     if instance.IsValidEntityInstance():
@@ -114,7 +115,7 @@ universe.connections_universe = set(['CONTAINS', 'CONTROLS', 'FEEDS'])
 
     entity = dict(parsed[entity_name])
     instance = entity_instance.EntityInstance(entity,
-                                              universe,
+                                              self.universe,
                                               parsed.keys())
 
     if instance.IsValidEntityInstance():
@@ -130,7 +131,7 @@ universe.connections_universe = set(['CONTAINS', 'CONTROLS', 'FEEDS'])
 
     entity = dict(parsed[entity_name])
     instance = entity_instance.EntityInstance(entity,
-                                              universe,
+                                              self.universe,
                                               parsed.keys())
 
     if not instance.IsValidEntityInstance():
@@ -146,7 +147,7 @@ universe.connections_universe = set(['CONTAINS', 'CONTROLS', 'FEEDS'])
 
     entity = dict(parsed[entity_name])
     instance = entity_instance.EntityInstance(entity,
-                                              universe,
+                                              self.universe,
                                               parsed.keys())
 
     if not instance.IsValidEntityInstance():
@@ -163,7 +164,7 @@ universe.connections_universe = set(['CONTAINS', 'CONTROLS', 'FEEDS'])
 
     entity = dict(parsed[entity_name])
     instance = entity_instance.EntityInstance(entity,
-                                              universe,
+                                              self.universe,
                                               parsed.keys())
 
     if not instance.IsValidEntityInstance():
@@ -179,7 +180,7 @@ universe.connections_universe = set(['CONTAINS', 'CONTROLS', 'FEEDS'])
 
     entity = dict(parsed[entity_name])
     instance = entity_instance.EntityInstance(entity,
-                                              universe,
+                                              self.universe,
                                               parsed.keys())
 
     if instance.IsValidEntityInstance():
@@ -194,7 +195,7 @@ universe.connections_universe = set(['CONTAINS', 'CONTROLS', 'FEEDS'])
 
     entity_hvac = dict(parsed[entity_name_hvac])
     instance = entity_instance.EntityInstance(entity_hvac
-                                              , universe
+                                              , self.universe
                                               , parsed.keys())
 
     if not instance.IsValidEntityInstance():
@@ -209,7 +210,7 @@ universe.connections_universe = set(['CONTAINS', 'CONTROLS', 'FEEDS'])
 
     entity_lighting = dict(parsed[entity_name_lighting])
     instance_lighting = entity_instance.EntityInstance(entity_lighting
-                                                       , universe
+                                                       , self.universe
                                                        , parsed.keys())
 
     if not instance_lighting.IsValidEntityInstance():
@@ -223,7 +224,7 @@ universe.connections_universe = set(['CONTAINS', 'CONTROLS', 'FEEDS'])
     for raw_entity in list(parsed.keys()):
       entity_parsed = dict(parsed[raw_entity])
       entity = entity_instance.EntityInstance(entity_parsed
-                                              , universe
+                                              , self.universe
                                               , parsed.keys())
       if not entity.IsValidEntityInstance():
         self.fail('exception incorrectly raised')
@@ -238,7 +239,7 @@ universe.connections_universe = set(['CONTAINS', 'CONTROLS', 'FEEDS'])
 
     entity = dict(parsed[entity_name])
     instance = entity_instance.EntityInstance(entity
-                                              , universe
+                                              , self.universe
                                               , parsed.keys())
 
     if instance.IsValidEntityInstance():
@@ -255,7 +256,7 @@ universe.connections_universe = set(['CONTAINS', 'CONTROLS', 'FEEDS'])
 
     entity = dict(parsed[entity_name])
     instance = entity_instance.EntityInstance(entity,
-                                              universe,
+                                              self.universe,
                                               parsed.keys())
 
     if not instance.IsValidEntityInstance():
@@ -271,7 +272,7 @@ universe.connections_universe = set(['CONTAINS', 'CONTROLS', 'FEEDS'])
 
     entity = dict(parsed[entity_name])
     instance = entity_instance.EntityInstance(entity,
-                                              universe,
+                                              self.universe,
                                               parsed.keys())
 
     if not instance.IsValidEntityInstance():
@@ -287,7 +288,7 @@ universe.connections_universe = set(['CONTAINS', 'CONTROLS', 'FEEDS'])
 
     entity = dict(parsed[entity_name])
     instance = entity_instance.EntityInstance(entity,
-                                              universe,
+                                              self.universe,
                                               parsed.keys())
 
     if not instance.IsValidEntityInstance():
@@ -303,7 +304,7 @@ universe.connections_universe = set(['CONTAINS', 'CONTROLS', 'FEEDS'])
 
     entity = dict(parsed[entity_name])
     instance = entity_instance.EntityInstance(entity,
-                                              universe,
+                                              self.universe,
                                               parsed.keys())
 
     if not instance.IsValidEntityInstance():
@@ -319,7 +320,7 @@ universe.connections_universe = set(['CONTAINS', 'CONTROLS', 'FEEDS'])
 
     entity = dict(parsed[entity_name])
     instance = entity_instance.EntityInstance(entity,
-                                              universe,
+                                              self.universe,
                                               parsed.keys())
 
     if instance.IsValidEntityInstance():
@@ -335,7 +336,7 @@ universe.connections_universe = set(['CONTAINS', 'CONTROLS', 'FEEDS'])
 
     entity = dict(parsed[entity_name])
     instance = entity_instance.EntityInstance(entity,
-                                              universe,
+                                              self.universe,
                                               parsed.keys())
 
     if instance.IsValidEntityInstance():
@@ -351,7 +352,7 @@ universe.connections_universe = set(['CONTAINS', 'CONTROLS', 'FEEDS'])
     for raw_entity in list(parsed.keys()):
       entity_parsed = dict(parsed[raw_entity])
       entity = entity_instance.EntityInstance(entity_parsed
-                                              , universe
+                                              , self.universe
                                               , parsed.keys())
       entity_instances[raw_entity] = entity
 
@@ -369,7 +370,7 @@ universe.connections_universe = set(['CONTAINS', 'CONTROLS', 'FEEDS'])
     for raw_entity in list(parsed.keys()):
       entity_parsed = dict(parsed[raw_entity])
       entity = entity_instance.EntityInstance(entity_parsed
-                                              , universe
+                                              , self.universe
                                               , parsed.keys())
       entity_instances[raw_entity] = entity
 
@@ -387,7 +388,7 @@ universe.connections_universe = set(['CONTAINS', 'CONTROLS', 'FEEDS'])
     for raw_entity in list(parsed.keys()):
       entity_parsed = dict(parsed[raw_entity])
       entity = entity_instance.EntityInstance(entity_parsed
-                                              , universe
+                                              , self.universe
                                               , parsed.keys())
       entity_instances[raw_entity] = entity
 
@@ -406,7 +407,7 @@ universe.connections_universe = set(['CONTAINS', 'CONTROLS', 'FEEDS'])
     for raw_entity in list(parsed.keys()):
       entity_parsed = dict(parsed[raw_entity])
       entity = entity_instance.EntityInstance(entity_parsed
-                                              , universe
+                                              , self.universe
                                               , parsed.keys())
       entity_instances[raw_entity] = entity
 
@@ -424,7 +425,7 @@ universe.connections_universe = set(['CONTAINS', 'CONTROLS', 'FEEDS'])
     for raw_entity in list(parsed.keys()):
       entity_parsed = dict(parsed[raw_entity])
       entity = entity_instance.EntityInstance(entity_parsed
-                                              , universe
+                                              , self.universe
                                               , parsed.keys())
       entity_instances[raw_entity] = entity
 
@@ -442,7 +443,7 @@ universe.connections_universe = set(['CONTAINS', 'CONTROLS', 'FEEDS'])
     for raw_entity in list(parsed.keys()):
       entity_parsed = dict(parsed[raw_entity])
       entity = entity_instance.EntityInstance(entity_parsed
-                                              , universe
+                                              , self.universe
                                               , parsed.keys())
       if not entity.IsValidEntityInstance():
         self.fail('exception incorrectly raised')
@@ -459,11 +460,11 @@ universe.connections_universe = set(['CONTAINS', 'CONTROLS', 'FEEDS'])
 
     if 'connections' not in entity.keys():
       self.fail('entity does not have connections when expected')
-    if universe.connections_universe is None:
+    if self.universe.connections_universe is None:
       self.fail('universe does not valid connections universe')
 
     instance = entity_instance.EntityInstance(entity,
-                                              universe,
+                                              self.universe,
                                               parsed.keys())
 
     if not instance.IsValidEntityInstance():
@@ -479,7 +480,7 @@ universe.connections_universe = set(['CONTAINS', 'CONTROLS', 'FEEDS'])
 
     entity = dict(parsed[entity_name])
     instance = entity_instance.EntityInstance(entity,
-                                              universe,
+                                              self.universe,
                                               parsed.keys())
 
     if instance.IsValidEntityInstance():
