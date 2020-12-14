@@ -23,17 +23,14 @@ from absl.testing import absltest
 from os import path
 
 _TEST_DIR = path.dirname(path.realpath(__file__))
-_DEFAULT_ONTOLOGY_LOCATION = path.join(_TEST_DIR, '..', '..', '..', '..',
-                                       'ontology', 'yaml', 'resources')
 _BAD_MODIFIED_ONTOLOGY = path.join(_TEST_DIR,
                                    'fake_resources', 'BAD', 'BAD_FORMAT')
 _NONEXISTENT_LOCATION = path.join(_TEST_DIR, 'nonexistent')
 _EMPTY_FOLDER = path.join(_TEST_DIR, 'fake_resources', 'BAD', 'BAD_EMPTY')
 
-class GenerateUniverseTest(absltest.TestCase):
+_UNIVERSE = generate_universe.BuildUniverse()
 
-  def setUp(self):
-    self.universe = generate_universe.BuildUniverse()
+class GenerateUniverseTest(absltest.TestCase):
 
   def testCanGenerateUniverse(self):
     self.assertTrue(self.universe)
@@ -42,10 +39,6 @@ class GenerateUniverseTest(absltest.TestCase):
     with self.assertRaises(Exception) as context:
       generate_universe.BuildUniverse(_BAD_MODIFIED_ONTOLOGY)
     self.assertIn('no longer valid', str(context.exception))
-
-  def testModifiedTypesFilepathWorks(self):
-    test_universe = generate_universe.BuildUniverse(_DEFAULT_ONTOLOGY_LOCATION)
-    self.assertTrue(test_universe)
 
   def testModifiedTypesCatchesNonexistent(self):
     self.assertRaises(Exception,
