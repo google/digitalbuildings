@@ -36,6 +36,7 @@ VALUES_KEY = 'values'
 STATES_KEY = 'states'
 
 
+# TODO(nkilmer): move parsing and validation logic in this class into subclasses
 class EntityInstance(findings_lib.Findings):
   """Uses information from the generated ontology universe to validate
   an entity instance. An entity instance is composed of at least an id and a
@@ -389,6 +390,9 @@ class EntityInstance(findings_lib.Findings):
     if self.namespace is None or self.type_name is None:
       print('Required field not specified: type')
       is_valid = False
+
+    if universe is None:
+      return is_valid
 
     if not self._ValidateType(universe):
       is_valid = False
