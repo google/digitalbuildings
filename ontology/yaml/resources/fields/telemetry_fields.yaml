@@ -746,4 +746,6 @@ literals:
 - zone_air_voc_percentage_setpoint
 - zone_air_voc_percentage_sensor
 
-
+# Added for SG-SIN-MBC2
+- refrigerant_supply_temperature_sensor
+- refrigerant_return_temperature_sensor
