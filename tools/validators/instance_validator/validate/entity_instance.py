@@ -298,19 +298,11 @@ class EntityInstance(findings_lib.Findings):
 
         found_fields.add('/' + target_field)
 
-        source_units = universe.GetUnitsMapByMeasurement(source_field)
-        target_units = universe.GetUnitsMapByMeasurement(target_field)
-        if source_units != target_units:
-          print('Unit mismatch in link from {0} to {1}'\
-                .format(source_field, target_field))
+        if not self._ValidateLinkUnits(universe, source_field, target_field):
           is_valid = False
           continue
 
-        source_states = universe.GetStatesByField(source_field)
-        target_states = universe.GetStatesByField(target_field)
-        if source_states != target_states:
-          print('State mismatch in link from {0} to {1}'\
-                .format(source_field, target_field))
+        if not self._ValidateLinkStates(universe, source_field, target_field):
           is_valid = False
           continue
 
@@ -320,6 +312,26 @@ class EntityInstance(findings_lib.Findings):
         is_valid = False
 
     return is_valid
+
+
+  def _ValidateLinkUnits(self, universe, source_field, target_field):
+    source_units = universe.GetUnitsMapByMeasurement(source_field)
+    target_units = universe.GetUnitsMapByMeasurement(target_field)
+    if source_units != target_units:
+      print('Unit mismatch in link from {0} to {1}'\
+            .format(source_field, target_field))
+      return False
+    return True
+
+
+  def _ValidateLinkStates(self, universe, source_field, target_field):
+    source_states = universe.GetStatesByField(source_field)
+    target_states = universe.GetStatesByField(target_field)
+    if source_states != target_states:
+      print('State mismatch in link from {0} to {1}'\
+            .format(source_field, target_field))
+      return False
+    return True
 
 
   def IsValidEntityInstance(self, entity_instances = None,
