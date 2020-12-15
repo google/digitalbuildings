@@ -275,3 +275,11 @@ LHWRSR: # LTHW Riser - Added for S2
   is_abstract: true
   implements:
   - EQUIPMENT
+
+ISD:
+  id: "bc274e76-f5c4-462d-aecb-44a11ee5b895"
+  description: "Tag for isolation dampers. Isolation dampers are open/close devices which enable the flow of air from
+    one space to another (or to outside)."
+  is_abstract: true
+  implements:
+  - EQUIPMENT

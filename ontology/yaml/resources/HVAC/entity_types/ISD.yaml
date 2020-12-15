@@ -1,0 +1,35 @@
+# Copyright 2020 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the License);
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#    https://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an AS IS BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+########################
+### Canonical Types  ###
+########################
+
+# This defines isolation damper types.
+
+ISD_EDPM:
+  id: "a514cd99-9fb6-40b7-aabd-51bd3f6e6a1d"
+  description: "Exhaust air isolation damper."
+  is_canonical: true
+  implements:
+  - ISD
+  - EDPM
+
+ISD_SISODC:
+  id: "afd8040d-4b25-4e87-8a8c-475d14ce58f4"
+  description: "Supply air isolation damper."
+  is_canonical: true
+  implements:
+  - ISD
+  - SISODC

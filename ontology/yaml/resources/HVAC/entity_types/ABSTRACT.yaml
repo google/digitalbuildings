@@ -223,7 +223,9 @@ EDPM:
   opt_uses:
   - exhaust_air_damper_reset_command
   - exhaust_air_damper_override_status
+  - exhaust_air_damper_mismatch_status
   - exhaust_air_damper_alarm_status
+  - exhaust_air_damper_status
   - exhaust_air_damper_override_percentage_status
   uses:
   - exhaust_air_damper_percentage_command
@@ -3471,3 +3473,16 @@ AMZTC:
   - max_zone_air_temperature_sensor # Maximum temperature sensor reading in a zone
   - average_zone_air_temperature_sensor # Average of temperature sensor readings in a zone
   - zone_air_temperature_setpoint
+
+SISODC:
+  id: "77b80515-3146-430b-87b7-8821214a2d41"
+  description: "Supply isolation damper control with alarms."
+  is_abstract: true
+  opt_uses:
+  - supply_air_damper_override_percentage_status
+  - supply_air_damper_alarm_status
+  uses:
+  - supply_air_damper_percentage_command
+  - supply_air_damper_percentage_sensor
+  implements:
+  - CONTROL
