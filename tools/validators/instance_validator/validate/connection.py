@@ -24,9 +24,6 @@ class Connection(object):
     ctype: type of the connection
       (NOTE: 'type' is a reserved Python keyword)
     source: name of the source entity
-
-  Returns:
-    A Connection instance.
   """
 
   def __init__(self, ctype, source):

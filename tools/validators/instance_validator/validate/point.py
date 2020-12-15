@@ -20,9 +20,6 @@ class Point(object):
   Args:
     point_name: name of the point
     value: value of the point
-
-  Returns:
-    A Point instance.
   """
 
   def __init__(self, point_name, value):

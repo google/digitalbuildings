@@ -330,11 +330,11 @@ class EntityInstance(findings_lib.Findings):
 
         found_fields.add('/' + target_field)
 
-        if not self._ValidateLinkUnits(universe, source_field, target_field):
+        if not self._ValidateLinkUnitsMatch(universe, source_field, target_field):
           is_valid = False
           continue
 
-        if not self._ValidateLinkStates(universe, source_field, target_field):
+        if not self._ValidateLinkStatesMatch(universe, source_field, target_field):
           is_valid = False
           continue
 
@@ -346,7 +346,7 @@ class EntityInstance(findings_lib.Findings):
     return is_valid
 
 
-  def _ValidateLinkUnits(self, universe, source_field, target_field):
+  def _ValidateLinkUnitsMatch(self, universe, source_field, target_field):
     """Validates that units match between linked source and target fields."""
 
     source_units = universe.GetUnitsMapByMeasurement(source_field)
@@ -358,7 +358,7 @@ class EntityInstance(findings_lib.Findings):
     return True
 
 
-  def _ValidateLinkStates(self, universe, source_field, target_field):
+  def _ValidateLinkStatesMatch(self, universe, source_field, target_field):
     """Validates that states match between linked source and target fields."""
 
     source_states = universe.GetStatesByField(source_field)
