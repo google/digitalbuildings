@@ -53,20 +53,25 @@ class EntityInstance(findings_lib.Findings):
   def _ParseEntity(self, entity):
     """TODO"""
 
+    self.id = None
     if ID_KEY in entity.keys():
-      self.id = entity[ID_KEY]
+      self.id = entity[ID_KEY].data
 
+    self.namespace, self.type_name = None, None
     if TYPE_KEY in entity.keys():
-      self.namespace, self.type_name = self._ParseTypeString(str(entity[TYPE_KEY]))
+      self.namespace, self.type_name = self._ParseTypeString(entity[TYPE_KEY].data)
 
+    self.translation = None
     if TRANSLATION_KEY in entity.keys():
-      self.translation = self._ParseTranslation(entity[TRANSLATION_KEY])
+      self.translation = self._ParseTranslation(entity[TRANSLATION_KEY].data)
 
+    self.connections = None
     if CONNECTIONS_KEY in entity.keys():
-      self.connections = self._ParseConnections(entity[CONNECTIONS_KEY])
+      self.connections = self._ParseConnections(entity[CONNECTIONS_KEY].data)
 
+    self.links = None
     if LINKS_KEY in entity.keys():
-      self.links = self._ParseLinks(entity[LINKS_KEY])
+      self.links = self._ParseLinks(entity[LINKS_KEY].data)
 
 
   def _ParseTypeString(self, type_str):
@@ -75,28 +80,27 @@ class EntityInstance(findings_lib.Findings):
 
     if len(type_parse) == 1:
       print('Type improperly formatted, a namespace is missing: '
-            , entity_type_str)
+            , type_str)
       raise TypeError('Type improperly formatted, a namespace is missing: '
-                      , entity_type_str)
+                      , type_str)
 
     if len(type_parse) > 2:
-      print('Type improperly formatted: ', entity_type_str)
-      raise TypeError('Type improperly formatted: ', entity_type_str)
+      print('Type improperly formatted: ', type_str)
+      raise TypeError('Type improperly formatted: ', type_str)
 
     return type_parse[0], type_parse[1]
 
 
-  def _ParseTranslation(self, translation_yaml):
+  def _ParseTranslation(self, translation_body):
     """TODO"""
 
-    if isinstance(translation_yaml.data, str):
-      return translation_yaml.data
+    if isinstance(translation_body, str):
+      return translation_body
 
     translation = {}
-    translation_body = translation_yaml.data
 
     for field_name in translation_body.keys():
-      if isinstance(translation_body[field_name].data, str):
+      if isinstance(translation_body[field_name], str):
         continue
 
       ft = translation_body[field_name]
@@ -104,7 +108,7 @@ class EntityInstance(findings_lib.Findings):
       units = set()
       unit_values = None
       if UNITS_KEY in ft.keys():
-        unit_values = ft[UNIT_KEY][VALUES_KEY]
+        unit_values = ft[UNITS_KEY][VALUES_KEY]
       elif UNIT_VALUES_KEY in ft.keys():
         unit_values = ft[UNIT_VALUES_KEY]
       if unit_values:
@@ -120,25 +124,23 @@ class EntityInstance(findings_lib.Findings):
     return translation
 
 
-  def _ParseConnections(self, connections_yaml):
+  def _ParseConnections(self, connections_body):
     """TODO"""
 
     connections = set()
-    connections_body = connections_yaml.data
 
-    for source_entity, connection_type in connections_body:
+    for source_entity, connection_type in connections_body.items():
       connections.add(connection.Connection(connection_type, source_entity))
 
     return connections
 
 
-  def _ParseLinks(self, links_yaml):
+  def _ParseLinks(self, links_body):
     """TODO"""
 
     links = set()
-    links_body = links_yaml.data
 
-    for source_entity, field_map in links_body:
+    for source_entity, field_map in links_body.items():
       links.add(link.Link(source_entity, field_map))
 
     return links
@@ -188,7 +190,7 @@ class EntityInstance(findings_lib.Findings):
 
     is_valid = True
 
-    entity_type = universe.GetEntityType(self.namespace, self.entity_type)
+    entity_type = universe.GetEntityType(self.namespace, self.type_name)
     type_fields = entity_type.GetAllFields()
     found_fields = set()
 
@@ -213,7 +215,7 @@ class EntityInstance(findings_lib.Findings):
 
       valid_states = universe.GetStatesByField(field_name)
       if valid_states:
-        for states in ft.states:
+        for state in ft.states:
           if state not in valid_states:
             print('Field {0} has an invalid state: {1}'.format(field_name, state))
             is_valid = False
@@ -248,14 +250,15 @@ class EntityInstance(findings_lib.Findings):
         print('Invalid connection type: {0}'.format(connection.ctype))
         is_valid = False
 
-    return True
+    return is_valid
 
 
-  def _ValidateLinks(self, universe, entity_instances, config_entity_names):
+  def _ValidateLinks(self, universe, entity_instances):
     """Uses information from the generated ontology universe to validate
     the links key of an entity.
 
     Args:
+      universe: TODO
       entity_instances: dictionary containing all instances
 
     Returns:
@@ -268,20 +271,20 @@ class EntityInstance(findings_lib.Findings):
 
     is_valid = True
 
-    entity_type = universe.GetEntityType(self.namespace, self.entity_type)
+    entity_type = universe.GetEntityType(self.namespace, self.type_name)
     type_fields = entity_type.GetAllFields()
     found_fields = set()
 
     for link in self.links:
-      if link.source not in config_entity_names:
+      if link.source not in entity_instances.keys():
         print('Invalid link source entity name: {0}'.format(link.source))
         is_valid = False
         continue
 
-      src_entity_instance = entity_instances.get(link.source)
-      src_namespace = src_entity_instance.namespace
+      src_entity = entity_instances.get(link.source)
+      src_namespace = src_entity.namespace
       src_type_name = src_entity.type_name
-      src_entity_type = self.universe.GetEntityType(src_namespace,
+      src_entity_type = universe.GetEntityType(src_namespace,
                                                     src_type_name)
 
       for source_field, target_field in link.field_map.items():
@@ -315,6 +318,7 @@ class EntityInstance(findings_lib.Findings):
 
 
   def _ValidateLinkUnits(self, universe, source_field, target_field):
+    """TODO"""
     source_units = universe.GetUnitsMapByMeasurement(source_field)
     target_units = universe.GetUnitsMapByMeasurement(target_field)
     if source_units != target_units:
@@ -325,6 +329,7 @@ class EntityInstance(findings_lib.Findings):
 
 
   def _ValidateLinkStates(self, universe, source_field, target_field):
+    """TODO"""
     source_states = universe.GetStatesByField(source_field)
     target_states = universe.GetStatesByField(target_field)
     if source_states != target_states:
@@ -334,27 +339,24 @@ class EntityInstance(findings_lib.Findings):
     return True
 
 
-  def IsValidEntityInstance(self, entity_instances = None,
-                            universe = None, config_entity_names = None):
-    """Uses information from the generated ontology universe to validate an
-    entity.
+  def IsValidEntityInstance(self, universe = None, entity_instances = None):
+    """Uses the generated ontology universe to validate an entity.
 
     Args:
-      entity_instances: dictionary containing all instances.
       universe: ConfigUniverse generated from the ontology
-      config_entity_names: list of entity names in instance YAML file
+      entity_instances: dictionary containing all entity instances
 
     Returns:
-      Returns boolean for validity of entity.
+      True if the entity is valid
     """
 
     is_valid = True
 
-    if not self.id:
+    if self.id is None:
       print('Required field not specified: id')
       is_valid = False
 
-    if not (self.namespace and self.type_name):
+    if self.namespace is None or self.type_name is None:
       print('Required field not specified: type')
       is_valid = False
 
@@ -367,7 +369,7 @@ class EntityInstance(findings_lib.Findings):
     if not self._ValidateConnections(universe):
       is_valid = False
 
-    if not self._ValidateLinks(universe, entity_instances, config_entity_names):
+    if not self._ValidateLinks(universe, entity_instances):
       is_valid = False
 
     return is_valid

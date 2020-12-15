@@ -29,11 +29,10 @@ from validate import telemetry_validator
 DEFAULT_TIMEOUT = 600
 
 
-def deserialize(yaml_file, universe):
+def deserialize(yaml_file):
   """Parses a yaml configuration file and deserialize it.
   Args:
     yaml_file: the building configuration file.
-    universe: the generated ontology universe.
   :returns
     entity_instances: all the deserialized instances.
     parsed: the raw parsed entities
@@ -47,9 +46,7 @@ def deserialize(yaml_file, universe):
   # first build all the entity instances
   for entity_name in entity_names:
     entity = dict(parsed[entity_name])
-    instance = entity_instance.EntityInstance(entity,
-                                              universe,
-                                              set(entity_names))
+    instance = entity_instance.EntityInstance(entity)
     entity_instances[entity_name] = instance
   return entity_instances, parsed
 
@@ -63,8 +60,8 @@ class ValidationHelper(object):
 
   def Validate(self):
     universe = self.GenerateUniverse(self.args.modified_types_filepath)
-    entity_instances, parsed_entities = deserialize(self.filename, universe)
-    self.ValidateEntities(entity_instances)
+    entity_instances, parsed_entities = deserialize(self.filename)
+    self.ValidateEntities(universe, entity_instances)
     self.StartTelemetryValidation(self.subscription, self.service_account,
                                   parsed_entities)
 
@@ -87,15 +84,17 @@ class ValidationHelper(object):
     print('Universe generated successfully')
     return universe
 
-  def ValidateEntities(self, entity_instances):
+  def ValidateEntities(self, universe, entity_instances):
     """Validates entity instances that are already deserialized.
+
       Args:
+        universe: ConfigUniverse representing the ontology
         entity_instances: a list of entity instances.
     """
     print('Validating entities ...')
     building_found = False
     for entity_name, current_entity_instance in entity_instances.items():
-      if not current_entity_instance.IsValidEntityInstance(entity_instances):
+      if not current_entity_instance.IsValidEntityInstance(universe, entity_instances):
         print(entity_name, 'is not a valid instance')
         sys.exit(0)
       if current_entity_instance.type_name.lower() == 'building':
