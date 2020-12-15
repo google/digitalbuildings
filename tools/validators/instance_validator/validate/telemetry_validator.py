@@ -105,16 +105,16 @@ class TelemetryValidator(object):
     self.validated_entities[entity_name] = True
 
     entity = self.entities[entity_name]
-    print('Validating telemetry message for entity: {0}'.format(entity_name))
+    print("Validating telemetry message for entity: {0}".format(entity_name))
 
     if TRANSLATION not in entity.keys():
       # TODO: ignore if the type is a facility
-      print('Missing Translation in Building Config for entity: {0}'
+      print("Missing Translation in Building Config for entity: {0}"
             .format(entity_name))
-      self.AddWarning(telemetry_warning
-                      .TelemetryWarning(entity_name,
-                                        None,
-                                        "Missing Translation in Building Config"))
+      self.AddWarning(
+        telemetry_warning.TelemetryWarning(entity_name,
+                                           None,
+                                           "Missing Translation in Building Config"))
       message.ack()
       return
 
