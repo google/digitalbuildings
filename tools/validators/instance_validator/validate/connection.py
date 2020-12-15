@@ -17,17 +17,19 @@
 class Connection(object):
   """A connection between a source and target entity with a certain type.
 
+  The target entity is implied to be the same as the entity that contains this
+  Connection instance.
+
   Args:
-    source: source entity
-    target: target entity
-    type: connection type
+    ctype: type of the connection
+      (NOTE: 'type' is a reserved Python keyword)
+    source: name of the source entity
 
   Returns:
     A Connection instance.
   """
 
-  def __init__(self, source, target, type):
+  def __init__(self, ctype, source):
     super().__init__()
+    self.ctype = ctype
     self.source = source
-    self.target = target
-    self.type = type

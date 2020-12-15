@@ -19,20 +19,15 @@ class FieldTranslation(object):
 
   Args:
     field_name: name of the field the translation corresponds to
+    units:
+    states:
 
   Returns:
     A FieldTranslation instance.
   """
 
-  def __init__(self, field_name):
+  def __init__(self, field_name, units, states):
     super().__init__()
     self.field_name = field_name
-
-  def SetUnitValues(self, unit_values):
-    self.unit_values = unit_values
-
-  def SetUnits(self, units):
     self.units = units
-
-  def SetStates(self, states):
     self.states = states

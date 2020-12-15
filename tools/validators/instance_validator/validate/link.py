@@ -17,19 +17,18 @@
 class Link(object):
   """A link between a source and target field of two entities.
 
+  The target entity is implied to be the same as the entity that contains this
+  Link instance.
+
   Args:
-    source: source entity
-    target: target entity
-    source_field: name of the field on the source entity
-    target_field: name of the field on the target entity
+    source: source entity name
+    field_map: map from source entity field names to target entity field names
 
   Returns:
     A Link instance.
   """
 
-  def __init__(self, source, target, source_field, target_field):
+  def __init__(self, source, field_map):
     super().__init__()
     self.source = source
-    self.target = target
-    self.source_field = source_field
-    self.target_field = target_field
+    self.field_map = field_map
