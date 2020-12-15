@@ -19,8 +19,8 @@ class FieldTranslation(object):
 
   Args:
     field_name: name of the field the translation corresponds to
-    units:
-    states:
+    units: dictionary from standard units to expected telemetry units
+    states: dictionary from standard states to expected telemetry states
 
   Returns:
     A FieldTranslation instance.

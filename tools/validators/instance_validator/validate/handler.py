@@ -37,18 +37,12 @@ def deserialize(yaml_file):
     entity_instances: all the deserialized instances.
     parsed: the raw parsed entities
   """
-  raw_parse = instance_parser.parse_yaml(yaml_file)
+  parsed_yaml = instance_parser.parse_yaml(yaml_file)
   print('Passed syntax checks!')
-  print('Serializing Passed syntax checks!')
-  parsed = dict(raw_parse)
   entity_instances = {}
-  entity_names = list(parsed.keys())
-  # first build all the entity instances
-  for entity_name in entity_names:
-    entity = dict(parsed[entity_name])
-    instance = entity_instance.EntityInstance(entity)
-    entity_instances[entity_name] = instance
-  return entity_instances, parsed
+  for entity_name, entity_yaml in parsed_yaml.items():
+    entity_instances[entity_name] = entity_instance.EntityInstance(entity_yaml)
+  return entity_instances, parsed_yaml
 
 
 class ValidationHelper(object):
@@ -63,7 +57,7 @@ class ValidationHelper(object):
     entity_instances, parsed_entities = deserialize(self.filename)
     self.ValidateEntities(universe, entity_instances)
     self.StartTelemetryValidation(self.subscription, self.service_account,
-                                  parsed_entities)
+                                  entity_instances)
 
   def GenerateUniverse(self, modified_types_filepath=None):
     """Generates the universe from the ontology.
@@ -108,18 +102,18 @@ class ValidationHelper(object):
 
 
   def StartTelemetryValidation(self, subscription, service_account_file,
-                               parsed_entities):
+                               entity_instances):
     """Validates telemetry payload received from the subscription.
      Args:
        subscription: a pubsub subscription.
        service_account_file: a GCP service account file.
-       parsed_entities: dictionary of raw entities
+       entity_instances: EntityInstance dictionary
     """
     if self.pubsub_validation_set:
       print('Connecting to pubsub subscription: ', subscription)
       sub = subscriber.Subscriber(subscription, service_account_file)
       validator = telemetry_validator.TelemetryValidator(
-          parsed_entities, self.timeout, self.TelemetryValidationCallback)
+          entity_instances, self.timeout, self.TelemetryValidationCallback)
       validator.StartTimer()
       sub.Listen(validator.ValidateMessage)
 

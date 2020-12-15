@@ -47,35 +47,40 @@ class EntityInstance(findings_lib.Findings):
 
   def __init__(self, entity_yaml):
     super().__init__()
-    self._ParseEntity(entity_yaml)
-
-
-  def _ParseEntity(self, entity):
-    """TODO"""
 
     self.id = None
-    if ID_KEY in entity.keys():
-      self.id = entity[ID_KEY].data
+    if ID_KEY in entity_yaml.keys():
+      self.id = entity_yaml[ID_KEY].data
 
     self.namespace, self.type_name = None, None
-    if TYPE_KEY in entity.keys():
-      self.namespace, self.type_name = self._ParseTypeString(entity[TYPE_KEY].data)
+    if TYPE_KEY in entity_yaml.keys():
+      self.namespace, self.type_name = self._ParseTypeString(
+        entity_yaml[TYPE_KEY].data)
 
     self.translation = None
-    if TRANSLATION_KEY in entity.keys():
-      self.translation = self._ParseTranslation(entity[TRANSLATION_KEY].data)
+    if TRANSLATION_KEY in entity_yaml.keys():
+      self.translation = self._ParseTranslation(entity_yaml[TRANSLATION_KEY].data)
 
     self.connections = None
-    if CONNECTIONS_KEY in entity.keys():
-      self.connections = self._ParseConnections(entity[CONNECTIONS_KEY].data)
+    if CONNECTIONS_KEY in entity_yaml.keys():
+      self.connections = self._ParseConnections(entity_yaml[CONNECTIONS_KEY].data)
 
     self.links = None
-    if LINKS_KEY in entity.keys():
-      self.links = self._ParseLinks(entity[LINKS_KEY].data)
+    if LINKS_KEY in entity_yaml.keys():
+      self.links = self._ParseLinks(entity_yaml[LINKS_KEY].data)
 
 
   def _ParseTypeString(self, type_str):
-    """TODO"""
+    """Parses an entity type string into a namespace and type name.
+
+    Args:
+      type_str: entity type string from YAML
+
+    Returns:
+      Type namespace string
+      Type name string
+    """
+
     type_parse = type_str.split('/')
 
     if len(type_parse) == 1:
@@ -92,7 +97,14 @@ class EntityInstance(findings_lib.Findings):
 
 
   def _ParseTranslation(self, translation_body):
-    """TODO"""
+    """Parses YAML defining the translation of an entity's points.
+
+    Args:
+      translation_body: YAML body for the entity translation
+
+    Returns:
+      A dictionary from field names to FieldTranslation instances
+    """
 
     if isinstance(translation_body, str):
       return translation_body
@@ -105,18 +117,15 @@ class EntityInstance(findings_lib.Findings):
 
       ft = translation_body[field_name]
 
-      units = set()
-      unit_values = None
+      units = dict()
       if UNITS_KEY in ft.keys():
-        unit_values = ft[UNITS_KEY][VALUES_KEY]
+        units = ft[UNITS_KEY][VALUES_KEY]
       elif UNIT_VALUES_KEY in ft.keys():
-        unit_values = ft[UNIT_VALUES_KEY]
-      if unit_values:
-        units = unit_values.keys()
+        units = ft[UNIT_VALUES_KEY]
 
-      states = set()
+      states = dict()
       if STATES_KEY in ft.keys():
-        states = ft[STATES_KEY].keys()
+        states = ft[STATES_KEY]
 
       translation[field_name] = field_translation.FieldTranslation(
         field_name, units, states)
@@ -125,7 +134,15 @@ class EntityInstance(findings_lib.Findings):
 
 
   def _ParseConnections(self, connections_body):
-    """TODO"""
+    """Parses YAML defining the connections between an entity and other
+    entities, which are the sources of the connections.
+
+    Args:
+      connections_body: YAML body for the entity connections
+
+    Returns:
+      A set of Connection instances
+    """
 
     connections = set()
 
@@ -136,7 +153,15 @@ class EntityInstance(findings_lib.Findings):
 
 
   def _ParseLinks(self, links_body):
-    """TODO"""
+    """Parses YAML defining the links between the fields of this entity and
+    other source entities.
+
+    Args:
+      links_body: YAML body for the entity links
+
+    Returns:
+      A set of Link instances
+    """
 
     links = set()
 
@@ -208,14 +233,14 @@ class EntityInstance(findings_lib.Findings):
 
       valid_units = universe.GetUnitsMapByMeasurement(field_name)
       if valid_units:
-        for unit in ft.units:
+        for unit in ft.units.keys():
           if unit not in valid_units:
             print('Field {0} has an invalid unit: {1}'.format(field_name, unit))
             is_valid = False
 
       valid_states = universe.GetStatesByField(field_name)
       if valid_states:
-        for state in ft.states:
+        for state in ft.states.keys():
           if state not in valid_states:
             print('Field {0} has an invalid state: {1}'.format(field_name, state))
             is_valid = False
@@ -258,7 +283,7 @@ class EntityInstance(findings_lib.Findings):
     the links key of an entity.
 
     Args:
-      universe: TODO
+      universe: ConfigUniverse generated from the ontology
       entity_instances: dictionary containing all instances
 
     Returns:
@@ -318,7 +343,8 @@ class EntityInstance(findings_lib.Findings):
 
 
   def _ValidateLinkUnits(self, universe, source_field, target_field):
-    """TODO"""
+    """Validates that units match between linked source and target fields."""
+
     source_units = universe.GetUnitsMapByMeasurement(source_field)
     target_units = universe.GetUnitsMapByMeasurement(target_field)
     if source_units != target_units:
@@ -329,7 +355,8 @@ class EntityInstance(findings_lib.Findings):
 
 
   def _ValidateLinkStates(self, universe, source_field, target_field):
-    """TODO"""
+    """Validates that states match between linked source and target fields."""
+
     source_states = universe.GetStatesByField(source_field)
     target_states = universe.GetStatesByField(target_field)
     if source_states != target_states:
