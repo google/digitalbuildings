@@ -112,7 +112,7 @@ class ValidationHelper(object):
       print('Building Config must contain an entity with a building type')
       raise SyntaxError('Building Config must contain an '
                         'entity with a building type')
-      return False
+
     print('Entities Validated !')
     return entities_valid
 
