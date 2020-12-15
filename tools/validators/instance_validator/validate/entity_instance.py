@@ -330,11 +330,13 @@ class EntityInstance(findings_lib.Findings):
 
         found_fields.add('/' + target_field)
 
-        if not self._ValidateLinkUnitsMatch(universe, source_field, target_field):
+        if not self._ValidateLinkUnitsMatch(universe,
+                                            source_field, target_field):
           is_valid = False
           continue
 
-        if not self._ValidateLinkStatesMatch(universe, source_field, target_field):
+        if not self._ValidateLinkStatesMatch(universe,
+                                             source_field, target_field):
           is_valid = False
           continue
 
