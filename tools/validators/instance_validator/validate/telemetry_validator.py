@@ -112,9 +112,9 @@ class TelemetryValidator(object):
       print("Missing Translation in Building Config for entity: {0}"
             .format(entity_name))
       self.AddWarning(
-        telemetry_warning.TelemetryWarning(entity_name,
-                                           None,
-                                           "Missing Translation in Building Config"))
+        telemetry_warning
+        .TelemetryWarning(entity_name,
+                          None, "Missing Translation in Building Config"))
       message.ack()
       return
 
