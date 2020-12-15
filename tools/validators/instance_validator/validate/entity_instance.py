@@ -59,11 +59,13 @@ class EntityInstance(findings_lib.Findings):
 
     self.translation = None
     if TRANSLATION_KEY in entity_yaml.keys():
-      self.translation = self._ParseTranslation(entity_yaml[TRANSLATION_KEY].data)
+      self.translation = self._ParseTranslation(
+        entity_yaml[TRANSLATION_KEY].data)
 
     self.connections = None
     if CONNECTIONS_KEY in entity_yaml.keys():
-      self.connections = self._ParseConnections(entity_yaml[CONNECTIONS_KEY].data)
+      self.connections = self._ParseConnections(
+        entity_yaml[CONNECTIONS_KEY].data)
 
     self.links = None
     if LINKS_KEY in entity_yaml.keys():
@@ -242,13 +244,14 @@ class EntityInstance(findings_lib.Findings):
       if valid_states:
         for state in ft.states.keys():
           if state not in valid_states:
-            print('Field {0} has an invalid state: {1}'.format(field_name, state))
+            print(
+              'Field {0} has an invalid state: {1}'.format(field_name, state))
             is_valid = False
 
     for field_name, field in type_fields.items():
       if not field.optional and field_name not in found_fields:
-        print('Required field {0} is missing from translation'\
-              .format(field_name))
+        print(
+          'Required field {0} is missing from translation'.format(field_name))
         is_valid = False
 
     return is_valid
@@ -270,9 +273,9 @@ class EntityInstance(findings_lib.Findings):
 
     is_valid = True
 
-    for connection in self.connections:
-      if connection.ctype not in universe.connections_universe:
-        print('Invalid connection type: {0}'.format(connection.ctype))
+    for conn_inst in self.connections:
+      if conn_inst.ctype not in universe.connections_universe:
+        print('Invalid connection type: {0}'.format(conn_inst.ctype))
         is_valid = False
 
     return is_valid
@@ -300,19 +303,19 @@ class EntityInstance(findings_lib.Findings):
     type_fields = entity_type.GetAllFields()
     found_fields = set()
 
-    for link in self.links:
-      if link.source not in entity_instances.keys():
-        print('Invalid link source entity name: {0}'.format(link.source))
+    for link_inst in self.links:
+      if link_inst.source not in entity_instances.keys():
+        print('Invalid link source entity name: {0}'.format(link_inst.source))
         is_valid = False
         continue
 
-      src_entity = entity_instances.get(link.source)
+      src_entity = entity_instances.get(link_inst.source)
       src_namespace = src_entity.namespace
       src_type_name = src_entity.type_name
       src_entity_type = universe.GetEntityType(src_namespace,
                                                     src_type_name)
 
-      for source_field, target_field in link.field_map.items():
+      for source_field, target_field in link_inst.field_map.items():
         # assumes that the namespace is '' for now
         if not entity_type.HasField('/' + target_field):
           print('Invalid link target field: ', target_field)

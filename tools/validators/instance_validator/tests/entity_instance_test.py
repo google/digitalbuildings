@@ -59,7 +59,7 @@ class EntityInstanceTest(absltest.TestCase):
     entity = dict(parsed[entity_name])
 
     try:
-      instance = entity_instance.EntityInstance(entity)
+      entity_instance.EntityInstance(entity)
     except TypeError as e:
       self.assertEqual(type(e), TypeError)
     else:

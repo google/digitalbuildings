@@ -33,16 +33,16 @@ def deserialize(yaml_file):
   """Parses a yaml configuration file and deserialize it.
   Args:
     yaml_file: the building configuration file.
-  :returns
+
+  Returns:
     entity_instances: all the deserialized instances.
-    parsed: the raw parsed entities
   """
   parsed_yaml = instance_parser.parse_yaml(yaml_file)
   print('Passed syntax checks!')
   entity_instances = {}
   for entity_name, entity_yaml in parsed_yaml.items():
     entity_instances[entity_name] = entity_instance.EntityInstance(entity_yaml)
-  return entity_instances, parsed_yaml
+  return entity_instances
 
 
 class ValidationHelper(object):
@@ -54,7 +54,7 @@ class ValidationHelper(object):
 
   def Validate(self):
     universe = self.GenerateUniverse(self.args.modified_types_filepath)
-    entity_instances, parsed_entities = deserialize(self.filename)
+    entity_instances = deserialize(self.filename)
     self.ValidateEntities(universe, entity_instances)
     self.StartTelemetryValidation(self.subscription, self.service_account,
                                   entity_instances)
@@ -88,7 +88,8 @@ class ValidationHelper(object):
     print('Validating entities ...')
     building_found = False
     for entity_name, current_entity_instance in entity_instances.items():
-      if not current_entity_instance.IsValidEntityInstance(universe, entity_instances):
+      if not current_entity_instance.IsValidEntityInstance(universe,
+                                                           entity_instances):
         print(entity_name, 'is not a valid instance')
         sys.exit(0)
       if current_entity_instance.type_name.lower() == 'building':
