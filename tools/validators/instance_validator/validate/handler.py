@@ -38,6 +38,7 @@ def deserialize(yaml_file, universe):
     entity_instances: all the deserialized instances.
     parsed: the raw parsed entities
   """
+  print('Parsing: ', yaml_file)
   raw_parse = instance_parser.parse_yaml(yaml_file)
   print('Passed syntax checks!')
   print('Serializing Passed syntax checks!')
@@ -54,6 +55,7 @@ def deserialize(yaml_file, universe):
   return entity_instances, parsed
 
 
+
 class ValidationHelper(object):
   """A validation helper to coordinate the various steps of the validation."""
 
@@ -64,9 +66,11 @@ class ValidationHelper(object):
   def Validate(self):
     universe = self.GenerateUniverse(self.args.modified_types_filepath)
     entity_instances, parsed_entities = deserialize(self.filename, universe)
-    self.ValidateEntities(entity_instances)
-    self.StartTelemetryValidation(self.subscription, self.service_account,
-                                  parsed_entities)
+    entities_valid = self.ValidateEntities(entity_instances)
+    if entities_valid:
+      self.StartTelemetryValidation(self.subscription,
+                                    self.service_account,
+                                    parsed_entities)
 
   def GenerateUniverse(self, modified_types_filepath=None):
     """Generates the universe from the ontology.
@@ -91,13 +95,16 @@ class ValidationHelper(object):
     """Validates entity instances that are already deserialized.
       Args:
         entity_instances: a list of entity instances.
+      Returns:
+        a boolean, true if the validation passed.
     """
     print('Validating entities ...')
     building_found = False
+    entities_valid = True
     for entity_name, current_entity_instance in entity_instances.items():
       if not current_entity_instance.IsValidEntityInstance(entity_instances):
         print(entity_name, 'is not a valid instance')
-        sys.exit(0)
+        entities_valid = False
       if current_entity_instance.type_name.lower() == 'building':
         building_found = True
 
@@ -105,7 +112,10 @@ class ValidationHelper(object):
       print('Building Config must contain an entity with a building type')
       raise SyntaxError('Building Config must contain an '
                         'entity with a building type')
+      return False
     print('Entities Validated !')
+    return entities_valid
+
 
 
   def StartTelemetryValidation(self, subscription, service_account_file,
@@ -140,11 +150,15 @@ class ValidationHelper(object):
       report += 'No telemetry message was received for the following entities:'
       report += '\n'
       for entity_name in validator.GetUnvalidatedEntities():
-        report += '  ' + entity_name + '\n'
+        report += '  ' + str(entity_name) + '\n'
 
     report += '\nTelemetry validation errors:\n'
     for error in validator.GetErrors():
       report += error.GetPrintableMessage()
+
+    report += '\nTelemetry validation warnings:\n'
+    for warnings in validator.GetWarnings():
+      report += warnings.GetPrintableMessage()
 
     if self.report_filename:
       f = open(self.report_filename, 'w')
