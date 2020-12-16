@@ -145,10 +145,6 @@ class ValidationHelper(object):
     for error in validator.GetErrors():
       report += error.GetPrintableMessage()
 
-    report += '\nTelemetry validation warnings:\n'
-    for warnings in validator.GetWarnings():
-      report += warnings.GetPrintableMessage()
-
     if self.report_filename:
       f = open(self.report_filename, 'w')
       f.write(report)

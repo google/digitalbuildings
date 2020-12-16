@@ -29,7 +29,8 @@ TYPE_KEY = 'type'
 LINKS_KEY = 'links'
 TRANSLATION_KEY = 'translation'
 CONNECTIONS_KEY = 'connections'
-
+PRESENT_VALUE = 'present_value'
+POINTS = 'points'
 UNITS_KEY = 'units'
 UNIT_VALUES_KEY = 'unit_values'
 VALUES_KEY = 'values'
@@ -114,11 +115,16 @@ class EntityInstance(findings_lib.Findings):
 
     translation = {}
 
-    for field_name in translation_body.keys():
-      if isinstance(translation_body[field_name], str):
+    for std_field_name in translation_body.keys():
+      if isinstance(translation_body[std_field_name], str):
         continue
 
-      ft = translation_body[field_name]
+      ft = translation_body[std_field_name]
+
+      raw_field_name = str(ft[PRESENT_VALUE])\
+        .replace(PRESENT_VALUE, "")\
+        .replace(POINTS, "")\
+        .replace(".", "")
 
       units = dict()
       if UNITS_KEY in ft.keys():
@@ -130,8 +136,8 @@ class EntityInstance(findings_lib.Findings):
       if STATES_KEY in ft.keys():
         states = ft[STATES_KEY]
 
-      translation[field_name] = field_translation.FieldTranslation(
-        field_name, units, states)
+      translation[std_field_name] = field_translation.FieldTranslation(
+        std_field_name, raw_field_name, units, states)
 
     return translation
 

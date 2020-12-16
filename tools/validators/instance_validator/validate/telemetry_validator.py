@@ -22,17 +22,11 @@ import threading
 
 from validate import telemetry
 from validate import telemetry_error
-# from validate import telemetry_warning
 
 DEVICE_ID = 'deviceId'
 TRANSLATION = 'translation'
-TYPE = 'type'
-STATES = 'states'
-UNITS = 'unit_values'
-POINTS = 'points'
-PRESENT_VALUE = 'present_value'
-DEVICE_ID = 'deviceId'
-
+FACILITIES = 'facilities'
+ZONE_HVAC = 'zone_hvac'
 
 class TelemetryValidator(object):
   """Validates telemetry messages against a building config file.
@@ -62,7 +56,21 @@ class TelemetryValidator(object):
 
   def GetUnvalidatedEntities(self):
     """Returns a set of entities that have not been validated."""
-    return set(self.entities.keys()) - set(self.validated_entities.keys())
+    unvalidated = set(self.entities.keys()) \
+                  - set(self.validated_entities.keys())
+    # remove the types with
+    # namespace:Facilities,
+    # type: Zone,
+    # and no Translation
+    filtered = []
+    for entity_name in unvalidated:
+      entity_instance = self.entities[entity_name]
+      if not (entity_instance.namespace.lower() == FACILITIES
+              or entity_instance.type_name.lower() == ZONE_HVAC) \
+          or not entity_instance.translation:
+        filtered.append(entity_name)
+    return filtered
+
 
   def CallbackIfCompleted(self):
     """Checks if all entities have been validated, and calls the callback."""
@@ -111,48 +119,31 @@ class TelemetryValidator(object):
 
     entity = self.entities[entity_name]
 
-#     print("Validating telemetry message for entity: {0}".format(entity_name))
+    print("Validating telemetry message for entity: {0}".format(entity_name))
 
-#     if TRANSLATION not in entity.keys():
-#       # ignore if the type is a facility or zone
-#       entity_type = str(entity[TYPE]).split("/")
-#       if not (entity_type[0] == "FACILITIES"
-#               or entity_type[1] == "ZONE"):
-#         # TODO: ignore the virtual devices
-#         self.AddWarning(
-#             telemetry_warning
-#             .TelemetryWarning(
-#                 entity_name,
-#                 None,
-#                 "Missing Translation in Building Config"))
-#       message.ack()
-#       return
+    # entities with no translation don't require validation
+    # TODO: retrieve only the entities with translations
+    if not entity.translation:
+      message.ack()
+      return
 
-#     for point_name, point_config in entity[TRANSLATION].items():
-#       field_name = str(point_config[PRESENT_VALUE])\
-#         .replace(PRESENT_VALUE, "")\
-#         .replace(POINTS, "").replace(".", "")
-#       if field_name not in t.points.keys():
-#         self.AddError(
-#             telemetry_error.TelemetryError(
-#                 entity_name, point_name, "Missing point"))
-
-    for point_name, translation in entity.translation.items():
-      if point_name not in tele.points.keys():
+    for translation in entity.translation.values():
+      if translation.raw_field_name not in tele.points.keys():
         self.AddError(
-          telemetry_error.TelemetryError(
-            entity_name, point_name, 'Field missing from telemetry message'))
+              telemetry_error.TelemetryError(
+                  entity_name, translation.raw_field_name,
+                  'Field missing from telemetry message'))
 
         continue
 
-      point = tele.points[point_name]
+      point = tele.points[translation.raw_field_name]
       pv = point.present_value
       if pv is None:
         self.AddError(
-
-          telemetry_error.TelemetryError(
-            entity_name, point_name,
-            'Present value missing from telemetry message'))
+              telemetry_error
+                .TelemetryError(entity_name,
+                                translation.raw_field_name,
+                                'Present value missing from telemetry message'))
 
         continue
 
@@ -160,7 +151,7 @@ class TelemetryValidator(object):
         if pv not in translation.states.values():
           self.AddError(
             telemetry_error.TelemetryError(
-              entity_name, point_name,
+              entity_name, translation.raw_field_name,
               'Invalid state in telemetry message: {}'.format(pv)))
 
           continue
@@ -168,7 +159,7 @@ class TelemetryValidator(object):
       if translation.units and not self.ValueIsNumeric(pv):
         self.AddError(
           telemetry_error.TelemetryError(
-            entity_name, point_name,
+            entity_name, translation.raw_field_name,
             'Invalid number in telemetry message: {}'.format(pv)))
 
     message.ack()

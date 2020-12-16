@@ -91,11 +91,6 @@ with open(path.join(_TELEMETRY_PATH,
                     'telemetry_multiple_errors.json')) as file:
   _MESSAGE_MULTIPLE_ERRORS = FakeMessage(_MESSAGE_ATTRIBUTES_1, file.read())
 
-with open(path.join(_TELEMETRY_PATH,
-                    'telemetry_good.json')) as file:
-  _MESSAGE_MISSING_TRANSLATION_FACILITIES = \
-    FakeMessage(_MESSAGE_ATTRIBUTES_FACILITIES, file.read())
-
 # TODO: fix inconsistency between telemetry parser expecting a string,
 # but instance parser expecting a file
 
@@ -120,10 +115,6 @@ _ENTITIES_3_4 = _CreateEntityInstances('good_translation_identical.yaml')
 
 _ENTITY_NAME_3 = 'SDC_EXT-17'
 _ENTITY_NAME_4 = 'SDC_EXT-18'
-
-# A Facilities entity
-_ENTITIES_BUILDING = dict(instance_parser.parse_yaml(
-    path.join(_INSTANCES_PATH, 'good_building_type.yaml')))
 
 _POINT_NAME_1 = 'return_water_temperature_sensor'
 _POINT_NAME_2 = 'supply_water_temperature_sensor'
@@ -191,24 +182,6 @@ class TelemetryValidatorTest(absltest.TestCase):
     errors = validator.GetErrors()
     self.assertIn(error, errors)
     self.assertEqual(len(errors), 1)
-
-  def testTelemetryValidatorDetectsMissingTranslationFacilities(self):
-    validator = telemetry_validator.TelemetryValidator(
-        _ENTITIES_BUILDING, 1, _NULL_CALLBACK)
-
-    validator.ValidateMessage(_MESSAGE_MISSING_TRANSLATION_FACILITIES)
-
-    warnings = validator.GetWarnings()
-    self.assertEqual(len(warnings), 0)
-
-  def testTelemetryValidatorDetectsMissingTranslationHVAC(self):
-    validator = telemetry_validator.TelemetryValidator(
-        _ENTITIES_BUILDING, 1, _NULL_CALLBACK)
-
-    validator.ValidateMessage(_MESSAGE_MISSING_TRANSLATION_FACILITIES)
-
-    warnings = validator.GetWarnings()
-    self.assertEqual(len(warnings), 0)
 
   def testTelemetryValidatorDetectsMissingPresentValue(self):
     validator = telemetry_validator\
