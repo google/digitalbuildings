@@ -22,7 +22,7 @@ import threading
 
 from validate import telemetry
 from validate import telemetry_error
-from validate import telemetry_warning
+# from validate import telemetry_warning
 
 DEVICE_ID = 'deviceId'
 TRANSLATION = 'translation'
@@ -98,7 +98,7 @@ class TelemetryValidator(object):
       self.AddError(
         telemetry_error.TelemetryError(
           entity_name, None, 'Telemetry message received for unknown entity'))
-      
+
       message.ack()
       return
 
