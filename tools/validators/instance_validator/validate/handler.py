@@ -66,7 +66,7 @@ class ValidationHelper(object):
 
   def Validate(self):
     universe = self.GenerateUniverse(self.args.modified_types_filepath)
-    entity_instances, parsed_entities = deserialize(self.filename, universe)
+    entity_instances, parsed_entities = deserialize(self.filenames, universe)
     self.ValidateEntities(entity_instances)
     self.StartTelemetryValidation(self.subscription, self.service_account,
                                   parsed_entities)
@@ -108,7 +108,7 @@ class ValidationHelper(object):
       print('Building Config must contain an entity with a building type')
       raise SyntaxError('Building Config must contain an '
                         'entity with a building type')
-    print('Entities Validated !')
+    print('All entities validated')
 
 
   def StartTelemetryValidation(self, subscription, service_account_file,
@@ -171,9 +171,10 @@ class ValidationHelper(object):
 
     parser.add_argument(
         '-i', '--input',
-        dest='filename',
+        action='append',
+        dest='filenames',
         required=True,
-        help='Filepath to YAML building configuration',
+        help='Filepaths to YAML building configurations',
         metavar='FILE')
 
     parser.add_argument(
@@ -214,7 +215,7 @@ class ValidationHelper(object):
         metavar = 'report-filename')
 
     self.args = parser.parse_args(args)
-    self.filename = self.args.filename
+    self.filenames = self.args.filenames
 
     self.subscription = self.args.subscription
     self.service_account = self.args.service_account
