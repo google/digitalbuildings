@@ -119,7 +119,7 @@ class ValidationHelper(object):
 
     if entities_valid:
       print('All entities Validated !')
-    else 
+    else:
       print('Building Config Not Valid !')
     return entities_valid
 
