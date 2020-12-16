@@ -38,6 +38,7 @@ def deserialize(yaml_file, universe):
     entity_instances: all the deserialized instances.
     parsed: the raw parsed entities
   """
+  print('Parsing building config ...')
   raw_parse = instance_parser.parse_yaml(yaml_file)
   print('Passed syntax checks!')
   print('Serializing Passed syntax checks!')
@@ -145,6 +146,10 @@ class ValidationHelper(object):
     report += '\nTelemetry validation errors:\n'
     for error in validator.GetErrors():
       report += error.GetPrintableMessage()
+
+    report += '\nTelemetry validation warnings:\n'
+    for warnings in validator.GetWarnings():
+      report += warnings.GetPrintableMessage()
 
     if self.report_filename:
       f = open(self.report_filename, 'w')

@@ -47,6 +47,7 @@ class Subscriber(object):
       callback: a callback function to handle the message.
     """
     future = self.sub_client.subscribe(self.subscription_name, callback)
+    print("Listening to pubsub, please wait ...")
     try:
       future.result()
     except KeyboardInterrupt:
