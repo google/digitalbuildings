@@ -24,13 +24,13 @@ from validate import telemetry
 from validate import telemetry_error
 from validate import telemetry_warning
 
-DEVICE_ID = "deviceId"
-TRANSLATION = "translation"
-TYPE = "type"
-STATES = "states"
-UNITS = "unit_values"
-POINTS = "points"
-PRESENT_VALUE = "present_value"
+DEVICE_ID = 'deviceId'
+TRANSLATION = 'translation'
+TYPE = 'type'
+STATES = 'states'
+UNITS = 'unit_values'
+POINTS = 'points'
+PRESENT_VALUE = 'present_value'
 DEVICE_ID = 'deviceId'
 
 
