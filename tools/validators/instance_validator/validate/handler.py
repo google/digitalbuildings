@@ -29,30 +29,33 @@ from validate import telemetry_validator
 DEFAULT_TIMEOUT = 600
 
 
-def deserialize(yaml_file, universe):
-  """Parses a yaml configuration file and deserialize it.
+def deserialize(yaml_files, universe):
+  """Parses and deserializes yaml configuration files.
   Args:
-    yaml_file: the building configuration file.
+    yaml_files: list of building configuration files.
     universe: the generated ontology universe.
   :returns
     entity_instances: all the deserialized instances.
     parsed: the raw parsed entities
   """
-  print('Parsing building config ...')
-  raw_parse = instance_parser.parse_yaml(yaml_file)
-  print('Passed syntax checks!')
-  print('Serializing Passed syntax checks!')
-  parsed = dict(raw_parse)
   entity_instances = {}
-  entity_names = list(parsed.keys())
-  # first build all the entity instances
-  for entity_name in entity_names:
-    entity = dict(parsed[entity_name])
-    instance = entity_instance.EntityInstance(entity,
-                                              universe,
-                                              set(entity_names))
-    entity_instances[entity_name] = instance
-  return entity_instances, parsed
+  parsed_yaml = {}
+  for yaml_file in yaml_files:
+    print('Parsing file: {0}'.format(yaml_file))
+    raw_parse = instance_parser.parse_yaml(yaml_file)
+    parsed = dict(raw_parse)
+    parsed_yaml.update(parsed)
+    print('Syntax checks passed for file: {0}'.format(yaml_file))
+
+    entity_names = list(parsed.keys())
+    for entity_name in entity_names:
+      entity = dict(parsed[entity_name])
+      instance = entity_instance.EntityInstance(entity,
+                                                universe,
+                                                set(entity_names))
+      entity_instances[entity_name] = instance
+
+  return entity_instances, parsed_yaml
 
 
 class ValidationHelper(object):
@@ -141,7 +144,7 @@ class ValidationHelper(object):
       report += 'No telemetry message was received for the following entities:'
       report += '\n'
       for entity_name in validator.GetUnvalidatedEntities():
-        report += '  ' + entity_name + '\n'
+        report += '  ' + str(entity_name) + '\n'
 
     report += '\nTelemetry validation errors:\n'
     for error in validator.GetErrors():
