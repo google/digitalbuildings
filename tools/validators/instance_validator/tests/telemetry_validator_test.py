@@ -20,6 +20,7 @@ from __future__ import print_function
 import json
 # import threading
 
+from validate import entity_instance
 from validate import instance_parser
 from validate import telemetry_error
 from validate import telemetry_validator
@@ -86,22 +87,24 @@ with open(path.join(_TELEMETRY_PATH,
 # TODO: fix inconsistency between telemetry parser expecting a string,
 # but instance parser expecting a file
 
+def _CreateEntityInstances(yaml_filename):
+  parsed_yaml = instance_parser.parse_yaml(
+    path.join(_INSTANCES_PATH, yaml_filename))
+  entities = {}
+  for entity_name, entity_yaml in parsed_yaml.items():
+    entities[entity_name] = entity_instance.EntityInstance(entity_yaml)
+  return entities
+
 # A single test entity with numeric fields.
-_ENTITIES_1 = dict(
-  instance_parser.parse_yaml(
-    path.join(_INSTANCES_PATH, 'good_translation_units.yaml')))
+_ENTITIES_1 = _CreateEntityInstances('good_translation_units.yaml')
 _ENTITY_NAME_1 = 'CHWS_WDT-17'
 
 # A single test entity with multistate fields.
-_ENTITIES_2 = dict(
-  instance_parser.parse_yaml(
-    path.join(_INSTANCES_PATH, 'good_translation_states.yaml')))
+_ENTITIES_2 = _CreateEntityInstances('good_translation_states.yaml')
 _ENTITY_NAME_2 = 'DMP_EDM-17'
 
 # A set of two test entities with identical points.
-_ENTITIES_3_4 = dict(
-  instance_parser.parse_yaml(
-    path.join(_INSTANCES_PATH, 'good_translation_identical.yaml')))
+_ENTITIES_3_4 = _CreateEntityInstances('good_translation_identical.yaml')
 _ENTITY_NAME_3 = 'SDC_EXT-17'
 _ENTITY_NAME_4 = 'SDC_EXT-18'
 

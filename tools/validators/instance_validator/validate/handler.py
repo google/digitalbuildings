@@ -29,32 +29,25 @@ from validate import telemetry_validator
 DEFAULT_TIMEOUT = 600
 
 
-def deserialize(yaml_files, universe):
-  """Parses and deserializes yaml configuration files.
+def deserialize(yaml_files):
+  """Parses a yaml configuration file and deserialize it.
   Args:
-    yaml_files: list of building configuration files.
-    universe: the generated ontology universe.
-  :returns
+    yaml_files: list of building configuration file.
+
+  Returns:
     entity_instances: all the deserialized instances.
-    parsed: the raw parsed entities
   """
-  entity_instances = {}
+
   parsed_yaml = {}
   for yaml_file in yaml_files:
-    raw_parse = instance_parser.parse_yaml(yaml_file)
-    parsed = dict(raw_parse)
-    parsed_yaml.update(parsed)
+    parsed_yaml.update(instance_parser.parse_yaml(yaml_file))
     print('Syntax checks passed for file: {0}'.format(yaml_file))
 
-    entity_names = list(parsed.keys())
-    for entity_name in entity_names:
-      entity = dict(parsed[entity_name])
-      instance = entity_instance.EntityInstance(entity,
-                                                universe,
-                                                set(entity_names))
-      entity_instances[entity_name] = instance
+  entity_instances = {}
+  for entity_name, entity_yaml in parsed_yaml.items():
+    entity_instances[entity_name] = entity_instance.EntityInstance(entity_yaml)
 
-  return entity_instances, parsed_yaml
+  return entity_instances
 
 
 class ValidationHelper(object):
@@ -66,10 +59,10 @@ class ValidationHelper(object):
 
   def Validate(self):
     universe = self.GenerateUniverse(self.args.modified_types_filepath)
-    entity_instances, parsed_entities = deserialize(self.filenames, universe)
-    self.ValidateEntities(entity_instances)
+    entity_instances = deserialize(self.filenames)
+    self.ValidateEntities(universe, entity_instances)
     self.StartTelemetryValidation(self.subscription, self.service_account,
-                                  parsed_entities)
+                                  entity_instances)
 
   def GenerateUniverse(self, modified_types_filepath=None):
     """Generates the universe from the ontology.
@@ -90,15 +83,18 @@ class ValidationHelper(object):
     print('Universe generated successfully')
     return universe
 
-  def ValidateEntities(self, entity_instances):
+  def ValidateEntities(self, universe, entity_instances):
     """Validates entity instances that are already deserialized.
+
       Args:
+        universe: ConfigUniverse representing the ontology
         entity_instances: a list of entity instances.
     """
     print('Validating entities ...')
     building_found = False
     for entity_name, current_entity_instance in entity_instances.items():
-      if not current_entity_instance.IsValidEntityInstance(entity_instances):
+      if not current_entity_instance.IsValidEntityInstance(universe,
+                                                           entity_instances):
         print(entity_name, 'is not a valid instance')
         sys.exit(0)
       if current_entity_instance.type_name.lower() == 'building':
@@ -112,18 +108,18 @@ class ValidationHelper(object):
 
 
   def StartTelemetryValidation(self, subscription, service_account_file,
-                               parsed_entities):
+                               entity_instances):
     """Validates telemetry payload received from the subscription.
      Args:
        subscription: a pubsub subscription.
        service_account_file: a GCP service account file.
-       parsed_entities: dictionary of raw entities
+       entity_instances: EntityInstance dictionary
     """
     if self.pubsub_validation_set:
       print('Connecting to pubsub subscription: ', subscription)
       sub = subscriber.Subscriber(subscription, service_account_file)
       validator = telemetry_validator.TelemetryValidator(
-          parsed_entities, self.timeout, self.TelemetryValidationCallback)
+          entity_instances, self.timeout, self.TelemetryValidationCallback)
       validator.StartTimer()
       sub.Listen(validator.ValidateMessage)
 
