@@ -38,7 +38,7 @@ class Subscriber(object):
     audience = "https://pubsub.googleapis.com/google.pubsub.v1.Subscriber"
     credentials = jwt.Credentials.from_service_account_info(service_account_info
                                                             , audience=audience)
-    sub_client = pubsub_v1.SubscriberClient(credentials=credentials)
+    sub_client = pubsub_v1.SubscriberClient(credentials=credentials, timeout=60)
     self.sub_client = sub_client
 
   def Listen(self, callback):

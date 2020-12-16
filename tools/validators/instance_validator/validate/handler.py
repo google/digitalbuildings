@@ -41,7 +41,6 @@ def deserialize(yaml_files, universe):
   entity_instances = {}
   parsed_yaml = {}
   for yaml_file in yaml_files:
-    print('Parsing file: {0}'.format(yaml_file))
     raw_parse = instance_parser.parse_yaml(yaml_file)
     parsed = dict(raw_parse)
     parsed_yaml.update(parsed)
