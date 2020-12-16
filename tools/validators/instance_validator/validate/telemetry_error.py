@@ -40,7 +40,7 @@ class TelemetryError(object):
     """Returns a human-readable message that explains this error."""
 
     msg = "Error for entity [" + self.entity + "]"
-    if self.point:
-      msg += ", point [" + self.point + "]"
-    msg += ": " + self.message
+    if str(self.point):
+      msg += ", point [" + str(self.point) + "]"
+    msg += ": " + self.message+"\n"
     return msg
