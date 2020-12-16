@@ -122,9 +122,9 @@ class EntityInstance(findings_lib.Findings):
       ft = translation_body[std_field_name]
 
       raw_field_name = str(ft[PRESENT_VALUE])\
-        .replace(PRESENT_VALUE, "")\
-        .replace(POINTS, "")\
-        .replace(".", "")
+        .replace(PRESENT_VALUE, '')\
+        .replace(POINTS, '')\
+        .replace('.', '')
 
       units = dict()
       if UNITS_KEY in ft.keys():

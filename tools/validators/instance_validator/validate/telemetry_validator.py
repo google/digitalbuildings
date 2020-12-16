@@ -119,7 +119,7 @@ class TelemetryValidator(object):
 
     entity = self.entities[entity_name]
 
-    print("Validating telemetry message for entity: {0}".format(entity_name))
+    print('Validating telemetry message for entity: {0}'.format(entity_name))
 
     # entities with no translation don't require validation
     # TODO: retrieve only the entities with translations
