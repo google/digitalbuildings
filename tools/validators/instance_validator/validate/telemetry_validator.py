@@ -23,7 +23,7 @@ import threading
 from validate import telemetry
 from validate import telemetry_error
 
-DEVICE_ID = "deviceId"
+DEVICE_ID = 'deviceId'
 
 class TelemetryValidator(object):
   """Validates telemetry messages against a building config file.
