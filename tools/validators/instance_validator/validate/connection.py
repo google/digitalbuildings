@@ -12,17 +12,21 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Data point in a telemetry message."""
+"""Connection between two entities."""
 
-class Point(object):
-  """A point from a pubsub telemetry message.
+class Connection(object):
+  """A connection between a source and target entity with a certain type.
+
+  The target entity is implied to be the same as the entity that contains this
+  Connection instance.
 
   Args:
-    point_name: name of the point
-    value: value of the point
+    ctype: type of the connection
+      (NOTE: 'type' is a reserved Python keyword)
+    source: name of the source entity
   """
 
-  def __init__(self, point_name, value):
+  def __init__(self, ctype, source):
     super().__init__()
-    self.point_name = point_name
-    self.present_value = value
+    self.ctype = ctype
+    self.source = source
