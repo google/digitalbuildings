@@ -79,7 +79,7 @@ class TelemetryValidator(object):
     if entity_name not in self.entities.keys():
       self.AddError(
         telemetry_error.TelemetryError(
-          entity_name, None, "Unknown entity"))
+          entity_name, None, 'Telemetry message received for unknown entity'))
       message.ack()
       return
 
@@ -94,7 +94,7 @@ class TelemetryValidator(object):
       if point_name not in tele.points.keys():
         self.AddError(
           telemetry_error.TelemetryError(
-            entity_name, point_name, "Missing point"))
+            entity_name, point_name, 'Field missing from telemetry message'))
         continue
 
       point = tele.points[point_name]
@@ -102,20 +102,23 @@ class TelemetryValidator(object):
       if pv is None:
         self.AddError(
           telemetry_error.TelemetryError(
-            entity_name, point_name, "Missing present value"))
+            entity_name, point_name,
+            'Present value missing from telemetry message'))
         continue
 
       if translation.states:
         if pv not in translation.states.values():
           self.AddError(
             telemetry_error.TelemetryError(
-              entity_name, point_name, "Invalid state: {}".format(pv)))
+              entity_name, point_name,
+              'Invalid state in telemetry message: {}'.format(pv)))
           continue
 
       if translation.units and not self.ValueIsNumeric(pv):
         self.AddError(
           telemetry_error.TelemetryError(
-            entity_name, point_name, "Invalid number: {}".format(pv)))
+            entity_name, point_name,
+            'Invalid number in telemetry message: {}'.format(pv)))
 
     message.ack()
     self.CallbackIfCompleted()
