@@ -3,18 +3,21 @@
 The Instance Validator allows validation of YAML instance files to make sure they conform to the given ontology model.
 
 ## Usage
+
 The Instance Validator is written in Python3 and takes as an argument the path pointing to the instance files.
 
 **Performance**: [issue#167](https://github.com/google/digitalbuildings/issues/167) please use python version 3.6.8, we found that higher versions are causing a slow down in the validation. We are investigating the issue.
 
-
 **Known Bug**: [issue#125](https://github.com/google/digitalbuildings/issues/125) which occurs when the validator is called from outside this folder.
 Please run the instance validator from this folder until the bug is fixed.
 
-To use to ontology defined in this repository, run the validator as following: `python3 instance_validator.py --input path/to/YOUR_BUILDING_CONFIG.yaml`
+To use the ontology defined in this repository, run the validator as following: `python3 instance_validator.py --input path/to/YOUR_BUILDING_CONFIG.yaml`
+
+To validate multiple input files at the same time, you can provide the "--input" parameter multiple times. ("-i" will also work.)
 
 ### Ontology Types extended
-In case of you extended the ontology by adding new types, run the following: `python3 instance_validator.py --input path/to/YOUR_BUILDING_CONFIG.yaml --modified-ontology-types path/to/modified/ontology/types/folder`
+
+If you have extended the ontology by adding new types to your local ontology, run the following: `python3 instance_validator.py --input path/to/YOUR_BUILDING_CONFIG.yaml --modified-ontology-types path/to/modified/ontology/types/folder`
 
 When using a modified ontology, ensure you follow the folder-naming convention: `digitalbuildings/ontology/yaml`. This will allow the instance validator to rely on the new types in the ontology.
 

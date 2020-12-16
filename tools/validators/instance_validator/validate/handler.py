@@ -29,19 +29,24 @@ from validate import telemetry_validator
 DEFAULT_TIMEOUT = 600
 
 
-def deserialize(yaml_file):
+def deserialize(yaml_files):
   """Parses a yaml configuration file and deserialize it.
   Args:
-    yaml_file: the building configuration file.
+    yaml_files: list of building configuration file.
 
   Returns:
     entity_instances: all the deserialized instances.
   """
-  parsed_yaml = instance_parser.parse_yaml(yaml_file)
-  print('Passed syntax checks!')
+
+  parsed_yaml = {}
+  for yaml_file in yaml_files:
+    parsed_yaml.update(instance_parser.parse_yaml(yaml_file))
+    print('Syntax checks passed for file: {0}'.format(yaml_file))
+
   entity_instances = {}
   for entity_name, entity_yaml in parsed_yaml.items():
     entity_instances[entity_name] = entity_instance.EntityInstance(entity_yaml)
+
   return entity_instances
 
 
@@ -54,7 +59,7 @@ class ValidationHelper(object):
 
   def Validate(self):
     universe = self.GenerateUniverse(self.args.modified_types_filepath)
-    entity_instances = deserialize(self.filename)
+    entity_instances = deserialize(self.filenames)
     self.ValidateEntities(universe, entity_instances)
     self.StartTelemetryValidation(self.subscription, self.service_account,
                                   entity_instances)
@@ -99,7 +104,7 @@ class ValidationHelper(object):
       print('Building Config must contain an entity with a building type')
       raise SyntaxError('Building Config must contain an '
                         'entity with a building type')
-    print('Entities Validated !')
+    print('All entities validated')
 
 
   def StartTelemetryValidation(self, subscription, service_account_file,
@@ -158,9 +163,10 @@ class ValidationHelper(object):
 
     parser.add_argument(
         '-i', '--input',
-        dest='filename',
+        action='append',
+        dest='filenames',
         required=True,
-        help='Filepath to YAML building configuration',
+        help='Filepaths to YAML building configurations',
         metavar='FILE')
 
     parser.add_argument(
@@ -201,7 +207,7 @@ class ValidationHelper(object):
         metavar = 'report-filename')
 
     self.args = parser.parse_args(args)
-    self.filename = self.args.filename
+    self.filenames = self.args.filenames
 
     self.subscription = self.args.subscription
     self.service_account = self.args.service_account
