@@ -208,11 +208,11 @@ class ValidationHelper(object):
 
     parser.add_argument(
         '-r', '--report-filename',
-        dest = 'report_filename',
-        required = False,
-        default = None,
-        help = 'Filename for the validation report',
-        metavar = 'report-filename')
+        dest='report_filename',
+        required=False,
+        default=None,
+        help='Filename for the validation report',
+        metavar='report-filename')
 
     self.args = parser.parse_args(args)
     self.filenames = self.args.filenames

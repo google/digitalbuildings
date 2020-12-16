@@ -29,6 +29,9 @@ TRANSLATION = "translation"
 TYPE = "type"
 STATES = "states"
 UNITS = "unit_values"
+POINTS = "points"
+PRESENT_VALUE = "present_value"
+
 
 class TelemetryValidator(object):
   """Validates telemetry messages against a building config file.
@@ -108,18 +111,25 @@ class TelemetryValidator(object):
     print("Validating telemetry message for entity: {0}".format(entity_name))
 
     if TRANSLATION not in entity.keys():
-      # TODO: ignore if the type is a facility
-      print("Missing Translation in Building Config for entity: {0}"
-            .format(entity_name))
-      self.AddWarning(
-          telemetry_warning
-            .TelemetryWarning(entity_name,
-                              None, "Missing Translation in Building Config"))
+      # ignore if the type is a facility or zone
+      entity_type = str(entity[TYPE]).split("/")
+      if not (entity_type[0] == "FACILITIES"
+              or entity_type[1] == "ZONE"):
+        # TODO: ignore the virtual devices
+        self.AddWarning(
+            telemetry_warning
+            .TelemetryWarning(
+                entity_name,
+                None,
+                "Missing Translation in Building Config"))
       message.ack()
       return
 
     for point_name, point_config in entity[TRANSLATION].items():
-      if point_name not in t.points.keys():
+      field_name = str(point_config[PRESENT_VALUE])\
+        .replace(PRESENT_VALUE, "")\
+        .replace(POINTS, "").replace(".", "")
+      if field_name not in t.points.keys():
         self.AddError(
             telemetry_error.TelemetryError(
                 entity_name, point_name, "Missing point"))

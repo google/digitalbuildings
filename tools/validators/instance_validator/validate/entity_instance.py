@@ -135,9 +135,9 @@ class EntityInstance(findings_lib.Findings):
       # scan all standard fields and ensure they're defined
       fields_map = dict(links[entity_name])
       src_entity_instance = entity_instances.get(entity_name)
-      src_entity_type = self.universe.\
-	      GetEntityType(src_entity_instance.namespace,
-                     src_entity_instance.type_name)
+      src_entity_type = self.universe.GetEntityType(
+          src_entity_instance.namespace,
+          src_entity_instance.type_name)
 
       for source_field, target_field in fields_map.items():
         # check the fields are present
