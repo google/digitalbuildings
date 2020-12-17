@@ -24,9 +24,6 @@ from validate import telemetry
 from validate import telemetry_error
 
 DEVICE_ID = 'deviceId'
-TRANSLATION = 'translation'
-FACILITIES = 'facilities'
-ZONE_HVAC = 'zone_hvac'
 
 class TelemetryValidator(object):
   """Validates telemetry messages against a building config file.
