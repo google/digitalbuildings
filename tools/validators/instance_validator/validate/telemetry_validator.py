@@ -28,6 +28,13 @@ DEVICE_ID = 'deviceId'
 class TelemetryValidator(object):
   """Validates telemetry messages against a building config file.
 
+  Attributes;
+    entities: a dict with entity_name as a key and EntityIntance as value.
+    timeout: the max time the validator must read messages from pubsub.
+    callback: the method called by the pubsub listener upon receiving a msg.
+    validated_entities: list of entities validated during the timeout duration.
+    validation_errors: list of errors detected during validation with telemetry.
+
   Args:
     entities: EntityInstance dictionary
     timeout: validation timeout duration in seconds
@@ -98,39 +105,39 @@ class TelemetryValidator(object):
 
     print('Validating telemetry message for entity: {0}'.format(entity_name))
 
-    for translation in entity.translation.values():
-      if translation.raw_field_name not in tele.points.keys():
+    for field_translation in entity.translation.values():
+      if field_translation.raw_field_name not in tele.points.keys():
         self.AddError(
               telemetry_error.TelemetryError(
-                  entity_name, translation.raw_field_name,
+                  entity_name, field_translation.raw_field_name,
                   'Field missing from telemetry message'))
 
         continue
 
-      point = tele.points[translation.raw_field_name]
+      point = tele.points[field_translation.raw_field_name]
       pv = point.present_value
       if pv is None:
         self.AddError(
               telemetry_error
                 .TelemetryError(entity_name,
-                                translation.raw_field_name,
+                                field_translation.raw_field_name,
                                 'Present value missing from telemetry message'))
 
         continue
 
-      if translation.states:
-        if pv not in translation.states.values():
+      if field_translation.states:
+        if pv not in field_translation.states.values():
           self.AddError(
             telemetry_error.TelemetryError(
-              entity_name, translation.raw_field_name,
+              entity_name, field_translation.raw_field_name,
               'Invalid state in telemetry message: {}'.format(pv)))
 
           continue
 
-      if translation.units and not self.ValueIsNumeric(pv):
+      if field_translation.units and not self.ValueIsNumeric(pv):
         self.AddError(
           telemetry_error.TelemetryError(
-            entity_name, translation.raw_field_name,
+            entity_name, field_translation.raw_field_name,
             'Invalid number in telemetry message: {}'.format(pv)))
 
     message.ack()

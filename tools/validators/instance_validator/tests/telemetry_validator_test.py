@@ -26,8 +26,6 @@ from validate import instance_parser
 from validate import telemetry_error
 from validate import telemetry_validator
 
-# import threading
-
 _TEST_DIR = path.dirname(path.realpath(__file__))
 _TELEMETRY_PATH = path.join(_TEST_DIR, 'fake_telemetry')
 _INSTANCES_PATH = path.join(_TEST_DIR, 'fake_instances', 'GOOD')

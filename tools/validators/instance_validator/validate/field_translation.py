@@ -13,7 +13,7 @@
 # limitations under the License.
 
 """Translation of a single field."""
-
+#TODO(charbull): update types and validation in the class
 class FieldTranslation(object):
   """A translation for a single field of an entity.
 
