@@ -133,6 +133,7 @@ class ValidationHelper(object):
     Args:
       validator: the telemetry validator that triggered the callback."""
 
+    print('Generating validation report ...')
     report = ''
 
     if not validator.AllEntitiesValidated():
@@ -152,7 +153,7 @@ class ValidationHelper(object):
     else:
       print('\n')
       print(report)
-
+    print('Report Generated')
     sys.exit(0)
 
 

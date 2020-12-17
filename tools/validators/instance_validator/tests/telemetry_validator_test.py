@@ -47,8 +47,6 @@ _MESSAGE_ATTRIBUTES_3 = json.load(open(_MESSAGE_ATTRIBUTES_PATH_3))
 _MESSAGE_ATTRIBUTES_PATH_FACILITIES = \
   path.join(_TELEMETRY_PATH, 'message_attributes_UK_LON_S2.json')
 
-_MESSAGE_ATTRIBUTES_FACILITIES = json\
-  .load(open(_MESSAGE_ATTRIBUTES_PATH_FACILITIES))
 
 class FakeMessage(object):
   def __init__(self, attributes, data):

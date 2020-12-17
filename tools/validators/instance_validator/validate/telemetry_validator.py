@@ -39,13 +39,14 @@ class TelemetryValidator(object):
 
   def __init__(self, entities, timeout, callback):
     super().__init__()
-    self.entities = entities
+    self.entities = dict(filter((lambda e: e[1].translation),
+                                entities.items()))
     self.timeout = timeout
     self.callback = callback
     self.validated_entities = {}
     self.validation_errors = []
-    self.validation_warnings = []
 
+  #TODO(charbull): fix this timeout
   def StartTimer(self):
     """Starts the validation timeout timer."""
     threading.Timer(self.timeout, lambda: self.callback(self)).start()
@@ -56,21 +57,8 @@ class TelemetryValidator(object):
 
   def GetUnvalidatedEntities(self):
     """Returns a set of entities that have not been validated."""
-    unvalidated = set(self.entities.keys()) \
+    return set(self.entities.keys()) \
                   - set(self.validated_entities.keys())
-    # remove the types with
-    # namespace:Facilities,
-    # type: Zone,
-    # and no Translation
-    filtered = []
-    for entity_name in unvalidated:
-      entity_instance = self.entities[entity_name]
-      if not (entity_instance.namespace.lower() == FACILITIES
-              or entity_instance.type_name.lower() == ZONE_HVAC) \
-          or not entity_instance.translation:
-        filtered.append(entity_name)
-    return filtered
-
 
   def CallbackIfCompleted(self):
     """Checks if all entities have been validated, and calls the callback."""
@@ -84,14 +72,6 @@ class TelemetryValidator(object):
   def GetErrors(self):
     """Returns all validation errors."""
     return self.validation_errors
-
-  def AddWarning(self, warning):
-    """Adds a validation Warning."""
-    self.validation_warnings.append(warning)
-
-  def GetWarnings(self):
-    """Returns all validation warnings."""
-    return self.validation_warnings
 
   def ValidateMessage(self, message):
     """Validates a telemetry message.
@@ -120,12 +100,6 @@ class TelemetryValidator(object):
     entity = self.entities[entity_name]
 
     print('Validating telemetry message for entity: {0}'.format(entity_name))
-
-    # entities with no translation don't require validation
-    # TODO: retrieve only the entities with translations
-    if not entity.translation:
-      message.ack()
-      return
 
     for translation in entity.translation.values():
       if translation.raw_field_name not in tele.points.keys():
