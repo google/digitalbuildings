@@ -52,3 +52,4 @@ class Subscriber(object):
       future.result()
     except KeyboardInterrupt:
       future.cancel()
+

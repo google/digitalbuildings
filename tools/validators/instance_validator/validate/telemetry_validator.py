@@ -22,6 +22,7 @@ import threading
 
 from validate import telemetry
 from validate import telemetry_error
+from validate import telemetry_warning
 
 DEVICE_ID = 'deviceId'
 
@@ -49,11 +50,14 @@ class TelemetryValidator(object):
     self.callback = callback
     self.validated_entities = {}
     self.validation_errors = []
+    # TODO(charbull): refactor
+    self.validation_warnings = []
 
   #TODO(charbull): fix this timeout
   def StartTimer(self):
     """Starts the validation timeout timer."""
-    threading.Timer(self.timeout, lambda: self.callback(self)).start()
+    self.timer = threading.Timer(self.timeout, lambda: self.callback(self))\
+      .start()
 
   def AllEntitiesValidated(self):
     """Returns true if a message was received for every entity."""
@@ -77,6 +81,14 @@ class TelemetryValidator(object):
     """Returns all validation errors."""
     return self.validation_errors
 
+  def AddWarning(self, warning):
+    """Adds a validation Warning."""
+    self.validation_warnings.append(warning)
+
+  def GetWarnings(self):
+    """Returns all validation warnings."""
+    return self.validation_warnings
+
   def ValidateMessage(self, message):
     """Validates a telemetry message.
 
@@ -86,11 +98,16 @@ class TelemetryValidator(object):
     tele = telemetry.Telemetry(message)
     entity_name = tele.attributes[DEVICE_ID]
 
+    # Telemetry message received for an entity not in building config
     if entity_name not in self.entities.keys():
-      self.AddError(
-        telemetry_error.TelemetryError(
-          entity_name, None, 'Telemetry message received for unknown entity'))
-
+      #TODO(charbull): refactor warning class
+      self.AddWarning(
+                      telemetry_warning
+                      .TelemetryWarning(
+                          entity_name,
+                          None,
+                          "Telemetry message received for an entity not "
+                          "in building config"))
       message.ack()
       return
 

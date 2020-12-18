@@ -25,4 +25,12 @@ class Point(object):
   def __init__(self, point_name, value):
     super().__init__()
     self.point_name = point_name
-    self.present_value = value
+    self.present_value = self._ToString(value)
+
+  def _ToString(self, value):
+    if isinstance(value, bool):
+      return '{}'.format(value).lower()
+
+    if isinstance(value, int) or isinstance(value, float):
+      return '{}'.format(value)
+

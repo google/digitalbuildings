@@ -42,9 +42,9 @@ _MESSAGE_ATTRIBUTES_PATH_3 = path.join(_TELEMETRY_PATH,
                                        'message_attributes_SDC_EXT-17.json')
 _MESSAGE_ATTRIBUTES_3 = json.load(open(_MESSAGE_ATTRIBUTES_PATH_3))
 
-_MESSAGE_ATTRIBUTES_PATH_FACILITIES = \
-  path.join(_TELEMETRY_PATH, 'message_attributes_UK_LON_S2.json')
-
+_MESSAGE_ATTRIBUTES_PATH_4 = path.join(_TELEMETRY_PATH,
+                                       'message_attributes_FAN-17.json')
+_MESSAGE_ATTRIBUTES_4 = json.load(open(_MESSAGE_ATTRIBUTES_PATH_4))
 
 class FakeMessage(object):
   def __init__(self, attributes, data):
@@ -87,6 +87,10 @@ with open(path.join(_TELEMETRY_PATH,
                     'telemetry_multiple_errors.json')) as file:
   _MESSAGE_MULTIPLE_ERRORS = FakeMessage(_MESSAGE_ATTRIBUTES_1, file.read())
 
+  with open(path.join(_TELEMETRY_PATH,
+                      'telemetry_good_multistates.json')) as file:
+    _MESSAGE_MULTIPLE_STATES = FakeMessage(_MESSAGE_ATTRIBUTES_4, file.read())
+
 # TODO: fix inconsistency between telemetry parser expecting a string,
 # but instance parser expecting a file
 
@@ -111,6 +115,9 @@ _ENTITIES_3_4 = _CreateEntityInstances('good_translation_identical.yaml')
 
 _ENTITY_NAME_3 = 'SDC_EXT-17'
 _ENTITY_NAME_4 = 'SDC_EXT-18'
+
+_ENTITIES_5 = _CreateEntityInstances('good_translation_multi_states.yaml')
+_ENTITY_NAME_5 = 'FAN-17'
 
 _POINT_NAME_1 = 'return_water_temperature_sensor'
 _POINT_NAME_2 = 'supply_water_temperature_sensor'
@@ -155,17 +162,6 @@ class TelemetryValidatorTest(absltest.TestCase):
     self.assertNotIn(_ENTITY_NAME_3, unvalidated_entities)
     self.assertIn(_ENTITY_NAME_4, unvalidated_entities)
     self.assertEqual(len(unvalidated_entities), 1)
-
-  def testTelemetryValidatorDetectsUnknownEntity(self):
-    validator = telemetry_validator.TelemetryValidator({}, 1, _NULL_CALLBACK)
-
-    validator.ValidateMessage(_MESSAGE_GOOD)
-
-    error = telemetry_error.TelemetryError(
-      _ENTITY_NAME_1, None, 'Telemetry message received for unknown entity')
-    errors = validator.GetErrors()
-    self.assertIn(error, errors)
-    self.assertEqual(len(errors), 1)
 
   def testTelemetryValidatorDetectsMissingPoint(self):
     validator = telemetry_validator\
@@ -262,6 +258,15 @@ class TelemetryValidatorTest(absltest.TestCase):
 
     validator.ValidateMessage(_MESSAGE_GOOD)
 
+  def testTelemetryValidatorOnMultiStateValidated(self):
+    def ValidationCallback(validator):
+      self.assertEmpty(validator.GetErrors())
+      self.assertTrue(validator.AllEntitiesValidated())
+
+    validator = telemetry_validator \
+      .TelemetryValidator(_ENTITIES_5, 1, ValidationCallback)
+
+    validator.ValidateMessage(_MESSAGE_MULTIPLE_STATES)
 
 if __name__ == '__main__':
   absltest.main()

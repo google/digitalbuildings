@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Validation Helper"""
+"""Validation Helper."""
 
 from __future__ import print_function
 import argparse
@@ -22,11 +22,11 @@ from validate import entity_instance
 from validate import generate_universe
 from validate import instance_parser
 from validate import subscriber
+from validate import telemetry_validator
+from datetime import datetime
 
 # Default timeout duration for telemetry validation test
-from validate import telemetry_validator
-
-DEFAULT_TIMEOUT = 600
+DEFAULT_TIMEOUT = 300
 
 
 def deserialize(yaml_files):
@@ -134,7 +134,9 @@ class ValidationHelper(object):
       validator: the telemetry validator that triggered the callback."""
 
     print('Generating validation report ...')
-    report = ''
+    currentTime = datetime.now()
+    timestampStr = currentTime.strftime("%d-%b-%Y (%H:%M:%S)")
+    report = '\nReport Generated at: {0}\n'.format(timestampStr)
 
     if not validator.AllEntitiesValidated():
       report += 'No telemetry message was received for the following entities:'
@@ -145,6 +147,10 @@ class ValidationHelper(object):
     report += '\nTelemetry validation errors:\n'
     for error in validator.GetErrors():
       report += error.GetPrintableMessage()
+
+    report += '\nTelemetry validation warnings:\n'
+    for warnings in validator.GetWarnings():
+      report += warnings.GetPrintableMessage()
 
     if self.report_filename:
       f = open(self.report_filename, 'w')

@@ -25,6 +25,6 @@ setup(
     author_email='',
     description='',
     packages=find_packages(),
-    install_requires=['strictyaml', 'google-cloud-pubsub', 'google-auth'],
+    install_requires=['strictyaml>=1.1.1', 'google-cloud-pubsub', 'google-auth'],
     python_requires='>=3.6',
 )
