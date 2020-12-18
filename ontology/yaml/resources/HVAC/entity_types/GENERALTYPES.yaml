@@ -272,14 +272,12 @@ CHWRSR:
   is_abstract: true
   implements:
   - RSR
-  - CHWS
 
 HWSRSR:
   description: "A heating water distribution riser."
   is_abstract: true
   implements:
   - RSR
-  - HWS
 
 
 
