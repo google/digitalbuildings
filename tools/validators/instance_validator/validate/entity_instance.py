@@ -57,17 +57,17 @@ class EntityInstance(findings_lib.Findings):
     self.namespace, self.type_name = None, None
     if TYPE_KEY in entity_yaml.keys():
       self.namespace, self.type_name = self._ParseTypeString(
-        entity_yaml[TYPE_KEY].data)
+          entity_yaml[TYPE_KEY].data)
 
     self.translation = None
     if TRANSLATION_KEY in entity_yaml.keys():
       self.translation = self._ParseTranslation(
-        entity_yaml[TRANSLATION_KEY].data)
+          entity_yaml[TRANSLATION_KEY].data)
 
     self.connections = None
     if CONNECTIONS_KEY in entity_yaml.keys():
       self.connections = self._ParseConnections(
-        entity_yaml[CONNECTIONS_KEY].data)
+          entity_yaml[CONNECTIONS_KEY].data)
 
     self.links = None
     if LINKS_KEY in entity_yaml.keys():
@@ -138,7 +138,7 @@ class EntityInstance(findings_lib.Findings):
         states = ft[STATES_KEY]
 
       translation[std_field_name] = field_translation.FieldTranslation(
-        std_field_name, raw_field_name, units, states)
+          std_field_name, raw_field_name, units, states)
 
     return translation
 
@@ -252,14 +252,14 @@ class EntityInstance(findings_lib.Findings):
       if valid_states:
         for state in ft.states.keys():
           if state not in valid_states:
-            print(
-              'Field {0} has an invalid state: {1}'.format(field_name, state))
+            print('Field {0} has an invalid state: {1}'
+                  .format(field_name, state))
             is_valid = False
 
     for field_name, field in type_fields.items():
       if not field.optional and field_name not in found_fields:
-        print(
-          'Required field {0} is missing from translation'.format(field_name))
+        print('Required field {0} is missing from translation'
+              .format(field_name))
         is_valid = False
 
     return is_valid
@@ -321,7 +321,7 @@ class EntityInstance(findings_lib.Findings):
       src_namespace = src_entity.namespace
       src_type_name = src_entity.type_name
       src_entity_type = universe.GetEntityType(src_namespace,
-                                                    src_type_name)
+                                               src_type_name)
 
       for source_field, target_field in link_inst.field_map.items():
         # assumes that the namespace is '' for now
@@ -379,7 +379,7 @@ class EntityInstance(findings_lib.Findings):
     return True
 
 
-  def IsValidEntityInstance(self, universe = None, entity_instances = None):
+  def IsValidEntityInstance(self, universe=None, entity_instances=None):
     """Uses the generated ontology universe to validate an entity.
 
     Args:

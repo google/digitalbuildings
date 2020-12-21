@@ -89,7 +89,8 @@ with open(path.join(_TELEMETRY_PATH,
 
   with open(path.join(_TELEMETRY_PATH,
                       'telemetry_good_multistates.json')) as file:
-    _MESSAGE_MULTIPLE_STATES = FakeMessage(_MESSAGE_ATTRIBUTES_4, file.read())
+    _MESSAGE_GOOD_MULTIPLE_STATES = FakeMessage(_MESSAGE_ATTRIBUTES_4,
+                                                file.read())
 
 # TODO: fix inconsistency between telemetry parser expecting a string,
 # but instance parser expecting a file
@@ -114,7 +115,7 @@ _ENTITY_NAME_2 = 'DMP_EDM-17'
 _ENTITIES_3_4 = _CreateEntityInstances('good_translation_identical.yaml')
 _ENTITY_NAME_3 = 'SDC_EXT-17'
 _ENTITY_NAME_4 = 'SDC_EXT-18'
-
+# A test entity to make sure that boolean are retrieved and validated.
 _ENTITIES_5 = _CreateEntityInstances('good_translation_multi_states.yaml')
 _ENTITY_NAME_5 = 'FAN-17'
 
@@ -266,7 +267,7 @@ class TelemetryValidatorTest(absltest.TestCase):
 
     validator.ValidateMessage(_MESSAGE_GOOD)
 
-  def testTelemetryValidatorOnMultiStateValidated(self):
+  def testTelemetryValidatorOnMultiStateWithBooleanSuccess(self):
     def ValidationCallback(validator):
       self.assertEmpty(validator.GetErrors())
       self.assertTrue(validator.AllEntitiesValidated())
@@ -274,7 +275,7 @@ class TelemetryValidatorTest(absltest.TestCase):
     validator = telemetry_validator.TelemetryValidator(_ENTITIES_5,
                                                        1, ValidationCallback)
 
-    validator.ValidateMessage(_MESSAGE_MULTIPLE_STATES)
+    validator.ValidateMessage(_MESSAGE_GOOD_MULTIPLE_STATES)
 
 if __name__ == '__main__':
   absltest.main()

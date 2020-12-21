@@ -26,7 +26,7 @@ from validate import telemetry_validator
 from datetime import datetime
 
 # Default timeout duration for telemetry validation test
-DEFAULT_TIMEOUT = 300
+DEFAULT_TIMEOUT = 600
 
 
 def deserialize(yaml_files):

@@ -30,11 +30,9 @@ class TelemetryValidator(object):
   """Validates telemetry messages against a building config file.
 
   Attributes;
-    entities: a dict with entity_name as a key and EntityIntance as value.
+    entities: a dict with entity_name as a key and EntityInstance as value.
     timeout: the max time the validator must read messages from pubsub.
     callback: the method called by the pubsub listener upon receiving a msg.
-    validated_entities: list of entities validated during the timeout duration.
-    validation_errors: list of errors detected during validation with telemetry.
 
   Args:
     entities: EntityInstance dictionary
@@ -44,14 +42,16 @@ class TelemetryValidator(object):
 
   def __init__(self, entities, timeout, callback):
     super().__init__()
-    self.entities = dict(filter((lambda e: e[1].translation),
+    self.entities = dict(filter((lambda entities_with_translations:
+                                 entities_with_translations[1].translation),
                                 entities.items()))
     self.timeout = timeout
     self.callback = callback
     self.validated_entities = {}
-    self.validation_errors = []
-    # TODO(charbull): refactor
-    self.validation_warnings = []
+    # TODO(charbull): refactor by having on validation_report object instead
+    #  of two: warning and errors
+    self._validation_errors = []
+    self._validation_warnings = []
 
   #TODO(charbull): fix this timeout
   def StartTimer(self):
@@ -74,19 +74,19 @@ class TelemetryValidator(object):
 
   def AddError(self, error):
     """Adds a validation error."""
-    self.validation_errors.append(error)
+    self._validation_errors.append(error)
 
   def GetErrors(self):
     """Returns all validation errors."""
-    return self.validation_errors
+    return self._validation_errors
 
   def AddWarning(self, warning):
     """Adds a validation Warning."""
-    self.validation_warnings.append(warning)
+    self._validation_warnings.append(warning)
 
   def GetWarnings(self):
     """Returns all validation warnings."""
-    return self.validation_warnings
+    return self._validation_warnings
 
   def ValidateMessage(self, message):
     """Validates a telemetry message.
