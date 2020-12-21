@@ -118,7 +118,8 @@ class EntityInstance(findings_lib.Findings):
     for std_field_name in translation_body.keys():
       if isinstance(translation_body[std_field_name], str):
         continue
-
+      # TODO(b/176097512): Manually defined non UDMI translations should be
+      #  accepted by the validator
       ft = translation_body[std_field_name]
 
       raw_field_name = str(ft[PRESENT_VALUE])\
