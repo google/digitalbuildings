@@ -37,13 +37,14 @@ class TelemetryValidator(object):
   Args:
     entities: EntityInstance dictionary
     timeout: validation timeout duration in seconds
-    callback: callback function to be called when the validation finishes
+    callback: callback function to be called either because messages for all
+      entities were seen or because the timeout duration was reached
   """
 
   def __init__(self, entities, timeout, callback):
     super().__init__()
     self.entities = dict(filter((lambda entities_with_translations:
-                                 entities_with_translations[1].translation),
+                                 entities[1].translation),
                                 entities.items()))
     self.timeout = timeout
     self.callback = callback

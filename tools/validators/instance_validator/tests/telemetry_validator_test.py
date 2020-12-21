@@ -115,7 +115,7 @@ _ENTITY_NAME_2 = 'DMP_EDM-17'
 _ENTITIES_3_4 = _CreateEntityInstances('good_translation_identical.yaml')
 _ENTITY_NAME_3 = 'SDC_EXT-17'
 _ENTITY_NAME_4 = 'SDC_EXT-18'
-# A test entity to make sure that boolean are retrieved and validated.
+# A test entity to make sure that booleans are retrieved and validated.
 _ENTITIES_5 = _CreateEntityInstances('good_translation_multi_states.yaml')
 _ENTITY_NAME_5 = 'FAN-17'
 
