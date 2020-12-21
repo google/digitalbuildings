@@ -132,13 +132,26 @@ class TelemetryValidator(object):
       point = tele.points[field_translation.raw_field_name]
       pv = point.present_value
       if pv is None:
-        self.AddError(telemetry_error
-                      .TelemetryError(entity_name,
-                                      field_translation.raw_field_name,
-                                      'Present value missing from '
-                                      'telemetry message'))
-
+        if field_translation.states:
+          self.AddError(
+              telemetry_error.TelemetryError(entity_name,
+                                             field_translation.raw_field_name,
+                                             'Missing state in telemetry '
+                                             'message: {}'.format(pv)))
+        elif field_translation.units:
+          self.AddError(
+              telemetry_error.TelemetryError(entity_name,
+                                             field_translation.raw_field_name,
+                                             'Missing number in telemetry '
+                                             'message: {}'.format(pv)))
+        else:
+          self.AddError(
+              telemetry_error.TelemetryError(entity_name,
+                                             field_translation.raw_field_name,
+                                             'Present value missing from '
+                                             'telemetry message'))
         continue
+
 
       if field_translation.states:
         if pv not in field_translation.states.values():
