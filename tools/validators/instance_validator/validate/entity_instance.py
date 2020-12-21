@@ -373,7 +373,7 @@ class EntityInstance(findings_lib.Findings):
     source_states = universe.GetStatesByField(source_field)
     target_states = universe.GetStatesByField(target_field)
     if source_states != target_states:
-      print('State mismatch in link from {0} to {1}'\
+      print('State mismatch in link from {0} to {1}'
             .format(source_field, target_field))
       return False
     return True
