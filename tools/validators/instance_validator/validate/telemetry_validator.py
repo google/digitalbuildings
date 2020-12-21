@@ -43,7 +43,7 @@ class TelemetryValidator(object):
 
   def __init__(self, entities, timeout, callback):
     super().__init__()
-    self.entities = dict(filter((lambda entities_with_translations:
+    self.entities = dict(filter((lambda entities:
                                  entities[1].translation),
                                 entities.items()))
     self.timeout = timeout
