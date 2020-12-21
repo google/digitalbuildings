@@ -25,4 +25,13 @@ class Point(object):
   def __init__(self, point_name, value):
     super().__init__()
     self.point_name = point_name
-    self.present_value = value
+    self.present_value = self._ValueToString(value)
+
+  def _ValueToString(self, value):
+    """This is needed to allow parsing of values (bool and multi-states)."""
+    if isinstance(value, bool):
+      return str(value).lower()
+
+    if isinstance(value, (int, float)):
+      return str(value)
+

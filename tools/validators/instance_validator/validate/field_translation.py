@@ -13,18 +13,20 @@
 # limitations under the License.
 
 """Translation of a single field."""
-
+#TODO(charbull): update types and validation in the class
 class FieldTranslation(object):
   """A translation for a single field of an entity.
 
   Args:
-    field_name: name of the field the translation corresponds to
+    std_field_name: string. Standard name of the field in the ontology
+    raw_field_name: string. Name of the field sent in the telemetry payload
     units: dictionary from standard units to expected telemetry units
     states: dictionary from standard states to expected telemetry states
   """
-
-  def __init__(self, field_name, units, states):
+  # TODO(b/176095085): handle the comment in the bug while refactoring
+  def __init__(self, std_field_name, raw_field_name, units, states):
     super().__init__()
-    self.field_name = field_name
+    self.std_field_name = std_field_name
+    self.raw_field_name = raw_field_name
     self.units = units
     self.states = states

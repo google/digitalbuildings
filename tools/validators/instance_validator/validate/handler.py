@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Validation Helper"""
+"""Validation Helper."""
 
 from __future__ import print_function
 import argparse
@@ -22,10 +22,10 @@ from validate import entity_instance
 from validate import generate_universe
 from validate import instance_parser
 from validate import subscriber
+from validate import telemetry_validator
+from datetime import datetime
 
 # Default timeout duration for telemetry validation test
-from validate import telemetry_validator
-
 DEFAULT_TIMEOUT = 600
 
 
@@ -40,6 +40,7 @@ def deserialize(yaml_files):
 
   parsed_yaml = {}
   for yaml_file in yaml_files:
+    print('Parsing file: {0}, please wait ...'.format(yaml_file))
     parsed_yaml.update(instance_parser.parse_yaml(yaml_file))
     print('Syntax checks passed for file: {0}'.format(yaml_file))
 
@@ -133,17 +134,24 @@ class ValidationHelper(object):
     Args:
       validator: the telemetry validator that triggered the callback."""
 
-    report = ''
+    print('Generating validation report ...')
+    current_time = datetime.now()
+    timestamp = current_time.strftime('%d-%b-%Y (%H:%M:%S)')
+    report = '\nReport Generated at: {0}\n'.format(timestamp)
 
     if not validator.AllEntitiesValidated():
       report += 'No telemetry message was received for the following entities:'
       report += '\n'
-      for entity_name in validator.GetUnvalidatedEntities():
-        report += '  ' + entity_name + '\n'
+      for entity_name in validator.GetUnvalidatedEntityNames():
+        report += '  {0}\n'.format(entity_name)
 
     report += '\nTelemetry validation errors:\n'
     for error in validator.GetErrors():
       report += error.GetPrintableMessage()
+
+    report += '\nTelemetry validation warnings:\n'
+    for warnings in validator.GetWarnings():
+      report += warnings.GetPrintableMessage()
 
     if self.report_filename:
       f = open(self.report_filename, 'w')
@@ -152,7 +160,7 @@ class ValidationHelper(object):
     else:
       print('\n')
       print(report)
-
+    print('Report Generated')
     sys.exit(0)
 
 
@@ -200,11 +208,11 @@ class ValidationHelper(object):
 
     parser.add_argument(
         '-r', '--report-filename',
-        dest = 'report_filename',
-        required = False,
-        default = None,
-        help = 'Filename for the validation report',
-        metavar = 'report-filename')
+        dest='report_filename',
+        required=False,
+        default=None,
+        help='Filename for the validation report',
+        metavar='report-filename')
 
     self.args = parser.parse_args(args)
     self.filenames = self.args.filenames

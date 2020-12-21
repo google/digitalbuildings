@@ -1,0 +1,15 @@
+{
+  "timestamp": "2020-10-15T17:21:59.000Z",
+  "version": 1,
+  "points": {
+    "run_command": {
+      "present_value": true
+    },
+    "run_status": {
+      "present_value": 1
+    },
+    "supply_fan_speed_percentage_command": {
+      "present_value": 150.0
+    }
+  }
+}

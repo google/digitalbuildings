@@ -31,70 +31,70 @@ class ParserTest(absltest.TestCase):
     with self.assertRaises(SystemExit):
       parse = instance_parser.parse_yaml(
           path.join(_TESTCASE_PATH,
-                       'BAD',
-                       'bad_duplicate_keys.yaml'))
+                    'BAD',
+                    'bad_duplicate_keys.yaml'))
       self.assertIsNone(parse)
 
   def testInstanceValidatorDetectMissingColon(self):
     with self.assertRaises(SystemExit):
       parse = instance_parser.parse_yaml(
           path.join(_TESTCASE_PATH,
-                       'BAD',
-                       'bad_missing_colon.yaml'))
+                    'BAD',
+                    'bad_missing_colon.yaml'))
       self.assertIsNone(parse)
 
   def testInstanceValidatorDetectImproperSpacing(self):
     with self.assertRaises(SystemExit):
       parse = instance_parser.parse_yaml(
           path.join(_TESTCASE_PATH,
-                       'BAD',
-                       'bad_spacing.yaml'))
+                    'BAD',
+                    'bad_spacing.yaml'))
       self.assertIsNone(parse)
 
   def testInstanceValidatorDetectImproperTabbing(self):
     with self.assertRaises(SystemExit):
       parse = instance_parser.parse_yaml(
           path.join(_TESTCASE_PATH,
-                       'BAD',
-                       'bad_tabbing.yaml'))
+                    'BAD',
+                    'bad_tabbing.yaml'))
       self.assertIsNone(parse)
 
   def testInstanceValidatorParseProperFormat(self):
     parse = instance_parser.parse_yaml(
         path.join(_TESTCASE_PATH,
-                     'GOOD',
-                     'good_building_type.yaml'))
+                  'GOOD',
+                  'good_building_type.yaml'))
     self.assertIsNotNone(parse)
 
   def testInstanceValidatorParseProperConnections(self):
     parse = instance_parser.parse_yaml(
         path.join(_TESTCASE_PATH,
-                     'GOOD',
-                     'good_building_connections.yaml'))
+                  'GOOD',
+                  'good_building_connections.yaml'))
     self.assertIsNotNone(parse)
 
   def testInstanceValidatorDetectImproperTranslationCompliance(self):
     with self.assertRaises(SystemExit):
       parse = instance_parser.parse_yaml(
           path.join(_TESTCASE_PATH,
-                       'BAD',
-                       'bad_translation_compliant.yaml'))
+                    'BAD',
+                    'bad_translation_compliant.yaml'))
       self.assertIsNone(parse)
 
   def testInstanceValidatorDetectImproperTranslationKeys(self):
     with self.assertRaises(SystemExit):
       parse = instance_parser.parse_yaml(
           path.join(_TESTCASE_PATH,
-                       'BAD',
-                       'bad_translation_keys.yaml'))
+                    'BAD',
+                    'bad_translation_keys.yaml'))
       self.assertIsNone(parse)
 
   def testInstanceValidatorDetectImproperUnitsKeys(self):
     with self.assertRaises(SystemExit):
       parse = instance_parser.parse_yaml(
           path.join(_TESTCASE_PATH,
-                       'BAD',
-                       'bad_translation_units_format.yaml'))
+                    'BAD',
+                    'bad_translation_units_format.yaml'))
       self.assertIsNone(parse)
 
 if __name__ == '__main__':
