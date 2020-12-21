@@ -43,9 +43,9 @@ class TelemetryValidator(object):
 
   def __init__(self, entities, timeout, callback):
     super().__init__()
-    self.entities = dict(filter((lambda entities:
-                                 entities[1].translation),
-                                entities.items()))
+    self.entities_with_translation = dict(filter((lambda entities:
+                                                  entities[1].translation),
+                                                 entities.items()))
     self.timeout = timeout
     self.callback = callback
     self.validated_entities = {}
@@ -61,11 +61,11 @@ class TelemetryValidator(object):
 
   def AllEntitiesValidated(self):
     """Returns true if a message was received for every entity."""
-    return len(self.entities) == len(self.validated_entities)
+    return len(self.entities_with_translation) == len(self.validated_entities)
 
   def GetUnvalidatedEntityNames(self):
     """Returns a set of entities that have not been validated."""
-    return set(self.entities.keys()) \
+    return set(self.entities_with_translation.keys()) \
                   - set(self.validated_entities.keys())
 
   def CallbackIfCompleted(self):
@@ -99,7 +99,7 @@ class TelemetryValidator(object):
     entity_name = tele.attributes[DEVICE_ID]
 
     # Telemetry message received for an entity not in building config
-    if entity_name not in self.entities.keys():
+    if entity_name not in self.entities_with_translation.keys():
       #TODO(charbull): refactor warning class
       self.AddWarning(telemetry_warning
                       .TelemetryWarning(
@@ -117,7 +117,7 @@ class TelemetryValidator(object):
       return
     self.validated_entities[entity_name] = True
 
-    entity = self.entities[entity_name]
+    entity = self.entities_with_translation[entity_name]
 
     print('Validating telemetry message for entity: {0}'.format(entity_name))
 

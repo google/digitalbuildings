@@ -21,9 +21,11 @@ setup(
     version='0.0.1',
     url='https://github.com/google/digitalbuildings',
     license='Apache License',
-    author='Raymond Li',
-    author_email='',
-    description='',
+    author='(in alphabatical order)'
+           'Keith Berkoben,'
+           'Raymond Li,'
+           'Charbel Kaed,'
+           'Nigel Kilmer',
     packages=find_packages(),
     install_requires=['protobuf>=3.14.0','strictyaml',
                       'google-cloud-pubsub', 'google-auth'],
