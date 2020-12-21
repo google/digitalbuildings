@@ -18,8 +18,8 @@ class FieldTranslation(object):
   """A translation for a single field of an entity.
 
   Args:
-    std_field_name: standard name of the field in the ontology
-    raw_field_name: name of the field sent in the telemetry payload
+    std_field_name: string. Standard name of the field in the ontology
+    raw_field_name: string. Name of the field sent in the telemetry payload
     units: dictionary from standard units to expected telemetry units
     states: dictionary from standard states to expected telemetry states
   """
