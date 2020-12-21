@@ -40,6 +40,7 @@ def deserialize(yaml_files):
 
   parsed_yaml = {}
   for yaml_file in yaml_files:
+    print('Parsing file: {0}, please wait ...'.format(yaml_file))
     parsed_yaml.update(instance_parser.parse_yaml(yaml_file))
     print('Syntax checks passed for file: {0}'.format(yaml_file))
 
@@ -134,15 +135,15 @@ class ValidationHelper(object):
       validator: the telemetry validator that triggered the callback."""
 
     print('Generating validation report ...')
-    currentTime = datetime.now()
-    timestampStr = currentTime.strftime("%d-%b-%Y (%H:%M:%S)")
-    report = '\nReport Generated at: {0}\n'.format(timestampStr)
+    current_time = datetime.now()
+    timestamp = current_time.strftime('%d-%b-%Y (%H:%M:%S)')
+    report = '\nReport Generated at: {0}\n'.format(timestamp)
 
     if not validator.AllEntitiesValidated():
       report += 'No telemetry message was received for the following entities:'
       report += '\n'
-      for entity_name in validator.GetUnvalidatedEntities():
-        report += '  ' + str(entity_name) + '\n'
+      for entity_name in validator.GetUnvalidatedEntityNames():
+        report += '  {0}\n'.format(entity_name)
 
     report += '\nTelemetry validation errors:\n'
     for error in validator.GetErrors():

@@ -56,14 +56,13 @@ class TelemetryValidator(object):
   #TODO(charbull): fix this timeout
   def StartTimer(self):
     """Starts the validation timeout timer."""
-    self.timer = threading.Timer(self.timeout, lambda: self.callback(self))\
-      .start()
+    threading.Timer(self.timeout, lambda: self.callback(self)).start()
 
   def AllEntitiesValidated(self):
     """Returns true if a message was received for every entity."""
     return len(self.entities) == len(self.validated_entities)
 
-  def GetUnvalidatedEntities(self):
+  def GetUnvalidatedEntityNames(self):
     """Returns a set of entities that have not been validated."""
     return set(self.entities.keys()) \
                   - set(self.validated_entities.keys())
@@ -101,13 +100,12 @@ class TelemetryValidator(object):
     # Telemetry message received for an entity not in building config
     if entity_name not in self.entities.keys():
       #TODO(charbull): refactor warning class
-      self.AddWarning(
-                      telemetry_warning
+      self.AddWarning(telemetry_warning
                       .TelemetryWarning(
                           entity_name,
                           None,
-                          "Telemetry message received for an entity not "
-                          "in building config"))
+                          'Telemetry message received for an entity not '
+                          'in building config'))
       message.ack()
       return
 
@@ -124,36 +122,34 @@ class TelemetryValidator(object):
 
     for field_translation in entity.translation.values():
       if field_translation.raw_field_name not in tele.points.keys():
-        self.AddError(
-              telemetry_error.TelemetryError(
-                  entity_name, field_translation.raw_field_name,
-                  'Field missing from telemetry message'))
+        self.AddError(telemetry_error
+                      .TelemetryError(entity_name,
+                                      field_translation.raw_field_name,
+                                      'Field missing from telemetry message'))
 
         continue
 
       point = tele.points[field_translation.raw_field_name]
       pv = point.present_value
       if pv is None:
-        self.AddError(
-              telemetry_error
-                .TelemetryError(entity_name,
-                                field_translation.raw_field_name,
-                                'Present value missing from telemetry message'))
+        self.AddError(telemetry_error
+                      .TelemetryError(entity_name,
+                                      field_translation.raw_field_name,
+                                      'Present value missing from '
+                                      'telemetry message'))
 
         continue
 
       if field_translation.states:
         if pv not in field_translation.states.values():
-          self.AddError(
-            telemetry_error.TelemetryError(
+          self.AddError(telemetry_error.TelemetryError(
               entity_name, field_translation.raw_field_name,
               'Invalid state in telemetry message: {}'.format(pv)))
 
           continue
 
       if field_translation.units and not self.ValueIsNumeric(pv):
-        self.AddError(
-          telemetry_error.TelemetryError(
+        self.AddError(telemetry_error.TelemetryError(
             entity_name, field_translation.raw_field_name,
             'Invalid number in telemetry message: {}'.format(pv)))
 

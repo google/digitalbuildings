@@ -31,6 +31,6 @@ class Point(object):
     if isinstance(value, bool):
       return '{}'.format(value).lower()
 
-    if isinstance(value, int) or isinstance(value, float):
+    if isinstance(value, (int, float)):
       return '{}'.format(value)
 

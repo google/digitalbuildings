@@ -44,3 +44,4 @@ class TelemetryWarning(object):
       msg += ", point [" + str(self.point) + "]"
     msg += ": " + self.message+"\n"
     return msg
+

@@ -39,8 +39,8 @@ class TelemetryError(object):
   def GetPrintableMessage(self):
     """Returns a human-readable message that explains this error."""
 
-    msg = "- entity [" + self.entity + "]"
+    msg = '- entity [{0}]'.format(self.entity)
     if str(self.point):
-      msg += ", point [" + str(self.point) + "]"
-    msg += ": " + self.message+"\n"
+      msg += ', point [{0}]'.format(self.point)
+    msg += ': {0}\n'.format(self.message)
     return msg

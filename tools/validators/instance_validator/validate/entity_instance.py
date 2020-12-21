@@ -114,7 +114,7 @@ class EntityInstance(findings_lib.Findings):
       return translation_body
 
     translation = {}
-
+    # TODO(b/176094783): reuse the tuple from the ontology validator
     for std_field_name in translation_body.keys():
       if isinstance(translation_body[std_field_name], str):
         continue

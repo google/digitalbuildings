@@ -23,7 +23,7 @@ class FieldTranslation(object):
     units: dictionary from standard units to expected telemetry units
     states: dictionary from standard states to expected telemetry states
   """
-
+  # TODO(b/176095085): handle the comment in the bug while refactoring
   def __init__(self, std_field_name, raw_field_name, units, states):
     super().__init__()
     self.std_field_name = std_field_name
