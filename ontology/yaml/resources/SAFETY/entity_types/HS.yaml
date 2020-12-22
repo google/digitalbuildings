@@ -15,6 +15,7 @@
 ### ABSTRACT TYPES
 
 HS_STD:
+  id: "1623655005489725440"
   description: "Standard horn strobe."
   is_canonical: true
   implements:

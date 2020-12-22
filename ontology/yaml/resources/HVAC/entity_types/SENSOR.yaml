@@ -18,6 +18,7 @@
 
 
 SENSOR_ZTM_ZHM_CO2M:
+  id: "11999948546951348224"
   description: "Zone air property sensor (humidity, temperature, CO2 level)."
   is_canonical: true
   implements:
@@ -25,7 +26,6 @@ SENSOR_ZTM_ZHM_CO2M:
   - ZTM
   - ZHM
   - CO2M
-
 
 
 

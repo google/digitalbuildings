@@ -13,6 +13,7 @@
 # limitations under the License.
 
 UPS_SS:
+  id: "5802995459689545728"
   description: "Standard UPS unit."
   is_canonical: true
   implements:

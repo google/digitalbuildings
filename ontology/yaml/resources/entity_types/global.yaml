@@ -21,12 +21,14 @@ EQUIPMENT:
   - model_label
 
 SENSOR:
+  id: "14503949939769344000"
   description: "Stand-alone sensing device. Used to model individual sensors when they don't belong explicitly to one piece of equipment."
   is_abstract: true
   implements:
   - EQUIPMENT
 
 USER_INTERFACE:
+  id: "6019168241803329536"
   description: "Generic user interface."
   is_abstract: true
   implements:
@@ -51,5 +53,4 @@ INCOMPLETE:
   id: "4665780478685478912"
   description: "A known incomplete type."
   is_abstract: true
-
 

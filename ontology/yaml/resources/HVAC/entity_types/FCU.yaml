@@ -568,6 +568,7 @@ FCU_DFSS_RTC_CHWRC_RHC:
   - RHC
 
 FCU_DFSS_DFVSC_ZTC_CHWZTC:
+  id: "12807321034738892800"
   description: "Hydronic variable speed fan coil with cooling and heating (zone temp control)."
   is_canonical: true
   opt_uses:
@@ -582,6 +583,7 @@ FCU_DFSS_DFVSC_ZTC_CHWZTC:
   - CHWZTC
 
 FCU_DFSS_DFVSC_ZTC_ZHC_CHWDC_FDPM_RMM:
+  id: "18052786446137294848"
   description: "Hydronic variable speed fan coil with cooling (zone temp control)."
   is_canonical: true
   implements:
@@ -595,6 +597,7 @@ FCU_DFSS_DFVSC_ZTC_ZHC_CHWDC_FDPM_RMM:
   - RMM
 
 FCU_DFSS_DFVSC_ZTC_ZHC_CHWDC_HWDC_FDPM_RMM:
+  id: "2560403727982788608"
   description: "Hydronic variable speed fan coil with cooling and heating (zone temp and humidity control)."
   is_canonical: true
   implements:
@@ -609,6 +612,7 @@ FCU_DFSS_DFVSC_ZTC_ZHC_CHWDC_HWDC_FDPM_RMM:
   - RMM
 
 FCU_DFSS_DFVSC_ZTC_CHWDC_HWDC_FDPM_RMM:
+  id: "10684897455759163392"
   description: "Hydronic variable speed fan coil with cooling and heating (discharge temp control)."
   is_canonical: true
   implements:
@@ -622,6 +626,7 @@ FCU_DFSS_DFVSC_ZTC_CHWDC_HWDC_FDPM_RMM:
   - RMM
 
 FCU_DFSS_DFVSC_ZTC_CHWZTC_HWZTC_FDPM_RMM:
+  id: "8162881664431685632"
   description: "Hydronic variable speed fan coil with cooling and heating (zone temp control)."
   is_canonical: true
   implements:
@@ -635,6 +640,7 @@ FCU_DFSS_DFVSC_ZTC_CHWZTC_HWZTC_FDPM_RMM:
   - RMM
 
 FCU_DFSS_DFVSC_ZTC_CHWZTC_HWZTC_FDPM_CO2M_RMM:
+  id: "470733500882878464"
   description: "Hydronic variable speed fan coil with cooling and heating (zone temp and co2 control)."
   is_canonical: true
   implements:
@@ -649,6 +655,7 @@ FCU_DFSS_DFVSC_ZTC_CHWZTC_HWZTC_FDPM_CO2M_RMM:
   - RMM
 
 FCU_DFSS_DFVSC_ZTC_CHWZTC_FDPM_RMM:
+  id: "11783775764837564416"
   description: "Hydronic varaible speed fan coil with cooling (zone temp control)."
   is_canonical: true
   implements:
@@ -661,6 +668,7 @@ FCU_DFSS_DFVSC_ZTC_CHWZTC_FDPM_RMM:
   - RMM
 
 FCU_DFSS_DFVSC_ZTC_CHWZTC_FDPM_CO2M_RMM:
+  id: "6073211437331775488"
   description: "Hydronic variable speed fan coil with cooling and heating (zone temp control)."
   is_canonical: true
   implements:
@@ -674,6 +682,7 @@ FCU_DFSS_DFVSC_ZTC_CHWZTC_FDPM_CO2M_RMM:
   - RMM
 
 FCU_DFSS_DFVSC_RTC_CHWRC_HWRC_FDPM_RMM:
+  id: "4541987564025806848"
   description: "Hydronic variable speed fan coil with heating and cooling (return control)."
   is_canonical: true
   implements:
@@ -687,6 +696,7 @@ FCU_DFSS_DFVSC_RTC_CHWRC_HWRC_FDPM_RMM:
   - RMM
 
 FCU_DFSS_DFVSC_RTC_CHWRC_FDPM_RMM:
+  id: "9694105537737654272"
   description: "Hydronic variable speed fan coil with cooling (return control)."
   is_canonical: true
   implements:
@@ -698,7 +708,29 @@ FCU_DFSS_DFVSC_RTC_CHWRC_FDPM_RMM:
   - FDPM
   - RMM
 
+FCU_SFSS_SFVSC_CHWSC_SSPC_RTM:
+  id: "18031496602488668160"
+  description: "Multi-zone FCU with chilled water"
+  is_canonical: true
+  implements:
+  - FCU
+  - SFSS
+  - SFVSC
+  - CHWSC
+  - SSPC
+  - RTM
 
+FCU_DFSS_DFVSC_SSPC_DTC_CHWDC:
+  id: "12924414625050525696"
+  description: "Discharge temperature control FCU with chilled water."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - DFVSC
+  - SSPC
+  - DTC
+  - CHWDC
 
 ###################################
 ### Existing Non-standard Types ###
@@ -760,7 +792,6 @@ FCU_US_SVL_MP7_6:
   description: "Non-standard type for MP7 FCs"
   implements:
   - FCU_DFSS_CSP_DXZC
-  - DEPRECATED
   uses:
   - discharge_air_damper_command
 
@@ -789,7 +820,6 @@ FCU_US_SVL_MP5_7:
   description: "Non-standard type for MP5 FCs"
   implements:
   - FCU_DFSS_DFVSC_DSP_HWDC_CHWDC
-  - DEPRECATED
   uses:
   - heating_water_valve_status
   - chilled_water_valve_command

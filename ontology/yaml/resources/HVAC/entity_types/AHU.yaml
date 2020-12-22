@@ -2230,6 +2230,436 @@ AHU_BSPC_CHWSC_ECON_EFSS_EFVSC_HWSC_PHWSC_SFSS_SFVSC_SSPC:
   - SFVSC
   - SSPC
 
+AHU_BSPC_DX4SC_ECON_EFSS_EFVSC_MOAFC_SFSS_SFVSC_SSPC_STC:
+  id: "16383179138871066624"
+  description: "Multi-zone AHU with minimum ventilation control."
+  is_canonical: true
+  implements:
+  - AHU
+  - BSPC
+  - DX4SC
+  - ECON
+  - EFSS
+  - EFVSC
+  - MOAFC
+  - SFSS
+  - SFVSC
+  - SSPC
+  - STC
+
+AHU_DX2SC_ECONM_EFSS_SARC_SFC_SFSS_SFVSC_SSPC:
+  id: "9024297347747676160"
+  description: "Multi zone unit with 2-stage compressor."
+  is_canonical: true
+  implements:
+  - AHU
+  - DX2SC
+  - ECONM
+  - EFSS
+  - SARC
+  - SFC
+  - SFSS
+  - SFVSC
+  - SSPC
+
+AHU_BSPC_DX4SC_ECONM_EDPM_EFSS_EFVSC_SFSS_SFVSC_SSPC_STC:
+  id: "14176415321459523584"
+  description: "Multi-zone AHU with exhaust damper monitoring"
+  is_canonical: true
+  implements:
+  - AHU
+  - BSPC
+  - DX4SC
+  - ECONM
+  - EDPM
+  - EFSS
+  - EFVSC
+  - SFSS
+  - SFVSC
+  - SSPC
+  - STC
+
+AHU_CHWSC_ECONM_FDPM_MOAFC_SFSS2X_SFVSC2X_SSPC_SARC:
+  id: "1278105988670423040"
+  description: "Multi-zone AHU with dual fans, static control and filter monitoring."
+  is_canonical: true
+  implements:
+  - AHU
+  - CHWSC
+  - ECONM
+  - FDPM
+  - MOAFC
+  - SFSS2X
+  - SFVSC2X
+  - SSPC
+  - SARC
+
+AHU_CHWSC_ECONM_FDPM_HWSC_SFSS_STC:
+  id: "6502281556420198400"
+  description: "Multi-zone AHU."
+  is_canonical: true
+  implements:
+  - AHU
+  - CHWSC
+  - ECONM
+  - FDPM
+  - HWSC
+  - SFSS
+  - STC
+
+AHU_CHWSC_ECONM_FDPM_HWSC_SFSS_SFVSC_SSPC_SARC:
+  id: "1395199578982055936"
+  description: "Multi-zone AHU."
+  is_canonical: true
+  implements:
+  - AHU
+  - CHWSC
+  - ECONM
+  - FDPM
+  - HWSC
+  - SFSS
+  - SFVSC
+  - SSPC
+  - SARC
+
+
+AHU_EDBPC_DX4SC_ECONM_EFSS_EFVSC_SFSS_SFVSC_SARC_SSPC:
+  id: "18247669384602451968"
+  description: "Multi-zone AHU."
+  is_canonical: true
+  implements:
+  - AHU
+  - EDBPC
+  - DX4SC
+  - ECONM
+  - EFSS
+  - EFVSC
+  - SFSS
+  - SFVSC
+  - SARC
+  - SSPC
+
+AHU_BSPC_DX4SC_ECONM_EFSS_SARC_SFSS_SFVSC_SSPC:
+  id: "2647200275391053824"
+  description: "Multi-zone AHU."
+  is_canonical: true
+  implements:
+  - AHU
+  - BSPC
+  - DX4SC
+  - ECONM
+  - EFSS
+  - SARC
+  - SFSS
+  - SFVSC
+  - SSPC
+
+
+AHU_BSPC_DX4SC_ECON_EFSS_SFSS_SFVSC_SSPC_HWSC:
+  id: "10501478025525198848"
+  description: "Multi-zone AHU."
+  is_canonical: true
+  implements:
+  - AHU
+  - BSPC
+  - DX4SC
+  - ECON
+  - EFSS
+  - SFSS
+  - SFVSC
+  - SSPC
+  - HWSC
+
+AHU_BSPC_DX4SC_ECONM_EFSS_EFVSC_SFSS2X_SFVSC2X_SSPC_SARC:
+  id: "15725653593274974208"
+  description: "Multi-zone AHU."
+  is_canonical: true
+  implements:
+  - AHU
+  - BSPC
+  - DX4SC
+  - ECONM
+  - EFSS
+  - EFVSC
+  - SFSS2X
+  - SFVSC2X
+  - SSPC
+  - SARC
+
+AHU_CHWSC_HWSC_SFSS_SFVSC_SSPC:
+  id: "10618571615836831744"
+  description: "Multi-zone AHU."
+  is_canonical: true
+  implements:
+  - AHU
+  - CHWSC
+  - HWSC
+  - SFSS
+  - SFVSC
+  - SSPC
+
+AHU_BSPC_DFSS_DSP_DX4DC_HWDC_ECONM_EFSS:
+  id: "11870572312245829632"
+  description: "Single zone AHU."
+  is_canonical: true
+  implements:
+  - AHU
+  - BSPC
+  - DFSS
+  - DSP
+  - DX4DC
+  - HWDC
+  - ECONM
+  - EFSS
+
+AHU_DFSS_DSP_DX3ZC_ECONZ:
+  id: "5889792007097810944"
+  description: "Single zone AHU."
+  is_canonical: true
+  implements:
+  - AHU
+  - DFSS
+  - DSP
+  - DX3ZC
+  - ECONZ
+
+AHU_DX4SC_ECONM_EFSS_EFVSC_SFSS_SFVSC_SSPC:
+  id: "4196438547206504448"
+  description: "Multi-zone AHU."
+  is_canonical: true
+  implements:
+  - AHU
+  - DX4SC
+  - ECONM
+  - EFSS
+  - EFVSC
+  - SFSS
+  - SFVSC
+  - SSPC
+
+AHU_DX4ZC_DFSS_DFVSC_EFSS_EFVSC_DSP_ECONZ:
+  id: "6006885597409443840"
+  description: "Single zone AHU, four-stage DX cooling."
+  is_canonical: true
+  implements:
+  - AHU
+  - DX4ZC
+  - DFSS
+  - DFVSC
+  - EFSS
+  - EFVSC
+  - DSP
+  - ECONZ
+
+AHU_CO2C_DFSS_DFVSC_EFS_EFVSC_DX2ZC_ECONZ_HTZC:
+  id: "9456642911975243776"
+  description: "Single zone AHU."
+  is_canonical: true
+  implements:
+  - AHU
+  - CO2C
+  - DFSS
+  - DFVSC
+  - EFSS
+  - EFVSC
+  - DX2ZC
+  - ECONZ
+  - HTZC
+
+AHU_BSPC_DX6SC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSP_SARC:
+  id: "15113164043952586752"
+  description: "Multi-zone AHU."
+  is_canonical: true
+  implements:
+  - AHU
+  - BSPC
+  - DX6SC
+  - ECON
+  - EFSS
+  - EFVSC
+  - SFSS
+  - SFVSC
+  - SSPC
+  - SARC
+
+AHU_BSPC_DXSC_ECON_EFSS_SFSS_SFVSC_SSPC_SARC:
+  id: "13419810584061280256"
+  description: "Multi-zone AHU."
+  is_canonical: true
+  implements:
+  - AHU
+  - BSPC
+  - DXSC
+  - ECON
+  - EFSS
+  - SFSS
+  - SFVSC
+  - SSPC
+  - SARC
+
+AHU_CO2M_DFSS_DFVSC_DSP_DXZC_ECOND_EFSS_EFVSC_HTZC:
+  id: "15230257634264219648"
+  description: "Single zone AHU."
+  is_canonical: true
+  implements:
+  - AHU
+  - CO2M
+  - DFSS
+  - DFVSC
+  - DSP
+  - DXZC
+  - ECOND
+  - EFSS
+  - EFVSC
+  - HTZC
+
+AHU_BSPC_DXSC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC_SARC:
+  id: "4844956893547855872"
+  description: "Multi-zone AHU."
+  is_canonical: true
+  implements:
+  - AHU
+  - BSPC
+  - DXSC
+  - ECON
+  - EFSS
+  - EFVSC
+  - SFSS
+  - SFVSC
+  - SSPC
+  - SARC
+
+AHU_ZSPC_CHWDC_CSP_ECONMD_DFSS_DFVSC_HWDC:
+  id: "16482258330673217536"
+  description: "Single zone unit with dehumidifcation CHW coil"
+  is_canonical: true
+  implements:
+  - AHU
+  - ZSPC
+  - CHWDC
+  - CSP
+  - ECONMD
+  - DFSS
+  - DFVSC
+  - HWDC
+
+
+AHU_DX2DSPRTC_SFSS_VOADM_ZHDHC_SSPC_STM_BYPDM:
+  id: "8808124565633892352"
+  description: "Multi-zone AHU with dual setpoint return air temperature control"
+  is_canonical: true
+  implements:
+  - AHU
+  - DX2DSPRTC
+  - SFSS
+  - VOADM
+  - ZHDHC
+  - SSPC
+  - STM
+  - BYPDM
+
+
+AHU_CHW2XSC_ECON_ED_EFSS2X_EFVSC2X_HWSC_SFSS2X_SFVSC2X_SHM_RHM_SARC_SFM_SSPC_ZSPC_RSPC_RFC:
+  id: "3701042588195749888"
+  description: "Multi zone lab unit with two CHW and HW coils"
+  is_canonical: true
+  implements:
+  - AHU
+  - CHW2XSC
+  - ECON
+  - ED
+  - EFSS2X
+  - EFVSC2X
+  - HWSC
+  - SFSS2X
+  - SFVSC2X
+  - SHM
+  - RHM
+  - SARC
+  - SFM
+  - SSPC
+  - ZSPC
+  - RSPC
+  - RFC
+
+AHU_ECON_DFSS_DFVSC_DSP_HWZC_CHWZC_CO2C:
+  id: "14068328930402631680"
+  description: "Hydronic variable speed fan coil with cooling and heating (zone temp control)."
+  is_canonical: true
+  implements:
+  - ECOND
+  - DFSS
+  - DFVSC
+  - DSP
+  - HWZC
+  - CHWZC
+  - CO2C
+
+AHU_DFSS_DFVSC_DSP_HWZC_CHWZC_ECONZ_CO2C:
+  id: "1494278770784206848"
+  description: "Hydronic variable speed fan coil with cooling and heating (zone temp control) and direct CO2 control."
+  is_canonical: true
+  implements:
+  - AHU
+  - DFSS
+  - DFVSC
+  - DSP
+  - HWZC
+  - CHWZC
+  - ECONZ
+  - CO2C
+
+AHU_BYPSSPC_DX2SC_ECON_EFSS_HT2SC_SFSS_SARC:
+  id: "14669629849400770560"
+  description: "Air handler with bypass damper static control, two-stage DX cooling, two-stage heating, and supply air reset control."
+  is_canonical: true
+  implements:
+  - AHU
+  - BYPSSPC
+  - DX2SC
+  - ECON
+  - EFSS
+  - HT2SC
+  - SFSS
+  - SARC
+
+AHU_DFSS_DFVSC_DSP_DX3ZC_ECONZ_HT2ZC:
+  id: "9929101958918963200"
+  description: "Single-zone AHU with dual setpoint control, 3-stage cooling, 2-stage heating"
+  is_canonical: true
+  implements:
+  - AHU
+  - DFSS
+  - DFVSC
+  - DSP
+  - DX3ZC
+  - ECONZ
+  - HT2ZC
+
+AHU_DFSS_DFVSC_DSP_DX3ZC_ECONZ:
+  id: "12766369724162375680"
+  description: "Single-zone AHU with 3-stage cooling"
+  is_canonical: true
+  implements:
+  - AHU
+  - DFSS
+  - DFVSC
+  - DSP
+  - DX3ZC
+  - ECONZ
+
+AHU_BYPSSPC_DX3SC_ECON_HT2SC_SFSS_SFVSC:
+  id: "6682006627584835584"
+  description: "Multi-zone AHU with bypass staic control, 3-stage cooling, 2-stage heating"
+  is_canonical: true
+  implements:
+  - AHU
+  - BYPSSPC
+  - DX3SC
+  - ECON
+  - HT2SC
+  - SFSS
+  - SFVSC
 
 ###################################
 ### Existing Non-standard Types ###
@@ -2411,6 +2841,7 @@ AHU_US_MTV_1230_6:
   description: "Non-standard type for 1230 ACs"
   implements:
   - AHU_US_MTV_1250_15
+  - DEPRECATED
 
 AHU_US_MTV_1250_12:
   id: "14240055054475198464"
@@ -2428,6 +2859,7 @@ AHU_US_MTV_1250_13:
   description: "Non-standard type for 1250 ACs"
   implements:
   - AHU_US_MTV_1250_15 # Deprecated
+  - DEPRECATED
 
 AHU_US_MTV_1250_15:
   id: "5394985386319544320"

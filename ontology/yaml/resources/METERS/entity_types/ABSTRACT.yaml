@@ -16,6 +16,7 @@
 
 
 PWM:
+  id: "17470344350578769920"
   description: "Very basic power and enrgy monitoring only."
   is_abstract: true
   opt_uses:
@@ -28,6 +29,7 @@ PWM:
   - energy_accumulator
 
 AVCM:
+  id: "12498370361961742336"
   description: "Average phase (line) level voltage and current monitoring. "
   is_abstract: true
   uses:
@@ -36,6 +38,7 @@ AVCM:
   - average_line_current_sensor
 
 PLPM:
+  id: "14407896603966832640"
   description: "Phase-level power monitoring."
   is_abstract: true
   opt_uses:
@@ -51,6 +54,7 @@ PLPM:
   - phase3_power_sensor
 
 PVCM:
+  id: "11021189684184219648"
   description: "Phase-level current and voltage monitoring."
   is_abstract: true
   uses:

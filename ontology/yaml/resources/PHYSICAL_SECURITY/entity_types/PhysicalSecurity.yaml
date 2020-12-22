@@ -43,6 +43,7 @@ BADGE_READER:
   description: "A badge reader that unlocks a door"
 
 DOOR_STD:
+  id: "7586420912128262144"
   description: "Typical door."
   is_canonical: true
   implements:
@@ -51,6 +52,7 @@ DOOR_STD:
   - position_status
 
 DOOR_EMER:
+  id: "2344230945869004800"
   description: "A door with position and emergency release monitoring."
   is_canonical: true
   implements:
@@ -58,5 +60,4 @@ DOOR_EMER:
   uses:
   - position_status
   - emergency_release_status
-
 
