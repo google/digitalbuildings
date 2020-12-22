@@ -16,24 +16,28 @@
 
 
 GASDET:
+  id: "16611634565378736128"
   description: "Basic natural gas leak monitoring."
   is_abstract: true
   uses:
   - gas_leak_detection_alarm
 
 WLDS:
+  id: "1407482223375941632"
   description: "Basic watre leak monitoring."
   is_abstract: true
   uses:
   - water_leak_detection_alarm
 
 BCM:
+  id: "3767368428118081536"
   description: "Broken cable monitoring."
   is_abstract: true
   uses:
   - broken_cable_alarm
 
 BC2X:
+  id: "12198106930555650048"
   description: "Broken cable monitoring."
   is_abstract: true
   uses:
@@ -41,6 +45,7 @@ BC2X:
   - broken_cable_alarm_2
 
 LPA: 
+  id: "13873445991937474560"
   description: "Loss of power alarming."
   is_abstract: true
   uses:

@@ -14,6 +14,7 @@
 
 
 HM_CHW:
+  id: "38387936655310848"
   description: "Cooling load heat meter."
   implements:
   - HM
