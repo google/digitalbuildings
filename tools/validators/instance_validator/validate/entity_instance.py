@@ -29,7 +29,8 @@ TYPE_KEY = 'type'
 LINKS_KEY = 'links'
 TRANSLATION_KEY = 'translation'
 CONNECTIONS_KEY = 'connections'
-
+PRESENT_VALUE = 'present_value'
+POINTS = 'points'
 UNITS_KEY = 'units'
 UNIT_VALUES_KEY = 'unit_values'
 VALUES_KEY = 'values'
@@ -56,17 +57,17 @@ class EntityInstance(findings_lib.Findings):
     self.namespace, self.type_name = None, None
     if TYPE_KEY in entity_yaml.keys():
       self.namespace, self.type_name = self._ParseTypeString(
-        entity_yaml[TYPE_KEY].data)
+          entity_yaml[TYPE_KEY].data)
 
     self.translation = None
     if TRANSLATION_KEY in entity_yaml.keys():
       self.translation = self._ParseTranslation(
-        entity_yaml[TRANSLATION_KEY].data)
+          entity_yaml[TRANSLATION_KEY].data)
 
     self.connections = None
     if CONNECTIONS_KEY in entity_yaml.keys():
       self.connections = self._ParseConnections(
-        entity_yaml[CONNECTIONS_KEY].data)
+          entity_yaml[CONNECTIONS_KEY].data)
 
     self.links = None
     if LINKS_KEY in entity_yaml.keys():
@@ -113,12 +114,18 @@ class EntityInstance(findings_lib.Findings):
       return translation_body
 
     translation = {}
-
-    for field_name in translation_body.keys():
-      if isinstance(translation_body[field_name], str):
+    # TODO(b/176094783): reuse the tuple from the ontology validator
+    for std_field_name in translation_body.keys():
+      if isinstance(translation_body[std_field_name], str):
         continue
+      # TODO(b/176097512): Manually defined non UDMI translations should be
+      #  accepted by the validator
+      ft = translation_body[std_field_name]
 
-      ft = translation_body[field_name]
+      raw_field_name = str(ft[PRESENT_VALUE])\
+        .replace(PRESENT_VALUE, '')\
+        .replace(POINTS, '')\
+        .replace('.', '')
 
       units = dict()
       if UNITS_KEY in ft.keys():
@@ -130,8 +137,8 @@ class EntityInstance(findings_lib.Findings):
       if STATES_KEY in ft.keys():
         states = ft[STATES_KEY]
 
-      translation[field_name] = field_translation.FieldTranslation(
-        field_name, units, states)
+      translation[std_field_name] = field_translation.FieldTranslation(
+          std_field_name, raw_field_name, units, states)
 
     return translation
 
@@ -245,14 +252,14 @@ class EntityInstance(findings_lib.Findings):
       if valid_states:
         for state in ft.states.keys():
           if state not in valid_states:
-            print(
-              'Field {0} has an invalid state: {1}'.format(field_name, state))
+            print('Field {0} has an invalid state: {1}'
+                  .format(field_name, state))
             is_valid = False
 
     for field_name, field in type_fields.items():
       if not field.optional and field_name not in found_fields:
-        print(
-          'Required field {0} is missing from translation'.format(field_name))
+        print('Required field {0} is missing from translation'
+              .format(field_name))
         is_valid = False
 
     return is_valid
@@ -314,7 +321,7 @@ class EntityInstance(findings_lib.Findings):
       src_namespace = src_entity.namespace
       src_type_name = src_entity.type_name
       src_entity_type = universe.GetEntityType(src_namespace,
-                                                    src_type_name)
+                                               src_type_name)
 
       for source_field, target_field in link_inst.field_map.items():
         # assumes that the namespace is '' for now
@@ -366,13 +373,13 @@ class EntityInstance(findings_lib.Findings):
     source_states = universe.GetStatesByField(source_field)
     target_states = universe.GetStatesByField(target_field)
     if source_states != target_states:
-      print('State mismatch in link from {0} to {1}'\
+      print('State mismatch in link from {0} to {1}'
             .format(source_field, target_field))
       return False
     return True
 
 
-  def IsValidEntityInstance(self, universe = None, entity_instances = None):
+  def IsValidEntityInstance(self, universe=None, entity_instances=None):
     """Uses the generated ontology universe to validate an entity.
 
     Args:

@@ -14,13 +14,13 @@
 
 """Container for a telemetry validation error."""
 
-class TelemetryError(object):
-  """Container for a telemetry validation error.
+class TelemetryWarning(object):
+  """Container for a telemetry validation warning.
 
   Args:
-    entity: name of the entity with the error
-    point: name of the point with the error (can be None)
-    message: specific error message
+    entity: name of the entity with the warning
+    point: name of the point with the warning (can be None)
+    message: specific warning message
   """
 
   def __init__(self, entity, point, message):
@@ -30,14 +30,14 @@ class TelemetryError(object):
     self.message = message
 
   def __eq__(self, other):
-    if not isinstance(other, TelemetryError):
+    if not isinstance(other, TelemetryWarning):
       return NotImplemented
     return (self.entity == other.entity and
             self.point == other.point and
             self.message == other.message)
 
   def GetPrintableMessage(self):
-    """Returns a human-readable message that explains this error."""
+    """Returns a human-readable message that explains this warning."""
 
     msg = '- entity [{0}]'.format(self.entity)
     if self.point:
