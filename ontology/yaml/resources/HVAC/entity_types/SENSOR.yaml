@@ -27,7 +27,7 @@ SENSOR_ZTM_ZHM_CO2M:
   - CO2M
 
 SENSOR_ZTM_ZHM:
-  description: "Zone air property sensor (humidity, temperature, CO2 level)."
+  description: "Zone air property sensor (humidity, temperature)."
   is_canonical: true
   implements:
   - /SENSOR # Inherits from global namespace
