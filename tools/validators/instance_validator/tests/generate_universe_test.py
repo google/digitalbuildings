@@ -22,9 +22,9 @@ from validate import generate_universe
 from absl.testing import absltest
 from os import path
 
+_RESOURCES = 'ontology/yaml/resources'
 _TEST_DIR = path.dirname(path.realpath(__file__))
-_DEFAULT_ONTOLOGY_LOCATION = path.join(_TEST_DIR, '..', '..', '..', '..',
-                                       'ontology', 'yaml', 'resources')
+_DEFAULT_ONTOLOGY_LOCATION = path.join(_TEST_DIR, '../../../..', _RESOURCES)
 _BAD_MODIFIED_ONTOLOGY = path.join(_TEST_DIR,
                                    'fake_resources', 'BAD', 'BAD_FORMAT')
 _NONEXISTENT_LOCATION = path.join(_TEST_DIR, 'nonexistent')

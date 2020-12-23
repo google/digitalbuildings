@@ -41,6 +41,7 @@ literals:
 - compressor_run_status:
   - ON
   - OFF
+  - UNKNOWN
 - compressor_speed_percentage_sensor
 - refrigerant_condenser_saturation_temperature_sensor
 - condensing_return_water_temperature_sensor
@@ -75,6 +76,7 @@ literals:
 - economizer_mode:
   - ON
   - OFF
+  - AUTO
 - evaporator_pressure_sensor
 - refrigerant_evaporator_saturation_temperature_sensor
 - exhaust_air_damper_percentage_command
@@ -87,6 +89,7 @@ literals:
 - exhaust_fan_run_status:
   - ON
   - OFF
+  - UNKNOWN
 - exhaust_fan_speed_frequency_sensor
 - exhaust_fan_speed_percentage_command
 - exhaust_fan_speed_percentage_sensor
@@ -153,6 +156,7 @@ literals:
 - supply_fan_run_status:
   - ON
   - OFF
+  - UNKNOWN
 - supply_fan_speed_frequency_command
 - supply_fan_speed_frequency_sensor
 - supply_fan_speed_percentage_command
@@ -617,6 +621,23 @@ literals:
 # Added 4/12/20
 - supply_air_damper_percentage_sensor
 
+# Added 6/4/20
+- ventilation_request_count
+- refrigerant_evaporator_pressure_sensor
+- refrigerant_condenser_pressure_sensor
+- refrigerant_suction_temperature_sensor
+- refrigerant_discharge_temperature_sensor
+- low_limit_outside_air_damper_percentage_command
+
+- sweeper_pump_run_status:
+  - ON
+  - OFF
+- sweeper_pump_run_command:
+  - ON
+  - OFF
+- evaporative_cooler_run_status:
+  - ON
+  - OFF
 
 # Added 10/5/20 for TW-NTC-TPKD
 # Additional functionality for alarms and status points.

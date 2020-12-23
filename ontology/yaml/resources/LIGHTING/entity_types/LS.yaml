@@ -21,6 +21,7 @@
 # tied directly to an individual luminaire and must be modeled as stand-alone devices.
 
 LS_LPS:
+  id: "12720524487330627584"
   description: "Lighting system photocell sensor."
   is_canonical: true
   implements:
@@ -29,6 +30,7 @@ LS_LPS:
   - illuminance_sensor
 
 LS_LMS:
+  id: "8541184033130807296"
   description: "Lighting system motion sensor."
   is_canonical: true
   implements:
@@ -37,6 +39,7 @@ LS_LMS:
 
 
 LS_MTS:
+  id: "12936697269444411392"
   description: "Lighting multi-sensor, for temperature and brightness."
   is_canonical: true
   implements:
@@ -44,4 +47,3 @@ LS_MTS:
   uses:
   - illuminance_sensor
   - zone_air_temperature_sensor
-

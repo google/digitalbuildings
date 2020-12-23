@@ -92,6 +92,15 @@ CDWS_SWTC_MINFC_WDPC2X_PCLPM_CLPM_PRWDT2X_PWFRM2X_PWDPM2X:
   - PWFRM2X
   - PWDPM2X
 
+CDWS_SWTC_WDPM_SWPSS:
+  id: "10825737198695874560"
+  description: "Condenser water system with differential pressure monitoring and sweeper pump for CT basins."
+  is_canonical: true
+  implements:
+  - CDWS
+  - SWTC
+  - WDPM
+  - SWPSS
 
 ###################################
 ### Existing Non-standard Types ###

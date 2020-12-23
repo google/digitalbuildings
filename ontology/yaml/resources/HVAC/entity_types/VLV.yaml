@@ -17,6 +17,7 @@
 ########################
 
 VLV_CHWVM_RTM_DTM:
+  id: "12414279712669433856"
   description: "Chilled water valve with DT monitoring."
   is_canonical: true
   implements:
@@ -26,6 +27,7 @@ VLV_CHWVM_RTM_DTM:
   - DTM
 
 VLV_HWVM: # If we want to keep this, should match CHW valve (i.e. add RTM and DTM)
+  id: "8739342416735109120"
   description: "Heating water valve."
   is_canonical: true
   implements:
