@@ -12,25 +12,22 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-########################
-### Canonical Types  ###
-########################
-
-
-SENSOR_ZTM_ZHM_CO2M:
-  id: "11999948546951348224"
-  description: "Zone air property sensor (humidity, temperature, CO2 level)."
-  is_canonical: true
+CHWRSR_UNDEFINED:
+  description: "Chilled water distribution riser without any data points."
   implements:
-  - /SENSOR # Inherits from global namespace
-  - ZTM
-  - ZHM
-  - CO2M
+  - CHWRSR
 
-SENSOR_ZTM_ZHM:
-  description: "Zone air property sensor (humidity, temperature)."
-  is_canonical: true
+HWSRSR_UNDEFINED:
+  description: "Heating water distribution riser without any data points."
   implements:
-  - /SENSOR # Inherits from global namespace
-  - ZTM
-  - ZHM
+  - HWSRSR
+
+FARSR_UNDEFINED:
+  description: "Fresh air distribution riser without any data points."
+  implements:
+  - FARSR
+
+RARSR_UNDEFINED:
+  description: "Return air riser without any data points."
+  implements:
+  - RARSR

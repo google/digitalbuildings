@@ -2230,6 +2230,11 @@ AHU_BSPC_CHWSC_ECON_EFSS_EFVSC_HWSC_PHWSC_SFSS_SFVSC_SSPC:
   - SFVSC
   - SSPC
 
+AHU_UNDEFINED:
+  description: "An AHU with no telemetry data. Note this is non-canonical, as it is typically expected that telemetry will normally be available."
+  implements:
+  - AHU
+  
 AHU_BSPC_DX4SC_ECON_EFSS_EFVSC_MOAFC_SFSS_SFVSC_SSPC_STC:
   id: "16383179138871066624"
   description: "Multi-zone AHU with minimum ventilation control."
