@@ -124,13 +124,13 @@ def parse_yaml(filename):
   """
   print('Loading yaml file to validate with schema')
   entity_instance_block = ''
+  block_ready_for_validation = False
   all_content = {}
   with open(filename) as file:
     for line in file:
       if _ENTITY_INSTANCE_PATTERN.match(line):
         # wait until there is a one entity instance block
-        if len(entity_instance_block) != len(line) and \
-            len(entity_instance_block) > 0:
+        if block_ready_for_validation:
           validated = _validate_entity_with_schema(entity_instance_block,
                                                    _SCHEMA)
           all_content.update(validated.data)
@@ -138,13 +138,15 @@ def parse_yaml(filename):
         else:
           if not _IGNORE_PATTERN.match(line):
             entity_instance_block = entity_instance_block + line
+            block_ready_for_validation = True
       else:
         if not _IGNORE_PATTERN.match(line):
           entity_instance_block = entity_instance_block + line
+          block_ready_for_validation = True
 
-    if len(entity_instance_block) != len(line) and \
-        len(entity_instance_block) > 0:
-      validated = _validate_entity_with_schema(entity_instance_block,
-                                               _SCHEMA)
-      all_content.update(validated.data)
+# handle the singleton case
+  if block_ready_for_validation:
+    validated = _validate_entity_with_schema(entity_instance_block,
+                                             _SCHEMA)
+    all_content.update(validated.data)
   return all_content
