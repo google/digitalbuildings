@@ -13,12 +13,14 @@
 # limitations under the License.
 
 BATT:
+  id: "2974734893700874240"
   description: "Tag for all batteries (devices used to store and discharge power for the use of a device or group of devices)."
   is_abstract: true
   implements:
   - EQUIPMENT
 
 UPS:
+  id: "9261759973510086656"
   description: "Tag for all uninterruptible power supply units."
   is_abstract: true
   implements:

@@ -12,10 +12,22 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-UPS_SS:
-  id: "5802995459689545728"
-  description: "Standard UPS unit."
-  is_canonical: true
+CHWRSR_UNDEFINED:
+  description: "Chilled water distribution riser without any data points."
   implements:
-  - UPS
-  - SS  
+  - CHWRSR
+
+HWSRSR_UNDEFINED:
+  description: "Heating water distribution riser without any data points."
+  implements:
+  - HWSRSR
+
+FARSR_UNDEFINED:
+  description: "Fresh air distribution riser without any data points."
+  implements:
+  - FARSR
+
+RARSR_UNDEFINED:
+  description: "Return air riser without any data points."
+  implements:
+  - RARSR

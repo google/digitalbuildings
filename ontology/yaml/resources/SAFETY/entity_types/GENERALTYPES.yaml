@@ -15,42 +15,49 @@
 # General Types
 
 SD:
+  id: "15656871444376190976"
   description: "Smoke detector."
   is_abstract: true
   implements:
   - SENSOR
 
 FACP:
+  id: "4650073955082698752"
   description: "Fire alarm control panel."
   is_abstract: true
   implements:
   - EQUIPMENT
 
 FHP:
+  id: "15026367496544321536"
   description: "Fire suppression system hydrant pump."
   is_abstract: true
   implements:
   - EQUIPMENT
 
 FD:
+  id: "3929498014703419392"
   description: "Fire damper."
   is_abstract: true
   implements:
   - EQUIPMENT
 
 HS:
+  id: "11567602982723780608"
   description: "Fire system horn strobe."
   is_abstract: true
   implements:
   - EQUIPMENT
 
 BGU:
+  id: "15242540278658105344"
   description: "Emergency break-glass unit."
   is_abstract: true
   implements:
   - EQUIPMENT
   
 FDR:
+  id: "10108436703455739904"
   description: "Fire door."
   is_abstract: true
   implements:
@@ -58,13 +65,14 @@ FDR:
   - FACILITIES/DOOR
 
 FAS:
+  id: "4127656398307721216"
   description: "Fire alarm system"
   is_abstract: true
 
 LDS:
+  id: "8379054446545469440"
   description: "Generic leak detection systems."
   is_abstract: true
   implements:
   - EQUIPMENT
-
 

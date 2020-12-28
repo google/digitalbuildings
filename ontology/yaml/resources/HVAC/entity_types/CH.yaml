@@ -289,6 +289,192 @@ CH_SS_SCHWTC_DXSWC_IGM_CWDT_CHWRWISOVPM_CWRISOVPM_CHPM_REFSM:
   - CHPM
   - REFSM
 
+CH_SS_SCHWTC_CHWRWISOVM_CHWSWISOVM_MINFC_CHWDPM_CLPM_CWDT:
+  id: "15329336826066370560"
+  description: "Water cooled chiller with min flow control and chiller load monitoring."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - SCHWTC
+  - CHWRWISOVM
+  - CHWSWISOVM
+  - MINFC
+  - CHWDPM
+  - CLPM
+  - CWDT
+
+CH_SS_SWTC_DX2SWC_WFRM:
+  id: "701645236366999552"
+  description: " 2-stage air cooled chiller with flowrate monitoring."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - SWTC
+  - DX2SWC
+  - WFRM
+
+CH_SS_SWTC_DX2SWC_REFSM_REFPM:
+  id: "818738826678632448"
+  description: "Two stage air cooled chiller with single circuit refrigerant monitoring."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - SWTC
+  - DX2SWC
+  - REFSM
+  - REFPM
+
+CH_SS_SWTC_DX2SWC_REFSM2X_REFPM2X:
+  id: "9925017273221775360"
+  description: "Two stage air cooled chiller with two circuit refrigerant monitoring."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - SWTC
+  - DX2SWC
+  - REFSM2X
+  - REFPM2X
+
+CH_SS_SWTC_DX2SWC_RWISOVM_REFSM2X_REFPM2X:
+  id: "12759962869907324928"
+  description: "Two stage air cooled chiller with two circuit refrigerant monitoring."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - SWTC
+  - DX2SWC
+  - RWISOVM
+  - REFSM2X
+  - REFPM2X
+
+CH_SS_SWTC_DX4SWC_RWISOVPM_REFPM2X_WDPM:
+  id: "14284501712516415488"
+  description: "Four stage air cooled chiller with two circuit refrigerant monitoring."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - SWTC
+  - DX4SWC
+  - RWISOVPM
+  - REFPM2X
+  - WDPM
+
+CH_SS_CHWRWISOVPM_SCHWTC_CHWDPM_CDWISOVPM_CWDT_REFPM_REFSM_IGV_DXSWC:
+  id: "5164642098346983424"
+  description: "Complex water cooled chiller."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - CHWRWISOVPM
+  - SCHWTC
+  - CHWDPM
+  - CDWISOVPM
+  - CWDT
+  - REFPM
+  - REFSM
+  - IGM
+  - DXSWC
+
+CH_SS_SCHWTC_CHWSWISOVM_CHWDPM_CWDT_REFSM_REFPM_IGM_DXSWC:
+  id: "1386192379727314944"
+  description: "Complex water cooled chiller."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - SCHWTC
+  - CHWSWISOVM
+  - CHWDPM
+  - CWDT
+  - REFSM
+  - REFPM
+  - IGM
+  - DXSWC
+
+CH_SS_CHWRWISOVPM_SCHWTC_CHWDPM_CDWISOVPM_CWDT_REFPM_REFSM:
+  id: "13023493816852676608"
+  description: "Complex water cooled chiller."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - CHWRWISOVPM
+  - SCHWTC
+  - CHWDPM
+  - CDWISOVPM
+  - CWDT
+  - REFPM
+  - REFSM
+
+CH_SS_SCHWTC_CWDT_CDWISOVPM_REFSM_REFPM:
+  id: "5313331254794387456"
+  description: "Simple water cooled chiller."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - SCHWTC
+  - CWDT
+  - CDWISOVPM
+  - REFSM
+  - REFPM
+
+CH_SS_SWTC_DX2SWC_SWISOVM_REFPM:
+  id: "2755286666447945728"
+  description: "Two stage air cooled chiller."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - SWTC
+  - DX2SWC
+  - SWISOVM
+  - REFPM
+
+
+CH_SS_SWTC_REFSM2X_SWISOVM:
+  id: "5430424845106020352"
+  description: "Complex water cooled chiller."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - SWTC
+  - REFSM2X
+  - SWISOVM
+
+CH_SS_SWTC_DX6SWC_RWISOVM_REFSM2X_REFPM2X:
+  id: "8411807798425288704"
+  description: "Six stage air cooled chiller with two circuit refrigerant monitoring."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - SWTC
+  - DX6SWC
+  - RWISOVM
+  - REFSM2X
+  - REFPM2X
+
+CH_SS_SWTC_DX4SWC_SWISOVPM_REFSM2X_REFPM2X:
+  id: "15145744772506845184"
+  description: "Four stage air cooled chiller with two circuit refrigerant monitoring."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - SWTC
+  - DX4SWC
+  - SWISOVPM
+  - REFSM2X
+  - REFPM2X
 
 ###################################
 ### Existing Non-standard Types ###

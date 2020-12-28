@@ -16,13 +16,13 @@
 
 
 FACP_STD:
+  id: "7388262528523960320"
   description: "Basic fire alarm panel."
   is_canonical: true
   implements:
   - FACP
   uses:
   - fire_alarm
-
 
 
 

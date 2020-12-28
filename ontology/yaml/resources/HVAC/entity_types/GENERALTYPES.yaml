@@ -246,8 +246,38 @@ HUM:
   - EQUIPMENT
 
 VLV:
+  id: "6847830573239500800"
   description: "Tag for valves. Valves are devices which control the flow of water. "
   is_abstract: true
   implements:
   - EQUIPMENT
+
+
+RSR:
+  description: "A generic distribution riser."
+  is_abstract: true
+
+RARSR:
+  description: "A return air riser."
+  is_abstract: true
+  implements:
+  - RSR
+
+FARSR:
+  description: "A fresh air (ventilation) riser."
+  is_abstract: true
+  implements:
+  - RSR
+
+CHWRSR:
+  description: "A chilled water distribution riser."
+  is_abstract: true
+  implements:
+  - RSR
+
+HWSRSR:
+  description: "A heating water distribution riser."
+  is_abstract: true
+  implements:
+  - RSR
 

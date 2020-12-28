@@ -13,6 +13,7 @@
 # limitations under the License.
 
 FDR_STD:
+  id: "14720122721883127808"
   description: "Typical fire door."
   is_canonical: true
   implements:

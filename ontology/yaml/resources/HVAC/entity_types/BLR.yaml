@@ -29,6 +29,7 @@ BLR_SS_SWTC_CPC:
 BLR_SS_SWTC:
   id: "10759740112750247936"
   description: "Simple boiler with start/stop and supply temperature control"
+  is_canonical: true
   implements:
   - BLR
   - SS
@@ -159,6 +160,73 @@ BLR_SS_SWTC_HTSWC_RWISOVPM:
   - HTSWC
   - RWISOVPM
 
+BLR_SS_SWTC_CPC_RWISOVM:
+  id: "7366972684875333632"
+  description: "Simple boiler with onboard circulation pump and return water isolation valve monitoring."
+  is_canonical: true
+  implements:
+  - BLR
+  - SS
+  - SWTC
+  - CPC
+  - RWISOVM
+
+BLR_SS_SWTC_HT4SWC_RWISOVM_SWISOVM:
+  id: "3124581835892326400"
+  description: "Four-stage boiler with supply and return isolation."
+  is_canonical: true
+  implements:
+  - BLR
+  - SS
+  - SWTC
+  - HT4SWC
+  - RWISOVM
+  - SWISOVM
+
+BLR_SS_SWTC_HTSWC_CPC:
+  id: "15221250435009478656"
+  description: "Boiler with single stage heat and onboard circulation pump."
+  is_canonical: true
+  implements:
+  - BLR
+  - SS
+  - SWTC
+  - HTSWC
+  - CPC
+
+BLR_SS_SWTC_HTSWC_RWISOVM_SWISOVM:
+  id: "917818018480783360"
+  description: "Single-stage boiler with supply and return isolation."
+  is_canonical: true
+  implements:
+  - BLR
+  - SS
+  - SWTC
+  - HTSWC
+  - RWISOVM
+  - SWISOVM
+
+BLR_SS_SWTC_CPC_BYPVPM:
+  id: "12230860282435469312"
+  description: "Simple boiler with onboard circulation pump and bypass valve."
+  is_canonical: true
+  implements:
+  - BLR
+  - SS
+  - SWTC
+  - CPC
+  - BYPVPM
+
+BLR_SS_SWTC_CPC_RWISOVPM:
+  id: "16590344721730109440"
+  description: "Simple boiler with onboard circulation pump and return water isolation valve percentage monitoring."
+  is_canonical: true
+  implements:
+  - BLR
+  - SS
+  - SWTC
+  - CPC
+  - RWISOVPM
 
 ###################################
 ### Existing Non-standard Types ###
