@@ -24,7 +24,8 @@ from yamlformat.validator import presubmit_validate_types_lib
 from yamlformat.validator import namespace_validator
 
 _FILE_DIR = path.dirname(path.realpath(__file__))
-_DEFAULT_ONTOLOGY_LOCATION = path.join('..', '..', '..', 'ontology', 'yaml', 'resources')
+_DEFAULT_ONTOLOGY_LOCATION = path.join('..', '..', '..', 'ontology', 'yaml',
+                                       'resources')
 #path.join(_FILE_DIR, '..', '..', '..', '..',
    #                                    'ontology', 'yaml', 'resources')
 
