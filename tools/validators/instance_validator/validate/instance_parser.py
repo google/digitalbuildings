@@ -21,8 +21,10 @@ import strictyaml as syaml
 import ruamel
 import sys
 
-_ENTITY_INSTANCE_REGEX = '[A-Z][A-Z0-9\-]+:'
+_ENTITY_INSTANCE_REGEX = '[A-Z][A-Z0-9\\-]+:'
 _ENTITY_INSTANCE_PATTERN = re.compile(_ENTITY_INSTANCE_REGEX)
+
+_IGNORE_PATTERN = re.compile(r'^#|\n')
 
 _COMPLIANT = 'COMPLIANT'
 _TRANSLATION = 'translation'
@@ -66,25 +68,6 @@ _TRANSLATION_DATA_SCHEMA = syaml.Str() | syaml.Map({
 })
 
 
-def _load_entities(file_name, schema):
-  entity_instance_block = ''
-  all_content = {}
-  with open(file_name) as file:
-    for line in file:
-      if _ENTITY_INSTANCE_PATTERN.match(line):
-        if len(entity_instance_block) != len(line) and \
-            len(entity_instance_block) > 0:
-          validated = _validate_entity_with_schema(entity_instance_block,
-                                                   schema)
-          all_content.update(validated.data)
-          entity_instance_block = line
-        else:
-          entity_instance_block = entity_instance_block + line
-      else:
-        entity_instance_block = entity_instance_block + line
-  return all_content
-
-
 def _validate_entity_with_schema(content, schema):
   """Validates an entity instance based on a syaml-formatted YAML schema.
 
@@ -99,6 +82,7 @@ def _validate_entity_with_schema(content, schema):
   try:
     parsed = syaml.load(content, schema)
 
+    # TODO(charbull): old code needs to be cleaned up
     if _TRANSLATION in parsed.keys():
       translation = parsed[_TRANSLATION]
       translation.revalidate(_TRANSLATION_SCHEMA)
@@ -112,15 +96,8 @@ def _validate_entity_with_schema(content, schema):
         translation_keys = translation.keys()
 
         for key in translation_keys:
-          try:
-            translation[key].revalidate(_TRANSLATION_DATA_SCHEMA)
-          except (ruamel.yaml.parser.ParserError,
-                  syaml.exceptions.YAMLValidationError,
-                  syaml.exceptions.DuplicateKeysDisallowed,
-                  syaml.exceptions.InconsistentIndentationDisallowed,
-                  ruamel.yaml.scanner.ScannerError) as exception:
-            print(exception)
-            sys.exit(0)
+          translation[key].revalidate(_TRANSLATION_DATA_SCHEMA)
+
   except (ruamel.yaml.parser.ParserError,
           ruamel.yaml.scanner.ScannerError,
           syaml.exceptions.YAMLValidationError,
@@ -130,22 +107,6 @@ def _validate_entity_with_schema(content, schema):
     sys.exit(0)
 
   return parsed
-
-
-def _load_yaml_with_schema(filepath, schema):
-  """Loads an instance YAML file and parses
-  it based on a syaml-formatted YAML schema.
-
-  Args:
-    filepath: filepath location of the YAML file
-    schema: YAML schema in syaml format
-
-  Returns:
-    Returns the parsed YAML data in a strictyaml-provided datastructure
-    which is similar to a Python dictionary.
-  """
-
-  return _load_entities(filepath, schema)
 
 
 def parse_yaml(filename):
@@ -162,4 +123,28 @@ def parse_yaml(filename):
     which is similar to a Python dictionary.
   """
   print('Loading yaml file to validate with schema')
-  return _load_yaml_with_schema(filename, _SCHEMA)
+  entity_instance_block = ''
+  all_content = {}
+  with open(filename) as file:
+    for line in file:
+      if _ENTITY_INSTANCE_PATTERN.match(line):
+        # wait until there is a one entity instance block
+        if len(entity_instance_block) != len(line) and \
+            len(entity_instance_block) > 0:
+          validated = _validate_entity_with_schema(entity_instance_block,
+                                                   _SCHEMA)
+          all_content.update(validated.data)
+          entity_instance_block = line
+        else:
+          if not _IGNORE_PATTERN.match(line):
+            entity_instance_block = entity_instance_block + line
+      else:
+        if not _IGNORE_PATTERN.match(line):
+          entity_instance_block = entity_instance_block + line
+
+    if len(entity_instance_block) != len(line) and \
+        len(entity_instance_block) > 0:
+      validated = _validate_entity_with_schema(entity_instance_block,
+                                               _SCHEMA)
+      all_content.update(validated.data)
+  return all_content
