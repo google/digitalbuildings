@@ -254,30 +254,34 @@ VLV:
 
 
 RSR:
+  id: "16423609280936017920"
   description: "A generic distribution riser."
   is_abstract: true
 
 RARSR:
+  id: "12340533268771241984"
   description: "A return air riser."
   is_abstract: true
   implements:
   - RSR
 
 FARSR:
+  id: "4378169127580205056"
   description: "A fresh air (ventilation) riser."
   is_abstract: true
   implements:
   - RSR
 
 CHWRSR:
+  id: "16465830527442616320"
   description: "A chilled water distribution riser."
   is_abstract: true
   implements:
   - RSR
 
 HWSRSR:
+  id: "15252673377819688960"
   description: "A heating water distribution riser."
   is_abstract: true
   implements:
   - RSR
-
