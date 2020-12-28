@@ -2231,6 +2231,7 @@ AHU_BSPC_CHWSC_ECON_EFSS_EFVSC_HWSC_PHWSC_SFSS_SFVSC_SSPC:
   - SSPC
 
 AHU_UNDEFINED:
+  id: "8989855146007592960"
   description: "An AHU with no telemetry data. Note this is non-canonical, as it is typically expected that telemetry will normally be available."
   implements:
   - AHU
