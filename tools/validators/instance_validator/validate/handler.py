@@ -39,10 +39,15 @@ def deserialize(yaml_files):
   """
 
   parsed_yaml = {}
+  print('Validation syntax please wait ...')
+  time_begin = datetime.now()
   for yaml_file in yaml_files:
     print('Parsing file: {0}, please wait ...'.format(yaml_file))
     parsed_yaml.update(instance_parser.parse_yaml(yaml_file))
+
     print('Syntax checks passed for file: {0}'.format(yaml_file))
+    time_elapsed = datetime.now() - time_begin
+    print('Time elapsed (hh:mm:ss.ms) {}'.format(time_elapsed))
 
   entity_instances = {}
   for entity_name, entity_yaml in parsed_yaml.items():
@@ -63,7 +68,7 @@ class ValidationHelper(object):
     entity_instances = deserialize(self.filenames)
     self.ValidateEntities(universe, entity_instances)
     self.StartTelemetryValidation(self.subscription, self.service_account,
-                                  entity_instances)
+                                   entity_instances)
 
   def GenerateUniverse(self, modified_types_filepath=None):
     """Generates the universe from the ontology.

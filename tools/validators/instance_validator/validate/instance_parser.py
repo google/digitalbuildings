@@ -15,9 +15,14 @@
 """Parses and validates YAML instance files for syntax"""
 
 from __future__ import print_function
+
+import re
 import strictyaml as syaml
 import ruamel
 import sys
+
+_ENTITY_INSTANCE_REGEX = '[A-Z][A-Z0-9\-]+:'
+_ENTITY_INSTANCE_PATTERN = re.compile(_ENTITY_INSTANCE_REGEX)
 
 _COMPLIANT = 'COMPLIANT'
 _TRANSLATION = 'translation'
@@ -35,17 +40,17 @@ _SCHEMA = syaml.MapPattern(syaml.Str(),
                                'type': syaml.Str(),
                                'id': syaml.Str(),
                                syaml.Optional('connections'):
-                               syaml.MapPattern(syaml.Str(),
-                                                syaml.Str()) |
-                               syaml.Seq(
-                                   syaml.MapPattern(syaml.Str(),
-                                                    syaml.Str())),
+                                 syaml.MapPattern(syaml.Str(),
+                                                  syaml.Str()) |
+                                 syaml.Seq(
+                                     syaml.MapPattern(syaml.Str(),
+                                                      syaml.Str())),
                                syaml.Optional('links'): syaml.MapPattern(
                                    syaml.Str(),
                                    syaml.MapPattern(syaml.Str(), syaml.Str())),
                                syaml.Optional('translation'): syaml.Any(),
                                syaml.Optional('metadata'): syaml.Any()
-                               }))
+                           }))
 
 """Further account for multiple valid translation formats
 github.com/google/digitalbuildings/blob/master/ontology/docs/building_config.md
@@ -58,7 +63,74 @@ _TRANSLATION_DATA_SCHEMA = syaml.Str() | syaml.Map({
         'values': syaml.MapPattern(syaml.Str(), syaml.Str())
     }),
     syaml.Optional('unit_values'): syaml.MapPattern(syaml.Str(), syaml.Str())
-    })
+})
+
+
+def _load_entities(file_name, schema):
+  entity_instance_block = ''
+  all_content = {}
+  with open(file_name) as file:
+    for line in file:
+      if _ENTITY_INSTANCE_PATTERN.match(line):
+        if len(entity_instance_block) != len(line) and \
+            len(entity_instance_block) > 0:
+          validated = _validate_entity_with_schema(entity_instance_block,
+                                                   schema)
+          all_content.update(validated.data)
+          entity_instance_block = line
+        else:
+          entity_instance_block = entity_instance_block + line
+      else:
+        entity_instance_block = entity_instance_block + line
+  return all_content
+
+
+def _validate_entity_with_schema(content, schema):
+  """Validates an entity instance based on a syaml-formatted YAML schema.
+
+  Args:
+    content: an entity instance in yaml format
+    schema: YAML schema in syaml format
+
+  Returns:
+    Returns the parsed YAML data in a strictyaml-provided datastructure
+    which is similar to a Python dictionary.
+  """
+  try:
+    parsed = syaml.load(content, schema)
+
+    if _TRANSLATION in parsed.keys():
+      translation = parsed[_TRANSLATION]
+      translation.revalidate(_TRANSLATION_SCHEMA)
+
+      # if translation is not UDMI compliant
+      if isinstance(translation.data, str):
+        if translation.data != _COMPLIANT:
+          print('Translation compliance improperly defined')
+          sys.exit(0)
+      else:
+        translation_keys = translation.keys()
+
+        for key in translation_keys:
+          try:
+            translation[key].revalidate(_TRANSLATION_DATA_SCHEMA)
+          except (ruamel.yaml.parser.ParserError,
+                  syaml.exceptions.YAMLValidationError,
+                  syaml.exceptions.DuplicateKeysDisallowed,
+                  syaml.exceptions.InconsistentIndentationDisallowed,
+                  ruamel.yaml.scanner.ScannerError) as exception:
+            print(exception)
+            sys.exit(0)
+  except (ruamel.yaml.parser.ParserError,
+          ruamel.yaml.scanner.ScannerError,
+          syaml.exceptions.YAMLValidationError,
+          syaml.exceptions.DuplicateKeysDisallowed,
+          syaml.exceptions.InconsistentIndentationDisallowed) as exception:
+    print(exception)
+    sys.exit(0)
+
+  return parsed
+
 
 def _load_yaml_with_schema(filepath, schema):
   """Loads an instance YAML file and parses
@@ -72,21 +144,9 @@ def _load_yaml_with_schema(filepath, schema):
     Returns the parsed YAML data in a strictyaml-provided datastructure
     which is similar to a Python dictionary.
   """
-  yaml_file = open(filepath)
-  content = yaml_file.read()
-  yaml_file.close()
 
-  try:
-    parsed = syaml.load(content, schema)
+  return _load_entities(filepath, schema)
 
-    return parsed
-  except (ruamel.yaml.parser.ParserError,
-          ruamel.yaml.scanner.ScannerError,
-          syaml.exceptions.YAMLValidationError,
-          syaml.exceptions.DuplicateKeysDisallowed,
-          syaml.exceptions.InconsistentIndentationDisallowed) as exception:
-    print(exception)
-    sys.exit(0)
 
 def parse_yaml(filename):
   """Loads an instance YAML file and parses it with
@@ -101,31 +161,5 @@ def parse_yaml(filename):
     Returns the parsed YAML data in a strictyaml-provided datastructure
     which is similar to a Python dictionary.
   """
-  yaml = _load_yaml_with_schema(filename, _SCHEMA)
-
-  top_name = yaml.keys()[0]
-
-  if _TRANSLATION in yaml[top_name].keys():
-    translation = yaml[top_name][_TRANSLATION]
-    translation.revalidate(_TRANSLATION_SCHEMA)
-
-    # if translation is not UDMI compliant
-    if isinstance(translation.data, str):
-      if translation.data != _COMPLIANT:
-        print('Translation compliance improperly defined')
-        sys.exit(0)
-    else:
-      translation_keys = translation.keys()
-
-      for key in translation_keys:
-        try:
-          translation[key].revalidate(_TRANSLATION_DATA_SCHEMA)
-        except (ruamel.yaml.parser.ParserError,
-                syaml.exceptions.YAMLValidationError,
-                syaml.exceptions.DuplicateKeysDisallowed,
-                syaml.exceptions.InconsistentIndentationDisallowed,
-                ruamel.yaml.scanner.ScannerError) as exception:
-          print(exception)
-          sys.exit(0)
-
-  return yaml
+  print('Loading yaml file to validate with schema')
+  return _load_yaml_with_schema(filename, _SCHEMA)
