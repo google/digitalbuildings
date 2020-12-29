@@ -97,8 +97,8 @@ def _validate_entity_with_schema(content, schema):
       else:
         translation_keys = translation.keys()
 
-      for key in translation_keys:
-        translation[key].revalidate(_TRANSLATION_DATA_SCHEMA)
+        for key in translation_keys:
+          translation[key].revalidate(_TRANSLATION_DATA_SCHEMA)
 
   except (ruamel.yaml.parser.ParserError,
           ruamel.yaml.scanner.ScannerError,
