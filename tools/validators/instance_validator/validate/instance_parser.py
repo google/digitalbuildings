@@ -83,6 +83,7 @@ def _validate_entity_with_schema(content, schema):
   try:
     parsed = syaml.load(content, schema)
 
+    # TODO(charbull): this is old code needs to be cleaned up
     # check the translation
     top_name = parsed.keys()[0]
     if _TRANSLATION in parsed.data[top_name].keys():
