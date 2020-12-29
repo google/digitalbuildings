@@ -21,7 +21,7 @@ import strictyaml as syaml
 import ruamel
 import sys
 
-_ENTITY_INSTANCE_REGEX = '[A-Z][A-Z0-9\\-]+:'
+_ENTITY_INSTANCE_REGEX = '^[A-Z][A-Z0-9\\-]+:'
 _ENTITY_INSTANCE_PATTERN = re.compile(_ENTITY_INSTANCE_REGEX)
 
 _IGNORE_PATTERN = re.compile(r'^#|\n')
@@ -69,7 +69,7 @@ _TRANSLATION_DATA_SCHEMA = syaml.Str() | syaml.Map({
 })
 
 
-def _validate_entity_with_schema(content, schema):
+def _ValidateEntityWithSchema(content, schema):
   """Validates an entity instance based on a syaml-formatted YAML schema.
 
   Args:
@@ -83,7 +83,7 @@ def _validate_entity_with_schema(content, schema):
   try:
     parsed = syaml.load(content, schema)
 
-    # TODO(charbull): this is old code needs to be cleaned up
+    # TODO(charbull): this is old code that needs to be cleaned up
     # check the translation
     top_name = parsed.keys()[0]
     if _TRANSLATION in parsed.data[top_name].keys():
@@ -111,7 +111,7 @@ def _validate_entity_with_schema(content, schema):
   return parsed
 
 
-def parse_yaml(filename):
+def ParseYaml(filename):
   """Loads an instance YAML file and parses it with
   multiple strictyaml-formatted YAML schemas. Expected format:
   github.com/google/digitalbuildings/blob/master/ontology/docs/
@@ -133,8 +133,8 @@ def parse_yaml(filename):
       if _ENTITY_INSTANCE_PATTERN.match(line):
         # wait until there is a one entity instance block
         if block_ready_for_validation:
-          validated = _validate_entity_with_schema(entity_instance_block,
-                                                   _SCHEMA)
+          validated = _ValidateEntityWithSchema(entity_instance_block,
+                                                _SCHEMA)
           all_content.update(validated.data)
           entity_instance_block = line
         else:
@@ -148,7 +148,7 @@ def parse_yaml(filename):
 
   # handle the singleton case
   if block_ready_for_validation:
-    validated = _validate_entity_with_schema(entity_instance_block,
-                                             _SCHEMA)
+    validated = _ValidateEntityWithSchema(entity_instance_block,
+                                          _SCHEMA)
     all_content.update(validated.data)
   return all_content

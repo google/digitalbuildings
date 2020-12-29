@@ -14,19 +14,19 @@
 
 """Generates the ontology universe for the instance validator."""
 
-from __future__ import print_function
 from __future__ import absolute_import
+from __future__ import print_function
 
 import os
 from os import path
 
 from yamlformat.validator import external_file_lib
-from yamlformat.validator import presubmit_validate_types_lib
 from yamlformat.validator import namespace_validator
+from yamlformat.validator import presubmit_validate_types_lib
 
-_FILE_DIR = path.dirname(os.getcwd())
-_TOOLS_DIR = 'tools'
-_ONTOLOGY_PATH = path.join('ontology', 'yaml', 'resources')
+_FILE_DIR = os.path.realpath(os.path.dirname(__file__))
+_DEFAULT_ONTOLOGY_LOCATION = path.join(_FILE_DIR, '..', '..', '..', '..',
+                                       'ontology', 'yaml', 'resources')
 
 def BuildUniverse(modified_types_filepath=None):
   """Generates the ontology universe.
@@ -37,12 +37,6 @@ def BuildUniverse(modified_types_filepath=None):
   Returns:
     Generated universe object.
   """
-  # Find the default ontology location
-  current_path = _FILE_DIR
-  while _TOOLS_DIR != path.basename(current_path):
-    current_path = path.abspath(path.join(current_path, '..'))
-  default_ontology_location = path.join(current_path, '..', _ONTOLOGY_PATH)
-
   if modified_types_filepath:
     modified_ontology_exists = path.exists(modified_types_filepath)
     if not modified_ontology_exists:
@@ -53,12 +47,12 @@ def BuildUniverse(modified_types_filepath=None):
 
     external_file_lib.Validate(filter_text=None,
                                changed_directory=modified_types_filepath,
-                               original_directory=default_ontology_location,
+                               original_directory=_DEFAULT_ONTOLOGY_LOCATION,
                                interactive=False)
     yaml_files = external_file_lib.RecursiveDirWalk(modified_types_filepath)
   else:
     # use default location for ontology files
-    yaml_files = external_file_lib.RecursiveDirWalk(default_ontology_location)
+    yaml_files = external_file_lib.RecursiveDirWalk(_DEFAULT_ONTOLOGY_LOCATION)
 
   config = presubmit_validate_types_lib.SeparateConfigFiles(yaml_files)
   universe = presubmit_validate_types_lib.BuildUniverse(config)
