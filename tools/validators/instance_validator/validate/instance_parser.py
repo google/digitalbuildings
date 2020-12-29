@@ -54,6 +54,7 @@ _SCHEMA = syaml.MapPattern(syaml.Str(),
                                syaml.Optional('metadata'): syaml.Any()
                            }))
 
+
 """Further account for multiple valid translation formats
 github.com/google/digitalbuildings/blob/master/ontology/docs/building_config.md
 #defining-translations"""
@@ -144,7 +145,7 @@ def parse_yaml(filename):
           entity_instance_block = entity_instance_block + line
           block_ready_for_validation = True
 
-# handle the singleton case
+  # handle the singleton case
   if block_ready_for_validation:
     validated = _validate_entity_with_schema(entity_instance_block,
                                              _SCHEMA)

@@ -23,11 +23,9 @@ from yamlformat.validator import external_file_lib
 from yamlformat.validator import presubmit_validate_types_lib
 from yamlformat.validator import namespace_validator
 
-_FILE_DIR = path.dirname(path.realpath(__file__))
-_DEFAULT_ONTOLOGY_LOCATION = path.join('..', '..', '..', 'ontology', 'yaml',
-                                       'resources')
-#path.join(_FILE_DIR, '..', '..', '..', '..',
-   #                                    'ontology', 'yaml', 'resources')
+_FILE_DIR = path.dirname(path.realpath('..'))
+_DEFAULT_ONTOLOGY_LOCATION = path.join(_FILE_DIR, '..', '..',
+                                       'ontology', 'yaml', 'resources')
 
 def BuildUniverse(modified_types_filepath=None):
   """Generates the ontology universe.

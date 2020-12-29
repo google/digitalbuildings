@@ -66,7 +66,7 @@ class ValidationHelper(object):
     entity_instances = deserialize(self.filenames)
     self.ValidateEntities(universe, entity_instances)
     self.StartTelemetryValidation(self.subscription, self.service_account,
-                                   entity_instances)
+                                  entity_instances)
     time_elapsed = datetime.now() - time_begin
     print('Time elapsed (hh:mm:ss.ms) {}'.format(time_elapsed))
 
