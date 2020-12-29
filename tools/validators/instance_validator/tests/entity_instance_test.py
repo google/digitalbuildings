@@ -27,12 +27,12 @@ from os import path
 _TEST_DIR = path.dirname(path.realpath(__file__))
 _TESTCASE_PATH = path.join(_TEST_DIR, 'fake_instances')
 
-# generate universe once for all the tests
-_UNIVERSE = generate_universe.BuildUniverse()
-_UNIVERSE.connections_universe = set(['CONTAINS', 'CONTROLS', 'FEEDS'])
-
 class EntityInstanceTest(absltest.TestCase):
 
+  @classmethod
+  def setUpClass(cls):
+    cls._universe = generate_universe.BuildUniverse()
+    cls._universe.connections_universe = set(['CONTAINS', 'CONTROLS', 'FEEDS'])
 
   def testValidateGoodExample(self):
     parsed = instance_parser.parse_yaml(
@@ -45,7 +45,7 @@ class EntityInstanceTest(absltest.TestCase):
     entity = dict(parsed[entity_name])
     instance = entity_instance.EntityInstance(entity)
 
-    if not instance.IsValidEntityInstance(_UNIVERSE):
+    if not instance.IsValidEntityInstance(self._universe):
       self.fail('exception incorrectly raised')
 
 
@@ -76,7 +76,7 @@ class EntityInstanceTest(absltest.TestCase):
     entity = dict(parsed[entity_name])
     instance = entity_instance.EntityInstance(entity)
 
-    if instance.IsValidEntityInstance(_UNIVERSE):
+    if instance.IsValidEntityInstance(self._universe):
       self.fail('exception not raised')
 
 
@@ -91,7 +91,7 @@ class EntityInstanceTest(absltest.TestCase):
     entity = dict(parsed[entity_name])
     instance = entity_instance.EntityInstance(entity)
 
-    if instance.IsValidEntityInstance(_UNIVERSE):
+    if instance.IsValidEntityInstance(self._universe):
       self.fail('exception not raised')
 
 
@@ -106,7 +106,7 @@ class EntityInstanceTest(absltest.TestCase):
     entity = dict(parsed[entity_name])
     instance = entity_instance.EntityInstance(entity)
 
-    if instance.IsValidEntityInstance(_UNIVERSE):
+    if instance.IsValidEntityInstance(self._universe):
       self.fail('exception not raised')
 
 
@@ -121,7 +121,7 @@ class EntityInstanceTest(absltest.TestCase):
     entity = dict(parsed[entity_name])
     instance = entity_instance.EntityInstance(entity)
 
-    if not instance.IsValidEntityInstance(_UNIVERSE):
+    if not instance.IsValidEntityInstance(self._universe):
       self.fail('exception incorrectly raised')
 
 
@@ -136,7 +136,7 @@ class EntityInstanceTest(absltest.TestCase):
     entity = dict(parsed[entity_name])
     instance = entity_instance.EntityInstance(entity)
 
-    if not instance.IsValidEntityInstance(_UNIVERSE):
+    if not instance.IsValidEntityInstance(self._universe):
       self.fail('exception incorrectly raised')
 
 
@@ -151,7 +151,7 @@ class EntityInstanceTest(absltest.TestCase):
     entity = dict(parsed[entity_name])
     instance = entity_instance.EntityInstance(entity)
 
-    if not instance.IsValidEntityInstance(_UNIVERSE):
+    if not instance.IsValidEntityInstance(self._universe):
       self.fail('exception incorrectly raised')
 
 
@@ -166,7 +166,7 @@ class EntityInstanceTest(absltest.TestCase):
     entity = dict(parsed[entity_name])
     instance = entity_instance.EntityInstance(entity)
 
-    if instance.IsValidEntityInstance(_UNIVERSE):
+    if instance.IsValidEntityInstance(self._universe):
       self.fail('exception not raised')
 
 
@@ -180,7 +180,7 @@ class EntityInstanceTest(absltest.TestCase):
     entity_hvac = dict(parsed[entity_name_hvac])
     instance = entity_instance.EntityInstance(entity_hvac)
 
-    if not instance.IsValidEntityInstance(_UNIVERSE):
+    if not instance.IsValidEntityInstance(self._universe):
       self.fail('exception incorrectly raised')
 
 
@@ -194,7 +194,7 @@ class EntityInstanceTest(absltest.TestCase):
     entity_lighting = dict(parsed[entity_name_lighting])
     instance = entity_instance.EntityInstance(entity_lighting)
 
-    if not instance.IsValidEntityInstance(_UNIVERSE):
+    if not instance.IsValidEntityInstance(self._universe):
       self.fail('exception incorrectly raised')
 
 
@@ -208,7 +208,7 @@ class EntityInstanceTest(absltest.TestCase):
       entity = dict(parsed[entity_name])
       instance = entity_instance.EntityInstance(entity)
 
-      if not instance.IsValidEntityInstance(_UNIVERSE):
+      if not instance.IsValidEntityInstance(self._universe):
         self.fail('exception incorrectly raised')
 
 
@@ -223,7 +223,7 @@ class EntityInstanceTest(absltest.TestCase):
     entity = dict(parsed[entity_name])
     instance = entity_instance.EntityInstance(entity)
 
-    if instance.IsValidEntityInstance(_UNIVERSE):
+    if instance.IsValidEntityInstance(self._universe):
       self.fail('exception not raised')
 
 
@@ -238,7 +238,7 @@ class EntityInstanceTest(absltest.TestCase):
     entity = dict(parsed[entity_name])
     instance = entity_instance.EntityInstance(entity)
 
-    if not instance.IsValidEntityInstance(_UNIVERSE):
+    if not instance.IsValidEntityInstance(self._universe):
       self.fail('exception incorrectly raised')
 
 
@@ -253,7 +253,7 @@ class EntityInstanceTest(absltest.TestCase):
     entity = dict(parsed[entity_name])
     instance = entity_instance.EntityInstance(entity)
 
-    if not instance.IsValidEntityInstance(_UNIVERSE):
+    if not instance.IsValidEntityInstance(self._universe):
       self.fail('exception incorrectly raised')
 
 
@@ -268,7 +268,7 @@ class EntityInstanceTest(absltest.TestCase):
     entity = dict(parsed[entity_name])
     instance = entity_instance.EntityInstance(entity)
 
-    if not instance.IsValidEntityInstance(_UNIVERSE):
+    if not instance.IsValidEntityInstance(self._universe):
       self.fail('exception incorrectly raised')
 
 
@@ -283,7 +283,7 @@ class EntityInstanceTest(absltest.TestCase):
     entity = dict(parsed[entity_name])
     instance = entity_instance.EntityInstance(entity)
 
-    if not instance.IsValidEntityInstance(_UNIVERSE):
+    if not instance.IsValidEntityInstance(self._universe):
       self.fail('exception incorrectly raised')
 
 
@@ -298,7 +298,7 @@ class EntityInstanceTest(absltest.TestCase):
     entity = dict(parsed[entity_name])
     instance = entity_instance.EntityInstance(entity)
 
-    if instance.IsValidEntityInstance(_UNIVERSE):
+    if instance.IsValidEntityInstance(self._universe):
       self.fail('exception not raised')
 
 
@@ -313,7 +313,7 @@ class EntityInstanceTest(absltest.TestCase):
     entity = dict(parsed[entity_name])
     instance = entity_instance.EntityInstance(entity)
 
-    if instance.IsValidEntityInstance(_UNIVERSE):
+    if instance.IsValidEntityInstance(self._universe):
       self.fail('exception not raised')
 
 
@@ -330,7 +330,7 @@ class EntityInstanceTest(absltest.TestCase):
       entity_instances[raw_entity] = entity
 
     if entity_instances.get('ENTITY-NAME')\
-        .IsValidEntityInstance(_UNIVERSE, entity_instances):
+        .IsValidEntityInstance(self._universe, entity_instances):
       self.fail('exception not raised')
 
 
@@ -347,7 +347,7 @@ class EntityInstanceTest(absltest.TestCase):
       entity_instances[raw_entity] = entity
 
     if entity_instances.get('ENTITY-NAME')\
-        .IsValidEntityInstance(_UNIVERSE, entity_instances):
+        .IsValidEntityInstance(self._universe, entity_instances):
       self.fail('exception not raised')
 
 
@@ -364,7 +364,7 @@ class EntityInstanceTest(absltest.TestCase):
       entity_instances[raw_entity] = entity
 
     if entity_instances.get('ENTITY-NAME')\
-        .IsValidEntityInstance(_UNIVERSE, entity_instances):
+        .IsValidEntityInstance(self._universe, entity_instances):
       self.fail('exception not raised')
 
 
@@ -381,7 +381,7 @@ class EntityInstanceTest(absltest.TestCase):
       entity_instances[raw_entity] = entity
 
     if entity_instances.get('ENTITY-NAME')\
-        .IsValidEntityInstance(_UNIVERSE, entity_instances):
+        .IsValidEntityInstance(self._universe, entity_instances):
       self.fail('exception not raised')
 
 
@@ -398,7 +398,7 @@ class EntityInstanceTest(absltest.TestCase):
       entity_instances[raw_entity] = entity
 
     for _, instance in entity_instances.items():
-      if not instance.IsValidEntityInstance(_UNIVERSE, entity_instances):
+      if not instance.IsValidEntityInstance(self._universe, entity_instances):
         self.fail('exception incorrectly raised')
 
 
@@ -411,7 +411,7 @@ class EntityInstanceTest(absltest.TestCase):
     for raw_entity in list(parsed.keys()):
       entity_parsed = dict(parsed[raw_entity])
       entity = entity_instance.EntityInstance(entity_parsed)
-      if not entity.IsValidEntityInstance(_UNIVERSE):
+      if not entity.IsValidEntityInstance(self._universe):
         self.fail('exception incorrectly raised')
 
 
@@ -426,12 +426,12 @@ class EntityInstanceTest(absltest.TestCase):
 
     if 'connections' not in entity.keys():
       self.fail('entity does not have connections when expected')
-    if _UNIVERSE.connections_universe is None:
+    if self._universe.connections_universe is None:
       self.fail('universe does not valid connections universe')
 
     instance = entity_instance.EntityInstance(entity)
 
-    if not instance.IsValidEntityInstance(_UNIVERSE):
+    if not instance.IsValidEntityInstance(self._universe):
       self.fail('exception incorrectly raised')
 
 
@@ -446,7 +446,7 @@ class EntityInstanceTest(absltest.TestCase):
     entity = dict(parsed[entity_name])
     instance = entity_instance.EntityInstance(entity)
 
-    if instance.IsValidEntityInstance(_UNIVERSE):
+    if instance.IsValidEntityInstance(self._universe):
       self.fail('exception not raised')
 
 

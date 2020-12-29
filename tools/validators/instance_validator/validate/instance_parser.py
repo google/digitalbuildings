@@ -83,9 +83,10 @@ def _validate_entity_with_schema(content, schema):
   try:
     parsed = syaml.load(content, schema)
 
-    # TODO(charbull): old code needs to be cleaned up
-    if _TRANSLATION in parsed.keys():
-      translation = parsed[_TRANSLATION]
+    # check the translation
+    top_name = parsed.keys()[0]
+    if _TRANSLATION in parsed.data[top_name].keys():
+      translation = parsed[top_name][_TRANSLATION]
       translation.revalidate(_TRANSLATION_SCHEMA)
 
       # if translation is not UDMI compliant
@@ -96,8 +97,8 @@ def _validate_entity_with_schema(content, schema):
       else:
         translation_keys = translation.keys()
 
-        for key in translation_keys:
-          translation[key].revalidate(_TRANSLATION_DATA_SCHEMA)
+      for key in translation_keys:
+        translation[key].revalidate(_TRANSLATION_DATA_SCHEMA)
 
   except (ruamel.yaml.parser.ParserError,
           ruamel.yaml.scanner.ScannerError,
