@@ -25,7 +25,8 @@ _ENTITY_INSTANCE_REGEX = '^[A-Z][A-Z0-9\\-]+:'
 _ENTITY_INSTANCE_PATTERN = re.compile(_ENTITY_INSTANCE_REGEX)
 
 _IGNORE_PATTERN = re.compile(r'^#|\n')
-
+# number of entities to validate per batch
+_ENTITIES_PER_BATCH = 1
 _COMPLIANT = 'COMPLIANT'
 _TRANSLATION = 'translation'
 
@@ -83,7 +84,7 @@ def _ValidateEntityWithSchema(content, schema):
   try:
     parsed = syaml.load(content, schema)
 
-    # TODO(charbull): this is old code that needs to be cleaned up
+    # TODO(b/176502336): merge the schemas to have one validation
     # check the translation
     top_name = parsed.keys()[0]
     if _TRANSLATION in parsed.data[top_name].keys():
@@ -111,6 +112,20 @@ def _ValidateEntityWithSchema(content, schema):
   return parsed
 
 
+def _ValidateBlock(unvalidated_block, validated_blocks):
+  """Validates a block of entities with the strictyaml schema and add them to
+  the validated blocks.
+
+  Args:
+    unvalidated_block: a block of unvalidated entities
+    validated_blocks: a block of validated entities
+
+  Returns:
+    validated entity blocks with strict yaml schema.
+  """
+  validated = _ValidateEntityWithSchema(unvalidated_block, _SCHEMA)
+  validated_blocks.update(validated.data)
+
 def ParseYaml(filename):
   """Loads an instance YAML file and parses it with
   multiple strictyaml-formatted YAML schemas. Expected format:
@@ -126,29 +141,27 @@ def ParseYaml(filename):
   """
   print('Loading yaml file to validate with schema')
   entity_instance_block = ''
-  block_ready_for_validation = False
+  found_entities = 0
   all_content = {}
   with open(filename) as file:
     for line in file:
       if _ENTITY_INSTANCE_PATTERN.match(line):
-        # wait until there is a one entity instance block
-        if block_ready_for_validation:
-          validated = _ValidateEntityWithSchema(entity_instance_block,
-                                                _SCHEMA)
-          all_content.update(validated.data)
+        # wait until entity instance block reaches _ENTITIES_PER_BATCH
+        if found_entities == _ENTITIES_PER_BATCH:
+          _ValidateBlock(entity_instance_block, all_content)
           entity_instance_block = line
+          found_entities = 0
         else:
           if not _IGNORE_PATTERN.match(line):
             entity_instance_block = entity_instance_block + line
-            block_ready_for_validation = True
+            found_entities += 1
       else:
         if not _IGNORE_PATTERN.match(line):
           entity_instance_block = entity_instance_block + line
-          block_ready_for_validation = True
+          found_entities += 1
 
   # handle the singleton case
-  if block_ready_for_validation:
-    validated = _ValidateEntityWithSchema(entity_instance_block,
-                                          _SCHEMA)
-    all_content.update(validated.data)
+  if found_entities>0:
+    _ValidateBlock(entity_instance_block, all_content)
+
   return all_content
