@@ -13,21 +13,25 @@
 # limitations under the License.
 
 CHWRSR_UNDEFINED:
+  id: "3723458331751219200"
   description: "Chilled water distribution riser without any data points."
   implements:
   - CHWRSR
 
 HWSRSR_UNDEFINED:
+  id: "1435629721047007232"
   description: "Heating water distribution riser without any data points."
   implements:
   - HWSRSR
 
 FARSR_UNDEFINED:
+  id: "16952219287198629888"
   description: "Fresh air distribution riser without any data points."
   implements:
   - FARSR
 
 RARSR_UNDEFINED:
+  id: "18213227182862368768"
   description: "Return air riser without any data points."
   implements:
   - RARSR
