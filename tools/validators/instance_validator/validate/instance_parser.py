@@ -96,7 +96,6 @@ def _validate_entity_with_schema(content, schema):
           sys.exit(0)
       else:
         translation_keys = translation.keys()
-
         for key in translation_keys:
           translation[key].revalidate(_TRANSLATION_DATA_SCHEMA)
 
