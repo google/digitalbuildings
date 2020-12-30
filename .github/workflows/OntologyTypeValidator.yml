@@ -6,9 +6,13 @@ name: Ontology Type Validator
 on:
   push:
     branches: [ master ]
+    paths: 
+      - ontology/yaml/**
 
   pull_request:
     branches: [ master ]
+    paths: 
+      - ontology/yaml/**
 
 jobs:
   build:
