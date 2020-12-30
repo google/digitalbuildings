@@ -45,7 +45,7 @@ jobs:
     - name: Instance Yaml Validator Tests
       run: |
        python -m unittest discover -p '*_test.py' --failfast -v
-      working-directory: ./tools/validators/instance_validator
+      working-directory: ./tools/validators/instance_validator/tests
      #---------- RDF Generator ----------# 
     - name:  RDF Generator Install dependencies
       run: |
