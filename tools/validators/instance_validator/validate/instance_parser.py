@@ -148,15 +148,18 @@ def ParseYaml(filename):
     for line in file:
       if _ENTITY_INSTANCE_PATTERN.match(line):
         # wait until entity instance block reaches _ENTITIES_PER_BATCH
-        if found_entities >= _ENTITIES_PER_BATCH:
+        if found_entities == _ENTITIES_PER_BATCH:
           _ValidateBlock(entity_instance_block, all_content)
-          entity_instance_block = ''
+          entity_instance_block = line
           found_entities = 0
-        found_entities += 1
+        else:
+          if not _IGNORE_PATTERN.match(line):
+            entity_instance_block = entity_instance_block + line
+            found_entities += 1
       else:
-        if _IGNORE_PATTERN.match(line):
-          continue
-      entity_instance_block = entity_instance_block + line
+        if not _IGNORE_PATTERN.match(line):
+          entity_instance_block = entity_instance_block + line
+          found_entities += 1
 
   # handle the singleton case
   if found_entities>0:
