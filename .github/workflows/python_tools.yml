@@ -6,8 +6,12 @@ name: Tools
 on:
   push:
     branches: [ master ]
+    paths: 
+      - tools/**
   pull_request:
     branches: [ master ]
+    paths: 
+      - tools/**
 
 jobs:
   build:
@@ -45,7 +49,7 @@ jobs:
     - name: Instance Yaml Validator Tests
       run: |
        python -m unittest discover -p '*_test.py' --failfast -v
-      working-directory: ./tools/validators/instance_validator/tests
+      working-directory: ./tools/validators/instance_validator
      #---------- RDF Generator ----------# 
     - name:  RDF Generator Install dependencies
       run: |
