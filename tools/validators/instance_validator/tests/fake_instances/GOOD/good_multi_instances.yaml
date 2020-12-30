@@ -1,0 +1,244 @@
+# Copyright 2020 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the License);
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#    https://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an AS IS BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# Multiple instances
+
+AHU-11:
+  connections:
+    FARSR-1: FEEDS
+  id: CDM/5c77fc02-d1ab-11ea-87d0-0242ac130003
+  type: FACILITIES/BUILDING
+
+FCU-1:
+  connections:
+    VLV-1: CONTROLS
+    VLV-2: CONTROLS
+    ZONE-G00: FEEDS
+  id: CDM/32HyWf6Zv3XumC7od2m$$H
+  translation:
+    chilled_water_flowrate_sensor:
+      present_value: points.chilled_water_flowrate_sensor.present_value
+      units:
+        key: pointset.points.chilled_water_flowrate_sensor.units
+        values:
+          liters_per_second: L/s
+    chilled_water_valve_percentage_command:
+      present_value: points.cooling_valve_percentage_command.present_value
+      units:
+        key: pointset.points.cooling_valve_percentage_command.units
+        values:
+          percent: '%'
+    chilled_water_valve_percentage_sensor:
+      present_value: points.cooling_valve_percentage_sensor.present_value
+      units:
+        key: pointset.points.cooling_valve_percentage_sensor.units
+        values:
+          percent: '%'
+    discharge_air_static_pressure_sensor:
+      present_value: points.supply_air_static_pressure_sensor.present_value
+      units:
+        key: pointset.points.supply_air_static_pressure_sensor.units
+        values:
+          pascals: Pa
+    discharge_air_temperature_sensor:
+      present_value: points.supply_air_temperature_sensor.present_value
+      units:
+        key: pointset.points.supply_air_temperature_sensor.units
+        values:
+          degrees_celsius: degC
+    discharge_air_temperature_setpoint:
+      present_value: points.supply_air_temperature_setpoint_humidity.present_value
+      units:
+        key: pointset.points.supply_air_temperature_setpoint_humidity.units
+        values:
+          degrees_celsius: degC
+    discharge_fan_run_command:
+      present_value: points.supply_fan_run_command.present_value
+      states:
+        OFF: 'false'
+        ON: 'true'
+    discharge_fan_run_status:
+      present_value: points.supply_fan_run_status.present_value
+      states:
+        OFF: 'false'
+        ON: 'true'
+    discharge_fan_speed_percentage_command:
+      present_value: points.supply_fan_speed_percentage_command.present_value
+      units:
+        key: pointset.points.supply_fan_speed_percentage_command.units
+        values:
+          percent: '%'
+    filter_differential_pressure_sensor:
+      present_value: points.filter_differential_pressure_sensor.present_value
+      units:
+        key: pointset.points.filter_differential_pressure_sensor.units
+        values:
+          pascals: Pa
+    heating_water_flowrate_sensor:
+      present_value: points.heating_water_flowrate_sensor.present_value
+      units:
+        key: pointset.points.heating_water_flowrate_sensor.units
+        values:
+          liters_per_second: L/s
+    heating_water_valve_percentage_command:
+      present_value: points.heating_valve_percentage_command.present_value
+      units:
+        key: pointset.points.heating_valve_percentage_command.units
+        values:
+          percent: '%'
+    heating_water_valve_percentage_sensor:
+      present_value: points.heating_valve_percentage_sensor.present_value
+      units:
+        key: pointset.points.heating_valve_percentage_sensor.units
+        values:
+          percent: '%'
+    return_air_temperature_sensor:
+      present_value: points.return_air_temperature_sensor.present_value
+      units:
+        key: pointset.points.return_air_temperature_sensor.units
+        values:
+          degrees_celsius: degC
+    run_mode:
+      present_value: points.device_mode.present_value
+      states:
+        OFF: '0.0'
+        AUTO: '1.0'
+        MANUAL: '2.0'
+    zone_air_relative_humidity_sensor:
+      present_value: points.space_air_relative_humidity_sensor.present_value
+      units:
+        key: pointset.points.space_air_relative_humidity_sensor.units
+        values:
+          percent_relative_humidity: '%RH'
+    zone_air_relative_humidity_setpoint:
+      present_value: points.space_air_relative_humidity_setpoint.present_value
+      units:
+        key: pointset.points.space_air_relative_humidity_setpoint.units
+        values:
+          percent_relative_humidity: '%RH'
+    zone_air_temperature_sensor:
+      present_value: points.space_air_temperature_sensor.present_value
+      units:
+        key: pointset.points.space_air_temperature_sensor.units
+        values:
+          degrees_celsius: degC
+    zone_air_temperature_setpoint:
+      present_value: points.space_air_temperature_setpoint.present_value
+      units:
+        key: pointset.points.space_air_temperature_setpoint.units
+        values:
+          degrees_celsius: degC
+  type: HVAC/FCU_DFSS_DFVSC_ZTC_ZHC_CHWDC_HWDC_FDPM_RMM
+
+FCU-10:
+  connections:
+    VLV-17: CONTROLS
+    ZONE-G03: FEEDS
+  id: CDM/0yhU4Ck3z5EP0ABJsqO2$y
+  translation:
+    chilled_water_flowrate_sensor:
+      present_value: points.chilled_water_flowrate_sensor.present_value
+      units:
+        key: pointset.points.chilled_water_flowrate_sensor.units
+        values:
+          liters_per_second: L/s
+    chilled_water_valve_percentage_command:
+      present_value: points.cooling_valve_percentage_command.present_value
+      units:
+        key: pointset.points.cooling_valve_percentage_command.units
+        values:
+          percent: '%'
+    chilled_water_valve_percentage_sensor:
+      present_value: points.cooling_valve_percentage_sensor.present_value
+      units:
+        key: pointset.points.cooling_valve_percentage_sensor.units
+        values:
+          percent: '%'
+    discharge_air_static_pressure_sensor:
+      present_value: points.supply_air_static_pressure_sensor.present_value
+      units:
+        key: pointset.points.supply_air_static_pressure_sensor.units
+        values:
+          pascals: Pa
+    discharge_air_temperature_sensor:
+      present_value: points.supply_air_temperature_sensor.present_value
+      units:
+        key: pointset.points.supply_air_temperature_sensor.units
+        values:
+          degrees_celsius: degC
+    discharge_air_temperature_setpoint:
+      present_value: points.supply_air_temperature_setpoint_humidity.present_value
+      units:
+        key: pointset.points.supply_air_temperature_setpoint_humidity.units
+        values:
+          degrees_celsius: degC
+    discharge_fan_run_command:
+      present_value: points.supply_fan_run_command.present_value
+      states:
+        OFF: 'false'
+        ON: 'true'
+    discharge_fan_run_status:
+      present_value: points.supply_fan_run_status.present_value
+      states:
+        OFF: 'false'
+        ON: 'true'
+    discharge_fan_speed_percentage_command:
+      present_value: points.supply_fan_speed_percentage_command.present_value
+      units:
+        key: pointset.points.supply_fan_speed_percentage_command.units
+        values:
+          percent: '%'
+    filter_differential_pressure_sensor:
+      present_value: points.filter_differential_pressure_sensor.present_value
+      units:
+        key: pointset.points.filter_differential_pressure_sensor.units
+        values:
+          pascals: Pa
+    return_air_temperature_sensor:
+      present_value: points.return_air_temperature_sensor.present_value
+      units:
+        key: pointset.points.return_air_temperature_sensor.units
+        values:
+          degrees_celsius: degC
+    run_mode:
+      present_value: points.device_mode.present_value
+      states:
+        OFF: '0.0'
+        AUTO: '1.0'
+        MANUAL: '2.0'
+    zone_air_relative_humidity_sensor:
+      present_value: points.space_air_relative_humidity_sensor.present_value
+      units:
+        key: pointset.points.space_air_relative_humidity_sensor.units
+        values:
+          percent_relative_humidity: '%RH'
+    zone_air_relative_humidity_setpoint:
+      present_value: points.space_air_relative_humidity_setpoint.present_value
+      units:
+        key: pointset.points.space_air_relative_humidity_setpoint.units
+        values:
+          percent_relative_humidity: '%RH'
+    zone_air_temperature_sensor:
+      present_value: points.space_air_temperature_sensor.present_value
+      units:
+        key: pointset.points.space_air_temperature_sensor.units
+        values:
+          degrees_celsius: degC
+    zone_air_temperature_setpoint:
+      present_value: points.space_air_temperature_setpoint.present_value
+      units:
+        key: pointset.points.space_air_temperature_setpoint.units
+        values:
+          degrees_celsius: degC
+  type: HVAC/FCU_DFSS_DFVSC_ZTC_ZHC_CHWDC_FDPM_RMM

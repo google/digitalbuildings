@@ -117,11 +117,12 @@ def _ValidateBlock(unvalidated_block, validated_blocks):
   the validated blocks.
 
   Args:
-    unvalidated_block: a block of unvalidated entities
-    validated_blocks: a block of validated entities
+    unvalidated_block: string. A block of unvalidated entities
+    validated_blocks: dictionary with entity name as key, entity as value.
+     A block of validated entities
 
   Returns:
-    validated entity blocks with strict yaml schema.
+    a dictionary of validated entity blocks with strict yaml schema.
   """
   validated = _ValidateEntityWithSchema(unvalidated_block, _SCHEMA)
   validated_blocks.update(validated.data)
@@ -147,18 +148,15 @@ def ParseYaml(filename):
     for line in file:
       if _ENTITY_INSTANCE_PATTERN.match(line):
         # wait until entity instance block reaches _ENTITIES_PER_BATCH
-        if found_entities == _ENTITIES_PER_BATCH:
+        if found_entities >= _ENTITIES_PER_BATCH:
           _ValidateBlock(entity_instance_block, all_content)
-          entity_instance_block = line
+          entity_instance_block = ''
           found_entities = 0
-        else:
-          if not _IGNORE_PATTERN.match(line):
-            entity_instance_block = entity_instance_block + line
-            found_entities += 1
+        found_entities += 1
       else:
-        if not _IGNORE_PATTERN.match(line):
-          entity_instance_block = entity_instance_block + line
-          found_entities += 1
+        if _IGNORE_PATTERN.match(line):
+          continue
+      entity_instance_block = entity_instance_block + line
 
   # handle the singleton case
   if found_entities>0:

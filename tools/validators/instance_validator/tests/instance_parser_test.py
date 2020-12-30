@@ -73,6 +73,16 @@ class ParserTest(absltest.TestCase):
                   'good_building_connections.yaml'))
     self.assertIsNotNone(parse)
 
+  def testInstanceValidatorParseMultipleEntities(self):
+    parse = instance_parser.ParseYaml(
+        path.join(_TESTCASE_PATH,
+                  'GOOD',
+                  'good_multi_instances.yaml'))
+    self.assertLen(parse.keys(), 3)
+    self.assertIn('AHU-11', parse.keys())
+    self.assertIn('FCU-1', parse.keys())
+    self.assertIn('FCU-10', parse.keys())
+
   def testInstanceValidatorDetectImproperTranslationCompliance(self):
     with self.assertRaises(SystemExit):
       parse = instance_parser.ParseYaml(
