@@ -6,8 +6,12 @@ name: Tools
 on:
   push:
     branches: [ master ]
+    paths: 
+      - tools/**
   pull_request:
     branches: [ master ]
+    paths: 
+      - tools/**
 
 jobs:
   build:
