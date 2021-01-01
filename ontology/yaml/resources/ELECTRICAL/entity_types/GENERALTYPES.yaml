@@ -25,3 +25,25 @@ UPS:
   is_abstract: true
   implements:
   - EQUIPMENT
+
+GENERATOR:
+  id: ""
+  description: "Tag for all backup power generators."
+  is_abstract: true
+  implements:
+  - EQUIPMENT
+
+PDU:
+  id: ""
+  description: "Tag for all power distribution units."
+  is_abstract: true
+  implements:
+  - EQUIPMENT
+
+RPP:
+  id: ""
+  description: "Tag for all remote power panels."
+  is_abstract: true
+  implements:
+  - EQUIPMENT
+  
