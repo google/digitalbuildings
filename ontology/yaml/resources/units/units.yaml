@@ -20,6 +20,8 @@ current:
 energy:
 - joules: STANDARD
 - kilowatt_hours
+environmentalindex: #ALC standard for zone IAQ performance (temp, humidity, etc) vs setpoints
+- percent: STANDARD
 flowrate:
 - cubic_meters_per_second: STANDARD
 - cubic_feet_per_minute
@@ -41,6 +43,8 @@ linearvelocity:
 percentage:
 - percent: STANDARD
 powerfactor:
+- no_units: STANDARD
+powerusageeffectiveness:
 - no_units: STANDARD
 power:
 - watts: STANDARD

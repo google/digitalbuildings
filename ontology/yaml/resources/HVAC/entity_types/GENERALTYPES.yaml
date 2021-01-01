@@ -285,3 +285,38 @@ HWSRSR:
   is_abstract: true
   implements:
   - RSR
+
+CRAH:
+  id: ""
+  description: "A computer room air handler, commonly found in larger data centers."
+  is_abstract: true
+  implements:
+  - EQUIPMENT
+
+CRAC:
+  id: ""
+  description: "A computer room air conditioner, commonly found in larger data centers."
+  is_abstract: true
+  implements:
+  - EQUIPMENT
+
+PTAC:
+  id: ""
+  description: "A package terminal air conditioner, commonly used in smaller IDF or data center spaces."
+  is_abstract: true
+  implements:
+  - EQUIPMENT
+
+VRF:
+  id: ""
+  description: "A variable refrigerant flow system, typically used in place of a chiller."
+  is_abstract: true
+  implements:
+  - EQUIPMENT
+
+HRW:
+  id: ""
+  description: "A heat recovery wheel commonly used in AHUs found in high-efficiency, potentially LEED-rated buildings."
+  is_abstract: true
+  implements:
+  - EQUIPMENT
