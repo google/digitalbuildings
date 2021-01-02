@@ -8,12 +8,12 @@ This purpose of this project is to allow developers to seemlessly work with CAD-
 
 ```
 cd digitalbuildings/ibr/ibr-sdk
-`npm run build
+npm run build
 ```
 
 2. Start a local server in python
 
-`cd ..; python3 -m http.server`.
+`cd ../ python3 -m http.server`.
 
 3. Navigate to http://0.0.0.0:8000/examples/html/
 
