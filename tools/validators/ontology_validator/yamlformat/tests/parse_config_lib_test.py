@@ -20,10 +20,10 @@ from __future__ import print_function
 
 import re
 
-
-
 from absl import flags
 
+from absl.testing import absltest
+from os import path
 from yamlformat.validator import base_lib
 from yamlformat.validator import field_lib
 from yamlformat.validator import findings_lib
@@ -31,15 +31,14 @@ from yamlformat.validator import parse_config_lib as parse
 from yamlformat.validator import state_lib
 from yamlformat.validator import subfield_lib
 from yamlformat.validator import unit_lib
-from absl.testing import absltest
 
 FLAGS = flags.FLAGS
 
 # Constant to point to test files.
-RESOURCE_PATH = 'fake_resources'
-field_lib.FIELD_TO_NAMESPACE_REGEX = re.compile(r'^' + RESOURCE_PATH +
-                                                r'(\w*)/?fields.*')
-
+_TEST_DIR = path.dirname(path.realpath(__file__))
+RESOURCE_PATH = path.join(_TEST_DIR, 'fake_resources')
+field_lib.FIELD_TO_NAMESPACE_REGEX = re.compile(r'^' + RESOURCE_PATH.replace('\\', '\\\\') +
+                                                r'(\w*)[/\\]?fields.*')
 
 class ParseConfigLibTest(absltest.TestCase):
 

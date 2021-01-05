@@ -17,6 +17,8 @@ MTR:
   id: "4119587082471473152"
   description: "Tag for all the meters."
   is_abstract: true
+  implements:
+  - EQUIPMENT
 
 EM:
   id: "9271705056183320576"
@@ -32,9 +34,23 @@ GM:
   - MTR
   is_abstract: true
 
+FM:
+  id: "13351028435162497024"
+  description: "Tag for all closed-loop system flow meters. Distinct from water meters which are open-loop systems."
+  is_abstract: true
+  implements:
+  - MTR  
+
 WM:
   id: "18022612548536238080"
-  description: "Tag for all water meters."
+  description: "Tag for all water meters (open-loop), such as the main building water consumption meter."
   implements:
   - MTR
   is_abstract: true
+
+HM:
+  id: "5280577902914568192"
+  description: "Tag for all heat meters (cooling or heating), commonly referred to as BTU meters."
+  is_abstract: true
+  implements:
+  - MTR

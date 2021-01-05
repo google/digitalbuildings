@@ -30,7 +30,8 @@ from rdfformat.generator import rdf_helper
 
 
 def GenerateGraph(yaml_object, graph):
-  """Utility function updates an RDF graph with the yaml content of the GeneralTypes.yaml.
+  """Utility function updates an RDF graph with the yaml
+  content of the GeneralTypes.yaml.
 
   The content of each object is similar to the following:
    CHL:
@@ -128,7 +129,7 @@ def GenerateGraph(yaml_object, graph):
         class_owl = infixowl.Class(
             identifier=constants.HVAC_NS[class_name],
             graph=graph,
-            sub_class_of=[equipment])
+            subClassOf=[equipment])
         graph = rdf_helper.CreateCompositionInGraph(
             list_standard_field_names=uses,
             composition_operator="&",

@@ -41,6 +41,7 @@ literals:
 - compressor_run_status:
   - ON
   - OFF
+  - UNKNOWN
 - compressor_speed_percentage_sensor
 - refrigerant_condenser_saturation_temperature_sensor
 - condensing_return_water_temperature_sensor
@@ -75,6 +76,7 @@ literals:
 - economizer_mode:
   - ON
   - OFF
+  - AUTO
 - evaporator_pressure_sensor
 - refrigerant_evaporator_saturation_temperature_sensor
 - exhaust_air_damper_percentage_command
@@ -87,6 +89,7 @@ literals:
 - exhaust_fan_run_status:
   - ON
   - OFF
+  - UNKNOWN
 - exhaust_fan_speed_frequency_sensor
 - exhaust_fan_speed_percentage_command
 - exhaust_fan_speed_percentage_sensor
@@ -153,6 +156,7 @@ literals:
 - supply_fan_run_status:
   - ON
   - OFF
+  - UNKNOWN
 - supply_fan_speed_frequency_command
 - supply_fan_speed_frequency_sensor
 - supply_fan_speed_percentage_command
@@ -330,22 +334,18 @@ literals:
 - exercise_mode:
   - ON
   - OFF
-- fabric_protection_alarm_status:
-  - ON
-  - OFF
-- filter_alarm_status:
-  - ON
-  - OFF
-- master_alarm_status:
-  - ON
-  - OFF
+
+# Alarms updated to convert the alarm subfield to a point type from measurement descriptor.
+
 - run_mode:
-  - AUTO
   - COMMISSIONING
   - FLUSHING
   - HEATING
   - COOLING
   - NEUTRAL
+  - OFF
+  - AUTO
+  - MANUAL
 - dial_resistance_sensor
 - zone_occupancy_status:
   - OCCUPIED
@@ -469,7 +469,7 @@ literals:
 - energy_accumulator
 - average_line_current_sensor
 - average_line_neutral_voltage_sensor
-- average_line_voltage_sensor
+- average_inter_line_voltage_sensor
 - phase1_line_current_sensor
 - phase1_neutral_line_voltage_sensor
 - phase1_phase2_line_voltage_sensor
@@ -489,7 +489,7 @@ literals:
 - reactive_power_sensor
 
 # Added on 2019/06/27 for Enlighted
-- dimmer_percentage_command
+- dimmer_percentage_command # Should be adjusted to brightness_percentage_command
 
 
 # Added on 2019/08/13 primarily for GVC
@@ -565,14 +565,20 @@ literals:
 
 # Added 2/10/2020
 - supply_water_isolation_valve_command
-- supply_water_isolation_valve_status
+- supply_water_isolation_valve_status:
+  - OPEN
+  - CLOSED
 - return_water_isolation_valve_command
-- return_water_isolation_valve_status
+- return_water_isolation_valve_status:
+  - OPEN
+  - CLOSED
 - chilled_return_water_isolation_valve_command
 - condensing_return_water_isolation_valve_percentage_command
 - condensing_return_water_isolation_valve_percentage_sensor
 - chilled_supply_water_isolation_valve_command
-- chilled_return_water_isolation_valve_status
+- chilled_return_water_isolation_valve_status:
+  - OPEN
+  - CLOSED
 
 # Added 2/11/2020
 - discharge_air_static_pressure_sensor
@@ -582,8 +588,12 @@ literals:
 - heat_exchange_return_water_isolation_valve_command
 - heat_exchange_supply_water_isolation_valve_percentage_command
 - heat_exchange_return_water_isolation_valve_percentage_command
-- heat_exchange_supply_water_isolation_valve_status
-- heat_exchange_return_water_isolation_valve_status
+- heat_exchange_supply_water_isolation_valve_status:
+  - OPEN
+  - CLOSED
+- heat_exchange_return_water_isolation_valve_status:
+  - OPEN
+  - CLOSED
 - heat_exchange_supply_water_isolation_valve_percentage_sensor
 - heat_exchange_return_water_isolation_valve_percentage_sensor
 
@@ -594,13 +604,167 @@ literals:
 # Added 2/24/2020
 - chilled_supply_water_isolation_valve_percentage_sensor
 - chilled_supply_water_isolation_valve_percentage_command
-- chilled_supply_water_isolation_valve_status
-- condensing_return_water_isolation_valve_status
+- chilled_supply_water_isolation_valve_status:
+  - OPEN
+  - CLOSED
+- condensing_return_water_isolation_valve_status:
+  - OPEN
+  - CLOSED
 - condensing_supply_water_isolation_valve_percentage_sensor
 - condensing_supply_water_isolation_valve_percentage_command
-- condensing_supply_water_isolation_valve_status
+- condensing_supply_water_isolation_valve_status:
+  - OPEN
+  - CLOSED
 - condensing_supply_water_isolation_valve_command
 
 
 # Added 4/12/20
 - supply_air_damper_percentage_sensor
+
+# Added 6/4/20
+- ventilation_request_count
+- refrigerant_evaporator_pressure_sensor
+- refrigerant_condenser_pressure_sensor
+- refrigerant_suction_temperature_sensor
+- refrigerant_discharge_temperature_sensor
+- low_limit_outside_air_damper_percentage_command
+
+- sweeper_pump_run_status:
+  - ON
+  - OFF
+- sweeper_pump_run_command:
+  - ON
+  - OFF
+- evaporative_cooler_run_status:
+  - ON
+  - OFF
+
+# Added 10/5/20 for TW-NTC-TPKD
+# Additional functionality for alarms and status points.
+# For alarms, they will end in `alarm` and be two-state. 
+# Status fields must be distinguished from alarms in that status is an objective qualitative state (flowing/not) whereas alarms are judgmental interpretations of such statuses to draww a conclusion about function (alarm/normal) 
+
+- average_supply_air_temperature_sensor
+- control_mode:
+  - AUTO
+  - MANUAL
+  - OFF
+- cooling_thermal_energy_accumulator
+- particle_concentration_sensor
+- high_limit_supply_air_cooling_flowrate_setpoint
+- high_limit_supply_air_heating_flowrate_setpoint
+- low_limit_supply_air_ventilation_flowrate_setpoint
+- low_limit_supply_air_flowrate_setpoint 
+- high_limit_supply_air_flowrate_setpoint # used when the device doesn't necessarily provide a cooling max flow
+- schedule_run_command
+- supply_air_dewpoint_temperature_sensor
+- ultraviolet_lamp_run_command:
+  - ON
+  - OFF
+- ultraviolet_lamp_run_status:
+  - ON
+  - OFF
+
+# New usage of status as an override for the measurement.
+- chilled_water_flowrate_status:
+  - PRESENT
+  - ABSENT
+- condensing_water_flowrate_status:
+  - PRESENT
+  - ABSENT
+- discharge_air_static_pressure_status:
+  - PRESENT
+  - ABSENT
+- filter_differential_pressure_status:
+  - PRESENT
+  - ABSENT
+- high_level_status:
+  - PRESENT
+  - ABSENT
+- low_level_status:
+  - PRESENT
+  - ABSENT
+- power_status:
+  - PRESENT
+  - ABSENT
+
+# New alarms using alarm as a point type, and existing alarms moved here
+# TODO (tsodorff): change these to ALARM/NORMAL after determining how this can be done safely to existing translations. 
+- fabric_protection_alarm:
+  - ACTIVE
+  - INACTIVE
+- failed_alarm:
+  - ACTIVE
+  - INACTIVE
+- filter_alarm:
+  - ACTIVE
+  - INACTIVE
+- master_alarm:
+  - ACTIVE
+  - INACTIVE
+- supply_fan_failed_alarm:
+  - ACTIVE
+  - INACTIVE
+- smoke_alarm:
+  - ACTIVE
+  - INACTIVE
+- water_leak_alarm:
+  - ACTIVE
+  - INACTIVE
+- low_differential_pressure_alarm:
+  - ACTIVE
+  - INACTIVE
+- lost_power_alarm:
+  - ACTIVE
+  - INACTIVE
+
+# New fields for lighting and fire systems.
+- motion_status
+- battery_charge_status:
+  - CHARGING
+  - DISCHARGING
+  - STANDBY
+- battery_charge_percentage_sensor
+- brightness_percentage_command
+
+# New fields for emergency systems
+- broken_cable_alarm:
+  - ACTIVE
+  - INACTIVE
+- gas_leak_detection_alarm
+- water_leak_detection_alarm
+- fire_alarm
+- emergency_release_status
+- position_status
+- condensing_water_valve_percentage_sensor
+- entering_cooling_coil_temperature_sensor
+
+ # We should not use this... represents scavenged outside air from near some heat pumps...
+- mixed_outside_air_temperature_sensor
+
+- discharge_fan_lost_power_alarm:
+  - ACTIVE
+  - INACTIVE
+- low_discharge_air_flowrate_alarm:
+  - ACTIVE
+  - INACTIVE
+- frequency_sensor
+- discharge_fan_failed_alarm:
+  - ACTIVE
+  - INACTIVE
+- discharge_air_linearvelocity_sensor
+- condensing_water_bypass_valve_percentage_sensor
+- scene_index_command
+
+# This is a change
+- line_frequency_sensor
+- phase1_apparent_power_sensor
+- phase2_apparent_power_sensor
+- phase3_apparent_power_sensor
+
+# Added for UK-LON-S2
+
+- zone_air_voc_percentage_setpoint
+- zone_air_voc_percentage_sensor
+
+

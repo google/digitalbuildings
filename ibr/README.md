@@ -9,14 +9,6 @@ IBR comes with a rendering library built on THREE.js that can be used to easily 
 
 IBR wants to democratize usage of CAD technology. A lot of existing CAD tools require many hours of training (AutoCAD/Revit/BIM) and is not very accessible to most faciltiies operators who just want to minor changes to a small, specific layer. IBR allows anyone with a browser and IBR file to visualize, edit, and save building data without having to learn one of the existing industry standard tools.
 
-## Instructions for running the IBR UI:
-1. Open terminal and run following commands:
-    - `cd digitalbuildings/ibr`
-    - `npm i`
-    - `npm i ibr-sdk`
-    - `mkdir -p temp/ && node_modules/.bin/pbf ibr.proto --browser > temp/ibr_pb_browser.js`
-2. Open html/index.html in your browser
-3. Click on "Choose File" button to open your ibr data file
-##### Developer Note: 
-*The ibr-sdk npm package is not published, hence it cannot yet be installed in other projects.*
-*Run `npx eslint \[filename\] --fix` to check efore Pull Request.*
+IBR comes with a rendering library (ibr-sdk) built on THREE.js that can be used to easily create a custom UI to visualize and edit the compact data. This allows developers to build custom features and have more control over their tooling. 
+
+IBR also comes with a parser (png-parser) that takes a floor plan in bitmap format and converts it to IBR format. This parser extracts the outer boundary of the floor plan and stores it in IBR format. This parser also stores the original bitmap image in one of the visualization layers of the output IBR structure for reference.

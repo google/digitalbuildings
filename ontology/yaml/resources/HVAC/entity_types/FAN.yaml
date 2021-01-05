@@ -135,12 +135,7 @@ FAN_MDRI:
   - SS
   - VSC
   - WDPC
-  uses:
-  - dryer_run_status_1
-  - dryer_run_status_2
-  - dryer_run_status_3
-  - dryer_run_status_4
-  - dryer_run_status_5
+  - DRSM5X
 
 FAN_SS_DWI:
   id: "11319382735195209728"
@@ -223,6 +218,69 @@ FAN_SS_VSC_COC:
   - VSC
   - COC
 
+FAN_SS_VSC_ETM:
+  id: "16878575097881821184"
+  description: "Fan with exhaust air temp sensor."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - VSC
+  - ETM
+
+FAN_SS_VSC_ETM4X:
+  id: "4412611329320288256"
+  description: "Fan with 4 exhaust air temp sensors."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - VSC
+  - ETM4X
+
+FAN_SS_VSC_EFC_FDPM:
+  id: "7042713511704657920"
+  description: "Fan with start/stop status and open-loop speed control."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - VSC
+  - EFC
+  - FDPM
+
+FAN_SS_VSC_EPC_ZSPM:
+  id: "1890595537992810496"
+  description: "Fan with exhaust static pressure control."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - VSC
+  - EPC
+  - ZSPM
+
+
+FAN_SS_VSC_FDPM_DRSM5X:
+  id: "13635983366175064064"
+  description: "Fan with exhaust air temp sensor."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - VSC
+  - FDPM
+  - DRSM5X
+
+
+FAN_SS_DRSM8X:
+  id: "16266085548559433728"
+  description: "Fan with multiple dryer integration."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - DRSM8X
 
 ###################################
 ### Existing Non-standard Types ###
@@ -272,8 +330,8 @@ FAN_US_PAO_HV5_1:
   description: "Non-standard type for HV5"
   implements:
   - FAN_SS_VSC_BSPC
-  uses:
-  - exhaust_air_damper_percentage_command
+  uses: # Should model as a separate device, not on this fan.
+  - exhaust_air_damper_percentage_command 
   - exhaust_air_static_pressure_sensor
   - exhaust_air_static_pressure_setpoint
 
@@ -282,7 +340,7 @@ FAN_US_PAO_HV5_3:
   description: "Non-standard type for HV5"
   implements:
   - FAN_SS_VSC_BSPC
-  uses:
+  uses: # Should model as a separate device, not on this fan.
   - exhaust_air_damper_percentage_command_1
   - exhaust_air_damper_percentage_command_2
   - exhaust_air_damper_percentage_command_3
@@ -294,7 +352,7 @@ FAN_US_PAO_HV5_8:
   description: "Non-standard type for HV5 EFs"
   implements:
   - FAN_SS_VSC
-  uses:
+  uses: # Should model as a separate device, not on this fan.
   - exhaust_air_damper_percentage_command
   - exhaust_air_static_pressure_sensor
   - exhaust_air_static_pressure_setpoint
@@ -316,27 +374,12 @@ FAN_US_SVL_BRG1_2:
   - exhaust_air_damper_command
   - exhaust_air_damper_status
 
-FAN_US_SVL_CSPN222_5:
-  id: "1313439894340632576"
-  description: "Non-standard type for CSPN222 KEFs"
-  implements:
-  - FAN_SS_VSC
-  uses:
-  - exhaust_air_temperature_sensor
-
 FAN_US_SVL_MP1_3:
   id: "10022275673768329216"
   description: "Non-standard type for MP1"
   implements:
-  - FAN_SS_VSC
+  - FAN_SS_VSC_FDPM_DRSM5X
   - INCOMPLETE
-  uses:
-  - dryer_run_status_1
-  - dryer_run_status_2
-  - dryer_run_status_3
-  - dryer_run_status_4
-  - dryer_run_status_5
-  - filter_differential_pressure_sensor
 
 FAN_US_SVL_MP3_1:
   id: "7518274280950333440"
@@ -384,16 +427,8 @@ FAN_US_SVL_MP5_3:
   id: "17570308649241280512"
   description: "Hash:baa9cc8812ae9b36bd430ca2574f7a3a5a003479d6623ff75573535ea8a3a467; Entities: US-SVL-MP5:FAN:EF 1-6"
   implements:
-  - FAN_SS
-  uses:
-  - dryer_run_status_1
-  - dryer_run_status_2
-  - dryer_run_status_3
-  - dryer_run_status_4
-  - dryer_run_status_5
-  - dryer_run_status_6
-  - dryer_run_status_7
-  - dryer_run_status_8
+  - FAN_SS_DRSM8X
+  - DEPRECATED
 
 FAN_US_SVL_MP5_4:
   id: "8806303774378295296"
@@ -409,11 +444,8 @@ FAN_US_SVL_MP5_5:
   id: "425104867841802240"
   description: "Non-standard type for MP5"
   implements:
-  - FAN_SS
+  - FAN_SS_ZTM
   - INCOMPLETE
-  uses:
-  - discharge_air_temperature_sensor
-  - zone_air_temperature_sensor
 
 FAN_US_SVL_MP7_2:
   id: "2357149107983745024"

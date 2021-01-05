@@ -12,15 +12,45 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-OS:
-  id: "5263290281591046144"
-  description: "Occupancy status for a specific zone."
-  uses:
-  - zone_occupancy_status
-
-PM:
-  id: "14453888075845074944"
-  description: "Power monitoring."
+EQUIPMENT:
+  id: "9693662434551660544"
+  description: "A piece of equipment."
   is_abstract: true
-  uses:
-  - power_sensor
+  opt_uses:
+  - manufacturer_label
+  - model_label
+
+SENSOR:
+  id: "14503949939769344000"
+  description: "Stand-alone sensing device. Used to model individual sensors when they don't belong explicitly to one piece of equipment."
+  is_abstract: true
+  implements:
+  - EQUIPMENT
+
+USER_INTERFACE:
+  id: "6019168241803329536"
+  description: "Generic user interface."
+  is_abstract: true
+  implements:
+  - EQUIPMENT
+
+NO_ANALYSIS:
+  id: "10044943205486559232"
+  description: "Devices which are not useful in and of themselves. Can be ignored by analysis."
+  is_abstract: true
+
+DEPRECATED:
+  id: "10951011155518160896"
+  description: "Used to clean up deprecated types."
+  is_abstract: true
+
+REMAP_REQUIRED:
+  id: "9663931640136597504"
+  description: "A type which requires some remapping in order to convert it to a standard type."
+  is_abstract: true
+
+INCOMPLETE:
+  id: "4665780478685478912"
+  description: "A known incomplete type."
+  is_abstract: true
+

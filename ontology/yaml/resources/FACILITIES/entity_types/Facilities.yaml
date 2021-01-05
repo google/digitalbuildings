@@ -12,6 +12,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+DOOR:
+  id: "13631635897198837760"
+  description: "A physical door"
+
 ROOM:
   id: "9223372036854775808"
   description: "This is a type for ROOM facilities object"

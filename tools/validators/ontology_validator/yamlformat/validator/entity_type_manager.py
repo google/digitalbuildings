@@ -232,22 +232,22 @@ class EntityTypeManager(findings_lib.Findings):
           for parent in matching_parents:
             parent_rollup[parent] = {typename: matching_parents[parent]}
 
-        if incomplete_parent_matches:
-          finding = findings_lib.PossibleOverlappingFlexTypeChildWarning(
-              entity_type, best_incomplete_diff, incomplete_parent_matches)
-          entity_type.AddFinding(finding)
-          findings.append(finding)
+       # if incomplete_parent_matches:
+       #  finding = findings_lib.PossibleOverlappingFlexTypeChildWarning(
+       #       entity_type, best_incomplete_diff, incomplete_parent_matches)
+       #   entity_type.AddFinding(finding)
+       #   findings.append(finding)
+       # 
+       #   for parent in incomplete_parent_matches:
+       #     incomplete_parent_rollup[parent] = {
+       #         typename: incomplete_parent_matches[parent]}
 
-          for parent in incomplete_parent_matches:
-            incomplete_parent_rollup[parent] = {
-                typename: incomplete_parent_matches[parent]}
-
-      for parent in incomplete_parent_rollup:
-        entity_type = self._GetTypeByName(parent)
-        finding = findings_lib.PossibleOverlappingFlexTypeParentWarning(
-            entity_type, incomplete_parent_rollup[parent])
-        entity_type.AddFinding(finding)
-        findings.append(finding)
+       # for parent in incomplete_parent_rollup:
+       # entity_type = self._GetTypeByName(parent)
+       # finding = findings_lib.PossibleOverlappingFlexTypeParentWarning(
+       #    entity_type, incomplete_parent_rollup[parent])
+       # entity_type.AddFinding(finding)
+       #  findings.append(finding)
 
       for parent in parent_rollup:
         parent_type = self._GetTypeByName(parent)

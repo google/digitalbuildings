@@ -20,7 +20,7 @@ with earlier versions.
       - [Elevating Fields](#elevating-fields)
     + [States](#states)
     + [EntityTypes](#entitytypes)
-    + [Connections (coming soon)](#connections--coming-soon-)
+    + [Connections](#connections)
     + [Units](#units)
   * [Validation](#validation)
   * [Notes](#notes)
@@ -239,7 +239,7 @@ Validation enforces:
 *   all type names are unique per-namespace
 *   types have text descriptions (warning)
 
-### Connections (coming soon)
+### Connections
 
 Connections are described in a folder with the name `connections`. Connections
 can **only** be described in the global namespace, and the set of connections is
@@ -277,7 +277,7 @@ energy:
 
 Under each subfield name, the configuration defines a list of dimensional units
 of a single
-[Quantity Kind](https://github.com/TopQuadrant/qudt-dev/blob/master/r2.0/vocab/quantitykinds/VOCAB_QUDT-BASE-QUANTITY-KINDS-v2.0.ttl),
+[Quantity Kind](https://qudt.org),
 One of the listed units must be listed as the `STANDARD` unit for the type. All
 of the `STANDARD` units for all subfields must belong to the same unit family,
 such as standard SI units.

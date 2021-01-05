@@ -62,12 +62,40 @@ class ConfigUniverse(findings_lib.Findings):
 
   def __init__(self, entity_type_universe, field_universe, subfield_universe,
                state_universe, unit_universe):
-    super(ConfigUniverse, self).__init__()
+    super().__init__()
     self.entity_type_universe = entity_type_universe
     self.field_universe = field_universe
     self.subfield_universe = subfield_universe
     self.state_universe = state_universe
     self.unit_universe = unit_universe
+    self.unit_universe_reverse_map = self._ArrangeUnitsByMeasurement()
+    self.state_universe_reverse_map = self._ArrangeStatesByField()
+    # temporary placeholder for instance validator
+    self.connections_universe = None
+
+  def _ArrangeUnitsByMeasurement(self):
+    if not self.unit_universe:
+      print('UnitUniverse undefined in ConfigUniverse')
+      return None
+    
+    unitsByMeasurement = dict()
+    units = self.unit_universe.GetUnitsMap('')
+    for key, unit in units.items():
+        unitsByMeasurement.setdefault(unit.measurement_type, []).append(unit.name)
+    return unitsByMeasurement
+
+  def _ArrangeStatesByField(self):
+    if not self.field_universe:
+      print('FieldUniverse undefined in ConfigUniverse')
+      return None
+  
+    statesByField = dict()
+    fields = self.field_universe.GetFieldsMap('')
+    if fields:
+      for key, element in fields.items():
+        if element.states:
+          statesByField[element.name] = element.states
+    return statesByField
 
   def _GetDynamicFindings(self, filter_old_warnings):
     findings = []
@@ -90,9 +118,60 @@ class ConfigUniverse(findings_lib.Findings):
       A list of EntityTypeNamespaces or empty list if none are defined
     """
     if not self.entity_type_universe:
+      print('EntityTypeUniverse undefined in ConfigUniverse')
       return []
     return self.entity_type_universe.GetNamespaces()
 
+  def GetEntityTypeNamespace(self, namespace_name):
+    """Get entity type namespace_name in this universe if defined.
+
+    Returns:
+      A namespace name or None if not defined
+    """
+    if not self.entity_type_universe:
+      print('EntityTypeUniverse undefined in ConfigUniverse')
+      return None
+    return self.entity_type_universe.GetNamespace(namespace_name)
+
+  def GetEntityType(self, namespace_name, typename):
+    """Finds entity_type by namespace and typename and returns it or None.
+
+    Returns:
+      An entity_type or None if not defined
+    """
+    if not self.entity_type_universe:
+      print('EntityTypeUniverse undefined in ConfigUniverse')
+      return None
+    return self.entity_type_universe.GetEntityType(namespace_name, typename)
+
+  def GetUnitsMapByMeasurement(self, field_name):
+    """Returns a set of possible units by a measurement_field. None if a state.
+
+    Args:
+      field_name: string.
+		"""
+    if not self.unit_universe_reverse_map:
+      print('UnitUniverse undefined in ConfigUniverse')
+      return None
+    subfields = field_name.split('_')
+    # if the last element is numeric need to remove it
+    while subfields[-1].isnumeric():
+      subfields.pop()
+      
+    if subfields[-1] not in ['status', 'label', 'mode', 'counter', 'timestamp']:
+      measurement_subfield = subfields[-2] # access the measurement_type subfield
+      return self.unit_universe_reverse_map.get(measurement_subfield)
+
+  def GetStatesByField(self, field_name):
+    """Returns a set of possible states by a field. None if a state.
+
+    Args:
+      field_name: string.
+		"""
+    if not self.state_universe_reverse_map:
+      print('StateUniverse undefined in ConfigUniverse')
+      return None
+    return self.state_universe_reverse_map.get(field_name)
 
 def BuildUniverse(config):
   """Verifies that the ontology config is consistent and valid.
@@ -560,8 +639,7 @@ def RunPresubmit(unmodified, modified_base, modified_client):
 
   """
 
-  findings, _ = _ValidateConfigInner(unmodified, modified_base, modified_client)
-
+  findings, _ = _ValidateConfigInner(unmodified, modified_base, modified_client, False)
   return findings
 
 
@@ -595,6 +673,30 @@ def _PrintType(ns, et):
     print('  HAS REDUNDANT LOCAL FIELDS')
 
 
+def PrintFindings(findings, filter_text):
+  """Prints the findings of the ontology validation
+
+  Args:
+    findings: a list of Finding objects.
+    filter_text: command line arguments. The only available argument is
+      'match:<value>' which will simply perform a simple string 'contains' on
+      the finding output and cause only matching findings to print.
+
+  """
+  findings_by_file = OrganizeFindingsByFile(findings)
+  for filepath in findings_by_file:
+    findings_for_file = findings_by_file[filepath]
+    if not findings_for_file:
+      print('no Findings in {0}'.format(filepath))
+      continue
+    print('Findings in {0}'.format(filepath))
+    for finding in findings_for_file:
+      if not filter_text or filter_text in str(finding):
+        print(finding)
+
+  print('\n' + str(len(findings)) + ' findings.\n')
+
+
 def RunInteractive(filter_text, modified_base, modified_client):
   """Runs interactive mode when presubmit is run as a standalone application.
 
@@ -616,18 +718,8 @@ def RunInteractive(filter_text, modified_base, modified_client):
   findings, universe = _ValidateConfigInner([], modified_base, modified_client,
                                             True)
 
-  findings_by_file = OrganizeFindingsByFile(findings)
-  for filepath in findings_by_file:
-    findings_for_file = findings_by_file[filepath]
-    if not findings_for_file:
-      print('no Findings in {0}'.format(filepath))
-      continue
-    print('Findings in {0}'.format(filepath))
-    for finding in findings_for_file:
-      if not filter_text or filter_text in str(finding):
-        print(finding)
+  PrintFindings(findings, filter_text)
 
-  print('\n' + str(len(findings)) + ' findings.\n')
   end_time = time.time()
   print('Elapsed time: {0} seconds.\n'.format(str(end_time - start_time)))
 

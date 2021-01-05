@@ -1,0 +1,61 @@
+# Copyright 2020 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the License);
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#    https://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an AS IS BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+LT:
+  id: "9153673582453194752"
+  description: "Luminaire, lighting fixture. The thing that produces light."
+  is_abstract: true
+  implements:
+  - EQUIPMENT
+
+LTGW:
+  id: "16179289001151168512"
+  description: "Lighting gateway."
+  is_abstract: true
+  implements:
+  - EQUIPMENT
+
+LCM:
+  id: "6235341023917113344"
+  description: "Lighting control module, used for controlling one or more luminaires (LT)."
+  is_abstract: true
+  implements:
+  - EQUIPMENT
+
+LKP:
+  id: "885064666600964096"
+  description: "Lighting keypad."
+  is_abstract: true
+  implements:
+  - EQUIPMENT
+  - USER_INTERFACE
+
+LTB: # TODO: inherit from common device when a concrete example emerges.
+  id: "11045185425948803072"
+  description: "Battery that serves lighting devices. "
+  is_abstract: true
+  implements:
+  - EQUIPMENT
+
+LGRP:
+  id: "1191309441262157824"
+  is_abstract: true
+  description: "A group containing one or more luminaires."
+
+LS:
+  id: "15458713060771889152"
+  is_abstract: true
+  description: "Lighting system specific sensor."
+  implements:
+  - SENSOR

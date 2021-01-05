@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Tests for google3.corp.bizapps.rews.carson.ontology.rdfextractor.rdf_helper."""
+"""Tests for generator.rdf_helper."""
 
 from __future__ import absolute_import
 from __future__ import division
@@ -123,10 +123,11 @@ class RdfHelperLibTest(absltest.TestCase):
                             rdflib.OWL.DatatypeProperty)
 
     graph = rdflib.Graph()
-    updated_graph, data_property_object_returned = rdf_helper.CreateDataPropertyInGraph(
-        graph,
-        data_property_name='property_name',
-        data_property_description='description')
+    updated_graph, data_property_object_returned = \
+        rdf_helper.CreateDataPropertyInGraph(
+            graph,
+            data_property_name='property_name',
+            data_property_description='description')
 
     self.assertEqual(data_property_object_returned, data_property_object)
     self.assertIn(data_property_object, updated_graph)
@@ -142,10 +143,11 @@ class RdfHelperLibTest(absltest.TestCase):
                             rdflib.OWL.DatatypeProperty)
 
     graph = rdflib.Graph()
-    updated_graph, data_property_object_returned = rdf_helper.CreateDataPropertyInGraph(
-        graph,
-        data_property_name='property_name',
-        data_property_description=None)
+    updated_graph, data_property_object_returned = \
+        rdf_helper.CreateDataPropertyInGraph(
+            graph,
+            data_property_name='property_name',
+            data_property_description=None)
 
     self.assertEqual(data_property_object_returned, data_property_object)
     self.assertIn(data_property_object, updated_graph)

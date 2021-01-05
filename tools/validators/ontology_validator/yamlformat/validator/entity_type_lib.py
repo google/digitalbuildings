@@ -72,7 +72,7 @@ class EntityTypeUniverse(findings_lib.Findings):
     return self.type_namespaces_map[namespace_name].GetType(typename)
 
   def GetNamespace(self, namespace_name):
-    """Finds namesepace in the universe by name and returns it or None."""
+    """Finds namespace in the universe by name and returns it or None."""
     return self.type_namespaces_map.get(namespace_name, None)
 
   def GetNamespaces(self):
@@ -524,6 +524,33 @@ class EntityType(findings_lib.Findings):
         return tmp
       self._all_fields = tmp
     return self._all_fields
+
+
+  def HasField(self, fully_qualified_fieldname, run_unsafe=False):
+    """Returns a boolean if a field is present or not
+    
+    Args:
+      fully_qualified_fieldname: a fully qualified names for example:
+      "HVAC/run_status_1".
+      run_unsafe: set true to run against a type before fields are fully
+        expanded.  Running in this mode does not memoize the result.
+    Returns:
+      true if the field is present, false otherwise.
+    """
+    fqf_parsed = fully_qualified_fieldname.split('/')
+    if len(fqf_parsed) == 1:
+      print('Type improperly formatted, a namespace is missing: '
+            , fqf_parsed)
+      raise TypeError('Type improperly formatted, a namespace is missing: '
+                      , fqf_parsed)
+
+    if len(fqf_parsed) > 2:
+      print('Type improperly formatted: ', fqf_parsed)
+      raise TypeError('Type improperly formatted, a namespace is missing: '
+                    , fqf_parsed)
+    all_fields = self.GetAllFields()
+    return fully_qualified_fieldname in all_fields
+
 
   def _ValidateType(self, local_field_names):
     """Validates that the entity type is formatted correctly.
