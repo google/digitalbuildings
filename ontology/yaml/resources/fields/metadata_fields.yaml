@@ -15,7 +15,7 @@
 ## Metadata Field Definitions
 
 literals:
-# Labels: names and manufacturfer codes only
+# Labels: names and manufacturer codes only
 - manufacturer_label
 - model_label
 - zone_use_label # Indicates the type of zone (e.g. lab, office, etc.)
