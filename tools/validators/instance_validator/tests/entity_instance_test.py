@@ -24,7 +24,7 @@ from validate import instance_parser
 from absl.testing import absltest
 from os import path
 
-_TEST_DIR = path.dirname(path.relpath(__file__))
+_TEST_DIR = path.dirname(path.realpath(__file__))
 _RESOURCES = path.join('..', '..', '..', '..', 'ontology', 'yaml', 'resources')
 _DEFAULT_ONTOLOGY_LOCATION = path.abspath(path.join(_TEST_DIR, _RESOURCES))
 _TESTCASE_PATH = path.join(_TEST_DIR, 'fake_instances')
@@ -34,7 +34,7 @@ class EntityInstanceTest(absltest.TestCase):
   @classmethod
   def setUpClass(cls):
     cls._universe = generate_universe.BuildUniverse(_DEFAULT_ONTOLOGY_LOCATION)
-    cls._universe.connections_universe = set(['CONTAINS', 'CONTROLS', 'FEEDS'])
+    cls._universe.connections_universe = {'CONTAINS', 'CONTROLS', 'FEEDS'}
 
   def testValidateGoodExample(self):
     parsed = instance_parser.ParseYaml(
