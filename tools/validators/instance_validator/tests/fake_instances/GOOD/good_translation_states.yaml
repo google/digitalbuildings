@@ -28,3 +28,7 @@ DMP_EDM-17:
       states:
         OPEN: "1"
         CLOSED: "0"
+
+UK-LON-S2:
+  type: FACILITIES/BUILDING
+  id: FACILITIES/123456

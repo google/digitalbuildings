@@ -27,3 +27,7 @@ CHWS_WDT-17:
     thermal_power_capacity: "t_p_c_1" #optional
     differential_pressure_specification: "d_p_s_1" #optional
     #flowrate_requirement optional missing
+
+UK-LON-S2:
+  type: FACILITIES/BUILDING
+  id: FACILITIES/123456

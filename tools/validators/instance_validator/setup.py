@@ -27,7 +27,9 @@ setup(
            'Charbel Kaed,'
            'Nigel Kilmer',
     packages=find_packages(),
-    install_requires=['protobuf>=3.14.0','strictyaml',
-                      'google-cloud-pubsub', 'google-auth'],
+    install_requires=['protobuf>=3.14.0',
+                      'strictyaml>=1.1.1',
+                      'google-cloud-pubsub',
+                      'google-auth'],
     python_requires='>=3.6',
 )
