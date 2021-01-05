@@ -6,9 +6,13 @@ name: Ontology Type Validator
 on:
   push:
     branches: [ master ]
+    paths: 
+      - ontology/yaml/**
 
   pull_request:
     branches: [ master ]
+    paths: 
+      - ontology/yaml/**
 
 jobs:
   build:
@@ -16,7 +20,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [macos-latest, ubuntu-latest]
+        os: [macos-latest, ubuntu-latest, windows-latest]
 
     steps:
     - uses: actions/checkout@v2

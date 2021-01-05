@@ -13,10 +13,27 @@
 # limitations under the License.
 
 
-EXIT:
-  description: "Illuminated exit signs"
-  is_abstract: true
+LT_SS:
+  id: "15296583474186551296"
+  description: "Standard light."
+  is_canonical: true
   implements:
   - LT
+  - SS
 
+LT_DC:
+  id: "18377045619307970560"
+  description: "Even more standaard light with dimming control."
+  is_canonical: true
+  implements:
+  - LT
+  - DC 
 
+LT_DC_SC:
+  id: "16395461783264952320"
+  description: "Standard light with dimming control and scene control."
+  is_canonical: true
+  implements:
+  - LT
+  - DC 
+  - SC

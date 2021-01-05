@@ -20,12 +20,12 @@ they are confusing feel free to post an issue in the project.
 - [Model Instance Configuration](#model-instance-configuration)
   * [Key Concepts](#key-concepts)
   * [Typical Data Elements](#typical-data-elements)
-  * [Configuration Detail {#configuration-detail}](#configuration-detail---configuration-detail-)
-    + [Contents {#contents}](#contents---contents-)
+  * [Configuration Detail](#configuration-detail)
+    + [Contents](#contents)
     + [Config Format](#config-format)
     + [Spaces](#spaces)
     + [Devices](#devices)
-      - [Reporting (Physical) Devices {#reporting-physical-devices}](#reporting--physical--devices---reporting-physical-devices-)
+      - [Reporting Physical Devices](#reporting-physical-devices)
         * [Defining Translations](#defining-translations)
           + [Translation Shortcuts](#translation-shortcuts)
           + [UDMI Short form](#udmi-short-form)
@@ -34,7 +34,7 @@ they are confusing feel free to post an issue in the project.
       - [Device Relationships](#device-relationships)
     + [Zones and Control Groups](#zones-and-control-groups)
     + [Relationships](#relationships)
-  * [Validation (Coming Soon)](#validation--coming-soon-)
+  * [Validation](#validation)
   * [Notes](#notes)
 
 ## Key Concepts
@@ -102,9 +102,9 @@ building, some elements are more or less expected in every model:
     space, if known).
 *   `CONTAINS` relationships between Buildings and floors, and floors and rooms.
 
-## Configuration Detail {#configuration-detail}
+## Configuration Detail
 
-### Contents {#contents}
+### Contents
 
 Each configuration file should contain the contents for one building (or other
 logical division of your universe). The reason for this is that the definitions
@@ -147,7 +147,6 @@ ENTITY-NAME:
         key: "pointset.points.temp_1.units"
         values:
           degrees_celsius: "degC"
-          degrees_fahrenheit: "degF"
     supply_air_isolation_damper_command:
       present_value: "points.damper_1.present_value"
       states:
@@ -211,7 +210,7 @@ Types for spaces are contained in the `FACILITIES` namespace of the ontology.
 
 ### Devices
 
-#### Reporting (Physical) Devices {#reporting-physical-devices}
+#### Reporting Physical Devices
 
 When sending data from a building via Cloud IoT, a reporting device is any
 device with its own entry in Cloud Device Manager (CDM)[^1].
@@ -250,7 +249,6 @@ FCU-123:
         key: "pointset.points.temp_1.units"
         values:
           degrees_celsius: "degC"
-          degrees_fahrenheit: "degF"
     supply_air_isolation_damper_command:
       present_value: "points.damper_1.present_value"
       states:
@@ -282,7 +280,7 @@ translation definitions:
 1.  Substitute the `translation` block with `translate_like:ENTITY-NAME` to use
     a translation that is already defined on another entity.
 2.  For devices that comply with
-    [UDMI](https://github.com/faucetsdn/daq/blob/master/schemas/udmi/README.md)
+    [UDMI](https://github.com/faucetsdn/udmi)
     a short form can be used.
 
 ###### UDMI Short form
@@ -300,7 +298,6 @@ FCU-123:
       present_value: "temp_1"
       unit_values:
         degrees_celsius: "degC"
-        degrees_fahrenheit: "degF"
     supply_air_isolation_damper_command:
       present_value: "damper_1"
       states:
@@ -310,7 +307,7 @@ FCU-123:
 
 The more compliant data the device has, the smaller the translation can be. The
 same device with Digital Building ontology standard state and unit values looks
-like:
+like (not yet supported):
 
 ```
 FCU-123:
@@ -321,7 +318,7 @@ FCU-123:
 ```
 
 A device that is UDMI compliant and uses standard values from the ontology can
-simply specify:
+simply specify (not yet supported):
 
 ```
 FCU-123:
@@ -398,14 +395,14 @@ Expanding the VAV definition from the previous section, and adding some lights:
 VAV-32:
   type: HVAC/VAV
   connections:
-  - UK-LON-6PS-1: CONTAINS
-  - AHU-123: FEEDS
+    UK-LON-6PS-1: CONTAINS
+    AHU-123: FEEDS
 
 LF-123:
   type: LIGHTING/LIGHTING_FIXTURE
   connections:
-  - UK-LON-6PS-1-1A2: CONTAINS
-  - LCG-234: HAS_PART
+    UK-LON-6PS-1-1A2: CONTAINS
+    LCG-234: HAS_PART
 ```
 
 ### Zones and Control Groups
@@ -422,15 +419,15 @@ Here are some examples:
 ZONE-123:
   type: HVAC/ZONE
   connections:
-  - UK-LON-6PS-1:CONTAINS
-  - VAV-123: FEEDS
+    UK-LON-6PS-1:CONTAINS
+    VAV-123: FEEDS
 
 # Lighting Control Group
 LCG-234:
   type: LIGHTING/SWITCH_GROUP
   connections:
-  - UK-LON-6PS-1: CONTAINS
-  - SW-456: CONTROLS
+    UK-LON-6PS-1: CONTAINS
+    SW-456: CONTROLS
 ```
 
 ### Relationships
@@ -439,10 +436,9 @@ System and spatial relationships are defined with the `connections` block.
 Connection definitions work the same way for all entities, with connections
 always defined on the target of the connection. Here's an example
 
-## Validation (Coming Soon)
+## Validation
 The building config can be machine validated for consistency and adherence to
-the rules defined in the data model. This tool is still under development and
-will be added soon.
+the rules defined in the data model. This tool is available [here](https://github.com/google/digitalbuildings/tree/master/tools/validators/instance_validator).
 
 <!-- Footnotes themselves at the bottom. -->
 

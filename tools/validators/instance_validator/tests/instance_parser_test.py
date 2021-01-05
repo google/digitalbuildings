@@ -18,35 +18,94 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
-import os
-
-import instance_parser
+from validate import instance_parser
 from absl.testing import absltest
+from os import path
 
-_TESTCASE_PATH = os.path.join('.', 'tests', 'fake_instances')
+_TEST_DIR = path.dirname(path.realpath(__file__))
+_TESTCASE_PATH = path.join(_TEST_DIR, 'fake_instances')
 
 class ParserTest(absltest.TestCase):
 
   def testInstanceValidatorDetectDuplicateKeys(self):
-    self.assertIsNone(instance_parser.parse_yaml(os.path.join(
-        _TESTCASE_PATH, 'BAD', 'bad_duplicate_keys.yaml')))
+    with self.assertRaises(SystemExit):
+      parse = instance_parser.ParseYaml(
+          path.join(_TESTCASE_PATH,
+                    'BAD',
+                    'bad_duplicate_keys.yaml'))
+      self.assertIsNone(parse)
 
   def testInstanceValidatorDetectMissingColon(self):
-    self.assertIsNone(instance_parser.parse_yaml(os.path.join(
-        _TESTCASE_PATH, 'BAD', 'bad_missing_colon.yaml')))
+    with self.assertRaises(SystemExit):
+      parse = instance_parser.ParseYaml(
+          path.join(_TESTCASE_PATH,
+                    'BAD',
+                    'bad_missing_colon.yaml'))
+      self.assertIsNone(parse)
 
   def testInstanceValidatorDetectImproperSpacing(self):
-    self.assertIsNone(instance_parser.parse_yaml(os.path.join(
-        _TESTCASE_PATH, 'BAD', 'bad_spacing.yaml')))
+    with self.assertRaises(SystemExit):
+      parse = instance_parser.ParseYaml(
+          path.join(_TESTCASE_PATH,
+                    'BAD',
+                    'bad_spacing.yaml'))
+      self.assertIsNone(parse)
 
   def testInstanceValidatorDetectImproperTabbing(self):
-    self.assertIsNone(instance_parser.parse_yaml(os.path.join(
-        _TESTCASE_PATH, 'BAD', 'bad_tabbing.yaml')))
+    with self.assertRaises(SystemExit):
+      parse = instance_parser.ParseYaml(
+          path.join(_TESTCASE_PATH,
+                    'BAD',
+                    'bad_tabbing.yaml'))
+      self.assertIsNone(parse)
 
   def testInstanceValidatorParseProperFormat(self):
-    parsed_yaml = instance_parser.parse_yaml(os.path.join(
-        _TESTCASE_PATH, 'GOOD', 'good_building_type.yaml'))
-    self.assertTrue(parsed_yaml.data)
+    parse = instance_parser.ParseYaml(
+        path.join(_TESTCASE_PATH,
+                  'GOOD',
+                  'good_building_type.yaml'))
+    self.assertIsNotNone(parse)
+
+  def testInstanceValidatorParseProperConnections(self):
+    parse = instance_parser.ParseYaml(
+        path.join(_TESTCASE_PATH,
+                  'GOOD',
+                  'good_building_connections.yaml'))
+    self.assertIsNotNone(parse)
+
+  def testInstanceValidatorParseMultipleEntities(self):
+    parse = instance_parser.ParseYaml(
+        path.join(_TESTCASE_PATH,
+                  'GOOD',
+                  'good_multi_instances.yaml'))
+    self.assertLen(parse.keys(), 3)
+    self.assertIn('AHU-11', parse.keys())
+    self.assertIn('FCU-1', parse.keys())
+    self.assertIn('FCU-10', parse.keys())
+
+  def testInstanceValidatorDetectImproperTranslationCompliance(self):
+    with self.assertRaises(SystemExit):
+      parse = instance_parser.ParseYaml(
+          path.join(_TESTCASE_PATH,
+                    'BAD',
+                    'bad_translation_compliant.yaml'))
+      self.assertIsNone(parse)
+
+  def testInstanceValidatorDetectImproperTranslationKeys(self):
+    with self.assertRaises(SystemExit):
+      parse = instance_parser.ParseYaml(
+          path.join(_TESTCASE_PATH,
+                    'BAD',
+                    'bad_translation_keys.yaml'))
+      self.assertIsNone(parse)
+
+  def testInstanceValidatorDetectImproperUnitsKeys(self):
+    with self.assertRaises(SystemExit):
+      parse = instance_parser.ParseYaml(
+          path.join(_TESTCASE_PATH,
+                    'BAD',
+                    'bad_translation_units_format.yaml'))
+      self.assertIsNone(parse)
 
 if __name__ == '__main__':
   absltest.main()

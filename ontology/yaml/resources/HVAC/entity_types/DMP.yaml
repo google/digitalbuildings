@@ -31,6 +31,7 @@ DMP_EDM:
   - EDM
 
 DMP_ED:
+  id: "8312728606623137792"
   description: "Exhaust control damper."
   is_canonical: true
   uses:
@@ -40,12 +41,21 @@ DMP_ED:
   - ED
 
 DMP_SDBPC:
+  id: "6105964789211594752"
   description: "Exhaust control damper."
   is_canonical: true
   implements:
   - DMP
   - SDBPC
 
+DMP_SDBPC_RMM:
+  id: "5496750685028352000"
+  description: "Back-pressure modulating damper (for pressure control of an AHU)."
+  is_canonical: true
+  implements:
+  - DMP
+  - SDBPC
+  - RMM
 
 
 ###################################

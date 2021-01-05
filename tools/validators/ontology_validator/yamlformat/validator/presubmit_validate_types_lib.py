@@ -62,12 +62,40 @@ class ConfigUniverse(findings_lib.Findings):
 
   def __init__(self, entity_type_universe, field_universe, subfield_universe,
                state_universe, unit_universe):
-    super(ConfigUniverse, self).__init__()
+    super().__init__()
     self.entity_type_universe = entity_type_universe
     self.field_universe = field_universe
     self.subfield_universe = subfield_universe
     self.state_universe = state_universe
     self.unit_universe = unit_universe
+    self.unit_universe_reverse_map = self._ArrangeUnitsByMeasurement()
+    self.state_universe_reverse_map = self._ArrangeStatesByField()
+    # temporary placeholder for instance validator
+    self.connections_universe = None
+
+  def _ArrangeUnitsByMeasurement(self):
+    if not self.unit_universe:
+      print('UnitUniverse undefined in ConfigUniverse')
+      return None
+    
+    unitsByMeasurement = dict()
+    units = self.unit_universe.GetUnitsMap('')
+    for key, unit in units.items():
+        unitsByMeasurement.setdefault(unit.measurement_type, []).append(unit.name)
+    return unitsByMeasurement
+
+  def _ArrangeStatesByField(self):
+    if not self.field_universe:
+      print('FieldUniverse undefined in ConfigUniverse')
+      return None
+  
+    statesByField = dict()
+    fields = self.field_universe.GetFieldsMap('')
+    if fields:
+      for key, element in fields.items():
+        if element.states:
+          statesByField[element.name] = element.states
+    return statesByField
 
   def _GetDynamicFindings(self, filter_old_warnings):
     findings = []
@@ -115,6 +143,35 @@ class ConfigUniverse(findings_lib.Findings):
       print('EntityTypeUniverse undefined in ConfigUniverse')
       return None
     return self.entity_type_universe.GetEntityType(namespace_name, typename)
+
+  def GetUnitsMapByMeasurement(self, field_name):
+    """Returns a set of possible units by a measurement_field. None if a state.
+
+    Args:
+      field_name: string.
+		"""
+    if not self.unit_universe_reverse_map:
+      print('UnitUniverse undefined in ConfigUniverse')
+      return None
+    subfields = field_name.split('_')
+    # if the last element is numeric need to remove it
+    while subfields[-1].isnumeric():
+      subfields.pop()
+      
+    if subfields[-1] not in ['status', 'label', 'mode', 'counter', 'timestamp']:
+      measurement_subfield = subfields[-2] # access the measurement_type subfield
+      return self.unit_universe_reverse_map.get(measurement_subfield)
+
+  def GetStatesByField(self, field_name):
+    """Returns a set of possible states by a field. None if a state.
+
+    Args:
+      field_name: string.
+		"""
+    if not self.state_universe_reverse_map:
+      print('StateUniverse undefined in ConfigUniverse')
+      return None
+    return self.state_universe_reverse_map.get(field_name)
 
 def BuildUniverse(config):
   """Verifies that the ontology config is consistent and valid.

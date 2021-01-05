@@ -1,0 +1,52 @@
+# Copyright 2020 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the License);
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#    https://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an AS IS BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+### ABSTRACT TYPES
+
+
+GASDET:
+  id: "16611634565378736128"
+  description: "Basic natural gas leak monitoring."
+  is_abstract: true
+  uses:
+  - gas_leak_detection_alarm
+
+WLDS:
+  id: "1407482223375941632"
+  description: "Basic watre leak monitoring."
+  is_abstract: true
+  uses:
+  - water_leak_detection_alarm
+
+BCM:
+  id: "3767368428118081536"
+  description: "Broken cable monitoring."
+  is_abstract: true
+  uses:
+  - broken_cable_alarm
+
+BC2X:
+  id: "12198106930555650048"
+  description: "Broken cable monitoring."
+  is_abstract: true
+  uses:
+  - broken_cable_alarm_1
+  - broken_cable_alarm_2
+
+LPA: 
+  id: "13873445991937474560"
+  description: "Loss of power alarming."
+  is_abstract: true
+  uses:
+  - lost_power_alarm

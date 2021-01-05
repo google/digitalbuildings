@@ -33,6 +33,15 @@ PMP_SS_VSC:
   - SS
   - VSC
 
+PMP_SS_VSC_WDPM:
+  id: "11113967574847586304"
+  description: "Variable speed pump with differential pressure monitoring."
+  is_canonical: true
+  implements:
+  - PMP
+  - SS
+  - VSC
+  - WDPM
 
 ###################################
 ### Existing Non-standard Types ###
@@ -56,11 +65,3 @@ PMP_S_VSCF_ISV:
   - mixing_valve_percentage_command
   - chilled_supply_water_temperature_setpoint
   - chilled_supply_water_temperature_sensor
-
-PMP_US_MTV_1667_1:
-  id: "8295303546346143744"
-  description: "Non-standard type for 1667 PCWPs and CHWPs"
-  implements:
-  - PMP_SS_VSC
-  uses:
-  - differential_pressure_sensor

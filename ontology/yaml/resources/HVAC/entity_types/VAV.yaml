@@ -320,6 +320,7 @@ VAV_SD_DSP_HWZC_CO2C2X:
   - CO2C2X
 
 VAV_PDSCV_VOCC_ZHM_CO2C:
+  id: "10717650807638982656"
   description: "Pressure dependent ventilation control VAV."
   is_canonical: true
   implements:
@@ -329,6 +330,43 @@ VAV_PDSCV_VOCC_ZHM_CO2C:
   - ZHM
   - CO2C
 
+VAV_PDSCV_CO2C_VOCPC_ZHM_RMM:
+  id: "13765359600880582656"
+  description: "VAV with pressure dependent supply valve control, for zone humidity and VOC control."
+  is_canonical: true
+  implements:
+  - VAV
+  - PDSCV
+  - CO2C
+  - VOCPC
+  - ZHM
+  - RMM
+
+VAV_ED_RMM:
+  id: "5082419519310266368"
+  description: "Exhaust control VAV."
+  is_canonical: true
+  implements:
+  - VAV
+  - ED
+  - RMM
+
+VAV_UNDEFINED:
+  id: "7728847250343854080"
+  description: "VAV with no defined fields. Note this is non-canonical, as it is typically expected that telemetry will normally be available."
+  implements:
+  - VAV
+
+VAV_SD_DSP_HWDC_DSPZDHC:
+  id: "449443657234251776"
+  description: "Single duct reheat VAV with dual setpoint temperature and humidity control."
+  is_canonical: true
+  implements:
+  - VAV
+  - SD
+  - DSP
+  - HWDC
+  - DSPZDHC
 
 ###################################
 ### Existing Non-standard Types ###

@@ -1,0 +1,69 @@
+# Copyright 2020 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the License);
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#    https://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an AS IS BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+### ABSTRACT TYPES
+
+
+PWM:
+  id: "17470344350578769920"
+  description: "Very basic power and enrgy monitoring only."
+  is_abstract: true
+  opt_uses:
+  - apparent_power_sensor
+  - reactive_power_sensor
+  - powerfactor_sensor
+  - line_frequency_sensor
+  uses:
+  - power_sensor
+  - energy_accumulator
+
+AVCM:
+  id: "12498370361961742336"
+  description: "Average phase (line) level voltage and current monitoring. "
+  is_abstract: true
+  uses:
+  - average_inter_line_voltage_sensor # Line to line
+  - average_line_neutral_voltage_sensor
+  - average_line_current_sensor
+
+PLPM:
+  id: "14407896603966832640"
+  description: "Phase-level power monitoring."
+  is_abstract: true
+  opt_uses:
+  - phase1_powerfactor_sensor
+  - phase2_powerfactor_sensor
+  - phase3_powerfactor_sensor
+  - phase1_apparent_power_sensor
+  - phase2_apparent_power_sensor
+  - phase3_apparent_power_sensor
+  uses:
+  - phase1_power_sensor
+  - phase2_power_sensor
+  - phase3_power_sensor
+
+PVCM:
+  id: "11021189684184219648"
+  description: "Phase-level current and voltage monitoring."
+  is_abstract: true
+  uses:
+  - phase1_line_current_sensor
+  - phase2_line_current_sensor
+  - phase3_line_current_sensor
+  - phase1_phase2_line_voltage_sensor
+  - phase1_phase3_line_voltage_sensor
+  - phase2_phase3_line_voltage_sensor
+  - phase1_neutral_line_voltage_sensor
+  - phase2_neutral_line_voltage_sensor
+  - phase3_neutral_line_voltage_sensor

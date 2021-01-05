@@ -1,0 +1,49 @@
+# Copyright 2020 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the License);
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#    https://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an AS IS BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+
+########################
+### Canonical Types  ###
+########################
+
+# This document specific types for lighting system sensors (LS). These are used when sensors are not
+# tied directly to an individual luminaire and must be modeled as stand-alone devices.
+
+LS_LPS:
+  id: "12720524487330627584"
+  description: "Lighting system photocell sensor."
+  is_canonical: true
+  implements:
+  - LS
+  uses:
+  - illuminance_sensor
+
+LS_LMS:
+  id: "8541184033130807296"
+  description: "Lighting system motion sensor."
+  is_canonical: true
+  implements:
+  - LS
+  - MS
+
+
+LS_MTS:
+  id: "12936697269444411392"
+  description: "Lighting multi-sensor, for temperature and brightness."
+  is_canonical: true
+  implements:
+  - LS
+  uses:
+  - illuminance_sensor
+  - zone_air_temperature_sensor

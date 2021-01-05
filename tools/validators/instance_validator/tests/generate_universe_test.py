@@ -22,27 +22,24 @@ from validate import generate_universe
 from absl.testing import absltest
 from os import path
 
-_DEFAULT_ONTOLOGY_LOCATION = path.join('..', '..', '..',
-                                       'ontology', 'yaml', 'resources')
-_BAD_MODIFIED_ONTOLOGY = path.join('.', 'fake_resources', 'BAD', 'BAD_FORMAT')
-_NONEXISTENT_LOCATION = path.join('..', 'nonexistent')
-_EMPTY_FOLDER = path.join('.', 'fake_resources', 'BAD', 'BAD_EMPTY')
+_TEST_DIR = path.dirname(path.realpath(__file__))
+_RESOURCES = path.join('..', '..', '..', '..', 'ontology', 'yaml', 'resources')
+_DEFAULT_ONTOLOGY_LOCATION = path.abspath(path.join(_TEST_DIR, _RESOURCES))
+_BAD_MODIFIED_ONTOLOGY = path.join(_TEST_DIR,
+                                   'fake_resources', 'BAD', 'BAD_FORMAT')
+_NONEXISTENT_LOCATION = path.join(_TEST_DIR, 'nonexistent')
+_EMPTY_FOLDER = path.join(_TEST_DIR, 'fake_resources', 'BAD', 'BAD_EMPTY')
 
 class GenerateUniverseTest(absltest.TestCase):
 
-  def setUp(self):
-    self.universe = generate_universe.BuildUniverse()
-
   def testCanGenerateUniverse(self):
-    self.assertTrue(self.universe)
+    universe = generate_universe.BuildUniverse(_DEFAULT_ONTOLOGY_LOCATION)
+    self.assertTrue(universe)
 
   def testCatchInvalidModifiedOntology(self):
-    self.assertRaises(Exception,
-                      generate_universe.BuildUniverse(_BAD_MODIFIED_ONTOLOGY))
-
-  def testModifiedTypesFilepathWorks(self):
-    test_universe = generate_universe.BuildUniverse(_DEFAULT_ONTOLOGY_LOCATION)
-    self.assertTrue(test_universe)
+    with self.assertRaises(Exception) as context:
+      generate_universe.BuildUniverse(_BAD_MODIFIED_ONTOLOGY)
+    self.assertIn('no longer valid', str(context.exception))
 
   def testModifiedTypesCatchesNonexistent(self):
     self.assertRaises(Exception,

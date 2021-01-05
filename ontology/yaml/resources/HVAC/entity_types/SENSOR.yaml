@@ -1,0 +1,37 @@
+# Copyright 2020 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the License);
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#    https://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an AS IS BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+########################
+### Canonical Types  ###
+########################
+
+
+SENSOR_ZTM_ZHM_CO2M:
+  id: "11999948546951348224"
+  description: "Zone air property sensor (humidity, temperature, CO2 level)."
+  is_canonical: true
+  implements:
+  - /SENSOR # Inherits from global namespace
+  - ZTM
+  - ZHM
+  - CO2M
+
+SENSOR_ZTM_ZHM:
+  id: "13601541164434980864"
+  description: "Zone air property sensor (humidity, temperature)."
+  is_canonical: true
+  implements:
+  - /SENSOR # Inherits from global namespace
+  - ZTM
+  - ZHM
