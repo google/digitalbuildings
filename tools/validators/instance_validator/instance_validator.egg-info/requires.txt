@@ -1,0 +1,4 @@
+protobuf>=3.14.0
+strictyaml
+google-cloud-pubsub
+google-auth
