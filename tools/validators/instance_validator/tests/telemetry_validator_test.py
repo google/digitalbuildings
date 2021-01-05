@@ -96,8 +96,8 @@ with open(path.join(_TELEMETRY_PATH,
 # but instance parser expecting a file
 
 def _CreateEntityInstances(yaml_filename):
-  parsed_yaml = instance_parser.parse_yaml(path.join(_INSTANCES_PATH,
-                                                     yaml_filename))
+  parsed_yaml = instance_parser.ParseYaml(path.join(_INSTANCES_PATH,
+                                                    yaml_filename))
   entities = {}
   for entity_name, entity_yaml in parsed_yaml.items():
     entities[entity_name] = entity_instance.EntityInstance(entity_yaml)

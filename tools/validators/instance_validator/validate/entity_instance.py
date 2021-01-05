@@ -52,26 +52,26 @@ class EntityInstance(findings_lib.Findings):
 
     self.id = None
     if ID_KEY in entity_yaml.keys():
-      self.id = entity_yaml[ID_KEY].data
+      self.id = entity_yaml[ID_KEY]
 
     self.namespace, self.type_name = None, None
     if TYPE_KEY in entity_yaml.keys():
       self.namespace, self.type_name = self._ParseTypeString(
-          entity_yaml[TYPE_KEY].data)
+          entity_yaml[TYPE_KEY])
 
     self.translation = None
     if TRANSLATION_KEY in entity_yaml.keys():
       self.translation = self._ParseTranslation(
-          entity_yaml[TRANSLATION_KEY].data)
+          entity_yaml[TRANSLATION_KEY])
 
     self.connections = None
     if CONNECTIONS_KEY in entity_yaml.keys():
       self.connections = self._ParseConnections(
-          entity_yaml[CONNECTIONS_KEY].data)
+          entity_yaml[CONNECTIONS_KEY])
 
     self.links = None
     if LINKS_KEY in entity_yaml.keys():
-      self.links = self._ParseLinks(entity_yaml[LINKS_KEY].data)
+      self.links = self._ParseLinks(entity_yaml[LINKS_KEY])
 
 
   def _ParseTypeString(self, type_str):
