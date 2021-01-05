@@ -39,9 +39,11 @@ def deserialize(yaml_files):
   """
 
   parsed_yaml = {}
+  print('Validating syntax please wait ...')
   for yaml_file in yaml_files:
     print('Parsing file: {0}, please wait ...'.format(yaml_file))
-    parsed_yaml.update(instance_parser.parse_yaml(yaml_file))
+    parsed_yaml.update(instance_parser.ParseYaml(yaml_file))
+
     print('Syntax checks passed for file: {0}'.format(yaml_file))
 
   entity_instances = {}
