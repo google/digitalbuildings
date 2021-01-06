@@ -9,143 +9,143 @@
         <script src="https://unpkg.com/pbf@3.0.5/dist/pbf.js"></script>
         <script src="https://unpkg.com    hree@0.118.3/build    hree.js"></script>
         <script src="https://unpkg.com/earcut@2.2.2/dist/earcut.min.js"></script>
- g<script src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-loading-overlay@2.1.7/dist/loadingoverlay.min.js"></script>
- g<script src="../../ibr_sdk    emp/ibr_pb_browser.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-loading-overlay@2.1.7/dist/loadingoverlay.min.js"></script>
+    <script src="../../ibr_sdk    emp/ibr_pb_browser.js"></script>
         <script src="../../ibr_sdk/dist/main.js"></script>
         <link href="index.css" rel="stylesheet">
         <link href="slider.css" rel="stylesheet">
     </head>
     <script>
- glet ibrObject;
- glet floorsToSave = [];
+      let ibrObject;
+      let floorsToSave = [];
 
- g/**
- g * Create binary file from data and download the file in browser.
- g * @param {String} filename name of the binary file that will be created.
- g * @param {Buffer} bin binary data that will be saved in the file.
- g */
- gfunction download(filename, ibrObject, floorsToSave) {
- g  const bin = IBRSDK.saveToBuffer(ibrObject, floorsToSave);
- g  const element = document.createElement('a');
- g  const blob = new Blob([bin], {type: 'application/octet-stream'});
- g  const url = window.URL.createObjectURL(blob);
- g  element.setAttribute('href', url);
- g  element.setAttribute('download', filename+'.ibr');
- g  element.style.display = 'none';
- g  document.body.appendChild(element);
- g  element.click();
- g  document.body.removeChild(element);
- g}
- g/**
- g   * Parse the input IBR file using IBRSDK.
- g   */
- g  function onChooseFile() {
- g    $.LoadingOverlay('show');
+          /**
+     * Create binary file from data and download the file in browser.
+     * @param {String} filename name of the binary file that will be created.
+     * @param {Buffer} bin binary data that will be saved in the file.
+     */
+    function download(filename, ibrObject, floorsToSave) {
+      const bin = IBRSDK.saveToBuffer(ibrObject, floorsToSave);
+      const element = document.createElement('a');
+      const blob = new Blob([bin], {type: 'application/octet-stream'});
+      const url = window.URL.createObjectURL(blob);
+      element.setAttribute('href', url);
+      element.setAttribute('download', filename+'.ibr');
+      element.style.display = 'none';
+      document.body.appendChild(element);
+      element.click();
+      document.body.removeChild(element);
+    }
+      /**
+       * Parse the input IBR file using IBRSDK.
+       */
+      function onChooseFile() {
+        $.LoadingOverlay('show');
 
- g    setTimeout(function() {
- g      if (typeof window.FileReader !== 'function') {
- g        throw new Error('The file API isn\'t supported on this browser.');
- g      }
+        setTimeout(function() {
+          if (typeof window.FileReader !== 'function') {
+            throw new Error('The file API isn\'t supported on this browser.');
+          }
 
- g      const file = document.getElementById('fileForUpload').files[0];
- g      const filename = document.getElementById('fileForUpload')
- g          .value.split('\\')
- g          .pop()
- g          .split('.')[0];
- g      if (file) {
- g        const fr = new FileReader();
- g        fr.onload = function(evt) {
- g          const bin = evt.target.result;
- g          ibrObject = IBRSDK.init(bin, filename);
- g          rerenderSidebar();
- g        };
- g        fr.readAsArrayBuffer(file);
- g      }
- g    }, 500);
+          const file = document.getElementById('fileForUpload').files[0];
+          const filename = document.getElementById('fileForUpload')
+              .value.split('\\')
+              .pop()
+              .split('.')[0];
+          if (file) {
+            const fr = new FileReader();
+            fr.onload = function(evt) {
+              const bin = evt.target.result;
+              ibrObject = IBRSDK.init(bin, filename);
+              rerenderSidebar();
+            };
+            fr.readAsArrayBuffer(file);
+          }
+        }, 500);
 
- g    $.LoadingOverlay('hide');
- g  }
+        $.LoadingOverlay('hide');
+      }
 
- g  /**
- g   * Calls rerender to the sidebar.
- g   */
- g  function rerenderSidebar() {
- g    $.LoadingOverlay('show');
+      /**
+       * Calls rerender to the sidebar.
+       */
+      function rerenderSidebar() {
+        $.LoadingOverlay('show');
 
- g    setTimeout(function() {
+        setTimeout(function() {
 
- g      IBRSDK.renderAndCreateSidebar(
- g          ibrObject,
- g          document.getElementById('mainCanvas'),
- g          document.getElementById('layerList'),
- g          floorsToSave);
- g      if (document.getElementById('dwn-btn').getAttribute('listener')
- g          !== 'true') {
- g        document.getElementById('dwn-btn')
- g          .addEventListener('click', function() {
- g            download(
- g                document.getElementById('filename').value,
- g                ibrObject,
- g                floorsToSave);
- g          });
- g        document.getElementById('dwn-btn').setAttribute('listener', 'true');
- g      }
- g    }, 500);
+          IBRSDK.renderAndCreateSidebar(
+              ibrObject,
+              document.getElementById('mainCanvas'),
+              document.getElementById('layerList'),
+              floorsToSave);
+          if (document.getElementById('dwn-btn').getAttribute('listener')
+              !== 'true') {
+            document.getElementById('dwn-btn')
+              .addEventListener('click', function() {
+                download(
+                    document.getElementById('filename').value,
+                    ibrObject,
+                    floorsToSave);
+              });
+            document.getElementById('dwn-btn').setAttribute('listener', 'true');
+          }
+        }, 500);
 
- g    if (document.getElementById('mode').checked) {
- g      document.getElementById('dwn-btn').style.display = 'block';
- g      document.getElementById('filename').style.display = 'block';
- g      document.getElementById('export-inst').style.display = 'block';
- g    } else {
- g      document.getElementById('dwn-btn').style.display = 'none';
- g      document.getElementById('filename').style.display = 'none';
- g      document.getElementById('export-inst').style.display = 'none';
- g    }
+        if (document.getElementById('mode').checked) {
+          document.getElementById('dwn-btn').style.display = 'block';
+          document.getElementById('filename').style.display = 'block';
+          document.getElementById('export-inst').style.display = 'block';
+        } else {
+          document.getElementById('dwn-btn').style.display = 'none';
+          document.getElementById('filename').style.display = 'none';
+          document.getElementById('export-inst').style.display = 'none';
+        }
 
- g    $.LoadingOverlay('hide');
- g  }
+        $.LoadingOverlay('hide');
+      }
     </script>
     <body>
- g<div id="header">
- g<div id="title">IBR Demo</div>
+    <div id="header">
+      <div id="title">IBR Demo</div>
 
- g<label id="upload-button-container" htmlFor="fileForUpload">
- g<input type="file" id="fileForUpload" onChange="onChooseFile()" />
- g<a id="upload-button" class="disable">Upload IBR file</a>
- g</label>
+      <label id="upload-button-container" htmlFor="fileForUpload">
+        <input type="file" id="fileForUpload" onChange="onChooseFile()" />
+        <a id="upload-button" class="disable">Upload IBR file</a>
+      </label>
 
- g<div class="mode-toggle">
- g<p>Visual</p>
- g<label class="switch">
- g<input type="checkbox" id="mode" onChange="rerenderSidebar()" />
- g<span class="slider round"></span>
- g</label>
- g<p>Export</p>
- g</div>
- g</div>
+      <div class="mode-toggle">
+        <p>Visual</p>
+        <label class="switch">
+          <input type="checkbox" id="mode" onChange="rerenderSidebar()" />
+          <span class="slider round"></span>
+        </label>
+        <p>Export</p>
+      </div>
+    </div>
 
- g<div id="canvasContainer">
-        	<div id="mainCanvas"/></div>
- g</div>
+    <div id="canvasContainer">
+          <div id="mainCanvas"/></div>
+    </div>
 
- g<div id="sideBar" class="sidebar">
- g<h2 style="text-align: center;" id="sidebar-title"></h2>
- g<div id="layerListContainer">
- g<ul id="layerList"></ul>
- g</div>
- g<div class="saveToIbr">
- g            <div id="export-inst" style="display: none;">
+    <div id="sideBar" class="sidebar">
+      <h2 style="text-align: center;" id="sidebar-title"></h2>
+      <div id="layerListContainer">
+        <ul id="layerList"></ul>
+      </div>
+      <div class="saveToIbr">
+              <div id="export-inst" style="display: none;">
                 <h4>To Export selected floors as a separate IBR: </h4>
                 <p>1. Check the checkbox in front of each floor structure you would like to include in the new IBR file<br>
                 2. Give a name to the exported IBR<br>
                 3. Click on the 'Save and Export to IBR' button</p>
- g            </div>
- g            <div class="buttons">
- g<input type="text" id="filename" placeholder="Output File Name" style="display: none;"/>
- g<button id="dwn-btn" style="display: none;">Save and Export to IBR</button>
- g</div>
- g</div>
- g</div>
+              </div>
+              <div class="buttons">
+          <input type="text" id="filename" placeholder="Output File Name" style="display: none;"/>
+          <button id="dwn-btn" style="display: none;">Save and Export to IBR</button>
+        </div>
+      </div>
+    </div>
     </body>
  
 </html>
