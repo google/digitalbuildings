@@ -296,3 +296,17 @@ HWSRSR:
   is_abstract: true
   implements:
   - RSR
+
+CRAC:
+  id: ""
+  description: "A computer room air handler, typically consisting of a constant volume fan and DX coil to maintain cold aisle temperature."
+  is_abstract: true
+  implements:
+  - EQUIPMENT
+
+  CRAH:
+  id: ""
+  description: "A computer room air handler, typically consisting of a VFD to maintain static pressure under floor or in duct as well as a chilled water coil to maintain cold aisle temperature."
+  is_abstract: true
+  implements:
+  - EQUIPMENT
