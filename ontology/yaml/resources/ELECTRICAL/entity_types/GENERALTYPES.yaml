@@ -12,6 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# Power Flow, typically:
+# GENERATOR > ATS/STS > UPS > PDU > RPP > Rack Power Strip > Rack Equipment
+
 BATT:
   id: "2974734893700874240"
   description: "Tag for all batteries (devices used to store and discharge power for the use of a device or group of devices)."
@@ -22,6 +25,41 @@ BATT:
 UPS:
   id: "9261759973510086656"
   description: "Tag for all uninterruptible power supply units."
+  is_abstract: true
+  implements:
+  - EQUIPMENT
+
+GENERATOR:
+  id: ""
+  description: "Tag for all backup power generators, typically diesel fed and rated in kW or MW."
+  is_abstract: true
+  implements:
+  - EQUIPMENT
+
+ATS:
+  id: ""
+  description: "Tag for all automatic transfer switches, which autonomously switches to backup generator power upon detection of a loss of main utility power."
+  is_abstract: true
+  implements:
+  - EQUIPMENT
+
+STS:
+  id: ""
+  description: "Tag for all static transfer switches, similar to an ATS though with no mechanical parts, allowing for much faster (down to 5ms) and often closed source transitions."
+  is_abstract: true
+  implements:
+  - EQUIPMENT
+
+PDU:
+  id: ""
+  description: "Tag for all power distribution units, which transforms voltage from UPS into standard voltage consumable by downstream equipment."
+  is_abstract: true
+  implements:
+  - EQUIPMENT
+
+RPP:
+  id: ""
+  description: "Tag for all remote power panels, which houses breaker panel that divides power from PDU into circuits consumed by racks."
   is_abstract: true
   implements:
   - EQUIPMENT

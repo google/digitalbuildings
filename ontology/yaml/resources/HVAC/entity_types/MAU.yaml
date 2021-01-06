@@ -361,7 +361,16 @@ MAU_SFSS_SFVSC_HWSC_DX2SC_HT4SC_SSPC:
   - HT4SC
   - SSPC
 
-
+MAU_DFSS_DFVSC_HTDC_CO2C:
+  id: "12223439678459609088"
+  description: "Exhaust fan with start/stop, status, and flowrate control."
+  is_canonical: true
+  implements:
+  - MAU
+  - DFSS
+  - DFVSC
+  - HTDC
+  - CO2C
 
 
 ############################
