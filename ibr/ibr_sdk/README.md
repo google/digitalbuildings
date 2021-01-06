@@ -1,6 +1,6 @@
 # IBR Javascript SDK
 
-This purpose of this project is to allow developers to seemlessly work with CAD-like building data. This library allows users to seamlessly work with ibr data in javascript as well as provides built in methods to create a simple UI built on [THREE.js](https://github.com/mrdoob    hree.js/)
+This purpose of this project is to allow developers to seemlessly work with CAD-like building data. This library allows users to seamlessly work with ibr data in javascript as well as provides built in methods to create a simple UI built on [THREE.js](https://github.com/mrdoob/three.js/)
 
 ## Instructions for Running the IBR UI:
 

@@ -108,45 +108,44 @@
     </script>
     <body>
     <div id="header">
-      <div id="title">IBR Demo</div>
+        <div id="title">IBR Demo</div>
 
-      <label id="upload-button-container" htmlFor="fileForUpload">
-        <input type="file" id="fileForUpload" onChange="onChooseFile()" />
-        <a id="upload-button" class="disable">Upload IBR file</a>
-      </label>
-
-      <div class="mode-toggle">
-        <p>Visual</p>
-        <label class="switch">
-          <input type="checkbox" id="mode" onChange="rerenderSidebar()" />
-          <span class="slider round"></span>
+        <label id="upload-button-container" htmlFor="fileForUpload">
+            <input type="file" id="fileForUpload" onChange="onChooseFile()" />
+            <a id="upload-button" class="disable">Upload IBR file</a>
         </label>
-        <p>Export</p>
-      </div>
+
+        <div class="mode-toggle">
+            <p>Visual</p>
+            <label class="switch">
+            <input type="checkbox" id="mode" onChange="rerenderSidebar()" />
+            <span class="slider round"></span>
+            </label>
+            <p>Export</p>
+        </div>
     </div>
 
     <div id="canvasContainer">
-          <div id="mainCanvas"/></div>
+        <div id="mainCanvas"/></div>
     </div>
 
     <div id="sideBar" class="sidebar">
-      <h2 style="text-align: center;" id="sidebar-title"></h2>
-      <div id="layerListContainer">
-        <ul id="layerList"></ul>
-      </div>
-      <div class="saveToIbr">
-              <div id="export-inst" style="display: none;">
+        <h2 style="text-align: center;" id="sidebar-title"></h2>
+        <div id="layerListContainer">
+            <ul id="layerList"></ul>
+        </div>
+        <div class="saveToIbr">
+            <div id="export-inst" style="display: none;">
                 <h4>To Export selected floors as a separate IBR: </h4>
                 <p>1. Check the checkbox in front of each floor structure you would like to include in the new IBR file<br>
                 2. Give a name to the exported IBR<br>
                 3. Click on the 'Save and Export to IBR' button</p>
-              </div>
-              <div class="buttons">
-          <input type="text" id="filename" placeholder="Output File Name" style="display: none;"/>
-          <button id="dwn-btn" style="display: none;">Save and Export to IBR</button>
+            </div>
+            <div class="buttons">
+                <input type="text" id="filename" placeholder="Output File Name" style="display: none;"/>
+                <button id="dwn-btn" style="display: none;">Save and Export to IBR</button>
+            </div>
         </div>
-      </div>
     </div>
     </body>
- 
 </html>
