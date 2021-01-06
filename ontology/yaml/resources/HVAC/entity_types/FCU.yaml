@@ -732,6 +732,19 @@ FCU_DFSS_DFVSC_SSPC_DTC_CHWDC:
   - DTC
   - CHWDC
 
+FCU_DFMSS_DSP_ZHM_RTM_CHWZC_CHWDT:
+  id: "5080730669450002432"
+  description: "Chilled water FCU with zone temp and humidity control."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFMSS
+  - DSP
+  - ZHM
+  - RTM
+  - CHWZC
+  - CHWDT
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################

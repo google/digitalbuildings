@@ -1,0 +1,54 @@
+# Copyright 2020 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the License);
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#    https://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an AS IS BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+
+CU_SFSS_SFVSC_CHWSC_HTSC_SSPC_SARC_MTM:
+  id: "14304102706304778240"
+  description: "Exhaust fan with start/stop, status, and flowrate control."
+  is_canonical: true
+  implements:
+  - CU
+  - SFSS
+  - SFVSC
+  - CHWSC
+  - HTSC
+  - SSPC
+  - SARC
+  - MTM
+
+CU_US_NYC_9TH_16TH_1:
+  id: "14637369078730194944"
+  description: "Type to describe ['US-NYC-9TH:CU:AHU-16-1-todd']"
+  is_canonical: false
+  implements:
+  - CU
+  uses:
+  - chilled_water_valve_percentage_command
+  - supply_fan_speed_percentage_command
+  - heating_percentage_command
+  - heater_run_command
+  - supply_fan_run_command
+  - chilled_return_water_temperature_sensor
+  - chilled_supply_water_temperature_sensor
+  - return_air_temperature_sensor
+  - supply_air_static_pressure_sensor_1
+  - supply_air_static_pressure_sensor_2
+  - supply_air_static_pressure_setpoint
+  - supply_air_temperature_sensor
+  - supply_air_temperature_setpoint
+  - pressurization_request_count
+  - cooling_request_count
+  - supply_air_flowrate_sensor
+  - supply_fan_run_status_1
+  - supply_fan_run_status_2
