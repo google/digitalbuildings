@@ -7,99 +7,100 @@
                 integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
                 crossorigin="anonymous"></script>
         <script src="https://unpkg.com/pbf@3.0.5/dist/pbf.js"></script>
-        <script src="https://unpkg.com    hree@0.118.3/build    hree.js"></script>
+        <script src="https://unpkg.com/three@0.118.3/build/three.js"></script>
         <script src="https://unpkg.com/earcut@2.2.2/dist/earcut.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-loading-overlay@2.1.7/dist/loadingoverlay.min.js"></script>
-    <script src="../../ibr_sdk    emp/ibr_pb_browser.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-loading-overlay@2.1.7/dist/loadingoverlay.min.js"></script>
+        <script src="../../ibr_sdk/temp/ibr_pb_browser.js"></script>
         <script src="../../ibr_sdk/dist/main.js"></script>
         <link href="index.css" rel="stylesheet">
         <link href="slider.css" rel="stylesheet">
     </head>
     <script>
-      let ibrObject;
-      let floorsToSave = [];
+        let ibrObject;
+        let floorsToSave = [];
 
-          /**
-     * Create binary file from data and download the file in browser.
-     * @param {String} filename name of the binary file that will be created.
-     * @param {Buffer} bin binary data that will be saved in the file.
-     */
-    function download(filename, ibrObject, floorsToSave) {
-      const bin = IBRSDK.saveToBuffer(ibrObject, floorsToSave);
-      const element = document.createElement('a');
-      const blob = new Blob([bin], {type: 'application/octet-stream'});
-      const url = window.URL.createObjectURL(blob);
-      element.setAttribute('href', url);
-      element.setAttribute('download', filename+'.ibr');
-      element.style.display = 'none';
-      document.body.appendChild(element);
-      element.click();
-      document.body.removeChild(element);
-    }
-      /**
-       * Parse the input IBR file using IBRSDK.
-       */
-      function onChooseFile() {
-        $.LoadingOverlay('show');
+        /**
+         * Create binary file from data and download the file in browser.
+         * @param {String} filename name of the binary file that will be created.
+         * @param {Buffer} bin binary data that will be saved in the file.
+         */
+        function download(filename, ibrObject, floorsToSave) {
+            const bin = IBRSDK.saveToBuffer(ibrObject, floorsToSave);
+            const element = document.createElement('a');
+            const blob = new Blob([bin], {type: 'application/octet-stream'});
+            const url = window.URL.createObjectURL(blob);
+            element.setAttribute('href', url);
+            element.setAttribute('download', filename+'.ibr');
+            element.style.display = 'none';
+            document.body.appendChild(element);
+            element.click();
+            document.body.removeChild(element);
+        }
 
-        setTimeout(function() {
-          if (typeof window.FileReader !== 'function') {
-            throw new Error('The file API isn\'t supported on this browser.');
-          }
+        /**
+        * Parse the input IBR file using IBRSDK.
+        */
+        function onChooseFile() {
+            $.LoadingOverlay('show');
 
-          const file = document.getElementById('fileForUpload').files[0];
-          const filename = document.getElementById('fileForUpload')
-              .value.split('\\')
-              .pop()
-              .split('.')[0];
-          if (file) {
-            const fr = new FileReader();
-            fr.onload = function(evt) {
-              const bin = evt.target.result;
-              ibrObject = IBRSDK.init(bin, filename);
-              rerenderSidebar();
-            };
-            fr.readAsArrayBuffer(file);
-          }
-        }, 500);
+            setTimeout(function() {
+                if (typeof window.FileReader !== 'function') {
+                    throw new Error('The file API isn\'t supported on this browser.');
+                }
 
-        $.LoadingOverlay('hide');
-      }
+                const file = document.getElementById('fileForUpload').files[0];
+                const filename = document.getElementById('fileForUpload')
+                    .value.split('\\')
+                    .pop()
+                    .split('.')[0];
+                if (file) {
+                    const fr = new FileReader();
+                    fr.onload = function(evt) {
+                        const bin = evt.target.result;
+                        ibrObject = IBRSDK.init(bin, filename);
+                        rerenderSidebar();
+                    };
+                fr.readAsArrayBuffer(file);
+              }
+            }, 500);
 
-      /**
-       * Calls rerender to the sidebar.
-       */
-      function rerenderSidebar() {
-        $.LoadingOverlay('show');
+            $.LoadingOverlay('hide');
+        }
 
-        setTimeout(function() {
+        /**
+        * Calls rerender to the sidebar.
+        */
+        function rerenderSidebar() {
+            $.LoadingOverlay('show');
 
-          IBRSDK.renderAndCreateSidebar(
-              ibrObject,
-              document.getElementById('mainCanvas'),
-              document.getElementById('layerList'),
-              floorsToSave);
-          if (document.getElementById('dwn-btn').getAttribute('listener')
-              !== 'true') {
-            document.getElementById('dwn-btn')
-              .addEventListener('click', function() {
-                download(
-                    document.getElementById('filename').value,
-                    ibrObject,
-                    floorsToSave);
-              });
-            document.getElementById('dwn-btn').setAttribute('listener', 'true');
-          }
+            setTimeout(function() {
+
+            IBRSDK.renderAndCreateSidebar(
+                ibrObject,
+                document.getElementById('mainCanvas'),
+                document.getElementById('layerList'),
+                floorsToSave);
+            if (document.getElementById('dwn-btn').getAttribute('listener') !== 'true') {
+                document.getElementById('dwn-btn')
+                    .addEventListener('click', function() {
+                        download(
+                            document.getElementById('filename').value,
+                            ibrObject,
+                            floorsToSave);
+                    });
+
+                document.getElementById('dwn-btn').setAttribute('listener', 'true');
+            }
         }, 500);
 
         if (document.getElementById('mode').checked) {
-          document.getElementById('dwn-btn').style.display = 'block';
-          document.getElementById('filename').style.display = 'block';
-          document.getElementById('export-inst').style.display = 'block';
+            document.getElementById('dwn-btn').style.display = 'block';
+            document.getElementById('filename').style.display = 'block';
+            document.getElementById('export-inst').style.display = 'block';
         } else {
-          document.getElementById('dwn-btn').style.display = 'none';
-          document.getElementById('filename').style.display = 'none';
-          document.getElementById('export-inst').style.display = 'none';
+            document.getElementById('dwn-btn').style.display = 'none';
+            document.getElementById('filename').style.display = 'none';
+            document.getElementById('export-inst').style.display = 'none';
         }
 
         $.LoadingOverlay('hide');
