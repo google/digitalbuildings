@@ -56,7 +56,7 @@ message InternalBuildingRepresentation {
     // The connection type from origin to destination.
     Type type = 2;
 
-    // https://tools.ietf.org/html/rfc5545
+    // https:/    ools.ietf.org/html/rfc5545
     // spaces only available at certain times, public/nonpublic
     string recurrence = 3;
   }

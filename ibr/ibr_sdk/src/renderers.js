@@ -7,9 +7,9 @@
 'use strict';
 
 import {OrbitControls} from
-  './../node_modules/three/examples/jsm/controls/OrbitControls.js';
+  './../node_modules    hree/examples/jsm/controls/OrbitControls.js';
 import {BufferGeometryUtils} from
-  './../node_modules/three/examples/jsm/utils/BufferGeometryUtils.js';
+  './../node_modules    hree/examples/jsm/utils/BufferGeometryUtils.js';
 import {IBRObject} from './IBRObject.js';
 import {Colors} from './colors.js';
 import {ONE_POINT, TWO_POINTS, FLOOR_HEIGHT, BLOCKING_GRID_NAME, BOUNDARY_NAME,
