@@ -7,13 +7,13 @@ on:
   push:
     paths:
       - '**.js'
-      - ./ibr
+      - ibr
     branches: [ master ]
     tags: [ ibr ]
   pull_request:
     paths:
       - '**.js'
-      - ./ibr
+      - ibr
     branches: [ master ]
     tags: [ ibr ]
 
@@ -35,12 +35,12 @@ jobs:
 
     - name: ESLint Action
       run: npm install && npm run install-linter && npm run lint
-      working-directory: ./ibr/ibr_sdk/
+      working-directory: ibr/ibr_sdk/
 
     - name: Build IBR dist package
       run: npm run build
-      working-directory: ./ibr/ibr_sdk/
+      working-directory: ibr/ibr_sdk/
 
     - name: Tests
       run: npm test
-      working-directory: ./ibr/ibr_sdk/
+      working-directory: ibr/ibr_sdk/
