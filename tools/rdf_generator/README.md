@@ -13,4 +13,3 @@ The RDF Generator takes two arguments:
  
  It can be executed as following:
  ```python rdfformat/rdf_generator.py --input=/PATH_TO_YAML_FILES --output=./digital_buildings.rdf```
-
