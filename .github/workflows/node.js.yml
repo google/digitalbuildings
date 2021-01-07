@@ -7,13 +7,13 @@ on:
   push:
     paths:
       - '**.js'
-      - ./ibr
+      - ibr/**
     branches: [ master ]
     tags: [ ibr ]
   pull_request:
     paths:
       - '**.js'
-      - ./ibr
+      - ibr/**
     branches: [ master ]
     tags: [ ibr ]
 
