@@ -355,6 +355,7 @@ literals:
 
 ## Added on 12/12
 - leaving_cooling_coil_temperature_sensor
+- leaving_cooling_coil_temperature_setpoint
 - heating_water_valve_command:
   - OPEN
   - CLOSED
@@ -524,8 +525,6 @@ literals:
 # Added on 2019/09/26 for US-NYC-9TH
 - condensing_water_bypass_valve_percentage_command
 - condensing_water_valve_percentage_command
-- occupied_zone_air_heating_temperature_setpoint
-- unoccupied_zone_air_heating_temperature_setpoint
 
 - heater_run_status: # Added 10/2/2019
   - ON
@@ -658,6 +657,7 @@ literals:
 - high_limit_supply_air_flowrate_setpoint # used when the device doesn't necessarily provide a cooling max flow
 - schedule_run_command
 - supply_air_dewpoint_temperature_sensor
+- supply_air_dewpoint_temperature_setpoint
 - ultraviolet_lamp_run_command:
   - ON
   - OFF
@@ -767,4 +767,8 @@ literals:
 - zone_air_voc_percentage_setpoint
 - zone_air_voc_percentage_sensor
 
-
+# Added for US-NYC-9TH
+- zone_air_unoccupied_heating_temperature_setpoint
+- zone_air_occupied_heating_temperature_setpoint
+- mixed_air_relative_humidity_sensor
+- mixed_air_dewpoint_temperature_sensor

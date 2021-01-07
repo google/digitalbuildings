@@ -140,6 +140,66 @@ ZTC:
   - zone_air_temperature_setpoint
   - zone_air_temperature_sensor
 
+DSARC:
+  id: "9767289031682424832"
+  description: "AHU dual supply air reset control."
+  is_abstract: true
+  opt_uses:
+  - supply_air_flowrate_sensor
+  - heating_request_count
+  uses:
+  - supply_air_cooling_temperature_setpoint
+  - supply_air_heating_temperature_setpoint
+  - supply_air_static_pressure_setpoint
+  - cooling_request_count
+  - pressurization_request_count
+  implements:
+  - CONTROL
+
+DFMSS:
+  id: "15946227720434745344"
+  description: "Discharge fan Start Stop with uneven statuses."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  opt_uses:
+  - discharge_air_flowrate_capacity
+  - discharge_fan_power_capacity
+  - discharge_fan_current_sensor
+  - discharge_fan_power_sensor
+  uses:
+  - discharge_fan_run_command
+  - discharge_fan_run_status_1
+  - discharge_fan_run_status_2
+
+DX2RC:
+  id: "14529282687673303040"
+  description: "Compressor run control on retun side (RC)."
+  is_abstract: true
+  opt_uses:
+  - discharge_air_temperature_sensor
+  - leaving_cooling_coil_temperature_sensor
+  - cooling_thermal_power_capacity
+  - cooling_percentage_command
+  - compressor_speed_percentage_command
+  uses:
+  - return_air_temperature_setpoint
+  - return_air_temperature_sensor
+  - compressor_run_command_1
+  - compressor_run_command_2
+  - compressor_run_status_1
+  - compressor_run_status_2
+  implements:
+  - CONTROL
+
+DFSMC:
+  id: "2774887660236308480"
+  description: "Discharge fan multi-speed control."
+  is_abstract: true
+  uses:
+  - discharge_fan_run_command
+  - discharge_fan_speed_mode
+
 DSP:
   id: "8112819800507416576"
   description: "Dual setpoint control (heating/cooling thresholds with deadband in between)."
@@ -222,6 +282,17 @@ EDBPC:
   - building_air_static_pressure_sensor
   - building_air_static_pressure_setpoint
   - exhaust_air_damper_percentage_command
+  implements:
+  - CONTROL
+
+EFFC:
+  id: "3108154032661725184"
+  description: "Exhaust fan flow control."
+  is_abstract: true
+  uses:
+  - speed_percentage_command
+  - exhaust_air_flowrate_setpoint
+  - exhaust_air_flowrate_sensor
   implements:
   - CONTROL
 
@@ -403,6 +474,103 @@ DFSS:
   - discharge_fan_run_command
   - discharge_fan_run_status
 
+HT2RC:
+  id: "12331526069516500992"
+  description: "Two gas or electric heater control on zone side (HSP, DSP)."
+  is_abstract: true
+  opt_uses:
+  - discharge_air_temperature_sensor
+  - heating_thermal_power_capacity
+  - heating_percentage_command
+  uses:
+  - heater_run_command_1
+  - heater_run_command_2
+  - return_air_temperature_setpoint
+  - return_air_temperature_sensor
+  implements:
+  - CONTROL
+
+HTZTC:
+  id: "4417012674366275584"
+  description: "Gas or electric heater control on zone side (ZC)."
+  is_abstract: true
+  opt_uses:
+  - heating_thermal_power_capacity
+  - discharge_air_temperature_sensor
+  - heating_percentage_command
+  - heater_run_status
+  uses:
+  - heater_run_command
+  - zone_air_temperature_setpoint
+  - zone_air_temperature_sensor
+  implements:
+  - CONTROL
+
+HT3ZTC:
+  id: "5155603013255036928"
+  description: "Two gas or electric heater control on zone side (HSP, ZTC)."
+  is_abstract: true
+  opt_uses:
+  - discharge_air_temperature_sensor
+  - heating_thermal_power_capacity
+  - heating_percentage_command
+  uses:
+  - heater_run_command_1
+  - heater_run_command_2
+  - heater_run_command_3
+  - zone_air_temperature_setpoint
+  - zone_air_temperature_sensor
+  implements:
+  - CONTROL
+
+HSOUC:
+  id: "3000067641604833280"
+  description: "Heating occupied/unoccupied setpoint control."
+  is_abstract: true
+  uses:
+  - zone_air_unoccupied_heating_temperature_setpoint
+  - zone_air_occupied_heating_temperature_setpoint
+  - zone_air_temperature_sensor
+  implements:
+  - CONTROL
+
+HTZOUC:
+  id: "11998259697091084288"
+  description: "Gas or electric heater control on zone side (ZC)."
+  is_abstract: true
+  opt_uses:
+  - heater_run_status
+  uses:
+  - heater_run_command
+  - zone_air_unoccupied_heating_temperature_setpoint
+  - zone_air_occupied_heating_temperature_setpoint
+  - zone_air_temperature_sensor
+  implements:
+  - CONTROL
+
+LCC:
+  id: "7719840051089113088"
+  description: "Leaving coil temperature control."
+  is_abstract: true
+  uses:
+  - leaving_cooling_coil_temperature_sensor
+  - leaving_cooling_coil_temperature_setpoint
+  - chilled_water_valve_percentage_command
+  implements:
+  - CONTROL
+
+LCC2X:
+  id: "13640384711221051392"
+  description: "Double valve leaving coil temperature control."
+  is_abstract: true
+  uses:
+  - leaving_cooling_coil_temperature_sensor
+  - leaving_cooling_coil_temperature_setpoint
+  - chilled_water_valve_percentage_command_1
+  - chilled_water_valve_percentage_command_2
+  implements:
+  - CONTROL
+
 SFSS:
   id: "5180976443089223680"
   description: "Basic combination of supply fan run command and status (start/stop)."
@@ -502,6 +670,36 @@ CHWDT:
   uses:
   - chilled_return_water_temperature_sensor
   - chilled_supply_water_temperature_sensor
+
+CHWDPSC:
+  id: "9028698692793663488"
+  description: "Chilled water valve controlling supply air dewpoint temperature."
+  is_abstract: true
+  opt_uses:
+  - leaving_cooling_coil_temperature_sensor
+  - cooling_thermal_power_capacity
+  - chilled_supply_water_temperature_sensor
+  uses:
+  - supply_air_dewpoint_temperature_sensor
+  - supply_air_dewpoint_temperature_setpoint
+  - chilled_water_valve_percentage_command
+  implements:
+  - CONTROL
+
+CHWDPSC2X:
+  id: "14378975050109812736"
+  description: "Chilled water valves (2x) controlling supply air dewpoint temperature."
+  is_abstract: true
+  opt_uses:
+  - leaving_cooling_coil_temperature_sensor
+  - cooling_thermal_power_capacity
+  uses:
+  - supply_air_dewpoint_temperature_sensor
+  - supply_air_dewpoint_temperature_setpoint
+  - chilled_water_valve_percentage_command_1
+  - chilled_water_valve_percentage_command_2
+  implements:
+  - CONTROL
 
 CWDT:
   id: "16710191489157693440"
@@ -668,6 +866,9 @@ MTM:
   id: "944962761547317248"
   description: "Mixed air temperature monitoring."
   is_abstract: true
+  opt_uses:
+  - mixed_air_relative_humidity_sensor
+  - mixed_air_dewpoint_temperature_sensor
   uses:
   - mixed_air_temperature_sensor
   implements:
@@ -1003,6 +1204,7 @@ CHWSC:
   opt_uses:
   - leaving_cooling_coil_temperature_sensor
   - cooling_thermal_power_capacity
+  - chilled_supply_water_temperature_sensor
   uses:
   - supply_air_temperature_sensor
   - supply_air_temperature_setpoint
@@ -1032,6 +1234,7 @@ CHW2XSC:
   opt_uses:
   - leaving_cooling_coil_temperature_sensor
   - cooling_thermal_power_capacity
+  - chilled_supply_water_temperature_sensor
   uses:
   - supply_air_temperature_sensor
   - supply_air_temperature_setpoint
@@ -2138,6 +2341,18 @@ BYPDM:
   implements:
   - MONITORING
 
+
+OAFM:
+  id: "7386573678663696384"
+  description: "Outside air flow monitoring"
+  is_abstract: true
+  opt_uses:
+  - outside_air_temperature_sensor
+  uses:
+  - outside_air_flowrate_sensor
+  implements:
+  - MONITORING
+
 OAFMC:
   id: "16941748637967319040"
   description: "Outside air flow control with minimum setpoint."
@@ -2151,6 +2366,16 @@ OAFMC:
   - outside_air_damper_percentage_command
   implements:
   - CONTROL
+
+OFC:
+  id: "18252070729648439296"
+  description: "Outside air flow control monitoring (without a damper)."
+  is_abstract: true
+  uses:
+  - outside_air_flowrate_setpoint
+  - outside_air_flowrate_sensor
+  implements:
+  - OPERATIONAL
 
 SFM:
   id: "1953769078078308352"
@@ -2321,6 +2546,17 @@ PWVPM:
   - process_water_valve_percentage_command
   implements:
   - MONITORING
+
+CHWBZC:
+  id: "16609945715518472192"
+  description: "Chilled water valve binary (open/closed) control."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  uses:
+  - chilled_water_valve_command
+  - zone_air_temperature_sensor
+  - zone_air_cooling_temperature_setpoint
 
 CHWBYPVPM:
   id: "7430146224960831488"
