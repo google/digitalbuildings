@@ -33,7 +33,16 @@ _TRANSLATION = 'translation'
 """Schema separately parses translation to account for multiple valid formats
 github.com/google/digitalbuildings/blob/master/ontology/docs/building_config.md
 #defining-translations"""
-_TRANSLATION_SCHEMA = syaml.Str() | syaml.Any()
+_TRANSLATION_SCHEMA = syaml.Str() | syaml.MapPattern(syaml.Str(), syaml.Str()
+                                                     | syaml.Map({
+    'present_value': syaml.Str(),
+    syaml.Optional('states'): syaml.MapPattern(syaml.Str(), syaml.Str()),
+    syaml.Optional('units'): syaml.Map({
+        'key': syaml.Str(),
+        'values': syaml.MapPattern(syaml.Str(), syaml.Str())
+    }),
+    syaml.Optional('unit_values'): syaml.MapPattern(syaml.Str(), syaml.Str())
+}))
 
 """strictyaml schema parses a YAML instance from its first level of keys
 github.com/google/digitalbuildings/blob/master/ontology/docs/building_config.md
@@ -51,23 +60,9 @@ _SCHEMA = syaml.MapPattern(syaml.Str(),
                                syaml.Optional('links'): syaml.MapPattern(
                                    syaml.Str(),
                                    syaml.MapPattern(syaml.Str(), syaml.Str())),
-                               syaml.Optional('translation'): syaml.Any(),
+                               syaml.Optional('translation'): _TRANSLATION_SCHEMA,
                                syaml.Optional('metadata'): syaml.Any()
                            }))
-
-
-"""Further account for multiple valid translation formats
-github.com/google/digitalbuildings/blob/master/ontology/docs/building_config.md
-#defining-translations"""
-_TRANSLATION_DATA_SCHEMA = syaml.Str() | syaml.Map({
-    'present_value': syaml.Str(),
-    syaml.Optional('states'): syaml.MapPattern(syaml.Str(), syaml.Str()),
-    syaml.Optional('units'): syaml.Map({
-        'key': syaml.Str(),
-        'values': syaml.MapPattern(syaml.Str(), syaml.Str())
-    }),
-    syaml.Optional('unit_values'): syaml.MapPattern(syaml.Str(), syaml.Str())
-})
 
 
 def _ValidateEntityWithSchema(content, schema):
@@ -84,22 +79,19 @@ def _ValidateEntityWithSchema(content, schema):
   try:
     parsed = syaml.load(content, schema)
 
-    # TODO(b/176502336): merge the schemas to have one validation
     # check the translation
     top_name = parsed.keys()[0]
     if _TRANSLATION in parsed.data[top_name].keys():
       translation = parsed[top_name][_TRANSLATION]
-      translation.revalidate(_TRANSLATION_SCHEMA)
 
       # if translation is not UDMI compliant
+      # We need to test this seperatly as strictyaml does not support a
+      # string value 'compliant` followed by a map:
+      # unsupported operand type(s) for |: 'str' and 'MapPattern'
       if isinstance(translation.data, str):
         if translation.data != _COMPLIANT:
           print('Translation compliance improperly defined')
           sys.exit(0)
-      else:
-        translation_keys = translation.keys()
-        for key in translation_keys:
-          translation[key].revalidate(_TRANSLATION_DATA_SCHEMA)
 
   except (ruamel.yaml.parser.ParserError,
           ruamel.yaml.scanner.ScannerError,
