@@ -35,7 +35,7 @@ _FIELD_REGEX = u'^[a-z]+[a-z0-9]*(?:_[a-z]+[a-z0-9]*)*(?:_[0-9]+)*$'
 github.com/google/digitalbuildings/blob/master/ontology/docs/building_config.md
 #defining-translations"""
 _TRANSLATION_SCHEMA = syaml.Regex(_COMPLIANT_REGEX) | syaml.MapPattern(
-    syaml.Str(),
+    syaml.Regex(_FIELD_REGEX),
     syaml.Str() | syaml.Map({'present_value': syaml.Str(),
                              syaml.Optional('states'): syaml.MapPattern(
                                  syaml.Regex(u'^[A-Z_]'), syaml.Str()),
