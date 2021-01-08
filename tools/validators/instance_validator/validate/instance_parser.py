@@ -54,6 +54,7 @@ _SCHEMA = syaml.MapPattern(syaml.Str(),
                            syaml.Map({
                                'type': syaml.Str(),
                                'id': syaml.Str(),
+                               # TODO(b/166472270): revisit connections
                                syaml.Optional('connections'): syaml.MapPattern(
                                    syaml.Str(), syaml.Str()) | syaml.Seq(
                                        syaml.MapPattern(syaml.Str(),
@@ -87,7 +88,7 @@ def _ValidateEntityWithSchema(content, schema):
       translation = parsed[top_name][_TRANSLATION]
 
       # if translation is not UDMI compliant
-      # We need to test this seperatly as strictyaml does not support a
+      # We need to test this separately as strictyaml does not support a
       # string value 'compliant` followed by a map:
       # unsupported operand type(s) for |: 'str' and 'MapPattern'
       if isinstance(translation.data, str):
