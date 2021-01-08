@@ -33,16 +33,19 @@ _TRANSLATION = 'translation'
 """Schema separately parses translation to account for multiple valid formats
 github.com/google/digitalbuildings/blob/master/ontology/docs/building_config.md
 #defining-translations"""
-_TRANSLATION_SCHEMA = syaml.Str() | syaml.MapPattern(syaml.Str(), syaml.Str()
-                                                     | syaml.Map({
-    'present_value': syaml.Str(),
-    syaml.Optional('states'): syaml.MapPattern(syaml.Str(), syaml.Str()),
-    syaml.Optional('units'): syaml.Map({
-        'key': syaml.Str(),
-        'values': syaml.MapPattern(syaml.Str(), syaml.Str())
-    }),
-    syaml.Optional('unit_values'): syaml.MapPattern(syaml.Str(), syaml.Str())
-}))
+_TRANSLATION_SCHEMA = syaml.Str() | syaml.MapPattern(
+    syaml.Str(),
+    syaml.Str() | syaml.Map({'present_value': syaml.Str(),
+                             syaml.Optional('states'): syaml.MapPattern(
+                                 syaml.Str(), syaml.Str()),
+                             syaml.Optional('units'): syaml.Map(
+                                 {'key': syaml.Str(),
+                                  'values': syaml.MapPattern(syaml.Str(),
+                                                             syaml.Str())
+                                  }),
+                             syaml.Optional('unit_values'): syaml.MapPattern(
+                                 syaml.Str(), syaml.Str())
+                             }))
 
 """strictyaml schema parses a YAML instance from its first level of keys
 github.com/google/digitalbuildings/blob/master/ontology/docs/building_config.md
@@ -51,16 +54,15 @@ _SCHEMA = syaml.MapPattern(syaml.Str(),
                            syaml.Map({
                                'type': syaml.Str(),
                                'id': syaml.Str(),
-                               syaml.Optional('connections'):
-                                 syaml.MapPattern(syaml.Str(),
-                                                  syaml.Str()) |
-                                 syaml.Seq(
-                                     syaml.MapPattern(syaml.Str(),
-                                                      syaml.Str())),
+                               syaml.Optional('connections'): syaml.MapPattern(
+                                   syaml.Str(), syaml.Str()) | syaml.Seq(
+                                       syaml.MapPattern(syaml.Str(),
+                                                        syaml.Str())),
                                syaml.Optional('links'): syaml.MapPattern(
                                    syaml.Str(),
                                    syaml.MapPattern(syaml.Str(), syaml.Str())),
-                               syaml.Optional('translation'): _TRANSLATION_SCHEMA,
+                               syaml.Optional('translation'):
+                                   _TRANSLATION_SCHEMA,
                                syaml.Optional('metadata'): syaml.Any()
                            }))
 
@@ -151,7 +153,7 @@ def ParseYaml(filename):
       entity_instance_block = entity_instance_block + line
 
   # handle the singleton case
-  if found_entities>0:
+  if found_entities > 0:
     _ValidateBlock(entity_instance_block, all_content)
 
   return all_content
