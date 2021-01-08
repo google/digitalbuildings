@@ -27,7 +27,7 @@ _ENTITY_INSTANCE_PATTERN = re.compile(_ENTITY_INSTANCE_REGEX)
 _IGNORE_PATTERN = re.compile(r'^(\W)*#|\n')
 # number of entities to validate per batch
 _ENTITIES_PER_BATCH = 1
-_COMPLIANT = u'COMPLIANT$'
+_COMPLIANT = u'^COMPLIANT$'
 _TRANSLATION = 'translation'
 
 """Schema separately parses translation to account for multiple valid formats
