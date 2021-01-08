@@ -19,7 +19,7 @@ ENTITY-NAME:
   id: SYSTEM/ID1234
   links:
     A-FOURTH-ENTITY:
-      differential_pressure_sensor: invalid_field
+      supply_air_damper_position_command_1: invalid_field
 
 A-FOURTH-ENTITY:
   type: FACILITIES/BUILDING

@@ -19,8 +19,8 @@ ENTITY-NAME:
   id: SYSTEM/ID1234
   links:
     NONEXISTENT-ENTITY:
-      chilled_supply_water_temperature_setpoint: supply_air_damper_command
-      current_sensor: zone_air_temperature_sensor
+      supply_air_damper_position_command_1: supply_air_damper_command
+      zone_air_temperature_1: zone_air_temperature_sensor
 
 A-FOURTH-ENTITY:
   type: FACILITIES/BUILDING

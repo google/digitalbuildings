@@ -29,7 +29,7 @@ _IGNORE_PATTERN = re.compile(r'^(\W)*#|\n')
 _ENTITIES_PER_BATCH = 1
 _COMPLIANT_REGEX = u'^COMPLIANT$'
 _TRANSLATION = 'translation'
-_FIELD_REGEX = r'^[a-z]+[a-z0-9]*(?:_[a-z]+[a-z0-9]*)*$'
+_FIELD_REGEX = u'(^[a-z]+[a-z0-9]*(?:_[a-z]+[a-z0-9]*)*)((?:_[0-9]+)*)$'
 
 """Schema separately parses translation to account for multiple valid formats
 github.com/google/digitalbuildings/blob/master/ontology/docs/building_config.md
