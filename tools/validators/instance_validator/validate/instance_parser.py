@@ -27,14 +27,14 @@ _ENTITY_INSTANCE_PATTERN = re.compile(_ENTITY_INSTANCE_REGEX)
 _IGNORE_PATTERN = re.compile(r'^(\W)*#|\n')
 # number of entities to validate per batch
 _ENTITIES_PER_BATCH = 1
-_COMPLIANT = u'^COMPLIANT$'
+_COMPLIANT_REGEX = u'^COMPLIANT$'
 _TRANSLATION = 'translation'
-_FIELD_REGEX = u'^[a-z]+[a-z0-9]*(?:_[a-z]+[a-z0-9]*)*$'
+_FIELD_REGEX = r'^[a-z]+[a-z0-9]*(?:_[a-z]+[a-z0-9]*)*$'
 
 """Schema separately parses translation to account for multiple valid formats
 github.com/google/digitalbuildings/blob/master/ontology/docs/building_config.md
 #defining-translations"""
-_TRANSLATION_SCHEMA = syaml.Regex(_COMPLIANT) | syaml.MapPattern(
+_TRANSLATION_SCHEMA = syaml.Regex(_COMPLIANT_REGEX) | syaml.MapPattern(
     syaml.Str(),
     syaml.Str() | syaml.Map({'present_value': syaml.Str(),
                              syaml.Optional('states'): syaml.MapPattern(
