@@ -29,6 +29,7 @@ _IGNORE_PATTERN = re.compile(r'^(\W)*#|\n')
 _ENTITIES_PER_BATCH = 1
 _COMPLIANT = u'^COMPLIANT$'
 _TRANSLATION = 'translation'
+_FIELD_REGEX = u'^[a-z]+[a-z0-9]*(?:_[a-z]+[a-z0-9]*)*$'
 
 """Schema separately parses translation to account for multiple valid formats
 github.com/google/digitalbuildings/blob/master/ontology/docs/building_config.md
@@ -37,7 +38,7 @@ _TRANSLATION_SCHEMA = syaml.Regex(_COMPLIANT) | syaml.MapPattern(
     syaml.Str(),
     syaml.Str() | syaml.Map({'present_value': syaml.Str(),
                              syaml.Optional('states'): syaml.MapPattern(
-                                 syaml.Str(), syaml.Str()),
+                                 syaml.Regex(u'^[A-Z_]'), syaml.Str()),
                              syaml.Optional('units'): syaml.Map(
                                  {'key': syaml.Str(),
                                   'values': syaml.MapPattern(syaml.Str(),
@@ -54,14 +55,17 @@ _SCHEMA = syaml.MapPattern(syaml.Str(),
                            syaml.Map({
                                'type': syaml.Str(),
                                'id': syaml.Str(),
-                               # TODO(b/166472270): revisit connections
+                               # TODO(b/166472270): revisit connection syntax
+                               #  validation. Current code might not follow
+                               #  the spec.
                                syaml.Optional('connections'): syaml.MapPattern(
                                    syaml.Str(), syaml.Str()) | syaml.Seq(
                                        syaml.MapPattern(syaml.Str(),
                                                         syaml.Str())),
                                syaml.Optional('links'): syaml.MapPattern(
                                    syaml.Str(),
-                                   syaml.MapPattern(syaml.Str(), syaml.Str())),
+                                   syaml.MapPattern(syaml.Regex(_FIELD_REGEX),
+                                                    syaml.Regex(_FIELD_REGEX))),
                                syaml.Optional('translation'):
                                    _TRANSLATION_SCHEMA,
                                syaml.Optional('metadata'): syaml.Any()
