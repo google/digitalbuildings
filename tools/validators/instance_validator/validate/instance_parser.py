@@ -27,13 +27,13 @@ _ENTITY_INSTANCE_PATTERN = re.compile(_ENTITY_INSTANCE_REGEX)
 _IGNORE_PATTERN = re.compile(r'^(\W)*#|\n')
 # number of entities to validate per batch
 _ENTITIES_PER_BATCH = 1
-_COMPLIANT = 'COMPLIANT'
+_COMPLIANT = u'COMPLIANT$'
 _TRANSLATION = 'translation'
 
 """Schema separately parses translation to account for multiple valid formats
 github.com/google/digitalbuildings/blob/master/ontology/docs/building_config.md
 #defining-translations"""
-_TRANSLATION_SCHEMA = syaml.Str() | syaml.MapPattern(
+_TRANSLATION_SCHEMA = syaml.Regex(_COMPLIANT) | syaml.MapPattern(
     syaml.Str(),
     syaml.Str() | syaml.Map({'present_value': syaml.Str(),
                              syaml.Optional('states'): syaml.MapPattern(
@@ -81,21 +81,6 @@ def _ValidateEntityWithSchema(content, schema):
   """
   try:
     parsed = syaml.load(content, schema)
-
-    # check the translation
-    top_name = parsed.keys()[0]
-    if _TRANSLATION in parsed.data[top_name].keys():
-      translation = parsed[top_name][_TRANSLATION]
-
-      # if translation is not UDMI compliant
-      # We need to test this separately as strictyaml does not support a
-      # string value 'compliant` followed by a map:
-      # unsupported operand type(s) for |: 'str' and 'MapPattern'
-      if isinstance(translation.data, str):
-        if translation.data != _COMPLIANT:
-          print('Translation compliance improperly defined')
-          sys.exit(0)
-
   except (ruamel.yaml.parser.ParserError,
           ruamel.yaml.scanner.ScannerError,
           syaml.exceptions.YAMLValidationError,
