@@ -38,7 +38,7 @@ _TRANSLATION_SCHEMA = syaml.Regex(_COMPLIANT_REGEX) | syaml.MapPattern(
     syaml.Regex(_FIELD_REGEX),
     syaml.Str() | syaml.Map({'present_value': syaml.Str(),
                              syaml.Optional('states'): syaml.MapPattern(
-                                 syaml.Regex(u'^[A-Z_]'), syaml.Str()),
+                                 syaml.Regex(u'^[A-Z][A-Z_]+'), syaml.Str()),
                              syaml.Optional('units'): syaml.Map(
                                  {'key': syaml.Str(),
                                   'values': syaml.MapPattern(syaml.Str(),
