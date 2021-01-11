@@ -22,5 +22,5 @@ UK-LON-S2:
     supply_air_isolation_damper_command:
       present_value: "points.damper_1.present_value"
       states:
-        OPEN: "1"
-        INVALID_STATE: "2"
+        OPEN: 1
+        INVALID_STATE: 2
