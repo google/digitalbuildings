@@ -11,7 +11,7 @@ Please run the instance validator from this folder until the bug is fixed.
 
 To use the ontology defined in this repository, run the validator as following: `python3 instance_validator.py --input path/to/YOUR_BUILDING_CONFIG.yaml`
 
-To validate multiple input files at the same time, you can provide the "--input" parameter multiple times. ("-i" will also work.)
+To validate multiple input files at the same time, you can provide the "--input" parameter multiple times. ("-i" will also work).
 
 ### Ontology Types extended
 
