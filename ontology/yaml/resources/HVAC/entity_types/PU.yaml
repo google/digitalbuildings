@@ -17,11 +17,12 @@
 ########################
 
 # PU-1 at S2
-PU_CHWSPRZM:
+PU_CHWSPRZM_CHWLAM_PUHLAM:
   id: "237d2a36-3ae7-4d9e-9682-b695480d38e7"
-  description: "Pressurization unit with chilled water system pressurization monitoring. "
+  description: "Pressurization unit with chilled water system pressurization monitoring."
   is_canonical: true
   implements:
   - PU
   - CHWSPRZM
-
+  - CHWLAM
+  - PUHLAM

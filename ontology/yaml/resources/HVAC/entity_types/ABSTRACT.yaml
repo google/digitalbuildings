@@ -4349,12 +4349,6 @@ CHHLAM:
   uses:
   - chiller_alarm_status_1
   - chiller_alarm_status_2
-  - low_glycol_alarm_status
-  - service_alarm_status
-  - protection_alarm_status_1
-  - consumption_alarm_status_1
-  - protection_alarm_status_2
-  - consumption_alarm_status_2
   implements:
   - MONITORING
 
@@ -5370,4 +5364,18 @@ SISODC:
   - supply_air_damper_percentage_sensor
   implements:
   - CONTROL
+
+PUHLAM:
+  id: "2c3308f0-8df7-4294-8599-c08d04c8c092"
+  description: "Pressurisation unit high level alarm monitoring."
+  is_abstract: true
+  uses:
+  - low_glycol_alarm_status
+  - service_alarm_status
+  - protection_alarm_status_1
+  - consumption_alarm_status_1
+  - protection_alarm_status_2
+  - consumption_alarm_status_2
+  implements:
+  - MONITORING
 
