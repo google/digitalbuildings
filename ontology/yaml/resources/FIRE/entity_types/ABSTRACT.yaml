@@ -292,8 +292,10 @@ FSTASM:
   opt_uses:
   - low_level_tank_alarm_status_1
   - low_level_tank_alarm_status_2
+  - low_level_tank_alarm_status_3
   - high_level_tank_alarm_status_1
   - high_level_tank_alarm_status_2
+  - high_level_tank_alarm_status_3
   implements:
   - MONITORING
 
@@ -323,6 +325,8 @@ FSIVLVSM:
   - isolation_valve_status_18
   - isolation_valve_status_19
   - isolation_valve_status_20
+  - isolation_valve_status_21
+  - isolation_valve_status_22
   implements:
   - MONITORING
 
@@ -786,6 +790,236 @@ SMKDASM:
   - smoke_detector_alarm_status_98
   - smoke_detector_alarm_status_99
   - smoke_detector_alarm_status_100
+  - smoke_detector_alarm_status_101
+  - smoke_detector_alarm_status_102
+  - smoke_detector_alarm_status_103
+  - smoke_detector_alarm_status_104
+  - smoke_detector_alarm_status_105
+  - smoke_detector_alarm_status_106
+  - smoke_detector_alarm_status_107
+  - smoke_detector_alarm_status_108
+  - smoke_detector_alarm_status_109
+  - smoke_detector_alarm_status_110
+  - smoke_detector_alarm_status_111
+  - smoke_detector_alarm_status_112
+  - smoke_detector_alarm_status_113
+  - smoke_detector_alarm_status_114
+  - smoke_detector_alarm_status_115
+  - smoke_detector_alarm_status_116
+  - smoke_detector_alarm_status_117
+  - smoke_detector_alarm_status_118
+  - smoke_detector_alarm_status_119
+  - smoke_detector_alarm_status_120
+  - smoke_detector_alarm_status_121
+  - smoke_detector_alarm_status_122
+  - smoke_detector_alarm_status_123
+  - smoke_detector_alarm_status_124
+  - smoke_detector_alarm_status_125
+  - smoke_detector_alarm_status_126
+  - smoke_detector_alarm_status_127
+  - smoke_detector_alarm_status_128
+  - smoke_detector_alarm_status_129
+  - smoke_detector_alarm_status_130
+  - smoke_detector_alarm_status_131
+  - smoke_detector_alarm_status_132
+  - smoke_detector_alarm_status_133
+  - smoke_detector_alarm_status_134
+  - smoke_detector_alarm_status_135
+  - smoke_detector_alarm_status_136
+  - smoke_detector_alarm_status_137
+  - smoke_detector_alarm_status_138
+  - smoke_detector_alarm_status_139
+  - smoke_detector_alarm_status_140
+  - smoke_detector_alarm_status_141
+  - smoke_detector_alarm_status_142
+  - smoke_detector_alarm_status_143
+  - smoke_detector_alarm_status_144
+  - smoke_detector_alarm_status_145
+  - smoke_detector_alarm_status_146
+  - smoke_detector_alarm_status_147
+  - smoke_detector_alarm_status_148
+  - smoke_detector_alarm_status_149
+  - smoke_detector_alarm_status_150
+  - smoke_detector_alarm_status_151
+  - smoke_detector_alarm_status_152
+  - smoke_detector_alarm_status_153
+  - smoke_detector_alarm_status_154
+  - smoke_detector_alarm_status_155
+  - smoke_detector_alarm_status_156
+  - smoke_detector_alarm_status_157
+  - smoke_detector_alarm_status_158
+  - smoke_detector_alarm_status_159
+  - smoke_detector_alarm_status_160
+  - smoke_detector_alarm_status_161
+  - smoke_detector_alarm_status_162
+  - smoke_detector_alarm_status_163
+  - smoke_detector_alarm_status_164
+  - smoke_detector_alarm_status_165
+  - smoke_detector_alarm_status_166
+  - smoke_detector_alarm_status_167
+  - smoke_detector_alarm_status_168
+  - smoke_detector_alarm_status_169
+  - smoke_detector_alarm_status_170
+  - smoke_detector_alarm_status_171
+  - smoke_detector_alarm_status_172
+  - smoke_detector_alarm_status_173
+  - smoke_detector_alarm_status_174
+  - smoke_detector_alarm_status_175
+  - smoke_detector_alarm_status_176
+  - smoke_detector_alarm_status_177
+  - smoke_detector_alarm_status_178
+  - smoke_detector_alarm_status_179
+  - smoke_detector_alarm_status_180
+  - smoke_detector_alarm_status_181
+  - smoke_detector_alarm_status_182
+  - smoke_detector_alarm_status_183
+  - smoke_detector_alarm_status_184
+  - smoke_detector_alarm_status_185
+  - smoke_detector_alarm_status_186
+  - smoke_detector_alarm_status_187
+  - smoke_detector_alarm_status_188
+  - smoke_detector_alarm_status_189
+  - smoke_detector_alarm_status_190
+  - smoke_detector_alarm_status_191
+  - smoke_detector_alarm_status_192
+  - smoke_detector_alarm_status_193
+  - smoke_detector_alarm_status_194
+  - smoke_detector_alarm_status_195
+  - smoke_detector_alarm_status_196
+  - smoke_detector_alarm_status_197
+  - smoke_detector_alarm_status_198
+  - smoke_detector_alarm_status_199
+  - smoke_detector_alarm_status_200
+  - smoke_detector_alarm_status_201
+  - smoke_detector_alarm_status_202
+  - smoke_detector_alarm_status_203
+  - smoke_detector_alarm_status_204
+  - smoke_detector_alarm_status_205
+  - smoke_detector_alarm_status_206
+  - smoke_detector_alarm_status_207
+  - smoke_detector_alarm_status_208
+  - smoke_detector_alarm_status_209
+  - smoke_detector_alarm_status_210
+  - smoke_detector_alarm_status_211
+  - smoke_detector_alarm_status_212
+  - smoke_detector_alarm_status_213
+  - smoke_detector_alarm_status_214
+  - smoke_detector_alarm_status_215
+  - smoke_detector_alarm_status_216
+  - smoke_detector_alarm_status_217
+  - smoke_detector_alarm_status_218
+  - smoke_detector_alarm_status_219
+  - smoke_detector_alarm_status_220
+  - smoke_detector_alarm_status_221
+  - smoke_detector_alarm_status_222
+  - smoke_detector_alarm_status_223
+  - smoke_detector_alarm_status_224
+  - smoke_detector_alarm_status_225
+  - smoke_detector_alarm_status_226
+  - smoke_detector_alarm_status_227
+  - smoke_detector_alarm_status_228
+  - smoke_detector_alarm_status_229
+  - smoke_detector_alarm_status_230
+  - smoke_detector_alarm_status_231
+  - smoke_detector_alarm_status_232
+  - smoke_detector_alarm_status_233
+  - smoke_detector_alarm_status_234
+  - smoke_detector_alarm_status_235
+  - smoke_detector_alarm_status_236
+  - smoke_detector_alarm_status_237
+  - smoke_detector_alarm_status_238
+  - smoke_detector_alarm_status_239
+  - smoke_detector_alarm_status_240
+  - smoke_detector_alarm_status_241
+  - smoke_detector_alarm_status_242
+  - smoke_detector_alarm_status_243
+  - smoke_detector_alarm_status_244
+  - smoke_detector_alarm_status_245
+  - smoke_detector_alarm_status_246
+  - smoke_detector_alarm_status_247
+  - smoke_detector_alarm_status_248
+  - smoke_detector_alarm_status_249
+  - smoke_detector_alarm_status_250
+  - smoke_detector_alarm_status_251
+  - smoke_detector_alarm_status_252
+  - smoke_detector_alarm_status_253
+  - smoke_detector_alarm_status_254
+  - smoke_detector_alarm_status_255
+  - smoke_detector_alarm_status_256
+  - smoke_detector_alarm_status_257
+  - smoke_detector_alarm_status_258
+  - smoke_detector_alarm_status_259
+  - smoke_detector_alarm_status_260
+  - smoke_detector_alarm_status_261
+  - smoke_detector_alarm_status_262
+  - smoke_detector_alarm_status_263
+  - smoke_detector_alarm_status_264
+  - smoke_detector_alarm_status_265
+  - smoke_detector_alarm_status_266
+  - smoke_detector_alarm_status_267
+  - smoke_detector_alarm_status_268
+  - smoke_detector_alarm_status_269
+  - smoke_detector_alarm_status_270
+  - smoke_detector_alarm_status_271
+  - smoke_detector_alarm_status_272
+  - smoke_detector_alarm_status_273
+  - smoke_detector_alarm_status_274
+  - smoke_detector_alarm_status_275
+  - smoke_detector_alarm_status_276
+  - smoke_detector_alarm_status_277
+  - smoke_detector_alarm_status_278
+  - smoke_detector_alarm_status_279
+  - smoke_detector_alarm_status_280
+  - smoke_detector_alarm_status_281
+  - smoke_detector_alarm_status_282
+  - smoke_detector_alarm_status_283
+  - smoke_detector_alarm_status_284
+  - smoke_detector_alarm_status_285
+  - smoke_detector_alarm_status_286
+  - smoke_detector_alarm_status_287
+  - smoke_detector_alarm_status_288
+  - smoke_detector_alarm_status_289
+  - smoke_detector_alarm_status_290
+  - smoke_detector_alarm_status_291
+  - smoke_detector_alarm_status_292
+  - smoke_detector_alarm_status_293
+  - smoke_detector_alarm_status_294
+  - smoke_detector_alarm_status_295
+  - smoke_detector_alarm_status_296
+  - smoke_detector_alarm_status_297
+  - smoke_detector_alarm_status_298
+  - smoke_detector_alarm_status_299
+  - smoke_detector_alarm_status_300
+  - smoke_detector_alarm_status_301
+  - smoke_detector_alarm_status_302
+  - smoke_detector_alarm_status_303
+  - smoke_detector_alarm_status_304
+  - smoke_detector_alarm_status_305
+  - smoke_detector_alarm_status_306
+  - smoke_detector_alarm_status_307
+  - smoke_detector_alarm_status_308
+  - smoke_detector_alarm_status_309
+  - smoke_detector_alarm_status_310
+  - smoke_detector_alarm_status_311
+  - smoke_detector_alarm_status_312
+  - smoke_detector_alarm_status_313
+  - smoke_detector_alarm_status_314
+  - smoke_detector_alarm_status_315
+  - smoke_detector_alarm_status_316
+  - smoke_detector_alarm_status_317
+  - smoke_detector_alarm_status_318
+  - smoke_detector_alarm_status_319
+  - smoke_detector_alarm_status_320
+  - smoke_detector_alarm_status_321
+  - smoke_detector_alarm_status_322
+  - smoke_detector_alarm_status_323
+  - smoke_detector_alarm_status_324
+  - smoke_detector_alarm_status_325
+  - smoke_detector_alarm_status_326
+  - smoke_detector_alarm_status_327
+  - smoke_detector_alarm_status_328
+  - smoke_detector_alarm_status_329
+  - smoke_detector_alarm_status_330
   implements:
   - MONITORING
 
@@ -825,6 +1059,36 @@ HTDASM:
   - heat_detector_alarm_status_28
   - heat_detector_alarm_status_29
   - heat_detector_alarm_status_30
+  - heat_detector_alarm_status_31
+  - heat_detector_alarm_status_32
+  - heat_detector_alarm_status_33
+  - heat_detector_alarm_status_34
+  - heat_detector_alarm_status_35
+  - heat_detector_alarm_status_36
+  - heat_detector_alarm_status_37
+  - heat_detector_alarm_status_38
+  - heat_detector_alarm_status_39
+  - heat_detector_alarm_status_40
+  - heat_detector_alarm_status_41
+  - heat_detector_alarm_status_42
+  - heat_detector_alarm_status_43
+  - heat_detector_alarm_status_44
+  - heat_detector_alarm_status_45
+  - heat_detector_alarm_status_46
+  - heat_detector_alarm_status_47
+  - heat_detector_alarm_status_48
+  - heat_detector_alarm_status_49
+  - heat_detector_alarm_status_50
+  - heat_detector_alarm_status_51
+  - heat_detector_alarm_status_52
+  - heat_detector_alarm_status_53
+  - heat_detector_alarm_status_54
+  - heat_detector_alarm_status_55
+  - heat_detector_alarm_status_56
+  - heat_detector_alarm_status_57
+  - heat_detector_alarm_status_58
+  - heat_detector_alarm_status_59
+  - heat_detector_alarm_status_60
   implements:
   - MONITORING
 
@@ -913,6 +1177,16 @@ BASM:
   - beacon_alarm_status_8
   - beacon_alarm_status_9
   - beacon_alarm_status_10
+  - beacon_alarm_status_11
+  - beacon_alarm_status_12
+  - beacon_alarm_status_13
+  - beacon_alarm_status_14
+  - beacon_alarm_status_15
+  - beacon_alarm_status_16
+  - beacon_alarm_status_17
+  - beacon_alarm_status_18
+  - beacon_alarm_status_19
+  - beacon_alarm_status_20
   implements:
   - MONITORING
 
@@ -1038,6 +1312,11 @@ FSDFLWSM:
   - device_flow_status_8
   - device_flow_status_9
   - device_flow_status_10
+  - device_flow_status_11
+  - device_flow_status_12
+  - device_flow_status_13
+  - device_flow_status_14
+  - device_flow_status_15
   implements:
   - MONITORING
 
@@ -1057,6 +1336,7 @@ SMKEXFSM:
   - smoke_exhaust_fan_status_8
   - smoke_exhaust_fan_status_9
   - smoke_exhaust_fan_status_10
+  - smoke_exhaust_fan_status_11
   implements:
   - MONITORING
 
@@ -1076,6 +1356,12 @@ PAVASM:
   - pava_alarm_status_8
   - pava_alarm_status_9
   - pava_alarm_status_10
+  - pava_alarm_status_11
+  - pava_alarm_status_12
+  - pava_alarm_status_13
+  - pava_alarm_status_14
+  - pava_alarm_status_15
+  - pava_alarm_status_16
   - pava_fault_status_1
   - pava_fault_status_2
   - pava_fault_status_3
@@ -1115,6 +1401,48 @@ SYSDSSM:
   - system_device_shutdown_status_8
   - system_device_shutdown_status_9
   - system_device_shutdown_status_10
+  - system_device_shutdown_status_11
+  - system_device_shutdown_status_12
+  - system_device_shutdown_status_13
+  - system_device_shutdown_status_14
+  - system_device_shutdown_status_15
+  - system_device_shutdown_status_16
+  - system_device_shutdown_status_17
+  - system_device_shutdown_status_18
+  - system_device_shutdown_status_19
+  - system_device_shutdown_status_20
+  - system_device_shutdown_status_21
+  - system_device_shutdown_status_22
+  - system_device_shutdown_status_23
+  - system_device_shutdown_status_24
+  - system_device_shutdown_status_25
+  - system_device_shutdown_status_26
+  - system_device_shutdown_status_27
+  - system_device_shutdown_status_28
+  - system_device_shutdown_status_29
+  - system_device_shutdown_status_30
+  - system_device_shutdown_status_31
+  - system_device_shutdown_status_32
+  - system_device_shutdown_status_33
+  - system_device_shutdown_status_34
+  - system_device_shutdown_status_35
+  - system_device_shutdown_status_36
+  - system_device_shutdown_status_37
+  - system_device_shutdown_status_38
+  - system_device_shutdown_status_39
+  - system_device_shutdown_status_40
+  - system_device_shutdown_status_41
+  - system_device_shutdown_status_42
+  - system_device_shutdown_status_43
+  - system_device_shutdown_status_44
+  - system_device_shutdown_status_45
+  - system_device_shutdown_status_46
+  - system_device_shutdown_status_47
+  - system_device_shutdown_status_48
+  - system_device_shutdown_status_49
+  - system_device_shutdown_status_50
+  - system_device_shutdown_status_51
+  - system_device_shutdown_status_52
   implements:
   - MONITORING
 
@@ -1134,6 +1462,26 @@ GASSSM:
   - gas_shutdown_status_8
   - gas_shutdown_status_9
   - gas_shutdown_status_10
+  - gas_shutdown_status_11
+  - gas_shutdown_status_12
+  - gas_shutdown_status_13
+  - gas_shutdown_status_14
+  - gas_shutdown_status_15
+  - gas_shutdown_status_16
+  - gas_shutdown_status_17
+  - gas_shutdown_status_18
+  - gas_shutdown_status_19
+  - gas_shutdown_status_20
+  - gas_shutdown_status_21
+  - gas_shutdown_status_22
+  - gas_shutdown_status_23
+  - gas_shutdown_status_24
+  - gas_shutdown_status_25
+  - gas_shutdown_status_26
+  - gas_shutdown_status_27
+  - gas_shutdown_status_28
+  - gas_shutdown_status_29
+  - gas_shutdown_status_30
   implements:
   - MONITORING
 
