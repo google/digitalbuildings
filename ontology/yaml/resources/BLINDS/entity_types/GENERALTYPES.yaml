@@ -35,6 +35,9 @@ BLNDSYS_BLNDBMSC_BLNDM_BLNDCDM:
   - BLNDM
   - BLNDCDM
   
-BLINDS_ZONE:
+ZONE:
   id: "12c7aa98-34a5-4890-a8ac-d4ba950764ca"
   description: "A zone containing singular or multiple blinds."
+  is_abstract: true
+  opt_uses:
+  - zone_use_label

@@ -5,6 +5,9 @@ FAS:
   implements:
   - EQUIPMENT
 
-FIRE_ZONE:
+ZONE:
   id: "110bcc2b-9639-47a7-b32e-94b62f8944b3"
   description: "A zone containing devices/status' from the fire system."
+  is_abstract: true
+  opt_uses:
+  - zone_use_label
