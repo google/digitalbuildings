@@ -28,3 +28,7 @@ CHWS_WDT-17:
         key: "pointset.points.temp_1.units"
         values:
           degrees_fahrenheit: "degF"
+
+UK-LON-S2:
+  type: FACILITIES/BUILDING
+  id: FACILITIES/123456

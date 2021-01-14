@@ -29,8 +29,7 @@ class HandlerTest(absltest.TestCase):
 
   def testValidateOneBuildingExist(self):
     try:
-      input_file = path.join(_TESTCASE_PATH, 'GOOD',
-                                'good_building_type.yaml')
+      input_file = path.join(_TESTCASE_PATH, 'GOOD', 'good_building_type.yaml')
       args = ['--input', input_file]
       instance_handler = handler.ValidationHelper(args)
       instance_handler.Validate()
@@ -45,10 +44,21 @@ class HandlerTest(absltest.TestCase):
       instance_handler = handler.ValidationHelper(args)
       instance_handler.Validate()
 
+  def testValidateMultipleInputFilesSuccess(self):
+    try:
+      input_file1 = path.join(_TESTCASE_PATH, 'GOOD', 'good_building_type.yaml')
+      input_file2 = path.join(
+          _TESTCASE_PATH, 'GOOD', 'good_translation_identical.yaml')
+      args = ['-i', input_file1, '-i', input_file2]
+      instance_handler = handler.ValidationHelper(args)
+      instance_handler.Validate()
+    except SyntaxError:
+      self.fail('ValidationHelper:Validate unexpectedly raised Exception')
+
   def testTelemetryArgsBothSetSuccess(self):
     try:
       input_file = path.join(_TESTCASE_PATH, 'GOOD',
-                                'good_building_type.yaml')
+                             'good_building_type.yaml')
       args = ['--input', input_file, '--service-account', 'file',
               '--subscription', 'some-subscription']
       handler.ValidationHelper(args)
@@ -58,14 +68,14 @@ class HandlerTest(absltest.TestCase):
   def testTelemetryArgsMissingSubscription(self):
     with self.assertRaises(SystemExit):
       input_file = path.join(_TESTCASE_PATH, 'GOOD',
-                                'good_building_type.yaml')
+                             'good_building_type.yaml')
       args = ['--input', input_file, '--service-account', 'file']
       handler.ValidationHelper(args)
 
   def testTelemetryArgsMissingServiceAccount(self):
     with self.assertRaises(SystemExit):
       input_file = path.join(_TESTCASE_PATH, 'GOOD',
-                                'good_building_type.yaml')
+                             'good_building_type.yaml')
       args = ['--input', input_file, '--subscription', 'some-subscription']
       handler.ValidationHelper(args)
 

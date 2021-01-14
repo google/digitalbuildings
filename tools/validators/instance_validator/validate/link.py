@@ -12,10 +12,20 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-UPS_SS:
-  id: "5802995459689545728"
-  description: "Standard UPS unit."
-  is_canonical: true
-  implements:
-  - UPS
-  - SS  
+"""Link between two entities."""
+
+class Link(object):
+  """A link between a source and target field of two entities.
+
+  The target entity is implied to be the same as the entity that contains this
+  Link instance.
+
+  Args:
+    source: source entity name
+    field_map: map from source entity field names to target entity field names
+  """
+
+  def __init__(self, source, field_map):
+    super().__init__()
+    self.source = source
+    self.field_map = field_map

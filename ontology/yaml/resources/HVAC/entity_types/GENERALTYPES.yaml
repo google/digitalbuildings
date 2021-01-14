@@ -143,6 +143,17 @@ CH:
   - efficiency_percentage_specification
   - flowrate_requirement # All chillers have it, so no need to associate to subtypes. If there are subtypes that could use it, should also be included there.
 
+CU:
+  id: "9692416687877390336"
+  description: "Compartment unit, a device like an AHU which draws air from a mixed air plenum (usually
+    a mechanical room) and supplies downstream VAVs or serves a zone directly. They are not responsible
+    directly for the amount of outside air they recieve, but are indirectly responsible for ventilation
+    (therefore neither an AHU, which has control of outside air directly, nor a FCU which recirculates
+    space air more or less exclusively)."
+  is_abstract: true
+  implements:
+  - EQUIPMENT
+
 HWS:
   id: "8797366943867731968"
   description: "Tag for heating water systems. This tag represents the system itself, and fields are mapped
@@ -246,8 +257,42 @@ HUM:
   - EQUIPMENT
 
 VLV:
+  id: "6847830573239500800"
   description: "Tag for valves. Valves are devices which control the flow of water. "
   is_abstract: true
   implements:
   - EQUIPMENT
 
+
+RSR:
+  id: "16423609280936017920"
+  description: "A generic distribution riser."
+  is_abstract: true
+
+RARSR:
+  id: "12340533268771241984"
+  description: "A return air riser."
+  is_abstract: true
+  implements:
+  - RSR
+
+FARSR:
+  id: "4378169127580205056"
+  description: "A fresh air (ventilation) riser."
+  is_abstract: true
+  implements:
+  - RSR
+
+CHWRSR:
+  id: "16465830527442616320"
+  description: "A chilled water distribution riser."
+  is_abstract: true
+  implements:
+  - RSR
+
+HWSRSR:
+  id: "15252673377819688960"
+  description: "A heating water distribution riser."
+  is_abstract: true
+  implements:
+  - RSR

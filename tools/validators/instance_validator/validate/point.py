@@ -12,22 +12,26 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Parses Telemetry Payload"""
-
-from __future__ import print_function
+"""Data point in a telemetry message."""
 
 class Point(object):
   """A point from a pubsub telemetry message.
 
   Args:
-    message: a pubsub message
-
-  Returns:
-    An instance of the Telemetry class.
+    point_name: name of the point
+    value: value of the point
   """
 
   def __init__(self, point_name, value):
     super().__init__()
     self.point_name = point_name
-    self.present_value = value
-    
+    self.present_value = self._ValueToString(value)
+
+  def _ValueToString(self, value):
+    """This is needed to allow parsing of values (bool and multi-states)."""
+    if isinstance(value, bool):
+      return str(value).lower()
+
+    if isinstance(value, (int, float)):
+      return str(value)
+

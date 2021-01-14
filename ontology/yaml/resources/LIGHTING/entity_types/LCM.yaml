@@ -15,6 +15,7 @@
 # Lighting group controllers. 
 
 LCM_SS:
+  id: "10414681478116933632"
   description: "Standard lighting group control module."
   is_canonical: true
   implements:

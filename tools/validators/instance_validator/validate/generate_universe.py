@@ -14,18 +14,19 @@
 
 """Generates the ontology universe for the instance validator."""
 
-from __future__ import print_function
 from __future__ import absolute_import
+from __future__ import print_function
 
 from os import path
 
 from yamlformat.validator import external_file_lib
-from yamlformat.validator import presubmit_validate_types_lib
 from yamlformat.validator import namespace_validator
+from yamlformat.validator import presubmit_validate_types_lib
 
 _FILE_DIR = path.dirname(path.realpath(__file__))
 _DEFAULT_ONTOLOGY_LOCATION = path.join(_FILE_DIR, '..', '..', '..', '..',
                                        'ontology', 'yaml', 'resources')
+
 
 def BuildUniverse(modified_types_filepath=None):
   """Generates the ontology universe.
@@ -36,7 +37,6 @@ def BuildUniverse(modified_types_filepath=None):
   Returns:
     Generated universe object.
   """
-
   if modified_types_filepath:
     modified_ontology_exists = path.exists(modified_types_filepath)
     if not modified_ontology_exists:
@@ -51,6 +51,10 @@ def BuildUniverse(modified_types_filepath=None):
                                interactive=False)
     yaml_files = external_file_lib.RecursiveDirWalk(modified_types_filepath)
   else:
+    default_ontology_exists = path.exists(_DEFAULT_ONTOLOGY_LOCATION)
+    if not default_ontology_exists:
+      print('Specified filepath for default ontology does not exist')
+      return None
     # use default location for ontology files
     yaml_files = external_file_lib.RecursiveDirWalk(_DEFAULT_ONTOLOGY_LOCATION)
 

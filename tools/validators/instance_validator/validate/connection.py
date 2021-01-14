@@ -12,10 +12,21 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-UPS_SS:
-  id: "5802995459689545728"
-  description: "Standard UPS unit."
-  is_canonical: true
-  implements:
-  - UPS
-  - SS  
+"""Connection between two entities."""
+
+class Connection(object):
+  """A connection between a source and target entity with a certain type.
+
+  The target entity is implied to be the same as the entity that contains this
+  Connection instance.
+
+  Args:
+    ctype: type of the connection
+      (NOTE: 'type' is a reserved Python keyword)
+    source: name of the source entity
+  """
+
+  def __init__(self, ctype, source):
+    super().__init__()
+    self.ctype = ctype
+    self.source = source

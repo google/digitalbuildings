@@ -164,6 +164,55 @@ CHWS_SWTC_WDPC_WFRM_PSWTC_PWVPM_MINFC_CLPM:
   - MINFC
   - CLPM
 
+CHWS_SWTC_RWISOVM_WDPC_WFRM_PWFRM_PSWTC_PWVPM_MINFC_CLPM_PCLPM:
+  id: "7736267854319714304"
+  description: "Chilled and process water system."
+  is_canonical: true
+  implements:
+  - CHWS
+  - SWTC
+  - RWISOVM
+  - WDPC
+  - WFRM
+  - PWFRM
+  - PSWTC
+  - PWVPM
+  - MINFC
+  - CLPM
+  - PCLPM
+
+CHWS_SWTC_WDPM:
+  id: "12915407425795784704"
+  description: "Chilled water system with supply temperature and differential pressure monitoring."
+  is_canonical: true
+  implements:
+  - CHWS
+  - SWTC
+  - WDPM
+
+CHWS_SWTC_WDPC2X_BYPVPM_WFRC_CLPM:
+  id: "5529504036908171264"
+  description: "Chilled water system with dual differential pressure control."
+  is_canonical: true
+  implements:
+  - CHWS
+  - SWTC
+  - WDPC2X
+  - BYPVPM
+  - WFRC
+  - CLPM
+
+CHWS_SWTC_WDPC2X_BYPVPM_WFRM_CLPM:
+  id: "16842546300862857216"
+  description: "Chilled water system with dual differential pressure control."
+  is_canonical: true
+  implements:
+  - CHWS
+  - SWTC
+  - WDPC2X
+  - BYPVPM
+  - WFRM
+  - CLPM
 
 ###################################
 ### Existing Non-standard Types ###

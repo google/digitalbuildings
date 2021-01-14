@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Validation Helper"""
+"""Validation Helper."""
 
 from __future__ import print_function
 import argparse
@@ -22,36 +22,35 @@ from validate import entity_instance
 from validate import generate_universe
 from validate import instance_parser
 from validate import subscriber
+from validate import telemetry_validator
+from datetime import datetime
 
 # Default timeout duration for telemetry validation test
-from validate import telemetry_validator
-
 DEFAULT_TIMEOUT = 600
 
 
-def deserialize(yaml_file, universe):
+def deserialize(yaml_files):
   """Parses a yaml configuration file and deserialize it.
   Args:
-    yaml_file: the building configuration file.
-    universe: the generated ontology universe.
-  :returns
+    yaml_files: list of building configuration file.
+
+  Returns:
     entity_instances: all the deserialized instances.
-    parsed: the raw parsed entities
   """
-  raw_parse = instance_parser.parse_yaml(yaml_file)
-  print('Passed syntax checks!')
-  print('Serializing Passed syntax checks!')
-  parsed = dict(raw_parse)
+
+  parsed_yaml = {}
+  print('Validating syntax please wait ...')
+  for yaml_file in yaml_files:
+    print('Parsing file: {0}, please wait ...'.format(yaml_file))
+    parsed_yaml.update(instance_parser.ParseYaml(yaml_file))
+
+    print('Syntax checks passed for file: {0}'.format(yaml_file))
+
   entity_instances = {}
-  entity_names = list(parsed.keys())
-  # first build all the entity instances
-  for entity_name in entity_names:
-    entity = dict(parsed[entity_name])
-    instance = entity_instance.EntityInstance(entity,
-                                              universe,
-                                              set(entity_names))
-    entity_instances[entity_name] = instance
-  return entity_instances, parsed
+  for entity_name, entity_yaml in parsed_yaml.items():
+    entity_instances[entity_name] = entity_instance.EntityInstance(entity_yaml)
+
+  return entity_instances
 
 
 class ValidationHelper(object):
@@ -63,10 +62,10 @@ class ValidationHelper(object):
 
   def Validate(self):
     universe = self.GenerateUniverse(self.args.modified_types_filepath)
-    entity_instances, parsed_entities = deserialize(self.filename, universe)
-    self.ValidateEntities(entity_instances)
+    entity_instances = deserialize(self.filenames)
+    self.ValidateEntities(universe, entity_instances)
     self.StartTelemetryValidation(self.subscription, self.service_account,
-                                  parsed_entities)
+                                  entity_instances)
 
   def GenerateUniverse(self, modified_types_filepath=None):
     """Generates the universe from the ontology.
@@ -87,15 +86,18 @@ class ValidationHelper(object):
     print('Universe generated successfully')
     return universe
 
-  def ValidateEntities(self, entity_instances):
+  def ValidateEntities(self, universe, entity_instances):
     """Validates entity instances that are already deserialized.
+
       Args:
+        universe: ConfigUniverse representing the ontology
         entity_instances: a list of entity instances.
     """
     print('Validating entities ...')
     building_found = False
     for entity_name, current_entity_instance in entity_instances.items():
-      if not current_entity_instance.IsValidEntityInstance(entity_instances):
+      if not current_entity_instance.IsValidEntityInstance(universe,
+                                                           entity_instances):
         print(entity_name, 'is not a valid instance')
         sys.exit(0)
       if current_entity_instance.type_name.lower() == 'building':
@@ -105,22 +107,22 @@ class ValidationHelper(object):
       print('Building Config must contain an entity with a building type')
       raise SyntaxError('Building Config must contain an '
                         'entity with a building type')
-    print('Entities Validated !')
+    print('All entities validated')
 
 
   def StartTelemetryValidation(self, subscription, service_account_file,
-                               parsed_entities):
+                               entity_instances):
     """Validates telemetry payload received from the subscription.
      Args:
        subscription: a pubsub subscription.
        service_account_file: a GCP service account file.
-       parsed_entities: dictionary of raw entities
+       entity_instances: EntityInstance dictionary
     """
     if self.pubsub_validation_set:
       print('Connecting to pubsub subscription: ', subscription)
       sub = subscriber.Subscriber(subscription, service_account_file)
       validator = telemetry_validator.TelemetryValidator(
-          parsed_entities, self.timeout, self.TelemetryValidationCallback)
+          entity_instances, self.timeout, self.TelemetryValidationCallback)
       validator.StartTimer()
       sub.Listen(validator.ValidateMessage)
 
@@ -134,17 +136,24 @@ class ValidationHelper(object):
     Args:
       validator: the telemetry validator that triggered the callback."""
 
-    report = ''
+    print('Generating validation report ...')
+    current_time = datetime.now()
+    timestamp = current_time.strftime('%d-%b-%Y (%H:%M:%S)')
+    report = '\nReport Generated at: {0}\n'.format(timestamp)
 
     if not validator.AllEntitiesValidated():
       report += 'No telemetry message was received for the following entities:'
       report += '\n'
-      for entity_name in validator.GetUnvalidatedEntities():
-        report += '  ' + entity_name + '\n'
+      for entity_name in validator.GetUnvalidatedEntityNames():
+        report += '  {0}\n'.format(entity_name)
 
     report += '\nTelemetry validation errors:\n'
     for error in validator.GetErrors():
       report += error.GetPrintableMessage()
+
+    report += '\nTelemetry validation warnings:\n'
+    for warnings in validator.GetWarnings():
+      report += warnings.GetPrintableMessage()
 
     if self.report_filename:
       f = open(self.report_filename, 'w')
@@ -153,7 +162,7 @@ class ValidationHelper(object):
     else:
       print('\n')
       print(report)
-
+    print('Report Generated')
     sys.exit(0)
 
 
@@ -164,9 +173,10 @@ class ValidationHelper(object):
 
     parser.add_argument(
         '-i', '--input',
-        dest='filename',
+        action='append',
+        dest='filenames',
         required=True,
-        help='Filepath to YAML building configuration',
+        help='Filepaths to YAML building configurations',
         metavar='FILE')
 
     parser.add_argument(
@@ -200,14 +210,14 @@ class ValidationHelper(object):
 
     parser.add_argument(
         '-r', '--report-filename',
-        dest = 'report_filename',
-        required = False,
-        default = None,
-        help = 'Filename for the validation report',
-        metavar = 'report-filename')
+        dest='report_filename',
+        required=False,
+        default=None,
+        help='Filename for the validation report',
+        metavar='report-filename')
 
     self.args = parser.parse_args(args)
-    self.filename = self.args.filename
+    self.filenames = self.args.filenames
 
     self.subscription = self.args.subscription
     self.service_account = self.args.service_account

@@ -361,7 +361,16 @@ MAU_SFSS_SFVSC_HWSC_DX2SC_HT4SC_SSPC:
   - HT4SC
   - SSPC
 
-
+MAU_DFSS_DFVSC_HTDC_CO2C:
+  id: "12223439678459609088"
+  description: "Exhaust fan with start/stop, status, and flowrate control."
+  is_canonical: true
+  implements:
+  - MAU
+  - DFSS
+  - DFVSC
+  - HTDC
+  - CO2C
 
 
 ############################
@@ -423,6 +432,82 @@ MAU_US_PAO_HV3_2: # Actually an AHU.
   - supply_fan_run_status
   - supply_fan_speed_percentage_command
 
+MAU_SFSS_SFVSC_CHWSDC_HTSDC_BPC:
+  id: "12347953872747102208"
+  description: "Heating and cooling make-up air unit with dual supply control."
+  is_canonical: true
+  implements:
+  - MAU
+  - SFSS
+  - SFVSC
+  - CHWSDC
+  - HTSDC
+  - BPC
+
+MAU_SFSS_SFVSC_CHWSC_FDPM_SSPC_SFM:
+  id: "3692035388941008896"
+  description: "Cooling only unit with supply flow monitoring."
+  is_canonical: true
+  implements:
+  - MAU
+  - SFSS
+  - SFVSC
+  - CHWSC
+  - FDPM
+  - SSPC
+  - SFM
+
+MAU_DFSS_DFVSC_ECDDC_HTDDC_ZTM_ZSPM:
+  id: "10141190055335559168"
+  description: " Unit with evaporative cooling."
+  is_canonical: true
+  implements:
+  - MAU
+  - DFSS
+  - DFVSC
+  - HTDDC
+  - ECDDC
+  - ZTM
+  - ZSPM
+
+MAU_DFSS_DFVSC_HTDDC_DXDDC_ZTM_ZSPM:
+  id: "7619174264008081408"
+  description: "Single zone with dual setpoint control."
+  is_canonical: true
+  implements:
+  - MAU
+  - DFSS
+  - DFVSC
+  - HTDDC
+  - DXDDC
+  - ZTM
+  - ZSPM
+
+MAU_DFSS_DFVSC_HTDDC_DXDDC_ZTM:
+  id: "1602365161841098752"
+  description: "Single zone with dual discharge setpoint control for both heating and cooling."
+  is_canonical: true
+  implements:
+  - MAU
+  - DFSS
+  - DFVSC
+  - HTDDC
+  - DXDDC
+  - ZTM
+
+MAU_SFSS_SFVSC_SFC_DXSC_HTSC_ZTM_ZSPM:
+  id: "8705597305367035904"
+  description: "Single zone with cooling, heating, and supply flow control."
+  is_canonical: true
+  implements:
+  - MAU
+  - SFSS
+  - SFVSC
+  - SFC
+  - DXSC
+  - HTSC
+  - ZTM
+  - ZSPM
 
 ###################################
 ### Existing Non-standard Types ###

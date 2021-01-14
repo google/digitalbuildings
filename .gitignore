@@ -1,6 +1,7 @@
 **/node_modules/*
 **/temp/*
 **/dist/main.js
+*..pyc
 
 *.DS_Store
 package-lock.json

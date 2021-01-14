@@ -20,12 +20,12 @@
 # This is used to model individual batteries when those battery statuses don't map nicely to a single lighting device.
 
 LTB_SS:
+  id: "3190907675814658048"
   description: "Lighting battery with basic feedback. "
   is_canonical: true
   implements:
   - ELECTRICAL/BATT
   - SS
-
 
 
 

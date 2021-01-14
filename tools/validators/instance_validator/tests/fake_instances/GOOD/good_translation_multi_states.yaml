@@ -12,26 +12,28 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Two test entities with identical points.
-
-SDC_EXT-17:
-  type: HVAC/SDC_EXT
-  id: CDM/123456
-  translation:
-    shade_extent_percentage_command:
-      present_value: "points.shade_extent_percentage_command.present_value"
-      unit_values:
-        percent: "%"
-
-SDC_EXT-18:
-  type: HVAC/SDC_EXT
-  id: CDM/123456
-  translation:
-    shade_extent_percentage_command:
-      present_value: "points.shade_extent_percentage_command.present_value"
-      unit_values:
-        percent: "%"
-
+# Building
 UK-LON-S2:
   type: FACILITIES/BUILDING
   id: FACILITIES/123456
+
+FAN-17:
+  type: HVAC/FAN_SS_VSC
+  id: CDM/123456
+  translation:
+    run_command:
+      present_value: points.run_command.present_value
+      states:
+        OFF: false
+        ON: true
+    run_status:
+      present_value: points.run_status.present_value
+      states:
+        OFF: 0
+        ON: 1
+    speed_percentage_command:
+      present_value: points.supply_fan_speed_percentage_command.present_value
+      units:
+        key: pointset.points.supply_fan_speed_percentage_command.units
+        values:
+          percent: '%'
