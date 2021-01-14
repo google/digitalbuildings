@@ -221,7 +221,7 @@ class ValidationHelper(object):
 
     self.subscription = self.args.subscription
     self.service_account = self.args.service_account
-    self.timeout = self.args.timeout
+    self.timeout = int(self.args.timeout)
     self.report_filename = self.args.report_filename
 
     self.pubsub_validation_set = False
