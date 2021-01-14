@@ -39,7 +39,7 @@ class HandlerTest(absltest.TestCase):
   def testValidateOneBuildingExistFails(self):
     with self.assertRaises(SyntaxError):
       input_file = path.join(
-        _TESTCASE_PATH, 'BAD', 'bad_links_missing_building.yaml')
+        _TESTCASE_PATH, 'BAD', 'bad_missing_building.yaml')
       args = ['--input', input_file]
       instance_handler = handler.ValidationHelper(args)
       instance_handler.Validate()
