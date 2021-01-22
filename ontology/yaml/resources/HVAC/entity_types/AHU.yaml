@@ -3135,3 +3135,9 @@ AHU_US_SVL_MAT2_4:
   - supply_fan_speed_frequency_sensor
   - supply_fan_speed_percentage_command
   - supply_air_flowrate_sensor
+  
+AHU_BB:
+  id: "867f923d-889f-46a4-a8cb-75d2574565f6"
+  description: "A base build AHU entity connected to HVAC entities."
+  implements:
+  - AHU
