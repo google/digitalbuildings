@@ -103,6 +103,17 @@ MAU_DFSS_ZTC_DX2ZTC:
   - ZTC
   - DX2ZTC
 
+MAU_DFSS_DFVSC_HTDC_OFC_CO2C:
+  description: "Exhaust fan with start/stop, status, and flowrate control."
+  is_canonical: true
+  implements:
+  - MAU
+  - DFSS
+  - DFVSC
+  - HTDC
+  - OFC
+  - CO2C
+
 MAU_DFSS_DXZC_HT2ZC_DSP:
   id: "6990623048827142144"
   description: "Single zone heating (2-stage electric) and cooling (DX) make-up air unit."

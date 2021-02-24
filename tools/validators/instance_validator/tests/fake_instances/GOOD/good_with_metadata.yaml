@@ -12,6 +12,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-AN-ENTITY:
-  type: HVAC/CHWS_WDT
+# Update operation with partial entities specified
+
+SDC_EXT-17:
+  type: HVAC/SDC_EXT
   id: CDM/123456
+
+CONFIG_METADATA:
+  operation: UPDATE
+
+UK-LON-S2:
+  type: FACILITIES/BUILDING
+  id: FACILITIES/123456

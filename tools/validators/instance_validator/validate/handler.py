@@ -11,10 +11,10 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 """Validation Helper."""
 
 from __future__ import print_function
+
 import argparse
 import sys
 
@@ -24,33 +24,36 @@ from validate import instance_parser
 from validate import subscriber
 from validate import telemetry_validator
 from datetime import datetime
+from typing import Dict
+
 
 # Default timeout duration for telemetry validation test
 DEFAULT_TIMEOUT = 600
 
 
-def deserialize(yaml_files):
+def deserialize(yaml_files: str) -> Dict[str, entity_instance.EntityInstance]:
   """Parses a yaml configuration file and deserialize it.
+
   Args:
     yaml_files: list of building configuration file.
 
   Returns:
-    entity_instances: all the deserialized instances.
+    A map of entity name to Entity instance.
   """
 
   parsed_yaml = {}
   print('Validating syntax please wait ...')
+  parser = instance_parser.InstanceParser()
   for yaml_file in yaml_files:
-    print('Parsing file: {0}, please wait ...'.format(yaml_file))
-    parsed_yaml.update(instance_parser.ParseYaml(yaml_file))
+    print('Opening file: {0}, please wait ...'.format(yaml_file))
+    parser.AddFile(yaml_file)
+  parser.Finalize()
 
-    print('Syntax checks passed for file: {0}'.format(yaml_file))
+  entities = {}
+  for entity_name, entity_yaml in parser.GetEntities().items():
+    entities[entity_name] = entity_instance.EntityInstance(entity_yaml)
 
-  entity_instances = {}
-  for entity_name, entity_yaml in parsed_yaml.items():
-    entity_instances[entity_name] = entity_instance.EntityInstance(entity_yaml)
-
-  return entity_instances
+  return entities
 
 
 class ValidationHelper(object):
@@ -69,9 +72,10 @@ class ValidationHelper(object):
 
   def GenerateUniverse(self, modified_types_filepath=None):
     """Generates the universe from the ontology.
+
     Args:
-     modified_types_filepath: the path to a modified ontology.
-       If it is not set, the universe is generated from the default path.
+     modified_types_filepath: the path to a modified ontology. If it is not set,
+       the universe is generated from the default path.
     """
     # SYNTAX VALIDATION
     print('\nValidator starting ...\n')
@@ -96,8 +100,8 @@ class ValidationHelper(object):
     print('Validating entities ...')
     building_found = False
     for entity_name, current_entity_instance in entity_instances.items():
-      if not current_entity_instance.IsValidEntityInstance(universe,
-                                                           entity_instances):
+      if not current_entity_instance.IsValidEntityInstance(
+          universe, entity_instances):
         print(entity_name, 'is not a valid instance')
         sys.exit(0)
       if current_entity_instance.type_name.lower() == 'building':
@@ -109,10 +113,10 @@ class ValidationHelper(object):
                         'entity with a building type')
     print('All entities validated')
 
-
   def StartTelemetryValidation(self, subscription, service_account_file,
                                entity_instances):
     """Validates telemetry payload received from the subscription.
+
      Args:
        subscription: a pubsub subscription.
        service_account_file: a GCP service account file.
@@ -126,7 +130,6 @@ class ValidationHelper(object):
       validator.StartTimer()
       sub.Listen(validator.ValidateMessage)
 
-
   def TelemetryValidationCallback(self, validator):
     """Callback when the telemetry validator finishes.
 
@@ -134,7 +137,8 @@ class ValidationHelper(object):
     received and validated for every expected entity.
 
     Args:
-      validator: the telemetry validator that triggered the callback."""
+      validator: the telemetry validator that triggered the callback.
+    """
 
     print('Generating validation report ...')
     current_time = datetime.now()
@@ -165,14 +169,14 @@ class ValidationHelper(object):
     print('Report Generated')
     sys.exit(0)
 
-
   def _ParseArgs(self, args):
     """Prepares the arguments for the user input."""
     parser = argparse.ArgumentParser(
         description='Validate a YAML building configuration file')
 
     parser.add_argument(
-        '-i', '--input',
+        '-i',
+        '--input',
         action='append',
         dest='filenames',
         required=True,
@@ -180,28 +184,32 @@ class ValidationHelper(object):
         metavar='FILE')
 
     parser.add_argument(
-        '-m', '--modified-ontology-types',
+        '-m',
+        '--modified-ontology-types',
         dest='modified_types_filepath',
         required=False,
         help='Filepath to modified type filepaths',
         metavar='MODIFIED_TYPE_FILEPATHS')
 
     parser.add_argument(
-        '-s', '--subscription',
+        '-s',
+        '--subscription',
         dest='subscription',
         required=False,
         help='Pubsub subscription for telemetry to validate',
         metavar='subscription')
 
     parser.add_argument(
-        '-a', '--service-account',
+        '-a',
+        '--service-account',
         dest='service_account',
         required=False,
         help='Service account used to pull messages from the subscription',
         metavar='service-account')
 
     parser.add_argument(
-        '-t', '--timeout',
+        '-t',
+        '--timeout',
         dest='timeout',
         required=False,
         default=DEFAULT_TIMEOUT,
@@ -209,7 +217,8 @@ class ValidationHelper(object):
         metavar='timeout')
 
     parser.add_argument(
-        '-r', '--report-filename',
+        '-r',
+        '--report-filename',
         dest='report_filename',
         required=False,
         default=None,
@@ -230,7 +239,6 @@ class ValidationHelper(object):
     elif self.args.subscription is None and self.args.service_account is None:
       self.pubsub_validation_set = False
     else:
-      print(
-          'Subscription and a service account file are '
-          'both needed for the telemetry validation!')
+      print('Subscription and a service account file are '
+            'both needed for the telemetry validation!')
       sys.exit(0)

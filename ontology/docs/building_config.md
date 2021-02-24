@@ -1,4 +1,4 @@
-# Building Configuration File
+# Model Instance Configuration
 
 In addition to a language and primitives for configuring an abstract building
 model, the Digital Buildings project provides a YAML configuration syntax for
