@@ -48,7 +48,7 @@ class HandlerTest(absltest.TestCase):
     try:
       input_file1 = path.join(_TESTCASE_PATH, 'GOOD', 'good_building_type.yaml')
       input_file2 = path.join(
-          _TESTCASE_PATH, 'GOOD', 'good_translation_identical.yaml')
+          _TESTCASE_PATH, 'GOOD', 'good_translation_nobuilding.yaml')
       args = ['-i', input_file1, '-i', input_file2]
       instance_handler = handler.ValidationHelper(args)
       instance_handler.Validate()
