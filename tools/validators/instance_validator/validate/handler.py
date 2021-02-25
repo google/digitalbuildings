@@ -41,7 +41,6 @@ def deserialize(yaml_files: str) -> Dict[str, entity_instance.EntityInstance]:
     A map of entity name to Entity instance.
   """
 
-  parsed_yaml = {}
   print('Validating syntax please wait ...')
   parser = instance_parser.InstanceParser()
   for yaml_file in yaml_files:
