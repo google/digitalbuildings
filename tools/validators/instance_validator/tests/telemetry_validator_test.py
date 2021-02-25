@@ -100,7 +100,7 @@ def _CreateEntityInstances(yaml_filename):
   parser.AddFile(path.join(_INSTANCES_PATH,yaml_filename))
   parser.Finalize()
   parsed_yaml = parser.GetEntities()
-  
+
   entities = {}
   for entity_name, entity_yaml in parsed_yaml.items():
     entities[entity_name] = entity_instance.EntityInstance(entity_yaml)
