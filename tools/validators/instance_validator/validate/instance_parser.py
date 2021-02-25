@@ -205,7 +205,6 @@ class InstanceParser():
     """
     entity_instance_block = ''
     found_entities = 0
-    all_content = {}
     in_config = False
     with open(filename) as file:
       for line in file:
