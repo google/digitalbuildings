@@ -30,7 +30,7 @@ setup(
     install_requires=['protobuf>=3.14.0',
                       'strictyaml>=1.1.1',
                       'google-cloud-pubsub',
-                      'google-auth',
+                      'google-auth<2.0',
                       'googleapis-common-protos==1.52.0'],
     python_requires='>=3.7',
 )
