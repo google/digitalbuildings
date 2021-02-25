@@ -21,9 +21,7 @@ from validate import instance_parser
 from absl.testing import absltest
 from os import path
 
-_TEST_DIR = path.join(
-    'third_party/digitalbuildings/tools/validators/instance_validator/',
-    'tests')
+_TEST_DIR = path.dirname(path.realpath(__file__))
 _TESTCASE_PATH = path.join(_TEST_DIR, 'fake_instances')
 
 
