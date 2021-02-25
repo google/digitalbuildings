@@ -29,8 +29,8 @@ _TESTCASE_PATH = path.join(_TEST_DIR, 'fake_instances')
 
 def _ParserHelper(testpaths):
   parser = instance_parser.InstanceParser()
-  for path in testpaths:
-    parser.AddFile(path)
+  for filepath in testpaths:
+    parser.AddFile(filepath)
   parser.Finalize()
   return parser
 
@@ -83,31 +83,36 @@ class ParserTest(absltest.TestCase):
 
   def testInstanceValidatorDetectImproperTranslationCompliance(self):
     with self.assertRaises(SystemExit):
-      parse = _Helper(
+      parser = _Helper(
           [path.join(_TESTCASE_PATH, 'BAD', 'bad_translation_compliant.yaml')])
+      del parser
 
   def testInstanceValidatorDetectImproperTranslationKeys(self):
     with self.assertRaises(SystemExit):
-      parse = _Helper(
+      parser = _Helper(
           [path.join(_TESTCASE_PATH, 'BAD', 'bad_translation_keys.yaml')])
+      del parser
 
   def testInstanceValidatorDetectImproperUnitsKeys(self):
     with self.assertRaises(SystemExit):
-      parse = _Helper([
+      parser = _Helper([
           path.join(_TESTCASE_PATH, 'BAD', 'bad_translation_units_format.yaml')
       ])
+      del parser
 
   def testInstanceValidatorDetectDuplicateEntityKeys(self):
     with self.assertRaises(SystemExit):
-      parse = _Helper([
+      parser = _Helper([
           path.join(_TESTCASE_PATH, 'BAD', 'bad_duplicate_key.yaml')
       ])
+      del parser
 
   def testInstanceValidatorDetectDuplicateMetadata(self):
     with self.assertRaises(SystemExit):
-      parse = _Helper([
+      parser = _Helper([
           path.join(_TESTCASE_PATH, 'BAD', 'bad_duplicate_metadata.yaml')
       ])
+      del parser
 
   def testInstanceValidatorReadsMetadata(self):
     parser = _ParserHelper([
