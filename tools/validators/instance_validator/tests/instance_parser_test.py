@@ -131,7 +131,8 @@ class ParserTest(absltest.TestCase):
     parser = _ParserHelper([
         path.join(_TESTCASE_PATH, 'GOOD', 'good_building_type.yaml')
     ])
-    self.assertEqual(parser.GetConfigMode(), instance_parser.ConfigMode.Default())
+    self.assertEqual(parser.GetConfigMode(), 
+                     instance_parser.ConfigMode.Default())
 
 if __name__ == '__main__':
   absltest.main()
