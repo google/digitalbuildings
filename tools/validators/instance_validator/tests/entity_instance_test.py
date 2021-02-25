@@ -33,8 +33,8 @@ _TESTCASE_PATH = path.join(_TEST_DIR, 'fake_instances')
 
 def _ParserHelper(testpaths):
   parser = instance_parser.InstanceParser()
-  for path in testpaths:
-    parser.AddFile(path)
+  for filepath in testpaths:
+    parser.AddFile(filepath)
   parser.Finalize()
   return parser
 
