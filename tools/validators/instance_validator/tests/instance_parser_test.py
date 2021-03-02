@@ -21,6 +21,8 @@ from validate import instance_parser
 from absl.testing import absltest
 from os import path
 
+import strictyaml as syaml
+
 _TEST_DIR = path.dirname(path.realpath(__file__))
 _TESTCASE_PATH = path.join(_TEST_DIR, 'fake_instances')
 
@@ -38,6 +40,13 @@ def _Helper(testpaths):
 
 
 class ParserTest(absltest.TestCase):
+
+  def test_EnumToRegex(self):
+    expected = syaml.Regex('^(ADD) | (UPDATE)$')
+    actual = instance_parser._EnumToRegex(
+        instance_parser.EntityOperation,
+        [instance_parser.EntityOperation.DELETE])
+    self.assertEqual(str(expected), str(actual))
 
   def testInstanceValidatorDetectDuplicateKeys(self):
     with self.assertRaises(SystemExit):
@@ -81,36 +90,52 @@ class ParserTest(absltest.TestCase):
 
   def testInstanceValidatorDetectImproperTranslationCompliance(self):
     with self.assertRaises(SystemExit):
-      parser = _Helper(
+      parse = _Helper(
           [path.join(_TESTCASE_PATH, 'BAD', 'bad_translation_compliant.yaml')])
-      del parser
+      del parse
 
   def testInstanceValidatorDetectImproperTranslationKeys(self):
     with self.assertRaises(SystemExit):
-      parser = _Helper(
+      parse = _Helper(
           [path.join(_TESTCASE_PATH, 'BAD', 'bad_translation_keys.yaml')])
-      del parser
+      del parse
 
   def testInstanceValidatorDetectImproperUnitsKeys(self):
     with self.assertRaises(SystemExit):
-      parser = _Helper([
+      parse = _Helper([
           path.join(_TESTCASE_PATH, 'BAD', 'bad_translation_units_format.yaml')
       ])
-      del parser
+      del parse
 
   def testInstanceValidatorDetectDuplicateEntityKeys(self):
     with self.assertRaises(SystemExit):
-      parser = _Helper([
-          path.join(_TESTCASE_PATH, 'BAD', 'bad_duplicate_key.yaml')
-      ])
-      del parser
+      parse = _Helper(
+          [path.join(_TESTCASE_PATH, 'BAD', 'bad_duplicate_key.yaml')])
+      del parse
 
   def testInstanceValidatorDetectDuplicateMetadata(self):
     with self.assertRaises(SystemExit):
-      parser = _Helper([
-          path.join(_TESTCASE_PATH, 'BAD', 'bad_duplicate_metadata.yaml')
-      ])
-      del parser
+      parse = _Helper(
+          [path.join(_TESTCASE_PATH, 'BAD', 'bad_duplicate_metadata.yaml')])
+      del parse
+
+  def testInstanceValidatorRejectsOperationOnInitialize(self):
+    with self.assertRaises(SystemExit):
+      parse = _Helper(
+          [path.join(_TESTCASE_PATH, 'BAD', 'bad_entity_operation.yaml')])
+      del parse
+
+  def testInstanceValidatorRejectsMaskOnInitialize(self):
+    with self.assertRaises(SystemExit):
+      parse = _Helper(
+          [path.join(_TESTCASE_PATH, 'BAD', 'bad_entity_mask.yaml')])
+      del parse
+
+  def testInstanceValidatorRejectsMaskOnAdd(self):
+    with self.assertRaises(SystemExit):
+      parse = _Helper(
+          [path.join(_TESTCASE_PATH, 'BAD', 'bad_entity_add_mask.yaml')])
+      del parse
 
   def testInstanceValidatorReadsMetadata(self):
     parser = _ParserHelper([
@@ -123,7 +148,7 @@ class ParserTest(absltest.TestCase):
     parser = _ParserHelper([
         path.join(_TESTCASE_PATH, 'GOOD', 'good_update_with_metadata.yaml')
     ])
-    self.assertLen(parser.GetEntities().keys(), 2)
+    self.assertLen(parser.GetEntities().keys(), 4)
 
   def testInstanceValidatorUsesDefaultMode(self):
     parser = _ParserHelper([

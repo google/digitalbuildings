@@ -23,7 +23,9 @@ from validate import instance_parser
 from absl.testing import absltest
 from os import path
 
-_TEST_DIR = path.dirname(path.realpath(__file__))
+_TEST_DIR = path.join(
+    'third_party/digitalbuildings/tools/validators/instance_validator/',
+    'tests')
 _RESOURCES = path.join('..', '..', '..', '..', 'ontology', 'yaml', 'resources')
 _DEFAULT_ONTOLOGY_LOCATION = path.abspath(path.join(_TEST_DIR, _RESOURCES))
 _TESTCASE_PATH = path.join(_TEST_DIR, 'fake_instances')
@@ -50,7 +52,7 @@ class EntityInstanceTest(absltest.TestCase):
 
   def testValidateGoodExample(self):
     parsed = _Helper(
-        [path.join(_TESTCASE_PATH, 'GOOD', 'good_building_type.yaml')])
+        [path.join(_TESTCASE_PATH, 'GOOD', 'good_entity_update.yaml')])
     parsed = dict(parsed)
     entity_name = list(parsed.keys())[0]
 
@@ -59,6 +61,9 @@ class EntityInstanceTest(absltest.TestCase):
 
     if not instance.IsValidEntityInstance(self._universe):
       self.fail('exception incorrectly raised')
+
+    self.assertEqual(instance.operation, instance_parser.EntityOperation.UPDATE)
+    self.assertSameElements(instance.update_mask, ['connections'])
 
   def testValidateBadEntityTypeFormat(self):
     parsed = _Helper(
