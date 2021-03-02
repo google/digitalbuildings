@@ -12,32 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Update operation that changes no data in the device (no-op)
-
-SDC_EXT-16:
-  id: CDM/123454
-  operation: UPDATE
-  type: HVAC/SDC_EXT
-
-SDC_EXT-18:
-  id: CDM/123457
-  operation: DELETE
-
-SDC_EXT-17:
-  type: HVAC/SDC_EXT
-  id: CDM/123456
-  update_mask:
-  - translation.zone_air_temperature_sensor
-  translation:
-    shade_extent_percentage_command:
-      present_value: "points.shade_extent_percentage_command.present_value"
-      unit_values:
-        percent: "%"
-
-CONFIG_METADATA:
-  operation: UPDATE
-
+# Cannot have operation when config is in INITIALIZE mode
 UK-LON-S2:
-  operation: ADD
   type: FACILITIES/BUILDING
   id: FACILITIES/123456
+  operation: DELETE

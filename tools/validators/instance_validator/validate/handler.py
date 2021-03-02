@@ -26,7 +26,6 @@ from validate import telemetry_validator
 from datetime import datetime
 from typing import Dict
 
-
 # Default timeout duration for telemetry validation test
 DEFAULT_TIMEOUT = 600
 
@@ -48,10 +47,14 @@ def deserialize(yaml_files: str) -> Dict[str, entity_instance.EntityInstance]:
     parser.AddFile(yaml_file)
   parser.Finalize()
 
+  default_entity_operation = instance_parser.EntityOperation.ADD
+  if parser.GetConfigMode() == instance_parser.ConfigMode.UPDATE:
+    default_entity_operation = instance_parser.EntityOperation.UPDATE
+
   entities = {}
   for entity_name, entity_yaml in parser.GetEntities().items():
-    entities[entity_name] = entity_instance.EntityInstance(entity_yaml)
-
+    entities[entity_name] = entity_instance.EntityInstance(
+        entity_yaml, default_entity_operation)
   return entities
 
 
