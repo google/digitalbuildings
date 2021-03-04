@@ -3633,3 +3633,25 @@ DRSM8X:
   - dryer_run_status_8
   implements:
   - MONITORING
+  
+AHAC:
+  description: "Tag to indicate an after hours activation method e.g. push button associated with this device."
+  is_abstract: true
+  opt_uses:  
+  uses:  
+  - user_occupancy_override_status
+  - zone_occupancy_status
+  implements:
+
+DFFC:
+  description: "Discharge fan flow control"
+  is_abstract: true
+  opt_uses:
+  uses:
+  - discharge_fan_run_command
+  - discharge_fan_run_status
+  - discharge_fan_speed_percentage_command
+  - discharge_air_flowrate_setpoint
+  - discharge_air_flowrate_sensor
+  implements:
+  - OPERATIONAL
