@@ -97,3 +97,15 @@ EM_US_SVL_TC1_1:
   uses:
   - average_line_current_sensor
   - average_inter_line_voltage_sensor
+#AU-SYD-ODI meter types
+EM_PWM_PLPM_PVCM: 
+  description: "SE PM5100 Meter"
+  is_canonical: true
+  uses:
+  - line_neutral_current_sensor
+  - apparent_energy_accumulator
+  implements:
+  - EM
+  - PWM
+  - PLPM
+  - PVCM

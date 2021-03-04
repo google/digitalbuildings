@@ -776,3 +776,12 @@ literals:
 #AU-SYD-ODI fields
 #DFFC
 - discharge_air_flowrate_setpoint
+#HM_HW
+- heating_supply_water_temperature_sensor
+- heating_return_water_temperature_sensor
+- heating_thermal_power_sensor
+- heating_thermal_energy_accumulator
+
+#EM_PWM_PLPM_PVCM
+- line_neutral_current_sensor
+- apparent_energy_accumulator
