@@ -12,8 +12,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+EM_ION:
+  id: "7398207611197194240"
+  description: "The typical ION meter (Bay Area standard)."
+  implements:
+  - EM_PWM_AVCM_PLPM_PVCM
+
 EM_PWM:
-  id: "3274998325106966528"
   description: "Power meter with basic power monitoring."
   is_canonical: true
   implements:
@@ -21,7 +26,6 @@ EM_PWM:
   - PWM
 
 EM_PWM_PVCM:
-  id: "9147692239198093312"
   description: "Power meter with phase level voltage and current monitoring."
   is_canonical: true
   implements:
@@ -29,18 +33,7 @@ EM_PWM_PVCM:
   - PWM
   - PVCM
 
-EM_PWM_PLPM_PVCM:
-  id: "752982533779488768"
-  description: "Power meter with phase level voltage, current, and power monitoring."
-  is_canonical: true
-  implements:
-  - EM
-  - PWM
-  - PLPM
-  - PVCM
-
 EM_PWM_AVCM_PVCM:
-  id: "6409503665756831744"
   description: "Power meter with phase level voltage and current monitoring (and averaging)."
   is_canonical: true
   implements:
@@ -49,8 +42,7 @@ EM_PWM_AVCM_PVCM:
   - AVCM
   - PVCM
 
-EM_PWM_AVCM_PLPM_PVCM:
-  id: "18371064276052869120"
+EM_PWM_AVCM_PLPM_PVCM: 
   description: "The typical ION meter (Bay Area standard)."
   is_canonical: true
   implements:
@@ -60,40 +52,15 @@ EM_PWM_AVCM_PLPM_PVCM:
   - PLPM
   - PVCM
 
-#############################
-### Non-Canonical Devices ###
-#############################
-
-EM_ION:
-  id: "7398207611197194240"
-  description: "The typical ION meter (Bay Area standard)"
-  implements:
-  - EM_PWM_AVCM_PLPM_PVCM
-  - DEPRECATED
-
-EM_US_MTV_1200_1:
-  id: "2029916855371563008"
-  description: "Entities: US-MTV-1200:power-meter-MAIN_Meter, US-MTV-E475:power-meter-MAIN_Meter, US-MTV-GWC4:power-meter-MAIN_Meter, US-MTV-LMK5:power-meter-MAIN_Meter, US-MTV-SB75:power-meter-MAIN_Meter, US-PAO-1010:power-meter-MAIN_Meter, US-PAO-1129:power-meter-MAIN_Meter, US-SVL-CRSM1265:power-meter-MAIN_Meter, US-SVL-MP2:power-meter-MAIN_Meter, US-SVL-MP4:power-meter-MAIN_Meter, US-SVL-MP5:power-meter-MAIN_Meter"
-  implements:
-  - EM_PWM
+# Added for AU-SYD-ODI 2021-03-04
+EM_PWM_PLPM_PVCM: 
+  description: "SE PM5100 Meter"
+  is_canonical: true
   uses:
-  - average_line_current_sensor
-  - average_inter_line_voltage_sensor
-
-EM_US_MTV_PR55_1:
-  id: "4660019037755932672"
-  description: "Non-standard type for US-MTV-PT55 Main meter."
+  - line_neutral_current_sensor
+  - apparent_energy_accumulator
   implements:
-  - EM_PWM_PLPM_PVCM
-  uses:
-  - average_line_neutral_voltage_sensor
-  - average_inter_line_voltage_sensor
-
-EM_US_SVL_TC1_1:
-  id: "3723270315262869504"
-  description: "Non-standard type for TC Main meters."
-  implements:
-  - EM_PWM
-  uses:
-  - average_line_current_sensor
-  - average_inter_line_voltage_sensor
+  - EM
+  - PWM
+  - PLPM
+  - PVCM

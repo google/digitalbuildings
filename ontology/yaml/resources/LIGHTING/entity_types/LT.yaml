@@ -14,7 +14,6 @@
 
 
 LT_SS:
-  id: "15296583474186551296"
   description: "Standard light."
   is_canonical: true
   implements:
@@ -22,7 +21,6 @@ LT_SS:
   - SS
 
 LT_DC:
-  id: "18377045619307970560"
   description: "Even more standaard light with dimming control."
   is_canonical: true
   implements:
@@ -30,10 +28,25 @@ LT_DC:
   - DC 
 
 LT_DC_SC:
-  id: "16395461783264952320"
   description: "Standard light with dimming control and scene control."
   is_canonical: true
   implements:
   - LT
   - DC 
   - SC
+
+#Added for AU-SYD-ODI 2021-03-04
+LGRP_DC_MS_IS:
+  description: "Delamtic controller lighting groups with brightness, motion sensing and illuminance sensing"
+  is_canonical: false
+  implements:
+  - LGRP
+  - DC
+  - MS
+  - IS
+
+ELT_DELMATIC:
+  description: "Delamtic emergency light"
+  is_canonical: false
+  implements:
+  - EQUIPMENT
