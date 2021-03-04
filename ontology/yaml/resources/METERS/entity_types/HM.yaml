@@ -14,6 +14,7 @@
 
 
 HM_CHW:
+  id: "38387936655310848"
   description: "Cooling load heat meter."
   implements:
   - HM
@@ -24,16 +25,3 @@ HM_CHW:
   - chilled_return_water_temperature_sensor
   - cooling_thermal_power_sensor
   - cooling_thermal_energy_accumulator
-  
-#Added for AU-SYD-ODI 2021-03-04
-HM_HW:
-  description: "Heating load heat meter."
-  implements:
-  - HM
-  is_canonical: true
-  uses:
-  - heating_water_flowrate_sensor
-  - heating_supply_water_temperature_sensor
-  - heating_return_water_temperature_sensor
-  - heating_thermal_power_sensor
-  - heating_thermal_energy_accumulator

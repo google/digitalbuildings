@@ -15,43 +15,45 @@
 ### ABSTRACT TYPES
 
 SS:
+  id: "7172089746410176512"
   description: "Basic combination of run command and status (start/stop); indicates the light is active or inactive."
   is_abstract: true
   implements:
   - /SS
 
 DC:
+  id: "9892263921341956096"
   description: "Brightness dimming control."
   is_abstract: true
   uses:
   - brightness_percentage_command
 
 MS:
+  id: "3497152450475851776"
   description: "Motion sensing monitoring."
   is_abstract: true
   uses:
   - motion_status
 
 OS:
+  id: "13152870051558195200"
   is_abstract: true
   description: "Occupancy status for a specific zone."
   uses:
   - zone_occupancy_status
 
 SC:
+  id: "2776576510096572416"
   is_abstract: true
   description: "Scene control for a device or group of devices."
   uses:
   - scene_index_command
 
 BM:
+  id: "3713325232589635584"
   description: " Battery power status monitoring."
   is_abstract: true
   uses:
   - battery_charge_status
 
-IS:
-  description: "Illuminance sensor"
-  is_abstract: true
-  uses:
-  - illuminance_sensor
+
