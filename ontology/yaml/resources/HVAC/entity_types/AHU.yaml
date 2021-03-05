@@ -2667,6 +2667,55 @@ AHU_BYPSSPC_DX3SC_ECON_HT2SC_SFSS_SFVSC:
   - SFSS
   - SFVSC
 
+#AU-SY-ODI types  
+AHU_DFFC_ZTC_CHWZTC_HWZTC_STM_RTM_CO2C_FDPM_AHAC:
+  description: "Single zone air handling unit with CO2 override and after hours override"
+  is_canonical: true
+  implements:
+  - AHU
+  - DFFC
+  - ZTC
+  - CHWZTC
+  - HWZTC
+  - STM
+  - RTM
+  - CO2C
+  - FDPM
+  - AHAC
+
+AHU_SFVSC_ZTC_RTM_STM_HPZTC_CWDT_CO2C_OADM_FDPM_AHAC_WLDS:
+  description: "Single zone variable speed water cooled heat pump with CO2 override, after hours override and leak detection"
+  is_canonical: true
+  implements:
+  - AHU
+  - SFVSC
+  - ZTC
+  - RTM
+  - STM
+  - HPZTC
+  - CWDT
+  - CO2C
+  - OADM
+  - FDPM
+  - AHAC
+  - SAFETY/WLDS
+
+AHU_SFVSC_ZTC_RTM_STM_HPZTC_CWDT_CO2C_OADM_FDPM_AHAC:
+  description: "Single zone variable speed water cooled heat pump with CO2 override and after hours override"
+  is_canonical: true
+  implements:
+  - AHU
+  - SFVSC
+  - ZTC
+  - RTM
+  - STM
+  - HPZTC
+  - CWDT
+  - CO2C
+  - OADM
+  - FDPM
+  - AHAC
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
@@ -3568,51 +3617,3 @@ AHU_US_SVL_MAT2_4:
   - supply_fan_speed_percentage_command
   - supply_air_flowrate_sensor
 
-#AU-SY-ODI types  
-AHU_DFFC_ZTC_CHWZTC_HWZTC_STM_RTM_CO2C_FDPM_AHAC:
-  description: "TBA"
-  is_canonical: true
-  implements:
-  - AHU
-  - DFFC
-  - ZTC
-  - CHWZTC
-  - HWZTC
-  - STM
-  - RTM
-  - CO2C
-  - FDPM
-  - AHAC
-
-AHU_SFVSC_ZTC_RTM_STM_HPZTC_CWDT_CO2C_OADM_FDPM_AHAC_WLDS:
-  description: "TBA"
-  is_canonical: true
-  implements:
-  - AHU
-  - SFVSC
-  - ZTC
-  - RTM
-  - STM
-  - HPZTC
-  - CWDT
-  - CO2C
-  - OADM
-  - FDPM
-  - AHAC
-  - SAFETY/WLDS
-
-AHU_SFVSC_ZTC_RTM_STM_HPZTC_CWDT_CO2C_OADM_FDPM_AHAC:
-  description: "TBA"
-  is_canonical: true
-  implements:
-  - AHU
-  - SFVSC
-  - ZTC
-  - RTM
-  - STM
-  - HPZTC
-  - CWDT
-  - CO2C
-  - OADM
-  - FDPM
-  - AHAC
