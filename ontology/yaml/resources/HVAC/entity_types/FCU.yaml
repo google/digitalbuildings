@@ -850,3 +850,35 @@ FCU_US_MTV_1950_3:
   - INCOMPLETE
   uses:
   - cooling_stage_run_count
+#Additional types for CH ZRH EURD
+
+FCU_CH_ZRH_EURD_1:
+  description: "Typical chilled water FCU with cooling-only (discharge control) for MDF Rooms,
+                including discharge fan speed control and chilled water valve control"
+  implements:
+  - FCU
+  - DFVSC
+  - CHWZC
+  - SWISOVPM
+  - INCOMPLETE
+  uses:
+  - chilled_supply_water_temperature_sensor
+  - chilled_return_water_temperature_sensor
+  - water_leak_alarm
+  - maintenance_alarm
+  - master_alarm
+
+FCU_CH_ZRH_EURD_2:
+  description: "Typical chilled water FCU with cooling-only (discharge control) for MDF Rooms,
+                including discharge fan speed control"
+  implements:
+  - FCU
+  - DFVSC
+  - SWISOVPM
+  - INCOMPLETE
+  uses:
+  - chilled_supply_water_temperature_sensor
+  - chilled_return_water_temperature_sensor
+  - water_leak_alarm
+  - maintenance_alarm
+  - master_alarm

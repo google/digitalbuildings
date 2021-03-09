@@ -33,7 +33,7 @@ LTGW:
   description: "Lighting gateway."
   implements:
   - EQUIPMENT
-  
+
 LAC:
   description: "lighting area controller."
   implements:
@@ -54,3 +54,18 @@ LIGHTING_GROUP:
 
 LIGHTING_SCENE:
   description: "A scene containing brightness values for each luminaire."
+
+# New General Type for CH ZRH eurd
+RP:
+  id: "1122432734363385857"
+  description: "Radiant panel, consisting of a coil/panel with no fan providing either heating or cooling via primarily radiant heat transfer."
+  is_abstract: true
+  implements:
+  - EQUIPMENT
+
+CO:
+  id: "1122432734363445857"
+  description: "Tag for change over equipment which is providing either hot or chilled water for radiant panels in a zone "
+  is_abstract: true
+  implements:
+  - EQUIPMENT

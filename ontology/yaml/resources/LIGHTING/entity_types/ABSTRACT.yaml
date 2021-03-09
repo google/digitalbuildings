@@ -1,0 +1,100 @@
+# Copyright 2020 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the License);
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#    https://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an AS IS BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+### ABSTRACT TYPES
+
+SS:
+  id: "7172089746410176512"
+  description: "Basic combination of run command and status (start/stop); indicates the light is active or inactive."
+  is_abstract: true
+  implements:
+  - /SS
+
+DC:
+  id: "9892263921341956096"
+  description: "Brightness dimming control."
+  is_abstract: true
+  uses:
+  - brightness_percentage_command
+
+MS:
+  id: "3497152450475851776"
+  description: "Motion sensing monitoring."
+  is_abstract: true
+  uses:
+  - motion_status
+
+OS:
+  id: "13152870051558195200"
+  is_abstract: true
+  description: "Occupancy status for a specific zone."
+  uses:
+  - zone_occupancy_status
+
+SC:
+  id: "2776576510096572416"
+  is_abstract: true
+  description: "Scene control for a device or group of devices."
+  uses:
+  - scene_index_command
+
+BM:
+  id: "3713325232589635584"
+  description: " Battery power status monitoring."
+  is_abstract: true
+  uses:
+  - battery_charge_status
+
+#Abstract types for CH ZRH required
+VADC:
+  description: "Variable dimmer control for standard luminaires."
+  is_abstract: true
+  uses:
+  - scene_dimmer_percentage_command
+  - scene_dimmer_percentage_sensor
+  - min_scene_dimmer_percentage_setpoint
+  - max_scene_dimmer_percentage_setpoint
+
+
+VADC_RGB:
+  description: "Variable dimmer control for RGB luminaires."
+  is_abstract: true
+  uses:
+  - scene_dimmer_percentage_command
+  - scene_dimmer_percentage_sensor
+  - min_scene_dimmer_percentage_setpoint
+  - max_scene_dimmer_percentage_setpoint
+  - red_scene_dimmer_percentage_command
+  - green_scene_dimmer_percentage_command
+  - blue_scene_dimmer_percentage_command
+
+
+LSA:
+  description: "Lighting switch actuator for luminaires."
+  is_abstract: true
+  uses:
+  - lighting_actuator_command
+
+LSC:
+  description: "Lighting switch control."
+  is_abstract: true
+  uses:
+  - lighting_switch_status
+
+LC:
+  description: "Luminance control."
+  is_abstract: true
+  uses:
+  - illuminance_setpoint
+  - illuminance_sensor

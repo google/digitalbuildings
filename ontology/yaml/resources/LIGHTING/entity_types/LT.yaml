@@ -20,3 +20,47 @@ EXIT:
   - LT
 
 
+#Entity types for CH ZRH
+LGRP_OS_SC_LC_VADC:
+  description: "Standard lighting fixture group control with scene- and dimming control, based on scene and occupancy"
+  is_canonical: true
+  implements:
+  - LGRP
+  - OS
+  - SC
+  - LC
+  - VADC
+
+
+LGRP_OS_SC_LC_VADC_RGB:
+  description: "Standard lighting fixture group control with scene- and dimming control, based on scene and occupancy"
+  is_canonical: true
+  implements:
+  - LGRP
+  - OS
+  - SC
+  - LC
+  - VADC_RGB
+
+LGRP_OS_SC_LC_VADC_LSA:
+  description: "Standard lighting fixture group control with scene control, dimming control and knx actuators,based on scene and occupancy"
+  is_canonical: true
+  implements:
+  - LGRP
+  - OS
+  - SC
+  - LC
+  - VADC
+  - LSA
+
+
+LGRP_OS_SC_LC_VADC_RGB_LSA:
+  description: "Standard lighting fixture group control with scene control, dimming control and knx actuators,based on scene and occupancy"
+  is_canonical: true
+  implements:
+  - LGRP
+  - OS
+  - SC
+  - LC
+  - VADC_RGB
+  - LSA
