@@ -22,7 +22,7 @@ from absl.testing import absltest
 from os import path
 from yamlformat.validator import external_file_lib
 
-_TEST_DIR = path.dirname(path.realpath(__file__))
+_TEST_DIR = path.join('third_party/digitalbuildings/tools/validators/instance_validator/', 'tests')
 
 DIR_ONE_LEVEL = path.join(_TEST_DIR, 'fake_resources', 'dir1')
 DIR_MULTI_DIR = path.join(_TEST_DIR, 'fake_resources', 'dir2')

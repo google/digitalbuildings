@@ -11,13 +11,15 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 """Uses ontology universe to validate parsed instance data."""
 
 from __future__ import print_function
 
+from typing import Optional
+
 from validate import connection
 from validate import field_translation
+from validate import instance_parser
 from validate import link
 from yamlformat.validator import findings_lib
 
@@ -35,44 +37,65 @@ UNITS_KEY = 'units'
 UNIT_VALUES_KEY = 'unit_values'
 VALUES_KEY = 'values'
 STATES_KEY = 'states'
+OPERATION_KEY = 'operation'
+UPDATE_MASK_KEY = 'update_mask'
+ETAG_KEY = 'etag'
 
 
 # TODO(nkilmer): move parsing and validation logic in this class into subclasses
 class EntityInstance(findings_lib.Findings):
   """Uses information from the generated ontology universe to validate
+
   an entity instance. An entity instance is composed of at least an id and a
   type. For example: {'id': 'FACILITIES/12345', 'type': 'FACILITIES/BUILDING'}.
 
   Args:
     entity_yaml: parsed instance YAML file formatted as dictionary
+    default_operation: EntityOperation to be performed on the entity.  Default
+      operation is ADD.
   """
 
-  def __init__(self, entity_yaml):
+  def __init__(
+      self,
+      entity_yaml,
+      default_operation: Optional[
+          instance_parser.EntityOperation] = instance_parser.EntityOperation.ADD
+  ):
     super().__init__()
 
+    self.operation = default_operation
+    if OPERATION_KEY in entity_yaml:
+      self.operation = instance_parser.EntityOperation.FromString(
+          entity_yaml[OPERATION_KEY])
+
     self.id = None
-    if ID_KEY in entity_yaml.keys():
+    if ID_KEY in entity_yaml:
       self.id = entity_yaml[ID_KEY]
 
     self.namespace, self.type_name = None, None
-    if TYPE_KEY in entity_yaml.keys():
+    if TYPE_KEY in entity_yaml:
       self.namespace, self.type_name = self._ParseTypeString(
           entity_yaml[TYPE_KEY])
 
     self.translation = None
-    if TRANSLATION_KEY in entity_yaml.keys():
-      self.translation = self._ParseTranslation(
-          entity_yaml[TRANSLATION_KEY])
+    if TRANSLATION_KEY in entity_yaml:
+      self.translation = self._ParseTranslation(entity_yaml[TRANSLATION_KEY])
 
     self.connections = None
-    if CONNECTIONS_KEY in entity_yaml.keys():
-      self.connections = self._ParseConnections(
-          entity_yaml[CONNECTIONS_KEY])
+    if CONNECTIONS_KEY in entity_yaml:
+      self.connections = self._ParseConnections(entity_yaml[CONNECTIONS_KEY])
 
     self.links = None
-    if LINKS_KEY in entity_yaml.keys():
+    if LINKS_KEY in entity_yaml:
       self.links = self._ParseLinks(entity_yaml[LINKS_KEY])
 
+    self.update_mask = None
+    if UPDATE_MASK_KEY in entity_yaml:
+      self.update_mask = entity_yaml[UPDATE_MASK_KEY]
+
+    self.etag = None
+    if ETAG_KEY in entity_yaml:
+      self.etag = entity_yaml[ETAG_KEY]
 
   def _ParseTypeString(self, type_str):
     """Parses an entity type string into a namespace and type name.
@@ -88,17 +111,15 @@ class EntityInstance(findings_lib.Findings):
     type_parse = type_str.split('/')
 
     if len(type_parse) == 1:
-      print('Type improperly formatted, a namespace is missing: '
-            , type_str)
-      raise TypeError('Type improperly formatted, a namespace is missing: '
-                      , type_str)
+      print('Type improperly formatted, a namespace is missing: ', type_str)
+      raise TypeError('Type improperly formatted, a namespace is missing: ',
+                      type_str)
 
     if len(type_parse) > 2:
       print('Type improperly formatted: ', type_str)
       raise TypeError('Type improperly formatted: ', type_str)
 
     return type_parse[0], type_parse[1]
-
 
   def _ParseTranslation(self, translation_body):
     """Parses YAML defining the translation of an entity's points.
@@ -142,10 +163,10 @@ class EntityInstance(findings_lib.Findings):
 
     return translation
 
-
   def _ParseConnections(self, connections_body):
-    """Parses YAML defining the connections between an entity and other
-    entities, which are the sources of the connections.
+    """Parses YAML defining connections between one entity and other.
+
+    Connections are always defined on the target entity.
 
     Args:
       connections_body: YAML body for the entity connections
@@ -161,10 +182,10 @@ class EntityInstance(findings_lib.Findings):
 
     return connections
 
-
   def _ParseLinks(self, links_body):
-    """Parses YAML defining the links between the fields of this entity and
-    other source entities.
+    """Parses YAML defining links between the fields of one entity and another.
+
+    Links are always defined on the target entity.
 
     Args:
       links_body: YAML body for the entity links
@@ -180,10 +201,8 @@ class EntityInstance(findings_lib.Findings):
 
     return links
 
-
   def _ValidateType(self, universe):
-    """Uses information from the generated ontology universe to validate
-    an entity's type.
+    """Uses information from the ontology universe to validate an entity's type.
 
     Returns:
       Returns boolean for validity of entity type.
@@ -203,10 +222,10 @@ class EntityInstance(findings_lib.Findings):
 
     return True
 
-
   def _ValidateTranslation(self, universe):
-    """Uses information from the generated ontology universe to validate
-    an entity's translation if it exists.
+    """Validate an entity's translation against the entity's type.
+
+    No action is taken if the entity has no translation.
 
     Returns:
       Returns boolean for validity of entity translation, defaults to True if
@@ -252,23 +271,22 @@ class EntityInstance(findings_lib.Findings):
       if valid_states:
         for state in ft.states.keys():
           if state not in valid_states:
-            print('Field {0} has an invalid state: {1}'
-                  .format(field_name, state))
+            print('Field {0} has an invalid state: {1}'.format(
+                field_name, state))
             is_valid = False
 
     for field_name, field in type_fields.items():
       if not field.optional and field_name not in found_fields:
-        print('Required field {0} is missing from translation'
-              .format(field_name))
+        print(
+            'Required field {0} is missing from translation'.format(field_name))
         is_valid = False
 
     return is_valid
 
-
   def _ValidateConnections(self, universe):
-    """Uses information from the generated ontology universe to validate
-    an entity's connections. Connections are not currently generated in the
-    ontology universe, so this code assumes the contents are a set.
+    """Validate's an entity's connections against the ontology universe.
+
+    Currently the only check is that the connection type is valid.
 
     Returns:
       Returns boolean for validity of entity connections.
@@ -288,10 +306,10 @@ class EntityInstance(findings_lib.Findings):
 
     return is_valid
 
-
   def _ValidateLinks(self, universe, entity_instances):
-    """Uses information from the generated ontology universe to validate
-    the links key of an entity.
+    """Validates an entity's links against the ontology universe.
+
+    Logic checks the existence of sources and of fields on both types.
 
     Args:
       universe: ConfigUniverse generated from the ontology
@@ -320,8 +338,7 @@ class EntityInstance(findings_lib.Findings):
       src_entity = entity_instances.get(link_inst.source)
       src_namespace = src_entity.namespace
       src_type_name = src_entity.type_name
-      src_entity_type = universe.GetEntityType(src_namespace,
-                                               src_type_name)
+      src_entity_type = universe.GetEntityType(src_namespace, src_type_name)
 
       for source_field, target_field in link_inst.field_map.items():
         # assumes that the namespace is '' for now
@@ -337,13 +354,13 @@ class EntityInstance(findings_lib.Findings):
 
         found_fields.add('/' + target_field)
 
-        if not self._ValidateLinkUnitsMatch(universe,
-                                            source_field, target_field):
+        if not self._ValidateLinkUnitsMatch(universe, source_field,
+                                            target_field):
           is_valid = False
           continue
 
-        if not self._ValidateLinkStatesMatch(universe,
-                                             source_field, target_field):
+        if not self._ValidateLinkStatesMatch(universe, source_field,
+                                             target_field):
           is_valid = False
           continue
 
@@ -353,7 +370,6 @@ class EntityInstance(findings_lib.Findings):
         is_valid = False
 
     return is_valid
-
 
   def _ValidateLinkUnitsMatch(self, universe, source_field, target_field):
     """Validates that units match between linked source and target fields."""
@@ -366,18 +382,16 @@ class EntityInstance(findings_lib.Findings):
       return False
     return True
 
-
   def _ValidateLinkStatesMatch(self, universe, source_field, target_field):
     """Validates that states match between linked source and target fields."""
 
     source_states = universe.GetStatesByField(source_field)
     target_states = universe.GetStatesByField(target_field)
     if source_states != target_states:
-      print('State mismatch in link from {0} to {1}'
-            .format(source_field, target_field))
+      print('State mismatch in link from {0} to {1}'.format(
+          source_field, target_field))
       return False
     return True
-
 
   def IsValidEntityInstance(self, universe=None, entity_instances=None):
     """Uses the generated ontology universe to validate an entity.

@@ -38,7 +38,7 @@ _F = test_helpers_lib.Fields
 _F1 = test_helpers_lib.Field
 
 # Constant to point to test files.
-_TEST_DIR = path.dirname(path.realpath(__file__))
+_TEST_DIR = path.join('third_party/digitalbuildings/tools/validators/instance_validator/', 'tests')
 RESOURCE_PATH = path.join(_TEST_DIR, 'fake_resources')
 
 # Override this value to keep tests stable

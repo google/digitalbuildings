@@ -11,21 +11,93 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 """Parses and validates YAML instance files for syntax"""
 from __future__ import print_function
 
 import collections
 import enum
 import re
-import strictyaml as syaml
-import ruamel
 import sys
+from typing import Callable, Dict, List, Optional, Type, TypeVar
+
+import ruamel
+import strictyaml as syaml
 
 #### Program constants ####
 # Size of entity block to send to the syntax validator
 # Breaking up the file into blocks is necessary to increase performance
-_ENTITIES_PER_BATCH = 1
+_ENTITIES_PER_BATCH = 2
+
+
+class ConfigMode(enum.Enum):
+  """Enumerated building config file processing modes."""
+  INITIALIZE = 'INITIALIZE'
+  UPDATE = 'UPDATE'
+
+  @classmethod
+  def FromString(cls, value: str):
+    """Returns a ConfigMode instance matching the provided string."""
+    for _, member in cls.__members__.items():
+      if member.value == value:
+        return member
+    raise LookupError
+
+  @classmethod
+  def Default(cls):
+    """Returns the default ConfigMode if no config block is provided."""
+    return cls.INITIALIZE
+
+
+class EntityOperation(enum.Enum):
+  """Enumerated building config entity processing modes."""
+  UPDATE = 'UPDATE'
+  ADD = 'ADD'
+  DELETE = 'DELETE'
+
+  @classmethod
+  def FromString(cls, value: str):
+    """Returns a ConfigMode instance matching the provided string."""
+    for _, member in cls.__members__.items():
+      if member.value == value:
+        return member
+    raise LookupError
+
+
+def _OrRegex(values: List[str]) -> syaml.Regex:
+  """Returns a regex matching any term in the provided list."""
+  r_str = '|'.join(['(' + o + ')' for o in values])
+  return syaml.Regex('^' + r_str + '$')
+
+
+E = TypeVar('E', bound=enum.Enum)
+
+
+def _EnumToRegex(enum_type: Optional[Type[E]] = None,
+                 omit: Optional[List[E]] = None,
+                 exactly: Optional[E] = None) -> syaml.Regex:
+  """Returns a regex matching any value of an enum.
+
+  Args:
+    enum_type: enum type to include values of
+    omit: enum values to excluse when iterating throught the enum
+    exactly: an exact value to check.  This is mutually exclusive of other args
+  """
+  if exactly:
+    if enum_type or omit:
+      raise ValueError('Cannot specify an exact value with other constraints')
+    return _OrRegex([exactly.value])
+  if omit is None:
+    omit = []
+  return _OrRegex([v.value for v in list(enum_type) if v not in omit])
+
+
+def _MergeSchemas(first: Dict[syaml.ScalarValidator, syaml.Validator],
+                  second: Dict[syaml.ScalarValidator, syaml.Validator]):
+  """Returns a copy of first, updated with the contents of second."""
+  merged = first.copy()
+  merged.update(second)
+  return merged
+
 
 #### Text parsing constants ####
 # Lines matching this pattern have no content and can be dropped
@@ -44,6 +116,11 @@ _CONFIG_METADATA_REGEX = '^{0}:'.format(_CONFIG_METADATA_KEY)
 _CONFIG_METADATA_PATTERN = re.compile(_CONFIG_METADATA_REGEX)
 # Key that marks the mode to parse file in.
 _CONFIG_MODE_KEY = 'operation'
+# TODO(berkoben): eliminate duplication of key constants between here and other
+# modules that parse entity contents.  Constants should probably be sourced from
+# the entity classes (and validation should probably move there as well).
+_ENTITY_MODE_KEY = 'operation'
+_ENTITY_TYPE_KEY = 'type'
 
 # Value for a udmi compliant translation
 _COMPLIANT_REGEX = u'^COMPLIANT$'
@@ -72,11 +149,10 @@ _TRANSLATION_SCHEMA = syaml.Regex(_COMPLIANT_REGEX) | syaml.MapPattern(
     }))
 
 _METADATA_SCHEMA = syaml.Map(
-    {syaml.Optional(_CONFIG_MODE_KEY): syaml.Regex(u'^[A-Z][A-Z_]+')})
+    {syaml.Optional(_CONFIG_MODE_KEY): _EnumToRegex(ConfigMode)})
 
-_ENTITY_VALIDATOR_BASE_SCHEMA = {
-    'id':
-        syaml.Str(),
+_ENTITY_ID_SCHEMA = {'id': syaml.Str()}
+_ENTITY_ATTRIB_SCHEMA = {
     # TODO(b/166472270): revisit connection syntax
     #  validation. Current code might not follow
     #  the spec.
@@ -93,64 +169,28 @@ _ENTITY_VALIDATOR_BASE_SCHEMA = {
     syaml.Optional('metadata'):
         syaml.Any()
 }
-
-
-def _BuildFromKV(k: syaml.ScalarValidator,
-                 v: syaml.Validator) -> syaml.Validator:
-  """Allows a base validator to be defined once and reused with additions."""
-  d = _ENTITY_VALIDATOR_BASE_SCHEMA.copy()
-  d[k] = v
-  return syaml.MapPattern(syaml.Str(), syaml.Map(d))
-
-
-# Validates entities in INITIALIZE mode
-_ENTITY_SCHEMA_INIT = _BuildFromKV('type', syaml.Str())
-# Validates entities in UPDATE mode
-_ENTITY_SCHEMA_UPDATE = _BuildFromKV(syaml.Optional('type'), syaml.Str())
-
-
-def _ValidateBlockWithSchema(content: syaml.YAML,
-                             schema: syaml.Validator) -> syaml.YAML:
-  """Validates an entity instance based on a syaml-formatted YAML schema.
-
-  Args:
-    content: an entity instance in yaml format
-    schema: YAML schema in syaml format
-
-  Returns:
-    Returns the parsed YAML data in a strictyaml-provided datastructure
-    which is similar to a Python dictionary.
-  """
-  try:
-    parsed = syaml.load(content, schema)
-  except (ValueError, ruamel.yaml.parser.ParserError,
-          ruamel.yaml.scanner.ScannerError,
-          syaml.exceptions.YAMLValidationError,
-          syaml.exceptions.DuplicateKeysDisallowed,
-          syaml.exceptions.InconsistentIndentationDisallowed) as exception:
-    print(exception)
-    sys.exit(0)
-
-  return parsed
-
-
-class ConfigMode(enum.Enum):
-  """Enumerated building config file processing modes."""
-  INITIALIZE = 'INITIALIZE'
-  UPDATE = 'UPDATE'
-
-  @classmethod
-  def FromString(cls, value: str):
-    """Returns a ConfigMode instance matching the provided string."""
-    for _, member in cls.__members__.items():
-      if member.value == value:
-        return member
-    raise LookupError
-
-  @classmethod
-  def Default(cls):
-    """Returns the default ConfigMode if no config block is provided."""
-    return cls.INITIALIZE
+_ENTITY_BASE_SCHEMA = _MergeSchemas(_ENTITY_ID_SCHEMA,
+                                    _ENTITY_ATTRIB_SCHEMA)
+_ENTITY_INIT_SCHEMA = _MergeSchemas(_ENTITY_BASE_SCHEMA,
+                                    {_ENTITY_TYPE_KEY: syaml.Str()})
+_ENTITY_UPDATE_SCHEMA = _MergeSchemas(
+    _ENTITY_BASE_SCHEMA, {
+        'etag': syaml.Str(),
+        syaml.Optional(_ENTITY_TYPE_KEY):
+            syaml.Str(),
+        syaml.Optional(_ENTITY_MODE_KEY):
+            _EnumToRegex(exactly=EntityOperation.UPDATE),
+        syaml.Optional('update_mask'):
+            syaml.UniqueSeq(syaml.Str())
+    })
+_ENTITY_ADD_SCHEMA = _MergeSchemas(
+    _ENTITY_BASE_SCHEMA, {
+        _ENTITY_TYPE_KEY: syaml.Str(),
+        _ENTITY_MODE_KEY: _EnumToRegex(exactly=EntityOperation.ADD)
+    })
+_ENTITY_DELETE_SCHEMA = _MergeSchemas(
+    _ENTITY_ID_SCHEMA,
+    {_ENTITY_MODE_KEY: _EnumToRegex(exactly=EntityOperation.DELETE)})
 
 
 class InstanceParser():
@@ -225,12 +265,13 @@ class InstanceParser():
         if _ENTITY_INSTANCE_PATTERN.match(line):
           # If the last block was config, send it for parsing
           if in_config:
-            self._ValidateMetadataBlock(entity_instance_block)
+            self._ValidateBlock(entity_instance_block,
+                                self._ValidateMetadataContent)
             entity_instance_block = ''
             in_config = False
 
           # wait until entity instance block reaches _ENTITIES_PER_BATCH
-          elif found_entities > _ENTITIES_PER_BATCH:
+          elif found_entities >= _ENTITIES_PER_BATCH:
             self._queued_entity_blocks.append(entity_instance_block)
             self._ProcessEntities()
             entity_instance_block = ''
@@ -257,39 +298,82 @@ class InstanceParser():
     # Validate all queued blocks
     while True:
       try:
-        self._ValidateEntityBlock(self._queued_entity_blocks.popleft())
+        self._ValidateBlock(self._queued_entity_blocks.popleft(),
+                            self._ValidateEntityBlock)
       except IndexError:
         break
 
-  def _ValidateMetadataBlock(self, unvalidated_block: str) -> None:
-    """Validates the metadata block and extracts the processing mode."""
-    validated = _ValidateBlockWithSchema(unvalidated_block, _METADATA_SCHEMA)
-    mode_str = validated.get(_CONFIG_MODE_KEY, None)
+  def _ValidateMetadataContent(self, metadata_block: syaml.YAML) -> None:
+    """Validates the metadata block and extracts the operation mode.
+
+    Args:
+      metadata_block: YAML contents of the config metadata block
+    """
+    mode_str = metadata_block.get(_CONFIG_MODE_KEY, None)
     if mode_str is not None:
       self._config_mode = ConfigMode.FromString(mode_str)
     else:
       self._config_mode = ConfigMode.Default()
 
-  def _ValidateEntityBlock(self, unvalidated_block) -> None:
-    """Validates a block of entities and adds them to the validated blocks.
+  def _ValidateEntityContent(self, entity: syaml.YAML) -> None:
+    """Validates the contents of a single entity.
+
+    The logic will select the appropriate validation schema based on the
+    config_mode of the container and the defined EntityOperation, if any.
 
     Args:
-      unvalidated_block: string. A block of unvalidated entities
+      entity: YAML object for the entityContents
 
     Raises:
       KeyError: if self._config_mode is not set to a known value.
     """
     if ConfigMode.INITIALIZE == self._config_mode:
-      schema = _ENTITY_SCHEMA_INIT
+      schema = syaml.Map(_ENTITY_INIT_SCHEMA)
     elif ConfigMode.UPDATE == self._config_mode:
-      schema = _ENTITY_SCHEMA_UPDATE
+      schema = syaml.Map(_ENTITY_UPDATE_SCHEMA)
+      if _ENTITY_MODE_KEY in entity:
+        if entity[_ENTITY_MODE_KEY] == EntityOperation.ADD.value:
+          schema = syaml.Map(_ENTITY_ADD_SCHEMA)
+        elif entity[_ENTITY_MODE_KEY] == EntityOperation.DELETE.value:
+          schema = syaml.Map(_ENTITY_DELETE_SCHEMA)
     else:
       raise KeyError('No valid _config_mode is set')
 
-    validated = _ValidateBlockWithSchema(unvalidated_block, schema)
+    entity.revalidate(schema)
 
-    for key in validated.data.keys():
+  def _ValidateEntityBlock(self, block: syaml.YAML) -> None:
+    """Validates a block of entities and adds them to the validated blocks.
+
+    Args:
+      block: YAML representing one or more entities
+
+    Raises:
+      ValueError: if block contains a key that has already been found.
+    """
+
+    for key in block.keys():
       if key in self._validated_entities:
         raise ValueError('Duplicate key {0}'.format(key))
+      self._ValidateEntityContent(block.get(key))
+    self._validated_entities.update(block.data)
 
-    self._validated_entities.update(validated.data)
+  def _ValidateBlock(self, unvalidated_block: str,
+                     validation_fn: Callable[[syaml.YAML], None]) -> None:
+    """Validates a yaml-formatted string using the provided function.
+
+    Args:
+      unvalidated_block: string. A block of unvalidated entities
+      validation_fn: a validation function that takes YAML as an argument
+    """
+    try:
+      validated = syaml.load(unvalidated_block,
+                             syaml.MapPattern(syaml.Str(), syaml.Any()))
+      validation_fn(validated)
+
+    except (ValueError, ruamel.yaml.parser.ParserError,
+            ruamel.yaml.scanner.ScannerError,
+            syaml.exceptions.YAMLValidationError,
+            syaml.exceptions.DuplicateKeysDisallowed,
+            syaml.exceptions.InconsistentIndentationDisallowed) as exception:
+      print(exception)
+      sys.exit(0)

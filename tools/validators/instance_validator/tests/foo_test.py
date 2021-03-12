@@ -11,21 +11,22 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-"""Tests for entity_instance.py"""
+"""Tests for copybara it will be removed."""
 
 from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
-from validate import generate_universe
-from validate import entity_instance
-from validate import instance_parser
-from absl.testing import absltest
 from os import path
 
-_TEST_DIR = path.join(
-    'third_party/digitalbuildings/tools/validators/instance_validator/',
-    'tests')
+from absl.testing import absltest
+
+from validate import entity_instance
+from validate import generate_universe
+from validate import instance_parser
+
+_I_VAL_DIR = path.dirname(path.realpath(__file__))
+_TEST_DIR = path.join(_I_VAL_DIR, 'tests')
 _RESOURCES = path.join('..', '..', '..', '..', 'ontology', 'yaml', 'resources')
 _DEFAULT_ONTOLOGY_LOCATION = path.abspath(path.join(_TEST_DIR, _RESOURCES))
 _TESTCASE_PATH = path.join(_TEST_DIR, 'fake_instances')
@@ -47,6 +48,7 @@ class EntityInstanceTest(absltest.TestCase):
 
   @classmethod
   def setUpClass(cls):
+    super(cls, EntityInstanceTest).setUpClass()
     cls._universe = generate_universe.BuildUniverse(_DEFAULT_ONTOLOGY_LOCATION)
     cls._universe.connections_universe = {'CONTAINS', 'CONTROLS', 'FEEDS'}
 
@@ -95,7 +97,7 @@ class EntityInstanceTest(absltest.TestCase):
     parsed = _Helper(
         [path.join(_TESTCASE_PATH, 'BAD', 'bad_abstract_type.yaml')])
     parsed = dict(parsed)
-    entity_name = list(parsed.keys())[0]
+    entity_name = list(parsed)[0]
 
     entity = dict(parsed[entity_name])
     instance = entity_instance.EntityInstance(entity)
@@ -107,7 +109,7 @@ class EntityInstanceTest(absltest.TestCase):
     parsed = _Helper(
         [path.join(_TESTCASE_PATH, 'BAD', 'bad_building_type_entity.yaml')])
     parsed = dict(parsed)
-    entity_name = list(parsed.keys())[0]
+    entity_name = list(parsed)[0]
 
     entity = dict(parsed[entity_name])
     instance = entity_instance.EntityInstance(entity)
@@ -119,7 +121,7 @@ class EntityInstanceTest(absltest.TestCase):
     parsed = _Helper(
         [path.join(_TESTCASE_PATH, 'GOOD', 'good_translation_compliant.yaml')])
     parsed = dict(parsed)
-    entity_name = list(parsed.keys())[0]
+    entity_name = list(parsed)[0]
 
     entity = dict(parsed[entity_name])
     instance = entity_instance.EntityInstance(entity)
@@ -133,7 +135,7 @@ class EntityInstanceTest(absltest.TestCase):
                   'good_translation_multiple_compliant.yaml')
     ])
     parsed = dict(parsed)
-    entity_name = list(parsed.keys())[0]
+    entity_name = list(parsed)[0]
 
     entity = dict(parsed[entity_name])
     instance = entity_instance.EntityInstance(entity)
@@ -147,7 +149,7 @@ class EntityInstanceTest(absltest.TestCase):
                   'good_building_translation_fields.yaml')
     ])
     parsed = dict(parsed)
-    entity_name = list(parsed.keys())[0]
+    entity_name = list(parsed)[0]
 
     entity = dict(parsed[entity_name])
     instance = entity_instance.EntityInstance(entity)
@@ -161,7 +163,7 @@ class EntityInstanceTest(absltest.TestCase):
                   'bad_translation_with_required_field_missing.yaml')
     ])
     parsed = dict(parsed)
-    entity_name = list(parsed.keys())[0]
+    entity_name = list(parsed)[0]
 
     entity = dict(parsed[entity_name])
     instance = entity_instance.EntityInstance(entity)
@@ -174,7 +176,7 @@ class EntityInstanceTest(absltest.TestCase):
         [path.join(_TESTCASE_PATH, 'GOOD', 'good_translation.yaml')])
 
     parsed = dict(parsed)
-    entity_name_hvac = list(parsed.keys())[0]
+    entity_name_hvac = list(parsed)[0]
 
     entity_hvac = dict(parsed[entity_name_hvac])
     instance = entity_instance.EntityInstance(entity_hvac)
@@ -187,7 +189,7 @@ class EntityInstanceTest(absltest.TestCase):
         [path.join(_TESTCASE_PATH, 'GOOD', 'good_translation.yaml')])
 
     parsed = dict(parsed)
-    entity_name_lighting = list(parsed.keys())[0]
+    entity_name_lighting = list(parsed)[0]
 
     entity_lighting = dict(parsed[entity_name_lighting])
     instance = entity_instance.EntityInstance(entity_lighting)
@@ -199,7 +201,7 @@ class EntityInstanceTest(absltest.TestCase):
     parsed = _Helper(
         [path.join(_TESTCASE_PATH, 'GOOD', 'good_translation_identical.yaml')])
     parsed = dict(parsed)
-    for entity_name in list(parsed.keys()):
+    for entity_name in list(parsed):
       entity = dict(parsed[entity_name])
       instance = entity_instance.EntityInstance(entity)
 
@@ -303,7 +305,7 @@ class EntityInstanceTest(absltest.TestCase):
         [path.join(_TESTCASE_PATH, 'BAD', 'bad_building_links_fields.yaml')])
     entity_instances = {}
     parsed = dict(parsed)
-    for raw_entity in list(parsed.keys()):
+    for raw_entity in list(parsed):
       entity_parsed = dict(parsed[raw_entity])
       entity = entity_instance.EntityInstance(entity_parsed)
       entity_instances[raw_entity] = entity
@@ -318,7 +320,7 @@ class EntityInstanceTest(absltest.TestCase):
     ])
     entity_instances = {}
     parsed = dict(parsed)
-    for raw_entity in list(parsed.keys()):
+    for raw_entity in list(parsed):
       entity_parsed = dict(parsed[raw_entity])
       entity = entity_instance.EntityInstance(entity_parsed)
       entity_instances[raw_entity] = entity
@@ -332,7 +334,7 @@ class EntityInstanceTest(absltest.TestCase):
         [path.join(_TESTCASE_PATH, 'BAD', 'bad_links_wrong_link.yaml')])
     entity_instances = {}
     parsed = dict(parsed)
-    for raw_entity in list(parsed.keys()):
+    for raw_entity in list(parsed):
       entity_parsed = dict(parsed[raw_entity])
       entity = entity_instance.EntityInstance(entity_parsed)
       entity_instances[raw_entity] = entity
@@ -346,7 +348,7 @@ class EntityInstanceTest(absltest.TestCase):
         [path.join(_TESTCASE_PATH, 'BAD', 'bad_links_missing_field.yaml')])
     entity_instances = {}
     parsed = dict(parsed)
-    for raw_entity in list(parsed.keys()):
+    for raw_entity in list(parsed):
       entity_parsed = dict(parsed[raw_entity])
       entity = entity_instance.EntityInstance(entity_parsed)
       entity_instances[raw_entity] = entity
@@ -359,7 +361,7 @@ class EntityInstanceTest(absltest.TestCase):
     parsed = _Helper([path.join(_TESTCASE_PATH, 'GOOD', 'good_links.yaml')])
     entity_instances = {}
     parsed = dict(parsed)
-    for raw_entity in list(parsed.keys()):
+    for raw_entity in list(parsed):
       entity_parsed = dict(parsed[raw_entity])
       entity = entity_instance.EntityInstance(entity_parsed)
       entity_instances[raw_entity] = entity
@@ -372,7 +374,7 @@ class EntityInstanceTest(absltest.TestCase):
     parsed = _Helper(
         [path.join(_TESTCASE_PATH, 'GOOD', 'good_translation_states.yaml')])
     parsed = dict(parsed)
-    for raw_entity in list(parsed.keys()):
+    for raw_entity in list(parsed):
       entity_parsed = dict(parsed[raw_entity])
       entity = entity_instance.EntityInstance(entity_parsed)
       if not entity.IsValidEntityInstance(self._universe):

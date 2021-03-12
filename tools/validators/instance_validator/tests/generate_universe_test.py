@@ -22,7 +22,7 @@ from validate import generate_universe
 from absl.testing import absltest
 from os import path
 
-_TEST_DIR = path.dirname(path.realpath(__file__))
+_TEST_DIR = path.join('third_party/digitalbuildings/tools/validators/instance_validator/', 'tests')
 _RESOURCES = path.join('..', '..', '..', '..', 'ontology', 'yaml', 'resources')
 _DEFAULT_ONTOLOGY_LOCATION = path.abspath(path.join(_TEST_DIR, _RESOURCES))
 _BAD_MODIFIED_ONTOLOGY = path.join(_TEST_DIR,

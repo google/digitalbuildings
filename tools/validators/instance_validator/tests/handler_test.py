@@ -22,7 +22,7 @@ from absl.testing import absltest
 from validate import handler
 from os import path
 
-_TEST_DIR = path.dirname(path.realpath(__file__))
+_TEST_DIR = path.join('third_party/digitalbuildings/tools/validators/instance_validator/', 'tests')
 _TESTCASE_PATH = path.join(_TEST_DIR, 'fake_instances')
 
 class HandlerTest(absltest.TestCase):
