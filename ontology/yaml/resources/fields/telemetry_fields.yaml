@@ -779,7 +779,7 @@ literals:
 #HM_HW
 - heating_supply_water_temperature_sensor
 - heating_return_water_temperature_sensor
-- heating_thermal_power_sensor=
+- heating_thermal_power_sensor
 - heating_thermal_energy_accumulator
 
 #EM_SE_PM5100
