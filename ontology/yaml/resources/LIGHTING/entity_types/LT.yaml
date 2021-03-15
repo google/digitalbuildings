@@ -39,14 +39,14 @@ LT_DC_SC:
   - SC
 
 #Noncanonicl types for Delmatic lighting controller at AU-SYD-ODI
-LGRP_DC_MS_IS:
-  description: "Delamtic controller lighting groups with brightness, motion sensing and illuminance sensing"
+LGRP_DC_MS_IM:
+  description: "Delamtic controller lighting groups with brightness, motion sensing and illuminance monitoring"
   is_canonical: false
   implements:
   - LGRP
   - DC
   - MS
-  - IS
+  - IM
 
 ELT_DELMATIC:
   description: "Delamtic emergency light"

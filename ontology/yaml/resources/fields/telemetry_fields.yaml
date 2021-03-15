@@ -782,8 +782,8 @@ literals:
 - heating_thermal_power_sensor
 - heating_thermal_energy_accumulator
 
-#EM_PWM_PLPM_PVCM
-- line_neutral_current_sensor
+#EM_SE_PM5100
+- line_neutral_current_sensor # A measure of current on the neutral line
 - apparent_energy_accumulator
 
 #Delmatic lighting controller

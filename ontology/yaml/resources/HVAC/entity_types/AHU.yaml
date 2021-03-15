@@ -2668,7 +2668,7 @@ AHU_BYPSSPC_DX3SC_ECON_HT2SC_SFSS_SFVSC:
   - SFVSC
 
 #AU-SY-ODI types  
-AHU_DFFC_ZTC_CHWZTC_HWZTC_STM_RTM_CO2C_FDPM_AHAC:
+AHU_DFFC_ZTC_CHWZTC_HWZTC_DTM_RTM_CO2C_FDPM_AHAC:
   description: "Single zone air handling unit with CO2 override and after hours override"
   is_canonical: true
   implements:
@@ -2677,21 +2677,21 @@ AHU_DFFC_ZTC_CHWZTC_HWZTC_STM_RTM_CO2C_FDPM_AHAC:
   - ZTC
   - CHWZTC
   - HWZTC
-  - STM
+  - DTM
   - RTM
   - CO2C
   - FDPM
   - AHAC
 
-AHU_SFVSC_ZTC_RTM_STM_HPZTC_CWDT_CO2C_OADM_FDPM_AHAC_WLDS:
+AHU_DFVSC_ZTC_RTM_DTM_HPZTC_CWDT_CO2C_OADM_FDPM_AHAC_WLDS:
   description: "Single zone variable speed water cooled heat pump with CO2 override, after hours override and leak detection"
   is_canonical: true
   implements:
   - AHU
-  - SFVSC
+  - DFVSC
   - ZTC
   - RTM
-  - STM
+  - DTM
   - HPZTC
   - CWDT
   - CO2C
@@ -2700,15 +2700,15 @@ AHU_SFVSC_ZTC_RTM_STM_HPZTC_CWDT_CO2C_OADM_FDPM_AHAC_WLDS:
   - AHAC
   - SAFETY/WLDS
 
-AHU_SFVSC_ZTC_RTM_STM_HPZTC_CWDT_CO2C_OADM_FDPM_AHAC:
+AHU_DFVSC_ZTC_RTM_DTM_HPZTC_CWDT_CO2C_OADM_FDPM_AHAC:
   description: "Single zone variable speed water cooled heat pump with CO2 override and after hours override"
   is_canonical: true
   implements:
   - AHU
-  - SFVSC
+  - DFVSC
   - ZTC
   - RTM
-  - STM
+  - DTM
   - HPZTC
   - CWDT
   - CO2C

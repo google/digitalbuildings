@@ -56,10 +56,9 @@ BM:
   uses:
   - battery_charge_status
 
-IS:
-  description: "Illuminance sensor"
+IM:
+  description: "Individual illuminance sensor monitoring, not used for control"
   is_abstract: true
-  opt_uses:
   uses:
   - illuminance_sensor
 

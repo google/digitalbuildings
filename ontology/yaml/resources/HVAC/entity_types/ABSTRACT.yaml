@@ -3637,7 +3637,6 @@ DRSM8X:
 AHAC:
   description: "Tag to indicate an after hours activation method e.g. push button associated with this device."
   is_abstract: true
-  opt_uses:  
   uses:  
   - user_occupancy_override_status
   - zone_occupancy_status
@@ -3646,7 +3645,6 @@ AHAC:
 DFFC:
   description: "Discharge fan flow control"
   is_abstract: true
-  opt_uses:
   uses:
   - discharge_fan_run_command
   - discharge_fan_run_status
@@ -3654,4 +3652,4 @@ DFFC:
   - discharge_air_flowrate_setpoint
   - discharge_air_flowrate_sensor
   implements:
-  - OPERATIONAL
+  - CONTROL
