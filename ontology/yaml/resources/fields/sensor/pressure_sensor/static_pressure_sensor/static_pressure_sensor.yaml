@@ -1,0 +1,7 @@
+literals:
+- building_air_static_pressure_sensor
+- exhaust_air_static_pressure_sensor
+- supply_air_static_pressure_sensor
+- east_building_air_static_pressure_sensor
+- return_air_static_pressure_sensor
+- west_building_air_static_pressure_sensor
