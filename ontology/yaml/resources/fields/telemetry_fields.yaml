@@ -696,9 +696,9 @@ literals:
   - INACTIVE
 
 #Additional fields for CH ZRH EURD - radiant panels
-- condensate_dewpoint_alarm:
-  - ACTIVE
-  - INACTIVE
+- condensate_water_alarm:
+  - PRESENT
+  - ABSENT
 - chilled_supply_water_valve_command
 - supply_water_valve_percentage_command
 - zone_control_mode
