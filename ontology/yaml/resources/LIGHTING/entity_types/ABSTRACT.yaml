@@ -63,18 +63,18 @@ VADC:
   uses:
   - scene_dimmer_percentage_command
   - scene_dimmer_percentage_sensor
-  - min_scene_dimmer_percentage_setpoint
-  - max_scene_dimmer_percentage_setpoint
+  - low_scene_dimmer_percentage_setpoint
+  - high_scene_dimmer_percentage_setpoint
 
 
-VADC_RGB:
+VADCRGB:
   description: "Variable dimmer control for RGB luminaires."
   is_abstract: true
   uses:
   - scene_dimmer_percentage_command
   - scene_dimmer_percentage_sensor
-  - min_scene_dimmer_percentage_setpoint
-  - max_scene_dimmer_percentage_setpoint
+  - low_scene_dimmer_percentage_setpoint
+  - high_scene_dimmer_percentage_setpoint
   - red_scene_dimmer_percentage_command
   - green_scene_dimmer_percentage_command
   - blue_scene_dimmer_percentage_command
