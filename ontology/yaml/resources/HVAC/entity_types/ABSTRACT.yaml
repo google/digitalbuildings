@@ -3053,7 +3053,7 @@ DPHCC:
   - heating_return_water_isolation_valve_command # The isolation valve for the heating water system.
   - heating_supply_water_isolation_valve_command # The isolation valve for the heating water system.
   - chilled_supply_water_isolation_valve_command # The isolation valve for the heating water system.
-  - condensate_dewpoint_alarm # Alarm triggered by condensation sensor to avoid droplet formation.
+  - condensate_water_alarm # Alarm triggered by condensation sensor to avoid droplet formation.
   - water_riser_mode # Riser conditioning mode
   uses:
   - supply_water_valve_percentage_command # The control valve for the coil. Serves both heating and cooling depending on mode.
