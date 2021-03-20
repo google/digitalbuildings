@@ -3039,7 +3039,7 @@ CAM:
   implements:
   - MONITORING
   uses:
-  - condensate_dewpoint_alarm
+  - condensate_water_alarm
 
 DPHCC:
   description: "Two-pipe heating and cooling control. Has a single control
