@@ -1,0 +1,10 @@
+{
+  "timestamp": "2020-10-15T17:21:59.000Z",
+  "version": 1,
+  "partial_update": true,
+  "points": {
+    "return_water_temperature_sensor": {
+      "present_value": 100.0
+    }
+  }
+}
