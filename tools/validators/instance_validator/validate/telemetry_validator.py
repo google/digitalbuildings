@@ -123,11 +123,11 @@ class TelemetryValidator(object):
 
     for field_translation in entity.translation.values():
       if field_translation.raw_field_name not in tele.points.keys():
-        self.AddError(telemetry_error
-                      .TelemetryError(entity_name,
-                                      field_translation.raw_field_name,
-                                      'Field missing from telemetry message'))
-
+        if not tele.is_partial:
+          self.AddError(telemetry_error
+                        .TelemetryError(entity_name,
+                                        field_translation.raw_field_name,
+                                        'Field missing from telemetry message'))
         continue
 
       point = tele.points[field_translation.raw_field_name]

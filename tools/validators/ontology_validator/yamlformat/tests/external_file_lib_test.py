@@ -11,24 +11,25 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 """Tests corp.bizapps.rews.carson.ontology.validation.external_file_lib."""
 
 from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
-from absl.testing import absltest
 from os import path
+
+from absl.testing import absltest
+
+from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.tests import test_constants
 from yamlformat.validator import external_file_lib
 
-_TEST_DIR = path.dirname(path.realpath(__file__))
-
-DIR_ONE_LEVEL = path.join(_TEST_DIR, 'fake_resources', 'dir1')
-DIR_MULTI_DIR = path.join(_TEST_DIR, 'fake_resources', 'dir2')
+DIR_ONE_LEVEL = path.join(test_constants.TEST_RESOURCES, 'dir1')
+DIR_MULTI_DIR = path.join(test_constants.TEST_RESOURCES, 'dir2')
 
 FAN = 'FAN.yaml'
 FAN_2 = 'FAN2.yaml'
+
 
 class ExternalFileLibTest(absltest.TestCase):
 
@@ -75,6 +76,7 @@ class ExternalFileLibTest(absltest.TestCase):
     self.assertEqual(path_part_modified_client_fan.root, DIR_MULTI_DIR)
     self.assertEqual(path_part_modified_client_fan.relative_path,
                      path.join('entity_types', 'another_entity_types2', FAN))
+
 
 if __name__ == '__main__':
   absltest.main()
