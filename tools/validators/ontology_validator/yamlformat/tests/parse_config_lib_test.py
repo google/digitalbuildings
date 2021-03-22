@@ -11,19 +11,19 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 """Tests for parse_config_lib."""
 
 from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
+from os import path
 import re
 
 from absl import flags
-
 from absl.testing import absltest
-from os import path
+
+from yamlformat.tests import test_constants
 from yamlformat.validator import base_lib
 from yamlformat.validator import field_lib
 from yamlformat.validator import findings_lib
@@ -35,10 +35,10 @@ from yamlformat.validator import unit_lib
 FLAGS = flags.FLAGS
 
 # Constant to point to test files.
-_TEST_DIR = path.dirname(path.realpath(__file__))
-RESOURCE_PATH = path.join(_TEST_DIR, 'fake_resources')
-field_lib.FIELD_TO_NAMESPACE_REGEX = re.compile(r'^' + RESOURCE_PATH.replace('\\', '\\\\') +
-                                                r'(\w*)[/\\]?fields.*')
+RESOURCE_PATH = path.join(test_constants.TEST_RESOURCES)
+field_lib.FIELD_TO_NAMESPACE_REGEX = re.compile(
+    r'^' + RESOURCE_PATH.replace('\\', '\\\\') + r'(\w*)[/\\]?fields.*')
+
 
 class ParseConfigLibTest(absltest.TestCase):
 
