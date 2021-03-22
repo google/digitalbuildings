@@ -11,7 +11,6 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 """Library defining different types of validation errors."""
 import copy
 import operator
@@ -105,13 +104,13 @@ class Finding(object):
   """
 
   def __init__(self,
-               message,
-               file_context,
-               type_rank=MAX_RANK,
-               category_rank=MAX_RANK,
-               inner_rank=MAX_RANK,
-               equality_key=None,
-               is_master=False):
+               message: str,
+               file_context: 'FileContext',
+               type_rank: int = MAX_RANK,
+               category_rank: int = MAX_RANK,
+               inner_rank: int = MAX_RANK,
+               equality_key: str = None,
+               is_master: bool = False):
     super(Finding, self).__init__()
 
     if not isinstance(message, str):
@@ -541,6 +540,7 @@ class DuplicateStateDefinitionError(ValidationError):
         state.context)
 
 
+# TODO(berkoben) merge this with missingdescriptionwarning
 class MissingStateDescriptionWarning(ValidationWarning):
   """A state is missing a description."""
 
@@ -548,6 +548,38 @@ class MissingStateDescriptionWarning(ValidationWarning):
     super(MissingStateDescriptionWarning,
           self).__init__('"{0}" is missing a description'.format(state.name),
                          state.context, 10)
+
+
+# ---------------------------------------------------------------------------- #
+# Errors relating to Connections.
+# ---------------------------------------------------------------------------- #
+class DuplicateConnectionDefinitionError(ValidationError):
+  """A connection is defined multiple times in a namespace."""
+
+  def __init__(self, connection, namespace):
+    super(DuplicateConnectionDefinitionError, self).__init__(
+        '"{0}" defined more than once in "{1}"'.format(connection.name,
+                                                       namespace),
+        connection.context)
+
+
+class InvalidConnectionNamespaceError(ValidationError):
+  """A connection is defined outside the global namespace."""
+
+  def __init__(self, namespace_name, context):
+    super(InvalidConnectionNamespaceError, self).__init__(
+        'Connections can only be defined globally. "{0}" is not global'.format(
+            namespace_name), context)
+
+
+# TODO(berkoben) merge this with missingdescriptionwarning
+class MissingConnectionDescriptionWarning(ValidationWarning):
+  """A connection is missing a description."""
+
+  def __init__(self, connection):
+    super(MissingConnectionDescriptionWarning, self).__init__(
+        '"{0}" is missing a description'.format(connection.name),
+        connection.context, 10)
 
 
 # ---------------------------------------------------------------------------- #
