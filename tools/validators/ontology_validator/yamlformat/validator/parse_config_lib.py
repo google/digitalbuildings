@@ -11,7 +11,6 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 """Library for parsing config files for subfields, fields, entity types."""
 
 from __future__ import absolute_import
@@ -24,6 +23,7 @@ import os
 import yaml
 
 from yamlformat.validator import base_lib
+from yamlformat.validator import connection_lib
 from yamlformat.validator import entity_type_lib
 from yamlformat.validator import field_lib
 from yamlformat.validator import findings_lib
@@ -60,9 +60,7 @@ class UniqueKeyLoader(yaml.SafeLoader):
 
     if not isinstance(node, yaml.nodes.MappingNode):
       raise yaml.constructor.ConstructorError(
-          None,
-          None,
-          'Expected a mapping node, but found %s' % node.id,
+          None, None, 'Expected a mapping node, but found %s' % node.id,
           node.start_mark)
     mapping = {}
     for key_node, value_node in node.value:
@@ -107,7 +105,7 @@ def _ParseFoldersFromFiles(files, component_type, create_folder_fn):
   # there are no field files in the global namespace to ensure that fields can
   # be up-leveled.
   global_namespace = None
-  global_path = base_lib.SUBFOLDER_NAMES[component_type]
+  global_path = component_type.value
   if (global_path in files_by_folder or
       component_type == base_lib.ComponentType.FIELD):
     global_folder = _CreateFolder(global_path, None, create_folder_fn,
@@ -146,8 +144,8 @@ def ParseFieldFoldersFromFiles(field_files,
     field_files: list of absolute paths to field files.
     subfield_universe: optional SubfieldUniverse object for validation. If not
       given, validation of subfields is not performed.
-    state_universe: optional StateUniverse object for validation. If not
-      given, validation of states is not performed.
+    state_universe: optional StateUniverse object for validation. If not given,
+      validation of states is not performed.
   """
 
   def CreateFieldFolder(folderpath, parent_namespace):
@@ -212,6 +210,22 @@ def ParseStateFoldersFromFiles(state_files):
                                 CreateStateFolder)
 
 
+def ParseConnectionFoldersFromFiles(connection_files):
+  """Returns list of ConnectionFolder objects parsed from connection_files.
+
+  Args:
+    connection_files: list of absolute paths to connection files.
+  """
+
+  def CreateConnectionFolder(folderpath, parent_namespace):
+    del parent_namespace  # Unused by ConnectionFolder.
+    return connection_lib.ConnectionFolder(folderpath)
+
+  return _ParseFoldersFromFiles(connection_files,
+                                base_lib.ComponentType.CONNECTION,
+                                CreateConnectionFolder)
+
+
 def ParseUnitFoldersFromFiles(unit_files, subfield_universe=None):
   """Returns list of UnitFolder objects parsed from unit_files.
 
@@ -244,7 +258,7 @@ def _OrganizeConfigFilesByFolder(config_tuples):
   """
   files_by_folder = collections.defaultdict(list)
   for file_tuple in config_tuples:
-    folderpath = os.path.dirname(file_tuple.relative_path)
+    folderpath, _ = base_lib.GetTreeLocation(file_tuple.relative_path)
     files_by_folder[folderpath].append(file_tuple)
 
   return files_by_folder
