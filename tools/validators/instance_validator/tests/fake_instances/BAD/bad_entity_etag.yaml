@@ -12,17 +12,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Update operation with partial entities specified
-
-SDC_EXT-17:
-  type: HVAC/SDC_EXT
-  etag: a12345
-  id: CDM/123456
+# A config in update mode so entity can have operation and update_mask keys
 
 CONFIG_METADATA:
   operation: UPDATE
 
 UK-LON-S2:
+  operation: UPDATE
   type: FACILITIES/BUILDING
-  etag: b23456
   id: FACILITIES/123456

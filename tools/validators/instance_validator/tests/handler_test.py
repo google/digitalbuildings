@@ -11,73 +11,77 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+"""Tests tools.validators.instance_validator.instance_validator."""
 
-"""Tests tools.validators.instance_validator.instance_validator"""
 
 from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
-from absl.testing import absltest
-from validate import handler
 from os import path
+from unittest import mock
 
-_TEST_DIR = path.dirname(path.realpath(__file__))
-_TESTCASE_PATH = path.join(_TEST_DIR, 'fake_instances')
+from absl.testing import absltest
+
+from instance_validator.tests import test_constants
+from validate import handler
+from validate import subscriber
+from validate import telemetry_validator
+
+_TESTCASE_PATH = test_constants.TEST_INSTANCES
+
+RunValidation = handler.RunValidation
+
 
 class HandlerTest(absltest.TestCase):
 
   def testValidateOneBuildingExist(self):
     try:
       input_file = path.join(_TESTCASE_PATH, 'GOOD', 'good_building_type.yaml')
-      args = ['--input', input_file]
-      instance_handler = handler.ValidationHelper(args)
-      instance_handler.Validate()
+      RunValidation([input_file])
     except SyntaxError:
       self.fail('ValidationHelper:Validate raised ExceptionType unexpectedly!')
 
   def testValidateOneBuildingExistFails(self):
     with self.assertRaises(SyntaxError):
-      input_file = path.join(
-        _TESTCASE_PATH, 'BAD', 'bad_missing_building.yaml')
-      args = ['--input', input_file]
-      instance_handler = handler.ValidationHelper(args)
-      instance_handler.Validate()
+      input_file = path.join(_TESTCASE_PATH, 'BAD', 'bad_missing_building.yaml')
+      RunValidation([input_file])
 
   def testValidateMultipleInputFilesSuccess(self):
     try:
       input_file1 = path.join(_TESTCASE_PATH, 'GOOD', 'good_building_type.yaml')
-      input_file2 = path.join(
-          _TESTCASE_PATH, 'GOOD', 'good_translation_nobuilding.yaml')
-      args = ['-i', input_file1, '-i', input_file2]
-      instance_handler = handler.ValidationHelper(args)
-      instance_handler.Validate()
+      input_file2 = path.join(_TESTCASE_PATH, 'GOOD',
+                              'good_translation_nobuilding.yaml')
+      RunValidation([input_file1, input_file2])
     except SyntaxError:
       self.fail('ValidationHelper:Validate unexpectedly raised Exception')
 
-  def testTelemetryArgsBothSetSuccess(self):
+  @mock.patch.object(telemetry_validator, 'TelemetryValidator')
+  @mock.patch.object(subscriber, 'Subscriber')
+  def testTelemetryArgsBothSetSuccess(self, mock_subscriber, mock_validator):
     try:
-      input_file = path.join(_TESTCASE_PATH, 'GOOD',
-                             'good_building_type.yaml')
-      args = ['--input', input_file, '--service-account', 'file',
-              '--subscription', 'some-subscription']
-      handler.ValidationHelper(args)
+      input_file = path.join(_TESTCASE_PATH, 'GOOD', 'good_building_type.yaml')
+      RunValidation([input_file], subscription='a', service_account='file')
+      mock_subscriber.assert_has_calls(
+          [mock.call('a', 'file'),
+           mock.call().Listen(mock.ANY)])
+      # TODO(berkoben): Make this assert stricter
+      mock_validator.assert_has_calls(
+          [mock.call(mock.ANY, mock.ANY, mock.ANY),
+           mock.call().StartTimer()])
+
     except SystemExit:
       self.fail('ValidationHelper:Validate raised ExceptionType unexpectedly!')
 
   def testTelemetryArgsMissingSubscription(self):
     with self.assertRaises(SystemExit):
-      input_file = path.join(_TESTCASE_PATH, 'GOOD',
-                             'good_building_type.yaml')
-      args = ['--input', input_file, '--service-account', 'file']
-      handler.ValidationHelper(args)
+      input_file = path.join(_TESTCASE_PATH, 'GOOD', 'good_building_type.yaml')
+      RunValidation([input_file], service_account='file')
 
   def testTelemetryArgsMissingServiceAccount(self):
     with self.assertRaises(SystemExit):
-      input_file = path.join(_TESTCASE_PATH, 'GOOD',
-                             'good_building_type.yaml')
-      args = ['--input', input_file, '--subscription', 'some-subscription']
-      handler.ValidationHelper(args)
+      input_file = path.join(_TESTCASE_PATH, 'GOOD', 'good_building_type.yaml')
+      RunValidation([input_file], subscription='a')
 
 
 if __name__ == '__main__':
