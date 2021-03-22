@@ -35,8 +35,8 @@ from yamlformat.validator import unit_lib
 FLAGS = flags.FLAGS
 
 # Constant to point to test files.
-_TEST_DIR = path.dirname(path.realpath(__file__))
-RESOURCE_PATH = path.join(_TEST_DIR, 'fake_resources')
+_TEST_DIR = path.join('third_party/digitalbuildings/tools/validators/instance_validator/', 'tests')
+RESOURCE_PATH = 'third_party/digitalbuildings/tools/validators/ontology_validator/yamlformat/tests/fake_resources'
 field_lib.FIELD_TO_NAMESPACE_REGEX = re.compile(r'^' + RESOURCE_PATH.replace('\\', '\\\\') +
                                                 r'(\w*)[/\\]?fields.*')
 

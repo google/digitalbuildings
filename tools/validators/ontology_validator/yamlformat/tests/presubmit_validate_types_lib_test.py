@@ -22,6 +22,7 @@ from absl import flags
 from absl.testing import absltest
 from os import path
 from yamlformat.validator import base_lib
+from yamlformat.validator import connection_lib
 from yamlformat.validator import entity_type_lib
 from yamlformat.validator import field_lib
 from yamlformat.validator import findings_lib
@@ -38,8 +39,8 @@ _F = test_helpers_lib.Fields
 _F1 = test_helpers_lib.Field
 
 # Constant to point to test files.
-_TEST_DIR = path.dirname(path.realpath(__file__))
-RESOURCE_PATH = path.join(_TEST_DIR, 'fake_resources')
+_TEST_DIR = path.join('third_party/digitalbuildings/tools/validators/instance_validator/', 'tests')
+RESOURCE_PATH = 'third_party/digitalbuildings/tools/validators/ontology_validator/yamlformat/tests/fake_resources'
 
 # Override this value to keep tests stable
 namespace_validator.MIN_SIZE_FOR_LOCAL_FIELD_DUPES = 1
@@ -120,18 +121,23 @@ class PresubmitValidateTypesTest(absltest.TestCase):
     subfield_universe.AddFinding(
         findings_lib.CapitalizationError('Hi', context))
     state_universe = state_lib.StateUniverse([])
+    connection_universe = connection_lib.ConnectionUniverse([])
+    connection_universe.AddFinding(
+        findings_lib.InvalidConnectionNamespaceError('notglobal', context))
     unit_universe = unit_lib.UnitUniverse([])
     config_universe = presubmit_validate_types_lib.ConfigUniverse(
         subfield_universe=subfield_universe, field_universe=field_universe,
         entity_type_universe=type_universe, state_universe=state_universe,
-        unit_universe=unit_universe)
+        connection_universe=connection_universe, unit_universe=unit_universe)
 
     findings = config_universe.GetFindings()
-    self.assertLen(findings, 3)
+    self.assertLen(findings, 4)
     self.assertTrue(
         config_universe.HasFindingTypes([
             findings_lib.InconsistentFileLocationError,
-            findings_lib.IllegalCharacterError, findings_lib.CapitalizationError
+            findings_lib.IllegalCharacterError,
+            findings_lib.CapitalizationError,
+            findings_lib.InvalidConnectionNamespaceError
         ]))
     self.assertFalse(config_universe.IsValid())
 
@@ -147,11 +153,12 @@ class PresubmitValidateTypesTest(absltest.TestCase):
     subfield_universe.AddFinding(
         findings_lib.CapitalizationError('Hi', context))
     state_universe = state_lib.StateUniverse([])
+    connection_universe = connection_lib.ConnectionUniverse([])
     unit_universe = unit_lib.UnitUniverse([])
     config_universe = presubmit_validate_types_lib.ConfigUniverse(
         subfield_universe=subfield_universe, field_universe=field_universe,
         entity_type_universe=type_universe, state_universe=state_universe,
-        unit_universe=unit_universe)
+        connection_universe=connection_universe, unit_universe=unit_universe)
 
     entity_type_namespace = config_universe.GetEntityTypeNamespace('NONEXISTENT')
 
@@ -169,11 +176,12 @@ class PresubmitValidateTypesTest(absltest.TestCase):
     subfield_universe.AddFinding(
         findings_lib.CapitalizationError('Hi', context))
     state_universe = state_lib.StateUniverse([])
+    connection_universe = connection_lib.ConnectionUniverse([])
     unit_universe = unit_lib.UnitUniverse([])
     config_universe = presubmit_validate_types_lib.ConfigUniverse(
         subfield_universe=subfield_universe, field_universe=field_universe,
         entity_type_universe=type_universe, state_universe=state_universe,
-        unit_universe=unit_universe)
+        connection_universe=connection_universe, unit_universe=unit_universe)
 
     entity_type = config_universe.GetEntityType('NONEXISTENT', 'NONEXISTENT')
 
@@ -209,24 +217,24 @@ class PresubmitValidateTypesTest(absltest.TestCase):
 
   def testFileBadPath(self):
     bad_path = base_lib.PathParts(self.base_dir, 'bad_type_file')
-    with self.assertRaises(RuntimeError):
+    with self.assertRaises(ValueError):
       presubmit_validate_types_lib.RunPresubmit([], [], [bad_path])
 
   def testSeparateConfigFiles(self):
     field1 = base_lib.PathParts(
-        root='', relative_path='path/to/resources/fields/field1')
+        root='path/to/resources', relative_path='fields/field1')
     field2 = base_lib.PathParts(
-        root='', relative_path='path/to/resources/fields/field2')
+        root='path/to/resources', relative_path='fields/field2')
     types1 = base_lib.PathParts(
-        root='', relative_path='path/to/resources/TEST/entity_types/types1')
+        root='path/to/resources', relative_path='TEST/entity_types/types1')
     types2 = base_lib.PathParts(
-        root='', relative_path='path/to/resources/TEST/entity_types/types2')
+        root='path/to/resources', relative_path='TEST/entity_types/types2')
     subfield1 = base_lib.PathParts(
-        root='', relative_path='path/to/resources/subfields/subfield1')
+        root='path/to/resources', relative_path='subfields/subfield1')
     state1 = base_lib.PathParts(
-        root='', relative_path='path/to/resources/states/state1')
+        root='path/to/resources', relative_path='states/state1')
     unit1 = base_lib.PathParts(
-        root='', relative_path='path/to/resources/units/unit1')
+        root='path/to/resources', relative_path='units/unit1')
 
     config_list = [field1, field2, types1, types2, subfield1, state1, unit1]
     config = presubmit_validate_types_lib.SeparateConfigFiles(config_list)
