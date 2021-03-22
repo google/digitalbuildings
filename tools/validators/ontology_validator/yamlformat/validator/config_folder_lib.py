@@ -30,7 +30,7 @@ def IsValidFolderForType(path, component_type):
   Returns:
     True if the path is valid.
   """
-  m = re.match(r'(\w*)[/\\]?{0}'.format(base_lib.SUBFOLDER_NAMES[component_type]),
+  m = re.match(r'(\w*)[/\\]?{0}'.format(component_type.value),
                path)
   if m is None:
     return False
@@ -159,8 +159,7 @@ class ConfigFolder(findings_lib.Findings):
     Returns:
       The namespace name or None
     """
-    regex = re.compile(r'^(\w*)[/\\]?{0}.*'.format(
-        base_lib.SUBFOLDER_NAMES[self._component_type]))
+    regex = re.compile(r'^(\w*)[/\\]?{0}.*'.format(self._component_type.value))
     m = regex.match(self._folderpath)
     if m is not None:
       return m.group(1)

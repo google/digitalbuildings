@@ -64,7 +64,6 @@ class StateFolder(config_folder_lib.ConfigFolder):
 
   Args:
     folderpath: required string with full path to the folder containing states.
-      Path should be relative to google3/ and have no leading or trailing /.
   Attributes:
     local_namespace: object representing the contents of the local namespace
   """
