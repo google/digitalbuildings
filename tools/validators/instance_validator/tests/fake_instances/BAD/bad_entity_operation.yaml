@@ -12,17 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Update operation with partial entities specified
-
-SDC_EXT-17:
-  type: HVAC/SDC_EXT
-  etag: a12345
-  id: CDM/123456
-
-CONFIG_METADATA:
-  operation: UPDATE
-
+# Cannot have operation when config is in INITIALIZE mode
 UK-LON-S2:
   type: FACILITIES/BUILDING
-  etag: b23456
   id: FACILITIES/123456
+  operation: DELETE
