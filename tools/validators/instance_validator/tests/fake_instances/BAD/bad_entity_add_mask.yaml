@@ -12,17 +12,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Update operation with partial entities specified
-
+# Cannot have update mask on an ADD operation
 SDC_EXT-17:
   type: HVAC/SDC_EXT
-  etag: a12345
   id: CDM/123456
-
-CONFIG_METADATA:
-  operation: UPDATE
+  operation: ADD
+  update_mask:
+  - translation
 
 UK-LON-S2:
   type: FACILITIES/BUILDING
-  etag: b23456
+  etag: a1234
   id: FACILITIES/123456
