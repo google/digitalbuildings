@@ -19,7 +19,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [macos-latest, windows-latest, ubuntu-latest]
+        os: [macos-latest, ubuntu-latest, windows-latest]
     steps:
     - uses: actions/checkout@v2
     - name: Set up Python 3.7
@@ -37,7 +37,7 @@ jobs:
     - name: Ontology Yaml Validator Generator Tests 
       run: |
        python -m unittest discover -p '*_test.py' --failfast -v
-      working-directory: ./tools/validators/ontology_validator
+      working-directory: ./tools/validators/ontology_validator/yamlformat/tests
     #---------- Ontology Yaml Instance Validator ----------# 
     - name: Instance Yaml Validator Install dependencies
       run: |

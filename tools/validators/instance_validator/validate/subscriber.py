@@ -34,19 +34,18 @@ class Subscriber(object):
     assert service_account_info_json_file
     self.subscription_name = subscription_name
     self.service_account_info_json_file = service_account_info_json_file
-    service_account_info = json.load(open(self.service_account_info_json_file))
-    audience = "https://pubsub.googleapis.com/google.pubsub.v1.Subscriber"
-    credentials = jwt.Credentials.from_service_account_info(service_account_info
-                                                            , audience=audience)
-    sub_client = pubsub_v1.SubscriberClient(credentials=credentials)
-    self.sub_client = sub_client
 
   def Listen(self, callback):
     """Listens to a pubsub subscription.
     Args:
       callback: a callback function to handle the message.
     """
-    future = self.sub_client.subscribe(self.subscription_name, callback)
+    service_account_info = json.load(open(self.service_account_info_json_file))
+    audience = "https://pubsub.googleapis.com/google.pubsub.v1.Subscriber"
+    credentials = jwt.Credentials.from_service_account_info(service_account_info
+                                                            , audience=audience)
+    sub_client = pubsub_v1.SubscriberClient(credentials=credentials)
+    future = sub_client.subscribe(self.subscription_name, callback)
     print("Listening to pubsub, please wait ...")
     try:
       future.result()
