@@ -11,7 +11,6 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 """Parses Telemetry Payload"""
 
 from __future__ import print_function
@@ -26,6 +25,8 @@ VERSION = 'version'
 POINTS = 'points'
 TIMESTAMP = 'timestamp'
 PRESENT_VALUE = 'present_value'
+PARTIAL_UPDATE = 'partial_update'
+
 
 class Telemetry(object):
   """Creates an Telemetry object from a pubsub message.
@@ -40,7 +41,8 @@ class Telemetry(object):
   def __init__(self, message):
     super().__init__()
     self.attributes = self._parse_attributes(message.attributes)
-    self.version, self.timestamp, self.points = self._parse_data(message.data)
+    self.version, self.timestamp, self.points, self.is_partial = (
+        self._parse_data(message.data))
 
   def _parse_attributes(self, pubsub_message_attributes):
     """Receives a pubsub message data and parses it.
@@ -70,19 +72,20 @@ class Telemetry(object):
     Returns:
      version: the version in the payload
      timestamp: timestamp of the message in the payload
-     points: a dictionary containing as key the points
-     name and as value a Point class.
+     points: a dictionary containing as key the points name and as value a Point
+     class.
+     is_partial: true if this message has only a partial pointset
   """
     json_object = json.loads(data)
     version = json_object[VERSION]
     timestamp = json_object[TIMESTAMP]
+    is_partial = bool(json_object.get(PARTIAL_UPDATE, False))
     points = {}
     if POINTS not in json_object.keys():
       print('Error no points in ', json_object)
-      return version, timestamp, None
+      return version, timestamp, None, is_partial
     json_points = json_object[POINTS]
     for point_name, value in json_points.items():
       p = point.Point(point_name, value.get(PRESENT_VALUE))
       points[point_name] = p
-    return version, timestamp, points
-
+    return version, timestamp, points, is_partial
