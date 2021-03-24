@@ -18,7 +18,7 @@ from __future__ import print_function
 
 from os import path
 
-from instance_validator import constants
+import constants
 from yamlformat.validator import external_file_lib
 from yamlformat.validator import namespace_validator
 from yamlformat.validator import presubmit_validate_types_lib
