@@ -5,7 +5,9 @@ import re
 import json
 
 # TODO: make the find_best_fit_type look at inheritance for general_type, and not require it at all if wanted
+# TODO: update the yaml import to reference the modified version dbo uses today.
 # TODO: add ancestry walking to the Ontology (currently doesnt support it, just walks the tree and builds the types).
+# TODO: add a method to check if a field set is an exact match to the ontology. 
 
 # RESOURCE DIRECTORY
 
@@ -74,11 +76,11 @@ class EntityType:
 	""" Class to hold type definitions"""
 	def __init__(self, name, description, local_fields=[], implements=[],is_abstract=False,is_canonical=False,namespace='GLOBAL'):
 		self.name = name
-		self.local_fields = local_fields # Only local fields
-		self.inherited_fields = [] # Only inherited fields
-		self.required_fields = [] # Only required fields
-		self.optional_fields = [] # Only optional fields
-		self.fields = [] # All fields for the device
+		self.local_fields = local_fields 	# Only local fields
+		self.inherited_fields = [] 			# Only inherited fields
+		self.required_fields = [] 			# Only required fields
+		self.optional_fields = [] 			# Only optional fields
+		self.fields = [] 					# All fields for the device
 		self.description = description
 		self.implements = implements
 		self.is_abstract = is_abstract
@@ -364,7 +366,14 @@ class Ontology:
 		self.subfields = Subfields(RESOURCE_DIR)
 		self.fields = Fields(RESOURCE_DIR)
 		self.types = Types(RESOURCE_DIR)
-		self.validate_without_errors()
+		self.validate()
+
+	def refresh(self):
+		""" Refresh the ontology by rebuilding it. """
+		self.subfields = Subfields(RESOURCE_DIR)
+		self.fields = Fields(RESOURCE_DIR)
+		self.types = Types(RESOURCE_DIR)
+		self.validate()
 
 	def validate(self):
 		""" Perform all-up ontology validation now that the key components are in hand. 
@@ -738,51 +747,70 @@ class Ontology:
 
 		return match
 
-		# Take these outputs and create match objects.
-		#return matches
-
-	def compare_to_type(self,fields,namespace,type_name,required_only=True):
-		""" Compare a set of fields to a specified type. Used for troubleshooting differences between types, where 
-		they are not expected. 
-
-		Returns dictionary of comparisons by field in this form:
-		{
-			"field_name":{
-				"in_real":true,
-				"in_type":false
-			},
-			...
-		}
-
-		"""
-		real_fields = fields
-		type_fields = self.get_type_fields(namespace,type_name)
-
-		if required_only == True:
-			type_fields = {t[0] for t in type_fields if t[1] == True}
-
-		else:
-			type_fields = {t[0] for t in type_fields}			
-
-		# Make sure the field set is a list.
-		if isinstance(real_fields,list): real_fields = set(real_fields)
-		assert isinstance(real_fields,set), "Fields object is not a set."
-
-		all_fields = real_fields|type_fields
-
-		comparison = {}
-		for field in all_fields:
-			rf = field in real_fields
-			tf = field in type_fields
-			comparison[field] = {'in_real':rf,'in_type':tf}
-
-		return comparison
-
-
 	def get_all_types(self,namespace):
 		""" Get all types from the ontology. """
 		type_list = self.types.get_all_types(namespace)
 		return type_list
+
+	def compare_to_type(self,fields,namespace,type_name,show_optional=False):
+		""" Print a formatted comparison between the real type and the matched ontology type. """
+
+		real_fields = fields
+		type_fields = self.get_type_fields(namespace,type_name)
+
+		# Refactor ontology fields object into a more useful shape (key value pairs). 
+		ont_type_fields = {field[0]:field[1] for field in type_fields}
+		
+		all_fields = list(set([field for field in ont_type_fields])|set(real_fields))
+		all_fields.sort()
+
+		match_matrix = []
+		for field in all_fields:
+			if field in real_fields:
+				real_field = field
+			else:
+				real_field = ''
+
+			if field in ont_type_fields:
+				ont_field = field
+				ont_field_req = str(ont_type_fields[field])
+			else:
+				ont_field = ''
+				ont_field_req = ''
+
+			match_matrix.append([real_field,ont_field,ont_field_req])
+
+		# Print only required if show_optional is False (except if theres a real field that is defined).
+		final_matrix = []
+		if not show_optional:
+			for row in match_matrix:
+				# Only return Trues or actual fields that have a value.
+				if row[2] == 'True' or len(row[0])>0: 
+					final_matrix.append(row)
+
+		else:
+			# Print required first and then append optional.
+			for row in match_matrix:
+				if row[2] == 'True':
+					final_matrix.append(row)
+			for row in match_matrix:
+				if row[2] == 'False': 
+					final_matrix.append(row)
+			for row in match_matrix:
+				if row[2] == '':
+					final_matrix.append(row)
+
+		# Set padding for pretty printing
+		padding = 3
+		col_width = max(len(field) for field in all_fields) + padding	
+
+		print("TYPE BEING MATCHED: '{}'".format(namespace+'/'+type_name))
+		print('\n')
+		print("".join(field.ljust(col_width) for field in ['ACTUAL FIELDS','TYPE FIELDS','REQUIRED']))
+		print("".join(field.ljust(col_width) for field in ['='*(col_width-padding),'='*(col_width-padding),'='*(col_width-padding)]))
+		for row in final_matrix:
+		    print("".join(field.ljust(col_width) for field in row))
+		print('\n')
 
 class Match:
 
@@ -888,6 +916,3 @@ class Match:
 		for row in final_matrix:
 		    print("".join(field.ljust(col_width) for field in row))
 		print('\n')
-
-
-
