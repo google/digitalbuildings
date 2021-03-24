@@ -2235,7 +2235,7 @@ AHU_UNDEFINED:
   description: "An AHU with no telemetry data. Note this is non-canonical, as it is typically expected that telemetry will normally be available."
   implements:
   - AHU
-  
+
 AHU_BSPC_DX4SC_ECON_EFSS_EFVSC_MOAFC_SFSS_SFVSC_SSPC_STC:
   id: "16383179138871066624"
   description: "Multi-zone AHU with minimum ventilation control."
@@ -3567,3 +3567,19 @@ AHU_US_SVL_MAT2_4:
   - supply_fan_speed_frequency_sensor
   - supply_fan_speed_percentage_command
   - supply_air_flowrate_sensor
+
+#Additional entity types for CH ZRH EURD
+# Used for Ahu-2452, Ahu-2453, Ahu-005
+AHU_CH_ZRH_EURD_1:
+  description: "Non-standard type for Landlord based AHU's"
+  is_canonical: false
+  implements:
+  - AHU
+  - INCOMPLETE
+  uses:
+  - run_command
+  - run_status
+  - master_alarm
+  - supply_air_temperature_setpoint
+  # fire damper opening request (From Landlord System to BMS)
+  

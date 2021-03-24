@@ -263,3 +263,15 @@ CHWS_US_SVL_TC6_1:
   uses:
   - production_differential_pressure_sensor
   - supply_water_flowrate_sensor # Need to rename to flowrate_sensor
+
+#Additional Types for CH ZRH EURD
+#Used for High temperature heating water system, chilled beam heating water system,
+CHWS_CH_ZRH_EURD_1:
+  description: "Non-standard type for landlord based chilled water systems."
+  implements:
+  - CHWS
+  - SWTC
+  - WFRM
+  uses:
+  - run_status
+  - master_alarm

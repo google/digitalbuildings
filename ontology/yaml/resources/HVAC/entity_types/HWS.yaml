@@ -192,3 +192,15 @@ HWS_US_MTV_2000_2:
   uses:
   - mixing_valve_percentage_command
   - heat_exchange_supply_water_isolation_valve_command
+
+#Additional Types for CH ZRH EURD
+#Used for High temperature heating water system, chilled beam heating water system,
+HWS_CH_ZRH_EURD_1:
+  description: "Non-standard type for landlord based heating water systems."
+  implements:
+  - HWS
+  - SWTC
+  - WFRM
+  uses:
+  - run_status
+  - master_alarm

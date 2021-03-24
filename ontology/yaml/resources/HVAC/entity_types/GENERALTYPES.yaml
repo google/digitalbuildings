@@ -20,7 +20,7 @@
 
 VAV:
   id: "6599610325710929920"
-  description: "Tag for terminal units with variable volume control. A VAV is an air distribution terminal, 
+  description: "Tag for terminal units with variable volume control. A VAV is an air distribution terminal,
     which is not responsible for its own primary airflow (i.e. it is served by some upstream unit, such as
     an AHU)."
   is_abstract: true
@@ -62,8 +62,8 @@ AHU:
   description: "Tag for air-handling units. AHUs are devices which handle air distribution (either to a single
     space or to multiple via ductwork), and they have the capability of handling both return and outside air,
     in some combination (0% OA, 100% RA; 50% OA, 50% RA; 100% OA, 0% RA, etc.); that is, they can recirculate
-    or ventilate. They are distinct from other devices in key ways: FCUs, which handle only recirculated air; 
-    MAUs, which handle only outside air; and DOAS devices, which handle outside and return air, but which do 
+    or ventilate. They are distinct from other devices in key ways: FCUs, which handle only recirculated air;
+    MAUs, which handle only outside air; and DOAS devices, which handle outside and return air, but which do
     not recirculate air. "
   is_abstract: true
   implements:
@@ -73,7 +73,7 @@ AHU:
 
 HX:
   id: "9849494018533097472"
-  description: "Tag for heat exchangers. Heat exchangers facilitate heat transfer between two media (water, 
+  description: "Tag for heat exchangers. Heat exchangers facilitate heat transfer between two media (water,
     air, refrigerant, etc.). "
   is_abstract: true
   implements:
@@ -98,7 +98,7 @@ MAU:
 
 UH:
   id: "15102406422186426368"
-  description: "Tag for unit heaters. These are stand-alone heaters, which can operate independently of an external 
+  description: "Tag for unit heaters. These are stand-alone heaters, which can operate independently of an external
     device (they are not integral to an AHU, for instance). "
   is_abstract: true
   implements:
@@ -118,7 +118,7 @@ WEATHER:
 
 BLR:
   id: "3248932202947280896"
-  description: "Tag for boilers. Boilers are devices which heat water to useful temperatures for 
+  description: "Tag for boilers. Boilers are devices which heat water to useful temperatures for
     comfort or process heating. "
   is_abstract: true
   implements:
@@ -132,7 +132,7 @@ BLR:
 CH:
   id: "9950288448474578944"
   description: "Tag for chillers. Chillers are packaged mechanical devices which utilize the refrigeration
-    cycle to extract heat from one flowing liquid (usually water or glycol mixture) and release it into 
+    cycle to extract heat from one flowing liquid (usually water or glycol mixture) and release it into
     another flowing media (either air or water). "
   is_abstract: true
   implements:
@@ -157,7 +157,7 @@ CU:
 HWS:
   id: "8797366943867731968"
   description: "Tag for heating water systems. This tag represents the system itself, and fields are mapped
-    to it when they don't belong to another device within that system (e.g. supply_water_temperature_sensor 
+    to it when they don't belong to another device within that system (e.g. supply_water_temperature_sensor
     for the supply header belongs to the system, not to any single device)."
   is_abstract: true
   opt_uses:
@@ -177,7 +177,7 @@ CHWS:
 
 CDWS:
   id: "6383437543597146112"
-  description: "Tag for condensing water systems. Distinct from chilled water systems in that they provide a 
+  description: "Tag for condensing water systems. Distinct from chilled water systems in that they provide a
     water-side condensing source for other devices (such as water-cooled chillers, water-condensing heat pumps,
     etc.). "
   is_abstract: true
@@ -187,7 +187,7 @@ CDWS:
 
 CT:
   id: "14561974466901966848"
-  description: "Tag for cooling tower. Cooling towers are devices which cool incoming fluid through the 
+  description: "Tag for cooling tower. Cooling towers are devices which cool incoming fluid through the
     evaporation of air. The tag applies to open- and closed-loop cooling towers. They are distinct from
     dry coolers, which utilize sensible cooling only. "
   is_abstract: true
@@ -204,7 +204,7 @@ ZONE:
 
 DC:  # Proposed in v2.3 naming standard
   id: "7236632178472255488"
-  description: "Tag for dry coolers (sensible, closed-loop coolers). Distinct from cooling towers, which 
+  description: "Tag for dry coolers (sensible, closed-loop coolers). Distinct from cooling towers, which
     utilize latent cooling. "
   is_abstract: true
   implements:
@@ -296,3 +296,15 @@ HWSRSR:
   is_abstract: true
   implements:
   - RSR
+# New General Types for CH ZRH eurd
+RP:
+  description: "Radiant panel, consisting of a coil/panel with no fan providing either heating or cooling via primarily radiant heat transfer."
+  is_abstract: true
+  implements:
+  - EQUIPMENT
+
+CO:
+  description: "Tag for change over equipment which is providing either hot or chilled water for radiant panels in a zone "
+  is_abstract: true
+  implements:
+  - EQUIPMENT

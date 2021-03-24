@@ -27,7 +27,7 @@ LT_DC:
   is_canonical: true
   implements:
   - LT
-  - DC 
+  - DC
 
 LT_DC_SC:
   id: "16395461783264952320"
@@ -35,5 +35,48 @@ LT_DC_SC:
   is_canonical: true
   implements:
   - LT
-  - DC 
+  - DC
   - SC
+
+#Entity types for CH ZRH
+LGRP_OS_SC_LC_VADC:
+  description: "Standard lighting fixture group control with scene- and dimming control, based on scene and occupancy"
+  is_canonical: true
+  implements:
+  - LGRP
+  - OS
+  - SC
+  - LC
+  - VADC
+
+LGRP_OS_SC_LC_VADCRGB:
+  description: "Standard lighting fixture group control with scene- and dimming control, based on scene and occupancy"
+  is_canonical: true
+  implements:
+  - LGRP
+  - OS
+  - SC
+  - LC
+  - VADCRGB
+
+LGRP_OS_SC_LC_VADC_RC:
+  description: "Standard lighting fixture group control with scene control, dimming control and knx actuators,based on scene and occupancy"
+  is_canonical: true
+  implements:
+  - LGRP
+  - OS
+  - SC
+  - LC
+  - VADC
+  - RC
+
+LGRP_OS_SC_LC_VADCRGB_RC:
+  description: "Standard lighting fixture group control with scene control, dimming control and knx actuators,based on scene and occupancy"
+  is_canonical: true
+  implements:
+  - LGRP
+  - OS
+  - SC
+  - LC
+  - VADCRGB
+  - RC
