@@ -7,7 +7,7 @@
 
 # Digital Buildings Project
 
-The Digital Buildings project is an open-source, Apache-licensed effort to create a uniform schema and toolset for representing structured information about buildings and building-installed equipment.  A version of the Digital Buildings ontology and toolset is currently being used by Google to manage buildings in its portfolio. 
+The Digital Buildings project is an open-source, Apache-licensed effort to create a uniform schema and toolset for representing structured information about buildings and building-installed equipment. A version of the Digital Buildings ontology and toolset is currently being used by Google to manage buildings in its portfolio. 
 
 The Digital Buildings project originated from the need to manage a very large, heterogeneous building portfolio in a scalable way. The project aims to enable management applications/analyses that are trivially portable between buildings.  This goal is achieved through a combination of semantically-expressive abstract modeling, an easy-to-use configuration language, and robust validation tooling.  Digital Buildings work has been inspired by [Project Haystack](https://project-haystack.org/tag) and [BrickSchema](https://brickschema.org/), and maintains cross-compatibility and/or convergence as a long-term objective.
 
@@ -64,7 +64,7 @@ limitations under the License.
 * [Québec Bâtiment Vert et Intelligent 2020](https://www.eventbrite.ca/e/billets-rendez-vous-annuel-quebec-bvi-presente-par-google-128034116489)
 * [ISWC 2020](http://ceur-ws.org/Vol-2721/paper510.pdf)
 * [LDAC 2020](http://linkedbuildingdata.net/ldac2020/abstracts.html#industry10)
-* [ICML 2020](https://proceedings.icml.cc/static/paper_files/icml/2020/2557-Paper.pdf)
+* [ICML 2020](http://proceedings.mlr.press/v119/sipple20a/sipple20a.pdf)
 * [Semantics 2019](https://2019.semantics.cc/role-semantics-googles-smart-building-platform)
 * [Google Cloud Next'19](https://youtu.be/Zz6jkLYkzSQ)
 
