@@ -11,7 +11,7 @@ import json
 
 # RESOURCE DIRECTORY
 
-RESOURCE_DIR = '../ontology/yaml/resources'
+RESOURCE_DIR = '../../ontology/yaml/resources'
 
 ### Ontology import helper functions. 
 
