@@ -33,8 +33,8 @@ HM_HWS:
   - HM
   is_canonical: true
   uses:
-  - heated_water_flowrate_sensor
-  - heated_supply_water_temperature_sensor
-  - heated_return_water_temperature_sensor
+  - heating_water_flowrate_sensor
+  - heating_supply_water_temperature_sensor
+  - heating_return_water_temperature_sensor
   - heating_thermal_power_sensor
   - heating_thermal_energy_accumulator
