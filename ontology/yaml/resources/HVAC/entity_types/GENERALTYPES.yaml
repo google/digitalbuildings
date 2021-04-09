@@ -18,6 +18,19 @@
 ####      See model_hvac.md for detailed definitions      ####
 ##############################################################
 
+
+TRH:
+  id: "oli0001"
+  description: "Tag for trench heating units. Trench Heating units are in floor airconditioning units. 
+    The can be both active (with a fan) and passive (without). They are primarily used for heating a space
+    but can also implement cooling."
+  is_abstract: true
+  opt_uses:
+  - heatinng_water_valve_override_command
+  implements:
+  - EQUIPMENT
+
+
 VAV:
   id: "6599610325710929920"
   description: "Tag for terminal units with variable volume control. A VAV is an air distribution terminal, 
