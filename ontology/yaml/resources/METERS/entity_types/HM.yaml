@@ -25,3 +25,16 @@ HM_CHW:
   - chilled_return_water_temperature_sensor
   - cooling_thermal_power_sensor
   - cooling_thermal_energy_accumulator
+
+HM_HWS:  
+  id: "oli0004"
+  description: "Heating load heat meter."
+  implements:
+  - HM
+  is_canonical: true
+  uses:
+  - heated_water_flowrate_sensor
+  - heated_supply_water_temperature_sensor
+  - heated_return_water_temperature_sensor
+  - heating_thermal_power_sensor
+  - heating_thermal_energy_accumulator
