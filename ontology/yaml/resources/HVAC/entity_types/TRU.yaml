@@ -1,0 +1,30 @@
+# Trench Heating File for UK-LON-X1 project
+
+########################
+### Canonical Types  ###
+########################
+
+# This file defines Trench heating unit types.
+
+TRH_DFSS_DFVSC_DSP_CHWZC:
+  id: "oli0002"
+  description: "Typical trench heater with cooling-only"
+  is_canonical: true
+  implements:
+  - TRU
+  - DFVSC
+  - ZTC
+  - CHWZTC
+  - RMM
+
+TRH_DFSS_DFVSC_DSP_HWZC_CHWZC:
+  id: "oli0003"
+  description: "Typical trench heater with cooling and heating"
+  is_canonical: true
+  implements:
+  - TRU
+  - DFVSC
+  - ZTC
+  - CHWZTC
+  - HWZTC
+  - RMM
