@@ -53,7 +53,6 @@ CHARGING: "The act of storing (e.g. energy stored in a battery)."
 DISCHARGING: "Release of something built up or retained for later use."
 STANDBY: "Waiting in a prepared state."
 
-
-
-
-
+#New states for CH ZRH eurd
+FADING: "An operation mode of a lighting dimmer"
+RAMPING: "An operation mode of a lighting dimmer"

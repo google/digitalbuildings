@@ -22,9 +22,11 @@ energy:
 - kilowatt_hours
 flowrate:
 - cubic_meters_per_second: STANDARD
+- cubic_meters_per_hour
 - cubic_feet_per_minute
 - gallons_per_minute
 - liters_per_second
+- kilograms_per_hour
 frequency:
 - hertz: STANDARD
 humidity:
@@ -67,3 +69,7 @@ voltage:
 volume:
 - cubic_meters: STANDARD
 - us_gallons
+time:
+- seconds: STANDARD
+rate:
+- inv_second: STANDARD
