@@ -31,7 +31,7 @@ RP_CAM_DPHCC_DSP:
   - ZTC
 
 RSR_HHCDM:
-  description: "Cooling or heating changeover function for radiant panels or fcu's"
+  description: "Cooling or heating changeover function for radiant panels or fcu's._    _"
   implements:
   - RSR
   - HHCDM
