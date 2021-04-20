@@ -19,7 +19,7 @@ Air-handlers are air-side devices that provides air to a zone directly or indire
 #### System Diagram
 - **Single zone AHUs:** Serve individual spaces directly; there are no modulating terminals.
 
-![Single Zone AHU](./figures/systemdiagrams/ahu_single_zone.png)
+![](./figures/systemdiagrams/ahu_single_zone.png)
 
 - **Multi-zone AHUs** Serve multiple zones via terminals.
 
