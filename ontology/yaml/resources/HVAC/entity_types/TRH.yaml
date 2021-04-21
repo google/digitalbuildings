@@ -7,22 +7,22 @@
 # This file defines Trench heating unit types.
 
 TRH_DFSS_DFVSC_DSP_CHWZC:
-  id: "oli0002"
-  description: "Typical trench heater with cooling-only"
+  description: "Typical trench heater with heating only"
   is_canonical: true
   implements:
-  - TRU
+  - TRH
+  - DFSS
   - DFVSC
   - ZTC
   - CHWZTC
   - RMM
 
 TRH_DFSS_DFVSC_DSP_HWZC_CHWZC:
-  id: "oli0003"
   description: "Typical trench heater with cooling and heating"
   is_canonical: true
   implements:
-  - TRU
+  - TRH
+  - DFSS
   - DFVSC
   - ZTC
   - CHWZTC

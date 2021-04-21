@@ -19,11 +19,10 @@
 ##############################################################
 
 
-TRU:
-  id: "oli0001"
-  description: "Tag for trench heating units. Trench Heating units are in floor airconditioning units. 
-    The can be both active (with a fan) and passive (without). They are primarily used for heating a space
-    but can also implement cooling."
+TRH:
+  description: "Tag for trench heating units. Trench Heating units are in floor airconditioning units 
+    particular to under-floor air distribution systems. They can be both active (with a fan) and 
+    passive (without). They are primarily used for heating a space but can also implement cooling."
   is_abstract: true
   implements:
   - EQUIPMENT
