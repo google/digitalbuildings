@@ -773,8 +773,6 @@ literals:
 - mixed_air_relative_humidity_sensor
 - mixed_air_dewpoint_temperature_sensor
 
-
-# Added for UK-LON-X1
 - heating_supply_water_temperature_sensor
 - heating_return_water_temperature_sensor
 - heating_thermal_power_sensor
