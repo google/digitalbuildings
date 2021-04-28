@@ -174,8 +174,8 @@ class TelemetryHelper(object):
 
       if report_filename:
         with open(self.report_filename, 'w') as f:
-         f.write(report)
-         f.close()
+          f.write(report)
+          f.close()
       else:
         print('\n')
         print(report)
