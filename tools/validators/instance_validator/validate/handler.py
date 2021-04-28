@@ -173,9 +173,9 @@ class TelemetryHelper(object):
         report += warnings.GetPrintableMessage()
 
       if report_filename:
-        f = open(self.report_filename, 'w')
-        f.write(report)
-        f.close()
+        with open(self.report_filename, 'w') as f:
+          f.write(report)
+          f.close()
       else:
         print('\n')
         print(report)
