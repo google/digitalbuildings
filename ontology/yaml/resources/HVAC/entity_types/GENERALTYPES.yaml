@@ -263,6 +263,16 @@ VLV:
   implements:
   - EQUIPMENT
 
+VRV:
+  id: "15255671887819388960"
+  description: "A single split unit."
+  is_abstract: true
+  implements:
+  - EQUIPMENT
+  opt_uses:
+  - failed_alarm
+  - lost_power_alarm
+  - schedule_run_command
 
 RSR:
   id: "16423609280936017920"

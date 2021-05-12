@@ -35,3 +35,19 @@ SENSOR_ZTM_ZHM:
   - /SENSOR # Inherits from global namespace
   - ZTM
   - ZHM
+
+SENSOR_ZTM:
+  id: "13601541164434981881"
+  description: "Zone air property sensor (temperature)."
+  is_canonical: true
+  implements:
+    - /SENSOR # Inherits from global namespace
+    - ZTM
+
+SENSOR_ZHM:
+  id: "13601541164434981882"
+  description: "Zone air property sensor (humidity)."
+  is_canonical: true
+  implements:
+    - /SENSOR # Inherits from global namespace
+    - ZHM

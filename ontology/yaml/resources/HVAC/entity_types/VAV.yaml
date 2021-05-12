@@ -368,6 +368,18 @@ VAV_SD_DSP_HWDC_DSPZDHC:
   - HWDC
   - DSPZDHC
 
+VAV_SD_ZTC_HL:
+  id: "449443657234251778"
+  description: "VAV with flow rate control, supply air damper control and temperature control."
+  is_canonical: true
+  opt_uses:
+  - master_alarm
+  implements:
+  - VAV
+  - SD
+  - ZTC
+  - HL
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################

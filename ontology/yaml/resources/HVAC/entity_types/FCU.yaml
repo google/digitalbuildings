@@ -526,6 +526,20 @@ FCU_DFSS_DTC_CHWDC:
   - DTC
   - CHWDC
 
+FCU_DFVSC_DTCWL_CHWDC_CO2C:
+  id: "16004999915474188872"
+  description: "Discharge temperature control FCU with chilled water control, discharge air sensor or control and Co2 control."
+  is_canonical: true
+  opt_uses:
+  - filter_alarm
+  - schedule_run_command
+  implements:
+  - FCU
+  - DFVSC
+  - DTCWL
+  - CHWDC
+  - CO2C
+
 FCU_DFSS_DSP_CHWRC:
   id: "12844387770734477312"
   description: "Chilled water FCU with return temp contol."
@@ -581,6 +595,22 @@ FCU_DFSS_DFVSC_ZTC_CHWZTC:
   - DFVSC
   - ZTC
   - CHWZTC
+
+FCU_DFSS_DFVSC_ZTC_CHWZTC_DTC_CO2C:
+  id: "12321188119399898123"
+  description: "FCU with zone air temperature, discharge air and chilled water control."
+  is_canonical: true
+  opt_uses:
+  - schedule_run_command
+  implements:
+  - FCU
+  - DFSS
+  - DFVSC
+  - ZTC
+  - CHWZTC
+  - DTC
+  - CO2C
+
 
 FCU_DFSS_DFVSC_ZTC_ZHC_CHWDC_FDPM_RMM:
   id: "18052786446137294848"
@@ -744,6 +774,72 @@ FCU_DFMSS_DSP_ZHM_RTM_CHWZC_CHWDT:
   - RTM
   - CHWZC
   - CHWDT
+
+FCU_DFSS_DFVSC_RTC_CHWRC_AR:
+  id: "8815318873633036289"
+  description: "Chilled water FCU with chilled water, temperature and fan control"
+  is_canonical: true
+  opt_uses:
+  - filter_alarm
+  - schedule_run_command
+  implements:
+  - FCU_DFSS_DFVSC_RTC_CHWRC
+
+FCU_DFSS_CHWVM_ZTC:
+  id: "881531091883318890"
+  description: "Chilled water FCU with zone temp control."
+  is_canonical: true
+  opt_uses:
+  - schedule_run_command
+  implements:
+  - FCU
+  - CHWVM
+  - DFSS
+  - ZTC
+
+FCU_DFSS_CHWBTZC:
+  id: "881531097363301880"
+  description: "Chilled water FCU with temp control."
+  is_canonical: true
+  opt_uses:
+  - discharge_fan_lost_power_alarm
+  implements:
+  - FCU
+  - CHWBTZC
+  - DFSS
+
+
+FCU_DFVSC_DTC_CHWDC:
+  id: "8815310973633036291"
+  description: "Chilled water FCU with discharge air fan, temperature and chilled water control"
+  is_canonical: true
+  opt_uses:
+    - filter_alarm
+    - schedule_run_command
+    - supply_fan_speed_percentage_sensor
+  implements:
+    - FCU
+    - CHWDC
+    - DFVSC
+
+FCU_ETIQA_CRAC:
+  id: "10065218199902748673"
+  description: "Malaysia ETIQA Crac device"
+  is_canonical: true
+  implements:
+    - DXRC
+    - RHM
+  uses:
+    - dehumidification_run_status
+    - discharge_fan_failed_alarm
+    - discharge_fan_run_status
+    - humidification_run_status
+  opt_uses:
+    - low_discharge_air_flowrate_alarm
+    - master_alarm
+    - fire_alarm
+    - water_leak_alarm
+
 
 ###################################
 ### Existing Non-standard Types ###

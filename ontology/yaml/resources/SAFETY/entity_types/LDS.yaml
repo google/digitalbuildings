@@ -48,7 +48,7 @@ LDS_BC2X_LPA:
   - WLDS
   - BC2X
   - LPA
-  
+
 # General Types
 LDS_GASDET:
   id: "17602426483400245248"
@@ -58,6 +58,31 @@ LDS_GASDET:
   - LDS
   - GASDET
 
+LDS_BC3X_WL2X:
+  id: "17602426483400245249"
+  description: "Leak sensing device with broken cable status."
+  is_canonical: true
+  implements:
+  - BC3X
+  - WL2X
+
+LDS_BC3X_WL2X_LPA:
+  id: "17602426483400245250"
+  description: "Leak sensing device with broken cable status."
+  is_canonical: true
+  implements:
+  - BC3X
+  - WL2X
+  - LPA
+
+LDS_BC2X_WLA_LPA:
+  id: "17602426483400245248"
+  description: "Leak sensing device with broken cable status."
+  is_canonical: true
+  implements:
+  - BC2X
+  - WLA
+  - LPA
 
 
 

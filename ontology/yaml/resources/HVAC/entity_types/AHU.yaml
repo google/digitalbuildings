@@ -2667,6 +2667,20 @@ AHU_BYPSSPC_DX3SC_ECON_HT2SC_SFSS_SFVSC:
   - SFSS
   - SFVSC
 
+AHU_DFVSC_CHWDC_RTM_C02C:
+  id: "8815310188633036293"
+  description: "AHU with cooling (zone temp control) and direct Co2 control."
+  is_canonical: true
+  opt_uses:
+  - discharge_fan_lost_power_alarm
+  implements:
+  - AHU
+  - DFVSC
+  - CHWDC
+  - RTM
+  - CO2C
+
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################

@@ -29,6 +29,13 @@ WLDS:
   uses:
   - water_leak_detection_alarm
 
+WLA:
+  id: "1407482223188941633"
+  description: "Water leak monitoring."
+  is_abstract: true
+  uses:
+  - water_leak_alarm
+
 BCM:
   id: "3767368428118081536"
   description: "Broken cable monitoring."
@@ -43,6 +50,23 @@ BC2X:
   uses:
   - broken_cable_alarm_1
   - broken_cable_alarm_2
+
+BC3X:
+  id: "12198106918855650049"
+  description: "Broken cable monitoring."
+  is_abstract: true
+  uses:
+  - broken_cable_alarm_1
+  - broken_cable_alarm_2
+  - broken_cable_alarm_3
+
+WL2X:
+  id: "14074822233759188632"
+  description: "Water leak monitoring."
+  is_abstract: true
+  uses:
+  - water_leak_alarm_1
+  - water_leak_alarm_2
 
 LPA: 
   id: "13873445991937474560"

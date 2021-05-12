@@ -37,6 +37,16 @@ SD:
   implements:
   - CONTROL
 
+HL:
+  id: "11449918824388954113"
+  description: "Duct VAV type with high and low limit setpoint"
+  is_abstract: true
+  uses:
+  - high_limit_supply_air_flowrate_setpoint
+  - low_limit_supply_air_flowrate_setpoint
+  implements:
+  - CONTROL
+
 DD:
   id: "8927971333061476352"
   description: "Dual duct flow control (hot deck, cold deck)."
@@ -367,6 +377,7 @@ DFVSC:
   - discharge_fan_power_sensor
   - discharge_fan_speed_frequency_sensor
   - discharge_fan_speed_percentage_sensor
+  - discharge_air_linearvelocity_sensor
   uses:
   - discharge_fan_speed_percentage_command
   - discharge_fan_run_status
@@ -414,6 +425,7 @@ SS:
   - powerfactor_sensor
   - current_sensor
   - power_sensor
+  - lost_power_alarm
 
 SSPC:
   id: "10526749200778002432"
@@ -469,6 +481,7 @@ DFSS:
   - discharge_fan_power_capacity
   - discharge_fan_current_sensor
   - discharge_fan_power_sensor
+  - discharge_air_linearvelocity_sensor
   - discharge_air_static_pressure_sensor
   uses:
   - discharge_fan_run_command
@@ -612,6 +625,17 @@ DTC:
   uses:
   - discharge_air_temperature_setpoint
   - discharge_air_temperature_sensor
+
+DTCWL:
+  id: "14404348418843999489"
+  description: "Discharge air temperature control with linear velocity sensor."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  uses:
+  - discharge_air_temperature_setpoint
+  - discharge_air_temperature_sensor
+  - discharge_air_linearvelocity_sensor
 
 STC:
   id: "2204097089397325824"
@@ -1182,7 +1206,7 @@ FDPM:
 # Chilled water valve control
 
 CHWDC:
-  id: "16581460667777679360"
+  id: "16581461887777679360"
   description: "Chilled water valve monitoring on discharge side."
   is_abstract: true
   opt_uses:
@@ -1190,6 +1214,7 @@ CHWDC:
   - cooling_thermal_power_capacity
   - chilled_water_valve_percentage_sensor
   - chilled_water_flowrate_sensor
+  - discharge_air_damper_percentage_command
   uses:
   - discharge_air_temperature_sensor
   - discharge_air_temperature_setpoint
@@ -2557,6 +2582,17 @@ CHWBZC:
   - chilled_water_valve_command
   - zone_air_temperature_sensor
   - zone_air_cooling_temperature_setpoint
+
+CHWBTZC:
+  id: "16609945715518872192"
+  description: "Chilled water valve binary (open/closed) control."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  uses:
+  - chilled_water_valve_command
+  - zone_air_temperature_sensor
+  - zone_air_temperature_setpoint
 
 CHWBYPVPM:
   id: "7430146224960831488"
