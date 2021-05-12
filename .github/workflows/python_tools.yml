@@ -63,3 +63,16 @@ jobs:
     - name: Run Pylint on RDF Generator
       run: |
         pylint --rcfile=./styles/pylintrc ./tools/rdf_generator      
+     #---------- Experimental Type Matcher  ----------# 
+    - name:  Experimental Type Matcher
+      run: |
+        python -m pip install --upgrade pip
+        python setup.py install
+      working-directory: ./experimental/type_matcher
+    - name:  Type Matcher Tests
+      run: |  
+       python -m unittest discover -p '*_test.py' --failfast -v
+      working-directory: ./tools/rdf_generator/rdfformat/tests
+    - name: Run Pylint on Type Matcher
+      run: |
+        pylint --rcfile=./styles/pylintrc ./experimental/type_matcher 
