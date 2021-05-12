@@ -362,17 +362,18 @@ class Types:
 
 class Ontology:
 
-	def __init__(self):
-		self.subfields = Subfields(RESOURCE_DIR)
-		self.fields = Fields(RESOURCE_DIR)
-		self.types = Types(RESOURCE_DIR)
+	def __init__(self,resource_dir=RESOURCE_DIR):
+		self.resource_dir = resource_dir
+		self.subfields = Subfields(resource_dir)
+		self.fields = Fields(resource_dir)
+		self.types = Types(resource_dir)
 		self.validate()
 
 	def refresh(self):
 		""" Refresh the ontology by rebuilding it. """
-		self.subfields = Subfields(RESOURCE_DIR)
-		self.fields = Fields(RESOURCE_DIR)
-		self.types = Types(RESOURCE_DIR)
+		self.subfields = Subfields(self.resource_dir)
+		self.fields = Fields(self.resource_dir)
+		self.types = Types(self.resource_dir)
 		self.validate()
 
 	def validate(self):
