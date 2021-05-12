@@ -1,0 +1,5 @@
+pyfiglet
+pandas
+xlrd
+openpyxl
+pyyaml
