@@ -399,6 +399,20 @@ class EntityInstanceTest(absltest.TestCase):
     for _, instance in entity_instances.items():
       self.assertTrue(c_v.Validate(instance))
 
+  def testValidateGoodLinkWithIncrementEntityName(self):
+    parsed = _Helper(
+        [path.join(_TESTCASE_PATH, 'GOOD', 'good_links_increment.yaml')])
+    entity_instances = {}
+    parsed = dict(parsed)
+    for raw_entity in list(parsed):
+      entity_parsed = dict(parsed[raw_entity])
+      entity = entity_instance.EntityInstance.FromYaml(entity_parsed)
+      entity_instances[raw_entity] = entity
+
+    c_v = _CombValidator(self._universe, _INIT_CFG, entity_instances)
+    for _, instance in entity_instances.items():
+      self.assertTrue(c_v.Validate(instance))
+
   def testValidateStates(self):
     parsed = _Helper(
         [path.join(_TESTCASE_PATH, 'GOOD', 'good_translation_states.yaml')])
@@ -502,4 +516,3 @@ class EntityInstanceTest(absltest.TestCase):
 
 if __name__ == '__main__':
   absltest.main()
-

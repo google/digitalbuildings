@@ -499,5 +499,19 @@ class EntityTypeLibTest(absltest.TestCase):
         entity_type.HasFindingTypes([findings_lib.DuplicateParentError]))
     self.assertFalse(entity_type.IsValid())
 
+  def testParseFieldWithIncrement(self):
+    field_name, increment = entity_type_lib.SeparateFieldIncrement(
+        'zone_occupancy_status_1')
+
+    self.assertEqual(field_name, 'zone_occupancy_status')
+    self.assertEqual(increment, '_1')
+
+  def testParseFieldWithoutIncrement(self):
+    field_name, increment = entity_type_lib.SeparateFieldIncrement(
+        'zone_occupancy_status')
+
+    self.assertEqual(field_name, 'zone_occupancy_status')
+    self.assertEqual(increment, '')
+
 if __name__ == '__main__':
   absltest.main()
