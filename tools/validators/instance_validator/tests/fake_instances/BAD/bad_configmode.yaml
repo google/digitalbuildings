@@ -12,20 +12,17 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Link between two entities."""
+# Update operation with partial entities specified
 
-class Link(object):
-  """A link between a source and target field of two entities.
+SDC_EXT-17:
+  type: HVAC/SDC_EXT
+  etag: a12345
+  id: CDM/123456
 
-  The target entity is implied to be the same as the entity that contains this
-  Link instance.
+CONFIG_METADATA:
+  operation: EXPORT
 
-  Args:
-    source: source entity name
-    field_map: map from target entity field names to source entity field names
-  """
-
-  def __init__(self, source, field_map):
-    super().__init__()
-    self.source = source
-    self.field_map = field_map
+UK-LON-S2:
+  type: FACILITIES/BUILDING
+  etag: b23456
+  id: FACILITIES/123456
