@@ -125,10 +125,10 @@ class ConfigUniverse(findings_lib.Findings):
     return self.entity_type_universe.GetNamespaces()
 
   def GetEntityTypeNamespace(self, namespace_name):
-    """Get entity type namespace_name in this universe if defined.
+    """Get namespace object by namespace_name in this universe if defined.
 
     Returns:
-      A namespace name or None if not defined
+      A namespace object or None if not defined
     """
     if not self.entity_type_universe:
       print('EntityTypeUniverse undefined in ConfigUniverse')
