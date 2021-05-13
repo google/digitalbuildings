@@ -72,7 +72,7 @@ jobs:
     - name:  Type Matcher Tests
       run: |  
        python -m unittest discover -p '*_test.py' --failfast -v
-      working-directory: ./tools/rdf_generator/rdfformat/tests
+      working-directory: ./experimental/type_matcher/tests
     - name: Run Pylint on Type Matcher
       run: |
         pylint --rcfile=./styles/pylintrc ./experimental/type_matcher 
