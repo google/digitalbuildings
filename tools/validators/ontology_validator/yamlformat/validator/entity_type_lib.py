@@ -20,6 +20,7 @@ from __future__ import print_function
 
 import re
 import typing
+from typing import Tuple
 
 from yamlformat.validator import base_lib
 from yamlformat.validator import config_folder_lib
@@ -40,6 +41,27 @@ TypeParts = typing.NamedTuple('TypeParts', [('namespace', str),
                                             ('typename', str)])
 EntityIdByEntry = typing.NamedTuple(
     'EntityIdByEntry', [('namespace', str), ('typename', str)])
+
+
+def SeparateFieldIncrement(field_name) -> Tuple[str, str]:
+  """Takes as an input a field_name (string) and returns a tuple of strings.
+
+  The first element is the standard field name and its increment when available.
+  For example: zone_occupancy_status_1 -> [zone_occupancy_status, 1]
+
+  Args:
+    field_name: the unqualified field name to parse.
+
+  Returns:
+    A tuple of string, the standard field name and its increment if available.
+  """
+  field_name_part = field_name
+  increment_part = ''
+  match = FIELD_INCREMENT_STRIPPER_REGEX.match(field_name)
+  if match:
+    field_name_part = match.group(1)
+    increment_part = match.group(2)
+  return field_name_part, increment_part
 
 
 class EntityTypeUniverse(findings_lib.Findings):
@@ -162,11 +184,7 @@ class EntityTypeFolder(config_folder_lib.ConfigFolder):
   def _ConstructField(self, local_field_names, optional, output_array):
     for field in local_field_names:
       field_ns, field_name = field_lib.SplitFieldName(field)
-      increment = ''
-      match = FIELD_INCREMENT_STRIPPER_REGEX.match(field_name)
-      if match:
-        field_name = match.group(1)
-        increment = match.group(2)
+      field_name, increment = SeparateFieldIncrement(field_name)
       # Field will look local if undefined, but we'll catch the error later
       # Because we do explict existence checks and it will fail
       # TODO(berkoben) refactor so validation happens in an order that
@@ -525,7 +543,6 @@ class EntityType(findings_lib.Findings):
       self._all_fields = tmp
     return self._all_fields
 
-
   def HasField(self, fully_qualified_fieldname, run_unsafe=False):
     """Returns a boolean if a field is present or not
     
@@ -550,7 +567,6 @@ class EntityType(findings_lib.Findings):
                     , fqf_parsed)
     all_fields = self.GetAllFields()
     return fully_qualified_fieldname in all_fields
-
 
   def _ValidateType(self, local_field_names):
     """Validates that the entity type is formatted correctly.

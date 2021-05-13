@@ -24,6 +24,7 @@ import typing
 
 from yamlformat.validator import base_lib
 from yamlformat.validator import config_folder_lib
+from yamlformat.validator import entity_type_lib
 from yamlformat.validator import findings_lib
 from yamlformat.validator import state_lib
 from yamlformat.validator import subfield_lib
@@ -76,10 +77,11 @@ class FieldUniverse(findings_lib.FindingsUniverse):
        If the field ends with a digit, it is removed to check if it exists without it
 
     Args:
-      fieldname: string. Name of a field, with namespace and increment removed.
+      fieldname: string. Name of a field, with namespace and increment.
       namespace_name: string.
     """
-    return fieldname in self._namespace_map.get(namespace_name, set())
+    fieldname_part, _ = entity_type_lib.SeparateFieldIncrement(fieldname)
+    return fieldname_part in self._namespace_map.get(namespace_name, set())
 
   def GetFieldsMap(self, namespace_name):
     """Returns the fields defined within namespace.
@@ -89,7 +91,8 @@ class FieldUniverse(findings_lib.FindingsUniverse):
     """
     if self.folders:
       return self.folders[0].local_namespace.fields
-  
+
+
 class FieldFolder(config_folder_lib.ConfigFolder):
   """Class representing a folder of Fields.
 

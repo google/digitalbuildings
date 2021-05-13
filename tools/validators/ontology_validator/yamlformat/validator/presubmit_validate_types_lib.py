@@ -42,6 +42,7 @@ from yamlformat.validator import unit_lib
 # Define namedtuple Config to store the different kinds of config files
 # All attributes should be tuples.
 # Each property is a tuple of base_lib.PathParts tuples
+
 Config = typing.NamedTuple('Config', [('fields', tuple), ('subfields', tuple),
                                       ('states', tuple), ('type_defs', tuple),
                                       ('units', tuple), ('connections', tuple)])
@@ -176,7 +177,8 @@ class ConfigUniverse(findings_lib.Findings):
     if not self.state_universe_reverse_map:
       print('StateUniverse undefined in ConfigUniverse')
       return None
-    return self.state_universe_reverse_map.get(field_name)
+    standard_field_name, _ = entity_type_lib.SeparateFieldIncrement(field_name)
+    return self.state_universe_reverse_map.get(standard_field_name)
 
 
 def BuildUniverse(config):
