@@ -167,6 +167,11 @@ class ParserTest(absltest.TestCase):
     self.assertEqual(parser.GetConfigMode(),
                      instance_parser.ConfigMode.Default())
 
+  def testInstanceRejectsExportMode(self):
+    with self.assertRaises(KeyError):
+      parser = _ParserHelper(
+          [path.join(_TESTCASE_PATH, 'BAD', 'bad_configmode.yaml')])
+      del parser
 
 if __name__ == '__main__':
   absltest.main()

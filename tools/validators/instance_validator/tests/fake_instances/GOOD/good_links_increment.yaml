@@ -13,50 +13,25 @@
 # limitations under the License.
 
 VIRTUAL-ENTITY:
-  type: HVAC/FCU_US_MTV_41_1
+  type: HVAC/FCU_DFSS_CSP_DX2ZC
   id: SYSTEM/ID1234
   links:
     PHYSICAL-ENTITY:
-      discharge_air_temperature_sensor_1: discharge_air_temperature_sensor_1
-      discharge_air_temperature_sensor_2: discharge_air_temperature_sensor_2
-      discharge_air_temperature_sensor_3: discharge_air_temperature_sensor_3
-      discharge_air_temperature_sensor_4: discharge_air_temperature_sensor_4
       discharge_fan_run_command: discharge_fan_run_command
       discharge_fan_run_status: discharge_fan_run_status
+      # Includes a legal case where one source field feeds multiple targets
+      # this example is somewhat contrived, however
+      compressor_run_command_1: compressor_run_command
+      compressor_run_status_1: compressor_run_status
+      compressor_run_command_2: compressor_run_command
+      compressor_run_status_2: compressor_run_status
       zone_air_cooling_temperature_setpoint: zone_air_cooling_temperature_setpoint
-      zone_air_heating_temperature_setpoint: zone_air_heating_temperature_setpoint
-      heating_water_valve_percentage_command: heating_water_valve_percentage_command
-      chilled_water_valve_percentage_command: chilled_water_valve_percentage_command
       zone_air_temperature_sensor: zone_air_temperature_sensor
 
 PHYSICAL-ENTITY:
-  type: HVAC/FCU_US_MTV_41_1
+  type: HVAC/FCU_DFSS_CSP_DXZC
   id: CDM/123456
   translation:
-    discharge_air_temperature_sensor_1:
-      present_value: "points.discharge_air_temperature_sensor_1.present_value"
-      units:
-        key: "pointset.return_water_temperature_sensor_1.units"
-        values:
-          degrees_celsius: "degC"
-    discharge_air_temperature_sensor_2:
-      present_value: "points.discharge_air_temperature_sensor_2.present_value"
-      units:
-        key: "pointset.return_water_temperature_sensor_2.units"
-        values:
-          degrees_celsius: "degC"
-    discharge_air_temperature_sensor_3:
-      present_value: "points.discharge_air_temperature_sensor_3.present_value"
-      units:
-        key: "pointset.return_water_temperature_sensor_3.units"
-        values:
-          degrees_celsius: "degC"
-    discharge_air_temperature_sensor_4:
-      present_value: "points.discharge_air_temperature_sensor_4.present_value"
-      units:
-        key: "pointset.return_water_temperature_sensor_4.units"
-        values:
-          degrees_celsius: "degC"
     zone_air_temperature_sensor:
       present_value: "points.zone_air_temperature_sensor.present_value"
       unit_values:
@@ -67,31 +42,23 @@ PHYSICAL-ENTITY:
         key: "pointset.zone_air_cooling_temperature_setpoint.units"
         values:
           degrees_celsius: "degC"
-    zone_air_heating_temperature_setpoint:
-      present_value: "points.zone_air_heating_temperature_setpoint.present_value"
-      units:
-        key: "pointset.zone_air_heating_temperature_setpoint.units"
-        values:
-          degrees_celsius: "degC"
     discharge_fan_run_command:
       present_value: "points.discharge_fan_run_command.present_value"
       states:
-        OPEN: "1"
-        CLOSED: "0"
+        ON: "1"
+        OFF: "0"
     discharge_fan_run_status:
       present_value: "points.discharge_fan_run_status.present_value"
       states:
-        OPEN: "1"
-        CLOSED: "0"
-    heating_water_valve_percentage_command:
-      present_value: "points.heating_water_valve_percentage_command.present_value"
-      units:
-        key: "pointset.heating_water_valve_percentage_command.units"
-        values:
-          percent: "%"
-    chilled_water_valve_percentage_command:
-      present_value: "points.chilled_water_valve_percentage_command.present_value"
-      units:
-        key: "pointset.chilled_water_valve_percentage_command.units"
-        values:
-          percent: "%"
+        ON: "1"
+        OFF: "0"
+    compressor_run_command:
+      present_value: "points.compressor_run_command.present_value"
+      states:
+        ON: "1"
+        OFF: "0"
+    compressor_run_status:
+      present_value: "points.compressor_run_status.present_value"
+      states:
+        ON: "1"
+        OFF: "0"

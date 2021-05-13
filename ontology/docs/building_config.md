@@ -136,10 +136,10 @@ ENTITY-NAME:
     ANOTHER-ENTITY: FEEDS
     A-THIRD-ENTITY: CONTAINS
   links:
-    A-FOURTH-ENTITY:
-      # source_device_field: this_device_field
-      supply_air_damper_position_command_1: supply_air_damper_command
-      zone_air_temperature_1: zone_air_temperature_sensor
+    A-FOURTH-ENTITY: # source device
+      # target_device_field : source_device_field
+      supply_air_damper_position_command: supply_air_damper_command_1
+      zone_air_temperature: zone_air_temperature_sensor_1
   translation:
     zone_air_temperature_sensor:
       present_value: "points.temp_1.present_value"
@@ -165,8 +165,9 @@ ENTITY-NAME:
     value or a set.
 *   **Links:** Used to specify mappings between standard fields of source
     entities to standard fields of this entity. First level key is another
-    entity in the file (source). Second level key is a source standard field
-    followed by a `:` and a standard field of this entity.
+    entity in the file (source). Second level key is a standard field of this
+    (target) entity followed by a `:` and a standard field from the other
+    (source) entity.
 *   **Translation:** Used to specify how the fields of the devices native
     payload map to the standard fields of this entity's type. See
     [translation section](#translations) for more detail.
@@ -367,9 +368,9 @@ VAV-32:
   type: NAMESPACE/DEVICE_TYPE
   id: SOME_GUID_12345  # optional
   links:
-    ANOTHER-ENTITY:
-      # source_device_field: this_device_field
-      supply_air_damper_position_command_1: supply_air_damper_command
+    ANOTHER-ENTITY: # source device
+      # target_device_field : source_device_field
+      supply_air_damper_position_command: supply_air_damper_command_1
       ...
 ```
 
