@@ -33,6 +33,7 @@ class ConfigMode(enum.Enum):
   """Enumerated building config file processing modes."""
   INITIALIZE = 'INITIALIZE'
   UPDATE = 'UPDATE'
+  EXPORT = 'EXPORT'
 
   @classmethod
   def FromString(cls, value: str):
@@ -148,8 +149,10 @@ _TRANSLATION_SCHEMA = syaml.Regex(_COMPLIANT_REGEX) | syaml.MapPattern(
             syaml.MapPattern(syaml.Str(), syaml.Str())
     }))
 
-_METADATA_SCHEMA = syaml.Map(
-    {syaml.Optional(_CONFIG_MODE_KEY): EnumToRegex(ConfigMode)})
+_METADATA_SCHEMA = syaml.Map({
+    syaml.Optional(_CONFIG_MODE_KEY):
+        EnumToRegex(ConfigMode, [ConfigMode.EXPORT])
+})
 
 _ENTITY_ID_SCHEMA = {'id': syaml.Str()}
 _ENTITY_ATTRIB_SCHEMA = {
