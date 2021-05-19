@@ -148,7 +148,7 @@ class GraphValidator(object):
       src_entity_type = self.universe.GetEntityType(src_entity.namespace,
                                                     src_entity.type_name)
 
-      for source_field, _ in link_inst.field_map.items():
+      for _, source_field in link_inst.field_map.items():
         if not _FieldIsAllowed(self.universe, source_field, src_entity_type):
           print('Invalid link source field: ', source_field)
           is_valid = False
@@ -337,7 +337,7 @@ class InstanceValidator(object):
 
     found_fields = set()
     for link_inst in entity.links:
-      for source_field, target_field in link_inst.field_map.items():
+      for target_field, source_field in link_inst.field_map.items():
         # assumes that the namespace is '' for now
         if not _FieldIsAllowed(self.universe, target_field, entity_type):
           print('Invalid link target field: ', target_field)
