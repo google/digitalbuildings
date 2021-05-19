@@ -23,6 +23,6 @@ setup(
     license='Apache License',
     author= 'Trevor Sodorff',
     packages=find_packages(),
-    install_requires=['pyyaml'],
+    install_requires=['pyyaml','absl-py'],
     python_requires='>=3.7'
 )
