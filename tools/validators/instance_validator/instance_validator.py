@@ -100,7 +100,7 @@ def _ParseArgs() -> argparse.ArgumentParser:
 
 
 if __name__ == '__main__':
-  args = _ParseArgs.parse_args(sys.argv[1:])
+  args = _ParseArgs().parse_args(sys.argv[1:])
   handler.RunValidation(args.filenames, args.modified_types_filepath,
                         args.subscription, args.service_account,
                         args.report_filename, int(args.timeout))

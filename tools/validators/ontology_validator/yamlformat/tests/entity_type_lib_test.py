@@ -499,5 +499,48 @@ class EntityTypeLibTest(absltest.TestCase):
         entity_type.HasFindingTypes([findings_lib.DuplicateParentError]))
     self.assertFalse(entity_type.IsValid())
 
+  def testParseFieldWithIncrement(self):
+    field_name, increment = entity_type_lib.SeparateFieldIncrement(
+        'zone_occupancy_status_1')
+
+    self.assertEqual(field_name, 'zone_occupancy_status')
+    self.assertEqual(increment, '_1')
+
+  def testParseFieldWithoutIncrement(self):
+    field_name, increment = entity_type_lib.SeparateFieldIncrement(
+        'zone_occupancy_status')
+
+    self.assertEqual(field_name, 'zone_occupancy_status')
+    self.assertEqual(increment, '')
+
+  def testHasField(self):
+    entity_type = entity_type_lib.EntityType(
+        filepath='path/to/ANIMAL/mammal',
+        description='canine animal',
+        local_field_tuples=_FS(['HAPPY/wag']),
+        inherited_fields_expanded=True)
+    entity_type.inherited_field_names['/woof'] = _F('/woof')
+
+    self.assertTrue(entity_type.HasField('HAPPY/wag'))
+    self.assertTrue(entity_type.HasField('/woof'))
+    self.assertFalse(entity_type.HasField('SAD/wag'))
+
+  def testHasFieldAsWritten(self):
+    entity_type = entity_type_lib.EntityType(
+        filepath='path/to/ANIMAL/mammal',
+        description='canine animal',
+        local_field_tuples=_FS(['HAPPY/wag', '/woof', 'ANIMALS/fuzzy']),
+        inherited_fields_expanded=True,
+        namespace=entity_type_lib.TypeNamespace('ANIMALS'))
+
+    self.assertTrue(entity_type.HasFieldAsWritten('fuzzy'))
+    self.assertTrue(entity_type.HasFieldAsWritten('ANIMALS/fuzzy'))
+    self.assertTrue(entity_type.HasFieldAsWritten('HAPPY/wag'))
+    self.assertTrue(entity_type.HasFieldAsWritten('woof'))
+    self.assertTrue(entity_type.HasFieldAsWritten('/woof'))
+
+    self.assertFalse(entity_type.HasFieldAsWritten('/wag'))
+    self.assertFalse(entity_type.HasFieldAsWritten('wag'))
+
 if __name__ == '__main__':
   absltest.main()
