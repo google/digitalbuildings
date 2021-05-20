@@ -32,6 +32,7 @@ component:
   dimmer: "A device which can reduce lighting output of a lamp (thus 'dimming' the light)."
   dishwasher: "Device that washes dishes."
   dryer: "A component used for drying clothes."
+  elevator: "a platform or compartment housed in a shaft for raising and lowering people or things to different levels."
   evaporator: "The component of a refrigeration system that evaporates refrigerant."
   fan: "Component used for the distribution of air."
   filter: "Component used for removing dust and other particulate matter from the air."
@@ -82,6 +83,7 @@ descriptor:
   fabric: "Textile material."
   fire : "a potential to cause physical damage through burning"
   flue: "Chimney for conveying exhaust gas."
+  frost: "temperature at which ice starts to form. Used within HVAC for frost reheat coils"
   ## TODO: make it so gas only has one meaning
   gas: "Process or component driven by natural gas (as to distinguish from electric)."
   glycol: "Liquid mixture consisting of glycol and water "

@@ -777,3 +777,33 @@ literals:
 - heating_return_water_temperature_sensor
 - heating_thermal_power_sensor
 - heating_thermal_energy_accumulator
+
+#added for UK-LON-X1
+
+- heating_wheel_percentage_sensor
+- heat_recovery_damper_percentage_sensor
+- discharge_air_filter_differential_pressure_sensor
+- discharge_air_filter_differential_pressure_setpoint
+- return_air_filter_differential_pressure_sensor
+- return_air_filter_differential_pressure_setpoint
+- cooling_coil_percentage_command
+- cooling_coil_status:
+  - ACTIVE
+  - INACTIVE
+- heating_coil_percentage_command
+- frost_coil_status:
+  - ACTIVE
+  - INACTIVE
+- max_supply_air_temperature_setpoint
+- min_supply_air_temperature_setpoint
+- elevator_alarm
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

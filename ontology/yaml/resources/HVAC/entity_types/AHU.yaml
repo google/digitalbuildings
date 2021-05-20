@@ -3567,3 +3567,51 @@ AHU_US_SVL_MAT2_4:
   - supply_fan_speed_frequency_sensor
   - supply_fan_speed_percentage_command
   - supply_air_flowrate_sensor
+  
+  
+AHU_UK_LON_X1_1:
+  description: "Non-Standard AHU - DX Cooling coil and reheat"
+  implements:
+  - AHU
+  uses:
+  - heating_wheel_percentage_sensor 
+  - heat_recovery_damper_percentage_sensor
+  - discharge_air_filter_differential_pressure_sensor
+  - return_air_filter_differential_pressure_sensor 
+  - frost_coil_status
+  - cooling_coil_percentage_command
+  - cooling_coil_status
+  - master_alarm
+  - exhaust_fan_speed_percentage_sensor
+  - exhaust_air_flowrate_sensor
+  - supply_air_flowrate_sensor
+  - return_air_temperature_sensor  
+  
+AHU_UK_LON_X1_2:
+  description: "Non-Standard AHU - DX Cooling coil and reheat and extract speed control"
+  implements:
+  - AHU
+  uses:
+  - heating_wheel_percentage_sensor 
+  - heat_recovery_damper_percentage_sensor
+  - discharge_air_filter_differential_pressure_sensor
+  - discharge_air_filter_differential_pressure_setpoint
+  - return_air_filter_differential_pressure_sensor 
+  - frost_coil_status
+  - cooling_coil_percentage_command
+  - cooling_coil_status
+  - master_alarm
+  - exhaust_fan_speed_percentage_sensor
+  - exhaust_air_flowrate_sensor
+  - supply_air_flowrate_sensor
+  - return_air_temperature_sensor   
+  - exhaust_air_flowrate_setpoint
+  - max_supply_air_temperature_setpoint
+  - min_supply_air_temperature_setpoint
+  
+  
+  
+  
+  
+  
+ 
