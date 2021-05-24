@@ -55,5 +55,13 @@ BM:
   is_abstract: true
   uses:
   - battery_charge_status
-
+  
+ZSC:
+  id: "918eab2b-d1d2-494d-b165-a1ef7750c8b7"
+  is_abstract: true
+  description: "Zone scene control for a device or group of devices."
+  uses:
+  - zone_scene_percentage_command  
+  opt_uses:
+  - scene_percentage_command 
 

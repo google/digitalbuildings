@@ -772,3 +772,7 @@ literals:
 - zone_air_occupied_heating_temperature_setpoint
 - mixed_air_relative_humidity_sensor
 - mixed_air_dewpoint_temperature_sensor
+
+# Added for UK-LON-S2 Lighting
+- zone_scene_percentage_command
+- scene_percentage_command

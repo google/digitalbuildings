@@ -12,14 +12,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Canonical types for Lighting Keypads
+# Canonical types for Lighting Groups
 
-LKP_DC_ZSC:
-  id: "0c0e699f-84d3-4ea6-87b2-b97d7f68d6f8"
-  description: "Lighting keypad with brightness dimming control & zone scene control for a device or group of devices."
+LGRP_DC:
+  id: "372b0538-22b6-43fe-adf7-f9bf0f7a0ab3"
+  description: "Lighting group containing one or more luminaires with brightness dimming control."
   is_canonical: true
   implements:
-  - LKP
+  - LGRP
   - DC
-  - ZSC
+
 

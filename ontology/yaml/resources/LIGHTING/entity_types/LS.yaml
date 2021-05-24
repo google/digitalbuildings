@@ -37,7 +37,6 @@ LS_LMS:
   - LS
   - MS
 
-
 LS_MTS:
   id: "12936697269444411392"
   description: "Lighting multi-sensor, for temperature and brightness."
@@ -47,3 +46,21 @@ LS_MTS:
   uses:
   - illuminance_sensor
   - zone_air_temperature_sensor
+
+LS_OS:
+  id: "dec70469-d6e3-4384-8c6e-6161a15ceffb"
+  description: "Lighting system occupancy sensor."
+  is_canonical: true
+  implements:
+  - LS
+  - OS
+
+LS_LPS_OS:
+  id: "82d0dd7f-a955-43a7-bf9f-4344fdb1073a"
+  description: "Lighting system photocell & occupancy sensor."
+  is_canonical: true
+  implements:
+  - LS
+  - OS
+  uses:
+  - illuminance_sensor
