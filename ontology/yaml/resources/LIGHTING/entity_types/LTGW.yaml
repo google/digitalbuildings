@@ -14,6 +14,10 @@
 
 # Canonical types for Lighting Gateways
 
-
-
+LTGW_NP:
+  id: "a8dd8717-d1a0-4b24-bae3-8dbaf67466fa"
+  description: "Lighting gateway device with no payload."
+  is_canonical: true
+  implements:
+  - LTGW
 
