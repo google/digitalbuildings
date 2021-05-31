@@ -738,7 +738,7 @@ literals:
 - position_status
 - condensing_water_valve_percentage_sensor
 - entering_cooling_coil_temperature_sensor
-- fire_status
+- fire_fault_status
 
  # We should not use this... represents scavenged outside air from near some heat pumps...
 - mixed_outside_air_temperature_sensor
