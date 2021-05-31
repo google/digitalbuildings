@@ -296,3 +296,17 @@ HWSRSR:
   is_abstract: true
   implements:
   - RSR
+
+ADY:
+  id: "15252673377812888960"
+  description: "Air dryer."
+  is_abstract: true
+  implements:
+  - EQUIPMENT
+
+CMP:
+  id: "15552673377812888960"
+  description: "Air compressor."
+  is_abstract: true
+  implements:
+  - EQUIPMENT

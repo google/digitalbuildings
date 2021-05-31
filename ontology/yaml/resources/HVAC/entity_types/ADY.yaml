@@ -12,26 +12,21 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# General Types
+########################
+### Canonical Types  ###
+########################
 
-
-FACP_STD:
-  id: "7388262528523960320"
-  description: "Basic fire alarm panel."
+ADY_BS:
+  id: "7791982302882379776"
+  description: "Basic air dryer."
   is_canonical: true
   implements:
-  - FACP
+  - ADY
   uses:
-  - fire_alarm
-
-FACP_FA2X:
-  id: "7388262528288960320"
-  description: "Fire alarm panel with 2 fire alarm alertness."
-  is_canonical: true
-  implements:
-  - FACP
-  - FA2X
+  - run_command
+  - run_status
   opt_uses:
-  - fire_fault_status
-
+  - lost_power_alarm
+  - control_mode
+  - schedule_run_command
 

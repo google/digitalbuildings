@@ -3633,3 +3633,12 @@ DRSM8X:
   - dryer_run_status_8
   implements:
   - MONITORING
+
+DICM:
+  id: "4953043284228747776"
+  description: "Damper isolation control and monitoring."
+  is_abstract: true
+  uses:
+   - supply_air_isolation_damper_closed_status
+   - supply_air_isolation_damper_open_status
+   - supply_air_isolation_damper_command
