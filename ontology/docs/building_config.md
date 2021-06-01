@@ -28,7 +28,7 @@ they are confusing feel free to post an issue in the project.
       - [Reporting Physical Devices](#reporting-physical-devices)
         * [Defining Translations](#defining-translations)
           + [Translation Shortcuts](#translation-shortcuts)
-          + [UDMI Short form](#udmi-short-form)
+          <!--- + [Compliant Short forms](#compliant-short-forms) --->
         * [Metadata](#metadata)
       - [Virtual Devices](#virtual-devices)
       - [Device Relationships](#device-relationships)
@@ -255,6 +255,7 @@ FCU-123:
       states:
         OPEN: "1"
         CLOSED: "2"
+    zone_air_temperature_setpoint: MISSING
 ```
 
 Inside the `translation` block, keys correspond to standard fields in the
@@ -272,6 +273,8 @@ ontology. Within each field block we provide information about the following:
 *   `states`: If `present_value` represents a multistate value, this block is
     used to map the native state values to standard ones. Standard values are
     the map keys.
+*   If a device lacks a field required for its type, the field should be marked
+    `MISSING` as shown above.
 
 ###### Translation Shortcuts
 
@@ -284,7 +287,10 @@ translation definitions:
     [UDMI](https://github.com/faucetsdn/udmi)
     a short form can be used.
 
-###### UDMI Short form
+<!---
+###### Compliant Short forms
+
+**Forms in this section are as-yet unsupported**
 
 Because UDMI strictly defines the path to points and units in the payload, as
 well as name correspondence between `units` and `present_value` much of the
@@ -306,9 +312,12 @@ FCU-123:
         CLOSED: "2"
 ```
 
+For any subsection that has a 1:1 translation to standard values, the section
+can be completed in shorthand with `COMPLIANT`
+
 The more compliant data the device has, the smaller the translation can be. The
 same device with Digital Building ontology standard state and unit values looks
-like (not yet supported):
+like:
 
 ```
 FCU-123:
@@ -326,7 +335,7 @@ FCU-123:
   ...
   translation: COMPLIANT
 ```
-
+--->
 ##### Metadata
 
 Often it is useful to include metadata about devices in our model (and the

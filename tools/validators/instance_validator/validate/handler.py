@@ -203,7 +203,7 @@ class EntityHelper(object):
     """Validates entity instances that are already deserialized.
 
     Args:
-      entities: a list of entity instances
+      entities: a dict of entity instances
       config_mode: processing mode of the configuration
 
     Returns:
@@ -224,7 +224,7 @@ class EntityHelper(object):
       if not validator.Validate(current_entity):
         print(entity_name, 'is not a valid instance')
         continue
-      valid_entities[entity_name] = entity_instance
+      valid_entities[entity_name] = current_entity
 
     if not building_found:
       print('Config must contain a non-deleted entity with a building type')

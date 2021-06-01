@@ -29,7 +29,6 @@ from validate import telemetry_validator
 _TELEMETRY_PATH = test_constants.TEST_TELEMETRY
 _INSTANCES_PATH = path.join(test_constants.TEST_INSTANCES, 'GOOD')
 
-
 _MESSAGE_ATTRIBUTES_PATH_1 = path.join(_TELEMETRY_PATH,
                                        'message_attributes_CHWS_WDT-17.json')
 _MESSAGE_ATTRIBUTES_1 = json.load(open(_MESSAGE_ATTRIBUTES_PATH_1))
@@ -127,10 +126,10 @@ _ENTITY_NAME_4 = 'SDC_EXT-18'
 _ENTITIES_5 = _CreateEntityInstances('good_translation_multi_states.yaml')
 _ENTITY_NAME_5 = 'FAN-17'
 
-_POINT_NAME_1 = 'return_water_temperature_sensor'
-_POINT_NAME_2 = 'supply_water_temperature_sensor'
-_POINT_NAME_3 = 'exhaust_air_damper_command'
-_POINT_NAME_4 = 'exhaust_air_damper_status'
+_POINT_NAME_1 = 'points.return_water_temperature_sensor.present_value'
+_POINT_NAME_2 = 'points.supply_water_temperature_sensor.present_value'
+_POINT_NAME_3 = 'points.exhaust_air_damper_command.present_value'
+_POINT_NAME_4 = 'points.exhaust_air_damper_status.present_value'
 
 _NULL_CALLBACK = lambda validator: None
 
