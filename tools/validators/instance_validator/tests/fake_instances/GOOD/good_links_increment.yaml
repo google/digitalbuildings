@@ -34,8 +34,10 @@ PHYSICAL-ENTITY:
   translation:
     zone_air_temperature_sensor:
       present_value: "points.zone_air_temperature_sensor.present_value"
-      unit_values:
-        degrees_celsius: "degC"
+      units:
+        key: "pointset.zone_air_temperature_sensor.units"
+        values:
+          degrees_celsius: "degC"
     zone_air_cooling_temperature_setpoint:
       present_value: "points.zone_air_cooling_temperature_setpoint.present_value"
       units:

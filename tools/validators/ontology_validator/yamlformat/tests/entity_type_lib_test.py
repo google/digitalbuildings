@@ -11,7 +11,6 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 """Tests for bizapps.rews.carson.ontology.validation.entity_type_lib."""
 
 from __future__ import absolute_import
@@ -23,7 +22,6 @@ from yamlformat.validator import entity_type_lib
 from yamlformat.validator import field_lib
 from yamlformat.validator import findings_lib
 from yamlformat.validator import test_helpers_lib
-
 
 _GOOD_PATH_FORMAT = '{0}/entity_types/anyfolder'
 _GOOD_PATH = _GOOD_PATH_FORMAT.format('mynamespace')
@@ -174,8 +172,8 @@ class EntityTypeLibTest(absltest.TestCase):
     self.assertFalse(type_folder.local_namespace.GetFindings())
     self.assertLen(type_folder.local_namespace.valid_types_map, 1)
     new_type = type_folder.local_namespace.valid_types_map['cat']
-    self.assertCountEqual(
-        ['/meow', '/claws', '/cuddle'], new_type.local_field_names)
+    self.assertCountEqual(['/meow', '/claws', '/cuddle'],
+                          new_type.local_field_names)
     self.assertCountEqual(['fuzzy'], new_type.unqualified_parent_names)
     self.assertEqual('feline animal', new_type.description)
     self.assertEqual(good_filepath, new_type.file_context.filepath)
@@ -194,8 +192,9 @@ class EntityTypeLibTest(absltest.TestCase):
   def testAddGoodType(self):
     fields_universe = field_lib.FieldUniverse([])
     fields_universe._namespace_map = {
-        '': ('animal'),
-        'ANIMAL': ('meow', 'claws')
+        '': [field_lib.Field('animal')],
+        'ANIMAL': [field_lib.Field('meow'),
+                   field_lib.Field('claws')]
     }
     folderpath = 'ANIMAL/entity_types'
     type_folder = entity_type_lib.EntityTypeFolder(folderpath, fields_universe)
@@ -220,8 +219,9 @@ class EntityTypeLibTest(absltest.TestCase):
   def testAddGoodTypeWithIncrementedFields(self):
     fields_universe = field_lib.FieldUniverse([])
     fields_universe._namespace_map = {
-        '': ('animal'),
-        'ANIMAL': ('meow', 'claws')
+        '': [field_lib.Field('animal')],
+        'ANIMAL': [field_lib.Field('meow'),
+                   field_lib.Field('claws')]
     }
     folderpath = 'ANIMAL/entity_types'
     type_folder = entity_type_lib.EntityTypeFolder(folderpath, fields_universe)
@@ -248,9 +248,9 @@ class EntityTypeLibTest(absltest.TestCase):
   def testAddTypeWithNamespacedField(self):
     fields_universe = field_lib.FieldUniverse([])
     fields_universe._namespace_map = {
-        '': ('animal'),
-        'ANIMAL': ('meow'),
-        'ATTACK': ('claws')
+        '': [field_lib.Field('animal')],
+        'ANIMAL': [field_lib.Field('meow')],
+        'ATTACK': [field_lib.Field('claws')]
     }
     folderpath = 'ANIMAL/entity_types'
     type_folder = entity_type_lib.EntityTypeFolder(folderpath, fields_universe)
@@ -276,7 +276,10 @@ class EntityTypeLibTest(absltest.TestCase):
 
   def testAddTypeUndefinedFields(self):
     fields_universe = field_lib.FieldUniverse([])
-    fields_universe._namespace_map = {'': ('animal'), 'ANIMAL': ('meow')}
+    fields_universe._namespace_map = {
+        '': [field_lib.Field('animal')],
+        'ANIMAL': [field_lib.Field('meow')]
+    }
     folderpath = 'ANIMAL/entity_types'
     type_folder = entity_type_lib.EntityTypeFolder(folderpath, fields_universe)
     self.assertFalse(type_folder.GetFindings())
@@ -297,7 +300,10 @@ class EntityTypeLibTest(absltest.TestCase):
 
   def testAddMultipleTypes(self):
     fields_universe = field_lib.FieldUniverse([])
-    fields_universe._namespace_map = {'': ('animal'), 'ANIMAL': ('meow')}
+    fields_universe._namespace_map = {
+        '': [field_lib.Field('animal')],
+        'ANIMAL': [field_lib.Field('meow')]
+    }
     folderpath = 'ANIMAL/entity_types'
     type_folder = entity_type_lib.EntityTypeFolder(folderpath, fields_universe)
     self.assertFalse(type_folder.GetFindings())
@@ -330,7 +336,10 @@ class EntityTypeLibTest(absltest.TestCase):
 
   def testAddDuplicateTypes(self):
     fields_universe = field_lib.FieldUniverse([])
-    fields_universe._namespace_map = {'': ('animal'), 'ANIMAL': ('meow')}
+    fields_universe._namespace_map = {
+        '': [field_lib.Field('animal')],
+        'ANIMAL': [field_lib.Field('meow')]
+    }
     folderpath = 'ANIMAL/entity_types'
     type_folder = entity_type_lib.EntityTypeFolder(folderpath, fields_universe)
     self.assertFalse(type_folder.GetFindings())
@@ -541,6 +550,29 @@ class EntityTypeLibTest(absltest.TestCase):
 
     self.assertFalse(entity_type.HasFieldAsWritten('/wag'))
     self.assertFalse(entity_type.HasFieldAsWritten('wag'))
+
+  def testGetFieldFromConfigText(self):
+    entity_type = entity_type_lib.EntityType(
+        filepath='path/to/ANIMAL/mammal',
+        description='canine animal',
+        local_field_tuples=_FS(['HAPPY/wag', '/woof', 'ANIMALS/fuzzy']),
+        inherited_fields_expanded=True,
+        namespace=entity_type_lib.TypeNamespace('ANIMALS'))
+    self.assertEqual('fuzzy',
+                     entity_type.GetFieldFromConfigText('fuzzy').field.field)
+    self.assertEqual(
+        'fuzzy',
+        entity_type.GetFieldFromConfigText('ANIMALS/fuzzy').field.field)
+    self.assertEqual(
+        'wag',
+        entity_type.GetFieldFromConfigText('HAPPY/wag').field.field)
+    self.assertEqual('woof',
+                     entity_type.GetFieldFromConfigText('woof').field.field)
+    self.assertEqual('woof',
+                     entity_type.GetFieldFromConfigText('/woof').field.field)
+
+    self.assertIsNone(entity_type.GetFieldFromConfigText('/wag'))
+    self.assertIsNone(entity_type.GetFieldFromConfigText('wag'))
 
 if __name__ == '__main__':
   absltest.main()
