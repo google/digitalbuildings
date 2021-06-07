@@ -12,7 +12,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+SDC_EXT-17:
+  type: HVAC/SDC_EXT
+  id: CDM/123456
+  translation:
+    shade_extent_percentage_command: MISSING
+
 UK-LON-S2:
   type: FACILITIES/BUILDING
   id: FACILITIES/123456
-  translation: COMPLIANT
