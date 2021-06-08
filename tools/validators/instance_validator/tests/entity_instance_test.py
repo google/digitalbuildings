@@ -26,12 +26,12 @@ from absl.testing import absltest
 from tests import test_constants
 from validate import connection
 from validate import entity_instance
+from validate import field_translation
 from validate import generate_universe
 from validate import instance_parser
 from validate import link
 from yamlformat.validator import field_lib
 from yamlformat.validator import presubmit_validate_types_lib
-
 
 _DEFAULT_ONTOLOGY_LOCATION = test_constants.ONTOLOGY_ROOT
 _TESTCASE_PATH = test_constants.TEST_INSTANCES
@@ -72,8 +72,7 @@ class EntityInstanceTest(absltest.TestCase):
     parsed = _Helper(
         [path.join(_TESTCASE_PATH, 'GOOD', 'good_entity_update.yaml')])
     parsed = dict(parsed)
-    entity_name = list(parsed)[0]
-    entity = dict(parsed[entity_name])
+    entity = dict(parsed[list(parsed)[0]])
 
     instance = entity_instance.EntityInstance.FromYaml(entity)
 
@@ -86,8 +85,7 @@ class EntityInstanceTest(absltest.TestCase):
     parsed = _Helper(
         [path.join(_TESTCASE_PATH, 'BAD', 'bad_building_type.yaml')])
     parsed = dict(parsed)
-    entity_name = list(parsed)[0]
-    entity = dict(parsed[entity_name])
+    entity = dict(parsed[list(parsed)[0]])
 
     try:
       entity_instance.EntityInstance.FromYaml(entity)
@@ -100,8 +98,7 @@ class EntityInstanceTest(absltest.TestCase):
     parsed = _Helper(
         [path.join(_TESTCASE_PATH, 'BAD', 'bad_building_type_namespace.yaml')])
     parsed = dict(parsed)
-    entity_name = list(parsed)[0]
-    entity = dict(parsed[entity_name])
+    entity = dict(parsed[list(parsed)[0]])
 
     instance = entity_instance.EntityInstance.FromYaml(entity)
 
@@ -111,8 +108,7 @@ class EntityInstanceTest(absltest.TestCase):
     parsed = _Helper(
         [path.join(_TESTCASE_PATH, 'BAD', 'bad_abstract_type.yaml')])
     parsed = dict(parsed)
-    entity_name = list(parsed)[0]
-    entity = dict(parsed[entity_name])
+    entity = dict(parsed[list(parsed)[0]])
 
     instance = entity_instance.EntityInstance.FromYaml(entity)
 
@@ -122,88 +118,60 @@ class EntityInstanceTest(absltest.TestCase):
     parsed = _Helper(
         [path.join(_TESTCASE_PATH, 'BAD', 'bad_building_type_entity.yaml')])
     parsed = dict(parsed)
-    entity_name = list(parsed)[0]
-    entity = dict(parsed[entity_name])
+    entity = dict(parsed[list(parsed)[0]])
 
     instance = entity_instance.EntityInstance.FromYaml(entity)
 
     self.assertFalse(self._e_v_init.Validate(instance))
 
-  def testValidateCompliantTranslation(self):
-    parsed = _Helper(
-        [path.join(_TESTCASE_PATH, 'GOOD', 'good_translation_compliant.yaml')])
-    parsed = dict(parsed)
-    entity_name = list(parsed)[0]
-    entity = dict(parsed[entity_name])
-
-    instance = entity_instance.EntityInstance.FromYaml(entity)
-
-    self.assertTrue(self._e_v_init.Validate(instance))
-
-  def testValidateMultipleCompliantTranslation(self):
-    parsed = _Helper([
-        path.join(_TESTCASE_PATH, 'GOOD',
-                  'good_translation_multiple_compliant.yaml')
-    ])
-    parsed = dict(parsed)
-    entity_name = list(parsed)[0]
-    entity = dict(parsed[entity_name])
-
-    instance = entity_instance.EntityInstance.FromYaml(entity)
-
-    self.assertTrue(self._e_v_init.Validate(instance))
-
-  def testValidateMultipleCompliantTranslationWithFields(self):
+  def testValidateMultipleTranslationWithFields(self):
     parsed = _Helper([
         path.join(_TESTCASE_PATH, 'GOOD',
                   'good_building_translation_fields.yaml')
     ])
     parsed = dict(parsed)
-    entity_name = list(parsed)[0]
-    entity = dict(parsed[entity_name])
+    entity = dict(parsed[list(parsed)[0]])
 
     instance = entity_instance.EntityInstance.FromYaml(entity)
 
     self.assertTrue(self._e_v_init.Validate(instance))
 
-  def testValidateMultipleCompliantTranslationWithRequiredFieldMissing(self):
+  def testValidateTranslationWithRequiredFieldMissing(self):
     parsed = _Helper([
         path.join(_TESTCASE_PATH, 'BAD',
                   'bad_translation_with_required_field_missing.yaml')
     ])
     parsed = dict(parsed)
-    entity_name = list(parsed)[0]
-    entity = dict(parsed[entity_name])
+    entity = dict(parsed[list(parsed)[0]])
 
     instance = entity_instance.EntityInstance.FromYaml(entity)
 
     self.assertFalse(self._e_v_init.Validate(instance))
 
-  def testValidateMultipleCompliantTranslationWithNamespaceOtherMultiple(self):
+  def testValidateTranslation(self):
     parsed = _Helper(
         [path.join(_TESTCASE_PATH, 'GOOD', 'good_translation.yaml')])
 
     parsed = dict(parsed)
-    entity_name_hvac = list(parsed)[0]
-    entity_hvac = dict(parsed[entity_name_hvac])
+    entity_hvac = dict(parsed[list(parsed)[0]])
 
     instance = entity_instance.EntityInstance.FromYaml(entity_hvac)
 
     self.assertTrue(self._e_v_init.Validate(instance))
 
-  def testValidateMultipleCompliantTranslationWithNamespaceOther(self):
-    parsed = _Helper(
-        [path.join(_TESTCASE_PATH, 'GOOD', 'good_translation.yaml')])
+  def testValidateTranslationWithExplicitlyMissingField(self):
+    parsed = _Helper([
+        path.join(_TESTCASE_PATH, 'GOOD',
+                  'good_translation_field_marked_missing.yaml')
+    ])
 
     parsed = dict(parsed)
-    entity_name_lighting = list(parsed)[0]
-    entity_lighting = dict(parsed[entity_name_lighting])
-
-    instance = entity_instance.EntityInstance.FromYaml(entity_lighting)
+    entity_hvac = dict(parsed[list(parsed)[0]])
+    instance = entity_instance.EntityInstance.FromYaml(entity_hvac)
 
     self.assertTrue(self._e_v_init.Validate(instance))
 
-  def testValidateMultipleCompliantTranslationWithIdenticalTypes(self):
+  def testValidateMultipleTranslationsWithIdenticalTypes(self):
     parsed = _Helper(
         [path.join(_TESTCASE_PATH, 'GOOD', 'good_translation_identical.yaml')])
     parsed = dict(parsed)
@@ -214,51 +182,24 @@ class EntityInstanceTest(absltest.TestCase):
 
       self.assertTrue(self._e_v_init.Validate(instance))
 
-  def testValidateMultipleCompliantTranslationWithExtraField(self):
+  def testValidateBadTranslationWithExtraField(self):
     parsed = _Helper([
         path.join(_TESTCASE_PATH, 'BAD',
                   'bad_translation_with_extra_field.yaml')
     ])
 
     parsed = dict(parsed)
-    entity_name = list(parsed)[0]
-    entity = dict(parsed[entity_name])
+    entity = dict(parsed[list(parsed)[0]])
 
     instance = entity_instance.EntityInstance.FromYaml(entity)
 
     self.assertFalse(self._e_v_init.Validate(instance))
 
-  def testValidateTranslationUnitValues(self):
-    parsed = _Helper([
-        path.join(_TESTCASE_PATH, 'GOOD', 'good_translation_unit_values.yaml')
-    ])
-    parsed = dict(parsed)
-    entity_name = list(parsed)[0]
-    entity = dict(parsed[entity_name])
-
-    instance = entity_instance.EntityInstance.FromYaml(entity)
-
-    self.assertTrue(self._e_v_init.Validate(instance))
-
-  def testValidateTranslationStatesAndUnitValues(self):
-    parsed = _Helper([
-        path.join(_TESTCASE_PATH, 'GOOD',
-                  'good_translation_states_and_unit_values.yaml')
-    ])
-    parsed = dict(parsed)
-    entity_name = list(parsed)[0]
-    entity = dict(parsed[entity_name])
-
-    instance = entity_instance.EntityInstance.FromYaml(entity)
-
-    self.assertTrue(self._e_v_init.Validate(instance))
-
   def testValidateTranslationUnits(self):
     parsed = _Helper(
         [path.join(_TESTCASE_PATH, 'GOOD', 'good_translation_units.yaml')])
     parsed = dict(parsed)
-    entity_name = list(parsed)[0]
-    entity = dict(parsed[entity_name])
+    entity = dict(parsed[list(parsed)[0]])
 
     instance = entity_instance.EntityInstance.FromYaml(entity)
 
@@ -270,30 +211,17 @@ class EntityInstanceTest(absltest.TestCase):
                   'good_translation_units_and_states.yaml')
     ])
     parsed = dict(parsed)
-    entity_name = list(parsed)[0]
-    entity = dict(parsed[entity_name])
+    entity = dict(parsed[list(parsed)[0]])
 
     instance = entity_instance.EntityInstance.FromYaml(entity)
 
     self.assertTrue(self._e_v_init.Validate(instance))
 
-  def testValidateBadTranslationUnitValues(self):
-    parsed = _Helper(
-        [path.join(_TESTCASE_PATH, 'BAD', 'bad_translation_unit_values.yaml')])
-    parsed = dict(parsed)
-    entity_name = list(parsed)[0]
-    entity = dict(parsed[entity_name])
-
-    instance = entity_instance.EntityInstance.FromYaml(entity)
-
-    self.assertFalse(self._e_v_init.Validate(instance))
-
   def testValidateBadTranslationStates(self):
     parsed = _Helper(
         [path.join(_TESTCASE_PATH, 'BAD', 'bad_translation_states.yaml')])
     parsed = dict(parsed)
-    entity_name = list(parsed)[0]
-    entity = dict(parsed[entity_name])
+    entity = dict(parsed[list(parsed)[0]])
 
     instance = entity_instance.EntityInstance.FromYaml(entity)
 
@@ -388,6 +316,20 @@ class EntityInstanceTest(absltest.TestCase):
 
   def testValidateGoodLinkEntityName(self):
     parsed = _Helper([path.join(_TESTCASE_PATH, 'GOOD', 'good_links.yaml')])
+    entity_instances = {}
+    parsed = dict(parsed)
+    for raw_entity in list(parsed):
+      entity_parsed = dict(parsed[raw_entity])
+      entity = entity_instance.EntityInstance.FromYaml(entity_parsed)
+      entity_instances[raw_entity] = entity
+
+    c_v = _CombValidator(self._universe, _INIT_CFG, entity_instances)
+    for _, instance in entity_instances.items():
+      self.assertTrue(c_v.Validate(instance))
+
+  def testValidateGoodLinkWithIncrementEntityName(self):
+    parsed = _Helper(
+        [path.join(_TESTCASE_PATH, 'GOOD', 'good_links_increment.yaml')])
     entity_instances = {}
     parsed = dict(parsed)
     for raw_entity in list(parsed):
@@ -499,7 +441,38 @@ class EntityInstanceTest(absltest.TestCase):
 
     self.assertFalse(validator.Validate(entity))
 
+  @mock.patch.object(
+      entity_instance.InstanceValidator,
+      '_FieldTranslationIsValid',
+      return_value=True)
+  @mock.patch.object(
+      field_lib.FieldUniverse, 'IsFieldDefined', return_value=True)
+  def testInstanceMultipleUnitsNotAllowed(self, mock_fn, mock_field_u):
+    config_u = presubmit_validate_types_lib.ConfigUniverse(
+        None, mock_field_u, None, None, None, None)
+    mock_fn.side_effect = lambda f, ns: True
+    entity = entity_instance.EntityInstance(
+        _UPDATE,
+        'VAV-123',
+        etag='1234',
+        translation={
+            'foo_bar':
+                field_translation.DimensionalValue(
+                    std_field_name='foo/bar',
+                    unit_field_name='foo/unit',
+                    raw_field_name='foo/raw',
+                    unit_mappings={'standard_unit_1': 'raw_unit_1'}),
+            'foo_baz':
+                field_translation.DimensionalValue(
+                    std_field_name='foo/baz',
+                    unit_field_name='bar/unit',
+                    raw_field_name='bar/raw',
+                    unit_mappings={'standard_unit_1': 'raw_unit_2'}),
+        })
+    validator = entity_instance.InstanceValidator(config_u, _UPDATE_CFG)
+
+    self.assertFalse(validator.Validate(entity))
+
 
 if __name__ == '__main__':
   absltest.main()
-

@@ -11,17 +11,17 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 """Tests for field_lib."""
 
 from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
+from absl.testing import absltest
+
 from yamlformat.validator import field_lib
 from yamlformat.validator import findings_lib
 from yamlformat.validator import subfield_lib
-from absl.testing import absltest
 
 AGGREGATION = subfield_lib.SubfieldCategory.AGGREGATION
 DESCRIPTOR = subfield_lib.SubfieldCategory.DESCRIPTOR
@@ -30,7 +30,9 @@ MEASUREMENT_DESCRIPTOR = subfield_lib.SubfieldCategory.MEASUREMENT_DESCRIPTOR
 MEASUREMENT = subfield_lib.SubfieldCategory.MEASUREMENT
 POINT_TYPE = subfield_lib.SubfieldCategory.POINT_TYPE
 
-_GOOD_PATH = '{0}/fields/anyfolder'.format('mynamespace')
+_GOOD_NAMESPACE = 'mynamespace'
+_GOOD_PATH = '{0}/fields/anyfolder'.format(_GOOD_NAMESPACE)
+_GOOD_GLOBAL_PATH = 'fields/anyfolder'
 
 
 class FieldLibTest(absltest.TestCase):
@@ -77,6 +79,28 @@ class FieldLibTest(absltest.TestCase):
     self.assertTrue(fields_universe.IsFieldDefined('meow', 'mynamespace'))
     self.assertTrue(fields_universe.IsFieldDefined('claws', 'mynamespace'))
     self.assertFalse(fields_universe.IsFieldDefined('clawsss', 'mynamespace'))
+
+  def testFieldUniverseGetFieldMap(self):
+    meow_cat = field_lib.Field('meow_cat')
+    claws_cat = field_lib.Field('claws_cat')
+    global_folder = field_lib.FieldFolder(_GOOD_GLOBAL_PATH)
+    folder = field_lib.FieldFolder(_GOOD_PATH, global_folder.local_namespace)
+    folder.local_namespace.PutIfAbsent(meow_cat)
+    global_folder.local_namespace.PutIfAbsent(claws_cat)
+
+    universe = field_lib.FieldUniverse([folder, global_folder])
+
+    local_fields = universe.GetFieldsMap(_GOOD_NAMESPACE)
+    global_fields = universe.GetFieldsMap('')
+    all_fields = universe.GetFieldsMap()
+
+    expected_local = {_GOOD_NAMESPACE + '/meow_cat': meow_cat}
+    expected_global = {'/claws_cat': claws_cat}
+    expected_all = {**expected_local, **expected_global}
+
+    self.assertDictEqual(local_fields, expected_local)
+    self.assertDictEqual(global_fields, expected_global)
+    self.assertDictEqual(all_fields, expected_all)
 
   def testGetSubFieldList(self):
     field = field_lib.Field('test_name')
