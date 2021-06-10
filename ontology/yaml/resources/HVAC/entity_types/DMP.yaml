@@ -58,7 +58,6 @@ DMP_SDBPC_RMM:
   - RMM
 
 DMP_DICM:
-  id: "5496288685028352000"
   description: "Controlling and monitoring damper isolation system."
   is_canonical: true
   opt_uses:

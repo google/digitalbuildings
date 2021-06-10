@@ -59,8 +59,7 @@ LDS_GASDET:
   - GASDET
 
 
-LDS_LPA:
-  id: "17602886483400245248"
+LDS_WLA:
   description: "Water Leak sensing device."
   is_canonical: true
   implements:

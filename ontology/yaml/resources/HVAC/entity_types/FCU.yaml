@@ -745,6 +745,31 @@ FCU_DFMSS_DSP_ZHM_RTM_CHWZC_CHWDT:
   - CHWZC
   - CHWDT
 
+FCU_DFVSMC_CHWBZS:
+  description: "Chilled water FCU with discharge fan mode and return air temp control."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFVSMC
+  - CHWBZS
+  opt_uses:
+  - control_mode
+  - schedule_run_command
+  - lost_power_alarm
+
+FCU_DFVSFC_CHWBZS:
+  description: "Chilled water FCU with discharge fan frequency and return air temp control."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFVSFC
+  - CHWBZS
+  opt_uses:
+  - control_mode
+  - schedule_run_command
+  - lost_power_alarm
+
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################

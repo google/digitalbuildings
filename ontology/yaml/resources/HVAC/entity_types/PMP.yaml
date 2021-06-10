@@ -44,8 +44,7 @@ PMP_SS_VSC_WDPM:
   - WDPM
 
 PMP_WDT:
-  id: "1112887574847586304"
-  description: "Variable speed pump with differential temperature across water"
+  description: "Variable speed pump with temperature reading between return/supply water"
   is_canonical: true
   opt_uses:
   - control_mode
@@ -57,6 +56,18 @@ PMP_WDT:
   implements:
   - PMP
   - WDT
+
+PMP_SSAMS:
+  description: "PMP device which alarm, mode and status are being operated and monitored."
+  is_canonical: true
+  implements:
+  - PMP
+  - SS
+  opt_uses:
+  - control_mode
+  - schedule_run_command
+  - run_mode
+  - lost_power_alarm
 
 ###################################
 ### Existing Non-standard Types ###
@@ -81,16 +92,3 @@ PMP_S_VSCF_ISV:
   - chilled_supply_water_temperature_setpoint
   - chilled_supply_water_temperature_sensor
 
-PMP_TW_TPKD_1:
-  id: "5496288685028352000"
-  description: "Non-standard type where only the device alarm, mode and status are being operated and monitored."
-  is_canonical: true
-  implements:
-  - PMP
-  opt_uses:
-  - control_mode
-  - schedule_run_command
-  - run_command
-  - run_status
-  - run_mode
-  - lost_power_alarm

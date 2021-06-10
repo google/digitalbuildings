@@ -773,3 +773,8 @@ literals:
 - zone_air_occupied_heating_temperature_setpoint
 - mixed_air_relative_humidity_sensor
 - mixed_air_dewpoint_temperature_sensor
+
+# Added for TW
+- supply_air_isolation_damper_closed_status
+- supply_air_isolation_damper_open_status
+- exhaust_fan_speed_frequency_command

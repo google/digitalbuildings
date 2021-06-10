@@ -368,6 +368,15 @@ VAV_SD_DSP_HWDC_DSPZDHC:
   - HWDC
   - DSPZDHC
 
+VAV_VSZ:
+  description: "VAV with supply air and zone air monitoring"
+  is_canonical: true
+  implements:
+  - VAV
+  - VSZ
+  opt_uses:
+  - failed_alarm
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################

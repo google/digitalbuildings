@@ -17,7 +17,6 @@
 ########################
 
 ADY_BS:
-  id: "7791982302882379776"
   description: "Basic air dryer."
   is_canonical: true
   implements:

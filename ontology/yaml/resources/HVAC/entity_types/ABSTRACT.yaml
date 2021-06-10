@@ -342,6 +342,20 @@ EFVSC:
   implements:
   - OPERATIONAL
 
+EFVSFC:
+  description: "Variable speed control or monitor (frequency) for exhaust fans."
+  is_abstract: true
+  opt_uses:
+  - exhaust_fan_speed_frequency_sensor
+  - exhaust_fan_speed_frequency_command
+  - exhaust_fan_current_sensor
+  - exhaust_fan_power_sensor
+  uses:
+  - exhaust_fan_run_command
+  - exhaust_fan_run_status
+  implements:
+  - OPERATIONAL
+
 SFVSC:
   id: "16291356723812237312"
   description: "Variable speed control for supply fans."
@@ -367,8 +381,33 @@ DFVSC:
   - discharge_fan_power_sensor
   - discharge_fan_speed_frequency_sensor
   - discharge_fan_speed_percentage_sensor
+  - discharge_fan_lost_power_alarm
   uses:
   - discharge_fan_speed_percentage_command
+  - discharge_fan_run_status
+  - discharge_fan_run_command
+  implements:
+  - OPERATIONAL
+
+DFVSMC:
+  description: "Variable speed control mode for discharge fans."
+  is_abstract: true
+  opt_uses:
+  - discharge_fan_speed_percentage_command
+  - discharge_fan_speed_frequency_command
+  uses:
+  - discharge_fan_speed_mode
+  - discharge_fan_run_status
+  - discharge_fan_run_command
+  implements:
+  - OPERATIONAL
+
+
+DFVSFC:
+  description: "Variable speed control with frequency setting for discharge fans."
+  is_abstract: true
+  uses:
+  - discharge_fan_speed_frequency_command
   - discharge_fan_run_status
   - discharge_fan_run_command
   implements:
@@ -470,6 +509,7 @@ DFSS:
   - discharge_fan_current_sensor
   - discharge_fan_power_sensor
   - discharge_air_static_pressure_sensor
+  - discharge_fan_lost_power_alarm
   uses:
   - discharge_fan_run_command
   - discharge_fan_run_status
@@ -609,6 +649,8 @@ DTC:
   is_abstract: true
   implements:
   - OPERATIONAL
+  opt_uses:
+  - discharge_air_damper_percentage_command
   uses:
   - discharge_air_temperature_setpoint
   - discharge_air_temperature_sensor
@@ -2348,6 +2390,7 @@ OAFM:
   is_abstract: true
   opt_uses:
   - outside_air_temperature_sensor
+  - outside_air_damper_percentage_sensor
   uses:
   - outside_air_flowrate_sensor
   implements:
@@ -2366,6 +2409,18 @@ OAFMC:
   - outside_air_damper_percentage_command
   implements:
   - CONTROL
+
+OAMC:
+  description: "Outside air flow control."
+  is_abstract: true
+  opt_uses:
+  - outside_air_flowrate_sensor
+  uses:
+  - outside_air_damper_percentage_sensor
+  - outside_air_damper_percentage_command
+  implements:
+  - CONTROL
+
 
 OFC:
   id: "18252070729648439296"
@@ -3338,6 +3393,7 @@ CHWVM:
   opt_uses:
   - cooling_thermal_power_capacity
   - chilled_water_flowrate_sensor
+  - chilled_water_valve_failed_alarm
   uses:
   - chilled_water_valve_percentage_sensor
   - chilled_water_valve_percentage_command
@@ -3635,10 +3691,84 @@ DRSM8X:
   - MONITORING
 
 DICM:
-  id: "4953043284228747776"
-  description: "Damper isolation control and monitoring."
+  description: "Damper isolation control and monitoring. "
   is_abstract: true
   uses:
    - supply_air_isolation_damper_closed_status
    - supply_air_isolation_damper_open_status
    - supply_air_isolation_damper_command
+
+UV:
+  description: "Ultraviolet lamp operation."
+  is_abstract: true
+  opt_uses:
+  - ultraviolet_lamp_control_mode
+  uses:
+  - ultraviolet_lamp_run_command
+  - ultraviolet_lamp_run_status
+
+H3X:
+  description: "Heater monitoring."
+  is_abstract: true
+  implements:
+  - MONITORING
+  uses:
+  - heater_run_status_1
+  - heater_run_status_2
+  - heater_run_status_3
+  - heater_run_command_1
+  - heater_run_command_2
+  - heater_run_command_3
+
+HS3X:
+  description: "Heater monitoring."
+  is_abstract: true
+  implements:
+  - MONITORING
+  uses:
+  - heater_run_status_1
+  - heater_run_status_2
+  - heater_run_status_3
+
+SAM:
+  description: "Supply air monitoring for pressure, temperature and flow rate."
+  is_abstract: true
+  implements:
+  - MONITORING
+  opt_uses:
+  - supply_air_static_pressure_sensor
+  uses:
+  - supply_air_flowrate_status
+  - supply_air_temperature_sensor
+
+SFCM:
+  description: "Supply air fan basic control in percentage"
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  uses:
+  - supply_fan_speed_percentage_command
+  - supply_fan_speed_percentage_sensor
+
+CHWBZS:
+  description: "Chilled water valve binary (open/closed) monitoring/controlling. Return air temperature control."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  opt_uses:
+  - chilled_water_valve_percentage_command
+  - chilled_water_valve_command
+  uses:
+  - return_air_temperature_sensor
+  - return_air_temperature_setpoint
+
+
+VSZ:
+  description: "VAV zone air temp and supply air damp/flowrate monitoring."
+  is_abstract: true
+  implements:
+  - MONITORING
+  uses:
+  - zone_air_temperature_sensor
+  - supply_air_damper_percentage_sensor
+  - supply_air_flowrate_sensor
