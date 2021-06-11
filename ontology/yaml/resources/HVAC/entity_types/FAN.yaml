@@ -296,6 +296,7 @@ FAN_EDPM_ZHM_ZTM_LPS:
   - control_mode
   - low_differential_pressure_alarm
   - lost_power_alarm
+  - control_panel_mode
 
 
 FAN_FCS:
@@ -310,6 +311,7 @@ FAN_FCS:
   - schedule_run_command
   - exhaust_fan_run_command
   - exhaust_fan_run_status
+  - control_panel_mode
 
 FAN_SA:
   description: "Supply fan with fan speed control"
@@ -321,7 +323,7 @@ FAN_SA:
   - supply_fan_speed_percentage_command
   opt_uses:
   - lost_power_alarm
-  - control_mode
+  - control_panel_mode
 
 
 FAN_BRS:
@@ -334,6 +336,7 @@ FAN_BRS:
   - lost_power_alarm
   - control_mode
   - schedule_run_command
+  - control_panel_mode
 
 FAN_EFVSFC:
   description: "Exhaust fan with frequency command control"
@@ -346,6 +349,7 @@ FAN_EFVSFC:
     - lost_power_alarm
     - control_mode
     - schedule_run_command
+    - control_panel_mode
 
 ###################################
 ### Existing Non-standard Types ###

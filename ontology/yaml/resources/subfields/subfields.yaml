@@ -80,6 +80,7 @@ descriptor:
   exercise: "Mode of running equipment to maintain functionality ('exercise mode')"
   exhaust: "Process or component used in the removal of air from a conditioned system to the outside atmosphere."
   fault: "Fault of fire alarm system/panel e.g. ground fault, sensor fault, etc. A common of fire alarm system. It will not induce alarm."
+  panel: "An interface to control a device."
   fabric: "Textile material."
   fire : "a potential to cause physical damage through burning"
   flue: "Chimney for conveying exhaust gas."

@@ -778,3 +778,6 @@ literals:
 - supply_air_isolation_damper_closed_status
 - supply_air_isolation_damper_open_status
 - exhaust_fan_speed_frequency_command
+- pump_speed_frequency_command
+- pump_speed_frequency_sensor
+- control_panel_mode

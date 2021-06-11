@@ -687,6 +687,7 @@ OA:
   - outside_air_relative_humidity_sensor
   - outside_air_dewpoint_temperature_sensor
   - outside_air_wetbulb_temperature_sensor
+  - outside_air_wetbulb_temperature_setpoint
   - outside_air_specificenthalpy_sensor
   uses:
   - outside_air_temperature_sensor
@@ -3772,3 +3773,30 @@ VSZ:
   - zone_air_temperature_sensor
   - supply_air_damper_percentage_sensor
   - supply_air_flowrate_sensor
+
+CHCS:
+  description: "Chllled water isolation valve control."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  uses:
+  - chilled_water_isolation_valve_percentage_command
+  - chilled_water_isolation_valve_percentage_sensor
+
+CWCS:
+  description: "Condensing water isolation valve control."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  uses:
+  - condensing_water_valve_percentage_command
+  - condensing_water_valve_percentage_sensor
+
+PFSC:
+  description: "Pump frequency control."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  uses:
+  - pump_speed_frequency_command
+  - pump_speed_frequency_sensor

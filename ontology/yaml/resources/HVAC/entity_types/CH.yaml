@@ -476,6 +476,38 @@ CH_SS_SWTC_DX4SWC_SWISOVPM_REFSM2X_REFPM2X:
   - REFSM2X
   - REFPM2X
 
+CH_SS_CHWSWISOVM_CWSISOVM_CWRISOVM_CHWRWISOVM_OA:
+  description: "."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - CHWSWISOVM
+  - CWSISOVM
+  - CWRISOVM
+  - CHWRWISOVM
+  - OA
+  uses:
+  - chilled_supply_water_temperature_sensor
+  - condensing_supply_water_temperature_sensor
+  - chilled_water_flowrate_status
+  - condensing_water_flowrate_status
+  opt_uses:
+  - lost_power_alarm
+  - run_mode
+
+CH_SS_CSW:
+  description: "."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  uses:
+  - chilled_supply_water_temperature_setpoint
+  opt_uses:
+  - lost_power_alarm
+  - run_mode
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################

@@ -118,6 +118,73 @@ CT_SS_VSC_SWTC_SWISOVPM_RWISOVPM_SWISOVM_MWVPM:
   - SWISOVM
   - MWVPM
 
+CT_SS_PFSC:
+  description: "Cooling tower with pump control."
+  is_canonical: true
+  implements:
+  - CT
+  - SS
+  - PFSC
+  opt_uses:
+  - control_mode
+  - lost_power_alarm
+
+CT_SS_CWDT_OA_PFSC:
+  description: "CT with multi considering water isolation valve control, condensing return/supply water monitor and outside air monitor"
+  is_canonical: true
+  implements:
+  - CT
+  - SS
+  - CWDT
+  - OA
+  - PFSC
+  uses:
+  - condensing_return_water_isolation_valve_command_1
+  - condensing_return_water_isolation_valve_command_2
+  - condensing_return_water_isolation_valve_command_3
+  - condensing_return_water_isolation_valve_command_4
+  - condensing_return_water_isolation_valve_command_5
+  - condensing_return_water_isolation_valve_command_6
+  - condensing_return_water_isolation_valve_command_7
+  - condensing_supply_water_isolation_valve_command_1
+  - condensing_supply_water_isolation_valve_command_2
+  - condensing_supply_water_isolation_valve_command_3
+  - condensing_supply_water_isolation_valve_command_4
+  - condensing_supply_water_isolation_valve_command_5
+  - condensing_supply_water_isolation_valve_command_6
+  - condensing_supply_water_isolation_valve_command_7
+  - condensing_return_water_isolation_valve_status_1
+  - condensing_return_water_isolation_valve_status_2
+  - condensing_return_water_isolation_valve_status_3
+  - condensing_return_water_isolation_valve_status_4
+  - condensing_return_water_isolation_valve_status_5
+  - condensing_return_water_isolation_valve_status_6
+  - condensing_return_water_isolation_valve_status_7
+  - condensing_return_water_isolation_valve_status_8
+  - condensing_return_water_isolation_valve_status_9
+  - condensing_return_water_isolation_valve_status_10
+  - condensing_return_water_isolation_valve_status_11
+  - condensing_return_water_isolation_valve_status_12
+  - condensing_return_water_isolation_valve_status_13
+  - condensing_return_water_isolation_valve_status_14
+  - condensing_supply_water_isolation_valve_status_1
+  - condensing_supply_water_isolation_valve_status_2
+  - condensing_supply_water_isolation_valve_status_3
+  - condensing_supply_water_isolation_valve_status_4
+  - condensing_supply_water_isolation_valve_status_5
+  - condensing_supply_water_isolation_valve_status_6
+  - condensing_supply_water_isolation_valve_status_7
+  - condensing_supply_water_isolation_valve_status_8
+  - condensing_supply_water_isolation_valve_status_9
+  - condensing_supply_water_isolation_valve_status_10
+  - condensing_supply_water_isolation_valve_status_11
+  - condensing_supply_water_isolation_valve_status_12
+  - condensing_supply_water_isolation_valve_status_13
+  - condensing_supply_water_isolation_valve_status_14
+  - condensing_supply_water_temperature_setpoint
+  opt_uses:
+  - control_mode
+  - lost_power_alarm
 
 ###################################
 ### Existing Non-standard Types ###
@@ -140,3 +207,5 @@ CT_US_SVL_MP3_1:
   - INCOMPLETE
   uses:
   - speed_frequency_command
+
+
