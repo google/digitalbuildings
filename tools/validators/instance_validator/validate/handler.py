@@ -51,15 +51,19 @@ def Deserialize(
 
   entities = {}
   for entity_name, entity_yaml in parser.GetEntities().items():
-    entities[entity_name] = entity_instance.EntityInstance.FromYaml(
-        entity_yaml, default_entity_operation)
+    try:
+      entities[entity_name] = entity_instance.EntityInstance.FromYaml(
+          entity_yaml, default_entity_operation)
+    except ValueError:
+      print('Invalid Entity ' + entity_name)
+      raise
   return entities, parser.GetConfigMode()
 
 
 def _ValidateConfig(
     filenames: List[str],
     universe: pvt.ConfigUniverse) -> List[entity_instance.EntityInstance]:
-  """Runs all config validaton checks."""
+  """Runs all config validation checks."""
   print('\nLoading config files...\n')
   entities, config_mode = Deserialize(filenames)
   print('\nStarting config validation...\n')
@@ -71,7 +75,7 @@ def _ValidateTelemetry(subscription: str, service_account: str,
                        entities: Dict[str, entity_instance.EntityInstance],
                        report_filename: str, timeout: int) -> None:
   """Runs all telemetry validation checks."""
-  helper = TelemetryHelper(subscription, service_account)
+  helper = TelemetryHelper(subscription, service_account, report_filename)
   helper.Validate(entities, report_filename, timeout)
 
 
@@ -106,10 +110,12 @@ class TelemetryHelper(object):
   Attributes:
     subscription: resource string referencing the subscription to check
     service_account_file: path to file with service account information
+    report_filename: a report filename provided by the user
   """
 
-  def __init__(self, subscription, service_account_file):
+  def __init__(self, subscription, service_account_file, report_filename=None):
     super().__init__()
+    self.report_filename = report_filename
     self.subscription = subscription
     self.service_account_file = service_account_file
 
