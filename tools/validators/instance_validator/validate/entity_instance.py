@@ -497,7 +497,7 @@ class InstanceValidator(object):
       return is_valid
 
     # This check should never fail as syntax checks currently catch this
-    if (entity.operation == parse.EntityOperation.UPDATE and not entity.etag):
+    if entity.operation == parse.EntityOperation.UPDATE and not entity.etag:
       print('etag is required on update')
       is_valid = False
 
@@ -569,10 +569,14 @@ def _ParseTranslation(
   for std_field_name in translation_body:
     ft = translation_body[std_field_name]
     if isinstance(ft, str):
-      if ft == ft_lib.PresenceMode.MISSING.value:
+      if not ft:
+        raise ValueError(
+            'Translation details were empty for standard field name: ' +
+            std_field_name)
+      elif ft == ft_lib.PresenceMode.MISSING.value:
         translation[std_field_name] = ft_lib.UndefinedField(std_field_name)
         continue
-      # TODO(b/187757180) support UDMI-compliant shorthand
+      # TODO(b/187757180): support UDMI-compliant shorthand
       raise ValueError(ft + ' is not yet an allowed scalar')
 
     raw_field_name = str(ft[parse.PRESENT_VALUE_KEY])
