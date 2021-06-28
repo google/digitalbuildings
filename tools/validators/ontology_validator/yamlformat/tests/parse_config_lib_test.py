@@ -32,6 +32,8 @@ from yamlformat.validator import state_lib
 from yamlformat.validator import subfield_lib
 from yamlformat.validator import unit_lib
 
+_F = field_lib.Field
+
 FLAGS = flags.FLAGS
 
 # Constant to point to test files.
@@ -100,9 +102,13 @@ class ParseConfigLibTest(absltest.TestCase):
   def testParseTypeFoldersFromFilesWithFieldsUniverse(self):
     fields_universe = field_lib.FieldUniverse([])
     fields_universe._namespace_map = {
-        '': ('current_sensor', 'fan_run_status', 'dryer_run_status',
-             'fan_run_command'),
-        'GOOD': ('zone_air_temperature_sensor')
+        '': [
+            _F('current_sensor'),
+            _F('fan_run_status'),
+            _F('dryer_run_status'),
+            _F('fan_run_command')
+        ],
+        'GOOD': [_F('zone_air_temperature_sensor')]
     }
     type_folders = parse.ParseTypeFoldersFromFiles(
         [self.good_types_file, self.good_types_file_2], fields_universe)
@@ -138,7 +144,9 @@ class ParseConfigLibTest(absltest.TestCase):
     bad_type_file = base_lib.PathParts(
         root=self.base_dir, relative_path='BAD/entity_types/bad3.yaml')
     fields_universe = field_lib.FieldUniverse([])
-    fields_universe._namespace_map = {'': ('current_sensor', 'fan_run_command')}
+    fields_universe._namespace_map = {
+        '': [_F('current_sensor'), _F('fan_run_command')]
+    }
     type_folders = parse.ParseTypeFoldersFromFiles([bad_type_file],
                                                    fields_universe)
     # should have 1 folder

@@ -33,8 +33,10 @@ SDC_EXT-17:
   translation:
     shade_extent_percentage_command:
       present_value: "points.shade_extent_percentage_command.present_value"
-      unit_values:
-        percent: "%"
+      units:
+        key: "points.shade_extent_percentage_command.units"
+        values:
+          percent: "%"
 
 CONFIG_METADATA:
   operation: UPDATE
