@@ -27,7 +27,7 @@ setup(
            'Charbel Kaed,'
            'Nigel Kilmer',
     packages=find_packages(),
-    install_requires=['ruamel>=0.17.4', 
+    install_requires=['ruamel.yaml>=0.17.4', 
                       'protobuf>=3.14.0',
                       'strictyaml>=1.1.1',
                       'google-cloud-pubsub',
