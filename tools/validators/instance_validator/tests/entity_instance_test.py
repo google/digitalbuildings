@@ -30,6 +30,7 @@ from validate import field_translation
 from validate import generate_universe
 from validate import instance_parser
 from validate import link
+from yamlformat.validator import entity_type_lib
 from yamlformat.validator import field_lib
 from yamlformat.validator import presubmit_validate_types_lib
 
@@ -68,18 +69,136 @@ class EntityInstanceTest(absltest.TestCase):
     cls._e_v_update = entity_instance.InstanceValidator(cls._universe,
                                                         _UPDATE_CFG)
 
-  def testValidateGoodExample(self):
-    parsed = _Helper(
-        [path.join(_TESTCASE_PATH, 'GOOD', 'good_entity_update.yaml')])
-    parsed = dict(parsed)
-    entity = dict(parsed[list(parsed)[0]])
+  def testValidate_requiresEtagOnUpdate(self):
+    config_u = presubmit_validate_types_lib.ConfigUniverse(
+        # not validating against ontology so no universes setup
+        entity_type_universe=None,
+        field_universe=None,
+        subfield_universe=None,
+        state_universe=None,
+        connection_universe=None,
+        unit_universe=None)
+    validator = entity_instance.InstanceValidator(config_u, _UPDATE_CFG)
+    valid_instance = entity_instance.EntityInstance(
+        _UPDATE,
+        'FACILITIES/123456',
+        etag='a12345',
+        update_mask=['connections'])
+    invalid_instance = entity_instance.EntityInstance(
+        _UPDATE, 'FACILITIES/123456', update_mask=['connections'])
 
-    instance = entity_instance.EntityInstance.FromYaml(entity)
+    is_valid = validator.Validate(valid_instance)
 
-    self.assertTrue(self._e_v_update.Validate(instance))
-    self.assertEqual(instance.operation, instance_parser.EntityOperation.UPDATE)
-    self.assertSameElements(instance.update_mask, ['connections'])
-    self.assertEqual(instance.etag, 'a12345')
+    self.assertFalse(validator.Validate(invalid_instance))
+    self.assertTrue(is_valid)
+
+  def testValidate_verifiesTypeAgainstNamespace(self):
+    facilities_type_folder = entity_type_lib.EntityTypeFolder(
+        folderpath='FACILITIES/entity_types')
+
+    facilities_type_folder.AddFromConfig(
+        documents=[{
+            'BUILDING': {
+                'id': '15204152342002794496',
+                'description': 'This is a type for BUILDING facilities object'
+            }
+        }],
+        # checks config path matches entity type folder but doesn't do file read
+        config_filename='FACILITIES/entity_types/Facilities.yaml')
+
+    config_u = presubmit_validate_types_lib.ConfigUniverse(
+        entity_type_universe=entity_type_lib.EntityTypeUniverse(
+            entity_type_folders=[facilities_type_folder]),
+        field_universe=None,
+        subfield_universe=None,
+        state_universe=None,
+        connection_universe=None,
+        unit_universe=None)
+    validator = entity_instance.InstanceValidator(config_u, _UPDATE_CFG)
+    instance = entity_instance.EntityInstance(
+        _UPDATE,
+        'FACILITIES/123456',
+        namespace='FACILITIES',
+        type_name='BUILDING',
+        etag='a12345',
+        update_mask=['connections'])
+
+    is_valid = validator.Validate(instance)
+
+    self.assertTrue(is_valid)
+
+  def testValidate_verifiesTypeAgainstNamespace_failsIfNotDefinedInUniverse(
+      self):
+    facilities_type_folder = entity_type_lib.EntityTypeFolder(
+        folderpath='Carson/entity_types')
+
+    facilities_type_folder.AddFromConfig(
+        documents=[{
+            'COORDINATE_BASIS': {
+                'id': '17248142946209890304',
+                'description': 'The coordinate basis for other entities'
+            }
+        }],
+        # checks config path matches entity type folder but doesn't do file read
+        config_filename='CARSON/entity_types/Carson.yaml')
+
+    config_u = presubmit_validate_types_lib.ConfigUniverse(
+        entity_type_universe=entity_type_lib.EntityTypeUniverse(
+            entity_type_folders=[facilities_type_folder]),
+        field_universe=None,
+        subfield_universe=None,
+        state_universe=None,
+        connection_universe=None,
+        unit_universe=None)
+    validator = entity_instance.InstanceValidator(config_u, _UPDATE_CFG)
+    instance = entity_instance.EntityInstance(
+        _UPDATE,
+        'FACILITIES/123456',
+        namespace='FACILITIES',
+        type_name='BUILDING',
+        etag='a12345',
+        update_mask=['connections'])
+
+    is_valid = validator.Validate(instance)
+
+    self.assertFalse(is_valid)
+
+  def testValidate_verifiesTypeAgainstNamespace_badlyConfiguredUniverseFails(
+      self):
+    facilities_type_folder = entity_type_lib.EntityTypeFolder(
+        folderpath='FOO/entity_types')
+
+    facilities_type_folder.AddFromConfig(
+        documents=[{
+            'BUILDING': {
+                'id': '15204152342002794496',
+                'description': 'This is a type for BUILDING facilities object'
+            }
+        }],
+        # file exists but does not match defined type folder
+        # so validation will fail
+        config_filename='FACILITIES/entity_types/Facilities.yaml')
+
+    config_u = presubmit_validate_types_lib.ConfigUniverse(
+        entity_type_universe=entity_type_lib.EntityTypeUniverse(
+            entity_type_folders=[facilities_type_folder]),
+        field_universe=None,
+        subfield_universe=None,
+        state_universe=None,
+        connection_universe=None,
+        unit_universe=None)
+    validator = entity_instance.InstanceValidator(config_u, _UPDATE_CFG)
+    instance = entity_instance.EntityInstance(
+        _UPDATE,
+        'FACILITIES/123456',
+        namespace='FOO',
+        type_name='BUILDING',
+        etag='a12345',
+        update_mask=['connections'])
+
+    is_valid = validator.Validate(instance)
+
+    self.assertFalse(is_valid)
 
   def testValidateBadEntityTypeFormat(self):
     parsed = _Helper(
