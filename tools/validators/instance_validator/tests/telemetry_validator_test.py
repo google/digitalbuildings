@@ -31,19 +31,23 @@ _INSTANCES_PATH = path.join(test_constants.TEST_INSTANCES, 'GOOD')
 
 _MESSAGE_ATTRIBUTES_PATH_1 = path.join(_TELEMETRY_PATH,
                                        'message_attributes_CHWS_WDT-17.json')
-_MESSAGE_ATTRIBUTES_1 = json.load(open(_MESSAGE_ATTRIBUTES_PATH_1))
+with open(_MESSAGE_ATTRIBUTES_PATH_1) as f:
+  _MESSAGE_ATTRIBUTES_1 = json.load(f)
 
 _MESSAGE_ATTRIBUTES_PATH_2 = path.join(_TELEMETRY_PATH,
                                        'message_attributes_DMP_EDM-17.json')
-_MESSAGE_ATTRIBUTES_2 = json.load(open(_MESSAGE_ATTRIBUTES_PATH_2))
+with open(_MESSAGE_ATTRIBUTES_PATH_2) as f:
+  _MESSAGE_ATTRIBUTES_2 = json.load(open(_MESSAGE_ATTRIBUTES_PATH_2))
 
 _MESSAGE_ATTRIBUTES_PATH_3 = path.join(_TELEMETRY_PATH,
                                        'message_attributes_SDC_EXT-17.json')
-_MESSAGE_ATTRIBUTES_3 = json.load(open(_MESSAGE_ATTRIBUTES_PATH_3))
+with open(_MESSAGE_ATTRIBUTES_PATH_3) as f:
+  _MESSAGE_ATTRIBUTES_3 = json.load(f)
 
 _MESSAGE_ATTRIBUTES_PATH_4 = path.join(_TELEMETRY_PATH,
                                        'message_attributes_FAN-17.json')
-_MESSAGE_ATTRIBUTES_4 = json.load(open(_MESSAGE_ATTRIBUTES_PATH_4))
+with open(_MESSAGE_ATTRIBUTES_PATH_4) as f:
+  _MESSAGE_ATTRIBUTES_4 = json.load(f)
 
 
 class FakeMessage(object):
