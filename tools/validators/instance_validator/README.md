@@ -3,10 +3,10 @@
 The Instance Validator allows validation of YAML instance files to make sure they conform to the given ontology model.
 
 ## Install
-To install the dependencies, please run the `python3 setup.py install` in the following order:
-
+To install the dependencies, please run the `python3 setup.py install` from the following directories, in order:
 * digitalbuildings/tools/validators/ontology_validator
 * digitalbuildings/tools/validators/instance_validator
+
 
 ## Usage
 
