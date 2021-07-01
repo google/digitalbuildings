@@ -100,9 +100,9 @@ class EntityTypeUniverse(findings_lib.Findings):
   def __init__(self, entity_type_folders):
     super(EntityTypeUniverse, self).__init__()
     self.namespace_folder_map = {}
-    self._BuildNamespaceFolderMap(entity_type_folders)
     self.type_namespaces_map = {}
     self.type_ids_map = {}
+    self._BuildNamespaceFolderMap(entity_type_folders)
     self._BuildTypeMaps(
         [folder.local_namespace for folder in entity_type_folders])
 
