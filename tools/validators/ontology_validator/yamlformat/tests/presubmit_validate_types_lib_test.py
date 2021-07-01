@@ -11,7 +11,6 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 """Tests for presubmit_validate_types_lib."""
 
 from __future__ import absolute_import
@@ -129,9 +128,12 @@ class PresubmitValidateTypesTest(absltest.TestCase):
         findings_lib.InvalidConnectionNamespaceError('notglobal', context))
     unit_universe = unit_lib.UnitUniverse([])
     config_universe = presubmit_validate_types_lib.ConfigUniverse(
-        subfield_universe=subfield_universe, field_universe=field_universe,
-        entity_type_universe=type_universe, state_universe=state_universe,
-        connection_universe=connection_universe, unit_universe=unit_universe)
+        subfield_universe=subfield_universe,
+        field_universe=field_universe,
+        entity_type_universe=type_universe,
+        state_universe=state_universe,
+        connection_universe=connection_universe,
+        unit_universe=unit_universe)
 
     findings = config_universe.GetFindings()
     self.assertLen(findings, 4)
@@ -159,11 +161,15 @@ class PresubmitValidateTypesTest(absltest.TestCase):
     connection_universe = connection_lib.ConnectionUniverse([])
     unit_universe = unit_lib.UnitUniverse([])
     config_universe = presubmit_validate_types_lib.ConfigUniverse(
-        subfield_universe=subfield_universe, field_universe=field_universe,
-        entity_type_universe=type_universe, state_universe=state_universe,
-        connection_universe=connection_universe, unit_universe=unit_universe)
+        subfield_universe=subfield_universe,
+        field_universe=field_universe,
+        entity_type_universe=type_universe,
+        state_universe=state_universe,
+        connection_universe=connection_universe,
+        unit_universe=unit_universe)
 
-    entity_type_namespace = config_universe.GetEntityTypeNamespace('NONEXISTENT')
+    entity_type_namespace = config_universe.GetEntityTypeNamespace(
+        'NONEXISTENT')
 
     self.assertIsNone(entity_type_namespace)
 
@@ -182,13 +188,72 @@ class PresubmitValidateTypesTest(absltest.TestCase):
     connection_universe = connection_lib.ConnectionUniverse([])
     unit_universe = unit_lib.UnitUniverse([])
     config_universe = presubmit_validate_types_lib.ConfigUniverse(
-        subfield_universe=subfield_universe, field_universe=field_universe,
-        entity_type_universe=type_universe, state_universe=state_universe,
-        connection_universe=connection_universe, unit_universe=unit_universe)
+        subfield_universe=subfield_universe,
+        field_universe=field_universe,
+        entity_type_universe=type_universe,
+        state_universe=state_universe,
+        connection_universe=connection_universe,
+        unit_universe=unit_universe)
 
     entity_type = config_universe.GetEntityType('NONEXISTENT', 'NONEXISTENT')
 
     self.assertIsNone(entity_type)
+
+  def testConfigUniverseGetUnitsForMeasurement(self):
+    context = findings_lib.FileContext('')
+    type_universe = entity_type_lib.EntityTypeUniverse([])
+    type_universe.AddFinding(
+        findings_lib.IllegalCharacterError('stuff', context))
+    field_universe = field_lib.FieldUniverse([])
+    field_universe.AddFinding(
+        findings_lib.InconsistentFileLocationError('', context))
+    subfield_universe = subfield_lib.SubfieldUniverse([])
+    subfield_universe.AddFinding(
+        findings_lib.CapitalizationError('Hi', context))
+    state_universe = state_lib.StateUniverse([])
+    connection_universe = connection_lib.ConnectionUniverse([])
+    unit_universe = unit_lib.UnitUniverse([])
+    config_universe = presubmit_validate_types_lib.ConfigUniverse(
+        subfield_universe=subfield_universe,
+        field_universe=field_universe,
+        entity_type_universe=type_universe,
+        state_universe=state_universe,
+        connection_universe=connection_universe,
+        unit_universe=unit_universe)
+
+    entity_type = config_universe.GetEntityType('NONEXISTENT', 'NONEXISTENT')
+
+    self.assertIsNone(entity_type)
+
+  def testConfigUniverseGetStatesByField(self):
+    meow_states = ['HUNGRY', 'SNUGGLY']
+    meow_cat = field_lib.Field('meow_cat')
+    meow_cat.states = meow_states
+    claw_states = ['HISSY', 'BITEY']
+    claws_cat = field_lib.Field('claws_cat')
+    claws_cat.states = claw_states
+
+    global_folder = field_lib.FieldFolder('fields/anyfolder')
+    folder = field_lib.FieldFolder('localnamespace/fields/anyfolder',
+                                   global_folder.local_namespace)
+    folder.local_namespace.PutIfAbsent(meow_cat)
+    global_folder.local_namespace.PutIfAbsent(claws_cat)
+
+    field_universe = field_lib.FieldUniverse([folder, global_folder])
+
+    config_universe = presubmit_validate_types_lib.ConfigUniverse(
+        subfield_universe=None,
+        field_universe=field_universe,
+        entity_type_universe=None,
+        state_universe=None,
+        connection_universe=None,
+        unit_universe=None)
+
+    self.assertSameElements(claw_states,
+                            config_universe.GetStatesByField('/claws_cat'))
+    self.assertSameElements(
+        meow_states,
+        config_universe.GetStatesByField('localnamespace/meow_cat'))
 
   def testValidateUndefinedFields(self):
     # bad3_file declares an undefined field
@@ -577,6 +642,7 @@ class PresubmitValidateTypesTest(absltest.TestCase):
     self.assertIn(field1, str(findings[0]))
     self.assertIsInstance(findings[1], findings_lib.RemovedFieldWarning)
     self.assertIn(field2, str(findings[1]))
+
 
 if __name__ == '__main__':
   absltest.main()
