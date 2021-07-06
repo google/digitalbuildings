@@ -3775,6 +3775,8 @@ FSC:
 DPM:
   description: "Damper percentage control."
   is_abstract: true
+  implements:
+    - OPERATIONAL
   uses:
   - damper_percentage_command
   - damper_percentage_sensor
