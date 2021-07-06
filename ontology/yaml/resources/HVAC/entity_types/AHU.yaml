@@ -2668,17 +2668,19 @@ AHU_BYPSSPC_DX3SC_ECON_HT2SC_SFSS_SFVSC:
   - SFVSC
 
 
-AHU_UV_HS3X_SAM_SFCM_CHWVM:
-  description: "AHU with supply air, supply fan, chilled water valve and UV lamp operation."
+AHU_DFSS_UV_H3X_DAM_DFCM_CHWVM:
+  description: "AHU with discharge air/fan, chilled water valve and UV lamp operation."
   is_canonical: true
   implements:
   - AHU
   - UV
-  - HS3X
-  - SAM
-  - SFCM
+  - H3X
+  - DAM
+  - DFCM
   - CHWVM
+  - DFSS
   opt_uses:
+  - control_panel_mode
   - run_command
   - run_status
   - lost_power_alarm
@@ -2686,18 +2688,18 @@ AHU_UV_HS3X_SAM_SFCM_CHWVM:
   - control_mode
   - schedule_run_command
 
-AHU_SAM_SFCM_CHWVM_RTM:
-  description: "AHU with supply air, supply fan and chilled water valve operation. "
+AHU_DFSS_DAM_DFCM_CHWVM_RTM:
+  description: "AHU with discharge air/fan and chilled water valve operation. "
   is_canonical: true
   implements:
   - AHU
-  - SAM
-  - SFCM
+  - DFSS
+  - DAM
+  - DFCM
   - CHWVM
   - RTM
   opt_uses:
-  - run_command
-  - run_status
+  - control_panel_mode
   - lost_power_alarm
   - filter_alarm
   - control_mode
@@ -2706,17 +2708,16 @@ AHU_SAM_SFCM_CHWVM_RTM:
   - leaving_cooling_coil_temperature_sensor
   - entering_cooling_coil_temperature_sensor
 
-AHU_SAM_CHWVM_RTM:
-  description: "AHU with supply air and chilled water valve operation."
+AHU_DFSS_DAM_CHWVM_RTM:
+  description: "AHU with discharge air and chilled water valve operation."
   is_canonical: true
   implements:
   - AHU
-  - SAM
+  - DFSS
+  - DAM
   - CHWVM
   - RTM
   opt_uses:
-  - run_command
-  - run_status
   - lost_power_alarm
   - filter_alarm
   - control_mode
@@ -2724,6 +2725,7 @@ AHU_SAM_CHWVM_RTM:
   - smoke_alarm
   - entering_cooling_coil_temperature_sensor
   - leaving_cooling_coil_temperature_sensor
+  - control_panel_mode
 
 AHU_WDT_CHWVM_CLPM_DFSS_ZTM:
   description: "AHU with chilled water valve operation and discharge fan operation. Return/supply temp and zone air temp monitoring."
@@ -2746,7 +2748,7 @@ AHU_WDT_CHWVM_CLPM_DFSS_ZTM:
   - smoke_alarm
 
 AHU_DFVSC_CHWVM_CLPM_DTC_UV_CO2C_MTM_OAFM_RHM_WDT:
-  description: "AHU with supply air, chilled water valve, discharge air/fan, CO2, UV and supply/return water operation. Outside air monitoring"
+  description: "AHU with discharge air, chilled water valve, discharge air/fan, CO2, UV and supply/return water operation. Outside air monitoring"
   is_canonical: true
   implements:
   - AHU
@@ -2760,12 +2762,13 @@ AHU_DFVSC_CHWVM_CLPM_DTC_UV_CO2C_MTM_OAFM_RHM_WDT:
   - OAFM
   - RHM
   - WDT
+  - DFSS
   uses:
   - return_air_temperature_setpoint
+  - discharge_air_damper_percentage_command
   opt_uses:
+  - control_panel_mode
   - filter_differential_pressure_status
-  - run_command
-  - run_status
   - lost_power_alarm
   - filter_alarm
   - control_mode
@@ -2773,7 +2776,7 @@ AHU_DFVSC_CHWVM_CLPM_DTC_UV_CO2C_MTM_OAFM_RHM_WDT:
   - smoke_alarm
 
 AHU_DTC_DFSS_CHWVM_OAFM_CLPM_WDT_CO2C_UV:
-  description: "AHU with supply air, chilled water valve, discharge air/fan, CO2, UV and supply/return water operation."
+  description: "AHU with discharge air, chilled water valve, discharge air/fan, CO2, UV and supply/return water operation."
   is_canonical: true
   implements:
   - AHU
@@ -2792,7 +2795,7 @@ AHU_DTC_DFSS_CHWVM_OAFM_CLPM_WDT_CO2C_UV:
   - smoke_alarm
 
 AHU_DTC_CHWVM_H3X_OAMC_DFVSC_UV_CO2C2X_ZHM_ZTM:
-  description: "AHU with supply air, chilled water valve, outside air, discharge air/fan, CO2, heater, UV and supply/return water operation."
+  description: "AHU with discharge air, chilled water valve, outside air, discharge air/fan, CO2, heater, UV and supply/return water operation."
   is_canonical: true
   implements:
   - AHU
@@ -2805,31 +2808,13 @@ AHU_DTC_CHWVM_H3X_OAMC_DFVSC_UV_CO2C2X_ZHM_ZTM:
   - CO2C2X
   - ZHM
   - ZTM
+  uses:
+  - discharge_air_damper_percentage_command
   opt_uses:
   - filter_differential_pressure_status
   - filter_alarm
   - control_mode
   - smoke_alarm
-
-AHU_DTC_CHWVM_H3X_OAMC_DFVSC_UV_CO2C2X_ZHM_ZTM_TEST:
-  description: "AHU with supply air and chilled water valve operation."
-  is_canonical: true
-  implements:
-  - AHU
-  - DTC
-  - CHWVM
-  - OAMC
-  - DFVSC
-  - UV
-  - CO2C2X
-  - ZHM
-  - ZTM
-  opt_uses:
-  - filter_differential_pressure_status
-  - filter_alarm
-  - control_mode
-  - smoke_alarm
-
 
 ###################################
 ### Existing Non-standard Types ###

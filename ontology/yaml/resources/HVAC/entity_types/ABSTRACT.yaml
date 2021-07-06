@@ -342,17 +342,14 @@ EFVSC:
   implements:
   - OPERATIONAL
 
-EFVSFC:
-  description: "Variable speed control or monitor (frequency) for exhaust fans."
+FVSFC:
+  description: "Variable speed control or monitor (frequency) for fans."
   is_abstract: true
-  opt_uses:
-  - exhaust_fan_speed_frequency_sensor
-  - exhaust_fan_speed_frequency_command
-  - exhaust_fan_current_sensor
-  - exhaust_fan_power_sensor
   uses:
-  - exhaust_fan_run_command
-  - exhaust_fan_run_status
+  - speed_frequency_command
+  - speed_frequency_sensor
+  - run_command
+  - run_status
   implements:
   - OPERATIONAL
 
@@ -649,8 +646,6 @@ DTC:
   is_abstract: true
   implements:
   - OPERATIONAL
-  opt_uses:
-  - discharge_air_damper_percentage_command
   uses:
   - discharge_air_temperature_setpoint
   - discharge_air_temperature_sensor
@@ -3721,35 +3716,23 @@ H3X:
   - heater_run_command_2
   - heater_run_command_3
 
-HS3X:
-  description: "Heater monitoring."
+DAM:
+  description: "Discharge air monitoring for temperature and flow rate status."
   is_abstract: true
   implements:
   - MONITORING
   uses:
-  - heater_run_status_1
-  - heater_run_status_2
-  - heater_run_status_3
+  - discharge_air_flowrate_status
+  - discharge_air_temperature_sensor
 
-SAM:
-  description: "Supply air monitoring for pressure, temperature and flow rate."
-  is_abstract: true
-  implements:
-  - MONITORING
-  opt_uses:
-  - supply_air_static_pressure_sensor
-  uses:
-  - supply_air_flowrate_status
-  - supply_air_temperature_sensor
-
-SFCM:
-  description: "Supply air fan basic control in percentage"
+DFCM:
+  description: "Discharge air fan basic control in frequency"
   is_abstract: true
   implements:
   - OPERATIONAL
   uses:
-  - supply_fan_speed_percentage_command
-  - supply_fan_speed_percentage_sensor
+  - discharge_fan_speed_frequency_command
+  - discharge_fan_speed_frequency_sensor
 
 CHWBZS:
   description: "Chilled water valve binary (open/closed) monitoring/controlling. Return air temperature control."
@@ -3757,22 +3740,10 @@ CHWBZS:
   implements:
   - OPERATIONAL
   opt_uses:
-  - chilled_water_valve_percentage_command
   - chilled_water_valve_command
   uses:
   - return_air_temperature_sensor
   - return_air_temperature_setpoint
-
-
-VSZ:
-  description: "VAV zone air temp and supply air damp/flowrate monitoring."
-  is_abstract: true
-  implements:
-  - MONITORING
-  uses:
-  - zone_air_temperature_sensor
-  - supply_air_damper_percentage_sensor
-  - supply_air_flowrate_sensor
 
 CHCS:
   description: "Chllled water isolation valve control."
@@ -3784,7 +3755,7 @@ CHCS:
   - chilled_water_isolation_valve_percentage_sensor
 
 CWCS:
-  description: "Condensing water isolation valve control."
+  description: "Condensing water valve control."
   is_abstract: true
   implements:
   - OPERATIONAL
@@ -3792,11 +3763,18 @@ CWCS:
   - condensing_water_valve_percentage_command
   - condensing_water_valve_percentage_sensor
 
-PFSC:
-  description: "Pump frequency control."
+FSC:
+  description: "Speed frequency control."
   is_abstract: true
   implements:
   - OPERATIONAL
   uses:
-  - pump_speed_frequency_command
-  - pump_speed_frequency_sensor
+  - speed_frequency_command
+  - speed_frequency_sensor
+
+DPM:
+  description: "Damper percentage control."
+  is_abstract: true
+  uses:
+  - damper_percentage_command
+  - damper_percentage_sensor

@@ -34,4 +34,5 @@ CMP_BS_WDPM:
   - lost_power_alarm
   - control_mode
   - schedule_run_command
+  - control_panel_mode
 

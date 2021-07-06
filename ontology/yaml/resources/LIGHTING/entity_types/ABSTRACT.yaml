@@ -56,4 +56,22 @@ BM:
   uses:
   - battery_charge_status
 
+DPC:
+  id: "3713325232589635584"
+  description: " Dimmer control."
+  is_abstract: true
+  uses:
+  - dimmer_percentage_command
 
+SCZ:
+  is_abstract: true
+  description: "Scene control for a device and zone."
+  uses:
+  - scene_command
+  - zone_scene_command
+
+IS:
+  is_abstract: true
+  description: "Illuminance sensing."
+  uses:
+  - illuminance_sensor

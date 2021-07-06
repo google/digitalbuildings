@@ -118,18 +118,18 @@ CT_SS_VSC_SWTC_SWISOVPM_RWISOVPM_SWISOVM_MWVPM:
   - SWISOVM
   - MWVPM
 
-CT_SS_PFSC:
-  description: "Cooling tower with pump control."
+CT_SS_FSC:
+  description: "Cooling tower with speed frequency control."
   is_canonical: true
   implements:
   - CT
   - SS
-  - PFSC
+  - FSC
   opt_uses:
   - control_mode
   - lost_power_alarm
 
-CT_SS_CWDT_OA_PFSC:
+CT_SS_CWDT_OA_FSC:
   description: "CT with multi considering water isolation valve control, condensing return/supply water monitor and outside air monitor"
   is_canonical: true
   implements:
@@ -137,7 +137,7 @@ CT_SS_CWDT_OA_PFSC:
   - SS
   - CWDT
   - OA
-  - PFSC
+  - FSC
   uses:
   - condensing_return_water_isolation_valve_command_1
   - condensing_return_water_isolation_valve_command_2

@@ -16,16 +16,15 @@
 ### Canonical Types  ###
 ########################
 
-ADY_BS:
+ADY_BS_SS:
   description: "Basic air dryer."
   is_canonical: true
   implements:
   - ADY
-  uses:
-  - run_command
-  - run_status
+  - SS
   opt_uses:
   - lost_power_alarm
   - control_mode
   - schedule_run_command
+  - control_panel_mode
 

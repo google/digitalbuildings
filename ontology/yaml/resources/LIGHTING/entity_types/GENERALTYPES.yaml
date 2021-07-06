@@ -59,3 +59,15 @@ LS:
   description: "Lighting system specific sensor."
   implements:
   - SENSOR
+
+LMP:
+  is_abstract: true
+  description: "Lighting system specific sensor."
+  implements:
+  - EQUIPMENT
+
+GRP:
+  is_abstract: true
+  description: "Lighting device group."
+  implements:
+    - EQUIPMENT

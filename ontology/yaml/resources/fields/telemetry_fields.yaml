@@ -777,7 +777,31 @@ literals:
 # Added for TW
 - supply_air_isolation_damper_closed_status
 - supply_air_isolation_damper_open_status
-- exhaust_fan_speed_frequency_command
-- pump_speed_frequency_command
-- pump_speed_frequency_sensor
 - control_panel_mode
+- zone_scene_command
+- cooling_run_status:
+  - ON
+  - OFF
+- high_return_air_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
+- low_return_air_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
+- high_return_air_relative_humidity_alarm:
+  - ACTIVE
+  - INACTIVE
+- low_return_air_relative_humidity_alarm:
+  - ACTIVE
+  - INACTIVE
+- chilled_water_valve_failed_alarm:
+  - ACTIVE
+  - INACTIVE
+- discharge_fan_speed_frequency_command
+- outside_air_wetbulb_temperature_setpoint
+- ultraviolet_lamp_control_mode:
+  - AUTO
+  - MANUAL
+- discharge_air_flowrate_status
+- damper_percentage_command
+- damper_percentage_sensor

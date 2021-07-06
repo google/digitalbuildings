@@ -368,12 +368,14 @@ VAV_SD_DSP_HWDC_DSPZDHC:
   - HWDC
   - DSPZDHC
 
-VAV_VSZ:
+VAV_ZTM_PDSCV_SFM:
   description: "VAV with supply air and zone air monitoring"
   is_canonical: true
   implements:
   - VAV
-  - VSZ
+  - ZTM
+  - PDSCV
+  - SFM
   opt_uses:
   - failed_alarm
 

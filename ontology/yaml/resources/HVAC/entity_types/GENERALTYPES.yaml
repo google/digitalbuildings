@@ -308,9 +308,3 @@ CMP:
   is_abstract: true
   implements:
   - EQUIPMENT
-
-CRAC:
-  description: "Computer room air conditioning"
-  is_abstract: true
-  implements:
-  - EQUIPMENT
