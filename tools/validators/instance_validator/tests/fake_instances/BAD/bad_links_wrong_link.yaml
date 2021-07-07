@@ -20,7 +20,6 @@ ENTITY-NAME:
       return_water_temperature_sensor: return_water_temperature_sensor
       # this is a link error capacity and sensor
       supply_water_temperature_sensor: thermal_power_capacity
-      thermal_power_capacity: thermal_power_capacity
       differential_pressure_specification: differential_pressure_specification
 
 A-FOURTH-ENTITY:
