@@ -169,14 +169,6 @@ HWS_SWTC_WDPC_WFRC_BYPVPM_PWDT:
   - BYPVPM
   - PWDT
 
-HWS_SWTC_WDPC_SWTCSCM_WDPCSCM:
-  description: "Simple heating water system with supply temp and differential pressure control and with supervisor control mode types (machine learning)."
-  is_canonical: true
-  implements:
-  - HWS_SWTC_WDPC
-  - SWTCSCM
-  - WDPCSCM
-
 ###################################
 ### Existing Non-standard Types ###
 ###################################
