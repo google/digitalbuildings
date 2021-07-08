@@ -310,11 +310,12 @@ FAN_SS_AL:
   - schedule_run_command
   - control_panel_mode
 
-FAN_VSFC:
+FAN_SS_VSFC:
   description: "Fan with frequency command control"
   is_canonical: true
   implements:
   - FAN
+  - SS
   - VSFC
   opt_uses:
   - low_differential_pressure_alarm

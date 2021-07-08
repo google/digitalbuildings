@@ -801,7 +801,7 @@ literals:
 - ultraviolet_lamp_control_mode:
   - AUTO
   - MANUAL
-- discharge_air_flowrate_status
+- discharge_air_flowrate_status:
   - ON
   - OFF
 - damper_percentage_command

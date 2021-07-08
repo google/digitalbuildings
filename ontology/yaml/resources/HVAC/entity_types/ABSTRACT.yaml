@@ -348,8 +348,6 @@ VSFC:
   uses:
   - speed_frequency_command
   - speed_frequency_sensor
-  - run_command
-  - run_status
   implements:
   - OPERATIONAL
 
