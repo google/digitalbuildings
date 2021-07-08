@@ -129,9 +129,30 @@ CT_SS_FSC:
   - control_mode
   - lost_power_alarm
 
+###################################
+### Existing Non-standard Types ###
+###################################
+
+CT_US_SBO_901_1:
+  id: "6975748855526588416"
+  description: "Non-standard type for SBO-901"
+  implements:
+  - CT_SS_SWTC
+  - INCOMPLETE
+  uses:
+  - fan_speed_mode
+
+CT_US_SVL_MP3_1:
+  id: "605248852936622080"
+  description: "Non-standard type for MP3"
+  implements:
+  - CT_SS_VSC_SWTC
+  - INCOMPLETE
+  uses:
+  - speed_frequency_command
+
 CT_SS_CWDT_OA_FSC:
   description: "CT with multi considering water isolation valve control, condensing return/supply water monitor and outside air monitor"
-  is_canonical: true
   implements:
   - CT
   - SS
@@ -185,27 +206,3 @@ CT_SS_CWDT_OA_FSC:
   opt_uses:
   - control_mode
   - lost_power_alarm
-
-###################################
-### Existing Non-standard Types ###
-###################################
-
-CT_US_SBO_901_1:
-  id: "6975748855526588416"
-  description: "Non-standard type for SBO-901"
-  implements:
-  - CT_SS_SWTC
-  - INCOMPLETE
-  uses:
-  - fan_speed_mode
-
-CT_US_SVL_MP3_1:
-  id: "605248852936622080"
-  description: "Non-standard type for MP3"
-  implements:
-  - CT_SS_VSC_SWTC
-  - INCOMPLETE
-  uses:
-  - speed_frequency_command
-
-

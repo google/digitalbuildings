@@ -476,26 +476,6 @@ CH_SS_SWTC_DX4SWC_SWISOVPM_REFSM2X_REFPM2X:
   - REFSM2X
   - REFPM2X
 
-CH_SS_CHWSWISOVM_CWSISOVM_CWRISOVM_CHWRWISOVM_OA:
-  description: "Chiller with chilled/condensing supply/return water isolation valve control. Water flowrate status and outside air temperature monitoring "
-  is_canonical: true
-  implements:
-  - CH
-  - SS
-  - CHWSWISOVM
-  - CWSISOVM
-  - CWRISOVM
-  - CHWRWISOVM
-  - OA
-  uses:
-  - chilled_supply_water_temperature_sensor
-  - condensing_supply_water_temperature_sensor
-  - chilled_water_flowrate_status
-  - condensing_water_flowrate_status
-  opt_uses:
-  - lost_power_alarm
-  - run_mode
-
 ###################################
 ### Existing Non-standard Types ###
 ###################################
@@ -526,13 +506,30 @@ CH_US_SBO_901_1:
   - cooling_percentage_sensor
 
 CH_SS_CHWDT:
-  description: "Non-standard for landlord chiller in Taiwan"
-  is_canonical: true
+  description: "Non-standard chiller."
   implements:
   - CH
   - INCOMPLETE
   - SS
   - CHWDT
+  opt_uses:
+  - lost_power_alarm
+  - run_mode
+
+CH_SS_CHWSWISOVM_CWSISOVM_CWRISOVM_CHWRWISOVM:
+  description: "Non standard chiller with chilled/condensing supply/return water isolation valve control. Chilled water flowrate status "
+  implements:
+  - CH
+  - SS
+  - CHWSWISOVM
+  - CWSISOVM
+  - CWRISOVM
+  - CHWRWISOVM
+  uses:
+  - chilled_supply_water_temperature_sensor
+  - condensing_supply_water_temperature_sensor
+  - chilled_water_flowrate_status
+  - condensing_water_flowrate_status
   opt_uses:
   - lost_power_alarm
   - run_mode

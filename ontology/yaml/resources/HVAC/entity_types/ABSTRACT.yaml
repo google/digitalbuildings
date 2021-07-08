@@ -342,7 +342,7 @@ EFVSC:
   implements:
   - OPERATIONAL
 
-FVSFC:
+VSFC:
   description: "Variable speed control or monitor (frequency) for fans."
   is_abstract: true
   uses:
@@ -682,7 +682,6 @@ OA:
   - outside_air_relative_humidity_sensor
   - outside_air_dewpoint_temperature_sensor
   - outside_air_wetbulb_temperature_sensor
-  - outside_air_wetbulb_temperature_setpoint
   - outside_air_specificenthalpy_sensor
   uses:
   - outside_air_temperature_sensor
@@ -3734,7 +3733,7 @@ DFCM:
   - discharge_fan_speed_frequency_command
   - discharge_fan_speed_frequency_sensor
 
-CHWBZS:
+CHWBRC:
   description: "Chilled water valve binary (open/closed) monitoring/controlling. Return air temperature control."
   is_abstract: true
   implements:

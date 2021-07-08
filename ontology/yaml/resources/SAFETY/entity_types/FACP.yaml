@@ -26,7 +26,7 @@ FACP_STD:
 
 FACP_FA2X:
   id: "7388262528288960320"
-  description: "Fire alarm panel with 2 fire alarm alertness."
+  description: "Fire alarm panel with 2 fire alarm alertness and a fire fault status"
   is_canonical: true
   implements:
   - FACP

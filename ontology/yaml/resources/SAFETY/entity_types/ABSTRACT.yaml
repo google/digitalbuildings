@@ -58,7 +58,7 @@ WLA:
   - water_leak_alarm
 
 FA2X:
-  description: "Water leak monitoring."
+  description: "Fire alarm monitoring."
   is_abstract: true
   uses:
   - fire_alarm_1

@@ -297,8 +297,8 @@ FAN_SS_DPM_ZHM_ZTM:
   - lost_power_alarm
   - control_panel_mode
 
-FAN_BRS:
-  description: "Basic return fan start/stop only"
+FAN_SS_AL:
+  description: "Basic return fan start/stop only and optional alarms"
   is_canonical: true
   implements:
   - FAN
@@ -310,12 +310,12 @@ FAN_BRS:
   - schedule_run_command
   - control_panel_mode
 
-FAN_FVSFC:
+FAN_VSFC:
   description: "Fan with frequency command control"
   is_canonical: true
   implements:
   - FAN
-  - FVSFC
+  - VSFC
   opt_uses:
   - low_differential_pressure_alarm
   - lost_power_alarm

@@ -79,7 +79,7 @@ descriptor:
   exchange: "the transfer of heat from one fluid stream to another."
   exercise: "Mode of running equipment to maintain functionality ('exercise mode')"
   exhaust: "Process or component used in the removal of air from a conditioned system to the outside atmosphere."
-  fault: "Fault of fire alarm system/panel e.g. ground fault, sensor fault, etc. A common of fire alarm system. It will not induce alarm."
+  fault: "Fault within a fire alarm system/panel e.g. ground fault, sensor fault, etc. It will not induce a fire alarm. For example, ground fault happens in the fire alarm system, it will not induce fire alarm but notify people it is a system fault"
   panel: "An interface to control a device."
   fabric: "Textile material."
   fire : "a potential to cause physical damage through burning"

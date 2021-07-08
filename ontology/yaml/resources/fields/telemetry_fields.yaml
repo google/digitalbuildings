@@ -798,10 +798,11 @@ literals:
   - ACTIVE
   - INACTIVE
 - discharge_fan_speed_frequency_command
-- outside_air_wetbulb_temperature_setpoint
 - ultraviolet_lamp_control_mode:
   - AUTO
   - MANUAL
 - discharge_air_flowrate_status
+  - ON
+  - OFF
 - damper_percentage_command
 - damper_percentage_sensor
