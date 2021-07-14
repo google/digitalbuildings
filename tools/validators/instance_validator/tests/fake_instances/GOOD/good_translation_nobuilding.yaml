@@ -12,25 +12,26 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-CHWS_WDT-17:
-  type: HVAC/CHWS_WDT
+# Two test entities with identical points.
+
+SDC_EXT-17:
+  type: HVAC/SDC_EXT
   id: CDM/123456
   translation:
-    return_water_temperature_sensor:
-      present_value: "points.return_water_temperature_sensor.present_value"
+    shade_extent_percentage_command:
+      present_value: "points.shade_extent_percentage_command.present_value"
       units:
-        key: "points.return_water_temperature_sensor.units"
+        key: "points.shade_extent_percentage_command.units"
         values:
-          degrees_celsius: "degC"
-          degrees_fahrenheit: "degF"
-    supply_water_temperature_sensor:
-      present_value: "points.supply_water_temperature_sensor.present_value"
-      units:
-        key: "points.supply_water_temperature_sensor.units"
-        values:
-          degrees_celsius: "degC"
-          degrees_fahrenheit: "degF"
+         percent: "%"
 
-UK-LON-S2:
-  type: FACILITIES/BUILDING
-  id: FACILITIES/123456
+SDC_EXT-18:
+  type: HVAC/SDC_EXT
+  id: CDM/123456
+  translation:
+    shade_extent_percentage_command:
+      present_value: "points.shade_extent_percentage_command.present_value"
+      units:
+        key: "points.shade_extent_percentage_command.units"
+        values:
+         percent: "%"

@@ -12,9 +12,17 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# Two metadata blocks (bad)
+
+SDC_EXT-18:
+  id: CDM/123457
+
+CONFIG_METADATA:
+  operation: UPDATE
+
+CONFIG_METADATA:
+  operation: INITIALIZE
+
 UK-LON-S2:
   type: FACILITIES/BUILDING
   id: FACILITIES/123456
-  translation:
-    zone_air_temperature_sensor: "temp_1"
-    supply_air_isolation_damper_command: "damper_1"

@@ -11,7 +11,6 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 """Tests for google3.corp.bizapps.rews.carson.ontology.validation.base_lib."""
 
 from __future__ import absolute_import
@@ -49,6 +48,49 @@ class BaseLibTest(absltest.TestCase):
     self.assertEqual(eq('HVAC/FCU'), 'FCU')
     self.assertEqual(eq('/FCU'), 'FCU')
     self.assertIsNone(eq('123'))
+
+  def testComponentTypeFromString(self):
+    self.assertEqual(
+        base_lib.ComponentType.FromString('fields'),
+        base_lib.ComponentType.FIELD)
+
+  def testComponentTypeFromStringBadValue(self):
+    with self.assertRaises(LookupError):
+      base_lib.ComponentType.FromString('bad')
+
+  def testGetTreeLocation(self):
+    testpath = 'HVAC/fields'
+
+    folderpath, component = base_lib.GetTreeLocation(testpath)
+
+    self.assertEqual(folderpath, 'HVAC/fields')
+    self.assertEqual(base_lib.ComponentType.FIELD, component)
+
+  def testGetTreeLocationGlobal(self):
+    testpath = 'fields'
+
+    folderpath, component = base_lib.GetTreeLocation(testpath)
+
+    self.assertEqual(folderpath, 'fields')
+    self.assertEqual(base_lib.ComponentType.FIELD, component)
+
+  def testGetTreeLocationWithSubdirs(self):
+    testpath = 'HVAC/fields/subdir1/subdir2'
+
+    folderpath, component = base_lib.GetTreeLocation(testpath)
+
+    self.assertEqual(folderpath, 'HVAC/fields')
+    self.assertEqual(base_lib.ComponentType.FIELD, component)
+
+  def testGetTreeLocationWithBadSubdirs(self):
+    testpath = 'HVAC/bad/fields'
+    with self.assertRaises(ValueError):
+      _, _ = base_lib.GetTreeLocation(testpath)
+
+  def testGetTreeLocationWithBadParentDirs(self):
+    testpath = 'bad/HVAC/fields'
+    with self.assertRaises(ValueError):
+      _, _ = base_lib.GetTreeLocation(testpath)
 
 if __name__ == '__main__':
   absltest.main()
