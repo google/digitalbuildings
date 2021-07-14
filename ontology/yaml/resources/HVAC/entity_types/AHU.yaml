@@ -2727,16 +2727,18 @@ AHU_DFSS_DAM_CHWVM_RTM:
   - leaving_cooling_coil_temperature_sensor
   - control_panel_mode
 
-AHU_WDT_CHWVM_CLPM_DFSS_ZTM:
-  description: "AHU with chilled water valve operation and discharge fan operation. Return/supply temp and zone air temp monitoring."
+AHU_CHWDT_CHWVM_CLPM_DFSS_ZTM:
+  description: "AHU with chilled water valve operation and discharge fan operation. Chilled return/supply temp and zone air temp monitoring."
   is_canonical: true
   implements:
   - AHU
-  - WDT
+  - CHWDT
   - CHWVM
   - CLPM
   - DFSS
   - ZTM
+  uses:
+  - chilled_water_valve_percentage_command
   opt_uses:
   - filter_differential_pressure_status
   - run_command
@@ -2747,8 +2749,8 @@ AHU_WDT_CHWVM_CLPM_DFSS_ZTM:
   - schedule_run_command
   - smoke_alarm
 
-AHU_DFVSC_CHWVM_CLPM_DTC_UV_CO2C_MTM_OAFM_RHM_WDT:
-  description: "AHU with discharge air, chilled water valve, discharge air/fan, CO2, UV and supply/return water operation. Outside air monitoring"
+AHU_DFVSC_CHWVM_CLPM_DTC_UV_CO2C_MTM_OAFM_RHM_CHWDT:
+  description: "AHU with discharge air, chilled water valve, discharge air/fan, CO2, UV and chilled supply/return water operation. Outside air monitoring"
   is_canonical: true
   implements:
   - AHU
@@ -2761,7 +2763,7 @@ AHU_DFVSC_CHWVM_CLPM_DTC_UV_CO2C_MTM_OAFM_RHM_WDT:
   - MTM
   - OAFM
   - RHM
-  - WDT
+  - CHWDT
   - DFSS
   uses:
   - return_air_temperature_setpoint
@@ -2775,8 +2777,8 @@ AHU_DFVSC_CHWVM_CLPM_DTC_UV_CO2C_MTM_OAFM_RHM_WDT:
   - schedule_run_command
   - smoke_alarm
 
-AHU_DTC_DFSS_CHWVM_OAFM_CLPM_WDT_CO2C_UV:
-  description: "AHU with discharge air, chilled water valve, discharge air/fan, CO2, UV and supply/return water operation."
+AHU_DTC_DFSS_CHWVM_OAFM_CLPM_CHWDT_CO2C_UV:
+  description: "AHU with discharge air, chilled water valve, discharge air/fan, CO2, UV and chilled supply/return water operation."
   is_canonical: true
   implements:
   - AHU
@@ -2785,7 +2787,7 @@ AHU_DTC_DFSS_CHWVM_OAFM_CLPM_WDT_CO2C_UV:
   - CHWVM
   - OAFM
   - CLPM
-  - WDT
+  - CHWDT
   - CO2C
   - UV
   opt_uses:
@@ -2795,7 +2797,7 @@ AHU_DTC_DFSS_CHWVM_OAFM_CLPM_WDT_CO2C_UV:
   - smoke_alarm
 
 AHU_DTC_CHWVM_H3X_OAMC_DFVSC_UV_CO2C2X_ZHM_ZTM:
-  description: "AHU with discharge air, chilled water valve, outside air, discharge air/fan, CO2, heater, UV and supply/return water operation."
+  description: "AHU with discharge air, chilled water valve, outside air, discharge air/fan, CO2, heater, UV and chilled supply/return water operation."
   is_canonical: true
   implements:
   - AHU
@@ -2815,6 +2817,26 @@ AHU_DTC_CHWVM_H3X_OAMC_DFVSC_UV_CO2C2X_ZHM_ZTM:
   - filter_alarm
   - control_mode
   - smoke_alarm
+
+AHU_CHWDT_CHWVM_CLPM_OAFM_STC_SFSS_UV_CO2C:
+  description: "AHU with supply air, chilled water valve, outside air, supply air/fan, CO2, heater, UV and chilled supply/return water operation."
+  is_canonical: true
+  implements:
+  - AHU
+  - CHWDT
+  - CHWVM
+  - CLPM
+  - OAFM
+  - STC
+  - SFSS
+  - UV
+  - CO2C
+  opt_uses:
+  - filter_differential_pressure_status
+  - filter_alarm
+  - control_mode
+  - smoke_alarm
+  - supply_fan_lost_power_alarm
 
 ###################################
 ### Existing Non-standard Types ###
