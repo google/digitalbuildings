@@ -2676,6 +2676,16 @@ DDCO:
   implements:
   - CONTROL
 
+FDPM3X:
+  description: "Filter pressure monitoring (3 sensors)."
+  is_abstract: true
+  uses:
+  - filter_differential_pressure_sensor_1
+  - filter_differential_pressure_sensor_2
+  - filter_differential_pressure_sensor_3
+  implements:
+  - MONITORING
+
 FDPM4X:
   id: "5700763968050561024"
   description: "Filter pressure monitoring (4 sensors)."

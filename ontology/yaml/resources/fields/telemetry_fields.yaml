@@ -772,3 +772,6 @@ literals:
 - zone_air_occupied_heating_temperature_setpoint
 - mixed_air_relative_humidity_sensor
 - mixed_air_dewpoint_temperature_sensor
+
+#Thermal Wheel Telemetry Fields
+- wheel_speed_percentage_sensor
