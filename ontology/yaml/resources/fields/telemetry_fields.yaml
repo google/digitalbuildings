@@ -779,6 +779,7 @@ literals:
 - supply_air_isolation_damper_open_status
 - control_panel_mode
 - zone_scene_command
+- scene_command
 - cooling_run_status:
   - ON
   - OFF
@@ -809,3 +810,4 @@ literals:
 - supply_fan_lost_power_alarm:
   - ACTIVE
   - INACTIVE
+

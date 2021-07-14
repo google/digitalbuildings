@@ -50,14 +50,12 @@ SC:
   - scene_index_command
 
 BM:
-  id: "3713325232589635584"
   description: " Battery power status monitoring."
   is_abstract: true
   uses:
   - battery_charge_status
 
 DPC:
-  id: "3713325232589635584"
   description: " Dimmer control."
   is_abstract: true
   uses:
