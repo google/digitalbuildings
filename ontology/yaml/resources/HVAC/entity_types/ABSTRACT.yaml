@@ -343,7 +343,7 @@ EFVSC:
   - OPERATIONAL
 
 VSFC:
-  description: "Variable speed control or monitor (frequency) for fans."
+  description: "Variable speed control or monitor in frequency"
   is_abstract: true
   uses:
   - speed_frequency_command
