@@ -773,7 +773,6 @@ literals:
 - mixed_air_relative_humidity_sensor
 - mixed_air_dewpoint_temperature_sensor
 
-
 # Added for Machine Learning Pilot
 - supervisor_control_mode:
   - ENABLE
