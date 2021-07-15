@@ -773,5 +773,13 @@ literals:
 - mixed_air_relative_humidity_sensor
 - mixed_air_dewpoint_temperature_sensor
 
-#Thermal Wheel Telemetry Fields
-- wheel_speed_percentage_sensor
+#Heat Wheel Telemetry Fields
+- heat_wheel_speed_percentage_sensor
+
+#Air Isolation Dampers
+- outside_air_isolation_damper_status:
+  - OPEN
+  - CLOSED
+- exhaust_air_isolation_damper_status:
+  - OPEN
+  - CLOSED

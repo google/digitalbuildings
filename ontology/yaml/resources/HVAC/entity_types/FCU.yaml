@@ -494,11 +494,9 @@ FCU_DFSS_DSP_HTDC_CHWDC:
   - HTDC
   - CHWDC
 
-FCU_DFSS_DFVSC_DSP_HTDC_CHWDC:
+FCU_DFSS_DFVSC_DSP_HTDC_CHWDC_FDPM:
   description: "Hydronic variable speed fan coil with electric reheat (zone control)."
   is_canonical: true
-  opt_uses:
-  - filter_differential_pressure_sensor
   implements:
   - FCU
   - DFSS
@@ -506,6 +504,7 @@ FCU_DFSS_DFVSC_DSP_HTDC_CHWDC:
   - DSP
   - HTDC
   - CHWDC
+  - FDPM
 
 FCU_DFSS_DSP_HWDC_CHWDC:
   id: "6781627878619480064"
