@@ -775,8 +775,8 @@ literals:
 
 # Added for Machine Learning Pilot
 - supervisor_control_mode:
-  - ENABLE
-  - DISABLE
+  - ENABLED
+  - DISABLED
 - supervisor_supply_air_static_pressure_setpoint
 - supervisor_supply_air_temperature_setpoint
 - supervisor_supply_air_static_pressure_setpoint
