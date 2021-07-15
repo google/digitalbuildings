@@ -3635,7 +3635,7 @@ DRSM8X:
   - MONITORING
 
 SSPCSCM:
-  description: “Supply air static pressure control for supervisor control (Machine learning).”
+  description: "Supply air static pressure control for supervisor control (Machine learning)."
   is_abstract: true
   uses:
   - supervisor_control_mode
@@ -3644,7 +3644,7 @@ SSPCSCM:
   - supply_air_static_pressure_setpoint
 
 STCSCM:
-  description: “Supply air temperature control for supervisor control (Machine learning).”
+  description: "Supply air temperature control for supervisor control (Machine learning)."
   is_abstract: true
   uses:
   - supervisor_control_mode
@@ -3653,7 +3653,7 @@ STCSCM:
   - supply_air_temperature_setpoint
 
 SWTCSCM:
-  description: “Supply water temperature control for supervisor control (Machine learning).”
+  description: "Supply water temperature control for supervisor control (Machine learning)."
   is_abstract: true
   uses:
   - supervisor_control_mode
@@ -3662,7 +3662,7 @@ SWTCSCM:
   - supply_air_temperature_setpoint
 
 WDPCSCM:
-  description: “Water differential pressure control for supervisor control (Machine learning).”
+  description: "Water differential pressure control for supervisor control (Machine learning)."
   is_abstract: true
   uses:
   - supervisor_control_mode
