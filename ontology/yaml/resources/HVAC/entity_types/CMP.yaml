@@ -33,6 +33,7 @@ CMP_BS_WDPM:
   opt_uses:
   - lost_power_alarm
   - control_mode
+  - run_mode
   - schedule_run_command
-  - control_panel_mode
+  - control_status
 

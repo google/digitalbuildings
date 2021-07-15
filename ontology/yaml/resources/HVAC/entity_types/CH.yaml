@@ -516,7 +516,7 @@ CH_SS_CHWDT:
   - lost_power_alarm
   - run_mode
 
-CH_SS_CHWSWISOVM_CWSISOVM_CWRISOVM_CHWRWISOVM:
+CH_SS_CHWSWISOVM_CWSISOVM_CWRISOVM_CHWRWISOVM_CHWDT:
   description: "Non standard chiller with chilled/condensing supply/return water isolation valve control. Chilled water flowrate status "
   implements:
   - CH
@@ -525,11 +525,13 @@ CH_SS_CHWSWISOVM_CWSISOVM_CWRISOVM_CHWRWISOVM:
   - CWSISOVM
   - CWRISOVM
   - CHWRWISOVM
+  - CHWDT
   uses:
-  - chilled_supply_water_temperature_sensor
-  - condensing_supply_water_temperature_sensor
+  - outside_air_temperature_sensor
   - chilled_water_flowrate_status
   - condensing_water_flowrate_status
+  - condensing_supply_water_temperature_sensor
   opt_uses:
   - lost_power_alarm
   - run_mode
+

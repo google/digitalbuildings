@@ -738,7 +738,6 @@ literals:
 - position_status
 - condensing_water_valve_percentage_sensor
 - entering_cooling_coil_temperature_sensor
-- fire_fault_status
 
  # We should not use this... represents scavenged outside air from near some heat pumps...
 - mixed_outside_air_temperature_sensor
@@ -777,7 +776,9 @@ literals:
 # Added for TW
 - supply_air_isolation_damper_closed_status
 - supply_air_isolation_damper_open_status
-- control_panel_mode
+- control_status:
+  - REMOTE
+  - LOCAL
 - zone_scene_command
 - scene_command
 - cooling_run_status:
@@ -810,4 +811,5 @@ literals:
 - supply_fan_lost_power_alarm:
   - ACTIVE
   - INACTIVE
+- panel_alarm
 

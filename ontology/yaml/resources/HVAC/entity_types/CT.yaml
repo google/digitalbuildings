@@ -127,6 +127,7 @@ CT_SS_FSC:
   - FSC
   opt_uses:
   - control_mode
+  - run_mode
   - lost_power_alarm
 
 ###################################
@@ -205,4 +206,5 @@ CT_SS_CWDT_OA_FSC:
   - condensing_supply_water_temperature_setpoint
   opt_uses:
   - control_mode
+  - run_mode
   - lost_power_alarm

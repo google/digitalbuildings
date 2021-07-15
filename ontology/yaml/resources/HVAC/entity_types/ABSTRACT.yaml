@@ -384,19 +384,6 @@ DFVSC:
   implements:
   - OPERATIONAL
 
-DFVSMC:
-  description: "Variable speed control mode for discharge fans."
-  is_abstract: true
-  opt_uses:
-  - discharge_fan_speed_percentage_command
-  - discharge_fan_speed_frequency_command
-  uses:
-  - discharge_fan_speed_mode
-  - discharge_fan_run_status
-  - discharge_fan_run_command
-  implements:
-  - OPERATIONAL
-
 
 DFVSFC:
   description: "Variable speed control with frequency setting for discharge fans."
@@ -3777,3 +3764,35 @@ DPM:
   uses:
   - damper_percentage_command
   - damper_percentage_sensor
+
+DFVSMC:
+  description: "Variable speed control mode for discharge fans."
+  is_abstract: true
+  uses:
+  - discharge_fan_speed_mode
+  - discharge_fan_run_status
+  - discharge_fan_run_command
+  implements:
+  - OPERATIONAL
+
+DFVDSC:
+  description: "Discharge fan control with toggled variable or discrete speed control. This allows the fan to run either VFD or discrete speed stages (LOW/MED/HIGH, etc.) and to switch between the mode."
+  is_abstract: true
+  uses:
+  - discharge_fan_speed_percentage_command
+  - discharge_fan_speed_mode
+  - discharge_fan_run_status
+  - discharge_fan_run_command
+  implements:
+  - OPERATIONAL
+
+DFVDSFC:
+  description: "Discharge fan control with toggled variable or discrete speed (frequency) control. This allows the fan to run either VFD or discrete speed stages (LOW/MED/HIGH, etc.) and to switch between the mode."
+  is_abstract: true
+  uses:
+  - discharge_fan_speed_frequency_command
+  - discharge_fan_speed_mode
+  - discharge_fan_run_status
+  - discharge_fan_run_command
+  implements:
+  - OPERATIONAL

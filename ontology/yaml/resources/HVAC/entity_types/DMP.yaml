@@ -60,6 +60,9 @@ DMP_SDBPC_RMM:
 DMP_DICM:
   description: "Controlling and monitoring damper isolation system."
   is_canonical: true
+  implements:
+  - DMP
+  - DICM
   opt_uses:
   - control_mode
   - schedule_run_command
@@ -67,10 +70,6 @@ DMP_DICM:
   - run_status
   - run_mode
   - lost_power_alarm
-  implements:
-  - DMP
-  - DICM
-
 
 
 ###################################

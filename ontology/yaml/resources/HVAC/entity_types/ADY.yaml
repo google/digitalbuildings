@@ -24,7 +24,8 @@ ADY_BS_SS:
   - SS
   opt_uses:
   - lost_power_alarm
+  - run_mode
   - control_mode
   - schedule_run_command
-  - control_panel_mode
+  - control_status
 

@@ -37,3 +37,10 @@ LT_DC_SC:
   - LT
   - DC 
   - SC
+
+LT_DPC:
+  description: "Dimmer lighting group control module."
+  is_canonical: true
+  implements:
+  - LT
+  - DPC
