@@ -12,24 +12,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-CHWS_WDT-17:
-  type: HVAC/CHWS_WDT
+# Two test entities with the same name (bad).
+
+SDC_EXT-17:
+  type: HVAC/SDC_EXT
   id: CDM/123456
-  translation:
-    return_water_temperature_sensor:
-      present_value: "points.return_water_temperature_sensor.present_value"
-      units:
-        key: "points.return_water_temperature_sensor.units"
-        values:
-          degrees_celsius: "degC"
-          degrees_fahrenheit: "degF"
-    supply_water_temperature_sensor:
-      present_value: "points.supply_water_temperature_sensor.present_value"
-      units:
-        key: "points.supply_water_temperature_sensor.units"
-        values:
-          degrees_celsius: "degC"
-          degrees_fahrenheit: "degF"
+
+SDC_EXT-17:
+  type: HVAC/SDC_EXT
+  id: CDM/123457
 
 UK-LON-S2:
   type: FACILITIES/BUILDING

@@ -20,8 +20,10 @@ CHWS_WDT-17:
   translation:
     return_water_temperature_sensor:
       present_value: "points.return_water_temperature_sensor.present_value"
-      unit_values:
-        degrees_celsius: "degC"
+      units:
+        key: "pointset.points.return_water_temperature_sensor.units"
+        values:
+          degrees_celsius: "degC"
     supply_water_temperature_sensor:
       present_value: "points.supply_water_temperature_sensor.present_value"
       units:

@@ -99,7 +99,7 @@ class StateLibTest(absltest.TestCase):
 
   def testStateFolderAddFromConfigNotYamlFails(self):
     folder = state_lib.StateFolder(_GOOD_PATH)
-    folder.AddFromConfig([{}], 'google3/{0}/file.txt'.format(_GOOD_PATH))
+    folder.AddFromConfig([{}], '{0}/file.txt'.format(_GOOD_PATH))
     self.assertIsInstance(folder.GetFindings()[0],
                           findings_lib.InconsistentFileLocationError)
 
