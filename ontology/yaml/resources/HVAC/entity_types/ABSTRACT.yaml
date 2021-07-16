@@ -3672,6 +3672,7 @@ DRSM8X:
   implements:
   - MONITORING
 
+
 DICM:
   description: "Damper isolation control and monitoring. "
   is_abstract: true
@@ -3797,3 +3798,39 @@ DFVDSFC:
   - discharge_fan_run_command
   implements:
   - OPERATIONAL
+
+SSPCSCM:
+  description: "Supply air static pressure control for supervisor control (Machine learning)."
+  is_abstract: true
+  uses:
+  - supervisor_control_mode
+  - supervisor_supply_air_static_pressure_setpoint
+  - program_supply_air_static_pressure_setpoint
+  - supply_air_static_pressure_setpoint
+
+STCSCM:
+  description: "Supply air temperature control for supervisor control (Machine learning)."
+  is_abstract: true
+  uses:
+  - supervisor_control_mode
+  - supervisor_supply_air_temperature_setpoint
+  - program_supply_air_temperature_setpoint
+  - supply_air_temperature_setpoint
+
+SWTCSCM:
+  description: "Supply water temperature control for supervisor control (Machine learning)."
+  is_abstract: true
+  uses:
+  - supervisor_control_mode
+  - supervisor_supply_water_temperature_setpoint
+  - program_supply_water_temperature_setpoint
+  - supply_air_temperature_setpoint
+
+WDPCSCM:
+  description: "Water differential pressure control for supervisor control (Machine learning)."
+  is_abstract: true
+  uses:
+  - supervisor_control_mode
+  - supervisor_differential_pressure_setpoint
+  - program_differential_pressure_setpoint
+  - differential_pressure_setpoint
