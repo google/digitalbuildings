@@ -2681,8 +2681,6 @@ AHU_DFSS_UV_H3X_DAM_DFCM_CHWVM:
   - DFSS
   opt_uses:
   - control_status
-  - run_command
-  - run_status
   - lost_power_alarm
   - filter_alarm
   - control_mode
@@ -2771,7 +2769,7 @@ AHU_DFSS_DAM_CHWVM_RTM:
   - leaving_cooling_coil_temperature_sensor
   - control_status
 
-AHU_CHWDT_CHWVM_CLPM_DFSS_ZTM:
+AHU_CHWDT_CHWVM_CLPM_DFSS_CHWZTC:
   description: "AHU with chilled water valve operation and discharge fan operation. Chilled return/supply temp and zone air temp monitoring."
   is_canonical: true
   implements:
@@ -2780,13 +2778,9 @@ AHU_CHWDT_CHWVM_CLPM_DFSS_ZTM:
   - CHWVM
   - CLPM
   - DFSS
-  - ZTM
-  uses:
-  - chilled_water_valve_percentage_command
+  - CHWZTC
   opt_uses:
   - filter_differential_pressure_status
-  - run_command
-  - run_status
   - lost_power_alarm
   - filter_alarm
   - control_mode

@@ -527,7 +527,6 @@ CH_SS_CHWSWISOVM_CWSISOVM_CWRISOVM_CHWRWISOVM_CHWDT:
   - CHWRWISOVM
   - CHWDT
   uses:
-  - outside_air_temperature_sensor
   - chilled_water_flowrate_status
   - condensing_water_flowrate_status
   - condensing_supply_water_temperature_sensor

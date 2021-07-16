@@ -18,5 +18,5 @@ LGRP_DC:
   description: "Lighting group control module with brightness control."
   is_canonical: true
   implements:
-    - GRP
+    - LGRP
     - DC

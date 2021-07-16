@@ -1123,7 +1123,6 @@ FCU_RHC_DFVSC_RTC:
   - DFVSC
   - RTC
   uses:
-  - discharge_fan_speed_percentage_sensor
   - discharge_fan_run_status
   - cooling_run_status
   - cooling_percentage_sensor

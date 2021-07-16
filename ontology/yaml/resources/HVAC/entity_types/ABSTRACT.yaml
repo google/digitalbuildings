@@ -392,6 +392,8 @@ DFVSFC:
   - discharge_fan_speed_frequency_command
   - discharge_fan_run_status
   - discharge_fan_run_command
+  opt_uses:
+  - discharge_fan_speed_frequency_sensor
   implements:
   - OPERATIONAL
 
@@ -3723,13 +3725,12 @@ CHWBRC:
   is_abstract: true
   implements:
   - OPERATIONAL
-  opt_uses:
-  - chilled_water_valve_command
   uses:
+  - chilled_water_valve_command
   - return_air_temperature_sensor
   - return_air_temperature_setpoint
 
-CHCS:
+CHWISOVPM:
   description: "Chllled water isolation valve control."
   is_abstract: true
   implements:
