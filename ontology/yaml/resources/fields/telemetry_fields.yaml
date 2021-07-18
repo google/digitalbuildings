@@ -801,7 +801,7 @@ literals:
   - ACTIVE
   - INACTIVE
 - discharge_fan_speed_frequency_command
-- ultraviolet_lamp_control_mode:
+- ultraviolet_lamp_run_mode:
   - AUTO
   - MANUAL
 - discharge_air_flowrate_status:

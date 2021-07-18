@@ -177,6 +177,34 @@ HWS_SWTC_WDPC_SWTCSCM_WDPCSCM:
   - SWTCSCM
   - WDPCSCM
 
+HWS_SS_ALS:
+  description: "Heating water system with optional alarm, mode and status are being operated and monitored."
+  is_canonical: true
+  implements:
+  - HWS
+  - SS
+  opt_uses:
+  - schedule_run_command
+  - run_mode
+  - lost_power_alarm
+  - low_differential_pressure_alarm
+  - control_status
+
+HWS_SS_WDT:
+  description: "Heating water system with temperature reading between return/supply water"
+  is_canonical: true
+  implements:
+  - HWS
+  - SS
+  - WDT
+  opt_uses:
+  - schedule_run_command
+  - control_mode
+  - run_mode
+  - lost_power_alarm
+  - control_status
+
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################

@@ -2667,15 +2667,15 @@ AHU_BYPSSPC_DX3SC_ECON_HT2SC_SFSS_SFVSC:
   - SFSS
   - SFVSC
 
-AHU_DFSS_UV_H3X_DAM_DFCM_CHWVM:
+AHU_DFSS_UV_H3X_DTC_DFVSFC_CHWVM:
   description: "AHU with discharge air/fan, chilled water valve and UV lamp operation."
   is_canonical: true
   implements:
   - AHU
   - UV
   - H3X
-  - DAM
-  - DFCM
+  - DTC
+  - DFVSFC
   - CHWVM
   - DFSS
   opt_uses:
@@ -2685,15 +2685,16 @@ AHU_DFSS_UV_H3X_DAM_DFCM_CHWVM:
   - control_mode
   - run_mode
   - schedule_run_command
+  - discharge_air_flowrate_status
 
-AHU_DFSS_DAM_DFCM_CHWVM_RTM:
-  description: "AHU with discharge air/fan and chilled water valve operation. "
+AHU_DFSS_DTC_DFVSFC_CHWVM_RTM:
+  description: "AHU with discharge air/fan and chilled water valve operation."
   is_canonical: true
   implements:
   - AHU
   - DFSS
-  - DAM
-  - DFCM
+  - DTC
+  - DFVSFC
   - CHWVM
   - RTM
   opt_uses:
@@ -2704,57 +2705,17 @@ AHU_DFSS_DAM_DFCM_CHWVM_RTM:
   - run_mode
   - schedule_run_command
   - smoke_alarm
-
-AHU_DFSS_DAM_DFCM_CHWVM_RTM_ELCTS:
-  description: "AHU with discharge air/fan and chilled water valve operation. Leaving and entering cooling coil temperature are monitored."
-  is_canonical: true
-  implements:
-  - AHU
-  - DFSS
-  - DAM
-  - DFCM
-  - CHWVM
-  - RTM
-  uses:
+  - discharge_air_flowrate_status
   - leaving_cooling_coil_temperature_sensor
   - entering_cooling_coil_temperature_sensor
-  opt_uses:
-  - control_status
-  - lost_power_alarm
-  - filter_alarm
-  - control_mode
-  - run_mode
-  - schedule_run_command
-  - smoke_alarm
 
-AHU_DFSS_DAM_DFCM_CHWVM_RTM_LCTS:
-  description: "AHU with discharge air/fan and chilled water valve operation. Leaving cooling coil temperature is monitored."
-  is_canonical: true
-  implements:
-  - AHU
-  - DFSS
-  - DAM
-  - DFCM
-  - CHWVM
-  - RTM
-  uses:
-  - leaving_cooling_coil_temperature_sensor
-  opt_uses:
-  - control_status
-  - lost_power_alarm
-  - filter_alarm
-  - control_mode
-  - run_mode
-  - schedule_run_command
-  - smoke_alarm
-
-AHU_DFSS_DAM_CHWVM_RTM:
+AHU_DFSS_DTC_CHWVM_RTM:
   description: "AHU with discharge air and chilled water valve operation."
   is_canonical: true
   implements:
   - AHU
   - DFSS
-  - DAM
+  - DTC
   - CHWVM
   - RTM
   opt_uses:
@@ -2788,8 +2749,8 @@ AHU_CHWDT_CHWVM_CLPM_DFSS_CHWZTC:
   - smoke_alarm
   - control_status
 
-AHU_DFVSC_CHWVM_CLPM_DTC_UV_CO2C_MTM_OAFM_RHM_CHWDT:
-  description: "AHU with discharge air, chilled water valve, discharge air/fan, CO2, UV and chilled supply/return water operation. Outside air monitoring"
+AHU_DFVSC_CHWVM_CLPM_DTC_UV_CO2C_MTM_OAFM_RHM_CHWDT_RTC:
+  description: "AHU with discharge air, chilled water valve, discharge air/fan, CO2, UV and chilled supply/return water operation."
   is_canonical: true
   implements:
   - AHU
@@ -2804,8 +2765,8 @@ AHU_DFVSC_CHWVM_CLPM_DTC_UV_CO2C_MTM_OAFM_RHM_CHWDT:
   - RHM
   - CHWDT
   - DFSS
+  - RTC
   uses:
-  - return_air_temperature_setpoint
   - discharge_air_damper_percentage_command
   opt_uses:
   - control_status

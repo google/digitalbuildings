@@ -3685,7 +3685,7 @@ UV:
   description: "Ultraviolet lamp operation."
   is_abstract: true
   opt_uses:
-  - ultraviolet_lamp_control_mode
+  - ultraviolet_lamp_run_mode
   uses:
   - ultraviolet_lamp_run_command
   - ultraviolet_lamp_run_status
@@ -3702,24 +3702,6 @@ H3X:
   - heater_run_command_1
   - heater_run_command_2
   - heater_run_command_3
-
-DAM:
-  description: "Discharge air monitoring for temperature and flow rate status."
-  is_abstract: true
-  implements:
-  - MONITORING
-  uses:
-  - discharge_air_flowrate_status
-  - discharge_air_temperature_sensor
-
-DFCM:
-  description: "Discharge air fan basic control in frequency"
-  is_abstract: true
-  implements:
-  - OPERATIONAL
-  uses:
-  - discharge_fan_speed_frequency_command
-  - discharge_fan_speed_frequency_sensor
 
 CHWBRC:
   description: "Chilled water valve binary (open/closed) monitoring/controlling. Return air temperature control."
@@ -3748,15 +3730,6 @@ CWCS:
   uses:
   - condensing_water_valve_percentage_command
   - condensing_water_valve_percentage_sensor
-
-FSC:
-  description: "Speed frequency control."
-  is_abstract: true
-  implements:
-  - OPERATIONAL
-  uses:
-  - speed_frequency_command
-  - speed_frequency_sensor
 
 DPM:
   description: "Damper percentage control."
@@ -3834,3 +3807,68 @@ WDPCSCM:
   - supervisor_differential_pressure_setpoint
   - program_differential_pressure_setpoint
   - differential_pressure_setpoint
+
+CSWIVS:
+  description: "Condensing return water isolation valve control."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  uses:
+  - condensing_return_water_isolation_valve_command_1
+  - condensing_return_water_isolation_valve_command_2
+  - condensing_return_water_isolation_valve_command_3
+  - condensing_return_water_isolation_valve_command_4
+  - condensing_return_water_isolation_valve_command_5
+  - condensing_return_water_isolation_valve_command_6
+  - condensing_return_water_isolation_valve_command_7
+  - condensing_return_water_isolation_valve_status_1
+  - condensing_return_water_isolation_valve_status_2
+  - condensing_return_water_isolation_valve_status_3
+  - condensing_return_water_isolation_valve_status_4
+  - condensing_return_water_isolation_valve_status_5
+  - condensing_return_water_isolation_valve_status_6
+  - condensing_return_water_isolation_valve_status_7
+  - condensing_return_water_isolation_valve_status_8
+  - condensing_return_water_isolation_valve_status_9
+  - condensing_return_water_isolation_valve_status_10
+  - condensing_return_water_isolation_valve_status_11
+  - condensing_return_water_isolation_valve_status_12
+  - condensing_return_water_isolation_valve_status_13
+  - condensing_return_water_isolation_valve_status_14
+
+CRWIVS:
+  description: "Condensing supply water isolation valve control."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  uses:
+  - condensing_supply_water_isolation_valve_command_1
+  - condensing_supply_water_isolation_valve_command_2
+  - condensing_supply_water_isolation_valve_command_3
+  - condensing_supply_water_isolation_valve_command_4
+  - condensing_supply_water_isolation_valve_command_5
+  - condensing_supply_water_isolation_valve_command_6
+  - condensing_supply_water_isolation_valve_command_7
+  - condensing_supply_water_isolation_valve_status_1
+  - condensing_supply_water_isolation_valve_status_2
+  - condensing_supply_water_isolation_valve_status_3
+  - condensing_supply_water_isolation_valve_status_4
+  - condensing_supply_water_isolation_valve_status_5
+  - condensing_supply_water_isolation_valve_status_6
+  - condensing_supply_water_isolation_valve_status_7
+  - condensing_supply_water_isolation_valve_status_8
+  - condensing_supply_water_isolation_valve_status_9
+  - condensing_supply_water_isolation_valve_status_10
+  - condensing_supply_water_isolation_valve_status_11
+  - condensing_supply_water_isolation_valve_status_12
+  - condensing_supply_water_isolation_valve_status_13
+  - condensing_supply_water_isolation_valve_status_14
+
+CSWTC:
+  description: "Condensing supply water temperature control."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  uses:
+  - condensing_supply_water_temperature_setpoint
+  - condensing_supply_water_temperature_sensor
