@@ -43,7 +43,7 @@ EntityIdByEntry = typing.NamedTuple('EntityIdByEntry', [('namespace', str),
 
 
 def SeparateFieldNamespace(qualified_field_name: str) -> Tuple[str, str]:
-  """Returns the field and its namespace as separate values or an Error.
+  """Returns the namespace and its field name as separate values or an Error.
 
   Args:
     qualified_field_name: a qualified field string like `HVAC/run_status`
@@ -70,7 +70,7 @@ def SeparateFieldIncrement(field_name) -> Tuple[str, str]:
   For example: zone_occupancy_status_1 -> [zone_occupancy_status, 1]
 
   Args:
-    field_name: the unqualified field name to parse.
+    field_name: the field name to parse.
 
   Returns:
     A tuple of string, the standard field name and its increment if available.
@@ -204,19 +204,20 @@ class EntityTypeFolder(config_folder_lib.ConfigFolder):
       self._AddType(new_type)
 
   def _ConstructField(self, local_field_names, optional, output_array):
-    for field in local_field_names:
-      field_ns, field_name = field_lib.SplitFieldName(field)
-      field_name, increment = SeparateFieldIncrement(field_name)
+    for qualified_field_name in local_field_names:
+      field_ns, raw_field_name = field_lib.SplitFieldName(qualified_field_name)
+      std_field_name, increment = SeparateFieldIncrement(raw_field_name)
       # Field will look local if undefined, but we'll catch the error later
       # Because we do explict existence checks and it will fail
       # TODO(berkoben) refactor so validation happens in an order that
       # prevents this logic lint
       field_ns = self.local_namespace.GetQualifiedNamespace(
-          field_ns, field_name)
+          field_ns, std_field_name)
       output_array.append(
           OptWrapper(
               field=FieldParts(
-                  namespace=field_ns, field=field_name, increment=increment),
+                  namespace=field_ns, field=std_field_name,
+                  increment=increment),
               optional=optional))
 
   def _ConstructType(self, type_name, type_contents, filepath):
@@ -405,15 +406,15 @@ class TypeNamespace(findings_lib.Findings):
       entity_type.parent_names = fq_tuplemap
     self._parents_qualified = True
 
-  def IsLocalField(self, fieldname):
+  def IsLocalField(self, field_name):
     """Returns true if this unqualified field is defined in the namespace.
 
     Args:
-      fieldname: an unqualified fieldname with no leading '/'
+      field_name: an unqualified field name with no leading '/'
     """
     if not self._fields_universe:
       return False
-    return self._fields_universe.IsFieldDefined(fieldname, self.namespace)
+    return self._fields_universe.IsFieldDefined(field_name, self.namespace)
 
   def _ValidateFields(self, entity):
     """Validates that all fields declared by entity are defined."""
@@ -579,7 +580,7 @@ class EntityType(findings_lib.Findings):
     """Returns true if a valid config file value maps to a field in the type.
 
     Accepts a field name as written in a configuration file
-    referencing this type. The method applies handles context-aware namespace
+    referencing this type. The method applies context-aware namespace
     omission (i.e. referencing a field without its namespace) to identify the
     field regardless of the namespace and syntax variation.
 
