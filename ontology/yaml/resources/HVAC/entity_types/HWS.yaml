@@ -170,6 +170,7 @@ HWS_SWTC_WDPC_WFRC_BYPVPM_PWDT:
   - PWDT
 
 HWS_SWTC_WDPC_SWTCSCM_WDPCSCM:
+  id: "15800793118405558272"
   description: "Simple heating water system with supply temp and differential pressure control and with supervisor control mode types (machine learning)."
   is_canonical: true
   implements:
