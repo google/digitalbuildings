@@ -3659,7 +3659,7 @@ SWTCSCM:
   - supervisor_control_mode
   - supervisor_supply_water_temperature_setpoint
   - program_supply_water_temperature_setpoint
-  - supply_air_temperature_setpoint
+  - supply_water_temperature_setpoint
 
 WDPCSCM:
   description: "Water differential pressure control for supervisor control (Machine learning)."
