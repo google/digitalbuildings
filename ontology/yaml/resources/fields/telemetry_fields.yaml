@@ -783,3 +783,16 @@ literals:
 - exhaust_air_isolation_damper_status:
   - OPEN
   - CLOSED
+
+# Added for Machine Learning Pilot
+- supervisor_control_mode:
+  - ENABLED
+  - DISABLED
+- supervisor_supply_air_static_pressure_setpoint
+- supervisor_supply_air_temperature_setpoint
+- program_supply_air_static_pressure_setpoint
+- program_supply_air_temperature_setpoint
+- supervisor_supply_water_temperature_setpoint
+- supervisor_differential_pressure_setpoint
+- program_supply_water_temperature_setpoint
+- program_differential_pressure_setpoint
