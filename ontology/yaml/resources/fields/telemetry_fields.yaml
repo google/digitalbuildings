@@ -773,6 +773,19 @@ literals:
 - mixed_air_relative_humidity_sensor
 - mixed_air_dewpoint_temperature_sensor
 
+# Added for Machine Learning Pilot
+- supervisor_control_mode:
+  - ENABLED
+  - DISABLED
+- supervisor_supply_air_static_pressure_setpoint
+- supervisor_supply_air_temperature_setpoint
+- program_supply_air_static_pressure_setpoint
+- program_supply_air_temperature_setpoint
+- supervisor_supply_water_temperature_setpoint
+- supervisor_differential_pressure_setpoint
+- program_supply_water_temperature_setpoint
+- program_differential_pressure_setpoint
+
 #Heat Wheel Telemetry Fields
 - heat_wheel_speed_percentage_sensor
 

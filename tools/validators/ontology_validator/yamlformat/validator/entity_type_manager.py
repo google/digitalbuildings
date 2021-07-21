@@ -11,7 +11,6 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 """Code to dentify type hierarchy and naming suggestions in config files.
 
 The classes here help to keep the ontology clean by highlighting places where
@@ -116,6 +115,9 @@ class EntityTypeManager(findings_lib.Findings):
     """Finds smaller types that can be represented by larger, flexible types."""
     findings = []
     for subset in self._complete_field_sets_oi:
+      parent_rollup = {}
+      # used by the commented code below, reduce the verbosity of warnings.
+      # incomplete_parent_rollup = {}
       # Check each complete type for partial types having same fields
       possible_parents = self._typenames_by_subset_oi.get(subset, None)
       if not possible_parents:
@@ -128,8 +130,8 @@ class EntityTypeManager(findings_lib.Findings):
         entity_type = self._GetTypeByName(typename)
         if base_lib.HasDeprecatedType(entity_type.parent_names):
           continue
-        if (len(entity_type.parent_names) == 1
-            and not entity_type.local_field_names):
+        if (len(entity_type.parent_names) == 1 and
+            not entity_type.local_field_names):
           continue
 
         matching_parents = {}
@@ -143,8 +145,6 @@ class EntityTypeManager(findings_lib.Findings):
         # Each loop tests one possible pairing
         # Goal is to find best type for each device, which tyically means device
         # with smallest diff
-        parent_rollup = {}
-        incomplete_parent_rollup = {}
         t_match = base_lib.GetEquipmentClass(typename)
         for parent in possible_parents:
           if parent in typenames:
@@ -189,8 +189,8 @@ class EntityTypeManager(findings_lib.Findings):
             wrapped_field = parent_entity.GetAllFields()[field]
             if not wrapped_field.optional:
               is_match = False
-              if (not parent_entity.is_canonical or parent_entity.is_abstract
-                  or base_lib.HasDeprecatedType(parent_entity.parent_names)):
+              if (not parent_entity.is_canonical or parent_entity.is_abstract or
+                  base_lib.HasDeprecatedType(parent_entity.parent_names)):
                 break
               missing_required_fields.append(field)
             else:
@@ -212,11 +212,11 @@ class EntityTypeManager(findings_lib.Findings):
               if len(missing_required_fields) < best_incomplete_diff:
                 incomplete_parent_matches = {}
               else:
-                if (best_incomplete_diff_opt is not None
-                    and best_incomplete_diff_opt > opt_diff):
+                if (best_incomplete_diff_opt is not None and
+                    best_incomplete_diff_opt > opt_diff):
                   incomplete_parent_matches = {}
-                elif (best_incomplete_diff_opt is not None
-                      and best_incomplete_diff_opt < opt_diff):
+                elif (best_incomplete_diff_opt is not None and
+                      best_incomplete_diff_opt < opt_diff):
                   continue
 
               incomplete_parent_matches[parent] = missing_required_fields
@@ -232,22 +232,25 @@ class EntityTypeManager(findings_lib.Findings):
           for parent in matching_parents:
             parent_rollup[parent] = {typename: matching_parents[parent]}
 
-       # if incomplete_parent_matches:
-       #  finding = findings_lib.PossibleOverlappingFlexTypeChildWarning(
-       #       entity_type, best_incomplete_diff, incomplete_parent_matches)
-       #   entity_type.AddFinding(finding)
-       #   findings.append(finding)
-       # 
-       #   for parent in incomplete_parent_matches:
-       #     incomplete_parent_rollup[parent] = {
-       #         typename: incomplete_parent_matches[parent]}
+# This is commented to reduce the verbosity of warnings for the user.
+# To uncomment, remove the comments in bulk using a shortcut key map in your
+# favorite editor.
+#         if incomplete_parent_matches:
+#           finding = findings_lib.PossibleOverlappingFlexTypeChildWarning(
+#               entity_type, best_incomplete_diff, incomplete_parent_matches)
+#           entity_type.AddFinding(finding)
+#           findings.append(finding)
 
-       # for parent in incomplete_parent_rollup:
-       # entity_type = self._GetTypeByName(parent)
-       # finding = findings_lib.PossibleOverlappingFlexTypeParentWarning(
-       #    entity_type, incomplete_parent_rollup[parent])
-       # entity_type.AddFinding(finding)
-       #  findings.append(finding)
+#           for parent in incomplete_parent_matches:
+#             incomplete_parent_rollup[parent] = {
+#                 typename: incomplete_parent_matches[parent]}
+
+#       for parent in incomplete_parent_rollup:
+#         entity_type = self._GetTypeByName(parent)
+#         finding = findings_lib.PossibleOverlappingFlexTypeParentWarning(
+#             entity_type, incomplete_parent_rollup[parent])
+#         entity_type.AddFinding(finding)
+#         findings.append(finding)
 
       for parent in parent_rollup:
         parent_type = self._GetTypeByName(parent)
@@ -362,8 +365,9 @@ class EntityTypeManager(findings_lib.Findings):
 
     # Evaluate the sets in each shard and merge them
     for shard in type_shards:
-      typenames_by_subset = self._MapTypenamesBySubset(
-          shard, field_to_typenames, min_set_size)
+      typenames_by_subset = self._MapTypenamesBySubset(shard,
+                                                       field_to_typenames,
+                                                       min_set_size)
 
       # Check each new subset against the existing master subsets
       # NB: All subsets should initially be large enough
