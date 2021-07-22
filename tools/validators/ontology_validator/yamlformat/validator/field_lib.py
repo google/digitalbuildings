@@ -32,19 +32,20 @@ from yamlformat.validator import subfield_lib
 FIELD_CHARACTER_REGEX = re.compile(r'^[a-z]+[a-z0-9]*(?:_[a-z]+[a-z0-9]*)*$')
 
 
-def SplitFieldName(field):
+def SplitFieldName(qualified_field_name):
   """Splits the field name on '/' and returns the parts separately.
 
   Args:
-    field: the possibly fully qualified field name
+    qualified_field_name: the possibly fully qualified field name
 
   Returns:
-    tuple with namespace and field name.  Defaults to global for no namespace.
+    tuple with namespace and raw field name.  Defaults to global for no
+    namespace.
   """
 
-  field_only = field
+  field_only = qualified_field_name
   namespace = ''
-  split = field.split('/')
+  split = qualified_field_name.split('/')
   if len(split) == 2:
     namespace = split[0]
     field_only = split[1]
