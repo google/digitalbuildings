@@ -137,9 +137,9 @@ ENTITY-NAME:
     A-THIRD-ENTITY: CONTAINS
   links:
     A-FOURTH-ENTITY: # source device
-      # target_device_field : source_device_field
-      supply_air_damper_position_command: supply_air_damper_command_1
-      zone_air_temperature: zone_air_temperature_sensor_1
+      # source_device_field : target_device_field
+      supply_air_damper_command_1: supply_air_damper_position_command
+      zone_air_temperature_sensor_1: zone_air_temperature
   translation:
     zone_air_temperature_sensor:
       present_value: "points.temp_1.present_value"
@@ -165,9 +165,9 @@ ENTITY-NAME:
     value or a set.
 *   **Links:** Used to specify mappings between standard fields of source
     entities to standard fields of this entity. First level key is another
-    entity in the file (source). Second level key is a standard field of this
-    (target) entity followed by a `:` and a standard field from the other
-    (source) entity.
+    entity in the file (source). Second level key is a standard field of the
+    other (source) entity followed by a `:` and a standard field from this
+    (target) entity.
 *   **Translation:** Used to specify how the fields of the devices native
     payload map to the standard fields of this entity's type. See
     [translation section](#translations) for more detail.
@@ -378,8 +378,8 @@ VAV-32:
   id: SOME_GUID_12345  # optional
   links:
     ANOTHER-ENTITY: # source device
-      # target_device_field : source_device_field
-      supply_air_damper_position_command: supply_air_damper_command_1
+      # source_device_field : target_device_field
+      supply_air_damper_command_1: supply_air_damper_position_command
       ...
 ```
 
@@ -394,7 +394,7 @@ to this entity's local fields.
 
 #### Device Relationships
 
-In addition to telemetry points many devices will have relationships to other
+In addition to telemetry points, many devices will have relationships to other
 entities. System and spatial relationships are defined with the `connections`
 block. Connection definitions work the same way for all entities, with
 connections always defined on the target of the connection.
@@ -440,11 +440,6 @@ LCG-234:
     SW-456: CONTROLS
 ```
 
-### Relationships
-
-System and spatial relationships are defined with the `connections` block.
-Connection definitions work the same way for all entities, with connections
-always defined on the target of the connection. Here's an example
 
 ## Validation
 The building config can be machine validated for consistency and adherence to

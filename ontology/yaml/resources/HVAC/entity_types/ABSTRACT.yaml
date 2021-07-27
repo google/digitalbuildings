@@ -3633,3 +3633,43 @@ DRSM8X:
   - dryer_run_status_8
   implements:
   - MONITORING
+
+SSPCSCM:
+  id: "6685507472607674368"
+  description: "Supply air static pressure control for supervisor control (Machine learning)."
+  is_abstract: true
+  uses:
+  - supervisor_control_mode
+  - supervisor_supply_air_static_pressure_setpoint
+  - program_supply_air_static_pressure_setpoint
+  - supply_air_static_pressure_setpoint
+
+STCSCM:
+  id: "6577421081550782464"
+  description: "Supply air temperature control for supervisor control (Machine learning)."
+  is_abstract: true
+  uses:
+  - supervisor_control_mode
+  - supervisor_supply_air_temperature_setpoint
+  - program_supply_air_temperature_setpoint
+  - supply_air_temperature_setpoint
+
+SWTCSCM:
+  id: "8591656014892236800"
+  description: "Supply water temperature control for supervisor control (Machine learning)."
+  is_abstract: true
+  uses:
+  - supervisor_control_mode
+  - supervisor_supply_water_temperature_setpoint
+  - program_supply_water_temperature_setpoint
+  - supply_water_temperature_setpoint
+
+WDPCSCM:
+  id: "11032607012927045632"
+  description: "Water differential pressure control for supervisor control (Machine learning)."
+  is_abstract: true
+  uses:
+  - supervisor_control_mode
+  - supervisor_differential_pressure_setpoint
+  - program_differential_pressure_setpoint
+  - differential_pressure_setpoint

@@ -30,7 +30,7 @@ from yamlformat.validator import presubmit_validate_types_lib as pvt
 
 def _FieldIsAllowed(
     universe: pvt.ConfigUniverse,
-    field_name: str,
+    as_written_field_name: str,
     entity_type: Optional[entity_type_lib.EntityType] = None) -> bool:
   """Returns true if the name is plausibly correct in the provided context.
 
@@ -38,18 +38,19 @@ def _FieldIsAllowed(
 
   Args:
     universe: the ConfigUniverse to validate against
-    field_name: the field name string as written in the config
+    as_written_field_name: the field name string as written in the config
     entity_type: the EntityType of the entity the field is defined on
   """
 
-  return _GetAllowedField(universe, field_name, entity_type) is not None
+  return _GetAllowedField(universe, as_written_field_name,
+                          entity_type) is not None
 
 
 def _GetAllowedField(
     universe: pvt.ConfigUniverse,
-    field_name: str,
+    as_written_field_name: str,
     entity_type: Optional[entity_type_lib.EntityType] = None) -> Optional[str]:
-  """Returns the most likely qualified field name given in the provided context.
+  """Returns the most likely qualified field name given the provided context.
 
   If an entity type is provided, the method validates that the field is valid
   for the type. If no type is provided, method will validate that the field
@@ -63,23 +64,24 @@ def _GetAllowedField(
 
   Args:
     universe: the ConfigUniverse to validate against
-    field_name: the field name string as written in the config
+    as_written_field_name: the field name string as written in the config
     entity_type: the EntityType of the entity the field is deifned on
   """
   # Field could be qualified or unqualified in the config.  We want to know
   if entity_type:
-    field_obj = entity_type.GetFieldFromConfigText(field_name)
+    field_obj = entity_type.GetFieldFromConfigText(as_written_field_name)
     if field_obj:
       return entity_type_lib.BuildQualifiedField(field_obj)
 
   try:
-    namespace, field = entity_type_lib.SeparateFieldNamespace(field_name)
+    namespace, field_name = entity_type_lib.SeparateFieldNamespace(
+        as_written_field_name)
   except TypeError:
     namespace = ''
-    field = field_name
-  field, _ = entity_type_lib.SeparateFieldIncrement(field)
-  if universe.field_universe.IsFieldDefined(field, namespace):
-    return namespace + '/' + field_name
+    field_name = as_written_field_name
+  std_field_name, _ = entity_type_lib.SeparateFieldIncrement(field_name)
+  if universe.field_universe.IsFieldDefined(std_field_name, namespace):
+    return namespace + '/' + as_written_field_name
   return None
 
 
@@ -271,16 +273,20 @@ class InstanceValidator(object):
     found_fields = {}
 
     # Check that defined fields are in the type
-    for field_name, ft in entity.translation.items():
-      field_key = _GetAllowedField(self.universe, field_name, entity_type)
-      if not field_key:
+    for as_written_field_name, ft in entity.translation.items():
+      qualified_field_name = _GetAllowedField(self.universe,
+                                              as_written_field_name,
+                                              entity_type)
+      if not qualified_field_name:
         if entity_type:
-          print('Field {0} is not defined on the type'.format(field_name))
+          print('Field {0} is not defined on the type'.format(
+              as_written_field_name))
         else:
-          print('Field {0} is undefined in the universe'.format(field_name))
+          print('Field {0} is undefined in the universe'.format(
+              as_written_field_name))
         is_valid = False
       else:
-        found_fields[field_key] = ft
+        found_fields[qualified_field_name] = ft
 
     # Check that unmatched type fields are optional
     if entity_type and entity.operation == parse.EntityOperation.ADD:
@@ -294,8 +300,8 @@ class InstanceValidator(object):
 
     # Check that translations are properly defined
     found_units = {}
-    for field_key, ft in found_fields.items():
-      if not self._FieldTranslationIsValid(field_key, ft):
+    for qualified_field_name, ft in found_fields.items():
+      if not self._FieldTranslationIsValid(qualified_field_name, ft):
         is_valid = False
       if isinstance(ft, ft_lib.DimensionalValue):
         for std_unit, raw_unit in ft.unit_mappings.items():
@@ -308,65 +314,67 @@ class InstanceValidator(object):
 
     return is_valid
 
-  def _FieldTranslationIsValid(self, field_name: str,
+  def _FieldTranslationIsValid(self, qualified_field_name: str,
                                ft: ft_lib.FieldTranslation):
     """Returns a boolean indicating whether or not the translation is valid.
 
     Method assumes field has already been checked for existence in the ontology.
 
     Args:
-      field_name: a qualified field name for the field
+      qualified_field_name: a qualified field name for the field
       ft: subclass of `FieldTranslation` for the field
     """
     if isinstance(ft, ft_lib.UndefinedField):
       return True
 
-    valid_units = self.universe.GetUnitsForMeasurement(field_name)
+    valid_units = self.universe.GetUnitsForMeasurement(qualified_field_name)
     if valid_units and set(valid_units).difference({'no_units'}):
       if not isinstance(ft, ft_lib.DimensionalValue):
         print('Units must be provided for dimensional value {0}'.format(
-            field_name))
+            qualified_field_name))
         return False
 
       if not ft.unit_mappings:
         print('At least one unit must be provided for dimensional value {0}'
-              .format(field_name))
+              .format(qualified_field_name))
         return False
 
       is_valid = True
       for unit in ft.unit_mappings.keys():
         if unit not in valid_units:
-          print('Field {0} has an invalid unit: {1}'.format(field_name, unit))
+          print('Field {0} has an invalid unit: {1}'.format(
+              qualified_field_name, unit))
           is_valid = False
       return is_valid
 
     if isinstance(ft, ft_lib.DimensionalValue):
-      print(
-          'Units are provided for non-dimensional value {0}'.format(field_name))
+      print('Units are provided for non-dimensional value {0}'.format(
+          qualified_field_name))
       return False
 
-    valid_states = self.universe.GetStatesByField(field_name)
+    valid_states = self.universe.GetStatesByField(qualified_field_name)
     if valid_states:
       if not isinstance(ft, ft_lib.MultiStateValue):
-        print(
-            'States not provided for multi-state value {0}'.format(field_name))
+        print('States not provided for multi-state value {0}'.format(
+            qualified_field_name))
         return False
 
       if not ft.states:
         print('At least one state must be provided for multi-state value {0}'
-              .format(field_name))
+              .format(qualified_field_name))
         return False
 
       is_valid = True
       for state in ft.states.keys():
         if state not in valid_states:
-          print('Field {0} has an invalid state: {1}'.format(field_name, state))
+          print('Field {0} has an invalid state: {1}'.format(
+              qualified_field_name, state))
           is_valid = False
       return is_valid
 
     if isinstance(ft, ft_lib.MultiStateValue):
       print('States are provided for a field that is not a multi-state {0}'
-            .format(field_name))
+            .format(qualified_field_name))
       return False
 
     return True
