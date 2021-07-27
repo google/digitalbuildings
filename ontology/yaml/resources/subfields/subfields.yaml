@@ -42,6 +42,7 @@ component:
   pump: "Component used for the distribution of liquid media."
   shade: "Window covering."
   tank : "Storage device for media."
+  transformer : "A transformer is an electrical device which, by the principles of electromagnetic induction, transfers electrical energy from one electric circuit to another."
   valve: "Component which meters the flow of water within a system or device."
   vane: "Component for guiding media flow."
   wheel: "Component used for transfer of heat from incoming to outgoing air streams. "
@@ -122,6 +123,7 @@ descriptor:
   output: "The output of a control loop (e.g. PID Loop Output)"
   particle: "A very fine clump of solid matter."
   outside: "Process or measurement of local atmospheric conditions."
+  phase: "A phase of three-phase power distribution systems."
   phase1: "The first (nominally A) phase of three-phase power distribution systems."
   phase2: "The second (nominally B) phase of three-phase power distribution systems."
   phase3: "The third (nominally C) phase of three-phase power distribution systems."
@@ -177,6 +179,7 @@ descriptor:
 measurement:
   concentration: "Concentration of chemical (usually in parts per million or parts per billion)."
   current: "Flow of electric charge."
+  currentratio: "The ratio of primary amps divided by secondary amps."
   energy: " The quantitative property that must be transferred to an object to perform work (default electrical unless otherwise modified)."
   flowrate: "Rate of fluid movement."
   frequency: "The rate of cycling within a process. Typically used to describe voltage (and amperage) oscillation within AC power distribution components."
@@ -192,6 +195,7 @@ measurement:
   specificenthalpy: "Measure of energy of air per unit mass."
   temperature: "Measures the temperature of media within a process or system."
   voltage: "Electrical potential difference between two reference points."
+  voltageratio: "The ratio of the Primary voltage of the transformer to the secondary voltage."
   volume: "The quantity of three-dimensional space contained by a closed surface."
 measurement_descriptor:
   absolute: "Quality of media with respect to non-relativistic boudaries (e.g. absolute temperature)."
