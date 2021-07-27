@@ -394,7 +394,7 @@ to this entity's local fields.
 
 #### Device Relationships
 
-In addition to telemetry points many devices will have relationships to other
+In addition to telemetry points, many devices will have relationships to other
 entities. System and spatial relationships are defined with the `connections`
 block. Connection definitions work the same way for all entities, with
 connections always defined on the target of the connection.
@@ -440,11 +440,6 @@ LCG-234:
     SW-456: CONTROLS
 ```
 
-### Relationships
-
-System and spatial relationships are defined with the `connections` block.
-Connection definitions work the same way for all entities, with connections
-always defined on the target of the connection. Here's an example
 
 ## Validation
 The building config can be machine validated for consistency and adherence to
