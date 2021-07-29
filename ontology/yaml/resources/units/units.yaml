@@ -17,6 +17,8 @@ concentration:
 current:
 - amperes: STANDARD
 - milliamperes
+currentratio:
+- no_units: STANDARD
 energy:
 - joules: STANDARD
 - kilowatt_hours
@@ -64,6 +66,8 @@ temperature:
 - degrees_fahrenheit
 voltage:
 - volts: STANDARD
+voltageratio:
+- no_units: STANDARD
 volume:
 - cubic_meters: STANDARD
 - us_gallons
