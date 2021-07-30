@@ -59,7 +59,7 @@ def Deserialize(
       entities[entity_name] = entity_instance.EntityInstance.FromYaml(
           entity_yaml, default_entity_operation)
     except ValueError:
-      print('Invalid Entity ' + entity_name)
+      print("Invalid Entity '{}'".format(entity_name))
       raise
   return entities, parser.GetConfigMode()
 
@@ -68,7 +68,7 @@ def _ValidateConfig(
     filenames: List[str],
     universe: pvt.ConfigUniverse) -> List[entity_instance.EntityInstance]:
   """Runs all config validation checks."""
-  print('Found {} YAML config files...\n'.format(len(filenames)))
+  print('Found {} YAML config files...'.format(len(filenames)))
   entities, config_mode = Deserialize(filenames)
   helper = EntityHelper(universe)
   return helper.Validate(entities, config_mode)
@@ -238,7 +238,7 @@ class EntityHelper(object):
     Raises:
       SyntaxError: If no building is found in the config
     """
-    print('Validating entities ...')
+    print('\nValidating entities...')
     building_found = False
     valid_entities = {}
     validator = entity_instance.CombinationValidator(self.universe, config_mode,
@@ -248,7 +248,7 @@ class EntityHelper(object):
           and current_entity.type_name.lower() == 'building'):
         building_found = True
       if not validator.Validate(current_entity):
-        print(entity_name, 'is not a valid instance')
+        print("Invalid instance: {}".format(entity_name))
         continue
       valid_entities[entity_name] = current_entity
 
