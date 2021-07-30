@@ -42,7 +42,7 @@ def Deserialize(
   parser = instance_parser.InstanceParser()
   for idx, yaml_file in enumerate(yaml_files):
     file_number = idx + 1
-    print("[#{}] Queueing '{}'".format(file_number, yaml_file))
+    print("[#{}] Queuing '{}'".format(file_number, yaml_file))
     # Once the file is added to the queue the parser will asynchronously
     # get around to actually parsing it-- include a trackable file_number
     # for easier / more useful printed output later...
@@ -113,7 +113,8 @@ def RunValidation(filenames: List[str], directories: List[str],
     for directory in directories:
       for root, dirs, files in os.walk(directory):
         for file in files:
-          if file.lower().endswith('.yaml'):
+          _lowername = file.lower()
+          if _lowername.endswith('.yaml') or _lowername.endswith('.yml'):
             filenames.append(os.path.join(root, file))
 
   entities = _ValidateConfig(filenames, universe)
