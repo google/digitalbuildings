@@ -15,7 +15,6 @@
 from __future__ import print_function
 
 import collections
-import copy
 import enum
 import re
 import sys
@@ -271,7 +270,7 @@ class InstanceParser():
 
         if _CONFIG_METADATA_PATTERN.match(line):
           if self._config_mode:
-            _msg = "\n[#{}] Validation Error in '{}':\n{}: '{}'\n"
+            _msg = "\n[#{}] ERROR in '{}':\n{}: '{}'\n"
             print(_msg.format(
               entity_instance_block['source_filenumber'],
               entity_instance_block['source_filename'],
@@ -409,7 +408,7 @@ class InstanceParser():
             syaml.exceptions.YAMLValidationError,
             syaml.exceptions.DuplicateKeysDisallowed,
             syaml.exceptions.InconsistentIndentationDisallowed) as exception:
-      _msg = "\n[#{}] Validation Error in '{}':\n{}\n"
+      _msg = "\n[#{}] ERROR in '{}':\n{}\n"
       print(_msg.format(
         unvalidated_block['source_filenumber'],
         unvalidated_block['source_filename'],

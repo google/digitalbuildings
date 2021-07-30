@@ -68,7 +68,7 @@ def _ValidateConfig(
     filenames: List[str],
     universe: pvt.ConfigUniverse) -> List[entity_instance.EntityInstance]:
   """Runs all config validation checks."""
-  print('Loading config files...\n')
+  print('Found {} YAML config files...\n'.format(len(filenames)))
   entities, config_mode = Deserialize(filenames)
   helper = EntityHelper(universe)
   return helper.Validate(entities, config_mode)
