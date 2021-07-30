@@ -15,6 +15,7 @@
 from __future__ import print_function
 
 import collections
+import copy
 import enum
 import re
 import sys
@@ -250,13 +251,17 @@ class InstanceParser():
                                'Finalize()')
     return self._config_mode
 
-  def AddFile(self, filename: str) -> None:
+  def AddFile(self, filenumber: int, filename: str) -> None:
     """Add a new file for parsing by the state machine.
 
     Args:
       filename: a path to a file for reading with open()
     """
-    entity_instance_block = ''
+    entity_instance_block = {
+      'source_filenumber': filenumber,
+      'source_filename': filename,
+      'block': '',
+    }
     found_entities = 0
     in_config = False
     with open(filename) as file:
@@ -266,11 +271,18 @@ class InstanceParser():
 
         if _CONFIG_METADATA_PATTERN.match(line):
           if self._config_mode:
-            raise ValueError('Metadata block defined multiple times')
+            _msg = "\n[#{}] Validation Error in '{}':\n{}: '{}'\n"
+            print(_msg.format(
+              entity_instance_block['source_filenumber'],
+              entity_instance_block['source_filename'],
+              'Metadata block defined multiple times or in multiple files',
+              line.strip().replace('\n', '').replace('\r', '')
+            ))
+            sys.exit(0)
           # queue everything in the current block so the config can be isolated
-          if entity_instance_block:
+          if entity_instance_block['block']:
             self._queued_entity_blocks.append(entity_instance_block)
-            entity_instance_block = ''
+            entity_instance_block['block'] = ''
             found_entities = 0
           in_config = True
           continue
@@ -278,20 +290,22 @@ class InstanceParser():
         if _ENTITY_INSTANCE_PATTERN.match(line):
           # If the last block was config, send it for parsing
           if in_config:
-            self._ValidateBlock(entity_instance_block,
-                                self._ValidateMetadataContent)
-            entity_instance_block = ''
+            self._ValidateBlock(
+                entity_instance_block,
+                self._ValidateMetadataContent
+            )
+            entity_instance_block['block'] = ''
             in_config = False
 
           # wait until entity instance block reaches _ENTITIES_PER_BATCH
           elif found_entities >= _ENTITIES_PER_BATCH:
             self._queued_entity_blocks.append(entity_instance_block)
             self._ProcessEntities()
-            entity_instance_block = ''
+            entity_instance_block['block'] = ''
             found_entities = 0
           found_entities += 1
 
-        entity_instance_block = entity_instance_block + line
+        entity_instance_block['block'] = entity_instance_block['block'] + line
 
     # handle the singleton case
     if in_config:
@@ -366,11 +380,11 @@ class InstanceParser():
 
     for key in block.keys():
       if key in self._validated_entities:
-        raise ValueError('Duplicate key {0}'.format(key))
+        raise ValueError("Duplicate key '{0}'".format(key))
       self._ValidateEntityContent(block.get(key))
     self._validated_entities.update(block.data)
 
-  def _ValidateBlock(self, unvalidated_block: str,
+  def _ValidateBlock(self, unvalidated_block: {},
                      validation_fn: Callable[[syaml.YAML], None]) -> None:
     """Validates a yaml-formatted string using the provided function.
 
@@ -378,9 +392,16 @@ class InstanceParser():
       unvalidated_block: string. A block of unvalidated entities
       validation_fn: a validation function that takes YAML as an argument
     """
+    _msg = "[#{}] Validating '{}'"
+    print(_msg.format(
+      unvalidated_block['source_filenumber'],
+      unvalidated_block['source_filename']
+    ))
     try:
-      validated = syaml.load(unvalidated_block,
-                             syaml.MapPattern(syaml.Str(), syaml.Any()))
+      validated = syaml.load(
+        unvalidated_block['block'],
+        syaml.MapPattern(syaml.Str(), syaml.Any())
+      )
       validation_fn(validated)
 
     except (ValueError, ruamel.yaml.parser.ParserError,
@@ -388,5 +409,10 @@ class InstanceParser():
             syaml.exceptions.YAMLValidationError,
             syaml.exceptions.DuplicateKeysDisallowed,
             syaml.exceptions.InconsistentIndentationDisallowed) as exception:
-      print(exception)
+      _msg = "\n[#{}] Validation Error in '{}':\n{}\n"
+      print(_msg.format(
+        unvalidated_block['source_filenumber'],
+        unvalidated_block['source_filename'],
+        exception
+      ))
       sys.exit(0)

@@ -43,16 +43,25 @@ def _ParseArgs() -> argparse.ArgumentParser:
     ArgumentParser object
   """
   parser = argparse.ArgumentParser(
-      description='Validate a YAML building configuration file')
+      description='Validate YAML building configuration files')
 
   parser.add_argument(
       '-i',
       '--input',
       action='append',
       dest='filenames',
-      required=True,
-      help='Filepaths to YAML building configurations',
+      required=False,
+      help='Local path to a YAML building configuration file. May be used multiple times.',
       metavar='FILE')
+
+  parser.add_argument(
+    '-d',
+    '--dir-input',
+    action='append',
+    dest='directories',
+    required=False,
+    help='Local path to a directory (folder) containing YAML building configuration files. May be used multiple times.',
+    metavar='DIR')
 
   parser.add_argument(
       '-m',
@@ -101,6 +110,6 @@ def _ParseArgs() -> argparse.ArgumentParser:
 
 if __name__ == '__main__':
   args = _ParseArgs().parse_args(sys.argv[1:])
-  handler.RunValidation(args.filenames, args.modified_types_filepath,
+  handler.RunValidation(args.filenames, args.directories, args.modified_types_filepath,
                         args.subscription, args.service_account,
                         args.report_filename, int(args.timeout))

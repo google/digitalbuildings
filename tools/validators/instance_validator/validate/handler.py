@@ -16,6 +16,7 @@
 from __future__ import print_function
 
 from datetime import datetime
+import os
 import sys
 from typing import Callable, Dict, List, Optional
 
@@ -38,11 +39,14 @@ def Deserialize(
     A map of entity name to EntityInstance.
   """
 
-  print('Validating syntax please wait ...')
   parser = instance_parser.InstanceParser()
-  for yaml_file in yaml_files:
-    print('Opening file: {0}, please wait ...'.format(yaml_file))
-    parser.AddFile(yaml_file)
+  for idx, yaml_file in enumerate(yaml_files):
+    file_number = idx + 1
+    print("[#{}] Queueing '{}'".format(file_number, yaml_file))
+    # Once the file is added to the queue the parser will asynchronously
+    # get around to actually parsing it-- include a trackable file_number
+    # for easier / more useful printed output later...
+    parser.AddFile(file_number, yaml_file)
   parser.Finalize()
 
   default_entity_operation = instance_parser.EntityOperation.ADD
@@ -64,9 +68,8 @@ def _ValidateConfig(
     filenames: List[str],
     universe: pvt.ConfigUniverse) -> List[entity_instance.EntityInstance]:
   """Runs all config validation checks."""
-  print('\nLoading config files...\n')
+  print('Loading config files...\n')
   entities, config_mode = Deserialize(filenames)
-  print('\nStarting config validation...\n')
   helper = EntityHelper(universe)
   return helper.Validate(entities, config_mode)
 
@@ -79,7 +82,7 @@ def _ValidateTelemetry(subscription: str, service_account: str,
   helper.Validate(entities, report_filename, timeout)
 
 
-def RunValidation(filenames: List[str],
+def RunValidation(filenames: List[str], directories: List[str],
                   modified_types_filepath: str = None,
                   subscription: str = None,
                   service_account: str = None,
@@ -90,14 +93,31 @@ def RunValidation(filenames: List[str],
     print('Subscription and a service account file are '
           'both needed for the telemetry validation!')
     sys.exit(0)
-  print('\nStarting validator...\n')
-  print('\nStarting universe generation...\n')
+
+  if not filenames and not directories:
+    print('You must specify one or more file or directory paths!')
+    sys.exit(0)
+  elif filenames is None:
+    filenames = []
+
+  print('\nStarting universe generation...')
   universe = generate_universe.BuildUniverse(modified_types_filepath)
   if not universe:
     print('\nError generating universe')
     sys.exit(0)
+
   print('\nStarting config validation...\n')
+  if directories is not None and len(directories):
+    # Recursively search in the directories for YAML files, and add them to
+    # the filenames list, with directory subpath prepended.
+    for directory in directories:
+      for root, dirs, files in os.walk(directory):
+        for file in files:
+          if file.lower().endswith('.yaml'):
+            filenames.append(os.path.join(root, file))
+
   entities = _ValidateConfig(filenames, universe)
+
   if subscription:
     print('\nStarting telemetry validation...\n')
     _ValidateTelemetry(subscription, service_account, entities, report_filename,
