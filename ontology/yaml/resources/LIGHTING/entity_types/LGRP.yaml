@@ -1,0 +1,7 @@
+LGRP_OS_SC:
+  description: "Lighting group with occupancy sensor and scene control"
+  is_canonical: true
+  implements:
+  - LGRP
+  - OS
+  - SC
