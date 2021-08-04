@@ -342,6 +342,15 @@ EFVSC:
   implements:
   - OPERATIONAL
 
+VSFC:
+  description: "Variable speed control or monitor in frequency"
+  is_abstract: true
+  uses:
+  - speed_frequency_command
+  - speed_frequency_sensor
+  implements:
+  - OPERATIONAL
+
 SFVSC:
   id: "16291356723812237312"
   description: "Variable speed control for supply fans."
@@ -367,10 +376,24 @@ DFVSC:
   - discharge_fan_power_sensor
   - discharge_fan_speed_frequency_sensor
   - discharge_fan_speed_percentage_sensor
+  - discharge_fan_lost_power_alarm
   uses:
   - discharge_fan_speed_percentage_command
   - discharge_fan_run_status
   - discharge_fan_run_command
+  implements:
+  - OPERATIONAL
+
+
+DFVSFC:
+  description: "Variable speed control with frequency setting for discharge fans."
+  is_abstract: true
+  uses:
+  - discharge_fan_speed_frequency_command
+  - discharge_fan_run_status
+  - discharge_fan_run_command
+  opt_uses:
+  - discharge_fan_speed_frequency_sensor
   implements:
   - OPERATIONAL
 
@@ -470,6 +493,7 @@ DFSS:
   - discharge_fan_current_sensor
   - discharge_fan_power_sensor
   - discharge_air_static_pressure_sensor
+  - discharge_fan_lost_power_alarm
   uses:
   - discharge_fan_run_command
   - discharge_fan_run_status
@@ -2348,6 +2372,7 @@ OAFM:
   is_abstract: true
   opt_uses:
   - outside_air_temperature_sensor
+  - outside_air_damper_percentage_sensor
   uses:
   - outside_air_flowrate_sensor
   implements:
@@ -2366,6 +2391,18 @@ OAFMC:
   - outside_air_damper_percentage_command
   implements:
   - CONTROL
+
+OAMC:
+  description: "Outside air flow control."
+  is_abstract: true
+  opt_uses:
+  - outside_air_flowrate_sensor
+  uses:
+  - outside_air_damper_percentage_sensor
+  - outside_air_damper_percentage_command
+  implements:
+  - CONTROL
+
 
 OFC:
   id: "18252070729648439296"
@@ -3338,6 +3375,7 @@ CHWVM:
   opt_uses:
   - cooling_thermal_power_capacity
   - chilled_water_flowrate_sensor
+  - chilled_water_valve_failed_alarm
   uses:
   - chilled_water_valve_percentage_sensor
   - chilled_water_valve_percentage_command
@@ -3634,6 +3672,106 @@ DRSM8X:
   implements:
   - MONITORING
 
+
+DICM:
+  description: "Damper isolation control and monitoring. "
+  is_abstract: true
+  uses:
+   - supply_air_isolation_damper_closed_status
+   - supply_air_isolation_damper_open_status
+   - supply_air_isolation_damper_command
+
+UV:
+  description: "Ultraviolet lamp operation."
+  is_abstract: true
+  opt_uses:
+  - ultraviolet_lamp_run_mode
+  uses:
+  - ultraviolet_lamp_run_command
+  - ultraviolet_lamp_run_status
+
+H3X:
+  description: "Heater monitoring."
+  is_abstract: true
+  implements:
+  - MONITORING
+  uses:
+  - heater_run_status_1
+  - heater_run_status_2
+  - heater_run_status_3
+  - heater_run_command_1
+  - heater_run_command_2
+  - heater_run_command_3
+
+CHWBRC:
+  description: "Chilled water valve binary (open/closed) monitoring/controlling. Return air temperature control."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  uses:
+  - chilled_water_valve_command
+  - return_air_temperature_sensor
+  - return_air_temperature_setpoint
+
+CHWISOVPM:
+  description: "Chllled water isolation valve control."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  uses:
+  - chilled_water_isolation_valve_percentage_command
+  - chilled_water_isolation_valve_percentage_sensor
+
+CWCS:
+  description: "Condensing water valve control."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  uses:
+  - condensing_water_valve_percentage_command
+  - condensing_water_valve_percentage_sensor
+
+DPM:
+  description: "Damper percentage control."
+  is_abstract: true
+  implements:
+    - OPERATIONAL
+  uses:
+  - damper_percentage_command
+  - damper_percentage_sensor
+
+DFVSMC:
+  description: "Variable speed control mode for discharge fans."
+  is_abstract: true
+  uses:
+  - discharge_fan_speed_mode
+  - discharge_fan_run_status
+  - discharge_fan_run_command
+  implements:
+  - OPERATIONAL
+
+DFVDSC:
+  description: "Discharge fan control with toggled variable or discrete speed control. This allows the fan to run either VFD or discrete speed stages (LOW/MED/HIGH, etc.) and to switch between the mode."
+  is_abstract: true
+  uses:
+  - discharge_fan_speed_percentage_command
+  - discharge_fan_speed_mode
+  - discharge_fan_run_status
+  - discharge_fan_run_command
+  implements:
+  - OPERATIONAL
+
+DFVDSFC:
+  description: "Discharge fan control with toggled variable or discrete speed (frequency) control. This allows the fan to run either VFD or discrete speed stages (LOW/MED/HIGH, etc.) and to switch between the mode."
+  is_abstract: true
+  uses:
+  - discharge_fan_speed_frequency_command
+  - discharge_fan_speed_mode
+  - discharge_fan_run_status
+  - discharge_fan_run_command
+  implements:
+  - OPERATIONAL
+
 SSPCSCM:
   id: "6685507472607674368"
   description: "Supply air static pressure control for supervisor control (Machine learning)."
@@ -3673,3 +3811,68 @@ WDPCSCM:
   - supervisor_differential_pressure_setpoint
   - program_differential_pressure_setpoint
   - differential_pressure_setpoint
+
+CSWIVS:
+  description: "Condensing return water isolation valve control."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  uses:
+  - condensing_return_water_isolation_valve_command_1
+  - condensing_return_water_isolation_valve_command_2
+  - condensing_return_water_isolation_valve_command_3
+  - condensing_return_water_isolation_valve_command_4
+  - condensing_return_water_isolation_valve_command_5
+  - condensing_return_water_isolation_valve_command_6
+  - condensing_return_water_isolation_valve_command_7
+  - condensing_return_water_isolation_valve_status_1
+  - condensing_return_water_isolation_valve_status_2
+  - condensing_return_water_isolation_valve_status_3
+  - condensing_return_water_isolation_valve_status_4
+  - condensing_return_water_isolation_valve_status_5
+  - condensing_return_water_isolation_valve_status_6
+  - condensing_return_water_isolation_valve_status_7
+  - condensing_return_water_isolation_valve_status_8
+  - condensing_return_water_isolation_valve_status_9
+  - condensing_return_water_isolation_valve_status_10
+  - condensing_return_water_isolation_valve_status_11
+  - condensing_return_water_isolation_valve_status_12
+  - condensing_return_water_isolation_valve_status_13
+  - condensing_return_water_isolation_valve_status_14
+
+CRWIVS:
+  description: "Condensing supply water isolation valve control."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  uses:
+  - condensing_supply_water_isolation_valve_command_1
+  - condensing_supply_water_isolation_valve_command_2
+  - condensing_supply_water_isolation_valve_command_3
+  - condensing_supply_water_isolation_valve_command_4
+  - condensing_supply_water_isolation_valve_command_5
+  - condensing_supply_water_isolation_valve_command_6
+  - condensing_supply_water_isolation_valve_command_7
+  - condensing_supply_water_isolation_valve_status_1
+  - condensing_supply_water_isolation_valve_status_2
+  - condensing_supply_water_isolation_valve_status_3
+  - condensing_supply_water_isolation_valve_status_4
+  - condensing_supply_water_isolation_valve_status_5
+  - condensing_supply_water_isolation_valve_status_6
+  - condensing_supply_water_isolation_valve_status_7
+  - condensing_supply_water_isolation_valve_status_8
+  - condensing_supply_water_isolation_valve_status_9
+  - condensing_supply_water_isolation_valve_status_10
+  - condensing_supply_water_isolation_valve_status_11
+  - condensing_supply_water_isolation_valve_status_12
+  - condensing_supply_water_isolation_valve_status_13
+  - condensing_supply_water_isolation_valve_status_14
+
+CSWTC:
+  description: "Condensing supply water temperature control."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  uses:
+  - condensing_supply_water_temperature_setpoint
+  - condensing_supply_water_temperature_sensor

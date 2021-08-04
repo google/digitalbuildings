@@ -745,6 +745,112 @@ FCU_DFMSS_DSP_ZHM_RTM_CHWZC_CHWDT:
   - CHWZC
   - CHWDT
 
+FCU_DFVSMC_CHWBRC:
+  description: "Chilled water FCU with chilled water percentage mode, discharge fan mode and return air temp control."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFVSMC
+  - CHWBRC
+  opt_uses:
+  - control_mode
+  - run_mode
+  - schedule_run_command
+  - lost_power_alarm
+
+FCU_DFVDSC_CHWBRC:
+  description: "Chilled water FCU with chilled water percentage mode, discharge fan mode or discrete speed control, and return air temp control."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFVDSC
+  - CHWBRC
+  opt_uses:
+  - control_mode
+  - run_mode
+  - schedule_run_command
+  - lost_power_alarm
+
+FCU_DFVDSFC_CHWBRC:
+  description: "Chilled water FCU with chilled water percentage mode, discharge fan mode or discrete speed (frequency) control, and return air temp control."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFVDSFC
+  - CHWBRC
+  opt_uses:
+  - control_mode
+  - run_mode
+  - schedule_run_command
+  - lost_power_alarm
+
+
+FCU_DFVSFC_CHWBRC:
+  description: "Chilled water FCU with chilled water percentage mode, discharge fan frequency and return air temp control."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFVSFC
+  - CHWBRC
+  opt_uses:
+  - control_mode
+  - schedule_run_command
+  - lost_power_alarm
+
+
+FCU_DFVSMC_CHWRC:
+  description: "Chilled water FCU with binary mode (open/closed), discharge fan mode or discrete speed control, and return air temp control."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFVSMC
+  - CHWRC
+  opt_uses:
+  - control_mode
+  - run_mode
+  - schedule_run_command
+  - lost_power_alarm
+
+FCU_DFVDSC_CHWRC:
+  description: "Chilled water FCU with binary mode (open/closed), discharge fan mode or discrete speed (frequency) control and return air temp control."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFVDSC
+  - CHWRC
+  opt_uses:
+  - control_mode
+  - run_mode
+  - schedule_run_command
+  - lost_power_alarm
+
+FCU_DFVDSFC_CHWRC:
+  description: "Chilled water FCU with binary mode (open/closed), discharge fan mode and return air temp control."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFVDSFC
+  - CHWRC
+  opt_uses:
+  - control_mode
+  - run_mode
+  - schedule_run_command
+  - lost_power_alarm
+
+FCU_DFVSFC_CHWRC:
+  description: "Chilled water FCU with binary mode (open/closed),discharge fan frequency and return air temp control."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFVSFC
+  - CHWRC
+  opt_uses:
+  - control_mode
+  - run_mode
+  - schedule_run_command
+  - lost_power_alarm
+
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
@@ -1008,3 +1114,26 @@ FCU_US_MTV_1950_3:
   - INCOMPLETE
   uses:
   - cooling_stage_run_count
+
+FCU_RHC_DFVSC_RTC:
+  description: "CRAC with return air temp/humidity control and discharge/cooling fan monitor."
+  implements:
+  - FCU
+  - RHC
+  - DFVSC
+  - RTC
+  uses:
+  - cooling_run_status
+  - cooling_percentage_sensor
+  opt_uses:
+  - run_mode
+  - run_status
+  - run_command
+  - lost_power_alarm
+  - smoke_alarm
+  - water_leak_alarm
+  - low_discharge_air_flowrate_alarm
+  - high_return_air_temperature_alarm
+  - low_return_air_temperature_alarm
+  - high_return_air_relative_humidity_alarm
+  - low_return_air_relative_humidity_alarm

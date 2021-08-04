@@ -57,6 +57,20 @@ DMP_SDBPC_RMM:
   - SDBPC
   - RMM
 
+DMP_DICM:
+  description: "Controlling and monitoring damper isolation system."
+  is_canonical: true
+  implements:
+  - DMP
+  - DICM
+  opt_uses:
+  - control_mode
+  - schedule_run_command
+  - run_command
+  - run_status
+  - run_mode
+  - lost_power_alarm
+
 
 ###################################
 ### Existing Non-standard Types ###
@@ -84,3 +98,4 @@ DMP_US_SBO_901_1:
   uses:
   - east_exhaust_air_damper_percentage_command
   - west_exhaust_air_damper_percentage_command
+

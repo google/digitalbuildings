@@ -12,35 +12,20 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+########################
+### Canonical Types  ###
+########################
 
-LT_SS:
-  id: "15296583474186551296"
-  description: "Standard light."
+ADY_BS_SS:
+  description: "Basic air dryer."
   is_canonical: true
   implements:
-  - LT
+  - ADY
   - SS
+  opt_uses:
+  - lost_power_alarm
+  - run_mode
+  - control_mode
+  - schedule_run_command
+  - control_status
 
-LT_DC:
-  id: "18377045619307970560"
-  description: "Even more standaard light with dimming control."
-  is_canonical: true
-  implements:
-  - LT
-  - DC 
-
-LT_DC_SC:
-  id: "16395461783264952320"
-  description: "Standard light with dimming control and scene control."
-  is_canonical: true
-  implements:
-  - LT
-  - DC 
-  - SC
-
-LT_DPC:
-  description: "Dimmer lighting group control module."
-  is_canonical: true
-  implements:
-  - LT
-  - DPC
