@@ -773,6 +773,48 @@ literals:
 - mixed_air_relative_humidity_sensor
 - mixed_air_dewpoint_temperature_sensor
 
+
+# Added for TW
+- supply_air_isolation_damper_closed_status
+- supply_air_isolation_damper_open_status
+- control_status:
+  - REMOTE
+  - LOCAL
+- zone_scene_command
+- scene_command
+- cooling_run_status:
+  - ON
+  - OFF
+- high_return_air_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
+- low_return_air_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
+- high_return_air_relative_humidity_alarm:
+  - ACTIVE
+  - INACTIVE
+- low_return_air_relative_humidity_alarm:
+  - ACTIVE
+  - INACTIVE
+- chilled_water_valve_failed_alarm:
+  - ACTIVE
+  - INACTIVE
+- discharge_fan_speed_frequency_command
+- ultraviolet_lamp_run_mode:
+  - AUTO
+  - MANUAL
+- discharge_air_flowrate_status:
+  - ON
+  - OFF
+- damper_percentage_command
+- damper_percentage_sensor
+- supply_fan_lost_power_alarm:
+  - ACTIVE
+  - INACTIVE
+- panel_alarm
+
+
 # Added for Machine Learning Pilot
 - supervisor_control_mode:
   - ENABLED
