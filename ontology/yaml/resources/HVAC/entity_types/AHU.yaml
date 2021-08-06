@@ -2667,13 +2667,193 @@ AHU_BYPSSPC_DX3SC_ECON_HT2SC_SFSS_SFVSC:
   - SFSS
   - SFVSC
 
+AHU_DFSS_UV_H3X_DTC_DFVSFC_CHWVM:
+  description: "AHU with discharge air/fan, chilled water valve and UV lamp operation."
+  is_canonical: true
+  implements:
+  - AHU
+  - UV
+  - H3X
+  - DTC
+  - DFVSFC
+  - CHWVM
+  - DFSS
+  opt_uses:
+  - control_status
+  - lost_power_alarm
+  - filter_alarm
+  - control_mode
+  - run_mode
+  - schedule_run_command
+  - discharge_air_flowrate_status
+
+AHU_DFSS_DTC_DFVSFC_CHWVM_RTM:
+  description: "AHU with discharge air/fan and chilled water valve operation."
+  is_canonical: true
+  implements:
+  - AHU
+  - DFSS
+  - DTC
+  - DFVSFC
+  - CHWVM
+  - RTM
+  opt_uses:
+  - control_status
+  - lost_power_alarm
+  - filter_alarm
+  - control_mode
+  - run_mode
+  - schedule_run_command
+  - smoke_alarm
+  - discharge_air_flowrate_status
+  - leaving_cooling_coil_temperature_sensor
+  - entering_cooling_coil_temperature_sensor
+
+AHU_DFSS_DTC_CHWVM_RTM:
+  description: "AHU with discharge air and chilled water valve operation."
+  is_canonical: true
+  implements:
+  - AHU
+  - DFSS
+  - DTC
+  - CHWVM
+  - RTM
+  opt_uses:
+  - lost_power_alarm
+  - filter_alarm
+  - control_mode
+  - run_mode
+  - schedule_run_command
+  - smoke_alarm
+  - entering_cooling_coil_temperature_sensor
+  - leaving_cooling_coil_temperature_sensor
+  - control_status
+
+AHU_CHWDT_CHWVM_CLPM_DFSS_CHWZTC:
+  description: "AHU with chilled water valve operation and discharge fan operation. Chilled return/supply temp and zone air temp monitoring."
+  is_canonical: true
+  implements:
+  - AHU
+  - CHWDT
+  - CHWVM
+  - CLPM
+  - DFSS
+  - CHWZTC
+  opt_uses:
+  - filter_differential_pressure_status
+  - lost_power_alarm
+  - filter_alarm
+  - control_mode
+  - run_mode
+  - schedule_run_command
+  - smoke_alarm
+  - control_status
+
+AHU_DFVSC_CHWVM_CLPM_DTC_UV_CO2C_MTM_OAFM_RHM_CHWDT_RTC:
+  description: "AHU with discharge air, chilled water valve, discharge air/fan, CO2, UV and chilled supply/return water operation."
+  is_canonical: true
+  implements:
+  - AHU
+  - DFVSC
+  - CHWVM
+  - CLPM
+  - DTC
+  - UV
+  - CO2C
+  - MTM
+  - OAFM
+  - RHM
+  - CHWDT
+  - DFSS
+  - RTC
+  uses:
+  - discharge_air_damper_percentage_command
+  opt_uses:
+  - control_status
+  - filter_differential_pressure_status
+  - lost_power_alarm
+  - filter_alarm
+  - control_mode
+  - run_mode
+  - schedule_run_command
+  - smoke_alarm
+
+AHU_DTC_DFSS_CHWVM_OAFM_CLPM_CHWDT_CO2C_UV:
+  description: "AHU with discharge air, chilled water valve, discharge air/fan, CO2, UV and chilled supply/return water operation."
+  is_canonical: true
+  implements:
+  - AHU
+  - DTC
+  - DFSS
+  - CHWVM
+  - OAFM
+  - CLPM
+  - CHWDT
+  - CO2C
+  - UV
+  opt_uses:
+  - filter_differential_pressure_status
+  - filter_alarm
+  - control_mode
+  - run_mode
+  - smoke_alarm
+  - control_status
+
+AHU_DTC_CHWVM_H3X_OAMC_DFVSC_UV_CO2C2X_ZHM_ZTM:
+  description: "AHU with discharge air, chilled water valve, outside air, discharge air/fan, CO2, heater, UV and chilled supply/return water operation."
+  is_canonical: true
+  implements:
+  - AHU
+  - DTC
+  - CHWVM
+  - H3X
+  - OAMC
+  - DFVSC
+  - UV
+  - CO2C2X
+  - ZHM
+  - ZTM
+  uses:
+  - discharge_air_damper_percentage_command
+  opt_uses:
+  - filter_differential_pressure_status
+  - filter_alarm
+  - control_mode
+  - run_mode
+  - smoke_alarm
+  - control_status
+
+AHU_CHWDT_CHWVM_CLPM_OAFM_STC_SFSS_UV_CO2C:
+  description: "AHU with supply air, chilled water valve, outside air, supply air/fan, CO2, heater, UV and chilled supply/return water operation."
+  is_canonical: true
+  implements:
+  - AHU
+  - CHWDT
+  - CHWVM
+  - CLPM
+  - OAFM
+  - STC
+  - SFSS
+  - UV
+  - CO2C
+  opt_uses:
+  - filter_differential_pressure_status
+  - filter_alarm
+  - control_mode
+  - run_mode
+  - smoke_alarm
+  - supply_fan_lost_power_alarm
+  - control_status
+
 AHU_BSPC_DX4SC_ECONM_EDPM_EFSS_EFVSC_SFSS_SFVSC_SSPC_STC_SSPCSCM_STCSCM:
+  id: "11591053366720987136"
   description: "Multi-zone AHU with supply temperature and pressure control with supervisor control mode types (machine learning)."
   is_canonical: true
   implements:
   - AHU_BSPC_DX4SC_ECONM_EDPM_EFSS_EFVSC_SFSS_SFVSC_SSPC_STC
   - SSPCSCM
   - STCSCM
+
 
 ###################################
 ### Existing Non-standard Types ###
