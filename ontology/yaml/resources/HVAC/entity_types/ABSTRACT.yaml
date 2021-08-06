@@ -3886,3 +3886,19 @@ CSWTC:
   uses:
   - condensing_supply_water_temperature_setpoint
   - condensing_supply_water_temperature_sensor
+
+HTWHLSPC:
+  description: "Heat wheel control for AHUs"
+  is_abstract: true
+  opt_uses:
+  - heat_wheel_speed_percentage_sensor
+  uses:
+  - heat_wheel_speed_percentage_command
+  - heat_wheel_run_command
+  - heat_wheel_run_status
+  - outside_air_temperature_sensor
+  - return_air_temperature_sensor
+  - outside_air_isolation_damper_command
+  - outside_air_isolation_damper_status
+  - exhaust_air_isolation_damper_command
+  - exhaust_air_isolation_damper_status

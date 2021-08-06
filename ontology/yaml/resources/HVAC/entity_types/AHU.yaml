@@ -3756,23 +3756,17 @@ AHU_US_SVL_MAT2_4:
   - supply_fan_speed_percentage_command
   - supply_air_flowrate_sensor
 
-AHU_STDSPC_SSPC_EFFC_FDPM3X_RTM_RHM:
+AHU_STDSPC_SSPC_EFFC_EFVSC_FDPM3X_HTWHLSPC_RHM_ETM:
   description: "Non-Standard (Swegon) Multi-Zone AHU with heat wheel, isolation damper and filter pressure monitoring"
   implements:
   - AHU
   - STDSPC
   - SSPC
   - EFFC
+  - EFVSC
   - FDPM3X
-  - RTM
+  - HTWHLSPC
   - RHM
+  - ETM
   uses:
   - compressor_speed_percentage_sensor
-  - exhaust_air_temperature_sensor
-  - exhaust_air_isolation_damper_status
-  - exhaust_fan_run_status
-  - exhaust_fan_speed_percentage_sensor
-  - outside_air_isolation_damper_status
-  - outside_air_temperature_sensor
-  - supply_fan_run_status
-  - heat_wheel_speed_percentage_sensor

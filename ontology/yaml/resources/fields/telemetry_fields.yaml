@@ -828,11 +828,22 @@ literals:
 - program_supply_water_temperature_setpoint
 - program_differential_pressure_setpoint
 
-#Heat Wheel Telemetry Fields
+# Heat Wheel Telemetry Fields
 - heat_wheel_speed_percentage_sensor
+- heat_wheel_speed_percentage_command
+- heat_wheel_run_command
+- heat_wheel_run_status
 
-#Air Isolation Dampers
+# Outside air Isolation Dampers
+- outside_air_isolation_damper_command:
+  - OPEN
+  - CLOSED
 - outside_air_isolation_damper_status:
+  - OPEN
+  - CLOSED
+
+# Exhaust air Isolation Dampers
+- exhaust_air_isolation_damper_command:
   - OPEN
   - CLOSED
 - exhaust_air_isolation_damper_status:
