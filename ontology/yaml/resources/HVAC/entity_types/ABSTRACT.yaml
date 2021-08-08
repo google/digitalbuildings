@@ -384,6 +384,30 @@ DFVSC:
   implements:
   - OPERATIONAL
 
+DFVSC2X:
+  description: "Variable speed control for discharge fans for 2 separate zones."
+  is_abstract: true
+  opt_uses:
+  - discharge_fan_current_sensor_1
+  - discharge_fan_power_sensor_1
+  - discharge_fan_speed_frequency_sensor_1
+  - discharge_fan_speed_percentage_sensor_1
+  - discharge_fan_lost_power_alarm_1
+  - discharge_fan_current_sensor_2
+  - discharge_fan_power_sensor_2
+  - discharge_fan_speed_frequency_sensor_2
+  - discharge_fan_speed_percentage_sensor_2
+  - discharge_fan_lost_power_alarm_2
+  uses:
+  - discharge_fan_speed_percentage_command_1
+  - discharge_fan_run_status_1
+  - discharge_fan_run_command_1
+  - discharge_fan_speed_percentage_command_2
+  - discharge_fan_run_status_2
+  - discharge_fan_run_command_2
+  implements:
+  - OPERATIONAL
+
 
 DFVSFC:
   description: "Variable speed control with frequency setting for discharge fans."
@@ -1338,6 +1362,21 @@ DXZTC:
   implements:
   - CONTROL
 
+DXZTC2X:
+  description: "Compressor run control on zone side (ZTC) for two separate zones."
+  is_abstract: true
+  opt_uses:
+  - compressor_speed_percentage_command
+  uses:
+  - zone_air_temperature_setpoint_1
+  - zone_air_temperature_sensor_1
+  - zone_air_temperature_setpoint_2
+  - zone_air_temperature_sensor_2
+  - compressor_run_command
+  - compressor_run_status
+  implements:
+  - CONTROL
+
 DX2ZTC:
   id: "7764960709758156800"
   description: "Compressor run control on zone side (ZTC)."
@@ -2070,6 +2109,26 @@ HT2ZC:
   - heater_run_command_2
   - zone_air_heating_temperature_setpoint
   - zone_air_temperature_sensor
+  implements:
+  - CONTROL
+
+HT2XZTC2X:
+  description: "Two separate heating sections going to two different zones on the device, with independent heating control."
+  is_abstract: true
+  opt_uses:
+  - heating_percentage_command_1
+  - discharge_air_temperature_sensor_1
+  - heating_percentage_command_2
+  - discharge_air_temperature_sensor_2
+  uses:
+  - zone_air_temperature_setpoint_1
+  - zone_air_temperature_sensor_1
+  - heater_run_command_1
+  - heater_run_status_1
+  - zone_air_temperature_setpoint_2
+  - zone_air_temperature_sensor_2
+  - heater_run_command_2
+  - heater_run_status_2
   implements:
   - CONTROL
 
