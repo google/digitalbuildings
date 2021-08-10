@@ -296,3 +296,15 @@ HWSRSR:
   is_abstract: true
   implements:
   - RSR
+
+ADY:
+  description: "Air dryer."
+  is_abstract: true
+  implements:
+  - EQUIPMENT
+
+CMP:
+  description: "Air compressor."
+  is_abstract: true
+  implements:
+  - EQUIPMENT

@@ -1,4 +1,4 @@
-# Copyright 2020 Google LLC
+# Copyright 2021 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the License);
 # you may not use this file except in compliance with the License.
@@ -12,35 +12,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# Lighting device group
 
-LT_SS:
-  id: "15296583474186551296"
-  description: "Standard light."
+LGRP_DC:
+  description: "Lighting group control module with brightness control."
   is_canonical: true
   implements:
-  - LT
-  - SS
-
-LT_DC:
-  id: "18377045619307970560"
-  description: "Even more standaard light with dimming control."
-  is_canonical: true
-  implements:
-  - LT
-  - DC 
-
-LT_DC_SC:
-  id: "16395461783264952320"
-  description: "Standard light with dimming control and scene control."
-  is_canonical: true
-  implements:
-  - LT
-  - DC 
-  - SC
-
-LT_DPC:
-  description: "Dimmer lighting group control module."
-  is_canonical: true
-  implements:
-  - LT
-  - DPC
+    - LGRP
+    - DC
