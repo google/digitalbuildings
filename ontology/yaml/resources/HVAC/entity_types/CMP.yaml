@@ -16,14 +16,14 @@
 ### Canonical Types  ###
 ########################
 
-CMP_BS:
+CMP_SS:
   description: "Basic air compressor."
   is_canonical: true
   implements:
   - CMP
   - SS
 
-CMP_BS_WDPM:
+CMP_SS_WDPM:
   description: "Basic features of air compressor."
   is_canonical: true
   implements:
