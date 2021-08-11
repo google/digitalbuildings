@@ -1,0 +1,27 @@
+DWST_CHDT_SWTC_CPC:
+  description: "Domestic water system with condensing water heat exhanger without bypass valve"
+  implements:
+  - DWST
+  - CWDT
+  - SWTC
+  - CPC
+  uses:
+  - potable_water_high_temperature_sensor
+  - potable_water_medium_temperature_sensor
+  - potable_water_low_temperature_sensor
+
+DWST_SWTC_CPC_BYPVPM:
+  description: "Domestic water system with bypass valve"
+  implements:
+  - DWST
+  - SWTC
+  - CPC
+  - BYPVPM
+  uses:
+  - potable_water_high_temperature_sensor
+  - potable_water_medium_temperature_sensor
+  - potable_water_low_temperature_sensor
+
+
+
+

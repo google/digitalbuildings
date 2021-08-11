@@ -1137,3 +1137,59 @@ FCU_RHC_DFVSC_RTC:
   - low_return_air_temperature_alarm
   - high_return_air_relative_humidity_alarm
   - low_return_air_relative_humidity_alarm
+
+#Additional types for CH ZRH EURD
+FCU_NON_CANONICAL_TYPE_1:
+  description: "Typical chilled water FCU with cooling-only (discharge control) for MDF rooms,
+                including discharge fan speed control and chilled water valve control"
+  implements:
+  - FCU
+  - CHWZC
+  - SWISOVPM
+  - INCOMPLETE
+  uses:
+  - discharge_fan_run_command
+  - discharge_fan_speed_percentage_sensor
+  - chilled_supply_water_temperature_sensor
+  - chilled_return_water_temperature_sensor
+  - water_leak_alarm
+  - maintenance_alarm
+  - master_alarm
+
+FCU_NON_CANONICAL_TYPE_2:
+  description: "Typical chilled water FCU with cooling-only (discharge control) for IDF rooms,
+                including discharge fan speed control"
+  implements:
+  - FCU
+  - SWISOVPM
+  - INCOMPLETE
+  uses:
+  - discharge_fan_run_command
+  - discharge_fan_speed_percentage_sensor
+  - chilled_supply_water_temperature_sensor
+  - chilled_return_water_temperature_sensor
+  - water_leak_alarm
+  - condensate_water_pump_alarm
+  - master_alarm
+  - supply_fan_failed_alarm
+  - return_air_temperature_sensor
+  - return_air_temperature_setpoint
+
+
+FCU_NON_CANONICAL_TYPE_3:
+  description: "Typical chilled water FCU with cooling-only (discharge control) for technical rooms,
+                including discharge fan speed sensor"
+  implements:
+  - FCU
+  - SWISOVPM
+  - INCOMPLETE
+  uses:
+  - discharge_fan_run_command
+  - discharge_fan_speed_percentage_sensor
+  - chilled_supply_water_temperature_sensor
+  - chilled_return_water_temperature_sensor
+  - master_alarm
+  - supply_fan_failed_alarm
+  - condensate_water_pump_alarm
+  - return_air_temperature_sensor
+  - return_air_temperature_setpoint

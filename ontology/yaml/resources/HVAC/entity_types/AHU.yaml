@@ -3755,3 +3755,61 @@ AHU_US_SVL_MAT2_4:
   - supply_fan_speed_frequency_sensor
   - supply_fan_speed_percentage_command
   - supply_air_flowrate_sensor
+
+
+
+#Entity types for CH_ZRH_EURD
+#Ahu's on Landlord's side
+
+AHU_NON_CANONICAL_TYPE_1:
+  description: "Datapoint from for Ahu's on Landlords side."
+  implements:
+  - AHU
+  - LANDLORD
+  uses:
+  - run_command
+  - supply_air_temperature_setpoint
+  - master_alarm
+  - run_status
+  - supply_air_temperature_sensor
+
+
+#Ahu's on Google's side
+AHU_NON_CANONICAL_TYPE_2:
+  description: "Ahu with variable speed supply and exhaust air fans, air cooler, hair heater, and hru."
+  implements:
+  - AHU
+  - VOADM
+  - SFVSC
+  - SSPC
+  - SFSS
+  - STC
+  - HHRU
+  - HWSC
+  - CHWSC
+  - EFVSC
+  - ESPC
+  - EDPM
+  - EFSS
+  - RTM
+  - ZHM
+
+AHU_NON_CANONICAL_TYPE_3:
+  description: "Ahu with variable speed supply and exhaust air fans, air cooler, hair heater, and hru.-Incomplete"
+  implements:
+  - AHU
+  - INCOMPLETE
+  - VOADM
+  - SFVSC
+  - SSPC
+  - SFSS
+  - STC
+  - PHRU
+  - HWSC
+  - CHWSC
+  - EFVSC
+  - ESPC
+  - EDPM
+  - EFSS
+  - RTM
+  - ZHM
