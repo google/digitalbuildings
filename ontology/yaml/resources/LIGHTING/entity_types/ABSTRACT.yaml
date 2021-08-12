@@ -50,18 +50,21 @@ SC:
   - scene_index_command
 
 BM:
+  id: "3713325232589635584"
   description: " Battery power status monitoring."
   is_abstract: true
   uses:
   - battery_charge_status
 
 DPC:
+  id: "11907950210032074752"
   description: " Dimmer control."
   is_abstract: true
   uses:
   - dimmer_percentage_command
 
 SCZ:
+  id: "2665719349737684992"
   is_abstract: true
   description: "Scene control for a device and zone."
   uses:
@@ -69,6 +72,7 @@ SCZ:
   - zone_scene_command
 
 IS:
+  id: "10736169881985613824"
   is_abstract: true
   description: "Illuminance sensing."
   uses:

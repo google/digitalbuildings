@@ -179,6 +179,7 @@ HWS_SWTC_WDPC_SWTCSCM_WDPCSCM:
   - WDPCSCM
 
 HWS_SS_ALS:
+  id: "10375881911795974144"
   description: "Heating water system with optional alarm, mode and status are being operated and monitored."
   is_canonical: true
   implements:
@@ -192,6 +193,7 @@ HWS_SS_ALS:
   - control_status
 
 HWS_SS_WDT:
+  id: "8124926523040858112"
   description: "Heating water system with temperature reading between return/supply water"
   is_canonical: true
   implements:

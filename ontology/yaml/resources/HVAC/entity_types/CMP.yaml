@@ -17,6 +17,7 @@
 ########################
 
 CMP_SS:
+  id: "5566881934694416384"
   description: "Basic air compressor."
   is_canonical: true
   implements:
@@ -24,6 +25,7 @@ CMP_SS:
   - SS
 
 CMP_SS_WDPM:
+  id: "4395946031578087424"
   description: "Basic features of air compressor."
   is_canonical: true
   implements:
@@ -36,4 +38,3 @@ CMP_SS_WDPM:
   - run_mode
   - schedule_run_command
   - control_status
-
