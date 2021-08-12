@@ -369,6 +369,7 @@ VAV_SD_DSP_HWDC_DSPZDHC:
   - DSPZDHC
 
 VAV_ZTM_PDSCV_SFM:
+  id: "2684578173177298944"
   description: "VAV with supply air and zone air monitoring"
   is_canonical: true
   implements:

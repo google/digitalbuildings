@@ -343,6 +343,7 @@ EFVSC:
   - OPERATIONAL
 
 VSFC:
+  id: "17941929285778407424"
   description: "Variable speed control or monitor in frequency"
   is_abstract: true
   uses:
@@ -386,6 +387,7 @@ DFVSC:
 
 
 DFVSFC:
+  id: "3819485279274663936"
   description: "Variable speed control with frequency setting for discharge fans."
   is_abstract: true
   uses:
@@ -2393,6 +2395,7 @@ OAFMC:
   - CONTROL
 
 OAMC:
+  id: "9583248377378766848"
   description: "Outside air flow control."
   is_abstract: true
   opt_uses:
@@ -3674,6 +3677,7 @@ DRSM8X:
 
 
 DICM:
+  id: "4971562358951378944"
   description: "Damper isolation control and monitoring. "
   is_abstract: true
   uses:
@@ -3682,6 +3686,7 @@ DICM:
    - supply_air_isolation_damper_command
 
 UV:
+  id: "6143342686997839872"
   description: "Ultraviolet lamp operation."
   is_abstract: true
   opt_uses:
@@ -3691,6 +3696,7 @@ UV:
   - ultraviolet_lamp_run_status
 
 H3X:
+  id: "3243024526971240448"
   description: "Heater monitoring."
   is_abstract: true
   implements:
@@ -3704,6 +3710,7 @@ H3X:
   - heater_run_command_3
 
 CHWBRC:
+  id: "9602107200818380800"
   description: "Chilled water valve binary (open/closed) monitoring/controlling. Return air temperature control."
   is_abstract: true
   implements:
@@ -3714,6 +3721,7 @@ CHWBRC:
   - return_air_temperature_setpoint
 
 CHWISOVPM:
+  id: "10952342664099397632"
   description: "Chllled water isolation valve control."
   is_abstract: true
   implements:
@@ -3723,6 +3731,7 @@ CHWISOVPM:
   - chilled_water_isolation_valve_percentage_sensor
 
 CWCS:
+  id: "1207397495399776256"
   description: "Condensing water valve control."
   is_abstract: true
   implements:
@@ -3732,6 +3741,7 @@ CWCS:
   - condensing_water_valve_percentage_sensor
 
 DPM:
+  id: "14194934395806154752"
   description: "Damper percentage control."
   is_abstract: true
   implements:
@@ -3741,6 +3751,7 @@ DPM:
   - damper_percentage_sensor
 
 DFVSMC:
+  id: "6412714239709937664"
   description: "Variable speed control mode for discharge fans."
   is_abstract: true
   uses:
@@ -3751,6 +3762,7 @@ DFVSMC:
   - OPERATIONAL
 
 DFVDSC:
+  id: "7493578150278856704"
   description: "Discharge fan control with toggled variable or discrete speed control. This allows the fan to run either VFD or discrete speed stages (LOW/MED/HIGH, etc.) and to switch between the mode."
   is_abstract: true
   uses:
@@ -3762,6 +3774,7 @@ DFVDSC:
   - OPERATIONAL
 
 DFVDSFC:
+  id: "15636086276564713472"
   description: "Discharge fan control with toggled variable or discrete speed (frequency) control. This allows the fan to run either VFD or discrete speed stages (LOW/MED/HIGH, etc.) and to switch between the mode."
   is_abstract: true
   uses:
@@ -3813,6 +3826,7 @@ WDPCSCM:
   - differential_pressure_setpoint
 
 CSWIVS:
+  id: "359876340523991040"
   description: "Condensing return water isolation valve control."
   is_abstract: true
   implements:
@@ -3841,6 +3855,7 @@ CSWIVS:
   - condensing_return_water_isolation_valve_status_14
 
 CRWIVS:
+  id: "10755028705425227776"
   description: "Condensing supply water isolation valve control."
   is_abstract: true
   implements:
@@ -3869,6 +3884,7 @@ CRWIVS:
   - condensing_supply_water_isolation_valve_status_14
 
 CSWTC:
+  id: "14772239573039710208"
   description: "Condensing supply water temperature control."
   is_abstract: true
   implements:

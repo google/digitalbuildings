@@ -15,6 +15,7 @@
 # Lighting device group
 
 LGRP_DC:
+  id: "10178567953121804288"
   description: "Lighting group control module with brightness control."
   is_canonical: true
   implements:

@@ -52,12 +52,14 @@ LPA:
   - lost_power_alarm
 
 WLA:
+  id: "10160553554612322304"
   description: "Water leak monitoring."
   is_abstract: true
   uses:
   - water_leak_alarm
 
 FA2X:
+  id: "16519636228459462656"
   description: "Fire alarm monitoring."
   is_abstract: true
   uses:

@@ -58,6 +58,7 @@ DMP_SDBPC_RMM:
   - RMM
 
 DMP_DICM:
+  id: "8449185696211533824"
   description: "Controlling and monitoring damper isolation system."
   is_canonical: true
   implements:
@@ -98,4 +99,3 @@ DMP_US_SBO_901_1:
   uses:
   - east_exhaust_air_damper_percentage_command
   - west_exhaust_air_damper_percentage_command
-

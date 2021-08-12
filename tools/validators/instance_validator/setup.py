@@ -30,7 +30,7 @@ setup(
     install_requires=['protobuf>=3.14.0',
                       'ruamel.yaml==0.15.93',
                       'strictyaml==1.1.0',
-                      'google-cloud-pubsub==2.6.1',
+                      'google-cloud-pubsub',
                       'google-auth<2.0',
                       'googleapis-common-protos==1.52.0'],
     python_requires='>=3.7',
