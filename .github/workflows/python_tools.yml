@@ -55,7 +55,7 @@ jobs:
     - name: Ontology Explorer Install dependencies
       run: |
         python setup.py install
-      working-directory: ./tools/explorer/instance_validator
+      working-directory: ./tools/explorer
     - name: Run Pylint on Ontology Explorer
       run: |
         pylint --rcfile=./styles/pylintrc ./tools/explorer
