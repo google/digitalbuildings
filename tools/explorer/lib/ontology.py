@@ -1,7 +1,4 @@
-import sys
 from typing import List
-
-sys.path.insert(1, '../validators/ontology_validator/')
 
 from yamlformat.validator.entity_type_lib import EntityType
 from yamlformat.validator.presubmit_validate_types_lib import ConfigUniverse

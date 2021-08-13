@@ -1,7 +1,3 @@
-import sys
-
-sys.path.insert(1, '../validators/ontology_validator/')
-
 class StandardField(object):
     """
     A class to represent a generic field without increment or optionality
