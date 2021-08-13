@@ -8,10 +8,10 @@ from model import StandardField
 from model import EntityTypeField
 
 class Ontology(object):
-    """Class defining an implementation of Google's ConfigUniverse as an ontology
+    """Class providing an interface to do lookups on a DigitalBuildings ontology
 
        Args:
-            universe: an instantiated ConfigUniverse Object
+            universe: an instantiated ConfigUniverse Object with inherited fields expanded
 
        Attributes:
             universe: A ConfigUniverse object detailing the various universes in the ontology
@@ -19,13 +19,14 @@ class Ontology(object):
        Returns:
             An instance of Ontology class
     """
-
+    
+    #TODO: Validate that universe has types expanded and fast-fail if not
     def __init__(self, universe: ConfigUniverse):
         super().__init__()
         self.universe = universe
 
     def GetFieldsForTypeName(self, namespace: str, entity_type_name: str, required_only: bool = False) -> List[EntityTypeField]:
-        """gets a list of fields for a given typename within a namespace
+        """Gets a list of fields for a given typename within a namespace
 
            Args:
                 namespace: the name of the namespace as a string
@@ -38,13 +39,13 @@ class Ontology(object):
         pass
      
     def GetEntityTypesFromFields(self, field_list: List[StandardField], general_type: str = None) -> List[EntityType]:
-        """gets a list of EntityType objects matching a given a list of StandardField tuples
+        """Gets a list of EntityType objects matching a given a list of StandardField tuples
 
            Args:
                 field_list: a list of StandardField tuples to match to an entity
                 general_type: a string indicating a general type name to narrow return results
 
-            Returns:
+           Returns:
                 entities: a list of EntityType objects matching the provided list of fields
         """
         pass

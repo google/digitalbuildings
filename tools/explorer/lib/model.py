@@ -21,11 +21,11 @@ class StandardField(object):
         self._name = standard_field_name
 
     def GetNamespaceName() -> str:
-        """Returns the private namespace variable as a string"""
+        """Returns namespace variable as a string"""
         return self._namespace
 
     def GetStandardFieldName() -> str:
-        """Returns the private field name as a string"""
+        """Returns the unqualified field name without any increment as a string"""
         return self._name
 
 class EntityTypeField(StandardField):
