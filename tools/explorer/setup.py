@@ -23,11 +23,6 @@ setup(
     license='Apache License',
     author='Travis Welch',
     packages=find_packages(),
-    install_requires=['absl-py',
-                      'pyglib',
-                      'pyyaml>=5.3',
-                      'google-cloud-pubsub==2.6.1',
-                      'google-auth<2.0',
-                      'googleapis-common-protos==1.52.0'],
+    install_requires=[],
     python_requires='>=3.7',
 )
