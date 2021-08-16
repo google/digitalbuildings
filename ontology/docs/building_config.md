@@ -140,6 +140,7 @@ ENTITY-NAME:
       # source_device_field : target_device_field
       supply_air_damper_command_1: supply_air_damper_position_command
       zone_air_temperature_sensor_1: zone_air_temperature
+  cloud_device_id: device-id-from-cloud-iot-registry
   translation:
     zone_air_temperature_sensor:
       present_value: "points.temp_1.present_value"
@@ -159,6 +160,8 @@ ENTITY-NAME:
 *   **Type:** A valid, fully qualified Digital Buildings entity type that
     represents this entity
 *   **Id:** A globally unique identifier for this entity.
+*   **cloud_device_id:** the cloud device id from the cloud iot registry. 
+    This field is mandatory when a translation exists.
 *   **Connections:** Used to specify connections from other entities (sources)
     pointing to this entity, with connection types. Entities are keys and cannot
     be repeated. Values are one or more connections, specified as a single
