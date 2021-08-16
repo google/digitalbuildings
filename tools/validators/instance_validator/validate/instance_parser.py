@@ -102,6 +102,7 @@ def _MergeSchemas(first: Dict[syaml.ScalarValidator, syaml.Validator],
 
 #### Public Text parsing Constants ####
 ENTITY_ID_KEY = 'id'
+ENTITY_CLOUD_DEVICE_ID_KEY = 'cloud_device_id'
 ENTITY_TYPE_KEY = 'type'
 ENTITY_OPERATION_KEY = 'operation'
 
@@ -165,6 +166,9 @@ _METADATA_SCHEMA = syaml.Map({
 })
 
 _ENTITY_ID_SCHEMA = {ENTITY_ID_KEY: syaml.Str()}
+_ENTITY_CLOUD_DEVICE_ID_SCHEMA = {
+    syaml.Optional(ENTITY_CLOUD_DEVICE_ID_KEY): syaml.Str()
+}
 _ENTITY_ATTRIB_SCHEMA = {
     # TODO(b/166472270): revisit connection syntax
     #  validation. Current code might not follow
@@ -182,7 +186,9 @@ _ENTITY_ATTRIB_SCHEMA = {
     syaml.Optional(METADATA_KEY):
         syaml.Any()
 }
-_ENTITY_BASE_SCHEMA = _MergeSchemas(_ENTITY_ID_SCHEMA, _ENTITY_ATTRIB_SCHEMA)
+_ENTITY_IDS_SCHEMA = _MergeSchemas(_ENTITY_ID_SCHEMA,
+                                   _ENTITY_CLOUD_DEVICE_ID_SCHEMA)
+_ENTITY_BASE_SCHEMA = _MergeSchemas(_ENTITY_IDS_SCHEMA, _ENTITY_ATTRIB_SCHEMA)
 _ENTITY_INIT_SCHEMA = _MergeSchemas(_ENTITY_BASE_SCHEMA,
                                     {ENTITY_TYPE_KEY: syaml.Str()})
 _ENTITY_UPDATE_SCHEMA = _MergeSchemas(
@@ -353,6 +359,10 @@ class InstanceParser():
       raise KeyError('No valid _config_mode is set')
 
     entity.revalidate(schema)
+
+    if TRANSLATION_KEY in entity.data.keys():
+      if ENTITY_CLOUD_DEVICE_ID_KEY not in entity.data.keys():
+        raise KeyError('cloud_device_id required when translation is present.')
 
   def _ValidateEntityBlock(self, block: syaml.YAML) -> None:
     """Validates a block of entities and adds them to the validated blocks.

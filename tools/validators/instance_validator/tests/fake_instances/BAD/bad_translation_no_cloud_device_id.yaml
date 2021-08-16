@@ -12,26 +12,18 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-CHWS_WDT-17:
-  type: HVAC/CHWS_WDT
-  id: CDM/123456
-  cloud_device_id: "foobar"
-  translation:
-    return_water_temperature_sensor:
-      present_value: "points.return_water_temperature_sensor.present_value"
-      units:
-        key: "points.return_water_temperature_sensor.units"
-        values:
-          degrees_celsius: "degC"
-          degrees_fahrenheit: "degF"
-    supply_water_temperature_sensor:
-      present_value: "points.supply_water_temperature_sensor.present_value"
-      units:
-        key: "points.supply_water_temperature_sensor.units"
-        values:
-          degrees_celsius: "degC"
-          degrees_fahrenheit: "degF"
+# This config file is invalid because it fails to pass the syntax expectations
+# for translation. The devices listed in translation need to follow specific
+# formats, and `invalid_key` is not a valid part of any of them.
 
 UK-LON-S2:
   type: FACILITIES/BUILDING
   id: FACILITIES/123456
+  translation:
+    zone_air_temperature_sensor:
+      present_value: "temp_1"
+      units:
+        key: "units"
+        values:
+          degrees_celsius: "degC"
+          degrees_fahrenheit: "degF"

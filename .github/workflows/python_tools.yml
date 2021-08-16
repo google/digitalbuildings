@@ -15,7 +15,7 @@ on:
 
 jobs:
   build:
-  
+
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -63,7 +63,7 @@ jobs:
       run: |
        python -m unittest discover -p '*_test.py' --failfast -v
       working-directory: ./tools/validators/instance_validator
-  
+
      #---------- RDF Generator ----------# 
     - name:  RDF Generator Install dependencies
       run: |
@@ -76,4 +76,4 @@ jobs:
       working-directory: ./tools/rdf_generator/rdfformat/tests
     - name: Run Pylint on RDF Generator
       run: |
-        pylint --rcfile=./styles/pylintrc ./tools/rdf_generator      
+        pylint --rcfile=./styles/pylintrc ./tools/rdf_generator  
