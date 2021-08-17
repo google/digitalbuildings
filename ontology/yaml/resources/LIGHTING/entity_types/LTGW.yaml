@@ -14,6 +14,10 @@
 
 # Canonical types for Lighting Gateways
 
-
+LTGW_BS:
+  description: "Basic lighting gateway."
+  is_abstract: true
+  implements:
+  - LTGW
 
 

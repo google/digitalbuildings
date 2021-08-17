@@ -20,8 +20,10 @@ current:
 energy:
 - joules: STANDARD
 - kilowatt_hours
+- megawatt_hours
 flowrate:
 - cubic_meters_per_second: STANDARD
+- cubic_meters_per_minute
 - cubic_feet_per_minute
 - gallons_per_minute
 - liters_per_second
@@ -48,8 +50,10 @@ power:
 - tons_of_refrigeration
 - kilovolt_amperes
 - kilovolt_amperes_reactive
+- megawatts
 pressure:
 - pascals: STANDARD
+- bars
 - inches_of_water
 - pounds_force_per_square_inch
 resistance:

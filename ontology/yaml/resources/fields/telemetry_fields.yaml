@@ -65,10 +65,14 @@ literals:
   - OFF
 - discharge_fan_speed_mode:
   - AUTO
+  - AUTOLOW
+  - AUTOMEDIUM
+  - AUTOHIGH
   - LOW
   - MEDIUM
   - HIGH
   - OFF
+  - VFD
 - discharge_fan_speed_percentage_command
 - dryer_run_status:
   - ON
@@ -655,7 +659,9 @@ literals:
 - low_limit_supply_air_ventilation_flowrate_setpoint
 - low_limit_supply_air_flowrate_setpoint 
 - high_limit_supply_air_flowrate_setpoint # used when the device doesn't necessarily provide a cooling max flow
-- schedule_run_command
+- schedule_run_command:
+  - ON
+  - OFF
 - supply_air_dewpoint_temperature_sensor
 - supply_air_dewpoint_temperature_setpoint
 - ultraviolet_lamp_run_command:
