@@ -819,6 +819,9 @@ literals:
   - ACTIVE
   - INACTIVE
 - panel_alarm
+- supply_air_flowrate_status:
+  - ON
+  - OFF
 
 
 # Added for Machine Learning Pilot
