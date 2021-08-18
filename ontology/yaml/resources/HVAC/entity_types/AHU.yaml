@@ -2723,6 +2723,7 @@ AHU_DFSS_DTC_CHWVM_RTM:
   - RTM
   opt_uses:
   - lost_power_alarm
+  - discharge_air_flowrate_status
   - filter_alarm
   - control_mode
   - run_mode
