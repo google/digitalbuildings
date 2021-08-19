@@ -202,10 +202,8 @@ HWS_SS_WDT:
   - WDT
   opt_uses:
   - schedule_run_command
-  - control_mode
   - run_mode
   - lost_power_alarm
-  - control_status
 
 HWS_SS_RWTC_SWTC:
   description: "Heating water system with temperature control between return/supply water"
@@ -217,11 +215,8 @@ HWS_SS_RWTC_SWTC:
   - SWTC
   opt_uses:
   - schedule_run_command
-  - control_mode
   - run_mode
   - lost_power_alarm
-  - control_status
-
 
 ###################################
 ### Existing Non-standard Types ###
