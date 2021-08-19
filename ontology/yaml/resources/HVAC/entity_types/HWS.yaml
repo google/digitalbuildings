@@ -204,6 +204,7 @@ HWS_SS_WDT:
   - schedule_run_command
   - run_mode
   - lost_power_alarm
+  - control_status
 
 HWS_SS_RWTC_SWTC:
   description: "Heating water system with temperature control between return/supply water"
