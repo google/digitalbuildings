@@ -298,17 +298,18 @@ HWSRSR:
   - RSR
 
 ADY:
+  id: "378735163963604992"
   description: "Air dryer."
   is_abstract: true
   implements:
   - EQUIPMENT
 
 CMP:
+  id: "6125328288488357888"
   description: "Air compressor."
   is_abstract: true
   implements:
   - EQUIPMENT
-
 
 # New General Types for CH ZRH eurd
 RP:

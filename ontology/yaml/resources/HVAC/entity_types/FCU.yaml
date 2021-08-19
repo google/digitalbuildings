@@ -746,6 +746,7 @@ FCU_DFMSS_DSP_ZHM_RTM_CHWZC_CHWDT:
   - CHWDT
 
 FCU_DFVSMC_CHWBRC:
+  id: "15348700325343133696"
   description: "Chilled water FCU with chilled water percentage mode, discharge fan mode and return air temp control."
   is_canonical: true
   implements:
@@ -759,6 +760,7 @@ FCU_DFVSMC_CHWBRC:
   - lost_power_alarm
 
 FCU_DFVDSC_CHWBRC:
+  id: "11583691036861399040"
   description: "Chilled water FCU with chilled water percentage mode, discharge fan mode or discrete speed control, and return air temp control."
   is_canonical: true
   implements:
@@ -772,6 +774,7 @@ FCU_DFVDSC_CHWBRC:
   - lost_power_alarm
 
 FCU_DFVDSFC_CHWBRC:
+  id: "4990421182390992896"
   description: "Chilled water FCU with chilled water percentage mode, discharge fan mode or discrete speed (frequency) control, and return air temp control."
   is_canonical: true
   implements:
@@ -786,6 +789,7 @@ FCU_DFVDSFC_CHWBRC:
 
 
 FCU_DFVSFC_CHWBRC:
+  id: "16716950187133632512"
   description: "Chilled water FCU with chilled water percentage mode, discharge fan frequency and return air temp control."
   is_canonical: true
   implements:
@@ -799,6 +803,7 @@ FCU_DFVSFC_CHWBRC:
 
 
 FCU_DFVSMC_CHWRC:
+  id: "6972005018434011136"
   description: "Chilled water FCU with binary mode (open/closed), discharge fan mode or discrete speed control, and return air temp control."
   is_canonical: true
   implements:
@@ -812,6 +817,7 @@ FCU_DFVSMC_CHWRC:
   - lost_power_alarm
 
 FCU_DFVDSC_CHWRC:
+  id: "4106871230496243712"
   description: "Chilled water FCU with binary mode (open/closed), discharge fan mode or discrete speed (frequency) control and return air temp control."
   is_canonical: true
   implements:
@@ -825,6 +831,7 @@ FCU_DFVDSC_CHWRC:
   - lost_power_alarm
 
 FCU_DFVDSFC_CHWRC:
+  id: "14213793219245768704"
   description: "Chilled water FCU with binary mode (open/closed), discharge fan mode and return air temp control."
   is_canonical: true
   implements:
@@ -838,6 +845,7 @@ FCU_DFVDSFC_CHWRC:
   - lost_power_alarm
 
 FCU_DFVSFC_CHWRC:
+  id: "13042857316129439744"
   description: "Chilled water FCU with binary mode (open/closed),discharge fan frequency and return air temp control."
   is_canonical: true
   implements:
@@ -1116,6 +1124,7 @@ FCU_US_MTV_1950_3:
   - cooling_stage_run_count
 
 FCU_RHC_DFVSC_RTC:
+  id: "8431171297702051840"
   description: "CRAC with return air temp/humidity control and discharge/cooling fan monitor."
   implements:
   - FCU

@@ -49,6 +49,7 @@ LS_MTS:
   - zone_air_temperature_sensor
 
 LS_IS_OS:
+  id: "1152509874941198336"
   description: "Illuminance sensing and zone occupancy monitoring"
   is_canonical: true
   implements:
@@ -57,6 +58,7 @@ LS_IS_OS:
   - OS
 
 LS_OS:
+  id: "12736612541468246016"
   description: "Zone occupancy monitoring"
   is_canonical: true
   implements:

@@ -60,12 +60,12 @@ LDS_GASDET:
 
 
 LDS_WLA:
+  id: "12466396563826016256"
   description: "Water Leak sensing device."
   is_canonical: true
   implements:
   - LDS
   - WLA
-
 
 
 

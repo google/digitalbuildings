@@ -2668,6 +2668,7 @@ AHU_BYPSSPC_DX3SC_ECON_HT2SC_SFSS_SFVSC:
   - SFVSC
 
 AHU_DFSS_UV_H3X_DTC_DFVSFC_CHWVM:
+  id: "4034813636458315776"
   description: "AHU with discharge air/fan, chilled water valve and UV lamp operation."
   is_canonical: true
   implements:
@@ -2688,6 +2689,7 @@ AHU_DFSS_UV_H3X_DTC_DFVSFC_CHWVM:
   - discharge_air_flowrate_status
 
 AHU_DFSS_DTC_DFVSFC_CHWVM_RTM:
+  id: "10430769532254552064"
   description: "AHU with discharge air/fan and chilled water valve operation."
   is_canonical: true
   implements:
@@ -2710,6 +2712,7 @@ AHU_DFSS_DTC_DFVSFC_CHWVM_RTM:
   - entering_cooling_coil_temperature_sensor
 
 AHU_DFSS_DTC_CHWVM_RTM:
+  id: "11889091386592460800"
   description: "AHU with discharge air and chilled water valve operation."
   is_canonical: true
   implements:
@@ -2730,6 +2733,7 @@ AHU_DFSS_DTC_CHWVM_RTM:
   - control_status
 
 AHU_CHWDT_CHWVM_CLPM_DFSS_CHWZTC:
+  id: "13060871714638921728"
   description: "AHU with chilled water valve operation and discharge fan operation. Chilled return/supply temp and zone air temp monitoring."
   is_canonical: true
   implements:
@@ -2750,6 +2754,7 @@ AHU_CHWDT_CHWVM_CLPM_DFSS_CHWZTC:
   - control_status
 
 AHU_DFVSC_CHWVM_CLPM_DTC_UV_CO2C_MTM_OAFM_RHM_CHWDT_RTC:
+  id: "11313475059219169280"
   description: "AHU with discharge air, chilled water valve, discharge air/fan, CO2, UV and chilled supply/return water operation."
   is_canonical: true
   implements:
@@ -2779,6 +2784,7 @@ AHU_DFVSC_CHWVM_CLPM_DTC_UV_CO2C_MTM_OAFM_RHM_CHWDT_RTC:
   - smoke_alarm
 
 AHU_DTC_DFSS_CHWVM_OAFM_CLPM_CHWDT_CO2C_UV:
+  id: "13258185673313091584"
   description: "AHU with discharge air, chilled water valve, discharge air/fan, CO2, UV and chilled supply/return water operation."
   is_canonical: true
   implements:
@@ -2800,6 +2806,7 @@ AHU_DTC_DFSS_CHWVM_OAFM_CLPM_CHWDT_CO2C_UV:
   - control_status
 
 AHU_DTC_CHWVM_H3X_OAMC_DFVSC_UV_CO2C2X_ZHM_ZTM:
+  id: "5819083513827164160"
   description: "AHU with discharge air, chilled water valve, outside air, discharge air/fan, CO2, heater, UV and chilled supply/return water operation."
   is_canonical: true
   implements:
@@ -2824,6 +2831,7 @@ AHU_DTC_CHWVM_H3X_OAMC_DFVSC_UV_CO2C2X_ZHM_ZTM:
   - control_status
 
 AHU_CHWDT_CHWVM_CLPM_OAFM_STC_SFSS_UV_CO2C:
+  id: "7277405368165072896"
   description: "AHU with supply air, chilled water valve, outside air, supply air/fan, CO2, heater, UV and chilled supply/return water operation."
   is_canonical: true
   implements:
@@ -3755,8 +3763,6 @@ AHU_US_SVL_MAT2_4:
   - supply_fan_speed_frequency_sensor
   - supply_fan_speed_percentage_command
   - supply_air_flowrate_sensor
-
-
 
 #Entity types for CH_ZRH_EURD
 #Ahu's on Landlord's side

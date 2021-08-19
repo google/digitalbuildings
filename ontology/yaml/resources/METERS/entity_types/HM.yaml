@@ -27,6 +27,7 @@ HM_CHW:
   - cooling_thermal_energy_accumulator
 
 HM_CHW_WAC:
+  id: "7296264191604686848"
   description: "Cooling load heat meter with total chilled water volume accumulator."
   implements:
   - HM_CHW

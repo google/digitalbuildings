@@ -12,29 +12,18 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-########################
-### Canonical Types  ###
-########################
+# This config file is invalid because it fails to pass the syntax expectations
+# for translation. The devices listed in translation need to follow specific
+# formats, and `invalid_key` is not a valid part of any of them.
 
-CMP_SS:
-  id: "5566881934694416384"
-  description: "Basic air compressor."
-  is_canonical: true
-  implements:
-  - CMP
-  - SS
-
-CMP_SS_WDPM:
-  id: "4395946031578087424"
-  description: "Basic features of air compressor."
-  is_canonical: true
-  implements:
-  - CMP
-  - SS
-  - WDPM
-  opt_uses:
-  - lost_power_alarm
-  - control_mode
-  - run_mode
-  - schedule_run_command
-  - control_status
+UK-LON-S2:
+  type: FACILITIES/BUILDING
+  id: FACILITIES/123456
+  translation:
+    zone_air_temperature_sensor:
+      present_value: "temp_1"
+      units:
+        key: "units"
+        values:
+          degrees_celsius: "degC"
+          degrees_fahrenheit: "degF"

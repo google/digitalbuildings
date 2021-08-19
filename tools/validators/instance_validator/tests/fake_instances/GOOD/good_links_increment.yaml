@@ -31,6 +31,7 @@ VIRTUAL-ENTITY:
 PHYSICAL-ENTITY:
   type: HVAC/FCU_DFSS_CSP_DXZC
   id: CDM/123456
+  cloud_device_id: "foobar"
   translation:
     zone_air_temperature_sensor:
       present_value: "points.zone_air_temperature_sensor.present_value"
