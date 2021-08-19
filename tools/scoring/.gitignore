@@ -1,0 +1,4 @@
+.pytype/
+build/
+dist/
+scoring.egg-info/
