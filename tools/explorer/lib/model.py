@@ -1,8 +1,8 @@
-"""Helper Field model classes for Ontology explorer"""
+"""Helper Field model classes for Ontology explorer."""
+
 
 class StandardField(object):
-  """
-    A class to represent a generic field without increment or optionality
+  """A class to represent a generic field without increment or optionality.
 
     Args:
         namespace_name: the name of the field's namespace as a string
@@ -23,28 +23,22 @@ class StandardField(object):
     self._name = standard_field_name
 
   def GetNamespaceName(self) -> str:
-    """Returns namespace variable as a string"""
+    """Returns namespace variable as a string."""
     return self._namespace
 
   def GetStandardFieldName(self) -> str:
-    """Returns the unqualified field name
-    without any increment as a string"""
+    """Returns the unqualified field name without any increment as a string."""
     return self._name
 
-class EntityTypeField(StandardField):
-  """
-  A class to represent a field assigned to a type and extends StandardField
 
-  Args:
-      namespace_name: the name of the field's namespace as a string
-      standard_field_name: the name of the field as a string
-      increment: the increment of the field as a string
-      is_required: optionality of the field as a boolean
+class EntityTypeField(StandardField):
+  """A class to represent a field assigned to a type and extends StandardField.
 
   Attributes:
       increment: the increment of the field under a type
       is_required: optionality of the field relative to it's Entity Type#
                    Configure the Azure provider
+
 
   Returns:
       An instance of the EntityTypeField class
@@ -55,15 +49,23 @@ class EntityTypeField(StandardField):
                standard_field_name: str,
                is_required: bool,
                increment: str = ''):
+    """Initializs the EntityTypeField.
+
+    Args:
+       namespace_name: the name of the field's namespace as a string.
+       standard_field_name: the name of the field as a string.
+       is_required: optionality of the field as a boolean.
+       increment: the increment of the field as a string.
+    """
     super().__init__(namespace_name, standard_field_name)
     self._increment = increment
     self._is_required = is_required
 
   def GetIncrement(self) -> str:
-    """Returns the EntityType Field's increment as a string"""
+    """Returns the EntityType Field's increment as a string."""
     return self._increment
 
   def IsRequired(self) -> bool:
-    """Returns the optionality of the field as a boolean"""
+    """Returns the optionality of the field as a boolean."""
     return self._is_required
 

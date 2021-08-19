@@ -12,19 +12,17 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Setup file for the ontology explorer."""
+SDC_EXT-17:
+  type: HVAC/SDC_EXT
+  id: CDM/123456
+  translation:
+    shade_extent_percentage_command:
+      present_value: "points.shade_extent_percentage_command.present_value"
+      units:
+        key: "points.shade_extent_percentage_command.units"
+        values:
+          percent: "%"
 
-from setuptools import find_packages
-from setuptools import setup
-
-
-setup(
-    name='ontology-explorer',
-    version='0.0.1',
-    url='https://github.com/google/digitalbuildings',
-    license='Apache License',
-    author='Travis Welch',
-    packages=find_packages(),
-    install_requires=[],
-    python_requires='>=3.7',
-)
+UK-LON-S2:
+  type: FACILITIES/BUILDING
+  id: FACILITIES/123456
