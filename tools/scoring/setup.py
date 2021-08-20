@@ -9,6 +9,6 @@ setup(
     author_email='',
     description='',
     packages=find_packages(),
-    install_requires=[],
+    install_requires=['datetime', 'dirhash'],
     python_requires='>=3.7',
 )

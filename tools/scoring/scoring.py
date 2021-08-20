@@ -8,16 +8,14 @@
 # Integration
 # The new functionality should take advantage of existing code for reading and validating inputs wherever possible.
 
-from score import score as execute
-from datetime import datetime, timezone
+from score.score import Score
 
-print('Let\'s get you a score…')
+print('Let\'s get you a score…\n')
 
-timestamp = datetime.now(timezone.utc)
-ontology = 'path'
-solution = 'path'
-proposed = 'path'
-additions = 'path'
+ontology = '/Users/atom/Documents/work/digitalbuildings/ontology/yaml'
+solution = '/Users/atom/Documents/work/digitalbuildings/ontology/yaml'
+proposed = '/Users/atom/Documents/work/digitalbuildings/ontology/yaml'
+additions = '/Users/atom/Documents/work/digitalbuildings/ontology/yaml'
 
 if __name__ == '__main__':
-  execute.Score(timestamp, ontology, solution, proposed, additions)
+  Score(ontology, solution, proposed, additions)
