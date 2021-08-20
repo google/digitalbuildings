@@ -7,6 +7,6 @@
 
 # This score should be calculated independently overall and for fields that were correctly identified as important.
 
-class UnitMapping():
+class UnitMapping:
     def __init__(self):
         return False

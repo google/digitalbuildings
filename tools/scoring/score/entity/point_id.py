@@ -7,6 +7,6 @@
 
 # Results can be viewed separately for reporting and virtual devices.
 
-class PointId():
+class PointId:
     def __init__(self):
         return False

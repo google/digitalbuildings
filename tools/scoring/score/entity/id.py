@@ -24,6 +24,6 @@
 
 # Again, reporting and virtual device results should be separable
 
-class EntityId():
+class EntityId:
     def __init__(self):
         return False

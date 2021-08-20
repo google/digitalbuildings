@@ -19,6 +19,6 @@
 
 # As with fields, exact matches should also be counted separately and types assigned to virtual devices counted separately from reporting devices.  It may be interesting to be able to see the median device score as well as the overall score for the building.
 
-class TypeId():
+class TypeId:
     def __init__(self):
         return False
