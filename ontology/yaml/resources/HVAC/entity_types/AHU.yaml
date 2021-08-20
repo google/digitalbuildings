@@ -2853,7 +2853,7 @@ AHU_CHWDT_CHWVM_CLPM_OAFM_STC_SFSS_UV_CO2C:
   - supply_fan_lost_power_alarm
   - control_status
   
- AHU_BSPC_DX3SC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC_STC_REFSM2X_REFPM2X:
+AHU_BSPC_DX3SC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC_STC_REFSM2X_REFPM2X:
   description: "Multi-zone AHU with refrigeration monitoring and supply air temperature and pressure control."
   is_canonical: true
   implements:
@@ -2879,7 +2879,7 @@ AHU_BSPC_DX4SC_ECONM_EDPM_EFSS_EFVSC_SFSS_SFVSC_SSPC_STC_SSPCSCM_STCSCM:
   - SSPCSCM
   - STCSCM
   
- AHU_BSPC_DX3SC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC_STC_REFSM2X_REFPM2X_SSPCSCM_STCSCM:
+AHU_BSPC_DX3SC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC_STC_REFSM2X_REFPM2X_SSPCSCM_STCSCM:
   description: "Multi-zone AHU with refrigeration monitoring and supply air temperature and pressure control with supervisor contron mode types (machine learning)."
   is_canonical: true
   implements:
