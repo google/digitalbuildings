@@ -675,6 +675,7 @@ class EntityInstance(findings_lib.Findings):
   def __init__(self,
                operation,
                entity_id,
+               cloud_device_id=None,
                namespace=None,
                type_name=None,
                translation=None,
@@ -686,6 +687,7 @@ class EntityInstance(findings_lib.Findings):
 
     self.operation = operation
     self.id = entity_id
+    self.cloud_device_id = cloud_device_id
     self.namespace = namespace
     self.type_name = type_name
     self.translation = translation
@@ -714,8 +716,10 @@ class EntityInstance(findings_lib.Findings):
           entity_yaml[parse.ENTITY_TYPE_KEY])
 
     translation = None
+    cloud_device_id = None
     if parse.TRANSLATION_KEY in entity_yaml:
       translation = _ParseTranslation(entity_yaml[parse.TRANSLATION_KEY])
+      cloud_device_id = entity_yaml[parse.ENTITY_CLOUD_DEVICE_ID_KEY]
 
     connections = None
     if parse.CONNECTIONS_KEY in entity_yaml:
@@ -733,5 +737,14 @@ class EntityInstance(findings_lib.Findings):
     if parse.ETAG_KEY in entity_yaml:
       etag = entity_yaml[parse.ETAG_KEY]
 
-    return cls(operation, entity_id, namespace, type_name, translation,
-               connections, links, etag, update_mask)
+    return cls(
+        operation,
+        entity_id,
+        cloud_device_id=cloud_device_id,
+        namespace=namespace,
+        type_name=type_name,
+        translation=translation,
+        connections=connections,
+        links=links,
+        etag=etag,
+        update_mask=update_mask)
