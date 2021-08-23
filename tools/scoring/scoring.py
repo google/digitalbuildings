@@ -8,14 +8,74 @@
 # Integration
 # The new functionality should take advantage of existing code for reading and validating inputs wherever possible.
 
+import argparse
+import sys
+
 from score.score import Score
 
 print('Let\'s get you a score…\n')
 
-ontology = '/Users/atom/Documents/work/digitalbuildings/ontology/yaml'
-solution = '/Users/atom/Documents/work/digitalbuildings/ontology/yaml'
-proposed = '/Users/atom/Documents/work/digitalbuildings/ontology/yaml'
-additions = '/Users/atom/Documents/work/digitalbuildings/ontology/yaml'
+def _ParseArgs() -> argparse.ArgumentParser:
+
+  parser = argparse.ArgumentParser(
+      description='Score an instance')
+
+  parser.add_argument(
+    '-o',
+    '--ontology',
+    dest='ontology',
+    required=False,
+    default='/Users/atom/Documents/work/digitalbuildings/ontology/yaml',
+    help='Absolute path for the directory which contains your ontology',
+    metavar='ontology')
+
+  parser.add_argument(
+    '-s',
+    '--solution',
+    dest='solution',
+    required=False,
+    default='/Users/atom/Documents/work/digitalbuildings/ontology/yaml',
+    help='Absolute path for the directory which contains your solution instance',
+    metavar='ontology')
+
+  parser.add_argument(
+    '-p',
+    '--proposed',
+    dest='proposed',
+    required=False,
+    default='/Users/atom/Documents/work/digitalbuildings/ontology/yaml',
+    help='Absolute path for the directory which contains your proposed instance (to be scored)',
+    metavar='ontology')
+
+  parser.add_argument(
+    '-a',
+    '--additions',
+    dest='additions',
+    required=False,
+    default='/Users/atom/Documents/work/digitalbuildings/ontology/yaml',
+    help='Type additions',
+    metavar='additions')
+
+  # parser.add_argument(
+  #   '-v',
+  #   '--verbose',
+  #   dest='verbose',
+  #   required=False,
+  #   default=False,
+  #   help='',
+  #   metavar='verbose')
+
+  # parser.add_argument(
+  #   # '-o',
+  #   '--output',
+  #   dest='output',
+  #   required=False,
+  #   default='object',
+  #   help='Output format',
+  #   metavar='output')
+
+  return parser
 
 if __name__ == '__main__':
-  Score(ontology, solution, proposed, additions)
+  args = _ParseArgs().parse_args(sys.argv[1:])
+  Score(args.ontology, args.solution, args.proposed, args.additions)
