@@ -426,3 +426,21 @@ DMP_US_MTV_1708_2: # Is Actually a VAV
   - SD
   - DDSP
   - INCOMPLETE
+
+
+#Additional Types for CH_ZRH_EURD
+VAV_SD_CO2C:
+  description: "CO2 control VAV, regardless of room temperature for single duct supply air VAV's"
+  is_canonical: true
+  implements:
+  - VAV
+  - SD
+  - CO2C
+
+VAV_RD_CO2C:
+  description: "CO2 control VAV, regardless of room temperature for return air VAV's"
+  is_canonical: true
+  implements:
+  - VAV
+  - RD
+  - CO2C
