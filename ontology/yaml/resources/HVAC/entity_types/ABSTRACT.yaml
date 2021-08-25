@@ -1903,6 +1903,20 @@ HWSC:
   implements:
   - CONTROL
 
+HW2SC:
+  description: "Two heating water valves on supply air side."
+  is_abstract: true
+  opt_uses:
+  - heating_thermal_power_capacity
+  - leaving_heating_coil_temperature_sensor
+  uses:
+  - heating_water_valve_percentage_command_1
+  - heating_water_valve_percentage_command_2
+  - supply_air_temperature_setpoint
+  - supply_air_temperature_sensor
+  implements:
+  - CONTROL
+
 HWZC:
   id: "12546235401653714944"
   description: "Heating water valve monitoring on zone side (DSP/CSP)."
