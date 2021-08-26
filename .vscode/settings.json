@@ -1,0 +1,6 @@
+{
+    "python.analysis.extraPaths": [
+        "./tools/validators/ontology_validator"
+    ],
+    "python.defaultInterpreterPath": "/usr/local/bin/python3.7"
+}
