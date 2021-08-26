@@ -231,3 +231,15 @@ HWS_US_MTV_2000_2:
   uses:
   - mixing_valve_percentage_command
   - heat_exchange_supply_water_isolation_valve_command
+
+# Non Standard Types for CH ZRH EURD
+HWS_SWTC_CPC:
+  description: "Simple hot water system with circulation pump"
+  implements:
+  - HWS
+  - SWTC
+  - CPC
+  uses:
+  - circulation_pump_speed_percentage_command
+  - circulation_pump_speed_percentage_setpoint
+  - failed_alarm

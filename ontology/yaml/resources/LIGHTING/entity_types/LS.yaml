@@ -64,3 +64,10 @@ LS_OS:
   implements:
   - LS
   - OS
+
+LS_LOS:
+  description: "Lighting system motion sensor."
+  is_canonical: true
+  implements:
+  - LS
+  - OS

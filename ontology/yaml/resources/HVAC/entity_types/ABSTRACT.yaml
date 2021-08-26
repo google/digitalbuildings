@@ -1903,6 +1903,20 @@ HWSC:
   implements:
   - CONTROL
 
+HW2SC:
+  description: "Two heating water valves on supply air side."
+  is_abstract: true
+  opt_uses:
+  - heating_thermal_power_capacity
+  - leaving_heating_coil_temperature_sensor
+  uses:
+  - heating_water_valve_percentage_command_1
+  - heating_water_valve_percentage_command_2
+  - supply_air_temperature_setpoint
+  - supply_air_temperature_sensor
+  implements:
+  - CONTROL
+
 HWZC:
   id: "12546235401653714944"
   description: "Heating water valve monitoring on zone side (DSP/CSP)."
@@ -3892,3 +3906,81 @@ CSWTC:
   uses:
   - condensing_supply_water_temperature_setpoint
   - condensing_supply_water_temperature_sensor
+
+#New abstracts for CH ZRH EURD
+CAM:
+  id: "2595109812513668048"
+  description: "ztc alarm monitoring based on moisture sensor on coil or in pan."
+  is_abstract: true
+  implements:
+  - MONITORING
+  uses:
+  - condensate_water_alarm
+
+DPHCC:
+  description: "Two-pipe heating and cooling control. Has a single control
+    valve that is fed by two separate headers for heating and cooling water.
+    There is an isolation valve for each incoming system and a single control
+    valve. Valve and mode control to zone temperature (heating/cooling
+    setpoint configuration)."
+  is_abstract: true
+  opt_uses:
+  - chilled_return_water_isolation_valve_percentage_command
+  - heating_return_water_isolation_valve_percentage_command
+  - heating_supply_water_isolation_valve_percentage_command
+  - chilled_supply_water_isolation_valve_percentage_command
+  - zone_air_cooling_temperature_setpoint
+  - zone_air_heating_temperature_setpoint
+  - condensate_water_alarm
+  - zone_conditioning_mode
+  - supply_water_valve_flowrate_sensor
+  uses:
+  - supply_water_valve_percentage_command
+  - zone_air_temperature_sensor
+  - water_riser_mode
+
+HHCDM:
+  description: "Hydronic heating and cooling distribution monitoring"
+  is_abstract: true
+  implements:
+  - MONITORING
+  uses:
+  - chilled_supply_water_isolation_valve_percentage_command
+  - chilled_return_water_isolation_valve_percentage_command
+  - heating_supply_water_isolation_valve_percentage_command
+  - heating_return_water_isolation_valve_percentage_command
+  - heating_request_count
+  - cooling_request_count
+  opt_uses:
+  - average_zone_air_temperature_sensor
+
+
+HHRU:
+  description: "Hydronic heat recovery unit for ahu's with bypass valve and circulation pump"
+  is_abstract: true
+  implements:
+  - MONITORING
+  uses:
+  - supply_air_temperature_sensor
+  - supply_air_temperature_setpoint
+  - return_air_temperature_sensor
+  - supply_water_temperature_sensor
+  - supply_water_valve_percentage_command
+  - supply_water_valve_percentage_sensor
+  opt_uses:
+  - exhaust_air_temperature_sensor
+  - outside_air_temperature_sensor
+
+PHRU:
+  description: "heat recovery unit for ahu's with plate heat exchanger valve and bypass damper"
+  is_abstract: true
+  implements:
+  - MONITORING
+  uses:
+  - supply_air_temperature_sensor
+  - supply_air_temperature_setpoint
+  - return_air_temperature_sensor
+  - bypass_air_damper_percentage_command
+  opt_uses:
+  - exhaust_air_temperature_sensor
+  - outside_air_temperature_sensor
