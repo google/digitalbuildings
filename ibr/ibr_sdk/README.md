@@ -7,13 +7,16 @@ This purpose of this project is to allow developers to seemlessly work with CAD-
 1. Open terminal and build the sdk package:
 
 ```
-cd digitalbuildings/ibr/ibr-sdk
-`npm run build
+cd digitalbuildings/ibr/ibr_sdk
+npm run build
 ```
 
 2. Start a local server in python
 
-`cd ..; python3 -m http.server`.
+```
+cd digitalbuildings/ibr/
+python3 -m http.server
+```
 
 3. Navigate to http://0.0.0.0:8000/examples/html/
 

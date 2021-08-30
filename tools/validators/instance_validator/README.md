@@ -2,18 +2,22 @@
 
 The Instance Validator allows validation of YAML instance files to make sure they conform to the given ontology model.
 
+## Install
+To install the dependencies, please run the `python3 setup.py install` from the following directories, in order:
+* digitalbuildings/tools/validators/ontology_validator
+* digitalbuildings/tools/validators/instance_validator
+
+
 ## Usage
 
 The Instance Validator is written in Python3 and takes as an argument the path pointing to the instance files.
-
-**Performance**: [issue#167](https://github.com/google/digitalbuildings/issues/167) please use python version 3.6.8, we found that higher versions are causing a slow down in the validation. We are investigating the issue.
 
 **Known Bug**: [issue#125](https://github.com/google/digitalbuildings/issues/125) which occurs when the validator is called from outside this folder.
 Please run the instance validator from this folder until the bug is fixed.
 
 To use the ontology defined in this repository, run the validator as following: `python3 instance_validator.py --input path/to/YOUR_BUILDING_CONFIG.yaml`
 
-To validate multiple input files at the same time, you can provide the "--input" parameter multiple times. ("-i" will also work.)
+To validate multiple input files at the same time, you can provide the "--input" parameter multiple times. ("-i" will also work).
 
 ### Ontology Types extended
 

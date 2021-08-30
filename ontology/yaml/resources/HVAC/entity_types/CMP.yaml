@@ -12,20 +12,29 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-CHWS_WDT-17:
-  type: HVAC/CHWS_WDT
-  id: CDM/123456
-  translation:
-    return_water_temperature_sensor:
-      present_value: "points.return_water_temperature_sensor.present_value"
-      unit_values:
-        degrees_celsius: "degC"
-    supply_water_temperature_sensor:
-      present_value: "points.supply_water_temperature_sensor.present_value"
-      unit_values:
-        degrees_celsius: "degC"
-        degrees_fahrenheit: "degF"
+########################
+### Canonical Types  ###
+########################
 
-UK-LON-S2:
-  type: FACILITIES/BUILDING
-  id: FACILITIES/123456
+CMP_SS:
+  id: "5566881934694416384"
+  description: "Basic air compressor."
+  is_canonical: true
+  implements:
+  - CMP
+  - SS
+
+CMP_SS_WDPM:
+  id: "4395946031578087424"
+  description: "Basic features of air compressor."
+  is_canonical: true
+  implements:
+  - CMP
+  - SS
+  - WDPM
+  opt_uses:
+  - lost_power_alarm
+  - control_mode
+  - run_mode
+  - schedule_run_command
+  - control_status

@@ -231,7 +231,7 @@ In the following, an example of instantiation of a building with some floors and
 
 The possible methods applied are generated from the ontology. Refer to the figure above showing a snippet of the ontology in protege where the focus is on the building class and its relations.
 
-The following example shows how a fan_ss type from the Carson ontology can be instantiated.
+The following example shows how a fan_ss type from the Digital Buildings ontology can be instantiated.
 As shown in the figure above, where a snippet of the ontology rendered by Protege, a _Fan_ss_ is a subclass of the two classes _Fan_ and _Ss_ and has two mandatory fields: _Run_command_ and _Run_status_. The code snippet below shows an example of instantiation of the _Fan_ss_ class in addition to setting a physical location and timeseries ids.
 
 ```java

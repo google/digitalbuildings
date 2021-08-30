@@ -17,6 +17,7 @@
 CHWS_WDT-17:
   type: HVAC/CHWS_WDT
   id: CDM/123456
+  cloud_device_id: "foobar"
   translation:
     supply_water_temperature_sensor:
       present_value: "points.supply_water_temperature_sensor.present_value"
@@ -24,8 +25,6 @@ CHWS_WDT-17:
         key: "pointset.points.supply_water_temperature_sensor.units"
         values:
           degrees_celsius: "degC"
-    thermal_power_capacity: "t_p_c_1" #optional
-    differential_pressure_specification: "d_p_s_1" #optional
     #flowrate_requirement optional missing
 
 UK-LON-S2:

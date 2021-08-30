@@ -15,11 +15,14 @@
 SDC_EXT-17:
   type: HVAC/SDC_EXT
   id: CDM/123456
+  cloud_device_id: "foobar"
   translation:
     shade_extent_percentage_command:
       present_value: "points.shade_extent_percentage_command.present_value"
-      unit_values:
-        percent: "%"
+      units:
+        key: "points.shade_extent_percentage_command.units"
+        values:
+          percent: "%"
 
 UK-LON-S2:
   type: FACILITIES/BUILDING

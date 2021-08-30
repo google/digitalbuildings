@@ -282,6 +282,39 @@ FAN_SS_DRSM8X:
   - SS
   - DRSM8X
 
+FAN_SS_DPM_ZHM_ZTM:
+  id: "7854710545398628352"
+  description: "Fan with sensors (temperature, humidity and low pressure)."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - DPM
+  - ZHM
+  - ZTM
+  opt_uses:
+  - control_mode
+  - run_mode
+  - low_differential_pressure_alarm
+  - lost_power_alarm
+  - control_status
+
+FAN_SS_VSFC:
+  id: "6340656645672009728"
+  description: "Fan with frequency command control"
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - VSFC
+  opt_uses:
+  - low_differential_pressure_alarm
+  - lost_power_alarm
+  - control_mode
+  - run_mode
+  - schedule_run_command
+  - control_status
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
@@ -454,3 +487,17 @@ FAN_US_SVL_MP7_2:
   - FAN_SS_VSC
   uses:
   - dishwasher_run_status
+
+FAN_SS_AL:
+  id: "17078082582253404160"
+  description: "Basic return fan start/stop only with optional alarms"
+  implements:
+  - FAN
+  - SS
+  opt_uses:
+  - lost_power_alarm
+  - low_differential_pressure_alarm
+  - control_mode
+  - run_mode
+  - schedule_run_command
+  - control_status
