@@ -25,14 +25,14 @@ BLDG-1:
 
 ZONE-1:
   connections:
+    FCU-1: FEEDS
     BLDG-1: CONTAINS
   type: FACILITIES/ZONE
 
-
 FCU-1:
   connections:
-    ZONE-1: FEEDS
     BLDG-1: CONTAINS
+    # Note: the chilled water system would also be linked here, if the unit is fed from it.
   type: HVAC/FCU_DFSS_DFVSC_ZTC_CHWZTC_FDPM_RMM
   translation:
     chilled_water_valve_percentage_command:
@@ -73,11 +73,12 @@ BLDG-1:
 ZONE-1:
   connections:
     BLDG-1: CONTAINS
+    FCU-1: FEEDS
   type: FACILITIES/ZONE
 
 FCU-1:
   connections:
-    ZONE-1: FEEDS
+    # Note: the chilled water system would also be linked here, if the unit is fed from it.
     BLDG-1: CONTAINS
   type: HVAC/FCU_DFSS_DFVSC_...
   translation:
@@ -103,7 +104,6 @@ FCU-1:
 
 AHU-1:
   connections:
-    VAV-1: FEEDS
     BLDG-1: CONTAINS
   type: HVAC/AHU_SFSS_SFVSC_...
   translation:
@@ -123,7 +123,7 @@ AHU-1:
 
 VAV-1:
   connections:
-    ZONE-1: FEEDS
+    AHU-1: FEEDS
     BLDG-1: CONTAINS
   type: HVAC/VAV_SD_DSP_...
   translation:
@@ -165,11 +165,11 @@ BLDG-1:
 ZONE-1:
   connections:
     BLDG-1: CONTAINS
+    FCU-1: FEEDS
   type: FACILITIES/ZONE
 
 FCU-1:
   connections:
-    ZONE-1: FEEDS
     BLDG-1: CONTAINS
   type: HVAC/FCU_DFSS_DFVSC_...
   translation:
@@ -195,8 +195,8 @@ FCU-1:
 
 EF-1:
   connections:
-    ZONE-1: FEEDS
     BLDG-1: CONTAINS
+    ZONE-1: FEEDS
   type: HVAC/FAN_SS_CSP...
   translation:
     run_command:

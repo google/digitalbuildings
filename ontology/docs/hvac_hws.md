@@ -25,17 +25,46 @@ BLDG-1:
 ZONE-1:
   connections:
     BLDG-1: CONTAINS
+    VAV-1: FEEDS
   type: FACILITIES/ZONE
 
 ZONE-2:
   connections:
     BLDG-1: CONTAINS
+    FCU-1: FEEDS
   type: FACILITIES/ZONE
 
+# Define the system that all equipment is part of.
+# It will feed all downstream equipment.
+HWSYS-BLDG-1:
+  connections:
+    BLDG-1: CONTAINS
+  type: HVAC/HWS_...
+  translation:
+    supply_water_temperature_sensor:
+      present_value: points.sys_swt.present_value
+      units:
+        key: pointset.points.sys_swt.units
+        values:
+          degrees_fahrenheit: 'deg-F'
+    differential_pressure_sensor:
+      present_value: points.sys_dp.present_value
+      units:
+        key: pointset.points.sys_dp.units
+        values:
+          pascals: 'Pa'
+    ...
+
+
+# Define the equipment for the system and connect it to the system
+# Additional intrasystem connections can be made as well.
 BLR-1:
   connections:
     BLDG-1: CONTAINS
-    HWSYS-BLDG-1: CONTAINS
+    HWSYS-BLDG-1: HAS_PART
+    PMP-1: FEEDS
+    PMP-2: FEEDS
+    PMP-3: FEEDS
   type: HVAC/BLR_...
   translation:
     supply_water_temperature_sensor:
@@ -49,7 +78,27 @@ BLR-1:
 BLR-2:
   connections:
     BLDG-1: CONTAINS
-    HWSYS-BLDG-1: CONTAINS
+    HWSYS-BLDG-1: HAS_PART
+    PMP-1: FEEDS
+    PMP-2: FEEDS
+    PMP-3: FEEDS
+  type: HVAC/BLR_...
+  translation:
+    supply_water_temperature_sensor:
+      present_value: points.swt.present_value
+      units:
+        key: pointset.points.swt.units
+        values:
+          degrees_fahrenheit: 'deg-F'
+    ...
+
+BLR-3:
+  connections:
+    BLDG-1: CONTAINS
+    HWSYS-BLDG-1: HAS_PART
+    PMP-1: FEEDS
+    PMP-2: FEEDS
+    PMP-3: FEEDS
   type: HVAC/BLR_...
   translation:
     supply_water_temperature_sensor:
@@ -86,31 +135,25 @@ PMP-2:
         ON: 'true'
     ...
 
-HWSYS-BLDG-1:
+PMP-3:
   connections:
     BLDG-1: CONTAINS
-    FCU-1: FEEDS
-    VAV-1: FEEDS
-  type: HVAC/HWS_...
+    HWSYS-BLDG-1: CONTAINS
+  type: HVAC/PMP_...
   translation:
-    supply_water_temperature_sensor:
-      present_value: points.sys_swt.present_value
-      units:
-        key: pointset.points.sys_swt.units
-        values:
-          degrees_fahrenheit: 'deg-F'
-    differential_pressure_sensor:
-      present_value: points.sys_dp.present_value
-      units:
-        key: pointset.points.sys_dp.units
-        values:
-          pascals: 'Pa'
+    run_command:
+      present_value: points.cmd.present_value
+      states:
+        OFF: 'false'
+        ON: 'true'
     ...
 
+
+# Define the equipment which is fed from the system, and connect it to the systems.
 FCU-1:
   connections:
-    ZONE-1: FEEDS
     BLDG-1: CONTAINS
+    HWSYS-BLDG-1: FEEDS
   type: HVAC/FCU_DFSS_DFVSC_...
   translation:
     heating_water_valve_percentage_command:
@@ -123,8 +166,8 @@ FCU-1:
 
 VAV-1:
   connections:
-    ZONE-2: FEEDS
     BLDG-1: CONTAINS
+    HWSYS-BLDG-1: FEEDS
   type: HVAC/VAV_SD_DSP_...
   translation:
     heating_water_valve_percentage_command:

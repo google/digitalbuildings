@@ -13,6 +13,11 @@ There are many varieties of chilled & condenser water system, but some common ex
 - Condensers require that, regardless of their own cooling method (sensible or evaporative), they serve downstream devices which require water as a condensing source.
 - Heat exchangers provide heat transfer between two fluid streams, without intermixing the fluids. They are modeled separately only if they are stand-alone devices. 
 
+## Connection Requirements
+- The equipment which is part of each system should be assigned a HAS_PART connection to it.
+- The specific interconnections between equipment in the system can also be defined through feeds connections. In these cases, it is best to feed from the pumps.
+- To simplify distribution specifics, the system (rather than the system pumps) should be used to feed downstream equipment.
+
 ## Example: Variable Primary CHWS (Air-Cooled) 
 This version of CHWS has a single set of variable speed pumps which serve air-cooled chillers and downstream equipment.
 
@@ -26,25 +31,9 @@ This version of CHWS has a single set of variable speed pumps which serve air-co
 
 ### Sample Building Config
 ```yaml
-BLDG-1:
-  type: FACILITIES/BUILDING
-
-ZONE-1:
-  connections:
-    BLDG-1: CONTAINS
-  type: FACILITIES/ZONE
-
-ZONE-2:
-  connections:
-    BLDG-1: CONTAINS
-  type: FACILITIES/ZONE
-
+# System definition. Everything that it serves will be fed by it, everything that comprises it will be contained by it.
 CHWSYS-BLDG-1:
-  connections:
-    BLDG-1: CONTAINS
-    FCU-1: FEEDS
-    AHU-1: FEEDS
-  type: HVAC/HWS_...
+  type: HVAC/CHWS_...
   translation:
     supply_water_temperature_sensor:
       present_value: points.sys_swt.present_value
@@ -60,11 +49,14 @@ CHWSYS-BLDG-1:
           pascals: 'Pa'
     ...
 
-CHL-1:
+# Plant equipment, all contained by the system.
+# Various interconnections between the pumps and the chillers can also be defined as feeds connections.
+CH-1:
   connections:
-    BLDG-1: CONTAINS
-    CHWSYS-BLDG-1: CONTAINS
-  type: HVAC/CHL_...
+    CHWSYS-BLDG-1: HAS_PART
+    PMP-1: FEEDS
+    PMP-2: FEEDS
+  type: HVAC/CH_...
   translation:
     supply_water_temperature_sensor:
       present_value: points.swt.present_value
@@ -76,9 +68,7 @@ CHL-1:
 
 PMP-1:
   connections:
-    BLDG-1: CONTAINS
-    CHWSYS-BLDG-1: CONTAINS
-    CHL-1: FEEDS
+    CHWSYS-BLDG-1: HAS_PART
   type: HVAC/PMP_...
   translation:
     run_command:
@@ -90,9 +80,7 @@ PMP-1:
 
 PMP-2:
   connections:
-    BLDG-1: CONTAINS
-    CHWSYS-BLDG-1: CONTAINS
-    CHL-1: FEEDS
+    CHWSYS-BLDG-1: HAS_PART
   type: HVAC/PMP_...
   translation:
     run_command:
@@ -102,10 +90,10 @@ PMP-2:
         ON: 'true'
     ...
 
+# Equipment served by the chilled wwater system.
 FCU-1:
   connections:
-    ZONE-1: FEEDS
-    BLDG-1: CONTAINS
+    CHWSYS-BLDG-1: FEEDS
   type: HVAC/FCU_DFSS_DFVSC_...
   translation:
     chilled_water_valve_percentage_command:
@@ -118,8 +106,7 @@ FCU-1:
 
 AHU-1:
   connections:
-    ZONE-2: FEEDS
-    BLDG-1: CONTAINS
+    CHWSYS-BLDG-1: FEEDS
   type: HVAC/AHU_DFSS_...
   translation:
     chilled_water_valve_percentage_command:
@@ -146,10 +133,11 @@ This version of CHWS has a single set of variable speed chilled water pumps serv
 
 ### Sample Building Config
 ```yaml
+# Chilled water system feeds the equipment, and contains the distribution/production equipment.
 CHWSYS-BLDG-1:
   connections:
     CDWSYS-BLDG-1: FEEDS
-  type: HVAC/HWS_...
+  type: HVAC/CHWS_...
   translation:
     supply_water_temperature_sensor:
       present_value: points.sys_swt.present_value
@@ -165,9 +153,8 @@ CHWSYS-BLDG-1:
           pascals: 'Pa'
     ...
 
+# Condenser wawter system feeds the chilled water system, 
 CDWSYS-BLDG-1:
-  connections:
-    ...
   type: HVAC/CDWS_...
   translation:
     supply_water_temperature_sensor:
@@ -178,9 +165,98 @@ CDWSYS-BLDG-1:
           degrees_fahrenheit: 'deg-F'
     ...
 
+# Equipment contained by chilld water system.
+# Various interconnections between the pumps and the chillers can also be defined as feeds connections.
+CH-1:
+  connections:
+    CHWSYS-BLDG-1: HAS_PART
+    CWP-4: FEEDS
+  type: HVAC/CH_...
+  translation:
+    supply_water_temperature_sensor:
+      present_value: points.swt.present_value
+      units:
+        key: pointset.points.swt.units
+        values:
+          degrees_fahrenheit: 'deg-F'
+    ...
+
+CH-2:
+  connections:
+    CHWSYS-BLDG-1: HAS_PART
+    CWP-3: FEEDS
+  type: HVAC/CH_...
+  translation:
+    supply_water_temperature_sensor:
+      present_value: points.swt.present_value
+      units:
+        key: pointset.points.swt.units
+        values:
+          degrees_fahrenheit: 'deg-F'
+    ...
+
+ACC-1: # Note: this is a non-compliant equipment name, which may exist in brownfield sites. 
+  connections:
+    CHWSYS-BLDG-1: HAS_PART
+  type: HVAC/CH_...
+  translation:
+    supply_water_temperature_sensor:
+      present_value: points.swt.present_value
+      units:
+        key: pointset.points.swt.units
+        values:
+          degrees_fahrenheit: 'deg-F'
+    ...
+
+CHWP-1:
+  connections:
+    CHWSYS-BLDG-1: HAS_PART
+    CH-1: FEEDS
+    CH-2: FEEDS
+    CHWP-7: FEEDS
+  type: HVAC/PMP_...
+  translation:
+    run_command:
+      present_value: points.cmd.present_value
+      states:
+        OFF: 'false'
+        ON: 'true'
+    ...
+
+CHWP-2:
+  connections:
+    CHWSYS-BLDG-1: HAS_PART
+    CH-1: FEEDS
+    CH-2: FEEDS
+    CHWP-7: FEEDS
+  type: HVAC/PMP_...
+  translation:
+    run_command:
+      present_value: points.cmd.present_value
+      states:
+        OFF: 'false'
+        ON: 'true'
+    ...
+
+CHWP-7:
+  connections:
+    CHWSYS-BLDG-1: HAS_PART
+    ACC-1: FEEDS
+  type: HVAC/PMP_...
+  translation:
+    run_command:
+      present_value: points.cmd.present_value
+      states:
+        OFF: 'false'
+        ON: 'true'
+    ...
+
+# Condensing water system equipment.
 CT-1:
   connections:
-    CHWSYS-BLDG-1: CONTAINS
+    CDWSYS-BLDG-1: HAS_PART
+    CWP-3: FEEDS
+    CWP-4: FEEDS
   type: HVAC/CT_...
   translation:
     supply_water_temperature_sensor:
@@ -193,7 +269,9 @@ CT-1:
 
 CT-2:
   connections:
-    CHWSYS-BLDG-1: CONTAINS
+    CDWSYS-BLDG-1: HAS_PART
+    CWP-3: FEEDS
+    CWP-4: FEEDS    
   type: HVAC/CT_...
   translation:
     supply_water_temperature_sensor:
@@ -204,64 +282,9 @@ CT-2:
           degrees_fahrenheit: 'deg-F'
     ...
 
-CH-1:
+CWP-3:
   connections:
-    CHWSYS-BLDG-1: CONTAINS
-  type: HVAC/CHL_...
-  translation:
-    supply_water_temperature_sensor:
-      present_value: points.swt.present_value
-      units:
-        key: pointset.points.swt.units
-        values:
-          degrees_fahrenheit: 'deg-F'
-    ...
-
-CH-2:
-  connections:
-    CHWSYS-BLDG-1: CONTAINS
-  type: HVAC/CHL_...
-  translation:
-    supply_water_temperature_sensor:
-      present_value: points.swt.present_value
-      units:
-        key: pointset.points.swt.units
-        values:
-          degrees_fahrenheit: 'deg-F'
-    ...
-
-ACC-1:
-  connections:
-    CHWSYS-BLDG-1: CONTAINS
-  type: HVAC/CHL_...
-  translation:
-    supply_water_temperature_sensor:
-      present_value: points.swt.present_value
-      units:
-        key: pointset.points.swt.units
-        values:
-          degrees_fahrenheit: 'deg-F'
-    ...
-
-CHWP-1:
-  connections:
-    BLDG-1: CONTAINS
-    CHWSYS-BLDG-1: CONTAINS
-    CHL-1: FEEDS
-  type: HVAC/PMP_...
-  translation:
-    run_command:
-      present_value: points.cmd.present_value
-      states:
-        OFF: 'false'
-        ON: 'true'
-    ...
-
-CHWP-2:
-  connections:
-    BLDG-1: CONTAINS
-    CHWSYS-BLDG-1: CONTAINS
-    CHL-1: FEEDS
+    CDWSYS-BLDG-1: HAS_PART
   type: HVAC/PMP_...
   translation:
     run_command:
@@ -273,9 +296,7 @@ CHWP-2:
 
 CWP-4:
   connections:
-    BLDG-1: CONTAINS
-    CDWSYS-BLDG-1: CONTAINS
-    CHL-1: FEEDS
+    CDWSYS-BLDG-1: HAS_PART
   type: HVAC/PMP_...
   translation:
     run_command:
@@ -285,24 +306,11 @@ CWP-4:
         ON: 'true'
     ...
 
-CWP-4:
-  connections:
-    BLDG-1: CONTAINS
-    CDWSYS-BLDG-1: CONTAINS
-    CHL-1: FEEDS
-  type: HVAC/PMP_...
-  translation:
-    run_command:
-      present_value: points.cmd.present_value
-      states:
-        OFF: 'false'
-        ON: 'true'
-    ...
-
+# Equipment served by the chilled wwater system.
 FCU-1:
   connections:
     CHWSYS-BLDG-1: FEEDS
-  type: HVAC/FCU_DFSS_DFVSC_...
+  type: HVAC/FCU_...
   translation:
     chilled_water_valve_percentage_command:
       present_value: points.clg_valve_percentage_command.present_value
@@ -315,7 +323,7 @@ FCU-1:
 AHU-1:
   connections:
     CHWSYS-BLDG-1: FEEDS
-  type: HVAC/AHU_DFSS_...
+  type: HVAC/AHU_...
   translation:
     chilled_water_valve_percentage_command:
       present_value: points.chwv.present_value
