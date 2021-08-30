@@ -3008,6 +3008,38 @@ AHU_BSPC_BYPSSPC_DX2SC_ECON_EFSS_HTSC_SFSS:
   - HTSC
   - SFSS
 
+AHU_BSPC_DX4SC_ECON_EFSS_EFVSC_SARC_SFSS_SFVSC_SSPC_SSPCSCM_STCSCM:
+  description: "Multi-zone AHU with four-stage DX cooling and with supervisor control mode types (machine learning)."
+  is_canonical: true
+  implements:
+  - AHU_BSPC_DX4SC_ECON_EFSS_EFVSC_SARC_SFSS_SFVSC_SSPC
+  - SSPCSCM
+  - STCSCM
+
+AHU_BSPC_DX2SC_ECON_EFSS_SFSS_SFVSC_SSPC_SSPCSCM_STCSCM:
+  description: "Multi-zone AHU with two-stage DX cooling and with supervisor control mode types (machine learning)."
+  is_canonical: true
+  implements:
+  - AHU_BSPC_DX2SC_ECON_EFSS_SFSS_SFVSC_SSPC
+  - SSPCSCM
+  - STCSCM
+
+AHU_BSPC_DXSC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC_SARC_SSPCSCM_STCSCM:
+  description: "Multi-zone AHU with single-stage DX cooling and exhaust/supply fan spped control, and with supervisor control mode types (machine learning)."
+  is_canonical: true
+  implements:
+  - AHU_BSPC_DXSC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC_SARC
+  - SSPCSCM
+  - STCSCM
+
+AHU_BSPC_DXSC_ECON_SFSS_SFVSC_SSPC_SSPCSCM_STCSCM:
+  description: "Multi-zone AHU with single-stage DX cooling and supply fan spped control, and with supervisor control mode types (machine learning)."
+  is_canonical: true
+  implements:
+  - AHU_BSPC_DXSC_ECON_SFSS_SFVSC_SSPC
+  - SSPCSCM
+  - STCSCM
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
