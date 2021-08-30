@@ -20,6 +20,7 @@ UK-LON-S2:
 FAN-17:
   type: HVAC/FAN_SS_VSC
   id: CDM/123456
+  cloud_device_id: "foobar"
   translation:
     run_command:
       present_value: points.run_command.present_value

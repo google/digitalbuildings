@@ -28,7 +28,7 @@ they are confusing feel free to post an issue in the project.
       - [Reporting Physical Devices](#reporting-physical-devices)
         * [Defining Translations](#defining-translations)
           + [Translation Shortcuts](#translation-shortcuts)
-          + [UDMI Short form](#udmi-short-form)
+          <!--- + [Compliant Short forms](#compliant-short-forms) --->
         * [Metadata](#metadata)
       - [Virtual Devices](#virtual-devices)
       - [Device Relationships](#device-relationships)
@@ -137,9 +137,10 @@ ENTITY-NAME:
     A-THIRD-ENTITY: CONTAINS
   links:
     A-FOURTH-ENTITY: # source device
-      # target_device_field : source_device_field
-      supply_air_damper_position_command: supply_air_damper_command_1
-      zone_air_temperature: zone_air_temperature_sensor_1
+      # source_device_field : target_device_field
+      supply_air_damper_command_1: supply_air_damper_position_command
+      zone_air_temperature_sensor_1: zone_air_temperature
+  cloud_device_id: device-id-from-cloud-iot-registry
   translation:
     zone_air_temperature_sensor:
       present_value: "points.temp_1.present_value"
@@ -159,15 +160,17 @@ ENTITY-NAME:
 *   **Type:** A valid, fully qualified Digital Buildings entity type that
     represents this entity
 *   **Id:** A globally unique identifier for this entity.
+*   **cloud_device_id:** the cloud device id from the cloud iot registry. 
+    This field is mandatory when a translation exists.
 *   **Connections:** Used to specify connections from other entities (sources)
     pointing to this entity, with connection types. Entities are keys and cannot
     be repeated. Values are one or more connections, specified as a single
     value or a set.
 *   **Links:** Used to specify mappings between standard fields of source
     entities to standard fields of this entity. First level key is another
-    entity in the file (source). Second level key is a standard field of this
-    (target) entity followed by a `:` and a standard field from the other
-    (source) entity.
+    entity in the file (source). Second level key is a standard field of the
+    other (source) entity followed by a `:` and a standard field from this
+    (target) entity.
 *   **Translation:** Used to specify how the fields of the devices native
     payload map to the standard fields of this entity's type. See
     [translation section](#translations) for more detail.
@@ -255,6 +258,7 @@ FCU-123:
       states:
         OPEN: "1"
         CLOSED: "2"
+    zone_air_temperature_setpoint: MISSING
 ```
 
 Inside the `translation` block, keys correspond to standard fields in the
@@ -272,6 +276,8 @@ ontology. Within each field block we provide information about the following:
 *   `states`: If `present_value` represents a multistate value, this block is
     used to map the native state values to standard ones. Standard values are
     the map keys.
+*   If a device lacks a field required for its type, the field should be marked
+    `MISSING` as shown above.
 
 ###### Translation Shortcuts
 
@@ -284,7 +290,10 @@ translation definitions:
     [UDMI](https://github.com/faucetsdn/udmi)
     a short form can be used.
 
-###### UDMI Short form
+<!---
+###### Compliant Short forms
+
+**Forms in this section are as-yet unsupported**
 
 Because UDMI strictly defines the path to points and units in the payload, as
 well as name correspondence between `units` and `present_value` much of the
@@ -306,9 +315,12 @@ FCU-123:
         CLOSED: "2"
 ```
 
+For any subsection that has a 1:1 translation to standard values, the section
+can be completed in shorthand with `COMPLIANT`
+
 The more compliant data the device has, the smaller the translation can be. The
 same device with Digital Building ontology standard state and unit values looks
-like (not yet supported):
+like:
 
 ```
 FCU-123:
@@ -326,7 +338,7 @@ FCU-123:
   ...
   translation: COMPLIANT
 ```
-
+--->
 ##### Metadata
 
 Often it is useful to include metadata about devices in our model (and the
@@ -369,8 +381,8 @@ VAV-32:
   id: SOME_GUID_12345  # optional
   links:
     ANOTHER-ENTITY: # source device
-      # target_device_field : source_device_field
-      supply_air_damper_position_command: supply_air_damper_command_1
+      # source_device_field : target_device_field
+      supply_air_damper_command_1: supply_air_damper_position_command
       ...
 ```
 
@@ -385,7 +397,7 @@ to this entity's local fields.
 
 #### Device Relationships
 
-In addition to telemetry points many devices will have relationships to other
+In addition to telemetry points, many devices will have relationships to other
 entities. System and spatial relationships are defined with the `connections`
 block. Connection definitions work the same way for all entities, with
 connections always defined on the target of the connection.
@@ -431,11 +443,6 @@ LCG-234:
     SW-456: CONTROLS
 ```
 
-### Relationships
-
-System and spatial relationships are defined with the `connections` block.
-Connection definitions work the same way for all entities, with connections
-always defined on the target of the connection. Here's an example
 
 ## Validation
 The building config can be machine validated for consistency and adherence to

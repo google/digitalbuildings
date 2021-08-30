@@ -27,14 +27,17 @@ SDC_EXT-18:
 SDC_EXT-17:
   type: HVAC/SDC_EXT
   id: CDM/123456
+  cloud_device_id: "foobar"
   etag: a56789
   update_mask:
   - translation.zone_air_temperature_sensor
   translation:
     shade_extent_percentage_command:
       present_value: "points.shade_extent_percentage_command.present_value"
-      unit_values:
-        percent: "%"
+      units:
+        key: "points.shade_extent_percentage_command.units"
+        values:
+          percent: "%"
 
 CONFIG_METADATA:
   operation: UPDATE

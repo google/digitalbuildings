@@ -12,7 +12,29 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-UK-LON-S2:
-  type: FACILITIES/BUILDING
-  id: FACILITIES/123456
-  translation: COMPLIANT
+########################
+### Canonical Types  ###
+########################
+
+CMP_SS:
+  id: "5566881934694416384"
+  description: "Basic air compressor."
+  is_canonical: true
+  implements:
+  - CMP
+  - SS
+
+CMP_SS_WDPM:
+  id: "4395946031578087424"
+  description: "Basic features of air compressor."
+  is_canonical: true
+  implements:
+  - CMP
+  - SS
+  - WDPM
+  opt_uses:
+  - lost_power_alarm
+  - control_mode
+  - run_mode
+  - schedule_run_command
+  - control_status

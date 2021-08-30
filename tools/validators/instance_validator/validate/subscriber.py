@@ -23,6 +23,7 @@ from google.cloud import pubsub_v1
 
 class Subscriber(object):
   """Reads payload from a subscription.
+
   Args:
     subscription_name: name of the subscription.
     service_account_info: service account information from the GCP project.
@@ -37,10 +38,12 @@ class Subscriber(object):
 
   def Listen(self, callback):
     """Listens to a pubsub subscription.
+
     Args:
       callback: a callback function to handle the message.
     """
-    service_account_info = json.load(open(self.service_account_info_json_file))
+    with open(self.service_account_info_json_file) as f:
+      service_account_info = json.load(f)
     audience = "https://pubsub.googleapis.com/google.pubsub.v1.Subscriber"
     credentials = jwt.Credentials.from_service_account_info(service_account_info
                                                             , audience=audience)
@@ -51,4 +54,3 @@ class Subscriber(object):
       future.result()
     except KeyboardInterrupt:
       future.cancel()
-

@@ -23,9 +23,9 @@ from __future__ import print_function
 
 import os
 import time
+from typing import Dict, List, NamedTuple, Optional
 
 from six.moves import input
-import typing
 
 from yamlformat.validator import base_lib
 from yamlformat.validator import connection_lib
@@ -43,9 +43,9 @@ from yamlformat.validator import unit_lib
 # All attributes should be tuples.
 # Each property is a tuple of base_lib.PathParts tuples
 
-Config = typing.NamedTuple('Config', [('fields', tuple), ('subfields', tuple),
-                                      ('states', tuple), ('type_defs', tuple),
-                                      ('units', tuple), ('connections', tuple)])
+Config = NamedTuple('Config', [('fields', tuple), ('subfields', tuple),
+                               ('states', tuple), ('type_defs', tuple),
+                               ('units', tuple), ('connections', tuple)])
 
 
 class ConfigUniverse(findings_lib.Findings):
@@ -71,9 +71,11 @@ class ConfigUniverse(findings_lib.Findings):
     self.connection_universe = connection_universe
     self.unit_universe = unit_universe
     self.unit_universe_reverse_map = self._ArrangeUnitsByMeasurement()
+    # Fully qualified standard field name to States
     self.state_universe_reverse_map = self._ArrangeStatesByField()
 
-  def _ArrangeUnitsByMeasurement(self):
+  def _ArrangeUnitsByMeasurement(self) -> Dict[str, List[str]]:
+    # TODO(b/188241455) does this method need to exist?
     if not self.unit_universe:
       print('UnitUniverse undefined in ConfigUniverse')
       return None
@@ -84,17 +86,19 @@ class ConfigUniverse(findings_lib.Findings):
       unitsByMeasurement.setdefault(unit.measurement_type, []).append(unit.name)
     return unitsByMeasurement
 
-  def _ArrangeStatesByField(self):
+  def _ArrangeStatesByField(self) -> Dict[str, List[str]]:
+    # TODO(b/188241455) does this method need to exist?
     if not self.field_universe:
       print('FieldUniverse undefined in ConfigUniverse')
       return None
 
     statesByField = dict()
-    fields = self.field_universe.GetFieldsMap('')
+
+    fields = self.field_universe.GetFieldsMap()
     if fields:
       for key, element in fields.items():
         if element.states:
-          statesByField[element.name] = element.states
+          statesByField[key] = element.states
     return statesByField
 
   def _GetDynamicFindings(self, filter_old_warnings):
@@ -146,39 +150,49 @@ class ConfigUniverse(findings_lib.Findings):
       return None
     return self.entity_type_universe.GetEntityType(namespace_name, typename)
 
-  def GetUnitsMapByMeasurement(self, field_name):
-    """Returns a set of possible units by a measurement_field.
+  def GetUnitsForMeasurement(self,
+                             as_written_field_name: str) -> Optional[List[str]]:
+    """Returns a List of possible unit strings by a measurement_field.
 
-    None if a state.
+    This method is not namespace aware because units are currently only
+    definable globally.
 
     Args:
-      field_name: string.
+      as_written_field_name: qualified or unqualified field name. Can be
+        incremented.
+    Returns: a string representing the unit or None if units are defined.
     """
     if not self.unit_universe_reverse_map:
       print('UnitUniverse undefined in ConfigUniverse')
       return None
-    subfields = field_name.split('_')
+    subfields = as_written_field_name.split('_')
     # if the last element is numeric need to remove it
     while subfields[-1].isnumeric():
       subfields.pop()
 
     if subfields[-1] not in ['status', 'label', 'mode', 'counter', 'timestamp']:
-      measurement_subfield = subfields[-2]  # access measurement_type subfield
+      # access measurement subfield.  In case of a two-subfield field with a
+      # namespace attached, chop off the namespace.
+      measurement_subfield = subfields[-2].split('/')[-1]
       return self.unit_universe_reverse_map.get(measurement_subfield)
 
-  def GetStatesByField(self, field_name):
-    """Returns a set of possible states by a field.
+  def GetStatesByField(self, field_name: str) -> List[str]:
+    """Returns a list of possible state strings for a field.
 
-    None if a state.
+    TODO(b/188242279) handle namespacing for states correctly.
 
     Args:
-      field_name: string.
+      field_name: a fully qualifited field string.
+
+    Returns:
+      State string exactly as it was defined in the ontology config
     """
     if not self.state_universe_reverse_map:
       print('StateUniverse undefined in ConfigUniverse')
       return None
-    standard_field_name, _ = entity_type_lib.SeparateFieldIncrement(field_name)
-    return self.state_universe_reverse_map.get(standard_field_name)
+    namespace, raw_field = entity_type_lib.SeparateFieldNamespace(field_name)
+    std_field, _ = entity_type_lib.SeparateFieldIncrement(raw_field)
+    return self.state_universe_reverse_map.get(namespace + '/' + std_field)
 
 
 def BuildUniverse(config):

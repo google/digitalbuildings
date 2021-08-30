@@ -100,6 +100,25 @@ def _MergeSchemas(first: Dict[syaml.ScalarValidator, syaml.Validator],
   return merged
 
 
+#### Public Text parsing Constants ####
+ENTITY_ID_KEY = 'id'
+ENTITY_CLOUD_DEVICE_ID_KEY = 'cloud_device_id'
+ENTITY_TYPE_KEY = 'type'
+ENTITY_OPERATION_KEY = 'operation'
+
+LINKS_KEY = 'links'
+TRANSLATION_KEY = 'translation'
+CONNECTIONS_KEY = 'connections'
+METADATA_KEY = 'metadata'
+PRESENT_VALUE_KEY = 'present_value'
+POINTS = 'points'
+UNITS_KEY = 'units'
+UNIT_NAME_KEY = 'key'
+UNIT_VALUES_KEY = 'values'
+STATES_KEY = 'states'
+UPDATE_MASK_KEY = 'update_mask'
+ETAG_KEY = 'etag'
+
 #### Text parsing constants ####
 # Lines matching this pattern have no content and can be dropped
 _IGNORE_PATTERN = re.compile(r'^(\W)*#|\n')
@@ -117,14 +136,6 @@ _CONFIG_METADATA_REGEX = '^{0}:'.format(_CONFIG_METADATA_KEY)
 _CONFIG_METADATA_PATTERN = re.compile(_CONFIG_METADATA_REGEX)
 # Key that marks the mode to parse file in.
 _CONFIG_MODE_KEY = 'operation'
-# TODO(berkoben): eliminate duplication of key constants between here and other
-# modules that parse entity contents.  Constants should probably be sourced from
-# the entity classes (and validation should probably move there as well).
-_ENTITY_MODE_KEY = 'operation'
-_ENTITY_TYPE_KEY = 'type'
-
-# Value for a udmi compliant translation
-_COMPLIANT_REGEX = u'^COMPLIANT$'
 
 # A valid device field must match this
 _FIELD_REGEX = u'^[a-z]+[a-z0-9]*(?:_[a-z]+[a-z0-9]*)*(?:_[0-9]+)*$'
@@ -133,20 +144,20 @@ _FIELD_REGEX = u'^[a-z]+[a-z0-9]*(?:_[a-z]+[a-z0-9]*)*(?:_[0-9]+)*$'
 github.com/google/digitalbuildings/blob/master/ontology/docs/building_config.md
 #defining-translations
 """
-_TRANSLATION_SCHEMA = syaml.Regex(_COMPLIANT_REGEX) | syaml.MapPattern(
+_TRANSLATION_SCHEMA = syaml.MapPattern(
     syaml.Regex(_FIELD_REGEX),
+    # Note: This block is somewhat permissive as the logic was difficult to
+    # implement in syaml.  Additional validation occurs in EntityInstance
     syaml.Str() | syaml.Map({
-        'present_value':
+        PRESENT_VALUE_KEY:
             syaml.Str(),
-        syaml.Optional('states'):
+        syaml.Optional(STATES_KEY):
             syaml.MapPattern(syaml.Regex(u'^[A-Z][A-Z_]+'), syaml.Str()),
-        syaml.Optional('units'):
+        syaml.Optional(UNITS_KEY):
             syaml.Map({
-                'key': syaml.Str(),
-                'values': syaml.MapPattern(syaml.Str(), syaml.Str())
+                UNIT_NAME_KEY: syaml.Str(),
+                UNIT_VALUES_KEY: syaml.MapPattern(syaml.Str(), syaml.Str())
             }),
-        syaml.Optional('unit_values'):
-            syaml.MapPattern(syaml.Str(), syaml.Str())
     }))
 
 _METADATA_SCHEMA = syaml.Map({
@@ -154,46 +165,51 @@ _METADATA_SCHEMA = syaml.Map({
         EnumToRegex(ConfigMode, [ConfigMode.EXPORT])
 })
 
-_ENTITY_ID_SCHEMA = {'id': syaml.Str()}
+_ENTITY_ID_SCHEMA = {ENTITY_ID_KEY: syaml.Str()}
+_ENTITY_CLOUD_DEVICE_ID_SCHEMA = {
+    syaml.Optional(ENTITY_CLOUD_DEVICE_ID_KEY): syaml.Str()
+}
 _ENTITY_ATTRIB_SCHEMA = {
     # TODO(b/166472270): revisit connection syntax
     #  validation. Current code might not follow
     #  the spec.
-    syaml.Optional('connections'):
+    syaml.Optional(CONNECTIONS_KEY):
         syaml.MapPattern(syaml.Str(), syaml.Str())
         | syaml.Seq(syaml.MapPattern(syaml.Str(), syaml.Str())),
-    syaml.Optional('links'):
+    syaml.Optional(LINKS_KEY):
         syaml.MapPattern(
             syaml.Str(),
             syaml.MapPattern(
                 syaml.Regex(_FIELD_REGEX), syaml.Regex(_FIELD_REGEX))),
-    syaml.Optional('translation'):
+    syaml.Optional(TRANSLATION_KEY):
         _TRANSLATION_SCHEMA,
-    syaml.Optional('metadata'):
+    syaml.Optional(METADATA_KEY):
         syaml.Any()
 }
-_ENTITY_BASE_SCHEMA = _MergeSchemas(_ENTITY_ID_SCHEMA, _ENTITY_ATTRIB_SCHEMA)
+_ENTITY_IDS_SCHEMA = _MergeSchemas(_ENTITY_ID_SCHEMA,
+                                   _ENTITY_CLOUD_DEVICE_ID_SCHEMA)
+_ENTITY_BASE_SCHEMA = _MergeSchemas(_ENTITY_IDS_SCHEMA, _ENTITY_ATTRIB_SCHEMA)
 _ENTITY_INIT_SCHEMA = _MergeSchemas(_ENTITY_BASE_SCHEMA,
-                                    {_ENTITY_TYPE_KEY: syaml.Str()})
+                                    {ENTITY_TYPE_KEY: syaml.Str()})
 _ENTITY_UPDATE_SCHEMA = _MergeSchemas(
     _ENTITY_BASE_SCHEMA, {
-        'etag':
+        ETAG_KEY:
             syaml.Str(),
-        syaml.Optional(_ENTITY_TYPE_KEY):
+        syaml.Optional(ENTITY_TYPE_KEY):
             syaml.Str(),
-        syaml.Optional(_ENTITY_MODE_KEY):
+        syaml.Optional(ENTITY_OPERATION_KEY):
             EnumToRegex(exactly=EntityOperation.UPDATE),
-        syaml.Optional('update_mask'):
+        syaml.Optional(UPDATE_MASK_KEY):
             syaml.UniqueSeq(syaml.Str())
     })
 _ENTITY_ADD_SCHEMA = _MergeSchemas(
     _ENTITY_BASE_SCHEMA, {
-        _ENTITY_TYPE_KEY: syaml.Str(),
-        _ENTITY_MODE_KEY: EnumToRegex(exactly=EntityOperation.ADD)
+        ENTITY_TYPE_KEY: syaml.Str(),
+        ENTITY_OPERATION_KEY: EnumToRegex(exactly=EntityOperation.ADD)
     })
 _ENTITY_DELETE_SCHEMA = _MergeSchemas(
     _ENTITY_ID_SCHEMA,
-    {_ENTITY_MODE_KEY: EnumToRegex(exactly=EntityOperation.DELETE)})
+    {ENTITY_OPERATION_KEY: EnumToRegex(exactly=EntityOperation.DELETE)})
 
 
 class InstanceParser():
@@ -334,15 +350,19 @@ class InstanceParser():
       schema = syaml.Map(_ENTITY_INIT_SCHEMA)
     elif ConfigMode.UPDATE == self._config_mode:
       schema = syaml.Map(_ENTITY_UPDATE_SCHEMA)
-      if _ENTITY_MODE_KEY in entity:
-        if entity[_ENTITY_MODE_KEY] == EntityOperation.ADD.value:
+      if ENTITY_OPERATION_KEY in entity:
+        if entity[ENTITY_OPERATION_KEY] == EntityOperation.ADD.value:
           schema = syaml.Map(_ENTITY_ADD_SCHEMA)
-        elif entity[_ENTITY_MODE_KEY] == EntityOperation.DELETE.value:
+        elif entity[ENTITY_OPERATION_KEY] == EntityOperation.DELETE.value:
           schema = syaml.Map(_ENTITY_DELETE_SCHEMA)
     else:
       raise KeyError('No valid _config_mode is set')
 
     entity.revalidate(schema)
+
+    if TRANSLATION_KEY in entity.data.keys():
+      if ENTITY_CLOUD_DEVICE_ID_KEY not in entity.data.keys():
+        raise KeyError('cloud_device_id required when translation is present.')
 
   def _ValidateEntityBlock(self, block: syaml.YAML) -> None:
     """Validates a block of entities and adds them to the validated blocks.

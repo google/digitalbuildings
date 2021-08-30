@@ -296,3 +296,42 @@ HWSRSR:
   is_abstract: true
   implements:
   - RSR
+
+ADY:
+  id: "378735163963604992"
+  description: "Air dryer."
+  is_abstract: true
+  implements:
+  - EQUIPMENT
+
+CMP:
+  id: "6125328288488357888"
+  description: "Air compressor."
+  is_abstract: true
+  implements:
+  - EQUIPMENT
+
+# New General Types for CH ZRH eurd
+RP:
+  description: "Radiant panel, consisting of a coil/panel with no fan providing either heating or cooling via primarily radiant heat transfer."
+  is_abstract: true
+  implements:
+  - EQUIPMENT
+
+CO:
+  description: "Tag for change over equipment which is providing either hot or chilled water for radiant panels in a zone "
+  is_abstract: true
+  implements:
+  - EQUIPMENT
+
+DWST:
+  description: "Domestic water system "
+  is_abstract: true
+  implements:
+  - EQUIPMENT
+
+LANDLORD:
+  description: "Equipment base on landlord's side"
+  is_abstract: true
+  implements:
+  - EQUIPMENT

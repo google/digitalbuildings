@@ -19,7 +19,7 @@ from __future__ import print_function
 
 import re
 import typing
-from typing import Tuple
+from typing import Optional, Tuple
 
 from yamlformat.validator import base_lib
 from yamlformat.validator import config_folder_lib
@@ -43,7 +43,7 @@ EntityIdByEntry = typing.NamedTuple('EntityIdByEntry', [('namespace', str),
 
 
 def SeparateFieldNamespace(qualified_field_name: str) -> Tuple[str, str]:
-  """Returns the field and its namespace as separate values or an Error.
+  """Returns the namespace and its field name as separate values or an Error.
 
   Args:
     qualified_field_name: a qualified field string like `HVAC/run_status`
@@ -70,7 +70,7 @@ def SeparateFieldIncrement(field_name) -> Tuple[str, str]:
   For example: zone_occupancy_status_1 -> [zone_occupancy_status, 1]
 
   Args:
-    field_name: the unqualified field name to parse.
+    field_name: the field name to parse.
 
   Returns:
     A tuple of string, the standard field name and its increment if available.
@@ -93,7 +93,6 @@ class EntityTypeUniverse(findings_lib.Findings):
     namespace_folder_map: a map of namespace names to EntityTypeFolders.
     type_namespaces_map: a map of type names to TypeNamespaces.
     type_ids_map: maps type IDs to entity types. Contains all valid types w/IDs
-
   Args:
     entity_type_folders: list of EntityTypeFolder objects parsed from files.
   """
@@ -101,9 +100,9 @@ class EntityTypeUniverse(findings_lib.Findings):
   def __init__(self, entity_type_folders):
     super(EntityTypeUniverse, self).__init__()
     self.namespace_folder_map = {}
-    self._BuildNamespaceFolderMap(entity_type_folders)
     self.type_namespaces_map = {}
     self.type_ids_map = {}
+    self._BuildNamespaceFolderMap(entity_type_folders)
     self._BuildTypeMaps(
         [folder.local_namespace for folder in entity_type_folders])
 
@@ -205,19 +204,20 @@ class EntityTypeFolder(config_folder_lib.ConfigFolder):
       self._AddType(new_type)
 
   def _ConstructField(self, local_field_names, optional, output_array):
-    for field in local_field_names:
-      field_ns, field_name = field_lib.SplitFieldName(field)
-      field_name, increment = SeparateFieldIncrement(field_name)
+    for qualified_field_name in local_field_names:
+      field_ns, raw_field_name = field_lib.SplitFieldName(qualified_field_name)
+      std_field_name, increment = SeparateFieldIncrement(raw_field_name)
       # Field will look local if undefined, but we'll catch the error later
       # Because we do explict existence checks and it will fail
       # TODO(berkoben) refactor so validation happens in an order that
       # prevents this logic lint
       field_ns = self.local_namespace.GetQualifiedNamespace(
-          field_ns, field_name)
+          field_ns, std_field_name)
       output_array.append(
           OptWrapper(
               field=FieldParts(
-                  namespace=field_ns, field=field_name, increment=increment),
+                  namespace=field_ns, field=std_field_name,
+                  increment=increment),
               optional=optional))
 
   def _ConstructType(self, type_name, type_contents, filepath):
@@ -406,15 +406,15 @@ class TypeNamespace(findings_lib.Findings):
       entity_type.parent_names = fq_tuplemap
     self._parents_qualified = True
 
-  def IsLocalField(self, fieldname):
+  def IsLocalField(self, field_name):
     """Returns true if this unqualified field is defined in the namespace.
 
     Args:
-      fieldname: an unqualified fieldname with no leading '/'
+      field_name: an unqualified field name with no leading '/'
     """
     if not self._fields_universe:
       return False
-    return self._fields_universe.IsFieldDefined(fieldname, self.namespace)
+    return self._fields_universe.IsFieldDefined(field_name, self.namespace)
 
   def _ValidateFields(self, entity):
     """Validates that all fields declared by entity are defined."""
@@ -449,7 +449,7 @@ class TypeNamespace(findings_lib.Findings):
     return True
 
 
-def _BuildQualifiedField(opt_tuple):
+def BuildQualifiedField(opt_tuple):
   field_tuple = opt_tuple.field
   return '{0}/{1}{2}'.format(field_tuple.namespace, field_tuple.field,
                              field_tuple.increment)
@@ -511,7 +511,7 @@ class EntityType(findings_lib.Findings):
     local_field_names = []
     if local_field_tuples:
       local_field_names = [
-          _BuildQualifiedField(opt_parts) for opt_parts in local_field_tuples
+          BuildQualifiedField(opt_parts) for opt_parts in local_field_tuples
       ]
 
       for i, lfn in enumerate(local_field_names):
@@ -559,6 +559,7 @@ class EntityType(findings_lib.Findings):
     Returns:
       A dictionary of fully qualified strings representing fields in the type to
       OptWrapper tuples representing the contents of the field.
+
     Raises:
       RuntimeError: if fields have not yet been expanded.
     """
@@ -576,39 +577,78 @@ class EntityType(findings_lib.Findings):
   def HasFieldAsWritten(self,
                         fieldname_as_written: str,
                         run_unsafe: bool = False) -> bool:
-    """Returns true if field string validates against the entity's fields.
+    """Returns true if a valid config file value maps to a field in the type.
 
-    This method accepts a field name as written in a configuration file
+    Accepts a field name as written in a configuration file
+    referencing this type. The method applies context-aware namespace
+    omission (i.e. referencing a field without its namespace) to identify the
+    field regardless of the namespace and syntax variation.
+
+    Note: to minimize redundancy, this method simply wraps.
+    `GetFieldFromConfigText()`.  If your application also needs the `Field` use
+    that method instead to eliminate redundant processing.
+
+    Args:
+      fieldname_as_written: string verbatim from a building or ontology config
+      run_unsafe: set true to allow calls before parent type fields are expanded
+
+    Returns:
+      True if the Field is defined on the type.  False otherwise.
+    """
+
+    return self.GetFieldFromConfigText(fieldname_as_written,
+                                       run_unsafe) is not None
+
+  def GetFieldFromConfigText(self,
+                             fieldname_as_written: str,
+                             run_unsafe: bool = False) -> Optional[OptWrapper]:
+    """Returns `OptWrapper` provided string validates against the entity.
+
+    Accepts a field name as written in a configuration file
     referencing this type. The method applies all shorthanding rules to identify
     the field regardless of the namespace and syntax variation.
 
     Args:
-      fieldname_as_written: field string as written in the config file
+      fieldname_as_written: string verbatim from a building or ontology config
       run_unsafe: set true to allow calls before parent type fields are expanded
 
     Returns:
-      True if the field is present, false otherwise.
+      `OptWrapper` if field is present, None otherwise
     """
     try:
       # Check the field as if it's fully qualified.
-      return self.HasField(fieldname_as_written, run_unsafe)
+      return self.GetField(fieldname_as_written, run_unsafe)
     except TypeError:
-      # Field is unqualified so it is either global or type-namespace-local
+      pass
 
-      # Check for a locally defined field first using type's namespace
-      if self._HasField(self.namespace.namespace + '/' + fieldname_as_written,
-                        run_unsafe):
-        return True
+    # Field is unqualified so it is either global or type-namespace-local
+    # Check for a locally defined field first using type's namespace
+    field = self._GetField(
+        self.namespace.namespace + '/' + fieldname_as_written, run_unsafe)
+    if not field:
       # Check field as if it's in the global namespace
-      if self._HasField('/' + fieldname_as_written, run_unsafe):
-        return True
-
-      return False
+      field = self._GetField('/' + fieldname_as_written, run_unsafe)
+    return field
 
   def HasField(self,
                fully_qualified_fieldname: str,
                run_unsafe: bool = False) -> bool:
-    """Returns true if field string validates against the entity's fields.
+    """Returns True if field string validates against the entity's fields.
+
+    Args:
+      fully_qualified_fieldname: a fully qualified names for example:
+        "HVAC/run_status_1".
+      run_unsafe: set true to run against a type before fields are fully
+        expanded.  Running in this mode does not memoize the result.
+    Throws:
+      TypeError: if the field is not fully qualified
+    """
+    return self.GetField(fully_qualified_fieldname, run_unsafe) is not None
+
+  def GetField(self,
+               fully_qualified_fieldname: str,
+               run_unsafe: bool = False) -> Optional[OptWrapper]:
+    """Returns `OptWrapper` if field string validates against the entity.
 
     Args:
       fully_qualified_fieldname: a fully qualified names for example:
@@ -617,19 +657,18 @@ class EntityType(findings_lib.Findings):
         expanded.  Running in this mode does not memoize the result.
 
     Returns:
-      true if the field is present, false otherwise.
-
+      `OptWrapper` if field is present, None otherwise
     Throws:
       TypeError: if the field is not fully qualified
     """
     # Throws an error in the case that this isn't a fully qualified field
     _, _ = SeparateFieldNamespace(fully_qualified_fieldname)
-    return self._HasField(fully_qualified_fieldname, run_unsafe)
+    return self._GetField(fully_qualified_fieldname, run_unsafe)
 
-  def _HasField(self,
+  def _GetField(self,
                 fully_qualified_fieldname: str,
-                run_unsafe: bool = False) -> bool:
-    return fully_qualified_fieldname in self.GetAllFields(run_unsafe)
+                run_unsafe: bool = False) -> Optional[OptWrapper]:
+    return self.GetAllFields(run_unsafe).get(fully_qualified_fieldname)
 
   def _ValidateType(self, local_field_names):
     """Validates that the entity type is formatted correctly.

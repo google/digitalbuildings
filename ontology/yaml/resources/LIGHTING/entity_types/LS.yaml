@@ -47,3 +47,27 @@ LS_MTS:
   uses:
   - illuminance_sensor
   - zone_air_temperature_sensor
+
+LS_IS_OS:
+  id: "1152509874941198336"
+  description: "Illuminance sensing and zone occupancy monitoring"
+  is_canonical: true
+  implements:
+  - LS
+  - IS
+  - OS
+
+LS_OS:
+  id: "12736612541468246016"
+  description: "Zone occupancy monitoring"
+  is_canonical: true
+  implements:
+  - LS
+  - OS
+
+LS_LOS:
+  description: "Lighting system motion sensor."
+  is_canonical: true
+  implements:
+  - LS
+  - OS
