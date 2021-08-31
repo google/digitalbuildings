@@ -2863,6 +2863,7 @@ AHU_BSPC_DX4SC_ECONM_EDPM_EFSS_EFVSC_SFSS_SFVSC_SSPC_STC_SSPCSCM_STCSCM:
   - STCSCM
 
 AHU_BSPC_DX3SC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC_STC_REFSM2X_REFPM2X:
+  id: "2888577162548346880"
   description: "Multi-zone AHU with two-circuit refrigeration monitoring and supply air temperature and pressure control."
   is_canonical: true
   implements:
@@ -2880,6 +2881,7 @@ AHU_BSPC_DX3SC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC_STC_REFSM2X_REFPM2X:
   - REFPM2X
 
 AHU_BSPC_DX3SC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC_STC_REFSM2X_REFPM2X_SSPCSCM_STCSCM:
+  id: "15543692115459440640"
   description: "Multi-zone AHU with refrigeration monitoring and supply air temperature and pressure control with supervisor control mode types (machine learning)."
   is_canonical: true
   implements:
@@ -2888,6 +2890,7 @@ AHU_BSPC_DX3SC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC_STC_REFSM2X_REFPM2X_SSPCSCM_STCSC
   - STCSCM
 
 AHU_BSPC_CHWSC_ECON_EFSS_EFVSC_HWSC_SFSS_SFVSC_SHC_SSPC:
+  id: "7811011555264299008"
   description: "Multi-zone AHU with chilled and heating water coils and supply air humidity control."
   is_canonical: true
   implements:
@@ -2904,6 +2907,7 @@ AHU_BSPC_CHWSC_ECON_EFSS_EFVSC_HWSC_SFSS_SFVSC_SHC_SSPC:
   - SSPC
 
 AHU_BSPC_DX4SC_ECON_EFSS_EFVSC_HW2SC_SARC_SFSS_SFVSC_SSPC:
+  id: "12805503542018179072"
   description: "Multi-zone AHU with two heating water coils."
   is_canonical: true
   implements:
@@ -2920,6 +2924,7 @@ AHU_BSPC_DX4SC_ECON_EFSS_EFVSC_HW2SC_SARC_SFSS_SFVSC_SSPC:
   - SSPC
 
 AHU_DX6SC_CHWSC_ECON_EFSS2X_EFVSC2X_HWSC_SFSS2X_SFVSC2X_SSPC:
+  id: "18435003076231299072"
   description: "Multi-zone AHU with six-stage DX cooling and chilled and heating water valves."
   is_canonical: true
   implements:
@@ -2935,6 +2940,7 @@ AHU_DX6SC_CHWSC_ECON_EFSS2X_EFVSC2X_HWSC_SFSS2X_SFVSC2X_SSPC:
   - SSPC
 
 AHU_BSPC_DX6SC_ECON_EFSS_EFVSC_HWSC_SARC_SFSS_SFVSC_SSPC:
+  id: "12111949199403122688"
   description: "Multi-zone AHU with six-stage DX cooling and heating water valve."
   is_canonical: true
   implements:
@@ -2950,6 +2956,7 @@ AHU_BSPC_DX6SC_ECON_EFSS_EFVSC_HWSC_SARC_SFSS_SFVSC_SSPC:
   - SSPC
 
 AHU_BSPC_DX3SC_ECON_EFSS_HT2SC_SFSS_SFVSC_SSPC:
+  id: "4014477069390970880"
   description: "Multi-zone AHU with three-stage DX cooling and two-stage heating."
   is_canonical: true
   implements:
@@ -2964,6 +2971,7 @@ AHU_BSPC_DX3SC_ECON_EFSS_HT2SC_SFSS_SFVSC_SSPC:
   - SSPC
 
 AHU_BSPC_DXSC_ECON_EFSS_EFVSC_PHWSC_SFSS_SFVSC_SSPC_STC:
+  id: "17034383592119074816"
   description: "Multi-zone AHU with DX cooling and preheating water valve."
   is_canonical: true
   implements:
@@ -2980,6 +2988,7 @@ AHU_BSPC_DXSC_ECON_EFSS_EFVSC_PHWSC_SFSS_SFVSC_SSPC_STC:
   - STC
 
 AHU_BSPC_DXSC_ECON_EFSS_EFVSC_HWSC_SARC_SFSS_SFVSC_SSPC:
+  id: "8193817523590791168"
   description: "Multi-zone AHU with DX cooling and heating water valve."
   is_canonical: true
   implements:
@@ -2996,6 +3005,7 @@ AHU_BSPC_DXSC_ECON_EFSS_EFVSC_HWSC_SARC_SFSS_SFVSC_SSPC:
   - SSPC
 
 AHU_BSPC_BYPSSPC_DX2SC_ECON_EFSS_HTSC_SFSS:
+  id: "15280600285970432"
   description: "Multi-zone AHU with bypass static pressure control, two-stage DX cooling and single-stage heating."
   is_canonical: true
   implements:
@@ -3007,38 +3017,6 @@ AHU_BSPC_BYPSSPC_DX2SC_ECON_EFSS_HTSC_SFSS:
   - EFSS
   - HTSC
   - SFSS
-
-AHU_BSPC_DX4SC_ECON_EFSS_EFVSC_SARC_SFSS_SFVSC_SSPC_SSPCSCM_STCSCM:
-  description: "Multi-zone AHU with four-stage DX cooling and with supervisor control mode types (machine learning)."
-  is_canonical: true
-  implements:
-  - AHU_BSPC_DX4SC_ECON_EFSS_EFVSC_SARC_SFSS_SFVSC_SSPC
-  - SSPCSCM
-  - STCSCM
-
-AHU_BSPC_DX2SC_ECON_EFSS_SFSS_SFVSC_SSPC_SSPCSCM_STCSCM:
-  description: "Multi-zone AHU with two-stage DX cooling and with supervisor control mode types (machine learning)."
-  is_canonical: true
-  implements:
-  - AHU_BSPC_DX2SC_ECON_EFSS_SFSS_SFVSC_SSPC
-  - SSPCSCM
-  - STCSCM
-
-AHU_BSPC_DXSC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC_SARC_SSPCSCM_STCSCM:
-  description: "Multi-zone AHU with single-stage DX cooling and exhaust/supply fan spped control, and with supervisor control mode types (machine learning)."
-  is_canonical: true
-  implements:
-  - AHU_BSPC_DXSC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC_SARC
-  - SSPCSCM
-  - STCSCM
-
-AHU_BSPC_DXSC_ECON_SFSS_SFVSC_SSPC_SSPCSCM_STCSCM:
-  description: "Multi-zone AHU with single-stage DX cooling and supply fan spped control, and with supervisor control mode types (machine learning)."
-  is_canonical: true
-  implements:
-  - AHU_BSPC_DXSC_ECON_SFSS_SFVSC_SSPC
-  - SSPCSCM
-  - STCSCM
 
 ###################################
 ### Existing Non-standard Types ###
@@ -3945,6 +3923,7 @@ AHU_US_SVL_MAT2_4:
 #Ahu's on Landlord's side
 
 AHU_NON_CANONICAL_TYPE_1:
+  id: "2046404032230064128"
   description: "Datapoint from for Ahu's on Landlords side."
   implements:
   - AHU
@@ -3959,6 +3938,7 @@ AHU_NON_CANONICAL_TYPE_1:
 
 #Ahu's on Google's side
 AHU_NON_CANONICAL_TYPE_2:
+  id: "17417189560445566976"
   description: "Ahu with variable speed supply and exhaust air fans, air cooler, hair heater, and hru."
   implements:
   - AHU
@@ -3978,6 +3958,7 @@ AHU_NON_CANONICAL_TYPE_2:
   - ZHM
 
 AHU_NON_CANONICAL_TYPE_3:
+  id: "9238652637140746240"
   description: "Ahu with variable speed supply and exhaust air fans, air cooler, hair heater, and hru.-Incomplete"
   implements:
   - AHU

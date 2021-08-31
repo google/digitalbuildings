@@ -48,6 +48,7 @@ LT_DPC:
 
 #Entity types for CH ZRH
 LGRP_OS_LC_VADC:
+  id: "4599945020949135360"
   description: "Standard lighting fixture group control with scene- and dimming control, based on scene and occupancy"
   is_canonical: true
   implements:
@@ -57,6 +58,7 @@ LGRP_OS_LC_VADC:
   - VADC
 
 LGRP_OS_LSC_LC_VADC:
+  id: "16696613620066287616"
   description: "Standard lighting fixture group control with scene- and dimming control, based on scene and occupancy and/or light switch status"
   is_canonical: true
   implements:
@@ -67,6 +69,7 @@ LGRP_OS_LSC_LC_VADC:
   - VADC
 
 LGRP_OS_LC_VADCRGB:
+  id: "5887974514377097216"
   description: "Standard lighting fixture group control with scene- and dimming control, based on scene and occupancy"
   is_canonical: true
   implements:
@@ -76,6 +79,7 @@ LGRP_OS_LC_VADCRGB:
   - VADCRGB
 
 LGRP_OS_SC_LC_VADC_RC:
+  id: "9806106190189428736"
   description: "Standard lighting fixture group control with scene control, dimming control and knx actuators,based on scene and occupancy"
   is_canonical: true
   implements:
@@ -87,6 +91,7 @@ LGRP_OS_SC_LC_VADC_RC:
   - RC
 
 LGRP_OS_LC_VADCRGB_RC:
+  id: "1708634060177276928"
   description: "Standard lighting fixture group control with scene control, dimming control and knx actuators,based on scene and occupancy"
   is_canonical: true
   implements:
@@ -97,6 +102,7 @@ LGRP_OS_LC_VADCRGB_RC:
   - RC
 
 LGRP_OS_LSC_LC_VADC_RC:
+  id: "14728540582905380864"
   description: "Standard lighting fixture group control with scene control, dimming control and knx actuators,based on scene and occupancy and/or light switch status"
   is_canonical: true
   implements:
