@@ -1363,7 +1363,7 @@ DXZTC:
   - CONTROL
 
 DXZTC2X:
-  description: "Compressor run control on zone side (ZTC) for two separate zones."
+  description: "Compressor run control on zone side (ZTC) for two separate zones. Compressor controls to the worst zone."
   is_abstract: true
   opt_uses:
   - compressor_speed_percentage_command
@@ -3957,7 +3957,4 @@ HTWHLSPC:
   - heat_wheel_run_status
   - outside_air_temperature_sensor
   - return_air_temperature_sensor
-  - outside_air_isolation_damper_command
-  - outside_air_isolation_damper_status
-  - exhaust_air_isolation_damper_command
-  - exhaust_air_isolation_damper_status
+  - supply_air_temperature_setpoint
