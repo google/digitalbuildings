@@ -3770,3 +3770,7 @@ AHU_STDSPC_SSPC_EFFC_EFVSC_FDPM3X_HTWHLSPC_RHM_ETM:
   - ETM
   uses:
   - compressor_speed_percentage_sensor
+  - outside_air_isolation_damper_command
+  - outside_air_isolation_damper_status
+  - exhaust_air_isolation_damper_command
+  - exhaust_air_isolation_damper_status
