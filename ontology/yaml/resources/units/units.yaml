@@ -13,7 +13,8 @@
 # limitations under the License.
 
 concentration:
-- parts_per_million: STANDARD
+- parts_per_unit: STANDARD
+- parts_per_million
 current:
 - amperes: STANDARD
 - milliamperes

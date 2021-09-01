@@ -1904,6 +1904,7 @@ HWSC:
   - CONTROL
 
 HW2SC:
+  id: "15111346551231873024"
   description: "Two heating water valves on supply air side."
   is_abstract: true
   opt_uses:
@@ -3909,7 +3910,7 @@ CSWTC:
 
 #New abstracts for CH ZRH EURD
 CAM:
-  id: "2595109812513668048"
+  id: "10932006097032052736"
   description: "ztc alarm monitoring based on moisture sensor on coil or in pan."
   is_abstract: true
   implements:
@@ -3918,6 +3919,7 @@ CAM:
   - condensate_water_alarm
 
 DPHCC:
+  id: "12422697573691686912"
   description: "Two-pipe heating and cooling control. Has a single control
     valve that is fed by two separate headers for heating and cooling water.
     There is an isolation valve for each incoming system and a single control
@@ -3940,6 +3942,7 @@ DPHCC:
   - water_riser_mode
 
 HHCDM:
+  id: "3582131505163403264"
   description: "Hydronic heating and cooling distribution monitoring"
   is_abstract: true
   implements:
@@ -3956,6 +3959,7 @@ HHCDM:
 
 
 HHRU:
+  id: "9211631039376523264"
   description: "Hydronic heat recovery unit for ahu's with bypass valve and circulation pump"
   is_abstract: true
   implements:
@@ -3972,6 +3976,7 @@ HHRU:
   - outside_air_temperature_sensor
 
 PHRU:
+  id: "5194420171762040832"
   description: "heat recovery unit for ahu's with plate heat exchanger valve and bypass damper"
   is_abstract: true
   implements:
