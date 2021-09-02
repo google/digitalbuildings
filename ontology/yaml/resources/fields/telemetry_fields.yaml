@@ -828,3 +828,105 @@ literals:
 - program_supply_water_temperature_setpoint
 - program_differential_pressure_setpoint
 
+#Additional fields for CH ZRH EURD - radiant panels
+- condensate_water_alarm:
+  - ACTIVE
+  - INACTIVE
+- supply_water_valve_percentage_command
+- supply_water_valve_percentage_sensor
+- supply_water_valve_flowrate_sensor
+- total_request_count
+- zone_conditioning_mode:
+  - HEATING
+  - COOLING
+  - AUTO
+  - OFF
+- water_riser_mode:
+  - OFF
+  - HEATING
+  - COOLING
+- average_zone_air_temperature_sensor
+- heating_supply_water_isolation_valve_command
+- heating_return_water_isolation_valve_command
+- cooling_supply_water_isolation_valve_command
+- cooling_return_water_isolation_valve_command
+- heating_supply_water_isolation_valve_percentage_command
+- heating_return_water_isolation_valve_percentage_command
+- heating_supply_water_isolation_valve_percentage_sensor
+- heating_return_water_isolation_valve_percentage_sensor
+
+#Additional fields for CH ZRH EURD - FCU's
+- maintenance_alarm:
+  - ACTIVE
+  - INACTIVE
+- condensate_water_pump_alarm:
+  - ACTIVE
+  - INACTIVE
+
+#Additional fields for CH ZRH EURD - Lighting
+- average_illuminance_sensor
+- illuminance_setpoint
+- scene_dimmer_percentage_command
+- scene_dimmer_percentage_sensor
+- low_scene_dimmer_percentage_setpoint
+- high_scene_dimmer_percentage_setpoint
+- red_scene_dimmer_percentage_command
+- green_scene_dimmer_percentage_command
+- blue_scene_dimmer_percentage_command
+- dimmer_fade_rate_setpoint
+- dimmer_fade_time_setpoint
+- startup_dimmer_percentage_setpoint
+- dimmer_mode:
+  - FADING
+  - RAMPING
+- dimmer_failed_alarm:
+  - ACTIVE
+  - INACTIVE
+- power_command:
+  - ON
+  - OFF
+- lighting_switch_status:
+  - ON
+  - OFF
+- scene_dimmer_command:
+  - ACTIVE
+  - INACTIVE
+- scene_status:
+  - ACTIVE
+  - INACTIVE
+- room_occupancy_status:
+  - OCCUPIED
+  - UNKNOWN
+  - UNOCCUPIED
+  
+#Additional fields for CH ZRH EURD HVAC
+- bypass_air_damper_percentage_sensor
+- circulation_pump_speed_percentage_command
+- circulation_pump_speed_percentage_setpoint
+- frost_alarm:
+  - ACTIVE
+  - INACTIVE
+- supply_air_static_pressure_status:
+  - PRESENT
+  - ABSENT
+- exhaust_air_static_pressure_status:
+  - PRESENT
+  - ABSENT
+- exhaust_fan_failed_alarm:
+  - ACTIVE
+  - INACTIVE
+- return_air_damper_percentage_sensor
+- mixing_valve_percentage_sensor
+- potable_hot_water_temperature_sensor
+- potable_hot_supply_water_temperature_sensor
+- potable_hot_return_water_temperature_sensor
+- potable_hot_water_temperature_setpoint
+- heating_supply_water_temperature_sensor
+- heating_return_water_temperature_sensor
+- heating_thermal_power_sensor
+- heating_thermal_energy_accumulator
+- max_flowrate_setpoint
+- potable_water_high_temperature_sensor
+- potable_water_medium_temperature_sensor
+- potable_water_low_temperature_sensor
+- heating_supply_water_temperature_setpoint
