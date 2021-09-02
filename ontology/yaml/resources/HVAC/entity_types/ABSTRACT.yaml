@@ -342,6 +342,16 @@ EFVSC:
   implements:
   - OPERATIONAL
 
+VSFC:
+  id: "17941929285778407424"
+  description: "Variable speed control or monitor in frequency"
+  is_abstract: true
+  uses:
+  - speed_frequency_command
+  - speed_frequency_sensor
+  implements:
+  - OPERATIONAL
+
 SFVSC:
   id: "16291356723812237312"
   description: "Variable speed control for supply fans."
@@ -367,10 +377,25 @@ DFVSC:
   - discharge_fan_power_sensor
   - discharge_fan_speed_frequency_sensor
   - discharge_fan_speed_percentage_sensor
+  - discharge_fan_lost_power_alarm
   uses:
   - discharge_fan_speed_percentage_command
   - discharge_fan_run_status
   - discharge_fan_run_command
+  implements:
+  - OPERATIONAL
+
+
+DFVSFC:
+  id: "3819485279274663936"
+  description: "Variable speed control with frequency setting for discharge fans."
+  is_abstract: true
+  uses:
+  - discharge_fan_speed_frequency_command
+  - discharge_fan_run_status
+  - discharge_fan_run_command
+  opt_uses:
+  - discharge_fan_speed_frequency_sensor
   implements:
   - OPERATIONAL
 
@@ -470,6 +495,7 @@ DFSS:
   - discharge_fan_current_sensor
   - discharge_fan_power_sensor
   - discharge_air_static_pressure_sensor
+  - discharge_fan_lost_power_alarm
   uses:
   - discharge_fan_run_command
   - discharge_fan_run_status
@@ -1877,6 +1903,21 @@ HWSC:
   implements:
   - CONTROL
 
+HW2SC:
+  id: "15111346551231873024"
+  description: "Two heating water valves on supply air side."
+  is_abstract: true
+  opt_uses:
+  - heating_thermal_power_capacity
+  - leaving_heating_coil_temperature_sensor
+  uses:
+  - heating_water_valve_percentage_command_1
+  - heating_water_valve_percentage_command_2
+  - supply_air_temperature_setpoint
+  - supply_air_temperature_sensor
+  implements:
+  - CONTROL
+
 HWZC:
   id: "12546235401653714944"
   description: "Heating water valve monitoring on zone side (DSP/CSP)."
@@ -2348,6 +2389,7 @@ OAFM:
   is_abstract: true
   opt_uses:
   - outside_air_temperature_sensor
+  - outside_air_damper_percentage_sensor
   uses:
   - outside_air_flowrate_sensor
   implements:
@@ -2366,6 +2408,19 @@ OAFMC:
   - outside_air_damper_percentage_command
   implements:
   - CONTROL
+
+OAMC:
+  id: "9583248377378766848"
+  description: "Outside air flow control."
+  is_abstract: true
+  opt_uses:
+  - outside_air_flowrate_sensor
+  uses:
+  - outside_air_damper_percentage_sensor
+  - outside_air_damper_percentage_command
+  implements:
+  - CONTROL
+
 
 OFC:
   id: "18252070729648439296"
@@ -3338,6 +3393,7 @@ CHWVM:
   opt_uses:
   - cooling_thermal_power_capacity
   - chilled_water_flowrate_sensor
+  - chilled_water_valve_failed_alarm
   uses:
   - chilled_water_valve_percentage_sensor
   - chilled_water_valve_percentage_command
@@ -3634,6 +3690,116 @@ DRSM8X:
   implements:
   - MONITORING
 
+
+DICM:
+  id: "4971562358951378944"
+  description: "Damper isolation control and monitoring. "
+  is_abstract: true
+  uses:
+   - supply_air_isolation_damper_closed_status
+   - supply_air_isolation_damper_open_status
+   - supply_air_isolation_damper_command
+
+UV:
+  id: "6143342686997839872"
+  description: "Ultraviolet lamp operation."
+  is_abstract: true
+  opt_uses:
+  - ultraviolet_lamp_run_mode
+  uses:
+  - ultraviolet_lamp_run_command
+  - ultraviolet_lamp_run_status
+
+H3X:
+  id: "3243024526971240448"
+  description: "Heater monitoring."
+  is_abstract: true
+  implements:
+  - MONITORING
+  uses:
+  - heater_run_status_1
+  - heater_run_status_2
+  - heater_run_status_3
+  - heater_run_command_1
+  - heater_run_command_2
+  - heater_run_command_3
+
+CHWBRC:
+  id: "9602107200818380800"
+  description: "Chilled water valve binary (open/closed) monitoring/controlling. Return air temperature control."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  uses:
+  - chilled_water_valve_command
+  - return_air_temperature_sensor
+  - return_air_temperature_setpoint
+
+CHWISOVPM:
+  id: "10952342664099397632"
+  description: "Chllled water isolation valve control."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  uses:
+  - chilled_water_isolation_valve_percentage_command
+  - chilled_water_isolation_valve_percentage_sensor
+
+CWCS:
+  id: "1207397495399776256"
+  description: "Condensing water valve control."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  uses:
+  - condensing_water_valve_percentage_command
+  - condensing_water_valve_percentage_sensor
+
+DPM:
+  id: "14194934395806154752"
+  description: "Damper percentage control."
+  is_abstract: true
+  implements:
+    - OPERATIONAL
+  uses:
+  - damper_percentage_command
+  - damper_percentage_sensor
+
+DFVSMC:
+  id: "6412714239709937664"
+  description: "Variable speed control mode for discharge fans."
+  is_abstract: true
+  uses:
+  - discharge_fan_speed_mode
+  - discharge_fan_run_status
+  - discharge_fan_run_command
+  implements:
+  - OPERATIONAL
+
+DFVDSC:
+  id: "7493578150278856704"
+  description: "Discharge fan control with toggled variable or discrete speed control. This allows the fan to run either VFD or discrete speed stages (LOW/MED/HIGH, etc.) and to switch between the mode."
+  is_abstract: true
+  uses:
+  - discharge_fan_speed_percentage_command
+  - discharge_fan_speed_mode
+  - discharge_fan_run_status
+  - discharge_fan_run_command
+  implements:
+  - OPERATIONAL
+
+DFVDSFC:
+  id: "15636086276564713472"
+  description: "Discharge fan control with toggled variable or discrete speed (frequency) control. This allows the fan to run either VFD or discrete speed stages (LOW/MED/HIGH, etc.) and to switch between the mode."
+  is_abstract: true
+  uses:
+  - discharge_fan_speed_frequency_command
+  - discharge_fan_speed_mode
+  - discharge_fan_run_status
+  - discharge_fan_run_command
+  implements:
+  - OPERATIONAL
+
 SSPCSCM:
   id: "6685507472607674368"
   description: "Supply air static pressure control for supervisor control (Machine learning)."
@@ -3673,3 +3839,153 @@ WDPCSCM:
   - supervisor_differential_pressure_setpoint
   - program_differential_pressure_setpoint
   - differential_pressure_setpoint
+
+CSWIVS:
+  id: "359876340523991040"
+  description: "Condensing return water isolation valve control."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  uses:
+  - condensing_return_water_isolation_valve_command_1
+  - condensing_return_water_isolation_valve_command_2
+  - condensing_return_water_isolation_valve_command_3
+  - condensing_return_water_isolation_valve_command_4
+  - condensing_return_water_isolation_valve_command_5
+  - condensing_return_water_isolation_valve_command_6
+  - condensing_return_water_isolation_valve_command_7
+  - condensing_return_water_isolation_valve_status_1
+  - condensing_return_water_isolation_valve_status_2
+  - condensing_return_water_isolation_valve_status_3
+  - condensing_return_water_isolation_valve_status_4
+  - condensing_return_water_isolation_valve_status_5
+  - condensing_return_water_isolation_valve_status_6
+  - condensing_return_water_isolation_valve_status_7
+  - condensing_return_water_isolation_valve_status_8
+  - condensing_return_water_isolation_valve_status_9
+  - condensing_return_water_isolation_valve_status_10
+  - condensing_return_water_isolation_valve_status_11
+  - condensing_return_water_isolation_valve_status_12
+  - condensing_return_water_isolation_valve_status_13
+  - condensing_return_water_isolation_valve_status_14
+
+CRWIVS:
+  id: "10755028705425227776"
+  description: "Condensing supply water isolation valve control."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  uses:
+  - condensing_supply_water_isolation_valve_command_1
+  - condensing_supply_water_isolation_valve_command_2
+  - condensing_supply_water_isolation_valve_command_3
+  - condensing_supply_water_isolation_valve_command_4
+  - condensing_supply_water_isolation_valve_command_5
+  - condensing_supply_water_isolation_valve_command_6
+  - condensing_supply_water_isolation_valve_command_7
+  - condensing_supply_water_isolation_valve_status_1
+  - condensing_supply_water_isolation_valve_status_2
+  - condensing_supply_water_isolation_valve_status_3
+  - condensing_supply_water_isolation_valve_status_4
+  - condensing_supply_water_isolation_valve_status_5
+  - condensing_supply_water_isolation_valve_status_6
+  - condensing_supply_water_isolation_valve_status_7
+  - condensing_supply_water_isolation_valve_status_8
+  - condensing_supply_water_isolation_valve_status_9
+  - condensing_supply_water_isolation_valve_status_10
+  - condensing_supply_water_isolation_valve_status_11
+  - condensing_supply_water_isolation_valve_status_12
+  - condensing_supply_water_isolation_valve_status_13
+  - condensing_supply_water_isolation_valve_status_14
+
+CSWTC:
+  id: "14772239573039710208"
+  description: "Condensing supply water temperature control."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  uses:
+  - condensing_supply_water_temperature_setpoint
+  - condensing_supply_water_temperature_sensor
+
+#New abstracts for CH ZRH EURD
+CAM:
+  id: "10932006097032052736"
+  description: "ztc alarm monitoring based on moisture sensor on coil or in pan."
+  is_abstract: true
+  implements:
+  - MONITORING
+  uses:
+  - condensate_water_alarm
+
+DPHCC:
+  id: "12422697573691686912"
+  description: "Two-pipe heating and cooling control. Has a single control
+    valve that is fed by two separate headers for heating and cooling water.
+    There is an isolation valve for each incoming system and a single control
+    valve. Valve and mode control to zone temperature (heating/cooling
+    setpoint configuration)."
+  is_abstract: true
+  opt_uses:
+  - chilled_return_water_isolation_valve_percentage_command
+  - heating_return_water_isolation_valve_percentage_command
+  - heating_supply_water_isolation_valve_percentage_command
+  - chilled_supply_water_isolation_valve_percentage_command
+  - zone_air_cooling_temperature_setpoint
+  - zone_air_heating_temperature_setpoint
+  - condensate_water_alarm
+  - zone_conditioning_mode
+  - supply_water_valve_flowrate_sensor
+  uses:
+  - supply_water_valve_percentage_command
+  - zone_air_temperature_sensor
+  - water_riser_mode
+
+HHCDM:
+  id: "3582131505163403264"
+  description: "Hydronic heating and cooling distribution monitoring"
+  is_abstract: true
+  implements:
+  - MONITORING
+  uses:
+  - chilled_supply_water_isolation_valve_percentage_command
+  - chilled_return_water_isolation_valve_percentage_command
+  - heating_supply_water_isolation_valve_percentage_command
+  - heating_return_water_isolation_valve_percentage_command
+  - heating_request_count
+  - cooling_request_count
+  opt_uses:
+  - average_zone_air_temperature_sensor
+
+
+HHRU:
+  id: "9211631039376523264"
+  description: "Hydronic heat recovery unit for ahu's with bypass valve and circulation pump"
+  is_abstract: true
+  implements:
+  - MONITORING
+  uses:
+  - supply_air_temperature_sensor
+  - supply_air_temperature_setpoint
+  - return_air_temperature_sensor
+  - supply_water_temperature_sensor
+  - supply_water_valve_percentage_command
+  - supply_water_valve_percentage_sensor
+  opt_uses:
+  - exhaust_air_temperature_sensor
+  - outside_air_temperature_sensor
+
+PHRU:
+  id: "5194420171762040832"
+  description: "heat recovery unit for ahu's with plate heat exchanger valve and bypass damper"
+  is_abstract: true
+  implements:
+  - MONITORING
+  uses:
+  - supply_air_temperature_sensor
+  - supply_air_temperature_setpoint
+  - return_air_temperature_sensor
+  - bypass_air_damper_percentage_command
+  opt_uses:
+  - exhaust_air_temperature_sensor
+  - outside_air_temperature_sensor

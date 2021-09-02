@@ -1,4 +1,4 @@
-# Copyright 2020 Google LLC
+# Copyright 2021 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the License);
 # you may not use this file except in compliance with the License.
@@ -12,21 +12,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Missing return_water_temperature_sensor
+# Lighting device group
 
-CHWS_WDT-17:
-  type: HVAC/CHWS_WDT
-  id: CDM/123456
-  cloud_device_id: "foobar"
-  translation:
-    supply_water_temperature_sensor:
-      present_value: "points.supply_water_temperature_sensor.present_value"
-      units:
-        key: "pointset.points.supply_water_temperature_sensor.units"
-        values:
-          degrees_celsius: "degC"
-    #flowrate_requirement optional missing
-
-UK-LON-S2:
-  type: FACILITIES/BUILDING
-  id: FACILITIES/123456
+LGRP_DC:
+  id: "10178567953121804288"
+  description: "Lighting group control module with brightness control."
+  is_canonical: true
+  implements:
+    - LGRP
+    - DC

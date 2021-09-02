@@ -12,25 +12,31 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# General Types
 
-
-FACP_STD:
-  id: "7388262528523960320"
-  description: "Basic fire alarm panel."
-  is_canonical: true
+DWST_CHDT_SWTC_CPC:
+  id: "14417792208616816640"
+  description: "Domestic water system with condensing water heat exhanger without bypass valve"
   implements:
-  - FACP
+  - DWST
+  - CWDT
+  - SWTC
+  - CPC
   uses:
-  - fire_alarm
+  - potable_water_high_temperature_sensor
+  - potable_water_medium_temperature_sensor
+  - potable_water_low_temperature_sensor
 
-FACP_FA2X:
-  id: "937181517757546496"
-  description: "Fire alarm panel with 2 fire alarm alertness and a fire fault status"
-  is_canonical: true
+DWST_SWTC_CPC_BYPVPM:
+  id: "6320320078604664832"
+  description: "Domestic water system with bypass valve"
   implements:
-  - FACP
-  - FA2X
-  opt_uses:
-  - panel_alarm
+  - DWST
+  - SWTC
+  - CPC
+  - BYPVPM
+  uses:
+  - potable_water_high_temperature_sensor
+  - potable_water_medium_temperature_sensor
+  - potable_water_low_temperature_sensor
+
 

@@ -13,7 +13,8 @@
 # limitations under the License.
 
 concentration:
-- parts_per_million: STANDARD
+- parts_per_unit: STANDARD
+- parts_per_million
 current:
 - amperes: STANDARD
 - milliamperes
@@ -25,8 +26,10 @@ energy:
 flowrate:
 - cubic_meters_per_second: STANDARD
 - cubic_feet_per_minute
+- cubic_meters_per_hour
 - gallons_per_minute
 - liters_per_second
+- kilograms_per_hour
 frequency:
 - hertz: STANDARD
 humidity:
@@ -71,3 +74,7 @@ voltageratio:
 volume:
 - cubic_meters: STANDARD
 - us_gallons
+time:
+- seconds: STANDARD
+rate:
+- inv_second: STANDARD

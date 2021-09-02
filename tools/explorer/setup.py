@@ -12,21 +12,19 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Missing return_water_temperature_sensor
+"""Setup file for the ontology explorer."""
 
-CHWS_WDT-17:
-  type: HVAC/CHWS_WDT
-  id: CDM/123456
-  cloud_device_id: "foobar"
-  translation:
-    supply_water_temperature_sensor:
-      present_value: "points.supply_water_temperature_sensor.present_value"
-      units:
-        key: "pointset.points.supply_water_temperature_sensor.units"
-        values:
-          degrees_celsius: "degC"
-    #flowrate_requirement optional missing
+from setuptools import find_packages
+from setuptools import setup
 
-UK-LON-S2:
-  type: FACILITIES/BUILDING
-  id: FACILITIES/123456
+
+setup(
+    name='ontology-explorer',
+    version='0.0.1',
+    url='https://github.com/google/digitalbuildings',
+    license='Apache License',
+    author='Travis Welch',
+    packages=find_packages(),
+    install_requires=[],
+    python_requires='>=3.7',
+)
