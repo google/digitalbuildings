@@ -34,7 +34,6 @@ humidity:
 - percent_relative_humidity: STANDARD
 illuminance:
 - lux: STANDARD
-- no_units
 level:
 - meters: STANDARD
 - feet
