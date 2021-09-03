@@ -7,6 +7,9 @@
 
 # Results can be viewed separately for reporting and virtual devices.
 
-class PointId:
+from score.score import Score
+
+
+class PointId(Score):
     def __init__(self):
         return False

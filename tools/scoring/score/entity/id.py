@@ -24,6 +24,9 @@
 
 # Again, reporting and virtual device results should be separable
 
-class EntityId:
+from score.score import Score
+
+
+class EntityId(Score):
     def __init__(self):
         return False

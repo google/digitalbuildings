@@ -8,6 +8,9 @@
 
 # In addition to overall score, sub-scored should be available for connections where the source is another piece of equipment vs. a Facilities entity (building/floor).
 
-class ConnectionId:
+from score.score import Score
+
+
+class ConnectionId(Score):
     def __init__(self):
         return False

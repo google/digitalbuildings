@@ -1,59 +1,21 @@
-from datetime import datetime
-from utils.timestamp import timestamp
-from utils.hash import hash
+from constants.dimension import Dimension
+"""Base class for scoring individual dimensions"""
+
 
 class Score:
-    def __init__(self, ontology: tuple, solution: tuple, proposed: tuple, additions: tuple) -> None:
-        print(timestamp())
-        print(hash(ontology))
-        print(hash(solution))
-        print(hash(proposed))
-        print(hash(additions))
+    # TODO: annotate args so as not to get confused between set and individual entities
+    def __init__(self, dimension: Dimension, proposed, solution):
+        self.dimension = dimension
+        self.solution_entity = None
+        self.correct = None
+        self.underconstrained = None
+        self.overconstrained = None
+        self.total_possible = None
+        self.is_reporting = None
+        self.is_canonical = None
 
-    def _calculate(correct: int, incorrect: int, total: int) -> float:
-        return (correct - incorrect) / total
+    def calculate(self, incorrect) -> float:
+        return (self.correct - incorrect) / self.total_possible
 
-    def __del__(self) -> None: ## Probably want to use a context manager for this https://stackoverflow.com/questions/40536821/python-enter-exit-vs-init-or-new-del
-        print(timestamp())
-
-output = {
-    'meta': {
-        'timeline': {
-            'started': datetime,
-            'finished': datetime
-        },
-        'files': {
-            'ontology': {
-                'path': 'path',
-                'hash': 'string' # Where to calc?
-            },
-            'solution': {},
-            'proposed': {},
-            'additions': {}
-        },
-        'flags': {
-            'verbose': bool
-        }
-    },
-    'scores': {
-        # 'aggregate': float,
-        'unit_mapping': {
-            'solution': 'string',
-            'correct': int,
-            'underconstrained': int,
-            'overconstrained': int,
-            'total': float,
-            'is_reporting': bool,
-            'is_canonical': bool
-        },
-        'state_mapping': {},
-        'field_selection': {},
-        'field_naming': {},
-        'entity': {
-            'connection_id': {},
-            'id': {},
-            'point_id': {},
-            'type_id': {}
-        }
-    }
-}
+    def evaluate(self, proposed, solution):
+        return '123'
