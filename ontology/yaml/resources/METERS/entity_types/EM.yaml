@@ -97,8 +97,8 @@ EM_US_SVL_TC1_1:
   uses:
   - average_line_current_sensor
   - average_inter_line_voltage_sensor
-#AU-SYD-ODI meter types
-EM_SE_PM5100: 
+
+EM_NONCANONICAL_1: 
   description: "SE PM5100 Meter"
   uses:
   - neutral_line_current_sensor

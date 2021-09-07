@@ -14,9 +14,10 @@
 
 # Canonical types for Lighting Gateways
 
-#Noncanonical type used for Delmatic lighting gateway at AU-SYD-ODI
-LTGW_DELMATIC: 
-  description: "Delamtic lighting control, groups only"
+# Non-Canonical types for Lighting Gateways
+
+LTGW_NONCANONICAL_1: 
+  description: "Lighting controller groups only"
   is_canonical: false
   uses:
   - brightness_percentage_command_1

@@ -773,18 +773,21 @@ literals:
 - mixed_air_relative_humidity_sensor
 - mixed_air_dewpoint_temperature_sensor
 
-#AU-SYD-ODI fields
-#DFFC
+#Discharge air flow control
 - discharge_air_flowrate_setpoint
-#HM_HW
+#Hot water thermal meter
 - heating_supply_water_temperature_sensor
 - heating_return_water_temperature_sensor
 - heating_thermal_power_sensor
 - heating_thermal_energy_accumulator
 
-#EM_SE_PM5100
+#Electrical meter fields
 - neutral_line_current_sensor # A measure of current on the neutral line
 - apparent_energy_accumulator
 
-#Delmatic lighting controller
+#Lighting controller battery status
 - emergency_battery_status
+
+# Condensing water monitoring
+- condensing_water_differential_pressure_sensor
+- condensing_water_differential_pressure_setpoint

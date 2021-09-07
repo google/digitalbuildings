@@ -12,23 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-BATT:
-  id: "2974734893700874240"
-  description: "Tag for all batteries (devices used to store and discharge power for the use of a device or group of devices)."
-  is_abstract: true
+SWITCHBOARD:
+  id: "07041fb6-475c-4f3c-88d3-a1b4dedf903c"
+  description: "Standard panel for holding electrical switching gear."
+  is_canonical: true
   implements:
-  - EQUIPMENT
-
-UPS:
-  id: "9261759973510086656"
-  description: "Tag for all uninterruptible power supply units."
-  is_abstract: true
-  implements:
-  - EQUIPMENT
-
-PANEL:
-  id: "18bd98c4-29b5-4da4-9d8b-1075ee5bb17d"
-  description: "Tag for all electrical panels."
-  is_abstract: true
-  implements:
-  - EQUIPMENT
+  - PANEL

@@ -140,3 +140,12 @@ CT_US_SVL_MP3_1:
   - INCOMPLETE
   uses:
   - speed_frequency_command
+
+CT_SS_VSC_SWTM:
+  description: "Cooling tower with variable speed control and supply water temperature monitoring"
+  is_canonical: false
+  implements:
+  - CT
+  - SS
+  - VSC
+  - SWTM

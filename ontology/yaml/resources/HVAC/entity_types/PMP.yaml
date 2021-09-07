@@ -43,6 +43,37 @@ PMP_SS_VSC_WDPM:
   - VSC
   - WDPM
 
+PMP_SS_VSC_WDPC:
+  id: "74055ed5-4055-4f47-94eb-73e818920609"
+  description: "Pump with variable speed control and differential pressure control"
+  is_canonical: true
+  implements:
+  - PMP
+  - SS
+  - VSC
+  - WDPC
+  
+PMP_SS_VSC_WDPC_WFRC:
+  id: "14218c8d-0cd3-476a-9184-ee0032ae4e44"
+  description: "Pump with variable speed control, differential pressure control and flow control."
+  is_canonical: true
+  implements:
+  - PMP
+  - SS
+  - VSC
+  - WDPC
+  - WFRC
+
+PMP_SS_VSC_SWTC:
+  id: "f63c76d9-c201-4831-b42a-5a12c344aaf6"
+  description: "Pump with variable speed control and supply water temperature control"
+  is_canonical: true
+  implements:
+  - PMP
+  - SS
+  - VSC
+  - SWTC
+  
 ###################################
 ### Existing Non-standard Types ###
 ###################################
