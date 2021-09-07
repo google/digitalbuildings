@@ -11,8 +11,6 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
-
 """
 
 Entry point
@@ -23,9 +21,11 @@ Entry point
 # Known good Building Configuration file
 # Building Configuration to be scored
 # Local type additions to DBO (in YAML, similar to the ontology)
-# The tool must produce a matrix of scores along the dimensions described in scoring detail.  Output should be trivially importable into Google Sheets.
+# The tool must produce a matrix of scores along the dimensions described in
+# scoring detail.  Output should be trivially importable into Google Sheets.
 # Integration
-# The new functionality should take advantage of existing code for reading and validating inputs wherever possible.
+# The new functionality should take advantage of existing code for reading and
+# validating inputs wherever possible.
 
 """
 
@@ -51,12 +51,13 @@ def parse_args() -> argparse.ArgumentParser:
       help='Absolute path for the directory which contains your ontology',
       metavar='ontology')
 
-  parser.add_argument('-sol',
-                      '--solution',
-                      dest='solution',
-                      required=True,
-                      help='Absolute path for your solution instance file',
-                      metavar='solution')
+  parser.add_argument(
+      '-sol',
+      '--solution',
+      dest='solution',
+      required=True,
+      help='Absolute path for your solution instance file',
+      metavar='solution')
 
   parser.add_argument(
       '-prop',
