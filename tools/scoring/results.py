@@ -11,72 +11,72 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
+""" Top-level runner """
 
 from utils.timestamp import timestamp
-from utils import hash
+from utils import path_hash
 from constants.dimension import Dimension
 
 from validate import handler as validator
-"""Top-level runner"""
 
 
 class Results:
-    def __init__(self, proposed: str, solution: str, ontology: str,
-                 additions: str) -> None:
-        started = timestamp()
-        print('Started at ' + str(started))
+  """Wraps full scoring report"""
 
-        # loop through args to aggregate files metadata
+  def __init__(self, proposed: str, solution: str, ontology: str,
+               additions: str) -> None:
+    started = timestamp()
+    print("Started at " + str(started))
 
-        # print(hash.file(proposed))
-        print(hash.file(solution))
-        # print(hash.directory(ontology))
-        # print(hash.directory(additions))
+    # loop through args to aggregate files metadata
 
-        self.parsed = {
-            solution: validator.Deserialize([solution]),
-            proposed: validator.Deserialize([proposed])
-        }
+    # print(hash.file(proposed))
+    print(path_hash.file(solution))
+    # print(hash.directory(ontology))
+    # print(hash.directory(additions))
 
-    def _files(self):
-        return 'files'
+    self.parsed = {
+        solution: validator.Deserialize([solution]),
+        proposed: validator.Deserialize([proposed]),
+    }
 
-    def __del__(
-            self) -> None:  # Probably want to use a context manager for this
-        finished = timestamp()
-        print('Finished at ' + str(finished))
+  def _files(self):
+    return "files"
 
-    def tally(self):
-        for dimension in Dimension:
-            print(dimension.name)
+  def __del__(self) -> None:  # Probably want to use a context manager for this
+    finished = timestamp()
+    print("Finished at " + str(finished))
 
-    @property
-    def meta(self):
-        # 'meta': {
-        #     'timeline': {
-        #         'started': datetime,
-        #         'finished': datetime
-        #     },
-        #     'files': {
-        #         'ontology': {
-        #             'path': 'path',
-        #             'hash': 'string'
-        #         },
-        #         'solution': {},
-        #         'proposed': {},
-        #         'additions': {}
-        #     },
-        #     'flags': {
-        #         'verbose': bool
-        #     }
-        # }
-        return 'meta'
+  def tally(self):
+    for dimension in Dimension:
+      print(dimension.name)
 
-    @property
-    def scores(self):
-        # 'scores': {
-        #     # 'aggregate': float,
-        #     'dimensions': {
-        #         '...': {
-        return 'scores'
+  @property
+  def meta(self):
+    # 'meta': {
+    #     'timeline': {
+    #         'started': datetime,
+    #         'finished': datetime
+    #     },
+    #     'files': {
+    #         'ontology': {
+    #             'path': 'path',
+    #             'hash': 'string'
+    #         },
+    #         'solution': {},
+    #         'proposed': {},
+    #         'additions': {}
+    #     },
+    #     'flags': {
+    #         'verbose': bool
+    #     }
+    # }
+    return "meta"
+
+  @property
+  def scores(self):
+    # 'scores': {
+    #     # 'aggregate': float,
+    #     'dimensions': {
+    #         '...': {
+    return "scores"

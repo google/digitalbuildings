@@ -13,6 +13,8 @@
 # limitations under the License.
 
 
+"""
+
 # Field Naming
 
 # A partial field match is a field mapping that contains either a subset or superset of correct subfields for any particular field.  Theoretically, it is possible to select a subset of subfields that do not combine to meet field construction criteria, however there are a few reasons why discounting these selections is worthwhile:
@@ -36,9 +38,11 @@
 
 # Our primary concern is that canonically typed entities are mapped correctly. In the case where a device's points are represented in both a reporting and a virtual device, the virtual device is typically a canonical type and the reporting device is not.  From a scoring perspective, we can ignore the reporting device field in this case and score the mapping of the raw field to the virtual device field, skipping the intermediate name.  In the rare case where both are canonical, we can give the participant the result:actual mapping that makes the best score, however there may be few enough instances of this to simply ignore them in the result.
 
+"""
+
+
 from score.score import Score
 
-
 class FieldNaming(Score):
-    def __init__(self):
-        return False
+  def __init__(self):
+    return False

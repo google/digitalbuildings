@@ -11,7 +11,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
+"""
 
 # Entity Connection Identification
 
@@ -19,13 +19,19 @@
 
 # Connections can be scored:
 
-#  (correctly defined connections) - (incorrectly defined connections) total connections
+#  (correctly defined connections) - (incorrectly defined connections) total
+# connections
 
-# In addition to overall score, sub-scored should be available for connections where the source is another piece of equipment vs. a Facilities entity (building/floor).
+# In addition to overall score, sub-scored should be available for connections
+# where the source is another piece of equipment vs. a Facilities entity
+# (building/floor).
+
+"""
 
 from score.score import Score
 
 
 class ConnectionId(Score):
-    def __init__(self):
-        return False
+
+  def __init__(self):
+    return False
