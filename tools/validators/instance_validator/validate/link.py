@@ -22,7 +22,7 @@ class Link(object):
 
   Args:
     source: source entity name
-    field_map: map from source entity field names to target entity field names
+    field_map: map from target entity field names to source entity field names
   """
 
   def __init__(self, source, field_map):

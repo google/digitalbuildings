@@ -12,20 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-CHWS_WDT-17:
-  type: HVAC/CHWS_WDT
-  id: CDM/123456
-  translation:
-    return_water_temperature_sensor:
-      present_value: "points.return_water_temperature_sensor.present_value"
-      unit_values:
-        degrees_celsius: "degC"
-    supply_water_temperature_sensor:
-      present_value: "points.supply_water_temperature_sensor.present_value"
-      unit_values:
-        degrees_celsius: "degC"
-        degrees_fahrenheit: "degF"
-
+# Cannot have operation when config is in INITIALIZE mode
 UK-LON-S2:
   type: FACILITIES/BUILDING
   id: FACILITIES/123456
+  operation: DELETE

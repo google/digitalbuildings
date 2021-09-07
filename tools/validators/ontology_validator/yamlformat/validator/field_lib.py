@@ -11,7 +11,6 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 """Classes and methods for working with Carson Fields."""
 
 from __future__ import absolute_import
@@ -20,32 +19,33 @@ from __future__ import print_function
 
 import re
 
-import typing
+from typing import Dict, List, NamedTuple, Optional
 
 from yamlformat.validator import base_lib
 from yamlformat.validator import config_folder_lib
+from yamlformat.validator import entity_type_lib
 from yamlformat.validator import findings_lib
 from yamlformat.validator import state_lib
 from yamlformat.validator import subfield_lib
 
 # We currently are enforcing that fields are lower case only.
-FIELD_CHARACTER_REGEX = re.compile(
-    r'^[a-z]+[a-z0-9]*(?:_[a-z]+[a-z0-9]*)*$')
+FIELD_CHARACTER_REGEX = re.compile(r'^[a-z]+[a-z0-9]*(?:_[a-z]+[a-z0-9]*)*$')
 
 
-def SplitFieldName(field):
+def SplitFieldName(qualified_field_name):
   """Splits the field name on '/' and returns the parts separately.
 
   Args:
-    field: the possibly fully qualified field name
+    qualified_field_name: the possibly fully qualified field name
 
   Returns:
-    tuple with namespace and field name.  Defaults to global for no namespace.
+    tuple with namespace and raw field name.  Defaults to global for no
+    namespace.
   """
 
-  field_only = field
+  field_only = qualified_field_name
   namespace = ''
-  split = field.split('/')
+  split = qualified_field_name.split('/')
   if len(split) == 2:
     namespace = split[0]
     field_only = split[1]
@@ -58,7 +58,7 @@ class FieldUniverse(findings_lib.FindingsUniverse):
   Only contains valid fields.
   """
 
-  def _GetNamespaceMapValue(self, namespace):
+  def _GetNamespaceMapValue(self, namespace: str) -> List['Field']:
     """Helper method for FindingsUniverse._MakeNamespaceMap.
 
     Used to create a map from namespace names to field name lists.
@@ -69,27 +69,42 @@ class FieldUniverse(findings_lib.FindingsUniverse):
     Returns:
       A list of field names from the namespace.
     """
-    return {field.name for field in namespace.fields.values()}
+    return list(namespace.fields.values())
 
-  def IsFieldDefined(self, fieldname, namespace_name):
-    """Returns true if fieldname is defined within namespace.
-       If the field ends with a digit, it is removed to check if it exists without it
+  def IsFieldDefined(self, fieldname: str, namespace_name: str) -> bool:
+    """Returns true if fieldname is defined within the namespace.
 
-    Args:
-      fieldname: string. Name of a field, with namespace and increment removed.
-      namespace_name: string.
-    """
-    return fieldname in self._namespace_map.get(namespace_name, set())
-
-  def GetFieldsMap(self, namespace_name):
-    """Returns the fields defined within namespace.
+       If the field ends with a digit, it is removed to check if it exists
+       without it
 
     Args:
+      fieldname: string. Name of a field, optionally with increment.
       namespace_name: string.
     """
-    if self.folders:
-      return self.folders[0].local_namespace.fields
-  
+    fieldname_part, _ = entity_type_lib.SeparateFieldIncrement(fieldname)
+    return fieldname_part in {
+        field.name for field in self._namespace_map.get(namespace_name, [])
+    }
+
+  def GetFieldsMap(self,
+                   namespace_name: Optional[str] = None) -> Dict[str, 'Field']:
+    """Returns the fields defined within namespace, keyed by qualified std name.
+
+    Args:
+      namespace_name: string. Set to None to get all namespaces.
+    """
+    field_map = {}
+    names = [namespace_name]
+    if namespace_name is None:
+      names = self._namespace_map.keys()
+
+    for name in names:
+      for field in self._namespace_map.get(name, []):
+        field_map[name + '/' + field.name] = field
+
+    return field_map
+
+
 class FieldFolder(config_folder_lib.ConfigFolder):
   """Class representing a folder of Fields.
 
@@ -100,15 +115,13 @@ class FieldFolder(config_folder_lib.ConfigFolder):
 
   Args:
     folderpath: required string with full path to the folder containing fields.
-        Path should be relative to google3/ and have no leading or trailing /.
-    parent_namespace:
-      object containing global namepsace information. When working in the global
-          namespace folder, treat it as local and leave this blank.
-    local_subfields:
-      required map of subfield keys to Subfields for the local namespace.
-    local_states:
-      required map of state keys to States for the local namespace.
-
+      Path should be relative to google3/ and have no leading or trailing /.
+    parent_namespace: object containing global namepsace information. When
+      working in the global namespace folder, treat it as local and leave this
+      blank.
+    local_subfields: required map of subfield keys to Subfields for the local
+      namespace.
+    local_states: required map of state keys to States for the local namespace.
   Attributes:
     local_namespace: object representing the contents of the local namespace
     parent_namespace: object representing the contents of the global namespace
@@ -163,6 +176,7 @@ class FieldFolder(config_folder_lib.ConfigFolder):
         # If the field has a list of states, field_spec must be a dict with
         # a single entry.
         try:
+          # TODO(b/188242279) handle namespacing for states correctly.
           [(field_name, states)] = field_spec.items()
         except ValueError:
           self.AddFinding(
@@ -192,37 +206,27 @@ class _FieldValidationStateMachine(object):
 
   _POINT_TYPES_NEEDING_MEASUREMENTS = ['setpoint', 'sensor', 'accumulator']
 
-  _CAT_SPEC = typing.NamedTuple(
-      'CAT_SPEC', [('cat', str), ('required', bool), ('max', int)])
+  _CAT_SPEC = NamedTuple('CAT_SPEC', [('cat', str), ('required', bool),
+                                      ('max', int)])
 
   # Represents parameters for each subfield category.
   # Subfields are in the array in the order they should appear in the field.
   _CATEGORIES_IN_ORDER = [
       _CAT_SPEC(
-          cat=subfield_lib.SubfieldCategory.AGGREGATION,
-          required=False,
-          max=1),
+          cat=subfield_lib.SubfieldCategory.AGGREGATION, required=False, max=1),
       _CAT_SPEC(
-          cat=subfield_lib.SubfieldCategory.DESCRIPTOR,
-          required=False,
-          max=10),
+          cat=subfield_lib.SubfieldCategory.DESCRIPTOR, required=False, max=10),
       _CAT_SPEC(
-          cat=subfield_lib.SubfieldCategory.COMPONENT,
-          required=False,
-          max=1),
+          cat=subfield_lib.SubfieldCategory.COMPONENT, required=False, max=1),
       _CAT_SPEC(
           cat=subfield_lib.SubfieldCategory.MEASUREMENT_DESCRIPTOR,
           required=False,
           max=1),
       _CAT_SPEC(
-          cat=subfield_lib.SubfieldCategory.MEASUREMENT,
-          required=False,
-          max=1),
+          cat=subfield_lib.SubfieldCategory.MEASUREMENT, required=False, max=1),
       _CAT_SPEC(
-          cat=subfield_lib.SubfieldCategory.POINT_TYPE,
-          required=True,
-          max=1)
-      ]
+          cat=subfield_lib.SubfieldCategory.POINT_TYPE, required=True, max=1)
+  ]
 
   def ValidateNext(self, subfield):
     """Validates if appending a subfield of category can make a valid field.
@@ -272,10 +276,9 @@ class FieldNamespace(findings_lib.Findings):
       global namespace is represented by the empty string.
     subfields: optional map of subfield names to Subfields. No validation of
       subfields is performed if this is left empty
-    states: optional map of state names to States. No validation of states
-      is performed if this isn't provided
+    states: optional map of state names to States. No validation of states is
+      performed if this isn't provided
     parent_namespace: global FieldNamespace object, if this is not it.
-
   Attributes:
     fields: a dictionary of Field keys to field objects for fields added to
       this namespace.  NB: a field key is a permutation of the field name with
@@ -285,8 +288,8 @@ class FieldNamespace(findings_lib.Findings):
       this namespace.
     states: a map from state names to State objects defined in this namespace
     namespace: string name of this namespace
-    parent_namespace: reference to the parent namespace, or None if this is
-      the global namespace
+    parent_namespace: reference to the parent namespace, or None if this is the
+      global namespace
 
   Returns:
     An instance of the FieldNamespace class.
@@ -420,8 +423,11 @@ class FieldNamespace(findings_lib.Findings):
 
     return uses_local_subfields
 
-  def PutIfAbsent(self, field):
+  def PutIfAbsent(self, field: 'Field') -> Optional['Field']:
     """Puts the field into the field map if its key is absent from the map.
+
+    Note: This method does NOT up-level.  Use it only for fields that should
+    definitely be in the namespace, or for testing.
 
     Args:
       field: field to attempt to insert into the map
@@ -478,10 +484,9 @@ class Field(findings_lib.Findings):
 
   Args:
     name: required string representing the field.
-    states: optional list of strings representing valid states for a
-      multistate field. Should be None for non-multistate fields.
+    states: optional list of strings representing valid states for a multistate
+      field. Should be None for non-multistate fields.
     context: optional object with the config file location of this field.
-
   Attributes:
     context: the config file context for where this field was defined
     name: the full name (without namespace) of this field

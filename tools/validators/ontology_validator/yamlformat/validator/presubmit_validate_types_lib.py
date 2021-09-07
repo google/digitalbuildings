@@ -11,7 +11,6 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 """Top level logic for Entity type validation.
 
 Invoked automatically by PRESUBMIT on changes touching files that define
@@ -24,11 +23,12 @@ from __future__ import print_function
 
 import os
 import time
+from typing import Dict, List, NamedTuple, Optional
 
 from six.moves import input
-import typing
 
 from yamlformat.validator import base_lib
+from yamlformat.validator import connection_lib
 from yamlformat.validator import entity_type_lib
 from yamlformat.validator import entity_type_manager
 from yamlformat.validator import field_lib
@@ -42,9 +42,10 @@ from yamlformat.validator import unit_lib
 # Define namedtuple Config to store the different kinds of config files
 # All attributes should be tuples.
 # Each property is a tuple of base_lib.PathParts tuples
-Config = typing.NamedTuple('Config', [('fields', tuple), ('subfields', tuple),
-                                      ('states', tuple), ('type_defs', tuple),
-                                      ('units', tuple)])
+
+Config = NamedTuple('Config', [('fields', tuple), ('subfields', tuple),
+                               ('states', tuple), ('type_defs', tuple),
+                               ('units', tuple), ('connections', tuple)])
 
 
 class ConfigUniverse(findings_lib.Findings):
@@ -61,40 +62,43 @@ class ConfigUniverse(findings_lib.Findings):
   """
 
   def __init__(self, entity_type_universe, field_universe, subfield_universe,
-               state_universe, unit_universe):
+               state_universe, connection_universe, unit_universe):
     super().__init__()
     self.entity_type_universe = entity_type_universe
     self.field_universe = field_universe
     self.subfield_universe = subfield_universe
     self.state_universe = state_universe
+    self.connection_universe = connection_universe
     self.unit_universe = unit_universe
     self.unit_universe_reverse_map = self._ArrangeUnitsByMeasurement()
+    # Fully qualified standard field name to States
     self.state_universe_reverse_map = self._ArrangeStatesByField()
-    # temporary placeholder for instance validator
-    self.connections_universe = None
 
-  def _ArrangeUnitsByMeasurement(self):
+  def _ArrangeUnitsByMeasurement(self) -> Dict[str, List[str]]:
+    # TODO(b/188241455) does this method need to exist?
     if not self.unit_universe:
       print('UnitUniverse undefined in ConfigUniverse')
       return None
-    
+
     unitsByMeasurement = dict()
     units = self.unit_universe.GetUnitsMap('')
     for key, unit in units.items():
-        unitsByMeasurement.setdefault(unit.measurement_type, []).append(unit.name)
+      unitsByMeasurement.setdefault(unit.measurement_type, []).append(unit.name)
     return unitsByMeasurement
 
-  def _ArrangeStatesByField(self):
+  def _ArrangeStatesByField(self) -> Dict[str, List[str]]:
+    # TODO(b/188241455) does this method need to exist?
     if not self.field_universe:
       print('FieldUniverse undefined in ConfigUniverse')
       return None
-  
+
     statesByField = dict()
-    fields = self.field_universe.GetFieldsMap('')
+
+    fields = self.field_universe.GetFieldsMap()
     if fields:
       for key, element in fields.items():
         if element.states:
-          statesByField[element.name] = element.states
+          statesByField[key] = element.states
     return statesByField
 
   def _GetDynamicFindings(self, filter_old_warnings):
@@ -107,6 +111,8 @@ class ConfigUniverse(findings_lib.Findings):
       findings += self.entity_type_universe.GetFindings(filter_old_warnings)
     if self.state_universe:
       findings += self.state_universe.GetFindings(filter_old_warnings)
+    if self.connection_universe:
+      findings += self.connection_universe.GetFindings(filter_old_warnings)
     if self.unit_universe:
       findings += self.unit_universe.GetFindings(filter_old_warnings)
     return findings
@@ -123,10 +129,10 @@ class ConfigUniverse(findings_lib.Findings):
     return self.entity_type_universe.GetNamespaces()
 
   def GetEntityTypeNamespace(self, namespace_name):
-    """Get entity type namespace_name in this universe if defined.
+    """Get namespace object by namespace_name in this universe if defined.
 
     Returns:
-      A namespace name or None if not defined
+      A namespace object or None if not defined
     """
     if not self.entity_type_universe:
       print('EntityTypeUniverse undefined in ConfigUniverse')
@@ -144,34 +150,50 @@ class ConfigUniverse(findings_lib.Findings):
       return None
     return self.entity_type_universe.GetEntityType(namespace_name, typename)
 
-  def GetUnitsMapByMeasurement(self, field_name):
-    """Returns a set of possible units by a measurement_field. None if a state.
+  def GetUnitsForMeasurement(self,
+                             as_written_field_name: str) -> Optional[List[str]]:
+    """Returns a List of possible unit strings by a measurement_field.
+
+    This method is not namespace aware because units are currently only
+    definable globally.
 
     Args:
-      field_name: string.
-		"""
+      as_written_field_name: qualified or unqualified field name. Can be
+        incremented.
+    Returns: a string representing the unit or None if units are defined.
+    """
     if not self.unit_universe_reverse_map:
       print('UnitUniverse undefined in ConfigUniverse')
       return None
-    subfields = field_name.split('_')
+    subfields = as_written_field_name.split('_')
     # if the last element is numeric need to remove it
     while subfields[-1].isnumeric():
       subfields.pop()
-      
+
     if subfields[-1] not in ['status', 'label', 'mode', 'counter', 'timestamp']:
-      measurement_subfield = subfields[-2] # access the measurement_type subfield
+      # access measurement subfield.  In case of a two-subfield field with a
+      # namespace attached, chop off the namespace.
+      measurement_subfield = subfields[-2].split('/')[-1]
       return self.unit_universe_reverse_map.get(measurement_subfield)
 
-  def GetStatesByField(self, field_name):
-    """Returns a set of possible states by a field. None if a state.
+  def GetStatesByField(self, field_name: str) -> List[str]:
+    """Returns a list of possible state strings for a field.
+
+    TODO(b/188242279) handle namespacing for states correctly.
 
     Args:
-      field_name: string.
-		"""
+      field_name: a fully qualifited field string.
+
+    Returns:
+      State string exactly as it was defined in the ontology config
+    """
     if not self.state_universe_reverse_map:
       print('StateUniverse undefined in ConfigUniverse')
       return None
-    return self.state_universe_reverse_map.get(field_name)
+    namespace, raw_field = entity_type_lib.SeparateFieldNamespace(field_name)
+    std_field, _ = entity_type_lib.SeparateFieldIncrement(raw_field)
+    return self.state_universe_reverse_map.get(namespace + '/' + std_field)
+
 
 def BuildUniverse(config):
   """Verifies that the ontology config is consistent and valid.
@@ -188,6 +210,12 @@ def BuildUniverse(config):
   if config.states:
     state_folders = parse.ParseStateFoldersFromFiles(config.states)
     state_universe = state_lib.StateUniverse(state_folders)
+
+  connections_universe = None
+  if config.connections:
+    connection_folders = parse.ParseConnectionFoldersFromFiles(
+        config.connections)
+    connections_universe = connection_lib.ConnectionUniverse(connection_folders)
 
   # Parse subfield files
   subfields_universe = None
@@ -219,7 +247,7 @@ def BuildUniverse(config):
 
   # return findings_list, result_namespaces
   return ConfigUniverse(types_universe, fields_universe, subfields_universe,
-                        state_universe, unit_universe)
+                        state_universe, connections_universe, unit_universe)
 
 
 def OrganizeFindingsByFile(findings_list):
@@ -274,45 +302,40 @@ def SeparateConfigFiles(path_tuples):
       states, type_defs, and units config files.
 
   Raises:
-    RuntimeError: if a file is found in a bad folder.
+    ValueError: if a file is found in a bad folder.
+    NotImplementedError: if an unrecognized ComponentType is found.
   """
   fields = []
   subfields = []
   states = []
   type_defs = []
   units = []
+  connections = []
 
-  # TODO(berkoben): make these checks handle folders under the component folder
-  # All the file validation may be doable here
   for path_tuple in path_tuples:
-
-    foldername = os.path.basename(os.path.dirname(path_tuple.relative_path))
-    if foldername == base_lib.SUBFOLDER_NAMES[base_lib.ComponentType.FIELD]:
+    _, component = base_lib.GetTreeLocation(path_tuple.relative_path)
+    if component == base_lib.ComponentType.FIELD:
       fields.append(path_tuple)
-    elif foldername == base_lib.SUBFOLDER_NAMES[
-        base_lib.ComponentType.SUBFIELD]:
+    elif component == base_lib.ComponentType.SUBFIELD:
       subfields.append(path_tuple)
-    elif foldername == base_lib.SUBFOLDER_NAMES[
-        base_lib.ComponentType.MULTI_STATE]:
+    elif component == base_lib.ComponentType.MULTI_STATE:
       states.append(path_tuple)
-    elif foldername == base_lib.SUBFOLDER_NAMES[
-        base_lib.ComponentType.ENTITY_TYPE]:
+    elif component == base_lib.ComponentType.ENTITY_TYPE:
       type_defs.append(path_tuple)
-    elif foldername == base_lib.SUBFOLDER_NAMES[base_lib.ComponentType.UNIT]:
+    elif component == base_lib.ComponentType.UNIT:
       units.append(path_tuple)
-    elif foldername == base_lib.SUBFOLDER_NAMES[
-        base_lib.ComponentType.CONNECTION]:
-      # TODO(b/153196944): don't skip these files when we support connections
-      continue
+    elif component == base_lib.ComponentType.CONNECTION:
+      connections.append(path_tuple)
     else:
-      raise RuntimeError('File found outside of expected folder.')
+      raise NotImplementedError('Unimplemented component: ' + component)
 
   return Config(
       fields=tuple(fields),
       subfields=tuple(subfields),
       states=tuple(states),
       type_defs=tuple(type_defs),
-      units=tuple(units))
+      units=tuple(units),
+      connections=tuple(connections))
 
 
 def _ValidateConfigInner(unmodified,
@@ -639,7 +662,8 @@ def RunPresubmit(unmodified, modified_base, modified_client):
 
   """
 
-  findings, _ = _ValidateConfigInner(unmodified, modified_base, modified_client, False)
+  findings, _ = _ValidateConfigInner(unmodified, modified_base, modified_client,
+                                     False)
   return findings
 
 
@@ -680,8 +704,7 @@ def PrintFindings(findings, filter_text):
     findings: a list of Finding objects.
     filter_text: command line arguments. The only available argument is
       'match:<value>' which will simply perform a simple string 'contains' on
-      the finding output and cause only matching findings to print.
-
+        the finding output and cause only matching findings to print.
   """
   findings_by_file = OrganizeFindingsByFile(findings)
   for filepath in findings_by_file:
@@ -708,7 +731,6 @@ def RunInteractive(filter_text, modified_base, modified_client):
         the finding output and cause only matching findings to print.
     modified_base: paths to original versions of changed files in validation.
     modified_client: the list of modified files to validate.
-
 
   Returns:
     zero.

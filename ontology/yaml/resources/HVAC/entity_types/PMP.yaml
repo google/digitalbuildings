@@ -52,6 +52,37 @@ PMP_SS_VSC_WDPC:
   - SS
   - VSC
   - WDPC
+
+PMP_SS_VSFC:
+  id: "3837499677784145920"
+  description: "PMP device with pump frequency control"
+  is_canonical: true
+  implements:
+  - PMP
+  - SS
+  - VSFC
+  opt_uses:
+  - control_mode
+  - run_mode
+  - lost_power_alarm
+  - low_differential_pressure_alarm
+  - chilled_water_differential_pressure_setpoint
+
+PMP_SS_CHWISOVPM_VSFC:
+  id: "2090103022364393472"
+  description: "PMP device with chilled water valve and pump frequency control"
+  is_canonical: true
+  implements:
+  - PMP
+  - SS
+  - CHWISOVPM
+  - VSFC
+  opt_uses:
+  - control_mode
+  - run_mode
+  - lost_power_alarm
+  - low_differential_pressure_alarm
+  - chilled_water_differential_pressure_setpoint
   
 PMP_SS_VSC_WDPC_WFRC:
   id: "14218c8d-0cd3-476a-9184-ee0032ae4e44"
@@ -63,7 +94,7 @@ PMP_SS_VSC_WDPC_WFRC:
   - VSC
   - WDPC
   - WFRC
-
+  
 PMP_SS_VSC_SWTC:
   id: "f63c76d9-c201-4831-b42a-5a12c344aaf6"
   description: "Pump with variable speed control and supply water temperature control"
@@ -73,7 +104,21 @@ PMP_SS_VSC_SWTC:
   - SS
   - VSC
   - SWTC
-  
+ 
+PMP_SS_CWCS_VSFC:
+  id: "15564028682526785536"
+  description: "PMP device with condensing water valve and pump frequency control"
+  is_canonical: true
+  implements:
+  - PMP
+  - SS
+  - CWCS
+  - VSFC
+  opt_uses:
+  - control_mode
+  - run_mode
+  - lost_power_alarm
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################

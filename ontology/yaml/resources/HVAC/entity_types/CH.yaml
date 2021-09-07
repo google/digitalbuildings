@@ -528,3 +528,35 @@ CH_SS_CHWDT2X_CWDT_CWDPM_CHWDPM_REFM:
   - CWDPM
   - CHWDPM
   - REFM
+
+CH_SS_CHWDT:
+  id: "8718557248923631616"
+  description: "Non-standard chiller."
+  implements:
+  - CH
+  - INCOMPLETE
+  - SS
+  - CHWDT
+  opt_uses:
+  - lost_power_alarm
+  - run_mode
+
+CH_SS_CHWSWISOVM_CWSISOVM_CWRISOVM_CHWRWISOVM_CHWDT:
+  id: "5548867536184934400"
+  description: "Non standard chiller with chilled/condensing supply/return water isolation valve control. Chilled water flowrate status "
+  implements:
+  - CH
+  - SS
+  - CHWSWISOVM
+  - CWSISOVM
+  - CWRISOVM
+  - CHWRWISOVM
+  - CHWDT
+  uses:
+  - chilled_water_flowrate_status
+  - condensing_water_flowrate_status
+  - condensing_supply_water_temperature_sensor
+  opt_uses:
+  - lost_power_alarm
+  - run_mode
+

@@ -10,10 +10,10 @@
 # distributed under the License is distributed on an AS IS BASIS,
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
-# limitations under the License.
+# limitations under the License
 
 ########################
-### Canonical Types  ###
+### Canonical Types  #
 ########################
 
 ### FAN RUN CONTROL ###
@@ -300,7 +300,7 @@ FAN_SS_EFVSM:
   - FAN
   - SS
   - EFVSM
-
+  
 FAN_SS_FDPM:
   id: "8098cdc6-4eef-42cc-9179-3b15d1de57b5"
   description: "Exhaust fan with filter monitoring."
@@ -310,6 +310,23 @@ FAN_SS_FDPM:
   - SS
   - FDPM
 
+FAN_SS_DPM_ZHM_ZTM:
+  id: "7854710545398628352"
+  description: "Fan with sensors (temperature, humidity and low pressure)."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - DPM
+  - ZHM
+  - ZTM
+  opt_uses:
+  - control_mode
+  - run_mode
+  - low_differential_pressure_alarm
+  - lost_power_alarm
+  - control_status
+  
 FAN_SS_VSM_SSPM_OAFM_FDPM:
   id: "9b18b5c4-9382-4fa4-bc6d-ad53563e25f1"
   description: "Outside air fan with variable speed monitoring, supply side pressure monitoring, outside air flow monitoring and filter monitoring."
@@ -333,6 +350,22 @@ FAN_SS_VSM_ZTM_EFM:
   - ZTM
   - EFM
   
+FAN_SS_VSFC:
+  id: "6340656645672009728"
+  description: "Fan with frequency command control"
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - VSFC
+  opt_uses:
+  - low_differential_pressure_alarm
+  - lost_power_alarm
+  - control_mode
+  - run_mode
+  - schedule_run_command
+  - control_status
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
@@ -505,3 +538,17 @@ FAN_US_SVL_MP7_2:
   - FAN_SS_VSC
   uses:
   - dishwasher_run_status
+
+FAN_SS_AL:
+  id: "17078082582253404160"
+  description: "Basic return fan start/stop only with optional alarms"
+  implements:
+  - FAN
+  - SS
+  opt_uses:
+  - lost_power_alarm
+  - low_differential_pressure_alarm
+  - control_mode
+  - run_mode
+  - schedule_run_command
+  - control_status

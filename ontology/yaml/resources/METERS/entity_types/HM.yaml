@@ -26,7 +26,18 @@ HM_CHW:
   - cooling_thermal_power_sensor
   - cooling_thermal_energy_accumulator
 
+HM_CHW_WAC:
+  id: "7296264191604686848"
+  description: "Cooling load heat meter with total chilled water volume accumulator."
+  implements:
+  - HM_CHW
+  is_canonical: true
+  uses:
+  - water_volume_accumulator
+
+#New type for CH ZRH EURD
 HM_HW:
+  id: "3199325536836911104"
   description: "Heating load heat meter."
   implements:
   - HM

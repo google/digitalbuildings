@@ -773,13 +773,165 @@ literals:
 - mixed_air_relative_humidity_sensor
 - mixed_air_dewpoint_temperature_sensor
 
-#Discharge air flow control
-- discharge_air_flowrate_setpoint
-#Hot water thermal meter
+# Added for TW
+- supply_air_isolation_damper_closed_status
+- supply_air_isolation_damper_open_status
+- control_status:
+  - REMOTE
+  - LOCAL
+- zone_scene_command
+- scene_command
+- cooling_run_status:
+  - ON
+  - OFF
+- high_return_air_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
+- low_return_air_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
+- high_return_air_relative_humidity_alarm:
+  - ACTIVE
+  - INACTIVE
+- low_return_air_relative_humidity_alarm:
+  - ACTIVE
+  - INACTIVE
+- chilled_water_valve_failed_alarm:
+  - ACTIVE
+  - INACTIVE
+- discharge_fan_speed_frequency_command
+- ultraviolet_lamp_run_mode:
+  - AUTO
+  - MANUAL
+- discharge_air_flowrate_status:
+  - ON
+  - OFF
+- damper_percentage_command
+- damper_percentage_sensor
+- supply_fan_lost_power_alarm:
+  - ACTIVE
+  - INACTIVE
+- panel_alarm
+
+
+# Added for Machine Learning Pilot
+- supervisor_control_mode:
+  - ENABLED
+  - DISABLED
+- supervisor_supply_air_static_pressure_setpoint
+- supervisor_supply_air_temperature_setpoint
+- program_supply_air_static_pressure_setpoint
+- program_supply_air_temperature_setpoint
+- supervisor_supply_water_temperature_setpoint
+- supervisor_differential_pressure_setpoint
+- program_supply_water_temperature_setpoint
+- program_differential_pressure_setpoint
+
+#Additional fields for CH ZRH EURD - radiant panels
+- condensate_water_alarm:
+  - ACTIVE
+  - INACTIVE
+- supply_water_valve_percentage_command
+- supply_water_valve_percentage_sensor
+- supply_water_valve_flowrate_sensor
+- total_request_count
+- zone_conditioning_mode:
+  - HEATING
+  - COOLING
+  - AUTO
+  - OFF
+- water_riser_mode:
+  - OFF
+  - HEATING
+  - COOLING
+- average_zone_air_temperature_sensor
+- heating_supply_water_isolation_valve_command
+- heating_return_water_isolation_valve_command
+- cooling_supply_water_isolation_valve_command
+- cooling_return_water_isolation_valve_command
+- heating_supply_water_isolation_valve_percentage_command
+- heating_return_water_isolation_valve_percentage_command
+- heating_supply_water_isolation_valve_percentage_sensor
+- heating_return_water_isolation_valve_percentage_sensor
+
+#Additional fields for CH ZRH EURD - FCU's
+- maintenance_alarm:
+  - ACTIVE
+  - INACTIVE
+- condensate_water_pump_alarm:
+  - ACTIVE
+  - INACTIVE
+
+#Additional fields for CH ZRH EURD - Lighting
+- average_illuminance_sensor
+- illuminance_setpoint
+- scene_dimmer_percentage_command
+- scene_dimmer_percentage_sensor
+- low_scene_dimmer_percentage_setpoint
+- high_scene_dimmer_percentage_setpoint
+- red_scene_dimmer_percentage_command
+- green_scene_dimmer_percentage_command
+- blue_scene_dimmer_percentage_command
+- dimmer_fade_rate_setpoint
+- dimmer_fade_time_setpoint
+- startup_dimmer_percentage_setpoint
+- dimmer_mode:
+  - FADING
+  - RAMPING
+- dimmer_failed_alarm:
+  - ACTIVE
+  - INACTIVE
+- power_command:
+  - ON
+  - OFF
+- lighting_switch_status:
+  - ON
+  - OFF
+- scene_dimmer_command:
+  - ACTIVE
+  - INACTIVE
+- scene_status:
+  - ACTIVE
+  - INACTIVE
+- room_occupancy_status:
+  - OCCUPIED
+  - UNKNOWN
+  - UNOCCUPIED
+  
+#Additional fields for CH ZRH EURD HVAC
+- bypass_air_damper_percentage_sensor
+- circulation_pump_speed_percentage_command
+- circulation_pump_speed_percentage_setpoint
+- frost_alarm:
+  - ACTIVE
+  - INACTIVE
+- supply_air_static_pressure_status:
+  - PRESENT
+  - ABSENT
+- exhaust_air_static_pressure_status:
+  - PRESENT
+  - ABSENT
+- exhaust_fan_failed_alarm:
+  - ACTIVE
+  - INACTIVE
+- return_air_damper_percentage_sensor
+- mixing_valve_percentage_sensor
+- potable_hot_water_temperature_sensor
+- potable_hot_supply_water_temperature_sensor
+- potable_hot_return_water_temperature_sensor
+- potable_hot_water_temperature_setpoint
 - heating_supply_water_temperature_sensor
 - heating_return_water_temperature_sensor
 - heating_thermal_power_sensor
 - heating_thermal_energy_accumulator
+- max_flowrate_setpoint
+- potable_water_high_temperature_sensor
+- potable_water_medium_temperature_sensor
+- potable_water_low_temperature_sensor
+- heating_supply_water_temperature_setpoint
+
+#Discharge air flow control
+- discharge_air_flowrate_setpoint
 
 #Electrical meter fields
 - neutral_line_current_sensor # A measure of current on the neutral line
@@ -791,3 +943,4 @@ literals:
 # Condensing water monitoring
 - condensing_water_differential_pressure_sensor
 - condensing_water_differential_pressure_setpoint
+

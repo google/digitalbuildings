@@ -12,9 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# Cannot have update mask when config in in INITIALIZE mode
 UK-LON-S2:
   type: FACILITIES/BUILDING
   id: FACILITIES/123456
-  translation:
-    zone_air_temperature_sensor: "temp_1"
-    supply_air_isolation_damper_command: "damper_1"
+  update_mask:
+  - description
