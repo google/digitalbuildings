@@ -3009,6 +3009,71 @@ SFVSC2X:
   implements:
   - OPERATIONAL
 
+SFVSC3X:
+  description: "Supply fan variable speed control with feedback and sensoring with three fans."
+  is_abstract: true
+  opt_uses:
+  - supply_fan_speed_frequency_sensor_1
+  - supply_fan_speed_percentage_sensor_1
+  - supply_fan_current_sensor_1
+  - supply_fan_power_sensor_1
+  - supply_fan_speed_frequency_sensor_2
+  - supply_fan_speed_percentage_sensor_2
+  - supply_fan_current_sensor_2
+  - supply_fan_power_sensor_2
+  - supply_fan_speed_frequency_sensor_3
+  - supply_fan_speed_percentage_sensor_3
+  - supply_fan_current_sensor_3
+  - supply_fan_power_sensor_3
+  uses:
+  - supply_fan_run_command_1
+  - supply_fan_run_status_1
+  - supply_fan_speed_percentage_command_1
+  - supply_fan_run_command_2
+  - supply_fan_run_status_2
+  - supply_fan_speed_percentage_command_2
+  - supply_fan_run_command_3
+  - supply_fan_run_status_3
+  - supply_fan_speed_percentage_command_3
+  implements:
+  - OPERATIONAL
+
+SFVSC4X:
+  description: "Supply fan variable speed control with feedback and sensoring with four fans."
+  is_abstract: true
+  opt_uses:
+  - supply_fan_speed_frequency_sensor_1
+  - supply_fan_speed_percentage_sensor_1
+  - supply_fan_current_sensor_1
+  - supply_fan_power_sensor_1
+  - supply_fan_speed_frequency_sensor_2
+  - supply_fan_speed_percentage_sensor_2
+  - supply_fan_current_sensor_2
+  - supply_fan_power_sensor_2
+  - supply_fan_speed_frequency_sensor_3
+  - supply_fan_speed_percentage_sensor_3
+  - supply_fan_current_sensor_3
+  - supply_fan_power_sensor_3
+  - supply_fan_speed_frequency_sensor_4
+  - supply_fan_speed_percentage_sensor_4
+  - supply_fan_current_sensor_4
+  - supply_fan_power_sensor_4
+  uses:
+  - supply_fan_run_command_1
+  - supply_fan_run_status_1
+  - supply_fan_speed_percentage_command_1
+  - supply_fan_run_command_2
+  - supply_fan_run_status_2
+  - supply_fan_speed_percentage_command_2
+  - supply_fan_run_command_3
+  - supply_fan_run_status_3
+  - supply_fan_speed_percentage_command_3
+  - supply_fan_run_command_4
+  - supply_fan_run_status_4
+  - supply_fan_speed_percentage_command_4
+  implements:
+  - OPERATIONAL
+
 BYPSSPC:
   id: "622251700748550144"
   description: "Supply static pressure control with bypass damper."
