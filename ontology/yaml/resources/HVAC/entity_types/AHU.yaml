@@ -3069,23 +3069,6 @@ AHU_BSPC_DX2SC_ECON_EFSS_EFVSC_FDPM_SFSS3X_SFVSC3X_SSPC:
   - SFVSC3X
   - SSPC
 
-AHU_BSPC_CHWSC_ECON_EFSS_EFVSC_HWSC_RHDHC_SFSS_SFVSC_SHM_SSPC:
-  description: "Multi-zone AHU with chilled and heating water coils and return air humidity control."
-  is_canonical: true
-  implements:
-  - AHU
-  - BSPC
-  - CHWSC
-  - ECON
-  - EFSS
-  - EFVSC
-  - HWSC
-  - RHDHC
-  - SFSS
-  - SFVSC
-  - SHM
-  - SSPC
-
 AHU_BSPC_CHWSC_ECON_EFSS3X_EFVSC3X_HWSC_SARC_SFSS4X_SFVSC4X_SSPC:
   description: "Multi-zone AHU with chilled and heating water coils, three variable-speed exhaust fans, and four variable-speed supply fans."
   is_canonical: true
