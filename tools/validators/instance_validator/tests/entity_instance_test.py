@@ -267,6 +267,17 @@ class EntityInstanceTest(absltest.TestCase):
 
     self.assertFalse(self._e_v_init.Validate(instance))
 
+  def testValidateTranslationWithRequiredFieldCloudDeviceIdMissing(self):
+    try:
+      _Helper([
+          path.join(_TESTCASE_PATH, 'BAD',
+                    'bad_translation_missing_cloud_device_id.yaml')
+      ])
+    except KeyError as e:
+      self.assertEqual(type(e), KeyError)
+    else:
+      self.fail('{0} was not raised'.format(KeyError))
+
   def testValidateTranslation(self):
     parsed = _Helper(
         [path.join(_TESTCASE_PATH, 'GOOD', 'good_translation.yaml')])
@@ -277,6 +288,7 @@ class EntityInstanceTest(absltest.TestCase):
     instance = entity_instance.EntityInstance.FromYaml(entity_hvac)
 
     self.assertTrue(self._e_v_init.Validate(instance))
+    self.assertEqual(instance.cloud_device_id, 'foobar')
 
   def testValidateTranslationWithExplicitlyMissingField(self):
     parsed = _Helper([

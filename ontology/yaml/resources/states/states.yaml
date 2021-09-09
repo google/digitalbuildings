@@ -60,7 +60,9 @@ STANDBY: "Waiting in a prepared state."
 REMOTE: "The control is operated remotely."
 LOCAL: "The control is operating locally and independently with the remote system."
 
-
+#New states for CH ZRH eurd
+FADING: "An operation mode of a lighting dimmer: dimming speed based on a duration to dim from minimum to maximum"
+RAMPING: "An operation mode of a lighting dimmer: dimming speed defined in percent per second"
 
 
 
