@@ -201,3 +201,6 @@ VAV-1:
 This section contains some additional features and extensions that could be added in future.
 - While hydronic systems tie equipment together via an explicitly defined entity (the system itself), there is no such concept in the ontology for air-side systems, at least today. This could be added to help describe convoluted systems.
 - Risers do exist in the ontology but are utilized only when data exists specifically for that riser (necessitating the entity) or when the system is convoluted enough to justify it. It is best to omit this type of addition, excepting circumstances where it is absolutely necessary.
+
+
+**Note:** All BMS screenshots taken from Google's WebCTRL instances. WebCTRL is a building automation system owned by Automated Logic.
