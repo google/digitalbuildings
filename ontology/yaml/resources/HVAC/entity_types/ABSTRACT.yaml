@@ -2896,6 +2896,32 @@ SFSS3X:
   implements:
   - OPERATIONAL
 
+SFSS4X:
+  description: "Supply fan start-stop and feedback for four fans."
+  is_abstract: true
+  opt_uses:
+  - supply_air_flowrate_capacity
+  - supply_fan_power_capacity
+  - supply_fan_current_sensor_1
+  - supply_fan_current_sensor_2
+  - supply_fan_current_sensor_3
+  - supply_fan_current_sensor_4
+  - supply_fan_power_sensor_1
+  - supply_fan_power_sensor_2
+  - supply_fan_power_sensor_3
+  - supply_fan_power_sensor_4
+  uses:
+  - supply_fan_run_command_1
+  - supply_fan_run_status_1
+  - supply_fan_run_command_2
+  - supply_fan_run_status_2
+  - supply_fan_run_command_3
+  - supply_fan_run_status_3
+  - supply_fan_run_command_4
+  - supply_fan_run_status_4
+  implements:
+  - OPERATIONAL
+
 EFVSC2X:
   id: "6853685472657408000"
   description: "Exhaust fan variable speed control with feedback and sensoring for two fans."
