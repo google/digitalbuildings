@@ -719,7 +719,9 @@ literals:
   - INACTIVE
 
 # New fields for lighting and fire systems.
-- motion_status
+- motion_status:
+  - PRESENT
+  - ABSENT
 - battery_charge_status:
   - CHARGING
   - DISCHARGING
