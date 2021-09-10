@@ -3946,15 +3946,19 @@ CSWTC:
   - condensing_supply_water_temperature_setpoint
   - condensing_supply_water_temperature_sensor
 
-HTWHLSPC:
-  description: "Heat wheel control for AHUs"
+HTWHLSTC:
+  description: "Heat wheel which controls supply temperature using speed control."
   is_abstract: true
+  implements:
+  - CONTROL
   opt_uses:
   - heat_wheel_speed_percentage_sensor
+  - exhaust_air_temperature_sensor
+  - return_air_temperature_sensor
   uses:
   - heat_wheel_speed_percentage_command
   - heat_wheel_run_command
   - heat_wheel_run_status
   - outside_air_temperature_sensor
-  - return_air_temperature_sensor
+  - supply_air_temperature_sensor
   - supply_air_temperature_setpoint
