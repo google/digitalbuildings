@@ -163,18 +163,18 @@ def ParseFieldFoldersFromFiles(field_files,
                                 CreateFieldFolder)
 
 
-def ParseTypeFoldersFromFiles(types_files, fields_universe=None):
+def ParseTypeFoldersFromFiles(types_files, field_universe=None):
   """Returns list of EntityTypeFolder objects parsed from types_files.
 
   Args:
     types_files: list of absolute paths to entity type files.
-    fields_universe: optional FieldsUniverse object for field validation. If not
+    field_universe: optional FieldsUniverse object for field validation. If not
       given, validation of fields is not performed.
   """
 
   def CreateEntityTypeFolder(folderpath, parent_namespace):
     del parent_namespace  # Unused by EntityTypeFolder.
-    return entity_type_lib.EntityTypeFolder(folderpath, fields_universe)
+    return entity_type_lib.EntityTypeFolder(folderpath, field_universe)
 
   return _ParseFoldersFromFiles(types_files, base_lib.ComponentType.ENTITY_TYPE,
                                 CreateEntityTypeFolder)
