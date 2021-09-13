@@ -440,3 +440,12 @@ class EntityTypeManager(findings_lib.Findings):
       typenames_by_subset[field_set].update(typegroup)
 
     return typenames_by_subset
+
+
+  def GetCompleteFieldSetsOI(self) -> dict():
+    """Returns a mapping of complete field lists to EntityType strings"""
+    return self._complete_field_sets_oi
+
+  def GetTypenamesBySubsetOI(self) -> dict():
+    """Returns a mapping of field subsets to EntityType strings"""
+    return self._typenames_by_subset_oi
