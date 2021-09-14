@@ -182,7 +182,7 @@ class TelemetryHelper(object):
         report += warnings.GetPrintableMessage()
 
       if report_filename:
-        with open(self.report_filename, 'w') as f:
+        with open(self.report_filename, 'w', encoding='utf-8') as f:
           f.write(report)
           f.close()
       else:
