@@ -27,7 +27,9 @@ from yamlformat.validator import unit_lib
 
 
 def create_simplified_universe():
-  """Creates a simplified test universe with the minimal configuration for testing."""
+  """
+  Creates a simplified test universe with the minimal configuration for testing.
+  """
 
   # constant universes
   state_universe = states.STATE_UNIVERSE
