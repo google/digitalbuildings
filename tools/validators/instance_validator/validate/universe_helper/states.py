@@ -14,7 +14,7 @@
 
 """Sets up a minimal state universe required for testing."""
 
-from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.validator import state_lib
+from yamlformat.validator import state_lib
 
 STATE_FOLDER = state_lib.StateFolder(folderpath='states')
 STATE_UNIVERSE = state_lib.StateUniverse(folders=[STATE_FOLDER])
