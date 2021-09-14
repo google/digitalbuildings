@@ -11,9 +11,10 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
 """Sets up a minimal connection universe required for testing."""
 
-from yamlformat.validator import connection_lib
+from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.validator import connection_lib
 
 CONNECTION_FOLDER = connection_lib.ConnectionFolder(folderpath='connections')
 CONNECTION_UNIVERSE = connection_lib.ConnectionUniverse(
@@ -22,24 +23,19 @@ CONNECTION_UNIVERSE = connection_lib.ConnectionUniverse(
 CONNECTION_FOLDER.AddFromConfig(
     documents=[{
         'CONTAINS': {
-            'description':
-                'Source physically encapsulates at least part of Target.'
+            'description': 'foobar',
         },
         'CONTROLS': {
-            'description':
-                'Source determines or affects the internal state or behavior of Target.'
+            'description': 'foobar',
         },
         'FEEDS': {
-            'description':
-                'Source provides some media (ex: water or air) to Target.'
+            'description': 'foobar',
         },
         'HAS_PART': {
-            'description':
-                'Source has some component or part defined by Target.'
+            'description': 'foobar',
         },
         'HAS_RANGE': {
-            'description':
-                'Source has a coverage or detection range defined by Target.'
+            'description': 'foobar',
         },
     }],
     config_filename='connections/connections.yaml')
