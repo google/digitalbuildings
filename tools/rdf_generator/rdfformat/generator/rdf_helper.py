@@ -368,5 +368,5 @@ def ReadFile(filename):
   Returns:
     The file content.
   """
-  with open(filename, "r") as data_file:
+  with open(filename, "r", encoding='utf-8') as data_file:
     return data_file.read()
