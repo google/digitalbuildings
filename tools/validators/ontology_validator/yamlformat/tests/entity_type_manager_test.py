@@ -249,5 +249,83 @@ class EntityTypeManagerTest(absltest.TestCase):
     self.assertTrue(parent.HasFindingTypes(
         [findings_lib.DuplicateExpandedFieldSetsWarning]))
 
+  def testGetCompleteFieldSetsOI(self):
+    yaml = {'literals': ['field1', 'field2', 'field3', 'field4']}
+    field_universe = field_lib.FieldUniverse(
+        [_GetFieldFolder(yaml)])
+    yaml = {
+        'VAV_parent': {
+            'description': 'parent',
+            'is_canonical': True,
+            'uses': ['field1', 'field4'],
+            'opt_uses': ['field2', 'field3']
+        },
+        'VAV_child1': {
+            'description': 'child1',
+            'uses': ['field1', 'field4'],
+            'opt_uses': ['field2']
+        },
+        'VAV_child2': {
+            'description': 'child2',
+            'uses': ['field1', 'field3', 'field4']
+        },
+        'different_equip_type': {
+            'description': 'different',
+            'uses': ['field1', 'field3', 'field4']
+        },
+        'VAV_nomatch': {
+            'description': 'nomatch',
+            'uses': ['field1', 'field2', 'field3']
+        },
+    }
+    type_folder = _GetEntityTypeFolder(field_universe, yaml)
+    universe = _GetEntityTypeUniverse([type_folder])
+    manager = entity_type_manager.EntityTypeManager(universe)
+
+    self.assertEqual(manager.GetCompleteFieldSetsOI(), {})
+
+    manager.Analyze()
+
+    self.assertNotEqual(manager.GetCompleteFieldSetsOI(), {})
+
+  def testGetTypenamesBySubsetOI(self):
+    yaml = {'literals': ['field1', 'field2', 'field3', 'field4']}
+    field_universe = field_lib.FieldUniverse(
+        [_GetFieldFolder(yaml)])
+    yaml = {
+        'VAV_parent': {
+            'description': 'parent',
+            'is_canonical': True,
+            'uses': ['field1', 'field4'],
+            'opt_uses': ['field2', 'field3']
+        },
+        'VAV_child1': {
+            'description': 'child1',
+            'uses': ['field1', 'field4'],
+            'opt_uses': ['field2']
+        },
+        'VAV_child2': {
+            'description': 'child2',
+            'uses': ['field1', 'field3', 'field4']
+        },
+        'different_equip_type': {
+            'description': 'different',
+            'uses': ['field1', 'field3', 'field4']
+        },
+        'VAV_nomatch': {
+            'description': 'nomatch',
+            'uses': ['field1', 'field2', 'field3']
+        },
+    }
+    type_folder = _GetEntityTypeFolder(field_universe, yaml)
+    universe = _GetEntityTypeUniverse([type_folder])
+    manager = entity_type_manager.EntityTypeManager(universe)
+
+    self.assertEqual(manager.GetTypenamesBySubsetOI(), {})
+
+    manager.Analyze()
+
+    self.assertNotEqual(manager.GetTypenamesBySubsetOI(), {})
+
 if __name__ == '__main__':
   absltest.main()
