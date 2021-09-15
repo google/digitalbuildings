@@ -884,7 +884,7 @@ literals:
 - dimmer_failed_alarm:
   - ACTIVE
   - INACTIVE
-- power_command:
+- switch_command:
   - ON
   - OFF
 - lighting_switch_status:
