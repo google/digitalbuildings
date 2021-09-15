@@ -224,6 +224,9 @@ class PresubmitValidateTypesTest(absltest.TestCase):
     self.assertSameElements(['degrees_celsius', 'kelvin'], units)
     units = config_universe.GetUnitsForMeasurement('pressure_sensor')
     self.assertIsNone(units)
+    units = config_universe.GetUnitsForMeasurement(
+        'discharge_fan_lost_power_alarm')
+    self.assertIsNone(units)
 
   def testConfigUniverseGetStatesByField(self):
     meow_states = ['HUNGRY', 'SNUGGLY']
