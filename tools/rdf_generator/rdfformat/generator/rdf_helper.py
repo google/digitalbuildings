@@ -21,10 +21,9 @@ from __future__ import print_function
 import datetime
 
 from absl import logging
+from rdfformat.generator import constants
 import rdflib
 from rdflib.extras import infixowl
-
-from rdfformat.generator import constants
 
 
 def CreateClassInGraph(graph,

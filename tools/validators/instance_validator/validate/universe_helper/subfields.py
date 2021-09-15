@@ -14,7 +14,6 @@
 # under
 # the
 # License.
-
 """Sets up a minimal subfield universe required for testing."""
 
 from yamlformat.validator import subfield_lib
@@ -258,4 +257,3 @@ SUBFIELD_FOLDER.AddFromConfig(
             'timestamp': 'foobar',
         }
     }])
-

@@ -170,7 +170,9 @@ class ConfigUniverse(findings_lib.Findings):
     while subfields[-1].isnumeric():
       subfields.pop()
 
-    if subfields[-1] not in ['status', 'label', 'mode', 'counter', 'timestamp']:
+    if subfields[-1] not in [
+        'status', 'label', 'mode', 'counter', 'timestamp', 'alarm'
+    ]:
       # access measurement subfield.  In case of a two-subfield field with a
       # namespace attached, chop off the namespace.
       measurement_subfield = subfields[-2].split('/')[-1]
