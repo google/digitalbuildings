@@ -184,11 +184,11 @@ def CreatesStandardFieldNameCompositionInGraph(list_composition,
 
   Args:
     list_composition: a list of composition of standard field name defined by
-      Carson. Example: ['Run', 'Command']
+      Carson. Example: ["Run", "Command"]
     standard_field_name: an ontology standard field name from Carson. Example:
       run_command
     is_composed_of_property: the property used to compose the standard field
-      names, such as 'is_composed_of'
+      names, such as "is_composed_of"
     graph: the global graph, example input run_command -> the returned result -
       is_composed_of_property only (Run and Command). - run_command subClassOf
       Command - Command subClassOf Point_type
@@ -232,10 +232,10 @@ def CreateCompositionInGraph(list_standard_field_names,
     list_standard_field_names: a list of standard field name defined by Carson.
       Example [compressor_run_status_4, supply_water_temperature_sensor,
       supply_water_temperature_setpoint]
-    composition_operator: an '&' or '|' operator
+    composition_operator: an "&" or "|" operator
     composition_property: the property which will relate the class and the list
       of standard field names
-    restriction: the restriction imposed on the composition, 'only' or 'some'
+    restriction: the restriction imposed on the composition, "only" or "some"
     class_owl: the class where the composition is attached to.
     graph: the global graph
     entity_namespace: the name space for the composition elements
@@ -253,7 +253,7 @@ def CreateCompositionInGraph(list_standard_field_names,
         graph=graph,
         subClassOf=sub_class_of)
     index += 1
-    # Prepare the second element since the '&' operator is needed to determine
+    # Prepare the second element since the "&" operator is needed to determine
     # the nature of the composition
     if index < len(list_standard_field_names):
       if composition_operator == "&":
@@ -295,7 +295,7 @@ def DecomposeStandardFieldName(standard_field_name):
   """Utility function takes a standard_field_name from the ontology
    and returns its composition.
 
-  Example: [run_command_1] -> ['Run', 'Command']
+  Example: [run_command_1] -> ["Run", "Command"]
   Args:
     standard_field_name: a standard field name defined by Carson.
 
@@ -315,7 +315,7 @@ def CreatesImplementsInGraph(graph, implements_list, applications_set,
   """Utility function to handle the inheritance of types
   when the implements relation is used in the yaml file.
 
-  Example: class_object subClassOf implements_list['CONTROL', 'MONITORING'].
+  Example: class_object subClassOf implements_list["CONTROL", "MONITORING"].
 
   Args:
     graph: the global rdf graph
@@ -368,5 +368,5 @@ def ReadFile(filename):
   Returns:
     The file content.
   """
-  with open(filename, "r") as data_file:
+  with open(filename, "r", encoding="utf-8") as data_file:
     return data_file.read()

@@ -2897,6 +2897,7 @@ SFSS3X:
   - OPERATIONAL
 
 SFSS4X:
+  id: "12662092041384099840"
   description: "Supply fan start-stop and feedback for four fans."
   is_abstract: true
   opt_uses:
@@ -3036,6 +3037,7 @@ SFVSC2X:
   - OPERATIONAL
 
 SFVSC3X:
+  id: "6519182149650743296"
   description: "Supply fan variable speed control with feedback and sensoring with three fans."
   is_abstract: true
   opt_uses:
@@ -3065,6 +3067,7 @@ SFVSC3X:
   - OPERATIONAL
 
 SFVSC4X:
+  id: "17733145221803278336"
   description: "Supply fan variable speed control with feedback and sensoring with four fans."
   is_abstract: true
   opt_uses:
