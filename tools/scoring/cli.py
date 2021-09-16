@@ -47,7 +47,7 @@ def parse_args() -> argparse.ArgumentParser:
       '--ontology',
       dest='ontology',
       required=False,
-      default='/Users/atom/Documents/work/digitalbuildings/ontology/yaml',
+      default=None,
       help='Absolute path for the directory which contains your ontology',
       metavar='ontology')
 
@@ -72,7 +72,7 @@ def parse_args() -> argparse.ArgumentParser:
       '--additions',
       dest='additions',
       required=False,
-      default='/Users/atom/Documents/work/digitalbuildings/ontology/yaml',
+      default=None,
       help='Type additions',
       metavar='additions')
 
@@ -99,4 +99,8 @@ def parse_args() -> argparse.ArgumentParser:
 
 if __name__ == '__main__':
   args = parse_args().parse_args(sys.argv[1:])
-  Results(args.ontology, args.solution, args.proposed, args.additions)
+  Results(
+      ontology=args.ontology,
+      solution=args.solution,
+      proposed=args.proposed,
+      additions=args.additions)
