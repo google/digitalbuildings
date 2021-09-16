@@ -31,22 +31,22 @@ _INSTANCES_PATH = path.join(test_constants.TEST_INSTANCES, 'GOOD')
 
 _MESSAGE_ATTRIBUTES_PATH_1 = path.join(_TELEMETRY_PATH,
                                        'message_attributes_CHWS_WDT-17.json')
-with open(_MESSAGE_ATTRIBUTES_PATH_1) as f:
+with open(_MESSAGE_ATTRIBUTES_PATH_1, encoding='utf-8') as f:
   _MESSAGE_ATTRIBUTES_1 = json.load(f)
 
 _MESSAGE_ATTRIBUTES_PATH_2 = path.join(_TELEMETRY_PATH,
                                        'message_attributes_DMP_EDM-17.json')
-with open(_MESSAGE_ATTRIBUTES_PATH_2) as f:
+with open(_MESSAGE_ATTRIBUTES_PATH_2, encoding='utf-8') as f:
   _MESSAGE_ATTRIBUTES_2 = json.load(f)
 
 _MESSAGE_ATTRIBUTES_PATH_3 = path.join(_TELEMETRY_PATH,
                                        'message_attributes_SDC_EXT-17.json')
-with open(_MESSAGE_ATTRIBUTES_PATH_3) as f:
+with open(_MESSAGE_ATTRIBUTES_PATH_3, encoding='utf-8') as f:
   _MESSAGE_ATTRIBUTES_3 = json.load(f)
 
 _MESSAGE_ATTRIBUTES_PATH_4 = path.join(_TELEMETRY_PATH,
                                        'message_attributes_FAN-17.json')
-with open(_MESSAGE_ATTRIBUTES_PATH_4) as f:
+with open(_MESSAGE_ATTRIBUTES_PATH_4, encoding='utf-8') as f:
   _MESSAGE_ATTRIBUTES_4 = json.load(f)
 
 
@@ -61,40 +61,54 @@ class FakeMessage(object):
     return NotImplemented
 
 
-with open(path.join(_TELEMETRY_PATH, 'telemetry_good.json')) as file:
+with open(
+    path.join(_TELEMETRY_PATH, 'telemetry_good.json'),
+    encoding='utf-8') as file:
   file_contents = file.read()
   _MESSAGE_GOOD = FakeMessage(_MESSAGE_ATTRIBUTES_1, file_contents)
   _MESSAGE_GOOD_2 = FakeMessage(_MESSAGE_ATTRIBUTES_3, file_contents)
 
-with open(path.join(_TELEMETRY_PATH, 'telemetry_missing_point.json')) as file:
+with open(
+    path.join(_TELEMETRY_PATH, 'telemetry_missing_point.json'),
+    encoding='utf-8') as file:
   _MESSAGE_MISSING_POINT = FakeMessage(_MESSAGE_ATTRIBUTES_1, file.read())
 
-with open(path.join(_TELEMETRY_PATH,
-                    'telemetry_missing_point_partial.json')) as file:
+with open(
+    path.join(_TELEMETRY_PATH, 'telemetry_missing_point_partial.json'),
+    encoding='utf-8') as file:
   _MESSAGE_MISSING_POINT_PARTIAL = FakeMessage(_MESSAGE_ATTRIBUTES_1,
                                                file.read())
 
-with open(path.join(_TELEMETRY_PATH,
-                    'telemetry_missing_present_value.json')) as file:
+with open(
+    path.join(_TELEMETRY_PATH, 'telemetry_missing_present_value.json'),
+    encoding='utf-8') as file:
   _MESSAGE_MISSING_PRESENT_VALUE = FakeMessage(_MESSAGE_ATTRIBUTES_1,
                                                file.read())
 
-with open(path.join(_TELEMETRY_PATH, 'telemetry_invalid_state.json')) as file:
+with open(
+    path.join(_TELEMETRY_PATH, 'telemetry_invalid_state.json'),
+    encoding='utf-8') as file:
   _MESSAGE_INVALID_STATE = FakeMessage(_MESSAGE_ATTRIBUTES_2, file.read())
 
-with open(path.join(_TELEMETRY_PATH, 'telemetry_invalid_number.json')) as file:
+with open(
+    path.join(_TELEMETRY_PATH, 'telemetry_invalid_number.json'),
+    encoding='utf-8') as file:
   _MESSAGE_INVALID_NUMBER = FakeMessage(_MESSAGE_ATTRIBUTES_1, file.read())
 
-with open(path.join(_TELEMETRY_PATH,
-                    'telemetry_invalid_number_boolean.json')) as file:
+with open(
+    path.join(_TELEMETRY_PATH, 'telemetry_invalid_number_boolean.json'),
+    encoding='utf-8') as file:
   _MESSAGE_INVALID_NUMBER_BOOLEAN = FakeMessage(_MESSAGE_ATTRIBUTES_1,
                                                 file.read())
 
-with open(path.join(_TELEMETRY_PATH, 'telemetry_multiple_errors.json')) as file:
+with open(
+    path.join(_TELEMETRY_PATH, 'telemetry_multiple_errors.json'),
+    encoding='utf-8') as file:
   _MESSAGE_MULTIPLE_ERRORS = FakeMessage(_MESSAGE_ATTRIBUTES_1, file.read())
 
-  with open(path.join(_TELEMETRY_PATH,
-                      'telemetry_good_multistates.json')) as file:
+  with open(
+      path.join(_TELEMETRY_PATH, 'telemetry_good_multistates.json'),
+      encoding='utf-8') as file:
     _MESSAGE_GOOD_MULTIPLE_STATES = FakeMessage(_MESSAGE_ATTRIBUTES_4,
                                                 file.read())
 

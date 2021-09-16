@@ -1,4 +1,4 @@
-# Copyright 2020 Google LLC
+# Copyright 2021 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the License);
 # you may not use this file except in compliance with the License.
@@ -12,12 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# INVALID is not a valid connection for an entity to have.
+from .config_universe import create_simplified_universe
 
-UK-LON-S2:
-  type: FACILITIES/BUILDING
-  id: FACILITIES/123456
-  connections:
-    # Listed entities are sources on connections
-    ANOTHER-ENTITY: FEEDS
-    A-THIRD-ENTITY: INVALID
+__doc__ = ('helper module for building a fake minimal config universe to bypass'
+           ' importing full ontology.')
+__all__ = ['create_simplified_universe']
