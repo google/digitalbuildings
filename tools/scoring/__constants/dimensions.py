@@ -25,7 +25,7 @@ class _Entity(Enum):
 
 
 @unique
-class Dimension(Enum):
+class Dimensions(Enum):
   UNIT_MAPPING = 'unit_mapping'
   STATE_MAPPING = 'state_mapping'
   FIELD_SELECTION = 'field_selection'
