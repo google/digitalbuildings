@@ -26,9 +26,11 @@ from yamlformat.validator import presubmit_validate_types_lib
 from yamlformat.validator import unit_lib
 
 
-def create_simplified_universe():
-  """
-  Creates a simplified test universe with the minimal configuration for testing.
+def create_simplified_universe() -> presubmit_validate_types_lib.ConfigUniverse:
+  """Creates a simplified test universe with minimal configuration for testing.
+
+  Returns:
+    config_universe a partially defined ConfigUniverse
   """
 
   # constant universes
