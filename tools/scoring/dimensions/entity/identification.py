@@ -45,11 +45,10 @@
 # Again, reporting and virtual device results should be separable
 
 """
+from dimensions.dimension import Dimension
 
-from score.score import Score
 
-
-class EntityId(Score):
+class EntityIdentification(Dimension):
 
   def __init__(self):
-    return False
+    pass

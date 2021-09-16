@@ -13,25 +13,16 @@
 # limitations under the License.
 """
 
-# Entity Connection Identification
-
-# Connections are scored on targets (because this is where they are defined).
-
-# Connections can be scored:
-
-#  (correctly defined connections) - (incorrectly defined connections) total
-# connections
-
-# In addition to overall score, sub-scored should be available for connections
-# where the source is another piece of equipment vs. a Facilities entity
-# (building/floor).
+# State Mappings
+# State mappings can be scored similarly to units with the key value mapping
+# being the raw:standard state mapping.
 
 """
 
-from score.score import Score
+from dimensions.dimension import Dimension
 
 
-class ConnectionId(Score):
+class StateMapping(Dimension):
 
   def __init__(self):
-    return False
+    pass

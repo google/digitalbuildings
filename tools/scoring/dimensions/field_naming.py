@@ -60,10 +60,10 @@
 
 """
 
-from score.score import Score
+from dimensions.dimension import Dimension
 
 
-class FieldNaming(Score):
+class FieldNaming(Dimension):
 
   def __init__(self):
-    return False
+    pass

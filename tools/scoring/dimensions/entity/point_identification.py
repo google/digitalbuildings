@@ -33,10 +33,10 @@
 
 """
 
-from score.score import Score
+from dimensions.dimension import Dimension
 
 
-class PointId(Score):
+class PointIdentification(Dimension):
 
   def __init__(self):
-    return False
+    pass

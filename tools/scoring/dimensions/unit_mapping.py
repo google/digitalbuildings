@@ -32,10 +32,10 @@
 
 """
 
-from score.score import Score
+from dimensions.dimension import Dimension
 
 
-class UnitMapping(Score):
+class UnitMapping(Dimension):
 
   def __init__(self):
-    return False
+    pass

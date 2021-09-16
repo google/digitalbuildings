@@ -37,10 +37,10 @@
 
 """
 
-from score.score import Score
+from dimensions.dimension import Dimension
 
 
-class FieldSelection(Score):
+class FieldSelection(Dimension):
 
   def __init__(self):
-    return False
+    pass
