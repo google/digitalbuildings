@@ -14,69 +14,83 @@
 """ Top-level runner """
 
 from utils.timestamp import timestamp
-from utils import path_hash
-from constants.dimension import Dimension
+from utils import path_sha1
 
 from validate import handler as validator
 
 
 class Results:
-  """Wraps full scoring report"""
+  """ Wraps full scoring report """
 
-  def __init__(self, proposed: str, solution: str, ontology: str,
-               additions: str) -> None:
-    started = timestamp()
-    print("Started at " + str(started))
-
-    # loop through args to aggregate files metadata
-
-    # print(hash.file(proposed))
-    print(path_hash.file(solution))
-    # print(hash.directory(ontology))
-    # print(hash.directory(additions))
-
-    self.parsed = {
-        solution: validator.Deserialize([solution]),
-        proposed: validator.Deserialize([proposed]),
+  def __init__(self,
+               *,
+               ontology: str = None,
+               solution: str,
+               proposed: str,
+               additions: str = None):
+    self.args = {
+        'ontology': ontology,
+        'proposed': proposed,
+        'solution': solution,
+        'additions': additions
     }
 
-  def _files(self):
-    return "files"
+    self.started = timestamp()
+    self.finished = None
+    print('Started at ' + str(self.started))
 
-  def __del__(self) -> None:  # Probably want to use a context manager for this
-    finished = timestamp()
-    print("Finished at " + str(finished))
+    self.tally()
+
+  def __del__(self):
+    self.finished = timestamp()
+    print('Finished at ' + str(self.finished))
+
+  # FUNCTIONALITY
+
+  def _parsed(self):
+    parsed = {}
+    for path in [self.solution, self.proposed]:
+      entities = validator.Deserialize([path])[0]
+      parsed[path] = entities
+    return parsed
 
   def tally(self):
-    for dimension in Dimension:
-      print(dimension.name)
+    pass
+
+  # EXTERNAL INTERFACE
 
   @property
   def meta(self):
-    # 'meta': {
-    #     'timeline': {
-    #         'started': datetime,
-    #         'finished': datetime
-    #     },
-    #     'files': {
-    #         'ontology': {
-    #             'path': 'path',
-    #             'hash': 'string'
-    #         },
-    #         'solution': {},
-    #         'proposed': {},
-    #         'additions': {}
-    #     },
-    #     'flags': {
-    #         'verbose': bool
-    #     }
-    # }
-    return "meta"
+    """ Dict for report output """
+    return {
+        'meta': {
+            'timeline': {
+                'started': self.started,
+                'finished': self.finished
+            },
+            'files': self._files()
+        }
+    }
 
   @property
   def scores(self):
+    """ Dict for report output """
     # 'scores': {
     #     # 'aggregate': float,
     #     'dimensions': {
     #         '...': {
-    return "scores"
+    pass
+
+  def _files(self):
+    """ Provide human-digestible way to quickly differentiate between inputs """
+    files = {}
+    for name, value in self.args.items():
+      if value is None:
+        files[name] = None
+        continue
+      elif name in ['proposed', 'solution']:
+        path, sha1 = path_sha1.file(value)
+      else:
+        path, sha1 = path_sha1.directory(value)
+      files[name] = {'path': path, 'sha1': sha1}
+    return files
