@@ -29,7 +29,6 @@ jobs:
     - name: Install Pylint
       run: |
         python -m pip install pylint
-
      #---------- Ontology Explorer ----------#
     - name: Ontology Explorer Install dependencies
       run: |
