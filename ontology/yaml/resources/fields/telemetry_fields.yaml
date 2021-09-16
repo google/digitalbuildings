@@ -369,8 +369,9 @@ literals:
   - OPEN
   - CLOSED
 ## Added on 2019/02/19
-- heating_stage_run_command
-
+- heating_stage_run_command:
+  - ON
+  - OFF
 ## Added on 2019/02/21
 - return_air_cooling_temperature_setpoint
 - return_air_heating_temperature_setpoint
@@ -725,7 +726,9 @@ literals:
   - INACTIVE
 
 # New fields for lighting and fire systems.
-- motion_status
+- motion_status:
+  - PRESENT
+  - ABSENT
 - battery_charge_status:
   - CHARGING
   - DISCHARGING
