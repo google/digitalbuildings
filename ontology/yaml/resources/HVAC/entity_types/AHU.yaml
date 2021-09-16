@@ -3055,6 +3055,7 @@ AHU_BSPC_DXSC_ECON_SFSS_SFVSC_SSPC_SSPCSCM_STCSCM:
   - STCSCM
 
 AHU_BSPC_DX2SC_ECON_EFSS_EFVSC_FDPM_SFSS3X_SFVSC3X_SSPC:
+  id: "18264569977832996864"
   description: "Multi-zone AHU with two-stage DX cooling, filter DP monitoring, and three variable-speed supply fans."
   is_canonical: true
   implements:
@@ -3070,6 +3071,7 @@ AHU_BSPC_DX2SC_ECON_EFSS_EFVSC_FDPM_SFSS3X_SFVSC3X_SSPC:
   - SSPC
 
 AHU_BSPC_CHWSC_ECON_EFSS3X_EFVSC3X_HWSC_SARC_SFSS4X_SFVSC4X_SSPC:
+  id: "2664100868621598720"
   description: "Multi-zone AHU with chilled and heating water coils, three variable-speed exhaust fans, and four variable-speed supply fans."
   is_canonical: true
   implements:
@@ -3086,6 +3088,7 @@ AHU_BSPC_CHWSC_ECON_EFSS3X_EFVSC3X_HWSC_SARC_SFSS4X_SFVSC4X_SSPC:
   - SSPC
 
 AHU_BSPC_CHWSC_ECON_EFSS2X_EFVSC2X_HWSC_SARC_SFSS2X_SFVSC2X_SSPC:
+  id: "8050406022956711936"
   description: "Multi-zone AHU with chilled and heating water coils, two variable-speed exhaust fans, and two variable-speed supply fans."
   is_canonical: true
   implements:
@@ -3102,6 +3105,7 @@ AHU_BSPC_CHWSC_ECON_EFSS2X_EFVSC2X_HWSC_SARC_SFSS2X_SFVSC2X_SSPC:
   - SSPC
 
 AHU_DX2SC_ECON_SHM_SFSS_SFVSC_SSPC:
+  id: "15742554186505519104"
   description: "Multi-zone AHU with two-stage DX cooling and supply air humidity monitoring."
   is_canonical: true
   implements:

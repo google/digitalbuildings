@@ -265,7 +265,7 @@ class InstanceParser():
     entity_instance_block = ''
     found_entities = 0
     in_config = False
-    with open(filename) as file:
+    with open(filename, encoding='utf-8') as file:
       for line in file:
         if _IGNORE_PATTERN.match(line):
           continue

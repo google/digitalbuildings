@@ -19,23 +19,30 @@ from __future__ import print_function
 from os import path
 
 from validate import constants
+from validate import universe_helper
 from yamlformat.validator import external_file_lib
 from yamlformat.validator import namespace_validator
 from yamlformat.validator import presubmit_validate_types_lib
 
 
 def BuildUniverse(
-    modified_types_filepath: str = None
+    use_simplified_universe: bool = False,
+    modified_types_filepath: str = None,
 ) -> presubmit_validate_types_lib.ConfigUniverse:
   """Generates the ontology universe.
 
   Args:
+    use_simplified_universe: boolean to quick load minimal universe instead of
+      full ontology
     modified_types_filepath: filepath to the modified ontology types
 
   Returns:
     Generated universe object.
   """
-  if modified_types_filepath:
+  if use_simplified_universe:
+    yaml_files = None
+    universe = universe_helper.create_simplified_universe()
+  elif modified_types_filepath:
     modified_ontology_exists = path.exists(modified_types_filepath)
     if not modified_ontology_exists:
       print('Specified filepath [{0}] modified ontology does not exist'.format(
@@ -60,8 +67,9 @@ def BuildUniverse(
     # use default location for ontology files
     yaml_files = external_file_lib.RecursiveDirWalk(constants.ONTOLOGY_ROOT)
 
-  config = presubmit_validate_types_lib.SeparateConfigFiles(yaml_files)
-  universe = presubmit_validate_types_lib.BuildUniverse(config)
+  if yaml_files:
+    config = presubmit_validate_types_lib.SeparateConfigFiles(yaml_files)
+    universe = presubmit_validate_types_lib.BuildUniverse(config)
 
   namespace_validation = namespace_validator.NamespaceValidator(
       universe.GetEntityTypeNamespaces())
