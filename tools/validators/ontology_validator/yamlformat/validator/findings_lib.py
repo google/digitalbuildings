@@ -155,6 +155,15 @@ class Findings(object):
     self._findings_list = []
     self._is_changed = False
 
+  # 9/17/2021 method added by Jane Dickson
+  def ExportLogToTxt(self, absfilepath):
+    export_file = open(absfilepath, 'w')
+
+    for finding in self._findings_list:
+      export_file.write('{}\n'.format(finding))
+
+    export_file.close()
+
   def _GetDynamicFindings(self, filter_old_warnings):
     """Override this to include additional findings not in self._findings_list.
 
