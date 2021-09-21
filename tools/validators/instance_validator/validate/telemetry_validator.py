@@ -119,7 +119,7 @@ class TelemetryValidator(object):
 
     entity = self.entities_with_translation[entity_name]
 
-    print('Validating telemetry message for entity: {0}'.format(entity_name))
+    print(f'Validating telemetry message for entity: {entity_name}')
     point_full_paths = {
         'points.{0}.present_value'.format(key): key for key in tele.points
     }
@@ -140,20 +140,17 @@ class TelemetryValidator(object):
           self.AddError(
               telemetry_error.TelemetryError(
                   entity_name, field_translation.raw_field_name,
-                  'Missing state in telemetry '
-                  'message: {}'.format(pv)))
+                  f'Missing state in telemetry message: {pv}'))
         elif isinstance(field_translation, ft_lib.DimensionalValue):
           self.AddError(
               telemetry_error.TelemetryError(
                   entity_name, field_translation.raw_field_name,
-                  'Missing number in telemetry '
-                  'message: {}'.format(pv)))
+                  f'Missing number in telemetry message: {pv}'))
         else:
           self.AddError(
               telemetry_error.TelemetryError(
                   entity_name, field_translation.raw_field_name,
-                  'Present value missing from '
-                  'telemetry message'))
+                  'Present value missing from telemetry message'))
         continue
 
       if isinstance(field_translation, ft_lib.MultiStateValue):
@@ -170,7 +167,7 @@ class TelemetryValidator(object):
         self.AddError(
             telemetry_error.TelemetryError(
                 entity_name, field_translation.raw_field_name,
-                'Invalid number in telemetry message: {}'.format(pv)))
+                f'Invalid number in telemetry message: {pv}'))
 
     message.ack()
     self.CallbackIfCompleted()

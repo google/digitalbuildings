@@ -45,8 +45,7 @@ def BuildUniverse(
   elif modified_types_filepath:
     modified_ontology_exists = path.exists(modified_types_filepath)
     if not modified_ontology_exists:
-      print('Specified filepath [{0}] modified ontology does not exist'.format(
-          modified_types_filepath))
+      print(f'Specified filepath [{modified_types_filepath}] modified ontology does not exist')
       return None
 
     modified_types_filepath = path.expanduser(modified_types_filepath)
@@ -60,9 +59,7 @@ def BuildUniverse(
   else:
     default_ontology_exists = path.exists(constants.ONTOLOGY_ROOT)
     if not default_ontology_exists:
-      print(
-          'Specified filepath [{0}] for default ontology does not exist'.format(
-              constants.ONTOLOGY_ROOT))
+      print(f'Specified filepath [{constants.ONTOLOGY_ROOT}] for default ontology does not exist')
       return None
     # use default location for ontology files
     yaml_files = external_file_lib.RecursiveDirWalk(constants.ONTOLOGY_ROOT)
