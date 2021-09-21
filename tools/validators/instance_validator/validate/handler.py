@@ -171,7 +171,7 @@ class TelemetryHelper(object):
                    'entities:')
         report += '\n'
         for entity_name in validator.GetUnvalidatedEntityNames():
-          report += '  {entity_name}\n'
+          report += f'  {entity_name}\n'
 
       report += '\nTelemetry validation errors:\n'
       for error in validator.GetErrors():

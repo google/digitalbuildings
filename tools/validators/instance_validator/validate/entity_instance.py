@@ -327,13 +327,13 @@ class InstanceValidator(object):
     valid_units = self.universe.GetUnitsForMeasurement(qualified_field_name)
     if valid_units and set(valid_units).difference({'no_units'}):
       if not isinstance(ft, ft_lib.DimensionalValue):
-        print(f'Units must be provided for dimensional value '
-          '{qualified_field_name}')
+        print('Units must be provided for dimensional value '
+          f'{qualified_field_name}')
         return False
 
       if not ft.unit_mappings:
-        print(f'At least one unit must be provided for dimensional value '
-          '{qualified_field_name}')
+        print('At least one unit must be provided for dimensional value '
+          f'{qualified_field_name}')
         return False
 
       is_valid = True
@@ -345,19 +345,19 @@ class InstanceValidator(object):
 
     if isinstance(ft, ft_lib.DimensionalValue):
       print(f'Units are provided for non-dimensional value '
-        '{qualified_field_name}')
+        f'{qualified_field_name}')
       return False
 
     valid_states = self.universe.GetStatesByField(qualified_field_name)
     if valid_states:
       if not isinstance(ft, ft_lib.MultiStateValue):
-        print(f'States not provided for multi-state value '
-          '{qualified_field_name}')
+        print('States not provided for multi-state value '
+          f'{qualified_field_name}')
         return False
 
       if not ft.states:
-        print(f'At least one state must be provided for multi-state value '
-          '{qualified_field_name}')
+        print('At least one state must be provided for multi-state value '
+          f'{qualified_field_name}')
         return False
 
       is_valid = True
@@ -368,8 +368,8 @@ class InstanceValidator(object):
       return is_valid
 
     if isinstance(ft, ft_lib.MultiStateValue):
-      print(f'States are provided for a field that is not a multi-state '
-        '{qualified_field_name}')
+      print('States are provided for a field that is not a multi-state '
+        f'{qualified_field_name}')
       return False
 
     return True
