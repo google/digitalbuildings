@@ -79,8 +79,8 @@ class EntityTypeManager(findings_lib.Findings):
   def __init__(self, entity_type_universe):
     super(EntityTypeManager, self).__init__()
     self._universe = entity_type_universe
-    self._complete_field_sets_oi = {}  # OI = optionality insensitive
-    self._typenames_by_subset_oi = {}  # OI = optionality insensitive
+    self._complete_field_sets_oi = None  # OI = optionality insensitive
+    self._typenames_by_subset_oi = None  # OI = optionality insensitive
     self._new_parents = 0
 
   def Analyze(self):
@@ -103,6 +103,9 @@ class EntityTypeManager(findings_lib.Findings):
       A list of the findings added to the universe.  This should generally only
       be used for debugging.
     """
+    self._complete_field_sets_oi = {}
+    self._typenames_by_subset_oi = {}
+
     findings = []
     self._MapFields(MIN_SET_SIZE)
 
@@ -446,7 +449,7 @@ class EntityTypeManager(findings_lib.Findings):
     """Returns a mapping of complete field sets to EntityType strings"""
     #NOTE:This is a temporary implementation meant for development
     #TODO:Refactor underlying logic to expose field set to entity type maps
-    if self._complete_field_sets_oi == {}:
+    if self._complete_field_sets_oi is None:
       raise Exception('Run Analyze() to access this mapping')
     return self._complete_field_sets_oi
 
@@ -454,6 +457,6 @@ class EntityTypeManager(findings_lib.Findings):
     """Returns a mapping of field subsets to EntityType strings"""
     #NOTE:This is a temporary implementation meant for development
     #TODO:Refactor underlying logic to expose field subset to entity type maps
-    if self._typenames_by_subset_oi == {}:
+    if self._typenames_by_subset_oi is None:
       raise Exception('Run Analyze() to access this mapping')
     return self._typenames_by_subset_oi
