@@ -21,6 +21,7 @@ from __future__ import print_function
 import os
 
 from yamlformat.validator import entity_type_lib
+from yamlformat.validator.entity_type_lib import FieldParts
 from yamlformat.validator import entity_type_manager
 from yamlformat.validator import field_lib
 from yamlformat.validator import findings_lib
@@ -250,55 +251,39 @@ class EntityTypeManagerTest(absltest.TestCase):
         [findings_lib.DuplicateExpandedFieldSetsWarning]))
 
   def testGetCompleteFieldSetsOI(self):
-    yaml = {'literals': ['field1', 'field2', 'field3', 'field4']}
+    yaml = {'literals': ['field1', 'field2']}
     field_universe = field_lib.FieldUniverse(
         [_GetFieldFolder(yaml)])
     yaml = {
-        'VAV_parent': {
-            'description': 'parent',
-            'is_canonical': True,
-            'uses': ['field1', 'field4'],
-            'opt_uses': ['field2', 'field3']
-        },
         'VAV_child1': {
             'description': 'child1',
-            'uses': ['field1', 'field4'],
+            'uses': ['field1'],
             'opt_uses': ['field2']
-        },
-        'VAV_child2': {
-            'description': 'child2',
-            'uses': ['field1', 'field3', 'field4']
-        },
-        'different_equip_type': {
-            'description': 'different',
-            'uses': ['field1', 'field3', 'field4']
-        },
-        'VAV_nomatch': {
-            'description': 'nomatch',
-            'uses': ['field1', 'field2', 'field3']
         },
     }
     type_folder = _GetEntityTypeFolder(field_universe, yaml)
     universe = _GetEntityTypeUniverse([type_folder])
     manager = entity_type_manager.EntityTypeManager(universe)
 
-    self.assertEqual(manager.GetCompleteFieldSetsOI(), {})
+    self.assertRaises(Exception, manager.GetCompleteFieldSetsOI)
 
     manager.Analyze()
+    function_output = manager.GetCompleteFieldSetsOI()
 
-    self.assertNotEqual(manager.GetCompleteFieldSetsOI(), {})
+    test_output = {
+        frozenset({
+            FieldParts(namespace='', field='field1', increment=''), 
+            FieldParts(namespace='', field='field2', increment='')
+        }): {'/VAV_child1'}
+    }
+
+    self.assertEqual(test_output, function_output)
 
   def testGetTypenamesBySubsetOI(self):
     yaml = {'literals': ['field1', 'field2', 'field3', 'field4']}
     field_universe = field_lib.FieldUniverse(
         [_GetFieldFolder(yaml)])
     yaml = {
-        'VAV_parent': {
-            'description': 'parent',
-            'is_canonical': True,
-            'uses': ['field1', 'field4'],
-            'opt_uses': ['field2', 'field3']
-        },
         'VAV_child1': {
             'description': 'child1',
             'uses': ['field1', 'field4'],
@@ -308,24 +293,24 @@ class EntityTypeManagerTest(absltest.TestCase):
             'description': 'child2',
             'uses': ['field1', 'field3', 'field4']
         },
-        'different_equip_type': {
-            'description': 'different',
-            'uses': ['field1', 'field3', 'field4']
-        },
-        'VAV_nomatch': {
-            'description': 'nomatch',
-            'uses': ['field1', 'field2', 'field3']
-        },
     }
     type_folder = _GetEntityTypeFolder(field_universe, yaml)
     universe = _GetEntityTypeUniverse([type_folder])
     manager = entity_type_manager.EntityTypeManager(universe)
 
-    self.assertEqual(manager.GetTypenamesBySubsetOI(), {})
+    self.assertRaises(Exception, manager.GetTypenamesBySubsetOI)
 
     manager.Analyze()
+    function_output = manager.GetTypenamesBySubsetOI()
 
-    self.assertNotEqual(manager.GetTypenamesBySubsetOI(), {})
+    test_output = {
+        frozenset({
+            FieldParts(namespace='', field='field4', increment=''),
+            FieldParts(namespace='', field='field1', increment='')
+        }): {'/VAV_child2', '/VAV_child1'}
+    }
+
+    self.assertEqual(test_output, function_output)
 
 if __name__ == '__main__':
   absltest.main()
