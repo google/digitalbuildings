@@ -42,7 +42,7 @@ class Subscriber(object):
     Args:
       callback: a callback function to handle the message.
     """
-    with open(self.service_account_info_json_file) as f:
+    with open(self.service_account_info_json_file, encoding="utf-8") as f:
       service_account_info = json.load(f)
     audience = "https://pubsub.googleapis.com/google.pubsub.v1.Subscriber"
     credentials = jwt.Credentials.from_service_account_info(service_account_info
