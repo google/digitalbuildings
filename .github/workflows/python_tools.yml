@@ -37,7 +37,7 @@ jobs:
       working-directory: ./tools/explorer
     - name: Run Pylint on Ontology Explorer
       run: |
-        pylint --rcfile=./styles/pylintrc ./tools/explorer
+        pylint --rcfile ./styles/pylintrc ./tools/explorer
     - name: Ontology Explorer Tests
       run: |
        python -m unittest discover -p '*_test.py' --failfast -v
@@ -50,7 +50,7 @@ jobs:
     #   working-directory: ./tools/scoring
     # - name: Run Pylint on Configuration Scorer
     #   run: |
-    #     pylint --rcfile=./styles/pylintrc ./tools/scoring
+    #     pylint --rcfile ./styles/pylintrc ./tools/scoring
     # - name: Configuration Scorer Tests
     #   run: |
     #     python -m unittest discover -p '*_test.py' --failfast -v
@@ -71,7 +71,7 @@ jobs:
       working-directory: ./tools/validators/instance_validator
     - name: Run Pylint on Instance Validator
       run: |
-        pylint --rcfile=./styles/pylintrc ./tools/validators/instance_validator
+        pylint --rcfile ./styles/pylintrc ./tools/validators/instance_validator
     - name: Instance Yaml Validator Tests
       run: |
        python -m unittest discover -p '*_test.py' --failfast -v
@@ -89,4 +89,4 @@ jobs:
       working-directory: ./tools/rdf_generator/rdfformat/tests
     - name: Run Pylint on RDF Generator
       run: |
-        pylint --rcfile=./styles/pylintrc ./tools/rdf_generator  
+        pylint --rcfile ./styles/pylintrc ./tools/rdf_generator  
