@@ -17,7 +17,7 @@
 class Dimension:
   """ Base class for scoring individual dimensions """
 
-  def __init__(self, proposed_set, solution_set):
+  def __init__(self, *, proposed_set: dict, solution_set: dict):
     self.solution_entity = None
     self.correct = None
     self.underconstrained = None
@@ -31,8 +31,3 @@ class Dimension:
 
   def calculate(self, incorrect) -> float:
     return (self.correct - incorrect) / self.total_possible
-
-  def evaluate(self):
-    proposed_entity = 'foo'
-    solution_entity = 'bar'
-    return proposed_entity, solution_entity
