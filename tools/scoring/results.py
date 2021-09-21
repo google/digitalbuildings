@@ -18,6 +18,8 @@ from utils import path_sha1
 
 from validate import handler as validator
 
+from dimensions.field_selection import FieldSelection
+
 
 class Results:
   """ Wraps full scoring report """
@@ -37,8 +39,8 @@ class Results:
 
     self.started = timestamp()
     self.finished = None
+    self.parsed = self._parsed()
     print('Started at ' + str(self.started))
-
     self.tally()
 
   def __del__(self):
@@ -48,14 +50,21 @@ class Results:
   # FUNCTIONALITY
 
   def _parsed(self):
-    parsed = {}
-    for path in [self.solution, self.proposed]:
-      entities = validator.Deserialize([path])[0]
-      parsed[path] = entities
-    return parsed
+    # parsed = {}
+    # for path in [self.args['solution'], self.args['proposed']]:
+    #   entities = validator.Deserialize([path])[0]
+    #   parsed[path] = entities
+    # return parsed
+    return {
+        'proposed': validator.Deserialize([self.args['proposed']])[0],
+        'solution': validator.Deserialize([self.args['solution']])[0]
+    }
 
   def tally(self):
-    pass
+    dimension = FieldSelection(
+        proposed_set=self.parsed['proposed'],
+        solution_set=self.parsed['solution'])
+    dimension.evaluate()
 
   # EXTERNAL INTERFACE
 
