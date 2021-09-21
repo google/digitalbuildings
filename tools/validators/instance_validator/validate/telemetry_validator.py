@@ -121,7 +121,7 @@ class TelemetryValidator(object):
 
     print(f'Validating telemetry message for entity: {entity_name}')
     point_full_paths = {
-        'points.{0}.present_value'.format(key): key for key in tele.points
+        f'points.{key}.present_value': key for key in tele.points
     }
     for field_translation in entity.translation.values():
       if isinstance(field_translation, ft_lib.UndefinedField):
@@ -158,7 +158,7 @@ class TelemetryValidator(object):
           self.AddError(
               telemetry_error.TelemetryError(
                   entity_name, field_translation.raw_field_name,
-                  'Invalid state in telemetry message: {}'.format(pv)))
+                  f'Invalid state in telemetry message: {pv}'))
 
           continue
 
