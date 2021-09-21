@@ -1,6 +1,0 @@
-
-Starting validator...
-
-
-Starting universe generation...
-
