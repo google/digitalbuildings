@@ -140,7 +140,7 @@ class EntityInstanceTest(absltest.TestCase):
     except TypeError as e:
       self.assertEqual(type(e), TypeError)
     else:
-      self.fail('{0} was not raised'.format(TypeError))
+      self.fail(f'{TypeError} was not raised')
 
   def testInstanceRequiresEntityTypeToExist(self):
     instance = entity_instance.EntityInstance(
@@ -216,7 +216,7 @@ class EntityInstanceTest(absltest.TestCase):
     except KeyError as e:
       self.assertEqual(type(e), KeyError)
     else:
-      self.fail('{0} was not raised'.format(KeyError))
+      self.fail(f'{KeyError} was not raised')
 
   def testValidateTranslation(self):
     parsed = _Helper(
@@ -531,7 +531,7 @@ class EntityInstanceTest(absltest.TestCase):
     except ValueError as e:
       self.assertEqual(type(e), ValueError)
     else:
-      self.fail('{0} was not raised'.format(ValueError))
+      self.fail(f'{ValueError} was not raised')
 
   def testInstance_DimensionalTranslation_UndefinedField(self):
     entity = entity_instance.EntityInstance(
@@ -597,7 +597,7 @@ class EntityInstanceTest(absltest.TestCase):
     except ValueError as e:
       self.assertEqual(type(e), ValueError)
     else:
-      self.fail('{0} was not raised'.format(ValueError))
+      self.fail('{ValueError} was not raised')
 
   def testInstance_MultiStateTranslation_UndefinedField(self):
     entity = entity_instance.EntityInstance(
