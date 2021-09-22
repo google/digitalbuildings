@@ -70,12 +70,12 @@ class Results:
   def _parsed(self) -> Dict[str, Dict[str, EntityInstance]]:
     # parsed = {}
     # for path in [self.args['solution'], self.args['proposed']]:
-    #   entities = validator.Deserialize([path])[0]
+    #   entities = validator.RunValidation(filenames=[path], modified_types_filepath=self.args['ontology'])
     #   parsed[path] = entities
     # return parsed
     return {
-        'proposed': validator.Deserialize([self.args['proposed']])[0],
-        'solution': validator.Deserialize([self.args['solution']])[0]
+        'proposed': validator.RunValidation(filenames=[self.args['proposed']], modified_types_filepath=self.args['ontology']),
+        'solution': validator.RunValidation(filenames=[self.args['solution']], modified_types_filepath=self.args['ontology'])
     }
 
   def tally(self):
