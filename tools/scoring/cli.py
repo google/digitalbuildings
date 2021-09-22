@@ -31,7 +31,6 @@ Entry point
 
 import argparse
 import sys
-# from os import path
 
 from results import Results
 

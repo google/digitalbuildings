@@ -11,29 +11,36 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-""" Generate hashes for readily differentiating between inputs """
 
 from filehash import FileHash
 from dirhash import dirhash
 
+from typing import Tuple
 
-def directory(path: str) -> tuple:
-  """Generates a hash for quickly comparing directories.
+
+def directory(path: str) -> Tuple[str, str]:
+  """Generates a SHA1 hash for quickly comparing directories.
+
+  Args:
+    path: the fully qualified path
 
   Returns:
-      A tuple containing the input string and the hash/checksum as
-      a string of hexadecimal digits
+    Input string
+    Hash/checksum string
   """
 
   return (path, dirhash(path, "sha1", ignore=[".*", ".*/"]))
 
 
-def file(path: str) -> tuple:
-  """Generates a hash for quickly comparing files.
+def file(path: str) -> Tuple[str, str]:
+  """Generates a SHA1 hash for quickly comparing files.
+
+  Args:
+    path: the fully qualified path
 
   Returns:
-      A tuple containing the input string and the hash/checksum as
-      a string of hexadecimal digits
+    Input string
+    Hash/checksum string
   """
 
   return (path, FileHash("sha1").hash_file(path))

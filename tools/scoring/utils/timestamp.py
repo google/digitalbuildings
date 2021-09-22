@@ -11,16 +11,15 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-""" Generate a timestamp for contextualizing scoring report """
 
 from datetime import datetime, timezone
 
 
 def timestamp() -> datetime:
   """
-  Provides a reference for "now".
+  Provides a reference for "now"
 
   Returns:
-      A UTC datetime for the time of execution
+    UTC datetime for the time of execution
   """
   return datetime.now(timezone.utc)

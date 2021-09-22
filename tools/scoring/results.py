@@ -20,9 +20,27 @@ from validate import handler as validator
 
 from dimensions.field_selection import FieldSelection
 
+from typing import Dict
+from validate.entity_instance import EntityInstance
+
 
 class Results:
-  """ Wraps full scoring report """
+  """ A full scoring report
+
+  Args:
+    ontology: Path to the ontology
+    solution: Path to the solution config
+    proposed: Path to the config to be scored
+    additions: Path to type additions
+
+  Props:
+    args: Dictionary ocontaining the arguments
+    started: UTC datetime for when the process began
+    finished: UTC datetime for when the process ended
+    meta: Program metadata for output
+    parsed: Deserialized YAML inputs
+    scores: Scores for output
+  """
 
   def __init__(self,
                *,
@@ -49,7 +67,7 @@ class Results:
 
   # FUNCTIONALITY
 
-  def _parsed(self):
+  def _parsed(self) -> Dict[str, Dict[str, EntityInstance]]:
     # parsed = {}
     # for path in [self.args['solution'], self.args['proposed']]:
     #   entities = validator.Deserialize([path])[0]
@@ -69,7 +87,7 @@ class Results:
   # EXTERNAL INTERFACE
 
   @property
-  def meta(self):
+  def meta(self) -> Dict:
     """ Dict for report output """
     return {
         'meta': {
@@ -80,15 +98,6 @@ class Results:
             'files': self._files()
         }
     }
-
-  @property
-  def scores(self):
-    """ Dict for report output """
-    # 'scores': {
-    #     # 'aggregate': float,
-    #     'dimensions': {
-    #         '...': {
-    pass
 
   def _files(self):
     """ Provide human-digestible way to quickly differentiate between inputs """
@@ -103,3 +112,12 @@ class Results:
         path, sha1 = path_sha1.directory(value)
       files[name] = {'path': path, 'sha1': sha1}
     return files
+
+  @property
+  def scores(self) -> Dict:
+    """ Dict for report output """
+    # 'scores': {
+    #     # 'aggregate': float,
+    #     'dimensions': {
+    #         '...': {
+    pass
