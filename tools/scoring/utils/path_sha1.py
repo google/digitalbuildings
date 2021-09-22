@@ -17,23 +17,11 @@ from dirhash import dirhash
 
 from typing import Tuple
 
-
-def directory(path: str) -> Tuple[str, str]:
-  """Generates a SHA1 hash for quickly comparing directories.
-
-  Args:
-    path: the fully qualified path
-
-  Returns:
-    Input string
-    Hash/checksum string
-  """
-
-  return (path, dirhash(path, "sha1", ignore=[".*", ".*/"]))
+import os
 
 
-def file(path: str) -> Tuple[str, str]:
-  """Generates a SHA1 hash for quickly comparing files.
+def path_sha1(path: str) -> Tuple[str, str]:
+  """Generates a SHA1 hash for quickly comparing files or directories
 
   Args:
     path: the fully qualified path
@@ -43,4 +31,6 @@ def file(path: str) -> Tuple[str, str]:
     Hash/checksum string
   """
 
-  return (path, FileHash("sha1").hash_file(path))
+  hash = dirhash(path, "sha1", ignore=[".*", ".*/"]) if os.path.isdir(path) else FileHash("sha1").hash_file(path)
+
+  return (path, hash)

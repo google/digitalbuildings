@@ -14,7 +14,7 @@
 """ Top-level runner """
 
 from utils.timestamp import timestamp
-from utils import path_sha1
+from utils.path_sha1 import path_sha1
 
 from validate import handler as validator
 
@@ -106,10 +106,8 @@ class Results:
       if value is None:
         files[name] = None
         continue
-      elif name in ['proposed', 'solution']:
-        path, sha1 = path_sha1.file(value)
       else:
-        path, sha1 = path_sha1.directory(value)
+        path, sha1 = path_sha1(value)
       files[name] = {'path': path, 'sha1': sha1}
     return files
 
