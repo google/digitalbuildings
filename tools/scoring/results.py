@@ -23,6 +23,8 @@ from dimensions.field_selection import FieldSelection
 from typing import Dict
 from validate.entity_instance import EntityInstance
 
+from validate.generate_universe import BuildUniverse
+
 
 class Results:
   """ A full scoring report
@@ -59,7 +61,7 @@ class Results:
     self.finished = None
     self.parsed = self._parsed()
     print('Started at ' + str(self.started))
-    self.tally()
+    # self.universe = BuildUniverse(modified_types_filepath=ontology)
 
   def __del__(self):
     self.finished = timestamp()
@@ -73,10 +75,11 @@ class Results:
     #   entities = validator.RunValidation(filenames=[path], modified_types_filepath=self.args['ontology'])
     #   parsed[path] = entities
     # return parsed
-    return {
-        'proposed': validator.RunValidation(filenames=[self.args['proposed']], modified_types_filepath=self.args['ontology']),
-        'solution': validator.RunValidation(filenames=[self.args['solution']], modified_types_filepath=self.args['ontology'])
-    }
+    # return {
+    #     'proposed': validator.RunValidation(filenames=[self.args['proposed']], modified_types_filepath=self.args['ontology']),
+    #     'solution': validator.RunValidation(filenames=[self.args['solution']], modified_types_filepath=self.args['ontology'])
+    # }
+    return validator._ValidateConfig(filenames=[self.args['proposed']], universe=BuildUniverse(modified_types_filepath=self.args['ontology']))
 
   def tally(self):
     dimension = FieldSelection(
