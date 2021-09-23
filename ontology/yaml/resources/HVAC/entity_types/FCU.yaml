@@ -858,7 +858,19 @@ FCU_DFVSFC_CHWRC:
   - schedule_run_command
   - lost_power_alarm
 
-
+FCU_DFSS_DFVSC_DXRC_HTRC_RHC_RHDHC_RTC:
+  description: "Single-zone FCU with DX cooling, heating, and humidifcation/dehumidification."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - DFVSC
+  - DXRC
+  - HTRC
+  - RHC
+  - RHDHC
+  - RTC
+  
 ###################################
 ### Existing Non-standard Types ###
 ###################################

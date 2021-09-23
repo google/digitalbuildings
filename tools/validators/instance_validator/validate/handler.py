@@ -41,7 +41,7 @@ def Deserialize(
   print('Validating syntax please wait ...')
   parser = instance_parser.InstanceParser()
   for yaml_file in yaml_files:
-    print('Opening file: {0}, please wait ...'.format(yaml_file))
+    print(f'Opening file: {yaml_file}, please wait ...')
     parser.AddFile(yaml_file)
   parser.Finalize()
 
@@ -164,14 +164,14 @@ class TelemetryHelper(object):
       print('Generating validation report ...')
       current_time = datetime.now()
       timestamp = current_time.strftime('%d-%b-%Y (%H:%M:%S)')
-      report = '\nReport Generated at: {0}\n'.format(timestamp)
+      report = f'\nReport Generated at: {timestamp}\n'
 
       if not validator.AllEntitiesValidated():
         report += ('No telemetry message was received for the following '
                    'entities:')
         report += '\n'
         for entity_name in validator.GetUnvalidatedEntityNames():
-          report += '  {0}\n'.format(entity_name)
+          report += f'  {entity_name}\n'
 
       report += '\nTelemetry validation errors:\n'
       for error in validator.GetErrors():
