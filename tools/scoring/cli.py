@@ -45,8 +45,7 @@ def parse_args() -> argparse.ArgumentParser:
       '-ont',
       '--ontology',
       dest='ontology',
-      required=False,
-      default=None,
+      required=True,
       help='Absolute path for the directory which contains your ontology',
       metavar='ontology')
 

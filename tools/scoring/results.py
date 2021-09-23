@@ -44,7 +44,7 @@ class Results:
 
   def __init__(self,
                *,
-               ontology: str = None,
+               ontology: str,
                solution: str,
                proposed: str,
                additions: str = None):
