@@ -41,7 +41,7 @@ def Deserialize(
   print('Validating syntax please wait ...')
   parser = instance_parser.InstanceParser()
   for yaml_file in yaml_files:
-    print('Opening file: {0}, please wait ...'.format(yaml_file))
+    print(f'Opening file: {yaml_file}, please wait ...')
     parser.AddFile(yaml_file)
   parser.Finalize()
 
@@ -80,6 +80,7 @@ def _ValidateTelemetry(subscription: str, service_account: str,
 
 
 def RunValidation(filenames: List[str],
+                  use_simplified_universe: bool = False,
                   modified_types_filepath: str = None,
                   subscription: str = None,
                   service_account: str = None,
@@ -92,7 +93,9 @@ def RunValidation(filenames: List[str],
     sys.exit(0)
   print('\nStarting validator...\n')
   print('\nStarting universe generation...\n')
-  universe = generate_universe.BuildUniverse(modified_types_filepath)
+  universe = generate_universe.BuildUniverse(
+      use_simplified_universe=use_simplified_universe,
+      modified_types_filepath=modified_types_filepath)
   if not universe:
     print('\nError generating universe')
     sys.exit(0)
@@ -161,14 +164,14 @@ class TelemetryHelper(object):
       print('Generating validation report ...')
       current_time = datetime.now()
       timestamp = current_time.strftime('%d-%b-%Y (%H:%M:%S)')
-      report = '\nReport Generated at: {0}\n'.format(timestamp)
+      report = f'\nReport Generated at: {timestamp}\n'
 
       if not validator.AllEntitiesValidated():
         report += ('No telemetry message was received for the following '
                    'entities:')
         report += '\n'
         for entity_name in validator.GetUnvalidatedEntityNames():
-          report += '  {0}\n'.format(entity_name)
+          report += f'  {entity_name}\n'
 
       report += '\nTelemetry validation errors:\n'
       for error in validator.GetErrors():
@@ -179,7 +182,7 @@ class TelemetryHelper(object):
         report += warnings.GetPrintableMessage()
 
       if report_filename:
-        with open(self.report_filename, 'w') as f:
+        with open(self.report_filename, 'w', encoding='utf-8') as f:
           f.write(report)
           f.close()
       else:

@@ -12,3 +12,4 @@ point_type:
   sensor: blah.
   status: blah.
   command: blah.
+  alarm: blah.

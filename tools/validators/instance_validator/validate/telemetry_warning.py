@@ -39,8 +39,9 @@ class TelemetryWarning(object):
   def GetPrintableMessage(self):
     """Returns a human-readable message that explains this warning."""
 
-    msg = '- entity [{0}]'.format(self.entity)
+    msg = f'- entity [{self.entity}]'
     if self.point:
-      msg += ', point [{0}]'.format(self.point)
-    msg += ': {0}\n'.format(self.message)
+      msg += F', point [{self.point}]'
+    msg += f': {self.message}\n'
+
     return msg
