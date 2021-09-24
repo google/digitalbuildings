@@ -341,7 +341,7 @@ FAN_SS_VSC_ZTM_EFM:
   implements:
   - FAN
   - SS
-  - VSM
+  - VSC
   - ZTM
   - EFM
   
