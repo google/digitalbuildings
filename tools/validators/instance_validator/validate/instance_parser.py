@@ -132,7 +132,7 @@ _ENTITY_INSTANCE_PATTERN = re.compile(_ENTITY_INSTANCE_REGEX)
 
 # Exact key for the configuration metadata block
 _CONFIG_METADATA_KEY = 'CONFIG_METADATA'
-_CONFIG_METADATA_REGEX = '^{0}:'.format(_CONFIG_METADATA_KEY)
+_CONFIG_METADATA_REGEX = f'^{_CONFIG_METADATA_KEY}:'
 _CONFIG_METADATA_PATTERN = re.compile(_CONFIG_METADATA_REGEX)
 # Key that marks the mode to parse file in.
 _CONFIG_MODE_KEY = 'operation'
@@ -376,7 +376,7 @@ class InstanceParser():
 
     for key in block.keys():
       if key in self._validated_entities:
-        raise ValueError('Duplicate key {0}'.format(key))
+        raise ValueError('Duplicate key {key}')
       self._ValidateEntityContent(block.get(key))
     self._validated_entities.update(block.data)
 

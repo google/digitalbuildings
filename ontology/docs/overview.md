@@ -58,5 +58,10 @@ In the case of changes to the ontology types and they are not merged in the mast
  
 * Iterate until the instance validator passes.
 
+
+#### Telemetry Validation
+Once the building configuration file has been validated for the types, the next validation step checks for telemetry data.
+Please follow the step in [telemetry-validation](https://github.com/google/digitalbuildings/tree/master/tools/validators/instance_validator#telemetry-validation)
+
 #### Next Step
 Once the building configuration file is valid, please follow the instructions in your SOW.
