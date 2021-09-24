@@ -251,14 +251,22 @@ class EntityTypeManagerTest(absltest.TestCase):
         [findings_lib.DuplicateExpandedFieldSetsWarning]))
 
   def testGetCompleteFieldSetsOI(self):
-    yaml = {'literals': ['field1', 'field2']}
+    yaml = {'literals': ['field1', 'field2', 'field3', 'field4']}
     field_universe = field_lib.FieldUniverse(
         [_GetFieldFolder(yaml)])
     yaml = {
-        'VAV_child1': {
+        'parent': {
+            'description': 'parent',
+            'uses': ['field1', 'field2', 'field3']
+        },
+        'child1': {
             'description': 'child1',
-            'uses': ['field1'],
-            'opt_uses': ['field2']
+            'implements': ['parent'],
+            'uses': ['field4']
+        },
+        'child2': {
+            'description': 'child2',
+            'uses': ['field1', 'field2', 'field3', 'field4']
         },
     }
     type_folder = _GetEntityTypeFolder(field_universe, yaml)
@@ -269,12 +277,20 @@ class EntityTypeManagerTest(absltest.TestCase):
 
     manager.Analyze()
     function_output = manager.GetCompleteFieldSetsOI()
+    #print(function_output)
 
     test_output = {
         frozenset({
             FieldParts(namespace='', field='field1', increment=''), 
-            FieldParts(namespace='', field='field2', increment='')
-        }): {'/VAV_child1'}
+            FieldParts(namespace='', field='field2', increment=''),
+            FieldParts(namespace='', field='field3', increment='')
+        }): {'/parent'},
+        frozenset({
+            FieldParts(namespace='', field='field1', increment=''), 
+            FieldParts(namespace='', field='field2', increment=''),
+            FieldParts(namespace='', field='field4', increment=''),
+            FieldParts(namespace='', field='field3', increment='')
+        }): {'/child1', '/child2'}
     }
 
     self.assertEqual(test_output, function_output)
