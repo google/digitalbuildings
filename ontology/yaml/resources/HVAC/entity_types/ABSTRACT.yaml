@@ -3748,7 +3748,7 @@ DFFC:
   - discharge_air_flowrate_setpoint
   - discharge_air_flowrate_sensor
   implements:
-  - OPERATIONAL
+  - CONTROL
 
 EFM:
   description: "Exhaust air flow monitoring"
