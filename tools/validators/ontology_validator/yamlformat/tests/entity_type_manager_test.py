@@ -281,12 +281,12 @@ class EntityTypeManagerTest(absltest.TestCase):
 
     test_output = {
         frozenset({
-            FieldParts(namespace='', field='field1', increment=''), 
+            FieldParts(namespace='', field='field1', increment=''),
             FieldParts(namespace='', field='field2', increment=''),
             FieldParts(namespace='', field='field3', increment='')
         }): {'/parent'},
         frozenset({
-            FieldParts(namespace='', field='field1', increment=''), 
+            FieldParts(namespace='', field='field1', increment=''),
             FieldParts(namespace='', field='field2', increment=''),
             FieldParts(namespace='', field='field4', increment=''),
             FieldParts(namespace='', field='field3', increment='')
