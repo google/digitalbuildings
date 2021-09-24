@@ -446,12 +446,7 @@ class EntityTypeManager(findings_lib.Findings):
 
 
   def GetCompleteFieldSetsOI(self) -> dict():
-    """Returns a mapping of inheritied and local field sets to EntityType 
-    strings
-    
-    example:
-       complete_field_sets = Manager.GetCompleteFieldSetsOI()
-       
+    """Returns a mapping of inheritied and local field sets to EntityType
     """
     #NOTE:This is a temporary implementation meant for development
     #TODO:Refactor underlying logic to expose field set to entity type maps
@@ -461,10 +456,6 @@ class EntityTypeManager(findings_lib.Findings):
 
   def GetTypenamesBySubsetOI(self) -> dict():
     """Returns a mapping of greatest common field subsets to EntityType names
-    
-    example:
-       typenames_by_subset = manager.GetTypenamesBySubset()
-
     """
     #NOTE:This is a temporary implementation meant for development
     #TODO:Refactor underlying logic to expose field subset to entity type maps
