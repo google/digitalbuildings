@@ -59,3 +59,9 @@ LS:
   description: "Lighting system specific sensor."
   implements:
   - SENSOR
+
+ELT:
+  description: "Lights intended to provide illumination and/or direction during an emergency."
+  is_abstract: true
+  implements:
+  - EQUIPMENT

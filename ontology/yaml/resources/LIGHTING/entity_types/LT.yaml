@@ -127,4 +127,4 @@ ELT_GENERIC:
   description: "Generic, non-canonical emergency light"
   is_canonical: false
   implements:
-  - EQUIPMENT
+  - ELT

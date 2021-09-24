@@ -326,21 +326,6 @@ VSC:
   implements:
   - OPERATIONAL
 
-VSM:
-  id: "12dd24e6-12d8-4359-995f-3c6d15825b4d"
-  description: "Variable speed monitoring generic."
-  is_abstract: true
-  opt_uses:
-  - current_sensor
-  - speed_percentage_sensor
-  - speed_frequency_sensor
-  - power_sensor
-  uses:
-  - run_status
-  - run_command
-  implements:
-  - OPERATIONAL
-
 EFVSC:
   id: "12580390630858948608"
   description: "Variable speed control for exhaust fans."
@@ -355,21 +340,6 @@ EFVSC:
   - exhaust_fan_run_status
   - exhaust_fan_speed_percentage_command
   implements:
-  - OPERATIONAL
-
-EFVSM:
-  id: "46b6ec63-7a91-4e27-bb71-ef1b8d3331e3"
-  description: "Variable speed monitoring for exhaust fans."
-  is_abstract: true
-  opt_uses:
-  - exhaust_fan_speed_frequency_sensor
-  - exhaust_fan_speed_percentage_sensor
-  - exhaust_fan_current_sensor
-  - exhaust_fan_power_sensor
-  uses:
-  - exhaust_fan_run_command
-  - exhaust_fan_run_status
-implements:
   - OPERATIONAL
 
 VSFC:
@@ -1349,7 +1319,6 @@ CHWZTC:
   - CONTROL
 
 CHWPVM:
-  id: "33c53abc-7f9e-41f4-8d5d-4af2523eea24"
   description: "Chilled water pressure valve command and position monitoring (without regard to what controls it)."
   is_abstract: true
   opt_uses:
@@ -2017,7 +1986,6 @@ PHWSC:
   - CONTROL
   
 HWPVM:
-  id: "3a38d93a-56b6-4d83-9a35-fc9e9ea889cf"
   description: "Heating water pressure valve command and position monitoring (without regard to what controls it)."
   is_abstract: true
   opt_uses:
@@ -2577,7 +2545,6 @@ CDWISOVPM:
   - MONITORING
 
 CDWPVM:
-  id: "1aa57da5-fbcb-4dad-b6bb-453146bdc157"
   description: "Condensing water pressure valve command and position monitoring (without regard to what controls it)."
   is_abstract: true
   opt_uses:
@@ -2795,7 +2762,6 @@ DDCO:
   - CONTROL
 
 FDPM2X:
-  id: "7d0c0ec4-5260-4e45-a15c-46ba0858c8a4"
   description: "Filter pressure monitoring (2 sensors)."
   is_abstract: true
   uses:
@@ -3764,7 +3730,6 @@ DRSM8X:
   - MONITORING
   
 AHAC:
-  id: "d7ae2b27-d439-498b-946c-fb58fd1c721a"
   description: "Tag to indicate an after hours activation method e.g. push button associated with this device."
   is_abstract: true
   uses:  
@@ -3774,7 +3739,6 @@ AHAC:
   - OPERATIONAL
   
 DFFC:
-  id: "5f3a37a3-0901-44c7-b464-60bf7317186f"
   description: "Discharge fan flow control"
   is_abstract: true
   uses:
@@ -3787,7 +3751,6 @@ DFFC:
   - OPERATIONAL
 
 EFM:
-  id: "c921265a-9341-4ace-81bb-0395f970c014"
   description: "Exhaust air flow monitoring"
   is_abstract: true
   uses:
@@ -3796,7 +3759,6 @@ EFM:
   - OPERATIONAL
 
 SWTM:
-  id: "91843a63-28ac-486c-b8a3-4402e68bddab"
   description: "Supply water temperature monitoring."
   is_abstract: true
   implements:
@@ -3809,7 +3771,6 @@ SWTM:
   - supply_water_temperature_sensor  
 
 CWDPM:
-  id: "108d3bc2-2222-48a5-8c28-a13392c34258"
   description: "Differential pressure monitoring for condenser water."
   is_abstract: true
   implements:
@@ -4117,11 +4078,11 @@ PHRU:
   - outside_air_temperature_sensor
 
 CHWDT2X:
-  id: "fbb1f1a3-f605-42cd-8f08-88a05f079337"
   description: "Temperature differential across chilled water with two sets of sensors."
   is_abstract: true
   implements:
   - MONITORING
+  uses:
   - chilled_return_water_temperature_sensor_1
   - chilled_supply_water_temperature_sensor_1
   - chilled_return_water_temperature_sensor_2

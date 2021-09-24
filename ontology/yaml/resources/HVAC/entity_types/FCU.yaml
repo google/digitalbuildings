@@ -746,7 +746,6 @@ FCU_DFMSS_DSP_ZHM_RTM_CHWZC_CHWDT:
   - CHWDT
 
 FCU_SS_ZTM:
-  id: "90010d86-015b-41a9-9021-4baf075be01f"
   description: "FCU with zone temperature monitoring and start/stop control."
   is_canonical: true
   implements:
@@ -755,7 +754,6 @@ FCU_SS_ZTM:
   - ZTM
 
 FCU_HPZTC_CO2C_FDPM:
-  id: ""
   description: "Heat pump with zone temperature and CO2 control and filter monitoring."
   is_canonical: true
   implements:

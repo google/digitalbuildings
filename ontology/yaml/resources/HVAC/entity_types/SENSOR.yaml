@@ -37,7 +37,6 @@ SENSOR_ZTM_ZHM:
   - ZHM
   
 SENSOR_OA:
-  id: "45ecdc7e-fe94-4e4a-b77a-6042368a5a88"
   description: "Outside air property sensor (humidity, temperature)."
   is_canonical: true
   implements:

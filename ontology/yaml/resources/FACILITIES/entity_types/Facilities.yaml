@@ -31,14 +31,11 @@ BUILDING:
   description: "This is a type for BUILDING facilities object"
 
 CORRIDOR:
-  id: "d23dee80-5218-40a2-9e7a-94ae0cc44f67"
   description: "This is a type for CORRIDOR facilities object"
 
 STAIRWELL:
-  id: "9741e2d5-c104-43e0-bd85-e7c2e7988bca"
   description: "This is a type for STAIRWELL facilities object"
   
 RAMP:
-  id: "5b6ce1ec-2629-468d-8fad-a0318a00eeec"
   description: "This is a type for RAMP facilities object"
 

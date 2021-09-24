@@ -115,7 +115,6 @@ FAN_SS_CO2C:
   - CO2C
 
 FAN_ZTM_ZHM_FDPM:
-  id: "8c7bea0b-bb99-4b9a-8469-cadb36350b67"
   description: "Fan with zone temperature, zone humidity and filter monitoring"
   is_canonical: true
   implements:
@@ -292,17 +291,15 @@ FAN_SS_DRSM8X:
   - SS
   - DRSM8X
 
-FAN_SS_EFVSM:
-  id: "00075080-04a7-4335-8baa-7cf383badb58"
-  description: "Exhaust fan with variable speed monitoring."
+FAN_SS_EFVSC:
+  description: "Exhaust fan with variable speed control."
   is_canonical: true
   implements:
   - FAN
   - SS
-  - EFVSM
+  - EFVSC
   
 FAN_SS_FDPM:
-  id: "8098cdc6-4eef-42cc-9179-3b15d1de57b5"
   description: "Exhaust fan with filter monitoring."
   is_canonical: true
   implements:
@@ -327,21 +324,19 @@ FAN_SS_DPM_ZHM_ZTM:
   - lost_power_alarm
   - control_status
   
-FAN_SS_VSM_SSPM_OAFM_FDPM:
-  id: "9b18b5c4-9382-4fa4-bc6d-ad53563e25f1"
-  description: "Outside air fan with variable speed monitoring, supply side pressure monitoring, outside air flow monitoring and filter monitoring."
+FAN_SS_VSC_SSPM_OAFM_FDPM:
+  description: "Outside air fan with variable speed control, supply side pressure monitoring, outside air flow monitoring and filter monitoring."
   is_canonical: true
   implements:
   - FAN
   - SS
-  - VSM
+  - VSC
   - SSPM
   - OAFM
   - FDPM
 
-FAN_SS_VSM_ZTM_EFM:
-  id: "11979593-57ee-4c10-b35d-f563d1f34067"
-  description: "General exhaust fan with variable speed monitoring, zone temperature monitoring, and exhaust air flow monitoring."
+FAN_SS_VSC_ZTM_EFM:
+  description: "General exhaust fan with variable speed control, zone temperature monitoring, and exhaust air flow monitoring."
   is_canonical: true
   implements:
   - FAN

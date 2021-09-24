@@ -27,7 +27,6 @@ UPS:
   - EQUIPMENT
 
 PANEL:
-  id: "18bd98c4-29b5-4da4-9d8b-1075ee5bb17d"
   description: "Tag for all electrical panels."
   is_abstract: true
   implements:
