@@ -858,7 +858,19 @@ FCU_DFVSFC_CHWRC:
   - schedule_run_command
   - lost_power_alarm
 
-
+FCU_DFSS_DFVSC_DXRC_HTRC_RHC_RHDHC_RTC:
+  description: "Single-zone FCU with DX cooling, heating, and humidifcation/dehumidification."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - DFVSC
+  - DXRC
+  - HTRC
+  - RHC
+  - RHDHC
+  - RTC
+  
 ###################################
 ### Existing Non-standard Types ###
 ###################################
@@ -1149,6 +1161,7 @@ FCU_RHC_DFVSC_RTC:
 
 #Additional types for CH ZRH EURD
 FCU_NON_CANONICAL_TYPE_1:
+  id: "17300095970133934080"
   description: "Typical chilled water FCU with cooling-only (discharge control) for MDF rooms,
                 including discharge fan speed control and chilled water valve control"
   implements:
@@ -1166,6 +1179,7 @@ FCU_NON_CANONICAL_TYPE_1:
   - master_alarm
 
 FCU_NON_CANONICAL_TYPE_2:
+  id: "7473241583211511808"
   description: "Typical chilled water FCU with cooling-only (discharge control) for IDF rooms,
                 including discharge fan speed control"
   implements:
@@ -1186,6 +1200,7 @@ FCU_NON_CANONICAL_TYPE_2:
 
 
 FCU_NON_CANONICAL_TYPE_3:
+  id: "893482527623217152"
   description: "Typical chilled water FCU with cooling-only (discharge control) for technical rooms,
                 including discharge fan speed sensor"
   implements:
