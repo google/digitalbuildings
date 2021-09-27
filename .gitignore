@@ -2,6 +2,7 @@
 **/temp/*
 **/dist/main.js
 *..pyc
+**/tools/**
 
 *.DS_Store
 package-lock.json
