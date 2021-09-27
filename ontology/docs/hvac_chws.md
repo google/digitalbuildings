@@ -33,6 +33,7 @@ This version of CHWS has a single set of variable speed pumps which serve air-co
 ```yaml
 # System definition. Everything that it serves will be fed by it, everything that comprises it will be contained by it.
 CHWSYS-BLDG-1:
+  cloud_device_id: 1234
   type: HVAC/CHWS_...
   translation:
     supply_water_temperature_sensor:
@@ -52,6 +53,7 @@ CHWSYS-BLDG-1:
 # Plant equipment, all contained by the system.
 # Various interconnections between the pumps and the chillers can also be defined as feeds connections.
 CH-1:
+  cloud_device_id: 2345
   connections:
     CHWSYS-BLDG-1: HAS_PART
     PMP-1: FEEDS
@@ -67,6 +69,7 @@ CH-1:
     ...
 
 PMP-1:
+  cloud_device_id: 3456
   connections:
     CHWSYS-BLDG-1: HAS_PART
   type: HVAC/PMP_...
@@ -79,6 +82,7 @@ PMP-1:
     ...
 
 PMP-2:
+  cloud_device_id: 4567
   connections:
     CHWSYS-BLDG-1: HAS_PART
   type: HVAC/PMP_...
@@ -92,6 +96,7 @@ PMP-2:
 
 # Equipment served by the chilled wwater system.
 FCU-1:
+  cloud_device_id: 5678
   connections:
     CHWSYS-BLDG-1: FEEDS
   type: HVAC/FCU_DFSS_DFVSC_...
@@ -105,6 +110,7 @@ FCU-1:
     ...
 
 AHU-1:
+  cloud_device_id: 6789
   connections:
     CHWSYS-BLDG-1: FEEDS
   type: HVAC/AHU_DFSS_...
@@ -135,6 +141,7 @@ This version of CHWS has a single set of variable speed chilled water pumps serv
 ```yaml
 # Chilled water system feeds the equipment, and contains the distribution/production equipment.
 CHWSYS-BLDG-1:
+  cloud_device_id: 1234
   connections:
     CDWSYS-BLDG-1: FEEDS
   type: HVAC/CHWS_...
@@ -155,6 +162,7 @@ CHWSYS-BLDG-1:
 
 # Condenser wawter system feeds the chilled water system, 
 CDWSYS-BLDG-1:
+  cloud_device_id: 2345
   type: HVAC/CDWS_...
   translation:
     supply_water_temperature_sensor:
@@ -168,6 +176,7 @@ CDWSYS-BLDG-1:
 # Equipment contained by chilld water system.
 # Various interconnections between the pumps and the chillers can also be defined as feeds connections.
 CH-1:
+  cloud_device_id: 3456
   connections:
     CHWSYS-BLDG-1: HAS_PART
     CWP-4: FEEDS
@@ -182,6 +191,7 @@ CH-1:
     ...
 
 CH-2:
+  cloud_device_id: 4567
   connections:
     CHWSYS-BLDG-1: HAS_PART
     CWP-3: FEEDS
@@ -196,6 +206,7 @@ CH-2:
     ...
 
 ACC-1: # Note: this is a non-compliant equipment name, which may exist in brownfield sites. 
+  cloud_device_id: 5678
   connections:
     CHWSYS-BLDG-1: HAS_PART
   type: HVAC/CH_...
@@ -209,6 +220,7 @@ ACC-1: # Note: this is a non-compliant equipment name, which may exist in brownf
     ...
 
 CHWP-1:
+  cloud_device_id: 6789
   connections:
     CHWSYS-BLDG-1: HAS_PART
     CH-1: FEEDS
@@ -224,6 +236,7 @@ CHWP-1:
     ...
 
 CHWP-2:
+  cloud_device_id: 7890
   connections:
     CHWSYS-BLDG-1: HAS_PART
     CH-1: FEEDS
@@ -239,6 +252,7 @@ CHWP-2:
     ...
 
 CHWP-7:
+  cloud_device_id: 8901
   connections:
     CHWSYS-BLDG-1: HAS_PART
     ACC-1: FEEDS
@@ -253,6 +267,7 @@ CHWP-7:
 
 # Condensing water system equipment.
 CT-1:
+  cloud_device_id: 9012
   connections:
     CDWSYS-BLDG-1: HAS_PART
     CWP-3: FEEDS
@@ -268,6 +283,7 @@ CT-1:
     ...
 
 CT-2:
+  cloud_device_id: 11234
   connections:
     CDWSYS-BLDG-1: HAS_PART
     CWP-3: FEEDS
@@ -283,6 +299,7 @@ CT-2:
     ...
 
 CWP-3:
+  cloud_device_id: 12234
   connections:
     CDWSYS-BLDG-1: HAS_PART
   type: HVAC/PMP_...
@@ -295,6 +312,7 @@ CWP-3:
     ...
 
 CWP-4:
+  cloud_device_id: 12334
   connections:
     CDWSYS-BLDG-1: HAS_PART
   type: HVAC/PMP_...
@@ -308,6 +326,7 @@ CWP-4:
 
 # Equipment served by the chilled wwater system.
 FCU-1:
+  cloud_device_id: 12344
   connections:
     CHWSYS-BLDG-1: FEEDS
   type: HVAC/FCU_...
@@ -321,6 +340,7 @@ FCU-1:
     ...
 
 AHU-1:
+  cloud_device_id: 12345
   connections:
     CHWSYS-BLDG-1: FEEDS
   type: HVAC/AHU_...

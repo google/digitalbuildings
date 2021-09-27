@@ -37,6 +37,7 @@ ZONE-2:
 # Define the system that all equipment is part of.
 # It will feed all downstream equipment.
 HWSYS-BLDG-1:
+  cloud_device_id: 1234
   connections:
     BLDG-1: CONTAINS
   type: HVAC/HWS_...
@@ -59,6 +60,7 @@ HWSYS-BLDG-1:
 # Define the equipment for the system and connect it to the system
 # Additional intrasystem connections can be made as well.
 BLR-1:
+  cloud_device_id: 12234
   connections:
     BLDG-1: CONTAINS
     HWSYS-BLDG-1: HAS_PART
@@ -76,6 +78,7 @@ BLR-1:
     ...
 
 BLR-2:
+  cloud_device_id: 12334
   connections:
     BLDG-1: CONTAINS
     HWSYS-BLDG-1: HAS_PART
@@ -93,6 +96,7 @@ BLR-2:
     ...
 
 BLR-3:
+  cloud_device_id: 12344
   connections:
     BLDG-1: CONTAINS
     HWSYS-BLDG-1: HAS_PART
@@ -110,6 +114,7 @@ BLR-3:
     ...
 
 PMP-1:
+  cloud_device_id: 12345
   connections:
     BLDG-1: CONTAINS
     HWSYS-BLDG-1: CONTAINS
@@ -123,6 +128,7 @@ PMP-1:
     ...
 
 PMP-2:
+  cloud_device_id: 123432
   connections:
     BLDG-1: CONTAINS
     HWSYS-BLDG-1: CONTAINS
@@ -136,6 +142,7 @@ PMP-2:
     ...
 
 PMP-3:
+  cloud_device_id: 123443
   connections:
     BLDG-1: CONTAINS
     HWSYS-BLDG-1: CONTAINS
@@ -151,6 +158,7 @@ PMP-3:
 
 # Define the equipment which is fed from the system, and connect it to the systems.
 FCU-1:
+  cloud_device_id: 123453
   connections:
     BLDG-1: CONTAINS
     HWSYS-BLDG-1: FEEDS
@@ -165,6 +173,7 @@ FCU-1:
     ...
 
 VAV-1:
+  cloud_device_id: 12346526
   connections:
     BLDG-1: CONTAINS
     HWSYS-BLDG-1: FEEDS

@@ -31,6 +31,7 @@ ZONE-1:
 
 
 AHU-1:
+  cloud_device_id: 1234
   connections:
     BLDG-1: CONTAINS
   type: HVAC/AHU_DFSS_...
@@ -73,6 +74,7 @@ ZONE-1:
   type: FACILITIES/ZONE
 
 AHU-1:
+  cloud_device_id: 1234
   connections:
     BLDG-1: CONTAINS
   type: HVAC/AHU_SFSS_SFVSC_...
@@ -92,6 +94,7 @@ AHU-1:
     ...
 
 VAV-1:
+  cloud_device_id: 2345
   connections:
     AHU-1: FEEDS
     BLDG-1: CONTAINS
@@ -137,6 +140,7 @@ ZONE-1:
   type: FACILITIES/ZONE
 
 AHU-1:
+  cloud_device_id: 1234
   connections:
     BLDG-1: CONTAINS
   type: HVAC/AHU_SFSS_SFVSC_...
@@ -156,6 +160,7 @@ AHU-1:
     ...
 
 DFR-1:
+  cloud_device_id: 2345
   connections:
     BLDG-1: CONTAINS
   type: HVAC/DFR_SFSS_...
@@ -175,6 +180,7 @@ DFR-1:
     ...
 
 VAV-1:
+  cloud_device_id: 3456
   connections:
     BLDG-1: CONTAINS
     AHU-1: FEEDS

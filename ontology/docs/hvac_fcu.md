@@ -30,6 +30,7 @@ ZONE-1:
   type: FACILITIES/ZONE
 
 FCU-1:
+  cloud_device_id: 1234
   connections:
     BLDG-1: CONTAINS
     # Note: the chilled water system would also be linked here, if the unit is fed from it.
@@ -77,6 +78,7 @@ ZONE-1:
   type: FACILITIES/ZONE
 
 FCU-1:
+  cloud_device_id: 1234
   connections:
     # Note: the chilled water system would also be linked here, if the unit is fed from it.
     BLDG-1: CONTAINS
@@ -103,6 +105,7 @@ FCU-1:
     ...
 
 AHU-1:
+  cloud_device_id: 12234
   connections:
     BLDG-1: CONTAINS
   type: HVAC/AHU_SFSS_SFVSC_...
@@ -122,6 +125,7 @@ AHU-1:
     ...
 
 VAV-1:
+  cloud_device_id: 12334
   connections:
     AHU-1: FEEDS
     BLDG-1: CONTAINS
@@ -169,6 +173,7 @@ ZONE-1:
   type: FACILITIES/ZONE
 
 FCU-1:
+  cloud_device_id: 1234
   connections:
     BLDG-1: CONTAINS
   type: HVAC/FCU_DFSS_DFVSC_...
@@ -194,6 +199,7 @@ FCU-1:
     ...
 
 EF-1:
+  cloud_device_id: 12334
   connections:
     BLDG-1: CONTAINS
     ZONE-1: FEEDS
@@ -215,6 +221,7 @@ EF-1:
     ...
 
 DMP-1:
+  cloud_device_id: 12434
   connections:
     ZONE-1: FEEDS
     BLDG-1: CONTAINS
