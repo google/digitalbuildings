@@ -251,6 +251,7 @@ class EntityTypeManagerTest(absltest.TestCase):
         [findings_lib.DuplicateExpandedFieldSetsWarning]))
 
   def testGetCompleteFieldSetsOI(self):
+    #build test universe
     yaml = {'literals': ['field1', 'field2', 'field3', 'field4']}
     field_universe = field_lib.FieldUniverse(
         [_GetFieldFolder(yaml)])
@@ -273,13 +274,8 @@ class EntityTypeManagerTest(absltest.TestCase):
     universe = _GetEntityTypeUniverse([type_folder])
     manager = entity_type_manager.EntityTypeManager(universe)
 
-    self.assertRaises(Exception, manager.GetCompleteFieldSetsOI)
-
-    manager.Analyze()
-    function_output = manager.GetCompleteFieldSetsOI()
-    #print(function_output)
-
-    test_output = {
+    #expected output for GetCompleteFieldSetsOI() once Analyze() is called
+    expected_output = {
         frozenset({
             FieldParts(namespace='', field='field1', increment=''),
             FieldParts(namespace='', field='field2', increment=''),
@@ -293,9 +289,17 @@ class EntityTypeManagerTest(absltest.TestCase):
         }): {'/child1', '/child2'}
     }
 
-    self.assertEqual(test_output, function_output)
+    #test field sets have not been instantiated
+    self.assertRaises(Exception, manager.GetCompleteFieldSetsOI)
+
+    #instantiate and build field sets
+    manager.Analyze()
+    function_output = manager.GetCompleteFieldSetsOI()
+
+    self.assertEqual(expected_output, function_output)
 
   def testGetTypenamesBySubsetOI(self):
+    #build test universe
     yaml = {'literals': ['field1', 'field2', 'field3', 'field4']}
     field_universe = field_lib.FieldUniverse(
         [_GetFieldFolder(yaml)])
@@ -314,19 +318,22 @@ class EntityTypeManagerTest(absltest.TestCase):
     universe = _GetEntityTypeUniverse([type_folder])
     manager = entity_type_manager.EntityTypeManager(universe)
 
-    self.assertRaises(Exception, manager.GetTypenamesBySubsetOI)
-
-    manager.Analyze()
-    function_output = manager.GetTypenamesBySubsetOI()
-
-    test_output = {
+    #expected output for GetTypenamesBySubsetOI() once Analyze() is called
+    expected_output = {
         frozenset({
             FieldParts(namespace='', field='field4', increment=''),
             FieldParts(namespace='', field='field1', increment='')
         }): {'/VAV_child2', '/VAV_child1'}
     }
 
-    self.assertEqual(test_output, function_output)
+    #test field sets have not been instantiated
+    self.assertRaises(Exception, manager.GetTypenamesBySubsetOI)
+
+    #instantiate and build field sets
+    manager.Analyze()
+    function_output = manager.GetTypenamesBySubsetOI()
+
+    self.assertEqual(expected_output, function_output)
 
 if __name__ == '__main__':
   absltest.main()
