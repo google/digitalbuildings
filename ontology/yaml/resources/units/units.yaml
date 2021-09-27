@@ -37,6 +37,12 @@ illuminance:
 level:
 - meters: STANDARD
 - feet
+linearacceleration:
+- meters_per_square_second: STANDARD
+- gravity
+- milligravity
+- feet_per_square_second
+- millimeters_per_square_second
 linearvelocity:
 - meters_per_second: STANDARD
 - feet_per_minute
