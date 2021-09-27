@@ -119,6 +119,7 @@ CT_SS_VSC_SWTC_SWISOVPM_RWISOVPM_SWISOVM_MWVPM:
   - MWVPM
 
 CT_SS_VSFC:
+  id: "1531656668570451968"
   description: "Cooling tower with speed frequency control."
   is_canonical: true
   implements:
@@ -153,6 +154,7 @@ CT_US_SVL_MP3_1:
   - speed_frequency_command
 
 CT_SS_CWDT_OA_VSFC_CSWIVS_CRWIVS_CSWTC:
+  id: "1728970627244621824"
   description: "CT with multi considering water isolation valve control, condensing return/supply water monitor and outside air monitor"
   implements:
   - CT

@@ -343,6 +343,7 @@ EFVSC:
   - OPERATIONAL
 
 VSFC:
+  id: "17941929285778407424"
   description: "Variable speed control or monitor in frequency"
   is_abstract: true
   uses:
@@ -386,6 +387,7 @@ DFVSC:
 
 
 DFVSFC:
+  id: "3819485279274663936"
   description: "Variable speed control with frequency setting for discharge fans."
   is_abstract: true
   uses:
@@ -1901,6 +1903,21 @@ HWSC:
   implements:
   - CONTROL
 
+HW2SC:
+  id: "15111346551231873024"
+  description: "Two heating water valves on supply air side."
+  is_abstract: true
+  opt_uses:
+  - heating_thermal_power_capacity
+  - leaving_heating_coil_temperature_sensor
+  uses:
+  - heating_water_valve_percentage_command_1
+  - heating_water_valve_percentage_command_2
+  - supply_air_temperature_setpoint
+  - supply_air_temperature_sensor
+  implements:
+  - CONTROL
+
 HWZC:
   id: "12546235401653714944"
   description: "Heating water valve monitoring on zone side (DSP/CSP)."
@@ -2393,6 +2410,7 @@ OAFMC:
   - CONTROL
 
 OAMC:
+  id: "9583248377378766848"
   description: "Outside air flow control."
   is_abstract: true
   opt_uses:
@@ -2878,6 +2896,33 @@ SFSS3X:
   implements:
   - OPERATIONAL
 
+SFSS4X:
+  id: "12662092041384099840"
+  description: "Supply fan start-stop and feedback for four fans."
+  is_abstract: true
+  opt_uses:
+  - supply_air_flowrate_capacity
+  - supply_fan_power_capacity
+  - supply_fan_current_sensor_1
+  - supply_fan_current_sensor_2
+  - supply_fan_current_sensor_3
+  - supply_fan_current_sensor_4
+  - supply_fan_power_sensor_1
+  - supply_fan_power_sensor_2
+  - supply_fan_power_sensor_3
+  - supply_fan_power_sensor_4
+  uses:
+  - supply_fan_run_command_1
+  - supply_fan_run_status_1
+  - supply_fan_run_command_2
+  - supply_fan_run_status_2
+  - supply_fan_run_command_3
+  - supply_fan_run_status_3
+  - supply_fan_run_command_4
+  - supply_fan_run_status_4
+  implements:
+  - OPERATIONAL
+
 EFVSC2X:
   id: "6853685472657408000"
   description: "Exhaust fan variable speed control with feedback and sensoring for two fans."
@@ -2988,6 +3033,73 @@ SFVSC2X:
   - supply_fan_run_command_2
   - supply_fan_run_status_2
   - supply_fan_speed_percentage_command_2
+  implements:
+  - OPERATIONAL
+
+SFVSC3X:
+  id: "6519182149650743296"
+  description: "Supply fan variable speed control with feedback and sensoring with three fans."
+  is_abstract: true
+  opt_uses:
+  - supply_fan_speed_frequency_sensor_1
+  - supply_fan_speed_percentage_sensor_1
+  - supply_fan_current_sensor_1
+  - supply_fan_power_sensor_1
+  - supply_fan_speed_frequency_sensor_2
+  - supply_fan_speed_percentage_sensor_2
+  - supply_fan_current_sensor_2
+  - supply_fan_power_sensor_2
+  - supply_fan_speed_frequency_sensor_3
+  - supply_fan_speed_percentage_sensor_3
+  - supply_fan_current_sensor_3
+  - supply_fan_power_sensor_3
+  uses:
+  - supply_fan_run_command_1
+  - supply_fan_run_status_1
+  - supply_fan_speed_percentage_command_1
+  - supply_fan_run_command_2
+  - supply_fan_run_status_2
+  - supply_fan_speed_percentage_command_2
+  - supply_fan_run_command_3
+  - supply_fan_run_status_3
+  - supply_fan_speed_percentage_command_3
+  implements:
+  - OPERATIONAL
+
+SFVSC4X:
+  id: "17733145221803278336"
+  description: "Supply fan variable speed control with feedback and sensoring with four fans."
+  is_abstract: true
+  opt_uses:
+  - supply_fan_speed_frequency_sensor_1
+  - supply_fan_speed_percentage_sensor_1
+  - supply_fan_current_sensor_1
+  - supply_fan_power_sensor_1
+  - supply_fan_speed_frequency_sensor_2
+  - supply_fan_speed_percentage_sensor_2
+  - supply_fan_current_sensor_2
+  - supply_fan_power_sensor_2
+  - supply_fan_speed_frequency_sensor_3
+  - supply_fan_speed_percentage_sensor_3
+  - supply_fan_current_sensor_3
+  - supply_fan_power_sensor_3
+  - supply_fan_speed_frequency_sensor_4
+  - supply_fan_speed_percentage_sensor_4
+  - supply_fan_current_sensor_4
+  - supply_fan_power_sensor_4
+  uses:
+  - supply_fan_run_command_1
+  - supply_fan_run_status_1
+  - supply_fan_speed_percentage_command_1
+  - supply_fan_run_command_2
+  - supply_fan_run_status_2
+  - supply_fan_speed_percentage_command_2
+  - supply_fan_run_command_3
+  - supply_fan_run_status_3
+  - supply_fan_speed_percentage_command_3
+  - supply_fan_run_command_4
+  - supply_fan_run_status_4
+  - supply_fan_speed_percentage_command_4
   implements:
   - OPERATIONAL
 
@@ -3674,6 +3786,7 @@ DRSM8X:
 
 
 DICM:
+  id: "4971562358951378944"
   description: "Damper isolation control and monitoring. "
   is_abstract: true
   uses:
@@ -3682,6 +3795,7 @@ DICM:
    - supply_air_isolation_damper_command
 
 UV:
+  id: "6143342686997839872"
   description: "Ultraviolet lamp operation."
   is_abstract: true
   opt_uses:
@@ -3691,6 +3805,7 @@ UV:
   - ultraviolet_lamp_run_status
 
 H3X:
+  id: "3243024526971240448"
   description: "Heater monitoring."
   is_abstract: true
   implements:
@@ -3704,6 +3819,7 @@ H3X:
   - heater_run_command_3
 
 CHWBRC:
+  id: "9602107200818380800"
   description: "Chilled water valve binary (open/closed) monitoring/controlling. Return air temperature control."
   is_abstract: true
   implements:
@@ -3714,6 +3830,7 @@ CHWBRC:
   - return_air_temperature_setpoint
 
 CHWISOVPM:
+  id: "10952342664099397632"
   description: "Chllled water isolation valve control."
   is_abstract: true
   implements:
@@ -3723,6 +3840,7 @@ CHWISOVPM:
   - chilled_water_isolation_valve_percentage_sensor
 
 CWCS:
+  id: "1207397495399776256"
   description: "Condensing water valve control."
   is_abstract: true
   implements:
@@ -3732,6 +3850,7 @@ CWCS:
   - condensing_water_valve_percentage_sensor
 
 DPM:
+  id: "14194934395806154752"
   description: "Damper percentage control."
   is_abstract: true
   implements:
@@ -3741,6 +3860,7 @@ DPM:
   - damper_percentage_sensor
 
 DFVSMC:
+  id: "6412714239709937664"
   description: "Variable speed control mode for discharge fans."
   is_abstract: true
   uses:
@@ -3751,6 +3871,7 @@ DFVSMC:
   - OPERATIONAL
 
 DFVDSC:
+  id: "7493578150278856704"
   description: "Discharge fan control with toggled variable or discrete speed control. This allows the fan to run either VFD or discrete speed stages (LOW/MED/HIGH, etc.) and to switch between the mode."
   is_abstract: true
   uses:
@@ -3762,6 +3883,7 @@ DFVDSC:
   - OPERATIONAL
 
 DFVDSFC:
+  id: "15636086276564713472"
   description: "Discharge fan control with toggled variable or discrete speed (frequency) control. This allows the fan to run either VFD or discrete speed stages (LOW/MED/HIGH, etc.) and to switch between the mode."
   is_abstract: true
   uses:
@@ -3813,6 +3935,7 @@ WDPCSCM:
   - differential_pressure_setpoint
 
 CSWIVS:
+  id: "359876340523991040"
   description: "Condensing return water isolation valve control."
   is_abstract: true
   implements:
@@ -3841,6 +3964,7 @@ CSWIVS:
   - condensing_return_water_isolation_valve_status_14
 
 CRWIVS:
+  id: "10755028705425227776"
   description: "Condensing supply water isolation valve control."
   is_abstract: true
   implements:
@@ -3869,6 +3993,7 @@ CRWIVS:
   - condensing_supply_water_isolation_valve_status_14
 
 CSWTC:
+  id: "14772239573039710208"
   description: "Condensing supply water temperature control."
   is_abstract: true
   implements:
@@ -3876,3 +4001,85 @@ CSWTC:
   uses:
   - condensing_supply_water_temperature_setpoint
   - condensing_supply_water_temperature_sensor
+
+#New abstracts for CH ZRH EURD
+CAM:
+  id: "10932006097032052736"
+  description: "ztc alarm monitoring based on moisture sensor on coil or in pan."
+  is_abstract: true
+  implements:
+  - MONITORING
+  uses:
+  - condensate_water_alarm
+
+DPHCC:
+  id: "12422697573691686912"
+  description: "Two-pipe heating and cooling control. Has a single control
+    valve that is fed by two separate headers for heating and cooling water.
+    There is an isolation valve for each incoming system and a single control
+    valve. Valve and mode control to zone temperature (heating/cooling
+    setpoint configuration)."
+  is_abstract: true
+  opt_uses:
+  - chilled_return_water_isolation_valve_percentage_command
+  - heating_return_water_isolation_valve_percentage_command
+  - heating_supply_water_isolation_valve_percentage_command
+  - chilled_supply_water_isolation_valve_percentage_command
+  - zone_air_cooling_temperature_setpoint
+  - zone_air_heating_temperature_setpoint
+  - condensate_water_alarm
+  - zone_conditioning_mode
+  - supply_water_valve_flowrate_sensor
+  uses:
+  - supply_water_valve_percentage_command
+  - zone_air_temperature_sensor
+  - water_riser_mode
+
+HHCDM:
+  id: "3582131505163403264"
+  description: "Hydronic heating and cooling distribution monitoring"
+  is_abstract: true
+  implements:
+  - MONITORING
+  uses:
+  - chilled_supply_water_isolation_valve_percentage_command
+  - chilled_return_water_isolation_valve_percentage_command
+  - heating_supply_water_isolation_valve_percentage_command
+  - heating_return_water_isolation_valve_percentage_command
+  - heating_request_count
+  - cooling_request_count
+  opt_uses:
+  - average_zone_air_temperature_sensor
+
+
+HHRU:
+  id: "9211631039376523264"
+  description: "Hydronic heat recovery unit for ahu's with bypass valve and circulation pump"
+  is_abstract: true
+  implements:
+  - MONITORING
+  uses:
+  - supply_air_temperature_sensor
+  - supply_air_temperature_setpoint
+  - return_air_temperature_sensor
+  - supply_water_temperature_sensor
+  - supply_water_valve_percentage_command
+  - supply_water_valve_percentage_sensor
+  opt_uses:
+  - exhaust_air_temperature_sensor
+  - outside_air_temperature_sensor
+
+PHRU:
+  id: "5194420171762040832"
+  description: "heat recovery unit for ahu's with plate heat exchanger valve and bypass damper"
+  is_abstract: true
+  implements:
+  - MONITORING
+  uses:
+  - supply_air_temperature_sensor
+  - supply_air_temperature_setpoint
+  - return_air_temperature_sensor
+  - bypass_air_damper_percentage_command
+  opt_uses:
+  - exhaust_air_temperature_sensor
+  - outside_air_temperature_sensor

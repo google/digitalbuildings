@@ -21,7 +21,7 @@
 
 CONTROL:
   id: "14773441339248869376"
-  description: "A tag to represent that the subtype forms a control unit. Ex: temperature, setpoint, heater output"
+  description: "A tag to represent that the subtype forms a control unit. Ex: temperature, setpoint, heater output."
   is_abstract: true
 
 OPERATIONAL:
@@ -31,5 +31,5 @@ OPERATIONAL:
 
 MONITORING:
   id: "8216200281797427200"
-  description: "A tag to represent that the subtype forms a monitoring group. Ex: temperature sensor only. "
+  description: "A tag to represent that the subtype forms a monitoring group. Ex: temperature sensor only."
   is_abstract: true

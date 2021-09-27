@@ -15,6 +15,7 @@
 SDC_EXT-17:
   type: HVAC/SDC_EXT
   id: CDM/123456
+  cloud_device_id: "foobar"
   translation:
     shade_extent_percentage_command: MISSING
 
