@@ -37,7 +37,7 @@ class StandardField(object):
     return hash((self._namespace, self._name))
 
   def __eq__(self, other):
-    if not isinstance(other, self.class):
+    if not isinstance(other, self.__class__):
       raise TypeError('Both objects are not StandardField objects')
     else:
       namespace_eq = self._namespace == other.GetNamespaceName()
@@ -94,7 +94,7 @@ class EntityTypeField(StandardField):
     ))
 
   def __eq__(self, other):
-    if not isinstance(other, self.class):
+    if not isinstance(other, self.__class__):
       raise TypeError('Both objects must be EntityTypeField objects')
     else:
       standard_eq = super().__eq__(other)
