@@ -22,16 +22,15 @@ setup(
     url='https://github.com/google/digitalbuildings',
     license='Apache License',
     author='(in alphabatical order)'
-           'Keith Berkoben,'
-           'Raymond Li,'
-           'Charbel Kaed,'
-           'Nigel Kilmer',
+    'Keith Berkoben,'
+    'Raymond Li,'
+    'Charbel Kaed,'
+    'Nigel Kilmer',
     packages=find_packages(),
-    install_requires=['protobuf<3.18.0,>=3.12.0',
-                      'ruamel.yaml==0.15.93',
-                      'strictyaml==1.1.0',
-                      'google-cloud-pubsub==2.6.1',
-                      'google-auth<2.0',
-                      'googleapis-common-protos==1.52.0'],
+    install_requires=[
+        'protobuf<3.18.0,>=3.12.0', 'ruamel.yaml==0.15.93', 'strictyaml==1.1.0',
+        'google-cloud-pubsub==2.6.1', 'google-auth<2.0',
+        'googleapis-common-protos==1.52.0'
+    ],
     python_requires='>=3.7',
 )
