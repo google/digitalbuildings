@@ -197,6 +197,7 @@ measurement:
   humidity: "Concentration of water vapor in air (conditioned or unconditioned)."
   illuminance: "Measurement of light."
   level: "The height of something with regard to a datum (e.g. the water level of a tank relative to the bottom)."  
+  linearacceleration: "Time rate of change of linear velocity."
   linearvelocity: "Example: wind speed"
   percentage: "Measurement per hundred."
   powerfactor: "Ratio of real and apparent power."
