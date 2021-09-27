@@ -273,7 +273,6 @@ class EntityTypeManagerTest(absltest.TestCase):
     type_folder = _GetEntityTypeFolder(field_universe, yaml)
     universe = _GetEntityTypeUniverse([type_folder])
     manager = entity_type_manager.EntityTypeManager(universe)
-
     #expected output for GetCompleteFieldSetsOI() once Analyze() is called
     expected_output = {
         frozenset({
@@ -317,7 +316,6 @@ class EntityTypeManagerTest(absltest.TestCase):
     type_folder = _GetEntityTypeFolder(field_universe, yaml)
     universe = _GetEntityTypeUniverse([type_folder])
     manager = entity_type_manager.EntityTypeManager(universe)
-
     #expected output for GetTypenamesBySubsetOI() once Analyze() is called
     expected_output = {
         frozenset({
