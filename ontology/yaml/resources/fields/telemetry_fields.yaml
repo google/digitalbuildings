@@ -65,9 +65,6 @@ literals:
   - OFF
 - discharge_fan_speed_mode:
   - AUTO
-  - AUTOLOW
-  - AUTOMEDIUM
-  - AUTOHIGH
   - LOW
   - MEDIUM
   - HIGH

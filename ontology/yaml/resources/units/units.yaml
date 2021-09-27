@@ -24,9 +24,9 @@ energy:
 - megawatt_hours
 flowrate:
 - cubic_meters_per_second: STANDARD
+- cubic_feet_per_minute
 - cubic_meters_per_minute
 - cubic_meters_per_hour
-- cubic_feet_per_minute
 - gallons_per_minute
 - liters_per_second
 - kilograms_per_hour
