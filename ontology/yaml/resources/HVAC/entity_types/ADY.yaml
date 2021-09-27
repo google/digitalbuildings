@@ -17,6 +17,7 @@
 ########################
 
 ADY_BS_SS:
+  id: "14790253971549192192"
   description: "Basic air dryer."
   is_canonical: true
   implements:
@@ -28,4 +29,3 @@ ADY_BS_SS:
   - control_mode
   - schedule_run_command
   - control_status
-

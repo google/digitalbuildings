@@ -44,6 +44,7 @@ PMP_SS_VSC_WDPM:
   - WDPM
 
 PMP_SS_VSFC:
+  id: "3837499677784145920"
   description: "PMP device with pump frequency control"
   is_canonical: true
   implements:
@@ -59,6 +60,7 @@ PMP_SS_VSFC:
 
 
 PMP_SS_CHWISOVPM_VSFC:
+  id: "2090103022364393472"
   description: "PMP device with chilled water valve and pump frequency control"
   is_canonical: true
   implements:
@@ -74,6 +76,7 @@ PMP_SS_CHWISOVPM_VSFC:
   - chilled_water_differential_pressure_setpoint
 
 PMP_SS_CWCS_VSFC:
+  id: "15564028682526785536"
   description: "PMP device with condensing water valve and pump frequency control"
   is_canonical: true
   implements:
@@ -108,4 +111,3 @@ PMP_S_VSCF_ISV:
   - mixing_valve_percentage_command
   - chilled_supply_water_temperature_setpoint
   - chilled_supply_water_temperature_sensor
-

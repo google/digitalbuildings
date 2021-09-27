@@ -146,12 +146,12 @@ class GraphValidator(object):
     for conn_inst in entity.connections:
       if conn_inst.source not in self.entity_instances:
         if self.config_mode == parse.ConfigMode.INITIALIZE:
-          print('Orphan connection to: {0}'.format(conn_inst.source))
+          print(f'Orphan connection to: {conn_inst.source}')
           is_valid = False
         continue
       if self.entity_instances[
           conn_inst.source].operation == parse.EntityOperation.DELETE:
-        print('Connection to deleted entity: {0}'.format(conn_inst.source))
+        print(f'Connection to deleted entity: {conn_inst.source}')
         is_valid = False
     return is_valid
 
@@ -165,12 +165,12 @@ class GraphValidator(object):
     for link_inst in entity.links:
       if link_inst.source not in self.entity_instances.keys():
         if self.config_mode == parse.ConfigMode.INITIALIZE:
-          print('Invalid link source entity name: {0}'.format(link_inst.source))
+          print(f'Invalid link source entity name: {link_inst.source}')
           is_valid = False
         continue
       if self.entity_instances[
           link_inst.source].operation == parse.EntityOperation.DELETE:
-        print('Link to deleted entity: {0}'.format(link_inst.source))
+        print(f'Link to deleted entity: {link_inst.source}')
         is_valid = False
         continue
 
@@ -180,7 +180,7 @@ class GraphValidator(object):
 
       for _, source_field in link_inst.field_map.items():
         if not _FieldIsAllowed(self.universe, source_field, src_entity_type):
-          print('Invalid link source field: ', source_field)
+          print(f'Invalid link source field: {source_field}')
           is_valid = False
           continue
 
@@ -279,11 +279,9 @@ class InstanceValidator(object):
                                               entity_type)
       if not qualified_field_name:
         if entity_type:
-          print('Field {0} is not defined on the type'.format(
-              as_written_field_name))
+          print(f'Field {as_written_field_name} is not defined on the type')
         else:
-          print('Field {0} is undefined in the universe'.format(
-              as_written_field_name))
+          print(f'Field {as_written_field_name} is undefined in the universe')
         is_valid = False
       else:
         found_fields[qualified_field_name] = ft
@@ -294,8 +292,7 @@ class InstanceValidator(object):
       unmatched = set(type_fields.keys()).difference(set(found_fields.keys()))
       for unmatched_name in unmatched:
         if not type_fields[unmatched_name].optional:
-          print('Required field {0} is missing from translation'.format(
-              unmatched_name))
+          print(f'Required field {unmatched_name} is missing from translation')
           is_valid = False
 
     # Check that translations are properly defined
@@ -309,7 +306,7 @@ class InstanceValidator(object):
             found_units[std_unit] = raw_unit
             continue
           if found_units[std_unit] != raw_unit:
-            print('found two mappings for ' + std_unit)
+            print(f'found two mappings for {std_unit}')
             is_valid = False
 
     return is_valid
@@ -330,51 +327,49 @@ class InstanceValidator(object):
     valid_units = self.universe.GetUnitsForMeasurement(qualified_field_name)
     if valid_units and set(valid_units).difference({'no_units'}):
       if not isinstance(ft, ft_lib.DimensionalValue):
-        print('Units must be provided for dimensional value {0}'.format(
-            qualified_field_name))
+        print('Units must be provided for dimensional value '
+          f'{qualified_field_name}')
         return False
 
       if not ft.unit_mappings:
-        print('At least one unit must be provided for dimensional value {0}'
-              .format(qualified_field_name))
+        print('At least one unit must be provided for dimensional value '
+          f'{qualified_field_name}')
         return False
 
       is_valid = True
       for unit in ft.unit_mappings.keys():
         if unit not in valid_units:
-          print('Field {0} has an invalid unit: {1}'.format(
-              qualified_field_name, unit))
+          print(f'Field {qualified_field_name} has an invalid unit: {unit}')
           is_valid = False
       return is_valid
 
     if isinstance(ft, ft_lib.DimensionalValue):
-      print('Units are provided for non-dimensional value {0}'.format(
-          qualified_field_name))
+      print(f'Units are provided for non-dimensional value '
+        f'{qualified_field_name}')
       return False
 
     valid_states = self.universe.GetStatesByField(qualified_field_name)
     if valid_states:
       if not isinstance(ft, ft_lib.MultiStateValue):
-        print('States not provided for multi-state value {0}'.format(
-            qualified_field_name))
+        print('States not provided for multi-state value '
+          f'{qualified_field_name}')
         return False
 
       if not ft.states:
-        print('At least one state must be provided for multi-state value {0}'
-              .format(qualified_field_name))
+        print('At least one state must be provided for multi-state value '
+          f'{qualified_field_name}')
         return False
 
       is_valid = True
       for state in ft.states.keys():
         if state not in valid_states:
-          print('Field {0} has an invalid state: {1}'.format(
-              qualified_field_name, state))
+          print(f'Field {qualified_field_name} has an invalid state: {state}')
           is_valid = False
       return is_valid
 
     if isinstance(ft, ft_lib.MultiStateValue):
-      print('States are provided for a field that is not a multi-state {0}'
-            .format(qualified_field_name))
+      print('States are provided for a field that is not a multi-state '
+        f'{qualified_field_name}')
       return False
 
     return True
@@ -399,7 +394,7 @@ class InstanceValidator(object):
     for conn_inst in entity.connections:
       conn_universe = self.universe.connection_universe
       if conn_universe and not conn_universe.IsDefined(conn_inst.ctype):
-        print('Invalid connection type: {0}'.format(conn_inst.ctype))
+        print(f'Invalid connection type: {conn_inst.ctype}')
         is_valid = False
 
     return is_valid
@@ -430,13 +425,13 @@ class InstanceValidator(object):
         qualified_tgt_field = _GetAllowedField(self.universe, target_field,
                                                entity_type)
         if not qualified_tgt_field:
-          print('Invalid link target field: ', target_field)
+          print(f'Invalid link target field: {target_field}')
           is_valid = False
           continue
         qualified_src_field = _GetAllowedField(self.universe, source_field,
                                                None)
         if not qualified_src_field:
-          print('Invalid link source field: ', source_field)
+          print(f'Invalid link source field: {source_field}')
           is_valid = False
           continue
 
@@ -453,7 +448,7 @@ class InstanceValidator(object):
     if entity_type:
       for field_name, field in entity_type.GetAllFields().items():
         if not field.optional and field_name not in found_fields:
-          print('Required field {0} is missing from links'.format(field_name))
+          print(f'Required field {field_name} is missing from links')
           is_valid = False
 
     return is_valid
@@ -464,8 +459,7 @@ class InstanceValidator(object):
     source_units = self.universe.GetUnitsForMeasurement(source_field)
     target_units = self.universe.GetUnitsForMeasurement(target_field)
     if source_units != target_units:
-      print('Unit mismatch in link from {0} to {1}'.format(
-          source_field, target_field))
+      print(f'Unit mismatch in link from {source_field} to {target_field}')
       return False
     return True
 
@@ -475,8 +469,7 @@ class InstanceValidator(object):
     source_states = self.universe.GetStatesByField(source_field)
     target_states = self.universe.GetStatesByField(target_field)
     if source_states != target_states:
-      print('State mismatch in link from {0} to {1}'.format(
-          source_field, target_field))
+      print(f'State mismatch in link from {source_field} to {target_field}')
       return False
     return True
 
@@ -675,6 +668,7 @@ class EntityInstance(findings_lib.Findings):
   def __init__(self,
                operation,
                entity_id,
+               cloud_device_id=None,
                namespace=None,
                type_name=None,
                translation=None,
@@ -686,6 +680,7 @@ class EntityInstance(findings_lib.Findings):
 
     self.operation = operation
     self.id = entity_id
+    self.cloud_device_id = cloud_device_id
     self.namespace = namespace
     self.type_name = type_name
     self.translation = translation
@@ -714,8 +709,10 @@ class EntityInstance(findings_lib.Findings):
           entity_yaml[parse.ENTITY_TYPE_KEY])
 
     translation = None
+    cloud_device_id = None
     if parse.TRANSLATION_KEY in entity_yaml:
       translation = _ParseTranslation(entity_yaml[parse.TRANSLATION_KEY])
+      cloud_device_id = entity_yaml[parse.ENTITY_CLOUD_DEVICE_ID_KEY]
 
     connections = None
     if parse.CONNECTIONS_KEY in entity_yaml:
@@ -733,5 +730,14 @@ class EntityInstance(findings_lib.Findings):
     if parse.ETAG_KEY in entity_yaml:
       etag = entity_yaml[parse.ETAG_KEY]
 
-    return cls(operation, entity_id, namespace, type_name, translation,
-               connections, links, etag, update_mask)
+    return cls(
+        operation,
+        entity_id,
+        cloud_device_id=cloud_device_id,
+        namespace=namespace,
+        type_name=type_name,
+        translation=translation,
+        connections=connections,
+        links=links,
+        etag=etag,
+        update_mask=update_mask)

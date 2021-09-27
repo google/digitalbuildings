@@ -13,7 +13,7 @@
 # limitations under the License.
 
 VIRTUAL-ENTITY:
-  type: HVAC/FCU_DFSS_CSP_DX2ZC
+  type: HVAC/CHWS_WDT
   id: SYSTEM/ID1234
   links:
     PHYSICAL-ENTITY:
@@ -27,11 +27,26 @@ VIRTUAL-ENTITY:
       compressor_run_status_2: compressor_run_status
       zone_air_cooling_temperature_setpoint: zone_air_cooling_temperature_setpoint
       zone_air_temperature_sensor: zone_air_temperature_sensor
+      return_water_temperature_sensor: return_water_temperature_sensor
+      supply_water_temperature_sensor: supply_water_temperature_sensor
 
 PHYSICAL-ENTITY:
-  type: HVAC/FCU_DFSS_CSP_DXZC
+  type: HVAC/CHWS_WDT
   id: CDM/123456
+  cloud_device_id: "foobar"
   translation:
+    return_water_temperature_sensor:
+      present_value: "points.return_water_temperature_sensor.present_value"
+      units:
+        key: "pointset.return_water_temperature_sensor.units"
+        values:
+          degrees_celsius: "degC"
+    supply_water_temperature_sensor:
+      present_value: "points.supply_water_temperature_sensor.present_value"
+      units:
+        key: "pointset.points.supply_water_temperature_sensor.units"
+        values:
+          degrees_celsius: "degC"
     zone_air_temperature_sensor:
       present_value: "points.zone_air_temperature_sensor.present_value"
       units:

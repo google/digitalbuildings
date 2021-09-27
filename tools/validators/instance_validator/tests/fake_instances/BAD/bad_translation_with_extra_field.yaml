@@ -17,6 +17,7 @@
 CHWS_WDT-17:
   type: HVAC/CHWS_WDT
   id: CDM/123456
+  cloud_device_id: "foobar"
   translation:
     supply_water_temperature_sensor:
       present_value: "points.supply_water_temperature_sensor.present_value"

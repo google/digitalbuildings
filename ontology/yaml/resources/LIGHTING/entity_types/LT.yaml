@@ -39,6 +39,7 @@ LT_DC_SC:
   - SC
 
 LT_DPC:
+  id: "17654543334556827648"
   description: "Dimmer lighting group control module."
   is_canonical: true
   implements:

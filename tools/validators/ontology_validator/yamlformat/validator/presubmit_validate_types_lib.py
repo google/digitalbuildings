@@ -23,7 +23,7 @@ from __future__ import print_function
 
 import os
 import time
-from typing import Dict, List, NamedTuple, Set
+from typing import Dict, List, NamedTuple, Optional
 
 from six.moves import input
 
@@ -150,26 +150,32 @@ class ConfigUniverse(findings_lib.Findings):
       return None
     return self.entity_type_universe.GetEntityType(namespace_name, typename)
 
-  def GetUnitsForMeasurement(self, field_name: str) -> Set[str]:
-    """Returns a set of possible unit strings by a measurement_field.
+  def GetUnitsForMeasurement(self,
+                             as_written_field_name: str) -> Optional[List[str]]:
+    """Returns a List of possible unit strings by a measurement_field.
 
     This method is not namespace aware because units are currently only
     definable globally.
 
     Args:
-      field_name: Unqualified field name. Can be incremented.
+      as_written_field_name: qualified or unqualified field name. Can be
+        incremented.
     Returns: a string representing the unit or None if units are defined.
     """
     if not self.unit_universe_reverse_map:
       print('UnitUniverse undefined in ConfigUniverse')
       return None
-    subfields = field_name.split('_')
+    subfields = as_written_field_name.split('_')
     # if the last element is numeric need to remove it
     while subfields[-1].isnumeric():
       subfields.pop()
 
-    if subfields[-1] not in ['status', 'label', 'mode', 'counter', 'timestamp']:
-      measurement_subfield = subfields[-2]  # access measurement_type subfield
+    if subfields[-1] not in [
+        'status', 'label', 'mode', 'counter', 'timestamp', 'alarm'
+    ]:
+      # access measurement subfield.  In case of a two-subfield field with a
+      # namespace attached, chop off the namespace.
+      measurement_subfield = subfields[-2].split('/')[-1]
       return self.unit_universe_reverse_map.get(measurement_subfield)
 
   def GetStatesByField(self, field_name: str) -> List[str]:
