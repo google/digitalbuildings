@@ -73,8 +73,9 @@ SCZ:
   id: "2665719349737684992"
   is_abstract: true
   description: "Scene control for a device and zone."
-  uses:
+  opt_uses:
   - scene_command
+  uses:
   - zone_scene_command
 
 IS:
