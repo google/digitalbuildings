@@ -45,7 +45,7 @@ LT_DPC:
   implements:
   - LT
   - DPC
-
+  
 #Entity types for CH ZRH
 LGRP_OS_LC_VADC:
   id: "4599945020949135360"
@@ -130,3 +130,4 @@ LGRP_OS_LSC_LC_VADC_RC:
   - LC
   - VADC
   - RC
+

@@ -140,7 +140,7 @@ class EntityInstanceTest(absltest.TestCase):
     except TypeError as e:
       self.assertEqual(type(e), TypeError)
     else:
-      self.fail('{0} was not raised'.format(TypeError))
+      self.fail(f'{TypeError} was not raised')
 
   def testInstanceRequiresEntityTypeToExist(self):
     instance = entity_instance.EntityInstance(
@@ -216,7 +216,7 @@ class EntityInstanceTest(absltest.TestCase):
     except KeyError as e:
       self.assertEqual(type(e), KeyError)
     else:
-      self.fail('{0} was not raised'.format(KeyError))
+      self.fail(f'{KeyError} was not raised')
 
   def testValidateTranslation(self):
     parsed = _Helper(
@@ -531,7 +531,7 @@ class EntityInstanceTest(absltest.TestCase):
     except ValueError as e:
       self.assertEqual(type(e), ValueError)
     else:
-      self.fail('{0} was not raised'.format(ValueError))
+      self.fail(f'{ValueError} was not raised')
 
   def testInstance_DimensionalTranslation_UndefinedField(self):
     entity = entity_instance.EntityInstance(
@@ -597,7 +597,7 @@ class EntityInstanceTest(absltest.TestCase):
     except ValueError as e:
       self.assertEqual(type(e), ValueError)
     else:
-      self.fail('{0} was not raised'.format(ValueError))
+      self.fail('{ValueError} was not raised')
 
   def testInstance_MultiStateTranslation_UndefinedField(self):
     entity = entity_instance.EntityInstance(
@@ -647,6 +647,35 @@ class EntityInstanceTest(absltest.TestCase):
 
     self.assertTrue(self.update_validator.Validate(entity))
 
+  def testInstance_DimensionalValue_noUnitsExpected_noUnitsPasses(self):
+    entity = entity_instance.EntityInstance(
+        _UPDATE,
+        'VAV-123',
+        etag='1234',
+        translation={
+            'line_powerfactor_sensor':
+                field_translation.DimensionalValue(
+                    std_field_name='foo/bar',
+                    unit_field_name='foo/unit',
+                    raw_field_name='foo/raw',
+                    unit_mappings={'no_units': 'no_units'}),
+        })
+    self.assertTrue(self.update_validator.Validate(entity))
+
+  def testInstance_DimensionalValue_unitsExpected_noUnitsFails(self):
+    entity = entity_instance.EntityInstance(
+        _UPDATE,
+        'VAV-123',
+        etag='1234',
+        translation={
+            'zone_air_cooling_temperature_setpoint':
+                field_translation.DimensionalValue(
+                    std_field_name='foo/bar',
+                    unit_field_name='foo/unit',
+                    raw_field_name='foo/raw',
+                    unit_mappings={'no_units': 'no_units'}),
+        })
+    self.assertFalse(self.update_validator.Validate(entity))
 
 if __name__ == '__main__':
   absltest.main()

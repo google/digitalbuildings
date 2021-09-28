@@ -130,8 +130,10 @@ literals:
 - return_air_temperature_setpoint
 - return_water_temperature_sensor
 - reversing_valve_command:
-  - OPEN
+  - AUTO
   - CLOSED
+  - OPEN
+  - UNKNOWN
 - run_command:
   - ON
   - OFF
@@ -903,7 +905,7 @@ literals:
   - OCCUPIED
   - UNKNOWN
   - UNOCCUPIED
-  
+
 #Additional fields for CH ZRH EURD HVAC
 - bypass_air_damper_percentage_sensor
 - circulation_pump_speed_percentage_command

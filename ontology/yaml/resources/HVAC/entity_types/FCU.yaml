@@ -858,7 +858,20 @@ FCU_DFVSFC_CHWRC:
   - schedule_run_command
   - lost_power_alarm
 
-
+FCU_DFSS_DFVSC_DXRC_HTRC_RHC_RHDHC_RTC:
+  id: "506032222180999168"
+  description: "Single-zone FCU with DX cooling, heating, and humidifcation/dehumidification."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - DFVSC
+  - DXRC
+  - HTRC
+  - RHC
+  - RHDHC
+  - RTC
+  
 ###################################
 ### Existing Non-standard Types ###
 ###################################
@@ -1217,3 +1230,5 @@ FCU_NON_CANONICAL_TYPE_4:
   - supply_water_valve_command
   - zone_air_temperature_sensor
   - zone_air_temperature_setpoint
+
+
