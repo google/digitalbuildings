@@ -83,7 +83,8 @@ class ConfigUniverse(findings_lib.Findings):
     unitsByMeasurement = dict()
     units = self.unit_universe.GetUnitsMap('')
     for key, unit in units.items():
-      unitsByMeasurement.setdefault(unit.measurement_type, []).append(unit.name)
+      unit_name = 'no_units' if unit.name.startswith('no_units_') else unit.name
+      unitsByMeasurement.setdefault(unit.measurement_type, []).append(unit_name)
     return unitsByMeasurement
 
   def _ArrangeStatesByField(self) -> Dict[str, List[str]]:
