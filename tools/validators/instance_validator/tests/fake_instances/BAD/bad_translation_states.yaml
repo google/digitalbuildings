@@ -18,6 +18,7 @@
 UK-LON-S2:
   type: FACILITIES/BUILDING
   id: FACILITIES/123456
+  cloud_device_id: "foobar"
   translation:
     supply_air_isolation_damper_command:
       present_value: "points.damper_1.present_value"

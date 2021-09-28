@@ -20,4 +20,4 @@ UK-LON-S2:
   connections:
     # Listed entities are sources on connections
     ANOTHER-ENTITY: FEEDS
-    A-THIRD-ENTITY: INVALID 
+    A-THIRD-ENTITY: INVALID

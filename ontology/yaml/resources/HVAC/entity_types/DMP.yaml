@@ -57,6 +57,21 @@ DMP_SDBPC_RMM:
   - SDBPC
   - RMM
 
+DMP_DICM:
+  id: "8449185696211533824"
+  description: "Controlling and monitoring damper isolation system."
+  is_canonical: true
+  implements:
+  - DMP
+  - DICM
+  opt_uses:
+  - control_mode
+  - schedule_run_command
+  - run_command
+  - run_status
+  - run_mode
+  - lost_power_alarm
+
 
 ###################################
 ### Existing Non-standard Types ###

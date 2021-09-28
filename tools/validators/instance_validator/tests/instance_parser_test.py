@@ -108,6 +108,14 @@ class ParserTest(absltest.TestCase):
       ])
       del parse
 
+  def testInstanceValidatorCloudDeviceIdNotSetWithTranslation(self):
+    with self.assertRaises(KeyError):
+      parse = _Helper([
+          path.join(_TESTCASE_PATH, 'BAD',
+                    'bad_translation_no_cloud_device_id.yaml')
+      ])
+      del parse
+
   def testInstanceValidatorDetectDuplicateEntityKeys(self):
     with self.assertRaises(SystemExit):
       parse = _Helper(

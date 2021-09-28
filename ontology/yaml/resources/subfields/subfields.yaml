@@ -45,6 +45,9 @@ component:
   valve: "Component which meters the flow of water within a system or device."
   vane: "Component for guiding media flow."
   wheel: "Component used for transfer of heat from incoming to outgoing air streams. "
+  #New component subfields for CH ZRH EURD
+  switch: "Component to disrupt an electrical cirucit"
+  riser: "Water riser for heating, cooling and so on"
 descriptor: 
   air: "Atmospheric air, either conditioned or unconditioned"
   aisle: "Passage between two rows of server racks."
@@ -79,6 +82,7 @@ descriptor:
   exchange: "the transfer of heat from one fluid stream to another."
   exercise: "Mode of running equipment to maintain functionality ('exercise mode')"
   exhaust: "Process or component used in the removal of air from a conditioned system to the outside atmosphere."
+  panel: "An interface to control a device."
   fabric: "Textile material."
   fire : "a potential to cause physical damage through burning"
   flue: "Chimney for conveying exhaust gas."
@@ -133,7 +137,6 @@ descriptor:
   production: "The loop in a system that is responsible for the conditioning of fluid."
   program: "Embedded, encoded instructions for the automatic performance of a task; typically within a controller."
   protection: "Act of preventing damage to object."
-  reactive: "Power that is returned to the source (not consumed by the load)."
   recovery: "Component or process used for the reclamation of heat."
   release: "To free from constraints (e.g. to release the door from its magnetic lock)."
   refrigerant: "Substance used in the mechanical refrigeration process (e.g. R-134a)"
@@ -174,6 +177,17 @@ descriptor:
   wind: "Movement of ambient air."
   winter: "Method or process used during colder weather (i.e. winter season)."
   zone: "Region of building which is conditioned."
+  #New descriptor subfields for CH ZRH EURD
+  conditioning: "Treatment of a medium"
+  condensate: "Indicates moisture on surfaces"
+  red: "Red light fracture of ambient light"
+  green: "green light fracture of ambient light"
+  blue: "blue light fracture of ambient light"
+  lighting: "Illumination of a room"
+  maintenance: "Status of a device out of order"
+  startup: "Event of engaging a device or equipment"
+  frost: "Freezing water on a surface"
+  potable: "quality of water"
 measurement:
   concentration: "Concentration of chemical (usually in parts per million or parts per billion)."
   current: "Flow of electric charge."
@@ -193,6 +207,9 @@ measurement:
   temperature: "Measures the temperature of media within a process or system."
   voltage: "Electrical potential difference between two reference points."
   volume: "The quantity of three-dimensional space contained by a closed surface."
+  #New measurement subfields for CH ZRH EURD
+  rate: "ratio of change compared to a step or time"
+  time: "defined duration of something"
 measurement_descriptor:
   absolute: "Quality of media with respect to non-relativistic boudaries (e.g. absolute temperature)."
   apparent: "The combination of reactive and real components (power)."
@@ -214,6 +231,7 @@ measurement_descriptor:
   open: "Indicates full open (for two-position actuators).  This is the default sense if unspecified"
   override: "An action that interrupts, cancels, or changes the current action or status."
   position: "A particular way in which something is placed or arranged, such as a door in the open position."
+  reactive: "Power that is returned to the source (not consumed by the load)."
   relative: "Quality of media with respect to theoretical minimum or maximum value for a given condition (e.g. relative humidity)."
   run: "State of being active or operating. By default applies to control program for system (eg VAV program run_command)."
   saturation: "Point at which no more of a material can be absorbed into another material."
@@ -223,6 +241,8 @@ measurement_descriptor:
   thermal: "Relating to the transfer of heat."
   tilt: "Degree of radial rotation."
   wetbulb: "Describes air temperature measured at 100% relative humidity (saturation)."
+  #New measurement descriptor subfields for CH ZRH EURD
+  fade: "change of a value"
 point_type:
   accumulator: "The total accumulated quantity (e.g. total energy accumulated)."
   alarm: "A point that interprets some input values qualitatively (e.g. as good or bad, normal or in alarm, etc.). Alarms are always binary."
