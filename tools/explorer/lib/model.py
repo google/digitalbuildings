@@ -1,11 +1,9 @@
 """Helper Field model classes for Ontology explorer"""
 from typing import List
-import re
 
 from yamlformat.validator.entity_type_lib import EntityType
 from yamlformat.validator.field_lib import FIELD_CHARACTER_REGEX
-
-FIELD_INCREMENT_REGEX = re.compile(r'((?:_[0-9]+)+)$')
+from yamlformat.validator.field_lib import FIELD_INCREMENT_REGEX
 
 class StandardField(object):
   """
@@ -117,12 +115,13 @@ class EntityTypeField(StandardField):
 class Match(object):
   """
   A class to hold the information about a match between a list of
-  EntityTypeFields objects and an Entity Type
+  EntityTypeFields objects and an EntityType object.
 
   Args:
     field_list: a list of EntityTypeField objects
     entity_type: an entity type which implements a subset of field_list
     match_type: the closeness of a match between field_list and entity type
+    as a string. Current values are: EXACT, CLOSE, INCOMPLETE, NONE
 
   Attributes:
     field_list
