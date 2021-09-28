@@ -27,9 +27,9 @@ from yamlformat.validator import field_lib
 from yamlformat.validator import findings_lib
 
 ENTITY_TYPE_NAME_REGEX = re.compile(
-    r'^[a-zA-Z]+[a-zA-Z0-9]*(?:_[a-zA-Z0-9]+)*$')
+    r'^[a-zA-Z][a-zA-Z0-9]*(?:_[a-zA-Z0-9]+)*$')
 FIELD_INCREMENT_STRIPPER_REGEX = re.compile(
-    r'(^[a-z]+[a-z0-9]*(?:_[a-z]+[a-z0-9]*)*)((?:_[0-9]+)+)$')
+    r'(^[a-z][a-z0-9]*(?:_[a-z][a-z0-9]*)*)((?:_[0-9]+)+)$')
 
 FieldParts = typing.NamedTuple('FieldParts',
                                [('namespace', str), ('field', str),
