@@ -18,6 +18,8 @@ concentration:
 current:
 - amperes: STANDARD
 - milliamperes
+currentratio:
+- no_units: STANDARD
 energy:
 - joules: STANDARD
 - kilowatt_hours
@@ -37,6 +39,12 @@ illuminance:
 level:
 - meters: STANDARD
 - feet
+linearacceleration:
+- meters_per_square_second: STANDARD
+- gravity
+- milligravity
+- feet_per_square_second
+- millimeters_per_square_second
 linearvelocity:
 - meters_per_second: STANDARD
 - feet_per_minute
@@ -67,6 +75,8 @@ temperature:
 - degrees_fahrenheit
 voltage:
 - volts: STANDARD
+voltageratio:
+- no_units: STANDARD
 volume:
 - cubic_meters: STANDARD
 - us_gallons
