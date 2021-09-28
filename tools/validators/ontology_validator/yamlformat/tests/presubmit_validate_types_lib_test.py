@@ -247,11 +247,11 @@ class PresubmitValidateTypesTest(absltest.TestCase):
         state_universe=None,
         connection_universe=None,
         unit_universe=unit_universe)
+    units1 = config_universe.GetUnitsForMeasurement('powerfactor_sensor')
+    units2 = config_universe.GetUnitsForMeasurement('voltageratio_sensor')
 
-    units = config_universe.GetUnitsForMeasurement('powerfactor_sensor')
-    self.assertSameElements(['no_units', 'another_one'], units)
-    units = config_universe.GetUnitsForMeasurement('voltageratio_sensor')
-    self.assertSameElements(['no_units'], units)
+    self.assertSameElements(['no_units', 'another_one'], units1)
+    self.assertSameElements(['no_units'], units2)
 
   def testConfigUniverseGetStatesByField(self):
     meow_states = ['HUNGRY', 'SNUGGLY']

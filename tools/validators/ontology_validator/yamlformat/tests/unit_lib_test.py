@@ -113,6 +113,7 @@ class UnitLibTest(absltest.TestCase):
     folder = unit_lib.UnitFolder(_GOOD_PATH)
     folder.AddFromConfig([doc], '{0}/file.yaml'.format(_GOOD_PATH))
     units = folder.local_namespace.units
+
     self.assertEmpty(folder.GetFindings())
     expected = ['no_units_powerfactor', 'another_one','no_units_voltageratio']
     self.assertCountEqual(expected, units)
