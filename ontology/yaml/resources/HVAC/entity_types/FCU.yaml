@@ -1150,12 +1150,11 @@ FCU_RHC_DFVSC_RTC:
   - high_return_air_relative_humidity_alarm
   - low_return_air_relative_humidity_alarm
 
-FCU_DXZTC2X_HT2XZTC2X_DFVSC2X_CHWZTC:
-  description: "FCU with single DX and 2 heaters serving 2 separate zones"
+FCU_CHWZTC2X_HT2XZTC2X_DFVSC2X:
+  description: "FCU with single chilled water valve and 2 heaters serving 2 separate zones"
   is_canonical: false
   implements:
   - FCU
-  - DXZTC2X
+  - CHWZTC2X
   - HT2XZTC2X
   - DFVSC2X
-  - CHWZTC

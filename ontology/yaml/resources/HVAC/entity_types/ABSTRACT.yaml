@@ -1341,6 +1341,24 @@ CHWZTC:
   implements:
   - CONTROL
 
+CHWZTC2X:
+  description: "Chilled water valve control on zone side (ZTC) for two separate zones. Chilled water valve controls to the worst zone."
+  is_abstract: true
+  opt_uses:
+  - discharge_air_temperature_sensor_1
+  - discharge_air_temperature_sensor_2
+  - leaving_cooling_coil_temperature_sensor
+  - cooling_thermal_power_capacity
+  - chilled_water_flowrate_sensor
+  - chilled_water_valve_percentage_sensor
+  uses:
+  - zone_air_temperature_setpoint_1
+  - zone_air_temperature_setpoint_2
+  - zone_air_temperature_sensor_1
+  - zone_air_temperature_sensor_2
+  - chilled_water_valve_percentage_command
+  implements:
+  - CONTROL
 
 # DX Control
 
@@ -1357,21 +1375,6 @@ DXZTC:
   uses:
   - zone_air_temperature_setpoint
   - zone_air_temperature_sensor
-  - compressor_run_command
-  - compressor_run_status
-  implements:
-  - CONTROL
-
-DXZTC2X:
-  description: "Compressor run control on zone side (ZTC) for two separate zones. Compressor controls to the worst zone."
-  is_abstract: true
-  opt_uses:
-  - compressor_speed_percentage_command
-  uses:
-  - zone_air_temperature_setpoint_1
-  - zone_air_temperature_sensor_1
-  - zone_air_temperature_setpoint_2
-  - zone_air_temperature_sensor_2
   - compressor_run_command
   - compressor_run_status
   implements:
