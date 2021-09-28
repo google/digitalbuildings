@@ -859,6 +859,7 @@ FCU_DFVSFC_CHWRC:
   - lost_power_alarm
 
 FCU_DFSS_DFVSC_DXRC_HTRC_RHC_RHDHC_RTC:
+  id: "506032222180999168"
   description: "Single-zone FCU with DX cooling, heating, and humidifcation/dehumidification."
   is_canonical: true
   implements:

@@ -647,6 +647,35 @@ class EntityInstanceTest(absltest.TestCase):
 
     self.assertTrue(self.update_validator.Validate(entity))
 
+  def testInstance_DimensionalValue_noUnitsExpected_noUnitsPasses(self):
+    entity = entity_instance.EntityInstance(
+        _UPDATE,
+        'VAV-123',
+        etag='1234',
+        translation={
+            'line_powerfactor_sensor':
+                field_translation.DimensionalValue(
+                    std_field_name='foo/bar',
+                    unit_field_name='foo/unit',
+                    raw_field_name='foo/raw',
+                    unit_mappings={'no_units': 'no_units'}),
+        })
+    self.assertTrue(self.update_validator.Validate(entity))
+
+  def testInstance_DimensionalValue_unitsExpected_noUnitsFails(self):
+    entity = entity_instance.EntityInstance(
+        _UPDATE,
+        'VAV-123',
+        etag='1234',
+        translation={
+            'zone_air_cooling_temperature_setpoint':
+                field_translation.DimensionalValue(
+                    std_field_name='foo/bar',
+                    unit_field_name='foo/unit',
+                    raw_field_name='foo/raw',
+                    unit_mappings={'no_units': 'no_units'}),
+        })
+    self.assertFalse(self.update_validator.Validate(entity))
 
 if __name__ == '__main__':
   absltest.main()
