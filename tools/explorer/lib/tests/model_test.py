@@ -15,8 +15,8 @@ from yamlformat.validator import namespace_validator as nv
 class StandardFieldTest(absltest.TestCase):
   def setUp(self):
     self.test_standard_field = StandardField(
-        namespace_name = '',
-        standard_field_name = 'supply_air_flowrate_sensor'
+        namespace_name='',
+        standard_field_name='supply_air_flowrate_sensor'
     )
 
   def testGetNamespaceName(self):
@@ -34,10 +34,10 @@ class StandardFieldTest(absltest.TestCase):
 class EntityTypeFieldTest(absltest.TestCase):
   def setUp(self):
     self.test_entity_type_field = EntityTypeField(
-        namespace_name = '',
-        standard_field_name = 'supply_air_flowrate_sensor',
-        is_optional = False,
-        increment = ''
+        namespace_name='',
+        standard_field_name='supply_air_flowrate_sensor',
+        is_optional=False,
+        increment=''
     )
 
   def testGetIncrement(self):
@@ -51,14 +51,14 @@ class EntityTypeFieldTest(absltest.TestCase):
 
   def testStandardizeField(self):
     expected_output = StandardField(
-        namespace_name = '',
-        standard_field_name = 'supply_air_flowrate_sensor'
+        namespace_name='',
+        standard_field_name='supply_air_flowrate_sensor'
     )
 
     function_output = StandardizeField(self.test_entity_type_field)
 
     self.assertEqual(function_output, expected_output)
-  
+
 class ModelTest(absltest.TestCase):
   def setUp(self):
     self.yaml = RecursiveDirWalk(test_constants.ONTOLOGY_ROOT)
@@ -66,21 +66,21 @@ class ModelTest(absltest.TestCase):
     self.universe = presubmit_validate_types_lib.BuildUniverse(self.config)
     nv.NamespaceValidator(self.universe.GetEntityTypeNamespaces())
     test_entity_type = self.universe.entity_type_universe.GetEntityType(
-        namespace_name = 'HVAC',
-        typename = 'ZONE_HVAC'
+        namespace_name='HVAC',
+        typename='ZONE_HVAC'
     )
     test_field_list = [
         EntityTypeField(
-            namespace_name = optwrapper.field.namespace,
-            standard_field_name = optwrapper.field.field[0:],
-            is_optional = optwrapper.optional,
-            increment = optwrapper.field.increment
+            namespace_name=optwrapper.field.namespace,
+            standard_field_name=optwrapper.field.field[0:],
+            is_optional=optwrapper.optional,
+            increment=optwrapper.field.increment
         ) for optwrapper in test_entity_type.GetAllFields().values()
     ]
     self.test_match = Match(
-        field_list = test_field_list,
-        entity_type = test_entity_type,
-        match_type = 'EXACT'
+        field_list=test_field_list,
+        entity_type=test_entity_type,
+        match_type='EXACT'
     )
 
   def testGetFieldList(self):
@@ -88,10 +88,10 @@ class ModelTest(absltest.TestCase):
     #print(self.universe.entity_type_universe.type_namespaces_map)
     expected_output = [
         EntityTypeField(
-            namespace_name = '',
-            standard_field_name = 'zone_use_label',
-            is_optional = True,
-            increment = ''
+            namespace_name='',
+            standard_field_name='zone_use_label',
+            is_optional=True,
+            increment=''
         )
     ]
 
@@ -107,7 +107,7 @@ class ModelTest(absltest.TestCase):
 
   def testGetMatchType(self):
     function_output = self.test_match.GetMatchType()
-    
+
     self.assertEqual(function_output, 'EXACT')
 
 if __name__ == '__main__':
