@@ -18,7 +18,7 @@
     "@material-ui/icons": "^4.9.1",
     "earcut": "^2.2.2",
     "pbf": "^3.2.1",
-    "three": "^0.117.1",
+    "three": "^0.125.0",
     "three-buffer-geometry-utils": "^1.0.0"
   },
   "devDependencies": {

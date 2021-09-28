@@ -37,6 +37,7 @@ SENSOR_ZTM_ZHM:
   - ZHM
 
 SENSOR_CAAT:
+  id: "16195377055288786944"
   description: "Cold aisle air sensor (temperature)."
   is_canonical: true
   implements:
@@ -45,6 +46,7 @@ SENSOR_CAAT:
   - cold_aisle_air_temperature_sensor
 
 SENSOR_ZTM:
+  id: "13330243267351019520"
   description: "Zone air property sensor (temperature)."
   is_canonical: true
   implements:

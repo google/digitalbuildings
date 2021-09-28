@@ -57,21 +57,21 @@ class HandlerTest(absltest.TestCase):
   def testValidateOneBuildingExist(self):
     try:
       input_file = path.join(_TESTCASE_PATH, 'GOOD', 'good_building_type.yaml')
-      _RunValidation([input_file])
+      _RunValidation([input_file], use_simplified_universe=True)
     except SyntaxError:
       self.fail('ValidationHelper:Validate raised ExceptionType unexpectedly!')
 
   def testValidateOneBuildingExistFails(self):
     with self.assertRaises(SyntaxError):
       input_file = path.join(_TESTCASE_PATH, 'BAD', 'bad_missing_building.yaml')
-      _RunValidation([input_file])
+      _RunValidation([input_file], use_simplified_universe=True)
 
   def testValidateMultipleInputFilesSuccess(self):
     try:
       input_file1 = path.join(_TESTCASE_PATH, 'GOOD', 'good_building_type.yaml')
       input_file2 = path.join(_TESTCASE_PATH, 'GOOD',
                               'good_translation_nobuilding.yaml')
-      _RunValidation([input_file1, input_file2])
+      _RunValidation([input_file1, input_file2], use_simplified_universe=True)
     except SyntaxError:
       self.fail('ValidationHelper:Validate unexpectedly raised Exception')
 
@@ -80,7 +80,10 @@ class HandlerTest(absltest.TestCase):
   def testTelemetryArgsBothSetSuccess(self, mock_subscriber, mock_validator):
     try:
       input_file = path.join(_TESTCASE_PATH, 'GOOD', 'good_building_type.yaml')
-      _RunValidation([input_file], subscription='a', service_account='file')
+      _RunValidation([input_file],
+                     subscription='a',
+                     service_account='file',
+                     use_simplified_universe=True)
       mock_subscriber.assert_has_calls(
           [mock.call('a', 'file'),
            mock.call().Listen(mock.ANY)])
@@ -95,12 +98,16 @@ class HandlerTest(absltest.TestCase):
   def testTelemetryArgsMissingSubscription(self):
     with self.assertRaises(SystemExit):
       input_file = path.join(_TESTCASE_PATH, 'GOOD', 'good_building_type.yaml')
-      _RunValidation([input_file], service_account='file')
+      _RunValidation([input_file],
+                     service_account='file',
+                     use_simplified_universe=True)
 
   def testTelemetryArgsMissingServiceAccount(self):
     with self.assertRaises(SystemExit):
       input_file = path.join(_TESTCASE_PATH, 'GOOD', 'good_building_type.yaml')
-      _RunValidation([input_file], subscription='a')
+      _RunValidation([input_file],
+                     subscription='a',
+                     use_simplified_universe=True)
 
   @mock.patch.object(_CV, 'Validate', return_value=True)
   @mock.patch.object(presubmit_validate_types_lib, 'ConfigUniverse')

@@ -369,6 +369,7 @@ VAV_SD_DSP_HWDC_DSPZDHC:
   - DSPZDHC
 
 VAV_ZTM_PDSCV_SFM:
+  id: "2684578173177298944"
   description: "VAV with supply air and zone air monitoring"
   is_canonical: true
   implements:
@@ -425,3 +426,23 @@ DMP_US_MTV_1708_2: # Is Actually a VAV
   - SD
   - DDSP
   - INCOMPLETE
+
+
+#Additional Types for CH_ZRH_EURD
+VAV_SD_CO2C:
+  id: "1276288495949709312"
+  description: "CO2 control VAV, regardless of room temperature for single duct supply air VAV's"
+  is_canonical: true
+  implements:
+  - VAV
+  - SD
+  - CO2C
+
+VAV_RD_CO2C:
+  id: "16129160067017605120"
+  description: "CO2 control VAV, regardless of room temperature for return air VAV's"
+  is_canonical: true
+  implements:
+  - VAV
+  - RD
+  - CO2C

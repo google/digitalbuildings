@@ -200,30 +200,33 @@ class PresubmitValidateTypesTest(absltest.TestCase):
     self.assertIsNone(entity_type)
 
   def testConfigUniverseGetUnitsForMeasurement(self):
-    context = findings_lib.FileContext('')
-    type_universe = entity_type_lib.EntityTypeUniverse([])
-    type_universe.AddFinding(
-        findings_lib.IllegalCharacterError('stuff', context))
-    field_universe = field_lib.FieldUniverse([])
-    field_universe.AddFinding(
-        findings_lib.InconsistentFileLocationError('', context))
-    subfield_universe = subfield_lib.SubfieldUniverse([])
-    subfield_universe.AddFinding(
-        findings_lib.CapitalizationError('Hi', context))
-    state_universe = state_lib.StateUniverse([])
-    connection_universe = connection_lib.ConnectionUniverse([])
-    unit_universe = unit_lib.UnitUniverse([])
+    folder = unit_lib.UnitFolder('units/anyfolder')
+    namespace = folder.local_namespace
+    namespace.InsertUnit(unit_lib.Unit('degrees_celsius', 'temperature', False))
+    namespace.InsertUnit(unit_lib.Unit('kelvin', 'temperature', True))
+    unit_universe = unit_lib.UnitUniverse([folder])
+
     config_universe = presubmit_validate_types_lib.ConfigUniverse(
-        subfield_universe=subfield_universe,
-        field_universe=field_universe,
-        entity_type_universe=type_universe,
-        state_universe=state_universe,
-        connection_universe=connection_universe,
+        subfield_universe=None,
+        field_universe=None,
+        entity_type_universe=None,
+        state_universe=None,
+        connection_universe=None,
         unit_universe=unit_universe)
 
-    entity_type = config_universe.GetEntityType('NONEXISTENT', 'NONEXISTENT')
-
-    self.assertIsNone(entity_type)
+    units = config_universe.GetUnitsForMeasurement('zone_temperature_sensor')
+    self.assertSameElements(['degrees_celsius', 'kelvin'], units)
+    units = config_universe.GetUnitsForMeasurement('temperature_sensor')
+    self.assertSameElements(['degrees_celsius', 'kelvin'], units)
+    units = config_universe.GetUnitsForMeasurement('/zone_temperature_sensor')
+    self.assertSameElements(['degrees_celsius', 'kelvin'], units)
+    units = config_universe.GetUnitsForMeasurement('/temperature_sensor')
+    self.assertSameElements(['degrees_celsius', 'kelvin'], units)
+    units = config_universe.GetUnitsForMeasurement('pressure_sensor')
+    self.assertIsNone(units)
+    units = config_universe.GetUnitsForMeasurement(
+        'discharge_fan_lost_power_alarm')
+    self.assertIsNone(units)
 
   def testConfigUniverseGetStatesByField(self):
     meow_states = ['HUNGRY', 'SNUGGLY']

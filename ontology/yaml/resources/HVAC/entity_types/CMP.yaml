@@ -16,14 +16,16 @@
 ### Canonical Types  ###
 ########################
 
-CMP_BS:
+CMP_SS:
+  id: "5566881934694416384"
   description: "Basic air compressor."
   is_canonical: true
   implements:
   - CMP
   - SS
 
-CMP_BS_WDPM:
+CMP_SS_WDPM:
+  id: "4395946031578087424"
   description: "Basic features of air compressor."
   is_canonical: true
   implements:
@@ -36,4 +38,3 @@ CMP_BS_WDPM:
   - run_mode
   - schedule_run_command
   - control_status
-
