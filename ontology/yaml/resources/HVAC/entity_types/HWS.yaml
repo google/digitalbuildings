@@ -234,6 +234,7 @@ HWS_US_MTV_2000_2:
 
 # Non Standard Types for CH ZRH EURD
 HWS_SWTC_CPC:
+  id: "8626163087818358784"
   description: "Simple hot water system with circulation pump"
   implements:
   - HWS

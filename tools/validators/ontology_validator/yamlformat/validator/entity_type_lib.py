@@ -27,9 +27,9 @@ from yamlformat.validator import field_lib
 from yamlformat.validator import findings_lib
 
 ENTITY_TYPE_NAME_REGEX = re.compile(
-    r'^[a-zA-Z]+[a-zA-Z0-9]*(?:_[a-zA-Z0-9]+)*$')
+    r'^[a-zA-Z][a-zA-Z0-9]*(?:_[a-zA-Z0-9]+)*$')
 FIELD_INCREMENT_STRIPPER_REGEX = re.compile(
-    r'(^[a-z]+[a-z0-9]*(?:_[a-z]+[a-z0-9]*)*)((?:_[0-9]+)+)$')
+    r'(^[a-z][a-z0-9]*(?:_[a-z][a-z0-9]*)*)((?:_[0-9]+)+)$')
 
 FieldParts = typing.NamedTuple('FieldParts',
                                [('namespace', str), ('field', str),
@@ -183,15 +183,15 @@ class EntityTypeFolder(config_folder_lib.ConfigFolder):
     folderpath: required string with full path to the folder containing entity
       type files. Path should be relative to google3/ and have no leading or
       trailing /.
-    fields_universe: optional FieldsUniverse object.
+    field_universe: optional FieldsUniverse object.
   Attributes:
     local_namespace: TypeNamespace object representing this namespace.
   """
 
-  def __init__(self, folderpath, fields_universe=None):
+  def __init__(self, folderpath, field_universe=None):
     super(EntityTypeFolder, self).__init__(folderpath,
                                            base_lib.ComponentType.ENTITY_TYPE)
-    self.local_namespace = TypeNamespace(self._namespace_name, fields_universe)
+    self.local_namespace = TypeNamespace(self._namespace_name, field_universe)
 
   def Finalize(self):
     """Call to complete entity creation after all types are added."""
@@ -307,10 +307,10 @@ class TypeNamespace(findings_lib.Findings):
     valid_types_map: Dict mapping typename strings to EntityType objects.
   """
 
-  def __init__(self, namespace, fields_universe=None):
+  def __init__(self, namespace, field_universe=None):
     super(TypeNamespace, self).__init__()
     self.namespace = namespace
-    self._fields_universe = fields_universe
+    self._field_universe = field_universe
     self.valid_types_map = {}
     self._parents_qualified = False
 
@@ -412,14 +412,14 @@ class TypeNamespace(findings_lib.Findings):
     Args:
       field_name: an unqualified field name with no leading '/'
     """
-    if not self._fields_universe:
+    if not self._field_universe:
       return False
-    return self._fields_universe.IsFieldDefined(field_name, self.namespace)
+    return self._field_universe.IsFieldDefined(field_name, self.namespace)
 
   def _ValidateFields(self, entity):
     """Validates that all fields declared by entity are defined."""
-    # if fields_universe is not defined just return true
-    if not self._fields_universe:
+    # if field_universe is not defined just return true
+    if not self._field_universe:
       return True
 
     valid = True
@@ -441,8 +441,8 @@ class TypeNamespace(findings_lib.Findings):
     Returns:
       True if field is defined.
     """
-    if not self._fields_universe.IsFieldDefined(field_tuple.field,
-                                                field_tuple.namespace):
+    if not self._field_universe.IsFieldDefined(field_tuple.field,
+                                               field_tuple.namespace):
       self.AddFinding(
           findings_lib.UndefinedFieldError(entity, field_tuple.field))
       return False

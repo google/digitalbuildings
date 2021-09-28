@@ -67,8 +67,9 @@ SCZ:
   id: "2665719349737684992"
   is_abstract: true
   description: "Scene control for a device and zone."
-  uses:
+  opt_uses:
   - scene_command
+  uses:
   - zone_scene_command
 
 IS:
@@ -80,6 +81,7 @@ IS:
 
   #Abstract types for CH ZRH EURD
 VADC:
+  id: "10499660532804485120"
   description: "Variable dimmer control for standard luminaires."
   is_abstract: true
   uses:
@@ -89,6 +91,7 @@ VADC:
   - high_scene_dimmer_percentage_setpoint
 
 VADCRGB:
+  id: "5505168546050605056"
   description: "Variable dimmer control for RGB luminaires."
   is_abstract: true
   uses:
@@ -101,18 +104,21 @@ VADCRGB:
   - blue_scene_dimmer_percentage_command
 
 RC:
+  id: "13823317057803911168"
   description: "Relay or switch to switch a socket or power supply for lumiaires or other devices"
   is_abstract: true
   uses:
   - power_command
 
 LSC:
+  id: "582734153334652928"
   description: "Lighting switch control."
   is_abstract: true
   uses:
   - lighting_switch_status
 
 LC:
+  id: "10116854564477992960"
   description: "Luminance control."
   is_abstract: true
   uses:

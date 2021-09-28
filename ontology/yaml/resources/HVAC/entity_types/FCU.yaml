@@ -494,6 +494,18 @@ FCU_DFSS_DSP_HTDC_CHWDC:
   - HTDC
   - CHWDC
 
+FCU_DFSS_DFVSC_DSP_HTDC_CHWDC_FDPM:
+  description: "Hydronic variable speed fan coil with electric reheat (zone control)."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - DFVSC
+  - DSP
+  - HTDC
+  - CHWDC
+  - FDPM
+
 FCU_DFSS_DSP_HWDC_CHWDC:
   id: "6781627878619480064"
   description: "Hydronic fan coil with heating and cooling (zone control)."
@@ -858,7 +870,20 @@ FCU_DFVSFC_CHWRC:
   - schedule_run_command
   - lost_power_alarm
 
-
+FCU_DFSS_DFVSC_DXRC_HTRC_RHC_RHDHC_RTC:
+  id: "506032222180999168"
+  description: "Single-zone FCU with DX cooling, heating, and humidifcation/dehumidification."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - DFVSC
+  - DXRC
+  - HTRC
+  - RHC
+  - RHDHC
+  - RTC
+  
 ###################################
 ### Existing Non-standard Types ###
 ###################################
@@ -1147,8 +1172,18 @@ FCU_RHC_DFVSC_RTC:
   - high_return_air_relative_humidity_alarm
   - low_return_air_relative_humidity_alarm
 
+FCU_CHWZTC2X_HT2XZTC2X_DFVSC2X:
+  description: "FCU with single chilled water valve and 2 heaters serving 2 separate zones"
+  is_canonical: false
+  implements:
+  - FCU
+  - CHWZTC2X
+  - HT2XZTC2X
+  - DFVSC2X
+
 #Additional types for CH ZRH EURD
 FCU_NON_CANONICAL_TYPE_1:
+  id: "17300095970133934080"
   description: "Typical chilled water FCU with cooling-only (discharge control) for MDF rooms,
                 including discharge fan speed control and chilled water valve control"
   implements:
@@ -1166,6 +1201,7 @@ FCU_NON_CANONICAL_TYPE_1:
   - master_alarm
 
 FCU_NON_CANONICAL_TYPE_2:
+  id: "7473241583211511808"
   description: "Typical chilled water FCU with cooling-only (discharge control) for IDF rooms,
                 including discharge fan speed control"
   implements:
@@ -1186,6 +1222,7 @@ FCU_NON_CANONICAL_TYPE_2:
 
 
 FCU_NON_CANONICAL_TYPE_3:
+  id: "893482527623217152"
   description: "Typical chilled water FCU with cooling-only (discharge control) for technical rooms,
                 including discharge fan speed sensor"
   implements:

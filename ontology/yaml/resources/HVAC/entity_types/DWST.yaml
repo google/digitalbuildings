@@ -1,4 +1,20 @@
+# Copyright 2020 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the License);
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#    https://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an AS IS BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+
 DWST_CHDT_SWTC_CPC:
+  id: "14417792208616816640"
   description: "Domestic water system with condensing water heat exhanger without bypass valve"
   implements:
   - DWST
@@ -11,6 +27,7 @@ DWST_CHDT_SWTC_CPC:
   - potable_water_low_temperature_sensor
 
 DWST_SWTC_CPC_BYPVPM:
+  id: "6320320078604664832"
   description: "Domestic water system with bypass valve"
   implements:
   - DWST
@@ -21,7 +38,5 @@ DWST_SWTC_CPC_BYPVPM:
   - potable_water_high_temperature_sensor
   - potable_water_medium_temperature_sensor
   - potable_water_low_temperature_sensor
-
-
 
 

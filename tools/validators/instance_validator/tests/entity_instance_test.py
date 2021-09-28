@@ -30,11 +30,7 @@ from validate import field_translation
 from validate import generate_universe
 from validate import instance_parser
 from validate import link
-from yamlformat.validator import entity_type_lib
-from yamlformat.validator import field_lib
-from yamlformat.validator import presubmit_validate_types_lib
 
-_DEFAULT_ONTOLOGY_LOCATION = test_constants.ONTOLOGY_ROOT
 _TESTCASE_PATH = test_constants.TEST_INSTANCES
 
 _INIT_CFG = instance_parser.ConfigMode.INITIALIZE
@@ -43,8 +39,6 @@ _UPDATE_CFG = instance_parser.ConfigMode.UPDATE
 _ADD = instance_parser.EntityOperation.ADD
 _UPDATE = instance_parser.EntityOperation.UPDATE
 _DELETE = instance_parser.EntityOperation.DELETE
-
-_CombValidator = entity_instance.CombinationValidator
 
 
 def _ParserHelper(testpaths: List[str]) -> instance_parser.InstanceParser:
@@ -64,21 +58,27 @@ class EntityInstanceTest(absltest.TestCase):
   @classmethod
   def setUpClass(cls):
     super(cls, EntityInstanceTest).setUpClass()
-    cls._universe = generate_universe.BuildUniverse(_DEFAULT_ONTOLOGY_LOCATION)
-    cls._e_v_init = entity_instance.InstanceValidator(cls._universe, _INIT_CFG)
-    cls._e_v_update = entity_instance.InstanceValidator(cls._universe,
-                                                        _UPDATE_CFG)
+    cls.config_universe = generate_universe.BuildUniverse(
+        use_simplified_universe=True)
+    cls.init_validator = entity_instance.InstanceValidator(
+        cls.config_universe, _INIT_CFG)
+    cls.update_validator = entity_instance.InstanceValidator(
+        cls.config_universe, _UPDATE_CFG)
+
+  @mock.patch.object(
+      entity_instance.InstanceValidator, 'Validate', return_value=True)
+  @mock.patch.object(
+      entity_instance.GraphValidator, 'Validate', return_value=True)
+  @mock.patch.object(entity_instance, 'EntityInstance')
+  def testCombinedChecksInstanceAndGraph(self, mock_entity, mock_gv, mock_iv):
+    validator = entity_instance.CombinationValidator(self.config_universe,
+                                                     _UPDATE_CFG, {})
+
+    self.assertTrue(validator.Validate(mock_entity))
+    mock_iv.assert_called_once_with(mock_entity)
+    mock_gv.assert_called_once_with(mock_entity)
 
   def testValidate_requiresEtagOnUpdate(self):
-    config_u = presubmit_validate_types_lib.ConfigUniverse(
-        # not validating against ontology so no universes setup
-        entity_type_universe=None,
-        field_universe=None,
-        subfield_universe=None,
-        state_universe=None,
-        connection_universe=None,
-        unit_universe=None)
-    validator = entity_instance.InstanceValidator(config_u, _UPDATE_CFG)
     valid_instance = entity_instance.EntityInstance(
         _UPDATE,
         'FACILITIES/123456',
@@ -87,34 +87,10 @@ class EntityInstanceTest(absltest.TestCase):
     invalid_instance = entity_instance.EntityInstance(
         _UPDATE, 'FACILITIES/123456', update_mask=['connections'])
 
-    is_valid = validator.Validate(valid_instance)
-
-    self.assertFalse(validator.Validate(invalid_instance))
-    self.assertTrue(is_valid)
+    self.assertTrue(self.update_validator.Validate(valid_instance))
+    self.assertFalse(self.update_validator.Validate(invalid_instance))
 
   def testValidate_verifiesTypeAgainstNamespace(self):
-    facilities_type_folder = entity_type_lib.EntityTypeFolder(
-        folderpath='FACILITIES/entity_types')
-
-    facilities_type_folder.AddFromConfig(
-        documents=[{
-            'BUILDING': {
-                'id': '15204152342002794496',
-                'description': 'This is a type for BUILDING facilities object'
-            }
-        }],
-        # checks config path matches entity type folder but doesn't do file read
-        config_filename='FACILITIES/entity_types/Facilities.yaml')
-
-    config_u = presubmit_validate_types_lib.ConfigUniverse(
-        entity_type_universe=entity_type_lib.EntityTypeUniverse(
-            entity_type_folders=[facilities_type_folder]),
-        field_universe=None,
-        subfield_universe=None,
-        state_universe=None,
-        connection_universe=None,
-        unit_universe=None)
-    validator = entity_instance.InstanceValidator(config_u, _UPDATE_CFG)
     instance = entity_instance.EntityInstance(
         _UPDATE,
         'FACILITIES/123456',
@@ -123,71 +99,24 @@ class EntityInstanceTest(absltest.TestCase):
         etag='a12345',
         update_mask=['connections'])
 
-    is_valid = validator.Validate(instance)
-
-    self.assertTrue(is_valid)
+    self.assertTrue(self.update_validator.Validate(instance))
 
   def testValidate_verifiesTypeAgainstNamespace_failsIfNotDefinedInUniverse(
       self):
-    facilities_type_folder = entity_type_lib.EntityTypeFolder(
-        folderpath='Carson/entity_types')
-
-    facilities_type_folder.AddFromConfig(
-        documents=[{
-            'COORDINATE_BASIS': {
-                'id': '17248142946209890304',
-                'description': 'The coordinate basis for other entities'
-            }
-        }],
-        # checks config path matches entity type folder but doesn't do file read
-        config_filename='CARSON/entity_types/Carson.yaml')
-
-    config_u = presubmit_validate_types_lib.ConfigUniverse(
-        entity_type_universe=entity_type_lib.EntityTypeUniverse(
-            entity_type_folders=[facilities_type_folder]),
-        field_universe=None,
-        subfield_universe=None,
-        state_universe=None,
-        connection_universe=None,
-        unit_universe=None)
-    validator = entity_instance.InstanceValidator(config_u, _UPDATE_CFG)
     instance = entity_instance.EntityInstance(
         _UPDATE,
-        'FACILITIES/123456',
-        namespace='FACILITIES',
+        'NOT_A_NAMESPACE/123456',
+        namespace='NOT_A_NAMESPACE',
         type_name='BUILDING',
         etag='a12345',
         update_mask=['connections'])
 
-    is_valid = validator.Validate(instance)
+    is_valid = self.update_validator.Validate(instance)
 
     self.assertFalse(is_valid)
 
   def testValidate_verifiesTypeAgainstNamespace_badlyConfiguredUniverseFails(
       self):
-    facilities_type_folder = entity_type_lib.EntityTypeFolder(
-        folderpath='FOO/entity_types')
-
-    facilities_type_folder.AddFromConfig(
-        documents=[{
-            'BUILDING': {
-                'id': '15204152342002794496',
-                'description': 'This is a type for BUILDING facilities object'
-            }
-        }],
-        # file exists but does not match defined type folder
-        # so validation will fail
-        config_filename='FACILITIES/entity_types/Facilities.yaml')
-
-    config_u = presubmit_validate_types_lib.ConfigUniverse(
-        entity_type_universe=entity_type_lib.EntityTypeUniverse(
-            entity_type_folders=[facilities_type_folder]),
-        field_universe=None,
-        subfield_universe=None,
-        state_universe=None,
-        connection_universe=None,
-        unit_universe=None)
-    validator = entity_instance.InstanceValidator(config_u, _UPDATE_CFG)
     instance = entity_instance.EntityInstance(
         _UPDATE,
         'FACILITIES/123456',
@@ -196,7 +125,7 @@ class EntityInstanceTest(absltest.TestCase):
         etag='a12345',
         update_mask=['connections'])
 
-    is_valid = validator.Validate(instance)
+    is_valid = self.update_validator.Validate(instance)
 
     self.assertFalse(is_valid)
 
@@ -211,7 +140,18 @@ class EntityInstanceTest(absltest.TestCase):
     except TypeError as e:
       self.assertEqual(type(e), TypeError)
     else:
-      self.fail('{0} was not raised'.format(TypeError))
+      self.fail(f'{TypeError} was not raised')
+
+  def testInstanceRequiresEntityTypeToExist(self):
+    instance = entity_instance.EntityInstance(
+        _UPDATE,
+        'FACILITIES/123456',
+        namespace='FACILITIES',
+        type_name='LIGHTING/NOT_A_LAMP',
+        etag='a12345',
+        update_mask=['connections'])
+
+    self.assertFalse(self.update_validator.Validate(instance))
 
   def testValidateBadEntityNamespace(self):
     parsed = _Helper(
@@ -221,7 +161,7 @@ class EntityInstanceTest(absltest.TestCase):
 
     instance = entity_instance.EntityInstance.FromYaml(entity)
 
-    self.assertFalse(self._e_v_init.Validate(instance))
+    self.assertFalse(self.init_validator.Validate(instance))
 
   def testValidateRejectsUseOfAbstractType(self):
     parsed = _Helper(
@@ -231,7 +171,7 @@ class EntityInstanceTest(absltest.TestCase):
 
     instance = entity_instance.EntityInstance.FromYaml(entity)
 
-    self.assertFalse(self._e_v_init.Validate(instance))
+    self.assertFalse(self.init_validator.Validate(instance))
 
   def testValidateBadEntityType(self):
     parsed = _Helper(
@@ -241,7 +181,7 @@ class EntityInstanceTest(absltest.TestCase):
 
     instance = entity_instance.EntityInstance.FromYaml(entity)
 
-    self.assertFalse(self._e_v_init.Validate(instance))
+    self.assertFalse(self.init_validator.Validate(instance))
 
   def testValidateMultipleTranslationWithFields(self):
     parsed = _Helper([
@@ -253,7 +193,7 @@ class EntityInstanceTest(absltest.TestCase):
 
     instance = entity_instance.EntityInstance.FromYaml(entity)
 
-    self.assertTrue(self._e_v_init.Validate(instance))
+    self.assertTrue(self.init_validator.Validate(instance))
 
   def testValidateTranslationWithRequiredFieldMissing(self):
     parsed = _Helper([
@@ -265,7 +205,7 @@ class EntityInstanceTest(absltest.TestCase):
 
     instance = entity_instance.EntityInstance.FromYaml(entity)
 
-    self.assertFalse(self._e_v_init.Validate(instance))
+    self.assertFalse(self.init_validator.Validate(instance))
 
   def testValidateTranslationWithRequiredFieldCloudDeviceIdMissing(self):
     try:
@@ -276,7 +216,7 @@ class EntityInstanceTest(absltest.TestCase):
     except KeyError as e:
       self.assertEqual(type(e), KeyError)
     else:
-      self.fail('{0} was not raised'.format(KeyError))
+      self.fail(f'{KeyError} was not raised')
 
   def testValidateTranslation(self):
     parsed = _Helper(
@@ -287,7 +227,7 @@ class EntityInstanceTest(absltest.TestCase):
 
     instance = entity_instance.EntityInstance.FromYaml(entity_hvac)
 
-    self.assertTrue(self._e_v_init.Validate(instance))
+    self.assertTrue(self.init_validator.Validate(instance))
     self.assertEqual(instance.cloud_device_id, 'foobar')
 
   def testValidateTranslationWithExplicitlyMissingField(self):
@@ -300,7 +240,7 @@ class EntityInstanceTest(absltest.TestCase):
     entity_hvac = dict(parsed[list(parsed)[0]])
     instance = entity_instance.EntityInstance.FromYaml(entity_hvac)
 
-    self.assertTrue(self._e_v_init.Validate(instance))
+    self.assertTrue(self.init_validator.Validate(instance))
 
   def testValidateMultipleTranslationsWithIdenticalTypes(self):
     parsed = _Helper(
@@ -311,7 +251,7 @@ class EntityInstanceTest(absltest.TestCase):
       entity = dict(parsed[entity_name])
       instance = entity_instance.EntityInstance.FromYaml(entity)
 
-      self.assertTrue(self._e_v_init.Validate(instance))
+      self.assertTrue(self.init_validator.Validate(instance))
 
   def testValidateBadTranslationWithExtraField(self):
     parsed = _Helper([
@@ -324,7 +264,7 @@ class EntityInstanceTest(absltest.TestCase):
 
     instance = entity_instance.EntityInstance.FromYaml(entity)
 
-    self.assertFalse(self._e_v_init.Validate(instance))
+    self.assertFalse(self.init_validator.Validate(instance))
 
   def testValidateTranslationUnits(self):
     parsed = _Helper(
@@ -334,7 +274,7 @@ class EntityInstanceTest(absltest.TestCase):
 
     instance = entity_instance.EntityInstance.FromYaml(entity)
 
-    self.assertTrue(self._e_v_init.Validate(instance))
+    self.assertTrue(self.init_validator.Validate(instance))
 
   def testValidateTranslationUnitsAndStates(self):
     parsed = _Helper([
@@ -346,7 +286,7 @@ class EntityInstanceTest(absltest.TestCase):
 
     instance = entity_instance.EntityInstance.FromYaml(entity)
 
-    self.assertTrue(self._e_v_init.Validate(instance))
+    self.assertTrue(self.init_validator.Validate(instance))
 
   def testValidateBadTranslationStates(self):
     parsed = _Helper(
@@ -356,7 +296,7 @@ class EntityInstanceTest(absltest.TestCase):
 
     instance = entity_instance.EntityInstance.FromYaml(entity)
 
-    self.assertFalse(self._e_v_init.Validate(instance))
+    self.assertFalse(self.init_validator.Validate(instance))
 
   def testValidateBadLinkFields(self):
     parsed = _Helper(
@@ -368,8 +308,10 @@ class EntityInstanceTest(absltest.TestCase):
       entity = entity_instance.EntityInstance.FromYaml(entity_parsed)
       entity_instances[raw_entity] = entity
 
-    c_v = _CombValidator(self._universe, _INIT_CFG, entity_instances)
-    self.assertFalse(c_v.Validate(entity_instances.get('ENTITY-NAME')))
+    combination_validator = entity_instance.CombinationValidator(
+        self.config_universe, _INIT_CFG, entity_instances)
+    self.assertFalse(
+        combination_validator.Validate(entity_instances.get('ENTITY-NAME')))
 
   def testValidateBadLinkEntityName(self):
     parsed = _Helper([
@@ -382,8 +324,10 @@ class EntityInstanceTest(absltest.TestCase):
       entity = entity_instance.EntityInstance.FromYaml(entity_parsed)
       entity_instances[raw_entity] = entity
 
-    c_v = _CombValidator(self._universe, _INIT_CFG, entity_instances)
-    self.assertFalse(c_v.Validate(entity_instances.get('ENTITY-NAME')))
+    combination_validator = entity_instance.CombinationValidator(
+        self.config_universe, _INIT_CFG, entity_instances)
+    self.assertFalse(
+        combination_validator.Validate(entity_instances.get('ENTITY-NAME')))
 
   def testValidateBadLinkWrongField(self):
     parsed = _Helper(
@@ -395,42 +339,10 @@ class EntityInstanceTest(absltest.TestCase):
       entity = entity_instance.EntityInstance.FromYaml(entity_parsed)
       entity_instances[raw_entity] = entity
 
-    c_v = _CombValidator(self._universe, _UPDATE, entity_instances)
-    self.assertFalse(c_v.Validate(entity_instances.get('ENTITY-NAME')))
-
-  @mock.patch.object(field_lib.FieldUniverse, 'IsFieldDefined')
-  def testInstanceLinkSourceFieldValidation(self, mock_fn):
-    field_u = field_lib.FieldUniverse([])
-    config_u = presubmit_validate_types_lib.ConfigUniverse(
-        None, field_u, None, None, None, None)
-    mock_fn.side_effect = lambda f, ns: f == 'run_status'
-
-    validator = entity_instance.InstanceValidator(config_u, _UPDATE_CFG)
-    src_ok = entity_instance.EntityInstance(
-        _UPDATE,
-        'AHU-1',
-        links=[link.Link('CTRL-1', {'run_status': 'run_status'})],
-        etag='123')
-    bad_src_field = entity_instance.EntityInstance(
-        _UPDATE,
-        'AHU-1',
-        links=[link.Link('CTRL-1', {'nonexistent_status': 'run_status'})],
-        etag='123')
-
-    self.assertFalse(validator.Validate(bad_src_field))
-    self.assertTrue(validator.Validate(src_ok))
-
-  @mock.patch.object(presubmit_validate_types_lib, 'ConfigUniverse')
-  def testGraphOrphanLinkOkOnUpdate(self, mock_universe):
-    target = entity_instance.EntityInstance(
-        _UPDATE,
-        'AHU-1',
-        links=[link.Link('CTRL-1', {'run_status_1': 'run_status'})],
-        etag='123')
-    validator = entity_instance.GraphValidator(mock_universe, _UPDATE_CFG,
-                                               {'CTRL-1': target})
-
-    self.assertTrue(validator.Validate(target))
+    combination_validator = entity_instance.CombinationValidator(
+        self.config_universe, _UPDATE, entity_instances)
+    self.assertFalse(
+        combination_validator.Validate(entity_instances.get('ENTITY-NAME')))
 
   def testValidateBadLinkMissingField(self):
     parsed = _Helper(
@@ -442,8 +354,10 @@ class EntityInstanceTest(absltest.TestCase):
       entity = entity_instance.EntityInstance.FromYaml(entity_parsed)
       entity_instances[raw_entity] = entity
 
-    c_v = _CombValidator(self._universe, _INIT_CFG, entity_instances)
-    self.assertFalse(c_v.Validate(entity_instances.get('ENTITY-NAME')))
+    combination_validator = entity_instance.CombinationValidator(
+        self.config_universe, _INIT_CFG, entity_instances)
+    self.assertFalse(
+        combination_validator.Validate(entity_instances.get('ENTITY-NAME')))
 
   def testValidateGoodLinkEntityName(self):
     parsed = _Helper([path.join(_TESTCASE_PATH, 'GOOD', 'good_links.yaml')])
@@ -454,12 +368,14 @@ class EntityInstanceTest(absltest.TestCase):
       entity = entity_instance.EntityInstance.FromYaml(entity_parsed)
       entity_instances[raw_entity] = entity
 
-    c_v = _CombValidator(self._universe, _INIT_CFG, entity_instances)
+    combination_validator = entity_instance.CombinationValidator(
+        self.config_universe, _INIT_CFG, entity_instances)
     for _, instance in entity_instances.items():
-      self.assertTrue(c_v.Validate(instance))
+      self.assertTrue(combination_validator.Validate(instance))
 
   def testValidateGoodLinkWithIncrementEntityName(self):
     parsed = _Helper(
+        # KW: this one is a entity_franken-type it definitely won't make sense
         [path.join(_TESTCASE_PATH, 'GOOD', 'good_links_increment.yaml')])
     entity_instances = {}
     parsed = dict(parsed)
@@ -468,9 +384,10 @@ class EntityInstanceTest(absltest.TestCase):
       entity = entity_instance.EntityInstance.FromYaml(entity_parsed)
       entity_instances[raw_entity] = entity
 
-    c_v = _CombValidator(self._universe, _INIT_CFG, entity_instances)
+    combination_validator = entity_instance.CombinationValidator(
+        self.config_universe, _INIT_CFG, entity_instances)
     for _, instance in entity_instances.items():
-      self.assertTrue(c_v.Validate(instance))
+      self.assertTrue(combination_validator.Validate(instance))
 
   def testValidateStates(self):
     parsed = _Helper(
@@ -479,7 +396,7 @@ class EntityInstanceTest(absltest.TestCase):
     for raw_entity in list(parsed):
       entity_parsed = dict(parsed[raw_entity])
       entity = entity_instance.EntityInstance.FromYaml(entity_parsed)
-      self.assertTrue(self._e_v_init.Validate(entity))
+      self.assertTrue(self.init_validator.Validate(entity))
 
   def testGoodConnectionType(self):
     parsed = _Helper(
@@ -490,12 +407,12 @@ class EntityInstanceTest(absltest.TestCase):
 
     self.assertIn('connections', entity,
                   'entity does not have connections when expected')
-    self.assertIsNotNone(self._universe.connection_universe,
+    self.assertIsNotNone(self.config_universe.connection_universe,
                          'universe does not valid connections universe')
 
     instance = entity_instance.EntityInstance.FromYaml(entity)
 
-    self.assertTrue(self._e_v_init.Validate(instance))
+    self.assertTrue(self.init_validator.Validate(instance))
 
   def testBadConnectionType(self):
     parsed = _Helper(
@@ -505,83 +422,77 @@ class EntityInstanceTest(absltest.TestCase):
     entity = dict(parsed[entity_name])
     instance = entity_instance.EntityInstance.FromYaml(entity)
 
-    self.assertFalse(self._e_v_init.Validate(instance))
+    self.assertFalse(self.init_validator.Validate(instance))
 
-  @mock.patch.object(presubmit_validate_types_lib, 'ConfigUniverse')
-  def testGraphGoodConnection(self, mock_universe):
+  def testInstanceLinkSourceFieldMustExist(self):
+    src_ok = entity_instance.EntityInstance(
+        _UPDATE,
+        'AHU-1',
+        links=[link.Link('CTRL-1', {'run_status': 'run_status'})],
+        etag='123')
+    bad_src_field = entity_instance.EntityInstance(
+        _UPDATE,
+        'AHU-1',
+        links=[link.Link('CTRL-1', {'nonexistent_status': 'run_status'})],
+        etag='123')
+
+    self.assertFalse(self.update_validator.Validate(bad_src_field))
+    self.assertTrue(self.update_validator.Validate(src_ok))
+
+  def testGraphOrphanLinkOkOnUpdate(self):
+    target = entity_instance.EntityInstance(
+        _UPDATE,
+        'AHU-1',
+        links=[link.Link('CTRL-1', {'run_status_1': 'run_status'})],
+        etag='123')
+    validator = entity_instance.GraphValidator(self.config_universe,
+                                               _UPDATE_CFG, {'CTRL-1': target})
+
+    self.assertTrue(validator.Validate(target))
+
+  def testGraphGoodConnection(self):
     target = entity_instance.EntityInstance(
         _ADD, 'VAV-123', connections=[connection.Connection('FEEDS', 'AHU-1')])
     source = entity_instance.EntityInstance(
         _ADD, 'AHU-1', connections=[connection.Connection('FEEDS', 'AHU-1')])
     instances = {'VAV-123': target, 'AHU-1': source}
-    validator = entity_instance.GraphValidator(mock_universe, _INIT_CFG,
+    validator = entity_instance.GraphValidator(self.config_universe, _INIT_CFG,
                                                instances)
 
     self.assertTrue(validator.Validate(target))
 
-  @mock.patch.object(presubmit_validate_types_lib, 'ConfigUniverse')
-  def testGraphOrphanConnection(self, mock_universe):
+  def testGraphRejectsOrphanConnectionOnInit(self):
     target = entity_instance.EntityInstance(
         _ADD, 'VAV-123', connections=[connection.Connection('FEEDS', 'AHU-1')])
-    validator = entity_instance.GraphValidator(mock_universe, _INIT_CFG,
+    validator = entity_instance.GraphValidator(self.config_universe, _INIT_CFG,
                                                {'VAV-123': target})
 
     self.assertFalse(validator.Validate(target))
 
-  @mock.patch.object(presubmit_validate_types_lib, 'ConfigUniverse')
-  def testGraphOrphanConnectionOkOnUpdate(self, mock_universe):
+  def testGraphAllowsOrphanConnectionOnInit(self):
     target = entity_instance.EntityInstance(
         _UPDATE,
         'VAV-123',
         connections=[connection.Connection('FEEDS', 'AHU-1')],
         etag='123')
-    validator = entity_instance.GraphValidator(mock_universe, _UPDATE_CFG,
-                                               {'VAV-123': target})
+    validator = entity_instance.GraphValidator(self.config_universe,
+                                               _UPDATE_CFG, {'VAV-123': target})
 
     self.assertTrue(validator.Validate(target))
 
-  @mock.patch.object(presubmit_validate_types_lib, 'ConfigUniverse')
-  @mock.patch.object(
-      entity_instance.InstanceValidator, 'Validate', return_value=True)
-  @mock.patch.object(
-      entity_instance.GraphValidator, 'Validate', return_value=True)
-  @mock.patch.object(entity_instance, 'EntityInstance')
-  def testCombinedChecksInstanceAndGraph(self, mock_entity, mock_gv, mock_iv,
-                                         mock_universe):
-    validator = entity_instance.CombinationValidator(mock_universe, _UPDATE_CFG,
-                                                     {})
-
-    self.assertTrue(validator.Validate(mock_entity))
-    mock_iv.assert_called_once_with(mock_entity)
-    mock_gv.assert_called_once_with(mock_entity)
-
-  @mock.patch.object(presubmit_validate_types_lib, 'ConfigUniverse')
-  def testCombinedEtagRequirements(self, mock_universe):
-    validator = entity_instance.CombinationValidator(mock_universe, _UPDATE_CFG,
-                                                     {})
+  def testInstanceEtagNotRequiredForDelete(self):
     no_tag = entity_instance.EntityInstance(_UPDATE, 'VAV-123')
     no_tag_delete = entity_instance.EntityInstance(_DELETE, 'VAV-123')
 
-    self.assertFalse(validator.Validate(no_tag))
-    self.assertTrue(validator.Validate(no_tag_delete))
+    self.assertFalse(self.update_validator.Validate(no_tag))
+    self.assertTrue(self.update_validator.Validate(no_tag_delete))
 
-  @mock.patch.object(presubmit_validate_types_lib, 'ConfigUniverse')
-  def testInstanceBadOperationOnInit(self, mock_universe):
+  def testInstanceOperationRequiredOnUpdate(self):
     entity = entity_instance.EntityInstance(_UPDATE, 'VAV-123', etag='1234')
-    validator = entity_instance.InstanceValidator(mock_universe, _INIT_CFG)
 
-    self.assertFalse(validator.Validate(entity))
+    self.assertFalse(self.init_validator.Validate(entity))
 
-  @mock.patch.object(
-      entity_instance.InstanceValidator,
-      '_FieldTranslationIsValid',
-      return_value=True)
-  @mock.patch.object(
-      field_lib.FieldUniverse, 'IsFieldDefined', return_value=True)
-  def testInstanceMultipleUnitsNotAllowed(self, mock_fn, mock_field_u):
-    config_u = presubmit_validate_types_lib.ConfigUniverse(
-        None, mock_field_u, None, None, None, None)
-    mock_fn.side_effect = lambda f, ns: True
+  def testInstanceMultipleUnitsNotAllowed(self):
     entity = entity_instance.EntityInstance(
         _UPDATE,
         'VAV-123',
@@ -600,10 +511,171 @@ class EntityInstanceTest(absltest.TestCase):
                     raw_field_name='bar/raw',
                     unit_mappings={'standard_unit_1': 'raw_unit_2'}),
         })
-    validator = entity_instance.InstanceValidator(config_u, _UPDATE_CFG)
 
-    self.assertFalse(validator.Validate(entity))
+    self.assertFalse(self.update_validator.Validate(entity))
 
+  def testInstance_DimensionalTranslation_MissingUnitMapping(self):
+    try:
+      entity_instance.EntityInstance(
+          _UPDATE,
+          'VAV-123',
+          etag='1234',
+          translation={
+              'foo_bar':
+                  field_translation.DimensionalValue(
+                      std_field_name='foo/bar',
+                      unit_field_name='foo/unit',
+                      raw_field_name='foo/raw',
+                      unit_mappings={}),
+          })
+    except ValueError as e:
+      self.assertEqual(type(e), ValueError)
+    else:
+      self.fail(f'{ValueError} was not raised')
+
+  def testInstance_DimensionalTranslation_UndefinedField(self):
+    entity = entity_instance.EntityInstance(
+        _UPDATE,
+        'VAV-123',
+        etag='1234',
+        translation={
+            'UNDEFINED_UNIT':
+                field_translation.DimensionalValue(
+                    std_field_name='foo/bar',
+                    unit_field_name='foo/unit',
+                    raw_field_name='foo/raw',
+                    unit_mappings={'foo': 'bar'})
+        })
+
+    self.assertFalse(self.update_validator.Validate(entity))
+
+  def testInstance_DimensionalTranslation_FieldHasInvalidUnit(self):
+    entity = entity_instance.EntityInstance(
+        _UPDATE,
+        'VAV-123',
+        etag='1234',
+        translation={
+            'return_water_temperature_sensor':
+                field_translation.DimensionalValue(
+                    std_field_name='foo/bar',
+                    unit_field_name='foo/unit',
+                    raw_field_name='foo/raw',
+                    unit_mappings={'INVALID_SENSOR_UNIT': 'degF'})
+        })
+
+    self.assertFalse(self.update_validator.Validate(entity))
+
+  def testInstance_DimensionalTranslation_FieldIsValid(self):
+    entity = entity_instance.EntityInstance(
+        _UPDATE,
+        'VAV-123',
+        etag='1234',
+        translation={
+            'return_water_temperature_sensor':
+                field_translation.DimensionalValue(
+                    std_field_name='foo/bar',
+                    unit_field_name='foo/unit',
+                    raw_field_name='foo/raw',
+                    unit_mappings={'degrees_fahrenheit': 'degF'})
+        })
+
+    self.assertTrue(self.update_validator.Validate(entity))
+
+  def testInstance_MultiStateTranslation_MissingStates(self):
+    try:
+      entity_instance.EntityInstance(
+          _UPDATE,
+          'VAV-123',
+          etag='1234',
+          translation={
+              'foo_bar':
+                  field_translation.MultiStateValue(
+                      std_field_name='foo/bar',
+                      raw_field_name='foo/raw',
+                      states={})
+          })
+    except ValueError as e:
+      self.assertEqual(type(e), ValueError)
+    else:
+      self.fail('{ValueError} was not raised')
+
+  def testInstance_MultiStateTranslation_UndefinedField(self):
+    entity = entity_instance.EntityInstance(
+        _UPDATE,
+        'VAV-123',
+        etag='1234',
+        translation={
+            'UNDEFINED_STATE':
+                field_translation.MultiStateValue(
+                    std_field_name='foo/bar',
+                    raw_field_name='foo/raw',
+                    states={'foo': 'bar'})
+        })
+
+    self.assertFalse(self.update_validator.Validate(entity))
+
+  def testInstance_MultiStateTranslation_FieldHasInvalidState(self):
+    entity = entity_instance.EntityInstance(
+        _UPDATE,
+        'VAV-123',
+        etag='1234',
+        translation={
+            'exhaust_air_damper_command':
+                field_translation.MultiStateValue(
+                    std_field_name='exhaust_air_damper_command',
+                    raw_field_name='exhaust_air_damper_command',
+                    states={'INVALID_STATE': '1'})
+        })
+
+    self.assertFalse(self.update_validator.Validate(entity))
+
+  def testInstance_MultiStateTranslation_FieldIsValid(self):
+    entity = entity_instance.EntityInstance(
+        _UPDATE,
+        'VAV-123',
+        etag='1234',
+        translation={
+            'exhaust_air_damper_command':
+                field_translation.MultiStateValue(
+                    std_field_name='exhaust_air_damper_command',
+                    raw_field_name='exhaust_air_damper_command',
+                    states={
+                        'OPEN': '1',
+                        'CLOSED': '0'
+                    })
+        })
+
+    self.assertTrue(self.update_validator.Validate(entity))
+
+  def testInstance_DimensionalValue_noUnitsExpected_noUnitsPasses(self):
+    entity = entity_instance.EntityInstance(
+        _UPDATE,
+        'VAV-123',
+        etag='1234',
+        translation={
+            'line_powerfactor_sensor':
+                field_translation.DimensionalValue(
+                    std_field_name='foo/bar',
+                    unit_field_name='foo/unit',
+                    raw_field_name='foo/raw',
+                    unit_mappings={'no_units': 'no_units'}),
+        })
+    self.assertTrue(self.update_validator.Validate(entity))
+
+  def testInstance_DimensionalValue_unitsExpected_noUnitsFails(self):
+    entity = entity_instance.EntityInstance(
+        _UPDATE,
+        'VAV-123',
+        etag='1234',
+        translation={
+            'zone_air_cooling_temperature_setpoint':
+                field_translation.DimensionalValue(
+                    std_field_name='foo/bar',
+                    unit_field_name='foo/unit',
+                    raw_field_name='foo/raw',
+                    unit_mappings={'no_units': 'no_units'}),
+        })
+    self.assertFalse(self.update_validator.Validate(entity))
 
 if __name__ == '__main__':
   absltest.main()

@@ -37,6 +37,7 @@ HM_CHW_WAC:
 
 #New type for CH ZRH EURD
 HM_HW:
+  id: "3199325536836911104"
   description: "Heating load heat meter."
   implements:
   - HM

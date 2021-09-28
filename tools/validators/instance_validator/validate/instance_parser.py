@@ -132,13 +132,13 @@ _ENTITY_INSTANCE_PATTERN = re.compile(_ENTITY_INSTANCE_REGEX)
 
 # Exact key for the configuration metadata block
 _CONFIG_METADATA_KEY = 'CONFIG_METADATA'
-_CONFIG_METADATA_REGEX = '^{0}:'.format(_CONFIG_METADATA_KEY)
+_CONFIG_METADATA_REGEX = f'^{_CONFIG_METADATA_KEY}:'
 _CONFIG_METADATA_PATTERN = re.compile(_CONFIG_METADATA_REGEX)
 # Key that marks the mode to parse file in.
 _CONFIG_MODE_KEY = 'operation'
 
 # A valid device field must match this
-_FIELD_REGEX = u'^[a-z]+[a-z0-9]*(?:_[a-z]+[a-z0-9]*)*(?:_[0-9]+)*$'
+_FIELD_REGEX = u'^[a-z][a-z0-9]*(?:_[a-z][a-z0-9]*)*(?:_[0-9]+)*$'
 """Schema separately parses translation to account for multiple valid formats
 
 github.com/google/digitalbuildings/blob/master/ontology/docs/building_config.md
@@ -265,7 +265,7 @@ class InstanceParser():
     entity_instance_block = ''
     found_entities = 0
     in_config = False
-    with open(filename) as file:
+    with open(filename, encoding='utf-8') as file:
       for line in file:
         if _IGNORE_PATTERN.match(line):
           continue
@@ -376,7 +376,7 @@ class InstanceParser():
 
     for key in block.keys():
       if key in self._validated_entities:
-        raise ValueError('Duplicate key {0}'.format(key))
+        raise ValueError('Duplicate key {key}')
       self._ValidateEntityContent(block.get(key))
     self._validated_entities.update(block.data)
 

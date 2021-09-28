@@ -83,7 +83,8 @@ class ConfigUniverse(findings_lib.Findings):
     unitsByMeasurement = dict()
     units = self.unit_universe.GetUnitsMap('')
     for key, unit in units.items():
-      unitsByMeasurement.setdefault(unit.measurement_type, []).append(unit.name)
+      unit_name = 'no_units' if unit.name.startswith('no_units_') else unit.name
+      unitsByMeasurement.setdefault(unit.measurement_type, []).append(unit_name)
     return unitsByMeasurement
 
   def _ArrangeStatesByField(self) -> Dict[str, List[str]]:
@@ -170,7 +171,9 @@ class ConfigUniverse(findings_lib.Findings):
     while subfields[-1].isnumeric():
       subfields.pop()
 
-    if subfields[-1] not in ['status', 'label', 'mode', 'counter', 'timestamp']:
+    if subfields[-1] not in [
+        'status', 'label', 'mode', 'counter', 'timestamp', 'alarm'
+    ]:
       # access measurement subfield.  In case of a two-subfield field with a
       # namespace attached, chop off the namespace.
       measurement_subfield = subfields[-2].split('/')[-1]
