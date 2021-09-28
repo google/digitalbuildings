@@ -138,7 +138,7 @@ _CONFIG_METADATA_PATTERN = re.compile(_CONFIG_METADATA_REGEX)
 _CONFIG_MODE_KEY = 'operation'
 
 # A valid device field must match this
-_FIELD_REGEX = u'^[a-z]+[a-z0-9]*(?:_[a-z]+[a-z0-9]*)*(?:_[0-9]+)*$'
+_FIELD_REGEX = u'^[a-z][a-z0-9]*(?:_[a-z][a-z0-9]*)*(?:_[0-9]+)*$'
 """Schema separately parses translation to account for multiple valid formats
 
 github.com/google/digitalbuildings/blob/master/ontology/docs/building_config.md
