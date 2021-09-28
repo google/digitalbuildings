@@ -61,6 +61,7 @@ power:
 - kilovolt_amperes_reactive
 pressure:
 - pascals: STANDARD
+- kilopascals
 - inches_of_water
 - pounds_force_per_square_inch
 resistance:
