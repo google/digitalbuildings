@@ -230,7 +230,10 @@ class PresubmitValidateTypesTest(absltest.TestCase):
 
   def testConfigUniverseGetUnitsForMeasurementMultipleNoUnits(self):
     doc = {
-      'powerfactor': [{'no_units': 'STANDARD'}],
+      'powerfactor': [
+        {'no_units': 'STANDARD'},
+        'another_one'
+      ],
       'voltageratio': [{'no_units': 'STANDARD'}],
     }
     folder = unit_lib.UnitFolder('units/anyfolder')
@@ -246,7 +249,7 @@ class PresubmitValidateTypesTest(absltest.TestCase):
         unit_universe=unit_universe)
 
     units = config_universe.GetUnitsForMeasurement('powerfactor_sensor')
-    self.assertSameElements(['no_units'], units)
+    self.assertSameElements(['no_units', 'another_one'], units)
     units = config_universe.GetUnitsForMeasurement('voltageratio_sensor')
     self.assertSameElements(['no_units'], units)
 
