@@ -17,6 +17,7 @@
 DMP_EDM-17:
   type: HVAC/DMP_EDM
   id: CDM/123456
+  cloud_device_id: "foobar"
   translation:
     exhaust_air_damper_command:
       present_value: "points.exhaust_air_damper_command.present_value"

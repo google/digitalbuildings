@@ -27,6 +27,7 @@ SDC_EXT-18:
 SDC_EXT-17:
   type: HVAC/SDC_EXT
   id: CDM/123456
+  cloud_device_id: "foobar"
   etag: a56789
   update_mask:
   - translation.zone_air_temperature_sensor
