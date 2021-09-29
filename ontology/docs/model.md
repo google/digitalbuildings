@@ -13,7 +13,7 @@ of individual types[^1]
 - [Digital Buildings Abstract Model](#digital-buildings-abstract-model)
   * [Model Origins and Design Philosophy](#model-origins-and-design-philosophy)
   * [Naming and Inheritance Conventions](#naming-and-inheritance-conventions)
-    + [Umbrella Types](#umbrella-types)
+    + [General Types](#general-types)
     + [Abstract Functional Groups](#abstract-functional-groups)
     + [Use of optional fields](#use-of-optional-fields)
     + [Type Composition and Naming](#type-composition-and-naming)
@@ -37,22 +37,22 @@ The concrete model uses some conventions that are not \[yet\] encoded into the
 ontology structure. Due to the utility of these conventions, they will likely be
 added to the model in a future revision.
 
-### Umbrella Types
+### General Types
 
-The first of these is the concept of an **Umbrella Type**. An umbrella type is
+The first of these is the concept of a **General Type**. A general type is
 simply a broad category of types for which there may be many variations. An
-example might be an Air-Handler or Heat Exchanger. Each of these umbrella types
+example might be an Air-Handler or Heat Exchanger. Each of these general types
 is instantiated as an entity type (sometimes with no fields) and inherited by
 any type that represents a specific variation on the class.
 
 Umbrella types are given 1-4 character abbreviations as names (ex: AHU or HX),
-and each child class begins its name with `<umbrella type>_`.
+and each child class begins its name with `<general type>_`.
 
-Almost all umbrella types are `abstract` or `canonical` and inherit from
-`EQUIPMENT` (with the exception of systems, which are themselves umbrella
+Almost all general types are `abstract` or `canonical` and inherit from
+`EQUIPMENT` (with the exception of systems, which are themselves general
 types). [^2]
 
-Umbrella types, by convention, are kept in a file called `GENERALTYPES.yaml`
+General types, by convention, are kept in a file called `GENERALTYPES.yaml`
 
 ### Abstract Functional Groups
 
@@ -76,16 +76,16 @@ affecting analysis.
 ### Type Composition and Naming
 
 For the most part, types have one level of inheritance hierarchy below abstract
-types. A typical type will implement its umbrella type and the functional group
+types. A typical type will implement its general type and the functional group
 that represent its functionality. Ideally, the constructed type will have no
 fields directly assigned to it.
 
-Typically the type is named by the umbrella type and its inherited functional
+Typically the type is named by the general type and its inherited functional
 groups with `_`. Functional groups are roughly ordered by significance, which is
 somewhat subjective; the order is not inherently meaningful, but for readability
 some type of ordering should be used (an alternative might be alphabetically).
 
-Specific types are, by convention, organized into files by umbrella type, named
+Specific types are, by convention, organized into files by general type, named
 by that class (ex: `VAV.yaml`)
 
 ## Specific Model Details
