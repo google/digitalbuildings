@@ -29,7 +29,7 @@ from yamlformat.validator import state_lib
 from yamlformat.validator import subfield_lib
 
 # We currently are enforcing that fields are lower case only.
-FIELD_CHARACTER_REGEX = re.compile(r'^[a-z]+[a-z0-9]*(?:_[a-z]+[a-z0-9]*)*$')
+FIELD_CHARACTER_REGEX = re.compile(r'^[a-z][a-z0-9]*(?:_[a-z]+[a-z0-9]*)*$')
 FIELD_INCREMENT_REGEX = re.compile(r'((?:_[0-9]+)*)$')
 
 
