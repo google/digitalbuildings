@@ -23,7 +23,7 @@ LGRP_DC:
     - DC
 
 LGRP_OS_SCZ:
-  id: ""
+  id: "15053221968541122560"
   description: "Lighing group control with occupancy and zone scene control"
   is_canonical: true
   implements:
