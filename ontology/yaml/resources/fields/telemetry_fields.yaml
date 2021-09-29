@@ -973,3 +973,4 @@ literals:
   - OPEN
   - CLOSED
 
+- lighting_percentage_sensor # For relative ranged illuminance inputs.
