@@ -228,6 +228,31 @@ class PresubmitValidateTypesTest(absltest.TestCase):
         'discharge_fan_lost_power_alarm')
     self.assertIsNone(units)
 
+  def testConfigUniverseGetUnitsForMeasurementMultipleNoUnits(self):
+    doc = {
+      'powerfactor': [
+        {'no_units': 'STANDARD'},
+        'another_one'
+      ],
+      'voltageratio': [{'no_units': 'STANDARD'}],
+    }
+    folder = unit_lib.UnitFolder('units/anyfolder')
+    folder.AddFromConfig([doc], 'units/anyfolder/units.yaml')
+    unit_universe = unit_lib.UnitUniverse([folder])
+
+    config_universe = presubmit_validate_types_lib.ConfigUniverse(
+        subfield_universe=None,
+        field_universe=None,
+        entity_type_universe=None,
+        state_universe=None,
+        connection_universe=None,
+        unit_universe=unit_universe)
+    units1 = config_universe.GetUnitsForMeasurement('powerfactor_sensor')
+    units2 = config_universe.GetUnitsForMeasurement('voltageratio_sensor')
+
+    self.assertSameElements(['no_units', 'another_one'], units1)
+    self.assertSameElements(['no_units'], units2)
+
   def testConfigUniverseGetStatesByField(self):
     meow_states = ['HUNGRY', 'SNUGGLY']
     meow_cat = field_lib.Field('meow_cat')

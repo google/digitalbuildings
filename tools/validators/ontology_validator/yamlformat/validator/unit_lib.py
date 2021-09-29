@@ -123,6 +123,9 @@ class UnitFolder(config_folder_lib.ConfigFolder):
                 findings_lib.UnknownUnitTagError(unit_name, tag, context))
         else:
           unit_name = unit
+        # Avoid name clashes when there are multiple dimensionless measurements.
+        if unit_name == 'no_units':
+          unit_name += '_' + measurement
         self.AddUnit(Unit(unit_name, measurement, is_standard, context))
       if standard_tag_count != 1:
         self.AddFinding(

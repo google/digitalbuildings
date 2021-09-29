@@ -59,3 +59,4 @@ SENSOR_CO2M:
   implements:
     - /SENSOR # Inherits from global namespace
     - CO2M
+

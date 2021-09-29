@@ -385,6 +385,30 @@ DFVSC:
   implements:
   - OPERATIONAL
 
+DFVSC2X:
+  description: "Variable speed control for discharge fans for 2 separate zones."
+  is_abstract: true
+  opt_uses:
+  - discharge_fan_current_sensor_1
+  - discharge_fan_power_sensor_1
+  - discharge_fan_speed_frequency_sensor_1
+  - discharge_fan_speed_percentage_sensor_1
+  - discharge_fan_lost_power_alarm_1
+  - discharge_fan_current_sensor_2
+  - discharge_fan_power_sensor_2
+  - discharge_fan_speed_frequency_sensor_2
+  - discharge_fan_speed_percentage_sensor_2
+  - discharge_fan_lost_power_alarm_2
+  uses:
+  - discharge_fan_speed_percentage_command_1
+  - discharge_fan_run_status_1
+  - discharge_fan_run_command_1
+  - discharge_fan_speed_percentage_command_2
+  - discharge_fan_run_status_2
+  - discharge_fan_run_command_2
+  implements:
+  - OPERATIONAL
+
 
 DFVSFC:
   id: "3819485279274663936"
@@ -1319,6 +1343,24 @@ CHWZTC:
   implements:
   - CONTROL
 
+CHWZTC2X:
+  description: "Chilled water valve control on zone side (ZTC) for two separate zones. Chilled water valve controls to the worst zone."
+  is_abstract: true
+  opt_uses:
+  - discharge_air_temperature_sensor_1
+  - discharge_air_temperature_sensor_2
+  - leaving_cooling_coil_temperature_sensor
+  - cooling_thermal_power_capacity
+  - chilled_water_flowrate_sensor
+  - chilled_water_valve_percentage_sensor
+  uses:
+  - zone_air_temperature_setpoint_1
+  - zone_air_temperature_setpoint_2
+  - zone_air_temperature_sensor_1
+  - zone_air_temperature_sensor_2
+  - chilled_water_valve_percentage_command
+  implements:
+  - CONTROL
 
 # DX Control
 
@@ -2090,6 +2132,26 @@ HT2ZC:
   implements:
   - CONTROL
 
+HT2XZTC2X:
+  description: "Two separate heating sections going to two different zones on the device, with independent heating control."
+  is_abstract: true
+  opt_uses:
+  - heating_percentage_command_1
+  - discharge_air_temperature_sensor_1
+  - heating_percentage_command_2
+  - discharge_air_temperature_sensor_2
+  uses:
+  - zone_air_temperature_setpoint_1
+  - zone_air_temperature_sensor_1
+  - heater_run_command_1
+  - heater_run_status_1
+  - zone_air_temperature_setpoint_2
+  - zone_air_temperature_sensor_2
+  - heater_run_command_2
+  - heater_run_status_2
+  implements:
+  - CONTROL
+
 HT3ZC:
   id: "3504555462265667584"
   description: "Two gas or electric heater control on zone side (HSP, DSP)."
@@ -2730,6 +2792,16 @@ DDCO:
   - cooling_air_damper_percentage_command_1
   implements:
   - CONTROL
+
+FDPM3X:
+  description: "Filter pressure monitoring (3 sensors)."
+  is_abstract: true
+  uses:
+  - filter_differential_pressure_sensor_1
+  - filter_differential_pressure_sensor_2
+  - filter_differential_pressure_sensor_3
+  implements:
+  - MONITORING
 
 FDPM4X:
   id: "5700763968050561024"
@@ -4001,6 +4073,23 @@ CSWTC:
   uses:
   - condensing_supply_water_temperature_setpoint
   - condensing_supply_water_temperature_sensor
+
+HTWHLSTC:
+  description: "Heat wheel which controls supply temperature using speed control."
+  is_abstract: true
+  implements:
+  - CONTROL
+  opt_uses:
+  - heat_wheel_speed_percentage_sensor
+  - exhaust_air_temperature_sensor
+  - return_air_temperature_sensor
+  uses:
+  - heat_wheel_speed_percentage_command
+  - heat_wheel_run_command
+  - heat_wheel_run_status
+  - outside_air_temperature_sensor
+  - supply_air_temperature_sensor
+  - supply_air_temperature_setpoint
 
 #New abstracts for CH ZRH EURD
 CAM:
