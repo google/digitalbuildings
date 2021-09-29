@@ -27,10 +27,7 @@ class StandardField(object):
     super().__init__()
     if not FIELD_CHARACTER_REGEX.match(standard_field_name):
       raise ValueError(
-          'field: {0}/{1} is incorrectly formatted'.format(
-              namespace_name,
-              standard_field_name
-          )
+          f'{namespace_name}/{standard_field_name} is incorrectly formatted'
       )
     else:
       self._namespace = namespace_name
@@ -42,10 +39,7 @@ class StandardField(object):
   def __eq__(self, other):
     if not isinstance(other, self.__class__):
       raise TypeError(
-          '{0} and {1} are not StandardField objects'.format(
-              str(other),
-              str(self)
-          )
+          f'{str(other)} and {str(self)} are not StandardField objects'
       )
     else:
       namespace_eq = self._namespace == other.GetNamespaceName()
@@ -90,11 +84,8 @@ class EntityTypeField(StandardField):
     super().__init__(namespace_name, standard_field_name)
     if not FIELD_INCREMENT_REGEX.match(increment):
       raise ValueError(
-          'Incremement of {0}/{1}{2} is unproperly formatted'.format(
-              namespace_name,
-              standard_field_name,
-              increment
-          )
+          f'Incremement of {namespace_name}/{standard_field_name}{increment} '
+          + 'is unproperly formatted'
       )
     self._increment = increment
     self._is_optional = is_optional
@@ -110,10 +101,7 @@ class EntityTypeField(StandardField):
   def __eq__(self, other):
     if not isinstance(other, self.__class__):
       raise TypeError(
-          '{0} and {1} must be EntityTypeField objects'.format(
-              str(other),
-              str(self)
-          )
+          '{str(other)} and {str(self)} must be EntityTypeField objects'
       )
     else:
       standard_eq = super().__eq__(other)
