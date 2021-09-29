@@ -959,3 +959,5 @@ literals:
 - exhaust_air_isolation_damper_status:
   - OPEN
   - CLOSED
+
+- lighting_percentage_sensor # For relative ranged illuminance inputs.
