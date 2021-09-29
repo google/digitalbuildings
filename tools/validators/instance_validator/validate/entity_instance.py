@@ -362,10 +362,19 @@ class InstanceValidator(object):
         return False
 
       is_valid = True
-      for state in ft.states.keys():
+      raw_values_found = set()
+      for state, value in ft.states.items():
         if state not in valid_states:
           print(f'Field {qualified_field_name} has an invalid state: {state}')
           is_valid = False
+        raw_values = value if isinstance(value, list) else [value]
+        for raw_value in raw_values:
+          if raw_value in raw_values_found:
+            print(f'Raw value {raw_value} is assigned to multiple states for '
+                  f'{qualified_field_name}')
+            is_valid = False
+          raw_values_found.add(raw_value)
+
       return is_valid
 
     if isinstance(ft, ft_lib.MultiStateValue):
