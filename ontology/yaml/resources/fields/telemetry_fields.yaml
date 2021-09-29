@@ -130,8 +130,10 @@ literals:
 - return_air_temperature_setpoint
 - return_water_temperature_sensor
 - reversing_valve_command:
-  - OPEN
+  - AUTO
   - CLOSED
+  - OPEN
+  - UNKNOWN
 - run_command:
   - ON
   - OFF
@@ -903,7 +905,7 @@ literals:
   - OCCUPIED
   - UNKNOWN
   - UNOCCUPIED
-  
+
 #Additional fields for CH ZRH EURD HVAC
 - bypass_air_damper_percentage_sensor
 - circulation_pump_speed_percentage_command
@@ -935,3 +937,25 @@ literals:
 - potable_water_medium_temperature_sensor
 - potable_water_low_temperature_sensor
 - heating_supply_water_temperature_setpoint
+
+# Heat Wheel Telemetry Fields
+- heat_wheel_speed_percentage_sensor
+- heat_wheel_speed_percentage_command
+- heat_wheel_run_command
+- heat_wheel_run_status
+
+# Outside air Isolation Dampers
+- outside_air_isolation_damper_command:
+  - OPEN
+  - CLOSED
+- outside_air_isolation_damper_status:
+  - OPEN
+  - CLOSED
+
+# Exhaust air Isolation Dampers
+- exhaust_air_isolation_damper_command:
+  - OPEN
+  - CLOSED
+- exhaust_air_isolation_damper_status:
+  - OPEN
+  - CLOSED
