@@ -2,7 +2,6 @@
 
 from os import path
 
-# TODO(b/183433133):move to one constants file after refactoring.
 JOINS = path.join('..', '..', '..', '..')
 REPO_ROOT = path.join(path.dirname(path.realpath(__file__)), JOINS)
 APPLICATION_ROOT = path.join(REPO_ROOT, 'tools', 'validators',

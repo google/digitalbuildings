@@ -20,6 +20,8 @@ class StandardFieldTest(absltest.TestCase):
     )
 
   def testGetNamespaceName(self):
+    #testing with '' because it is the global namespace which, in practice,
+    #all fields are defined under the global namespace
     expected_output = ''
     function_output = self.test_standard_field.GetNamespaceName()
 
@@ -32,16 +34,17 @@ class StandardFieldTest(absltest.TestCase):
     self.assertEqual(function_output, expected_output)
 
 class EntityTypeFieldTest(absltest.TestCase):
+  #Testing EntityTypeField objects defined in the global namespace
   def setUp(self):
     self.test_entity_type_field = EntityTypeField(
         namespace_name='',
         standard_field_name='supply_air_flowrate_sensor',
         is_optional=False,
-        increment=''
+        increment='_1_12'
     )
 
   def testGetIncrement(self):
-    expected_output = ''
+    expected_output = '_1_12'
     function_output = self.test_entity_type_field.GetIncrement()
 
     self.assertEqual(function_output, expected_output)
@@ -84,8 +87,6 @@ class ModelTest(absltest.TestCase):
     )
 
   def testGetFieldList(self):
-    #print(test_constants.ONTOLOGY_ROOT)
-    #print(self.universe.entity_type_universe.type_namespaces_map)
     expected_output = [
         EntityTypeField(
             namespace_name='',
