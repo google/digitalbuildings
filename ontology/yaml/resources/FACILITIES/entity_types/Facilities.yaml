@@ -29,3 +29,13 @@ FLOOR:
 BUILDING:
   id: "15204152342002794496"
   description: "This is a type for BUILDING facilities object"
+
+CORRIDOR:
+  description: "This is a type for CORRIDOR facilities object"
+
+STAIRWELL:
+  description: "This is a type for STAIRWELL facilities object"
+  
+RAMP:
+  description: "This is a type for RAMP facilities object"
+

@@ -505,6 +505,30 @@ CH_US_SBO_901_1:
   uses:
   - cooling_percentage_sensor
 
+CH_SS_CHWDT_CWDT_CWDPM_CHWDPM_REFM:
+  description: "Non-standard type for SYD ODI chillers"
+  is_canonical: false
+  implements:
+  - CH
+  - SS
+  - CHWDT
+  - CWDT
+  - CWDPM
+  - CHWDPM
+  - REFM
+
+CH_SS_CHWDT2X_CWDT_CWDPM_CHWDPM_REFM:
+  description: "Non-standard type for SYD ODI chillers"
+  is_canonical: false
+  implements:
+  - CH
+  - SS
+  - CHWDT2X
+  - CWDT
+  - CWDPM
+  - CHWDPM
+  - REFM
+
 CH_SS_CHWDT:
   id: "8718557248923631616"
   description: "Non-standard chiller."

@@ -349,8 +349,7 @@ VSFC:
   uses:
   - speed_frequency_command
   - speed_frequency_sensor
-  implements:
-  - OPERATIONAL
+ 
 
 SFVSC:
   id: "16291356723812237312"
@@ -1343,6 +1342,16 @@ CHWZTC:
   implements:
   - CONTROL
 
+CHWPVM:
+  description: "Chilled water pressure valve command and position monitoring (without regard to what controls it)."
+  is_abstract: true
+  opt_uses:
+  - chilled_water_flowrate_sensor
+  uses:
+  - chilled_water_valve_percentage_sensor
+  implements:
+  - OPERATIONAL
+
 CHWZTC2X:
   description: "Chilled water valve control on zone side (ZTC) for two separate zones. Chilled water valve controls to the worst zone."
   is_abstract: true
@@ -2017,6 +2026,17 @@ PHWSC:
   - supply_air_temperature_sensor
   implements:
   - CONTROL
+  
+HWPVM:
+  description: "Heating water pressure valve command and position monitoring (without regard to what controls it)."
+  is_abstract: true
+  opt_uses:
+  - heating_water_flowrate_sensor
+  uses:
+  - heating_water_valve_percentage_sensor
+  implements:
+  - OPERATIONAL
+  
 
 HTDC:
   id: "656732385395605504"
@@ -2586,6 +2606,16 @@ CDWISOVPM:
   implements:
   - MONITORING
 
+CDWPVM:
+  description: "Condensing water pressure valve command and position monitoring (without regard to what controls it)."
+  is_abstract: true
+  opt_uses:
+  - condensing_water_flowrate_sensor
+  uses:
+  - condensing_water_valve_percentage_sensor
+  implements:
+  - OPERATIONAL
+
 BYPVPM:
   id: "9735989234174525440"
   description: "Bypass water valve percentage monitoring."
@@ -2792,6 +2822,15 @@ DDCO:
   - cooling_air_damper_percentage_command_1
   implements:
   - CONTROL
+
+FDPM2X:
+  description: "Filter pressure monitoring (2 sensors)."
+  is_abstract: true
+  uses:
+  - filter_differential_pressure_sensor_1
+  - filter_differential_pressure_sensor_2
+  implements:
+  - MONITORING
 
 FDPM3X:
   description: "Filter pressure monitoring (3 sensors)."
@@ -3855,7 +3894,55 @@ DRSM8X:
   - dryer_run_status_8
   implements:
   - MONITORING
+  
+AHAC:
+  description: "Tag to indicate an after hours activation method e.g. push button associated with this device."
+  is_abstract: true
+  uses:  
+  - user_occupancy_override_status
+  - zone_occupancy_status
+  implements:
+  - OPERATIONAL
+  
+DFFC:
+  description: "Discharge fan flow control"
+  is_abstract: true
+  uses:
+  - discharge_fan_run_command
+  - discharge_fan_run_status
+  - discharge_fan_speed_percentage_command
+  - discharge_air_flowrate_setpoint
+  - discharge_air_flowrate_sensor
+  implements:
+  - CONTROL
 
+EFM:
+  description: "Exhaust air flow monitoring"
+  is_abstract: true
+  uses:
+  - exhaust_air_flowrate_sensor  
+  implements:
+  - OPERATIONAL
+
+SWTM:
+  description: "Supply water temperature monitoring."
+  is_abstract: true
+  implements:
+  - MONITORING
+  opt_uses:
+  - cooling_request_count
+  - heating_request_count
+  - return_water_temperature_sensor
+  uses:
+  - supply_water_temperature_sensor  
+
+CWDPM:
+  description: "Differential pressure monitoring for condenser water."
+  is_abstract: true
+  implements:
+  - MONITORING
+  uses:
+  - condensing_water_differential_pressure_sensor
 
 DICM:
   id: "4971562358951378944"
@@ -4172,3 +4259,14 @@ PHRU:
   opt_uses:
   - exhaust_air_temperature_sensor
   - outside_air_temperature_sensor
+
+CHWDT2X:
+  description: "Temperature differential across chilled water with two sets of sensors."
+  is_abstract: true
+  implements:
+  - MONITORING
+  uses:
+  - chilled_return_water_temperature_sensor_1
+  - chilled_supply_water_temperature_sensor_1
+  - chilled_return_water_temperature_sensor_2
+  - chilled_supply_water_temperature_sensor_2

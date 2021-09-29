@@ -25,3 +25,9 @@ UPS:
   is_abstract: true
   implements:
   - EQUIPMENT
+
+PANEL:
+  description: "Tag for all electrical panels."
+  is_abstract: true
+  implements:
+  - EQUIPMENT

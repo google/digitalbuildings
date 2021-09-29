@@ -427,7 +427,23 @@ DMP_US_MTV_1708_2: # Is Actually a VAV
   - DDSP
   - INCOMPLETE
 
+VAV_SD_ZTC_AHAC:
+  description: "Single duct VAV with zone set-point control and after hours push button activation."
+  is_canonical: true
+  implements:
+  - VAV
+  - SD
+  - ZTC
+  - AHAC
 
+VAV_ZTC_DTM:
+  description: "Single duct VAV with zone set-point control and discharge temperature monitoring."
+  is_canonical: true
+  implements:
+  - VAV
+  - ZTC
+  - DTM
+  
 #Additional Types for CH_ZRH_EURD
 VAV_SD_CO2C:
   id: "1276288495949709312"
@@ -446,3 +462,4 @@ VAV_RD_CO2C:
   - VAV
   - RD
   - CO2C
+

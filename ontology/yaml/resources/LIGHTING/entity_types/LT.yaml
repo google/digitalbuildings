@@ -45,3 +45,19 @@ LT_DPC:
   implements:
   - LT
   - DPC
+
+#Noncanonical types
+LGRP_DC_MS_IM:
+  description: "Non-canonical lighting groups with brightness, motion sensing and illuminance monitoring"
+  is_canonical: false
+  implements:
+  - LGRP
+  - DC
+  - MS
+  - IM
+
+ELT_GENERIC:
+  description: "Generic, non-canonical emergency light"
+  is_canonical: false
+  implements:
+  - ELT
