@@ -26,7 +26,12 @@ class StandardField(object):
   def __init__(self, namespace_name: str, standard_field_name: str):
     super().__init__()
     if not FIELD_CHARACTER_REGEX.match(standard_field_name):
-      raise ValueError('field name is incorrectly formatted')
+      raise ValueError(
+          'field: {0}/{1} is incorrectly formatted'.format(
+              namespace_name,
+              standard_field_name
+          )
+      )
     else:
       self._namespace = namespace_name
     self._name = standard_field_name
@@ -36,7 +41,12 @@ class StandardField(object):
 
   def __eq__(self, other):
     if not isinstance(other, self.__class__):
-      raise TypeError('Both objects are not StandardField objects')
+      raise TypeError(
+          '{0} and {1} are not StandardField objects'.format(
+              str(other),
+              str(self)
+          )
+      )
     else:
       namespace_eq = self._namespace == other.GetNamespaceName()
       name_eq = self._name == other.GetStandardFieldName()
@@ -79,7 +89,13 @@ class EntityTypeField(StandardField):
                increment: str = ''):
     super().__init__(namespace_name, standard_field_name)
     if not FIELD_INCREMENT_REGEX.match(increment):
-      raise ValueError('Incremement is unproperly formatted')
+      raise ValueError(
+          'Incremement of {0}/{1}{2} is unproperly formatted'.format(
+              namespace_name,
+              standard_field_name,
+              increment
+          )
+      )
     self._increment = increment
     self._is_optional = is_optional
 
@@ -93,7 +109,12 @@ class EntityTypeField(StandardField):
 
   def __eq__(self, other):
     if not isinstance(other, self.__class__):
-      raise TypeError('Both objects must be EntityTypeField objects')
+      raise TypeError(
+          '{0} and {1} must be EntityTypeField objects'.format(
+              str(other),
+              str(self)
+          )
+      )
     else:
       standard_eq = super().__eq__(other)
       increment_eq = self._increment == other.GetIncrement()
