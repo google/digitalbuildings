@@ -12,22 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-GM_STANDARD:
-  id: "9159528481871101952"
-  description: "The typical building gas meter."
-  implements:
-  - GM
+SWITCHBOARD:
+  description: "Standard panel for holding electrical switching gear."
   is_canonical: true
-  uses:
-  - gas_flowrate_sensor
-  - gas_volume_accumulator
-  - gas_temperature_sensor
-
-GM_PULSE:
-  description: "Gas meter that operates by counting pulses, interpreted into flow and accumulated volume."
   implements:
-  - GM
-  is_canonical: true
-  uses:
-  - gas_flowrate_sensor
-  - gas_volume_accumulator
+  - PANEL

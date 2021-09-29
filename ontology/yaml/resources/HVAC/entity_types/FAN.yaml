@@ -10,10 +10,10 @@
 # distributed under the License is distributed on an AS IS BASIS,
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
-# limitations under the License.
+# limitations under the License
 
 ########################
-### Canonical Types  ###
+### Canonical Types  #
 ########################
 
 ### FAN RUN CONTROL ###
@@ -113,6 +113,15 @@ FAN_SS_CO2C:
   - FAN
   - SS
   - CO2C
+
+FAN_ZTM_ZHM_FDPM:
+  description: "Fan with zone temperature, zone humidity and filter monitoring"
+  is_canonical: true
+  implements:
+  - FAN
+  - ZTM
+  - ZHM
+  - FDPM
 
 ### INTERLOCKED FANS ###
 
@@ -282,6 +291,22 @@ FAN_SS_DRSM8X:
   - SS
   - DRSM8X
 
+FAN_SS_EFVSC:
+  description: "Exhaust fan with variable speed control."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - EFVSC
+  
+FAN_SS_FDPM:
+  description: "Exhaust fan with filter monitoring."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - FDPM
+
 FAN_SS_DPM_ZHM_ZTM:
   id: "7854710545398628352"
   description: "Fan with sensors (temperature, humidity and low pressure)."
@@ -298,7 +323,28 @@ FAN_SS_DPM_ZHM_ZTM:
   - low_differential_pressure_alarm
   - lost_power_alarm
   - control_status
+  
+FAN_SS_VSC_SSPM_OAFM_FDPM:
+  description: "Outside air fan with variable speed control, supply side pressure monitoring, outside air flow monitoring and filter monitoring."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - VSC
+  - SSPM
+  - OAFM
+  - FDPM
 
+FAN_SS_VSC_ZTM_EFM:
+  description: "General exhaust fan with variable speed control, zone temperature monitoring, and exhaust air flow monitoring."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - VSC
+  - ZTM
+  - EFM
+  
 FAN_SS_VSFC:
   id: "6340656645672009728"
   description: "Fan with frequency command control"

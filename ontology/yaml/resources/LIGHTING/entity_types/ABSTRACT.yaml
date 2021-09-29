@@ -56,6 +56,12 @@ BM:
   uses:
   - battery_charge_status
 
+IM:
+  description: "Individual illuminance sensor monitoring, not used for control"
+  is_abstract: true
+  uses:
+  - illuminance_sensor
+
 DPC:
   id: "11907950210032074752"
   description: " Dimmer control."

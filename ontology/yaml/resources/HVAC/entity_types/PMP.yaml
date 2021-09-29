@@ -43,6 +43,15 @@ PMP_SS_VSC_WDPM:
   - VSC
   - WDPM
 
+PMP_SS_VSC_WDPC:
+  description: "Pump with variable speed control and differential pressure control"
+  is_canonical: true
+  implements:
+  - PMP
+  - SS
+  - VSC
+  - WDPC
+
 PMP_SS_VSFC:
   id: "3837499677784145920"
   description: "PMP device with pump frequency control"
@@ -57,7 +66,6 @@ PMP_SS_VSFC:
   - lost_power_alarm
   - low_differential_pressure_alarm
   - chilled_water_differential_pressure_setpoint
-
 
 PMP_SS_CHWISOVPM_VSFC:
   id: "2090103022364393472"
@@ -74,7 +82,26 @@ PMP_SS_CHWISOVPM_VSFC:
   - lost_power_alarm
   - low_differential_pressure_alarm
   - chilled_water_differential_pressure_setpoint
-
+  
+PMP_SS_VSC_WDPC_WFRC:
+  description: "Pump with variable speed control, differential pressure control and flow control."
+  is_canonical: true
+  implements:
+  - PMP
+  - SS
+  - VSC
+  - WDPC
+  - WFRC
+  
+PMP_SS_VSC_SWTC:
+  description: "Pump with variable speed control and supply water temperature control"
+  is_canonical: true
+  implements:
+  - PMP
+  - SS
+  - VSC
+  - SWTC
+ 
 PMP_SS_CWCS_VSFC:
   id: "15564028682526785536"
   description: "PMP device with condensing water valve and pump frequency control"

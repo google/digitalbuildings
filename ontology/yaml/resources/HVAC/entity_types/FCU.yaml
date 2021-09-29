@@ -757,6 +757,23 @@ FCU_DFMSS_DSP_ZHM_RTM_CHWZC_CHWDT:
   - CHWZC
   - CHWDT
 
+FCU_SS_ZTM:
+  description: "FCU with zone temperature monitoring and start/stop control."
+  is_canonical: true
+  implements:
+  - FCU
+  - SS
+  - ZTM
+
+FCU_HPZTC_CO2C_FDPM:
+  description: "Heat pump with zone temperature and CO2 control and filter monitoring."
+  is_canonical: true
+  implements:
+  - FCU
+  - HPZTC
+  - CO2C
+  - FDPM
+  
 FCU_DFVSMC_CHWBRC:
   id: "15348700325343133696"
   description: "Chilled water FCU with chilled water percentage mode, discharge fan mode and return air temp control."
@@ -869,6 +886,7 @@ FCU_DFVSFC_CHWRC:
   - run_mode
   - schedule_run_command
   - lost_power_alarm
+
 
 FCU_DFSS_DFVSC_DXRC_HTRC_RHC_RHDHC_RTC:
   id: "506032222180999168"
