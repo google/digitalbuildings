@@ -152,7 +152,10 @@ _TRANSLATION_SCHEMA = syaml.MapPattern(
         PRESENT_VALUE_KEY:
             syaml.Str(),
         syaml.Optional(STATES_KEY):
-            syaml.MapPattern(syaml.Regex(u'^[A-Z][A-Z_]+'), syaml.Str()),
+            syaml.MapPattern(
+                syaml.Regex(u'^[A-Z][A-Z_]+'),
+                syaml.Str() | syaml.Seq(syaml.Str())
+            ),
         syaml.Optional(UNITS_KEY):
             syaml.Map({
                 UNIT_NAME_KEY: syaml.Str(),

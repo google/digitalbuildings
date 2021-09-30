@@ -154,7 +154,7 @@ class TelemetryValidator(object):
         continue
 
       if isinstance(field_translation, ft_lib.MultiStateValue):
-        if pv not in field_translation.states.values():
+        if pv not in field_translation.raw_values:
           self.AddError(
               telemetry_error.TelemetryError(
                   entity_name, field_translation.raw_field_name,
