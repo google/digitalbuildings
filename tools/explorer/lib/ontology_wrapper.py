@@ -10,6 +10,7 @@ from yamlformat.validator.presubmit_validate_types_lib import ConfigUniverse
 
 from lib.model import StandardField
 from lib.model import EntityTypeField as ETF
+from lib.model import Match
 
 class OntologyWrapper(object):
   """Class providing an interface to do lookups on a DigitalBuildings ontology.
@@ -71,8 +72,34 @@ class OntologyWrapper(object):
 
     return entity_type_fields
 
+  def _CreateMatch(
+      self,
+      field_list: List[ETF],
+      entity_type: EntityType
+  ) -> Match:
+    """
+    Determines the closeness of a match between an EntityType object and a list
+    of EntityTypeField objects by applying set operations provided by the
+    EntityTypeManager on the required field of an EntityType's list of fields
+    and the list of EntityType objects.
+
+    If the list of EntityTypeField objects is a strict subset of the EntityType
+    fields, then the match is CLOSE. If the reverse is true, the the match is
+    INCOMPLETE, as the ontology does not inherit all of the fields necessary.
+    If the two sets are equal, then the match is EXACT. If the sets are
+    disjoint, the match is NONE. 
+
+    args:
+      field_list: A list of EntityTypeField objects
+      entity_type: An EntityType object
+
+    Returns:
+      An instance of the Match class
+    """
+    pass
+
   def GetEntityTypesFromFields(self,
-                               field_list: List[StandardField],
+                               field_list: List[ETF],
                                general_type: str = None) -> List[EntityType]:
     """Get a list of EntityType objects matching a list of StandardField tuples.
 
