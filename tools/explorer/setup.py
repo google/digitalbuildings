@@ -25,6 +25,6 @@ setup(
     license='Apache License',
     author='Travis Welch',
     packages=find_packages(),
-    install_requires=[],
+    install_requires=['absl-py'],
     python_requires='>=3.7',
 )
