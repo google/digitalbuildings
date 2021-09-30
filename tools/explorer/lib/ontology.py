@@ -67,9 +67,8 @@ class Ontology(object):
       fields_temp = entity_type_fields
       entity_type_fields = []
       for field in fields_temp:
-        if not field.isOptional():
+        if not field.IsOptional():
           entity_type_fields.append(field)
-          print(field)
 
     return entity_type_fields
 
