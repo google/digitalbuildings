@@ -5,7 +5,7 @@ from yamlformat.validator.external_file_lib import RecursiveDirWalk
 from yamlformat.validator import presubmit_validate_types_lib
 from yamlformat.validator import namespace_validator as nv
 
-from lib.ontology import Ontology
+from lib.ontology_wrapper import OntologyWrapper
 from lib.model import EntityTypeField
 from lib.tests import test_constants
 
@@ -17,7 +17,7 @@ class OntologyTest(absltest.TestCase):
     self.config = presubmit_validate_types_lib.SeparateConfigFiles(self.yaml)
     self.universe = presubmit_validate_types_lib.BuildUniverse(self.config)
     nv.NamespaceValidator(self.universe.GetEntityTypeNamespaces())
-    self.ontology = Ontology(self.universe)
+    self.ontology = OntologyWrapper(self.universe)
 
   def testGetAllFieldsForTypeName(self):
     expected_output = [

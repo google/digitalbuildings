@@ -8,7 +8,7 @@ from yamlformat.validator.presubmit_validate_types_lib import ConfigUniverse
 from lib.model import StandardField
 from lib.model import EntityTypeField as ETF
 
-class Ontology(object):
+class OntologyWrapper(object):
   """Class providing an interface to do lookups on a DigitalBuildings ontology.
 
      Args:
@@ -50,10 +50,6 @@ class Ontology(object):
         namespace,
         entity_type_name
     )
-    qualified_fields = entity_type.GetAllFields()
-    field_optwrappers = [
-        entity_type.GetField(field) for field in qualified_fields
-    ]
     entity_type_fields = [
         ETF(
             namespace_name=field.field.namespace,
@@ -61,7 +57,7 @@ class Ontology(object):
             is_optional=field.optional,
             increment=field.field.increment
         )
-        for field in field_optwrappers
+        for field in entity_type.GetAllFields().values()
     ]
     if required_only:
       fields_temp = entity_type_fields
