@@ -99,6 +99,16 @@ FCU_DFSS_DSP_DXZC:
   - DSP
   - DXZC
 
+FCUX:
+  description: "Typical EC multispeed fan coil with chilled water (discharge) control."
+  is_canonical: true
+  implements:
+  - DFSS
+  - DSP
+  - DFHMLC
+  - CHWDC
+  - RTM
+
 FCU_DFSS_DSP_DX2ZC:
   id: "15068251192981192704"
   description: "Typical 2-stage DX water FCU (zone control)."
