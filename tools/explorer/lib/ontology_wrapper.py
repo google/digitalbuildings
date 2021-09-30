@@ -1,4 +1,7 @@
-"""Ontology class for ontology explorer."""
+"""
+Ontology wrapper class for ontology explorer exposing certain functionality
+of the Digital Buildings Ontology.
+"""
 from typing import List
 
 from yamlformat.validator.entity_type_lib import EntityType
