@@ -116,4 +116,9 @@ class OntologyWrapper(object):
 
   def IsFieldValid(self, field: StandardField) -> bool:
     """A method to validate a field name against the ontology."""
-    pass
+    namespace_name = field.GetNamespaceName()
+    standard_field_name = self.universe.field_universe.IsFieldDefined(
+        namespace_name,
+        standard_field_name
+    )
+    return validity

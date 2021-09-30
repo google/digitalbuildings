@@ -93,14 +93,15 @@ class OntologyTest(absltest.TestCase):
 
     self.assertEqual(function_output_sorted, expected_output_sorted)
 
-  def testGetEntityTypesFromFields(self):
-    pass
-
   def testValidField(self):
-    pass
+    valid_test_field = StandardField('', 'supply_air_flowrate_sensor')
+    function_output = self.ontology.IsFieldValid(valid_test_field)
+    self.assertTrue(function_output)
 
   def testInvalidField(self):
-    pass
+    invalid_test_field = StandardField('HVAC', 'supply_air_flowrate_sensor')
+    function_output = self.ontology.IsFieldValid(invalid_test_field)
+    self.assertFalse(function_output)
 
 if __name__ == '__main__':
   absltest.main()
