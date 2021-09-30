@@ -103,7 +103,7 @@ FCUX:
   description: "Typical EC multispeed fan coil with chilled water (discharge) control."
   is_canonical: true
   implements:
-  - DFSS
+  - DFS
   - DSP
   - DFHMLC
   - CHWDC
