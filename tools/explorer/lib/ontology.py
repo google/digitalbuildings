@@ -1,12 +1,12 @@
 """Ontology class for ontology explorer."""
 from typing import List
 
-from model import EntityTypeField as ETF
-from model import StandardField
-
 from yamlformat.validator.entity_type_lib import EntityType
+from yamlformat.validator.entity_type_manager import EntityTypeManager
 from yamlformat.validator.presubmit_validate_types_lib import ConfigUniverse
 
+from lib.model import StandardField
+from lib.model import EntityTypeField as ETF
 
 class Ontology(object):
   """Class providing an interface to do lookups on a DigitalBuildings ontology.
@@ -17,6 +17,9 @@ class Ontology(object):
      Attributes:
           universe: A ConfigUniverse object detailing the various universes in
             the ontology
+          manager: An EntityTypeManager object to find greatest common subsets
+            of fields between entity types and complete lists of inheritied
+            fields for an entity type. This is primary used for _CreateMatch()
 
      Returns:
           An instance of Ontology class
@@ -26,6 +29,7 @@ class Ontology(object):
   def __init__(self, universe: ConfigUniverse):
     super().__init__()
     self.universe = universe
+    self.manager = EntityTypeManager(self.universe)
 
   def GetFieldsForTypeName(self,
                            namespace: str,
@@ -42,7 +46,32 @@ class Ontology(object):
     Returns:
             result_fields: a list of StandardField tuples
     """
-    pass
+    entity_type = self.universe.entity_type_universe.GetEntityType(
+        namespace,
+        entity_type_name
+    )
+    qualified_fields = entity_type.GetAllFields()
+    field_optwrappers = [
+        entity_type.GetField(field) for field in qualified_fields
+    ]
+    entity_type_fields = [
+        ETF(
+            namespace_name=field.field.namespace,
+            standard_field_name=field.field.field[0:],
+            is_optional=field.optional,
+            increment=field.field.increment
+        )
+        for field in field_optwrappers
+    ]
+    if required_only:
+      fields_temp = entity_type_fields
+      entity_type_fields = []
+      for field in fields_temp:
+        if not field.isOptional():
+          entity_type_fields.append(field)
+          print(field)
+
+    return entity_type_fields
 
   def GetEntityTypesFromFields(self,
                                field_list: List[StandardField],
