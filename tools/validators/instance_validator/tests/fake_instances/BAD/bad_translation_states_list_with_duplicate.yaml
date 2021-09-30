@@ -12,6 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# This config file is invalid because the telemetry value "1" is mapped to
+# both OPEN and CLOSED states of exhaust_air_damper_status.
+
 DMP_EDM-17:
   type: HVAC/DMP_EDM
   id: CDM/123456
