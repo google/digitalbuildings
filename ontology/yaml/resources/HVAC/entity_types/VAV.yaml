@@ -428,6 +428,7 @@ DMP_US_MTV_1708_2: # Is Actually a VAV
   - INCOMPLETE
 
 VAV_SD_ZTC_AHAC:
+  id: "11563037810445254656"
   description: "Single duct VAV with zone set-point control and after hours push button activation."
   is_canonical: true
   implements:
@@ -437,6 +438,7 @@ VAV_SD_ZTC_AHAC:
   - AHAC
 
 VAV_ZTC_DTM:
+  id: "16219759825146347520"
   description: "Single duct VAV with zone set-point control and discharge temperature monitoring."
   is_canonical: true
   implements:
@@ -462,4 +464,3 @@ VAV_RD_CO2C:
   - VAV
   - RD
   - CO2C
-

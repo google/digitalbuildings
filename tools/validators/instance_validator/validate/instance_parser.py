@@ -11,7 +11,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-"""Parses and validates YAML instance files for syntax"""
+"""Parses and validates YAML instance files for syntax."""
 from __future__ import print_function
 
 import collections
@@ -154,8 +154,7 @@ _TRANSLATION_SCHEMA = syaml.MapPattern(
         syaml.Optional(STATES_KEY):
             syaml.MapPattern(
                 syaml.Regex(u'^[A-Z][A-Z_]+'),
-                syaml.Str() | syaml.Seq(syaml.Str())
-            ),
+                syaml.Str() | syaml.Seq(syaml.Str())),
         syaml.Optional(UNITS_KEY):
             syaml.Map({
                 UNIT_NAME_KEY: syaml.Str(),

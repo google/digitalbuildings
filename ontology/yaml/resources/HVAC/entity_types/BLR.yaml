@@ -282,6 +282,7 @@ BLR_US_SVL_BORD1212_1:
 # WIP
 ##################
 BLR_SS_SWTC_WDPC:
+  id: "17823041292490244096"
   description: "Boiler with supply water temperature and pressure control"
   is_canonical: true
   implements:

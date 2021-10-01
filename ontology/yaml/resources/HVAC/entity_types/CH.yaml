@@ -506,6 +506,7 @@ CH_US_SBO_901_1:
   - cooling_percentage_sensor
 
 CH_SS_CHWDT_CWDT_CWDPM_CHWDPM_REFM:
+  id: "15066838320539500544"
   description: "Non-standard type for SYD ODI chillers"
   is_canonical: false
   implements:
@@ -518,6 +519,7 @@ CH_SS_CHWDT_CWDT_CWDPM_CHWDPM_REFM:
   - REFM
 
 CH_SS_CHWDT2X_CWDT_CWDPM_CHWDPM_REFM:
+  id: "2835061732601233408"
   description: "Non-standard type for SYD ODI chillers"
   is_canonical: false
   implements:
@@ -559,4 +561,3 @@ CH_SS_CHWSWISOVM_CWSISOVM_CWRISOVM_CHWRWISOVM_CHWDT:
   opt_uses:
   - lost_power_alarm
   - run_mode
-
