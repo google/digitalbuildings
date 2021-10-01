@@ -1,49 +1,28 @@
 """Testing module for ontology.py"""
 from absl.testing import absltest
 
-from yamlformat.validator.external_file_lib import RecursiveDirWalk
-from yamlformat.validator import presubmit_validate_types_lib
 from yamlformat.validator import namespace_validator as nv
 
 from lib.ontology_wrapper import OntologyWrapper
 from lib.model import EntityTypeField
-from lib.tests import test_constants
+from lib.model import StandardField
+
+from validate.universe_helper.config_universe import create_simplified_universe
 
 class OntologyTest(absltest.TestCase):
 
   def setUp(self):
     super(OntologyTest, self).setUp()
-    self.yaml = RecursiveDirWalk(test_constants.ONTOLOGY_ROOT)
-    self.config = presubmit_validate_types_lib.SeparateConfigFiles(self.yaml)
-    self.universe = presubmit_validate_types_lib.BuildUniverse(self.config)
+    self.universe = create_simplified_universe()
     nv.NamespaceValidator(self.universe.GetEntityTypeNamespaces())
     self.ontology = OntologyWrapper(self.universe)
 
   def testGetAllFieldsForTypeName(self):
     expected_output = [
-        EntityTypeField('', 'zone_use_label', True),
-        EntityTypeField('', 'run_command', True),
         EntityTypeField('', 'manufacturer_label', True),
         EntityTypeField('', 'model_label', True),
-        EntityTypeField('', 'supply_air_cooling_flowrate_capacity', True),
-        EntityTypeField(
-            '',
-            'supply_air_ventilation_flowrate_requirement',
-            True
-        ),
-        EntityTypeField('', 'supply_air_heating_flowrate_capacity', True),
-        EntityTypeField('', 'cooling_thermal_power_capacity', True),
-        EntityTypeField('', 'supply_air_temperature_sensor', True),
-        EntityTypeField('', 'supply_air_flowrate_sensor', False),
-        EntityTypeField('', 'supply_air_flowrate_setpoint', False),
-        EntityTypeField('', 'supply_air_damper_percentage_command', False),
-        EntityTypeField('', 'discharge_air_temperature_sensor', True),
-        EntityTypeField('', 'zone_air_relative_humidity_sensor', True),
-        EntityTypeField('', 'zone_air_temperature_sensor', False),
-        EntityTypeField('', 'zone_air_cooling_temperature_setpoint', False),
-        EntityTypeField('', 'zone_air_heating_temperature_setpoint', False),
-        EntityTypeField('', 'zone_air_co2_concentration_sensor', False),
-        EntityTypeField('', 'zone_air_co2_concentration_setpoint', False)
+        EntityTypeField('', 'exhaust_air_damper_command', False),
+        EntityTypeField('', 'exhaust_air_damper_status', False)
     ]
     expected_output_sorted = sorted(
         expected_output,
@@ -53,7 +32,7 @@ class OntologyTest(absltest.TestCase):
 
     function_output = self.ontology.GetFieldsForTypeName(
         'HVAC',
-        'VAV_SD_DSP_CO2C'
+        'DMP_EDM'
     )
     function_output_sorted = sorted(
         function_output,
@@ -65,14 +44,8 @@ class OntologyTest(absltest.TestCase):
 
   def testGetRequiredFieldsForTypeName(self):
     expected_output = [
-        EntityTypeField('', 'supply_air_flowrate_sensor', False),
-        EntityTypeField('', 'supply_air_flowrate_setpoint', False),
-        EntityTypeField('', 'supply_air_damper_percentage_command', False),
-        EntityTypeField('', 'zone_air_temperature_sensor', False),
-        EntityTypeField('', 'zone_air_cooling_temperature_setpoint', False),
-        EntityTypeField('', 'zone_air_heating_temperature_setpoint', False),
-        EntityTypeField('', 'zone_air_co2_concentration_sensor', False),
-        EntityTypeField('', 'zone_air_co2_concentration_setpoint', False)
+        EntityTypeField('', 'exhaust_air_damper_command', False),
+        EntityTypeField('', 'exhaust_air_damper_status', False)
     ]
     expected_output_sorted = sorted(
         expected_output,
@@ -82,7 +55,7 @@ class OntologyTest(absltest.TestCase):
 
     function_output = self.ontology.GetFieldsForTypeName(
         namespace='HVAC',
-        entity_type_name='VAV_SD_DSP_CO2C',
+        entity_type_name='DMP_EDM',
         required_only=True
     )
     function_output_sorted = sorted(
@@ -94,12 +67,12 @@ class OntologyTest(absltest.TestCase):
     self.assertEqual(function_output_sorted, expected_output_sorted)
 
   def testValidField(self):
-    valid_test_field = StandardField('', 'supply_air_flowrate_sensor')
+    valid_test_field = StandardField('', 'zone_use_label')
     function_output = self.ontology.IsFieldValid(valid_test_field)
     self.assertTrue(function_output)
 
   def testInvalidField(self):
-    invalid_test_field = StandardField('HVAC', 'supply_air_flowrate_sensor')
+    invalid_test_field = StandardField('HVAC', 'exhaust_air_damper_command')
     function_output = self.ontology.IsFieldValid(invalid_test_field)
     self.assertFalse(function_output)
 
