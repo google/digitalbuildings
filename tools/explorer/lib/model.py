@@ -110,8 +110,8 @@ class EntityTypeField(StandardField):
 
 
 class Match(object):
-  """A class to hold the information about a match between a list of EntityTypeFields objects 
-  and an EntityType object.
+  """A class to hold the information about a match between a list of
+  EntityTypeFields objects and an EntityType object.
 
   Attributes: field_list entity_type match_type
 
