@@ -15,7 +15,7 @@
 
 import enum
 
-from typing import Dict
+from typing import Dict, List, Union
 
 
 class PresenceMode(enum.Enum):
@@ -95,14 +95,21 @@ class MultiStateValue(DefinedField):
     states: Dictionary from standard states to expected telemetry states. States
       should be qualified like fields, as would be required in a valid building
       config file.
+    raw_values: Dictionary from telemetry states to standard states.
   """
 
   def __init__(self, std_field_name: str, raw_field_name: str,
-               states: Dict[str, str]):
+               states: Dict[str, Union[str, List[str]]]):
     super().__init__(std_field_name, raw_field_name)
     if not states:
       raise ValueError('states cannot be empty')
     self.states = states
+    self.raw_values = {}
+    for state, value in states.items():
+      if isinstance(value, list):
+        self.raw_values.update({v: state for v in value})
+      else:
+        self.raw_values[value] = state
 
 
 class DimensionalValue(DefinedField):

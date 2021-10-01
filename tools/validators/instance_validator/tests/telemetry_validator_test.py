@@ -106,11 +106,16 @@ with open(
     encoding='utf-8') as file:
   _MESSAGE_MULTIPLE_ERRORS = FakeMessage(_MESSAGE_ATTRIBUTES_1, file.read())
 
-  with open(
-      path.join(_TELEMETRY_PATH, 'telemetry_good_multistates.json'),
-      encoding='utf-8') as file:
-    _MESSAGE_GOOD_MULTIPLE_STATES = FakeMessage(_MESSAGE_ATTRIBUTES_4,
-                                                file.read())
+with open(
+    path.join(_TELEMETRY_PATH, 'telemetry_good_multistates.json'),
+    encoding='utf-8') as file:
+  _MESSAGE_GOOD_MULTIPLE_STATES = FakeMessage(_MESSAGE_ATTRIBUTES_4,
+                                              file.read())
+
+with open(
+    path.join(_TELEMETRY_PATH, 'telemetry_good_states_list.json'),
+    encoding='utf-8') as file:
+  _MESSAGE_GOOD_STATES_LIST = FakeMessage(_MESSAGE_ATTRIBUTES_2, file.read())
 
 # TODO: fix inconsistency between telemetry parser expecting a string,
 # but instance parser expecting a file
@@ -143,6 +148,10 @@ _ENTITY_NAME_4 = 'SDC_EXT-18'
 # A test entity to make sure that booleans are retrieved and validated.
 _ENTITIES_5 = _CreateEntityInstances('good_translation_multi_states.yaml')
 _ENTITY_NAME_5 = 'FAN-17'
+
+# A test entity with a field that maps multiple raw values to one state.
+_ENTITIES_6 = _CreateEntityInstances('good_translation_states_list.yaml')
+_ENTITY_NAME_6 = 'DMP_EDM-17'
 
 _POINT_NAME_1 = 'points.return_water_temperature_sensor.present_value'
 _POINT_NAME_2 = 'points.supply_water_temperature_sensor.present_value'
@@ -309,6 +318,17 @@ class TelemetryValidatorTest(absltest.TestCase):
                                                        ValidationCallback)
 
     validator.ValidateMessage(_MESSAGE_GOOD_MULTIPLE_STATES)
+
+  def testTelemetryValidatorOnMultiStateWithRawValueList(self):
+
+    def ValidationCallback(validator):
+      self.assertEmpty(validator.GetErrors())
+      self.assertTrue(validator.AllEntitiesValidated())
+
+    validator = telemetry_validator.TelemetryValidator(_ENTITIES_6, 1,
+                                                       ValidationCallback)
+
+    validator.ValidateMessage(_MESSAGE_GOOD_STATES_LIST)
 
 
 if __name__ == '__main__':
