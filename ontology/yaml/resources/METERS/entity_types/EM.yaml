@@ -99,6 +99,7 @@ EM_US_SVL_TC1_1:
   - average_inter_line_voltage_sensor
 
 EM_NONCANONICAL_1: 
+  id: "15021802324265795584"
   description: "SE PM5100 Meter"
   uses:
   - neutral_line_current_sensor

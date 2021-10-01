@@ -35,6 +35,7 @@ VLV_HWVM: # If we want to keep this, should match CHW valve (i.e. add RTM and DT
   - HWVM
 
 VLV_CHWPVM:
+  id: "9833655553534984192"
   description: "Chilled water pressure control valve."
   is_canonical: true
   implements:
@@ -42,6 +43,7 @@ VLV_CHWPVM:
   - CHWPVM
   
 VLV_HWPVM:
+  id: "12747484512443695104"
   description: "Heating water pressure control valve."
   is_canonical: true
   implements:
@@ -49,6 +51,7 @@ VLV_HWPVM:
   - HWPVM
   
 VLV_CDWPVM:
+  id: "8149309292898418688"
   description: "Condensing water pressure control valve."
   is_canonical: true
   implements:

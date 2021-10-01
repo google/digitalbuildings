@@ -10,10 +10,10 @@
 # distributed under the License is distributed on an AS IS BASIS,
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
-# limitations under the License
+# limitations under the License.
 
 ########################
-### Canonical Types  #
+### Canonical Types  ###
 ########################
 
 ### FAN RUN CONTROL ###
@@ -115,6 +115,7 @@ FAN_SS_CO2C:
   - CO2C
 
 FAN_ZTM_ZHM_FDPM:
+  id: "3492587278197325824"
   description: "Fan with zone temperature, zone humidity and filter monitoring"
   is_canonical: true
   implements:
@@ -292,6 +293,7 @@ FAN_SS_DRSM8X:
   - DRSM8X
 
 FAN_SS_EFVSC:
+  id: "3537623274471030784"
   description: "Exhaust fan with variable speed control."
   is_canonical: true
   implements:
@@ -300,6 +302,7 @@ FAN_SS_EFVSC:
   - EFVSC
   
 FAN_SS_FDPM:
+  id: "5483178313495085056"
   description: "Exhaust fan with filter monitoring."
   is_canonical: true
   implements:
@@ -325,6 +328,7 @@ FAN_SS_DPM_ZHM_ZTM:
   - control_status
   
 FAN_SS_VSC_SSPM_OAFM_FDPM:
+  id: "12715959315052101632"
   description: "Outside air fan with variable speed control, supply side pressure monitoring, outside air flow monitoring and filter monitoring."
   is_canonical: true
   implements:
@@ -336,6 +340,7 @@ FAN_SS_VSC_SSPM_OAFM_FDPM:
   - FDPM
 
 FAN_SS_VSC_ZTM_EFM:
+  id: "15053327521657389056"
   description: "General exhaust fan with variable speed control, zone temperature monitoring, and exhaust air flow monitoring."
   is_canonical: true
   implements:
