@@ -155,6 +155,7 @@ CT_US_SVL_MP3_1:
 
 
 CT_SS_VSC_SWTM:
+  id: "1186744268983631872"
   description: "Cooling tower with variable speed control and supply water temperature monitoring"
   is_canonical: false
   implements:

@@ -299,8 +299,9 @@ class EntityInstanceTest(absltest.TestCase):
     self.assertFalse(self.init_validator.Validate(instance))
 
   def testValidateGoodTranslationStatesList(self):
-    parsed = _Helper(
-      [path.join(_TESTCASE_PATH, 'GOOD', 'good_translation_states_list.yaml')])
+    parsed = _Helper([
+        path.join(_TESTCASE_PATH, 'GOOD', 'good_translation_states_list.yaml')
+    ])
     parsed = dict(parsed)
     entity = dict(parsed[list(parsed)[0]])
 
@@ -309,9 +310,10 @@ class EntityInstanceTest(absltest.TestCase):
     self.assertTrue(self.init_validator.Validate(instance))
 
   def testValidateBadTranslationStatesListWithDuplicate(self):
-    parsed = _Helper(
-      [path.join(_TESTCASE_PATH, 'BAD',
-                 'bad_translation_states_list_with_duplicate.yaml')])
+    parsed = _Helper([
+        path.join(_TESTCASE_PATH, 'BAD',
+                  'bad_translation_states_list_with_duplicate.yaml')
+    ])
     parsed = dict(parsed)
     entity = dict(parsed[list(parsed)[0]])
 
@@ -697,6 +699,7 @@ class EntityInstanceTest(absltest.TestCase):
                     unit_mappings={'no_units': 'no_units'}),
         })
     self.assertFalse(self.update_validator.Validate(entity))
+
 
 if __name__ == '__main__':
   absltest.main()

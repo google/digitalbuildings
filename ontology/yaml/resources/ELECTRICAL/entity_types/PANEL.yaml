@@ -13,6 +13,7 @@
 # limitations under the License.
 
 SWITCHBOARD:
+  id: "10455152302112112640"
   description: "Standard panel for holding electrical switching gear."
   is_canonical: true
   implements:

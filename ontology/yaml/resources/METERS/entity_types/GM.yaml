@@ -24,6 +24,7 @@ GM_STANDARD:
   - gas_temperature_sensor
 
 GM_PULSE:
+  id: "5140904741814927360"
   description: "Gas meter that operates by counting pulses, interpreted into flow and accumulated volume."
   implements:
   - GM
