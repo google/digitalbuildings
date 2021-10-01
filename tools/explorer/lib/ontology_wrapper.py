@@ -9,7 +9,7 @@ from yamlformat.validator.entity_type_manager import EntityTypeManager
 from yamlformat.validator.presubmit_validate_types_lib import ConfigUniverse
 
 from lib.model import StandardField
-from lib.model import EntityTypeField as ETF
+from lib.model import EntityTypeField
 from lib.model import Match
 
 class OntologyWrapper(object):
@@ -35,10 +35,12 @@ class OntologyWrapper(object):
     self.universe = universe
     self.manager = EntityTypeManager(self.universe)
 
-  def GetFieldsForTypeName(self,
-                           namespace: str,
-                           entity_type_name: str,
-                           required_only: bool = False) -> List[ETF]:
+  def GetFieldsForTypeName(
+      self,
+      namespace: str,
+      entity_type_name: str,
+      required_only: bool = False
+  ) -> List[EntityTypeField]:
     """Gets a list of fields for a given typename within a namespace.
 
     Args:
@@ -55,7 +57,7 @@ class OntologyWrapper(object):
         entity_type_name
     )
     entity_type_fields = [
-        ETF(
+        EntityTypeField(
             namespace_name=field.field.namespace,
             standard_field_name=field.field.field[0:],
             is_optional=field.optional,
@@ -64,17 +66,15 @@ class OntologyWrapper(object):
         for field in entity_type.GetAllFields().values()
     ]
     if required_only:
-      fields_temp = entity_type_fields
-      entity_type_fields = []
-      for field in fields_temp:
-        if not field.IsOptional():
-          entity_type_fields.append(field)
+      entity_type_fields = [
+          field for field in entity_type_fields if not field.IsOptional()
+      ]
 
     return entity_type_fields
 
   def _CreateMatch(
       self,
-      field_list: List[ETF],
+      field_list: List[EntityTypeField],
       entity_type: EntityType
   ) -> Match:
     """
@@ -87,7 +87,7 @@ class OntologyWrapper(object):
     fields, then the match is CLOSE. If the reverse is true, the the match is
     INCOMPLETE, as the ontology does not inherit all of the fields necessary.
     If the two sets are equal, then the match is EXACT. If the sets are
-    disjoint, the match is NONE. 
+    disjoint, the match is NONE.
 
     args:
       field_list: A list of EntityTypeField objects
@@ -98,9 +98,11 @@ class OntologyWrapper(object):
     """
     pass
 
-  def GetEntityTypesFromFields(self,
-                               field_list: List[ETF],
-                               general_type: str = None) -> List[EntityType]:
+  def GetEntityTypesFromFields(
+      self,
+      field_list: List[EntityTypeField],
+      general_type: str = None
+  ) -> List[EntityType]:
     """Get a list of EntityType objects matching a list of StandardField tuples.
 
     Args:
@@ -117,8 +119,9 @@ class OntologyWrapper(object):
   def IsFieldValid(self, field: StandardField) -> bool:
     """A method to validate a field name against the ontology."""
     namespace_name = field.GetNamespaceName()
-    standard_field_name = self.universe.field_universe.IsFieldDefined(
-        namespace_name,
-        standard_field_name
+    standard_field_name = field.GetStandardFieldName()
+    validity = self.universe.field_universe.IsFieldDefined(
+        namespace_name=namespace_name,
+        fieldname=standard_field_name
     )
     return validity
