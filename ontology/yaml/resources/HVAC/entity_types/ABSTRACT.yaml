@@ -349,8 +349,7 @@ VSFC:
   uses:
   - speed_frequency_command
   - speed_frequency_sensor
-  implements:
-  - OPERATIONAL
+ 
 
 SFVSC:
   id: "16291356723812237312"
@@ -386,6 +385,7 @@ DFVSC:
   - OPERATIONAL
 
 DFVSC2X:
+  id: "2339665773590478848"
   description: "Variable speed control for discharge fans for 2 separate zones."
   is_abstract: true
   opt_uses:
@@ -1343,7 +1343,19 @@ CHWZTC:
   implements:
   - CONTROL
 
+CHWPVM:
+  id: "10410116305838407680"
+  description: "Chilled water pressure valve command and position monitoring (without regard to what controls it)."
+  is_abstract: true
+  opt_uses:
+  - chilled_water_flowrate_sensor
+  uses:
+  - chilled_water_valve_percentage_sensor
+  implements:
+  - OPERATIONAL
+
 CHWZTC2X:
+  id: "12977168093439590400"
   description: "Chilled water valve control on zone side (ZTC) for two separate zones. Chilled water valve controls to the worst zone."
   is_abstract: true
   opt_uses:
@@ -2017,6 +2029,18 @@ PHWSC:
   - supply_air_temperature_sensor
   implements:
   - CONTROL
+  
+HWPVM:
+  id: "5829955484802613248"
+  description: "Heating water pressure valve command and position monitoring (without regard to what controls it)."
+  is_abstract: true
+  opt_uses:
+  - heating_water_flowrate_sensor
+  uses:
+  - heating_water_valve_percentage_sensor
+  implements:
+  - OPERATIONAL
+  
 
 HTDC:
   id: "656732385395605504"
@@ -2133,6 +2157,7 @@ HT2ZC:
   - CONTROL
 
 HT2XZTC2X:
+  id: "18111271668641955840"
   description: "Two separate heating sections going to two different zones on the device, with independent heating control."
   is_abstract: true
   opt_uses:
@@ -2586,6 +2611,17 @@ CDWISOVPM:
   implements:
   - MONITORING
 
+CDWPVM:
+  id: "7446747751028621312"
+  description: "Condensing water pressure valve command and position monitoring (without regard to what controls it)."
+  is_abstract: true
+  opt_uses:
+  - condensing_water_flowrate_sensor
+  uses:
+  - condensing_water_valve_percentage_sensor
+  implements:
+  - OPERATIONAL
+
 BYPVPM:
   id: "9735989234174525440"
   description: "Bypass water valve percentage monitoring."
@@ -2793,7 +2829,18 @@ DDCO:
   implements:
   - CONTROL
 
+FDPM2X:
+  id: "871492295067697152"
+  description: "Filter pressure monitoring (2 sensors)."
+  is_abstract: true
+  uses:
+  - filter_differential_pressure_sensor_1
+  - filter_differential_pressure_sensor_2
+  implements:
+  - MONITORING
+
 FDPM3X:
+  id: "16670119787883397120"
   description: "Filter pressure monitoring (3 sensors)."
   is_abstract: true
   uses:
@@ -3855,7 +3902,60 @@ DRSM8X:
   - dryer_run_status_8
   implements:
   - MONITORING
+  
+AHAC:
+  id: "529218723387539456"
+  description: "Tag to indicate an after hours activation method e.g. push button associated with this device."
+  is_abstract: true
+  uses:  
+  - user_occupancy_override_status
+  - zone_occupancy_status
+  implements:
+  - OPERATIONAL
+  
+DFFC:
+  id: "10094864331922472960"
+  description: "Discharge fan flow control"
+  is_abstract: true
+  uses:
+  - discharge_fan_run_command
+  - discharge_fan_run_status
+  - discharge_fan_speed_percentage_command
+  - discharge_air_flowrate_setpoint
+  - discharge_air_flowrate_sensor
+  implements:
+  - CONTROL
 
+EFM:
+  id: "1682140227994386432"
+  description: "Exhaust air flow monitoring"
+  is_abstract: true
+  uses:
+  - exhaust_air_flowrate_sensor  
+  implements:
+  - OPERATIONAL
+
+SWTM:
+  id: "12058433769456009216"
+  description: "Supply water temperature monitoring."
+  is_abstract: true
+  implements:
+  - MONITORING
+  opt_uses:
+  - cooling_request_count
+  - heating_request_count
+  - return_water_temperature_sensor
+  uses:
+  - supply_water_temperature_sensor  
+
+CWDPM:
+  id: "16174723828872642560"
+  description: "Differential pressure monitoring for condenser water."
+  is_abstract: true
+  implements:
+  - MONITORING
+  uses:
+  - condensing_water_differential_pressure_sensor
 
 DICM:
   id: "4971562358951378944"
@@ -4075,6 +4175,7 @@ CSWTC:
   - condensing_supply_water_temperature_sensor
 
 HTWHLSTC:
+  id: "5798430287411019776"
   description: "Heat wheel which controls supply temperature using speed control."
   is_abstract: true
   implements:
@@ -4172,3 +4273,15 @@ PHRU:
   opt_uses:
   - exhaust_air_temperature_sensor
   - outside_air_temperature_sensor
+
+CHWDT2X:
+  id: "17588854111866978304"
+  description: "Temperature differential across chilled water with two sets of sensors."
+  is_abstract: true
+  implements:
+  - MONITORING
+  uses:
+  - chilled_return_water_temperature_sensor_1
+  - chilled_supply_water_temperature_sensor_1
+  - chilled_return_water_temperature_sensor_2
+  - chilled_supply_water_temperature_sensor_2

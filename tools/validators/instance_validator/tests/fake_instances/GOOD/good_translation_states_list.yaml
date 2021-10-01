@@ -12,23 +12,28 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-GM_STANDARD:
-  id: "9159528481871101952"
-  description: "The typical building gas meter."
-  implements:
-  - GM
-  is_canonical: true
-  uses:
-  - gas_flowrate_sensor
-  - gas_volume_accumulator
-  - gas_temperature_sensor
+DMP_EDM-17:
+  type: HVAC/DMP_EDM
+  id: CDM/123456
+  cloud_device_id: "foobar"
+  translation:
+    exhaust_air_damper_command:
+      present_value: "points.exhaust_air_damper_command.present_value"
+      states:
+        OPEN:
+        - "1"
+        - "2"
+        CLOSED:
+        - "0"
+        - "3"
+    exhaust_air_damper_status:
+      present_value: "points.exhaust_air_damper_status.present_value"
+      states:
+        OPEN:
+        - "1"
+        - "2"
+        CLOSED: "0"
 
-GM_PULSE:
-  id: "5140904741814927360"
-  description: "Gas meter that operates by counting pulses, interpreted into flow and accumulated volume."
-  implements:
-  - GM
-  is_canonical: true
-  uses:
-  - gas_flowrate_sensor
-  - gas_volume_accumulator
+UK-LON-S2:
+  type: FACILITIES/BUILDING
+  id: FACILITIES/123456

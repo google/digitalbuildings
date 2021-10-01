@@ -780,7 +780,6 @@ literals:
 - mixed_air_relative_humidity_sensor
 - mixed_air_dewpoint_temperature_sensor
 
-
 # Added for TW
 - supply_air_isolation_damper_closed_status
 - supply_air_isolation_damper_open_status
@@ -938,6 +937,20 @@ literals:
 - potable_water_low_temperature_sensor
 - heating_supply_water_temperature_setpoint
 
+#Discharge air flow control
+- discharge_air_flowrate_setpoint
+
+#Electrical meter fields
+- neutral_line_current_sensor # A measure of current on the neutral line
+- apparent_energy_accumulator
+
+#Lighting controller battery status
+- emergency_battery_status
+
+# Condensing water monitoring
+- condensing_water_differential_pressure_sensor
+- condensing_water_differential_pressure_setpoint
+
 # Heat Wheel Telemetry Fields
 - heat_wheel_speed_percentage_sensor
 - heat_wheel_speed_percentage_command
@@ -959,3 +972,5 @@ literals:
 - exhaust_air_isolation_damper_status:
   - OPEN
   - CLOSED
+
+- lighting_percentage_sensor # For relative ranged illuminance inputs.
