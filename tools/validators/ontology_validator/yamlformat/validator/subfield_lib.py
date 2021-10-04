@@ -11,18 +11,14 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 """Classes and methods for working with Carson Subfields."""
 
 from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
-import re
-
-
-
 import enum
+import re
 
 from yamlformat.validator import base_lib
 from yamlformat.validator import config_folder_lib
@@ -94,10 +90,6 @@ class SubfieldFolder(config_folder_lib.ConfigFolder):
 
   Class contains all the context information and methods to validate subfields.
 
-  Args:
-    folderpath: required string with full path to the subfield folder.
-        Path should be relative to google3/ and have no leading or trailing /.
-
   Attributes:
     local_namespace: object representing the contents of the local namespace
 
@@ -106,6 +98,12 @@ class SubfieldFolder(config_folder_lib.ConfigFolder):
   """
 
   def __init__(self, folderpath):
+    """Init.
+
+    Args:
+      folderpath: required string with full path to the subfield folder. Path
+        should be relative to google3/ and have no leading or trailing /.
+    """
     super(SubfieldFolder, self).__init__(folderpath,
                                          base_lib.ComponentType.SUBFIELD)
     self.local_namespace = SubfieldNamespace(self._namespace_name)
@@ -164,8 +162,6 @@ class SubfieldFolder(config_folder_lib.ConfigFolder):
 class SubfieldNamespace(findings_lib.Findings):
   """Class representing a namespace of subfields.
 
-  Args:
-    namespace: required string representing the name of the namespace.
   Attributes:
     subfields: a dictionary of subfield strings to subfield objects defined in
       this namespace.
@@ -176,6 +172,11 @@ class SubfieldNamespace(findings_lib.Findings):
   """
 
   def __init__(self, namespace):
+    """Init.
+
+    Args:
+      namespace: required string representing the name of the namespace.
+    """
     super(SubfieldNamespace, self).__init__()
     self.namespace = namespace
     self.subfields = {}
@@ -237,17 +238,15 @@ class SubfieldNamespace(findings_lib.Findings):
 class Subfield(findings_lib.Findings):
   """Namespace-unaware class representing an individual subfield definition.
 
-  Args:
-    name: required string representing the subfield.
-    category: required SubfieldCategory value representing the subfield type.
-    description: optional (for now) string semantic definition for the subfield.
-    context: optional object with the config file location of this subfield.
-
   Attributes:
-    context: the config file context for where this subfield was defined
-    name: the full name (without namespace) of this subfield
-    description: explanation of what this subfield represents
-    category: the category of this subfield from SubfieldCategory enum
+    name: the full name (without namespace) of this subfield. Required string
+      representing the subfield.
+    category: the category of this subfield from SubfieldCategory enum. Required
+      SubfieldCategory value representing the subfield type.
+    description: explanation of what this subfield represents. Optional (for
+      now) string semantic definition for the subfield.
+    context: the config file context for where this subfield was defined.
+      Optional object with the config file location of this subfield.
 
   Returns:
     An instance of the Subfield class.
@@ -263,8 +262,7 @@ class Subfield(findings_lib.Findings):
     if not isinstance(name, str):
       self.AddFinding(findings_lib.IllegalKeyTypeError(name, context))
     elif not _SUBFIELD_NAME_VALIDATOR.match(name):
-      self.AddFinding(
-          findings_lib.IllegalCharacterError(name, context))
+      self.AddFinding(findings_lib.IllegalCharacterError(name, context))
     if not self.description:
       self.AddFinding(
           findings_lib.MissingSubfieldDescriptionWarning(
