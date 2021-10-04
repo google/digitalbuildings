@@ -18,9 +18,10 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
+from absl.testing import absltest
+
 from yamlformat.validator import findings_lib
 from yamlformat.validator import unit_lib
-from absl.testing import absltest
 
 _GOOD_PATH = '{0}/units/anyfolder'.format('mynamespace')
 
@@ -104,18 +105,19 @@ class UnitLibTest(absltest.TestCase):
 
   def testUnitFolderAddFromConfigMultipleNoUnits(self):
     doc = {
-      'powerfactor': [
-        {'no_units': 'STANDARD'},
-        'another_one'
-      ],
-      'voltageratio': [{'no_units': 'STANDARD'}],
+        'powerfactor': [{
+            'no_units': 'STANDARD'
+        }, 'another_one'],
+        'voltageratio': [{
+            'no_units': 'STANDARD'
+        }],
     }
     folder = unit_lib.UnitFolder(_GOOD_PATH)
     folder.AddFromConfig([doc], '{0}/file.yaml'.format(_GOOD_PATH))
     units = folder.local_namespace.units
 
     self.assertEmpty(folder.GetFindings())
-    expected = ['no_units_powerfactor', 'another_one','no_units_voltageratio']
+    expected = ['no_units_powerfactor', 'another_one', 'no_units_voltageratio']
     self.assertCountEqual(expected, units)
 
   def testUnitFolderAddFromConfigInvalidUnitFormat(self):

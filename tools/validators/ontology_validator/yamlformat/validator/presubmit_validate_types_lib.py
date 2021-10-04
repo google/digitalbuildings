@@ -53,7 +53,7 @@ class ConfigUniverse(findings_lib.Findings):
 
   Contains all valid components of the ontology
 
-  Args:
+  Attributes:
     entity_type_universe: config for entity types
     field_universe: config for fields
     subfield_universe: config for subfields
@@ -80,12 +80,13 @@ class ConfigUniverse(findings_lib.Findings):
       print('UnitUniverse undefined in ConfigUniverse')
       return None
 
-    unitsByMeasurement = dict()
+    units_by_measurement = dict()
     units = self.unit_universe.GetUnitsMap('')
-    for key, unit in units.items():
+    for unit in units.values():
       unit_name = 'no_units' if unit.name.startswith('no_units_') else unit.name
-      unitsByMeasurement.setdefault(unit.measurement_type, []).append(unit_name)
-    return unitsByMeasurement
+      units_by_measurement.setdefault(unit.measurement_type,
+                                      []).append(unit_name)
+    return units_by_measurement
 
   def _ArrangeStatesByField(self) -> Dict[str, List[str]]:
     # TODO(b/188241455) does this method need to exist?
@@ -93,14 +94,14 @@ class ConfigUniverse(findings_lib.Findings):
       print('FieldUniverse undefined in ConfigUniverse')
       return None
 
-    statesByField = dict()
+    states_by_field = dict()
 
     fields = self.field_universe.GetFieldsMap()
     if fields:
       for key, element in fields.items():
         if element.states:
-          statesByField[key] = element.states
-    return statesByField
+          states_by_field[key] = element.states
+    return states_by_field
 
   def _GetDynamicFindings(self, filter_old_warnings):
     findings = []
@@ -132,6 +133,9 @@ class ConfigUniverse(findings_lib.Findings):
   def GetEntityTypeNamespace(self, namespace_name):
     """Get namespace object by namespace_name in this universe if defined.
 
+    Args:
+      namespace_name: the namespace of the type.
+
     Returns:
       A namespace object or None if not defined
     """
@@ -142,6 +146,10 @@ class ConfigUniverse(findings_lib.Findings):
 
   def GetEntityType(self, namespace_name, typename):
     """Finds entity_type by namespace and typename and returns it or None.
+
+    Args:
+      namespace_name: the namespace name of the type.
+      typename: the name of the type.
 
     Returns:
       An entity_type or None if not defined
@@ -701,7 +709,7 @@ def _PrintType(ns, et):
 
 
 def PrintFindings(findings, filter_text):
-  """Prints the findings of the ontology validation
+  """Prints the findings of the ontology validation.
 
   Args:
     findings: a list of Finding objects.

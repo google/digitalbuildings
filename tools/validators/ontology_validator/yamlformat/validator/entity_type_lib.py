@@ -26,8 +26,7 @@ from yamlformat.validator import config_folder_lib
 from yamlformat.validator import field_lib
 from yamlformat.validator import findings_lib
 
-ENTITY_TYPE_NAME_REGEX = re.compile(
-    r'^[a-zA-Z][a-zA-Z0-9]*(?:_[a-zA-Z0-9]+)*$')
+ENTITY_TYPE_NAME_REGEX = re.compile(r'^[a-zA-Z][a-zA-Z0-9]*(?:_[a-zA-Z0-9]+)*$')
 FIELD_INCREMENT_STRIPPER_REGEX = re.compile(
     r'(^[a-z][a-z0-9]*(?:_[a-z][a-z0-9]*)*)((?:_[0-9]+)+)$')
 
@@ -92,12 +91,15 @@ class EntityTypeUniverse(findings_lib.Findings):
   Attributes;
     namespace_folder_map: a map of namespace names to EntityTypeFolders.
     type_namespaces_map: a map of type names to TypeNamespaces.
-    type_ids_map: maps type IDs to entity types. Contains all valid types w/IDs
-  Args:
-    entity_type_folders: list of EntityTypeFolder objects parsed from files.
+    type_ids_map: maps type IDs to entity types. Contains all valid types w/IDs.
   """
 
   def __init__(self, entity_type_folders):
+    """Init.
+
+    Args:
+      entity_type_folders: list of EntityTypeFolder objects parsed from files.
+    """
     super(EntityTypeUniverse, self).__init__()
     self.namespace_folder_map = {}
     self.type_namespaces_map = {}
@@ -179,16 +181,19 @@ class EntityTypeFolder(config_folder_lib.ConfigFolder):
   Class fully validates all entity types defined within the namespace folder,
     collects issues found, and stores all valid entity types.
 
-  Args:
-    folderpath: required string with full path to the folder containing entity
-      type files. Path should be relative to google3/ and have no leading or
-      trailing /.
-    field_universe: optional FieldsUniverse object.
   Attributes:
     local_namespace: TypeNamespace object representing this namespace.
   """
 
   def __init__(self, folderpath, field_universe=None):
+    """Init.
+
+    Args:
+      folderpath: required string with full path to the folder containing entity
+        type files. Path should be relative to google3/ and have no leading or
+        trailing /.
+      field_universe: optional FieldsUniverse object.
+    """
     super(EntityTypeFolder, self).__init__(folderpath,
                                            base_lib.ComponentType.ENTITY_TYPE)
     self.local_namespace = TypeNamespace(self._namespace_name, field_universe)
@@ -458,17 +463,6 @@ def BuildQualifiedField(opt_tuple):
 class EntityType(findings_lib.Findings):
   """Creates an EntityType object from a set of values describing the type.
 
-  Args:
-    filepath: string. google3 path to the file defining the type.
-    begin_line_number: int. Starting line number for the entity type definition.
-    typename: required string.
-    description: required string.
-    parents: list of parent typename strings.
-    local_field_tuples: list of OptWrapper tuples
-    inherited_fields_expanded: boolean. Should be false at init.
-    is_canonical: boolean indicating if this is a curated canonical type.
-    uid: the database ID string of this type if uploaded
-    namespace: a reference to the namespace object the entity belongs to
   Attributes:
     file_context: FileContext object containing file info.
     typename: string.
@@ -498,7 +492,22 @@ class EntityType(findings_lib.Findings):
                is_canonical=False,
                uid=None,
                namespace=None):
+    """Init.
 
+    Args:
+       begin_line_number: int. Starting line number for the entity type
+       definition.
+       filepath: string. google3 path to the file defining the type.
+       typename: required string.
+       description: required string.
+       parents: list of parent typename strings.
+       local_field_tuples: list of OptWrapper tuples
+       is_abstract: boolean indicating if this is an abstract type.
+       inherited_fields_expanded: boolean. Should be false at init.
+       is_canonical: boolean indicating if this is a curated canonical type.
+       uid: the database ID string of this type if uploaded
+       namespace: a reference to the namespace object the entity belongs to
+    """
     super(EntityType, self).__init__()
 
     self.file_context = findings_lib.FileContext(

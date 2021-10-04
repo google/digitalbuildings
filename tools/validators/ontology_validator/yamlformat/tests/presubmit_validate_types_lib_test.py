@@ -97,6 +97,18 @@ class PresubmitValidateTypesTest(absltest.TestCase):
                    states=tuple(),
                    type_defs=tuple(),
                    units=tuple()):
+    """Creates Config for the tests.
+
+    Args:
+      fields: the necessary fields.
+      subfields: the subfields.
+      states: the states.
+      type_defs: type definitions.
+      units: units for tests.
+
+    Returns:
+       created config.
+    """
     # Config namedtuple
     return presubmit_validate_types_lib.Config(
         fields=fields,
@@ -230,11 +242,12 @@ class PresubmitValidateTypesTest(absltest.TestCase):
 
   def testConfigUniverseGetUnitsForMeasurementMultipleNoUnits(self):
     doc = {
-      'powerfactor': [
-        {'no_units': 'STANDARD'},
-        'another_one'
-      ],
-      'voltageratio': [{'no_units': 'STANDARD'}],
+        'powerfactor': [{
+            'no_units': 'STANDARD'
+        }, 'another_one'],
+        'voltageratio': [{
+            'no_units': 'STANDARD'
+        }],
     }
     folder = unit_lib.UnitFolder('units/anyfolder')
     folder.AddFromConfig([doc], 'units/anyfolder/units.yaml')

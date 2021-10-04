@@ -97,3 +97,17 @@ HX_CHWDT_CWRISOVPM_CHWRWISOVPM:
   - CHWDT
   - CWRISOVPM
   - CHWRWISOVPM
+
+HX_VSC_SSPC_SFM_STM_RTM_OA_FDPM2X:
+  id: "10905512264849162240"
+  description: "Air to air fan forced heat exchanger with airflow, temperature, and filter monitoring."
+  is_canonical: true
+  implements:
+  - HX
+  - VSC
+  - SSPC
+  - SFM
+  - STM
+  - RTM
+  - OA
+  - FDPM2X
