@@ -57,6 +57,7 @@ BM:
   - battery_charge_status
 
 IM:
+  id: "16206249026264236032"
   description: "Individual illuminance sensor monitoring, not used for control"
   is_abstract: true
   uses:

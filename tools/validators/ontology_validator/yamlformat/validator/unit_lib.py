@@ -11,7 +11,6 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 """Classes and methods for working with units in the ontology."""
 
 from __future__ import absolute_import
@@ -61,20 +60,22 @@ class UnitFolder(config_folder_lib.ConfigFolder):
 
   Class contains all the context information and methods to validate units.
 
-  Args:
-    folderpath: required string with full path to the folder containing units.
-      Path should be relative to google3/ and have no leading or trailing /.
-    parent_namespace:
-      object containing global namepsace information. When working in the global
-          namespace folder, this should be None.
-    local_subfields:
-      required map of subfield keys to Subfields for the local namespace.
   Attributes:
     local_namespace: object representing the contents of the local namespace
     parent_namespace: object representing the contents of the global namespace
   """
 
   def __init__(self, folderpath, parent_namespace=None, local_subfields=None):
+    """Init.
+
+    Args:
+      folderpath: required string with full path to the folder containing units.
+        Path should be relative to google3/ and have no leading or trailing /.
+      parent_namespace: object containing global namepsace information. When
+        working in the global namespace folder, this should be None.
+      local_subfields: required map of subfield keys to Subfields for the local
+        namespace.
+    """
     super(UnitFolder, self).__init__(folderpath, base_lib.ComponentType.UNIT)
     self.local_namespace = UnitNamespace(self._namespace_name, parent_namespace,
                                          local_subfields)
@@ -136,21 +137,24 @@ class UnitFolder(config_folder_lib.ConfigFolder):
 class UnitNamespace(findings_lib.Findings):
   """Class representing a namespace of units.
 
-  Args:
-    namespace: required string representing the name of the namespace.
-    parent_namespace: global UnitNamespace, or None if this is the
-      global namespace.
-    subfields: optional map of subfield names to Subfields. No validation
-      of subfields will be performed if this is None.
   Attributes:
     namespace: string name of this namespace.
-    parent_namespace: global UnitNamespace, or None if this is the
-      global namespace.
+    parent_namespace: global UnitNamespace, or None if this is the global
+      namespace.
     subfields: map of subfield names to Subfields defined in this namespace.
     units: a map from unit names to Unit objects defined in this namespace.
   """
 
   def __init__(self, namespace, parent_namespace=None, subfields=None):
+    """Init.
+
+    Args:
+      namespace: required string representing the name of the namespace.
+      parent_namespace: global UnitNamespace, or None if this is the global
+        namespace.
+      subfields: optional map of subfield names to Subfields. No validation of
+        subfields will be performed if this is None.
+    """
     super(UnitNamespace, self).__init__()
     self.namespace = namespace
     self.parent_namespace = parent_namespace
@@ -212,11 +216,6 @@ class UnitNamespace(findings_lib.Findings):
 class Unit(findings_lib.Findings):
   """Namespace-unaware class representing an individual unit definition.
 
-  Args:
-    name: required string name for the unit
-    measurement_type: required string indicating the unit measurement type
-    is_standard: whether this is the standard unit for the measurement type
-    context: optional object with the config file location of this unit.
   Attributes:
     name: the full name (without namespace) of this unit
     measurement_type: the unit measurement type
@@ -225,6 +224,14 @@ class Unit(findings_lib.Findings):
   """
 
   def __init__(self, name, measurement_type, is_standard=False, context=None):
+    """Init.
+
+    Args:
+      name: required string name for the unit
+      measurement_type: required string indicating the unit measurement type
+      is_standard: whether this is the standard unit for the measurement type
+      context: optional object with the config file location of this unit.
+    """
     super(Unit, self).__init__()
     self.name = name
     self.measurement_type = measurement_type

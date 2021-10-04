@@ -495,6 +495,7 @@ FCU_DFSS_DSP_HTDC_CHWDC:
   - CHWDC
 
 FCU_DFSS_DFVSC_DSP_HTDC_CHWDC_FDPM:
+  id: "2371190970982072320"
   description: "Hydronic variable speed fan coil with electric reheat (zone control)."
   is_canonical: true
   implements:
@@ -758,6 +759,7 @@ FCU_DFMSS_DSP_ZHM_RTM_CHWZC_CHWDT:
   - CHWDT
 
 FCU_SS_ZTM:
+  id: "11594563007836848128"
   description: "FCU with zone temperature monitoring and start/stop control."
   is_canonical: true
   implements:
@@ -766,6 +768,7 @@ FCU_SS_ZTM:
   - ZTM
 
 FCU_HPZTC_CO2C_FDPM:
+  id: "3753796056584814592"
   description: "Heat pump with zone temperature and CO2 control and filter monitoring."
   is_canonical: true
   implements:
@@ -1191,6 +1194,7 @@ FCU_RHC_DFVSC_RTC:
   - low_return_air_relative_humidity_alarm
 
 FCU_CHWZTC2X_HT2XZTC2X_DFVSC2X:
+  id: "6982876989409460224"
   description: "FCU with single chilled water valve and 2 heaters serving 2 separate zones"
   is_canonical: false
   implements:

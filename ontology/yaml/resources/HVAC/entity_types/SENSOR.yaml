@@ -37,6 +37,7 @@ SENSOR_ZTM_ZHM:
   - ZHM
   
 SENSOR_OA:
+  id: "14364276778669703168"
   description: "Outside air property sensor (humidity, temperature)."
   is_canonical: true
   implements:
@@ -59,4 +60,3 @@ SENSOR_ZTM:
   implements:
     - /SENSOR # Inherits from global namespace
     - ZTM
-
