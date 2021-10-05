@@ -60,15 +60,15 @@ class OntologyWrapper(object):
         namespace,
         entity_type_name
     )
-    #entity_type_lib.FieldParts NamedTuple to EntityTypeField object.
+    # Entity_type_lib.FieldParts NamedTuple to EntityTypeField object.
     entity_type_fields = [
         EntityTypeField(
-            namespace_name=field.field.namespace,
-            standard_field_name=field.field.field,
-            is_optional=field.optional,
-            increment=field.field.increment
+            namespace_name=qualified_field.field.namespace,
+            standard_field_name=qualified_field.field.field,
+            is_optional=qualified_field.optional,
+            increment=qualified_field.field.increment
         )
-        for field in entity_type.GetAllFields().values()
+        for qualified_field in entity_type.GetAllFields().values()
     ]
     if required_only:
       entity_type_fields = [
