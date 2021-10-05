@@ -431,7 +431,7 @@ class InstanceValidator(object):
 
     found_fields = set()
     for link_inst in entity.links:
-      for target_field, source_field in link_inst.field_map.items():
+      for source_field, target_field in link_inst.field_map.items():
         qualified_tgt_field = _GetAllowedField(self.universe, target_field,
                                                entity_type)
         if not qualified_tgt_field:
