@@ -2668,6 +2668,7 @@ AHU_BYPSSPC_DX3SC_ECON_HT2SC_SFSS_SFVSC:
   - SFVSC
 
 AHU_DFVSC_ZTC_RTM_DTM_HPZTC_CWDT_CO2C_OADM_FDPM_AHAC_WLDS:
+  id: "15517198283276550144"
   description: "Single zone variable speed water cooled heat pump with CO2 override, after hours override and leak detection"
   is_canonical: true
   implements:
@@ -2718,6 +2719,7 @@ AHU_DFVSC_ZTC_RTM_DTM_HPZTC_CWDT_CO2C_OAFC_AHAC_WLDS:
   - SAFETY/WLDS
   
 AHU_DFVSC_ZTC_RTM_DTM_HPZTC_CWDT_CO2C_OADM_FDPM_AHAC:
+  id: "17327645333479489536"
   description: "Single zone variable speed water cooled heat pump with CO2 override and after hours override"
   is_canonical: true
   implements:
@@ -2765,6 +2767,7 @@ AHU_DFVSC_ZTC_RTM_DTM_HPZTC_CWDT_CO2C_OAFC_AHAC:
   - AHAC
   
 AHU_SS_SSPC_CHWVM_HWVM_STM_FDPM_OA:
+  id: "3524112475588919296"
   description: "AHU for preconditioning supply air"
   is_canonical: true
   implements:
@@ -2790,6 +2793,7 @@ AHU_SS_SSPC_CHWVM_HWVM_STM_OA:
   - OA
   
 AHU_SFVSC_SSPC_STC_CHWSC_ECON_FDPM:
+  id: "12760995311325806592"
   description: "AHU with supply fan speed control, supply temperature control and filter monitoring."
   is_canonical: true
   implements:
@@ -2813,6 +2817,7 @@ AHU_SFVSC_SSPC_STC_CHWSC_ECON:
   - ECON
   
 AHU_DFFC_ZTC_CHWZTC_HWZTC_ECONZ_DTM_RTM_CO2C_FDPM_AHAC:
+  id: "3177335304281391104"
   description: "Single zone AHU with zone temperature and CO2 control, and filter monitoring."
   is_canonical: true
   implements:
@@ -2844,7 +2849,9 @@ AHU_DFFC_ZTC_CHWZTC_HWZTC_ECONZ_DTM_RTM_CO2C_AHAC:
   - AHAC
   
 AHU_RTC_RHC_FDPM_REFM_WLDS:
-  description: "AHU with return temperature and humidity control, filte monitoring, and refrigerant and water leak monitoring. "
+
+  description: "AHU with return temperature and humidity control, filter monitoring, and refrigerant and water leak monitoring. "
+  id: "3987983237208080384"
   is_canonical: true
   implements:
   - AHU
@@ -4215,6 +4222,7 @@ AHU_US_SVL_MAT2_4:
   - supply_air_flowrate_sensor
 
 AHU_STDSPC_SSPC_EFFC_EFVSC_FDPM3X_HTWHLSTC_RHM_ETM:
+  id: "13211355274062856192"
   description: "Non-Standard (Swegon) Multi-Zone AHU with heat wheel, isolation damper and filter pressure monitoring"
   implements:
   - AHU
@@ -4291,4 +4299,3 @@ AHU_NON_CANONICAL_TYPE_3:
   - EFSS
   - RTM
   - ZHM
-

@@ -27,7 +27,7 @@ LT_DC:
   is_canonical: true
   implements:
   - LT
-  - DC 
+  - DC
 
 LT_DC_SC:
   id: "16395461783264952320"
@@ -35,7 +35,7 @@ LT_DC_SC:
   is_canonical: true
   implements:
   - LT
-  - DC 
+  - DC
   - SC
 
 LT_DPC:
@@ -47,7 +47,9 @@ LT_DPC:
   - DPC
 
 #Noncanonical types
+
 ELT_GENERIC:
+  id: "9752590760242315264"
   description: "Generic, non-canonical emergency light"
   is_canonical: false
   implements:

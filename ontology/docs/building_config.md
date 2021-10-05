@@ -152,7 +152,9 @@ ENTITY-NAME:
       present_value: "points.damper_1.present_value"
       states:
         OPEN: "1"
-        CLOSED: "2"
+        CLOSED:
+        - "2"
+        - "3"
 ```
 
 *   **Entity Name:** The human readable identifier for the entity. This should
@@ -257,7 +259,9 @@ FCU-123:
       present_value: "points.damper_1.present_value"
       states:
         OPEN: "1"
-        CLOSED: "2"
+        CLOSED:
+        - "2"
+        - "3"
     zone_air_temperature_setpoint: MISSING
 ```
 
@@ -274,8 +278,9 @@ ontology. Within each field block we provide information about the following:
     *   `values`: Maps standard Digital Buildings units to the values in the
         payload that represent those units
 *   `states`: If `present_value` represents a multistate value, this block is
-    used to map the native state values to standard ones. Standard values are
-    the map keys.
+    used to map the native state values to standard ones. Each map key is a
+    standard state, and its value is the corresponding native value, or a list
+    of native values if more than one corresponds to the same standard state.
 *   If a device lacks a field required for its type, the field should be marked
     `MISSING` as shown above.
 

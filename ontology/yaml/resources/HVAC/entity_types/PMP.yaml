@@ -44,6 +44,7 @@ PMP_SS_VSC_WDPM:
   - WDPM
 
 PMP_SS_VSC_WDPC:
+  id: "8104273296624713728"
   description: "Pump with variable speed control and differential pressure control"
   is_canonical: true
   implements:
@@ -84,6 +85,7 @@ PMP_SS_CHWISOVPM_VSFC:
   - chilled_water_differential_pressure_setpoint
   
 PMP_SS_VSC_WDPC_WFRC:
+  id: "14706550350349860864"
   description: "Pump with variable speed control, differential pressure control and flow control."
   is_canonical: true
   implements:
@@ -94,6 +96,7 @@ PMP_SS_VSC_WDPC_WFRC:
   - WFRC
   
 PMP_SS_VSC_SWTC:
+  id: "6293826246421774336"
   description: "Pump with variable speed control and supply water temperature control"
   is_canonical: true
   implements:

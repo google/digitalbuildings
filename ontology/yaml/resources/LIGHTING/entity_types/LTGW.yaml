@@ -17,6 +17,7 @@
 # Non-Canonical types for Lighting Gateways
 
 LTGW_NONCANONICAL_1: 
+  id: "610283516680208384"
   description: "Lighting controller groups only"
   is_canonical: false
   uses:
@@ -677,4 +678,3 @@ LTGW_NONCANONICAL_1:
   - emergency_battery_status_383
   implements:
   - LTGW
-

@@ -23,6 +23,7 @@ LGRP_DC:
     - DC
 
 LGRP_DC_OS_SC:
+  id: "8599669255635468288"
   description: "Lighting group with brightness control, occupancy sensor and scene control"
   is_canonical: true
   implements:

@@ -61,6 +61,7 @@ LS:
   - SENSOR
 
 ELT:
+  id: "8365482075012202496"
   description: "Lights intended to provide illumination and/or direction during an emergency."
   is_abstract: true
   implements:
