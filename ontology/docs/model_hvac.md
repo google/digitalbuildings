@@ -11,9 +11,9 @@ for certain choices will be made here.
   * [Guiding Principles](#guiding-principles)
   * [Fields](#fields)
   * [Types](#types)
-    + [Umbrella Types](#umbrella-types)
-      - [Umbrella Equipment Types](#umbrella-equipment-types)
-      - [Umbrella System Types](#umbrella-system-types)
+    + [General Types](#general-types)
+      - [General Equipment Types](#general-equipment-types)
+      - [General System Types](#general-system-types)
         * [Notes on System Design](#notes-on-system-design)
       - [Abstract Types](#abstract-types)
         * [Specific Abstract Type Models](#specific-abstract-type-models)
@@ -149,27 +149,27 @@ The syntax for defining these types is discussed in
 [entity types](ontology_config.md#entitytypes); this section discusses actual
 application and provides basic guidelines for constructing new types.
 
-### Umbrella Types
+### General Types
 
-The concept of an **umbrella type** (see
-[umbrella types](model.md#umbrella-types) for model details) is used to broadly
+The concept of an **general type** (see
+[general types](model.md#general-types) for model details) is used to broadly
 classify equipment based on its holistic function. Because types with very
 similar function (such as fans or AHUs) can be extremely varied, it is important
-to have an umbrella concept that allows *similar enough* devices to be
+to have an general concept that allows *similar enough* devices to be
 considered together, even when their specific type definitions otherwise
 wouldn’t strongly group them.
 
-Below is the list of umbrella types, and the *'smell test'* that would make
+Below is the list of general types, and the *'smell test'* that would make
 entities viable candidates for each. Note that any of the defining
 characteristics for each class may or may not be present in the fields for that
 unit (e.g. a unit with outside air dampers is considered an AHU, even if the
 device doesn't report the damper commands or positions); the modeler should
-apply the umbrella type that properly describes the physical device, not simply
+apply the general type that properly describes the physical device, not simply
 the telemetry representation of the device:
 
-#### Umbrella Equipment Types
+#### General Equipment Types
 
-This section outlines **umbrella types** for specific equipment.
+This section outlines **general types** for specific equipment.
 
 *   **Air Handling Unit (`AHU`)**: an air-side device that provides air to a
     zone directly or indirectly via terminal units, providing recirculated and
@@ -238,9 +238,9 @@ This section outlines **umbrella types** for specific equipment.
 *   **Zone (`ZONE`)**: a group of sensors associated to an individual zone,
     rather than to an HVAC asset.
 
-#### Umbrella System Types
+#### General System Types
 
-This section defines **umbrella types** for systems (interconnected groups of
+This section defines **general types** for systems (interconnected groups of
 equipment, but not the equipment itself):
 
 *   CONDENSING WATER SYSTEM (`CDWS`): a system that produces sensibly- or
@@ -419,7 +419,7 @@ between a heating setpoint and cooling setpoint (`STDSPC`).
 
 **Return Air Temp (`RTM`, `RTC`)** Return air temp is either monitored by a temp
 sensor (`RTM`) or controlled by a sensor and setpoint (`RTC`). Entities of
-certain umbrella types typically do not control return air temp, such as AHUs.
+certain general types typically do not control return air temp, such as AHUs.
 
 **Mixed Air Temp (`MTM`, `MTC`)** Mixed air temp is either monitored by a temp
 sensor (`MTM`) or controlled by a sensor and setpoint (`MTC`). Mixed air
