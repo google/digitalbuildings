@@ -57,7 +57,6 @@ class TelemetryValidator(object):
     self._validation_errors = []
     self._validation_warnings = []
 
-  # TODO(charbull): fix this timeout
   def StartTimer(self):
     """Starts the validation timeout timer."""
     threading.Timer(self.timeout, lambda: self.callback(self)).start()
