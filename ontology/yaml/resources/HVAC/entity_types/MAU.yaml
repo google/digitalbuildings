@@ -515,7 +515,7 @@ MAU_DFSS_DSP_FDPM_HT2ZC_OAFC:
   implements:
   - MAU
   - DFSS
-  - DFVSC
+  - DSP
   - FDPM
   - HT2ZC
   - OAFC
