@@ -15,22 +15,26 @@ from lib.model import Match
 class OntologyWrapper(object):
   """Class providing an interface to do lookups on a DigitalBuildings ontology.
 
-     Args:
-          universe: an instantiated ConfigUniverse Object with inherited fields
-            expanded
      Attributes:
           universe: A ConfigUniverse object detailing the various universes in
             the ontology
           manager: An EntityTypeManager object to find greatest common subsets
             of fields between entity types and complete lists of inheritied
-            fields for an entity type. This is primary used for _CreateMatch()
+            fields for an entity type. This is primarily used for
+            _CreateMatch().
 
      Returns:
-          An instance of Ontology class
+          An instance of Ontology class.
   """
 
   # TODO(travis):Validate that universe has types expanded and fast-fail if not
   def __init__(self, universe: ConfigUniverse):
+    """Init.
+
+      Args:
+          universe: an instantiated ConfigUniverse Object with inherited fields
+          expanded.
+    """
     super().__init__()
     self.universe = universe
     self.manager = EntityTypeManager(self.universe)
@@ -56,10 +60,11 @@ class OntologyWrapper(object):
         namespace,
         entity_type_name
     )
+    #entity_type_lib.FieldParts NamedTuple to EntityTypeField object.
     entity_type_fields = [
         EntityTypeField(
             namespace_name=field.field.namespace,
-            standard_field_name=field.field.field[0:],
+            standard_field_name=field.field.field,
             is_optional=field.optional,
             increment=field.field.increment
         )
@@ -69,8 +74,13 @@ class OntologyWrapper(object):
       entity_type_fields = [
           field for field in entity_type_fields if not field.IsOptional()
       ]
+    entity_type_fields_sorted = sorted(
+        entity_type_fields,
+        key=lambda x: x.GetStandardFieldName(),
+        reverse=False
+    )
 
-    return entity_type_fields
+    return entity_type_fields_sorted
 
   def _CreateMatch(
       self,

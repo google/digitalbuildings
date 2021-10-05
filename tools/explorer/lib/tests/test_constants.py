@@ -1,4 +1,3 @@
-
 """Constants for the ontology explorer application."""
 
 from os import path

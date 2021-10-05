@@ -19,52 +19,32 @@ class OntologyTest(absltest.TestCase):
 
   def testGetAllFieldsForTypeName(self):
     expected_output = [
-        EntityTypeField('', 'manufacturer_label', True),
-        EntityTypeField('', 'model_label', True),
         EntityTypeField('', 'exhaust_air_damper_command', False),
-        EntityTypeField('', 'exhaust_air_damper_status', False)
+        EntityTypeField('', 'exhaust_air_damper_status', False),
+        EntityTypeField('', 'manufacturer_label', True),
+        EntityTypeField('', 'model_label', True)
     ]
-    expected_output_sorted = sorted(
-        expected_output,
-        key=lambda x: x.GetStandardFieldName(),
-        reverse=False
-    )
 
     function_output = self.ontology.GetFieldsForTypeName(
         'HVAC',
         'DMP_EDM'
     )
-    function_output_sorted = sorted(
-        function_output,
-        key=lambda x: x.GetStandardFieldName(),
-        reverse=False
-    )
 
-    self.assertEqual(function_output_sorted, expected_output_sorted)
+    self.assertEqual(function_output, expected_output)
 
   def testGetRequiredFieldsForTypeName(self):
     expected_output = [
         EntityTypeField('', 'exhaust_air_damper_command', False),
         EntityTypeField('', 'exhaust_air_damper_status', False)
     ]
-    expected_output_sorted = sorted(
-        expected_output,
-        key=lambda x: x.GetStandardFieldName(),
-        reverse=False
-    )
 
     function_output = self.ontology.GetFieldsForTypeName(
         namespace='HVAC',
         entity_type_name='DMP_EDM',
         required_only=True
     )
-    function_output_sorted = sorted(
-        function_output,
-        key=lambda x: x.GetStandardFieldName(),
-        reverse=False
-    )
 
-    self.assertEqual(function_output_sorted, expected_output_sorted)
+    self.assertEqual(function_output, expected_output)
 
   def testValidField(self):
     valid_test_field = StandardField('', 'zone_use_label')
