@@ -351,8 +351,8 @@ TODO
 
 Type names have no structural meaning in the ontology, but because this is the
 most visible identifier of the type, the concrete types adhere to the
-convention of starting with an umbrella type (TODO: structurally define how
-umbrella types are identified) followed by an `_` separated list of parent
+convention of starting with a general type (TODO: structurally define how
+general types are identified) followed by an `_` separated list of parent
 types[^24]. Type names my change from version to version independent of
 [GUID](#guid).
 
@@ -362,7 +362,7 @@ Fields on types can be defined either as required or optional. The intent of
 this is to minimize the number of distinct entity types that are required to
 cover the equipment set. This is especially true in the HVAC domain when there
 may be a large number of minor (unimportant) variations in a particular
-umbrella type but there is a set of common fields across all of the devices
+general type but there is a set of common fields across all of the devices
 that are used for analysis.
 
 #### Inheritance
