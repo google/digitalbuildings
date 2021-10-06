@@ -1,4 +1,4 @@
-"""Testing module for ontology.py"""
+"""Testing module for ontology_wrapper.py."""
 from absl.testing import absltest
 
 from yamlformat.validator import namespace_validator as nv

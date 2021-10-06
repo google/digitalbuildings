@@ -17,14 +17,14 @@ class OntologyWrapper(object):
 
      Attributes:
           universe: A ConfigUniverse object detailing the various universes in
-            the ontology
+            the ontology.
           manager: An EntityTypeManager object to find greatest common subsets
             of fields between entity types and complete lists of inheritied
             fields for an entity type. This is primarily used for
             _CreateMatch().
 
      Returns:
-          An instance of Ontology class.
+          An instance of OntologyWrapper class.
   """
 
   # TODO(travis):Validate that universe has types expanded and fast-fail if not
@@ -54,7 +54,7 @@ class OntologyWrapper(object):
          type.
 
     Returns:
-            result_fields: a list of StandardField tuples
+            result_fields: a list of StandardField tuples.
     """
     entity_type = self.universe.entity_type_universe.GetEntityType(
         namespace,
@@ -63,10 +63,10 @@ class OntologyWrapper(object):
     # Entity_type_lib.FieldParts NamedTuple to EntityTypeField object.
     entity_type_fields = [
         EntityTypeField(
-            namespace_name=qualified_field.field.namespace,
-            standard_field_name=qualified_field.field.field,
-            is_optional=qualified_field.optional,
-            increment=qualified_field.field.increment
+            qualified_field.field.namespace,
+            qualified_field.field.field,
+            qualified_field.optional,
+            qualified_field.field.increment
         )
         for qualified_field in entity_type.GetAllFields().values()
     ]
@@ -82,6 +82,29 @@ class OntologyWrapper(object):
 
     return entity_type_fields_sorted
 
+  def _CalculateMatchWeight(
+      self,
+      concrete_fields: set(EntityTypeField),
+      canonical_fields: set(EntityTypeField)
+  ): -> int:
+    """
+    Determines the weight of a match and returns that weight as an integer.
+
+    Finds the size of the intersection(x) between the two sets of fields and
+    the size of the sets of fields unique to the concrete entity and canonical
+    type(y and z). These three variables are input into the function
+    f(x,y,z) = (x^2)+(z-y) to determine the weight.
+
+    Args:
+      concrete_fields: A set of EntityTypeField objects belonging to the
+      concrete entity being being matched.
+      canonical_fields: A set of EntityTypeField objects belonging to an Entity
+      Type defined in the Digital Buildings Ontology.
+
+    Returns:
+      The weight of the match as an integer.
+    """
+
   def _CreateMatch(
       self,
       field_list: List[EntityTypeField],
@@ -89,22 +112,19 @@ class OntologyWrapper(object):
   ) -> Match:
     """
     Determines the closeness of a match between an EntityType object and a list
-    of EntityTypeField objects by applying set operations provided by the
-    EntityTypeManager on the required field of an EntityType's list of fields
-    and the list of EntityType objects.
+    of EntityTypeField objects.
 
-    If the list of EntityTypeField objects is a strict subset of the EntityType
-    fields, then the match is CLOSE. If the reverse is true, the the match is
-    INCOMPLETE, as the ontology does not inherit all of the fields necessary.
-    If the two sets are equal, then the match is EXACT. If the sets are
-    disjoint, the match is NONE.
+    calls _CalculateMatchWeight() on field_list and the set of fields belonging
+    to entity_type. The weight function outputs a weight signifying the
+    closeness of the match and an instance of the Match class is created with
+    field_list, entity_type, and weight as arguments.
 
-    args:
-      field_list: A list of EntityTypeField objects
-      entity_type: An EntityType object
+    Args:
+      field_list: A list of EntityTypeField objects.
+      entity_type: An EntityType object.
 
     Returns:
-      An instance of the Match class
+      An instance of the Match class.
     """
     pass
 
@@ -118,11 +138,11 @@ class OntologyWrapper(object):
     Args:
         field_list: a list of StandardField tuples to match to an entity
         general_type: a string indicating a general type name to narrow return
-          results
+          results.
 
     Returns:
-          entities: a list of EntityType objects
-          matching the provided list of fields
+          entities: a list of EntityType objects.
+          matching the provided list of fields.
     """
     pass
 
