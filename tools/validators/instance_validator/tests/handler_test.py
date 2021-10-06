@@ -126,6 +126,13 @@ class HandlerTest(absltest.TestCase):
     self.assertEqual(valid_entities, instances)
     self.assertEqual(mock_validator.call_count, 2)
 
+  def testValidateLinksWithNetworkEntity(self):
+    try:
+      input_file = path.join(_TESTCASE_PATH, 'GOOD', 'good_links.yaml')
+      _RunValidation([input_file], use_simplified_universe=True)
+    except SyntaxError:
+      self.fail('ValidationHelper:Validate raised ExceptionType unexpectedly!')
+
 
 if __name__ == '__main__':
   absltest.main()
