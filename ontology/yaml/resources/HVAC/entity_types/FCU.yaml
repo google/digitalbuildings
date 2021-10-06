@@ -776,6 +776,14 @@ FCU_HPZTC_CO2C_FDPM:
   - HPZTC
   - CO2C
   - FDPM
+
+FCU_HPZTC_CO2C:
+  description: "Heat pump with zone temperature and CO2 control."
+  is_canonical: true
+  implements:
+  - FCU
+  - HPZTC
+  - CO2C
   
 FCU_DFVSMC_CHWBRC:
   id: "15348700325343133696"
