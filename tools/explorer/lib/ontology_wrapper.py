@@ -2,7 +2,7 @@
 Ontology wrapper class for ontology explorer exposing certain functionality
 of the Digital Buildings Ontology.
 """
-from typing import List
+from typing import List, Set
 
 from yamlformat.validator.entity_type_lib import EntityType
 from yamlformat.validator.entity_type_manager import EntityTypeManager
@@ -84,9 +84,9 @@ class OntologyWrapper(object):
 
   def _CalculateMatchWeight(
       self,
-      concrete_fields: set(EntityTypeField),
-      canonical_fields: set(EntityTypeField)
-  ): -> int:
+      concrete_fields: Set[EntityTypeField],
+      canonical_fields: Set[EntityTypeField]
+  ) -> int:
     """
     Determines the weight of a match and returns that weight as an integer.
 
