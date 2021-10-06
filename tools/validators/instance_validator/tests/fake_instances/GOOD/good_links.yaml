@@ -51,3 +51,7 @@ PHYSICAL-ENTITY:
         key: "pointset.points.differential_pressure_specification.units"
         values:
           pascals: "pascals"
+
+UK-LON-S2:
+  type: FACILITIES/BUILDING
+  id: FACILITIES/123456

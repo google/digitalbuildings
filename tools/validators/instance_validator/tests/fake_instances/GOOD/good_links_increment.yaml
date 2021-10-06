@@ -85,3 +85,7 @@ PHYSICAL-ENTITY:
       states:
         ON: "1"
         OFF: "0"
+
+UK-LON-S2:
+  type: FACILITIES/BUILDING
+  id: FACILITIES/123456
