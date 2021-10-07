@@ -2430,6 +2430,7 @@ AHU_DFSS_DSP_DX3ZC_ECONZ:
   - ECONZ
 
 AHU_DFSS_DFVSC_DSP_DX3ZC_ECONZ_HT3ZC:
+  id: "11426240971763875840"
   description: "Single zone AHU with three-stage DX cooling and three-stage heating."
   is_canonical: true
   implements:
@@ -2698,6 +2699,7 @@ AHU_DFVSC_ZTC_RTM_DTM_HPZTC_CWDT_CO2C_OADM_FDPM_AHAC_WLDS:
   - SAFETY/WLDS
 
 AHU_DFVSC_ZTC_RTM_DTM_HPZTC_CWDT_CO2C_OAFC_FDPM_AHAC_WLDS:
+  id: "7535130893715767296"
   description: "Single zone variable speed water cooled heat pump with CO2 override, filter monitoring, after hours override and leak detection"
   is_canonical: true
   implements:
@@ -2715,6 +2717,7 @@ AHU_DFVSC_ZTC_RTM_DTM_HPZTC_CWDT_CO2C_OAFC_FDPM_AHAC_WLDS:
   - SAFETY/WLDS
 
 AHU_DFVSC_ZTC_RTM_DTM_HPZTC_CWDT_CO2C_OAFC_AHAC_WLDS:
+  id: "8904225180436398080"
   description: "Single zone variable speed water cooled heat pump with CO2 override, after hours override and leak detection"
   is_canonical: true
   implements:
@@ -2748,6 +2751,7 @@ AHU_DFVSC_ZTC_RTM_DTM_HPZTC_CWDT_CO2C_OADM_FDPM_AHAC:
   - AHAC
 
 AHU_DFVSC_ZTC_RTM_DTM_HPZTC_CWDT_CO2C_OAFC_FDPM_AHAC:
+  id: "941861039245361152"
   description: "Single zone variable speed water cooled heat pump with CO2 override, filter monitoring and after hours override"
   is_canonical: true
   implements:
@@ -2764,6 +2768,7 @@ AHU_DFVSC_ZTC_RTM_DTM_HPZTC_CWDT_CO2C_OAFC_FDPM_AHAC:
   - AHAC
 
 AHU_DFVSC_ZTC_RTM_DTM_HPZTC_CWDT_CO2C_OAFC_AHAC:
+  id: "4855489115430322176"
   description: "Single zone variable speed water cooled heat pump with CO2 override and after hours override"
   is_canonical: true
   implements:
@@ -2793,6 +2798,7 @@ AHU_SS_SSPC_CHWVM_HWVM_STM_FDPM_OA:
   - OA
 
 AHU_SS_SSPC_CHWVM_HWVM_STM_OA:
+  id: "18127597217291173888"
   description: "AHU for preconditioning supply air"
   is_canonical: true
   implements:
@@ -2818,6 +2824,7 @@ AHU_SFVSC_SSPC_STC_CHWSC_ECON_FDPM:
   - FDPM
 
 AHU_SFVSC_SSPC_STC_CHWSC_ECON:
+  id: "10165233076100136960"
   description: "AHU with supply fan speed control, and supply temperature control."
   is_canonical: true
   implements:
@@ -2846,6 +2853,7 @@ AHU_DFFC_ZTC_CHWZTC_HWZTC_ECONZ_DTM_RTM_CO2C_FDPM_AHAC:
   - AHAC
   
 AHU_DFFC_ZTC_CHWZTC_HWZTC_ECONZ_DTM_RTM_CO2C_AHAC:
+  id: "16758502930570543104"
   description: "Single zone AHU with zone temperature and CO2 control."
   is_canonical: true
   implements:
@@ -2873,6 +2881,7 @@ AHU_RTC_RHC_FDPM_REFM_WLDS:
   - SAFETY/WLDS
 
 AHU_RTC_RHC_OAFM_WLDS:
+  id: "6814554953336487936"
   description: "AHU with return temperature and humidity control, and water leak monitoring. "
   is_canonical: true
   implements:

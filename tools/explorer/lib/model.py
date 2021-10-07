@@ -10,13 +10,13 @@ class StandardField(object):
   """A class to represent a generic field without increment or optionality.
 
     Args:
-        namespace_name: a field's defined namespace as a string
+        namespace_name: a field's defined namespace as a string.
         standard_field_name: the un-incremented name of the field as a string.
-          must be lower-case and properly formatted
+          must be lower-case and properly formatted.
     Attributes:
         namespace: the name of the namespace as a string
-        name: the field name as a string
-    returns: An instance of the StandardField class
+        name: the field name as a string.
+    returns: An instance of the StandardField class.
   """
 
   def __init__(self, namespace_name: str, standard_field_name: str):
@@ -59,14 +59,14 @@ class EntityTypeField(StandardField):
   """A class to represent a field assigned to a type and extends StandardField.
 
   Attributes:
-      namespace_name: a field's defined namespace as a string
-      standard_field_name: the name of the field as a string
-      increment: the increment of the field under a type as a string
+      namespace_name: a field's defined namespace as a string.
+      standard_field_name: the name of the field as a string.
+      increment: the increment of the field under a type as a string.
       is_optional: optionality of the field relative to it's Entity Type as a
-        boolean
+        boolean.
 
   Returns:
-      An instance of the EntityTypeField class
+      An instance of the EntityTypeField class.
   """
 
   def __init__(self,
@@ -110,8 +110,9 @@ class EntityTypeField(StandardField):
 
 
 class Match(object):
-  """A class to hold the information about a match between a list of
-  EntityTypeFields objects and an EntityType object.
+  """A class to hold the information about a match.
+
+  The match is between EntityTypeFields objects and an EntityType object lists.
 
   Attributes: field_list entity_type match_type
 
