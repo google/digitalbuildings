@@ -1281,3 +1281,17 @@ FCU_NON_CANONICAL_TYPE_3:
   - condensate_water_pump_alarm
   - return_air_temperature_sensor
   - return_air_temperature_setpoint
+
+FCU_NON_CANONICAL_TYPE_4:
+  description: "Simple floor-mounted heating fan coil unit with isolation valve, zone air temperature sensor and discharge fan speed command"
+  implements:
+  - FCU
+  - ZTC
+  - INCOMPLETE
+  uses:
+  - discharge_fan_speed_percentage_command
+  - supply_water_valve_command
+  - zone_air_temperature_sensor
+  - zone_air_temperature_setpoint
+  - return_air_temperature_setpoint
+  

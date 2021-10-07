@@ -51,6 +51,24 @@ LGRP_OS_LC_VADC:
   - LC
   - VADC
 
+LGRP_OS_LC_VADC_RC:
+  description: "Standard lighting fixture group control with scene- and dimming control and knx actuators, based on scene and occupancy"
+  is_canonical: true
+  implements:
+  - LGRP
+  - OS
+  - LC
+  - VADC
+  - RC
+
+LGRP_OS_RC:
+  description: "Standard lighting fixture group control with knx actuators, controlled by wall mounted lighting switch or occupancy sensor"
+  is_canonical: true
+  implements:
+  - LGRP
+  - OS
+  - RC
+
 LGRP_OS_LSC_LC_VADC:
   id: "16696613620066287616"
   description: "Standard lighting fixture group control with scene- and dimming control, based on scene and occupancy and/or light switch status"
