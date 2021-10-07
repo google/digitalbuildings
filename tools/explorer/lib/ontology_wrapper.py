@@ -1,6 +1,6 @@
 """
-Ontology wrapper class for ontology explorer exposing certain functionality
-of the Digital Buildings Ontology.
+Ontology wrapper class for DBO explorer exposing certain functionality
+of DBO.
 """
 from typing import List, Set
 
@@ -13,14 +13,14 @@ from lib.model import EntityTypeField
 from lib.model import Match
 
 class OntologyWrapper(object):
-  """Class providing an interface to do lookups on a DigitalBuildings ontology.
+  """Class providing an interface to do lookups on DBO.
 
      Attributes:
           universe: A ConfigUniverse object detailing the various universes in
-            the ontology.
+            DBO.
           manager: An EntityTypeManager object to find greatest common subsets
-            of fields between entity types and complete lists of inheritied
-            fields for an entity type. This is primarily used for
+            of fields between entity types and complete lists of inherited
+            fields for a concrete entity. This is primarily used for
             _CreateMatch().
 
      Returns:
@@ -54,7 +54,7 @@ class OntologyWrapper(object):
          type.
 
     Returns:
-            result_fields: a list of StandardField tuples.
+            result_fields: a list of EntityTypeField objects.
     """
     entity_type = self.universe.entity_type_universe.GetEntityType(
         namespace,
@@ -86,23 +86,23 @@ class OntologyWrapper(object):
       self,
       concrete_fields: Set[EntityTypeField],
       canonical_fields: Set[EntityTypeField]
-  ) -> int:
+  ) -> float:
     """
-    Determines the weight of a match and returns that weight as an integer.
+    Determines the weight of a match and returns that weight as a float.
 
     Finds the size of the intersection(x) between the two sets of fields and
     the size of the sets of fields unique to the concrete entity and canonical
     type(y and z). These three variables are input into the function
-    f(x,y,z) = (x^2)+(z-y) to determine the weight.
+    f(x,y,z) = 1/((x^2)+(z-y)) to determine the weight.
 
     Args:
       concrete_fields: A set of EntityTypeField objects belonging to the
-      concrete entity being being matched.
+      concrete entity being matched.
       canonical_fields: A set of EntityTypeField objects belonging to an Entity
-      Type defined in the Digital Buildings Ontology.
+      Type defined in DBO.
 
     Returns:
-      The weight of the match as an integer.
+      The weight of the match as a floating point number.
     """
 
   def _CreateMatch(
@@ -133,16 +133,17 @@ class OntologyWrapper(object):
       field_list: List[EntityTypeField],
       general_type: str = None
   ) -> List[EntityType]:
-    """Get a list of EntityType objects matching a list of StandardField tuples.
+    """Get a list of EntityType objects matching a list of EntityTypeField
+       objects.
 
     Args:
-        field_list: a list of StandardField tuples to match to an entity
-        general_type: a string indicating a general type name to narrow return
+        field_list: a list of EntityTypeField objects to match to an entity
+        general_type: a string indicating a general type name to filter return
           results.
 
     Returns:
-          entities: a list of EntityType objects.
-          matching the provided list of fields.
+          entities: a list of EntityType objects matching the provided list of
+          fields.
     """
     pass
 
