@@ -15,9 +15,9 @@
 
 from __future__ import print_function
 
-from datetime import datetime
-import sys
 import _thread
+import datetime
+import sys
 from typing import Callable, Dict, List, Optional
 
 from validate import entity_instance
