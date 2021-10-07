@@ -124,3 +124,14 @@ LGRP_OS_LSC_LC_VADC_RC:
   - LC
   - VADC
   - RC
+
+#Noncanonical types
+LGRP_DC_MS_IM:
+  id: "1231780265257336832"
+  description: "Non-canonical lighting groups with brightness, motion sensing and illuminance monitoring"
+  is_canonical: false
+  implements:
+  - LGRP
+  - DC
+  - MS
+  - IM

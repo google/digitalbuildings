@@ -404,6 +404,16 @@ FCU_DFSS_DFVSC_RTC_RHC_RHDHC_DXRC:
   - RHC
   - RHDHC
   - DXRC
+  
+FCU_DFSS_DFVSC_CHWRC_RHDHC:
+  description: "Variable speed DX fan coil with chilled water return temp control and humidification/dehumidification."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - DFVSC
+  - CHWRC
+  - RHDHC
 
 FCU_DFSS_DFHLC_DSP_DXZC:
   id: "12762408183767498752"
@@ -776,6 +786,14 @@ FCU_HPZTC_CO2C_FDPM:
   - HPZTC
   - CO2C
   - FDPM
+
+FCU_HPZTC_CO2C:
+  description: "Heat pump with zone temperature and CO2 control."
+  is_canonical: true
+  implements:
+  - FCU
+  - HPZTC
+  - CO2C
   
 FCU_DFVSMC_CHWBRC:
   id: "15348700325343133696"

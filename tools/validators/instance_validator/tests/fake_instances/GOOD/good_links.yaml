@@ -12,16 +12,46 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-ENTITY-NAME:
+VIRTUAL-ENTITY:
   type: HVAC/CHWS_WDT
   id: SYSTEM/ID1234
   links:
-    A-FOURTH-ENTITY:
+    PHYSICAL-ENTITY:
       return_water_temperature_sensor: return_water_temperature_sensor
       supply_water_temperature_sensor: supply_water_temperature_sensor
       thermal_power_capacity: thermal_power_capacity
       differential_pressure_specification: differential_pressure_specification
 
-A-FOURTH-ENTITY:
+PHYSICAL-ENTITY:
   type: HVAC/CHWS_WDT
   id: CDM/123456
+  cloud_device_id: "foobar"
+  translation:
+    return_water_temperature_sensor:
+      present_value: "points.return_water_temperature_sensor.present_value"
+      units:
+        key: "pointset.return_water_temperature_sensor.units"
+        values:
+          degrees_celsius: "degC"
+    supply_water_temperature_sensor:
+      present_value: "points.supply_water_temperature_sensor.present_value"
+      units:
+        key: "pointset.points.supply_water_temperature_sensor.units"
+        values:
+          degrees_celsius: "degC"
+    thermal_power_capacity:
+      present_value: "points.thermal_power_capacity.present_value"
+      units:
+        key: "pointset.points.thermal_power_capacity.units"
+        values:
+          kilowatts: "kilowatts"
+    differential_pressure_specification:
+      present_value: "points.differential_pressure_specification.present_value"
+      units:
+        key: "pointset.points.differential_pressure_specification.units"
+        values:
+          pascals: "pascals"
+
+UK-LON-S2:
+  type: FACILITIES/BUILDING
+  id: FACILITIES/123456
