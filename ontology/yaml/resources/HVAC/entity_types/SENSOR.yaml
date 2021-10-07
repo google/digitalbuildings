@@ -60,3 +60,10 @@ SENSOR_ZTM:
   implements:
     - /SENSOR # Inherits from global namespace
     - ZTM
+
+SENSOR_CO2M:
+  description: "CO2 concentration monitoring."
+  is_canonical: true
+  implements:
+    - /SENSOR # Inherits from global namespace
+    - CO2M
