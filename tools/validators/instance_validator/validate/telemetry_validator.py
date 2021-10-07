@@ -35,15 +35,17 @@ class TelemetryValidator(object):
     entities: a dict with entity_name as a key and EntityInstance as value.
     timeout: the max time the validator must read messages from pubsub.
     callback: the method called by the pubsub listener upon receiving a msg.
-
-  Args:
-    entities: EntityInstance dictionary
-    timeout: validation timeout duration in seconds
-    callback: callback function to be called either because messages for all
-      entities were seen or because the timeout duration was reached
   """
 
   def __init__(self, entities, timeout, callback):
+    """Init.
+
+    Args:
+     entities: EntityInstance dictionary
+     timeout: validation timeout duration in seconds
+     callback: callback function to be called either because messages for all
+       entities were seen or because the timeout duration was reached
+    """
     super().__init__()
     self.entities_with_translation = dict(
         filter((lambda entities: entities[1].translation), entities.items()))
@@ -55,7 +57,6 @@ class TelemetryValidator(object):
     self._validation_errors = []
     self._validation_warnings = []
 
-  #TODO(charbull): fix this timeout
   def StartTimer(self):
     """Starts the validation timeout timer."""
     threading.Timer(self.timeout, lambda: self.callback(self)).start()
@@ -66,8 +67,8 @@ class TelemetryValidator(object):
 
   def GetUnvalidatedEntityNames(self):
     """Returns a set of entities that have not been validated."""
-    return set(self.entities_with_translation.keys()) \
-                  - set(self.validated_entities.keys())
+    return set(self.entities_with_translation.keys()) - set(
+        self.validated_entities.keys())
 
   def CallbackIfCompleted(self):
     """Checks if all entities have been validated, and calls the callback."""
@@ -93,6 +94,9 @@ class TelemetryValidator(object):
   def ValidateMessage(self, message):
     """Validates a telemetry message.
 
+    Args:
+      message: the telemetry message to validate.
+
     Adds all validation errors for the message to a list of all errors
     discovered by this validator.
     """
@@ -102,7 +106,7 @@ class TelemetryValidator(object):
 
     # Telemetry message received for an entity not in building config
     if entity_name not in self.entities_with_translation.keys():
-      #TODO(charbull): refactor warning class
+      # TODO(charbull): refactor warning class
       self.AddWarning(
           telemetry_warning.TelemetryWarning(
               entity_name, None, 'Telemetry message received for an entity not '
@@ -154,7 +158,7 @@ class TelemetryValidator(object):
         continue
 
       if isinstance(field_translation, ft_lib.MultiStateValue):
-        if pv not in field_translation.states.values():
+        if pv not in field_translation.raw_values:
           self.AddError(
               telemetry_error.TelemetryError(
                   entity_name, field_translation.raw_field_name,
