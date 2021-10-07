@@ -46,8 +46,6 @@ LT_DPC:
   - LT
   - DPC
 
-#Noncanonical types
-
 ELT_GENERIC:
   id: "9752590760242315264"
   description: "Generic, non-canonical emergency light"
