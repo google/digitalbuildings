@@ -2679,7 +2679,6 @@ AHU_BYPSSPC_DX3SC_ECON_HT2SC_SFSS_SFVSC:
   - SFSS
   - SFVSC
 
-
 AHU_DFVSC_ZTC_RTM_DTM_HPZTC_CWDT_CO2C_OADM_FDPM_AHAC_WLDS:
   id: "15517198283276550144"
   description: "Single zone variable speed water cooled heat pump with CO2 override, after hours override and leak detection"
@@ -2698,6 +2697,39 @@ AHU_DFVSC_ZTC_RTM_DTM_HPZTC_CWDT_CO2C_OADM_FDPM_AHAC_WLDS:
   - AHAC
   - SAFETY/WLDS
 
+AHU_DFVSC_ZTC_RTM_DTM_HPZTC_CWDT_CO2C_OAFC_FDPM_AHAC_WLDS:
+  description: "Single zone variable speed water cooled heat pump with CO2 override, filter monitoring, after hours override and leak detection"
+  is_canonical: true
+  implements:
+  - AHU
+  - DFVSC
+  - ZTC
+  - RTM
+  - DTM
+  - HPZTC
+  - CWDT
+  - CO2C
+  - OAFC
+  - FDPM
+  - AHAC
+  - SAFETY/WLDS
+
+AHU_DFVSC_ZTC_RTM_DTM_HPZTC_CWDT_CO2C_OAFC_AHAC_WLDS:
+  description: "Single zone variable speed water cooled heat pump with CO2 override, after hours override and leak detection"
+  is_canonical: true
+  implements:
+  - AHU
+  - DFVSC
+  - ZTC
+  - RTM
+  - DTM
+  - HPZTC
+  - CWDT
+  - CO2C
+  - OAFC
+  - AHAC
+  - SAFETY/WLDS
+  
 AHU_DFVSC_ZTC_RTM_DTM_HPZTC_CWDT_CO2C_OADM_FDPM_AHAC:
   id: "17327645333479489536"
   description: "Single zone variable speed water cooled heat pump with CO2 override and after hours override"
@@ -2714,6 +2746,37 @@ AHU_DFVSC_ZTC_RTM_DTM_HPZTC_CWDT_CO2C_OADM_FDPM_AHAC:
   - OADM
   - FDPM
   - AHAC
+
+AHU_DFVSC_ZTC_RTM_DTM_HPZTC_CWDT_CO2C_OAFC_FDPM_AHAC:
+  description: "Single zone variable speed water cooled heat pump with CO2 override, filter monitoring and after hours override"
+  is_canonical: true
+  implements:
+  - AHU
+  - DFVSC
+  - ZTC
+  - RTM
+  - DTM
+  - HPZTC
+  - CWDT
+  - CO2C
+  - OAFC
+  - FDPM
+  - AHAC
+
+AHU_DFVSC_ZTC_RTM_DTM_HPZTC_CWDT_CO2C_OAFC_AHAC:
+  description: "Single zone variable speed water cooled heat pump with CO2 override and after hours override"
+  is_canonical: true
+  implements:
+  - AHU
+  - DFVSC
+  - ZTC
+  - RTM
+  - DTM
+  - HPZTC
+  - CWDT
+  - CO2C
+  - OAFC
+  - AHAC
   
 AHU_SS_SSPC_CHWVM_HWVM_STM_FDPM_OA:
   id: "3524112475588919296"
@@ -2729,6 +2792,18 @@ AHU_SS_SSPC_CHWVM_HWVM_STM_FDPM_OA:
   - FDPM
   - OA
 
+AHU_SS_SSPC_CHWVM_HWVM_STM_OA:
+  description: "AHU for preconditioning supply air"
+  is_canonical: true
+  implements:
+  - AHU
+  - SS
+  - SSPC
+  - CHWVM
+  - HWVM
+  - STM
+  - OA
+  
 AHU_SFVSC_SSPC_STC_CHWSC_ECON_FDPM:
   id: "12760995311325806592"
   description: "AHU with supply fan speed control, supply temperature control and filter monitoring."
@@ -2742,6 +2817,17 @@ AHU_SFVSC_SSPC_STC_CHWSC_ECON_FDPM:
   - ECON
   - FDPM
 
+AHU_SFVSC_SSPC_STC_CHWSC_ECON:
+  description: "AHU with supply fan speed control, and supply temperature control."
+  is_canonical: true
+  implements:
+  - AHU
+  - SFVSC
+  - SSPC
+  - STC
+  - CHWSC
+  - ECON
+  
 AHU_DFFC_ZTC_CHWZTC_HWZTC_ECONZ_DTM_RTM_CO2C_FDPM_AHAC:
   id: "3177335304281391104"
   description: "Single zone AHU with zone temperature and CO2 control, and filter monitoring."
@@ -2758,10 +2844,25 @@ AHU_DFFC_ZTC_CHWZTC_HWZTC_ECONZ_DTM_RTM_CO2C_FDPM_AHAC:
   - FDPM
   - ECONZ
   - AHAC
-
+  
+AHU_DFFC_ZTC_CHWZTC_HWZTC_ECONZ_DTM_RTM_CO2C_AHAC:
+  description: "Single zone AHU with zone temperature and CO2 control."
+  is_canonical: true
+  implements:
+  - AHU
+  - DFFC
+  - ZTC
+  - CHWZTC
+  - HWZTC
+  - DTM
+  - RTM
+  - CO2C
+  - ECONZ
+  - AHAC
+  
 AHU_RTC_RHC_FDPM_REFM_WLDS:
+  description: "AHU with return temperature and humidity control, filter monitoring, and refrigerant and water leak monitoring. "
   id: "3987983237208080384"
-  description: "AHU with return temperature and humidity control, and refrigerant and water leak monitoring. "
   is_canonical: true
   implements:
   - AHU
@@ -2769,6 +2870,16 @@ AHU_RTC_RHC_FDPM_REFM_WLDS:
   - RHC
   - FDPM
   - REFM
+  - SAFETY/WLDS
+
+AHU_RTC_RHC_OAFM_WLDS:
+  description: "AHU with return temperature and humidity control, and water leak monitoring. "
+  is_canonical: true
+  implements:
+  - AHU
+  - RTC
+  - RHC
+  - OAFM
   - SAFETY/WLDS
 
 AHU_DFSS_UV_H3X_DTC_DFVSFC_CHWVM:
