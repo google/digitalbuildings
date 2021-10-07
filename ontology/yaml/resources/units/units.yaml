@@ -81,6 +81,7 @@ voltageratio:
 volume:
 - cubic_meters: STANDARD
 - us_gallons
+- liters
 time:
 - seconds: STANDARD
 rate:
