@@ -67,5 +67,15 @@ LDS_WLA:
   - LDS
   - WLA
 
+LDS_WLA_BCM:
+  description: "Water Leak sensing and broken cable sensing device."
+  is_canonical: true
+  implements:
+  - LDS
+  - WLA
+  - BCM
+  opt_uses:
+  - position_status
+
 
 

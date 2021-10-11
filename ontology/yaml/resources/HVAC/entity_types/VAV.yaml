@@ -380,6 +380,17 @@ VAV_ZTM_PDSCV_SFM:
   opt_uses:
   - failed_alarm
 
+VAV_SD_ZTC_HLSAFS:
+  description: "VAV with flow rate control, supply air damper control and temperature control."
+  is_canonical: true
+  opt_uses:
+  - master_alarm
+  implements:
+  - VAV
+  - SD
+  - ZTC
+  - HLSAFS
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################

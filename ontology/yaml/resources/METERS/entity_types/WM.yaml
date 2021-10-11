@@ -20,3 +20,11 @@ WM_STANDARD:
   is_canonical: true
   uses:
   - water_volume_accumulator
+
+WM_WF:
+  description: "Water supply flow rate meter."
+  implements:
+  - WM
+  is_canonical: true
+  uses:
+  - supply_water_flowrate_sensor

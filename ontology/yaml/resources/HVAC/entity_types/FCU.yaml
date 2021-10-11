@@ -924,7 +924,80 @@ FCU_DFSS_DFVSC_DXRC_HTRC_RHC_RHDHC_RTC:
   - RHC
   - RHDHC
   - RTC
-  
+
+FCU_SS_ZTC:
+  description: "Single split unit with zone air temperature control"
+  is_canonical: true
+  implements:
+  - FCU
+  - ZTC
+  - SS
+  opt_uses:
+  - failed_alarm
+  - lost_power_alarm
+  - schedule_run_command
+
+FCU_DFSS_CHWVM_ZTC:
+  description: "Chilled water FCU with zone temperature control and chilled water valve control"
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - CHWVM
+  - ZTC
+  opt_uses:
+  - schedule_run_command
+
+FCU_DFSS_ZTC_CWVC:
+  description: "Chilled water FCU with binary mode (open/closed) and zone temperature control"
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - ZTC
+  uses:
+  - chilled_water_valve_command
+  opt_uses:
+  - schedule_run_command
+  - discharge_fan_lost_power_alarm
+
+FCU_DTC_DFVSC_CO2C:
+  description: "Chilled water FCU with discharge air and co2 concentration control"
+  is_canonical: true
+  implements:
+  - FCU
+  - DTC
+  - DFVSC
+  - CO2C
+  - CHWVM
+  opt_uses:
+  - filter_alarm
+  - discharge_air_linearvelocity_sensor
+  - schedule_run_command
+
+FCU_DTC_DFVSC_ZTC_CO2C:
+  description: "Chilled water FCU with discharge air, zone air temperature and co2 concentration control"
+  is_canonical: true
+  implements:
+  - FCU_DTC_DFVSC_CO2C
+  - ZTC
+
+FCU_DTC_DFVSC_ZTC:
+  description: "Chilled water FCU with discharge air, zone air temperature and co2 concentration control"
+  is_canonical: true
+  implements:
+  - FCU
+  - DTC
+  - DFVSC
+  - ZTC
+  - CHWVM
+  opt_uses:
+  - filter_alarm
+  - discharge_air_linearvelocity_sensor
+  - schedule_run_command
+
+
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
@@ -1294,4 +1367,28 @@ FCU_NON_CANONICAL_TYPE_4:
   - zone_air_temperature_sensor
   - zone_air_temperature_setpoint
   - return_air_temperature_setpoint
-  
+
+FCU_LPA_FA:
+  description: "Unit with lost power and failed alarms only"
+  is_canonical: true
+  implements:
+  - FCU
+  uses:
+  - lost_power_alarm
+  - failed_alarm
+
+FCU_DXRC_RHDHS_DTM_DFSS:
+  description: "Crac unit with return air temperature control, return air humidity monitor and dehumidification/humidification monitor."
+  is_canonical: true
+  implements:
+  - FCU
+  - DXRC
+  - RHDHS
+  - DTM
+  - DFSS
+  opt_uses:
+  - discharge_fan_failed_alarm
+  - low_discharge_air_flowrate_alarm
+  - master_alarm
+  - water_leak_alarm
+  - fire_alarm
