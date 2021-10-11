@@ -1370,7 +1370,6 @@ FCU_NON_CANONICAL_TYPE_4:
 
 FCU_LPA_FA:
   description: "Unit with lost power and failed alarms only"
-  is_canonical: true
   implements:
   - FCU
   uses:
@@ -1379,7 +1378,6 @@ FCU_LPA_FA:
 
 FCU_DXRC_RHDHS_DTM_DFSS:
   description: "Crac unit with return air temperature control, return air humidity monitor and dehumidification/humidification monitor."
-  is_canonical: true
   implements:
   - FCU
   - DXRC
