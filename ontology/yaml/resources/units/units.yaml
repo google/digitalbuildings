@@ -12,9 +12,22 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+absolute_humidity:
+- grams_per_cubic_meter
+- grams_per_kilogram
+aqi:
+- epa_index
+- eea_index
+co:
+- parts_per_million: STANDARD
+- micrograms_per_cubic_meter
+co2:
+- parts_per_million: STANDARD
+- percent_co2
 concentration:
 - parts_per_unit: STANDARD
 - parts_per_million
+- parts_per_billion
 current:
 - amperes: STANDARD
 - milliamperes
@@ -34,6 +47,12 @@ flowrate:
 - kilograms_per_hour
 frequency:
 - hertz: STANDARD
+formaldehyde:
+- parts_per_million: STANDARD
+- micrograms_per_cubic_meter
+h2s:
+- parts_per_million: STANDARD
+- micrograms_per_cubic_meter
 humidity:
 - percent_relative_humidity: STANDARD
 illuminance:
@@ -51,8 +70,39 @@ linearvelocity:
 - meters_per_second: STANDARD
 - feet_per_minute
 - miles_per_hour
+no2:
+- parts_per_million: STANDARD
+- micrograms_per_cubic_meter
+ozone:
+- parts_per_million: STANDARD
+- micrograms_per_cubic_meter
 percentage:
 - percent: STANDARD
+pm0p5_mass_concentration:
+- micrograms_per_cubic_meter: STANDARD
+pm1p0_mass_concentration:
+- micrograms_per_cubic_meter: STANDARD
+pm2p5_mass_concentration:
+- micrograms_per_cubic_meter: STANDARD
+pm4p0_mass_concentration:
+- micrograms_per_cubic_meter: STANDARD
+pm10p_mass_concentration:
+- micrograms_per_cubic_meter: STANDARD
+pm0p5_number_concentration:
+- number_per_cubic_centimeter
+- number_per_0p1_liter
+pm1p0_number_concentration:
+- number_per_cubic_centimeter
+- number_per_0p1_liter
+pm2p5_number_concentration:
+- number_per_cubic_centimeter
+- number_per_0p1_liter
+pm4p0_number_concentration:
+- number_per_cubic_centimeter
+- number_per_0p1_liter
+pm10p_number_concentration:
+- number_per_cubic_centimeter
+- number_per_0p1_liter
 powerfactor:
 - no_units: STANDARD
 power:
@@ -68,6 +118,7 @@ pressure:
 - kilopascals
 - inches_of_water
 - pounds_force_per_square_inch
+- atmospheres
 resistance:
 - ohms: STANDARD
 - kiloohms
@@ -86,7 +137,15 @@ volume:
 - cubic_meters: STANDARD
 - us_gallons
 - liters
+so2:
+- parts_per_million: STANDARD
+- micrograms_per_cubic_meter
 time:
 - seconds: STANDARD
+tvoc:
+- milligrams_per_cubic_meter
+- parts_per_billion
+- parts_per_million
+- uab_index
 rate:
 - inv_second: STANDARD
