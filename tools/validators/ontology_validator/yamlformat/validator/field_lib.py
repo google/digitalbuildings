@@ -221,6 +221,8 @@ class _FieldValidationStateMachine(object):
       _CAT_SPEC(
           cat=subfield_lib.SubfieldCategory.AGGREGATION, required=False, max=1),
       _CAT_SPEC(
+          cat=subfield_lib.SubfieldCategory.AGGREGATION_DESCRIPTOR, required=False, max=10),
+      _CAT_SPEC(
           cat=subfield_lib.SubfieldCategory.DESCRIPTOR, required=False, max=10),
       _CAT_SPEC(
           cat=subfield_lib.SubfieldCategory.COMPONENT, required=False, max=1),

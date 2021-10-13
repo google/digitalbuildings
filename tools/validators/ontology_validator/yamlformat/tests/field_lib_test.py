@@ -24,6 +24,7 @@ from yamlformat.validator import findings_lib
 from yamlformat.validator import subfield_lib
 
 AGGREGATION = subfield_lib.SubfieldCategory.AGGREGATION
+AGGREGATION_DESCRIPTOR = subfield_lib.SubfieldCategory.AGGREGATION_DESCRIPTOR
 DESCRIPTOR = subfield_lib.SubfieldCategory.DESCRIPTOR
 COMPONENT = subfield_lib.SubfieldCategory.COMPONENT
 MEASUREMENT_DESCRIPTOR = subfield_lib.SubfieldCategory.MEASUREMENT_DESCRIPTOR

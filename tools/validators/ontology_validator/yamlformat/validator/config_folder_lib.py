@@ -112,7 +112,6 @@ class ConfigFolder(findings_lib.Findings):
       RuntimeError: if the path is not valid for the component type
     """
     context = findings_lib.FileContext(config_filename)
-
     if documents is None:
       self.AddFinding(findings_lib.EmptyFileWarning(context))
       return
