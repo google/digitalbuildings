@@ -20,7 +20,7 @@ from yamlformat.validator import namespace_validator as nv
 from lib.ontology_wrapper import OntologyWrapper
 from lib import constants
 
-def Build(ontology_path: str):
+def Build(ontology_path: str) -> OntologyWrapper:
   """
   A constructor for the ontology explorer.
 
