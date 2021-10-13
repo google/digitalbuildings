@@ -13,8 +13,7 @@
 # limitations under the License.
 
 aggregation_descriptor:
-  sensorgroup: "A cohort of physical sensors; must measure the same measurement."
-  timeinterval: "A defined interval of time (e.g. five seconds)."
+  5minute: "A defined interval of time (five minutes)."
 aggregation:
   average: "Average value (e.g. average_zone_air_temperature_sensor)"
   max: "Maximum value (e.g. Max_Cooling_Air_Flow_Setpoint)"
