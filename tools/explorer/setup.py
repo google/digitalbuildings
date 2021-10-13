@@ -23,6 +23,6 @@ setup(
     license='Apache License',
     author='Travis Welch',
     packages=find_packages(),
-    install_requires=['absl-py'],
+    install_requires=['absl-py','pyfiglet'],
     python_requires='>=3.7',
 )
