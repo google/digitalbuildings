@@ -55,5 +55,5 @@ def main(argv):
           'Please enter a valid input'
       )
 
-if __name__ == "__main__":
+if __name__ == '__main__':
   app.run(main)
