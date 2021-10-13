@@ -22,7 +22,7 @@ from absl import app
 from absl import flags
 
 FLAGS = flags.FLAGS
-flags.DEFINE_string('alt', None, 'Path to an alternate ontology')
+flags.DEFINE_string('changed', None, 'Path to an alternate ontology')
 flags.DEFINE_boolean('debug', False, 'Produces debugging output')
 
 def main(argv):
@@ -32,16 +32,16 @@ def main(argv):
   figlet_out = pyfiglet.figlet_format('DBO Explorer', font='digital')
   print(figlet_out)
   print('Starting DBO explorer')
-  my_ontology = explorer.Build(FLAGS.alt)
+  my_ontology = explorer.Build(FLAGS.changed)
   done = False
   while not done:
     function_choice = input(
-        '\nWhat would you like to do?\n' +
+        '\nHow would you like to query DBO\n' +
         '1: Get fields for a type name\n' +
         '2: Get types for a list of fields\n' +
         '3: Validate a field name\n' +
         'q: quit\n' +
-        'your choice: '
+        'Please select an option: '
     )
     if function_choice == '1':
       namespace = input('Enter a namespace: ').upper()
