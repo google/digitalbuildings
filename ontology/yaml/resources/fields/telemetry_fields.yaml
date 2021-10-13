@@ -69,6 +69,7 @@ literals:
   - MEDIUM
   - HIGH
   - OFF
+  - VFD
 - discharge_fan_speed_percentage_command
 - dryer_run_status:
   - ON
@@ -819,6 +820,9 @@ literals:
   - ACTIVE
   - INACTIVE
 - panel_alarm
+- supply_air_flowrate_status:
+  - ON
+  - OFF
 
 
 # Added for Machine Learning Pilot
@@ -888,7 +892,7 @@ literals:
 - dimmer_failed_alarm:
   - ACTIVE
   - INACTIVE
-- power_command:
+- switch_command:
   - ON
   - OFF
 - lighting_switch_status:

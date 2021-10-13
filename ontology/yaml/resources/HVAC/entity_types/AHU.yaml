@@ -2429,6 +2429,19 @@ AHU_DFSS_DSP_DX3ZC_ECONZ:
   - DX3ZC
   - ECONZ
 
+AHU_DFSS_DFVSC_DSP_DX3ZC_ECONZ_HT3ZC:
+  id: "11426240971763875840"
+  description: "Single zone AHU with three-stage DX cooling and three-stage heating."
+  is_canonical: true
+  implements:
+  - AHU
+  - DFSS
+  - DFVSC
+  - DSP
+  - DX3ZC
+  - ECONZ
+  - HT3ZC
+
 AHU_DX4SC_ECONM_EFSS_EFVSC_SFSS_SFVSC_SSPC:
   id: "4196438547206504448"
   description: "Multi-zone AHU."
@@ -2667,7 +2680,6 @@ AHU_BYPSSPC_DX3SC_ECON_HT2SC_SFSS_SFVSC:
   - SFSS
   - SFVSC
 
-
 AHU_DFVSC_ZTC_RTM_DTM_HPZTC_CWDT_CO2C_OADM_FDPM_AHAC_WLDS:
   id: "15517198283276550144"
   description: "Single zone variable speed water cooled heat pump with CO2 override, after hours override and leak detection"
@@ -2686,6 +2698,41 @@ AHU_DFVSC_ZTC_RTM_DTM_HPZTC_CWDT_CO2C_OADM_FDPM_AHAC_WLDS:
   - AHAC
   - SAFETY/WLDS
 
+AHU_DFVSC_ZTC_RTM_DTM_HPZTC_CWDT_CO2C_OAFC_FDPM_AHAC_WLDS:
+  id: "7535130893715767296"
+  description: "Single zone variable speed water cooled heat pump with CO2 override, filter monitoring, after hours override and leak detection"
+  is_canonical: true
+  implements:
+  - AHU
+  - DFVSC
+  - ZTC
+  - RTM
+  - DTM
+  - HPZTC
+  - CWDT
+  - CO2C
+  - OAFC
+  - FDPM
+  - AHAC
+  - SAFETY/WLDS
+
+AHU_DFVSC_ZTC_RTM_DTM_HPZTC_CWDT_CO2C_OAFC_AHAC_WLDS:
+  id: "8904225180436398080"
+  description: "Single zone variable speed water cooled heat pump with CO2 override, after hours override and leak detection"
+  is_canonical: true
+  implements:
+  - AHU
+  - DFVSC
+  - ZTC
+  - RTM
+  - DTM
+  - HPZTC
+  - CWDT
+  - CO2C
+  - OAFC
+  - AHAC
+  - SAFETY/WLDS
+  
 AHU_DFVSC_ZTC_RTM_DTM_HPZTC_CWDT_CO2C_OADM_FDPM_AHAC:
   id: "17327645333479489536"
   description: "Single zone variable speed water cooled heat pump with CO2 override and after hours override"
@@ -2702,6 +2749,39 @@ AHU_DFVSC_ZTC_RTM_DTM_HPZTC_CWDT_CO2C_OADM_FDPM_AHAC:
   - OADM
   - FDPM
   - AHAC
+
+AHU_DFVSC_ZTC_RTM_DTM_HPZTC_CWDT_CO2C_OAFC_FDPM_AHAC:
+  id: "941861039245361152"
+  description: "Single zone variable speed water cooled heat pump with CO2 override, filter monitoring and after hours override"
+  is_canonical: true
+  implements:
+  - AHU
+  - DFVSC
+  - ZTC
+  - RTM
+  - DTM
+  - HPZTC
+  - CWDT
+  - CO2C
+  - OAFC
+  - FDPM
+  - AHAC
+
+AHU_DFVSC_ZTC_RTM_DTM_HPZTC_CWDT_CO2C_OAFC_AHAC:
+  id: "4855489115430322176"
+  description: "Single zone variable speed water cooled heat pump with CO2 override and after hours override"
+  is_canonical: true
+  implements:
+  - AHU
+  - DFVSC
+  - ZTC
+  - RTM
+  - DTM
+  - HPZTC
+  - CWDT
+  - CO2C
+  - OAFC
+  - AHAC
   
 AHU_SS_SSPC_CHWVM_HWVM_STM_FDPM_OA:
   id: "3524112475588919296"
@@ -2717,6 +2797,19 @@ AHU_SS_SSPC_CHWVM_HWVM_STM_FDPM_OA:
   - FDPM
   - OA
 
+AHU_SS_SSPC_CHWVM_HWVM_STM_OA:
+  id: "18127597217291173888"
+  description: "AHU for preconditioning supply air"
+  is_canonical: true
+  implements:
+  - AHU
+  - SS
+  - SSPC
+  - CHWVM
+  - HWVM
+  - STM
+  - OA
+  
 AHU_SFVSC_SSPC_STC_CHWSC_ECON_FDPM:
   id: "12760995311325806592"
   description: "AHU with supply fan speed control, supply temperature control and filter monitoring."
@@ -2730,6 +2823,18 @@ AHU_SFVSC_SSPC_STC_CHWSC_ECON_FDPM:
   - ECON
   - FDPM
 
+AHU_SFVSC_SSPC_STC_CHWSC_ECON:
+  id: "10165233076100136960"
+  description: "AHU with supply fan speed control, and supply temperature control."
+  is_canonical: true
+  implements:
+  - AHU
+  - SFVSC
+  - SSPC
+  - STC
+  - CHWSC
+  - ECON
+  
 AHU_DFFC_ZTC_CHWZTC_HWZTC_ECONZ_DTM_RTM_CO2C_FDPM_AHAC:
   id: "3177335304281391104"
   description: "Single zone AHU with zone temperature and CO2 control, and filter monitoring."
@@ -2746,10 +2851,26 @@ AHU_DFFC_ZTC_CHWZTC_HWZTC_ECONZ_DTM_RTM_CO2C_FDPM_AHAC:
   - FDPM
   - ECONZ
   - AHAC
-
+  
+AHU_DFFC_ZTC_CHWZTC_HWZTC_ECONZ_DTM_RTM_CO2C_AHAC:
+  id: "16758502930570543104"
+  description: "Single zone AHU with zone temperature and CO2 control."
+  is_canonical: true
+  implements:
+  - AHU
+  - DFFC
+  - ZTC
+  - CHWZTC
+  - HWZTC
+  - DTM
+  - RTM
+  - CO2C
+  - ECONZ
+  - AHAC
+  
 AHU_RTC_RHC_FDPM_REFM_WLDS:
+  description: "AHU with return temperature and humidity control, filter monitoring, and refrigerant and water leak monitoring. "
   id: "3987983237208080384"
-  description: "AHU with return temperature and humidity control, and refrigerant and water leak monitoring. "
   is_canonical: true
   implements:
   - AHU
@@ -2757,6 +2878,17 @@ AHU_RTC_RHC_FDPM_REFM_WLDS:
   - RHC
   - FDPM
   - REFM
+  - SAFETY/WLDS
+
+AHU_RTC_RHC_OAFM_WLDS:
+  id: "6814554953336487936"
+  description: "AHU with return temperature and humidity control, and water leak monitoring. "
+  is_canonical: true
+  implements:
+  - AHU
+  - RTC
+  - RHC
+  - OAFM
   - SAFETY/WLDS
 
 AHU_DFSS_UV_H3X_DTC_DFVSFC_CHWVM:
@@ -2815,6 +2947,7 @@ AHU_DFSS_DTC_CHWVM_RTM:
   - RTM
   opt_uses:
   - lost_power_alarm
+  - discharge_air_flowrate_status
   - filter_alarm
   - control_mode
   - run_mode
@@ -2836,6 +2969,7 @@ AHU_CHWDT_CHWVM_CLPM_DFSS_CHWZTC:
   - DFSS
   - CHWZTC
   opt_uses:
+  - discharge_air_flowrate_status
   - filter_differential_pressure_status
   - lost_power_alarm
   - filter_alarm
@@ -2845,27 +2979,26 @@ AHU_CHWDT_CHWVM_CLPM_DFSS_CHWZTC:
   - smoke_alarm
   - control_status
 
-AHU_DFVSC_CHWVM_CLPM_DTC_UV_CO2C_MTM_OAFM_RHM_CHWDT_RTC:
+AHU_DFVSFC_CHWVM_CLPM_DTC_UV_CO2C_MTM_OAMC_RHM_CHWDT_RTC:
   id: "11313475059219169280"
   description: "AHU with discharge air, chilled water valve, discharge air/fan, CO2, UV and chilled supply/return water operation."
   is_canonical: true
   implements:
   - AHU
-  - DFVSC
+  - DFVSFC
   - CHWVM
   - CLPM
   - DTC
   - UV
   - CO2C
   - MTM
-  - OAFM
+  - OAMC
   - RHM
   - CHWDT
   - DFSS
   - RTC
-  uses:
-  - discharge_air_damper_percentage_command
   opt_uses:
+  - discharge_air_flowrate_status
   - control_status
   - filter_differential_pressure_status
   - lost_power_alarm
@@ -2875,7 +3008,7 @@ AHU_DFVSC_CHWVM_CLPM_DTC_UV_CO2C_MTM_OAFM_RHM_CHWDT_RTC:
   - schedule_run_command
   - smoke_alarm
 
-AHU_DTC_DFSS_CHWVM_OAFM_CLPM_CHWDT_CO2C_UV:
+AHU_DTC_DFSS_CHWVM_CLPM_CHWDT_CO2C_UV:
   id: "13258185673313091584"
   description: "AHU with discharge air, chilled water valve, discharge air/fan, CO2, UV and chilled supply/return water operation."
   is_canonical: true
@@ -2884,20 +3017,21 @@ AHU_DTC_DFSS_CHWVM_OAFM_CLPM_CHWDT_CO2C_UV:
   - DTC
   - DFSS
   - CHWVM
-  - OAFM
   - CLPM
   - CHWDT
   - CO2C
   - UV
   opt_uses:
   - filter_differential_pressure_status
+  - discharge_air_flowrate_status
+  - discharge_air_flowrate_sensor
   - filter_alarm
   - control_mode
   - run_mode
   - smoke_alarm
   - control_status
 
-AHU_DTC_CHWVM_H3X_OAMC_DFVSC_UV_CO2C2X_ZHM_ZTM:
+AHU_DTC_CHWVM_H3X_OAMC_DFVSFC_UV_CO2C2X_ZHM_ZTM:
   id: "5819083513827164160"
   description: "AHU with discharge air, chilled water valve, outside air, discharge air/fan, CO2, heater, UV and chilled supply/return water operation."
   is_canonical: true
@@ -2907,7 +3041,7 @@ AHU_DTC_CHWVM_H3X_OAMC_DFVSC_UV_CO2C2X_ZHM_ZTM:
   - CHWVM
   - H3X
   - OAMC
-  - DFVSC
+  - DFVSFC
   - UV
   - CO2C2X
   - ZHM
@@ -2915,14 +3049,16 @@ AHU_DTC_CHWVM_H3X_OAMC_DFVSC_UV_CO2C2X_ZHM_ZTM:
   uses:
   - discharge_air_damper_percentage_command
   opt_uses:
+  - discharge_air_flowrate_status
   - filter_differential_pressure_status
   - filter_alarm
   - control_mode
   - run_mode
+  - discharge_fan_lost_power_alarm
   - smoke_alarm
   - control_status
 
-AHU_CHWDT_CHWVM_CLPM_OAFM_STC_SFSS_UV_CO2C:
+AHU_CHWDT_CHWVM_CLPM_STC_SFSS_UV_CO2C:
   id: "7277405368165072896"
   description: "AHU with supply air, chilled water valve, outside air, supply air/fan, CO2, heater, UV and chilled supply/return water operation."
   is_canonical: true
@@ -2931,7 +3067,6 @@ AHU_CHWDT_CHWVM_CLPM_OAFM_STC_SFSS_UV_CO2C:
   - CHWDT
   - CHWVM
   - CLPM
-  - OAFM
   - STC
   - SFSS
   - UV
@@ -2943,6 +3078,7 @@ AHU_CHWDT_CHWVM_CLPM_OAFM_STC_SFSS_UV_CO2C:
   - run_mode
   - smoke_alarm
   - supply_fan_lost_power_alarm
+  - supply_air_flowrate_status
   - control_status
 
 AHU_BSPC_DX4SC_ECONM_EDPM_EFSS_EFVSC_SFSS_SFVSC_SSPC_STC_SSPCSCM_STCSCM:

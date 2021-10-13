@@ -115,7 +115,7 @@ RC:
   description: "Relay or switch to switch a socket or power supply for lumiaires or other devices"
   is_abstract: true
   uses:
-  - power_command
+  - switch_command
 
 LSC:
   id: "582734153334652928"

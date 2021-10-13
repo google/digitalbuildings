@@ -71,16 +71,18 @@ class EntityTypeManager(findings_lib.Findings):
   """Implements advanced management of EntityType construction.
 
   Method expects types in passed universe to have inherited_fields_expanded.
-
-  Args:
-    entity_type_universe: ConfigUniverse to evaluate
   """
 
   def __init__(self, entity_type_universe):
+    """Init.
+
+    Args:
+        entity_type_universe: ConfigUniverse to evaluate
+    """
     super(EntityTypeManager, self).__init__()
     self._universe = entity_type_universe
-    self._complete_field_sets_oi = {}  # OI = optionality insensitive
-    self._typenames_by_subset_oi = {}  # OI = optionality insensitive
+    self._complete_field_sets_oi = None  # OI = optionality insensitive
+    self._typenames_by_subset_oi = None  # OI = optionality insensitive
     self._new_parents = 0
 
   def Analyze(self):
@@ -103,6 +105,9 @@ class EntityTypeManager(findings_lib.Findings):
       A list of the findings added to the universe.  This should generally only
       be used for debugging.
     """
+    self._complete_field_sets_oi = {}
+    self._typenames_by_subset_oi = {}
+
     findings = []
     self._MapFields(MIN_SET_SIZE)
 
@@ -440,3 +445,29 @@ class EntityTypeManager(findings_lib.Findings):
       typenames_by_subset[field_set].update(typegroup)
 
     return typenames_by_subset
+
+  def GetCompleteFieldSetsOI(self) -> dict():
+    """Returns a mapping of inheritied and local field sets to EntityType.
+
+    Raises:
+        Exception: if the analyze() did not run.
+    """
+    # NOTE:This is a temporary implementation meant for development
+    # TODO(travis) : Refactor underlying logic to expose field set to entity
+    # type maps
+    if self._complete_field_sets_oi is None:
+      raise Exception('Run Analyze() to access this mapping')
+    return self._complete_field_sets_oi
+
+  def GetTypenamesBySubsetOI(self) -> dict():
+    """Returns a mapping of greatest common field subsets to EntityType names.
+
+    Raises:
+        Exception: if the analyze() did not run.
+    """
+    # NOTE:This is a temporary implementation meant for development
+    # TODO(travis) :Refactor underlying logic to expose field subset to entity
+    # type maps
+    if self._typenames_by_subset_oi is None:
+      raise Exception('Run Analyze() to access this mapping')
+    return self._typenames_by_subset_oi

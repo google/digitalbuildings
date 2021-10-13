@@ -111,3 +111,16 @@ HX_VSC_SSPC_SFM_STM_RTM_OA_FDPM2X:
   - RTM
   - OA
   - FDPM2X
+  
+HX_VSC_SSPC_SFM_STM_RTM_OA:
+  id: "13515911198863785984"
+  description: "Air to air fan forced heat exchanger with airflow and temperature."
+  is_canonical: true
+  implements:
+  - HX
+  - VSC
+  - SSPC
+  - SFM
+  - STM
+  - RTM
+  - OA

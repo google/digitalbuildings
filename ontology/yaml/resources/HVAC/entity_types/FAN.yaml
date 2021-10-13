@@ -124,6 +124,15 @@ FAN_ZTM_ZHM_FDPM:
   - ZHM
   - FDPM
 
+FAN_ZTM_ZHM:
+  id: "17659222856044642304"
+  description: "Fan with zone temperature and zone humidity monitoring"
+  is_canonical: true
+  implements:
+  - FAN
+  - ZTM
+  - ZHM
+  
 ### INTERLOCKED FANS ###
 
 FAN_SS_DRI:
@@ -338,7 +347,18 @@ FAN_SS_VSC_SSPM_OAFM_FDPM:
   - SSPM
   - OAFM
   - FDPM
-
+  
+FAN_SS_VSC_SSPM_OAFM:
+  id: "9467175133857710080"
+  description: "Outside air fan with variable speed control, supply side pressure monitoring, and outside air flow monitoring."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - VSC
+  - SSPM
+  - OAFM
+  
 FAN_SS_VSC_ZTM_EFM:
   id: "15053327521657389056"
   description: "General exhaust fan with variable speed control, zone temperature monitoring, and exhaust air flow monitoring."

@@ -15,7 +15,8 @@
 
 from __future__ import print_function
 
-from datetime import datetime
+import _thread
+import datetime
 import sys
 from typing import Callable, Dict, List, Optional
 
@@ -189,7 +190,7 @@ class TelemetryHelper(object):
         print('\n')
         print(report)
       print('Report Generated')
-      sys.exit(0)
+      _thread.interrupt_main()
 
     return TelemetryValidationCallback
 

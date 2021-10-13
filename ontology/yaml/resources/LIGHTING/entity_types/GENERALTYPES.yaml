@@ -66,3 +66,10 @@ ELT:
   is_abstract: true
   implements:
   - EQUIPMENT
+
+ZONE:
+  id: "243803097002934272"
+  description: "Lighting system specific location."
+  is_abstract: true
+  opt_uses:
+  - zone_use_label

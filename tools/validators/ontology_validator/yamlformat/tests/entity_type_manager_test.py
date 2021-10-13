@@ -20,12 +20,14 @@ from __future__ import print_function
 
 import os
 
+from absl.testing import absltest
+
 from yamlformat.validator import entity_type_lib
 from yamlformat.validator import entity_type_manager
 from yamlformat.validator import field_lib
 from yamlformat.validator import findings_lib
 from yamlformat.validator import namespace_validator
-from absl.testing import absltest
+from yamlformat.validator.entity_type_lib import FieldParts
 
 # Overwrite thresholds for grouping to ensure stability
 entity_type_manager.MIN_SET_SIZE = 1
@@ -248,6 +250,89 @@ class EntityTypeManagerTest(absltest.TestCase):
     self.assertLen(parent.GetFindings(), 1)
     self.assertTrue(parent.HasFindingTypes(
         [findings_lib.DuplicateExpandedFieldSetsWarning]))
+
+  def testGetCompleteFieldSetsOI(self):
+    # build test universe
+    yaml = {'literals': ['field1', 'field2', 'field3', 'field4']}
+    field_universe = field_lib.FieldUniverse(
+        [_GetFieldFolder(yaml)])
+    yaml = {
+        'parent': {
+            'description': 'parent',
+            'uses': ['field1', 'field2', 'field3']
+        },
+        'child1': {
+            'description': 'child1',
+            'implements': ['parent'],
+            'uses': ['field4']
+        },
+        'child2': {
+            'description': 'child2',
+            'uses': ['field1', 'field2', 'field3', 'field4']
+        },
+    }
+    type_folder = _GetEntityTypeFolder(field_universe, yaml)
+    universe = _GetEntityTypeUniverse([type_folder])
+    manager = entity_type_manager.EntityTypeManager(universe)
+    # expected output for GetCompleteFieldSetsOI() once Analyze() is called
+    expected_output = {
+        frozenset({
+            FieldParts(namespace='', field='field1', increment=''),
+            FieldParts(namespace='', field='field2', increment=''),
+            FieldParts(namespace='', field='field3', increment='')
+        }): {'/parent'},
+        frozenset({
+            FieldParts(namespace='', field='field1', increment=''),
+            FieldParts(namespace='', field='field2', increment=''),
+            FieldParts(namespace='', field='field4', increment=''),
+            FieldParts(namespace='', field='field3', increment='')
+        }): {'/child1', '/child2'}
+    }
+
+    # test field sets have not been instantiated
+    self.assertRaises(Exception, manager.GetCompleteFieldSetsOI)
+
+    # instantiate and build field sets
+    manager.Analyze()
+    function_output = manager.GetCompleteFieldSetsOI()
+
+    self.assertEqual(expected_output, function_output)
+
+  def testGetTypenamesBySubsetOI(self):
+    # build test universe
+    yaml = {'literals': ['field1', 'field2', 'field3', 'field4']}
+    field_universe = field_lib.FieldUniverse(
+        [_GetFieldFolder(yaml)])
+    yaml = {
+        'VAV_child1': {
+            'description': 'child1',
+            'uses': ['field1', 'field4'],
+            'opt_uses': ['field2']
+        },
+        'VAV_child2': {
+            'description': 'child2',
+            'uses': ['field1', 'field3', 'field4']
+        },
+    }
+    type_folder = _GetEntityTypeFolder(field_universe, yaml)
+    universe = _GetEntityTypeUniverse([type_folder])
+    manager = entity_type_manager.EntityTypeManager(universe)
+    # expected output for GetTypenamesBySubsetOI() once Analyze() is called
+    expected_output = {
+        frozenset({
+            FieldParts(namespace='', field='field4', increment=''),
+            FieldParts(namespace='', field='field1', increment='')
+        }): {'/VAV_child2', '/VAV_child1'}
+    }
+
+    # test field sets have not been instantiated
+    self.assertRaises(Exception, manager.GetTypenamesBySubsetOI)
+
+    # instantiate and build field sets
+    manager.Analyze()
+    function_output = manager.GetTypenamesBySubsetOI()
+
+    self.assertEqual(expected_output, function_output)
 
 if __name__ == '__main__':
   absltest.main()
