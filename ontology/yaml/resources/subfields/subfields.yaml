@@ -13,8 +13,8 @@
 # limitations under the License.
 
 aggregation_descriptor:
-  5minute: "A defined interval of time (five minutes)."
-  5second: "A defined interval of time (five seconds)."
+  fiveminute: "A defined interval of time (five minutes)."
+  fivesecond: "A defined interval of time (five seconds)."
   hourly: "An interval of time with duration of 60 minutes."
   daily: "A defined interval of time (one day)."
   weekly: "A defined interval of time (one week)."
