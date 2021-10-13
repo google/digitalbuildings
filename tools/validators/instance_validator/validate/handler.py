@@ -18,7 +18,7 @@ from __future__ import print_function
 import _thread
 import datetime
 import sys
-from typing import Callable, Dict, List, Optional
+from typing import Dict, List
 
 from validate import entity_instance
 from validate import generate_universe
