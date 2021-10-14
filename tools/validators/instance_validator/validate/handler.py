@@ -85,11 +85,8 @@ def RunValidation(filenames: List[str],
                   modified_types_filepath: str = None,
                   subscription: str = None,
                   service_account: str = None,
-                  report_filename: str = None,
                   timeout: int = 60) -> None:
   """Master runner for all validations."""
-  if report_filename:
-    sys.stdout = open(report_filename, 'w', encoding='utf-8')
   if bool(subscription) != bool(service_account):
     print('Subscription and a service account file are '
           'both needed for the telemetry validation!')
