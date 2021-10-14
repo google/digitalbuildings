@@ -208,6 +208,7 @@ class _FieldValidationStateMachine(object):
     self._category_index = 0
     self._instance_count = 0
     self._has_measurement = False
+    self._has_aggregation = False
     self._has_required_fields = False
 
   _POINT_TYPES_NEEDING_MEASUREMENTS = ['setpoint', 'sensor', 'accumulator']
@@ -221,7 +222,9 @@ class _FieldValidationStateMachine(object):
       _CAT_SPEC(
           cat=subfield_lib.SubfieldCategory.AGGREGATION, required=False, max=1),
       _CAT_SPEC(
-          cat=subfield_lib.SubfieldCategory.AGGREGATION_DESCRIPTOR, required=False, max=10),
+          cat=subfield_lib.SubfieldCategory.AGGREGATION_DESCRIPTOR, 
+          required=False, 
+          max=1),
       _CAT_SPEC(
           cat=subfield_lib.SubfieldCategory.DESCRIPTOR, required=False, max=10),
       _CAT_SPEC(
@@ -247,12 +250,18 @@ class _FieldValidationStateMachine(object):
     """
     category = subfield.category
     while self._category_index < len(self._CATEGORIES_IN_ORDER):
+      # TODO(tsodorff): Add individual warnings for each specific failure.
       cat_spec = self._CATEGORIES_IN_ORDER[self._category_index]
       if category == cat_spec.cat:
         if self._instance_count < cat_spec.max:
           self._instance_count += 1
           if category == subfield_lib.SubfieldCategory.MEASUREMENT:
             self._has_measurement = True
+          if category == subfield_lib.SubfieldCategory.AGGREGATION:
+            self._has_aggregation = True 
+          if category == subfield_lib.SubfieldCategory.AGGREGATION_DESCRIPTOR:
+            if not self._has_aggregation:
+              return False
           if category == subfield_lib.SubfieldCategory.POINT_TYPE:
             self._has_required_fields = True
             if not self._has_measurement:
