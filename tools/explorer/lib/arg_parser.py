@@ -15,7 +15,6 @@
 """Command line argument parser for ontology explorer"""
 
 import argparse
-import sys
 
 def ParseArgs() -> argparse.ArgumentParser:
   """Generates an argument parser for user input

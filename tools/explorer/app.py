@@ -20,29 +20,28 @@ from lib import arg_parser
 import pyfiglet
 import sys
 
-
-
-def main(args):
+def main(parsed_args):
   """Main method for DBO explorer."""
   figlet_out = pyfiglet.figlet_format('DBO Explorer', font='digital')
   print(figlet_out)
-  print('Starting DBO explorer')
+  print('Starting DBO explorer...')
 
-  my_ontology = explorer.Build(args.modified_types_filepath)
+  my_ontology = explorer.Build(parsed_args.modified_types_filepath)
   done = False
   while not done:
-    function_choice = input(
+    print(
         '\nHow would you like to query DBO\n' +
         '1: Get fields for a type name\n' +
         '2: Get types for a list of fields\n' +
         '3: Validate a field name\n' +
-        'q: quit\n' +
-        'Please select an option: '
+        'q: quit\n'
     )
+    function_choice = input('Please select an option: ')
     if function_choice == '1':
       namespace = input('Enter a namespace: ').upper()
       type_name = input(f'Enter a type name defined in {namespace}: ').upper()
       fields = my_ontology.GetFieldsForTypeName(namespace, type_name)
+      print(f'\nFields for {namespace}/{type_name}:')
       for field in fields:
         print(field)
     elif function_choice == '2':
@@ -66,6 +65,5 @@ def main(args):
       )
 
 if __name__ == '__main__':
-  parsed_args = arg_parser.ParseArgs().parse_args(sys.argv[1:])
-  print(parsed_args)
-  main(parsed_args)
+  args = arg_parser.ParseArgs().parse_args(sys.argv[1:])
+  main(args)
