@@ -101,19 +101,10 @@ def _ParseArgs() -> argparse.ArgumentParser:
 
 if __name__ == '__main__':
   args = _ParseArgs().parse_args(sys.argv[1:])
-
-  if args.report_filename:
-    with open(args.report_filename, 'w', encoding='utf-8') as sys.stdout:
-      handler.RunValidation(
-          filenames=args.filenames,
-          modified_types_filepath=args.modified_types_filepath,
-          subscription=args.subscription,
-          service_account=args.service_account,
-          timeout=int(args.timeout))
-  else:
-    handler.RunValidation(
-        filenames=args.filenames,
-        modified_types_filepath=args.modified_types_filepath,
-        subscription=args.subscription,
-        service_account=args.service_account,
-        timeout=int(args.timeout))
+  handler.RunValidation(
+      filenames=args.filenames,
+      modified_types_filepath=args.modified_types_filepath,
+      subscription=args.subscription,
+      service_account=args.service_account,
+      report_filename=args.report_filename,
+      timeout=int(args.timeout))
