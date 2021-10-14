@@ -22,17 +22,19 @@ from absl import app
 from absl import flags
 
 FLAGS = flags.FLAGS
-flags.DEFINE_string('changed', None, 'Path to an alternate ontology')
+flags.DEFINE_string(
+    'modifiedontologytypes',
+    None,
+    'Path to an alternate ontology'
+)
 flags.DEFINE_boolean('debug', False, 'Produces debugging output')
 
-def main(argv):
+def main(_):
   """Main method for DBO explorer."""
-  if FLAGS.debug:
-    print('non-flag arguments:', argv)
   figlet_out = pyfiglet.figlet_format('DBO Explorer', font='digital')
   print(figlet_out)
   print('Starting DBO explorer')
-  my_ontology = explorer.Build(FLAGS.changed)
+  my_ontology = explorer.Build(FLAGS.modifiedontologytypes)
   done = False
   while not done:
     function_choice = input(
