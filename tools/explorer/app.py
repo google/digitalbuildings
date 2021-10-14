@@ -15,26 +15,20 @@
 """Main module for DBO explorer."""
 from lib import explorer
 from lib import model
+from lib import arg_parser
 
 import pyfiglet
+import sys
 
-from absl import app
-from absl import flags
 
-FLAGS = flags.FLAGS
-flags.DEFINE_string(
-    'modifiedontologytypes',
-    None,
-    'Path to an alternate ontology'
-)
-flags.DEFINE_boolean('debug', False, 'Produces debugging output')
 
-def main(_):
+def main(args):
   """Main method for DBO explorer."""
   figlet_out = pyfiglet.figlet_format('DBO Explorer', font='digital')
   print(figlet_out)
   print('Starting DBO explorer')
-  my_ontology = explorer.Build(FLAGS.modifiedontologytypes)
+
+  my_ontology = explorer.Build(args.modified_types_filepath)
   done = False
   while not done:
     function_choice = input(
@@ -72,4 +66,6 @@ def main(_):
       )
 
 if __name__ == '__main__':
-  app.run(main)
+  parsed_args = arg_parser.ParseArgs().parse_args(sys.argv[1:])
+  print(parsed_args)
+  main(parsed_args)
