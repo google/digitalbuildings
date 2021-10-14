@@ -89,6 +89,7 @@ def RunValidation(filenames: List[str],
                   timeout: int = 60) -> None:
   """Master runner for all validations."""
   if report_filename:
+    # pylint: disable=consider-using-with
     sys.stdout = open(report_filename, 'w', encoding='utf-8')
   if bool(subscription) != bool(service_account):
     print('Subscription and a service account file are '
