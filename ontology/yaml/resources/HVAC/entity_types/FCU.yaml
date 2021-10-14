@@ -1376,17 +1376,23 @@ FCU_LPA_FA:
   - lost_power_alarm
   - failed_alarm
 
-FCU_DXRC_RHDHS_DTM_DFSS:
+FCU_RTC_RHDHS_DTM_DFSS:
   description: "Crac unit with return air temperature control, return air humidity monitor and dehumidification/humidification monitor."
   implements:
   - FCU
-  - DXRC
+  - RTC
   - RHDHS
   - DTM
   - DFSS
+  uses:
+  - cooling_percentage_command
+  - compressor_run_command
+  - compressor_run_status_1
+  - compressor_run_status_2
   opt_uses:
   - discharge_fan_failed_alarm
   - low_discharge_air_flowrate_alarm
   - master_alarm
   - water_leak_alarm
   - fire_alarm
+  - schedule_run_command
