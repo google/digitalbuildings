@@ -1,7 +1,7 @@
 # Ontology Explorer
 
 The Ontology explorer allows a user to ask a few basic question of the ontology:
-* What the fields associated with a type name
+* What fields are associated with a type name
 * What are the types associated with a given set of fields
 * Is a field defined within a certain namespace
 
@@ -17,5 +17,5 @@ There are two main ways in which the ontology explorer can be used:
   * This returns an OntologyWrapper object which can be used to execute query functions on the Digital Buildings Ontology. You may also pass to Build() a path to an ontology extension.
 2. The explorer may also be run as a stand-alone command-line interface. 
   * Run `python app.py` to start the application.
-  * If you have extended the ontology by adding new types to your local ontology, run the following: `python --modified-ontology-types=path/to/modified/ontology/types/folder`
+  * If you have extended the ontology by adding new types to your local ontology, run the following: `python app.py --modified-ontology-types=path/to/modified/ontology/types/folder`
 
