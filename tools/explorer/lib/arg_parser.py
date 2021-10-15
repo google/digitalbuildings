@@ -12,15 +12,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Command line argument parser for ontology explorer"""
+"""Command line argument parser for ontology explorer."""
 
 import argparse
 
 def ParseArgs() -> argparse.ArgumentParser:
-  """Generates an argument parser for user input
+  """Generates an argument parser for user input.
 
   Returns:
-    An instance of ArgumentParser class
+    An instance of ArgumentParser class.
   """
   parser = argparse.ArgumentParser(
       description='Instantiate an ontology explorer'

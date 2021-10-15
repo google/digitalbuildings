@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Testing module for arg_parser.py"""
+"""Testing module for arg_parser.py."""
 from absl.testing import absltest
 import argparse
 
