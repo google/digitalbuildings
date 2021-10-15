@@ -88,26 +88,34 @@ def RunValidation(filenames: List[str],
                   report_filename: str = None,
                   timeout: int = 60) -> None:
   """Master runner for all validations."""
+  saved_stdout = sys.stdout
+  report_file = None
   if report_filename:
     # pylint: disable=consider-using-with
-    sys.stdout = open(report_filename, 'w', encoding='utf-8')
-  if bool(subscription) != bool(service_account):
-    print('Subscription and a service account file are '
-          'both needed for the telemetry validation!')
-    sys.exit(0)
-  print('\nStarting validator...\n')
-  print('\nStarting universe generation...\n')
-  universe = generate_universe.BuildUniverse(
-      use_simplified_universe=use_simplified_universe,
-      modified_types_filepath=modified_types_filepath)
-  if not universe:
-    print('\nError generating universe')
-    sys.exit(0)
-  print('\nStarting config validation...\n')
-  entities = _ValidateConfig(filenames, universe)
-  if subscription:
-    print('\nStarting telemetry validation...\n')
-    _ValidateTelemetry(subscription, service_account, entities, timeout)
+    report_file = open(report_filename, 'w', encoding='utf-8')
+    sys.stdout = report_file
+  try:
+    if bool(subscription) != bool(service_account):
+      print('Subscription and a service account file are '
+            'both needed for the telemetry validation!')
+      sys.exit(0)
+    print('\nStarting validator...\n')
+    print('\nStarting universe generation...\n')
+    universe = generate_universe.BuildUniverse(
+        use_simplified_universe=use_simplified_universe,
+        modified_types_filepath=modified_types_filepath)
+    if not universe:
+      print('\nError generating universe')
+      sys.exit(0)
+    print('\nStarting config validation...\n')
+    entities = _ValidateConfig(filenames, universe)
+    if subscription:
+      print('\nStarting telemetry validation...\n')
+      _ValidateTelemetry(subscription, service_account, entities, timeout)
+  finally:
+    sys.stdout = saved_stdout
+    if report_file:
+      report_file.close()
 
 
 class TelemetryHelper(object):
