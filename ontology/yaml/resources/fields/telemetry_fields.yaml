@@ -942,16 +942,11 @@ literals:
 - heating_supply_water_temperature_setpoint
 
 #Additional fields for MTV Buildings
-- zone_air_co2_concentration_sensor
-- zone_air_voc_concentration_sensor
-- zone_air_co_concentration_sensor
 - zone_air_no2_concentration_sensor
 - zone_air_so2_concentration_sensor
 - zone_air_h2s_concentration_sensor
 - zone_air_ozone_concentration_sensor
 - zone_air_formaldehyde_concentration_sensor
-- zone_air_temperature_sensor
-- zone_air_relative_humidity_sensor
 - zone_air_pm1p0_mass_concentration_sensor
 - zone_air_pm2p5_mass_concentration_sensor
 - zone_air_pm4p0_mass_concentration_sensor
