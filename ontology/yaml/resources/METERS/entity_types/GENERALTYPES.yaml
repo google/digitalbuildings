@@ -39,7 +39,7 @@ FM:
   description: "Tag for all closed-loop system flow meters. Distinct from water meters which are open-loop systems."
   is_abstract: true
   implements:
-  - MTR  
+  - MTR
 
 WM:
   id: "18022612548536238080"
@@ -51,6 +51,13 @@ WM:
 HM:
   id: "5280577902914568192"
   description: "Tag for all heat meters (cooling or heating), commonly referred to as BTU meters."
+  is_abstract: true
+  implements:
+  - MTR
+
+AQ:
+  id: "5555555555555555555"
+  description: "Tag for all air quality sensors"
   is_abstract: true
   implements:
   - MTR
