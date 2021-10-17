@@ -41,6 +41,12 @@ OS:
   description: "Occupancy status for a specific zone."
   uses:
   - zone_occupancy_status
+  
+ROS: 
+  is_abstract: true
+  description: "Room occupancy status based on one or multiple zone occupancy statuses"
+  uses:
+  - room_occupancy_status
 
 SC:
   id: "2776576510096572416"
