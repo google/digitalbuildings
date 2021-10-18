@@ -62,6 +62,7 @@ SENSOR_ZTM:
     - ZTM
 
 SENSOR_CO2M:
+  id: "12938043071676809216"
   description: "CO2 concentration monitoring."
   is_canonical: true
   implements:
