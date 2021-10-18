@@ -892,6 +892,9 @@ literals:
 - dimmer_failed_alarm:
   - ACTIVE
   - INACTIVE
+- power_command:
+  - ON
+  - OFF
 - switch_command:
   - ON
   - OFF
