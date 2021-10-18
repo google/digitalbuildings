@@ -96,7 +96,7 @@ class OntologyWrapper(object):
 
   def _CreateMatch(self, field_list: List[EntityTypeField],
                    entity_type: EntityType) -> Match:
-    """Determines the closeness of a match between an EntityType object and a list of EntityTypeField objects.
+    """Determines the closeness of a match between an EntityType object and a list of EntityTypeFields.
 
     calls _CalculateMatchWeight() on field_list and the set of fields belonging
     to entity_type. The weight function outputs a weight signifying the
@@ -115,7 +115,7 @@ class OntologyWrapper(object):
   def GetEntityTypesFromFields(self,
                                field_list: List[EntityTypeField],
                                general_type: str = None) -> List[EntityType]:
-    """Get a list of EntityType objects matching a list of EntityTypeField objects.
+    """Get a list of EntityType objects matching a list of EntityTypeFields.
 
     Args:
         field_list: a list of EntityTypeField objects to match to an entity
