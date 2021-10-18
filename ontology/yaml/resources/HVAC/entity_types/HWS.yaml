@@ -207,6 +207,7 @@ HWS_SS_WDT:
   - control_status
 
 HWS_SS_RWTC_SWTC:
+  id: "2014562175489671168"
   description: "Heating water system with temperature control between return/supply water"
   is_canonical: true
   implements:
