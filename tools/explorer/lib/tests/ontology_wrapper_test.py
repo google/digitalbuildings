@@ -14,14 +14,13 @@
 
 """Testing module for ontology_wrapper.py."""
 from absl.testing import absltest
-
-from yamlformat.validator import namespace_validator as nv
-
-from lib.ontology_wrapper import OntologyWrapper
 from lib.model import EntityTypeField
 from lib.model import StandardField
+from lib.ontology_wrapper import OntologyWrapper
 
 from validate.universe_helper.config_universe import create_simplified_universe
+from yamlformat.validator import namespace_validator as nv
+
 
 class OntologyTest(absltest.TestCase):
 
