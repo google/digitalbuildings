@@ -19,6 +19,8 @@ To use the ontology defined in this repository, run the validator as following: 
 
 To validate multiple input files at the same time, you can provide the "--input" parameter multiple times. ("-i" will also work).
 
+If the optional --report-filename parameter is provided, the validation results will be written to this report file. Otherwise, the results will be written to stdout.
+
 ### Ontology Types extended
 
 If you have extended the ontology by adding new types to your local ontology, run the following: `python3 instance_validator.py --input path/to/YOUR_BUILDING_CONFIG.yaml --modified-ontology-types path/to/modified/ontology/types/folder`
