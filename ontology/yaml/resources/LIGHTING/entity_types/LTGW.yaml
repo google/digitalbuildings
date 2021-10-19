@@ -15,6 +15,7 @@
 # Canonical types for Lighting Gateways
 
 LTGW_BS:
+  id: "14108978974793138176"
   description: "Basic lighting gateway."
   implements:
   - LTGW
