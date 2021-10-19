@@ -270,10 +270,12 @@ class _FieldValidationStateMachine(object):
             # run this check won't matter.
             if self._has_aggregation_descriptor and not self._has_aggregation:
               return False
-            self._has_required_fields = True
+            # Verify that, if there is no measurement, the point type specified
+            # does not explicitly require one.
             if not self._has_measurement:
               if subfield.name in self._POINT_TYPES_NEEDING_MEASUREMENTS:
                 return False
+            self._has_required_fields = True
           return True
         else:
           return False
