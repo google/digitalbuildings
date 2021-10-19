@@ -18,7 +18,7 @@ from __future__ import print_function
 import _thread
 import datetime
 import sys
-from typing import Callable, Dict, List, Optional
+from typing import Dict, List
 
 from validate import entity_instance
 from validate import generate_universe
@@ -74,10 +74,10 @@ def _ValidateConfig(
 
 def _ValidateTelemetry(subscription: str, service_account: str,
                        entities: Dict[str, entity_instance.EntityInstance],
-                       report_filename: str, timeout: int) -> None:
+                       timeout: int) -> None:
   """Runs all telemetry validation checks."""
-  helper = TelemetryHelper(subscription, service_account, report_filename)
-  helper.Validate(entities, report_filename, timeout)
+  helper = TelemetryHelper(subscription, service_account)
+  helper.Validate(entities, timeout)
 
 
 def RunValidation(filenames: List[str],
@@ -88,24 +88,34 @@ def RunValidation(filenames: List[str],
                   report_filename: str = None,
                   timeout: int = 60) -> None:
   """Master runner for all validations."""
-  if bool(subscription) != bool(service_account):
-    print('Subscription and a service account file are '
-          'both needed for the telemetry validation!')
-    sys.exit(0)
-  print('\nStarting validator...\n')
-  print('\nStarting universe generation...\n')
-  universe = generate_universe.BuildUniverse(
-      use_simplified_universe=use_simplified_universe,
-      modified_types_filepath=modified_types_filepath)
-  if not universe:
-    print('\nError generating universe')
-    sys.exit(0)
-  print('\nStarting config validation...\n')
-  entities = _ValidateConfig(filenames, universe)
-  if subscription:
-    print('\nStarting telemetry validation...\n')
-    _ValidateTelemetry(subscription, service_account, entities, report_filename,
-                       timeout)
+  saved_stdout = sys.stdout
+  report_file = None
+  if report_filename:
+    # pylint: disable=consider-using-with
+    report_file = open(report_filename, 'w', encoding='utf-8')
+    sys.stdout = report_file
+  try:
+    if bool(subscription) != bool(service_account):
+      print('Subscription and a service account file are '
+            'both needed for the telemetry validation!')
+      sys.exit(0)
+    print('\nStarting validator...\n')
+    print('\nStarting universe generation...\n')
+    universe = generate_universe.BuildUniverse(
+        use_simplified_universe=use_simplified_universe,
+        modified_types_filepath=modified_types_filepath)
+    if not universe:
+      print('\nError generating universe')
+      sys.exit(0)
+    print('\nStarting config validation...\n')
+    entities = _ValidateConfig(filenames, universe)
+    if subscription:
+      print('\nStarting telemetry validation...\n')
+      _ValidateTelemetry(subscription, service_account, entities, timeout)
+  finally:
+    sys.stdout = saved_stdout
+    if report_file:
+      report_file.close()
 
 
 class TelemetryHelper(object):
@@ -114,85 +124,65 @@ class TelemetryHelper(object):
   Attributes:
     subscription: resource string referencing the subscription to check
     service_account_file: path to file with service account information
-    report_filename: a report filename provided by the user
   """
 
-  def __init__(self, subscription, service_account_file, report_filename=None):
+  def __init__(self, subscription, service_account_file):
     super().__init__()
-    self.report_filename = report_filename
     self.subscription = subscription
     self.service_account_file = service_account_file
 
   def Validate(self, entities: Dict[str, entity_instance.EntityInstance],
-               report_filename: str, timeout: int) -> None:
+               timeout: int) -> None:
     """Validates telemetry payload received from the subscription.
 
     Args:
       entities: EntityInstance dictionary keyed by entity name
-      report_filename: path to write results to
       timeout: number of seconds to wait for telemetry
     """
 
     print('Connecting to pubsub subscription: ', self.subscription)
     sub = subscriber.Subscriber(self.subscription, self.service_account_file)
     validator = telemetry_validator.TelemetryValidator(
-        entities, timeout,
-        self.BuildTelemetryValidationCallback(report_filename))
+        entities, timeout, _TelemetryValidationCallback)
     validator.StartTimer()
     sub.Listen(validator.ValidateMessage)
 
-  def BuildTelemetryValidationCallback(
-      self,
-      report_filename: Optional[str] = None
-  ) -> Callable[[telemetry_validator.TelemetryValidator], None]:
-    """Returns a callback to be called when a telemetry message is received.
 
-    Args:
-      report_filename: path to write results to
-    """
+def _TelemetryValidationCallback(
+    validator: telemetry_validator.TelemetryValidator) -> None:
+  """Callback when the telemetry validator finishes.
 
-    def TelemetryValidationCallback(
-        validator: telemetry_validator.TelemetryValidator) -> None:
-      """Callback when the telemetry validator finishes.
+  This could be called due to a timeout or because telemetry messages were
+  received and validated for every expected entity.
 
-      This could be called due to a timeout or because telemetry messages were
-      received and validated for every expected entity.
+  Args:
+    validator: the telemetry validator that triggered the callback.
+  """
 
-      Args:
-        validator: the telemetry validator that triggered the callback.
-      """
+  print('Generating validation report ...')
+  current_time = datetime.datetime.now()
+  timestamp = current_time.strftime('%d-%b-%Y (%H:%M:%S)')
+  report = f'\nReport Generated at: {timestamp}\n'
 
-      print('Generating validation report ...')
-      current_time = datetime.now()
-      timestamp = current_time.strftime('%d-%b-%Y (%H:%M:%S)')
-      report = f'\nReport Generated at: {timestamp}\n'
+  if not validator.AllEntitiesValidated():
+    report += ('No telemetry message was received for the following '
+                'entities:')
+    report += '\n'
+    for entity_name in validator.GetUnvalidatedEntityNames():
+      report += f'  {entity_name}\n'
 
-      if not validator.AllEntitiesValidated():
-        report += ('No telemetry message was received for the following '
-                   'entities:')
-        report += '\n'
-        for entity_name in validator.GetUnvalidatedEntityNames():
-          report += f'  {entity_name}\n'
+  report += '\nTelemetry validation errors:\n'
+  for error in validator.GetErrors():
+    report += error.GetPrintableMessage()
 
-      report += '\nTelemetry validation errors:\n'
-      for error in validator.GetErrors():
-        report += error.GetPrintableMessage()
+  report += '\nTelemetry validation warnings:\n'
+  for warnings in validator.GetWarnings():
+    report += warnings.GetPrintableMessage()
 
-      report += '\nTelemetry validation warnings:\n'
-      for warnings in validator.GetWarnings():
-        report += warnings.GetPrintableMessage()
-
-      if report_filename:
-        with open(self.report_filename, 'w', encoding='utf-8') as f:
-          f.write(report)
-          f.close()
-      else:
-        print('\n')
-        print(report)
-      print('Report Generated')
-      _thread.interrupt_main()
-
-    return TelemetryValidationCallback
+  print('\n')
+  print(report)
+  print('Report Generated')
+  _thread.interrupt_main()
 
 
 class EntityHelper(object):

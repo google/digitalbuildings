@@ -124,6 +124,9 @@ class SubfieldLibTest(absltest.TestCase):
         'aggregation': {
             'agg': 'aggD'
         },
+        'aggregation_descriptor': {
+            'aggdesc':'aggDescD'
+        },
         'component': {
             'comp': 'compD'
         },
@@ -144,9 +147,8 @@ class SubfieldLibTest(absltest.TestCase):
     sff = subfield_lib.SubfieldFolder(_GOOD_PATH)
     sff.AddFromConfig([doc], '{0}/file.yaml'.format(_GOOD_PATH))
     ns = sff.local_namespace
-
-    self.assertCountEqual(['agg', 'comp', 'desc', 'mdesc', 'meas', 'ptype'],
-                          ns.subfields)
+    self.assertCountEqual(['agg', 'aggdesc', 'comp', 'desc', 'mdesc', 'meas',\
+         'ptype'], ns.subfields)
     self.assertEmpty(sff.GetFindings())
 
   def testAddFromConfigNotYaml(self):

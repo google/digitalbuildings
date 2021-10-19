@@ -892,6 +892,9 @@ literals:
 - dimmer_failed_alarm:
   - ACTIVE
   - INACTIVE
+- power_command:
+  - ON
+  - OFF
 - switch_command:
   - ON
   - OFF
@@ -974,6 +977,11 @@ literals:
   - OPEN
   - CLOSED
 - exhaust_air_isolation_damper_status:
+  - OPEN
+  - CLOSED
+
+# Damper status
+- damper_status:
   - OPEN
   - CLOSED
 
