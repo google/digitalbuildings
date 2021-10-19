@@ -12,16 +12,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-aggregation_descriptor:
-  fiveminute: "A defined interval of time (five minutes)."
-  fivesecond: "A defined interval of time (five seconds)."
-  hourly: "An interval of time with duration of 60 minutes."
-  daily: "A defined interval of time (one day)."
 aggregation:
   average: "Average value (e.g. average_zone_air_temperature_sensor)"
   max: "Maximum value (e.g. Max_Cooling_Air_Flow_Setpoint)"
   min: "Minimum value (e.g. Min_Ventilation_Air_Flow_Setpoint)"
   total: "Sum total of some set of values (e.g. total_request_heating_count)"
+aggregation_descriptor:
+  fivesecondrolling: "Aggregation over a rolling window of five seconds."
+  fivesecondfixed: "Aggregation over a fixed window of five seconds."
 component:
   battery: "A device used to store power for use at a later time (e.g. in an emergency where grid power is unavailable)."
   cable: "A length of wire, sometimes shielded externally, used for some purpose (e.g. steel braided wire for tensile support, CAT5 cable for communications, etc.)."
