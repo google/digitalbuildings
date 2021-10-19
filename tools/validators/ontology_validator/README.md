@@ -11,4 +11,5 @@ The Validator is python based, it takes the following arguments:
 * changed (optional): a path pointing to the changed files of the ontology.
 
 The validator can be run as following: `python3 validator.py
+-o=Users/foo/ontology/` or `python3 validator.py --original=
 --original=Users/foo/ontology/`

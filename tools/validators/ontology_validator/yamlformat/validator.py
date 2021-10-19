@@ -20,18 +20,15 @@ from __future__ import print_function
 
 from os import path
 
+from arg_parser import ParseArgs
+import sys
+
 from absl import app
-from absl import flags
 
 from yamlformat.validator import external_file_lib
 
-FLAGS = flags.FLAGS
-
-flags.DEFINE_string('changed', None, 'The path of the changed files')
-flags.DEFINE_string('original', None, 'The path of the original files')
-flags.DEFINE_boolean('interactive', True, 'interactive mode')
-
 def main(args):
+  args = ParseArgs().parse_args(sys.argv[1:])
   filter_text = None
   if len(args) >= 2:
     command = args[1]
@@ -42,13 +39,11 @@ def main(args):
 
   changed = FLAGS.changed
   if changed is not None:
-    changed = path.expanduser(FLAGS.changed)
+    changed = path.expanduser(args.changed)
 
   print('Starting Yaml Validator!')
-  external_file_lib.Validate(filter_text, path.expanduser(FLAGS.original),
-                             changed, interactive=FLAGS.interactive)
-
+  external_file_lib.Validate(filter_text, path.expanduser(args.original),
+                             changed, interactive=args.interactive)
 
 if __name__ == '__main__':
-  flags.mark_flag_as_required('original')
   app.run(main)
