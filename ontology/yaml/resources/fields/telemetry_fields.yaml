@@ -980,4 +980,9 @@ literals:
   - OPEN
   - CLOSED
 
+# Damper status
+- damper_status:
+  - OPEN
+  - CLOSED
+
 - lighting_percentage_sensor # For relative ranged illuminance inputs.
