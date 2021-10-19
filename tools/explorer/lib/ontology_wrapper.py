@@ -69,16 +69,6 @@ class OntologyWrapper(object):
     Returns:
             result_fields: a list of EntityTypeField objects.
     """
-    if not isinstance(namespace, str):
-      raise TypeError(
-          'Namespace argument must be a string\n'+
-          f'You provided an argument of type: {type(namespace)}'
-      )
-    if not isinstance(entity_type_name, str):
-      raise TypeError(
-          'Entity_type_field argument must be a string\n'+
-          f'You provided an argument of type: {type(entity_type_name)}'
-      )
     entity_type = self.universe.entity_type_universe.GetEntityType(
         namespace,
         entity_type_name
@@ -86,16 +76,16 @@ class OntologyWrapper(object):
     if entity_type is None:
       if namespace == '':
         raise ValueError(
-            f'\n{entity_type_name} is not defined in global namespace'
+            f'\n{entity_type_name} is not defined in global namespace.'
         )
       else:
         raise ValueError(
-            f'\n{entity_type_name} is not defined in namespace: {namespace}'
+            f'\n{entity_type_name} is not defined in namespace: {namespace}.'
         )
     if not entity_type.inherited_fields_expanded:
       raise Exception(
-          'inherited fields must be expanded to query fields\n'+
-          'Run NamespaceValidator on your ConfigUniverse to expand fields'
+          'Inherited fields must be expanded to query fields\n'+
+          'Run NamespaceValidator on your ConfigUniverse to expand fields.'
       )
     # Entity_type_lib.FieldParts NamedTuple to EntityTypeField object.
     entity_type_fields = []
@@ -174,8 +164,8 @@ class OntologyWrapper(object):
     """A method to validate a field name against the ontology."""
     if not isinstance(field, StandardField):
       raise TypeError(
-          'Field argument must be a model.StandardField object\n'+
-          f'You provided a {type(field)}'
+          'Field argument must be a StandardField object\n'+
+          f'You provided a {type(field)} object'
       )
     namespace_name = field.GetNamespaceName()
     standard_field_name = field.GetStandardFieldName()
