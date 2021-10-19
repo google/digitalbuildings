@@ -739,11 +739,21 @@ literals:
 - broken_cable_alarm:
   - ACTIVE
   - INACTIVE
-- gas_leak_detection_alarm
-- water_leak_detection_alarm
-- fire_alarm
-- emergency_release_status
-- position_status
+- gas_leak_detection_alarm:
+  - ACTIVE
+  - INACTIVE
+- water_leak_detection_alarm:
+  - ACTIVE
+  - INACTIVE
+- fire_alarm:
+  - ACTIVE
+  - INACTIVE
+- emergency_release_status:
+  - ACTIVE
+  - INACTIVE
+- position_status:
+  - OPEN
+  - CLOSED
 - condensing_water_valve_percentage_sensor
 - entering_cooling_coil_temperature_sensor
 
