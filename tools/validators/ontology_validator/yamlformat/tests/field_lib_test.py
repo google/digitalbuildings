@@ -242,8 +242,8 @@ class FieldLibTest(absltest.TestCase):
 
   def testInsertFieldValidatesCorrectConstruction(self):
     sf_dict = {
-        'first': subfield_lib.Subfield('first', AGGREGATION),
-        'second': subfield_lib.Subfield('second', AGGREGATION_DESCRIPTOR),
+        'first': subfield_lib.Subfield('first', AGGREGATION_DESCRIPTOR),
+        'second': subfield_lib.Subfield('second', AGGREGATION),
         'third': subfield_lib.Subfield('third', DESCRIPTOR),
         'fourth': subfield_lib.Subfield('fourth', COMPONENT),
         'fifth': subfield_lib.Subfield('fifth', MEASUREMENT_DESCRIPTOR),
@@ -269,6 +269,8 @@ class FieldLibTest(absltest.TestCase):
     self.assertEmpty(ns.GetFindings())
 
   def testAggregationDescriptorFailsWithoutAggregation(self):
+    """ Check that aggregation descriptors fail without associated 
+    aggregation. """
     sf_dict = {
         'first': subfield_lib.Subfield('first', AGGREGATION_DESCRIPTOR),
         'second': subfield_lib.Subfield('second', POINT_TYPE)
@@ -282,9 +284,9 @@ class FieldLibTest(absltest.TestCase):
 
   def testInsertRespectsAggregationCount(self):
     sf_dict = {
-        'first': subfield_lib.Subfield('first', AGGREGATION),
+        'first': subfield_lib.Subfield('first', AGGREGATION_DESCRIPTOR),
         'second': subfield_lib.Subfield('second', AGGREGATION_DESCRIPTOR),
-        'third': subfield_lib.Subfield('third', AGGREGATION_DESCRIPTOR),
+        'third': subfield_lib.Subfield('third', AGGREGATION),
         'fourth': subfield_lib.Subfield('fourth', POINT_TYPE)
     }
     ns = field_lib.FieldNamespace('local', subfields=sf_dict)

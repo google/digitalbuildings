@@ -67,8 +67,8 @@ class SubfieldUniverse(findings_lib.FindingsUniverse):
 
 
 class SubfieldCategory(enum.Enum):
-  AGGREGATION = 1
-  AGGREGATION_DESCRIPTOR = 2
+  AGGREGATION_DESCRIPTOR = 1
+  AGGREGATION = 2
   DESCRIPTOR = 3
   COMPONENT = 4
   MEASUREMENT_DESCRIPTOR = 5
@@ -77,8 +77,8 @@ class SubfieldCategory(enum.Enum):
 
 
 _SUBFIELD_CATEGORY_NAMES = {
-    SubfieldCategory.AGGREGATION: 'aggregation',
     SubfieldCategory.AGGREGATION_DESCRIPTOR: 'aggregation_descriptor',
+    SubfieldCategory.AGGREGATION: 'aggregation',
     SubfieldCategory.COMPONENT: 'component',
     SubfieldCategory.DESCRIPTOR: 'descriptor',
     SubfieldCategory.MEASUREMENT_DESCRIPTOR: 'measurement_descriptor',
