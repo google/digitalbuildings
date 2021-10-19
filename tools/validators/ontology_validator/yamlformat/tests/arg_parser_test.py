@@ -16,7 +16,7 @@
 from absl.testing import absltest
 import argparse
 
-from lib import arg_parser
+from yamlformat import arg_parser
 
 class ArgParserTest(absltest.TestCase):
 
