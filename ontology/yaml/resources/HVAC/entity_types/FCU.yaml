@@ -810,6 +810,7 @@ FCU_DFVSMC_CHWBRC:
   - run_mode
   - schedule_run_command
   - discharge_fan_lost_power_alarm
+  - lost_power_alarm
 
 FCU_DFVDSC_CHWBRC:
   id: "11583691036861399040"
@@ -824,6 +825,7 @@ FCU_DFVDSC_CHWBRC:
   - run_mode
   - schedule_run_command
   - discharge_fan_lost_power_alarm
+  - lost_power_alarm
 
 FCU_DFVDSFC_CHWBRC:
   id: "4990421182390992896"
@@ -838,6 +840,7 @@ FCU_DFVDSFC_CHWBRC:
   - run_mode
   - schedule_run_command
   - discharge_fan_lost_power_alarm
+  - lost_power_alarm
 
 
 FCU_DFVSFC_CHWBRC:
@@ -852,7 +855,7 @@ FCU_DFVSFC_CHWBRC:
   - control_mode
   - schedule_run_command
   - discharge_fan_lost_power_alarm
-
+  - lost_power_alarm
 
 FCU_DFVSMC_CHWRC:
   id: "6972005018434011136"
@@ -867,6 +870,7 @@ FCU_DFVSMC_CHWRC:
   - run_mode
   - schedule_run_command
   - discharge_fan_lost_power_alarm
+  - lost_power_alarm
 
 FCU_DFVDSC_CHWRC:
   id: "4106871230496243712"
@@ -881,6 +885,7 @@ FCU_DFVDSC_CHWRC:
   - run_mode
   - schedule_run_command
   - discharge_fan_lost_power_alarm
+  - lost_power_alarm
 
 FCU_DFVDSFC_CHWRC:
   id: "14213793219245768704"
@@ -895,6 +900,7 @@ FCU_DFVDSFC_CHWRC:
   - run_mode
   - schedule_run_command
   - discharge_fan_lost_power_alarm
+  - lost_power_alarm
 
 FCU_DFVSFC_CHWRC:
   id: "13042857316129439744"
@@ -909,7 +915,7 @@ FCU_DFVSFC_CHWRC:
   - run_mode
   - schedule_run_command
   - discharge_fan_lost_power_alarm
-
+  - lost_power_alarm
 
 FCU_DFSS_DFVSC_DXRC_HTRC_RHC_RHDHC_RTC:
   id: "506032222180999168"
@@ -1278,6 +1284,7 @@ FCU_RHC_DFVSC_RTC:
   - run_status
   - run_command
   - discharge_fan_lost_power_alarm
+  - lost_power_alarm
   - smoke_alarm
   - water_leak_alarm
   - low_discharge_air_flowrate_alarm
@@ -1356,6 +1363,7 @@ FCU_NON_CANONICAL_TYPE_3:
   - return_air_temperature_setpoint
 
 FCU_NON_CANONICAL_TYPE_4:
+  id: "1789382194121146368"
   description: "Simple floor-mounted heating fan coil unit with isolation valve, zone air temperature sensor and discharge fan speed command"
   implements:
   - FCU
@@ -1396,3 +1404,4 @@ FCU_RTC_RHDHS_DTM_DFSS:
   - water_leak_alarm
   - fire_alarm
   - schedule_run_command
+
