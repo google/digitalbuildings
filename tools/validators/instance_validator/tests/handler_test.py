@@ -18,7 +18,8 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
-from os import path
+from os import close, path, remove
+from tempfile import mkstemp
 from typing import Dict, List
 from unittest import mock
 
@@ -60,6 +61,23 @@ class HandlerTest(absltest.TestCase):
       _RunValidation([input_file], use_simplified_universe=True)
     except SyntaxError:
       self.fail('ValidationHelper:Validate raised ExceptionType unexpectedly!')
+
+  def testValidateReportFileNotEmpty(self):
+    try:
+      report_fd, report_filename = mkstemp(text=True)
+      input_file = path.join(_TESTCASE_PATH, 'GOOD', 'good_building_type.yaml')
+      _RunValidation([input_file],
+                     use_simplified_universe=True,
+                     report_filename=report_filename)
+
+      report_size = path.getsize(report_filename)
+    except SyntaxError:
+      pass
+    finally:
+      close(report_fd)
+      remove(report_filename)
+
+    self.assertGreater(report_size, 0)
 
   def testValidateOneBuildingExistFails(self):
     with self.assertRaises(SyntaxError):
