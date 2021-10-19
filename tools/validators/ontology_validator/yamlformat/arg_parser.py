@@ -23,17 +23,17 @@ def ParseArgs() -> argparse.ArgumentParser:
     ArgumentParser instance
   """
   parser = argparse.ArgumentParser(
-      description='Validate a library of yanl files defining an ontology'
+      description='Validate a library of yaml files defining DBO'
   )
 
   parser.add_argument(
-      '-c',
-      '--changed',
-      dest='changed',
+      '-m',
+      '--modified-ontology-types',
+      dest='modified_types_filepath',
       default=None,
-      help='The path of the changed ontology files',
+      help='Modified ontology types filepath',
       required=False,
-      metavar='CHANGED_FILE_PATH'
+      metavar='MODIFIED_TYPE_FILEPATH'
   )
 
   parser.add_argument(
