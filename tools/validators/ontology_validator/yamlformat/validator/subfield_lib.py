@@ -67,15 +67,17 @@ class SubfieldUniverse(findings_lib.FindingsUniverse):
 
 
 class SubfieldCategory(enum.Enum):
-  AGGREGATION = 1
-  DESCRIPTOR = 2
-  COMPONENT = 3
-  MEASUREMENT_DESCRIPTOR = 4
-  MEASUREMENT = 5
-  POINT_TYPE = 6
+  AGGREGATION_DESCRIPTOR = 1
+  AGGREGATION = 2
+  DESCRIPTOR = 3
+  COMPONENT = 4
+  MEASUREMENT_DESCRIPTOR = 5
+  MEASUREMENT = 6
+  POINT_TYPE = 7
 
 
 _SUBFIELD_CATEGORY_NAMES = {
+    SubfieldCategory.AGGREGATION_DESCRIPTOR: 'aggregation_descriptor',
     SubfieldCategory.AGGREGATION: 'aggregation',
     SubfieldCategory.COMPONENT: 'component',
     SubfieldCategory.DESCRIPTOR: 'descriptor',
@@ -119,6 +121,7 @@ class SubfieldFolder(config_folder_lib.ConfigFolder):
     Args:
       subfield: subfield to add.
     """
+    
     if not subfield.IsValid():
       self.AddFindings(subfield.GetFindings())
       return

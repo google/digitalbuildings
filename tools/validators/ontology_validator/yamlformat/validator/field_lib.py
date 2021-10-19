@@ -208,6 +208,8 @@ class _FieldValidationStateMachine(object):
     self._category_index = 0
     self._instance_count = 0
     self._has_measurement = False
+    self._has_aggregation = False
+    self._has_aggregation_descriptor = False
     self._has_required_fields = False
 
   _POINT_TYPES_NEEDING_MEASUREMENTS = ['setpoint', 'sensor', 'accumulator']
@@ -218,6 +220,10 @@ class _FieldValidationStateMachine(object):
   # Represents parameters for each subfield category.
   # Subfields are in the array in the order they should appear in the field.
   _CATEGORIES_IN_ORDER = [
+      _CAT_SPEC(
+          cat=subfield_lib.SubfieldCategory.AGGREGATION_DESCRIPTOR, 
+          required=False, 
+          max=1),
       _CAT_SPEC(
           cat=subfield_lib.SubfieldCategory.AGGREGATION, required=False, max=1),
       _CAT_SPEC(
@@ -245,17 +251,31 @@ class _FieldValidationStateMachine(object):
     """
     category = subfield.category
     while self._category_index < len(self._CATEGORIES_IN_ORDER):
+      # TODO(tsodorff): Add individual warnings for each specific failure.
       cat_spec = self._CATEGORIES_IN_ORDER[self._category_index]
       if category == cat_spec.cat:
         if self._instance_count < cat_spec.max:
           self._instance_count += 1
           if category == subfield_lib.SubfieldCategory.MEASUREMENT:
             self._has_measurement = True
+          if category == subfield_lib.SubfieldCategory.AGGREGATION:
+            self._has_aggregation = True
+          if category == subfield_lib.SubfieldCategory.AGGREGATION_DESCRIPTOR:
+            self._has_aggregation_descriptor = True
           if category == subfield_lib.SubfieldCategory.POINT_TYPE:
-            self._has_required_fields = True
+            # Verify that any aggregation descriptor comes with an aggregation. 
+            # Since this is the last subfield to evaluate this is where it 
+            # would have seen agg and agg_desc subfields by here. If this block
+            # doesnt exist, the field would fail anyway so the fact it didn't
+            # run this check won't matter.
+            if self._has_aggregation_descriptor and not self._has_aggregation:
+              return False
+            # Verify that, if there is no measurement, the point type specified
+            # does not explicitly require one.
             if not self._has_measurement:
               if subfield.name in self._POINT_TYPES_NEEDING_MEASUREMENTS:
                 return False
+            self._has_required_fields = True
           return True
         else:
           return False
