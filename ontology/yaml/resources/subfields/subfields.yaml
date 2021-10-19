@@ -18,8 +18,8 @@ aggregation:
   min: "Minimum value (e.g. Min_Ventilation_Air_Flow_Setpoint)"
   total: "Sum total of some set of values (e.g. total_request_heating_count)"
 aggregation_descriptor:
-  fivesecondrolling: "Aggregation over a rolling window of five seconds."
-  fivesecondfixed: "Aggregation over a fixed window of five seconds."
+  fivesecondrolling: "Aggregation over a rolling window of five seconds (in this context, rolling refers to an advancing predetermined window of time)."
+  fivesecondfixed: "Aggregation over a fixed window of five seconds (in this context, fixed refers to a predetermined window of time with static start and end boundaries)."
 component:
   battery: "A device used to store power for use at a later time (e.g. in an emergency where grid power is unavailable)."
   cable: "A length of wire, sometimes shielded externally, used for some purpose (e.g. steel braided wire for tensile support, CAT5 cable for communications, etc.)."
