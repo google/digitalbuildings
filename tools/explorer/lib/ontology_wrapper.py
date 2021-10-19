@@ -24,7 +24,6 @@ from yamlformat.validator.entity_type_lib import EntityType
 from yamlformat.validator.entity_type_manager import EntityTypeManager
 from yamlformat.validator.presubmit_validate_types_lib import ConfigUniverse
 
-
 sys.tracebacklimit = 0
 
 class OntologyWrapper(object):
@@ -84,7 +83,7 @@ class OntologyWrapper(object):
         )
     if not entity_type.inherited_fields_expanded:
       raise Exception(
-          'Inherited fields must be expanded to query fields\n'+
+          'Inherited fields must be expanded to query fields.\n'+
           'Run NamespaceValidator on your ConfigUniverse to expand fields.'
       )
     # Entity_type_lib.FieldParts NamedTuple to EntityTypeField object.
@@ -164,8 +163,8 @@ class OntologyWrapper(object):
     """A method to validate a field name against the ontology."""
     if not isinstance(field, StandardField):
       raise TypeError(
-          'Field argument must be a StandardField object\n'+
-          f'You provided a {type(field)} object'
+          'Field argument must be a StandardField object.\n'+
+          f'You provided a {type(field)} object.'
       )
     namespace_name = field.GetNamespaceName()
     standard_field_name = field.GetStandardFieldName()
