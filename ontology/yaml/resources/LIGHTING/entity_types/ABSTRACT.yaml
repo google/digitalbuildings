@@ -131,3 +131,18 @@ LC:
   uses:
   - illuminance_setpoint
   - illuminance_sensor
+ 
+EGW:
+  id: "14486067738483352777"
+  description: "Enlighted Lighting Control Gateway"
+  is_abstract: true
+  uses:
+  - power_command
+  - lighting_switch_status
+  - dimmer_fade_rate_setpoint
+  - dimmer_fade_time_setpoint
+  - zone_power_command
+  - zone_lighting_switch_status
+  - brightness_percentage_command
+  - zone_brightness_percentage_command
+  - lighting_alarm
