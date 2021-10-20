@@ -19,7 +19,7 @@ aggregation:
   rootmeansquare: "Square root of the mean square (quadratic mean); measures the magnitude of a set of values."
   total: "Sum total of some set of values (e.g. total_request_heating_count)"
 aggregation_descriptor:
-  fiveminute: "Aggregation over a time interval of five minutes."
+  fivesecondrolling: "Aggregation over advancing time intervals of five seconds."
 component:
   battery: "A device used to store power for use at a later time (e.g. in an emergency where grid power is unavailable)."
   cable: "A length of wire, sometimes shielded externally, used for some purpose (e.g. steel braided wire for tensile support, CAT5 cable for communications, etc.)."
