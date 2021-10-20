@@ -33,10 +33,10 @@ class SubfieldLibTest(absltest.TestCase):
     folder = subfield_lib.SubfieldFolder(_GOOD_PATH)
     folder.AddFinding(findings_lib.InconsistentFileLocationError('', context))
     namespace = folder.local_namespace
-    namespace.AddFinding(
-        findings_lib.DuplicateSubfieldDefinitionError(
-            subfield_lib.Subfield(
-                'two', subfield_lib.SubfieldCategory.POINT_TYPE), 'any'))
+    namespace.AddFinding(findings_lib.DuplicateSubfieldDefinitionError(
+        namespace,
+        subfield_lib.Subfield('two', subfield_lib.SubfieldCategory.POINT_TYPE),
+        context))
     subfield = subfield_lib.Subfield(
         'one', subfield_lib.SubfieldCategory.POINT_TYPE, 'thing')
     subfield.AddFinding(
@@ -95,7 +95,7 @@ class SubfieldLibTest(absltest.TestCase):
         subfield_lib.Subfield('1-bad', subfield_lib.SubfieldCategory.DESCRIPTOR,
                               'hi', ctx))
     self.assertIsInstance(sff.GetFindings()[0],
-                          findings_lib.IllegalCharacterError)
+                          findings_lib.InvalidSubfieldNameError)
 
   def testAddDuplicateSubfieldFails(self):
     sff = subfield_lib.SubfieldFolder(_GOOD_PATH)
@@ -117,7 +117,7 @@ class SubfieldLibTest(absltest.TestCase):
                                'hi', ctx)
     sff.AddSubfield(sf)
     self.assertIsInstance(sff.GetFindings()[0],
-                          findings_lib.IllegalCharacterError)
+                          findings_lib.InvalidSubfieldNameError)
 
   def testAddFromConfig(self):
     doc = {
@@ -190,7 +190,7 @@ class SubfieldLibTest(absltest.TestCase):
     sf = subfield_lib.Subfield(
         'goo-1d', subfield_lib.SubfieldCategory.DESCRIPTOR, 'hi', ctx)
     self.assertIsInstance(sf.GetFindings()[0],
-                          findings_lib.IllegalCharacterError)
+                          findings_lib.InvalidSubfieldNameError)
 
   def testCreateSubfield(self):
     ctx = findings_lib.FileContext('{0}/file.yaml'.format(_GOOD_PATH))

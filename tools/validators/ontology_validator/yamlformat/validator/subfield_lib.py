@@ -121,7 +121,7 @@ class SubfieldFolder(config_folder_lib.ConfigFolder):
     Args:
       subfield: subfield to add.
     """
-    
+
     if not subfield.IsValid():
       self.AddFindings(subfield.GetFindings())
       return
@@ -144,7 +144,7 @@ class SubfieldFolder(config_folder_lib.ConfigFolder):
 
       subfield_map = document[category_name]
       if not subfield_map:
-        self.AddFinding(findings_lib.EmptyBlockWarning(document, context))
+        self.AddFinding(findings_lib.EmptyBlockWarning(category_name, context))
         continue
 
       for subfield_name in subfield_map:
@@ -214,9 +214,8 @@ class SubfieldNamespace(findings_lib.Findings):
     # (Currently yaml load automatically suppresses these duplicates)
     old_subfield = self._PutIfAbsent(subfield)
     if old_subfield is not None:
-      self.AddFinding(
-          findings_lib.DuplicateSubfieldDefinitionError(subfield,
-                                                        self.namespace))
+      self.AddFinding(findings_lib.DuplicateSubfieldDefinitionError(
+          self, subfield, old_subfield.file_context))
 
   def ValidateUnits(self, unit_universe):
     """Checks that all subfields in this namespace have corresponding units.
@@ -248,28 +247,27 @@ class Subfield(findings_lib.Findings):
       SubfieldCategory value representing the subfield type.
     description: explanation of what this subfield represents. Optional (for
       now) string semantic definition for the subfield.
-    context: the config file context for where this subfield was defined.
+    file_context: the config file context for where this subfield was defined.
       Optional object with the config file location of this subfield.
 
   Returns:
     An instance of the Subfield class.
   """
 
-  def __init__(self, name, category, description=None, context=None):
+  def __init__(self, name, category, description=None, file_context=None):
     super(Subfield, self).__init__()
-    self.context = context
+    self.file_context = file_context
     self.name = name
     self.description = description
     self.category = category
 
     if not isinstance(name, str):
-      self.AddFinding(findings_lib.IllegalKeyTypeError(name, context))
+      self.AddFinding(findings_lib.IllegalKeyTypeError(name, file_context))
     elif not _SUBFIELD_NAME_VALIDATOR.match(name):
-      self.AddFinding(findings_lib.IllegalCharacterError(name, context))
+      self.AddFinding(findings_lib.InvalidSubfieldNameError(name, file_context))
     if not self.description:
       self.AddFinding(
-          findings_lib.MissingSubfieldDescriptionWarning(
-              self.name, self.context))
+          findings_lib.MissingSubfieldDescriptionWarning(name, file_context))
 
   def __eq__(self, other):
     if isinstance(other, Subfield):

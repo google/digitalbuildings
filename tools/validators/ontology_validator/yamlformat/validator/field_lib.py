@@ -169,11 +169,11 @@ class FieldFolder(config_folder_lib.ConfigFolder):
       context: config file context
     """
     if 'literals' not in document:
-      self.AddFinding(findings_lib.UnrecognizedFormatError(document, context))
+      self.AddFinding(findings_lib.UnrecognizedKeyError(document, context))
       return
     field_list = document['literals']
     if field_list is None:
-      self.AddFinding(findings_lib.EmptyBlockWarning(document, context))
+      self.AddFinding(findings_lib.EmptyBlockWarning('literals', context))
       return
     for field_spec in field_list:
       field_name = ''
@@ -181,12 +181,13 @@ class FieldFolder(config_folder_lib.ConfigFolder):
       if isinstance(field_spec, dict):
         # If the field has a list of states, field_spec must be a dict with
         # a single entry.
-        try:
+        if len(field_spec) == 1:
           # TODO(b/188242279) handle namespacing for states correctly.
-          [(field_name, states)] = field_spec.items()
-        except ValueError:
+          field_name, states = next(iter(field_spec.items()))
+        else:
+          field_name = next(iter(field_spec), '(Blank)')
           self.AddFinding(
-              findings_lib.InvalidFieldFormatError(document, context))
+              findings_lib.InvalidFieldFormatError(field_name, context))
           continue
       else:
         field_name = field_spec
@@ -221,8 +222,8 @@ class _FieldValidationStateMachine(object):
   # Subfields are in the array in the order they should appear in the field.
   _CATEGORIES_IN_ORDER = [
       _CAT_SPEC(
-          cat=subfield_lib.SubfieldCategory.AGGREGATION_DESCRIPTOR, 
-          required=False, 
+          cat=subfield_lib.SubfieldCategory.AGGREGATION_DESCRIPTOR,
+          required=False,
           max=1),
       _CAT_SPEC(
           cat=subfield_lib.SubfieldCategory.AGGREGATION, required=False, max=1),
@@ -263,8 +264,8 @@ class _FieldValidationStateMachine(object):
           if category == subfield_lib.SubfieldCategory.AGGREGATION_DESCRIPTOR:
             self._has_aggregation_descriptor = True
           if category == subfield_lib.SubfieldCategory.POINT_TYPE:
-            # Verify that any aggregation descriptor comes with an aggregation. 
-            # Since this is the last subfield to evaluate this is where it 
+            # Verify that any aggregation descriptor comes with an aggregation.
+            # Since this is the last subfield to evaluate this is where it
             # would have seen agg and agg_desc subfields by here. If this block
             # doesnt exist, the field would fail anyway so the fact it didn't
             # run this check won't matter.
@@ -387,7 +388,7 @@ class FieldNamespace(findings_lib.Findings):
         if not state_lib.STATE_NAME_VALIDATOR.match(state):
           field.AddFinding(findings_lib.InvalidStateFormatError(state, field))
         else:
-          field.AddFinding(findings_lib.MissingStateError(state, field))
+          field.AddFinding(findings_lib.UnrecognizedStateError(state, field))
 
     return uses_local_states
 
@@ -448,7 +449,7 @@ class FieldNamespace(findings_lib.Findings):
         uses_local_subfields = True
       elif pns is None or subfield not in pns.subfields:
         missing_fields = True
-        field.AddFinding(findings_lib.MissingSubfieldError(subfield, field))
+        field.AddFinding(findings_lib.UnrecognizedSubfieldError(subfield, field))
 
     if not missing_fields and not self._IsValidConstruction(field):
       field.AddFinding(findings_lib.InvalidFieldConstructionError(field))
@@ -507,15 +508,15 @@ class FieldNamespace(findings_lib.Findings):
       insert_ns = self.parent_namespace
     old_field = insert_ns.PutIfAbsent(field)
     if old_field is not None:
-      insert_ns.AddFinding(
-          findings_lib.DuplicateFieldDefinitionError(old_field, field))
+      insert_ns.AddFinding(findings_lib.DuplicateFieldDefinitionError(
+          insert_ns, field, old_field.file_context))
 
 
 class Field(findings_lib.Findings):
   """Namespace-unaware class representing an individual field definition.
 
   Attributes:
-    context: the config file context for where this field was defined
+    file_context: the config file context for where this field was defined
     name: the full name (without namespace) of this field
     subfields: a list of subfield keys for this field
     key: a hashable object representing the field's subfield set.
@@ -525,25 +526,25 @@ class Field(findings_lib.Findings):
     An instance of the Field class.
   """
 
-  def __init__(self, name, states=None, context=None):
+  def __init__(self, name, states=None, file_context=None):
     """Init.
 
     Args:
       name: required string representing the field.
       states: optional list of strings representing valid states for a
         multistate field. Should be None for non-multistate fields.
-      context: optional object with the config file location of this field.
+      file_context: optional object with the config file location of this field.
     """
     super(Field, self).__init__()
-    self.context = context
+    self.file_context = file_context
     self.name = name
     self.subfields = []
     self.states = states
 
     if not isinstance(name, str):
-      self.AddFinding(findings_lib.IllegalKeyTypeError(name, context))
+      self.AddFinding(findings_lib.IllegalKeyTypeError(name, file_context))
     elif not FIELD_CHARACTER_REGEX.match(name):
-      self.AddFinding(findings_lib.IllegalCharacterError(name, context))
+      self.AddFinding(findings_lib.InvalidFieldNameError(name, file_context))
     else:
       self.InitAndValidateSubfields()
       self.ValidateStates()

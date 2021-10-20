@@ -281,7 +281,7 @@ class EntityTypeFolder(config_folder_lib.ConfigFolder):
     for key in type_contents:
       if key not in expected_keys:
         entity_type.AddFinding(
-            findings_lib.UnrecognizedFormatError(key, entity_type.file_context))
+            findings_lib.UnrecognizedKeyError(key, entity_type.file_context))
 
     return entity_type
 
@@ -353,9 +353,8 @@ class TypeNamespace(findings_lib.Findings):
         self.valid_types_map[typename] = entity_type
         return True
       # entity_type is a duplicate type
-      self.AddFinding(
-          findings_lib.DuplicateTypesError(self.namespace, entity_type,
-                                           mapped_entity_type))
+      self.AddFinding(findings_lib.DuplicateEntityTypeDefinitionError(
+          self, entity_type, mapped_entity_type.file_context))
       return False
 
     return False
@@ -697,11 +696,11 @@ class EntityType(findings_lib.Findings):
           findings_lib.IllegalKeyTypeError(self.typename, self.file_context))
     elif not ENTITY_TYPE_NAME_REGEX.match(self.typename):
       self.AddFinding(
-          findings_lib.IllegalCharacterError(self.typename, self.file_context))
+          findings_lib.InvalidTypenameError(self.typename, self.file_context))
 
     # Make sure the type description is non-empty.
     if not self.description:
-      self.AddFinding(findings_lib.MissingDescriptionWarning(self))
+      self.AddFinding(findings_lib.MissingEntityTypeDescriptionWarning(self))
 
     # Check for duplicate local fields.
     # this check is case insensitive to catch dupes earlier in the event that

@@ -45,9 +45,8 @@ class UnitLibTest(absltest.TestCase):
     folder = unit_lib.UnitFolder(_GOOD_PATH)
     folder.AddFinding(findings_lib.InconsistentFileLocationError('', context))
     namespace = folder.local_namespace
-    namespace.AddFinding(
-        findings_lib.DuplicateUnitDefinitionError(
-            unit_lib.Unit('unit', 'measurement'), 'namespace'))
+    namespace.AddFinding(findings_lib.DuplicateUnitDefinitionError(
+        namespace, unit_lib.Unit('unit', 'measurement'), context))
     unit = unit_lib.Unit('unit', 'measurement')
     unit.AddFinding(findings_lib.UnknownUnitTagError(unit.name, 'tag', context))
     namespace.InsertUnit(unit)
@@ -75,7 +74,7 @@ class UnitLibTest(absltest.TestCase):
     folder.AddUnit(unit_lib.Unit('bad-unit', 'invalid'))
     self.assertNotIn('bad-unit', folder.local_namespace.units)
     self.assertIsInstance(folder.GetFindings()[0],
-                          findings_lib.IllegalCharacterError)
+                          findings_lib.InvalidUnitNameError)
 
   def testUnitFolderAddDuplicateUnitFails(self):
     folder = unit_lib.UnitFolder(_GOOD_PATH)
@@ -177,7 +176,7 @@ class UnitLibTest(absltest.TestCase):
   def testUnitWithIllegalNameHasFindings(self):
     unit = unit_lib.Unit('BADUNIT', 'invalid')
     self.assertIsInstance(unit.GetFindings()[0],
-                          findings_lib.IllegalCharacterError)
+                          findings_lib.InvalidUnitNameError)
 
   def testUnitEquals(self):
     unit_one = unit_lib.Unit('unit_one', 'measurement')

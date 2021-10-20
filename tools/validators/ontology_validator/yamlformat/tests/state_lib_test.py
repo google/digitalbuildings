@@ -44,9 +44,8 @@ class StateLibTest(absltest.TestCase):
     folder = state_lib.StateFolder(_GOOD_PATH)
     folder.AddFinding(findings_lib.InconsistentFileLocationError('', context))
     namespace = folder.local_namespace
-    namespace.AddFinding(
-        findings_lib.DuplicateStateDefinitionError(
-            state_lib.State('STATE'), 'namespace'))
+    namespace.AddFinding(findings_lib.DuplicateStateDefinitionError(
+        namespace, state_lib.State('STATE'), context))
     state = state_lib.State('STATE', 'description')
     state.AddFinding(findings_lib.MissingStateDescriptionWarning(state))
     namespace.InsertState(state)
@@ -74,7 +73,7 @@ class StateLibTest(absltest.TestCase):
     folder.AddState(state_lib.State('bad-state', 'invalid'))
     self.assertNotIn('bad-state', folder.local_namespace.states)
     self.assertIsInstance(folder.GetFindings()[0],
-                          findings_lib.IllegalCharacterError)
+                          findings_lib.InvalidStateNameError)
 
   def testStateFolderAddDuplicateStateFails(self):
     folder = state_lib.StateFolder(_GOOD_PATH)
@@ -111,7 +110,7 @@ class StateLibTest(absltest.TestCase):
   def testStateWithIllegalNameHasFindings(self):
     state = state_lib.State('bad-state', 'invalid')
     self.assertIsInstance(state.GetFindings()[0],
-                          findings_lib.IllegalCharacterError)
+                          findings_lib.InvalidStateNameError)
 
   def testStateWithNoDescriptionHasFindings(self):
     state = state_lib.State('STATE', '')

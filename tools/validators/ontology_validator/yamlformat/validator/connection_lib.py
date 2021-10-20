@@ -149,8 +149,9 @@ class ConnectionNamespace(findings_lib.Findings):
       connection: connection object to attempt to insert.
     """
     if connection.name in self.connections:
-      self.AddFinding(
-          findings_lib.DuplicateConnectionDefinitionError(connection, self))
+      prev_context = self.connections[connection.name].file_context
+      self.AddFinding(findings_lib.DuplicateConnectionDefinitionError(
+          self, connection, prev_context))
       return
     self.connections[connection.name] = connection
 
@@ -161,22 +162,23 @@ class Connection(findings_lib.Findings):
   Attributes:
     name: the full name (without namespace) of this connection
     description: explanation of what this connection represents
-    context: the config file context for where this connection was defined
+    file_context: the config file context for where this connection was defined
   """
 
   def __init__(self,
                name: str,
                description: str = None,
-               context: findings_lib.FileContext = None):
+               file_context: findings_lib.FileContext = None):
     super(Connection, self).__init__()
     self.name = name
     self.description = description
-    self.context = context
+    self.file_context = file_context
 
     if not isinstance(name, str):
-      self.AddFinding(findings_lib.IllegalKeyTypeError(name, context))
+      self.AddFinding(findings_lib.IllegalKeyTypeError(name, file_context))
     elif not CONNECTION_NAME_VALIDATOR.match(name):
-      self.AddFinding(findings_lib.IllegalCharacterError(name, context))
+      self.AddFinding(findings_lib.InvalidConnectionNameError(
+          name, file_context))
     if not description:
       self.AddFinding(findings_lib.MissingConnectionDescriptionWarning(self))
 

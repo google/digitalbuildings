@@ -110,11 +110,12 @@ class UnitFolder(config_folder_lib.ConfigFolder):
         is_standard = False
         unit_name = ''
         if isinstance(unit, dict):
-          try:
-            [(unit_name, tag)] = unit.items()
-          except ValueError:
+          if len(unit) == 1:
+            unit_name, tag = next(iter(unit.items()))
+          else:
+            unit_name = next(iter(unit), '(Blank)')
             self.AddFinding(
-                findings_lib.InvalidUnitFormatError(document, context))
+                findings_lib.InvalidUnitFormatError(unit_name, context))
             continue
           if tag == STANDARD_UNIT_TAG:
             is_standard = True
@@ -207,8 +208,9 @@ class UnitNamespace(findings_lib.Findings):
     """
     self.ValidateMeasurementType(unit)
     if unit.name in self.units:
-      self.AddFinding(
-          findings_lib.DuplicateUnitDefinitionError(unit, self.namespace))
+      prev_context = self.units[unit.name].file_context
+      self.AddFinding(findings_lib.DuplicateUnitDefinitionError(
+          self, unit, prev_context))
       return
     self.units[unit.name] = unit
 
@@ -220,28 +222,28 @@ class Unit(findings_lib.Findings):
     name: the full name (without namespace) of this unit
     measurement_type: the unit measurement type
     is_standard: whether this is the standard unit for the measurement type
-    context: the config file context for where this unit was defined
+    file_context: the config file context for where this unit was defined
   """
 
-  def __init__(self, name, measurement_type, is_standard=False, context=None):
+  def __init__(self, name, measurement_type, is_standard=False, file_context=None):
     """Init.
 
     Args:
       name: required string name for the unit
       measurement_type: required string indicating the unit measurement type
       is_standard: whether this is the standard unit for the measurement type
-      context: optional object with the config file location of this unit.
+      file_context: optional object with the config file location of this unit.
     """
     super(Unit, self).__init__()
     self.name = name
     self.measurement_type = measurement_type
     self.is_standard = is_standard
-    self.context = context
+    self.file_context = file_context
 
     if not isinstance(name, str):
-      self.AddFinding(findings_lib.IllegalKeyTypeError(name, context))
+      self.AddFinding(findings_lib.IllegalKeyTypeError(name, file_context))
     elif not UNIT_NAME_VALIDATOR.match(name):
-      self.AddFinding(findings_lib.IllegalCharacterError(name, context))
+      self.AddFinding(findings_lib.InvalidUnitNameError(name, file_context))
 
   def __eq__(self, other):
     if isinstance(other, Unit):

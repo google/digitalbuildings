@@ -132,8 +132,9 @@ class StateNamespace(findings_lib.Findings):
       state: state object to attempt to insert.
     """
     if state.name in self.states:
-      self.AddFinding(
-          findings_lib.DuplicateStateDefinitionError(state, self.namespace))
+      prev_context = self.states[state.name].file_context
+      self.AddFinding(findings_lib.DuplicateStateDefinitionError(
+          self, state, prev_context))
       return
     self.states[state.name] = state
 
@@ -144,23 +145,23 @@ class State(findings_lib.Findings):
   Args:
     name: required string representing the state.
     description: optional (for now) string semantic definition for the state.
-    context: optional object with the config file location of this state.
+    file_context: optional object with the config file location of this state.
   Attributes:
     name: the full name (without namespace) of this state
     description: explanation of what this state represents
-    context: the config file context for where this state was defined
+    file_context: the config file context for where this state was defined
   """
 
-  def __init__(self, name, description=None, context=None):
+  def __init__(self, name, description=None, file_context=None):
     super(State, self).__init__()
     self.name = name
     self.description = description
-    self.context = context
+    self.file_context = file_context
 
     if not isinstance(name, str):
-      self.AddFinding(findings_lib.IllegalKeyTypeError(name, context))
+      self.AddFinding(findings_lib.IllegalKeyTypeError(name, file_context))
     elif not STATE_NAME_VALIDATOR.match(name):
-      self.AddFinding(findings_lib.IllegalCharacterError(name, context))
+      self.AddFinding(findings_lib.InvalidStateNameError(name, file_context))
     if not description:
       self.AddFinding(findings_lib.MissingStateDescriptionWarning(self))
 
