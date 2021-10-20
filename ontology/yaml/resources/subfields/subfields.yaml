@@ -17,6 +17,7 @@ aggregation:
   max: "Maximum value (e.g. Max_Cooling_Air_Flow_Setpoint)"
   min: "Minimum value (e.g. Min_Ventilation_Air_Flow_Setpoint)"
   total: "Sum total of some set of values (e.g. total_request_heating_count)"
+  rootmeansquare: "Square root of the mean square (quadratic mean); measures the magnitude of a set of values."
 aggregation_descriptor:
   fiveminute: "Aggregation over a time interval of five minutes."
 component:
@@ -148,7 +149,6 @@ descriptor:
   return: "Measurement or process of media as it is returned from the end-use equipment within the system."
   reversing: "Reverses direction of flow (e.g. reversing valve on heat pump)."
   room: "A space that can be occupied, or a part or division of a building or floor enclosed by walls."
-  rootmeansquare: "Square root of the mean square (quadratic mean); measures the magnitude of a set of values."
   scene : "The holistic ambience achieved from coordinated control of an area's lighting levels and colors. One of many stored setpoints that may be recalled to apply predetermined lighting levels across a number of fixtures."
   schedule: "Refers to the time-of-day run-time requirements for the equipment."
   season: "Weather conditions under which certain systems or processes are enabled."
