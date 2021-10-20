@@ -674,6 +674,7 @@ literals:
 # added for ETIQA
 - water_leak_position_level_sensor
 - discharge_air_linearvelocity_setpoint
+- discharge_air_linearvelocity_sensor
 
 # New usage of status as an override for the measurement.
 - chilled_water_flowrate_status:
