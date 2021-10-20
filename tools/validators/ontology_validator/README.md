@@ -20,6 +20,6 @@ The validator can be run as following: `python3 validator.py
 
 If you have extended the ontology by adding new types to your local ontology, run the following: `python3 validator.py --input path/to/YOUR_BUILDING_CONFIG.yaml --modified-ontology-types path/to/modified/ontology/types/folder`
 
-When using a modified ontology, ensure you follow the folder-naming convention: `digitalbuildings/ontology/yaml`. This will allow the instance validator to rely on the new types in the ontology.
+When using a modified ontology, ensure you follow the folder-naming convention: `digitalbuildings/ontology/yaml`.
 
-Note: as of the current development stage, you must clone the entire repository and run this instance validator script from this directory.
+Note: as of the current development stage, you must clone the entire repository and run this ontology validator script from this directory.
