@@ -17,7 +17,7 @@
 import argparse
 
 def ParseArgs() -> argparse.ArgumentParser:
-  """Generates an argument parser for user input
+  """Generates an argument parser for user input.
 
   Returns:
     ArgumentParser instance
