@@ -997,3 +997,4 @@ literals:
 - fivesecondrolling_rootmeansquare_xaxis_linearacceleration_sensor
 - fivesecondrolling_rootmeansquare_yaxis_linearacceleration_sensor
 - fivesecondrolling_rootmeansquare_zaxis_linearacceleration_sensor
+- local_air_temperature_sensor
