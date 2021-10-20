@@ -4292,6 +4292,7 @@ HLSAFS:
   uses:
   - high_limit_supply_air_flowrate_setpoint
   - low_limit_supply_air_flowrate_setpoint
+  - supply_air_flowrate_setpoint
   implements:
   - CONTROL
 

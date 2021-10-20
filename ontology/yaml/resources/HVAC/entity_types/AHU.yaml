@@ -3345,13 +3345,13 @@ AHU_DX2SC_ECON_SHM_SFSS_SFVSC_SSPC:
   - SFVSC
   - SSPC
 
-AHU_CHWSC_PDSCV_RTM_SFVSC_CO2C:
+AHU_CHWSC_OAMC_RTM_SFVSC_CO2C:
   description: "AHU with return air monitor and supply air temperature, fan and zone air co2 control."
   is_canonical: true
   implements:
   - AHU
   - CHWSC
-  - PDSCV
+  - OAMC
   - RTM
   - SFVSC
   - CO2C
