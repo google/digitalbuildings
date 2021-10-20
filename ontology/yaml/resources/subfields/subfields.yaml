@@ -87,7 +87,7 @@ descriptor:
   fabric: "Textile material."
   fire : "a potential to cause physical damage through burning"
   flue: "Chimney for conveying exhaust gas."
-  formaldehyde: "A simple, pungent organic compound (gas under standard cconditions), simplest of the aldehydes."
+  formaldehyde: "A simple, pungent organic compound (gas under standard conditions), simplest of the aldehydes."
   ## TODO: make it so gas only has one meaning
   gas: "Process or component driven by natural gas (as to distinguish from electric)."
   glycol: "Liquid mixture consisting of glycol and water "
@@ -202,7 +202,7 @@ descriptor:
   potable: "quality of water"
 measurement:
   aqi: "Air quality index, a set of special standard gradings for the pollution in air."
-  concentration: "Concentration of something relative to to something else (usually in parts per million or parts per billion)."
+  concentration: "Concentration of something relative to something else (usually in parts per million or parts per billion)."
   current: "Flow of electric charge."
   currentratio: "The ratio of primary amps divided by secondary amps."
   density: "Amount of mass contained in a unit volume."
@@ -224,7 +224,6 @@ measurement:
   voltage: "Electrical potential difference between two reference points."
   voltageratio: "The ratio of the Primary voltage of the transformer to the secondary voltage."
   volume: "The quantity of three-dimensional space contained by a closed surface."
-  #New measurement subfields for CH ZRH EURD
   rate: "ratio of change compared to a step or time"
   time: "defined duration of something"
 measurement_descriptor:
@@ -239,7 +238,7 @@ measurement_descriptor:
   efficiency: "The ratio of required input to actual output. "
   end: "Indicates a final part of something, especially a period of time."
   extent: "Distance travelled."
-  fade: "change of a value"
+  fade: "Descending change of a value (e.g. lighting fade)."
   failed: "Indicates that a point is not operating as intended or is incapable of operating."
   lost: "Indicates that a point has lost some quality or quantity inadvertently."
   match: "A function that matches something against others."

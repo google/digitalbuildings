@@ -1007,6 +1007,8 @@ literals:
 - zone_air_formaldehyde_density_sensor
 - zone_air_ozone_density_sensor
 
+# First set of PM2.5, PM10, etc. fields. Note that density and concentration
+# are differentiated since they return different units of measurement.
 - zone_air_pm0pt5_density_sensor
 - zone_air_pm1pt0_density_sensor
 - zone_air_pm2pt5_density_sensor
