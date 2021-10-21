@@ -14,6 +14,15 @@
 
 # Canonical types for Lighting Gateways
 
+
+LTGW_EGW:
+  id: "12562701966118553783"
+  description: "Enlighted lighting control gateway."
+  is_canonical: true
+  implements:
+  - LTGW
+  - EGW
+
 LTGW_BS:
   id: "14108978974793138176"
   description: "Basic lighting gateway."
