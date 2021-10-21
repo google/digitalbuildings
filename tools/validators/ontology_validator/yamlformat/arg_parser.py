@@ -16,7 +16,7 @@
 
 import argparse
 
-def ParseArgs() -> argparse.ArgumentParser:
+def CreateParser() -> argparse.ArgumentParser:
   """Generates an argument parser for user input.
 
   Returns:
@@ -50,7 +50,7 @@ def ParseArgs() -> argparse.ArgumentParser:
       '-i',
       '--interactive',
       dest='interactive',
-      default=None,
+      default=False,
       help='interactive mode',
       required=False,
       metavar='interactive mode'

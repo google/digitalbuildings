@@ -21,7 +21,7 @@ from __future__ import print_function
 from os import path
 import sys
 
-from arg_parser import ParseArgs
+from arg_parser import CreateParser
 
 from yamlformat.validator import external_file_lib
 
@@ -48,5 +48,5 @@ def main(parsed_args):
   )
 
 if __name__ == '__main__':
-  args = ParseArgs().parse_args(sys.argv[1:])
+  args = CreateParser().parse_args(sys.argv[1:])
   main(args)
