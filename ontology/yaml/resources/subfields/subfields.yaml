@@ -52,6 +52,7 @@ component:
 descriptor: 
   air: "Atmospheric air, either conditioned or unconditioned"
   aisle: "Passage between two rows of server racks."
+  ammonia: "Ammonia gas."
   blowdown: "Process of expelling water filled with mineral deposits for the purposes of water treatment. "
   boost: "Component used to boost pressure."
   broken: "A state of disrepair; fractured or segmented."
