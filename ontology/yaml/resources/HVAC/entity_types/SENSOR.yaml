@@ -93,7 +93,6 @@ SENSOR_FDPM:
   is_canonical: true
   implements:
     - /SENSOR # Inherits from global namespace
+    - FDPM
   opt_uses:
     - local_air_temperature_sensor
-  uses:
-    - filter_differential_pressure_sensor
