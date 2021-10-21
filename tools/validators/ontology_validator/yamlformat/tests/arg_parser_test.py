@@ -21,11 +21,24 @@ from yamlformat import arg_parser
 class ArgParserTest(absltest.TestCase):
 
   def setUp(self):
-    pass
+    self.parser = arg_parser.CreateParser()
 
-  def testParseArgs(self):
-    output_parser = arg_parser.ParseArgs()
-    self.assertEqual(type(output_parser), argparse.ArgumentParser)
+  def testParserIsParser(self):
+    self.assertEqual(type(self.parser), argparse.ArgumentParser)
+
+  def testInputArgsExist(self):
+    parsed = self.parser.parse_args([
+        '--original',
+        './my/path/to/foo',
+        '--interactive',
+        False
+    ])
+    self.assertEqual(parsed.original, './my/path/to/foo')
+    self.assertFalse(parsed.interactive)
+
+  def testOriginalArgIsRequired(self):
+    with self.assertRaises(SystemExit):
+      self.parser.parse_args(['-m', './test/path'])
 
 if __name__ == '__main__':
   absltest.main()
