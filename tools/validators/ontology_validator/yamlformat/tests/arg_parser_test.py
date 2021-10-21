@@ -34,6 +34,7 @@ class ArgParserTest(absltest.TestCase):
         False
     ])
     self.assertEqual(parsed.original, './my/path/to/foo')
+    self.assertEqual(parsed.modified_types_filepath, None)
     self.assertFalse(parsed.interactive)
 
   def testOriginalArgIsRequired(self):
