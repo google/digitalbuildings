@@ -223,7 +223,7 @@ measurement:
   powerfactor: "Ratio of real and apparent power."
   power: "Rate of energy consumption (assumed context is electrical and real, unless otherwise modified)."
   pressure: "Measured force per unit area within a system or process."
-  rate: "ratio of change compared to a step or time"
+  rate: "ratio of change compared to a step or time."
   resistance: "Electrical resistance."
   specificenthalpy: "Measure of energy of air per unit mass."
   temperature: "Measures the temperature of media within a process or system."
@@ -231,7 +231,6 @@ measurement:
   voltage: "Electrical potential difference between two reference points."
   voltageratio: "The ratio of the Primary voltage of the transformer to the secondary voltage."
   volume: "The quantity of three-dimensional space contained by a closed surface."
-  rate: "ratio of change compared to a step or time"
   time: "defined duration of something"
 measurement_descriptor:
   absolute: "Quality of media with respect to non-relativistic boudaries (e.g. absolute temperature)."
