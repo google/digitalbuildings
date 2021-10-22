@@ -134,7 +134,7 @@ LC:
  
 EGW:
   id: "14486067738483352777"
-  description: "Enlighted Lighting Control Gateway"
+  description: "Lighting Control Gateway"
   is_abstract: true
   uses:
   - power_command

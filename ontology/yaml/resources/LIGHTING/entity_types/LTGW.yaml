@@ -17,7 +17,7 @@
 
 LTGW_EGW:
   id: "12562701966118553783"
-  description: "Enlighted lighting control gateway."
+  description: "variant lighting control gateway."
   is_canonical: true
   implements:
   - LTGW
