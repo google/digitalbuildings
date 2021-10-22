@@ -269,3 +269,4 @@ point_type:
   status: "The multistate value indicating an observed state in a piece of equipment, often indicating if a command was effected. It is a neutral observation (e.g. no quality judgment of 'good' or 'bad'). It also has no units of measurement (therefore if combined with a measurement subfield, it will indicate that the field is the directional status based on some measurement of that type, e.g. power_status equates to an on/off value based on some inference of power)."
   specification: "The specified design value for a particular operating condition (differential pressure specification)."
   timestamp: "An instant in time, represented as a numeric offset from the epoch."
+  

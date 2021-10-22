@@ -72,3 +72,4 @@ WLS:
   is_abstract: true
   uses:
   - water_cable_extent_flow_sensor
+  
