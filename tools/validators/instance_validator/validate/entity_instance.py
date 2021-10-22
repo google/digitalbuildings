@@ -339,7 +339,9 @@ class InstanceValidator(object):
       is_valid = True
       for unit in ft.unit_mappings.keys():
         if unit not in valid_units:
-          print(f'Field {qualified_field_name} has an invalid unit: {unit}')
+          print(
+              f'Field {qualified_field_name} has an undefined measurement unit:'
+              + ' {unit}')
           is_valid = False
       return is_valid
 
@@ -378,8 +380,8 @@ class InstanceValidator(object):
       return is_valid
 
     if isinstance(ft, ft_lib.MultiStateValue):
-      print('States are provided for a field that is not a multi-state '
-            f'{qualified_field_name}')
+      print('Multiple states provided for a field that is not a multi-state'
+            f' {qualified_field_name}')
       return False
 
     return True
@@ -404,7 +406,8 @@ class InstanceValidator(object):
     for conn_inst in entity.connections:
       conn_universe = self.universe.connection_universe
       if conn_universe and not conn_universe.IsDefined(conn_inst.ctype):
-        print(f'Invalid connection type: {conn_inst.ctype}')
+        print(f'Connection type: {conn_inst.ctype} '
+              'is undefined in the ontology')
         is_valid = False
 
     return is_valid
@@ -435,13 +438,15 @@ class InstanceValidator(object):
         qualified_tgt_field = _GetAllowedField(self.universe, target_field,
                                                entity_type)
         if not qualified_tgt_field:
-          print(f'Invalid link target field: {target_field}')
+          print(f'Invalid link target field: {target_field} '
+                f'for link: {link_inst}')
           is_valid = False
           continue
         qualified_src_field = _GetAllowedField(self.universe, source_field,
                                                None)
         if not qualified_src_field:
-          print(f'Invalid link source field: {source_field}')
+          print(f'Invalid link source field: {source_field} '
+                f'for link: {link_inst}')
           is_valid = False
           continue
 
@@ -549,11 +554,13 @@ def _ParseTypeString(type_str: syaml.YAML) -> Tuple[str, str]:
 
   if len(type_parse) == 1:
     print('Type improperly formatted, a namespace is missing: ', type_str)
+    print('Proper formatting is as follows: NAMESPACE/TYPE_NAME')
     raise TypeError('Type improperly formatted, a namespace is missing: ',
                     type_str)
 
   if len(type_parse) > 2:
     print('Type improperly formatted: ', type_str)
+    print('Proper formatting is as follows: NAMESPACE/TYPE_NAME')
     raise TypeError('Type improperly formatted: ', type_str)
 
   return type_parse[0], type_parse[1]
