@@ -986,3 +986,15 @@ literals:
   - CLOSED
 
 - lighting_percentage_sensor # For relative ranged illuminance inputs.
+
+## New fields for IoT vibration sensor pilot
+- fivesecondrolling_max_xaxis_linearacceleration_sensor
+- fivesecondrolling_max_yaxis_linearacceleration_sensor
+- fivesecondrolling_max_zaxis_linearacceleration_sensor
+- fivesecondrolling_min_xaxis_linearacceleration_sensor
+- fivesecondrolling_min_yaxis_linearacceleration_sensor
+- fivesecondrolling_min_zaxis_linearacceleration_sensor
+- fivesecondrolling_rootmeansquare_xaxis_linearacceleration_sensor
+- fivesecondrolling_rootmeansquare_yaxis_linearacceleration_sensor
+- fivesecondrolling_rootmeansquare_zaxis_linearacceleration_sensor
+- local_air_temperature_sensor
