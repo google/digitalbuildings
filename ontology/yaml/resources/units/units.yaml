@@ -90,3 +90,6 @@ time:
 - seconds: STANDARD
 rate:
 - inv_second: STANDARD
+# New unit
+flow:
+- meters: STANDARD
