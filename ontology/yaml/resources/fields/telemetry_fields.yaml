@@ -1000,4 +1000,4 @@ literals:
   - INACTIVE
 
 # Added on 2021/09/22 for FG-NET Water leak
-- water_leak_sensor
+- water_cable_extent_flow_sensor

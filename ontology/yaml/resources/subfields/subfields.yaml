@@ -215,6 +215,8 @@ measurement:
   #New measurement subfields for CH ZRH EURD
   rate: "ratio of change compared to a step or time"
   time: "defined duration of something"
+  #New measurement
+  flow: "Movement of water or gas outside container."
 measurement_descriptor:
   absolute: "Quality of media with respect to non-relativistic boudaries (e.g. absolute temperature)."
   apparent: "The combination of reactive and real components (power)."

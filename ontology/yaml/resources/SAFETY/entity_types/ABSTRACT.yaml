@@ -71,4 +71,4 @@ WLS:
   description: "Water leak location monitoring."
   is_abstract: true
   uses:
-  - water_leak_sensor
+  - water_cable_extent_flow_sensor
