@@ -855,6 +855,7 @@ literals:
   - OFF
   - HEATING
   - COOLING
+  - AUTO
 - average_zone_air_temperature_sensor
 - heating_supply_water_isolation_valve_command
 - heating_return_water_isolation_valve_command
@@ -911,6 +912,8 @@ literals:
   - OCCUPIED
   - UNKNOWN
   - UNOCCUPIED
+  - BYPASS
+  - STANDBY
 
 #Additional fields for CH ZRH EURD HVAC
 - bypass_air_damper_percentage_sensor
