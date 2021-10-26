@@ -166,7 +166,7 @@ def _TelemetryValidationCallback(
 
   if not validator.AllEntitiesValidated():
     report += ('No telemetry message was received for the following '
-                'entities:')
+               'entities:')
     report += '\n'
     for entity_name in validator.GetUnvalidatedEntityNames():
       report += f'  {entity_name}\n'
