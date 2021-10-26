@@ -740,6 +740,9 @@ literals:
   - ACTIVE
   - INACTIVE
 - gas_leak_detection_alarm
+- ammonia_leak_detection_alarm:
+  - ACTIVE
+  - INACTIVE
 - water_leak_detection_alarm
 - fire_alarm
 - emergency_release_status
