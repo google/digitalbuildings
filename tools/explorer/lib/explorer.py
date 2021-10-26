@@ -11,24 +11,23 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 """Main module for DBO explorer."""
-from yamlformat.validator import external_file_lib
-from yamlformat.validator import presubmit_validate_types_lib
-from yamlformat.validator import namespace_validator as nv
-
-from lib.ontology_wrapper import OntologyWrapper
 from lib import constants
+from lib.ontology_wrapper import OntologyWrapper
+
+from yamlformat.validator import external_file_lib
+from yamlformat.validator import namespace_validator as nv
+from yamlformat.validator import presubmit_validate_types_lib
+
 
 def Build(ontology_path: str) -> OntologyWrapper:
-  """
-  A constructor for the ontology explorer.
+  """A constructor for the ontology explorer.
 
   Args:
     ontology_path: A path for an alternative ontology extended from DBO.
 
-  returns:
-    An instance of the OntologyWrapper class.
+  Returns:
+    ontology: An instance of the OntologyWrapper class.
   """
   if ontology_path is not None:
     yaml_file_path = ontology_path
@@ -40,4 +39,3 @@ def Build(ontology_path: str) -> OntologyWrapper:
   nv.NamespaceValidator(universe.GetEntityTypeNamespaces())
   ontology = OntologyWrapper(universe)
   return ontology
-

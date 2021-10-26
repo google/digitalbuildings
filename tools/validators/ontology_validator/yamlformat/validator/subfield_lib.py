@@ -121,7 +121,7 @@ class SubfieldFolder(config_folder_lib.ConfigFolder):
     Args:
       subfield: subfield to add.
     """
-    
+
     if not subfield.IsValid():
       self.AddFindings(subfield.GetFindings())
       return
