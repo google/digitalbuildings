@@ -58,6 +58,12 @@ LDS_GASDET:
   - LDS
   - GASDET
 
+LDS_NHDET:
+  description: "Basic ammonia gas monitoring device"
+  is_canonical: true
+  implements:
+  - LDS
+  - NHDET
 
 LDS_WLA:
   id: "12466396563826016256"
