@@ -118,7 +118,7 @@ Subfields are grouped into categories that add structure to field composition (n
   <tr>
    <td><p style="text-align: right">Aggregation</p></td>
    <td>
-     An aggregation such as minimum, maximum, rootmeansquare, etc. It is implied that aggregations are spatial (e.g. max of 3 zone temperature sensors in a space), except when accompanied by a defined aggregation descriptor. In any case, this is not the same as an operating limit (e.g. the max flowrate for a valve); these are treated separately (see [here](model_hvac.md) for examples of how to model these types of limits ).
+     An aggregation such as minimum, maximum, rootmeansquare, etc. It is implied that aggregations are spatial (e.g. max of 3 zone temperature sensors in a space), except when accompanied by a defined aggregation descriptor. In any case, this is not the same as an operating limit (e.g. the max flowrate for a valve); these are treated separately (see note below).
    </td>
    <td>Average, Max, Min</td>
    <td>1</td>
@@ -166,6 +166,8 @@ Subfields are grouped into categories that add structure to field composition (n
    <td>Required</td>   
   </tr>
 </table>
+
+**Note:** See [HVAC model](model_hvac.md) for details on operating limits.
 
 ### Fields
 
