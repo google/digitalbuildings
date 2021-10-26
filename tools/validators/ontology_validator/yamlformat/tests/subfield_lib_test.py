@@ -18,9 +18,10 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
+from absl.testing import absltest
+
 from yamlformat.validator import findings_lib
 from yamlformat.validator import subfield_lib
-from absl.testing import absltest
 
 _GOOD_PATH = '{0}/subfields/anyfolder'.format('mynamespace')
 _BAD_SUBFOLDER = '{0}/subfield/anyfolder'.format('mynamespace')
@@ -125,7 +126,7 @@ class SubfieldLibTest(absltest.TestCase):
             'agg': 'aggD'
         },
         'aggregation_descriptor': {
-            'aggdesc':'aggDescD'
+            'aggdesc': 'aggDescD'
         },
         'component': {
             'comp': 'compD'
@@ -147,8 +148,9 @@ class SubfieldLibTest(absltest.TestCase):
     sff = subfield_lib.SubfieldFolder(_GOOD_PATH)
     sff.AddFromConfig([doc], '{0}/file.yaml'.format(_GOOD_PATH))
     ns = sff.local_namespace
-    self.assertCountEqual(['agg', 'aggdesc', 'comp', 'desc', 'mdesc', 'meas',\
-         'ptype'], ns.subfields)
+    self.assertCountEqual(
+        ['agg', 'aggdesc', 'comp', 'desc', 'mdesc', 'meas', 'ptype'],
+        ns.subfields)
     self.assertEmpty(sff.GetFindings())
 
   def testAddFromConfigNotYaml(self):

@@ -221,8 +221,8 @@ class _FieldValidationStateMachine(object):
   # Subfields are in the array in the order they should appear in the field.
   _CATEGORIES_IN_ORDER = [
       _CAT_SPEC(
-          cat=subfield_lib.SubfieldCategory.AGGREGATION_DESCRIPTOR, 
-          required=False, 
+          cat=subfield_lib.SubfieldCategory.AGGREGATION_DESCRIPTOR,
+          required=False,
           max=1),
       _CAT_SPEC(
           cat=subfield_lib.SubfieldCategory.AGGREGATION, required=False, max=1),
@@ -263,8 +263,8 @@ class _FieldValidationStateMachine(object):
           if category == subfield_lib.SubfieldCategory.AGGREGATION_DESCRIPTOR:
             self._has_aggregation_descriptor = True
           if category == subfield_lib.SubfieldCategory.POINT_TYPE:
-            # Verify that any aggregation descriptor comes with an aggregation. 
-            # Since this is the last subfield to evaluate this is where it 
+            # Verify that any aggregation descriptor comes with an aggregation.
+            # Since this is the last subfield to evaluate this is where it
             # would have seen agg and agg_desc subfields by here. If this block
             # doesnt exist, the field would fail anyway so the fact it didn't
             # run this check won't matter.
