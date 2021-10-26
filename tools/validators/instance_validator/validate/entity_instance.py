@@ -554,14 +554,17 @@ def _ParseTypeString(type_str: syaml.YAML) -> Tuple[str, str]:
 
   if len(type_parse) == 1:
     print('Type improperly formatted, a namespace is missing: ', type_str)
-    print('Proper formatting is as follows: NAMESPACE/TYPE_NAME')
-    raise TypeError('Type improperly formatted, a namespace is missing: ',
-                    type_str)
+    raise TypeError(
+        f'Type improperly formatted, a namespace is missing: {type_str}\n'+
+        'Proper formatting is: NAMESPACE/TYPE_NAME'
+    )
 
   if len(type_parse) > 2:
     print('Type improperly formatted: ', type_str)
-    print('Proper formatting is as follows: NAMESPACE/TYPE_NAME')
-    raise TypeError('Type improperly formatted: ', type_str)
+    raise TypeError(
+        f'Type improperly formatted: {type_str}\n'+
+        'Proper formatting is: NAMESPACE/TYPE_NAME'
+    )
 
   return type_parse[0], type_parse[1]
 

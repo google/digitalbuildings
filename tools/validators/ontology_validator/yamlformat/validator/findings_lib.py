@@ -322,6 +322,16 @@ class ValidationWarning(Finding):
 class DuplicateDefinitionError(ValidationError):
   """Base class for errors that represent the same component name being defined
   more than once.
+
+  Args:
+      component_type: The entity type of the component defined in DBO.
+      namespace: Namespace for component_type.
+      component_name: Component's name as a string.
+      context: Instance of FileContext class for the duplicate item.
+      prev_context: Instance of FileContext class for originally defined item.
+
+  Returns:
+    An instance of the DuplicateDefinitionError.
   """
 
   def __init__(self, component_type, namespace, component_name, context,
@@ -349,7 +359,7 @@ class InconsistentFileLocationError(ValidationError):
   def __init__(self, expected_path, file_context):
     fp = file_context.filepath
     super(InconsistentFileLocationError, self).__init__(
-        'File "{0}" is not at the expected location "{1}".'.format(
+        'File "{0}" is not at the expected path "{1}".'.format(
             fp, expected_path), file_context)
 
 
@@ -404,7 +414,12 @@ class EmptyFileWarning(ValidationWarning):
 # Errors relating to Fields.
 # ---------------------------------------------------------------------------- #
 class InvalidFieldNameError(ValidationError):
-  """An entity type name does not match the accepted format."""
+  """An entity type name does not match the accepted format.
+
+  Args:
+    name: The field name.
+    context: Instance of FileContext for the field defined in DBO.
+  """
 
   def __init__(self, name, context):
     super(InvalidFieldNameError, self).__init__(
@@ -442,7 +457,13 @@ class InvalidFieldConstructionError(ValidationError):
 
 
 class DuplicateFieldDefinitionError(DuplicateDefinitionError):
-  """Field is defined multiple times in a namespace."""
+  """Field is defined multiple times in a namespace.
+
+     Args:
+        namespace: Defined namespace of the duplciated field.
+        current_instance: Instance of FileContext class for duplicate field.
+        prev_context: Instance of FileContext class for duplicated field.
+  """
 
   def __init__(self, namespace, current_instance, prev_context):
     super(DuplicateFieldDefinitionError, self).__init__('Field',
@@ -482,7 +503,12 @@ class DuplicateStateError(ValidationError):
 
 
 class UnrecognizedStateError(ValidationError):
-  """Field references an unrecognized state.."""
+  """Field references an unrecognized state.
+
+     Args:
+        state: Instance of State class for unrecognized state.
+        Field: Instance of Field class for field referencing unrecognized state.
+  """
 
   def __init__(self, state, field):
     super(UnrecognizedStateError, self).__init__(
@@ -494,7 +520,12 @@ class UnrecognizedStateError(ValidationError):
 # Errors relating to Subfields.
 # ---------------------------------------------------------------------------- #
 class InvalidSubfieldNameError(ValidationError):
-  """A subfield name does not match the accepted format."""
+  """A subfield name does not match the accepted format.
+  
+     Args:
+        name: Current name of the incorrectly named subfield.
+        context: Instance of FileContext class for subfield.
+  """
 
   def __init__(self, name, context):
     super(InvalidSubfieldNameError, self).__init__(
@@ -513,7 +544,12 @@ class DuplicateSubfieldDefinitionError(DuplicateDefinitionError):
 
 
 class MissingSubfieldDescriptionWarning(ValidationWarning):
-  """Subfield description is empty."""
+  """Subfield description is empty.
+      
+     Args:
+        subfield_name: Name of subfield as a string.
+        context: Instance of FileContext class for subfield.
+  """
 
   def __init__(self, subfield_name, context):
     super(MissingSubfieldDescriptionWarning, self).__init__(
@@ -534,7 +570,12 @@ class MissingUnitError(ValidationError):
 # Errors relating to States.
 # ---------------------------------------------------------------------------- #
 class InvalidStateNameError(ValidationError):
-  """A state name does not match the accepted format."""
+  """A state name does not match the accepted format.
+
+     Args:
+        name: State name as a string.
+        context: Instance of FileContext for invalid state name.
+  """
 
   def __init__(self, name, context):
     super(InvalidStateNameError, self).__init__(
@@ -593,7 +634,11 @@ class InvalidConnectionNamespaceError(ValidationError):
 
 
 class MissingConnectionDescriptionWarning(ValidationWarning):
-  """Connection description is empty.."""
+  """Connection description is empty.
+
+     Args:
+        connection: Instance of Connection class missing a description.
+  """
 
   def __init__(self, connection):
     super(MissingConnectionDescriptionWarning, self).__init__(
@@ -605,7 +650,12 @@ class MissingConnectionDescriptionWarning(ValidationWarning):
 # Errors relating to Units.
 # ---------------------------------------------------------------------------- #
 class InvalidUnitNameError(ValidationError):
-  """A unit name does not match the accepted format."""
+  """A unit name does not match the accepted format.
+  
+     Args:
+        name: Invalid name as a string.
+        context: Instance of FileContext for invalid unit name.
+  """
 
   def __init__(self, name, context):
     super(InvalidUnitNameError, self).__init__(
@@ -615,7 +665,13 @@ class InvalidUnitNameError(ValidationError):
 
 
 class DuplicateUnitDefinitionError(DuplicateDefinitionError):
-  """A unit is defined multiple times in a namespace."""
+  """A unit is defined multiple times in a namespace.
+
+     Args:
+        namespace: Defined namespace for unit as a string.
+        current_instance: Instance of FileContext class for duplicate unit.
+        prev_context: Instance of FileContext class for unit. 
+  """
 
   def __init__(self, namespace, current_instance, prev_context):
     super(DuplicateUnitDefinitionError, self).__init__('Unit',
@@ -624,7 +680,12 @@ class DuplicateUnitDefinitionError(DuplicateDefinitionError):
 
 
 class InvalidUnitFormatError(ValidationError):
-  """A unit's YAML specification is invalid."""
+  """A unit's YAML specification is invalid.
+
+     Args:
+       key: YAML specification for unit.
+       context: Instance of FileContext class for unit.
+  """
 
   def __init__(self, key, context):
     super(InvalidUnitFormatError, self).__init__(
@@ -671,7 +732,12 @@ class MissingTypenameError(ValidationError):
 
 
 class InvalidTypenameError(ValidationError):
-  """An entity type name does not match the accepted format."""
+  """An entity type name does not match the accepted format.
+
+     Args:
+        name: Invalid type name as a string.
+        context: Instance of FileContext class for type name.
+  """
 
   def __init__(self, name, context):
     super(InvalidTypenameError, self).__init__(
@@ -761,7 +827,7 @@ class InheritedFieldsSetError(ValidationError):
 
   def __init__(self, entity_type):
     super(InheritedFieldsSetError,
-          self).__init__('inherited_fields_expanded should not be set.',
+          self).__init__('Inherited_fields_expanded should not be set.',
                          entity_type.file_context)
 
 

@@ -146,6 +146,7 @@ class State(findings_lib.Findings):
     name: required string representing the state.
     description: optional (for now) string semantic definition for the state.
     file_context: optional object with the config file location of this state.
+
   Attributes:
     name: the full name (without namespace) of this state
     description: explanation of what this state represents
