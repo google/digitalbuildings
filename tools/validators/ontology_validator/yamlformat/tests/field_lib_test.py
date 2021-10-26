@@ -269,8 +269,7 @@ class FieldLibTest(absltest.TestCase):
     self.assertEmpty(ns.GetFindings())
 
   def testAggregationDescriptorFailsWithoutAggregation(self):
-    """ Check that aggregation descriptors fail without associated 
-    aggregation. """
+    """Check that aggregation descriptors fail without associated aggregation."""
     sf_dict = {
         'first': subfield_lib.Subfield('first', AGGREGATION_DESCRIPTOR),
         'second': subfield_lib.Subfield('second', POINT_TYPE)
@@ -317,19 +316,6 @@ class FieldLibTest(absltest.TestCase):
     }
     ns = field_lib.FieldNamespace('local', subfields=sf_dict)
     field = field_lib.Field('first_second')
-
-    ns.InsertField(field)
-    self.assertIsInstance(ns.GetFindings()[0],
-                          findings_lib.InvalidFieldConstructionError)
-
-  def testInsertRespectsAggregationCount(self):
-    sf_dict = {
-        'first': subfield_lib.Subfield('first', AGGREGATION),
-        'second': subfield_lib.Subfield('second', AGGREGATION),
-        'third': subfield_lib.Subfield('third', POINT_TYPE)
-    }
-    ns = field_lib.FieldNamespace('local', subfields=sf_dict)
-    field = field_lib.Field('first_second_third')
 
     ns.InsertField(field)
     self.assertIsInstance(ns.GetFindings()[0],
