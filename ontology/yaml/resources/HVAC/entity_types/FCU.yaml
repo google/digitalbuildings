@@ -931,6 +931,16 @@ FCU_DFSS_DFVSC_DXRC_HTRC_RHC_RHDHC_RTC:
   - RHDHC
   - RTC
   
+FCU_CHWRC_DFSS_RHDHC:
+  description: "FCU with chilled water coil and return air relative humidity control."
+  is_canonical: true
+  implements:
+  - FCU
+  - CHWRC
+  - DFSS
+  - RHDHC
+
+  
 ###################################
 ### Existing Non-standard Types ###
 ###################################
