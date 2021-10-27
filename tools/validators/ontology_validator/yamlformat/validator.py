@@ -40,11 +40,18 @@ def main(parsed_args):
         parsed_args.modified_types_filepath)
 
   print('Starting Yaml Validator!')
+  interactive=None
+  if parsed_args.interactive == 'False' or parsed_args.interactive == False:
+    interactive = False
+  elif parsed_args.interactive == 'True' or parsed_args.interactive == True:
+    interactive = True
+  else:
+    raise ValueError('Interactive argument must be True or False')
   external_file_lib.Validate(
       filter_text,
       path.expanduser(args.original),
       modified_types_filepath,
-      interactive=parsed_args.interactive
+      interactive=interactive
   )
 
 if __name__ == '__main__':
