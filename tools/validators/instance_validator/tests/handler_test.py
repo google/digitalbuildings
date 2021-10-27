@@ -18,8 +18,8 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
-from os import close, path, remove
-from tempfile import mkstemp
+import os
+import tempfile
 from typing import Dict, List
 from unittest import mock
 
@@ -57,38 +57,42 @@ class HandlerTest(absltest.TestCase):
 
   def testValidateOneBuildingExist(self):
     try:
-      input_file = path.join(_TESTCASE_PATH, 'GOOD', 'good_building_type.yaml')
+      input_file = os.path.join(_TESTCASE_PATH, 'GOOD',
+                                'good_building_type.yaml')
       _RunValidation([input_file], use_simplified_universe=True)
     except SyntaxError:
       self.fail('ValidationHelper:Validate raised ExceptionType unexpectedly!')
 
   def testValidateReportFileNotEmpty(self):
     try:
-      report_fd, report_filename = mkstemp(text=True)
-      input_file = path.join(_TESTCASE_PATH, 'GOOD', 'good_building_type.yaml')
+      report_fd, report_filename = tempfile.mkstemp(text=True)
+      input_file = os.path.join(_TESTCASE_PATH, 'GOOD',
+                                'good_building_type.yaml')
       _RunValidation([input_file],
                      use_simplified_universe=True,
                      report_filename=report_filename)
 
-      report_size = path.getsize(report_filename)
+      report_size = os.path.getsize(report_filename)
     except SyntaxError:
       pass
     finally:
-      close(report_fd)
-      remove(report_filename)
+      os.close(report_fd)
+      os.remove(report_filename)
 
     self.assertGreater(report_size, 0)
 
   def testValidateOneBuildingExistFails(self):
     with self.assertRaises(SyntaxError):
-      input_file = path.join(_TESTCASE_PATH, 'BAD', 'bad_missing_building.yaml')
+      input_file = os.path.join(_TESTCASE_PATH, 'BAD',
+                                'bad_missing_building.yaml')
       _RunValidation([input_file], use_simplified_universe=True)
 
   def testValidateMultipleInputFilesSuccess(self):
     try:
-      input_file1 = path.join(_TESTCASE_PATH, 'GOOD', 'good_building_type.yaml')
-      input_file2 = path.join(_TESTCASE_PATH, 'GOOD',
-                              'good_translation_nobuilding.yaml')
+      input_file1 = os.path.join(_TESTCASE_PATH, 'GOOD',
+                                 'good_building_type.yaml')
+      input_file2 = os.path.join(_TESTCASE_PATH, 'GOOD',
+                                 'good_translation_nobuilding.yaml')
       _RunValidation([input_file1, input_file2], use_simplified_universe=True)
     except SyntaxError:
       self.fail('ValidationHelper:Validate unexpectedly raised Exception')
@@ -97,7 +101,8 @@ class HandlerTest(absltest.TestCase):
   @mock.patch.object(subscriber, 'Subscriber')
   def testTelemetryArgsBothSetSuccess(self, mock_subscriber, mock_validator):
     try:
-      input_file = path.join(_TESTCASE_PATH, 'GOOD', 'good_building_type.yaml')
+      input_file = os.path.join(_TESTCASE_PATH, 'GOOD',
+                                'good_building_type.yaml')
       _RunValidation([input_file],
                      subscription='a',
                      service_account='file',
@@ -115,14 +120,16 @@ class HandlerTest(absltest.TestCase):
 
   def testTelemetryArgsMissingSubscription(self):
     with self.assertRaises(SystemExit):
-      input_file = path.join(_TESTCASE_PATH, 'GOOD', 'good_building_type.yaml')
+      input_file = os.path.join(_TESTCASE_PATH, 'GOOD',
+                                'good_building_type.yaml')
       _RunValidation([input_file],
                      service_account='file',
                      use_simplified_universe=True)
 
   def testTelemetryArgsMissingServiceAccount(self):
     with self.assertRaises(SystemExit):
-      input_file = path.join(_TESTCASE_PATH, 'GOOD', 'good_building_type.yaml')
+      input_file = os.path.join(_TESTCASE_PATH, 'GOOD',
+                                'good_building_type.yaml')
       _RunValidation([input_file],
                      subscription='a',
                      use_simplified_universe=True)
@@ -132,7 +139,7 @@ class HandlerTest(absltest.TestCase):
   def testValidateAcceptsEntitiesWithExpectedTypes(self, mock_universe,
                                                    mock_validator):
     parsed = _Helper(
-        [path.join(_TESTCASE_PATH, 'GOOD', 'good_translation.yaml')])
+        [os.path.join(_TESTCASE_PATH, 'GOOD', 'good_translation.yaml')])
     entity_helper = handler.EntityHelper(mock_universe)
     parsed = dict(parsed)
     instances = {}
@@ -146,7 +153,7 @@ class HandlerTest(absltest.TestCase):
 
   def testValidateLinksWithNetworkEntity(self):
     try:
-      input_file = path.join(_TESTCASE_PATH, 'GOOD', 'good_links.yaml')
+      input_file = os.path.join(_TESTCASE_PATH, 'GOOD', 'good_links.yaml')
       _RunValidation([input_file], use_simplified_universe=True)
     except SyntaxError:
       self.fail('ValidationHelper:Validate raised ExceptionType unexpectedly!')

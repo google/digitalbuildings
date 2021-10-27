@@ -22,6 +22,12 @@ GASDET:
   uses:
   - gas_leak_detection_alarm
 
+NHDET:
+  description: "Basic ammonia gas leak monitoring"
+  is_abstract: true
+  uses:
+  - ammonia_leak_detection_alarm
+
 WLDS:
   id: "1407482223375941632"
   description: "Basic watre leak monitoring."

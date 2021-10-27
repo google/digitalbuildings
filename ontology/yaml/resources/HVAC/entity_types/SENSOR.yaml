@@ -68,3 +68,31 @@ SENSOR_CO2M:
   implements:
     - /SENSOR # Inherits from global namespace
     - CO2M
+
+SENSOR_LA3A:
+  description: "Three-axis linear acceleration (vibration) sensor with optional temperature and battery monitoring."
+  is_canonical: true
+  implements:
+    - /SENSOR # Inherits from global namespace
+  opt_uses:
+    - local_air_temperature_sensor
+    - battery_charge_percentage_sensor
+  uses:
+    - fivesecondrolling_max_xaxis_linearacceleration_sensor
+    - fivesecondrolling_max_yaxis_linearacceleration_sensor
+    - fivesecondrolling_max_zaxis_linearacceleration_sensor
+    - fivesecondrolling_min_xaxis_linearacceleration_sensor
+    - fivesecondrolling_min_yaxis_linearacceleration_sensor
+    - fivesecondrolling_min_zaxis_linearacceleration_sensor
+    - fivesecondrolling_rootmeansquare_xaxis_linearacceleration_sensor
+    - fivesecondrolling_rootmeansquare_yaxis_linearacceleration_sensor
+    - fivesecondrolling_rootmeansquare_zaxis_linearacceleration_sensor
+
+SENSOR_FDPM:
+  description: "Filter differential pressure sensor with optional temperature monitoring."
+  is_canonical: true
+  implements:
+    - /SENSOR # Inherits from global namespace
+    - FDPM
+  opt_uses:
+    - local_air_temperature_sensor
