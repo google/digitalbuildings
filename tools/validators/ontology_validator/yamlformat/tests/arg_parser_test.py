@@ -50,7 +50,7 @@ class ArgParserTest(absltest.TestCase):
     ])
     self.assertEqual(parsed.original, './my/path/to/foo')
     self.assertEqual(parsed.modified_types_filepath, None)
-    self.assertTrue(parsed.interactive)
+    self.assertTrue(eval(parsed.interactive))
 
   def testNoInteractiveFlag(self):
     parsed = self.parser.parse_args([
@@ -59,7 +59,7 @@ class ArgParserTest(absltest.TestCase):
     ])
     self.assertEqual(parsed.original, './my/path/to/foo')
     self.assertEqual(parsed.modified_types_filepath, None)
-    self.assertTrue(parsed.interactive)
+    self.assertFalse(eval(parsed.interactive))
 
 if __name__ == '__main__':
   absltest.main()
