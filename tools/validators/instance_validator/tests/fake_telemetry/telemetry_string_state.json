@@ -3,10 +3,10 @@
   "version": 1,
   "points": {
     "exhaust_air_damper_command": {
-      "present_value": "BAD_STATE"
+      "present_value": "OPEN"
     },
     "exhaust_air_damper_status": {
-      "present_value": 3
+      "present_value": "0"
     }
   }
 }

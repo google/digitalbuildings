@@ -111,6 +111,9 @@ with open(
   _MESSAGE_GOOD_MULTIPLE_STATES = FakeMessage(_MESSAGE_ATTRIBUTES_4,
                                               file.read())
 
+with open(path.join(_TELEMETRY_PATH, 'telemetry_string_state.json'), encoding='utf-8') as file:
+    _MESSAGE_STRING_STATES = FakeMessage(_MESSAGE_ATTRIBUTES_2, file.read())
+
 with open(
     path.join(_TELEMETRY_PATH, 'telemetry_good_states_list.json'),
     encoding='utf-8') as file:
@@ -151,6 +154,10 @@ _ENTITY_NAME_5 = 'FAN-17'
 # A test entity with a field that maps multiple raw values to one state.
 _ENTITIES_6 = _CreateEntityInstances('good_translation_states_list.yaml')
 _ENTITY_NAME_6 = 'DMP_EDM-17'
+
+# A test entity with a field that maps multiple raw values to one state.
+_ENTITIES_7 = _CreateEntityInstances('good_translation_string_states.yaml')
+_ENTITY_NAME_7 = 'DMP_EDM-17'
 
 _POINT_NAME_1 = 'points.return_water_temperature_sensor.present_value'
 _POINT_NAME_2 = 'points.supply_water_temperature_sensor.present_value'
@@ -239,7 +246,7 @@ class TelemetryValidatorTest(absltest.TestCase):
     validator.ValidateMessage(_MESSAGE_INVALID_STATE)
 
     error1 = telemetry_error.TelemetryError( _ENTITY_NAME_2, _POINT_NAME_3, 'Unmapped state in telemetry message: BAD_STATE')
-    error2 = telemetry_error.TelemetryError( _ENTITY_NAME_2, _POINT_NAME_4, 'Unmapped state in telemetry message: BAD_STATE')
+    error2 = telemetry_error.TelemetryError( _ENTITY_NAME_2, _POINT_NAME_4, 'Unmapped state in telemetry message: 3')
 
     errors = validator.GetErrors()
     self.assertIn(error1, errors)
@@ -322,6 +329,17 @@ class TelemetryValidatorTest(absltest.TestCase):
                                                        ValidationCallback)
 
     validator.ValidateMessage(_MESSAGE_GOOD_STATES_LIST)
+
+  def testTelemetryValidatorOnMultiStateWithStringSuccess(self):
+
+    def ValidationCallback(validator):
+      self.assertEmpty(validator.GetErrors())
+      self.assertTrue(validator.AllEntitiesValidated())
+
+    validator = telemetry_validator.TelemetryValidator(_ENTITIES_7, 1,
+                                                       ValidationCallback)
+
+    validator.ValidateMessage(_MESSAGE_STRING_STATES)
 
 
 if __name__ == '__main__':
