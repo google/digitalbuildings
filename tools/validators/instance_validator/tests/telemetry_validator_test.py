@@ -238,27 +238,23 @@ class TelemetryValidatorTest(absltest.TestCase):
 
     validator.ValidateMessage(_MESSAGE_INVALID_STATE)
 
-    error1 = telemetry_error.TelemetryError(
-        _ENTITY_NAME_2, _POINT_NAME_3, 'Missing state in telemetry message'
-        ': None')
-    error2 = telemetry_error.TelemetryError(
-        _ENTITY_NAME_2, _POINT_NAME_4, 'Missing state in telemetry message'
-        ': None')
+    error1 = telemetry_error.TelemetryError( _ENTITY_NAME_2, _POINT_NAME_3, 'Invalid state in telemetry message: BAD_STATE')
+    error2 = telemetry_error.TelemetryError( _ENTITY_NAME_2, _POINT_NAME_4, 'Invalid state in telemetry message: BAD_STATE')
 
     errors = validator.GetErrors()
     self.assertIn(error1, errors)
     self.assertIn(error2, errors)
     self.assertLen(errors, 2)
 
-  def testTelemetryValidatorDetectsNoneValue(self):
+  def testTelemetryValidatorDetectsStringAsInvalidNumber(self):
     validator = telemetry_validator.TelemetryValidator(_ENTITIES_1, 1,
                                                        _NULL_CALLBACK)
 
     validator.ValidateMessage(_MESSAGE_INVALID_NUMBER)
 
     error = telemetry_error.TelemetryError(
-        _ENTITY_NAME_1, _POINT_NAME_1, 'Missing number in telemetry message'
-        ': None')
+        _ENTITY_NAME_1, _POINT_NAME_1, 'Invalid number in telemetry message'
+        ': BAD_NUMBER')
 
     errors = validator.GetErrors()
     self.assertIn(error, errors)
@@ -284,9 +280,7 @@ class TelemetryValidatorTest(absltest.TestCase):
 
     validator.ValidateMessage(_MESSAGE_MULTIPLE_ERRORS)
 
-    error_one = telemetry_error.TelemetryError(
-        _ENTITY_NAME_1, _POINT_NAME_1, 'Missing number in telemetry '
-        'message: None')
+    error_one = telemetry_error.TelemetryError( _ENTITY_NAME_1, _POINT_NAME_1, 'Invalid number in telemetry message: BAD_NUMBER')
     error_two = telemetry_error.TelemetryError(
         _ENTITY_NAME_1, _POINT_NAME_2, 'Field missing from telemetry '
         'message')

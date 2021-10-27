@@ -6,7 +6,7 @@
       "present_value": "BAD_STATE"
     },
     "exhaust_air_damper_status": {
-      "present_value": "1"
+      "present_value": "BAD_STATE"
     }
   }
 }
