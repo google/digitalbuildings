@@ -940,15 +940,6 @@ FCU_CHWRC_DFSS_RHDHC:
   - DFSS
   - RHDHC
 
-FCU_DFSS_DSPRTC_DX2DSPRTC:
-  description: "FCU with two DX compressors and dual setpoint control."
-  is_canonical: true
-  implements:
-  - FCU
-  - DFSS
-  - DSPRTC
-  - DX2DSPRTC
-
 ###################################
 ### Existing Non-standard Types ###
 ###################################
