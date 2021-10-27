@@ -25,6 +25,7 @@ from arg_parser import CreateParser
 
 from yamlformat.validator import external_file_lib
 
+
 def main(parsed_args):
   filter_text = None
   if len(sys.argv[1:]) >= 2:
@@ -44,7 +45,7 @@ def main(parsed_args):
       filter_text,
       path.expanduser(args.original),
       modified_types_filepath,
-      interactive=eval(parsed_args.interactive)
+      interactive=parsed_args.interactive
   )
 
 if __name__ == '__main__':
