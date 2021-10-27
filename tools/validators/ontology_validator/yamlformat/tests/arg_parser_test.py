@@ -13,14 +13,17 @@
 # limitations under the License.
 
 """Testing module for arg_parser.py."""
-from absl.testing import absltest
 import argparse
 
+from absl.testing import absltest
+
 from yamlformat import arg_parser
+
 
 class ArgParserTest(absltest.TestCase):
 
   def setUp(self):
+    super().setUp()
     self.parser = arg_parser.CreateParser()
 
   def testParserIsParser(self):
@@ -34,7 +37,7 @@ class ArgParserTest(absltest.TestCase):
         False
     ])
     self.assertEqual(parsed.original, './my/path/to/foo')
-    self.assertEqual(parsed.modified_types_filepath, None)
+    self.assertIsNone(parsed.modified_types_filepath)
     self.assertFalse(parsed.interactive)
 
   def testOriginalArgIsRequired(self):
