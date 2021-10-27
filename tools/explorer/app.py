@@ -11,14 +11,14 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 """Main module for DBO explorer."""
+import sys
+
+from lib import arg_parser
 from lib import explorer
 from lib import model
-from lib import arg_parser
-
 import pyfiglet
-import sys
+
 
 def main(parsed_args):
   """Main method for DBO explorer."""
@@ -29,13 +29,10 @@ def main(parsed_args):
   my_ontology = explorer.Build(parsed_args.modified_types_filepath)
   done = False
   while not done:
-    print(
-        '\nHow would you like to query DBO\n' +
-        '1: Get fields for a type name\n' +
-        '2: Get types for a list of fields\n' +
-        '3: Validate a field name\n' +
-        'q: quit\n'
-    )
+    print('\nHow would you like to query DBO\n' +
+          '1: Get fields for a type name\n' +
+          '2: Get types for a list of fields\n' + '3: Validate a field name\n' +
+          'q: quit\n')
     function_choice = input('Please select an option: ')
     if function_choice == '1':
       namespace = input('Enter a namespace: ').upper()
@@ -45,24 +42,23 @@ def main(parsed_args):
       for field in fields:
         print(field)
     elif function_choice == '2':
-      print('This functionality is still under construction.\n'+
+      print('This functionality is still under construction.\n' +
             'Please pick another option.')
     elif function_choice == '3':
       namespace = input('Enter a namespace: ').upper()
       field_name = input('Enter a field name to validate: ')
       standard_field = model.StandardField(namespace, field_name)
       field_is_valid = my_ontology.IsFieldValid(standard_field)
-      if namespace == '':
+      if not namespace:
         namespace = 'global'
       print(f'{field_name} is defined in {namespace}: {field_is_valid}')
     elif function_choice == 'q':
       print('bye bye')
       done = True
     else:
-      print(
-          'You entered: ' + function_choice + '\n' +
-          'Please enter a valid input'
-      )
+      print('You entered: ' + function_choice + '\n' +
+            'Please enter a valid input')
+
 
 if __name__ == '__main__':
   args = arg_parser.ParseArgs().parse_args(sys.argv[1:])

@@ -11,21 +11,23 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 """Testing module for arg_parser.py."""
-from absl.testing import absltest
 import argparse
 
+from absl.testing import absltest
 from lib import arg_parser
+
 
 class ArgParserTest(absltest.TestCase):
 
   def setUp(self):
+    super().setUp()
     pass
 
   def testParseArgs(self):
     output_parser = arg_parser.ParseArgs()
     self.assertEqual(type(output_parser), argparse.ArgumentParser)
+
 
 if __name__ == '__main__':
   absltest.main()

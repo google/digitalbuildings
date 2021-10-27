@@ -102,6 +102,7 @@ def _MergeSchemas(first: Dict[syaml.ScalarValidator, syaml.Validator],
 
 #### Public Text parsing Constants ####
 ENTITY_ID_KEY = 'id'
+ENTITY_GUID_KEY = 'guid'
 ENTITY_CLOUD_DEVICE_ID_KEY = 'cloud_device_id'
 ENTITY_TYPE_KEY = 'type'
 ENTITY_OPERATION_KEY = 'operation'
@@ -167,9 +168,20 @@ _METADATA_SCHEMA = syaml.Map({
         EnumToRegex(ConfigMode, [ConfigMode.EXPORT])
 })
 
-_ENTITY_ID_SCHEMA = {ENTITY_ID_KEY: syaml.Str()}
-_ENTITY_CLOUD_DEVICE_ID_SCHEMA = {
-    syaml.Optional(ENTITY_CLOUD_DEVICE_ID_KEY): syaml.Str()
+_ENTITY_IDS_SCHEMA = {
+    # this is the Phred primary key, this should not be surfaced/checked
+    # TODO(b/202278941): remove id reference
+    syaml.Optional(ENTITY_ID_KEY):
+        syaml.Str(),
+
+    # this is the entity instance global primary key, used to identify instances
+    # TODO(b/202279412): guid will be non-optional in the future.
+    syaml.Optional(ENTITY_GUID_KEY):
+        syaml.Str(),
+
+    # this is the numeric cloud device id from Cloud IoT
+    syaml.Optional(ENTITY_CLOUD_DEVICE_ID_KEY):
+        syaml.Str(),
 }
 _ENTITY_ATTRIB_SCHEMA = {
     # TODO(b/166472270): revisit connection syntax
@@ -188,8 +200,7 @@ _ENTITY_ATTRIB_SCHEMA = {
     syaml.Optional(METADATA_KEY):
         syaml.Any()
 }
-_ENTITY_IDS_SCHEMA = _MergeSchemas(_ENTITY_ID_SCHEMA,
-                                   _ENTITY_CLOUD_DEVICE_ID_SCHEMA)
+
 _ENTITY_BASE_SCHEMA = _MergeSchemas(_ENTITY_IDS_SCHEMA, _ENTITY_ATTRIB_SCHEMA)
 _ENTITY_INIT_SCHEMA = _MergeSchemas(_ENTITY_BASE_SCHEMA,
                                     {ENTITY_TYPE_KEY: syaml.Str()})
@@ -210,7 +221,7 @@ _ENTITY_ADD_SCHEMA = _MergeSchemas(
         ENTITY_OPERATION_KEY: EnumToRegex(exactly=EntityOperation.ADD)
     })
 _ENTITY_DELETE_SCHEMA = _MergeSchemas(
-    _ENTITY_ID_SCHEMA,
+    _ENTITY_IDS_SCHEMA,
     {ENTITY_OPERATION_KEY: EnumToRegex(exactly=EntityOperation.DELETE)})
 
 
