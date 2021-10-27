@@ -31,15 +31,35 @@ class ArgParserTest(absltest.TestCase):
         '--original',
         './my/path/to/foo',
         '--interactive',
-        False
+        'False'
     ])
     self.assertEqual(parsed.original, './my/path/to/foo')
     self.assertEqual(parsed.modified_types_filepath, None)
-    self.assertFalse(parsed.interactive)
+    self.assertFalse(eval(parsed.interactive))
 
   def testOriginalArgIsRequired(self):
     with self.assertRaises(SystemExit):
       self.parser.parse_args(['-m', './test/path'])
+
+  def testInteractiveIsTrue(self):
+    parsed = self.parser.parse_args([
+        '--original',
+        './my/path/to/foo',
+        '--interactive',
+        'True'
+    ])
+    self.assertEqual(parsed.original, './my/path/to/foo')
+    self.assertEqual(parsed.modified_types_filepath, None)
+    self.assertTrue(parsed.interactive)
+
+  def testNoInteractiveFlag(self):
+    parsed = self.parser.parse_args([
+        '--original',
+        './my/path/to/foo'
+    ])
+    self.assertEqual(parsed.original, './my/path/to/foo')
+    self.assertEqual(parsed.modified_types_filepath, None)
+    self.assertTrue(parsed.interactive)
 
 if __name__ == '__main__':
   absltest.main()
