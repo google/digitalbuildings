@@ -232,14 +232,14 @@ class TelemetryValidatorTest(absltest.TestCase):
     self.assertIn(error, errors)
     self.assertLen(errors, 1)
 
-  def testTelemetryValidatorDetectsInvalidState(self):
+  def testTelemetryValidatorDetectsUnmappedState(self):
     validator = telemetry_validator.TelemetryValidator(_ENTITIES_2, 1,
                                                        _NULL_CALLBACK)
 
     validator.ValidateMessage(_MESSAGE_INVALID_STATE)
 
-    error1 = telemetry_error.TelemetryError( _ENTITY_NAME_2, _POINT_NAME_3, 'Invalid state in telemetry message: BAD_STATE')
-    error2 = telemetry_error.TelemetryError( _ENTITY_NAME_2, _POINT_NAME_4, 'Invalid state in telemetry message: BAD_STATE')
+    error1 = telemetry_error.TelemetryError( _ENTITY_NAME_2, _POINT_NAME_3, 'Unmapped state in telemetry message: BAD_STATE')
+    error2 = telemetry_error.TelemetryError( _ENTITY_NAME_2, _POINT_NAME_4, 'Unmapped state in telemetry message: BAD_STATE')
 
     errors = validator.GetErrors()
     self.assertIn(error1, errors)
