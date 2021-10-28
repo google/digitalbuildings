@@ -324,7 +324,7 @@ class DuplicateDefinitionError(ValidationError):
   more than once.
 
   Args:
-      component_type: The entity type of the component defined in DBO.
+      component_type: Type of connection, unit, field, etc.
       namespace: Namespace for component_type.
       component_name: Component's name as a string.
       context: Instance of FileContext class for the duplicate item.
@@ -511,8 +511,8 @@ class UnrecognizedStateError(ValidationError):
   """Field references an unrecognized state.
 
      Args:
-        state: Instance of State class for unrecognized state.
-        Field: Instance of Field class for field referencing unrecognized state.
+        state: Unrecognized state name as a string.
+        field: Instance of Field class for field referencing unrecognized state.
   """
 
   def __init__(self, state, field):
