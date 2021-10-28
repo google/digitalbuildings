@@ -111,8 +111,10 @@ with open(
   _MESSAGE_GOOD_MULTIPLE_STATES = FakeMessage(_MESSAGE_ATTRIBUTES_4,
                                               file.read())
 
-with open(path.join(_TELEMETRY_PATH, 'telemetry_string_state.json'), encoding='utf-8') as file:
-    _MESSAGE_STRING_STATES = FakeMessage(_MESSAGE_ATTRIBUTES_2, file.read())
+with open(
+    path.join(_TELEMETRY_PATH, 'telemetry_string_state.json'),
+    encoding='utf-8') as file:
+  _MESSAGE_STRING_STATES = FakeMessage(_MESSAGE_ATTRIBUTES_2, file.read())
 
 with open(
     path.join(_TELEMETRY_PATH, 'telemetry_good_states_list.json'),
@@ -245,8 +247,11 @@ class TelemetryValidatorTest(absltest.TestCase):
 
     validator.ValidateMessage(_MESSAGE_INVALID_STATE)
 
-    error1 = telemetry_error.TelemetryError( _ENTITY_NAME_2, _POINT_NAME_3, 'Unmapped state in telemetry message: BAD_STATE')
-    error2 = telemetry_error.TelemetryError( _ENTITY_NAME_2, _POINT_NAME_4, 'Unmapped state in telemetry message: 3')
+    error1 = telemetry_error.TelemetryError(
+        _ENTITY_NAME_2, _POINT_NAME_3, 'Unmapped state in telemetry message'
+        ': BAD_STATE')
+    error2 = telemetry_error.TelemetryError(
+        _ENTITY_NAME_2, _POINT_NAME_4, 'Unmapped state in telemetry message: 3')
 
     errors = validator.GetErrors()
     self.assertIn(error1, errors)
@@ -287,7 +292,8 @@ class TelemetryValidatorTest(absltest.TestCase):
 
     validator.ValidateMessage(_MESSAGE_MULTIPLE_ERRORS)
 
-    error_one = telemetry_error.TelemetryError( _ENTITY_NAME_1, _POINT_NAME_1, 'Invalid number in telemetry message: BAD_NUMBER')
+    error_one = telemetry_error.TelemetryError(_ENTITY_NAME_1, _POINT_NAME_1,
+        'Invalid number in telemetry message: BAD_NUMBER')
     error_two = telemetry_error.TelemetryError(
         _ENTITY_NAME_1, _POINT_NAME_2, 'Field missing from telemetry '
         'message')
