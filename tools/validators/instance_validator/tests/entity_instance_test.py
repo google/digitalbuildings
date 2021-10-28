@@ -427,15 +427,42 @@ class EntityInstanceTest(absltest.TestCase):
     parsed = dict(parsed)
     entity_name = list(parsed)[0]
     entity = dict(parsed[entity_name])
+    expected_connections = [
+        connection.Connection('FEEDS', 'ANOTHER-ENTITY'),
+        connection.Connection('CONTAINS', 'A-THIRD-ENTITY')
+    ]
 
     self.assertIn('connections', entity,
                   'entity does not have connections when expected')
     self.assertIsNotNone(self.config_universe.connection_universe,
-                         'universe does not valid connections universe')
+                         'universe does not have a valid connections universe')
 
     instance = entity_instance.EntityInstance.FromYaml(entity)
 
     self.assertTrue(self.init_validator.Validate(instance))
+    self.assertCountEqual(expected_connections, instance.connections)
+
+  def testGoodConnectionList(self):
+    parsed = _Helper([
+        path.join(_TESTCASE_PATH, 'GOOD', 'good_building_connection_list.yaml')
+    ])
+    parsed = dict(parsed)
+    entity_name = list(parsed)[0]
+    entity = dict(parsed[entity_name])
+    expected_connections = [
+        connection.Connection('FEEDS', 'ANOTHER-ENTITY'),
+        connection.Connection('CONTAINS', 'ANOTHER-ENTITY')
+    ]
+
+    self.assertIn('connections', entity,
+                  'entity does not have connections when expected')
+    self.assertIsNotNone(self.config_universe.connection_universe,
+                         'universe does not have a valid connections universe')
+
+    instance = entity_instance.EntityInstance.FromYaml(entity)
+
+    self.assertTrue(self.init_validator.Validate(instance))
+    self.assertCountEqual(expected_connections, instance.connections)
 
   def testBadConnectionType(self):
     parsed = _Helper(
