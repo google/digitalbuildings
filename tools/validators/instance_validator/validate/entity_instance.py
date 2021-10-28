@@ -643,8 +643,12 @@ def _ParseConnections(
 
   connections = set()
 
-  for source_entity, connection_type in connections_body.items():
-    connections.add(connection.Connection(connection_type, source_entity))
+  for source_entity, item_body in connections_body.items():
+    if isinstance(item_body, str):
+      connections.add(connection.Connection(item_body, source_entity))
+    else:
+      for connection_type in item_body:
+        connections.add(connection.Connection(connection_type, source_entity))
 
   return connections
 
