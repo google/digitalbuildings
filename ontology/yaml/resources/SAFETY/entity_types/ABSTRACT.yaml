@@ -23,6 +23,7 @@ GASDET:
   - gas_leak_detection_alarm
 
 NHDET:
+  id: "12766765548348375040"
   description: "Basic ammonia gas leak monitoring"
   is_abstract: true
   uses:
