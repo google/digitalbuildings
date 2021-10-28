@@ -11,15 +11,25 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
+aqi:
+- epa: STANDARD
+- eea
+- uab
 concentration:
 - parts_per_unit: STANDARD
 - parts_per_million
+- parts_per_billion
+- grams_per_kilogram # Can convert approximately using Avogadro
 current:
 - amperes: STANDARD
 - milliamperes
 currentratio:
 - no_units: STANDARD
+density:
+- kilograms_per_cubic_meter: STANDARD
+- grams_per_cubic_meter
+- micrograms_per_cubic_meter
+- milligrams_per_cubic_meter
 energy:
 - joules: STANDARD
 - kilowatt_hours
@@ -68,6 +78,7 @@ pressure:
 - kilopascals
 - inches_of_water
 - pounds_force_per_square_inch
+- atmospheres
 resistance:
 - ohms: STANDARD
 - kiloohms

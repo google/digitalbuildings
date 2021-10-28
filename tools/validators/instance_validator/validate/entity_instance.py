@@ -504,6 +504,10 @@ class InstanceValidator(object):
       print('All entities require IDs')
       is_valid = False
 
+    # This check should replace the above entity.id check
+    if not entity.guid and entity.operation != parse.ConfigMode.INITIALIZE:
+      print('WARNING: Entity GUID will be required in the future.')
+
     if (self.config_mode == parse.ConfigMode.INITIALIZE and
         entity.operation != parse.EntityOperation.ADD):
       print('only ADD operation is allowed in INITIALIZE mode')
@@ -674,7 +678,9 @@ class EntityInstance(findings_lib.Findings):
 
   Attributes:
     operation: EntityOperation to be performed on the entity
-    id: unique identifier string for the entity
+    id: deprecated, corresponds to an internal primary key for an entity
+    guid: globally unique identifier string for the entity
+    cloud_device_id: the numeric cloud device id found in Cloud IoT
     namespace: string for entity type's namespace
     type_name: string referring to the entity's type,
     translation: dict mapping from standard fields as specified in the config
@@ -688,6 +694,7 @@ class EntityInstance(findings_lib.Findings):
   def __init__(self,
                operation,
                entity_id,
+               guid=None,
                cloud_device_id=None,
                namespace=None,
                type_name=None,
@@ -700,6 +707,7 @@ class EntityInstance(findings_lib.Findings):
 
     self.operation = operation
     self.id = entity_id
+    self.guid = guid
     self.cloud_device_id = cloud_device_id
     self.namespace = namespace
     self.type_name = type_name
@@ -722,6 +730,12 @@ class EntityInstance(findings_lib.Findings):
     entity_id = None
     if parse.ENTITY_ID_KEY in entity_yaml:
       entity_id = entity_yaml[parse.ENTITY_ID_KEY]
+
+    guid = None
+    if parse.ENTITY_GUID_KEY in entity_yaml:
+      guid = entity_yaml[parse.ENTITY_GUID_KEY]
+    else:
+      print('[WARNING]: Entity GUID will be required in the future.')
 
     namespace, type_name = None, None
     if parse.ENTITY_TYPE_KEY in entity_yaml:
@@ -753,6 +767,7 @@ class EntityInstance(findings_lib.Findings):
     return cls(
         operation,
         entity_id,
+        guid=guid,
         cloud_device_id=cloud_device_id,
         namespace=namespace,
         type_name=type_name,

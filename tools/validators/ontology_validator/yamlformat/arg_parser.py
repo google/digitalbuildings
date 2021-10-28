@@ -1,4 +1,4 @@
-# Copyright 2021 Google LLC
+# Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the License);
 # you may not use this file except in compliance with the License.
@@ -11,26 +11,50 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-"""Command line argument parser for ontology explorer."""
+
+"""Argument Parser for ontology files."""
 
 import argparse
 
-
-def ParseArgs() -> argparse.ArgumentParser:
+def CreateParser() -> argparse.ArgumentParser:
   """Generates an argument parser for user input.
 
   Returns:
-    An instance of ArgumentParser class.
+    ArgumentParser instance
   """
   parser = argparse.ArgumentParser(
-      description='Instantiate an ontology explorer')
+      description='Validate a library of yaml files defining DBO'
+  )
 
   parser.add_argument(
       '-m',
       '--modified-ontology-types',
       dest='modified_types_filepath',
+      default=None,
+      help='Modified ontology types filepath',
       required=False,
-      help='Filepath to modified ontology filepaths',
-      metavar='FILE')
+      metavar='MODIFIED_TYPE_FILEPATH'
+  )
+
+  parser.add_argument(
+      '-o',
+      '--original',
+      dest='original',
+      default=None,
+      help='path of the original ontology files',
+      required=True,
+      metavar='ORIGINAL_FILE_PATH'
+  )
+
+  parser.add_argument(
+      '-i',
+      '--interactive',
+      dest='interactive',
+      default='False',
+      help='interactive mode',
+      required=False,
+      metavar='interactive mode'
+  )
 
   return parser
+
