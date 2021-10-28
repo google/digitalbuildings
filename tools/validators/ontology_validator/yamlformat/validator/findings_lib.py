@@ -385,7 +385,12 @@ class IllegalKeyTypeError(ValidationError):
 
 
 class UnrecognizedKeyError(ValidationError):
-  """Config contains an unexpected mapping key."""
+  """Config contains an unexpected mapping key.
+
+  Args:
+    content: Invalid mapping key
+    context: instance of FileContext class for content
+  """
 
   def __init__(self, content, context):
     super(UnrecognizedKeyError, self).__init__(
@@ -863,7 +868,13 @@ class DuplicateEntityTypeDefinitionError(DuplicateDefinitionError):
 
 
 class DuplicateIdsError(ValidationError):
-  """Duplicate type IDs defined."""
+  """Duplicate type names defubed within same namespace.
+
+  Args:
+    namespace: Entity type namespace as a string.
+    entity_type: Instance of EntityType class for dupicate entity type
+    mapped_entity_type: Instance of EntityType class already mapped to namespace
+  """
 
   def __init__(self, namespace, entity_type, mapped_entity_type):
     super(DuplicateIdsError, self).__init__(
