@@ -81,6 +81,12 @@ class ParserTest(absltest.TestCase):
         [path.join(_TESTCASE_PATH, 'GOOD', 'good_building_connections.yaml')])
     self.assertIsNotNone(parse)
 
+  def testInstanceValidatorParseProperConnectionList(self):
+    parse = _Helper([
+        path.join(_TESTCASE_PATH, 'GOOD', 'good_building_connection_list.yaml')
+    ])
+    self.assertIsNotNone(parse)
+
   def testInstanceValidatorParseMultipleEntities(self):
     parse = _Helper(
         [path.join(_TESTCASE_PATH, 'GOOD', 'good_multi_instances.yaml')])
