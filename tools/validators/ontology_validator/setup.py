@@ -12,11 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Python setuptools for ontology validator package."""
-
-from setuptools import find_packages
-from setuptools import setup
-
+from setuptools import setup, find_packages
 # with open("README.md", "r") as fh:
 #   long_description = fh.read()
 setup(
