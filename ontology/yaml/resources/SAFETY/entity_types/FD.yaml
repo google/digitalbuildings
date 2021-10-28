@@ -13,6 +13,7 @@
 # limitations under the License.
 
 FD_STD:
+  id: "4694766903728537600"
   description: "Basic fire damper"
   is_canonical: true
   implements:
