@@ -162,7 +162,7 @@ class TelemetryValidator(object):
           self.AddError(
               telemetry_error.TelemetryError(
                   entity_name, field_translation.raw_field_name,
-                  f'Invalid state in telemetry message: {pv}'))
+                  f'Unmapped state in telemetry message: {pv}'))
 
           continue
 

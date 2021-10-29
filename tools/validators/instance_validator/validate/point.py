@@ -35,3 +35,7 @@ class Point(object):
     if isinstance(value, (int, float)):
       return str(value)
 
+    if isinstance(value, str):
+      return value
+
+
