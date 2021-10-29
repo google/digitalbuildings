@@ -868,7 +868,7 @@ class DuplicateEntityTypeDefinitionError(DuplicateDefinitionError):
 
 
 class DuplicateIdsError(ValidationError):
-  """Duplicate type names defubed within same namespace.
+  """Duplicate type IDs defined within the ontology.
 
   Args:
     namespace: Entity type namespace as a string.
