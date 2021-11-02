@@ -22,6 +22,13 @@ GASDET:
   uses:
   - gas_leak_detection_alarm
 
+NHDET:
+  id: "12766765548348375040"
+  description: "Basic ammonia gas leak monitoring"
+  is_abstract: true
+  uses:
+  - ammonia_leak_detection_alarm
+
 WLDS:
   id: "1407482223375941632"
   description: "Basic watre leak monitoring."
@@ -65,7 +72,7 @@ FA2X:
   uses:
   - fire_alarm_1
   - fire_alarm_2
-  
+    
 WLS:
   id: "10920605409362178232"
   description: "Water leak location monitoring."
