@@ -252,17 +252,17 @@ class Subfield(findings_lib.Findings):
   """
 
   def __init__(self, name, category, description=None, file_context=None):
-  """Init.
+    """Init.
 
-  Args:
-    name: unqualified subfield name as a string
-    category: subfield type as a string
-    description: semantic definition for the subfield as a string
-    file_context: Instance of FileContext class for subfield definition
+    Args:
+      name: unqualified subfield name as a string
+      category: subfield type as a string
+      description: semantic definition for the subfield as a string
+      file_context: Instance of FileContext class for subfield definition
 
-  Returns:
-    An instance of the Subfield class.
-  """
+    Returns:
+      An instance of the Subfield class.
+    """
     super(Subfield, self).__init__()
     self.file_context = file_context
     self.name = name
