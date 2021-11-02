@@ -249,12 +249,20 @@ class Subfield(findings_lib.Findings):
       now) string semantic definition for the subfield.
     file_context: the config file context for where this subfield was defined.
       Optional object with the config file location of this subfield.
+  """
+
+  def __init__(self, name, category, description=None, file_context=None):
+  """Init.
+
+  Args:
+    name: unqualified subfield name as a string
+    category: subfield type as a string
+    description: semantic definition for the subfield as a string
+    file_context: Instance of FileContext class for subfield definition
 
   Returns:
     An instance of the Subfield class.
   """
-
-  def __init__(self, name, category, description=None, file_context=None):
     super(Subfield, self).__init__()
     self.file_context = file_context
     self.name = name

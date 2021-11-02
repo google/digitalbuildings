@@ -142,11 +142,6 @@ class StateNamespace(findings_lib.Findings):
 class State(findings_lib.Findings):
   """Namespace-unaware class representing an individual state definition.
 
-  Args:
-    name: required string representing the state.
-    description: optional (for now) string semantic definition for the state.
-    file_context: optional object with the config file location of this state.
-
   Attributes:
     name: the full name (without namespace) of this state
     description: explanation of what this state represents
@@ -154,6 +149,16 @@ class State(findings_lib.Findings):
   """
 
   def __init__(self, name, description=None, file_context=None):
+    """Init.
+
+    Args:
+      name: required string representing the state.
+      description: optional (for now) string semantic definition for the state.
+      file_context: optional object with the config file location of this state.
+
+    Returns:
+      Instance of State class.
+    """
     super(State, self).__init__()
     self.name = name
     self.description = description

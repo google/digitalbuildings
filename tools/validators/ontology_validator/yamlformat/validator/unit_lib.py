@@ -233,6 +233,9 @@ class Unit(findings_lib.Findings):
       measurement_type: required string indicating the unit measurement type
       is_standard: whether this is the standard unit for the measurement type
       file_context: optional object with the config file location of this unit.
+
+    Returns:
+      Instance of Unit class.
     """
     super(Unit, self).__init__()
     self.name = name

@@ -269,7 +269,7 @@ class FieldLibTest(absltest.TestCase):
     self.assertEmpty(ns.GetFindings())
 
   def testAggregationDescriptorFailsWithoutAggregation(self):
-    """ Check that aggregation descriptors fail without associated
+    """Check that aggregation descriptors fail without associated
     aggregation. """
 
     sf_dict = {
