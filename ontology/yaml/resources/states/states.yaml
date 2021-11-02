@@ -24,6 +24,7 @@ HIGH: High speed or output setting.
 OCCUPIED: Occupied sensor state or operation mode.
 UNOCCUPIED: Unoccupied sensor state or operation mode.
 VFD: Discrete speed (frequency) control
+BYPASS: Bypassing an element or entity.
 
 # Moved from HVAC namespace because all fields are currently global in DL.
 COMMISSIONING: The fan speed and valve positions are set to preconfigured parameters.

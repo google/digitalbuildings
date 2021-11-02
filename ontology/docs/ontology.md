@@ -96,32 +96,49 @@ vast majority of subfields will be defined in the global namespace. Defining a
 subfield locally prevents any field using it from being elevated to the global
 namespace[^7].
 
-Subfields are grouped into categories that add structure to field composition:
+Subfields are grouped into categories that add structure to field composition (note that the ordering of this table reflects the expected ordering of subfields in field construction):
 
 <table>
   <tr>
    <td><strong>Category</strong></td>
    <td><strong>Description</strong></td>
    <td><strong>Examples</strong></td>
+   <td><strong>Allowed Per Field</strong></td>
+   <td><strong>Required</strong></td>
+  </tr>
+  <tr>
+   <td><p style="text-align: right">Aggregation Descriptor</p></td>
+   <td>
+     A subfield that modifies aggregations to explicitly differentiate temporal aggregation (e.g. daily max) from spatial aggregation (max of 3 zone temperature sensors in a space). Note that windowing specifics are added into this subfield, and omitting them implies fixed window (e.g. the max over the day boundary if `daily` is used). Cannot be used except with an aggregation. (Note: the window time is always spelled out to avoid subfield validation errors).
+   </td>
+   <td>daily, fivesecond, fivesecondrolling</td>
+   <td>1</td>
+   <td>Optional (Required if Aggregation is used)</td>
   </tr>
   <tr>
    <td><p style="text-align: right">Aggregation</p></td>
    <td>
-     An aggregation in the spatial domain, for instance the average value of multiple temperature sensors. This is not the same as an operating limit.
+     An aggregation such as minimum, maximum, rootmeansquare, etc. It is implied that aggregations are spatial (e.g. max of 3 zone temperature sensors in a space), except when accompanied by a defined aggregation descriptor. In any case, this is not the same as an operating limit (e.g. the max flowrate for a valve); these are treated separately (see note below).
    </td>
    <td>Average, Max, Min</td>
+   <td>1</td>
+   <td>Optional</td>
   </tr>
   <tr>
    <td><p style="text-align: right">Descriptor</p></td>
    <td>General purpose modifier that specifies the exact function of the field within the context of the entity. The number of descriptors used should be limited by the context (i.e., if a descriptor is extraneous it should be omitted).
    </td>
    <td>Discharge, Return, Zone, Primary, Chilled etc...</td>
+   <td>10</td>
+   <td>Optional</td>   
   </tr>
   <tr>
    <td><p style="text-align: right">Component</p></td>
    <td>Specifies the specific subcomponent of the entity being represented (e.g. the fan of a fan-coil unit). As with descriptors, context drives necessity; supply_fan_run_command is necessary for an AHU because it routinely will have an exhaust_fan_run_command that needs to be distinguished from, but it is clear from the context of a FAN (that’s all it is) that run_command applies to the fan, and therefore no component subfield is necessary to describe it.
 </td>
    <td>Valve, fan, damper...</td>
+   <td>10</td>
+   <td>Optional</td>   
   </tr>
   <tr>
    <td><p style="text-align: right">Measurement Descriptor</p></td>
@@ -129,20 +146,28 @@ Subfields are grouped into categories that add structure to field composition:
      A modifier of the measurement which adds necessary context. The classic example of this is pressure, which must be distinguished between differential and absolute.
    </td>
    <td>Differential, relative, static</td>
+   <td>1</td>
+   <td>Optional</td>   
   </tr>
   <tr>
    <td><p style="text-align: right">Measurement</p></td>
    <td>A field that implies the type of measurement being performed. Each measurement is exclusive to a particular physical quantity (e.g. temperature), but which may have multiple valid units of measurement (*F, R, *C, K).  This subfield is required for any numeric field with a point type other than `count`.
    </td>
    <td>Temperature, flowrate, flowvolume</td>
+   <td>1</td>
+   <td>Optional</td>   
   </tr>
   <tr>
    <td><p style="text-align: right">Point Type</p></td>
    <td>Defines the function of the point, across several layers of context: directionality (input/output), reading type (analog, input, multistate), telemetric versus static data (label and capacity being static; sensor and setpoint being active), etc. This is the one component that is required for every field.
    </td>
    <td>Sensor, Setpoint, Status, Command, Count, Accumulator</td>
+   <td>1</td>
+   <td>Required</td>   
   </tr>
 </table>
+
+**Note:** See [HVAC model](model_hvac.md) for details on operating limits.
 
 ### Fields
 
@@ -163,8 +188,8 @@ A field:
 
 The format of a field is a follows:
 
-`(<Agg>_)?(<descr>_)*(<component>_)?(<meas.
-descr>_)?(<meas>_)?<PointType>(_<num> )*`[^13]
+`(<agg_desc>_)?(<agg>_)?(<descr>_)*(<component>_)?(<meas.
+descr>_)?(<meas>_)?<pointtype>(_<num> )*`[^13]
 
 Ex: `max_discharge_air_temperature_setpoint`
 

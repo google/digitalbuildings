@@ -30,3 +30,9 @@ class Connection(object):
     super().__init__()
     self.ctype = ctype
     self.source = source
+
+  def __eq__(self, other):
+    return self.ctype == other.ctype and self.source == other.source
+
+  def __hash__(self) -> int:
+    return hash((self.ctype, self.source))
