@@ -1027,6 +1027,18 @@ literals:
 - zone_air_pm4pt0_concentration_sensor
 - zone_air_pm10pt0_concentration_sensor
 
+## New fields for IoT vibration sensor pilot
+- fivesecondrolling_max_xaxis_linearacceleration_sensor
+- fivesecondrolling_max_yaxis_linearacceleration_sensor
+- fivesecondrolling_max_zaxis_linearacceleration_sensor
+- fivesecondrolling_min_xaxis_linearacceleration_sensor
+- fivesecondrolling_min_yaxis_linearacceleration_sensor
+- fivesecondrolling_min_zaxis_linearacceleration_sensor
+- fivesecondrolling_rootmeansquare_xaxis_linearacceleration_sensor
+- fivesecondrolling_rootmeansquare_yaxis_linearacceleration_sensor
+- fivesecondrolling_rootmeansquare_zaxis_linearacceleration_sensor
+- local_air_temperature_sensor
+
 # Added on 2021/09/22 for lighting control
 - zone_lighting_switch_status:
   - ON
@@ -1042,14 +1054,3 @@ literals:
 # Added on 2021/09/22 for water leak
 - water_cable_extent_flow_sensor
 
-## New fields for IoT vibration sensor pilot
-- fivesecondrolling_max_xaxis_linearacceleration_sensor
-- fivesecondrolling_max_yaxis_linearacceleration_sensor
-- fivesecondrolling_max_zaxis_linearacceleration_sensor
-- fivesecondrolling_min_xaxis_linearacceleration_sensor
-- fivesecondrolling_min_yaxis_linearacceleration_sensor
-- fivesecondrolling_min_zaxis_linearacceleration_sensor
-- fivesecondrolling_rootmeansquare_xaxis_linearacceleration_sensor
-- fivesecondrolling_rootmeansquare_yaxis_linearacceleration_sensor
-- fivesecondrolling_rootmeansquare_zaxis_linearacceleration_sensor
-- local_air_temperature_sensor
