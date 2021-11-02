@@ -255,10 +255,10 @@ class Subfield(findings_lib.Findings):
     """Init.
 
     Args:
-      name: unqualified subfield name as a string
-      category: subfield type as a string
-      description: semantic definition for the subfield as a string
-      file_context: Instance of FileContext class for subfield definition
+      name: unqualified subfield name as a string.
+      category: subfield type as a string.
+      description: semantic definition for the subfield as a string.
+      file_context: Instance of FileContext class for subfield definition.
 
     Returns:
       An instance of the Subfield class.
