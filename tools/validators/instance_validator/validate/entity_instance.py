@@ -731,7 +731,7 @@ class EntityInstance(findings_lib.Findings):
     else:
       print(
           '[WARNING]: Entity GUID will be required in the future ' +
-          f'for {self.id}.'
+          f'for {cls.id}.'
       )
 
     namespace, type_name = None, None
