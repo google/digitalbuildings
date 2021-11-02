@@ -16,6 +16,7 @@
 from absl.testing import absltest
 from lib.model import EntityTypeField
 from lib.model import StandardField
+from lib.model import Match
 from lib.ontology_wrapper import OntologyWrapper
 
 from validate.universe_helper.config_universe import create_simplified_universe
@@ -58,6 +59,68 @@ class OntologyTest(absltest.TestCase):
     )
 
     self.assertEqual(function_output, expected_output)
+
+  def testGetEntityTypesFromFields(self):
+    input_field_list = [
+        StandardField('', 'exhaust_air_damper_command'),
+        StandardField('', 'exhaust_air_damper_status'),
+        StandardField('', 'manufacturer_label'),
+        StandardField('', 'model_label')
+    ]
+    ETU = self.universe.entity_type_universe
+    expected_output = [
+        Match(input_field_list, ETU.GetEntityType('HVAC', 'CHWS_WDT'), -1.0),
+        Match(input_field_list, ETU.GetEntityType('HVAC', 'SDC_EXT'), -0.5),
+        Match(input_field_list, ETU.GetEntityType('HVAC', 'DMP_EDM'), 1.0)
+    ]
+
+    function_output = self.ontology.GetEntityTypesFromFields(input_field_list)
+
+    for i in range(len(expected_output)):
+      self.assertEqual(expected_output[i], function_output[i])
+
+  def testGetBestFitTypeFromFields(self):
+    input_field_list = [
+        StandardField('', 'exhaust_air_damper_command'),
+        StandardField('', 'exhaust_air_damper_status'),
+        StandardField('', 'manufacturer_label'),
+        StandardField('', 'model_label')
+    ]
+    ETU = self.universe.entity_type_universe
+    expected_output = [
+        Match(input_field_list, ETU.GetEntityType('HVAC', 'DMP_EDM'), 1.0),
+    ]
+
+    function_output = self.ontology.GetEntityTypesFromFields(
+        input_field_list,
+        best_fit=True
+    )
+
+    for i in range(max(len(expected_output), len(function_output))):
+      self.assertEqual(expected_output[i], function_output[i])
+
+  def testFilterTypesWithGeneralTypeFromFields(self):
+    input_general_type = 'CHWS'
+    input_field_list = [
+        StandardField('', 'return_water_temperature_sensor'),
+        StandardField('', 'flowrate_requirement'),
+        StandardField('', 'differential_pressure_specification'),
+        StandardField('', 'supply_water_temperature_sensor'),
+        StandardField('', 'thermal_power_capacity')
+    ]
+    expected_entity_type = self.universe.entity_type_universe.GetEntityType(
+        namespace_name='HVAC',
+        typename='CHWS_WDT'
+    )
+    expected_output = [Match(input_field_list, expected_entity_type, 1.0)] 
+
+    function_output = self.ontology.GetEntityTypesFromFields(
+        input_field_list,
+        input_general_type
+    )
+
+    for i in range(len(expected_output)):
+      self.assertEqual(expected_output[i], function_output[i])
 
   def testValidField(self):
     valid_test_field = StandardField('', 'zone_use_label')

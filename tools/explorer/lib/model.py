@@ -101,7 +101,9 @@ class EntityTypeField(StandardField):
         (self._namespace, self._name, self._increment, self._is_optional))
 
   def __eq__(self, other):
-    if not isinstance(other, self.__class__):
+    if isinstance(other, StandardField):
+      return super().__eq__(other)
+    elif not isinstance(other, self.__class__):
       raise TypeError(
           '{str(other)} and {str(self)} must be EntityTypeField objects')
     else:
@@ -112,7 +114,9 @@ class EntityTypeField(StandardField):
 
   def __str__(self):
     standard_str = super().__str__()
-    return standard_str + '_' + self._increment + ': ' + str(self._is_optional)
+    if self._is_optional:
+      return standard_str + '_' + self._increment + ': optional'
+    return standard_str + '_' + self._increment + ': required'
 
   def GetIncrement(self) -> str:
     """Returns the EntityType Field's increment as a string."""
@@ -134,8 +138,8 @@ class Match(object):
     An instance of the Match class
   """
 
-  def __init__(self, field_list: List[EntityTypeField], entity_type: EntityType,
-               match_type: str):
+  def __init__(self, field_list: List[StandardField], entity_type: EntityType,
+               match_score: float):
     """Init.
 
     Args:
@@ -147,16 +151,16 @@ class Match(object):
     super().__init__()
     self._field_list = field_list
     self._entity_type = entity_type
-    self._match_type = match_type
+    self._match_score = match_score
 
   def __eq__(self, other):
     field_eq = self._field_list == other.GetFieldList()
     type_eq = self._entity_type == other.GetEntityType()
-    match_eq = self._match_type == other.GetMatchType()
+    match_eq = self._match_score == other.GetMatchScore()
     return field_eq and type_eq and match_eq
 
   def __str__(self):
-    return str(self._match_type) + ' match: ' + str(self._entity_type.typename)
+    return self._entity_type.typename+' match score: '+str(self._match_score)
 
   def GetFieldList(self) -> List[EntityTypeField]:
     """Returns the list of EntityTypeField objects for a match."""
@@ -166,10 +170,9 @@ class Match(object):
     """Returns the entity type for a match."""
     return self._entity_type
 
-  def GetMatchType(self) -> str:
+  def GetMatchScore(self) -> str:
     """Returns the Match Type for a match."""
-    return self._match_type
-
+    return self._match_score
 
 def StandardizeField(field: EntityTypeField) -> StandardField:
   return StandardField(field.GetNamespaceName(), field.GetStandardFieldName())
