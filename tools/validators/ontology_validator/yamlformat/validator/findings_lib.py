@@ -385,14 +385,15 @@ class IllegalKeyTypeError(ValidationError):
 
 
 class UnrecognizedKeyError(ValidationError):
-  """Config contains an unexpected mapping key.
-
-  Args:
-    content: Invalid mapping key
-    context: instance of FileContext class for content
-  """
+  """Config contains an unexpected mapping key."""
 
   def __init__(self, content, context):
+    """Init.
+
+    Args:
+      content: Invalid mapping key
+      context: instance of FileContext class for content
+    """
     super(UnrecognizedKeyError, self).__init__(
         '"{0}" is not recognized as a valid mapping key here.'.format(
             str(content)), context)
@@ -419,14 +420,15 @@ class EmptyFileWarning(ValidationWarning):
 # Errors relating to Fields.
 # ---------------------------------------------------------------------------- #
 class InvalidFieldNameError(ValidationError):
-  """An entity type name does not match the accepted format.
-
-  Args:
-    name: The field name.
-    context: Instance of FileContext for the field defined in DBO.
-  """
+  """An entity type name does not match the accepted format."""
 
   def __init__(self, name, context):
+    """Init.
+
+    Args:
+      name: The field name.
+      context: Instance of FileContext for the field defined in DBO.
+    """
     super(InvalidFieldNameError, self).__init__(
         'Field name "{0}" is not valid. It must contain only lowercase letters,'
         ' digits, and underscores. The first character of the name and the'
@@ -462,15 +464,16 @@ class InvalidFieldConstructionError(ValidationError):
 
 
 class DuplicateFieldDefinitionError(DuplicateDefinitionError):
-  """Field is defined multiple times in a namespace.
-
-     Args:
-        namespace: Defined namespace of the duplciated field.
-        current_instance: Instance of FileContext class for duplicate field.
-        prev_context: Instance of FileContext class for duplicated field.
-  """
+  """Field is defined multiple times in a namespace."""
 
   def __init__(self, namespace, current_instance, prev_context):
+    """Init.
+
+    Args:
+       namespace: Defined namespace of the duplciated field.
+       current_instance: Instance of FileContext class for duplicate field.
+       prev_context: Instance of FileContext class for duplicated field.
+    """
     super(DuplicateFieldDefinitionError, self).__init__('Field',
         namespace, current_instance.name, current_instance.file_context,
         prev_context)
@@ -508,14 +511,15 @@ class DuplicateStateError(ValidationError):
 
 
 class UnrecognizedStateError(ValidationError):
-  """Field references an unrecognized state.
-
-     Args:
-        state: Unrecognized state name as a string.
-        field: Instance of Field class for field referencing unrecognized state.
-  """
+  """Field references an unrecognized state."""
 
   def __init__(self, state, field):
+    """Init.
+
+    Args:
+      state: Unrecognized state name as a string.
+      field: Instance of Field class for field referencing unrecognized state.
+    """
     super(UnrecognizedStateError, self).__init__(
         'Field "{0}" references unrecognized state "{1}".'.format(
             field.name, state), field.file_context)
@@ -525,14 +529,15 @@ class UnrecognizedStateError(ValidationError):
 # Errors relating to Subfields.
 # ---------------------------------------------------------------------------- #
 class InvalidSubfieldNameError(ValidationError):
-  """A subfield name does not match the accepted format.
-  
-     Args:
-        name: Current name of the incorrectly named subfield.
-        context: Instance of FileContext class for subfield.
-  """
+  """A subfield name does not match the accepted format."""
 
   def __init__(self, name, context):
+    """Init.
+
+    Args:
+      name: Current name of the incorrectly named subfield.
+      context: Instance of FileContext class for subfield.
+    """
     super(InvalidSubfieldNameError, self).__init__(
         'Subfield name "{0}" is not valid. It must contain only lowercase '
         'letters and digits, and it must begin with a letter.'.format(
@@ -549,14 +554,15 @@ class DuplicateSubfieldDefinitionError(DuplicateDefinitionError):
 
 
 class MissingSubfieldDescriptionWarning(ValidationWarning):
-  """Subfield description is empty.
-      
-     Args:
-        subfield_name: Name of subfield as a string.
-        context: Instance of FileContext class for subfield.
-  """
+  """Subfield description is empty."""
 
   def __init__(self, subfield_name, context):
+    """Init.
+
+    Args:
+      subfield_name: Name of subfield as a string.
+      context: Instance of FileContext class for subfield.
+    """
     super(MissingSubfieldDescriptionWarning, self).__init__(
         'Subfield "{0}" description is empty.'.format(subfield_name),
         context, 10)
@@ -575,14 +581,15 @@ class MissingUnitError(ValidationError):
 # Errors relating to States.
 # ---------------------------------------------------------------------------- #
 class InvalidStateNameError(ValidationError):
-  """A state name does not match the accepted format.
-
-     Args:
-        name: State name as a string.
-        context: Instance of FileContext for invalid state name.
-  """
+  """A state name does not match the accepted format."""
 
   def __init__(self, name, context):
+    """Init.
+
+    Args:
+      name: State name as a string.
+      context: Instance of FileContext for invalid state name.
+    """
     super(InvalidStateNameError, self).__init__(
         'State name "{0}" is not valid. It must contain only uppercase '
         'letters and underscores, and it must begin with a letter.'.format(
@@ -639,13 +646,14 @@ class InvalidConnectionNamespaceError(ValidationError):
 
 
 class MissingConnectionDescriptionWarning(ValidationWarning):
-  """Connection description is empty.
-
-     Args:
-        connection: Instance of Connection class missing a description.
-  """
+  """Connection description is empty."""
 
   def __init__(self, connection):
+    """Init.
+
+    Args:
+      connection: Instance of Connection class missing a description.
+    """
     super(MissingConnectionDescriptionWarning, self).__init__(
         'Connection "{0}" description is empty.'.format(connection.name),
         connection.file_context, 10)
@@ -655,14 +663,15 @@ class MissingConnectionDescriptionWarning(ValidationWarning):
 # Errors relating to Units.
 # ---------------------------------------------------------------------------- #
 class InvalidUnitNameError(ValidationError):
-  """A unit name does not match the accepted format.
-  
-     Args:
-        name: Invalid name as a string.
-        context: Instance of FileContext for invalid unit name.
-  """
+  """A unit name does not match the accepted format."""
 
   def __init__(self, name, context):
+    """Init.
+
+    Args:
+      name: Invalid name as a string.
+      context: Instance of FileContext for invalid unit name.
+    """
     super(InvalidUnitNameError, self).__init__(
         'Unit name "{0}" is not valid. It must contain only lowercase '
         'letters and underscores, and it must begin with a letter.'.format(
@@ -670,29 +679,31 @@ class InvalidUnitNameError(ValidationError):
 
 
 class DuplicateUnitDefinitionError(DuplicateDefinitionError):
-  """A unit is defined multiple times in a namespace.
-
-     Args:
-        namespace: Defined namespace for unit as a string.
-        current_instance: Instance of FileContext class for duplicate unit.
-        prev_context: Instance of FileContext class for unit. 
-  """
+  """A unit is defined multiple times in a namespace."""
 
   def __init__(self, namespace, current_instance, prev_context):
+    """Init.
+
+    Args:
+      namespace: Defined namespace for unit as a string.
+      current_instance: Instance of FileContext class for duplicate unit.
+      prev_context: Instance of FileContext class for unit.
+    """
     super(DuplicateUnitDefinitionError, self).__init__('Unit',
         namespace, current_instance.name, current_instance.file_context,
         prev_context)
 
 
 class InvalidUnitFormatError(ValidationError):
-  """A unit's YAML specification is invalid.
-
-     Args:
-       key: YAML specification for unit.
-       context: Instance of FileContext class for unit.
-  """
+  """A unit's YAML specification is invalid."""
 
   def __init__(self, key, context):
+    """Init.
+
+    Args:
+      key: YAML specification for unit.
+      context: Instance of FileContext class for unit.
+    """
     super(InvalidUnitFormatError, self).__init__(
         'Unit "{0}" definition has an invalid format; expected only a single '
         'unit name and tag.'.format(str(key)), context)
@@ -737,14 +748,15 @@ class MissingTypenameError(ValidationError):
 
 
 class InvalidTypenameError(ValidationError):
-  """An entity type name does not match the accepted format.
-
-     Args:
-        name: Invalid type name as a string.
-        context: Instance of FileContext class for type name.
-  """
+  """An entity type name does not match the accepted format."""
 
   def __init__(self, name, context):
+    """Init.
+
+    Args:
+      name: Invalid type name as a string.
+      context: Instance of FileContext class for type name.
+    """
     super(InvalidTypenameError, self).__init__(
         'Entity type name "{0}" is not valid. It must contain only letters, '
         'digits, and underscores, and it must begin with a letter.'.format(
@@ -868,15 +880,16 @@ class DuplicateEntityTypeDefinitionError(DuplicateDefinitionError):
 
 
 class DuplicateIdsError(ValidationError):
-  """Duplicate type IDs defined within the ontology.
-
-  Args:
-    namespace: Entity type namespace as a string.
-    entity_type: Instance of EntityType class for dupicate entity type
-    mapped_entity_type: Instance of EntityType class already mapped to namespace
-  """
+  """Duplicate type IDs defined within the ontology."""
 
   def __init__(self, namespace, entity_type, mapped_entity_type):
+    """Init.
+
+    Args:
+      namespace: Entity type namespace as a string.
+      entity_type: Instance of EntityType class for dupicate entity type
+      mapped_entity_type: Instance of EntityType class mapped to namespace
+    """
     super(DuplicateIdsError, self).__init__(
         'Duplicate type IDs are not allowed. Entity type name "{0}" '
         'within namespace "{1}" with ID "{4}" was already defined in \n'
@@ -1016,23 +1029,24 @@ class PossibleOverlappingFlexTypeParentWarning(ValidationWarning):
 
 
 class MissingParentWarning(ValidationWarning):
-  """This type could use inhheritance to decrease its local field count.
-
-  Args:
-    typenames: list of typenames that contain the field subset.
-    set)size: Number of fields in the subset.
-    qualified_parents: list of qualified names of types that have exactly the
-      fields in the subset.
-    context: file context to attach this finding to (for sorting later).
-    sum_match_quality: sum of match qualities for the subset to all types in
-      typenames.
-    curation_bonus: Set true if parents are curated types. Improves sort rank.
-    key: comparison object to use when comparing to other findings for
-      deduplication.
-  """
+  """This type could use inhheritance to decrease its local field count."""
 
   def __init__(self, typenames, set_size, qualified_parents, context,
                sum_match_quality, curation_bonus, key):
+    """Init.
+
+    Args:
+      typenames: list of typenames that contain the field subset.
+      set)size: Number of fields in the subset.
+      qualified_parents: list of qualified names of types that have exactly the
+        fields in the subset.
+      context: file context to attach this finding to (for sorting later).
+      sum_match_quality: sum of match qualities for the subset to all types in
+        typenames.
+      curation_bonus: Set true if parents are curated types. Improves sort rank.
+      key: comparison object to use when comparing to other findings for
+        deduplication.
+    """
     text = 'Entity types {0} all contain {2}. Size: {1}. Average Quality: {3:0.2f}'.format(
         str(sorted(typenames)), set_size, str(sorted(qualified_parents)),
         sum_match_quality / len(typenames))

@@ -62,13 +62,16 @@ class StateFolder(config_folder_lib.ConfigFolder):
 
   Class contains all the context information and methods to validate states.
 
-  Args:
-    folderpath: required string with full path to the folder containing states.
   Attributes:
     local_namespace: object representing the contents of the local namespace
   """
 
   def __init__(self, folderpath):
+    """Init.
+
+    Args:
+      folderpath: required string with full path to folder containing states.
+    """
     super(StateFolder, self).__init__(folderpath,
                                       base_lib.ComponentType.MULTI_STATE)
     self.local_namespace = StateNamespace(self._namespace_name)
@@ -103,14 +106,17 @@ class StateFolder(config_folder_lib.ConfigFolder):
 class StateNamespace(findings_lib.Findings):
   """Class representing a namespace of states.
 
-  Args:
-    namespace: required string representing the name of the namespace.
   Attributes:
     namespace: string name of this namespace
     states: a map from state names to State objects defined in this namespace.
   """
 
   def __init__(self, namespace):
+    """Init.
+
+    Args:
+      namespace: required string representing the name of the namespace.
+    """
     super(StateNamespace, self).__init__()
     self.namespace = namespace
     self.states = {}
