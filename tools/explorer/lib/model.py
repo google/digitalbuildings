@@ -55,7 +55,7 @@ class StandardField(object):
       return name_eq and namespace_eq
 
   def __str__(self):
-    return self._namespace + '/' + self._name
+    return f'{self._namespace}/{self._name}'
 
   def GetNamespaceName(self) -> str:
     """Returns namespace variable as a string."""
@@ -115,8 +115,8 @@ class EntityTypeField(StandardField):
   def __str__(self):
     standard_str = super().__str__()
     if self._is_optional:
-      return standard_str + '_' + self._increment + ': optional'
-    return standard_str + '_' + self._increment + ': required'
+      return f'{standard_str}_{self._increment}: optional'
+    return f'{standard_str}_{self._increment}: required'
 
   def GetIncrement(self) -> str:
     """Returns the EntityType Field's increment as a string."""
@@ -160,7 +160,7 @@ class Match(object):
     return field_eq and type_eq and match_eq
 
   def __str__(self):
-    return self._entity_type.typename+' match score: '+str(self._match_score)
+    return f'{self._entity_type.typename}-match score:{str(self._match_score)}'
 
   def GetFieldList(self) -> List[EntityTypeField]:
     """Returns the list of EntityTypeField objects for a match."""
