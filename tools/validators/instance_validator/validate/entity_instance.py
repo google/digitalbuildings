@@ -729,7 +729,10 @@ class EntityInstance(findings_lib.Findings):
     if parse.ENTITY_GUID_KEY in entity_yaml:
       guid = entity_yaml[parse.ENTITY_GUID_KEY]
     else:
-      print('[WARNING]: Entity GUID will be required in the future.')
+      print(
+          '[WARNING]: Entity GUID will be required in the future ' +
+          f'for {entity_id}.'
+      )
 
     namespace, type_name = None, None
     if parse.ENTITY_TYPE_KEY in entity_yaml:
