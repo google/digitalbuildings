@@ -31,6 +31,14 @@ jobs:
         python -m pip install pylint
         
      #---------- Ontology Explorer ----------#
+    - name: Ontology Validator Install dependencies
+      run: |
+        python setup.py install
+      working-directory: ./tools/validators/ontology_validator
+    - name: Instance Validator Install dependencies
+      run: |
+        python setup.py install
+      working-directory: ./tools/validators/instance_validator
     - name: Ontology Explorer Install dependencies
       run: |
         python setup.py install
