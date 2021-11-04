@@ -26,7 +26,7 @@ from yamlformat.validator import namespace_validator as nv
 class OntologyTest(absltest.TestCase):
 
   def setUp(self):
-    super(OntologyTest, self).setUp()
+    super().setUp()
     self.universe = create_simplified_universe()
     nv.NamespaceValidator(self.universe.GetEntityTypeNamespaces())
     self.ontology = OntologyWrapper(self.universe)
@@ -67,11 +67,11 @@ class OntologyTest(absltest.TestCase):
         StandardField('', 'manufacturer_label'),
         StandardField('', 'model_label')
     ]
-    ETU = self.universe.entity_type_universe
+    etu = self.universe.entity_type_universe
     expected_output = [
-        Match(input_field_list, ETU.GetEntityType('HVAC', 'CHWS_WDT'), -1.0),
-        Match(input_field_list, ETU.GetEntityType('HVAC', 'SDC_EXT'), -0.5),
-        Match(input_field_list, ETU.GetEntityType('HVAC', 'DMP_EDM'), 1.0)
+        Match(input_field_list, etu.GetEntityType('HVAC', 'CHWS_WDT'), -1.0),
+        Match(input_field_list, etu.GetEntityType('HVAC', 'SDC_EXT'), -0.5),
+        Match(input_field_list, etu.GetEntityType('HVAC', 'DMP_EDM'), 1.0)
     ]
 
     function_output = self.ontology.GetEntityTypesFromFields(input_field_list)
@@ -86,9 +86,9 @@ class OntologyTest(absltest.TestCase):
         StandardField('', 'manufacturer_label'),
         StandardField('', 'model_label')
     ]
-    ETU = self.universe.entity_type_universe
+    etu = self.universe.entity_type_universe
     expected_output = [
-        Match(input_field_list, ETU.GetEntityType('HVAC', 'DMP_EDM'), 1.0),
+        Match(input_field_list, etu.GetEntityType('HVAC', 'DMP_EDM'), 1.0),
     ]
 
     function_output = self.ontology.GetEntityTypesFromFields(
@@ -112,7 +112,7 @@ class OntologyTest(absltest.TestCase):
         namespace_name='HVAC',
         typename='CHWS_WDT'
     )
-    expected_output = [Match(input_field_list, expected_entity_type, 1.0)] 
+    expected_output = [Match(input_field_list, expected_entity_type, 1.0)]
 
     function_output = self.ontology.GetEntityTypesFromFields(
         input_field_list,
