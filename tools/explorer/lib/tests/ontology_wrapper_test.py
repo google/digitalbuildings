@@ -69,9 +69,9 @@ class OntologyTest(absltest.TestCase):
     ]
     etu = self.universe.entity_type_universe
     expected_output = [
-        Match(input_field_list, etu.GetEntityType('HVAC', 'CHWS_WDT'), -1.0),
-        Match(input_field_list, etu.GetEntityType('HVAC', 'SDC_EXT'), -0.5),
-        Match(input_field_list, etu.GetEntityType('HVAC', 'DMP_EDM'), 1.0)
+        Match(input_field_list, etu.GetEntityType('HVAC', 'DMP_EDM'), 100),
+        Match(input_field_list, etu.GetEntityType('HVAC', 'SDC_EXT'), 25),
+        Match(input_field_list, etu.GetEntityType('HVAC', 'CHWS_WDT'), 0)
     ]
 
     function_output = self.ontology.GetEntityTypesFromFields(input_field_list)
@@ -79,7 +79,7 @@ class OntologyTest(absltest.TestCase):
     for i in range(len(expected_output)):
       self.assertEqual(expected_output[i], function_output[i])
 
-  def testGetBestFitTypeFromFields(self):
+  def testGetTopTwoTypeFromFields(self):
     input_field_list = [
         StandardField('', 'exhaust_air_damper_command'),
         StandardField('', 'exhaust_air_damper_status'),
@@ -88,12 +88,13 @@ class OntologyTest(absltest.TestCase):
     ]
     etu = self.universe.entity_type_universe
     expected_output = [
-        Match(input_field_list, etu.GetEntityType('HVAC', 'DMP_EDM'), 1.0),
+        Match(input_field_list, etu.GetEntityType('HVAC', 'DMP_EDM'), 100),
+        Match(input_field_list, etu.GetEntityType('HVAC', 'SDC_EXT'), 25)
     ]
 
     function_output = self.ontology.GetEntityTypesFromFields(
         input_field_list,
-        best_fit=True
+        return_size=2
     )
 
     for i in range(max(len(expected_output), len(function_output))):
@@ -112,11 +113,11 @@ class OntologyTest(absltest.TestCase):
         namespace_name='HVAC',
         typename='CHWS_WDT'
     )
-    expected_output = [Match(input_field_list, expected_entity_type, 1.0)]
+    expected_output = [Match(input_field_list, expected_entity_type, 100)]
 
     function_output = self.ontology.GetEntityTypesFromFields(
         input_field_list,
-        input_general_type
+        general_type=input_general_type
     )
 
     for i in range(len(expected_output)):

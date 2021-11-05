@@ -132,7 +132,11 @@ class Match(object):
 
   The match is between EntityTypeFields objects and an EntityType object lists.
 
-  Attributes: field_list entity_type match_type
+  Attributes:
+    field_list: list of StandardField objects
+    entity_type: An instance of EntityType class
+    match_score: an integer representing the closeness of match between
+      field_list and entity_type
 
   Returns:
     An instance of the Match class
@@ -143,10 +147,10 @@ class Match(object):
     """Init.
 
     Args:
-      field_list: a list of EntityTypeField objects
+      field_list: a list of StandardField objects
       entity_type: an entity type which implements a subset of field_list
-      match_type: the closeness of a match between field_list and entity type as
-        a string. Current values are: EXACT, CLOSE, INCOMPLETE, NONE
+      match_score: the closeness of a match between field_list and entity type
+      as an integer.
     """
     super().__init__()
     self._field_list = field_list
@@ -170,7 +174,7 @@ class Match(object):
     """Returns the entity type for a match."""
     return self._entity_type
 
-  def GetMatchScore(self) -> str:
+  def GetMatchScore(self) -> int:
     """Returns the Match Type for a match."""
     return self._match_score
 
