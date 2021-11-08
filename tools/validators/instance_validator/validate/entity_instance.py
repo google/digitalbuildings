@@ -633,8 +633,12 @@ def _ParseConnections(
 
   connections = set()
 
-  for source_entity, connection_type in connections_body.items():
-    connections.add(connection.Connection(connection_type, source_entity))
+  for source_entity, item_body in connections_body.items():
+    if isinstance(item_body, str):
+      connections.add(connection.Connection(item_body, source_entity))
+    else:
+      for connection_type in item_body:
+        connections.add(connection.Connection(connection_type, source_entity))
 
   return connections
 
@@ -725,7 +729,10 @@ class EntityInstance(findings_lib.Findings):
     if parse.ENTITY_GUID_KEY in entity_yaml:
       guid = entity_yaml[parse.ENTITY_GUID_KEY]
     else:
-      print('[WARNING]: Entity GUID will be required in the future.')
+      print(
+          '[WARNING]: Entity GUID will be required in the future ' +
+          f'for {entity_id}.'
+      )
 
     namespace, type_name = None, None
     if parse.ENTITY_TYPE_KEY in entity_yaml:
