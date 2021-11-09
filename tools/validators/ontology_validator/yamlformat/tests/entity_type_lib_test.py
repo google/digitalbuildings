@@ -39,7 +39,7 @@ class EntityTypeLibTest(absltest.TestCase):
     folder = entity_type_lib.EntityTypeFolder(_GOOD_PATH)
     folder.AddFinding(findings_lib.InconsistentFileLocationError('', context))
     namespace = folder.local_namespace
-    namespace.AddFinding(findings_lib.IllegalCharacterError('two', context))
+    namespace.AddFinding(findings_lib.InvalidTypenameError('two', context))
     # This will generate a MissingDescriptionWarning on itself
     entity_type = entity_type_lib.EntityType(typename='one', filepath=filepath)
     namespace.InsertType(entity_type)
@@ -51,8 +51,8 @@ class EntityTypeLibTest(absltest.TestCase):
     self.assertTrue(
         types_universe.HasFindingTypes([
             findings_lib.InconsistentFileLocationError,
-            findings_lib.IllegalCharacterError,
-            findings_lib.MissingDescriptionWarning
+            findings_lib.InvalidTypenameError,
+            findings_lib.MissingEntityTypeDescriptionWarning
         ]))
     self.assertFalse(types_universe.IsValid())
 
@@ -148,7 +148,7 @@ class EntityTypeLibTest(absltest.TestCase):
 
     type_folder.AddFromConfig([yaml_doc], good_filepath)
     self.assertTrue(
-        type_folder.HasFindingTypes([findings_lib.UnrecognizedFormatError]))
+        type_folder.HasFindingTypes([findings_lib.UnrecognizedKeyError]))
 
   def testAddFromConfig(self):
     folderpath = 'ANIMAL/entity_types'
@@ -363,7 +363,7 @@ class EntityTypeLibTest(absltest.TestCase):
 
     self.assertTrue(
         type_folder.local_namespace.HasFindingTypes(
-            [findings_lib.DuplicateTypesError]))
+            [findings_lib.DuplicateEntityTypeDefinitionError]))
     self.assertLen(type_folder.local_namespace.valid_types_map, 1)
     self.assertIn(entity_type.typename,
                   type_folder.local_namespace.valid_types_map)
@@ -474,7 +474,8 @@ class EntityTypeLibTest(absltest.TestCase):
     errors = entity_type.GetFindings()
     self.assertLen(errors, 1)
     self.assertTrue(
-        entity_type.HasFindingTypes([findings_lib.MissingDescriptionWarning]))
+        entity_type.HasFindingTypes(
+            [findings_lib.MissingEntityTypeDescriptionWarning]))
     self.assertTrue(entity_type.IsValid())
 
   def testInheritedFieldsSet(self):

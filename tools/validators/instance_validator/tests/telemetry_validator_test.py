@@ -292,7 +292,8 @@ class TelemetryValidatorTest(absltest.TestCase):
 
     validator.ValidateMessage(_MESSAGE_MULTIPLE_ERRORS)
 
-    error_one = telemetry_error.TelemetryError(_ENTITY_NAME_1, _POINT_NAME_1,
+    error_one = telemetry_error.TelemetryError(
+        _ENTITY_NAME_1, _POINT_NAME_1,
         'Invalid number in telemetry message: BAD_NUMBER')
     error_two = telemetry_error.TelemetryError(
         _ENTITY_NAME_1, _POINT_NAME_2, 'Field missing from telemetry '

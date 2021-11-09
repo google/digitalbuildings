@@ -18,12 +18,14 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
+import ast
 from os import path
 import sys
 
 from arg_parser import CreateParser
 
 from yamlformat.validator import external_file_lib
+
 
 def main(parsed_args):
   filter_text = None
@@ -44,8 +46,7 @@ def main(parsed_args):
       filter_text,
       path.expanduser(args.original),
       modified_types_filepath,
-      interactive=eval(parsed_args.interactive)
-  )
+      interactive=ast.literal_eval(parsed_args.interactive))
 
 if __name__ == '__main__':
   args = CreateParser().parse_args(sys.argv[1:])

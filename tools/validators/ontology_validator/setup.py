@@ -12,9 +12,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from setuptools import setup, find_packages
+"""Setup file for ontology validator."""
+
+from setuptools import find_packages
+from setuptools import setup
 # with open("README.md", "r") as fh:
 #   long_description = fh.read()
+
 setup(
     name='ontology-yaml-validator',
     version='0.0.1',

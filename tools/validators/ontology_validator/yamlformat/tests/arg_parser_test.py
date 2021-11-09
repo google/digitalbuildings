@@ -13,14 +13,17 @@
 # limitations under the License.
 
 """Testing module for arg_parser.py."""
-from absl.testing import absltest
 import argparse
+import ast
+from absl.testing import absltest
 
 from yamlformat import arg_parser
+
 
 class ArgParserTest(absltest.TestCase):
 
   def setUp(self):
+    super().setUp()
     self.parser = arg_parser.CreateParser()
 
   def testParserIsParser(self):
@@ -34,8 +37,8 @@ class ArgParserTest(absltest.TestCase):
         'False'
     ])
     self.assertEqual(parsed.original, './my/path/to/foo')
-    self.assertEqual(parsed.modified_types_filepath, None)
-    self.assertFalse(eval(parsed.interactive))
+    self.assertIsNone(parsed.modified_types_filepath)
+    self.assertFalse(ast.literal_eval(parsed.interactive))
 
   def testOriginalArgIsRequired(self):
     with self.assertRaises(SystemExit):
@@ -49,8 +52,8 @@ class ArgParserTest(absltest.TestCase):
         'True'
     ])
     self.assertEqual(parsed.original, './my/path/to/foo')
-    self.assertEqual(parsed.modified_types_filepath, None)
-    self.assertTrue(eval(parsed.interactive))
+    self.assertIsNone(parsed.modified_types_filepath)
+    self.assertTrue(ast.literal_eval(parsed.interactive))
 
   def testNoInteractiveFlag(self):
     parsed = self.parser.parse_args([
@@ -58,8 +61,8 @@ class ArgParserTest(absltest.TestCase):
         './my/path/to/foo'
     ])
     self.assertEqual(parsed.original, './my/path/to/foo')
-    self.assertEqual(parsed.modified_types_filepath, None)
-    self.assertFalse(eval(parsed.interactive))
+    self.assertIsNone(parsed.modified_types_filepath)
+    self.assertFalse(ast.literal_eval(parsed.interactive))
 
 if __name__ == '__main__':
   absltest.main()
