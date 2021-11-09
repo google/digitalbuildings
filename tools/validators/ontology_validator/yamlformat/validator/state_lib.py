@@ -62,13 +62,16 @@ class StateFolder(config_folder_lib.ConfigFolder):
 
   Class contains all the context information and methods to validate states.
 
-  Args:
-    folderpath: required string with full path to the folder containing states.
   Attributes:
     local_namespace: object representing the contents of the local namespace
   """
 
   def __init__(self, folderpath):
+    """Init.
+
+    Args:
+      folderpath: required string with full path to folder containing states.
+    """
     super(StateFolder, self).__init__(folderpath,
                                       base_lib.ComponentType.MULTI_STATE)
     self.local_namespace = StateNamespace(self._namespace_name)
@@ -103,14 +106,17 @@ class StateFolder(config_folder_lib.ConfigFolder):
 class StateNamespace(findings_lib.Findings):
   """Class representing a namespace of states.
 
-  Args:
-    namespace: required string representing the name of the namespace.
   Attributes:
     namespace: string name of this namespace
     states: a map from state names to State objects defined in this namespace.
   """
 
   def __init__(self, namespace):
+    """Init.
+
+    Args:
+      namespace: required string representing the name of the namespace.
+    """
     super(StateNamespace, self).__init__()
     self.namespace = namespace
     self.states = {}
@@ -132,8 +138,9 @@ class StateNamespace(findings_lib.Findings):
       state: state object to attempt to insert.
     """
     if state.name in self.states:
+      prev_context = self.states[state.name].file_context
       self.AddFinding(
-          findings_lib.DuplicateStateDefinitionError(state, self.namespace))
+          findings_lib.DuplicateStateDefinitionError(self, state, prev_context))
       return
     self.states[state.name] = state
 
@@ -141,26 +148,32 @@ class StateNamespace(findings_lib.Findings):
 class State(findings_lib.Findings):
   """Namespace-unaware class representing an individual state definition.
 
-  Args:
-    name: required string representing the state.
-    description: optional (for now) string semantic definition for the state.
-    context: optional object with the config file location of this state.
   Attributes:
     name: the full name (without namespace) of this state
     description: explanation of what this state represents
-    context: the config file context for where this state was defined
+    file_context: the config file context for where this state was defined
   """
 
-  def __init__(self, name, description=None, context=None):
+  def __init__(self, name, description=None, file_context=None):
+    """Init.
+
+    Args:
+      name: required string representing the state.
+      description: optional (for now) string semantic definition for the state.
+      file_context: optional object with the config file location of this state.
+
+    Returns:
+      Instance of State class.
+    """
     super(State, self).__init__()
     self.name = name
     self.description = description
-    self.context = context
+    self.file_context = file_context
 
     if not isinstance(name, str):
-      self.AddFinding(findings_lib.IllegalKeyTypeError(name, context))
+      self.AddFinding(findings_lib.IllegalKeyTypeError(name, file_context))
     elif not STATE_NAME_VALIDATOR.match(name):
-      self.AddFinding(findings_lib.IllegalCharacterError(name, context))
+      self.AddFinding(findings_lib.InvalidStateNameError(name, file_context))
     if not description:
       self.AddFinding(findings_lib.MissingStateDescriptionWarning(self))
 

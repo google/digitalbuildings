@@ -82,7 +82,7 @@ class Telemetry(object):
     is_partial = bool(json_object.get(PARTIAL_UPDATE, False))
     points = {}
     if POINTS not in json_object.keys():
-      print('Error no points in ', json_object)
+      print('Error: no points in ', json_object)
       return version, timestamp, None, is_partial
     json_points = json_object[POINTS]
     for point_name, value in json_points.items():

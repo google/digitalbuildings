@@ -71,7 +71,7 @@ class UniqueKeyLoader(yaml.SafeLoader):
         m1 = node.start_mark
         m2 = key_node.start_mark
         ctx = findings_lib.FileContext(m1.name, m1.line, m2.line)
-        raise ParseError(findings_lib.BadKeyError(key, ctx))
+        raise ParseError(findings_lib.IllegalKeyTypeError(key, ctx))
       # check for duplicate keys
       if key in mapping:
         m1 = node.start_mark

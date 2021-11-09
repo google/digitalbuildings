@@ -239,7 +239,7 @@ class ParseConfigLibTest(absltest.TestCase):
     self.assertTrue(
         local_folder.HasFindingTypes([findings_lib.DuplicateStateError]))
     self.assertTrue(
-        local_folder.HasFindingTypes([findings_lib.MissingStateError]))
+        local_folder.HasFindingTypes([findings_lib.UnrecognizedStateError]))
 
   def testParseFieldFoldersFromBadFile(self):
     bad_fields = base_lib.PathParts(
@@ -341,7 +341,7 @@ class ParseConfigLibTest(absltest.TestCase):
         state_folder.HasFindingTypes(
             [findings_lib.MissingStateDescriptionWarning]))
     self.assertTrue(
-        state_folder.HasFindingTypes([findings_lib.IllegalCharacterError]))
+        state_folder.HasFindingTypes([findings_lib.InvalidStateNameError]))
     self.assertTrue(
         state_folder.HasFindingTypes([findings_lib.IllegalKeyTypeError]))
 

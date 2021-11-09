@@ -48,10 +48,11 @@ class FieldLibTest(absltest.TestCase):
     folder.AddFinding(findings_lib.InconsistentFileLocationError('', context))
     namespace = folder.local_namespace
     namespace.AddFinding(
-        findings_lib.MissingSubfieldError(['any'],
-                                          field_lib.Field(
-                                              'two', context=context)))
-    field = field_lib.Field('one', context=context)
+        findings_lib.UnrecognizedSubfieldError(['any'],
+                                               field_lib.Field(
+                                                   'two',
+                                                   file_context=context)))
+    field = field_lib.Field('one', file_context=context)
     # Currently there are no warnings for fields, so using a subfield warning
     field.AddFinding(
         findings_lib.MissingSubfieldDescriptionWarning('one', context))
@@ -64,7 +65,7 @@ class FieldLibTest(absltest.TestCase):
     self.assertTrue(
         fields_universe.HasFindingTypes([
             findings_lib.InconsistentFileLocationError,
-            findings_lib.MissingSubfieldError,
+            findings_lib.UnrecognizedSubfieldError,
             findings_lib.MissingSubfieldDescriptionWarning
         ]))
     self.assertFalse(fields_universe.IsValid())
@@ -115,9 +116,9 @@ class FieldLibTest(absltest.TestCase):
     rel_filepath = '/fields/f.yaml'
     context = findings_lib.FileContext(rel_filepath)
 
-    folder.AddField(field_lib.Field(field, context=context))
+    folder.AddField(field_lib.Field(field, file_context=context))
     self.assertEmpty(folder.GetFindings())
-    folder.AddField(field_lib.Field(field_dup, context=context))
+    folder.AddField(field_lib.Field(field_dup, file_context=context))
     self.assertLen(folder.GetFindings(), 1)
     self.assertIsInstance(folder.GetFindings()[0],
                           findings_lib.DuplicateSubfieldError)
@@ -165,7 +166,7 @@ class FieldLibTest(absltest.TestCase):
     self.assertEqual(ns.fields, {})
     self.assertLen(ns.GetFindings(), 1)
     self.assertIsInstance(ns.GetFindings()[0],
-                          findings_lib.MissingSubfieldError)
+                          findings_lib.UnrecognizedSubfieldError)
 
   def testInsertDuplicateFieldInGlobalNamespace(self):
     ns = field_lib.FieldNamespace('')
@@ -238,7 +239,7 @@ class FieldLibTest(absltest.TestCase):
     self.assertEqual(ns.fields, {frozenset({'field', 'name'}): field})
     self.assertLen(ns.GetFindings(), 1)
     self.assertIsInstance(ns.GetFindings()[0],
-                          findings_lib.MissingSubfieldError)
+                          findings_lib.UnrecognizedSubfieldError)
 
   def testInsertFieldValidatesCorrectConstruction(self):
     sf_dict = {
@@ -269,7 +270,9 @@ class FieldLibTest(absltest.TestCase):
     self.assertEmpty(ns.GetFindings())
 
   def testAggregationDescriptorFailsWithoutAggregation(self):
-    """Check that aggregation descriptors fail without associated aggregation."""
+    """Check that aggregation descriptors fail without associated aggregation.
+    """
+
     sf_dict = {
         'first': subfield_lib.Subfield('first', AGGREGATION_DESCRIPTOR),
         'second': subfield_lib.Subfield('second', POINT_TYPE)
@@ -281,7 +284,7 @@ class FieldLibTest(absltest.TestCase):
     self.assertIsInstance(ns.GetFindings()[0],
                           findings_lib.InvalidFieldConstructionError)
 
-  def testInsertRespectsAggregationCount(self):
+  def testInsertRespectsAggregationDescriptorCount(self):
     sf_dict = {
         'first': subfield_lib.Subfield('first', AGGREGATION_DESCRIPTOR),
         'second': subfield_lib.Subfield('second', AGGREGATION_DESCRIPTOR),
@@ -439,7 +442,7 @@ class FieldLibTest(absltest.TestCase):
 
     self.assertIn(frozenset({'field', 'name'}), folder.local_namespace.fields)
     created_field = folder.local_namespace.fields[frozenset({'field', 'name'})]
-    self.assertEqual(created_field.context.filepath, rel_filepath)
+    self.assertEqual(created_field.file_context.filepath, rel_filepath)
 
   def testAddFromConfigNameRegex(self):
     yaml = {'literals': ['f_n', '2n', 'n2', 'n', 'nN', '_n', 'n_', 'n_1']}
@@ -501,7 +504,7 @@ class FieldLibTest(absltest.TestCase):
 
     self.assertNotIn('field_!ame', folder.local_namespace.fields)
     self.assertIsInstance(folder.GetFindings()[0],
-                          findings_lib.IllegalCharacterError)
+                          findings_lib.InvalidFieldNameError)
 
   def testAddFromBadConfigFormat(self):
     yaml = {'literaaaals': ['field_one']}
@@ -513,7 +516,7 @@ class FieldLibTest(absltest.TestCase):
     self.assertNotIn(frozenset({'field', 'one'}), folder.local_namespace.fields)
     self.assertIn(frozenset({'field', 'two'}), folder.local_namespace.fields)
     self.assertIsInstance(folder.GetFindings()[0],
-                          findings_lib.UnrecognizedFormatError)
+                          findings_lib.UnrecognizedKeyError)
 
 
 if __name__ == '__main__':
