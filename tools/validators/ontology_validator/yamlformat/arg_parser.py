@@ -16,6 +16,7 @@
 
 import argparse
 
+
 def CreateParser() -> argparse.ArgumentParser:
   """Generates an argument parser for user input.
 
