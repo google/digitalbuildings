@@ -578,6 +578,51 @@ class MissingUnitError(ValidationError):
         .format(subfield.name), subfield.file_context)
 
 
+class MeasurementAliasIsAliasedError(ValidationError):
+  """Measurement subfield is aliased to another aliased subfield."""
+
+  def __init__(self, alias):
+    """Init.
+
+    Args:
+      alias: The invalid MeasurementAlias object.
+    """
+    super(MeasurementAliasIsAliasedError, self).__init__(
+        'Measurement subfield "{0}" is not allowed to be an alias of "{1}" '
+        'because that subfield is also an alias.'
+        .format(alias.alias_name, alias.base_name), alias.file_context)
+
+
+class UnrecognizedMeasurementAliasBaseError(ValidationError):
+  """A measurement subfield is an alias of an unrecognized subfield."""
+
+  def __init__(self, alias):
+    """Init.
+
+    Args:
+      alias: The invalid MeasurementAlias object.
+    """
+    super(UnrecognizedMeasurementAliasBaseError, self).__init__(
+        'The alias definition of measurement subfield "{0}" references '
+        'unrecognized subfield "{1}".'.format(
+            alias.alias_name, alias.base_name), alias.file_context)
+
+
+class DuplicateMeasurementAliasError(DuplicateDefinitionError):
+  """A measurement type alias has been defined more than once."""
+
+  def __init__(self, namespace, alias, prev_context):
+    """Init.
+
+    Args:
+      namespace: The UnitNamespace that the alias is defined in.
+      alias: The invalid MeasurementAlias object.
+      prev_context: FileContext of the previous definition of the alias.
+    """
+    super(DuplicateMeasurementAliasError, self).__init__('measurement alias',
+        namespace, alias.alias_name, alias.context, prev_context)
+
+
 # ---------------------------------------------------------------------------- #
 # Errors relating to States.
 # ---------------------------------------------------------------------------- #
@@ -731,10 +776,10 @@ class StandardUnitCountError(ValidationError):
 class UnknownMeasurementTypeError(ValidationError):
   """A unit has an unknown measurement type."""
 
-  def __init__(self, unit):
+  def __init__(self, unit, measurement_type):
     super(UnknownMeasurementTypeError, self).__init__(
         'Unit "{0}" is defined under the unrecognized measurement type "{1}".'
-        .format(unit.name, unit.measurement_type), unit.file_context)
+        .format(unit.name, measurement_type), unit.file_context)
 
 
 # ---------------------------------------------------------------------------- #

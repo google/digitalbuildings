@@ -207,8 +207,8 @@ class PresubmitValidateTypesTest(absltest.TestCase):
   def testConfigUniverseGetUnitsForMeasurement(self):
     folder = unit_lib.UnitFolder('units/anyfolder')
     namespace = folder.local_namespace
-    namespace.InsertUnit(unit_lib.Unit('degrees_celsius', 'temperature', False))
-    namespace.InsertUnit(unit_lib.Unit('kelvin', 'temperature', True))
+    namespace.InsertUnit('temperature', unit_lib.Unit('degrees_celsius', False))
+    namespace.InsertUnit('temperature', unit_lib.Unit('kelvin', True))
     unit_universe = unit_lib.UnitUniverse([folder])
 
     config_universe = presubmit_validate_types_lib.ConfigUniverse(

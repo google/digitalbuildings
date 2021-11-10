@@ -70,23 +70,8 @@ class ConfigUniverse(findings_lib.Findings):
     self.state_universe = state_universe
     self.connection_universe = connection_universe
     self.unit_universe = unit_universe
-    self.unit_universe_reverse_map = self._ArrangeUnitsByMeasurement()
     # Fully qualified standard field name to States
     self.state_universe_reverse_map = self._ArrangeStatesByField()
-
-  def _ArrangeUnitsByMeasurement(self) -> Dict[str, List[str]]:
-    # TODO(b/188241455) does this method need to exist?
-    if not self.unit_universe:
-      print('UnitUniverse undefined in ConfigUniverse')
-      return None
-
-    units_by_measurement = dict()
-    units = self.unit_universe.GetUnitsMap('')
-    for unit in units.values():
-      unit_name = 'no_units' if unit.name.startswith('no_units_') else unit.name
-      units_by_measurement.setdefault(unit.measurement_type,
-                                      []).append(unit_name)
-    return units_by_measurement
 
   def _ArrangeStatesByField(self) -> Dict[str, List[str]]:
     # TODO(b/188241455) does this method need to exist?
@@ -171,9 +156,6 @@ class ConfigUniverse(findings_lib.Findings):
         incremented.
     Returns: a string representing the unit or None if units are defined.
     """
-    if not self.unit_universe_reverse_map:
-      print('UnitUniverse undefined in ConfigUniverse')
-      return None
     subfields = as_written_field_name.split('_')
     # if the last element is numeric need to remove it
     while subfields[-1].isnumeric():
@@ -185,7 +167,10 @@ class ConfigUniverse(findings_lib.Findings):
       # access measurement subfield.  In case of a two-subfield field with a
       # namespace attached, chop off the namespace.
       measurement_subfield = subfields[-2].split('/')[-1]
-      return self.unit_universe_reverse_map.get(measurement_subfield)
+      units = self.unit_universe.GetUnitsForMeasurement(measurement_subfield)
+      if not units:
+        return None
+      return units.keys()
 
   def GetStatesByField(self, field_name: str) -> List[str]:
     """Returns a list of possible state strings for a field.
@@ -509,12 +494,12 @@ def _SetChanges(new_universe, old_universe, items_func):
       continue
     old_ns = old_ns_map[new_ns.namespace]
     old_items = items_func(old_ns).copy()
-    for new_item in items_func(new_ns).values():
-      if new_item.name not in old_items:
+    for new_item_key, new_item in items_func(new_ns).items():
+      if new_item_key not in old_items:
         new_item.SetChanged()
         new_ns.SetChanged()
         continue
-      old_item = old_items.pop(new_item.name)
+      old_item = old_items.pop(new_item_key)
       if new_item != old_item:
         new_item.SetChanged()
         new_ns.SetChanged()
