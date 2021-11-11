@@ -75,7 +75,7 @@ def main(parsed_args):
       match_selection = ast.literal_eval(
           input('enter a number or 0 for all matches:\n'))
       if match_selection == 0:
-        for i in entity_type_match_dict:
+        for i in entity_type_match_dict.items():
           print(f'{i+1}. {entity_type_match_dict[i]}')
       elif match_selection > 0:
         for i in range(match_selection):
