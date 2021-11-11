@@ -13,7 +13,9 @@
 # limitations under the License.
 
 """Ontology wrapper class for DBO explorer."""
-from typing import List, Set
+from termcolor import colored
+from typing import List
+from typing import Set
 
 from lib.model import EntityTypeField
 from lib.model import Match
@@ -148,16 +150,17 @@ class OntologyWrapper(object):
         required_canonical_fields.difference(concrete_fields)
     )
 
-    total_precision = matched_fields - unmatched_entity_fields
-    total_precision /= total_entity_fields
-    required_precision = matched_required_fields - unmatched_required_fields
-    required_precision /= total_required_type_fields
-
     if total_entity_fields <= 0:
       raise ValueError('Concrete field set cannot be empty.')
+
+    total_precision = matched_fields - unmatched_entity_fields
+    total_precision /= total_entity_fields
+
     if total_required_type_fields <= 0:
       match_score = total_precision / 2.0
     else:
+      required_precision = matched_required_fields - unmatched_required_fields
+      required_precision /= total_required_type_fields
       match_score = (total_precision + required_precision) / 2.0
     return int((match_score + 1.0) * 50)
 
@@ -241,6 +244,50 @@ class OntologyWrapper(object):
     if return_size > 0:
       return match_list_sorted[:return_size]
     return match_list_sorted
+
+  def PrintFieldSetComparison(self, match: Match)-> str:
+    """Prints intersection and differences in sets between a set of fields
+    belonging to an entity type and concrete entity. This method will be called
+    by app.py when a user wants to visualize the field relationships between a
+    list of fields and an entity type.
+
+    Args:
+      match: An instance of Match class for which a field set comparison wants
+      to be visualized.
+    Returns:
+      A string representing the field set comparison
+    """
+    concrete_field_set = set(match.GetFieldList())
+
+    canonical_field_dict = {}
+    for qualified_field in match.GetEntityType().GetAllFields().values():
+      new_entity_type_field = EntityTypeField(
+          qualified_field.field.namespace,
+          qualified_field.field.field,
+          qualified_field.optional,
+          qualified_field.field.increment
+      )
+      new_standard_field = model.StandardizeField(new_entity_type_field)
+      canonical_field_dict[new_standard_field] = new_entity_type_field
+
+    standard_canonical_field_set = set(canonical_field_dict.keys())
+
+    intersection = standard_canonical_field_set.intersection(concrete_field_set)
+    only_concrete = concrete_field_set.difference(standard_canonical_field_set)
+    only_canonical = standard_canonical_field_set.difference(concrete_field_set)
+
+    return_string = '\n' + colored(str(match), 'green') + '\n'
+    return_string += colored('\nUNMATCHED CONCRETE FIELDS:\n', 'yellow')
+    for field in only_concrete:
+      return_string = return_string + str(field) + '\n'
+    return_string += colored('\nMATCHED FIELDS:\n', 'yellow')
+    for field in intersection:
+      return_string = return_string + str(canonical_field_dict[field]) + '\n'
+    return_string += colored('\nUNMATCHED CANONICAL FIELDS:\n', 'yellow')
+    for field in only_canonical:
+      return_string = return_string + str(canonical_field_dict[field]) + '\n'
+
+    return return_string
 
   def IsFieldValid(self, field: StandardField) -> bool:
     """A method to validate a field name against the ontology."""
