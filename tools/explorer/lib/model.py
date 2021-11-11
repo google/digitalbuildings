@@ -46,13 +46,14 @@ class StandardField(object):
     return hash((self._namespace, self._name))
 
   def __eq__(self, other):
-    if not isinstance(other, self.__class__):
-      raise TypeError(
-          f'{str(other)} and {str(self)} are not StandardField objects')
-    else:
+    try:
       namespace_eq = self._namespace == other.GetNamespaceName()
       name_eq = self._name == other.GetStandardFieldName()
       return name_eq and namespace_eq
+    except AttributeError as ae:
+      print(ae)
+    except Exception as e:
+      print(e)
 
   def __str__(self):
     return f'{self._namespace}/{self._name}'

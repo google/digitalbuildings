@@ -44,6 +44,15 @@ class StandardFieldTest(absltest.TestCase):
 
     self.assertEqual(function_output, expected_output)
 
+  def testEqualityWithEntityTypeField(self):
+    test_entity_type_field = EntityTypeField(
+        namespace_name='',
+        standard_field_name='supply_air_flowrate_sensor',
+        is_optional=False,
+        increment='_1_12')
+
+    self.assertTrue(test_entity_type_field == self.test_standard_field)
+
 
 class EntityTypeFieldTest(absltest.TestCase):
   # Testing EntityTypeField objects defined in the global namespace
@@ -72,6 +81,12 @@ class EntityTypeFieldTest(absltest.TestCase):
     function_output = StandardizeField(self.test_entity_type_field)
 
     self.assertEqual(function_output, expected_output)
+
+  def testEqualityWithStandardField(self):
+    test_standard_field = StandardField(
+        namespace_name='', standard_field_name='supply_air_flowrate_sensor')
+
+    self.assertTrue(test_standard_field == self.test_entity_type_field)
 
 
 class ModelTest(absltest.TestCase):
