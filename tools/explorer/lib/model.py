@@ -52,8 +52,6 @@ class StandardField(object):
       return name_eq and namespace_eq
     except AttributeError as ae:
       print(ae)
-    except Exception as e:
-      print(e)
 
   def __str__(self):
     return f'{self._namespace}/{self._name}'
@@ -165,7 +163,7 @@ class Match(object):
     return field_eq and type_eq and match_eq
 
   def __str__(self):
-    return f'{self._entity_type.typename}-match score:{str(self._match_score)}'
+    return f'{self._entity_type.typename} -- score:{str(self._match_score)}'
 
   def GetFieldList(self) -> List[EntityTypeField]:
     """Returns the list of EntityTypeField objects for a match."""
