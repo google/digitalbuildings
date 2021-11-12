@@ -21,6 +21,8 @@ VIRTUAL-ENTITY:
       discharge_fan_run_status: discharge_fan_run_status
       compressor_run_command_1: compressor_run_command
       compressor_run_status_1: compressor_run_status
+      compressor_run_command_2: compressor_run_command
+      compressor_run_status_2: compressor_run_status
       zone_air_cooling_temperature_setpoint: zone_air_cooling_temperature_setpoint
       zone_air_temperature_sensor: zone_air_temperature_sensor
       return_water_temperature_sensor: return_water_temperature_sensor
@@ -65,23 +67,13 @@ PHYSICAL-ENTITY:
       states:
         ON: "1"
         OFF: "0"
-    compressor_run_command_1:
-      present_value: "points.compressor_run_command_1.present_value"
+    compressor_run_command:
+      present_value: "points.compressor_run_command.present_value"
       states:
         ON: "1"
         OFF: "0"
-    compressor_run_status_1:
-      present_value: "points.compressor_run_status_1.present_value"
-      states:
-        ON: "1"
-        OFF: "0"
-    compressor_run_command_2:
-      present_value: "points.compressor_run_command_2.present_value"
-      states:
-        ON: "1"
-        OFF: "0"
-    compressor_run_status_2:
-      present_value: "points.compressor_run_status_2.present_value"
+    compressor_run_status:
+      present_value: "points.compressor_run_status.present_value"
       states:
         ON: "1"
         OFF: "0"
