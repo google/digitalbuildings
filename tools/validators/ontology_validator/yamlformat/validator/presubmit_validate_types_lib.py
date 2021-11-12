@@ -156,6 +156,8 @@ class ConfigUniverse(findings_lib.Findings):
         incremented.
     Returns: a string representing the unit or None if units are defined.
     """
+    if not self.unit_universe:
+      return None
     subfields = as_written_field_name.split('_')
     # if the last element is numeric need to remove it
     while subfields[-1].isnumeric():

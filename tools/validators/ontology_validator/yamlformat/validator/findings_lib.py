@@ -620,7 +620,7 @@ class DuplicateMeasurementAliasError(DuplicateDefinitionError):
       prev_context: FileContext of the previous definition of the alias.
     """
     super(DuplicateMeasurementAliasError, self).__init__('measurement alias',
-        namespace, alias.alias_name, alias.context, prev_context)
+        namespace, alias.alias_name, alias.file_context, prev_context)
 
 
 # ---------------------------------------------------------------------------- #

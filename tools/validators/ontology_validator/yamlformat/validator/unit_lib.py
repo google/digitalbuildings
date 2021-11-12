@@ -299,7 +299,6 @@ class UnitNamespace(findings_lib.Findings):
       else:
         for unit in self._units_by_measurement[alias.base_name].values():
           self._InsertEffectiveUnit(alias.alias_name, unit)
-    self._measurement_aliases = {}
 
   def GetUnitsForMeasurement(self, measurement_type):
     """Returns the collection of units that are defined for the given

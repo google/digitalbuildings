@@ -241,6 +241,28 @@ class UnitLibTest(absltest.TestCase):
     self.assertIsInstance(folder.local_namespace.GetFindings()[0],
                           findings_lib.MeasurementAliasIsAliasedError)
 
+  def testUnitFolderAddFromConfigDuplicateAlias(self):
+    doc_1 = {
+      'distance': [
+        {'yards': 'STANDARD'},
+        'inches'
+      ],
+      'level': 'distance',
+    }
+    doc_2 = {
+      'length': [
+        {'meters': 'STANDARD'},
+        'feet'
+      ],
+      'level': 'length',
+    }
+    folder = unit_lib.UnitFolder(_GOOD_PATH)
+
+    folder.AddFromConfig([doc_1, doc_2], '{0}/file.yaml'.format(_GOOD_PATH))
+
+    self.assertIsInstance(folder.local_namespace.GetFindings()[0],
+                          findings_lib.DuplicateMeasurementAliasError)
+
 
 if __name__ == '__main__':
   absltest.main()
