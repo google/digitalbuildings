@@ -137,9 +137,9 @@ ENTITY-NAME:
     A-THIRD-ENTITY: CONTAINS
   links:
     A-FOURTH-ENTITY: # source device
-      # source_device_field : target_device_field
-      supply_air_damper_command_1: supply_air_damper_position_command
-      zone_air_temperature_sensor_1: zone_air_temperature
+      # target_device_field: source_device_field
+      supply_air_damper_position_command: supply_air_damper_command_1
+      zone_air_temperature: zone_air_temperature_sensor_1
   cloud_device_id: device-id-from-cloud-iot-registry
   translation:
     zone_air_temperature_sensor:
@@ -170,9 +170,9 @@ ENTITY-NAME:
     value or a set.
 *   **Links:** Used to specify mappings between standard fields of source
     entities to standard fields of this entity. First level key is another
-    entity in the file (source). Second level key is a standard field of the
-    other (source) entity followed by a `:` and a standard field from this
-    (target) entity.
+    entity in the file (source). Second level key is a standard field of this
+    (target) entity followed by a `:` and a standard field of the other (source)
+    entity.
 *   **Translation:** Used to specify how the fields of the devices native
     payload map to the standard fields of this entity's type. See
     [translation section](#translations) for more detail.
@@ -386,8 +386,8 @@ VAV-32:
   id: SOME_GUID_12345  # optional
   links:
     ANOTHER-ENTITY: # source device
-      # source_device_field : target_device_field
-      supply_air_damper_command_1: supply_air_damper_position_command
+      # target_device_field: source_device_field
+      supply_air_damper_position_command: supply_air_damper_command_1
       ...
 ```
 
