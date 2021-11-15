@@ -45,6 +45,7 @@ component:
   pump: "Component used for the distribution of liquid media."
   riser: "Water riser for heating, cooling and so on"
   shade: "Window covering."
+  signal: "An electric current or electromagnetic field used to convey data from one place to another."
   switch: "Component to disrupt an electrical cirucit"
   tank : "Storage device for media."
   transformer : "A transformer is an electrical device which, by the principles of electromagnetic induction, transfers electrical energy from one electric circuit to another."
