@@ -141,6 +141,7 @@ literals:
 - run_status:
   - ON
   - OFF
+  - STANDBY
 - speed_frequency_sensor
 - speed_percentage_command
 - speed_percentage_sensor

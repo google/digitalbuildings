@@ -965,34 +965,27 @@ FCU_DFSS_ZTC:
   opt_uses:
   - schedule_run_command
 
-FCU_CHWDC_DFVSC_CO2C:
-  description: "Chilled water FCU with discharge air and co2 concentration control"
+FCU_DFSS_CHWDC_DFVSC_CO2C_ZTC:
+  description: "Chilled water FCU with discharge air, zone air temperature and co2 concentration control"
   is_canonical: true
   implements:
   - FCU
+  - DFSS
   - CHWDC
   - DFVSC
   - CO2C
+  - ZTC
   opt_uses:
   - filter_alarm
   - discharge_air_linearvelocity_sensor
   - schedule_run_command
 
-FCU_CHWDC_DFVSC_CO2C_ZTC:
+FCU_DFSS_CHWDC_DFVSC_ZTC:
   description: "Chilled water FCU with discharge air, zone air temperature and co2 concentration control"
   is_canonical: true
   implements:
   - FCU
-  - CHWDC
-  - DFVSC
-  - CO2C
-  - ZTC
-
-FCU_CHWDC_DFVSC_ZTC:
-  description: "Chilled water FCU with discharge air, zone air temperature and co2 concentration control"
-  is_canonical: true
-  implements:
-  - FCU
+  - DFSS
   - CHWDC
   - DFVSC
   - ZTC
