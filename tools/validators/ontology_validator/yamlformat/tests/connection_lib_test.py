@@ -58,7 +58,7 @@ class ConnectionLibTest(absltest.TestCase):
     namespace = folder.local_namespace
     namespace.AddFinding(
         findings_lib.DuplicateConnectionDefinitionError(
-            connection_lib.Connection('FEEDS'), base_lib.GLOBAL_NAMESPACE))
+            namespace, connection_lib.Connection('FEEDS'), context))
     connection = connection_lib.Connection('FEEDS', 'description')
     connection.AddFinding(
         findings_lib.MissingConnectionDescriptionWarning(connection))
@@ -94,7 +94,7 @@ class ConnectionLibTest(absltest.TestCase):
     folder.AddConnection(connection_lib.Connection('bad-connection', 'invalid'))
     self.assertNotIn('bad-connection', folder.local_namespace.connections)
     self.assertIsInstance(folder.GetFindings()[0],
-                          findings_lib.IllegalCharacterError)
+                          findings_lib.InvalidConnectionNameError)
 
   def testConnectionFolderAddDuplicateConnectionFails(self):
     folder = connection_lib.ConnectionFolder(_GOOD_PATH)
@@ -131,7 +131,7 @@ class ConnectionLibTest(absltest.TestCase):
   def testConnectionWithIllegalNameHasFindings(self):
     connection = connection_lib.Connection('bad-connection', 'invalid')
     self.assertIsInstance(connection.GetFindings()[0],
-                          findings_lib.IllegalCharacterError)
+                          findings_lib.InvalidConnectionNameError)
 
   def testConnectionWithNoDescriptionHasFindings(self):
     connection = connection_lib.Connection('FEEDS', '')

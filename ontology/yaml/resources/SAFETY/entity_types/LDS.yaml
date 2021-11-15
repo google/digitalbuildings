@@ -58,6 +58,13 @@ LDS_GASDET:
   - LDS
   - GASDET
 
+LDS_NHDET:
+  id: "6860294637051969536"
+  description: "Basic ammonia gas monitoring device"
+  is_canonical: true
+  implements:
+  - LDS
+  - NHDET
 
 LDS_WLA:
   id: "12466396563826016256"
@@ -76,6 +83,5 @@ LDS_WLA_BCM:
   - BCM
   opt_uses:
   - water_leak_position_level_sensor
-
 
 

@@ -1,4 +1,19 @@
+# Copyright 2021 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the License);
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#    https://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an AS IS BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 """Ontology wrapper class for DBO explorer."""
+import sys
 from typing import List, Set
 
 from lib.model import EntityTypeField
@@ -8,6 +23,8 @@ from lib.model import StandardField
 from yamlformat.validator.entity_type_lib import EntityType
 from yamlformat.validator.entity_type_manager import EntityTypeManager
 from yamlformat.validator.presubmit_validate_types_lib import ConfigUniverse
+
+sys.tracebacklimit = 0
 
 
 class OntologyWrapper(object):
@@ -25,7 +42,6 @@ class OntologyWrapper(object):
           An instance of OntologyWrapper class.
   """
 
-  # TODO(travis):Validate that universe has types expanded and fast-fail if not
   def __init__(self, universe: ConfigUniverse):
     """Init.
 
@@ -52,9 +68,23 @@ class OntologyWrapper(object):
 
     Returns:
             result_fields: a list of EntityTypeField objects.
+
+    Raises:
+        Exception: when inherited fields are not expanded.
     """
     entity_type = self.universe.entity_type_universe.GetEntityType(
         namespace, entity_type_name)
+    if entity_type is None:
+      if not namespace:
+        raise ValueError(
+            f'\n{entity_type_name} is not defined in global namespace.')
+      else:
+        raise ValueError(
+            f'\n{entity_type_name} is not defined in namespace: {namespace}.')
+    if not entity_type.inherited_fields_expanded:
+      raise Exception(
+          'Inherited fields must be expanded to query fields.\n' +
+          'Run NamespaceValidator on your ConfigUniverse to expand fields.')
     # Entity_type_lib.FieldParts NamedTuple to EntityTypeField object.
     entity_type_fields = []
     for qualified_field in entity_type.GetAllFields().values():
@@ -130,6 +160,9 @@ class OntologyWrapper(object):
 
   def IsFieldValid(self, field: StandardField) -> bool:
     """A method to validate a field name against the ontology."""
+    if not isinstance(field, StandardField):
+      raise TypeError('Field argument must be a StandardField object.\n' +
+                      f'You provided a {type(field)} object.')
     namespace_name = field.GetNamespaceName()
     standard_field_name = field.GetStandardFieldName()
     validity = self.universe.field_universe.IsFieldDefined(

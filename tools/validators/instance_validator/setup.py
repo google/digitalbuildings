@@ -12,9 +12,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Setup file for Instance Validator"""
+"""Setup file for Instance Validator."""
 
-from setuptools import setup, find_packages
+from setuptools import find_packages
+from setuptools import setup
 
 setup(
     name='instance-validator',
@@ -28,7 +29,8 @@ setup(
     'Nigel Kilmer',
     packages=find_packages(),
     install_requires=[
-        'protobuf<3.18.0,>=3.12.0', 'ruamel.yaml==0.15.93', 'strictyaml==1.1.0',
+        'protobuf<3.18.0,>=3.12.0', 'proto-plus<1.19.7',
+        'ruamel.yaml==0.15.93', 'strictyaml==1.1.0',
         'google-cloud-pubsub==2.6.1', 'google-auth<2.0',
         'googleapis-common-protos==1.52.0'
     ],

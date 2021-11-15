@@ -18,9 +18,10 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
+from absl.testing import absltest
+
 from yamlformat.validator import findings_lib
 from yamlformat.validator import subfield_lib
-from absl.testing import absltest
 
 _GOOD_PATH = '{0}/subfields/anyfolder'.format('mynamespace')
 _BAD_SUBFOLDER = '{0}/subfield/anyfolder'.format('mynamespace')
@@ -35,8 +36,10 @@ class SubfieldLibTest(absltest.TestCase):
     namespace = folder.local_namespace
     namespace.AddFinding(
         findings_lib.DuplicateSubfieldDefinitionError(
-            subfield_lib.Subfield(
-                'two', subfield_lib.SubfieldCategory.POINT_TYPE), 'any'))
+            namespace,
+            subfield_lib.Subfield('two',
+                                  subfield_lib.SubfieldCategory.POINT_TYPE),
+            context))
     subfield = subfield_lib.Subfield(
         'one', subfield_lib.SubfieldCategory.POINT_TYPE, 'thing')
     subfield.AddFinding(
@@ -95,7 +98,7 @@ class SubfieldLibTest(absltest.TestCase):
         subfield_lib.Subfield('1-bad', subfield_lib.SubfieldCategory.DESCRIPTOR,
                               'hi', ctx))
     self.assertIsInstance(sff.GetFindings()[0],
-                          findings_lib.IllegalCharacterError)
+                          findings_lib.InvalidSubfieldNameError)
 
   def testAddDuplicateSubfieldFails(self):
     sff = subfield_lib.SubfieldFolder(_GOOD_PATH)
@@ -117,12 +120,15 @@ class SubfieldLibTest(absltest.TestCase):
                                'hi', ctx)
     sff.AddSubfield(sf)
     self.assertIsInstance(sff.GetFindings()[0],
-                          findings_lib.IllegalCharacterError)
+                          findings_lib.InvalidSubfieldNameError)
 
   def testAddFromConfig(self):
     doc = {
         'aggregation': {
             'agg': 'aggD'
+        },
+        'aggregation_descriptor': {
+            'aggdesc': 'aggDescD'
         },
         'component': {
             'comp': 'compD'
@@ -144,9 +150,9 @@ class SubfieldLibTest(absltest.TestCase):
     sff = subfield_lib.SubfieldFolder(_GOOD_PATH)
     sff.AddFromConfig([doc], '{0}/file.yaml'.format(_GOOD_PATH))
     ns = sff.local_namespace
-
-    self.assertCountEqual(['agg', 'comp', 'desc', 'mdesc', 'meas', 'ptype'],
-                          ns.subfields)
+    self.assertCountEqual(
+        ['agg', 'aggdesc', 'comp', 'desc', 'mdesc', 'meas', 'ptype'],
+        ns.subfields)
     self.assertEmpty(sff.GetFindings())
 
   def testAddFromConfigNotYaml(self):
@@ -188,7 +194,7 @@ class SubfieldLibTest(absltest.TestCase):
     sf = subfield_lib.Subfield(
         'goo-1d', subfield_lib.SubfieldCategory.DESCRIPTOR, 'hi', ctx)
     self.assertIsInstance(sf.GetFindings()[0],
-                          findings_lib.IllegalCharacterError)
+                          findings_lib.InvalidSubfieldNameError)
 
   def testCreateSubfield(self):
     ctx = findings_lib.FileContext('{0}/file.yaml'.format(_GOOD_PATH))

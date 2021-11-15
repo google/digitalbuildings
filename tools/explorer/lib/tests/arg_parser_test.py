@@ -11,21 +11,23 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+"""Testing module for arg_parser.py."""
+import argparse
 
-"""Constants for the ontology validator application."""
+from absl.testing import absltest
+from lib import arg_parser
 
-from os import path
+
+class ArgParserTest(absltest.TestCase):
+
+  def setUp(self):
+    super().setUp()
+    pass
+
+  def testParseArgs(self):
+    output_parser = arg_parser.ParseArgs()
+    self.assertEqual(type(output_parser), argparse.ArgumentParser)
 
 
-# internally, absolute path is used; github uses relative path
-_USE_ABSOLUTE_PATH = False
-
-if _USE_ABSOLUTE_PATH:
-  REPO_ROOT = path.join('third_party', 'digitalbuildings')
-else:
-  REPO_ROOT = path.join(
-      path.dirname(path.realpath(__file__)), path.join('..', '..', '..', '..'))
-
-APPLICATION_ROOT = path.join(REPO_ROOT, 'tools', 'validators',
-                             'ontology_validator', 'yamlformat')
-ONTOLOGY_ROOT = path.join(REPO_ROOT, 'ontology', 'yaml', 'resources')
+if __name__ == '__main__':
+  absltest.main()
