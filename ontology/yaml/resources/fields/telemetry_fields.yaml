@@ -747,6 +747,9 @@ literals:
 - gas_leak_detection_alarm:
   - ACTIVE
   - INACTIVE
+- ammonia_leak_detection_alarm:
+  - ACTIVE
+  - INACTIVE
 - water_leak_detection_alarm:
   - ACTIVE
   - INACTIVE
