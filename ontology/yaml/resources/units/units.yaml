@@ -34,6 +34,7 @@ energy:
 - joules: STANDARD
 - kilowatt_hours
 - megawatt_hours
+- therms
 flowrate:
 - cubic_meters_per_second: STANDARD
 - cubic_feet_per_minute
