@@ -966,7 +966,7 @@ FCU_DFSS_ZTC:
   - schedule_run_command
 
 FCU_DFSS_CHWDC_DFVSC_CO2C_ZTC:
-  description: "Chilled water FCU with discharge air, zone air temperature and co2 concentration control"
+  description: "Chilled water FCU with discharge air, zone air temperature and co2 concentration control. The fan speed is adjusted based on co2 value."
   is_canonical: true
   implements:
   - FCU
@@ -981,7 +981,7 @@ FCU_DFSS_CHWDC_DFVSC_CO2C_ZTC:
   - schedule_run_command
 
 FCU_DFSS_CHWDC_DFVSC_ZTC:
-  description: "Chilled water FCU with discharge air, zone air temperature and co2 concentration control"
+  description: "Chilled water FCU with discharge air, zone air temperature and co2 concentration control. The fan speed is adjusted based on co2 value."
   is_canonical: true
   implements:
   - FCU
