@@ -70,6 +70,7 @@ SENSOR_CO2M:
     - CO2M
 
 SENSOR_LA3A:
+  id: "15072608557562068992"
   description: "Three-axis linear acceleration (vibration) sensor with optional temperature and battery monitoring."
   is_canonical: true
   implements:
@@ -89,6 +90,7 @@ SENSOR_LA3A:
     - fivesecondrolling_rootmeansquare_zaxis_linearacceleration_sensor
 
 SENSOR_FDPM:
+  id: "3543393511493599232"
   description: "Filter differential pressure sensor with optional temperature monitoring."
   is_canonical: true
   implements:

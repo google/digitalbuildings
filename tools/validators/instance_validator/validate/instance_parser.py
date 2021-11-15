@@ -184,12 +184,9 @@ _ENTITY_IDS_SCHEMA = {
         syaml.Str(),
 }
 _ENTITY_ATTRIB_SCHEMA = {
-    # TODO(b/166472270): revisit connection syntax
-    #  validation. Current code might not follow
-    #  the spec.
     syaml.Optional(CONNECTIONS_KEY):
-        syaml.MapPattern(syaml.Str(), syaml.Str())
-        | syaml.Seq(syaml.MapPattern(syaml.Str(), syaml.Str())),
+        syaml.MapPattern(syaml.Str(),
+                         syaml.Str() | syaml.Seq(syaml.Str())),
     syaml.Optional(LINKS_KEY):
         syaml.MapPattern(
             syaml.Str(),

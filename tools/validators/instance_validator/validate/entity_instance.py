@@ -178,7 +178,7 @@ class GraphValidator(object):
       src_entity_type = self.universe.GetEntityType(src_entity.namespace,
                                                     src_entity.type_name)
 
-      for source_field, _ in link_inst.field_map.items():
+      for _, source_field in link_inst.field_map.items():
         if not _FieldIsAllowed(self.universe, source_field, src_entity_type):
           print(f'Invalid link source field: {source_field}')
           is_valid = False
@@ -339,7 +339,9 @@ class InstanceValidator(object):
       is_valid = True
       for unit in ft.unit_mappings.keys():
         if unit not in valid_units:
-          print(f'Field {qualified_field_name} has an invalid unit: {unit}')
+          print(
+              f'Field {qualified_field_name} has an undefined measurement unit:'
+              + ' {unit}')
           is_valid = False
       return is_valid
 
@@ -378,8 +380,8 @@ class InstanceValidator(object):
       return is_valid
 
     if isinstance(ft, ft_lib.MultiStateValue):
-      print('States are provided for a field that is not a multi-state '
-            f'{qualified_field_name}')
+      print('Multiple states provided for a field that is not a multi-state'
+            f' {qualified_field_name}')
       return False
 
     return True
@@ -404,7 +406,8 @@ class InstanceValidator(object):
     for conn_inst in entity.connections:
       conn_universe = self.universe.connection_universe
       if conn_universe and not conn_universe.IsDefined(conn_inst.ctype):
-        print(f'Invalid connection type: {conn_inst.ctype}')
+        print(f'Connection type: {conn_inst.ctype} '
+              'is undefined in the ontology')
         is_valid = False
 
     return is_valid
@@ -431,17 +434,19 @@ class InstanceValidator(object):
 
     found_fields = set()
     for link_inst in entity.links:
-      for source_field, target_field in link_inst.field_map.items():
+      for target_field, source_field in link_inst.field_map.items():
         qualified_tgt_field = _GetAllowedField(self.universe, target_field,
                                                entity_type)
         if not qualified_tgt_field:
-          print(f'Invalid link target field: {target_field}')
+          print(f'Invalid link target field: {target_field} '
+                f'for link: {link_inst}')
           is_valid = False
           continue
         qualified_src_field = _GetAllowedField(self.universe, source_field,
                                                None)
         if not qualified_src_field:
-          print(f'Invalid link source field: {source_field}')
+          print(f'Invalid link source field: {source_field} '
+                f'for link: {link_inst}')
           is_valid = False
           continue
 
@@ -553,12 +558,14 @@ def _ParseTypeString(type_str: syaml.YAML) -> Tuple[str, str]:
 
   if len(type_parse) == 1:
     print('Type improperly formatted, a namespace is missing: ', type_str)
-    raise TypeError('Type improperly formatted, a namespace is missing: ',
-                    type_str)
+    raise TypeError(
+        f'Type improperly formatted, a namespace is missing: {type_str}\n' +
+        'Proper formatting is: NAMESPACE/TYPE_NAME')
 
   if len(type_parse) > 2:
     print('Type improperly formatted: ', type_str)
-    raise TypeError('Type improperly formatted: ', type_str)
+    raise TypeError(f'Type improperly formatted: {type_str}\n' +
+                    'Proper formatting is: NAMESPACE/TYPE_NAME')
 
   return type_parse[0], type_parse[1]
 
@@ -633,8 +640,12 @@ def _ParseConnections(
 
   connections = set()
 
-  for source_entity, connection_type in connections_body.items():
-    connections.add(connection.Connection(connection_type, source_entity))
+  for source_entity, item_body in connections_body.items():
+    if isinstance(item_body, str):
+      connections.add(connection.Connection(item_body, source_entity))
+    else:
+      for connection_type in item_body:
+        connections.add(connection.Connection(connection_type, source_entity))
 
   return connections
 
@@ -725,7 +736,8 @@ class EntityInstance(findings_lib.Findings):
     if parse.ENTITY_GUID_KEY in entity_yaml:
       guid = entity_yaml[parse.ENTITY_GUID_KEY]
     else:
-      print('[WARNING]: Entity GUID will be required in the future.')
+      print('[WARNING]: Entity GUID will be required in the future ' +
+            f'for {entity_id}.')
 
     namespace, type_name = None, None
     if parse.ENTITY_TYPE_KEY in entity_yaml:

@@ -12,22 +12,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Setup file for ontology validator."""
-
-from setuptools import find_packages
-from setuptools import setup
-# with open("README.md", "r") as fh:
-#   long_description = fh.read()
-
-setup(
-    name='ontology-yaml-validator',
-    version='0.0.1',
-    url='https://github.com/google/digitalbuildings',
-    license='Apache License',
-    author='',
-    author_email='',
-    description='',
-    packages=find_packages(),
-    install_requires=['absl-py', 'pyglib', 'pyyaml>=5.3', 'argparse'],
-    python_requires='>=3.6',
-)
+# Building
+UK-LON-S2:
+  type: FACILITIES/BUILDING
+  id: FACILITIES/123456
+  connections:
+    # Listed entities are sources on connections
+    ANOTHER-ENTITY:
+    - FEEDS
+    - CONTAINS
