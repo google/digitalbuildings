@@ -208,6 +208,7 @@ descriptor:
   zaxis: "Vertical axis of a three-dimensional Cartesian coordinate system (applicate)."
   zone: "Region of building which is conditioned."
 measurement:
+  angle: "The figure formed by two rays, sharing a common endpoint."
   aqi: "Air quality index, a set of special standard gradings for the pollution in air."
   concentration: "Concentration of something relative to something else (usually in parts per million or parts per billion)."
   current: "Flow of electric charge."
