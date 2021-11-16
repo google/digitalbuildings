@@ -174,7 +174,7 @@ descriptor:
   secondary: "Associated with the secondary (distribution) loop of a produciton process."
   seismic: "Related to seismic activity (such as seismic gas shutoff valves)."
   side: "Position relative to an an object."
-  signal: "An electric current or electromagnetic field used to convey data from one place to another."  
+  signal: "An electric current or electromagnetic field used to convey data from one device to another."  
   smoke: "Visible, suspended particles created during a fire."
   source: "The upstream source of conditioning (used specifically for heat exchangers)."
   south: "Cardinal direction; opposite of north"
