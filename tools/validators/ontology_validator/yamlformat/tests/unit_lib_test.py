@@ -46,8 +46,9 @@ class UnitLibTest(absltest.TestCase):
     folder.AddFinding(findings_lib.InconsistentFileLocationError('', context))
     namespace = folder.local_namespace
     namespace.AddFinding(
-        findings_lib.DuplicateUnitDefinitionError(
-            namespace, unit_lib.Unit('unit'), context))
+        findings_lib.DuplicateUnitDefinitionError(namespace,
+                                                  unit_lib.Unit('unit'),
+                                                  context))
     unit = unit_lib.Unit('unit')
     unit.AddFinding(findings_lib.UnknownUnitTagError(unit.name, 'tag', context))
     namespace.InsertUnit('measurement', unit)
@@ -100,8 +101,7 @@ class UnitLibTest(absltest.TestCase):
     units = folder.local_namespace.GetUnitsForMeasurement('temperature')
     self.assertEmpty(folder.GetFindings())
     self.assertCountEqual(['kelvins', 'degrees_celsius'], units)
-    self.assertEqual(units['kelvins'],
-                     unit_lib.Unit('kelvins', True))
+    self.assertEqual(units['kelvins'], unit_lib.Unit('kelvins', True))
     self.assertEqual(units['degrees_celsius'],
                      unit_lib.Unit('degrees_celsius', False))
 
@@ -193,11 +193,10 @@ class UnitLibTest(absltest.TestCase):
 
   def testUnitFolderAddFromConfigMeasurementAlias(self):
     doc = {
-      'length': 'distance',
-      'distance': [
-        {'meters': 'STANDARD'},
-        'feet'
-      ],
+        'length': 'distance',
+        'distance': [{
+            'meters': 'STANDARD'
+        }, 'feet'],
     }
     folder = unit_lib.UnitFolder(_GOOD_PATH)
     expected_units = ['meters', 'feet']
@@ -212,11 +211,10 @@ class UnitLibTest(absltest.TestCase):
 
   def testUnitFolderAddFromConfigBadAliasBase(self):
     doc = {
-      'length': 'invalid',
-      'distance': [
-        {'meters': 'STANDARD'},
-        'feet'
-      ],
+        'length': 'invalid',
+        'distance': [{
+            'meters': 'STANDARD'
+        }, 'feet'],
     }
     folder = unit_lib.UnitFolder(_GOOD_PATH)
 
@@ -227,12 +225,11 @@ class UnitLibTest(absltest.TestCase):
 
   def testUnitFolderAddFromConfigAliasIsAlias(self):
     doc = {
-      'distance': [
-        {'meters': 'STANDARD'},
-        'feet'
-      ],
-      'length': 'distance',
-      'level': 'length',
+        'distance': [{
+            'meters': 'STANDARD'
+        }, 'feet'],
+        'length': 'distance',
+        'level': 'length',
     }
     folder = unit_lib.UnitFolder(_GOOD_PATH)
 
@@ -243,18 +240,16 @@ class UnitLibTest(absltest.TestCase):
 
   def testUnitFolderAddFromConfigDuplicateAlias(self):
     doc_1 = {
-      'distance': [
-        {'yards': 'STANDARD'},
-        'inches'
-      ],
-      'level': 'distance',
+        'distance': [{
+            'yards': 'STANDARD'
+        }, 'inches'],
+        'level': 'distance',
     }
     doc_2 = {
-      'length': [
-        {'meters': 'STANDARD'},
-        'feet'
-      ],
-      'level': 'length',
+        'length': [{
+            'meters': 'STANDARD'
+        }, 'feet'],
+        'level': 'length',
     }
     folder = unit_lib.UnitFolder(_GOOD_PATH)
 
