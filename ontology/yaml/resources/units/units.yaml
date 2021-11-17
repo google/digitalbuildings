@@ -73,7 +73,7 @@ power:
 - kilovolt_amperes
 - kilovolt_amperes_reactive
 - megawatts
-- therms_per_minute
+- therms_per_hour
 pressure:
 - pascals: STANDARD
 - bars
