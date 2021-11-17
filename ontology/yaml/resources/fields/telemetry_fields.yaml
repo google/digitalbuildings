@@ -1046,6 +1046,6 @@ literals:
 - tenminutefixed_max_xaxis_frequency_sensor
 - tenminutefixed_max_yaxis_frequency_sensor
 - tenminutefixed_max_zaxis_frequency_sensor
-- device_signal_percentage_sensor
+- signal_percentage_sensor
 - dutycycle_percentage_sensor
 
