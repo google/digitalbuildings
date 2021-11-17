@@ -228,10 +228,7 @@ class SubfieldNamespace(findings_lib.Findings):
     Args:
       unit_universe: UnitUniverse object used to look up units
     """
-    unit_measurement_types = {
-        unit.measurement_type
-        for unit in unit_universe.GetUnitsMap(self.namespace).values()
-    }
+    unit_measurement_types = unit_universe.GetMeasurementTypes()
     for subfield in self.subfields.values():
       if (subfield.category == SubfieldCategory.MEASUREMENT and
           subfield.name not in unit_measurement_types):
