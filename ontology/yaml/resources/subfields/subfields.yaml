@@ -20,6 +20,7 @@ aggregation:
   total: "Sum total of some set of values (e.g. total_request_heating_count)"
 aggregation_descriptor:
   fivesecondrolling: "Aggregation over advancing time intervals of five seconds."
+  tenminutefixed: "Aggregation over fixed time intervals of ten minutes."
 component:
   battery: "A device used to store power for use at a later time (e.g. in an emergency where grid power is unavailable)."
   cable: "A length of wire, sometimes shielded externally, used for some purpose (e.g. steel braided wire for tensile support, CAT5 cable for communications, etc.)."
@@ -78,6 +79,7 @@ descriptor:
   dehumidification: "Process of removing moisture from air."
   detection : "Process of identifying conditions."
   discharge: "Media leaving system to enter ambient conditioned space. Typically applies only to air-side systems."
+  dutycycle: "The fraction of one period in which a signal or system is active."
   east: "Cardinal direction; opposite of west."
   economizer: "Process or component responsible for the utilization of free cooling."
   electric: "Process or component driven by electricity (as to distinguish from natural gas, for instance)."
