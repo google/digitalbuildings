@@ -366,8 +366,7 @@ class ParseConfigLibTest(absltest.TestCase):
     self.assertLen(unit_folders, 2)
     for folder in unit_folders:
       self.assertEmpty(folder.GetFindings())
-      current_units = folder.local_namespace.GetUnitsForMeasurement(
-          'current')
+      current_units = folder.local_namespace.GetUnitsForMeasurement('current')
       temperature_units = folder.local_namespace.GetUnitsForMeasurement(
           'temperature')
       if not folder.local_namespace.namespace:
