@@ -127,13 +127,11 @@ class PresubmitValidateTypesTest(absltest.TestCase):
     context = findings_lib.FileContext('')
     type_universe = entity_type_lib.EntityTypeUniverse([])
     type_universe.AddFinding(
-        findings_lib.IllegalCharacterError('stuff', context))
+        findings_lib.InvalidTypenameError('stuff', context))
     field_universe = field_lib.FieldUniverse([])
     field_universe.AddFinding(
         findings_lib.InconsistentFileLocationError('', context))
     subfield_universe = subfield_lib.SubfieldUniverse([])
-    subfield_universe.AddFinding(
-        findings_lib.CapitalizationError('Hi', context))
     state_universe = state_lib.StateUniverse([])
     connection_universe = connection_lib.ConnectionUniverse([])
     connection_universe.AddFinding(
@@ -148,12 +146,11 @@ class PresubmitValidateTypesTest(absltest.TestCase):
         unit_universe=unit_universe)
 
     findings = config_universe.GetFindings()
-    self.assertLen(findings, 4)
+    self.assertLen(findings, 3)
     self.assertTrue(
         config_universe.HasFindingTypes([
             findings_lib.InconsistentFileLocationError,
-            findings_lib.IllegalCharacterError,
-            findings_lib.CapitalizationError,
+            findings_lib.InvalidTypenameError,
             findings_lib.InvalidConnectionNamespaceError
         ]))
     self.assertFalse(config_universe.IsValid())
@@ -162,13 +159,11 @@ class PresubmitValidateTypesTest(absltest.TestCase):
     context = findings_lib.FileContext('')
     type_universe = entity_type_lib.EntityTypeUniverse([])
     type_universe.AddFinding(
-        findings_lib.IllegalCharacterError('stuff', context))
+        findings_lib.InvalidTypenameError('stuff', context))
     field_universe = field_lib.FieldUniverse([])
     field_universe.AddFinding(
         findings_lib.InconsistentFileLocationError('', context))
     subfield_universe = subfield_lib.SubfieldUniverse([])
-    subfield_universe.AddFinding(
-        findings_lib.CapitalizationError('Hi', context))
     state_universe = state_lib.StateUniverse([])
     connection_universe = connection_lib.ConnectionUniverse([])
     unit_universe = unit_lib.UnitUniverse([])
@@ -189,13 +184,11 @@ class PresubmitValidateTypesTest(absltest.TestCase):
     context = findings_lib.FileContext('')
     type_universe = entity_type_lib.EntityTypeUniverse([])
     type_universe.AddFinding(
-        findings_lib.IllegalCharacterError('stuff', context))
+        findings_lib.InvalidTypenameError('stuff', context))
     field_universe = field_lib.FieldUniverse([])
     field_universe.AddFinding(
         findings_lib.InconsistentFileLocationError('', context))
     subfield_universe = subfield_lib.SubfieldUniverse([])
-    subfield_universe.AddFinding(
-        findings_lib.CapitalizationError('Hi', context))
     state_universe = state_lib.StateUniverse([])
     connection_universe = connection_lib.ConnectionUniverse([])
     unit_universe = unit_lib.UnitUniverse([])
@@ -214,8 +207,8 @@ class PresubmitValidateTypesTest(absltest.TestCase):
   def testConfigUniverseGetUnitsForMeasurement(self):
     folder = unit_lib.UnitFolder('units/anyfolder')
     namespace = folder.local_namespace
-    namespace.InsertUnit(unit_lib.Unit('degrees_celsius', 'temperature', False))
-    namespace.InsertUnit(unit_lib.Unit('kelvin', 'temperature', True))
+    namespace.InsertUnit('temperature', unit_lib.Unit('degrees_celsius', False))
+    namespace.InsertUnit('temperature', unit_lib.Unit('kelvin', True))
     unit_universe = unit_lib.UnitUniverse([folder])
 
     config_universe = presubmit_validate_types_lib.ConfigUniverse(
