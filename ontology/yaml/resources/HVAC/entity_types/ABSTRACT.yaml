@@ -3811,6 +3811,7 @@ DX2DSPRTC:
   - cooling_thermal_power_capacity
   - cooling_percentage_command
   - compressor_speed_percentage_command
+  - cooling_stage_run_count
   uses:
   - return_air_cooling_temperature_setpoint
   - return_air_heating_temperature_setpoint

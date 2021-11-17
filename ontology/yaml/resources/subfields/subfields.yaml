@@ -159,6 +159,7 @@ descriptor:
   production: "The loop in a system that is responsible for the conditioning of fluid."
   program: "Embedded, encoded instructions for the automatic performance of a task; typically within a controller."
   protection: "Act of preventing damage to object."
+  rain: "Liquid water in the form of droplets that have condensed from atmospheric water vapor."
   recovery: "Component or process used for the reclamation of heat."
   red: "Red light fracture of ambient light"
   release: "To free from constraints (e.g. to release the door from its magnetic lock)."
@@ -208,6 +209,7 @@ descriptor:
   zaxis: "Vertical axis of a three-dimensional Cartesian coordinate system (applicate)."
   zone: "Region of building which is conditioned."
 measurement:
+  angle: "The figure formed by two rays, sharing a common endpoint."
   aqi: "Air quality index, a set of special standard gradings for the pollution in air."
   concentration: "Concentration of something relative to something else (usually in parts per million or parts per billion)."
   current: "Flow of electric charge."

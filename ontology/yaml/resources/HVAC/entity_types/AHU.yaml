@@ -3345,6 +3345,23 @@ AHU_DX2SC_ECON_SHM_SFSS_SFVSC_SSPC:
   - SFVSC
   - SSPC
 
+AHU_BSPC_DX4SC_ECONM_EFSS_EFVSC_SARC_SHC_SFSS2X_SFVSC_SSPC:
+  description: "Multi-zone AHU with four-stage DX cooling and supply air humidity control."
+  is_canonical: true
+  implements:
+  - AHU
+  - BSPC
+  - DX4SC
+  - ECONM
+  - EFSS
+  - EFVSC
+  - SARC
+  - SHC
+  - SFSS2X
+  - SFVSC
+  - SSPC
+
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
