@@ -187,6 +187,7 @@ descriptor:
   stage: "Discrete step (stage) of device activity (such as heating and cooling outputs)."
   startup: "Event of engaging a device or equipment"
   steam: "Water in gaseous form."
+  strength: "Relative quality and/or intensity."
   suction: "The production of a partial vacuum in order to force fluid into a vacant space (such as refrigerant in a compressor)."
   summer: "Method or process used during warmer weather (i.e. summer season)."
   supervisor: "A program that controls a device from a supervisory (i.e. remote or external) level."
