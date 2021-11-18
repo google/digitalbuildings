@@ -64,6 +64,7 @@ linearvelocity:
 - meters_per_second: STANDARD
 - feet_per_minute
 - miles_per_hour
+- millimeters_per_second
 percentage:
 - percent: STANDARD
 powerfactor:
