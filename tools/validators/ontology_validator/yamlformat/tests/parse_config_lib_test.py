@@ -366,22 +366,24 @@ class ParseConfigLibTest(absltest.TestCase):
     self.assertLen(unit_folders, 2)
     for folder in unit_folders:
       self.assertEmpty(folder.GetFindings())
-      units_map = folder.local_namespace.units
+      current_units = folder.local_namespace.GetUnitsForMeasurement('current')
+      temperature_units = folder.local_namespace.GetUnitsForMeasurement(
+          'temperature')
       if not folder.local_namespace.namespace:
         # global namespace
-        self.assertEqual(units_map['amperes'],
-                         unit_lib.Unit('amperes', 'current', True))
-        self.assertEqual(units_map['milliamperes'],
-                         unit_lib.Unit('milliamperes', 'current'))
+        self.assertEqual(current_units['amperes'],
+                         unit_lib.Unit('amperes', True))
+        self.assertEqual(current_units['milliamperes'],
+                         unit_lib.Unit('milliamperes'))
       else:
         # local namespace
         self.assertEqual(folder.local_namespace.namespace, 'GOOD')
-        self.assertEqual(units_map['kelvins'],
-                         unit_lib.Unit('kelvins', 'temperature', True))
-        self.assertEqual(units_map['degrees_celsius'],
-                         unit_lib.Unit('degrees_celsius', 'temperature'))
-        self.assertEqual(units_map['degrees_fahrenheit'],
-                         unit_lib.Unit('degrees_fahrenheit', 'temperature'))
+        self.assertEqual(temperature_units['kelvins'],
+                         unit_lib.Unit('kelvins', True))
+        self.assertEqual(temperature_units['degrees_celsius'],
+                         unit_lib.Unit('degrees_celsius'))
+        self.assertEqual(temperature_units['degrees_fahrenheit'],
+                         unit_lib.Unit('degrees_fahrenheit'))
 
   def testParseUnitFoldersFromBadFile(self):
     bad_units = base_lib.PathParts(

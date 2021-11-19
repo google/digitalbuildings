@@ -98,3 +98,4 @@ SENSOR_FDPM:
     - FDPM
   opt_uses:
     - local_air_temperature_sensor
+    - battery_charge_percentage_sensor

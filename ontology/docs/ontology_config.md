@@ -287,11 +287,25 @@ One of the listed units must be listed as the `STANDARD` unit for the type. All
 of the `STANDARD` units for all subfields must belong to the same unit family,
 such as standard SI units.
 
+If a subfield needs to use the same set of units as another subfield, it is
+defined as an alias by providing the other subfield name instead of a list of
+units. For example:
+
+```
+distance:
+- meters: STANDARD
+- feet
+- inches
+length: distance
+level: distance
+```
+
 Validation enforces:
 
 *   Each subfield only has units defined for it one time
 *   Each dimensional unit is defined only once in the file
 *   Exactly one `STANDARD` designation is made per subfield
+*   Each subfield alias refers to a subfield that has units defined
 
 ## Validation
 
