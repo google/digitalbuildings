@@ -3345,7 +3345,7 @@ AHU_DX2SC_ECON_SHM_SFSS_SFVSC_SSPC:
   - SFVSC
   - SSPC
 
-AHU_CHWSC_OAMC_RTM_SFVSC_CO2C:
+AHU_CHWSC_OAMC_RTM_SFVSC_RACO2C:
   description: "AHU with return air monitor and supply air temperature, fan and zone air co2 control where the co2 sensor installed at return air duct."
   is_canonical: true
   implements:
@@ -3354,7 +3354,7 @@ AHU_CHWSC_OAMC_RTM_SFVSC_CO2C:
   - OAMC
   - RTM
   - SFVSC
-  - CO2C
+  - RACO2C
   opt_uses:
   - supply_fan_lost_power_alarm
 

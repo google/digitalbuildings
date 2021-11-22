@@ -4306,3 +4306,20 @@ RHDHS:
   - humidification_run_status
   implements:
   - MONITORING
+
+CO2DFVSC:
+  description: "Carbon dioxide levels controlled by a variable speed discharge fan."
+  uses:
+  - zone_air_co2_concentration_sensor
+  - zone_air_co2_concentration_setpoint
+  - discharge_fan_speed_percentage_command
+  implements:
+  - CONTROL
+
+RACO2C:
+  description: "Returned air carbon dioxide levels controls."
+  uses:
+  - return_air_co2_concentration_sensor
+  - return_air_co2_concentration_setpoint
+  implements:
+  - CONTROL

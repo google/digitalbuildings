@@ -842,6 +842,9 @@ literals:
   - ON
   - OFF
 
+# Added for ETIQA
+- return_air_co2_concentration_sensor
+- return_air_co2_concentration_setpoint
 
 # Added for Machine Learning Pilot
 - supervisor_control_mode:
