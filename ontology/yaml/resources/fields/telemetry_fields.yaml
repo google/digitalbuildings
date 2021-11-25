@@ -1039,7 +1039,10 @@ literals:
 - fivesecondrolling_rootmeansquare_zaxis_linearacceleration_sensor
 - local_air_temperature_sensor
 
-# Added on 2021/09/22 for lighting control
+# Added on 2021/10/22 for lighting control
+- lighting_switch_command:
+  - ON
+  - OFF
 - zone_lighting_switch_status:
   - ON
   - OFF
@@ -1051,6 +1054,6 @@ literals:
   - ACTIVE
   - INACTIVE
 
-# Added on 2021/09/22 for water leak
-- water_cable_extent_flow_sensor
+# Added on 2021/11/25 for water leak
+- water_leak_cable_distance_sensor
 

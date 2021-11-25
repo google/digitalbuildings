@@ -138,18 +138,24 @@ LC:
   - illuminance_setpoint
   - illuminance_sensor
  
-EGW:
-  id: "14486067738483352777"
-  description: "Lighting Control Gateway"
+DFRT:
+  description: "Lighting Control dimmer fade rate & time"
   is_abstract: true
   uses:
-  - lighting_switch_command
-  - lighting_switch_status
   - dimmer_fade_rate_setpoint
   - dimmer_fade_time_setpoint
+
+ZLC:
+  description: "Lighting Control Zone light controls"
+  is_abstract: true
+  uses:
   - zone_lighting_switch_command
   - zone_lighting_switch_status
-  - brightness_percentage_command
   - zone_brightness_percentage_command
+
+LFA:
+  description: "Lighting Control fault alarm"
+  is_abstract: true
+  uses:
   - lighting_switch_alarm
   

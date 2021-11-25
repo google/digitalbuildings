@@ -74,9 +74,8 @@ FA2X:
   - fire_alarm_2
     
 WLS:
-  id: "10920605409362178232"
   description: "Water leak location monitoring."
   is_abstract: true
   uses:
-  - water_cable_extent_flow_sensor
+  - water_leak_cable_distance_sensor
   

@@ -15,13 +15,18 @@
 # Canonical types for Lighting Gateways
 
 
-LTGW_EGW:
-  id: "12562701966118553783"
-  description: "variant lighting control gateway."
+LTGW_DFRT_ZLC_LFA:
+  description: "variant lighting control gateway with zone control, dimmer fade and fault alarm."
   is_canonical: true
   implements:
   - LTGW
-  - EGW
+  - LSC
+  - RC
+  - DC
+  - DFRT
+  - ZLC
+  - LFA
+  
 
 LTGW_BS:
   id: "14108978974793138176"

@@ -214,11 +214,13 @@ measurement:
   current: "Flow of electric charge."
   currentratio: "The ratio of primary amps divided by secondary amps."
   density: "Amount of mass contained in a unit volume."
+  distance: "Linear measurement."
   energy: " The quantitative property that must be transferred to an object to perform work (default electrical unless otherwise modified)."
   flowrate: "Rate of fluid movement."
   frequency: "The rate of cycling within a process. Typically used to describe voltage (and amperage) oscillation within AC power distribution components."
   humidity: "Concentration of water vapor in air (conditioned or unconditioned)."
   illuminance: "Measurement of light."
+  length: "The distance of something with regard to a datum (e.g. the length of a water-sensing cable relative to the panel)."
   level: "The height of something with regard to a datum (e.g. the water level of a tank relative to the bottom)."  
   linearacceleration: "Time rate of change of linear velocity."
   linearvelocity: "Example: wind speed"
@@ -234,9 +236,6 @@ measurement:
   voltage: "Electrical potential difference between two reference points."
   voltageratio: "The ratio of the Primary voltage of the transformer to the secondary voltage."
   volume: "The quantity of three-dimensional space contained by a closed surface."
-
-  #New measurement
-  flow: "Movement of water or gas outside container."
 measurement_descriptor:
   absolute: "Quality of media with respect to non-relativistic boudaries (e.g. absolute temperature)."
   apparent: "The combination of reactive and real components (power)."

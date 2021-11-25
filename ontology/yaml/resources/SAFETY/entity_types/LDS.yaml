@@ -50,7 +50,6 @@ LDS_BC2X_LPA:
   - LPA
   
 LDS_WLDS_BCM_WLS:
-  id: "13939922803816057240"
   description: "Leak sensing device with broken cable status and leak location monitoring."
   is_canonical: true
   implements:
