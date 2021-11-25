@@ -28,17 +28,17 @@ _GOOD_PATH = '{0}/units/anyfolder'.format('mynamespace')
 
 class UnitLibTest(absltest.TestCase):
 
-  def testUnitUniverseGetUnitsMap(self):
+  def testUnitUniverseGetUnitsForMeasurement(self):
     folder = unit_lib.UnitFolder(_GOOD_PATH)
     namespace = folder.local_namespace
-    namespace.InsertUnit(unit_lib.Unit('degrees_celsius', 'temperature', False))
-    namespace.InsertUnit(unit_lib.Unit('kelvins', 'temperature', True))
+    namespace.InsertUnit('temperature', unit_lib.Unit('degrees_celsius', False))
+    namespace.InsertUnit('temperature', unit_lib.Unit('kelvins', True))
+    namespace.InsertUnit('percent', unit_lib.Unit('percent', True))
     unit_universe = unit_lib.UnitUniverse([folder])
 
-    units = unit_universe.GetUnitsMap('mynamespace')
+    units = unit_universe.GetUnitsForMeasurement('temperature', 'mynamespace')
 
-    self.assertIn('degrees_celsius', units)
-    self.assertIn('kelvins', units)
+    self.assertCountEqual(['degrees_celsius', 'kelvins'], units)
 
   def testUnitUniverseGetFindings(self):
     context = findings_lib.FileContext('{0}/file.yaml'.format(_GOOD_PATH))
@@ -46,11 +46,12 @@ class UnitLibTest(absltest.TestCase):
     folder.AddFinding(findings_lib.InconsistentFileLocationError('', context))
     namespace = folder.local_namespace
     namespace.AddFinding(
-        findings_lib.DuplicateUnitDefinitionError(
-            unit_lib.Unit('unit', 'measurement'), 'namespace'))
-    unit = unit_lib.Unit('unit', 'measurement')
+        findings_lib.DuplicateUnitDefinitionError(namespace,
+                                                  unit_lib.Unit('unit'),
+                                                  context))
+    unit = unit_lib.Unit('unit')
     unit.AddFinding(findings_lib.UnknownUnitTagError(unit.name, 'tag', context))
-    namespace.InsertUnit(unit)
+    namespace.InsertUnit('measurement', unit)
     unit_universe = unit_lib.UnitUniverse([folder])
 
     findings = unit_universe.GetFindings()
@@ -66,23 +67,25 @@ class UnitLibTest(absltest.TestCase):
 
   def testUnitFolderAddValidUnit(self):
     folder = unit_lib.UnitFolder(_GOOD_PATH)
-    folder.AddUnit(unit_lib.Unit('unit', 'measurement'))
-    self.assertIn('unit', folder.local_namespace.units)
+    folder.AddUnit('measurement', unit_lib.Unit('unit'))
+    units = folder.local_namespace.GetUnitsForMeasurement('measurement')
+    self.assertIn('unit', units)
     self.assertEmpty(folder.GetFindings())
 
   def testUnitFolderAddInvalidUnitFails(self):
     folder = unit_lib.UnitFolder(_GOOD_PATH)
-    folder.AddUnit(unit_lib.Unit('bad-unit', 'invalid'))
-    self.assertNotIn('bad-unit', folder.local_namespace.units)
+    folder.AddUnit('invalid', unit_lib.Unit('bad-unit'))
+    self.assertIsNone(folder.local_namespace.GetUnitsForMeasurement('invalid'))
     self.assertIsInstance(folder.GetFindings()[0],
-                          findings_lib.IllegalCharacterError)
+                          findings_lib.InvalidUnitNameError)
 
   def testUnitFolderAddDuplicateUnitFails(self):
     folder = unit_lib.UnitFolder(_GOOD_PATH)
-    folder.AddUnit(unit_lib.Unit('unit', 'measurement'))
-    self.assertIn('unit', folder.local_namespace.units)
+    folder.AddUnit('measurement', unit_lib.Unit('unit'))
+    units = folder.local_namespace.GetUnitsForMeasurement('measurement')
+    self.assertIn('unit', units)
     self.assertEmpty(folder.local_namespace.GetFindings())
-    folder.AddUnit(unit_lib.Unit('unit', 'duplicate'))
+    folder.AddUnit('measurement', unit_lib.Unit('unit'))
     self.assertIsInstance(folder.local_namespace.GetFindings()[0],
                           findings_lib.DuplicateUnitDefinitionError)
 
@@ -95,13 +98,12 @@ class UnitLibTest(absltest.TestCase):
     folder = unit_lib.UnitFolder(_GOOD_PATH)
     folder.AddFromConfig([doc], '{0}/file.yaml'.format(_GOOD_PATH))
 
-    units = folder.local_namespace.units
+    units = folder.local_namespace.GetUnitsForMeasurement('temperature')
     self.assertEmpty(folder.GetFindings())
     self.assertCountEqual(['kelvins', 'degrees_celsius'], units)
-    self.assertEqual(units['kelvins'],
-                     unit_lib.Unit('kelvins', 'temperature', True))
+    self.assertEqual(units['kelvins'], unit_lib.Unit('kelvins', True))
     self.assertEqual(units['degrees_celsius'],
-                     unit_lib.Unit('degrees_celsius', 'temperature', False))
+                     unit_lib.Unit('degrees_celsius', False))
 
   def testUnitFolderAddFromConfigMultipleNoUnits(self):
     doc = {
@@ -114,11 +116,12 @@ class UnitLibTest(absltest.TestCase):
     }
     folder = unit_lib.UnitFolder(_GOOD_PATH)
     folder.AddFromConfig([doc], '{0}/file.yaml'.format(_GOOD_PATH))
-    units = folder.local_namespace.units
+    pf_units = folder.local_namespace.GetUnitsForMeasurement('powerfactor')
+    vr_units = folder.local_namespace.GetUnitsForMeasurement('voltageratio')
 
     self.assertEmpty(folder.GetFindings())
-    expected = ['no_units_powerfactor', 'another_one', 'no_units_voltageratio']
-    self.assertCountEqual(expected, units)
+    self.assertCountEqual(['no_units', 'another_one'], pf_units)
+    self.assertCountEqual(['no_units'], vr_units)
 
   def testUnitFolderAddFromConfigInvalidUnitFormat(self):
     doc = {
@@ -170,25 +173,90 @@ class UnitLibTest(absltest.TestCase):
                           findings_lib.StandardUnitCountError)
 
   def testUnitWithIllegalKeyTypeHasFindings(self):
-    unit = unit_lib.Unit(False, 'invalid')
+    unit = unit_lib.Unit(False)
     self.assertIsInstance(unit.GetFindings()[0],
                           findings_lib.IllegalKeyTypeError)
 
   def testUnitWithIllegalNameHasFindings(self):
-    unit = unit_lib.Unit('BADUNIT', 'invalid')
+    unit = unit_lib.Unit('BADUNIT')
     self.assertIsInstance(unit.GetFindings()[0],
-                          findings_lib.IllegalCharacterError)
+                          findings_lib.InvalidUnitNameError)
 
   def testUnitEquals(self):
-    unit_one = unit_lib.Unit('unit_one', 'measurement')
-    unit_one_dup = unit_lib.Unit('unit_one', 'measurement')
-    unit_one_diff_measurement = unit_lib.Unit('unit_one', 'changed')
-    unit_one_standard = unit_lib.Unit('unit_one', 'measurement', True)
-    unit_two = unit_lib.Unit('unit_two', 'measurement')
+    unit_one = unit_lib.Unit('unit_one')
+    unit_one_dup = unit_lib.Unit('unit_one')
+    unit_one_standard = unit_lib.Unit('unit_one', True)
+    unit_two = unit_lib.Unit('unit_two')
     self.assertEqual(unit_one, unit_one_dup)
-    self.assertNotEqual(unit_one, unit_one_diff_measurement)
     self.assertNotEqual(unit_one, unit_one_standard)
     self.assertNotEqual(unit_one, unit_two)
+
+  def testUnitFolderAddFromConfigMeasurementAlias(self):
+    doc = {
+        'length': 'distance',
+        'distance': [{
+            'meters': 'STANDARD'
+        }, 'feet'],
+    }
+    folder = unit_lib.UnitFolder(_GOOD_PATH)
+    expected_units = ['meters', 'feet']
+
+    folder.AddFromConfig([doc], '{0}/file.yaml'.format(_GOOD_PATH))
+    distance_units = folder.local_namespace.GetUnitsForMeasurement('distance')
+    length_units = folder.local_namespace.GetUnitsForMeasurement('length')
+
+    self.assertEmpty(folder.local_namespace.GetFindings())
+    self.assertCountEqual(expected_units, distance_units)
+    self.assertCountEqual(expected_units, length_units)
+
+  def testUnitFolderAddFromConfigBadAliasBase(self):
+    doc = {
+        'length': 'invalid',
+        'distance': [{
+            'meters': 'STANDARD'
+        }, 'feet'],
+    }
+    folder = unit_lib.UnitFolder(_GOOD_PATH)
+
+    folder.AddFromConfig([doc], '{0}/file.yaml'.format(_GOOD_PATH))
+
+    self.assertIsInstance(folder.local_namespace.GetFindings()[0],
+                          findings_lib.UnrecognizedMeasurementAliasBaseError)
+
+  def testUnitFolderAddFromConfigAliasIsAlias(self):
+    doc = {
+        'distance': [{
+            'meters': 'STANDARD'
+        }, 'feet'],
+        'length': 'distance',
+        'level': 'length',
+    }
+    folder = unit_lib.UnitFolder(_GOOD_PATH)
+
+    folder.AddFromConfig([doc], '{0}/file.yaml'.format(_GOOD_PATH))
+
+    self.assertIsInstance(folder.local_namespace.GetFindings()[0],
+                          findings_lib.MeasurementAliasIsAliasedError)
+
+  def testUnitFolderAddFromConfigDuplicateAlias(self):
+    doc_1 = {
+        'distance': [{
+            'yards': 'STANDARD'
+        }, 'inches'],
+        'level': 'distance',
+    }
+    doc_2 = {
+        'length': [{
+            'meters': 'STANDARD'
+        }, 'feet'],
+        'level': 'length',
+    }
+    folder = unit_lib.UnitFolder(_GOOD_PATH)
+
+    folder.AddFromConfig([doc_1, doc_2], '{0}/file.yaml'.format(_GOOD_PATH))
+
+    self.assertIsInstance(folder.local_namespace.GetFindings()[0],
+                          findings_lib.DuplicateMeasurementAliasError)
 
 
 if __name__ == '__main__':

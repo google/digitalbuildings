@@ -11,8 +11,8 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 """Data point in a telemetry message."""
+
 
 class Point(object):
   """A point from a pubsub telemetry message.
@@ -37,5 +37,3 @@ class Point(object):
 
     if isinstance(value, str):
       return value
-
-
