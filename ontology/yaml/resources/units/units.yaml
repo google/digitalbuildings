@@ -114,6 +114,8 @@ illuminance:
 - foot_candles
 impulse:
 - newton_seconds: STANDARD
+irradiance:
+- watt_per_square_metre: STANDARD
 level:
 - meters: STANDARD
 - centimeters
@@ -174,8 +176,6 @@ obscuration:
 - percent_obscuration_per_foot
 percentage:
 - percent: STANDARD
-powerfactor:
-- no_units: STANDARD
 power:
 - watts: STANDARD
 - kilowatts
