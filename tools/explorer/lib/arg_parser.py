@@ -11,21 +11,26 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+"""Command line argument parser for ontology explorer."""
 
-"""Constants for the ontology validator application."""
-
-from os import path
+import argparse
 
 
-# internally, absolute path is used; github uses relative path
-_USE_ABSOLUTE_PATH = False
+def ParseArgs() -> argparse.ArgumentParser:
+  """Generates an argument parser for user input.
 
-if _USE_ABSOLUTE_PATH:
-  REPO_ROOT = path.join('third_party', 'digitalbuildings')
-else:
-  REPO_ROOT = path.join(
-      path.dirname(path.realpath(__file__)), path.join('..', '..', '..', '..'))
+  Returns:
+    An instance of ArgumentParser class.
+  """
+  parser = argparse.ArgumentParser(
+      description='Instantiate an ontology explorer')
 
-APPLICATION_ROOT = path.join(REPO_ROOT, 'tools', 'validators',
-                             'ontology_validator', 'yamlformat')
-ONTOLOGY_ROOT = path.join(REPO_ROOT, 'ontology', 'yaml', 'resources')
+  parser.add_argument(
+      '-m',
+      '--modified-ontology-types',
+      dest='modified_types_filepath',
+      required=False,
+      help='Filepath to modified ontology filepaths',
+      metavar='FILE')
+
+  return parser

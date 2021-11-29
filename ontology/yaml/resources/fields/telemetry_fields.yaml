@@ -740,6 +740,9 @@ literals:
   - ACTIVE
   - INACTIVE
 - gas_leak_detection_alarm
+- ammonia_leak_detection_alarm:
+  - ACTIVE
+  - INACTIVE
 - water_leak_detection_alarm
 - fire_alarm
 - emergency_release_status
@@ -855,6 +858,7 @@ literals:
   - OFF
   - HEATING
   - COOLING
+  - AUTO
 - average_zone_air_temperature_sensor
 - heating_supply_water_isolation_valve_command
 - heating_return_water_isolation_valve_command
@@ -892,6 +896,9 @@ literals:
 - dimmer_failed_alarm:
   - ACTIVE
   - INACTIVE
+- power_command:
+  - ON
+  - OFF
 - switch_command:
   - ON
   - OFF
@@ -908,6 +915,8 @@ literals:
   - OCCUPIED
   - UNKNOWN
   - UNOCCUPIED
+  - BYPASS
+  - STANDBY
 
 #Additional fields for CH ZRH EURD HVAC
 - bypass_air_damper_percentage_sensor
@@ -977,4 +986,56 @@ literals:
   - OPEN
   - CLOSED
 
+# Damper status
+- damper_status:
+  - OPEN
+  - CLOSED
+
 - lighting_percentage_sensor # For relative ranged illuminance inputs.
+
+# Air Quality Data
+- outside_air_aqi_sensor
+- zone_air_aqi_sensor
+- outside_air_water_vapor_density_sensor # Equivalent field for absolute humidity
+- outside_air_water_vapor_concentration_sensor # Equivalent field for absolute humidity
+- zone_air_water_vapor_density_sensor # Equivalent field for absolute humidity
+- zone_air_water_vapor_concentration_sensor # Equivalent field for absolute humidity
+
+- zone_air_h2s_concentration_sensor
+- zone_air_so2_concentration_sensor
+- zone_air_no2_concentration_sensor
+- zone_air_formaldehyde_concentration_sensor
+- zone_air_ozone_concentration_sensor
+
+- zone_air_h2s_density_sensor
+- zone_air_so2_density_sensor
+- zone_air_no2_density_sensor
+- zone_air_formaldehyde_density_sensor
+- zone_air_ozone_density_sensor
+
+# First set of PM2.5, PM10, etc. fields. Note that density and concentration
+# are differentiated since they return different units of measurement.
+- zone_air_pm0pt5_density_sensor
+- zone_air_pm1pt0_density_sensor
+- zone_air_pm2pt5_density_sensor
+- zone_air_pm4pt0_density_sensor
+- zone_air_pm10pt0_density_sensor
+
+- zone_air_pm0pt5_concentration_sensor
+- zone_air_pm1pt0_concentration_sensor
+- zone_air_pm2pt5_concentration_sensor
+- zone_air_pm4pt0_concentration_sensor
+- zone_air_pm10pt0_concentration_sensor
+
+## New fields for IoT vibration sensor pilot
+- fivesecondrolling_max_xaxis_linearacceleration_sensor
+- fivesecondrolling_max_yaxis_linearacceleration_sensor
+- fivesecondrolling_max_zaxis_linearacceleration_sensor
+- fivesecondrolling_min_xaxis_linearacceleration_sensor
+- fivesecondrolling_min_yaxis_linearacceleration_sensor
+- fivesecondrolling_min_zaxis_linearacceleration_sensor
+- fivesecondrolling_rootmeansquare_xaxis_linearacceleration_sensor
+- fivesecondrolling_rootmeansquare_yaxis_linearacceleration_sensor
+- fivesecondrolling_rootmeansquare_zaxis_linearacceleration_sensor
+- local_air_temperature_sensor
+

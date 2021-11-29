@@ -40,11 +40,6 @@ def IsValidFolderForType(path, component_type):
 class ConfigFolder(findings_lib.Findings):
   """Parent class for folder classes that wraps up some of the validation logic.
 
-  Args:
-    folderpath: a path relative to ontology root with no leading or trailing
-      slashes. Path should be the top level of a component folder (like
-      'somenamespace/fields').
-    component_type: The type of component this folder contains configs for.
   Attributes:
     local_namespace: object representing the contents of the local namespace.
       Must be set to a non-None value in the subclass init method.
@@ -54,6 +49,17 @@ class ConfigFolder(findings_lib.Findings):
   """
 
   def __init__(self, folderpath, component_type):
+    """Creates a ConfigFolder.
+
+    Args:
+      folderpath: a path relative to ontology root with no leading or trailing
+        slashes. Path should be the top level of a component folder (like
+        'somenamespace/fields').
+      component_type: The type of component this folder contains configs for.
+
+    Raises:
+      RuntimeError: folderpath and type not valid.
+    """
     super(ConfigFolder, self).__init__()
 
     if not IsValidFolderForType(folderpath, component_type):
@@ -112,7 +118,6 @@ class ConfigFolder(findings_lib.Findings):
       RuntimeError: if the path is not valid for the component type
     """
     context = findings_lib.FileContext(config_filename)
-
     if documents is None:
       self.AddFinding(findings_lib.EmptyFileWarning(context))
       return

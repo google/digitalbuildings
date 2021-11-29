@@ -12,10 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Constants for the ontology validator application."""
+"""Constants for the ontology explorer application."""
 
 from os import path
-
 
 # internally, absolute path is used; github uses relative path
 _USE_ABSOLUTE_PATH = False
@@ -24,8 +23,7 @@ if _USE_ABSOLUTE_PATH:
   REPO_ROOT = path.join('third_party', 'digitalbuildings')
 else:
   REPO_ROOT = path.join(
-      path.dirname(path.realpath(__file__)), path.join('..', '..', '..', '..'))
+      path.dirname(path.realpath(__file__)), path.join('..', '..', '..'))
 
-APPLICATION_ROOT = path.join(REPO_ROOT, 'tools', 'validators',
-                             'ontology_validator', 'yamlformat')
+APPLICATION_ROOT = path.join(REPO_ROOT, 'tools', 'explorer', 'lib')
 ONTOLOGY_ROOT = path.join(REPO_ROOT, 'ontology', 'yaml', 'resources')
