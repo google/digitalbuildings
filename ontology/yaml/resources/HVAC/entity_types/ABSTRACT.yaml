@@ -2335,6 +2335,7 @@ ECON:
   - supply_air_temperature_sensor
   - outside_air_flowrate_sensor
   - outside_air_flowrate_setpoint
+  - return_air_damper_percentage_command
   uses:
   - outside_air_temperature_sensor
   - economizer_mode
@@ -2357,6 +2358,7 @@ ECOND:
   - mixed_air_temperature_sensor
   - outside_air_damper_percentage_sensor
   - low_limit_outside_air_damper_percentage_command
+  - return_air_damper_percentage_command
   uses:
   - outside_air_temperature_sensor
   - economizer_mode
@@ -2376,6 +2378,7 @@ ECONM:
   - supply_air_temperature_sensor
   - outside_air_damper_percentage_sensor
   - low_limit_outside_air_damper_percentage_command
+  - return_air_damper_percentage_command
   uses:
   - outside_air_temperature_sensor
   - economizer_mode
@@ -2396,6 +2399,7 @@ ECONM2X:
   - supply_air_temperature_sensor
   - outside_air_damper_percentage_sensor
   - low_limit_outside_air_damper_percentage_command
+  - return_air_damper_percentage_command
   uses:
   - outside_air_temperature_sensor
   - economizer_mode
@@ -2418,6 +2422,7 @@ ECONMD:
   - outside_air_flowrate_setpoint
   - return_air_temperature_sensor
   - outside_air_damper_percentage_sensor
+  - return_air_damper_percentage_command
   uses:
   - outside_air_temperature_sensor
   - economizer_mode
@@ -2439,6 +2444,7 @@ ECONZ:
   - return_air_temperature_sensor
   - mixed_air_temperature_sensor
   - outside_air_damper_percentage_sensor
+  - return_air_damper_percentage_command
   uses:
   - outside_air_temperature_sensor
   - economizer_mode
