@@ -1040,5 +1040,9 @@ literals:
 - local_air_temperature_sensor
 
 # New fields for ERV bypass
-- bypass_air_damper_command
-- bypass_air_damper_status
+- bypass_air_damper_command:
+  - ON
+  - OFF
+- bypass_air_damper_status:
+  - ON
+  - OFF
