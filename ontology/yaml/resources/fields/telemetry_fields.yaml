@@ -1041,8 +1041,8 @@ literals:
 
 # New fields for ERV bypass
 - bypass_air_damper_command:
-  - ON
-  - OFF
+  - OPEN
+  - CLOSED
 - bypass_air_damper_status:
-  - ON
-  - OFF
+  - OPEN
+  - CLOSED
