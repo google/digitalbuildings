@@ -18,9 +18,9 @@ angle:
 angularmomentum:
 - joule_seconds: STANDARD
 apparentpower:
-- volt_amperes: STANDARD
-- kilovolt_amperes
-- megavolt_amperes
+- volt_amperes_apparent: STANDARD
+- kilovolt_amperes_apparent
+- megavolt_amperes_apparent
 aqi:
 - epa: STANDARD
 - eea
@@ -92,7 +92,6 @@ flowrate:
 - cubic_feet_per_minute
 - gallons_per_minute
 - imperial_gallons_per_minute
-- kilograms_per_hour
 - us_gallons_per_minute
 force:
 - newton: STANDARD
@@ -116,18 +115,13 @@ impulse:
 - newton_seconds: STANDARD
 irradiance:
 - watt_per_square_metre: STANDARD
-level:
-- meters: STANDARD
-- centimeters
-- millimeters
-- feet
-- inches
 length:
 - meters: STANDARD
 - centimeters
 - millimeters
 - feet
 - inches
+level: length
 linearacceleration:
 - meters_per_square_second: STANDARD
 - gravity
@@ -181,7 +175,6 @@ power:
 - kilowatts
 - volt_amperes
 - kilovolt_amperes
-- kilovolt_amperes_reactive
 - megawatts
 - milliwatts
 - tons_of_refrigeration

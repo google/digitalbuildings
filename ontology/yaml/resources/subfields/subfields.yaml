@@ -237,6 +237,7 @@ measurement:
   illuminance: "Measurement of light."
   impulse: "A force acting briefly on a body and producing a finite change of momentum."
   irradiance: "The flux of radiant energy per unit area (normal to the direction of flow of radiant energy through a medium)."
+  length: "The measurement or extent of something from end to end."
   level: "The height of something with regard to a datum (e.g. the water level of a tank relative to the bottom)."  
   linearacceleration: "Time rate of change of linear velocity."
   linearvelocity: "Example: wind speed"
