@@ -71,6 +71,8 @@ def create_simplified_universe() -> presubmit_validate_types_lib.ConfigUniverse:
       folderpath='entity_types', field_universe=field_universe)
   facilities_type_folder = entity_type_lib.EntityTypeFolder(
       folderpath='FACILITIES/entity_types', field_universe=field_universe)
+  gateways_type_folder = entity_type_lib.EntityTypeFolder(
+      folderpath='GATEWAYS/entity_types', field_universe=field_universe)
   hvac_type_folder = entity_type_lib.EntityTypeFolder(
       folderpath='HVAC/entity_types', field_universe=field_universe)
 
@@ -80,6 +82,9 @@ def create_simplified_universe() -> presubmit_validate_types_lib.ConfigUniverse:
   facilities_type_folder.AddFromConfig(
       config_filename='FACILITIES/entity_types/Facilities.yaml',
       documents=[types.FACILITIES_TYPES_DOCUMENT])
+  gateways_type_folder.AddFromConfig(
+      config_filename='GATEWAYS/entity_types/GATEWAYS.yaml',
+      documents=[types.GATEWAYS_TYPES_DOCUMENT])
   hvac_type_folder.AddFromConfig(
       config_filename='HVAC/entity_types/ANALYSIS.yaml',
       documents=[types.HVAC_ANALYSIS_TYPES_DOCUMENT])
@@ -101,7 +106,8 @@ def create_simplified_universe() -> presubmit_validate_types_lib.ConfigUniverse:
 
   entity_type_universe = entity_type_lib.EntityTypeUniverse(
       entity_type_folders=[
-          global_type_folder, facilities_type_folder, hvac_type_folder
+          global_type_folder, facilities_type_folder, gateways_type_folder,
+          hvac_type_folder
       ])
 
   config_universe = presubmit_validate_types_lib.ConfigUniverse(

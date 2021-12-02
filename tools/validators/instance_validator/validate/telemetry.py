@@ -83,7 +83,7 @@ class Telemetry(object):
     points = {}
     if POINTS not in json_object.keys():
       print('Error: no points in ', json_object)
-      return version, timestamp, None, is_partial
+      return version, timestamp, points, is_partial
     json_points = json_object[POINTS]
     for point_name, value in json_points.items():
       p = point.Point(point_name, value.get(PRESENT_VALUE))
