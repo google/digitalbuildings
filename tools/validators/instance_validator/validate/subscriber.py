@@ -16,7 +16,9 @@
 
 from __future__ import print_function
 
+from concurrent import futures
 import json
+
 from google.auth import jwt
 from google.cloud import pubsub_v1
 
@@ -50,7 +52,14 @@ class Subscriber(object):
     sub_client = pubsub_v1.SubscriberClient(credentials=credentials)
     future = sub_client.subscribe(self.subscription_name, callback)
     print("Listening to pubsub, please wait ...")
-    try:
-      future.result()
-    except KeyboardInterrupt:
-      future.cancel()
+    # KeyboardInterrupt does not always cause `result` to exit early, so we
+    # give the thread a chance to handle that within a reasonable amount of
+    # time by repeatedly calling `result` with a short timeout.
+    while True:
+      try:
+        future.result(timeout=5)
+      except futures.TimeoutError:
+        continue
+      except (futures.CancelledError, KeyboardInterrupt):
+        future.cancel()
+      break

@@ -207,6 +207,19 @@ class EntityInstanceTest(absltest.TestCase):
 
     self.assertFalse(self.init_validator.Validate(instance))
 
+  def testValidatePassthroughTranslationWithRequiredFieldMissing(self):
+    parsed = _Helper([
+        path.join(_TESTCASE_PATH, 'BAD',
+                  'bad_passthrough_translation_with_required_field_missing.yaml'
+                  )
+    ])
+    parsed = dict(parsed)
+    entity = dict(parsed[list(parsed)[0]])
+
+    instance = entity_instance.EntityInstance.FromYaml(entity)
+
+    self.assertFalse(self.init_validator.Validate(instance))
+
   def testValidateTranslationWithRequiredFieldCloudDeviceIdMissing(self):
     try:
       _Helper([
@@ -400,6 +413,21 @@ class EntityInstanceTest(absltest.TestCase):
     parsed = _Helper(
         # KW: this one is a entity_franken-type it definitely won't make sense
         [path.join(_TESTCASE_PATH, 'GOOD', 'good_links_increment.yaml')])
+    entity_instances = {}
+    parsed = dict(parsed)
+    for raw_entity in list(parsed):
+      entity_parsed = dict(parsed[raw_entity])
+      entity = entity_instance.EntityInstance.FromYaml(entity_parsed)
+      entity_instances[raw_entity] = entity
+
+    combination_validator = entity_instance.CombinationValidator(
+        self.config_universe, _INIT_CFG, entity_instances)
+    for _, instance in entity_instances.items():
+      self.assertTrue(combination_validator.Validate(instance))
+
+  def testValidateGoodLinkToPassthroughEntity(self):
+    parsed = _Helper(
+        [path.join(_TESTCASE_PATH, 'GOOD', 'good_links_passthrough.yaml')])
     entity_instances = {}
     parsed = dict(parsed)
     for raw_entity in list(parsed):

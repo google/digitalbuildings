@@ -739,12 +739,18 @@ literals:
 - broken_cable_alarm:
   - ACTIVE
   - INACTIVE
-- gas_leak_detection_alarm
+- gas_leak_detection_alarm:
+  - ACTIVE
+  - INACTIVE
 - ammonia_leak_detection_alarm:
   - ACTIVE
   - INACTIVE
-- water_leak_detection_alarm
-- fire_alarm
+- water_leak_detection_alarm:
+  - ACTIVE
+  - INACTIVE
+- fire_alarm:
+  - ACTIVE
+  - INACTIVE
 - emergency_release_status
 - position_status
 - condensing_water_valve_percentage_sensor
@@ -1039,4 +1045,20 @@ literals:
 - fivesecondrolling_rootmeansquare_zaxis_linearacceleration_sensor
 - local_air_temperature_sensor
 
+# New fields for ERV bypass
+- bypass_air_damper_command:
+  - OPEN
+  - CLOSED
+- bypass_air_damper_status:
+  - OPEN
+  - CLOSED
 
+## New fields for IoT Vibration devices
+- tenminutefixed_max_xaxis_linearvelocity_sensor
+- tenminutefixed_max_yaxis_linearvelocity_sensor
+- tenminutefixed_max_zaxis_linearvelocity_sensor
+- tenminutefixed_max_xaxis_frequency_sensor
+- tenminutefixed_max_yaxis_frequency_sensor
+- tenminutefixed_max_zaxis_frequency_sensor
+- signal_strength_percentage_sensor
+- dutycycle_percentage_sensor
