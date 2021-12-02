@@ -56,10 +56,19 @@ class TelemetryValidator(object):
     #  of two: warning and errors
     self._validation_errors = []
     self._validation_warnings = []
+    self._timer: threading.Timer = None
 
   def StartTimer(self):
     """Starts the validation timeout timer."""
-    threading.Timer(self.timeout, lambda: self.callback(self)).start()
+    if not self._timer:
+      self._timer = threading.Timer(self.timeout, lambda: self.callback(self))
+      self._timer.start()
+
+  def StopTimer(self):
+    """Stops the validation timeout timer."""
+    if self._timer:
+      self._timer.cancel()
+      self._timer = None
 
   def AllEntitiesValidated(self):
     """Returns true if a message was received for every entity."""

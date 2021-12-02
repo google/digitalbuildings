@@ -36,6 +36,15 @@ FACILITIES_TYPES_DOCUMENT = {
     }
 }
 
+GATEWAYS_TYPES_DOCUMENT = {
+    'PASSTHROUGH': {
+        'id': '',
+        'description':
+            'A device that provides translations for virtual entities.',
+        'allow_undefined_fields': True
+    }
+}
+
 HVAC_ANALYSIS_TYPES_DOCUMENT = {
     'CONTROL': {
         'id': '14773441339248869376',
@@ -55,12 +64,9 @@ HVAC_ANALYSIS_TYPES_DOCUMENT = {
 
 HVAC_ABSTRACT_TYPES_DOCUMENT = {
     'WDT': {
-        'id':
-            '12148045066631380992',
-        'description':
-            'Temperature differential across water.',
-        'is_abstract':
-            True,
+        'id': '12148045066631380992',
+        'description': 'Temperature differential across water.',
+        'is_abstract': True,
         'implements': ['MONITORING'],
         'uses': [
             'return_water_temperature_sensor',
@@ -82,12 +88,9 @@ HVAC_ABSTRACT_TYPES_DOCUMENT = {
 
 HVAC_CHWS_TYPES_DOCUMENT = {
     'CHWS': {
-        'id':
-            '5338602430047191040',
-        'description':
-            'Tag for chilled water systems.',
-        'is_abstract':
-            True,
+        'id': '5338602430047191040',
+        'description': 'Tag for chilled water systems.',
+        'is_abstract': True,
         'opt_uses': [
             'thermal_power_capacity',
             'differential_pressure_specification',
@@ -95,14 +98,17 @@ HVAC_CHWS_TYPES_DOCUMENT = {
         ]
     },
     'CHWS_WDT': {
-        'id':
-            '1917740281059344384',
+        'id': '1917740281059344384',
         'description':
             'Chilled water system with only basic delta-T monitoring.',
-        'is_canonical':
-            True,
+        'is_canonical': True,
         'implements': ['CHWS', 'WDT']
     },
+    'CHWS_WDT_GATEWAY': {
+        'description': 'A gateway with required fields.',
+        'allow_undefined_fields': True,
+        'implements': ['CHWS_WDT']
+    }
 }
 
 HVAC_GENERAL_TYPES_DOCUMENT = {
