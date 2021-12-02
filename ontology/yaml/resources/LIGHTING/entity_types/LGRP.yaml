@@ -52,6 +52,7 @@ LGRP_OS_LC_VADC:
   - VADC
 
 LGRP_ROS_LC_VADC:
+  id: "12913062167493738496"
   description: "Standard lighting fixture group control with scene- and dimming control, based on scene and room occupancy"
   is_canonical: true
   implements:
@@ -72,6 +73,7 @@ LGRP_OS_LC_VADC_RC:
   - RC
 
 LGRP_ROS_LC_VADC_RC:
+  id: "11298521701081415680"
   description: "Standard lighting fixture group control with scene- and dimming control and knx actuators, based on scene and room occupancy"
   is_canonical: true
   implements:
@@ -91,6 +93,7 @@ LGRP_OS_RC:
   - RC
 
 LGRP_ROS_RC:
+  id: "5741079760906223616"
   description: "Standard lighting fixture group control with knx actuators, controlled by wall mounted lighting switch or room occupancy sensor"
   is_canonical: true
   implements:
@@ -110,6 +113,7 @@ LGRP_OS_LSC_LC_VADC:
   - VADC
 
 LGRP_ROS_LSC_LC_VADC:
+  id: "3633395135296831488"
   description: "Standard lighting fixture group control with scene- and dimming control, based on scene and room occupancy and/or light switch status"
   is_canonical: true
   implements:
@@ -130,6 +134,7 @@ LGRP_OS_LC_VADCRGB:
   - VADCRGB
 
 LGRP_ROS_LC_VADCRGB:
+  id: "13370177529671843840"
   description: "Standard lighting fixture group control with scene- and dimming control, based on scene and room occupancy"
   is_canonical: true
   implements:
@@ -151,6 +156,7 @@ LGRP_OS_SC_LC_VADC_RC:
   - RC
 
 LGRP_ROS_SC_LC_VADC_RC:
+  id: "8301376149066350592"
   description: "Standard lighting fixture group control with scene control, dimming control and knx actuators,based on scene and room occupancy"
   is_canonical: true
   implements:
@@ -173,6 +179,7 @@ LGRP_OS_LC_VADCRGB_RC:
   - RC
 
 LGRP_ROS_LC_VADCRGB_RC:
+  id: "6686835682654027776"
   description: "Standard lighting fixture group control with scene control, dimming control and knx actuators,based on scene and room occupancy"
   is_canonical: true
   implements:
@@ -195,6 +202,7 @@ LGRP_OS_LSC_LC_VADC_RC:
   - RC
 
 LGRP_ROS_LSC_LC_VADC_RC:
+  id: "14964451797760999424"
   description: "Standard lighting fixture group control with scene control, dimming control and knx actuators,based on scene and room occupancy and/or light switch status"
   is_canonical: true
   implements:
