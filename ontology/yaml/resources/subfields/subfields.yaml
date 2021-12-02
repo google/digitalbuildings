@@ -20,6 +20,7 @@ aggregation:
   total: "Sum total of some set of values (e.g. total_request_heating_count)"
 aggregation_descriptor:
   fivesecondrolling: "Aggregation over advancing time intervals of five seconds."
+  tenminutefixed: "Aggregation over fixed time intervals of ten minutes."
 component:
   battery: "A device used to store power for use at a later time (e.g. in an emergency where grid power is unavailable)."
   cable: "A length of wire, sometimes shielded externally, used for some purpose (e.g. steel braided wire for tensile support, CAT5 cable for communications, etc.)."
@@ -78,6 +79,7 @@ descriptor:
   dehumidification: "Process of removing moisture from air."
   detection : "Process of identifying conditions."
   discharge: "Media leaving system to enter ambient conditioned space. Typically applies only to air-side systems."
+  dutycycle: "The fraction of one period in which a signal or system is active."
   east: "Cardinal direction; opposite of west."
   economizer: "Process or component responsible for the utilization of free cooling."
   electric: "Process or component driven by electricity (as to distinguish from natural gas, for instance)."
@@ -175,6 +177,7 @@ descriptor:
   secondary: "Associated with the secondary (distribution) loop of a produciton process."
   seismic: "Related to seismic activity (such as seismic gas shutoff valves)."
   side: "Position relative to an an object."
+  signal: "An electric current or electromagnetic field used to convey data from one device to another."  
   smoke: "Visible, suspended particles created during a fire."
   source: "The upstream source of conditioning (used specifically for heat exchangers)."
   south: "Cardinal direction; opposite of north"
@@ -184,6 +187,7 @@ descriptor:
   stage: "Discrete step (stage) of device activity (such as heating and cooling outputs)."
   startup: "Event of engaging a device or equipment"
   steam: "Water in gaseous form."
+  strength: "Relative quality and/or intensity."
   suction: "The production of a partial vacuum in order to force fluid into a vacant space (such as refrigerant in a compressor)."
   summer: "Method or process used during warmer weather (i.e. summer season)."
   supervisor: "A program that controls a device from a supervisory (i.e. remote or external) level."

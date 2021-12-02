@@ -36,6 +36,7 @@ energy:
 - joules: STANDARD
 - kilowatt_hours
 - megawatt_hours
+- therms
 flowrate:
 - cubic_meters_per_second: STANDARD
 - cubic_feet_per_minute
@@ -63,6 +64,7 @@ linearvelocity:
 - meters_per_second: STANDARD
 - feet_per_minute
 - miles_per_hour
+- millimeters_per_second
 percentage:
 - percent: STANDARD
 powerfactor:
@@ -74,6 +76,7 @@ power:
 - kilovolt_amperes
 - kilovolt_amperes_reactive
 - megawatts
+- therms_per_hour
 pressure:
 - pascals: STANDARD
 - bars
