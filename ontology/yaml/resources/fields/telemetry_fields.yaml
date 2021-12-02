@@ -1045,3 +1045,10 @@ literals:
 - fivesecondrolling_rootmeansquare_zaxis_linearacceleration_sensor
 - local_air_temperature_sensor
 
+# New fields for ERV bypass
+- bypass_air_damper_command:
+  - OPEN
+  - CLOSED
+- bypass_air_damper_status:
+  - OPEN
+  - CLOSED
