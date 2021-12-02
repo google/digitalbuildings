@@ -203,6 +203,7 @@ A typical construction looks like this:
 variable_air_volume_terminal:
   description: this is a really common HVAC device
   is_abstract: false // note: this defaults to false if unspecified
+  allow_undefined_fields: false // note: this defaults to false if unspecified
   is_canonical: false // defaults to false.  See this doc for detail
   implements:
   - some_parent_type
@@ -223,6 +224,10 @@ variable_air_volume_terminal:
     independent of the fields they contain.
 *   `is_abstract`: set true if this type cannot be assigned directly to an
     entity
+*   `allow_undefined_fields`: set true if entities of this type are allowed to
+    define translations for fields that are not listed as required or optional
+    on this type.
+    Other types cannot inherit from this type if this value is set to true.
 *   `is_canonical`: set true if this is a preferred type in your model
 *   `implements`: lists parents that this type will inherit fields and
     relationship constraints from
@@ -242,6 +247,8 @@ Validation enforces:
 *   there are no duplicate fields defined directly in `uses` or `opt_uses`
 *   all assigned fields, relationships and referenced types exists
 *   all type names are unique per-namespace
+*   `is_abstract` and `allow_undefined_fields` are not both true.
+*   none of the types in `implements` have `allow_undefined_fields` set to true.
 *   types have text descriptions (warning)
 
 ### Connections

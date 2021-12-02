@@ -478,6 +478,21 @@ class EntityTypeLibTest(absltest.TestCase):
             [findings_lib.MissingEntityTypeDescriptionWarning]))
     self.assertTrue(entity_type.IsValid())
 
+  def testIllegalAbstractPassthroughType(self):
+    entity_type = entity_type_lib.EntityType(
+        filepath='path/to/ANIMAL/mammal',
+        typename='dog',
+        description='canine animal',
+        is_abstract=True,
+        allow_undefined_fields=True)
+
+    errors = entity_type.GetFindings()
+    self.assertLen(errors, 1)
+    self.assertTrue(
+        entity_type.HasFindingTypes([findings_lib.AbstractPassthroughTypeError
+                                    ]))
+    self.assertFalse(entity_type.IsValid())
+
   def testInheritedFieldsSet(self):
     entity_type = entity_type_lib.EntityType(
         filepath='path/to/ANIMAL/mammal',
