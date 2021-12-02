@@ -341,6 +341,7 @@ LANDLORD:
   - EQUIPMENT
 
 DOAS:
+  id: "12427517832667856896"
   description: "Tag for dedicated outdoor air system. DOASs are devices which deliver outdoor air for ventilation 
     to a space or group of spaces, and are responsible for the exhaust of air from that space, but does not recirculate air;
     this distinguishes it from AHUs, which have the capability to recirculate the air as well."
