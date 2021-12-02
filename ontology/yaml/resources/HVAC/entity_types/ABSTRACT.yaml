@@ -4280,6 +4280,8 @@ PHRU:
   opt_uses:
   - exhaust_air_temperature_sensor
   - outside_air_temperature_sensor
+  - bypass_air_damper_command
+  - bypass_air_damper_status
 
 CHWDT2X:
   id: "17588854111866978304"
@@ -4292,3 +4294,20 @@ CHWDT2X:
   - chilled_supply_water_temperature_sensor_1
   - chilled_return_water_temperature_sensor_2
   - chilled_supply_water_temperature_sensor_2
+
+DX2DDC:
+  description: "Two compressor run control with dual setpoint control on discharge side"
+  is_abstract: true
+  opt_uses:
+  - cooling_percentage_command
+  - compressor_speed_percentage_command
+  uses:
+  - compressor_run_command_1
+  - compressor_run_command_2
+  - compressor_run_status_1
+  - compressor_run_status_2
+  - discharge_air_heating_temperature_setpoint
+  - discharge_air_cooling_temperature_setpoint
+  - discharge_air_temperature_sensor
+  implements:
+  - CONTROL
