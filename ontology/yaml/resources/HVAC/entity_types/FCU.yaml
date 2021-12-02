@@ -930,8 +930,9 @@ FCU_DFSS_DFVSC_DXRC_HTRC_RHC_RHDHC_RTC:
   - RHC
   - RHDHC
   - RTC
-  
+
 FCU_CHWRC_DFSS_RHDHC:
+  id: "4146805492817068032"
   description: "FCU with chilled water coil and return air relative humidity control."
   is_canonical: true
   implements:
@@ -941,6 +942,7 @@ FCU_CHWRC_DFSS_RHDHC:
   - RHDHC
 
 FCU_DFSS_DSPRTC_DX2DSPRTC:
+  id: "15218905176707432448"
   description: "FCU with two DX compressors and dual setpoint control."
   is_canonical: true
   implements:
