@@ -902,6 +902,21 @@ class InheritedFieldsSetError(ValidationError):
                          entity_type.file_context)
 
 
+class AbstractPassthroughTypeError(ValidationError):
+  """The entity type is declared as both abstract and allowing undefined fields.
+  """
+
+  def __init__(self, entity_type):
+    """Init.
+
+    Args:
+      entity_type: The invalid EntityType object.
+    """
+    super(AbstractPassthroughTypeError, self).__init__(
+        'Type "{0}" cannot be abstract while allowing undefined fields.'.format(
+            entity_type.typename), entity_type.file_context)
+
+
 # ---------------------------------------------------------------------------- #
 # Errors on the level of namespaces.
 # ---------------------------------------------------------------------------- #
@@ -912,6 +927,21 @@ class NonexistentParentError(ValidationError):
     super(NonexistentParentError, self).__init__(
         'Entity type "{0}" references unrecognized parent type "{1}".'.format(
             entity_type.typename, parent_name), entity_type.file_context)
+
+
+class PassthroughParentError(ValidationError):
+  """Entity type has a parent that allows undefined fields."""
+
+  def __init__(self, entity_type, parent_name):
+    """Init.
+
+    Args:
+      entity_type: The invalid EntityType object.
+      parent_name: Name of the parent entity type.
+    """
+    super(PassthroughParentError, self).__init__(
+        'Entity type "{0}" is not allowed to implement passthrough type "{1}".'
+        .format(entity_type.typename, parent_name), entity_type.file_context)
 
 
 class InheritanceCycleError(ValidationError):
