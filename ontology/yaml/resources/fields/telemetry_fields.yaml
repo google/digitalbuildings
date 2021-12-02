@@ -1039,13 +1039,4 @@ literals:
 - fivesecondrolling_rootmeansquare_zaxis_linearacceleration_sensor
 - local_air_temperature_sensor
 
-## New fields for IoT Vibration devices
-- tenminutefixed_max_xaxis_linearvelocity_sensor
-- tenminutefixed_max_yaxis_linearvelocity_sensor
-- tenminutefixed_max_zaxis_linearvelocity_sensor
-- tenminutefixed_max_xaxis_frequency_sensor
-- tenminutefixed_max_yaxis_frequency_sensor
-- tenminutefixed_max_zaxis_frequency_sensor
-- signal_strength_percentage_sensor
-- dutycycle_percentage_sensor
 
