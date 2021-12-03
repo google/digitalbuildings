@@ -4296,6 +4296,7 @@ CHWDT2X:
   - chilled_supply_water_temperature_sensor_2
 
 DX2DDC:
+  id: "6446737527519838208"
   description: "Two compressor run control with dual setpoint control on discharge side"
   is_abstract: true
   opt_uses:
