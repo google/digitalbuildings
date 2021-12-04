@@ -32,14 +32,11 @@ density:
 - grams_per_cubic_meter
 - micrograms_per_cubic_meter
 - milligrams_per_cubic_meter
-distance:
-- meters: STANDARD
-- feet
-- inches
 energy:
 - joules: STANDARD
 - kilowatt_hours
 - megawatt_hours
+- therms
 flowrate:
 - cubic_meters_per_second: STANDARD
 - cubic_feet_per_minute
@@ -54,8 +51,9 @@ humidity:
 - percent_relative_humidity: STANDARD
 illuminance:
 - lux: STANDARD
-length: distance
-level: distance
+level:
+- meters: STANDARD
+- feet
 linearacceleration:
 - meters_per_square_second: STANDARD
 - gravity
@@ -66,6 +64,7 @@ linearvelocity:
 - meters_per_second: STANDARD
 - feet_per_minute
 - miles_per_hour
+- millimeters_per_second
 percentage:
 - percent: STANDARD
 powerfactor:
@@ -77,6 +76,7 @@ power:
 - kilovolt_amperes
 - kilovolt_amperes_reactive
 - megawatts
+- therms_per_hour
 pressure:
 - pascals: STANDARD
 - bars

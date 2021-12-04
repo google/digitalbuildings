@@ -49,15 +49,6 @@ LDS_BC2X_LPA:
   - BC2X
   - LPA
   
-LDS_WLDS_BCM_WLS:
-  description: "Leak sensing device with broken cable status and leak location monitoring."
-  is_canonical: true
-  implements:
-  - LDS
-  - WLDS
-  - BCM
-  - WLS
-  
 # General Types
 LDS_GASDET:
   id: "17602426483400245248"
@@ -82,3 +73,5 @@ LDS_WLA:
   implements:
   - LDS
   - WLA
+
+

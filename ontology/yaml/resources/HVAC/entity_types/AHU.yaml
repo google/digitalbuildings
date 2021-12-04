@@ -3346,6 +3346,7 @@ AHU_DX2SC_ECON_SHM_SFSS_SFVSC_SSPC:
   - SSPC
 
 AHU_BSPC_DX4SC_ECONM_EFSS_EFVSC_SARC_SHC_SFSS2X_SFVSC_SSPC:
+  id: "15162610181365301248"
   description: "Multi-zone AHU with four-stage DX cooling and supply air humidity control."
   is_canonical: true
   implements:
@@ -3361,6 +3362,48 @@ AHU_BSPC_DX4SC_ECONM_EFSS_EFVSC_SARC_SHC_SFSS2X_SFVSC_SSPC:
   - SFVSC
   - SSPC
 
+AHU_DFSS_DFVSMC_DSP_ECONZ_HPZC:
+  id: "17039203851095244800"
+  description: "Single zone AHU with fan multi-speed control."
+  is_canonical: true
+  implements:
+  - AHU
+  - DFSS
+  - DFVSMC
+  - DSP
+  - ECONZ
+  - HPZC
+
+AHU_BSPC_ECON_EFSS_HTWHLSTC_HT2SC_SFSS_SFVSC:
+  id: "4140894518306144256"
+  description: "Multi zone AHU with heat recovery wheel."
+  is_canonical: true
+  implements:
+  - AHU
+  - BSPC
+  - ECON
+  - EFSS
+  - HTWHLSTC
+  - HT2SC
+  - SFSS
+  - SFVSC
+
+AHU_ECON_EFSS2X_EFVSC2X_EPC_HT4SC_HTWHLSTC_SFC_SFSS2X_SFVSC2X_SSPC:
+  id: "17030196651840503808"
+  description: "Multi zone AHU with heat recovery wheel."
+  is_canonical: true
+  implements:
+  - AHU
+  - ECON
+  - EFSS2X
+  - EFVSC2X
+  - EPC
+  - HT4SC
+  - HTWHLSTC
+  - SFC
+  - SFSS2X
+  - SFVSC2X
+  - SSPC
 
 ###################################
 ### Existing Non-standard Types ###

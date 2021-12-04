@@ -130,6 +130,44 @@ class NamespaceValidatorTest(absltest.TestCase):
         namespace_validate.HasFindingTypes(
             [findings_lib.NonexistentParentError]))
 
+  def testInheritingFromPassthroughIsError(self):
+    passthrough_type = entity_type_lib.EntityType(
+        filepath='path/to/ANIMAL/gateway',
+        typename='dog',
+        description='a gateway to dogs',
+        allow_undefined_fields=True)
+    entity_type = entity_type_lib.EntityType(
+        filepath='path/to/ANIMAL/mammal',
+        typename='dingo',
+        description='canine animal',
+        local_field_tuples=_F(['/woof']),
+        parents=['ANIMAL/dog'])
+
+    type_namespace = entity_type_lib.TypeNamespace(namespace='ANIMAL')
+    type_namespace.InsertType(passthrough_type)
+    type_namespace.InsertType(entity_type)
+    namespace_validate = (
+        namespace_validator.NamespaceValidator([type_namespace]))
+
+    self.assertTrue(
+        namespace_validate.HasFindingTypes(
+            [findings_lib.PassthroughParentError]))
+
+  def testGoodPassthroughType(self):
+    passthrough_type = entity_type_lib.EntityType(
+        filepath='path/to/ANIMAL/gateway',
+        typename='dog',
+        description='a gateway to dogs',
+        allow_undefined_fields=True,
+        local_field_tuples=_F(['/woof_1', '/woof_2', '/woof_3']))
+
+    type_namespace = entity_type_lib.TypeNamespace(namespace='ANIMAL')
+    type_namespace.InsertType(passthrough_type)
+    namespace_validate = (
+        namespace_validator.NamespaceValidator([type_namespace]))
+
+    self.assertTrue(namespace_validate.IsValid())
+
   def testGoodFieldIncrement(self):
     entity_type = entity_type_lib.EntityType(
         filepath='path/to/ANIMAL/mammal',

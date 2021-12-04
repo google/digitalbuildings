@@ -19,5 +19,4 @@ FD_STD:
   implements:
   - FD
   uses:
-  - damper_status  
-  
+  - damper_status
