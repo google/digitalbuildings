@@ -68,7 +68,7 @@ def _GetAllowedField(
     entity_type: the EntityType of the entity the field is deifned on
   """
   # Field could be qualified or unqualified in the config.  We want to know
-  if entity_type:
+  if entity_type and not entity_type.allow_undefined_fields:
     field_obj = entity_type.GetFieldFromConfigText(as_written_field_name)
     if field_obj:
       return entity_type_lib.BuildQualifiedField(field_obj)
@@ -278,7 +278,7 @@ class InstanceValidator(object):
                                               as_written_field_name,
                                               entity_type)
       if not qualified_field_name:
-        if entity_type:
+        if entity_type and not entity_type.allow_undefined_fields:
           print(f'Field {as_written_field_name} is not defined on the type')
         else:
           print(f'Field {as_written_field_name} is undefined in the universe')
@@ -427,11 +427,15 @@ class InstanceValidator(object):
 
     if entity.links is None:
       return True
-    is_valid = True
 
     entity_type = self.universe.GetEntityType(entity.namespace,
                                               entity.type_name)
+    if entity_type and entity_type.allow_undefined_fields and entity.links:
+      print('This entity is not allowed to be the target of links because it is'
+            ' an instance of a passthrough entity type.')
+      return False
 
+    is_valid = True
     found_fields = set()
     for link_inst in entity.links:
       for target_field, source_field in link_inst.field_map.items():
