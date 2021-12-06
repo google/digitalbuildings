@@ -233,12 +233,13 @@ class EntityTypeFolder(config_folder_lib.ConfigFolder):
     local_field_names = None
     opt_local_field_names = None
     is_abstract = False
+    allow_undefined_fields = False
     is_canonical = False
     uid = None
 
     expected_keys = set([
         'description', 'implements', 'uses', 'opt_uses', 'is_abstract', 'id',
-        'is_canonical'
+        'is_canonical', 'allow_undefined_fields'
     ])
 
     if 'description' in type_contents:
@@ -251,6 +252,8 @@ class EntityTypeFolder(config_folder_lib.ConfigFolder):
       opt_local_field_names = type_contents['opt_uses']
     if 'is_abstract' in type_contents:
       is_abstract = type_contents['is_abstract']
+    if 'allow_undefined_fields' in type_contents:
+      allow_undefined_fields = type_contents['allow_undefined_fields']
     if 'is_canonical' in type_contents:
       is_canonical = type_contents['is_canonical']
     if 'id' in type_contents:
@@ -270,6 +273,7 @@ class EntityTypeFolder(config_folder_lib.ConfigFolder):
         parents=parents,
         local_field_tuples=fq_lfn,
         is_abstract=is_abstract,
+        allow_undefined_fields=allow_undefined_fields,
         inherited_fields_expanded=False,
         is_canonical=is_canonical,
         uid=uid,
@@ -472,6 +476,9 @@ class EntityType(findings_lib.Findings):
     inherited_field_names: the set of inherited field names. Is always assigned
       to an empty set at init, to be expanded later.
     inherited_fields_expanded: boolean.
+    is_abstract: boolean indicating if this is an abstract type.
+    allow_undefined_fields: boolean indicating if entities of this type are
+      allowed to define fields that are not in this type.
     is_canonical: boolean indicating if this is a curated canonical type.
     uid: the database ID string of this type if uploaded
     namespace: a reference to the namespace object the entity belongs to
@@ -488,6 +495,7 @@ class EntityType(findings_lib.Findings):
                parents=None,
                local_field_tuples=None,
                is_abstract=False,
+               allow_undefined_fields=False,
                inherited_fields_expanded=False,
                is_canonical=False,
                uid=None,
@@ -503,6 +511,9 @@ class EntityType(findings_lib.Findings):
        parents: list of parent typename strings.
        local_field_tuples: list of OptWrapper tuples
        is_abstract: boolean indicating if this is an abstract type.
+       allow_undefined_fields: boolean indicating if entities of this type are
+         allowed to define fields that are not in this type. This flag is
+         mutually exclusive with is_abstract.
        inherited_fields_expanded: boolean. Should be false at init.
        is_canonical: boolean indicating if this is a curated canonical type.
        uid: the database ID string of this type if uploaded
@@ -539,6 +550,7 @@ class EntityType(findings_lib.Findings):
     self._has_optional_fields = None
 
     self.is_abstract = is_abstract
+    self.allow_undefined_fields = allow_undefined_fields
     self.is_canonical = is_canonical
     self.uid = uid
 
@@ -699,6 +711,10 @@ class EntityType(findings_lib.Findings):
       self.AddFinding(
           findings_lib.InvalidTypenameError(self.typename, self.file_context))
 
+    # Passthrough types cannot be inherited, so make sure they are not defined
+    # as abstract.
+    if self.allow_undefined_fields and self.is_abstract:
+      self.AddFinding(findings_lib.AbstractPassthroughTypeError(self))
     # Make sure the type description is non-empty.
     if not self.description:
       self.AddFinding(findings_lib.MissingEntityTypeDescriptionWarning(self))

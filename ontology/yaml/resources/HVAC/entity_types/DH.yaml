@@ -44,6 +44,14 @@ DH_SS_DSP_HTZC:
   - DSP
   - HTZC
 
+DH_SS_HTSC:
+  id: "18408298137815875584"
+  description: "Electric duct heater."
+  is_canonical: true
+  implements:
+  - DH
+  - SS
+  - HTSC
 
 ############################
 ### Need to Remap These  ###

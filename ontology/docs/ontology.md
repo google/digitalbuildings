@@ -356,6 +356,7 @@ Entities have:
 *   name
 *   description
 *   abstract flag
+*   allow undefined fields flag
 *   canonical flag
 *   list of zero or more parent types
 *   GUID (Coming soon)
@@ -421,6 +422,18 @@ the subunits.
 Designating a type as abstract indicates that it should only be used in
 inheritance and not directly associated with any entities. This is typically
 used for abstract units of functionality that are used to compose other types.
+
+#### Passthrough Types
+
+The `allow_undefined_fields` flag can be used to define a passthrough type,
+which does not directly correspond to a logical entity in the model. Instead, a
+passthrough entity provides translations that will be linked to one or more
+other entities. When `allow_undefined_fields` is true, entities of this type are
+allowed to define translations for fields that are not listed as required or
+optional on this type.
+
+Passthrough types cannot be inherited by other types, which makes the
+`allow_undefined_fields` flag mutually exclusive with the `is_abstract` flag.
 
 #### Canonical Types
 
