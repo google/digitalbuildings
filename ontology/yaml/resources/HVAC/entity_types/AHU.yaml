@@ -3448,7 +3448,7 @@ AHU_DFSS_DFVSC_DSP_DX4DC_ECONZ_EFSS_ZSPC:
   - ZSPC
 
 AHU_BSPC_DX4SC_EC2SC_ECON_EFSS2X_EFVSC2X_SARC_SFSS4X_SFVSC_SSPC:
-  description: "Multi-zone AHU."
+  description: "Multi-zone AHU with two evaporative precoolers and four-stage DX cooling."
   is_canonical: true
   implements:
   - AHU
