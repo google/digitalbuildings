@@ -3405,6 +3405,48 @@ AHU_ECON_EFSS2X_EFVSC2X_EPC_HT4SC_HTWHLSTC_SFC_SFSS2X_SFVSC2X_SSPC:
   - SFVSC2X
   - SSPC
 
+AHU_DFSS_DFVSC_DX2DC_ECOND_EFSS_EFVSC_HWDC_ZHM:
+  description: "Single zone AHU."
+  is_canonical: true
+  implements:
+  - AHU
+  - DFSS
+  - DFVSC
+  - DX2DC
+  - ECOND
+  - EFSS
+  - EFVSC
+  - HWDC
+  - ZHM
+
+AHU_BSPC_DX2SC_ECON_EFSS_FDPM_SARC_SFSS_SFVSC_SSPC:
+  description: "Two stage compressor AHU with differential pressure filter monitoring."
+  is_canonical: true
+  implements:
+  - AHU
+  - BSPC
+  - DX2SC
+  - ECON
+  - EFSS
+  - FDPM
+  - SARC
+  - SFSS
+  - SFVSC
+  - SSPC
+
+AHU_DFSS_DFVSC_DSP_DX4DC_ECONZ_EFSS_ZSPC:
+  description: "Single zone AHU."
+  is_canonical: true
+  implements:
+  - AHU
+  - DFSS
+  - DFVSC
+  - DSP
+  - DX4DC
+  - ECONZ
+  - EFSS
+  - ZSPC
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################

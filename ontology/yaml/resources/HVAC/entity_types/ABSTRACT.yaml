@@ -4312,3 +4312,21 @@ DX2DDC:
   - discharge_air_temperature_sensor
   implements:
   - CONTROL
+
+HPDDC:
+  description: "Dual setpoint discharge side heat pump control."
+  is_abstract: true
+  opt_uses:
+  - cooling_thermal_power_capacity
+  - heating_thermal_power_capacity
+  - compressor_speed_percentage_command
+  - cooling_percentage_command
+  uses:
+  - discharge_air_temperature_sensor
+  - discharge_air_cooling_temperature_setpoint
+  - discharge_air_heating_temperature_setpoint
+  - compressor_run_command
+  - compressor_run_status
+  - reversing_valve_command
+  implements:
+  - CONTROL

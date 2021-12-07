@@ -568,6 +568,16 @@ MAU_DF2XSS_DFVSC2X_DSP_HTZC:
   - DSP
   - HTZC
 
+MAU_DFSS_DFVSC_HPDDC_ZTM:
+  description: "Dual discharge setpoint control with zone monitoring for heat pump MAU."
+  is_canonical: true
+  implements:
+  - MAU
+  - DFSS
+  - DFVSC
+  - HPDDC
+  - ZTM
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
