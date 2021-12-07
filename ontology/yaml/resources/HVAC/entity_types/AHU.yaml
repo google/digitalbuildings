@@ -3447,6 +3447,22 @@ AHU_DFSS_DFVSC_DSP_DX4DC_ECONZ_EFSS_ZSPC:
   - EFSS
   - ZSPC
 
+AHU_BSPC_DX4SC_EC2SC_ECON_EFSS2X_EFVSC2X_SARC_SFSS4X_SFVSC_SSPC:
+  description: "Multi-zone AHU."
+  is_canonical: true
+  implements:
+  - AHU
+  - BSPC
+  - DX4SC
+  - EC2SC
+  - ECON
+  - EFSS2X
+  - EFVSC2X
+  - SARC
+  - SFSS4X
+  - SFVSC
+  - SSPC
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################

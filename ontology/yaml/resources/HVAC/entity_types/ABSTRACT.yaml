@@ -4330,3 +4330,18 @@ HPDDC:
   - reversing_valve_command
   implements:
   - CONTROL
+
+EC2SC:
+  description: "Evaporative cooler control on supply side."
+  is_abstract: true
+  opt_uses:
+  - evaporative_cooler_run_status_1
+  - evaporative_cooler_run_status_2
+  - cooling_percentage_sensor
+  uses:
+  - evaporative_cooler_run_command_1
+  - evaporative_cooler_run_command_2
+  - supply_air_temperature_sensor
+  - supply_air_temperature_setpoint
+  implements:
+  - CONTROL
