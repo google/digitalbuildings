@@ -91,6 +91,7 @@ SENSOR_LA3A:
     - fivesecondrolling_rootmeansquare_zaxis_linearacceleration_sensor
 
 SENSOR_LV3A:
+  id: "17687722197436596224"
   description: "Three-axis linear velocity (vibration) sensor with optional temperature and battery monitoring."
   is_canonical: true
   implements:
@@ -119,4 +120,3 @@ SENSOR_FDPM:
     - local_air_temperature_sensor
     - battery_charge_percentage_sensor
     - signal_strength_percentage_sensor
-
