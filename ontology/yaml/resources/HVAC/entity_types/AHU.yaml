@@ -3406,6 +3406,7 @@ AHU_ECON_EFSS2X_EFVSC2X_EPC_HT4SC_HTWHLSTC_SFC_SFSS2X_SFVSC2X_SSPC:
   - SSPC
 
 AHU_DFSS_DFVSC_DSP_DX3ZC_ECONZ_EFSS_EFVSC_HT2ZC:
+  id: "2802621741535330304"
   description: "Single-zone AHU with dual zone setpoint control, 3-stage cooling, 2-stage heating"
   is_canonical: true
   implements:
@@ -3420,6 +3421,7 @@ AHU_DFSS_DFVSC_DSP_DX3ZC_ECONZ_EFSS_EFVSC_HT2ZC:
   - HT2ZC
 
 AHU_DFSS_DFVSC_DSP_DX3ZC_ECONZ_EFSS_EFVSC:
+  id: "10656899491669475328"
   description: "Single-zone AHU with dual zone setpoint control and 3-stage cooling"
   is_canonical: true
   implements:
@@ -3433,6 +3435,7 @@ AHU_DFSS_DFVSC_DSP_DX3ZC_ECONZ_EFSS_EFVSC:
   - EFVSC
 
 AHU_DFSS_DSP_ECONZ_HP2ZC_HTZC:
+  id: "8364567281337892864"
   description: "Single zone AHU."
   is_canonical: true
   implements:
@@ -3444,6 +3447,7 @@ AHU_DFSS_DSP_ECONZ_HP2ZC_HTZC:
   - HTZC
 
 AHU_DX3SC_ECON_HTSC_SFSS_SFVSC_SHM_SSPC:
+  id: "15664902277305466880"
   description: "Multi zone AHU."
   is_canonical: true
   implements:
