@@ -4314,6 +4314,7 @@ DX2DDC:
   - CONTROL
 
 HWDT:
+  id: "6441530240450691072"
   description: "Temperature differential across heating water for heat recovery chiller."
   is_abstract: true
   implements:
