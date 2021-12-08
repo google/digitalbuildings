@@ -4312,3 +4312,13 @@ DX2DDC:
   - discharge_air_temperature_sensor
   implements:
   - CONTROL
+
+HWDT:
+  description: "Temperature differential across heating water for heat recovery chiller."
+  is_abstract: true
+  implements:
+  - MONITORING
+  uses:
+  - heating_return_water_temperature_sensor
+  - heating_supply_water_temperature_sensor
+  

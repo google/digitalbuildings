@@ -476,6 +476,15 @@ CH_SS_SWTC_DX4SWC_SWISOVPM_REFSM2X_REFPM2X:
   - REFSM2X
   - REFPM2X
 
+CH_SS_SCHWTC_HWDT:
+  description: "Simple air-cooled heat recovery chiller."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - SCHWTC
+  - HWDT
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
