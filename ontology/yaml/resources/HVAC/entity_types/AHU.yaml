@@ -3518,6 +3518,37 @@ AHU_BSPC_DX4SC_EC2SC_ECON_EFSS2X_EFVSC2X_SARC_SFSS4X_SFVSC_SSPC:
   - SFVSC
   - SSPC
 
+AHU_BSPC_CHW2XSC_HWSC_ECON_EFSS2X_EFVSC2X_SFSS2X_SFVSC2X_SHC:
+  description: "Multi-zone AHU with chilled and heating water coils and supply air humidity control."
+  is_canonical: true
+  implements:
+  - AHU
+  - BSPC
+  - CHW2XSC
+  - HWSC
+  - ECON
+  - EFSS2X
+  - EFVSC2X
+  - SFSS2X
+  - SFVSC2X
+  - SHC
+
+AHU_BSPC_CHWZC_DFSS_DFVSC_DSP_ECONZ_EFSS_EFVSC_FDPM_SSPC:
+  description: "Single zone AHU with chilled water coils."
+  is_canonical: true
+  implements:
+  - AHU
+  - BSPC
+  - CHWZC
+  - DFSS
+  - DFVSC
+  - DSP
+  - ECONZ
+  - EFSS
+  - EFVSC
+  - FDPM
+  - SSPC
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
