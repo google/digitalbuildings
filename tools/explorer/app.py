@@ -101,7 +101,7 @@ def _GetTypesForFieldList(ontology):
   match_selection = input('Would you like to see all matches?(y/n):\n')
   if match_selection == 'y':
     for i, match in entity_type_match_dict.items():
-      print(f'{i+1}. {entity_type_match_dict[i]}')
+      print(f'{i+1}. {match}')
   print('Would you like to see field comparisons for any of these matches?')
   visualize = input('(y/n): ')
   if visualize == 'y':
