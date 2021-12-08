@@ -296,14 +296,14 @@ class OntologyWrapper(object):
     return_string = ''
     return_string += colored('MATCH SCORE: ', 'yellow')
     return_string += str(match.GetMatchScore()) + '\n'
-    return_string += colored(f'MATCHED TYPE: ', 'yellow')
+    return_string += colored('MATCHED TYPE: ', 'yellow')
     return_string += str(match.GetEntityType().typename) + '\n'
     return_string += '\n'
-    return_string += "".join(
+    return_string += ''.join(
         colored(field.ljust(col_width), 'yellow')
         for field in ['ACTUAL FIELDS', 'TYPE FIELDS', 'OPTIONALITY'])
     return_string += '\n'
-    return_string += "".join(
+    return_string += ''.join(
         field.ljust(col_width) for field in ['='*(col_width-padding)]*3)
     return_string += '\n'
     for row in final_matrix:
@@ -314,10 +314,10 @@ class OntologyWrapper(object):
       elif row[2] == '':
         continue
       if row[0] != '' and row[1] != '':
-        return_string += "".join(
+        return_string += ''.join(
             colored(field.ljust(col_width), 'green') for field in row)
       else:
-        return_string += "".join(field.ljust(col_width) for field in row)
+        return_string += ''.join(field.ljust(col_width) for field in row)
       return_string += '\n'
     return_string += '\n'
 
