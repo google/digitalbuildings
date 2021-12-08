@@ -40,11 +40,11 @@ class SubfieldLibTest(absltest.TestCase):
             subfield_lib.Subfield('two',
                                   subfield_lib.SubfieldCategory.POINT_TYPE),
             context))
-    subfield = subfield_lib.Subfield(
+    subfield_one = subfield_lib.Subfield(
         'one', subfield_lib.SubfieldCategory.POINT_TYPE, 'thing')
-    subfield.AddFinding(
+    subfield_one.AddFinding(
         findings_lib.MissingSubfieldDescriptionWarning('one', context))
-    namespace.InsertSubfield(subfield)
+    namespace.InsertSubfield(subfield_one)
 
     subfields_universe = subfield_lib.SubfieldUniverse([folder])
 

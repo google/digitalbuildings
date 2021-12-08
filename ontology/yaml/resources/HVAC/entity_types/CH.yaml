@@ -476,6 +476,16 @@ CH_SS_SWTC_DX4SWC_SWISOVPM_REFSM2X_REFPM2X:
   - REFSM2X
   - REFPM2X
 
+CH_SS_SCHWTC_HWDT:
+  id: "18403090850746728448"
+  description: "Simple air-cooled heat recovery chiller."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - SCHWTC
+  - HWDT
+
 CH_SS_SCHWTC_CHDX2SC_REFSM2X_REFPM2X_CWDT:
   description: "Two stage chiller with refrigerant monitoring"
   is_canonical: true
