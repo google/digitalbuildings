@@ -694,6 +694,65 @@ literals:
   - PRESENT
   - ABSENT
 
+# Added for TPKD day2
+- pump_speed_frequency_setpoint
+- condensing_supply_water_isolation_valve_mode:
+  - MANUAL
+  - AUTO
+- condensing_return_water_isolation_valve_mode:
+  - MANUAL
+  - AUTO
+- chilled_supply_water_isolation_valve_mode:
+  - MANUAL
+  - AUTO
+- chilled_return_water_isolation_valve_mode:
+  - MANUAL
+  - AUTO
+- oil_heater_status:
+  - ON
+  - OFF
+- inhibit_start_time_status
+- limit_percentage_capacity
+- total_compressor_count
+- compressor_run_time_sensor
+- guidevane_position_percentage_sensor
+- oil_temperature_sensor
+- oil_pump_differential_pressure_sensor
+- exhaust_gas_compressor_temperature_sensor
+- bearing_temperature_sensor
+- winding_temperature_sensor
+- start_mode:
+  - OFF
+  - ON
+- compressor_temperature_setpoint
+- compressor_percentage_setpoint
+- compressor_power_sensor
+- refrigerant_open_percentage_sensor
+- standby_compressor_status
+- pump_speed_mode
+- run_time_sensor
+- high_compressor_pressure_alarm:
+  - ACTIVE
+  - INACTIVE
+- low_compressor_pressure_alarm:
+  - ACTIVE
+  - INACTIVE
+- compressor_current_alarm:
+  - ACTIVE
+  - INACTIVE
+- compressor_run_time_alarm:
+  - ACTIVE
+  - INACTIVE
+- water_high_level_alarm:
+  - ACTIVE
+  - INACTIVE
+- water_overflow_level_alarm:
+  - ACTIVE
+  - INACTIVE
+- water_low_level_alarm:
+  - ACTIVE
+  - INACTIVE
+
 # New alarms using alarm as a point type, and existing alarms moved here
 # TODO (tsodorff): change these to ALARM/NORMAL after determining how this can be done safely to existing translations. 
 - fabric_protection_alarm:
