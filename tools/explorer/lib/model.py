@@ -148,8 +148,8 @@ class Match(object):
     Args:
       field_list: a list of StandardField objects
       entity_type: an entity type which implements a subset of field_list
-      match_score: the closeness of a match between field_list and entity type
-      as an integer.
+      match_score: the closeness of a match between field_list and entity type,
+      integer.
     """
     super().__init__()
     self._field_list = field_list

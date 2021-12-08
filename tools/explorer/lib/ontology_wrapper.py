@@ -211,7 +211,7 @@ class OntologyWrapper(object):
     fields.
 
     Args:
-      field_list: A list of StandardField objects to match to an entity
+      field_list: A list of StandardField objects to match to an entity.
       general_type: A string indicating a general type name to filter return
         results.
       return_size: An int for the length of the return list of matches.
@@ -246,17 +246,21 @@ class OntologyWrapper(object):
     return match_list_sorted
 
   def PrintFieldSetComparison(self, match: Match)-> str:
-    """Prints intersection and differences in sets between a set of fields
-    belonging to an entity type and concrete entity. This method will be called
+    """creates a text representation of field set relations for a given match.
+
+    Takes the intersection and differences in sets between a set of fields
+    belonging to an entity type and concrete entity to create a big string
+    representation of matching fields within a match. This method will be called
     by app.py when a user wants to visualize the field relationships between a
-    list of fields and an entity type.
+    list of fields and an entity type within a match.
 
     Args:
-      match: An instance of Match class for which a field set comparison wants
+      match: An instance of Match class for which a field set relation wants
       to be visualized.
     Returns:
-      A string representing the field set comparison
+      A string to visualize a field set relation
     """
+    final_matrix = []
     concrete_field_set = set(match.GetFieldList())
 
     canonical_field_dict = {}
@@ -272,20 +276,50 @@ class OntologyWrapper(object):
 
     standard_canonical_field_set = set(canonical_field_dict.keys())
 
-    intersection = standard_canonical_field_set.intersection(concrete_field_set)
     only_concrete = concrete_field_set.difference(standard_canonical_field_set)
-    only_canonical = standard_canonical_field_set.difference(concrete_field_set)
-
-    return_string = '\n' + colored(str(match), 'green') + '\n'
-    return_string += colored('\nUNMATCHED CONCRETE FIELDS:\n', 'yellow')
     for field in only_concrete:
-      return_string = return_string + str(field) + '\n'
-    return_string += colored('\nMATCHED FIELDS:\n', 'yellow')
+      final_matrix.append([str(field), '', ''])
+
+    intersection = standard_canonical_field_set.intersection(concrete_field_set)
     for field in intersection:
-      return_string = return_string + str(canonical_field_dict[field]) + '\n'
-    return_string += colored('\nUNMATCHED CANONICAL FIELDS:\n', 'yellow')
+      final_matrix.append(
+          [str(field), str(field), canonical_field_dict[field].IsOptional()])
+
+    only_canonical = standard_canonical_field_set.difference(concrete_field_set)
     for field in only_canonical:
-      return_string = return_string + str(canonical_field_dict[field]) + '\n'
+      final_matrix.append(
+          ['', str(field), canonical_field_dict[field].IsOptional()])
+
+    padding = 3
+    all_fields = list(intersection) + list(only_concrete) + list(only_canonical)
+    col_width = max(len(str(field)) for field in all_fields) + padding
+    return_string = ''
+    return_string += colored('MATCH SCORE: ', 'yellow')
+    return_string += str(match.GetMatchScore()) + '\n'
+    return_string += colored(f'MATCHED TYPE: ', 'yellow')
+    return_string += str(match.GetEntityType().typename) + '\n'
+    return_string += '\n'
+    return_string += "".join(
+        colored(field.ljust(col_width), 'yellow')
+        for field in ['ACTUAL FIELDS', 'TYPE FIELDS', 'OPTIONALITY'])
+    return_string += '\n'
+    return_string += "".join(
+        field.ljust(col_width) for field in ['='*(col_width-padding)]*3)
+    return_string += '\n'
+    for row in final_matrix:
+      if not row[2]:
+        row[2] = 'Required'
+      elif row[2]:
+        row[2] = 'Optional'
+      elif row[2] == '':
+        continue
+      if row[0] != '' and row[1] != '':
+        return_string += "".join(
+            colored(field.ljust(col_width), 'green') for field in row)
+      else:
+        return_string += "".join(field.ljust(col_width) for field in row)
+      return_string += '\n'
+    return_string += '\n'
 
     return return_string
 
