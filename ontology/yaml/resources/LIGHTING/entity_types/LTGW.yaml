@@ -15,7 +15,7 @@
 # Canonical types for Lighting Gateways
 
 
-LTGW_DFRT_ZLC_LFA:
+LTGW_LSC_RC_DC_DFRT_ZLC_LFA:
   description: "variant lighting control gateway with zone control, dimmer fade and fault alarm."
   is_canonical: true
   implements:

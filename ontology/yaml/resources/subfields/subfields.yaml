@@ -224,7 +224,7 @@ measurement:
   current: "Flow of electric charge."
   currentratio: "The ratio of primary amps divided by secondary amps."
   density: "Amount of mass contained in a unit volume."
-  distance: "Linear measurement."
+  distance: "Length of measurement between two things."
   energy: " The quantitative property that must be transferred to an object to perform work (default electrical unless otherwise modified)."
   flowrate: "Rate of fluid movement."
   frequency: "The rate of cycling within a process. Typically used to describe voltage (and amperage) oscillation within AC power distribution components."
