@@ -32,6 +32,10 @@ density:
 - grams_per_cubic_meter
 - micrograms_per_cubic_meter
 - milligrams_per_cubic_meter
+distance:
+- meters: STANDARD
+- feet
+- inches
 energy:
 - joules: STANDARD
 - kilowatt_hours
@@ -51,9 +55,8 @@ humidity:
 - percent_relative_humidity: STANDARD
 illuminance:
 - lux: STANDARD
-level:
-- meters: STANDARD
-- feet
+length: distance
+level: distance
 linearacceleration:
 - meters_per_square_second: STANDARD
 - gravity

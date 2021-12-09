@@ -222,9 +222,10 @@ class UnitNamespace(findings_lib.Findings):
   def InsertUnit(self, measurement_type, unit):
     """Inserts a unit into this namespace.
 
-    If the unit already exists in the namespace, adds a
+    If the unit already exists in the global namespace, adds a
     DuplicateUnitDefinitionError to the findings and the duplicate is not
-    inserted.
+    inserted. If the unit is being inserted into a namespace other than the
+    global namespace, an InvalidUnitNamespaceError will be added to findings.
 
     Args:
       measurement_type: Name of the measurement subfield.
@@ -235,6 +236,11 @@ class UnitNamespace(findings_lib.Findings):
           findings_lib.DuplicateUnitDefinitionError(
               self, unit, self._units_by_name[unit.name].file_context))
       return
+    # Assert namespace is global namespace otherwise add finding.
+    elif self.parent_namespace is not None:
+      self.AddFinding(
+          findings_lib.InvalidUnitNamespaceError(
+              self.namespace, unit.file_context))
     self._InsertEffectiveUnit(measurement_type, unit)
 
   def _InsertEffectiveUnit(self, measurement_type, unit):
