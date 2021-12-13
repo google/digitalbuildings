@@ -3405,6 +3405,61 @@ AHU_ECON_EFSS2X_EFVSC2X_EPC_HT4SC_HTWHLSTC_SFC_SFSS2X_SFVSC2X_SSPC:
   - SFVSC2X
   - SSPC
 
+AHU_DFSS_DFVSC_DSP_DX3ZC_ECONZ_EFSS_EFVSC_HT2ZC:
+  id: "2802621741535330304"
+  description: "Single-zone AHU with dual zone setpoint control, 3-stage cooling, 2-stage heating"
+  is_canonical: true
+  implements:
+  - AHU
+  - DFSS
+  - DFVSC
+  - DSP
+  - DX3ZC
+  - ECONZ
+  - EFSS
+  - EFVSC
+  - HT2ZC
+
+AHU_DFSS_DFVSC_DSP_DX3ZC_ECONZ_EFSS_EFVSC:
+  id: "10656899491669475328"
+  description: "Single-zone AHU with dual zone setpoint control and 3-stage cooling"
+  is_canonical: true
+  implements:
+  - AHU
+  - DFSS
+  - DFVSC
+  - DSP
+  - DX3ZC
+  - ECONZ
+  - EFSS
+  - EFVSC
+
+AHU_DFSS_DSP_ECONZ_HP2ZC_HTZC:
+  id: "8364567281337892864"
+  description: "Single zone AHU."
+  is_canonical: true
+  implements:
+  - AHU
+  - DFSS
+  - DSP
+  - ECONZ
+  - HP2ZC
+  - HTZC
+
+AHU_DX3SC_ECON_HTSC_SFSS_SFVSC_SHM_SSPC:
+  id: "15664902277305466880"
+  description: "Multi zone AHU."
+  is_canonical: true
+  implements:
+  - AHU
+  - DX3SC
+  - ECON
+  - HTSC
+  - SFSS
+  - SFVSC
+  - SHM
+  - SSPC
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
