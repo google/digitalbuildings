@@ -35,6 +35,7 @@ concentration:
 - parts_per_million
 - parts_per_billion
 - grams_per_kilogram # Can convert approximately using Avogadro
+- grams_of_water_per_kilogram
 current:
 - amperes: STANDARD
 - milliamperes
@@ -107,7 +108,6 @@ frequency:
 - percent_per_second
 humidity:
 - percent_relative_humidity: STANDARD
-- grams_of_water_per_kilogram_dry_air
 illuminance:
 - lux: STANDARD
 - foot_candles
@@ -222,22 +222,18 @@ specificenthalpy:
 - kilojoules_per_kilogram_dry_air
 - megajoules_per_kilogram_dry_air
 temperature:
-- kelvins: STANDARD
+- kelvin: STANDARD
 - degrees_celsius
 - degrees_fahrenheit
 temperaturechangerate:
-- kelvins_per_second: STANDARD
-- kelvins_per_minute
-- kelvins_per_hour
+- kelvin_per_second: STANDARD
+- kelvin_per_minute
+- kelvin_per_hour
 - degrees_celsius_per_hour
 - degrees_celsius_per_minute
 - degrees_fahrenheit_per_hour
 - degrees_fahrenheit_per_minute
-temperaturedifference:
-- delta_kelvin: STANDARD
-- delta_degrees_celsius
-- delta_degrees_fahrenheit
-temperatureintegral:
+timetemperature:
 - degree_days_kelvin: STANDARD
 - degree_days_celsius
 - degree_days_fahrenheit
