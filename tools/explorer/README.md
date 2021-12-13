@@ -13,9 +13,9 @@ To install the dependencies, please run `python setup.py install` from the follo
 
 ## Usage
 There are two main ways in which the ontology explorer can be used:
-1. Import explorer from explorer.lib and call Build()
+1. Import explorer_handler from explorer.lib and call Build()
   * This returns an OntologyWrapper object which can be used to execute query functions on the Digital Buildings Ontology. You may also pass to Build() a path to an ontology extension.
 2. The explorer may also be run as a stand-alone command-line interface. 
-  * Run `python app.py` to start the application.
-  * If you have extended the ontology by adding new types to your local ontology, run the following: `python app.py --modified-ontology-types=path/to/modified/ontology/types/folder`
+  * Run `python explorer.py` to start the application.
+  * If you have extended the ontology by adding new types to your local ontology, run the following: `python explorer.py --modified-ontology-types=path/to/modified/ontology/types/folder`
 

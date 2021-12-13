@@ -163,7 +163,7 @@ class OntologyWrapper(object):
       required_precision /= total_required_type_fields
       match_score = (total_precision + required_precision) / 2.0
     final_score = int((match_score + 1.0) * 50)
-    assert final_score in range(-1, 100), 'Match score is out of range'
+    assert final_score in range(0, 101), f'Score: {final_score} out of range'
     return final_score
 
   def _CreateMatch(self, field_list: List[StandardField],
