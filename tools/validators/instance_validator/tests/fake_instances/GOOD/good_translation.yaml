@@ -24,6 +24,6 @@ SDC_EXT-17:
         values:
           percent: "%"
 
-UK-LON-S2:
+UK-LON-S3:
   type: FACILITIES/BUILDING
-  id: FACILITIES/123456
+  id: FACILITIES/1234567

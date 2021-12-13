@@ -87,12 +87,21 @@ class HandlerTest(absltest.TestCase):
                                 'bad_missing_building.yaml')
       _RunValidation([input_file], use_simplified_universe=True)
 
+  def testValidateTranslationWithNoConfigID(self):
+    try:
+      input_file = os.path.join(_TESTCASE_PATH, 'GOOD',
+                                'good_translation_nobuilding.yaml')
+      with self.assertRaises(KeyError):
+        _RunValidation([input_file], use_simplified_universe=True)
+    except SyntaxError:
+      self.fail('ValidationHelper:Validate unexpectedly raised Exception')
+
   def testValidateMultipleInputFilesSuccess(self):
     try:
       input_file1 = os.path.join(_TESTCASE_PATH, 'GOOD',
                                  'good_building_type.yaml')
       input_file2 = os.path.join(_TESTCASE_PATH, 'GOOD',
-                                 'good_translation_nobuilding.yaml')
+                                 'good_translation.yaml')
       _RunValidation([input_file1, input_file2], use_simplified_universe=True)
     except SyntaxError:
       self.fail('ValidationHelper:Validate unexpectedly raised Exception')
