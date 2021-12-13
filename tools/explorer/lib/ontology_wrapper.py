@@ -105,7 +105,7 @@ class OntologyWrapper(object):
 
   def _CalculateMatchScore(self, concrete_fields: Set[StandardField],
                            canonical_fields: Set[EntityTypeField])-> int:
-    """Calculates a match's score.
+    """Calculates a match's score in [0, 100].
 
     The score of a match is determined by calculating the average of two
     f-scores. The first f-score is the measure of correctly matched required
@@ -122,7 +122,7 @@ class OntologyWrapper(object):
         Type defined in DBO.
 
     Returns:
-      A match's score as an integer.
+      A match's score as an integer in [0, 100].
     """
 
     required_canonical_fields = {
@@ -162,7 +162,9 @@ class OntologyWrapper(object):
       required_precision = matched_required_fields - unmatched_required_fields
       required_precision /= total_required_type_fields
       match_score = (total_precision + required_precision) / 2.0
-    return int((match_score + 1.0) * 50)
+    final_score = int((match_score + 1.0) * 50)
+    assert final_score in range(-1, 100), 'Match score is out of range'
+    return final_score
 
   def _CreateMatch(self, field_list: List[StandardField],
                    entity_type: EntityType) -> Match:
@@ -170,9 +172,9 @@ class OntologyWrapper(object):
     StandardField objects.
 
     calls _CalculateMatchWeight() on field_list and the set of fields belonging
-    to entity_type. The scoring function outputs a float signifying the
-    closeness of the match, and an instance of the Match class is created with
-    field_list, entity_type, and match_score as arguments.
+    to entity_type. The scoring function outputs aan integer in [0, 100]
+    signifying the closeness of the match, and an instance of the Match class is
+    created with field_list, entity_type, and match_score as arguments.
 
     Args:
       field_list: A list of EntityTypeField objects for a concrete entity.
@@ -206,9 +208,7 @@ class OntologyWrapper(object):
                                field_list: List[StandardField],
                                return_size: int = 0,
                                general_type: str = None) -> List[Match]:
-    """Get a list of Match objects containg information on a strength of a
-    match between all entity types defined in DBO and a list of concrete
-    fields.
+    """Get a list of Match objects for all entity types defined in DBO.
 
     Args:
       field_list: A list of StandardField objects to match to an entity.
@@ -251,8 +251,8 @@ class OntologyWrapper(object):
     Takes the intersection and differences in sets between a set of fields
     belonging to an entity type and concrete entity to create a big string
     representation of matching fields within a match. This method will be called
-    by app.py when a user wants to visualize the field relationships between a
-    list of fields and an entity type within a match.
+    by explorer.py when a user wants to visualize the field relationships
+    between a list of fields and an entity type within a match.
 
     Args:
       match: An instance of Match class for which a field set relation wants

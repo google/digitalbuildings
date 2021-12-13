@@ -19,10 +19,12 @@ import sys
 from termcolor import colored
 from typing import List
 
-from lib import explorer
+from lib import explorer_handler
 from lib import model
 from lib.model import StandardField
 from lib import arg_parser
+
+DEFAULT_MATCHED_TYPES_LIST_SIZE = 10
 
 def _InputFieldsManually(ontology) -> List[StandardField]:
   """Method to take individual field inputs from user and return as a list.
@@ -36,17 +38,20 @@ def _InputFieldsManually(ontology) -> List[StandardField]:
   standard_field_list = []
   field_number = input('Number of entity fields: ')
   for i in range(1, int(field_number)+1):
-    field_name = input(f'{i}. What is the field name?\nname: ')
+    field_name = input(f'Field name #{i}: ')
     standard_field = model.StandardField(
         standard_field_name=field_name,
         namespace_name=''
     )
     if ontology.IsFieldValid(standard_field):
       standard_field_list.append(standard_field)
+    else:
+      continue
   return standard_field_list
 
 def _InputFieldsFromCSV(ontology) -> List[StandardField]:
-  """Method to take batch field inputs from user and return as a list
+  """Method to take batch field inputs in the form of a comma separated list of
+  fields from user and return as a list
 
   Args:
     ontology: An instance of OntologyWrapper class.
@@ -67,7 +72,7 @@ def _InputFieldsFromCSV(ontology) -> List[StandardField]:
   return standard_field_list
 
 def _GetFieldsForTypeName(ontology):
-  """Prints a list of corresponding fields for an ontological entity type.
+  """Prints a list of corresponding fields for an ontology entity type.
 
   Args:
     ontology: An instance of the OntologyWrapper class.
@@ -80,7 +85,7 @@ def _GetFieldsForTypeName(ontology):
     print(colored(field, 'green'))
 
 def _GetTypesForFieldList(ontology):
-  """Prints a list of entity types matching a list of input fields
+  """Prints a list of entity types matching a list of input fields.
 
   Args:
     ontology: An instance of the OntologyWrapper class.
@@ -96,7 +101,7 @@ def _GetTypesForFieldList(ontology):
   for i, match in enumerate(ontology.GetEntityTypesFromFields(
       standard_field_list)):
     entity_type_match_dict[i] = match
-  for i in range(10):
+  for i in range(DEFAULT_MATCHED_TYPES_LIST_SIZE):
     print(colored(f'{i+1}. {entity_type_match_dict[i]}', 'green'))
   match_selection = input('Would you like to see all matches?(y/n):\n')
   if match_selection == 'y':
@@ -145,7 +150,7 @@ def main(parsed_args):
   print(figlet_out)
   print('Starting DBO explorer...')
 
-  my_ontology = explorer.Build(parsed_args.modified_types_filepath)
+  my_ontology = explorer_handler.Build(parsed_args.modified_types_filepath)
   done = False
   while not done:
     print(
