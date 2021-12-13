@@ -74,6 +74,7 @@ energy:
 - megajoules
 - megawatt_hours
 - therms
+<<<<<<< HEAD
 - ton_hours
 - watt_hours
 energydensity:
@@ -82,6 +83,8 @@ entropy:
 - joules_per_kelvin: STANDARD
 - kilojoules_per_kelvin
 - megajoules_per_kelvin
+=======
+>>>>>>> upstream/master
 flowrate:
 - cubic_meters_per_second: STANDARD
 - cubic_meters_per_minute
@@ -138,6 +141,7 @@ linearvelocity:
 - feet_per_minute
 - feet_per_second
 - miles_per_hour
+<<<<<<< HEAD
 luminance:
 - candelas_per_square_meter: STANDARD
 luminousflux:
@@ -168,6 +172,9 @@ massflow:
 obscuration:
 - percent_obscuration_per_meter: STANDARD
 - percent_obscuration_per_foot
+=======
+- millimeters_per_second
+>>>>>>> upstream/master
 percentage:
 - percent: STANDARD
 power:
@@ -176,6 +183,7 @@ power:
 - volt_amperes
 - kilovolt_amperes
 - megawatts
+<<<<<<< HEAD
 - milliwatts
 - tons_of_refrigeration
 - btus_per_hour
@@ -186,6 +194,9 @@ powerfactor:
 powerflux:
 - watts_per_square_meter: STANDARD
 - watts_per_square_foot
+=======
+- therms_per_hour
+>>>>>>> upstream/master
 pressure:
 - pascals: STANDARD
 - hectopascals

@@ -251,14 +251,17 @@ class Findings(object):
 class FindingsUniverse(Findings):
   """Base class for universes of ontology items.
 
-  Args:
-    folders: list of ConfigFolder objects parsed from field files.
   Attributes:
     folders: list of ConfigFolder objects parsed from field files.  Each
       universe corresponds to a particular type of ontology item.
   """
 
   def __init__(self, folders):
+    """Init.
+
+    Args:
+      folders: list of ConfigFolder objects parsed from field files.
+    """
     super(FindingsUniverse, self).__init__()
     self.folders = folders
     self._namespace_map = self._MakeNamespaceMap(
@@ -629,6 +632,21 @@ class DuplicateMeasurementAliasError(DuplicateDefinitionError):
                          alias.file_context, prev_context)
 
 
+class InvalidSubfieldNamespaceError(ValidationError):
+  """A subfield incorrectly defined in a namespace."""
+
+  def __init__(self, namespace, subfield):
+    """init.
+
+    Args:
+      namespace: The subfield's defined namespace.
+      subfield: instance of Subfield class which is incorrectly defined.
+    """
+    super(InvalidSubfieldNamespaceError, self).__init__(
+        'Subfield {0} cannot be defined in the namespace {1}'.format(
+            subfield.name, namespace), subfield.file_context)
+
+
 # ---------------------------------------------------------------------------- #
 # Errors relating to States.
 # ---------------------------------------------------------------------------- #
@@ -759,6 +777,21 @@ class InvalidUnitFormatError(ValidationError):
     super(InvalidUnitFormatError, self).__init__(
         'Unit "{0}" definition has an invalid format; expected only a single '
         'unit name and tag.'.format(str(key)), context)
+
+
+class InvalidUnitNamespaceError(ValidationError):
+  """A unit defined outside of global namespace."""
+
+  def __init__(self, namespace, context):
+    """Init.
+
+    Args:
+      namespace: Namespace string for incorrectly defined unit.
+      context: A FileContext Instance for incorrectly defined unit.
+    """
+    super(InvalidUnitNamespaceError, self).__init__(
+        'All units must be defined in global namespace instead of {0}.'.format(
+            namespace), context)
 
 
 class UnknownUnitTagError(ValidationError):
@@ -902,6 +935,21 @@ class InheritedFieldsSetError(ValidationError):
                          entity_type.file_context)
 
 
+class AbstractPassthroughTypeError(ValidationError):
+  """The entity type is declared as both abstract and allowing undefined fields.
+  """
+
+  def __init__(self, entity_type):
+    """Init.
+
+    Args:
+      entity_type: The invalid EntityType object.
+    """
+    super(AbstractPassthroughTypeError, self).__init__(
+        'Type "{0}" cannot be abstract while allowing undefined fields.'.format(
+            entity_type.typename), entity_type.file_context)
+
+
 # ---------------------------------------------------------------------------- #
 # Errors on the level of namespaces.
 # ---------------------------------------------------------------------------- #
@@ -912,6 +960,21 @@ class NonexistentParentError(ValidationError):
     super(NonexistentParentError, self).__init__(
         'Entity type "{0}" references unrecognized parent type "{1}".'.format(
             entity_type.typename, parent_name), entity_type.file_context)
+
+
+class PassthroughParentError(ValidationError):
+  """Entity type has a parent that allows undefined fields."""
+
+  def __init__(self, entity_type, parent_name):
+    """Init.
+
+    Args:
+      entity_type: The invalid EntityType object.
+      parent_name: Name of the parent entity type.
+    """
+    super(PassthroughParentError, self).__init__(
+        'Entity type "{0}" is not allowed to implement passthrough type "{1}".'
+        .format(entity_type.typename, parent_name), entity_type.file_context)
 
 
 class InheritanceCycleError(ValidationError):

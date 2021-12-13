@@ -146,6 +146,7 @@ class TelemetryHelper(object):
         entities, timeout, _TelemetryValidationCallback)
     validator.StartTimer()
     sub.Listen(validator.ValidateMessage)
+    validator.StopTimer()
 
 
 def _TelemetryValidationCallback(
