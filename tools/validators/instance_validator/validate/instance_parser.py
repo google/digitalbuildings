@@ -128,7 +128,7 @@ _IGNORE_PATTERN = re.compile(r'^(\W)*#|\n')
 # check adherence to more specific naming conventions
 # Note: As-written this will capture the metadata key below, so logic should
 # check for it first
-_ENTITY_INSTANCE_REGEX = '^[A-Z][A-Z0-9\\-]+:'
+_ENTITY_INSTANCE_REGEX = '^[a-zA-Z][a-zA-Z0-9\\-_]+:'
 _ENTITY_INSTANCE_PATTERN = re.compile(_ENTITY_INSTANCE_REGEX)
 
 # Exact key for the configuration metadata block
@@ -383,7 +383,6 @@ class InstanceParser():
     Raises:
       ValueError: if block contains a key that has already been found.
     """
-
     for key in block.keys():
       if key in self._validated_entities:
         raise ValueError('Duplicate key {key}')
