@@ -290,7 +290,7 @@ class OntologyWrapper(object):
 
     return final_matrix, all_fields
 
-  #TODO(b/210673114)Have this method return an object rather than a string.
+  #TODO(b/210673114): Have this method return an object rather than a string.
   def PrintFieldSetComparison(self, match: Match)-> str:
     """creates a text representation of field set relations for a given match.
 
