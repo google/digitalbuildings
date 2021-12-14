@@ -486,6 +486,18 @@ CH_SS_SCHWTC_HWDT:
   - SCHWTC
   - HWDT
 
+CH_SS_SCHWTC_CHDX2SC_REFSM2X_REFPM2X_CWDT:
+  description: "Two stage chiller with refrigerant monitoring"
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - SCHWTC
+  - CHDX2SC
+  - REFSM2X
+  - REFPM2X
+  - CWDT
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
