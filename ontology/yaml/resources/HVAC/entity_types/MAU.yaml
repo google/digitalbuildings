@@ -522,6 +522,7 @@ MAU_DFSS_DSP_FDPM_HT2ZC_OAFC:
   - OAFC
 
 MAU_DFSS_DFVSC_HTDC_ZTM:
+  id: "7815831814240468992"
   description: "Single zone heating make-up air unit."
   is_canonical: true
   implements:
@@ -532,6 +533,7 @@ MAU_DFSS_DFVSC_HTDC_ZTM:
   - ZTM
 
 MAU_DFSS_DFVSC_DX2DDC_HTDDC_OAFC_ZTM:
+  id: "15670109564374614016"
   description: "Single zone with dual discharge setpoint control for heating and cooling."
   is_canonical: true
   implements:
@@ -544,6 +546,7 @@ MAU_DFSS_DFVSC_DX2DDC_HTDDC_OAFC_ZTM:
   - ZTM
 
 MAU_DF2XSS_DFVSC2X_HP2ZC_HTZC_OAFC:
+  id: "7806824614985728000"
   description: "Single zone with dual zone setpoint control for heating and cooling."
   is_canonical: true
   implements:
@@ -555,6 +558,7 @@ MAU_DF2XSS_DFVSC2X_HP2ZC_HTZC_OAFC:
   - OAFC
 
 MAU_DF2XSS_DFVSC2X_DSP_HTZC:
+  id: "8743573337478791168"
   description: "Single zone with dual zone setpoint control."
   is_canonical: true
   implements:
@@ -563,6 +567,16 @@ MAU_DF2XSS_DFVSC2X_DSP_HTZC:
   - DFVSC2X
   - DSP
   - HTZC
+
+MAU_DFSS_DFVSC_HPDDC_ZTM:
+  description: "Dual discharge setpoint control with zone monitoring for heat pump MAU."
+  is_canonical: true
+  implements:
+  - MAU
+  - DFSS
+  - DFVSC
+  - HPDDC
+  - ZTM
 
 ###################################
 ### Existing Non-standard Types ###
