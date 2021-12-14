@@ -40,6 +40,22 @@ class UnitLibTest(absltest.TestCase):
 
     self.assertCountEqual(['degrees_celsius', 'kelvins'], units)
 
+  def testFindingAddedForInvalidNamespace(self):
+    folder = unit_lib.UnitFolder(_GOOD_PATH)
+    namespace = folder.local_namespace
+    namespace.parent_namespace = unit_lib.UnitNamespace('fake_parent')
+
+    namespace.InsertUnit('temperature', unit_lib.Unit('degrees_celsius', False))
+    unit_universe = unit_lib.UnitUniverse([folder])
+
+    findings_universe = findings_lib.FindingsUniverse([folder])
+    findings = findings_universe.GetFindings()
+
+    self.assertLen(findings, 1)
+    self.assertTrue(
+        unit_universe.HasFindingTypes([findings_lib.InvalidUnitNamespaceError]))
+    self.assertFalse(unit_universe.IsValid())
+
   def testUnitUniverseGetFindings(self):
     context = findings_lib.FileContext('{0}/file.yaml'.format(_GOOD_PATH))
     folder = unit_lib.UnitFolder(_GOOD_PATH)
