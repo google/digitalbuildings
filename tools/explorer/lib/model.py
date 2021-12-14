@@ -113,9 +113,8 @@ class EntityTypeField(StandardField):
 
   def __str__(self):
     standard_str = super().__str__()
-    if self._is_optional:
-      return f'{standard_str}_{self._increment}: optional'
-    return f'{standard_str}_{self._increment}: required'
+    optionality = 'optional' if self._is_optional else 'required'
+    return f'{standard_str}_{self._increment}: {optionality}'
 
   def GetIncrement(self) -> str:
     """Returns the EntityType Field's increment as a string."""

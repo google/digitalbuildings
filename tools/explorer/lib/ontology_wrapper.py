@@ -245,20 +245,16 @@ class OntologyWrapper(object):
       return match_list_sorted[:return_size]
     return match_list_sorted
 
-  def PrintFieldSetComparison(self, match: Match)-> str:
-    """creates a text representation of field set relations for a given match.
-
-    Takes the intersection and differences in sets between a set of fields
-    belonging to an entity type and concrete entity to create a big string
-    representation of matching fields within a match. This method will be called
-    by explorer.py when a user wants to visualize the field relationships
-    between a list of fields and an entity type within a match.
+  def _PopulateMatrix(self, match: Match):
+    """Creates a matrix defining field relationships within a match between a
+    concrete entity and a canonical type.
 
     Args:
-      match: An instance of Match class for which a field set relation wants
-      to be visualized.
+      match: A instance of Match class
+
     Returns:
-      A string to visualize a field set relation
+      final_matrix: a matrix concrete fields matching to canonical fields
+      all_fields: a list of fields for a concrete entity and canonical type
     """
     final_matrix = []
     concrete_field_set = set(match.GetFieldList())
@@ -290,8 +286,29 @@ class OntologyWrapper(object):
       final_matrix.append(
           ['', str(field), canonical_field_dict[field].IsOptional()])
 
-    padding = 3
     all_fields = list(intersection) + list(only_concrete) + list(only_canonical)
+
+    return final_matrix, all_fields
+
+  #TODO(b/210673114)Have this method return an object rather than a string.
+  def PrintFieldSetComparison(self, match: Match)-> str:
+    """creates a text representation of field set relations for a given match.
+
+    Takes the intersection and differences in sets between a set of fields
+    belonging to an entity type and concrete entity to create a big string
+    representation of matching fields within a match. This method will be called
+    by explorer.py when a user wants to visualize the field relationships
+    between a list of fields and an entity type within a match.
+
+    Args:
+      match: An instance of Match class for which a field set relation wants
+      to be visualized.
+    Returns:
+      A string to visualize a field set relation
+    """
+    final_matrix, all_fields = self._PopulateMatrix(match)
+
+    padding = 3
     col_width = max(len(str(field)) for field in all_fields) + padding
     return_string = ''
     return_string += colored('MATCH SCORE: ', 'yellow')
