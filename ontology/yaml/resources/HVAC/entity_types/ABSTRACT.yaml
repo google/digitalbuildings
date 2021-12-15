@@ -4341,6 +4341,7 @@ HWDT:
   - heating_supply_water_temperature_sensor
 
 HPDDC:
+  id: "5130419798932455424"
   description: "Dual setpoint discharge side heat pump control."
   is_abstract: true
   opt_uses:
@@ -4359,6 +4360,7 @@ HPDDC:
   - CONTROL
 
 EC2SC:
+  id: "9093587471018491904"
   description: "Evaporative cooler control on supply side."
   is_abstract: true
   opt_uses:
