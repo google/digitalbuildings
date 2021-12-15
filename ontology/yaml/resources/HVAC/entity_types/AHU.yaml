@@ -4528,3 +4528,13 @@ AHU_NON_CANONICAL_TYPE_3:
   - EFSS
   - RTM
   - ZHM
+
+AHU_BSPC_DX4SC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC:
+  description: "Non-Standard AHU with dehumidification and heating water coils on return duct."
+  is_canonical: false
+  implements:
+  - AHU_BSPC_DX4SC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC
+  - ZHHC
+  uses:
+  - heating_water_valve_percentage_command
+  - return_air_relative_humidity_sensor

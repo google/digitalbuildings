@@ -997,6 +997,7 @@ RHDHC:
   is_abstract: true
   opt_uses:
   - economizer_mode
+  - humidification_percentage_command
   uses:
   - return_air_relative_humidity_sensor
   - return_air_relative_humidity_setpoint
@@ -1009,6 +1010,8 @@ ZHDHC:
   id: "4475784869405786112"
   description: "Zone humidification/dehumidification control."
   is_abstract: true
+  opt_uses:
+  - humidification_percentage_command
   uses:
   - zone_air_relative_humidity_sensor
   - zone_air_relative_humidity_setpoint
@@ -1017,10 +1020,22 @@ ZHDHC:
   implements:
   - CONTROL
 
+ZHHC:
+  description: "Zone humidification control."
+  is_abstract: true
+  opt_uses:
+  - humidification_percentage_command
+  uses:
+  - humidification_run_command
+  - zone_air_relative_humidity_setpoint
+  - zone_air_relative_humidity_sensor
+
 SHC:
   id: "12474177807615787008"
   description: "Supply air relative humidity control."
   is_abstract: true
+  opt_uses:
+  - humidification_percentage_command
   uses:
   - dehumidification_run_command
   - humidification_run_command
@@ -3630,6 +3645,8 @@ DSPZDHC:
   id: "8195635016311504896"
   description: "Zone dual setpoint humidification/dehumidification control."
   is_abstract: true
+  opt_uses:
+  - humidification_percentage_command
   uses:
   - zone_air_relative_humidity_sensor
   - zone_air_dehumidification_relative_humidity_setpoint
