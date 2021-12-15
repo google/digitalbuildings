@@ -26,7 +26,7 @@ def main(parsed_args):
   print(figlet_out)
   print('Starting DBO explorer...')
 
-  my_ontology = explorer_handler.Build(parsed_args.modified_types_filepath)
+  ontology = explorer_handler.Build(parsed_args.modified_types_filepath)
   done = False
   while not done:
     print(
@@ -38,11 +38,11 @@ def main(parsed_args):
     )
     function_choice = input('Please select an option: ')
     if function_choice == '1':
-      parse_input.GetFieldsForTypeName(my_ontology)
+      parse_input.GetFieldsForTypeName(ontology)
     elif function_choice == '2':
-      parse_input.GetTypesForFieldList(my_ontology)
+      parse_input.GetTypesForFieldList(ontology)
     elif function_choice == '3':
-      parse_input.ValidateFieldName(my_ontology)
+      parse_input.ValidateFieldName(ontology)
     elif function_choice == 'q':
       print('bye bye')
       done = True

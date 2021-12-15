@@ -22,42 +22,22 @@ from lib.model import StandardField
 
 DEFAULT_MATCHED_TYPES_LIST_SIZE = 10
 
-def _InputFieldsManually(ontology) -> List[StandardField]:
-  """Method to take individual field inputs from user and return as a list.
+def _InputFieldsFromUser(ontology, manual: bool = False) -> List[StandardField]:
+  """Method to take in field inputs from the user
 
-  Args:
-    ontology: An instance of OntologyWrapper class.
+  stuff
 
-  Returns:
-    A list of StandardField objects.
   """
   standard_field_list = []
-  field_number = input('Number of entity fields: ')
-  for i in range(1, int(field_number)+1):
-    field_name = input(f'Field name #{i}: ')
-    standard_field = model.StandardField(
-        standard_field_name=field_name,
-        namespace_name=''
-    )
-    if ontology.IsFieldValid(standard_field):
-      standard_field_list.append(standard_field)
-    else:
-      continue
-  return standard_field_list
-
-def _InputFieldsFromCSV(ontology) -> List[StandardField]:
-  """Method to take batch field inputs in the form of a comma separated list of
-  fields from user and return as a list
-
-  Args:
-    ontology: An instance of OntologyWrapper class.
-
-  Returns:
-    A list of StandardField objects
-  """
-  standard_field_list = []
-  raw_fields = input('Paste your fields here: ')
-  raw_field_list = raw_fields.replace(' ', '').split(',')
+  if manual:
+    raw_field_list = []
+    field_number = input('Number of entity fields: ')
+    for i in range(1, int(field_number) + 1):
+      field_name = input(f'Field name #{i}: ')
+      raw_field_list.append(field_name)
+  else:
+    raw_fields = input('Paste your fields here: ')
+    raw_field_list = raw_fields.replace(' ', '').split(',')
   for field in raw_field_list:
     standard_field = StandardField(
         standard_field_name=field,
@@ -88,10 +68,10 @@ def GetTypesForFieldList(ontology):
   """
   print('1. Input fields one by one\n2. Paste comma-separated list of fields')
   input_decision = input('Input type: ')
+  manual_input = False
   if ast.literal_eval(input_decision) == 1:
-    standard_field_list = _InputFieldsManually(ontology)
-  elif ast.literal_eval(input_decision) == 2:
-    standard_field_list = _InputFieldsFromCSV(ontology)
+    manual_input = True
+  standard_field_list = _InputFieldsFromUser(ontology, manual_input)
 
   entity_type_match_dict = {}
   for i, match in enumerate(ontology.GetEntityTypesFromFields(
