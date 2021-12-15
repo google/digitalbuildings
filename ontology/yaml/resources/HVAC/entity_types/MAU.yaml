@@ -569,6 +569,7 @@ MAU_DF2XSS_DFVSC2X_DSP_HTZC:
   - HTZC
 
 MAU_DFSS_DFVSC_HPDDC_ZTM:
+  id: "16335375671830249472"
   description: "Dual discharge setpoint control with zone monitoring for heat pump MAU."
   is_canonical: true
   implements:
