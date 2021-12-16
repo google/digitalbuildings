@@ -23,9 +23,14 @@ from lib.model import StandardField
 DEFAULT_MATCHED_TYPES_LIST_SIZE = 10
 
 def _InputFieldsFromUser(ontology, manual: bool = False) -> List[StandardField]:
-  """Method to take in field inputs from the user
+  """Method to take in field inputs from the user.
 
-  stuff
+  Args:
+    ontology: Instance of OntologyWrapper class.
+    manual: boolean where users will input field names one by one if True.
+
+  Returns:
+    A list of StandardField objects corresponding to the input field names.
 
   """
   standard_field_list = []
