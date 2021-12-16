@@ -487,6 +487,7 @@ CH_SS_SCHWTC_HWDT:
   - HWDT
 
 CH_SS_SCHWTC_CHDX2SC_REFSM2X_REFPM2X_CWDT:
+  id: "13705273489445879808"
   description: "Two stage chiller with refrigerant monitoring"
   is_canonical: true
   implements:
