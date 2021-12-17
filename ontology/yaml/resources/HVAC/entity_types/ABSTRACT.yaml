@@ -1020,15 +1020,15 @@ ZHDHC:
   implements:
   - CONTROL
 
-ZHHC:
+RHHC:
   description: "Zone humidification control."
   is_abstract: true
   opt_uses:
   - humidification_percentage_command
   uses:
   - humidification_run_command
-  - zone_air_relative_humidity_setpoint
-  - zone_air_relative_humidity_sensor
+  - return_air_relative_humidity_setpoint
+  - return_air_relative_humidity_sensor
 
 SHC:
   id: "12474177807615787008"
