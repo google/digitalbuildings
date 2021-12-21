@@ -124,6 +124,7 @@ descriptor:
   lighting: "Illumination of a room"
   limit: "A boundary condition for a control (e.g. low limit)."
   line: "Refers to the incoming electrical feed (e.g. line current)."
+  load: "A weight or source of pressure borne by someone or something."
   local: "A definite spatial location involving only a subset of the larger surrounding area."
   loop: "Recirculating loop."
   low: "Level of control or measurement; below medium and high; opposite of high."
