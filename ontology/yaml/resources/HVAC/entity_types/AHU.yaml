@@ -3405,6 +3405,156 @@ AHU_ECON_EFSS2X_EFVSC2X_EPC_HT4SC_HTWHLSTC_SFC_SFSS2X_SFVSC2X_SSPC:
   - SFVSC2X
   - SSPC
 
+AHU_DFSS_DFVSC_DSP_DX3ZC_ECONZ_EFSS_EFVSC_HT2ZC:
+  id: "2802621741535330304"
+  description: "Single-zone AHU with dual zone setpoint control, 3-stage cooling, 2-stage heating"
+  is_canonical: true
+  implements:
+  - AHU
+  - DFSS
+  - DFVSC
+  - DSP
+  - DX3ZC
+  - ECONZ
+  - EFSS
+  - EFVSC
+  - HT2ZC
+
+AHU_DFSS_DFVSC_DSP_DX3ZC_ECONZ_EFSS_EFVSC:
+  id: "10656899491669475328"
+  description: "Single-zone AHU with dual zone setpoint control and 3-stage cooling"
+  is_canonical: true
+  implements:
+  - AHU
+  - DFSS
+  - DFVSC
+  - DSP
+  - DX3ZC
+  - ECONZ
+  - EFSS
+  - EFVSC
+
+AHU_DFSS_DSP_ECONZ_HP2ZC_HTZC:
+  id: "8364567281337892864"
+  description: "Single zone AHU."
+  is_canonical: true
+  implements:
+  - AHU
+  - DFSS
+  - DSP
+  - ECONZ
+  - HP2ZC
+  - HTZC
+
+AHU_DX3SC_ECON_HTSC_SFSS_SFVSC_SHM_SSPC:
+  id: "15664902277305466880"
+  description: "Multi zone AHU."
+  is_canonical: true
+  implements:
+  - AHU
+  - DX3SC
+  - ECON
+  - HTSC
+  - SFSS
+  - SFVSC
+  - SHM
+  - SSPC
+  
+AHU_DFSS_DFVSC_DX2DC_ECOND_EFSS_EFVSC_HWDC_ZHM:
+  id: "3869411903268716544"
+  description: "Single zone AHU."
+  is_canonical: true
+  implements:
+  - AHU
+  - DFSS
+  - DFVSC
+  - DX2DC
+  - ECOND
+  - EFSS
+  - EFVSC
+  - HWDC
+  - ZHM
+
+AHU_BSPC_DX2SC_ECON_EFSS_FDPM_SARC_SFSS_SFVSC_SSPC:
+  id: "1347396111941238784"
+  description: "Two stage compressor AHU with differential pressure filter monitoring."
+  is_canonical: true
+  implements:
+  - AHU
+  - BSPC
+  - DX2SC
+  - ECON
+  - EFSS
+  - FDPM
+  - SARC
+  - SFSS
+  - SFVSC
+  - SSPC
+
+AHU_DFSS_DFVSC_DSP_DX4DC_ECONZ_EFSS_ZSPC:
+  id: "14353791835787231232"
+  description: "Single zone AHU."
+  is_canonical: true
+  implements:
+  - AHU
+  - DFSS
+  - DFVSC
+  - DSP
+  - DX4DC
+  - ECONZ
+  - EFSS
+  - ZSPC
+
+AHU_BSPC_DX4SC_EC2SC_ECON_EFSS2X_EFVSC2X_SARC_SFSS4X_SFVSC_SSPC:
+  id: "18316959507873267712"
+  description: "Multi-zone AHU with two evaporative precoolers and four-stage DX cooling."
+  is_canonical: true
+  implements:
+  - AHU
+  - BSPC
+  - DX4SC
+  - EC2SC
+  - ECON
+  - EFSS2X
+  - EFVSC2X
+  - SARC
+  - SFSS4X
+  - SFVSC
+  - SSPC
+
+AHU_BSPC_CHW2XSC_HWSC_ECON_EFSS2X_EFVSC2X_SFSS2X_SFVSC2X_SHC:
+  id: "9832177809907253248"
+  description: "Multi-zone AHU with chilled and heating water coils and supply air humidity control."
+  is_canonical: true
+  implements:
+  - AHU
+  - BSPC
+  - CHW2XSC
+  - HWSC
+  - ECON
+  - EFSS2X
+  - EFVSC2X
+  - SFSS2X
+  - SFVSC2X
+  - SHC
+
+AHU_BSPC_CHWZC_DFSS_DFVSC_DSP_ECONZ_EFSS_EFVSC_FDPM_SSPC:
+  id: "13092783940123492352"
+  description: "Single zone AHU with chilled water coils."
+  is_canonical: true
+  implements:
+  - AHU
+  - BSPC
+  - CHWZC
+  - DFSS
+  - DFVSC
+  - DSP
+  - ECONZ
+  - EFSS
+  - EFVSC
+  - FDPM
+  - SSPC
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################

@@ -4312,3 +4312,48 @@ DX2DDC:
   - discharge_air_temperature_sensor
   implements:
   - CONTROL
+
+HWDT:
+  id: "6441530240450691072"
+  description: "Temperature differential across heating water for heat recovery chiller."
+  is_abstract: true
+  implements:
+  - MONITORING
+  uses:
+  - heating_return_water_temperature_sensor
+  - heating_supply_water_temperature_sensor
+
+HPDDC:
+  id: "5130419798932455424"
+  description: "Dual setpoint discharge side heat pump control."
+  is_abstract: true
+  opt_uses:
+  - cooling_thermal_power_capacity
+  - heating_thermal_power_capacity
+  - compressor_speed_percentage_command
+  - cooling_percentage_command
+  uses:
+  - discharge_air_temperature_sensor
+  - discharge_air_cooling_temperature_setpoint
+  - discharge_air_heating_temperature_setpoint
+  - compressor_run_command
+  - compressor_run_status
+  - reversing_valve_command
+  implements:
+  - CONTROL
+
+EC2SC:
+  id: "9093587471018491904"
+  description: "Evaporative cooler control on supply side."
+  is_abstract: true
+  opt_uses:
+  - evaporative_cooler_run_status_1
+  - evaporative_cooler_run_status_2
+  - cooling_percentage_sensor
+  uses:
+  - evaporative_cooler_run_command_1
+  - evaporative_cooler_run_command_2
+  - supply_air_temperature_sensor
+  - supply_air_temperature_setpoint
+  implements:
+  - CONTROL

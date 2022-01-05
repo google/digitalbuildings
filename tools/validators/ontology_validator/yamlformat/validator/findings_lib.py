@@ -251,14 +251,17 @@ class Findings(object):
 class FindingsUniverse(Findings):
   """Base class for universes of ontology items.
 
-  Args:
-    folders: list of ConfigFolder objects parsed from field files.
   Attributes:
     folders: list of ConfigFolder objects parsed from field files.  Each
       universe corresponds to a particular type of ontology item.
   """
 
   def __init__(self, folders):
+    """Init.
+
+    Args:
+      folders: list of ConfigFolder objects parsed from field files.
+    """
     super(FindingsUniverse, self).__init__()
     self.folders = folders
     self._namespace_map = self._MakeNamespaceMap(
@@ -629,6 +632,21 @@ class DuplicateMeasurementAliasError(DuplicateDefinitionError):
                          alias.file_context, prev_context)
 
 
+class InvalidSubfieldNamespaceError(ValidationError):
+  """A subfield incorrectly defined in a namespace."""
+
+  def __init__(self, namespace, subfield):
+    """init.
+
+    Args:
+      namespace: The subfield's defined namespace.
+      subfield: instance of Subfield class which is incorrectly defined.
+    """
+    super(InvalidSubfieldNamespaceError, self).__init__(
+        'Subfield {0} cannot be defined in the namespace {1}'.format(
+            subfield.name, namespace), subfield.file_context)
+
+
 # ---------------------------------------------------------------------------- #
 # Errors relating to States.
 # ---------------------------------------------------------------------------- #
@@ -759,6 +777,21 @@ class InvalidUnitFormatError(ValidationError):
     super(InvalidUnitFormatError, self).__init__(
         'Unit "{0}" definition has an invalid format; expected only a single '
         'unit name and tag.'.format(str(key)), context)
+
+
+class InvalidUnitNamespaceError(ValidationError):
+  """A unit defined outside of global namespace."""
+
+  def __init__(self, namespace, context):
+    """Init.
+
+    Args:
+      namespace: Namespace string for incorrectly defined unit.
+      context: A FileContext Instance for incorrectly defined unit.
+    """
+    super(InvalidUnitNamespaceError, self).__init__(
+        'All units must be defined in global namespace instead of {0}.'.format(
+            namespace), context)
 
 
 class UnknownUnitTagError(ValidationError):

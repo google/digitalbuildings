@@ -94,21 +94,26 @@ class SubfieldFolder(config_folder_lib.ConfigFolder):
 
   Attributes:
     local_namespace: object representing the contents of the local namespace
+    parent_namespace: object representing the contents of the global namespace
 
   Returns:
     An instance of the SubfieldFolder class.
   """
 
-  def __init__(self, folderpath):
+  def __init__(self, folderpath, parent_namespace=None):
     """Init.
 
     Args:
       folderpath: required string with full path to the subfield folder. Path
         should be relative to google3/ and have no leading or trailing /.
+      parent_namespace: object containing global namepsace information. When
+        working in the global namespace folder, this should be None.
     """
     super(SubfieldFolder, self).__init__(folderpath,
                                          base_lib.ComponentType.SUBFIELD)
-    self.local_namespace = SubfieldNamespace(self._namespace_name)
+    self.local_namespace = SubfieldNamespace(self._namespace_name,
+                                             parent_namespace)
+    self.parent_namespace = parent_namespace
 
   def AddSubfield(self, subfield):
     """Adds the subfield object to the namespace, if valid.
@@ -168,20 +173,24 @@ class SubfieldNamespace(findings_lib.Findings):
   Attributes:
     subfields: a dictionary of subfield strings to subfield objects defined in
       this namespace.
-    namespace: string name of this namespace
-
+    namespace: string name of this namespace.
+    parent_namespace: Instance of SubfieldNamespace indicating global namespace,
+      None if namespace is global namespace.
   Returns:
     An instance of the SubfieldNamespace class.
   """
 
-  def __init__(self, namespace):
+  def __init__(self, local_namespace, parent_namespace=None):
     """Init.
 
     Args:
-      namespace: required string representing the name of the namespace.
+      local_namespace: required string representing the name of the namespace.
+      parent_namespace: Instance of SubfieldNamespace indicating global
+        namespace, None if namespace is global namespace.
     """
     super(SubfieldNamespace, self).__init__()
-    self.namespace = namespace
+    self.namespace = local_namespace
+    self.parent_namespace = parent_namespace
     self.subfields = {}
     # maps lowered subfield name to literal one
     self._subfields_lower = {}
@@ -212,6 +221,14 @@ class SubfieldNamespace(findings_lib.Findings):
     """
     # TODO(berkoben): Handle detection of duplicates within a category
     # (Currently yaml load automatically suppresses these duplicates)
+
+    # Below logic tests if the namespace is global using implicit boolean logic.
+    if self.parent_namespace is not None:
+      if subfield.category != SubfieldCategory.MEASUREMENT:
+        self.AddFinding(
+            findings_lib.InvalidSubfieldNamespaceError(
+                self.namespace, subfield))
+
     old_subfield = self._PutIfAbsent(subfield)
     if old_subfield is not None:
       self.AddFinding(
