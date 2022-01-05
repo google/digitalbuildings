@@ -721,6 +721,7 @@ literals:
 - bearing_temperature_sensor
 - winding_temperature_sensor
 - compressor_temperature_setpoint
+- compressor_temperature_sensor
 - load_compressor_percentage_setpoint
 - compressor_power_sensor
 - refrigerant_valve_percentage_sensor
@@ -751,6 +752,10 @@ literals:
   - INACTIVE
 - fan_speed_frequency_setpoint
 - compressor_speed_frequency_setpoint
+- start_mode
+- reset_alarm
+- chilled_water_isolation_valve_mode
+- pump_speed_frequency_setpoint
 
 # New alarms using alarm as a point type, and existing alarms moved here
 # TODO (tsodorff): change these to ALARM/NORMAL after determining how this can be done safely to existing translations. 
