@@ -33,6 +33,7 @@ they are confusing feel free to post an issue in the project.
       - [Virtual Devices](#virtual-devices)
       - [Device Relationships](#device-relationships)
     + [Zones and Control Groups](#zones-and-control-groups)
+    + [Relationships](#relationships)
   * [Validation](#validation)
   * [Notes](#notes)
 
