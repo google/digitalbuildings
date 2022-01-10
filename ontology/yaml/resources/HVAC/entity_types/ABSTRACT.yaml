@@ -696,7 +696,6 @@ OA:
   - outside_air_dewpoint_temperature_sensor
   - outside_air_wetbulb_temperature_sensor
   - outside_air_specificenthalpy_sensor
-  - outside_air_pressure_sensor
   uses:
   - outside_air_temperature_sensor
   implements:
