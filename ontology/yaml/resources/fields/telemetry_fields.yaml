@@ -1063,3 +1063,6 @@ literals:
 - tenminutefixed_max_zaxis_frequency_sensor
 - signal_strength_percentage_sensor
 - dutycycle_percentage_sensor
+
+- min_zone_air_relative_humidity_sensor
+- min_zone_air_relative_humidity_setpoint
