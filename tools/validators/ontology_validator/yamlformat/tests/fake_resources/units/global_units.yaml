@@ -1,8 +1,0 @@
-current:
-- amperes: STANDARD
-- milliamperes
-
-temperature:
-- kelvins: STANDARD
-- degrees_celsius
-- degrees_fahrenheit

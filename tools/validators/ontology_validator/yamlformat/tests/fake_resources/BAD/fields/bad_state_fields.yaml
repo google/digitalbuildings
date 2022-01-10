@@ -1,8 +1,0 @@
-literals:
-  - field_one:
-    - Not-valid
-  - field_two:
-    - AUTO
-    - AUTO
-  - field_three:
-    - NOT_DEFINED
