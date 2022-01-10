@@ -40,6 +40,7 @@ energy:
 flowrate:
 - cubic_meters_per_second: STANDARD
 - cubic_feet_per_minute
+- cubic_feet_per_hour
 - cubic_meters_per_minute
 - cubic_meters_per_hour
 - gallons_per_minute
@@ -100,6 +101,7 @@ voltageratio:
 - no_units: STANDARD
 volume:
 - cubic_meters: STANDARD
+- cubic_feet
 - us_gallons
 - liters
 time:
