@@ -122,6 +122,7 @@ literals:
 - outside_air_specificenthalpy_sensor
 - outside_air_flowrate_sensor
 - outside_air_flowrate_setpoint
+- outside_air_pressure_sensor
 - outside_air_relative_humidity_sensor
 - outside_air_temperature_sensor
 - outside_air_wetbulb_temperature_sensor
@@ -1062,3 +1063,6 @@ literals:
 - tenminutefixed_max_zaxis_frequency_sensor
 - signal_strength_percentage_sensor
 - dutycycle_percentage_sensor
+
+- min_zone_air_relative_humidity_sensor
+- min_zone_air_relative_humidity_setpoint
