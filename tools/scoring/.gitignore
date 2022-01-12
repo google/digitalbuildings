@@ -1,7 +1,4 @@
 .pytype/
-build/
-dist/
 *.egg-info/
 __pycache__/
-files/proposed/*
-files/solution/*
+*.code-workspace
