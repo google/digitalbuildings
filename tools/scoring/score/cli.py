@@ -19,7 +19,7 @@ import argparse
 
 def parse_args() -> argparse.ArgumentParser:
 
-  parser = argparse.ArgumentParser(description='Score an instance')
+  parser = argparse.ArgumentParser(description='Score a configuration')
 
   parser.add_argument(
       '-ont',
@@ -45,7 +45,8 @@ def parse_args() -> argparse.ArgumentParser:
       metavar='proposed')
 
   parser.add_argument(
-      '-v', '--verbose', dest='verbose', required=False, default=False, help='',
-      metavar='Output additional details about the scoring process')
+      '-v', '--verbose', dest='verbose', required=False, default='False',
+      help='Output additional details about the scoring process',
+      metavar='verbose')
 
   return parser
