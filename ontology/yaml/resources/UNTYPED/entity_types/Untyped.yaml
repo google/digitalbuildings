@@ -12,20 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-########################
-### Canonical Types  ###
-########################
-
-DOAS_EFM_EFSS_EFVSC_OAFM_PHRU_SFSS_SFVSC:
-  id: "5257787225894027264"
-  description: "DOAS heat recovery with fan speed control."
-  is_canonical: true
-  implements:
-  - DOAS
-  - EFM
-  - EFSS
-  - EFVSC
-  - OAFM
-  - PHRU
-  - SFSS
-  - SFVSC
+TYPELESS:
+  id: "3898034389962981376"
+  description: "A device without a type."
