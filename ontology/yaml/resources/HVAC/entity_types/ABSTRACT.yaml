@@ -696,6 +696,7 @@ OA:
   - outside_air_dewpoint_temperature_sensor
   - outside_air_wetbulb_temperature_sensor
   - outside_air_specificenthalpy_sensor
+  - outside_air_pressure_sensor
   uses:
   - outside_air_temperature_sensor
   implements:
@@ -997,6 +998,7 @@ RHDHC:
   is_abstract: true
   opt_uses:
   - economizer_mode
+  - humidification_percentage_command
   uses:
   - return_air_relative_humidity_sensor
   - return_air_relative_humidity_setpoint
@@ -1009,6 +1011,8 @@ ZHDHC:
   id: "4475784869405786112"
   description: "Zone humidification/dehumidification control."
   is_abstract: true
+  opt_uses:
+  - humidification_percentage_command
   uses:
   - zone_air_relative_humidity_sensor
   - zone_air_relative_humidity_setpoint
@@ -1017,10 +1021,23 @@ ZHDHC:
   implements:
   - CONTROL
 
+RHHC:
+  id: "8019953948913827840"
+  description: "Zone humidification control."
+  is_abstract: true
+  opt_uses:
+  - humidification_percentage_command
+  uses:
+  - humidification_run_command
+  - return_air_relative_humidity_setpoint
+  - return_air_relative_humidity_sensor
+
 SHC:
   id: "12474177807615787008"
   description: "Supply air relative humidity control."
   is_abstract: true
+  opt_uses:
+  - humidification_percentage_command
   uses:
   - dehumidification_run_command
   - humidification_run_command
@@ -2333,6 +2350,7 @@ ECON:
   - supply_air_temperature_sensor
   - outside_air_flowrate_sensor
   - outside_air_flowrate_setpoint
+  - return_air_damper_percentage_command
   uses:
   - outside_air_temperature_sensor
   - economizer_mode
@@ -2355,6 +2373,7 @@ ECOND:
   - mixed_air_temperature_sensor
   - outside_air_damper_percentage_sensor
   - low_limit_outside_air_damper_percentage_command
+  - return_air_damper_percentage_command
   uses:
   - outside_air_temperature_sensor
   - economizer_mode
@@ -2374,6 +2393,7 @@ ECONM:
   - supply_air_temperature_sensor
   - outside_air_damper_percentage_sensor
   - low_limit_outside_air_damper_percentage_command
+  - return_air_damper_percentage_command
   uses:
   - outside_air_temperature_sensor
   - economizer_mode
@@ -2394,6 +2414,7 @@ ECONM2X:
   - supply_air_temperature_sensor
   - outside_air_damper_percentage_sensor
   - low_limit_outside_air_damper_percentage_command
+  - return_air_damper_percentage_command
   uses:
   - outside_air_temperature_sensor
   - economizer_mode
@@ -2416,6 +2437,7 @@ ECONMD:
   - outside_air_flowrate_setpoint
   - return_air_temperature_sensor
   - outside_air_damper_percentage_sensor
+  - return_air_damper_percentage_command
   uses:
   - outside_air_temperature_sensor
   - economizer_mode
@@ -2437,6 +2459,7 @@ ECONZ:
   - return_air_temperature_sensor
   - mixed_air_temperature_sensor
   - outside_air_damper_percentage_sensor
+  - return_air_damper_percentage_command
   uses:
   - outside_air_temperature_sensor
   - economizer_mode
@@ -3624,6 +3647,8 @@ DSPZDHC:
   id: "8195635016311504896"
   description: "Zone dual setpoint humidification/dehumidification control."
   is_abstract: true
+  opt_uses:
+  - humidification_percentage_command
   uses:
   - zone_air_relative_humidity_sensor
   - zone_air_dehumidification_relative_humidity_setpoint
@@ -3811,6 +3836,7 @@ DX2DSPRTC:
   - cooling_thermal_power_capacity
   - cooling_percentage_command
   - compressor_speed_percentage_command
+  - cooling_stage_run_count
   uses:
   - return_air_cooling_temperature_setpoint
   - return_air_heating_temperature_setpoint
@@ -4273,6 +4299,8 @@ PHRU:
   opt_uses:
   - exhaust_air_temperature_sensor
   - outside_air_temperature_sensor
+  - bypass_air_damper_command
+  - bypass_air_damper_status
 
 CHWDT2X:
   id: "17588854111866978304"
@@ -4321,5 +4349,66 @@ RACO2C:
   uses:
   - return_air_co2_concentration_sensor
   - return_air_co2_concentration_setpoint
+  
+DX2DDC:
+  id: "6446737527519838208"
+  description: "Two compressor run control with dual setpoint control on discharge side"
+  is_abstract: true
+  opt_uses:
+  - cooling_percentage_command
+  - compressor_speed_percentage_command
+  uses:
+  - compressor_run_command_1
+  - compressor_run_command_2
+  - compressor_run_status_1
+  - compressor_run_status_2
+  - discharge_air_heating_temperature_setpoint
+  - discharge_air_cooling_temperature_setpoint
+  - discharge_air_temperature_sensor
+  implements:
+  - CONTROL
+
+HWDT:
+  id: "6441530240450691072"
+  description: "Temperature differential across heating water for heat recovery chiller."
+  is_abstract: true
+  implements:
+  - MONITORING
+  uses:
+  - heating_return_water_temperature_sensor
+  - heating_supply_water_temperature_sensor
+
+HPDDC:
+  id: "5130419798932455424"
+  description: "Dual setpoint discharge side heat pump control."
+  is_abstract: true
+  opt_uses:
+  - cooling_thermal_power_capacity
+  - heating_thermal_power_capacity
+  - compressor_speed_percentage_command
+  - cooling_percentage_command
+  uses:
+  - discharge_air_temperature_sensor
+  - discharge_air_cooling_temperature_setpoint
+  - discharge_air_heating_temperature_setpoint
+  - compressor_run_command
+  - compressor_run_status
+  - reversing_valve_command
+  implements:
+  - CONTROL
+
+EC2SC:
+  id: "9093587471018491904"
+  description: "Evaporative cooler control on supply side."
+  is_abstract: true
+  opt_uses:
+  - evaporative_cooler_run_status_1
+  - evaporative_cooler_run_status_2
+  - cooling_percentage_sensor
+  uses:
+  - evaporative_cooler_run_command_1
+  - evaporative_cooler_run_command_2
+  - supply_air_temperature_sensor
+  - supply_air_temperature_setpoint
   implements:
   - CONTROL

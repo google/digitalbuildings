@@ -280,12 +280,12 @@ class ParseConfigLibTest(absltest.TestCase):
         self.assertIn('sensor', subfields_map)
         self.assertIn('status', subfields_map)
         self.assertIn('command', subfields_map)
+        self.assertIn('temperature', subfields_map)
       else:
         # check local namespace
         self.assertEqual(folder.local_namespace.namespace, 'GOOD')
         self.assertIn('zone', subfields_map)
         self.assertIn('air', subfields_map)
-        self.assertIn('temperature', subfields_map)
 
   def testParseSubfieldFoldersFromBadFile(self):
     bad_subfields = base_lib.PathParts(
@@ -361,13 +361,12 @@ class ParseConfigLibTest(absltest.TestCase):
     subfield_universe = subfield_lib.SubfieldUniverse(subfield_folders)
 
     unit_folders = parse.ParseUnitFoldersFromFiles(
-        [self.global_units_file, self.local_units_file],
+        [self.global_units_file],
         subfield_universe=subfield_universe)
-    self.assertLen(unit_folders, 2)
+    self.assertTrue(unit_folders)
     for folder in unit_folders:
       self.assertEmpty(folder.GetFindings())
-      current_units = folder.local_namespace.GetUnitsForMeasurement(
-          'current')
+      current_units = folder.local_namespace.GetUnitsForMeasurement('current')
       temperature_units = folder.local_namespace.GetUnitsForMeasurement(
           'temperature')
       if not folder.local_namespace.namespace:
@@ -376,9 +375,6 @@ class ParseConfigLibTest(absltest.TestCase):
                          unit_lib.Unit('amperes', True))
         self.assertEqual(current_units['milliamperes'],
                          unit_lib.Unit('milliamperes'))
-      else:
-        # local namespace
-        self.assertEqual(folder.local_namespace.namespace, 'GOOD')
         self.assertEqual(temperature_units['kelvins'],
                          unit_lib.Unit('kelvins', True))
         self.assertEqual(temperature_units['degrees_celsius'],

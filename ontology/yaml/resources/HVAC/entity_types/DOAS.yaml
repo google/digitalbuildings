@@ -12,18 +12,20 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-SDC_EXT-17:
-  type: HVAC/SDC_EXT
-  id: CDM/123456
-  cloud_device_id: "foobar"
-  translation:
-    shade_extent_percentage_command:
-      present_value: "points.shade_extent_percentage_command.present_value"
-      units:
-        key: "points.shade_extent_percentage_command.units"
-        values:
-          percent: "%"
+########################
+### Canonical Types  ###
+########################
 
-UK-LON-S3:
-  type: FACILITIES/BUILDING
-  id: FACILITIES/1234567
+DOAS_EFM_EFSS_EFVSC_OAFM_PHRU_SFSS_SFVSC:
+  id: "5257787225894027264"
+  description: "DOAS heat recovery with fan speed control."
+  is_canonical: true
+  implements:
+  - DOAS
+  - EFM
+  - EFSS
+  - EFVSC
+  - OAFM
+  - PHRU
+  - SFSS
+  - SFVSC

@@ -992,9 +992,28 @@ FCU_DFSS_CHWDC_DFVSC_ZTC:
   - filter_alarm
   - discharge_air_linearvelocity_sensor
   - schedule_run_command
+  
+FCU_CHWRC_DFSS_RHDHC:
+  id: "4146805492817068032"
+  description: "FCU with chilled water coil and return air relative humidity control."
+  is_canonical: true
+  implements:
+  - FCU
+  - CHWRC
+  - DFSS
+  - RHDHC
 
-
-
+FCU_DFSS_DSPRTC_DX2DSPRTC:
+  id: "15218905176707432448"
+  description: "FCU with two DX compressors and dual setpoint control."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - DSPRTC
+  - DX2DSPRTC
+  
+  
 ###################################
 ### Existing Non-standard Types ###
 ###################################

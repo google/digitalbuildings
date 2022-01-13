@@ -59,14 +59,16 @@ def _DedupFindings(findings):
 # ---------------------------------------------------------------------------- #
 class FileContext(object):
   """Wrapper class to store file-related information.
-
-  Args:
-    filepath: string. relative path to the file with the issue.
-    begin_line_number: optional int. Starting line number for the issue.
-    end_line_number: optional int. Ending line number for the issue.
   """
 
   def __init__(self, filepath, begin_line_number=None, end_line_number=None):
+    """Creates a FileContext.
+
+    Args:
+      filepath: string. relative path to the file with the issue.
+      begin_line_number: optional int. Starting line number for the issue.
+      end_line_number: optional int. Ending line number for the issue.
+    """
     self.begin_line_number = begin_line_number
     self.end_line_number = end_line_number
     self.raw_filepath = filepath
@@ -88,19 +90,6 @@ class FileContext(object):
 
 class Finding(object):
   """Virtual class for findings.
-
-  Args:
-    message: string. the message associated with the finding.
-    file_context: FileContext with file context info. Can be None.
-    type_rank: first sort rank based on top level subclass (warning or error)
-    category_rank: second sort rank based on the category of warning or error
-    inner_rank: third sort rank based on ordering within category
-    equality_key: object used to determine if this finding is a duplicate of
-      another one.  Provide the same object to all the findings that should be
-      considered equivalent.  If left blank, default object equality is used.
-    is_master: set true if this finding should be the retained instance in the
-      case of duplication.  Only one finding should be the master in a set.
-      Defaults to false.
   """
 
   def __init__(self,
@@ -111,6 +100,21 @@ class Finding(object):
                inner_rank: int = MAX_RANK,
                equality_key: str = None,
                is_master: bool = False):
+    """Creates a finding.
+
+    Args:
+      message: string. the message associated with the finding.
+      file_context: FileContext with file context info. Can be None.
+      type_rank: first sort rank based on top level subclass (warning or error)
+      category_rank: second sort rank based on the category of warning or error
+      inner_rank: third sort rank based on ordering within category
+      equality_key: object used to determine if this finding is a duplicate of
+        another one.  Provide the same object to all the findings that should be
+        considered equivalent.  If left blank, default object equality is used.
+      is_master: set true if this finding should be the retained instance in the
+        case of duplication.  Only one finding should be the master in a set.
+        Defaults to false.
+    """
     super(Finding, self).__init__()
 
     if not isinstance(message, str):
@@ -247,14 +251,17 @@ class Findings(object):
 class FindingsUniverse(Findings):
   """Base class for universes of ontology items.
 
-  Args:
-    folders: list of ConfigFolder objects parsed from field files.
   Attributes:
     folders: list of ConfigFolder objects parsed from field files.  Each
       universe corresponds to a particular type of ontology item.
   """
 
   def __init__(self, folders):
+    """Init.
+
+    Args:
+      folders: list of ConfigFolder objects parsed from field files.
+    """
     super(FindingsUniverse, self).__init__()
     self.folders = folders
     self._namespace_map = self._MakeNamespaceMap(
@@ -589,8 +596,8 @@ class MeasurementAliasIsAliasedError(ValidationError):
     """
     super(MeasurementAliasIsAliasedError, self).__init__(
         'Measurement subfield "{0}" is not allowed to be an alias of "{1}" '
-        'because that subfield is also an alias.'
-        .format(alias.alias_name, alias.base_name), alias.file_context)
+        'because that subfield is also an alias.'.format(
+            alias.alias_name, alias.base_name), alias.file_context)
 
 
 class UnrecognizedMeasurementAliasBaseError(ValidationError):
@@ -604,8 +611,9 @@ class UnrecognizedMeasurementAliasBaseError(ValidationError):
     """
     super(UnrecognizedMeasurementAliasBaseError, self).__init__(
         'The alias definition of measurement subfield "{0}" references '
-        'unrecognized subfield "{1}".'.format(
-            alias.alias_name, alias.base_name), alias.file_context)
+        'unrecognized subfield "{1}".'.format(alias.alias_name,
+                                              alias.base_name),
+        alias.file_context)
 
 
 class DuplicateMeasurementAliasError(DuplicateDefinitionError):
@@ -619,8 +627,24 @@ class DuplicateMeasurementAliasError(DuplicateDefinitionError):
       alias: The invalid MeasurementAlias object.
       prev_context: FileContext of the previous definition of the alias.
     """
-    super(DuplicateMeasurementAliasError, self).__init__('measurement alias',
-        namespace, alias.alias_name, alias.file_context, prev_context)
+    super(DuplicateMeasurementAliasError,
+          self).__init__('measurement alias', namespace, alias.alias_name,
+                         alias.file_context, prev_context)
+
+
+class InvalidSubfieldNamespaceError(ValidationError):
+  """A subfield incorrectly defined in a namespace."""
+
+  def __init__(self, namespace, subfield):
+    """init.
+
+    Args:
+      namespace: The subfield's defined namespace.
+      subfield: instance of Subfield class which is incorrectly defined.
+    """
+    super(InvalidSubfieldNamespaceError, self).__init__(
+        'Subfield {0} cannot be defined in the namespace {1}'.format(
+            subfield.name, namespace), subfield.file_context)
 
 
 # ---------------------------------------------------------------------------- #
@@ -753,6 +777,21 @@ class InvalidUnitFormatError(ValidationError):
     super(InvalidUnitFormatError, self).__init__(
         'Unit "{0}" definition has an invalid format; expected only a single '
         'unit name and tag.'.format(str(key)), context)
+
+
+class InvalidUnitNamespaceError(ValidationError):
+  """A unit defined outside of global namespace."""
+
+  def __init__(self, namespace, context):
+    """Init.
+
+    Args:
+      namespace: Namespace string for incorrectly defined unit.
+      context: A FileContext Instance for incorrectly defined unit.
+    """
+    super(InvalidUnitNamespaceError, self).__init__(
+        'All units must be defined in global namespace instead of {0}.'.format(
+            namespace), context)
 
 
 class UnknownUnitTagError(ValidationError):
@@ -896,6 +935,21 @@ class InheritedFieldsSetError(ValidationError):
                          entity_type.file_context)
 
 
+class AbstractPassthroughTypeError(ValidationError):
+  """The entity type is declared as both abstract and allowing undefined fields.
+  """
+
+  def __init__(self, entity_type):
+    """Init.
+
+    Args:
+      entity_type: The invalid EntityType object.
+    """
+    super(AbstractPassthroughTypeError, self).__init__(
+        'Type "{0}" cannot be abstract while allowing undefined fields.'.format(
+            entity_type.typename), entity_type.file_context)
+
+
 # ---------------------------------------------------------------------------- #
 # Errors on the level of namespaces.
 # ---------------------------------------------------------------------------- #
@@ -906,6 +960,21 @@ class NonexistentParentError(ValidationError):
     super(NonexistentParentError, self).__init__(
         'Entity type "{0}" references unrecognized parent type "{1}".'.format(
             entity_type.typename, parent_name), entity_type.file_context)
+
+
+class PassthroughParentError(ValidationError):
+  """Entity type has a parent that allows undefined fields."""
+
+  def __init__(self, entity_type, parent_name):
+    """Init.
+
+    Args:
+      entity_type: The invalid EntityType object.
+      parent_name: Name of the parent entity type.
+    """
+    super(PassthroughParentError, self).__init__(
+        'Entity type "{0}" is not allowed to implement passthrough type "{1}".'
+        .format(entity_type.typename, parent_name), entity_type.file_context)
 
 
 class InheritanceCycleError(ValidationError):

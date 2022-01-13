@@ -29,11 +29,9 @@ UNIT_NAME_VALIDATOR = re.compile(r'^[a-z]+(_[a-z]+)*$')
 STANDARD_UNIT_TAG = 'STANDARD'
 
 
-_MeasurementAlias = NamedTuple('MeasurementAlias', [
-  ('alias_name', str),
-  ('base_name', str),
-  ('file_context', findings_lib.FileContext)
-])
+_MeasurementAlias = NamedTuple('MeasurementAlias',
+                               [('alias_name', str), ('base_name', str),
+                                ('file_context', findings_lib.FileContext)])
 
 
 class UnitUniverse(findings_lib.FindingsUniverse):
@@ -53,9 +51,7 @@ class UnitUniverse(findings_lib.FindingsUniverse):
     return namespace
 
   def GetUnitsForMeasurement(self, measurement_type, namespace_name=''):
-    """Returns the collection of units that are defined for the given
-    measurement type as a dictionary from unit names to Unit objects, or None
-    if there are no units for that measurement type.
+    """Returns the collection of units that are defined for the given measurement type as a dictionary from unit names to Unit objects, or None if there are no units for that measurement type.
 
     Args:
       measurement_type: Name of the measurement subfield.
@@ -65,8 +61,7 @@ class UnitUniverse(findings_lib.FindingsUniverse):
         measurement_type)
 
   def GetMeasurementTypes(self, namespace_name=''):
-    """Returns the list of measurement type names that have units defined in the
-    namespace.
+    """Returns the list of measurement type names that have units defined in the namespace.
 
     Args:
       namespace_name: Name of the namespace.
@@ -127,8 +122,8 @@ class UnitFolder(config_folder_lib.ConfigFolder):
       standard_tag_count = 0
       content = document[measurement]
       if isinstance(content, str):
-        self.local_namespace.InsertMeasurementAlias(_MeasurementAlias(
-            measurement, content, context))
+        self.local_namespace.InsertMeasurementAlias(
+            _MeasurementAlias(measurement, content, context))
       else:
         for unit in content:
           is_standard = False
@@ -153,8 +148,7 @@ class UnitFolder(config_folder_lib.ConfigFolder):
         if standard_tag_count != 1:
           self.AddFinding(
               findings_lib.StandardUnitCountError(measurement,
-                                                  standard_tag_count,
-                                                  context))
+                                                  standard_tag_count, context))
     self.local_namespace.ResolveMeasurementAliases()
 
 
@@ -222,28 +216,37 @@ class UnitNamespace(findings_lib.Findings):
       return
     if (measurement_type not in self.subfields and
         (pns is None or measurement_type not in pns.subfields)):
-      unit.AddFinding(findings_lib.UnknownMeasurementTypeError(
-          unit, measurement_type))
+      unit.AddFinding(
+          findings_lib.UnknownMeasurementTypeError(unit, measurement_type))
 
   def InsertUnit(self, measurement_type, unit):
     """Inserts a unit into this namespace.
 
-    If the unit already exists in the namespace, adds a
+    If the unit already exists in the global namespace, adds a
     DuplicateUnitDefinitionError to the findings and the duplicate is not
-    inserted.
+    inserted. If the unit is being inserted into a namespace other than the
+    global namespace, an InvalidUnitNamespaceError will be added to findings.
 
     Args:
       measurement_type: Name of the measurement subfield.
       unit: unit object to attempt to insert.
     """
     if unit.name != 'no_units' and unit.name in self._units_by_name:
-      self.AddFinding(findings_lib.DuplicateUnitDefinitionError(self, unit,
-          self._units_by_name[unit.name].file_context))
+      self.AddFinding(
+          findings_lib.DuplicateUnitDefinitionError(
+              self, unit, self._units_by_name[unit.name].file_context))
       return
+    # Assert namespace is global namespace otherwise add finding.
+    elif self.parent_namespace is not None:
+      self.AddFinding(
+          findings_lib.InvalidUnitNamespaceError(
+              self.namespace, unit.file_context))
     self._InsertEffectiveUnit(measurement_type, unit)
 
   def _InsertEffectiveUnit(self, measurement_type, unit):
-    """Inserts a unit into this namespace.  Does not check for uniqueness
+    """Inserts a unit into this namespace.
+
+    Does not check for uniqueness
     within the namespace.
 
     If the unit already exists in the measurement, adds a
@@ -258,8 +261,9 @@ class UnitNamespace(findings_lib.Findings):
     measurement_units = self._units_by_measurement.setdefault(
         measurement_type, {})
     if unit.name in measurement_units:
-      self.AddFinding(findings_lib.DuplicateUnitDefinitionError(self, unit,
-          measurement_units[unit.name].file_context))
+      self.AddFinding(
+          findings_lib.DuplicateUnitDefinitionError(
+              self, unit, measurement_units[unit.name].file_context))
       return
     measurement_units[unit.name] = unit
     self._units_by_name[unit.name] = unit
@@ -281,29 +285,26 @@ class UnitNamespace(findings_lib.Findings):
     """
     if alias.alias_name in self._measurement_aliases:
       prev_instance = self._measurement_aliases[alias.alias_name]
-      self.AddFinding(findings_lib.DuplicateMeasurementAliasError(
-          self, alias, prev_instance.file_context))
+      self.AddFinding(
+          findings_lib.DuplicateMeasurementAliasError(
+              self, alias, prev_instance.file_context))
       return
     self._measurement_aliases[alias.alias_name] = alias
 
   def ResolveMeasurementAliases(self):
-    """Validates all measurement alias references and populates the collections
-    of units for all aliased measurement types.
-    """
+    """Validates all measurement alias references and populates the collections of units for all aliased measurement types."""
     for alias in self._measurement_aliases.values():
       if alias.base_name in self._measurement_aliases:
         self.AddFinding(findings_lib.MeasurementAliasIsAliasedError(alias))
       elif alias.base_name not in self._units_by_measurement:
-        self.AddFinding(findings_lib.UnrecognizedMeasurementAliasBaseError(
-            alias))
+        self.AddFinding(
+            findings_lib.UnrecognizedMeasurementAliasBaseError(alias))
       else:
         for unit in self._units_by_measurement[alias.base_name].values():
           self._InsertEffectiveUnit(alias.alias_name, unit)
 
   def GetUnitsForMeasurement(self, measurement_type):
-    """Returns the collection of units that are defined for the given
-    measurement type as a dictionary from unit names to Unit objects, or None
-    if there are no units for that measurement type.
+    """Returns the collection of units that are defined for the given measurement type as a dictionary from unit names to Unit objects, or None if there are no units for that measurement type.
 
     Args:
       measurement_type: Name of the measurement subfield.
@@ -311,9 +312,7 @@ class UnitNamespace(findings_lib.Findings):
     return self._units_by_measurement.get(measurement_type)
 
   def GetMeasurementTypes(self):
-    """Returns the list of measurement type names that have units defined in the
-    namespace.
-    """
+    """Returns the list of measurement type names that have units defined in the namespace."""
     return self._units_by_measurement.keys()
 
 

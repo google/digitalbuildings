@@ -43,6 +43,7 @@ OS:
   - zone_occupancy_status
 
 ROS: 
+  id: "3689690130638962688"
   is_abstract: true
   description: "Room occupancy status based on one or multiple zone occupancy statuses"
   uses:

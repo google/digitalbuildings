@@ -85,6 +85,7 @@ SENSOR_LA3A:
   opt_uses:
     - local_air_temperature_sensor
     - battery_charge_percentage_sensor
+    - signal_strength_percentage_sensor
   uses:
     - fivesecondrolling_max_xaxis_linearacceleration_sensor
     - fivesecondrolling_max_yaxis_linearacceleration_sensor
@@ -96,6 +97,25 @@ SENSOR_LA3A:
     - fivesecondrolling_rootmeansquare_yaxis_linearacceleration_sensor
     - fivesecondrolling_rootmeansquare_zaxis_linearacceleration_sensor
 
+SENSOR_LV3A:
+  id: "17687722197436596224"
+  description: "Three-axis linear velocity (vibration) sensor with optional temperature and battery monitoring."
+  is_canonical: true
+  implements:
+    - /SENSOR # Inherits from global namespace
+  opt_uses:
+    - local_air_temperature_sensor
+    - battery_charge_percentage_sensor
+    - signal_strength_percentage_sensor
+  uses:
+    - tenminutefixed_max_xaxis_linearvelocity_sensor
+    - tenminutefixed_max_yaxis_linearvelocity_sensor
+    - tenminutefixed_max_zaxis_linearvelocity_sensor
+    - tenminutefixed_max_xaxis_frequency_sensor
+    - tenminutefixed_max_yaxis_frequency_sensor
+    - tenminutefixed_max_zaxis_frequency_sensor
+    - dutycycle_percentage_sensor
+
 SENSOR_FDPM:
   id: "3543393511493599232"
   description: "Filter differential pressure sensor with optional temperature monitoring."
@@ -105,4 +125,5 @@ SENSOR_FDPM:
     - FDPM
   opt_uses:
     - local_air_temperature_sensor
-
+    - battery_charge_percentage_sensor
+    - signal_strength_percentage_sensor
