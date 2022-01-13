@@ -37,6 +37,7 @@ energy:
 - kilowatt_hours
 - megawatt_hours
 - therms
+- newton_meters
 flowrate:
 - cubic_meters_per_second: STANDARD
 - cubic_feet_per_minute
@@ -47,6 +48,7 @@ flowrate:
 - kilograms_per_hour
 frequency:
 - hertz: STANDARD
+- revolutions_per_minute
 humidity:
 - percent_relative_humidity: STANDARD
 illuminance:
@@ -104,5 +106,7 @@ volume:
 - liters
 time:
 - seconds: STANDARD
+- minutes
+- hours
 rate:
 - inv_second: STANDARD

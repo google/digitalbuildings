@@ -600,7 +600,9 @@ literals:
 - heat_exchange_supply_water_isolation_valve_percentage_sensor
 - heat_exchange_return_water_isolation_valve_percentage_sensor
 
-- condensing_return_water_isolation_valve_command
+- condensing_return_water_isolation_valve_command:
+  - OPEN
+  - CLOSED
 - chilled_return_water_isolation_valve_percentage_sensor
 - chilled_return_water_isolation_valve_percentage_command
 
@@ -651,6 +653,8 @@ literals:
 - control_mode:
   - AUTO
   - MANUAL
+  - LOCAL
+  - REMOTE
   - OFF
 - cooling_thermal_energy_accumulator
 - particle_concentration_sensor
@@ -752,10 +756,162 @@ literals:
   - INACTIVE
 - fan_speed_frequency_setpoint
 - compressor_speed_frequency_setpoint
-- start_mode
-- reset_alarm
-- chilled_water_isolation_valve_mode
+- start_mode:
+  - ON
+  - OFF
+- reset_alarm:
+  - ACTIVE
+  - INACTIVE
+- reset_command:
+  - ON
+  - OFF
+- chilled_water_isolation_valve_mode:
+  - AUTO
+  - MANUAL
 - pump_speed_frequency_setpoint
+- chilled_water_isolation_valve_percentage_setpoint
+- chilled_water_flowrate_alarm:
+  - ACTIVE
+  - INACTIVE
+- end_alarm:
+  - ACTIVE
+  - INACTIVE
+- start_alarm:
+  - ACTIVE
+  - INACTIVE
+- simulation_command:
+  - ON
+  - OFF
+- condensing_supply_water_isolation_simulation_command:
+  - ON
+  - OFF
+- stop_command:
+  - ON
+  - OFF
+- closed_command:
+  - ON
+  - OFF
+- closed_alarm:
+  - ACTIVE
+  - INACTIVE
+- open_alarm:
+  - ACTIVE
+  - INACTIVE
+- simulation_status:
+  - ON
+  - OFF
+- local_status:
+    - REMOTE
+    - LOCAL
+- compressor_open_percentage_command
+- high_pressure_sensor
+- low_pressure_sensor
+- high_temperature_sensor
+- low_temperature_sensor
+- compressor_current_sensor
+- high_pressure_alarm:
+  - ACTIVE
+  - INACTIVE
+- low_pressure_alarm:
+  - ACTIVE
+  - INACTIVE
+- high_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
+- low_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
+- condensing_water_differential_pressure_alarm:
+  - ACTIVE
+  - INACTIVE
+- chilled_supply_water_low_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
+- chilled_water_differential_pressure_alarm:
+  - ACTIVE
+  - INACTIVE
+- condensing_water_flowrate_alarm:
+  - ACTIVE
+  - INACTIVE
+- current_alarm:
+  - ACTIVE
+  - INACTIVE
+
+- motor_energy_sensor
+- motor_frequency_sensor
+- heat_percentage_sensor
+- fan_voltage_sensor
+- break_time_command
+- fin_temperature_sensor
+- heat_inverter_percentage_sensor
+- electric_inverter_percentage_sensor
+- max_inverter_current_sensor
+- condensing_return_water_isolation_control_status:
+  - LOCAL
+  - REMOTE
+- condensing_return_water_isolation_closed_alarm:
+  - ACTIVE
+  - INACTIVE
+- condensing_return_water_isolation_open_alarm:
+  - ACTIVE
+  - INACTIVE
+- condensing_return_water_isolation_reset_alarm:
+  - ACTIVE
+  - INACTIVE
+- condensing_return_water_isolation_simulation_command:
+  - ON
+  - OFF
+- condensing_return_water_isolation_alarm:
+  - ACTIVE
+  - INACTIVE
+- condensing_supply_water_isolation_alarm:
+  - ACTIVE
+  - INACTIVE
+- condensing_supply_water_isolation_closed_alarm:
+  - ACTIVE
+  - INACTIVE
+- condensing_supply_water_isolation_open_alarm:
+  - ACTIVE
+  - INACTIVE
+- condensing_supply_water_isolation_reset_alarm:
+  - ACTIVE
+  - INACTIVE
+- open_command:
+  - ON
+  - OFF
+- condensing_supply_water_isolation_valve_run_command:
+  - ON
+  - OFF
+# These points only true or false
+- condensing_return_water_isolation_valve_open_status
+- condensing_return_water_isolation_valve_closed_status
+- condensing_return_water_isolation_valve_open_command
+- condensing_return_water_isolation_valve_closed_command
+- chilled_return_water_isolation_valve_percentage_setpoint
+- condensing_supply_water_isolation_valve_failed_alarm:
+    - INACTIVE
+    - ACTIVE
+- condensing_return_water_isolation_valve_failed_alarm:
+    - INACTIVE
+    - ACTIVE
+- chilled_supply_water_isolation_valve_percentage_setpoint
+- chilled_water_bypass_valve_percentage_setpoint
+- condensing_water_bypass_valve_percentage_setpoint
+- condensing_water_isolation_valve_percentage_setpoint
+- condensing_water_isolation_valve_mode:
+  - AUTO
+  - MANUAL
+- pump_speed_mode:
+  - AUTO
+  - MANUAL
+- condensing_supply_water_isolation_control_status:
+  - AUTO
+  - MANUAL
+- average_line_electric_percentage_sensor
+- condensing_return_water_isolation_valve_percentage_setpoint
+
+
+
 
 # New alarms using alarm as a point type, and existing alarms moved here
 # TODO (tsodorff): change these to ALARM/NORMAL after determining how this can be done safely to existing translations. 
@@ -821,6 +977,20 @@ literals:
 - position_status
 - condensing_water_valve_percentage_sensor
 - entering_cooling_coil_temperature_sensor
+- condensing_supply_water_isolation_valve_open_status
+- condensing_supply_water_isolation_valve_closed_status
+- condensing_supply_water_isolation_valve_open_command
+- condensing_supply_water_isolation_valve_closed_command
+- entering_chilled_water_temperature_sensor
+- leaving_chilled_water_temperature_sensor
+- line_voltage_sensor
+- inhibit_start_time_command
+- limit_percentage_capacity
+- guidevane_percentage_sensor
+- compressor_percentage_sensor
+- entering_condensing_water_temperature_sensor
+- leaving_condensing_water_temperature_sensor
+
 
  # We should not use this... represents scavenged outside air from near some heat pumps...
 - mixed_outside_air_temperature_sensor

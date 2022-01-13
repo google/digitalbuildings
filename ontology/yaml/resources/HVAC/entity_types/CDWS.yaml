@@ -120,3 +120,17 @@ CDWS_US_MTV_2081_1:
   - return_water_isolation_valve_status_3
   - supply_water_isolation_valve_status_4
   - return_water_isolation_valve_status_4
+
+
+CDWS_TPKD:
+  description: "CDWS TPKD."
+  implements:
+  - CDWS
+  opt_uses:
+  - condensing_water_bypass_valve_percentage_command
+  - condensing_water_bypass_valve_percentage_sensor
+  - run_mode
+  - condensing_water_bypass_valve_percentage_setpoint
+  - condensing_supply_water_temperature_sensor
+  - condensing_return_water_temperature_sensor
+  - condensing_water_differential_pressure_sensor

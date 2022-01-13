@@ -141,3 +141,72 @@ PMP_S_VSCF_ISV:
   - mixing_valve_percentage_command
   - chilled_supply_water_temperature_setpoint
   - chilled_supply_water_temperature_sensor
+
+PMP_SS_TPKD_CHWP_SHWP:
+  description: "TPKD pump."
+  implements:
+  - PMP
+  - SS
+  uses:
+  - speed_frequency_command
+  - speed_frequency_sensor
+  - pump_speed_mode
+  - pump_speed_frequency_setpoint
+  - chilled_water_isolation_valve_percentage_command
+  - chilled_water_isolation_valve_percentage_sensor
+  - chilled_water_isolation_valve_mode
+  - chilled_water_isolation_valve_percentage_setpoint
+  opt_uses:
+  - lost_power_alarm
+  - control_status
+  - chilled_water_flowrate_alarm
+  - run_mode
+  - reset_command
+  - low_differential_pressure_alarm
+  - end_alarm
+  - start_alarm
+  - run_time_sensor
+  - start_mode
+  - simulation_command
+  - reset_alarm
+  - power_sensor
+  - average_line_neutral_voltage_sensor
+  - average_line_current_sensor
+  - motor_energy_sensor
+  - motor_frequency_sensor
+  - heat_percentage_sensor
+  - fan_voltage_sensor
+  - break_time_command_1
+  - break_time_command_2
+  - fin_temperature_sensor
+  - heat_inverter_percentage_sensor
+  - electric_inverter_percentage_sensor
+  - max_inverter_current_sensor
+
+PMP_SS_TPKD_PCWP:
+  description: "TPKD PCWP pump."
+  implements:
+  - PMP
+  - SS
+  uses:
+  - condensing_water_isolation_valve_percentage_command
+  - condensing_water_isolation_valve_percentage_sensor
+  - condensing_water_isolation_valve_mode
+  - condensing_water_isolation_valve_percentage_setpoint
+  - speed_frequency_command
+  - speed_frequency_sensor
+  - pump_speed_frequency_setpoint
+  opt_uses:
+  - lost_power_alarm
+  - control_status
+  - low_differential_pressure_alarm
+  - run_mode
+  - reset_command
+  - simulation_command
+  - end_alarm
+  - start_alarm
+  - pump_speed_mode
+  - start_mode
+  - reset_alarm
+  - run_time_sensor
+  - condensing_water_flowrate_alarm
