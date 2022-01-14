@@ -82,6 +82,6 @@ LDS_WLA_BCM:
   - WLA
   - BCM
   opt_uses:
-  - water_leak_position_level_sensor
+  - water_leak_cable_distance_sensor
 
 

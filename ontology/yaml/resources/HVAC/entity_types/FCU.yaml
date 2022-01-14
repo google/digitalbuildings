@@ -931,12 +931,12 @@ FCU_DFSS_DFVSC_DXRC_HTRC_RHC_RHDHC_RTC:
   - RHDHC
   - RTC
 
-FCU_SS_DXZTC:
+FCU_DFSS_DXZTC:
   description: "Single split unit with zone air temperature control"
   is_canonical: true
   implements:
   - FCU
-  - SS
+  - DFSS
   - DXZTC
   opt_uses:
   - failed_alarm
