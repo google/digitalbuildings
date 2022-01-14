@@ -12,13 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-##############################################################
-#### GENERAL TYPES (BROAD CATEGORIES OF COMMON EQUIPMENT) ####
-####                See model.md for context              ####
-####      See model_hvac.md for detailed definitions      ####
-##############################################################
-
-PASSTHROUGH:
-  id: "5942334369254342656"
-  description: "A device that provides translations for virtual entities."
-  allow_undefined_fields: true
+TYPELESS:
+  id: "3898034389962981376"
+  description: "A device without a type."
