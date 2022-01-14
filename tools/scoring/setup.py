@@ -21,7 +21,7 @@ setup(
     version='0.0.1',
     url='https://github.com/google/digitalbuildings',
     license='Apache License',
-    author='',
+    author='Adam Hemphill',
     author_email='',
     description='',
     packages=find_packages(),
