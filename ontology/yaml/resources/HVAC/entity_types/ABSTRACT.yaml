@@ -248,6 +248,15 @@ COC:
   - zone_air_co_concentration_sensor
   - zone_air_co_concentration_setpoint
 
+RNC:
+  description: "Radon concentration control."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  uses:
+  - zone_air_radon_concentration_sensor
+  - zone_air_radon_concentration_setpoint
+
 BPC:
   id: "16869691043929391104"
   description: "Building pressure control (stand-alone fan)."

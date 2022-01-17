@@ -1066,3 +1066,13 @@ literals:
 
 - min_zone_air_relative_humidity_sensor
 - min_zone_air_relative_humidity_setpoint
+
+# Added for demo
+- zone_air_radon_concentration_sensor
+- zone_air_radon_concentration_setpoint
+
+
+
+
+
+

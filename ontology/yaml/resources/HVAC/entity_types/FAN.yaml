@@ -114,6 +114,14 @@ FAN_SS_CO2C:
   - SS
   - CO2C
 
+FAN_SS_RNC:
+  description: "Radon control fan."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - RNC
+
 FAN_ZTM_ZHM_FDPM:
   id: "3492587278197325824"
   description: "Fan with zone temperature, zone humidity and filter monitoring"
