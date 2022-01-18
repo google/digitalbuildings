@@ -52,18 +52,17 @@ jobs:
        python -m unittest discover -p '*_test.py' --failfast -v
       working-directory: ./tools/explorer
     #---------- Configuration Scorer ----------#
-    # Commenting the scorer until it is added
-    # - name: Configuration Scorer Install dependencies
-    #   run: |
-    #     python setup.py install
-    #   working-directory: ./tools/scoring
-    # - name: Run Pylint on Configuration Scorer
-    #   run: |
-    #     pylint --rcfile ./styles/pylintrc ./tools/scoring
-    # - name: Configuration Scorer Tests
-    #   run: |
-    #     python -m unittest discover -p '*_test.py' --failfast -v
-    #   working-directory: ./tools/scoring
+    - name: Configuration Scorer Install dependencies
+      run: |
+        python setup.py install
+      working-directory: ./tools/scorer
+    - name: Run Pylint on Configuration Scorer
+      run: |
+        pylint --rcfile ./styles/pylintrc ./tools/scorer
+    - name: Configuration Scorer Tests
+      run: |
+        python -m unittest discover -p '*_test.py' --failfast -v
+      working-directory: ./tools/scorer
     #---------- Ontology Yaml Type Validator ----------#
     - name:  Ontology Yaml Type Validator Install dependencies
       run: |
