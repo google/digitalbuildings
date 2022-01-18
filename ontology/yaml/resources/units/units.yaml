@@ -27,6 +27,7 @@ current:
 - milliamperes
 currentratio:
 - no_units: STANDARD
+diameter: level
 density:
 - kilograms_per_cubic_meter: STANDARD
 - grams_per_cubic_meter

@@ -20,6 +20,7 @@ aggregation:
   total: "Sum total of some set of values (e.g. total_request_heating_count)"
 aggregation_descriptor:
   fivesecondrolling: "Aggregation over advancing time intervals of five seconds."
+  thirtysecondrolling: "Aggregation over advancing thirty second time interval."
   tenminutefixed: "Aggregation over fixed time intervals of ten minutes."
 component:
   battery: "A device used to store power for use at a later time (e.g. in an emergency where grid power is unavailable)."
@@ -56,6 +57,7 @@ component:
   wheel: "Component used for transfer of heat from incoming to outgoing air streams. "
   winding: "Conductive wires wrapped around a magnetic core."
 descriptor: 
+  adjusted: "A descriptor indicating the value has been changed from the raw reading."
   air: "Atmospheric air, either conditioned or unconditioned."
   aisle: "Passage between two rows of server racks."
   ammonia: "Ammonia gas."
@@ -224,6 +226,7 @@ measurement:
   current: "Flow of electric charge."
   currentratio: "The ratio of primary amps divided by secondary amps."
   density: "Amount of mass contained in a unit volume."
+  diameter: "A straight line passing from side to side through the center of a body or figure, especially a circle or sphere."
   energy: " The quantitative property that must be transferred to an object to perform work (default electrical unless otherwise modified)."
   flowrate: "Rate of fluid movement."
   frequency: "The rate of cycling within a process. Typically used to describe voltage (and amperage) oscillation within AC power distribution components."
@@ -266,6 +269,7 @@ measurement_descriptor:
   open: "Indicates full open (for two-position actuators).  This is the default sense if unspecified"
   override: "An action that interrupts, cancels, or changes the current action or status."
   position: "A particular way in which something is placed or arranged, such as a door in the open position."
+  probability: "The extent to which something is probable; the likelihood of something happening or being the case."
   reactive: "Power that is returned to the source (not consumed by the load)."
   relative: "Quality of media with respect to theoretical minimum or maximum value for a given condition (e.g. relative humidity)."
   run: "State of being active or operating. By default applies to control program for system (eg VAV program run_command)."
