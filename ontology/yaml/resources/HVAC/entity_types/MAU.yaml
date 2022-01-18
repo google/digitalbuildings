@@ -589,6 +589,18 @@ MAU_DFSS_DFVSC_HPDDC_ZTM:
   - HPDDC
   - ZTM
 
+MAU_DFSS_DFVSC_HWDDC_DXDDC_ZTM:
+  id: "1602365161841098752"
+  description: "Single zone with dual discharge setpoint control for both heating and cooling."
+  is_canonical: true
+  implements:
+  - MAU
+  - DFSS
+  - DFVSC
+  - HWDDC
+  - DXDDC
+  - ZTM
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
