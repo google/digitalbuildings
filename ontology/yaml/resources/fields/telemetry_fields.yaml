@@ -1073,7 +1073,6 @@ literals:
 - zone_air_no2_probability_percentage_sensor
 - adjusted_zone_air_no2_concentration_sensor
 - local_air_relative_humidity_sensor
-- thirtysecondrolling_average_particle_diameter_sensor
 
 
 
