@@ -12,13 +12,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Test for command line interface (score.py)."""
+"""Test for command line interface and entry point (score.py)."""
 
 import argparse
 import ast
 from absl.testing import absltest
 
-from score import cli
+from score import score as cli
 
 
 class CliTest(absltest.TestCase):
@@ -43,7 +43,7 @@ class CliTest(absltest.TestCase):
     self.assertEqual(parsed.ontology, 'path/to/ontology/yaml/resources')
     self.assertEqual(parsed.solution, 'path/to/solution/file.yaml')
     self.assertEqual(parsed.proposed, 'path/to/proposed/file.yaml')
-    self.assertTrue(ast.literal_eval(parsed.verbose))
+    self.assertTrue(parsed.verbose)
 
   def testConciseInputArgsExist(self):
     parsed = self.cli.parse_args([
@@ -59,7 +59,7 @@ class CliTest(absltest.TestCase):
     self.assertEqual(parsed.ontology, 'path/to/ontology/yaml/resources')
     self.assertEqual(parsed.solution, 'path/to/solution/file.yaml')
     self.assertEqual(parsed.proposed, 'path/to/proposed/file.yaml')
-    self.assertTrue(ast.literal_eval(parsed.verbose))
+    self.assertTrue(parsed.verbose)
 
   def testOntologyArgIsRequired(self):
     with self.assertRaises(SystemExit):
@@ -105,7 +105,43 @@ class CliTest(absltest.TestCase):
         '--verbose',
         'True'
     ])
-    self.assertTrue(ast.literal_eval(parsed.verbose))
+    self.assertTrue(parsed.verbose)
+
+    parsed = self.cli.parse_args([
+        '--ontology',
+        'path/to/ontology/yaml/resources',
+        '--solution',
+        'path/to/solution/file.yaml',
+        '--proposed',
+        'path/to/proposed/file.yaml',
+        '--verbose',
+        'true'
+    ])
+    self.assertTrue(parsed.verbose)
+
+    parsed = self.cli.parse_args([
+        '--ontology',
+        'path/to/ontology/yaml/resources',
+        '--solution',
+        'path/to/solution/file.yaml',
+        '--proposed',
+        'path/to/proposed/file.yaml',
+        '--verbose',
+        'yes'
+    ])
+    self.assertTrue(parsed.verbose)
+
+    parsed = self.cli.parse_args([
+        '--ontology',
+        'path/to/ontology/yaml/resources',
+        '--solution',
+        'path/to/solution/file.yaml',
+        '--proposed',
+        'path/to/proposed/file.yaml',
+        '--verbose',
+        '1'
+    ])
+    self.assertTrue(parsed.verbose)
 
   def testVerboseArgDefaultsFalse(self):
     parsed = self.cli.parse_args([
@@ -116,7 +152,7 @@ class CliTest(absltest.TestCase):
         '--proposed',
         'path/to/proposed/file.yaml',
     ])
-    self.assertFalse(ast.literal_eval(parsed.verbose))
+    self.assertFalse(parsed.verbose)
 
 
 if __name__ == '__main__':
