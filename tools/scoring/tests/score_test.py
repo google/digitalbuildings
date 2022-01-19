@@ -15,7 +15,6 @@
 """Test for command line interface and entry point (score.py)."""
 
 import argparse
-import ast
 from absl.testing import absltest
 
 from score import score as cli

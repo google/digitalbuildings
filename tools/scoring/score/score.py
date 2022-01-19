@@ -49,6 +49,7 @@ def parse_args() -> argparse.ArgumentParser:
 
   parser.add_argument(
       '-v', '--verbose', dest='verbose', required=False, default=False,
+      # Defining booleans in argparse is not intuitive!
       type=lambda x: (str(x).lower() in ['true', '1', 'yes']),
       help='Output additional details about the scoring process',
       metavar='verbose')
