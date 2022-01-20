@@ -22,6 +22,7 @@ from typing import Dict, List
 
 from validate import entity_instance
 from validate import generate_universe
+from validate import guid_generator
 from validate import instance_parser
 from validate import subscriber
 from validate import telemetry_validator
@@ -112,6 +113,10 @@ def RunValidation(filenames: List[str],
     if subscription:
       print('\nStarting telemetry validation...\n')
       _ValidateTelemetry(subscription, service_account, entities, timeout)
+    print('Generating GUIDs')
+    generator = guid_generator.GuidGenerator()
+    generator.GenerateGuids(filenames)
+
   finally:
     sys.stdout = saved_stdout
     if report_file:

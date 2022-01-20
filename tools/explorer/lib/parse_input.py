@@ -14,35 +14,31 @@
 
 """Main module for DBO explorer."""
 import ast
-from termcolor import colored
 from typing import List
+
+import colorama
+from termcolor import colored
 
 from lib import model
 from lib.model import StandardField
 
+colorama.init()
 DEFAULT_MATCHED_TYPES_LIST_SIZE = 10
 
-def _InputFieldsFromUser(ontology, manual: bool = False) -> List[StandardField]:
+
+def _InputFieldsFromUser(ontology) -> List[StandardField]:
   """Method to take in field inputs from the user.
 
   Args:
     ontology: Instance of OntologyWrapper class.
-    manual: boolean where users will input field names one by one if True.
 
   Returns:
     A list of StandardField objects corresponding to the input field names.
 
   """
   standard_field_list = []
-  if manual:
-    raw_field_list = []
-    field_number = input('Number of entity fields: ')
-    for i in range(1, int(field_number) + 1):
-      field_name = input(f'Field name #{i}: ')
-      raw_field_list.append(field_name)
-  else:
-    raw_fields = input('Paste your fields here: ')
-    raw_field_list = raw_fields.replace(' ', '').split(',')
+  raw_fields = input('Enter your fields here as a comma separated list: ')
+  raw_field_list = raw_fields.replace(' ', '').split(',')
   for field in raw_field_list:
     standard_field = StandardField(
         standard_field_name=field,
@@ -51,6 +47,7 @@ def _InputFieldsFromUser(ontology, manual: bool = False) -> List[StandardField]:
     if ontology.IsFieldValid(standard_field):
       standard_field_list.append(standard_field)
   return standard_field_list
+
 
 def GetFieldsForTypeName(ontology):
   """Prints a list of corresponding fields for an ontology entity type.
@@ -65,18 +62,14 @@ def GetFieldsForTypeName(ontology):
   for field in fields:
     print(colored(field, 'green'))
 
+
 def GetTypesForFieldList(ontology):
   """Prints a list of entity types matching a list of input fields.
 
   Args:
     ontology: An instance of the OntologyWrapper class.
   """
-  print('1. Input fields one by one\n2. Paste comma-separated list of fields')
-  input_decision = input('Input type: ')
-  manual_input = False
-  if ast.literal_eval(input_decision) == 1:
-    manual_input = True
-  standard_field_list = _InputFieldsFromUser(ontology, manual_input)
+  standard_field_list = _InputFieldsFromUser(ontology)
 
   entity_type_match_dict = {}
   for i, match in enumerate(ontology.GetEntityTypesFromFields(
@@ -84,12 +77,12 @@ def GetTypesForFieldList(ontology):
     entity_type_match_dict[i] = match
   for i in range(DEFAULT_MATCHED_TYPES_LIST_SIZE):
     print(colored(f'{i+1}. {entity_type_match_dict[i]}', 'green'))
-  match_selection = input('Would you like to see all matches?(y/n):\n')
+  match_selection = input('Would you like to see all matches? (y/n): ')
   if match_selection == 'y':
     for i, match in entity_type_match_dict.items():
       print(f'{i+1}. {match}')
-  print('Would you like to see field comparisons for any of these matches?')
-  visualize = input('(y/n): ')
+  visualize = input(
+      'Would you like to see field comparisons for these matches? (y/n): ')
   if visualize == 'y':
     visualize_done = False
     while not visualize_done:
@@ -106,6 +99,7 @@ def GetTypesForFieldList(ontology):
       else:
         raise ValueError('Please enter proper value for decision tree')
 
+
 def ValidateFieldName(ontology):
   """Prints whether a fully qualified field is valid in the DB ontology.
 
@@ -116,7 +110,7 @@ def ValidateFieldName(ontology):
   field_name = input('Enter a field name to validate: ')
   standard_field = model.StandardField(namespace, field_name)
   field_is_valid = ontology.IsFieldValid(standard_field)
-  if namespace == '':
+  if not namespace:
     namespace = 'global namespace'
   if field_is_valid:
     print(colored(
