@@ -1069,10 +1069,7 @@ literals:
 
 ## New fields for air quality sensors
 - thirtysecondrolling_average_zone_air_co_concentration_sensor
-- thirtysecondrolling_average_particle_diameter_sensor
+- thirtysecondrolling_average_zone_air_particle_diameter_sensor
 - zone_air_no2_probability_percentage_sensor
-- adjusted_zone_air_no2_concentration_sensor
-- local_air_relative_humidity_sensor
-
-
+- zone_air_no2_ozone_concentration_sensor
 

@@ -121,51 +121,47 @@ SENSOR_FDPM:
     - battery_charge_percentage_sensor
     - signal_strength_percentage_sensor
 
-SENSOR_CO_CO2_ATM:
+SENSOR_ZA_CO_CO2:
   description: "Atmosphere CO and CO2 combined sensor with local temp and RH readings."
   is_canonical: true
   implements:
   - /SENSOR
+  - ZA
   uses:
   - thirtysecondrolling_average_zone_air_co_concentration_sensor
   - zone_air_co_concentration_sensor
   - zone_air_co2_concentration_sensor
-  - local_air_relative_humidity_sensor
-  - local_air_temperature_sensor
 
-SENSOR_FORM_ATM:
-  description: "Atmosphere formaldehyde combined sensor with local temp and RH readings."
+SENSOR_ZA_HCHO:
+  description: "Atmosphere formaldehyde (H-CHO) combined sensor with local temp and RH readings."
   is_canonical: true
   implements:
   - /SENSOR
+  - ZA
   uses:
   - zone_air_formaldehyde_concentration_sensor
-  - local_air_relative_humidity_sensor
-  - local_air_temperature_sensor
 
-SENSOR_OZONE_NO_ATM:
+SENSOR_ZA_OZONE_NO2:
   description: "Atmosphere ozone and NO2 combined sensor with local temp and RH readings."
   is_canonical: true
   implements:
   - /SENSOR
+  - ZA
   uses:
-  - adjusted_zone_air_no2_concentration_sensor
+  - zone_air_no2_ozone_concentration_sensor
   - zone_air_ozone_concentration_sensor
   - zone_air_voc_concentration_sensor
   - zone_air_no2_concentration_sensor
   - zone_air_no2_probability_percentage_sensor
-  - local_air_relative_humidity_sensor
-  - local_air_temperature_sensor
 
-SENSOR_PM_ATM:
-  description: "Atmosphere PM 0.5, PM 2.5, etc. combined sensor with local temp and RH readings."
+SENSOR_ZA_PML:
+  description: "Atmosphere PM 0.5, PM 2.5, etc. level combined sensor with local temp and RH readings."
   is_canonical: true
   implements:
   - /SENSOR
+  - ZA
   uses:
-  - thirtysecondrolling_average_particle_diameter_sensor
-  - zone_air_relative_humidity_sensor
-  - zone_air_temperature_sensor
+  - thirtysecondrolling_average_zone_air_particle_diameter_sensor
   - zone_air_pm0pt5_density_sensor
   - zone_air_pm1pt0_density_sensor
   - zone_air_pm2pt5_density_sensor
@@ -175,7 +171,3 @@ SENSOR_PM_ATM:
   - zone_air_pm2pt5_concentration_sensor
   - zone_air_pm4pt0_concentration_sensor
   - zone_air_pm10pt0_concentration_sensor
-
-
-
-
