@@ -22,17 +22,17 @@ from validate.generate_universe import BuildUniverse
 
 class ParseConfig:
   """
-  Args:
-    ontology: Path to the ontology
-    solution: Path to the solution config
-    proposed: Path to the config to be scored
-    verbose: Print specifics of missing types and translations (optional)
+    Args:
+      ontology: Path to the ontology
+      solution: Path to the solution config
+      proposed: Path to the config to be scored
+      verbose: Print specifics of missing types and translations (optional)
 
-  Props:
-    args: Dictionary containing instance arguments
-    universe: Built from the input ontology
-    parsed: Deserialized configuration files
-    scores: The reason we're all here
+    Props:
+      args: Dictionary containing instance arguments
+      universe: Built from the input ontology
+      parsed: Deserialized configuration files
+      scores: Dictionary containing scores for output
   """
 
   def __init__(
@@ -41,64 +41,45 @@ class ParseConfig:
     self.args = {'ontology': ontology,
                  'solution': solution, 'proposed': proposed, 'verbose': verbose}
     self.universe = BuildUniverse(modified_types_filepath=ontology)
-    proposed = validator.Deserialize([proposed])[0]
-    solution = validator.Deserialize([solution])[0]
-    self.parsed = {'proposed': proposed, 'solution': solution}
+    self.parsed = {
+        'proposed': validator.Deserialize([proposed])[0],
+        'solution': validator.Deserialize([solution])[0]}
+    self.scores = dict()
 
-  # TODO: make a file_type type
-  def append_types(self, *, file_type: str):
+  def append_types(self):
     """
-      Foo
+      Appends types or type names to parsed files
     """
+    for file_type, file in self.parsed:
+      translations_absent = []
+      types_absent = []
+      type_or_name = 'type' if file_type == 'solution' else 'type_name'
 
-    translations_absent = []
-    types_absent = []
-    for name, entity in self.parsed[file_type].items():
-      entity.type = self.universe.GetEntityType(entity.namespace,
-                                                entity.type_name)
+      for entity in file.values():
+        entity.type = self.universe.GetEntityType(entity.namespace,
+                                                  entity.type_name)
 
-      if entity.type is None:
-        types_absent.append(entity.type_name)
-        if self.args.verbose:
-          print(f'{file_type}: type {entity.type_name} absent')
-      if entity.links is not None:
-        for link in entity.links:
-          source = self.parsed[file_type][
-              link.source] if link.source in self.parsed[file_type] else None
-          if source:
-            if not getattr(source, 'type', None):
-              source.type = self.universe.GetEntityType(source.namespace,
-                                                        source.type_name)
-              if source.type is None:
-                types_absent.append(source.type_name)
-                if self.args.verbose:
-                  print(f'{file_type}: type {source.type_name} absent')
-            link.source_type = source.type
-            for target_field, source_field in link.field_map.items():
-              if target_field != source_field:
-                try:
-                  source.translation[target_field] = source.translation[
-                      source_field]
-                  source.translation[target_field].std_field_name = target_field
-                  del source.translation[source_field]
-                except KeyError:
-                  translations_absent.append(
-                      f'{link.source}.translation.{source_field}')
-                  if self.args.verbose:
-                    print(f'{file_type}: translation ' +
-                          f'{link.source}.translation.{source_field} absent ' +
-                          f'(linked from {name})')
-          elif not source and self.args.verbose:
-            print(f'{file_type}: link source {link.source} absent +'
-                  f'(linked from {name})')
-
-    print(f'{file_type} translations absent: ' +
-          f'{len(set(translations_absent))} ' +
-          f'(from {len(translations_absent)} links)')
-
-    print(f'{file_type} types absent: {len(set(types_absent))} ' +
-          f'({len(types_absent)} instances)')\
-
-
-  def report(self):
-    pass
+        if entity.type is None:
+          types_absent.append(entity[type_or_name])
+        if entity.links is not None:
+          for link in entity.links:
+            source = file[
+                link.source] if link.source in file else None
+            if source:
+              if not getattr(source, 'type', None):
+                source.type = self.universe.GetEntityType(source.namespace,
+                                                          source.type_name)
+                if source.type is None:
+                  types_absent.append(source[type_or_name])
+              link.source_type = source.type
+              for target_field, source_field in link.field_map.items():
+                if target_field != source_field:
+                  try:
+                    source.translation[target_field] = source.translation[
+                        source_field]
+                    source.translation[
+                        target_field].std_field_name = target_field
+                    del source.translation[source_field]
+                  except KeyError:
+                    translations_absent.append(
+                        f'{link.source}.translation.{source_field}')
