@@ -11,7 +11,6 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 """File parser for the configuration scoring tool."""
 
 from typing import Optional
@@ -34,16 +33,23 @@ class ParseConfig:
       parsed: Deserialized configuration files
       scores: Dictionary containing scores for output
   """
-
-  def __init__(
-          self, *, ontology: str, solution: str, proposed: str,
-          verbose: Optional[bool] = False):
-    self.args = {'ontology': ontology,
-                 'solution': solution, 'proposed': proposed, 'verbose': verbose}
+  def __init__(self,
+               *,
+               ontology: str,
+               solution: str,
+               proposed: str,
+               verbose: Optional[bool] = False):
+    self.args = {
+        'ontology': ontology,
+        'solution': solution,
+        'proposed': proposed,
+        'verbose': verbose
+    }
     self.universe = BuildUniverse(use_simplified_universe=True)
     self.parsed = {
         'proposed': validator.Deserialize([proposed])[0],
-        'solution': validator.Deserialize([solution])[0]}
+        'solution': validator.Deserialize([solution])[0]
+    }
     self.scores = {}
 
   def append_types(self):
@@ -63,12 +69,11 @@ class ParseConfig:
           types_absent.append(entity[type_or_name])
         if entity.links is not None:
           for link in entity.links:
-            source = file[
-                link.source] if link.source in file else None
+            source = file[link.source] if link.source in file else None
             if source:
               if not getattr(source, 'type', None):
-                source.type = self.universe.GetEntityType(source.namespace,
-                                                          source.type_name)
+                source.type = self.universe.GetEntityType(
+                    source.namespace, source.type_name)
                 if source.type is None:
                   types_absent.append(source[type_or_name])
               link.source_type = source.type
@@ -83,3 +88,6 @@ class ParseConfig:
                   except KeyError:
                     translations_absent.append(
                         f'{link.source}.translation.{source_field}')
+
+  def report(self):
+    pass

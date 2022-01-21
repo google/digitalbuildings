@@ -11,15 +11,14 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 """Test for configuration file parser (parse_config.py)."""
 
 from absl.testing import absltest
 from score.parse_config import ParseConfig
 
 from yamlformat.validator.presubmit_validate_types_lib import ConfigUniverse
-from validate.entity_instance import EntityInstance
-from typing import Dict
+# from validate.entity_instance import EntityInstance
+# from typing import Dict
 
 
 class ParseConfigTest(absltest.TestCase):
@@ -28,8 +27,9 @@ class ParseConfigTest(absltest.TestCase):
     self.ontology = 'TODO',
     self.solution = 'tests/fixtures/files/solution/sample.yaml'
     self.proposed = 'tests/fixtures/files/proposed/sample.yaml'
-    self.parse = ParseConfig(
-        ontology=self.ontology, solution=self.solution, proposed=self.proposed)
+    self.parse = ParseConfig(ontology=self.ontology,
+                             solution=self.solution,
+                             proposed=self.proposed)
 
   def testInitialize(self):
     self.assertEqual(self.parse.args['ontology'], self.ontology)
@@ -39,14 +39,15 @@ class ParseConfigTest(absltest.TestCase):
 
     self.assertEqual(type(self.parse.universe), ConfigUniverse)
 
-    self.assertEqual(
-        type(self.parse.parsed['proposed']),
-        dict)  # Dict[str, EntityInstance]
-    self.assertEqual(
-        type(self.parse.parsed['solution']),
-        dict)  # Dict[str, EntityInstance]
+    self.assertEqual(type(self.parse.parsed['proposed']),
+                     dict)  # Dict[str, EntityInstance]
+    self.assertEqual(type(self.parse.parsed['solution']),
+                     dict)  # Dict[str, EntityInstance]
 
     self.assertEqual(type(self.parse.scores), dict)
+
+  def testAppendTypes(self):
+    pass
 
 
 if __name__ == '__main__':

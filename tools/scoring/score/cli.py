@@ -11,7 +11,6 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 """Command line interface for the configuration scoring tool."""
 
 import argparse
@@ -45,7 +44,11 @@ def parse_args() -> argparse.ArgumentParser:
       metavar='proposed')
 
   parser.add_argument(
-      '-v', '--verbose', dest='verbose', required=False, default='False',
+      '-v',
+      '--verbose',
+      dest='verbose',
+      required=False,
+      default='False',
       help='Output additional details about the scoring process',
       metavar='verbose')
 

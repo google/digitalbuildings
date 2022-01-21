@@ -11,7 +11,6 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 """Command line interface and entry point for the configuration scoring tool."""
 
 import argparse
@@ -48,7 +47,11 @@ def parse_args() -> argparse.ArgumentParser:
       metavar='proposed')
 
   parser.add_argument(
-      '-v', '--verbose', dest='verbose', required=False, default=False,
+      '-v',
+      '--verbose',
+      dest='verbose',
+      required=False,
+      default=False,
       # Defining booleans in argparse is not intuitive!
       type=lambda x: (str(x).lower() in ['true', '1', 'yes']),
       help='Output additional details about the scoring process',
@@ -61,9 +64,8 @@ if __name__ == '__main__':
   pp = pprint.PrettyPrinter()
   # pylint: disable=too-many-function-args
   args = parse_args().parse_args(sys.argv[1:])
-  results = ParseConfig(
-      ontology=args.ontology,
-      solution=args.solution,
-      proposed=args.proposed,
-      verbose=args.verbose)
+  results = ParseConfig(ontology=args.ontology,
+                        solution=args.solution,
+                        proposed=args.proposed,
+                        verbose=args.verbose)
   pp.pprint(results.report())

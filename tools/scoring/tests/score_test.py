@@ -11,7 +11,6 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 """Test for command line interface and entry point (score.py)."""
 
 import argparse
@@ -30,14 +29,9 @@ class CliTest(absltest.TestCase):
 
   def testVerboseInputArgsExist(self):
     parsed = self.cli.parse_args([
-        '--ontology',
-        'path/to/ontology/yaml/resources',
-        '--solution',
-        'path/to/solution/file.yaml',
-        '--proposed',
-        'path/to/proposed/file.yaml',
-        '--verbose',
-        'True'
+        '--ontology', 'path/to/ontology/yaml/resources', '--solution',
+        'path/to/solution/file.yaml', '--proposed',
+        'path/to/proposed/file.yaml', '--verbose', 'True'
     ])
     self.assertEqual(parsed.ontology, 'path/to/ontology/yaml/resources')
     self.assertEqual(parsed.solution, 'path/to/solution/file.yaml')
@@ -46,14 +40,9 @@ class CliTest(absltest.TestCase):
 
   def testConciseInputArgsExist(self):
     parsed = self.cli.parse_args([
-        '-ont',
-        'path/to/ontology/yaml/resources',
-        '-sol',
-        'path/to/solution/file.yaml',
-        '-prop',
-        'path/to/proposed/file.yaml',
-        '-v',
-        'True'
+        '-ont', 'path/to/ontology/yaml/resources', '-sol',
+        'path/to/solution/file.yaml', '-prop', 'path/to/proposed/file.yaml',
+        '-v', 'True'
     ])
     self.assertEqual(parsed.ontology, 'path/to/ontology/yaml/resources')
     self.assertEqual(parsed.solution, 'path/to/solution/file.yaml')
@@ -63,82 +52,50 @@ class CliTest(absltest.TestCase):
   def testOntologyArgIsRequired(self):
     with self.assertRaises(SystemExit):
       self.cli.parse_args([
-          '--solution',
-          'path/to/solution/file.yaml',
-          '--proposed',
-          'path/to/proposed/file.yaml',
-          '--verbose',
-          'True'
+          '--solution', 'path/to/solution/file.yaml', '--proposed',
+          'path/to/proposed/file.yaml', '--verbose', 'True'
       ])
 
   def testSolutionArgIsRequired(self):
     with self.assertRaises(SystemExit):
       self.cli.parse_args([
-          '--ontology',
-          'path/to/ontology/yaml/resources',
-          '--proposed',
-          'path/to/proposed/file.yaml',
-          '--verbose',
-          'True'
+          '--ontology', 'path/to/ontology/yaml/resources', '--proposed',
+          'path/to/proposed/file.yaml', '--verbose', 'True'
       ])
 
   def testProposedArgIsRequired(self):
     with self.assertRaises(SystemExit):
       self.cli.parse_args([
-          '--ontology',
-          'path/to/ontology/yaml/resources',
-          '--solution',
-          'path/to/solution/file.yaml',
-          '--verbose',
-          'True'
+          '--ontology', 'path/to/ontology/yaml/resources', '--solution',
+          'path/to/solution/file.yaml', '--verbose', 'True'
       ])
 
   def testVerboseArgIsTrue(self):
     parsed = self.cli.parse_args([
-        '--ontology',
-        'path/to/ontology/yaml/resources',
-        '--solution',
-        'path/to/solution/file.yaml',
-        '--proposed',
-        'path/to/proposed/file.yaml',
-        '--verbose',
-        'True'
+        '--ontology', 'path/to/ontology/yaml/resources', '--solution',
+        'path/to/solution/file.yaml', '--proposed',
+        'path/to/proposed/file.yaml', '--verbose', 'True'
     ])
     self.assertTrue(parsed.verbose)
 
     parsed = self.cli.parse_args([
-        '--ontology',
-        'path/to/ontology/yaml/resources',
-        '--solution',
-        'path/to/solution/file.yaml',
-        '--proposed',
-        'path/to/proposed/file.yaml',
-        '--verbose',
-        'true'
+        '--ontology', 'path/to/ontology/yaml/resources', '--solution',
+        'path/to/solution/file.yaml', '--proposed',
+        'path/to/proposed/file.yaml', '--verbose', 'true'
     ])
     self.assertTrue(parsed.verbose)
 
     parsed = self.cli.parse_args([
-        '--ontology',
-        'path/to/ontology/yaml/resources',
-        '--solution',
-        'path/to/solution/file.yaml',
-        '--proposed',
-        'path/to/proposed/file.yaml',
-        '--verbose',
-        'yes'
+        '--ontology', 'path/to/ontology/yaml/resources', '--solution',
+        'path/to/solution/file.yaml', '--proposed',
+        'path/to/proposed/file.yaml', '--verbose', 'yes'
     ])
     self.assertTrue(parsed.verbose)
 
     parsed = self.cli.parse_args([
-        '--ontology',
-        'path/to/ontology/yaml/resources',
-        '--solution',
-        'path/to/solution/file.yaml',
-        '--proposed',
-        'path/to/proposed/file.yaml',
-        '--verbose',
-        '1'
+        '--ontology', 'path/to/ontology/yaml/resources', '--solution',
+        'path/to/solution/file.yaml', '--proposed',
+        'path/to/proposed/file.yaml', '--verbose', '1'
     ])
     self.assertTrue(parsed.verbose)
 
