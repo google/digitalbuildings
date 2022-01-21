@@ -37,7 +37,7 @@ class ParseConfig:
 
   def __init__(
           self, *, ontology: str, solution: str, proposed: str,
-          verbose: Optional[bool]):
+          verbose: Optional[bool] = False):
     self.args = {'ontology': ontology,
                  'solution': solution, 'proposed': proposed, 'verbose': verbose}
     self.universe = BuildUniverse(modified_types_filepath=ontology)
