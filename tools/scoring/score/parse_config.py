@@ -40,11 +40,11 @@ class ParseConfig:
           verbose: Optional[bool] = False):
     self.args = {'ontology': ontology,
                  'solution': solution, 'proposed': proposed, 'verbose': verbose}
-    self.universe = BuildUniverse(modified_types_filepath=ontology)
+    self.universe = BuildUniverse(use_simplified_universe=True)
     self.parsed = {
         'proposed': validator.Deserialize([proposed])[0],
         'solution': validator.Deserialize([solution])[0]}
-    self.scores = dict()
+    self.scores = {}
 
   def append_types(self):
     """
