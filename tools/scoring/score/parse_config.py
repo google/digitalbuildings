@@ -56,7 +56,7 @@ class ParseConfig:
     """
       Appends types or type names to parsed files
     """
-    for file_type, file in self.parsed:
+    for file_type, file in self.parsed.items():
       translations_absent = []
       types_absent = []
       type_or_name = 'type' if file_type == 'solution' else 'type_name'
@@ -66,7 +66,7 @@ class ParseConfig:
                                                   entity.type_name)
 
         if entity.type is None:
-          types_absent.append(entity[type_or_name])
+          types_absent.append(getattr(entity, type_or_name))
         if entity.links is not None:
           for link in entity.links:
             source = file[link.source] if link.source in file else None
@@ -75,7 +75,7 @@ class ParseConfig:
                 source.type = self.universe.GetEntityType(
                     source.namespace, source.type_name)
                 if source.type is None:
-                  types_absent.append(source[type_or_name])
+                  types_absent.append(getattr(source, type_or_name))
               link.source_type = source.type
               for target_field, source_field in link.field_map.items():
                 if target_field != source_field:
@@ -88,6 +88,3 @@ class ParseConfig:
                   except KeyError:
                     translations_absent.append(
                         f'{link.source}.translation.{source_field}')
-
-  def report(self):
-    pass

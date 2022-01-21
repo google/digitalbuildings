@@ -68,4 +68,4 @@ if __name__ == '__main__':
                         solution=args.solution,
                         proposed=args.proposed,
                         verbose=args.verbose)
-  pp.pprint(results.report())
+  pp.pprint(results.append_types())
