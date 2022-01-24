@@ -14,11 +14,10 @@
 """Test for configuration file parser (parse_config.py)."""
 
 from absl.testing import absltest
-from score.parse_config import ParseConfig
+from unittest.mock import patch
 
+from score.parse_config import ParseConfig
 from yamlformat.validator.presubmit_validate_types_lib import ConfigUniverse
-# from validate.entity_instance import EntityInstance
-# from typing import Dict
 
 
 class ParseConfigTest(absltest.TestCase):
@@ -46,8 +45,10 @@ class ParseConfigTest(absltest.TestCase):
 
     self.assertEqual(type(self.parse.scores), dict)
 
-  def testAppendTypes(self):
-    pass
+  @patch('builtins.print')
+  def testAppendTypes(self, mock_print):
+    self.parse.append_types()
+    self.assertEqual(mock_print.call_count, 4)
 
 
 if __name__ == '__main__':

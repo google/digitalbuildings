@@ -45,6 +45,8 @@ class ParseConfig:
         'proposed': proposed,
         'verbose': verbose
     }
+    # TODO: revert to below
+    # self.universe = BuildUniverse(modified_types_filepath=ontology)
     self.universe = BuildUniverse(use_simplified_universe=True)
     self.parsed = {
         'proposed': validator.Deserialize([proposed])[0],
@@ -59,6 +61,7 @@ class ParseConfig:
     for file_type, file in self.parsed.items():
       translations_absent = []
       types_absent = []
+      # TODO: Remember why this is implemented this way…
       type_or_name = 'type' if file_type == 'solution' else 'type_name'
 
       for entity in file.values():
@@ -88,3 +91,10 @@ class ParseConfig:
                   except KeyError:
                     translations_absent.append(
                         f'{link.source}.translation.{source_field}')
+
+      print(f'{file_type} translations absent: ' +
+            f'{len(set(translations_absent))} ' +
+            f'(from {len(translations_absent)} links)')
+
+      print(f'{file_type} types absent: {len(set(types_absent))} ' +
+            f'({len(types_absent)} instances)')
