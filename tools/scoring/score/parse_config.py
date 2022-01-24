@@ -21,17 +21,14 @@ from validate.generate_universe import BuildUniverse
 
 class ParseConfig:
   """
-    Args:
-      ontology: Path to the ontology
-      solution: Path to the solution config
-      proposed: Path to the config to be scored
-      verbose: Print specifics of missing types and translations (optional)
-
-    Props:
+    Attributes:
       args: Dictionary containing instance arguments
       universe: Built from the input ontology
       parsed: Deserialized configuration files
       scores: Dictionary containing scores for output
+
+    Returns:
+      An instance of the ParseConfig class.
   """
   def __init__(self,
                *,
@@ -39,6 +36,13 @@ class ParseConfig:
                solution: str,
                proposed: str,
                verbose: Optional[bool] = False):
+    """
+      Arguments:
+        ontology: Path to the ontology
+        solution: Path to the solution config
+        proposed: Path to the config to be scored
+        verbose: Print specifics of missing types and translations (optional)
+    """
     self.args = {
         'ontology': ontology,
         'solution': solution,
