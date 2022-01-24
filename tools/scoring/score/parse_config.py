@@ -45,9 +45,7 @@ class ParseConfig:
         'proposed': proposed,
         'verbose': verbose
     }
-    # TODO: revert to below
-    # self.universe = BuildUniverse(modified_types_filepath=ontology)
-    self.universe = BuildUniverse(use_simplified_universe=True)
+    self.universe = BuildUniverse(modified_types_filepath=ontology)
     self.parsed = {
         'proposed': validator.Deserialize([proposed])[0],
         'solution': validator.Deserialize([solution])[0]
