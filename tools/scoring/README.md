@@ -11,3 +11,5 @@ To install the dependencies, please run the `python3 setup.py install` from the 
 ## Usage
 
 From the `scoring` directory: `python3 score/cli.py -ont path/to/ontology/yaml/resources -prop path/to/proposed/file.yaml -sol path/to/solution/file.yaml -v True`
+
+Draft
