@@ -30,6 +30,7 @@ jobs:
       run: |
         python -m pip install pylint
 
+     #TODO(b/210730979): Investigate calling ontology validator setup with instance validator setup
      #---------- Ontology Explorer ----------#
     - name: Ontology Validator Install dependencies
       run: |

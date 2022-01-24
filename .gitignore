@@ -1,9 +1,8 @@
 **/node_modules/*
 **/temp/*
 **/dist/main.js
-*.pyc
+*..pyc
 
 *.DS_Store
 package-lock.json
 yarn.lock
-.vscode
