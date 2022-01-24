@@ -59,7 +59,9 @@ class ParseConfig:
     for file_type, file in self.parsed.items():
       translations_absent = []
       types_absent = []
-      # TODO: Remember why this is implemented this way…
+      # TODO: This appends the full type to solution entities and only
+      # the type name to proposed entities. Verify that this is the correct
+      # behavior following implementation of the first dimension(s).
       type_or_name = 'type' if file_type == 'solution' else 'type_name'
 
       for entity in file.values():
