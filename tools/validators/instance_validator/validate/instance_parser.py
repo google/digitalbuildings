@@ -185,8 +185,8 @@ _ENTITY_IDS_SCHEMA = {
 }
 _ENTITY_ATTRIB_SCHEMA = {
     syaml.Optional(CONNECTIONS_KEY):
-        syaml.MapPattern(syaml.Str(), syaml.Str())
-        | syaml.Seq(syaml.MapPattern(syaml.Str(), syaml.Str())) | syaml.Any(),
+        syaml.MapPattern(syaml.Str(),
+                          syaml.Str() | syaml.Seq(syaml.Str())),
     syaml.Optional(LINKS_KEY):
         syaml.MapPattern(
             syaml.Str(),
@@ -358,8 +358,6 @@ class InstanceParser():
     """
     if ConfigMode.INITIALIZE == self._config_mode:
       schema = syaml.Map(_ENTITY_INIT_SCHEMA)
-    elif ConfigMode.EXPORT == self._config_mode:
-      schema = syaml.Map(_ENTITY_UPDATE_SCHEMA)
     elif ConfigMode.UPDATE == self._config_mode:
       schema = syaml.Map(_ENTITY_UPDATE_SCHEMA)
       if ENTITY_OPERATION_KEY in entity:
