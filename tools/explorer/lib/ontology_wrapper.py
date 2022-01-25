@@ -172,7 +172,7 @@ class OntologyWrapper(object):
 
   def _CreateMatch(self, field_list: List[StandardField],
                    entity_type: EntityType) -> Match:
-    """Creates a Match instance for an EntityType object and a list of StandardField objects.
+    """Creates Match for EntityType object and list of StandardField objects.
 
     calls _CalculateMatchWeight() on field_list and the set of fields belonging
     to entity_type. The scoring function outputs aan integer in [0, 100]
@@ -249,7 +249,7 @@ class OntologyWrapper(object):
     return match_list_sorted
 
   def _PopulateMatrix(self, match: Match):
-    """Creates a matrix defining field relationships within a match between a concrete entity and a canonical type.
+    """Creates matrix field within match between entity and canonical type.
 
     Args:
       match: A instance of Match class
