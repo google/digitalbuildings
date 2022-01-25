@@ -23,9 +23,9 @@ from yamlformat.validator.presubmit_validate_types_lib import ConfigUniverse
 class ParseConfigTest(absltest.TestCase):
   def setUp(self):
     super().setUp()
-    self.ontology = 'TODO',
-    self.solution = 'tests/fixtures/files/solution/sample.yaml'
-    self.proposed = 'tests/fixtures/files/proposed/sample.yaml'
+    self.ontology = '../../../ontology/yaml',
+    self.solution = 'tests/fixtures/files/solution/building_config_example.yaml'
+    self.proposed = 'tests/fixtures/files/proposed/building_config_example.yaml'
     self.parse = ParseConfig(ontology=self.ontology,
                              solution=self.solution,
                              proposed=self.proposed)
