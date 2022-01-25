@@ -24,8 +24,8 @@ class ParseConfigTest(absltest.TestCase):
   def setUp(self):
     super().setUp()
     self.ontology = '../../../ontology/yaml/resources'
-    self.solution = 'fixtures/files/solution/building_config_example.yaml'
-    self.proposed = 'fixtures/files/proposed/building_config_example.yaml'
+    self.solution = 'samples/solution/building_config_example.yaml'
+    self.proposed = 'samples/proposed/building_config_example.yaml'
     self.parse = ParseConfig(ontology=self.ontology,
                              solution=self.solution,
                              proposed=self.proposed)
