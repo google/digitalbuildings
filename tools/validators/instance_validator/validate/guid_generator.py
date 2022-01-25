@@ -28,7 +28,7 @@ class GuidGenerator(object):
 
   def WriteYamlToFile(self, filename: str,
                       entity_yaml_list: List[Dict[str, str]]) -> None:
-    """Converts list of python dictionaries to yaml document and writes to a file.
+    """Converts list of dictionaries to yaml document and writes to a file.
 
     Args:
       filename: Building Config instance name which is being validated.
