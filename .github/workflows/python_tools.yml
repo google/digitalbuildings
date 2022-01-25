@@ -51,8 +51,8 @@ jobs:
       run: |
        python -m unittest discover -p '*_test.py' --failfast -v
       working-directory: ./tools/explorer
-    #---------- Configuration Scorer ----------#
-    - name: Configuration Scorer Install dependencies
+    #---------- Configuration scoring ----------#
+    - name: Configuration scoring Install dependencies
       run: |
         python setup.py install
       working-directory: ./tools/scoring
