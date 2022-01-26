@@ -11,19 +11,18 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 """Test for command line interface and entry point (score.py)."""
 
 import argparse
 from absl.testing import absltest
 
-from score import score as cli
+import scorer
 
 
 class CliTest(absltest.TestCase):
   def setUp(self):
     super().setUp()
-    self.cli = cli.parse_args()
+    self.cli = scorer.parse_args()
 
   def testCliIsParser(self):
     self.assertEqual(type(self.cli), argparse.ArgumentParser)
