@@ -11,13 +11,12 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 """Command line interface and entry point for the configuration scoring tool."""
 
 import argparse
 import sys
 import pprint
-from parse_config import ParseConfig
+from score import parse_config
 
 
 def parse_args() -> argparse.ArgumentParser:
@@ -65,8 +64,8 @@ if __name__ == '__main__':
   pp = pprint.PrettyPrinter()
   # pylint: disable=too-many-function-args
   args = parse_args().parse_args(sys.argv[1:])
-  results = ParseConfig(ontology=args.ontology,
-                        solution=args.solution,
-                        proposed=args.proposed,
-                        verbose=args.verbose)
+  results = parse_config.ParseConfig(ontology=args.ontology,
+                                     solution=args.solution,
+                                     proposed=args.proposed,
+                                     verbose=args.verbose)
   pp.pprint(results.append_types())
