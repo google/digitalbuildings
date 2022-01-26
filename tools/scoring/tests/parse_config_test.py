@@ -16,7 +16,7 @@
 from absl.testing import absltest
 from unittest.mock import patch
 
-from score.parse_config import ParseConfig
+from score import parse_config
 from yamlformat.validator.presubmit_validate_types_lib import ConfigUniverse
 
 
@@ -26,9 +26,9 @@ class ParseConfigTest(absltest.TestCase):
     self.ontology = '../../../ontology/yaml/resources'
     self.solution = 'samples/solution/building_config_example.yaml'
     self.proposed = 'samples/proposed/building_config_example.yaml'
-    self.parse = ParseConfig(ontology=self.ontology,
-                             solution=self.solution,
-                             proposed=self.proposed)
+    self.parse = parse_config.ParseConfig(ontology=self.ontology,
+                                          solution=self.solution,
+                                          proposed=self.proposed)
 
   def testInitialize(self):
     self.assertEqual(self.parse.args['ontology'], self.ontology)
