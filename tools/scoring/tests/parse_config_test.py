@@ -14,7 +14,7 @@
 """Test for configuration file parser (parse_config.py)."""
 
 from absl.testing import absltest
-from unittest.mock import patch
+from unittest.mock import call, patch
 
 from score import parse_config
 from yamlformat.validator.presubmit_validate_types_lib import ConfigUniverse
@@ -49,6 +49,16 @@ class ParseConfigTest(absltest.TestCase):
   def testAppendTypes(self, mock_print):
     self.parse.append_types()
     self.assertEqual(mock_print.call_count, 4)
+    calls = [
+        call('proposed translations absent: 0 (from 0 links)'),
+        call('proposed types absent: 0 (0 instances)'),
+        call('solution translations absent: 0 (from 0 links)'),
+        call('solution types absent: 0 (0 instances)')
+    ]
+    mock_print.assert_has_calls(calls)
+
+  # def testMatchReportingEntities(self):
+  #   pass
 
 
 if __name__ == '__main__':
