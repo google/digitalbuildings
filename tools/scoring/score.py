@@ -16,6 +16,7 @@
 import argparse
 import sys
 import pprint
+
 from score import parse_config
 
 
