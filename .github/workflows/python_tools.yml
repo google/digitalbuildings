@@ -62,7 +62,7 @@ jobs:
     - name: Configuration Scorer Tests
       run: |
         python -m unittest discover -p '*_test.py' --failfast -v
-      working-directory: ./tools/scoring/tests
+      working-directory: ./tools/scoring
     #---------- Ontology Yaml Type Validator ----------#
     - name:  Ontology Yaml Type Validator Install dependencies
       run: |
