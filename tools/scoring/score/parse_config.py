@@ -56,6 +56,7 @@ class ParseConfig:
     }
     self.scores = {}
 
+  # TODO: refactor into smaller functions and return instead of printing
   def append_types(self):
     """
       Appends types or type names to parsed files
