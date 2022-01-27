@@ -57,9 +57,6 @@ class ParseConfigTest(absltest.TestCase):
     ]
     mock_print.assert_has_calls(calls)
 
-  # def testMatchReportingEntities(self):
-  #   pass
-
 
 if __name__ == '__main__':
   absltest.main()
