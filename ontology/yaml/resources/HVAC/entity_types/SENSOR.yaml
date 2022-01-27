@@ -148,7 +148,8 @@ SENSOR_ZA_OZONE_NO2:
   - /SENSOR
   - ZA
   uses:
-  - zone_air_no2_ozone_concentration_sensor
+  - zone_air_no2_ozone_concentration_sensor_1
+  - zone_air_no2_ozone_concentration_sensor_2
   - zone_air_ozone_concentration_sensor
   - zone_air_voc_concentration_sensor
   - zone_air_no2_concentration_sensor
