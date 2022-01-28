@@ -64,7 +64,7 @@ class ParseConfigTest(absltest.TestCase):
     proposed = validator.Deserialize(
         ['tests/samples/proposed/match_reporting_entities.yaml'])[0]
     solution = validator.Deserialize(
-        ['tests/samples/files/solution/match_reporting_entities.yaml'])[0]
+        ['tests/samples/solution/match_reporting_entities.yaml'])[0]
 
     matches = parse_config.ParseConfig.match_reporting_entities(
         proposed=proposed, solution=solution)
