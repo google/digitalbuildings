@@ -22,7 +22,6 @@ from yamlformat.validator.presubmit_validate_types_lib import ConfigUniverse
 from validate import handler as validator
 from validate.entity_instance import EntityInstance
 
-
 class ParseConfigTest(absltest.TestCase):
   def setUp(self):
     super().setUp()
@@ -81,7 +80,6 @@ class ParseConfigTest(absltest.TestCase):
                      matches[0][1].cloud_device_id)
     self.assertTrue(matches[1][0] is None)
     self.assertTrue(isinstance(matches[1][1], EntityInstance))
-
 
 if __name__ == '__main__':
   absltest.main()

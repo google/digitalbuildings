@@ -104,7 +104,7 @@ class ParseConfig:
 
       print(f'{file_type} types absent: {len(set(types_absent))} ' +
             f'({len(types_absent)} instances)')
-
+  
   @staticmethod
   def match_reporting_entities(
       *, proposed: Dict[str, EntityInstance], solution: Dict[str,
