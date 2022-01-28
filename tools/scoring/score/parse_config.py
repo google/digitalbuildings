@@ -105,10 +105,10 @@ class ParseConfig:
       print(f'{file_type} types absent: {len(set(types_absent))} ' +
             f'({len(types_absent)} instances)')
 
+  @staticmethod
   def match_reporting_entities(
-      self, *, proposed: Dict[str,
-                              EntityInstance], solution: Dict[str,
-                                                              EntityInstance]
+      *, proposed: Dict[str, EntityInstance], solution: Dict[str,
+                                                             EntityInstance]
   ) -> List[Tuple[Optional[EntityInstance], EntityInstance]]:
     """
       Matches reporting entities by `cloud_device_id`

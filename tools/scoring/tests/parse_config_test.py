@@ -66,21 +66,21 @@ class ParseConfigTest(absltest.TestCase):
     solution = validator.Deserialize(
         ['tests/fixtures/files/solution/match_reporting_entities.yaml'])[0]
 
-    matches = self.parse.match_reporting_entities(proposed=proposed,
-                                                  solution=solution)
+    matches = parse_config.ParseConfig.match_reporting_entities(
+        proposed=proposed, solution=solution)
 
     self.assertEqual(len(proposed), 4)
     self.assertEqual(len(solution), 4)
     self.assertEqual(len(matches),
                      2)  # number of valid reporting entities in solution
-    self.assertEqual(type(matches[0]),
-                     tuple)  #Tuple[Optional[EntityInstance], EntityInstance]
+    self.assertTrue(isinstance(
+        matches[0], tuple))  #Tuple[Optional[EntityInstance], EntityInstance]
     self.assertEqual(matches[0][0].cloud_device_id,
                      '2599571827844401')  # Yes, it's a string
     self.assertEqual(matches[0][0].cloud_device_id,
                      matches[0][1].cloud_device_id)
-    self.assertEqual(type(matches[1][0]), type(None))
-    self.assertEqual(type(matches[1][1]), EntityInstance)
+    self.assertTrue(matches[1][0] is None)
+    self.assertTrue(isinstance(matches[1][1], EntityInstance))
 
 
 if __name__ == '__main__':
