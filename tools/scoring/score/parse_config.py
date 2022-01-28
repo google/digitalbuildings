@@ -120,10 +120,10 @@ class ParseConfig:
     for solution_entity in solution.values():
       if solution_entity.cloud_device_id is None:
         continue  # as this is not a reporting device
-      match = None
+      matched_entity = None
       for proposed_entity in proposed.values():
         if proposed_entity.cloud_device_id == solution_entity.cloud_device_id:
-          match = proposed_entity
-      matches.append((match, solution_entity))
+          matched_entity = proposed_entity
+      matches.append((matched_entity, solution_entity))
 
     return matches
