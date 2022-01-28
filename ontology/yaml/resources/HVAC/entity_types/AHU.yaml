@@ -3555,6 +3555,34 @@ AHU_BSPC_CHWZC_DFSS_DFVSC_DSP_ECONZ_EFSS_EFVSC_FDPM_SSPC:
   - FDPM
   - SSPC
 
+AHU_BSPC_DX4SC_ECONM_EFSS_EFVSC_PHWSC_SFSS2X_SFVSC2X_SSPC_SARC:
+  description: "Multi-zone AHU with four-stage DX cooling and preheating water valve."
+  is_canonical: true
+  implements:
+  - AHU
+  - BSPC
+  - DX4SC
+  - ECONM
+  - EFSS
+  - EFVSC
+  - PHWSC
+  - SFSS2X
+  - SFVSC2X
+  - SSPC
+  - SARC
+
+AHU_DFSS_DXZC_ECONZ_EFSS2X_HT2ZC_CO2C:
+  description: "Single zone AHU with CO2 control."
+  is_canonical: true
+  implements:
+  - AHU
+  - DFSS
+  - DXZC
+  - ECONZ
+  - EFSS2X
+  - HT2ZC
+  - CO2C
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
@@ -4534,3 +4562,15 @@ AHU_NON_CANONICAL_TYPE_3:
   - EFSS
   - RTM
   - ZHM
+
+AHU_BSPC_DX4SC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC_RHHC_NONCANONICAL_1:
+  id: "1786972064633061376"
+  description: "Non-Standard AHU with humidification and heating water coils on return duct."
+  is_canonical: false
+  implements:
+  - AHU_BSPC_DX4SC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC
+  - RHHC
+  uses:
+  - heating_water_valve_percentage_command
+  - min_zone_air_relative_humidity_sensor
+  - min_zone_air_relative_humidity_setpoint

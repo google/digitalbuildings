@@ -696,6 +696,7 @@ OA:
   - outside_air_dewpoint_temperature_sensor
   - outside_air_wetbulb_temperature_sensor
   - outside_air_specificenthalpy_sensor
+  - outside_air_pressure_sensor
   uses:
   - outside_air_temperature_sensor
   implements:
@@ -997,6 +998,7 @@ RHDHC:
   is_abstract: true
   opt_uses:
   - economizer_mode
+  - humidification_percentage_command
   uses:
   - return_air_relative_humidity_sensor
   - return_air_relative_humidity_setpoint
@@ -1009,6 +1011,8 @@ ZHDHC:
   id: "4475784869405786112"
   description: "Zone humidification/dehumidification control."
   is_abstract: true
+  opt_uses:
+  - humidification_percentage_command
   uses:
   - zone_air_relative_humidity_sensor
   - zone_air_relative_humidity_setpoint
@@ -1017,10 +1021,23 @@ ZHDHC:
   implements:
   - CONTROL
 
+RHHC:
+  id: "8019953948913827840"
+  description: "Zone humidification control."
+  is_abstract: true
+  opt_uses:
+  - humidification_percentage_command
+  uses:
+  - humidification_run_command
+  - return_air_relative_humidity_setpoint
+  - return_air_relative_humidity_sensor
+
 SHC:
   id: "12474177807615787008"
   description: "Supply air relative humidity control."
   is_abstract: true
+  opt_uses:
+  - humidification_percentage_command
   uses:
   - dehumidification_run_command
   - humidification_run_command
@@ -3630,6 +3647,8 @@ DSPZDHC:
   id: "8195635016311504896"
   description: "Zone dual setpoint humidification/dehumidification control."
   is_abstract: true
+  opt_uses:
+  - humidification_percentage_command
   uses:
   - zone_air_relative_humidity_sensor
   - zone_air_dehumidification_relative_humidity_setpoint
@@ -4355,5 +4374,20 @@ EC2SC:
   - evaporative_cooler_run_command_2
   - supply_air_temperature_sensor
   - supply_air_temperature_setpoint
+  implements:
+  - CONTROL
+
+HWDDC:
+  description: "Heating water valve with dual setpoint control on discharge side."
+  is_abstract: true
+  opt_uses:
+  - heating_water_valve_percentage_sensor
+  - heating_thermal_power_capacity
+  - discharge_air_relative_humidity_sensor
+  - heating_water_flowrate_sensor
+  uses:
+  - heating_water_valve_percentage_command
+  - discharge_air_heating_temperature_setpoint
+  - discharge_air_temperature_sensor
   implements:
   - CONTROL

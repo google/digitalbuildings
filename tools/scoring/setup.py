@@ -1,4 +1,4 @@
-# Copyright 2020 Google LLC
+# Copyright 2022 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the License);
 # you may not use this file except in compliance with the License.
@@ -12,20 +12,19 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-########################
-### Canonical Types  ###
-########################
+""" Setup file for the configuration scoring tool."""
 
-DOAS_EFM_EFSS_EFVSC_OAFM_PHRU_SFSS_SFVSC:
-  id: "5257787225894027264"
-  description: "DOAS heat recovery with fan speed control."
-  is_canonical: true
-  implements:
-  - DOAS
-  - EFM
-  - EFSS
-  - EFVSC
-  - OAFM
-  - PHRU
-  - SFSS
-  - SFVSC
+from setuptools import setup, find_packages
+
+setup(
+    name='scoring',
+    version='0.0.1',
+    url='https://github.com/google/digitalbuildings',
+    license='Apache License',
+    author='Adam Hemphill',
+    author_email='',
+    description='',
+    packages=find_packages(),
+    install_requires=['absl-py', 'argparse'],
+    python_requires='>=3.7',
+)

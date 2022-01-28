@@ -186,7 +186,7 @@ _ENTITY_IDS_SCHEMA = {
 _ENTITY_ATTRIB_SCHEMA = {
     syaml.Optional(CONNECTIONS_KEY):
         syaml.MapPattern(syaml.Str(),
-                         syaml.Str() | syaml.Seq(syaml.Str())),
+                        syaml.Str() | syaml.Seq(syaml.Str())),
     syaml.Optional(LINKS_KEY):
         syaml.MapPattern(
             syaml.Str(),
