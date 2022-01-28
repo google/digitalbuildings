@@ -13,10 +13,11 @@
 # limitations under the License.
 """File parser for the configuration scoring tool."""
 
-from typing import Optional
+from typing import Dict, Optional, Tuple, List
 
 from validate import handler as validator
 from validate.generate_universe import BuildUniverse
+from validate.entity_instance import EntityInstance
 
 
 class ParseConfig:
@@ -103,3 +104,26 @@ class ParseConfig:
 
       print(f'{file_type} types absent: {len(set(types_absent))} ' +
             f'({len(types_absent)} instances)')
+
+  def match_reporting_entities(
+      self, *, proposed: Dict[str,
+                              EntityInstance], solution: Dict[str,
+                                                              EntityInstance]
+  ) -> List[Tuple[Optional[EntityInstance], EntityInstance]]:
+    """
+      Matches reporting entities by `cloud_device_id`
+
+      Returns:
+        List of paired proposed and solution entities
+    """
+    matches = []
+    for solution_entity in solution.values():
+      if solution_entity.cloud_device_id is None:
+        continue  # as this is not a reporting device
+      match = None
+      for proposed_entity in proposed.values():
+        if proposed_entity.cloud_device_id == solution_entity.cloud_device_id:
+          match = proposed_entity
+      matches.append((match, solution_entity))
+
+    return matches

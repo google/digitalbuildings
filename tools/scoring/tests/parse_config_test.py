@@ -19,6 +19,9 @@ from unittest.mock import call, patch
 from score import parse_config
 from yamlformat.validator.presubmit_validate_types_lib import ConfigUniverse
 
+from validate import handler as validator
+from validate.entity_instance import EntityInstance
+
 
 class ParseConfigTest(absltest.TestCase):
   def setUp(self):
@@ -56,6 +59,28 @@ class ParseConfigTest(absltest.TestCase):
         call('solution types absent: 0 (0 instances)')
     ]
     mock_print.assert_has_calls(calls)
+
+  def testMatchReportingEntities(self):
+    proposed = validator.Deserialize(
+        ['tests/fixtures/files/proposed/match_reporting_entities.yaml'])[0]
+    solution = validator.Deserialize(
+        ['tests/fixtures/files/solution/match_reporting_entities.yaml'])[0]
+
+    matches = self.parse.match_reporting_entities(proposed=proposed,
+                                                  solution=solution)
+
+    self.assertEqual(len(proposed), 4)
+    self.assertEqual(len(solution), 4)
+    self.assertEqual(len(matches),
+                     2)  # number of valid reporting entities in solution
+    self.assertEqual(type(matches[0]),
+                     tuple)  #Tuple[Optional[EntityInstance], EntityInstance]
+    self.assertEqual(matches[0][0].cloud_device_id,
+                     '2599571827844401')  # Yes, it's a string
+    self.assertEqual(matches[0][0].cloud_device_id,
+                     matches[0][1].cloud_device_id)
+    self.assertEqual(type(matches[1][0]), type(None))
+    self.assertEqual(type(matches[1][1]), EntityInstance)
 
 
 if __name__ == '__main__':
