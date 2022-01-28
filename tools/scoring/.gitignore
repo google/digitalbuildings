@@ -1,6 +1,6 @@
 .pytype/
-build/
-dist/
+dist
+build
 *.egg-info/
 __pycache__/
-scratch/raw/
+*.code-workspace
