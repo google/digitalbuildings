@@ -20,7 +20,6 @@ from score import parse_config
 from yamlformat.validator.presubmit_validate_types_lib import ConfigUniverse
 
 from validate import handler as validator
-from validate.entity_instance import EntityInstance
 
 
 class ParseConfigTest(absltest.TestCase):
