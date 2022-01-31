@@ -71,16 +71,8 @@ class ParseConfigTest(absltest.TestCase):
 
     self.assertEqual(len(proposed), 4)
     self.assertEqual(len(solution), 4)
-    self.assertEqual(len(matches),
-                     2)  # number of valid reporting entities in solution
-    self.assertTrue(isinstance(
-        matches[0], tuple))  #Tuple[Optional[EntityInstance], EntityInstance]
-    self.assertEqual(matches[0][0].cloud_device_id,
-                     '2599571827844401')  # Yes, it's a string
-    self.assertEqual(matches[0][0].cloud_device_id,
-                     matches[0][1].cloud_device_id)
-    self.assertTrue(matches[1][0] is None)
-    self.assertTrue(isinstance(matches[1][1], EntityInstance))
+    self.assertEqual(len(matches), 1)
+    self.assertEqual(matches[0], '2599571827844401')  # Yes, it's a string
 
 
 if __name__ == '__main__':

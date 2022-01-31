@@ -107,23 +107,21 @@ class ParseConfig:
 
   @staticmethod
   def match_reporting_entities(
-      *, proposed: Dict[str, EntityInstance], solution: Dict[str,
-                                                             EntityInstance]
-  ) -> List[Tuple[Optional[EntityInstance], EntityInstance]]:
+      *, proposed: Dict[str, EntityInstance],
+      solution: Dict[str, EntityInstance]) -> List[str]:
     """
       Matches reporting entities by `cloud_device_id`
 
       Returns:
-        List of paired proposed and solution entities
+        List of `cloud_device_id`s which have corresponding
+        proposed and solution entities
     """
     matches = []
     for solution_entity in solution.values():
       if solution_entity.cloud_device_id is None:
         continue  # as this is not a reporting device
-      matched_entity = None
       for proposed_entity in proposed.values():
         if proposed_entity.cloud_device_id == solution_entity.cloud_device_id:
-          matched_entity = proposed_entity
-      matches.append((matched_entity, solution_entity))
+          matches.append(proposed_entity.cloud_device_id)
 
     return matches
