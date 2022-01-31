@@ -19,6 +19,8 @@ from unittest.mock import call, patch
 from score import parse_config
 from yamlformat.validator.presubmit_validate_types_lib import ConfigUniverse
 
+from validate import handler as validator
+
 
 class ParseConfigTest(absltest.TestCase):
   def setUp(self):
@@ -56,6 +58,20 @@ class ParseConfigTest(absltest.TestCase):
         call('solution types absent: 0 (0 instances)')
     ]
     mock_print.assert_has_calls(calls)
+
+  def testMatchReportingEntities(self):
+    proposed = validator.Deserialize(
+        ['tests/samples/proposed/match_reporting_entities.yaml'])[0]
+    solution = validator.Deserialize(
+        ['tests/samples/solution/match_reporting_entities.yaml'])[0]
+
+    matches = parse_config.ParseConfig.match_reporting_entities(
+        proposed=proposed, solution=solution)
+
+    self.assertEqual(len(proposed), 4)
+    self.assertEqual(len(solution), 4)
+    self.assertEqual(len(matches), 1)
+    self.assertEqual(matches[0], '2599571827844401')  # Yes, it's a string
 
 
 if __name__ == '__main__':
