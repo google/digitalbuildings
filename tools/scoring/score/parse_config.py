@@ -107,20 +107,26 @@ class ParseConfig:
 
   @staticmethod
   def match_reporting_entities(
-      *, proposed: Dict[str, EntityInstance],
-      solution: Dict[str, EntityInstance]) -> List[str]:
+      *, proposed_entities: Dict[str, EntityInstance],
+      solution_entities: Dict[str, EntityInstance]) -> List[str]:
     """
       Matches reporting entities by `cloud_device_id`
+
+      Args:
+        proposed_entities: Dictionary of proposed entity names
+          and `EntityInstance`s
+        solution_entities: Dictionary of solution entity names
+          and `EntityInstance`s
 
       Returns:
         List of `cloud_device_id`s which have corresponding
         proposed and solution entities
     """
     matches = []
-    for solution_entity in solution.values():
+    for solution_entity in solution_entities.values():
       if solution_entity.cloud_device_id is None:
         continue  # as this is not a reporting device
-      for proposed_entity in proposed.values():
+      for proposed_entity in proposed_entities.values():
         if proposed_entity.cloud_device_id == solution_entity.cloud_device_id:
           matches.append(proposed_entity.cloud_device_id)
 
@@ -128,27 +134,39 @@ class ParseConfig:
 
   @staticmethod
   def retrieve_reporting_translations(
-      *, matches: List[str], proposed: Dict[str, EntityInstance],
-      solution: Dict[str, EntityInstance]) -> Dict[str, List[Tuple[str, Any]]]:
+      *, matches: List[str], proposed_entities: Dict[str, EntityInstance],
+      solution_entities: Dict[str, EntityInstance]
+  ) -> Dict[str, List[Tuple[str, Any]]]:
     """
       Retrieves proposed and solution translations
       for all matched reporting entities.
 
+      Args:
+        matches: List of `cloud_device_id`s which have corresponding
+          proposed and solution entities
+        proposed_entities: Dictionary of proposed entity names
+          and `EntityInstance`s
+        solution_entities: Dictionary of solution entity names
+          and `EntityInstance`s
+
       Returns:
-        A dictionary with `cloud_device_id`s as keys
+        Dictionary with `cloud_device_id`s as keys
         and lists of translation tuples as values
     """
 
     translations = {}
     for cloud_device_id in matches:
+      # Find the entity via comparison of the cloud_device_id against the
+      # corresponding property of each EntityInstance in the specified dict
       find_entity = lambda dictionary, cdid=cloud_device_id: [
           entity for entity in dictionary.values()
           if entity.cloud_device_id == cdid
       ][0]
 
-      proposed_entity = find_entity(proposed)
-      solution_entity = find_entity(solution)
+      proposed_entity = find_entity(proposed_entities)
+      solution_entity = find_entity(solution_entities)
 
+      # Isolate the translations of an entity for pairing below.
       # A reporting entity without a translation should not occur
       aggregate_translations = lambda entity: list(entity.translation.items(
       )) if getattr(entity, 'translation', None) else []
