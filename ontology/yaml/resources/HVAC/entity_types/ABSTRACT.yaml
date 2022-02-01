@@ -4378,6 +4378,7 @@ EC2SC:
   - CONTROL
 
 HWDDC:
+  id: "5695815066213941248"
   description: "Heating water valve with dual setpoint control on discharge side."
   is_abstract: true
   opt_uses:
