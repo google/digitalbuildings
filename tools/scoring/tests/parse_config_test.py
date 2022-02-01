@@ -21,6 +21,8 @@ from yamlformat.validator.presubmit_validate_types_lib import ConfigUniverse
 
 from validate import handler as validator
 
+from validate.field_translation import NonDimensionalValue
+
 
 class ParseConfigTest(absltest.TestCase):
   def setUp(self):
@@ -72,6 +74,44 @@ class ParseConfigTest(absltest.TestCase):
     self.assertEqual(len(solution), 4)
     self.assertEqual(len(matches), 1)
     self.assertEqual(matches[0], '2599571827844401')  # Yes, it's a string
+
+  def testRetrieveReportingTranslations(self):
+    proposed = validator.Deserialize(
+        ['tests/samples/proposed/retrieve_reporting_translations.yaml'])[0]
+    solution = validator.Deserialize(
+        ['tests/samples/solution/retrieve_reporting_translations.yaml'])[0]
+
+    matches = parse_config.ParseConfig.match_reporting_entities(
+        proposed=proposed, solution=solution)
+
+    translations = parse_config.ParseConfig.retrieve_reporting_translations(
+        matches=matches, proposed=proposed, solution=solution)
+
+    self.assertEqual(type(translations), dict)
+    self.assertEqual(len(translations.items()), len(matches))
+
+    cdid = '2599571827844401'
+
+    self.assertEqual(type(translations[cdid]), dict)
+
+    self.assertTrue('proposed_translations' in translations[cdid])
+    self.assertEqual(type(translations[cdid]['proposed_translations']), list)
+    self.assertEqual(len(translations[cdid]['proposed_translations']), 1)
+    self.assertEqual(type(translations[cdid]['proposed_translations'][0]),
+                     tuple)
+    self.assertEqual(translations[cdid]['proposed_translations'][0][0], 'wrong')
+    self.assertEqual(type(translations[cdid]['proposed_translations'][0][1]),
+                     NonDimensionalValue)
+
+    self.assertTrue('solution_translations' in translations[cdid])
+    self.assertEqual(type(translations[cdid]['solution_translations']), list)
+    self.assertEqual(len(translations[cdid]['solution_translations']), 1)
+    self.assertEqual(type(translations[cdid]['solution_translations'][0]),
+                     tuple)
+    self.assertEqual(translations[cdid]['solution_translations'][0][0],
+                     'target')
+    self.assertEqual(type(translations[cdid]['solution_translations'][0][1]),
+                     NonDimensionalValue)
 
 
 if __name__ == '__main__':

@@ -13,7 +13,7 @@
 # limitations under the License.
 """File parser for the configuration scoring tool."""
 
-from typing import Dict, Optional, List, Tuple
+from typing import Dict, Optional, List, Tuple, Any
 
 from validate import handler as validator
 from validate.generate_universe import BuildUniverse
@@ -129,7 +129,7 @@ class ParseConfig:
   @staticmethod
   def retrieve_reporting_translations(
       *, matches: List[str], proposed: Dict[str, EntityInstance],
-      solution: Dict[str, EntityInstance]) -> Dict[str, List[Tuple[str, str]]]:
+      solution: Dict[str, EntityInstance]) -> Dict[str, List[Tuple[str, Any]]]:
     """
       Retrieves proposed and solution translations
       for all matched reporting entities.
@@ -149,8 +149,9 @@ class ParseConfig:
       proposed_entity = find_entity(proposed)
       solution_entity = find_entity(solution)
 
-      aggregate_translations = lambda entity: entity.translation.items(
-      ) if getattr(entity, 'translation', None) else []
+      # A reporting entity without a translation should not occur
+      aggregate_translations = lambda entity: list(entity.translation.items(
+      )) if getattr(entity, 'translation', None) else []
 
       translations[cloud_device_id] = {
           'proposed_translations': aggregate_translations(proposed_entity),
