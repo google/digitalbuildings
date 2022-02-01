@@ -117,25 +117,25 @@ class ParseConfigTest(absltest.TestCase):
     self.assertEqual(type(translations[cdid]['solution_translations'][0][1]),
                      NonDimensionalValue)
 
-  def testAggregateNonDboScores(self):
+  def testAggregateScoresNonDbo(self):
     mock_dimension = lambda *, translations: f'called with {translations}'
-    scores = parse_config.ParseConfig.aggregate_nondbo_scores(
+    scores = parse_config.ParseConfig.aggregate_scores_nondbo(
         dimensions=[mock_dimension], translations='arbitrary')
 
     self.assertEqual(type(scores), dict)
     self.assertEqual(scores['<lambda>'], 'called with arbitrary')
 
-  def testAggregateDboScores(self):
+  def testAggregateScoresDbo(self):
     mock_dbo_dimension = (
         lambda *, proposed_entities, solution_entities:
         f'called with {proposed_entities} {solution_entities}')
-    dbo_scores = parse_config.ParseConfig.aggregate_dbo_scores(
+    scores_dbo = parse_config.ParseConfig.aggregate_scores_dbo(
         dbo_dimensions=[mock_dbo_dimension],
         proposed_entities='arbitrary',
         solution_entities='arguments')
 
-    self.assertEqual(type(dbo_scores), dict)
-    self.assertEqual(dbo_scores['<lambda>'], 'called with arbitrary arguments')
+    self.assertEqual(type(scores_dbo), dict)
+    self.assertEqual(scores_dbo['<lambda>'], 'called with arbitrary arguments')
 
 
 if __name__ == '__main__':

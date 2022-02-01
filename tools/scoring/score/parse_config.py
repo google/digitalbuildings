@@ -179,7 +179,7 @@ class ParseConfig:
     return translations
 
   @staticmethod
-  def aggregate_nondbo_scores(
+  def aggregate_scores_nondbo(
       # TODO: create Dimension and Score types to replace generics
       *,
       dimensions: List[Callable[[Dict], Dict]],
@@ -203,7 +203,7 @@ class ParseConfig:
     return scores
 
   @staticmethod
-  def aggregate_dbo_scores(
+  def aggregate_scores_dbo(
       # TODO: create DboDimension and DboScore types to replace generics
       *,
       dbo_dimensions: List[Callable[[Dict, Dict], Dict]],
@@ -224,10 +224,10 @@ class ParseConfig:
       Returns:
         Dictionary with dimension names as keys and `DboScore`s as values
     """
-    dbo_scores = {}
+    scores_dbo = {}
     for dbo_dimension in dbo_dimensions:
       # Invoke the function and append the dictionary with its return value
-      dbo_scores[dbo_dimension.__name__] = dbo_dimension(
+      scores_dbo[dbo_dimension.__name__] = dbo_dimension(
           proposed_entities=proposed_entities,
           solution_entities=solution_entities)
-    return dbo_scores
+    return scores_dbo
