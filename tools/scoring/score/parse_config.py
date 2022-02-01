@@ -13,7 +13,7 @@
 # limitations under the License.
 """File parser for the configuration scoring tool."""
 
-from typing import Dict, Optional, List, Tuple, Any
+from typing import Callable, Dict, Optional, List, Tuple, Any
 
 from validate import handler as validator
 from validate.generate_universe import BuildUniverse
@@ -177,3 +177,57 @@ class ParseConfig:
       }
 
     return translations
+
+  @staticmethod
+  def aggregate_nondbo_scores(
+      # TODO: create Dimension and Score types to replace generics
+      *,
+      dimensions: List[Callable[[Dict], Dict]],
+      translations: Dict[str, List[Tuple[str, Any]]]) -> Dict[str, Dict]:
+    """
+      Wrapper which outputs a dictionary of scores by invoking
+      each specified `Dimension` with the `translations` argument
+
+      Args:
+        dimensions: List of `Dimension`s to be scored
+        translations: Dictionary with `cloud_device_id`s as keys
+          and lists of translation tuples as values
+
+      Returns:
+        Dictionary with dimension names as keys and `Score`s as values
+    """
+    scores = {}
+    for dimension in dimensions:
+      # Invoke the function and append the dictionary with its return value
+      scores[dimension.__name__] = dimension(translations=translations)
+    return scores
+
+  @staticmethod
+  def aggregate_dbo_scores(
+      # TODO: create DboDimension and DboScore types to replace generics
+      *,
+      dbo_dimensions: List[Callable[[Dict, Dict], Dict]],
+      proposed_entities: Dict[str, EntityInstance],
+      solution_entities: Dict[str, EntityInstance]) -> Dict[str, Dict]:
+    """
+      Wrapper which outputs a dictionary of scores by invoking
+      each specified `DboDimension` with the `proposed_entities`
+      and `solution_entities` arguments
+
+      Args:
+        dbo_dimensions: List of `DboDimension`s to be scored
+        proposed_entities: Dictionary of proposed entity names
+          and `EntityInstance`s
+        solution_entities: Dictionary of solution entity names
+          and `EntityInstance`s
+
+      Returns:
+        Dictionary with dimension names as keys and `DboScore`s as values
+    """
+    dbo_scores = {}
+    for dbo_dimension in dbo_dimensions:
+      # Invoke the function and append the dictionary with its return value
+      dbo_scores[dbo_dimension.__name__] = dbo_dimension(
+          proposed_entities=proposed_entities,
+          solution_entities=solution_entities)
+    return dbo_scores
