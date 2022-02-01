@@ -12,9 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# This file is used as an example of a valid building configuration with
-# the most common and important features, e.g. translations and links.
-
 # This WILL match as cloud_device_id corresponds and translation is present
 FCU-1:
   cloud_device_id: 2599571827844401
@@ -44,7 +41,7 @@ VLV-1:
 # This WILL NOT match as cloud_device_id is not set when translation is absent
 # (this is invalid and should not occur)
 VLV-2:
-  cloud_device_id: 2599571827822201
+  cloud_device_id: 2599571827866601
   id: CDM/196h$V6TP3C8vhrwG9nopt
   type: HVAC/VLV_HWVM
 

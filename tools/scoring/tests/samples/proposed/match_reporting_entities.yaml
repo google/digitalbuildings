@@ -12,9 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# This file is used as an example of a valid building configuration with
-# the most common and important features, e.g. translations and links.
-
 # This WILL match as cloud_device_id corresponds and translation is present
 FCU-1:
   cloud_device_id: 2599571827844401
