@@ -4383,3 +4383,18 @@ EC2SC:
   - supply_air_temperature_setpoint
   implements:
   - CONTROL
+
+HWDDC:
+  description: "Heating water valve with dual setpoint control on discharge side."
+  is_abstract: true
+  opt_uses:
+  - heating_water_valve_percentage_sensor
+  - heating_thermal_power_capacity
+  - discharge_air_relative_humidity_sensor
+  - heating_water_flowrate_sensor
+  uses:
+  - heating_water_valve_percentage_command
+  - discharge_air_heating_temperature_setpoint
+  - discharge_air_temperature_sensor
+  implements:
+  - CONTROL
