@@ -15,7 +15,8 @@
 
 from __future__ import print_function
 
-from typing import Optional, Dict, Set, Tuple
+from typing import Dict, Optional, Set, Tuple
+import uuid
 
 import strictyaml as syaml
 
@@ -726,7 +727,19 @@ class EntityInstance(findings_lib.Findings):
   def FromYaml(cls,
                entity_yaml,
                default_operation: Optional[
-                   parse.EntityOperation] = parse.EntityOperation.ADD):
+                   parse.EntityOperation] = parse.EntityOperation.ADD,
+               guid_generation: bool = False):
+    """Class method to instantiate an Entity Instance from yaml.
+
+    Args:
+      entity_yaml: yaml document containing entity data,
+      default_operation: entity operation, add or update,
+      guid_generation: boolean for if an entity needs a guid generated
+
+    Returns:
+      An instance of EntityInstance class.
+    """
+
     operation = default_operation
     if parse.ENTITY_OPERATION_KEY in entity_yaml:
       operation = parse.EntityOperation.FromString(
@@ -739,6 +752,10 @@ class EntityInstance(findings_lib.Findings):
     guid = None
     if parse.ENTITY_GUID_KEY in entity_yaml:
       guid = entity_yaml[parse.ENTITY_GUID_KEY]
+    elif guid_generation and parse.ENTITY_GUID_KEY not in entity_yaml:
+      print(f'Generating GUID for {entity_id}')
+      guid = uuid.uuid4()
+      entity_yaml[parse.ENTITY_GUID_KEY] = guid
     else:
       print('[WARNING]: Entity GUID will be required in the future ' +
             f'for {entity_id}.')

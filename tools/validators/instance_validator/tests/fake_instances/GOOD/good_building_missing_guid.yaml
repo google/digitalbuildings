@@ -1,4 +1,4 @@
-# Copyright 2022 Google LLC
+# Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the License);
 # you may not use this file except in compliance with the License.
@@ -12,10 +12,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FCU-1:
-  cloud_device_id: 2599571827844401
-  id: CDM/32HyWf6Zv3XumC7od2m$$H
-  translation:
-    target:
-      present_value: source
-  type: HVAC/FCU_DFSS_DFVSC_ZTC_ZHC_CHWDC_HWDC_FDPM_RMM
+# Building
+UK-LON-S2:
+  type: FACILITIES/BUILDING
+  id: FACILITIES/123456
+  guid:
+
+UK-LON-S3:
+  type: FACILITIES/BUILDING
+  id: FACILITIES/1234567
