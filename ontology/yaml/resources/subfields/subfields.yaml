@@ -57,7 +57,6 @@ component:
   wheel: "Component used for transfer of heat from incoming to outgoing air streams. "
   winding: "Conductive wires wrapped around a magnetic core."
 descriptor: 
-  adjusted: "A descriptor indicating the value has been changed from the raw reading."
   air: "Atmospheric air, either conditioned or unconditioned."
   aisle: "Passage between two rows of server racks."
   ammonia: "Ammonia gas."
