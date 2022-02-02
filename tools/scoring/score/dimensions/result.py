@@ -22,14 +22,15 @@ class Result:
     quantify success in each dimension
 
     Attributes:
-      correct_virtual: Number of correct attempts within virtual devices
-      correct_reporting: Number of correct attempts within reporting devices
-      correct_ceiling_virtual: Number of correct attempts possible
+      correct_virtual: Number of attempts achieved within virtual devices
+      correct_reporting: Number of attempts achieved within reporting devices
+      correct_ceiling_virtual: Number of attempts possible to achieve
         within virtual devices
-      correct_ceiling_reporting: Number of correct attempts possible
+      correct_ceiling_reporting: Number of attempts possible to achieve
         within reporting devices
-      incorrect_virtual: Number of incorrect attempts within virtual devices
-      incorrect_reporting: Number of incorrect attempts within reporting devices
+      incorrect_virtual: Number of attempts not achieved within virtual devices
+      incorrect_reporting: Number of attempts not achieved
+        within reporting devices
 
     Properties:
       result_composite: Calculated result for all devices
@@ -45,15 +46,15 @@ class Result:
   incorrect_reporting: int
 
   def correct(self) -> int:
-    """ Number of correct attempts within all devices """
+    """ Number of attempts achieved within all devices """
     return self.correct_virtual + self.correct_reporting
 
   def correct_ceiling(self) -> int:
-    """ Number of correct attempts possible within all devices """
+    """ Number of attempts possible to achieve within all devices """
     return self.correct_ceiling_virtual + self.correct_ceiling_reporting
 
   def incorrect(self) -> int:
-    """ Number of incorrect attempts within all devices """
+    """ Number of attempts not achieved within all devices """
     return self.incorrect_virtual + self.incorrect_reporting
 
   @property
