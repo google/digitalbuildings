@@ -1034,6 +1034,12 @@ literals:
 - zone_air_pm4pt0_concentration_sensor
 - zone_air_pm10pt0_concentration_sensor
 
+- zone_air_pm0pt5_volumetricconcentration_sensor
+- zone_air_pm1pt0_volumetricconcentration_sensor
+- zone_air_pm2pt5_volumetricconcentration_sensor
+- zone_air_pm4pt0_volumetricconcentration_sensor
+- zone_air_pm10pt0_volumetricconcentration_sensor
+
 ## New fields for IoT vibration sensor pilot
 - fivesecondrolling_max_xaxis_linearacceleration_sensor
 - fivesecondrolling_max_yaxis_linearacceleration_sensor
