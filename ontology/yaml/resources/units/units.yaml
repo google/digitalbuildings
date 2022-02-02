@@ -22,6 +22,7 @@ concentration:
 - parts_per_million
 - parts_per_billion
 - grams_per_kilogram # Can convert approximately using Avogadro
+- parts_per_cubic_centimeter # can be approximated using Avogadro
 current:
 - amperes: STANDARD
 - milliamperes
@@ -56,6 +57,7 @@ illuminance:
 level:
 - meters: STANDARD
 - feet
+- micrometers
 linearacceleration:
 - meters_per_square_second: STANDARD
 - gravity

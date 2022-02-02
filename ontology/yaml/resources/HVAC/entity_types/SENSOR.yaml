@@ -163,11 +163,11 @@ SENSOR_ZA_PML:
   - ZA
   uses:
   - thirtysecondrolling_average_zone_air_particle_diameter_sensor
-  - zone_air_pm0pt5_density_sensor
   - zone_air_pm1pt0_density_sensor
   - zone_air_pm2pt5_density_sensor
   - zone_air_pm4pt0_density_sensor
   - zone_air_pm10pt0_density_sensor
+  - zone_air_pm0pt5_concentration_sensor
   - zone_air_pm1pt0_concentration_sensor
   - zone_air_pm2pt5_concentration_sensor
   - zone_air_pm4pt0_concentration_sensor
