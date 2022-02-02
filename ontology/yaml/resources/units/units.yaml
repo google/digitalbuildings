@@ -21,7 +21,6 @@ concentration:
 - parts_per_unit: STANDARD
 - parts_per_million
 - parts_per_billion
-- grams_per_kilogram # Can convert approximately using Avogadro
 - parts_per_cubic_centimeter # can be approximated using Avogadro
 current:
 - amperes: STANDARD
