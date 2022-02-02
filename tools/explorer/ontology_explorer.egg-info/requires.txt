@@ -1,5 +1,0 @@
-absl-py
-pyfiglet
-argparse
-termcolor
-colorama
