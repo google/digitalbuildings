@@ -75,3 +75,9 @@ class Result:
     return ((self.correct_reporting - self.incorrect_reporting) /
             self.correct_ceiling_reporting
             ) if self.correct_ceiling_reporting != 0 else None
+
+  def __str__(self) -> str:
+    """ Human-readable representation of the calculated properties"""
+    return (
+        f'{{result_composite: {self.result_composite}, result_virtual: '
+        f'{self.result_virtual}, result_reporting: {self.result_reporting}}}')

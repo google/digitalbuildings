@@ -35,13 +35,13 @@ class ResultTest(absltest.TestCase):
                               incorrect_reporting=0)
 
   def testCorrect(self):
-    self.assertEqual(classmethod(self.result.correct()), 2)
+    self.assertEqual(self.result.correct(), 2)
 
   def testCorrectCeiling(self):
-    self.assertEqual(classmethod(self.result.correct_ceiling()), 4)
+    self.assertEqual(self.result.correct_ceiling(), 4)
 
   def testIncorrect(self):
-    self.assertEqual(classmethod(self.result.incorrect()), 2)
+    self.assertEqual(self.result.incorrect(), 2)
 
   def testResultComposite(self):
     self.assertEqual(self.result.result_composite, 0.0)
@@ -54,6 +54,11 @@ class ResultTest(absltest.TestCase):
   def testResultReporting(self):
     self.assertEqual(self.result.result_reporting, 0.0)
     self.assertEqual(self.result_none.result_reporting, None)
+
+  def testStr(self):
+    self.assertEqual(
+        self.result.__str__(),
+        '{result_composite: 0.0, result_virtual: 0.0, result_reporting: 0.0}')
 
 
 if __name__ == '__main__':
