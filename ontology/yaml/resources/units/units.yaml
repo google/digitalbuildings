@@ -21,7 +21,6 @@ concentration:
 - parts_per_unit: STANDARD
 - parts_per_million
 - parts_per_billion
-- parts_per_cubic_centimeter # can be approximated using Avogadro
 current:
 - amperes: STANDARD
 - milliamperes
@@ -68,6 +67,8 @@ linearvelocity:
 - feet_per_minute
 - miles_per_hour
 - millimeters_per_second
+massConcentration:
+- grams_per_kilogram: STANDARD
 percentage:
 - percent: STANDARD
 powerfactor:
@@ -106,6 +107,8 @@ volume:
 - cubic_feet
 - us_gallons
 - liters
+volumetricConcentration:
+- parts_per_cubic_centimeter: STANDARD # can be approximated using Avogadro
 time:
 - seconds: STANDARD
 rate:
