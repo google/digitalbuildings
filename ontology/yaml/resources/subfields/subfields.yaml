@@ -234,7 +234,7 @@ measurement:
   level: "The height of something with regard to a datum (e.g. the water level of a tank relative to the bottom)."  
   linearacceleration: "Time rate of change of linear velocity."
   linearvelocity: "Example: wind speed"
-  massConcentration: "Concentration by mass (e.g., grams per kilogram)."
+  massconcentration: "Concentration by mass (e.g., grams per kilogram)."
   percentage: "Measurement per hundred."
   powerfactor: "Ratio of real and apparent power."
   power: "Rate of energy consumption (assumed context is electrical and real, unless otherwise modified)."
@@ -247,7 +247,7 @@ measurement:
   voltage: "Electrical potential difference between two reference points."
   voltageratio: "The ratio of the Primary voltage of the transformer to the secondary voltage."
   volume: "The quantity of three-dimensional space contained by a closed surface."
-  volumetricConcentration: "Concentration in terms of volume (parts per unit volume)."
+  volumetricconcentration: "Concentration in terms of volume (parts per unit volume)."
 measurement_descriptor:
   absolute: "Quality of media with respect to non-relativistic boudaries (e.g. absolute temperature)."
   apparent: "The combination of reactive and real components (power)."

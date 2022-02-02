@@ -67,7 +67,7 @@ linearvelocity:
 - feet_per_minute
 - miles_per_hour
 - millimeters_per_second
-massConcentration:
+massconcentration:
 - grams_per_kilogram: STANDARD
 percentage:
 - percent: STANDARD
@@ -107,7 +107,7 @@ volume:
 - cubic_feet
 - us_gallons
 - liters
-volumetricConcentration:
+volumetricconcentration:
 - parts_per_cubic_centimeter: STANDARD # can be approximated using Avogadro
 time:
 - seconds: STANDARD
