@@ -1,0 +1,77 @@
+# Copyright 2022 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the License);
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#    https://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an AS IS BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+"""Outputs of the configuration scoring tool."""
+from dataclasses import dataclass
+
+
+@dataclass
+class Result:
+  """
+    Container for floating-point results which
+    quantify success in each dimension
+
+    Attributes:
+      correct_virtual: Number of correct attempts within virtual devices
+      correct_reporting: Number of correct attempts within reporting devices
+      correct_ceiling_virtual: Number of correct attempts possible
+        within virtual devices
+      correct_ceiling_reporting: Number of correct attempts possible
+        within reporting devices
+      incorrect_virtual: Number of incorrect attempts within virtual devices
+      incorrect_reporting: Number of incorrect attempts within reporting devices
+
+    Properties:
+      result_composite: Calculated result for all devices
+      result_virtual: Calculated result for virtual devices
+      result_reporting: Calculated result for reporting devices
+  """
+
+  correct_virtual: int
+  correct_reporting: int
+  correct_ceiling_virtual: int
+  correct_ceiling_reporting: int
+  incorrect_virtual: int
+  incorrect_reporting: int
+
+  def correct(self) -> int:
+    """ Number of correct attempts within all devices """
+    return self.correct_virtual + self.correct_reporting
+
+  def correct_ceiling(self) -> int:
+    """ Number of correct attempts possible within all devices """
+    return self.correct_ceiling_virtual + self.correct_ceiling_reporting
+
+  def incorrect(self) -> int:
+    """ Number of incorrect attempts within all devices """
+    return self.incorrect_virtual + self.incorrect_reporting
+
+  @property
+  def result_composite(self) -> float:
+    """ Calculated result for all devices """
+    return ((self.correct() - self.incorrect()) /
+            self.correct_ceiling()) if self.correct_ceiling() != 0 else None
+
+  @property
+  def result_virtual(self) -> float:
+    """ Calculated result for virtual devices """
+    return ((self.correct_virtual - self.incorrect_virtual) /
+            self.correct_ceiling_virtual
+            ) if self.correct_ceiling_virtual != 0 else None
+
+  @property
+  def result_reporting(self) -> float:
+    """ Calculated result for reporting devices """
+    return ((self.correct_reporting - self.incorrect_reporting) /
+            self.correct_ceiling_reporting
+            ) if self.correct_ceiling_reporting != 0 else None

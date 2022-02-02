@@ -47,7 +47,7 @@ class ParseConfigTest(absltest.TestCase):
     self.assertEqual(type(self.parse.parsed['solution']),
                      dict)  # Dict[str, EntityInstance]
 
-    self.assertEqual(type(self.parse.scores), dict)
+    self.assertEqual(type(self.parse.results), dict)
 
   @patch('builtins.print')
   def testAppendTypes(self, mock_print):
@@ -117,25 +117,25 @@ class ParseConfigTest(absltest.TestCase):
     self.assertEqual(type(translations[cdid]['solution_translations'][0][1]),
                      NonDimensionalValue)
 
-  def testAggregateScoresNonDbo(self):
+  def testAggregateResultsNonDbo(self):
     mock_dimension = lambda *, translations: f'called with {translations}'
-    scores = parse_config.ParseConfig.aggregate_scores_nondbo(
+    results = parse_config.ParseConfig.aggregate_results_nondbo(
         dimensions=[mock_dimension], translations='arbitrary')
 
-    self.assertEqual(type(scores), dict)
-    self.assertEqual(scores['<lambda>'], 'called with arbitrary')
+    self.assertEqual(type(results), dict)
+    self.assertEqual(results['<lambda>'], 'called with arbitrary')
 
-  def testAggregateScoresDbo(self):
+  def testAggregateResultsDbo(self):
     mock_dbo_dimension = (
         lambda *, proposed_entities, solution_entities:
         f'called with {proposed_entities} {solution_entities}')
-    scores_dbo = parse_config.ParseConfig.aggregate_scores_dbo(
+    results_dbo = parse_config.ParseConfig.aggregate_results_dbo(
         dbo_dimensions=[mock_dbo_dimension],
         proposed_entities='arbitrary',
         solution_entities='arguments')
 
-    self.assertEqual(type(scores_dbo), dict)
-    self.assertEqual(scores_dbo['<lambda>'], 'called with arbitrary arguments')
+    self.assertEqual(type(results_dbo), dict)
+    self.assertEqual(results_dbo['<lambda>'], 'called with arbitrary arguments')
 
 
 if __name__ == '__main__':
