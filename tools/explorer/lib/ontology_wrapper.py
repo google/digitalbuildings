@@ -13,18 +13,22 @@
 # limitations under the License.
 
 """Ontology wrapper class for DBO explorer."""
-from termcolor import colored
 from typing import List
 from typing import Set
+
+import colorama
+from termcolor import colored
 
 from lib.model import EntityTypeField
 from lib.model import Match
 from lib.model import StandardField
-from lib import model
-
+from lib.model import StandardizeField
 from yamlformat.validator.entity_type_lib import EntityType
 from yamlformat.validator.entity_type_manager import EntityTypeManager
 from yamlformat.validator.presubmit_validate_types_lib import ConfigUniverse
+
+colorama.init()
+
 
 class OntologyWrapper(object):
   """Class providing an interface to do lookups on DBO.
@@ -126,13 +130,13 @@ class OntologyWrapper(object):
     """
 
     required_canonical_fields = {
-        model.StandardizeField(field) for field in canonical_fields
+        StandardizeField(field) for field in canonical_fields
         if not field.IsOptional()
     }
 
     standard_canonical_fields: Set[StandardField] = set()
     for field in canonical_fields:
-      standard_canonical_fields.add(model.StandardizeField(field))
+      standard_canonical_fields.add(StandardizeField(field))
 
     matched_fields = len(
         concrete_fields.intersection(standard_canonical_fields)
@@ -168,8 +172,7 @@ class OntologyWrapper(object):
 
   def _CreateMatch(self, field_list: List[StandardField],
                    entity_type: EntityType) -> Match:
-    """Creates a Match instance for an EntityType object and a list of
-    StandardField objects.
+    """Creates an instance of Match class.
 
     calls _CalculateMatchWeight() on field_list and the set of fields belonging
     to entity_type. The scoring function outputs aan integer in [0, 100]
@@ -212,11 +215,11 @@ class OntologyWrapper(object):
 
     Args:
       field_list: A list of StandardField objects to match to an entity.
-      general_type: A string indicating a general type name to filter return
-        results.
       return_size: An int for the length of the return list of matches.
         e.g. if return_size is 10, the 10 matches with the highest score will
         be returned.
+      general_type: A string indicating a general type name to filter return
+        results.
     Returns:
       A sorted list of Match objects.
     """
@@ -224,7 +227,7 @@ class OntologyWrapper(object):
     type_namespaces_list = self.universe.GetEntityTypeNamespaces()
     for tns in type_namespaces_list:
       for entity_type in tns.valid_types_map.values():
-        if entity_type.is_abstract or entity_type.GetAllFields() == {}:
+        if entity_type.is_abstract or not entity_type.GetAllFields():
           continue
         if general_type is not None:
           if general_type.upper() in entity_type.unqualified_parent_names:
@@ -246,8 +249,7 @@ class OntologyWrapper(object):
     return match_list_sorted
 
   def _PopulateMatrix(self, match: Match):
-    """Creates a matrix defining field relationships within a match between a
-    concrete entity and a canonical type.
+    """Creates a matrix defining field relationships between an entity and type.
 
     Args:
       match: A instance of Match class
@@ -267,7 +269,7 @@ class OntologyWrapper(object):
           qualified_field.optional,
           qualified_field.field.increment
       )
-      new_standard_field = model.StandardizeField(new_entity_type_field)
+      new_standard_field = StandardizeField(new_entity_type_field)
       canonical_field_dict[new_standard_field] = new_entity_type_field
 
     standard_canonical_field_set = set(canonical_field_dict.keys())
@@ -290,9 +292,9 @@ class OntologyWrapper(object):
 
     return final_matrix, all_fields
 
-  #TODO(b/210673114): Have this method return an object rather than a string.
+  # TODO(b/210673114): Have this method return an object rather than a string.
   def PrintFieldSetComparison(self, match: Match)-> str:
-    """creates a text representation of field set relations for a given match.
+    """Creates a text representation of field set relations for a given match.
 
     Takes the intersection and differences in sets between a set of fields
     belonging to an entity type and concrete entity to create a big string
@@ -328,9 +330,9 @@ class OntologyWrapper(object):
         row[2] = 'Required'
       elif row[2]:
         row[2] = 'Optional'
-      elif row[2] == '':
+      elif not row[2]:
         continue
-      if row[0] != '' and row[1] != '':
+      if row[0] and row[1]:
         return_string += ''.join(
             colored(field.ljust(col_width), 'green') for field in row)
       else:
