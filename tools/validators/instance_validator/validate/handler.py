@@ -112,6 +112,7 @@ def RunValidation(filenames: List[str],
     if subscription:
       print('\nStarting telemetry validation...\n')
       _ValidateTelemetry(subscription, service_account, entities, timeout)
+
   finally:
     sys.stdout = saved_stdout
     if report_file:
@@ -145,8 +146,10 @@ class TelemetryHelper(object):
     validator = telemetry_validator.TelemetryValidator(
         entities, timeout, _TelemetryValidationCallback)
     validator.StartTimer()
-    sub.Listen(validator.ValidateMessage)
-    validator.StopTimer()
+    try:
+      sub.Listen(validator.ValidateMessage)
+    finally:
+      validator.StopTimer()
 
 
 def _TelemetryValidationCallback(

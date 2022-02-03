@@ -13,17 +13,15 @@
 # limitations under the License.
 
 """Main module for DBO explorer."""
-import pyfiglet
 import sys
 
+from lib import arg_parser
 from lib import explorer_handler
 from lib import parse_input
-from lib import arg_parser
+
 
 def main(parsed_args):
   """Main method for DBO explorer."""
-  figlet_out = pyfiglet.figlet_format('DBO Explorer', font='digital')
-  print(figlet_out)
   print('Starting DBO explorer...')
 
   ontology = explorer_handler.Build(parsed_args.modified_types_filepath)
