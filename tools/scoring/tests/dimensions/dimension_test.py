@@ -17,6 +17,9 @@ core functionality parent class (dimension.py)."""
 from absl.testing import absltest
 
 from score.dimensions.dimension import Dimension
+from astroid import MANAGER
+
+MANAGER.astroid_cache.clear()
 
 
 class DimensionTest(absltest.TestCase):
@@ -24,18 +27,9 @@ class DimensionTest(absltest.TestCase):
     super().setUp()
     # TODO: set these attributes separately from instantiation
     # as the signature requirements evolve w/ further implementation
-    self.dimension = Dimension(correct_virtual=1,
-                               correct_reporting=1,
-                               correct_ceiling_virtual=2,
-                               correct_ceiling_reporting=2,
-                               incorrect_virtual=1,
-                               incorrect_reporting=1)
-    self.dimension_none = Dimension(correct_virtual=0,
-                                    correct_reporting=0,
-                                    correct_ceiling_virtual=0,
-                                    correct_ceiling_reporting=0,
-                                    incorrect_virtual=0,
-                                    incorrect_reporting=0)
+    self.dimension = Dimension(1, 1, 2, 2, 1, 1)
+
+    self.dimension_none = Dimension(0, 0, 0, 0, 0, 0)
 
   def testCorrect(self):
     self.assertEqual(self.dimension.correct(), 2)

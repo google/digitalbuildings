@@ -13,7 +13,10 @@
 # limitations under the License.
 """Core functionality parent class"""
 
+from dataclasses import dataclass
 
+
+@dataclass
 class Dimension:
   """
     Container for floating-point results which
@@ -35,15 +38,12 @@ class Dimension:
       result_virtual: Calculated result for virtual devices
       result_reporting: Calculated result for reporting devices
   """
-  def __init__(self, *, correct_virtual: int, correct_reporting: int,
-               correct_ceiling_virtual: int, correct_ceiling_reporting: int,
-               incorrect_virtual: int, incorrect_reporting: int):
-    self.correct_virtual = correct_virtual
-    self.correct_reporting = correct_reporting
-    self.correct_ceiling_virtual = correct_ceiling_virtual
-    self.correct_ceiling_reporting = correct_ceiling_reporting
-    self.incorrect_virtual = incorrect_virtual
-    self.incorrect_reporting = incorrect_reporting
+  correct_virtual: int
+  correct_reporting: int
+  correct_ceiling_virtual: int
+  correct_ceiling_reporting: int
+  incorrect_virtual: int
+  incorrect_reporting: int
 
   def correct(self) -> int:
     """ Number of attempts achieved within all devices """
