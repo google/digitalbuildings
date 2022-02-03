@@ -17,9 +17,6 @@ core functionality parent class (dimension.py)."""
 from absl.testing import absltest
 
 from score.dimensions.dimension import Dimension
-from astroid import MANAGER
-
-MANAGER.astroid_cache.clear()
 
 
 class DimensionTest(absltest.TestCase):
