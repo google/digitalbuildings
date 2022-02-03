@@ -702,6 +702,13 @@ OA:
   implements:
   - MONITORING
 
+ZA:
+  description: "Grouped type for zone air psychrometric conditions (RH and temp)"
+  is_abstract: true
+  uses:
+  - zone_air_temperature_sensor
+  - zone_air_relative_humidity_sensor
+
 WDT:
   id: "12148045066631380992"
   description: "Temperature differential across water."
