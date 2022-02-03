@@ -176,5 +176,6 @@ class Match(object):
     """Returns the score in [0, 100] for a match."""
     return self._match_score
 
+
 def StandardizeField(field: EntityTypeField) -> StandardField:
   return StandardField(field.GetNamespaceName(), field.GetStandardFieldName())
