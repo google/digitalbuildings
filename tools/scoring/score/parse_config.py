@@ -18,7 +18,7 @@ from validate import handler as validator
 from validate.generate_universe import BuildUniverse
 from validate.entity_instance import EntityInstance
 
-from score.dimensions.result import Result
+from score.dimensions.dimension import Dimension
 
 
 class ParseConfig:
@@ -184,7 +184,7 @@ class ParseConfig:
       # TODO: create Dimension type to replace generic
       *,
       dimensions: List[Callable[[Dict], Dict]],
-      translations: Dict[str, List[Tuple[str, Any]]]) -> Dict[str, Result]:
+      translations: Dict[str, List[Tuple[str, Any]]]) -> Dict[str, Dimension]:
     """
       Wrapper which outputs a dictionary of results by invoking
       each specified `Dimension` with the `translations` argument
@@ -195,7 +195,7 @@ class ParseConfig:
           and lists of translation tuples as values
 
       Returns:
-        Dictionary with dimension names as keys and `Result`s as values
+        Dictionary with dimension names as keys and `Dimension`s as values
     """
     results = {}
     for dimension in dimensions:
@@ -209,7 +209,7 @@ class ParseConfig:
       *,
       dbo_dimensions: List[Callable[[Dict, Dict], Dict]],
       proposed_entities: Dict[str, EntityInstance],
-      solution_entities: Dict[str, EntityInstance]) -> Dict[str, Result]:
+      solution_entities: Dict[str, EntityInstance]) -> Dict[str, Dimension]:
     """
       Wrapper which outputs a dictionary of results by invoking
       each specified `DboDimension` with the `proposed_entities`
@@ -223,7 +223,7 @@ class ParseConfig:
           and `EntityInstance`s
 
       Returns:
-        Dictionary with dimension names as keys and `Results`s as values
+        Dictionary with dimension names as keys and `Dimension`s as values
     """
     results_dbo = {}
     for dbo_dimension in dbo_dimensions:

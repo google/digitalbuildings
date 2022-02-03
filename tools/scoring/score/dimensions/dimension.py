@@ -11,12 +11,10 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-"""Outputs of the configuration scoring tool."""
-from dataclasses import dataclass
+"""Core functionality parent class"""
 
 
-@dataclass
-class Result:
+class Dimension:
   """
     Container for floating-point results which
     quantify success in each dimension
@@ -37,13 +35,15 @@ class Result:
       result_virtual: Calculated result for virtual devices
       result_reporting: Calculated result for reporting devices
   """
-
-  correct_virtual: int
-  correct_reporting: int
-  correct_ceiling_virtual: int
-  correct_ceiling_reporting: int
-  incorrect_virtual: int
-  incorrect_reporting: int
+  def __init__(self, *, correct_virtual: int, correct_reporting: int,
+               correct_ceiling_virtual: int, correct_ceiling_reporting: int,
+               incorrect_virtual: int, incorrect_reporting: int):
+    self.correct_virtual = correct_virtual
+    self.correct_reporting = correct_reporting
+    self.correct_ceiling_virtual = correct_ceiling_virtual
+    self.correct_ceiling_reporting = correct_ceiling_reporting
+    self.incorrect_virtual = incorrect_virtual
+    self.incorrect_reporting = incorrect_reporting
 
   def correct(self) -> int:
     """ Number of attempts achieved within all devices """
@@ -58,20 +58,20 @@ class Result:
     return self.incorrect_virtual + self.incorrect_reporting
 
   @property
-  def composite(self) -> float:
+  def result_composite(self) -> float:
     """ Calculated result for all devices """
     return ((self.correct() - self.incorrect()) /
             self.correct_ceiling()) if self.correct_ceiling() != 0 else None
 
   @property
-  def virtual(self) -> float:
+  def result_virtual(self) -> float:
     """ Calculated result for virtual devices """
     return ((self.correct_virtual - self.incorrect_virtual) /
             self.correct_ceiling_virtual
             ) if self.correct_ceiling_virtual != 0 else None
 
   @property
-  def reporting(self) -> float:
+  def result_reporting(self) -> float:
     """ Calculated result for reporting devices """
     return ((self.correct_reporting - self.incorrect_reporting) /
             self.correct_ceiling_reporting
@@ -79,5 +79,6 @@ class Result:
 
   def __str__(self) -> str:
     """ Human-readable representation of the calculated properties"""
-    return (f'{{composite: {self.composite}, virtual: '
-            f'{self.virtual}, reporting: {self.reporting}}}')
+    return (
+        f'{{result_composite: {self.result_composite}, result_virtual: '
+        f'{self.result_virtual}, result_reporting: {self.result_reporting}}}')
