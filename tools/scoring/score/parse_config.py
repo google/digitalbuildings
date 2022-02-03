@@ -26,7 +26,7 @@ class ParseConfig:
     Attributes:
       args: Dictionary containing instance arguments
       universe: Built from the input ontology
-      parsed: Deserialized configuration files
+      deserialized_files: Parsed configuration files
       results: Dictionary containing results for output
 
     Returns:
@@ -52,7 +52,7 @@ class ParseConfig:
         'verbose': verbose
     }
     self.universe = BuildUniverse(modified_types_filepath=ontology)
-    self.parsed = {
+    self.deserialized_files = {
         'proposed': validator.Deserialize([proposed])[0],
         'solution': validator.Deserialize([solution])[0]
     }
@@ -61,9 +61,9 @@ class ParseConfig:
   # TODO: refactor into smaller functions and return instead of printing
   def append_types(self):
     """
-      Appends types or type names to parsed files
+      Appends types or type names to deserialized files
     """
-    for file_type, file in self.parsed.items():
+    for file_type, file in self.deserialized_files.items():
       translations_absent = []
       types_absent = []
       # TODO: This appends the full type to solution entities and only

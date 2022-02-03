@@ -11,18 +11,21 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-"""Core functionality parent class"""
+"""Core functionality unit base class"""
 
-from dataclasses import dataclass
+from typing import Any, Dict, List, Tuple
 
 
-@dataclass
 class Dimension:
   """
     Container for floating-point results which
     quantify success in each dimension
 
     Attributes:
+      translations: Proposed and solution translations
+        for all matched reporting entities. Assigned via argument
+      deserialized_files: Parsed configuration files.  Assigned via argument
+
       correct_virtual: Number of attempts achieved within virtual devices
       correct_reporting: Number of attempts achieved within reporting devices
       correct_ceiling_virtual: Number of attempts possible to achieve
@@ -38,13 +41,31 @@ class Dimension:
       result_virtual: Calculated result for virtual devices
       result_reporting: Calculated result for reporting devices
   """
-  def __init__(self):
-    self.correct_virtual = None
-    self.correct_reporting = None
-    self.correct_ceiling_virtual = None
-    self.correct_ceiling_reporting = None
-    self.incorrect_virtual = None
-    self.incorrect_reporting = None
+  def __init__(self,
+               *,
+               translations: Dict[str, List[Tuple[str, Any]]] = None,
+               deserialized_files: Any = None):
+    self.translations = translations
+    self.deserialized_files = deserialized_files
+    # self.type: Literal['simple', 'complex'] = None
+
+    self.correct_virtual: int = None
+    self.correct_reporting: int = None
+    self.correct_ceiling_virtual: int = None
+    self.correct_ceiling_reporting: int = None
+    self.incorrect_virtual: int = None
+    self.incorrect_reporting: int = None
+
+    if not translations and not deserialized_files:
+      raise Exception(
+          '`translations` xor `deserialized_files` argument is required')
+    elif translations and deserialized_files:
+      raise Exception(
+          '`translations` or `deserialized_files` argument must be exclusive')
+    # elif translations:
+    #   self.type = 'simple'
+    # elif deserialized_files:
+    #   self.type = 'complex'
 
   def correct(self) -> int:
     """ Number of attempts achieved within all devices """

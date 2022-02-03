@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 """Test for configuration file scoring tool
-core functionality parent class (dimension.py)."""
+core functionality unit base class (dimension.py)."""
 
 from absl.testing import absltest
 
@@ -22,7 +22,7 @@ from score.dimensions.dimension import Dimension
 class DimensionTest(absltest.TestCase):
   def setUp(self):
     super().setUp()
-    self.dimension = Dimension()
+    self.dimension = Dimension(translations='translations')
     self.dimension.correct_virtual = 1
     self.dimension.correct_reporting = 1
     self.dimension.correct_ceiling_virtual = 2
@@ -30,7 +30,7 @@ class DimensionTest(absltest.TestCase):
     self.dimension.incorrect_virtual = 1
     self.dimension.incorrect_reporting = 1
 
-    self.dimension_none = Dimension()
+    self.dimension_none = Dimension(deserialized_files='deserialized files')
     self.dimension_none.correct_virtual = 0
     self.dimension_none.correct_reporting = 0
     self.dimension_none.correct_ceiling_virtual = 0
@@ -38,8 +38,29 @@ class DimensionTest(absltest.TestCase):
     self.dimension_none.incorrect_virtual = 0
     self.dimension_none.incorrect_reporting = 0
 
+  def testArgumentAttributes(self):
+    self.assertEqual(self.dimension.translations, 'translations')
+    self.assertEqual(self.dimension.deserialized_files, None)
+
+    self.assertEqual(self.dimension_none.translations, None)
+    self.assertEqual(self.dimension_none.deserialized_files,
+                     'deserialized files')
+
+  def testArgumentExclusivity(self):
+    with self.assertRaises(Exception) as not_enough:
+      Dimension()
+    self.assertEqual(
+        not_enough.exception.args[0],
+        '`translations` xor `deserialized_files` argument is required')
+
+    with self.assertRaises(Exception) as too_many:
+      Dimension(translations='translations',
+                deserialized_files='deserialized files')
+    self.assertEqual(
+        too_many.exception.args[0],
+        '`translations` or `deserialized_files` argument must be exclusive')
+
   def testCorrect(self):
-    print(f'asdfasfsdafasd {self.dimension}')
     self.assertEqual(self.dimension.correct(), 2)
 
   def testCorrectCeiling(self):
