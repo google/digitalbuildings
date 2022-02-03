@@ -38,12 +38,13 @@ class Dimension:
       result_virtual: Calculated result for virtual devices
       result_reporting: Calculated result for reporting devices
   """
-  correct_virtual: int
-  correct_reporting: int
-  correct_ceiling_virtual: int
-  correct_ceiling_reporting: int
-  incorrect_virtual: int
-  incorrect_reporting: int
+  def __init__(self):
+    self.correct_virtual = None
+    self.correct_reporting = None
+    self.correct_ceiling_virtual = None
+    self.correct_ceiling_reporting = None
+    self.incorrect_virtual = None
+    self.incorrect_reporting = None
 
   def correct(self) -> int:
     """ Number of attempts achieved within all devices """

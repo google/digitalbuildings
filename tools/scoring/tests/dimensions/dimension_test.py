@@ -22,13 +22,24 @@ from score.dimensions.dimension import Dimension
 class DimensionTest(absltest.TestCase):
   def setUp(self):
     super().setUp()
-    # TODO: set these attributes separately from instantiation
-    # as the signature requirements evolve w/ further implementation
-    self.dimension = Dimension(1, 1, 2, 2, 1, 1)
+    self.dimension = Dimension()
+    self.dimension.correct_virtual = 1
+    self.dimension.correct_reporting = 1
+    self.dimension.correct_ceiling_virtual = 2
+    self.dimension.correct_ceiling_reporting = 2
+    self.dimension.incorrect_virtual = 1
+    self.dimension.incorrect_reporting = 1
 
-    self.dimension_none = Dimension(0, 0, 0, 0, 0, 0)
+    self.dimension_none = Dimension()
+    self.dimension_none.correct_virtual = 0
+    self.dimension_none.correct_reporting = 0
+    self.dimension_none.correct_ceiling_virtual = 0
+    self.dimension_none.correct_ceiling_reporting = 0
+    self.dimension_none.incorrect_virtual = 0
+    self.dimension_none.incorrect_reporting = 0
 
   def testCorrect(self):
+    print(f'asdfasfsdafasd {self.dimension}')
     self.assertEqual(self.dimension.correct(), 2)
 
   def testCorrectCeiling(self):
