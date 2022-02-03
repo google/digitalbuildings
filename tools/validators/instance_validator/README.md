@@ -3,19 +3,22 @@
 The Instance Validator allows validation of YAML instance files to make sure they conform to the given ontology model.
 
 ## Install
-To install the dependencies, please run the `python3 setup.py install` from the following directories, in order:
-* digitalbuildings/tools/validators/ontology_validator
-* digitalbuildings/tools/validators/instance_validator
 
+Installing and using the Instance Validator requires Python 3.7, and the specific Python command to run may vary depending on your operating system and the presence of Python 2. Use the appropriate command listed below when the instructions call for `python3`:
+
+* MacOS & Linux: `python3`
+* Windows (with only Python 3 installed): `python` or `py -3`
+* Windows (with Python 2 and 3 installed): `py -3`
+
+You can run the command with just the version flag (e.g. `python --version`) to verify that the result is `Python 3.*`.
+
+1. Run `python3 -m pip install --upgrade pip setuptools` to ensure that your Python package management tools are up-to-date.
+2. Run `python3 setup.py install` from digitalbuildings/tools/validators/ontology_validator.
+3. Run `python3 setup.py install` from digitalbuildings/tools/validators/instance_validator.
 
 ## Usage
 
-The Instance Validator is written in Python3 and takes as an argument the path pointing to the instance files.
-
-**Known Bug**: [issue#125](https://github.com/google/digitalbuildings/issues/125) which occurs when the validator is called from outside this folder.
-Please run the instance validator from this folder until the bug is fixed.
-
-To use the ontology defined in this repository, run the validator as following: `python3 instance_validator.py --input path/to/YOUR_BUILDING_CONFIG.yaml`
+Navigate to digitalbuildings/tools/validators/instance_validator and run `python3 instance_validator.py --input path/to/YOUR_BUILDING_CONFIG.yaml` to validate your input file using the ontology defined in this repository.
 
 To validate multiple input files at the same time, you can provide the "--input" parameter multiple times. ("-i" will also work).
 

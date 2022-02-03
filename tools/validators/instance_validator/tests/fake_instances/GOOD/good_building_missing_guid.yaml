@@ -11,20 +11,13 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-"""Setup file for the ontology explorer."""
 
-from setuptools import find_packages
-from setuptools import setup
+# Building
+UK-LON-S2:
+  type: FACILITIES/BUILDING
+  id: FACILITIES/123456
+  guid:
 
-setup(
-    name='ontology-explorer',
-    version='0.0.1',
-    url='https://github.com/google/digitalbuildings',
-    license='Apache License',
-    author='Travis Welch',
-    packages=find_packages(),
-    install_requires=[
-        'absl-py', 'pyfiglet', 'argparse', 'termcolor', 'colorama'
-    ],
-    python_requires='==3.7',
-)
+UK-LON-S3:
+  type: FACILITIES/BUILDING
+  id: FACILITIES/1234567
