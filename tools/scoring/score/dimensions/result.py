@@ -79,5 +79,5 @@ class Result:
 
   def __str__(self) -> str:
     """ Human-readable representation of the calculated properties"""
-    return (f'{{composite: {self.composite}, irtual: '
+    return (f'{{composite: {self.composite}, virtual: '
             f'{self.virtual}, reporting: {self.reporting}}}')
