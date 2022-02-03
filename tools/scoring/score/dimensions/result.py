@@ -58,20 +58,20 @@ class Result:
     return self.incorrect_virtual + self.incorrect_reporting
 
   @property
-  def result_composite(self) -> float:
+  def composite(self) -> float:
     """ Calculated result for all devices """
     return ((self.correct() - self.incorrect()) /
             self.correct_ceiling()) if self.correct_ceiling() != 0 else None
 
   @property
-  def result_virtual(self) -> float:
+  def virtual(self) -> float:
     """ Calculated result for virtual devices """
     return ((self.correct_virtual - self.incorrect_virtual) /
             self.correct_ceiling_virtual
             ) if self.correct_ceiling_virtual != 0 else None
 
   @property
-  def result_reporting(self) -> float:
+  def reporting(self) -> float:
     """ Calculated result for reporting devices """
     return ((self.correct_reporting - self.incorrect_reporting) /
             self.correct_ceiling_reporting
@@ -79,6 +79,5 @@ class Result:
 
   def __str__(self) -> str:
     """ Human-readable representation of the calculated properties"""
-    return (
-        f'{{result_composite: {self.result_composite}, result_virtual: '
-        f'{self.result_virtual}, result_reporting: {self.result_reporting}}}')
+    return (f'{{composite: {self.composite}, irtual: '
+            f'{self.virtual}, reporting: {self.reporting}}}')

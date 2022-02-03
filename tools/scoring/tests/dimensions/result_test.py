@@ -44,21 +44,20 @@ class ResultTest(absltest.TestCase):
     self.assertEqual(self.result.incorrect(), 2)
 
   def testResultComposite(self):
-    self.assertEqual(self.result.result_composite, 0.0)
-    self.assertEqual(self.result_none.result_composite, None)
+    self.assertEqual(self.result.composite, 0.0)
+    self.assertEqual(self.result_none.composite, None)
 
   def testResultVirtual(self):
-    self.assertEqual(self.result.result_virtual, 0.0)
-    self.assertEqual(self.result_none.result_virtual, None)
+    self.assertEqual(self.result.virtual, 0.0)
+    self.assertEqual(self.result_none.virtual, None)
 
   def testResultReporting(self):
-    self.assertEqual(self.result.result_reporting, 0.0)
-    self.assertEqual(self.result_none.result_reporting, None)
+    self.assertEqual(self.result.reporting, 0.0)
+    self.assertEqual(self.result_none.reporting, None)
 
   def testStr(self):
-    self.assertEqual(
-        self.result.__str__(),
-        '{result_composite: 0.0, result_virtual: 0.0, result_reporting: 0.0}')
+    self.assertEqual(self.result.__str__(),
+                     '{composite: 0.0, virtual: 0.0, reporting: 0.0}')
 
 
 if __name__ == '__main__':
