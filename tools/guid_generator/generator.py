@@ -11,11 +11,20 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+"""GUID generator runner."""
+from __future__ import print_function
 
-FCU-1:
-  cloud_device_id: 2599571827844401
-  id: CDM/32HyWf6Zv3XumC7od2m$$H
-  translation:
-    wrong:
-      present_value: incorrect
-  type: HVAC/FCU_DFSS_DFVSC_ZTC_ZHC_CHWDC_HWDC_FDPM_RMM
+from typing import List
+from google3.third_party.digitalbuildings.tools.guid_generator import guid_generator
+
+
+def Generate(filenames: List[str]) -> None:
+  """Runner method for GUID generation.
+
+  Args:
+    filenames: file paths for Building Coniguration instances.
+  """
+  generator = guid_generator.GuidGenerator()
+  for filename in filenames:
+    print(f'Generating GUIDs for {filename}')
+    generator.GenerateGuids(filename)

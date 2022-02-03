@@ -11,4 +11,18 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-"""Constants for the configuration scoring tool."""
+"""Setup file for Building Configuration GUID generator."""
+
+from setuptools import find_packages
+from setuptools import setup
+
+setup(
+    name='guid-generator',
+    version='0.0.1',
+    url='https://github.com/google/digitalbuildings',
+    license='Apache License',
+    author='Travis Welch',
+    packages=find_packages(),
+    install_requires=['strictyaml==1.1.0'],
+    python_requires='==3.7',
+)
