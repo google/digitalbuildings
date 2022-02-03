@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 """Test for configuration file scoring tool
-core functionality unit base class (dimension.py)."""
+core component base class (dimension.py)."""
 
 from absl.testing import absltest
 
