@@ -1,4 +1,4 @@
-# Copyright 2020 Google LLC
+# Copyright 2022 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the License);
 # you may not use this file except in compliance with the License.
@@ -11,28 +11,17 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
-"""Setup file for Instance Validator."""
+"""Setup file for Digital Buildings Toolkit."""
 
 from setuptools import find_packages
 from setuptools import setup
 
 setup(
-    name='instance-validator',
+    name='digital-buildings-toolkit',
     version='0.0.1',
     url='https://github.com/google/digitalbuildings',
     license='Apache License',
-    author='(in alphabatical order)'
-    'Keith Berkoben,'
-    'Raymond Li,'
-    'Charbel Kaed,'
-    'Nigel Kilmer',
+    author='Travis Welch',
     packages=find_packages(),
-    install_requires=[
-        'protobuf<3.18.0,>=3.12.0', 'proto-plus<1.19.7',
-        'ruamel.yaml==0.15.93', 'strictyaml==1.1.0',
-        'google-cloud-pubsub==2.6.1', 'google-auth<2.0',
-        'googleapis-common-protos==1.52.0'
-    ],
     python_requires='==3.7',
 )

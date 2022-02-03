@@ -1,4 +1,4 @@
-# Copyright 2020 Google LLC
+# Copyright 2022 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the License);
 # you may not use this file except in compliance with the License.
@@ -11,20 +11,20 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-"""Setup file for the ontology explorer."""
+"""GUID generator runner."""
+from __future__ import print_function
 
-from setuptools import find_packages
-from setuptools import setup
+from typing import List
+from google3.third_party.digitalbuildings.tools.guid_generator import guid_generator
 
-setup(
-    name='ontology-explorer',
-    version='0.0.1',
-    url='https://github.com/google/digitalbuildings',
-    license='Apache License',
-    author='Travis Welch',
-    packages=find_packages(),
-    install_requires=[
-        'absl-py', 'pyfiglet', 'argparse', 'termcolor', 'colorama'
-    ],
-    python_requires='==3.7',
-)
+
+def Generate(filenames: List[str]) -> None:
+  """Runner method for GUID generation.
+
+  Args:
+    filenames: file paths for Building Coniguration instances.
+  """
+  generator = guid_generator.GuidGenerator()
+  for filename in filenames:
+    print(f'Generating GUIDs for {filename}')
+    generator.GenerateGuids(filename)

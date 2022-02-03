@@ -12,12 +12,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 """File parser for the configuration scoring tool."""
-
-from typing import Dict, Optional, List, Tuple, Any
+from typing import Callable, Dict, Optional, List, Tuple, Any
 
 from validate import handler as validator
 from validate.generate_universe import BuildUniverse
 from validate.entity_instance import EntityInstance
+
+from score.dimensions.dimension import Dimension
 
 
 class ParseConfig:
@@ -26,7 +27,7 @@ class ParseConfig:
       args: Dictionary containing instance arguments
       universe: Built from the input ontology
       parsed: Deserialized configuration files
-      scores: Dictionary containing scores for output
+      results: Dictionary containing results for output
 
     Returns:
       An instance of the ParseConfig class.
@@ -41,7 +42,7 @@ class ParseConfig:
       Arguments:
         ontology: Path to the ontology
         solution: Path to the solution config
-        proposed: Path to the config to be scored
+        proposed: Path to the config to be evaluated
         verbose: Print specifics of missing types and translations (optional)
     """
     self.args = {
@@ -55,7 +56,7 @@ class ParseConfig:
         'proposed': validator.Deserialize([proposed])[0],
         'solution': validator.Deserialize([solution])[0]
     }
-    self.scores = {}
+    self.results = {}
 
   # TODO: refactor into smaller functions and return instead of printing
   def append_types(self):
@@ -177,3 +178,57 @@ class ParseConfig:
       }
 
     return translations
+
+  @staticmethod
+  def aggregate_results_nondbo(
+      # TODO: create Dimension type to replace generic
+      *,
+      dimensions: List[Callable[[Dict], Dict]],
+      translations: Dict[str, List[Tuple[str, Any]]]) -> Dict[str, Dimension]:
+    """
+      Wrapper which outputs a dictionary of results by invoking
+      each specified `Dimension` with the `translations` argument
+
+      Args:
+        dimensions: List of `Dimension`s to be evaluated
+        translations: Dictionary with `cloud_device_id`s as keys
+          and lists of translation tuples as values
+
+      Returns:
+        Dictionary with dimension names as keys and `Dimension`s as values
+    """
+    results = {}
+    for dimension in dimensions:
+      # Invoke the function and append the dictionary with its return value
+      results[dimension.__name__] = dimension(translations=translations)
+    return results
+
+  @staticmethod
+  def aggregate_results_dbo(
+      # TODO: create DboDimension type to replace generic
+      *,
+      dbo_dimensions: List[Callable[[Dict, Dict], Dict]],
+      proposed_entities: Dict[str, EntityInstance],
+      solution_entities: Dict[str, EntityInstance]) -> Dict[str, Dimension]:
+    """
+      Wrapper which outputs a dictionary of results by invoking
+      each specified `DboDimension` with the `proposed_entities`
+      and `solution_entities` arguments
+
+      Args:
+        dbo_dimensions: List of `DboDimension`s to be evaluated
+        proposed_entities: Dictionary of proposed entity names
+          and `EntityInstance`s
+        solution_entities: Dictionary of solution entity names
+          and `EntityInstance`s
+
+      Returns:
+        Dictionary with dimension names as keys and `Dimension`s as values
+    """
+    results_dbo = {}
+    for dbo_dimension in dbo_dimensions:
+      # Invoke the function and append the dictionary with its return value
+      results_dbo[dbo_dimension.__name__] = dbo_dimension(
+          proposed_entities=proposed_entities,
+          solution_entities=solution_entities)
+    return results_dbo

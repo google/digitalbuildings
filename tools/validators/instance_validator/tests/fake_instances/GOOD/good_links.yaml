@@ -15,6 +15,7 @@
 VIRTUAL-ENTITY:
   type: HVAC/CHWS_WDT
   id: SYSTEM/ID1234
+  guid:
   links:
     PHYSICAL-ENTITY:
       return_water_temperature_sensor: return_water_temperature_sensor
@@ -55,3 +56,4 @@ PHYSICAL-ENTITY:
 UK-LON-S2:
   type: FACILITIES/BUILDING
   id: FACILITIES/123456
+  guid:
