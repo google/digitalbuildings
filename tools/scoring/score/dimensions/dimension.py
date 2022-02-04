@@ -11,71 +11,108 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-"""Core functionality parent class"""
+"""Core component base class"""
 
-from dataclasses import dataclass
+from score.types import DeserializedFilesDict, TranslationsDict
 
 
-@dataclass
 class Dimension:
   """
     Container for floating-point results which
     quantify success in each dimension
 
     Attributes:
-      correct_virtual: Number of attempts achieved within virtual devices
-      correct_reporting: Number of attempts achieved within reporting devices
-      correct_ceiling_virtual: Number of attempts possible to achieve
+      translations: Proposed and solution translations
+        for all matched reporting entities. Assigned via argument
+      deserialized_files: Parsed proposed and solution
+        configuration files containing all entities.  Assigned via argument
+
+      correct_virtual: Number of successful attempts within virtual devices
+      correct_reporting: Number of successful attempts within reporting devices
+      correct_ceiling_virtual: Number of attempts possible
         within virtual devices
-      correct_ceiling_reporting: Number of attempts possible to achieve
+      correct_ceiling_reporting: Number of attempts possible
         within reporting devices
-      incorrect_virtual: Number of attempts not achieved within virtual devices
-      incorrect_reporting: Number of attempts not achieved
-        within reporting devices
+      incorrect_virtual: Number of failed attempts within virtual devices
+      incorrect_reporting: Number of failed attempts within reporting devices
 
     Properties:
       result_composite: Calculated result for all devices
       result_virtual: Calculated result for virtual devices
       result_reporting: Calculated result for reporting devices
   """
-  correct_virtual: int
-  correct_reporting: int
-  correct_ceiling_virtual: int
-  correct_ceiling_reporting: int
-  incorrect_virtual: int
-  incorrect_reporting: int
+  def __init__(self,
+               *,
+               translations: TranslationsDict = None,
+               deserialized_files: DeserializedFilesDict = None):
+    self.translations = translations
+    self.deserialized_files = deserialized_files
+    # self.type: Literal['simple', 'complex'] = None
 
-  def correct(self) -> int:
-    """ Number of attempts achieved within all devices """
-    return self.correct_virtual + self.correct_reporting
+    self.correct_virtual: int = None
+    self.correct_reporting: int = None
+    self.correct_ceiling_virtual: int = None
+    self.correct_ceiling_reporting: int = None
+    self.incorrect_virtual: int = None
+    self.incorrect_reporting: int = None
+
+    if not translations and not deserialized_files:
+      # `translations` are used to score "simple" dimensions — those which
+      # evaluate only reporting entities — in bulk, whereas `deserialized_files`
+      # are passed to "complex" dimensions which build a multi-map
+      # of virtual entities prior to calculating scores.
+      raise Exception(
+          '`translations` xor `deserialized_files` argument is required')
+    elif translations and deserialized_files:
+      raise Exception(
+          '`translations` or `deserialized_files` argument must be exclusive')
+
+  def correct_total(self) -> int:
+    """ Number of successful attempts within all devices """
+    # Allow for value to be returned even if either is not set
+    correct_virtual = self.correct_virtual or 0
+    correct_reporting = self.correct_reporting or 0
+    return correct_virtual + correct_reporting
 
   def correct_ceiling(self) -> int:
-    """ Number of attempts possible to achieve within all devices """
-    return self.correct_ceiling_virtual + self.correct_ceiling_reporting
+    """ Number of attempts possible within all devices """
+    # Allow for value to be returned even if either is not set
+    correct_ceiling_virtual = self.correct_ceiling_virtual or 0
+    correct_ceiling_reporting = self.correct_ceiling_reporting or 0
+    return correct_ceiling_virtual + correct_ceiling_reporting
 
-  def incorrect(self) -> int:
-    """ Number of attempts not achieved within all devices """
-    return self.incorrect_virtual + self.incorrect_reporting
+  def incorrect_total(self) -> int:
+    """ Number of failed attempts within all devices """
+    # Allow for value to be returned even if either is not set
+    incorrect_virtual = self.incorrect_virtual or 0
+    incorrect_reporting = self.incorrect_reporting or 0
+    return incorrect_virtual + incorrect_reporting
 
   @property
   def result_composite(self) -> float:
     """ Calculated result for all devices """
-    return ((self.correct() - self.incorrect()) /
+    return ((self.correct_total() - self.incorrect_total()) /
             self.correct_ceiling()) if self.correct_ceiling() != 0 else None
 
   @property
   def result_virtual(self) -> float:
     """ Calculated result for virtual devices """
-    return ((self.correct_virtual - self.incorrect_virtual) /
-            self.correct_ceiling_virtual
-            ) if self.correct_ceiling_virtual != 0 else None
+    # Allow for value to be returned even if either is not set
+    correct_virtual = self.correct_virtual or 0
+    incorrect_virtual = self.correct_virtual or 0
+    return (
+        (correct_virtual - incorrect_virtual) /
+        self.correct_ceiling_virtual) if self.correct_ceiling_virtual else None
 
   @property
   def result_reporting(self) -> float:
     """ Calculated result for reporting devices """
-    return ((self.correct_reporting - self.incorrect_reporting) /
+    # Allow for value to be returned even if either is not set
+    correct_reporting = self.correct_reporting or 0
+    incorrect_reporting = self.incorrect_reporting or 0
+    return ((correct_reporting - incorrect_reporting) /
             self.correct_ceiling_reporting
-            ) if self.correct_ceiling_reporting != 0 else None
+            ) if self.correct_ceiling_reporting else None
 
   def __str__(self) -> str:
     """ Human-readable representation of the calculated properties"""

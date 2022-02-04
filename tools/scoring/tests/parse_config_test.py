@@ -42,9 +42,9 @@ class ParseConfigTest(absltest.TestCase):
 
     self.assertEqual(type(self.parse.universe), ConfigUniverse)
 
-    self.assertEqual(type(self.parse.parsed['proposed']),
+    self.assertEqual(type(self.parse.deserialized_files['proposed']),
                      dict)  # Dict[str, EntityInstance]
-    self.assertEqual(type(self.parse.parsed['solution']),
+    self.assertEqual(type(self.parse.deserialized_files['solution']),
                      dict)  # Dict[str, EntityInstance]
 
     self.assertEqual(type(self.parse.results), dict)
