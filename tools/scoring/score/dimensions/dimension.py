@@ -27,7 +27,7 @@ class Dimension:
       deserialized_files: Parsed configuration files.  Assigned via argument
 
       correct_virtual: Number of successful attempts within virtual devices
-      correct_reporting: Number of successful within reporting devices
+      correct_reporting: Number of successful attempts within reporting devices
       correct_ceiling_virtual: Number of attempts possible
         within virtual devices
       correct_ceiling_reporting: Number of attempts possible
@@ -61,10 +61,6 @@ class Dimension:
     elif translations and deserialized_files:
       raise Exception(
           '`translations` or `deserialized_files` argument must be exclusive')
-    # elif translations:
-    #   self.type = 'simple'
-    # elif deserialized_files:
-    #   self.type = 'complex'
 
   def correct_total(self) -> int:
     """ Number of successful attempts within all devices """

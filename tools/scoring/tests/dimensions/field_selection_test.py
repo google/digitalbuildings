@@ -41,9 +41,6 @@ class FieldSelectionTest(absltest.TestCase):
     self.assertEqual(self.field_selection.result_composite, None)
     self.assertEqual(self.field_selection.result_reporting, None)
     self.assertEqual(self.field_selection.result_virtual, None)
-    # self.assertEqual(self.field_selection.result_composite, 0.0)
-    # self.assertEqual(self.field_selection.result_reporting, 0.0)
-    # self.assertEqual(self.field_selection.result_virtual, 0.0)
 
 
 if __name__ == '__main__':
