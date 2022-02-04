@@ -23,6 +23,7 @@ from validate.universe_helper.config_universe import create_simplified_universe
 from yamlformat.validator import namespace_validator as nv
 from yamlformat.validator.entity_type_lib import EntityType
 
+
 class StandardFieldTest(absltest.TestCase):
 
   def setUp(self):
@@ -51,7 +52,7 @@ class StandardFieldTest(absltest.TestCase):
         is_optional=False,
         increment='_1_12')
 
-    self.assertTrue(test_entity_type_field == self.test_standard_field)
+    self.assertEqual(test_entity_type_field, self.test_standard_field)
 
 
 class EntityTypeFieldTest(absltest.TestCase):
@@ -86,7 +87,7 @@ class EntityTypeFieldTest(absltest.TestCase):
     test_standard_field = StandardField(
         namespace_name='', standard_field_name='supply_air_flowrate_sensor')
 
-    self.assertTrue(test_standard_field == self.test_entity_type_field)
+    self.assertEqual(test_standard_field, self.test_entity_type_field)
 
 
 class ModelTest(absltest.TestCase):
