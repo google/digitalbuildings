@@ -11,19 +11,15 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-""" Setup file for the configuration scoring tool."""
+""" Type annotations """
 
-from setuptools import setup, find_packages
+from typing import Dict, List, Tuple, Any
+from typing_extensions import Literal
+from validate.entity_instance import EntityInstance
 
-setup(
-    name='scoring',
-    version='0.0.1',
-    url='https://github.com/google/digitalbuildings',
-    license='Apache License',
-    author='Adam Hemphill',
-    author_email='',
-    description='',
-    packages=find_packages(),
-    install_requires=['absl-py', 'argparse', 'typing_extensions'],
-    python_requires='>=3.7',
-)
+CloudDeviceId = str
+FileType = Literal['proposed', 'solution']
+DeserializedFile = Dict[CloudDeviceId, EntityInstance]
+DeserializedFilesDict = Dict[FileType, DeserializedFile]
+DimensionName = str
+TranslationsDict = Dict[FileType, List[Tuple[str, Any]]]

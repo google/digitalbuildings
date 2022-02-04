@@ -13,9 +13,8 @@
 # limitations under the License.
 """ Core component """
 
-from typing import Any, Dict, List, Tuple
-
 from score.dimensions.dimension import Dimension
+from score.types import TranslationsDict
 
 
 class RawFieldSelection(Dimension):
@@ -23,7 +22,7 @@ class RawFieldSelection(Dimension):
   Quantifies whether the correct raw fields (e.g. "exhaust_air_damper_command)
   were mapped (versus ignored) in the proposed file.
   """
-  def __init__(self, *, translations=Dict[str, List[Tuple[str, Any]]]):
+  def __init__(self, *, translations: TranslationsDict):
     super().__init__(translations=translations)
 
     solution_fields = set(

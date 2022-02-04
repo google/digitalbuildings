@@ -13,8 +13,7 @@
 # limitations under the License.
 """Core component base class"""
 
-from typing import Any, Dict, List, Tuple
-from validate.entity_instance import EntityInstance
+from score.types import DeserializedFilesDict, TranslationsDict
 
 
 class Dimension:
@@ -44,8 +43,8 @@ class Dimension:
   """
   def __init__(self,
                *,
-               translations: Dict[str, List[Tuple[str, Any]]] = None,
-               deserialized_files: Dict[str, Dict[str, EntityInstance]] = None):
+               translations: TranslationsDict = None,
+               deserialized_files: DeserializedFilesDict = None):
     self.translations = translations
     self.deserialized_files = deserialized_files
     # self.type: Literal['simple', 'complex'] = None

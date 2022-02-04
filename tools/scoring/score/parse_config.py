@@ -12,13 +12,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 """File parser for the configuration scoring tool."""
-from typing import Callable, Dict, Optional, List, Tuple, Any
+from typing import Dict, Optional, List
 
 from validate import handler as validator
 from validate.generate_universe import BuildUniverse
-from validate.entity_instance import EntityInstance
 
 from score.dimensions.dimension import Dimension
+from score.types import CloudDeviceId, DimensionName, TranslationsDict, DeserializedFile
 
 
 class ParseConfig:
@@ -108,8 +108,9 @@ class ParseConfig:
 
   @staticmethod
   def match_reporting_entities(
-      *, proposed_entities: Dict[str, EntityInstance],
-      solution_entities: Dict[str, EntityInstance]) -> List[str]:
+      *,
+      proposed_entities: DeserializedFile,
+      solution_entities: DeserializedFile) -> List[CloudDeviceId]: # pylint: disable=line-too-long
     """
       Matches reporting entities by `cloud_device_id`
 
@@ -135,9 +136,10 @@ class ParseConfig:
 
   @staticmethod
   def retrieve_reporting_translations(
-      *, matches: List[str], proposed_entities: Dict[str, EntityInstance],
-      solution_entities: Dict[str, EntityInstance]
-  ) -> Dict[str, List[Tuple[str, Any]]]:
+      *, matches: List[CloudDeviceId],
+      proposed_entities: DeserializedFile,
+      solution_entities: DeserializedFile
+  ) -> TranslationsDict:
     """
       Retrieves proposed and solution translations
       for all matched reporting entities.
@@ -181,10 +183,9 @@ class ParseConfig:
 
   @staticmethod
   def aggregate_results_nondbo(
-      # TODO: create Dimension type to replace generic
       *,
-      dimensions: List[Callable[[Dict], Dict]],
-      translations: Dict[str, List[Tuple[str, Any]]]) -> Dict[str, Dimension]:
+      dimensions: List[Dimension],
+      translations: TranslationsDict) -> Dict[DimensionName, Dimension]: # pylint: disable=line-too-long
     """
       Wrapper which outputs a dictionary of results by invoking
       each specified `Dimension` with the `translations` argument
@@ -205,11 +206,10 @@ class ParseConfig:
 
   @staticmethod
   def aggregate_results_dbo(
-      # TODO: create DboDimension type to replace generic
       *,
-      dbo_dimensions: List[Callable[[Dict, Dict], Dict]],
-      proposed_entities: Dict[str, EntityInstance],
-      solution_entities: Dict[str, EntityInstance]) -> Dict[str, Dimension]:
+      dbo_dimensions: List[Dimension],
+      proposed_entities: DeserializedFile,
+      solution_entities: DeserializedFile) -> Dict[DimensionName, Dimension]: # pylint: disable=line-too-long
     """
       Wrapper which outputs a dictionary of results by invoking
       each specified `DboDimension` with the `proposed_entities`
