@@ -206,6 +206,7 @@ class ParseConfig:
       results[dimension.__name__] = dimension(translations=translations)
     return results
 
+  # TODO: update to reflect current combined signature of dimension
   @staticmethod
   def aggregate_results_dbo(
       *,

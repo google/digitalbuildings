@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 """Test for configuration file scoring tool
-"field selection" dimension (raw_field_selection.py)."""
+"raw field selection" dimension (raw_field_selection.py)."""
 
 from absl.testing import absltest
 
