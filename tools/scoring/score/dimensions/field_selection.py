@@ -19,7 +19,10 @@ from score.dimensions.dimension import Dimension
 
 
 class FieldSelection(Dimension):
-  """ Quantifies whether the correct fields were mapped (versus ignored) """
+  """
+  Quantifies whether the correct raw fields (e.g. "exhaust_air_damper_command)
+  were mapped (versus ignored) in the proposed file.
+  """
   def __init__(self, *, translations=Dict[str, List[Tuple[str, Any]]]):
     super().__init__(translations=translations)
 
