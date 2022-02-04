@@ -25,7 +25,8 @@ class Dimension:
     Attributes:
       translations: Proposed and solution translations
         for all matched reporting entities. Assigned via argument
-      deserialized_files: Parsed configuration files.  Assigned via argument
+      deserialized_files: Parsed proposed and solution
+        configuration files containing all entities.  Assigned via argument
 
       correct_virtual: Number of successful attempts within virtual devices
       correct_reporting: Number of successful attempts within reporting devices
