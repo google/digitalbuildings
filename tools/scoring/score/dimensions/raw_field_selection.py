@@ -18,7 +18,7 @@ from typing import Any, Dict, List, Tuple
 from score.dimensions.dimension import Dimension
 
 
-class FieldSelection(Dimension):
+class RawFieldSelection(Dimension):
   """
   Quantifies whether the correct raw fields (e.g. "exhaust_air_damper_command)
   were mapped (versus ignored) in the proposed file.
