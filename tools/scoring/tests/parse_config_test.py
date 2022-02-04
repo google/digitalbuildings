@@ -43,9 +43,9 @@ class ParseConfigTest(absltest.TestCase):
     self.assertEqual(type(self.parse.universe), ConfigUniverse)
 
     self.assertEqual(type(self.parse.deserialized_files['proposed']),
-                     dict)  # Dict[str, EntityInstance]
+                     dict)  # DeserializedFile
     self.assertEqual(type(self.parse.deserialized_files['solution']),
-                     dict)  # Dict[str, EntityInstance]
+                     dict)  # DeserializedFile
 
     self.assertEqual(type(self.parse.results), dict)
 
@@ -91,7 +91,7 @@ class ParseConfigTest(absltest.TestCase):
         proposed_entities=proposed_entities,
         solution_entities=solution_entities)
 
-    self.assertEqual(type(translations), dict)
+    self.assertEqual(type(translations), dict)  # TranslationsDict
     self.assertEqual(len(translations.items()), len(matches))
 
     cdid = '2599571827844401'
