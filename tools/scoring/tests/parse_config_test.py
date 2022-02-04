@@ -17,11 +17,14 @@ from absl.testing import absltest
 from unittest.mock import call, patch
 
 from score import parse_config
+from score.constants import FileTypes
+
 from yamlformat.validator.presubmit_validate_types_lib import ConfigUniverse
 
 from validate import handler as validator
-
 from validate.field_translation import NonDimensionalValue
+
+PROPOSED, SOLUTION = FileTypes
 
 
 class ParseConfigTest(absltest.TestCase):
@@ -36,15 +39,15 @@ class ParseConfigTest(absltest.TestCase):
 
   def testInitialize(self):
     self.assertEqual(self.parse.args['ontology'], self.ontology)
-    self.assertEqual(self.parse.args['solution'], self.solution)
-    self.assertEqual(self.parse.args['proposed'], self.proposed)
+    self.assertEqual(self.parse.args[SOLUTION], self.solution)
+    self.assertEqual(self.parse.args[PROPOSED], self.proposed)
     self.assertFalse(self.parse.args['verbose'])
 
     self.assertEqual(type(self.parse.universe), ConfigUniverse)
 
-    self.assertEqual(type(self.parse.deserialized_files['proposed']),
+    self.assertEqual(type(self.parse.deserialized_files[PROPOSED]),
                      dict)  # DeserializedFile
-    self.assertEqual(type(self.parse.deserialized_files['solution']),
+    self.assertEqual(type(self.parse.deserialized_files[SOLUTION]),
                      dict)  # DeserializedFile
 
     self.assertEqual(type(self.parse.results), dict)
@@ -54,10 +57,10 @@ class ParseConfigTest(absltest.TestCase):
     self.parse.append_types()
     self.assertEqual(mock_print.call_count, 4)
     calls = [
-        call('proposed translations absent: 0 (from 0 links)'),
-        call('proposed types absent: 0 (0 instances)'),
-        call('solution translations absent: 0 (from 0 links)'),
-        call('solution types absent: 0 (0 instances)')
+        call(f'{PROPOSED} translations absent: 0 (from 0 links)'),
+        call(f'{PROPOSED} types absent: 0 (0 instances)'),
+        call(f'{SOLUTION} translations absent: 0 (from 0 links)'),
+        call(f'{SOLUTION} types absent: 0 (0 instances)')
     ]
     mock_print.assert_has_calls(calls)
 
@@ -98,23 +101,24 @@ class ParseConfigTest(absltest.TestCase):
 
     self.assertEqual(type(translations[cdid]), dict)
 
-    self.assertTrue('proposed_translations' in translations[cdid])
-    self.assertEqual(type(translations[cdid]['proposed_translations']), list)
-    self.assertEqual(len(translations[cdid]['proposed_translations']), 1)
-    self.assertEqual(type(translations[cdid]['proposed_translations'][0]),
+    self.assertTrue(f'{PROPOSED}_translations' in translations[cdid])
+    self.assertEqual(type(translations[cdid][f'{PROPOSED}_translations']), list)
+    self.assertEqual(len(translations[cdid][f'{PROPOSED}_translations']), 1)
+    self.assertEqual(type(translations[cdid][f'{PROPOSED}_translations'][0]),
                      tuple)
-    self.assertEqual(translations[cdid]['proposed_translations'][0][0], 'wrong')
-    self.assertEqual(type(translations[cdid]['proposed_translations'][0][1]),
+    self.assertEqual(translations[cdid][f'{PROPOSED}_translations'][0][0],
+                     'wrong')
+    self.assertEqual(type(translations[cdid][f'{PROPOSED}_translations'][0][1]),
                      NonDimensionalValue)
 
-    self.assertTrue('solution_translations' in translations[cdid])
-    self.assertEqual(type(translations[cdid]['solution_translations']), list)
-    self.assertEqual(len(translations[cdid]['solution_translations']), 1)
-    self.assertEqual(type(translations[cdid]['solution_translations'][0]),
+    self.assertTrue(f'{SOLUTION}_translations' in translations[cdid])
+    self.assertEqual(type(translations[cdid][f'{SOLUTION}_translations']), list)
+    self.assertEqual(len(translations[cdid][f'{SOLUTION}_translations']), 1)
+    self.assertEqual(type(translations[cdid][f'{SOLUTION}_translations'][0]),
                      tuple)
-    self.assertEqual(translations[cdid]['solution_translations'][0][0],
+    self.assertEqual(translations[cdid][f'{SOLUTION}_translations'][0][0],
                      'target')
-    self.assertEqual(type(translations[cdid]['solution_translations'][0][1]),
+    self.assertEqual(type(translations[cdid][f'{SOLUTION}_translations'][0][1]),
                      NonDimensionalValue)
 
   def testAggregateResultsNonDbo(self):

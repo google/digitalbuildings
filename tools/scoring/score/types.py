@@ -11,14 +11,14 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-""" Type annotations """
+""" Type annotations for the configuration scoring tool """
 
 from typing import Dict, List, Tuple, Any
-from typing_extensions import Literal
 from validate.entity_instance import EntityInstance
+from score.constants import FileTypes
 
 CloudDeviceId = str
-FileType = Literal['proposed', 'solution']
+FileType = FileTypes
 DeserializedFile = Dict[CloudDeviceId, EntityInstance]
 DeserializedFilesDict = Dict[FileType, DeserializedFile]
 DimensionName = str

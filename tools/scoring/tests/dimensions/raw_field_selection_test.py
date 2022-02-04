@@ -17,13 +17,16 @@
 from absl.testing import absltest
 
 from score.dimensions.raw_field_selection import RawFieldSelection
+from score.constants import FileTypes
+
+PROPOSED, SOLUTION = FileTypes
 
 
 class RawFieldSelectionTest(absltest.TestCase):
   def setUp(self):
     super().setUp()
     # TODO: add real data (append cases to existing tests)
-    translations = {'proposed': [], 'solution': []}
+    translations = {PROPOSED: [], SOLUTION: []}
     self.raw_field_selection = RawFieldSelection(translations=translations)
 
   def testDirectlyAssignedAttributes(self):

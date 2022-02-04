@@ -19,6 +19,8 @@ from validate.generate_universe import BuildUniverse
 
 from score.dimensions.dimension import Dimension
 from score.types import CloudDeviceId, DimensionName, TranslationsDict, DeserializedFile
+from score.constants import FileTypes
+PROPOSED, SOLUTION = FileTypes
 
 
 class ParseConfig:
@@ -47,14 +49,14 @@ class ParseConfig:
     """
     self.args = {
         'ontology': ontology,
-        'solution': solution,
-        'proposed': proposed,
+        SOLUTION: solution,
+        PROPOSED: proposed,
         'verbose': verbose
     }
     self.universe = BuildUniverse(modified_types_filepath=ontology)
     self.deserialized_files = {
-        'proposed': validator.Deserialize([proposed])[0],
-        'solution': validator.Deserialize([solution])[0]
+        PROPOSED: validator.Deserialize([proposed])[0],
+        SOLUTION: validator.Deserialize([solution])[0]
     }
     self.results = {}
 
@@ -69,7 +71,7 @@ class ParseConfig:
       # TODO: This appends the full type to solution entities and only
       # the type name to proposed entities. Verify that this is the correct
       # behavior following implementation of the first dimension(s).
-      type_or_name = 'type' if file_type == 'solution' else 'type_name'
+      type_or_name = 'type' if file_type == SOLUTION else 'type_name'
 
       for entity in file.values():
         entity.type = self.universe.GetEntityType(entity.namespace,
@@ -175,8 +177,8 @@ class ParseConfig:
       )) if getattr(entity, 'translation', None) else []
 
       translations[cloud_device_id] = {
-          'proposed_translations': aggregate_translations(proposed_entity),
-          'solution_translations': aggregate_translations(solution_entity)
+          f'{PROPOSED}_translations': aggregate_translations(proposed_entity),
+          f'{SOLUTION}_translations': aggregate_translations(solution_entity)
       }
 
     return translations

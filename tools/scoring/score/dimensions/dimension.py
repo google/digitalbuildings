@@ -47,7 +47,6 @@ class Dimension:
                deserialized_files: DeserializedFilesDict = None):
     self.translations = translations
     self.deserialized_files = deserialized_files
-    # self.type: Literal['simple', 'complex'] = None
 
     self.correct_virtual: int = None
     self.correct_reporting: int = None

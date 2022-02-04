@@ -11,4 +11,10 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-"""Constants for the configuration scoring tool."""
+""" Constants for the configuration scoring tool """
+
+from enum import Enum
+
+class FileTypes(Enum):
+  PROPOSED='proposed'
+  SOLUTION='solution'
