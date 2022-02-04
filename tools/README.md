@@ -8,9 +8,13 @@ implemented in the future.
 
 ## Setup
 
-1. follow setup instructions for the [Instance Validator](../validators/instance_validator)
-2. follow setup instructions for the [GUID Generator](./guid_generator)
-3. Run `sudo python setup.py` for this directory
+### Windows Setup
+1. Open cmd and navigate to `digital/buildings`
+2. Run `global_setup.bat`
+
+### Unix Setup
+1. Open terminal and navigate to `digitalbuildings/tools`
+2. Run `bash global_setup.sh`
 
 ## Running Toolkit
 
