@@ -58,6 +58,10 @@ class Dimension:
     self.incorrect_reporting: int = None
 
     if not translations and not deserialized_files:
+      # `translations` are used to score "simple" dimensions — those which
+      # evaluate only reporting entities — in bulk, whereas `deserialized_files`
+      # are passed to "complex" dimensions which build a multi-map
+      # of virtual entities prior to calculating scores.
       raise Exception(
           '`translations` xor `deserialized_files` argument is required')
     elif translations and deserialized_files:
