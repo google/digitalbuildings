@@ -21,12 +21,12 @@ concentration:
 - parts_per_unit: STANDARD
 - parts_per_million
 - parts_per_billion
+- grams_per_kilogram # Can convert approximately using Avogadro
 current:
 - amperes: STANDARD
 - milliamperes
 currentratio:
 - no_units: STANDARD
-diameter: level
 density:
 - kilograms_per_cubic_meter: STANDARD
 - grams_per_cubic_meter
@@ -55,7 +55,6 @@ illuminance:
 level:
 - meters: STANDARD
 - feet
-- micrometers
 linearacceleration:
 - meters_per_square_second: STANDARD
 - gravity
@@ -67,8 +66,6 @@ linearvelocity:
 - feet_per_minute
 - miles_per_hour
 - millimeters_per_second
-massconcentration:
-- grams_per_kilogram: STANDARD
 percentage:
 - percent: STANDARD
 powerfactor:
@@ -107,8 +104,6 @@ volume:
 - cubic_feet
 - us_gallons
 - liters
-volumetricconcentration:
-- parts_per_cubic_centimeter: STANDARD # can be approximated using Avogadro
 time:
 - seconds: STANDARD
 rate:
