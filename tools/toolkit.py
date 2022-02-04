@@ -23,7 +23,7 @@ from __future__ import print_function
 import argparse
 import sys
 
-from google3.third_party.digitalbuildings.tools.guid_generator import generator
+from guid_generator import generator
 from validate import handler
 
 # Default timeout duration for telemetry validation test
