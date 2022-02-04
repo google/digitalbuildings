@@ -60,14 +60,17 @@ class DimensionTest(absltest.TestCase):
         too_many.exception.args[0],
         '`translations` or `deserialized_files` argument must be exclusive')
 
-  def testCorrect(self):
-    self.assertEqual(self.dimension.correct(), 2)
+  def testCorrectTotal(self):
+    self.assertEqual(self.dimension.correct_total(), 2)
+    self.assertEqual(self.dimension_none.correct_total(), 0)
 
   def testCorrectCeiling(self):
     self.assertEqual(self.dimension.correct_ceiling(), 4)
+    self.assertEqual(self.dimension_none.correct_total(), 0)
 
-  def testIncorrect(self):
-    self.assertEqual(self.dimension.incorrect(), 2)
+  def testIncorrectTotal(self):
+    self.assertEqual(self.dimension.incorrect_total(), 2)
+    self.assertEqual(self.dimension_none.correct_total(), 0)
 
   def testResultComposite(self):
     self.assertEqual(self.dimension.result_composite, 0.0)

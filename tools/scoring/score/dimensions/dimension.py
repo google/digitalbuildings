@@ -26,15 +26,14 @@ class Dimension:
         for all matched reporting entities. Assigned via argument
       deserialized_files: Parsed configuration files.  Assigned via argument
 
-      correct_virtual: Number of attempts achieved within virtual devices
-      correct_reporting: Number of attempts achieved within reporting devices
-      correct_ceiling_virtual: Number of attempts possible to achieve
+      correct_virtual: Number of successful attempts within virtual devices
+      correct_reporting: Number of successful within reporting devices
+      correct_ceiling_virtual: Number of attempts possible
         within virtual devices
-      correct_ceiling_reporting: Number of attempts possible to achieve
+      correct_ceiling_reporting: Number of attempts possible
         within reporting devices
-      incorrect_virtual: Number of attempts not achieved within virtual devices
-      incorrect_reporting: Number of attempts not achieved
-        within reporting devices
+      incorrect_virtual: Number of failed attempts within virtual devices
+      incorrect_reporting: Number of failed attempts within reporting devices
 
     Properties:
       result_composite: Calculated result for all devices
@@ -67,37 +66,52 @@ class Dimension:
     # elif deserialized_files:
     #   self.type = 'complex'
 
-  def correct(self) -> int:
-    """ Number of attempts achieved within all devices """
-    return self.correct_virtual + self.correct_reporting
+  def correct_total(self) -> int:
+    """ Number of successful attempts within all devices """
+    # Allow for value to be returned even if either is not set
+    correct_virtual = self.correct_virtual or 0
+    correct_reporting = self.correct_reporting or 0
+    return correct_virtual + correct_reporting
 
   def correct_ceiling(self) -> int:
-    """ Number of attempts possible to achieve within all devices """
-    return self.correct_ceiling_virtual + self.correct_ceiling_reporting
+    """ Number of attempts possible within all devices """
+    # Allow for value to be returned even if either is not set
+    correct_ceiling_virtual = self.correct_ceiling_virtual or 0
+    correct_ceiling_reporting = self.correct_ceiling_reporting or 0
+    return correct_ceiling_virtual + correct_ceiling_reporting
 
-  def incorrect(self) -> int:
-    """ Number of attempts not achieved within all devices """
-    return self.incorrect_virtual + self.incorrect_reporting
+  def incorrect_total(self) -> int:
+    """ Number of failed attempts within all devices """
+    # Allow for value to be returned even if either is not set
+    incorrect_virtual = self.incorrect_virtual or 0
+    incorrect_reporting = self.incorrect_reporting or 0
+    return incorrect_virtual + incorrect_reporting
 
   @property
   def result_composite(self) -> float:
     """ Calculated result for all devices """
-    return ((self.correct() - self.incorrect()) /
+    return ((self.correct_total() - self.incorrect_total()) /
             self.correct_ceiling()) if self.correct_ceiling() != 0 else None
 
   @property
   def result_virtual(self) -> float:
     """ Calculated result for virtual devices """
-    return ((self.correct_virtual - self.incorrect_virtual) /
-            self.correct_ceiling_virtual
-            ) if self.correct_ceiling_virtual != 0 else None
+    # Allow for value to be returned even if either is not set
+    correct_virtual = self.correct_virtual or 0
+    incorrect_virtual = self.correct_virtual or 0
+    return (
+        (correct_virtual - incorrect_virtual) /
+        self.correct_ceiling_virtual) if self.correct_ceiling_virtual else None
 
   @property
   def result_reporting(self) -> float:
     """ Calculated result for reporting devices """
-    return ((self.correct_reporting - self.incorrect_reporting) /
+    # Allow for value to be returned even if either is not set
+    correct_reporting = self.correct_reporting or 0
+    incorrect_reporting = self.incorrect_reporting or 0
+    return ((correct_reporting - incorrect_reporting) /
             self.correct_ceiling_reporting
-            ) if self.correct_ceiling_reporting != 0 else None
+            ) if self.correct_ceiling_reporting else None
 
   def __str__(self) -> str:
     """ Human-readable representation of the calculated properties"""
