@@ -15,7 +15,7 @@
 
 from typing import Dict, List, Tuple, Any
 from validate.entity_instance import EntityInstance
-from score.constants import FileTypes
+from score.constants import FileTypes, DimensionCategories
 
 CloudDeviceId = str
 FileType = FileTypes
@@ -23,3 +23,4 @@ DeserializedFile = Dict[CloudDeviceId, EntityInstance]
 DeserializedFilesDict = Dict[FileType, DeserializedFile]
 DimensionName = str
 TranslationsDict = Dict[FileType, List[Tuple[str, Any]]]
+DimensionCategory = DimensionCategories

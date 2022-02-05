@@ -12,15 +12,17 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 """File parser for the configuration scoring tool."""
+
 from typing import Dict, Optional, List
 
 from validate import handler as validator
 from validate.generate_universe import BuildUniverse
 
 from score.dimensions.dimension import Dimension
-from score.types import CloudDeviceId, DimensionName, TranslationsDict, DeserializedFile
-from score.constants import FileTypes
+from score.types import CloudDeviceId, DimensionName, TranslationsDict, DeserializedFile, DeserializedFilesDict, DimensionCategory
+from score.constants import FileTypes, DimensionCategories
 PROPOSED, SOLUTION = FileTypes
+SIMPLE, COMPLEX = DimensionCategories
 
 
 class ParseConfig:
@@ -112,7 +114,7 @@ class ParseConfig:
   def match_reporting_entities(
       *,
       proposed_entities: DeserializedFile,
-      solution_entities: DeserializedFile) -> List[CloudDeviceId]: # pylint: disable=line-too-long
+      solution_entities: DeserializedFile) -> List[CloudDeviceId]:
     """
       Matches reporting entities by `cloud_device_id`
 
@@ -184,41 +186,25 @@ class ParseConfig:
     return translations
 
   @staticmethod
-  def aggregate_results_nondbo(
+  def aggregate_results(
       *,
-      dimensions: List[Dimension],
-      translations: TranslationsDict) -> Dict[DimensionName, Dimension]: # pylint: disable=line-too-long
+      dimensions: Dict[DimensionCategory, List[Dimension]],
+      translations: TranslationsDict,
+      deserialized_files:  DeserializedFilesDict) -> Dict[DimensionName, Dimension]: # pylint: disable=line-too-long
     """
-      Wrapper which outputs a dictionary of results by invoking
-      each specified `Dimension` with the `translations` argument
+      Wrapper which outputs a dictionary of results by invoking each
+      specified `Dimension` with the appropriate argument based on its category
 
       Args:
-        dimensions: List of `Dimension`s to be evaluated
+        dimensions: Dictionary with lists of `Dimension`s to be evaluated
+          keyed under their category ("simple" or "complex")
         translations: Dictionary with `cloud_device_id`s as keys
-          and lists of translation tuples as values
+          and lists of translation tuples as values. Used as argument for
+          "simple" dimensions.
+        deserialized_files: Dictionary with deserialized configuration files
+          keyed under their respective file type ("proposed" or "solution").
+          Used as argument for "complex" dimensions.
 
-      Returns:
-        Dictionary with dimension names as keys and `Dimension`s as values
-    """
-    results = {}
-    for dimension in dimensions:
-      # Invoke the function and append the dictionary with its return value
-      results[dimension.__name__] = dimension(translations=translations)
-    return results
-
-  # TODO: update to reflect current combined signature of dimension
-  @staticmethod
-  def aggregate_results_dbo(
-      *,
-      dbo_dimensions: List[Dimension],
-      proposed_entities: DeserializedFile,
-      solution_entities: DeserializedFile) -> Dict[DimensionName, Dimension]: # pylint: disable=line-too-long
-    """
-      Wrapper which outputs a dictionary of results by invoking
-      each specified `DboDimension` with the `proposed_entities`
-      and `solution_entities` arguments
-
-      Args:
         dbo_dimensions: List of `DboDimension`s to be evaluated
         proposed_entities: Dictionary of proposed entity names
           and `EntityInstance`s
@@ -228,10 +214,17 @@ class ParseConfig:
       Returns:
         Dictionary with dimension names as keys and `Dimension`s as values
     """
-    results_dbo = {}
-    for dbo_dimension in dbo_dimensions:
-      # Invoke the function and append the dictionary with its return value
-      results_dbo[dbo_dimension.__name__] = dbo_dimension(
-          proposed_entities=proposed_entities,
-          solution_entities=solution_entities)
-    return results_dbo
+    results = {}
+    print(dimensions.items())
+    for dimension_category, dimension_list in dimensions.items():
+      # Invoke the functions and append the dictionary with their return values
+      for dimension in dimension_list:
+        if dimension_category == SIMPLE:
+          invoked = dimension(translations=translations)
+        elif dimension_category == COMPLEX:
+          invoked = dimension(deserialized_files=deserialized_files)
+
+        results[dimension.__name__] = invoked
+
+    print(results)
+    return results

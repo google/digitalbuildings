@@ -15,6 +15,10 @@
 
 from enum import Enum
 
-class FileTypes(Enum):
+class FileTypes(str, Enum):
   PROPOSED='proposed'
   SOLUTION='solution'
+
+class DimensionCategories(str, Enum):
+  SIMPLE='simple'
+  COMPLEX='complex'

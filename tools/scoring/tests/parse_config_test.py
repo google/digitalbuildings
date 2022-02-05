@@ -17,7 +17,7 @@ from absl.testing import absltest
 from unittest.mock import call, patch
 
 from score import parse_config
-from score.constants import FileTypes
+from score.constants import FileTypes, DimensionCategories
 
 from yamlformat.validator.presubmit_validate_types_lib import ConfigUniverse
 
@@ -25,6 +25,7 @@ from validate import handler as validator
 from validate.field_translation import NonDimensionalValue
 
 PROPOSED, SOLUTION = FileTypes
+SIMPLE, COMPLEX = DimensionCategories
 
 
 class ParseConfigTest(absltest.TestCase):
@@ -121,25 +122,30 @@ class ParseConfigTest(absltest.TestCase):
     self.assertEqual(type(translations[cdid][f'{SOLUTION}_translations'][0][1]),
                      NonDimensionalValue)
 
-  def testAggregateResultsNonDbo(self):
-    mock_dimension = lambda *, translations: f'called with {translations}'
-    results = parse_config.ParseConfig.aggregate_results_nondbo(
-        dimensions=[mock_dimension], translations='arbitrary')
+  def testAggregateResults(self):
+    mock_dimension_simple = (
+        lambda *, translations: f'called with {translations}')
+    # Set the name so the lambda functions don't collide when
+    # they are keyed under their name in the dictionary
+    mock_dimension_simple.__name__ = SIMPLE
+
+    mock_dimension_complex = (
+        lambda *, deserialized_files: f'called with {deserialized_files}')
+    mock_dimension_complex.__name__ = COMPLEX
+
+    results = parse_config.ParseConfig.aggregate_results(
+        dimensions={
+            f'{SIMPLE}': [mock_dimension_simple],
+            f'{COMPLEX}': [mock_dimension_complex]
+        },
+        translations='argument for simple dimensions',
+        deserialized_files='argument for complex dimensions')
 
     self.assertEqual(type(results), dict)
-    self.assertEqual(results['<lambda>'], 'called with arbitrary')
-
-  def testAggregateResultsDbo(self):
-    mock_dbo_dimension = (
-        lambda *, proposed_entities, solution_entities:
-        f'called with {proposed_entities} {solution_entities}')
-    results_dbo = parse_config.ParseConfig.aggregate_results_dbo(
-        dbo_dimensions=[mock_dbo_dimension],
-        proposed_entities='arbitrary',
-        solution_entities='arguments')
-
-    self.assertEqual(type(results_dbo), dict)
-    self.assertEqual(results_dbo['<lambda>'], 'called with arbitrary arguments')
+    self.assertEqual(results[SIMPLE],
+                     'called with argument for simple dimensions')
+    self.assertEqual(results[COMPLEX],
+                     'called with argument for complex dimensions')
 
 
 if __name__ == '__main__':
