@@ -215,7 +215,7 @@ class ParseConfig:
         Dictionary with dimension names as keys and `Dimension`s as values
     """
     results = {}
-    print(dimensions.items())
+
     for dimension_category, dimension_list in dimensions.items():
       # Invoke the functions and append the dictionary with their return values
       for dimension in dimension_list:
@@ -225,6 +225,4 @@ class ParseConfig:
           invoked = dimension(deserialized_files=deserialized_files)
 
         results[dimension.__name__] = invoked
-
-    print(results)
     return results
