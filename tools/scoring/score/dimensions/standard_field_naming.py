@@ -24,7 +24,9 @@ PROPOSED, SOLUTION = FileTypes
 
 class StandardFieldNaming(Dimension):
   """
-  TODO
+  Quantifies whether the correct standard field names
+  (e.g. "chilled_water_flowrate_sensor")
+  were selected in the proposed file.
   """
   def __init__(self, *, translations: TranslationsDict):
     super().__init__(translations=translations)
@@ -41,7 +43,6 @@ class StandardFieldNaming(Dimension):
 
       for p_field, p_value in translations[PROPOSED]:
         if p_value.raw_field_name == s_value.raw_field_name:
-          # fields += 1
           p_subs = set(
               filter(lambda subfield: not bool(regex.match('[0-9]+', subfield)),
                      p_field.split('_')))
@@ -51,13 +52,6 @@ class StandardFieldNaming(Dimension):
 
           correct_subfields += correct_subs
           incorrect_subfields += incorrect_subs
-          # TODO: refactor after all dimensions have been implemented
-          # perfect_subs = ((len(correct_subs) - len(incorrect_subs)) /
-          #                 len(s_subs) == 1.0)
-          # if perfect_subs:
-          #   perfect_fields += 1
-          #   if len(p_subs) > len(s_subs):
-          #     supersets += 1
 
     self.correct_reporting = len(correct_subfields)
     self.correct_ceiling_reporting = correct_ceiling

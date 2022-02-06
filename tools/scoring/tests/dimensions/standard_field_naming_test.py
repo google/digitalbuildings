@@ -16,14 +16,34 @@
 
 from absl.testing import absltest
 
+from score.dimensions.standard_field_naming import StandardFieldNaming
+from score.constants import FileTypes
+
+PROPOSED, SOLUTION = FileTypes
+
 
 class StandardFieldNamingTest(absltest.TestCase):
   def setUp(self):
     super().setUp()
-    ...
+    # TODO: add real data (append cases to existing tests)
+    translations = {PROPOSED: [], SOLUTION: []}
+    self.standard_field_naming = StandardFieldNaming(translations=translations)
 
-  def testInitialize(self):
-    ...
+  def testDirectlyAssignedAttributes(self):
+    self.assertEqual(self.standard_field_naming.correct_reporting, 0)
+    self.assertEqual(self.standard_field_naming.correct_ceiling_reporting, 0)
+    self.assertEqual(self.standard_field_naming.incorrect_reporting, 0)
+
+  def testInheritedCalculatedAttributes(self):
+    self.assertEqual(self.standard_field_naming.correct_total(), 0)
+    self.assertEqual(self.standard_field_naming.correct_ceiling(), 0)
+    self.assertEqual(self.standard_field_naming.incorrect_total(), 0)
+
+  def testInheritedResultProperties(self):
+    # These are `None` by virtue of the ceiling being falsy.
+    self.assertEqual(self.standard_field_naming.result_composite, None)
+    self.assertEqual(self.standard_field_naming.result_reporting, None)
+    self.assertEqual(self.standard_field_naming.result_virtual, None)
 
 
 if __name__ == '__main__':

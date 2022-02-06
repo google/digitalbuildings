@@ -22,7 +22,8 @@ PROPOSED, SOLUTION = FileTypes
 
 class RawFieldSelection(Dimension):
   """
-  Quantifies whether the correct raw fields (e.g. "exhaust_air_damper_command)
+  Quantifies whether the correct raw fields
+  (e.g. "points.chilled_water_flowrate_sensor.present_value")
   were mapped (versus ignored) in the proposed file.
   """
   def __init__(self, *, translations: TranslationsDict):
