@@ -13,7 +13,7 @@
 # limitations under the License.
 """Core component base class"""
 
-from score.types import DeserializedFilesDict, TranslationsDict
+from score.types_ import DeserializedFilesDict, TranslationsDict
 
 
 class Dimension:

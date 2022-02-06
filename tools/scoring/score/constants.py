@@ -15,10 +15,12 @@
 
 from enum import Enum
 
+
 class FileTypes(str, Enum):
-  PROPOSED='proposed'
-  SOLUTION='solution'
+  PROPOSED = 'proposed'
+  SOLUTION = 'solution'
+
 
 class DimensionCategories(str, Enum):
-  SIMPLE='simple'
-  COMPLEX='complex'
+  SIMPLE = 'simple'
+  COMPLEX = 'complex'

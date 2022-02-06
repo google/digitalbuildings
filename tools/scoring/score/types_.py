@@ -11,6 +11,10 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
+# NOTE: Depending on how it is invoked, yapf may fail silently
+# for all files in a directory if it contains e.g. "types.py"
+# https://github.com/microsoft/vscode-python/issues/6571
 """ Type annotations for the configuration scoring tool """
 
 from typing import Dict, List, Tuple, Any

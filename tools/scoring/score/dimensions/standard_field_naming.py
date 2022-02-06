@@ -14,7 +14,7 @@
 """ Core component """
 
 from score.dimensions.dimension import Dimension
-from score.types import TranslationsDict
+from score.types_ import TranslationsDict
 from score.constants import FileTypes
 
 import re as regex

@@ -19,8 +19,9 @@ from validate import handler as validator
 from validate.generate_universe import BuildUniverse
 
 from score.dimensions.dimension import Dimension
-from score.types import CloudDeviceId, DimensionName, TranslationsDict, DeserializedFile, DeserializedFilesDict, DimensionCategory
+from score.types_ import CloudDeviceId, DimensionName, TranslationsDict, DeserializedFile, DeserializedFilesDict, DimensionCategory
 from score.constants import FileTypes, DimensionCategories
+
 PROPOSED, SOLUTION = FileTypes
 SIMPLE, COMPLEX = DimensionCategories
 
@@ -112,8 +113,7 @@ class ParseConfig:
 
   @staticmethod
   def match_reporting_entities(
-      *,
-      proposed_entities: DeserializedFile,
+      *, proposed_entities: DeserializedFile,
       solution_entities: DeserializedFile) -> List[CloudDeviceId]:
     """
       Matches reporting entities by `cloud_device_id`
@@ -140,10 +140,8 @@ class ParseConfig:
 
   @staticmethod
   def retrieve_reporting_translations(
-      *, matches: List[CloudDeviceId],
-      proposed_entities: DeserializedFile,
-      solution_entities: DeserializedFile
-  ) -> TranslationsDict:
+      *, matches: List[CloudDeviceId], proposed_entities: DeserializedFile,
+      solution_entities: DeserializedFile) -> TranslationsDict:
     """
       Retrieves proposed and solution translations
       for all matched reporting entities.
@@ -187,10 +185,9 @@ class ParseConfig:
 
   @staticmethod
   def aggregate_results(
-      *,
-      dimensions: Dict[DimensionCategory, List[Dimension]],
-      translations: TranslationsDict,
-      deserialized_files:  DeserializedFilesDict) -> Dict[DimensionName, Dimension]: # pylint: disable=line-too-long
+      *, dimensions: Dict[DimensionCategory, List[Dimension]],
+      translations: TranslationsDict, deserialized_files: DeserializedFilesDict
+  ) -> Dict[DimensionName, Dimension]:
     """
       Wrapper which outputs a dictionary of results by invoking each
       specified `Dimension` with the appropriate argument based on its category
