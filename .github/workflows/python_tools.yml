@@ -30,7 +30,7 @@ jobs:
       run: |
         python -m pip install pylint
 
-     #TODO(b/210730979): Investigate calling ontology validator setup with instance validator setup
+     #TODO(b/210730979): Investigate calling ontology validator setup with instance validator setup   
      #---------- Ontology Explorer ----------#
     - name: Ontology Validator Install dependencies
       run: |
@@ -51,7 +51,7 @@ jobs:
       run: |
        python -m unittest discover -p '*_test.py' --failfast -v
       working-directory: ./tools/explorer
-    #---------- Configuration scoring ----------#
+    #---------- Configuration Scorer ----------#
     - name: Configuration scoring Install dependencies
       run: |
         python setup.py install
@@ -97,4 +97,4 @@ jobs:
       working-directory: ./tools/rdf_generator/rdfformat/tests
     - name: Run Pylint on RDF Generator
       run: |
-        pylint --rcfile ./styles/pylintrc ./tools/rdf_generator
+        pylint --rcfile ./styles/pylintrc ./tools/rdf_generator  

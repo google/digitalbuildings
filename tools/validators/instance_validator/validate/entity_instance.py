@@ -73,6 +73,8 @@ def _GetAllowedField(
     field_obj = entity_type.GetFieldFromConfigText(as_written_field_name)
     if field_obj:
       return entity_type_lib.BuildQualifiedField(field_obj)
+    else:
+      return None
 
   try:
     namespace, field_name = entity_type_lib.SeparateFieldNamespace(
