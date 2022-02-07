@@ -27,28 +27,32 @@ def main(parsed_args):
   ontology = explorer_handler.Build(parsed_args.modified_types_filepath)
   done = False
   while not done:
-    print(
-        '\nHow would you like to query DBO\n' +
-        '1: Get fields for a type name\n' +
-        '2: Get types for a list of fields\n' +
-        '3: Validate a field name\n' +
-        'q: quit\n'
-    )
-    function_choice = input('Please select an option: ')
-    if function_choice == '1':
-      parse_input.GetFieldsForTypeName(ontology)
-    elif function_choice == '2':
-      parse_input.GetTypesForFieldList(ontology)
-    elif function_choice == '3':
-      parse_input.ValidateFieldName(ontology)
-    elif function_choice == 'q':
-      print('bye bye')
-      done = True
-    else:
+    try:
       print(
-          'You entered: ' + function_choice + '\n' +
-          'Please enter a valid input'
+          '\nHow would you like to query DBO\n' +
+          '1: Get fields for a type name\n' +
+          '2: Get types for a list of fields\n' +
+          '3: Validate a field name\n' +
+          'q: quit\n'
       )
+      function_choice = input('Please select an option: ')
+      if function_choice == '1':
+        parse_input.GetFieldsForTypeName(ontology)
+      elif function_choice == '2':
+        parse_input.GetTypesForFieldList(ontology)
+      elif function_choice == '3':
+        parse_input.ValidateFieldName(ontology)
+      elif function_choice == 'q':
+        print('bye bye')
+        done = True
+      else:
+        print(
+            'You entered: ' + function_choice + '\n' +
+            'Please enter a valid input'
+        )
+    except Exception as this_exception:
+      print(this_exception)
+      continue
 
 if __name__ == '__main__':
   args = arg_parser.ParseArgs().parse_args(sys.argv[1:])
