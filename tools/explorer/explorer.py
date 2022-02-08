@@ -50,8 +50,7 @@ def main(parsed_args):
             'You entered: ' + function_choice + '\n' +
             'Please enter a valid input'
         )
-    except Exception as this_exception:
-      print(this_exception)
+    except:
       continue
 
 if __name__ == '__main__':
