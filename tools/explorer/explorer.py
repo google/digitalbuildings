@@ -15,9 +15,14 @@
 """Main module for DBO explorer."""
 import sys
 
+import colorama
+from termcolor import colored
+
 from lib import arg_parser
 from lib import explorer_handler
 from lib import parse_input
+
+colorama.init()
 
 
 def main(parsed_args):
@@ -50,7 +55,14 @@ def main(parsed_args):
             'You entered: ' + function_choice + '\n' +
             'Please enter a valid input'
         )
-    except:
+    except TypeError as type_error:
+      print(colored(type_error, 'red'))
+      continue
+    except ValueError as value_error:
+      print(colored(value_error, 'red'))
+      continue
+    except AttributeError as attribute_error:
+      print(colored(attribute_error, 'red'))
       continue
 
 if __name__ == '__main__':
