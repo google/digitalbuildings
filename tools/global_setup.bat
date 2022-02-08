@@ -34,18 +34,14 @@ ECHO "Starting scoring setup"
 CD Scoring
 START py setup.py install
 ECHO "Finished Scoring setup"
+CD ..
 
 :rdf_generator_setup
 ECHO "Starting RDF Generator setup"
 CD rdf_generator
 START py setup.py install
 ECHO "Finihed Scoring setup"
-
-:toolkit_setup
-ECHO "Starting Toolkit setup"
-START py setup.py install
-ECHO "Finihed Toolkit setup"
+CD ..
 
 ECHO "Setup finished!"
 PAUSE
-EXIT
