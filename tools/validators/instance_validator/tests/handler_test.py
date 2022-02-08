@@ -34,6 +34,7 @@ from validate import telemetry_validator
 from yamlformat.validator import presubmit_validate_types_lib
 
 _TESTCASE_PATH = test_constants.TEST_INSTANCES
+_TESTCASE_DIR = test_constants.TEST_RESOURCES
 _INIT_CFG = instance_parser.ConfigMode.INITIALIZE
 
 _RunValidation = handler.RunValidation
@@ -86,6 +87,35 @@ class HandlerTest(absltest.TestCase):
       input_file = os.path.join(_TESTCASE_PATH, 'BAD',
                                 'bad_missing_building.yaml')
       _RunValidation([input_file], use_simplified_universe=True)
+
+  def testDirectoryWalkerHandlesDirs(self):
+    """ Check that the directory walker works with multiple input
+    directories. """
+    try:
+      dir1 = os.path.join(_TESTCASE_DIR,'fakedir')
+      _RunValidation([dir1], use_simplified_universe=True)
+    except SyntaxError:
+      self.fail('ValidationHelper:Validate unexpectedly raised Exception')
+
+  def testDirectoryWalkerHandlesDirsAndFiles(self):
+    """ Check that the directory walker can handle both directories
+    and files passed to it. """
+    try:
+      dir1 = os.path.join(_TESTCASE_DIR,'fakedir','another_fan')
+      dir2 = os.path.join(_TESTCASE_DIR,'fakedir','fans')
+      file1 = os.path.join(_TESTCASE_DIR,'fakedir','bldg.yaml')
+
+      _RunValidation([dir1,dir2,file1], use_simplified_universe=True)
+    except SyntaxError:
+      self.fail('ValidationHelper:Validate unexpectedly raised Exception')
+
+  def testDirectoryWalkerDupeFilesFail(self):
+    """ Check that the directory walker fails when the same file is
+    passed to it multiple times. """
+    with self.assertRaises(ValueError):
+      dir1 = os.path.join(_TESTCASE_DIR,'fakedir')
+      dir2 = os.path.join(_TESTCASE_DIR,'fakedir','fans')
+      _RunValidation([dir1,dir2], use_simplified_universe=True)
 
   def testValidateTranslationWithNoConfigID(self):
     try:

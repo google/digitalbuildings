@@ -1,8 +1,10 @@
 **/node_modules/*
 **/temp/*
 **/dist/main.js
-*..pyc
+*.pyc
 
 *.DS_Store
+*build*
+*.egg*
 package-lock.json
 yarn.lock
