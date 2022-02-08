@@ -14,7 +14,7 @@ implemented in the future.
 
 ### Unix Setup
 1. Open terminal and navigate to `digitalbuildings/tools`
-2. Run `bash global_setup.sh`
+2. Run `sudo bash global_setup.sh`
 
 ## Running Toolkit
 
@@ -32,3 +32,5 @@ For example:
 `python toolkit.py -i=//path/to/file --generate --validate -r=//path/to/report`
 Takes in an input file, generates guids for every entity instance, validates the
 building configuration, and writes validation results to the report filepath.
+
+For Windowds, run with `py` rather than `python`
