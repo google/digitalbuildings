@@ -1,5 +1,6 @@
 EF - 2 Restroom / 1:
   cloud_device_id: '3'
+  guid: 12345
   connections:
     US-MTV-1:
     - CONTAINS
