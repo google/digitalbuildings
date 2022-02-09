@@ -15,7 +15,7 @@
 # NOTE: Depending on how it is invoked, yapf may fail silently
 # for all files in a directory if it contains e.g. "types.py"
 # https://github.com/microsoft/vscode-python/issues/6571
-""" Type annotations for the configuration scoring tool """
+"""Type annotations for the configuration scoring tool."""
 
 from typing import Dict, List, Tuple, Any
 from validate.entity_instance import EntityInstance

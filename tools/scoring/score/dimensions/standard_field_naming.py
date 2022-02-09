@@ -36,22 +36,19 @@ class StandardFieldNaming(Dimension):
     incorrect_subfields = []
 
     for s_field, s_value in translations[SOLUTION]:
-      s_subs = set(
+      s_subfields = set(
           filter(lambda subfield: not bool(regex.match('[0-9]+', subfield)),
                  s_field.split('_')))
-      correct_ceiling += len(s_subs)
+      correct_ceiling += len(s_subfields)
 
       for p_field, p_value in translations[PROPOSED]:
         if p_value.raw_field_name == s_value.raw_field_name:
-          p_subs = set(
+          p_subfields = set(
               filter(lambda subfield: not bool(regex.match('[0-9]+', subfield)),
                      p_field.split('_')))
 
-          correct_subs = p_subs.intersection(s_subs)
-          incorrect_subs = p_subs.difference(s_subs)
-
-          correct_subfields += correct_subs
-          incorrect_subfields += incorrect_subs
+          correct_subfields += p_subfields.intersection(s_subfields)
+          incorrect_subfields += p_subfields.difference(s_subfields)
 
     self.correct_reporting = len(correct_subfields)
     self.correct_ceiling_reporting = correct_ceiling
