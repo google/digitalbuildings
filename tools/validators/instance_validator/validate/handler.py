@@ -81,13 +81,13 @@ def _ValidateTelemetry(subscription: str, service_account: str,
   helper.Validate(entities, timeout)
 
 def _GetFilepathsFromDir(root_dir):
-  """ Takes in a directory and returns a filepath list for all YAML 
+  """ Takes in a directory and returns a filepath list for all YAML
   files it finds. """
   file_paths = []
-  for root, dirs, files in os.walk(root_dir, topdown=False):
-     for name in files:
-        if '.yaml' in name:
-          file_paths.append(os.path.join(root,name))
+  for root, _, files in os.walk(root_dir, topdown=False):
+    for name in files:
+      if '.yaml' in name:
+        file_paths.append(os.path.join(root,name))
   return file_paths
 
 def RunValidation(filenames: List[str],
@@ -120,7 +120,7 @@ def RunValidation(filenames: List[str],
     print('\nStarting config validation...\n')
 
     # Check if the filenames are in fact directories.
-    # If they are not directories, but are instead yaml files, 
+    # If they are not directories, but are instead yaml files,
     # append them to the list.
     unpacked_files = []
     for file in filenames:
@@ -137,10 +137,10 @@ def RunValidation(filenames: List[str],
     # but this is probably the safer route to go.
     for elem in unpacked_files:
       if unpacked_files.count(elem) > 1:
-        raise ValueError(f"The file {elem} was passed in multiple "\
-          "times. Be sure you are including mutually exclusive "\
-          "directories (i.e. don't pass in a child and parent " \
-          "directory); otherwise you will break everything.")
+        raise ValueError(f'The file {elem} was passed in multiple '\
+          'times. Be sure you are including mutually exclusive '\
+          'directories (i.e. don\'t pass in a child and parent ' \
+          'directory); otherwise you will break everything.')
 
     # Validate the entities from the final set of unpacked files.
     entities = _ValidateConfig(unpacked_files, universe)
