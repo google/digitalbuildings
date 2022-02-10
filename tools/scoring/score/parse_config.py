@@ -66,7 +66,7 @@ class ParseConfig:
   # TODO: refactor into smaller functions and return instead of printing
   def append_types(self):
     """
-      Appends types or type names to deserialized files
+      Appends types to deserialized files
     """
     for file_type, file in self.deserialized_files.items():
       translations_absent = []

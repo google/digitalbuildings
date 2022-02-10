@@ -14,6 +14,7 @@
 """Core component base class"""
 
 from score.types_ import DeserializedFilesDict, TranslationsDict
+from validate.entity_instance import EntityInstance
 
 
 class Dimension:
@@ -113,8 +114,51 @@ class Dimension:
             self.correct_ceiling_reporting
             ) if self.correct_ceiling_reporting else None
 
+  @staticmethod
+  def entity_is_canonical(*, entity: EntityInstance) -> bool:
+    """ Utility for determining whether an entity is canonical.
+    Used in "complex" dimensions to filter sets for comparison.
+
+    Args:
+      entity: An entity instance which has been appended
+      with a `type` attribute equal to its type from the universe
+
+    Returns:
+      Boolean indicating whether the entity's `type.is_canonical`
+    """
+    # NOTE: when passed to filter(), this will silently omit
+    # entities which have not had their type appended!
+    return getattr(entity.type, 'is_canonical', False)
+
+  @staticmethod
+  def entity_is_reporting(*, entity: EntityInstance) -> bool:
+    """
+    Utility for determining whether an entity is reporting.
+    Used in "complex" dimensions to filter sets for comparison.
+
+    Args:
+      entity: A standard entity instance
+
+    Returns:
+      Boolean indicating whether the entity has a `cloud_device_id`
+    """
+    return entity.cloud_device_id is not None
+
+  @staticmethod
+  def entity_is_virtual(*, entity: EntityInstance) -> bool:
+    """ Utility for determining whether an entity is virtual.
+    Used in "complex" dimensions to filter sets for comparison.
+
+    Args:
+      entity: A standard entity instance
+
+    Returns:
+      Boolean indicating whether the entity has `links`
+    """
+    return entity.links is not None
+
   def __str__(self) -> str:
-    """ Human-readable representation of the calculated properties"""
+    """ Human-readable representation of the calculated properties """
     return (
         f'{{result_composite: {self.result_composite}, result_virtual: '
         f'{self.result_virtual}, result_reporting: {self.result_reporting}}}')
