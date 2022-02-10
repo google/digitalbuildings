@@ -16,7 +16,33 @@ core component base class (dimension.py)."""
 
 from absl.testing import absltest
 
+from validate import handler as validator
+from validate.generate_universe import BuildUniverse
+from validate.entity_instance import EntityInstance
 from score.dimensions.dimension import Dimension
+
+import copy
+
+
+def canonical_entity() -> EntityInstance:
+  entity = list(
+      validator.Deserialize(['tests/samples/canonical_entity.yaml'
+                             ])[0].values())[0]
+  # Append the type to be checked by entity_is_canonical()
+  entity.type = BuildUniverse(use_simplified_universe=True).GetEntityType(
+      entity.namespace, entity.type_name)
+  print(f'{entity.type}')
+  return entity
+
+
+def noncanonical_entity() -> EntityInstance:
+  entity = list(
+      validator.Deserialize(['tests/samples/noncanonical_entity.yaml'
+                             ])[0].values())[0]
+  # Append the type to be checked by entity_is_canonical()
+  entity.type = BuildUniverse(use_simplified_universe=True).GetEntityType(
+      entity.namespace, entity.type_name)
+  return entity
 
 
 class DimensionTest(absltest.TestCase):
@@ -37,6 +63,21 @@ class DimensionTest(absltest.TestCase):
     self.dimension_none.correct_ceiling_reporting = 0
     self.dimension_none.incorrect_virtual = 0
     self.dimension_none.incorrect_reporting = 0
+
+    self.entities = {
+        'canonical_type_appended':
+        canonical_entity(),
+        'noncanonical_type_appended':
+        noncanonical_entity(),
+        'reporting':
+        list(
+            validator.Deserialize(['tests/samples/reporting_entity.yaml'
+                                   ])[0].values())[0],
+        'virtual':
+        list(
+            validator.Deserialize(['tests/samples/virtual_entity.yaml'
+                                   ])[0].values())[0],
+    }
 
   def testArgumentAttributes(self):
     self.assertEqual(self.dimension.translations, 'translations')
@@ -83,6 +124,32 @@ class DimensionTest(absltest.TestCase):
   def testResultReporting(self):
     self.assertEqual(self.dimension.result_reporting, 0.0)
     self.assertEqual(self.dimension_none.result_reporting, None)
+
+  def testEntityIsCanonical(self):
+    self.assertTrue(
+        Dimension.entity_is_canonical(
+            entity=self.entities['canonical_type_appended']))
+    self.assertFalse(
+        Dimension.entity_is_canonical(
+            entity=self.entities['noncanonical_type_appended']))
+    # This entity has had a type of `None` appended, thus it returns false.
+    reporting_type_none = copy.copy(self.entities['reporting'])
+    reporting_type_none.type = None
+    self.assertFalse(Dimension.entity_is_canonical(entity=reporting_type_none))
+
+  def testEntityIsReporting(self):
+    print(self.entities)
+    self.assertTrue(
+        Dimension.entity_is_reporting(entity=self.entities['reporting']))
+    self.assertFalse(
+        Dimension.entity_is_reporting(entity=self.entities['virtual']))
+
+  def testEntityIsVirtual(self):
+    print(self.entities)
+    self.assertTrue(
+        Dimension.entity_is_virtual(entity=self.entities['virtual']))
+    self.assertFalse(
+        Dimension.entity_is_virtual(entity=self.entities['reporting']))
 
   def testStr(self):
     self.assertEqual(

@@ -127,7 +127,7 @@ class Dimension:
       Boolean indicating whether the entity's `type.is_canonical`
     """
     # NOTE: when passed to filter(), this will silently omit
-    # entities which have not had their type appended!
+    # entities whose appended type is `None` (e.g. it was not found)
     return getattr(entity.type, 'is_canonical', False)
 
   @staticmethod
