@@ -46,7 +46,8 @@ class EntityIdentification(Dimension):
     ]
 
     # Lists of `cloud_device_id`s representing
-    # virtual entities with canonical types
+    # reporting entities with canonical types that
+    # are linked to by virtual entities
     solution_virtual = [
         cloud_device_id for source_list in ((
             solution[link.source].cloud_device_id
