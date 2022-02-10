@@ -31,7 +31,6 @@ def canonical_entity() -> EntityInstance:
   # Append the type to be checked by entity_is_canonical()
   entity.type = BuildUniverse(use_simplified_universe=True).GetEntityType(
       entity.namespace, entity.type_name)
-  print(f'{entity.type}')
   return entity
 
 
@@ -138,14 +137,12 @@ class DimensionTest(absltest.TestCase):
     self.assertFalse(Dimension.entity_is_canonical(entity=reporting_type_none))
 
   def testEntityIsReporting(self):
-    print(self.entities)
     self.assertTrue(
         Dimension.entity_is_reporting(entity=self.entities['reporting']))
     self.assertFalse(
         Dimension.entity_is_reporting(entity=self.entities['virtual']))
 
   def testEntityIsVirtual(self):
-    print(self.entities)
     self.assertTrue(
         Dimension.entity_is_virtual(entity=self.entities['virtual']))
     self.assertFalse(
