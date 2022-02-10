@@ -13,7 +13,7 @@
 # limitations under the License.
 """Core component base class"""
 
-from score.types import DeserializedFilesDict, TranslationsDict
+from score.types_ import DeserializedFilesDict, TranslationsDict
 
 
 class Dimension:
@@ -47,7 +47,6 @@ class Dimension:
                deserialized_files: DeserializedFilesDict = None):
     self.translations = translations
     self.deserialized_files = deserialized_files
-    # self.type: Literal['simple', 'complex'] = None
 
     self.correct_virtual: int = None
     self.correct_reporting: int = None

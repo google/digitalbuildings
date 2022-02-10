@@ -12,38 +12,38 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 """Test for configuration file scoring tool
-"raw field selection" dimension (raw_field_selection.py)."""
+"unit mapping" dimension (unit_mapping.py)."""
 
 from absl.testing import absltest
 
-from score.dimensions.raw_field_selection import RawFieldSelection
+from score.dimensions.unit_mapping import UnitMapping
 from score.constants import FileTypes
 
 PROPOSED, SOLUTION = FileTypes
 
 
-class RawFieldSelectionTest(absltest.TestCase):
+class UnitMappingTest(absltest.TestCase):
   def setUp(self):
     super().setUp()
     # TODO: add real data (append cases to existing tests)
     translations = {PROPOSED: [], SOLUTION: []}
-    self.raw_field_selection = RawFieldSelection(translations=translations)
+    self.unit_mapping = UnitMapping(translations=translations)
 
   def testDirectlyAssignedAttributes(self):
-    self.assertEqual(self.raw_field_selection.correct_reporting, 0)
-    self.assertEqual(self.raw_field_selection.correct_ceiling_reporting, 0)
-    self.assertEqual(self.raw_field_selection.incorrect_reporting, 0)
+    self.assertEqual(self.unit_mapping.correct_reporting, 0)
+    self.assertEqual(self.unit_mapping.correct_ceiling_reporting, 0)
+    self.assertEqual(self.unit_mapping.incorrect_reporting, 0)
 
   def testInheritedCalculatedAttributes(self):
-    self.assertEqual(self.raw_field_selection.correct_total(), 0)
-    self.assertEqual(self.raw_field_selection.correct_ceiling(), 0)
-    self.assertEqual(self.raw_field_selection.incorrect_total(), 0)
+    self.assertEqual(self.unit_mapping.correct_total(), 0)
+    self.assertEqual(self.unit_mapping.correct_ceiling(), 0)
+    self.assertEqual(self.unit_mapping.incorrect_total(), 0)
 
   def testInheritedResultProperties(self):
     # These are `None` by virtue of the ceiling being falsy.
-    self.assertEqual(self.raw_field_selection.result_composite, None)
-    self.assertEqual(self.raw_field_selection.result_reporting, None)
-    self.assertEqual(self.raw_field_selection.result_virtual, None)
+    self.assertEqual(self.unit_mapping.result_composite, None)
+    self.assertEqual(self.unit_mapping.result_reporting, None)
+    self.assertEqual(self.unit_mapping.result_virtual, None)
 
 
 if __name__ == '__main__':

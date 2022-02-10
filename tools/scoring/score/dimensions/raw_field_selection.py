@@ -14,25 +14,29 @@
 """ Core component """
 
 from score.dimensions.dimension import Dimension
-from score.types import TranslationsDict
+from score.types_ import TranslationsDict
+from score.constants import FileTypes
+
+PROPOSED, SOLUTION = FileTypes
 
 
 class RawFieldSelection(Dimension):
   """
-  Quantifies whether the correct raw fields (e.g. "exhaust_air_damper_command)
+  Quantifies whether the correct raw fields
+  (e.g. "points.chilled_water_flowrate_sensor.present_value")
   were mapped (versus ignored) in the proposed file.
   """
   def __init__(self, *, translations: TranslationsDict):
     super().__init__(translations=translations)
 
     solution_fields = set(
-        map(lambda item: item[1].raw_field_name, translations['solution']))
+        map(lambda item: item[1].raw_field_name, translations[SOLUTION]))
     proposed_fields = set(
-        map(lambda item: item[1].raw_field_name, translations['proposed']))
+        map(lambda item: item[1].raw_field_name, translations[PROPOSED]))
 
     correct_fields = proposed_fields.intersection(solution_fields)
     incorrect_fields = proposed_fields.difference(solution_fields)
 
     self.correct_reporting = len(correct_fields)
-    self.correct_ceiling_reporting = len(set(translations['solution']))
+    self.correct_ceiling_reporting = len(set(translations[SOLUTION]))
     self.incorrect_reporting = len(incorrect_fields)

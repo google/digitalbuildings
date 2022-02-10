@@ -11,15 +11,20 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-""" Type annotations """
+
+# NOTE: Depending on how it is invoked, yapf may fail silently
+# for all files in a directory if it contains e.g. "types.py"
+# https://github.com/microsoft/vscode-python/issues/6571
+"""Type annotations for the configuration scoring tool."""
 
 from typing import Dict, List, Tuple, Any
-from typing_extensions import Literal
 from validate.entity_instance import EntityInstance
+from score.constants import FileTypes, DimensionCategories
 
 CloudDeviceId = str
-FileType = Literal['proposed', 'solution']
+FileType = FileTypes
 DeserializedFile = Dict[CloudDeviceId, EntityInstance]
 DeserializedFilesDict = Dict[FileType, DeserializedFile]
 DimensionName = str
 TranslationsDict = Dict[FileType, List[Tuple[str, Any]]]
+DimensionCategory = DimensionCategories
