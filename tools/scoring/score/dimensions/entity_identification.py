@@ -36,13 +36,13 @@ class EntityIdentification(Dimension):
     # reporting entities with canonical types
     solution_reporting = [
         entity.cloud_device_id for entity in filter(
-            self.entity_is_canonical,
-            filter(self.entity_is_reporting, solution.values()))
+            self.is_entity_canonical,
+            filter(self.is_entity_reporting, solution.values()))
     ]
     proposed_reporting = [
         entity.cloud_device_id for entity in filter(
-            self.entity_is_canonical,
-            filter(self.entity_is_reporting, proposed.values()))
+            self.is_entity_canonical,
+            filter(self.is_entity_reporting, proposed.values()))
     ]
 
     # Lists of `cloud_device_id`s representing
@@ -52,16 +52,16 @@ class EntityIdentification(Dimension):
         cloud_device_id for source_list in ((
             solution[link.source].cloud_device_id
             for link in entity.links) for entity in filter(
-                self.entity_is_canonical,
-                filter(self.entity_is_virtual, solution.values())))
+                self.is_entity_canonical,
+                filter(self.is_entity_virtual, solution.values())))
         for cloud_device_id in source_list
     ]
     proposed_virtual = [
         cloud_device_id for source_list in ((
             proposed[link.source].cloud_device_id
             for link in entity.links) for entity in filter(
-                self.entity_is_canonical,
-                filter(self.entity_is_virtual, proposed.values())))
+                self.is_entity_canonical,
+                filter(self.is_entity_virtual, proposed.values())))
         for cloud_device_id in source_list
     ]
 
