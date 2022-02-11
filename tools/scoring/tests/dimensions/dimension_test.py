@@ -63,6 +63,8 @@ class DimensionTest(absltest.TestCase):
     self.dimension_none.incorrect_virtual = 0
     self.dimension_none.incorrect_reporting = 0
 
+    self.dimension_override = copy.copy(self.dimension)
+
     self.entities = {
         'canonical_type_appended':
         canonical_entity(),
@@ -104,17 +106,31 @@ class DimensionTest(absltest.TestCase):
     self.assertEqual(self.dimension.correct_total(), 2)
     self.assertEqual(self.dimension_none.correct_total(), 0)
 
+    self.assertEqual(self.dimension.correct_total_override, None)
+    self.dimension.correct_total_override = 4
+    self.assertEqual(self.dimension.correct_total_override, 4)
+
   def testCorrectCeiling(self):
     self.assertEqual(self.dimension.correct_ceiling(), 4)
     self.assertEqual(self.dimension_none.correct_total(), 0)
+
+    self.assertEqual(self.dimension_override.correct_ceiling_override, None)
+    self.dimension_override.correct_ceiling_override = 8
+    self.assertEqual(self.dimension_override.correct_ceiling_override, 8)
 
   def testIncorrectTotal(self):
     self.assertEqual(self.dimension.incorrect_total(), 2)
     self.assertEqual(self.dimension_none.correct_total(), 0)
 
+    self.assertEqual(self.dimension_override.incorrect_total_override, None)
+    self.dimension_override.incorrect_total_override = 4
+    self.assertEqual(self.dimension_override.incorrect_total_override, 4)
+
   def testResultComposite(self):
     self.assertEqual(self.dimension.result_composite, 0.0)
     self.assertEqual(self.dimension_none.result_composite, None)
+
+    self.assertEqual(self.dimension_override.result_composite, 0.0)
 
   def testResultVirtual(self):
     self.assertEqual(self.dimension.result_virtual, 0.0)
