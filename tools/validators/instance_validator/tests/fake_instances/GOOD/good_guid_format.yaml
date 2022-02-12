@@ -12,34 +12,38 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Extra process_water_flowrate_setpoint
+# Building
+UK-LON-S2-guid:
+  type: FACILITIES/BUILDING
+  id: FACILITIES/123456
+  code: UK-LON-S2
 
-CHWS_WDT-17:
+CHWS-1-guid:
   type: HVAC/CHWS_WDT
-  id: CDM/123456
-  guid: CHWS_WDT-17-guid
+  id: CDM/234567
+  code: CHWS-1
   cloud_device_id: "foobar"
   translation:
     supply_water_temperature_sensor:
-      present_value: "points.supply_water_temperature_sensor.present_value"
+      present_value: points.supply_water_temperature_sensor.present_value
       units:
-        key: "points.supply_water_temperature_sensor.units"
+        key: points.supply_water_temperature_sensor.units
         values:
-          degrees_celsius: "degC"
+          degrees_celsius: degC
     return_water_temperature_sensor:
-      present_value: "points.return_water_temperature_sensor.present_value"
+      present_value: points.return_water_temperature_sensor.present_value
       units:
-        key: "points.return_water_temperature_sensor.units"
+        key: points.return_water_temperature_sensor.units
         values:
-          degrees_celsius: "degC"
-    discharge_air_temperature_sensor:
-      present_value: "points.discharge_air_temperature_sensor.present_value"
-      units:
-        key: "points.discharge_air_temperature_sensor.units"
-        values:
-          degrees_celsius: "degC"
+          degrees_celsius: degC
 
-UK-LON-S2:
-  type: FACILITIES/BUILDING
-  id: FACILITIES/123456
-  guid: UK-LON-S2-guid
+CHWS-2-guid:
+  type: HVAC/CHWS_WDT
+  id: CDM/345678
+  code: CHWS-2
+  connections:
+    CHWS-1-guid: FEEDS
+  links:
+    CHWS-1-guid:
+      supply_water_temperature_sensor: supply_water_temperature_sensor
+      return_water_temperature_sensor: return_water_temperature_sensor

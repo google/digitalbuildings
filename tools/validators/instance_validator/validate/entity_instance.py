@@ -15,8 +15,7 @@
 
 from __future__ import print_function
 
-from typing import Dict, Optional, Set, Tuple
-import uuid
+from typing import Any, Dict, List, Optional, Set, Tuple
 
 import strictyaml as syaml
 
@@ -168,7 +167,7 @@ class GraphValidator(object):
     for link_inst in entity.links:
       if link_inst.source not in self.entity_instances.keys():
         if self.config_mode == parse.ConfigMode.INITIALIZE:
-          print(f'Invalid link source entity name: {link_inst.source}')
+          print(f'Invalid link source entity GUID: {link_inst.source}')
           is_valid = False
         continue
       if self.entity_instances[
@@ -512,8 +511,13 @@ class InstanceValidator(object):
       is_valid = False
 
     # This check should replace the above entity.id check
-    if not entity.guid and entity.operation != parse.ConfigMode.INITIALIZE:
-      print('WARNING: Entity GUID will be required in the future.')
+    if not entity.guid:
+      print('Entity GUID is required.')
+      is_valid = False
+
+    if not entity.code and entity.operation != parse.EntityOperation.DELETE:
+      print('Entity code is required.')
+      is_valid = False
 
     if (self.config_mode == parse.ConfigMode.INITIALIZE and
         entity.operation != parse.EntityOperation.ADD):
@@ -632,9 +636,41 @@ def _ParseTranslation(
   return translation
 
 
+def _ParseConnectionsWithEntityCode(
+    connections_body: List[Tuple[str, Any]],
+    code_to_guid_map: Optional[Dict[str, str]]) -> Set[connection.Connection]:
+  """Parses YAML defining connections between one entity and another.
+
+  Entities are identified by code.
+
+  Connections are always defined on the target entity.
+
+  Args:
+    connections_body: list of tuples with the source entity code and connection
+      type.
+    code_to_guid_map: map from entity code to GUID for all entities in the
+      building config.
+
+  Returns:
+    A set of Connection instances
+  """
+
+  guid_connections = []
+  for source_entity_code, item_body in connections_body:
+    source_entity_guid = code_to_guid_map.get(source_entity_code)
+    if not source_entity_guid:
+      raise ValueError(
+          f'Connected entity "{source_entity_code}" not found in building config file.'
+      )
+    guid_connections.append((source_entity_guid, item_body))
+  return _ParseConnections(guid_connections)
+
+
 def _ParseConnections(
-    connections_body: syaml.YAML) -> Set[connection.Connection]:
-  """Parses YAML defining connections between one entity and other.
+    connections_body: List[Tuple[str, Any]]) -> Set[connection.Connection]:
+  """Parses YAML defining connections between one entity and another.
+
+  Entites are identified by GUID.
 
   Connections are always defined on the target entity.
 
@@ -647,23 +683,58 @@ def _ParseConnections(
 
   connections = set()
 
-  for source_entity, item_body in connections_body.items():
+  for source_entity_guid, item_body in connections_body:
     if isinstance(item_body, str):
-      connections.add(connection.Connection(item_body, source_entity))
+      connections.add(connection.Connection(item_body, source_entity_guid))
     else:
       for connection_type in item_body:
-        connections.add(connection.Connection(connection_type, source_entity))
+        connections.add(
+            connection.Connection(connection_type, source_entity_guid))
 
   return connections
 
 
-def _ParseLinks(links_body: syaml.YAML) -> Set[link.Link]:
+def _ParseLinksWithEntityCode(
+    links_body: List[Tuple[str, Any]],
+    code_to_guid_map: Optional[Dict[str, str]]) -> Set[link.Link]:
   """Parses YAML defining links between the fields of one entity and another.
+
+  Entities are identified by code.
 
   Links are always defined on the target entity.
 
   Args:
-    links_body: YAML body for the entity links
+    links_body: list of tuples with the source entity code and field map.
+    code_to_guid_map: map from entity code to GUID for all entities in the
+      building config.
+
+  Returns:
+    A set of Link instances
+
+  Raises:
+    ValueError: if any source entity is not found in code_to_guid_map.
+  """
+
+  guid_links = []
+  for source_entity_code, field_map in links_body:
+    source_entity_guid = code_to_guid_map.get(source_entity_code)
+    if not source_entity_guid:
+      raise ValueError(
+          f'Linked entity "{source_entity_code}" not found in building config file.'
+      )
+    guid_links.append((source_entity_guid, field_map))
+  return _ParseLinks(guid_links)
+
+
+def _ParseLinks(links_body: List[Tuple[str, Any]]) -> Set[link.Link]:
+  """Parses YAML defining links between the fields of one entity and another.
+
+  Entities are identified by GUID.
+
+  Links are always defined on the target entity.
+
+  Args:
+    links_body: list of tuples with the source entity GUID and field map.
 
   Returns:
     A set of Link instances
@@ -671,8 +742,8 @@ def _ParseLinks(links_body: syaml.YAML) -> Set[link.Link]:
 
   links = set()
 
-  for source_entity, field_map in links_body.items():
-    links.add(link.Link(source_entity, field_map))
+  for source_entity_guid, field_map in links_body:
+    links.add(link.Link(source_entity_guid, field_map))
 
   return links
 
@@ -680,7 +751,6 @@ def _ParseLinks(links_body: syaml.YAML) -> Set[link.Link]:
 # TODO(nkilmer): move parsing and validation logic in this class into subclasses
 # TODO(berkoben): Change name to Entity
 # TODO(berkoben): Extract operation and etag to a wrapper class
-# TODO(berkoben): Add name attribute
 class EntityInstance(findings_lib.Findings):
   """Class representing an instance of an entity.
 
@@ -688,6 +758,7 @@ class EntityInstance(findings_lib.Findings):
     operation: EntityOperation to be performed on the entity
     id: deprecated, corresponds to an internal primary key for an entity
     guid: globally unique identifier string for the entity
+    code: human-friendly name string for the entity
     cloud_device_id: the numeric cloud device id found in Cloud IoT
     namespace: string for entity type's namespace
     type_name: string referring to the entity's type,
@@ -702,7 +773,8 @@ class EntityInstance(findings_lib.Findings):
   def __init__(self,
                operation,
                entity_id,
-               guid=None,
+               guid,
+               code,
                cloud_device_id=None,
                namespace=None,
                type_name=None,
@@ -716,6 +788,7 @@ class EntityInstance(findings_lib.Findings):
     self.operation = operation
     self.id = entity_id
     self.guid = guid
+    self.code = code
     self.cloud_device_id = cloud_device_id
     self.namespace = namespace
     self.type_name = type_name
@@ -727,19 +800,26 @@ class EntityInstance(findings_lib.Findings):
 
   @classmethod
   def FromYaml(cls,
-               entity_yaml,
+               entity_key: str,
+               entity_yaml: Dict[str, Any],
+               code_to_guid_map: Dict[str, str],
                default_operation: Optional[
-                   parse.EntityOperation] = parse.EntityOperation.ADD,
-               guid_generation: bool = False):
+                   parse.EntityOperation] = parse.EntityOperation.ADD):
     """Class method to instantiate an Entity Instance from yaml.
 
     Args:
-      entity_yaml: yaml document containing entity data,
-      default_operation: entity operation, add or update,
-      guid_generation: boolean for if an entity needs a guid generated
+      entity_key: yaml mapping key (code or GUID) for entity_yaml.
+      entity_yaml: yaml document containing entity data.
+      code_to_guid_map: map from entity code to GUID for all entities in the
+        building config.
+      default_operation: entity operation, add or update.
 
     Returns:
       An instance of EntityInstance class.
+
+    Raises:
+      ValueError: if an invalid combination of "code" and "guid" are in
+        entity_yaml.
     """
 
     operation = default_operation
@@ -751,16 +831,21 @@ class EntityInstance(findings_lib.Findings):
     if parse.ENTITY_ID_KEY in entity_yaml:
       entity_id = entity_yaml[parse.ENTITY_ID_KEY]
 
+    entity_key_is_guid = False
+    code = None
     guid = None
-    if parse.ENTITY_GUID_KEY in entity_yaml:
+    if (parse.ENTITY_CODE_KEY in entity_yaml and
+        parse.ENTITY_GUID_KEY in entity_yaml):
+      raise ValueError('Entity block cannot contain both "code" and "guid".')
+    elif parse.ENTITY_CODE_KEY in entity_yaml:
+      code = entity_yaml[parse.ENTITY_CODE_KEY]
+      guid = entity_key
+      entity_key_is_guid = True
+    elif parse.ENTITY_GUID_KEY in entity_yaml:
+      code = entity_key
       guid = entity_yaml[parse.ENTITY_GUID_KEY]
-    elif guid_generation and parse.ENTITY_GUID_KEY not in entity_yaml:
-      print(f'Generating GUID for {entity_id}')
-      guid = uuid.uuid4()
-      entity_yaml[parse.ENTITY_GUID_KEY] = guid
     else:
-      print('[WARNING]: Entity GUID will be required in the future ' +
-            f'for {entity_id}.')
+      raise ValueError('Entity block must contain either "code" or "guid".')
 
     namespace, type_name = None, None
     if parse.ENTITY_TYPE_KEY in entity_yaml:
@@ -775,11 +860,20 @@ class EntityInstance(findings_lib.Findings):
 
     connections = None
     if parse.CONNECTIONS_KEY in entity_yaml:
-      connections = _ParseConnections(entity_yaml[parse.CONNECTIONS_KEY])
+      connections_body = entity_yaml[parse.CONNECTIONS_KEY].items()
+      if entity_key_is_guid:
+        connections = _ParseConnections(connections_body)
+      else:
+        connections = _ParseConnectionsWithEntityCode(connections_body,
+                                                      code_to_guid_map)
 
     links = None
     if parse.LINKS_KEY in entity_yaml:
-      links = _ParseLinks(entity_yaml[parse.LINKS_KEY])
+      links_body = entity_yaml[parse.LINKS_KEY].items()
+      if entity_key_is_guid:
+        links = _ParseLinks(links_body)
+      else:
+        links = _ParseLinksWithEntityCode(links_body, code_to_guid_map)
 
     update_mask = None
     if parse.UPDATE_MASK_KEY in entity_yaml:
@@ -791,8 +885,9 @@ class EntityInstance(findings_lib.Findings):
 
     return cls(
         operation,
-        entity_id,
+        entity_id=entity_id,
         guid=guid,
+        code=code,
         cloud_device_id=cloud_device_id,
         namespace=namespace,
         type_name=type_name,

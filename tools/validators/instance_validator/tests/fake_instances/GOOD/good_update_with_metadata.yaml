@@ -16,17 +16,20 @@
 
 SDC_EXT-16:
   id: CDM/123454
+  guid: SDC_EXT-16-guid
   operation: UPDATE
   etag: a123455
   type: HVAC/SDC_EXT
 
 SDC_EXT-18:
   id: CDM/123457
+  guid: SDC_EXT-18-guid
   operation: DELETE
 
 SDC_EXT-17:
   type: HVAC/SDC_EXT
   id: CDM/123456
+  guid: SDC_EXT-17-guid
   cloud_device_id: "foobar"
   etag: a56789
   update_mask:
@@ -46,3 +49,4 @@ UK-LON-S2:
   operation: ADD
   type: FACILITIES/BUILDING
   id: FACILITIES/123456
+  guid: UK-LON-S2-guid

@@ -1,4 +1,4 @@
-# Copyright 2020 Google LLC
+# Copyright 2022 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the License);
 # you may not use this file except in compliance with the License.
@@ -12,17 +12,22 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Each field in links needs to be valid within the ontology.
-
-ENTITY-NAME:
-  type: FACILITIES/BUILDING
-  id: SYSTEM/ID1234
-  guid: ENTITY-NAME-guid
-  links:
-    A-FOURTH-ENTITY:
-      invalid_field: supply_air_damper_position_command_1
-
-A-FOURTH-ENTITY:
-  type: FACILITIES/BUILDING
+BUILDING-guid:
+  code: BUILDING
   id: FACILITIES/123456
-  guid: A-FOURTH-ENTITY-guid
+  type: FACILITIES/BUILDING
+
+GATEWAY-ENTITY:
+  guid: GATEWAY-ENTITY-guid
+  id: CDM/123456
+  type: GATEWAYS/PASSTHROUGH
+  connections:
+    BUILDING: CONTAINS
+
+VIRTUAL-ENTITY:
+  id: PHRED/123456
+  type: HVAC/CHWS_WDT
+  links:
+    GATEWAY-ENTITY:
+      supply_water_temperature_sensor: supply_water_temperature_sensor
+      return_water_temperature_sensor: return_water_temperature_sensor
