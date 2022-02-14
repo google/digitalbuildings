@@ -18,6 +18,7 @@ SDC_EXT-17:
   type: HVAC/SDC_EXT
   etag: a12345
   id: CDM/123456
+  guid: SDC_EXT-17-guid
 
 CONFIG_METADATA:
   operation: EXPORT
@@ -26,3 +27,4 @@ UK-LON-S2:
   type: FACILITIES/BUILDING
   etag: b23456
   id: FACILITIES/123456
+  guid: UK-LON-S2-guid

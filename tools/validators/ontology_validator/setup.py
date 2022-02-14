@@ -29,5 +29,5 @@ setup(
     description='',
     packages=find_packages(),
     install_requires=['absl-py', 'pyglib', 'pyyaml>=5.3', 'argparse'],
-    python_requires='==3.7',
+    python_requires='>=3.6',
 )
