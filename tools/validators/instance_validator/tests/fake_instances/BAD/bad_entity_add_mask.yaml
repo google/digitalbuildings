@@ -16,6 +16,7 @@
 SDC_EXT-17:
   type: HVAC/SDC_EXT
   id: CDM/123456
+  guid: SDC_EXT-17-guid
   operation: ADD
   update_mask:
   - translation
@@ -24,3 +25,4 @@ UK-LON-S2:
   type: FACILITIES/BUILDING
   etag: a1234
   id: FACILITIES/123456
+  guid: UK-LON-S2-guid
