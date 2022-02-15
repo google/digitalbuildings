@@ -216,9 +216,9 @@ class ParseConfig:
       # Invoke the functions and append the dictionary with their return values
       for dimension in dimension_list:
         if dimension_category == SIMPLE:
-          invoked = dimension(translations=translations)
+          invoked = dimension(translations=translations).__str__()
         elif dimension_category == COMPLEX:
-          invoked = dimension(deserialized_files=deserialized_files)
+          invoked = dimension(deserialized_files=deserialized_files).__str__()
 
         results[dimension.__name__] = invoked
     return results

@@ -30,16 +30,21 @@ class RawFieldSelection(Dimension):
     super().__init__(translations=translations)
 
     # Combine translations for all devices within the dictionary
-    solution_translations = [
+    solution_condensed = [
         matched_translations[SOLUTION]
         for matched_translations in translations.values()
         if matched_translations[SOLUTION]
-    ][0]
-    proposed_translations = [
+    ]
+    # Account for empty list
+    solution_translations = solution_condensed and solution_condensed[0]
+
+    proposed_condensed = [
         matched_translations[PROPOSED]
         for matched_translations in translations.values()
         if matched_translations[PROPOSED]
-    ][0]
+    ]
+    # Account for empty list
+    proposed_translations = proposed_condensed and proposed_condensed[0]
 
     solution_fields = set([
         translation.raw_field_name
