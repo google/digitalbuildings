@@ -79,7 +79,7 @@ class EntityPointIdentification(Dimension):
 
     # Rely on the black box to choose which virtual entities
     # correlate most closely in the respective files.
-    matches_virtual = self.match_virtual(
+    matches_virtual = self.match_virtual_entities(
         solution_points_virtual=solution_points_virtual,
         proposed_points_virtual=proposed_points_virtual,
         sort_candidates_by_key='correct_ceiling')

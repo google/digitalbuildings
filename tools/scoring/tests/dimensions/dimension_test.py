@@ -164,6 +164,9 @@ class DimensionTest(absltest.TestCase):
     self.assertFalse(
         Dimension.is_entity_virtual(entity=self.entities['reporting']))
 
+  def testMatchVirtualEntities(self):
+    pass
+
   def testStr(self):
     self.assertEqual(
         self.dimension.__str__(),

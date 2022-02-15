@@ -181,10 +181,10 @@ class Dimension:
     return entity.links is not None
 
   @staticmethod
-  def match_virtual(*, solution_points_virtual: List[Tuple[Set[str],
-                                                           EntityType]],
-                    proposed_points_virtual: List[Tuple[Set[str], EntityType]],
-                    sort_candidates_by_key: str) -> Dict[float, List[Dict]]:
+  def match_virtual_entities(
+      *, solution_points_virtual: List[Tuple[Set[str], EntityType]],
+      proposed_points_virtual: List[Tuple[Set[str], EntityType]],
+      sort_candidates_by_key: str) -> Dict[float, List[Dict]]:
     """
     Finds the closest correlating virtual entities between two files.
 
@@ -193,8 +193,8 @@ class Dimension:
         for all virtual entities in a file
       proposed_points_virtual: Raw field names and entity types
         for all virtual entities in a file
-      sort_candidates_by_key: Parameter by which to "break a tie" if there
-        are multiple matches with the same subscore.
+      sort_candidates_by_key: Parameter by which to "break a tie"
+        if there are multiple matches with the same subscore.
 
     Returns:
       Dictionary whose keys are floats representing the extent to which the
