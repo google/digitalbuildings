@@ -136,7 +136,7 @@ class Dimension:
             ) if self.correct_ceiling_reporting else None
 
   @staticmethod
-  def is_entity_canonical(*, entity: EntityInstance) -> bool:
+  def is_entity_canonical(entity: EntityInstance) -> bool:
     """
     Utility for determining whether an entity is canonical.
     Used in "complex" dimensions to filter sets for comparison.
@@ -153,7 +153,7 @@ class Dimension:
     return getattr(entity.type, 'is_canonical', False)
 
   @staticmethod
-  def is_entity_reporting(*, entity: EntityInstance) -> bool:
+  def is_entity_reporting(entity: EntityInstance) -> bool:
     """
     Utility for determining whether an entity is reporting.
     Used in "complex" dimensions to filter sets for comparison.
@@ -167,7 +167,7 @@ class Dimension:
     return entity.cloud_device_id is not None
 
   @staticmethod
-  def is_entity_virtual(*, entity: EntityInstance) -> bool:
+  def is_entity_virtual(entity: EntityInstance) -> bool:
     """
     Utility for determining whether an entity is virtual.
     Used in "complex" dimensions to filter sets for comparison.

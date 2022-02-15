@@ -142,27 +142,22 @@ class DimensionTest(absltest.TestCase):
 
   def testEntityIsCanonical(self):
     self.assertTrue(
-        Dimension.is_entity_canonical(
-            entity=self.entities['canonical_type_appended']))
+        Dimension.is_entity_canonical(self.entities['canonical_type_appended']))
     self.assertFalse(
         Dimension.is_entity_canonical(
-            entity=self.entities['noncanonical_type_appended']))
+            self.entities['noncanonical_type_appended']))
     # This entity has had a type of `None` appended, thus it returns false.
     reporting_type_none = copy.copy(self.entities['reporting'])
     reporting_type_none.type = None
-    self.assertFalse(Dimension.is_entity_canonical(entity=reporting_type_none))
+    self.assertFalse(Dimension.is_entity_canonical(reporting_type_none))
 
   def testEntityIsReporting(self):
-    self.assertTrue(
-        Dimension.is_entity_reporting(entity=self.entities['reporting']))
-    self.assertFalse(
-        Dimension.is_entity_reporting(entity=self.entities['virtual']))
+    self.assertTrue(Dimension.is_entity_reporting(self.entities['reporting']))
+    self.assertFalse(Dimension.is_entity_reporting(self.entities['virtual']))
 
   def testEntityIsVirtual(self):
-    self.assertTrue(
-        Dimension.is_entity_virtual(entity=self.entities['virtual']))
-    self.assertFalse(
-        Dimension.is_entity_virtual(entity=self.entities['reporting']))
+    self.assertTrue(Dimension.is_entity_virtual(self.entities['virtual']))
+    self.assertFalse(Dimension.is_entity_virtual(self.entities['reporting']))
 
   def testMatchVirtualEntities(self):
     pass
