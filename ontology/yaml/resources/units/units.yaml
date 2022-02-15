@@ -55,6 +55,7 @@ illuminance:
 level:
 - meters: STANDARD
 - feet
+distance: level
 linearacceleration:
 - meters_per_square_second: STANDARD
 - gravity
