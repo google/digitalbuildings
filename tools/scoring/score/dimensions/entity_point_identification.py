@@ -14,7 +14,8 @@
 """ Core component """
 
 from score.dimensions.dimension import Dimension
-from score.types_ import DeserializedFilesDict
+from score.types_ import DeserializedFilesDict, EntityType
+from typing import List, Tuple, Set
 from score.constants import FileTypes
 
 PROPOSED, SOLUTION = FileTypes
@@ -48,7 +49,7 @@ class EntityPointIdentification(Dimension):
     # Filter out sets which have no items
     # and sort by number of fields represented in descending order.
     # TODO: move the filtering/sorting functionality to add clarity.
-    solution_points_virtual = sorted(
+    solution_points_virtual: List[Tuple[Set[str], EntityType]] = sorted(
         list(
             filter(
                 lambda raw_field_names, entity_type: len(raw_field_names) > 0,
@@ -62,7 +63,7 @@ class EntityPointIdentification(Dimension):
                  for link in entity.links])),
         key=lambda raw_field_names, entity_type: len(raw_field_names),
         reverse=True)
-    proposed_points_virtual = sorted(
+    proposed_points_virtual: List[Tuple[Set[str], EntityType]] = sorted(
         list(
             filter(
                 lambda raw_field_names, entity_type: len(raw_field_names) > 0,
