@@ -202,10 +202,12 @@ class Dimension:
       containing the parameters by which those floats were calculated.
     """
     matches_virtual = {None: []}
-    for solution_raw_field_names, solution_entity_type in solution_points_virtual:  #pylint: disable=line-too-long
+    for solution_parameters in solution_points_virtual:
+      solution_raw_field_names, solution_entity_type = solution_parameters
       best: float = -1.1
       candidates = defaultdict(list)
-      for proposed_raw_field_names, proposed_entity_type in proposed_points_virtual:  #pylint: disable=line-too-long
+      for proposed_parameters in proposed_points_virtual:
+        proposed_raw_field_names, proposed_entity_type = proposed_parameters
         correct: int = len(
             proposed_raw_field_names.intersection(solution_raw_field_names))
         correct_ceiling: int = len(solution_raw_field_names)
@@ -245,8 +247,8 @@ class Dimension:
             'correct': correct,
             'correct_ceiling': correct_ceiling,
             'incorrect': incorrect,
-            'proposed': proposed_raw_field_names,
-            'solution': solution_raw_field_names,
+            'proposed': proposed_parameters,
+            'solution': solution_parameters,
             'types_correct': types_correct,
             'types_correct_ceiling': types_correct_ceiling,
             'types_incorrect': types_incorrect,
@@ -276,7 +278,7 @@ class Dimension:
             'proposed':
             set([]),
             'solution':
-            solution_raw_field_names,
+            solution_parameters,
             'types_correct':
             0,
             'types_correct_ceiling':

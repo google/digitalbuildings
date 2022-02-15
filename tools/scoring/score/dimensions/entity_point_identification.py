@@ -52,7 +52,7 @@ class EntityPointIdentification(Dimension):
     solution_points_virtual: List[Tuple[Set[str], EntityType]] = sorted(
         list(
             filter(
-                lambda raw_field_names, entity_type: len(raw_field_names) > 0,
+                lambda tup: len(tup[0]) > 0,  # (raw field names, entity type)
                 [(set(
                     solution_file[
                         link.source].translation[target_field].raw_field_name
@@ -61,12 +61,12 @@ class EntityPointIdentification(Dimension):
                     if target_field in solution_file[link.source].translation),
                   entity.type) for entity in solution_entities_virtual
                  for link in entity.links])),
-        key=lambda raw_field_names, entity_type: len(raw_field_names),
+        key=lambda tup: len(tup[0]),  # (raw field names, entity type)
         reverse=True)
     proposed_points_virtual: List[Tuple[Set[str], EntityType]] = sorted(
         list(
             filter(
-                lambda raw_field_names, entity_type: len(raw_field_names) > 0,
+                lambda tup: len(tup[0]) > 0,  # (raw field names, entity type)
                 [(set(
                     proposed_file[
                         link.source].translation[target_field].raw_field_name
@@ -75,7 +75,7 @@ class EntityPointIdentification(Dimension):
                     if target_field in proposed_file[link.source].translation),
                   entity.type) for entity in proposed_entities_virtual
                  for link in entity.links])),
-        key=lambda raw_field_names, entity_type: len(raw_field_names),
+        key=lambda tup: len(tup[0]),  # (raw field names, entity type)
         reverse=True)
 
     # Rely on the black box to choose which virtual entities
