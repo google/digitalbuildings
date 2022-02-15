@@ -15,6 +15,7 @@
 CHWS_WDT-17:
   type: HVAC/CHWS_WDT
   id: CDM/123456
+  guid: CHWS_WDT-17-guid
   cloud_device_id: "foobar"
   translation:
     return_water_temperature_sensor:
@@ -35,3 +36,4 @@ CHWS_WDT-17:
 UK-LON-S2:
   type: FACILITIES/BUILDING
   id: FACILITIES/123456
+  guid: UK-LON-S2-guid
