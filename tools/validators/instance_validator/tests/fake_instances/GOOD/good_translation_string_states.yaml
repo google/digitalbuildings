@@ -20,6 +20,7 @@
 DMP_EDM-17:
   type: HVAC/DMP_EDM
   id: CDM/123456
+  guid: DMP_EDM-17-guid
   cloud_device_id: "foobar"
   translation:
     exhaust_air_damper_command:
@@ -36,3 +37,4 @@ DMP_EDM-17:
 UK-LON-S2:
   type: FACILITIES/BUILDING
   id: FACILITIES/123456
+  guid: UK-LON-S2-guid

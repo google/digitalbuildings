@@ -15,7 +15,7 @@
 from __future__ import print_function
 
 from typing import List
-from guid_generator import guid_generator
+from guid_generator.guid_generator import GuidGenerator
 
 
 def Generate(filenames: List[str]) -> None:
@@ -24,7 +24,6 @@ def Generate(filenames: List[str]) -> None:
   Args:
     filenames: file paths for Building Coniguration instances.
   """
-  generator = guid_generator.GuidGenerator()
   for filename in filenames:
     print(f'Generating GUIDs for {filename}')
-    generator.GenerateGuids(filename)
+    GuidGenerator.GenerateGuids(filename)

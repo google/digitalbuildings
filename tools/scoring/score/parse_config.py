@@ -66,14 +66,11 @@ class ParseConfig:
   # TODO: refactor into smaller functions and return instead of printing
   def append_types(self):
     """
-      Appends types or type names to deserialized files
+      Appends types to deserialized files
     """
     for file_type, file in self.deserialized_files.items():
       translations_absent = []
       types_absent = []
-      # TODO: This appends the full type to solution entities and only
-      # the type name to proposed entities. Verify that this is the correct
-      # behavior following implementation of the first dimension(s).
       type_or_name = 'type' if file_type == SOLUTION else 'type_name'
 
       for entity in file.values():

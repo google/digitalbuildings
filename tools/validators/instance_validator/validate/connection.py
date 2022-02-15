@@ -14,16 +14,17 @@
 
 """Connection between two entities."""
 
+
 class Connection(object):
   """A connection between a source and target entity with a certain type.
 
   The target entity is implied to be the same as the entity that contains this
   Connection instance.
 
-  Args:
+  Attributes:
     ctype: type of the connection
       (NOTE: 'type' is a reserved Python keyword)
-    source: name of the source entity
+    source: GUID of the source entity
   """
 
   def __init__(self, ctype, source):

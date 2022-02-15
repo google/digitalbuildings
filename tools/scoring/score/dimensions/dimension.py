@@ -14,6 +14,7 @@
 """Core component base class"""
 
 from score.types_ import DeserializedFilesDict, TranslationsDict
+from validate.entity_instance import EntityInstance
 
 
 class Dimension:
@@ -55,6 +56,10 @@ class Dimension:
     self.incorrect_virtual: int = None
     self.incorrect_reporting: int = None
 
+    self.correct_total_override: int = None
+    self.correct_ceiling_override: int = None
+    self.incorrect_total_override: int = None
+
     if not translations and not deserialized_files:
       # `translations` are used to score "simple" dimensions — those which
       # evaluate only reporting entities — in bulk, whereas `deserialized_files`
@@ -68,24 +73,39 @@ class Dimension:
 
   def correct_total(self) -> int:
     """ Number of successful attempts within all devices """
-    # Allow for value to be returned even if either is not set
-    correct_virtual = self.correct_virtual or 0
-    correct_reporting = self.correct_reporting or 0
-    return correct_virtual + correct_reporting
+    if self.correct_total_override:
+      # Allow for value to be set directly for dimensions which
+      # don't separately tabulate virtual and reporting scores
+      return self.correct_total_override
+    else:
+      # Allow for value to be returned even if either is not set
+      correct_virtual = self.correct_virtual or 0
+      correct_reporting = self.correct_reporting or 0
+      return correct_virtual + correct_reporting
 
   def correct_ceiling(self) -> int:
     """ Number of attempts possible within all devices """
-    # Allow for value to be returned even if either is not set
-    correct_ceiling_virtual = self.correct_ceiling_virtual or 0
-    correct_ceiling_reporting = self.correct_ceiling_reporting or 0
-    return correct_ceiling_virtual + correct_ceiling_reporting
+    if self.correct_ceiling_override:
+      # Allow for value to be set directly for dimensions which
+      # don't separately tabulate virtual and reporting scores
+      return self.correct_ceiling_override
+    else:
+      # Allow for value to be returned even if either is not set
+      correct_ceiling_virtual = self.correct_ceiling_virtual or 0
+      correct_ceiling_reporting = self.correct_ceiling_reporting or 0
+      return correct_ceiling_virtual + correct_ceiling_reporting
 
   def incorrect_total(self) -> int:
     """ Number of failed attempts within all devices """
-    # Allow for value to be returned even if either is not set
-    incorrect_virtual = self.incorrect_virtual or 0
-    incorrect_reporting = self.incorrect_reporting or 0
-    return incorrect_virtual + incorrect_reporting
+    if self.incorrect_total_override:
+      # Allow for value to be set directly for dimensions which
+      # don't separately tabulate virtual and reporting scores
+      return self.incorrect_total_override
+    else:
+      # Allow for value to be returned even if either is not set
+      incorrect_virtual = self.incorrect_virtual or 0
+      incorrect_reporting = self.incorrect_reporting or 0
+      return incorrect_virtual + incorrect_reporting
 
   @property
   def result_composite(self) -> float:
@@ -113,8 +133,51 @@ class Dimension:
             self.correct_ceiling_reporting
             ) if self.correct_ceiling_reporting else None
 
+  @staticmethod
+  def is_entity_canonical(*, entity: EntityInstance) -> bool:
+    """ Utility for determining whether an entity is canonical.
+    Used in "complex" dimensions to filter sets for comparison.
+
+    Args:
+      entity: An entity instance which has been appended
+      with a `type` attribute equal to its type from the universe
+
+    Returns:
+      Boolean indicating whether the entity's `type.is_canonical`
+    """
+    # NOTE: when passed to filter(), this will silently omit
+    # entities whose appended type is `None` (e.g. it was not found)
+    return getattr(entity.type, 'is_canonical', False)
+
+  @staticmethod
+  def is_entity_reporting(*, entity: EntityInstance) -> bool:
+    """
+    Utility for determining whether an entity is reporting.
+    Used in "complex" dimensions to filter sets for comparison.
+
+    Args:
+      entity: A standard entity instance
+
+    Returns:
+      Boolean indicating whether the entity has a `cloud_device_id`
+    """
+    return entity.cloud_device_id is not None
+
+  @staticmethod
+  def is_entity_virtual(*, entity: EntityInstance) -> bool:
+    """ Utility for determining whether an entity is virtual.
+    Used in "complex" dimensions to filter sets for comparison.
+
+    Args:
+      entity: A standard entity instance
+
+    Returns:
+      Boolean indicating whether the entity has `links`
+    """
+    return entity.links is not None
+
   def __str__(self) -> str:
-    """ Human-readable representation of the calculated properties"""
+    """ Human-readable representation of the calculated properties """
     return (
         f'{{result_composite: {self.result_composite}, result_virtual: '
         f'{self.result_virtual}, result_reporting: {self.result_reporting}}}')
