@@ -21,6 +21,7 @@ from validate.generate_universe import BuildUniverse
 from score.dimensions.dimension import Dimension
 from score.types_ import CloudDeviceId, DimensionName, TranslationsDict, DeserializedFile, DeserializedFilesDict, DimensionCategory
 from score.constants import FileTypes, DimensionCategories
+from score.dimensions import entity_connection_identification, entity_identification, entity_point_identification, raw_field_selection, standard_field_naming, state_mapping, unit_mapping
 
 PROPOSED, SOLUTION = FileTypes
 SIMPLE, COMPLEX = DimensionCategories
@@ -152,6 +153,7 @@ class ParseConfig:
           and `EntityInstance`s
 
       Returns:
+        TODO: this is incorrect…
         Dictionary with `cloud_device_id`s as keys
         and lists of translation tuples as values
     """
@@ -174,8 +176,8 @@ class ParseConfig:
       )) if getattr(entity, 'translation', None) else []
 
       translations[cloud_device_id] = {
-          f'{PROPOSED}_translations': aggregate_translations(proposed_entity),
-          f'{SOLUTION}_translations': aggregate_translations(solution_entity)
+          f'{PROPOSED}': aggregate_translations(proposed_entity),
+          f'{SOLUTION}': aggregate_translations(solution_entity)
       }
 
     return translations
@@ -220,3 +222,33 @@ class ParseConfig:
 
         results[dimension.__name__] = invoked
     return results
+
+  # TODO: standardize signatures; make dimensions into const;
+  # document; test
+  def execute(self):
+    self.append_types()
+    matches = self.match_reporting_entities(
+        proposed_entities=self.deserialized_files[PROPOSED],
+        solution_entities=self.deserialized_files[SOLUTION])
+    translations = self.retrieve_reporting_translations(
+        matches=matches,
+        proposed_entities=self.deserialized_files[PROPOSED],
+        solution_entities=self.deserialized_files[SOLUTION])
+    dimensions = {
+        SIMPLE: [
+            raw_field_selection.RawFieldSelection,
+            standard_field_naming.StandardFieldNaming,
+            state_mapping.StateMapping, unit_mapping.UnitMapping
+        ],
+        COMPLEX: [
+            entity_connection_identification.EntityConnectionIdentification,
+            entity_identification.EntityIdentification,
+            entity_point_identification.EntityPointIdentification
+        ]
+    }
+    self.results = self.aggregate_results(
+        dimensions=dimensions,
+        translations=translations,
+        deserialized_files=self.deserialized_files)
+
+    return self.results

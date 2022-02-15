@@ -65,8 +65,8 @@ if __name__ == '__main__':
   pp = pprint.PrettyPrinter()
   # pylint: disable=too-many-function-args
   args = parse_args().parse_args(sys.argv[1:])
-  results = parse_config.ParseConfig(ontology=args.ontology,
-                                     solution=args.solution,
-                                     proposed=args.proposed,
-                                     verbose=args.verbose)
-  pp.pprint(results.append_types())
+  scorer = parse_config.ParseConfig(ontology=args.ontology,
+                                    solution=args.solution,
+                                    proposed=args.proposed,
+                                    verbose=args.verbose)
+  pp.pprint(scorer.execute())
