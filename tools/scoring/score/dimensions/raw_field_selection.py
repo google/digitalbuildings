@@ -29,14 +29,31 @@ class RawFieldSelection(Dimension):
   def __init__(self, *, translations: TranslationsDict):
     super().__init__(translations=translations)
 
-    solution_fields = set(
-        map(lambda item: item[1].raw_field_name, translations[SOLUTION]))
-    proposed_fields = set(
-        map(lambda item: item[1].raw_field_name, translations[PROPOSED]))
+    # Combine translations for all devices within the dictionary
+    solution_translations = [
+        matched_translations[SOLUTION]
+        for matched_translations in translations.values()
+        if matched_translations[SOLUTION]
+    ][0]
+    proposed_translations = [
+        matched_translations[PROPOSED]
+        for matched_translations in translations.values()
+        if matched_translations[PROPOSED]
+    ][0]
+
+    solution_fields = set([
+        translation.raw_field_name
+        for standard_field_name, translation in solution_translations
+    ])
+
+    proposed_fields = set([
+        translation.raw_field_name
+        for standard_field_name, translation in proposed_translations
+    ])
 
     correct_fields = proposed_fields.intersection(solution_fields)
     incorrect_fields = proposed_fields.difference(solution_fields)
 
     self.correct_reporting = len(correct_fields)
-    self.correct_ceiling_reporting = len(set(translations[SOLUTION]))
+    self.correct_ceiling_reporting = len(set(solution_translations))
     self.incorrect_reporting = len(incorrect_fields)

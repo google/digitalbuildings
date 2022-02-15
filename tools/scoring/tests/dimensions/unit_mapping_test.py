@@ -26,7 +26,7 @@ class UnitMappingTest(absltest.TestCase):
   def setUp(self):
     super().setUp()
     # TODO: add real data (append cases to existing tests)
-    translations = {PROPOSED: [], SOLUTION: []}
+    translations = {'cloud_device_id': {PROPOSED: [], SOLUTION: []}}
     self.unit_mapping = UnitMapping(translations=translations)
 
   def testDirectlyAssignedAttributes(self):

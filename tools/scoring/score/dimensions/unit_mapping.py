@@ -28,16 +28,28 @@ class UnitMapping(Dimension):
   def __init__(self, *, translations: TranslationsDict):
     super().__init__(translations=translations)
 
+    # Combine translations for all devices within the dictionary
+    solution_translations = [
+        matched_translations[SOLUTION]
+        for matched_translations in translations.values()
+        if matched_translations[SOLUTION]
+    ][0]
+    proposed_translations = [
+        matched_translations[PROPOSED]
+        for matched_translations in translations.values()
+        if matched_translations[PROPOSED]
+    ][0]
+
     solution_mappings = set([
         (field[0], kv)
-        for field in (field for field in translations[SOLUTION]
+        for field in (field for field in solution_translations
                       if type(field[1]).__name__ == 'DimensionalValue')
         for kv in field[1].unit_mappings.items()
     ])
 
     proposed_mappings = set([
         (field[0], kv)
-        for field in (field for field in translations[PROPOSED]
+        for field in (field for field in proposed_translations
                       if type(field[1]).__name__ == 'DimensionalValue')
         for kv in field[1].unit_mappings.items()
     ])

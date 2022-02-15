@@ -31,17 +31,29 @@ class StandardFieldNaming(Dimension):
   def __init__(self, *, translations: TranslationsDict):
     super().__init__(translations=translations)
 
+    # Combine translations for all devices within the dictionary
+    solution_translations = [
+        matched_translations[SOLUTION]
+        for matched_translations in translations.values()
+        if matched_translations[SOLUTION]
+    ][0]
+    proposed_translations = [
+        matched_translations[PROPOSED]
+        for matched_translations in translations.values()
+        if matched_translations[PROPOSED]
+    ][0]
+
     correct_subfields = []
     correct_ceiling: int = 0
     incorrect_subfields = []
 
-    for s_field, s_value in translations[SOLUTION]:
+    for s_field, s_value in solution_translations:
       s_subfields = set(
           filter(lambda subfield: not bool(regex.match('[0-9]+', subfield)),
                  s_field.split('_')))
       correct_ceiling += len(s_subfields)
 
-      for p_field, p_value in translations[PROPOSED]:
+      for p_field, p_value in proposed_translations:
         if p_value.raw_field_name == s_value.raw_field_name:
           p_subfields = set(
               filter(lambda subfield: not bool(regex.match('[0-9]+', subfield)),

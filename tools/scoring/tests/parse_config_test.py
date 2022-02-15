@@ -102,24 +102,20 @@ class ParseConfigTest(absltest.TestCase):
 
     self.assertEqual(type(translations[cdid]), dict)
 
-    self.assertTrue(f'{PROPOSED}_translations' in translations[cdid])
-    self.assertEqual(type(translations[cdid][f'{PROPOSED}_translations']), list)
-    self.assertEqual(len(translations[cdid][f'{PROPOSED}_translations']), 1)
-    self.assertEqual(type(translations[cdid][f'{PROPOSED}_translations'][0]),
-                     tuple)
-    self.assertEqual(translations[cdid][f'{PROPOSED}_translations'][0][0],
-                     'wrong')
-    self.assertEqual(type(translations[cdid][f'{PROPOSED}_translations'][0][1]),
+    self.assertTrue(f'{PROPOSED}' in translations[cdid])
+    self.assertEqual(type(translations[cdid][f'{PROPOSED}']), list)
+    self.assertEqual(len(translations[cdid][f'{PROPOSED}']), 1)
+    self.assertEqual(type(translations[cdid][f'{PROPOSED}'][0]), tuple)
+    self.assertEqual(translations[cdid][f'{PROPOSED}'][0][0], 'wrong')
+    self.assertEqual(type(translations[cdid][f'{PROPOSED}'][0][1]),
                      NonDimensionalValue)
 
-    self.assertTrue(f'{SOLUTION}_translations' in translations[cdid])
-    self.assertEqual(type(translations[cdid][f'{SOLUTION}_translations']), list)
-    self.assertEqual(len(translations[cdid][f'{SOLUTION}_translations']), 1)
-    self.assertEqual(type(translations[cdid][f'{SOLUTION}_translations'][0]),
-                     tuple)
-    self.assertEqual(translations[cdid][f'{SOLUTION}_translations'][0][0],
-                     'target')
-    self.assertEqual(type(translations[cdid][f'{SOLUTION}_translations'][0][1]),
+    self.assertTrue(f'{SOLUTION}' in translations[cdid])
+    self.assertEqual(type(translations[cdid][f'{SOLUTION}']), list)
+    self.assertEqual(len(translations[cdid][f'{SOLUTION}']), 1)
+    self.assertEqual(type(translations[cdid][f'{SOLUTION}'][0]), tuple)
+    self.assertEqual(translations[cdid][f'{SOLUTION}'][0][0], 'target')
+    self.assertEqual(type(translations[cdid][f'{SOLUTION}'][0][1]),
                      NonDimensionalValue)
 
   def testAggregateResults(self):

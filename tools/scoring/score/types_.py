@@ -27,6 +27,6 @@ FileType = FileTypes
 DeserializedFile = Dict[CloudDeviceId, EntityInstance]
 DeserializedFilesDict = Dict[FileType, DeserializedFile]
 DimensionName = str
-TranslationsDict = Dict[FileType, List[Tuple[str, Any]]]
+TranslationsDict = Dict[CloudDeviceId, Dict[FileType, List[Tuple[str, Any]]]]
 DimensionCategory = DimensionCategories
 EntityType = EntType
