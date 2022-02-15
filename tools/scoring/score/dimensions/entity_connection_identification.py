@@ -33,19 +33,20 @@ class EntityConnectionIdentification(Dimension):
   def __init__(self, *, deserialized_files: DeserializedFilesDict):
     super().__init__(deserialized_files=deserialized_files)
 
-    proposed, solution = map(deserialized_files.get, (PROPOSED, SOLUTION))
+    proposed_file, solution_file = map(deserialized_files.get,
+                                       (PROPOSED, SOLUTION))
 
     # Isolate the connections from each dictionary of entities
     solution_connections = [
         tup for tup in (((cloud_device_id, connection)
                          for connection in entity.connections)
-                        for cloud_device_id, entity in solution.items()
+                        for cloud_device_id, entity in solution_file.items()
                         if entity.connections is not None) for tup in tup
     ]
     proposed_connections = [
         tup for tup in (((cloud_device_id, connection)
                          for connection in entity.connections)
-                        for cloud_device_id, entity in proposed.items()
+                        for cloud_device_id, entity in proposed_file.items()
                         if entity.connections is not None) for tup in tup
     ]
 

@@ -30,19 +30,20 @@ class EntityIdentification(Dimension):
   def __init__(self, *, deserialized_files: DeserializedFilesDict):
     super().__init__(deserialized_files=deserialized_files)
 
-    proposed, solution = map(deserialized_files.get, (PROPOSED, SOLUTION))
+    proposed_file, solution_file = map(deserialized_files.get,
+                                       (PROPOSED, SOLUTION))
 
     # Lists of `cloud_device_id`s representing
     # reporting entities with canonical types
     solution_reporting = [
         entity.cloud_device_id for entity in filter(
             self.is_entity_canonical,
-            filter(self.is_entity_reporting, solution.values()))
+            filter(self.is_entity_reporting, solution_file.values()))
     ]
     proposed_reporting = [
         entity.cloud_device_id for entity in filter(
             self.is_entity_canonical,
-            filter(self.is_entity_reporting, proposed.values()))
+            filter(self.is_entity_reporting, proposed_file.values()))
     ]
 
     # Lists of `cloud_device_id`s representing
@@ -50,18 +51,18 @@ class EntityIdentification(Dimension):
     # are linked to by virtual entities
     solution_virtual = [
         cloud_device_id for source_list in ((
-            solution[link.source].cloud_device_id
+            solution_file[link.source].cloud_device_id
             for link in entity.links) for entity in filter(
                 self.is_entity_canonical,
-                filter(self.is_entity_virtual, solution.values())))
+                filter(self.is_entity_virtual, solution_file.values())))
         for cloud_device_id in source_list
     ]
     proposed_virtual = [
         cloud_device_id for source_list in ((
-            proposed[link.source].cloud_device_id
+            proposed_file[link.source].cloud_device_id
             for link in entity.links) for entity in filter(
                 self.is_entity_canonical,
-                filter(self.is_entity_virtual, proposed.values())))
+                filter(self.is_entity_virtual, proposed_file.values())))
         for cloud_device_id in source_list
     ]
 

@@ -13,8 +13,10 @@
 # limitations under the License.
 """Core component base class"""
 
-from score.types_ import DeserializedFilesDict, TranslationsDict
+from score.types_ import DeserializedFilesDict, TranslationsDict, EntityType
 from validate.entity_instance import EntityInstance
+from typing import List, Tuple, Set, Dict
+from collections import defaultdict
 
 
 class Dimension:
@@ -135,7 +137,8 @@ class Dimension:
 
   @staticmethod
   def is_entity_canonical(*, entity: EntityInstance) -> bool:
-    """ Utility for determining whether an entity is canonical.
+    """
+    Utility for determining whether an entity is canonical.
     Used in "complex" dimensions to filter sets for comparison.
 
     Args:
@@ -165,7 +168,8 @@ class Dimension:
 
   @staticmethod
   def is_entity_virtual(*, entity: EntityInstance) -> bool:
-    """ Utility for determining whether an entity is virtual.
+    """
+    Utility for determining whether an entity is virtual.
     Used in "complex" dimensions to filter sets for comparison.
 
     Args:
@@ -175,6 +179,119 @@ class Dimension:
       Boolean indicating whether the entity has `links`
     """
     return entity.links is not None
+
+  @staticmethod
+  def match_virtual(*, solution_points_virtual: List[Tuple[Set[str],
+                                                           EntityType]],
+                    proposed_points_virtual: List[Tuple[Set[str], EntityType]],
+                    sort_candidates_by_key: str) -> Dict[float, List[Dict]]:
+    """
+    Finds the closest correlating virtual entities between two files.
+
+    Args:
+      solution_points_virtual: Raw field names and entity types
+        for all virtual entities in a file
+      proposed_points_virtual: Raw field names and entity types
+        for all virtual entities in a file
+      sort_candidates_by_key: Parameter by which to "break a tie" if there
+        are multiple matches with the same subscore.
+
+    Returns:
+      Dictionary whose keys are floats representing the extent to which the
+      provided entities correlated and whose values are lists of dictionaries
+      containing the parameters by which those floats were calculated.
+    """
+    matches_virtual = {None: []}
+    for solution_raw_field_names, solution_entity_type in solution_points_virtual:  #pylint: disable=line-too-long
+      best: float = -1.1
+      candidates = defaultdict(list)
+      for proposed_raw_field_names, proposed_entity_type in proposed_points_virtual:  #pylint: disable=line-too-long
+        correct: int = len(
+            proposed_raw_field_names.intersection(solution_raw_field_names))
+        correct_ceiling: int = len(solution_raw_field_names)
+        incorrect: int = len(
+            proposed_raw_field_names.difference(solution_raw_field_names))
+
+        subscore: float = ((correct - incorrect) /
+                           correct_ceiling) if correct_ceiling != 0 else 0
+
+        if subscore != 0 and subscore > best:
+          best = subscore
+
+        types_correct: int = len(
+            set(proposed_entity_type.parent_names.keys()).intersection(
+                set(solution_entity_type.parent_names.keys()))
+        ) if proposed_entity_type is not None else 0
+
+        types_correct_ceiling: int = len(
+            set(solution_entity_type.parent_names.keys()))
+
+        types_incorrect: int = len(
+            set(proposed_entity_type.parent_names.keys()).difference(
+                set(solution_entity_type.parent_names.keys()))
+        ) if proposed_entity_type is not None else types_correct_ceiling
+
+        types_score: float = (
+            (types_correct - types_incorrect) /
+            types_correct_ceiling) if types_correct_ceiling != 0 else 0
+
+        # types_perfect: bool = types_score == 1.0
+
+        # types_superset: bool = types_perfect and (len(
+        #     proposed_entity_type.parent_names.keys()) > len(
+        #         solution_entity_type.parent_names.keys()))
+
+        candidates[subscore].append({
+            'correct': correct,
+            'correct_ceiling': correct_ceiling,
+            'incorrect': incorrect,
+            'proposed': proposed_raw_field_names,
+            'solution': solution_raw_field_names,
+            'types_correct': types_correct,
+            'types_correct_ceiling': types_correct_ceiling,
+            'types_incorrect': types_incorrect,
+            'types_score': types_score,
+            # 'types_perfect': types_perfect,
+            # 'types_superset': types_superset
+        })
+
+      selected = sorted(candidates[best],
+                        key=lambda params: params[sort_candidates_by_key],
+                        reverse=True)[0] if len(candidates[best]) else None
+
+      if selected:
+        if best in matches_virtual:
+          matches_virtual[best].append(selected)
+        else:
+          matches_virtual[best] = [selected]
+        solution_points_virtual.remove(selected['solution'])
+      else:
+        matches_virtual[None].append({
+            'correct':
+            0,
+            'correct_ceiling':
+            len(solution_raw_field_names),
+            'incorrect':
+            0,
+            'proposed':
+            set([]),
+            'solution':
+            solution_raw_field_names,
+            'types_correct':
+            0,
+            'types_correct_ceiling':
+            len(set(solution_entity_type.parent_names.keys())),
+            'types_incorrect':
+            0,
+            'types_score':
+            None,
+            'types_perfect':
+            False,
+            'types_superset':
+            False
+        })
+
+    return matches_virtual
 
   def __str__(self) -> str:
     """ Human-readable representation of the calculated properties """

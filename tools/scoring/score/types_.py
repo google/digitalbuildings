@@ -20,6 +20,7 @@
 from typing import Dict, List, Tuple, Any
 from validate.entity_instance import EntityInstance
 from score.constants import FileTypes, DimensionCategories
+from yamlformat.validator.entity_type_lib import EntityType as EntType
 
 CloudDeviceId = str
 FileType = FileTypes
@@ -28,3 +29,4 @@ DeserializedFilesDict = Dict[FileType, DeserializedFile]
 DimensionName = str
 TranslationsDict = Dict[FileType, List[Tuple[str, Any]]]
 DimensionCategory = DimensionCategories
+EntityType = EntType
