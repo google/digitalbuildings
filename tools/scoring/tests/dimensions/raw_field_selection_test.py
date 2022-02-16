@@ -41,7 +41,7 @@ class RawFieldSelectionTest(absltest.TestCase):
 
   def testInheritedResultProperties(self):
     # These are `None` by virtue of the ceiling being falsy.
-    self.assertEqual(self.raw_field_selection.result_composite, None)
+    self.assertEqual(self.raw_field_selection.result_all, None)
     self.assertEqual(self.raw_field_selection.result_reporting, None)
     self.assertEqual(self.raw_field_selection.result_virtual, None)
 

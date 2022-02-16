@@ -40,7 +40,7 @@ class Dimension:
       incorrect_reporting: Number of failed attempts within reporting devices
 
     Properties:
-      result_composite: Calculated result for all devices
+      result_all: Calculated result for all devices
       result_virtual: Calculated result for virtual devices
       result_reporting: Calculated result for reporting devices
   """
@@ -110,7 +110,7 @@ class Dimension:
       return incorrect_virtual + incorrect_reporting
 
   @property
-  def result_composite(self) -> float:
+  def result_all(self) -> float:
     """ Calculated result for all devices """
     return ((self.correct_total() - self.incorrect_total()) /
             self.correct_ceiling()) if self.correct_ceiling() != 0 else None
@@ -298,5 +298,5 @@ class Dimension:
   def __str__(self) -> str:
     """ Human-readable representation of the calculated properties """
     return (
-        f'{{result_composite: {self.result_composite}, result_virtual: '
+        f'{{result_all: {self.result_all}, result_virtual: '
         f'{self.result_virtual}, result_reporting: {self.result_reporting}}}')

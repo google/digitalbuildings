@@ -42,7 +42,7 @@ class EntityIdentificationTest(absltest.TestCase):
 
   def testInheritedResultProperties(self):
     # These are `None` by virtue of the ceiling being falsy.
-    self.assertEqual(self.entity_identification.result_composite, None)
+    self.assertEqual(self.entity_identification.result_all, None)
     self.assertEqual(self.entity_identification.result_reporting, None)
     self.assertEqual(self.entity_identification.result_virtual, None)
 

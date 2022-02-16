@@ -41,7 +41,7 @@ class StateMappingTest(absltest.TestCase):
 
   def testInheritedResultProperties(self):
     # These are `None` by virtue of the ceiling being falsy.
-    self.assertEqual(self.state_mapping.result_composite, None)
+    self.assertEqual(self.state_mapping.result_all, None)
     self.assertEqual(self.state_mapping.result_reporting, None)
     self.assertEqual(self.state_mapping.result_virtual, None)
 

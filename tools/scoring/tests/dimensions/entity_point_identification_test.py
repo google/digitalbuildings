@@ -49,7 +49,7 @@ class EntityPointIdentificationTest(absltest.TestCase):
 
   def testInheritedResultProperties(self):
     # This is `None` by virtue of the ceiling being falsy.
-    self.assertEqual(self.entity_point_identification.result_composite, None)
+    self.assertEqual(self.entity_point_identification.result_all, None)
 
 
 if __name__ == '__main__':

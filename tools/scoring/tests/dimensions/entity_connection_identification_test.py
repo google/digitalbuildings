@@ -46,8 +46,7 @@ class EntityConnectionIdentificationTest(absltest.TestCase):
 
   def testInheritedResultProperties(self):
     # This is `None` by virtue of the ceiling being falsy.
-    self.assertEqual(self.entity_connection_identification.result_composite,
-                     None)
+    self.assertEqual(self.entity_connection_identification.result_all, None)
 
 
 if __name__ == '__main__':

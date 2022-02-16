@@ -41,7 +41,7 @@ class StandardFieldNamingTest(absltest.TestCase):
 
   def testInheritedResultProperties(self):
     # These are `None` by virtue of the ceiling being falsy.
-    self.assertEqual(self.standard_field_naming.result_composite, None)
+    self.assertEqual(self.standard_field_naming.result_all, None)
     self.assertEqual(self.standard_field_naming.result_reporting, None)
     self.assertEqual(self.standard_field_naming.result_virtual, None)
 

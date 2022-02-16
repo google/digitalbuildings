@@ -127,10 +127,10 @@ class DimensionTest(absltest.TestCase):
     self.assertEqual(self.dimension_override.incorrect_total_override, 4)
 
   def testResultComposite(self):
-    self.assertEqual(self.dimension.result_composite, 0.0)
-    self.assertEqual(self.dimension_none.result_composite, None)
+    self.assertEqual(self.dimension.result_all, 0.0)
+    self.assertEqual(self.dimension_none.result_all, None)
 
-    self.assertEqual(self.dimension_override.result_composite, 0.0)
+    self.assertEqual(self.dimension_override.result_all, 0.0)
 
   def testResultVirtual(self):
     self.assertEqual(self.dimension.result_virtual, 0.0)
@@ -165,7 +165,7 @@ class DimensionTest(absltest.TestCase):
   def testStr(self):
     self.assertEqual(
         self.dimension.__str__(),
-        '{result_composite: 0.0, result_virtual: 0.0, result_reporting: 0.0}')
+        '{result_all: 0.0, result_virtual: 0.0, result_reporting: 0.0}')
 
 
 if __name__ == '__main__':
