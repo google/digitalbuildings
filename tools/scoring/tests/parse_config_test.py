@@ -55,7 +55,12 @@ class ParseConfigTest(absltest.TestCase):
 
   @patch('builtins.print')
   def testAppendTypes(self, mock_print):
-    self.parse.append_types()
+    self.assertFalse(
+        hasattr(
+            list(self.parse.deserialized_files[PROPOSED].values())[0], 'type'))
+    deserialized_files_appended = self.parse.append_types(
+        universe=self.parse.universe,
+        deserialized_files=self.parse.deserialized_files)
     self.assertEqual(mock_print.call_count, 4)
     calls = [
         call(f'{PROPOSED} translations absent: 0 (from 0 links)'),
@@ -64,6 +69,9 @@ class ParseConfigTest(absltest.TestCase):
         call(f'{SOLUTION} types absent: 0 (0 instances)')
     ]
     mock_print.assert_has_calls(calls)
+    self.assertTrue(
+        hasattr(
+            list(deserialized_files_appended[PROPOSED].values())[0], 'type'))  # pylint: disable=unsubscriptable-object
 
   def testMatchReportingEntities(self):
     proposed_entities = validator.Deserialize(

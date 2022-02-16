@@ -63,8 +63,7 @@ def parse_args() -> argparse.ArgumentParser:
 
 if __name__ == '__main__':
   pp = pprint.PrettyPrinter()
-  # pylint: disable=too-many-function-args
-  args = parse_args().parse_args(sys.argv[1:])
+  args = parse_args().parse_args(sys.argv[1:])  # pylint: disable=too-many-function-args
   scorer = parse_config.ParseConfig(ontology=args.ontology,
                                     solution=args.solution,
                                     proposed=args.proposed,
