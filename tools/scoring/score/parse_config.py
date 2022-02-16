@@ -153,9 +153,9 @@ class ParseConfig:
           and `EntityInstance`s
 
       Returns:
-        TODO: this is incorrect…
         Dictionary with `cloud_device_id`s as keys
-        and lists of translation tuples as values
+        and values which are dictionaries containing lists
+        of translations for the device, keyed under the file type
     """
 
     translations = {}
