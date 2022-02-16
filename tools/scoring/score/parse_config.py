@@ -216,16 +216,22 @@ class ParseConfig:
       # Invoke the functions and append the dictionary with their return values
       for dimension in dimension_list:
         if dimension_category == SIMPLE:
-          invoked = dimension(translations=translations).__str__()
+          invoked = dimension(translations=translations)
         elif dimension_category == COMPLEX:
-          invoked = dimension(deserialized_files=deserialized_files).__str__()
+          invoked = dimension(deserialized_files=deserialized_files)
 
         results[dimension.__name__] = invoked
     return results
 
-  # TODO: standardize signatures; make dimensions into const;
-  # document; test
-  def execute(self):
+  # TODO: standardize signatures; make dimensions into const; test
+  def execute(self) -> Dict[DimensionName, str]:
+    """
+      Wrapper for all functionality herein.
+
+      Returns:
+        Dictionary containing human-readable
+        represenation of every scored dimension.
+    """
     self.append_types()
     matches = self.match_reporting_entities(
         proposed_entities=self.deserialized_files[PROPOSED],
@@ -251,4 +257,9 @@ class ParseConfig:
         translations=translations,
         deserialized_files=self.deserialized_files)
 
-    return self.results
+    readable = {
+        name: dimension.__str__()
+        for name, dimension in self.results.items()
+    }
+
+    return readable
