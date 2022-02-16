@@ -186,7 +186,8 @@ class Dimension:
       proposed_points_virtual: List[Tuple[Set[str], EntityType]],
       sort_candidates_by_key: str) -> Dict[float, List[Dict]]:
     """
-    Finds the closest correlating virtual entities between two files.
+    Finds the closest correlating virtual entities between two files
+    by comparing the intersections of raw field names contained therein.
 
     Args:
       solution_points_virtual: Raw field names and entity types
