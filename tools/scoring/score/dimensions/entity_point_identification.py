@@ -73,15 +73,15 @@ class EntityPointIdentification(Dimension):
         sort_candidates_by_key='correct_ceiling')
 
     self.correct_virtual = sum([
-        sum(match['correct'] for match in list)
+        sum(match.correct for match in list)
         for list in matches_virtual.values()
     ])
     self.correct_ceiling_virtual = sum([
-        sum(match['correct_ceiling'] for match in list)
+        sum(match.correct_ceiling for match in list)
         for list in matches_virtual.values()
     ])
     self.incorrect_virtual = sum([
-        sum(match['incorrect'] for match in list)
+        sum(match.incorrect for match in list)
         for list in matches_virtual.values()
     ])
 

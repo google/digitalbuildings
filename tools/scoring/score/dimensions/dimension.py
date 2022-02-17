@@ -13,10 +13,24 @@
 # limitations under the License.
 """Core component base class"""
 
-from score.types_ import DeserializedFilesDict, TranslationsDict, PointsVirtualList
+from score.types_ import DeserializedFilesDict, TranslationsDict, PointsVirtualList, RawFieldName, EntityType
 from validate.entity_instance import EntityInstance
-from typing import List, Dict
+from typing import Tuple, Set, List, Dict, NamedTuple
 from collections import defaultdict
+
+
+class VirtualEntityMatch(NamedTuple):
+  """ Parameters by which subscores are calculated
+  to find the closest corellating virtual entities """
+  correct: int
+  correct_ceiling: int
+  incorrect: int
+  proposed: Tuple[Set[RawFieldName], EntityType]
+  solution: Tuple[Set[RawFieldName], EntityType]
+  types_correct: int
+  types_correct_ceiling: int
+  types_incorrect: int
+  types_score: float
 
 
 class Dimension:
@@ -184,7 +198,7 @@ class Dimension:
   def match_virtual_entities(
       *, solution_points_virtual: PointsVirtualList,
       proposed_points_virtual: PointsVirtualList,
-      sort_candidates_by_key: str) -> Dict[float, List[Dict]]:
+      sort_candidates_by_key: str) -> Dict[float, List[VirtualEntityMatch]]:
     """
     Finds the closest correlating virtual entities between two files
     by comparing the intersections of raw field names contained therein.
@@ -199,8 +213,9 @@ class Dimension:
 
     Returns:
       Dictionary whose keys are floats representing the extent to which the
-      provided entities correlated and whose values are lists of dictionaries
-      containing the parameters by which those floats were calculated.
+      provided entities correlated and whose values are lists of
+      VirtualEntityMatch instances containing the parameters
+      by which those floats were calculated.
     """
     matches_virtual = {None: []}
     for solution_parameters in solution_points_virtual:
@@ -238,61 +253,45 @@ class Dimension:
             (types_correct - types_incorrect) /
             types_correct_ceiling) if types_correct_ceiling != 0 else 0
 
-        # types_perfect: bool = types_score == 1.0
+        subscore_parameters = VirtualEntityMatch(
+            correct=correct,
+            correct_ceiling=correct_ceiling,
+            incorrect=incorrect,
+            proposed=proposed_parameters,
+            solution=solution_parameters,
+            types_correct=types_correct,
+            types_correct_ceiling=types_correct_ceiling,
+            types_incorrect=types_incorrect,
+            types_score=types_score)
 
-        # types_superset: bool = types_perfect and (len(
-        #     proposed_entity_type.parent_names.keys()) > len(
-        #         solution_entity_type.parent_names.keys()))
+        candidates[subscore].append(subscore_parameters)
 
-        candidates[subscore].append({
-            'correct': correct,
-            'correct_ceiling': correct_ceiling,
-            'incorrect': incorrect,
-            'proposed': proposed_parameters,
-            'solution': solution_parameters,
-            'types_correct': types_correct,
-            'types_correct_ceiling': types_correct_ceiling,
-            'types_incorrect': types_incorrect,
-            'types_score': types_score,
-            # 'types_perfect': types_perfect,
-            # 'types_superset': types_superset
-        })
-
-      selected = sorted(candidates[best],
-                        key=lambda params: params[sort_candidates_by_key],
-                        reverse=True)[0] if len(candidates[best]) else None
+      selected = sorted(
+          candidates[best],
+          # Use `._asdict()` to reference index by string
+          key=lambda params: params._asdict()[sort_candidates_by_key],
+          reverse=True)[0] if len(candidates[best]) else None
 
       if selected:
         if best in matches_virtual:
           matches_virtual[best].append(selected)
         else:
           matches_virtual[best] = [selected]
-        solution_points_virtual.remove(selected['solution'])
+        solution_points_virtual.remove(selected.solution)
       else:
-        matches_virtual[None].append({
-            'correct':
-            0,
-            'correct_ceiling':
-            len(solution_raw_field_names),
-            'incorrect':
-            0,
-            'proposed':
-            set([]),
-            'solution':
-            solution_parameters,
-            'types_correct':
-            0,
-            'types_correct_ceiling':
-            len(set(solution_entity_type.parent_names.keys())),
-            'types_incorrect':
-            0,
-            'types_score':
-            None,
-            'types_perfect':
-            False,
-            'types_superset':
-            False
-        })
+        none_subscore_parameters = VirtualEntityMatch(
+            correct=0,
+            correct_ceiling=len(solution_raw_field_names),
+            incorrect=0,
+            proposed=set([]),
+            solution=solution_parameters,
+            types_correct=0,
+            types_correct_ceiling=len(
+                set(solution_entity_type.parent_names.keys())),
+            types_incorrect=0,
+            types_score=None)
+
+        matches_virtual[None].append(none_subscore_parameters)
 
     return matches_virtual
 
