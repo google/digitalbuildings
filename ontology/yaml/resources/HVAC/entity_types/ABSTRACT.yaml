@@ -703,6 +703,7 @@ OA:
   - MONITORING
 
 ZA:
+  id: "3244379125296660480"
   description: "Grouped type for zone air psychrometric conditions (RH and temp)"
   is_abstract: true
   uses:
