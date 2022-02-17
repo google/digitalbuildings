@@ -33,7 +33,7 @@ class EntityPointIdentification(Dimension):
                                        (PROPOSED, SOLUTION))
 
     # Isolate canonically typed virtual entities
-    entities_virtual: lambda file: set(
+    entities_virtual = lambda file: set(
         filter(self.is_entity_canonical,
                filter(self.is_entity_virtual, file.values())))
 
