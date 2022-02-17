@@ -29,35 +29,27 @@ class UnitMapping(Dimension):
     super().__init__(translations=translations)
 
     # Combine translations for all devices within the dictionary
-    solution_condensed = [
-        matched_translations[SOLUTION]
+    condense_translations = lambda file_type: [
+        matched_translations[file_type]
         for matched_translations in translations.values()
-        if matched_translations[SOLUTION]
+        if matched_translations[file_type]
     ]
+
+    solution_condensed = condense_translations(SOLUTION)
+    proposed_condensed = condense_translations(PROPOSED)
+
     # Account for empty list
     solution_translations = solution_condensed and solution_condensed[0]
-
-    proposed_condensed = [
-        matched_translations[PROPOSED]
-        for matched_translations in translations.values()
-        if matched_translations[PROPOSED]
-    ]
-    # Account for empty list
     proposed_translations = proposed_condensed and proposed_condensed[0]
 
-    solution_mappings = set([
-        (field[0], kv)
-        for field in (field for field in solution_translations
-                      if type(field[1]).__name__ == 'DimensionalValue')
-        for kv in field[1].unit_mappings.items()
-    ])
+    mappings = lambda translations: set(
+        [(field[0], kv)
+         for field in (field for field in translations
+                       if type(field[1]).__name__ == 'DimensionalValue')
+         for kv in field[1].unit_mappings.items()])
 
-    proposed_mappings = set([
-        (field[0], kv)
-        for field in (field for field in proposed_translations
-                      if type(field[1]).__name__ == 'DimensionalValue')
-        for kv in field[1].unit_mappings.items()
-    ])
+    solution_mappings = mappings(solution_translations)
+    proposed_mappings = mappings(proposed_translations)
 
     correct_mappings = proposed_mappings.intersection(solution_mappings)
 
