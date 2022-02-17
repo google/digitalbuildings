@@ -32,20 +32,17 @@ class StandardFieldNaming(Dimension):
     super().__init__(translations=translations)
 
     # Combine translations for all devices within the dictionary
-    solution_condensed = [
-        matched_translations[SOLUTION]
+    condense_translations = lambda file_type: [
+        matched_translations[file_type]
         for matched_translations in translations.values()
-        if matched_translations[SOLUTION]
+        if matched_translations[file_type]
     ]
+
+    solution_condensed = condense_translations(SOLUTION)
+    proposed_condensed = condense_translations(PROPOSED)
+
     # Account for empty list
     solution_translations = solution_condensed and solution_condensed[0]
-
-    proposed_condensed = [
-        matched_translations[PROPOSED]
-        for matched_translations in translations.values()
-        if matched_translations[PROPOSED]
-    ]
-    # Account for empty list
     proposed_translations = proposed_condensed and proposed_condensed[0]
 
     correct_subfields = []
@@ -53,16 +50,16 @@ class StandardFieldNaming(Dimension):
     incorrect_subfields = []
 
     for s_field, s_value in solution_translations:
-      s_subfields = set(
+      split_subfields = lambda field: set(
           filter(lambda subfield: not bool(regex.match('[0-9]+', subfield)),
-                 s_field.split('_')))
+                 field.split('_')))
+
+      s_subfields = split_subfields(s_field)
       correct_ceiling += len(s_subfields)
 
       for p_field, p_value in proposed_translations:
         if p_value.raw_field_name == s_value.raw_field_name:
-          p_subfields = set(
-              filter(lambda subfield: not bool(regex.match('[0-9]+', subfield)),
-                     p_field.split('_')))
+          p_subfields = split_subfields(p_field)
 
           correct_subfields += p_subfields.intersection(s_subfields)
           incorrect_subfields += p_subfields.difference(s_subfields)
