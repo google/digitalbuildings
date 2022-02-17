@@ -45,7 +45,6 @@ flowrate:
 - cubic_meters_per_hour
 - gallons_per_minute
 - liters_per_second
-- liters_per_hour
 - kilograms_per_hour
 frequency:
 - hertz: STANDARD
