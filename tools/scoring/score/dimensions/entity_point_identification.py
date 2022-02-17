@@ -14,8 +14,7 @@
 """ Core component """
 
 from score.dimensions.dimension import Dimension
-from score.types_ import DeserializedFilesDict, EntityType
-from typing import List, Tuple, Set
+from score.types_ import DeserializedFilesDict, PointsVirtualList
 from score.constants import FileTypes
 
 PROPOSED, SOLUTION = FileTypes
@@ -49,20 +48,17 @@ class EntityPointIdentification(Dimension):
     # Filter out sets which have no items
     # and sort by number of fields represented in descending order.
     # TODO: move the filtering/sorting functionality to add clarity.
-    points_virtual: List[Tuple[
-        Set[str], EntityType]] = lambda file, entities_virtual: sorted(
-            list(
-                filter(
-                    lambda tup: len(tup[0]) >
-                    0,  # (raw field names, entity type)
-                    [(set(file[link.source].translation[
-                        target_field].raw_field_name for target_field,
-                          source_field in link.field_map.items()
-                          for link in entity.links if target_field in file[
-                              link.source].translation), entity.type)
-                     for entity in entities_virtual for link in entity.links])),
-            key=lambda tup: len(tup[0]),  # (raw field names, entity type)
-            reverse=True)
+    points_virtual: PointsVirtualList = lambda file, entities_virtual: sorted(
+        list(
+            filter(
+                lambda tup: len(tup[0]) > 0,  # (raw field names, entity type)
+                [(set(file[link.source].translation[target_field].raw_field_name
+                      for target_field, source_field in link.field_map.items()
+                      for link in entity.links if target_field in file[
+                          link.source].translation), entity.type)
+                 for entity in entities_virtual for link in entity.links])),
+        key=lambda tup: len(tup[0]),  # (raw field names, entity type)
+        reverse=True)
 
     solution_points_virtual = points_virtual(solution_file,
                                              solution_entities_virtual)

@@ -13,9 +13,9 @@
 # limitations under the License.
 """Core component base class"""
 
-from score.types_ import DeserializedFilesDict, TranslationsDict, EntityType
+from score.types_ import DeserializedFilesDict, TranslationsDict, PointsVirtualList
 from validate.entity_instance import EntityInstance
-from typing import List, Tuple, Set, Dict
+from typing import List, Dict
 from collections import defaultdict
 
 
@@ -182,8 +182,8 @@ class Dimension:
 
   @staticmethod
   def match_virtual_entities(
-      *, solution_points_virtual: List[Tuple[Set[str], EntityType]],
-      proposed_points_virtual: List[Tuple[Set[str], EntityType]],
+      *, solution_points_virtual: PointsVirtualList,
+      proposed_points_virtual: PointsVirtualList,
       sort_candidates_by_key: str) -> Dict[float, List[Dict]]:
     """
     Finds the closest correlating virtual entities between two files
