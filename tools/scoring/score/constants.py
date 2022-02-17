@@ -17,16 +17,20 @@ from enum import Enum
 
 
 class FileTypes(str, Enum):
-  # The file which is being scored
+  """ The file which is being scored """
   PROPOSED = 'proposed'
-  # The file which is being compared against
+  """ The file which is being compared against """
   SOLUTION = 'solution'
 
 
 class DimensionCategories(str, Enum):
-  # Receives `translations` and scores
-  # only reporting entities in bulk
+  """
+    Receives `translations` and scores
+    only reporting entities in bulk
+  """
   SIMPLE = 'simple'
-  # Receives `deserialized_files` to build a multi-map
-  # of virtual entities prior to calculating scores
+  """
+    Receives `deserialized_files` to build a multi-map
+    of virtual entities prior to calculating scores
+  """
   COMPLEX = 'complex'
