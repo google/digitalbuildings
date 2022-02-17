@@ -19,9 +19,9 @@ from typing import Tuple, Set, List, Dict, NamedTuple
 from collections import defaultdict
 
 
-class VirtualEntityMatch(NamedTuple):
-  """ Parameters by which subscores are calculated
-  to find the closest corellating virtual entities """
+class _VirtualEntityMatch(NamedTuple):
+  """ Reference for metrics by which subscores were
+  calculated to find the closest corellating virtual entities """
   correct: int
   correct_ceiling: int
   incorrect: int
@@ -31,6 +31,63 @@ class VirtualEntityMatch(NamedTuple):
   types_correct_ceiling: int
   types_incorrect: int
   types_score: float
+
+
+class _FieldsSubscore(NamedTuple):
+  """ Calculates a subscore which is used in finding
+  the closest corellating virtual entities"""
+  proposed_raw_field_names: Set[RawFieldName]
+  solution_raw_field_names: Set[RawFieldName]
+
+  @property
+  def correct(self) -> int:
+    return len(
+        self.proposed_raw_field_names.intersection(
+            self.solution_raw_field_names))
+
+  @property
+  def correct_ceiling(self) -> int:
+    return len(self.solution_raw_field_names)
+
+  @property
+  def incorrect(self) -> int:
+    return len(
+        self.proposed_raw_field_names.difference(self.solution_raw_field_names))
+
+  @property
+  def tally(self) -> float:
+    return ((self.correct - self.incorrect) /
+            self.correct_ceiling) if self.correct_ceiling != 0 else 0
+
+
+class _TypesSubscore(NamedTuple):
+  """ Calculates a type score which is used in finding
+  the closest corellating virtual entities """
+  proposed_entity_type: EntityType
+  solution_entity_type: EntityType
+
+  @property
+  def correct(self) -> int:
+    return len(
+        set(self.proposed_entity_type.parent_names.keys()).intersection(
+            set(self.solution_entity_type.parent_names.keys()))
+    ) if self.proposed_entity_type is not None else 0
+
+  @property
+  def correct_ceiling(self) -> int:
+    return len(set(self.solution_entity_type.parent_names.keys()))
+
+  @property
+  def incorrect(self) -> int:
+    return len(
+        set(self.proposed_entity_type.parent_names.keys()).difference(
+            set(self.solution_entity_type.parent_names.keys()))
+    ) if self.proposed_entity_type is not None else self.correct_ceiling
+
+  @property
+  def tally(self) -> float:
+    return ((self.correct - self.incorrect) /
+            self.correct_ceiling) if self.correct_ceiling != 0 else 0
 
 
 class Dimension:
@@ -198,7 +255,7 @@ class Dimension:
   def match_virtual_entities(
       *, solution_points_virtual: PointsVirtualList,
       proposed_points_virtual: PointsVirtualList,
-      sort_candidates_by_key: str) -> Dict[float, List[VirtualEntityMatch]]:
+      sort_candidates_by_key: str) -> Dict[float, List[_VirtualEntityMatch]]:
     """
     Finds the closest correlating virtual entities between two files
     by comparing the intersections of raw field names contained therein.
@@ -214,58 +271,55 @@ class Dimension:
     Returns:
       Dictionary whose keys are floats representing the extent to which the
       provided entities correlated and whose values are lists of
-      VirtualEntityMatch instances containing the parameters
+      _VirtualEntityMatch instances containing the metrics
       by which those floats were calculated.
     """
+    # Final pairings
     matches_virtual = {None: []}
+
     for solution_parameters in solution_points_virtual:
       solution_raw_field_names, solution_entity_type = solution_parameters
-      best: float = -1.1
+
+      # Record of entities evaluated and associated metrics
       candidates = defaultdict(list)
+      # Running tally of which entity most closely corellates;
+      # even zero overlap will best the default at -1.0
+      best: float = -1.1
+
       for proposed_parameters in proposed_points_virtual:
         proposed_raw_field_names, proposed_entity_type = proposed_parameters
-        correct: int = len(
-            proposed_raw_field_names.intersection(solution_raw_field_names))
-        correct_ceiling: int = len(solution_raw_field_names)
-        incorrect: int = len(
-            proposed_raw_field_names.difference(solution_raw_field_names))
 
-        subscore: float = ((correct - incorrect) /
-                           correct_ceiling) if correct_ceiling != 0 else 0
+        # Offload the quantification of intersection/difference
+        # and resulting subscore
+        subscore = _FieldsSubscore(
+            proposed_raw_field_names=proposed_raw_field_names,
+            solution_raw_field_names=solution_raw_field_names)
 
-        if subscore != 0 and subscore > best:
-          best = subscore
+        # If the current iteration matches better than the last,
+        # take note of its score for later lookup
+        if subscore.tally != 0 and subscore.tally > best:
+          best = subscore.tally
 
-        types_correct: int = len(
-            set(proposed_entity_type.parent_names.keys()).intersection(
-                set(solution_entity_type.parent_names.keys()))
-        ) if proposed_entity_type is not None else 0
+        # Meanwhile, calculate a similar metric for overlap of types
+        types_score = _TypesSubscore(proposed_entity_type=proposed_entity_type,
+                                     solution_entity_type=solution_entity_type)
 
-        types_correct_ceiling: int = len(
-            set(solution_entity_type.parent_names.keys()))
-
-        types_incorrect: int = len(
-            set(proposed_entity_type.parent_names.keys()).difference(
-                set(solution_entity_type.parent_names.keys()))
-        ) if proposed_entity_type is not None else types_correct_ceiling
-
-        types_score: float = (
-            (types_correct - types_incorrect) /
-            types_correct_ceiling) if types_correct_ceiling != 0 else 0
-
-        subscore_parameters = VirtualEntityMatch(
-            correct=correct,
-            correct_ceiling=correct_ceiling,
-            incorrect=incorrect,
+        subscore_reference = _VirtualEntityMatch(
+            correct=subscore.correct,
+            correct_ceiling=subscore.correct_ceiling,
+            incorrect=subscore.incorrect,
             proposed=proposed_parameters,
             solution=solution_parameters,
-            types_correct=types_correct,
-            types_correct_ceiling=types_correct_ceiling,
-            types_incorrect=types_incorrect,
-            types_score=types_score)
+            types_correct=types_score.correct,
+            types_correct_ceiling=types_score.correct_ceiling,
+            types_incorrect=types_score.incorrect,
+            types_score=types_score.tally)
 
-        candidates[subscore].append(subscore_parameters)
+        # Add record of the evaluation for sorting
+        # after considering all the candidates
+        candidates[subscore.tally].append(subscore_reference)
 
+      # Choose the closest match
       selected = sorted(
           candidates[best],
           # Use `._asdict()` to reference index by string
@@ -277,9 +331,10 @@ class Dimension:
           matches_virtual[best].append(selected)
         else:
           matches_virtual[best] = [selected]
+        # Since a match was found, remove it from the pool
         solution_points_virtual.remove(selected.solution)
       else:
-        none_subscore_parameters = VirtualEntityMatch(
+        none_subscore_reference = _VirtualEntityMatch(
             correct=0,
             correct_ceiling=len(solution_raw_field_names),
             incorrect=0,
@@ -291,7 +346,7 @@ class Dimension:
             types_incorrect=0,
             types_score=None)
 
-        matches_virtual[None].append(none_subscore_parameters)
+        matches_virtual[None].append(none_subscore_reference)
 
     return matches_virtual
 
