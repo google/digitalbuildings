@@ -295,14 +295,14 @@ class Dimension:
             proposed_raw_field_names=proposed_raw_field_names,
             solution_raw_field_names=solution_raw_field_names)
 
+        # Meanwhile, calculate a similar metric for overlap of types
+        types_score = _TypesSubscore(proposed_entity_type=proposed_entity_type,
+                                     solution_entity_type=solution_entity_type)
+
         # If the current iteration matches better than the last,
         # take note of its score for later lookup
         if subscore.tally != 0 and subscore.tally > best:
           best = subscore.tally
-
-        # Meanwhile, calculate a similar metric for overlap of types
-        types_score = _TypesSubscore(proposed_entity_type=proposed_entity_type,
-                                     solution_entity_type=solution_entity_type)
 
         subscore_reference = _VirtualEntityMatch(
             correct=subscore.correct,
