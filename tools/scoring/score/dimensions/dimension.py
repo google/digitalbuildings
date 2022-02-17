@@ -332,7 +332,7 @@ class Dimension:
         else:
           matches_virtual[best] = [selected]
         # Since a match was found, remove it from the pool
-        solution_points_virtual.remove(selected.solution)
+        proposed_points_virtual.remove(selected.proposed)
       else:
         none_subscore_reference = _VirtualEntityMatch(
             correct=0,
