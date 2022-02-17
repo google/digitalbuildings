@@ -33,12 +33,12 @@ class EntityPointIdentification(Dimension):
                                        (PROPOSED, SOLUTION))
 
     # Isolate canonically typed virtual entities
-    solution_entities_virtual = set(
+    entities_virtual: lambda file: set(
         filter(self.is_entity_canonical,
-               filter(self.is_entity_virtual, solution_file.values())))
-    proposed_entities_virtual = set(
-        filter(self.is_entity_canonical,
-               filter(self.is_entity_virtual, proposed_file.values())))
+               filter(self.is_entity_virtual, file.values())))
+
+    solution_entities_virtual = entities_virtual(solution_file)
+    proposed_entities_virtual = entities_virtual(proposed_file)
 
     # For each canonically typed virtual entity
     # create a tuple containing a set and the entity's type.
@@ -49,34 +49,25 @@ class EntityPointIdentification(Dimension):
     # Filter out sets which have no items
     # and sort by number of fields represented in descending order.
     # TODO: move the filtering/sorting functionality to add clarity.
-    solution_points_virtual: List[Tuple[Set[str], EntityType]] = sorted(
-        list(
-            filter(
-                lambda tup: len(tup[0]) > 0,  # (raw field names, entity type)
-                [(set(
-                    solution_file[
-                        link.source].translation[target_field].raw_field_name
-                    for target_field, source_field in link.field_map.items()
-                    for link in entity.links
-                    if target_field in solution_file[link.source].translation),
-                  entity.type) for entity in solution_entities_virtual
-                 for link in entity.links])),
-        key=lambda tup: len(tup[0]),  # (raw field names, entity type)
-        reverse=True)
-    proposed_points_virtual: List[Tuple[Set[str], EntityType]] = sorted(
-        list(
-            filter(
-                lambda tup: len(tup[0]) > 0,  # (raw field names, entity type)
-                [(set(
-                    proposed_file[
-                        link.source].translation[target_field].raw_field_name
-                    for target_field, source_field in link.field_map.items()
-                    for link in entity.links
-                    if target_field in proposed_file[link.source].translation),
-                  entity.type) for entity in proposed_entities_virtual
-                 for link in entity.links])),
-        key=lambda tup: len(tup[0]),  # (raw field names, entity type)
-        reverse=True)
+    points_virtual: List[Tuple[
+        Set[str], EntityType]] = lambda file, entities_virtual: sorted(
+            list(
+                filter(
+                    lambda tup: len(tup[0]) >
+                    0,  # (raw field names, entity type)
+                    [(set(file[link.source].translation[
+                        target_field].raw_field_name for target_field,
+                          source_field in link.field_map.items()
+                          for link in entity.links if target_field in file[
+                              link.source].translation), entity.type)
+                     for entity in entities_virtual for link in entity.links])),
+            key=lambda tup: len(tup[0]),  # (raw field names, entity type)
+            reverse=True)
+
+    solution_points_virtual = points_virtual(solution_file,
+                                             solution_entities_virtual)
+    proposed_points_virtual = points_virtual(proposed_file,
+                                             proposed_entities_virtual)
 
     # Rely on the black box to choose which virtual entities
     # correlate most closely in the respective files.
@@ -89,12 +80,10 @@ class EntityPointIdentification(Dimension):
         sum(match['correct'] for match in list)
         for list in matches_virtual.values()
     ])
-
     self.correct_ceiling_virtual = sum([
         sum(match['correct_ceiling'] for match in list)
         for list in matches_virtual.values()
     ])
-
     self.incorrect_virtual = sum([
         sum(match['incorrect'] for match in list)
         for list in matches_virtual.values()
@@ -103,37 +92,33 @@ class EntityPointIdentification(Dimension):
     ###
 
     # Isolate canonically typed reporting entities
-    solution_entities_reporting = set(
+    entities_reporting = lambda file: set(
         filter(self.is_entity_canonical,
-               filter(self.is_entity_reporting, solution_file.values())))
-    proposed_entities_reporting = set(
-        filter(self.is_entity_canonical,
-               filter(self.is_entity_reporting, proposed_file.values())))
+               filter(self.is_entity_reporting, file.values())))
+
+    solution_entities_reporting = entities_reporting(solution_file)
+    proposed_entities_reporting = entities_reporting(proposed_file)
 
     # Aggregate IDs for entities which comprise the composites
     # evaluated above. These will be filtered out below so as to
     # not be scored again.
-    solution_source_ids = set(
-        solution_file[source].cloud_device_id for sublist in (
+    source_ids = lambda file, entities_virtual: set(file[
+        source].cloud_device_id for sublist in (
             (link.source
              for target_field, source_field in link.field_map.items()
              for link in entity.links
-             if target_field in solution_file[link.source].translation)
-            for entity in solution_entities_virtual for link in entity.links)
-        for source in sublist)
-    proposed_source_ids = set(
-        proposed_file[source].cloud_device_id for sublist in (
-            (link.source
-             for target_field, source_field in link.field_map.items()
-             for link in entity.links
-             if target_field in proposed_file[link.source].translation)
-            for entity in proposed_entities_virtual for link in entity.links)
-        for source in sublist)
+             if target_field in file[link.source].translation)
+            for entity in entities_virtual for link in entity.links)
+                                                    for source in sublist)
 
-    is_not_source_proposed = (
-        lambda entity: entity.cloud_device_id not in proposed_source_ids)
-    is_not_source_solution = (
-        lambda entity: entity.cloud_device_id not in solution_source_ids)
+    solution_source_ids = source_ids(solution_file, solution_entities_virtual)
+    proposed_source_ids = source_ids(proposed_file, proposed_entities_virtual)
+
+    is_not_source = lambda source_ids: (lambda entity: entity.cloud_device_id
+                                        not in source_ids)
+
+    is_not_source_solution = is_not_source(solution_source_ids)
+    is_not_source_proposed = is_not_source(proposed_source_ids)
 
     matches_reporting = []
     for solution_entity in filter(is_not_source_solution,
@@ -157,12 +142,10 @@ class EntityPointIdentification(Dimension):
         len(proposed_raw_field_names.intersection(solution_raw_field_names)) for
         proposed_raw_field_names, solution_raw_field_names in matches_reporting
     ])
-
     self.correct_ceiling_reporting = sum([
         len(solution_raw_field_names) for proposed_raw_field_names,
         solution_raw_field_names in matches_reporting
     ])
-
     self.incorrect_reporting = sum([
         len(proposed_raw_field_names.difference(solution_raw_field_names)) for
         proposed_raw_field_names, solution_raw_field_names in matches_reporting
