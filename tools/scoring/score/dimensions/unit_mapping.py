@@ -15,6 +15,7 @@
 
 from score.dimensions.dimension import Dimension
 from score.constants import FileTypes
+from score.types_ import FileType
 
 PROPOSED, SOLUTION = FileTypes
 
@@ -24,29 +25,30 @@ class UnitMapping(Dimension):
   Quantifies how accurately the proposed file
   mapped dimensional units for relevant fields.
   """
-  def evaluate(self):
-    # Combine translations for all devices within the dictionary
-    condense_translations = lambda file_type: [
+  def _condense_translations(self, file_type: FileType):
+    """ Combines translations for all devices within the dictionary """
+    return [
         matched_translations[file_type]
         for matched_translations in self.translations.values()
         if matched_translations[file_type]
     ]
 
-    solution_condensed = condense_translations(SOLUTION)
-    proposed_condensed = condense_translations(PROPOSED)
+  def _fetch_mappings(self, translations):
+    return set([(field[0], kv)
+                for field in (field for field in translations
+                              if type(field[1]).__name__ == 'DimensionalValue')
+                for kv in field[1].unit_mappings.items()])
+
+  def evaluate(self):
+    proposed_condensed = self._condense_translations(PROPOSED)
+    solution_condensed = self._condense_translations(SOLUTION)
 
     # Account for empty list
-    solution_translations = solution_condensed and solution_condensed[0]
     proposed_translations = proposed_condensed and proposed_condensed[0]
+    solution_translations = solution_condensed and solution_condensed[0]
 
-    mappings = lambda translations: set(
-        [(field[0], kv)
-         for field in (field for field in translations
-                       if type(field[1]).__name__ == 'DimensionalValue')
-         for kv in field[1].unit_mappings.items()])
-
-    solution_mappings = mappings(solution_translations)
-    proposed_mappings = mappings(proposed_translations)
+    proposed_mappings = self._fetch_mappings(proposed_translations)
+    solution_mappings = self._fetch_mappings(solution_translations)
 
     correct_mappings = proposed_mappings.intersection(solution_mappings)
 
