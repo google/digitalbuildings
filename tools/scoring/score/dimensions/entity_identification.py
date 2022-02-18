@@ -29,7 +29,7 @@ class EntityIdentification(Dimension):
   Quantifies whether the correct entities
   were included in the proposed file.
   """
-  def _ListIdsReporting(self, file: DeserializedFile) -> List[CloudDeviceId]:
+  def _list_ids_reporting(self, file: DeserializedFile) -> List[CloudDeviceId]:
     """ Generates list of `cloud_device_id`s representing
     reporting entities with canonical types """
     return [
@@ -38,7 +38,7 @@ class EntityIdentification(Dimension):
                              filter(self.is_entity_reporting, file.values()))
     ]
 
-  def _ListIdsVirtual(self, file: DeserializedFile) -> List[CloudDeviceId]:
+  def _list_ids_virtual(self, file: DeserializedFile) -> List[CloudDeviceId]:
     """ Generates list of `cloud_device_id`s representing
     reporting entities with canonical types that
     are linked to by virtual entities """
@@ -55,10 +55,10 @@ class EntityIdentification(Dimension):
                                        (PROPOSED, SOLUTION))
 
     proposed_reporting_ids, solution_reporting_ids = map(
-        self._ListIdsReporting, (proposed_file, solution_file))
+        self._list_ids_reporting, (proposed_file, solution_file))
 
     proposed_virtual_ids, solution_virtual_ids = map(
-        self._ListIdsVirtual, (proposed_file, solution_file))
+        self._list_ids_virtual, (proposed_file, solution_file))
 
     self.correct_reporting = sum((Counter(proposed_reporting_ids)
                                   & Counter(solution_reporting_ids)).values())
