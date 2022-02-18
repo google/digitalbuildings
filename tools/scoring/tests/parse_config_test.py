@@ -24,6 +24,8 @@ from yamlformat.validator.presubmit_validate_types_lib import ConfigUniverse
 from validate import handler as validator
 from validate.field_translation import NonDimensionalValue
 
+from typing import Any, NamedTuple
+
 PROPOSED, SOLUTION = FileTypes
 SIMPLE, COMPLEX = DimensionCategories
 
@@ -127,28 +129,30 @@ class ParseConfigTest(absltest.TestCase):
                      NonDimensionalValue)
 
   def testAggregateResults(self):
-    mock_dimension_simple = (
-        lambda *, translations: f'called with {translations}')
-    # Set the name so the lambda functions don't collide when
-    # they are keyed under their name in the dictionary
-    mock_dimension_simple.__name__ = SIMPLE
+    class _MockDimensionComplex(NamedTuple):
+      deserialized_files: Any
 
-    mock_dimension_complex = (
-        lambda *, deserialized_files: f'called with {deserialized_files}')
-    mock_dimension_complex.__name__ = COMPLEX
+      def evaluate(self):
+        return f'called with {self.deserialized_files}'
+
+    class _MockDimensionSimple(NamedTuple):
+      translations: Any
+
+      def evaluate(self):
+        return f'called with {self.translations}'
 
     results = parse_config.ParseConfig.aggregate_results(
         dimensions={
-            f'{SIMPLE}': [mock_dimension_simple],
-            f'{COMPLEX}': [mock_dimension_complex]
+            f'{SIMPLE}': [_MockDimensionSimple],
+            f'{COMPLEX}': [_MockDimensionComplex]
         },
         translations='argument for simple dimensions',
         deserialized_files='argument for complex dimensions')
 
     self.assertEqual(type(results), dict)
-    self.assertEqual(results[SIMPLE],
+    self.assertEqual(results['_MockDimensionSimple'],
                      'called with argument for simple dimensions')
-    self.assertEqual(results[COMPLEX],
+    self.assertEqual(results['_MockDimensionComplex'],
                      'called with argument for complex dimensions')
 
 
