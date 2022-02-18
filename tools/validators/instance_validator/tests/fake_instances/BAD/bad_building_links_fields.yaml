@@ -17,6 +17,7 @@
 ENTITY-NAME:
   type: FACILITIES/BUILDING
   id: SYSTEM/ID1234
+  guid: ENTITY-NAME-guid
   links:
     A-FOURTH-ENTITY:
       invalid_field: supply_air_damper_position_command_1
@@ -24,3 +25,4 @@ ENTITY-NAME:
 A-FOURTH-ENTITY:
   type: FACILITIES/BUILDING
   id: FACILITIES/123456
+  guid: A-FOURTH-ENTITY-guid

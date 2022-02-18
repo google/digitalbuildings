@@ -183,7 +183,8 @@ class HandlerTest(absltest.TestCase):
     parsed = dict(parsed)
     instances = {}
     for name, ei in parsed.items():
-      instances[name] = entity_instance.EntityInstance.FromYaml(ei)
+      instances[name] = entity_instance.EntityInstance.FromYaml(
+          name, ei, code_to_guid_map={})
 
     valid_entities = entity_helper.Validate(instances, _INIT_CFG)
 

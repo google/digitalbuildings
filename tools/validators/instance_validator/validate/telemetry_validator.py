@@ -47,8 +47,11 @@ class TelemetryValidator(object):
        entities were seen or because the timeout duration was reached
     """
     super().__init__()
-    self.entities_with_translation = dict(
-        filter((lambda entities: entities[1].translation), entities.items()))
+    self.entities_with_translation = {
+        entity.code: entity
+        for entity in entities.values()
+        if entity.translation
+    }
     self.timeout = timeout
     self.callback = callback
     self.validated_entities = {}

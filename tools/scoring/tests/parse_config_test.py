@@ -17,11 +17,15 @@ from absl.testing import absltest
 from unittest.mock import call, patch
 
 from score import parse_config
+from score.constants import FileTypes, DimensionCategories
+
 from yamlformat.validator.presubmit_validate_types_lib import ConfigUniverse
 
 from validate import handler as validator
-
 from validate.field_translation import NonDimensionalValue
+
+PROPOSED, SOLUTION = FileTypes
+SIMPLE, COMPLEX = DimensionCategories
 
 
 class ParseConfigTest(absltest.TestCase):
@@ -36,16 +40,16 @@ class ParseConfigTest(absltest.TestCase):
 
   def testInitialize(self):
     self.assertEqual(self.parse.args['ontology'], self.ontology)
-    self.assertEqual(self.parse.args['solution'], self.solution)
-    self.assertEqual(self.parse.args['proposed'], self.proposed)
+    self.assertEqual(self.parse.args[SOLUTION], self.solution)
+    self.assertEqual(self.parse.args[PROPOSED], self.proposed)
     self.assertFalse(self.parse.args['verbose'])
 
     self.assertEqual(type(self.parse.universe), ConfigUniverse)
 
-    self.assertEqual(type(self.parse.deserialized_files['proposed']),
-                     dict)  # Dict[str, EntityInstance]
-    self.assertEqual(type(self.parse.deserialized_files['solution']),
-                     dict)  # Dict[str, EntityInstance]
+    self.assertEqual(type(self.parse.deserialized_files[PROPOSED]),
+                     dict)  # DeserializedFile
+    self.assertEqual(type(self.parse.deserialized_files[SOLUTION]),
+                     dict)  # DeserializedFile
 
     self.assertEqual(type(self.parse.results), dict)
 
@@ -54,10 +58,10 @@ class ParseConfigTest(absltest.TestCase):
     self.parse.append_types()
     self.assertEqual(mock_print.call_count, 4)
     calls = [
-        call('proposed translations absent: 0 (from 0 links)'),
-        call('proposed types absent: 0 (0 instances)'),
-        call('solution translations absent: 0 (from 0 links)'),
-        call('solution types absent: 0 (0 instances)')
+        call(f'{PROPOSED} translations absent: 0 (from 0 links)'),
+        call(f'{PROPOSED} types absent: 0 (0 instances)'),
+        call(f'{SOLUTION} translations absent: 0 (from 0 links)'),
+        call(f'{SOLUTION} types absent: 0 (0 instances)')
     ]
     mock_print.assert_has_calls(calls)
 
@@ -91,51 +95,57 @@ class ParseConfigTest(absltest.TestCase):
         proposed_entities=proposed_entities,
         solution_entities=solution_entities)
 
-    self.assertEqual(type(translations), dict)
+    self.assertEqual(type(translations), dict)  # TranslationsDict
     self.assertEqual(len(translations.items()), len(matches))
 
     cdid = '2599571827844401'
 
     self.assertEqual(type(translations[cdid]), dict)
 
-    self.assertTrue('proposed_translations' in translations[cdid])
-    self.assertEqual(type(translations[cdid]['proposed_translations']), list)
-    self.assertEqual(len(translations[cdid]['proposed_translations']), 1)
-    self.assertEqual(type(translations[cdid]['proposed_translations'][0]),
+    self.assertTrue(f'{PROPOSED}_translations' in translations[cdid])
+    self.assertEqual(type(translations[cdid][f'{PROPOSED}_translations']), list)
+    self.assertEqual(len(translations[cdid][f'{PROPOSED}_translations']), 1)
+    self.assertEqual(type(translations[cdid][f'{PROPOSED}_translations'][0]),
                      tuple)
-    self.assertEqual(translations[cdid]['proposed_translations'][0][0], 'wrong')
-    self.assertEqual(type(translations[cdid]['proposed_translations'][0][1]),
+    self.assertEqual(translations[cdid][f'{PROPOSED}_translations'][0][0],
+                     'wrong')
+    self.assertEqual(type(translations[cdid][f'{PROPOSED}_translations'][0][1]),
                      NonDimensionalValue)
 
-    self.assertTrue('solution_translations' in translations[cdid])
-    self.assertEqual(type(translations[cdid]['solution_translations']), list)
-    self.assertEqual(len(translations[cdid]['solution_translations']), 1)
-    self.assertEqual(type(translations[cdid]['solution_translations'][0]),
+    self.assertTrue(f'{SOLUTION}_translations' in translations[cdid])
+    self.assertEqual(type(translations[cdid][f'{SOLUTION}_translations']), list)
+    self.assertEqual(len(translations[cdid][f'{SOLUTION}_translations']), 1)
+    self.assertEqual(type(translations[cdid][f'{SOLUTION}_translations'][0]),
                      tuple)
-    self.assertEqual(translations[cdid]['solution_translations'][0][0],
+    self.assertEqual(translations[cdid][f'{SOLUTION}_translations'][0][0],
                      'target')
-    self.assertEqual(type(translations[cdid]['solution_translations'][0][1]),
+    self.assertEqual(type(translations[cdid][f'{SOLUTION}_translations'][0][1]),
                      NonDimensionalValue)
 
-  def testAggregateResultsNonDbo(self):
-    mock_dimension = lambda *, translations: f'called with {translations}'
-    results = parse_config.ParseConfig.aggregate_results_nondbo(
-        dimensions=[mock_dimension], translations='arbitrary')
+  def testAggregateResults(self):
+    mock_dimension_simple = (
+        lambda *, translations: f'called with {translations}')
+    # Set the name so the lambda functions don't collide when
+    # they are keyed under their name in the dictionary
+    mock_dimension_simple.__name__ = SIMPLE
+
+    mock_dimension_complex = (
+        lambda *, deserialized_files: f'called with {deserialized_files}')
+    mock_dimension_complex.__name__ = COMPLEX
+
+    results = parse_config.ParseConfig.aggregate_results(
+        dimensions={
+            f'{SIMPLE}': [mock_dimension_simple],
+            f'{COMPLEX}': [mock_dimension_complex]
+        },
+        translations='argument for simple dimensions',
+        deserialized_files='argument for complex dimensions')
 
     self.assertEqual(type(results), dict)
-    self.assertEqual(results['<lambda>'], 'called with arbitrary')
-
-  def testAggregateResultsDbo(self):
-    mock_dbo_dimension = (
-        lambda *, proposed_entities, solution_entities:
-        f'called with {proposed_entities} {solution_entities}')
-    results_dbo = parse_config.ParseConfig.aggregate_results_dbo(
-        dbo_dimensions=[mock_dbo_dimension],
-        proposed_entities='arbitrary',
-        solution_entities='arguments')
-
-    self.assertEqual(type(results_dbo), dict)
-    self.assertEqual(results_dbo['<lambda>'], 'called with arbitrary arguments')
+    self.assertEqual(results[SIMPLE],
+                     'called with argument for simple dimensions')
+    self.assertEqual(results[COMPLEX],
+                     'called with argument for complex dimensions')
 
 
 if __name__ == '__main__':

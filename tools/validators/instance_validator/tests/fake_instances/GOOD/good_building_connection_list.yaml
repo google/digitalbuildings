@@ -16,6 +16,7 @@
 UK-LON-S2:
   type: FACILITIES/BUILDING
   id: FACILITIES/123456
+  guid: UK-LON-S2-guid
   connections:
     # Listed entities are sources on connections
     ANOTHER-ENTITY:
