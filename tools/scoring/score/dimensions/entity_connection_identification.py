@@ -17,6 +17,7 @@
 
 from score.dimensions.dimension import Dimension
 from score.constants import FileTypes
+from score.types_ import DeserializedFile
 
 PROPOSED, SOLUTION = FileTypes
 
@@ -26,6 +27,21 @@ class EntityConnectionIdentification(Dimension):
   Quantifies whether connections between entities were
   correctly and completely defined in the proposed file.
   """
+  def _isolate_connections(self, file: DeserializedFile):
+    return [
+        tup for tup in (((cloud_device_id, connection)
+                         for connection in entity.connections)
+                        for cloud_device_id, entity in file.items()
+                        if entity.connections is not None) for tup in tup
+    ]
+
+  def _condense_connections(self, connections):
+    """ Condense connections into sets of strings
+    for easy comparison using intersection """
+    return set([
+        f'{target} {connection.ctype} {connection.source}'
+        for target, connection in connections
+    ])
 
   # TODO: Figure out how to elegantly implement "facilities"
   # and "equipment" categories given current object model
@@ -33,32 +49,13 @@ class EntityConnectionIdentification(Dimension):
     proposed_file, solution_file = map(self.deserialized_files.get,
                                        (PROPOSED, SOLUTION))
 
-    # Isolate the connections from each dictionary of entities
-    solution_connections = [
-        tup for tup in (((cloud_device_id, connection)
-                         for connection in entity.connections)
-                        for cloud_device_id, entity in solution_file.items()
-                        if entity.connections is not None) for tup in tup
-    ]
-    proposed_connections = [
-        tup for tup in (((cloud_device_id, connection)
-                         for connection in entity.connections)
-                        for cloud_device_id, entity in proposed_file.items()
-                        if entity.connections is not None) for tup in tup
-    ]
+    proposed_connections = self._isolate_connections(proposed_file)
+    solution_connections = self._isolate_connections(solution_file)
 
-    fstring = (lambda target, connection:
-               f'{target} {connection.ctype} {connection.source}')
-
-    # Condense them into sets of strings for easy comparison using intersection
-    solution_connections_condensed = set([
-        fstring(target, connection)
-        for target, connection in solution_connections
-    ])
-    proposed_connections_condensed = set([
-        fstring(target, connection)
-        for target, connection in proposed_connections
-    ])
+    proposed_connections_condensed = self._condense_connections(
+        proposed_connections)
+    solution_connections_condensed = self._condense_connections(
+        solution_connections)
 
     # Compare them
     correct = proposed_connections_condensed.intersection(
