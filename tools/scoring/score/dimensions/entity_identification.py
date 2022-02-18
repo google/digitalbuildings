@@ -17,6 +17,9 @@ from collections import Counter
 
 from score.dimensions.dimension import Dimension
 from score.constants import FileTypes
+from score.types_ import DeserializedFile, CloudDeviceId
+
+from typing import List
 
 PROPOSED, SOLUTION = FileTypes
 
@@ -26,52 +29,46 @@ class EntityIdentification(Dimension):
   Quantifies whether the correct entities
   were included in the proposed file.
   """
+  def _ListIdsReporting(self, file: DeserializedFile) -> List[CloudDeviceId]:
+    """ Generates list of `cloud_device_id`s representing
+    reporting entities with canonical types """
+    return [
+        entity.cloud_device_id
+        for entity in filter(self.is_entity_canonical,
+                             filter(self.is_entity_reporting, file.values()))
+    ]
+
+  def _ListIdsVirtual(self, file: DeserializedFile) -> List[CloudDeviceId]:
+    """ Generates list of `cloud_device_id`s representing
+    reporting entities with canonical types that
+    are linked to by virtual entities """
+    return [
+        cloud_device_id for source_list in (
+            (file[link.source].cloud_device_id for link in entity.links)
+            for entity in filter(self.is_entity_canonical,
+                                 filter(self.is_entity_virtual, file.values())))
+        for cloud_device_id in source_list
+    ]
+
   def evaluate(self):
     proposed_file, solution_file = map(self.deserialized_files.get,
                                        (PROPOSED, SOLUTION))
 
-    # Lists of `cloud_device_id`s representing
-    # reporting entities with canonical types
-    solution_reporting = [
-        entity.cloud_device_id for entity in filter(
-            self.is_entity_canonical,
-            filter(self.is_entity_reporting, solution_file.values()))
-    ]
-    proposed_reporting = [
-        entity.cloud_device_id for entity in filter(
-            self.is_entity_canonical,
-            filter(self.is_entity_reporting, proposed_file.values()))
-    ]
+    proposed_reporting_ids, solution_reporting_ids = map(
+        self._ListIdsReporting, (proposed_file, solution_file))
 
-    # Lists of `cloud_device_id`s representing
-    # reporting entities with canonical types that
-    # are linked to by virtual entities
-    solution_virtual = [
-        cloud_device_id for source_list in ((
-            solution_file[link.source].cloud_device_id
-            for link in entity.links) for entity in filter(
-                self.is_entity_canonical,
-                filter(self.is_entity_virtual, solution_file.values())))
-        for cloud_device_id in source_list
-    ]
-    proposed_virtual = [
-        cloud_device_id for source_list in ((
-            proposed_file[link.source].cloud_device_id
-            for link in entity.links) for entity in filter(
-                self.is_entity_canonical,
-                filter(self.is_entity_virtual, proposed_file.values())))
-        for cloud_device_id in source_list
-    ]
+    proposed_virtual_ids, solution_virtual_ids = map(
+        self._ListIdsVirtual, (proposed_file, solution_file))
 
-    self.correct_reporting = sum(
-        (Counter(proposed_reporting) & Counter(solution_reporting)).values())
-    self.correct_ceiling_reporting = len(solution_reporting)
+    self.correct_reporting = sum((Counter(proposed_reporting_ids)
+                                  & Counter(solution_reporting_ids)).values())
+    self.correct_ceiling_reporting = len(solution_reporting_ids)
     self.incorrect_reporting = (self.correct_ceiling_reporting -
                                 self.correct_reporting)
 
-    self.correct_virtual = sum(
-        (Counter(proposed_virtual) & Counter(solution_virtual)).values())
-    self.correct_ceiling_virtual = len(solution_virtual)
+    self.correct_virtual = sum((Counter(proposed_virtual_ids)
+                                & Counter(solution_virtual_ids)).values())
+    self.correct_ceiling_virtual = len(solution_virtual_ids)
     self.incorrect_virtual = self.correct_ceiling_virtual - self.correct_virtual
 
     return self
