@@ -27,36 +27,30 @@ class StandardFieldNaming(Dimension):
   (e.g. "chilled_water_flowrate_sensor")
   were selected in the proposed file.
   """
-  def evaluate(self):
-    # Combine translations for all devices within the dictionary
-    condense_translations = lambda file_type: [
-        matched_translations[file_type]
-        for matched_translations in self.translations.values()
-        if matched_translations[file_type]
-    ]
+  def _split_subfields(self, field):
+    return set(
+        filter(lambda subfield: not bool(regex.match('[0-9]+', subfield)),
+               field.split('_')))
 
-    solution_condensed = condense_translations(SOLUTION)
-    proposed_condensed = condense_translations(PROPOSED)
+  def evaluate(self):
+    proposed_condensed = self._condense_translations(PROPOSED)
+    solution_condensed = self._condense_translations(SOLUTION)
 
     # Account for empty list
-    solution_translations = solution_condensed and solution_condensed[0]
     proposed_translations = proposed_condensed and proposed_condensed[0]
+    solution_translations = solution_condensed and solution_condensed[0]
 
     correct_subfields = []
     correct_ceiling: int = 0
     incorrect_subfields = []
 
     for s_field, s_value in solution_translations:
-      split_subfields = lambda field: set(
-          filter(lambda subfield: not bool(regex.match('[0-9]+', subfield)),
-                 field.split('_')))
-
-      s_subfields = split_subfields(s_field)
+      s_subfields = self._split_subfields(s_field)
       correct_ceiling += len(s_subfields)
 
       for p_field, p_value in proposed_translations:
         if p_value.raw_field_name == s_value.raw_field_name:
-          p_subfields = split_subfields(p_field)
+          p_subfields = self._split_subfields(p_field)
 
           correct_subfields += p_subfields.intersection(s_subfields)
           incorrect_subfields += p_subfields.difference(s_subfields)
