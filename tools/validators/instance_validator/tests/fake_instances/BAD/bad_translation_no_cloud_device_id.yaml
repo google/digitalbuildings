@@ -19,6 +19,7 @@
 UK-LON-S2:
   type: FACILITIES/BUILDING
   id: FACILITIES/123456
+  guid: UK-LON-S2-guid
   translation:
     zone_air_temperature_sensor:
       present_value: "temp_1"

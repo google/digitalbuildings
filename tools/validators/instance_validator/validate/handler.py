@@ -36,7 +36,7 @@ def Deserialize(
     yaml_files: list of building configuration files.
 
   Returns:
-    A map of entity name to EntityInstance.
+    A map of entity GUID to EntityInstance.
   """
 
   print('Validating syntax please wait ...')
@@ -50,15 +50,36 @@ def Deserialize(
   if parser.GetConfigMode() == instance_parser.ConfigMode.UPDATE:
     default_entity_operation = instance_parser.EntityOperation.UPDATE
 
+  code_to_guid_map = _CreateCodeToGuidMap(parser)
+
   entities = {}
-  for entity_name, entity_yaml in parser.GetEntities().items():
+  for entity_key, entity_yaml in parser.GetEntities().items():
     try:
-      entities[entity_name] = entity_instance.EntityInstance.FromYaml(
-          entity_yaml, default_entity_operation)
-    except ValueError:
-      print('Invalid Entity ' + entity_name)
+      entity = entity_instance.EntityInstance.FromYaml(
+          entity_key, entity_yaml, code_to_guid_map, default_entity_operation)
+      entities[entity.guid] = entity
+    except ValueError as ex:
+      print(f'Invalid Entity {entity_key}: {ex}')
       raise
   return entities, parser.GetConfigMode()
+
+
+def _CreateCodeToGuidMap(
+    parser: instance_parser.InstanceParser) -> Dict[str, str]:
+  """Creates a map from entity code to GUID for all entities."""
+  code_to_guid_map: Dict[str, str] = {}
+
+  for entity_key, entity_yaml in parser.GetEntities().items():
+    if instance_parser.ENTITY_CODE_KEY in entity_yaml:
+      entity_code = entity_yaml[instance_parser.ENTITY_CODE_KEY]
+      entity_guid = entity_key
+      code_to_guid_map[entity_code] = entity_guid
+    else:
+      entity_code = entity_key
+      entity_guid = entity_yaml.get(instance_parser.ENTITY_GUID_KEY)
+      code_to_guid_map[entity_code] = entity_guid
+
+  return code_to_guid_map
 
 
 def _ValidateConfig(
@@ -211,7 +232,7 @@ class EntityHelper(object):
       config_mode: processing mode of the configuration
 
     Returns:
-      A dictionary containing valid entities by name
+      A dictionary containing valid entities by GUID
 
     Raises:
       SyntaxError: If no building is found in the config
@@ -221,14 +242,14 @@ class EntityHelper(object):
     valid_entities = {}
     validator = entity_instance.CombinationValidator(self.universe, config_mode,
                                                      entities)
-    for entity_name, current_entity in entities.items():
+    for entity_guid, current_entity in entities.items():
       if (current_entity.operation is not instance_parser.EntityOperation.DELETE
           and current_entity.type_name.lower() == 'building'):
         building_found = True
       if not validator.Validate(current_entity):
-        print(entity_name, 'is not a valid instance')
+        print(entity_guid, 'is not a valid instance')
         continue
-      valid_entities[entity_name] = current_entity
+      valid_entities[entity_guid] = current_entity
 
     if not building_found:
       print('Config must contain a non-deleted entity with a building type')

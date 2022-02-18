@@ -16,3 +16,4 @@
 ZONE-105:
   type: HVAC/ZONE
   id: CDM/f7ed1725-53f9-4978-98c7-648f5d66e98e
+  guid: ZONE-105-guid

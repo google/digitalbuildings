@@ -14,14 +14,15 @@
 
 """Link between two entities."""
 
+
 class Link(object):
   """A link between a source and target field of two entities.
 
   The target entity is implied to be the same as the entity that contains this
   Link instance.
 
-  Args:
-    source: source entity name
+  Attributes:
+    source: source entity GUID
     field_map: map from target entity field names to source entity field names
   """
 

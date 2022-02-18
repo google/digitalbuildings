@@ -29,6 +29,9 @@ from validate import handler
 # Default timeout duration for telemetry validation test
 DEFAULT_TIMEOUT = 600
 
+# Default path to Digital Buildings Ontology
+DEFAULT_ONTOLOGY_PATH = '../ontology/yaml/resources'
+
 
 def _ParseArgs() -> argparse.ArgumentParser:
   """Generates an argument parser for user input.
@@ -68,6 +71,7 @@ def _ParseArgs() -> argparse.ArgumentParser:
       '--modified-ontology-types',
       dest='modified_types_filepath',
       required=False,
+      default=DEFAULT_ONTOLOGY_PATH,
       help='Filepath to modified type filepaths',
       metavar='MODIFIED_TYPE_FILEPATHS')
 
