@@ -14,11 +14,10 @@
 """ Core component """
 
 from score.dimensions.dimension import Dimension
-from score.types_ import DeserializedFile, EntityInstance
+from score.types_ import DeserializedFile, EntityInstance, CloudDeviceId, PointsVirtualList
 from score.constants import FileTypes
-from typing import Set
 
-from tools.scoring.score.types_ import CloudDeviceId, PointsVirtualList
+from typing import Set
 
 PROPOSED, SOLUTION = FileTypes
 
