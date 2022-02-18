@@ -49,13 +49,12 @@ class EntityConnectionIdentification(Dimension):
     proposed_file, solution_file = map(self.deserialized_files.get,
                                        (PROPOSED, SOLUTION))
 
-    proposed_connections = self._isolate_connections(proposed_file)
-    solution_connections = self._isolate_connections(solution_file)
+    proposed_connections, solution_connections = map(
+        self._isolate_connections, (proposed_file, solution_file))
 
-    proposed_connections_condensed = self._condense_connections(
-        proposed_connections)
-    solution_connections_condensed = self._condense_connections(
-        solution_connections)
+    proposed_connections_condensed, solution_connections_condensed = map(
+        self._condense_connections,
+        (proposed_connections, solution_connections))
 
     # Compare them
     correct = proposed_connections_condensed.intersection(

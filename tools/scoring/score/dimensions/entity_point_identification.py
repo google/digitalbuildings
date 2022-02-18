@@ -84,8 +84,8 @@ class EntityPointIdentification(Dimension):
     proposed_file, solution_file = map(self.deserialized_files.get,
                                        (PROPOSED, SOLUTION))
 
-    proposed_entities_virtual = self._isolate_entities_virtual(proposed_file)
-    solution_entities_virtual = self._isolate_entities_virtual(solution_file)
+    proposed_entities_virtual, solution_entities_virtual = map(
+        self._isolate_entities_virtual, (proposed_file, solution_file))
 
     proposed_points_virtual = self._fetch_points_virtual(
         proposed_file, proposed_entities_virtual)
@@ -114,10 +114,8 @@ class EntityPointIdentification(Dimension):
 
     ### REPORTING ###
 
-    proposed_entities_reporting = self._isolate_entities_reporting(
-        proposed_file)
-    solution_entities_reporting = self._isolate_entities_reporting(
-        solution_file)
+    proposed_entities_reporting, solution_entities_reporting = map(
+        self._isolate_entities_reporting, (proposed_file, solution_file))
 
     proposed_source_ids = self._fetch_source_ids_virtual(
         proposed_file, proposed_entities_virtual)

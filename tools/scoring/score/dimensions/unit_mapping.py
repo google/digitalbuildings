@@ -31,15 +31,15 @@ class UnitMapping(Dimension):
                 for kv in field[1].unit_mappings.items()])
 
   def evaluate(self):
-    proposed_condensed = self._condense_translations(PROPOSED)
-    solution_condensed = self._condense_translations(SOLUTION)
+    proposed_condensed, solution_condensed = map(self._condense_translations,
+                                                 (PROPOSED, SOLUTION))
 
     # Account for empty list
     proposed_translations = proposed_condensed and proposed_condensed[0]
     solution_translations = solution_condensed and solution_condensed[0]
 
-    proposed_mappings = self._fetch_mappings(proposed_translations)
-    solution_mappings = self._fetch_mappings(solution_translations)
+    proposed_mappings, solution_mappings = map(
+        self._fetch_mappings, (proposed_translations, solution_translations))
 
     correct_mappings = proposed_mappings.intersection(solution_mappings)
 

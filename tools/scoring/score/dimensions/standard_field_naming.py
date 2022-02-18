@@ -33,8 +33,8 @@ class StandardFieldNaming(Dimension):
                field.split('_')))
 
   def evaluate(self):
-    proposed_condensed = self._condense_translations(PROPOSED)
-    solution_condensed = self._condense_translations(SOLUTION)
+    proposed_condensed, solution_condensed = map(self._condense_translations,
+                                                 (PROPOSED, SOLUTION))
 
     # Account for empty list
     proposed_translations = proposed_condensed and proposed_condensed[0]

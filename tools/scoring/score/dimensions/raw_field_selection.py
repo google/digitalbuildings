@@ -32,15 +32,16 @@ class RawFieldSelection(Dimension):
     ])
 
   def evaluate(self):
-    proposed_condensed = self._condense_translations(PROPOSED)
-    solution_condensed = self._condense_translations(SOLUTION)
+    proposed_condensed, solution_condensed = map(self._condense_translations,
+                                                 (PROPOSED, SOLUTION))
 
     # Account for empty list
     proposed_translations = proposed_condensed and proposed_condensed[0]
     solution_translations = solution_condensed and solution_condensed[0]
 
-    proposed_fields = self._fetch_raw_field_names(proposed_translations)
-    solution_fields = self._fetch_raw_field_names(solution_translations)
+    proposed_fields, solution_fields = map(
+        self._fetch_raw_field_names,
+        (proposed_translations, solution_translations))
 
     correct_fields = proposed_fields.intersection(solution_fields)
     incorrect_fields = proposed_fields.difference(solution_fields)
