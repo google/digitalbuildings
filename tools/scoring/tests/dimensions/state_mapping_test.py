@@ -27,7 +27,7 @@ class StateMappingTest(absltest.TestCase):
     super().setUp()
     # TODO: add real data (append cases to existing tests)
     translations = {'cloud_device_id': {PROPOSED: [], SOLUTION: []}}
-    self.state_mapping = StateMapping(translations=translations)
+    self.state_mapping = StateMapping(translations=translations).evaluate()
 
   def testDirectlyAssignedAttributes(self):
     self.assertEqual(self.state_mapping.correct_reporting, 0)

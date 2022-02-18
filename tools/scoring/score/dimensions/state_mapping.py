@@ -14,7 +14,6 @@
 """ Core component """
 
 from score.dimensions.dimension import Dimension
-from score.types_ import TranslationsDict
 from score.constants import FileTypes
 
 PROPOSED, SOLUTION = FileTypes
@@ -25,13 +24,11 @@ class StateMapping(Dimension):
   Quantifies how accurately the proposed file
   mapped multi-state values for relevant fields.
   """
-  def __init__(self, *, translations: TranslationsDict):
-    super().__init__(translations=translations)
-
+  def evaluate(self):
     # Combine translations for all devices within the dictionary
     condense_translations = lambda file_type: [
         matched_translations[file_type]
-        for matched_translations in translations.values()
+        for matched_translations in self.translations.values()
         if matched_translations[file_type]
     ]
 
@@ -56,3 +53,5 @@ class StateMapping(Dimension):
     self.correct_ceiling_reporting = len(solution_mappings)
     self.incorrect_reporting = (self.correct_ceiling_reporting -
                                 self.correct_reporting)
+
+    return self

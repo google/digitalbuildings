@@ -27,7 +27,8 @@ class StandardFieldNamingTest(absltest.TestCase):
     super().setUp()
     # TODO: add real data (append cases to existing tests)
     translations = {'cloud_device_id': {PROPOSED: [], SOLUTION: []}}
-    self.standard_field_naming = StandardFieldNaming(translations=translations)
+    self.standard_field_naming = StandardFieldNaming(
+        translations=translations).evaluate()
 
   def testDirectlyAssignedAttributes(self):
     self.assertEqual(self.standard_field_naming.correct_reporting, 0)

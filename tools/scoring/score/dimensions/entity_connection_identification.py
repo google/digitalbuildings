@@ -16,7 +16,6 @@
 # from collections import Counter
 
 from score.dimensions.dimension import Dimension
-from score.types_ import DeserializedFilesDict
 from score.constants import FileTypes
 
 PROPOSED, SOLUTION = FileTypes
@@ -30,10 +29,8 @@ class EntityConnectionIdentification(Dimension):
 
   # TODO: Figure out how to elegantly implement "facilities"
   # and "equipment" categories given current object model
-  def __init__(self, *, deserialized_files: DeserializedFilesDict):
-    super().__init__(deserialized_files=deserialized_files)
-
-    proposed_file, solution_file = map(deserialized_files.get,
+  def evaluate(self):
+    proposed_file, solution_file = map(self.deserialized_files.get,
                                        (PROPOSED, SOLUTION))
 
     # Isolate the connections from each dictionary of entities
@@ -73,3 +70,5 @@ class EntityConnectionIdentification(Dimension):
     self.correct_ceiling_override = len(solution_connections_condensed)
     self.incorrect_total_override = (self.correct_ceiling_override -
                                      self.correct_total_override)
+
+    return self

@@ -29,7 +29,7 @@ class EntityPointIdentificationTest(absltest.TestCase):
     # TODO: add real data (append cases to existing tests)
     deserialized_files = {PROPOSED: {}, SOLUTION: {}}
     self.entity_point_identification = EntityPointIdentification(
-        deserialized_files=deserialized_files)
+        deserialized_files=deserialized_files).evaluate()
 
   def testDirectlyAssignedAttributes(self):
     self.assertEqual(self.entity_point_identification.correct_virtual, 0)

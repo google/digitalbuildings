@@ -29,7 +29,7 @@ class EntityConnectionIdentificationTest(absltest.TestCase):
     # TODO: add real data (append cases to existing tests)
     deserialized_files = {PROPOSED: {}, SOLUTION: {}}
     self.entity_connection_identification = EntityConnectionIdentification(
-        deserialized_files=deserialized_files)
+        deserialized_files=deserialized_files).evaluate()
 
   def testDirectlyAssignedAttributes(self):
     self.assertEqual(

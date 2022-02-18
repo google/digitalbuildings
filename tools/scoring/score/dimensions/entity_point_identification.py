@@ -14,7 +14,7 @@
 """ Core component """
 
 from score.dimensions.dimension import Dimension
-from score.types_ import DeserializedFilesDict, PointsVirtualList
+from score.types_ import PointsVirtualList
 from score.constants import FileTypes
 
 PROPOSED, SOLUTION = FileTypes
@@ -25,10 +25,8 @@ class EntityPointIdentification(Dimension):
   Quantifies whether the proposed file
   included the correct points in each entity.
   """
-  def __init__(self, *, deserialized_files: DeserializedFilesDict):
-    super().__init__(deserialized_files=deserialized_files)
-
-    proposed_file, solution_file = map(deserialized_files.get,
+  def evaluate(self):
+    proposed_file, solution_file = map(self.deserialized_files.get,
                                        (PROPOSED, SOLUTION))
 
     # Isolate canonically typed virtual entities
@@ -146,3 +144,5 @@ class EntityPointIdentification(Dimension):
         len(proposed_raw_field_names.difference(solution_raw_field_names)) for
         proposed_raw_field_names, solution_raw_field_names in matches_reporting
     ])
+
+    return self

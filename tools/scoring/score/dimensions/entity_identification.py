@@ -16,7 +16,6 @@
 from collections import Counter
 
 from score.dimensions.dimension import Dimension
-from score.types_ import DeserializedFilesDict
 from score.constants import FileTypes
 
 PROPOSED, SOLUTION = FileTypes
@@ -27,10 +26,8 @@ class EntityIdentification(Dimension):
   Quantifies whether the correct entities
   were included in the proposed file.
   """
-  def __init__(self, *, deserialized_files: DeserializedFilesDict):
-    super().__init__(deserialized_files=deserialized_files)
-
-    proposed_file, solution_file = map(deserialized_files.get,
+  def evaluate(self):
+    proposed_file, solution_file = map(self.deserialized_files.get,
                                        (PROPOSED, SOLUTION))
 
     # Lists of `cloud_device_id`s representing
@@ -76,3 +73,5 @@ class EntityIdentification(Dimension):
         (Counter(proposed_virtual) & Counter(solution_virtual)).values())
     self.correct_ceiling_virtual = len(solution_virtual)
     self.incorrect_virtual = self.correct_ceiling_virtual - self.correct_virtual
+
+    return self

@@ -28,7 +28,7 @@ class EntityIdentificationTest(absltest.TestCase):
     # TODO: add real data (append cases to existing tests)
     deserialized_files = {PROPOSED: {}, SOLUTION: {}}
     self.entity_identification = EntityIdentification(
-        deserialized_files=deserialized_files)
+        deserialized_files=deserialized_files).evaluate()
 
   def testDirectlyAssignedAttributes(self):
     self.assertEqual(self.entity_identification.correct_reporting, 0)

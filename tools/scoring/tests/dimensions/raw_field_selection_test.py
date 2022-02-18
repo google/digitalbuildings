@@ -27,7 +27,8 @@ class RawFieldSelectionTest(absltest.TestCase):
     super().setUp()
     # TODO: add real data (append cases to existing tests)
     translations = {'cloud_device_id': {PROPOSED: [], SOLUTION: []}}
-    self.raw_field_selection = RawFieldSelection(translations=translations)
+    self.raw_field_selection = RawFieldSelection(
+        translations=translations).evaluate()
 
   def testDirectlyAssignedAttributes(self):
     self.assertEqual(self.raw_field_selection.correct_reporting, 0)

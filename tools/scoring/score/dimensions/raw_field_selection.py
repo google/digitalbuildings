@@ -14,7 +14,6 @@
 """ Core component """
 
 from score.dimensions.dimension import Dimension
-from score.types_ import TranslationsDict
 from score.constants import FileTypes
 
 PROPOSED, SOLUTION = FileTypes
@@ -26,13 +25,11 @@ class RawFieldSelection(Dimension):
   (e.g. "points.chilled_water_flowrate_sensor.present_value")
   were mapped (versus ignored) in the proposed file.
   """
-  def __init__(self, *, translations: TranslationsDict):
-    super().__init__(translations=translations)
-
+  def evaluate(self):
     # Combine translations for all devices within the dictionary
     condense_translations = lambda file_type: [
         matched_translations[file_type]
-        for matched_translations in translations.values()
+        for matched_translations in self.translations.values()
         if matched_translations[file_type]
     ]
 
@@ -57,3 +54,5 @@ class RawFieldSelection(Dimension):
     self.correct_reporting = len(correct_fields)
     self.correct_ceiling_reporting = len(set(solution_translations))
     self.incorrect_reporting = len(incorrect_fields)
+
+    return self
