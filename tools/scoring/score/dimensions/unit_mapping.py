@@ -15,7 +15,6 @@
 
 from score.dimensions.dimension import Dimension
 from score.constants import FileTypes
-from score.types_ import FileType
 
 PROPOSED, SOLUTION = FileTypes
 
@@ -25,14 +24,6 @@ class UnitMapping(Dimension):
   Quantifies how accurately the proposed file
   mapped dimensional units for relevant fields.
   """
-  def _condense_translations(self, file_type: FileType):
-    """ Combines translations for all devices within the dictionary """
-    return [
-        matched_translations[file_type]
-        for matched_translations in self.translations.values()
-        if matched_translations[file_type]
-    ]
-
   def _fetch_mappings(self, translations):
     return set([(field[0], kv)
                 for field in (field for field in translations

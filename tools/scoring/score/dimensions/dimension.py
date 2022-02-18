@@ -13,7 +13,7 @@
 # limitations under the License.
 """Core component base class"""
 
-from score.types_ import DeserializedFilesDict, TranslationsDict, PointsVirtualList, RawFieldName, EntityType
+from score.types_ import DeserializedFilesDict, TranslationsDict, PointsVirtualList, RawFieldName, EntityType, FileType
 from validate.entity_instance import EntityInstance
 from typing import Tuple, Set, List, Dict, NamedTuple
 from collections import defaultdict
@@ -179,6 +179,14 @@ class Dimension:
       incorrect_virtual = self.incorrect_virtual or 0
       incorrect_reporting = self.incorrect_reporting or 0
       return incorrect_virtual + incorrect_reporting
+
+  def _condense_translations(self, file_type: FileType):
+    """ Combines translations for all devices within the dictionary """
+    return [
+        matched_translations[file_type]
+        for matched_translations in self.translations.values()
+        if matched_translations[file_type]
+    ]
 
   @property
   def result_all(self) -> float:

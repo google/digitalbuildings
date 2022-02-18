@@ -25,28 +25,22 @@ class RawFieldSelection(Dimension):
   (e.g. "points.chilled_water_flowrate_sensor.present_value")
   were mapped (versus ignored) in the proposed file.
   """
-  def evaluate(self):
-    # Combine translations for all devices within the dictionary
-    condense_translations = lambda file_type: [
-        matched_translations[file_type]
-        for matched_translations in self.translations.values()
-        if matched_translations[file_type]
-    ]
-
-    solution_condensed = condense_translations(SOLUTION)
-    proposed_condensed = condense_translations(PROPOSED)
-
-    # Account for empty list
-    solution_translations = solution_condensed and solution_condensed[0]
-    proposed_translations = proposed_condensed and proposed_condensed[0]
-
-    raw_field_names = lambda translations: set([
+  def _fetch_raw_field_names(self, translations):
+    return set([
         translation.raw_field_name
         for standard_field_name, translation in translations
     ])
 
-    solution_fields = raw_field_names(solution_translations)
-    proposed_fields = raw_field_names(proposed_translations)
+  def evaluate(self):
+    proposed_condensed = self._condense_translations(PROPOSED)
+    solution_condensed = self._condense_translations(SOLUTION)
+
+    # Account for empty list
+    proposed_translations = proposed_condensed and proposed_condensed[0]
+    solution_translations = solution_condensed and solution_condensed[0]
+
+    proposed_fields = self._fetch_raw_field_names(proposed_translations)
+    solution_fields = self._fetch_raw_field_names(solution_translations)
 
     correct_fields = proposed_fields.intersection(solution_fields)
     incorrect_fields = proposed_fields.difference(solution_fields)
