@@ -341,3 +341,10 @@ DOAS:
   is_abstract: true
   implements:
   - EQUIPMENT
+
+TK:
+  description: "Water tank."
+  is_abstract: true
+  implements:
+    - EQUIPMENT
+

@@ -263,3 +263,24 @@ CHWS_US_SVL_TC6_1:
   uses:
   - production_differential_pressure_sensor
   - supply_water_flowrate_sensor # Need to rename to flowrate_sensor
+
+CHWS_TPKD:
+  description: "CHWS TPKD."
+  implements:
+  - CHWS
+  opt_uses:
+  - chilled_supply_water_flowrate_sensor
+  - chilled_supply_water_temperature_sensor_1
+  - chilled_supply_water_temperature_sensor_2
+  - chilled_supply_water_temperature_sensor_3
+  - chilled_supply_water_temperature_sensor_4
+  - chilled_supply_water_temperature_sensor_5
+  - chilled_return_water_temperature_sensor_1
+  - chilled_return_water_temperature_sensor_2
+  - chilled_return_water_temperature_sensor_3
+  - chilled_return_water_temperature_sensor_4
+  - chilled_water_bypass_valve_percentage_command
+  - chilled_water_bypass_valve_percentage_sensor
+  - run_mode
+  - chilled_water_bypass_valve_percentage_setpoint
+  - chilled_water_differential_pressure_sensor
