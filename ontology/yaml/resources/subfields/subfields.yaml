@@ -230,6 +230,7 @@ measurement:
   currentratio: "The ratio of primary amps divided by secondary amps."
   density: "Amount of mass contained in a unit volume."
   diameter: "A straight line passing from side to side through the center of a body or figure, especially a circle or sphere."
+  distance: "The length of the space between two points."
   electriccapacitance: "The ratio of the change in an electric charge in a system to the corresponding change in its electric potential."
   electricconductance: "The degree to which an object conducts electricity, calculated as the ratio of the current which flows to the potential difference present"
   electricconductivity: "The degree to which a specified material conducts electricity, calculated as the ratio of the current density in the material to the electric field which causes the flow of current."
