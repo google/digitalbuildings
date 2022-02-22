@@ -18,6 +18,7 @@ AHU-11:
   connections:
     FARSR-1: FEEDS
   id: CDM/5c77fc02-d1ab-11ea-87d0-0242ac130003
+  guid: AHU-11-guid
   type: FACILITIES/BUILDING
 
 FCU-1:
@@ -26,6 +27,7 @@ FCU-1:
     VLV-2: CONTROLS
     ZONE-G00: FEEDS
   id: CDM/32HyWf6Zv3XumC7od2m$$H
+  guid: FCU-1-guid
   cloud_device_id: "foobar"
   translation:
     chilled_water_flowrate_sensor:
@@ -147,6 +149,7 @@ FCU-10:
     VLV-17: CONTROLS
     ZONE-G03: FEEDS
   id: CDM/0yhU4Ck3z5EP0ABJsqO2$y
+  guid: FCU-10-guid
   cloud_device_id: "foobar"
   translation:
     chilled_water_flowrate_sensor:

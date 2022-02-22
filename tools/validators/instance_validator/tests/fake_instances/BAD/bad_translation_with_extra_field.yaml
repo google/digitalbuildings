@@ -17,21 +17,29 @@
 CHWS_WDT-17:
   type: HVAC/CHWS_WDT
   id: CDM/123456
+  guid: CHWS_WDT-17-guid
   cloud_device_id: "foobar"
   translation:
     supply_water_temperature_sensor:
       present_value: "points.supply_water_temperature_sensor.present_value"
       units:
-        key: "pointset.points.supply_water_temperature_sensor.units"
+        key: "points.supply_water_temperature_sensor.units"
         values:
           degrees_celsius: "degC"
-    process_water_flowrate_setpoint:
-      present_value: "points.process_water_flowrate_setpoint.present_value"
+    return_water_temperature_sensor:
+      present_value: "points.return_water_temperature_sensor.present_value"
       units:
-        key: "pointset.points.process_water_flowrate_setpoint.units"
+        key: "points.return_water_temperature_sensor.units"
+        values:
+          degrees_celsius: "degC"
+    discharge_air_temperature_sensor:
+      present_value: "points.discharge_air_temperature_sensor.present_value"
+      units:
+        key: "points.discharge_air_temperature_sensor.units"
         values:
           degrees_celsius: "degC"
 
 UK-LON-S2:
   type: FACILITIES/BUILDING
   id: FACILITIES/123456
+  guid: UK-LON-S2-guid

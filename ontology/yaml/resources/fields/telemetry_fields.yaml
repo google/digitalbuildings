@@ -122,6 +122,7 @@ literals:
 - outside_air_specificenthalpy_sensor
 - outside_air_flowrate_sensor
 - outside_air_flowrate_setpoint
+- outside_air_pressure_sensor
 - outside_air_relative_humidity_sensor
 - outside_air_temperature_sensor
 - outside_air_wetbulb_temperature_sensor
@@ -1033,6 +1034,12 @@ literals:
 - zone_air_pm4pt0_concentration_sensor
 - zone_air_pm10pt0_concentration_sensor
 
+- zone_air_pm0pt5_volumetricconcentration_sensor
+- zone_air_pm1pt0_volumetricconcentration_sensor
+- zone_air_pm2pt5_volumetricconcentration_sensor
+- zone_air_pm4pt0_volumetricconcentration_sensor
+- zone_air_pm10pt0_volumetricconcentration_sensor
+
 ## New fields for IoT vibration sensor pilot
 - fivesecondrolling_max_xaxis_linearacceleration_sensor
 - fivesecondrolling_max_yaxis_linearacceleration_sensor
@@ -1062,3 +1069,13 @@ literals:
 - tenminutefixed_max_zaxis_frequency_sensor
 - signal_strength_percentage_sensor
 - dutycycle_percentage_sensor
+
+- min_zone_air_relative_humidity_sensor
+- min_zone_air_relative_humidity_setpoint
+
+## New fields for air quality sensors
+- thirtysecondrolling_average_zone_air_co_concentration_sensor
+- thirtysecondrolling_average_zone_air_particle_diameter_sensor
+- zone_air_no2_probability_percentage_sensor
+- zone_air_no2_ozone_concentration_sensor
+

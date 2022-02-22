@@ -20,6 +20,7 @@ aggregation:
   total: "Sum total of some set of values (e.g. total_request_heating_count)"
 aggregation_descriptor:
   fivesecondrolling: "Aggregation over advancing time intervals of five seconds."
+  thirtysecondrolling: "Aggregation over advancing thirty second time interval."
   tenminutefixed: "Aggregation over fixed time intervals of ten minutes."
 component:
   battery: "A device used to store power for use at a later time (e.g. in an emergency where grid power is unavailable)."
@@ -228,6 +229,7 @@ measurement:
   current: "Flow of electric charge."
   currentratio: "The ratio of primary amps divided by secondary amps."
   density: "Amount of mass contained in a unit volume."
+  diameter: "A straight line passing from side to side through the center of a body or figure, especially a circle or sphere."
   electriccapacitance: "The ratio of the change in an electric charge in a system to the corresponding change in its electric potential."
   electricconductance: "The degree to which an object conducts electricity, calculated as the ratio of the current which flows to the potential difference present"
   electricconductivity: "The degree to which a specified material conducts electricity, calculated as the ratio of the current density in the material to the electric field which causes the flow of current."
@@ -258,6 +260,7 @@ measurement:
   magneticinduction: "Vector field that wdescribes the magnetic influence on moving electric charges, electric currents and magnetic materials."
   magneticmoment: "Measure of the magnetic strength of a magnet or current-carrying coil, expressed as the torque produced when the magnet or coil is set with its axis perpendicular to unit magnetic flux density."
   mass: "The quantity of matter which a body contains, as measured by its acceleration under a given force or by the force exerted on it by a gravitational field."
+  massconcentration: "Concentration by mass (e.g., grams per kilogram)."
   massflow: "Movement of fluids down a pressure or temperature gradient."
   obscuration: "Degree of shading."
   percentage: "Measurement per hundred."
@@ -265,7 +268,7 @@ measurement:
   power: "Rate of energy consumption (assumed context is electrical and real, unless otherwise modified)."
   powerflux: "Energy emitted, reflected, transmitted or received, per unit time."
   pressure: "Measured force per unit area within a system or process."
-  pressurechange: "Change of pressure per temperature."
+  #pressurechange: "Change of pressure per temperature." # TODO (tsodorff): find an alternative name once a use case arises 
   rate: "ratio of change compared to a step or time."
   reactivepower: "Difference between the electricity supplied and the electricity converted into useful power."
   resistance: "Electrical resistance."
@@ -283,6 +286,7 @@ measurement:
   voltage: "Electrical potential difference between two reference points."
   voltageratio: "The ratio of the Primary voltage of the transformer to the secondary voltage."
   volume: "The quantity of three-dimensional space contained by a closed surface."
+  volumetricconcentration: "Concentration in terms of volume (parts per unit volume)."
 measurement_descriptor:
   absolute: "Quality of media with respect to non-relativistic boudaries (e.g. absolute temperature)."
   apparent: "The combination of reactive and real components (power)."
@@ -305,6 +309,7 @@ measurement_descriptor:
   open: "Indicates full open (for two-position actuators).  This is the default sense if unspecified"
   override: "An action that interrupts, cancels, or changes the current action or status."
   position: "A particular way in which something is placed or arranged, such as a door in the open position."
+  probability: "The extent to which something is probable; the likelihood of something happening or being the case."
   reactive: "Power that is returned to the source (not consumed by the load)."
   relative: "Quality of media with respect to theoretical minimum or maximum value for a given condition (e.g. relative humidity)."
   run: "State of being active or operating. By default applies to control program for system (eg VAV program run_command)."

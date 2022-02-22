@@ -131,10 +131,11 @@ def _CreateEntityInstances(yaml_filename):
   parser.Finalize()
   parsed_yaml = parser.GetEntities()
 
-  entities = {}
-  for entity_name, entity_yaml in parsed_yaml.items():
-    entities[entity_name] = entity_instance.EntityInstance.FromYaml(entity_yaml)
-  return entities
+  return {
+      key:
+      entity_instance.EntityInstance.FromYaml(key, value, code_to_guid_map={})
+      for key, value in parsed_yaml.items()
+  }
 
 
 # A single test entity with numeric fields.

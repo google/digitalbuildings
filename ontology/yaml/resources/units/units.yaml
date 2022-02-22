@@ -41,6 +41,8 @@ current:
 - milliamperes
 currentratio:
 - no_units: STANDARD
+diameter: length
+distance: length
 density:
 - kilograms_per_cubic_meter: STANDARD
 - grams_per_cubic_meter
@@ -84,13 +86,15 @@ entropy:
 - megajoules_per_kelvin
 flowrate:
 - cubic_meters_per_second: STANDARD
+- cubic_feet_per_second
+- cubic_feet_per_minute
+- cubic_feet_per_hour
+- cubic_meters_per_second
 - cubic_meters_per_minute
 - cubic_meters_per_hour
 - liters_per_second
 - liters_per_minute
 - liters_per_hour
-- cubic_feet_per_second
-- cubic_feet_per_minute
 - gallons_per_minute
 - imperial_gallons_per_minute
 - us_gallons_per_minute
@@ -119,6 +123,7 @@ length:
 - meters: STANDARD
 - centimeters
 - millimeters
+- micrometers
 - feet
 - inches
 level: length
@@ -155,6 +160,8 @@ mass:
 - kilograms
 - pounds_mass
 - tons
+massconcentration:
+- grams_per_kilogram: STANDARD
 massflow:
 - grams_per_second: STANDARD
 - grams_per_minute
@@ -269,3 +276,5 @@ volume:
 - imperial_gallons
 - us_gallons
 - cubic_feet
+volumetricconcentration:
+- parts_per_cubic_centimeter: STANDARD # can be approximated using Avogadro

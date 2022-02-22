@@ -17,6 +17,7 @@
 SDC_EXT-17:
   type: HVAC/SDC_EXT
   id: CDM/123456
+  guid: SDC_EXT-17-guid
   translation:
     shade_extent_percentage_command:
       present_value: "points.shade_extent_percentage_command.present_value"
@@ -28,6 +29,7 @@ SDC_EXT-17:
 SDC_EXT-18:
   type: HVAC/SDC_EXT
   id: CDM/123456
+  guid: SDC_EXT-18-guid
   translation:
     shade_extent_percentage_command:
       present_value: "points.shade_extent_percentage_command.present_value"

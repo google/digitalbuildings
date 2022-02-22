@@ -17,3 +17,4 @@ UK-LON-S2:
   type: FACILITIES/BUILDING
   id: FACILITIES/123456
   operation: DELETE
+  guid: UK-LON-S2-guid

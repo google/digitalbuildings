@@ -33,7 +33,6 @@ they are confusing feel free to post an issue in the project.
       - [Virtual Devices](#virtual-devices)
       - [Device Relationships](#device-relationships)
     + [Zones and Control Groups](#zones-and-control-groups)
-    + [Relationships](#relationships)
   * [Validation](#validation)
   * [Notes](#notes)
 
@@ -111,8 +110,8 @@ logical division of your universe). The reason for this is that the definitions
 in the file are intentionally not keyed by a globally unique identifier. This is
 done for a few of reasons:
 
-1.  The human-readable entity name is, well, more human readable.
-2.  Using human-readable names, which are typically created at design time and
+1.  The human-readable entity code is, well, more human readable.
+2.  Using human-readable codes, which are typically created at design time and
     known a-priori, allows for incremental population of the file at different
     stages of the commissioning or onboarding process, rather than having to
     wait until all the devices are cloud-registered.
@@ -120,7 +119,7 @@ done for a few of reasons:
     equipment (because it makes it easier to find stuff).
 
 It would be trivial to flip the ID to be the top-level key and replace it with a
-"name" attribute for global uniqueness of top level keys.
+"code" attribute for global uniqueness of top level keys.
 
 ### Config Format
 
@@ -128,7 +127,8 @@ The configuration format is focused around defining the entities in the model. A
 generic entity with all possible top level fields looks like this[^5]:
 
 ```
-ENTITY-NAME:
+ENTITY-CODE:
+  guid: f7d82b75-ea41-49e2-bb5a-53228044eb4c
   type: NAMESPACE/A_DIGITAL_BUILDINGS_ENTITY_TYPE
   id: SYSTEM/ID1234
   connections:
@@ -136,7 +136,7 @@ ENTITY-NAME:
     ANOTHER-ENTITY: FEEDS
     A-THIRD-ENTITY: CONTAINS
   links:
-    A-FOURTH-ENTITY: # source device
+    A-FOURTH-ENTITY: # Source entity code
       # target_device_field: source_device_field
       supply_air_damper_position_command: supply_air_damper_command_1
       zone_air_temperature: zone_air_temperature_sensor_1
@@ -157,12 +157,13 @@ ENTITY-NAME:
         - "3"
 ```
 
-*   **Entity Name:** The human readable identifier for the entity. This should
+*   **GUID:** A globally unique identifier for the entity.
+*   **Code:** The human readable identifier for the entity. This should
     be unique in document scope.
 *   **Type:** A valid, fully qualified Digital Buildings entity type that
     represents this entity
 *   **Id:** A globally unique identifier for this entity.
-*   **cloud_device_id:** the cloud device id from the cloud iot registry. 
+*   **cloud_device_id:** the cloud device id from the cloud iot registry.
     This field is mandatory when a translation exists.
 *   **Connections:** Used to specify connections from other entities (sources)
     pointing to this entity, with connection types. Entities are keys and cannot
@@ -176,6 +177,33 @@ ENTITY-NAME:
 *   **Translation:** Used to specify how the fields of the devices native
     payload map to the standard fields of this entity's type. See
     [translation section](#translations) for more detail.
+
+The Digital Buildings platform is transitioning to another format, which is
+identical to the above format except that it deprecates the **id** attribute and
+entities are referenced by their GUID instead of their code. For example:
+
+```
+f7d82b75-ea41-49e2-bb5a-53228044eb4c:  # Entity GUID
+  code: ENTITY-CODE
+  type: NAMESPACE/A_DIGITAL_BUILDINGS_ENTITY_TYPE
+  connections:
+    # Listed entities are sources on connections
+    8302e87d-4372-448e-bf1a-f7e5db990508: FEEDS  # ANOTHER-ENTITY
+    d4c16f86-7f32-47a8-a6ec-9ae7e4404445: CONTAINS  # A-THIRD-ENTITY
+  links:
+    373c103c-1dc9-4b6b-97ee-bd7e38cdc921:  # A-FOURTH-ENTITY (source entity)
+      # target_entity_field: source_entity_field
+      supply_air_damper_position_command: supply_air_damper_command_1
+      zone_air_temperature: zone_air_temperature_sensor_1
+  ...
+```
+
+The platform tools currently support both formats, and the [GUID Generator](https://github.com/google/digitalbuildings/tree/master/tools/guid_generator)
+can accept a building configuration that contains a mixture of entities defined
+in the old format and entities defined in the new format. In that scenario, the
+generator adds GUIDs as needed and produces a building configuration that is
+entirely in the new format, making it suitable for use in the rest of the
+platform.
 
 ### Spaces
 
@@ -208,9 +236,9 @@ UK-LON-S2-1-1C3G:
 *   Floors should have `CONTAINS` connections to all Rooms
 *   Floors should have `CONTAINS` connections to all Devices
 
-In this example, entities are named using their standardized \[up to\]5-segment
-codes. Codes of this type are widely used and highly recommended due to their
-global-uniqueness and embedded hierarchy.
+In this example, entities are identified by their standardized \[up to\]5-
+segment codes. Codes of this type are widely used and highly recommended due to
+their global-uniqueness and embedded hierarchy.
 
 Types for spaces are contained in the `FACILITIES` namespace of the ontology.
 
@@ -221,9 +249,9 @@ Types for spaces are contained in the `FACILITIES` namespace of the ontology.
 When sending data from a building via Cloud IoT, a reporting device is any
 device with its own entry in Cloud Device Manager (CDM)[^1].
 
-For clarity the human readable ID of the device in CDM and the entity name in
+For clarity the human readable ID of the device in CDM and the entity code in
 the config file should be the same[^6]. If the building also has a CAD drawing
-or BIM model, good practice is for this name to also exist in the CAD or BIM
+or BIM model, good practice is for this code to also exist in the CAD or BIM
 model.
 
 The ID of the device should be a globally unique and persistent identifier for
@@ -289,7 +317,7 @@ ontology. Within each field block we provide information about the following:
 In order to eliminate duplicate work, the format provides some shortcuts to
 translation definitions:
 
-1.  Substitute the `translation` block with `translate_like:ENTITY-NAME` to use
+1.  Substitute the `translation` block with `translate_like:ENTITY-CODE` to use
     a translation that is already defined on another entity.
 2.  For devices that comply with
     [UDMI](https://github.com/faucetsdn/udmi)
@@ -375,8 +403,8 @@ own data) a virtual device is required.
 Virtual entities are nearly always logical entities. Because logical entities
 are the representations that the applications using your model will care about,
 virtual devices should generally map to canonical types. In an integrated design
-in construction stack, logical devices should be called out by name in the
-CAD/BIM models and the same name should be used for them in this config.
+in construction stack, logical devices should be called out by code in the
+CAD/BIM models and the same code should be used for them in this config.
 
 A virtual entity example:
 
@@ -391,7 +419,7 @@ VAV-32:
       ...
 ```
 
-The `name` and `type` fields are similar to reporting devices, however because a
+The `code` and `type` fields are similar to reporting devices, however because a
 logical device may not exist until this file is consumed it may be impossible to
 assign an `id` field. This will depend on your application.
 

@@ -108,6 +108,17 @@ HVAC_CHWS_TYPES_DOCUMENT = {
         'description': 'A gateway with required fields.',
         'allow_undefined_fields': True,
         'implements': ['CHWS_WDT']
+    },
+    'CHWS_WDT_WDPC2X': {
+        'description':
+            'Chilled water system with dual differential pressure control.',
+        'is_canonical': True,
+        'implements': ['CHWS_WDT'],
+        'uses': [
+            'differential_pressure_sensor_1',
+            'differential_pressure_sensor_2',
+            'differential_pressure_setpoint'
+        ]
     }
 }
 
