@@ -89,7 +89,6 @@ flowrate:
 - cubic_feet_per_second
 - cubic_feet_per_minute
 - cubic_feet_per_hour
-- cubic_meters_per_second
 - cubic_meters_per_minute
 - cubic_meters_per_hour
 - liters_per_second
@@ -160,8 +159,7 @@ mass:
 - kilograms
 - pounds_mass
 - tons
-massconcentration:
-- grams_per_kilogram: STANDARD
+massconcentration: concentration
 massflow:
 - grams_per_second: STANDARD
 - grams_per_minute
