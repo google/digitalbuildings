@@ -206,8 +206,6 @@ pressure:
 - pounds_force_per_square_inch
 - bars
 - millibars
-pressurechange:
-- psi_per_degree_fahrenheit: STANDARD
 rate:
 - inv_second: STANDARD
 reactivepower:
