@@ -223,6 +223,15 @@ CHWS_RWTC_CHWVM:
   - RWTC
   - CHWVM
 
+CHWS_SWTM_WDPC_BYPVPM:
+  id: "16842546300862857218"
+  description: "Chilled water system with supply temperature monitoring, differential pressure control and bypass valve control."
+  is_canonical: true
+  implements:
+  - CHWS
+  - RWTC
+  - CHWVM
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
