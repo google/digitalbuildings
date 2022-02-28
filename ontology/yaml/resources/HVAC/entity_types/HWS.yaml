@@ -238,7 +238,19 @@ HWS_SWTM_WDPC_BYPVPM:
   implements:
   - HWS
   - SWTM
+  - WDPC
   - BYPVPM
+
+HWS_SWTM_WDPC_BYPVPM_HWVM:
+  id: "12025993778390106114"
+  description: "Heating water system with supply temperature monitoring, differential pressure control, bypass valve control and heating water valve control."
+  is_canonical: true
+  implements:
+  - HWS
+  - SWTM
+  - WDPC
+  - BYPVPM
+  - HWVM
 
 ###################################
 ### Existing Non-standard Types ###
