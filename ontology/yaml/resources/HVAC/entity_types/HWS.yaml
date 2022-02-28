@@ -231,6 +231,15 @@ HWS_SWTC_BYPVPM_WDPC_WFRM:
   - WDPC
   - WFRC
 
+HWS_SWTM_WDPC_BYPVPM:
+  id: "12025993778390106113"
+  description: "Heating water system with supply temperature monitoring, differential pressure control and bypass valve control."
+  is_canonical: true
+  implements:
+  - HWS
+  - SWTM
+  - BYPVPM
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
