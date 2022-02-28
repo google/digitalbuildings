@@ -229,8 +229,9 @@ CHWS_SWTM_WDPC_BYPVPM:
   is_canonical: true
   implements:
   - CHWS
-  - RWTC
-  - CHWVM
+  - SWTM
+  - WDPC
+  - BYPVPM
 
 ###################################
 ### Existing Non-standard Types ###
