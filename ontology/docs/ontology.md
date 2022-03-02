@@ -359,7 +359,7 @@ Entities have:
 *   allow undefined fields flag
 *   canonical flag
 *   list of zero or more parent types
-*   GUID (Coming soon)
+*   GUID
 *   required fields
 *   optional fields
 *   Required Relationships (Coming soon)
@@ -370,8 +370,6 @@ they have the exact same fields.
 
 #### GUIDs 
 Each type has a numeric ID that is version independent
-
-TODO
 
 #### Type names 
 
@@ -405,7 +403,7 @@ inheritance is allowed with the following combination rules:
 *   Relationship requirements are additive, with the strictest requirement
     prevailing
 *   Conflicting relationships constraints are construction errors
-*   attributes (`description`, `id`, `is_canonical`, `is_abstract`) are not
+*   attributes (`description`, `guid`, `is_canonical`, `is_abstract`) are not
     inherited.
 
 As with individual types, inheritance trees are meaningful independent of
