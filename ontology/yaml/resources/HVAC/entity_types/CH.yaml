@@ -585,133 +585,139 @@ CH_SS_CHWSWISOVM_CWSISOVM_CWRISOVM_CHWRWISOVM_CHWDT:
   - lost_power_alarm
   - run_mode
 
-CH_SS_TPKD:
-  description: "CH TPKD."
+CH_SS_CHPM_REFSM_SCHWTC_DXSWC:
+  description: "Non standard water cooled chiller single stage"
   implements:
   - CH
   - SS
+  - CHPM
+  - REFSM
+  - SCHWTC
+  - DXSWC
   opt_uses:
-  - condensing_supply_water_temperature_sensor
-  - condensing_return_water_temperature_sensor
-  - chilled_supply_water_temperature_sensor
-  - chilled_return_water_temperature_sensor
+  - lost_power_alarm
+  - control_mode
+  - reset_command
+  - run_mode
+  - failed_alarm
+  - control_status
+  - chilled_water_flowrate_status
+  - condensing_water_flowrate_status
+  - oil_heater_status
+  - oil_temperature_sensor
+  - oil_pump_differential_pressure_sensor
+  - total_compressor_count
+  - guidevane_percentage_sensor
+  - exhaust_gas_compressor_temperature_sensor
+  - bearing_temperature_sensor
+  - winding_temperature_sensor
+  - entering_chilled_water_temperature_sensor
+  - leaving_chilled_water_temperature_sensor
+  - entering_condensing_water_temperature_sensor
+  - leaving_condensing_water_temperature_sensor
+  - average_line_electric_percentage_sensor
+  - line_current_sensor
+  - line_voltage_sensor
+
+CH_SS_CHPM_REFSM_SCHWTC_DXSWC_CHWSWISOVPM_CHWRWISOVPM_CWDT_CSWISVC_CSWISVC:
+  description: "Non standard water cooled chiller single stage with chilled/condensing supply/return water isolation valve control. Chilled water flowrate status"
+  implements:
+  - CH
+  - SS
+  - CHPM
+  - REFSM
+  - SCHWTC
+  - DXSWC
+  - VSFC
+  - PSMC
+  - CHWSWISOVPM
+  - CHWRWISOVPM
+  - CWDT
+  - CSWISVC
+  - CRWISVC
+  opt_uses:
   - lost_power_alarm
   - control_status
-  - speed_frequency_sensor
-  - speed_frequency_command
   - control_mode
-  - reset_alarm
-  - simulation_command
-  - end_alarm
-  - start_alarm
   - reset_command
-  - pump_speed_mode
-  - run_time_sensor
-  - pump_speed_frequency_setpoint
-  - condensing_supply_water_isolation_valve_open_status
-  - condensing_supply_water_isolation_valve_closed_status
-  - condensing_supply_water_isolation_valve_open_command
-  - condensing_supply_water_isolation_valve_closed_command
-  - condensing_supply_water_isolation_valve_mode
+  - run_mode
+  - failed_alarm
+  - condensing_water_flowrate_status
+  - chilled_water_flowrate_status
+  - chilled_supply_water_isolation_valve_mode
+  - chilled_supply_water_isolation_valve_percentage_setpoint
+  - chilled_return_water_isolation_valve_mode
+  - chilled_return_water_isolation_valve_percentage_setpoint
   - open_command_1
   - closed_command_1
   - stop_command_1
-  - condensing_supply_water_isolation_valve_failed_alarm
-  - closed_alarm_1
-  - open_alarm_1
-  - simulation_status_1
   - local_status_1
   - open_command_2
   - closed_command_2
   - stop_command_2
-  - condensing_return_water_isolation_valve_failed_alarm
-  - closed_alarm_2
-  - open_alarm_2
-  - simulation_status_2
   - local_status_2
-  - condensing_return_water_isolation_valve_open_status
-  - condensing_return_water_isolation_valve_closed_status
-  - condensing_return_water_isolation_valve_open_command
-  - condensing_return_water_isolation_valve_closed_command
-  - condensing_return_water_isolation_valve_mode
-  - chilled_supply_water_isolation_valve_percentage_sensor
-  - chilled_supply_water_isolation_valve_percentage_command
-  - chilled_supply_water_isolation_valve_mode
-  - chilled_return_water_isolation_valve_percentage_sensor
-  - chilled_return_water_isolation_valve_percentage_command
-  - chilled_return_water_isolation_valve_mode
-  - chilled_return_water_isolation_valve_percentage_setpoint
-  - chilled_water_flowrate_status
-  - condensing_water_flowrate_status
-  - compressor_run_status
-  - oil_heater_status
-  - chilled_supply_water_temperature_setpoint
-  - entering_chilled_water_temperature_sensor
-  - leaving_chilled_water_temperature_sensor
-  - refrigerant_evaporator_saturation_temperature_sensor
-  - evaporator_pressure_sensor
-  - entering_condensing_water_temperature_sensor
-  - leaving_condensing_water_temperature_sensor
-  - refrigerant_condenser_saturation_temperature_sensor
-  - condenser_pressure_sensor
-  - average_line_current_sensor
+  - average_line_electric_percentage_sensor
   - line_current_sensor
   - line_voltage_sensor
-  - powerfactor_sensor
-  - power_sensor
-  - compressor_speed_percentage_sensor
-  - run_mode
-  - failed_alarm
-  - inhibit_start_time_command
-  - limit_percentage_capacity
   - total_compressor_count
-  - compressor_run_time_sensor
   - guidevane_percentage_sensor
+  - oil_heater_status
   - oil_temperature_sensor
   - oil_pump_differential_pressure_sensor
   - exhaust_gas_compressor_temperature_sensor
   - bearing_temperature_sensor
   - winding_temperature_sensor
-  - failed_alarm_1
-  - failed_alarm_2
+  - entering_chilled_water_temperature_sensor
+  - leaving_chilled_water_temperature_sensor
+  - entering_condensing_water_temperature_sensor
+  - leaving_condensing_water_temperature_sensor
+
+CH_SS_CHDX2SC_CWDT:
+  description: "Non standard water cooled chiller single stage with compressor & condenser control"
+  implements:
+  - CH
+  - SS
+  - CHDX2SC
+  - CWDT
+  opt_uses:
+  - lost_power_alarm
+  - control_mode
+  - reset_command
+  - start_mode
+  - control_status
+  - chilled_water_flowrate_status
+  - condensing_water_flowrate_status
+  - condensing_water_differential_pressure_alarm
+  - chilled_supply_water_low_temperature_alarm
+  - chilled_water_flowrate_alarm
+  - chilled_water_differential_pressure_alarm
+  - condensing_water_flowrate_alarm
   - compressor_temperature_setpoint_1
-  - compressor_temperature_setpoint_2
-  - compressor_run_time_sensor_1
   - load_compressor_percentage_setpoint_1
-  - load_compressor_percentage_setpoint_2
   - compressor_power_sensor_1
   - compressor_open_percentage_command_1
-  - compressor_open_percentage_command_2
   - high_pressure_sensor_1
   - high_temperature_sensor_1
   - low_pressure_sensor_1
   - low_temperature_sensor_1
   - compressor_current_sensor_1
-  - compressor_current_sensor_2
-  - compressor_run_time_sensor_2
-  - compressor_percentage_sensor_1
-  - compressor_percentage_sensor_2
+  - compressor_temperature_setpoint_2
+  - load_compressor_percentage_setpoint_2
   - compressor_power_sensor_2
-  - refrigerant_valve_percentage_sensor_2
-  - refrigerant_valve_percentage_sensor_1
+  - compressor_open_percentage_command_2
   - high_pressure_sensor_2
   - high_temperature_sensor_2
   - low_pressure_sensor_2
   - low_temperature_sensor_2
-  - current_sensor
-  - compressor_run_status_1
-  - compressor_run_status_2
+  - compressor_current_sensor_2
+  - failed_alarm_1
+  - failed_alarm_2
   - standby_compressor_alarm_1
   - standby_compressor_alarm_2
   - high_pressure_alarm_1
   - high_pressure_alarm_2
   - low_pressure_alarm_1
   - low_pressure_alarm_2
-  - condensing_water_differential_pressure_alarm
-  - chilled_supply_water_low_temperature_alarm
-  - chilled_water_flowrate_alarm
-  - chilled_water_differential_pressure_alarm
-  - condensing_water_flowrate_alarm
   - low_temperature_alarm_1
   - compressor_current_alarm_1
   - low_temperature_alarm_2

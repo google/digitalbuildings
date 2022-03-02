@@ -50,15 +50,14 @@ HM_HW:
   - heating_thermal_energy_accumulator
 
 
-HM_TPKD:
-  description: "Cooling load heat meter with total chilled water volume accumulator."
+HM_CW:
+  description: "Cooling load heat meter for condensing water header pipe."
   implements:
   - HM
   is_canonical: true
   uses:
-  - condensing_return_water_temperature_sensor
-  - condensing_supply_water_temperature_sensor
   - condensing_water_flowrate_sensor
-  - cooling_thermal_energy_accumulator
+  - condensing_supply_water_temperature_sensor
+  - condensing_return_water_temperature_sensor
   - cooling_thermal_power_sensor
-  - water_volume_accumulator
+  - cooling_thermal_energy_accumulator

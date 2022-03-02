@@ -214,6 +214,17 @@ CHWS_SWTC_WDPC2X_BYPVPM_WFRM_CLPM:
   - WFRM
   - CLPM
 
+CHWS_CHWBYPVPM_CHWDPM:
+  description: "Chilled water header pipe bypass valve, control via differential pressure sensor"
+  is_canonical: true
+  implements:
+  - CHWS
+  - CHWBYPVPM
+  - CHWDPM
+  opt_uses:
+  - run_mode
+  - chilled_water_bypass_valve_percentage_setpoint
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
@@ -264,23 +275,15 @@ CHWS_US_SVL_TC6_1:
   - production_differential_pressure_sensor
   - supply_water_flowrate_sensor # Need to rename to flowrate_sensor
 
-CHWS_TPKD:
-  description: "CHWS TPKD."
+CHWS_CHWDT2X:
+  description: "Chilled water header pipe sensors"
   implements:
   - CHWS
+  - CHWDT2X
   opt_uses:
   - chilled_supply_water_flowrate_sensor
-  - chilled_supply_water_temperature_sensor_1
-  - chilled_supply_water_temperature_sensor_2
   - chilled_supply_water_temperature_sensor_3
   - chilled_supply_water_temperature_sensor_4
   - chilled_supply_water_temperature_sensor_5
-  - chilled_return_water_temperature_sensor_1
-  - chilled_return_water_temperature_sensor_2
   - chilled_return_water_temperature_sensor_3
   - chilled_return_water_temperature_sensor_4
-  - chilled_water_bypass_valve_percentage_command
-  - chilled_water_bypass_valve_percentage_sensor
-  - run_mode
-  - chilled_water_bypass_valve_percentage_setpoint
-  - chilled_water_differential_pressure_sensor

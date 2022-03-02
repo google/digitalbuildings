@@ -4376,3 +4376,64 @@ EC2SC:
   - supply_air_temperature_setpoint
   implements:
   - CONTROL
+
+CHWISVPCM:
+  description: "Chllled water isolation valve percentage control and monitoring"
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  opt_uses:
+  - chilled_water_flowrate_alarm
+  - chilled_water_isolation_valve_mode
+  - chilled_water_isolation_valve_percentage_setpoint
+  uses:
+  - chilled_water_isolation_valve_percentage_command
+  - chilled_water_isolation_valve_percentage_sensor
+
+CDWISVPCM:
+  description: "Condensing water isolation valve percentage control and monitoring"
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  opt_uses:
+  - condensing_water_flowrate_alarm
+  - condensing_water_isolation_valve_mode
+  - condensing_water_isolation_valve_percentage_setpoint
+  uses:
+  - condensing_water_isolation_valve_percentage_command
+  - condensing_water_isolation_valve_percentage_sensor
+
+PSMC:
+  description: "Pump multi-speed control."
+  is_abstract: true
+  uses:
+  - pump_speed_mode
+  - pump_speed_frequency_setpoint
+
+CRWISVC:
+  description: "Condensing return water isolation valve control."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  opt_uses:
+  - condensing_return_water_isolation_valve_failed_alarm
+  uses:
+  - condensing_return_water_isolation_valve_command_1
+  - condensing_return_water_isolation_valve_command_2
+  - condensing_return_water_isolation_valve_status_1
+  - condensing_return_water_isolation_valve_status_2
+  - condensing_return_water_isolation_valve_mode
+
+CSWISVC:
+  description: "Condensing return water isolation valve control."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  opt_uses:
+  - condensing_supply_water_isolation_valve_failed_alarm
+  uses:
+  - condensing_supply_water_isolation_valve_command_1
+  - condensing_supply_water_isolation_valve_command_2
+  - condensing_supply_water_isolation_valve_status_1
+  - condensing_supply_water_isolation_valve_status_2
+  - condensing_supply_water_isolation_valve_mode

@@ -131,6 +131,22 @@ CT_SS_VSFC:
   - run_mode
   - lost_power_alarm
 
+CT_SS_VSFC_CDWISVPCM_PSMC:
+  description: "Cooling tower with condensing water isolation valve control"
+  is_canonical: true
+  implements:
+  - CT
+  - SS
+  - VSFC
+  - CDWISVPCM
+  - PSMC
+  opt_uses:
+  - lost_power_alarm
+  - control_status
+  - run_mode
+  - schedule_run_command
+  - reset_command
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
@@ -181,54 +197,21 @@ CT_SS_CWDT_OA_VSFC_CSWIVS_CRWIVS_CSWTC:
   - run_mode
   - lost_power_alarm
 
-CT_SS_TPKD:
-  description: "CT TPKD."
+CT_SS_VSFC_PSMC_CSWISVC_CRWISVC:
+  description: "Non standard cooling tower with condensing return/supply isolation valve control"
   implements:
   - CT
   - SS
+  - VSFC
+  - PSMC
+  - CSWISVC
+  - CRWISVC
   opt_uses:
-  - run_command
-  - run_status
   - lost_power_alarm
   - control_status
-  - speed_frequency_sensor
-  - speed_frequency_command
   - run_mode
-  - end_alarm
-  - start_alarm
   - reset_command
-  - pump_speed_mode
-  - run_time_sensor
-  - pump_speed_frequency_setpoint
-  - simulation_command
-  - start_mode
-  - reset_alarm
-  - power_sensor
-  - average_line_neutral_voltage_sensor
   - average_line_current_sensor
-  - motor_energy_sensor
-  - motor_frequency_sensor
   - heat_percentage_sensor
-  - fan_voltage_sensor
-  - break_time_command_1
-  - break_time_command_2
-  - fin_temperature_sensor
-  - heat_inverter_percentage_sensor
-  - electric_inverter_percentage_sensor
-  - max_inverter_current_sensor
-  - condensing_return_water_isolation_valve_open_status
-  - condensing_return_water_isolation_valve_closed_status
-  - condensing_return_water_isolation_valve_mode
-  - condensing_return_water_isolation_valve_command
   - condensing_return_water_isolation_control_status
-  - condensing_return_water_isolation_closed_alarm
-  - condensing_return_water_isolation_open_alarm
-  - condensing_return_water_isolation_reset_alarm
-  - condensing_return_water_isolation_simulation_command
-  - condensing_return_water_isolation_alarm
-  - condensing_supply_water_isolation_valve_open_status
-  - condensing_supply_water_isolation_valve_closed_status
-  - condensing_supply_water_isolation_valve_command
-  - condensing_supply_water_isolation_valve_mode
-  - condensing_supply_water_isolation_valve_run_command
-  - condensing_return_water_isolation_valve_percentage_setpoint
+  - condensing_supply_water_isolation_control_status
