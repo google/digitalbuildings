@@ -118,19 +118,51 @@ done for a few of reasons:
 3.  There is inherent value to forcing locally unique naming of spaces and
     equipment (because it makes it easier to find stuff).
 
-It would be trivial to flip the ID to be the top-level key and replace it with a
-"code" attribute for global uniqueness of top level keys.
-
 ### Config Format
 
 The configuration format is focused around defining the entities in the model. A
 generic entity with all possible top level fields looks like this[^5]:
 
+**NOTE:** The new Building Config format switches entities being keyed by codes
+to being keyed by guids and Ids are removed. To convert the old format to the
+new format, run your config.yaml through the [guid generator](https://github.com/google/digitalbuildings/tree/master/tools/guid_generator).
+
+#### New Format
+```
+f7d82b75-ea41-49e2-bb5a-53228044eb4c # Entity keyed by a GUID
+  type: NAMESPACE/A_DIGITAL_BUILDINGS_ENTITY_TYPE
+  code: ENTITY-CODE
+  connections:
+    # Listed entities are sources on connections
+    ANOTHER-ENTITY-GUID: FEEDS
+    A-THIRD-ENTITY-GUID: CONTAINS
+  links:
+    A-FOURTH-ENTITY-GUID: # Source entity code
+      # target_device_field: source_device_field
+      supply_air_damper_position_command: supply_air_damper_command_1
+      zone_air_temperature: zone_air_temperature_sensor_1
+  cloud_device_id: device-id-from-cloud-iot-registry
+  translation:
+    zone_air_temperature_sensor:
+      present_value: "points.temp_1.present_value"
+      units:
+        key: "pointset.points.temp_1.units"
+        values:
+          degrees_celsius: "degC"
+    supply_air_isolation_damper_command:
+      present_value: "points.damper_1.present_value"
+      states:
+        OPEN: "1"
+        CLOSED:
+        - "2"
+        - "3"
+```
+
+#### Old Format
 ```
 ENTITY-CODE:
-  guid: f7d82b75-ea41-49e2-bb5a-53228044eb4c
+  guid: f7d82b75-ea41-49e2-bb5a-53228044eb4c # guid field is generated with guid generator.
   type: NAMESPACE/A_DIGITAL_BUILDINGS_ENTITY_TYPE
-  id: SYSTEM/ID1234
   connections:
     # Listed entities are sources on connections
     ANOTHER-ENTITY: FEEDS
@@ -157,12 +189,12 @@ ENTITY-CODE:
         - "3"
 ```
 
-*   **GUID:** A globally unique identifier for the entity.
+*   **GUID:** A globally unique identifier for the entity. This field does not
+    need to be included initially and can be generated with guid generator.
+*   **Type:** A valid, fully qualified Digital Buildings entity type that
+    represents this entity.
 *   **Code:** The human readable identifier for the entity. This should
     be unique in document scope.
-*   **Type:** A valid, fully qualified Digital Buildings entity type that
-    represents this entity
-*   **Id:** A globally unique identifier for this entity.
 *   **cloud_device_id:** the cloud device id from the cloud iot registry.
     This field is mandatory when a translation exists.
 *   **Connections:** Used to specify connections from other entities (sources)
@@ -178,32 +210,18 @@ ENTITY-CODE:
     payload map to the standard fields of this entity's type. See
     [translation section](#translations) for more detail.
 
-The Digital Buildings platform is transitioning to another format, which is
-identical to the above format except that it deprecates the **id** attribute and
-entities are referenced by their GUID instead of their code. For example:
+The Digital Buildings platform has recently transitioned to the new format,
+which is identical to the above format except that entities were keyed by their
+codenand contained a separate **id** and **guid** field.
 
-```
-f7d82b75-ea41-49e2-bb5a-53228044eb4c:  # Entity GUID
-  code: ENTITY-CODE
-  type: NAMESPACE/A_DIGITAL_BUILDINGS_ENTITY_TYPE
-  connections:
-    # Listed entities are sources on connections
-    8302e87d-4372-448e-bf1a-f7e5db990508: FEEDS  # ANOTHER-ENTITY
-    d4c16f86-7f32-47a8-a6ec-9ae7e4404445: CONTAINS  # A-THIRD-ENTITY
-  links:
-    373c103c-1dc9-4b6b-97ee-bd7e38cdc921:  # A-FOURTH-ENTITY (source entity)
-      # target_entity_field: source_entity_field
-      supply_air_damper_position_command: supply_air_damper_command_1
-      zone_air_temperature: zone_air_temperature_sensor_1
-  ...
-```
+Entities are now keyed by a globally unique identifier and **code** has been
+moved to it's own separate field. **id** fields have been totally deprecated.
 
-The platform tools currently support both formats, and the [GUID Generator](https://github.com/google/digitalbuildings/tree/master/tools/guid_generator)
-can accept a building configuration that contains a mixture of entities defined
-in the old format and entities defined in the new format. In that scenario, the
-generator adds GUIDs as needed and produces a building configuration that is
-entirely in the new format, making it suitable for use in the rest of the
-platform.
+The old format is still valid if the **id** field is removed, and can be
+converted to the new format using the [guid generator](https://github.com/google/digitalbuildings/tree/master/tools/guid_generator).
+
+**NOTE:** Please continue using the old format, and use the [guid generator](https://github.com/google/digitalbuildings/tree/master/tools/guid_generator)
+to convert your building configuration to the new format.
 
 ### Spaces
 
@@ -214,19 +232,16 @@ The following example shows a building with one floor and one room:
 # Building
 UK-LON-S2:
   type: FACILITIES/BUILDING
-  id: FACILITIES/123456
 
 # Floor
 UK-LON-S2-1:
   type: FACILITIES/FLOOR
-  id: FACILITIES/3456789
   connections:
     UK-LON-S2: CONTAINS
 
 # Room
 UK-LON-S2-1-1C3G:
   type: FACILITIES/ROOM
-  id: FACILITIES/2345678
   connections:
     UK-LON-S2-2: CONTAINS
 
@@ -236,9 +251,9 @@ UK-LON-S2-1-1C3G:
 *   Floors should have `CONTAINS` connections to all Rooms
 *   Floors should have `CONTAINS` connections to all Devices
 
-In this example, entities are identified by their standardized \[up to\]5-
-segment codes. Codes of this type are widely used and highly recommended due to
-their global-uniqueness and embedded hierarchy.
+In this example, entities are identified by their globally unique identifiers.
+GUIDSs are widely used and highly recommended due to their exponentially low
+collision rate.
 
 Types for spaces are contained in the `FACILITIES` namespace of the ontology.
 
@@ -253,10 +268,6 @@ For clarity the human readable ID of the device in CDM and the entity code in
 the config file should be the same[^6]. If the building also has a CAD drawing
 or BIM model, good practice is for this code to also exist in the CAD or BIM
 model.
-
-The ID of the device should be a globally unique and persistent identifier for
-the entity in your system. In the case of devices sending data via Cloud IoT we
-use the CDM `numId` prefixed with `CDM/` as a namespace.
 
 Choose an entity type that has the correct fields for this type.
 
@@ -318,7 +329,8 @@ In order to eliminate duplicate work, the format provides some shortcuts to
 translation definitions:
 
 1.  Substitute the `translation` block with `translate_like:ENTITY-CODE` to use
-    a translation that is already defined on another entity.
+    a translation that is already defined on another entity. The [guid generator](https://github.com/google/digitalbuildings/tree/master/tools/guid_generator)
+    does this for you.
 2.  For devices that comply with
     [UDMI](https://github.com/faucetsdn/udmi)
     a short form can be used.
@@ -411,17 +423,12 @@ A virtual entity example:
 ```
 VAV-32:
   type: NAMESPACE/DEVICE_TYPE
-  id: SOME_GUID_12345  # optional
   links:
     ANOTHER-ENTITY: # source device
       # target_device_field: source_device_field
       supply_air_damper_position_command: supply_air_damper_command_1
       ...
 ```
-
-The `code` and `type` fields are similar to reporting devices, however because a
-logical device may not exist until this file is consumed it may be impossible to
-assign an `id` field. This will depend on your application.
 
 The key difference between virtual and reporting entities is that all the fields
 of a virtual entity are derived via `links`. the link block lists all the source
@@ -465,7 +472,7 @@ Here are some examples:
 ZONE-123:
   type: HVAC/ZONE
   connections:
-    UK-LON-6PS-1:CONTAINS
+    UK-LON-6PS-1: CONTAINS
     VAV-123: FEEDS
 
 # Lighting Control Group
