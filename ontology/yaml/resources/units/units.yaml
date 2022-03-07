@@ -32,11 +32,17 @@ density:
 - grams_per_cubic_meter
 - micrograms_per_cubic_meter
 - milligrams_per_cubic_meter
+distance:
+- meters: STANDARD
+- feet
+- inches
 energy:
 - joules: STANDARD
 - kilowatt_hours
 - megawatt_hours
 - therms
+- kilovolt_ampere_hours
+- kilovolt_ampere_reactive_hours
 flowrate:
 - cubic_meters_per_second: STANDARD
 - cubic_feet_per_minute
@@ -52,10 +58,8 @@ humidity:
 - percent_relative_humidity: STANDARD
 illuminance:
 - lux: STANDARD
-level:
-- meters: STANDARD
-- feet
-- micrometers
+length: distance
+level: distance
 linearacceleration:
 - meters_per_square_second: STANDARD
 - gravity

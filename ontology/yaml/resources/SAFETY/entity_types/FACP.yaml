@@ -34,3 +34,13 @@ FACP_FA2X:
   opt_uses:
   - panel_alarm
 
+PAFAS:
+  description: "Pre-action fire alarm system."
+  is_canonical: true
+  implements:
+  - FACP
+  uses:
+  - fire_alarm
+  - supervisor_alarm
+  - water_flowrate_status
+  - air_pressure_status

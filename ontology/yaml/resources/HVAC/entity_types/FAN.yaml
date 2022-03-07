@@ -572,3 +572,13 @@ FAN_SS_AL:
   - run_mode
   - schedule_run_command
   - control_status
+
+FAN_SSSCFASR:
+  description: "Basic Exhaust fan with start/stop, speed command, fail alarm, scheduled run"
+  uses:
+  - exhaust_fan_speed_percentage_command
+  implements:
+  - CONTROL
+  - FAN
+  - SS
+  - SRC

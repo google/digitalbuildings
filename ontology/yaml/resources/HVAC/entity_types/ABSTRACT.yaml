@@ -4400,3 +4400,11 @@ HWDDC:
   - discharge_air_temperature_sensor
   implements:
   - CONTROL
+  
+SRC:
+   description: "Scheduled run controller"
+   is_abstract: true
+   uses:
+   - schedule_run_command
+   implements:
+   - CONTROL

@@ -297,6 +297,12 @@ ADY:
   implements:
   - EQUIPMENT
 
+AION:
+  description: "Air ionizer."
+  is_abstract: true
+  implements:
+  - EQUIPMENT
+
 CMP:
   id: "6125328288488357888"
   description: "Air compressor."

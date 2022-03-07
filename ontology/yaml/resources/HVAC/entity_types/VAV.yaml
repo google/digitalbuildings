@@ -464,3 +464,14 @@ VAV_RD_CO2C:
   - VAV
   - RD
   - CO2C
+
+VAV_SD_SDM_CO2C_SRC:
+  description: "CO2 controlled VAV, with damper, flowrate and scheduled run timer"
+  is_canonical: true
+  implements:
+  - VAV
+  - SD
+  - SDM
+  - CO2C
+  - SRC
+  
