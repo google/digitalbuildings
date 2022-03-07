@@ -78,6 +78,7 @@ class EntityPointIdentification(Dimension):
                for source in sublist)
 
   def evaluate(self):
+    """ Calculate and assign properties necessary for generating a score """
 
     ### VIRTUAL ###
 

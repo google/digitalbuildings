@@ -31,6 +31,8 @@ class UnitMapping(Dimension):
                 for kv in field[1].unit_mappings.items()])
 
   def evaluate(self):
+    """ Calculate and assign properties necessary for generating a score """
+
     proposed_condensed, solution_condensed = map(self._condense_translations,
                                                  (PROPOSED, SOLUTION))
 

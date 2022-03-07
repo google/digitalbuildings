@@ -48,6 +48,8 @@ class EntityConnectionIdentification(Dimension):
   # TODO: Figure out how to elegantly implement "facilities"
   # and "equipment" categories given current object model
   def evaluate(self):
+    """ Calculate and assign properties necessary for generating a score """
+
     proposed_file, solution_file = map(self.deserialized_files.get,
                                        (PROPOSED, SOLUTION))
 

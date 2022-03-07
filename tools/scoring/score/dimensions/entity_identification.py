@@ -51,6 +51,8 @@ class EntityIdentification(Dimension):
     ]
 
   def evaluate(self):
+    """ Calculate and assign properties necessary for generating a score """
+
     proposed_file, solution_file = map(self.deserialized_files.get,
                                        (PROPOSED, SOLUTION))
 

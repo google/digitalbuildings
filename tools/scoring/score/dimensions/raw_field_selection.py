@@ -32,6 +32,8 @@ class RawFieldSelection(Dimension):
     ])
 
   def evaluate(self):
+    """ Calculate and assign properties necessary for generating a score """
+
     proposed_condensed, solution_condensed = map(self._condense_translations,
                                                  (PROPOSED, SOLUTION))
 
