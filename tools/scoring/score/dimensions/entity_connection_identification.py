@@ -28,6 +28,8 @@ class EntityConnectionIdentification(Dimension):
   correctly and completely defined in the proposed file.
   """
   def _isolate_connections(self, file: DeserializedFile):
+    """ Distill individual connections from each entity
+    prior to inclusion in sets for global comparison """
     return [
         tup for tup in (((cloud_device_id, connection)
                          for connection in entity.connections)
