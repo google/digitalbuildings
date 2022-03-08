@@ -23,10 +23,8 @@ PROPOSED, SOLUTION = FileTypes
 
 
 class EntityPointIdentification(Dimension):
-  """
-  Quantifies whether the proposed file
-  included the correct points in each entity.
-  """
+  """Quantifies whether the proposed file
+  included the correct points in each entity."""
   def _isolate_entities_virtual(self,
                                 file: DeserializedFile) -> Set[EntityInstance]:
     return set(
@@ -77,14 +75,10 @@ class EntityPointIdentification(Dimension):
         for entity in entities_virtual for link in entity.links)
                for source in sublist)
 
-  def evaluate(self):
-    """ Calculate and assign properties necessary for generating a score """
-
-    ### VIRTUAL ###
-
-    proposed_file, solution_file = map(self.deserialized_files.get,
-                                       (PROPOSED, SOLUTION))
-
+  def _evaluate_virtual(self, *, proposed_file: DeserializedFile,
+                        solution_file: DeserializedFile):
+    """Calculate and assign properties necessary
+    for generating a score for virtual devices."""
     proposed_entities_virtual, solution_entities_virtual = map(
         self._isolate_entities_virtual, (proposed_file, solution_file))
 
@@ -113,10 +107,14 @@ class EntityPointIdentification(Dimension):
         for list in matches_virtual.values()
     ])
 
-    ### REPORTING ###
-
+  def _evalute_reporting(self, *, proposed_file: DeserializedFile,
+                         solution_file: DeserializedFile):
+    """Calculate and assign properties necessary
+    for generating a score for reporting devices."""
     proposed_entities_reporting, solution_entities_reporting = map(
         self._isolate_entities_reporting, (proposed_file, solution_file))
+    proposed_entities_virtual, solution_entities_virtual = map(
+        self._isolate_entities_virtual, (proposed_file, solution_file))
 
     proposed_source_ids = self._fetch_source_ids_virtual(
         proposed_file, proposed_entities_virtual)
@@ -156,5 +154,17 @@ class EntityPointIdentification(Dimension):
         len(proposed_raw_field_names.difference(solution_raw_field_names)) for
         proposed_raw_field_names, solution_raw_field_names in matches_reporting
     ])
+
+  def evaluate(self):
+    """Calculate and assign properties necessary
+    for generating a score for all devices."""
+
+    proposed_file, solution_file = map(self.deserialized_files.get,
+                                       (PROPOSED, SOLUTION))
+
+    self._evaluate_virtual(proposed_file=proposed_file,
+                           solution_file=solution_file)
+    self._evalute_reporting(proposed_file=proposed_file,
+                            solution_file=solution_file)
 
     return self
