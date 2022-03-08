@@ -107,8 +107,8 @@ class EntityPointIdentification(Dimension):
         for list in matches_virtual.values()
     ])
 
-  def _evalute_reporting(self, *, proposed_file: DeserializedFile,
-                         solution_file: DeserializedFile):
+  def _evaluate_reporting(self, *, proposed_file: DeserializedFile,
+                          solution_file: DeserializedFile):
     """Calculate and assign properties necessary
     for generating a score for reporting devices."""
     proposed_entities_reporting, solution_entities_reporting = map(
@@ -164,7 +164,7 @@ class EntityPointIdentification(Dimension):
 
     self._evaluate_virtual(proposed_file=proposed_file,
                            solution_file=solution_file)
-    self._evalute_reporting(proposed_file=proposed_file,
-                            solution_file=solution_file)
+    self._evaluate_reporting(proposed_file=proposed_file,
+                             solution_file=solution_file)
 
     return self
