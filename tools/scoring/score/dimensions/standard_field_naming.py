@@ -11,7 +11,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-""" Core component """
+"""Core component."""
 
 from score.dimensions.dimension import Dimension
 from score.constants import FileTypes
@@ -22,18 +22,16 @@ PROPOSED, SOLUTION = FileTypes
 
 
 class StandardFieldNaming(Dimension):
-  """
-  Quantifies whether the correct standard field names
+  """Quantifies whether the correct standard field names
   (e.g. "chilled_water_flowrate_sensor")
-  were selected in the proposed file.
-  """
+  were selected in the proposed file."""
   def _split_subfields(self, field):
     return set(
         filter(lambda subfield: not bool(regex.match('[0-9]+', subfield)),
                field.split('_')))
 
   def evaluate(self):
-    """ Calculate and assign properties necessary for generating a score """
+    """Calculates and assigns properties necessary for generating a score."""
 
     proposed_condensed, solution_condensed = map(self._condense_translations,
                                                  (PROPOSED, SOLUTION))

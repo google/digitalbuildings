@@ -11,7 +11,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-""" Core component """
+"""Core component."""
 
 from score.dimensions.dimension import Dimension
 from score.types_ import DeserializedFile, EntityInstance, CloudDeviceId, PointsVirtualList
@@ -77,7 +77,7 @@ class EntityPointIdentification(Dimension):
 
   def _evaluate_virtual(self, *, proposed_file: DeserializedFile,
                         solution_file: DeserializedFile):
-    """Calculate and assign properties necessary
+    """Calculates and assigns properties necessary
     for generating a score for virtual devices."""
     proposed_entities_virtual, solution_entities_virtual = map(
         self._isolate_entities_virtual, (proposed_file, solution_file))
@@ -109,7 +109,7 @@ class EntityPointIdentification(Dimension):
 
   def _evaluate_reporting(self, *, proposed_file: DeserializedFile,
                           solution_file: DeserializedFile):
-    """Calculate and assign properties necessary
+    """Calculates and assigns properties necessary
     for generating a score for reporting devices."""
     proposed_entities_reporting, solution_entities_reporting = map(
         self._isolate_entities_reporting, (proposed_file, solution_file))
@@ -156,7 +156,7 @@ class EntityPointIdentification(Dimension):
     ])
 
   def evaluate(self):
-    """Calculate and assign properties necessary
+    """Calculates and assigns properties necessary
     for generating a score for all devices."""
 
     proposed_file, solution_file = map(self.deserialized_files.get,

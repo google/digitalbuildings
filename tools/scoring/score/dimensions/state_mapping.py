@@ -11,7 +11,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-""" Core component """
+"""Core component."""
 
 from score.dimensions.dimension import Dimension
 from score.constants import FileTypes
@@ -20,10 +20,8 @@ PROPOSED, SOLUTION = FileTypes
 
 
 class StateMapping(Dimension):
-  """
-  Quantifies how accurately the proposed file
-  mapped multi-state values for relevant fields.
-  """
+  """Quantifies how accurately the proposed file
+  mapped multi-state values for relevant fields."""
   def _fetch_mappings(self, translations):
     return set([(field[0], kv)
                 for field in (field for field in translations
@@ -31,7 +29,7 @@ class StateMapping(Dimension):
                 for kv in field[1].states.items()])
 
   def evaluate(self):
-    """ Calculate and assign properties necessary for generating a score """
+    """Calculates and assigns properties necessary for generating a score."""
 
     proposed_condensed, solution_condensed = map(self._condense_translations,
                                                  (PROPOSED, SOLUTION))
