@@ -13,21 +13,28 @@
 # limitations under the License.
 """File parser for the configuration scoring tool."""
 
-from typing import Dict, Optional, List
+from typing import Dict, List, Optional
+
+from score.constants import DimensionCategories
+from score.constants import FileTypes
+from score.dimensions.dimension import Dimension
+from score.types_ import CloudDeviceId
+from score.types_ import DeserializedFile
+from score.types_ import DeserializedFilesDict
+from score.types_ import DimensionCategory
+from score.types_ import DimensionName
+from score.types_ import TranslationsDict
 
 from validate import handler as validator
 from validate.generate_universe import BuildUniverse
-
-from score.dimensions.dimension import Dimension
-from score.types_ import CloudDeviceId, DimensionName, TranslationsDict, DeserializedFile, DeserializedFilesDict, DimensionCategory
-from score.constants import FileTypes, DimensionCategories
 
 PROPOSED, SOLUTION = FileTypes
 SIMPLE, COMPLEX = DimensionCategories
 
 
 class ParseConfig:
-  """
+  """Parse config.
+
     Attributes:
       args: Dictionary containing instance arguments
       universe: Built from the input ontology
@@ -37,18 +44,20 @@ class ParseConfig:
     Returns:
       An instance of the ParseConfig class.
   """
+
   def __init__(self,
                *,
                ontology: str,
                solution: str,
                proposed: str,
                verbose: Optional[bool] = False):
-    """
-      Arguments:
-        ontology: Path to the ontology
-        solution: Path to the solution config
-        proposed: Path to the config to be evaluated
-        verbose: Print specifics of missing types and translations (optional)
+    """Init.
+
+    Args:
+      ontology: Path to the ontology
+      solution: Path to the solution config
+      proposed: Path to the config to be evaluated
+      verbose: Print specifics of missing types and translations (optional)
     """
     self.args = {
         'ontology': ontology,
@@ -63,11 +72,9 @@ class ParseConfig:
     }
     self.results = {}
 
-  # TODO: refactor into smaller functions and return instead of printing
+  # TODO(b/210741084): refactor into smaller functions and return
   def append_types(self):
-    """
-      Appends types to deserialized files
-    """
+    """Appends types to deserialized files."""
     for file_type, file in self.deserialized_files.items():
       translations_absent = []
       types_absent = []
@@ -112,18 +119,17 @@ class ParseConfig:
   def match_reporting_entities(
       *, proposed_entities: DeserializedFile,
       solution_entities: DeserializedFile) -> List[CloudDeviceId]:
-    """
-      Matches reporting entities by `cloud_device_id`
+    """Matches reporting entities by `cloud_device_id`.
 
-      Args:
-        proposed_entities: Dictionary of proposed entity names
-          and `EntityInstance`s
-        solution_entities: Dictionary of solution entity names
-          and `EntityInstance`s
+    Args:
+      proposed_entities: Dictionary of proposed entity names and
+        `EntityInstance`s
+      solution_entities: Dictionary of solution entity names and
+        `EntityInstance`s
 
-      Returns:
-        List of `cloud_device_id`s which have corresponding
-        proposed and solution entities
+    Returns:
+      List of `cloud_device_id`s which have corresponding
+      proposed and solution entities
     """
     matches = []
     for solution_entity in solution_entities.values():
@@ -139,40 +145,30 @@ class ParseConfig:
   def retrieve_reporting_translations(
       *, matches: List[CloudDeviceId], proposed_entities: DeserializedFile,
       solution_entities: DeserializedFile) -> TranslationsDict:
-    """
-      Retrieves proposed and solution translations
-      for all matched reporting entities.
+    """Retrieves proposed and solution translations for all matched entities.
 
-      Args:
-        matches: List of `cloud_device_id`s which have corresponding
-          proposed and solution entities
-        proposed_entities: Dictionary of proposed entity names
-          and `EntityInstance`s
-        solution_entities: Dictionary of solution entity names
-          and `EntityInstance`s
+    Args:
+      matches: List of `cloud_device_id`s which have corresponding proposed and
+        solution entities
+      proposed_entities: Dictionary of proposed entity names and
+        `EntityInstance`s
+      solution_entities: Dictionary of solution entity names and
+        `EntityInstance`s
 
-      Returns:
-        Dictionary with `cloud_device_id`s as keys
-        and lists of translation tuples as values
+    Returns:
+      Dictionary with `cloud_device_id`s as keys
+      and lists of translation tuples as values
     """
 
     translations = {}
     for cloud_device_id in matches:
       # Find the entity via comparison of the cloud_device_id against the
       # corresponding property of each EntityInstance in the specified dict
-      find_entity = lambda dictionary, cdid=cloud_device_id: [
-          entity for entity in dictionary.values()
-          if entity.cloud_device_id == cdid
-      ][0]
-
-      proposed_entity = find_entity(proposed_entities)
-      solution_entity = find_entity(solution_entities)
+      proposed_entity = find_entity(proposed_entities, cloud_device_id)
+      solution_entity = find_entity(solution_entities, cloud_device_id)
 
       # Isolate the translations of an entity for pairing below.
       # A reporting entity without a translation should not occur
-      aggregate_translations = lambda entity: list(entity.translation.items(
-      )) if getattr(entity, 'translation', None) else []
-
       translations[cloud_device_id] = {
           f'{PROPOSED}_translations': aggregate_translations(proposed_entity),
           f'{SOLUTION}_translations': aggregate_translations(solution_entity)
@@ -185,28 +181,26 @@ class ParseConfig:
       *, dimensions: Dict[DimensionCategory, List[Dimension]],
       translations: TranslationsDict, deserialized_files: DeserializedFilesDict
   ) -> Dict[DimensionName, Dimension]:
-    """
-      Wrapper which outputs a dictionary of results by invoking each
-      specified `Dimension` with the appropriate argument based on its category
+    """Wrapper which outputs a dictionary of results by invoking each specified.
 
-      Args:
-        dimensions: Dictionary with lists of `Dimension`s to be evaluated
-          keyed under their category ("simple" or "complex")
-        translations: Dictionary with `cloud_device_id`s as keys
-          and lists of translation tuples as values. Used as argument for
-          "simple" dimensions.
-        deserialized_files: Dictionary with deserialized configuration files
-          keyed under their respective file type ("proposed" or "solution").
-          Used as argument for "complex" dimensions.
+    `Dimension` with the appropriate argument based on its category
+    dbo_dimensions: List of `DboDimension`s to be evaluated
+    proposed_entities: Dictionary of proposed entity names
+      and `EntityInstance`s
+    solution_entities: Dictionary of solution entity names
+      and `EntityInstance`s
 
-        dbo_dimensions: List of `DboDimension`s to be evaluated
-        proposed_entities: Dictionary of proposed entity names
-          and `EntityInstance`s
-        solution_entities: Dictionary of solution entity names
-          and `EntityInstance`s
+    Args:
+      dimensions: Dictionary with lists of `Dimension`s to be evaluated keyed
+        under their category ("simple" or "complex")
+      translations: Dictionary with `cloud_device_id`s as keys and lists of
+        translation tuples as values. Used as argument for "simple" dimensions.
+      deserialized_files: Dictionary with deserialized configuration files keyed
+        under their respective file type ("proposed" or "solution"). Used as
+        argument for "complex" dimensions.
 
-      Returns:
-        Dictionary with dimension names as keys and `Dimension`s as values
+    Returns:
+      Dictionary with dimension names as keys and `Dimension`s as values
     """
     results = {}
 
@@ -220,3 +214,15 @@ class ParseConfig:
 
         results[dimension.__name__] = invoked
     return results
+
+
+def find_entity(dictionary, cloud_device_id):
+  return [
+      entity for entity in dictionary.values()
+      if entity.cloud_device_id == cloud_device_id
+  ][0]
+
+
+def aggregate_translations(entity):
+  return list(entity.translation.items()) if getattr(entity, 'translation',
+                                                     None) else []

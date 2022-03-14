@@ -11,22 +11,20 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-""" Core component """
+"""Core component."""
 
-from collections import Counter
+import collections
 
+from score.constants import FileTypes
 from score.dimensions.dimension import Dimension
 from score.types_ import DeserializedFilesDict
-from score.constants import FileTypes
 
 PROPOSED, SOLUTION = FileTypes
 
 
 class EntityIdentification(Dimension):
-  """
-  Quantifies whether the correct entities
-  were included in the proposed file.
-  """
+  """Quantifies whether the correct entities were included in the proposed file."""
+
   def __init__(self, *, deserialized_files: DeserializedFilesDict):
     super().__init__(deserialized_files=deserialized_files)
 
@@ -48,30 +46,27 @@ class EntityIdentification(Dimension):
     # Lists of `cloud_device_id`s representing
     # reporting entities with canonical types that
     # are linked to by virtual entities
-    solution_virtual = [
-        cloud_device_id for source_list in ((
-            solution[link.source].cloud_device_id
-            for link in entity.links) for entity in filter(
-                self.is_entity_canonical,
-                filter(self.is_entity_virtual, solution.values())))
-        for cloud_device_id in source_list
-    ]
-    proposed_virtual = [
-        cloud_device_id for source_list in ((
-            proposed[link.source].cloud_device_id
-            for link in entity.links) for entity in filter(
-                self.is_entity_canonical,
-                filter(self.is_entity_virtual, proposed.values())))
-        for cloud_device_id in source_list
-    ]
+    solution_virtual = []
+    for entity in solution.values():
+      if self.is_entity_canonical(entity) and self.is_entity_virtual(entity):
+        for link in entity.links:
+          solution_virtual.append(solution[link.source].cloud_device_id)
+
+    proposed_virtual = []
+    for entity in proposed.values():
+      if self.is_entity_canonical(entity) and self.is_entity_virtual(entity):
+        for link in entity.links:
+          proposed_virtual.append(proposed[link.source].cloud_device_id)
 
     self.correct_reporting = sum(
-        (Counter(proposed_reporting) & Counter(solution_reporting)).values())
+        (collections.Counter(proposed_reporting)
+         & collections.Counter(solution_reporting)).values())
     self.correct_ceiling_reporting = len(solution_reporting)
-    self.incorrect_reporting = (self.correct_ceiling_reporting -
-                                self.correct_reporting)
+    self.incorrect_reporting = (
+        self.correct_ceiling_reporting - self.correct_reporting)
 
     self.correct_virtual = sum(
-        (Counter(proposed_virtual) & Counter(solution_virtual)).values())
+        (collections.Counter(proposed_virtual)
+         & collections.Counter(solution_virtual)).values())
     self.correct_ceiling_virtual = len(solution_virtual)
     self.incorrect_virtual = self.correct_ceiling_virtual - self.correct_virtual
