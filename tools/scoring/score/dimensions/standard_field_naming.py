@@ -11,23 +11,25 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-""" Core component """
-
-from score.dimensions.dimension import Dimension
-from score.types_ import TranslationsDict
-from score.constants import FileTypes
+"""Core component."""
 
 import re as regex
+
+from score.constants import FileTypes
+from score.dimensions.dimension import Dimension
+from score.types_ import TranslationsDict
 
 PROPOSED, SOLUTION = FileTypes
 
 
 class StandardFieldNaming(Dimension):
-  """
+  """Standard field naming.
+
   Quantifies whether the correct standard field names
   (e.g. "chilled_water_flowrate_sensor")
   were selected in the proposed file.
   """
+
   def __init__(self, *, translations: TranslationsDict):
     super().__init__(translations=translations)
 
