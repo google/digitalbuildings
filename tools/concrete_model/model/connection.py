@@ -15,7 +15,10 @@
 
 from typing import Dict
 
-from model.model_utils import ConnectionType
+from model.connection_type import ConnectionType
+from model.constants import CONNECTION_TYPE_KEY
+from model.constants import SOURCE_ENTITY_GUID_KEY
+from model.constants import TARGET_ENEITY_GUID_KEY
 
 
 class Connection(object):
@@ -24,11 +27,11 @@ class Connection(object):
   Attributes:
     source_entity_guid: An entity's guid for connection source.
     target_entity_guid: An entity's guid for connection target.
-    connection_type: Type of connection.
+    connection_type: Instance of ConnectionType class.
   """
 
   def __init__(self, source_entity_guid: str, target_entity_guid: str,
-               connection_type: str) -> None:
+               connection_type: ConnectionType) -> None:
     """Init.
 
     Args:
@@ -38,7 +41,7 @@ class Connection(object):
     """
     self.source_entity_guid = source_entity_guid
     self.target_entity_guid = target_entity_guid
-    self._connection_type = connection_type
+    self.connection_type = connection_type
 
   @classmethod
   def FromDict(cls, connection_dict: Dict[str, object]):
@@ -51,14 +54,25 @@ class Connection(object):
     Returns:
       An instance of Connection class.
     """
+    connection = cls(
+        source_entity_guid=connection_dict[SOURCE_ENTITY_GUID_KEY],
+        target_entity_guid=connection_dict[TARGET_ENEITY_GUID_KEY],
+        connection_type=connection_dict[CONNECTION_TYPE_KEY])
+
+    return connection
 
   @property
   def connection_type(self) -> ConnectionType:
     """Returns the connections type as an enum."""
-    return self.connection_type
+    return self._connection_type
 
   @connection_type.setter
-  def connection_type(self, connection_type: ConnectionType) -> None:
-    """Validates connection_type is an instance of ConnectionType enum and sets."""
+  def connection_type(self, value: ConnectionType) -> None:
+    """Validates connection_type is an instance of ConnectionType enum and sets.
 
-
+    Args:
+      value: An instance of ConnectionType class to be set.
+    """
+    if not isinstance(value, ConnectionType):
+      raise TypeError(f'{value} must be an instance of ConnectionType enum')
+    self._connection_type = value

@@ -11,22 +11,28 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-"""Constants for the configuration scoring tool."""
+"""Tests for States class."""
 
-import enum
+from absl.testing import absltest
 
-
-class FileTypes(str, enum.Enum):
-  # The file which is being scored
-  PROPOSED = 'proposed'
-  # The file which is being compared against
-  SOLUTION = 'solution'
+from model.states import States
 
 
-class DimensionCategories(str, enum.Enum):
-  # Receives `translations` and scores
-  # only reporting entities in bulk
-  SIMPLE = 'simple'
-  # Receives `deserialized_files` to build a multi-map
-  # of virtual entities prior to calculating scores
-  COMPLEX = 'complex'
+class StatesTest(absltest.TestCase):
+
+  def setUp(self):
+    """Set up for StatesTest."""
+    super().setUp()
+    self.test_state_map = {
+        'OPEN': ['1'],
+    }
+    self.multistate = States(self.test_state_map)
+
+  def testAddState(self):
+    self.multistate.AddState(standard_state='CLOSED', raw_states=['2', '3'])
+
+    self.assertEqual(
+        self.multistate.standard_to_raw_state_map['CLOSED'], ['2', '3'])
+
+if __name__ == '__main__':
+  absltest.main()

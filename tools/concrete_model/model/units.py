@@ -38,8 +38,8 @@ class Units(object):
     self.raw_unit_path = raw_unit_path
     self.standard_to_raw_unit_map = standard_to_raw_unit_map
 
-  def AddUnit(self, raw_unit_path: str,
-              dbo_to_raw_unit_map: Dict[str, str]) -> None:
+  def AddUnit(self, raw_unit_path: str, dbo_to_raw_unit_map: Dict[str,
+                                                                  str]) -> None:
     """Adds a new unit to self.standard_to_raw_unit_map.
 
     Args:

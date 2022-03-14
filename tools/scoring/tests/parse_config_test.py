@@ -13,30 +13,30 @@
 # limitations under the License.
 """Test for configuration file parser (parse_config.py)."""
 
+import unittest.mock
+
 from absl.testing import absltest
-from unittest.mock import call, patch
-
 from score import parse_config
-from score.constants import FileTypes, DimensionCategories
-
-from yamlformat.validator.presubmit_validate_types_lib import ConfigUniverse
+from score.constants import DimensionCategories
+from score.constants import FileTypes
 
 from validate import handler as validator
 from validate.field_translation import NonDimensionalValue
+from yamlformat.validator.presubmit_validate_types_lib import ConfigUniverse
 
 PROPOSED, SOLUTION = FileTypes
 SIMPLE, COMPLEX = DimensionCategories
 
 
 class ParseConfigTest(absltest.TestCase):
+
   def setUp(self):
     super().setUp()
     self.ontology = '../../ontology/yaml/resources'
     self.solution = 'tests/samples/solution/building_config_example.yaml'
     self.proposed = 'tests/samples/proposed/building_config_example.yaml'
-    self.parse = parse_config.ParseConfig(ontology=self.ontology,
-                                          solution=self.solution,
-                                          proposed=self.proposed)
+    self.parse = parse_config.ParseConfig(
+        ontology=self.ontology, solution=self.solution, proposed=self.proposed)
 
   def testInitialize(self):
     self.assertEqual(self.parse.args['ontology'], self.ontology)
@@ -53,15 +53,15 @@ class ParseConfigTest(absltest.TestCase):
 
     self.assertEqual(type(self.parse.results), dict)
 
-  @patch('builtins.print')
+  @unittest.mock.patch('builtins.print')
   def testAppendTypes(self, mock_print):
     self.parse.append_types()
     self.assertEqual(mock_print.call_count, 4)
     calls = [
-        call(f'{PROPOSED} translations absent: 0 (from 0 links)'),
-        call(f'{PROPOSED} types absent: 0 (0 instances)'),
-        call(f'{SOLUTION} translations absent: 0 (from 0 links)'),
-        call(f'{SOLUTION} types absent: 0 (0 instances)')
+        unittest.mock.call(f'{PROPOSED} translations absent: 0 (from 0 links)'),
+        unittest.mock.call(f'{PROPOSED} types absent: 0 (0 instances)'),
+        unittest.mock.call(f'{SOLUTION} translations absent: 0 (from 0 links)'),
+        unittest.mock.call(f'{SOLUTION} types absent: 0 (0 instances)')
     ]
     mock_print.assert_has_calls(calls)
 
@@ -75,9 +75,9 @@ class ParseConfigTest(absltest.TestCase):
         proposed_entities=proposed_entities,
         solution_entities=solution_entities)
 
-    self.assertEqual(len(proposed_entities), 4)
-    self.assertEqual(len(solution_entities), 4)
-    self.assertEqual(len(matches), 1)
+    self.assertLen(proposed_entities, 4)
+    self.assertLen(solution_entities, 4)
+    self.assertLen(matches, 1)
     self.assertEqual(matches[0], '2599571827844401')  # Yes, it's a string
 
   def testRetrieveReportingTranslations(self):
@@ -102,25 +102,27 @@ class ParseConfigTest(absltest.TestCase):
 
     self.assertEqual(type(translations[cdid]), dict)
 
-    self.assertTrue(f'{PROPOSED}_translations' in translations[cdid])
+    self.assertIn(f'{PROPOSED}_translations', translations[cdid])
     self.assertEqual(type(translations[cdid][f'{PROPOSED}_translations']), list)
-    self.assertEqual(len(translations[cdid][f'{PROPOSED}_translations']), 1)
-    self.assertEqual(type(translations[cdid][f'{PROPOSED}_translations'][0]),
-                     tuple)
+    self.assertLen(translations[cdid][f'{PROPOSED}_translations'], 1)
+    self.assertEqual(
+        type(translations[cdid][f'{PROPOSED}_translations'][0]), tuple)
     self.assertEqual(translations[cdid][f'{PROPOSED}_translations'][0][0],
                      'wrong')
-    self.assertEqual(type(translations[cdid][f'{PROPOSED}_translations'][0][1]),
-                     NonDimensionalValue)
+    self.assertEqual(
+        type(translations[cdid][f'{PROPOSED}_translations'][0][1]),
+        NonDimensionalValue)
 
-    self.assertTrue(f'{SOLUTION}_translations' in translations[cdid])
+    self.assertIn(f'{SOLUTION}_translations', translations[cdid])
     self.assertEqual(type(translations[cdid][f'{SOLUTION}_translations']), list)
-    self.assertEqual(len(translations[cdid][f'{SOLUTION}_translations']), 1)
-    self.assertEqual(type(translations[cdid][f'{SOLUTION}_translations'][0]),
-                     tuple)
+    self.assertLen(translations[cdid][f'{SOLUTION}_translations'], 1)
+    self.assertEqual(
+        type(translations[cdid][f'{SOLUTION}_translations'][0]), tuple)
     self.assertEqual(translations[cdid][f'{SOLUTION}_translations'][0][0],
                      'target')
-    self.assertEqual(type(translations[cdid][f'{SOLUTION}_translations'][0][1]),
-                     NonDimensionalValue)
+    self.assertEqual(
+        type(translations[cdid][f'{SOLUTION}_translations'][0][1]),
+        NonDimensionalValue)
 
   def testAggregateResults(self):
     mock_dimension_simple = (

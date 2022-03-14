@@ -11,21 +11,22 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-"""Test for configuration file scoring tool
-"unit mapping" dimension (unit_mapping.py)."""
+"""Test for configuration file scoring tool "unit mapping" dimension (unit_mapping.py)."""
 
 from absl.testing import absltest
 
-from score.dimensions.unit_mapping import UnitMapping
 from score.constants import FileTypes
+from score.dimensions.unit_mapping import UnitMapping
 
 PROPOSED, SOLUTION = FileTypes
 
 
 class UnitMappingTest(absltest.TestCase):
+
   def setUp(self):
+
     super().setUp()
-    # TODO: add real data (append cases to existing tests)
+    # TODO(b/210741084): add real data (append cases to existing tests)
     translations = {PROPOSED: [], SOLUTION: []}
     self.unit_mapping = UnitMapping(translations=translations)
 
@@ -41,9 +42,9 @@ class UnitMappingTest(absltest.TestCase):
 
   def testInheritedResultProperties(self):
     # These are `None` by virtue of the ceiling being falsy.
-    self.assertEqual(self.unit_mapping.result_composite, None)
-    self.assertEqual(self.unit_mapping.result_reporting, None)
-    self.assertEqual(self.unit_mapping.result_virtual, None)
+    self.assertIsNone(self.unit_mapping.result_composite)
+    self.assertIsNone(self.unit_mapping.result_reporting)
+    self.assertIsNone(self.unit_mapping.result_virtual)
 
 
 if __name__ == '__main__':

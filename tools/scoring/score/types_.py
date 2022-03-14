@@ -17,9 +17,12 @@
 # https://github.com/microsoft/vscode-python/issues/6571
 """Type annotations for the configuration scoring tool."""
 
-from typing import Dict, List, Tuple, Any
+from typing import Any, Dict, List, Tuple
+
+from score.constants import DimensionCategories
+from score.constants import FileTypes
+
 from validate.entity_instance import EntityInstance
-from score.constants import FileTypes, DimensionCategories
 
 CloudDeviceId = str
 FileType = FileTypes
