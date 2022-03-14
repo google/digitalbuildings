@@ -145,7 +145,7 @@ class ParseConfig:
   def retrieve_reporting_translations(
       *, matches: List[CloudDeviceId], proposed_entities: DeserializedFile,
       solution_entities: DeserializedFile) -> TranslationsDict:
-    """Retrieves proposed and solution translations for all matched reporting entities.
+    """Retrieves proposed and solution translations for all matched entities.
 
     Args:
       matches: List of `cloud_device_id`s which have corresponding proposed and

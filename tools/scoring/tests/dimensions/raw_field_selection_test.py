@@ -11,7 +11,8 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-"""Test for configuration file scoring tool "raw field selection" dimension (raw_field_selection.py)."""
+"""Test for configuration file scoring tool "raw field selection" dimension
+(raw_field_selection.py)."""
 
 from absl.testing import absltest
 from score.constants import FileTypes
