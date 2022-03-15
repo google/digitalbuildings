@@ -8,7 +8,7 @@ implemented in the future.
 
 ## Setup
 
-1. follow setup instructions for the [Instance Validator](../validators/instance_validator)
+1. follow setup instructions for the [Instance Validator](./validators/instance_validator)
 2. follow setup instructions for the [GUID Generator](./guid_generator)
 3. Run `sudo python setup.py` for this directory
 
