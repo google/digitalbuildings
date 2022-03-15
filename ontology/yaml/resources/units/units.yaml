@@ -37,6 +37,7 @@ energy:
 - kilowatt_hours
 - megawatt_hours
 - therms
+- watt_hours
 flowrate:
 - cubic_meters_per_second: STANDARD
 - cubic_feet_per_minute
