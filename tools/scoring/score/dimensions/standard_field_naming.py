@@ -44,16 +44,18 @@ class StandardFieldNaming(Dimension):
     correct_ceiling: int = 0
     incorrect_subfields = []
 
-    for s_field, s_value in solution_translations:
-      s_subfields = self._split_subfields(s_field)
-      correct_ceiling += len(s_subfields)
+    for solution_field, solution_value in solution_translations:
+      solution_subfields = self._split_subfields(solution_field)
+      correct_ceiling += len(solution_subfields)
 
-      for p_field, p_value in proposed_translations:
-        if p_value.raw_field_name == s_value.raw_field_name:
-          p_subfields = self._split_subfields(p_field)
+      for proposed_field, proposed_value in proposed_translations:
+        if proposed_value.raw_field_name == solution_value.raw_field_name:
+          proposed_subfields = self._split_subfields(proposed_field)
 
-          correct_subfields += p_subfields.intersection(s_subfields)
-          incorrect_subfields += p_subfields.difference(s_subfields)
+          correct_subfields += proposed_subfields.intersection(
+              solution_subfields)
+          incorrect_subfields += proposed_subfields.difference(
+              solution_subfields)
 
     self.correct_reporting = len(correct_subfields)
     self.correct_ceiling_reporting = correct_ceiling
