@@ -11,21 +11,22 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-""" Core component """
+"""Core component."""
 
+from score.constants import FileTypes
 from score.dimensions.dimension import Dimension
 from score.types_ import TranslationsDict
-from score.constants import FileTypes
 
 PROPOSED, SOLUTION = FileTypes
 
 
 class RawFieldSelection(Dimension):
-  """
-  Quantifies whether the correct raw fields
+  """Quantifies whether the correct raw fields.
+
   (e.g. "points.chilled_water_flowrate_sensor.present_value")
   were mapped (versus ignored) in the proposed file.
   """
+
   def __init__(self, *, translations: TranslationsDict):
     super().__init__(translations=translations)
 
