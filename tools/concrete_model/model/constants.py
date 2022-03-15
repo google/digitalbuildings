@@ -11,20 +11,16 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-"""Setup file for the configuration scoring tool."""
+"""Constants for concrete model application."""
 
-from setuptools import find_packages
-from setuptools import setup
+NAMESPACE_KEY = 'namespace'
+GENERAL_TYPE_KEY = 'general_type'
+ENTITY_TYPE_KEY = 'entity_type'
+REQUIRED_FIELDS_KEY = 'required_fields'
+OPTIONAL_FIELDS_KEY = 'optional_fields'
 
-setup(
-    name='scoring',
-    version='0.0.1',
-    url='https://github.com/google/digitalbuildings',
-    license='Apache License',
-    author='Adam Hemphill',
-    author_email='',
-    description='',
-    packages=find_packages(),
-    install_requires=['absl-py', 'argparse', 'typing_extensions'],
-    python_requires='>=3.7',
-)
+SOURCE_ENTITY_GUID_KEY = 'source_entity_guid'
+TARGET_ENEITY_GUID_KEY = 'target_entity_guid'
+CONNECTION_TYPE_KEY = 'connection_type'
+
+
