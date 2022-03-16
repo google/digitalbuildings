@@ -77,13 +77,10 @@ class EntityTypeIdentification(Dimension):
         for entity in entities_virtual for link in entity.links)
                for source in sublist)
 
-  def evaluate(self):
-
-    ### VIRTUAL ###
-
-    proposed_file, solution_file = map(self.deserialized_files.get,
-                                       (PROPOSED, SOLUTION))
-
+  def _evaluate_virtual(self, *, proposed_file: DeserializedFile,
+                        solution_file: DeserializedFile):
+    """Calculates and assigns properties necessary
+    for generating a score for virtual devices."""
     proposed_entities_virtual, solution_entities_virtual = map(
         self._isolate_entities_virtual, (proposed_file, solution_file))
 
@@ -112,10 +109,14 @@ class EntityTypeIdentification(Dimension):
         for list in matches_virtual.values()
     ])
 
-    ### REPORTING ###
-
+  def _evaluate_reporting(self, *, proposed_file: DeserializedFile,
+                          solution_file: DeserializedFile):
+    """Calculates and assigns properties necessary
+    for generating a score for reporting devices."""
     proposed_entities_reporting, solution_entities_reporting = map(
         self._isolate_entities_reporting, (proposed_file, solution_file))
+    proposed_entities_virtual, solution_entities_virtual = map(
+        self._isolate_entities_virtual, (proposed_file, solution_file))
 
     proposed_source_ids = self._fetch_source_ids_virtual(
         proposed_file, proposed_entities_virtual)
@@ -152,5 +153,17 @@ class EntityTypeIdentification(Dimension):
         len(proposed_types.difference(solution_types))
         for proposed_types, solution_types in matches_reporting
     ])
+
+  def evaluate(self):
+    """Calculates and assigns properties necessary
+    for generating a score for all devices."""
+
+    proposed_file, solution_file = map(self.deserialized_files.get,
+                                       (PROPOSED, SOLUTION))
+
+    self._evaluate_virtual(proposed_file=proposed_file,
+                           solution_file=solution_file)
+    self._evaluate_reporting(proposed_file=proposed_file,
+                             solution_file=solution_file)
 
     return self
