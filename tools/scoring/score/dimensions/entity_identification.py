@@ -11,7 +11,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-""" Core component """
+"""Core component."""
 
 from collections import Counter
 
@@ -25,13 +25,11 @@ PROPOSED, SOLUTION = FileTypes
 
 
 class EntityIdentification(Dimension):
-  """
-  Quantifies whether the correct entities
-  were included in the proposed file.
-  """
+  """Quantifies whether the correct entities
+  were included in the proposed file."""
   def _list_ids_reporting(self, file: DeserializedFile) -> List[CloudDeviceId]:
-    """ Generates list of `cloud_device_id`s representing
-    reporting entities with canonical types """
+    """Generates list of `cloud_device_id`s representing
+    reporting entities with canonical types."""
     return [
         entity.cloud_device_id
         for entity in filter(self.is_entity_canonical,
@@ -39,9 +37,9 @@ class EntityIdentification(Dimension):
     ]
 
   def _list_ids_virtual(self, file: DeserializedFile) -> List[CloudDeviceId]:
-    """ Generates list of `cloud_device_id`s representing
+    """Generates list of `cloud_device_id`s representing
     reporting entities with canonical types that
-    are linked to by virtual entities """
+    are linked to by virtual entities."""
     return [
         cloud_device_id for source_list in (
             (file[link.source].cloud_device_id for link in entity.links)
@@ -51,6 +49,8 @@ class EntityIdentification(Dimension):
     ]
 
   def evaluate(self):
+    """Calculates and assigns properties necessary for generating a score."""
+
     proposed_file, solution_file = map(self.deserialized_files.get,
                                        (PROPOSED, SOLUTION))
 

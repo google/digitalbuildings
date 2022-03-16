@@ -11,7 +11,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-""" Core component """
+"""Core component."""
 
 # from collections import Counter
 
@@ -23,11 +23,11 @@ PROPOSED, SOLUTION = FileTypes
 
 
 class EntityConnectionIdentification(Dimension):
-  """
-  Quantifies whether connections between entities were
-  correctly and completely defined in the proposed file.
-  """
+  """Quantifies whether connections between entities were
+  correctly and completely defined in the proposed file."""
   def _isolate_connections(self, file: DeserializedFile):
+    """Distill individual connections from each entity
+    prior to inclusion in sets for global comparison."""
     return [
         tup for tup in (((cloud_device_id, connection)
                          for connection in entity.connections)
@@ -36,8 +36,8 @@ class EntityConnectionIdentification(Dimension):
     ]
 
   def _condense_connections(self, connections):
-    """ Condense connections into sets of strings
-    for easy comparison using intersection """
+    """Condense connections into sets of strings
+    for easy comparison using intersection."""
     return set([
         f'{target} {connection.ctype} {connection.source}'
         for target, connection in connections
@@ -46,6 +46,8 @@ class EntityConnectionIdentification(Dimension):
   # TODO: Figure out how to elegantly implement "facilities"
   # and "equipment" categories given current object model
   def evaluate(self):
+    """Calculate and assign properties necessary for generating a score."""
+
     proposed_file, solution_file = map(self.deserialized_files.get,
                                        (PROPOSED, SOLUTION))
 

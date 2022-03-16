@@ -11,7 +11,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-""" Core component """
+"""Core component."""
 
 from score.dimensions.dimension import Dimension
 from score.constants import FileTypes
@@ -20,10 +20,8 @@ PROPOSED, SOLUTION = FileTypes
 
 
 class UnitMapping(Dimension):
-  """
-  Quantifies how accurately the proposed file
-  mapped dimensional units for relevant fields.
-  """
+  """Quantifies how accurately the proposed file
+  mapped dimensional units for relevant fields."""
   def _fetch_mappings(self, translations):
     return set([(field[0], kv)
                 for field in (field for field in translations
@@ -31,6 +29,8 @@ class UnitMapping(Dimension):
                 for kv in field[1].unit_mappings.items()])
 
   def evaluate(self):
+    """Calculates and assigns properties necessary for generating a score."""
+
     proposed_condensed, solution_condensed = map(self._condense_translations,
                                                  (PROPOSED, SOLUTION))
 

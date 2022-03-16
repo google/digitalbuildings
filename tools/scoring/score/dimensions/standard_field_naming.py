@@ -11,7 +11,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-""" Core component """
+"""Core component."""
 
 from score.dimensions.dimension import Dimension
 from score.constants import FileTypes
@@ -22,17 +22,17 @@ PROPOSED, SOLUTION = FileTypes
 
 
 class StandardFieldNaming(Dimension):
-  """
-  Quantifies whether the correct standard field names
+  """Quantifies whether the correct standard field names
   (e.g. "chilled_water_flowrate_sensor")
-  were selected in the proposed file.
-  """
+  were selected in the proposed file."""
   def _split_subfields(self, field):
     return set(
         filter(lambda subfield: not bool(regex.match('[0-9]+', subfield)),
                field.split('_')))
 
   def evaluate(self):
+    """Calculates and assigns properties necessary for generating a score."""
+
     proposed_condensed, solution_condensed = map(self._condense_translations,
                                                  (PROPOSED, SOLUTION))
 
@@ -44,16 +44,18 @@ class StandardFieldNaming(Dimension):
     correct_ceiling: int = 0
     incorrect_subfields = []
 
-    for s_field, s_value in solution_translations:
-      s_subfields = self._split_subfields(s_field)
-      correct_ceiling += len(s_subfields)
+    for solution_field, solution_value in solution_translations:
+      solution_subfields = self._split_subfields(solution_field)
+      correct_ceiling += len(solution_subfields)
 
-      for p_field, p_value in proposed_translations:
-        if p_value.raw_field_name == s_value.raw_field_name:
-          p_subfields = self._split_subfields(p_field)
+      for proposed_field, proposed_value in proposed_translations:
+        if proposed_value.raw_field_name == solution_value.raw_field_name:
+          proposed_subfields = self._split_subfields(proposed_field)
 
-          correct_subfields += p_subfields.intersection(s_subfields)
-          incorrect_subfields += p_subfields.difference(s_subfields)
+          correct_subfields += proposed_subfields.intersection(
+              solution_subfields)
+          incorrect_subfields += proposed_subfields.difference(
+              solution_subfields)
 
     self.correct_reporting = len(correct_subfields)
     self.correct_ceiling_reporting = correct_ceiling

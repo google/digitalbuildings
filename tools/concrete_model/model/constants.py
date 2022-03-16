@@ -11,22 +11,16 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-"""Constants for the configuration scoring tool."""
+"""Constants for concrete model application."""
 
-from enum import Enum
+NAMESPACE_KEY = 'namespace'
+GENERAL_TYPE_KEY = 'general_type'
+ENTITY_TYPE_KEY = 'entity_type'
+REQUIRED_FIELDS_KEY = 'required_fields'
+OPTIONAL_FIELDS_KEY = 'optional_fields'
+
+SOURCE_ENTITY_GUID_KEY = 'source_entity_guid'
+TARGET_ENEITY_GUID_KEY = 'target_entity_guid'
+CONNECTION_TYPE_KEY = 'connection_type'
 
 
-class FileTypes(str, Enum):
-  """The file which is being scored."""
-  PROPOSED = 'proposed'
-  """.The file which is being compared against."""
-  SOLUTION = 'solution'
-
-
-class DimensionCategories(str, Enum):
-  """Receives `translations` and scores
-  only reporting entities in bulk."""
-  SIMPLE = 'simple'
-  """Receives `deserialized_files` to build a multi-map
-  of virtual entities prior to calculating scores."""
-  COMPLEX = 'complex'

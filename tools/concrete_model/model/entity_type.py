@@ -13,27 +13,35 @@
 # limitations under the License.
 """Module for canonical entity types."""
 
-from typing import Optional, List, Dict
+from typing import Dict, List, Optional
+
+from model.constants import ENTITY_TYPE_KEY
+from model.constants import GENERAL_TYPE_KEY
+from model.constants import NAMESPACE_KEY
+from model.constants import OPTIONAL_FIELDS_KEY
+from model.constants import REQUIRED_FIELDS_KEY
+from lib import ontology_wrapper
+from lib.model import StandardField
 
 
 class EntityType(object):
   """Class to store DBO entity type information relevant to an entity.
 
   Attributes:
-    namespace: An entity's namespace in digital buildings ontology.
-    general_type: An entity's general type in digital buildings ontology.
+    namespace: An entity's namespace in Digital Buildings Ontology.
+    general_type: An entity's general type in Digital Buildings Ontology.
     required_fields: A list of standard field names required for a DBO entity
       type.
     optional_fields: A list of standard field names not required for a DBO enity
       type.
-    entity_type_name: An entity's type as defined in digital buildings ontology.
+    entity_type_name: An entity's type as defined in Digital Buildings Ontology.
   """
 
   def __init__(self,
                namespace: str,
                general_type: str,
                required_fields: List[str],
-               optional_fields: Optional[List[str]],
+               optional_fields: Optional[List[str]] = None,
                entity_type: Optional[str] = None):
     """Init.
 
@@ -54,24 +62,56 @@ class EntityType(object):
     self.entity_type_name = entity_type
 
   @classmethod
-  def FromDict(cls, entity_type_dict: Dict[str, str]):
+  def FromDict(cls, entity_type_dict: Dict[str, str],
+               ontology: ontology_wrapper.OntologyWrapper):
     """Creates an instance of EntityType class from a dictionary of entity type attributes.
 
     Args:
       entity_type_dict: A mapping of entity type attributes to corresponding
         values from a loadsheet of building configuration.
+      ontology: An instance of OntologyWrapper to interface with DBO.
 
     Returns:
       An instance of EntityType class.
     """
+    all_fields = entity_type_dict[
+        REQUIRED_FIELDS_KEY] + entity_type_dict[
+            OPTIONAL_FIELDS_KEY]
+    entity_type = None
+    if entity_type_dict[ENTITY_TYPE_KEY] is None:
+      entity_type = cls.GetEntityTypeForStandardFieldList(
+          cls, raw_field_list=all_fields, ontology=ontology)
+    else:
+      entity_type = entity_type_dict[ENTITY_TYPE_KEY]
+    return cls(
+        namespace=entity_type_dict[NAMESPACE_KEY],
+        general_type=entity_type_dict[GENERAL_TYPE_KEY],
+        required_fields=entity_type_dict[REQUIRED_FIELDS_KEY],
+        optional_fields=entity_type_dict[OPTIONAL_FIELDS_KEY],
+        entity_type=entity_type
+    )
 
-  def GetEntityTypeForStandardFieldList(self, fields: List[str]) -> str:
+  def GetEntityTypeForStandardFieldList(
+      self, raw_field_list: List[str],
+      ontology: ontology_wrapper.OntologyWrapper) -> str:
     """Calls entity type matcher to determine an entity's type based on a list of fields.
 
     Args:
-      fields: A list of standard field names to use as input with the entity
-        type matcher.
+      raw_field_list: A list of standard field names to use as input with the
+        entity type matcher.
+      ontology: An OntologyWrapper instance for interfacing with DBO.
 
     Returns:
       A canonical entity type corresponding to the input fields.
     """
+    standard_field_list = []
+    for field in raw_field_list:
+      standard_field = StandardField(
+          standard_field_name=field,
+          namespace_name=''
+      )
+      if ontology.IsFieldValid(standard_field):
+        standard_field_list.append(standard_field)
+    matches = ontology.GetEntityTypesFromFields(field_list=standard_field_list)
+    generated_type_name = matches[0].GetEntityType().typename
+    return generated_type_name

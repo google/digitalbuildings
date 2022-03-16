@@ -11,7 +11,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-""" Core component """
+"""Core component."""
 
 from score.dimensions.dimension import Dimension
 from score.constants import FileTypes
@@ -20,11 +20,9 @@ PROPOSED, SOLUTION = FileTypes
 
 
 class RawFieldSelection(Dimension):
-  """
-  Quantifies whether the correct raw fields
+  """Quantifies whether the correct raw fields
   (e.g. "points.chilled_water_flowrate_sensor.present_value")
-  were mapped (versus ignored) in the proposed file.
-  """
+  were mapped (versus ignored) in the proposed file."""
   def _fetch_raw_field_names(self, translations):
     return set([
         translation.raw_field_name
@@ -32,6 +30,8 @@ class RawFieldSelection(Dimension):
     ])
 
   def evaluate(self):
+    """Calculates and assigns properties necessary for generating a score."""
+
     proposed_condensed, solution_condensed = map(self._condense_translations,
                                                  (PROPOSED, SOLUTION))
 
