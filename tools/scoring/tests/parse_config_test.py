@@ -60,7 +60,7 @@ class ParseConfigTest(absltest.TestCase):
     self.assertFalse(
         hasattr(
             list(self.parse.deserialized_files[PROPOSED].values())[0], 'type'))
-    deserialized_files_appended = self.parse.append_types(
+    deserialized_files_appended = self.parse._append_types(  # pylint: disable=protected-access
         universe=self.parse.universe,
         deserialized_files=self.parse.deserialized_files)
     self.assertEqual(mock_print.call_count, 4)
@@ -81,7 +81,7 @@ class ParseConfigTest(absltest.TestCase):
     solution_entities = validator.Deserialize(
         ['tests/samples/solution/match_reporting_entities.yaml'])[0]
 
-    matches = parse_config.ParseConfig.match_reporting_entities(
+    matches = parse_config.ParseConfig._match_reporting_entities(  # pylint: disable=protected-access
         proposed_entities=proposed_entities,
         solution_entities=solution_entities)
 
@@ -96,11 +96,11 @@ class ParseConfigTest(absltest.TestCase):
     solution_entities = validator.Deserialize(
         ['tests/samples/solution/retrieve_reporting_translations.yaml'])[0]
 
-    matches = parse_config.ParseConfig.match_reporting_entities(
+    matches = parse_config.ParseConfig._match_reporting_entities(  # pylint: disable=protected-access
         proposed_entities=proposed_entities,
         solution_entities=solution_entities)
 
-    translations = parse_config.ParseConfig.retrieve_reporting_translations(
+    translations = parse_config.ParseConfig._retrieve_reporting_translations(  # pylint: disable=protected-access
         matches=matches,
         proposed_entities=proposed_entities,
         solution_entities=solution_entities)
@@ -141,7 +141,7 @@ class ParseConfigTest(absltest.TestCase):
       def evaluate(self):
         return f'called with {self.translations}'
 
-    results = parse_config.ParseConfig.aggregate_results(
+    results = parse_config.ParseConfig._aggregate_results(  # pylint: disable=protected-access
         dimensions={
             f'{SIMPLE}': [_MockDimensionSimple],
             f'{COMPLEX}': [_MockDimensionComplex]

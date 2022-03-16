@@ -66,7 +66,7 @@ class ParseConfig:
     self.results = {}
 
   @staticmethod
-  def append_types(
+  def _append_types(
       *, universe: ConfigUniverse,
       deserialized_files: DeserializedFilesDict) -> DeserializedFilesDict:
     """
@@ -124,7 +124,7 @@ class ParseConfig:
     return deserialized_files
 
   @staticmethod
-  def match_reporting_entities(
+  def _match_reporting_entities(
       *, proposed_entities: DeserializedFile,
       solution_entities: DeserializedFile) -> List[CloudDeviceId]:
     """
@@ -151,7 +151,7 @@ class ParseConfig:
     return matches
 
   @staticmethod
-  def retrieve_reporting_translations(
+  def _retrieve_reporting_translations(
       *, matches: List[CloudDeviceId], proposed_entities: DeserializedFile,
       solution_entities: DeserializedFile) -> TranslationsDict:
     """
@@ -197,7 +197,7 @@ class ParseConfig:
     return translations
 
   @staticmethod
-  def aggregate_results(
+  def _aggregate_results(
       *, dimensions: Dict[DimensionCategory, List[Dimension]],
       translations: TranslationsDict, deserialized_files: DeserializedFilesDict
   ) -> Dict[DimensionName, Dimension]:
@@ -246,14 +246,14 @@ class ParseConfig:
         Dictionary containing human-readable
         represenation of every scored dimension.
     """
-    deserialized_files_appended = self.append_types(
+    deserialized_files_appended = self._append_types(
         universe=self.universe, deserialized_files=self.deserialized_files)
 
-    matches = self.match_reporting_entities(
+    matches = self._match_reporting_entities(
         proposed_entities=deserialized_files_appended[PROPOSED],  # pylint: disable=unsubscriptable-object
         solution_entities=deserialized_files_appended[SOLUTION])  # pylint: disable=unsubscriptable-object
 
-    translations = self.retrieve_reporting_translations(
+    translations = self._retrieve_reporting_translations(
         matches=matches,
         proposed_entities=deserialized_files_appended[PROPOSED],  # pylint: disable=unsubscriptable-object
         solution_entities=deserialized_files_appended[SOLUTION])  # pylint: disable=unsubscriptable-object
@@ -272,7 +272,7 @@ class ParseConfig:
         ]
     }
 
-    self.results = self.aggregate_results(
+    self.results = self._aggregate_results(
         dimensions=dimensions,
         translations=translations,
         deserialized_files=deserialized_files_appended)
