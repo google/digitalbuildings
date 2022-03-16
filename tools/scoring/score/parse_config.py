@@ -71,7 +71,7 @@ class ParseConfig:
       deserialized_files: DeserializedFilesDict) -> DeserializedFilesDict:
     """
       Appends types to deserialized files for purposes
-      of filtering entities and for evaluating some dimensions.
+      of filtering entities and for evaluating "complex" dimensions.
 
       Args:
         universe: The ontology universe to reference
