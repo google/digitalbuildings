@@ -250,13 +250,13 @@ class ParseConfig:
         universe=self.universe, deserialized_files=self.deserialized_files)
 
     matches = self._match_reporting_entities(
-        proposed_entities=deserialized_files_appended[PROPOSED],  # pylint: disable=unsubscriptable-object
-        solution_entities=deserialized_files_appended[SOLUTION])  # pylint: disable=unsubscriptable-object
+        proposed_entities=deserialized_files_appended[PROPOSED],
+        solution_entities=deserialized_files_appended[SOLUTION])
 
     translations = self._retrieve_reporting_translations(
         matches=matches,
-        proposed_entities=deserialized_files_appended[PROPOSED],  # pylint: disable=unsubscriptable-object
-        solution_entities=deserialized_files_appended[SOLUTION])  # pylint: disable=unsubscriptable-object
+        proposed_entities=deserialized_files_appended[PROPOSED],
+        solution_entities=deserialized_files_appended[SOLUTION])
 
     dimensions = {
         SIMPLE: [
