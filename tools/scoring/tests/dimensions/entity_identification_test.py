@@ -28,7 +28,8 @@ SIMPLE, COMPLEX = DimensionCategories
 
 
 class EntityIdentificationTest(absltest.TestCase):
-  def _prepare_perfect_score_argument(self, *, entity_type: str):
+  def _prepare_best_score_argument(self, *, entity_type: str):
+    # TOD: move this
     """Prepare argument for direct invocation
     of a dimension for purposes of testing.
 
@@ -66,53 +67,88 @@ class EntityIdentificationTest(absltest.TestCase):
 
   def setUp(self):
     super().setUp()
-    none_score_argument = {PROPOSED: {}, SOLUTION: {}}
-    perfect_score_argument = self._prepare_perfect_score_argument(
+    self.best_score_argument = self._prepare_best_score_argument(
         entity_type=COMPLEX)
 
-    self.entity_identification_none_score = EntityIdentification(
+  def testNoneScore(self):
+    """Incomplete data."""
+    none_score_argument = {PROPOSED: {}, SOLUTION: {}}
+    entity_identification_none_score = EntityIdentification(
         deserialized_files=none_score_argument).evaluate()
-    self.entity_identification_perfect_score = EntityIdentification(
-        deserialized_files=perfect_score_argument).evaluate()
 
-  def testDirectlyAssignedAttributes(self):
-    self.assertEqual(self.entity_identification_none_score.correct_reporting, 0)
-    self.assertEqual(
-        self.entity_identification_none_score.correct_ceiling_reporting, 0)
-    self.assertEqual(self.entity_identification_none_score.incorrect_reporting,
+    # Directly assigned attributes
+    # TODO: add virtual
+    self.assertEqual(entity_identification_none_score.correct_reporting, 0)
+    self.assertEqual(entity_identification_none_score.correct_ceiling_reporting,
                      0)
+    self.assertEqual(entity_identification_none_score.incorrect_reporting, 0)
 
-    self.assertEqual(self.entity_identification_perfect_score.correct_reporting,
+    # Inherited calculated attributes
+    self.assertEqual(entity_identification_none_score.correct_total(), 0)
+    self.assertEqual(entity_identification_none_score.correct_ceiling(), 0)
+    self.assertEqual(entity_identification_none_score.incorrect_total(), 0)
+
+    # Inherited result properties. These are `None` by virtue of the ceiling
+    # being falsy: that is to say, there was nothing to score against.
+    self.assertEqual(entity_identification_none_score.result_all, None)
+    self.assertEqual(entity_identification_none_score.result_reporting, None)
+    self.assertEqual(entity_identification_none_score.result_virtual, None)
+
+  def testBestScore(self):
+    """Exactly correct."""
+    entity_identification_best_score = EntityIdentification(
+        deserialized_files=self.best_score_argument).evaluate()
+
+    # Directly assigned attributes
+    #TODO: add virtual
+    self.assertEqual(entity_identification_best_score.correct_reporting, 1)
+    self.assertEqual(entity_identification_best_score.correct_ceiling_reporting,
                      1)
-    self.assertEqual(
-        self.entity_identification_perfect_score.correct_ceiling_reporting, 1)
-    self.assertEqual(
-        self.entity_identification_perfect_score.incorrect_reporting, 0)
+    self.assertEqual(entity_identification_best_score.incorrect_reporting, 0)
 
-  def testInheritedCalculatedAttributes(self):
-    self.assertEqual(self.entity_identification_none_score.correct_total(), 0)
-    self.assertEqual(self.entity_identification_none_score.correct_ceiling(), 0)
-    self.assertEqual(self.entity_identification_none_score.incorrect_total(), 0)
+    # Inherited calculated attributes
+    self.assertEqual(entity_identification_best_score.correct_total(), 1)
+    self.assertEqual(entity_identification_best_score.correct_ceiling(), 1)
+    self.assertEqual(entity_identification_best_score.incorrect_total(), 0)
 
-    self.assertEqual(self.entity_identification_perfect_score.correct_total(),
-                     1)
-    self.assertEqual(self.entity_identification_perfect_score.correct_ceiling(),
-                     1)
-    self.assertEqual(self.entity_identification_perfect_score.incorrect_total(),
-                     0)
+    # Inherited result properties
+    self.assertEqual(entity_identification_best_score.result_all, 1.0)
+    self.assertEqual(entity_identification_best_score.result_reporting, 1.0)
+    self.assertEqual(entity_identification_best_score.result_virtual, None)
 
-  def testInheritedResultProperties(self):
-    # These are `None` by virtue of the ceiling being falsy.
-    self.assertEqual(self.entity_identification_none_score.result_all, None)
-    self.assertEqual(self.entity_identification_none_score.result_reporting,
-                     None)
-    self.assertEqual(self.entity_identification_none_score.result_virtual, None)
+  def testWorstScore(self):
+    """Exactly incorrect."""
+    worst_score_argument = {
+        PROPOSED: {},
+        SOLUTION: self.best_score_argument[SOLUTION]
+    }
+    entity_identification_worst_score = EntityIdentification(
+        deserialized_files=worst_score_argument).evaluate()
+    # Directly assigned attributes
 
-    self.assertEqual(self.entity_identification_perfect_score.result_all, 1.0)
-    self.assertEqual(self.entity_identification_perfect_score.result_reporting,
-                     1.0)
-    self.assertEqual(self.entity_identification_perfect_score.result_virtual,
-                     None)
+    # Inherited calculated attributes
+
+    # Inherited result properties
+    self.assertEqual(entity_identification_worst_score.result_all, -1.0)
+    self.assertEqual(entity_identification_worst_score.result_reporting, -1.0)
+    # TODO
+    # self.assertEqual(entity_identification_worst_score.result_virtual, -1.0)
+
+  def testMiddlingScore(self):
+    """50% correct."""
+
+    #TODO
+
+    # Directly assigned attributes
+
+    # Inherited calculated attributes
+
+    # Inherited result properties
+    # self.assertEqual(entity_identification_middling_score.result_all, 0.0)
+    # self.assertEqual(entity_identification_middling_score.result_reporting,
+    #                  0.0)
+    # self.assertEqual(entity_identification_middling_score.result_virtual,
+    #                  0.0)
 
 
 if __name__ == '__main__':
