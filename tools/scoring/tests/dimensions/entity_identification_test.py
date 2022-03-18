@@ -11,25 +11,24 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-"""Test for configuration file scoring tool "entity identification" dimension
-(entity_identification.py)."""
+"""Test for configuration file scoring tool
+"entity identification" dimension (entity_identification.py)."""
 
 from absl.testing import absltest
 
-from score.constants import FileTypes
 from score.dimensions.entity_identification import EntityIdentification
+from score.constants import FileTypes
 
 PROPOSED, SOLUTION = FileTypes
 
 
 class EntityIdentificationTest(absltest.TestCase):
-
   def setUp(self):
     super().setUp()
-    # TODO(b/210741084): add real data (append cases to existing tests)
+    # TODO: add real data (append cases to existing tests)
     deserialized_files = {PROPOSED: {}, SOLUTION: {}}
     self.entity_identification = EntityIdentification(
-        deserialized_files=deserialized_files)
+        deserialized_files=deserialized_files).evaluate()
 
   def testDirectlyAssignedAttributes(self):
     self.assertEqual(self.entity_identification.correct_reporting, 0)
@@ -43,9 +42,9 @@ class EntityIdentificationTest(absltest.TestCase):
 
   def testInheritedResultProperties(self):
     # These are `None` by virtue of the ceiling being falsy.
-    self.assertIsNone(self.entity_identification.result_composite)
-    self.assertIsNone(self.entity_identification.result_reporting)
-    self.assertIsNone(self.entity_identification.result_virtual)
+    self.assertEqual(self.entity_identification.result_all, None)
+    self.assertEqual(self.entity_identification.result_reporting, None)
+    self.assertEqual(self.entity_identification.result_virtual, None)
 
 
 if __name__ == '__main__':

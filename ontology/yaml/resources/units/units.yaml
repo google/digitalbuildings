@@ -26,7 +26,7 @@ current:
 - milliamperes
 currentratio:
 - no_units: STANDARD
-diameter: level
+diameter: distance
 density:
 - kilograms_per_cubic_meter: STANDARD
 - grams_per_cubic_meter
@@ -43,6 +43,7 @@ energy:
 - therms
 - kilovolt_ampere_hours
 - kilovolt_ampere_reactive_hours
+- watt_hours
 flowrate:
 - cubic_meters_per_second: STANDARD
 - cubic_feet_per_minute

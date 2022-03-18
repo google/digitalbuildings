@@ -13,60 +13,62 @@
 # limitations under the License.
 """Core component."""
 
-import collections
+from collections import Counter
 
-from score.constants import FileTypes
 from score.dimensions.dimension import Dimension
-from score.types_ import DeserializedFilesDict
+from score.constants import FileTypes
+from score.types_ import DeserializedFile, CloudDeviceId
+
+from typing import List
 
 PROPOSED, SOLUTION = FileTypes
 
 
 class EntityIdentification(Dimension):
-  """Quantifies whether the correct entities were included in the proposed file."""
-
-  def __init__(self, *, deserialized_files: DeserializedFilesDict):
-    super().__init__(deserialized_files=deserialized_files)
-
-    proposed, solution = map(deserialized_files.get, (PROPOSED, SOLUTION))
-
-    # Lists of `cloud_device_id`s representing
-    # reporting entities with canonical types
-    solution_reporting = [
-        entity.cloud_device_id for entity in filter(
-            self.is_entity_canonical,
-            filter(self.is_entity_reporting, solution.values()))
-    ]
-    proposed_reporting = [
-        entity.cloud_device_id for entity in filter(
-            self.is_entity_canonical,
-            filter(self.is_entity_reporting, proposed.values()))
+  """Quantifies whether the correct entities
+  were included in the proposed file."""
+  def _list_ids_reporting(self, file: DeserializedFile) -> List[CloudDeviceId]:
+    """Generates list of `cloud_device_id`s representing
+    reporting entities with canonical types."""
+    return [
+        entity.cloud_device_id
+        for entity in filter(self.is_entity_canonical,
+                             filter(self.is_entity_reporting, file.values()))
     ]
 
-    # Lists of `cloud_device_id`s representing
-    # reporting entities with canonical types that
-    # are linked to by virtual entities
-    solution_virtual = []
-    for entity in solution.values():
-      if self.is_entity_canonical(entity) and self.is_entity_virtual(entity):
-        for link in entity.links:
-          solution_virtual.append(solution[link.source].cloud_device_id)
+  def _list_ids_virtual(self, file: DeserializedFile) -> List[CloudDeviceId]:
+    """Generates list of `cloud_device_id`s representing
+    reporting entities with canonical types that
+    are linked to by virtual entities."""
+    return [
+        cloud_device_id for source_list in (
+            (file[link.source].cloud_device_id for link in entity.links)
+            for entity in filter(self.is_entity_canonical,
+                                 filter(self.is_entity_virtual, file.values())))
+        for cloud_device_id in source_list
+    ]
 
-    proposed_virtual = []
-    for entity in proposed.values():
-      if self.is_entity_canonical(entity) and self.is_entity_virtual(entity):
-        for link in entity.links:
-          proposed_virtual.append(proposed[link.source].cloud_device_id)
+  def evaluate(self):
+    """Calculates and assigns properties necessary for generating a score."""
 
-    self.correct_reporting = sum(
-        (collections.Counter(proposed_reporting)
-         & collections.Counter(solution_reporting)).values())
-    self.correct_ceiling_reporting = len(solution_reporting)
-    self.incorrect_reporting = (
-        self.correct_ceiling_reporting - self.correct_reporting)
+    proposed_file, solution_file = map(self.deserialized_files.get,
+                                       (PROPOSED, SOLUTION))
 
-    self.correct_virtual = sum(
-        (collections.Counter(proposed_virtual)
-         & collections.Counter(solution_virtual)).values())
-    self.correct_ceiling_virtual = len(solution_virtual)
+    proposed_reporting_ids, solution_reporting_ids = map(
+        self._list_ids_reporting, (proposed_file, solution_file))
+
+    proposed_virtual_ids, solution_virtual_ids = map(
+        self._list_ids_virtual, (proposed_file, solution_file))
+
+    self.correct_reporting = sum((Counter(proposed_reporting_ids)
+                                  & Counter(solution_reporting_ids)).values())
+    self.correct_ceiling_reporting = len(solution_reporting_ids)
+    self.incorrect_reporting = (self.correct_ceiling_reporting -
+                                self.correct_reporting)
+
+    self.correct_virtual = sum((Counter(proposed_virtual_ids)
+                                & Counter(solution_virtual_ids)).values())
+    self.correct_ceiling_virtual = len(solution_virtual_ids)
     self.incorrect_virtual = self.correct_ceiling_virtual - self.correct_virtual
+
+    return self
