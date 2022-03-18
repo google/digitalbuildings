@@ -11,121 +11,52 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-acceleration:
-- meters_per_second_per_second: STANDARD
 angle:
 - degrees: STANDARD
-angularmomentum:
-- joule_seconds: STANDARD
-apparentpower:
-- volt_amperes_apparent: STANDARD
-- kilovolt_amperes_apparent
-- megavolt_amperes_apparent
 aqi:
 - epa: STANDARD
 - eea
 - uab
-area:
-- square_meters: STANDARD
-- square_centimeters
-- square_feet
-- square_inches
 concentration:
 - parts_per_unit: STANDARD
 - parts_per_million
 - parts_per_billion
-- grams_per_kilogram # Can convert approximately using Avogadro
-- grams_of_water_per_kilogram
 current:
 - amperes: STANDARD
 - milliamperes
 currentratio:
 - no_units: STANDARD
-diameter: length
-distance: length
+diameter: level
 density:
 - kilograms_per_cubic_meter: STANDARD
 - grams_per_cubic_meter
 - micrograms_per_cubic_meter
 - milligrams_per_cubic_meter
-electriccapacitance:
-- farads: STANDARD
-electricconductance:
-- siemens: STANDARD
-electricconductivity:
-- siemens_per_meter: STANDARD
-electriccurrentdensity:
-- amperes_per_square_meter: STANDARD
-electricfield:
-- volts_per_meter: STANDARD
-electricinductance:
-- henrys: STANDARD
-electricphasedifference:
-- degrees_phase: STANDARD
-electricfieldstrength:
-- amperes_per_meter: STANDARD
-electricresistivity:
-- ohm_meters: STANDARD
 energy:
 - joules: STANDARD
 - kilowatt_hours
-- btus
-- kilobtus
-- kilojoules
-- megabtus
-- megajoules
 - megawatt_hours
 - therms
-- ton_hours
 - watt_hours
-energydensity:
-- kilojoules_per_kilogram: STANDARD
-entropy:
-- joules_per_kelvin: STANDARD
-- kilojoules_per_kelvin
-- megajoules_per_kelvin
 flowrate:
 - cubic_meters_per_second: STANDARD
-- cubic_feet_per_second
 - cubic_feet_per_minute
 - cubic_feet_per_hour
 - cubic_meters_per_minute
 - cubic_meters_per_hour
-- liters_per_second
-- liters_per_minute
-- liters_per_hour
 - gallons_per_minute
-- imperial_gallons_per_minute
-- us_gallons_per_minute
-force:
-- newton: STANDARD
+- liters_per_second
+- kilograms_per_hour
 frequency:
 - hertz: STANDARD
-- cycles_per_hour
-- cycles_per_minute
-- kilohertz
-- megahertz
-- per_hour
-- per_minute
-- per_second
-- percent_per_second
 humidity:
 - percent_relative_humidity: STANDARD
 illuminance:
 - lux: STANDARD
-- foot_candles
-impulse:
-- newton_seconds: STANDARD
-irradiance:
-- watt_per_square_metre: STANDARD
-length:
+level:
 - meters: STANDARD
-- centimeters
-- millimeters
-- micrometers
 - feet
-- inches
-level: length
+- micrometers
 linearacceleration:
 - meters_per_square_second: STANDARD
 - gravity
@@ -134,143 +65,52 @@ linearacceleration:
 - millimeters_per_square_second
 linearvelocity:
 - meters_per_second: STANDARD
-- meters_per_minute
-- meters_per_hour
-- millimeters_per_minute
-- millimeters_per_second
-- kilometers_per_hour
 - feet_per_minute
-- feet_per_second
 - miles_per_hour
-luminance:
-- candelas_per_square_meter: STANDARD
-luminousflux:
-- lumens: STANDARD
-luminousintensity:
-- candelas: STANDARD
-magneticflux:
-- webers: STANDARD
-magneticinduction:
-- teslas: STANDARD
-magneticmoment:
-- ampere_square_meters: STANDARD
-mass:
-- grams: STANDARD
-- kilograms
-- pounds_mass
-- tons
-massconcentration: concentration
-massflow:
-- grams_per_second: STANDARD
-- grams_per_minute
-- kilograms_per_hour
-- kilograms_per_minute
-- kilograms_per_second
-- tons_per_hour
-- pounds_mass_per_hour
-- pounds_mass_per_minute
-- pounds_mass_per_second
-obscuration:
-- percent_obscuration_per_meter: STANDARD
-- percent_obscuration_per_foot
+- millimeters_per_second
+massconcentration:
+- grams_per_kilogram: STANDARD
 percentage:
 - percent: STANDARD
+powerfactor:
+- no_units: STANDARD
 power:
 - watts: STANDARD
 - kilowatts
-- volt_amperes
-- kilovolt_amperes
-- megawatts
-- milliwatts
 - tons_of_refrigeration
-- btus_per_hour
-- horsepower
-- kilobtus_per_hour
+- kilovolt_amperes
+- kilovolt_amperes_reactive
+- megawatts
 - therms_per_hour
-powerfactor:
-- no_units: STANDARD
-powerflux:
-- watts_per_square_meter: STANDARD
-- watts_per_square_foot
 pressure:
 - pascals: STANDARD
-- hectopascals
-- kilopascals
-- centimeters_of_mercury
-- centimeters_of_water
-- millimeters_of_mercury
-- inches_of_water
-- inches_of_mercury
-- pounds_force_per_square_inch
 - bars
-- millibars
-rate:
-- inv_second: STANDARD
-reactivepower:
-- volt_amperes_reactive: STANDARD
-- kilovolt_amperes_reactive
-- megavolt_amperes_reactive
+- kilopascals
+- inches_of_water
+- pounds_force_per_square_inch
+- atmospheres
 resistance:
 - ohms: STANDARD
 - kiloohms
-- megaohms
-- milliohms
-rotationalvelocity:
-- revolutions_per_minute: STANDARD
-specificenergy:
-- joules_per_kilogram_kelvin: STANDARD
 specificenthalpy:
 - joules_per_kilogram: STANDARD
 - btus_per_pound_dry_air
-- joules_per_kilogram_dry_air
-- kilojoules_per_kilogram_dry_air
-- megajoules_per_kilogram_dry_air
 temperature:
-- kelvin: STANDARD
+- kelvins: STANDARD
 - degrees_celsius
 - degrees_fahrenheit
-temperaturechangerate:
-- kelvin_per_second: STANDARD
-- kelvin_per_minute
-- kelvin_per_hour
-- degrees_celsius_per_hour
-- degrees_celsius_per_minute
-- degrees_fahrenheit_per_hour
-- degrees_fahrenheit_per_minute
-timetemperature:
-- degree_days_kelvin: STANDARD
-- degree_days_celsius
-- degree_days_fahrenheit
-thermalconductivity:
-- watts_per_meter_per_kelvin: STANDARD
-thermalcapacity:
-- btus_per_pound: STANDARD
-thermaltransmittance:
-- watts_per_square_meter_kelvin: STANDARD
-time:
-- seconds: STANDARD
-- days
-- hours
-- hundredths_seconds
-- milliseconds
-- minutes
-- months
-- weeks
-- years
-torque:
-- newton_meters: STANDARD
 voltage:
 - volts: STANDARD
-- kilovolts
-- megavolts
-- millivolts
 voltageratio:
 - no_units: STANDARD
 volume:
 - cubic_meters: STANDARD
-- liters
-- imperial_gallons
-- us_gallons
 - cubic_feet
+- us_gallons
+- liters
 volumetricconcentration:
 - parts_per_cubic_centimeter: STANDARD # can be approximated using Avogadro
+time:
+- seconds: STANDARD
+rate:
+- inv_second: STANDARD

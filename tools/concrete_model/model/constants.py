@@ -1,4 +1,4 @@
-# Copyright 2020 Google LLC
+# Copyright 2022 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the License);
 # you may not use this file except in compliance with the License.
@@ -11,33 +11,16 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+"""Constants for concrete model application."""
 
-########################
-### Canonical Types  ###
-########################
+NAMESPACE_KEY = 'namespace'
+GENERAL_TYPE_KEY = 'general_type'
+ENTITY_TYPE_KEY = 'entity_type'
+REQUIRED_FIELDS_KEY = 'required_fields'
+OPTIONAL_FIELDS_KEY = 'optional_fields'
 
-DOAS_EFM_EFSS_EFVSC_OAFM_PHRU_SFSS_SFVSC:
-  id: "5257787225894027264"
-  description: "DOAS heat recovery with fan speed control."
-  is_canonical: true
-  implements:
-  - DOAS
-  - EFM
-  - EFSS
-  - EFVSC
-  - OAFM
-  - PHRU
-  - SFSS
-  - SFVSC
+SOURCE_ENTITY_GUID_KEY = 'source_entity_guid'
+TARGET_ENEITY_GUID_KEY = 'target_entity_guid'
+CONNECTION_TYPE_KEY = 'connection_type'
 
-DOAS_EFSS_EFVSC_HTWHLSTC_SFSS_SFVSC_STC:
-  description: "Multi zone DOAS with heat recovery wheel."
-  is_canonical: true
-  implements:
-  - DOAS
-  - EFSS
-  - EFVSC
-  - HTWHLSTC
-  - SFSS
-  - SFVSC
-  - STC
+
