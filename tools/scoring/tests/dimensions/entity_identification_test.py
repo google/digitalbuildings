@@ -28,8 +28,8 @@ SIMPLE, COMPLEX = DimensionCategories
 
 
 class EntityIdentificationTest(absltest.TestCase):
-  def _prepare_best_score_argument(self, *, entity_type: str):
-    # TOD: move this
+  def _prepare_highest_score_argument(self, *, entity_type: str):
+    # TODO: move this
     """Prepare argument for direct invocation
     of a dimension for purposes of testing.
 
@@ -67,7 +67,7 @@ class EntityIdentificationTest(absltest.TestCase):
 
   def setUp(self):
     super().setUp()
-    self.best_score_argument = self._prepare_best_score_argument(
+    self.highest_score_argument = self._prepare_highest_score_argument(
         entity_type=COMPLEX)
 
   def testNoneScore(self):
@@ -94,54 +94,76 @@ class EntityIdentificationTest(absltest.TestCase):
     self.assertEqual(entity_identification_none_score.result_reporting, None)
     self.assertEqual(entity_identification_none_score.result_virtual, None)
 
-  def testBestScore(self):
+  def testHighestScore(self):
     """Exactly correct."""
-    entity_identification_best_score = EntityIdentification(
-        deserialized_files=self.best_score_argument).evaluate()
+    entity_identification_highest_score = EntityIdentification(
+        deserialized_files=self.highest_score_argument).evaluate()
 
     # Directly assigned attributes
     #TODO: add virtual
-    self.assertEqual(entity_identification_best_score.correct_reporting, 1)
-    self.assertEqual(entity_identification_best_score.correct_ceiling_reporting,
-                     1)
-    self.assertEqual(entity_identification_best_score.incorrect_reporting, 0)
+    self.assertEqual(entity_identification_highest_score.correct_reporting, 1)
+    self.assertEqual(
+        entity_identification_highest_score.correct_ceiling_reporting, 1)
+    self.assertEqual(entity_identification_highest_score.incorrect_reporting, 0)
 
     # Inherited calculated attributes
-    self.assertEqual(entity_identification_best_score.correct_total(), 1)
-    self.assertEqual(entity_identification_best_score.correct_ceiling(), 1)
-    self.assertEqual(entity_identification_best_score.incorrect_total(), 0)
+    self.assertEqual(entity_identification_highest_score.correct_total(), 1)
+    self.assertEqual(entity_identification_highest_score.correct_ceiling(), 1)
+    self.assertEqual(entity_identification_highest_score.incorrect_total(), 0)
 
     # Inherited result properties
-    self.assertEqual(entity_identification_best_score.result_all, 1.0)
-    self.assertEqual(entity_identification_best_score.result_reporting, 1.0)
-    self.assertEqual(entity_identification_best_score.result_virtual, None)
+    self.assertEqual(entity_identification_highest_score.result_all, 1.0)
+    self.assertEqual(entity_identification_highest_score.result_reporting, 1.0)
+    self.assertEqual(entity_identification_highest_score.result_virtual, None)
 
-  def testWorstScore(self):
+  def testLowestScore(self):
     """Exactly incorrect."""
-    worst_score_argument = {
+    lowest_score_argument = {
         PROPOSED: {},
-        SOLUTION: self.best_score_argument[SOLUTION]
+        SOLUTION: self.highest_score_argument[SOLUTION]
     }
-    entity_identification_worst_score = EntityIdentification(
-        deserialized_files=worst_score_argument).evaluate()
+    entity_identification_lowest_score = EntityIdentification(
+        deserialized_files=lowest_score_argument).evaluate()
     # Directly assigned attributes
+    #TODO: add virtual
+    self.assertEqual(entity_identification_lowest_score.correct_reporting, 0)
+    self.assertEqual(
+        entity_identification_lowest_score.correct_ceiling_reporting, 1)
+    self.assertEqual(entity_identification_lowest_score.incorrect_reporting, 1)
 
     # Inherited calculated attributes
+    self.assertEqual(entity_identification_lowest_score.correct_total(), 0)
+    self.assertEqual(entity_identification_lowest_score.correct_ceiling(), 1)
+    self.assertEqual(entity_identification_lowest_score.incorrect_total(), 1)
 
     # Inherited result properties
-    self.assertEqual(entity_identification_worst_score.result_all, -1.0)
-    self.assertEqual(entity_identification_worst_score.result_reporting, -1.0)
+    self.assertEqual(entity_identification_lowest_score.result_all, -1.0)
+    self.assertEqual(entity_identification_lowest_score.result_reporting, -1.0)
     # TODO
-    # self.assertEqual(entity_identification_worst_score.result_virtual, -1.0)
+    # self.assertEqual(entity_identification_lowest_score.result_virtual, -1.0)
 
   def testMiddlingScore(self):
     """50% correct."""
-
     #TODO
+    # middling_score_argument = {
+    #     PROPOSED: {},
+    #     SOLUTION: {}
+    # }
+    # entity_identification_middling_score = EntityIdentification(
+    #     deserialized_files=middling_score_argument).evaluate()
 
     # Directly assigned attributes
+    #TODO: add virtual
+    # self.assertEqual(entity_identification_middling_score.correct_reporting, 1)
+    # self.assertEqual(
+    #     entity_identification_middling_score.correct_ceiling_reporting, 2)
+    # self.assertEqual(entity_identification_middling_score.incorrect_reporting,
+    #                  1)
 
     # Inherited calculated attributes
+    # self.assertEqual(entity_identification_middling_score.correct_total(), 0)
+    # self.assertEqual(entity_identification_middling_score.correct_ceiling(), 1)
+    # self.assertEqual(entity_identification_middling_score.incorrect_total(), 1)
 
     # Inherited result properties
     # self.assertEqual(entity_identification_middling_score.result_all, 0.0)
