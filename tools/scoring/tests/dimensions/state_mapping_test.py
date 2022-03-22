@@ -26,8 +26,8 @@ class StateMappingTest(absltest.TestCase):
   def setUp(self):
     super().setUp()
     # TODO: add real data (append cases to existing tests)
-    translations = {PROPOSED: [], SOLUTION: []}
-    self.state_mapping = StateMapping(translations=translations)
+    translations = {'cloud_device_id': {PROPOSED: [], SOLUTION: []}}
+    self.state_mapping = StateMapping(translations=translations).evaluate()
 
   def testDirectlyAssignedAttributes(self):
     self.assertEqual(self.state_mapping.correct_reporting, 0)
@@ -41,7 +41,7 @@ class StateMappingTest(absltest.TestCase):
 
   def testInheritedResultProperties(self):
     # These are `None` by virtue of the ceiling being falsy.
-    self.assertEqual(self.state_mapping.result_composite, None)
+    self.assertEqual(self.state_mapping.result_all, None)
     self.assertEqual(self.state_mapping.result_reporting, None)
     self.assertEqual(self.state_mapping.result_virtual, None)
 

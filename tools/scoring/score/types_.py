@@ -17,14 +17,18 @@
 # https://github.com/microsoft/vscode-python/issues/6571
 """Type annotations for the configuration scoring tool."""
 
-from typing import Dict, List, Tuple, Any
+from typing import Dict, List, Tuple, Any, Set
 from validate.entity_instance import EntityInstance
 from score.constants import FileTypes, DimensionCategories
+from yamlformat.validator.entity_type_lib import EntityType as EntType
 
 CloudDeviceId = str
 FileType = FileTypes
 DeserializedFile = Dict[CloudDeviceId, EntityInstance]
 DeserializedFilesDict = Dict[FileType, DeserializedFile]
 DimensionName = str
-TranslationsDict = Dict[FileType, List[Tuple[str, Any]]]
+TranslationsDict = Dict[CloudDeviceId, Dict[FileType, List[Tuple[str, Any]]]]
 DimensionCategory = DimensionCategories
+EntityType = EntType
+RawFieldName = str
+PointsVirtualList = List[Tuple[Set[RawFieldName], EntityType]]

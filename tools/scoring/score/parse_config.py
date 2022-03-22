@@ -17,10 +17,12 @@ from typing import Dict, Optional, List
 
 from validate import handler as validator
 from validate.generate_universe import BuildUniverse
+from yamlformat.validator.presubmit_validate_types_lib import ConfigUniverse
 
 from score.dimensions.dimension import Dimension
 from score.types_ import CloudDeviceId, DimensionName, TranslationsDict, DeserializedFile, DeserializedFilesDict, DimensionCategory
 from score.constants import FileTypes, DimensionCategories
+from score.dimensions import entity_connection_identification, entity_identification, entity_point_identification, raw_field_selection, standard_field_naming, state_mapping, unit_mapping
 
 PROPOSED, SOLUTION = FileTypes
 SIMPLE, COMPLEX = DimensionCategories
@@ -63,19 +65,30 @@ class ParseConfig:
     }
     self.results = {}
 
-  # TODO: refactor into smaller functions and return instead of printing
-  def append_types(self):
+  @staticmethod
+  def append_types(
+      *, universe: ConfigUniverse,
+      deserialized_files: DeserializedFilesDict) -> DeserializedFilesDict:
     """
-      Appends types to deserialized files
+      Appends types to deserialized files for purposes
+      of filtering entities and for evaluating some dimensions.
+
+      Args:
+        universe: The ontology universe to reference
+        deserialized_files: Dictionary with deserialized configuration files
+          keyed under their respective file type ("proposed" or "solution").
+
+      Returns:
+        The deserialized files dictionary with types
+        appended to each entity in the respective files.
     """
-    for file_type, file in self.deserialized_files.items():
+    for file_type, file in deserialized_files.items():
       translations_absent = []
       types_absent = []
       type_or_name = 'type' if file_type == SOLUTION else 'type_name'
 
       for entity in file.values():
-        entity.type = self.universe.GetEntityType(entity.namespace,
-                                                  entity.type_name)
+        entity.type = universe.GetEntityType(entity.namespace, entity.type_name)
 
         if entity.type is None:
           types_absent.append(getattr(entity, type_or_name))
@@ -84,8 +97,8 @@ class ParseConfig:
             source = file[link.source] if link.source in file else None
             if source:
               if not getattr(source, 'type', None):
-                source.type = self.universe.GetEntityType(
-                    source.namespace, source.type_name)
+                source.type = universe.GetEntityType(source.namespace,
+                                                     source.type_name)
                 if source.type is None:
                   types_absent.append(getattr(source, type_or_name))
               link.source_type = source.type
@@ -107,6 +120,8 @@ class ParseConfig:
 
       print(f'{file_type} types absent: {len(set(types_absent))} ' +
             f'({len(types_absent)} instances)')
+
+    return deserialized_files
 
   @staticmethod
   def match_reporting_entities(
@@ -153,7 +168,8 @@ class ParseConfig:
 
       Returns:
         Dictionary with `cloud_device_id`s as keys
-        and lists of translation tuples as values
+        and values which are dictionaries containing lists
+        of translations for the device, keyed under the file type
     """
 
     translations = {}
@@ -174,8 +190,8 @@ class ParseConfig:
       )) if getattr(entity, 'translation', None) else []
 
       translations[cloud_device_id] = {
-          f'{PROPOSED}_translations': aggregate_translations(proposed_entity),
-          f'{SOLUTION}_translations': aggregate_translations(solution_entity)
+          f'{PROPOSED}': aggregate_translations(proposed_entity),
+          f'{SOLUTION}': aggregate_translations(solution_entity)
       }
 
     return translations
@@ -214,9 +230,55 @@ class ParseConfig:
       # Invoke the functions and append the dictionary with their return values
       for dimension in dimension_list:
         if dimension_category == SIMPLE:
-          invoked = dimension(translations=translations)
+          invoked = dimension(translations=translations).evaluate()
         elif dimension_category == COMPLEX:
-          invoked = dimension(deserialized_files=deserialized_files)
+          invoked = dimension(deserialized_files=deserialized_files).evaluate()
 
         results[dimension.__name__] = invoked
     return results
+
+  # TODO: standardize signatures; make dimensions into const; test
+  def execute(self) -> Dict[DimensionName, str]:
+    """
+      Wrapper for all functionality herein.
+
+      Returns:
+        Dictionary containing human-readable
+        represenation of every scored dimension.
+    """
+    deserialized_files_appended = self.append_types(
+        universe=self.universe, deserialized_files=self.deserialized_files)
+
+    matches = self.match_reporting_entities(
+        proposed_entities=deserialized_files_appended[PROPOSED],  # pylint: disable=unsubscriptable-object
+        solution_entities=deserialized_files_appended[SOLUTION])  # pylint: disable=unsubscriptable-object
+
+    translations = self.retrieve_reporting_translations(
+        matches=matches,
+        proposed_entities=deserialized_files_appended[PROPOSED],  # pylint: disable=unsubscriptable-object
+        solution_entities=deserialized_files_appended[SOLUTION])  # pylint: disable=unsubscriptable-object
+
+    dimensions = {
+        SIMPLE: [
+            raw_field_selection.RawFieldSelection,
+            standard_field_naming.StandardFieldNaming,
+            state_mapping.StateMapping, unit_mapping.UnitMapping
+        ],
+        COMPLEX: [
+            entity_connection_identification.EntityConnectionIdentification,
+            entity_identification.EntityIdentification,
+            entity_point_identification.EntityPointIdentification
+        ]
+    }
+
+    self.results = self.aggregate_results(
+        dimensions=dimensions,
+        translations=translations,
+        deserialized_files=deserialized_files_appended)
+
+    readable = {
+        name: dimension.__str__()
+        for name, dimension in self.results.items()
+    }
+
+    return readable

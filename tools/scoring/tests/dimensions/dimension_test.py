@@ -127,10 +127,10 @@ class DimensionTest(absltest.TestCase):
     self.assertEqual(self.dimension_override.incorrect_total_override, 4)
 
   def testResultComposite(self):
-    self.assertEqual(self.dimension.result_composite, 0.0)
-    self.assertEqual(self.dimension_none.result_composite, None)
+    self.assertEqual(self.dimension.result_all, 0.0)
+    self.assertEqual(self.dimension_none.result_all, None)
 
-    self.assertEqual(self.dimension_override.result_composite, 0.0)
+    self.assertEqual(self.dimension_override.result_all, 0.0)
 
   def testResultVirtual(self):
     self.assertEqual(self.dimension.result_virtual, 0.0)
@@ -142,32 +142,30 @@ class DimensionTest(absltest.TestCase):
 
   def testEntityIsCanonical(self):
     self.assertTrue(
-        Dimension.is_entity_canonical(
-            entity=self.entities['canonical_type_appended']))
+        Dimension.is_entity_canonical(self.entities['canonical_type_appended']))
     self.assertFalse(
         Dimension.is_entity_canonical(
-            entity=self.entities['noncanonical_type_appended']))
+            self.entities['noncanonical_type_appended']))
     # This entity has had a type of `None` appended, thus it returns false.
     reporting_type_none = copy.copy(self.entities['reporting'])
     reporting_type_none.type = None
-    self.assertFalse(Dimension.is_entity_canonical(entity=reporting_type_none))
+    self.assertFalse(Dimension.is_entity_canonical(reporting_type_none))
 
   def testEntityIsReporting(self):
-    self.assertTrue(
-        Dimension.is_entity_reporting(entity=self.entities['reporting']))
-    self.assertFalse(
-        Dimension.is_entity_reporting(entity=self.entities['virtual']))
+    self.assertTrue(Dimension.is_entity_reporting(self.entities['reporting']))
+    self.assertFalse(Dimension.is_entity_reporting(self.entities['virtual']))
 
   def testEntityIsVirtual(self):
-    self.assertTrue(
-        Dimension.is_entity_virtual(entity=self.entities['virtual']))
-    self.assertFalse(
-        Dimension.is_entity_virtual(entity=self.entities['reporting']))
+    self.assertTrue(Dimension.is_entity_virtual(self.entities['virtual']))
+    self.assertFalse(Dimension.is_entity_virtual(self.entities['reporting']))
+
+  def testMatchVirtualEntities(self):
+    pass
 
   def testStr(self):
     self.assertEqual(
         self.dimension.__str__(),
-        '{result_composite: 0.0, result_virtual: 0.0, result_reporting: 0.0}')
+        '{result_all: 0.0, result_virtual: 0.0, result_reporting: 0.0}')
 
 
 if __name__ == '__main__':

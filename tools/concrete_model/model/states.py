@@ -40,3 +40,4 @@ class States(object):
       standard_state: A standardized state, i.e. "ON"
       raw_states: A list of raw states coming from the payload device.
     """
+    self.standard_to_raw_state_map[standard_state] = raw_states
