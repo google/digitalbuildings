@@ -387,7 +387,6 @@ FAN_SS_VSFC:
   - control_status
 
 FAN_SS_ZTC:
-  id: "6340656645672009729"
   description: "Fan zone temperature control"
   is_canonical: true
   implements:
