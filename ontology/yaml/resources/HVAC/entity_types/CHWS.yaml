@@ -215,7 +215,6 @@ CHWS_SWTC_WDPC2X_BYPVPM_WFRM_CLPM:
   - CLPM
 
 CHWS_RWTC_CHWVM:
-  id: "16842546300862857217"
   description: "Chilled water system with return temperature control and chilled water valve monitoring."
   is_canonical: true
   implements:
@@ -224,7 +223,6 @@ CHWS_RWTC_CHWVM:
   - CHWVM
 
 CHWS_SWTM_WDPC_BYPVPM:
-  id: "16842546300862857218"
   description: "Chilled water system with supply temperature monitoring, differential pressure control and bypass valve control."
   is_canonical: true
   implements:
