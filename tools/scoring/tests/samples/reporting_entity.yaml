@@ -23,4 +23,4 @@ FCU-1:
         key: pointset.points.chilled_water_flowrate_sensor.units
         values:
           liters_per_second: L/s
-  type: HVAC/FCU_DFSS_DFVSC_ZTC_ZHC_CHWDC_HWDC_FDPM_RMM
+  type: HVAC/CHWS_WDT # This is arbitrary but loaded with the minimal universe
