@@ -52,16 +52,15 @@ class EntityIdentificationTest(absltest.TestCase):
     solution_config = validator.Deserialize([solution_path])[0]
     deserialized_files = {PROPOSED: proposed_config, SOLUTION: solution_config}
 
-    deserialized_files_appended = ParseConfig._append_types(  # pylint: disable=protected-access
-        universe=universe,
-        deserialized_files=deserialized_files)
+    deserialized_files_appended = ParseConfig.append_types(
+        universe=universe, deserialized_files=deserialized_files)
 
     if entity_type == SIMPLE:
-      matches = ParseConfig._match_reporting_entities(  # pylint: disable=protected-access
+      matches = ParseConfig.match_reporting_entities(
           proposed_entities=deserialized_files_appended[PROPOSED],
           solution_entities=deserialized_files_appended[SOLUTION])
 
-      translations = ParseConfig._retrieve_reporting_translations(  # pylint: disable=protected-access
+      translations = ParseConfig.retrieve_reporting_translations(
           matches=matches,
           proposed_entities=deserialized_files_appended[PROPOSED],
           solution_entities=deserialized_files_appended[SOLUTION])

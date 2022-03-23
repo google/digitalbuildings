@@ -66,7 +66,7 @@ class ParseConfig:
     self.results = {}
 
   @staticmethod
-  def _append_types(
+  def append_types(
       *, universe: ConfigUniverse,
       deserialized_files: DeserializedFilesDict) -> DeserializedFilesDict:
     """
@@ -124,7 +124,7 @@ class ParseConfig:
     return deserialized_files
 
   @staticmethod
-  def _match_reporting_entities(
+  def match_reporting_entities(
       *, proposed_entities: DeserializedFile,
       solution_entities: DeserializedFile) -> List[CloudDeviceId]:
     """
@@ -151,7 +151,7 @@ class ParseConfig:
     return matches
 
   @staticmethod
-  def _retrieve_reporting_translations(
+  def retrieve_reporting_translations(
       *, matches: List[CloudDeviceId], proposed_entities: DeserializedFile,
       solution_entities: DeserializedFile) -> TranslationsDict:
     """
@@ -246,14 +246,14 @@ class ParseConfig:
         Dictionary containing human-readable
         represenation of every scored dimension.
     """
-    deserialized_files_appended = self._append_types(
+    deserialized_files_appended = self.append_types(
         universe=self.universe, deserialized_files=self.deserialized_files)
 
-    matches = self._match_reporting_entities(
+    matches = self.match_reporting_entities(
         proposed_entities=deserialized_files_appended[PROPOSED],
         solution_entities=deserialized_files_appended[SOLUTION])
 
-    translations = self._retrieve_reporting_translations(
+    translations = self.retrieve_reporting_translations(
         matches=matches,
         proposed_entities=deserialized_files_appended[PROPOSED],
         solution_entities=deserialized_files_appended[SOLUTION])
