@@ -82,7 +82,7 @@ class EntityIdentificationTest(absltest.TestCase):
     self.none_score_argument = self._prepare_dimension_argument(
         entity_type=COMPLEX, proposed_path=empty_file, solution_path=empty_file)
 
-  def testNoneScore(self):
+  def testEntityIdentificationNoneScore(self):
     """When ceiling==0, the resulting score is None."""
     none_score = EntityIdentification(
         deserialized_files=self.none_score_argument).evaluate()
@@ -107,7 +107,7 @@ class EntityIdentificationTest(absltest.TestCase):
     self.assertEqual(none_score.result_reporting, None)
     self.assertEqual(none_score.result_virtual, None)
 
-  def testHighestScore(self):
+  def testEntityIdentificationHighestScore(self):
     """When correct==ceiling, the resulting score is 1.0."""
     highest_score = EntityIdentification(
         deserialized_files=self.highest_score_argument).evaluate()
@@ -131,7 +131,7 @@ class EntityIdentificationTest(absltest.TestCase):
     self.assertEqual(highest_score.result_reporting, 1.0)
     self.assertEqual(highest_score.result_virtual, 1.0)
 
-  def testLowestScore(self):
+  def testEntityIdentificationLowestScore(self):
     """When correct==0, the resulting score is -1.0."""
     lowest_score_argument = {
         PROPOSED: self.none_score_argument[PROPOSED],
@@ -158,7 +158,7 @@ class EntityIdentificationTest(absltest.TestCase):
     self.assertEqual(lowest_score.result_reporting, -1.0)
     self.assertEqual(lowest_score.result_virtual, -1.0)
 
-  def testMiddlingScore(self):
+  def testEntityIdentificationMiddlingScore(self):
     """When correct is half of the ceiling, the resulting score is 0.0."""
     # To create the proposed file, clone the solution file and remove the
     # virtual entity, which comprises 50% of the dictionary
