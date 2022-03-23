@@ -12,6 +12,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# NOTE: This file is used as a test fixture; it is a valid DBO instance
+# which demonstrates the features of a virtual entity and its corresponding
+# reporting entity.
+
 VLV-1:
   guid: daf3048f-2118-4afc-a5f0-8b4ce0c25fef
   id: CDM/196h$V6TP3C8vhrwG9nopt

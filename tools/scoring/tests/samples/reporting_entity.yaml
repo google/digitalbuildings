@@ -12,6 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# NOTE: This file is used as a test fixture; it is a valid DBO instance
+# which demonstrates the features of a reporting entity.
+
 FCU-1:
   cloud_device_id: 2599571827844401
   guid: 90ebdd30-efdf-4aec-82d7-90f8e03a6792
