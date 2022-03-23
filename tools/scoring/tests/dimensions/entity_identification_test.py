@@ -23,8 +23,6 @@ from score.parse_config import ParseConfig
 from validate import handler as validator
 from validate.generate_universe import BuildUniverse
 
-import copy
-
 PROPOSED, SOLUTION = FileTypes
 SIMPLE, COMPLEX = DimensionCategories
 
@@ -83,6 +81,12 @@ class EntityIdentificationTest(absltest.TestCase):
         proposed_path=empty_file_path,
         solution_path=empty_file_path)
 
+    reporting_entity_file_path = 'tests/samples/reporting_entity.yaml'
+    self.middling_score_argument = self._prepare_dimension_argument(
+        entity_type=COMPLEX,
+        proposed_path=reporting_entity_file_path,
+        solution_path=featureful_file_path)
+
   def testEntityIdentificationNoneScore(self):
     """When ceiling==0, the resulting score is None."""
     none_score_expected = EntityIdentification(
@@ -135,7 +139,7 @@ class EntityIdentificationTest(absltest.TestCase):
   def testEntityIdentificationLowestScore(self):
     """When correct==0, the resulting score is -1.0."""
     lowest_score_argument = {
-        PROPOSED: self.none_score_argument[PROPOSED],
+        PROPOSED: self.none_score_argument[PROPOSED],  # Empty
         SOLUTION: self.highest_score_argument[SOLUTION]
     }
     lowest_score_expected = EntityIdentification(
@@ -161,16 +165,8 @@ class EntityIdentificationTest(absltest.TestCase):
 
   def testEntityIdentificationMiddlingScore(self):
     """When correct is half of the ceiling, the resulting score is 0.0."""
-    # To create the proposed file, clone the solution file and remove the
-    # virtual entity, which comprises 50% of the dictionary
-    proposed = copy.deepcopy(self.highest_score_argument[SOLUTION])
-    proposed.pop('daf3048f-2118-4afc-a5f0-8b4ce0c25fef')
-    middling_score_argument = {
-        PROPOSED: proposed,
-        SOLUTION: self.highest_score_argument[SOLUTION]
-    }
     middling_score_expected = EntityIdentification(
-        deserialized_files=middling_score_argument).evaluate()
+        deserialized_files=self.middling_score_argument).evaluate()
 
     # Directly assigned attributes
     self.assertEqual(middling_score_expected.correct_reporting, 1)
