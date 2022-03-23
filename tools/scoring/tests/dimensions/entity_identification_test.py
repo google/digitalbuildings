@@ -86,52 +86,52 @@ class EntityIdentificationTest(absltest.TestCase):
 
   def testEntityIdentificationNoneScore(self):
     """When ceiling==0, the resulting score is None."""
-    none_score = EntityIdentification(
+    none_score_expected = EntityIdentification(
         deserialized_files=self.none_score_argument).evaluate()
 
     # Directly assigned attributes
-    self.assertEqual(none_score.correct_reporting, 0)
-    self.assertEqual(none_score.correct_ceiling_reporting, 0)
-    self.assertEqual(none_score.incorrect_reporting, 0)
+    self.assertEqual(none_score_expected.correct_reporting, 0)
+    self.assertEqual(none_score_expected.correct_ceiling_reporting, 0)
+    self.assertEqual(none_score_expected.incorrect_reporting, 0)
 
-    self.assertEqual(none_score.correct_virtual, 0)
-    self.assertEqual(none_score.correct_ceiling_virtual, 0)
-    self.assertEqual(none_score.incorrect_virtual, 0)
+    self.assertEqual(none_score_expected.correct_virtual, 0)
+    self.assertEqual(none_score_expected.correct_ceiling_virtual, 0)
+    self.assertEqual(none_score_expected.incorrect_virtual, 0)
 
     # Inherited calculated attributes
-    self.assertEqual(none_score.correct_total(), 0)
-    self.assertEqual(none_score.correct_ceiling(), 0)
-    self.assertEqual(none_score.incorrect_total(), 0)
+    self.assertEqual(none_score_expected.correct_total(), 0)
+    self.assertEqual(none_score_expected.correct_ceiling(), 0)
+    self.assertEqual(none_score_expected.incorrect_total(), 0)
 
     # Inherited result properties. These are `None` by virtue of the ceiling
     # being falsy: that is to say, there was nothing to score against.
-    self.assertEqual(none_score.result_all, None)
-    self.assertEqual(none_score.result_reporting, None)
-    self.assertEqual(none_score.result_virtual, None)
+    self.assertEqual(none_score_expected.result_all, None)
+    self.assertEqual(none_score_expected.result_reporting, None)
+    self.assertEqual(none_score_expected.result_virtual, None)
 
   def testEntityIdentificationHighestScore(self):
     """When correct==ceiling, the resulting score is 1.0."""
-    highest_score = EntityIdentification(
+    highest_score_expected = EntityIdentification(
         deserialized_files=self.highest_score_argument).evaluate()
 
     # Directly assigned attributes
-    self.assertEqual(highest_score.correct_reporting, 1)
-    self.assertEqual(highest_score.correct_ceiling_reporting, 1)
-    self.assertEqual(highest_score.incorrect_reporting, 0)
+    self.assertEqual(highest_score_expected.correct_reporting, 1)
+    self.assertEqual(highest_score_expected.correct_ceiling_reporting, 1)
+    self.assertEqual(highest_score_expected.incorrect_reporting, 0)
 
-    self.assertEqual(highest_score.correct_virtual, 1)
-    self.assertEqual(highest_score.correct_ceiling_virtual, 1)
-    self.assertEqual(highest_score.incorrect_virtual, 0)
+    self.assertEqual(highest_score_expected.correct_virtual, 1)
+    self.assertEqual(highest_score_expected.correct_ceiling_virtual, 1)
+    self.assertEqual(highest_score_expected.incorrect_virtual, 0)
 
     # Inherited calculated attributes
-    self.assertEqual(highest_score.correct_total(), 2)
-    self.assertEqual(highest_score.correct_ceiling(), 2)
-    self.assertEqual(highest_score.incorrect_total(), 0)
+    self.assertEqual(highest_score_expected.correct_total(), 2)
+    self.assertEqual(highest_score_expected.correct_ceiling(), 2)
+    self.assertEqual(highest_score_expected.incorrect_total(), 0)
 
     # Inherited result properties
-    self.assertEqual(highest_score.result_all, 1.0)
-    self.assertEqual(highest_score.result_reporting, 1.0)
-    self.assertEqual(highest_score.result_virtual, 1.0)
+    self.assertEqual(highest_score_expected.result_all, 1.0)
+    self.assertEqual(highest_score_expected.result_reporting, 1.0)
+    self.assertEqual(highest_score_expected.result_virtual, 1.0)
 
   def testEntityIdentificationLowestScore(self):
     """When correct==0, the resulting score is -1.0."""
@@ -139,26 +139,26 @@ class EntityIdentificationTest(absltest.TestCase):
         PROPOSED: self.none_score_argument[PROPOSED],
         SOLUTION: self.highest_score_argument[SOLUTION]
     }
-    lowest_score = EntityIdentification(
+    lowest_score_expected = EntityIdentification(
         deserialized_files=lowest_score_argument).evaluate()
     # Directly assigned attributes
-    self.assertEqual(lowest_score.correct_reporting, 0)
-    self.assertEqual(lowest_score.correct_ceiling_reporting, 1)
-    self.assertEqual(lowest_score.incorrect_reporting, 1)
+    self.assertEqual(lowest_score_expected.correct_reporting, 0)
+    self.assertEqual(lowest_score_expected.correct_ceiling_reporting, 1)
+    self.assertEqual(lowest_score_expected.incorrect_reporting, 1)
 
-    self.assertEqual(lowest_score.correct_virtual, 0)
-    self.assertEqual(lowest_score.correct_ceiling_virtual, 1)
-    self.assertEqual(lowest_score.incorrect_virtual, 1)
+    self.assertEqual(lowest_score_expected.correct_virtual, 0)
+    self.assertEqual(lowest_score_expected.correct_ceiling_virtual, 1)
+    self.assertEqual(lowest_score_expected.incorrect_virtual, 1)
 
     # Inherited calculated attributes
-    self.assertEqual(lowest_score.correct_total(), 0)
-    self.assertEqual(lowest_score.correct_ceiling(), 2)
-    self.assertEqual(lowest_score.incorrect_total(), 2)
+    self.assertEqual(lowest_score_expected.correct_total(), 0)
+    self.assertEqual(lowest_score_expected.correct_ceiling(), 2)
+    self.assertEqual(lowest_score_expected.incorrect_total(), 2)
 
     # Inherited result properties
-    self.assertEqual(lowest_score.result_all, -1.0)
-    self.assertEqual(lowest_score.result_reporting, -1.0)
-    self.assertEqual(lowest_score.result_virtual, -1.0)
+    self.assertEqual(lowest_score_expected.result_all, -1.0)
+    self.assertEqual(lowest_score_expected.result_reporting, -1.0)
+    self.assertEqual(lowest_score_expected.result_virtual, -1.0)
 
   def testEntityIdentificationMiddlingScore(self):
     """When correct is half of the ceiling, the resulting score is 0.0."""
@@ -170,27 +170,27 @@ class EntityIdentificationTest(absltest.TestCase):
         PROPOSED: proposed,
         SOLUTION: self.highest_score_argument[SOLUTION]
     }
-    middling_score = EntityIdentification(
+    middling_score_expected = EntityIdentification(
         deserialized_files=middling_score_argument).evaluate()
 
     # Directly assigned attributes
-    self.assertEqual(middling_score.correct_reporting, 1)
-    self.assertEqual(middling_score.correct_ceiling_reporting, 1)
-    self.assertEqual(middling_score.incorrect_reporting, 0)
+    self.assertEqual(middling_score_expected.correct_reporting, 1)
+    self.assertEqual(middling_score_expected.correct_ceiling_reporting, 1)
+    self.assertEqual(middling_score_expected.incorrect_reporting, 0)
 
-    self.assertEqual(middling_score.correct_virtual, 0)
-    self.assertEqual(middling_score.correct_ceiling_virtual, 1)
-    self.assertEqual(middling_score.incorrect_virtual, 1)
+    self.assertEqual(middling_score_expected.correct_virtual, 0)
+    self.assertEqual(middling_score_expected.correct_ceiling_virtual, 1)
+    self.assertEqual(middling_score_expected.incorrect_virtual, 1)
 
     # Inherited calculated attributes
-    self.assertEqual(middling_score.correct_total(), 1)
-    self.assertEqual(middling_score.correct_ceiling(), 2)
-    self.assertEqual(middling_score.incorrect_total(), 1)
+    self.assertEqual(middling_score_expected.correct_total(), 1)
+    self.assertEqual(middling_score_expected.correct_ceiling(), 2)
+    self.assertEqual(middling_score_expected.incorrect_total(), 1)
 
     # Inherited result properties
-    self.assertEqual(middling_score.result_all, 0.0)
-    self.assertEqual(middling_score.result_reporting, 1.0)
-    self.assertEqual(middling_score.result_virtual, -1.0)
+    self.assertEqual(middling_score_expected.result_all, 0.0)
+    self.assertEqual(middling_score_expected.result_reporting, 1.0)
+    self.assertEqual(middling_score_expected.result_virtual, -1.0)
 
 
 if __name__ == '__main__':
