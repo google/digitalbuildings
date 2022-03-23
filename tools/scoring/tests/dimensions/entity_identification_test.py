@@ -72,15 +72,17 @@ class EntityIdentificationTest(absltest.TestCase):
 
   def setUp(self):
     super().setUp()
-    all_features = 'tests/samples/virtual_entity.yaml'
+    featureful_file_path = 'tests/samples/virtual_entity.yaml'
     self.highest_score_argument = self._prepare_dimension_argument(
         entity_type=COMPLEX,
-        proposed_path=all_features,
-        solution_path=all_features)
+        proposed_path=featureful_file_path,
+        solution_path=featureful_file_path)
 
-    empty_file = 'tests/samples/empty.yaml'
+    empty_file_path = 'tests/samples/empty_file.yaml'
     self.none_score_argument = self._prepare_dimension_argument(
-        entity_type=COMPLEX, proposed_path=empty_file, solution_path=empty_file)
+        entity_type=COMPLEX,
+        proposed_path=empty_file_path,
+        solution_path=empty_file_path)
 
   def testEntityIdentificationNoneScore(self):
     """When ceiling==0, the resulting score is None."""
