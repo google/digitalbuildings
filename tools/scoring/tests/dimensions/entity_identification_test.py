@@ -78,7 +78,7 @@ class EntityIdentificationTest(absltest.TestCase):
         proposed_path=featureful_file_path,
         solution_path=featureful_file_path)
 
-    empty_file_path = 'tests/samples/empty_file.yaml'
+    empty_file_path = 'tests/samples/empty.yaml'
     self.none_score_argument = self._prepare_dimension_argument(
         entity_type=COMPLEX,
         proposed_path=empty_file_path,
