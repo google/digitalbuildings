@@ -30,8 +30,8 @@ SIMPLE, COMPLEX = DimensionCategories
 
 
 class EntityIdentificationTest(absltest.TestCase):
-  def _prepare_highest_score_argument(self, *, entity_type: str):
-    # TODO: move this
+  def _prepare_dimension_argument(self, *, entity_type, proposed_path,
+                                  solution_path):
     """Prepare argument for direct invocation of a dimension for purposes of
     testing (i.e. mimic parse_config.py).
 
@@ -41,14 +41,16 @@ class EntityIdentificationTest(absltest.TestCase):
 
       Arguments:
         entity_type: the category of the dimension. (Literal[SIMPLE, COMPLEX])
+        proposed_path: the path to the proposed YAML file
+        solution_path: the path to the solution YAML file
 
       Returns:
         The appropriate value for the dimension's singular named argument"""
 
     universe = BuildUniverse(use_simplified_universe=True)
-    sample_config = validator.Deserialize(['tests/samples/virtual_entity.yaml'
-                                           ])[0]
-    deserialized_files = {PROPOSED: sample_config, SOLUTION: sample_config}
+    proposed_config = validator.Deserialize([proposed_path])[0]
+    solution_config = validator.Deserialize([solution_path])[0]
+    deserialized_files = {PROPOSED: proposed_config, SOLUTION: solution_config}
 
     deserialized_files_appended = ParseConfig._append_types(  # pylint: disable=protected-access
         universe=universe,
@@ -70,11 +72,12 @@ class EntityIdentificationTest(absltest.TestCase):
 
   def setUp(self):
     super().setUp()
-    self.highest_score_argument = self._prepare_highest_score_argument(
-        entity_type=COMPLEX)
+    path = 'tests/samples/virtual_entity.yaml'
+    self.highest_score_argument = self._prepare_dimension_argument(
+        entity_type=COMPLEX, proposed_path=path, solution_path=path)
 
   def testNoneScore(self):
-    """Incomplete data."""
+    """When ceiling==0, the resulting score is None."""
     none_score_argument = {PROPOSED: {}, SOLUTION: {}}
     entity_identification_none_score = EntityIdentification(
         deserialized_files=none_score_argument).evaluate()
@@ -102,7 +105,7 @@ class EntityIdentificationTest(absltest.TestCase):
     self.assertEqual(entity_identification_none_score.result_virtual, None)
 
   def testHighestScore(self):
-    """Exactly correct."""
+    """When correct==ceiling, the resulting score is 1.0."""
     entity_identification_highest_score = EntityIdentification(
         deserialized_files=self.highest_score_argument).evaluate()
 
@@ -128,7 +131,7 @@ class EntityIdentificationTest(absltest.TestCase):
     self.assertEqual(entity_identification_highest_score.result_virtual, 1.0)
 
   def testLowestScore(self):
-    """Exactly incorrect."""
+    """When correct==0, the resulting score is -1.0."""
     lowest_score_argument = {
         PROPOSED: {},
         SOLUTION: self.highest_score_argument[SOLUTION]
@@ -157,7 +160,7 @@ class EntityIdentificationTest(absltest.TestCase):
     self.assertEqual(entity_identification_lowest_score.result_virtual, -1.0)
 
   def testMiddlingScore(self):
-    """50% correct."""
+    """When correct is half of the ceiling, the resulting score is 0.0."""
     # To create the proposed file, clone the solution file and remove the
     # virtual entity, which comprises 50% of the dictionary
     proposed = copy.deepcopy(self.highest_score_argument[SOLUTION])
