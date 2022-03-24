@@ -89,7 +89,7 @@ class EntityIdentificationTest(absltest.TestCase):
         proposed_path=reporting_entity_file_path,
         solution_path=featureful_file_path)
 
-  def testEntityIdentificationNoneScore(self):
+  def testEntityIdentificationNoneScoreWithEmptyFile(self):
     """When ceiling==0, the resulting score is None."""
     none_score_expected = EntityIdentification(
         deserialized_files=self.none_score_argument).evaluate()
@@ -114,7 +114,7 @@ class EntityIdentificationTest(absltest.TestCase):
     self.assertEqual(none_score_expected.result_reporting, None)
     self.assertEqual(none_score_expected.result_virtual, None)
 
-  def testEntityIdentificationHighestScore(self):
+  def testEntityIdentificationHighestPossibleScore(self):
     """When correct==ceiling, the resulting score is 1.0."""
     highest_score_expected = EntityIdentification(
         deserialized_files=self.highest_score_argument).evaluate()
@@ -138,10 +138,11 @@ class EntityIdentificationTest(absltest.TestCase):
     self.assertEqual(highest_score_expected.result_reporting, 1.0)
     self.assertEqual(highest_score_expected.result_virtual, 1.0)
 
-  def testEntityIdentificationLowestScore(self):
+  def testEntityIdentificationLowestPossibleScore(self):
     """When correct==0, the resulting score is -1.0."""
     lowest_score_argument = {
-        PROPOSED: self.none_score_argument[PROPOSED],  # Empty
+        PROPOSED:
+        self.none_score_argument[PROPOSED],  # Empty, i.e. nothing correct
         SOLUTION: self.highest_score_argument[SOLUTION]
     }
     lowest_score_expected = EntityIdentification(
