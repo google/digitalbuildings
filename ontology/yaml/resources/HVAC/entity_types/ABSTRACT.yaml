@@ -278,6 +278,9 @@ EDBPC:
   id: "15769475728711614464"
   description: "Building static control with exhaust damper."
   is_abstract: true
+  opt_uses:
+  - exhaust_air_differential_pressure_sensor
+  - exhaust_air_damper_percentage_sensor
   uses:
   - building_air_static_pressure_sensor
   - building_air_static_pressure_setpoint
@@ -4400,3 +4403,128 @@ HWDDC:
   - discharge_air_temperature_sensor
   implements:
   - CONTROL
+
+# New abstracts for MFA BV100 HVAC
+ CFDPM:
+  description: "Carbon filter pressure monitoring."
+  is_abstract: true
+  uses:
+  - carbon_filter_differential_pressure_sensor
+  implements:
+  - MONITORING
+ 
+VOADM2X:
+  description: "Variable outside air damper monitoring."
+  is_abstract: true
+  opt_uses:
+  - economizer_mode
+  - mixed_air_temperature_sensor
+  - outside_air_damper_percentage_sensor_1
+  - outside_air_damper_percentage_sensor_2
+  - low_limit_outside_air_damper_percentage_command
+  - outside_air_flowrate_sensor_1
+  - outside_air_flowrate_sensor_2
+  uses:
+  - outside_air_temperature_sensor
+  - outside_air_damper_percentage_command_1
+  - outside_air_damper_percentage_command_2
+  implements:
+  - MONITORING
+ 
+EHHRC:
+  description: "Exhaust hydronic heat recovery coil on exhaust to be used elsewhere."
+  is_abstract: true
+  implements:
+  - MONITORING
+  opt_uses:
+  - exhaust_air_flowrate_sensor
+  uses:
+  - heat_recovery_water_isolation_valve_command
+  - leaving_heat_recovery_coil_temperature_sensor
+  - entering_heat_recovery_coil_temperature_sensor
+ 
+DPBHCC:
+  description: "Two-pipe binary (open/closed) heating and cooling control. Has a single control valve
+  that is fed by two separate headers for heating and cooling water. There is an isolation valve for
+  each incoming system and a single control valve. Valve and mode control to zone temperature 
+  (heating/cooling setpoint configuration)."
+  is_abstract: true
+  implements:
+  - CONTROL
+  opt_uses:
+  - heating_request_count
+  - cooling_request_count
+  - zone_air_relative_humidity_sensor
+  uses:
+  - chilled_supply_water_isolation_valve_command
+  - chilled_supply_water_isolation_valve_status
+  - heating_supply_water_isolation_valve_command
+  - heating_supply_water_isolation_valve_status
+  - zone_air_cooling_temperature_setpoint
+  - zone_air_heating_temperature_setpoint
+  - zone_air_temperature_sensor
+ 
+FTC:
+  description: "Floor temperature control"
+  is_abstract: true
+  implements:
+  - MONITORING
+  uses:
+  - zone_floor_temperature_sensor
+  - zone_floor_temperature_setpoint
+ 
+DPCHHRWSC:
+  description: "Two-pipe chilled and heat recovery water control using the same coils."
+  is_abstract: true
+  implements:
+  - CONTROL
+  opt_uses:
+  - leaving_coil_temperature_sensor
+  - chilled_supply_water_temperature_sensor
+  - chilled_return_water_temperature_sensor
+  - heating_heat_recovery_supply_water_temperature_sensor
+  - heating_heat_recovery_return_water_temperature_sensor
+  - supply_water_valve_percentage_sensor
+  - heating_heat_recovery_supply_water_isolation_valve_command
+  - heating_heat_recovery_return_water_isolation_valve_status
+  - heating_heat_recovery_supply_water_isolation_valve_status
+  - chilled_supply_water_isolation_valve_command
+  - chilled_return_water_isolation_valve_status
+  - chilled_supply_water_isolation_valve_status
+  uses:
+  - supply_air_temperature_sensor
+  - supply_air_temperature_setpoint
+  - supply_water_valve_percentage_command
+  - heat_recovery_run_command
+
+# New abstracts for MFA BV100 DHW
+CPVSC2X:
+  description: "Circulation pump variable speed control with 2 circulation pumps."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  uses:
+  - circulation_pump_run_command_1
+  - circulation_pump_run_status_1
+  - circulation_pump_speed_percentage_command_1
+  - circulation_pump_run_command_2
+  - circulation_pump_run_status_2
+  - circulation_pump_speed_percentage_command_2
+
+HWTTC:
+  description: "Hot water tank temperature control."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  uses:
+  - hot_water_tank_temperature_setpoint
+  - hot_water_tank_temperature_sensor
+
+PHWTTC:
+  description: "Preheating water tank temperature control."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  uses:
+  - preheating_water_tank_temperature_setpoint
+  - preheating_water_tank_temperature_sensor

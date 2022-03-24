@@ -39,4 +39,17 @@ DWST_SWTC_CPC_BYPVPM:
   - potable_water_medium_temperature_sensor
   - potable_water_low_temperature_sensor
 
+DWST_SWTC_CPVSC2X_WSHP2X:
+  description: "Non-standard domestic water system with 2 circulation pumps and 2 water-source heat pumps."
+  is_canonical: false
+  implements:
+  - DWST
+  - SWTC
+  - CPVSC2X
+  uses:
+  - compressor_run_command_1
+  - compressor_run_command_2
+  - potable_hot_leaving_water_temperature_sensor_1
+  - potable_hot_leaving_water_temperature_sensor_2
+  - potable_hot_leaving_water_temperature_setpoint
 
