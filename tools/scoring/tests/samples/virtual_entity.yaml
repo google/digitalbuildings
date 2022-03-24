@@ -12,17 +12,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# NOTE: This file is used as a test fixture; it is a valid DBO instance
-# which demonstrates the features of a virtual entity and its corresponding
-# reporting entity.
-
 VLV-1:
   guid: daf3048f-2118-4afc-a5f0-8b4ce0c25fef
   id: CDM/196h$V6TP3C8vhrwG9nopt
   links:
     FCU-1:
       chilled_water_flowrate_sensor: chilled_water_flowrate_sensor
-  type: HVAC/CHWS_WDT # This is arbitrary but loaded with the minimal universe
+  type: HVAC/VLV_CHWVM_RTM_DTM
 # The entity which is linked to by VLV-1 must be included to pass validation
 FCU-1:
   cloud_device_id: 2599571827844401
@@ -35,4 +31,4 @@ FCU-1:
         key: pointset.points.chilled_water_flowrate_sensor.units
         values:
           liters_per_second: L/s
-  type: HVAC/CHWS_WDT # This is arbitrary but loaded with the minimal universe
+  type: HVAC/FCU_DFSS_DFVSC_ZTC_ZHC_CHWDC_HWDC_FDPM_RMM

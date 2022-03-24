@@ -69,7 +69,8 @@ class EntityIdentificationTest(absltest.TestCase):
 
   def setUp(self):
     super().setUp()
-    featureful_file_path = 'tests/samples/virtual_entity.yaml'
+    featureful_file_path = (
+        'tests/samples/proposed/entity_identification_virtual.yaml')
     self.highest_score_argument = self._prepare_dimension_argument(
         entity_type=COMPLEX,
         proposed_path=featureful_file_path,
@@ -81,7 +82,8 @@ class EntityIdentificationTest(absltest.TestCase):
         proposed_path=empty_file_path,
         solution_path=empty_file_path)
 
-    reporting_entity_file_path = 'tests/samples/reporting_entity.yaml'
+    reporting_entity_file_path = (
+        'tests/samples/proposed/entity_identification_reporting.yaml')
     self.middling_score_argument = self._prepare_dimension_argument(
         entity_type=COMPLEX,
         proposed_path=reporting_entity_file_path,
