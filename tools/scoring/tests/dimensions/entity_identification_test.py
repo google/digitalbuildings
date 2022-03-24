@@ -89,8 +89,9 @@ class EntityIdentificationTest(absltest.TestCase):
         proposed_path=reporting_entity_file_path,
         solution_path=featureful_file_path)
 
-  def testEntityIdentificationNoneScoreWithEmptyFile(self):
-    """When ceiling==0, the resulting score is None."""
+  def testEvaluate_ScoreNone(self):
+    """When ceiling==0, the resulting score is None. The ceiling is 0
+    because the solution does not contain any entities."""
     none_score_expected = EntityIdentification(
         deserialized_files=self.none_score_argument).evaluate()
 
@@ -114,8 +115,9 @@ class EntityIdentificationTest(absltest.TestCase):
     self.assertEqual(none_score_expected.result_reporting, None)
     self.assertEqual(none_score_expected.result_virtual, None)
 
-  def testEntityIdentificationHighestPossibleScore(self):
-    """When correct==ceiling, the resulting score is 1.0."""
+  def testEvaluate_ScoreHighestPossible(self):
+    """When correct==ceiling, the resulting score is 1.0. All entities
+    correspond because the proposal is the same as the solution."""
     highest_score_expected = EntityIdentification(
         deserialized_files=self.highest_score_argument).evaluate()
 
@@ -138,8 +140,9 @@ class EntityIdentificationTest(absltest.TestCase):
     self.assertEqual(highest_score_expected.result_reporting, 1.0)
     self.assertEqual(highest_score_expected.result_virtual, 1.0)
 
-  def testEntityIdentificationLowestPossibleScore(self):
-    """When correct==0, the resulting score is -1.0."""
+  def testEvaluate_ScoreLowestPossible(self):
+    """When correct==0, the resulting score is -1.0. No entities
+    correspond because the proposal does not contain any entities."""
     lowest_score_argument = {
         PROPOSED:
         self.none_score_argument[PROPOSED],  # Empty, i.e. nothing correct
@@ -147,6 +150,7 @@ class EntityIdentificationTest(absltest.TestCase):
     }
     lowest_score_expected = EntityIdentification(
         deserialized_files=lowest_score_argument).evaluate()
+
     # Directly assigned attributes
     self.assertEqual(lowest_score_expected.correct_reporting, 0)
     self.assertEqual(lowest_score_expected.correct_ceiling_reporting, 1)
@@ -166,8 +170,10 @@ class EntityIdentificationTest(absltest.TestCase):
     self.assertEqual(lowest_score_expected.result_reporting, -1.0)
     self.assertEqual(lowest_score_expected.result_virtual, -1.0)
 
-  def testEntityIdentificationMiddlingScore(self):
-    """When correct is half of the ceiling, the resulting score is 0.0."""
+  def testEvaluate_ScoreMiddling(self):
+    """When correct is half of the ceiling, the resulting score is 0.0. In this
+    case, reporting entities scored 1.0 and virtual entities scored -1.0; the
+    result for all entities is 0.0."""
     middling_score_expected = EntityIdentification(
         deserialized_files=self.middling_score_argument).evaluate()
 
