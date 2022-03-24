@@ -141,7 +141,7 @@ class ParseConfigTest(absltest.TestCase):
       def evaluate(self):
         return f'called with {self.translations}'
 
-    results = parse_config.ParseConfig._aggregate_results(  # pylint: disable=protected-access
+    results = parse_config.ParseConfig.aggregate_results(
         dimensions={
             f'{SIMPLE}': [_MockDimensionSimple],
             f'{COMPLEX}': [_MockDimensionComplex]

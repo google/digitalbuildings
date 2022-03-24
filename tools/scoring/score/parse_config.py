@@ -197,7 +197,7 @@ class ParseConfig:
     return translations
 
   @staticmethod
-  def _aggregate_results(
+  def aggregate_results(
       *, dimensions: Dict[DimensionCategory, List[Dimension]],
       translations: TranslationsDict, deserialized_files: DeserializedFilesDict
   ) -> Dict[DimensionName, Dimension]:
@@ -272,7 +272,7 @@ class ParseConfig:
         ]
     }
 
-    self.results = self._aggregate_results(
+    self.results = self.aggregate_results(
         dimensions=dimensions,
         translations=translations,
         deserialized_files=deserialized_files_appended)
