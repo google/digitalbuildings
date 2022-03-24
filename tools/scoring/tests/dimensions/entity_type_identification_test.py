@@ -137,18 +137,18 @@ class EntityTypeIdentificationTest(absltest.TestCase):
         deserialized_files=self.middling_score_argument).evaluate()
 
     # Directly assigned attributes
-    self.assertEqual(middling_score_expected.correct_reporting, 1)
-    self.assertEqual(middling_score_expected.correct_ceiling_reporting, 1)
+    self.assertEqual(middling_score_expected.correct_reporting, 2)
+    self.assertEqual(middling_score_expected.correct_ceiling_reporting, 2)
     self.assertEqual(middling_score_expected.incorrect_reporting, 0)
 
     self.assertEqual(middling_score_expected.correct_virtual, 0)
-    self.assertEqual(middling_score_expected.correct_ceiling_virtual, 1)
-    self.assertEqual(middling_score_expected.incorrect_virtual, 1)
+    self.assertEqual(middling_score_expected.correct_ceiling_virtual, 2)
+    self.assertEqual(middling_score_expected.incorrect_virtual, 2)
 
     # Inherited calculated attributes
-    self.assertEqual(middling_score_expected.correct_total(), 1)
-    self.assertEqual(middling_score_expected.correct_ceiling(), 2)
-    self.assertEqual(middling_score_expected.incorrect_total(), 1)
+    self.assertEqual(middling_score_expected.correct_total(), 2)
+    self.assertEqual(middling_score_expected.correct_ceiling(), 4)
+    self.assertEqual(middling_score_expected.incorrect_total(), 2)
 
     # Inherited result properties
     self.assertEqual(middling_score_expected.result_all, 0.0)
