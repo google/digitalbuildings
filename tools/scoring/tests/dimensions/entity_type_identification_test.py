@@ -18,73 +18,32 @@ from absl.testing import absltest
 
 from score.dimensions.entity_identification import EntityIdentification
 from score.constants import FileTypes, DimensionCategories
-from score.parse_config import ParseConfig
 
-from validate import handler as validator
-from validate.generate_universe import BuildUniverse
+from ..fixtures import TestFixtures
 
 PROPOSED, SOLUTION = FileTypes
 SIMPLE, COMPLEX = DimensionCategories
 
 
 class EntityTypeIdentificationTest(absltest.TestCase):
-  def _prepare_dimension_argument(self, *, entity_type, proposed_path,
-                                  solution_path):
-    """Prepare argument for direct invocation of a dimension for purposes of
-    testing (i.e. mimic parse_config.py).
-
-    NOTE: this uses the simplified universe. If the test data references types
-    which are not contained therein, results will differ from those which use
-    the full universe because entities with missing types are skipped!
-
-      Arguments:
-        entity_type: the category of the dimension. (Literal[SIMPLE, COMPLEX])
-        proposed_path: the path to the proposed YAML file
-        solution_path: the path to the solution YAML file
-
-      Returns:
-        The appropriate value for the dimension's singular named argument"""
-
-    universe = BuildUniverse(use_simplified_universe=True)
-    proposed_config = validator.Deserialize([proposed_path])[0]
-    solution_config = validator.Deserialize([solution_path])[0]
-    deserialized_files = {PROPOSED: proposed_config, SOLUTION: solution_config}
-
-    deserialized_files_appended = ParseConfig.append_types(
-        universe=universe, deserialized_files=deserialized_files)
-
-    if entity_type == SIMPLE:
-      matches = ParseConfig.match_reporting_entities(
-          proposed_entities=deserialized_files_appended[PROPOSED],
-          solution_entities=deserialized_files_appended[SOLUTION])
-
-      translations = ParseConfig.retrieve_reporting_translations(
-          matches=matches,
-          proposed_entities=deserialized_files_appended[PROPOSED],
-          solution_entities=deserialized_files_appended[SOLUTION])
-
-      return translations
-    elif entity_type == COMPLEX:
-      return deserialized_files_appended
-
   def setUp(self):
     super().setUp()
     featureful_file_path = (
         'tests/samples/proposed/entity_type_identification_virtual.yaml')
-    self.highest_score_argument = self._prepare_dimension_argument(
+    self.highest_score_argument = TestFixtures.prepare_dimension_argument(
         entity_type=COMPLEX,
         proposed_path=featureful_file_path,
         solution_path=featureful_file_path)
 
     empty_file_path = 'tests/samples/empty.yaml'
-    self.none_score_argument = self._prepare_dimension_argument(
+    self.none_score_argument = TestFixtures.prepare_dimension_argument(
         entity_type=COMPLEX,
         proposed_path=empty_file_path,
         solution_path=empty_file_path)
 
     reporting_entity_file_path = (
         'tests/samples/proposed/entity_type_identification_reporting.yaml')
-    self.middling_score_argument = self._prepare_dimension_argument(
+    self.middling_score_argument = TestFixtures.prepare_dimension_argument(
         entity_type=COMPLEX,
         proposed_path=reporting_entity_file_path,
         solution_path=featureful_file_path)
