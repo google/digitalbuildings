@@ -23,7 +23,7 @@ PROPOSED, SOLUTION = FileTypes
 SIMPLE, COMPLEX = DimensionCategories
 
 
-class TestFixtures:
+class TestHelper:
   """Utilities for testing."""
   @staticmethod
   def prepare_dimension_argument(*, entity_type, proposed_path, solution_path):

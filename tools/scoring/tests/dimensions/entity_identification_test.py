@@ -19,7 +19,7 @@ from absl.testing import absltest
 from score.dimensions.entity_identification import EntityIdentification
 from score.constants import FileTypes, DimensionCategories
 
-from ..fixtures import TestFixtures
+from ..helper import TestHelper
 
 PROPOSED, SOLUTION = FileTypes
 SIMPLE, COMPLEX = DimensionCategories
@@ -30,20 +30,20 @@ class EntityIdentificationTest(absltest.TestCase):
     super().setUp()
     featureful_file_path = (
         'tests/samples/proposed/entity_identification_virtual.yaml')
-    self.highest_score_argument = TestFixtures.prepare_dimension_argument(
+    self.highest_score_argument = TestHelper.prepare_dimension_argument(
         entity_type=COMPLEX,
         proposed_path=featureful_file_path,
         solution_path=featureful_file_path)
 
     empty_file_path = 'tests/samples/empty.yaml'
-    self.none_score_argument = TestFixtures.prepare_dimension_argument(
+    self.none_score_argument = TestHelper.prepare_dimension_argument(
         entity_type=COMPLEX,
         proposed_path=empty_file_path,
         solution_path=empty_file_path)
 
     reporting_entity_file_path = (
         'tests/samples/proposed/entity_identification_reporting.yaml')
-    self.middling_score_argument = TestFixtures.prepare_dimension_argument(
+    self.middling_score_argument = TestHelper.prepare_dimension_argument(
         entity_type=COMPLEX,
         proposed_path=reporting_entity_file_path,
         solution_path=featureful_file_path)
