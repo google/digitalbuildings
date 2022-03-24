@@ -150,7 +150,7 @@ class EntityTypeIdentification(Dimension):
         for proposed_types, solution_types in matches_reporting
     ])
     self.incorrect_reporting = sum([
-        len(proposed_types.difference(solution_types))
+        len(solution_types.difference(proposed_types))
         for proposed_types, solution_types in matches_reporting
     ])
 
