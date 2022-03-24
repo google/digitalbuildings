@@ -16,7 +16,7 @@
 
 from absl.testing import absltest
 
-from score.dimensions.entity_identification import EntityIdentification
+from score.dimensions.entity_type_identification import EntityTypeIdentification
 from score.constants import FileTypes, DimensionCategories
 
 from ..fixtures import TestFixtures
@@ -51,7 +51,7 @@ class EntityTypeIdentificationTest(absltest.TestCase):
   def testEvaluate_ScoreNone(self):
     """When ceiling==0, the resulting score is None. The ceiling is 0
     because the solution does not contain any entities."""
-    none_score_expected = EntityIdentification(
+    none_score_expected = EntityTypeIdentification(
         deserialized_files=self.none_score_argument).evaluate()
 
     # Directly assigned attributes
@@ -77,7 +77,7 @@ class EntityTypeIdentificationTest(absltest.TestCase):
   def testEvaluate_ScoreHighestPossible(self):
     """When correct==ceiling, the resulting score is 1.0. All entities
     correspond because the proposal is the same as the solution."""
-    highest_score_expected = EntityIdentification(
+    highest_score_expected = EntityTypeIdentification(
         deserialized_files=self.highest_score_argument).evaluate()
 
     # Directly assigned attributes
@@ -107,7 +107,7 @@ class EntityTypeIdentificationTest(absltest.TestCase):
         self.none_score_argument[PROPOSED],  # Empty, i.e. nothing correct
         SOLUTION: self.highest_score_argument[SOLUTION]
     }
-    lowest_score_expected = EntityIdentification(
+    lowest_score_expected = EntityTypeIdentification(
         deserialized_files=lowest_score_argument).evaluate()
 
     # Directly assigned attributes
@@ -133,7 +133,7 @@ class EntityTypeIdentificationTest(absltest.TestCase):
     """When correct is half of the ceiling, the resulting score is 0.0. In this
     case, reporting entities scored 1.0 and virtual entities scored -1.0; the
     result for all entities is 0.0."""
-    middling_score_expected = EntityIdentification(
+    middling_score_expected = EntityTypeIdentification(
         deserialized_files=self.middling_score_argument).evaluate()
 
     # Directly assigned attributes

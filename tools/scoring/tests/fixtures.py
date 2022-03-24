@@ -11,7 +11,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-"""Utilities for testing"""
+"""Utilities for testing."""
 
 from score.constants import FileTypes, DimensionCategories
 from score.parse_config import ParseConfig
@@ -24,7 +24,7 @@ SIMPLE, COMPLEX = DimensionCategories
 
 
 class TestFixtures:
-  """Utilities for testing"""
+  """Utilities for testing."""
   @staticmethod
   def prepare_dimension_argument(*, entity_type, proposed_path, solution_path):
     """Prepare argument for direct invocation of a dimension for purposes of
