@@ -54,7 +54,7 @@ class _FieldsSubscore(NamedTuple):
   @property
   def incorrect(self) -> int:
     return len(
-        self.proposed_raw_field_names.difference(self.solution_raw_field_names))
+        self.solution_raw_field_names.difference(self.proposed_raw_field_names))
 
   @property
   def tally(self) -> float:
@@ -82,8 +82,8 @@ class _TypesSubscore(NamedTuple):
   @property
   def incorrect(self) -> int:
     return len(
-        set(self.proposed_entity_type.parent_names.keys()).difference(
-            set(self.solution_entity_type.parent_names.keys()))
+        set(self.solution_entity_type.parent_names.keys()).difference(
+            set(self.proposed_entity_type.parent_names.keys()))
     ) if self.proposed_entity_type is not None else self.correct_ceiling
 
   @property
@@ -337,14 +337,14 @@ class Dimension:
         none_subscore_reference = _VirtualEntityMatch(
             correct=0,
             correct_ceiling=len(solution_raw_field_names),
-            incorrect=0,
+            incorrect=len(solution_raw_field_names),
             proposed=set([]),
             solution=solution_parameters,
             types_correct=0,
             types_correct_ceiling=len(
                 set(solution_entity_type.parent_names.keys())),
-            types_incorrect=0,
-            types_score=None)
+            types_incorrect=len(set(solution_entity_type.parent_names.keys())),
+            types_score=-1.0)
 
         matches_virtual[None].append(none_subscore_reference)
 
