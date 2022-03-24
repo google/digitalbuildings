@@ -4405,7 +4405,7 @@ HWDDC:
   - CONTROL
 
 # New abstracts for MFA BV100 HVAC
- CFDPM:
+CFDPM:
   description: "Carbon filter pressure monitoring."
   is_abstract: true
   uses:
