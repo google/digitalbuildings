@@ -81,17 +81,17 @@ class EntityTypeIdentificationTest(absltest.TestCase):
         deserialized_files=self.highest_score_argument).evaluate()
 
     # Directly assigned attributes
-    self.assertEqual(highest_score_expected.correct_reporting, 1)
-    self.assertEqual(highest_score_expected.correct_ceiling_reporting, 1)
+    self.assertEqual(highest_score_expected.correct_reporting, 2)
+    self.assertEqual(highest_score_expected.correct_ceiling_reporting, 2)
     self.assertEqual(highest_score_expected.incorrect_reporting, 0)
 
-    self.assertEqual(highest_score_expected.correct_virtual, 1)
-    self.assertEqual(highest_score_expected.correct_ceiling_virtual, 1)
+    self.assertEqual(highest_score_expected.correct_virtual, 2)
+    self.assertEqual(highest_score_expected.correct_ceiling_virtual, 2)
     self.assertEqual(highest_score_expected.incorrect_virtual, 0)
 
     # Inherited calculated attributes
-    self.assertEqual(highest_score_expected.correct_total(), 2)
-    self.assertEqual(highest_score_expected.correct_ceiling(), 2)
+    self.assertEqual(highest_score_expected.correct_total(), 4)
+    self.assertEqual(highest_score_expected.correct_ceiling(), 4)
     self.assertEqual(highest_score_expected.incorrect_total(), 0)
 
     # Inherited result properties
@@ -112,17 +112,17 @@ class EntityTypeIdentificationTest(absltest.TestCase):
 
     # Directly assigned attributes
     self.assertEqual(lowest_score_expected.correct_reporting, 0)
-    self.assertEqual(lowest_score_expected.correct_ceiling_reporting, 1)
-    self.assertEqual(lowest_score_expected.incorrect_reporting, 1)
+    self.assertEqual(lowest_score_expected.correct_ceiling_reporting, 2)
+    self.assertEqual(lowest_score_expected.incorrect_reporting, 2)
 
     self.assertEqual(lowest_score_expected.correct_virtual, 0)
-    self.assertEqual(lowest_score_expected.correct_ceiling_virtual, 1)
-    self.assertEqual(lowest_score_expected.incorrect_virtual, 1)
+    self.assertEqual(lowest_score_expected.correct_ceiling_virtual, 2)
+    self.assertEqual(lowest_score_expected.incorrect_virtual, 2)
 
     # Inherited calculated attributes
     self.assertEqual(lowest_score_expected.correct_total(), 0)
-    self.assertEqual(lowest_score_expected.correct_ceiling(), 2)
-    self.assertEqual(lowest_score_expected.incorrect_total(), 2)
+    self.assertEqual(lowest_score_expected.correct_ceiling(), 4)
+    self.assertEqual(lowest_score_expected.incorrect_total(), 4)
 
     # Inherited result properties
     self.assertEqual(lowest_score_expected.result_all, -1.0)
