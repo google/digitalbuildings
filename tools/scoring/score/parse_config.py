@@ -20,7 +20,7 @@ from validate.generate_universe import BuildUniverse
 from yamlformat.validator.presubmit_validate_types_lib import ConfigUniverse
 
 from score.dimensions.dimension import Dimension
-from score.types_ import CloudDeviceId, DimensionName, TranslationsDict, DeserializedFile, DeserializedFilesDict, DimensionCategory
+from score.scorer_types import CloudDeviceId, DimensionName, TranslationsDict, DeserializedFile, DeserializedFilesDict, DimensionCategory
 from score.constants import FileTypes, DimensionCategories
 from score.dimensions import entity_connection_identification, entity_identification, entity_point_identification, entity_type_identification, raw_field_selection, standard_field_naming, state_mapping, unit_mapping
 

@@ -14,7 +14,7 @@
 """ Core component """
 
 from score.dimensions.dimension import Dimension
-from score.types_ import DeserializedFile, EntityInstance, CloudDeviceId, PointsVirtualList
+from score.scorer_types import DeserializedFile, EntityInstance, CloudDeviceId, PointsVirtualList
 from score.constants import FileTypes
 
 from typing import Set

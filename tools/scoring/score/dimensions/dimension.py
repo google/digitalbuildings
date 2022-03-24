@@ -13,7 +13,7 @@
 # limitations under the License.
 """Core component base class."""
 
-from score.types_ import DeserializedFilesDict, TranslationsDict, PointsVirtualList, RawFieldName, EntityType, FileType
+from score.scorer_types import DeserializedFilesDict, TranslationsDict, PointsVirtualList, RawFieldName, EntityType, FileType
 from validate.entity_instance import EntityInstance
 from typing import Tuple, Set, List, Dict, NamedTuple
 from collections import defaultdict
