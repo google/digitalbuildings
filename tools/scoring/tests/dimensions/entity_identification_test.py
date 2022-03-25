@@ -19,7 +19,7 @@ from absl.testing import absltest
 from score.dimensions.entity_identification import EntityIdentification
 from score.constants import FileTypes, DimensionCategories
 
-from ..helper import TestHelper
+from tests.helper import TestHelper
 
 PROPOSED, SOLUTION = FileTypes
 SIMPLE, COMPLEX = DimensionCategories
