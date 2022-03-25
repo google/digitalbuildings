@@ -156,7 +156,7 @@ class EntityTypeIdentification(Dimension):
 
   def evaluate(self):
     """Calculates and assigns properties necessary
-    for generating a score for all devices."""
+    for generating an entity type identification score for all devices."""
 
     proposed_file, solution_file = map(self.deserialized_files.get,
                                        (PROPOSED, SOLUTION))
