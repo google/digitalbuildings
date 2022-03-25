@@ -18,6 +18,7 @@ from score.scorer_types import DeserializedFile, EntityInstance, CloudDeviceId, 
 from score.constants import FileTypes
 
 from typing import Set
+from collections import namedtuple
 
 PROPOSED, SOLUTION = FileTypes
 
@@ -33,30 +34,39 @@ class EntityTypeIdentification(Dimension):
         filter(self.is_entity_canonical,
                filter(self.is_entity_virtual, file.values())))
 
+  @staticmethod
   def _fetch_points_virtual(
-      self, file: DeserializedFile,
+      file: DeserializedFile,
       entities_virtual: Set[EntityInstance]) -> PointsVirtualList:
     # For each canonically typed virtual entity
-    # create a tuple containing a set and the entity's type.
+    # create a named tuple containing a set and the entity's type.
     # (The type is required by the matching algo for a different dimension.)
     # For each link in the entity,
     # if the field exists at the source
     # add its raw field name to the set.
+    PointsVirtual = namedtuple('PointsVirtual',
+                               ['raw_field_names', 'entity_type'])
+
+    return [
+        PointsVirtual(
+            set(file[link.source].translation[target_field].raw_field_name
+                for target_field, source_field in link.field_map.items()
+                for link in entity.links
+                if target_field in file[link.source].translation), entity.type)
+        for entity in entities_virtual for link in entity.links
+    ]
+
+  @staticmethod
+  def _sort_filter_points_virtual(
+      points_virtual: PointsVirtualList) -> PointsVirtualList:
     # Filter out sets which have no items
     # and sort by number of fields represented in descending order.
-    # TODO: move the filtering/sorting functionality to add clarity.
-    return sorted(
-        list(
-            filter(
-                lambda tup: len(tup[0]) > 0,  # (raw field names, entity type)
-                [(set(file[link.source].translation[target_field].raw_field_name
-                      for target_field, source_field in link.field_map.items()
-                      for link in entity.links
-                      if target_field in file[link.source].translation),
-                  entity.type) for entity in entities_virtual
-                 for link in entity.links])),
-        key=lambda tup: len(tup[0]),  # (raw field names, entity type)
-        reverse=True)
+    filtered = list(
+        filter(lambda entry: len(entry.raw_field_names) > 0, points_virtual))
+
+    return sorted(filtered,
+                  key=lambda entry: len(entry.raw_field_names),
+                  reverse=True)
 
   def _isolate_entities_reporting(
       self, file: DeserializedFile) -> Set[EntityInstance]:
@@ -64,8 +74,9 @@ class EntityTypeIdentification(Dimension):
         filter(self.is_entity_canonical,
                filter(self.is_entity_reporting, file.values())))
 
+  @staticmethod
   def _fetch_source_ids_virtual(
-      self, file: DeserializedFile,
+      file: DeserializedFile,
       entities_virtual: Set[EntityInstance]) -> Set[CloudDeviceId]:
     # Aggregate IDs for entities which comprise the composites
     # evaluated above. These will be filtered out so as to
@@ -92,8 +103,10 @@ class EntityTypeIdentification(Dimension):
     # Rely on the black box to choose which virtual entities
     # correlate most closely in the respective files.
     matches_virtual = self.match_virtual_entities(
-        solution_points_virtual=solution_points_virtual,
-        proposed_points_virtual=proposed_points_virtual,
+        solution_points_virtual=self._sort_filter_points_virtual(
+            solution_points_virtual),
+        proposed_points_virtual=self._sort_filter_points_virtual(
+            proposed_points_virtual),
         sort_candidates_by_key='types_correct')
 
     self.correct_virtual = sum([
