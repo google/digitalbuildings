@@ -18,7 +18,6 @@
 VLV-2:
   cloud_device_id: 2599571827855502
   guid: edfa7b3a-80da-4243-a95a-5ca24311ac45
-  id: CDM/196h$V6TP3C8vhrwG9nopt
   translation:
     chilled_water_flowrate_sensor:
       present_value: points.chilled_water_flowrate_sensor.present_value
