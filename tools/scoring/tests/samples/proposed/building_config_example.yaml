@@ -22,6 +22,7 @@ FCU-1:
     VLV-2: CONTROLS
     ZONE-G00: FEEDS
   guid: 90ebdd30-efdf-4aec-82d7-90f8e03a6792
+  id: CDM/32HyWf6Zv3XumC7od2m$$H
   translation:
     chilled_water_flowrate_sensor:
       present_value: points.chilled_water_flowrate_sensor.present_value
@@ -139,6 +140,7 @@ FCU-1:
 
 VLV-1:
   guid: daf3048f-2118-4afc-a5f0-8b4ce0c25fef
+  id: CDM/196h$V6TP3C8vhrwG9nopt
   links:
     FCU-1:
       chilled_water_flowrate_sensor: chilled_water_flowrate_sensor
@@ -150,6 +152,7 @@ VLV-1:
 
 VLV-2:
   guid: edfa7b3a-80da-4243-a95a-5ca24311ac45
+  id: CDM/196h$V6TP3C8vhrwG9nopt
   links:
     FCU-1:
       heating_water_flowrate_sensor: heating_water_flowrate_sensor
@@ -161,20 +164,24 @@ ZONE-G00:
   connections:
     XX-YYY-ZZ-G-G00: CONTAINS
   guid: abac04e2-948a-40df-a77f-bc5798c2d7e6
+  id: CDM/a8c40d4b-3ea2-4b13-8e7b-31f0d07dfed5
   type: HVAC/ZONE_HVAC
 
 XX-YYY-ZZ-G-G00:
   connections:
     XX-YYY-ZZ-G: CONTAINS
   guid: 1a0e0e19-89e5-444e-958f-5611cd0601da
+  id: FACILITIES/7f329385-df7e-4f0b-82e2-632aa5b4e2d1
   type: FACILITIES/ROOM
 
 XX-YYY-ZZ-G:
   connections:
     XX-YYY-ZZ: CONTAINS
   guid: d67b9179-7e91-41cf-989f-f5d96564b00a
+  id: FACILITIES/df1f9770-87d8-4e7b-864b-48917e738b56
   type: FACILITIES/FLOOR
 
 XX-YYY-ZZ:
   guid: df651868-e22c-490c-b122-7337e0af0fc1
+  id: FACILITIES/9601e8a4-5f1c-424c-9738-2090b190573a
   type: FACILITIES/BUILDING

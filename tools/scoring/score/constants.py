@@ -13,20 +13,20 @@
 # limitations under the License.
 """Constants for the configuration scoring tool."""
 
-from enum import Enum
+import enum
 
 
-class FileTypes(str, Enum):
-  """The file which is being scored."""
+class FileTypes(str, enum.Enum):
+  # The file which is being scored
   PROPOSED = 'proposed'
-  """.The file which is being compared against."""
+  # The file which is being compared against
   SOLUTION = 'solution'
 
 
-class DimensionCategories(str, Enum):
-  """Receives `translations` and scores
-  only reporting entities in bulk."""
+class DimensionCategories(str, enum.Enum):
+  # Receives `translations` and scores
+  # only reporting entities in bulk
   SIMPLE = 'simple'
-  """Receives `deserialized_files` to build a multi-map
-  of virtual entities prior to calculating scores."""
+  # Receives `deserialized_files` to build a multi-map
+  # of virtual entities prior to calculating scores
   COMPLEX = 'complex'

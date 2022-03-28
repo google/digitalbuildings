@@ -11,24 +11,23 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-"""Test for configuration file scoring tool
-"standard field naming" dimension (standard_field_naming.py)."""
+"""Test for configuration file scoring tool "standard field naming" dimension (standard_field_naming.py)."""
 
 from absl.testing import absltest
 
-from score.dimensions.standard_field_naming import StandardFieldNaming
 from score.constants import FileTypes
+from score.dimensions.standard_field_naming import StandardFieldNaming
 
 PROPOSED, SOLUTION = FileTypes
 
 
 class StandardFieldNamingTest(absltest.TestCase):
+
   def setUp(self):
     super().setUp()
-    # TODO: add real data (append cases to existing tests)
-    translations = {'cloud_device_id': {PROPOSED: [], SOLUTION: []}}
-    self.standard_field_naming = StandardFieldNaming(
-        translations=translations).evaluate()
+    # TODO(b/210741084): add real data (append cases to existing tests)
+    translations = {PROPOSED: [], SOLUTION: []}
+    self.standard_field_naming = StandardFieldNaming(translations=translations)
 
   def testDirectlyAssignedAttributes(self):
     self.assertEqual(self.standard_field_naming.correct_reporting, 0)
@@ -42,9 +41,9 @@ class StandardFieldNamingTest(absltest.TestCase):
 
   def testInheritedResultProperties(self):
     # These are `None` by virtue of the ceiling being falsy.
-    self.assertEqual(self.standard_field_naming.result_all, None)
-    self.assertEqual(self.standard_field_naming.result_reporting, None)
-    self.assertEqual(self.standard_field_naming.result_virtual, None)
+    self.assertIsNone(self.standard_field_naming.result_composite)
+    self.assertIsNone(self.standard_field_naming.result_reporting)
+    self.assertIsNone(self.standard_field_naming.result_virtual)
 
 
 if __name__ == '__main__':

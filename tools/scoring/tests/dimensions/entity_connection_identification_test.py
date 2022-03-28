@@ -11,25 +11,24 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-"""Test for configuration file scoring tool
-"entity connection identification" dimension
-(entity_connection_identification.py)."""
+"""Test for configuration file scoring tool "entity connection identification" dimension (entity_connection_identification.py)."""
 
 from absl.testing import absltest
 
-from score.dimensions.entity_connection_identification import EntityConnectionIdentification
 from score.constants import FileTypes
+from score.dimensions.entity_connection_identification import EntityConnectionIdentification
 
 PROPOSED, SOLUTION = FileTypes
 
 
 class EntityConnectionIdentificationTest(absltest.TestCase):
+
   def setUp(self):
     super().setUp()
-    # TODO: add real data (append cases to existing tests)
+    # TODO(b/210741084): add real data (append cases to existing tests)
     deserialized_files = {PROPOSED: {}, SOLUTION: {}}
     self.entity_connection_identification = EntityConnectionIdentification(
-        deserialized_files=deserialized_files).evaluate()
+        deserialized_files=deserialized_files)
 
   def testDirectlyAssignedAttributes(self):
     self.assertEqual(
@@ -46,7 +45,7 @@ class EntityConnectionIdentificationTest(absltest.TestCase):
 
   def testInheritedResultProperties(self):
     # This is `None` by virtue of the ceiling being falsy.
-    self.assertEqual(self.entity_connection_identification.result_all, None)
+    self.assertIsNone(self.entity_connection_identification.result_composite)
 
 
 if __name__ == '__main__':

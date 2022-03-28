@@ -11,24 +11,22 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-"""Test for configuration file scoring tool
-"raw field selection" dimension (raw_field_selection.py)."""
+"""Test for configuration file scoring tool "raw field selection" dimension (raw_field_selection.py)."""
 
 from absl.testing import absltest
-
-from score.dimensions.raw_field_selection import RawFieldSelection
 from score.constants import FileTypes
+from score.dimensions.raw_field_selection import RawFieldSelection
 
 PROPOSED, SOLUTION = FileTypes
 
 
 class RawFieldSelectionTest(absltest.TestCase):
+
   def setUp(self):
     super().setUp()
-    # TODO: add real data (append cases to existing tests)
-    translations = {'cloud_device_id': {PROPOSED: [], SOLUTION: []}}
-    self.raw_field_selection = RawFieldSelection(
-        translations=translations).evaluate()
+    # TODO(b/210741084): add real data (append cases to existing tests)
+    translations = {PROPOSED: [], SOLUTION: []}
+    self.raw_field_selection = RawFieldSelection(translations=translations)
 
   def testDirectlyAssignedAttributes(self):
     self.assertEqual(self.raw_field_selection.correct_reporting, 0)
@@ -42,9 +40,9 @@ class RawFieldSelectionTest(absltest.TestCase):
 
   def testInheritedResultProperties(self):
     # These are `None` by virtue of the ceiling being falsy.
-    self.assertEqual(self.raw_field_selection.result_all, None)
-    self.assertEqual(self.raw_field_selection.result_reporting, None)
-    self.assertEqual(self.raw_field_selection.result_virtual, None)
+    self.assertIsNone(self.raw_field_selection.result_composite)
+    self.assertIsNone(self.raw_field_selection.result_reporting)
+    self.assertIsNone(self.raw_field_selection.result_virtual)
 
 
 if __name__ == '__main__':

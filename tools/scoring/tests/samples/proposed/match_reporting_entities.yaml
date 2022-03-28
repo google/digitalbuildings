@@ -16,6 +16,7 @@
 FCU-1:
   cloud_device_id: 2599571827844401
   guid: 90ebdd30-efdf-4aec-82d7-90f8e03a6792
+  id: CDM/32HyWf6Zv3XumC7od2m$$H
   translation:
     chilled_water_flowrate_sensor:
       present_value: points.chilled_water_flowrate_sensor.present_value
@@ -29,6 +30,7 @@ FCU-1:
 VLV-1:
   cloud_device_id: 2599571827855502
   guid: daf3048f-2118-4afc-a5f0-8b4ce0c25fef
+  id: CDM/196h$V6TP3C8vhrwG9nopt
   translation:
     chilled_water_flowrate_sensor:
       present_value: points.chilled_water_flowrate_sensor.present_value
@@ -43,9 +45,11 @@ VLV-1:
 VLV-2:
   cloud_device_id: 2599571827866601
   guid: edfa7b3a-80da-4243-a95a-5ca24311ac45
+  id: CDM/196h$V6TP3C8vhrwG9nopt
   type: HVAC/VLV_HWVM
 
 # This WILL NOT match as cloud_device_id is not present (it is a virtual device)
 XX-YYY-ZZ:
   guid: df651868-e22c-490c-b122-7337e0af0fc1
+  id: FACILITIES/9601e8a4-5f1c-424c-9738-2090b190573a
   type: FACILITIES/BUILDING

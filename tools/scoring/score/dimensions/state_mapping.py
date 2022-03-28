@@ -13,39 +13,42 @@
 # limitations under the License.
 """Core component."""
 
-from score.dimensions.dimension import Dimension
 from score.constants import FileTypes
+from score.dimensions.dimension import Dimension
+from score.types_ import TranslationsDict
 
 PROPOSED, SOLUTION = FileTypes
 
 
 class StateMapping(Dimension):
-  """Quantifies how accurately the proposed file
-  mapped multi-state values for relevant fields."""
-  def _fetch_mappings(self, translations):
-    return set([(field[0], kv)
-                for field in (field for field in translations
-                              if type(field[1]).__name__ == 'MultiStateValue')
-                for kv in field[1].states.items()])
+  """Quantifies how accurately the proposed file mapped multi-state values for relevant fields."""
 
-  def evaluate(self):
-    """Calculates and assigns properties necessary for generating a score."""
+  def __init__(self, *, translations: TranslationsDict):
+    super().__init__(translations=translations)
 
-    proposed_condensed, solution_condensed = map(self._condense_translations,
-                                                 (PROPOSED, SOLUTION))
+    multistate_solutions = (
+        field for field in translations[SOLUTION]
+        if type(field[1]).__name__ == 'MultiStateValue')
+    solution_mappings = set()
+    for field in multistate_solutions:
+      for kv in field[1].states.items():
+        solution_mappings.add((field[0], kv))
 
-    # Account for empty list
-    proposed_translations = proposed_condensed and proposed_condensed[0]
-    solution_translations = solution_condensed and solution_condensed[0]
-
-    proposed_mappings, solution_mappings = map(
-        self._fetch_mappings, (proposed_translations, solution_translations))
+    # TODO(b/210741084): clarify this comment and add test case
+    # 'if isinstance(kv[1], str)' added 20211102 due to list value in
+    # Mapped US-SVL-MP2 proposal
+    multistate_proposed = (
+        field for field in translations[PROPOSED]
+        if type(field[1]).__name__ == 'MultiStateValue')
+    proposed_mappings = set()
+    for field in multistate_proposed:
+      for kv in field[1].states.items():
+        if isinstance(kv[1], str):
+          proposed_mappings.add((field[0], kv))
 
     correct_mappings = proposed_mappings.intersection(solution_mappings)
 
     self.correct_reporting = len(correct_mappings)
     self.correct_ceiling_reporting = len(solution_mappings)
-    self.incorrect_reporting = (self.correct_ceiling_reporting -
-                                self.correct_reporting)
-
-    return self
+    self.incorrect_reporting = (
+        self.correct_ceiling_reporting - self.correct_reporting)
