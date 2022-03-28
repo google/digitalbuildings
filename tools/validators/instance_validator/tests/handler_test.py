@@ -13,7 +13,6 @@
 # limitations under the License.
 """Tests tools.validators.instance_validator.instance_validator."""
 
-
 from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
@@ -54,7 +53,6 @@ def _Helper(testpaths: List[str]) -> Dict[str, entity_instance.EntityInstance]:
 
 
 class HandlerTest(absltest.TestCase):
-
   def testValidateOneBuildingExist(self):
     try:
       input_file = os.path.join(_TESTCASE_PATH, 'GOOD',
@@ -64,8 +62,8 @@ class HandlerTest(absltest.TestCase):
       self.fail('ValidationHelper:Validate raised ExceptionType unexpectedly!')
 
   def testValidateReportFileNotEmpty(self):
+    report_fd, report_filename = tempfile.mkstemp(text=True)
     try:
-      report_fd, report_filename = tempfile.mkstemp(text=True)
       input_file = os.path.join(_TESTCASE_PATH, 'GOOD',
                                 'good_building_type.yaml')
       _RunValidation([input_file],
