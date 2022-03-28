@@ -334,10 +334,11 @@ class Dimension:
         # Since a match was found, remove it from the pool
         proposed_points_virtual.remove(selected.proposed)
       else:
+        correct_ceiling = len(solution_raw_field_names)
         none_subscore_reference = _VirtualEntityMatch(
             correct=0,
-            correct_ceiling=len(solution_raw_field_names),
-            incorrect=len(solution_raw_field_names),
+            correct_ceiling=correct_ceiling,
+            incorrect=correct_ceiling,  # i.e. everything is incorrect
             proposed=set([]),
             solution=solution_parameters,
             types_correct=0,
