@@ -38,9 +38,8 @@ class EntityTypeIdentification(Dimension):
   def _fetch_points_virtual(
       file: DeserializedFile,
       entities_virtual: Set[EntityInstance]) -> PointsVirtualList:
-    # For each canonically typed virtual entity
+    # For each virtual entity
     # create a named tuple containing a set and the entity's type.
-    # (The type is required by the matching algo for a different dimension.)
     # For each link in the entity,
     # if the field exists at the source
     # add its raw field name to the set.
