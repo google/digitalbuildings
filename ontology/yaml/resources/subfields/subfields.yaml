@@ -68,7 +68,7 @@ descriptor:
   bypass: "Route which fluid takes to bypass process."
   calendar: "A system structured around the days, weeks, and the months, used to manage schedules."
   call: "An action of speaking or meeting among multiple people."
-  carbon: "Carbon in solid form."
+  carbon: "Carbon."
   chilled: "Cold water (typically 40 - 50F)."
   circulation: "Process or component used to circulate fluid through a device or system (typically onboard a boiler)."
   co: "Measures carbon monoxide concentration."

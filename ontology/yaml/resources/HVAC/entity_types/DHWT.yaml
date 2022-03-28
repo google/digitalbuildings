@@ -23,7 +23,7 @@ DHWT_HWTTC:
   - DHWT
   - HWTTC
 
-DHWT_PHTTC:
+DHWT_PHWTTC:
   description: "Preheating domestic hot water tank."
   is_canonical: true
   implements:

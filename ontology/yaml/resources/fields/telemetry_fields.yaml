@@ -1104,7 +1104,9 @@ literals:
 - zone_floor_temperature_setpoint
 - entering_heat_recovery_coil_temperature_sensor
 - carbon_filter_differential_pressure_sensor
-- heating_supply_water_isolation_valve_status
+- heating_supply_water_isolation_valve_status:
+  - OPEN
+  - CLOSED
 - leaving_coil_temperature_sensor
 - heating_heat_recovery_supply_water_temperature_sensor
 - heating_heat_recovery_return_water_temperature_sensor
