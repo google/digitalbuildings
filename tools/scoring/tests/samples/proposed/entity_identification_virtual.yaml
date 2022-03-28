@@ -18,7 +18,6 @@
 
 VLV-1:
   guid: daf3048f-2118-4afc-a5f0-8b4ce0c25fef
-  id: CDM/196h$V6TP3C8vhrwG9nopt
   links:
     FCU-1:
       chilled_water_flowrate_sensor: chilled_water_flowrate_sensor
@@ -27,7 +26,6 @@ VLV-1:
 FCU-1:
   cloud_device_id: 2599571827844401
   guid: 90ebdd30-efdf-4aec-82d7-90f8e03a6792
-  id: CDM/32HyWf6Zv3XumC7od2m$$H
   translation:
     chilled_water_flowrate_sensor:
       present_value: points.chilled_water_flowrate_sensor.present_value
