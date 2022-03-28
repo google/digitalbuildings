@@ -13,7 +13,7 @@
 # limitations under the License.
 """Core component base class."""
 
-from score.types_ import DeserializedFilesDict, TranslationsDict, PointsVirtualList, RawFieldName, EntityType, FileType
+from score.scorer_types import DeserializedFilesDict, TranslationsDict, PointsVirtualList, RawFieldName, EntityType, FileType
 from validate.entity_instance import EntityInstance
 from typing import Tuple, Set, List, Dict, NamedTuple
 from collections import defaultdict
@@ -199,7 +199,7 @@ class Dimension:
     """Calculated result for virtual devices."""
     # Allow for value to be returned even if either is not set
     correct_virtual = self.correct_virtual or 0
-    incorrect_virtual = self.correct_virtual or 0
+    incorrect_virtual = self.incorrect_virtual or 0
     return (
         (correct_virtual - incorrect_virtual) /
         self.correct_ceiling_virtual) if self.correct_ceiling_virtual else None
