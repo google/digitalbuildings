@@ -90,7 +90,7 @@ class EntityTypeIdentification(Dimension):
   def _evaluate_virtual(self, *, proposed_file: DeserializedFile,
                         solution_file: DeserializedFile):
     """Calculates and assigns properties necessary
-    for generating a score for virtual devices."""
+    for generating an entity type identification score for virtual devices."""
     proposed_entities_virtual, solution_entities_virtual = map(
         self._isolate_entities_virtual, (proposed_file, solution_file))
 
@@ -124,7 +124,7 @@ class EntityTypeIdentification(Dimension):
   def _evaluate_reporting(self, *, proposed_file: DeserializedFile,
                           solution_file: DeserializedFile):
     """Calculates and assigns properties necessary
-    for generating a score for reporting devices."""
+    for generating an entity type identification score for reporting devices."""
     proposed_entities_reporting, solution_entities_reporting = map(
         self._isolate_entities_reporting, (proposed_file, solution_file))
     proposed_entities_virtual, solution_entities_virtual = map(
