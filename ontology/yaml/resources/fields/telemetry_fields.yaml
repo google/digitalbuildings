@@ -1083,16 +1083,16 @@ literals:
 - heat_recovery_water_isolation_valve_command:
   - OPEN
   - CLOSED
-- heating_heat_recovery_return_water_isolation_valve_command:
+- heat_recovery_return_water_isolation_valve_command:
   - OPEN
   - CLOSED
-- heating_heat_recovery_return_water_isolation_valve_status:
+- heat_recovery_return_water_isolation_valve_status:
   - OPEN
   - CLOSED
-- heating_heat_recovery_supply_water_isolation_valve_command:
+- heat_recovery_supply_water_isolation_valve_command:
   - OPEN
   - CLOSED
-- heating_heat_recovery_supply_water_isolation_valve_status:
+- heat_recovery_supply_water_isolation_valve_status:
   - OPEN
   - CLOSED
 - heat_recovery_run_command:
@@ -1108,8 +1108,8 @@ literals:
   - OPEN
   - CLOSED
 - leaving_coil_temperature_sensor
-- heating_heat_recovery_supply_water_temperature_sensor
-- heating_heat_recovery_return_water_temperature_sensor
+- heat_recovery_supply_water_temperature_sensor
+- heat_recovery_return_water_temperature_sensor
 
 # New fields for MFA BV100 DWST
 - hot_water_tank_temperature_sensor
