@@ -29,7 +29,8 @@ SIMPLE, COMPLEX = DimensionCategories
 class TestHelper:
   """Utilities for testing."""
   @staticmethod
-  def prepare_dimension_argument(*, entity_type, proposed_path, solution_path):
+  def prepare_dimension_argument(*, dimension_type, proposed_path,
+                                 solution_path):
     """Prepare argument for direct invocation of a dimension for purposes of
       testing (i.e. mimic parse_config.py).
 
@@ -38,7 +39,7 @@ class TestHelper:
       the full universe because entities with missing types are skipped!
 
         Arguments:
-          entity_type: the category of the dimension. (Literal[SIMPLE, COMPLEX])
+          dimension_type: the category of the dimension. (Literal[SIMPLE, COMPLEX])
           proposed_path: the path to the proposed YAML file
           solution_path: the path to the solution YAML file
 
@@ -53,7 +54,7 @@ class TestHelper:
     deserialized_files_appended = ParseConfig.append_types(
         universe=universe, deserialized_files=deserialized_files)
 
-    if entity_type == SIMPLE:
+    if dimension_type == SIMPLE:
       matches = ParseConfig.match_reporting_entities(
           proposed_entities=deserialized_files_appended[PROPOSED],
           solution_entities=deserialized_files_appended[SOLUTION])
@@ -64,5 +65,5 @@ class TestHelper:
           solution_entities=deserialized_files_appended[SOLUTION])
 
       return translations
-    elif entity_type == COMPLEX:
+    elif dimension_type == COMPLEX:
       return deserialized_files_appended
