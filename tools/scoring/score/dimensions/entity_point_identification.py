@@ -89,7 +89,7 @@ class EntityPointIdentification(Dimension):
   def _evaluate_virtual(self, *, proposed_file: DeserializedFile,
                         solution_file: DeserializedFile):
     """Calculates and assigns properties necessary
-    for generating a score for virtual devices."""
+    for generating an entity point identification score for virtual devices."""
     proposed_entities_virtual, solution_entities_virtual = map(
         self._isolate_entities_virtual, (proposed_file, solution_file))
 
@@ -123,7 +123,8 @@ class EntityPointIdentification(Dimension):
   def _evaluate_reporting(self, *, proposed_file: DeserializedFile,
                           solution_file: DeserializedFile):
     """Calculates and assigns properties necessary
-    for generating a score for reporting devices."""
+    for generating an entity point identification
+    score for reporting devices."""
     proposed_entities_reporting, solution_entities_reporting = map(
         self._isolate_entities_reporting, (proposed_file, solution_file))
     proposed_entities_virtual, solution_entities_virtual = map(
@@ -164,13 +165,13 @@ class EntityPointIdentification(Dimension):
         solution_raw_field_names in matches_reporting
     ])
     self.incorrect_reporting = sum([
-        len(proposed_raw_field_names.difference(solution_raw_field_names)) for
+        len(solution_raw_field_names.difference(proposed_raw_field_names)) for
         proposed_raw_field_names, solution_raw_field_names in matches_reporting
     ])
 
   def evaluate(self):
     """Calculates and assigns properties necessary
-    for generating a score for all devices."""
+    for generating an entity point identification score for all devices."""
 
     proposed_file, solution_file = map(self.deserialized_files.get,
                                        (PROPOSED, SOLUTION))
