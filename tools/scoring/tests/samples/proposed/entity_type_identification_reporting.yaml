@@ -12,9 +12,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FCU-1:
-  cloud_device_id: 2599571827844401
-  guid: 90ebdd30-efdf-4aec-82d7-90f8e03a6792
+# NOTE: This file is used as a test fixture; it is a valid DBO instance
+# which demonstrates the features of a reporting entity.
+
+VLV-2:
+  cloud_device_id: 2599571827855502
+  guid: edfa7b3a-80da-4243-a95a-5ca24311ac45
   translation:
     chilled_water_flowrate_sensor:
       present_value: points.chilled_water_flowrate_sensor.present_value

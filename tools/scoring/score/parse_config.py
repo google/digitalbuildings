@@ -20,9 +20,9 @@ from validate.generate_universe import BuildUniverse
 from yamlformat.validator.presubmit_validate_types_lib import ConfigUniverse
 
 from score.dimensions.dimension import Dimension
-from score.types_ import CloudDeviceId, DimensionName, TranslationsDict, DeserializedFile, DeserializedFilesDict, DimensionCategory
+from score.scorer_types import CloudDeviceId, DimensionName, TranslationsDict, DeserializedFile, DeserializedFilesDict, DimensionCategory
 from score.constants import FileTypes, DimensionCategories
-from score.dimensions import entity_connection_identification, entity_identification, entity_point_identification, raw_field_selection, standard_field_naming, state_mapping, unit_mapping
+from score.dimensions import entity_connection_identification, entity_identification, entity_point_identification, entity_type_identification, raw_field_selection, standard_field_naming, state_mapping, unit_mapping
 
 PROPOSED, SOLUTION = FileTypes
 SIMPLE, COMPLEX = DimensionCategories
@@ -71,7 +71,7 @@ class ParseConfig:
       deserialized_files: DeserializedFilesDict) -> DeserializedFilesDict:
     """
       Appends types to deserialized files for purposes
-      of filtering entities and for evaluating some dimensions.
+      of filtering entities and for evaluating "complex" dimensions.
 
       Args:
         universe: The ontology universe to reference
@@ -250,13 +250,13 @@ class ParseConfig:
         universe=self.universe, deserialized_files=self.deserialized_files)
 
     matches = self.match_reporting_entities(
-        proposed_entities=deserialized_files_appended[PROPOSED],  # pylint: disable=unsubscriptable-object
-        solution_entities=deserialized_files_appended[SOLUTION])  # pylint: disable=unsubscriptable-object
+        proposed_entities=deserialized_files_appended[PROPOSED],
+        solution_entities=deserialized_files_appended[SOLUTION])
 
     translations = self.retrieve_reporting_translations(
         matches=matches,
-        proposed_entities=deserialized_files_appended[PROPOSED],  # pylint: disable=unsubscriptable-object
-        solution_entities=deserialized_files_appended[SOLUTION])  # pylint: disable=unsubscriptable-object
+        proposed_entities=deserialized_files_appended[PROPOSED],
+        solution_entities=deserialized_files_appended[SOLUTION])
 
     dimensions = {
         SIMPLE: [
@@ -267,7 +267,8 @@ class ParseConfig:
         COMPLEX: [
             entity_connection_identification.EntityConnectionIdentification,
             entity_identification.EntityIdentification,
-            entity_point_identification.EntityPointIdentification
+            entity_point_identification.EntityPointIdentification,
+            entity_type_identification.EntityTypeIdentification
         ]
     }
 

@@ -17,7 +17,7 @@ from collections import Counter
 
 from score.dimensions.dimension import Dimension
 from score.constants import FileTypes
-from score.types_ import DeserializedFile, CloudDeviceId
+from score.scorer_types import DeserializedFile, CloudDeviceId
 
 from typing import List
 
