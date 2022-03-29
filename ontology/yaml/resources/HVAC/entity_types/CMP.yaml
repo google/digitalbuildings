@@ -38,3 +38,13 @@ CMP_SS_WDPM:
   - run_mode
   - schedule_run_command
   - control_status
+
+CMP_SS_ZTO:
+  description: "Basic features of air compressor with zone temp override."
+  is_canonical: true
+  uses:
+  - zone_override_temperature_setpoint
+  - run_mode
+  implements:
+  - CMP
+  - SS

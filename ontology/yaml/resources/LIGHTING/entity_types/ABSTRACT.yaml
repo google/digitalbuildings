@@ -158,5 +158,5 @@ LFA:
   description: "Lighting Control fault alarm"
   is_abstract: true
   uses:
-  - lighting_switch_alarm
+  - failed_alarm
   

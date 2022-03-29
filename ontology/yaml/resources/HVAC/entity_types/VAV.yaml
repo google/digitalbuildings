@@ -465,13 +465,15 @@ VAV_RD_CO2C:
   - RD
   - CO2C
 
-VAV_SD_SDM_CO2C_SRC:
-  description: "CO2 controlled VAV, with damper, flowrate and scheduled run timer"
+VAV_SDM_CO2C_SRC_HLFSS:
+  description: "CO2 controlled VAV, with damper, hi/low flowrate sensor and setpoint and schedule run"
   is_canonical: true
   implements:
   - VAV
-  - SD
   - SDM
   - CO2C
   - SRC
-  
+  uses:
+  - low_limit_supply_air_flowrate_setpoint
+  - high_limit_supply_air_flowrate_setpoint
+  - supply_air_flowrate_sensor 

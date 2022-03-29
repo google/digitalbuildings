@@ -28,4 +28,4 @@ WM_WFR:
   - WM_STANDARD
   uses:
   - water_volume_accumulator
-  - supply_water_flowrate_sensor
+  - water_flowrate_sensor

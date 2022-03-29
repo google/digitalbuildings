@@ -34,8 +34,8 @@ FACP_FA2X:
   opt_uses:
   - panel_alarm
 
-PAFAS:
-  description: "Pre-action fire alarm system."
+FACP_PAS:
+  description: "Fire alarm panel with Pre-action suppression."
   is_canonical: true
   implements:
   - FACP

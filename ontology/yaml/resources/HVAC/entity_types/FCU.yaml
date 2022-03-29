@@ -1249,6 +1249,24 @@ FCU_CHWZTC2X_HT2XZTC2X_DFVSC2X:
   - CHWZTC2X
   - HT2XZTC2X
   - DFVSC2X
+  
+FCU_DFVSMC_CHWBRC_STM_RTM_FDPM_ZTC_SRC:
+  description: "FCU with Status, zone control, schedule run"
+  is_canonical: false
+  implements:
+  - FCU
+  - DFVSMC
+  - CHWBRC
+  - STM
+  - RTM
+  - FDPM
+  - ZTC
+  - SRC
+  uses:
+  - run_mode
+  - run_status
+  - discharge_fan_lost_power_alarm
+  - lost_power_alarm
 
 #Additional types for CH ZRH EURD
 FCU_NON_CANONICAL_TYPE_1:

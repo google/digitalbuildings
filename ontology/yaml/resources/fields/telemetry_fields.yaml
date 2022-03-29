@@ -737,6 +737,9 @@ literals:
 - brightness_percentage_command
 
 # New fields for emergency systems
+- emergency_alarm:
+  - ACTIVE
+  - INACTIVE
 - broken_cable_alarm:
   - ACTIVE
   - INACTIVE
@@ -1108,3 +1111,14 @@ literals:
 - air_pressure_status:
   - ACTIVE
   - INACTIVE
+  
+# added for water heating status
+- water_heating_status:
+  - ACTIVE
+  - INACTIVE
+
+# added for ACU type
+- zone_override_temperature_setpoint 
+
+# added for WM_WFR 
+- water_flowrate_sensor 

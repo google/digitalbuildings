@@ -93,6 +93,7 @@ pressure:
 - inches_of_water
 - pounds_force_per_square_inch
 - atmospheres
+- millibar
 resistance:
 - ohms: STANDARD
 - kiloohms

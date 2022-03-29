@@ -28,6 +28,9 @@ EM_PWM_PVCM:
   - EM
   - PWM
   - PVCM
+  opt_uses:
+  - reactive_energy_accumulator
+  - apparent_energy_accumulator
 
 EM_PWM_PLPM_PVCM:
   id: "752982533779488768"
