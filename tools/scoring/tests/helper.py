@@ -39,7 +39,7 @@ class TestHelper:
       the full universe because entities with missing types are skipped!
 
         Arguments:
-          dimension_type: the category of the dimension. (Literal[SIMPLE, COMPLEX])
+          dimension_type: the dimension's category. (Literal[SIMPLE, COMPLEX])
           proposed_path: the path to the proposed YAML file
           solution_path: the path to the solution YAML file
 
