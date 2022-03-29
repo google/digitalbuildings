@@ -602,7 +602,7 @@ MAU_DFSS_DFVSC_HWDDC_DXDDC_ZTM:
   - ZTM
 
 # New addition for MFA BV100
-MAU_SFSS2X_SFVSC2X_CFDPM_DPCHHRWSC_HWSC_FDPM_SSPC_STC_VOADM2X:
+MAU_SFSS2X_SFVSC2X_CFDPM_DPCHWHRWSC_HWSC_FDPM_SSPC_STC_VOADM2X:
   description: "Multi-zone MAU with heating water, chilled water, and heat recovery preheating water. The chilled water 
   and heat recovery preheating water both go through the same coils, but uses isolation valves to switch the source."
   is_canonical: true
@@ -611,7 +611,7 @@ MAU_SFSS2X_SFVSC2X_CFDPM_DPCHHRWSC_HWSC_FDPM_SSPC_STC_VOADM2X:
   - SFSS2X
   - SFVSC2X
   - CFDPM
-  - DPCHHRWSC
+  - DPCHWHRWSC
   - FDPM
   - HWSC
   - SSPC
