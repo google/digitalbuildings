@@ -22,9 +22,6 @@ from validate.generate_universe import BuildUniverse
 PROPOSED, SOLUTION = FileTypes
 SIMPLE, COMPLEX = DimensionCategories
 
-# TODO: Test scorer with new config file format (where primary key is guid)
-# https://trello.com/c/rw6o4HVa/34-test-scorer-with-new-config-file-format-where-primary-key-is-guid
-
 
 class TestHelper:
   """Utilities for testing."""
