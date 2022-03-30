@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 """Test for configuration file scoring tool
-"standard field naming" dimension (standard_field_naming.py)."""
+"standard field naming" dimension."""
 
 from absl.testing import absltest
 
