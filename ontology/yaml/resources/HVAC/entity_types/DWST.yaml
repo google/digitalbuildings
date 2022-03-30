@@ -40,7 +40,9 @@ DWST_SWTC_CPC_BYPVPM:
   - potable_water_low_temperature_sensor
 
 DWST_SWTC_CPVSC2X_WSHP2X:
-  description: "Non-standard domestic water system with 2 circulation pumps and 2 water-source heat pumps."
+  description: "Non-standard domestic water system with 2 circulation pumps and 2 water-source heat pumps.
+  The potable leaving water temperature is for the water leaving the heat pumps and the heat pumps share a
+  common setpoint."
   is_canonical: false
   implements:
   - DWST

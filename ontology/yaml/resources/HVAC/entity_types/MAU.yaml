@@ -618,6 +618,20 @@ MAU_SFSS2X_SFVSC2X_CFDPM_DPCHWHRWSC_HWSC_FDPM_SSPC_STC_VOADM2X:
   - STC
   - VOADM2X
 
+# New addition for MFA BV300
+MAU_SFSS2X_SFVSC2X_CHWSC_HWSC_FDPM_SSPC_STC_VOADM2X:
+  description: "Multi-zone MAU with chilled water and heating water."
+  is_canonical: true
+  implements:
+  - MAU
+  - SFSS2X
+  - SFVSC2X
+  - CHWSC
+  - FDPM
+  - HWSC
+  - SSPC
+  - STC
+  - VOADM2X
 
 ###################################
 ### Existing Non-standard Types ###

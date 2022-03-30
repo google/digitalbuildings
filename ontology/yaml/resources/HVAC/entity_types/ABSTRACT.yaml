@@ -4449,8 +4449,10 @@ DPBHCC:
   (heating/cooling setpoint configuration)."
   is_abstract: true
   opt_uses:
-  - heating_request_count
   - cooling_request_count
+  - chilled_water_valve_percentage_command
+  - heating_request_count
+  - heating_water_valve_percentage_command
   - zone_air_relative_humidity_sensor
   uses:
   - chilled_supply_water_isolation_valve_command
