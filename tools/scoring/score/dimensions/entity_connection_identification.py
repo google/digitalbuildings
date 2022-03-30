@@ -16,15 +16,19 @@
 # from collections import Counter
 
 from score.dimensions.dimension import Dimension
-from score.constants import FileTypes
+from score.constants import FileTypes, DimensionCategories
 from score.scorer_types import DeserializedFile
 
 PROPOSED, SOLUTION = FileTypes
+SIMPLE, COMPLEX = DimensionCategories
 
 
 class EntityConnectionIdentification(Dimension):
   """Quantifies whether connections between entities were
   correctly and completely defined in the proposed file."""
+
+  category = DimensionCategories.COMPLEX
+
   def _isolate_connections(self, file: DeserializedFile):
     """Distill individual connections from each entity
     prior to inclusion in sets for global comparison."""

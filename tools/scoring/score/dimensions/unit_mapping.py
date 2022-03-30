@@ -14,7 +14,7 @@
 """Core component."""
 
 from score.dimensions.dimension import Dimension
-from score.constants import FileTypes
+from score.constants import FileTypes, DimensionCategories
 
 PROPOSED, SOLUTION = FileTypes
 
@@ -22,6 +22,9 @@ PROPOSED, SOLUTION = FileTypes
 class UnitMapping(Dimension):
   """Quantifies how accurately the proposed file
   mapped dimensional units for relevant fields."""
+
+  category = DimensionCategories.SIMPLE
+
   def _fetch_mappings(self, translations):
     return set([(field[0], kv)
                 for field in (field for field in translations

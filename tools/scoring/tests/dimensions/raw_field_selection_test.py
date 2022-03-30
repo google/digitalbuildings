@@ -17,7 +17,7 @@
 from absl.testing import absltest
 
 from score.dimensions.raw_field_selection import RawFieldSelection
-from score.constants import FileTypes
+from score.constants import FileTypes, DimensionCategories
 
 PROPOSED, SOLUTION = FileTypes
 
@@ -29,6 +29,9 @@ class RawFieldSelectionTest(absltest.TestCase):
     translations = {'cloud_device_id': {PROPOSED: [], SOLUTION: []}}
     self.raw_field_selection = RawFieldSelection(
         translations=translations).evaluate()
+
+  def testCategoryAttribute_SIMPLE(self):
+    self.assertEqual(RawFieldSelection.category, DimensionCategories.SIMPLE)
 
   def testDirectlyAssignedAttributes(self):
     self.assertEqual(self.raw_field_selection.correct_reporting, 0)

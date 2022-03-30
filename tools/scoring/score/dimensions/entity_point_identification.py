@@ -15,7 +15,7 @@
 
 from score.dimensions.dimension import Dimension
 from score.scorer_types import DeserializedFile, EntityInstance, CloudDeviceId, PointsVirtualList
-from score.constants import FileTypes
+from score.constants import FileTypes, DimensionCategories
 
 from typing import Set
 from collections import namedtuple
@@ -26,6 +26,9 @@ PROPOSED, SOLUTION = FileTypes
 class EntityPointIdentification(Dimension):
   """Quantifies whether the proposed file
   included the correct points in each entity."""
+
+  category = DimensionCategories.COMPLEX
+
   def _isolate_entities_virtual(self,
                                 file: DeserializedFile) -> Set[EntityInstance]:
     return set(
@@ -100,7 +103,7 @@ class EntityPointIdentification(Dimension):
 
     # Rely on the black box to choose which virtual entities
     # correlate most closely in the respective files.
-    matches_virtual = self.match_virtual_entities(
+    matches_virtual = self._match_virtual_entities(
         solution_points_virtual=self._sort_filter_points_virtual(
             solution_points_virtual),
         proposed_points_virtual=self._sort_filter_points_virtual(

@@ -31,22 +31,25 @@ class EntityIdentificationTest(absltest.TestCase):
     featureful_file_path = (
         'tests/samples/proposed/entity_identification_virtual_guid.yaml')
     self.highest_score_argument = TestHelper.prepare_dimension_argument(
-        dimension_type=COMPLEX,
+        dimension_category=COMPLEX,
         proposed_path=featureful_file_path,
         solution_path=featureful_file_path)
 
     empty_file_path = 'tests/samples/empty.yaml'
     self.none_score_argument = TestHelper.prepare_dimension_argument(
-        dimension_type=COMPLEX,
+        dimension_category=COMPLEX,
         proposed_path=empty_file_path,
         solution_path=empty_file_path)
 
     reporting_entity_file_path = (
         'tests/samples/proposed/entity_identification_reporting.yaml')
     self.middling_score_argument = TestHelper.prepare_dimension_argument(
-        dimension_type=COMPLEX,
+        dimension_category=COMPLEX,
         proposed_path=reporting_entity_file_path,
         solution_path=featureful_file_path)
+
+  def testCategoryAttribute_COMPLEX(self):
+    self.assertEqual(EntityIdentification.category, COMPLEX)
 
   def testEvaluate_ScoreNone(self):
     """When ceiling==0, the resulting score is None. The ceiling is 0

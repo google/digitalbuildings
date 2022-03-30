@@ -14,9 +14,12 @@
 """Core component base class."""
 
 from score.scorer_types import DeserializedFilesDict, TranslationsDict, PointsVirtualList, RawFieldName, EntityType, FileType
+from score.constants import DimensionCategories
 from validate.entity_instance import EntityInstance
 from typing import Tuple, Set, List, Dict, NamedTuple
 from collections import defaultdict
+
+SIMPLE, COMPLEX = DimensionCategories
 
 
 class _VirtualEntityMatch(NamedTuple):
@@ -115,6 +118,9 @@ class Dimension:
     result_all: Calculated result for all devices
     result_virtual: Calculated result for virtual devices
     result_reporting: Calculated result for reporting devices"""
+
+  category = None
+
   def __init__(self,
                *,
                translations: TranslationsDict = None,
@@ -254,7 +260,7 @@ class Dimension:
     return entity.links is not None
 
   @staticmethod
-  def match_virtual_entities(
+  def _match_virtual_entities(
       *, solution_points_virtual: PointsVirtualList,
       proposed_points_virtual: PointsVirtualList,
       sort_candidates_by_key: str) -> Dict[float, List[_VirtualEntityMatch]]:

@@ -17,7 +17,7 @@
 from absl.testing import absltest
 
 from score.dimensions.state_mapping import StateMapping
-from score.constants import FileTypes
+from score.constants import FileTypes, DimensionCategories
 
 PROPOSED, SOLUTION = FileTypes
 
@@ -28,6 +28,9 @@ class StateMappingTest(absltest.TestCase):
     # TODO: add real data (append cases to existing tests)
     translations = {'cloud_device_id': {PROPOSED: [], SOLUTION: []}}
     self.state_mapping = StateMapping(translations=translations).evaluate()
+
+  def testCategoryAttribute_SIMPLE(self):
+    self.assertEqual(StateMapping.category, DimensionCategories.SIMPLE)
 
   def testDirectlyAssignedAttributes(self):
     self.assertEqual(self.state_mapping.correct_reporting, 0)
