@@ -22,7 +22,6 @@ from score.constants import FileTypes, DimensionCategories
 from tests.helper import TestHelper
 
 PROPOSED, SOLUTION = FileTypes
-SIMPLE, COMPLEX = DimensionCategories
 
 
 class EntityIdentificationTest(absltest.TestCase):
@@ -31,25 +30,25 @@ class EntityIdentificationTest(absltest.TestCase):
     featureful_file_path = (
         'tests/samples/proposed/entity_identification_virtual_guid.yaml')
     self.highest_score_argument = TestHelper.prepare_dimension_argument(
-        dimension_category=COMPLEX,
+        dimension=EntityIdentification,
         proposed_path=featureful_file_path,
         solution_path=featureful_file_path)
 
     empty_file_path = 'tests/samples/empty.yaml'
     self.none_score_argument = TestHelper.prepare_dimension_argument(
-        dimension_category=COMPLEX,
+        dimension=EntityIdentification,
         proposed_path=empty_file_path,
         solution_path=empty_file_path)
 
     reporting_entity_file_path = (
         'tests/samples/proposed/entity_identification_reporting.yaml')
     self.middling_score_argument = TestHelper.prepare_dimension_argument(
-        dimension_category=COMPLEX,
+        dimension=EntityIdentification,
         proposed_path=reporting_entity_file_path,
         solution_path=featureful_file_path)
 
   def testCategoryAttribute_COMPLEX(self):
-    self.assertEqual(EntityIdentification.category, COMPLEX)
+    self.assertEqual(EntityIdentification.category, DimensionCategories.COMPLEX)
 
   def testEvaluate_ScoreNone(self):
     """When ceiling==0, the resulting score is None. The ceiling is 0
