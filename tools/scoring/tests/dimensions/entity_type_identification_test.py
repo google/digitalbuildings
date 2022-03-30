@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 """Test for configuration file scoring tool
-"entity type identification" dimension (entity_type_identification.py)."""
+"entity type identification" dimension."""
 
 from absl.testing import absltest
 
