@@ -29,7 +29,7 @@ class EntityIdentificationTest(absltest.TestCase):
   def setUp(self):
     super().setUp()
     featureful_file_path = (
-        'tests/samples/proposed/entity_identification_virtual.yaml')
+        'tests/samples/proposed/entity_identification_virtual_guid.yaml')
     self.highest_score_argument = TestHelper.prepare_dimension_argument(
         dimension_type=COMPLEX,
         proposed_path=featureful_file_path,
