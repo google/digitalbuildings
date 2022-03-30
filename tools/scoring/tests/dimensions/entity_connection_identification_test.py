@@ -41,11 +41,11 @@ class EntityConnectionIdentificationTest(absltest.TestCase):
         proposed_path=empty_file_path,
         solution_path=empty_file_path)
 
-    reporting_entity_file_path = (
-        'tests/samples/proposed/entity_connection_identification.yaml')
+    no_contains_file_path = 'tests/samples/proposed/entity_connection_identification_no_contains.yaml'  # pylint: disable=line-too-long
+
     self.middling_score_argument = TestHelper.prepare_dimension_argument(
         dimension=EntityConnectionIdentification,
-        proposed_path=reporting_entity_file_path,
+        proposed_path=no_contains_file_path,
         solution_path=featureful_file_path)
 
   def testCategoryAttribute_COMPLEX(self):
@@ -72,9 +72,9 @@ class EntityConnectionIdentificationTest(absltest.TestCase):
 
     # These are set to allow for an "all" score to be calculated
     # in the absence of "reporting" and "virtual" components
-    self.assertEqual(none_score_expected.correct_total_override, 'Foo')
-    self.assertEqual(none_score_expected.correct_ceiling_override, 'Bar')
-    self.assertEqual(none_score_expected.incorrect_total_override, 'Baz')
+    self.assertEqual(none_score_expected.correct_total_override, 0)
+    self.assertEqual(none_score_expected.correct_ceiling_override, 0)
+    self.assertEqual(none_score_expected.incorrect_total_override, 0)
 
     # Inherited calculated attributes
     self.assertEqual(none_score_expected.correct_total(), 0)
@@ -107,19 +107,19 @@ class EntityConnectionIdentificationTest(absltest.TestCase):
 
     # These are set to allow for an "all" score to be calculated
     # in the absence of "reporting" and "virtual" components
-    self.assertEqual(highest_score_expected.correct_total_override, 'Foo')
-    self.assertEqual(highest_score_expected.correct_ceiling_override, 'Bar')
-    self.assertEqual(highest_score_expected.incorrect_total_override, 'Baz')
+    self.assertEqual(highest_score_expected.correct_total_override, 6)
+    self.assertEqual(highest_score_expected.correct_ceiling_override, 6)
+    self.assertEqual(highest_score_expected.incorrect_total_override, 0)
 
     # Inherited calculated attributes
-    self.assertEqual(highest_score_expected.correct_total(), 2)
-    self.assertEqual(highest_score_expected.correct_ceiling(), 2)
+    self.assertEqual(highest_score_expected.correct_total(), 6)
+    self.assertEqual(highest_score_expected.correct_ceiling(), 6)
     self.assertEqual(highest_score_expected.incorrect_total(), 0)
 
     # Inherited result properties
     self.assertEqual(highest_score_expected.result_all, 1.0)
-    self.assertEqual(highest_score_expected.result_reporting, 1.0)
-    self.assertEqual(highest_score_expected.result_virtual, 1.0)
+    self.assertEqual(highest_score_expected.result_reporting, None)
+    self.assertEqual(highest_score_expected.result_virtual, None)
 
   def testEvaluate_ScoreLowestPossible(self):
     """When correct==0, the resulting score is -1.0. No entities
@@ -146,14 +146,14 @@ class EntityConnectionIdentificationTest(absltest.TestCase):
 
     # These are set to allow for an "all" score to be calculated
     # in the absence of "reporting" and "virtual" components
-    self.assertEqual(lowest_score_expected.correct_total_override, 'Foo')
-    self.assertEqual(lowest_score_expected.correct_ceiling_override, 'Bar')
-    self.assertEqual(lowest_score_expected.incorrect_total_override, 'Baz')
+    self.assertEqual(lowest_score_expected.correct_total_override, 0)
+    self.assertEqual(lowest_score_expected.correct_ceiling_override, 6)
+    self.assertEqual(lowest_score_expected.incorrect_total_override, 6)
 
     # Inherited calculated attributes
     self.assertEqual(lowest_score_expected.correct_total(), 0)
-    self.assertEqual(lowest_score_expected.correct_ceiling(), 2)
-    self.assertEqual(lowest_score_expected.incorrect_total(), 2)
+    self.assertEqual(lowest_score_expected.correct_ceiling(), 6)
+    self.assertEqual(lowest_score_expected.incorrect_total(), 6)
 
     # Inherited result properties
     self.assertEqual(lowest_score_expected.result_all, -1.0)
@@ -168,6 +168,9 @@ class EntityConnectionIdentificationTest(absltest.TestCase):
         deserialized_files=self.middling_score_argument).evaluate()
 
     # Directly assigned attributes
+
+    # Reporting and virtual entities are not evaluated separately,
+    # thus these values are not overridden by the child class
     self.assertEqual(middling_score_expected.correct_reporting, None)
     self.assertEqual(middling_score_expected.correct_ceiling_reporting, None)
     self.assertEqual(middling_score_expected.incorrect_reporting, None)
@@ -178,14 +181,14 @@ class EntityConnectionIdentificationTest(absltest.TestCase):
 
     # These are set to allow for an "all" score to be calculated
     # in the absence of "reporting" and "virtual" components
-    self.assertEqual(middling_score_expected.correct_total_override, 'Foo')
-    self.assertEqual(middling_score_expected.correct_ceiling_override, 'Bar')
-    self.assertEqual(middling_score_expected.incorrect_total_override, 'Baz')
+    self.assertEqual(middling_score_expected.correct_total_override, 3)
+    self.assertEqual(middling_score_expected.correct_ceiling_override, 6)
+    self.assertEqual(middling_score_expected.incorrect_total_override, 3)
 
     # Inherited calculated attributes
-    self.assertEqual(middling_score_expected.correct_total(), 1)
-    self.assertEqual(middling_score_expected.correct_ceiling(), 2)
-    self.assertEqual(middling_score_expected.incorrect_total(), 1)
+    self.assertEqual(middling_score_expected.correct_total(), 3)
+    self.assertEqual(middling_score_expected.correct_ceiling(), 6)
+    self.assertEqual(middling_score_expected.incorrect_total(), 3)
 
     # Inherited result properties
     self.assertEqual(middling_score_expected.result_all, 0.0)
