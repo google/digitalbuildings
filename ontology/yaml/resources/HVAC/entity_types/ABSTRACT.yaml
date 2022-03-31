@@ -1347,6 +1347,9 @@ CHWZC:
   - discharge_air_temperature_sensor
   - leaving_cooling_coil_temperature_sensor
   - cooling_thermal_power_capacity
+  - chilled_water_valve_percentage_sensor
+  - chilled_supply_water_isolation_valve_command
+  - chilled_supply_water_isolation_valve_status
   uses:
   - zone_air_cooling_temperature_setpoint
   - zone_air_temperature_sensor
@@ -2008,6 +2011,8 @@ HWZC:
   - discharge_air_temperature_sensor
   - heating_water_valve_percentage_sensor
   - heating_thermal_power_capacity
+  - heating_supply_water_isolation_valve_command
+  - heating_supply_water_isolation_valve_status
   uses:
   - heating_water_valve_percentage_command
   - zone_air_heating_temperature_setpoint
@@ -4450,9 +4455,7 @@ DPBHCC:
   is_abstract: true
   opt_uses:
   - cooling_request_count
-  - chilled_water_valve_percentage_command
   - heating_request_count
-  - heating_water_valve_percentage_command
   - zone_air_relative_humidity_sensor
   uses:
   - chilled_supply_water_isolation_valve_command
