@@ -22,7 +22,6 @@ from score.scorer_types import DeserializedFile, CloudDeviceId
 from typing import List
 
 PROPOSED, SOLUTION = FileTypes
-SIMPLE, COMPLEX = DimensionCategories
 
 
 class EntityIdentification(Dimension):

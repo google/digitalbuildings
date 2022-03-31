@@ -20,7 +20,6 @@ from score.constants import FileTypes, DimensionCategories
 from score.scorer_types import DeserializedFile
 
 PROPOSED, SOLUTION = FileTypes
-SIMPLE, COMPLEX = DimensionCategories
 
 
 class EntityConnectionIdentification(Dimension):

@@ -14,12 +14,9 @@
 """Core component base class."""
 
 from score.scorer_types import DeserializedFilesDict, TranslationsDict, PointsVirtualList, RawFieldName, EntityType, FileType
-from score.constants import DimensionCategories
 from validate.entity_instance import EntityInstance
 from typing import Tuple, Set, List, Dict, NamedTuple
 from collections import defaultdict
-
-SIMPLE, COMPLEX = DimensionCategories
 
 
 class _VirtualEntityMatch(NamedTuple):
