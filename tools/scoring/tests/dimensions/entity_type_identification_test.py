@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 """Test for configuration file scoring tool
-"entity type identification" dimension (entity_type_identification.py)."""
+"entity type identification" dimension."""
 
 from absl.testing import absltest
 
@@ -31,20 +31,20 @@ class EntityTypeIdentificationTest(absltest.TestCase):
     featureful_file_path = (
         'tests/samples/proposed/entity_type_identification_virtual.yaml')
     self.highest_score_argument = TestHelper.prepare_dimension_argument(
-        entity_type=COMPLEX,
+        dimension_type=COMPLEX,
         proposed_path=featureful_file_path,
         solution_path=featureful_file_path)
 
     empty_file_path = 'tests/samples/empty.yaml'
     self.none_score_argument = TestHelper.prepare_dimension_argument(
-        entity_type=COMPLEX,
+        dimension_type=COMPLEX,
         proposed_path=empty_file_path,
         solution_path=empty_file_path)
 
     reporting_entity_file_path = (
         'tests/samples/proposed/entity_type_identification_reporting.yaml')
     self.middling_score_argument = TestHelper.prepare_dimension_argument(
-        entity_type=COMPLEX,
+        dimension_type=COMPLEX,
         proposed_path=reporting_entity_file_path,
         solution_path=featureful_file_path)
 
