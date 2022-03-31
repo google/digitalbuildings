@@ -22,6 +22,7 @@ from score.constants import FileTypes, DimensionCategories
 from tests.helper import TestHelper
 
 PROPOSED, SOLUTION = FileTypes
+SIMPLE, COMPLEX = DimensionCategories
 
 
 class EntityPointIdentificationTest(absltest.TestCase):
