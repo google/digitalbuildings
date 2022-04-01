@@ -20,6 +20,7 @@ aggregation:
   total: "Sum total of some set of values (e.g. total_request_heating_count)"
 aggregation_descriptor:
   fivesecondrolling: "Aggregation over advancing time intervals of five seconds."
+  thirtysecondrolling: "Aggregation over advancing thirty second time interval."
   tenminutefixed: "Aggregation over fixed time intervals of ten minutes."
 component:
   battery: "A device used to store power for use at a later time (e.g. in an emergency where grid power is unavailable)."
@@ -224,6 +225,8 @@ measurement:
   current: "Flow of electric charge."
   currentratio: "The ratio of primary amps divided by secondary amps."
   density: "Amount of mass contained in a unit volume."
+  diameter: "A straight line passing from side to side through the center of a body or figure, especially a circle or sphere."
+  distance: "Length of measurement between two things."  
   energy: " The quantitative property that must be transferred to an object to perform work (default electrical unless otherwise modified)."
   flowrate: "Rate of fluid movement."
   frequency: "The rate of cycling within a process. Typically used to describe voltage (and amperage) oscillation within AC power distribution components."
@@ -232,6 +235,7 @@ measurement:
   level: "The height of something with regard to a datum (e.g. the water level of a tank relative to the bottom)."  
   linearacceleration: "Time rate of change of linear velocity."
   linearvelocity: "Example: wind speed"
+  massconcentration: "Concentration by mass (e.g., grams per kilogram)."
   percentage: "Measurement per hundred."
   powerfactor: "Ratio of real and apparent power."
   power: "Rate of energy consumption (assumed context is electrical and real, unless otherwise modified)."
@@ -244,7 +248,7 @@ measurement:
   voltage: "Electrical potential difference between two reference points."
   voltageratio: "The ratio of the Primary voltage of the transformer to the secondary voltage."
   volume: "The quantity of three-dimensional space contained by a closed surface."
-  distance: "Length of measurement between two things."
+  volumetricconcentration: "Concentration in terms of volume (parts per unit volume)."
 measurement_descriptor:
   absolute: "Quality of media with respect to non-relativistic boudaries (e.g. absolute temperature)."
   apparent: "The combination of reactive and real components (power)."
@@ -267,6 +271,7 @@ measurement_descriptor:
   open: "Indicates full open (for two-position actuators).  This is the default sense if unspecified"
   override: "An action that interrupts, cancels, or changes the current action or status."
   position: "A particular way in which something is placed or arranged, such as a door in the open position."
+  probability: "The extent to which something is probable; the likelihood of something happening or being the case."
   reactive: "Power that is returned to the source (not consumed by the load)."
   relative: "Quality of media with respect to theoretical minimum or maximum value for a given condition (e.g. relative humidity)."
   run: "State of being active or operating. By default applies to control program for system (eg VAV program run_command)."

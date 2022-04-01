@@ -15,6 +15,7 @@
 SDC_EXT-17:
   type: HVAC/SDC_EXT
   id: CDM/123456
+  guid: SDC_EXT-17-guid
   cloud_device_id: "foobar"
   translation:
     shade_extent_percentage_command:
@@ -27,3 +28,4 @@ SDC_EXT-17:
 UK-LON-S3:
   type: FACILITIES/BUILDING
   id: FACILITIES/1234567
+  guid: UK-LON-S3-guid

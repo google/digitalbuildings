@@ -15,6 +15,7 @@
 VIRTUAL-ENTITY:
   type: HVAC/CHWS_WDT
   id: SYSTEM/ID1234
+  guid: VIRTUAL-ENTITY-guid
   links:
     PHYSICAL-ENTITY:
       return_water_temperature_sensor: return_water_temperature_sensor
@@ -25,6 +26,7 @@ VIRTUAL-ENTITY:
 PHYSICAL-ENTITY:
   type: HVAC/CHWS_WDT
   id: CDM/123456
+  guid: PHYSICAL-ENTITY-guid
   cloud_device_id: "foobar"
   translation:
     return_water_temperature_sensor:
@@ -55,3 +57,4 @@ PHYSICAL-ENTITY:
 UK-LON-S2:
   type: FACILITIES/BUILDING
   id: FACILITIES/123456
+  guid: UK-LON-S2-guid

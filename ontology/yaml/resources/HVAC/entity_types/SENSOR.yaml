@@ -127,3 +127,62 @@ SENSOR_FDPM:
     - local_air_temperature_sensor
     - battery_charge_percentage_sensor
     - signal_strength_percentage_sensor
+
+SENSOR_ZA_CO_CO2:
+  id: "5108869371028045824"
+  description: "Atmosphere CO and CO2 combined sensor with local temp and RH readings."
+  is_canonical: true
+  implements:
+  - /SENSOR
+  - ZA
+  uses:
+  - thirtysecondrolling_average_zone_air_co_concentration_sensor
+  - zone_air_co_concentration_sensor
+  - zone_air_co2_concentration_sensor
+
+SENSOR_ZA_HCHO:
+  id: "6779704832782499840"
+  description: "Atmosphere formaldehyde (H-CHO) combined sensor with local temp and RH readings."
+  is_canonical: true
+  implements:
+  - /SENSOR
+  - ZA
+  uses:
+  - zone_air_formaldehyde_concentration_sensor
+
+SENSOR_ZA_OZONE_NO2:
+  id: "16262033848211079168"
+  description: "Atmosphere ozone and NO2 combined sensor with local temp and RH readings."
+  is_canonical: true
+  implements:
+  - /SENSOR
+  - ZA
+  uses:
+  - zone_air_ozone_concentration_sensor
+  - zone_air_voc_concentration_sensor
+  - zone_air_no2_concentration_sensor
+  opt_uses:
+  - zone_air_no2_ozone_concentration_sensor_1 #Note these sensors cannot distinguish between NO2 and O3
+  - zone_air_no2_ozone_concentration_sensor_2
+  - zone_air_no2_probability_percentage_sensor #indicates the probability that the combination of sensors is sensing NO2
+
+SENSOR_ZA_PML:
+  id: "12467751162151436288"
+  description: "Atmosphere PM 0.5, PM 2.5, etc. level combined sensor with local temp and RH readings."
+  is_canonical: true
+  implements:
+  - /SENSOR
+  - ZA
+  uses:
+  - thirtysecondrolling_average_zone_air_particle_diameter_sensor
+  - zone_air_pm1pt0_density_sensor
+  - zone_air_pm2pt5_density_sensor
+  - zone_air_pm4pt0_density_sensor
+  - zone_air_pm10pt0_density_sensor
+  - zone_air_pm0pt5_volumetricconcentration_sensor
+  - zone_air_pm1pt0_volumetricconcentration_sensor
+  - zone_air_pm2pt5_volumetricconcentration_sensor
+  - zone_air_pm4pt0_volumetricconcentration_sensor
+  - zone_air_pm10pt0_volumetricconcentration_sensor
+  - zone_air_voc_concentration_sensor
+
