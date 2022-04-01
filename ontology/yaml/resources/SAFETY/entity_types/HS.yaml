@@ -22,3 +22,11 @@ HS_STD:
   - HS
   uses:
   - run_status
+
+HS_AL:
+  description: "Horn strobe with alarm."
+  is_canonical: true
+  implements:
+  - HS
+  uses:
+  - emergency_alarm

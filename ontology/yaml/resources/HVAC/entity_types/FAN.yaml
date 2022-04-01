@@ -578,7 +578,7 @@ FAN_SS_SC_FA_SR:
   uses:
   - exhaust_fan_speed_percentage_sensor
   implements:
-  - FAN_AL
+  - FAN_SS_AL
   - SRC
 
 FAN_ST:
