@@ -222,11 +222,11 @@ class ParseConfig:
     for dimension in dimensions:
       # Invoke the functions and append the dictionary with their return values
       if dimension.category == SIMPLE:
-        invoked = dimension(translations=translations).evaluate()
+        evaluated = dimension(translations=translations).evaluate()
       elif dimension.category == COMPLEX:
-        invoked = dimension(deserialized_files=deserialized_files).evaluate()
+        evaluated = dimension(deserialized_files=deserialized_files).evaluate()
 
-      results[dimension.__name__] = invoked
+      results[dimension.__name__] = evaluated
     return results
 
   # TODO: standardize signatures; make dimensions into const; test
