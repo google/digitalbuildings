@@ -28,6 +28,8 @@ class EntityIdentification(Dimension):
   """Quantifies whether the correct entities
   were included in the proposed file."""
 
+  # COMPLEX category indicates this dimension receives `deserialized_files`
+  # rather than `translations` to do its calculations
   category = DimensionCategories.COMPLEX
 
   def _list_ids_reporting(self, file: DeserializedFile) -> List[CloudDeviceId]:

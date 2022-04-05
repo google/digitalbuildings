@@ -26,6 +26,8 @@ class EntityConnectionIdentification(Dimension):
   """Quantifies whether connections between entities were
   correctly and completely defined in the proposed file."""
 
+  # COMPLEX category indicates this dimension receives `deserialized_files`
+  # rather than `translations` to do its calculations
   category = DimensionCategories.COMPLEX
 
   def _isolate_connections(self, file: DeserializedFile):
