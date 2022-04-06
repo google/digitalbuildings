@@ -22,5 +22,6 @@ UK-LON-S2:
   etag: a12345
   type: FACILITIES/BUILDING
   id: FACILITIES/123456
+  guid: UK-LON-S2-guid
   update_mask:
   - connections

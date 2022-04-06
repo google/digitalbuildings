@@ -20,6 +20,7 @@ import scorer
 
 
 class CliTest(absltest.TestCase):
+
   def setUp(self):
     super().setUp()
     self.cli = scorer.parse_args()

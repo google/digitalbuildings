@@ -15,8 +15,8 @@
 """Testing module for ontology_wrapper.py."""
 from absl.testing import absltest
 from lib.model import EntityTypeField
-from lib.model import StandardField
 from lib.model import Match
+from lib.model import StandardField
 from lib.ontology_wrapper import OntologyWrapper
 
 from validate.universe_helper.config_universe import create_simplified_universe

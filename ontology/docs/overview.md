@@ -39,6 +39,13 @@ The Building configuration is a yaml file containing various information and req
 
 You may generate the building configuration file in yaml using the method of your choice.
 
+### GUID Generation
+The GUID Generator allows users to [UUID4](https://datatracker.ietf.org/doc/html/rfc4122.html) values for entities present in a building configuration instance. **GUIDs are required for valid building configurations.** The GUID Generator is not a stand-alone application and must be run through the [toolkit](https://github.com/google/digitalbuildings/tree/master/tools).
+
+To install dependencies for the GUID Generator run setup in the [tools](https://github.com/google/digitalbuildings/tree/master/tools) directory.
+* For Windows: `py setup.py install`
+* For Unix-based systems: `sudo python3 setup.py install`
+
 ### Validating Building Config
 The ontology instance validator ensures that the building configuration file is consistent with the ontology types.
 
@@ -62,6 +69,16 @@ In the case of changes to the ontology types and they are not merged in the mast
 #### Telemetry Validation
 Once the building configuration file has been validated for the types, the next validation step checks for telemetry data.
 Please follow the step in [telemetry-validation](https://github.com/google/digitalbuildings/tree/master/tools/validators/instance_validator#telemetry-validation)
+
+### Toolkit
+The toolkit serves as a single point of entry for all DBO tools, but currently only supports GUID generation and instance validation. To specify instance validation, provide `-v` or `--validate`, and to run the GUID Generator provide `-g` or `--generate`.
+
+To run:
+* Install the required dependencies for [Instance Validator](https://github.com/google/digitalbuildings/tree/master/tools/validators/instance_validator) and [GUID Generator](https://github.com/google/digitalbuildings/tree/master/tools/guid_generator)
+* For Windows run `py toolkit.py -g -v --input path/to/YOUR_BUILDING_CONFIG.yaml
+* For Unix-based systems run `python3 toolkit.py -g -v --input path/to/YOUR_BUILDING_CONFIG.yaml
+
+Further documentation for the toolkit can be found [here](https://github.com/google/digitalbuildings/tree/master/tools)
 
 #### Next Step
 Once the building configuration file is valid, please follow the instructions in your SOW.

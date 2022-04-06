@@ -702,6 +702,14 @@ OA:
   implements:
   - MONITORING
 
+ZA:
+  id: "3244379125296660480"
+  description: "Grouped type for zone air psychrometric conditions (RH and temp)"
+  is_abstract: true
+  uses:
+  - zone_air_temperature_sensor
+  - zone_air_relative_humidity_sensor
+
 WDT:
   id: "12148045066631380992"
   description: "Temperature differential across water."
@@ -4378,6 +4386,7 @@ EC2SC:
   - CONTROL
 
 HWDDC:
+  id: "5695815066213941248"
   description: "Heating water valve with dual setpoint control on discharge side."
   is_abstract: true
   opt_uses:

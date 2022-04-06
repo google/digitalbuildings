@@ -3556,6 +3556,7 @@ AHU_BSPC_CHWZC_DFSS_DFVSC_DSP_ECONZ_EFSS_EFVSC_FDPM_SSPC:
   - SSPC
 
 AHU_BSPC_DX4SC_ECONM_EFSS_EFVSC_PHWSC_SFSS2X_SFVSC2X_SSPC_SARC:
+  id: "16900770939111735296"
   description: "Multi-zone AHU with four-stage DX cooling and preheating water valve."
   is_canonical: true
   implements:
@@ -3572,6 +3573,7 @@ AHU_BSPC_DX4SC_ECONM_EFSS_EFVSC_PHWSC_SFSS2X_SFVSC2X_SSPC_SARC:
   - SARC
 
 AHU_DFSS_DXZC_ECONZ_EFSS2X_HT2ZC_CO2C:
+  id: "4434807170550202368"
   description: "Single zone AHU with CO2 control."
   is_canonical: true
   implements:

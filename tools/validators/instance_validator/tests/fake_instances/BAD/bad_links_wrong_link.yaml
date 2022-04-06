@@ -15,6 +15,7 @@
 ENTITY-NAME:
   type: HVAC/CHWS_WDT
   id: SYSTEM/ID1234
+  guid: ENTITY-NAME-guid
   links:
     A-FOURTH-ENTITY:
       return_water_temperature_sensor: return_water_temperature_sensor
@@ -25,3 +26,4 @@ ENTITY-NAME:
 A-FOURTH-ENTITY:
   type: HVAC/CHWS_WDT
   id: CDM/123456
+  guid: A-FOURTH-ENTITY-guid

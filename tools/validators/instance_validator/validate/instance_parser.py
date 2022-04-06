@@ -103,6 +103,7 @@ def _MergeSchemas(first: Dict[syaml.ScalarValidator, syaml.Validator],
 #### Public Text parsing Constants ####
 ENTITY_ID_KEY = 'id'
 ENTITY_GUID_KEY = 'guid'
+ENTITY_CODE_KEY = 'code'
 ENTITY_CLOUD_DEVICE_ID_KEY = 'cloud_device_id'
 ENTITY_TYPE_KEY = 'type'
 ENTITY_OPERATION_KEY = 'operation'
@@ -184,9 +185,11 @@ _ENTITY_IDS_SCHEMA = {
         syaml.Str(),
 }
 _ENTITY_ATTRIB_SCHEMA = {
+    syaml.Optional(ENTITY_CODE_KEY):
+        syaml.Str(),
     syaml.Optional(CONNECTIONS_KEY):
         syaml.MapPattern(syaml.Str(),
-                        syaml.Str() | syaml.Seq(syaml.Str())),
+                         syaml.Str() | syaml.Seq(syaml.Str())),
     syaml.Optional(LINKS_KEY):
         syaml.MapPattern(
             syaml.Str(),
