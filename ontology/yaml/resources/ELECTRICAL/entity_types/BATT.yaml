@@ -12,24 +12,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-UPS_SS:
-  id: "5802995459689545728"
-  description: "Standard UPS unit."
-  is_canonical: true
+BATT_GEN:
+  description: "Generic battery."
   implements:
-  - UPS
-  - SS  
-
-
-UPS_IOBM:
-  description: "UPS with input and output electrical monitoring"
-  is_canonical: true
-  implements:
-  - UPS
-  - IOBM
-  opt_uses:
-  - input_frequency_sensor
-  - output_frequency_sensor
-  - bypass_frequency_sensor
-  - failed_alarm
-
+  - BATT
+  uses:
+  - voltage_sensor
+  - current_sensor
+  - remaining_charge_time_sensor
+  - local_air_temperature_sensor

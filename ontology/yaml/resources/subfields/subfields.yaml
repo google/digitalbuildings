@@ -172,6 +172,7 @@ descriptor:
   red: "Red light fracture of ambient light"
   release: "To free from constraints (e.g. to release the door from its magnetic lock)."
   refrigerant: "Substance used in the mechanical refrigeration process (e.g. R-134a)"
+  remaining: "The amount of something that is left at some point in a process (e.g. the remaining charge a battery has left)."
   request: "A signal from a system device that calls for more of a particular conditioning process (e.g. pressure requests from terminal units)."
   return: "Measurement or process of media as it is returned from the end-use equipment within the system."
   reversing: "Reverses direction of flow (e.g. reversing valve on heat pump)."

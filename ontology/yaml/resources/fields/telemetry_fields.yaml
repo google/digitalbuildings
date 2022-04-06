@@ -1079,3 +1079,30 @@ literals:
 - zone_air_no2_probability_percentage_sensor
 - zone_air_no2_ozone_concentration_sensor
 
+## New fields for electrical system additions
+- voltage_sensor
+- input_frequency_sensor
+- output_frequency_sensor
+- bypass_frequency_sensor
+- input_phase1_phase2_voltage_sensor
+- input_phase2_phase3_voltage_sensor
+- input_phase3_phase1_voltage_sensor
+- input_phase1_neutral_voltage_sensor
+- input_phase2_neutral_voltage_sensor
+- input_phase3_neutral_voltage_sensor
+- input_phase1_current_sensor
+- input_phase2_current_sensor
+- input_phase3_current_sensor
+- output_phase1_phase2_voltage_sensor
+- output_phase2_phase3_voltage_sensor
+- output_phase3_phase1_voltage_sensor
+- output_phase1_neutral_voltage_sensor
+- output_phase2_neutral_voltage_sensor
+- output_phase3_neutral_voltage_sensor
+- output_phase1_current_sensor
+- output_phase2_current_sensor
+- output_phase3_current_sensor
+- bypass_phase1_neutral_voltage_sensor
+- bypass_phase2_neutral_voltage_sensor
+- bypass_phase3_neutral_voltage_sensor
+- remaining_charge_time_sensor
