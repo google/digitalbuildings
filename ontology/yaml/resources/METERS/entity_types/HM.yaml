@@ -58,7 +58,6 @@ HM_HW_WAC:
   - water_volume_accumulator
 
 HM_GTW:
-  id: "3199325536836911104"
   description: "Geothermal load heat meter."
   implements:
   - HM
