@@ -1085,3 +1085,4 @@ literals:
 - geothermal_thermal_energy_accumulator
 - geothermal_thermal_power_sensor
 - geothermal_water_settling_temperature_sensor
+- geothermal_water_flowrate_sensor
