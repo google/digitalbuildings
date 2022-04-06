@@ -103,6 +103,7 @@ descriptor:
   frost: "Freezing water on a surface."
   ## TODO: make it so gas only has one meaning
   gas: "Process or component driven by natural gas (as to distinguish from electric)."
+  geothermal: "Of or relating to the internal heat of the earth."
   glycol: "Liquid mixture consisting of glycol and water "
   green: "green light fracture of ambient light"
   guide: "Component used to guide flow of media or movement of component."
@@ -182,6 +183,7 @@ descriptor:
   season: "Weather conditions under which certain systems or processes are enabled."
   secondary: "Associated with the secondary (distribution) loop of a produciton process."
   seismic: "Related to seismic activity (such as seismic gas shutoff valves)."
+  settling: "The process by which particulates settle to the bottom of a liquid and form a sediment."
   side: "Position relative to an an object."
   signal: "An electric current or electromagnetic field used to convey data from one device to another."  
   smoke: "Visible, suspended particles created during a fire."
