@@ -27,6 +27,8 @@ class EntityPointIdentification(Dimension):
   """Quantifies whether the proposed file
   included the correct points in each entity."""
 
+  # COMPLEX category indicates this dimension receives `deserialized_files`
+  # rather than `translations` to do its calculations
   category = DimensionCategories.COMPLEX
 
   def _isolate_entities_virtual(self,

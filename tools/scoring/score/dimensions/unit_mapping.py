@@ -23,6 +23,7 @@ class UnitMapping(Dimension):
   """Quantifies how accurately the proposed file
   mapped dimensional units for relevant fields."""
 
+  # SIMPLE category indicates this dimension receives translations
   category = DimensionCategories.SIMPLE
 
   def _fetch_mappings(self, translations):

@@ -29,6 +29,8 @@ class EntityTypeIdentification(Dimension):
   assigned the correct DBO type to each entity.
   """
 
+  # COMPLEX category indicates this dimension receives `deserialized_files`
+  # rather than `translations` to do its calculations
   category = DimensionCategories.COMPLEX
 
   def _isolate_entities_virtual(self,

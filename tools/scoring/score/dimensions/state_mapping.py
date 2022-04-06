@@ -23,6 +23,8 @@ class StateMapping(Dimension):
   """Quantifies how accurately the proposed file
   mapped multi-state values for relevant fields."""
 
+  # SIMPLE category indicates this dimension receives `translations`
+  # rather than `deserialized_files` to do its calculations
   category = DimensionCategories.SIMPLE
 
   def _fetch_mappings(self, translations):

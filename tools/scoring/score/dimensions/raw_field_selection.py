@@ -24,6 +24,8 @@ class RawFieldSelection(Dimension):
   (e.g. "points.chilled_water_flowrate_sensor.present_value")
   were mapped (versus ignored) in the proposed file."""
 
+  # SIMPLE category indicates this dimension receives `translations`
+  # rather than `deserialized_files` to do its calculations
   category = DimensionCategories.SIMPLE
 
   def _fetch_raw_field_names(self, translations):
