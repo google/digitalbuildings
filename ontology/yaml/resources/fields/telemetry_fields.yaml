@@ -1079,3 +1079,9 @@ literals:
 - zone_air_no2_probability_percentage_sensor
 - zone_air_no2_ozone_concentration_sensor
 
+## Geothermal loop fields
+- geothermal_return_water_temperature_sensor
+- geothermal_supply_water_temperature_sensor
+- geothermal_thermal_energy_accumulator
+- geothermal_thermal_power_sensor
+- geothermal_water_settling_temperature_sensor
