@@ -174,7 +174,7 @@ class OntologyWrapper(object):
                    entity_type: EntityType) -> Match:
     """Creates an instance of Match class.
 
-    calls _CalculateMatchWeight() on field_list and the set of fields belonging
+    calls _CalculateMatchScore() on field_list and the set of fields belonging
     to entity_type. The scoring function outputs aan integer in [0, 100]
     signifying the closeness of the match, and an instance of the Match class is
     created with field_list, entity_type, and match_score as arguments.
