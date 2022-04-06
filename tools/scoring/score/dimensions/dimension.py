@@ -136,14 +136,17 @@ class Dimension:
     self.correct_ceiling_override: int = None
     self.incorrect_total_override: int = None
 
-    if not translations and not deserialized_files:
+    translations_truthy_or_empty = translations or isinstance(
+        translations, dict)
+
+    if not translations_truthy_or_empty and not deserialized_files:
       # `translations` are used to score "simple" dimensions — those which
       # evaluate only reporting entities — in bulk, whereas `deserialized_files`
       # are passed to "complex" dimensions which build a multi-map
       # of virtual entities prior to calculating scores.
       raise Exception(
           '`translations` xor `deserialized_files` argument is required')
-    elif translations and deserialized_files:
+    elif translations_truthy_or_empty and deserialized_files:
       raise Exception(
           '`translations` or `deserialized_files` argument must be exclusive')
 
