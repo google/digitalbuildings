@@ -48,3 +48,25 @@ HM_HW:
   - heating_return_water_temperature_sensor
   - heating_thermal_power_sensor
   - heating_thermal_energy_accumulator
+
+HM_HW_WAC:
+  description: "Heating load heat meter with total heating water volume accumulator."
+  implements:
+  - HM_HW
+  is_canonical: true
+  uses:
+  - water_volume_accumulator
+  
+
+HM_GTW:
+  id: "3199325536836911104"
+  description: "Geothermal load heat meter."
+  implements:
+  - HM
+  is_canonical: true
+  uses:
+  - geothermal_water_flowrate_sensor
+  - geothermal_supply_water_temperature_sensor
+  - geothermal_return_water_temperature_sensor
+  - geothermal_thermal_power_sensor
+  - geothermal_thermal_energy_accumulator
