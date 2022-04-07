@@ -158,8 +158,8 @@ class ParseConfig:
           if proposed_entity.cloud_device_id == cdid
       ]
 
-      proposed_entity = find_matches(cloud_device_id) and find_matches(
-          cloud_device_id)[0] or {}
+      proposed_entity = find_matches(cloud_device_id)[0] if find_matches(
+          cloud_device_id) else {}
 
       # Isolate the translations of an entity for pairing below.
       # A reporting entity without a translation should not occur
