@@ -14,10 +14,12 @@
 
 """Helper Field model classes for Ontology explorer."""
 from typing import List
+import re
 
 from yamlformat.validator.entity_type_lib import EntityType
-from yamlformat.validator.field_lib import FIELD_CHARACTER_REGEX
-from yamlformat.validator.field_lib import FIELD_INCREMENT_REGEX
+
+FQ_FIELD_NAME = re.compile(
+    r'(^[a-z]+[a-z0-9]*(?:_[a-z]+[a-z0-9]*)*)((?:_[0-9]+)+)?$')
 
 
 class StandardField(object):
@@ -31,6 +33,7 @@ class StandardField(object):
     Attributes:
         namespace: the name of the namespace as a string
         name: the field name as a string.
+        increment: a field's enumerated value suffixed onto the field name.
     returns: An instance of the StandardField class.
   """
 
@@ -39,13 +42,9 @@ class StandardField(object):
                standard_field_name: str,
                increment: str = ''):
     super().__init__()
-    if not FIELD_CHARACTER_REGEX.match(standard_field_name):
+    if not FQ_FIELD_NAME.match(standard_field_name + increment):
       raise ValueError(
-          f'{namespace_name}/{standard_field_name} is incorrectly formatted')
-    elif not FIELD_INCREMENT_REGEX.match(increment):
-      raise ValueError(
-          f'Incremement of {namespace_name}/{standard_field_name}{increment} ' +
-          'is unproperly formatted')
+          f'{namespace_name}/{standard_field_name}{increment} format error')
     else:
       self._namespace = namespace_name
     self._name = standard_field_name
