@@ -29,11 +29,8 @@ colorama.init()
 DEFAULT_MATCHED_TYPES_LIST_SIZE = 10
 
 
-def _InputFieldsFromUser(ontology) -> List[StandardField]:
+def _InputFieldsFromUser() -> List[StandardField]:
   """Method to take in field inputs from the user.
-
-  Args:
-    ontology: Instance of OntologyWrapper class.
 
   Returns:
     A list of StandardField objects corresponding to the input field names.
@@ -49,7 +46,6 @@ def _InputFieldsFromUser(ontology) -> List[StandardField]:
         namespace_name='',
         increment=split_field[1]
     )
-    #if ontology.IsFieldValid(standard_field):
     standard_field_list.append(standard_field)
   return standard_field_list
 
@@ -74,7 +70,7 @@ def GetTypesForFieldList(ontology):
   Args:
     ontology: An instance of the OntologyWrapper class.
   """
-  standard_field_list = _InputFieldsFromUser(ontology)
+  standard_field_list = _InputFieldsFromUser()
 
   entity_type_match_dict = {}
   for i, match in enumerate(ontology.GetEntityTypesFromFields(
