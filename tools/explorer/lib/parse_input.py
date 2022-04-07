@@ -49,8 +49,8 @@ def _InputFieldsFromUser(ontology) -> List[StandardField]:
         namespace_name='',
         increment=split_field[1]
     )
-    if ontology.IsFieldValid(standard_field):
-      standard_field_list.append(standard_field)
+    #if ontology.IsFieldValid(standard_field):
+    standard_field_list.append(standard_field)
   return standard_field_list
 
 

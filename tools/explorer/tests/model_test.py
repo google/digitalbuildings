@@ -29,7 +29,15 @@ class StandardFieldTest(absltest.TestCase):
   def setUp(self):
     super().setUp()
     self.test_standard_field = StandardField(
-        namespace_name='', standard_field_name='supply_air_flowrate_sensor')
+        namespace_name='',
+        standard_field_name='supply_air_flowrate_sensor',
+        increment='_1')
+
+  def testGetIncrement(self):
+    expected_output = '_1'
+    function_output = self.test_standard_field.GetIncrement()
+
+    self.assertEqual(function_output, expected_output)
 
   def testGetNamespaceName(self):
     # testing with '' because it is the global namespace which, in practice,
@@ -50,7 +58,7 @@ class StandardFieldTest(absltest.TestCase):
         namespace_name='',
         standard_field_name='supply_air_flowrate_sensor',
         is_optional=False,
-        increment='_1_12')
+        increment='_1')
 
     self.assertEqual(test_entity_type_field, self.test_standard_field)
 
@@ -63,14 +71,7 @@ class EntityTypeFieldTest(absltest.TestCase):
     self.test_entity_type_field = EntityTypeField(
         namespace_name='',
         standard_field_name='supply_air_flowrate_sensor',
-        is_optional=False,
-        increment='_1_12')
-
-  def testGetIncrement(self):
-    expected_output = '_1_12'
-    function_output = self.test_entity_type_field.GetIncrement()
-
-    self.assertEqual(function_output, expected_output)
+        is_optional=False)
 
   def testIsOptional(self):
     self.assertFalse(self.test_entity_type_field.IsOptional())
