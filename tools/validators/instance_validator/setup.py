@@ -32,7 +32,7 @@ setup(
         'protobuf<3.18.0,>=3.12.0', 'proto-plus<1.19.7',
         'ruamel.yaml==0.15.93', 'strictyaml==1.1.0',
         'google-cloud-pubsub', 'google-auth',
-        'googleapis-common-protos==1.56.0'
+        'googleapis-common-protos==1.55.0'
     ],
     python_requires='==3.7',
 )
