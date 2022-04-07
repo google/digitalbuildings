@@ -36,6 +36,7 @@ energy:
 - joules: STANDARD
 - btus
 - kilowatt_hours
+- kilowatt_amperes_reactive_hours
 - megawatt_hours
 - therms
 - watt_hours
