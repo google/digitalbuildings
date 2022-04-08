@@ -141,6 +141,7 @@ class Dimension:
     self.correct_ceiling_override: int = None
     self.incorrect_total_override: int = None
 
+    # Allow for gate below to be passed in case of no matched reporting entities
     translations_truthy_or_empty = translations or isinstance(
         translations, dict)
 
