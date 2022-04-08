@@ -31,10 +31,10 @@ class StandardFieldTest(absltest.TestCase):
     self.test_standard_field = StandardField(
         namespace_name='',
         standard_field_name='supply_air_flowrate_sensor',
-        increment='_1')
+        increment='_1_12')
 
   def testGetIncrement(self):
-    expected_output = '_1'
+    expected_output = '_1_12'
     function_output = self.test_standard_field.GetIncrement()
 
     self.assertEqual(function_output, expected_output)
@@ -58,7 +58,7 @@ class StandardFieldTest(absltest.TestCase):
         namespace_name='',
         standard_field_name='supply_air_flowrate_sensor',
         is_optional=False,
-        increment='_1')
+        increment='_1_12')
 
     self.assertEqual(test_entity_type_field, self.test_standard_field)
 
