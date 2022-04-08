@@ -115,6 +115,14 @@ class Dimension:
     result_all: Calculated result for all devices
     result_virtual: Calculated result for virtual devices
     result_reporting: Calculated result for reporting devices"""
+
+  # `category` indicates which argument a dimension is invoked with:
+  # "simple" dimensions receive translations whereas "complex" dimensions
+  # receive deserialized files. As this is the base class, the `category`
+  # is neither of the possible values (SIMPLE or COMPLEX) and both associated
+  # arguments are specified with default values of `None`.
+  category = None
+
   def __init__(self,
                *,
                translations: TranslationsDict = None,
@@ -136,7 +144,7 @@ class Dimension:
     if not translations and not deserialized_files:
       # `translations` are used to score "simple" dimensions — those which
       # evaluate only reporting entities — in bulk, whereas `deserialized_files`
-      # are passed to "complex" dimensions which build a multi-map
+      # are passed to "complex" dimensions which typically build a multi-map
       # of virtual entities prior to calculating scores.
       raise Exception(
           '`translations` xor `deserialized_files` argument is required')
@@ -254,7 +262,7 @@ class Dimension:
     return entity.links is not None
 
   @staticmethod
-  def match_virtual_entities(
+  def _match_virtual_entities(
       *, solution_points_virtual: PointsVirtualList,
       proposed_points_virtual: PointsVirtualList,
       sort_candidates_by_key: str) -> Dict[float, List[_VirtualEntityMatch]]:

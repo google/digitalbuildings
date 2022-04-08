@@ -14,7 +14,7 @@
 """Core component."""
 
 from score.dimensions.dimension import Dimension
-from score.constants import FileTypes
+from score.constants import FileTypes, DimensionCategories
 
 import re as regex
 
@@ -25,6 +25,11 @@ class StandardFieldNaming(Dimension):
   """Quantifies whether the correct standard field names
   (e.g. "chilled_water_flowrate_sensor")
   were selected in the proposed file."""
+
+  # SIMPLE category indicates this dimension receives `translations`
+  # rather than `deserialized_files` to do its calculations
+  category = DimensionCategories.SIMPLE
+
   def _split_subfields(self, field):
     return set(
         filter(lambda subfield: not bool(regex.match('[0-9]+', subfield)),
