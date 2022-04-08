@@ -1090,7 +1090,7 @@ literals:
 ## PV meter fields
 - charge_energy_accumulator
 - discharge_energy_accumulator
-- reactive_charge_energy_accumulator
-- reactive_discharge_energy_accumulator
+- charge_reactive_energy_accumulator
+- discharge_reactive_energy_accumulator
 
 
