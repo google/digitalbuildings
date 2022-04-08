@@ -20,7 +20,7 @@ from validate.generate_universe import BuildUniverse
 from yamlformat.validator.presubmit_validate_types_lib import ConfigUniverse
 
 from score.dimensions.dimension import Dimension
-from score.scorer_types import CloudDeviceId, DimensionName, TranslationsDict, DeserializedFile, DeserializedFilesDict, DimensionCategory
+from score.scorer_types import CloudDeviceId, DimensionName, TranslationsDict, DeserializedFile, DeserializedFilesDict
 from score.constants import FileTypes, DimensionCategories
 from score.dimensions import entity_connection_identification, entity_identification, entity_point_identification, entity_type_identification, raw_field_selection, standard_field_naming, state_mapping, unit_mapping
 
@@ -198,16 +198,15 @@ class ParseConfig:
 
   @staticmethod
   def aggregate_results(
-      *, dimensions: Dict[DimensionCategory, List[Dimension]],
-      translations: TranslationsDict, deserialized_files: DeserializedFilesDict
+      *, dimensions: List[Dimension], translations: TranslationsDict,
+      deserialized_files: DeserializedFilesDict
   ) -> Dict[DimensionName, Dimension]:
     """
       Wrapper which outputs a dictionary of results by invoking each
       specified `Dimension` with the appropriate argument based on its category
 
       Args:
-        dimensions: Dictionary with lists of `Dimension`s to be evaluated
-          keyed under their category ("simple" or "complex")
+        dimensions: List of `Dimension`s to be evaluated
         translations: Dictionary with `cloud_device_id`s as keys
           and lists of translation tuples as values. Used as argument for
           "simple" dimensions.
@@ -215,26 +214,19 @@ class ParseConfig:
           keyed under their respective file type ("proposed" or "solution").
           Used as argument for "complex" dimensions.
 
-        dbo_dimensions: List of `DboDimension`s to be evaluated
-        proposed_entities: Dictionary of proposed entity names
-          and `EntityInstance`s
-        solution_entities: Dictionary of solution entity names
-          and `EntityInstance`s
-
       Returns:
         Dictionary with dimension names as keys and `Dimension`s as values
     """
     results = {}
 
-    for dimension_category, dimension_list in dimensions.items():
+    for dimension in dimensions:
       # Invoke the functions and append the dictionary with their return values
-      for dimension in dimension_list:
-        if dimension_category == SIMPLE:
-          invoked = dimension(translations=translations).evaluate()
-        elif dimension_category == COMPLEX:
-          invoked = dimension(deserialized_files=deserialized_files).evaluate()
+      if dimension.category == SIMPLE:
+        evaluated = dimension(translations=translations).evaluate()
+      elif dimension.category == COMPLEX:
+        evaluated = dimension(deserialized_files=deserialized_files).evaluate()
 
-        results[dimension.__name__] = invoked
+      results[dimension.__name__] = evaluated
     return results
 
   # TODO: standardize signatures; make dimensions into const; test
@@ -258,19 +250,15 @@ class ParseConfig:
         proposed_entities=deserialized_files_appended[PROPOSED],
         solution_entities=deserialized_files_appended[SOLUTION])
 
-    dimensions = {
-        SIMPLE: [
-            raw_field_selection.RawFieldSelection,
-            standard_field_naming.StandardFieldNaming,
-            state_mapping.StateMapping, unit_mapping.UnitMapping
-        ],
-        COMPLEX: [
-            entity_connection_identification.EntityConnectionIdentification,
-            entity_identification.EntityIdentification,
-            entity_point_identification.EntityPointIdentification,
-            entity_type_identification.EntityTypeIdentification
-        ]
-    }
+    dimensions = [
+        raw_field_selection.RawFieldSelection,
+        standard_field_naming.StandardFieldNaming, state_mapping.StateMapping,
+        unit_mapping.UnitMapping,
+        entity_connection_identification.EntityConnectionIdentification,
+        entity_identification.EntityIdentification,
+        entity_point_identification.EntityPointIdentification,
+        entity_type_identification.EntityTypeIdentification
+    ]
 
     self.results = self.aggregate_results(
         dimensions=dimensions,
