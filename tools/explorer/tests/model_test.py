@@ -62,6 +62,26 @@ class StandardFieldTest(absltest.TestCase):
 
     self.assertEqual(test_entity_type_field, self.test_standard_field)
 
+  def testStandardFieldNameWithoutIncrement(self):
+    test_unincremented_standard_field = StandardField(
+      namespace_name = '',
+      standard_field_name = 'water_temperature_sensor'
+    )
+
+    self.assertEqual(
+      test_unincremented_standard_field.GetStandardFieldName(),
+      'water_temperature_sensor')
+
+  def testIncorrectSFNRaisesValueError(self):
+    # Standard field names cannot start with numbers
+    incorrect_standard_field_name = '9lives_is_what_a_cat_has'
+    with self.assertRaises(ValueError):
+      test_standard_field = StandardField(
+        namespace_name = '',
+        standard_field_name = incorrect_standard_field_name,
+        increment = '_1'
+      )
+
 
 class EntityTypeFieldTest(absltest.TestCase):
   # Testing EntityTypeField objects defined in the global namespace

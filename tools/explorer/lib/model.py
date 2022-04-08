@@ -13,7 +13,7 @@
 # limitations under the License.
 
 """Helper Field model classes for Ontology explorer."""
-from typing import List
+from typing import List, Optional
 import re
 
 from yamlformat.validator.entity_type_lib import EntityType
@@ -29,7 +29,8 @@ class StandardField(object):
         namespace_name: a field's defined namespace as a string.
         standard_field_name: the un-incremented name of the field as a string.
           must be lower-case and properly formatted.
-        increment: a field's enumerated value suffixed onto the field name.
+        increment: [Optional] a field's enumerated value suffixed onto the
+          field name.
     Attributes:
         namespace: the name of the namespace as a string
         name: the field name as a string.
@@ -40,11 +41,13 @@ class StandardField(object):
   def __init__(self,
                namespace_name: str,
                standard_field_name: str,
-               increment: str = ''):
+               increment: Optional[str] = ''):
     super().__init__()
     if not FQ_FIELD_NAME.match(standard_field_name + increment):
+      print('')
       raise ValueError(
           f'{namespace_name}/{standard_field_name}{increment} format error')
+
     else:
       self._namespace = namespace_name
     self._name = standard_field_name

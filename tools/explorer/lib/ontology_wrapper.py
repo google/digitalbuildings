@@ -334,8 +334,6 @@ class OntologyWrapper(object):
         row[2] = 'Required'
       elif row[2] is True:
         row[2] = 'Optional'
-      #elif not row[2]:
-        #continue
       if row[0] and row[1]:
         return_string += ''.join(
             colored(field.ljust(col_width), 'green') for field in row)
