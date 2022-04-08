@@ -101,7 +101,7 @@ class EntityTypeField(StandardField):
                namespace_name: str,
                standard_field_name: str,
                is_optional: bool,
-               increment: str = ''):
+               increment: Optional[str] = ''):
     super().__init__(namespace_name, standard_field_name, increment)
     self._is_optional = is_optional
 
