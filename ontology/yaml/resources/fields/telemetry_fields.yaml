@@ -1088,9 +1088,9 @@ literals:
 - geothermal_water_flowrate_sensor
 
 ## PV meter fields
-- charge_energy_accumulator
-- discharge_energy_accumulator
-- charge_reactive_energy_accumulator
-- discharge_reactive_energy_accumulator
+- photovoltaic_cell_charge_energy_accumulator
+- photovoltaic_cell_discharge_energy_accumulator
+- photovoltaic_cell_charge_reactive_energy_accumulator
+- photovoltaic_cell_discharge_reactive_energy_accumulator
 
 
