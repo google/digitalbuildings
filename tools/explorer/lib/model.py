@@ -44,7 +44,6 @@ class StandardField(object):
                increment: Optional[str] = ''):
     super().__init__()
     if not FQ_FIELD_NAME.match(standard_field_name + increment):
-      print('')
       raise ValueError(
           f'{namespace_name}/{standard_field_name}{increment} format error')
 
