@@ -11,23 +11,22 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-"""Test for configuration file scoring tool
-core component base class."""
-
-from absl.testing import absltest
-
-from validate import handler as validator
-from validate.generate_universe import BuildUniverse
-from validate.entity_instance import EntityInstance
-from score.dimensions.dimension import Dimension
+"""Test for configuration file scoring tool core component base class (dimension.py)."""
 
 import copy
+
+from absl.testing import absltest
+from score.dimensions.dimension import Dimension
+
+from validate import handler as validator
+from validate.entity_instance import EntityInstance
+from validate.generate_universe import BuildUniverse
 
 
 def canonical_entity() -> EntityInstance:
   entity = list(
       validator.Deserialize(['tests/samples/canonical_entity.yaml'
-                             ])[0].values())[0]
+                            ])[0].values())[0]
   # Append the type to be checked by is_entity_canonical()
   entity.type = BuildUniverse(use_simplified_universe=True).GetEntityType(
       entity.namespace, entity.type_name)
@@ -37,7 +36,7 @@ def canonical_entity() -> EntityInstance:
 def noncanonical_entity() -> EntityInstance:
   entity = list(
       validator.Deserialize(['tests/samples/noncanonical_entity.yaml'
-                             ])[0].values())[0]
+                            ])[0].values())[0]
   # Append the type to be checked by is_entity_canonical()
   entity.type = BuildUniverse(use_simplified_universe=True).GetEntityType(
       entity.namespace, entity.type_name)
@@ -45,6 +44,7 @@ def noncanonical_entity() -> EntityInstance:
 
 
 class DimensionTest(absltest.TestCase):
+
   def setUp(self):
     super().setUp()
     self.dimension = Dimension(translations='translations')
@@ -67,30 +67,26 @@ class DimensionTest(absltest.TestCase):
 
     self.entities = {
         'canonical_type_appended':
-        canonical_entity(),
+            canonical_entity(),
         'noncanonical_type_appended':
-        noncanonical_entity(),
+            noncanonical_entity(),
         'reporting':
-        list(
-            validator.Deserialize(['tests/samples/reporting_entity.yaml'
-                                   ])[0].values())[0],
+            list(
+                validator.Deserialize(['tests/samples/reporting_entity.yaml'
+                                      ])[0].values())[0],
         'virtual':
-        list(
-            validator.Deserialize(['tests/samples/virtual_entity.yaml'
-                                   ])[0].values())[0],
+            list(
+                validator.Deserialize(['tests/samples/virtual_entity.yaml'
+                                      ])[0].values())[0],
     }
 
   def testArgumentAttributes(self):
     self.assertEqual(self.dimension.translations, 'translations')
-    self.assertEqual(self.dimension.deserialized_files, None)
+    self.assertIsNone(self.dimension.deserialized_files)
 
-    self.assertEqual(self.dimension_none.translations, None)
+    self.assertIsNone(self.dimension_none.translations)
     self.assertEqual(self.dimension_none.deserialized_files,
                      'deserialized files')
-
-  def testCategoryAttribute_None(self):
-    self.assertEqual(Dimension.category, None)
-    self.assertEqual(self.dimension.category, None)
 
   def testArgumentExclusivity(self):
     with self.assertRaises(Exception) as not_enough:
@@ -100,8 +96,8 @@ class DimensionTest(absltest.TestCase):
         '`translations` xor `deserialized_files` argument is required')
 
     with self.assertRaises(Exception) as too_many:
-      Dimension(translations='translations',
-                deserialized_files='deserialized files')
+      Dimension(
+          translations='translations', deserialized_files='deserialized files')
     self.assertEqual(
         too_many.exception.args[0],
         '`translations` or `deserialized_files` argument must be exclusive')
@@ -110,7 +106,7 @@ class DimensionTest(absltest.TestCase):
     self.assertEqual(self.dimension.correct_total(), 2)
     self.assertEqual(self.dimension_none.correct_total(), 0)
 
-    self.assertEqual(self.dimension.correct_total_override, None)
+    self.assertIsNone(self.dimension.correct_total_override)
     self.dimension.correct_total_override = 4
     self.assertEqual(self.dimension.correct_total_override, 4)
 
@@ -118,7 +114,7 @@ class DimensionTest(absltest.TestCase):
     self.assertEqual(self.dimension.correct_ceiling(), 4)
     self.assertEqual(self.dimension_none.correct_total(), 0)
 
-    self.assertEqual(self.dimension_override.correct_ceiling_override, None)
+    self.assertIsNone(self.dimension_override.correct_ceiling_override)
     self.dimension_override.correct_ceiling_override = 8
     self.assertEqual(self.dimension_override.correct_ceiling_override, 8)
 
@@ -126,47 +122,52 @@ class DimensionTest(absltest.TestCase):
     self.assertEqual(self.dimension.incorrect_total(), 2)
     self.assertEqual(self.dimension_none.correct_total(), 0)
 
-    self.assertEqual(self.dimension_override.incorrect_total_override, None)
+    self.assertIsNone(self.dimension_override.incorrect_total_override)
     self.dimension_override.incorrect_total_override = 4
     self.assertEqual(self.dimension_override.incorrect_total_override, 4)
 
   def testResultComposite(self):
-    self.assertEqual(self.dimension.result_all, 0.0)
-    self.assertEqual(self.dimension_none.result_all, None)
+    self.assertEqual(self.dimension.result_composite, 0.0)
+    self.assertIsNone(self.dimension_none.result_composite)
 
-    self.assertEqual(self.dimension_override.result_all, 0.0)
+    self.assertEqual(self.dimension_override.result_composite, 0.0)
 
   def testResultVirtual(self):
     self.assertEqual(self.dimension.result_virtual, 0.0)
-    self.assertEqual(self.dimension_none.result_virtual, None)
+    self.assertIsNone(self.dimension_none.result_virtual)
 
   def testResultReporting(self):
     self.assertEqual(self.dimension.result_reporting, 0.0)
-    self.assertEqual(self.dimension_none.result_reporting, None)
+    self.assertIsNone(self.dimension_none.result_reporting)
 
   def testEntityIsCanonical(self):
     self.assertTrue(
-        Dimension.is_entity_canonical(self.entities['canonical_type_appended']))
+        Dimension.is_entity_canonical(
+            entity=self.entities['canonical_type_appended']))
     self.assertFalse(
         Dimension.is_entity_canonical(
-            self.entities['noncanonical_type_appended']))
+            entity=self.entities['noncanonical_type_appended']))
     # This entity has had a type of `None` appended, thus it returns false.
     reporting_type_none = copy.copy(self.entities['reporting'])
     reporting_type_none.type = None
-    self.assertFalse(Dimension.is_entity_canonical(reporting_type_none))
+    self.assertFalse(Dimension.is_entity_canonical(entity=reporting_type_none))
 
   def testEntityIsReporting(self):
-    self.assertTrue(Dimension.is_entity_reporting(self.entities['reporting']))
-    self.assertFalse(Dimension.is_entity_reporting(self.entities['virtual']))
+    self.assertTrue(
+        Dimension.is_entity_reporting(entity=self.entities['reporting']))
+    self.assertFalse(
+        Dimension.is_entity_reporting(entity=self.entities['virtual']))
 
   def testEntityIsVirtual(self):
-    self.assertTrue(Dimension.is_entity_virtual(self.entities['virtual']))
-    self.assertFalse(Dimension.is_entity_virtual(self.entities['reporting']))
+    self.assertTrue(
+        Dimension.is_entity_virtual(entity=self.entities['virtual']))
+    self.assertFalse(
+        Dimension.is_entity_virtual(entity=self.entities['reporting']))
 
   def testStr(self):
     self.assertEqual(
         self.dimension.__str__(),
-        '{result_all: 0.0, result_virtual: 0.0, result_reporting: 0.0}')
+        '{result_composite: 0.0, result_virtual: 0.0, result_reporting: 0.0}')
 
 
 if __name__ == '__main__':

@@ -1,4 +1,4 @@
-# Copyright 2022 Google LLC
+# Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the License);
 # you may not use this file except in compliance with the License.
@@ -12,17 +12,21 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# NOTE: This file is used as a test fixture; it is a valid DBO instance
-# which demonstrates the features of a reporting entity.
-
-FCU-1:
-  cloud_device_id: 2599571827844401
-  guid: 90ebdd30-efdf-4aec-82d7-90f8e03a6792
+9a86a19b-b687-4db1-888e-2cf34d04b74c:
+  type: HVAC/CHWS_WDT
+  id: CDM/234567
+  code: CHWS-1
+  cloud_device_id: "foobar"
   translation:
-    chilled_water_flowrate_sensor:
-      present_value: points.chilled_water_flowrate_sensor.present_value
+    supply_water_temperature_sensor:
+      present_value: points.supply_water_temperature_sensor.present_value
       units:
-        key: pointset.points.chilled_water_flowrate_sensor.units
+        key: points.supply_water_temperature_sensor.units
         values:
-          liters_per_second: L/s
-  type: HVAC/CHWS_WDT # This is arbitrary but loaded with the minimal universe
+          degrees_celsius: degC
+    return_water_temperature_sensor:
+      present_value: points.return_water_temperature_sensor.present_value
+      units:
+        key: points.return_water_temperature_sensor.units
+        values:
+          degrees_celsius: degC

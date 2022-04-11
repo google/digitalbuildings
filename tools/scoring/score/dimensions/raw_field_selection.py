@@ -13,46 +13,31 @@
 # limitations under the License.
 """Core component."""
 
+from score.constants import FileTypes
 from score.dimensions.dimension import Dimension
-from score.constants import FileTypes, DimensionCategories
+from score.types_ import TranslationsDict
 
 PROPOSED, SOLUTION = FileTypes
 
 
 class RawFieldSelection(Dimension):
-  """Quantifies whether the correct raw fields
+  """Quantifies whether the correct raw fields.
+
   (e.g. "points.chilled_water_flowrate_sensor.present_value")
-  were mapped (versus ignored) in the proposed file."""
+  were mapped (versus ignored) in the proposed file.
+  """
 
-  # SIMPLE category indicates this dimension receives `translations`
-  # rather than `deserialized_files` to do its calculations
-  category = DimensionCategories.SIMPLE
+  def __init__(self, *, translations: TranslationsDict):
+    super().__init__(translations=translations)
 
-  def _fetch_raw_field_names(self, translations):
-    return set([
-        translation.raw_field_name
-        for standard_field_name, translation in translations
-    ])
-
-  def evaluate(self):
-    """Calculates and assigns properties necessary for generating a score."""
-
-    proposed_condensed, solution_condensed = map(self._condense_translations,
-                                                 (PROPOSED, SOLUTION))
-
-    # Account for empty list
-    proposed_translations = proposed_condensed and proposed_condensed[0]
-    solution_translations = solution_condensed and solution_condensed[0]
-
-    proposed_fields, solution_fields = map(
-        self._fetch_raw_field_names,
-        (proposed_translations, solution_translations))
+    solution_fields = set(
+        map(lambda item: item[1].raw_field_name, translations[SOLUTION]))
+    proposed_fields = set(
+        map(lambda item: item[1].raw_field_name, translations[PROPOSED]))
 
     correct_fields = proposed_fields.intersection(solution_fields)
     incorrect_fields = proposed_fields.difference(solution_fields)
 
     self.correct_reporting = len(correct_fields)
-    self.correct_ceiling_reporting = len(set(solution_translations))
+    self.correct_ceiling_reporting = len(set(translations[SOLUTION]))
     self.incorrect_reporting = len(incorrect_fields)
-
-    return self

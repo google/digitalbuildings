@@ -15,53 +15,43 @@
 
 # from collections import Counter
 
+from score.constants import FileTypes
 from score.dimensions.dimension import Dimension
-from score.constants import FileTypes, DimensionCategories
-from score.scorer_types import DeserializedFile
+from score.types_ import DeserializedFilesDict
 
 PROPOSED, SOLUTION = FileTypes
 
 
 class EntityConnectionIdentification(Dimension):
-  """Quantifies whether connections between entities were
-  correctly and completely defined in the proposed file."""
+  """Quantifies whether connections between entities were correctly and completely defined in the proposed file."""
 
-  # COMPLEX category indicates this dimension receives `deserialized_files`
-  # rather than `translations` to do its calculations
-  category = DimensionCategories.COMPLEX
-
-  def _isolate_connections(self, file: DeserializedFile):
-    """Distill individual connections from each entity
-    prior to inclusion in sets for global comparison."""
-    return [
-        tup for tup in (((cloud_device_id, connection)
-                         for connection in entity.connections)
-                        for cloud_device_id, entity in file.items()
-                        if entity.connections is not None) for tup in tup
-    ]
-
-  def _condense_connections(self, connections):
-    """Condense connections into sets of strings
-    for easy comparison using intersection."""
-    return set([
-        f'{target} {connection.ctype} {connection.source}'
-        for target, connection in connections
-    ])
-
-  # TODO: Figure out how to elegantly implement "facilities"
+  # TODO(b/210741084): Figure out how to elegantly implement "facilities"
   # and "equipment" categories given current object model
-  def evaluate(self):
-    """Calculate and assign properties necessary for generating a score."""
+  def __init__(self, *, deserialized_files: DeserializedFilesDict):
+    super().__init__(deserialized_files=deserialized_files)
 
-    proposed_file, solution_file = map(self.deserialized_files.get,
-                                       (PROPOSED, SOLUTION))
+    proposed, solution = map(deserialized_files.get, (PROPOSED, SOLUTION))
 
-    proposed_connections, solution_connections = map(
-        self._isolate_connections, (proposed_file, solution_file))
+    # Isolate the connections from each dictionary of entities
+    solution_connections = []
+    for cloud_device_id, entity in solution.items():
+      for connection in entity.connections:
+        solution_connections.append((cloud_device_id, connection))
 
-    proposed_connections_condensed, solution_connections_condensed = map(
-        self._condense_connections,
-        (proposed_connections, solution_connections))
+    proposed_connections = []
+    for cloud_device_id, entity in proposed.items():
+      for connection in entity.connections:
+        proposed_connections.append((cloud_device_id, connection))
+
+    # Condense them into sets of strings for easy comparison using intersection
+    solution_connections_condensed = set([
+        fstring(target, connection)
+        for target, connection in solution_connections
+    ])
+    proposed_connections_condensed = set([
+        fstring(target, connection)
+        for target, connection in proposed_connections
+    ])
 
     # Compare them
     correct = proposed_connections_condensed.intersection(
@@ -71,7 +61,9 @@ class EntityConnectionIdentification(Dimension):
     # independent of "virtual" and "reporting" buckets
     self.correct_total_override = len(correct)
     self.correct_ceiling_override = len(solution_connections_condensed)
-    self.incorrect_total_override = (self.correct_ceiling_override -
-                                     self.correct_total_override)
+    self.incorrect_total_override = (
+        self.correct_ceiling_override - self.correct_total_override)
 
-    return self
+
+def fstring(target, connection):
+  return f'{target} {connection.ctype} {connection.source}'
