@@ -36,15 +36,6 @@ class StandardFieldNaming(Dimension):
         filter(lambda subfield: not bool(regex.match('[0-9]+', subfield)),
                field.split('_')))
 
-  def _condense_translations(self, file_type: FileType):
-    """Combines translations for all devices within the dictionary."""
-
-    return [
-        field for field in (translations[file_type]
-                            for cdid, translations in self.translations.items())
-        for field in field
-    ]
-
   def evaluate(self):
     """Calculates and assigns properties necessary for generating a score."""
     proposed_translations, solution_translations = map(

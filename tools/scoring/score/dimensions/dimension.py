@@ -195,9 +195,10 @@ class Dimension:
   def _condense_translations(self, file_type: FileType):
     """Combines translations for all devices within the dictionary."""
     return [
-        matched_translations[file_type]
-        for matched_translations in self.translations.values()
-        if matched_translations[file_type]
+        field
+        for field in (matched_translations[file_type]
+                      for matched_translations in self.translations.values())
+        for field in field
     ]
 
   @property
