@@ -1344,6 +1344,7 @@ CHWZC:
   - discharge_air_temperature_sensor
   - leaving_cooling_coil_temperature_sensor
   - cooling_thermal_power_capacity
+  - chilled_supply_water_temperature_sensor
   uses:
   - zone_air_cooling_temperature_setpoint
   - zone_air_temperature_sensor
