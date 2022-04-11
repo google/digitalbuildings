@@ -15,7 +15,6 @@
 
 from score.dimensions.dimension import Dimension
 from score.constants import FileTypes, DimensionCategories
-from score.scorer_types import FileType
 
 import re as regex
 
