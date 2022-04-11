@@ -123,9 +123,7 @@ class StandardFieldNamingTest(absltest.TestCase):
     self.assertEqual(lowest_score_expected.result_virtual, None)
 
   def testEvaluate_ScoreMiddling(self):
-    """When correct is half of the ceiling, the resulting score is 0.0. In this
-    case, reporting entities scored 1.0 and virtual entities scored -1.0; the
-    result for all entities is 0.0."""
+    """When correct is half of the ceiling, the resulting score is 0.0."""
     middling_score_expected = StandardFieldNaming(
         translations=self.middling_score_argument).evaluate()
 
