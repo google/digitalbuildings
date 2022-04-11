@@ -52,7 +52,7 @@ class StandardFieldNamingTest(absltest.TestCase):
         proposed_path=one_entity_file_path,
         solution_path=two_entities_file_path)
 
-  def testCategoryAttribute_COMPLEX(self):
+  def testCategoryAttribute_SIMPLE(self):
     self.assertEqual(StandardFieldNaming.category, DimensionCategories.SIMPLE)
 
   def testEvaluate_ScoreNone(self):
