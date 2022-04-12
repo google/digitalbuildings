@@ -847,6 +847,11 @@ class EntityInstance(findings_lib.Findings):
     else:
       raise ValueError('Entity block must contain either "code" or "guid".')
 
+    if operation in [parse.EntityOperation.ADD, parse.EntityOperation.UPDATE]:
+      if not guid:
+        raise ValueError(
+            'Entity block must contain "guid" for ADD/UPDATE operations.')
+
     namespace, type_name = None, None
     if parse.ENTITY_TYPE_KEY in entity_yaml:
       namespace, type_name = _ParseTypeString(
