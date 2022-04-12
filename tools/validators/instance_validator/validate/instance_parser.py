@@ -130,7 +130,7 @@ _IGNORE_PATTERN = re.compile(r'^(\W)*#|\n')
 # Note: As-written this will capture the metadata key below, so logic should
 # check for it first
 _ENTITY_CODE_REGEX = '^[a-zA-Z][a-zA-Z0-9\\-_]+:'
-_ENTITY_GUID_REGEX = '^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}:'
+_ENTITY_GUID_REGEX = '^[0-9a-f]{8}-([0-9a-f]{4}-){3}[0-9a-f]{12}:'
 _ENTITY_CODE_PATTERN = re.compile(_ENTITY_CODE_REGEX)
 _ENTITY_GUID_PATTERN = re.compile(_ENTITY_GUID_REGEX)
 
