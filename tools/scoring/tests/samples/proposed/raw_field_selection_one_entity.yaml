@@ -19,10 +19,10 @@ FCU-1:
   cloud_device_id: 2599571827844401
   guid: 90ebdd30-efdf-4aec-82d7-90f8e03a6792
   translation:
-    chilled_water_flowrate_sensor:
-      present_value: points.chilled_water_flowrate_sensor.present_value
+    zone_air_temperature_setpoint:
+      present_value: points.space_air_temperature_setpoint.present_value
       units:
-        key: pointset.points.chilled_water_flowrate_sensor.units
+        key: pointset.points.space_air_temperature_setpoint.units
         values:
-          liters_per_second: L/s
+          degrees_celsius: degC
   type: HVAC/CHWS_WDT # This is arbitrary but loaded with the minimal universe
