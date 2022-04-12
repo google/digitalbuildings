@@ -196,7 +196,7 @@ class Dimension:
     """Combines translations for all devices within the dictionary."""
     condensed = []
     for translations in self.translations.values():
-      condensed += translations[file_type]
+      condensed.extend(translations[file_type])
     return condensed
 
   @property
