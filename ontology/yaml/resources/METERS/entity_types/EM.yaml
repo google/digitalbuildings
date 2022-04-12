@@ -60,6 +60,17 @@ EM_PWM_AVCM_PLPM_PVCM:
   - PLPM
   - PVCM
 
+EM_PWM_PVCM_PVCDM:
+  description: "Power meter with phase level voltage and current monitoring and photovoltaic cell charge/discharge monitoring."
+  is_canonical: true
+  implements:
+  - EM_PWM_PVCM
+  uses:
+  - photovoltaic_cell_charge_energy_accumulator
+  - photovoltaic_cell_discharge_energy_accumulator
+  - photovoltaic_cell_charge_reactive_energy_accumulator
+  - photovoltaic_cell_discharge_reactive_energy_accumulator
+
 #############################
 ### Non-Canonical Devices ###
 #############################
