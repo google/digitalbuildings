@@ -14,7 +14,7 @@
 """Core component."""
 
 from score.dimensions.dimension import Dimension
-from score.constants import FileTypes
+from score.constants import FileTypes, DimensionCategories
 
 PROPOSED, SOLUTION = FileTypes
 
@@ -23,6 +23,11 @@ class RawFieldSelection(Dimension):
   """Quantifies whether the correct raw fields
   (e.g. "points.chilled_water_flowrate_sensor.present_value")
   were mapped (versus ignored) in the proposed file."""
+
+  # SIMPLE category indicates this dimension receives `translations`
+  # rather than `deserialized_files` to do its calculations
+  category = DimensionCategories.SIMPLE
+
   def _fetch_raw_field_names(self, translations):
     return set([
         translation.raw_field_name
