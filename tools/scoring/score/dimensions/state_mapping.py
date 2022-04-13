@@ -23,6 +23,8 @@ class StateMapping(Dimension):
   """Quantifies how accurately the proposed file
   mapped multi-state values for relevant fields."""
 
+  # SIMPLE category indicates this dimension receives `translations`
+  # rather than `deserialized_files` to do its calculations
   category = DimensionCategories.SIMPLE
 
   def _fetch_mappings(self, translations):
@@ -34,12 +36,8 @@ class StateMapping(Dimension):
   def evaluate(self):
     """Calculates and assigns properties necessary for generating a score."""
 
-    proposed_condensed, solution_condensed = map(self._condense_translations,
-                                                 (PROPOSED, SOLUTION))
-
-    # Account for empty list
-    proposed_translations = proposed_condensed and proposed_condensed[0]
-    solution_translations = solution_condensed and solution_condensed[0]
+    proposed_translations, solution_translations = map(
+        self._condense_translations, (PROPOSED, SOLUTION))
 
     proposed_mappings, solution_mappings = map(
         self._fetch_mappings, (proposed_translations, solution_translations))

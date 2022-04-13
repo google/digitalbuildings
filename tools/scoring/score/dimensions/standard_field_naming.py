@@ -26,6 +26,8 @@ class StandardFieldNaming(Dimension):
   (e.g. "chilled_water_flowrate_sensor")
   were selected in the proposed file."""
 
+  # SIMPLE category indicates this dimension receives `translations`
+  # rather than `deserialized_files` to do its calculations
   category = DimensionCategories.SIMPLE
 
   def _split_subfields(self, field):
@@ -35,13 +37,8 @@ class StandardFieldNaming(Dimension):
 
   def evaluate(self):
     """Calculates and assigns properties necessary for generating a score."""
-
-    proposed_condensed, solution_condensed = map(self._condense_translations,
-                                                 (PROPOSED, SOLUTION))
-
-    # Account for empty list
-    proposed_translations = proposed_condensed and proposed_condensed[0]
-    solution_translations = solution_condensed and solution_condensed[0]
+    proposed_translations, solution_translations = map(
+        self._condense_translations, (PROPOSED, SOLUTION))
 
     correct_subfields = []
     correct_ceiling: int = 0
@@ -51,14 +48,14 @@ class StandardFieldNaming(Dimension):
       solution_subfields = self._split_subfields(solution_field)
       correct_ceiling += len(solution_subfields)
 
+      proposed_subfields = set()
+
       for proposed_field, proposed_value in proposed_translations:
         if proposed_value.raw_field_name == solution_value.raw_field_name:
           proposed_subfields = self._split_subfields(proposed_field)
 
-          correct_subfields += proposed_subfields.intersection(
-              solution_subfields)
-          incorrect_subfields += proposed_subfields.difference(
-              solution_subfields)
+      correct_subfields += proposed_subfields.intersection(solution_subfields)
+      incorrect_subfields += solution_subfields.difference(proposed_subfields)
 
     self.correct_reporting = len(correct_subfields)
     self.correct_ceiling_reporting = correct_ceiling
