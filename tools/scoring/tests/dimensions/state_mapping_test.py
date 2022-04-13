@@ -12,12 +12,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 """Test for configuration file scoring tool
-"state mapping" dimension (state_mapping.py)."""
+"state mapping" dimension."""
 
 from absl.testing import absltest
 
 from score.dimensions.state_mapping import StateMapping
-from score.constants import FileTypes
+from score.constants import FileTypes, DimensionCategories
 
 PROPOSED, SOLUTION = FileTypes
 
@@ -26,8 +26,11 @@ class StateMappingTest(absltest.TestCase):
   def setUp(self):
     super().setUp()
     # TODO: add real data (append cases to existing tests)
-    translations = {PROPOSED: [], SOLUTION: []}
-    self.state_mapping = StateMapping(translations=translations)
+    translations = {'cloud_device_id': {PROPOSED: [], SOLUTION: []}}
+    self.state_mapping = StateMapping(translations=translations).evaluate()
+
+  def testCategoryAttribute_SIMPLE(self):
+    self.assertEqual(StateMapping.category, DimensionCategories.SIMPLE)
 
   def testDirectlyAssignedAttributes(self):
     self.assertEqual(self.state_mapping.correct_reporting, 0)
@@ -41,7 +44,7 @@ class StateMappingTest(absltest.TestCase):
 
   def testInheritedResultProperties(self):
     # These are `None` by virtue of the ceiling being falsy.
-    self.assertEqual(self.state_mapping.result_composite, None)
+    self.assertEqual(self.state_mapping.result_all, None)
     self.assertEqual(self.state_mapping.result_reporting, None)
     self.assertEqual(self.state_mapping.result_virtual, None)
 

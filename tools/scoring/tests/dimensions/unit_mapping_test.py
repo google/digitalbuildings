@@ -12,12 +12,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 """Test for configuration file scoring tool
-"unit mapping" dimension (unit_mapping.py)."""
+"unit mapping" dimension."""
 
 from absl.testing import absltest
 
 from score.dimensions.unit_mapping import UnitMapping
-from score.constants import FileTypes
+from score.constants import FileTypes, DimensionCategories
 
 PROPOSED, SOLUTION = FileTypes
 
@@ -26,8 +26,11 @@ class UnitMappingTest(absltest.TestCase):
   def setUp(self):
     super().setUp()
     # TODO: add real data (append cases to existing tests)
-    translations = {PROPOSED: [], SOLUTION: []}
-    self.unit_mapping = UnitMapping(translations=translations)
+    translations = {'cloud_device_id': {PROPOSED: [], SOLUTION: []}}
+    self.unit_mapping = UnitMapping(translations=translations).evaluate()
+
+  def testCategoryAttribute_SIMPLE(self):
+    self.assertEqual(UnitMapping.category, DimensionCategories.SIMPLE)
 
   def testDirectlyAssignedAttributes(self):
     self.assertEqual(self.unit_mapping.correct_reporting, 0)
@@ -41,7 +44,7 @@ class UnitMappingTest(absltest.TestCase):
 
   def testInheritedResultProperties(self):
     # These are `None` by virtue of the ceiling being falsy.
-    self.assertEqual(self.unit_mapping.result_composite, None)
+    self.assertEqual(self.unit_mapping.result_all, None)
     self.assertEqual(self.unit_mapping.result_reporting, None)
     self.assertEqual(self.unit_mapping.result_virtual, None)
 

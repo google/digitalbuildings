@@ -8,6 +8,7 @@ implemented in the future.
 
 ## Setup
 
+
 ### Windows Setup
 1. Open cmd and navigate to `digitalbuildings/tools`
 2. Run `global_setup.bat`
@@ -33,4 +34,4 @@ For example:
 Takes in an input file, generates guids for every entity instance, validates the
 building configuration, and writes validation results to the report filepath.
 
-For Windowds, run with `py` rather than `python`
+**NOTE:** For Windows, run with `py` rather than `python`
