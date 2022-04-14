@@ -445,6 +445,9 @@ DTM:
   id: "7968704612431560704"
   description: "Discharge temperature monitoring."
   is_abstract: true
+  opt_uses:
+  - discharge_air_relative_humidity_sensor
+  - discharge_air_specificenthalpy_sensor
   uses:
   - discharge_air_temperature_sensor
   implements:
@@ -650,6 +653,9 @@ RTM:
   description: "Return air temperature monitoring"
   implements:
   - MONITORING
+  opt_uses:
+  - return_air_relative_humidity_sensor
+  - return_air_specificenthalpy_sensor
   uses:
   - return_air_temperature_sensor
 
@@ -2464,6 +2470,7 @@ ECONZ:
   - low_limit_outside_air_damper_percentage_command
   - discharge_air_temperature_sensor
   - outside_air_flowrate_sensor
+  - outside_air_relative_humidity_sensor
   - outside_air_flowrate_setpoint
   - return_air_temperature_sensor
   - mixed_air_temperature_sensor
@@ -4401,3 +4408,63 @@ HWDDC:
   - discharge_air_temperature_sensor
   implements:
   - CONTROL
+
+
+
+RCKTM:
+  description: "Refrigeration circuit monitoring for a DX compressor loop."
+  is_abstract: true
+  uses:
+  - refrigerant_discharge_pressure_sensor
+  - refrigerant_discharge_temperature_sensor
+  - refrigerant_liquid_pressure_sensor
+  - refrigerant_liquid_saturation_temperature_sensor
+  - refrigerant_liquid_temperature_sensor
+  - refrigerant_subcooling_temperature_sensor
+  - refrigerant_suction_pressure_sensor
+  - refrigerant_suction_saturation_temperature_sensor
+  - refrigerant_suction_superheat_temperature_sensor
+  - refrigerant_suction_temperature_sensor
+
+
+RCKTM2X:
+  description: "Refrigeration circuits (2x) monitoring for a DX compressor loop."
+  is_abstract: true
+  uses:
+  - refrigerant_discharge_pressure_sensor_1
+  - refrigerant_discharge_temperature_sensor_1
+  - refrigerant_liquid_pressure_sensor_1
+  - refrigerant_liquid_saturation_temperature_sensor_1
+  - refrigerant_liquid_temperature_sensor_1
+  - refrigerant_subcooling_temperature_sensor_1
+  - refrigerant_suction_pressure_sensor_1
+  - refrigerant_suction_saturation_temperature_sensor_1
+  - refrigerant_suction_superheat_temperature_sensor_1
+  - refrigerant_suction_temperature_sensor_1
+  - refrigerant_discharge_pressure_sensor_2
+  - refrigerant_discharge_temperature_sensor_2
+  - refrigerant_liquid_pressure_sensor_2
+  - refrigerant_liquid_saturation_temperature_sensor_2
+  - refrigerant_liquid_temperature_sensor_2
+  - refrigerant_subcooling_temperature_sensor_2
+  - refrigerant_suction_pressure_sensor_2
+  - refrigerant_suction_saturation_temperature_sensor_2
+  - refrigerant_suction_superheat_temperature_sensor_2
+  - refrigerant_suction_temperature_sensor_2
+
+
+CCM:
+  description: "Compressor current monitoring."
+  is_abstract: true
+  uses:
+  - compressor_run_command
+  - compressor_current_sensor
+
+CC2XM:
+  description: "Compressor current monitoring for 2 compressors."
+  is_abstract: true
+  uses:
+  - compressor_run_command_1
+  - compressor_current_sensor_1
+  - compressor_run_command_2
+  - compressor_current_sensor_2
