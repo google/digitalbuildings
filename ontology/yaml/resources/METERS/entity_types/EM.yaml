@@ -106,4 +106,3 @@ EM_NONCANONICAL_1:
   - apparent_energy_accumulator
   implements:
   - EM_PWM_PLPM_PVCM
-
