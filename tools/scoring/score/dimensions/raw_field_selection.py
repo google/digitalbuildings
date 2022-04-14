@@ -48,7 +48,7 @@ class RawFieldSelection(Dimension):
     incorrect_fields = solution_fields.difference(proposed_fields)
 
     self.correct_reporting = len(correct_fields)
-    self.correct_ceiling_reporting = len(set(solution_translations))
+    self.correct_ceiling_reporting = len(solution_fields)
     self.incorrect_reporting = len(incorrect_fields)
 
     return self
