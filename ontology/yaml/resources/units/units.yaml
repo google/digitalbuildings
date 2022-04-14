@@ -71,7 +71,6 @@ energy:
 - btus
 - kilowatt_hours
 - kilovolt_amperes_reactive_hours
-- btus
 - kilobtus
 - kilojoules
 - megabtus
@@ -186,7 +185,6 @@ power:
 - megawatts
 - milliwatts
 - tons_of_refrigeration
-- btus_per_hour
 - horsepower
 - kilobtus_per_hour
 - therms_per_hour
