@@ -11,20 +11,18 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-"""Setup file for the configuration scoring tool."""
 
-from setuptools import find_packages
-from setuptools import setup
+# NOTE: This file is used as a test fixture; it is a valid DBO instance
+# which demonstrates the features of a reporting entity.
 
-setup(
-    name='scoring',
-    version='0.0.1',
-    url='https://github.com/google/digitalbuildings',
-    license='Apache License',
-    author='Adam Hemphill',
-    author_email='',
-    description='',
-    packages=find_packages(),
-    install_requires=['absl-py', 'argparse', 'typing_extensions'],
-    python_requires='==3.7',
-)
+FCU-1:
+  cloud_device_id: 2599571827844401
+  guid: 90ebdd30-efdf-4aec-82d7-90f8e03a6792
+  translation:
+    zone_air_temperature_setpoint:
+      present_value: points.space_air_temperature_setpoint.present_value
+      units:
+        key: pointset.points.space_air_temperature_setpoint.units
+        values:
+          degrees_celsius: degC
+  type: HVAC/CHWS_WDT # This is arbitrary but loaded with the minimal universe

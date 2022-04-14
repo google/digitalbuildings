@@ -11,7 +11,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-"""Test for configuration file parser (parse_config.py)."""
+"""Test for configuration file parser."""
 
 from absl.testing import absltest
 from unittest.mock import call, patch
@@ -75,38 +75,17 @@ class ParseConfigTest(absltest.TestCase):
         hasattr(
             list(deserialized_files_appended[PROPOSED].values())[0], 'type'))  # pylint: disable=unsubscriptable-object
 
-  def testMatchReportingEntities(self):
-    proposed_entities = validator.Deserialize(
-        ['tests/samples/proposed/match_reporting_entities.yaml'])[0]
-    solution_entities = validator.Deserialize(
-        ['tests/samples/solution/match_reporting_entities.yaml'])[0]
-
-    matches = parse_config.ParseConfig.match_reporting_entities(
-        proposed_entities=proposed_entities,
-        solution_entities=solution_entities)
-
-    self.assertEqual(len(proposed_entities), 4)
-    self.assertEqual(len(solution_entities), 4)
-    self.assertEqual(len(matches), 1)
-    self.assertEqual(matches[0], '2599571827844401')  # Yes, it's a string
-
   def testRetrieveReportingTranslations(self):
     proposed_entities = validator.Deserialize(
         ['tests/samples/proposed/retrieve_reporting_translations.yaml'])[0]
     solution_entities = validator.Deserialize(
         ['tests/samples/solution/retrieve_reporting_translations.yaml'])[0]
 
-    matches = parse_config.ParseConfig.match_reporting_entities(
-        proposed_entities=proposed_entities,
-        solution_entities=solution_entities)
-
     translations = parse_config.ParseConfig.retrieve_reporting_translations(
-        matches=matches,
         proposed_entities=proposed_entities,
         solution_entities=solution_entities)
 
     self.assertEqual(type(translations), dict)  # TranslationsDict
-    self.assertEqual(len(translations.items()), len(matches))
 
     cdid = '2599571827844401'
 
@@ -131,21 +110,20 @@ class ParseConfigTest(absltest.TestCase):
   def testAggregateResults(self):
     class _MockDimensionComplex(NamedTuple):
       deserialized_files: Any
+      category = COMPLEX
 
       def evaluate(self):
         return f'called with {self.deserialized_files}'
 
     class _MockDimensionSimple(NamedTuple):
       translations: Any
+      category = SIMPLE
 
       def evaluate(self):
         return f'called with {self.translations}'
 
     results = parse_config.ParseConfig.aggregate_results(
-        dimensions={
-            f'{SIMPLE}': [_MockDimensionSimple],
-            f'{COMPLEX}': [_MockDimensionComplex]
-        },
+        dimensions=[_MockDimensionSimple, _MockDimensionComplex],
         translations='argument for simple dimensions',
         deserialized_files='argument for complex dimensions')
 

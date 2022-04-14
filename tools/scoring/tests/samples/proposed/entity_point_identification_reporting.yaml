@@ -11,20 +11,18 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-"""Setup file for the configuration scoring tool."""
 
-from setuptools import find_packages
-from setuptools import setup
+# NOTE: This file is used as a test fixture; it is a valid DBO instance
+# which demonstrates the features of a reporting entity.
 
-setup(
-    name='scoring',
-    version='0.0.1',
-    url='https://github.com/google/digitalbuildings',
-    license='Apache License',
-    author='Adam Hemphill',
-    author_email='',
-    description='',
-    packages=find_packages(),
-    install_requires=['absl-py', 'argparse', 'typing_extensions'],
-    python_requires='==3.7',
-)
+VLV-2:
+  cloud_device_id: 2599571827855502
+  guid: edfa7b3a-80da-4243-a95a-5ca24311ac45
+  translation:
+    chilled_water_flowrate_sensor:
+      present_value: points.chilled_water_flowrate_sensor.present_value
+      units:
+        key: pointset.points.chilled_water_flowrate_sensor.units
+        values:
+          liters_per_second: L/s
+  type: HVAC/CHWS_WDT # This is arbitrary but loaded with the minimal universe
