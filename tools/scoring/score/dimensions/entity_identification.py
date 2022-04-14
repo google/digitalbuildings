@@ -16,7 +16,7 @@
 from collections import Counter
 
 from score.dimensions.dimension import Dimension
-from score.constants import FileTypes
+from score.constants import FileTypes, DimensionCategories
 from score.scorer_types import DeserializedFile, CloudDeviceId
 
 from typing import List
@@ -27,6 +27,11 @@ PROPOSED, SOLUTION = FileTypes
 class EntityIdentification(Dimension):
   """Quantifies whether the correct entities
   were included in the proposed file."""
+
+  # COMPLEX category indicates this dimension receives `deserialized_files`
+  # rather than `translations` to do its calculations
+  category = DimensionCategories.COMPLEX
+
   def _list_ids_reporting(self, file: DeserializedFile) -> List[CloudDeviceId]:
     """Generates list of `cloud_device_id`s representing
     reporting entities with canonical types."""
