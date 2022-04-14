@@ -1,0 +1,74 @@
+# Copyright 2022 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the License);
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#    https://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an AS IS BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# This file is used as an example of a valid building configuration with
+# the most common and important features, e.g. translations and links.
+
+FCU-1:
+  cloud_device_id: 2599571827844401
+  connections:
+    VLV-1: CONTROLS
+    VLV-2: CONTROLS
+    ZONE-G00: FEEDS
+  guid: 90ebdd30-efdf-4aec-82d7-90f8e03a6792
+  translation:
+    chilled_water_flowrate_sensor:
+      present_value: points.chilled_water_flowrate_sensor.present_value
+      units:
+        key: pointset.points.chilled_water_flowrate_sensor.units
+        values:
+          liters_per_second: L/s
+  type: HVAC/CHWS_WDT # This is arbitrary but loaded with the minimal universe
+
+VLV-1:
+  guid: daf3048f-2118-4afc-a5f0-8b4ce0c25fef
+  links:
+    FCU-1:
+      chilled_water_flowrate_sensor: chilled_water_flowrate_sensor
+      chilled_water_valve_percentage_command: chilled_water_valve_percentage_command
+      chilled_water_valve_percentage_sensor: chilled_water_valve_percentage_sensor
+      discharge_air_temperature_sensor: discharge_air_temperature_sensor
+      return_air_temperature_sensor: return_air_temperature_sensor
+  type: HVAC/CHWS_WDT # This is arbitrary but loaded with the minimal universe
+
+VLV-2:
+  guid: edfa7b3a-80da-4243-a95a-5ca24311ac45
+  links:
+    FCU-1:
+      heating_water_flowrate_sensor: heating_water_flowrate_sensor
+      heating_water_valve_percentage_command: heating_water_valve_percentage_command
+      heating_water_valve_percentage_sensor: heating_water_valve_percentage_sensor
+  type: HVAC/CHWS_WDT # This is arbitrary but loaded with the minimal universe
+
+ZONE-G00:
+  connections:
+    XX-YYY-ZZ-G-G00: CONTAINS
+  guid: abac04e2-948a-40df-a77f-bc5798c2d7e6
+  type: HVAC/CHWS_WDT # This is arbitrary but loaded with the minimal universe
+
+XX-YYY-ZZ-G-G00:
+  connections:
+    XX-YYY-ZZ-G: CONTAINS
+  guid: 1a0e0e19-89e5-444e-958f-5611cd0601da
+  type: HVAC/CHWS_WDT # This is arbitrary but loaded with the minimal universe
+
+XX-YYY-ZZ-G:
+  connections:
+    XX-YYY-ZZ: CONTAINS
+  guid: d67b9179-7e91-41cf-989f-f5d96564b00a
+  type: HVAC/CHWS_WDT # This is arbitrary but loaded with the minimal universe
+
+XX-YYY-ZZ:
+  guid: df651868-e22c-490c-b122-7337e0af0fc1
+  type: HVAC/CHWS_WDT # This is arbitrary but loaded with the minimal universe

@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 """Test for configuration file scoring tool
-core component base class (dimension.py)."""
+core component base class."""
 
 from absl.testing import absltest
 
@@ -88,6 +88,10 @@ class DimensionTest(absltest.TestCase):
     self.assertEqual(self.dimension_none.deserialized_files,
                      'deserialized files')
 
+  def testCategoryAttribute_None(self):
+    self.assertEqual(Dimension.category, None)
+    self.assertEqual(self.dimension.category, None)
+
   def testArgumentExclusivity(self):
     with self.assertRaises(Exception) as not_enough:
       Dimension()
@@ -158,9 +162,6 @@ class DimensionTest(absltest.TestCase):
   def testEntityIsVirtual(self):
     self.assertTrue(Dimension.is_entity_virtual(self.entities['virtual']))
     self.assertFalse(Dimension.is_entity_virtual(self.entities['reporting']))
-
-  def testMatchVirtualEntities(self):
-    pass
 
   def testStr(self):
     self.assertEqual(

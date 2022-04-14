@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 """Test for configuration file scoring tool
-"entity point identification" dimension (entity_point_identification.py)."""
+"entity point identification" dimension."""
 
 from absl.testing import absltest
 
@@ -31,22 +31,26 @@ class EntityPointIdentificationTest(absltest.TestCase):
     featureful_file_path = (
         'tests/samples/proposed/entity_point_identification_virtual.yaml')
     self.highest_score_argument = TestHelper.prepare_dimension_argument(
-        dimension_type=COMPLEX,
+        dimension=EntityPointIdentification,
         proposed_path=featureful_file_path,
         solution_path=featureful_file_path)
 
     empty_file_path = 'tests/samples/empty.yaml'
     self.none_score_argument = TestHelper.prepare_dimension_argument(
-        dimension_type=COMPLEX,
+        dimension=EntityPointIdentification,
         proposed_path=empty_file_path,
         solution_path=empty_file_path)
 
     reporting_entity_file_path = (
         'tests/samples/proposed/entity_point_identification_reporting.yaml')
     self.middling_score_argument = TestHelper.prepare_dimension_argument(
-        dimension_type=COMPLEX,
+        dimension=EntityPointIdentification,
         proposed_path=reporting_entity_file_path,
         solution_path=featureful_file_path)
+
+  def testCategoryAttribute_COMPLEX(self):
+    self.assertEqual(EntityPointIdentification.category,
+                     DimensionCategories.COMPLEX)
 
   def testEvaluate_ScoreNone(self):
     """When ceiling==0, the resulting score is None. The ceiling is 0
