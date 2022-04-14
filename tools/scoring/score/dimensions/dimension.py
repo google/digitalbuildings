@@ -115,6 +115,14 @@ class Dimension:
     result_all: Calculated result for all devices
     result_virtual: Calculated result for virtual devices
     result_reporting: Calculated result for reporting devices"""
+
+  # `category` indicates which argument a dimension is invoked with:
+  # "simple" dimensions receive translations whereas "complex" dimensions
+  # receive deserialized files. As this is the base class, the `category`
+  # is neither of the possible values (SIMPLE or COMPLEX) and both associated
+  # arguments are specified with default values of `None`.
+  category = None
+
   def __init__(self,
                *,
                translations: TranslationsDict = None,
@@ -133,14 +141,18 @@ class Dimension:
     self.correct_ceiling_override: int = None
     self.incorrect_total_override: int = None
 
-    if not translations and not deserialized_files:
+    # Allow for gate below to be passed in case of no matched reporting entities
+    translations_truthy_or_empty = translations or isinstance(
+        translations, dict)
+
+    if not translations_truthy_or_empty and not deserialized_files:
       # `translations` are used to score "simple" dimensions — those which
       # evaluate only reporting entities — in bulk, whereas `deserialized_files`
-      # are passed to "complex" dimensions which build a multi-map
+      # are passed to "complex" dimensions which typically build a multi-map
       # of virtual entities prior to calculating scores.
       raise Exception(
           '`translations` xor `deserialized_files` argument is required')
-    elif translations and deserialized_files:
+    elif translations_truthy_or_empty and deserialized_files:
       raise Exception(
           '`translations` or `deserialized_files` argument must be exclusive')
 
@@ -182,11 +194,10 @@ class Dimension:
 
   def _condense_translations(self, file_type: FileType):
     """Combines translations for all devices within the dictionary."""
-    return [
-        matched_translations[file_type]
-        for matched_translations in self.translations.values()
-        if matched_translations[file_type]
-    ]
+    condensed = []
+    for translations in self.translations.values():
+      condensed.extend(translations[file_type])
+    return condensed
 
   @property
   def result_all(self) -> float:
@@ -254,7 +265,7 @@ class Dimension:
     return entity.links is not None
 
   @staticmethod
-  def match_virtual_entities(
+  def _match_virtual_entities(
       *, solution_points_virtual: PointsVirtualList,
       proposed_points_virtual: PointsVirtualList,
       sort_candidates_by_key: str) -> Dict[float, List[_VirtualEntityMatch]]:
