@@ -214,6 +214,23 @@ CHWS_SWTC_WDPC2X_BYPVPM_WFRM_CLPM:
   - WFRM
   - CLPM
 
+CHWS_RWTC_CHWVM:
+  description: "Chilled water system with return temperature control and chilled water valve monitoring."
+  is_canonical: true
+  implements:
+  - CHWS
+  - RWTC
+  - CHWVM
+
+CHWS_SWTM_WDPC_BYPVPM:
+  description: "Chilled water system with supply temperature monitoring, differential pressure control and bypass valve control."
+  is_canonical: true
+  implements:
+  - CHWS
+  - SWTM
+  - WDPC
+  - BYPVPM
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
