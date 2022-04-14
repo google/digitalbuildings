@@ -1079,3 +1079,21 @@ literals:
 - zone_air_no2_probability_percentage_sensor
 - zone_air_no2_ozone_concentration_sensor
 
+
+## Refrigerant monitoring fields for AHUs
+- condensing_fan_current_sensor
+- discharge_air_specificenthalpy_sensor
+- refrigerant_discharge_pressure_sensor
+- refrigerant_liquid_pressure_sensor
+- refrigerant_liquid_temperature_sensor
+- refrigerant_liquid_saturation_temperature_sensor
+- refrigerant_subcooling_temperature_sensor
+- refrigerant_suction_pressure_sensor
+- refrigerant_suction_saturation_temperature_sensor
+- refrigerant_suction_superheat_temperature_sensor
+- return_air_specificenthalpy_sensor
+- compressor_current_sensor
+
+
+
+

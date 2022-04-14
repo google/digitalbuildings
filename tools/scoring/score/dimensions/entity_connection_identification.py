@@ -16,7 +16,7 @@
 # from collections import Counter
 
 from score.dimensions.dimension import Dimension
-from score.constants import FileTypes
+from score.constants import FileTypes, DimensionCategories
 from score.scorer_types import DeserializedFile
 
 PROPOSED, SOLUTION = FileTypes
@@ -25,6 +25,11 @@ PROPOSED, SOLUTION = FileTypes
 class EntityConnectionIdentification(Dimension):
   """Quantifies whether connections between entities were
   correctly and completely defined in the proposed file."""
+
+  # COMPLEX category indicates this dimension receives `deserialized_files`
+  # rather than `translations` to do its calculations
+  category = DimensionCategories.COMPLEX
+
   def _isolate_connections(self, file: DeserializedFile):
     """Distill individual connections from each entity
     prior to inclusion in sets for global comparison."""
