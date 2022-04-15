@@ -386,6 +386,14 @@ FAN_SS_VSFC:
   - schedule_run_command
   - control_status
 
+FAN_SS_ZTC:
+  description: "Fan zone temperature control"
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - ZTC
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
