@@ -970,6 +970,16 @@ FCU_DFSS_DFMSC_CHWZC_DSP:
   - CHWZC
   - DSP
 
+FCU_DFSS_CHWZC_RTM_ZHM:
+  description: "FCU with discharge cooling air temperature control, return air temperature monitoring and zone air relative humidity monitoring (CRAC)."
+  is_canonical: true
+  implements:
+    - FCU
+    - DFSS
+    - CHWZC
+    - RTM
+    - ZHM
+    
 ###################################
 ### Existing Non-standard Types ###
 ###################################

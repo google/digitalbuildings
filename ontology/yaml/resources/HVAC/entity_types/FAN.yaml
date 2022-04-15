@@ -386,6 +386,14 @@ FAN_SS_VSFC:
   - schedule_run_command
   - control_status
 
+FAN_SS_ZTC:
+  description: "Fan zone temperature control"
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - ZTC
+
 FAN_SS_VSC_EPC_EHHRC:
   description: "Fan with exhaust static pressure control and heat recovery coils."
   is_canonical: true
