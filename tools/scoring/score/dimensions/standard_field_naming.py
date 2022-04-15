@@ -37,25 +37,25 @@ class StandardFieldNaming(Dimension):
 
   def evaluate(self):
     """Calculates and assigns properties necessary for generating a score."""
-    proposed_translations, solution_translations = map(
-        self._condense_translations, (PROPOSED, SOLUTION))
-
     correct_subfields = []
     correct_ceiling: int = 0
     incorrect_subfields = []
 
-    for solution_field, solution_value in solution_translations:
-      solution_subfields = self._split_subfields(solution_field)
-      correct_ceiling += len(solution_subfields)
+    for entity_translations in self.translations.values():
+      for solution_field, solution_value in entity_translations[SOLUTION]:
+        solution_subfields = self._split_subfields(solution_field)
+        correct_ceiling += len(solution_subfields)
 
-      proposed_subfields = set()
+        proposed_subfields = set()
 
-      for proposed_field, proposed_value in proposed_translations:
-        if proposed_value.raw_field_name == solution_value.raw_field_name:
-          proposed_subfields = self._split_subfields(proposed_field)
+        for proposed_field, proposed_value in entity_translations[PROPOSED]:
+          if proposed_value.raw_field_name == solution_value.raw_field_name:
+            proposed_subfields = self._split_subfields(proposed_field)
 
-      correct_subfields += proposed_subfields.intersection(solution_subfields)
-      incorrect_subfields += solution_subfields.difference(proposed_subfields)
+        correct_subfields.extend(
+            proposed_subfields.intersection(solution_subfields))
+        incorrect_subfields.extend(
+            solution_subfields.difference(proposed_subfields))
 
     self.correct_reporting = len(correct_subfields)
     self.correct_ceiling_reporting = correct_ceiling
