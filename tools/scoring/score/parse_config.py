@@ -149,6 +149,8 @@ class ParseConfig:
     for solution_entity in solution_entities.values():
       if solution_entity.cloud_device_id is None:
         continue  # as this is not a reporting device
+      if not Dimension.is_entity_canonical(solution_entity):
+        continue  # as noncanonical entities are skipped
 
       cloud_device_id = solution_entity.cloud_device_id
 
