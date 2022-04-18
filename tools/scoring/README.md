@@ -15,7 +15,7 @@ The application can be run from the command line. It takes three arguments:
 2. `-prop/--proposed` (required): Absolute path for your proposed configuration file (to be scored)
 3. `-sol/--solution` (required): Absolute path for your solution configuration file
 
-Example: `scoring % python3 scorer.py -ont path/to/ontology/yaml/resources -prop path/to/proposed/file.yaml -sol path/to/solution/file.yaml`
+Example: `python3 scorer.py -ont path/to/ontology/yaml/resources -prop path/to/proposed/file.yaml -sol path/to/solution/file.yaml`
 
 ## Interpreting Results
 
