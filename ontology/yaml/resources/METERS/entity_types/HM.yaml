@@ -12,6 +12,19 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+HM_STANDARD:
+  description: "General water-side thermal load heat meter."
+  is_canonical: true
+  implements:
+  - HM
+  uses:
+  - flowrate_sensor
+  - supply_water_temperature_sensor
+  - return_water_temperature_sensor
+  - thermal_power_sensor
+  - thermal_energy_accumulator
+  opt_uses:
+  - water_volume_accumulator
 
 HM_CHW:
   id: "38387936655310848"
