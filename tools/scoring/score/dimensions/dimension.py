@@ -361,7 +361,7 @@ class Dimension:
     return matches_virtual
 
   @staticmethod
-  def _format_score(score: float, *, precision: int = 3) -> str:
+  def _format_score(score: float, *, precision: int = 2) -> str:
     return f'{score:.{precision}f}' if score is not None else score
 
   def __str__(self) -> str:

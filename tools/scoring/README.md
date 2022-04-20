@@ -19,7 +19,7 @@ Example (from the `digitalbuildings` directory): `python3 tools/scoring/scorer.p
 
 ## Interpreting Results
 
-Scores range from `-1.0`, which indicates that all attempts were _incorrect_, to `1.0`, which indicates that all attempts were _correct_. Thus, `0.0` indicates an equal number of correct and incorrect attempts. In the future, the output schema is likely to be expanded to provide greater context for each score.
+Scores range from `-1.00`, which indicates that all attempts were _incorrect_, to `1.00`, which indicates that all attempts were _correct_. Thus, `0.00` indicates an equal number of correct and incorrect attempts. In the future, the output schema is likely to be expanded to provide greater context for each score.
 
 For a general description of each dimension, please refer to their respective docstrings. The [DBO documentation](https://github.com/google/digitalbuildings/blob/master/ontology/README.md) is extremely helpful for understanding the concepts employed (which this tool attempts to quantify).
 
