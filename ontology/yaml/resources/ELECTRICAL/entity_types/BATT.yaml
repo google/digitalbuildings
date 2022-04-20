@@ -12,12 +12,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-BATT_GEN:
-  description: "Generic battery."
+BATT_STD:
+  description: "Standard battery."
   implements:
   - BATT
   uses:
   - voltage_sensor
   - current_sensor
+  opt_uses:
   - remaining_charge_time_sensor
   - local_air_temperature_sensor
