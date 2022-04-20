@@ -166,7 +166,7 @@ class DimensionTest(absltest.TestCase):
   def testStr(self):
     self.assertEqual(
         self.dimension.__str__(),
-        '{result_all: 0.0, result_virtual: 0.0, result_reporting: 0.0}')
+        '{result_all: 0.00, result_virtual: 0.00, result_reporting: 0.00}')
 
 
 if __name__ == '__main__':

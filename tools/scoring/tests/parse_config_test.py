@@ -64,12 +64,13 @@ class ParseConfigTest(absltest.TestCase):
     deserialized_files_appended = self.parse.append_types(
         universe=self.parse.universe,
         deserialized_files=self.parse.deserialized_files)
-    self.assertEqual(mock_print.call_count, 4)
+    self.assertEqual(mock_print.call_count, 5)
     calls = [
-        call(f'{PROPOSED} translations absent: 0 (from 0 links)'),
-        call(f'{PROPOSED} types absent: 0 (0 instances)'),
-        call(f'{SOLUTION} translations absent: 0 (from 0 links)'),
-        call(f'{SOLUTION} types absent: 0 (0 instances)')
+        call('Scoring — appending entity types'),
+        call(f'    {PROPOSED} translations absent: 0 (from 0 links)'),
+        call(f'    {PROPOSED} types absent: 0 (0 instances)'),
+        call(f'    {SOLUTION} translations absent: 0 (from 0 links)'),
+        call(f'    {SOLUTION} types absent: 0 (0 instances)')
     ]
     mock_print.assert_has_calls(calls)
     self.assertTrue(
