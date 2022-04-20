@@ -202,7 +202,6 @@ class ParseConfig:
     results = {}
 
     for dimension in dimensions:
-      print(f'Scoring — calculating {dimension.__name__}')
       # Invoke the functions and append the dictionary with their return values
       if dimension.category == SIMPLE:
         evaluated = dimension(translations=translations).evaluate()

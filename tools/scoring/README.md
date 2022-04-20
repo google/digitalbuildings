@@ -13,7 +13,7 @@ To install the dependencies, please run the `python3 setup.py install` from the 
 The application can be run from the command line. It takes three arguments:
 1. `-prop/--proposed` (required): Absolute path for your proposed configuration file (to be scored)
 2. `-sol/--solution` (required): Absolute path for your solution configuration file
-3. `-ont/--ontology` (optional): Absolute path for the directory which contains your ontology. Defaults to `ontology/yaml/resources`
+3. `-m/--modified-types-filepath` (optional): Absolute path for the directory which contains your ontology. Defaults to `ontology/yaml/resources`
 
 Example (from the `digitalbuildings` directory): `python3 tools/scoring/scorer.py -prop path/to/proposed/file.yaml -sol path/to/solution/file.yaml`
 

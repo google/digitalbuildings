@@ -29,8 +29,8 @@ class CliTest(absltest.TestCase):
 
   def testVerboseInputArgsExist(self):
     parsed = self.cli.parse_args([
-        '--ontology', 'path/to/ontology/yaml/resources', '--solution',
-        'path/to/solution/file.yaml', '--proposed',
+        '--modified-ontology-types', 'path/to/ontology/yaml/resources',
+        '--solution', 'path/to/solution/file.yaml', '--proposed',
         'path/to/proposed/file.yaml', '--verbose', 'True'
     ])
     self.assertEqual(parsed.ontology, 'path/to/ontology/yaml/resources')
@@ -40,7 +40,7 @@ class CliTest(absltest.TestCase):
 
   def testConciseInputArgsExist(self):
     parsed = self.cli.parse_args([
-        '-ont', 'path/to/ontology/yaml/resources', '-sol',
+        '-m', 'path/to/ontology/yaml/resources', '-sol',
         'path/to/solution/file.yaml', '-prop', 'path/to/proposed/file.yaml',
         '-v', 'True'
     ])
