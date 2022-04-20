@@ -22,8 +22,6 @@ from collections import defaultdict
 class _VirtualEntityMatch(NamedTuple):
   """Reference for metrics by which subscores were
   calculated to find the closest corellating virtual entities."""
-  # TODO:
-  # https://trello.com/c/MBAeYiwI/31-pare-down-virtualentitymatch-attributes-following-implementation-of-entity-type-id
   correct: int
   correct_ceiling: int
   incorrect: int

@@ -48,8 +48,6 @@ class EntityConnectionIdentification(Dimension):
         for target, connection in connections
     ])
 
-  # TODO: Figure out how to elegantly implement "facilities"
-  # and "equipment" categories given current object model
   def evaluate(self):
     """Calculate and assign properties necessary for generating a score."""
 

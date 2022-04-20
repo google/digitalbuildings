@@ -208,7 +208,6 @@ class ParseConfig:
       results[dimension.__name__] = evaluated
     return results
 
-  # TODO: standardize signatures; make dimensions into const; test
   def execute(self) -> Dict[DimensionName, str]:
     """
       Wrapper for all functionality herein.
