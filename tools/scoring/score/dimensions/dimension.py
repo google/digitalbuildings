@@ -362,8 +362,12 @@ class Dimension:
 
     return matches_virtual
 
+  @staticmethod
+  def _round_score(score: float, *, digits: int = 3) -> float:
+    return round(score, digits) if score is not None else score
+
   def __str__(self) -> str:
     """Human-readable representation of the calculated properties."""
-    return (
-        f'{{result_all: {self.result_all}, result_virtual: '
-        f'{self.result_virtual}, result_reporting: {self.result_reporting}}}')
+    return (f'{{result_all: {self._round_score(self.result_all)}, '
+            f'result_virtual: {self._round_score(self.result_virtual)}, '
+            f'result_reporting: {self._round_score(self.result_reporting)}}}')
