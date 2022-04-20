@@ -25,10 +25,11 @@ def parse_args() -> argparse.ArgumentParser:
   parser = argparse.ArgumentParser(description='Score a configuration')
 
   parser.add_argument(
-      '-ont',
-      '--ontology',
+      '-m',
+      '--modified-ontology-types',
       dest='ontology',
-      required=True,
+      required=False,
+      default='ontology/yaml/resources',
       help='Absolute path for the directory which contains your ontology',
       metavar='ontology')
 
