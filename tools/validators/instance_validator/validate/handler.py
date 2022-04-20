@@ -107,7 +107,7 @@ def _GetFilepathsFromDir(root_dir):
   file_paths = []
   for root, _, files in os.walk(root_dir, topdown=False):
     for name in files:
-      if '.yaml' in name:
+      if name.endswith('.yaml'):
         file_paths.append(os.path.join(root,name))
   return file_paths
 
@@ -143,25 +143,15 @@ def RunValidation(filenames: List[str],
     # Check if the filenames are in fact directories.
     # If they are not directories, but are instead yaml files,
     # append them to the list.
-    unpacked_files = []
+    unpacked_files = set()
     for file in filenames:
       if os.path.isdir(file):
-        unpacked_files.extend(_GetFilepathsFromDir(file))
+        unpacked_files.update(_GetFilepathsFromDir(file))
       else:
-        unpacked_files.append(file)
+        unpacked_files.add(file)
 
-    # Because we are recursively walking the tree, we need to check
-    # that they didnt accidentally pass in a directory that contains
-    # a subdirectory they also passed. This will lead to stupid and
-    # unhelpful key errors if left unchecked. Best to do that here
-    # and save the troubleshooting headache. We could just deduplicate
-    # but this is probably the safer route to go.
-    for elem in unpacked_files:
-      if unpacked_files.count(elem) > 1:
-        raise ValueError(f'The file {elem} was passed in multiple '\
-          'times. Be sure you are including mutually exclusive '\
-          'directories (i.e. don\'t pass in a child and parent ' \
-          'directory); otherwise you will break everything.')
+    # Get rid of duplicate files if parent-child directories were passed.
+    unpacked_files = list(unpacked_files)
 
     # Validate the entities from the final set of unpacked files.
     entities = _ValidateConfig(unpacked_files, universe)

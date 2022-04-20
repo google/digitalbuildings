@@ -25,7 +25,7 @@ To validate multiple input files at the same time, you can provide the `--input`
 You may also validate a directory, multiple directories, or any combination of directories and files using the `--input` flag. For example, the following is valid: 
 `python instance_validator.py --input path/to/a/directory --input path/to/another/directory --input path/to/a/specific/file.yaml`
 
-Note, however, that the directories must be mutually exclusive. Do not pass in a directory and one of its sub-directories, otherwise you will get an error. 
+Note: nested directories are allowed, but will be deduplicated by the parser (e.g. `path/dir` and `path/dir/subdir` can both be passed, and when walking the tree it will deduplicate for you). 
 
 If the optional `--report-filename` parameter is provided, the validation results will be written to this report file. Otherwise, the results will be written to stdout.
 
