@@ -49,60 +49,48 @@ class CliTest(absltest.TestCase):
     self.assertEqual(parsed.proposed, 'path/to/proposed/file.yaml')
     self.assertTrue(parsed.verbose)
 
-  def testOntologyArgIsRequired(self):
-    with self.assertRaises(SystemExit):
-      self.cli.parse_args([
-          '--solution', 'path/to/solution/file.yaml', '--proposed',
-          'path/to/proposed/file.yaml', '--verbose', 'True'
-      ])
-
   def testSolutionArgIsRequired(self):
     with self.assertRaises(SystemExit):
-      self.cli.parse_args([
-          '--ontology', 'path/to/ontology/yaml/resources', '--proposed',
-          'path/to/proposed/file.yaml', '--verbose', 'True'
-      ])
+      self.cli.parse_args(['--proposed', 'path/to/proposed/file.yaml'])
 
   def testProposedArgIsRequired(self):
     with self.assertRaises(SystemExit):
-      self.cli.parse_args([
-          '--ontology', 'path/to/ontology/yaml/resources', '--solution',
-          'path/to/solution/file.yaml', '--verbose', 'True'
-      ])
+      self.cli.parse_args(['--solution', 'path/to/solution/file.yaml'])
+
+  def testOntologyArgDefaultsPath(self):
+    parsed = self.cli.parse_args([
+        '--solution', 'path/to/solution/file.yaml', '--proposed',
+        'path/to/proposed/file.yaml'
+    ])
+    self.assertEqual(parsed.ontology, 'ontology/yaml/resources')
 
   def testVerboseArgIsTrue(self):
     parsed = self.cli.parse_args([
-        '--ontology', 'path/to/ontology/yaml/resources', '--solution',
-        'path/to/solution/file.yaml', '--proposed',
+        '--solution', 'path/to/solution/file.yaml', '--proposed',
         'path/to/proposed/file.yaml', '--verbose', 'True'
     ])
     self.assertTrue(parsed.verbose)
 
     parsed = self.cli.parse_args([
-        '--ontology', 'path/to/ontology/yaml/resources', '--solution',
-        'path/to/solution/file.yaml', '--proposed',
+        '--solution', 'path/to/solution/file.yaml', '--proposed',
         'path/to/proposed/file.yaml', '--verbose', 'true'
     ])
     self.assertTrue(parsed.verbose)
 
     parsed = self.cli.parse_args([
-        '--ontology', 'path/to/ontology/yaml/resources', '--solution',
-        'path/to/solution/file.yaml', '--proposed',
+        '--solution', 'path/to/solution/file.yaml', '--proposed',
         'path/to/proposed/file.yaml', '--verbose', 'yes'
     ])
     self.assertTrue(parsed.verbose)
 
     parsed = self.cli.parse_args([
-        '--ontology', 'path/to/ontology/yaml/resources', '--solution',
-        'path/to/solution/file.yaml', '--proposed',
+        '--solution', 'path/to/solution/file.yaml', '--proposed',
         'path/to/proposed/file.yaml', '--verbose', '1'
     ])
     self.assertTrue(parsed.verbose)
 
   def testVerboseArgDefaultsFalse(self):
     parsed = self.cli.parse_args([
-        '--ontology',
-        'path/to/ontology/yaml/resources',
         '--solution',
         'path/to/solution/file.yaml',
         '--proposed',

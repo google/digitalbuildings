@@ -28,7 +28,8 @@ def parse_args() -> argparse.ArgumentParser:
       '-ont',
       '--ontology',
       dest='ontology',
-      required=True,
+      required=False,
+      default='ontology/yaml/resources',
       help='Absolute path for the directory which contains your ontology',
       metavar='ontology')
 
