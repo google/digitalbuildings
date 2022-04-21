@@ -42,7 +42,7 @@ There are presently some limitations to consider when interpreting scores:
 
 - `None` scores
 
-  It is possible to receive a score of `None` if the application does not identify any relevant solution entities for that entity type and dimension (either by design or as a consequence of the inputs).
+  It is possible to receive a score of `None` if the application does not identify any relevant solution entities for that entity category and dimension (either by design or as a consequence of the inputs).
 
 - Precision
 
