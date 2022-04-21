@@ -1094,6 +1094,9 @@ literals:
 - return_air_specificenthalpy_sensor
 - compressor_current_sensor
 
-
+## New fields for steam/water heat exchanger
+- supply_steam_static_pressure_sensor
+- supply_steam_static_pressure_setpoint
+- steam_valve_percentage_command
 
 

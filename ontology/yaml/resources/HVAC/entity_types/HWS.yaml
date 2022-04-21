@@ -250,6 +250,13 @@ HWS_SWTC_WDPC_BYPVPM_HWVM:
   - BYPVPM
   - HWVM
 
+HWS_SWTM:
+  description: "Heating water system with supply temperature monitoring"
+  is_canonical: true
+  implements:
+  - HWS
+  - SWTM
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################

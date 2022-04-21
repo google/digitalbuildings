@@ -124,3 +124,11 @@ HX_VSC_SSPC_SFM_STM_RTM_OA:
   - STM
   - RTM
   - OA
+
+HX_HWSWC_SSSPC:
+  description: "Steam/water heat exchanger with supply temperature control and supply steam pressure control."
+  is_canonical: true
+  implements:
+  - HX
+  - HWSWC
+  - SSSPC
