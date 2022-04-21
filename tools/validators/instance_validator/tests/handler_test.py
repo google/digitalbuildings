@@ -109,14 +109,6 @@ class HandlerTest(absltest.TestCase):
     except SyntaxError:
       self.fail('ValidationHelper:Validate unexpectedly raised Exception')
 
-  def testDirectoryWalkerDupeFilesFail(self):
-    """ Check that the directory walker fails when the same file is
-    passed to it multiple times. """
-    with self.assertRaises(ValueError):
-      dir1 = os.path.join(_TESTCASE_DIR,'fakedir')
-      dir2 = os.path.join(_TESTCASE_DIR,'fakedir','fans')
-      _RunValidation([dir1,dir2], use_simplified_universe=True)
-
   def testValidateTranslationWithNoConfigID(self):
     try:
       input_file = os.path.join(_TESTCASE_PATH, 'GOOD',
