@@ -1094,6 +1094,12 @@ literals:
 - return_air_specificenthalpy_sensor
 - compressor_current_sensor
 
+## Water Level status
+- water_level_status:
+	- HIGH
+	- MEDIUM
+	- LOW
+
 
 
 
