@@ -58,7 +58,9 @@ class ParseConfig:
         PROPOSED: proposed,
         'verbose': verbose
     }
+    print('Scoring — building universe')
     self.universe = BuildUniverse(modified_types_filepath=ontology)
+    print('Scoring — deserializing files')
     self.deserialized_files = {
         PROPOSED: validator.Deserialize([proposed])[0],
         SOLUTION: validator.Deserialize([solution])[0]
@@ -82,6 +84,7 @@ class ParseConfig:
         The deserialized files dictionary with types
         appended to each entity in the respective files.
     """
+    print('Scoring — appending entity types')
     for file_type, file in deserialized_files.items():
       translations_absent = []
       types_absent = []
@@ -114,11 +117,11 @@ class ParseConfig:
                     translations_absent.append(
                         f'{link.source}.translation.{source_field}')
 
-      print(f'{file_type} translations absent: ' +
+      print(f'    {file_type} translations absent: ' +
             f'{len(set(translations_absent))} ' +
             f'(from {len(translations_absent)} links)')
 
-      print(f'{file_type} types absent: {len(set(types_absent))} ' +
+      print(f'    {file_type} types absent: {len(set(types_absent))} ' +
             f'({len(types_absent)} instances)')
 
     return deserialized_files
@@ -208,7 +211,6 @@ class ParseConfig:
       results[dimension.__name__] = evaluated
     return results
 
-  # TODO: standardize signatures; make dimensions into const; test
   def execute(self) -> Dict[DimensionName, str]:
     """
       Wrapper for all functionality herein.

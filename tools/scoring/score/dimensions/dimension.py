@@ -22,8 +22,6 @@ from collections import defaultdict
 class _VirtualEntityMatch(NamedTuple):
   """Reference for metrics by which subscores were
   calculated to find the closest corellating virtual entities."""
-  # TODO:
-  # https://trello.com/c/MBAeYiwI/31-pare-down-virtualentitymatch-attributes-following-implementation-of-entity-type-id
   correct: int
   correct_ceiling: int
   incorrect: int
@@ -362,8 +360,12 @@ class Dimension:
 
     return matches_virtual
 
+  @staticmethod
+  def _format_score(score: float, *, precision: int = 2) -> str:
+    return f'{score:.{precision}f}' if score is not None else score
+
   def __str__(self) -> str:
     """Human-readable representation of the calculated properties."""
-    return (
-        f'{{result_all: {self.result_all}, result_virtual: '
-        f'{self.result_virtual}, result_reporting: {self.result_reporting}}}')
+    return (f'{{result_all: {self._format_score(self.result_all)}, '
+            f'result_virtual: {self._format_score(self.result_virtual)}, '
+            f'result_reporting: {self._format_score(self.result_reporting)}}}')
