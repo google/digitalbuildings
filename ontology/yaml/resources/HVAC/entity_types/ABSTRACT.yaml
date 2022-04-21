@@ -4417,9 +4417,8 @@ HWDDC:
   implements:
   - CONTROL
 
-# New abstracts for MFA BV100 HVAC
 CFDPM:
-  description: "Carbon filter pressure monitoring."
+  description: "Carbon filter pressure monitoring, where specific filter type is required."
   is_abstract: true
   uses:
   - carbon_filter_differential_pressure_sensor
@@ -4427,7 +4426,7 @@ CFDPM:
   - MONITORING
  
 VOADM2X:
-  description: "Variable outside air damper monitoring."
+  description: "Variable outside air damper monitoring, where there are two separate, equal sets of dampers that operate in conjunction."
   is_abstract: true
   opt_uses:
   - economizer_mode
@@ -4456,9 +4455,8 @@ EHHRC:
   - MONITORING
  
 DPBHCC:
-  description: "Two-pipe binary (open/closed) heating and cooling control. Has a single control valve
-  that is fed by two separate headers for heating and cooling water. There is an isolation valve for
-  each incoming system and a single control valve. Valve and mode control to zone temperature 
+  description: "Two-pipe binary (open/closed) heating and cooling control. There is
+  an isolation valve for each incoming system. Valve and mode control to zone temperature
   (heating/cooling setpoint configuration)."
   is_abstract: true
   opt_uses:
@@ -4477,7 +4475,7 @@ DPBHCC:
   - CONTROL
  
 FTC:
-  description: "Floor temperature control"
+  description: "Floor temperature control, where the temperature sensors are embedded in the floor (as opposed to open to the air)."
   is_abstract: true
   uses:
   - zone_floor_temperature_sensor
@@ -4509,7 +4507,6 @@ DPCHWHRWSC:
   implements:
   - CONTROL
 
-# New abstracts for MFA BV100 DHW
 CPVSC2X:
   description: "Circulation pump variable speed control with 2 circulation pumps."
   is_abstract: true

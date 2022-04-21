@@ -1079,7 +1079,6 @@ literals:
 - zone_air_no2_probability_percentage_sensor
 - zone_air_no2_ozone_concentration_sensor
 
-# New fields for MFA BV100 HVAC
 - heat_recovery_water_isolation_valve_command:
   - OPEN
   - CLOSED
@@ -1111,7 +1110,6 @@ literals:
 - heat_recovery_supply_water_temperature_sensor
 - heat_recovery_return_water_temperature_sensor
 
-# New fields for MFA BV100 DWST
 - hot_water_tank_temperature_sensor
 - hot_water_tank_temperature_setpoint
 - preheating_water_tank_temperature_sensor
