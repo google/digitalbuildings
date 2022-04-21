@@ -174,7 +174,7 @@ class OntologyWrapper(object):
                    entity_type: EntityType) -> Match:
     """Creates an instance of Match class.
 
-    calls _CalculateMatchWeight() on field_list and the set of fields belonging
+    calls _CalculateMatchScore() on field_list and the set of fields belonging
     to entity_type. The scoring function outputs aan integer in [0, 100]
     signifying the closeness of the match, and an instance of the Match class is
     created with field_list, entity_type, and match_score as arguments.
@@ -276,7 +276,11 @@ class OntologyWrapper(object):
 
     only_concrete = concrete_field_set.difference(standard_canonical_field_set)
     for field in only_concrete:
-      final_matrix.append([str(field), '', ''])
+      if not self.IsFieldValid(field):
+        final_matrix.append(
+            [colored(str(field) + ' (undefined)', 'red'), '', ''])
+      else:
+        final_matrix.append([str(field), '', ''])
 
     intersection = standard_canonical_field_set.intersection(concrete_field_set)
     for field in intersection:
@@ -326,12 +330,10 @@ class OntologyWrapper(object):
         field.ljust(col_width) for field in ['='*(col_width-padding)]*3)
     return_string += '\n'
     for row in final_matrix:
-      if not row[2]:
+      if row[2] is False:
         row[2] = 'Required'
-      elif row[2]:
+      elif row[2] is True:
         row[2] = 'Optional'
-      elif not row[2]:
-        continue
       if row[0] and row[1]:
         return_string += ''.join(
             colored(field.ljust(col_width), 'green') for field in row)

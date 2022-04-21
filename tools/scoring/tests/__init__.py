@@ -1,4 +1,4 @@
-""" Enable import """
+"""Enable import."""
 
 from os import path
 import sys

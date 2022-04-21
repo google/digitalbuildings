@@ -11,17 +11,28 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-"""Setup file for Digital Buildings Toolkit."""
+"""Tests for States class."""
 
-from setuptools import find_packages
-from setuptools import setup
+from absl.testing import absltest
 
-setup(
-    name='digital-buildings-toolkit',
-    version='0.0.1',
-    url='https://github.com/google/digitalbuildings',
-    license='Apache License',
-    author='Travis Welch',
-    packages=find_packages(),
-    python_requires='==3.7',
-)
+from model.states import States
+
+
+class StatesTest(absltest.TestCase):
+
+  def setUp(self):
+    """Set up for StatesTest."""
+    super().setUp()
+    self.test_state_map = {
+        'OPEN': ['1'],
+    }
+    self.multistate = States(self.test_state_map)
+
+  def testAddState(self):
+    self.multistate.AddState(standard_state='CLOSED', raw_states=['2', '3'])
+
+    self.assertEqual(
+        self.multistate.standard_to_raw_state_map['CLOSED'], ['2', '3'])
+
+if __name__ == '__main__':
+  absltest.main()

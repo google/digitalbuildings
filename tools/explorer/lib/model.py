@@ -13,11 +13,13 @@
 # limitations under the License.
 
 """Helper Field model classes for Ontology explorer."""
-from typing import List
+from typing import List, Optional
+import re
 
 from yamlformat.validator.entity_type_lib import EntityType
-from yamlformat.validator.field_lib import FIELD_CHARACTER_REGEX
-from yamlformat.validator.field_lib import FIELD_INCREMENT_REGEX
+
+FQ_FIELD_NAME = re.compile(
+    r'(^[a-z]+[a-z0-9]*(?:_[a-z]+[a-z0-9]*)*)((?:_[0-9]+)+)?$')
 
 
 class StandardField(object):
@@ -27,34 +29,43 @@ class StandardField(object):
         namespace_name: a field's defined namespace as a string.
         standard_field_name: the un-incremented name of the field as a string.
           must be lower-case and properly formatted.
+        increment: [Optional] a field's enumerated value suffixed onto the
+          field name.
     Attributes:
         namespace: the name of the namespace as a string
         name: the field name as a string.
+        increment: a field's enumerated value suffixed onto the field name.
     returns: An instance of the StandardField class.
   """
 
-  def __init__(self, namespace_name: str, standard_field_name: str):
+  def __init__(self,
+               namespace_name: str,
+               standard_field_name: str,
+               increment: Optional[str] = ''):
     super().__init__()
-    if not FIELD_CHARACTER_REGEX.match(standard_field_name):
+    if not FQ_FIELD_NAME.match(standard_field_name + increment):
       raise ValueError(
-          f'{namespace_name}/{standard_field_name} is incorrectly formatted')
+          f'{namespace_name}/{standard_field_name}{increment} format error')
+
     else:
       self._namespace = namespace_name
     self._name = standard_field_name
+    self._increment = increment
 
   def __hash__(self):
-    return hash((self._namespace, self._name))
+    return hash((self._namespace, self._name, self._increment))
 
   def __eq__(self, other):
     try:
       namespace_eq = self._namespace == other.GetNamespaceName()
       name_eq = self._name == other.GetStandardFieldName()
-      return name_eq and namespace_eq
+      increment_eq = self._increment == other.GetIncrement()
+      return name_eq and namespace_eq and increment_eq
     except AttributeError as ae:
       print(ae)
 
   def __str__(self):
-    return f'{self._namespace}/{self._name}'
+    return f'{self._namespace}/{self._name}{self._increment}'
 
   def GetNamespaceName(self) -> str:
     """Returns namespace variable as a string."""
@@ -66,6 +77,10 @@ class StandardField(object):
     without any increment as a string
     """
     return self._name
+
+  def GetIncrement(self) -> str:
+    """Returns the EntityType Field's increment as a string."""
+    return self._increment
 
 
 class EntityTypeField(StandardField):
@@ -86,13 +101,8 @@ class EntityTypeField(StandardField):
                namespace_name: str,
                standard_field_name: str,
                is_optional: bool,
-               increment: str = ''):
-    super().__init__(namespace_name, standard_field_name)
-    if not FIELD_INCREMENT_REGEX.match(increment):
-      raise ValueError(
-          f'Incremement of {namespace_name}/{standard_field_name}{increment} ' +
-          'is unproperly formatted')
-    self._increment = increment
+               increment: Optional[str] = ''):
+    super().__init__(namespace_name, standard_field_name, increment)
     self._is_optional = is_optional
 
   def __hash__(self):
@@ -107,18 +117,13 @@ class EntityTypeField(StandardField):
           '{str(other)} and {str(self)} must be EntityTypeField objects')
     else:
       standard_eq = super().__eq__(other)
-      increment_eq = self._increment == other.GetIncrement()
       optional_eq = self._is_optional == other.IsOptional()
-      return standard_eq and increment_eq and optional_eq
+      return standard_eq and optional_eq
 
   def __str__(self):
     standard_str = super().__str__()
     optionality = 'optional' if self._is_optional else 'required'
-    return f'{standard_str}_{self._increment}: {optionality}'
-
-  def GetIncrement(self) -> str:
-    """Returns the EntityType Field's increment as a string."""
-    return self._increment
+    return f'{standard_str}: {optionality}'
 
   def IsOptional(self) -> bool:
     """Returns the optionality of the field as a boolean."""
@@ -178,4 +183,6 @@ class Match(object):
 
 
 def StandardizeField(field: EntityTypeField) -> StandardField:
-  return StandardField(field.GetNamespaceName(), field.GetStandardFieldName())
+  return StandardField(field.GetNamespaceName(),
+                       field.GetStandardFieldName(),
+                       field.GetIncrement())

@@ -11,22 +11,23 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-""" Constants for the configuration scoring tool """
+"""Constants for the configuration scoring tool."""
 
 from enum import Enum
 
 
 class FileTypes(str, Enum):
-  # The file which is being scored
+  """The file which is being scored."""
   PROPOSED = 'proposed'
-  # The file which is being compared against
+  """The file which is being compared against."""
   SOLUTION = 'solution'
 
 
 class DimensionCategories(str, Enum):
-  # Receives `translations` and scores
-  # only reporting entities in bulk
+  """Dimensions in this category receive `translations`
+  and score only reporting entities in bulk."""
   SIMPLE = 'simple'
-  # Receives `deserialized_files` to build a multi-map
-  # of virtual entities prior to calculating scores
+  """Dimensions in this category receive `deserialized_files`
+  to typically build a multi-map of virtual entities prior to
+  calculating scores."""
   COMPLEX = 'complex'
