@@ -24,10 +24,8 @@ PROPOSED, SOLUTION = FileTypes
 
 
 class EntityTypeIdentification(Dimension):
-  """
-  Quantifies whether the proposed file
-  assigned the correct DBO type to each entity.
-  """
+  """Quantifies whether the proposed file
+  assigned the correct type to each entity."""
 
   # COMPLEX category indicates this dimension receives `deserialized_files`
   # rather than `translations` to do its calculations

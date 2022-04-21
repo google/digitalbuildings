@@ -1,6 +1,11 @@
 # Scoring
 
-The scoring tool evaluates _proposed_ configuration files against "known good" _solution_ files. It uses an F-score algorithm to provide floating-point representations of how closely the files compare along various _dimensions_.
+The scoring tool evaluates _proposed_ configuration files against "known good" _solution_ files. It uses an F-score algorithm to provide floating-point representations of how closely the files compare along various (_dimensions_)[#Dimensions]. Broadly, its process is thus:
+
+- Filter out irrelevant entities (e.g. those which have a noncanonical type)
+- Isolate the relevant attribute(s) of each entity and reduce them to sets (e.g. _connections_)
+- Count the `intersection` and `difference` between the respective _proposed_ and _solution_ sets
+- Input these figures to the aforementioned scoring algorithm to produce a singular numeric score
 
 ## Install
 To install the dependencies, please run the `python3 setup.py install` from the following directories, in order:
@@ -21,7 +26,7 @@ Example (from the `digitalbuildings` directory): `python3 tools/scoring/scorer.p
 
 Scores range from `-1.00`, which indicates that all attempts were _incorrect_, to `1.00`, which indicates that all attempts were _correct_. Thus, `0.00` indicates an equal number of correct and incorrect attempts. In the future, the output schema is likely to be expanded to provide greater context for each score.
 
-For a general description of each dimension, please refer to their respective docstrings. The [DBO documentation](https://github.com/google/digitalbuildings/blob/master/ontology/README.md) is extremely helpful for understanding the concepts employed (which this tool attempts to quantify).
+For a description of each dimension, please see (Dimensions)[#Dimensions]. The [DBO documentation](https://github.com/google/digitalbuildings/blob/master/ontology/README.md) is extremely helpful for understanding the concepts employed (which this tool attempts to quantify).
 
 ### Caveats
 
@@ -42,3 +47,37 @@ There are presently some limitations to consider when interpreting scores:
 - Precision
 
   The virtual-entity matching algorithm used by the "entity type identification" and "entity point identification" dimensions is not presently deterministic, which infrequently results in scores with small variances.
+
+## Dimensions
+
+### Entity Connection Identification
+
+Quantifies whether [connections](https://github.com/google/digitalbuildings/blob/master/ontology/docs/ontology_config.md#connections) between [entities](https://github.com/google/digitalbuildings/blob/master/ontology/docs/ontology.md#overview) were correctly and completely defined in the proposed file. **This considers all entities.**
+
+### Entity Identification
+
+Quantifies whether the correct [entities](https://github.com/google/digitalbuildings/blob/master/ontology/docs/ontology.md#overview) were included in the proposed file. **This considers only canonically typed entities.**
+
+### Entity Point Identification
+
+Quantifies whether the proposed file included the correct [points](https://github.com/google/digitalbuildings/blob/master/ontology/docs/building_config.md#defining-translations) in each entity. **This considers only canonically typed entities.**
+
+### Entity Type Identification
+
+Quantifies whether the proposed file assigned the correct [type](https://github.com/google/digitalbuildings/blob/master/ontology/docs/ontology_config.md#entitytypes) to each entity. **This considers only canonically typed entities.**
+
+### Raw Field Selection
+
+Quantifies whether the correct [raw fields](https://github.com/google/digitalbuildings/blob/master/ontology/docs/building_config.md#defining-translations) were selected in the proposed file. **This considers only canonically typed reporting entities.**
+
+### Standard Field Naming
+
+Quantifies whether the correct [standard field names](https://github.com/google/digitalbuildings/blob/master/ontology/docs/building_config.md#defining-translations) were selected in the proposed file. **This considers only canonically typed reporting entities.**
+
+### State Mapping
+
+Quantifies how accurately the proposed file mapped [multi-state values](https://github.com/google/digitalbuildings/blob/master/ontology/docs/ontology.md#multi-state-values) for relevant fields. **This considers only canonically typed reporting entities.**
+
+### Unit Mapping
+
+Quantifies how accurately the proposed file mapped [dimensional units](https://github.com/google/digitalbuildings/blob/master/ontology/docs/ontology.md#dimensional-units) for relevant fields. **This considers only canonically typed reporting entities.**
