@@ -1,11 +1,11 @@
 # Scoring
 
-The scoring tool evaluates _proposed_ configuration files against "known good" _solution_ files. It uses an F-score algorithm to provide floating-point representations of how closely the files compare along various (_dimensions_)[#Dimensions]. Broadly, its process is thus:
+The scoring tool evaluates _proposed_ configuration files against "known good" _solution_ files. It uses an F-score algorithm to provide floating-point representations of how closely the files compare along various (_dimensions_)[#dimensions]. Broadly, its process is thus:
 
-- Filter out irrelevant entities (e.g. those which have a noncanonical type)
-- Isolate the relevant attribute(s) of each entity and reduce them to sets (e.g. _connections_)
-- Count the `intersection` and `difference` between the respective _proposed_ and _solution_ sets
-- Input these figures to the aforementioned scoring algorithm to produce a singular numeric score
+1. Filter out irrelevant entities (e.g. those which have a noncanonical type)
+2. Isolate the relevant attribute(s) of each entity and reduce them to sets (e.g. _connections_)
+3. Count the `intersection` and `difference` between the respective _proposed_ and _solution_ sets
+4. Input these figures to the aforementioned scoring algorithm to produce a singular numeric score
 
 ## Install
 To install the dependencies, please run the `python3 setup.py install` from the following directories, in order:
@@ -26,7 +26,7 @@ Example (from the `digitalbuildings` directory): `python3 tools/scoring/scorer.p
 
 Scores range from `-1.00`, which indicates that all attempts were _incorrect_, to `1.00`, which indicates that all attempts were _correct_. Thus, `0.00` indicates an equal number of correct and incorrect attempts. In the future, the output schema is likely to be expanded to provide greater context for each score.
 
-For a description of each dimension, please see (Dimensions)[#Dimensions]. The [DBO documentation](https://github.com/google/digitalbuildings/blob/master/ontology/README.md) is extremely helpful for understanding the concepts employed (which this tool attempts to quantify).
+For a description of each dimension, please see (Dimensions)[#dimensions]. The [DBO documentation](https://github.com/google/digitalbuildings/blob/master/ontology/README.md) is extremely helpful for understanding the concepts employed (which this tool attempts to quantify).
 
 ### Caveats
 
