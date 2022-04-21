@@ -105,4 +105,3 @@ class Entity(object):
     Args:
       guid: [Optional] A UUID string.
     """
-

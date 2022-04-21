@@ -65,6 +65,7 @@ class HandlerTest(absltest.TestCase):
       self.fail('ValidationHelper:Validate raised ExceptionType unexpectedly!')
 
   def testValidateReportFileNotEmpty(self):
+    report_fd, report_filename = '', ''
     try:
       report_fd, report_filename = tempfile.mkstemp(text=True)
       input_file = os.path.join(_TESTCASE_PATH, 'GOOD',
