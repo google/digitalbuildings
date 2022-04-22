@@ -1079,6 +1079,43 @@ literals:
 - zone_air_no2_probability_percentage_sensor
 - zone_air_no2_ozone_concentration_sensor
 
+- heat_recovery_water_isolation_valve_command:
+  - OPEN
+  - CLOSED
+- heat_recovery_return_water_isolation_valve_command:
+  - OPEN
+  - CLOSED
+- heat_recovery_return_water_isolation_valve_status:
+  - OPEN
+  - CLOSED
+- heat_recovery_supply_water_isolation_valve_command:
+  - OPEN
+  - CLOSED
+- heat_recovery_supply_water_isolation_valve_status:
+  - OPEN
+  - CLOSED
+- heat_recovery_run_command:
+  - ON
+  - OFF
+- exhaust_air_differential_pressure_sensor
+- leaving_heat_recovery_coil_temperature_sensor
+- zone_floor_temperature_sensor
+- zone_floor_temperature_setpoint
+- entering_heat_recovery_coil_temperature_sensor
+- carbon_filter_differential_pressure_sensor
+- heating_supply_water_isolation_valve_status:
+  - OPEN
+  - CLOSED
+- leaving_coil_temperature_sensor
+- heat_recovery_supply_water_temperature_sensor
+- heat_recovery_return_water_temperature_sensor
+
+- hot_water_tank_temperature_sensor
+- hot_water_tank_temperature_setpoint
+- preheating_water_tank_temperature_sensor
+- preheating_water_tank_temperature_setpoint
+- potable_hot_leaving_water_temperature_sensor
+- potable_hot_leaving_water_temperature_setpoint
 
 ## Refrigerant monitoring fields for AHUs
 - condensing_fan_current_sensor
@@ -1093,7 +1130,6 @@ literals:
 - refrigerant_suction_superheat_temperature_sensor
 - return_air_specificenthalpy_sensor
 - compressor_current_sensor
-
 
 
 
