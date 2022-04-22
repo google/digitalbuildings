@@ -37,22 +37,18 @@ class RawFieldSelection(Dimension):
   def evaluate(self):
     """Calculates and assigns properties necessary for generating a score."""
 
-    proposed_condensed, solution_condensed = map(self._condense_translations,
-                                                 (PROPOSED, SOLUTION))
-
-    # Account for empty list
-    proposed_translations = proposed_condensed and proposed_condensed[0]
-    solution_translations = solution_condensed and solution_condensed[0]
+    proposed_translations, solution_translations = map(
+        self._condense_translations, (PROPOSED, SOLUTION))
 
     proposed_fields, solution_fields = map(
         self._fetch_raw_field_names,
         (proposed_translations, solution_translations))
 
     correct_fields = proposed_fields.intersection(solution_fields)
-    incorrect_fields = proposed_fields.difference(solution_fields)
+    incorrect_fields = solution_fields.difference(proposed_fields)
 
     self.correct_reporting = len(correct_fields)
-    self.correct_ceiling_reporting = len(set(solution_translations))
+    self.correct_ceiling_reporting = len(solution_fields)
     self.incorrect_reporting = len(incorrect_fields)
 
     return self

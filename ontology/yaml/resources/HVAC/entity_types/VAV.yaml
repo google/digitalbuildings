@@ -391,6 +391,14 @@ VAV_SD_ZTC_HLSAFS:
   - ZTC
   - HLSAFS
 
+VAV_DSP_ED:
+  description: "Exhaust control VAV with dual setpoint control."
+  is_canonical: true
+  implements:
+  - VAV
+  - DSP
+  - ED
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################

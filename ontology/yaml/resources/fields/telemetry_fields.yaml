@@ -1092,3 +1092,86 @@ literals:
 - zone_air_no2_probability_percentage_sensor
 - zone_air_no2_ozone_concentration_sensor
 
+- heat_recovery_water_isolation_valve_command:
+  - OPEN
+  - CLOSED
+- heat_recovery_return_water_isolation_valve_command:
+  - OPEN
+  - CLOSED
+- heat_recovery_return_water_isolation_valve_status:
+  - OPEN
+  - CLOSED
+- heat_recovery_supply_water_isolation_valve_command:
+  - OPEN
+  - CLOSED
+- heat_recovery_supply_water_isolation_valve_status:
+  - OPEN
+  - CLOSED
+- heat_recovery_run_command:
+  - ON
+  - OFF
+- exhaust_air_differential_pressure_sensor
+- leaving_heat_recovery_coil_temperature_sensor
+- zone_floor_temperature_sensor
+- zone_floor_temperature_setpoint
+- entering_heat_recovery_coil_temperature_sensor
+- carbon_filter_differential_pressure_sensor
+- heating_supply_water_isolation_valve_status:
+  - OPEN
+  - CLOSED
+- leaving_coil_temperature_sensor
+- heat_recovery_supply_water_temperature_sensor
+- heat_recovery_return_water_temperature_sensor
+
+- hot_water_tank_temperature_sensor
+- hot_water_tank_temperature_setpoint
+- preheating_water_tank_temperature_sensor
+- preheating_water_tank_temperature_setpoint
+- potable_hot_leaving_water_temperature_sensor
+- potable_hot_leaving_water_temperature_setpoint
+
+## New fields for electrical system additions
+- voltage_sensor
+- input_frequency_sensor
+- output_frequency_sensor
+- bypass_frequency_sensor
+- input_phase1_phase2_voltage_sensor
+- input_phase2_phase3_voltage_sensor
+- input_phase3_phase1_voltage_sensor
+- input_phase1_neutral_voltage_sensor
+- input_phase2_neutral_voltage_sensor
+- input_phase3_neutral_voltage_sensor
+- input_phase1_current_sensor
+- input_phase2_current_sensor
+- input_phase3_current_sensor
+- output_phase1_phase2_voltage_sensor
+- output_phase2_phase3_voltage_sensor
+- output_phase3_phase1_voltage_sensor
+- output_phase1_neutral_voltage_sensor
+- output_phase2_neutral_voltage_sensor
+- output_phase3_neutral_voltage_sensor
+- output_phase1_current_sensor
+- output_phase2_current_sensor
+- output_phase3_current_sensor
+- bypass_phase1_neutral_voltage_sensor
+- bypass_phase2_neutral_voltage_sensor
+- bypass_phase3_neutral_voltage_sensor
+- remaining_charge_time_sensor
+
+
+## Refrigerant monitoring fields for AHUs
+- condensing_fan_current_sensor
+- discharge_air_specificenthalpy_sensor
+- refrigerant_discharge_pressure_sensor
+- refrigerant_liquid_pressure_sensor
+- refrigerant_liquid_temperature_sensor
+- refrigerant_liquid_saturation_temperature_sensor
+- refrigerant_subcooling_temperature_sensor
+- refrigerant_suction_pressure_sensor
+- refrigerant_suction_saturation_temperature_sensor
+- refrigerant_suction_superheat_temperature_sensor
+- return_air_specificenthalpy_sensor
+- compressor_current_sensor
+
+
+

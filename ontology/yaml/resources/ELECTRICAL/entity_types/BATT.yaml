@@ -1,4 +1,4 @@
-# Copyright 2022 Google LLC
+# Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the License);
 # you may not use this file except in compliance with the License.
@@ -11,17 +11,14 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-"""Setup file for Digital Buildings Toolkit."""
 
-from setuptools import find_packages
-from setuptools import setup
-
-setup(
-    name='digital-buildings-toolkit',
-    version='0.0.1',
-    url='https://github.com/google/digitalbuildings',
-    license='Apache License',
-    author='Travis Welch',
-    packages=find_packages(),
-    python_requires='==3.7',
-)
+BATT_STD:
+  description: "Standard battery."
+  implements:
+  - BATT
+  uses:
+  - voltage_sensor
+  - current_sensor
+  opt_uses:
+  - remaining_charge_time_sensor
+  - local_air_temperature_sensor
