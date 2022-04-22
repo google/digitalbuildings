@@ -4468,3 +4468,39 @@ CC2XM:
   - compressor_current_sensor_1
   - compressor_run_command_2
   - compressor_current_sensor_2
+
+SCHWDT:
+  description: "Secondary-side chilled water delta-T monitoring."
+  is_abstract: true
+  implements:
+  - MONITORING
+  uses:
+  - secondary_chilled_supply_water_temperature_sensor
+  - secondary_chilled_return_water_temperature_sensor
+
+SHWDT:
+  description: "Secondary-side heating water delta-T monitoring."
+  is_abstract: true
+  implements:
+  - MONITORING
+  uses:
+  - secondary_heating_supply_water_temperature_sensor
+  - secondary_heating_return_water_temperature_sensor
+
+PCHWDT:
+  description: "Temperature differential across primary chilled water loop."
+  is_abstract: true
+  implements:
+  - MONITORING
+  uses:
+  - primary_chilled_return_water_temperature_sensor
+  - primary_chilled_supply_water_temperature_sensor
+
+PHWDT:
+  description: "Temperature differential across primary heating water loop."
+  is_abstract: true
+  implements:
+  - MONITORING
+  uses:
+  - primary_heating_return_water_temperature_sensor
+  - primary_heating_supply_water_temperature_sensor
