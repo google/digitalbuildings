@@ -1187,3 +1187,4 @@ literals:
 - primary_chilled_return_water_temperature_sensor
 - secondary_chilled_return_water_isolation_valve_percentage_sensor
 - secondary_chilled_return_water_isolation_valve_percentage_command
+- thermal_energy_accumulator
