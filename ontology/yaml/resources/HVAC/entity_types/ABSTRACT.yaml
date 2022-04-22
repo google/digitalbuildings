@@ -4504,3 +4504,12 @@ PHWDT:
   uses:
   - primary_heating_return_water_temperature_sensor
   - primary_heating_supply_water_temperature_sensor
+
+TDTM:
+  description: "water tank delta-T monitoring."
+  is_abstract: true
+  uses:
+  - leaving_tank_water_temperature_sensor
+  - entering_tank_water_temperature_sensor 
+  implements:
+  - MONITORING
