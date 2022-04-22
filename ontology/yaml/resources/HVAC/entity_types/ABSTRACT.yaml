@@ -4669,21 +4669,21 @@ CWRWISOVPM:
   implements:
   - MONITORING
 
-TWRWISOVM:
-  description: "Tower (open-loop CDW) return side isolation valve monitoring."
+OCWRWISOVM:
+  description: "Open-loop CDW return side isolation valve monitoring."
   is_abstract: true
   uses:
-  - tower_return_water_isolation_valve_command
-  - tower_return_water_isolation_valve_status
+  - outside_condensing_loop_return_water_isolation_valve_command
+  - outside_condensing_loop_return_water_isolation_valve_status
   implements:
   - MONITORING
 
-TWRWISOVPM:
-  description: "Tower (open-loop CDW) return side isolation valve monitoring."
+OCWRWISOVPM:
+  description: "Open-loop CDW return side isolation valve monitoring."
   is_abstract: true
   uses:
-  - tower_return_water_isolation_valve_percentage_command
-  - tower_return_water_isolation_valve_percentage_sensor
+  - outside_condensing_loop_return_water_isolation_valve_percentage_command
+  - outside_condensing_loop_return_water_isolation_valve_percentage_sensor
   implements:
   - MONITORING
 
