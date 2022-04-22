@@ -4521,3 +4521,39 @@ HLPM:
   - heating_thermal_power_sensor
   implements:
   - MONITORING
+
+CWRWISOVM:
+  description: "Condensing water supply side isolation valve monitoring."
+  is_abstract: true
+  uses:
+  - condensing_return_water_isolation_valve_command
+  - condensing_return_water_isolation_valve_status
+  implements:
+  - MONITORING
+
+CWRWISOVPM:
+  description: "Condensing water return side isolation valve percentage monitoring."
+  is_abstract: true
+  uses:
+  - condensing_return_water_isolation_valve_percentage_command
+  - condensing_return_water_isolation_valve_percentage_sensor
+  implements:
+  - MONITORING
+
+TWRWISOVM:
+  description: "Tower (open-loop CDW) return side isolation valve monitoring."
+  is_abstract: true
+  uses:
+  - tower_return_water_isolation_valve_command
+  - tower_return_water_isolation_valve_status
+  implements:
+  - MONITORING
+
+TWRWISOVPM:
+  description: "Tower (open-loop CDW) return side isolation valve monitoring."
+  is_abstract: true
+  uses:
+  - tower_return_water_isolation_valve_percentage_command
+  - tower_return_water_isolation_valve_percentage_sensor
+  implements:
+  - MONITORING
