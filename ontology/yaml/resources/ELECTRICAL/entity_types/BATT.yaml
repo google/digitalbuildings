@@ -12,28 +12,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-
-RP_CAM_DPHCC_ZTC:
-  id: "13237849106245746688"
-  description: "Radiant panel for room heating and cooling."
-  is_canonical: true
+BATT_STD:
+  description: "Standard battery."
   implements:
-  - RP
-  - CAM
-  - DPHCC
-  - ZTC
-
-RSR_HHCDM:
-  id: "11269776069084839936"
-  description: "Cooling or heating changeover function for radiant panels or fcu's."
-  implements:
-  - RSR
-  - HHCDM
-
-RP_DPBHCC_FTC:
-  description: "Radiant panel for room heating and cooling, along with floor temperature control."
-  is_canonical: true
-  implements:
-  - RP
-  - DPBHCC
-  - FTC
+  - BATT
+  uses:
+  - voltage_sensor
+  - current_sensor
+  opt_uses:
+  - remaining_charge_time_sensor
+  - local_air_temperature_sensor

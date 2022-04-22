@@ -18,6 +18,7 @@ from unittest.mock import call, patch
 
 from score import parse_config
 from score.constants import FileTypes, DimensionCategories
+from score.dimensions.dimension import Dimension
 
 from yamlformat.validator.presubmit_validate_types_lib import ConfigUniverse
 
@@ -63,12 +64,13 @@ class ParseConfigTest(absltest.TestCase):
     deserialized_files_appended = self.parse.append_types(
         universe=self.parse.universe,
         deserialized_files=self.parse.deserialized_files)
-    self.assertEqual(mock_print.call_count, 4)
+    self.assertEqual(mock_print.call_count, 5)
     calls = [
-        call(f'{PROPOSED} translations absent: 0 (from 0 links)'),
-        call(f'{PROPOSED} types absent: 0 (0 instances)'),
-        call(f'{SOLUTION} translations absent: 0 (from 0 links)'),
-        call(f'{SOLUTION} types absent: 0 (0 instances)')
+        call('Scoring — appending entity types'),
+        call(f'    {PROPOSED} translations absent: 0 (from 0 links)'),
+        call(f'    {PROPOSED} types absent: 0 (0 instances)'),
+        call(f'    {SOLUTION} translations absent: 0 (from 0 links)'),
+        call(f'    {SOLUTION} types absent: 0 (0 instances)')
     ]
     mock_print.assert_has_calls(calls)
     self.assertTrue(
@@ -81,31 +83,34 @@ class ParseConfigTest(absltest.TestCase):
     solution_entities = validator.Deserialize(
         ['tests/samples/solution/retrieve_reporting_translations.yaml'])[0]
 
-    translations = parse_config.ParseConfig.retrieve_reporting_translations(
-        proposed_entities=proposed_entities,
-        solution_entities=solution_entities)
+    # Allow solution entities past gate which has type annotation as a prereq
+    with patch.object(Dimension, 'is_entity_canonical', return_value=True):
 
-    self.assertEqual(type(translations), dict)  # TranslationsDict
+      translations = parse_config.ParseConfig.retrieve_reporting_translations(
+          proposed_entities=proposed_entities,
+          solution_entities=solution_entities)
 
-    cdid = '2599571827844401'
+      self.assertEqual(type(translations), dict)  # TranslationsDict
 
-    self.assertEqual(type(translations[cdid]), dict)
+      cdid = '2599571827844401'
 
-    self.assertTrue(f'{PROPOSED}' in translations[cdid])
-    self.assertEqual(type(translations[cdid][f'{PROPOSED}']), list)
-    self.assertEqual(len(translations[cdid][f'{PROPOSED}']), 1)
-    self.assertEqual(type(translations[cdid][f'{PROPOSED}'][0]), tuple)
-    self.assertEqual(translations[cdid][f'{PROPOSED}'][0][0], 'wrong')
-    self.assertEqual(type(translations[cdid][f'{PROPOSED}'][0][1]),
-                     NonDimensionalValue)
+      self.assertEqual(type(translations[cdid]), dict)
 
-    self.assertTrue(f'{SOLUTION}' in translations[cdid])
-    self.assertEqual(type(translations[cdid][f'{SOLUTION}']), list)
-    self.assertEqual(len(translations[cdid][f'{SOLUTION}']), 1)
-    self.assertEqual(type(translations[cdid][f'{SOLUTION}'][0]), tuple)
-    self.assertEqual(translations[cdid][f'{SOLUTION}'][0][0], 'target')
-    self.assertEqual(type(translations[cdid][f'{SOLUTION}'][0][1]),
-                     NonDimensionalValue)
+      self.assertTrue(f'{PROPOSED}' in translations[cdid])
+      self.assertEqual(type(translations[cdid][f'{PROPOSED}']), list)
+      self.assertEqual(len(translations[cdid][f'{PROPOSED}']), 1)
+      self.assertEqual(type(translations[cdid][f'{PROPOSED}'][0]), tuple)
+      self.assertEqual(translations[cdid][f'{PROPOSED}'][0][0], 'wrong')
+      self.assertEqual(type(translations[cdid][f'{PROPOSED}'][0][1]),
+                       NonDimensionalValue)
+
+      self.assertTrue(f'{SOLUTION}' in translations[cdid])
+      self.assertEqual(type(translations[cdid][f'{SOLUTION}']), list)
+      self.assertEqual(len(translations[cdid][f'{SOLUTION}']), 1)
+      self.assertEqual(type(translations[cdid][f'{SOLUTION}'][0]), tuple)
+      self.assertEqual(translations[cdid][f'{SOLUTION}'][0][0], 'target')
+      self.assertEqual(type(translations[cdid][f'{SOLUTION}'][0][1]),
+                       NonDimensionalValue)
 
   def testAggregateResults(self):
     class _MockDimensionComplex(NamedTuple):
