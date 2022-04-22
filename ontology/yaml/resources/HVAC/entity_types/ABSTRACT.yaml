@@ -4638,8 +4638,8 @@ TDTM:
   description: "water tank delta-T monitoring."
   is_abstract: true
   uses:
-  - leaving_tank_water_temperature_sensor
-  - entering_tank_water_temperature_sensor 
+  - leaving_water_tank_temperature_sensor
+  - entering_water_tank_temperature_sensor 
   implements:
   - MONITORING
 
@@ -4673,8 +4673,8 @@ TWRWISOVM:
   description: "Tower (open-loop CDW) return side isolation valve monitoring."
   is_abstract: true
   uses:
-  - return_tower_water_isolation_valve_command
-  - return_tower_water_isolation_valve_status
+  - tower_return_water_isolation_valve_command
+  - tower_return_water_isolation_valve_status
   implements:
   - MONITORING
 
@@ -4682,8 +4682,8 @@ TWRWISOVPM:
   description: "Tower (open-loop CDW) return side isolation valve monitoring."
   is_abstract: true
   uses:
-  - return_tower_water_isolation_valve_percentage_command
-  - return_tower_water_isolation_valve_percentage_sensor
+  - tower_return_water_isolation_valve_percentage_command
+  - tower_return_water_isolation_valve_percentage_sensor
   implements:
   - MONITORING
 
