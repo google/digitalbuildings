@@ -4598,6 +4598,15 @@ CC2XM:
   - compressor_run_command_2
   - compressor_current_sensor_2
 
+SCHWISOVPM:
+  description: "Secondary chilled water return side isolation valve percentage monitoring."
+  is_abstract: true
+  uses:
+  - secondary_chilled_return_water_isolation_valve_percentage_command
+  - secondary_chilled_return_water_isolation_valve_percentage_sensor
+  implements:
+  - MONITORING
+
 SCHWDT:
   description: "Secondary-side chilled water delta-T monitoring."
   is_abstract: true
