@@ -251,7 +251,7 @@ CHWS_CLPM_RMM_SWTC_WFRC:
   - SWTC
   - WFRC
 
-CHWS_BYPVPM_CLPM_SWTC_WFRM_:
+CHWS_BYPVPM_CLPM_SWTC_TDTM_WFRM:
   description: "Chilled water system with supply temp control and buffer tank entering/leaving temperature sensors."
   is_canonical: true
   implements:
