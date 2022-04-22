@@ -319,6 +319,7 @@ VSC:
   - speed_percentage_sensor
   - speed_frequency_sensor
   - power_sensor
+  - voltage_sensor
   uses:
   - speed_percentage_command
   - run_status
