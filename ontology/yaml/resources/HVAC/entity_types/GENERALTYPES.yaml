@@ -341,3 +341,9 @@ DOAS:
   is_abstract: true
   implements:
   - EQUIPMENT
+
+TST:
+  description: "Tag for thermal storage tanks."
+  is_abstract: true
+  implements:
+  - EQUIPMENT
