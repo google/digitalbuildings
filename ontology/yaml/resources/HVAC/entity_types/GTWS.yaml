@@ -2,7 +2,7 @@
 ### Canonical Types  ###
 ########################
 
-GTWS_BYPVPM_CLPM_WDT_WFRM:
+GTWS_BYPVPM_CLPM_WDT_WFRM_SETM:
   description: "Geothermal loop with a bypass valve, thermal power, flowrate and differential pressure monitoring."
   is_canonical: true
   implements:
