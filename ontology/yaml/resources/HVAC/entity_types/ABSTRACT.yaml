@@ -4513,3 +4513,11 @@ TDTM:
   - entering_tank_water_temperature_sensor 
   implements:
   - MONITORING
+
+HLPM:
+  description: "Heating thermal power sensor."
+  is_abstract: true
+  uses:
+  - heating_thermal_power_sensor
+  implements:
+  - MONITORING
