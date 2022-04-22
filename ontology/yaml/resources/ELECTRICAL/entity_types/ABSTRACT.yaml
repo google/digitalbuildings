@@ -22,3 +22,30 @@ SS:
   opt_uses:
   - failed_alarm
   - lost_power_alarm
+
+
+IOBM:
+  description: "Input, output, and bypass electrical monitoring, typically for a UPS."
+  is_abstract: true
+  uses:
+  - input_phase1_phase2_voltage_sensor
+  - input_phase2_phase3_voltage_sensor
+  - input_phase3_phase1_voltage_sensor
+  - input_phase1_neutral_voltage_sensor
+  - input_phase2_neutral_voltage_sensor
+  - input_phase3_neutral_voltage_sensor
+  - input_phase1_current_sensor
+  - input_phase2_current_sensor
+  - input_phase3_current_sensor
+  - output_phase1_phase2_voltage_sensor
+  - output_phase2_phase3_voltage_sensor
+  - output_phase3_phase1_voltage_sensor
+  - output_phase1_neutral_voltage_sensor
+  - output_phase2_neutral_voltage_sensor
+  - output_phase3_neutral_voltage_sensor
+  - output_phase1_current_sensor
+  - output_phase2_current_sensor
+  - output_phase3_current_sensor
+  - bypass_phase1_neutral_voltage_sensor
+  - bypass_phase2_neutral_voltage_sensor
+  - bypass_phase3_neutral_voltage_sensor
