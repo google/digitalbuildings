@@ -1168,21 +1168,21 @@ literals:
 - compressor_current_sensor
 
 # Open-loop CDW system
-- return_tower_water_isolation_valve_status:
+- outside_condensing_loop_return_water_isolation_valve_status:
   - OPEN
   - CLOSED
-- return_tower_water_isolation_valve_command:
+- outside_condensing_loop_return_water_isolation_valve_command:
   - OPEN
   - CLOSED
-- return_tower_water_isolation_valve_percentage_command
-- return_tower_water_isolation_valve_percentage_sensor
-- return_tower_water_temperature_sensor
+- outside_condensing_loop_return_water_isolation_valve_percentage_command
+- outside_condensing_loop_return_water_isolation_valve_percentage_sensor
+- outside_condensing_loop_return_water_temperature_sensor
 
 # Buffer tanks with temperature sensors
 - chilled_water_temperature_sensor
 - heating_water_temperature_sensor
-- tank_leaving_water_temperature_sensor
-- tank_entering_water_temperature_sensor
+- leaving_water_tank_temperature_sensor
+- entering_water_tank_temperature_sensor
 
 - secondary_heating_supply_water_temperature_sensor
 - secondary_heating_return_water_temperature_sensor
