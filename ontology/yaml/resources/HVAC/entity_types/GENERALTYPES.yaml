@@ -347,3 +347,11 @@ TST:
   is_abstract: true
   implements:
   - EQUIPMENT
+
+GTWS:
+  description: "Tag for geothermal water systems."
+  is_abstract: true
+  opt_uses:
+  - thermal_power_capacity
+  - differential_pressure_specification
+  - flowrate_requirement
