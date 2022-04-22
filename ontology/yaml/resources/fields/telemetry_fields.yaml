@@ -1094,6 +1094,30 @@ literals:
 - return_air_specificenthalpy_sensor
 - compressor_current_sensor
 
+# Open-loop CDW system
+- tower_return_water_isolation_valve_status:
+  - OPEN
+  - CLOSED
+- tower_return_water_isolation_valve_command:
+  - OPEN
+  - CLOSED
+- tower_return_water_isolation_valve_percentage_command
+- tower_return_water_isolation_valve_percentage_sensor
+- tower_return_water_temperature_sensor
 
+# Buffer tanks with temperature sensors
+- chilled_water_temperature_sensor
+- heating_water_temperature_sensor
+- leaving_tank_water_temperature_sensor
+- entering_tank_water_temperature_sensor
 
-
+- secondary_heating_supply_water_temperature_sensor
+- secondary_heating_return_water_temperature_sensor
+- primary_heating_supply_water_temperature_sensor
+- primary_heating_return_water_temperature_sensor
+- secondary_chilled_supply_water_temperature_sensor
+- secondary_chilled_return_water_temperature_sensor
+- primary_chilled_supply_water_temperature_sensor
+- primary_chilled_return_water_temperature_sensor
+- secondary_chilled_return_water_isolation_valve_percentage_sensor
+- secondary_chilled_return_water_isolation_valve_percentage_command
