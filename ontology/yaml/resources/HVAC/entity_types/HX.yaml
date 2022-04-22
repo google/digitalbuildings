@@ -134,7 +134,7 @@ HX_CWRWISOVM_TWRWISOVM_CWTWRTM:
   - TWRWISOVM
   uses:
   - condensing_return_water_temperature_sensor
-  - return_tower_water_temperature_sensor
+  - tower_return_water_temperature_sensor
 
 HX_CWRWISOVPM_TWRWISOVPM_CWTWRTM:
   description: "Heat exchanger between closed-loop condensing water and open-loop (tower) water."
@@ -145,4 +145,4 @@ HX_CWRWISOVPM_TWRWISOVPM_CWTWRTM:
   - TWRWISOVPM
   uses:
   - condensing_return_water_temperature_sensor
-  - return_tower_water_temperature_sensor
+  - tower_return_water_temperature_sensor
