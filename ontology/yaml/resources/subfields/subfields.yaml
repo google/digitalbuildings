@@ -51,6 +51,7 @@ component:
   shade: "Window covering."
   switch: "Component to disrupt an electrical cirucit"
   tank : "Storage device for media."
+  tower: "A tall structure; typically stand-alone (e.g. cooling tower)."
   transformer : "A transformer is an electrical device which, by the principles of electromagnetic induction, transfers electrical energy from one electric circuit to another."
   valve: "Component which meters the flow of water within a system or device."
   vane: "Component for guiding media flow."
