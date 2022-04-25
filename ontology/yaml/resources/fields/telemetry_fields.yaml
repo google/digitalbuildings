@@ -1195,5 +1195,5 @@ literals:
 - secondary_chilled_return_water_isolation_valve_percentage_sensor
 - secondary_chilled_return_water_isolation_valve_percentage_command
 - thermal_energy_accumulator
-- settling_command
-- settling_temperature_sensor
+- ground_isolation_command
+- ground_temperature_sensor
