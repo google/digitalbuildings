@@ -13,8 +13,8 @@ GTWS_BYPVPM_CLPM_WDT_WFRM_SETM:
   - WDT
   - WFRM
   uses:
-  - settling_temperature_sensor
-  - settling_command
+  - ground_temperature_sensor
+  - ground_isolation_command
 
 GTWS_CHWRWISOVPM_CHWRWISOVM_CHWSWISOVM_HWRWISOVPM_HWRWISOVM_HWSWISOVM:
   description: "Geothermal loop with isolation valves on chilled and heating water supply and return."
