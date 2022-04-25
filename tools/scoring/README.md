@@ -69,7 +69,7 @@ Quantifies whether the proposed file assigned the correct [type](https://github.
 
 ### Raw Field Selection
 
-Quantifies whether the correct [raw fields](https://github.com/google/digitalbuildings/blob/master/ontology/docs/building_config.md#defining-translations) were selected in the proposed file. **This considers only canonically typed reporting solution solution entities.**
+Quantifies whether the correct [raw fields](https://github.com/google/digitalbuildings/blob/master/ontology/docs/building_config.md#defining-translations) were selected in the proposed file. **This considers only canonically typed reporting solution entities.**
 
 ### Standard Field Naming
 
