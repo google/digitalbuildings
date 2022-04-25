@@ -29,11 +29,3 @@ RSR_HHCDM:
   implements:
   - RSR
   - HHCDM
-
-RP_DPBHCC_FTC:
-  description: "Radiant panel for room heating and cooling, along with floor temperature control."
-  is_canonical: true
-  implements:
-  - RP
-  - DPBHCC
-  - FTC

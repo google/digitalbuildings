@@ -951,26 +951,8 @@ FCU_DFSS_DSPRTC_DX2DSPRTC:
   - DSPRTC
   - DX2DSPRTC
 
-FCU_DFSS_DFVSC_DPBHCC:
-  description: "Hydronic variable speed fan coil with cooling and heating (zone temp control)."
-  is_canonical: true
-  implements:
-  - FCU
-  - DFSS
-  - DFVSC
-  - DPBHCC
- 
-FCU_DFSS_DFMSC_CHWZC_DSP:
-  description: "Multi-speed CHW fan coil with zone temp control."
-  is_canonical: true
-  implements:
-  - FCU
-  - DFSS
-  - DFMSC
-  - CHWZC
-  - DSP
-
 FCU_DFSS_CHWZC_RTM_ZHM:
+  id: "13373924665299304448"
   description: "FCU with discharge cooling air temperature control, return air temperature monitoring and zone air relative humidity monitoring (CRAC)."
   is_canonical: true
   implements:
