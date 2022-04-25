@@ -2,7 +2,7 @@
 
 The scoring tool evaluates _proposed_ configuration files against "known good" _solution_ files. It uses an F-score algorithm to provide floating-point representations of how closely the files compare along various [_dimensions_](#dimensions). Broadly, its process is thus:
 
-1. Filter out irrelevant entities (e.g. those which have a noncanonical type)
+1. Filter out irrelevant entities (e.g. those in the solution which have a noncanonical type)
 2. Create pairs of entities from the _proposed_ and _solution_ lists by matching `cloud_device_id` (for reporting devices) or raw field names (for virtual devices)
 3. From each entity pair, isolate the attributes relevant for the dimension being scored and reduce their values to sets (e.g. [connections](https://github.com/google/digitalbuildings/blob/master/ontology/docs/ontology_config.md#connections))
 4. Count the `intersection` and `difference` between the respective _proposed_ and _solution_ sets
@@ -35,7 +35,7 @@ There are presently some limitations to consider when interpreting scores:
 
 - Canonical entities
 
-  Generally speaking, any entity with a noncanonical type is not scored. This is especially relevant in the context of `result_reporting`; that value is derived from only those entities which did not link to virtual devices.
+  Generally speaking, any solution entity with a noncanonical type is not used as a basis for scoring. This is especially relevant in the context of `result_reporting`; that value is derived from only those entities which did not link to virtual devices.
 
 - Missing types
 
@@ -57,28 +57,28 @@ Quantifies whether [connections](https://github.com/google/digitalbuildings/blob
 
 ### Entity Identification
 
-Quantifies whether the correct [entities](https://github.com/google/digitalbuildings/blob/master/ontology/docs/ontology.md#overview) were included in the proposed file. **This considers only canonically typed entities.**
+Quantifies whether the correct [entities](https://github.com/google/digitalbuildings/blob/master/ontology/docs/ontology.md#overview) were included in the proposed file. **This considers only canonically typed solution entities.**
 
 ### Entity Point Identification
 
-Quantifies whether the proposed file included the correct [points](https://github.com/google/digitalbuildings/blob/master/ontology/docs/building_config.md#defining-translations) in each entity. **This considers only canonically typed entities.**
+Quantifies whether the proposed file included the correct [points](https://github.com/google/digitalbuildings/blob/master/ontology/docs/building_config.md#defining-translations) in each entity. **This considers only canonically typed solution entities.**
 
 ### Entity Type Identification
 
-Quantifies whether the proposed file assigned the correct [type](https://github.com/google/digitalbuildings/blob/master/ontology/docs/ontology_config.md#entitytypes) to each entity. **This considers only canonically typed entities.**
+Quantifies whether the proposed file assigned the correct [type](https://github.com/google/digitalbuildings/blob/master/ontology/docs/ontology_config.md#entitytypes) to each entity. **This considers only canonically typed solution entities.**
 
 ### Raw Field Selection
 
-Quantifies whether the correct [raw fields](https://github.com/google/digitalbuildings/blob/master/ontology/docs/building_config.md#defining-translations) were selected in the proposed file. **This considers only canonically typed reporting entities.**
+Quantifies whether the correct [raw fields](https://github.com/google/digitalbuildings/blob/master/ontology/docs/building_config.md#defining-translations) were selected in the proposed file. **This considers only canonically typed reporting solution solution entities.**
 
 ### Standard Field Naming
 
-Quantifies whether the correct [standard field names](https://github.com/google/digitalbuildings/blob/master/ontology/docs/building_config.md#defining-translations) were selected in the proposed file. **This considers only canonically typed reporting entities.**
+Quantifies whether the correct [standard field names](https://github.com/google/digitalbuildings/blob/master/ontology/docs/building_config.md#defining-translations) were selected in the proposed file. **This considers only canonically typed reporting solution entities.**
 
 ### State Mapping
 
-Quantifies how accurately the proposed file mapped [multi-state values](https://github.com/google/digitalbuildings/blob/master/ontology/docs/ontology.md#multi-state-values) for relevant fields. **This considers only canonically typed reporting entities.**
+Quantifies how accurately the proposed file mapped [multi-state values](https://github.com/google/digitalbuildings/blob/master/ontology/docs/ontology.md#multi-state-values) for relevant fields. **This considers only canonically typed reporting solution entities.**
 
 ### Unit Mapping
 
-Quantifies how accurately the proposed file mapped [dimensional units](https://github.com/google/digitalbuildings/blob/master/ontology/docs/ontology.md#dimensional-units) for relevant fields. **This considers only canonically typed reporting entities.**
+Quantifies how accurately the proposed file mapped [dimensional units](https://github.com/google/digitalbuildings/blob/master/ontology/docs/ontology.md#dimensional-units) for relevant fields. **This considers only canonically typed reporting solution entities.**
