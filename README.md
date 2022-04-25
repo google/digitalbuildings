@@ -30,6 +30,28 @@ This project is structured as following:
   * [RDF/OWL Generator](/tools/rdf_generator/README.md) which allows to generate an RDF version from the yaml ontology files.
 * [Internal Building Representation](/ibr/README.md) (IBR) File Format to represent data from different verticals such as spatial, assets.
 
+## Learning Modules
+
+### Module 1
+1. Introduction to the Digital Buildings Ontology [Lesson 1](https://docs.google.com/presentation/d/e/2PACX-1vRyKn-NaOsMSAOPsD9a7cYq3WQZ_ewRmwZfO_jd0imPwVOr9dMqR5DsHsRuq4SAoH5F0K9GKfyOF-5D/pub?start=false&loop=false&delayms=3000&slide=id.g1077f660f78_0_588)
+2. Conceptual Model [Lesson 2](https://docs.google.com/presentation/d/e/2PACX-1vS3KhB7KBo2VBqfus4_zzSuDgtjOuXEdd56sHtr_7ZWa4PaIYBvXlt_oeG_9wX5pTappn71xIWiOQWN/pub?start=true&loop=false&delayms=3000)
+3. Subfields [Lesson 3](https://docs.google.com/presentation/d/e/2PACX-1vQDljgWdSFbiJcVNdnUAkyeJkGzzkesXenMGLAMXA19-eR4V7Izp-xAiPy8j2Ex84UWO2aF1zp7Y9bT/pub?start=true&loop=false&delayms=3000)
+4.  Fields [Lesson 4](https://docs.google.com/presentation/d/e/2PACX-1vSwmAWfAHHI2Hvu84PZyRYe0WXLjIpY4oCMSIbHxfw-evB-MQIz0mGZNPoZ201fWjsVtLThwg9PxyNJ/pub?start=true&loop=false&delayms=3000)
+5.  States and Multi-states [Lesson 5](https://docs.google.com/presentation/d/e/2PACX-1vSIHnGIKoFlOKE3nejXGDmBgUAcNRuVOqQTwpN57kmw5H0OSBPDwrR64mNQ58XgweYI35X7dH3WZlPF/pub?start=true&loop=false&delayms=3000)
+6.  Entity Types [Lesson 6](https://docs.google.com/presentation/d/e/2PACX-1vSuPHQ-BZ1biSQbt1Ilx8H1eS2cHPOF89oifLn1mdO5Me4y_ioHov_sghUYId35i5RMhMc0Ju_Ing1p/pub?start=true&loop=false&delayms=3000)
+7.  Mappings [Lesson 7](https://docs.google.com/presentation/d/e/2PACX-1vQvTB0KgLgAEB0otrIfd3AcHsUtHUqEDls5rCaHaj7Dr8J6YDVuF9-flN6E0dy72jJBVxMM58CsHOrY/pub?start=true&loop=false&delayms=3000)
+8.  Connections [Lesson 8](https://docs.google.com/presentation/d/e/2PACX-1vTXIp33hO6bmRAfusPE0Gwtpcs_ZWkYt4y295PVdQB2l4DOibn4tx-2XK56mk_be7Ycxm92WOQBEeXO/pub?start=true&loop=false&delayms=3000)
+9.  Namespaces [Lesson 9](https://docs.google.com/presentation/d/e/2PACX-1vRNwLAMtnkzVeJL-qOriEO7rotpdi6YYM9HRcX6oeB0sUqx4Y6aKthzOvuTm4cqYUJOKFebdbIRU_Ew/pub?start=true&loop=false&delayms=3000)
+
+### Module 2
+1. Get ready to Data Model [Lesson 1](https://docs.google.com/presentation/d/e/2PACX-1vSKWuC6f9aWSPRVmpVEpiO3AujUY2jvJ9_3a9K7z5DbuwhqmU_9_P11UhwVoee4EPQNcpRjw6aSMzZE/pub?start=true&loop=false&delayms=3000)
+2. Determin which devices need to be modeled [Lesson 2](https://docs.google.com/presentation/d/e/2PACX-1vTjKitx4COQYLK5UZbc_FL1_TRk7ui4cKq6V3FIRJq41KDzAumvJckslQJb6bZRvOZfkryiNFNCSMg1/pub?start=true&loop=false&delayms=3000)
+3. Determin which data points are required [Lesson 3](https://docs.google.com/presentation/d/e/2PACX-1vTJCY8C35ANXSxomB1JNSqQ4QqBdgoFWeitPVSjbk0jnpXpKordiWLPN2VuO82-2p7ndzFXmtgQVKjb/pub?start=true&loop=false&delayms=3000)
+4. Get ready to Data Model [Lesson 4](https://docs.google.com/presentation/d/e/2PACX-1vR3ekSD5dW_78WXkaWKDfaaQr1526n0p-_wn-v4NqCuaDXtxFDjuEra_aJyPpJ3cn7Jcd-LI8lq3NFL/pub?start=true&loop=false&delayms=3000)
+5. Get ready to Data Model [Lesson 5](https://docs.google.com/presentation/d/e/2PACX-1vRQgMCP9-s6kwQ4_TOeW9iFNA4DzEXGcbES9rLKuUxoKhwy3l3p1nC6a2_NjpOXuTllumy79VZwTzRA/pub?start=true&loop=false&delayms=3000)
+6. Get ready to Data Model [Lesson 6](https://docs.google.com/presentation/d/e/2PACX-1vQXGvKZ4LOoDpZ_Ru7CJ-9AsQk0Bfj2X4pspyasIek3rIg0jeArWeGdyPUOS-MxJgwP1wpyPDH8RYjG/pub?start=true&loop=false&delayms=3000)
+7. Get ready to Data Model [Lesson 7](https://docs.google.com/presentation/d/e/2PACX-1vTsqYULOuBsC_-CE6SsFVi7nTXgOI9T75CKUCLV1fGASU--m1TDtEYeEju2rjpgHr0wQfofR_QNyRrI/pub?start=true&loop=false&delayms=3000)
+
 ## Issues
 Please post issues in [Issues](https://github.com/google/digitalbuildings/issues) section.
 
