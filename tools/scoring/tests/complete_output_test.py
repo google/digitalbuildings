@@ -41,7 +41,7 @@ class CompleteOutputTest(absltest.TestCase):
     score = self.output['EntityIdentification']
     self.assertEqual(
         score,
-        '{result_all: 0.83, result_virtual: -0.03, result_reporting: 0.99}')
+        '{result_all: 1.00, result_virtual: None, result_reporting: 1.00}')
 
   def testEntityPointIdentification(self):
     # NOTE: this score is known to vary slightly due to the way the matching
@@ -49,7 +49,7 @@ class CompleteOutputTest(absltest.TestCase):
     score = self.output['EntityPointIdentification']
     self.assertEqual(
         score,
-        '{result_all: 0.82, result_virtual: -0.65, result_reporting: 0.98}')
+        '{result_all: 0.98, result_virtual: None, result_reporting: 0.98}')
 
   def testEntityTypeIdentification(self):
     score = self.output['EntityTypeIdentification']
@@ -57,31 +57,31 @@ class CompleteOutputTest(absltest.TestCase):
     # algorithm works. If the test fails here, try running it again…
     self.assertEqual(
         score,
-        '{result_all: -0.70, result_virtual: -0.95, result_reporting: -0.64}')
+        '{result_all: 0.81, result_virtual: None, result_reporting: 0.81}')
 
   def testRawFieldSelection(self):
     score = self.output['RawFieldSelection']
     self.assertEqual(
         score,
-        '{result_all: 0.71, result_virtual: None, result_reporting: 0.71}')
+        '{result_all: 0.94, result_virtual: None, result_reporting: 0.94}')
 
   def testStandardFieldNaming(self):
     score = self.output['StandardFieldNaming']
     self.assertEqual(
         score,
-        '{result_all: 0.83, result_virtual: None, result_reporting: 0.83}')
+        '{result_all: 0.97, result_virtual: None, result_reporting: 0.97}')
 
   def testStateMapping(self):
     score = self.output['StateMapping']
     self.assertEqual(
         score,
-        '{result_all: 0.00, result_virtual: None, result_reporting: 0.00}')
+        '{result_all: -1.00, result_virtual: None, result_reporting: -1.00}')
 
   def testUnitMapping(self):
     score = self.output['UnitMapping']
     self.assertEqual(
         score,
-        '{result_all: 0.38, result_virtual: None, result_reporting: 0.38}')
+        '{result_all: 0.58, result_virtual: None, result_reporting: 0.58}')
 
 
 if __name__ == '__main__':
