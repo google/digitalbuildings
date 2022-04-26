@@ -12,12 +12,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 """Test for configuration file scoring tool
-"standard field naming" dimension (standard_field_naming.py)."""
+"standard field naming" dimension."""
 
 from absl.testing import absltest
 
 from score.dimensions.standard_field_naming import StandardFieldNaming
-from score.constants import FileTypes
+from score.constants import FileTypes, DimensionCategories
 
 PROPOSED, SOLUTION = FileTypes
 
@@ -29,6 +29,9 @@ class StandardFieldNamingTest(absltest.TestCase):
     translations = {'cloud_device_id': {PROPOSED: [], SOLUTION: []}}
     self.standard_field_naming = StandardFieldNaming(
         translations=translations).evaluate()
+
+  def testCategoryAttribute_SIMPLE(self):
+    self.assertEqual(StandardFieldNaming.category, DimensionCategories.SIMPLE)
 
   def testDirectlyAssignedAttributes(self):
     self.assertEqual(self.standard_field_naming.correct_reporting, 0)

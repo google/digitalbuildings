@@ -11,7 +11,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-"""Test for configuration file parser (parse_config.py)."""
+"""Test for configuration file parser."""
 
 from absl.testing import absltest
 from unittest.mock import call, patch
@@ -131,21 +131,20 @@ class ParseConfigTest(absltest.TestCase):
   def testAggregateResults(self):
     class _MockDimensionComplex(NamedTuple):
       deserialized_files: Any
+      category = COMPLEX
 
       def evaluate(self):
         return f'called with {self.deserialized_files}'
 
     class _MockDimensionSimple(NamedTuple):
       translations: Any
+      category = SIMPLE
 
       def evaluate(self):
         return f'called with {self.translations}'
 
     results = parse_config.ParseConfig.aggregate_results(
-        dimensions={
-            f'{SIMPLE}': [_MockDimensionSimple],
-            f'{COMPLEX}': [_MockDimensionComplex]
-        },
+        dimensions=[_MockDimensionSimple, _MockDimensionComplex],
         translations='argument for simple dimensions',
         deserialized_files='argument for complex dimensions')
 

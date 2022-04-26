@@ -15,7 +15,7 @@
 
 from score.dimensions.dimension import Dimension
 from score.scorer_types import DeserializedFile, EntityInstance, CloudDeviceId, PointsVirtualList
-from score.constants import FileTypes
+from score.constants import FileTypes, DimensionCategories
 
 from typing import Set
 from collections import namedtuple
@@ -28,6 +28,11 @@ class EntityTypeIdentification(Dimension):
   Quantifies whether the proposed file
   assigned the correct DBO type to each entity.
   """
+
+  # COMPLEX category indicates this dimension receives `deserialized_files`
+  # rather than `translations` to do its calculations
+  category = DimensionCategories.COMPLEX
+
   def _isolate_entities_virtual(self,
                                 file: DeserializedFile) -> Set[EntityInstance]:
     return set(
@@ -90,7 +95,7 @@ class EntityTypeIdentification(Dimension):
   def _evaluate_virtual(self, *, proposed_file: DeserializedFile,
                         solution_file: DeserializedFile):
     """Calculates and assigns properties necessary
-    for generating a score for virtual devices."""
+    for generating an entity type identification score for virtual devices."""
     proposed_entities_virtual, solution_entities_virtual = map(
         self._isolate_entities_virtual, (proposed_file, solution_file))
 
@@ -101,7 +106,7 @@ class EntityTypeIdentification(Dimension):
 
     # Rely on the black box to choose which virtual entities
     # correlate most closely in the respective files.
-    matches_virtual = self.match_virtual_entities(
+    matches_virtual = self._match_virtual_entities(
         solution_points_virtual=self._sort_filter_points_virtual(
             solution_points_virtual),
         proposed_points_virtual=self._sort_filter_points_virtual(
@@ -124,7 +129,7 @@ class EntityTypeIdentification(Dimension):
   def _evaluate_reporting(self, *, proposed_file: DeserializedFile,
                           solution_file: DeserializedFile):
     """Calculates and assigns properties necessary
-    for generating a score for reporting devices."""
+    for generating an entity type identification score for reporting devices."""
     proposed_entities_reporting, solution_entities_reporting = map(
         self._isolate_entities_reporting, (proposed_file, solution_file))
     proposed_entities_virtual, solution_entities_virtual = map(
