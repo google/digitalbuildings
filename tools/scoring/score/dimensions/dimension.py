@@ -22,8 +22,6 @@ from collections import defaultdict
 class _VirtualEntityMatch(NamedTuple):
   """Reference for metrics by which subscores were
   calculated to find the closest corellating virtual entities."""
-  # TODO:
-  # https://trello.com/c/MBAeYiwI/31-pare-down-virtualentitymatch-attributes-following-implementation-of-entity-type-id
   correct: int
   correct_ceiling: int
   incorrect: int
@@ -141,14 +139,18 @@ class Dimension:
     self.correct_ceiling_override: int = None
     self.incorrect_total_override: int = None
 
-    if not translations and not deserialized_files:
+    # Allow for gate below to be passed in case of no matched reporting entities
+    translations_truthy_or_empty = translations or isinstance(
+        translations, dict)
+
+    if not translations_truthy_or_empty and not deserialized_files:
       # `translations` are used to score "simple" dimensions — those which
       # evaluate only reporting entities — in bulk, whereas `deserialized_files`
       # are passed to "complex" dimensions which typically build a multi-map
       # of virtual entities prior to calculating scores.
       raise Exception(
           '`translations` xor `deserialized_files` argument is required')
-    elif translations and deserialized_files:
+    elif translations_truthy_or_empty and deserialized_files:
       raise Exception(
           '`translations` or `deserialized_files` argument must be exclusive')
 
@@ -190,11 +192,10 @@ class Dimension:
 
   def _condense_translations(self, file_type: FileType):
     """Combines translations for all devices within the dictionary."""
-    return [
-        matched_translations[file_type]
-        for matched_translations in self.translations.values()
-        if matched_translations[file_type]
-    ]
+    condensed = []
+    for translations in self.translations.values():
+      condensed.extend(translations[file_type])
+    return condensed
 
   @property
   def result_all(self) -> float:
@@ -359,8 +360,12 @@ class Dimension:
 
     return matches_virtual
 
+  @staticmethod
+  def _format_score(score: float, *, precision: int = 2) -> str:
+    return f'{score:.{precision}f}' if score is not None else score
+
   def __str__(self) -> str:
     """Human-readable representation of the calculated properties."""
-    return (
-        f'{{result_all: {self.result_all}, result_virtual: '
-        f'{self.result_virtual}, result_reporting: {self.result_reporting}}}')
+    return (f'{{result_all: {self._format_score(self.result_all)}, '
+            f'result_virtual: {self._format_score(self.result_virtual)}, '
+            f'result_reporting: {self._format_score(self.result_reporting)}}}')

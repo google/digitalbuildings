@@ -53,12 +53,7 @@ class TestHelper:
         universe=universe, deserialized_files=deserialized_files)
 
     if dimension.category == SIMPLE:
-      matches = ParseConfig.match_reporting_entities(
-          proposed_entities=deserialized_files_appended[PROPOSED],
-          solution_entities=deserialized_files_appended[SOLUTION])
-
       translations = ParseConfig.retrieve_reporting_translations(
-          matches=matches,
           proposed_entities=deserialized_files_appended[PROPOSED],
           solution_entities=deserialized_files_appended[SOLUTION])
 

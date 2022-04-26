@@ -1,4 +1,4 @@
-# Copyright 2020 Google LLC
+# Copyright 2022 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the License);
 # you may not use this file except in compliance with the License.
@@ -12,28 +12,16 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# NOTE: This file is used as a test fixture; it is a valid DBO instance
+# which demonstrates the features of a reporting entity.
 
-RP_CAM_DPHCC_ZTC:
-  id: "13237849106245746688"
-  description: "Radiant panel for room heating and cooling."
-  is_canonical: true
-  implements:
-  - RP
-  - CAM
-  - DPHCC
-  - ZTC
-
-RSR_HHCDM:
-  id: "11269776069084839936"
-  description: "Cooling or heating changeover function for radiant panels or fcu's."
-  implements:
-  - RSR
-  - HHCDM
-
-RP_DPBHCC_FTC:
-  description: "Radiant panel for room heating and cooling, along with floor temperature control."
-  is_canonical: true
-  implements:
-  - RP
-  - DPBHCC
-  - FTC
+FCU-1:
+  cloud_device_id: 2599571827844401
+  guid: 90ebdd30-efdf-4aec-82d7-90f8e03a6792
+  translation:
+    run_mode:
+      present_value: points.device_mode.present_value
+      states:
+        AUTO: '1.0'
+        MANUAL: '2.0'
+  type: HVAC/CHWS_WDT # This is arbitrary but loaded with the minimal universe
