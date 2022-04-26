@@ -31,26 +31,31 @@ This project is structured as following:
 * [Internal Building Representation](/ibr/README.md) (IBR) File Format to represent data from different verticals such as spatial, assets.
 
 ## Learning Modules
+The learning modules provide an overview of:
+* The main concepts of the Digital Buildings Ontology.
+* How to model and extend types.
+* The Building configuration file concepts.
+* The validation tools for the Building Configuration file.
 
 ### Module 1
 1. Introduction to the Digital Buildings Ontology [Lesson 1](https://github.com/google/digitalbuildings/blob/master/ontology/docs/learning/Module%201%2C%20Lesson%201_%20Introduction%20to%20the%20DBO%20(v1_git).pdf)
-2. Conceptual Model [Lesson 2](https://docs.google.com/presentation/d/e/2PACX-1vS3KhB7KBo2VBqfus4_zzSuDgtjOuXEdd56sHtr_7ZWa4PaIYBvXlt_oeG_9wX5pTappn71xIWiOQWN/pub?start=true&loop=false&delayms=3000)
-3. Subfields [Lesson 3](https://docs.google.com/presentation/d/e/2PACX-1vQDljgWdSFbiJcVNdnUAkyeJkGzzkesXenMGLAMXA19-eR4V7Izp-xAiPy8j2Ex84UWO2aF1zp7Y9bT/pub?start=true&loop=false&delayms=3000)
-4.  Fields [Lesson 4](https://docs.google.com/presentation/d/e/2PACX-1vSwmAWfAHHI2Hvu84PZyRYe0WXLjIpY4oCMSIbHxfw-evB-MQIz0mGZNPoZ201fWjsVtLThwg9PxyNJ/pub?start=true&loop=false&delayms=3000)
-5.  States and Multi-states [Lesson 5](https://docs.google.com/presentation/d/e/2PACX-1vSIHnGIKoFlOKE3nejXGDmBgUAcNRuVOqQTwpN57kmw5H0OSBPDwrR64mNQ58XgweYI35X7dH3WZlPF/pub?start=true&loop=false&delayms=3000)
-6.  Entity Types [Lesson 6](https://docs.google.com/presentation/d/e/2PACX-1vSuPHQ-BZ1biSQbt1Ilx8H1eS2cHPOF89oifLn1mdO5Me4y_ioHov_sghUYId35i5RMhMc0Ju_Ing1p/pub?start=true&loop=false&delayms=3000)
-7.  Mappings [Lesson 7](https://docs.google.com/presentation/d/e/2PACX-1vQvTB0KgLgAEB0otrIfd3AcHsUtHUqEDls5rCaHaj7Dr8J6YDVuF9-flN6E0dy72jJBVxMM58CsHOrY/pub?start=true&loop=false&delayms=3000)
-8.  Connections [Lesson 8](https://docs.google.com/presentation/d/e/2PACX-1vTXIp33hO6bmRAfusPE0Gwtpcs_ZWkYt4y295PVdQB2l4DOibn4tx-2XK56mk_be7Ycxm92WOQBEeXO/pub?start=true&loop=false&delayms=3000)
-9.  Namespaces [Lesson 9](https://docs.google.com/presentation/d/e/2PACX-1vRNwLAMtnkzVeJL-qOriEO7rotpdi6YYM9HRcX6oeB0sUqx4Y6aKthzOvuTm4cqYUJOKFebdbIRU_Ew/pub?start=true&loop=false&delayms=3000)
+2. Conceptual Model [Lesson 2](https://github.com/google/digitalbuildings/blob/master/ontology/docs/learning/Module%201%2C%20Lesson%202_%20Conceptual%20model%20(v1_git).pdf)
+3. Subfields [Lesson 3](https://github.com/google/digitalbuildings/blob/master/ontology/docs/learning/Module%201%2C%20Lesson%203_%20Subfields%20(v1_git).pdf)
+4.  Fields [Lesson 4](https://github.com/google/digitalbuildings/blob/master/ontology/docs/learning/Module%201%2C%20Lesson%204_%20Fields%20(v1_git).pdf)
+5.  States and Multi-states [Lesson 5](https://github.com/google/digitalbuildings/blob/master/ontology/docs/learning/Module%201%2C%20Lesson%205_%20States%20and%20multi-states%20(v1_git).pdf)
+6.  Entity Types [Lesson 6](https://github.com/google/digitalbuildings/blob/master/ontology/docs/learning/Module%201%2C%20Lesson%206_%20Entity%20types%20(v1_git).pdf)
+7.  Mappings [Lesson 7](https://github.com/google/digitalbuildings/blob/master/ontology/docs/learning/Module%201%2C%20Lesson%207_%20Mappings%20(v1_git).pdf)
+8.  Connections [Lesson 8](https://github.com/google/digitalbuildings/blob/master/ontology/docs/learning/Module%201%2C%20Lesson%208_%20Connections%20(v1_git).pdf)
+9.  Namespaces [Lesson 9](https://github.com/google/digitalbuildings/blob/master/ontology/docs/learning/Module%201%2C%20Lesson%209_%20Namespaces%20(v1_git).pdf)
 
 ### Module 2
-1. Get ready to Data Model [Lesson 1](https://docs.google.com/presentation/d/e/2PACX-1vSKWuC6f9aWSPRVmpVEpiO3AujUY2jvJ9_3a9K7z5DbuwhqmU_9_P11UhwVoee4EPQNcpRjw6aSMzZE/pub?start=true&loop=false&delayms=3000)
-2. Determin which devices need to be modeled [Lesson 2](https://docs.google.com/presentation/d/e/2PACX-1vTjKitx4COQYLK5UZbc_FL1_TRk7ui4cKq6V3FIRJq41KDzAumvJckslQJb6bZRvOZfkryiNFNCSMg1/pub?start=true&loop=false&delayms=3000)
-3. Determin which data points are required [Lesson 3](https://docs.google.com/presentation/d/e/2PACX-1vTJCY8C35ANXSxomB1JNSqQ4QqBdgoFWeitPVSjbk0jnpXpKordiWLPN2VuO82-2p7ndzFXmtgQVKjb/pub?start=true&loop=false&delayms=3000)
-4. Get ready to Data Model [Lesson 4](https://docs.google.com/presentation/d/e/2PACX-1vR3ekSD5dW_78WXkaWKDfaaQr1526n0p-_wn-v4NqCuaDXtxFDjuEra_aJyPpJ3cn7Jcd-LI8lq3NFL/pub?start=true&loop=false&delayms=3000)
-5. Get ready to Data Model [Lesson 5](https://docs.google.com/presentation/d/e/2PACX-1vRQgMCP9-s6kwQ4_TOeW9iFNA4DzEXGcbES9rLKuUxoKhwy3l3p1nC6a2_NjpOXuTllumy79VZwTzRA/pub?start=true&loop=false&delayms=3000)
-6. Get ready to Data Model [Lesson 6](https://docs.google.com/presentation/d/e/2PACX-1vQXGvKZ4LOoDpZ_Ru7CJ-9AsQk0Bfj2X4pspyasIek3rIg0jeArWeGdyPUOS-MxJgwP1wpyPDH8RYjG/pub?start=true&loop=false&delayms=3000)
-7. Get ready to Data Model [Lesson 7](https://docs.google.com/presentation/d/e/2PACX-1vTsqYULOuBsC_-CE6SsFVi7nTXgOI9T75CKUCLV1fGASU--m1TDtEYeEju2rjpgHr0wQfofR_QNyRrI/pub?start=true&loop=false&delayms=3000)
+1. Get ready to Data Model [Lesson 1](https://github.com/google/digitalbuildings/blob/master/ontology/docs/learning/Module%202%2C%20Lesson%201_%20Get%20ready%20to%20data%20model%20(v1_git).pdf)
+2. Determin which devices need to be modeled [Lesson 2](https://github.com/google/digitalbuildings/blob/master/ontology/docs/learning/Module%202%2C%20Lesson%202_%20Determine%20which%20devices%20need%20to%20be%20modeled%20(v1_git).pdf)
+3. Determin which data points are required [Lesson 3](https://github.com/google/digitalbuildings/blob/master/ontology/docs/learning/Module%202%2C%20Lesson%203_%20Determine%20which%20data%20points%20are%20required%20(v1_git).pdf)
+4. Get ready to Data Model [Lesson 4](https://github.com/google/digitalbuildings/blob/master/ontology/docs/learning/Module%202%2C%20Lesson%204_%20Name%20each%20data%20point%20using%20the%20DBO%20(v1_git).pdf)
+5. Get ready to Data Model [Lesson 5](https://github.com/google/digitalbuildings/blob/master/ontology/docs/learning/Module%202%2C%20Lesson%205_%20Propose%20an%20ontology%20extension%20(v1_git).pdf)
+6. Get ready to Data Model [Lesson 6](https://github.com/google/digitalbuildings/blob/master/ontology/docs/learning/Module%202%2C%20Lesson%206_%20Construct%20and%20finalize%20the%20building%20configuration%20file%20(v1_git).pdf)
+7. Get ready to Data Model [Lesson 7](https://github.com/google/digitalbuildings/blob/master/ontology/docs/learning/Module%202%2C%20Lesson%207_%20Validate%20the%20instance%20and%20telemetry%20(v1_git).pdf)
 
 ## Issues
 Please post issues in [Issues](https://github.com/google/digitalbuildings/issues) section.
