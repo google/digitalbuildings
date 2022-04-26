@@ -49,7 +49,7 @@ class CompleteOutputTest(absltest.TestCase):
     score = self.output['EntityPointIdentification']
     self.assertEqual(
         score,
-        '{result_all: 0.83, result_virtual: -0.62, result_reporting: 0.98}')
+        '{result_all: 0.82, result_virtual: -0.65, result_reporting: 0.98}')
 
   def testEntityTypeIdentification(self):
     score = self.output['EntityTypeIdentification']
