@@ -1197,3 +1197,24 @@ literals:
 - thermal_energy_accumulator
 - ground_isolation_command
 - ground_temperature_sensor
+
+- motor_frequency_sensor
+- motor_power_sensor
+- motor_powerfactor_sensor
+- average_motor_inter_line_voltage_sensor
+- average_motor_line_current_sensor
+- motor_phase1_line_current_sensor
+- motor_phase2_line_current_sensor
+- motor_phase3_line_current_sensor
+- motor_phase1_phase3_line_voltage_sensor
+- motor_phase1_phase2_line_voltage_sensor
+- motor_phase2_phase3_line_voltage_sensor
+
+- inverter_phase1_line_current_sensor
+- inverter_phase2_line_current_sensor
+- inverter_phase3_line_current_sensor
+- inverter_voltage_sensor
+- inverter_frequency_sensor
+- inverter_power_sensor
+
+- refrigerant_differential_pressure_sensor
