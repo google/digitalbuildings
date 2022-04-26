@@ -2,7 +2,7 @@
 
 The scoring tool evaluates _proposed_ configuration files against "known good" _solution_ files. It uses a rudimentary [F-score algorithm](https://en.wikipedia.org/wiki/F-score) to provide floating-point representations of how closely the files compare along various [_dimensions_](#dimensions). Broadly, its process is thus:
 
-1. Filter out irrelevant entities (e.g. those which have a noncanonical type)
+1. Filter out irrelevant entities (e.g. those in the solution which have a noncanonical type)
 2. Create pairs of entities from the _proposed_ and _solution_ lists by matching [`cloud_device_id`](https://github.com/google/digitalbuildings/blob/master/ontology/docs/building_config.md#config-format) (for reporting devices) or raw field names (for virtual devices)
 3. From each entity pair, isolate the attributes relevant for the dimension being scored and reduce their values to sets (e.g. [connections](https://github.com/google/digitalbuildings/blob/master/ontology/docs/ontology_config.md#connections))
 4. Count the `intersection` and `difference` between the respective _proposed_ and _solution_ sets
