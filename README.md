@@ -33,7 +33,7 @@ This project is structured as following:
 ## Learning Modules
 
 ### Module 1
-1. Introduction to the Digital Buildings Ontology [Lesson 1](https://docs.google.com/presentation/d/e/2PACX-1vRyKn-NaOsMSAOPsD9a7cYq3WQZ_ewRmwZfO_jd0imPwVOr9dMqR5DsHsRuq4SAoH5F0K9GKfyOF-5D/pub?start=false&loop=false&delayms=3000&slide=id.g1077f660f78_0_588)
+1. Introduction to the Digital Buildings Ontology [Lesson 1](https://github.com/google/digitalbuildings/blob/master/ontology/docs/learning/Module%201%2C%20Lesson%201_%20Introduction%20to%20the%20DBO%20(v1_git).pdf)
 2. Conceptual Model [Lesson 2](https://docs.google.com/presentation/d/e/2PACX-1vS3KhB7KBo2VBqfus4_zzSuDgtjOuXEdd56sHtr_7ZWa4PaIYBvXlt_oeG_9wX5pTappn71xIWiOQWN/pub?start=true&loop=false&delayms=3000)
 3. Subfields [Lesson 3](https://docs.google.com/presentation/d/e/2PACX-1vQDljgWdSFbiJcVNdnUAkyeJkGzzkesXenMGLAMXA19-eR4V7Izp-xAiPy8j2Ex84UWO2aF1zp7Y9bT/pub?start=true&loop=false&delayms=3000)
 4.  Fields [Lesson 4](https://docs.google.com/presentation/d/e/2PACX-1vSwmAWfAHHI2Hvu84PZyRYe0WXLjIpY4oCMSIbHxfw-evB-MQIz0mGZNPoZ201fWjsVtLThwg9PxyNJ/pub?start=true&loop=false&delayms=3000)
