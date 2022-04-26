@@ -49,7 +49,7 @@ class CompleteOutputTest(absltest.TestCase):
     score = self.output['EntityPointIdentification']
     self.assertEqual(
         score,
-        '{result_all: 0.98, result_virtual: None, result_reporting: 0.98}')
+        '{result_all: 1.00, result_virtual: None, result_reporting: 1.00}')
 
   def testEntityTypeIdentification(self):
     score = self.output['EntityTypeIdentification']
@@ -57,19 +57,19 @@ class CompleteOutputTest(absltest.TestCase):
     # algorithm works. If the test fails here, try running it again…
     self.assertEqual(
         score,
-        '{result_all: 0.81, result_virtual: None, result_reporting: 0.81}')
+        '{result_all: 0.33, result_virtual: None, result_reporting: 0.33}')
 
   def testRawFieldSelection(self):
     score = self.output['RawFieldSelection']
     self.assertEqual(
         score,
-        '{result_all: 0.94, result_virtual: None, result_reporting: 0.94}')
+        '{result_all: 1.00, result_virtual: None, result_reporting: 1.00}')
 
   def testStandardFieldNaming(self):
     score = self.output['StandardFieldNaming']
     self.assertEqual(
         score,
-        '{result_all: 0.97, result_virtual: None, result_reporting: 0.97}')
+        '{result_all: 0.95, result_virtual: None, result_reporting: 0.95}')
 
   def testStateMapping(self):
     score = self.output['StateMapping']
@@ -81,7 +81,7 @@ class CompleteOutputTest(absltest.TestCase):
     score = self.output['UnitMapping']
     self.assertEqual(
         score,
-        '{result_all: 0.58, result_virtual: None, result_reporting: 0.58}')
+        '{result_all: 0.56, result_virtual: None, result_reporting: 0.56}')
 
 
 if __name__ == '__main__':
