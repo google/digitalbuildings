@@ -1,0 +1,33 @@
+########################
+### Canonical Types  ###
+########################
+TST_PHWDT_SHWDT_TS6X:
+  description: "Heating hot water buffer tank with six (6) temperature sensors, primary and secondary delta-T monitoring."
+  is_canonical: true
+  implements:
+  - TST
+  - PHWDT
+  - SHWDT
+  uses:
+  - heating_water_temperature_sensor_1
+  - heating_water_temperature_sensor_2
+  - heating_water_temperature_sensor_3
+  - heating_water_temperature_sensor_4
+  - heating_water_temperature_sensor_5
+  - heating_water_temperature_sensor_6
+
+TST_PCHWDY_SCHWDT_SCHWISOVPM_TS6X:
+  description: "Chilled water buffer tank with isolation valve, six (6) temperature sensors, primary and secondary delta-T monitoring."
+  is_canonical: true
+  implements:
+  - TST
+  - PCHWDT
+  - SCHWDT
+  - SCHWISOVPM
+  uses:
+  - chilled_water_temperature_sensor_1
+  - chilled_water_temperature_sensor_2
+  - chilled_water_temperature_sensor_3
+  - chilled_water_temperature_sensor_4
+  - chilled_water_temperature_sensor_5
+  - chilled_water_temperature_sensor_6
