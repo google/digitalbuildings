@@ -131,6 +131,17 @@ CT_SS_VSFC:
   - run_mode
   - lost_power_alarm
 
+CT_SS_VSC_RWISOVM_SWISOVM_SWTM:
+  description: "Cooling tower with supply and return isolation valves and supply temp monitoring."
+  is_canonical: true
+  implements:
+  - CT
+  - SS
+  - VSC
+  - RWISOVM
+  - SWISOVM
+  - SWTM
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
