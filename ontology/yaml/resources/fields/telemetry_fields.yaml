@@ -1160,5 +1160,28 @@ literals:
 - return_air_specificenthalpy_sensor
 - compressor_current_sensor
 
+## New Fields For ACUs
+- return_air_isolation_damper_status
+	- OPEN
+	- CLOSE
+- fan_run_time_accumulator
+- compressor_run_time_accumulator
+- evaporative_fan_speed_sensor
+- condensing_fan_speed_percentage_command
+- high_limit_zone_air_temperature_setpoint
+- low_limit_zone_air_temperature_setpoint
+- high_limit_zone_air_pressure_setpoint
+- low_limit_zone_air_pressure_setpoint
+- low_limit_zone_air_pressure_setpoint
+- high_limit_zone_air_relative_humidity_setpoint
+- low_limit_zone_air_relative_humidity_setpoint
+- zone_air_override_temperature_command
+	- ACTIVE
+	- INACTIVE
+
+
+
+
+
 
 
