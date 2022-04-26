@@ -4722,3 +4722,38 @@ HWRWISOVPM:
   - heating_return_water_isolation_valve_percentage_sensor
   implements:
   - MONITORING
+
+MPVCM:
+  description: "Motor phase-level current and voltage monitoring."
+  is_abstract: true
+  implements:
+  - MONITORING
+  uses:
+  - motor_phase1_phase3_line_voltage_sensor
+  - motor_phase1_phase2_line_voltage_sensor
+  - motor_phase2_phase3_line_voltage_sensor
+  - motor_phase1_line_current_sensor
+  - motor_phase2_line_current_sensor
+  - motor_phase3_line_current_sensor
+  - average_motor_line_current_sensor
+  - average_motor_inter_line_voltage_sensor
+
+MPWM:
+  description: "Motor power monitoring."
+  is_abstract: true
+  implements:
+  - MONITORING
+  uses:
+  - motor_power_sensor
+  opt_uses:
+  - motor_powerfactor_sensor
+  - motor_frequency_sensor
+
+CWSWISOVPM:
+  description: "Condensing water supply side isolation valve percentage monitoring."
+  is_abstract: true
+  uses:
+  - condensing_supply_water_isolation_valve_percentage_command
+  - condensing_supply_water_isolation_valve_percentage_sensor
+  implements:
+  - MONITORING
