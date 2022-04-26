@@ -39,11 +39,16 @@ CMP_SS_WDPM:
   - schedule_run_command
   - control_status
 
-CMP_SS_ZTO:
-  description: "Basic features of air compressor with zone temp override."
+############################
+### Non-Canonical Types  ###
+############################
+
+CMP_SS_NONCANONICAL_1:
+  description: "Basic air compressor with zone temp override."
   is_canonical: true
-  uses:
+  opt_uses:
   - zone_override_temperature_setpoint
+  uses:
   - run_mode
   implements:
   - CMP

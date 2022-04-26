@@ -1112,11 +1112,6 @@ literals:
   - ACTIVE
   - INACTIVE
   
-# added for water heating status
-- water_heating_status:
-  - ACTIVE
-  - INACTIVE
-
 # added for ACU type
 - zone_override_temperature_setpoint 
 

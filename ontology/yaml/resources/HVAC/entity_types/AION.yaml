@@ -17,18 +17,18 @@
 ########################
 
 
-AION_BS_SS:
+AION_SS:
   description: "Basic air ionizer with start/stop"
   is_canonical: true
   implements:
   - AION
   - SS
 
-AION_BS_SS_SRC_TA_FA:
+AION_SS_SRC:
   description: "Basic air ionizer with start/stop, switch control/status, trip alarm, scheduled run, dirty filter alarm."
   is_canonical: true
   implements:
-  - AION_BS_SS
+  - AION_SS
   - SRC
   uses:
   - lost_power_alarm

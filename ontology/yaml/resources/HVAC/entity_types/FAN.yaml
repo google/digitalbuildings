@@ -573,17 +573,18 @@ FAN_SS_AL:
   - schedule_run_command
   - control_status
 
-FAN_SS_SC_FA_SR:
+FAN_SS_VSC_SRC:
   description: "Basic Exhaust fan with start/stop, speed sensor, fail alarm, scheduled run"
   uses:
-  - exhaust_fan_speed_percentage_sensor
+  - schedule_run_command
+  - lost_power_alarm
   implements:
-  - FAN_SS_AL
+  - FAN_SS_VSC
   - SRC
 
 FAN_ST:
   description: "Basic fan with flowrate status only"
   uses:
-  - supply_air_flowrate_status
+  - discharge_air_flowrate_status
   implements:
   - FAN

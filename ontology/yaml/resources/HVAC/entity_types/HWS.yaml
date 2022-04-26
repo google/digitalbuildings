@@ -273,4 +273,4 @@ HWS_ST:
   implements:
   - HWS
   uses:
-  - water_heating_status
+  - run_status
