@@ -31,6 +31,11 @@ This project is structured as following:
 * [Internal Building Representation](/ibr/README.md) (IBR) File Format to represent data from different verticals such as spatial, assets.
 
 ## Learning Modules
+The learning modules provide an overview of:
+* The main concepts of the Digital Buildings Ontology.
+* How to model and extend types.
+* The Building configuration file concepts.
+* The validation tools for the Building Configuration file.
 
 ### Module 1
 1. Introduction to the Digital Buildings Ontology [Lesson 1](https://github.com/google/digitalbuildings/blob/master/ontology/docs/learning/Module%201%2C%20Lesson%201_%20Introduction%20to%20the%20DBO%20(v1_git).pdf)
