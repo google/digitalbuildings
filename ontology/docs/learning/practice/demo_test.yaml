@@ -1,0 +1,27 @@
+US-SVL-MP2:
+  type: FACILITIES/BUILDING
+  guid: 839402
+  id: CDM/123
+
+EF-1:
+  type: HVAC/FAN_SS
+  id: 12345
+  guid: 12345566
+  cloud_device_id: 1234567
+  translation:
+    run_command:
+      present_value: "points.fan_ss.present_value"
+      states:
+        ON: "true"
+        OFF: "false"
+    run_status:
+      present_value: "points.fan_sts.present_value"
+      states:
+        OFF: "false"
+        ON: "true"
+    supply_fan_speed_frequency_sensor:
+      present_value: "points.spd_freq.present-value"
+      units:
+        key: "points.spd_freq.units"
+        values:
+          hertz: "hertz"

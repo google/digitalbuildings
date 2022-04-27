@@ -49,12 +49,11 @@ class EntityIdentification(Dimension):
     filtered = filter(
         self.is_entity_canonical,
         virtual_entities) if exclude_noncanonical else virtual_entities
-    return [
-        cloud_device_id for source_list in ((file[link.source].cloud_device_id
-                                             for link in entity.links)
-                                            for entity in filtered)
-        for cloud_device_id in source_list
-    ]
+    ids = []
+    for entity in filtered:
+      for link in entity.links:
+        ids.append(file[link.source].cloud_device_id)
+    return ids
 
   def evaluate(self):
     """Calculates and assigns properties necessary for generating a score."""
