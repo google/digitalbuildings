@@ -33,15 +33,26 @@ class EntityConnectionIdentification(Dimension):
   # rather than `translations` to do its calculations
   category = DimensionCategories.COMPLEX
 
-  def _isolate_connections(self, file: DeserializedFile) -> ConnectionsList:
+  @staticmethod
+  def _isolate_connections(file: DeserializedFile) -> ConnectionsList:
     """Distill individual connections from each entity
     prior to inclusion in sets for global comparison."""
     Connection = namedtuple('Connection', ['target', 'connection'])
 
-    return [
-        Connection(entity.code, connection) for entity in file.values()
-        if entity.connections is not None for connection in entity.connections
-    ]
+    all_connections = []
+    for entity in file.values():
+      if entity.connections is not None:
+        for connection in entity.connections:
+          all_connections.append(Connection(entity.code, connection))
+    return all_connections
+
+  @staticmethod
+  def _get_cdid(code_or_guid: str, *, file: DeserializedFile) -> str:
+    """Returns an entity's `cloud_device_id` if available
+    to increase the likelihood of connections matching between files"""
+    for entity in file.values():
+      if code_or_guid in [entity.code, entity.guid]:
+        return entity.cloud_device_id or entity.code
 
   def _condense_connections(self, connections: ConnectionsList, *,
                             file: DeserializedFile) -> Set[str]:
@@ -49,13 +60,10 @@ class EntityConnectionIdentification(Dimension):
     for easy comparison using intersection."""
     condensed = set()
     for cn in connections:
-      cdid_or_code = lambda code_or_guid: next(
-          entity.cloud_device_id or entity.code for entity in file.values()
-          if code_or_guid in [entity.code, entity.guid])
       # e.g. "THAT_ENTITY CONTAINS THIS_ENTITY"
       condensed.add(
-          f'{cdid_or_code(cn.connection.source)} {cn.connection.ctype} '
-          f'{cdid_or_code(cn.target)}')
+          f'{self._get_cdid(cn.connection.source, file=file)} '
+          f'{cn.connection.ctype} {self._get_cdid(cn.target, file=file)}')
     return condensed
 
   def evaluate(self):
