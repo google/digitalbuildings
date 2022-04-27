@@ -1,10 +1,9 @@
 US-MTV-1804:
-  id: FACILITIES/buildings/779356778
   type: FACILITIES/BUILDING
   guid: f1124cdb-7893-4d08-943c-ad777c081fce
+
 EF-1 / Electric Rm 1C1:
   cloud_device_id: 2550389110353931
-  id: CDM/2550389110353931
   translation:
     run_command:
       present_value: data.binary-output_1.present-value
@@ -36,12 +35,12 @@ EF-1 / Electric Rm 1C1:
           degrees_fahrenheit: degrees-fahrenheit
   type: HVAC/FAN_SS_DSP
   guid: f00744b4-489e-4dd7-803c-d7d092ec3a2c
+
 Shelter/Purge / 1804 Shoreline:
   cloud_device_id: 2754543054948093
   connections:
     US-MTV-1804:
     - CONTAINS
-  id: CDM/2754543054948093
   translation:
     outside_air_dewpoint_temperature_sensor:
       present_value: data.analog-value_1304.present-value
@@ -75,12 +74,12 @@ Shelter/Purge / 1804 Shoreline:
           degrees_fahrenheit: degrees-fahrenheit
   type: HVAC/WEATHER_OA
   guid: 0899c249-3854-40d8-ba14-2dfe64e36bcb
+
 power-meter-ELEV:
   cloud_device_id: 2566753989830144
   connections:
     US-MTV-1804:
     - CONTAINS
-  id: CDM/2566753989830144
   translation:
     apparent_power_sensor:
       present_value: data.kVA.present-value
@@ -228,12 +227,12 @@ power-meter-ELEV:
           kilovolt_amperes_reactive: kilo-volt-amperes-reactive
   type: METERS/EM_PWM_AVCM_PLPM_PVCM
   guid: a51ee956-0ea4-47ae-b398-b1b38eb103fa
+
 power-meter-EV_L1C:
   cloud_device_id: 2553129859301862
   connections:
     US-MTV-1804:
     - CONTAINS
-  id: CDM/2553129859301862
   translation:
     apparent_power_sensor:
       present_value: data.kVA.present-value
