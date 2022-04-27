@@ -4749,6 +4749,27 @@ MPWM:
   - motor_powerfactor_sensor
   - motor_frequency_sensor
 
+INVPWM:
+  description: "Inverter (VFD) power monitoring."
+  is_abstract: true
+  implements:
+  - MONITORING
+  uses:
+  - inverter_power_sensor
+  opt_uses:
+  - inverter_voltage_sensor
+  - inverter_frequency_sensor
+
+INVPCM:
+  description: "Inverter (VFD) 3-phase current monitoring."
+  is_abstract: true
+  implements:
+  - MONITORING
+  uses:
+  - inverter_phase1_line_current_sensor
+  - inverter_phase2_line_current_sensor
+  - inverter_phase3_line_current_sensor
+
 CWSWISOVPM:
   description: "Condensing water supply side isolation valve percentage monitoring."
   is_abstract: true
