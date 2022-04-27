@@ -1,13 +1,12 @@
 US-MTV-1804:
-  id: FACILITIES/buildings/458
   type: FACILITIES/BUILDING
   guid: c4237b2d-82a8-42e3-ab6a-23ae89c12d42
+
 exhaustFan-2715203:
   cloud_device_id: 2550389110353931
   connections:
     US-MTV-1804:
     - CONTAINS
-  id: CDM/2550389110353931
   translation:
     exhaust_fan_failed_alarm:
       present_value: data.binary-value_2.present-value
@@ -98,12 +97,12 @@ exhaustFan-2715203:
         UNOCCUPIED: UNOCCUPIED
   type: HVAC/FAN
   guid: cfc0a080-e187-4e80-b418-e637b2975df0
+
 ahu-2700011:
   cloud_device_id: 2754543054948093
   connections:
     US-MTV-1804:
     - CONTAINS
-  id: CDM/2754543054948093
   translation:
     damper_percentage_command_1:
       present_value: data.analog-value_2.present-value
@@ -272,12 +271,12 @@ ahu-2700011:
         UNOCCUPIED: UNOCCUPIED
   type: HVAC/AHU
   guid: a441f0a4-a015-4aa7-be31-a50e31ec352e
+
 elecMeter-ELEV:
   cloud_device_id: 2566753989830144
   connections:
     US-MTV-1804:
     - CONTAINS
-  id: CDM/2566753989830144
   translation:
     apparent_power_sensor:
       present_value: data.kVA.present-value
@@ -425,12 +424,12 @@ elecMeter-ELEV:
           kilo_volt_amperes_reactive: kilo-volt-amperes-reactive
   type: METERS/EM_PWM_AVCM_PLPM_PVCM
   guid: 8b2a1823-036c-4566-b2fd-4ca71b9fbb65
+
 elecMeter-EV_L1C:
   cloud_device_id: 2553129859301862
   connections:
     US-MTV-1804:
     - CONTAINS
-  id: CDM/2553129859301862
   translation:
     apparent_power_sensor:
       present_value: data.kVA.present-value
