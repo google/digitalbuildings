@@ -34,19 +34,22 @@ class EntityConnectionIdentification(Dimension):
     """Distill individual connections from each entity
     prior to inclusion in sets for global comparison."""
     return [
-        tup for tup in (((cloud_device_id, connection)
+        tup for tup in (((entity.code, connection)
                          for connection in entity.connections)
-                        for cloud_device_id, entity in file.items()
+                        for entity in file.values()
                         if entity.connections is not None) for tup in tup
     ]
 
-  def _condense_connections(self, connections):
+  def _condense_connections(self, connections, *, file: DeserializedFile):
     """Condense connections into sets of strings
     for easy comparison using intersection."""
-    return set([
-        f'{target} {connection.ctype} {connection.source}'
-        for target, connection in connections
-    ])
+    condensed = set()
+    for target_code, connection in connections:
+      target = next(entity.cloud_device_id or entity.code
+                    for entity in file.values() if entity.code is target_code)
+      condensed.add(
+          f'{file[connection.source].code} {connection.ctype} {target}')
+    return condensed
 
   def evaluate(self):
     """Calculate and assign properties necessary for generating a score."""
@@ -57,9 +60,10 @@ class EntityConnectionIdentification(Dimension):
     proposed_connections, solution_connections = map(
         self._isolate_connections, (proposed_file, solution_file))
 
-    proposed_connections_condensed, solution_connections_condensed = map(
-        self._condense_connections,
-        (proposed_connections, solution_connections))
+    proposed_connections_condensed = self._condense_connections(
+        proposed_connections, file=proposed_file)
+    solution_connections_condensed = self._condense_connections(
+        solution_connections, file=solution_file)
 
     # Compare them
     correct = proposed_connections_condensed.intersection(
