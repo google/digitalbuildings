@@ -1234,7 +1234,7 @@ literals:
 - chilled_ground_supply_water_isolation_valve_status:
   - OPEN
   - CLOSED
-- chilledground_supply_water_isolation_valve_command:
+- chilled_ground_supply_water_isolation_valve_command:
   - OPEN
   - CLOSED
 - heating_return_ground_supply_water_isolation_valve_status:
