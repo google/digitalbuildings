@@ -278,6 +278,9 @@ EDBPC:
   id: "15769475728711614464"
   description: "Building static control with exhaust damper."
   is_abstract: true
+  opt_uses:
+  - exhaust_air_differential_pressure_sensor
+  - exhaust_air_damper_percentage_sensor
   uses:
   - building_air_static_pressure_sensor
   - building_air_static_pressure_setpoint
@@ -319,6 +322,7 @@ VSC:
   - speed_percentage_sensor
   - speed_frequency_sensor
   - power_sensor
+  - voltage_sensor
   uses:
   - speed_percentage_command
   - run_status
@@ -1350,6 +1354,9 @@ CHWZC:
   - discharge_air_temperature_sensor
   - leaving_cooling_coil_temperature_sensor
   - cooling_thermal_power_capacity
+  - chilled_water_valve_percentage_sensor
+  - chilled_supply_water_isolation_valve_command
+  - chilled_supply_water_isolation_valve_status
   - chilled_supply_water_temperature_sensor
   uses:
   - zone_air_cooling_temperature_setpoint
@@ -2012,6 +2019,8 @@ HWZC:
   - discharge_air_temperature_sensor
   - heating_water_valve_percentage_sensor
   - heating_thermal_power_capacity
+  - heating_supply_water_isolation_valve_command
+  - heating_supply_water_isolation_valve_status
   uses:
   - heating_water_valve_percentage_command
   - zone_air_heating_temperature_setpoint
@@ -4410,7 +4419,127 @@ HWDDC:
   implements:
   - CONTROL
 
+CFDPM:
+  description: "Carbon filter pressure monitoring, where specific filter type is required."
+  is_abstract: true
+  uses:
+  - carbon_filter_differential_pressure_sensor
+  implements:
+  - MONITORING
+ 
+VOADM2X:
+  description: "Variable outside air damper monitoring, where there are two separate, equal sets of dampers that operate in conjunction."
+  is_abstract: true
+  opt_uses:
+  - economizer_mode
+  - mixed_air_temperature_sensor
+  - outside_air_damper_percentage_sensor_1
+  - outside_air_damper_percentage_sensor_2
+  - low_limit_outside_air_damper_percentage_command
+  - outside_air_flowrate_sensor_1
+  - outside_air_flowrate_sensor_2
+  uses:
+  - outside_air_temperature_sensor
+  - outside_air_damper_percentage_command_1
+  - outside_air_damper_percentage_command_2
+  implements:
+  - MONITORING
+ 
+EHHRC:
+  description: "Exhaust hydronic heat recovery coil with an isolation valve."
+  is_abstract: true
+  uses:
+  - heat_recovery_water_isolation_valve_command
+  - leaving_heat_recovery_coil_temperature_sensor
+  - entering_heat_recovery_coil_temperature_sensor
+  - exhaust_air_flowrate_sensor
+  implements:
+  - MONITORING
+ 
+DPBHCC:
+  description: "Two-pipe binary (open/closed) heating and cooling control. There is
+  an isolation valve for each incoming system. Valve and mode control to zone temperature
+  (heating/cooling setpoint configuration)."
+  is_abstract: true
+  opt_uses:
+  - cooling_request_count
+  - heating_request_count
+  - zone_air_relative_humidity_sensor
+  uses:
+  - chilled_supply_water_isolation_valve_command
+  - chilled_supply_water_isolation_valve_status
+  - heating_supply_water_isolation_valve_command
+  - heating_supply_water_isolation_valve_status
+  - zone_air_cooling_temperature_setpoint
+  - zone_air_heating_temperature_setpoint
+  - zone_air_temperature_sensor
+  implements:
+  - CONTROL
+ 
+FTC:
+  description: "Floor temperature control, where the temperature sensors are embedded in the floor (as opposed to open to the air)."
+  is_abstract: true
+  uses:
+  - zone_floor_temperature_sensor
+  - zone_floor_temperature_setpoint
+  implements:
+  - OPERATIONAL
+ 
+DPCHWHRWSC:
+  description: "Two-pipe chilled water and heat recovery water control using the same coils."
+  is_abstract: true
+  opt_uses:
+  - leaving_coil_temperature_sensor
+  - chilled_supply_water_temperature_sensor
+  - chilled_return_water_temperature_sensor
+  - heat_recovery_supply_water_temperature_sensor
+  - heat_recovery_return_water_temperature_sensor
+  - supply_water_valve_percentage_sensor
+  - heat_recovery_return_water_isolation_valve_status
+  - heat_recovery_supply_water_isolation_valve_status
+  - chilled_return_water_isolation_valve_status
+  - chilled_supply_water_isolation_valve_status
+  uses:
+  - supply_air_temperature_sensor
+  - supply_air_temperature_setpoint
+  - supply_water_valve_percentage_command
+  - heat_recovery_run_command
+  - heat_recovery_supply_water_isolation_valve_command
+  - chilled_supply_water_isolation_valve_command
+  implements:
+  - CONTROL
 
+CPVSC2X:
+  description: "Circulation pump variable speed control with 2 circulation pumps."
+  is_abstract: true
+  uses:
+  - circulation_pump_run_command_1
+  - circulation_pump_run_status_1
+  - circulation_pump_speed_percentage_command_1
+  - circulation_pump_run_command_2
+  - circulation_pump_run_status_2
+  - circulation_pump_speed_percentage_command_2
+  implements:
+  - OPERATIONAL
+
+HWTTC:
+  description: "Hot water tank temperature control."
+  is_abstract: true
+  uses:
+  - hot_water_tank_temperature_setpoint
+  - hot_water_tank_temperature_sensor
+  implements:
+  - OPERATIONAL
+
+PHWTTC:
+  description: "Preheating water tank temperature control."
+  is_abstract: true
+  uses:
+  - preheating_water_tank_temperature_setpoint
+  - preheating_water_tank_temperature_sensor
+  implements:
+  - OPERATIONAL
+  
 
 RCKTM:
   description: "Refrigeration circuit monitoring for a DX compressor loop."
@@ -4479,3 +4608,128 @@ SSSPC:
   - steam_valve_percentage_command
   implements:
   - CONTROL
+
+SCHWISOVPM:
+  description: "Secondary chilled water return side isolation valve percentage monitoring."
+  is_abstract: true
+  uses:
+  - secondary_chilled_return_water_isolation_valve_percentage_command
+  - secondary_chilled_return_water_isolation_valve_percentage_sensor
+  implements:
+  - MONITORING
+
+SCHWDT:
+  description: "Secondary-side chilled water delta-T monitoring."
+  is_abstract: true
+  implements:
+  - MONITORING
+  uses:
+  - secondary_chilled_supply_water_temperature_sensor
+  - secondary_chilled_return_water_temperature_sensor
+
+SHWDT:
+  description: "Secondary-side heating water delta-T monitoring."
+  is_abstract: true
+  implements:
+  - MONITORING
+  uses:
+  - secondary_heating_supply_water_temperature_sensor
+  - secondary_heating_return_water_temperature_sensor
+
+PCHWDT:
+  description: "Temperature differential across primary chilled water loop."
+  is_abstract: true
+  implements:
+  - MONITORING
+  uses:
+  - primary_chilled_return_water_temperature_sensor
+  - primary_chilled_supply_water_temperature_sensor
+
+PHWDT:
+  description: "Temperature differential across primary heating water loop."
+  is_abstract: true
+  implements:
+  - MONITORING
+  uses:
+  - primary_heating_return_water_temperature_sensor
+  - primary_heating_supply_water_temperature_sensor
+
+TDTM:
+  description: "water tank delta-T monitoring."
+  is_abstract: true
+  uses:
+  - leaving_water_tank_temperature_sensor
+  - entering_water_tank_temperature_sensor 
+  implements:
+  - MONITORING
+
+HLPM:
+  description: "Heating thermal power sensor."
+  is_abstract: true
+  uses:
+  - heating_thermal_power_sensor
+  implements:
+  - MONITORING
+
+CWRWISOVM:
+  description: "Condensing water supply side isolation valve monitoring."
+  is_abstract: true
+  uses:
+  - condensing_return_water_isolation_valve_command
+  - condensing_return_water_isolation_valve_status
+  implements:
+  - MONITORING
+
+CWRWISOVPM:
+  description: "Condensing water return side isolation valve percentage monitoring."
+  is_abstract: true
+  uses:
+  - condensing_return_water_isolation_valve_percentage_command
+  - condensing_return_water_isolation_valve_percentage_sensor
+  implements:
+  - MONITORING
+
+OCWRWISOVM:
+  description: "Open-loop CDW return side isolation valve monitoring."
+  is_abstract: true
+  uses:
+  - outside_condensing_loop_return_water_isolation_valve_command
+  - outside_condensing_loop_return_water_isolation_valve_status
+  implements:
+  - MONITORING
+
+OCWRWISOVPM:
+  description: "Open-loop CDW return side isolation valve monitoring."
+  is_abstract: true
+  uses:
+  - outside_condensing_loop_return_water_isolation_valve_percentage_command
+  - outside_condensing_loop_return_water_isolation_valve_percentage_sensor
+  implements:
+  - MONITORING
+
+HWRWISOVM:
+  description: "Heating return side isolation valve monitoring."
+  is_abstract: true
+  uses:
+  - heating_return_water_isolation_valve_command
+  - heating_return_water_isolation_valve_status
+  implements:
+  - MONITORING
+
+HWSWISOVM:
+  description: "Heating supply side isolation valve monitoring."
+  is_abstract: true
+  uses:
+  - heating_supply_water_isolation_valve_command
+  - heating_supply_water_isolation_valve_status
+  implements:
+  - MONITORING
+
+HWRWISOVPM:
+  description: "Heating return side isolation valve percentage monitoring."
+  is_abstract: true
+  uses:
+  - heating_return_water_isolation_valve_percentage_command
+  - heating_return_water_isolation_valve_percentage_sensor
+  implements:
+  - MONITORING
