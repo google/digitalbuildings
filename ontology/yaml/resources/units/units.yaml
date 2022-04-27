@@ -182,7 +182,6 @@ power:
 - kilowatts
 - volt_amperes
 - kilovolt_amperes
-- kilovolt_amperes_reactive
 - megawatts
 - milliwatts
 - tons_of_refrigeration
