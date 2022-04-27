@@ -103,6 +103,7 @@ descriptor:
   flue: "Chimney for conveying exhaust gas."
   formaldehyde: "A simple, pungent organic compound (gas under standard conditions), simplest of the aldehydes."
   frost: "Freezing water on a surface."
+  defrost: "De-freezing ice from a surface."
   ## TODO: make it so gas only has one meaning
   gas: "Process or component driven by natural gas (as to distinguish from electric)."
   glycol: "Liquid mixture consisting of glycol and water "
