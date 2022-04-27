@@ -17,7 +17,10 @@
 
 from score.dimensions.dimension import Dimension
 from score.constants import FileTypes, DimensionCategories
-from score.scorer_types import DeserializedFile
+from score.scorer_types import DeserializedFile, ConnectionsList
+
+from typing import Set
+from collections import namedtuple
 
 PROPOSED, SOLUTION = FileTypes
 
@@ -33,23 +36,26 @@ class EntityConnectionIdentification(Dimension):
   def _isolate_connections(self, file: DeserializedFile):
     """Distill individual connections from each entity
     prior to inclusion in sets for global comparison."""
+    Connection = namedtuple('Connection', ['target', 'connection'])
+
     return [
-        tup for tup in (((entity.code, connection)
-                         for connection in entity.connections)
-                        for entity in file.values()
-                        if entity.connections is not None) for tup in tup
+        Connection(entity.code, connection) for entity in file.values()
+        if entity.connections is not None for connection in entity.connections
     ]
 
-  def _condense_connections(self, connections, *, file: DeserializedFile):
+  def _condense_connections(self, connections: ConnectionsList, *,
+                            file: DeserializedFile) -> Set[str]:
     """Condense connections into sets of strings
     for easy comparison using intersection."""
     condensed = set()
-    for target, connection in connections:
+    for cn in connections:
       cdid_or_code = lambda code_or_guid: next(
           entity.cloud_device_id or entity.code for entity in file.values()
           if code_or_guid in [entity.code, entity.guid])
-      condensed.add(f'{cdid_or_code(connection.source)} {connection.ctype} '
-                    f'{cdid_or_code(target)}')
+      # e.g. "THAT_ENTITY CONTAINS THIS_ENTITY"
+      condensed.add(
+          f'{cdid_or_code(cn.connection.source)} {cn.connection.ctype} '
+          f'{cdid_or_code(cn.target)}')
     return condensed
 
   def evaluate(self):
