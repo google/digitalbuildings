@@ -13,14 +13,74 @@
 # limitations under the License.
 """Constants for concrete model application."""
 
-NAMESPACE_KEY = 'namespace'
-GENERAL_TYPE_KEY = 'general_type'
-ENTITY_TYPE_KEY = 'entity_type'
-REQUIRED_FIELDS_KEY = 'required_fields'
-OPTIONAL_FIELDS_KEY = 'optional_fields'
+BC_GUID_REGEX = '^[0-9a-f]{8}-([0-9a-f]{4}-){3}[0-9a-f]{12}:'
 
-SOURCE_ENTITY_GUID_KEY = 'source_entity_guid'
-TARGET_ENEITY_GUID_KEY = 'target_entity_guid'
-CONNECTION_TYPE_KEY = 'connection_type'
+# Connection key
+SOURCE_ENTITY_GUID = 'Source Entity GUID'
+TARGET_ENTITY_GUID = 'Target Entity GUID'
+SOURCE_ENTITY_CODE = 'Source Entity Code'
+TARGET_ENTITY_CODE = 'Target Entity Code'
+CONNECTION_TYPE = 'Connection Type'
+
+# EntityField keys
+RAW_FIELD_NAME = 'Raw Field Name'
+LINKED_ENTITY_CODE = 'Linked Entity Code'
+LINKED_ENTITY_GUID = 'Linked Entity Guid'
+DATA_TYPE = 'Data Type'
+UNITS = 'units'
+STATES = 'states'
+DEVICE_ID = 'Device ID'
+INITIAL_VALUE = 'Initial Value'
+
+# Units keys
+RAW_UNIT_PATH = 'Raw Unit Path'
+STANDARD_UNIT_VALUE = 'Standard Unit Value'
+RAW_UNIT_VALUE = 'Raw Unit Value'
+
+# Entity keys
+UDMI_GUID = 'UDMI GUID'
+ETAG = 'Etag'
+CLOUD_DEVICE_ID = 'Cloud Device ID'
+NAMESPACE = 'Namespace'
+GENERAL_TYPE = 'General Type'
+IS_REPORTING = 'is_reporting'
+
+# Site Keys
+SITE_TYPE_NAME = 'FACILITIES/BUILDING'
+CLOUD_REGION = 'Cloud Region'
+LATITUDE = 'latitude'
+LONGITUDE = 'longitude'
+ALTITUDE = 'altitude'
+ORIENTATION = 'orientation'
+ADDRESS = 'address'
+STREET = 'street'
+CITY = 'city'
+STATE = 'state'
+COUNTY = 'county'
+COUNTRY = 'country'
+POSTAL_CODE = 'postal_code'
+PRIMARY_FUNCTION = 'primary_function'
+TIMEZONE = 'timezone'
+WEATHER_STATION_REF = 'weather_station_ref'
+REGISTRY_ID = 'registry_id'
+
+# state keys
+RAW_STATE = 'Payload State'
+STANDARD_STATE = 'Standard State'
+
+# multi-use keys
+STANDARD_FIELD_NAME = 'Standard Field Name'
+ENTITY_CODE = 'Entity Code'
+TYPE_NAME = 'Type Name'
+METADATA = 'Metadata'
+BC_GUID = 'BC GUID'
+
+# Spreadsheet sheet title keys
+SITES = 'Site'
+ENTITIES = 'Entities'
+ENTITY_FIELDS = 'Entity Fields'
+STATES = 'States'
+CONNECTIONS = 'Connections'
+SPREADSHEET_RANGE = [SITES, ENTITIES, ENTITY_FIELDS, STATES, CONNECTIONS]
 
 

@@ -11,18 +11,18 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-"""Module for concrete model units."""
+"""Module for EntityField units."""
 
 from typing import Dict
 
 
 class Units(object):
-  """Class for concrete model states.
+  """Data container class for an Entity Field's Units.
 
   Attributes:
-    raw_unit_path: the units path in the payload device.
-    standard_to_raw_unit_map: A mapping DBO
-      unit to raw unit value.
+    raw_unit_path: Bacnet device path to a data point's units.
+    standard_to_raw_unit_map: A mapping of standard units names to bacnet device
+      data units.
   """
 
   def __init__(self,
@@ -31,20 +31,9 @@ class Units(object):
     """Init.
 
     Args:
-      raw_unit_path: the units path in the payload device.
-      standard_to_raw_unit_map: A mapping DBO
-        unit to raw unit value.
+      raw_unit_path: Bacnet device path to a data point's units.
+      standard_to_raw_unit_map: A mapping of standard units names to bacnet
+        device data units.
     """
     self.raw_unit_path = raw_unit_path
     self.standard_to_raw_unit_map = standard_to_raw_unit_map
-
-  def AddUnit(self, raw_unit_path: str, dbo_to_raw_unit_map: Dict[str,
-                                                                  str]) -> None:
-    """Adds a new unit to self.standard_to_raw_unit_map.
-
-    Args:
-      raw_unit_path: a devices path to a unit value. i.e.
-        pointset.points.supply_fan_speed_percentage_command.units
-      dbo_to_raw_unit_map: A mapping of standard unit name to raw units from
-        payload device.
-    """

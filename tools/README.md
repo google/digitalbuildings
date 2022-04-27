@@ -8,14 +8,9 @@ implemented in the future.
 
 ## Setup
 
-
-### Windows Setup
-1. Open cmd and navigate to `digitalbuildings/tools`
-2. Run `global_setup.bat`
-
-### Unix Setup
-1. Open terminal and navigate to `digitalbuildings/tools`
-2. Run `sudo bash global_setup.sh`
+1. follow setup instructions for the [Instance Validator](./validators/instance_validator)
+2. follow setup instructions for the [GUID Generator](./guid_generator)
+3. Run `sudo python setup.py` for this directory
 
 ## Running Toolkit
 
@@ -30,8 +25,6 @@ Run `python toolkit.py` and provide any of the following arguments:
 - `-r/--report-filename` Filename for validation report
 
 For example:
-`python toolkit.py -i=//path/to/file --generate --validate -r=//path/to/report`
+`python toolkit.py -i //path/to/file -g -v -r //path/to/report`
 Takes in an input file, generates guids for every entity instance, validates the
 building configuration, and writes validation results to the report filepath.
-
-**NOTE:** For Windows, run with `py` rather than `python`

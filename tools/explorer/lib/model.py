@@ -13,8 +13,8 @@
 # limitations under the License.
 
 """Helper Field model classes for Ontology explorer."""
-from typing import List, Optional
 import re
+from typing import List, Optional
 
 from yamlformat.validator.entity_type_lib import EntityType
 
