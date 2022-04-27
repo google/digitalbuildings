@@ -3744,6 +3744,8 @@ REFPM:
   id: "5061129675661639680"
   description: "Refrigerant pressure monitoring for single circuits."
   is_abstract: true
+  opt_uses:
+  - refrigerant_differential_pressure_sensor
   uses:
   - refrigerant_evaporator_pressure_sensor
   - refrigerant_condenser_pressure_sensor
