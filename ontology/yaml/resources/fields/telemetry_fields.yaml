@@ -1218,3 +1218,40 @@ literals:
 - inverter_power_sensor
 
 - refrigerant_differential_pressure_sensor
+
+- chilled_return_ground_supply_water_isolation_valve_status:
+  - OPEN
+  - CLOSED
+- chilled_supply_ground_return_water_isolation_valve_status:
+  - OPEN
+  - CLOSED
+- chilled_supply_ground_return_water_isolation_valve_command:
+  - OPEN
+  - CLOSED
+- chilled_return_ground_return_water_isolation_valve_status:
+  - OPEN
+  - CLOSED
+- chilled_supply_ground_supply_water_isolation_valve_status:
+  - OPEN
+  - CLOSED
+- chilled_supply_ground_supply_water_isolation_valve_command:
+  - OPEN
+  - CLOSED
+- heating_return_ground_supply_water_isolation_valve_status:
+  - OPEN
+  - CLOSED
+- heating_supply_ground_return_water_isolation_valve_status:
+  - OPEN
+  - CLOSED
+- heating_supply_ground_return_water_isolation_valve_command:
+  - OPEN
+  - CLOSED
+- heating_return_ground_return_water_isolation_valve_status:
+  - OPEN
+  - CLOSED
+- heating_supply_ground_supply_water_isolation_valve_status:
+  - OPEN
+  - CLOSED
+- heating_supply_ground_supply_water_isolation_valve_command:
+  - OPEN
+  - CLOSED
