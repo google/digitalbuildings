@@ -48,8 +48,6 @@ CMP_SS_NONCANONICAL_1:
   is_canonical: true
   opt_uses:
   - zone_override_temperature_setpoint
-  uses:
-  - run_mode
   implements:
   - CMP
   - SS

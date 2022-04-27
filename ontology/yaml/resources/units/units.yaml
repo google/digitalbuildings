@@ -121,9 +121,9 @@ humidity:
 - percent_relative_humidity: STANDARD
 illuminance:
 - lux: STANDARD
+- foot_candles
 length: distance
 level: distance
-- foot_candles
 impulse:
 - newton_seconds: STANDARD
 irradiance:
