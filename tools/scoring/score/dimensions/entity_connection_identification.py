@@ -33,7 +33,7 @@ class EntityConnectionIdentification(Dimension):
   # rather than `translations` to do its calculations
   category = DimensionCategories.COMPLEX
 
-  def _isolate_connections(self, file: DeserializedFile):
+  def _isolate_connections(self, file: DeserializedFile) -> ConnectionsList:
     """Distill individual connections from each entity
     prior to inclusion in sets for global comparison."""
     Connection = namedtuple('Connection', ['target', 'connection'])
