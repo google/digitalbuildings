@@ -471,7 +471,7 @@ literals:
 - zone_air_refrigerant_concentration_setpoint
 
 # Added on 2019/06/03
-- apparent_power_sensor
+- apparentpower_sensor
 - energy_accumulator
 - average_line_current_sensor
 - average_line_neutral_voltage_sensor
@@ -492,7 +492,7 @@ literals:
 - phase3_power_sensor
 - phase3_powerfactor_sensor
 - powerfactor_sensor
-- reactive_power_sensor
+- reactivepower_sensor
 
 # Added on 2019/06/27 for Enlighted
 - dimmer_percentage_command # Should be adjusted to brightness_percentage_command

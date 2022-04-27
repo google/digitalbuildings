@@ -20,8 +20,8 @@ PWM:
   description: "Very basic power and enrgy monitoring only."
   is_abstract: true
   opt_uses:
-  - apparent_power_sensor
-  - reactive_power_sensor
+  - apparentpower_sensor
+  - reactivepower_sensor
   - powerfactor_sensor
   - line_frequency_sensor
   uses:
