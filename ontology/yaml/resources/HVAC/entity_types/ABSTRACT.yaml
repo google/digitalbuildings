@@ -4731,14 +4731,14 @@ MPVCM:
   implements:
   - MONITORING
   uses:
-  - motor_phase1_phase3_line_voltage_sensor
-  - motor_phase1_phase2_line_voltage_sensor
-  - motor_phase2_phase3_line_voltage_sensor
-  - motor_phase1_line_current_sensor
-  - motor_phase2_line_current_sensor
-  - motor_phase3_line_current_sensor
-  - average_motor_line_current_sensor
-  - average_motor_inter_line_voltage_sensor
+  - phase1_phase3_line_motor_voltage_sensor
+  - phase1_phase2_line_motor_voltage_sensor
+  - phase2_phase3_line_motor_voltage_sensor
+  - phase1_line_motor_current_sensor
+  - phase2_line_motor_current_sensor
+  - phase3_line_motor_current_sensor
+  - average_line_motor_current_sensor
+  - average_inter_line_motor_voltage_sensor
 
 MPWM:
   description: "Motor power monitoring."
@@ -4768,9 +4768,9 @@ INVPCM:
   implements:
   - MONITORING
   uses:
-  - inverter_phase1_line_current_sensor
-  - inverter_phase2_line_current_sensor
-  - inverter_phase3_line_current_sensor
+  - phase1_line_inverter_current_sensor
+  - phase2_line_inverter_current_sensor
+  - phase3_line_inverter_current_sensor
 
 CWSWISOVPM:
   description: "Condensing water supply side isolation valve percentage monitoring."
@@ -4805,9 +4805,9 @@ GTWHEISOVM:
   description: "Geothermal water heat-extraction isolation valve monitoring; extracting ground heat to to use in building."
   is_abstract: true
   uses:
-  - chilled_return_ground_return_water_isolation_valve_status
-  - chilled_supply_ground_supply_water_isolation_valve_status
-  - chilled_supply_ground_supply_water_isolation_valve_command
+  - chilled_ground_return_water_isolation_valve_status
+  - chilled_ground_supply_water_isolation_valve_status
+  - chilled_ground_supply_water_isolation_valve_command
   implements:
   - MONITORING
 
@@ -4815,8 +4815,8 @@ GTWHRISOVM:
   description: "Geothermal water heat-rejection isolation valve monitoring; rejecting building heat to ground."
   is_abstract: true  
   uses:
-  - heating_return_ground_return_water_isolation_valve_status
-  - heating_supply_ground_supply_water_isolation_valve_status
-  - heating_supply_ground_supply_water_isolation_valve_command
+  - heating_ground_return_water_isolation_valve_status
+  - heating_ground_supply_water_isolation_valve_status
+  - heating_ground_supply_water_isolation_valve_command
   implements:
   - MONITORING
