@@ -44,11 +44,12 @@ class EntityConnectionIdentification(Dimension):
     """Condense connections into sets of strings
     for easy comparison using intersection."""
     condensed = set()
-    for target_code, connection in connections:
-      target = next(entity.cloud_device_id or entity.code
-                    for entity in file.values() if entity.code is target_code)
-      condensed.add(
-          f'{file[connection.source].code} {connection.ctype} {target}')
+    for target, connection in connections:
+      cdid_or_code = lambda code_or_guid: next(
+          entity.cloud_device_id or entity.code for entity in file.values()
+          if code_or_guid in [entity.code, entity.guid])
+      condensed.add(f'{cdid_or_code(connection.source)} {connection.ctype} '
+                    f'{cdid_or_code(target)}')
     return condensed
 
   def evaluate(self):
