@@ -17,6 +17,7 @@
 ########################
 
 DHWT_HWTTC:
+  id: "7287872718861500416"
   description: "Domestic hot water tank."
   is_canonical: true
   implements:
@@ -24,6 +25,7 @@ DHWT_HWTTC:
   - HWTTC
 
 DHWT_PHWTTC:
+  id: "5767907844623958016"
   description: "Preheating domestic hot water tank."
   is_canonical: true
   implements:
