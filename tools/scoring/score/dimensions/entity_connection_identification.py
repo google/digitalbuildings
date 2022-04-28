@@ -17,7 +17,10 @@
 
 from score.dimensions.dimension import Dimension
 from score.constants import FileTypes, DimensionCategories
-from score.scorer_types import DeserializedFile
+from score.scorer_types import DeserializedFile, ConnectionsList
+
+from typing import Set
+from collections import namedtuple
 
 PROPOSED, SOLUTION = FileTypes
 
@@ -30,23 +33,38 @@ class EntityConnectionIdentification(Dimension):
   # rather than `translations` to do its calculations
   category = DimensionCategories.COMPLEX
 
-  def _isolate_connections(self, file: DeserializedFile):
+  @staticmethod
+  def _isolate_connections(file: DeserializedFile) -> ConnectionsList:
     """Distill individual connections from each entity
     prior to inclusion in sets for global comparison."""
-    return [
-        tup for tup in (((cloud_device_id, connection)
-                         for connection in entity.connections)
-                        for cloud_device_id, entity in file.items()
-                        if entity.connections is not None) for tup in tup
-    ]
+    Connection = namedtuple('Connection', ['target', 'connection'])
 
-  def _condense_connections(self, connections):
+    all_connections = []
+    for entity in file.values():
+      if entity.connections is not None:
+        for connection in entity.connections:
+          all_connections.append(Connection(entity.code, connection))
+    return all_connections
+
+  @staticmethod
+  def _get_cdid(code_or_guid: str, *, file: DeserializedFile) -> str:
+    """Returns an entity's `cloud_device_id` if available
+    to increase the likelihood of connections matching between files"""
+    for entity in file.values():
+      if code_or_guid in [entity.code, entity.guid]:
+        return entity.cloud_device_id or entity.code
+
+  def _condense_connections(self, connections: ConnectionsList, *,
+                            file: DeserializedFile) -> Set[str]:
     """Condense connections into sets of strings
     for easy comparison using intersection."""
-    return set([
-        f'{target} {connection.ctype} {connection.source}'
-        for target, connection in connections
-    ])
+    condensed = set()
+    for cn in connections:
+      # e.g. "THAT_ENTITY CONTAINS THIS_ENTITY"
+      condensed.add(
+          f'{self._get_cdid(cn.connection.source, file=file)} '
+          f'{cn.connection.ctype} {self._get_cdid(cn.target, file=file)}')
+    return condensed
 
   def evaluate(self):
     """Calculate and assign properties necessary for generating a score."""
@@ -57,9 +75,10 @@ class EntityConnectionIdentification(Dimension):
     proposed_connections, solution_connections = map(
         self._isolate_connections, (proposed_file, solution_file))
 
-    proposed_connections_condensed, solution_connections_condensed = map(
-        self._condense_connections,
-        (proposed_connections, solution_connections))
+    proposed_connections_condensed = self._condense_connections(
+        proposed_connections, file=proposed_file)
+    solution_connections_condensed = self._condense_connections(
+        solution_connections, file=solution_file)
 
     # Compare them
     correct = proposed_connections_condensed.intersection(

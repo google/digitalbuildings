@@ -32,3 +32,4 @@ DimensionCategory = DimensionCategories
 EntityType = EntType
 RawFieldName = str
 PointsVirtualList = List[Tuple[Set[RawFieldName], EntityType]]
+ConnectionsList = List[Tuple[str, Any]]
