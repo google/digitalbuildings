@@ -367,6 +367,7 @@ class Dimension:
     """Distills mappings from each entity into a set for global comparison"""
     mappings = set()
     for translation in translations:
+      # (standard_field_name: str, field: obj)
       field = translation[1]
       if type(field).__name__ == mapping_type:
         if mapping_type == MappingTypes.STATE: attribute = 'states'
