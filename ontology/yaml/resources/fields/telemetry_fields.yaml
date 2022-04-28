@@ -1205,11 +1205,11 @@ literals:
 
 # New Fields for Drain Pumps
 - condensate_water_discharge_pump_run_command
-	- ON
-	- OFF
+  - ON
+  - OFF
 - condensate_water_discharge_pump_run_status
-	- ON
-	- OFF
+  - ON
+  - OFF
 - condensate_water_discharge_pump_failed_alarm
-	- NORMAL
-	- TRIP
+  - NORMAL
+  - TRIP
