@@ -17,10 +17,6 @@ angle:
 - degrees: STANDARD
 angularmomentum:
 - joule_seconds: STANDARD
-apparentpower:
-- volt_amperes_apparent: STANDARD
-- kilovolt_amperes_apparent
-- megavolt_amperes_apparent
 aqi:
 - epa: STANDARD
 - eea
@@ -206,10 +202,6 @@ pressure:
 - millibars
 rate:
 - inv_second: STANDARD
-reactivepower:
-- volt_amperes_reactive: STANDARD
-- kilovolt_amperes_reactive
-- megavolt_amperes_reactive
 resistance:
 - ohms: STANDARD
 - kiloohms

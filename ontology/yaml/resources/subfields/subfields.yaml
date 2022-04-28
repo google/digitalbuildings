@@ -227,7 +227,6 @@ measurement:
   acceleration: "The rate of change of velocity per unit of time."
   angle: "The figure formed by two rays, sharing a common endpoint."
   angularmomentum: "The quantity of rotation of a body, which is the product of its moment of inertia and its angular velocity."
-  apparentpower: "Product of the RMS values of voltage and current."
   aqi: "Air quality index, a set of special standard gradings for the pollution in air."
   area: "Amount of space within the perimeter of a 2D shape"
   concentration: "Concentration of something relative to something else (usually in parts per million or parts per billion)."
@@ -276,7 +275,6 @@ measurement:
   pressure: "Measured force per unit area within a system or process."
   #pressurechange: "Change of pressure per temperature." # TODO (tsodorff): find an alternative name once a use case arises 
   rate: "ratio of change compared to a step or time."
-  reactivepower: "Difference between the electricity supplied and the electricity converted into useful power."
   resistance: "Electrical resistance."
   rotationalvelocity: "Vector measure of rotation rate, that refers to how fast an object rotates or revolves relative to another point."
   specificenergy: "Energy per unit mass."
