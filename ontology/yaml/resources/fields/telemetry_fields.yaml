@@ -1202,3 +1202,24 @@ literals:
 - thermal_energy_accumulator
 - ground_isolation_command
 - ground_temperature_sensor
+
+## New Fields for PAC (ACU) Units
+- return_air_isolation_damper_status
+	- OPEN
+	- CLOSE
+- alert_reset_command
+	- NORMAL
+	- RESET
+- fan_run_time_accumulator
+- compressor_run_time_accumulator
+- evaporative_fan_speed_sensor
+- condensing_fan_speed_percentage_command
+- high_limit_zone_air_temperature_setpoint
+- low_limit_zone_air_temperature_setpoint
+- high_limit_zone_air_pressure_setpoint
+- low_limit_zone_air_pressure_setpoint
+- high_limit_zone_air_relative_humidity_setpoint
+- low_limit_zone_air_relative_humidity_setpoint
+- zone_air_override_temperature_status
+	- NOT OVERRIDDEN
+	- OVERRIDDEN
