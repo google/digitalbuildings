@@ -35,7 +35,7 @@ class CompleteOutputTest(absltest.TestCase):
     score = self.output['EntityConnectionIdentification']
     self.assertEqual(
         score,
-        '{result_all: -1.00, result_virtual: None, result_reporting: None}')
+        '{result_all: 1.00, result_virtual: None, result_reporting: None}')
 
   def testEntityIdentification(self):
     score = self.output['EntityIdentification']

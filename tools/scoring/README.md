@@ -49,6 +49,10 @@ There are presently some limitations to consider when interpreting scores:
 
   The virtual-entity matching algorithm used by the "entity type identification" and "entity point identification" dimensions is not presently deterministic, which infrequently results in scores with small variances.
 
+- Connections
+
+  Due to how `connections` are expressed — using arbitrary entity `code`s, rather than canonical identifiers, as keys — the associated score is very sensitive to naming conventions. Often, only connections with reporting devices as targets correspond.
+
 ## Dimensions
 
 ### Entity Connection Identification
