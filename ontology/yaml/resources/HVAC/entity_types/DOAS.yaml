@@ -31,6 +31,7 @@ DOAS_EFM_EFSS_EFVSC_OAFM_PHRU_SFSS_SFVSC:
   - SFVSC
 
 DOAS_EFSS_EFVSC_HTWHLSTC_SFSS_SFVSC_STC:
+  id: "8762238646871916544"
   description: "Multi zone DOAS with heat recovery wheel."
   is_canonical: true
   implements:
