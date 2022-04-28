@@ -1100,6 +1100,17 @@ literals:
 	- MEDIUM
 	- LOW
 
+## New fields for AHUs
+- return_air_co2_concentration_sensor
+- return_air_isolation_damper_status
+	- OPEN
+	- CLOSE
+- run_time_accumulator
+- output_voltage_sensor
+- speed_percentage_command
+- run_time_accumulator
+ 
+
 
 
 
