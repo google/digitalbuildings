@@ -4733,3 +4733,12 @@ HWRWISOVPM:
   - heating_return_water_isolation_valve_percentage_sensor
   implements:
   - MONITORING
+
+RDM:
+  description: "Return air damper percentage monitoring"
+  is_abstract: true
+  uses:
+  - return_air_damper_percentage_sensor
+  - return_air_damper_percentage_command
+  implements:
+  - MONITORING
