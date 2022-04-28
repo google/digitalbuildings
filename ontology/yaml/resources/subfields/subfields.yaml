@@ -328,6 +328,7 @@ measurement_descriptor:
   thermal: "Relating to the transfer of heat."
   tilt: "Degree of radial rotation."
   wetbulb: "Describes air temperature measured at 100% relative humidity (saturation)."
+  distance: "The length of the space between two points."
 point_type:
   accumulator: "The total accumulated quantity (e.g. total energy accumulated)."
   alarm: "A point that interprets some input values qualitatively (e.g. as good or bad, normal or in alarm, etc.). Alarms are always binary."
