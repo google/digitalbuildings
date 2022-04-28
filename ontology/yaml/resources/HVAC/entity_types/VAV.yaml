@@ -388,6 +388,13 @@ VAV_DSP_ED:
   - DSP
   - ED
 
+VAV_RDM:
+  description: "Return control VAV without built-in regulation"
+  is_canonical: true
+  implements:
+  - VAV
+  - RDM
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
