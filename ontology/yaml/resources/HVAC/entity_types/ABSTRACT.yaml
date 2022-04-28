@@ -2051,6 +2051,7 @@ HWSWC:
   opt_uses:
   - heating_water_valve_percentage_sensor
   - heating_thermal_power_capacity
+  - return_water_temperature_sensor
   uses:
   - heating_water_valve_percentage_command
   - supply_water_temperature_setpoint
@@ -4605,6 +4606,16 @@ CC2XM:
   - compressor_current_sensor_1
   - compressor_run_command_2
   - compressor_current_sensor_2
+
+SSSPC:
+  description: "Supply static steam pressure control for steam/water heat exchanger"
+  is_abstract: true
+  uses:
+  - supply_steam_static_pressure_sensor
+  - supply_steam_static_pressure_setpoint
+  - steam_valve_percentage_command
+  implements:
+  - CONTROL
 
 SCHWISOVPM:
   description: "Secondary chilled water return side isolation valve percentage monitoring."
