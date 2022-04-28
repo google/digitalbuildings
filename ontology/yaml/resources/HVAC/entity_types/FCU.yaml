@@ -1279,9 +1279,9 @@ FCU_CHWZTC2X_HT2XZTC2X_DFVSC2X:
   - HT2XZTC2X
   - DFVSC2X
   
-FCU_STM_RTM_FDPM_ZTC_SRC:
-  description: "FCU with Status, zone control, schedule run"
-  is_canonical: false
+FCU_STM_RTM_ZTC_SRC:
+  description: "FCU with run status, supply and return temp sensors, zone control and sensor, schedule run, filter change and general fail alarm"
+  is_canonical: true
   implements:
   - FCU
   - STM

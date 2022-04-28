@@ -28,7 +28,8 @@ AION_SS_SRC:
   description: "Basic air ionizer with start/stop, switch control/status, trip alarm, scheduled run, dirty filter alarm."
   is_canonical: true
   implements:
-  - AION_SS
+  - AION
+  - SS
   - SRC
   uses:
   - lost_power_alarm

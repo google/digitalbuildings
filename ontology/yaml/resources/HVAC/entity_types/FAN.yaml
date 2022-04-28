@@ -616,7 +616,9 @@ FAN_SS_VSC_SRC:
   - schedule_run_command
   - lost_power_alarm
   implements:
-  - FAN_SS_VSC
+  - FAN
+  - SS
+  - VSC
   - SRC
 
 FAN_ST:
