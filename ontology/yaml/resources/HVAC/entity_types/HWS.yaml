@@ -250,6 +250,40 @@ HWS_SWTC_WDPC_BYPVPM_HWVM:
   - BYPVPM
   - HWVM
 
+HWS_SWTM:
+  description: "Heating water system with supply temperature monitoring"
+  is_canonical: true
+  implements:
+  - HWS
+  - SWTM
+
+HWS_HLPM_WDPC_WFRM_WDT:
+  description: "Heating water system with differential pressure control, thermal power, flowrate and delta-T monitoring."
+  is_canonical: true
+  implements:
+  - HWS
+  - HLPM
+  - WDPC
+  - WFRM
+  - WDT
+
+HWS_WFRC_SWTC:
+  description: "Heating water system with flowrate and suppy temp control."
+  is_canonical: true
+  implements:
+  - HWS
+  - WFRC
+  - SWTC
+
+HWS_WFRM_SWTC_HLPM:
+  description: "Heating water system with supply temp control, and flowrate and thermal power monitoring."
+  is_canonical: true
+  implements:
+  - HWS
+  - WFRM
+  - SWTC
+  - HLPM
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
