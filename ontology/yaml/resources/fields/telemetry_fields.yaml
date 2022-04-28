@@ -1202,3 +1202,14 @@ literals:
 - thermal_energy_accumulator
 - ground_isolation_command
 - ground_temperature_sensor
+
+# New Fields for Drain Pumps
+- condensate_water_discharge_pump_run_command
+	- ON
+	- OFF
+- condensate_water_discharge_pump_run_status
+	- ON
+	- OFF
+- condensate_water_discharge_pump_failed_alarm
+	- NORMAL
+	- TRIP
