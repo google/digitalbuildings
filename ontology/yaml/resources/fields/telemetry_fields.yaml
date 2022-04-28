@@ -1202,3 +1202,20 @@ literals:
 - thermal_energy_accumulator
 - ground_isolation_command
 - ground_temperature_sensor
+
+# New fields for DX Units
+- return_air_isolation_damper_status
+	- OPEN
+	- CLOSE
+- alert_reset_command
+	- NORMAL
+	- RESET
+- high_limit_zone_air_temperature_setpoint
+- low_limit_zone_air_temperature_setpoint
+- high_limit_zone_air_pressure_setpoint
+- low_limit_zone_air_pressure_setpoint
+- high_limit_zone_air_relative_humidity_setpoint
+- low_limit_zone_air_relative_humidity_setpoint
+- zone_air_override_temperature_setpoint
+
+
