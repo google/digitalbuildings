@@ -19,7 +19,7 @@
 
 from typing import Dict, List, Tuple, Any, Set
 from validate.entity_instance import EntityInstance
-from score.constants import FileTypes, DimensionCategories
+from score.constants import FileTypes, DimensionCategories, MappingTypes
 from yamlformat.validator.entity_type_lib import EntityType as EntType
 
 CloudDeviceId = str
@@ -33,3 +33,4 @@ EntityType = EntType
 RawFieldName = str
 PointsVirtualList = List[Tuple[Set[RawFieldName], EntityType]]
 ConnectionsList = List[Tuple[str, Any]]
+MappingType = MappingTypes
