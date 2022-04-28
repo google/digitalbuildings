@@ -1202,3 +1202,10 @@ literals:
 - thermal_energy_accumulator
 - ground_isolation_command
 - ground_temperature_sensor
+
+# New Fields for FCUs
+- return_air_isolation_damper_status
+- output_voltage_sensor
+	- OPEN
+	- CLOSE
+- run_time_accumulator
