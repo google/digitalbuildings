@@ -31,3 +31,8 @@ class DimensionCategories(str, Enum):
   to typically build a multi-map of virtual entities prior to
   calculating scores."""
   COMPLEX = 'complex'
+
+
+class MappingTypes(str, Enum):
+  STATE = 'MultiStateValue'
+  UNIT = 'DimensionalValue'
