@@ -4763,3 +4763,11 @@ HWRWISOVPM:
   - heating_return_water_isolation_valve_percentage_sensor
   implements:
   - MONITORING
+
+RC02M:
+  description: "Return air co2 monitoring"
+  is_abstract: true
+  uses:
+  - return_air_co2_concentration_sensor
+  implements:
+  - MONITORING
