@@ -1290,6 +1290,7 @@ CHWSC:
   - leaving_cooling_coil_temperature_sensor
   - cooling_thermal_power_capacity
   - chilled_supply_water_temperature_sensor
+  - chilled_water_valve_percentage_sensor
   uses:
   - supply_air_temperature_sensor
   - supply_air_temperature_setpoint
