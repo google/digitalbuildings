@@ -2138,6 +2138,7 @@ HWSC:
   - heating_thermal_power_capacity
   - leaving_heating_coil_temperature_sensor
   - heating_request_count
+  - heating_supply_water_temperature_sensor
   uses:
   - heating_water_valve_percentage_command
   - supply_air_temperature_setpoint
