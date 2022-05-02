@@ -387,6 +387,7 @@ FAN_SS_VSFC:
   - control_status
 
 FAN_SS_ZTC:
+  id: "17048861961233629184"
   description: "Fan zone temperature control"
   is_canonical: true
   implements:
@@ -395,6 +396,7 @@ FAN_SS_ZTC:
   - ZTC
 
 FAN_SS_VSC_EPC_EHHRC:
+  id: "6589814776619073536"
   description: "Fan with exhaust static pressure control and heat recovery coils."
   is_canonical: true
   implements:
@@ -405,6 +407,7 @@ FAN_SS_VSC_EPC_EHHRC:
   - EHHRC
  
 FAN_SS_VSC_EHHRC:
+  id: "17074194709137588224"
   description: "Fan with exhaust and heat recovery coils."
   is_canonical: true
   implements:
@@ -414,6 +417,7 @@ FAN_SS_VSC_EHHRC:
   - EHHRC
  
 FAN_SS_DWI2X:
+  id: "4175885376348487680"
   description: "Dishwasher-interlocked fan."
   is_canonical: true
   implements:
@@ -629,6 +633,7 @@ FAN_ST:
   - FAN
 
 FAN_SS_VSC_EPC_EHHRC_EHHRC3X:
+  id: "13340710618047447040"
   description: "Non-standard fan with exhaust static pressure control and heat recovery coils."
   implements:
   - FAN

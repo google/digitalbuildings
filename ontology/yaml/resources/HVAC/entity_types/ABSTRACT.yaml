@@ -4428,6 +4428,7 @@ SRC:
    - CONTROL
 
 CFDPM:
+  id: "13838358376871886848"
   description: "Carbon filter pressure monitoring, where specific filter type is required."
   is_abstract: true
   uses:
@@ -4436,6 +4437,7 @@ CFDPM:
   - MONITORING
  
 VOADM2X:
+  id: "13507343804260155392"
   description: "Variable outside air damper monitoring, where there are two separate, equal sets of dampers that operate in conjunction."
   is_abstract: true
   opt_uses:
@@ -4454,6 +4456,7 @@ VOADM2X:
   - MONITORING
  
 EHHRC:
+  id: "3300321589723136"
   description: "Exhaust hydronic heat recovery coil with an isolation valve."
   is_abstract: true
   uses:
@@ -4465,6 +4468,7 @@ EHHRC:
   - MONITORING
  
 DPBHCC:
+  id: "6697901167675965440"
   description: "Two-pipe binary (open/closed) heating and cooling control. There is
   an isolation valve for each incoming system. Valve and mode control to zone temperature
   (heating/cooling setpoint configuration)."
@@ -4485,6 +4489,7 @@ DPBHCC:
   - CONTROL
  
 FTC:
+  id: "18010943431630651392"
   description: "Floor temperature control, where the temperature sensors are embedded in the floor (as opposed to open to the air)."
   is_abstract: true
   uses:
@@ -4494,6 +4499,7 @@ FTC:
   - OPERATIONAL
  
 DPCHWHRWSC:
+  id: "370343691220418560"
   description: "Two-pipe chilled water and heat recovery water control using the same coils."
   is_abstract: true
   opt_uses:
@@ -4518,6 +4524,7 @@ DPCHWHRWSC:
   - CONTROL
 
 CPVSC2X:
+  id: "2309143330803417088"
   description: "Circulation pump variable speed control with 2 circulation pumps."
   is_abstract: true
   uses:
@@ -4531,6 +4538,7 @@ CPVSC2X:
   - OPERATIONAL
 
 HWTTC:
+  id: "8895657785832767488"
   description: "Hot water tank temperature control."
   is_abstract: true
   uses:
@@ -4540,6 +4548,7 @@ HWTTC:
   - OPERATIONAL
 
 PHWTTC:
+  id: "15921273204530741248"
   description: "Preheating water tank temperature control."
   is_abstract: true
   uses:
@@ -4550,6 +4559,7 @@ PHWTTC:
   
 
 RCKTM:
+  id: "4150552628444528640"
   description: "Refrigeration circuit monitoring for a DX compressor loop."
   is_abstract: true
   uses:
@@ -4566,6 +4576,7 @@ RCKTM:
 
 
 RCKTM2X:
+  id: "9248627406627930112"
   description: "Refrigeration circuits (2x) monitoring for a DX compressor loop."
   is_abstract: true
   uses:
@@ -4592,6 +4603,7 @@ RCKTM2X:
 
 
 CCM:
+  id: "7375129961641803776"
   description: "Compressor current monitoring."
   is_abstract: true
   uses:
@@ -4599,6 +4611,7 @@ CCM:
   - compressor_current_sensor
 
 CC2XM:
+  id: "15229407711775948800"
   description: "Compressor current monitoring for 2 compressors."
   is_abstract: true
   uses:
@@ -4608,6 +4621,7 @@ CC2XM:
   - compressor_current_sensor_2
 
 SSSPC:
+  id: "12462508690710200320"
   description: "Supply static steam pressure control for steam/water heat exchanger"
   is_abstract: true
   uses:
@@ -4618,6 +4632,7 @@ SSSPC:
   - CONTROL
 
 SCHWISOVPM:
+  id: "428890486376235008"
   description: "Secondary chilled water return side isolation valve percentage monitoring."
   is_abstract: true
   uses:
@@ -4627,6 +4642,7 @@ SCHWISOVPM:
   - MONITORING
 
 SCHWDT:
+  id: "9593715728075194368"
   description: "Secondary-side chilled water delta-T monitoring."
   is_abstract: true
   implements:
@@ -4636,6 +4652,7 @@ SCHWDT:
   - secondary_chilled_return_water_temperature_sensor
 
 SHWDT:
+  id: "11532515367658192896"
   description: "Secondary-side heating water delta-T monitoring."
   is_abstract: true
   implements:
@@ -4645,6 +4662,7 @@ SHWDT:
   - secondary_heating_return_water_temperature_sensor
 
 PCHWDT:
+  id: "18119029822687543296"
   description: "Temperature differential across primary chilled water loop."
   is_abstract: true
   implements:
@@ -4654,6 +4672,7 @@ PCHWDT:
   - primary_chilled_supply_water_temperature_sensor
 
 PHWDT:
+  id: "4392058158462271488"
   description: "Temperature differential across primary heating water loop."
   is_abstract: true
   implements:
@@ -4663,6 +4682,7 @@ PHWDT:
   - primary_heating_supply_water_temperature_sensor
 
 TDTM:
+  id: "9652262523231010816"
   description: "water tank delta-T monitoring."
   is_abstract: true
   uses:
@@ -4672,6 +4692,7 @@ TDTM:
   - MONITORING
 
 HLPM:
+  id: "4982029709647806464"
   description: "Heating thermal power sensor."
   is_abstract: true
   uses:
@@ -4680,6 +4701,7 @@ HLPM:
   - MONITORING
 
 CWRWISOVM:
+  id: "15646553627261140992"
   description: "Condensing water supply side isolation valve monitoring."
   is_abstract: true
   uses:
@@ -4689,6 +4711,7 @@ CWRWISOVM:
   - MONITORING
 
 CWRWISOVPM:
+  id: "7850822672282812416"
   description: "Condensing water return side isolation valve percentage monitoring."
   is_abstract: true
   uses:
@@ -4698,6 +4721,7 @@ CWRWISOVPM:
   - MONITORING
 
 OCWRWISOVM:
+  id: "18443288995858219008"
   description: "Open-loop CDW return side isolation valve monitoring."
   is_abstract: true
   uses:
@@ -4707,6 +4731,7 @@ OCWRWISOVM:
   - MONITORING
 
 OCWRWISOVPM:
+  id: "15705100422416957440"
   description: "Open-loop CDW return side isolation valve monitoring."
   is_abstract: true
   uses:
@@ -4716,6 +4741,7 @@ OCWRWISOVPM:
   - MONITORING
 
 HWRWISOVM:
+  id: "8729024599620059136"
   description: "Heating return side isolation valve monitoring."
   is_abstract: true
   uses:
@@ -4725,6 +4751,7 @@ HWRWISOVM:
   - MONITORING
 
 HWSWISOVM:
+  id: "4614986340017111040"
   description: "Heating supply side isolation valve monitoring."
   is_abstract: true
   uses:
@@ -4734,6 +4761,7 @@ HWSWISOVM:
   - MONITORING
 
 HWRWISOVPM:
+  id: "13399257413203263488"
   description: "Heating return side isolation valve percentage monitoring."
   is_abstract: true
   uses:
