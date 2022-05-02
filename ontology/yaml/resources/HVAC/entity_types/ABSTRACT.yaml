@@ -5035,7 +5035,6 @@ HWRWISOVPM:
   - heating_return_water_isolation_valve_percentage_command
   - heating_return_water_isolation_valve_percentage_sensor
   implements:
-
   - MONITORING 
 
 DEFSS:
@@ -5524,3 +5523,11 @@ RFVSC2X:
   - return_fan_speed_percentage_command_2
   implements:
   - OPERATIONAL
+
+RC02M:
+  description: "Return air co2 monitoring"
+  is_abstract: true
+  uses:
+  - return_air_co2_concentration_sensor
+  implements:
+  - MONITORING
