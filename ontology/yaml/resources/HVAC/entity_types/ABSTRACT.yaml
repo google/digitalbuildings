@@ -4733,3 +4733,12 @@ HWRWISOVPM:
   - heating_return_water_isolation_valve_percentage_sensor
   implements:
   - MONITORING
+
+CSOUC:
+  description: "Cooling occupied/unoccupied setpoint control."
+  is_abstract: true
+  uses:
+  - zone_air_unoccupied_cooling_temperature_setpoint
+  - zone_air_occupied_cooling_temperature_setpoint
+  implements:
+  - CONTROL

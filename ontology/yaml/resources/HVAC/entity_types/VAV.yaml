@@ -472,3 +472,16 @@ VAV_RD_CO2C:
   - VAV
   - RD
   - CO2C
+
+########################
+### Canonical Types  ###
+########################
+
+VAV_SD_DSP_HWDC_DFSS_DFVSC:
+  description: "Single duct dual set point VAV with cooling control."
+  is_canonical: true
+  implements:
+  - VAV
+  - SD
+  - DSP
+  - CSOUC
