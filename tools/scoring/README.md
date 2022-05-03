@@ -2,7 +2,7 @@
 
 The scoring tool evaluates _proposed_ configuration files against "known good" _solution_ files. It uses a rudimentary [F-score algorithm](https://en.wikipedia.org/wiki/F-score) to provide floating-point representations of how closely the files compare along various [_dimensions_](#dimensions). Broadly, its process is thus:
 
-1. Filter out irrelevant entities (e.g. those which have a noncanonical type)
+1. Filter out irrelevant entities (e.g. those in the solution which have a noncanonical type)
 2. Create pairs of entities from the _proposed_ and _solution_ lists by matching [`cloud_device_id`](https://github.com/google/digitalbuildings/blob/master/ontology/docs/building_config.md#config-format) (for reporting devices) or raw field names (for virtual devices)
 3. From each entity pair, isolate the attributes relevant for the dimension being scored and reduce their values to sets (e.g. [connections](https://github.com/google/digitalbuildings/blob/master/ontology/docs/ontology_config.md#connections))
 4. Count the `intersection` and `difference` between the respective _proposed_ and _solution_ sets
@@ -35,7 +35,7 @@ There are presently some limitations to consider when interpreting scores:
 
 - Canonical entities
 
-  Generally speaking, any entity with a noncanonical type is not scored. This is especially relevant in the context of `result_reporting`; that value is derived from only those entities which did not link to virtual devices.
+  Generally speaking, any solution entity with a noncanonical type is not used as a basis for scoring. This is especially relevant in the context of `result_reporting`; that value is derived from only those entities which did not link to virtual devices.
 
 - Missing types
 
@@ -48,6 +48,10 @@ There are presently some limitations to consider when interpreting scores:
 - Precision
 
   The virtual-entity matching algorithm used by the "entity type identification" and "entity point identification" dimensions is not presently deterministic, which infrequently results in scores with small variances.
+
+- Connections
+
+  Due to how `connections` are expressed — using arbitrary entity `code`s, rather than canonical identifiers, as keys — the associated score is very sensitive to naming conventions. Often, only connections with reporting devices as targets correspond.
 
 ## Dimensions
 
