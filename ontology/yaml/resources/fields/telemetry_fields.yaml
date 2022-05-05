@@ -1559,3 +1559,6 @@ literals:
 
 ## New fields for seismic detector
 - seismic_alarm
+
+# Addition of a co2 point for a DOAS
+- return_air_co2_concentration_sensor

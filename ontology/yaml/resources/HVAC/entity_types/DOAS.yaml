@@ -42,3 +42,29 @@ DOAS_EFSS_EFVSC_HTWHLSTC_SFSS_SFVSC_STC:
   - SFSS
   - SFVSC
   - STC
+
+DOAS_CHWSC_EFVSC_FDPM3X_HTWHLSTC_HWSC_RCO2M_RSPC_SFM_SFVSC_SSPC:
+  description: "Complex multi zone DOAS with heat recovery wheel."
+  is_canonical: true
+  implements:
+  - DOAS
+  - CHWSC
+  - EFVSC
+  - FDPM3X
+  - HTWHLSTC
+  - HWSC
+  - RCO2M
+  - RSPC
+  - SFM
+  - SFVSC
+  - SSPC
+
+###################################
+### Existing Non-standard Types ###
+###################################
+
+DOAS_FR_PAR_50A_1:
+  description: "Non-standard type for 50A"
+  implements:
+  - DOAS_CHWSC_EFVSC_FDPM3X_HTWHLSTC_HWSC_RCO2M_RSPC_SFM_SFVSC_SSPC
+  - INCOMPLETE
