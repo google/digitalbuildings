@@ -1202,3 +1202,6 @@ literals:
 - thermal_energy_accumulator
 - ground_isolation_command
 - ground_temperature_sensor
+
+# Addition of a co2 point for a DOAS
+- return_air_co2_concentration_sensor

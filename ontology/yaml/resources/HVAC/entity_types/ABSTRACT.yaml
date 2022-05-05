@@ -4764,7 +4764,7 @@ HWRWISOVPM:
   implements:
   - MONITORING
 
-RC02M:
+RCO2M:
   description: "Return air co2 monitoring"
   is_abstract: true
   uses:
