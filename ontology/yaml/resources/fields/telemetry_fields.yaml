@@ -1202,3 +1202,16 @@ literals:
 - thermal_energy_accumulator
 - ground_isolation_command
 - ground_temperature_sensor
+
+<<<<<<< Updated upstream
+## New fields for Leak Detection System
+- water_leak_cable_distance_sensor
+=======
+## New fields for Freezer (Walk in Cold room)
+- defrost_run_status
+	- ON
+	- OFF
+- defrost_temperature_sensor
+- fan_run_time_accumulator
+- defrost_temperature_setpoint
+>>>>>>> Stashed changes
