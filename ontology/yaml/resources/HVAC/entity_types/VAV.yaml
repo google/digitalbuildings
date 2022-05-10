@@ -473,3 +473,13 @@ VAV_RD_CO2C:
   - VAV
   - RD
   - CO2C
+
+# Additional type for FR-PAR-50A
+VAV_HWZTC_CHWZTC_DTM:
+  description: "Zone temperature control VAV with discharge temperature monitoring and external air volume control (not included)."
+  is_canonical: true
+  implements:
+    - VAV
+    - HWZTC
+    - CHWZTC
+    - DTM
