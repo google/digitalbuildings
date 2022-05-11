@@ -20,9 +20,14 @@ You can run the command with just the version flag (e.g. `python --version`) to 
 
 Navigate to digitalbuildings/tools/validators/instance_validator and run `python3 instance_validator.py --input path/to/YOUR_BUILDING_CONFIG.yaml` to validate your input file using the ontology defined in this repository.
 
-To validate multiple input files at the same time, you can provide the "--input" parameter multiple times. ("-i" will also work).
+To validate multiple input files at the same time, you can provide the `--input` parameter multiple times. (`-i` will also work).
 
-If the optional --report-filename parameter is provided, the validation results will be written to this report file. Otherwise, the results will be written to stdout.
+You may also validate a directory, multiple directories, or any combination of directories and files using the `--input` flag. For example, the following is valid: 
+`python instance_validator.py --input path/to/a/directory --input path/to/another/directory --input path/to/a/specific/file.yaml`
+
+Note: nested directories are allowed, but will be deduplicated by the parser (e.g. `path/dir` and `path/dir/subdir` can both be passed, and when walking the tree it will deduplicate for you). 
+
+If the optional `--report-filename` parameter is provided, the validation results will be written to this report file. Otherwise, the results will be written to stdout.
 
 ### Ontology Types extended
 
