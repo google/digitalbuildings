@@ -1280,18 +1280,17 @@ FCU_CHWZTC2X_HT2XZTC2X_DFVSC2X:
   - DFVSC2X
   
 FCU_STM_RTM_ZTC_SRC:
-  description: "FCU with run status, supply and return temp sensors, zone control and sensor, schedule run, filter change and general fail alarm"
+  description: "FCU with SS, supply and return temp sensors, zone control and sensor, schedule run, filter change and general fail alarm"
   is_canonical: true
   implements:
   - FCU
+  - SS
   - STM
   - RTM
   - ZTC
   - SRC
   uses:
   - filter_alarm
-  - run_mode
-  - run_status
   - lost_power_alarm
 
 #Additional types for CH ZRH EURD
