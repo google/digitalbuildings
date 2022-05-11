@@ -13,7 +13,8 @@
 # limitations under the License.
 """Core component base class."""
 
-from score.scorer_types import DeserializedFilesDict, TranslationsDict, PointsVirtualList, RawFieldName, EntityType, FileType
+from score.scorer_types import DeserializedFilesDict, TranslationsDict, PointsVirtualList, RawFieldName, EntityType, FileType, MappingType
+from score.constants import MappingTypes
 from validate.entity_instance import EntityInstance
 from typing import Tuple, Set, List, Dict, NamedTuple
 from collections import defaultdict
@@ -359,6 +360,21 @@ class Dimension:
         matches_virtual[None].append(none_subscore_reference)
 
     return matches_virtual
+
+  @staticmethod
+  def _isolate_mappings(translations, *,
+                        mapping_type: MappingType) -> Set[Tuple[str, Tuple]]:
+    """Distills mappings from each entity into a set for global comparison"""
+    mappings = set()
+    for translation in translations:
+      # (standard_field_name: str, field: obj)
+      field = translation[1]
+      if type(field).__name__ == mapping_type:
+        if mapping_type == MappingTypes.STATE: attribute = 'states'
+        if mapping_type == MappingTypes.UNIT: attribute = 'unit_mappings'
+        for item in getattr(field, attribute).items():
+          mappings.add((field.raw_field_name, item))
+    return mappings
 
   @staticmethod
   def _format_score(score: float, *, precision: int = 2) -> str:

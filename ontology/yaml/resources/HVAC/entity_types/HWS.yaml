@@ -232,6 +232,7 @@ HWS_SWTC_BYPVPM_WDPC_WFRM:
   - WFRC
 
 HWS_SWTM_WDPC_BYPVPM:
+  id: "4636941388200542208"
   description: "Heating water system with supply temperature monitoring, differential pressure control and bypass valve control."
   is_canonical: true
   implements:
@@ -241,6 +242,7 @@ HWS_SWTM_WDPC_BYPVPM:
   - BYPVPM
 
 HWS_SWTC_WDPC_BYPVPM_HWVM:
+  id: "16598501998496579584"
   description: "Heating water system with water supply temperature control, differential pressure control, bypass valve control and heating water valve control."
   is_canonical: true
   implements:
@@ -250,7 +252,16 @@ HWS_SWTC_WDPC_BYPVPM_HWVM:
   - BYPVPM
   - HWVM
 
+HWS_SWTM:
+  id: "5040576504803622912"
+  description: "Heating water system with supply temperature monitoring"
+  is_canonical: true
+  implements:
+  - HWS
+  - SWTM
+
 HWS_HLPM_WDPC_WFRM_WDT:
+  id: "14205401746502582272"
   description: "Heating water system with differential pressure control, thermal power, flowrate and delta-T monitoring."
   is_canonical: true
   implements:
@@ -261,6 +272,7 @@ HWS_HLPM_WDPC_WFRM_WDT:
   - WDT
 
 HWS_WFRC_SWTC:
+  id: "16144201386085580800"
   description: "Heating water system with flowrate and suppy temp control."
   is_canonical: true
   implements:
@@ -269,6 +281,7 @@ HWS_WFRC_SWTC:
   - SWTC
 
 HWS_WFRM_SWTC_HLPM:
+  id: "9760348914287902720"
   description: "Heating water system with supply temp control, and flowrate and thermal power monitoring."
   is_canonical: true
   implements:
