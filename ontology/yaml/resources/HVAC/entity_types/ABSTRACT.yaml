@@ -4824,9 +4824,9 @@ GTWFCISOVM:
   description: "Geothermal water free-cooling isolation valve monitoring; exclusively using ground as heat sink for building load."
   is_abstract: true  
   uses:
-  - chilled_return_ground_supply_water_isolation_valve_status
-  - chilled_supply_ground_return_water_isolation_valve_status
-  - chilled_supply_ground_return_water_isolation_valve_command
+  - chilled_side_ground_supply_economizer_isolation_valve_status
+  - chilled_side_ground_return_economizer_isolation_valve_status
+  - chilled_side_ground_return_economizer_isolation_valve_command
   implements:
   - MONITORING
 
@@ -4834,9 +4834,9 @@ GTWGRISOVM:
   description: "Geothermal water ground-recharge isolation valve monitoring; rejecting ground heat to atmosphere via cooling towers."
   is_abstract: true  
   uses:
-  - heating_return_ground_supply_water_isolation_valve_status
-  - heating_supply_ground_return_water_isolation_valve_status
-  - heating_supply_ground_return_water_isolation_valve_command
+  - heating_side_ground_supply_economizer_isolation_valve_status
+  - heating_side_ground_return_economizer_isolation_valve_status
+  - heating_side_ground_return_economizer_isolation_valve_command
   implements:
   - MONITORING
 
@@ -4844,9 +4844,9 @@ GTWHEISOVM:
   description: "Geothermal water heat-extraction isolation valve monitoring; extracting ground heat to to use in building."
   is_abstract: true
   uses:
-  - chilled_ground_return_water_isolation_valve_status
-  - chilled_ground_supply_water_isolation_valve_status
-  - chilled_ground_supply_water_isolation_valve_command
+  - chilled_side_ground_return_water_isolation_valve_status
+  - chilled_side_ground_supply_water_isolation_valve_status
+  - chilled_side_ground_supply_water_isolation_valve_command
   implements:
   - MONITORING
 
@@ -4854,8 +4854,8 @@ GTWHRISOVM:
   description: "Geothermal water heat-rejection isolation valve monitoring; rejecting building heat to ground."
   is_abstract: true  
   uses:
-  - heating_ground_return_water_isolation_valve_status
-  - heating_ground_supply_water_isolation_valve_status
-  - heating_ground_supply_water_isolation_valve_command
+  - heating_side_ground_return_water_isolation_valve_status
+  - heating_side_ground_supply_water_isolation_valve_status
+  - heating_side_ground_supply_water_isolation_valve_command
   implements:
   - MONITORING
