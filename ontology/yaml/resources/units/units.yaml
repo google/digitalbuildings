@@ -274,7 +274,3 @@ volume:
 - cubic_feet
 volumetricconcentration:
 - parts_per_cubic_centimeter: STANDARD # can be approximated using Avogadro
-time:
-- seconds: STANDARD
-rate:
-- inv_second: STANDARD
