@@ -1202,6 +1202,3 @@ literals:
 - thermal_energy_accumulator
 - ground_isolation_command
 - ground_temperature_sensor
-
-# Added for the function DDPM
-- discharge_air_damper_percentage_sensor
