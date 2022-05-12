@@ -143,6 +143,7 @@ descriptor:
   model: "Particular design version of an asset (e.g. model_label)."
   neutral: "Line in the electrical cirucit which carries current back to the source. Distinct from ground."
   next: "Something that occurs directly in time after the present or most recent one."
+  no: "Measures nitrogen monoxide concentration."
   no2: "Nitrogen dioxide."
   north: "Cardinal direction; opposite of south"
   occupancy: "State of being occupied."

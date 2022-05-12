@@ -4761,3 +4761,34 @@ HWRWISOVPM:
   - heating_return_water_isolation_valve_percentage_sensor
   implements:
   - MONITORING
+
+COCDSP:
+  description: "Dual setpoint CO concentration control."
+  is_abstract: true
+  uses:
+  - low_zone_air_co_concentration_setpoint
+  - high_zone_air_co_concentration_setpoint
+  - zone_air_co_concentration_sensor
+  implements:
+  - CONTROL
+
+NOCDSP:
+  description: "Dual setpoint NO concentration control."
+  is_abstract: true
+  uses:
+  - low_zone_air_no_concentration_setpoint
+  - high_zone_air_no_concentration_setpoint
+  - zone_air_no_concentration_sensor
+  implements:
+  - CONTROL
+
+EFHLC:
+  description: "Two-speed exhaust fan (low/high)."
+  is_abstract: true
+  uses:
+  - low_exhaust_fan_speed_command
+  - high_exhaust_fan_speed_command
+  - low_exhaust_fan_speed_status
+  - high_exhaust_fan_speed_status
+  implements:
+  - OPERATIONAL

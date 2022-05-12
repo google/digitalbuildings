@@ -1202,3 +1202,22 @@ literals:
 - thermal_energy_accumulator
 - ground_isolation_command
 - ground_temperature_sensor
+
+# Addition of telemetry for parking exhaust fan
+- low_zone_air_co_concentration_setpoint
+- high_zone_air_co_concentration_setpoint
+- low_zone_air_no_concentration_setpoint
+- high_zone_air_no_concentration_setpoint
+- zone_air_no_concentration_sensor
+- low_exhaust_fan_speed_command:
+  - ON
+  - OFF
+- high_exhaust_fan_speed_command:
+  - ON
+  - OFF
+- low_exhaust_fan_speed_status:
+  - ON
+  - OFF
+- high_exhaust_fan_speed_status:
+  - ON
+  - OFF
