@@ -63,3 +63,10 @@ DWST_PWDT:
   implements:
   - DWST
   - PWDT
+
+DWST_WDT:
+  description: "Domestic water system with delta-T monitoring."
+  is_canonical: true
+  implements:
+  - DWST
+  - WDT
