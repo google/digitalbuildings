@@ -646,13 +646,6 @@ FAN_ST:
   implements:
   - FAN
 
-FAN_AL:
-  description: "Basic fan with flowrate fail alarm only"
-  uses:
-  - lost_power_alarm
-  implements:
-  - FAN
-
 FAN_SS_VSC_EPC_EHHRC_EHHRC3X:
   id: "13340710618047447040"
   description: "Non-standard fan with exhaust static pressure control and heat recovery coils."
