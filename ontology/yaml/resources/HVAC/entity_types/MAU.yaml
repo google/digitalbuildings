@@ -633,6 +633,20 @@ MAU_SFSS2X_SFVSC2X_CHWSC_HWSC_FDPM_SSPC_STC_VOADM2X:
   - STC
   - VOADM2X
 
+MAU_CHWSC_HWSC_SSPC_SFVSC_FDPM2X_SFM_OA:
+  description: "Multi-zone MAU with chilled water and heating water."
+  is_canonical: true
+  implements:
+  - MAU
+  - CHWSC
+  - HWSC
+  - SSPC
+  - SFVSC
+  - FDPM2X
+  - SFM
+  - OA
+
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
