@@ -642,7 +642,14 @@ FAN_SS_VSC_SRC_DPM:
 FAN_ST:
   description: "Basic fan with flowrate status only"
   uses:
-  - discharge_air_flowrate_status
+  - air_flowrate_status
+  implements:
+  - FAN
+
+FAN_AL:
+  description: "Basic fan with flowrate fail alarm only"
+  uses:
+  - lost_power_alarm
   implements:
   - FAN
 
