@@ -1562,3 +1562,7 @@ literals:
 
 # Addition of a co2 point for a DOAS
 - return_air_co2_concentration_sensor
+
+# Addition of mixed_air_damper telemetry for AHU
+- mixed_air_damper_percentage_command
+- mixed_air_damper_percentage_sensor
