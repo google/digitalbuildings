@@ -4329,6 +4329,7 @@ PHRU:
   - outside_air_temperature_sensor
   - bypass_air_damper_command
   - bypass_air_damper_status
+  - bypass_air_damper_percentage_sensor
 
 CHWDT2X:
   id: "17588854111866978304"
