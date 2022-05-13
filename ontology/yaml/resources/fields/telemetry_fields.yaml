@@ -1207,9 +1207,6 @@ literals:
 - return_air_isolation_damper_status
 	- OPEN
 	- CLOSE
-- alert_reset_command
-	- NORMAL
-	- RESET
 - fan_run_time_accumulator
 - compressor_run_time_accumulator
 - evaporative_fan_speed_sensor
