@@ -617,7 +617,6 @@ FAN_SS_AL:
 FAN_SS_VSC_SRC:
   description: "Basic Exhaust fan with start/stop, speed sensor, fail alarm, scheduled run"
   uses:
-  - schedule_run_command
   - lost_power_alarm
   opt_uses:
   - filter_alarm
@@ -627,17 +626,10 @@ FAN_SS_VSC_SRC:
   - VSC
   - SRC
 
-FAN_ST:
-  description: "Basic fan with flowrate status only"
-  uses:
-  - discharge_air_flowrate_status
-  implements:
-  - FAN
 
 FAN_SS_VSC_SRC_DPM:
   description: "Basic Exhaust fan with start/stop, speed sensor, fail alarm, scheduled run, dampers"
   uses:
-  - schedule_run_command
   - lost_power_alarm
   opt_uses:
   - filter_alarm
@@ -647,6 +639,12 @@ FAN_SS_VSC_SRC_DPM:
   - VSC
   - SRC
   - DPM
+FAN_ST:
+  description: "Basic fan with flowrate status only"
+  uses:
+  - discharge_air_flowrate_status
+  implements:
+  - FAN
 
 FAN_SS_VSC_EPC_EHHRC_EHHRC3X:
   id: "13340710618047447040"

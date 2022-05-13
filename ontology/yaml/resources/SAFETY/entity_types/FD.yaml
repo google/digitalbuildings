@@ -20,3 +20,14 @@ FD_STD:
   - FD
   uses:
   - damper_status
+  
+ FD_SD:
+  description: "Basic smoke detector fire damper"
+  is_canonical: true
+  implements:
+  - FD
+  - SD
+  uses:
+  - damper_percentage_sensor
+  - damper_percentage_command
+ 
