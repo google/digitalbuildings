@@ -4772,3 +4772,12 @@ RCO2M:
   - return_air_co2_concentration_sensor
   implements:
   - MONITORING
+
+VMADC:
+  description: "Variable mixed air damper monitoring (for recirculated air in AHU)."
+  is_abstract: true
+  uses:
+  - mixed_air_damper_percentage_command
+  - mixed_air_damper_percentage_sensor
+  implements:
+  - CONTROL
