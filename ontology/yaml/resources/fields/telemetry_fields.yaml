@@ -1208,8 +1208,5 @@ literals:
 	- ON
 	- OFF
 - defrost_temperature_sensor
-- alert_reset_command
-	- NORMAL
-	- RESET
 - fan_run_time_accumulator
 - defrost_temperature_setpoint
