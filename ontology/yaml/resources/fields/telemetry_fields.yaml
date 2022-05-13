@@ -1221,5 +1221,5 @@ literals:
 - high_limit_zone_air_relative_humidity_setpoint
 - low_limit_zone_air_relative_humidity_setpoint
 - zone_air_override_temperature_status
-	- NOT OVERRIDDEN
+	- NOT_OVERRIDDEN
 	- OVERRIDDEN
