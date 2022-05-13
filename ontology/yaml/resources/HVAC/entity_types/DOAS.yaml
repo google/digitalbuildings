@@ -59,6 +59,22 @@ DOAS_CHWSC_EFVSC_FDPM3X_HTWHLSTC_HWSC_RCO2M_RSPC_SFM_SFVSC_SSPC:
   - SFVSC
   - SSPC
 
+DOAS_CHWSC_EFVSC_FDPM3X_PHRU_HWSC_RCO2M_RSPC_SFM_SFVSC_SSPC:
+  description: "Complex multi zone DOAS with heat recovery plate exchanger."
+  is_canonical: true
+  implements:
+  - DOAS
+  - CHWSC
+  - EFVSC
+  - FDPM3X
+  - PHRU
+  - HWSC
+  - RCO2M
+  - RSPC
+  - SFM
+  - SFVSC
+  - SSPC
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
