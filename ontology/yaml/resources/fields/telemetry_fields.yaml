@@ -1207,9 +1207,6 @@ literals:
 - return_air_isolation_damper_status
 	- OPEN
 	- CLOSE
-- alert_reset_command
-	- NORMAL
-	- RESET
 - high_limit_zone_air_temperature_setpoint
 - low_limit_zone_air_temperature_setpoint
 - high_limit_zone_air_pressure_setpoint
