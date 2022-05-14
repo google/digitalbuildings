@@ -4736,7 +4736,6 @@ HWRWISOVPM:
 
 CSOUC:
   description: "Cooling occupied/unoccupied setpoint control."
-  id: "292411e6ab73486ca5bc84874ad47aaa"
   is_abstract: true
   uses:
   - zone_air_unoccupied_cooling_temperature_setpoint
