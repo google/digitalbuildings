@@ -1,0 +1,579 @@
+US-MTV-1804:
+  type: FACILITIES/BUILDING
+  guid: c4237b2d-82a8-42e3-ab6a-23ae89c12d42
+
+exhaustFan-2715203:
+  cloud_device_id: 2550389110353931
+  connections:
+    US-MTV-1804:
+    - CONTAINS
+  translation:
+    exhaust_fan_failed_alarm:
+      present_value: data.binary-value_2.present-value
+      states:
+        OFF: inactive
+        ON: active
+    exhaust_fan_run_command:
+      present_value: data.binary-output_1.present-value
+      states:
+        OFF: inactive
+        ON: active
+    exhaust_fan_run_status_1:
+      present_value: data.binary-input_1.present-value
+      states:
+        OFF: inactive
+        ON: active
+    exhaust_fan_run_status_2:
+      present_value: data.binary-value_4.present-value
+      states:
+        OFF: inactive
+        ON: active
+    failed_alarm_1:
+      present_value: data.binary-value_3.present-value
+      states:
+        OFF: inactive
+        ON: active
+    failed_alarm_2:
+      present_value: data.binary-value_4000005.present-value
+      states:
+        OFF: inactive
+        ON: active
+    high_temperature_alarm:
+      present_value: data.binary-value_5.present-value
+      states:
+        OFF: inactive
+        ON: active
+    low_temperature_alarm:
+      present_value: data.binary-value_6.present-value
+      states:
+        OFF: inactive
+        ON: active
+    zone_air_cooling_temperature_setpoint:
+      present_value: data.analog-value_7.present-value
+      units:
+        key: data.analog-value_7.present-value
+        values:
+          degrees_fahrenheit: degrees-fahrenheit
+    zone_air_heating_temperature_setpoint:
+      present_value: data.analog-value_8.present-value
+      units:
+        key: data.analog-value_8.present-value
+        values:
+          degrees_fahrenheit: degrees-fahrenheit
+    zone_air_occupied_cooling_temperature_sepoint:
+      present_value: data.analog-value_1.present-value
+      units:
+        key: data.analog-value_1.present-value
+        values:
+          degrees_fahrenheit: degrees-fahrenheit
+    zone_air_occupied_heating_temperature_setpoint:
+      present_value: data.analog-value_2.present-value
+      units:
+        key: data.analog-value_2.present-value
+        values:
+          degrees_fahrenheit: degrees-fahrenheit
+    zone_air_temperature_sensor:
+      present_value: data.analog-input_1.present-value
+      units:
+        key: data.analog-input_1.present-value
+        values:
+          degrees_fahrenheit: degrees-fahrenheit
+    zone_air_unoccupied_cooling_temperature_setpoint:
+      present_value: data.analog-value_3.present-value
+      units:
+        key: data.analog-value_3.present-value
+        values:
+          degrees_fahrenheit: degrees-fahrenheit
+    zone_air_unoccupied_heating_temperature_setpoint:
+      present_value: data.analog-value_4.present-value
+      units:
+        key: data.analog-value_4.present-value
+        values:
+          degrees_fahrenheit: degrees-fahrenheit
+    zone_occupancy_status:
+      present_value: data.binary-value_1.present-value
+      states:
+        OCCUPIED: OCCUPIED
+        UNOCCUPIED: UNOCCUPIED
+  type: HVAC/FAN
+  guid: cfc0a080-e187-4e80-b418-e637b2975df0
+
+ahu-2700011:
+  cloud_device_id: 2754543054948093
+  connections:
+    US-MTV-1804:
+    - CONTAINS
+  translation:
+    damper_percentage_command_1:
+      present_value: data.analog-value_2.present-value
+      units:
+        key: data.analog-value_2.present-value
+        values:
+          percent: percent
+    damper_percentage_command_2:
+      present_value: data.analog-value_4.present-value
+      units:
+        key: data.analog-value_4.present-value
+        values:
+          percent: percent
+    emergency_battery_status:
+      present_value: data.binary-value_4001001.present-value
+      states:
+        OFF: inactive
+        ON: active
+    energy_accumulator_1:
+      present_value: data.analog-value_2000.present-value
+      units:
+        key: data.analog-value_2000.present-value
+        values:
+          kilowatt_hours: kilowatt-hours
+    energy_accumulator_2:
+      present_value: data.analog-value_2001.present-value
+      units:
+        key: data.analog-value_2001.present-value
+        values:
+          kilowatt_hours: kilowatt-hours
+    failed_alarm_1:
+      present_value: data.binary-value_1315.present-value
+      states:
+        OFF: inactive
+        ON: active
+    failed_alarm_2:
+      present_value: data.binary-value_1318.present-value
+      states:
+        OFF: inactive
+        ON: active
+    failed_alarm_3:
+      present_value: data.binary-value_1319.present-value
+      states:
+        OFF: inactive
+        ON: active
+    failed_alarm_4:
+      present_value: data.binary-value_1320.present-value
+      states:
+        OFF: inactive
+        ON: active
+    failed_alarm_5:
+      present_value: data.binary-value_1321.present-value
+      states:
+        OFF: inactive
+        ON: active
+    failed_alarm_6:
+      present_value: data.binary-value_34.present-value
+      states:
+        OFF: inactive
+        ON: active
+    failed_alarm_7:
+      present_value: data.binary-value_4000004.present-value
+      states:
+        OFF: inactive
+        ON: active
+    failed_alarm_8:
+      present_value: data.binary-value_4000005.present-value
+      states:
+        OFF: inactive
+        ON: active
+    gas_leak_detection_alarm:
+      present_value: data.binary-value_4001003.present-value
+      states:
+        OFF: inactive
+        ON: active
+    lockout_command_1:
+      present_value: data.binary-value_35.present-value
+      states:
+        OFF: inactive
+        ON: active
+    lockout_command_2:
+      present_value: data.binary-value_36.present-value
+      states:
+        OFF: inactive
+        ON: active
+    lockout_command_3:
+      present_value: data.multi-state-value_3.present-value
+      states:
+        OFF: inactive
+        ON: active
+    low_discharge_air_flowrate_alarm:
+      present_value: data.binary-value_4001004.present-value
+      states:
+        OFF: inactive
+        ON: active
+    outside_air_damper_percentage_command:
+      present_value: data.analog-value_3.present-value
+      units:
+        key: data.analog-value_3.present-value
+        values:
+          percent: percent
+    outside_air_relative_humidity_sensor:
+      present_value: data.analog-value_1311.present-value
+      units:
+        key: data.analog-value_1311.present-value
+        values:
+          percent: percent
+    outside_air_specificenthalpy_sensor:
+      present_value: data.analog-value_1303.present-value
+      units:
+        key: data.analog-value_1303.present-value
+        values:
+          btus_per_pound_dry_air: btus_per_pound_dry_air
+    outside_air_temperature_sensor:
+      present_value: data.analog-value_1310.present-value
+      units:
+        key: data.analog-value_1310.present-value
+        values:
+          degrees_fahrenheit: degrees-fahrenheit
+    outside_air_wetbulb_temperature_sensor:
+      present_value: data.analog-value_1305.present-value
+      units:
+        key: data.analog-value_1305.present-value
+        values:
+          degrees_fahrenheit: degrees-fahrenheit
+    return_air_temperature_setpoint:
+      present_value: data.analog-value_7.present-value
+      units:
+        key: data.analog-value_7.present-value
+        values:
+          degrees_fahrenheit: degrees-fahrenheit
+    supply_air_cooling_temperature_setpoint:
+      present_value: data.analog-value_1313.present-value
+      units:
+        key: data.analog-value_1313.present-value
+        values:
+          degrees_fahrenheit: degrees-fahrenheit
+    supply_air_dewpoint_temperature_sensor:
+      present_value: data.analog-value_1304.present-value
+      units:
+        key: data.analog-value_1304.present-value
+        values:
+          degrees_fahrenheit: degrees-fahrenheit
+    supply_air_heating_temperature_setpoint:
+      present_value: data.analog-value_1314.present-value
+      units:
+        key: data.analog-value_1314.present-value
+        values:
+          degrees_fahrenheit: degrees-fahrenheit
+    supply_air_relative_humidity_sensor:
+      present_value: data.analog-value_1302.present-value
+      units:
+        key: data.analog-value_1302.present-value
+        values:
+          percent: percent
+    supply_air_temperature_sensor:
+      present_value: data.analog-value_1301.present-value
+      units:
+        key: data.analog-value_1301.present-value
+        values:
+          degrees_fahrenheit: degrees-fahrenheit
+    zone_occupancy_status:
+      present_value: data.binary-value_19.present-value
+      states:
+        OCCUPIED: OCCUPIED
+        UNOCCUPIED: UNOCCUPIED
+  type: HVAC/AHU
+  guid: a441f0a4-a015-4aa7-be31-a50e31ec352e
+
+elecMeter-ELEV:
+  cloud_device_id: 2566753989830144
+  connections:
+    US-MTV-1804:
+    - CONTAINS
+  translation:
+    apparent_power_sensor:
+      present_value: data.kVA.present-value
+      units:
+        key: data.kVA.present-value
+        values:
+          kilo_volt_amperes: kilo-volt-amperes
+    average_inter_line_voltage_sensor:
+      present_value: data.Volts_LL.present-value
+      units:
+        key: data.Volts_LL.present-value
+        values:
+          volts: volts
+    average_line_neutral_voltage_sensor:
+      present_value: data.Volts_LN.present-value
+      units:
+        key: data.Volts_LN.present-value
+        values:
+          volts: volts
+    energy_accumulator:
+      present_value: data.kWh.present-value
+      units:
+        key: data.kWh.present-value
+        values:
+          kilowatt_hours: kilowatt-hours
+    line_current_sensor:
+      present_value: data.Current.present-value
+      units:
+        key: data.Current.present-value
+        values:
+          amperes: amperes
+    line_frequency_sensor:
+      present_value: data.Frequency.present-value
+      units:
+        key: data.Frequency.present-value
+        values:
+          hertz: hertz
+    phase1_line_current_sensor:
+      present_value: data.Current_A.present-value
+      units:
+        key: data.Current_A.present-value
+        values:
+          amperes: amperes
+    phase1_neutral_line_voltage_sensor:
+      present_value: data.Volts_AN.present-value
+      units:
+        key: data.Volts_AN.present-value
+        values:
+          volts: volts
+    phase1_phase2_line_voltage_sensor:
+      present_value: data.Volts_AB.present-value
+      units:
+        key: data.Volts_AB.present-value
+        values:
+          volts: volts
+    phase1_phase3_line_voltage_sensor:
+      present_value: data.Volts_AC.present-value
+      units:
+        key: data.Volts_AC.present-value
+        values:
+          volts: volts
+    phase1_power_sensor:
+      present_value: data.kW_A.present-value
+      units:
+        key: data.kW_A.present-value
+        values:
+          kilowatts: kilowatts
+    phase1_powerfactor_sensor:
+      present_value: data.PF_A.present-value
+      units:
+        key: data.PF_A.present-value
+        values:
+          no_units: no-units
+    phase2_line_current_sensor:
+      present_value: data.Current_B.present-value
+      units:
+        key: data.Current_B.present-value
+        values:
+          amperes: amperes
+    phase2_neutral_line_voltage_sensor:
+      present_value: data.Volts_BN.present-value
+      units:
+        key: data.Volts_BN.present-value
+        values:
+          volts: volts
+    phase2_phase3_line_voltage_sensor:
+      present_value: data.Volts_BC.present-value
+      units:
+        key: data.Volts_BC.present-value
+        values:
+          volts: volts
+    phase2_power_sensor:
+      present_value: data.kW_B.present-value
+      units:
+        key: data.kW_B.present-value
+        values:
+          kilowatts: kilowatts
+    phase2_powerfactor_sensor:
+      present_value: data.PF_B.present-value
+      units:
+        key: data.PF_B.present-value
+        values:
+          no_units: no-units
+    phase3_line_current_sensor:
+      present_value: data.Current_C.present-value
+      units:
+        key: data.Current_C.present-value
+        values:
+          amperes: amperes
+    phase3_neutral_line_voltage_sensor:
+      present_value: data.Volts_CN.present-value
+      units:
+        key: data.Volts_CN.present-value
+        values:
+          volts: volts
+    phase3_power_sensor:
+      present_value: data.kW_C.present-value
+      units:
+        key: data.kW_C.present-value
+        values:
+          kilowatts: kilowatts
+    phase3_powerfactor_sensor:
+      present_value: data.PF_C.present-value
+      units:
+        key: data.PF_C.present-value
+        values:
+          no_units: no-units
+    power_sensor:
+      present_value: data.kW.present-value
+      units:
+        key: data.kW.present-value
+        values:
+          kilowatts: kilowatts
+    powerfactor_sensor:
+      present_value: data.PF.present-value
+      units:
+        key: data.PF.present-value
+        values:
+          no_units: no-units
+    reactive_power_sensor:
+      present_value: data.kVAR.present-value
+      units:
+        key: data.kVAR.present-value
+        values:
+          kilo_volt_amperes_reactive: kilo-volt-amperes-reactive
+  type: METERS/EM_PWM_AVCM_PLPM_PVCM
+  guid: 8b2a1823-036c-4566-b2fd-4ca71b9fbb65
+
+elecMeter-EV_L1C:
+  cloud_device_id: 2553129859301862
+  connections:
+    US-MTV-1804:
+    - CONTAINS
+  translation:
+    apparent_power_sensor:
+      present_value: data.kVA.present-value
+      units:
+        key: data.kVA.present-value
+        values:
+          kilo_volt_amperes: kilo-volt-amperes
+    average_inter_line_voltage_sensor:
+      present_value: data.Volts_LL.present-value
+      units:
+        key: data.Volts_LL.present-value
+        values:
+          volts: volts
+    average_line_neutral_voltage_sensor:
+      present_value: data.Volts_LN.present-value
+      units:
+        key: data.Volts_LN.present-value
+        values:
+          volts: volts
+    energy_accumulator:
+      present_value: data.kWh.present-value
+      units:
+        key: data.kWh.present-value
+        values:
+          kilowatt_hours: kilowatt-hours
+    line_current_sensor:
+      present_value: data.Current.present-value
+      units:
+        key: data.Current.present-value
+        values:
+          amperes: amperes
+    line_frequency_sensor:
+      present_value: data.Frequency.present-value
+      units:
+        key: data.Frequency.present-value
+        values:
+          hertz: hertz
+    phase1_line_current_sensor:
+      present_value: data.Current_A.present-value
+      units:
+        key: data.Current_A.present-value
+        values:
+          amperes: amperes
+    phase1_neutral_line_voltage_sensor:
+      present_value: data.Volts_AN.present-value
+      units:
+        key: data.Volts_AN.present-value
+        values:
+          volts: volts
+    phase1_phase2_line_voltage_sensor:
+      present_value: data.Volts_AB.present-value
+      units:
+        key: data.Volts_AB.present-value
+        values:
+          volts: volts
+    phase1_phase3_line_voltage_sensor:
+      present_value: data.Volts_AC.present-value
+      units:
+        key: data.Volts_AC.present-value
+        values:
+          volts: volts
+    phase1_power_sensor:
+      present_value: data.kW_A.present-value
+      units:
+        key: data.kW_A.present-value
+        values:
+          kilowatts: kilowatts
+    phase1_powerfactor_sensor:
+      present_value: data.PF_A.present-value
+      units:
+        key: data.PF_A.present-value
+        values:
+          no_units: no-units
+    phase2_line_current_sensor:
+      present_value: data.Current_B.present-value
+      units:
+        key: data.Current_B.present-value
+        values:
+          amperes: amperes
+    phase2_neutral_line_voltage_sensor:
+      present_value: data.Volts_BN.present-value
+      units:
+        key: data.Volts_BN.present-value
+        values:
+          volts: volts
+    phase2_phase3_line_voltage_sensor:
+      present_value: data.Volts_BC.present-value
+      units:
+        key: data.Volts_BC.present-value
+        values:
+          volts: volts
+    phase2_power_sensor:
+      present_value: data.kW_B.present-value
+      units:
+        key: data.kW_B.present-value
+        values:
+          kilowatts: kilowatts
+    phase2_powerfactor_sensor:
+      present_value: data.PF_B.present-value
+      units:
+        key: data.PF_B.present-value
+        values:
+          no_units: no-units
+    phase3_line_current_sensor:
+      present_value: data.Current_C.present-value
+      units:
+        key: data.Current_C.present-value
+        values:
+          amperes: amperes
+    phase3_neutral_line_voltage_sensor:
+      present_value: data.Volts_CN.present-value
+      units:
+        key: data.Volts_CN.present-value
+        values:
+          volts: volts
+    phase3_power_sensor:
+      present_value: data.kW_C.present-value
+      units:
+        key: data.kW_C.present-value
+        values:
+          kilowatts: kilowatts
+    phase3_powerfactor_sensor:
+      present_value: data.PF_C.present-value
+      units:
+        key: data.PF_C.present-value
+        values:
+          no_units: no-units
+    power_sensor:
+      present_value: data.kW.present-value
+      units:
+        key: data.kW.present-value
+        values:
+          kilowatts: kilowatts
+    powerfactor_sensor:
+      present_value: data.PF.present-value
+      units:
+        key: data.PF.present-value
+        values:
+          no_units: no-units
+    reactive_power_sensor:
+      present_value: data.kVAR.present-value
+      units:
+        key: data.kVAR.present-value
+        values:
+          kilo_volt_amperes_reactive: kilo-volt-amperes-reactive
+  type: METERS/EM_PWM_AVCM_PLPM_PVCM
+  guid: 04d262cd-17a6-4225-a36e-b17e4286c512

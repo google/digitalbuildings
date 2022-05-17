@@ -31,11 +31,13 @@ class EntityPointIdentification(Dimension):
   # rather than `translations` to do its calculations
   category = DimensionCategories.COMPLEX
 
-  def _isolate_entities_virtual(self,
-                                file: DeserializedFile) -> Set[EntityInstance]:
+  def _isolate_entities_virtual(
+      self, *, file: DeserializedFile,
+      exclude_noncanonical: bool) -> Set[EntityInstance]:
+    virtual_entities = filter(self.is_entity_virtual, file.values())
     return set(
-        filter(self.is_entity_canonical,
-               filter(self.is_entity_virtual, file.values())))
+        filter(self.is_entity_canonical, virtual_entities
+               ) if exclude_noncanonical else virtual_entities)
 
   @staticmethod
   def _fetch_points_virtual(
@@ -72,10 +74,12 @@ class EntityPointIdentification(Dimension):
                   reverse=True)
 
   def _isolate_entities_reporting(
-      self, file: DeserializedFile) -> Set[EntityInstance]:
+      self, *, file: DeserializedFile,
+      exclude_noncanonical: bool) -> Set[EntityInstance]:
+    reporting_entities = filter(self.is_entity_reporting, file.values())
     return set(
-        filter(self.is_entity_canonical,
-               filter(self.is_entity_reporting, file.values())))
+        filter(self.is_entity_canonical, reporting_entities
+               ) if exclude_noncanonical else reporting_entities)
 
   @staticmethod
   def _fetch_source_ids_virtual(
@@ -95,8 +99,10 @@ class EntityPointIdentification(Dimension):
                         solution_file: DeserializedFile):
     """Calculates and assigns properties necessary
     for generating an entity point identification score for virtual devices."""
-    proposed_entities_virtual, solution_entities_virtual = map(
-        self._isolate_entities_virtual, (proposed_file, solution_file))
+    proposed_entities_virtual = self._isolate_entities_virtual(
+        file=proposed_file, exclude_noncanonical=False)
+    solution_entities_virtual = self._isolate_entities_virtual(
+        file=solution_file, exclude_noncanonical=True)
 
     proposed_points_virtual = self._fetch_points_virtual(
         proposed_file, proposed_entities_virtual)
@@ -130,10 +136,15 @@ class EntityPointIdentification(Dimension):
     """Calculates and assigns properties necessary
     for generating an entity point identification
     score for reporting devices."""
-    proposed_entities_reporting, solution_entities_reporting = map(
-        self._isolate_entities_reporting, (proposed_file, solution_file))
-    proposed_entities_virtual, solution_entities_virtual = map(
-        self._isolate_entities_virtual, (proposed_file, solution_file))
+    proposed_entities_reporting = self._isolate_entities_reporting(
+        file=proposed_file, exclude_noncanonical=False)
+    solution_entities_reporting = self._isolate_entities_reporting(
+        file=solution_file, exclude_noncanonical=True)
+
+    proposed_entities_virtual = self._isolate_entities_virtual(
+        file=proposed_file, exclude_noncanonical=False)
+    solution_entities_virtual = self._isolate_entities_virtual(
+        file=solution_file, exclude_noncanonical=True)
 
     proposed_source_ids = self._fetch_source_ids_virtual(
         proposed_file, proposed_entities_virtual)

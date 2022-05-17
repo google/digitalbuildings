@@ -341,3 +341,19 @@ DOAS:
   is_abstract: true
   implements:
   - EQUIPMENT
+
+TST:
+  id: "17952396636474834944"
+  description: "Tag for thermal storage tanks."
+  is_abstract: true
+  implements:
+  - EQUIPMENT
+
+GTWS:
+  id: "15813186813473849344"
+  description: "Tag for geothermal water systems."
+  is_abstract: true
+  opt_uses:
+  - thermal_power_capacity
+  - differential_pressure_specification
+  - flowrate_requirement

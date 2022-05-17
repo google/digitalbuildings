@@ -343,7 +343,7 @@ class InstanceValidator(object):
         if unit not in valid_units:
           print(
               f'Field {qualified_field_name} has an undefined measurement unit:'
-              + ' {unit}')
+              + f' {unit}')
           is_valid = False
       return is_valid
 

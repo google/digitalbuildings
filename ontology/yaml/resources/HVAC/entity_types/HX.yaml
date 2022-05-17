@@ -124,3 +124,36 @@ HX_VSC_SSPC_SFM_STM_RTM_OA:
   - STM
   - RTM
   - OA
+
+HX_HWSWC_SSSPC:
+  id: "6481728385562181632"
+  description: "Steam/water heat exchanger with supply temperature control and supply steam pressure control."
+  is_canonical: true
+  implements:
+  - HX
+  - HWSWC
+  - SSSPC
+
+HX_CWRWISOVM_TWRWISOVM_CWTWRTM:
+  id: "11201500795046461440"
+  description: "Heat exchanger between closed-loop condensing water and open-loop (tower) water."
+  is_canonical: true
+  implements:
+  - HX
+  - CWRWISOVM
+  - OCWRWISOVM
+  uses:
+  - condensing_return_water_temperature_sensor
+  - outside_condensing_loop_return_water_temperature_sensor
+
+HX_CWRWISOVPM_TWRWISOVPM_CWTWRTM:
+  id: "4117338581192671232"
+  description: "Heat exchanger between closed-loop condensing water and open-loop (tower) water."
+  is_canonical: true
+  implements:
+  - HX
+  - CWRWISOVPM
+  - OCWRWISOVPM
+  uses:
+  - condensing_return_water_temperature_sensor
+  - outside_condensing_loop_return_water_temperature_sensor

@@ -4594,6 +4594,7 @@ AHU_BSPC_DX4SC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC_RHHC_NONCANONICAL_1:
 
 
 AHU_DFSS_DX2ZC_ECONZ_CO2C_DSP_RCKTM2X_HTZC_CC2XM_RTM_DTM:
+  id: "2060882401344618496"
   description: "AHU with dual compressor refrigeration circuits (with monitoring), heating, and zone-level temperature and ventilation control."
   is_canonical: true
   implements:

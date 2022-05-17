@@ -215,6 +215,7 @@ CHWS_SWTC_WDPC2X_BYPVPM_WFRM_CLPM:
   - CLPM
 
 CHWS_RWTC_CHWVM:
+  id: "3700192665707479040"
   description: "Chilled water system with return temperature control and chilled water valve monitoring."
   is_canonical: true
   implements:
@@ -223,6 +224,7 @@ CHWS_RWTC_CHWVM:
   - CHWVM
 
 CHWS_SWTM_WDPC_BYPVPM:
+  id: "11284254438199394304"
   description: "Chilled water system with supply temperature monitoring, differential pressure control and bypass valve control."
   is_canonical: true
   implements:
@@ -230,6 +232,47 @@ CHWS_SWTM_WDPC_BYPVPM:
   - SWTM
   - WDPC
   - BYPVPM
+
+CHWS_CLPM_WFRM_WDPC_WDT:
+  id: "2734733495589928960"
+  description: "Chilled water system with differential pressure control and delta-T, thermal power, and flowrate monitoring."
+  is_canonical: true
+  implements:
+  - CHWS
+  - CLPM
+  - WFRM  
+  - WDPC
+  - WDT
+
+CHWS_CLPM_RMM_SWTC_WFRC:
+  id: "11899558737288888320"
+  description: "Chilled water system with run mode monitoring; supply temp control; and thermal power, flowrate, and differential pressure monitoring."
+  is_canonical: true
+  implements:
+  - CHWS
+  - CLPM
+  - RMM
+  - SWTC
+  - WFRC
+
+CHWS_BYPVPM_CLPM_SWTC_TDTM_WFRM:
+  id: "10379593863051345920"
+  description: "Chilled water system with supply temp control and buffer tank entering/leaving temperature sensors."
+  is_canonical: true
+  implements:
+  - CHWS
+  - BYPVPM
+  - CLPM
+  - SWTC
+  - TDTM
+  - WFRM
+
+CHWS_SWTM:
+  description: "Simple chilled water system with supply water monitoring."
+  is_canonical: true
+  implements:
+  - CHWS
+  - SWTM
 
 ###################################
 ### Existing Non-standard Types ###

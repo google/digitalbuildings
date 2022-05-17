@@ -77,7 +77,7 @@ class Telemetry(object):
      is_partial: true if this message has only a partial pointset
   """
     json_object = json.loads(data)
-    version = json_object[VERSION]
+    version = json_object.get(VERSION,1) # If the verison is missing, assume v1
     timestamp = json_object[TIMESTAMP]
     is_partial = bool(json_object.get(PARTIAL_UPDATE, False))
     points = {}

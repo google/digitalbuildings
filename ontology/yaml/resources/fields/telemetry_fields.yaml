@@ -880,8 +880,15 @@ literals:
   - COOLING
   - AUTO
 - average_zone_air_temperature_sensor
-- heating_supply_water_isolation_valve_command
-- heating_return_water_isolation_valve_command
+- heating_supply_water_isolation_valve_command:
+  - OPEN
+  - CLOSED
+- heating_return_water_isolation_valve_command:
+  - OPEN
+  - CLOSED
+- heating_return_water_isolation_valve_status:
+  - OPEN
+  - CLOSED
 - cooling_supply_water_isolation_valve_command
 - cooling_return_water_isolation_valve_command
 - heating_supply_water_isolation_valve_percentage_command
@@ -1173,5 +1180,38 @@ literals:
 - return_air_specificenthalpy_sensor
 - compressor_current_sensor
 
+## New fields for steam/water heat exchanger
+- supply_steam_static_pressure_sensor
+- supply_steam_static_pressure_setpoint
+- steam_valve_percentage_command
 
+# Open-loop CDW system
+- outside_condensing_loop_return_water_isolation_valve_status:
+  - OPEN
+  - CLOSED
+- outside_condensing_loop_return_water_isolation_valve_command:
+  - OPEN
+  - CLOSED
+- outside_condensing_loop_return_water_isolation_valve_percentage_command
+- outside_condensing_loop_return_water_isolation_valve_percentage_sensor
+- outside_condensing_loop_return_water_temperature_sensor
 
+# Buffer tanks with temperature sensors
+- chilled_water_temperature_sensor
+- heating_water_temperature_sensor
+- leaving_water_tank_temperature_sensor
+- entering_water_tank_temperature_sensor
+
+- secondary_heating_supply_water_temperature_sensor
+- secondary_heating_return_water_temperature_sensor
+- primary_heating_supply_water_temperature_sensor
+- primary_heating_return_water_temperature_sensor
+- secondary_chilled_supply_water_temperature_sensor
+- secondary_chilled_return_water_temperature_sensor
+- primary_chilled_supply_water_temperature_sensor
+- primary_chilled_return_water_temperature_sensor
+- secondary_chilled_return_water_isolation_valve_percentage_sensor
+- secondary_chilled_return_water_isolation_valve_percentage_command
+- thermal_energy_accumulator
+- ground_isolation_command
+- ground_temperature_sensor
