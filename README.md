@@ -22,9 +22,10 @@ In creating the Digital Buildings project, we have considered the following:
 ## Project Structure
 
 This project is structured as following:
-*  An [**ontology**](/ontology/README.md) that defines the parameters of the semantic data model and tools for building, validating and associating real equipment with a specific model. It contains the following formats:
+*  An [**ontology**](/ontology/README.md) that defines the parameters of the semantic data model (Terminology box) and tools for building, validating and associating real equipment with a specific model. It contains the following formats:
    * [Yaml format](/ontology/yaml/README.md)
    * [RDF/OWL format](/ontology/rdf/README.md)
+* [Building Configuration](/ontology/docs/building_config.md) which contains a mapping between the ontology and the "raw" data. Building Config is the Assertion Box.
 * Tools which allow the following:
   * [Yaml Validator](/tools/validators/ontology_validator/README.md) which allows to validate the yaml ontology upon a change or an extension.
   * [RDF/OWL Generator](/tools/rdf_generator/README.md) which allows to generate an RDF version from the yaml ontology files.
