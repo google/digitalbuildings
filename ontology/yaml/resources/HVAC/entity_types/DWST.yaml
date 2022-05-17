@@ -41,6 +41,7 @@ DWST_SWTC_CPC_BYPVPM:
 
 # TODO: remove if we get more examples of water-to-water heat pumps
 DWST_SWTC_CPVSC2X_WSHP2X:
+  id: "14372034932715290624"
   description: "Non-standard domestic water system with 2 circulation pumps and 2 water-source heat pumps.
   The potable leaving water temperature is for the water leaving the heat pumps and the heat pumps share a
   common setpoint."
@@ -55,4 +56,3 @@ DWST_SWTC_CPVSC2X_WSHP2X:
   - potable_hot_leaving_water_temperature_sensor_1
   - potable_hot_leaving_water_temperature_sensor_2
   - potable_hot_leaving_water_temperature_setpoint
-
