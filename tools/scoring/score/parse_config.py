@@ -20,9 +20,9 @@ from validate.generate_universe import BuildUniverse
 from yamlformat.validator.presubmit_validate_types_lib import ConfigUniverse
 
 from score.dimensions.dimension import Dimension
-from score.types_ import CloudDeviceId, DimensionName, TranslationsDict, DeserializedFile, DeserializedFilesDict, DimensionCategory
+from score.scorer_types import DimensionName, TranslationsDict, DeserializedFile, DeserializedFilesDict
 from score.constants import FileTypes, DimensionCategories
-from score.dimensions import entity_connection_identification, entity_identification, entity_point_identification, raw_field_selection, standard_field_naming, state_mapping, unit_mapping
+from score.dimensions import entity_connection_identification, entity_identification, entity_point_identification, entity_type_identification, raw_field_selection, standard_field_naming, state_mapping, unit_mapping
 
 PROPOSED, SOLUTION = FileTypes
 SIMPLE, COMPLEX = DimensionCategories
@@ -58,7 +58,9 @@ class ParseConfig:
         PROPOSED: proposed,
         'verbose': verbose
     }
+    print('Scoring — building universe')
     self.universe = BuildUniverse(modified_types_filepath=ontology)
+    print('Scoring — deserializing files')
     self.deserialized_files = {
         PROPOSED: validator.Deserialize([proposed])[0],
         SOLUTION: validator.Deserialize([solution])[0]
@@ -71,7 +73,7 @@ class ParseConfig:
       deserialized_files: DeserializedFilesDict) -> DeserializedFilesDict:
     """
       Appends types to deserialized files for purposes
-      of filtering entities and for evaluating some dimensions.
+      of filtering entities and for evaluating "complex" dimensions.
 
       Args:
         universe: The ontology universe to reference
@@ -82,6 +84,7 @@ class ParseConfig:
         The deserialized files dictionary with types
         appended to each entity in the respective files.
     """
+    print('Scoring — appending entity types')
     for file_type, file in deserialized_files.items():
       translations_absent = []
       types_absent = []
@@ -114,45 +117,18 @@ class ParseConfig:
                     translations_absent.append(
                         f'{link.source}.translation.{source_field}')
 
-      print(f'{file_type} translations absent: ' +
+      print(f'    {file_type} translations absent: ' +
             f'{len(set(translations_absent))} ' +
             f'(from {len(translations_absent)} links)')
 
-      print(f'{file_type} types absent: {len(set(types_absent))} ' +
+      print(f'    {file_type} types absent: {len(set(types_absent))} ' +
             f'({len(types_absent)} instances)')
 
     return deserialized_files
 
   @staticmethod
-  def match_reporting_entities(
-      *, proposed_entities: DeserializedFile,
-      solution_entities: DeserializedFile) -> List[CloudDeviceId]:
-    """
-      Matches reporting entities by `cloud_device_id`
-
-      Args:
-        proposed_entities: Dictionary of proposed entity names
-          and `EntityInstance`s
-        solution_entities: Dictionary of solution entity names
-          and `EntityInstance`s
-
-      Returns:
-        List of `cloud_device_id`s which have corresponding
-        proposed and solution entities
-    """
-    matches = []
-    for solution_entity in solution_entities.values():
-      if solution_entity.cloud_device_id is None:
-        continue  # as this is not a reporting device
-      for proposed_entity in proposed_entities.values():
-        if proposed_entity.cloud_device_id == solution_entity.cloud_device_id:
-          matches.append(proposed_entity.cloud_device_id)
-
-    return matches
-
-  @staticmethod
   def retrieve_reporting_translations(
-      *, matches: List[CloudDeviceId], proposed_entities: DeserializedFile,
+      *, proposed_entities: DeserializedFile,
       solution_entities: DeserializedFile) -> TranslationsDict:
     """
       Retrieves proposed and solution translations
@@ -173,16 +149,22 @@ class ParseConfig:
     """
 
     translations = {}
-    for cloud_device_id in matches:
-      # Find the entity via comparison of the cloud_device_id against the
-      # corresponding property of each EntityInstance in the specified dict
-      find_entity = lambda dictionary, cdid=cloud_device_id: [
-          entity for entity in dictionary.values()
-          if entity.cloud_device_id == cdid
-      ][0]
+    for solution_entity in solution_entities.values():
+      if solution_entity.cloud_device_id is None:
+        continue  # as this is not a reporting device
+      if not Dimension.is_entity_canonical(solution_entity):
+        continue  # as noncanonical entities are skipped
 
-      proposed_entity = find_entity(proposed_entities)
-      solution_entity = find_entity(solution_entities)
+      cloud_device_id = solution_entity.cloud_device_id
+
+      # Find the matching proposal via comparison of the cloud_device_id
+      find_matches = lambda cdid: [
+          proposed_entity for proposed_entity in proposed_entities.values()
+          if proposed_entity.cloud_device_id == cdid
+      ]
+
+      proposed_entity = find_matches(cloud_device_id)[0] if find_matches(
+          cloud_device_id) else {}
 
       # Isolate the translations of an entity for pairing below.
       # A reporting entity without a translation should not occur
@@ -198,16 +180,15 @@ class ParseConfig:
 
   @staticmethod
   def aggregate_results(
-      *, dimensions: Dict[DimensionCategory, List[Dimension]],
-      translations: TranslationsDict, deserialized_files: DeserializedFilesDict
+      *, dimensions: List[Dimension], translations: TranslationsDict,
+      deserialized_files: DeserializedFilesDict
   ) -> Dict[DimensionName, Dimension]:
     """
       Wrapper which outputs a dictionary of results by invoking each
       specified `Dimension` with the appropriate argument based on its category
 
       Args:
-        dimensions: Dictionary with lists of `Dimension`s to be evaluated
-          keyed under their category ("simple" or "complex")
+        dimensions: List of `Dimension`s to be evaluated
         translations: Dictionary with `cloud_device_id`s as keys
           and lists of translation tuples as values. Used as argument for
           "simple" dimensions.
@@ -215,29 +196,21 @@ class ParseConfig:
           keyed under their respective file type ("proposed" or "solution").
           Used as argument for "complex" dimensions.
 
-        dbo_dimensions: List of `DboDimension`s to be evaluated
-        proposed_entities: Dictionary of proposed entity names
-          and `EntityInstance`s
-        solution_entities: Dictionary of solution entity names
-          and `EntityInstance`s
-
       Returns:
         Dictionary with dimension names as keys and `Dimension`s as values
     """
     results = {}
 
-    for dimension_category, dimension_list in dimensions.items():
+    for dimension in dimensions:
       # Invoke the functions and append the dictionary with their return values
-      for dimension in dimension_list:
-        if dimension_category == SIMPLE:
-          invoked = dimension(translations=translations).evaluate()
-        elif dimension_category == COMPLEX:
-          invoked = dimension(deserialized_files=deserialized_files).evaluate()
+      if dimension.category == SIMPLE:
+        evaluated = dimension(translations=translations).evaluate()
+      elif dimension.category == COMPLEX:
+        evaluated = dimension(deserialized_files=deserialized_files).evaluate()
 
-        results[dimension.__name__] = invoked
+      results[dimension.__name__] = evaluated
     return results
 
-  # TODO: standardize signatures; make dimensions into const; test
   def execute(self) -> Dict[DimensionName, str]:
     """
       Wrapper for all functionality herein.
@@ -249,27 +222,19 @@ class ParseConfig:
     deserialized_files_appended = self.append_types(
         universe=self.universe, deserialized_files=self.deserialized_files)
 
-    matches = self.match_reporting_entities(
-        proposed_entities=deserialized_files_appended[PROPOSED],  # pylint: disable=unsubscriptable-object
-        solution_entities=deserialized_files_appended[SOLUTION])  # pylint: disable=unsubscriptable-object
-
     translations = self.retrieve_reporting_translations(
-        matches=matches,
-        proposed_entities=deserialized_files_appended[PROPOSED],  # pylint: disable=unsubscriptable-object
-        solution_entities=deserialized_files_appended[SOLUTION])  # pylint: disable=unsubscriptable-object
+        proposed_entities=deserialized_files_appended[PROPOSED],
+        solution_entities=deserialized_files_appended[SOLUTION])
 
-    dimensions = {
-        SIMPLE: [
-            raw_field_selection.RawFieldSelection,
-            standard_field_naming.StandardFieldNaming,
-            state_mapping.StateMapping, unit_mapping.UnitMapping
-        ],
-        COMPLEX: [
-            entity_connection_identification.EntityConnectionIdentification,
-            entity_identification.EntityIdentification,
-            entity_point_identification.EntityPointIdentification
-        ]
-    }
+    dimensions = [
+        raw_field_selection.RawFieldSelection,
+        standard_field_naming.StandardFieldNaming, state_mapping.StateMapping,
+        unit_mapping.UnitMapping,
+        entity_connection_identification.EntityConnectionIdentification,
+        entity_identification.EntityIdentification,
+        entity_point_identification.EntityPointIdentification,
+        entity_type_identification.EntityTypeIdentification
+    ]
 
     self.results = self.aggregate_results(
         dimensions=dimensions,

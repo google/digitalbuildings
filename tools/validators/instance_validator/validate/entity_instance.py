@@ -343,7 +343,7 @@ class InstanceValidator(object):
         if unit not in valid_units:
           print(
               f'Field {qualified_field_name} has an undefined measurement unit:'
-              + ' {unit}')
+              + f' {unit}')
           is_valid = False
       return is_valid
 
@@ -846,6 +846,11 @@ class EntityInstance(findings_lib.Findings):
       guid = entity_yaml[parse.ENTITY_GUID_KEY]
     else:
       raise ValueError('Entity block must contain either "code" or "guid".')
+
+    if operation in [parse.EntityOperation.ADD, parse.EntityOperation.UPDATE]:
+      if not guid:
+        raise ValueError(
+            'Entity block must contain "guid" for ADD/UPDATE operations.')
 
     namespace, type_name = None, None
     if parse.ENTITY_TYPE_KEY in entity_yaml:

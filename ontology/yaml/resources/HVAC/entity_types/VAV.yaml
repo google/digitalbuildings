@@ -380,6 +380,15 @@ VAV_ZTM_PDSCV_SFM:
   opt_uses:
   - failed_alarm
 
+VAV_DSP_ED:
+  id: "13615430195317047296"
+  description: "Exhaust control VAV with dual setpoint control."
+  is_canonical: true
+  implements:
+  - VAV
+  - DSP
+  - ED
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################

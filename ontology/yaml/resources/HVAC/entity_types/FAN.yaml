@@ -386,6 +386,47 @@ FAN_SS_VSFC:
   - schedule_run_command
   - control_status
 
+FAN_SS_ZTC:
+  id: "17048861961233629184"
+  description: "Fan zone temperature control"
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - ZTC
+
+FAN_SS_VSC_EPC_EHHRC:
+  id: "6589814776619073536"
+  description: "Fan with exhaust static pressure control and heat recovery coils."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - VSC
+  - EPC
+  - EHHRC
+ 
+FAN_SS_VSC_EHHRC:
+  id: "17074194709137588224"
+  description: "Fan with exhaust and heat recovery coils."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - VSC
+  - EHHRC
+ 
+FAN_SS_DWI2X:
+  id: "4175885376348487680"
+  description: "Dishwasher-interlocked fan."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  uses:
+  - dishwasher_run_status_1
+  - dishwasher_run_status_2
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
@@ -572,3 +613,17 @@ FAN_SS_AL:
   - run_mode
   - schedule_run_command
   - control_status
+
+FAN_SS_VSC_EPC_EHHRC_EHHRC3X:
+  id: "13340710618047447040"
+  description: "Non-standard fan with exhaust static pressure control and heat recovery coils."
+  implements:
+  - FAN
+  - SS
+  - VSC
+  - EPC
+  - EHHRC
+  uses:
+  - heat_recovery_water_isolation_valve_command_1
+  - heat_recovery_water_isolation_valve_command_2
+  - heat_recovery_water_isolation_valve_command_3

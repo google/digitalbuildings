@@ -13,7 +13,8 @@
 # limitations under the License.
 """Core component base class."""
 
-from score.types_ import DeserializedFilesDict, TranslationsDict, PointsVirtualList, RawFieldName, EntityType, FileType
+from score.scorer_types import DeserializedFilesDict, TranslationsDict, PointsVirtualList, RawFieldName, EntityType, FileType, MappingType
+from score.constants import MappingTypes
 from validate.entity_instance import EntityInstance
 from typing import Tuple, Set, List, Dict, NamedTuple
 from collections import defaultdict
@@ -22,8 +23,6 @@ from collections import defaultdict
 class _VirtualEntityMatch(NamedTuple):
   """Reference for metrics by which subscores were
   calculated to find the closest corellating virtual entities."""
-  # TODO:
-  # https://trello.com/c/MBAeYiwI/31-pare-down-virtualentitymatch-attributes-following-implementation-of-entity-type-id
   correct: int
   correct_ceiling: int
   incorrect: int
@@ -54,7 +53,7 @@ class _FieldsSubscore(NamedTuple):
   @property
   def incorrect(self) -> int:
     return len(
-        self.proposed_raw_field_names.difference(self.solution_raw_field_names))
+        self.solution_raw_field_names.difference(self.proposed_raw_field_names))
 
   @property
   def tally(self) -> float:
@@ -82,8 +81,8 @@ class _TypesSubscore(NamedTuple):
   @property
   def incorrect(self) -> int:
     return len(
-        set(self.proposed_entity_type.parent_names.keys()).difference(
-            set(self.solution_entity_type.parent_names.keys()))
+        set(self.solution_entity_type.parent_names.keys()).difference(
+            set(self.proposed_entity_type.parent_names.keys()))
     ) if self.proposed_entity_type is not None else self.correct_ceiling
 
   @property
@@ -115,6 +114,14 @@ class Dimension:
     result_all: Calculated result for all devices
     result_virtual: Calculated result for virtual devices
     result_reporting: Calculated result for reporting devices"""
+
+  # `category` indicates which argument a dimension is invoked with:
+  # "simple" dimensions receive translations whereas "complex" dimensions
+  # receive deserialized files. As this is the base class, the `category`
+  # is neither of the possible values (SIMPLE or COMPLEX) and both associated
+  # arguments are specified with default values of `None`.
+  category = None
+
   def __init__(self,
                *,
                translations: TranslationsDict = None,
@@ -133,14 +140,18 @@ class Dimension:
     self.correct_ceiling_override: int = None
     self.incorrect_total_override: int = None
 
-    if not translations and not deserialized_files:
+    # Allow for gate below to be passed in case of no matched reporting entities
+    translations_truthy_or_empty = translations or isinstance(
+        translations, dict)
+
+    if not translations_truthy_or_empty and not deserialized_files:
       # `translations` are used to score "simple" dimensions — those which
       # evaluate only reporting entities — in bulk, whereas `deserialized_files`
-      # are passed to "complex" dimensions which build a multi-map
+      # are passed to "complex" dimensions which typically build a multi-map
       # of virtual entities prior to calculating scores.
       raise Exception(
           '`translations` xor `deserialized_files` argument is required')
-    elif translations and deserialized_files:
+    elif translations_truthy_or_empty and deserialized_files:
       raise Exception(
           '`translations` or `deserialized_files` argument must be exclusive')
 
@@ -182,11 +193,10 @@ class Dimension:
 
   def _condense_translations(self, file_type: FileType):
     """Combines translations for all devices within the dictionary."""
-    return [
-        matched_translations[file_type]
-        for matched_translations in self.translations.values()
-        if matched_translations[file_type]
-    ]
+    condensed = []
+    for translations in self.translations.values():
+      condensed.extend(translations[file_type])
+    return condensed
 
   @property
   def result_all(self) -> float:
@@ -199,7 +209,7 @@ class Dimension:
     """Calculated result for virtual devices."""
     # Allow for value to be returned even if either is not set
     correct_virtual = self.correct_virtual or 0
-    incorrect_virtual = self.correct_virtual or 0
+    incorrect_virtual = self.incorrect_virtual or 0
     return (
         (correct_virtual - incorrect_virtual) /
         self.correct_ceiling_virtual) if self.correct_ceiling_virtual else None
@@ -254,7 +264,7 @@ class Dimension:
     return entity.links is not None
 
   @staticmethod
-  def match_virtual_entities(
+  def _match_virtual_entities(
       *, solution_points_virtual: PointsVirtualList,
       proposed_points_virtual: PointsVirtualList,
       sort_candidates_by_key: str) -> Dict[float, List[_VirtualEntityMatch]]:
@@ -334,24 +344,44 @@ class Dimension:
         # Since a match was found, remove it from the pool
         proposed_points_virtual.remove(selected.proposed)
       else:
+        correct_ceiling = len(solution_raw_field_names)
         none_subscore_reference = _VirtualEntityMatch(
             correct=0,
-            correct_ceiling=len(solution_raw_field_names),
-            incorrect=0,
+            correct_ceiling=correct_ceiling,
+            incorrect=correct_ceiling,  # i.e. everything is incorrect
             proposed=set([]),
             solution=solution_parameters,
             types_correct=0,
             types_correct_ceiling=len(
                 set(solution_entity_type.parent_names.keys())),
-            types_incorrect=0,
-            types_score=None)
+            types_incorrect=len(set(solution_entity_type.parent_names.keys())),
+            types_score=-1.0)
 
         matches_virtual[None].append(none_subscore_reference)
 
     return matches_virtual
 
+  @staticmethod
+  def _isolate_mappings(translations, *,
+                        mapping_type: MappingType) -> Set[Tuple[str, Tuple]]:
+    """Distills mappings from each entity into a set for global comparison"""
+    mappings = set()
+    for translation in translations:
+      # (standard_field_name: str, field: obj)
+      field = translation[1]
+      if type(field).__name__ == mapping_type:
+        if mapping_type == MappingTypes.STATE: attribute = 'states'
+        if mapping_type == MappingTypes.UNIT: attribute = 'unit_mappings'
+        for item in getattr(field, attribute).items():
+          mappings.add((field.raw_field_name, item))
+    return mappings
+
+  @staticmethod
+  def _format_score(score: float, *, precision: int = 2) -> str:
+    return f'{score:.{precision}f}' if score is not None else score
+
   def __str__(self) -> str:
     """Human-readable representation of the calculated properties."""
-    return (
-        f'{{result_all: {self.result_all}, result_virtual: '
-        f'{self.result_virtual}, result_reporting: {self.result_reporting}}}')
+    return (f'{{result_all: {self._format_score(self.result_all)}, '
+            f'result_virtual: {self._format_score(self.result_virtual)}, '
+            f'result_reporting: {self._format_score(self.result_reporting)}}}')

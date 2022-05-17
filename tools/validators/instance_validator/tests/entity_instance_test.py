@@ -913,6 +913,31 @@ class EntityInstanceTest(absltest.TestCase):
     self.assertEqual(entity.guid, entity_guid)
     self.assertEqual(entity.code, entity_code)
 
+  def testValidate_requiresGuidOnAdd(self):
+    instance = entity_instance.EntityInstance(
+        _ADD,
+        entity_id='FACILITIES/123456',
+        guid=None,
+        code='ENTITY-NAME',
+        namespace='FACILITIES',
+        type_name='BUILDING',
+        etag='a12345',
+        update_mask=['connections'])
+
+    self.assertFalse(self.update_validator.Validate(instance))
+
+  def testValidate_requiresGuidOnUpdate(self):
+    instance = entity_instance.EntityInstance(
+        _UPDATE,
+        entity_id='FACILITIES/123456',
+        guid=None,
+        code='ENTITY-NAME',
+        namespace='FACILITIES',
+        type_name='BUILDING',
+        etag='a12345',
+        update_mask=['connections'])
+
+    self.assertFalse(self.update_validator.Validate(instance))
 
 if __name__ == '__main__':
   absltest.main()

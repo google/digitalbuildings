@@ -14,10 +14,11 @@
 """Core component."""
 
 from score.dimensions.dimension import Dimension
-from score.types_ import DeserializedFile, EntityInstance, CloudDeviceId, PointsVirtualList
-from score.constants import FileTypes
+from score.scorer_types import DeserializedFile, EntityInstance, CloudDeviceId, PointsVirtualList
+from score.constants import FileTypes, DimensionCategories
 
 from typing import Set
+from collections import namedtuple
 
 PROPOSED, SOLUTION = FileTypes
 
@@ -25,45 +26,64 @@ PROPOSED, SOLUTION = FileTypes
 class EntityPointIdentification(Dimension):
   """Quantifies whether the proposed file
   included the correct points in each entity."""
-  def _isolate_entities_virtual(self,
-                                file: DeserializedFile) -> Set[EntityInstance]:
-    return set(
-        filter(self.is_entity_canonical,
-               filter(self.is_entity_virtual, file.values())))
 
+  # COMPLEX category indicates this dimension receives `deserialized_files`
+  # rather than `translations` to do its calculations
+  category = DimensionCategories.COMPLEX
+
+  def _isolate_entities_virtual(
+      self, *, file: DeserializedFile,
+      exclude_noncanonical: bool) -> Set[EntityInstance]:
+    virtual_entities = filter(self.is_entity_virtual, file.values())
+    return set(
+        filter(self.is_entity_canonical, virtual_entities
+               ) if exclude_noncanonical else virtual_entities)
+
+  @staticmethod
   def _fetch_points_virtual(
-      self, file: DeserializedFile,
+      file: DeserializedFile,
       entities_virtual: Set[EntityInstance]) -> PointsVirtualList:
-    # For each canonically typed virtual entity
-    # create a tuple containing a set and the entity's type.
+    # For each virtual entity
+    # create a named tuple containing a set and the entity's type.
     # (The type is required by the matching algo for a different dimension.)
     # For each link in the entity,
     # if the field exists at the source
     # add its raw field name to the set.
+    PointsVirtual = namedtuple('PointsVirtual',
+                               ['raw_field_names', 'entity_type'])
+
+    return [
+        PointsVirtual(
+            set(file[link.source].translation[target_field].raw_field_name
+                for target_field, source_field in link.field_map.items()
+                for link in entity.links
+                if target_field in file[link.source].translation), entity.type)
+        for entity in entities_virtual for link in entity.links
+    ]
+
+  @staticmethod
+  def _sort_filter_points_virtual(
+      points_virtual: PointsVirtualList) -> PointsVirtualList:
     # Filter out sets which have no items
     # and sort by number of fields represented in descending order.
-    # TODO: move the filtering/sorting functionality to add clarity.
-    return sorted(
-        list(
-            filter(
-                lambda tup: len(tup[0]) > 0,  # (raw field names, entity type)
-                [(set(file[link.source].translation[target_field].raw_field_name
-                      for target_field, source_field in link.field_map.items()
-                      for link in entity.links
-                      if target_field in file[link.source].translation),
-                  entity.type) for entity in entities_virtual
-                 for link in entity.links])),
-        key=lambda tup: len(tup[0]),  # (raw field names, entity type)
-        reverse=True)
+    filtered = list(
+        filter(lambda entry: len(entry.raw_field_names) > 0, points_virtual))
+
+    return sorted(filtered,
+                  key=lambda entry: len(entry.raw_field_names),
+                  reverse=True)
 
   def _isolate_entities_reporting(
-      self, file: DeserializedFile) -> Set[EntityInstance]:
+      self, *, file: DeserializedFile,
+      exclude_noncanonical: bool) -> Set[EntityInstance]:
+    reporting_entities = filter(self.is_entity_reporting, file.values())
     return set(
-        filter(self.is_entity_canonical,
-               filter(self.is_entity_reporting, file.values())))
+        filter(self.is_entity_canonical, reporting_entities
+               ) if exclude_noncanonical else reporting_entities)
 
+  @staticmethod
   def _fetch_source_ids_virtual(
-      self, file: DeserializedFile,
+      file: DeserializedFile,
       entities_virtual: Set[EntityInstance]) -> Set[CloudDeviceId]:
     # Aggregate IDs for entities which comprise the composites
     # evaluated above. These will be filtered out so as to
@@ -78,9 +98,11 @@ class EntityPointIdentification(Dimension):
   def _evaluate_virtual(self, *, proposed_file: DeserializedFile,
                         solution_file: DeserializedFile):
     """Calculates and assigns properties necessary
-    for generating a score for virtual devices."""
-    proposed_entities_virtual, solution_entities_virtual = map(
-        self._isolate_entities_virtual, (proposed_file, solution_file))
+    for generating an entity point identification score for virtual devices."""
+    proposed_entities_virtual = self._isolate_entities_virtual(
+        file=proposed_file, exclude_noncanonical=False)
+    solution_entities_virtual = self._isolate_entities_virtual(
+        file=solution_file, exclude_noncanonical=True)
 
     proposed_points_virtual = self._fetch_points_virtual(
         proposed_file, proposed_entities_virtual)
@@ -89,9 +111,11 @@ class EntityPointIdentification(Dimension):
 
     # Rely on the black box to choose which virtual entities
     # correlate most closely in the respective files.
-    matches_virtual = self.match_virtual_entities(
-        solution_points_virtual=solution_points_virtual,
-        proposed_points_virtual=proposed_points_virtual,
+    matches_virtual = self._match_virtual_entities(
+        solution_points_virtual=self._sort_filter_points_virtual(
+            solution_points_virtual),
+        proposed_points_virtual=self._sort_filter_points_virtual(
+            proposed_points_virtual),
         sort_candidates_by_key='correct_ceiling')
 
     self.correct_virtual = sum([
@@ -110,11 +134,17 @@ class EntityPointIdentification(Dimension):
   def _evaluate_reporting(self, *, proposed_file: DeserializedFile,
                           solution_file: DeserializedFile):
     """Calculates and assigns properties necessary
-    for generating a score for reporting devices."""
-    proposed_entities_reporting, solution_entities_reporting = map(
-        self._isolate_entities_reporting, (proposed_file, solution_file))
-    proposed_entities_virtual, solution_entities_virtual = map(
-        self._isolate_entities_virtual, (proposed_file, solution_file))
+    for generating an entity point identification
+    score for reporting devices."""
+    proposed_entities_reporting = self._isolate_entities_reporting(
+        file=proposed_file, exclude_noncanonical=False)
+    solution_entities_reporting = self._isolate_entities_reporting(
+        file=solution_file, exclude_noncanonical=True)
+
+    proposed_entities_virtual = self._isolate_entities_virtual(
+        file=proposed_file, exclude_noncanonical=False)
+    solution_entities_virtual = self._isolate_entities_virtual(
+        file=solution_file, exclude_noncanonical=True)
 
     proposed_source_ids = self._fetch_source_ids_virtual(
         proposed_file, proposed_entities_virtual)
@@ -151,13 +181,13 @@ class EntityPointIdentification(Dimension):
         solution_raw_field_names in matches_reporting
     ])
     self.incorrect_reporting = sum([
-        len(proposed_raw_field_names.difference(solution_raw_field_names)) for
+        len(solution_raw_field_names.difference(proposed_raw_field_names)) for
         proposed_raw_field_names, solution_raw_field_names in matches_reporting
     ])
 
   def evaluate(self):
     """Calculates and assigns properties necessary
-    for generating a score for all devices."""
+    for generating an entity point identification score for all devices."""
 
     proposed_file, solution_file = map(self.deserialized_files.get,
                                        (PROPOSED, SOLUTION))

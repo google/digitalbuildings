@@ -14,32 +14,30 @@
 """Core component."""
 
 from score.dimensions.dimension import Dimension
-from score.constants import FileTypes
+from score.constants import FileTypes, DimensionCategories, MappingTypes
 
+STATE, UNIT = MappingTypes
 PROPOSED, SOLUTION = FileTypes
 
 
 class UnitMapping(Dimension):
   """Quantifies how accurately the proposed file
   mapped dimensional units for relevant fields."""
-  def _fetch_mappings(self, translations):
-    return set([(field[0], kv)
-                for field in (field for field in translations
-                              if type(field[1]).__name__ == 'DimensionalValue')
-                for kv in field[1].unit_mappings.items()])
+
+  # SIMPLE category indicates this dimension receives translations
+  # rather than `deserialized_files` to do its calculations
+  category = DimensionCategories.SIMPLE
 
   def evaluate(self):
     """Calculates and assigns properties necessary for generating a score."""
 
-    proposed_condensed, solution_condensed = map(self._condense_translations,
-                                                 (PROPOSED, SOLUTION))
+    proposed_translations, solution_translations = map(
+        self._condense_translations, (PROPOSED, SOLUTION))
 
-    # Account for empty list
-    proposed_translations = proposed_condensed and proposed_condensed[0]
-    solution_translations = solution_condensed and solution_condensed[0]
-
-    proposed_mappings, solution_mappings = map(
-        self._fetch_mappings, (proposed_translations, solution_translations))
+    proposed_mappings = self._isolate_mappings(proposed_translations,
+                                               mapping_type=UNIT)
+    solution_mappings = self._isolate_mappings(solution_translations,
+                                               mapping_type=UNIT)
 
     correct_mappings = proposed_mappings.intersection(solution_mappings)
 

@@ -19,3 +19,17 @@ UPS_SS:
   implements:
   - UPS
   - SS  
+
+
+UPS_IOBM:
+  id: "8787571394775875584"
+  description: "UPS with input and output electrical monitoring"
+  is_canonical: true
+  implements:
+  - UPS
+  - IOBM
+  opt_uses:
+  - input_frequency_sensor
+  - output_frequency_sensor
+  - bypass_frequency_sensor
+  - failed_alarm

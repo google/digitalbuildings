@@ -16,8 +16,8 @@
 from collections import Counter
 
 from score.dimensions.dimension import Dimension
-from score.constants import FileTypes
-from score.types_ import DeserializedFile, CloudDeviceId
+from score.constants import FileTypes, DimensionCategories
+from score.scorer_types import DeserializedFile, CloudDeviceId
 
 from typing import List
 
@@ -27,26 +27,33 @@ PROPOSED, SOLUTION = FileTypes
 class EntityIdentification(Dimension):
   """Quantifies whether the correct entities
   were included in the proposed file."""
-  def _list_ids_reporting(self, file: DeserializedFile) -> List[CloudDeviceId]:
-    """Generates list of `cloud_device_id`s representing
-    reporting entities with canonical types."""
-    return [
-        entity.cloud_device_id
-        for entity in filter(self.is_entity_canonical,
-                             filter(self.is_entity_reporting, file.values()))
-    ]
 
-  def _list_ids_virtual(self, file: DeserializedFile) -> List[CloudDeviceId]:
+  # COMPLEX category indicates this dimension receives `deserialized_files`
+  # rather than `translations` to do its calculations
+  category = DimensionCategories.COMPLEX
+
+  def _list_ids_reporting(self, *, file: DeserializedFile,
+                          exclude_noncanonical: bool) -> List[CloudDeviceId]:
+    """Generates list of `cloud_device_id`s representing reporting entities."""
+    reporting_entities = filter(self.is_entity_reporting, file.values())
+    filtered = filter(
+        self.is_entity_canonical,
+        reporting_entities) if exclude_noncanonical else reporting_entities
+    return [entity.cloud_device_id for entity in filtered]
+
+  def _list_ids_virtual(self, *, file: DeserializedFile,
+                        exclude_noncanonical: bool) -> List[CloudDeviceId]:
     """Generates list of `cloud_device_id`s representing
-    reporting entities with canonical types that
-    are linked to by virtual entities."""
-    return [
-        cloud_device_id for source_list in (
-            (file[link.source].cloud_device_id for link in entity.links)
-            for entity in filter(self.is_entity_canonical,
-                                 filter(self.is_entity_virtual, file.values())))
-        for cloud_device_id in source_list
-    ]
+    reporting entities that are linked to by virtual entities."""
+    virtual_entities = filter(self.is_entity_virtual, file.values())
+    filtered = filter(
+        self.is_entity_canonical,
+        virtual_entities) if exclude_noncanonical else virtual_entities
+    ids = []
+    for entity in filtered:
+      for link in entity.links:
+        ids.append(file[link.source].cloud_device_id)
+    return ids
 
   def evaluate(self):
     """Calculates and assigns properties necessary for generating a score."""
@@ -54,11 +61,15 @@ class EntityIdentification(Dimension):
     proposed_file, solution_file = map(self.deserialized_files.get,
                                        (PROPOSED, SOLUTION))
 
-    proposed_reporting_ids, solution_reporting_ids = map(
-        self._list_ids_reporting, (proposed_file, solution_file))
+    proposed_reporting_ids = self._list_ids_reporting(
+        file=proposed_file, exclude_noncanonical=False)
+    solution_reporting_ids = self._list_ids_reporting(file=solution_file,
+                                                      exclude_noncanonical=True)
 
-    proposed_virtual_ids, solution_virtual_ids = map(
-        self._list_ids_virtual, (proposed_file, solution_file))
+    proposed_virtual_ids = self._list_ids_virtual(file=proposed_file,
+                                                  exclude_noncanonical=False)
+    solution_virtual_ids = self._list_ids_virtual(file=solution_file,
+                                                  exclude_noncanonical=True)
 
     self.correct_reporting = sum((Counter(proposed_reporting_ids)
                                   & Counter(solution_reporting_ids)).values())

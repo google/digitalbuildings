@@ -51,18 +51,6 @@ jobs:
       run: |
        python -m unittest discover -p '*_test.py' --failfast -v
       working-directory: ./tools/explorer
-    #---------- Configuration scoring ----------#
-    - name: Configuration scoring Install dependencies
-      run: |
-        python setup.py install
-      working-directory: ./tools/scoring
-    - name: Run Pylint on Configuration Scorer
-      run: |
-        pylint --rcfile ./styles/pylintrc ./tools/scoring
-    - name: Configuration Scorer Tests
-      run: |
-        python -m unittest discover -p '*_test.py' --failfast -v
-      working-directory: ./tools/scoring
     #---------- Ontology Yaml Type Validator ----------#
     - name:  Ontology Yaml Type Validator Install dependencies
       run: |
@@ -84,7 +72,18 @@ jobs:
       run: |
        python -m unittest discover -p '*_test.py' --failfast -v
       working-directory: ./tools/validators/instance_validator
-
+    #---------- Configuration scoring ----------#
+    - name: Configuration scoring Install dependencies
+      run: |
+        python setup.py install
+      working-directory: ./tools/scoring
+    - name: Run Pylint on Configuration Scorer
+      run: |
+        pylint --rcfile ./styles/pylintrc ./tools/scoring
+    - name: Configuration Scorer Tests
+      run: |
+        python -m unittest discover -p '*_test.py' --failfast -v
+      working-directory: ./tools/scoring
      #---------- RDF Generator ----------#
     - name:  RDF Generator Install dependencies
       run: |

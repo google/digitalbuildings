@@ -129,8 +129,10 @@ _IGNORE_PATTERN = re.compile(r'^(\W)*#|\n')
 # check adherence to more specific naming conventions
 # Note: As-written this will capture the metadata key below, so logic should
 # check for it first
-_ENTITY_INSTANCE_REGEX = '^[a-zA-Z][a-zA-Z0-9\\-_]+:'
-_ENTITY_INSTANCE_PATTERN = re.compile(_ENTITY_INSTANCE_REGEX)
+_ENTITY_CODE_REGEX = r'^[a-zA-Z][a-zA-Z0-9/\-_ ]+:'
+_ENTITY_GUID_REGEX = r'^[0-9a-f]{8}-([0-9a-f]{4}-){3}[0-9a-f]{12}:'
+_ENTITY_CODE_PATTERN = re.compile(_ENTITY_CODE_REGEX)
+_ENTITY_GUID_PATTERN = re.compile(_ENTITY_GUID_REGEX)
 
 # Exact key for the configuration metadata block
 _CONFIG_METADATA_KEY = 'CONFIG_METADATA'
@@ -294,7 +296,7 @@ class InstanceParser():
           in_config = True
           continue
 
-        if _ENTITY_INSTANCE_PATTERN.match(line):
+        if _ENTITY_CODE_PATTERN.match(line) or _ENTITY_GUID_PATTERN.match(line):
           # If the last block was config, send it for parsing
           if in_config:
             self._ValidateBlock(entity_instance_block,
