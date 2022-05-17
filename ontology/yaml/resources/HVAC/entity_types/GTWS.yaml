@@ -1,0 +1,31 @@
+########################
+### Canonical Types  ###
+########################
+
+GTWS_BYPVPM_CLPM_WDT_WFRM_SETM:
+  id: "2086215149248577536"
+  description: "Geothermal loop with a bypass valve, thermal power, flowrate and differential pressure monitoring."
+  is_canonical: true
+  implements:
+  - GTWS
+  - BYPVPM
+  - CLPM
+  - WDPM
+  - WDT
+  - WFRM
+  uses:
+  - ground_temperature_sensor
+  - ground_isolation_command
+
+GTWS_CHWRWISOVPM_CHWRWISOVM_CHWSWISOVM_HWRWISOVPM_HWRWISOVM_HWSWISOVM:
+  id: "4283971767405379584"
+  description: "Geothermal loop with isolation valves on chilled and heating water supply and return."
+  is_canonical: true
+  implements:
+  - GTWS
+  - CHWRWISOVPM
+  - CHWRWISOVM
+  - CHWSWISOVM
+  - HWRWISOVPM
+  - HWRWISOVM
+  - HWSWISOVM

@@ -108,6 +108,7 @@ descriptor:
   gas: "Process or component driven by natural gas (as to distinguish from electric)."
   glycol: "Liquid mixture consisting of glycol and water "
   green: "green light fracture of ambient light"
+  ground: "The solid surface of the earth."
   guide: "Component used to guide flow of media or movement of component."
   h2s: "Hydrogen sulfide."
   hash: "A computed value that is converted from an original value."

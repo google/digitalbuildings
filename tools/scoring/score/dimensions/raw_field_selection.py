@@ -22,7 +22,7 @@ PROPOSED, SOLUTION = FileTypes
 class RawFieldSelection(Dimension):
   """Quantifies whether the correct raw fields
   (e.g. "points.chilled_water_flowrate_sensor.present_value")
-  were mapped (versus ignored) in the proposed file."""
+  were selected in the proposed file."""
 
   # SIMPLE category indicates this dimension receives `translations`
   # rather than `deserialized_files` to do its calculations
