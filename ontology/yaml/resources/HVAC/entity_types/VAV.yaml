@@ -476,7 +476,7 @@ VAV_RD_CO2C:
 
 # Additional type for FR-PAR-50A
 VAV_HWZTC_CHWZTC_DTM:
-  description: "Zone temperature control VAV with discharge temperature monitoring and external air volume control (not included)."
+  description: "A zone VAV with heating and cooling control, but no flow control; part of DOAS system where air volume is not measured or controlled locally, but instead controlled by the upstream equipment."
   is_canonical: true
   implements:
     - VAV
