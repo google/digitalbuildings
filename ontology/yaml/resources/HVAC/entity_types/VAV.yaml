@@ -389,6 +389,13 @@ VAV_DSP_ED:
   - DSP
   - ED
 
+VAV_RD:
+  description: "Return control VAV with air flow setpoint control"
+  is_canonical: true
+  implements:
+  - VAV
+  - RD
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
