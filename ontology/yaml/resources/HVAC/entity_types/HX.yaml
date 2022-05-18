@@ -158,7 +158,7 @@ HX_CWRWISOVPM_TWRWISOVPM_CWTWRTM:
   - condensing_return_water_temperature_sensor
   - outside_condensing_loop_return_water_temperature_sensor
 
-  HX_RWISOVM:
+HX_RWISOVM:
   description: "Simple return water isolating heat exchanger."
   is_canonical: true
   implements:
