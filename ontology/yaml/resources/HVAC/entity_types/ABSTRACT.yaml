@@ -4766,8 +4766,8 @@ COCDSP:
   description: "Dual setpoint CO concentration control."
   is_abstract: true
   uses:
-  - low_zone_air_co_concentration_setpoint
-  - high_zone_air_co_concentration_setpoint
+  - low_limit_zone_air_co_concentration_setpoint
+  - high_limit_zone_air_co_concentration_setpoint
   - zone_air_co_concentration_sensor
   implements:
   - CONTROL
@@ -4776,8 +4776,8 @@ NOCDSP:
   description: "Dual setpoint NO concentration control."
   is_abstract: true
   uses:
-  - low_zone_air_no_concentration_setpoint
-  - high_zone_air_no_concentration_setpoint
+  - low_limit_zone_air_no_concentration_setpoint
+  - high_limit_zone_air_no_concentration_setpoint
   - zone_air_no_concentration_sensor
   implements:
   - CONTROL
