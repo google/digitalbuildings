@@ -22,6 +22,7 @@ SS:
   opt_uses:
   - failed_alarm
   - lost_power_alarm
+  - power_status
 
 
 IOBM:
