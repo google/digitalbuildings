@@ -37,6 +37,14 @@ FAN_SS_VSC:
   - SS
   - VSC
 
+FAN_SS_RMM:
+  description: "Fan with start/stop status and run mode monitoring"
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - RMM
+
 ### ZONE TEMPERATURE CONTROL ###
 
 FAN_SS_ZTM:
