@@ -194,6 +194,13 @@ class ParserTest(absltest.TestCase):
         list(parser.GetEntities().keys()).pop(),
         '9a86a19b-b687-4db1-888e-2cf34d04b74c')
 
+  def testEntityCodeWithSpace(self):
+    parser = _ParserHelper(
+        [path.join(_TESTCASE_PATH, 'GOOD', 'good_code_with_spaces.yaml')])
+    self.assertEqual(
+        list(parser.GetEntities().keys()).pop(),
+        'SDC_EXT 2-1 / Rm 2D2')
+
 
 if __name__ == '__main__':
   absltest.main()
