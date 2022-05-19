@@ -470,9 +470,12 @@ SS:
   - powerfactor_sensor
   - current_sensor
   - power_sensor
+  - master_alarm
+  - failed_alarm
  uses:
   - run_status
   - run_command
+
 
 SSPC:
   id: "10526749200778002432"
