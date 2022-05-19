@@ -74,6 +74,7 @@ LS_LOS:
   - OS
 
 LS_MS_IS:
+  id: "16824737511027769344"
   description: "lighting multi-sensor for motion and illuminance."
   is_canonical: true
   implements:

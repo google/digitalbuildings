@@ -390,6 +390,7 @@ VAV_DSP_ED:
   - ED
 
 VAV_RD:
+  id: "2714959878476005376"
   description: "Return control VAV with air flow setpoint control"
   is_canonical: true
   implements:
