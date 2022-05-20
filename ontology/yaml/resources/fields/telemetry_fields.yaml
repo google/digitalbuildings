@@ -471,7 +471,7 @@ literals:
 - zone_air_refrigerant_concentration_setpoint
 
 # Added on 2019/06/03
-- apparentpower_sensor
+- apparent_power_sensor
 - energy_accumulator
 - average_line_current_sensor
 - average_line_neutral_voltage_sensor
@@ -492,7 +492,7 @@ literals:
 - phase3_power_sensor
 - phase3_powerfactor_sensor
 - powerfactor_sensor
-- reactivepower_sensor
+- reactive_power_sensor
 
 # Added on 2019/06/27 for Enlighted
 - dimmer_percentage_command # Should be adjusted to brightness_percentage_command
@@ -1090,21 +1090,6 @@ literals:
 - zone_air_no2_probability_percentage_sensor
 - zone_air_no2_ozone_concentration_sensor
 
-# Added on 2021/10/22 for lighting control
-- lighting_switch_command:
-  - ON
-  - OFF
-- zone_lighting_switch_status:
-  - ON
-  - OFF
-- zone_lighting_switch_command:
-  - ON
-  - OFF
-- zone_brightness_percentage_command
-- lighting_switch_alarm:
-  - ACTIVE
-  - INACTIVE
-
 # Added on 2021/11/25 for water leak
 - water_leak_cable_distance_sensor
 
@@ -1118,9 +1103,6 @@ literals:
 - air_pressure_status:
   - ACTIVE
   - INACTIVE
-  
-# added for ACU type
-- zone_override_temperature_setpoint 
 
 # added for WM_WFR 
 - water_flowrate_sensor 

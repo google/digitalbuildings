@@ -327,9 +327,8 @@ HWS_SWTC_CPC:
   - circulation_pump_speed_percentage_setpoint
   - failed_alarm
   
-HWS_ST:
+HWS_SS:
   description: "Simple hot water system with status only"
   implements:
   - HWS
-  uses:
-  - run_status
+  - SS

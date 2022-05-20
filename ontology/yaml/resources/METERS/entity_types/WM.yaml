@@ -25,7 +25,7 @@ WM_WFR:
   description: "Standard building water meter with flow rate meter."
   is_canonical: true
   implements:
-  - WM_STANDARD
+  - WM
   uses:
   - water_volume_accumulator
   - water_flowrate_sensor

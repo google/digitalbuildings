@@ -21,7 +21,7 @@ FD_STD:
   uses:
   - damper_status
   
- FD_SD:
+FD_SD:
   description: "Basic smoke detector fire damper"
   is_canonical: true
   implements:
