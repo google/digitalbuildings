@@ -58,7 +58,7 @@ rdf_generator_setup()
 
 ontology_validator_setup
 instance_validator_setup
-#explorer_setup
+explorer_setup
 guid_generator_setup
 #scoring_setup
 #rdf_generator_setup
