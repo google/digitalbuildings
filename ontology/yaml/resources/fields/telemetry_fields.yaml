@@ -1205,8 +1205,8 @@ literals:
 
 ## New fields for Freezer (Walk in Cold room)
 - defrost_run_status
-	- ON
-	- OFF
+  - ON
+  - OFF
 - defrost_temperature_sensor
 - fan_run_time_accumulator
 - defrost_temperature_setpoint
