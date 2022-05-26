@@ -15,7 +15,7 @@ implemented in the future.
 
 ### Unix Setup
 1. Open terminal and navigate to `digitalbuildings/tools`
-2. Run `sudo bash global_setup.sh`
+2. Run `bash global_setup.sh`
 
 ## Running Toolkit
 
