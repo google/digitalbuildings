@@ -74,6 +74,15 @@ DMP_DICM:
   - run_mode
   - lost_power_alarm
 
+DMP_EDBPC_ZTM:
+  id: "9003744176889659392"
+  description: "Stand-alone building pressure control damper."
+  is_canonical: true
+  implements:
+  - DMP
+  - EDBPC
+  - ZTM
+
 
 ###################################
 ### Existing Non-standard Types ###
