@@ -17,4 +17,4 @@ CB_SS:
   is_canonical: true
   implements:
   - CB
-  - SS  
+  - SS
