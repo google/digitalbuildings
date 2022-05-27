@@ -65,3 +65,11 @@ DOAS_FDPM:
   implements:
   - DOAS
   - FDPM
+
+DOAS_STC:
+  description: "DOAS with supply air temperature control."
+  is_canonical: true
+  implements:
+  - DOAS
+  - STC
+
