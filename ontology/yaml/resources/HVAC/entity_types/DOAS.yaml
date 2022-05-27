@@ -43,12 +43,13 @@ DOAS_EFSS_EFVSC_HTWHLSTC_SFSS_SFVSC_STC:
   - SFVSC
   - STC
 
-DOAS_RMM:
-  description: "DOAS with Run mode monitoring."
+DOAS_RMM_RDM:
+  description: "DOAS with Run mode and run time monitoring  ."
   is_canonical: true
   implements:
   - DOAS
   - RMM
+  - RDM
 
 DOAS_VSC_DFVSMC_VSFC:
   description: "DOAS with VSC speed control with power, voltage and current monitoring."
