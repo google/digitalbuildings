@@ -64,6 +64,8 @@ RDM:
   is_abstract: true
   uses:
   - run_time_accumulator
+  implements:
+  - MONITORING
 
 # Not deprecated but probably not useful
 OADM:
