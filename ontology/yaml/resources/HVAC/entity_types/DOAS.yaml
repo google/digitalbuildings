@@ -50,9 +50,18 @@ DOAS_RMM:
   - DOAS
   - RMM
 
-DOAS_VSC:
+DOAS_VSC_DFVSMC_VSFC:
   description: "DOAS with VSC speed control with power, voltage and current monitoring."
   is_canonical: true
   implements:
   - DOAS
   - VSC
+  - DFVSMC
+  - VSFC
+
+DOAS_FDPM:
+  description: "DOAS with filter fifferential pressure monitoring."
+  is_canonical: true
+  implements:
+  - DOAS
+  - FDPM
