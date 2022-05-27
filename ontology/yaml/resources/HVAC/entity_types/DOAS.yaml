@@ -42,3 +42,17 @@ DOAS_EFSS_EFVSC_HTWHLSTC_SFSS_SFVSC_STC:
   - SFSS
   - SFVSC
   - STC
+
+DOAS_RMM:
+  description: "DOAS with Run mode monitoring."
+  is_canonical: true
+  implements:
+  - DOAS
+  - RMM
+
+DOAS_VSC:
+  description: "DOAS with VSC speed control with power, voltage and current monitoring."
+  is_canonical: true
+  implements:
+  - DOAS
+  - VSC
