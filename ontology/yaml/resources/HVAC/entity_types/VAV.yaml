@@ -482,16 +482,15 @@ VAV_RD_CO2C:
   - RD
   - CO2C
 
-VAV_SRC:
-  description: "VAV with CO2 monitor, damper, hi/low flowrate setpoint and sensor, schedule run"
+VAV_SDM_SRC:
+  description: "VAV with CO2 monitor, dampers (open/close), hi/low flowrate setpoint and sensor, schedule run"
   is_canonical: true
   implements:
   - VAV
+  - SDM
   - SRC
   uses:
   - low_limit_supply_air_flowrate_setpoint
   - high_limit_supply_air_flowrate_setpoint
   - supply_air_flowrate_sensor 
-  - supply_air_damper_percentage_command
-  - supply_air_damper_percentage_sensor
   - zone_air_co2_concentration_sensor
