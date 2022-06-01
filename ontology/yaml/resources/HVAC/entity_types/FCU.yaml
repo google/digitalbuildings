@@ -931,6 +931,68 @@ FCU_DFSS_DFVSC_DXRC_HTRC_RHC_RHDHC_RTC:
   - RHDHC
   - RTC
 
+FCU_DFSS_DXZTC:
+  description: "Single split unit with zone air temperature control"
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - DXZTC
+  opt_uses:
+  - failed_alarm
+  - lost_power_alarm
+  - schedule_run_command
+
+FCU_DFSS_CHWZTC:
+  description: "Chilled water FCU with zone temperature control and chilled water valve control"
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - CHWZTC
+  opt_uses:
+  - schedule_run_command
+
+FCU_DFSS_ZTC:
+  description: "Chilled water FCU with binary mode (open/closed) and zone temperature control"
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - ZTC
+  uses:
+  - chilled_water_valve_command
+  opt_uses:
+  - schedule_run_command
+
+FCU_DFSS_CHWDC_CO2DFVSC_ZTC:
+  description: "Chilled water FCU with discharge air, zone air temperature and co2 concentration control. The fan speed is adjusted based on co2 value."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - CHWDC
+  - CO2DFVSC
+  - ZTC
+  opt_uses:
+  - filter_alarm
+  - discharge_air_linearvelocity_sensor
+  - schedule_run_command
+
+FCU_DFSS_CHWDC_DFVSC_ZTC:
+  description: "Chilled water FCU with discharge air, zone air temperature and co2 concentration control."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - CHWDC
+  - DFVSC
+  - ZTC
+  opt_uses:
+  - filter_alarm
+  - discharge_air_linearvelocity_sensor
+  - schedule_run_command
+  
 FCU_CHWRC_DFSS_RHDHC:
   id: "4146805492817068032"
   description: "FCU with chilled water coil and return air relative humidity control."
@@ -952,6 +1014,7 @@ FCU_DFSS_DSPRTC_DX2DSPRTC:
   - DX2DSPRTC
 
 FCU_DFSS_DFVSC_DPBHCC:
+  id: "6920829349230804992"
   description: "Hydronic variable speed fan coil with cooling and heating (zone temp control)."
   is_canonical: true
   implements:
@@ -961,6 +1024,7 @@ FCU_DFSS_DFVSC_DPBHCC:
   - DPBHCC
  
 FCU_DFSS_DFMSC_CHWZC_DSP:
+  id: "536976877433126912"
   description: "Multi-speed CHW fan coil with zone temp control."
   is_canonical: true
   implements:
@@ -971,6 +1035,7 @@ FCU_DFSS_DFMSC_CHWZC_DSP:
   - DSP
 
 FCU_DFSS_CHWZC_RTM_ZHM:
+  id: "13373924665299304448"
   description: "FCU with discharge cooling air temperature control, return air temperature monitoring and zone air relative humidity monitoring (CRAC)."
   is_canonical: true
   implements:
@@ -1351,3 +1416,32 @@ FCU_NON_CANONICAL_TYPE_4:
   - zone_air_temperature_sensor
   - zone_air_temperature_setpoint
   - return_air_temperature_setpoint
+
+FCU_LPA_FA:
+  description: "Unit with lost power and failed alarms only"
+  implements:
+  - FCU
+  uses:
+  - lost_power_alarm
+  - failed_alarm
+
+FCU_RTC_RHDHS_DTM_DFSS:
+  description: "Crac unit with return air temperature control, return air humidity monitor and dehumidification/humidification monitor."
+  implements:
+  - FCU
+  - RTC
+  - RHDHS
+  - DTM
+  - DFSS
+  uses:
+  - cooling_percentage_command
+  - run_command
+  - compressor_run_status_1
+  - compressor_run_status_2
+  opt_uses:
+  - discharge_fan_failed_alarm
+  - low_discharge_air_flowrate_alarm
+  - master_alarm
+  - water_leak_alarm
+  - fire_alarm
+  - schedule_run_command
