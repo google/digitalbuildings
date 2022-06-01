@@ -1206,7 +1206,7 @@ literals:
 <<<<<<< Updated upstream
 ## New fields for Leak Detection System
 - water_leak_cable_distance_sensor
-=======
+
 ## New fields for Freezer (Walk in Cold room)
 - defrost_run_status
 	- ON
