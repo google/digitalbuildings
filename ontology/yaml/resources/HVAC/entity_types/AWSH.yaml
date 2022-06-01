@@ -32,7 +32,7 @@ AWSH_DFMSC:
   - DFMSC
 
 AWSH_VSC:
-  description: "Discharge fan multi-speed control."
+  description: "Discharge fan variable speed control."
   is_canonical: true
   implements:
   - AWSH
