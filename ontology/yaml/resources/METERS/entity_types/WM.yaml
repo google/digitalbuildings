@@ -22,6 +22,7 @@ WM_STANDARD:
   - water_volume_accumulator
 
 WM_WF:
+  id: "5379261270530719744"
   description: "Water supply flow rate meter."
   implements:
   - WM
