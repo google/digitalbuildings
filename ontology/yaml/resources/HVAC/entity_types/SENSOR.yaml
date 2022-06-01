@@ -58,16 +58,23 @@ SENSOR_ZTM:
   description: "Zone air property sensor (temperature)."
   is_canonical: true
   implements:
-    - /SENSOR # Inherits from global namespace
-    - ZTM
+  - /SENSOR # Inherits from global namespace
+  - ZTM
 
 SENSOR_CO2M:
   id: "12938043071676809216"
   description: "CO2 concentration monitoring."
   is_canonical: true
   implements:
-    - /SENSOR # Inherits from global namespace
-    - CO2M
+  - /SENSOR # Inherits from global namespace
+  - CO2M
+
+SENSOR_ZHM:
+  description: "Zone air property sensor (humidity)."
+  is_canonical: true
+  implements:
+  - /SENSOR # Inherits from global namespace
+  - ZHM
 
 SENSOR_LA3A:
   id: "15072608557562068992"
