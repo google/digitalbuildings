@@ -58,6 +58,7 @@ DWST_SWTC_CPVSC2X_WSHP2X:
   - potable_hot_leaving_water_temperature_setpoint
 
 DWST_PWDT:
+  id: "1720086573292191744"
   description: "Domestic water system with primary side delta-T monitoring."
   is_canonical: true
   implements:
@@ -65,6 +66,7 @@ DWST_PWDT:
   - PWDT
 
 DWST_WDT:
+  id: "12843977652897316864"
   description: "Domestic water system with delta-T monitoring."
   is_canonical: true
   implements:
