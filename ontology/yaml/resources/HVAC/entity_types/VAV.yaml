@@ -381,6 +381,7 @@ VAV_ZTM_PDSCV_SFM:
   - failed_alarm
 
 VAV_SD_ZTC_HLSAFS:
+  id: "8585824205218512896"
   description: "VAV with flow rate control, supply air damper control and temperature control."
   is_canonical: true
   opt_uses:
