@@ -503,3 +503,13 @@ VAV_RD_CO2C:
   - VAV
   - RD
   - CO2C
+
+# Additional type for FR-PAR-50A
+VAV_HWZTC_CHWZTC_DTM:
+  description: "A zone VAV with heating and cooling control, but no flow control; part of DOAS system where air volume is not measured or controlled locally, but instead controlled by the upstream equipment."
+  is_canonical: true
+  implements:
+    - VAV
+    - HWZTC
+    - CHWZTC
+    - DTM
