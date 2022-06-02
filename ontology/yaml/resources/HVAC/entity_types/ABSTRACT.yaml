@@ -1290,6 +1290,8 @@ CHWSC:
   - leaving_cooling_coil_temperature_sensor
   - cooling_thermal_power_capacity
   - chilled_supply_water_temperature_sensor
+  - chilled_water_valve_percentage_sensor
+  - cooling_request_count
   uses:
   - supply_air_temperature_sensor
   - supply_air_temperature_setpoint
@@ -1304,6 +1306,7 @@ CHWSDC:
   opt_uses:
   - leaving_cooling_coil_temperature_sensor
   - cooling_thermal_power_capacity
+  - chilled_water_valve_percentage_sensor
   uses:
   - supply_air_temperature_sensor
   - supply_air_heating_temperature_setpoint
@@ -1320,6 +1323,7 @@ CHW2XSC:
   - leaving_cooling_coil_temperature_sensor
   - cooling_thermal_power_capacity
   - chilled_supply_water_temperature_sensor
+  - chilled_water_valve_percentage_sensor
   uses:
   - supply_air_temperature_sensor
   - supply_air_temperature_setpoint
@@ -1587,6 +1591,7 @@ DXSC:
   - cooling_thermal_power_capacity
   - cooling_percentage_command #Serves as a duty cycle for single-stage DX sections.
   - compressor_speed_percentage_command
+  - cooling_request_count
   uses:
   - compressor_run_status
   - compressor_run_command
@@ -1604,6 +1609,7 @@ DX2SC:
   - cooling_thermal_power_capacity
   - cooling_percentage_command
   - compressor_speed_percentage_command
+  - cooling_request_count
   uses:
   - compressor_run_command_1
   - compressor_run_command_2
@@ -1623,6 +1629,7 @@ DX3SC:
   - cooling_thermal_power_capacity
   - cooling_percentage_command
   - compressor_speed_percentage_command
+  - cooling_request_count
   uses:
   - compressor_run_command_1
   - compressor_run_command_2
@@ -1644,6 +1651,7 @@ DX4SC:
   - cooling_thermal_power_capacity
   - cooling_percentage_command
   - compressor_speed_percentage_command
+  - cooling_request_count
   uses:
   - compressor_run_status_1
   - compressor_run_status_2
@@ -1989,6 +1997,7 @@ HWSC:
   - heating_water_valve_percentage_sensor
   - heating_thermal_power_capacity
   - leaving_heating_coil_temperature_sensor
+  - heating_request_count
   uses:
   - heating_water_valve_percentage_command
   - supply_air_temperature_setpoint
@@ -2003,6 +2012,7 @@ HW2SC:
   opt_uses:
   - heating_thermal_power_capacity
   - leaving_heating_coil_temperature_sensor
+  - heating_request_count
   uses:
   - heating_water_valve_percentage_command_1
   - heating_water_valve_percentage_command_2
@@ -2124,6 +2134,7 @@ HTSC:
   - heating_thermal_power_capacity
   - heating_percentage_command
   - heater_run_status
+  - heating_request_count
   uses:
   - heater_run_command
   - supply_air_temperature_setpoint
@@ -3554,6 +3565,7 @@ CHDX2SC:
   - compressor_speed_frequency_sensor
   - compressor_speed_percentage_command
   - compressor_speed_percentage_sensor
+  - cooling_request_count
   uses:
   - compressor_run_command_1
   - compressor_run_command_2
