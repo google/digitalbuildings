@@ -29,6 +29,15 @@ EM_PWM_PVCM:
   - PWM
   - PVCM
 
+EM_PWM_AVCM:
+  id: "15080014867886768128"
+  description: "Power meter with basic power monitoring and averaging."
+  is_canonical: true
+  implements:
+  - EM
+  - PWM
+  - AVCM
+
 EM_PWM_PLPM_PVCM:
   id: "752982533779488768"
   description: "Power meter with phase level voltage, current, and power monitoring."
