@@ -380,6 +380,18 @@ VAV_ZTM_PDSCV_SFM:
   opt_uses:
   - failed_alarm
 
+VAV_SD_ZTC_HLSAFS:
+  id: "8585824205218512896"
+  description: "VAV with flow rate control, supply air damper control and temperature control."
+  is_canonical: true
+  opt_uses:
+  - master_alarm
+  implements:
+  - VAV
+  - SD
+  - ZTC
+  - HLSAFS
+
 VAV_DSP_ED:
   id: "13615430195317047296"
   description: "Exhaust control VAV with dual setpoint control."
@@ -388,6 +400,24 @@ VAV_DSP_ED:
   - VAV
   - DSP
   - ED
+
+VAV_CO2C_PDSCV:
+  id: "5566160655066595328"
+  description: "Discharge control VAV with CO2 regulation and damper percentage monitoring"
+  is_canonical: true
+  implements:
+  - VAV
+  - CO2C
+  - PDSCV
+
+VAV_RD:
+  id: "2714959878476005376"
+  description: "Return control VAV with air flow setpoint control"
+  is_canonical: true
+  implements:
+  - VAV
+  - RD
+
 
 ###################################
 ### Existing Non-standard Types ###
@@ -473,3 +503,13 @@ VAV_RD_CO2C:
   - VAV
   - RD
   - CO2C
+
+# Additional type for FR-PAR-50A
+VAV_HWZTC_CHWZTC_DTM:
+  description: "A zone VAV with heating and cooling control, but no flow control; part of DOAS system where air volume is not measured or controlled locally, but instead controlled by the upstream equipment."
+  is_canonical: true
+  implements:
+    - VAV
+    - HWZTC
+    - CHWZTC
+    - DTM

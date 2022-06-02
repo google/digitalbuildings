@@ -267,6 +267,14 @@ CHWS_BYPVPM_CLPM_SWTC_TDTM_WFRM:
   - TDTM
   - WFRM
 
+CHWS_SWTM:
+  id: "7601365474172993536"
+  description: "Simple chilled water system with supply water monitoring."
+  is_canonical: true
+  implements:
+  - CHWS
+  - SWTM
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
