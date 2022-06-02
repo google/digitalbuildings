@@ -70,6 +70,7 @@ SENSOR_CO2M:
   - CO2M
 
 SENSOR_ZHM:
+  id: "9990947288958107648"
   description: "Zone air property sensor (humidity)."
   is_canonical: true
   implements:
@@ -185,4 +186,3 @@ SENSOR_ZA_PML:
   - zone_air_pm4pt0_volumetricconcentration_sensor
   - zone_air_pm10pt0_volumetricconcentration_sensor
   - zone_air_voc_concentration_sensor
-
