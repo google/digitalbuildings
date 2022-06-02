@@ -4340,6 +4340,46 @@ CHWDT2X:
   - chilled_return_water_temperature_sensor_2
   - chilled_supply_water_temperature_sensor_2
 
+HLSAFS:
+  id: "3550799821818298368"
+  description: "Duct VAV type with high and low limit setpoint"
+  is_abstract: true
+  uses:
+  - high_limit_supply_air_flowrate_setpoint
+  - low_limit_supply_air_flowrate_setpoint
+  - supply_air_flowrate_setpoint
+  implements:
+  - CONTROL
+
+RHDHS:
+  id: "15197108458198401024"
+  description: "Return humidification/dehumidification monitor."
+  is_abstract: true
+  uses:
+  - return_air_relative_humidity_sensor
+  - return_air_relative_humidity_setpoint
+  - dehumidification_run_status
+  - humidification_run_status
+  implements:
+  - MONITORING
+
+CO2DFVSC:
+  id: "4574242837138243584"
+  description: "Carbon dioxide levels controlled by a variable speed discharge fan."
+  uses:
+  - zone_air_co2_concentration_sensor
+  - zone_air_co2_concentration_setpoint
+  - discharge_fan_speed_percentage_command
+  implements:
+  - CONTROL
+
+RACO2C:
+  id: "15503353232859594752"
+  description: "Returned air carbon dioxide levels controls."
+  uses:
+  - return_air_co2_concentration_sensor
+  - return_air_co2_concentration_setpoint
+  
 DX2DDC:
   id: "6446737527519838208"
   description: "Two compressor run control with dual setpoint control on discharge side"

@@ -45,6 +45,7 @@ component:
   heater: "Component which provides heat to media."
   humidifier: "Component which humidifies."
   lamp: "The component of a lighting device that emits the light."
+  louver: "A device comprising multiple blades that regulates the flow of air"
   motor: "A machine, especially one powered by electricity or internal combustion, that supplies motive power for a vehicle or for some other device with moving parts."
   pump: "Component used for the distribution of liquid media."
   riser: "Water riser for heating, cooling and so on"
@@ -56,7 +57,7 @@ component:
   vane: "Component for guiding media flow."
   wheel: "Component used for transfer of heat from incoming to outgoing air streams. "
   winding: "Conductive wires wrapped around a magnetic core."
-descriptor: 
+descriptor:
   air: "Atmospheric air, either conditioned or unconditioned."
   aisle: "Passage between two rows of server racks."
   ammonia: "Ammonia gas."
@@ -300,6 +301,7 @@ measurement_descriptor:
   brightness: "Giving out or reflecting light; overall level of light in a space."
   charge: "The state of power storage (e.g. charged, not charged, discharged, etc.)"
   closed: "Indicates full closed (for two-position actuators)"
+  condensation: "The change of the state of matter from the gas phase into the liquid phase"
   deadband: "Represents a range in which the controller does not do anything."
   dewpoint: "The thermodynamic point at which water condenses from standing air."
   differential: "Measured difference between two reference points (e.g. differential_water_pressure)"
@@ -344,3 +346,4 @@ point_type:
   status: "The multistate value indicating an observed state in a piece of equipment, often indicating if a command was effected. It is a neutral observation (e.g. no quality judgment of 'good' or 'bad'). It also has no units of measurement (therefore if combined with a measurement subfield, it will indicate that the field is the directional status based on some measurement of that type, e.g. power_status equates to an on/off value based on some inference of power)."
   specification: "The specified design value for a particular operating condition (differential pressure specification)."
   timestamp: "An instant in time, represented as a numeric offset from the epoch."
+
