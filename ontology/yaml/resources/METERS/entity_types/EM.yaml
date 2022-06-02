@@ -32,6 +32,14 @@ EM_PWM_PVCM:
   - reactive_energy_accumulator
   - apparent_energy_accumulator
 
+EM_PWM_AVCM:
+  description: "Power meter with basic power monitoring and averaging."
+  is_canonical: true
+  implements:
+  - EM
+  - PWM
+  - AVCM
+
 EM_PWM_PLPM_PVCM:
   id: "752982533779488768"
   description: "Power meter with phase level voltage, current, and power monitoring."

@@ -380,6 +380,17 @@ VAV_ZTM_PDSCV_SFM:
   opt_uses:
   - failed_alarm
 
+VAV_SD_ZTC_HLSAFS:
+  description: "VAV with flow rate control, supply air damper control and temperature control."
+  is_canonical: true
+  opt_uses:
+  - master_alarm
+  implements:
+  - VAV
+  - SD
+  - ZTC
+  - HLSAFS
+
 VAV_DSP_ED:
   id: "13615430195317047296"
   description: "Exhaust control VAV with dual setpoint control."
@@ -482,15 +493,13 @@ VAV_RD_CO2C:
   - RD
   - CO2C
 
-VAV_SDM_SRC:
+VAV_SD_HLFC_SRC:
   description: "VAV with CO2 monitor, dampers (open/close), hi/low flowrate setpoint and sensor, schedule run"
   is_canonical: true
   implements:
   - VAV
-  - SDM
+  - SD
+  - HLFC
   - SRC
   uses:
-  - low_limit_supply_air_flowrate_setpoint
-  - high_limit_supply_air_flowrate_setpoint
-  - supply_air_flowrate_sensor 
   - zone_air_co2_concentration_sensor

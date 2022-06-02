@@ -626,7 +626,6 @@ FAN_SS_VSC_SRC:
   - VSC
   - SRC
 
-
 FAN_SS_VSC_SRC_DPM:
   description: "Basic Exhaust fan with start/stop, speed sensor, fail alarm, scheduled run, dampers"
   uses:
@@ -639,6 +638,7 @@ FAN_SS_VSC_SRC_DPM:
   - VSC
   - SRC
   - DPM
+
 FAN_ST:
   description: "Basic fan with flowrate status only"
   uses:
