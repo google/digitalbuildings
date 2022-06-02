@@ -1216,6 +1216,10 @@ literals:
 - ground_isolation_command
 - ground_temperature_sensor
 
+## New fields for Fresh Air Fan With VFD
+- output_voltage_sensor
+- run_time_accumulator
+
 # Addition of telemetry for parking exhaust fan
 - low_limit_zone_air_co_concentration_setpoint
 - high_limit_zone_air_co_concentration_setpoint
