@@ -13,6 +13,7 @@
 # limitations under the License.
 
 BATT_STD:
+  id: "11958105532444704768"
   description: "Standard battery."
   implements:
   - BATT

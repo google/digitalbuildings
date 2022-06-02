@@ -129,8 +129,8 @@ _IGNORE_PATTERN = re.compile(r'^(\W)*#|\n')
 # check adherence to more specific naming conventions
 # Note: As-written this will capture the metadata key below, so logic should
 # check for it first
-_ENTITY_CODE_REGEX = '^[a-zA-Z][a-zA-Z0-9\\-_]+:'
-_ENTITY_GUID_REGEX = '^[0-9a-f]{8}-([0-9a-f]{4}-){3}[0-9a-f]{12}:'
+_ENTITY_CODE_REGEX = r'^[a-zA-Z][a-zA-Z0-9/\-_ ]+:'
+_ENTITY_GUID_REGEX = r'^[0-9a-f]{8}-([0-9a-f]{4}-){3}[0-9a-f]{12}:'
 _ENTITY_CODE_PATTERN = re.compile(_ENTITY_CODE_REGEX)
 _ENTITY_GUID_PATTERN = re.compile(_ENTITY_GUID_REGEX)
 
@@ -142,7 +142,7 @@ _CONFIG_METADATA_PATTERN = re.compile(_CONFIG_METADATA_REGEX)
 _CONFIG_MODE_KEY = 'operation'
 
 # A valid device field must match this
-_FIELD_REGEX = u'^[a-z][a-z0-9]*(?:_[a-z][a-z0-9]*)*(?:_[0-9]+)*$'
+_FIELD_REGEX = str('^[a-z][a-z0-9]*(?:_[a-z][a-z0-9]*)*(?:_[0-9]+)*$')
 """Schema separately parses translation to account for multiple valid formats
 
 github.com/google/digitalbuildings/blob/master/ontology/docs/building_config.md
@@ -157,7 +157,7 @@ _TRANSLATION_SCHEMA = syaml.MapPattern(
             syaml.Str(),
         syaml.Optional(STATES_KEY):
             syaml.MapPattern(
-                syaml.Regex(u'^[A-Z][A-Z_]+'),
+                syaml.Regex(str('^[A-Z][A-Z_]+')),
                 syaml.Str() | syaml.Seq(syaml.Str())),
         syaml.Optional(UNITS_KEY):
             syaml.Map({

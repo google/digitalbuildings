@@ -14,8 +14,9 @@
 """Core component."""
 
 from score.dimensions.dimension import Dimension
-from score.constants import FileTypes, DimensionCategories
+from score.constants import FileTypes, DimensionCategories, MappingTypes
 
+STATE, UNIT = MappingTypes
 PROPOSED, SOLUTION = FileTypes
 
 
@@ -27,20 +28,16 @@ class StateMapping(Dimension):
   # rather than `deserialized_files` to do its calculations
   category = DimensionCategories.SIMPLE
 
-  def _fetch_mappings(self, translations):
-    return set([(field[0], kv)
-                for field in (field for field in translations
-                              if type(field[1]).__name__ == 'MultiStateValue')
-                for kv in field[1].states.items()])
-
   def evaluate(self):
     """Calculates and assigns properties necessary for generating a score."""
 
     proposed_translations, solution_translations = map(
         self._condense_translations, (PROPOSED, SOLUTION))
 
-    proposed_mappings, solution_mappings = map(
-        self._fetch_mappings, (proposed_translations, solution_translations))
+    proposed_mappings = self._isolate_mappings(proposed_translations,
+                                               mapping_type=STATE)
+    solution_mappings = self._isolate_mappings(solution_translations,
+                                               mapping_type=STATE)
 
     correct_mappings = proposed_mappings.intersection(solution_mappings)
 
