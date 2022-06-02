@@ -1215,12 +1215,12 @@ literals:
 - phase1_phase2_line_motor_voltage_sensor
 - phase2_phase3_line_motor_voltage_sensor
 
-- phase1_line_inverter_current_sensor
-- phase2_line_inverter_current_sensor
-- phase3_line_inverter_current_sensor
-- inverter_voltage_sensor
-- inverter_frequency_sensor
-- inverter_power_sensor
+- input_phase1_line_inverter_current_sensor
+- input_phase2_line_inverter_current_sensor
+- input_phase3_line_inverter_current_sensor
+- output_inverter_voltage_sensor
+- input_inverter_frequency_sensor
+- output_inverter_power_sensor
 
 - refrigerant_differential_pressure_sensor
 
