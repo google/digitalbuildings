@@ -444,6 +444,16 @@ FAN_SS_DWI2X:
   - dishwasher_run_status_1
   - dishwasher_run_status_2
 
+FAN_EFHLC_COCDSP_NOCDSP:
+  id: "13969877559739940864"
+  description: "Two-speed exhaust fan (low/high) with CO concentration dual setpoint control and NO concentration dual setpoint control."
+  is_canonical: true
+  implements:
+  - FAN
+  - EFHLC
+  - COCDSP
+  - NOCDSP
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################

@@ -1296,6 +1296,8 @@ CHWSC:
   - leaving_cooling_coil_temperature_sensor
   - cooling_thermal_power_capacity
   - chilled_supply_water_temperature_sensor
+  - chilled_water_valve_percentage_sensor
+  - cooling_request_count
   uses:
   - supply_air_temperature_sensor
   - supply_air_temperature_setpoint
@@ -1310,6 +1312,7 @@ CHWSDC:
   opt_uses:
   - leaving_cooling_coil_temperature_sensor
   - cooling_thermal_power_capacity
+  - chilled_water_valve_percentage_sensor
   uses:
   - supply_air_temperature_sensor
   - supply_air_heating_temperature_setpoint
@@ -1326,6 +1329,7 @@ CHW2XSC:
   - leaving_cooling_coil_temperature_sensor
   - cooling_thermal_power_capacity
   - chilled_supply_water_temperature_sensor
+  - chilled_water_valve_percentage_sensor
   uses:
   - supply_air_temperature_sensor
   - supply_air_temperature_setpoint
@@ -1593,6 +1597,7 @@ DXSC:
   - cooling_thermal_power_capacity
   - cooling_percentage_command #Serves as a duty cycle for single-stage DX sections.
   - compressor_speed_percentage_command
+  - cooling_request_count
   uses:
   - compressor_run_status
   - compressor_run_command
@@ -1610,6 +1615,7 @@ DX2SC:
   - cooling_thermal_power_capacity
   - cooling_percentage_command
   - compressor_speed_percentage_command
+  - cooling_request_count
   uses:
   - compressor_run_command_1
   - compressor_run_command_2
@@ -1629,6 +1635,7 @@ DX3SC:
   - cooling_thermal_power_capacity
   - cooling_percentage_command
   - compressor_speed_percentage_command
+  - cooling_request_count
   uses:
   - compressor_run_command_1
   - compressor_run_command_2
@@ -1650,6 +1657,7 @@ DX4SC:
   - cooling_thermal_power_capacity
   - cooling_percentage_command
   - compressor_speed_percentage_command
+  - cooling_request_count
   uses:
   - compressor_run_status_1
   - compressor_run_status_2
@@ -1995,6 +2003,7 @@ HWSC:
   - heating_water_valve_percentage_sensor
   - heating_thermal_power_capacity
   - leaving_heating_coil_temperature_sensor
+  - heating_request_count
   uses:
   - heating_water_valve_percentage_command
   - supply_air_temperature_setpoint
@@ -2009,6 +2018,7 @@ HW2SC:
   opt_uses:
   - heating_thermal_power_capacity
   - leaving_heating_coil_temperature_sensor
+  - heating_request_count
   uses:
   - heating_water_valve_percentage_command_1
   - heating_water_valve_percentage_command_2
@@ -2130,6 +2140,7 @@ HTSC:
   - heating_thermal_power_capacity
   - heating_percentage_command
   - heater_run_status
+  - heating_request_count
   uses:
   - heater_run_command
   - supply_air_temperature_setpoint
@@ -3560,6 +3571,7 @@ CHDX2SC:
   - compressor_speed_frequency_sensor
   - compressor_speed_percentage_command
   - compressor_speed_percentage_sensor
+  - cooling_request_count
   uses:
   - compressor_run_command_1
   - compressor_run_command_2
@@ -4346,6 +4358,46 @@ CHWDT2X:
   - chilled_return_water_temperature_sensor_2
   - chilled_supply_water_temperature_sensor_2
 
+HLSAFS:
+  id: "3550799821818298368"
+  description: "Duct VAV type with high and low limit setpoint"
+  is_abstract: true
+  uses:
+  - high_limit_supply_air_flowrate_setpoint
+  - low_limit_supply_air_flowrate_setpoint
+  - supply_air_flowrate_setpoint
+  implements:
+  - CONTROL
+
+RHDHS:
+  id: "15197108458198401024"
+  description: "Return humidification/dehumidification monitor."
+  is_abstract: true
+  uses:
+  - return_air_relative_humidity_sensor
+  - return_air_relative_humidity_setpoint
+  - dehumidification_run_status
+  - humidification_run_status
+  implements:
+  - MONITORING
+
+CO2DFVSC:
+  id: "4574242837138243584"
+  description: "Carbon dioxide levels controlled by a variable speed discharge fan."
+  uses:
+  - zone_air_co2_concentration_sensor
+  - zone_air_co2_concentration_setpoint
+  - discharge_fan_speed_percentage_command
+  implements:
+  - CONTROL
+
+RACO2C:
+  id: "15503353232859594752"
+  description: "Returned air carbon dioxide levels controls."
+  uses:
+  - return_air_co2_concentration_sensor
+  - return_air_co2_concentration_setpoint
+  
 DX2DDC:
   id: "6446737527519838208"
   description: "Two compressor run control with dual setpoint control on discharge side"
@@ -4767,3 +4819,37 @@ HWRWISOVPM:
   - heating_return_water_isolation_valve_percentage_sensor
   implements:
   - MONITORING
+
+COCDSP:
+  id: "3620605616042541056"
+  description: "Dual setpoint CO concentration control."
+  is_abstract: true
+  uses:
+  - low_limit_zone_air_co_concentration_setpoint
+  - high_limit_zone_air_co_concentration_setpoint
+  - zone_air_co_concentration_sensor
+  implements:
+  - CONTROL
+
+NOCDSP:
+  id: "10177846673493983232"
+  description: "Dual setpoint NO concentration control."
+  is_abstract: true
+  uses:
+  - low_limit_zone_air_no_concentration_setpoint
+  - high_limit_zone_air_no_concentration_setpoint
+  - zone_air_no_concentration_sensor
+  implements:
+  - CONTROL
+
+EFHLC:
+  id: "16708066133181202432"
+  description: "Two-speed exhaust fan (low/high)."
+  is_abstract: true
+  uses:
+  - low_exhaust_fan_speed_command
+  - high_exhaust_fan_speed_command
+  - low_exhaust_fan_speed_status
+  - high_exhaust_fan_speed_status
+  implements:
+  - OPERATIONAL
