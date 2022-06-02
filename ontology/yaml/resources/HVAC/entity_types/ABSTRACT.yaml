@@ -4815,6 +4815,7 @@ HWRWISOVPM:
   - MONITORING
 
 COCDSP:
+  id: "3620605616042541056"
   description: "Dual setpoint CO concentration control."
   is_abstract: true
   uses:
@@ -4825,6 +4826,7 @@ COCDSP:
   - CONTROL
 
 NOCDSP:
+  id: "10177846673493983232"
   description: "Dual setpoint NO concentration control."
   is_abstract: true
   uses:
@@ -4835,6 +4837,7 @@ NOCDSP:
   - CONTROL
 
 EFHLC:
+  id: "16708066133181202432"
   description: "Two-speed exhaust fan (low/high)."
   is_abstract: true
   uses:
