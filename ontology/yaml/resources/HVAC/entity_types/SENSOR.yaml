@@ -75,6 +75,7 @@ SENSOR_ZHM:
   implements:
   - /SENSOR # Inherits from global namespace
   - ZHM
+
 SENSOR_LA3A:
   id: "15072608557562068992"
   description: "Three-axis linear acceleration (vibration) sensor with optional temperature and battery monitoring."
