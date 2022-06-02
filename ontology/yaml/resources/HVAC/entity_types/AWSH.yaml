@@ -38,3 +38,30 @@ AWSH_VSC:
   - AWSH
   - VSC
 
+AWSH_FDPM:
+  description: "Airwasher differential pressure sensor across filter."
+  is_canonical: true
+  implements:
+  - AWSH
+  - FDPM
+  
+AWSH_SSPM:
+  description: "Airwasher Supply air static pressure monitoring."
+  is_canonical: true
+  implements:
+  - AWSH
+  - SSPM
+  
+AWSH_STM:
+  description: "Airwasher Supply air temperature monitoring."
+  is_canonical: true
+  implements:
+  - AWSH
+  - STM
+  
+AWSH_SHC:
+  description: "Airwasher Supply air humidity monitoring."
+  is_canonical: true
+  implements:
+  - AWSH
+  - SHC
