@@ -41,6 +41,7 @@ EM_PWM_AVCM:
   - AVCM
 
 EM_PWM_AVCM:
+  id: "15080014867886768128"
   description: "Power meter with basic power monitoring and averaging."
   is_canonical: true
   implements:
