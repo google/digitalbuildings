@@ -1203,7 +1203,6 @@ literals:
 - ground_isolation_command
 - ground_temperature_sensor
 
-<<<<<<< Updated upstream
 ## New fields for Leak Detection System
 - water_leak_cable_distance_sensor
 
