@@ -1205,10 +1205,10 @@ literals:
 
 ## New Fields for PAC (ACU) Units
 
-- fan_run_time_accumulator
+- discharge_fan_run_time_accumulator
 - compressor_run_time_accumulator
 - evaporative_fan_speed_sensor
 - condensing_fan_speed_percentage_command
 - zone_air_override_temperature_status
-	- NOT_OVERRIDDEN
-	- OVERRIDDEN
+  - NOT_OVERRIDDEN
+  - OVERRIDDEN
