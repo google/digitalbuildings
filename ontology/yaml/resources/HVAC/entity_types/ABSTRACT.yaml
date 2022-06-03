@@ -36,6 +36,16 @@ SD:
   - supply_air_damper_percentage_command
   implements:
   - CONTROL
+  
+ZA:
+  id: "11449987124388954112"
+  description: "Single duct VAV type, with basic airflow control."
+  is_abstract: true
+   uses:
+  - zone_air_occupied_temperature_setpoint
+  - 
+  implements:
+  - CONTROL  
 
 DD:
   id: "8927971333061476352"
@@ -885,6 +895,17 @@ MINFC:
   - bypass_valve_percentage_command
   - min_flowrate_setpoint
   - flowrate_sensor
+  
+MAXFC:
+  id: "16039155144679489536"
+  description: "Maximum flow control for entire loop."
+  is_abstract: true
+  implements:
+  - CONTROL
+  uses:
+  - bypass_valve_percentage_command
+  - max_flowrate_setpoint
+  - flowrate_sensor  
 
 # Rename to CPSS
 CPC:
