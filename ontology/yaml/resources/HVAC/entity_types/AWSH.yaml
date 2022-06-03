@@ -65,3 +65,17 @@ AWSH_SHC:
   implements:
   - AWSH
   - SHC
+
+AWSH_STC:
+  description: "Airwasher Supply air temperature setpoint."
+  is_canonical: true
+  implements:
+  - AWSH
+  - STC  
+  
+AWSH_RDM:
+  description: "Airwasher Supply air temperature setpoint."
+  is_canonical: true
+  implements:
+  - AWSH
+  - RDM   
