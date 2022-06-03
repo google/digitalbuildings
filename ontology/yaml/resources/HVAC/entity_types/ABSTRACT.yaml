@@ -470,11 +470,9 @@ SS:
   - powerfactor_sensor
   - current_sensor
   - power_sensor
- uses:
-  - run_status
-  - run_command
-
-
+  - master_alarm
+  - failed_alarm
+  
 SSPC:
   id: "10526749200778002432"
   description: "Supply static pressure control via supply fan speed"
