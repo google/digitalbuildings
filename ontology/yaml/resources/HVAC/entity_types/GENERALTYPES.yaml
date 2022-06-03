@@ -80,6 +80,12 @@ PMP:
   implements:
   - EQUIPMENT
 
+FRZ:
+  description: "Tag for Freezers. "
+  is_abstract: true
+  implements:
+  - EQUIPMENT
+
 MAU:
   id: "16471500708907057152"
   description: "Tag for make-up air units. MAUs serve air to a space or group of spaces, but are not responsible
@@ -357,3 +363,4 @@ GTWS:
   - thermal_power_capacity
   - differential_pressure_specification
   - flowrate_requirement
+
