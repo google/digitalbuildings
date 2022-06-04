@@ -1205,8 +1205,8 @@ literals:
 
 # New fields for DX Units
 - return_air_isolation_damper_status
-	- OPEN
-	- CLOSE
+  - OPEN
+  - CLOSE
 - high_limit_zone_air_temperature_setpoint
 - low_limit_zone_air_temperature_setpoint
 - high_limit_zone_air_pressure_setpoint
