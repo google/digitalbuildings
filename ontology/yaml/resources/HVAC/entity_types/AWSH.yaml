@@ -74,7 +74,7 @@ AWSH_STC:
   - STC  
   
 AWSH_RDM:
-  description: "Airwasher Supply air temperature setpoint."
+  description: "Airwasher Run Duration Monitoring."
   is_canonical: true
   implements:
   - AWSH
