@@ -1162,8 +1162,8 @@ literals:
 
 ## New Fields For ACUs
 - zone_air_override_temperature_command
-	- ACTIVE
-	- INACTIVE
+  - ACTIVE
+  - INACTIVE
 
 
 
