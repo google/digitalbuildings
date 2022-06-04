@@ -1169,9 +1169,9 @@ literals:
 
 ## Water Level status
 - water_level_status:
-	- HIGH
-	- MEDIUM
-	- LOW
+  - HIGH
+  - MEDIUM
+  - LOW
 
 ## New fields for AHUs
 - return_air_co2_concentration_sensor
