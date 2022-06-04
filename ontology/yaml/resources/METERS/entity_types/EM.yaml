@@ -20,6 +20,13 @@ EM_PWM:
   - EM
   - PWM
 
+EM_PLPM:
+  description: "Power meter with basic Phase-level power monitoring."
+  is_canonical: true
+  implements:
+  - EM
+  - PLPM
+
 EM_PWM_PVCM:
   id: "9147692239198093312"
   description: "Power meter with phase level voltage and current monitoring."
