@@ -37,6 +37,14 @@ SD:
   implements:
   - CONTROL
 
+RDM:
+  description: ""Very basic system run duration monitoring. ""
+  is_abstract: true
+  uses:
+  - run_time_accumulator
+  implements:
+  - MONITORING"
+
 DD:
   id: "8927971333061476352"
   description: "Dual duct flow control (hot deck, cold deck)."

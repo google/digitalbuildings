@@ -33,6 +33,13 @@ FAN_RMM:
   - FAN
   - RMM  
 
+FAN_RDM:
+  description: "Basic fan with run duration monitoring."
+  is_canonical: true
+  implements:
+  - FAN
+  - RDM
+
 ### FAN SPEED CONTROL ###
 
 FAN_SS_VSC:
@@ -44,12 +51,12 @@ FAN_SS_VSC:
   - SS
   - VSC
  
-FAN_DFVSC:
-  description: "Discharge Fan with speed control."
+FAN_DFMSC:
+  description: "Discharge Fan with multi speed control."
   is_canonical: true
   implements:
   - FAN
-  - VSC 
+  - DFMSC 
 
 ### ZONE TEMPERATURE CONTROL ###
 
