@@ -25,6 +25,13 @@ FAN_SS:
   implements:
   - FAN
   - SS
+  
+FAN_RMM:
+  description: "Basic fan with run mode monitoring."
+  is_canonical: true
+  implements:
+  - FAN
+  - RMM  
 
 ### FAN SPEED CONTROL ###
 
@@ -36,6 +43,13 @@ FAN_SS_VSC:
   - FAN
   - SS
   - VSC
+ 
+FAN_DFVSC:
+  description: "Discharge Fan with speed control."
+  is_canonical: true
+  implements:
+  - FAN
+  - VSC 
 
 ### ZONE TEMPERATURE CONTROL ###
 
