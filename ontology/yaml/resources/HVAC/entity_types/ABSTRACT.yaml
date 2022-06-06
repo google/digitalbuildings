@@ -4816,7 +4816,7 @@ HWRWISOVPM:
   implements:
   - MONITORING
 
-MPIVCM:
+MIPVCM:
   description: "Motor phase-level input current and voltage monitoring."
   is_abstract: true
   implements:
