@@ -102,6 +102,16 @@ CDWS_SWTC_WDPM_SWPSS:
   - WDPM
   - SWPSS
 
+CDWS_CLPM_SWTC_WDPM_WFRC:
+  description: "Condensing water system with supply temp and flowrate control; and thermal power and differential pressure monitoring."
+  is_canonical: true
+  implements:
+  - CDWS
+  - CLPM
+  - SWTC
+  - WDPM
+  - WFRC
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
