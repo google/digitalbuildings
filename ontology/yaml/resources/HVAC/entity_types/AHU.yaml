@@ -64,13 +64,6 @@ AHU_IDSRC:
   - AHU
   - IDSRC  
 
-AHU_STC:
-  description: "AHU with supply air temperature control."
-  is_canonical: true
-  implements:
-  - AHU
-  - STC
-
 AHU_DXDC:
   description: "AHU with compressor run control."
   is_canonical: true
