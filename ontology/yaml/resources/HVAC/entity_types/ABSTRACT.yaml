@@ -36,6 +36,22 @@ SD:
   - supply_air_damper_percentage_command
   implements:
   - CONTROL
+  
+IDSSC:
+  description: "Isolation damper Status on the supply side."
+  is_abstract: true
+  uses:
+  - supply_air_isolation_damper_status
+  implements:
+  - MONITORING 
+
+IDSRC:
+  description: "Isolation damper Status on the return side."
+  is_abstract: true
+  uses:
+  - return_air_isolation_damper_status
+  implements:
+  - MONITORING  
 
 DD:
   id: "8927971333061476352"
