@@ -20,13 +20,6 @@ EM_PWM:
   - EM
   - PWM
 
-EM_PWM_AVCM:
-  description: "Power meter with Average phase (line) level voltage and current monitoring."
-  is_canonical: true
-  implements:
-  - EM
-  - PWM
-  - AVCM
 
 EM_PWM_PVCM:
   id: "9147692239198093312"
