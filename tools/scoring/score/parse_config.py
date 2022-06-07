@@ -157,19 +157,28 @@ class ParseConfig:
 
       cloud_device_id = solution_entity.cloud_device_id
 
-      # Find the matching proposal via comparison of the cloud_device_id
-      find_matches = lambda cdid: [
-          proposed_entity for proposed_entity in proposed_entities.values()
-          if proposed_entity.cloud_device_id == cdid
-      ]
+      def find_matches(cdid: str) -> List[...]:
+        """Find the matching proposal via cloud_device_id comparison.
+
+        Args:
+          cdid: cloud device id string.
+
+        Returns:
+          List of matching entities.
+        """
+        matches = [
+            proposed_entity for proposed_entity in proposed_entities.values()
+            if proposed_entity.cloud_device_id == cdid]
+        return matches
 
       proposed_entity = find_matches(cloud_device_id)[0] if find_matches(
           cloud_device_id) else {}
 
-      # Isolate the translations of an entity for pairing below.
-      # A reporting entity without a translation should not occur
-      aggregate_translations = lambda entity: list(entity.translation.items(
-      )) if getattr(entity, 'translation', None) else []
+      def aggregate_translations(entity) -> List[...]:
+        """Isolate translation of an entity pairing."""
+        if getattr(entity, 'translation', None):
+          return list(entity.translation.items())
+        return []
 
       translations[cloud_device_id] = {
           f'{PROPOSED}': aggregate_translations(proposed_entity),
@@ -242,7 +251,7 @@ class ParseConfig:
         deserialized_files=deserialized_files_appended)
 
     readable = {
-        name: dimension.__str__()
+        name: str(dimension)
         for name, dimension in self.results.items()
     }
 
