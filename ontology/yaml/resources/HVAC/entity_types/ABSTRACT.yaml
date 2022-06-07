@@ -43,7 +43,7 @@ RDM:
   uses:
   - run_time_accumulator
   implements:
-  - MONITORING"
+  - MONITORING
 
 DD:
   id: "8927971333061476352"
