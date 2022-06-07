@@ -25,6 +25,14 @@ FAN_SS:
   implements:
   - FAN
   - SS
+  
+FAN_RMM:
+  description: "Basic fan with run mode monitoring."
+  is_canonical: true
+  implements:
+  - FAN
+  - RMM
+ 
 
 ### FAN SPEED CONTROL ###
 
@@ -47,6 +55,20 @@ FAN_SS_ZTM:
   - FAN
   - SS
   - ZTM
+  
+FAN_MOVCM:
+  description: "Fan with current and voltage monitoring."
+  is_canonical: true
+  implements:
+  - FAN
+  - MOVCM
+ 
+FAN_RDM:
+  description: "Basic fan with run duration monitoring."
+  is_canonical: true
+  implements:
+  - FAN
+  - RDM 
 
 FAN_SS_CSP:
   id: "17863112993764540416"
@@ -650,3 +672,15 @@ FAN_SS_VSC_EPC_EHHRC_EHHRC3X:
   - heat_recovery_water_isolation_valve_command_1
   - heat_recovery_water_isolation_valve_command_2
   - heat_recovery_water_isolation_valve_command_3
+  
+FAN_MIPWM:
+  description: "Basic fan with input power sensor"
+  implements:
+  - FAN
+  - MIPWM
+  
+FAN_MSM:  
+  description: "Basic fan with speed monitoring and control"
+  implements:
+  - FAN
+  - MSM

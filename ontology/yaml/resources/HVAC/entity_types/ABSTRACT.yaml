@@ -36,6 +36,15 @@ SD:
   - supply_air_damper_percentage_command
   implements:
   - CONTROL
+  
+RDM:
+  description: "Very basic system run duration monitoring. "
+  is_abstract: true
+  uses:
+  - run_time_accumulator
+  implements:
+  - MONITORING
+  
 
 DD:
   id: "8927971333061476352"
@@ -58,6 +67,16 @@ DD:
   - heating_air_flowrate_setpoint
   implements:
   - CONTROL
+  
+MIOVCM:
+  description: "Motor input-output current and voltage monitoring."
+  is_abstract: true
+  implements:
+  - MONITORING
+  uses:
+  - directcurrentvoltage_sensor
+  - alternatingcurrentvoltage_sensor
+  - current_sensor  
 
 # Not deprecated but probably not useful
 OADM:
@@ -4839,9 +4858,19 @@ MIPWM:
   - MONITORING
   uses:
   - input_motor_power_sensor
-  opt_uses:
-  - motor_powerfactor_sensor
-  - input_motor_frequency_sensor
+  
+MSM:
+  description: "Motor speed monitoring and control."
+  is_abstract: true
+  implements:
+  - MONITORING
+  uses:
+  - speed_percentage_sensor
+  - min_speed_percentage_command
+  - max_speed_percentage_command
+  - high_speed_status
+  - low_speed_status
+ 
 
 INVOPWM:
   description: "Inverter (VFD) output power monitoring."
@@ -4946,3 +4975,4 @@ EFHLC:
   - high_exhaust_fan_speed_status
   implements:
   - OPERATIONAL
+

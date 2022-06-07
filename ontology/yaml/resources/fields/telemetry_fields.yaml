@@ -1295,3 +1295,15 @@ literals:
 - high_exhaust_fan_speed_status:
   - ON
   - OFF
+  
+#New fields for EC Fan
+- directcurrentvoltage_sensor
+- alternatingcurrentvoltage_sensor
+- min_speed_percentage_command
+- max_speed_percentage_command
+- high_speed_status
+  - ON
+  - OFF
+- low_speed_status
+  - ON
+  - OFF  
