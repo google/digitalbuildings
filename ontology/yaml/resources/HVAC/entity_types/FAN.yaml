@@ -175,7 +175,7 @@ FAN_SS_DWI:
   - dishwasher_run_status
 
 FAN_STM:
-  description: ""Basic fan with supply air temperature monitoring."
+  description: "Basic fan with supply air temperature monitoring."
   is_canonical: true
   implements:
   - FAN
