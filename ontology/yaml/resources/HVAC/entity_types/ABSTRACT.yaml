@@ -38,7 +38,7 @@ SD:
   - CONTROL
 
 RDM:
-  description: ""Very basic system run duration monitoring. ""
+  description: "Very basic system run duration monitoring."
   is_abstract: true
   uses:
   - run_time_accumulator
