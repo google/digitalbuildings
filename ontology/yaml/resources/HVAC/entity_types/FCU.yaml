@@ -86,7 +86,7 @@ FCU_VSC:
   - FCU
   - VSC
   
- FCU_FDPM:
+FCU_FDPM:
   description: "FCU with differential pressure monitoring across filter."
   is_canonical: true
   implements:
