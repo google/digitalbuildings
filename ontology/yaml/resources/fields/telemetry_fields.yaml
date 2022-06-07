@@ -1301,9 +1301,9 @@ literals:
 - alternatingcurrentvoltage_sensor
 - min_speed_percentage_command
 - max_speed_percentage_command
-- high_speed_status
+- high_speed_status:
   - ON
   - OFF
-- low_speed_status
+- low_speed_status:
   - ON
   - OFF  
