@@ -33,7 +33,7 @@ PMP_SS_VSC:
   - SS
   - VSC
 
-PMP_CWDPSS
+PMP_CWDPSS:
   description: "Condensate water discharge pump run command and status monitoring. "
   is_canonical: true
   implements:
