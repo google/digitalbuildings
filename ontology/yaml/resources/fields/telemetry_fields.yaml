@@ -1204,9 +1204,9 @@ literals:
 - ground_temperature_sensor
 
 ## New fields for Freezer (Walk in Cold room)
-- defrost_run_status
+- defrost_run_status:
   - ON
   - OFF
 - defrost_temperature_sensor
-- fan_run_time_accumulator
+- discharge_fan_run_time_accumulator
 - defrost_temperature_setpoint
