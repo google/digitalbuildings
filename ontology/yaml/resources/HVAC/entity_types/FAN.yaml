@@ -56,12 +56,12 @@ FAN_SS_ZTM:
   - SS
   - ZTM
   
-FAN_MOVCM:
+FAN_MIOVCM:
   description: "Fan with current and voltage monitoring."
   is_canonical: true
   implements:
   - FAN
-  - MOVCM
+  - MIOVCM
  
 FAN_RDM:
   description: "Basic fan with run duration monitoring."
