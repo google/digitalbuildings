@@ -37,6 +37,12 @@ FAN:
   implements:
   - EQUIPMENT
 
+DSU:
+  description: "Tag for dry scrubber units used to remove the unwanted particulate matters in the exhaust air typically oil particles."
+  is_abstract: true
+  implements:
+  - EQUIPMENT  
+
 FCU:
   id: "16867817476115660800"
   description: "Tag for fan-coil units. Fan coil units are distinguished from other air-side devices by the fact
