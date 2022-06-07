@@ -67,6 +67,14 @@ RDM:
   implements:
   - MONITORING
 
+SRC:
+  description: "Very basic run scheduling command. "
+  is_abstract: true
+  uses:
+  - schedule_run_command
+  implements:
+  - CONTROL  
+
 # Not deprecated but probably not useful
 OADM:
   id: "13985513714598543360"

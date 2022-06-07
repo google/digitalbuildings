@@ -73,4 +73,11 @@ DOAS_STC:
   implements:
   - DOAS
   - STC
+  
+DOAS_SRC:
+  description: "DOAS with run scheduling."
+  is_canonical: true
+  implements:
+  - DOAS
+  - SRC  
 
