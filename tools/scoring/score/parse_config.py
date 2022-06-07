@@ -13,7 +13,7 @@
 # limitations under the License.
 """File parser for the configuration scoring tool."""
 
-from typing import Dict, Optional, List
+from typing import Dict, Optional, List, Any
 
 from validate import handler as validator
 from validate.generate_universe import BuildUniverse
@@ -157,7 +157,7 @@ class ParseConfig:
 
       cloud_device_id = solution_entity.cloud_device_id
 
-      def find_matches(cdid: str) -> List[...]:
+      def find_matches(cdid: str) -> List[Any]:
         """Find the matching proposal via cloud_device_id comparison.
 
         Args:
@@ -174,7 +174,7 @@ class ParseConfig:
       proposed_entity = find_matches(cloud_device_id)[0] if find_matches(
           cloud_device_id) else {}
 
-      def aggregate_translations(entity) -> List[...]:
+      def aggregate_translations(entity) -> List[Any]:
         """Isolate translation of an entity pairing."""
         if getattr(entity, 'translation', None):
           return list(entity.translation.items())
