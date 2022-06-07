@@ -42,28 +42,12 @@ current:
 currentratio:
 - no_units: STANDARD
 diameter: length
-alternatingcurrent:
-- amperes: STANDARD
-- milliamperes
-alternatingcurrentvoltage:
-- volts: STANDARD
-- kilovolts
-- megavolts
-- millivolts 
 distance: length
 density:
 - kilograms_per_cubic_meter: STANDARD
 - grams_per_cubic_meter
 - micrograms_per_cubic_meter
 - milligrams_per_cubic_meter
-directcurrent:
-- amperes: STANDARD
-- milliamperes
-directcurrentvoltage:
-- volts: STANDARD
-- kilovolts
-- megavolts
-- millivolts
 electriccapacitance:
 - farads: STANDARD
 electricconductance:
