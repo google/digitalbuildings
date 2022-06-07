@@ -186,3 +186,13 @@ SENSOR_ZA_PML:
   - zone_air_pm4pt0_volumetricconcentration_sensor
   - zone_air_pm10pt0_volumetricconcentration_sensor
   - zone_air_voc_concentration_sensor
+  
+SENSOR_COC:
+  description: "Carbon monoxide monitoring and control"
+  is_canonical: true
+  implements:
+  - /SENSOR
+  - COC
+  uses:
+  - zone_air_co_concentration_sensor
+  
