@@ -168,8 +168,10 @@ _POINT_NAME_3 = 'points.exhaust_air_damper_command.present_value'
 _POINT_NAME_4 = 'points.exhaust_air_damper_status.present_value'
 
 
-def _NullCallback() -> None:
+def _NullCallback(validator) -> None:
   """Replacement for _NULL_CALLBACK lambda function."""
+  if validator:
+    return None
   return None
 
 
