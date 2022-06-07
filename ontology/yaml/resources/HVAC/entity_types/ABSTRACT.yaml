@@ -4760,4 +4760,20 @@ HWRWISOVPM:
   - heating_return_water_isolation_valve_percentage_command
   - heating_return_water_isolation_valve_percentage_sensor
   implements:
+  - MONITORING 
+
+DSS:
+  description: "defrost run command and status (start/stop) "
+  is_abstract: true
+  uses:
+  - defrost_run_status
+  implements:
   - MONITORING
+
+DFRDM:  
+  description: "Discharge fan run duration monitoring "
+  is_abstract: true
+  uses:
+  - discharge_fan_run_time_accumulator
+  implements:
+  - MONITORING 
