@@ -29,6 +29,92 @@ FCU_DFSS_CSP_CHWDC:
   - CSP
   - CHWDC
 
+FCU_RMM:
+  description: "FCU with Run mode monitoring."
+  is_canonical: true
+  implements:
+  - FCU
+  - RMM
+  
+FCU_EPM:
+  description: "FCU basic electrical parameters monitoring."
+  is_canonical: true
+  implements:
+  - FCU
+  - EPM
+
+FCU_RDM:
+  description: "Basic fan with run duration monitoring."
+  is_canonical: true
+  implements:
+  - FCU
+  - RDM
+  
+FCU_VSFC:
+  description: "FCU with variable frequency monitoring."
+  is_canonical: true
+  implements:
+  - FCU
+  - VSFC
+  
+
+FCU_DFMSC:
+  description: "FCU with discharge fan spped control and monitoring."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFMSC 
+
+FCU_RTC:
+  description: "FCU with return air temperature monitoring and control"
+  is_canonical: true
+  implements:
+  - FCU
+  - RTC
+
+FCU_RSPC:
+  description: "FCU with return air static pressure control and monitoring"
+  is_canonical: true
+  implements:
+  - FCU
+  - RSPC   
+ 
+FCU_VSC:
+  description: "FCU with variable speed control."
+  is_canonical: true
+  implements:
+  - FCU
+  - VSC
+  
+ FCU_FDPM:
+  description: "FCU with differential pressure monitoring across filter."
+  is_canonical: true
+  implements:
+  - FCU
+  - FDPM 
+
+FCU_SS:
+  description: "FCU with basic combination of run command and status (start/stop)."
+  is_canonical: true
+  implements:
+  - FCU
+  - SS
+  
+FCU_STC:
+  description: "FCU with supply air temperature monitoring and control. "
+  is_canonical: true
+  implements:
+  - FCU
+  - STC 
+
+FCU_CHWVM:
+  description: "FCU with Chilled water valve command and position monitoring. "
+  is_canonical: true
+  implements:
+  - FCU
+  - CHWVM
+    
+  
 FCU_DFSS_CSP_CHWZC:
   id: "7358088630922903552"
   description: "Typical chilled water FCU with cooling-only (zone control)."
