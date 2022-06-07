@@ -1237,6 +1237,63 @@ literals:
 - thermal_energy_accumulator
 - ground_isolation_command
 - ground_temperature_sensor
+- input_motor_frequency_sensor
+- input_motor_power_sensor
+- motor_powerfactor_sensor
+- average_input_inter_line_motor_voltage_sensor
+- average_input_line_motor_current_sensor
+- input_phase1_line_motor_current_sensor
+- input_phase2_line_motor_current_sensor
+- input_phase3_line_motor_current_sensor
+- input_phase1_phase3_line_motor_voltage_sensor
+- input_phase1_phase2_line_motor_voltage_sensor
+- input_phase2_phase3_line_motor_voltage_sensor
+
+- input_phase1_line_inverter_current_sensor
+- input_phase2_line_inverter_current_sensor
+- input_phase3_line_inverter_current_sensor
+- output_inverter_voltage_sensor
+- input_inverter_frequency_sensor
+- output_inverter_power_sensor
+
+- refrigerant_differential_pressure_sensor
+
+- chilled_side_ground_supply_economizer_isolation_valve_status:
+  - OPEN
+  - CLOSED
+- chilled_side_ground_return_economizer_isolation_valve_status:
+  - OPEN
+  - CLOSED
+- chilled_side_ground_return_economizer_isolation_valve_command:
+  - OPEN
+  - CLOSED
+- heating_side_ground_supply_economizer_isolation_valve_status:
+  - OPEN
+  - CLOSED
+- heating_side_ground_return_economizer_isolation_valve_status:
+  - OPEN
+  - CLOSED
+- heating_side_ground_return_economizer_isolation_valve_command:
+  - OPEN
+  - CLOSED
+- chilled_side_ground_return_water_isolation_valve_status:
+  - OPEN
+  - CLOSED
+- chilled_side_ground_supply_water_isolation_valve_status:
+  - OPEN
+  - CLOSED
+- chilled_side_ground_supply_water_isolation_valve_command:
+  - OPEN
+  - CLOSED
+- heating_side_ground_return_water_isolation_valve_status:
+  - OPEN
+  - CLOSED
+- heating_side_ground_supply_water_isolation_valve_status:
+  - OPEN
+  - CLOSED
+- heating_side_ground_supply_water_isolation_valve_command:
+  - OPEN
+  - CLOSED
 
 ## New fields for Fresh Air Fan With VFD
 - output_voltage_sensor

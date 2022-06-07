@@ -44,6 +44,7 @@ component:
   guidevane: "Control vanes that meter refrigerant (on a centrifugal chiller) or air (on an AHU)."
   heater: "Component which provides heat to media."
   humidifier: "Component which humidifies."
+  inverter: "Device or circuitry that changes direct current to alternating current (e.g. variable frequency drive)"
   lamp: "The component of a lighting device that emits the light."
   louver: "A device comprising multiple blades that regulates the flow of air"
   motor: "A machine, especially one powered by electricity or internal combustion, that supplies motive power for a vehicle or for some other device with moving parts."

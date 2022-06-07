@@ -3758,6 +3758,8 @@ REFPM:
   id: "5061129675661639680"
   description: "Refrigerant pressure monitoring for single circuits."
   is_abstract: true
+  opt_uses:
+  - refrigerant_differential_pressure_sensor
   uses:
   - refrigerant_evaporator_pressure_sensor
   - refrigerant_condenser_pressure_sensor
@@ -4823,6 +4825,103 @@ HWRWISOVPM:
   implements:
   - MONITORING
 
+MIPVCM:
+  description: "Motor phase-level input current and voltage monitoring."
+  is_abstract: true
+  implements:
+  - MONITORING
+  uses:
+  - input_phase1_phase3_line_motor_voltage_sensor
+  - input_phase1_phase2_line_motor_voltage_sensor
+  - input_phase2_phase3_line_motor_voltage_sensor
+  - input_phase1_line_motor_current_sensor
+  - input_phase2_line_motor_current_sensor
+  - input_phase3_line_motor_current_sensor
+  opt_uses:
+  - average_input_line_motor_current_sensor
+  - average_input_inter_line_motor_voltage_sensor
+
+MIPWM:
+  description: "Motor input power monitoring."
+  is_abstract: true
+  implements:
+  - MONITORING
+  uses:
+  - input_motor_power_sensor
+  opt_uses:
+  - motor_powerfactor_sensor
+  - input_motor_frequency_sensor
+
+INVOPWM:
+  description: "Inverter (VFD) output power monitoring."
+  is_abstract: true
+  implements:
+  - MONITORING
+  uses:
+  - output_inverter_power_sensor
+  opt_uses:
+  - output_inverter_voltage_sensor
+  - input_inverter_frequency_sensor
+
+INVIPCM:
+  description: "Inverter (VFD) 3-phase input current monitoring."
+  is_abstract: true
+  implements:
+  - MONITORING
+  uses:
+  - input_phase1_line_inverter_current_sensor
+  - input_phase2_line_inverter_current_sensor
+  - input_phase3_line_inverter_current_sensor
+
+CWSWISOVPM:
+  description: "Condensing water supply side isolation valve percentage monitoring."
+  is_abstract: true
+  uses:
+  - condensing_supply_water_isolation_valve_percentage_command
+  - condensing_supply_water_isolation_valve_percentage_sensor
+  implements:
+  - MONITORING
+
+GTWFCISOVM:
+  description: "Geothermal water free-cooling isolation valve monitoring; exclusively using ground as heat sink for building load."
+  is_abstract: true  
+  uses:
+  - chilled_side_ground_supply_economizer_isolation_valve_status
+  - chilled_side_ground_return_economizer_isolation_valve_status
+  - chilled_side_ground_return_economizer_isolation_valve_command
+  implements:
+  - MONITORING
+
+GTWGRISOVM:
+  description: "Geothermal water ground-recharge isolation valve monitoring; rejecting ground heat to atmosphere via cooling towers."
+  is_abstract: true  
+  uses:
+  - heating_side_ground_supply_economizer_isolation_valve_status
+  - heating_side_ground_return_economizer_isolation_valve_status
+  - heating_side_ground_return_economizer_isolation_valve_command
+  implements:
+  - MONITORING
+
+GTWHEISOVM:
+  description: "Geothermal water heat-extraction isolation valve monitoring; extracting ground heat to to use in building."
+  is_abstract: true
+  uses:
+  - chilled_side_ground_return_water_isolation_valve_status
+  - chilled_side_ground_supply_water_isolation_valve_status
+  - chilled_side_ground_supply_water_isolation_valve_command
+  implements:
+  - MONITORING
+
+GTWHRISOVM:
+  description: "Geothermal water heat-rejection isolation valve monitoring; rejecting building heat to ground."
+  is_abstract: true  
+  uses:
+  - heating_side_ground_return_water_isolation_valve_status
+  - heating_side_ground_supply_water_isolation_valve_status
+  - heating_side_ground_supply_water_isolation_valve_command
+  implements:
+  - MONITORING
+  
 COCDSP:
   id: "3620605616042541056"
   description: "Dual setpoint CO concentration control."
