@@ -167,7 +167,9 @@ _POINT_NAME_2 = 'points.supply_water_temperature_sensor.present_value'
 _POINT_NAME_3 = 'points.exhaust_air_damper_command.present_value'
 _POINT_NAME_4 = 'points.exhaust_air_damper_status.present_value'
 
-_NULL_CALLBACK = lambda validator: None
+
+def _NullCallback() -> None:
+  return None
 
 
 class TelemetryValidatorTest(absltest.TestCase):
@@ -182,7 +184,7 @@ class TelemetryValidatorTest(absltest.TestCase):
 
   def testTelemetryValidatorGetErrorsReturnsAllErrors(self):
     validator = telemetry_validator.TelemetryValidator(_ENTITIES_1, 1,
-                                                       _NULL_CALLBACK)
+                                                       _NullCallback)
     error_one = telemetry_error.TelemetryError(_ENTITY_NAME_1, _POINT_NAME_1,
                                                'Test error 1')
     error_two = telemetry_error.TelemetryError(_ENTITY_NAME_2, _POINT_NAME_2,
@@ -198,7 +200,7 @@ class TelemetryValidatorTest(absltest.TestCase):
 
   def testTelemetryValidatorGetUnvalidatedEntitiesReturnsMissingEntities(self):
     validator = telemetry_validator.TelemetryValidator(_ENTITIES_3_4, 1,
-                                                       _NULL_CALLBACK)
+                                                       _NullCallback())
 
     validator.ValidateMessage(_MESSAGE_GOOD_2)
 
@@ -209,7 +211,7 @@ class TelemetryValidatorTest(absltest.TestCase):
 
   def testTelemetryValidatorIgnoresMissingPointOnPartialUpdate(self):
     validator = telemetry_validator.TelemetryValidator(_ENTITIES_1, 1,
-                                                       _NULL_CALLBACK)
+                                                       _NullCallback())
 
     validator.ValidateMessage(_MESSAGE_MISSING_POINT_PARTIAL)
 
@@ -217,7 +219,7 @@ class TelemetryValidatorTest(absltest.TestCase):
 
   def testTelemetryValidatorDetectsMissingPoint(self):
     validator = telemetry_validator.TelemetryValidator(_ENTITIES_1, 1,
-                                                       _NULL_CALLBACK)
+                                                       _NullCallback())
 
     validator.ValidateMessage(_MESSAGE_MISSING_POINT)
 
@@ -230,7 +232,7 @@ class TelemetryValidatorTest(absltest.TestCase):
 
   def testTelemetryValidatorDetectsMissingPresentValue(self):
     validator = telemetry_validator.TelemetryValidator(_ENTITIES_1, 1,
-                                                       _NULL_CALLBACK)
+                                                       _NullCallback())
 
     validator.ValidateMessage(_MESSAGE_MISSING_PRESENT_VALUE)
 
@@ -244,7 +246,7 @@ class TelemetryValidatorTest(absltest.TestCase):
 
   def testTelemetryValidatorDetectsUnmappedState(self):
     validator = telemetry_validator.TelemetryValidator(_ENTITIES_2, 1,
-                                                       _NULL_CALLBACK)
+                                                       _NullCallback())
 
     validator.ValidateMessage(_MESSAGE_INVALID_STATE)
 
@@ -261,7 +263,7 @@ class TelemetryValidatorTest(absltest.TestCase):
 
   def testTelemetryValidatorDetectsStringAsInvalidNumber(self):
     validator = telemetry_validator.TelemetryValidator(_ENTITIES_1, 1,
-                                                       _NULL_CALLBACK)
+                                                       _NullCallback())
 
     validator.ValidateMessage(_MESSAGE_INVALID_NUMBER)
 
@@ -275,7 +277,7 @@ class TelemetryValidatorTest(absltest.TestCase):
 
   def testTelemetryValidatorDetectsBooleanAsInvalidNumber(self):
     validator = telemetry_validator.TelemetryValidator(_ENTITIES_1, 1,
-                                                       _NULL_CALLBACK)
+                                                       _NullCallback())
 
     validator.ValidateMessage(_MESSAGE_INVALID_NUMBER_BOOLEAN)
 
@@ -289,7 +291,7 @@ class TelemetryValidatorTest(absltest.TestCase):
 
   def testTelemetryValidatorDetectsMultipleErrorsInMessage(self):
     validator = telemetry_validator.TelemetryValidator(_ENTITIES_1, 1,
-                                                       _NULL_CALLBACK)
+                                                       _NullCallback())
 
     validator.ValidateMessage(_MESSAGE_MULTIPLE_ERRORS)
 
