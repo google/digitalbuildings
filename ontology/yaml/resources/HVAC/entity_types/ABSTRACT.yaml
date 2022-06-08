@@ -4964,11 +4964,4 @@ OTM:
   - outside_air_temperature_sensor
   implements:
   - MONITORING 
-
-OHM:
-  description: "Ambient Air humidity monitoring."
-  is_abstract: true
-  uses:
-  - outside_air_relative_humidity_sensor
-  implements:
-  - MONITORING  
+ 
