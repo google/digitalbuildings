@@ -4953,4 +4953,12 @@ WVM:
   uses:
   - water_volume_accumulator
   implements:
+  - MONITORING
+
+CTEM:
+  description: "Thermal energy monitoring for cooling."
+  is_abstract: true
+  uses:
+  - cooling_thermal_energy_accumulator
+  implements:
   - MONITORING  
