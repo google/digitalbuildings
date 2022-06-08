@@ -203,7 +203,7 @@ SENSOR_OCO2M:
   - /SENSOR
   - OCO2M
   uses:
-  - outside_air_co_concentration_sensor
+  - outside_air_co2_concentration_sensor
 
 SENSOR_OTM:
   description: "Ambient temperature monitoring and control"
