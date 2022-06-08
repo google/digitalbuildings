@@ -4957,11 +4957,11 @@ OCO2M:
   implements:
   - MONITORING 
   
-OTM:
-  description: "Ambient temperature monitoring."
+
+OHM:
+  description: "Ambient Air humidity monitoring."
   is_abstract: true
   uses:
-  - outside_air_temperature_sensor
+  - outside_air_relative_humidity_sensor
   implements:
-  - MONITORING 
- 
+  - MONITORING  
