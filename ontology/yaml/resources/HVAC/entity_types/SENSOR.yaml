@@ -195,4 +195,31 @@ SENSOR_COC:
   - COC
   uses:
   - zone_air_co_concentration_sensor
+ 
+SENSOR_OCO2M:
+  description: "Outside Carbon dioxide monitoring and control"
+  is_canonical: true
+  implements:
+  - /SENSOR
+  - OCO2M
+  uses:
+  - outside_air_co_concentration_sensor
+
+SENSOR_OTM:
+  description: "Ambient temperature monitoring and control"
+  is_canonical: true
+  implements:
+  - /SENSOR
+  - OTM
+  uses:
+  - outside_air_temperature_sensor
+
+SENSOR_OHM:
+  description: "Ambient Humidity monitoring and control"
+  is_canonical: true
+  implements:
+  - /SENSOR
+  - OHM
+  uses:
+  - outside_air_relative_humidity_sensor   
   

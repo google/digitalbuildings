@@ -1295,3 +1295,8 @@ literals:
 - high_exhaust_fan_speed_status:
   - ON
   - OFF
+
+# Addition of telemetry for outside sensors
+- outside_air_co2_concentration_sensor
+- outside_air_temperature_sensor
+- outside_air_relative_humidity_sensor

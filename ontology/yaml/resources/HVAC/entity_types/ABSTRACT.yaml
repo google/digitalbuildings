@@ -4946,3 +4946,29 @@ EFHLC:
   - high_exhaust_fan_speed_status
   implements:
   - OPERATIONAL
+  
+##Abstracts for Ambient sensors
+
+OCO2M:
+  description: "Outside CO2 monitoring"
+  is_abstract: true
+  uses:
+  - outside_air_co2_concentration_sensor
+  implements:
+  - MONITORING 
+  
+OTM:
+  description: "Ambient temperature monitoring."
+  is_abstract: true
+  uses:
+  - outside_air_temperature_sensor
+  implements:
+  - MONITORING 
+
+OHM:
+  description: "Ambient Air humidity monitoring."
+  is_abstract: true
+  uses:
+  - outside_air_relative_humidity_sensor
+  implements:
+  - MONITORING  
