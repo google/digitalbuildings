@@ -47,7 +47,7 @@ HM_WVM:
   - WVM
 
 HM_CTEM:
-  description: "BTU meter cooling thermal energy accumulator"
+  description: "BTU meter cooling thermal energy accumulator. "
   is_canonical: true
   implements:
   - HM
