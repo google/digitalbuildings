@@ -4863,3 +4863,12 @@ EFHLC:
   - high_exhaust_fan_speed_status
   implements:
   - OPERATIONAL
+  
+DFRC:
+  description: "Discharge fan run command."
+  is_abstract: true
+  uses:
+  - discharge_fan_run_command
+  - run_command
+  implements:
+  - CONTROL  

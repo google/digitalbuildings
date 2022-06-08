@@ -4661,3 +4661,10 @@ AHU_DFSS_DX2ZC_ECONZ_CO2C_DSP_RCKTM2X_HTZC_CC2XM_RTM_DTM:
   - DTM
   opt_uses:
   - condensing_fan_current_sensor
+  
+AHU_DFRC: 
+  description: "AHU with Discharge fan run command."
+  is_canonical: true
+  implements:
+  - AHU
+  - DFRC
