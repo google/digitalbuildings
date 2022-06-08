@@ -358,3 +358,9 @@ GTWS:
   - thermal_power_capacity
   - differential_pressure_specification
   - flowrate_requirement
+  
+TK:
+  description: "Tag for Tank ahich which can be defined as media holding device. Exanple: Water Tank which holds water media. 
+  is_abstract: true
+  implements:
+  - EQUIPMENT

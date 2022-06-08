@@ -4946,3 +4946,11 @@ EFHLC:
   - high_exhaust_fan_speed_status
   implements:
   - OPERATIONAL
+  
+PHWTC:
+  description: "Supply water temperature control."
+  is_abstract: true
+  implements:
+  - MONITORING
+  uses:
+  - potable_hot_water_temperature_sensor  
