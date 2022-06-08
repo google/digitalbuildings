@@ -138,3 +138,9 @@ LC:
   uses:
   - illuminance_setpoint
   - illuminance_sensor
+
+SRC:
+  description: "Basic run scheduling "
+  is_abstract: true
+  uses:
+  - schedule_run_command 

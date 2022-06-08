@@ -21,3 +21,59 @@ LCM_SS:
   implements:
   - LCM
   - SS
+
+LCM_OS:
+  description: "Standard lighting for depicting the zone occupancy."
+  is_canonical: true
+  implements:
+  - LCM
+  - OS
+  
+LCM_IM:
+  description: "Standard lighting with illuminance sensor."
+  is_canonical: true
+  implements:
+  - LCM
+  - IM
+
+LCM_LSC:
+  description: "Standard lighting with switch control."
+  is_canonical: true
+  implements:
+  - LCM
+  - LSC
+
+LCM_PWM:
+  description: "Standard lighting with power monitoring."
+  is_canonical: true
+  implements:
+  - LCM
+  - PWM
+
+LCM_LC:
+  description: "Standard lighting with illuminance control."
+  is_canonical: true
+  implements:
+  - LCM
+  - LC
+
+LCM_LC:
+  description: "Standard lighting with illuminance control."
+  is_canonical: true
+  implements:
+  - LCM
+  - LC
+  
+LCM_SCZ:
+  description: "Standard lighting with scene control."
+  is_canonical: true
+  implements:
+  - LCM
+  - SCZ  
+
+LCM_SRC:
+  description: "Standard lighting with scheduling control."
+  is_canonical: true
+  implements:
+  - LCM
+  - SRC    
