@@ -4946,3 +4946,11 @@ EFHLC:
   - high_exhaust_fan_speed_status
   implements:
   - OPERATIONAL
+  
+WVM:
+  description: "Water volume monitoring."
+  is_abstract: true
+  uses:
+  - water_volume_accumulator
+  implements:
+  - MONITORING  

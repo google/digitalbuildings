@@ -358,3 +358,9 @@ GTWS:
   - thermal_power_capacity
   - differential_pressure_specification
   - flowrate_requirement
+  
+HM:
+  description: "Tag for BTU meters"
+  is_abstract: true
+  implements:
+  - EQUIPMENT
