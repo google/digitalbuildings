@@ -57,13 +57,6 @@ LCM_LC:
   - LCM
   - LC
 
-LCM_LC:
-  description: "Standard lighting with illuminance control."
-  is_canonical: true
-  implements:
-  - LCM
-  - LC
-  
 LCM_SCZ:
   description: "Standard lighting with scene control."
   is_canonical: true
