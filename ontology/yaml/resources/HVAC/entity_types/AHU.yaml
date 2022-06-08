@@ -4596,3 +4596,164 @@ AHU_DFSS_DX2ZC_ECONZ_CO2C_DSP_RCKTM2X_HTZC_CC2XM_RTM_DTM:
   - DTM
   opt_uses:
   - condensing_fan_current_sensor
+  
+AHU_CHWVM:
+  description: "AHU with chilled water valve monitoring and control"
+  is_canonical: true
+  implements:
+  - AHU
+  - CHWVM 
+  
+AHU_EPM:
+  description: "AHU with basic electrical parameter monitoring"
+  is_canonical: true
+  implements:
+  - AHU
+  - EPM
+
+AHU_FDPM:
+  description: "AHU with differential pressure monitoring across filter"
+  is_canonical: true
+  implements:
+  - AHU
+  - FDPM
+
+AHU_STC:
+  description: "AHU with supply air temperature monitoring and control"
+  is_canonical: true
+  implements:
+  - AHU
+  - STC   
+
+AHU_ZA:
+  description: "AHU with zone air temperature and humidity sensor"
+  is_canonical: true
+  implements:
+  - AHU
+  - ZA
+
+AHU_VOADC2X:
+  description: "AHU with Variable outside air damper control and monitoring"
+  is_canonical: true
+  implements:
+  - AHU
+  - VOADC2X
+
+AHU_OAMC:
+  description: "AHU with outside sir control and monitoring"
+  is_canonical: true
+  implements:
+  - AHU
+  - OAMC 
+  
+AHU_DFMSC:
+  description: "AHU with discharge fan speed monitoring"
+  is_canonical: true
+  implements:
+  - AHU
+  - DFMSC
+
+AHU_RACO2C:
+  description: "AHU with return air CO2 monitoring and control"
+  is_canonical: true
+  implements:
+  - AHU
+  - RACO2C
+
+AHU_SFSS:
+  description: "AHU with supply fan run control and monitoring"
+  is_canonical: true
+  implements:
+  - AHU
+  - SFSS
+  
+AHU_ZA:
+  description: "AHU with zone air temperature monitoring and control"
+  is_canonical: true
+  implements:
+  - AHU
+  - ZA
+
+AHU_CO2C:
+  description: "AHU with zone air CO2 monitoring and control"
+  is_canonical: true
+  implements:
+  - AHU
+  - CO2C
+
+AHU_SFVSC:
+  description: "AHU with supply fan speed control"
+  is_canonical: true
+  implements:
+  - AHU
+  - SFVSC 
+
+AHU_RAIDS3X:
+  description: "AHU with return air isolation damper monitoring for three sets of dampers"
+  is_canonical: true
+  implements:
+  - AHU
+  - RAIDS3X
+
+AHU_RAIDS2X:
+  description: "AHU with return air isolation damper monitoring for two sets of dampers"
+  is_canonical: true
+  implements:
+  - AHU
+  - RAIDS2X
+
+AHU_RAIDS4X:
+  description: "AHU with return air isolation damper monitoring for four sets of dampers"
+  is_canonical: true
+  implements:
+  - AHU
+  - RAIDS4X
+
+AHU_SSPC:
+  description: "AHU with supply air static pressure monitoring and control"
+  is_canonical: true
+  implements:
+  - AHU
+  - SSPC 
+
+AHU_VSFC:
+  description: "AHU with variable speed control"
+  is_canonical: true
+  implements:
+  - AHU
+  - VSFC
+
+AHU_SRC: 
+  description: "AHU with run command scheduling"
+  is_canonical: true
+  implements:
+  - AHU
+  - SRC
+  
+AHU_IDSSC: 
+  description: "AHU with isolation damper status monitoring on the supply side"
+  is_canonical: true
+  implements:
+  - AHU
+  - IDSSC  
+  
+AHU_IDSSC2X: 
+  description: "AHU with isolation damper status monitoring on the supply side with 2 dampers operating in conjunction"
+  is_canonical: true
+  implements:
+  - AHU
+  - IDSSC2X
+
+AHU_IDSSC3X: 
+  description: "AHU with isolation damper status monitoring on the supply side with 3 dampers operating in conjunction"
+  is_canonical: true
+  implements:
+  - AHU
+  - IDSSC3X
+  
+AHU_SSPM2X: 
+  description: "AHU with static pressure monitoring on the supply side with 2 sensors"
+  is_canonical: true
+  implements:
+  - AHU
+  - SSPM2X  
