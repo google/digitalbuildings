@@ -26,6 +26,13 @@ EM_PLPM:
   implements:
   - EM
   - PLPM
+  
+EM_GE_DG_PWMRDM2X:
+  description: "Energy metering from Grid Electricity and Diesel Generator."
+  is_canonical: true
+  implements:
+  - EM
+  - PWMRDM2X 
 
 EM_PWM_PVCM:
   id: "9147692239198093312"
