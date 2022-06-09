@@ -1295,3 +1295,9 @@ literals:
 - high_exhaust_fan_speed_status:
   - ON
   - OFF
+
+##Fields for generator##
+- oil_temperature_sensor
+- oil_pressure_sensor
+- tank_level_status
+- battery_voltage_sensor

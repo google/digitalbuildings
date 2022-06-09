@@ -50,3 +50,49 @@ IOBM:
   - bypass_phase1_neutral_voltage_sensor
   - bypass_phase2_neutral_voltage_sensor
   - bypass_phase3_neutral_voltage_sensor
+  
+PWM:
+  description: "Very basic power and enrgy monitoring only."
+  is_abstract: true
+  uses:
+  - power_sensor
+  - energy_accumulator
+  - powerfactor_sensor 
+  - apparent_power_sensor
+  - battery_voltage_sensor  
+
+RMM:
+  description: "Run mode monitoring."
+  is_abstract: true
+  uses:
+  - run_mode
+
+SS:
+  description: "Basic combination of run command and status (start/stop)."
+  is_abstract: true
+  implements:
+  - /SS
+  - OPERATIONAL
+
+OTPM:
+  description: "Oil temperature and pressure monitoring"
+  is_abstract: true
+  uses:
+  - oil_temperature_sensor
+  - oil_pressure_sensor
+  
+RDM:
+  description: "Very basic system run duration monitoring. "
+  is_abstract: true
+  uses:
+  - run_time_accumulator
+  implements:
+  - MONITORING  
+  
+TKLS:  
+  description: "Very basic tank level status monitoring. "
+  is_abstract: true
+  uses:
+  - tank_level_status
+  implements:
+  - MONITORING 
