@@ -62,7 +62,7 @@ TK_EST_TLM:
   - TLM
 
 TK_DWST_TLM:  
-  description: "Tank with level monitoring for domestin water storage tanks"
+  description: "Tank with level monitoring for domestic water storage tanks"
   is_canonical: true
   implements:
   - TK
