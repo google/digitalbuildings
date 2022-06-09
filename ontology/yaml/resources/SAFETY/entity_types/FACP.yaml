@@ -33,4 +33,11 @@ FACP_FA2X:
   - FA2X
   opt_uses:
   - panel_alarm
+  
+FACP_GASDET:
+  description: "Fire alarm panel with gas leak detection alarm"
+  is_canonical: true
+  implements:
+  - FACP
+  - GASDET  
 
