@@ -33,10 +33,17 @@ TK_TLM:
   - TK
   - TLM 
 
-TK_SPR_HDR_PLPM:  
-  description: "Tank with pipeline pressure monitoring for sprinkler and hydrant tank pipeline"
+TK_SPR_PLPM:  
+  description: "Tank with pipeline pressure monitoring for sprinkler pipeline"
   is_canonical: true
   implements:
   - TK
-  - PLPM  
+  - PLPM
+
+TK_HDR_PLPM:  
+  description: "Tank with pipeline pressure monitoring for hydrant tank pipeline"
+  is_canonical: true
+  implements:
+  - TK
+  - PLPM   
   
