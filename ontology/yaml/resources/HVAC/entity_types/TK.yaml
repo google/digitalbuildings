@@ -45,5 +45,25 @@ TK_HDR_PLPM:
   is_canonical: true
   implements:
   - TK
-  - PLPM   
+  - PLPM  
+
+TK_FHT_TLM:  
+  description: "Tank with level monitoring for fire hydrant tanks"
+  is_canonical: true
+  implements:
+  - TK
+  - TLM   
   
+TK_EST_TLM:  
+  description: "Tank with level monitoring for emergency sewer tanks"
+  is_canonical: true
+  implements:
+  - TK
+  - TLM
+
+TK_DWST_TLM:  
+  description: "Tank with level monitoring for domestin water storage tanks"
+  is_canonical: true
+  implements:
+  - TK
+  - TLM  
