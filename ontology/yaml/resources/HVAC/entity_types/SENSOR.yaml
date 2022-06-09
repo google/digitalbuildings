@@ -206,12 +206,9 @@ SENSOR_OCO2M:
   - outside_air_co2_concentration_sensor
 
 
-SENSOR_OHM:
-  description: "Ambient Humidity monitoring and control"
+SENSOR_PCM:
+  description: "Particulate matter monitoring"
   is_canonical: true
   implements:
   - /SENSOR
-  - OHM
-  uses:
-  - outside_air_relative_humidity_sensor   
-  
+  - PCM

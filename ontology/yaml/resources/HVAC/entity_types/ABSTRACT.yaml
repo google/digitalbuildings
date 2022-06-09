@@ -4964,4 +4964,12 @@ OHM:
   uses:
   - outside_air_relative_humidity_sensor
   implements:
-  - MONITORING  
+  - MONITORING 
+
+PCM:
+  description: "General particulate matter monitoring."
+  is_abstract: true
+  uses:
+  - particle_concentration_sensor
+  implements:
+  - MONITORING   
