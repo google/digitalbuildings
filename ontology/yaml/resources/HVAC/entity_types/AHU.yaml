@@ -4625,6 +4625,13 @@ AHU_STC:
   - AHU
   - STC   
 
+AHU_RTC:
+  description: "AHU with return air temperature monitoring and control"
+  is_canonical: true
+  implements:
+  - AHU
+  - RTC
+  
 AHU_ZA:
   description: "AHU with zone air temperature and humidity sensor"
   is_canonical: true
@@ -4757,3 +4764,32 @@ AHU_SSPM2X:
   implements:
   - AHU
   - SSPM2X  
+  
+AHU_SFRDM:
+  description: "AHUs with supply fan run duration monitoring ."
+  is_canonical: true
+  implements:
+  - AHU
+  - SFRDM
+  
+AHU_CPRDM:
+  description: "AHUs with compressor run duration monitoring ."
+  is_canonical: true
+  implements:
+  - AHU
+  - CPRDM  
+
+AHU_CMPC:
+  description: "AHUs with compressor control and monitoring ."
+  is_canonical: true
+  implements:
+  - AHU
+  - CMPC
+
+AHU_RDM:
+  description: "AHUs with run duration monitoring ."
+  is_canonical: true
+  implements:
+  - AHU
+  - RDM
+  

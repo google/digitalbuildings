@@ -1213,3 +1213,8 @@ literals:
 - thermal_energy_accumulator
 - ground_isolation_command
 - ground_temperature_sensor
+
+## Addition of new fields#
+
+- discharge_fan_run_time_accumulator
+
