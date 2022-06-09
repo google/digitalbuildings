@@ -32,3 +32,9 @@ PANEL:
   is_abstract: true
   implements:
   - EQUIPMENT
+  
+ELV:
+  description: "Tag for all elevators."
+  is_abstract: true
+  implements:
+  - EQUIPMENT  
