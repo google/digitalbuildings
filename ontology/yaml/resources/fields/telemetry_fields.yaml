@@ -1295,3 +1295,6 @@ literals:
 - high_exhaust_fan_speed_status:
   - ON
   - OFF
+  
+#Addition of new fields for Tanks##
+- level_status  
