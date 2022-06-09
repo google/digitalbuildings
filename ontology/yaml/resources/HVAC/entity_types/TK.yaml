@@ -22,5 +22,21 @@ TK_SWTC_PHWTC:
   description: "Tank with water temperature monitoring"
   is_canonical: true
   implements:
+  - TK  
   - SWTC
   - PHWTC
+  
+TK_TLM:  
+  description: "Tank with water level monitoring"
+  is_canonical: true
+  implements:
+  - TK
+  - TLM 
+
+TK_SPR_HDR_PLPM:  
+  description: "Tank with pipeline pressure monitoring for sprinkler and hydrant tank pipeline"
+  is_canonical: true
+  implements:
+  - TK
+  - PLPM  
+  

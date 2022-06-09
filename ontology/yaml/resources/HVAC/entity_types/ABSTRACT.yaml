@@ -4948,9 +4948,25 @@ EFHLC:
   - OPERATIONAL
   
 PHWTC:
-  description: "Supply water temperature control."
+  description: "portable water temperature monitoring and control."
   is_abstract: true
-  implements:
-  - MONITORING
   uses:
   - potable_hot_water_temperature_sensor  
+  implements:
+  - MONITORING
+  
+TLM:
+  description: "Tank level monitoring."
+  is_abstract: true
+  uses:
+  - level_status 
+  implements:
+  - MONITORING
+
+PLPM:  
+  description: "Pipeline Fluid pressure monitoring"
+  is_abstract: true
+  uses:
+  - line_pressure_sensor 
+  implements:
+  - MONITORING
