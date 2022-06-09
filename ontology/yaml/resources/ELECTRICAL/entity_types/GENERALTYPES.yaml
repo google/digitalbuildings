@@ -37,4 +37,4 @@ GEN:
   description: "Tag for all Electricity generating equipments."
   is_abstract: true
   implements:
-  - EQUIPMENT  
+  - EQUIPMENT
