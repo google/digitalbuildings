@@ -4793,3 +4793,65 @@ AHU_RDM:
   - AHU
   - RDM
   
+AHU_HRZAM:
+  description: "AHUs with high room temperature monitoring and control."
+  is_canonical: true
+  implements:
+  - AHU
+  - HRZAM 
+
+AHU_LRZAM:
+  description: "AHUs with Low room temperature monitoring and control."
+  is_canonical: true
+  implements:
+  - AHU
+  - LRZAM
+  
+AHU_HRZHM:
+  description: "AHUs with High room with zone air humidity monitoring and control."
+  is_canonical: true
+  implements:
+  - AHU
+  - HRZHM  
+
+AHU_LRZHM:
+  description: "AHUs with Low room with zone air humidity monitoring and control."
+  is_canonical: true
+  implements:
+  - AHU
+  - LRZHM   
+ 
+AHU_CMPC2X:
+  description: "AHUs with compressor control and monitoring for 2 compressors ."
+  is_canonical: true
+  implements:
+  - AHU
+  - CMPC2X
+  
+AHU_HRPM2X:
+  description: "AHUs with compressor run duration monitoring for 2 compressors ."
+  is_canonical: true
+  implements:
+  - AHU
+  - HRPM2X 
+
+AHU_LRPM2X:
+  description: "AHUs with compressor run duration monitoring for 2 compressors ."
+  is_canonical: true
+  implements:
+  - AHU
+  - LRPM2X
+
+AHU_RMM:
+  description: "AHUs with run mode monitoring ."
+  is_canonical: true
+  implements:
+  - AHU
+  - RMM  
+  
+AHU_SCHWTC:
+  description: "AHUs with chilled water temperature monitoring and control on the supply side ."
+  is_canonical: true
+  implements:
+  - AHU
+  - SCHWTC  

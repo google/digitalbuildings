@@ -4906,5 +4906,88 @@ RDM:
   uses:
   - run_time_accumulator
   implements:
-  - MONITORING 
+  - MONITORING
+
+HRZAM:
+  description: "High room Zone air temperature monitoring and control. "
+  is_abstract: true
+  uses:
+  - high_limit_zone_air_temperature_setpoint
+  implements:
+  - CONTROL
   
+LRZAM:
+  description: "Low room Zone air temperature monitoring and control. "
+  is_abstract: true
+  uses:
+  - low_limit_zone_air_temperature_setpoint
+  implements:
+  - CONTROL  
+  
+HRZHM:
+  description: "High room Zone air humidity monitoring and control. "
+  is_abstract: true
+  uses:
+  - high_limit_zone_air_relative_humidity_setpoint
+  implements:
+  - CONTROL    
+  
+LRZHM:
+  description: "Low room Zone air humidity monitoring and control. "
+  is_abstract: true
+  uses:
+  - low_limit_zone_air_relative_humidity_setpoint
+  implements:
+  - CONTROL 
+
+CMPC2X:
+  description: "Compressor run control and monitoring/controlling for 2 coompressors  ."
+  is_abstract: true
+  uses:
+  - compressor_run_status_1
+  - compressor_run_status_2
+  implements:
+  - CONTROL
+
+CPRDM2X:  
+  description: "Compressor run duration monitoring of 2 compressors "
+  is_abstract: true
+  uses:
+  - compressor_run_time_accumulator_1
+  - compressor_run_time_accumulator_2  
+  implements:
+  - MONITORING  
+
+HRPM2X:
+  description: "High room pressure monitoring and control for 2 sensors. "
+  is_abstract: true
+  uses:
+  - high_limit_zone_air_pressure_sensor_1
+  - high_limit_zone_air_pressure_sensor_2
+  implements:
+  - MONITORING    
+  
+LRPM2X:
+  description: "Low room pressure monitoring and control for 2 sensors. "
+  is_abstract: true
+  uses:
+  - low_limit_zone_air_pressure_sensor_1
+  - low_limit_zone_air_pressure_sensor_2
+  implements:
+  - MONITORING
+ 
+HRPM:
+  description: "High room pressure monitoring and control . "
+  is_abstract: true
+  uses:
+  - high_limit_zone_air_pressure_sensor
+  implements:
+  - MONITORING    
+  
+LRPM:
+  description: "Low room pressure monitoring and control. "
+  is_abstract: true
+  uses:
+  - low_limit_zone_air_pressure_sensor
+  implements:
+  - MONITORING 
