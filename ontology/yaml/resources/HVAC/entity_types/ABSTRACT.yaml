@@ -716,6 +716,14 @@ RTC:
   uses:
   - return_air_temperature_sensor
   - return_air_temperature_setpoint
+  
+SRC:
+  description: "Very basic run scheduling command. "
+  is_abstract: true
+  uses:
+  - schedule_run_command
+  implements:
+  - CONTROL  
 
 # Rename to OTM
 OA:

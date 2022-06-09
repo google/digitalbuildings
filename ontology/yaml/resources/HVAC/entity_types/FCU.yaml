@@ -113,6 +113,13 @@ FCU_CHWVM:
   implements:
   - FCU
   - CHWVM
+  
+FCU_SRC:
+  description: "FCU with Chilled water valve command and position monitoring. "
+  is_canonical: true
+  implements:
+  - FCU
+  - CHWVM  
     
   
 FCU_DFSS_CSP_CHWZC:
