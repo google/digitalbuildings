@@ -67,12 +67,6 @@ RMM:
   uses:
   - run_mode
 
-SS:
-  description: "Basic combination of run command and status (start/stop)."
-  is_abstract: true
-  implements:
-  - /SS
-  - OPERATIONAL
 
 OTPM:
   description: "Oil temperature and pressure monitoring"
