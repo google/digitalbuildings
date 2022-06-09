@@ -684,3 +684,19 @@ FAN_MSM:
   implements:
   - FAN
   - MSM
+  
+## Pressurization Fan##
+
+FAN_SPF_SS_RMM:  
+  description: "Stairwell Pressurization Fan with run command and run status and run mode monitoring. "
+  implements:
+  - FAN
+  - SS
+  - RMM  
+
+FAN_ELVPF_SS_RMM:  
+  description: "Elevator Pressurization Fan with run command and run status and run mode monitoring. "
+  implements:
+  - FAN
+  - SS
+  - RMM  
