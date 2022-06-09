@@ -84,7 +84,7 @@ RDM:
   - MONITORING  
   
 TKLS:  
-  description: "Very basic tank level status monitoring. "
+  description: "Very basic tank level status monitoring for Electrical generator equipments. "
   is_abstract: true
   uses:
   - tank_level_status
