@@ -1,0 +1,1306 @@
+# Copyright 2020 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the License);
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#    https://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an AS IS BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# Original Field set
+
+literals:
+- building_air_static_pressure_sensor
+- building_air_static_pressure_setpoint
+- bypass_valve_percentage_command
+- chilled_return_water_temperature_sensor
+- chilled_supply_water_flowrate_sensor
+- chilled_supply_water_temperature_sensor
+- chilled_supply_water_temperature_setpoint
+- chilled_water_bypass_valve_percentage_command
+- chilled_water_bypass_valve_percentage_sensor
+- chilled_water_differential_pressure_sensor
+- chilled_water_differential_pressure_setpoint
+- chilled_water_isolation_valve_percentage_command
+- chilled_water_isolation_valve_percentage_sensor
+- chilled_water_isolation_valve_command:
+  - OPEN
+  - CLOSED
+- chilled_water_valve_percentage_command
+- circulation_pump_run_status:
+  - ON
+  - OFF
+- compressor_run_command:
+  - ON
+  - OFF
+- compressor_run_status:
+  - ON
+  - OFF
+  - UNKNOWN
+- compressor_speed_percentage_sensor
+- refrigerant_condenser_saturation_temperature_sensor
+- condensing_return_water_temperature_sensor
+- condensing_supply_water_temperature_sensor
+- condensing_supply_water_temperature_setpoint
+- condensing_water_flowrate_sensor
+- cooling_output_percentage_command
+- current_sensor
+- differential_pressure_sensor
+- differential_pressure_setpoint
+- discharge_air_cooling_temperature_setpoint
+- discharge_air_heating_temperature_setpoint
+- discharge_air_temperature_sensor
+- discharge_air_temperature_setpoint
+- discharge_fan_current_sensor
+- discharge_fan_run_command:
+  - ON
+  - OFF
+- discharge_fan_run_status:
+  - ON
+  - OFF
+- discharge_fan_speed_mode:
+  - AUTO
+  - LOW
+  - MEDIUM
+  - HIGH
+  - OFF
+  - VFD
+- discharge_fan_speed_percentage_command
+- dryer_run_status:
+  - ON
+  - OFF
+- economizer_mode:
+  - ON
+  - OFF
+  - AUTO
+- evaporator_pressure_sensor
+- refrigerant_evaporator_saturation_temperature_sensor
+- exhaust_air_damper_percentage_command
+- exhaust_air_temperature_sensor
+- exhaust_fan_current_sensor
+- exhaust_fan_power_sensor
+- exhaust_fan_run_command:
+  - ON
+  - OFF
+- exhaust_fan_run_status:
+  - ON
+  - OFF
+  - UNKNOWN
+- exhaust_fan_speed_frequency_sensor
+- exhaust_fan_speed_percentage_command
+- exhaust_fan_speed_percentage_sensor
+- fan_run_status:
+  - ON
+  - OFF
+- fan_speed_percentage_command
+- flowrate_sensor
+- heater_run_command:
+  - ON
+  - OFF
+- heating_water_valve_percentage_command
+- inlet_guidevane_percentage_sensor
+- isolation_damper_status:
+  - OPEN
+  - CLOSED
+- isolation_damper_percentage_sensor
+- line_current_sensor
+- line_powerfactor_sensor
+- loop_chilled_water_differential_pressure_sensor
+- loop_differential_pressure_sensor
+- min_flowrate_setpoint
+- min_chilled_water_flowrate_setpoint
+- ventilation_outside_air_damper_percentage_command
+- ventilation_outside_air_flowrate_sensor
+- ventilation_outside_air_flowrate_setpoint
+- mixed_air_temperature_sensor
+- outside_air_damper_percentage_command
+- outside_air_specificenthalpy_sensor
+- outside_air_flowrate_sensor
+- outside_air_flowrate_setpoint
+- outside_air_pressure_sensor
+- outside_air_relative_humidity_sensor
+- outside_air_temperature_sensor
+- outside_air_wetbulb_temperature_sensor
+- power_sensor
+- return_air_relative_humidity_sensor
+- return_air_temperature_sensor
+- return_air_temperature_setpoint
+- return_water_temperature_sensor
+- reversing_valve_command:
+  - AUTO
+  - CLOSED
+  - OPEN
+  - UNKNOWN
+- run_command:
+  - ON
+  - OFF
+- run_status:
+  - ON
+  - OFF
+  - STANDBY
+- speed_frequency_sensor
+- speed_percentage_command
+- speed_percentage_sensor
+- supply_air_damper_percentage_command
+- supply_air_flowrate_sensor
+- supply_air_flowrate_setpoint
+- supply_air_static_pressure_sensor
+- supply_air_static_pressure_setpoint
+- supply_air_temperature_sensor
+- supply_air_temperature_setpoint
+- supply_fan_current_sensor
+- supply_fan_power_sensor
+- supply_fan_run_command:
+  - ON
+  - OFF
+- supply_fan_run_status:
+  - ON
+  - OFF
+  - UNKNOWN
+- supply_fan_speed_frequency_command
+- supply_fan_speed_frequency_sensor
+- supply_fan_speed_percentage_command
+- supply_fan_speed_percentage_sensor
+- supply_water_flowrate_sensor
+- supply_water_temperature_sensor
+- supply_water_temperature_setpoint
+- cooling_request_count
+- heating_request_count
+- pressurization_request_count
+- zone_air_co2_concentration_sensor
+- zone_air_co2_concentration_setpoint
+- zone_air_co_concentration_setpoint
+- zone_air_cooling_temperature_setpoint
+- zone_air_heating_temperature_setpoint
+- zone_air_refrigerant_concentration_sensor
+- zone_air_relative_humidity_sensor
+- zone_air_deadband_temperature_setpoint
+- zone_air_temperature_sensor
+- outside_air_co2_concentration_sensor
+- outside_air_co_concentration_sensor
+- outside_air_so2_concentration_sensor
+- outside_air_no2_concentration_sensor
+- outside_air_no_concentration_sensor
+- outside_air_h2s_concentration_sensor
+- outside_air_ozone_level_sensor
+- outside_air_pm2pt5_density_sensor
+- outside_air_pm10pt0_density_sensor
+
+---
+
+# Additional fields added to cover first hundred buildings
+
+literals:
+- bypass_air_damper_percentage_command
+- bypass_return_air_temperature_sensor
+- bypass_valve_percentage_sensor
+- chilled_water_isolation_valve_status:
+  - OPEN
+  - CLOSED
+- circulation_pump_run_command:
+  - ON
+  - OFF
+- cogeneration_return_water_temperature_sensor
+- cogeneration_return_water_temperature_setpoint
+- cogeneration_supply_water_temperature_sensor
+- cold_aisle_air_temperature_sensor
+- cooling_air_damper_percentage_command
+- cooling_air_flowrate_sensor
+- cooling_air_flowrate_setpoint
+- dehumidification_run_command:
+  - ON
+  - OFF
+- dehumidification_run_status:
+  - ON
+  - OFF
+- discharge_air_relative_humidity_sensor
+- discharge_fan_speed_frequency_sensor
+- dishwasher_run_status:
+  - ON
+  - OFF
+- east_illuminance_sensor
+- evaporative_cooler_run_command:
+  - ON
+  - OFF
+- exhaust_air_damper_percentage_sensor
+- exhaust_air_static_pressure_sensor
+- exhaust_air_static_pressure_setpoint
+- filter_differential_pressure_sensor
+- flowrate_setpoint
+- flue_gas_temperature_sensor
+- heating_stage_run_count
+- heating_air_damper_percentage_command
+- heating_air_flowrate_sensor
+- heating_air_flowrate_setpoint
+- heating_cooling_valve_percentage_command
+- heating_water_valve_status:
+  - OPEN
+  - CLOSED
+- high_discharge_fan_speed_command:
+  - ON
+  - OFF
+- hot_aisle_air_temperature_sensor
+- humidification_percentage_sensor
+- humidification_run_command:
+  - ON
+  - OFF
+- humidification_run_status:
+  - ON
+  - OFF
+- discharge_air_damper_command:
+  - OPEN
+  - CLOSED
+- isolation_valve_percentage_command
+- isolation_valve_percentage_sensor
+- leaving_heating_coil_temperature_sensor
+- low_discharge_fan_speed_command:
+  - ON
+  - OFF
+- makeup_water_flowrate_sensor
+- makeup_water_valve_percentage_command
+- medium_discharge_fan_speed_command:
+  - ON
+  - OFF
+- min_outside_air_damper_command:
+  - OPEN
+  - CLOSED
+- min_outside_air_damper_status:
+  - OPEN
+  - CLOSED
+- mixed_air_temperature_setpoint
+- outside_air_damper_command:
+  - OPEN
+  - CLOSED
+- outside_air_damper_percentage_sensor
+- outside_air_dewpoint_temperature_sensor
+- primary_return_water_temperature_sensor
+- production_differential_pressure_sensor
+- return_air_damper_percentage_command
+- return_air_dehumidification_relative_humidity_setpoint
+- return_air_humidification_relative_humidity_setpoint
+- return_air_relative_humidity_setpoint
+- return_water_valve_command:
+  - OPEN
+  - CLOSED
+- return_water_isolation_valve_percentage_command
+- return_water_isolation_valve_percentage_sensor
+- return_water_valve_status:
+  - OPEN
+  - CLOSED
+- return_water_temperature_setpoint
+- secondary_return_water_temperature_sensor
+- secondary_supply_water_temperature_sensor
+- shade_extent_percentage_command
+- shade_tilt_percentage_command
+- southeast_illuminance_sensor
+- southwest_illuminance_sensor
+- speed_frequency_command
+- spray_pump_run_command:
+  - ON
+  - OFF
+- spray_pump_run_status:
+  - ON
+  - OFF
+- supply_air_cooling_temperature_setpoint
+- supply_air_heating_temperature_setpoint
+- supply_air_relative_humidity_sensor
+- supply_water_valve_command:
+  - OPEN
+  - CLOSED
+- supply_water_isolation_valve_percentage_command
+- supply_water_isolation_valve_percentage_sensor
+- supply_water_valve_status:
+  - OPEN
+  - CLOSED
+- west_illuminance_sensor
+- zone_air_co_concentration_sensor
+- zone_air_dehumidification_relative_humidity_setpoint
+- zone_air_humidification_relative_humidity_setpoint
+- zone_air_relative_humidity_setpoint
+- zone_air_temperature_setpoint
+
+## added on 10/13/2018
+- condensing_water_isolation_valve_command:
+  - OPEN
+  - CLOSED
+- condensing_water_isolation_valve_percentage_command
+- condensing_water_isolation_valve_percentage_sensor
+
+
+## Added on 10/25/2018
+- compressor_speed_percentage_command
+- east_wind_linearvelocity_sensor
+- west_wind_linearvelocity_sensor
+- condenser_pressure_sensor
+- chilled_water_valve_command:
+  - OPEN
+  - CLOSED
+- heating_percentage_command
+
+## Added on 10/30
+- thermal_power_sensor
+- discharge_air_flowrate_sensor
+- exercise_mode:
+  - ON
+  - OFF
+
+# Alarms updated to convert the alarm subfield to a point type from measurement descriptor.
+
+- run_mode:
+  - COMMISSIONING
+  - FLUSHING
+  - HEATING
+  - COOLING
+  - NEUTRAL
+  - OFF
+  - AUTO
+  - MANUAL
+- dial_resistance_sensor
+- zone_occupancy_status:
+  - OCCUPIED
+  - UNKNOWN
+  - UNOCCUPIED
+
+
+## Added on 12/12
+- leaving_cooling_coil_temperature_sensor
+- leaving_cooling_coil_temperature_setpoint
+- heating_water_valve_command:
+  - OPEN
+  - CLOSED
+- heating_water_valve_percentage_sensor
+- chilled_water_valve_percentage_sensor
+- exhaust_air_damper_command:
+  - OPEN
+  - CLOSED
+## Added on 2019/02/19
+- heating_stage_run_command:
+  - ON
+  - OFF
+## Added on 2019/02/21
+- return_air_cooling_temperature_setpoint
+- return_air_heating_temperature_setpoint
+
+## Added on 2019/02/25 for US-MTV-45
+- condensing_fan_speed_percentage_command
+
+## Added on 2019/02/27
+- boost_fan_run_command:
+  - ON
+  - OFF
+- boost_fan_run_status:
+  - ON
+  - OFF
+- chilled_water_flowrate_sensor
+- compressor_speed_frequency_sensor
+- condensing_water_isolation_valve_status:
+  - OPEN
+  - CLOSED
+- east_building_air_static_pressure_sensor
+- east_exhaust_air_damper_percentage_command
+- exhaust_air_flowrate_sensor
+- exhaust_air_flowrate_setpoint
+- fan_speed_mode:
+  - OFF
+  - LOW
+  - HIGH
+- heat_exchange_isolation_valve_command:
+  - OPEN
+  - CLOSED
+- heat_exchange_isolation_valve_percentage_command
+- humidifier_percentage_command
+- mixing_valve_percentage_command
+- preheating_water_valve_percentage_command
+- return_air_damper_command:
+  - OPEN
+  - CLOSED
+- return_air_damper_status:
+  - OPEN
+  - CLOSED
+- return_air_flowrate_sensor
+- return_air_flowrate_setpoint
+- return_air_static_pressure_sensor
+- return_air_static_pressure_setpoint
+- supply_air_dehumidification_relative_humidity_setpoint
+- supply_air_humidification_relative_humidity_setpoint
+- supply_air_isolation_damper_command:
+  - OPEN
+  - CLOSED
+- west_building_air_static_pressure_sensor
+- west_exhaust_air_damper_percentage_command
+- zone_air_static_pressure_sensor
+- zone_air_static_pressure_setpoint
+- zone_air_voc_concentration_sensor
+- zone_air_voc_concentration_setpoint
+
+## Added on 2019/03/12
+- cooling_percentage_command
+- primary_supply_water_temperature_sensor
+- supply_air_isolation_damper_status:
+  - OPEN
+  - CLOSED
+
+## Added on 2019/03/19
+- cooling_thermal_power_sensor
+- cooling_percentage_sensor
+- exhaust_air_damper_status:
+  - OPEN
+  - CLOSED
+- east_flowrate_sensor
+- west_flowrate_sensor
+- east_differential_pressure_sensor
+- west_differential_pressure_sensor
+- east_supply_water_temperature_sensor
+- west_supply_water_temperature_sensor
+- process_chilled_return_water_temperature_sensor
+- process_chilled_supply_water_temperature_sensor
+- leaving_air_preheating_coil_temperature_sensor
+
+## Added on 2019/03/20
+- cooling_stage_run_count
+- min_return_water_temperature_setpoint
+- process_cooling_thermal_power_sensor
+- process_return_water_temperature_sensor
+- process_supply_water_temperature_sensor
+- process_supply_water_temperature_setpoint
+- process_water_differential_pressure_sensor
+- process_water_differential_pressure_setpoint
+- process_water_flowrate_sensor
+- process_water_flowrate_setpoint
+- process_water_isolation_valve_command:
+  - OPEN
+  - CLOSED
+- process_water_valve_percentage_command
+
+## Added on 2019/03/26
+- zone_air_refrigerant_concentration_setpoint
+
+# Added on 2019/06/03
+- apparent_power_sensor
+- energy_accumulator
+- average_line_current_sensor
+- average_line_neutral_voltage_sensor
+- average_inter_line_voltage_sensor
+- phase1_line_current_sensor
+- phase1_neutral_line_voltage_sensor
+- phase1_phase2_line_voltage_sensor
+- phase1_phase3_line_voltage_sensor
+- phase1_power_sensor
+- phase1_powerfactor_sensor
+- phase2_line_current_sensor
+- phase2_neutral_line_voltage_sensor
+- phase2_phase3_line_voltage_sensor
+- phase2_power_sensor
+- phase2_powerfactor_sensor
+- phase3_line_current_sensor
+- phase3_neutral_line_voltage_sensor
+- phase3_power_sensor
+- phase3_powerfactor_sensor
+- powerfactor_sensor
+- reactive_power_sensor
+
+# Added on 2019/06/27 for Enlighted
+- dimmer_percentage_command # Should be adjusted to brightness_percentage_command
+
+
+# Added on 2019/08/13 primarily for GVC
+- calendar_sync_status:
+  - ACCESS_FAILED
+  - CALENDAR_STARTUP
+  - CALENDAR_SUCCESS
+  - SUBSCRIPTION_FAILED
+  - WAITING_FOR_RESPONSE
+- conference_id_hash_label
+- conference_id_match_status:
+  - DOES_NOT_MATCH
+  - MATCHES
+- conference_call_status:
+  - ACTIVE
+  - INACTIVE
+- matched_event_id_label
+- message_counter
+- next_event_end_timestamp
+- next_event_start_timestamp
+- ongoing_event_end_timestamp
+- ongoing_event_start_timestamp
+- ongoing_event_id_label
+- room_calendar_email_label
+- user_occupancy_override_status:
+  - DISABLED
+  - ENABLED
+
+# Added on 2019/09/12 for Enlighted: generic light level sensor
+- illuminance_sensor
+
+# Added on 2019/09/26 for US-NYC-9TH
+- condensing_water_bypass_valve_percentage_command
+- condensing_water_valve_percentage_command
+
+- heater_run_status: # Added 10/2/2019
+  - ON
+  - OFF
+- discharge_fan_power_sensor
+- outside_air_damper_status
+- humidification_percentage_command
+- discharge_fan_speed_percentage_sensor
+- discharge_air_heating_percentage_command
+- supply_air_damper_command:
+  - OPEN
+  - CLOSED
+- supply_air_damper_status:
+  - OPEN
+  - CLOSED
+
+# Added 11/6/2019
+- low_limit_flowrate_setpoint
+- return_water_valve_percentage_sensor
+- return_water_valve_percentage_command
+
+# Added 11/12/2019
+- gas_flowrate_sensor
+- gas_volume_accumulator
+- water_volume_accumulator
+- gas_temperature_sensor
+
+# Added 12/17/2019 for UK-LON-S2 FCU
+- cooling_water_valve_percentage_command
+- cooling_water_valve_percentage_sensor
+- cooling_water_flowrate_sensor
+- heating_water_flowrate_sensor
+- zone_air_offset_temperature_setpoint
+
+# Added 1/16/2020
+- discharge_air_damper_percentage_command
+
+# Added 2/10/2020
+- supply_water_isolation_valve_command
+- supply_water_isolation_valve_status:
+  - OPEN
+  - CLOSED
+- return_water_isolation_valve_command
+- return_water_isolation_valve_status:
+  - OPEN
+  - CLOSED
+- chilled_return_water_isolation_valve_command
+- condensing_return_water_isolation_valve_percentage_command
+- condensing_return_water_isolation_valve_percentage_sensor
+- chilled_supply_water_isolation_valve_command
+- chilled_return_water_isolation_valve_status:
+  - OPEN
+  - CLOSED
+
+# Added 2/11/2020
+- discharge_air_static_pressure_sensor
+
+# Added 2/12/2020
+- heat_exchange_supply_water_isolation_valve_command
+- heat_exchange_return_water_isolation_valve_command
+- heat_exchange_supply_water_isolation_valve_percentage_command
+- heat_exchange_return_water_isolation_valve_percentage_command
+- heat_exchange_supply_water_isolation_valve_status:
+  - OPEN
+  - CLOSED
+- heat_exchange_return_water_isolation_valve_status:
+  - OPEN
+  - CLOSED
+- heat_exchange_supply_water_isolation_valve_percentage_sensor
+- heat_exchange_return_water_isolation_valve_percentage_sensor
+
+- condensing_return_water_isolation_valve_command
+- chilled_return_water_isolation_valve_percentage_sensor
+- chilled_return_water_isolation_valve_percentage_command
+
+# Added 2/24/2020
+- chilled_supply_water_isolation_valve_percentage_sensor
+- chilled_supply_water_isolation_valve_percentage_command
+- chilled_supply_water_isolation_valve_status:
+  - OPEN
+  - CLOSED
+- condensing_return_water_isolation_valve_status:
+  - OPEN
+  - CLOSED
+- condensing_supply_water_isolation_valve_percentage_sensor
+- condensing_supply_water_isolation_valve_percentage_command
+- condensing_supply_water_isolation_valve_status:
+  - OPEN
+  - CLOSED
+- condensing_supply_water_isolation_valve_command
+
+
+# Added 4/12/20
+- supply_air_damper_percentage_sensor
+
+# Added 6/4/20
+- ventilation_request_count
+- refrigerant_evaporator_pressure_sensor
+- refrigerant_condenser_pressure_sensor
+- refrigerant_suction_temperature_sensor
+- refrigerant_discharge_temperature_sensor
+- low_limit_outside_air_damper_percentage_command
+
+- sweeper_pump_run_status:
+  - ON
+  - OFF
+- sweeper_pump_run_command:
+  - ON
+  - OFF
+- evaporative_cooler_run_status:
+  - ON
+  - OFF
+
+# Added 10/5/20 for TW-NTC-TPKD
+# Additional functionality for alarms and status points.
+# For alarms, they will end in `alarm` and be two-state. 
+# Status fields must be distinguished from alarms in that status is an objective qualitative state (flowing/not) whereas alarms are judgmental interpretations of such statuses to draww a conclusion about function (alarm/normal) 
+
+- average_supply_air_temperature_sensor
+- control_mode:
+  - AUTO
+  - MANUAL
+  - OFF
+- cooling_thermal_energy_accumulator
+- particle_concentration_sensor
+- high_limit_supply_air_cooling_flowrate_setpoint
+- high_limit_supply_air_heating_flowrate_setpoint
+- low_limit_supply_air_ventilation_flowrate_setpoint
+- low_limit_supply_air_flowrate_setpoint 
+- high_limit_supply_air_flowrate_setpoint # used when the device doesn't necessarily provide a cooling max flow
+- schedule_run_command:
+  - ON
+  - OFF
+- supply_air_dewpoint_temperature_sensor
+- supply_air_dewpoint_temperature_setpoint
+- ultraviolet_lamp_run_command:
+  - ON
+  - OFF
+- ultraviolet_lamp_run_status:
+  - ON
+  - OFF
+
+# added for ETIQA
+- water_leak_cable_distance_sensor
+- discharge_air_linearvelocity_setpoint
+
+# New usage of status as an override for the measurement.
+- chilled_water_flowrate_status:
+  - PRESENT
+  - ABSENT
+- condensing_water_flowrate_status:
+  - PRESENT
+  - ABSENT
+- discharge_air_static_pressure_status:
+  - PRESENT
+  - ABSENT
+- filter_differential_pressure_status:
+  - PRESENT
+  - ABSENT
+- high_level_status:
+  - PRESENT
+  - ABSENT
+- low_level_status:
+  - PRESENT
+  - ABSENT
+- power_status:
+  - PRESENT
+  - ABSENT
+
+# New alarms using alarm as a point type, and existing alarms moved here
+# TODO (tsodorff): change these to ALARM/NORMAL after determining how this can be done safely to existing translations. 
+- fabric_protection_alarm:
+  - ACTIVE
+  - INACTIVE
+- failed_alarm:
+  - ACTIVE
+  - INACTIVE
+- filter_alarm:
+  - ACTIVE
+  - INACTIVE
+- master_alarm:
+  - ACTIVE
+  - INACTIVE
+- supply_fan_failed_alarm:
+  - ACTIVE
+  - INACTIVE
+- smoke_alarm:
+  - ACTIVE
+  - INACTIVE
+- water_leak_alarm:
+  - ACTIVE
+  - INACTIVE
+- low_differential_pressure_alarm:
+  - ACTIVE
+  - INACTIVE
+- lost_power_alarm:
+  - ACTIVE
+  - INACTIVE
+
+# New fields for lighting and fire systems.
+- motion_status:
+  - PRESENT
+  - ABSENT
+- battery_charge_status:
+  - CHARGING
+  - DISCHARGING
+  - STANDBY
+- battery_charge_percentage_sensor
+- brightness_percentage_command
+
+# New fields for emergency systems
+- broken_cable_alarm:
+  - ACTIVE
+  - INACTIVE
+- gas_leak_detection_alarm:
+  - ACTIVE
+  - INACTIVE
+- ammonia_leak_detection_alarm:
+  - ACTIVE
+  - INACTIVE
+- water_leak_detection_alarm:
+  - ACTIVE
+  - INACTIVE
+- fire_alarm:
+  - ACTIVE
+  - INACTIVE
+
+- emergency_release_status:
+  - ACTIVE
+  - INACTIVE
+- position_status:
+  - OPEN
+  - CLOSED
+- condensing_water_valve_percentage_sensor
+- entering_cooling_coil_temperature_sensor
+
+ # We should not use this... represents scavenged outside air from near some heat pumps...
+- mixed_outside_air_temperature_sensor
+
+- discharge_fan_lost_power_alarm:
+  - ACTIVE
+  - INACTIVE
+- low_discharge_air_flowrate_alarm:
+  - ACTIVE
+  - INACTIVE
+- frequency_sensor
+- discharge_fan_failed_alarm:
+  - ACTIVE
+  - INACTIVE
+- discharge_air_linearvelocity_sensor
+- condensing_water_bypass_valve_percentage_sensor
+- scene_index_command
+
+# This is a change
+- line_frequency_sensor
+- phase1_apparent_power_sensor
+- phase2_apparent_power_sensor
+- phase3_apparent_power_sensor
+
+# Added for UK-LON-S2
+
+- zone_air_voc_percentage_setpoint
+- zone_air_voc_percentage_sensor
+
+# Added for US-NYC-9TH
+- zone_air_unoccupied_heating_temperature_setpoint
+- zone_air_occupied_heating_temperature_setpoint
+- mixed_air_relative_humidity_sensor
+- mixed_air_dewpoint_temperature_sensor
+
+# Added for TW
+- supply_air_isolation_damper_closed_status
+- supply_air_isolation_damper_open_status
+- control_status:
+  - REMOTE
+  - LOCAL
+- zone_scene_command
+- scene_command
+- cooling_run_status:
+  - ON
+  - OFF
+- high_return_air_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
+- low_return_air_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
+- high_return_air_relative_humidity_alarm:
+  - ACTIVE
+  - INACTIVE
+- low_return_air_relative_humidity_alarm:
+  - ACTIVE
+  - INACTIVE
+- chilled_water_valve_failed_alarm:
+  - ACTIVE
+  - INACTIVE
+- discharge_fan_speed_frequency_command
+- ultraviolet_lamp_run_mode:
+  - AUTO
+  - MANUAL
+- discharge_air_flowrate_status:
+  - ON
+  - OFF
+- damper_percentage_command
+- damper_percentage_sensor
+- supply_fan_lost_power_alarm:
+  - ACTIVE
+  - INACTIVE
+- panel_alarm
+- supply_air_flowrate_status:
+  - ON
+  - OFF
+
+# Added for ETIQA
+- return_air_co2_concentration_sensor
+- return_air_co2_concentration_setpoint
+
+# Added for Machine Learning Pilot
+- supervisor_control_mode:
+  - ENABLED
+  - DISABLED
+- supervisor_supply_air_static_pressure_setpoint
+- supervisor_supply_air_temperature_setpoint
+- program_supply_air_static_pressure_setpoint
+- program_supply_air_temperature_setpoint
+- supervisor_supply_water_temperature_setpoint
+- supervisor_differential_pressure_setpoint
+- program_supply_water_temperature_setpoint
+- program_differential_pressure_setpoint
+
+#Additional fields for CH ZRH EURD - radiant panels
+- condensate_water_alarm:
+  - ACTIVE
+  - INACTIVE
+- supply_water_valve_percentage_command
+- supply_water_valve_percentage_sensor
+- supply_water_valve_flowrate_sensor
+- total_request_count
+- zone_conditioning_mode:
+  - HEATING
+  - COOLING
+  - AUTO
+  - OFF
+- water_riser_mode:
+  - OFF
+  - HEATING
+  - COOLING
+  - AUTO
+- average_zone_air_temperature_sensor
+- heating_supply_water_isolation_valve_command:
+  - OPEN
+  - CLOSED
+- heating_return_water_isolation_valve_command:
+  - OPEN
+  - CLOSED
+- heating_return_water_isolation_valve_status:
+  - OPEN
+  - CLOSED
+- cooling_supply_water_isolation_valve_command
+- cooling_return_water_isolation_valve_command
+- heating_supply_water_isolation_valve_percentage_command
+- heating_return_water_isolation_valve_percentage_command
+- heating_supply_water_isolation_valve_percentage_sensor
+- heating_return_water_isolation_valve_percentage_sensor
+
+#Additional fields for CH ZRH EURD - FCU's
+- maintenance_alarm:
+  - ACTIVE
+  - INACTIVE
+- condensate_water_pump_alarm:
+  - ACTIVE
+  - INACTIVE
+
+#Additional fields for CH ZRH EURD - Lighting
+- average_illuminance_sensor
+- illuminance_setpoint
+- scene_dimmer_percentage_command
+- scene_dimmer_percentage_sensor
+- low_scene_dimmer_percentage_setpoint
+- high_scene_dimmer_percentage_setpoint
+- red_scene_dimmer_percentage_command
+- green_scene_dimmer_percentage_command
+- blue_scene_dimmer_percentage_command
+- dimmer_fade_rate_setpoint
+- dimmer_fade_time_setpoint
+- startup_dimmer_percentage_setpoint
+- dimmer_mode:
+  - FADING
+  - RAMPING
+- dimmer_failed_alarm:
+  - ACTIVE
+  - INACTIVE
+- power_command:
+  - ON
+  - OFF
+- switch_command:
+  - ON
+  - OFF
+- lighting_switch_status:
+  - ON
+  - OFF
+- scene_dimmer_command:
+  - ACTIVE
+  - INACTIVE
+- scene_status:
+  - ACTIVE
+  - INACTIVE
+- room_occupancy_status:
+  - OCCUPIED
+  - UNKNOWN
+  - UNOCCUPIED
+  - BYPASS
+  - STANDBY
+
+#Additional fields for CH ZRH EURD HVAC
+- bypass_air_damper_percentage_sensor
+- circulation_pump_speed_percentage_command
+- circulation_pump_speed_percentage_setpoint
+- frost_alarm:
+  - ACTIVE
+  - INACTIVE
+- supply_air_static_pressure_status:
+  - PRESENT
+  - ABSENT
+- exhaust_air_static_pressure_status:
+  - PRESENT
+  - ABSENT
+- exhaust_fan_failed_alarm:
+  - ACTIVE
+  - INACTIVE
+- return_air_damper_percentage_sensor
+- mixing_valve_percentage_sensor
+- potable_hot_water_temperature_sensor
+- potable_hot_supply_water_temperature_sensor
+- potable_hot_return_water_temperature_sensor
+- potable_hot_water_temperature_setpoint
+- heating_supply_water_temperature_sensor
+- heating_return_water_temperature_sensor
+- heating_thermal_power_sensor
+- heating_thermal_energy_accumulator
+- max_flowrate_setpoint
+- potable_water_high_temperature_sensor
+- potable_water_medium_temperature_sensor
+- potable_water_low_temperature_sensor
+- heating_supply_water_temperature_setpoint
+
+#Discharge air flow control
+- discharge_air_flowrate_setpoint
+
+#Electrical meter fields
+- neutral_line_current_sensor # A measure of current on the neutral line
+- apparent_energy_accumulator
+
+#Lighting controller battery status
+- emergency_battery_status
+
+# Condensing water monitoring
+- condensing_water_differential_pressure_sensor
+- condensing_water_differential_pressure_setpoint
+
+# Heat Wheel Telemetry Fields
+- heat_wheel_speed_percentage_sensor
+- heat_wheel_speed_percentage_command
+- heat_wheel_run_command
+- heat_wheel_run_status
+
+# Outside air Isolation Dampers
+- outside_air_isolation_damper_command:
+  - OPEN
+  - CLOSED
+- outside_air_isolation_damper_status:
+  - OPEN
+  - CLOSED
+
+# Exhaust air Isolation Dampers
+- exhaust_air_isolation_damper_command:
+  - OPEN
+  - CLOSED
+- exhaust_air_isolation_damper_status:
+  - OPEN
+  - CLOSED
+
+# Damper status
+- damper_status:
+  - OPEN
+  - CLOSED
+
+- lighting_percentage_sensor # For relative ranged illuminance inputs.
+
+# Air Quality Data
+- outside_air_aqi_sensor
+- zone_air_aqi_sensor
+- outside_air_water_vapor_density_sensor # Equivalent field for absolute humidity
+- outside_air_water_vapor_concentration_sensor # Equivalent field for absolute humidity
+- zone_air_water_vapor_density_sensor # Equivalent field for absolute humidity
+- zone_air_water_vapor_concentration_sensor # Equivalent field for absolute humidity
+
+- zone_air_h2s_concentration_sensor
+- zone_air_so2_concentration_sensor
+- zone_air_no2_concentration_sensor
+- zone_air_formaldehyde_concentration_sensor
+- zone_air_ozone_concentration_sensor
+
+- zone_air_h2s_density_sensor
+- zone_air_so2_density_sensor
+- zone_air_no2_density_sensor
+- zone_air_formaldehyde_density_sensor
+- zone_air_ozone_density_sensor
+
+# First set of PM2.5, PM10, etc. fields. Note that density and concentration
+# are differentiated since they return different units of measurement.
+- zone_air_pm0pt5_density_sensor
+- zone_air_pm1pt0_density_sensor
+- zone_air_pm2pt5_density_sensor
+- zone_air_pm4pt0_density_sensor
+- zone_air_pm10pt0_density_sensor
+
+- zone_air_pm0pt5_concentration_sensor
+- zone_air_pm1pt0_concentration_sensor
+- zone_air_pm2pt5_concentration_sensor
+- zone_air_pm4pt0_concentration_sensor
+- zone_air_pm10pt0_concentration_sensor
+
+- zone_air_pm0pt5_volumetricconcentration_sensor
+- zone_air_pm1pt0_volumetricconcentration_sensor
+- zone_air_pm2pt5_volumetricconcentration_sensor
+- zone_air_pm4pt0_volumetricconcentration_sensor
+- zone_air_pm10pt0_volumetricconcentration_sensor
+
+## New fields for IoT vibration sensor pilot
+- fivesecondrolling_max_xaxis_linearacceleration_sensor
+- fivesecondrolling_max_yaxis_linearacceleration_sensor
+- fivesecondrolling_max_zaxis_linearacceleration_sensor
+- fivesecondrolling_min_xaxis_linearacceleration_sensor
+- fivesecondrolling_min_yaxis_linearacceleration_sensor
+- fivesecondrolling_min_zaxis_linearacceleration_sensor
+- fivesecondrolling_rootmeansquare_xaxis_linearacceleration_sensor
+- fivesecondrolling_rootmeansquare_yaxis_linearacceleration_sensor
+- fivesecondrolling_rootmeansquare_zaxis_linearacceleration_sensor
+- local_air_temperature_sensor
+
+# New fields for ERV bypass
+- bypass_air_damper_command:
+  - OPEN
+  - CLOSED
+- bypass_air_damper_status:
+  - OPEN
+  - CLOSED
+
+## New fields for IoT Vibration devices
+- tenminutefixed_max_xaxis_linearvelocity_sensor
+- tenminutefixed_max_yaxis_linearvelocity_sensor
+- tenminutefixed_max_zaxis_linearvelocity_sensor
+- tenminutefixed_max_xaxis_frequency_sensor
+- tenminutefixed_max_yaxis_frequency_sensor
+- tenminutefixed_max_zaxis_frequency_sensor
+- signal_strength_percentage_sensor
+- dutycycle_percentage_sensor
+
+- min_zone_air_relative_humidity_sensor
+- min_zone_air_relative_humidity_setpoint
+
+## New fields for air quality sensors
+- thirtysecondrolling_average_zone_air_co_concentration_sensor
+- thirtysecondrolling_average_zone_air_particle_diameter_sensor
+- zone_air_no2_probability_percentage_sensor
+- zone_air_no2_ozone_concentration_sensor
+
+- heat_recovery_water_isolation_valve_command:
+  - OPEN
+  - CLOSED
+- heat_recovery_return_water_isolation_valve_command:
+  - OPEN
+  - CLOSED
+- heat_recovery_return_water_isolation_valve_status:
+  - OPEN
+  - CLOSED
+- heat_recovery_supply_water_isolation_valve_command:
+  - OPEN
+  - CLOSED
+- heat_recovery_supply_water_isolation_valve_status:
+  - OPEN
+  - CLOSED
+- heat_recovery_run_command:
+  - ON
+  - OFF
+- exhaust_air_differential_pressure_sensor
+- leaving_heat_recovery_coil_temperature_sensor
+- zone_floor_temperature_sensor
+- zone_floor_temperature_setpoint
+- entering_heat_recovery_coil_temperature_sensor
+- carbon_filter_differential_pressure_sensor
+- heating_supply_water_isolation_valve_status:
+  - OPEN
+  - CLOSED
+- leaving_coil_temperature_sensor
+- heat_recovery_supply_water_temperature_sensor
+- heat_recovery_return_water_temperature_sensor
+
+- hot_water_tank_temperature_sensor
+- hot_water_tank_temperature_setpoint
+- preheating_water_tank_temperature_sensor
+- preheating_water_tank_temperature_setpoint
+- potable_hot_leaving_water_temperature_sensor
+- potable_hot_leaving_water_temperature_setpoint
+
+## New fields for electrical system additions
+- voltage_sensor
+- input_frequency_sensor
+- output_frequency_sensor
+- bypass_frequency_sensor
+- input_phase1_phase2_voltage_sensor
+- input_phase2_phase3_voltage_sensor
+- input_phase3_phase1_voltage_sensor
+- input_phase1_neutral_voltage_sensor
+- input_phase2_neutral_voltage_sensor
+- input_phase3_neutral_voltage_sensor
+- input_phase1_current_sensor
+- input_phase2_current_sensor
+- input_phase3_current_sensor
+- output_phase1_phase2_voltage_sensor
+- output_phase2_phase3_voltage_sensor
+- output_phase3_phase1_voltage_sensor
+- output_phase1_neutral_voltage_sensor
+- output_phase2_neutral_voltage_sensor
+- output_phase3_neutral_voltage_sensor
+- output_phase1_current_sensor
+- output_phase2_current_sensor
+- output_phase3_current_sensor
+- bypass_phase1_neutral_voltage_sensor
+- bypass_phase2_neutral_voltage_sensor
+- bypass_phase3_neutral_voltage_sensor
+- remaining_charge_time_sensor
+
+
+## Refrigerant monitoring fields for AHUs
+- condensing_fan_current_sensor
+- discharge_air_specificenthalpy_sensor
+- refrigerant_discharge_pressure_sensor
+- refrigerant_liquid_pressure_sensor
+- refrigerant_liquid_temperature_sensor
+- refrigerant_liquid_saturation_temperature_sensor
+- refrigerant_subcooling_temperature_sensor
+- refrigerant_suction_pressure_sensor
+- refrigerant_suction_saturation_temperature_sensor
+- refrigerant_suction_superheat_temperature_sensor
+- return_air_specificenthalpy_sensor
+- compressor_current_sensor
+
+## New fields for steam/water heat exchanger
+- supply_steam_static_pressure_sensor
+- supply_steam_static_pressure_setpoint
+- steam_valve_percentage_command
+
+# Open-loop CDW system
+- outside_condensing_loop_return_water_isolation_valve_status:
+  - OPEN
+  - CLOSED
+- outside_condensing_loop_return_water_isolation_valve_command:
+  - OPEN
+  - CLOSED
+- outside_condensing_loop_return_water_isolation_valve_percentage_command
+- outside_condensing_loop_return_water_isolation_valve_percentage_sensor
+- outside_condensing_loop_return_water_temperature_sensor
+
+# Buffer tanks with temperature sensors
+- chilled_water_temperature_sensor
+- heating_water_temperature_sensor
+- leaving_water_tank_temperature_sensor
+- entering_water_tank_temperature_sensor
+
+- secondary_heating_supply_water_temperature_sensor
+- secondary_heating_return_water_temperature_sensor
+- primary_heating_supply_water_temperature_sensor
+- primary_heating_return_water_temperature_sensor
+- secondary_chilled_supply_water_temperature_sensor
+- secondary_chilled_return_water_temperature_sensor
+- primary_chilled_supply_water_temperature_sensor
+- primary_chilled_return_water_temperature_sensor
+- secondary_chilled_return_water_isolation_valve_percentage_sensor
+- secondary_chilled_return_water_isolation_valve_percentage_command
+- thermal_energy_accumulator
+- ground_isolation_command
+- ground_temperature_sensor
+- input_motor_frequency_sensor
+- input_motor_power_sensor
+- motor_powerfactor_sensor
+- average_input_inter_line_motor_voltage_sensor
+- average_input_line_motor_current_sensor
+- input_phase1_line_motor_current_sensor
+- input_phase2_line_motor_current_sensor
+- input_phase3_line_motor_current_sensor
+- input_phase1_phase3_line_motor_voltage_sensor
+- input_phase1_phase2_line_motor_voltage_sensor
+- input_phase2_phase3_line_motor_voltage_sensor
+
+- input_phase1_line_inverter_current_sensor
+- input_phase2_line_inverter_current_sensor
+- input_phase3_line_inverter_current_sensor
+- output_inverter_voltage_sensor
+- input_inverter_frequency_sensor
+- output_inverter_power_sensor
+
+- refrigerant_differential_pressure_sensor
+
+- chilled_side_ground_supply_economizer_isolation_valve_status:
+  - OPEN
+  - CLOSED
+- chilled_side_ground_return_economizer_isolation_valve_status:
+  - OPEN
+  - CLOSED
+- chilled_side_ground_return_economizer_isolation_valve_command:
+  - OPEN
+  - CLOSED
+- heating_side_ground_supply_economizer_isolation_valve_status:
+  - OPEN
+  - CLOSED
+- heating_side_ground_return_economizer_isolation_valve_status:
+  - OPEN
+  - CLOSED
+- heating_side_ground_return_economizer_isolation_valve_command:
+  - OPEN
+  - CLOSED
+- chilled_side_ground_return_water_isolation_valve_status:
+  - OPEN
+  - CLOSED
+- chilled_side_ground_supply_water_isolation_valve_status:
+  - OPEN
+  - CLOSED
+- chilled_side_ground_supply_water_isolation_valve_command:
+  - OPEN
+  - CLOSED
+- heating_side_ground_return_water_isolation_valve_status:
+  - OPEN
+  - CLOSED
+- heating_side_ground_supply_water_isolation_valve_status:
+  - OPEN
+  - CLOSED
+- heating_side_ground_supply_water_isolation_valve_command:
+  - OPEN
+  - CLOSED
+
+## New fields for Fresh Air Fan With VFD
+- output_voltage_sensor
+- run_time_accumulator
+
+# Addition of telemetry for parking exhaust fan
+- low_limit_zone_air_co_concentration_setpoint
+- high_limit_zone_air_co_concentration_setpoint
+- low_limit_zone_air_no_concentration_setpoint
+- high_limit_zone_air_no_concentration_setpoint
+- zone_air_no_concentration_sensor
+- low_exhaust_fan_speed_command:
+  - ON
+  - OFF
+- high_exhaust_fan_speed_command:
+  - ON
+  - OFF
+- low_exhaust_fan_speed_status:
+  - ON
+  - OFF
+- high_exhaust_fan_speed_status:
+  - ON
+  - OFF
