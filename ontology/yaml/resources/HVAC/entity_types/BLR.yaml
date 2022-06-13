@@ -229,7 +229,7 @@ BLR_SS_SWTC_CPC_RWISOVPM:
   - RWISOVPM
  
 BLR_SS_SWTM_SWISOVM:
-  description: "Simple boiler with supply water temperature and supply water isolation valve ."
+  description: "Simple boiler with supply water temperature monitoring and supply water isolation valve ."
   is_canonical: true
   implements:
   - BLR
