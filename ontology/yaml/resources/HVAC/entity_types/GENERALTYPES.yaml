@@ -360,7 +360,7 @@ GTWS:
   - flowrate_requirement
   
 TK:
-  description: "Tag for Tank ahich which can be defined as media holding device. Exanple: Water Tank which holds water media." 
+  description: "Tag for Tank which can be defined as media holding device. Exanple: Water Tank which holds water media." 
   is_abstract: true
   implements:
   - EQUIPMENT
