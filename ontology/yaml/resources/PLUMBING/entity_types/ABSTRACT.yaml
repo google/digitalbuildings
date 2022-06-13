@@ -15,7 +15,6 @@
 
 
 SS:
-  id: " "
   description: "Basic combination of run command and status (start/stop); indicates the light is active or inactive."
   is_abstract: true
   implements:
@@ -27,7 +26,6 @@ SS:
 
 
 LVLM:
-  id: " "
   description: "Level Monitoring for tanks."
   is_abstract: true
   uses:
