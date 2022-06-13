@@ -13,21 +13,18 @@
 # limitations under the License.
 
 TK:
-  id: ""
   description: "Tank water system used to store water"
   is_abstract: true
   implements:
   - EQUIPMENT
 
 OWCP:
-  id: ""
   description: " Organic Waste Compactor system used for compacting organic waste essential for conversion into manure ."
   is_abstract: true
   implements:
   - EQUIPMENT
 
 PMP:
-  id: ""
   description: "Tag for pumps. Pumps move liquid (water, glycol, liquid CO2, etc.) from one part of a system
     to another .Used for (irrigation,domestic purposes) different usecase then HVAC ."
   is_abstract: true
