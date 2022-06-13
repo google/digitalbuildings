@@ -19,7 +19,6 @@
 
 
 TK_LVLM:
-  id: ""
   description: "Standard Tank level monitoring."
   is_canonical: true
   implements:

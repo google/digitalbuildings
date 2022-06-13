@@ -19,7 +19,6 @@
 
 
 OWCP_SS:
-  id: ""
   description: "Basic waste compactor system ."
   is_canonical: true
   implements:
