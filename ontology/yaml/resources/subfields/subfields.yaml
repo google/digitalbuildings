@@ -85,6 +85,7 @@ descriptor:
   cooling: "Process, measured effect or requirement for cooling."
   dehumidification: "Process of removing moisture from air."
   detection : "Process of identifying conditions."
+  direction : "Direction in which particular entity is moving or is present "
   discharge: "Media leaving system to enter ambient conditioned space. Typically applies only to air-side systems."
   dutycycle: "The fraction of one period in which a signal or system is active."
   defrost: "De-freezing ice from a surface."
@@ -277,6 +278,7 @@ measurement:
   powerfactor: "Ratio of real and apparent power."
   power: "Rate of energy consumption (assumed context is electrical and real, unless otherwise modified)."
   powerflux: "Energy emitted, reflected, transmitted or received, per unit time."
+  precipitation: "Used to measure amount of  rainfall " 
   pressure: "Measured force per unit area within a system or process."
   #pressurechange: "Change of pressure per temperature." # TODO (tsodorff): find an alternative name once a use case arises 
   rate: "ratio of change compared to a step or time."
@@ -285,6 +287,7 @@ measurement:
   rotationalvelocity: "Vector measure of rotation rate, that refers to how fast an object rotates or revolves relative to another point."
   specificenergy: "Energy per unit mass."
   specificenthalpy: "Measure of energy of air per unit mass."
+  speed: "Used to measure the rate at which some entity is moving (eg: wind speed)"
   temperature: "Measures the temperature of media within a process or system."
   temperaturechangerate: "Difference in temperature per unit time."
   thermalconductivity: "Measure of a material's ability to conduct heat."

@@ -707,6 +707,10 @@ OA:
   - outside_air_wetbulb_temperature_sensor
   - outside_air_specificenthalpy_sensor
   - outside_air_pressure_sensor
+  - outside_air_drybulb_temperature_sensor
+  - wind_speed_sensor
+  - wind_direction_angle_sensor
+  - outside_air_water_precipitation_sensor 
   uses:
   - outside_air_temperature_sensor
   implements:

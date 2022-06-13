@@ -126,6 +126,10 @@ literals:
 - outside_air_relative_humidity_sensor
 - outside_air_temperature_sensor
 - outside_air_wetbulb_temperature_sensor
+- outside_air_drybulb_temperature_sensor
+- wind_speed_sensor
+- wind_direction_angle_sensor
+- outside_air_water_precipitation_sensor
 - power_sensor
 - return_air_relative_humidity_sensor
 - return_air_temperature_sensor

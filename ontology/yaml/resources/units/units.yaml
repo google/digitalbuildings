@@ -192,6 +192,8 @@ powerfactor:
 powerflux:
 - watts_per_square_meter: STANDARD
 - watts_per_square_foot
+precipitation:
+- millimeters
 pressure:
 - pascals: STANDARD
 - hectopascals
@@ -225,6 +227,12 @@ specificenthalpy:
 - joules_per_kilogram_dry_air
 - kilojoules_per_kilogram_dry_air
 - megajoules_per_kilogram_dry_air
+speed:
+- meters_per_second: STANDARD
+- meters_per_hour
+- kilometers_per_hour
+
+
 temperature:
 - kelvin: STANDARD
 - degrees_celsius
