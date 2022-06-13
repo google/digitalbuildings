@@ -15,7 +15,7 @@
 
 
 SS:
-  description: "Basic combination of run command and status (start/stop); indicates the light is active or inactive."
+  description: "Basic combination of run command and status (start/stop); indicates the equipment is active or inactive."
   is_abstract: true
   implements:
   - /SS
