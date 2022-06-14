@@ -29,9 +29,9 @@ LVLM:
   description: "Level Monitoring for tanks."
   is_abstract: true
   uses:
-  - level_percentage_status
+  - level_status
   opt_uses:
-  - level_percentage_sensor
+  - percentage_sensor
   implements:
   - MONITORING
   
