@@ -14,7 +14,6 @@
 
 
 SS:
-  id: "6433499407521415168"
   description: "Basic combination of run command and status (start/stop); indicates the light is active or inactive."
   is_abstract: true
   implements:
