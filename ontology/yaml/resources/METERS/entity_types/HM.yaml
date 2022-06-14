@@ -63,12 +63,12 @@ HM_HW:
   - heating_thermal_power_sensor
   - heating_thermal_energy_accumulator
   
-#HM_CHWDT:
-#  description: "BTU meter with chilled supply and return water temperature monitoring."
-#  is_canonical: true
-#  implements:
-#  - HM
-#  - CHWDT
+HM_CHWDT:
+  description: "BTU meter with chilled supply and return water temperature monitoring."
+  is_canonical: true
+  implements:
+  - HM
+  - CHWDT
 
 HM_CLPM:
   description: "BTU meter with thermal power monitoring."
