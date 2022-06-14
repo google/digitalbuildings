@@ -1163,7 +1163,7 @@ literals:
 - bypass_phase1_neutral_voltage_sensor
 - bypass_phase2_neutral_voltage_sensor
 - bypass_phase3_neutral_voltage_sensor
-- bypass_phase_reversed:
+- bypass_phase_status:
   - NORMAL
   - REVERSED
 - remaining_charge_time_sensor
