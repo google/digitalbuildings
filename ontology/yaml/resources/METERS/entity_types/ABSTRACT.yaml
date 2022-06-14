@@ -76,7 +76,7 @@ CHWDT:
   - chilled_supply_water_temperature_sensor
   implements:
   - MONITORING  
-  
+
 CLPM:
   description: "Cooling thermal monitoring."
   is_abstract: true
