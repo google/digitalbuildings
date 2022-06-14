@@ -62,3 +62,32 @@ HM_HW:
   - heating_return_water_temperature_sensor
   - heating_thermal_power_sensor
   - heating_thermal_energy_accumulator
+  
+HM_CHWDT:
+  description: "BTU meter with chilled supply and return water temperature monitoring."
+  is_canonical: true
+  implements:
+  - HM
+  - CHWDT
+
+HM_CLPM:
+  description: "BTU meter with thermal power monitoring."
+  is_canonical: true
+  implements:
+  - HM
+  - CLPM
+
+HM_WFRM_WVM:
+  description: "BTU meter water florate and volumemonitoring."
+  is_canonical: true
+  implements:
+  - HM
+  - WFRM
+  - WVM
+
+HM_CTEM:
+  description: "BTU meter cooling thermal energy accumulator. "
+  is_canonical: true
+  implements:
+  - HM
+  - CTEM   
