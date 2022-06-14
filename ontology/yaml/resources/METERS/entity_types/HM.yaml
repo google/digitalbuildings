@@ -77,13 +77,19 @@ HM_CLPM:
   - HM
   - CLPM
 
-HM_WFRM_WVM:
+HM_WFRM:
   description: "BTU meter water florate and volumemonitoring."
   is_canonical: true
   implements:
   - HM
   - WFRM
-  - WVM
+  
+HM_WVM:
+  description: "BTU meter total water volume monitoring."
+  is_canonical: true
+  implements:
+  - HM
+  - WVM  
 
 HM_CTEM:
   description: "BTU meter cooling thermal energy accumulator. "
