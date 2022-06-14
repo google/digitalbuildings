@@ -76,6 +76,7 @@ FAN_SS_REFM:
   - REFM
 
 FAN_SS_VSC_REFM4X:
+  id: "1060590702859124736"
   description: "Fan with start/stop status and speed control with four (4) refrigerant concentration sensors."
   is_canonical: true
   implements:
