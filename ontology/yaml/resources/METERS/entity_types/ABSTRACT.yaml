@@ -74,8 +74,8 @@ CHWDT:
   uses:
   - chilled_return_water_temperature_sensor
   - chilled_supply_water_temperature_sensor
-#  implements:
-#  - MONITORING  
+  implements:
+  - CONTROL  
 
 CLPM:
   description: "Cooling thermal monitoring."
@@ -91,7 +91,7 @@ WFRM:
   uses:
   - flowrate_sensor
   implements:
-  - MONITORING 
+  - MONITORING
 
 WVM:
   description: "Water volume monitoring."
