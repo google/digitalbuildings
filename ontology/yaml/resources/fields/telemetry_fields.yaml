@@ -998,8 +998,12 @@ literals:
 # Heat Wheel Telemetry Fields
 - heat_wheel_speed_percentage_sensor
 - heat_wheel_speed_percentage_command
-- heat_wheel_run_command
-- heat_wheel_run_status
+- heat_wheel_run_command:
+  - ON
+  - OFF
+- heat_wheel_run_status:
+  - ON
+  - OFF
 
 # Outside air Isolation Dampers
 - outside_air_isolation_damper_command:

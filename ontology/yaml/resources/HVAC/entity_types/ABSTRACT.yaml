@@ -1325,6 +1325,7 @@ CHW2XSC:
   - cooling_thermal_power_capacity
   - chilled_supply_water_temperature_sensor
   - chilled_water_valve_percentage_sensor
+  - cooling_request_count
   uses:
   - supply_air_temperature_sensor
   - supply_air_temperature_setpoint
@@ -1758,6 +1759,7 @@ DX5SC:
   - cooling_thermal_power_capacity
   - cooling_percentage_command
   - compressor_speed_percentage_command
+  - cooling_request_count
   uses:
   - compressor_run_command_1
   - compressor_run_command_2
@@ -1855,6 +1857,8 @@ HPSC:
   - cooling_thermal_power_capacity
   - heating_thermal_power_capacity
   - compressor_speed_percentage_command
+  - cooling_request_count
+  - heating_request_count
   uses:
   - supply_air_temperature_sensor
   - supply_air_temperature_setpoint
@@ -1872,6 +1876,8 @@ HP2SC:
   - cooling_thermal_power_capacity
   - heating_thermal_power_capacity
   - compressor_speed_percentage_command
+  - cooling_request_count
+  - heating_request_count
   uses:
   - supply_air_temperature_sensor
   - supply_air_temperature_setpoint
@@ -2304,6 +2310,7 @@ HT2SC:
   opt_uses:
   - heating_thermal_power_capacity
   - heating_percentage_command
+  - heating_request_count
   uses:
   - heater_run_command_1
   - heater_run_command_2
@@ -2320,6 +2327,7 @@ HT3SC:
   opt_uses:
   - heating_thermal_power_capacity
   - heating_percentage_command
+  - heating_request_count
   uses:
   - heater_run_command_1
   - heater_run_command_2
@@ -2337,6 +2345,7 @@ HT4SC:
   opt_uses:
   - heating_thermal_power_capacity
   - heating_percentage_command
+  - heating_request_count
   uses:
   - heater_run_command_1
   - heater_run_command_2
@@ -2369,6 +2378,7 @@ HTVSC:
   is_abstract: true
   opt_uses:
   - heating_thermal_power_capacity
+  - heating_request_count
   uses:
   - heater_run_command
   - heater_run_status
@@ -3850,6 +3860,7 @@ DX6SC:
   - cooling_thermal_power_capacity
   - cooling_percentage_command
   - compressor_speed_percentage_command
+  - cooling_request_count
   uses:
   - compressor_run_status_1
   - compressor_run_status_2
@@ -4450,6 +4461,7 @@ EC2SC:
   - evaporative_cooler_run_status_1
   - evaporative_cooler_run_status_2
   - cooling_percentage_sensor
+  - cooling_request_count
   uses:
   - evaporative_cooler_run_command_1
   - evaporative_cooler_run_command_2
