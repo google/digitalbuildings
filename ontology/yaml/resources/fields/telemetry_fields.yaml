@@ -1203,7 +1203,7 @@ literals:
 - entering_water_tank_temperature_sensor
 
 # Tank level
-- level_percentage_sensor
+- percentage_sensor
 
 - secondary_heating_supply_water_temperature_sensor
 - secondary_heating_return_water_temperature_sensor
