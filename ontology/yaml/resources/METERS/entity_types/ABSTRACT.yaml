@@ -71,11 +71,11 @@ PVCM:
 CHWDT:
   description: "Temperature differential across chilled water."
   is_abstract: true
-  implements:
-  - MONITORING
   uses:
   - chilled_return_water_temperature_sensor
-  - chilled_supply_water_temperature_sensor  
+  - chilled_supply_water_temperature_sensor
+  implements:
+  - MONITORING  
   
 CLPM:
   description: "Cooling thermal monitoring."
