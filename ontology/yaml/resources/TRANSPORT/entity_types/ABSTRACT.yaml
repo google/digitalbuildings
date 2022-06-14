@@ -12,25 +12,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-BATT:
-  id: "2974734893700874240"
-  description: "Tag for all batteries (devices used to store and discharge power for the use of a device or group of devices)."
-  is_abstract: true
-  implements:
-  - EQUIPMENT
 
-UPS:
-  id: "9261759973510086656"
-  description: "Tag for all uninterruptible power supply units."
+SS:
+  id: "6433499407521415168"
+  description: "Basic combination of run command and status (start/stop); indicates the light is active or inactive."
   is_abstract: true
   implements:
-  - EQUIPMENT
+  - /SS
+  opt_uses:
+  - failed_alarm
+  - lost_power_alarm
 
-PANEL:
-  id: "1218269466375225344"
-  description: "Tag for all electrical panels."
-  is_abstract: true
-  implements:
-  - EQUIPMENT
-  
- 
+

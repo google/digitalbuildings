@@ -12,25 +12,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-BATT:
-  id: "2974734893700874240"
-  description: "Tag for all batteries (devices used to store and discharge power for the use of a device or group of devices)."
-  is_abstract: true
-  implements:
-  - EQUIPMENT
 
-UPS:
-  id: "9261759973510086656"
-  description: "Tag for all uninterruptible power supply units."
-  is_abstract: true
-  implements:
-  - EQUIPMENT
-
-PANEL:
-  id: "1218269466375225344"
-  description: "Tag for all electrical panels."
-  is_abstract: true
-  implements:
-  - EQUIPMENT
   
- 
+ELV:
+  description: "Tag for all elevators."
+  is_abstract: true
+  implements:
+  - EQUIPMENT  
