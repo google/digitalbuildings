@@ -24,5 +24,5 @@ setup(
     author='Travis Welch',
     packages=find_packages(),
     install_requires=['strictyaml==1.1.0'],
-    python_requires='==3.7',
+    python_requires='==3.9',
 )

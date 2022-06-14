@@ -33,3 +33,10 @@ UPS_IOBM:
   - output_frequency_sensor
   - bypass_frequency_sensor
   - failed_alarm
+  
+UPS_PPWM:
+  description: "UPS with phase power monitoring."
+  is_canonical: true
+  implements:
+  - UPS
+  - PPWM   

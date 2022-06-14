@@ -76,10 +76,3 @@ LDS:
   implements:
   - EQUIPMENT
 
-SWV:
-  description: "Basic solenoid water valve control"
-  is_abstract: true
-  uses:
-  - supply_water_valve_command
-  implements:
-  - EQUIPMENT

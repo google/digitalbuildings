@@ -57,6 +57,8 @@ LDS_GASDET:
   implements:
   - LDS
   - GASDET
+  opt_uses:
+  - failed_alarm
 
 LDS_NHDET:
   id: "6860294637051969536"
@@ -75,6 +77,7 @@ LDS_WLA:
   - WLA
 
 LDS_WLA_BCM:
+  id: "17809196242073288704"
   description: "Water Leak sensing and broken cable sensing device."
   is_canonical: true
   implements:
@@ -83,12 +86,4 @@ LDS_WLA_BCM:
   - BCM
   opt_uses:
   - water_leak_cable_distance_sensor
-
-SWV_CM:
-  description: "Solenoid water valve control and monitoring."
-  is_canonical: true
-  uses:
-  - supply_water_valve_status
-  implements:
-  - SWV
 

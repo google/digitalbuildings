@@ -192,3 +192,11 @@ CT_SS_CWDT_OA_VSFC_CSWIVS_CRWIVS_CSWTC:
   - control_mode
   - run_mode
   - lost_power_alarm
+  
+  
+CT_SS:
+  description: "cooling tower with run command and status. "
+  is_canonical: true
+  implements:
+  - CT
+  - SS
