@@ -143,7 +143,7 @@ CT_SS_VSC_RWISOVM_SWISOVM_SWTM:
   - SWISOVM
   - SWTM
  
- CT_SS_RWISOVM_SWISOVM_SWTM:
+CT_SS_RWISOVM_SWISOVM_SWTM:
   description: "Cooling tower with supply and return isolation valves and supply & return temp monitoring."
   is_canonical: true
   implements:
@@ -152,7 +152,7 @@ CT_SS_VSC_RWISOVM_SWISOVM_SWTM:
   - RWISOVM
   - SWISOVM
   - SWTM
-   opt_uses:
+  opt_uses:
   - low_water_alarm
 
 ###################################
