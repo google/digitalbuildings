@@ -74,8 +74,8 @@ CHWDT:
   uses:
   - chilled_return_water_temperature_sensor
   - chilled_supply_water_temperature_sensor
-  implements:
-  - MONITORING  
+#  implements:
+#  - MONITORING  
 
 CLPM:
   description: "Cooling thermal monitoring."
