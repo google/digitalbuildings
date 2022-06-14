@@ -309,6 +309,7 @@ measurement_descriptor:
   condensation: "The change of the state of matter from the gas phase into the liquid phase"
   deadband: "Represents a range in which the controller does not do anything."
   dewpoint: "The thermodynamic point at which water condenses from standing air."
+  drybulb: "Describes air temperature shielded from radiation and moisture."
   differential: "Measured difference between two reference points (e.g. differential_water_pressure)"
   efficiency: "The ratio of required input to actual output. "
   end: "Indicates a final part of something, especially a period of time."
