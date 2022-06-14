@@ -22,7 +22,7 @@ WM_STANDARD:
   - water_volume_accumulator
   opt_uses:
   - failed_alarm
-  - supply_water_flowrate_sensor
+  - flowrate_sensor
 
 WM_WF:
   id: "5379261270530719744"
