@@ -1295,3 +1295,6 @@ literals:
 - high_exhaust_fan_speed_status:
   - ON
   - OFF
+  
+#Fields for level monitoring#
+  - level_status  
