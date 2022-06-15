@@ -26,18 +26,20 @@ FAN_SS:
   - FAN
   - SS
   
-FAN_RMM:
+FAN_SS_RMM:
   description: "Basic fan with run mode monitoring."
   is_canonical: true
   implements:
   - FAN
+  - SS
   - RMM  
 
-FAN_RDM:
+FAN_SS_RDM:
   description: "Basic fan with run duration monitoring."
   is_canonical: true
   implements:
   - FAN
+  - SS
   - RDM
 
 ### FAN SPEED CONTROL ###
@@ -51,7 +53,7 @@ FAN_SS_VSC:
   - SS
   - VSC
  
-FAN_DFMSC:
+FAN_MSC:
   description: "Discharge Fan with multi speed control."
   is_canonical: true
   implements:
@@ -659,9 +661,10 @@ FAN_SS_VSC_EPC_EHHRC_EHHRC3X:
   - heat_recovery_water_isolation_valve_command_2
   - heat_recovery_water_isolation_valve_command_3
   
-FAN_SRC:
+FAN_SS_SRC:
   description: "Standard FAN with scheduling control."
   is_canonical: true
   implements:
   - FAN
+  - SS
   - SRC   

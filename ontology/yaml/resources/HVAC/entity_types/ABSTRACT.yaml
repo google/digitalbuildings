@@ -4856,3 +4856,11 @@ EFHLC:
   implements:
   - OPERATIONAL
   
+MSC:
+  description: "Fan multi-speed control."
+  is_abstract: true
+  uses:
+  - run_command
+  - fan_speed_mode
+  - run_status  
+  

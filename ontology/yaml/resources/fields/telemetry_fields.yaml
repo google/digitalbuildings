@@ -400,6 +400,8 @@ literals:
   - OFF
   - LOW
   - HIGH
+  - AUTO
+  - MANUAL
 - heat_exchange_isolation_valve_command:
   - OPEN
   - CLOSED
