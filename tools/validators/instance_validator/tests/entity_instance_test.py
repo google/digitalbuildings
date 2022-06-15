@@ -57,7 +57,7 @@ class EntityInstanceTest(absltest.TestCase):
 
   @classmethod
   def setUpClass(cls):
-    super(cls, EntityInstanceTest).setUpClass()
+    super(EntityInstanceTest, cls).setUpClass()
     cls.config_universe = generate_universe.BuildUniverse(
         use_simplified_universe=True)
     cls.init_validator = entity_instance.InstanceValidator(
