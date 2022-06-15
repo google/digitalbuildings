@@ -4955,8 +4955,8 @@ PHWTC:
   implements:
   - MONITORING
   
-TLM:
-  description: "Tank level monitoring."
+LM:
+  description: ""level monitoring of devices storing media.""
   is_abstract: true
   uses:
   - level_status 
