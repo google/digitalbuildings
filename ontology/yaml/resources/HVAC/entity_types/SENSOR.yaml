@@ -192,7 +192,6 @@ SENSOR_COC:
   is_canonical: true
   implements:
   - /SENSOR
-  - COC
   uses:
   - zone_air_co_concentration_sensor
  
@@ -201,7 +200,6 @@ SENSOR_OCO2M:
   is_canonical: true
   implements:
   - /SENSOR
-  - OCO2M
   uses:
   - outside_air_co2_concentration_sensor
 
