@@ -42,7 +42,8 @@ component:
   fan: "Component used for the distribution of air."
   filter: "Component used for removing dust and other particulate matter from the air."
   guidevane: "Control vanes that meter refrigerant (on a centrifugal chiller) or air (on an AHU)."
-  generator: "Component that converts motive power into electric power for use in an external circuit.
+  generator: "Component that converts motive power into electric power for use in an external circuit."
+  '
   heater: "Component which provides heat to media."
   humidifier: "Component which humidifies."
   lamp: "The component of a lighting device that emits the light."
