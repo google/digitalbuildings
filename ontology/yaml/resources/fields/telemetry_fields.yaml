@@ -1297,4 +1297,4 @@ literals:
   - OFF
   
 #Fields for level monitoring#
-  - level_status  
+- level_status  
