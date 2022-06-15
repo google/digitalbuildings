@@ -77,6 +77,4 @@ LM:
   description: "level monitoring for devices storing media."
   is_abstract: true
   uses:
-  - level_status
-  implements:
-  - MONITORING    
+  - level_status   
