@@ -1238,3 +1238,10 @@ literals:
 - high_exhaust_fan_speed_status:
   - ON
   - OFF
+  
+  ## New fields for EM##
+
+- generator_energy_accumulator
+- electricalgrid_energy_accumulator
+- generator_run_time_accumulator
+- electricalgrid_run_time_accumulator 

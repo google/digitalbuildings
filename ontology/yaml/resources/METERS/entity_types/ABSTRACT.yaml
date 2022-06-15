@@ -68,12 +68,12 @@ PVCM:
   - phase2_neutral_line_voltage_sensor
   - phase3_neutral_line_voltage_sensor
   
-PWMRDM2X:
-  description: "Energy monitoring from Electrical Grid and Diesel Generator with run hours monitoring."
+PWMRDM:
+  description: "Energy monitoring from Electrical Grid and Generator with run hours monitoring."
   is_abstract: true
   uses:
-  - energy_accumulator_1
-  - energy_accumulator_2
-  - run_time_accumulator_1
-  - run_time_accumulator_2
+  - generator_energy_accumulator
+  - electricalgrid_energy_accumulator
+  - generator_run_time_accumulator
+  - electricalgrid_run_time_accumulator 
   
