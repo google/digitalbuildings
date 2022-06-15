@@ -4838,6 +4838,7 @@ HWRWISOVPM:
   - MONITORING
 
 MIPVCM:
+  id: "10283962739713900544"
   description: "Motor phase-level input current and voltage monitoring."
   is_abstract: true
   implements:
@@ -4854,6 +4855,7 @@ MIPVCM:
   - average_input_inter_line_motor_voltage_sensor
 
 MIPWM:
+  id: "2094166817340653568"
   description: "Motor input power monitoring."
   is_abstract: true
   implements:
@@ -4865,6 +4867,7 @@ MIPWM:
   - input_motor_frequency_sensor
 
 INVOPWM:
+  id: "10056530958531690496"
   description: "Inverter (VFD) output power monitoring."
   is_abstract: true
   implements:
@@ -4876,6 +4879,7 @@ INVOPWM:
   - input_inverter_frequency_sensor
 
 INVIPCM:
+  id: "3240332922506444800"
   description: "Inverter (VFD) 3-phase input current monitoring."
   is_abstract: true
   implements:
@@ -4886,6 +4890,7 @@ INVIPCM:
   - input_phase3_line_inverter_current_sensor
 
 CWSWISOVPM:
+  id: "14769547968574914560"
   description: "Condensing water supply side isolation valve percentage monitoring."
   is_abstract: true
   uses:
@@ -4895,6 +4900,7 @@ CWSWISOVPM:
   - MONITORING
 
 GTWFCISOVM:
+  id: "5444844940104302592"
   description: "Geothermal water free-cooling isolation valve monitoring; exclusively using ground as heat sink for building load."
   is_abstract: true  
   uses:
@@ -4905,6 +4911,7 @@ GTWFCISOVM:
   - MONITORING
 
 GTWGRISOVM:
+  id: "12463704959361220608"
   description: "Geothermal water ground-recharge isolation valve monitoring; rejecting ground heat to atmosphere via cooling towers."
   is_abstract: true  
   uses:
@@ -4915,6 +4922,7 @@ GTWGRISOVM:
   - MONITORING
 
 GTWHEISOVM:
+  id: "3366433712072818688"
   description: "Geothermal water heat-extraction isolation valve monitoring; extracting ground heat to to use in building."
   is_abstract: true
   uses:
@@ -4925,6 +4933,7 @@ GTWHEISOVM:
   - MONITORING
 
 GTWHRISOVM:
+  id: "11317538854195429376"
   description: "Geothermal water heat-rejection isolation valve monitoring; rejecting building heat to ground."
   is_abstract: true  
   uses:
