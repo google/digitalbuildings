@@ -1297,10 +1297,10 @@ literals:
   - OFF
   
 #New fields for EC Fan
-- directcurrentvoltage_sensor
-- alternatingcurrentvoltage_sensor
-- min_speed_percentage_command
-- max_speed_percentage_command
+- dc_voltage_sensor
+- ac_voltage_sensor
+- low_limit_speed_percentage_command
+- high_limit_speed_percentage_command
 - high_speed_status:
   - ON
   - OFF

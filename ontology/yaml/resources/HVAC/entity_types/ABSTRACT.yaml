@@ -74,8 +74,8 @@ MIOVCM:
   implements:
   - MONITORING
   uses:
-  - directcurrentvoltage_sensor
-  - alternatingcurrentvoltage_sensor
+  - dc_voltage_sensor
+  - ac_voltage_sensor
   - current_sensor  
 
 # Not deprecated but probably not useful
@@ -4866,8 +4866,8 @@ MSM:
   - MONITORING
   uses:
   - speed_percentage_sensor
-  - min_speed_percentage_command
-  - max_speed_percentage_command
+  - low_limit_speed_percentage_command
+  - high_limit_speed_percentage_command
   - high_speed_status
   - low_speed_status
  
