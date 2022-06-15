@@ -26,7 +26,7 @@ FAN_SS:
   - FAN
   - SS
   
-FAN_RMM:
+FAN_SS_RMM:
   description: "Basic fan with run mode monitoring."
   is_canonical: true
   implements:
@@ -688,13 +688,8 @@ FAN_MSM:
   - FAN
   - MSM
   
-## Pressurization Fan##
 
-FAN_SS_RMM:  
-  description: "Fan with run command and run status and run mode monitoring. "
-  implements:
-  - FAN
-  - SS
-  - RMM  
+
+
 
 
