@@ -4864,3 +4864,10 @@ MSC:
   - fan_speed_mode
   - run_status  
   
+SRC:
+  description: "Very basic run scheduling command. "
+  is_abstract: true
+  uses:
+  - schedule_run_command
+  implements:
+  - CONTROL
