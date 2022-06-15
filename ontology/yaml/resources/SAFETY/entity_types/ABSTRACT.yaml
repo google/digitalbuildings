@@ -78,5 +78,5 @@ LM:
   is_abstract: true
   uses:
   - level_status
-#  implements:
-#  - MONITORING    
+  implements:
+  - MONITORING    
