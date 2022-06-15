@@ -608,8 +608,9 @@ CH_SS_CHWSWISOVM_CWSISOVM_CWRISOVM_CHWRWISOVM_CHWDT:
   - lost_power_alarm
   - run_mode
   
-CH_CWDT:
-  description: "Non-standard chiller with condensing supply and return water monitoring."
+CH_CWDT_CHWDT:
+  description: "Non-standard chiller with condensing and chilled supply and return water monitoring."
   implements:
   - CH
-  - CWDT  
+  - CWDT
+  - CHWDT 
