@@ -983,7 +983,7 @@ literals:
 #Electrical meter fields
 - neutral_line_current_sensor # A measure of current on the neutral line
 - apparent_energy_accumulator
-
+- reactive_energy_accumulator
 #Lighting controller battery status
 - emergency_battery_status
 
