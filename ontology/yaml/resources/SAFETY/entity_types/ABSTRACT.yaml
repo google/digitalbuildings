@@ -77,4 +77,11 @@ LM:
   description: "level monitoring for devices storing media."
   is_abstract: true
   uses:
-  - level_status   
+  - level_status 
+
+FA:
+  description: "Fire alarm monitoring."
+  is_abstract: true
+  uses:
+  - fire_alarm
+ 
