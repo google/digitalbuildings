@@ -77,7 +77,7 @@ WA4B:
   description: "A rodent system with 4 bands."
   is_abstract: true
   uses:
-  - wave_band_status
+  - wave_band_mode
   opt_uses:
   - wave_pulserate_sensor
   - wave_frequency_sensor

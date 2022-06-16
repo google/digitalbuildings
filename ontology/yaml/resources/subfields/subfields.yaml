@@ -228,6 +228,7 @@ descriptor:
   yaxis: "Horizontal axis of a three-dimensional Cartesian coordinate system (ordinate)."
   zaxis: "Vertical axis of a three-dimensional Cartesian coordinate system (applicate)."
   zone: "Region of building which is conditioned."
+  band: "A group having particular range"
 measurement:
   acceleration: "The rate of change of velocity per unit of time."
   angle: "The figure formed by two rays, sharing a common endpoint."
@@ -279,6 +280,7 @@ measurement:
   power: "Rate of energy consumption (assumed context is electrical and real, unless otherwise modified)."
   powerflux: "Energy emitted, reflected, transmitted or received, per unit time."
   pressure: "Measured force per unit area within a system or process."
+  pulserate: "Measured for pulses or breathes per minute,"
   #pressurechange: "Change of pressure per temperature." # TODO (tsodorff): find an alternative name once a use case arises 
   rate: "ratio of change compared to a step or time."
   reactivepower: "Difference between the electricity supplied and the electricity converted into useful power."
