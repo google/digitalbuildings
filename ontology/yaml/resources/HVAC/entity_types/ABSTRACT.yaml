@@ -1202,6 +1202,7 @@ ESPC:
   - exhaust_fan_run_command
   - exhaust_fan_run_status
   - exhaust_fan_speed_percentage_command
+  - exhaust_fan_speed_percentage_sensor
   - exhaust_air_static_pressure_sensor
   - exhaust_air_static_pressure_setpoint
   implements:
