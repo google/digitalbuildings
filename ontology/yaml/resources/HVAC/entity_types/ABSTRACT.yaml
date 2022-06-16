@@ -4865,7 +4865,7 @@ MSM:
   implements:
   - MONITORING
   uses:
-  - speed_percentage_sensor
+  - supply_fan_speed_percentage_sensor
   - low_limit_speed_percentage_command
   - high_limit_speed_percentage_command
   - high_speed_status
