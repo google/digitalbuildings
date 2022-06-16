@@ -4972,4 +4972,13 @@ PCM:
   uses:
   - particle_concentration_sensor
   implements:
+  - MONITORING 
+
+PMM:
+  description: "Zone air particulate matter monitoring."
+  is_abstract: true
+  uses:
+  - zone_air_pm2pt5_concentration_sensor
+  - zone_air_pm10pt0_concentration_sensor
+  implements:
   - MONITORING   

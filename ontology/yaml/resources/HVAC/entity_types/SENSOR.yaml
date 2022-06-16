@@ -210,3 +210,24 @@ SENSOR_PCM:
   implements:
   - /SENSOR
   - PCM
+  
+SENSOR_ZTM_ZHM_CO2M_HCHO_PMM:
+  description: "Sensor with zone temperature, humidity, CO2, HCHO and particulate matter monitoring"
+  is_canonical: true
+  implements:
+  - /SENSOR
+  - ZTM
+  - ZHM
+  - CO2M
+  - HCHO
+  - PMM
+
+SENSOR_OCO2M_OA_OHM:
+  description: "Sensor with outside air temperature, humidity and CO2 monitoring"
+  is_canonical: true
+  implements:
+  - /SENSOR
+  - OCO2M
+  - OA
+  - OHM  
+ 
