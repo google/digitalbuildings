@@ -4976,3 +4976,47 @@ FRDM3X:
   - fan_run_time_accumulator_1
   - fan_run_time_accumulator_2
   - fan_run_time_accumulator_3
+  
+MSM:
+  description: "Motor speed monitoring and control."
+  is_abstract: true
+  implements:
+  - MONITORING
+  uses:
+  - supply_fan_speed_percentage_sensor
+  - low_limit_speed_percentage_command
+  - high_limit_speed_percentage_command
+  - high_speed_status
+  - low_speed_status
+
+MSM3X:
+  description: "Motor speed monitoring and control."
+  is_abstract: true
+  implements:
+  - MONITORING
+  uses:
+  - supply_fan_speed_percentage_sensor
+  - low_limit_speed_percentage_command_1
+  - low_limit_speed_percentage_command_2
+  - low_limit_speed_percentage_command_3  
+  - high_limit_speed_percentage_command_1
+  - high_limit_speed_percentage_command_2
+  - high_limit_speed_percentage_command_3  
+  - high_speed_status_1
+  - low_speed_status 
+
+MIOVCM3X:
+  description: "Motor input-output current and voltage monitoring."
+  is_abstract: true
+  implements:
+  - MONITORING
+  uses:
+  - dc_voltage_sensor_1
+  - dc_voltage_sensor_2
+  - dc_voltage_sensor_3  
+  - ac_voltage_sensor_1
+  - ac_voltage_sensor_2
+  - ac_voltage_sensor_3
+  - current_sensor_1
+  - current_sensor_2
+  - current_sensor_3
