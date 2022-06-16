@@ -96,4 +96,14 @@ HM_CTEM:
   is_canonical: true
   implements:
   - HM
-  - CTEM   
+  - CTEM 
+
+HM_CHWDT_CLPM_WFRM_CTEM:
+  description: "BTU meter with chilled supply and return water, thermal power monitoring and floeate monitoring   "
+  is_canonical: true
+  implements:
+  - HM
+  - CHWDT
+  - CLPM
+  - WFRM
+  - CTEM
