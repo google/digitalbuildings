@@ -368,6 +368,7 @@ SFVSC:
   - supply_fan_run_command
   - supply_fan_run_status
   - supply_fan_speed_percentage_command
+  - supply_fan_auto_status
   implements:
   - OPERATIONAL
 
