@@ -1294,6 +1294,7 @@ CHWSC:
   - cooling_request_count
   uses:
   - supply_air_temperature_sensor
+  - supply_air_humidity_sensor
   - supply_air_temperature_setpoint
   - chilled_water_valve_percentage_command
   implements:
