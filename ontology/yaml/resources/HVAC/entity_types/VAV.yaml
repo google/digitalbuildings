@@ -527,3 +527,18 @@ VAV_SD_DSP_CSOUC:
   - SD
   - DSP
   - CSOUC
+  
+VAV_SD_DSP_PDSCV_SFM_LLFC_HLFC_ZTM_AHAC_CSOUC:
+  description: "Single duct dual set point VAV with cooling control."
+  is_canonical: true
+  implements:
+  - VAV
+  - SD
+  - DSP
+  - PDSCV
+  - SFM
+  - LLFC
+  - HLFC
+  - ZTM
+  - AHAC
+  - CSOUC

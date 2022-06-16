@@ -37,15 +37,7 @@ SD:
   implements:
   - CONTROL
   
-ZA:
-  id: "11449987124388954112"
-  description: "Single duct VAV type, with basic airflow control."
-  is_abstract: true
-   uses:
-  - zone_air_occupied_temperature_setpoint
-  - 
-  implements:
-  - CONTROL  
+
 
 DD:
   id: "8927971333061476352"
@@ -4764,3 +4756,21 @@ CSOUC:
   - zone_air_temperature_sensor
   implements:
   - OPERATIONAL
+
+HLFC:
+  description: "Maximum flow control for entire loop."
+  is_abstract: true
+  implements:
+  - CONTROL
+  uses:
+  - high_limit_flowrate_setpoint
+  - flowrate_sensor
+  
+LLFC:
+  description: "Minimum flow control for entire loop."
+  is_abstract: true
+  implements:
+  - CONTROL
+  uses:
+  - low_limit_flowrate_setpoint
+  - flowrate_sensor  
