@@ -220,6 +220,7 @@ descriptor:
   ventilation: "Process used to provide fresh air into a system or zone. "
   voc: "Measures volatile organic component concentration."
   water: "Water in liquid form, conditioned or unconditioned"
+  wave: "General wave either,mechanical,electromagnetic,matter."
   west: "Cardinal direction; opposite of east"
   wind: "Movement of ambient air."
   winter: "Method or process used during colder weather (i.e. winter season)."

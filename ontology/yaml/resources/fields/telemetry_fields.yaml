@@ -1200,6 +1200,15 @@ literals:
 - outside_condensing_loop_return_water_isolation_valve_percentage_sensor
 - outside_condensing_loop_return_water_temperature_sensor
 
+# Rodent Repellent system
+- wave_pulserate_sensor
+- wave_frequency_sensor
+- wave_band_mode:
+  - BANDA
+  - BANDB
+  - BANDC
+  - BANDD
+- total_failed_counter
 # Buffer tanks with temperature sensors
 - chilled_water_temperature_sensor
 - heating_water_temperature_sensor

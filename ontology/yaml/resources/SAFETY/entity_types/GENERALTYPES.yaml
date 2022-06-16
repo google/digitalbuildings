@@ -75,4 +75,10 @@ LDS:
   is_abstract: true
   implements:
   - EQUIPMENT
+  
+RDT:
+  description: "Rodent Repellent System"
+  is_abstract: true
+  implements:
+  - EQUIPMENT
 

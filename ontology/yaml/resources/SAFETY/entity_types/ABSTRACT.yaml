@@ -72,3 +72,13 @@ FA2X:
   uses:
   - fire_alarm_1
   - fire_alarm_2
+  
+WA4B:
+  description: "A rodent system with 4 bands."
+  is_abstract: true
+  uses:
+  - wave_band_status
+  opt_uses:
+  - wave_pulserate_sensor
+  - wave_frequency_sensor
+  - total_failed_counter
