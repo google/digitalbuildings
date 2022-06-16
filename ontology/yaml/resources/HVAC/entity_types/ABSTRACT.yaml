@@ -4946,3 +4946,33 @@ EFHLC:
   - high_exhaust_fan_speed_status
   implements:
   - OPERATIONAL
+
+MIPWM3X:
+  description: "Motor input power monitoring."
+  is_abstract: true
+  implements:
+  - MONITORING
+  uses:
+  - input_motor_power_sensor_1  
+  - input_motor_power_sensor_2
+  - input_motor_power_sensor_3 
+
+FRMM3X:
+  description: "Fan run mode monitoring."
+  is_abstract: true
+  implements:
+  - MONITORING
+  uses:
+  - fan_run_mode_1  
+  - fan_run_mode_2
+  - fan_run_mode_3  
+  
+FRDM3X: 
+  description: "Fan run duration monitoring."
+  is_abstract: true
+  implements:
+  - MONITORING
+  uses:
+  - fan_run_time_accumulator_1
+  - fan_run_time_accumulator_2
+  - fan_run_time_accumulator_3

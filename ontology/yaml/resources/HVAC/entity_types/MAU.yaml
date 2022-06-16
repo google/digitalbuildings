@@ -753,3 +753,22 @@ MAU_US_SBO_1000_1:
   - DEPRECATED
   uses:
   - humidification_run_command
+  
+#New canonical#
+MAU_SS_FDPM_SSPM_STC_SHM_SFC_MIOVCM3X_MIPWM3X_SFVSC3X_FRDM3X_MSM3X_FRMM3X:
+  description: "Air purifier unit with 3 fan with differential pressure, static pressure, temperature, humidity and electrical parameter monitoring. "
+  implements:
+  - MAU
+  - SS
+  - FDPM
+  - SSPM
+  - STC
+  - SHM
+  - SFC
+  - MIOVCM3X
+  - MIPWM3X
+  - SFVSC3X
+  - FRDM3X
+  - MSM3X
+  - FRMM3X
+  

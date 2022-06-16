@@ -1295,3 +1295,11 @@ literals:
 - high_exhaust_fan_speed_status:
   - ON
   - OFF
+  
+#Telemetry fields for Fan#
+- fan_run_mode:
+  - AUTO
+  - MANUAL 
+
+- fan_run_time_accumulator
+  
