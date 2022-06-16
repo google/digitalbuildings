@@ -53,4 +53,15 @@ APU_SFC:
   is_canonical: true
   implements:
   - AHU
+  - SFC 
+
+APU_SS_FDPM_SSPM_STC_SHM_SFC:
+  description: "Air purifier with filter pressure, Static pressure, humidty monitoring and supply air flow control."
+  is_canonical: true
+  implements:
+  - AHU
+  - SS
+  - FDPM
+  - STC
+  - SHM
   - SFC  
