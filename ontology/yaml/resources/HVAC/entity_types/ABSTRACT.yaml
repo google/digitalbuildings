@@ -4967,3 +4967,27 @@ EFHLC:
   - high_exhaust_fan_speed_status
   implements:
   - OPERATIONAL
+
+CO2M4X:
+  description: "Basic carbon dioxide monitoring for 4 Zones."
+  is_abstract: true
+  uses:
+  - zone_air_co2_concentration_sensor_1
+  - zone_air_co2_concentration_sensor_2
+  - zone_air_co2_concentration_sensor_3
+  - zone_air_co2_concentration_sensor_4
+  implements:
+  - MONITORING
+
+CO2M6X:
+  description: "Basic carbon dioxide monitoring for 6 Zones."
+  is_abstract: true
+  uses:
+  - zone_air_co2_concentration_sensor_1
+  - zone_air_co2_concentration_sensor_2
+  - zone_air_co2_concentration_sensor_3
+  - zone_air_co2_concentration_sensor_4
+  - zone_air_co2_concentration_sensor_5
+  - zone_air_co2_concentration_sensor_6
+  implements:
+  - MONITORING
