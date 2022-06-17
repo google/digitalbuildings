@@ -1143,8 +1143,8 @@ literals:
 
 ## New fields for tanks
 - level_status:
- - LOW
- - HIGH
+  - LOW
+  - HIGH
 - percentage_sensor
 
 ## New fields for electrical system additions
