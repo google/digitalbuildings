@@ -19,7 +19,7 @@
 
 
 PMP_SS:
-  description: "Basic water pump ."
+  description: "Basic water pump."
   is_canonical: true
   implements:
   - PMP
