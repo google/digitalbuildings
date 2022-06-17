@@ -1202,3 +1202,12 @@ literals:
 - thermal_energy_accumulator
 - ground_isolation_command
 - ground_temperature_sensor
+
+#telemetry for PLC#
+- controller_run_command:
+  - ON
+  - OFF
+  
+- controller_run_mode:
+  - AUTO
+  - MANUAL  

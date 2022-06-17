@@ -4769,3 +4769,15 @@ HWRWISOVPM:
   - heating_return_water_isolation_valve_percentage_sensor
   implements:
   - MONITORING
+ 
+CRC:
+  description: "controller Run command."
+  is_abstract: true
+  uses:
+  - controller_run_command 
+  
+CRM:
+  description: "controller Run mode."
+  is_abstract: true
+  uses:
+  - controller_run_mode  

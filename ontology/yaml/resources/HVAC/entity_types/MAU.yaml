@@ -753,3 +753,20 @@ MAU_US_SBO_1000_1:
   - DEPRECATED
   uses:
   - humidification_run_command
+  
+ 
+#Canonical for Air washers#
+MAU_SFSS_FDPM_SSPM_STC_SHM_SHC_RDM_CRC_CRM_SPSS:
+  description: "Airwasher unit with run command, status, dufferential pressure, static T,RH, monitoring and control"
+  implements:
+  - MAU
+  - SFSS
+  - FDPM
+  - SSPM
+  - STC
+  - SHM
+  - SHC
+  - RDM
+  - CRC
+  - CRM
+  - SPSS
