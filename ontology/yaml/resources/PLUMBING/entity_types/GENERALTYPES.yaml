@@ -18,15 +18,15 @@ TK:
   implements:
   - EQUIPMENT
 
-OWCP:
-  description: " Organic Waste Compactor system used for compacting organic waste essential for conversion into manure ."
+WSTC:
+  description: " Waste Compactor system used for compacting organic waste essential for conversion into manure."
   is_abstract: true
   implements:
   - EQUIPMENT
 
 PMP:
   description: "Tag for pumps. Pumps move liquid (water, glycol, liquid CO2, etc.) from one part of a system
-    to another .Used for (irrigation,domestic purposes) different usecase then HVAC ."
+    to another.Used for (irrigation,domestic purposes) different usecase then HVAC."
   is_abstract: true
   implements:
   - EQUIPMENT

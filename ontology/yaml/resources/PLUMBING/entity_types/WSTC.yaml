@@ -18,11 +18,11 @@
 ########################
 
 
-OWCP_SS:
+WSTC_SS:
   description: "Basic waste compactor system ."
   is_canonical: true
   implements:
-  - OWCP
+  - WSTC
   - SS  
 
 
