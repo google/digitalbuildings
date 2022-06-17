@@ -4871,3 +4871,54 @@ SRC:
   - schedule_run_command
   implements:
   - CONTROL
+  
+EPM:
+  description: "Basic Electrical parameter monitoring."
+  is_abstract: true
+  uses:
+  - power_status
+  - voltage_sensor
+  - current_sensor
+  - power_sensor
+  - energy_accumulator
+  implements:
+  - MONITORING
+  
+MIPCVM:
+  description: "Motor phase-level input current and voltage monitoring."
+  is_abstract: true
+  implements:
+  - MONITORING
+  uses:
+  - average_input_line_motor_current_sensor
+  - average_input_inter_line_motor_voltage_sensor
+  - input_motor_power_sensor
+  
+EFVCS:
+  description: "Variable control of speed for exhaust fans."
+  is_abstract: true
+  uses:
+  - exhaust_fan_speed_frequency_sensor
+  - exhaust_fan_speed_percentage_sensor
+  - exhaust_fan_speed_percentage_command  
+  - exhaust_fan_current_sensor
+  - exhaust_fan_power_sensor
+  - exhaust_fan_run_status
+  - exhaust_fan_run_mode
+  - exhaust_fan_speed_mode
+
+  implements:
+  - OPERATIONAL  
+  
+SRC:
+  description: "Very basic run scheduling command. "
+  is_abstract: true
+  uses:
+  - schedule_run_command
+  implements:
+  - CONTROL 
+
+    
+  
+
+
