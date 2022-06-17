@@ -500,6 +500,7 @@ CH_SS_SCHWTC_CHDX2SC_REFSM2X_REFPM2X_CWDT:
   - CWDT
 
 CH_SS_RMM_SCHWTC_CHDXSC_CCM_CHWSWISOVPM_CWSWISOVPM_IGM_REFPM_REFSM_MIPVCM_MIPWM_CWDPM_CHWDPM_CWDT_INVOPWM_INVIPCM:
+  id: "5672276721286512640"
   description: "Complex water-cooled chiller with both motor and inverter (i.e., VFD) sensors."
   is_canonical: true
   implements:
