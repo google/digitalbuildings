@@ -153,7 +153,7 @@ CT_SS_RWISOVM_SWISOVM_SWTM:
   - SWISOVM
   - SWTM
   opt_uses:
-  - low_water_alarm
+  - low_level_status
 
 ###################################
 ### Existing Non-standard Types ###

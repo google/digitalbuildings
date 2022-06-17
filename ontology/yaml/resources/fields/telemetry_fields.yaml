@@ -843,9 +843,6 @@ literals:
 - supply_air_flowrate_status:
   - ON
   - OFF
-- low_water_alarm:
-  - ACTIVE
-  - INACTIVE
 
 # Added for ETIQA
 - return_air_co2_concentration_sensor
