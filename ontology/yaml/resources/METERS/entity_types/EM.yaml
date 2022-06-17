@@ -82,6 +82,14 @@ EM_PWM_AVCM_PLPM_PVCM:
   - AVCM
   - PLPM
   - PVCM
+  
+EM_PWM_PWMRDM:
+  description: "Energy metering from Grid Electricity and Diesel Generator with power monitoring."
+  is_canonical: true
+  implements:
+  - EM
+  - PWM
+  - PWMRDM   
 
 #############################
 ### Non-Canonical Devices ###
