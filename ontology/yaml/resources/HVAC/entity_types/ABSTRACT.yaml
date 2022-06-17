@@ -30,6 +30,11 @@ SD:
   - supply_air_heating_flowrate_capacity
   - cooling_thermal_power_capacity
   - supply_air_temperature_sensor
+  - zone_air_occupied_cooling_temperature_setpoint
+  - zone_air_unoccupied_cooling_temperature_setpoint
+  - zone_air_temperature_setpoint
+  - zone_air_minimum_required_flowrate
+  - zone_air_maximum required_flowrate
   uses:
   - supply_air_flowrate_sensor
   - supply_air_flowrate_setpoint
