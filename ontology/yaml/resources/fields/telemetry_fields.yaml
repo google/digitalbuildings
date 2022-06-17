@@ -1238,3 +1238,11 @@ literals:
 - high_exhaust_fan_speed_status:
   - ON
   - OFF
+#Telemetry addition for Fan (DOAS)#
+- supply_fan_speed_mode:
+  - BYPASS
+  - VFD
+  
+- supply_fan_run_mode:
+  - AUTO
+  - MANUAL
