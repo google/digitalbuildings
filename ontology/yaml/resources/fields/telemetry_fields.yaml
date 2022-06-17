@@ -60,9 +60,11 @@ literals:
 - discharge_fan_run_command:
   - ON
   - OFF
+  - AUTO
 - discharge_fan_run_status:
   - ON
   - OFF
+  - AUTO
 - discharge_fan_speed_mode:
   - AUTO
   - LOW
