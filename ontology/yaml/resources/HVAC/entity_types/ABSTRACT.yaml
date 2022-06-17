@@ -4863,3 +4863,40 @@ EFHLC:
   - high_exhaust_fan_speed_status
   implements:
   - OPERATIONAL
+  
+MIPCVM:
+  description: "Motor phase-level input current and voltage monitoring."
+  is_abstract: true
+  implements:
+  - MONITORING
+  uses:
+  - average_input_line_motor_current_sensor
+  - average_input_inter_line_motor_voltage_sensor
+  - input_motor_power_sensor  
+  
+EPM:
+  description: "Basic Electrical parameter monitoring."
+  is_abstract: true
+  uses:
+  - power_status
+  - voltage_sensor
+  - current_sensor
+  - power_sensor
+  - energy_accumulator
+  implements:
+  - MONITORING
+
+SFRDM:
+  description: "Very basic system run duration monitoring for supply fan."
+  is_abstract: true
+  uses:
+  - supply_fan_run_time_accumulator
+  implements:
+  - MONITORING  
+  
+SFVCS:
+  description: "Variable control of speed for exhaust fans."
+  is_abstract: true
+  uses:
+  - supply_fan_run_mode
+  - supply_fan_speed_mode  
