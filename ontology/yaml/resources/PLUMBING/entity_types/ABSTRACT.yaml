@@ -32,7 +32,4 @@ LVLM:
   - level_status
   opt_uses:
   - percentage_sensor
-  implements:
-  - MONITORING
-  
   
