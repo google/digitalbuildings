@@ -370,7 +370,7 @@ SFVSC:
   - supply_fan_energy_accumulator
   - supply_fan_lost_power_alarm
   - supply_fan_failed_alarm
-  - supply_fan_control_mode
+  - control_mode
   uses:
   - supply_fan_run_command
   - supply_fan_run_status
@@ -393,7 +393,7 @@ DFVSC:
   - discharge_fan_run_time_accumulator
   - discharge_fan_energy_accumulator
   - discharge_fan_failed_alarm
-  - discharge_fan_control_mode
+  - control_mode
   uses:
   - discharge_fan_speed_percentage_command
   - discharge_fan_run_status
