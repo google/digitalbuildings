@@ -4854,4 +4854,41 @@ AHU_SCHWTC:
   is_canonical: true
   implements:
   - AHU
-  - SCHWTC  
+  - SCHWTC
+  
+AHU_CHWPM_SFSS_DXSC_SFRDM_CPRDM_EVFSC_STC_ZLTM_ZLPM_ZLHM_DXSC_SFRMM_CHWDT_ZTM:
+  description: "AHUs with chilled water temperature monitoring and compressor monitoring with zone temperature and humidity monitoring ."
+  is_canonical: true
+  implements:
+  - AHU
+  - CHWPM
+  - SFSS
+  - DXSC
+  - SFRDM
+  - CPRDM
+  - EVFSC
+  - STC
+  - ZLTM
+  - ZLPM
+  - ZLHM
+  - DXSC
+  - SFRMM
+  - CHWDT
+  - ZTM  
+  
+AHU_SFSS_DX2ZTC_SFRDM_EVFSC_STC_ZLTM_HRPM2X_LRPM2X_ZHLM_SFRMM_ZTM:
+  description: "AHUs with chilled water temperature monitoring and compressor monitoring with zone temperature and humidity monitoring ."
+  is_canonical: true
+  implements:
+  - AHU
+  - SFSS
+  - DX2ZTC
+  - SFRDM
+  - EVFSC
+  - STC
+  - ZLTM
+  - HRPM2X
+  - LRPM2X 
+  - ZLHM
+  - SFRMM
+  - ZTM   
