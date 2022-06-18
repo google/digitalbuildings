@@ -632,6 +632,19 @@ MAU_SFSS2X_SFVSC2X_CHWSC_HWSC_FDPM_SSPC_STC_VOADM2X:
   - SSPC
   - STC
   - VOADM2X
+  
+MAU_SFVSC_SPSS_STM_SHM_SFC:
+  description: "MAU with VFD ,spray pump ,filter , supply air temperature and huidity monitoring"
+  is_canonical: true
+  implements:
+  - MAU
+  - SFVSC
+  - SPSS
+  - STM
+  - RTM
+  - SFC
+  opt_uses:
+  - filter_differential_pressure_status
 
 ###################################
 ### Existing Non-standard Types ###
