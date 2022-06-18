@@ -207,6 +207,7 @@ CT_SS_CWDT_OA_VSFC_CSWIVS_CRWIVS_CSWTC:
   
   
 CT_SS:
+  id: "14895648758141288448"
   description: "cooling tower with run command and status. "
   is_canonical: true
   implements:
