@@ -552,9 +552,7 @@ literals:
 - discharge_fan_run_time_accumulator
 - discharge_fan_energy_accumulator
 - discharge_fan_failed_alarm
-- discharge_fan_control_mode:
-  - AUTO
-  - MANUAL 
+- discharge_fan_control_mode
 - supply_air_damper_command:
   - OPEN
   - CLOSED
