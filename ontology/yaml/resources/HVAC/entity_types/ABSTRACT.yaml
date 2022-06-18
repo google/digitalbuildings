@@ -328,6 +328,7 @@ VSC:
   - lost_power_alarm
   - torque_sensor
   - failed_alarm
+  - control_mode
   uses:
   - speed_percentage_command
   - run_status
