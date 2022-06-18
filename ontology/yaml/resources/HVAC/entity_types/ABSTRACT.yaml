@@ -4864,11 +4864,11 @@ EFHLC:
   implements:
   - OPERATIONAL
   
-DFRC:
+SFRC:
   description: "Discharge fan run command."
   is_abstract: true
   uses:
-  - discharge_fan_run_command
+  - supply_fan_run_command
   - run_command
   implements:
   - CONTROL  
