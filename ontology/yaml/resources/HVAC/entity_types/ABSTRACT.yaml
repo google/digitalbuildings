@@ -1256,7 +1256,7 @@ CHPM:
   - MONITORING
 
 EFSM:
-  desciption: " An Electrostatic filter used to maintain air quality its run status and alarm monitoring"
+  description: " An Electrostatic filter used to maintain air quality its run status and alarm monitoring"
   is_abstract: true
   uses:
   - electrostatic_filter_run_status
