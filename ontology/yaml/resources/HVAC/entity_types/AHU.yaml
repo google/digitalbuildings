@@ -3600,6 +3600,21 @@ AHU_DFSS_DXZC_ECONZ_EFSS2X_HT2ZC_CO2C:
   - EFSS2X
   - HT2ZC
   - CO2C
+  
+AHU_SFVSC_CHWRC_OAFC_SSPC_VOCC_CO2C_EFSM:
+  description: "Single zone AHU with CO2,VOC based outside air control,static pressure based VFD speed control,return air temperature based Chilled water valve modulation."
+  is_canonical: true
+  implements:
+  - AHU
+  - SFVSC
+  - CHWRC
+  - OAFC
+  - SSPC
+  - VOCC
+  - CO2C
+  - EFSM
+  opt_uses:
+  - isolation_damper_status  
 
 ###################################
 ### Existing Non-standard Types ###

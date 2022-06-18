@@ -690,6 +690,9 @@ literals:
 - filter_differential_pressure_status:
   - PRESENT
   - ABSENT
+- electrostatic_filter_run_status:
+  - ON
+  - OFF
 - high_level_status:
   - PRESENT
   - ABSENT

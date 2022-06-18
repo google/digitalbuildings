@@ -1255,6 +1255,15 @@ CHPM:
   implements:
   - MONITORING
 
+EFSM:
+  desciption: " An Electrostatic filter used to maintain air quality its run status and alarm monitoring"
+  is_abstract: true
+  uses:
+  - electrostatic_filter_run_status
+  - filter_alarm
+  implements:
+  - MONITORING
+
 FDPM:
   id: "9447758858022813696"
   description: "Filter pressure monitoring."
