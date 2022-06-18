@@ -323,6 +323,11 @@ VSC:
   - speed_frequency_sensor
   - power_sensor
   - voltage_sensor
+  - run_time_accumulator
+  - energy_accumulator
+  - lost_power_alarm
+  - torque_sensor
+  - failed_alarm
   uses:
   - speed_percentage_command
   - run_status

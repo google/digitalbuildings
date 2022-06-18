@@ -50,6 +50,7 @@ literals:
 - condensing_water_flowrate_sensor
 - cooling_output_percentage_command
 - current_sensor
+- torque_sensor
 - differential_pressure_sensor
 - differential_pressure_setpoint
 - discharge_air_cooling_temperature_setpoint
