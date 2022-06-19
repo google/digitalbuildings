@@ -1545,3 +1545,17 @@ FCU_RTC_RHDHS_DTM_DFSS:
   - water_leak_alarm
   - fire_alarm
   - schedule_run_command
+  
+FCU_RMM_DFVSC_FDPM_CHWDC_CHWVM_SRC_EPM_DFRDM_DFMSC_ZTC:
+  description: "FCU with temperature control, humidity monitor with power parameter monitoring."
+  implements:
+  - FCU
+  - RMM
+  - DFVSC
+  - FDPM
+  - CHWDC
+  - CHWVM
+  - SRC
+  - EPM
+  - DFRDM
+  - ZTC

@@ -4876,3 +4876,13 @@ EFHLC:
   - high_exhaust_fan_speed_status
   implements:
   - OPERATIONAL
+  
+DFRDM:  
+  description: "Discharge fan run duration monitoring "
+  is_abstract: true
+  uses:
+  - discharge_fan_run_time_accumulator
+  implements:
+  - MONITORING 
+
+  
