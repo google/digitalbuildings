@@ -50,6 +50,14 @@ IOBM:
   - bypass_phase1_neutral_voltage_sensor
   - bypass_phase2_neutral_voltage_sensor
   - bypass_phase3_neutral_voltage_sensor
+  opt_uses:
+  - phase1_apparent_power_sensor
+  - phase2_apparent_power_sensor
+  - phase3_apparent_power_sensor
+  - line_frequency_sensor
+  - phase1_power_sensor
+  - phase2_power_sensor
+  - phase3_power_sensor
   
 PPWM:
   description: "Phase power monitoring"
