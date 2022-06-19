@@ -192,16 +192,14 @@ SENSOR_COC:
   is_canonical: true
   implements:
   - /SENSOR
-  uses:
-  - zone_air_co_concentration_sensor
+  - COC
  
 SENSOR_OCO2M:
   description: "Outside Carbon dioxide monitoring and control"
   is_canonical: true
   implements:
   - /SENSOR
-  uses:
-  - outside_air_co2_concentration_sensor
+  - OCO2M
 
 
 SENSOR_PCM:
