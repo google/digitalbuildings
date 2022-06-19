@@ -643,7 +643,8 @@ MAU_SFVSC_CHWSC_SSPC_FDPSM2X:
   - SSPC
   - FDPSM2X
   opt_uses:
-  - supply_air_isolation_damper_status 
+  - supply_air_isolation_damper_status
+  
 ###################################
 ### Existing Non-standard Types ###
 ###################################
