@@ -48,6 +48,9 @@ HM_CHW_WAC:
   is_canonical: true
   uses:
   - water_volume_accumulator
+  opt_uses:
+  - exchange_thermal_temperature_sensor
+  - failed_alarm
 
 #New type for CH ZRH EURD
 HM_HW:

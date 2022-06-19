@@ -1133,6 +1133,7 @@ literals:
 - leaving_coil_temperature_sensor
 - heat_recovery_supply_water_temperature_sensor
 - heat_recovery_return_water_temperature_sensor
+- exchange_thermal_temperature_sensor
 
 - hot_water_tank_temperature_sensor
 - hot_water_tank_temperature_setpoint
