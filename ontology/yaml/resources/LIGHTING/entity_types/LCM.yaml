@@ -69,4 +69,17 @@ LCM_SRC:
   is_canonical: true
   implements:
   - LCM
-  - SRC    
+  - SRC 
+
+LCM_OS_IM_LSC_LC_PWM_SCZ_SRC:
+  description: "Standard lighting with scheduling control."
+  is_canonical: true
+  implements:
+  - LCM
+  - OS
+  - IM
+  - LSC
+  - LC
+  - PWM
+  - SCZ
+  - SRC  
