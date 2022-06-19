@@ -174,14 +174,14 @@ FAN_SS_DWI:
   uses:
   - dishwasher_run_status
 
-FAN_STM:
+FAN_SS_STM:
   description: "Basic fan with supply air temperature monitoring."
   is_canonical: true
   implements:
   - FAN
+  - SS
   - STM
-  uses:
-  - supply_air_temperature_sensor
+
 
 ### BUILDING STATIC PRESSURE CONTROL ###
 
