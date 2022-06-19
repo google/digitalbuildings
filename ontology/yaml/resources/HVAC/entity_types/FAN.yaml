@@ -683,7 +683,7 @@ FAN_MIPWM:
   - FAN
   - MIPWM
   
-FAN_MSM:  
+FAN_SS_MSM:  
   description: "Basic fan with speed monitoring and control"
   implements:
   - FAN
