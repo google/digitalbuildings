@@ -126,11 +126,12 @@ PMP_SS_CWCS_VSFC:
   - run_mode
   - lost_power_alarm
   
-PMP_RMM:
-  description: "Pump with run mode monitoring."
+PMP_SS_RMM:
+  description: "typical Pump with run mode monitoring."
   is_canonical: true
   implements:
   - PMP
+  - SS
   - RMM  
 
 ###################################
