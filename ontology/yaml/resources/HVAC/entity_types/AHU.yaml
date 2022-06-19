@@ -3601,6 +3601,21 @@ AHU_DFSS_DXZC_ECONZ_EFSS2X_HT2ZC_CO2C:
   - HT2ZC
   - CO2C
 
+AHU_DFSS_DXRC_RHDHC_AL:
+  description:
+  is_canonical: true
+  implements:
+  - AHU
+  - DFSS
+  - DXRC
+  - RHDHC
+  opt_uses:
+  - filter_alarm
+  - master_alarm
+  - refrigerant_failed_alarm 
+  - outside_heating_exchange_failed_alarm 
+  - water_leak_alarm 
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################

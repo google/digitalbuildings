@@ -729,7 +729,16 @@ literals:
 - lost_power_alarm:
   - ACTIVE
   - INACTIVE
-
+- refrigerant_failed_alarm:
+  - ACTIVE
+  - INACTIVE
+- outside_heating_exchange_failed_alarm:
+  - ACTIVE
+  - INACTIVE
+- compressor_failed_alarm:
+  - ACTIVE
+  - INACTIVE
+  
 # New fields for lighting and fire systems.
 - motion_status:
   - PRESENT
