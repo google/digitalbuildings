@@ -4788,6 +4788,14 @@ VOADC2X:
   implements:
   - operational  
   
+RAIDC:
+  description: "Return air isolation damper control and monitoring."
+  is_abstract: true
+  uses:
+  - return_air_isolation_damper_status
+  - return_air_isolation_damper_control
+ 
+
 RAIDC3X:
   description: "Return air isolation damper control and monitoring, where there are three separate, equal sets of dampers that operate in conjunction."
   is_abstract: true
@@ -4807,6 +4815,8 @@ RAIDC2X:
   uses:
   - return_air_isolation_damper_status_1
   - return_air_isolation_damper_status_2 
+  - return_air_isolation_damper_control_1
+  - return_air_isolation_damper_control_2  
   implements:
   - MONITORING
 
@@ -4817,7 +4827,11 @@ RAIDC4X:
   - return_air_isolation_damper_status_1
   - return_air_isolation_damper_status_2
   - return_air_isolation_damper_status_3
-  - return_air_isolation_damper_status_4  
+  - return_air_isolation_damper_status_4
+  - return_air_isolation_damper_control_1
+  - return_air_isolation_damper_control_2
+  - return_air_isolation_damper_control_3 
+  - return_air_isolation_damper_control_4  
   implements:
   - MONITORING
 
@@ -4838,29 +4852,35 @@ SRC:
   - CONTROL
 
 SAIDC:
-  description: "isolation damper status monitoring on the supply side."
+  description: "isolation damper status monitoring and control on the supply side."
   is_abstract: true
   uses:
   - supply_air_isolation_damper_status
+  - supply_air_isolation_damper_control  
   implements:
   - MONITORING
 
 SAIDC2X:
-  description: "isolation damper status monitoring on the supply side, where there are two separate, equal sets of dampers that operate in conjunction."
+  description: "isolation damper status monitoring and control on the supply side, where there are two separate, equal sets of dampers that operate in conjunction."
   is_abstract: true
   uses:
   - supply_air_isolation_damper_status_1
-  - supply_air_isolation_damper_status_2  
+  - supply_air_isolation_damper_status_2
+  - supply_air_isolation_damper_control_1
+  - supply_air_isolation_damper_control_2  
   implements:
   - MONITORING
 
 SAIDC3X:
-  description: "isolation damper status monitoring on the supply side, where there are three separate, equal sets of dampers that operate in conjunction."
+  description: "isolation damper status monitoring and control on the supply side, where there are three separate, equal sets of dampers that operate in conjunction."
   is_abstract: true
   uses:
   - supply_air_isolation_damper_status_1
   - supply_air_isolation_damper_status_2
   - supply_air_isolation_damper_status_3
+  - supply_air_isolation_damper_control_1
+  - supply_air_isolation_damper_control_2
+  - supply_air_isolation_damper_control_3  
   implements:
   - MONITORING   
   
@@ -4869,7 +4889,9 @@ SSPM2X:
   is_abstract: true
   uses:
   - supply_air_static_pressure_sensor_1
-  - supply_air_static_pressure_sensor_2  
+  - supply_air_static_pressure_sensor_2
+  - supply_air_static_pressure_setpoint_1
+  - supply_air_static_pressure_setpoint_2   
   implements:
   - MONITORING
 
@@ -4923,6 +4945,23 @@ ZTLM:
   - zone_air_temperature_setpoint
   implements:
   - MONITORING
+  
+SFMSC:
+  description: "Discharge fan multi-speed control."
+  is_abstract: true
+  uses:
+  - supply_fan_run_command
+  - supply_fan_run_status
+  - supply_fan_speed_mode 
+
+SFRDM:
+  description: "Very basic system run duration monitoring for supply fans. "
+  is_abstract: true
+  uses:
+  - supply_fan_run_time_accumulator
+  implements:
+  - MONITORING  
+  
 #HRZAM:
 #  description: "High room Zone air temperature monitoring and control. "
 #  is_abstract: true
@@ -5008,7 +5047,9 @@ ZPLM:
   - high_limit_zone_air_pressure_sensor
   - low_limit_zone_air_pressure_sensor
   implements:
-  - MONITORING 
+  - MONITORING
+  
+ 
   
 #HRPM:
 #  description: "High room pressure monitoring and control . "
