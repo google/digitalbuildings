@@ -27,11 +27,11 @@ TANK_SWTC_PHWTC:
   - PHWTC
   
 TANK_LM:  
-  description: "Tank with water level monitoring"
+  description: "Any Tank with media level monitoring"
   is_canonical: true
   implements:
   - /TANK # Inherits from global namespace 
-  - TLM 
+  - LM 
 
 TANK_PLPM:  
   description: "Tank with pipeline pressure monitoring "
@@ -40,19 +40,6 @@ TANK_PLPM:
   - /TANK # Inherits from global namespace 
   - PLPM
 
-TANK_EST_LM:  
-  description: "Tank with level monitoring for emergency sewer tanks"
-  is_canonical: true
-  implements:
-  - /TANK # Inherits from global namespace 
-  - TLM
-
-TANK_DWST_LM:  
-  description: "Tank with level monitoring for domestic water storage tanks"
-  is_canonical: true
-  implements:
-  - /TANK # Inherits from global namespace 
-  - TLM 
 
 TANK_LM_PLPM:  
   description: "Tank with level and pipeline pressure monitoring "
