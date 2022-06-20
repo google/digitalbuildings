@@ -756,7 +756,7 @@ MAU_US_SBO_1000_1:
   
  
 #Canonical for Air washers#
-MAU_SFSS_FDPM_SSPM_STC_SHM_SHC_RDM_CRC_CRM_SPSS:
+MAU_SFSS_FDPM_SSPM_STC_SHC_RDM_CRC_CRM_SPSS:
   description: "Airwasher unit with run command, status, dufferential pressure, static T,RH, monitoring and control"
   implements:
   - MAU
@@ -764,7 +764,6 @@ MAU_SFSS_FDPM_SSPM_STC_SHM_SHC_RDM_CRC_CRM_SPSS:
   - FDPM
   - SSPM
   - STC
-  - SHM
   - SHC
   - RDM
   - CRC
