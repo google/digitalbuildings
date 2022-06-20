@@ -4855,7 +4855,8 @@ AHU_SCHWTC:
   implements:
   - AHU
   - SCHWTC
-  
+
+#PAC Unit#  
 AHU_CHWPM_SFSS_DXSC_SFRDM_CPRDM_EVFSC_STC_ZLTM_ZLPM_ZLHM_DXSC_SFRMM_CHWDT_ZTM:
   description: "AHUs with chilled water temperature monitoring and compressor monitoring with zone temperature and humidity monitoring ."
   is_canonical: true
@@ -4875,7 +4876,8 @@ AHU_CHWPM_SFSS_DXSC_SFRDM_CPRDM_EVFSC_STC_ZLTM_ZLPM_ZLHM_DXSC_SFRMM_CHWDT_ZTM:
   - SFRMM
   - CHWDT
   - ZTM  
-  
+
+#PAC Unit#  
 AHU_SFSS_DX2ZTC_SFRDM_EVFSC_STC_ZLTM_HRPM2X_LRPM2X_ZHLM_SFRMM_ZTM:
   description: "AHUs with chilled water temperature monitoring and compressor monitoring with zone temperature and humidity monitoring ."
   is_canonical: true
