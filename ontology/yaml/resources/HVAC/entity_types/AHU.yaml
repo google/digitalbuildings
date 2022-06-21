@@ -4779,13 +4779,6 @@ AHU_CPRDM:
   - AHU
   - CPRDM  
 
-AHU_CMPC:
-  description: "AHUs with compressor control and monitoring ."
-  is_canonical: true
-  implements:
-  - AHU
-  - CMPC
-
 AHU_RDM:
   description: "AHUs with run duration monitoring ."
   is_canonical: true
@@ -4821,12 +4814,6 @@ AHU_LRZHM:
   - AHU
   - LRZHM   
  
-AHU_CMPC2X:
-  description: "AHUs with compressor control and monitoring for 2 compressors ."
-  is_canonical: true
-  implements:
-  - AHU
-  - CMPC2X
   
 AHU_HRPM2X:
   description: "AHUs with compressor run duration monitoring for 2 compressors ."

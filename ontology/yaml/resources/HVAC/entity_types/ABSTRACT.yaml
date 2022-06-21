@@ -4911,15 +4911,6 @@ CPRDM:
   implements:
   - MONITORING 
 
-CMPC:
-  description: "Compressor run control and monitoring/controlling  ."
-  is_abstract: true
-  uses:
-  - compressor_run_command
-  - compressor_run_status
-  implements:
-  - CONTROL 
-
 EVFSM:
   description: "Evaporative fan speed monitoring ."
   is_abstract: true
@@ -5004,14 +4995,6 @@ ZHLM:
 #  implements:
 #  - CONTROL 
 
-CMPC2X:
-  description: "Compressor run control and monitoring/controlling for 2 coompressors  ."
-  is_abstract: true
-  uses:
-  - compressor_run_status_1
-  - compressor_run_status_2
-  implements:
-  - CONTROL
 
 CPRDM2X:  
   description: "Compressor run duration monitoring of 2 compressors "
@@ -5021,24 +5004,6 @@ CPRDM2X:
   - compressor_run_time_accumulator_2  
   implements:
   - MONITORING  
-
-HRPM2X:
-  description: "High room pressure monitoring and control for 2 sensors. "
-  is_abstract: true
-  uses:
-  - high_limit_zone_air_pressure_sensor_1
-  - high_limit_zone_air_pressure_sensor_2
-  implements:
-  - MONITORING    
-  
-LRPM2X:
-  description: "Low room pressure monitoring and control for 2 sensors. "
-  is_abstract: true
-  uses:
-  - low_limit_zone_air_pressure_sensor_1
-  - low_limit_zone_air_pressure_sensor_2
-  implements:
-  - MONITORING
 
 ZPLM:
   description: "Zone air pressure setpoint limit monitoring."
