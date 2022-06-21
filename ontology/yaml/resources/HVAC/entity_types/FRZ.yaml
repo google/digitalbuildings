@@ -36,7 +36,7 @@ FRZ_DFSS:
   implements:
   - FRZ
   - DFSS
-FRZ_DSS:
+FRZ_DEFSS:
   description: "Freezer with defrost run status ."
   is_canonical: true
   implements:
@@ -53,4 +53,18 @@ FRZ_DFRDM:
   is_canonical: true
   implements:
   - FRZ
-  - DFRDM  
+  - DFRDM
+  
+FRZ_SS_DXZTC_DFSS_DEFSS_DFRDM:
+  description: "Freezer with discharge fan run duration monitoring with compressor run control ."
+  is_canonical: true
+  implements:
+  - FRZ
+  - SS
+  - DXZTC
+  - DFSS
+  - DEFSS
+  - DFRDM
+
+
+  

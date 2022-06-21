@@ -4762,11 +4762,12 @@ HWRWISOVPM:
   implements:
   - MONITORING 
 
-DSS:
+DEFSS:
   description: "defrost run command and status (start/stop) "
   is_abstract: true
   uses:
   - defrost_run_status
+  - defrost_run_command  
   implements:
   - MONITORING
 
