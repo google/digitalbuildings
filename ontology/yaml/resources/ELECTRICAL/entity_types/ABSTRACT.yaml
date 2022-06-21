@@ -67,7 +67,6 @@ RMM:
   uses:
   - run_mode
 
-
 OTPM:
   description: "Oil temperature and pressure monitoring"
   is_abstract: true
@@ -76,12 +75,12 @@ OTPM:
   - oil_pressure_sensor
   
 RDM:
-  description: "Very basic system run duration monitoring. "
+  description: "Very basic system run duration monitoring."
   is_abstract: true
   uses:
   - run_time_accumulator
   implements:
-  - MONITORING  
+  - MONITORING 
   
 TKLS:  
   description: "Very basic tank level status monitoring for Electrical generator equipments."
