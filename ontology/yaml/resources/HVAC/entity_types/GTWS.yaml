@@ -2,9 +2,9 @@
 ### Canonical Types  ###
 ########################
 
-GTWS_BYPVPM_CLPM_WDT_WFRM_SETM:
+GTWS_BYPVPM_CLPM_WDPM_WDT_WFRM_GRTM:
   id: "2086215149248577536"
-  description: "Geothermal loop with a bypass valve, thermal power, flowrate and differential pressure monitoring."
+  description: "Geothermal loop with a bypass valve, thermal power, flowrate, differential pressure, and ground temperature monitoring."
   is_canonical: true
   implements:
   - GTWS
@@ -29,3 +29,19 @@ GTWS_CHWRWISOVPM_CHWRWISOVM_CHWSWISOVM_HWRWISOVPM_HWRWISOVM_HWSWISOVM:
   - HWRWISOVPM
   - HWRWISOVM
   - HWSWISOVM
+
+GTWS_CLPM_GTWFCISOVM_GTWGRISOVM_GTWHEISOVM_GTWHRISOVM_PCHWDT_PHWDT_RMM_WFRC:
+  id: "7852018940933832704"
+  description: "Complex geothermal water system with heat rejection/extraction as well as ground recharge and free cooling (WSE) modes."
+  is_canonical: true
+  implements:
+  - GTWS
+  - CLPM
+  - GTWFCISOVM
+  - GTWGRISOVM
+  - GTWHEISOVM
+  - GTWHRISOVM
+  - PCHWDT
+  - PHWDT
+  - RMM
+  - WFRC

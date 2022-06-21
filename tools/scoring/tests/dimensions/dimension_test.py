@@ -165,7 +165,7 @@ class DimensionTest(absltest.TestCase):
 
   def testStr(self):
     self.assertEqual(
-        self.dimension.__str__(),
+        str(self.dimension),
         '{result_all: 0.00, result_virtual: 0.00, result_reporting: 0.00}')
 
 

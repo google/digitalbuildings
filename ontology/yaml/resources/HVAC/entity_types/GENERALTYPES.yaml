@@ -167,6 +167,7 @@ CHWS:
   - thermal_power_capacity
   - differential_pressure_specification
   - flowrate_requirement
+  - cooling_request_count
 
 CDWS:
   id: "6383437543597146112"
