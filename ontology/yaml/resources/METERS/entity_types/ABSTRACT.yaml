@@ -81,8 +81,7 @@ CLPM:
   is_abstract: true
   uses:
   - cooling_thermal_power_sensor
-  implements:
-  - MONITORING 
+
 
 WFRM:
   description: "Water flowrate monitoring."
