@@ -4973,13 +4973,16 @@ PHWTC:
   is_abstract: true
   uses:
   - potable_hot_water_temperature_sensor  
-
+  implements:
+  - MONITORING
   
 LM:
-  description: ""level monitoring of devices storing media.""
+  description: ""level monitoring of devices storing media."
   is_abstract: true
   uses:
-  - level_status 
+  - level_status
+  implements:
+  - MONITORING  
 
 
 PLPM:  
@@ -4987,5 +4990,7 @@ PLPM:
   is_abstract: true
   uses:
   - line_pressure_sensor 
+  implements:
+  - MONITORING  
 
   
