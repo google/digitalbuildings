@@ -19,6 +19,7 @@ import _thread
 import datetime
 import sys
 from typing import Dict, List
+import os
 
 from validate import entity_instance
 from validate import generate_universe
@@ -100,6 +101,15 @@ def _ValidateTelemetry(subscription: str, service_account: str,
   helper = TelemetryHelper(subscription, service_account)
   helper.Validate(entities, timeout)
 
+def _GetFilepathsFromDir(root_dir):
+  """ Takes in a directory and returns a filepath list for all YAML
+  files it finds. """
+  file_paths = []
+  for root, _, files in os.walk(root_dir, topdown=False):
+    for name in files:
+      if name.endswith('.yaml'):
+        file_paths.append(os.path.join(root,name))
+  return file_paths
 
 def RunValidation(filenames: List[str],
                   use_simplified_universe: bool = False,
@@ -129,7 +139,22 @@ def RunValidation(filenames: List[str],
       print('\nError generating universe')
       sys.exit(0)
     print('\nStarting config validation...\n')
-    entities = _ValidateConfig(filenames, universe)
+
+    # Check if the filenames are in fact directories.
+    # If they are not directories, but are instead yaml files,
+    # append them to the list.
+    unpacked_files = set()
+    for file in filenames:
+      if os.path.isdir(file):
+        unpacked_files.update(_GetFilepathsFromDir(file))
+      else:
+        unpacked_files.add(file)
+
+    # Get rid of duplicate files if parent-child directories were passed.
+    unpacked_files = list(unpacked_files)
+
+    # Validate the entities from the final set of unpacked files.
+    entities = _ValidateConfig(unpacked_files, universe)
     if subscription:
       print('\nStarting telemetry validation...\n')
       _ValidateTelemetry(subscription, service_account, entities, timeout)

@@ -132,6 +132,7 @@ CT_SS_VSFC:
   - lost_power_alarm
 
 CT_SS_VSC_RWISOVM_SWISOVM_SWTM:
+  id: "9226672358444498944"
   description: "Cooling tower with supply and return isolation valves and supply temp monitoring."
   is_canonical: true
   implements:
@@ -191,3 +192,12 @@ CT_SS_CWDT_OA_VSFC_CSWIVS_CRWIVS_CSWTC:
   - control_mode
   - run_mode
   - lost_power_alarm
+  
+  
+CT_SS:
+  id: "14895648758141288448"
+  description: "cooling tower with run command and status. "
+  is_canonical: true
+  implements:
+  - CT
+  - SS
