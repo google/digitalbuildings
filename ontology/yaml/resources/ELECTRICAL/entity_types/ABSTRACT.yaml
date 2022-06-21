@@ -80,8 +80,7 @@ RDM:
   is_abstract: true
   uses:
   - run_time_accumulator
-  implements:
-  - MONITORING 
+ 
   
 TKLS:  
   description: "Very basic tank level status monitoring for Electrical generator equipments."
