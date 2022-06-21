@@ -51,6 +51,7 @@ IOBM:
   - bypass_phase2_neutral_voltage_sensor
   - bypass_phase3_neutral_voltage_sensor
   
+
 PWM:
   description: "Very basic power and enrgy monitoring only."
   is_abstract: true
@@ -89,3 +90,14 @@ TKLS:
   - tank_level_status
   implements:
   - MONITORING
+  
+PPWM:
+  id: "14668216976959078400"
+  description: "Phase power monitoring"
+  is_abstract: true
+  uses:
+  - phase1_apparent_power_sensor
+  - phase2_apparent_power_sensor
+  - phase3_apparent_power_sensor
+  - line_frequency_sensor  
+
