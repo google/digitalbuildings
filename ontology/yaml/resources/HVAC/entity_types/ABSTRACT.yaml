@@ -4970,4 +4970,3 @@ PLPM:
   - line_pressure_sensor 
   implements:
   - MONITORING
-   
