@@ -87,8 +87,7 @@ TKLS:
   is_abstract: true
   uses:
   - tank_level_status
-  implements:
-  - MONITORING
+
   
 PPWM:
   id: "14668216976959078400"
