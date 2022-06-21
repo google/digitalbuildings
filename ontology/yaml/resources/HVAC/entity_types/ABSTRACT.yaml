@@ -4977,7 +4977,7 @@ PHWTC:
   - MONITORING
   
 LM:
-  description: ""level monitoring of devices storing media."
+  description: "level monitoring of devices storing media."
   is_abstract: true
   uses:
   - level_status
