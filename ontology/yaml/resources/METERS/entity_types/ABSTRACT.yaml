@@ -88,21 +88,18 @@ WFRM:
   is_abstract: true
   uses:
   - flowrate_sensor
-  implements:
-  - MONITORING
+
 
 WVM:
   description: "Water volume monitoring."
   is_abstract: true
   uses:
   - water_volume_accumulator
-  implements:
-  - MONITORING 
+
 
 CTEM:
   description: "Thermal energy monitoring for cooling."
   is_abstract: true
   uses:
   - cooling_thermal_energy_accumulator
-  implements:
-  - MONITORING   
+ 
