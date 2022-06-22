@@ -1313,9 +1313,10 @@ literals:
 
 - compressor_run_time_accumulator
 - return_air_isolation_damper_status
-- return_air_isolation_damper_control
+- return_air_isolation_damper_command:
+  - OPEN
+  - CLOSED
 - supply_fan_run_mode
-- supply_air_isolation_damper_control
 - evaporative_fan_speed_sensor
 - high_limit_zone_air_temperature_setpoint
 - low_limit_zone_air_temperature_setpoint
