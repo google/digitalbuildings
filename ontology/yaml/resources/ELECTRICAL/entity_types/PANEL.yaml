@@ -18,3 +18,8 @@ SWITCHBOARD:
   is_canonical: true
   implements:
   - PANEL
+  opt_uses: 
+  - circuit_breaker_status_1
+  - circuit_breaker_status_2
+  - circuit_breaker_trip_status_1
+  - circuit_breaker_trip_status_2
