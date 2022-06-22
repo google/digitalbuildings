@@ -75,4 +75,9 @@ LDS:
   is_abstract: true
   implements:
   - EQUIPMENT
-
+FSS:
+  description: "Generic fire suppression system which uses gas to extinguish fire."
+  is_abstract:true
+  implements:
+  - EQUIPMENT
+  
