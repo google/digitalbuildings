@@ -1190,11 +1190,6 @@ literals:
   - MEDIUM
   - LOW
 
-## New fields for AHUs
-- return_air_co2_concentration_sensor
-- speed_percentage_command
- 
-
 ## New fields for steam/water heat exchanger
 - supply_steam_static_pressure_sensor
 - supply_steam_static_pressure_setpoint

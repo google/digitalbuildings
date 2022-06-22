@@ -4961,14 +4961,6 @@ SSPM2X:
   implements:
   - MONITORING
 
-SFRDM:  
-  description: "Supply fan run duration monitoring "
-  is_abstract: true
-  uses:
-  - supply_fan_run_time_accumulator
-  implements:
-  - MONITORING 
-
 CPRDM:  
   description: "Compressor run duration monitoring "
   is_abstract: true
