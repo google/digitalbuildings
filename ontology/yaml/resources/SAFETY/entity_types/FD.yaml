@@ -20,14 +20,12 @@ FD_STD:
   - FD
   uses:
   - damper_status
-<<<<<<< Updated upstream
   opt_uses:
   - supply_air_damper_open_status
   - supply_air_damper_closed_status
   - return_air_damper_open_status
   - return_air_damper_closed_status
   - high_temperature_alarm
-=======
 
 FD_STD_FA2X:
   description: "Basic fire damper with fire input status"
@@ -38,4 +36,3 @@ FD_STD_FA2X:
   uses:
   - damper_status
   - fire_alarm
->>>>>>> Stashed changes
