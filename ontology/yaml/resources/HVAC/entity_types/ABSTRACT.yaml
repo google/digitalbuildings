@@ -4988,6 +4988,3 @@ PLPM:
   is_abstract: true
   uses:
   - line_pressure_sensor 
-
-
-  
