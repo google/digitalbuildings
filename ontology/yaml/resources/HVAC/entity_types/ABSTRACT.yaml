@@ -1197,12 +1197,13 @@ ESPC:
   id: "6709570284581552128"
   description: "Exhaust air static pressure control."
   is_abstract: true
+  opt_uses:
+  - exhaust_fan_speed_percentage_sensor
   uses:
   - exhaust_air_damper_percentage_command
   - exhaust_fan_run_command
   - exhaust_fan_run_status
   - exhaust_fan_speed_percentage_command
-  - exhaust_fan_speed_percentage_sensor
   - exhaust_air_static_pressure_sensor
   - exhaust_air_static_pressure_setpoint
   implements:
