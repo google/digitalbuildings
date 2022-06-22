@@ -112,6 +112,16 @@ CDWS_CLPM_SWTC_WDPM_WFRC:
   - SWTC
   - WDPM
   - WFRC
+  
+CDWS_CLPM_WDT_WFRM:
+  id: "11680091818338287616"
+  description: "Condensing water system with delta-T, flowrate, and thermal power monitoring."
+  is_canonical: true
+  implements:
+  - CDWS
+  - CLPM
+  - WDT
+  - WFRM
 
 ###################################
 ### Existing Non-standard Types ###
