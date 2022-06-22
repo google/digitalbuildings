@@ -5042,6 +5042,5 @@ MIOVCM3X:
   - current_sensor_1
   - current_sensor_2
   - current_sensor_3
-  implements:
-  - OPERATIONAL
+
 
