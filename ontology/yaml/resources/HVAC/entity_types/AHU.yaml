@@ -4615,85 +4615,66 @@ AHU_DFSS_DX2ZC_ECONZ_CO2C_DSP_RCKTM2X_HTZC_CC2XM_RTM_DTM:
   
 
 
-#PAC Unit#  
-AHU_CHWPVM_DFSS_DXSC_SFRDM_CPRDM_EVFSM_STC_ZTLM_REFPM_ZHLM_SFRMM_CHWDT_ZTM:
-  description: "AHUs with chilled water temperature monitoring and compressor monitoring with zone temperature and humidity monitoring ."
+#PAC Unit 1#  
+AHU_CHWDC_DFSS_DXSC_SFRDM_CPRDM_EVFSM_DXZTC_REFPM_ZHC_DFRMM_CHWDT:
+  description: "CRAC with chilled water temperature monitoring and compressor monitoring with zone temperature and humidity monitoring ."
   is_canonical: true
   implements:
-  - AHU
-  - CHWPVM
-  - DFSS
-  - DXSC
-  - SFRDM
-  - CPRDM
-  - EVFSM
-  - STC
-  - ZTLM
-  - REFPM
-  - ZHLM
-  - SFRMM
-  - CHWDT
-  - ZTM  
+  -CHWDC
+  -DFSS
+  -DXSC
+  -SFRDM
+  -CPRDM
+  -EVFSM
+  -DXZTC
+  -REFPM
+  -ZHC
+  -DFRMM
+  -CHWDT  
 
 #PAC Unit#  
-AHU_SFSS_DX2ZTC_SFRDM_EVFSM_STC_ZTLM_REFPM2X_ZHLM_SFRMM_ZTM:
-  description: "AHUs with chilled water temperature monitoring and compressor monitoring with zone temperature and humidity monitoring ."
+AHU_DFSS_DX2ZTC_SFRDM_EVFSC_REFPM2X_ZHC_DFRMM:
+  description: "CRAC with dual compressor with temperature monitoring and compressor monitoring with humidity monitoring ."
   is_canonical: true
   implements:
-  - AHU
-  - SFSS
-  - DX2ZTC
-  - SFRDM
-  - EVFSM
-  - STC
-  - ZTLM
-  - REFPM2X
-  - ZHLM
-  - SFRMM
-  - ZTM  
+  -DFSS
+  -DX2ZTC
+  -SFRDM
+  -EVFSC
+  -REFPM2X
+  -ZHC
+  -DFRMM 
 
-#AHU Unit#  
+#AHU Unit 1#  
 
-AHU_RMM_SFMSC_SFSS_SFVSC_FDPM_ZA_RACO2C_ECONM2X_SAIDC_CHWSC_CO2C_SFRDM_SRC_EPM:
-  description: "AHUs with chilled water temperature monitoring and compressor monitoring with zone temperature and humidity monitoring ."
+AHU_SFMSC_SFVSC_FDPM_CHWSC_RTM_RACO2C_VOADM2X_SAIDC2X_RAIDS2X_SFRDM:
+  description: "AHUs with chilled water temperature monitoring, compressor monitoring with zone temperature and humidity monitoring with 2 dampers monitoring and control ."
   is_canonical: true
   implements:
-  - AHU
-  - RMM
-  - SFMSC
-  - SFSS
-  - SFVSC
-  - FDPM
-  - ZA
-  - RACO2C
-  - ECONM2X
-  - SAIDC
-  - CHWSC
-  - CO2C
-  - SFRDM
-  - SRC
-  - EPM
+  -SFMSC
+  -SFVSC
+  -FDPM
+  -CHWSC
+  -RTM
+  -RACO2C
+  -VOADM2X
+  -SAIDC2X
+  -RAIDS2X
+  -SFRDM
   
-AHU_RMM_SFMSC_SFSS_SFVSC_FDPM_ZA_RACO2C_ECONM2X_SAIDC2X_RAIDC2X_CHWSC_CO2C_SFRDM_SRC_EPM:
+AHU_SFMSC_SFVSC_FDPM_CHWSC_RTM_RACO2C_VOADM2X_SAIDC_SFRDM:
   description: "AHUs with chilled water temperature monitoring and compressor monitoring with zone temperature and humidity monitoring ."
   is_canonical: true
   implements:
-  - AHU
-  - RMM
-  - SFMSC
-  - SFSS
-  - SFVSC
-  - FDPM
-  - ZA
-  - RACO2C
-  - ECONM2X
-  - SAIDC2X
-  - RAIDC2X
-  - CHWSC
-  - CO2C
-  - SFRDM
-  - SRC
-  - EPM
+  -SFMSC
+  -SFVSC
+  -FDPM
+  -CHWSC
+  -RTM
+  -RACO2C
+  -VOADM2X
+  -SAIDC
+  -SFRDM
 
 AHU_RMM_SFMSC_SFSS_SFVSC_FDPM_ZA_RACO2C_SSPC_ECONM2X_SAIDC_RAIDC2X_CHWSC_CO2C_SFRDM_SRC_EPM:
   description: "AHUs with chilled water temperature monitoring and compressor monitoring with zone temperature and humidity monitoring ."

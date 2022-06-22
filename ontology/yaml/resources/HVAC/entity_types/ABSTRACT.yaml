@@ -364,6 +364,10 @@ SFVSC:
   - supply_fan_speed_percentage_sensor
   - supply_fan_current_sensor
   - supply_fan_power_sensor
+  - supply_fan_power_status
+  - supply_fan_voltage_sensor
+  - supply_fan_failed_alarm
+  - supply_fan_energy_accumulator
   uses:
   - supply_fan_run_command
   - supply_fan_run_status
@@ -4995,12 +4999,15 @@ ZTLM:
   - MONITORING
   
 SFMSC:
-  description: "Discharge fan multi-speed control."
+  description: "Supply fan multi-speed control."
   is_abstract: true
   uses:
   - supply_fan_run_command
   - supply_fan_run_status
-  - supply_fan_speed_mode 
+  - supply_fan_speed_mode
+  - supply_fan_run_mode
+  - supply_fan_schedule_run_command
+
 
 SFRDM:
   description: "Very basic system run duration monitoring for supply fans. "
@@ -5204,3 +5211,12 @@ EFHLC:
   - high_exhaust_fan_speed_status
   implements:
   - OPERATIONAL
+  
+DFRMM:
+  description: "Discharge fan run mode monitoring."
+  is_abstract: true
+  uses:
+  - discharge_fan_run_mode
+  implements:
+  - MONITORING
+  

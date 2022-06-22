@@ -1324,5 +1324,10 @@ literals:
 - supply_fan_run_time_accumulator
 - high_limit_zone_air_relative_humidity_setpoint
 - low_limit_zone_air_relative_humidity_setpoint
+- supply_fan_voltage_sensor
+- supply_fan_energy_accumulator
+
+
+
 
 
