@@ -1248,7 +1248,5 @@ literals:
   - MANUAL
 
 - supply_fan_run_time_accumulator
-- schedule_run_command
 - supply_fan_energy_accumulator
 - supply_fan_voltage_sensor
-- 
