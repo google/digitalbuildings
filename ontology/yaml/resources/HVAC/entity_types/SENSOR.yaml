@@ -209,7 +209,7 @@ SENSOR_PCM:
   - /SENSOR
   - PCM
   
-SENSOR_ZTM_ZHM_CO2M_HCHO_PMM:
+SENSOR_ZA_CO2M_PMM_HCHO:
   description: "Sensor with zone temperature, humidity, CO2, HCHO and particulate matter monitoring"
   is_canonical: true
   implements:
@@ -217,8 +217,10 @@ SENSOR_ZTM_ZHM_CO2M_HCHO_PMM:
   - ZTM
   - ZHM
   - CO2M
-  - HCHO
   - PMM
+  uses:
+  - zone_air_formaldehyde_concentration_sensor  
+  
 
 SENSOR_OCO2M_OA_OHM:
   description: "Sensor with outside air temperature, humidity and CO2 monitoring"
