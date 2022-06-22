@@ -499,15 +499,6 @@ SPSS:
   implements:
   - OPERATIONAL
 
-CWDPSS:
-  description: "Condensate Water Discharge pump start stop monitoring."
-  is_abstract: true
-  uses:
-  - condensate_water_discharge_pump_run_command
-  - condensate_water_discharge_pump_run_status
-  - condensate_water_discharge_pump_failed_alarm
-  implements:
-  - OPERATIONAL
 
 EFSS:
   id: "618830020562911232"
