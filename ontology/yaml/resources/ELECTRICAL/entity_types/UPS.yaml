@@ -28,16 +28,20 @@ UPS_IOBM:
   implements:
   - UPS
   - IOBM
-  opt_uses:
-  - input_frequency_sensor
-  - output_frequency_sensor
-  - bypass_frequency_sensor
-  - failed_alarm
-  
+ 
 UPS_PPWM:
   id: "17075390977788608512"
   description: "UPS with phase power monitoring."
   is_canonical: true
   implements:
   - UPS
-  - PPWM   
+  - PPWM
+
+UPS_IOBM_BATM:
+  description: "UPS with battery parameters and input output electrical monitoring"
+  is_camonical: true
+  implements:
+  - UPS
+  - IOBM
+  - BATM
+  

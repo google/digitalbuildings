@@ -1168,6 +1168,23 @@ literals:
 - bypass_phase2_neutral_voltage_sensor
 - bypass_phase3_neutral_voltage_sensor
 - remaining_charge_time_sensor
+- output_power_sensor
+- output_apparent_power_sensor
+- battery_voltage_sensor
+- low_battery_charge_alarm:
+  - ACTIVE
+  - INACTIVE
+- load_percentage_sensor
+- overload_alarm:
+  - ACTIVE
+  - INACTIVE
+- bypass_status:
+  - BYPASS
+  - NORMAL  
+- inverter_failed_alarm:
+  - ACTIVE
+  - INACTIVE
+
 
 
 ## Refrigerant monitoring fields for AHUs

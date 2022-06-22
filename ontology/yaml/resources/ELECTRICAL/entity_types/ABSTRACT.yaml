@@ -50,6 +50,17 @@ IOBM:
   - bypass_phase1_neutral_voltage_sensor
   - bypass_phase2_neutral_voltage_sensor
   - bypass_phase3_neutral_voltage_sensor
+  opt_uses:
+  - input_frequency_sensor
+  - output_frequency_sensor
+  - bypass_frequency_sensor
+  - failed_alarm
+  - output_power_sensor
+  - output_apparent_power_sensor
+  - bypass_status
+  - overload_alarm
+  - lost_power_alarm
+  - load_percentage_sensor
   
 PPWM:
   id: "14668216976959078400"
@@ -60,3 +71,14 @@ PPWM:
   - phase2_apparent_power_sensor
   - phase3_apparent_power_sensor
   - line_frequency_sensor  
+BATM:
+  description: "Battery typically used with UPS"
+  is_abstract: true
+  uses:
+  - battery_voltage_sensor
+  - battery_charge_percentage_sensor
+  opt_uses:
+  - low_battery_charge_alarm
+  - inverter_failed_alarm
+  
+
