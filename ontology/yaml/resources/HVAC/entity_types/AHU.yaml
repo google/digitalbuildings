@@ -4616,7 +4616,7 @@ AHU_DFSS_DX2ZC_ECONZ_CO2C_DSP_RCKTM2X_HTZC_CC2XM_RTM_DTM:
 
 
 #PAC Unit#  
-AHU_CHWPVM_SFSS_DXSC_SFRDM_CPRDM_EVFSM_STC_ZTLM_REFPM_ZLHM_SFRMM_CHWDT_ZTM:
+AHU_CHWPVM_SFSS_DXSC_SFRDM_CPRDM_EVFSM_STC_ZTLM_REFPM_ZHLM_SFRMM_CHWDT_ZTM:
   description: "AHUs with chilled water temperature monitoring and compressor monitoring with zone temperature and humidity monitoring ."
   is_canonical: true
   implements:
