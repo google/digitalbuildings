@@ -4973,7 +4973,7 @@ EVFSM:
   description: "Evaporative fan speed monitoring ."
   is_abstract: true
   uses:
-  - evaporative_fan_speed_sensor
+  - evaporative_fan_speed_percentage_sensor
   implements:
   - CONTROL 
 
