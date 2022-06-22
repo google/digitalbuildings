@@ -1324,6 +1324,7 @@ CHW2XSC:
   - cooling_thermal_power_capacity
   - chilled_supply_water_temperature_sensor
   - chilled_water_valve_percentage_sensor
+  - cooling_request_count
   uses:
   - supply_air_temperature_sensor
   - supply_air_temperature_setpoint
@@ -1757,6 +1758,7 @@ DX5SC:
   - cooling_thermal_power_capacity
   - cooling_percentage_command
   - compressor_speed_percentage_command
+  - cooling_request_count
   uses:
   - compressor_run_command_1
   - compressor_run_command_2
@@ -1854,6 +1856,8 @@ HPSC:
   - cooling_thermal_power_capacity
   - heating_thermal_power_capacity
   - compressor_speed_percentage_command
+  - cooling_request_count
+  - heating_request_count
   uses:
   - supply_air_temperature_sensor
   - supply_air_temperature_setpoint
@@ -1871,6 +1875,8 @@ HP2SC:
   - cooling_thermal_power_capacity
   - heating_thermal_power_capacity
   - compressor_speed_percentage_command
+  - cooling_request_count
+  - heating_request_count
   uses:
   - supply_air_temperature_sensor
   - supply_air_temperature_setpoint
@@ -2303,6 +2309,7 @@ HT2SC:
   opt_uses:
   - heating_thermal_power_capacity
   - heating_percentage_command
+  - heating_request_count
   uses:
   - heater_run_command_1
   - heater_run_command_2
@@ -2319,6 +2326,7 @@ HT3SC:
   opt_uses:
   - heating_thermal_power_capacity
   - heating_percentage_command
+  - heating_request_count
   uses:
   - heater_run_command_1
   - heater_run_command_2
@@ -2336,6 +2344,7 @@ HT4SC:
   opt_uses:
   - heating_thermal_power_capacity
   - heating_percentage_command
+  - heating_request_count
   uses:
   - heater_run_command_1
   - heater_run_command_2
@@ -2368,6 +2377,7 @@ HTVSC:
   is_abstract: true
   opt_uses:
   - heating_thermal_power_capacity
+  - heating_request_count
   uses:
   - heater_run_command
   - heater_run_status
@@ -3849,6 +3859,7 @@ DX6SC:
   - cooling_thermal_power_capacity
   - cooling_percentage_command
   - compressor_speed_percentage_command
+  - cooling_request_count
   uses:
   - compressor_run_status_1
   - compressor_run_status_2
@@ -4449,6 +4460,7 @@ EC2SC:
   - evaporative_cooler_run_status_1
   - evaporative_cooler_run_status_2
   - cooling_percentage_sensor
+  - cooling_request_count
   uses:
   - evaporative_cooler_run_command_1
   - evaporative_cooler_run_command_2
@@ -4817,6 +4829,7 @@ HWRWISOVPM:
   - MONITORING
 
 MIPVCM:
+  id: "10283962739713900544"
   description: "Motor phase-level input current and voltage monitoring."
   is_abstract: true
   implements:
@@ -4833,6 +4846,7 @@ MIPVCM:
   - average_input_inter_line_motor_voltage_sensor
 
 MIPWM:
+  id: "2094166817340653568"
   description: "Motor input power monitoring."
   is_abstract: true
   implements:
@@ -4844,6 +4858,7 @@ MIPWM:
   - input_motor_frequency_sensor
 
 INVOPWM:
+  id: "10056530958531690496"
   description: "Inverter (VFD) output power monitoring."
   is_abstract: true
   implements:
@@ -4855,6 +4870,7 @@ INVOPWM:
   - input_inverter_frequency_sensor
 
 INVIPCM:
+  id: "3240332922506444800"
   description: "Inverter (VFD) 3-phase input current monitoring."
   is_abstract: true
   implements:
@@ -4865,6 +4881,7 @@ INVIPCM:
   - input_phase3_line_inverter_current_sensor
 
 CWSWISOVPM:
+  id: "14769547968574914560"
   description: "Condensing water supply side isolation valve percentage monitoring."
   is_abstract: true
   uses:
@@ -4874,6 +4891,7 @@ CWSWISOVPM:
   - MONITORING
 
 GTWFCISOVM:
+  id: "5444844940104302592"
   description: "Geothermal water free-cooling isolation valve monitoring; exclusively using ground as heat sink for building load."
   is_abstract: true  
   uses:
@@ -4884,6 +4902,7 @@ GTWFCISOVM:
   - MONITORING
 
 GTWGRISOVM:
+  id: "12463704959361220608"
   description: "Geothermal water ground-recharge isolation valve monitoring; rejecting ground heat to atmosphere via cooling towers."
   is_abstract: true  
   uses:
@@ -4894,6 +4913,7 @@ GTWGRISOVM:
   - MONITORING
 
 GTWHEISOVM:
+  id: "3366433712072818688"
   description: "Geothermal water heat-extraction isolation valve monitoring; extracting ground heat to to use in building."
   is_abstract: true
   uses:
@@ -4904,6 +4924,7 @@ GTWHEISOVM:
   - MONITORING
 
 GTWHRISOVM:
+  id: "11317538854195429376"
   description: "Geothermal water heat-rejection isolation valve monitoring; rejecting building heat to ground."
   is_abstract: true  
   uses:
@@ -4945,6 +4966,7 @@ EFHLC:
   - low_exhaust_fan_speed_status
   - high_exhaust_fan_speed_status
   implements:
+
   - OPERATIONAL
   
 ##Abstracts for Ambient sensors
@@ -4990,3 +5012,6 @@ PMM:
   - zone_air_pm10pt0_concentration_sensor
   implements:
   - MONITORING   
+
+  - OPERATIONAL
+
