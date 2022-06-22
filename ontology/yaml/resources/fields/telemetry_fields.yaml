@@ -1180,7 +1180,7 @@ literals:
   - INACTIVE
 - bypass_status:
   - BYPASS
-  - NORMAL  
+  - INACTIVE  
 - inverter_failed_alarm:
   - ACTIVE
   - INACTIVE

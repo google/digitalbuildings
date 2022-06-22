@@ -39,7 +39,7 @@ UPS_PPWM:
 
 UPS_IOBM_BATM:
   description: "UPS with battery parameters and input output electrical monitoring"
-  is_camonical: true
+  is_canonical: true
   implements:
   - UPS
   - IOBM
