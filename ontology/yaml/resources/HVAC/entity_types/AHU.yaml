@@ -1010,7 +1010,7 @@ AHU_BYPSSPM_DX2SC_ECON_HT2SC_SFSS:
   is_canonical: true
   implements:
   - AHU
-  - BYPSSPM2X
+  - BYPSSPM
   - DX2SC
   - ECON
   - HT2SC
