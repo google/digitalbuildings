@@ -1004,13 +1004,13 @@ AHU_DXSC_ECON_SFSS_SFVSC_SSPC:
   - SFVSC
   - SSPC
 
-AHU_BYPSSPM_DX2SC_ECON_HT2SC_SFSS:
+AHU_BYPSSPC2X_DX2SC_ECON_HT2SC_SFSS:
   id: "3828814635436343296"
   description: "Single zone AHU with bypass static pressure control."
   is_canonical: true
   implements:
   - AHU
-  - BYPSSPM
+  - BYPSSPC2X
   - DX2SC
   - ECON
   - HT2SC
@@ -3975,7 +3975,7 @@ AHU_US_MTV_2171_3:
   id: "11391598658907537408"
   description: "Non-standard type for 2171"
   implements:
-  - AHU_BYPSSPM_DX2SC_ECON_HT2SC_SFSS
+  - AHU_BYPSSPC2X_DX2SC_ECON_HT2SC_SFSS
   - INCOMPLETE
   uses:
   - supply_air_static_pressure_sensor_1
