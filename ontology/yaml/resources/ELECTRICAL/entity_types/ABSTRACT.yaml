@@ -22,6 +22,7 @@ SS:
   opt_uses:
   - failed_alarm
   - lost_power_alarm
+  - 
 
 
 IOBM:
@@ -50,6 +51,8 @@ IOBM:
   - bypass_phase1_neutral_voltage_sensor
   - bypass_phase2_neutral_voltage_sensor
   - bypass_phase3_neutral_voltage_sensor
+ opt_uses:
+  - bypass_phase_status
   
 PPWM:
   id: "14668216976959078400"
