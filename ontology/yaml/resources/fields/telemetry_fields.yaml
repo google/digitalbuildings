@@ -38,6 +38,7 @@ literals:
 - compressor_run_command:
   - ON
   - OFF
+  - UNKNOWN
 - compressor_run_status:
   - ON
   - OFF
@@ -1217,7 +1218,9 @@ literals:
 - secondary_chilled_return_water_isolation_valve_percentage_sensor
 - secondary_chilled_return_water_isolation_valve_percentage_command
 - thermal_energy_accumulator
-- ground_isolation_command
+- ground_isolation_command:
+  - ON
+  - OFF
 - ground_temperature_sensor
 - input_motor_frequency_sensor
 - input_motor_power_sensor
