@@ -4840,8 +4840,7 @@ EPM:
   - current_sensor
   - power_sensor
   - energy_accumulator
-  implements:
-  - MONITORING"
+
   
 VOADC2X:
   description: "Variable outside air damper control and monitoring, where there are two separate, equal sets of dampers that operate in conjunction."
