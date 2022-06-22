@@ -1221,16 +1221,6 @@ literals:
 - ground_temperature_sensor
 
 
-# New Fields for Drain Pumps
-- condensate_water_discharge_pump_run_command
-  - ON
-  - OFF
-- condensate_water_discharge_pump_run_status
-  - ON
-  - OFF
-- condensate_water_discharge_pump_failed_alarm
-  - NORMAL
-  - TRIP
 
 - input_motor_frequency_sensor
 - input_motor_power_sensor
