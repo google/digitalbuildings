@@ -380,6 +380,11 @@ SFVSC:
   - supply_fan_speed_percentage_sensor
   - supply_fan_current_sensor
   - supply_fan_power_sensor
+  - supply_fan_power_status
+  - supply_fan_voltage_sensor
+  - supply_fan_failed_alarm
+  - supply_fan_energy_accumulator
+  
   uses:
   - supply_fan_run_command
   - supply_fan_run_status
@@ -451,6 +456,8 @@ DFMSC:
   - discharge_fan_run_command
   - discharge_fan_run_status
   - discharge_fan_speed_mode
+  
+ 
 
 ZHM:
   id: "17192076649286336512"
@@ -4894,9 +4901,13 @@ SFRDM:
   implements:
   - MONITORING  
   
-SFVCS:
-  description: "Variable control of speed for exhaust fans."
+  
+SFMSC:
+  description: "Supply fan multi-speed control."
   is_abstract: true
   uses:
+  - supply_fan_run_command
+  - supply_fan_run_status
+  - supply_fan_speed_mode
   - supply_fan_run_mode
-  - supply_fan_speed_mode  
+  - supply_fan_schedule_run_command   
