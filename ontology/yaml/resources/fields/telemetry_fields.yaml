@@ -1231,6 +1231,7 @@ literals:
 - defrost_temperature_setpoint
 
 - defrost_temperature_setpoint
+- defrost_run_command
 
 - input_motor_frequency_sensor
 - input_motor_power_sensor
