@@ -20,3 +20,9 @@ FD_STD:
   - FD
   uses:
   - damper_status
+  opt_uses:
+  - supply_air_damper_open_status
+  - supply_air_damper_closed_status
+  - return_air_damper_open_status
+  - return_air_damper_closed_status
+  - high_temperature_alarm
