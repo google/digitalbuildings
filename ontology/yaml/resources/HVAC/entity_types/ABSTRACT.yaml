@@ -4909,4 +4909,5 @@ SFMSC:
   - supply_fan_run_status
   - supply_fan_speed_mode
   - supply_fan_run_mode
-  - supply_fan_schedule_run_command   
+  opt_uses:
+  - schedule_run_command   
