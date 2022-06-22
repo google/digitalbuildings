@@ -4845,8 +4845,7 @@ DFRDM:
   - discharge_fan_run_time_accumulator
   implements:
   - MONITORING 
-=======
-  - MONITORING
+
 
 MIPVCM:
   id: "10283962739713900544"
