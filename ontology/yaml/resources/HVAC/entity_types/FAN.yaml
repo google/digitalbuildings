@@ -75,6 +75,20 @@ FAN_SS_REFM:
   - SS
   - REFM
 
+FAN_SS_VSC_REFM4X:
+  id: "1060590702859124736"
+  description: "Fan with start/stop status and speed control with four (4) refrigerant concentration sensors."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - VSC
+  uses:
+  - zone_air_refrigerant_concentration_sensor_1
+  - zone_air_refrigerant_concentration_sensor_2
+  - zone_air_refrigerant_concentration_sensor_3
+  - zone_air_refrigerant_concentration_sensor_4
+
 FAN_SS_REFC:
   id: "12258005025502003200"
   description: "Refrigerant control fan."
@@ -387,6 +401,7 @@ FAN_SS_VSFC:
   - control_status
 
 FAN_SS_ZTC:
+  id: "17048861961233629184"
   description: "Fan zone temperature control"
   is_canonical: true
   implements:
@@ -395,6 +410,7 @@ FAN_SS_ZTC:
   - ZTC
 
 FAN_SS_VSC_EPC_EHHRC:
+  id: "6589814776619073536"
   description: "Fan with exhaust static pressure control and heat recovery coils."
   is_canonical: true
   implements:
@@ -405,6 +421,7 @@ FAN_SS_VSC_EPC_EHHRC:
   - EHHRC
  
 FAN_SS_VSC_EHHRC:
+  id: "17074194709137588224"
   description: "Fan with exhaust and heat recovery coils."
   is_canonical: true
   implements:
@@ -414,6 +431,7 @@ FAN_SS_VSC_EHHRC:
   - EHHRC
  
 FAN_SS_DWI2X:
+  id: "4175885376348487680"
   description: "Dishwasher-interlocked fan."
   is_canonical: true
   implements:
@@ -422,6 +440,16 @@ FAN_SS_DWI2X:
   uses:
   - dishwasher_run_status_1
   - dishwasher_run_status_2
+
+FAN_EFHLC_COCDSP_NOCDSP:
+  id: "13969877559739940864"
+  description: "Two-speed exhaust fan (low/high) with CO concentration dual setpoint control and NO concentration dual setpoint control."
+  is_canonical: true
+  implements:
+  - FAN
+  - EFHLC
+  - COCDSP
+  - NOCDSP
 
 ###################################
 ### Existing Non-standard Types ###
@@ -611,6 +639,7 @@ FAN_SS_AL:
   - control_status
 
 FAN_SS_VSC_EPC_EHHRC_EHHRC3X:
+  id: "13340710618047447040"
   description: "Non-standard fan with exhaust static pressure control and heat recovery coils."
   implements:
   - FAN

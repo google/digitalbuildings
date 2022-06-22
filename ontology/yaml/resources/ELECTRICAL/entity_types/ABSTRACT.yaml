@@ -25,6 +25,7 @@ SS:
 
 
 IOBM:
+  id: "11309587186103353344"
   description: "Input, output, and bypass electrical monitoring, typically for a UPS."
   is_abstract: true
   uses:
@@ -49,3 +50,13 @@ IOBM:
   - bypass_phase1_neutral_voltage_sensor
   - bypass_phase2_neutral_voltage_sensor
   - bypass_phase3_neutral_voltage_sensor
+  
+PPWM:
+  id: "14668216976959078400"
+  description: "Phase power monitoring"
+  is_abstract: true
+  uses:
+  - phase1_apparent_power_sensor
+  - phase2_apparent_power_sensor
+  - phase3_apparent_power_sensor
+  - line_frequency_sensor  

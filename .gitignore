@@ -1,7 +1,10 @@
 **/node_modules/*
 **/temp/*
-**/dist/main.js
 *..pyc
+**/dist
+**/build
+**/__pycache__
+**/*.egg-info
 
 *.DS_Store
 package-lock.json
