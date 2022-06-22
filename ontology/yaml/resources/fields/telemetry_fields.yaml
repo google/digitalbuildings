@@ -1317,7 +1317,7 @@ literals:
   - OPEN
   - CLOSED
 - supply_fan_run_mode
-- evaporative_fan_speed_sensor
+- evaporative_fan_speed_percentage_sensor
 - high_limit_zone_air_temperature_setpoint
 - low_limit_zone_air_temperature_setpoint
 - supply_fan_speed_mode
