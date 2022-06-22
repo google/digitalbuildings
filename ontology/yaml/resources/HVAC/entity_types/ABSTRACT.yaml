@@ -4859,7 +4859,7 @@ RAIDC:
   is_abstract: true
   uses:
   - return_air_isolation_damper_status
-  - return_air_isolation_damper_control
+  - return_air_isolation_damper_command
  
 
 RAIDC3X:
@@ -4869,9 +4869,9 @@ RAIDC3X:
   - return_air_isolation_damper_status_1
   - return_air_isolation_damper_status_2
   - return_air_isolation_damper_status_3 
-  - return_air_isolation_damper_control_1
-  - return_air_isolation_damper_control_2
-  - return_air_isolation_damper_control_3   
+  - return_air_isolation_damper_command_1
+  - return_air_isolation_damper_command_2
+  - return_air_isolation_damper_command_3   
   implements:
   - MONITORING
 
@@ -4881,8 +4881,8 @@ RAIDC2X:
   uses:
   - return_air_isolation_damper_status_1
   - return_air_isolation_damper_status_2 
-  - return_air_isolation_damper_control_1
-  - return_air_isolation_damper_control_2  
+  - return_air_isolation_damper_command_1
+  - return_air_isolation_damper_command_2  
   implements:
   - MONITORING
 
@@ -4894,10 +4894,10 @@ RAIDC4X:
   - return_air_isolation_damper_status_2
   - return_air_isolation_damper_status_3
   - return_air_isolation_damper_status_4
-  - return_air_isolation_damper_control_1
-  - return_air_isolation_damper_control_2
-  - return_air_isolation_damper_control_3 
-  - return_air_isolation_damper_control_4  
+  - return_air_isolation_damper_command_1
+  - return_air_isolation_damper_command_2
+  - return_air_isolation_damper_command_3 
+  - return_air_isolation_damper_command_4  
   implements:
   - MONITORING
 
@@ -4922,7 +4922,7 @@ SAIDC:
   is_abstract: true
   uses:
   - supply_air_isolation_damper_status
-  - supply_air_isolation_damper_control  
+  - supply_air_isolation_damper_command  
   implements:
   - MONITORING
 
@@ -4932,8 +4932,8 @@ SAIDC2X:
   uses:
   - supply_air_isolation_damper_status_1
   - supply_air_isolation_damper_status_2
-  - supply_air_isolation_damper_control_1
-  - supply_air_isolation_damper_control_2  
+  - supply_air_isolation_damper_command_1
+  - supply_air_isolation_damper_command_2  
   implements:
   - MONITORING
 
@@ -4944,9 +4944,9 @@ SAIDC3X:
   - supply_air_isolation_damper_status_1
   - supply_air_isolation_damper_status_2
   - supply_air_isolation_damper_status_3
-  - supply_air_isolation_damper_control_1
-  - supply_air_isolation_damper_control_2
-  - supply_air_isolation_damper_control_3  
+  - supply_air_isolation_damper_command_1
+  - supply_air_isolation_damper_command_2
+  - supply_air_isolation_damper_command_3  
   implements:
   - MONITORING   
   
