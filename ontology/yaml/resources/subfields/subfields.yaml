@@ -44,6 +44,7 @@ component:
   guidevane: "Control vanes that meter refrigerant (on a centrifugal chiller) or air (on an AHU)."
   heater: "Component which provides heat to media."
   humidifier: "Component which humidifies."
+  inverter: "Device or circuitry that changes direct current to alternating current (e.g. variable frequency drive)"
   lamp: "The component of a lighting device that emits the light."
   louver: "A device comprising multiple blades that regulates the flow of air"
   motor: "A machine, especially one powered by electricity or internal combustion, that supplies motive power for a vehicle or for some other device with moving parts."
@@ -57,7 +58,7 @@ component:
   vane: "Component for guiding media flow."
   wheel: "Component used for transfer of heat from incoming to outgoing air streams. "
   winding: "Conductive wires wrapped around a magnetic core."
-descriptor: 
+descriptor:
   air: "Atmospheric air, either conditioned or unconditioned."
   aisle: "Passage between two rows of server racks."
   ammonia: "Ammonia gas."
@@ -86,6 +87,7 @@ descriptor:
   detection : "Process of identifying conditions."
   discharge: "Media leaving system to enter ambient conditioned space. Typically applies only to air-side systems."
   dutycycle: "The fraction of one period in which a signal or system is active."
+  defrost: "De-freezing ice from a surface."
   east: "Cardinal direction; opposite of west."
   economizer: "Process or component responsible for the utilization of free cooling."
   electric: "Process or component driven by electricity (as to distinguish from natural gas, for instance)."
@@ -144,6 +146,7 @@ descriptor:
   model: "Particular design version of an asset (e.g. model_label)."
   neutral: "Line in the electrical cirucit which carries current back to the source. Distinct from ground."
   next: "Something that occurs directly in time after the present or most recent one."
+  no: "Nitrogen monoxide, a colorless gas. It is a toxic air pollutant."
   no2: "Nitrogen dioxide."
   north: "Cardinal direction; opposite of south"
   occupancy: "State of being occupied."
@@ -345,3 +348,4 @@ point_type:
   status: "The multistate value indicating an observed state in a piece of equipment, often indicating if a command was effected. It is a neutral observation (e.g. no quality judgment of 'good' or 'bad'). It also has no units of measurement (therefore if combined with a measurement subfield, it will indicate that the field is the directional status based on some measurement of that type, e.g. power_status equates to an on/off value based on some inference of power)."
   specification: "The specified design value for a particular operating condition (differential pressure specification)."
   timestamp: "An instant in time, represented as a numeric offset from the epoch."
+
