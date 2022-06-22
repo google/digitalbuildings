@@ -339,7 +339,7 @@ EFVSC:
   - exhaust_fan_speed_percentage_sensor
   - exhaust_fan_current_sensor
   - exhaust_fan_power_sensor
-  uses:
+    uses:
   - exhaust_fan_run_command
   - exhaust_fan_run_status
   - exhaust_fan_speed_percentage_command
@@ -4966,4 +4966,37 @@ EFHLC:
   - low_exhaust_fan_speed_status
   - high_exhaust_fan_speed_status
   implements:
+<<<<<<< Updated upstream
+=======
+  - OPERATIONAL
+
+FFSC:
+  description: "Start/stop command and status monitoring for fresh air fans."
+  is_abstract: true
+    uses:
+  - fresh_air_fan_run_status
+  - fresh_air_fan_run_command
+  implements:
+  - OPERATIONAL
+
+KEFVSC:
+  id: "12580390630858948608"
+  description: "Variable speed control for kitchen exhaust fans."
+  is_abstract: true
+  opt_uses:
+  - kitchen_exhaust_fan_speed_frequency_sensor
+  - kitchen_exhaust_fan_speed_percentage_sensor
+  - kitchen_exhaust_fan_current_sensor
+  - kitchen_exhaust_fan_power_sensor
+  - 
+    uses:
+  - kitchen_exhaust_fan_run_command
+  - kitchen_exhaust_fan_run_mode_1
+  - kitchen_exhaust_fan_run_mode_2
+  - kitchen_exhaust_fan_run_status
+  - kitchen_exhaust_fan_override_mode_1
+  - kitchen_exhaust_fan_override_mode_2
+  - kitchen_exhaust_fan_speed_percentage_command
+  implements:
+>>>>>>> Stashed changes
   - OPERATIONAL
