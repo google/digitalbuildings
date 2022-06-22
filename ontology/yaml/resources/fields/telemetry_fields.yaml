@@ -1224,7 +1224,6 @@ literals:
 # New Fields for VAV
 - zone_air_occupied_cooling_temperature_setpoint
 - zone_air_unoccupied_cooling_temperature_setpoint
-- low_limit_flowrate_setpoint
 - high_limit_flowrate_setpoint
 - input_motor_frequency_sensor
 - input_motor_power_sensor
