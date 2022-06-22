@@ -5063,16 +5063,7 @@ CPRDM2X:
   implements:
   - MONITORING  
 
-ZPLM:
-  description: "Zone air pressure setpoint limit monitoring."
-  is_abstract: true
-  uses:
-  - high_limit_zone_air_pressure_sensor
-  - low_limit_zone_air_pressure_sensor
-  implements:
-  - MONITORING
-  
- 
+
   
 #HRPM:
 #  description: "High room pressure monitoring and control . "
