@@ -4621,23 +4621,6 @@ AHU_DFRC:
   - AHU
   - DFRC
   
-AHU_DFSS_DX2ZC_ECONZ_CO2C_DSP_RCKTM2X_HTZC_CC2XM_RTM_DTM:
-  description: "AHU with dual compressor refrigeration circuits (with monitoring), heating, and zone-level temperature and ventilation control."
-  is_canonical: true
-  implements:
-  - AHU
-  - DFSS
-  - DX2ZC
-  - ECONZ
-  - CO2C
-  - DSP
-  - RCKTM2X
-  - HTZC
-  - CC2XM
-  - RTM
-  - DTM
-  opt_uses:
-  - condensing_fan_current_sensor
   
 AHU_DXZTC_SFRC_RMM_DXSC:
   description: "AHU with compressor status monitoring, cooling, and zone-level temperature and ventilation control."
