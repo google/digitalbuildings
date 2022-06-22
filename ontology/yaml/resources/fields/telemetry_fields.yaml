@@ -1247,4 +1247,8 @@ literals:
   - AUTO
   - MANUAL
 
-- supply_fan_run_time_accumulator  
+- supply_fan_run_time_accumulator
+- supply_fan_schedule_run_command
+- supply_fan_energy_accumulator
+- supply_fan_voltage_sensor
+- 
