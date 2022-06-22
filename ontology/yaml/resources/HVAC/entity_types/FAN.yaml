@@ -75,6 +75,20 @@ FAN_SS_REFM:
   - SS
   - REFM
 
+FAN_SS_VSC_REFM4X:
+  id: "1060590702859124736"
+  description: "Fan with start/stop status and speed control with four (4) refrigerant concentration sensors."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - VSC
+  uses:
+  - zone_air_refrigerant_concentration_sensor_1
+  - zone_air_refrigerant_concentration_sensor_2
+  - zone_air_refrigerant_concentration_sensor_3
+  - zone_air_refrigerant_concentration_sensor_4
+
 FAN_SS_REFC:
   id: "12258005025502003200"
   description: "Refrigerant control fan."
@@ -426,6 +440,16 @@ FAN_SS_DWI2X:
   uses:
   - dishwasher_run_status_1
   - dishwasher_run_status_2
+
+FAN_EFHLC_COCDSP_NOCDSP:
+  id: "13969877559739940864"
+  description: "Two-speed exhaust fan (low/high) with CO concentration dual setpoint control and NO concentration dual setpoint control."
+  is_canonical: true
+  implements:
+  - FAN
+  - EFHLC
+  - COCDSP
+  - NOCDSP
 
 ###################################
 ### Existing Non-standard Types ###
