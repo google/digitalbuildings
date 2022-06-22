@@ -504,7 +504,7 @@ SSPC2X:
   uses:
   - supply_air_static_pressure_sensor_1
   - supply_air_static_pressure_sensor_2
-  - supply_air_static_pressure_average
+  - average_supply_air_static_pressure_sensor
   - supply_air_static_pressure_setpoint
   implements:
   - OPERATIONAL
