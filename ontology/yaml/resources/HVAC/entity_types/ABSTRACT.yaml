@@ -5010,22 +5010,7 @@ SFRDM:
   implements:
   - MONITORING  
   
-#HRZAM:
-#  description: "High room Zone air temperature monitoring and control. "
-#  is_abstract: true
-#  uses:
-#  - high_limit_zone_air_temperature_setpoint
-#  implements:
-#  - CONTROL
-  
-#LRZAM:
-#  description: "Low room Zone air temperature monitoring and control. "
-#  is_abstract: true
-#  uses:
-#  - low_limit_zone_air_temperature_setpoint
-#  implements:
-#  - CONTROL  
-  
+ 
 ZHLM:
   description: "Zone reative humidity setpoint limit monitoring."
   is_abstract: true
