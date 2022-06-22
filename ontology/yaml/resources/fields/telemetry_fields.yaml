@@ -1315,7 +1315,6 @@ literals:
 - low_speed_status:
   - ON
   - OFF
-- low_limit_speed_percentage_command
 - high_limit_speed_percentage_command
 - dc_voltage_sensor
 - ac_voltage_sensor
