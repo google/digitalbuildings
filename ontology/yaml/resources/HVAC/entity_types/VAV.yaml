@@ -30,47 +30,8 @@ VAV_SD_CSP:
   - SD
   - CSP
   
-VAV_PDSCV:
-  description: "Pressure-dependent supply damper control."
-  is_canonical: true
-  implements:
-  - VAV
-  - PDSCV
+ 
 
-VAV_SFM:
-  description: "Supply air flow monitoring for VAV. "
-  is_canonical: true
-  implements:
-  - VAV
-  - SFM  
-
-VAV_MINFC:
-  description: "Minimum airflowrate set-point for VAV. "
-  is_canonical: true
-  implements:
-  - VAV
-  - MINFC
-
-VAV_MAXFC:
-  description: "Maximum airflowrate set-point for VAV. "
-  is_canonical: true
-  implements:
-  - VAV
-  - MAXFC
-
-VAV_ZTM:
-  description: "Zone temperature monitoring for VAV. "
-  is_canonical: true
-  implements:
-  - VAV
-  - ZTM
-  
-VAV_AHAC:
-  description: "Zone occupancy status for VAV. "
-  is_canonical: true
-  implements:
-  - VAV
-  - AHAC 
 
 VAV_SD_DSP:
   id: "13827887727640576000"
