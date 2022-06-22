@@ -4965,6 +4965,14 @@ OHM:
   - outside_air_relative_humidity_sensor
   implements:
   - MONITORING 
+  
+HCHO:
+  description: "Zone Air Formaldehyde conentration sensor."
+  is_abstract: true
+  uses:
+  - zone_air_formaldehyde_concentration_sensor
+  implements:
+  - MONITORING  
 
 PCM:
   description: "General particulate matter monitoring."
