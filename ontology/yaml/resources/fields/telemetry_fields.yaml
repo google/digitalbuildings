@@ -61,10 +61,12 @@ literals:
   - ON
   - OFF
   - AUTO
+  - UNKNOWN
 - discharge_fan_run_status:
   - ON
   - OFF
   - AUTO
+  - UNKNOWN
 - discharge_fan_speed_mode:
   - AUTO
   - LOW
