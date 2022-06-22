@@ -889,7 +889,6 @@ MINFC:
   - flowrate_sensor
   
 MAXFC:
-  id: "16039155144679489536"
   description: "Maximum flow control for entire loop."
   is_abstract: true
   implements:
