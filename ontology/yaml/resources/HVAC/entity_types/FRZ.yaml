@@ -18,42 +18,6 @@
 
 ### FREEZER ###
 
-FRZ_SS:
-  description: "Freezer with start stop status."
-  is_canonical: true
-  implements:
-  - FRZ
-  - SS
-FRZ_HPSC:
-  description: "Freezer heat pump run monitoring and control ."
-  is_canonical: true
-  implements:
-  - FRZ
-  - HPSC
-FRZ_DFSS:
-  description: "Freezer with discharge fan monitoring and conrol ."
-  is_canonical: true
-  implements:
-  - FRZ
-  - DFSS
-FRZ_DEFSS:
-  description: "Freezer with defrost run status ."
-  is_canonical: true
-  implements:
-  - FRZ
-  - DSS
-FRZ_ZTC:
-  description: "Freezer with zone temperature monitoring and control ."
-  is_canonical: true
-  implements:
-  - FRZ
-  - ZTC
-FRZ_DFRDM:
-  description: "Freezer with discharge fan run duration monitoring ."
-  is_canonical: true
-  implements:
-  - FRZ
-  - DFRDM
   
 FRZ_SS_DXZTC_DFSS_DEFSS_DFRDM:
   description: "Freezer with discharge fan run duration monitoring with compressor run control ."
