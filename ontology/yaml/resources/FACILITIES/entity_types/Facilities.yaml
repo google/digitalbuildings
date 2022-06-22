@@ -41,3 +41,6 @@ STAIRWELL:
 RAMP:
   id: "5843466283684724736"
   description: "This is a type for RAMP facilities object"
+  
+ZONE:
+  description: "This is a type for ZONE in a facility"  
