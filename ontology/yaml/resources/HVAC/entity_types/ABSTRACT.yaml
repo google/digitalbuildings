@@ -4851,7 +4851,7 @@ VOADC2X:
   - outside_air_damper_percentage_command_1
   - outside_air_damper_percentage_command_2
   implements:
-  - operational  
+  - OPERATIONAL  
   
 RAIDC:
   description: "Return air isolation damper control and monitoring."
