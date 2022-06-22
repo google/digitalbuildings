@@ -4966,8 +4966,6 @@ EFHLC:
   - low_exhaust_fan_speed_status
   - high_exhaust_fan_speed_status
   implements:
-<<<<<<< Updated upstream
-=======
   - OPERATIONAL
 
 FFSC:
@@ -4998,5 +4996,4 @@ KEFVSC:
   - kitchen_exhaust_fan_override_mode_2
   - kitchen_exhaust_fan_speed_percentage_command
   implements:
->>>>>>> Stashed changes
   - OPERATIONAL
