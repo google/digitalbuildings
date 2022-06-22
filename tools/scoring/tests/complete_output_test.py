@@ -75,13 +75,13 @@ class CompleteOutputTest(absltest.TestCase):
     score = self.output['StateMapping']
     self.assertEqual(
         score,
-        '{result_all: -1.00, result_virtual: None, result_reporting: -1.00}')
+        '{result_all: 1.00, result_virtual: None, result_reporting: 1.00}')
 
   def testUnitMapping(self):
     score = self.output['UnitMapping']
     self.assertEqual(
         score,
-        '{result_all: 0.56, result_virtual: None, result_reporting: 0.56}')
+        '{result_all: 0.69, result_virtual: None, result_reporting: 0.69}')
 
 
 if __name__ == '__main__':
