@@ -1231,7 +1231,7 @@ literals:
 - condensate_water_discharge_pump_failed_alarm
   - NORMAL
   - TRIP
-=======
+
 - input_motor_frequency_sensor
 - input_motor_power_sensor
 - motor_powerfactor_sensor
