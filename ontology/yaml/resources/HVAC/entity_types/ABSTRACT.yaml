@@ -364,11 +364,11 @@ SFVSC:
   - supply_fan_speed_percentage_sensor
   - supply_fan_current_sensor
   - supply_fan_power_sensor
+  - supply_fan_run_mode
   uses:
   - supply_fan_run_command
   - supply_fan_run_status
   - supply_fan_speed_percentage_command
-  - supply_fan_auto_status
   implements:
   - OPERATIONAL
 
