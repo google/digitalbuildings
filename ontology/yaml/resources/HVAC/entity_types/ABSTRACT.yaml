@@ -640,10 +640,10 @@ SFSS:
   - supply_fan_power_capacity
   - supply_fan_current_sensor
   - supply_fan_power_sensor
+  - supply_fan_failed_alarm
   uses:
   - supply_fan_run_command
   - supply_fan_run_status
-  - supply_fan_trip_status
 
 RHM:
   id: "14781568929201389568"
