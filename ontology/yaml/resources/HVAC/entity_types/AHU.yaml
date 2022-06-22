@@ -4636,7 +4636,7 @@ AHU_CHWPVM_SFSS_DXSC_SFRDM_CPRDM_EVFSM_STC_ZTLM_REFPM_ZHLM_SFRMM_CHWDT_ZTM:
   - ZTM  
 
 #PAC Unit#  
-AHU_SFSS_DX2ZTC_SFRDM_EVFSC_STC_ZTLM_HRPM2X_LRPM2X_ZHLM_SFRMM_ZTM:
+AHU_SFSS_DX2ZTC_SFRDM_EVFSM_STC_ZTLM_REFPM2X_ZHLM_SFRMM_ZTM:
   description: "AHUs with chilled water temperature monitoring and compressor monitoring with zone temperature and humidity monitoring ."
   is_canonical: true
   implements:
@@ -4644,11 +4644,10 @@ AHU_SFSS_DX2ZTC_SFRDM_EVFSC_STC_ZTLM_HRPM2X_LRPM2X_ZHLM_SFRMM_ZTM:
   - SFSS
   - DX2ZTC
   - SFRDM
-  - EVFSC
+  - EVFSM
   - STC
   - ZTLM
-  - HRPM2X
-  - LRPM2X 
+  - REFPM2X
   - ZHLM
   - SFRMM
   - ZTM  
