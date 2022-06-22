@@ -5024,7 +5024,7 @@ MSM3X:
   - high_limit_speed_percentage_command_1
   - high_limit_speed_percentage_command_2
   - high_limit_speed_percentage_command_3  
-  - high_speed_status_1
+  - high_speed_status
   - low_speed_status 
 
 MIOVCM3X:
