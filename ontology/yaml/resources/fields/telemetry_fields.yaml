@@ -1309,6 +1309,7 @@ literals:
 
 
 - high_limit_speed_percentage_command
+- low_limit_speed_percentage_command
 - high_speed_status:
   - ON
   - OFF 
