@@ -4995,9 +4995,6 @@ EFHLC:
   - low_exhaust_fan_speed_status
   - high_exhaust_fan_speed_status
   implements:
-
   - OPERATIONAL
 
-
-  - OPERATIONAL
 
