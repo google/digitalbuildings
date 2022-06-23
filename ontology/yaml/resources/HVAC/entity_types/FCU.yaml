@@ -425,6 +425,16 @@ FCU_DFSS_DFVSC_CHWRC_RHDHC:
   - CHWRC
   - RHDHC
 
+FCU_DFVSC_CHWRC_CPC_FA2X:
+  description: "Variable speed DX fan coil with chilled water return temp control with drain pump and fire alarm monitoring ."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFVSC
+  - CHWRC
+  - CPC
+  - FA2X
+
 FCU_DFSS_DFHLC_DSP_DXZC:
   id: "12762408183767498752"
   description: "Mult-speed DX fan coil with zone temp control."
