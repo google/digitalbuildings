@@ -1253,3 +1253,4 @@ literals:
 - discharge_fan_run_mode
 - discharge_fan_energy_accumulator
 - discharge_fan_voltage_sensor
+- discharge_fan_run_time_accumulator
