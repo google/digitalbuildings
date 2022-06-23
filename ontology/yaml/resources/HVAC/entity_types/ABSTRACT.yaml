@@ -325,13 +325,9 @@ VSC:
   - voltage_sensor
   - failed_alarm
   - temperature_sensor
-<<<<<<< Updated upstream
-
-=======
   - torque_sensor
   - energy_accumulator
   - run_time_accumulator
->>>>>>> Stashed changes
   uses:
   - speed_percentage_command
   - run_status
