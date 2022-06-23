@@ -753,3 +753,15 @@ MAU_US_SBO_1000_1:
   - DEPRECATED
   uses:
   - humidification_run_command
+  
+MAU_DFMSC_DFVSC_FDPM_DTC_DFRDM:
+  description: "Makeup Air Unit with discharge air monitoring along with fan speed control"
+  implements:
+  - MAU
+  - DFMSC
+  - DFVSC
+  - FDPM
+  - DTC
+  - DFRDM
+  
+  
