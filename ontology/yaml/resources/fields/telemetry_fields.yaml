@@ -1326,6 +1326,13 @@ literals:
 - low_limit_zone_air_relative_humidity_setpoint
 - supply_fan_voltage_sensor
 - supply_fan_energy_accumulator
+- supply_fan_power_status:
+  - ON
+  - OFF
+- supply_fan_schedule_run_command:
+  - ON
+  - OFF
+- discharge_fan_run_mode 
 
 
 
