@@ -1889,6 +1889,26 @@ HP2SC:
   implements:
   - CONTROL
 
+DXASP2:
+  description: "Two DX unit auto sequential panel monitoring for single zone."
+  is_abstract: true
+  opt_uses:
+  - supply_damper_open_status_1
+  - supply_damper_open_status_2
+  - supply_damper_closed_status_1
+  - supply_damper_closed_status_2
+  - return_damper_open_status_1
+  - return_damper_open_status_2
+  - return_damper_closed_status_1
+  - return_damper_closed_status_2 
+  - zone_air_cooling_temperature_setpoint
+  uses:
+  - zone_air_temperature_sensor
+  - fan_run_status_1
+  - fan_run_status_2
+  implements:
+  - MONITORING
+
 HPDC:
   id: "3683151334988578816"
   description: "Discharge side heat pump control."
