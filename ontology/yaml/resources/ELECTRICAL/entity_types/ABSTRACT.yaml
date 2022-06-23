@@ -63,3 +63,19 @@ PPWM:
   - phase2_apparent_power_sensor
   - phase3_apparent_power_sensor
   - line_frequency_sensor  
+
+UPSBM:
+ description: "UPS battery monitoring points"
+ is_abstract: true
+ uses:
+  - battery_status
+  - bypass_abnormal_status
+  - Inverter_AsynchroNous_status
+  - System_Over_Load_status
+  - bypass_phase_status
+  - rectifier_status
+  - input_supply_status
+  - Battery_self_test_status
+  - inverter_status
+  - bypass_status
+  - inverter_mode

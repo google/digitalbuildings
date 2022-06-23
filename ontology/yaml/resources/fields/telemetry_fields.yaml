@@ -1302,3 +1302,38 @@ literals:
 - high_exhaust_fan_speed_status:
   - ON
   - OFF
+
+# Addition of telemetry for UPS battery monitoring
+- battery_status:
+  - NORMAL
+  - FAULT
+  - bypass_abnormal_status:
+  - NORMAL
+  - FAULT
+- Inverter_AsynchroNous_status:
+  - NORMAL
+  - FAULT
+- System_Over_Load_status:
+  - NORMAL
+  - OVERLOAD
+- bypass_phase_status:
+  - NORMAL
+  - REVERSED
+- rectifier_status:
+  - Off 
+  - SOFT START
+  - Main Input On
+  - Battery Input On
+- input_supply_status:
+  - NORMAL
+  - Battery Mode 
+  - All Off
+- Battery_self_test:
+  - TRUE
+  - FALSE
+- inverter_status:
+  - OFF
+  - SOFT START
+  - ON
+
+  
