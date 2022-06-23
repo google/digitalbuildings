@@ -3797,6 +3797,19 @@ SWPSS:
   implements:
   - OPERATIONAL
 
+DRPM:
+  description: "Drain pump monitoring."
+  is_abstract: true
+  opt_uses:
+  - water_low_level_status
+  - water_high_level_status
+  - drain_pump_failed_alarm
+  - motor_input_power_status
+  uses:
+  - drain_pump_run_status
+  implements:
+  - MONITORING
+
 SDM:
   id: "5997878398154702848"
   description: "Supply air damper monitoring."
