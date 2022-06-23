@@ -1211,6 +1211,9 @@ literals:
 - leaving_water_tank_temperature_sensor
 - entering_water_tank_temperature_sensor
 
+# Tank level
+- percentage_sensor
+
 - secondary_heating_supply_water_temperature_sensor
 - secondary_heating_return_water_temperature_sensor
 - primary_heating_supply_water_temperature_sensor
