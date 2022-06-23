@@ -383,8 +383,7 @@ SFVSC:
   - supply_fan_voltage_sensor
   - supply_fan_failed_alarm
   - supply_fan_energy_accumulator
-  
-  uses:
+    uses:
   - supply_fan_run_command
   - supply_fan_run_status
   - supply_fan_speed_percentage_command
@@ -401,6 +400,8 @@ DFVSC:
   - discharge_fan_speed_frequency_sensor
   - discharge_fan_speed_percentage_sensor
   - discharge_fan_lost_power_alarm
+  - discharge_fan_voltage_sensor
+  - dischargefan_energy_accumulator  
   uses:
   - discharge_fan_speed_percentage_command
   - discharge_fan_run_status
@@ -455,6 +456,9 @@ DFMSC:
   - discharge_fan_run_command
   - discharge_fan_run_status
   - discharge_fan_speed_mode
+  opt_uses:
+  - discharge_fan_run_mode
+  - schedule_run_command 
   
  
 
@@ -4902,14 +4906,3 @@ SFRDM:
   implements:
   - MONITORING  
   
-  
-SFMSC:
-  description: "Supply fan multi-speed control."
-  is_abstract: true
-  uses:
-  - supply_fan_run_command
-  - supply_fan_run_status
-  - supply_fan_speed_mode
-  - supply_fan_run_mode
-  opt_uses:
-  - schedule_run_command   
