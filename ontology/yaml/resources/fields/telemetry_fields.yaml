@@ -1332,7 +1332,7 @@ literals:
 - supply_fan_schedule_run_command:
   - ON
   - OFF
-- discharge_fan_run_mode 
+- discharge_fan_run_mode
 
 
 
