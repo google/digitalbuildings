@@ -5074,7 +5074,6 @@ DFVSC3X:
   - ac_voltage_sensor_3
   - discharge_fan_run_time_accumulator_3
   - discharge_fan_run_mode_3
-
   uses:
   - discharge_fan_speed_percentage_command_1
   - discharge_fan_run_status_1
