@@ -1283,6 +1283,7 @@ literals:
 ## New fields for Fresh Air Fan With VFD
 - output_voltage_sensor
 - run_time_accumulator
+- torque_sensor
 
 # Addition of telemetry for parking exhaust fan
 - low_limit_zone_air_co_concentration_setpoint
