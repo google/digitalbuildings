@@ -5043,4 +5043,47 @@ MIOVCM3X:
   - current_sensor_2
   - current_sensor_3
 
+DFVSC3X:
+  description: "Variable speed control for discharge fans for 3 separate zones."
+  is_abstract: true
+  opt_uses:
+  - discharge_fan_current_sensor_1
+  - discharge_fan_power_sensor_1
+  - discharge_fan_speed_frequency_sensor_1
+  - discharge_fan_speed_percentage_sensor_1
+  - discharge_fan_lost_power_alarm_1
+  - dc_voltage_sensor_1
+  - ac_voltage_sensor_1
+  - discharge_fan_run_time_accumulator_1
+  - discharge_fan_run_mode_1
+  - discharge_fan_current_sensor_2
+  - discharge_fan_power_sensor_2
+  - discharge_fan_speed_frequency_sensor_2
+  - discharge_fan_speed_percentage_sensor_2
+  - discharge_fan_lost_power_alarm_2
+  - dc_voltage_sensor_2
+  - ac_voltage_sensor_2
+  - discharge_fan_run_time_accumulator_2
+  - discharge_fan_run_mode_2
+  - discharge_fan_current_sensor_3
+  - discharge_fan_power_sensor_3
+  - discharge_fan_speed_frequency_sensor_3
+  - discharge_fan_speed_percentage_sensor_3
+  - discharge_fan_lost_power_alarm_3
+  - dc_voltage_sensor_3
+  - ac_voltage_sensor_3
+  - discharge_fan_run_time_accumulator_3
+  - discharge_fan_run_mode_3
 
+  uses:
+  - discharge_fan_speed_percentage_command_1
+  - discharge_fan_run_status_1
+  - discharge_fan_run_command_1
+  - discharge_fan_speed_percentage_command_2
+  - discharge_fan_run_status_2
+  - discharge_fan_run_command_2
+  - discharge_fan_speed_percentage_command_3
+  - discharge_fan_run_status_3
+  - discharge_fan_run_command_3
+  implements:
+  - OPERATIONAL
