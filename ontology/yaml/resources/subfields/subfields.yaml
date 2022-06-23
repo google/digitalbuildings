@@ -108,6 +108,7 @@ descriptor:
   frost: "Freezing water on a surface."
   ## TODO: make it so gas only has one meaning
   gas: "Process or component driven by natural gas (as to distinguish from electric)."
+  generator: "Generator as a source of power."
   glycol: "Liquid mixture consisting of glycol and water "
   green: "green light fracture of ambient light"
   ground: "The solid surface of the earth."
@@ -186,6 +187,8 @@ descriptor:
   reversing: "Reverses direction of flow (e.g. reversing valve on heat pump)."
   room: "A space that can be occupied, or a part or division of a building or floor enclosed by walls."
   so2: "Sulfur dioxide."
+  source1: "Redundant power source 1 provision typically for Automatic transfer switch"
+  source2: "Redundant power source 2 provision typically for Automatic transfer switch"
   scene : "The holistic ambience achieved from coordinated control of an area's lighting levels and colors. One of many stored setpoints that may be recalled to apply predetermined lighting levels across a number of fixtures."
   schedule: "Refers to the time-of-day run-time requirements for the equipment."
   season: "Weather conditions under which certain systems or processes are enabled."

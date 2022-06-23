@@ -791,6 +791,59 @@ literals:
 - phase2_apparent_power_sensor
 - phase3_apparent_power_sensor
 
+# Added for Automatic transfer switch
+- source1_phase1_phase2_voltage_sensor
+- source1_phase2_phase3_voltage_sensor
+- source1_phase3_phase1_voltage_sensor
+- source1_frequency_sensor
+- source2_phase1_phase2_voltage_sensor
+- source2_phase2_phase3_voltage_sensor
+- source2_phase3_phase1_voltage_sensor
+- source2_frequency_sensor
+- master_mode:
+  - SOURCE1
+  - NOSOURCE
+  - REMOTE
+  - MANUAL
+- source1_power_lost_alarm:
+  - ACTIVE
+  - INACTIVE 
+- source2_power_lost_alarm:
+  - ACTIVE
+  - INACTIVE
+- generator_status:
+  - ON
+  - OFF
+- source1_phase1_phase2_over_voltage_status:
+  - PRESENT
+  - ABSENT
+- source1_phase2_phase3_over_voltage_status:
+  - PRESENT
+  - ABSENT
+- source1_phase3_phase1_over_voltage_status:
+  - PRESENT
+  - ABSENT
+- source1_over_voltage_status:
+  - PRESENT
+  - ABSENT
+- source2_phase1_phase2_over_voltage_status:
+  - PRESENT
+  - ABSENT
+- source2_phase2_phase3_over_voltage_status:
+  - PRESENT
+  - ABSENT
+- source2_phase3_phase1_over_voltage_status:
+  - PRESENT
+  - ABSENT
+- source2_over_voltage_status:
+  - ACTIVE
+  - INACTIVE
+- switch_position_mode:
+  - POSITION1
+  - POSITION2
+  - POSITION3
+
+
 # Added for UK-LON-S2
 
 - zone_air_voc_percentage_setpoint
