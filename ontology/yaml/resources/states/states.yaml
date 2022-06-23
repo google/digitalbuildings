@@ -63,11 +63,11 @@ FADING: "An operation mode of a lighting dimmer: dimming speed based on a durati
 RAMPING: "An operation mode of a lighting dimmer: dimming speed defined in percent per second"
 
 #FOR ATS
-SOURCE_1: "An operation mode having source 1 as priority" 
+SOURCEA: "An operation mode having source 1 as priority" 
 NOSOURCE: "An operation mode having no source as priority"
-POSITION_0: "Automatic Transfer switch position 0"
-POSITION_1: "Automatic Transfer switch position 1"
-POSITION_2: "Automatic Transfer switch position 2"
+POSITIONA: "Automatic Transfer switch position 0"
+POSITIONB: "Automatic Transfer switch position 1"
+POSITIONC: "Automatic Transfer switch position 2"
 
 
 

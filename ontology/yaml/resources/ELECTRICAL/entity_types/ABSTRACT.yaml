@@ -74,7 +74,7 @@ SRC1:
   - source1_phase2_phase3_over_voltage_status
   - source1_phase3_phase1_over_voltage_status
   - source1_over_voltage_status
-  - source1_power_lost_alarm
+  - source1_lost_power_alarm
 
 SRC2:
   description: "Source 1 parameters typically for ATS"
@@ -89,4 +89,4 @@ SRC2:
   - source2_phase2_phase3_over_voltage_status
   - source2_phase3_phase1_over_voltage_status
   - source2_over_voltage_status
-  - source2_power_lost_alarm
+  - source2_lost_power_alarm

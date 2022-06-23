@@ -801,14 +801,14 @@ literals:
 - source2_phase3_phase1_voltage_sensor
 - source2_frequency_sensor
 - master_mode:
-  - SOURCE1
+  - SOURCEA
   - NOSOURCE
   - REMOTE
   - MANUAL
-- source1_power_lost_alarm:
+- source1_lost_power_alarm:
   - ACTIVE
   - INACTIVE 
-- source2_power_lost_alarm:
+- source2_lost_power_alarm:
   - ACTIVE
   - INACTIVE
 - generator_status:
@@ -839,9 +839,9 @@ literals:
   - ACTIVE
   - INACTIVE
 - switch_position_mode:
-  - POSITION1
-  - POSITION2
-  - POSITION3
+  - POSITIONA
+  - POSITIONB
+  - POSITIONC
 
 
 # Added for UK-LON-S2
