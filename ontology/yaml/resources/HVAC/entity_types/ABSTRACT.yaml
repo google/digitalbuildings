@@ -1434,6 +1434,7 @@ DXZTC:
   - cooling_thermal_power_capacity
   - cooling_percentage_command
   - compressor_speed_percentage_command
+  - compressor_run_time_accumulator
   uses:
   - zone_air_temperature_setpoint
   - zone_air_temperature_sensor
@@ -4953,16 +4954,24 @@ SAIDC3X:
   implements:
   - MONITORING   
   
-SSPM2X:
-  description: "Static pressure monitoring on the supply side where the average of the two sensors are being taken."
+SSPC2X:
+  description: "Supply static pressure control via supply fan speed with 2 sensors"
   is_abstract: true
+  opt_uses:
+  - supply_fan_speed_frequency_sensor
+  - supply_fan_run_command
+  - supply_fan_run_status
+  - pressurization_request_count
+  - supply_air_damper_percentage_command
+  - supply_air_flowrate_sensor
+  - supply_fan_speed_percentage_command
   uses:
   - supply_air_static_pressure_sensor_1
-  - supply_air_static_pressure_sensor_2
+  - supply_air_static_pressure_sensor_2  
   - supply_air_static_pressure_setpoint_1
-  - supply_air_static_pressure_setpoint_2   
+  - supply_air_static_pressure_setpoint_2  
   implements:
-  - MONITORING
+  - OPERATIONAL
 
 CPRDM:  
   description: "Compressor run duration monitoring "
