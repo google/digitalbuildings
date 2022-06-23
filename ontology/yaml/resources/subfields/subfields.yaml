@@ -155,6 +155,7 @@ descriptor:
   oil: "A viscous liquid derived from petroleum, especially for use as a fuel or lubricant."
   ongoing: "Hapenning currently, right now."
   output: "The output of a control loop (e.g. PID Loop Output)"
+  over: "Refering to exceeding the required or expected"
   ozone: "Highly reactive gaseous compound comprised of three oxygen atoms."
   particle: "A very fine clump of solid matter."
   outside: "Process or measurement of local atmospheric conditions."
