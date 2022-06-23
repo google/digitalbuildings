@@ -43,17 +43,6 @@ DOAS_EFSS_EFVSC_HTWHLSTC_SFSS_SFVSC_STC:
   - SFVSC
   - STC
 
-DOAS_SFMSC_SFVSC_FDPM_STM_SRC_SFRDM:
-  description: "DOAS with fan speed control with temperature monitoring."
-  is_canonical: true
-  implements:
-  - DOAS
-  - SFMSC
-  - SFVSC
-  - FDPM
-  - STM
-  - SRC
-  - SFRDM
 
 
 
