@@ -26,20 +26,6 @@ TANK_SWTC_PHWTC:
   - SWTC
   - PHWTC
   
-TANK_LM:  
-  description: "Any Tank with media level monitoring"
-  is_canonical: true
-  implements:
-  - /TANK # Inherits from global namespace 
-  - LM 
-
-TANK_PLPM:  
-  description: "Tank with pipeline pressure monitoring "
-  is_canonical: true
-  implements:
-  - /TANK # Inherits from global namespace 
-  - PLPM
-
 
 TANK_LM_PLPM:  
   description: "Tank with level and pipeline pressure monitoring "
