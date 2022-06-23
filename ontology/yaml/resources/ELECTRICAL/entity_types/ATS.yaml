@@ -16,7 +16,7 @@
 
 ATS_SRC1_SRC2:
   description: "Standard Automatic Transfer Switches."
-  is_canonical:true
+  is_canonical: true
   implements:
   - ATS
   - SRC1
