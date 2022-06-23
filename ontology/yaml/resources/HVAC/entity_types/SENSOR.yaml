@@ -43,6 +43,8 @@ SENSOR_OA:
   implements:
   - /SENSOR # Inherits from global namespace
   - OA
+  opt_uses:
+  - outside_air_co2_concentration_sensor
 
 SENSOR_CAAT:
   id: "16195377055288786944"
