@@ -4883,8 +4883,10 @@ MIPCVM:
 EPM:
   description: "Basic Electrical parameter monitoring."
   is_abstract: true
-  uses:
+
+  opt_uses:
   - power_status
+  uses:  
   - voltage_sensor
   - current_sensor
   - power_sensor
