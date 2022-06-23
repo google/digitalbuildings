@@ -4898,11 +4898,11 @@ EPM:
   implements:
   - MONITORING
 
-SFRDM:
-  description: "Very basic system run duration monitoring for supply fan."
+DFRDM:
+  description: "Very basic system run duration monitoring for discharge fan."
   is_abstract: true
   uses:
-  - supply_fan_run_time_accumulator
+  - discharge_fan_run_time_accumulator
   implements:
   - MONITORING  
   
