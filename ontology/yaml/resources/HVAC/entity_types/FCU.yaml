@@ -49,6 +49,15 @@ FCU_DFSS_CSP_DXZC:
   - CSP
   - DXZC
 
+FCU_DXRC_RMM_FA2X:
+  description: "Typical DX FCU with cooling-only (return control) with run mode and fire monitoring ."
+  is_canonical: true
+  implements:
+  - FCU
+  - DXRC
+  - RMM
+  - FA2X
+
 FCU_DFSS_CSP_DX2ZC:
   id: "2962575394609299456"
   description: "Typical 2-stage DX FCU with cooling-only (zone control)."
