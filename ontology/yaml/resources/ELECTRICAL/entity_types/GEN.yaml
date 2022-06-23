@@ -12,49 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-GEN_SS:
-  description: "Standard Generator unit."
-  is_canonical: true
-  implements:
-  - GEN
-  - SS  
-
-GEN_RMM:
-  description: "Generator with run mode monitoring."
-  is_canonical: true
-  implements:
-  - GEN
-  - RMM
+ 
   
-GEN_TKLS:
-  description: "Generator with tank level monitoring."
-  is_canonical: true
-  implements:
-  - GEN
-  - TKLS
-  
-GEN_OTPM:
-  description: "Generator with oil temperature and pressure monitoring."
-  is_canonical: true
-  implements:
-  - GEN
-  - OTPM  
-
-GEN_PWM:
-  description: "Generator with electrical parameter monitoring."
-  is_canonical: true
-  implements:
-  - GEN
-  - PWM 
-
-GEN_RDM:
-  description: "Generator with run duration monitoring."
-  is_canonical: true
-  implements:
-  - GEN
-  - RDM   
-  
-GEN_SS_RMM_TKLS_OTPM_PWM_RDM:
+GEN_SS_RMM_TKLS_OTPM_PWM:
   description: "Generator with run duration, Tank level, oil temperature, pressure, and run duration monitoring."
   is_canonical: true
   implements:
