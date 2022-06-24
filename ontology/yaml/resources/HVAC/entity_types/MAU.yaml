@@ -756,7 +756,7 @@ MAU_US_SBO_1000_1:
   
  
 #Canonical for Air washers#
-MAU_SFSS_FDPM_SSPM_STM_SHM_SFRDM:
+MAU_SFSS_FDPM_SSPM_STM_SHM:
   description: "makeup Air Unit with run command, status, dufferential pressure, static T,RH, monitoring and control"
   implements:
   - MAU
