@@ -4829,19 +4829,6 @@ HWRWISOVPM:
   - MONITORING
 
  
-CRC:
-  description: "controller Run command."
-  is_abstract: true
-  uses:
-  - controller_run_command 
-  
-CRM:
-  description: "controller Run mode."
-  is_abstract: true
-  uses:
-  - controller_run_mode  
-=======
-
 MIPVCM:
   id: "10283962739713900544"
   description: "Motor phase-level input current and voltage monitoring."
