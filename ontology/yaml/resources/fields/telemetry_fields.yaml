@@ -1305,10 +1305,10 @@ literals:
 - ac_voltage_sensor
 - low_limit_speed_percentage_command
 - high_limit_speed_percentage_command
-- high_speed_status:
+- discharge_fan_high_speed_status:
   - ON
   - OFF
-- low_speed_status:
+- discharge_fan_low_speed_status:
   - ON
   - OFF 
 - exhaust_fan_run_mode:

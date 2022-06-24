@@ -682,14 +682,3 @@ FAN_SS_MSM:
   - FAN
   - MSM
   
-FAN_SS_MIOVCM_MIPWM_MSM_RDM_RMM:  
-  description: "fan with speed, run duration power and voltage monitoring."
-  implements:
-  - FAN
-  - SS
-  - MIOVCM
-  - MIPWM
-  - MSM
-  - RDM
-  - RMM
-
