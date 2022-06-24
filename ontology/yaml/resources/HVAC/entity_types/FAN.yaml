@@ -670,12 +670,7 @@ FAN_SS_VSC_EPC_EHHRC_EHHRC3X:
   - heat_recovery_water_isolation_valve_command_2
   - heat_recovery_water_isolation_valve_command_3
   
-FAN_MIPWM:
-  description: "Basic fan with input power sensor"
-  implements:
-  - FAN
-  - MIPWM
-  
+
 FAN_SS_MSM:  
   description: "Basic fan with speed monitoring (used in jet-fans for ventilation purpose)"
   implements:
