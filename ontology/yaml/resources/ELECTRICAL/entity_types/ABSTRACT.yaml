@@ -67,7 +67,10 @@ PPWM:
 UPSBM:
  description: "UPS battery monitoring points"
  is_abstract: true
+ opt_uses:
+  - fan_failed_alarm
  uses:
+  - battery_percentage_sensor
   - battery_status
   - bypass_abnormal_status
   - Inverter_AsynchroNous_status
@@ -79,3 +82,4 @@ UPSBM:
   - inverter_status
   - bypass_status
   - inverter_mode
+  - battery_voltage
