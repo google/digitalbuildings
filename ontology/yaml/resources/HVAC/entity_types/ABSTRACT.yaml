@@ -532,6 +532,7 @@ DFSS:
   - discharge_air_static_pressure_sensor
   - discharge_fan_lost_power_alarm
   - schedule_run_command
+  - discharge_fan_run_time_accumulator
   uses:
   - discharge_fan_run_command
   - discharge_fan_run_status
@@ -644,6 +645,7 @@ SFSS:
   - supply_fan_power_capacity
   - supply_fan_current_sensor
   - supply_fan_power_sensor
+  - supply_fan_run_time_accumulator
   uses:
   - supply_fan_run_command
   - supply_fan_run_status
@@ -5021,14 +5023,7 @@ SFMSC:
   - schedule_run_command
 
 
-SFRDM:
-  description: "Very basic system run duration monitoring for supply fans. "
-  is_abstract: true
-  uses:
-  - supply_fan_run_time_accumulator
-  implements:
-  - MONITORING  
-  
+
  
 ZHLM:
   description: "Zone reative humidity setpoint limit monitoring."
@@ -5040,22 +5035,6 @@ ZHLM:
   implements:
   - MONITORING
 
-#HRZHM:
-#  description: "High room Zone air humidity monitoring and control. "
-#  is_abstract: true
-#  uses:
-#  - high_limit_zone_air_relative_humidity_setpoint
-#  implements:
-#  - CONTROL    
-  
-#LRZHM:
-#  description: "Low room Zone air humidity monitoring and control. "
-#  is_abstract: true
-#  uses:
-#  - low_limit_zone_air_relative_humidity_setpoint
-#  implements:
-#  - CONTROL 
-
 
 CPRDM2X:  
   description: "Compressor run duration monitoring of 2 compressors "
@@ -5066,23 +5045,6 @@ CPRDM2X:
   implements:
   - MONITORING  
 
-
-  
-#HRPM:
-#  description: "High room pressure monitoring and control . "
-#  is_abstract: true
-#  uses:
-#  - high_limit_zone_air_pressure_sensor
-#  implements:
-#  - MONITORING    
-  
-#LRPM:
-#  description: "Low room pressure monitoring and control. "
-#  is_abstract: true
-#  uses:
-#  - low_limit_zone_air_pressure_sensor
-#  implements:
-#  - MONITORING 
 
 MIPVCM:
   id: "10283962739713900544"
