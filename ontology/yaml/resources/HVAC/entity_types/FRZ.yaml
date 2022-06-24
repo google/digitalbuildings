@@ -19,15 +19,14 @@
 ### FREEZER ###
 
   
-FRZ_SS_DXZTC_DFSS_DEFSS_DFRDM:
+FRZ_DXZTC_DFSS_DXZTC_DFRDM:
   description: "Freezer with discharge fan run duration monitoring with compressor run control ."
   is_canonical: true
   implements:
   - FRZ
-  - SS
   - DXZTC
   - DFSS
-  - DEFSS
+  - DXZTC
   - DFRDM
 
 

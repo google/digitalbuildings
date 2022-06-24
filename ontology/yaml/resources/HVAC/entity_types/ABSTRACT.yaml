@@ -527,6 +527,7 @@ DFSS:
   - discharge_fan_power_sensor
   - discharge_air_static_pressure_sensor
   - discharge_fan_lost_power_alarm
+  - discharge_fan_run_time_accumulator
   uses:
   - discharge_fan_run_command
   - discharge_fan_run_status
@@ -4837,15 +4838,6 @@ DEFSS:
   - defrost_run_command  
   implements:
   - MONITORING
-
-DFRDM:  
-  description: "Discharge fan run duration monitoring "
-  is_abstract: true
-  uses:
-  - discharge_fan_run_time_accumulator
-  implements:
-  - MONITORING 
-
 
 MIPVCM:
   id: "10283962739713900544"
