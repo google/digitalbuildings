@@ -529,6 +529,7 @@ EFSS:
   - exhaust_fan_power_sensor
   - exhaust_air_flowrate_capacity
   - exhaust_fan_power_capacity
+  - exhaust_fan_run_mode
   uses:
   - exhaust_fan_run_command
   - exhaust_fan_run_status
