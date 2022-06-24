@@ -553,6 +553,7 @@ DFSS:
   - discharge_fan_power_sensor
   - discharge_air_static_pressure_sensor
   - discharge_fan_lost_power_alarm
+  - discharge_fan_run_time_accumulator
   uses:
   - discharge_fan_run_command
   - discharge_fan_run_status
@@ -4898,11 +4899,3 @@ EPM:
   implements:
   - MONITORING
 
-DFRDM:
-  description: "Very basic system run duration monitoring for discharge fan."
-  is_abstract: true
-  uses:
-  - discharge_fan_run_time_accumulator
-  implements:
-  - MONITORING  
-  
