@@ -683,4 +683,12 @@ FAN_SS_FDPM_EFVCS_EFSS_SRC_MIPCVM_EPM_RDM:
   - EPM
   - RDM
   
-FAN_EFSS_FDPM_EFVSC_SRC:  
+FAN_EFSS_FDPM_EFVSC_SRC: 
+  description: "Exhaust fan with power, voltage, current, differential pressure and run durating monitoring ."
+  is_canonical: true
+  implements:
+  - FAN
+  - EFSS
+  - FDPM
+  - EFVSC
+  - SRC 
