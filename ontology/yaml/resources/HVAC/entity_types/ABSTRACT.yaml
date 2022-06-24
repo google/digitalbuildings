@@ -4879,6 +4879,14 @@ EFHLC:
   implements:
   - OPERATIONAL
   
+DFRMM:
+  description: "Discharge fan run mode monitoring."
+  is_abstract: true
+  uses:
+  - discharge_fan_run_mode
+  implements:
+  - MONITORING  
+  
 
 
   
