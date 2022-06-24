@@ -1310,4 +1310,7 @@ literals:
   - OFF
 - low_speed_status:
   - ON
-  - OFF  
+  - OFF 
+- exhaust_fan_run_mode:
+  - AUTO
+  - MANUAL
