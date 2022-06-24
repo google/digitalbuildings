@@ -4990,3 +4990,10 @@ EFHLC:
   implements:
   - OPERATIONAL
 
+SFRDM:
+  description: "Very basic system run duration monitoring for supply fans. "
+  is_abstract: true
+  uses:
+  - supply_fan_run_time_accumulator
+  implements:
+  - MONITORING 
