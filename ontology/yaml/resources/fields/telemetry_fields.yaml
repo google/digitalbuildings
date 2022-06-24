@@ -1241,4 +1241,5 @@ literals:
   
 #telemetry fields for discharge fan#
 - discharge_fan_run_time_accumulator
+- discharge_fan_voltage_sensor
  
