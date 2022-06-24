@@ -59,14 +59,6 @@ DD:
   implements:
   - CONTROL
 
-RDM:
-  description: "Very basic system run duration monitoring. "
-  is_abstract: true
-  uses:
-  - run_time_accumulator
-  implements:
-  - MONITORING
-
 # Not deprecated but probably not useful
 OADM:
   id: "13985513714598543360"
