@@ -4636,10 +4636,11 @@ AHU_DFSS_DX2ZTC_SFRDM_EVFSM_REFPM2X_ZHC_DFRMM:
   description: "CRAC with dual compressor with temperature monitoring and compressor monitoring with humidity monitoring."
   is_canonical: true
   implements:
+  - AHU
   - DFSS
   - DX2ZTC
   - SFRDM
-  - EVFSC
+  - EVFSM
   - REFPM2X
   - ZHC
   - DFRMM 
