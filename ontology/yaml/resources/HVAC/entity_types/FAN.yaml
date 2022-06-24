@@ -282,6 +282,21 @@ FAN_SS_VSC_EFC_FDPM:
   - EFC
   - FDPM
 
+FAN_SS_VSC_OA_FA2X:
+  description: "Fan with start/stop status, speed control with fire, EC fan and filter monitoring for purification"
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - VSC
+  - OA
+  - FA2X
+ opt_uses:
+  - filter_alarm
+  - differntial_pressure_sensor
+  - run_mode
+  - door_open_alarm
+
 FAN_SS_VSC_EPC_ZSPM:
   id: "1890595537992810496"
   description: "Fan with exhaust static pressure control."

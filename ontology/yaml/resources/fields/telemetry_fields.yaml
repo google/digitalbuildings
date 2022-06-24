@@ -1309,3 +1309,8 @@ literals:
 - high_exhaust_fan_speed_status:
   - ON
   - OFF
+
+# Addition of telemetry for door alarm
+ - door_open_alarm
+  - NORMAL
+  - ALARM
