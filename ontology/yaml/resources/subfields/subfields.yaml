@@ -72,6 +72,7 @@ descriptor:
   call: "An action of speaking or meeting among multiple people."
   carbon: "Nonmetallic chemical element with the atomic number of six (e.g. graphite)."
   chilled: "Cold water (typically 40 - 50F)."
+  changeover: "Connecting to different equipment ciecuit (e.g. switching between chiller and hot water)."
   circulation: "Process or component used to circulate fluid through a device or system (typically onboard a boiler)."
   co: "Measures carbon monoxide concentration."
   co2: "Measures carbon dioxide concentration."
