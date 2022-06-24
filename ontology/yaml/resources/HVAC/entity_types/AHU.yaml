@@ -870,6 +870,18 @@ AHU_DFSS_DXZC_ECOND_ZHM:
   - ECOND
   - ZHM
 
+AHU_SS_CHWDT_ECONM_RWISOVPC_VSC_SD_FA2X:
+  description: "Smart AHU."
+  is_canonical: true
+  implements:
+  - AHU
+  - SS
+  - CHWDT
+  - ECONM
+  - RWISOVPC
+  - VSC
+  - SD
+  - FA2X
 
 ### Multi-zone Units ###
 
