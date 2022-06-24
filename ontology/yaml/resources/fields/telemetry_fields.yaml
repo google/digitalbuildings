@@ -1316,20 +1316,21 @@ literals:
 - return_air_isolation_damper_command:
   - OPEN
   - CLOSED
-- supply_fan_run_mode
+- supply_fan_run_mode:
+  - AUTO
+  - MANUAL
 - evaporative_fan_speed_percentage_sensor
 - high_limit_zone_air_temperature_setpoint
 - low_limit_zone_air_temperature_setpoint
-- supply_fan_speed_mode
+- supply_fan_speed_mode:
+  - VFD
+  - BYPASS
 - supply_fan_run_time_accumulator
 - high_limit_zone_air_relative_humidity_setpoint
 - low_limit_zone_air_relative_humidity_setpoint
 - supply_fan_voltage_sensor
 - supply_fan_energy_accumulator
 - supply_fan_power_status:
-  - ON
-  - OFF
-- supply_fan_schedule_run_command:
   - ON
   - OFF
 - discharge_fan_run_mode
