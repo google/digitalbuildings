@@ -4612,3 +4612,16 @@ AHU_DFSS_DX2ZC_ECONZ_CO2C_DSP_RCKTM2X_HTZC_CC2XM_RTM_DTM:
   - DTM
   opt_uses:
   - condensing_fan_current_sensor
+
+#AHU canonical#  
+AHU_DFSS_DFVSC_FDPM_CHWDC_SRC_DFRMM:
+  description: "AHU with temperature control, humidity monitor with electrical parameter monitoring.
+  is_canonical: true
+  implements:
+  - AHU
+  - DFSS
+  - DFVSC
+  - FDPM
+  - CHWDC
+  - SRC
+  - DFRMM
