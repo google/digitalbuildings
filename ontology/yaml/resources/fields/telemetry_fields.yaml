@@ -1320,6 +1320,7 @@ literals:
   - AUTO
   - MANUAL
 - evaporative_fan_speed_percentage_sensor
+- evaporative_fan_speed_percentage_command 
 - high_limit_zone_air_temperature_setpoint
 - low_limit_zone_air_temperature_setpoint
 - supply_fan_speed_mode:
