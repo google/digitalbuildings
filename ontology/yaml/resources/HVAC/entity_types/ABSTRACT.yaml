@@ -347,6 +347,10 @@ EFVSC:
   - exhaust_fan_speed_percentage_sensor
   - exhaust_fan_current_sensor
   - exhaust_fan_power_sensor
+  - exhaust_fan_voltage_sensor
+  - exhaust_fan_run_mode
+  - exhaust_fan_energy_accumulator
+  - exhaust_fan_speed_mode
   uses:
   - exhaust_fan_run_command
   - exhaust_fan_run_status
@@ -518,6 +522,7 @@ EFSS:
   - exhaust_fan_power_sensor
   - exhaust_air_flowrate_capacity
   - exhaust_fan_power_capacity
+  - exhaust_fan_run_time_accumulator
   uses:
   - exhaust_fan_run_command
   - exhaust_fan_run_status
@@ -4894,22 +4899,7 @@ MIPCVM:
   - average_input_inter_line_motor_voltage_sensor
   - input_motor_power_sensor
   
-EFVCS:
-  description: "Variable control of speed for exhaust fans."
-  is_abstract: true
-  uses:
-  - exhaust_fan_speed_frequency_sensor
-  - exhaust_fan_speed_percentage_sensor
-  - exhaust_fan_speed_percentage_command  
-  - exhaust_fan_current_sensor
-  - exhaust_fan_power_sensor
-  - exhaust_fan_run_status
-  - exhaust_fan_run_mode
-  - exhaust_fan_speed_mode
 
-  implements:
-  - OPERATIONAL  
-  
    
   
 
