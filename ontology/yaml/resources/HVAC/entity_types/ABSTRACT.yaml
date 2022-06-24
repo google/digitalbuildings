@@ -4881,8 +4881,8 @@ MSM:
   - MONITORING
   uses:
   - discharge_fan_run_status
-  - discharge_fan_high_speed_status
-  - discharge_fan_low_speed_status
+  - high_discharge_fan_speed_status
+  - low_discharge_fan_speed_status
   opt_uses:
   - discharge_fan_failed_alarm
  

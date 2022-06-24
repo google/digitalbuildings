@@ -1306,10 +1306,10 @@ literals:
 - low_limit_speed_percentage_command
 - high_limit_speed_percentage_command
 
-- high_speed_status:
+- high_discharge_fan_speed_status:
   - ON
   - OFF
-- low_speed_status:
+- low_discharge_fan_speed_status:
   - ON
   - OFF 
 - exhaust_fan_run_mode:
