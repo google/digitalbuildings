@@ -1250,4 +1250,7 @@ literals:
 - exhaust_fan_run_mode:
   - AUTO
   - MANUAL
-  
+
+- exhaust_fan_voltage_sensor
+- exhaust_fan_energy_accumulator
+- exhaust_fan_run_time_accumulator  
