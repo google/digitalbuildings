@@ -4632,7 +4632,7 @@ AHU_CHWDC_DFSS_DXSC_DXZTC_EVFSM_REFPM_ZHC_DFRMM_CHWDT:
   - CHWDT  
 
 #PAC Unit#  
-AHU_DFSS_DX2ZTC_SFRDM_EVFSC_REFPM2X_ZHC_DFRMM:
+AHU_DFSS_DX2ZTC_SFRDM_EVFSM_REFPM2X_ZHC_DFRMM:
   description: "CRAC with dual compressor with temperature monitoring and compressor monitoring with humidity monitoring."
   is_canonical: true
   implements:
