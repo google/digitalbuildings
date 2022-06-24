@@ -4644,12 +4644,13 @@ AHU_DFSS_DX2ZTC_SFRDM_EVFSC_REFPM2X_ZHC_DFRMM:
   - ZHC
   - DFRMM 
 
-#AHU Unit 1#  
-AHU_SFMSC_SFVSC_FDPM_CHWSC_RTM_RACO2C_SSPC_VOADM2X_SAIDC_RAIDC2X_SFRDM:
+#AHU Unit#  
+AHU_SFSS_SFMSC_SFVSC_FDPM_CHWSC_RTM_RACO2C_SSPC_VOADM2X_SAIDC_RAIDC2X_SFRDM:
   description: "AHUs with chilled water temperature monitoring, compressor monitoring with zone temperature and humidity monitoring with 2 dampers monitoring and control ."
   is_canonical: true
   implements:
   - AHU
+  - SFSS
   - SFMSC
   - SFVSC
   - FDPM
@@ -4661,13 +4662,14 @@ AHU_SFMSC_SFVSC_FDPM_CHWSC_RTM_RACO2C_SSPC_VOADM2X_SAIDC_RAIDC2X_SFRDM:
   - SAIDC
   - RAIDC2X
   - SFRDM
-
+ 
   
-  
-AHU_SFMSC_SFVSC_FDPM_CHWSC_RTM_RACO2C_VOADM2X_SAIDC_SFRDM:
+AHU_SFSS_SFMSC_SFVSC_FDPM_CHWSC_RTM_RACO2C_VOADM2X_SAIDC_SFRDM:
   description: "AHUs with chilled water temperature monitoring and compressor monitoring with zone temperature and humidity monitoring ."
   is_canonical: true
   implements:
+  - AHU
+  - SFSS
   - SFMSC
   - SFVSC
   - FDPM
@@ -4679,10 +4681,12 @@ AHU_SFMSC_SFVSC_FDPM_CHWSC_RTM_RACO2C_VOADM2X_SAIDC_SFRDM:
   - SFRDM
   
   
-AHU_SFMSC_SFVSC_FDPM_CHWSC_RTM_RACO2C_SSPC_VOADM2X_SAIDC3X_SFRDM:
+AHU_SFSS_SFMSC_SFVSC_FDPM_CHWSC_RTM_RACO2C_SSPC_VOADM2X_SAIDC3X_SFRDM:
   description: "AHUs with chilled water temperature monitoring and compressor monitoring with zone temperature and humidity monitoring ."
   is_canonical: true
   implements:
+  - AHU
+  - SFSS
   - SFMSC
   - SFVSC
   - FDPM
@@ -4694,11 +4698,12 @@ AHU_SFMSC_SFVSC_FDPM_CHWSC_RTM_RACO2C_SSPC_VOADM2X_SAIDC3X_SFRDM:
   - SAIDC3X
   - SFRDM
 
-  
-AHU_SFMSC_SFVSC_FDPM_CHWSC_RTM_RACO2C_SSPC2X_VOADM2X_SAIDC2X_RAIDC4X_SSPC_SFRDM:
+AHU_SFSS_SFMSC_SFVSC_FDPM_CHWSC_RTM_RACO2C_SSPC2X_VOADM2X_SAIDC2X_RAIDC4X_SSPC_SFRDM:
   description: "AHUs with chilled water temperature monitoring and compressor monitoring with zone temperature and humidity monitoring ."
   is_canonical: true
   implements:
+  - AHU
+  - SFSS
   - SFMSC
   - SFVSC
   - FDPM
@@ -4713,11 +4718,12 @@ AHU_SFMSC_SFVSC_FDPM_CHWSC_RTM_RACO2C_SSPC2X_VOADM2X_SAIDC2X_RAIDC4X_SSPC_SFRDM:
   - SFRDM
 
 
- 
-AHU_SFMSC_SFVSC_FDPM_CHWSC_RTM_RACO2C_SSPC_VOADM2X_SAIDC2X_RAIDC2X_SFRDM:
+AHU_SFSS_SFMSC_SFVSC_FDPM_CHWSC_RTM_RACO2C_SSPC_VOADM2X_SAIDC2X_RAIDC2X_SFRDM:
   description: "AHUs with chilled water temperature monitoring and compressor monitoring with zone temperature and humidity monitoring ."
   is_canonical: true
   implements:  
+  - AHU
+  - SFSS
   - SFMSC
   - SFVSC
   - FDPM
@@ -4731,12 +4737,12 @@ AHU_SFMSC_SFVSC_FDPM_CHWSC_RTM_RACO2C_SSPC_VOADM2X_SAIDC2X_RAIDC2X_SFRDM:
   - SFRDM  
   
 
-
- 
-AHU_SFMSC_SFVSC_FDPM_CHWSC_RTM_RACO2C_SSPC2X_VOADM2X_SAIDC2X_RAIDC3X_SSPC_SFRDM:
+AHU_SFSS_SFMSC_SFVSC_FDPM_CHWSC_RTM_RACO2C_SSPC2X_VOADM2X_SAIDC2X_RAIDC3X_SSPC_SFRDM:
   description: "AHUs with chilled water temperature monitoring and compressor monitoring with zone temperature and humidity monitoring ."
   is_canonical: true
   implements: 
+  - AHU
+  - SFSS
   - SFMSC
   - SFVSC
   - FDPM
@@ -4751,12 +4757,13 @@ AHU_SFMSC_SFVSC_FDPM_CHWSC_RTM_RACO2C_SSPC2X_VOADM2X_SAIDC2X_RAIDC3X_SSPC_SFRDM:
   - SFRDM
   
   
-  
 
-AHU_SFMSC_SFVSC_FDPM_CHWSC_RTM_RACO2C_SSPC2X_VOADM2X_SAIDC2X_RAIDC2X_SSPC_SFRDM:
+AHU_SFSS_SFMSC_SFVSC_FDPM_CHWSC_RTM_RACO2C_SSPC2X_VOADM2X_SAIDC2X_RAIDC2X_SSPC_SFRDM:
   description: "AHUs with chilled water temperature monitoring and compressor monitoring with zone temperature and humidity monitoring ."
   is_canonical: true
   implements:   
+  - AHU
+  - SFSS
   - SFMSC
   - SFVSC
   - FDPM
