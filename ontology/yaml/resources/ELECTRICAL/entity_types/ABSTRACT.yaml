@@ -53,6 +53,8 @@ IOBM:
   - bypass_phase3_neutral_voltage_sensor
  opt_uses:
   - bypass_phase_status
+  - input_frequency_sensor
+  - output_frequency_sensor
   
 PPWM:
   id: "14668216976959078400"
@@ -69,17 +71,15 @@ UPSBM:
  is_abstract: true
  opt_uses:
   - fan_failed_alarm
- uses:
   - battery_percentage_sensor
-  - battery_status
-  - bypass_abnormal_status
-  - Inverter_AsynchroNous_status
-  - System_Over_Load_status
-  - bypass_phase_status
-  - rectifier_status
-  - input_supply_status
-  - Battery_self_test_status
-  - inverter_status
   - bypass_status
+  - bypass_phase_status
+  - rectifier_mode
+  - inverter_status
   - inverter_mode
+ uses:
+  - remaining_charge_time_sensor
   - battery_voltage
+  - battery_status
+  - input_supply_mode
+  - battery_test_status
