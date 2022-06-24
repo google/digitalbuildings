@@ -531,6 +531,7 @@ DFSS:
   - discharge_fan_power_sensor
   - discharge_air_static_pressure_sensor
   - discharge_fan_lost_power_alarm
+  - schedule_run_command
   uses:
   - discharge_fan_run_command
   - discharge_fan_run_status
