@@ -331,6 +331,7 @@ VSC:
   - phase3_line_current_sensor
   - lost_power_alarm
   - master_alarm
+  - failed_alarm
   uses:
   - speed_percentage_command
   - run_status
