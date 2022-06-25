@@ -325,7 +325,7 @@ VSC:
   - voltage_sensor
   - phase1_phase2_line_voltage_sensor
   - phase2_phase3_line_voltage_sensor
-  - phase3_phase1_line_voltage_sensor
+  - phase1_phase3_line_voltage_sensor
   - phase1_line_current_sensor
   - phase2_line_current_sensor
   - phase3_line_current_sensor
