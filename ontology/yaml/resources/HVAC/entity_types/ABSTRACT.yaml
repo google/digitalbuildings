@@ -323,6 +323,14 @@ VSC:
   - speed_frequency_sensor
   - power_sensor
   - voltage_sensor
+  - phase1_phase2_line_voltage_sensor
+  - phase2_phase3_line_voltage_sensor
+  - phase3_phase1_line_voltage_sensor
+  - phase1_line_current_sensor
+  - phase2_line_current_sensor
+  - phase3_line_current_sensor
+  - lost_power_alarm
+  - master_alarm
   uses:
   - speed_percentage_command
   - run_status
@@ -2838,6 +2846,14 @@ CHWFRM:
   implements:
   - MONITORING
 
+CHWFRSM:
+  description: "Chilled water flowrate status monitoring."
+  is_abstract: true
+  uses:
+  - chilled_water_flowrate_status
+  implements:
+  - MONITORING
+
 SEPM:
   id: "3971381711140290560"
   description: "Shade extent monitoring."
@@ -3595,6 +3611,7 @@ CHDXSC:
   - compressor_speed_frequency_sensor
   - compressor_speed_percentage_command
   - compressor_speed_percentage_sensor
+  - oil_compressor_pressure_sensor
   uses:
   - compressor_run_command
   - compressor_run_status

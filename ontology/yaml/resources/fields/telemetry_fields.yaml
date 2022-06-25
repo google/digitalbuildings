@@ -330,6 +330,7 @@ literals:
 
 ## Added on 10/25/2018
 - compressor_speed_percentage_command
+- oil_compressor_pressure_sensor
 - east_wind_linearvelocity_sensor
 - west_wind_linearvelocity_sensor
 - condenser_pressure_sensor
