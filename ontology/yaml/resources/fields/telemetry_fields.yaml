@@ -38,6 +38,7 @@ literals:
 - compressor_run_command:
   - ON
   - OFF
+  - UNKNOWN
 - compressor_run_status:
   - ON
   - OFF
@@ -60,9 +61,13 @@ literals:
 - discharge_fan_run_command:
   - ON
   - OFF
+  - AUTO
+  - UNKNOWN
 - discharge_fan_run_status:
   - ON
   - OFF
+  - AUTO
+  - UNKNOWN
 - discharge_fan_speed_mode:
   - AUTO
   - LOW
@@ -1228,6 +1233,9 @@ literals:
 - leaving_water_tank_temperature_sensor
 - entering_water_tank_temperature_sensor
 
+# Tank level
+- percentage_sensor
+
 - secondary_heating_supply_water_temperature_sensor
 - secondary_heating_return_water_temperature_sensor
 - primary_heating_supply_water_temperature_sensor
@@ -1239,7 +1247,9 @@ literals:
 - secondary_chilled_return_water_isolation_valve_percentage_sensor
 - secondary_chilled_return_water_isolation_valve_percentage_command
 - thermal_energy_accumulator
-- ground_isolation_command
+- ground_isolation_command:
+  - ON
+  - OFF
 - ground_temperature_sensor
 - input_motor_frequency_sensor
 - input_motor_power_sensor
