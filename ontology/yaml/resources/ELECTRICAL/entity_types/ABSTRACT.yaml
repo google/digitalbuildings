@@ -77,6 +77,7 @@ UPSBM:
   - rectifier_mode
   - inverter_status
   - inverter_mode
+  - overload_alarm
  uses:
   - remaining_charge_time_sensor
   - battery_voltage
