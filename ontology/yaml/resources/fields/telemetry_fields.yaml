@@ -704,7 +704,13 @@ literals:
 - power_status:
   - PRESENT
   - ABSENT
-
+- low_pressure_status:
+  - ON
+  - OFF
+- high_pressure_status:
+  - ON
+  - OFF
+  
 # New alarms using alarm as a point type, and existing alarms moved here
 # TODO (tsodorff): change these to ALARM/NORMAL after determining how this can be done safely to existing translations. 
 - fabric_protection_alarm:
