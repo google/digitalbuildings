@@ -63,10 +63,10 @@ FADING: "An operation mode of a lighting dimmer: dimming speed based on a durati
 RAMPING: "An operation mode of a lighting dimmer: dimming speed defined in percent per second"
 
 #For Rodent Repellent
-BANDA: "Frequency range from "20KHz to 50KHz"
-BANDB: "Frequency range from "30KHz to 60KHz"
-BANDC: "Frequency range from "27KHz to 57KHz"
-BANDD: "Frequency range from "24KHz to 61sKHz"
+BANDA: "Frequency range from 20KHz to 50KHz"
+BANDB: "Frequency range from 30KHz to 60KHz"
+BANDC: "Frequency range from 27KHz to 57KHz"
+BANDD: "Frequency range from 24KHz to 61sKHz"
 
 
 
