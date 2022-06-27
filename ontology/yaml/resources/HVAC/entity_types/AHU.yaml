@@ -513,6 +513,24 @@ AHU_DFSS_DSP_DX2ZC_ECONZ_EFSS_HTZC:
   - EFSS
   - HTZC
 
+AHU_SFSS_SFVSC_CHWSC_CHWRC_FDPM2X_ESPC_CO2DFVSC_SSPC2X_CO2M6X_CSP_VOCM_PM:
+  description: "Single zone AHU."
+  is_canonical: true
+  implements:
+  - AHU
+  - SFSS
+  - SFVSC
+  - CHWSC
+  - CHWRC
+  - FDPM2X
+  - ESPC
+  - CO2DFVSC
+  - SSPC2X
+  - CO2M6X
+  - CSP
+  - VOCM
+  - PM
+
 AHU_BSPC_DFSS_DSP_DX2ZC_ECONZ_EFSS:
   id: "13160273063348011008"
   description: "Single zone AHU."
