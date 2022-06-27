@@ -119,6 +119,7 @@ impulse:
 irradiance:
 - watt_per_square_metre: STANDARD
 length:
+
 - meters: STANDARD
 - centimeters
 - millimeters
@@ -192,8 +193,8 @@ powerfactor:
 powerflux:
 - watts_per_square_meter: STANDARD
 - watts_per_square_foot
-precipitation:
-- millimeters: STANDARD
+precipitation: length
+
 pressure:
 - pascals: STANDARD
 - hectopascals
