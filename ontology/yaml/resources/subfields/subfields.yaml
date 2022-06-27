@@ -113,6 +113,7 @@ descriptor:
   ground: "The solid surface of the earth."
   guide: "Component used to guide flow of media or movement of component."
   h2s: "Hydrogen sulfide."
+  h2: "Hydrogen"
   hash: "A computed value that is converted from an original value."
   heating: "Process, measured effect or requirement for heating."
   heat: "Quality of media indicating energy level."
