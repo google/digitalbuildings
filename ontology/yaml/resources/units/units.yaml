@@ -193,7 +193,7 @@ powerflux:
 - watts_per_square_meter: STANDARD
 - watts_per_square_foot
 precipitation:
-- millimeters
+- millimeters: STANDARD
 pressure:
 - pascals: STANDARD
 - hectopascals
