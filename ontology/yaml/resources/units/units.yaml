@@ -227,12 +227,6 @@ specificenthalpy:
 - joules_per_kilogram_dry_air
 - kilojoules_per_kilogram_dry_air
 - megajoules_per_kilogram_dry_air
-speed:
-- meters_per_second: STANDARD
-- meters_per_hour
-- kilometers_per_hour
-
-
 temperature:
 - kelvin: STANDARD
 - degrees_celsius

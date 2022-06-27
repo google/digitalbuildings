@@ -708,7 +708,7 @@ OA:
   - outside_air_specificenthalpy_sensor
   - outside_air_pressure_sensor
   - outside_air_drybulb_temperature_sensor
-  - wind_linear_velocity_sensor
+  - wind_linearvelocity_sensor
   - wind_direction_angle_sensor
   - outside_air_water_precipitation_sensor 
   uses:
