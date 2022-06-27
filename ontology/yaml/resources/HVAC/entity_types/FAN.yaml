@@ -451,6 +451,21 @@ FAN_EFHLC_COCDSP_NOCDSP:
   - COCDSP
   - NOCDSP
 
+FAN_EFVSC_SCRSS:
+  description: "Kitchen exhaust fan with scrubber start/stop and status."
+  is_canonical: true
+  implements:
+  - FAN
+  - EFVSC
+  - SCRSS
+
+FAN_OAFSS:
+  description: "Outside air fan with start/stop and status."
+  is_canonical: true
+  implements:
+  - FAN
+  - OAFSS
+  
 ###################################
 ### Existing Non-standard Types ###
 ###################################

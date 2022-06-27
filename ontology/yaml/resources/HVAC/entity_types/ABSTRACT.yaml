@@ -339,6 +339,8 @@ EFVSC:
   - exhaust_fan_speed_percentage_sensor
   - exhaust_fan_current_sensor
   - exhaust_fan_power_sensor
+  - exhaust_fan_run_mode
+  - exhaust_fan_bypass_status
   uses:
   - exhaust_fan_run_command
   - exhaust_fan_run_status
@@ -4974,5 +4976,19 @@ OAFSS:
     uses:
   - outside_air_fan_run_status
   - outside_air_fan_run_command
+  implements:
+  - OPERATIONAL
+
+SCRSS:
+  description: "Scurbber start stop monitoring."
+  is_abstract: true
+  opt_uses:
+  - scrubber_run_mode
+  - filter_status
+  - differential_pressure_sensor
+  - fire_alarm
+  uses:
+  - scrubber_run_command
+  - scrubber_run_status
   implements:
   - OPERATIONAL
