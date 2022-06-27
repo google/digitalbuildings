@@ -356,6 +356,8 @@ literals:
   - OFF
   - AUTO
   - MANUAL
+  - STANDBY
+  - WORKING
 - dial_resistance_sensor
 - zone_occupancy_status:
   - OCCUPIED
@@ -734,6 +736,9 @@ literals:
 - lost_power_alarm:
   - ACTIVE
   - INACTIVE
+- overload_alarm:
+  - OVERLOAD
+  - NORMAL
 
 # New fields for lighting and fire systems.
 - motion_status:
