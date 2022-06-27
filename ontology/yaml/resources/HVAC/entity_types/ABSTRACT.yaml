@@ -642,7 +642,6 @@ SFSS:
   uses:
   - supply_fan_run_command
   - supply_fan_run_status
-  - supply_fan_trip_status
 
 RHM:
   id: "14781568929201389568"
