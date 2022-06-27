@@ -4968,11 +4968,11 @@ EFHLC:
   implements:
   - OPERATIONAL
 
-FFSC:
+OAFSS:
   description: "Start/stop command and status monitoring for fresh air fans."
   is_abstract: true
     uses:
-  - fresh_air_fan_run_status
-  - fresh_air_fan_run_command
+  - outside_air_fan_run_status
+  - outside_air_fan_run_command
   implements:
   - OPERATIONAL
