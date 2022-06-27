@@ -192,6 +192,18 @@ DX2RC:
   implements:
   - CONTROL
 
+FRZM:
+  description: "Freezer monitoring."
+  is_abstract: true
+  opt_uses:
+   - failed_alarm
+   - run_status
+   - compressor_run_status
+   - run_time_accumulator
+  uses:
+   - temperature_sensor
+   - defrost_temperature_sensor
+  
 DFSMC:
   id: "2774887660236308480"
   description: "Discharge fan multi-speed control."
