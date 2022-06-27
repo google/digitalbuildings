@@ -323,8 +323,6 @@ VSC:
   - speed_frequency_sensor
   - power_sensor
   - voltage_sensor
-  - common_alarm
-  - motor_tempertaure_sensor
   uses:
   - speed_percentage_command
   - run_status
@@ -383,7 +381,6 @@ DFVSC:
   - discharge_fan_speed_frequency_sensor
   - discharge_fan_speed_percentage_sensor
   - discharge_fan_lost_power_alarm
-  - discharge_fan_failed_alarm
   uses:
   - discharge_fan_speed_percentage_command
   - discharge_fan_run_status
@@ -645,6 +642,7 @@ SFSS:
   uses:
   - supply_fan_run_command
   - supply_fan_run_status
+  - supply_fan_trip_status
 
 RHM:
   id: "14781568929201389568"
@@ -1890,47 +1888,6 @@ HP2SC:
   - reversing_valve_command
   implements:
   - CONTROL
-
-DXASP2:
-  description: "Two DX unit auto sequential panel monitoring for single zone."
-  is_abstract: true
-  opt_uses:
-  - supply_damper_open_status_1
-  - supply_damper_open_status_2
-  - supply_damper_closed_status_1
-  - supply_damper_closed_status_2
-  - return_damper_open_status_1
-  - return_damper_open_status_2
-  - return_damper_closed_status_1
-  - return_damper_closed_status_2 
-  - zone_air_cooling_temperature_setpoint
-  uses:
-  - zone_air_temperature_sensor
-  - fan_run_status_1
-  - fan_run_status_2
-  implements:
-  - MONITORING
-
-AVR:
- description: "Natural air ventilator control and monitoring."
-  is_abstract: true
-  opt_uses:
-  - door_open_alarm
-  - voltage_sensor
-  - current_sensor
-  - power_sensor  
-  - zone_air_cooling_temperature_setpoint
-  uses:
-  - fan_run_command
-  - fan_run_mode
-  - fan_run_status
-  - fan_failed_alarm
-  - zone_temperature_sensor
-  - differential_pressure_sensor
-  - fan_speed_percentage_command
-  - fan_speed_percentage_sensor
-  implements:
-  - OPERATIONAL
 
 HPDC:
   id: "3683151334988578816"
