@@ -37,26 +37,6 @@ SD:
   implements:
   - CONTROL
   
-EPM:
-  description: "Basic Electrical parameter monitoring."
-  is_abstract: true
-  uses:
-  - power_status
-  - voltage_sensor
-  - current_sensor
-  - power_sensor
-  - energy_accumulator
-  implements:
-  - MONITORING
-
-RDM:
-  description: "Very basic system run duration monitoring. "
-  is_abstract: true
-  uses:
-  - run_time_accumulator
-  implements:
-  - MONITORING  
-
 DD:
   id: "8927971333061476352"
   description: "Dual duct flow control (hot deck, cold deck)."
@@ -373,8 +353,6 @@ VSFC:
   uses:
   - speed_frequency_command
   - speed_frequency_sensor
-  - speed_percentage_sensor
- 
 
 SFVSC:
   id: "16291356723812237312"
