@@ -5023,8 +5023,6 @@ SFMSC:
   - schedule_run_command
 
 
-
- 
 ZHLM:
   description: "Zone reative humidity setpoint limit monitoring."
   is_abstract: true
@@ -5034,16 +5032,6 @@ ZHLM:
   - zone_air_relative_humidity_setpoint
   implements:
   - MONITORING
-
-
-CPRDM2X:  
-  description: "Compressor run duration monitoring of 2 compressors "
-  is_abstract: true
-  uses:
-  - compressor_run_time_accumulator_1
-  - compressor_run_time_accumulator_2  
-  implements:
-  - MONITORING  
 
 
 MIPVCM:
