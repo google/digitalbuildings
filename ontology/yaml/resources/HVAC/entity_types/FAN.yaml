@@ -653,12 +653,12 @@ FAN_SS_VSC_EPC_EHHRC_EHHRC3X:
   - heat_recovery_water_isolation_valve_command_2
   - heat_recovery_water_isolation_valve_command_3
   
-FAN_EFSS_FDPM_EFVSC_SRC: 
+FAN_SS_FDPM_VSC_SRC: 
   description: "Exhaust fan with power, voltage, current, differential pressure and run durating monitoring ."
   is_canonical: true
   implements:
   - FAN
-  - EFSS
+  - SS
   - FDPM
-  - EFVSC
+  - VSC
   - SRC 
