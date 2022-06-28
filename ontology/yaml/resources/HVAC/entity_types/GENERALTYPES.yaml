@@ -37,12 +37,6 @@ FAN:
   implements:
   - EQUIPMENT
 
-AWSH:
-  description: "Tag for Airwasher units."
-  is_abstract: true
-  implements:
-  - EQUIPMENT  
-
 FCU:
   id: "16867817476115660800"
   description: "Tag for fan-coil units. Fan coil units are distinguished from other air-side devices by the fact

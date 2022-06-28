@@ -1221,15 +1221,6 @@ literals:
 - ground_temperature_sensor
 
 
-#telemetry for PLC#
-- controller_run_command:
-  - ON
-  - OFF
-  
-- controller_run_mode:
-  - AUTO
-  - MANUAL  
-
 - input_motor_frequency_sensor
 - input_motor_power_sensor
 - motor_powerfactor_sensor
