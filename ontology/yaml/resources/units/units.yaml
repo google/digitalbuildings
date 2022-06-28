@@ -17,8 +17,6 @@ angle:
 - degrees: STANDARD
 angularmomentum:
 - joule_seconds: STANDARD
-apparent_energy:
-- kilovolt_amperes_apparent_hours: STANDARD
 apparentpower:
 - volt_amperes_apparent: STANDARD
 - kilovolt_amperes_apparent
