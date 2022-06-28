@@ -331,7 +331,7 @@ VSC:
   - speed_frequency_sensor
   - power_sensor
   - voltage_sensor
-  - speed_mode
+  - fan_speed_mode
   - run_mode
   - energy_accumulator
   uses:
