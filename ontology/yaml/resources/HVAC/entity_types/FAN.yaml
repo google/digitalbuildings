@@ -49,22 +49,7 @@ FAN_SS_ZTM:
   - SS
   - ZTM
   
-FAN_SS_VSC_MIOVCM:
-  description: "Fan with current and voltage monitoring."
-  is_canonical: true
-  implements:
-  - FAN
-  - SS
-  - VSC  
-  - MIOVCM
  
-FAN_SS_RDM:
-  description: "Basic fan with run duration monitoring."
-  is_canonical: true
-  implements:
-  - FAN
-  - RDM 
-  - SS
 
 FAN_SS_CSP:
   id: "17863112993764540416"

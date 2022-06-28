@@ -1303,8 +1303,6 @@ literals:
 #New fields for EC Fan
 - dc_voltage_sensor
 - ac_voltage_sensor
-- low_limit_speed_percentage_command
-- high_limit_speed_percentage_command
 
 - high_discharge_fan_speed_status:
   - ON
