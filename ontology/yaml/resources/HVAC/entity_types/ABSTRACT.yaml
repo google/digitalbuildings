@@ -4835,6 +4835,16 @@ HWRWISOVPM:
   - heating_return_water_isolation_valve_percentage_command
   - heating_return_water_isolation_valve_percentage_sensor
   implements:
+
+  - MONITORING 
+
+DEFSS:
+  description: "defrost run command and status (start/stop) "
+  is_abstract: true
+  uses:
+  - defrost_run_status
+  - defrost_run_command  
+  implements:
   - MONITORING
     
 VOADC2X:
