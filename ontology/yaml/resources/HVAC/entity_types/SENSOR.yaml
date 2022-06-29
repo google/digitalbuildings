@@ -190,6 +190,8 @@ SENSOR_ZA_PML:
 SENSOR_AQT:
   description: "Air quality multiple property sensor."
   is_canonical: true
+  implements:
+  - /SENSOR
   uses:
   - outside_air_co2_concentration_sensor
   - outside_air_co_concentration_sensor
