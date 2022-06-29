@@ -331,7 +331,7 @@ VSC:
   - speed_frequency_sensor
   - power_sensor
   - voltage_sensor
-  - fan_speed_mode
+  - speed_mode
   - run_mode
   - energy_accumulator
   uses:
@@ -350,10 +350,6 @@ EFVSC:
   - exhaust_fan_speed_percentage_sensor
   - exhaust_fan_current_sensor
   - exhaust_fan_power_sensor
-  - exhaust_fan_voltage_sensor
-  - exhaust_fan_run_mode
-  - exhaust_fan_energy_accumulator
-  - exhaust_fan_speed_mode
   uses:
   - exhaust_fan_run_command
   - exhaust_fan_run_status
@@ -4866,11 +4862,11 @@ EFHLC:
   - OPERATIONAL
   
 MSC:
-  description: "Fan multi-speed control."
+  description: "Generic multi-speed control."
   is_abstract: true
   uses:
   - run_command
-  - fan_speed_mode
+  - speed_mode
   - run_status  
   
 SRC:

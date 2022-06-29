@@ -45,13 +45,6 @@ FAN_SS_VSC:
   - SS
   - VSC
  
-FAN_MSC:
-  description: "Discharge Fan with multi speed control."
-  is_canonical: true
-  implements:
-  - FAN
-  - DFMSC 
-
 ### ZONE TEMPERATURE CONTROL ###
 
 FAN_SS_ZTM:
@@ -654,7 +647,7 @@ FAN_SS_VSC_EPC_EHHRC_EHHRC3X:
   - heat_recovery_water_isolation_valve_command_3
   
 FAN_SS_FDPM_VSC_SRC: 
-  description: "Exhaust fan with power, voltage, current, differential pressure and run durating monitoring ."
+  description: "Fan with power, voltage, current, differential pressure and run durating monitoring ."
   is_canonical: true
   implements:
   - FAN
