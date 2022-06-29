@@ -1343,7 +1343,6 @@ literals:
 
 - dc_voltage_sensor
 - ac_voltage_sensor
-- discharge_fan_run_time_accumulator
 - discharge_fan_run_mode:
   - AUTO
   - MANUAL
