@@ -1438,6 +1438,7 @@ DXZTC:
   - cooling_thermal_power_capacity
   - cooling_percentage_command
   - compressor_speed_percentage_command
+  - compressor_run_time_accumulator
   uses:
   - zone_air_temperature_setpoint
   - zone_air_temperature_sensor
@@ -4864,6 +4865,15 @@ DFRMM:
   - discharge_fan_run_mode
   implements:
   - MONITORING  
+  
+EVFSM:
+  description: "Evaporative fan speed monitoring and control ."
+  is_abstract: true
+  uses:
+  - evaporative_fan_speed_percentage_sensor
+  - evaporative_fan_speed_percentage_command
+  implements:
+  - CONTROL  
   
 
 
