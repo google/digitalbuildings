@@ -1306,6 +1306,3 @@ literals:
 - high_exhaust_fan_speed_status:
   - ON
   - OFF
-
-- compressor_speed_percentage_command_1
-- compressor_speed_percentage_command_2
