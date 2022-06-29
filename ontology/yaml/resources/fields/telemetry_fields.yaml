@@ -1354,4 +1354,7 @@ literals:
 - electricalgrid_energy_accumulator
 - generator_run_time_accumulator
 - electricalgrid_run_time_accumulator 
+- supply_fan_energy_accumulator
+- compressor_run_time_accumulator
+
 
