@@ -20,7 +20,6 @@ EM_PWM:
   - EM
   - PWM
 
-
 EM_PWM_PVCM:
   id: "9147692239198093312"
   description: "Power meter with phase level voltage and current monitoring."

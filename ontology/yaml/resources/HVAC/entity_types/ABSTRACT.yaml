@@ -470,7 +470,6 @@ SS:
   - powerfactor_sensor
   - current_sensor
   - power_sensor
-
   
 SSPC:
   id: "10526749200778002432"
