@@ -1340,13 +1340,15 @@ literals:
 - supply_fan_power_status:
   - ON
   - OFF
-- discharge_fan_run_mode
+- discharge_fan_run_mode:
+ - AUTO
+ - MANUAL
 
 - supply_fan_run_mode:
  - AUTO
  - MANUAL
  
-  ## New fields for EM##
+## New fields for EM##
 
 - generator_energy_accumulator
 - electricalgrid_energy_accumulator
