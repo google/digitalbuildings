@@ -53,7 +53,7 @@ IOBM:
   
 
 PWM:
-  description: "Very basic power and enrgy monitoring only."
+  description: "Very basic power and energy monitoring."
   is_abstract: true
   uses:
   - power_sensor
