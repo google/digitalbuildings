@@ -1482,3 +1482,16 @@ FCU_DFSS_DX2ZTC_EVFSM_REFPM2X_ZHC_DFRMM:
   - REFPM2X
   - ZHC
   - DFRMM 
+  
+#CSU canonical#  
+FCU_DFSS_DFVSC_FDPM_CHWDC_SRC_DFRMM:
+  description: "FCU with temperature control, humidity monitor with electrical parameter monitoring."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - DFVSC
+  - FDPM
+  - CHWDC
+  - SRC
+  - DFRMM  
