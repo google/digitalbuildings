@@ -1458,6 +1458,9 @@ DX2ZTC:
   - cooling_thermal_power_capacity
   - cooling_percentage_command
   - compressor_speed_percentage_command
+  - compressor_run_time_accumulator_1
+  - compressor_run_time_accumulator_2
+  - discharge_air_temperature_setpoint
   uses:
   - zone_air_temperature_setpoint
   - zone_air_temperature_sensor
