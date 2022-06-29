@@ -666,6 +666,9 @@ literals:
 - low_limit_supply_air_ventilation_flowrate_setpoint
 - low_limit_supply_air_flowrate_setpoint 
 - high_limit_supply_air_flowrate_setpoint # used when the device doesn't necessarily provide a cooling max flow
+- schedule_run_command:
+  - ON
+  - OFF
 - supply_air_dewpoint_temperature_sensor
 - supply_air_dewpoint_temperature_setpoint
 - ultraviolet_lamp_run_command:
@@ -1338,9 +1341,6 @@ literals:
   - ON
   - OFF
 - discharge_fan_run_mode
-
-
-
 
   
   ## New fields for EM##
