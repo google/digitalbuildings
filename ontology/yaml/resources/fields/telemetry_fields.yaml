@@ -1341,12 +1341,12 @@ literals:
   - ON
   - OFF
 - discharge_fan_run_mode:
- - AUTO
- - MANUAL
+  - AUTO
+  - MANUAL
 
 - supply_fan_run_mode:
- - AUTO
- - MANUAL
+  - AUTO
+  - MANUAL
  
 ## New fields for EM##
 
