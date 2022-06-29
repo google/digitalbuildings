@@ -1336,7 +1336,7 @@ literals:
   - AUTO
   - MANUAL
 
-- speed_mode
+- speed_mode:
   - VFD
   - BYPASS
  

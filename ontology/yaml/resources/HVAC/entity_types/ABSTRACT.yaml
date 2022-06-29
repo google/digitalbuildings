@@ -4991,15 +4991,7 @@ EFHLC:
   implements:
   - OPERATIONAL
 
-  
-MSC:
-  description: "Generic multi-speed control."
-  is_abstract: true
-  uses:
-  - run_command
-  - speed_mode
-  - run_status  
-  
+
 SRC:
   description: "Very basic run scheduling command. "
   is_abstract: true
@@ -5008,18 +5000,7 @@ SRC:
   implements:
   - CONTROL
   
-EPM:
-  description: "Basic Electrical parameter monitoring."
-  is_abstract: true
-  uses:
-  - power_status
-  - voltage_sensor
-  - current_sensor
-  - power_sensor
-  - energy_accumulator
-  implements:
-  - MONITORING
-  
+ 
 MIPCVM:
   description: "Motor phase-level input current and voltage monitoring."
   is_abstract: true
