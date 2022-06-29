@@ -4981,7 +4981,7 @@ EFHLC:
 
   
 PHWTC:
-  description: "portable water temperature monitoring and control."
+  description: "potable water temperature monitoring and control."
   is_abstract: true
   uses:
   - potable_hot_water_temperature_sensor  

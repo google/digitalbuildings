@@ -1325,7 +1325,10 @@ literals:
   
 
 #Addition of new fields for Tanks##
-- level_status  
+- level_status:
+  - LOW
+  - MEDIUM
+  - HIGH
 - line_pressure_sensor
 
   ## New fields for EM##

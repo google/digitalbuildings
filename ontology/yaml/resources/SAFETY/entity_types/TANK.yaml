@@ -12,9 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-TANK_LM:
+TK_LM:
   description: "level monitoring for tanks. Like Fire hydrant tanks."
   is_canonical: true
   implements:
-  - /TANK # Inherits from global namespace
+  - /TK # Inherits from global namespace
   - LM

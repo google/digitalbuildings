@@ -18,19 +18,19 @@
 
 ### Tanks ###
 
-TANK_SWTC_PHWTC:
+TK_SWTC_PHWTC:
   description: "Tank with water temperature monitoring"
   is_canonical: true
   implements:
-  - /TANK # Inherits from global namespace 
+  - /TK # Inherits from global namespace 
   - SWTC
   - PHWTC
   
 
-TANK_LM_PLPM:  
+TK_LM_PLPM:  
   description: "Tank with level and pipeline pressure monitoring "
   is_canonical: true
   implements:
-  - /TANK # Inherits from global namespace 
+  - /TK # Inherits from global namespace 
   - LM
   - PLPM  

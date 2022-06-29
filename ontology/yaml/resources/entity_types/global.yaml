@@ -55,9 +55,8 @@ INCOMPLETE:
   is_abstract: true
   
 ##Global namespace for tanks##
-TANK:
+TK:
   description: "Device used to store media. Used to model individual tanks when they don't belong explicitly to one piece of equipment."
   is_abstract: true
   implements:
   - EQUIPMENT  
-
