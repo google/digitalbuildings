@@ -113,7 +113,6 @@ REFM:
   uses:
   - zone_air_refrigerant_concentration_sensor
 
-
 CSP:
   id: "2456298668530073600"
   description: "Single cooling setpoint control (IDF room typically)."
@@ -4837,19 +4836,7 @@ HWRWISOVPM:
   - heating_return_water_isolation_valve_percentage_sensor
   implements:
   - MONITORING
-  
-EPM:
-  description: "Basic Electrical parameter monitoring."
-  is_abstract: true
-  opt_uses:
-  - power_status
-  uses:
-  - voltage_sensor
-  - current_sensor
-  - power_sensor
-  - energy_accumulator
-
-  
+    
 VOADC2X:
   description: "Variable outside air damper control and monitoring, where there are two separate, equal sets of dampers that operate in conjunction."
   is_abstract: true
@@ -4908,21 +4895,6 @@ RAIDC4X:
   implements:
   - MONITORING
 
-SFRMM:
-  description: "Supply fan run mode monitoring."
-  is_abstract: true
-  uses:
-  - supply_fan_run_mode
-  implements:
-  - MONITORING
-
-SRC:
-  description: "Very basic run scheduling command. "
-  is_abstract: true
-  uses:
-  - schedule_run_command
-  implements:
-  - CONTROL
 
 SAIDC:
   description: "isolation damper status monitoring and control on the supply side."
@@ -4976,14 +4948,6 @@ SSPC2X:
   implements:
   - OPERATIONAL
 
-CPRDM:  
-  description: "Compressor run duration monitoring "
-  is_abstract: true
-  uses:
-  - compressor_run_time_accumulator
-  implements:
-  - MONITORING 
-
 EVFSM:
   description: "Evaporative fan speed monitoring and control ."
   is_abstract: true
@@ -4993,24 +4957,6 @@ EVFSM:
   implements:
   - CONTROL 
 
-RDM:
-  description: "Very basic system run duration monitoring. "
-  is_abstract: true
-  uses:
-  - run_time_accumulator
-  implements:
-  - MONITORING
-
-ZTLM:
-  description: "Zone temperature setpoint limit monitoring."
-  is_abstract: true
-  uses:
-  - high_limit_zone_air_temperature_setpoint
-  - low_limit_zone_air_temperature_setpoint
-  - zone_air_temperature_setpoint
-  implements:
-  - MONITORING
-  
 SFMSC:
   description: "Supply fan multi-speed control."
   is_abstract: true
@@ -5021,18 +4967,6 @@ SFMSC:
   - supply_fan_run_mode
   opt_uses:  
   - schedule_run_command
-
-
-ZHLM:
-  description: "Zone reative humidity setpoint limit monitoring."
-  is_abstract: true
-  uses:
-  - high_limit_zone_air_relative_humidity_setpoint
-  - low_limit_zone_air_relative_humidity_setpoint
-  - zone_air_relative_humidity_setpoint
-  implements:
-  - MONITORING
-
 
 MIPVCM:
   id: "10283962739713900544"

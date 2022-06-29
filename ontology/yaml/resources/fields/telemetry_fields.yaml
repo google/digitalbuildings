@@ -661,9 +661,6 @@ literals:
 - low_limit_supply_air_ventilation_flowrate_setpoint
 - low_limit_supply_air_flowrate_setpoint 
 - high_limit_supply_air_flowrate_setpoint # used when the device doesn't necessarily provide a cooling max flow
-- schedule_run_command:
-  - ON
-  - OFF
 - supply_air_dewpoint_temperature_sensor
 - supply_air_dewpoint_temperature_setpoint
 - ultraviolet_lamp_run_command:
@@ -1311,16 +1308,10 @@ literals:
   - ON
   - OFF
 
-- compressor_run_time_accumulator
 - return_air_isolation_damper_status
 - return_air_isolation_damper_command:
   - OPEN
   - CLOSED
-- supply_fan_run_mode:
-  - AUTO
-  - MANUAL
-- evaporative_fan_speed_percentage_sensor
-- evaporative_fan_speed_percentage_command 
 - high_limit_zone_air_temperature_setpoint
 - low_limit_zone_air_temperature_setpoint
 - supply_fan_speed_mode:

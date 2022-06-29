@@ -4613,37 +4613,6 @@ AHU_DFSS_DX2ZC_ECONZ_CO2C_DSP_RCKTM2X_HTZC_CC2XM_RTM_DTM:
   opt_uses:
   - condensing_fan_current_sensor
   
-
-
-#PAC Unit #  
-AHU_CHWDC_DFSS_DXSC_DXZTC_EVFSM_REFPM_ZHC_DFRMM_CHWDT:
-  description: "CRAC with chilled water temperature monitoring and compressor monitoring with zone temperature and humidity monitoring."
-  is_canonical: true
-  implements:
-  - AHU
-  - CHWDC
-  - DFSS
-  - DXSC
-  - DXZTC
-  - EVFSM
-  - REFPM
-  - ZHC
-  - DFRMM
-  - CHWDT  
-
-#PAC Unit #  
-AHU_DFSS_DX2ZTC_EVFSM_REFPM2X_ZHC_DFRMM:
-  description: "CRAC with dual compressor with temperature monitoring and compressor monitoring with humidity monitoring."
-  is_canonical: true
-  implements:
-  - AHU
-  - DFSS
-  - DX2ZTC
-  - EVFSM
-  - REFPM2X
-  - ZHC
-  - DFRMM 
-
 #AHU Unit#  
 AHU_SFSS_SFMSC_SFVSC_FDPM_CHWSC_RTM_RACO2C_SSPC_VOADM2X_SAIDC_RAIDC2X:
   description: "AHUs with chilled water temperature monitoring, compressor monitoring with zone temperature and humidity monitoring with 2 dampers monitoring and control ."
