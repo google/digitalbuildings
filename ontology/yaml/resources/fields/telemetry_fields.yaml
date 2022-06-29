@@ -1246,4 +1246,5 @@ literals:
   - AUTO
   - MANUAL
 
- 
+- evaporative_fan_speed_percentage_sensor
+- evaporative_fan_speed_percentage_command 
