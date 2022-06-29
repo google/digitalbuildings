@@ -186,3 +186,17 @@ SENSOR_ZA_PML:
   - zone_air_pm4pt0_volumetricconcentration_sensor
   - zone_air_pm10pt0_volumetricconcentration_sensor
   - zone_air_voc_concentration_sensor
+
+SENSOR_AQT:
+  description: "Air quality multiple property sensor."
+  is_canonical: true
+  uses:
+  - outside_air_co2_concentration_sensor
+  - outside_air_co_concentration_sensor
+  - outside_air_so2_concentration_sensor
+  - outside_air_no2_concentration_sensor
+  - outside_air_no_concentration_sensor
+  - outside_air_h2s_concentration_sensor
+  - outside_air_ozone_concentration_sensor
+  - outside_air_pm2pt5_density_sensor 
+  - outside_air_pm10pt0_density_sensor
