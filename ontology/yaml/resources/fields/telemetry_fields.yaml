@@ -1211,6 +1211,9 @@ literals:
 - leaving_water_tank_temperature_sensor
 - entering_water_tank_temperature_sensor
 
+# Tank level
+- percentage_sensor
+
 - secondary_heating_supply_water_temperature_sensor
 - secondary_heating_return_water_temperature_sensor
 - primary_heating_supply_water_temperature_sensor
@@ -1226,6 +1229,19 @@ literals:
   - ON
   - OFF
 - ground_temperature_sensor
+
+
+## New fields for Freezer (Walk in Cold room)
+- defrost_run_status:
+  - ON
+  - OFF
+- defrost_temperature_sensor
+- discharge_fan_run_time_accumulator
+
+- defrost_temperature_setpoint
+
+- defrost_run_command
+
 - input_motor_frequency_sensor
 - input_motor_power_sensor
 - motor_powerfactor_sensor
@@ -1306,3 +1322,11 @@ literals:
 - high_exhaust_fan_speed_status:
   - ON
   - OFF
+  
+  ## New fields for EM##
+
+- generator_energy_accumulator
+- electricalgrid_energy_accumulator
+- generator_run_time_accumulator
+- electricalgrid_run_time_accumulator 
+
