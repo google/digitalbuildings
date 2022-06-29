@@ -137,7 +137,7 @@ f7d82b75-ea41-49e2-bb5a-53228044eb4c # Entity keyed by a GUID
     ANOTHER-ENTITY-GUID: FEEDS
     A-THIRD-ENTITY-GUID: CONTAINS
   links:
-    A-FOURTH-ENTITY-GUID: # Source entity code
+    A-FOURTH-ENTITY-GUID: # Source entity keyed by a GUID
       # target_device_field: source_device_field
       supply_air_damper_position_command: supply_air_damper_command_1
       zone_air_temperature: zone_air_temperature_sensor_1
