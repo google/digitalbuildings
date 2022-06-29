@@ -68,15 +68,7 @@ DD:
   implements:
   - CONTROL
   
-MIOVCM:
-  description: "Motor input-output current and voltage monitoring."
-  is_abstract: true
-  implements:
-  - MONITORING
-  uses:
-  - dc_voltage_sensor
-  - ac_voltage_sensor
-  - current_sensor  
+ 
 
 # Not deprecated but probably not useful
 OADM:
