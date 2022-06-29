@@ -1336,11 +1336,14 @@ literals:
 - compressor_run_time_accumulator
 
 
-  ## New fields for EM##
+## New fields for EM##
 
 - generator_energy_accumulator
 - electricalgrid_energy_accumulator
 - generator_run_time_accumulator
 - electricalgrid_run_time_accumulator 
+
+## New fields for fans##
+- discharge_fan_energy_accumulator
 
 
