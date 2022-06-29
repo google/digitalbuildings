@@ -4701,7 +4701,6 @@ AHU_SFSS_SFMSC_SFVSC_FDPM_CHWSC_RTM_RACO2C_SSPC_VOADM2X_SAIDC2X_RAIDC2X:
   - RAIDC2X
 
   
-
 AHU_SFSS_SFMSC_SFVSC_FDPM_CHWSC_RTM_RACO2C_SSPC2X_VOADM2X_SAIDC2X_RAIDC3X_SSPC:
   description: "AHUs with chilled water temperature monitoring and compressor monitoring with zone temperature and humidity monitoring ."
   is_canonical: true
