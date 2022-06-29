@@ -1330,3 +1330,5 @@ literals:
 - generator_run_time_accumulator
 - electricalgrid_run_time_accumulator 
 
+- compressor_speed_percentage_command_1
+- compressor_speed_percentage_command_2

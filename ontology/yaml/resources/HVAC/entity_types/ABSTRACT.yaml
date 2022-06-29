@@ -1508,6 +1508,8 @@ DX2ZC:
   - cooling_thermal_power_capacity
   - cooling_percentage_command
   - compressor_speed_percentage_command
+  - compressor_speed_percentage_command_1
+  - compressor_speed_percentage_command_2
   uses:
   - zone_air_cooling_temperature_setpoint
   - zone_air_temperature_sensor
@@ -1612,6 +1614,8 @@ DX2SC:
   - cooling_percentage_command
   - compressor_speed_percentage_command
   - cooling_request_count
+  - compressor_speed_percentage_command_1
+  - compressor_speed_percentage_command_2
   uses:
   - compressor_run_command_1
   - compressor_run_command_2
