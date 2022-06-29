@@ -527,6 +527,7 @@ DFSS:
   - discharge_fan_power_sensor
   - discharge_air_static_pressure_sensor
   - discharge_fan_lost_power_alarm
+  - discharge_fan_run_time_accumulator
   uses:
   - discharge_fan_run_command
   - discharge_fan_run_status
@@ -4826,6 +4827,16 @@ HWRWISOVPM:
   - heating_return_water_isolation_valve_percentage_command
   - heating_return_water_isolation_valve_percentage_sensor
   implements:
+
+  - MONITORING 
+
+DEFSS:
+  description: "defrost run command and status (start/stop) "
+  is_abstract: true
+  uses:
+  - defrost_run_status
+  - defrost_run_command  
+  implements:
   - MONITORING
 
 MIPVCM:
@@ -4967,6 +4978,7 @@ EFHLC:
   - high_exhaust_fan_speed_status
   implements:
 
+
   - OPERATIONAL
 
 
@@ -5013,3 +5025,7 @@ DFVSC3X:
   - discharge_fan_run_command_3
   implements:
   - OPERATIONAL
+
+  - OPERATIONAL
+
+
