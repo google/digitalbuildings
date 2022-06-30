@@ -83,6 +83,20 @@ FAN_SS_REFM:
   - SS
   - REFM
 
+FAN_SS_VSC_REFM4X:
+  id: "1060590702859124736"
+  description: "Fan with start/stop status and speed control with four (4) refrigerant concentration sensors."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - VSC
+  uses:
+  - zone_air_refrigerant_concentration_sensor_1
+  - zone_air_refrigerant_concentration_sensor_2
+  - zone_air_refrigerant_concentration_sensor_3
+  - zone_air_refrigerant_concentration_sensor_4
+
 FAN_SS_REFC:
   id: "12258005025502003200"
   description: "Refrigerant control fan."
