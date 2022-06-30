@@ -20,6 +20,9 @@ WM_STANDARD:
   is_canonical: true
   uses:
   - water_volume_accumulator
+  opt_uses:
+  - failed_alarm
+  - flowrate_sensor
 
 WM_WF:
   id: "5379261270530719744"
