@@ -495,6 +495,9 @@ literals:
 - phase3_powerfactor_sensor
 - powerfactor_sensor
 - reactive_power_sensor
+- phase1_reactive_power_accumulator
+- phase2_reactive_power_accumulator
+- phase3_reactive_power_accumulator
 
 # Added on 2019/06/27 for Enlighted
 - dimmer_percentage_command # Should be adjusted to brightness_percentage_command
