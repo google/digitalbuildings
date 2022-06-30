@@ -1328,14 +1328,6 @@ literals:
 
 # telemetry fields for exhaust fan#
 
-- exhaust_fan_speed_mode:
-  - VFD
-  - BYPASS
-  
-- exhaust_fan_run_mode:
-  - AUTO
-  - MANUAL
-
 - speed_mode:
   - VFD
   - BYPASS
