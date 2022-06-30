@@ -198,6 +198,9 @@ literals:
 - chilled_water_isolation_valve_status:
   - OPEN
   - CLOSED
+- circulation_changeover_isolation_valve_status:
+  - OPEN
+  - CLOSED
 - circulation_pump_run_command:
   - ON
   - OFF

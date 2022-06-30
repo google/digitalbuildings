@@ -3380,6 +3380,16 @@ RWISOVPM:
   implements:
   - MONITORING
 
+CICHVISOVM3X:
+  description: "Circuit changeover valve for switching between Hot water system and Chiller "
+  is_abstract: true
+  uses:
+  - circulation_changeover_isolation_valve_status_1
+  - circulation_changeover_isolation_valve_status_2
+  - circulation_changeover_isolation_valve_status_3
+  implements:
+  - MONITORING
+
 CHWRWISOVPM:
   id: "10432710170277576704"
   description: "Return side isolation valve monitoring."
