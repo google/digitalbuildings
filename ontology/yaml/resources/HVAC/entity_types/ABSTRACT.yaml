@@ -1264,7 +1264,7 @@ CHPM:
   implements:
   - MONITORING
 
-EFSM:
+ESFM:
   description: " An Electrostatic filter used to maintain air quality its run status and alarm monitoring"
   is_abstract: true
   uses:
