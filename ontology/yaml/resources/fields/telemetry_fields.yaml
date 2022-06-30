@@ -61,9 +61,13 @@ literals:
 - discharge_fan_run_command:
   - ON
   - OFF
+  - AUTO
+  - UNKNOWN
 - discharge_fan_run_status:
   - ON
   - OFF
+  - AUTO
+  - UNKNOWN
 - discharge_fan_speed_mode:
   - AUTO
   - LOW
@@ -192,6 +196,9 @@ literals:
 - bypass_return_air_temperature_sensor
 - bypass_valve_percentage_sensor
 - chilled_water_isolation_valve_status:
+  - OPEN
+  - CLOSED
+- circulation_changeover_isolation_valve_status:
   - OPEN
   - CLOSED
 - circulation_pump_run_command:
@@ -1147,7 +1154,6 @@ literals:
 - tenminutefixed_max_zaxis_frequency_sensor
 - signal_strength_percentage_sensor
 - dutycycle_percentage_sensor
-
 - min_zone_air_relative_humidity_sensor
 - min_zone_air_relative_humidity_setpoint
 
@@ -1187,7 +1193,6 @@ literals:
 - leaving_coil_temperature_sensor
 - heat_recovery_supply_water_temperature_sensor
 - heat_recovery_return_water_temperature_sensor
-
 - hot_water_tank_temperature_sensor
 - hot_water_tank_temperature_setpoint
 - preheating_water_tank_temperature_sensor
@@ -1238,6 +1243,11 @@ literals:
 - return_air_specificenthalpy_sensor
 - compressor_current_sensor
 
+## Water Level status
+- water_level_status:
+  - HIGH
+  - MEDIUM
+  - LOW
 ## New fields for steam/water heat exchanger
 - supply_steam_static_pressure_sensor
 - supply_steam_static_pressure_setpoint
@@ -1260,6 +1270,8 @@ literals:
 - leaving_water_tank_temperature_sensor
 - entering_water_tank_temperature_sensor
 
+# Tank level
+- percentage_sensor
 - secondary_heating_supply_water_temperature_sensor
 - secondary_heating_return_water_temperature_sensor
 - primary_heating_supply_water_temperature_sensor
@@ -1275,6 +1287,18 @@ literals:
   - ON
   - OFF
 - ground_temperature_sensor
+
+
+## Addition of new fields#
+
+## New fields for Freezer (Walk in Cold room)
+- defrost_run_status:
+  - ON
+  - OFF
+- defrost_temperature_sensor
+- discharge_fan_run_time_accumulator
+- defrost_temperature_setpoint
+- defrost_run_command
 - input_motor_frequency_sensor
 - input_motor_power_sensor
 - motor_powerfactor_sensor
@@ -1286,14 +1310,12 @@ literals:
 - input_phase1_phase3_line_motor_voltage_sensor
 - input_phase1_phase2_line_motor_voltage_sensor
 - input_phase2_phase3_line_motor_voltage_sensor
-
 - input_phase1_line_inverter_current_sensor
 - input_phase2_line_inverter_current_sensor
 - input_phase3_line_inverter_current_sensor
 - output_inverter_voltage_sensor
 - input_inverter_frequency_sensor
 - output_inverter_power_sensor
-
 - refrigerant_differential_pressure_sensor
 
 - chilled_side_ground_supply_economizer_isolation_valve_status:
@@ -1355,3 +1377,30 @@ literals:
 - high_exhaust_fan_speed_status:
   - ON
   - OFF
+- return_air_isolation_damper_status
+- return_air_isolation_damper_command:
+  - OPEN
+  - CLOSED
+- supply_fan_speed_mode:
+  - VFD
+  - BYPASS
+- supply_fan_run_time_accumulator
+- supply_fan_voltage_sensor
+- supply_fan_power_status:
+  - ON
+  - OFF
+- discharge_fan_run_mode:
+  - AUTO
+  - MANUAL
+
+- supply_fan_run_mode:
+  - AUTO
+  - MANUAL
+ 
+## New fields for EM##
+- electricalgrid_energy_accumulator
+- generator_run_time_accumulator
+- electricalgrid_run_time_accumulator
+- generator_energy_accumulator 
+- supply_fan_energy_accumulator
+- compressor_run_time_accumulator
