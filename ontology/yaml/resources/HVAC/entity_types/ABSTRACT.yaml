@@ -4843,6 +4843,7 @@ HWRWISOVPM:
   - MONITORING 
 
 DEFSS:
+  id: "8292821948602253312"
   description: "defrost run command and status (start/stop) "
   is_abstract: true
   uses:
@@ -5001,8 +5002,11 @@ EFHLC:
   implements:
   - OPERATIONAL
 
+
   
   
+
+
 
 
 
