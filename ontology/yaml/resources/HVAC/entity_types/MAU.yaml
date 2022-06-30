@@ -634,7 +634,7 @@ MAU_SFSS2X_SFVSC2X_CHWSC_HWSC_FDPM_SSPC_STC_VOADM2X:
   - VOADM2X
   
 MAU_SFVSC_SPSS_STM_SHM_SFC:
-  description: "MAU with VFD ,spray pump ,filter , supply air temperature and huidity monitoring"
+  description: "MAU with VFD, spray pump, filter, supply air temperature and humidity monitoring."
   is_canonical: true
   implements:
   - MAU
