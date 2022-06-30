@@ -755,7 +755,7 @@ MAU_US_SBO_1000_1:
   - humidification_run_command
   
 #New canonical#
-MAU_FDPM_SSPC_STC_SHM_DFVSC3X:
+MAU_FDPM_SSPC_STC_SHM_SFVSC3X_SFSS3X:
   description: "Air purifier unit (MAU) with 3 fan with differential pressure, static pressure, temperature, humidity and electrical parameter monitoring. "
   implements:
   - MAU
@@ -763,5 +763,6 @@ MAU_FDPM_SSPC_STC_SHM_DFVSC3X:
   - SSPC
   - STC
   - SHM
-  - DFVSC3X
+  - SFVSC3X
+  - SFSS3X
   
