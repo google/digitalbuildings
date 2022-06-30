@@ -5000,19 +5000,7 @@ DFRMM:
   - discharge_fan_run_mode
   implements:
   - MONITORING  
-  
-EVFSM:
-  description: "Evaporative fan speed monitoring and control ."
-  is_abstract: true
-  uses:
-  - evaporative_fan_speed_percentage_sensor
-  - evaporative_fan_speed_percentage_command
-  implements:
-  - CONTROL  
-  
-
-
-  
+    
 
 
 
