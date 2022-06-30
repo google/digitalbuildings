@@ -428,6 +428,8 @@ literals:
 - zone_air_static_pressure_setpoint
 - zone_air_voc_concentration_sensor
 - zone_air_voc_concentration_setpoint
+- return_air_voc_concentration_sensor
+- return_air_voc_concentration_setpoint
 
 ## Added on 2019/03/12
 - cooling_percentage_command

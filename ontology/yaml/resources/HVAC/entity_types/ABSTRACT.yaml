@@ -1124,6 +1124,15 @@ VOCC:
   implements:
   - OPERATIONAL
 
+RAVOCC:
+  description: "Volatile organic compound control for return air from zone."
+  is_abstract: true
+  uses:
+  - return_air_voc_concentration_setpoint
+  - return_air_voc_concentration_sensor
+  implements:
+  - OPERATIONAL
+  
 VOCPC:
   id: "668891884487180288"
   description: "Volatile organic compound percentage control."
