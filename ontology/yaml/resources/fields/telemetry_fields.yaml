@@ -1328,9 +1328,8 @@ literals:
 - ac_voltage_sensor
 - supply_fan_run_mode:
   - AUTO
-  - MANUAL
-  
- - supply_fan_run_time_accumulator  
+  - MANUAL 
+- supply_fan_run_time_accumulator  
   
   ## New fields for EM##
 
