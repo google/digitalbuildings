@@ -4828,6 +4828,7 @@ HWRWISOVPM:
   - MONITORING 
 
 DEFSS:
+  id: "8292821948602253312"
   description: "defrost run command and status (start/stop) "
   is_abstract: true
   uses:
@@ -4975,6 +4976,7 @@ EFHLC:
   - high_exhaust_fan_speed_status
   implements:
   - OPERATIONAL
+
  
 PHWTC:
   description: "potable water temperature monitoring and control."
@@ -4994,3 +4996,5 @@ PLPM:
   is_abstract: true
   uses:
   - line_pressure_sensor 
+
+
