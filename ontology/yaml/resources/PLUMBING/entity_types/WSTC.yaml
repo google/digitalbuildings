@@ -19,7 +19,7 @@
 
 
 WSTC_SS:
-  description: "Basic waste compactor system ."
+  description: "Basic waste compactor system."
   is_canonical: true
   implements:
   - WSTC

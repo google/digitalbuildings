@@ -25,8 +25,8 @@ WSTC:
   - EQUIPMENT
 
 PMP:
-  description: "Tag for pumps. Pumps move liquid (water, glycol, liquid CO2, etc.) from one part of a system
-    to another.Used for (irrigation,domestic purposes) different usecase then HVAC."
+  description: "Tag for pumps. Pumps move liquid (water, glycol, liquid CO2, etc.)from one part of a system
+    to another. Used for(irrigation, domestic purposes)different usecase than HVAC."
   is_abstract: true
   implements:
   - EQUIPMENT
