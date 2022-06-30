@@ -1146,7 +1146,6 @@ literals:
 - level_status:
   - LOW
   - HIGH
-- percentage_sensor
 
 ## New fields for electrical system additions
 - voltage_sensor
