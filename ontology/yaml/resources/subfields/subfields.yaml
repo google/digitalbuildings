@@ -281,7 +281,6 @@ measurement:
   #pressurechange: "Change of pressure per temperature." # TODO (tsodorff): find an alternative name once a use case arises 
   rate: "ratio of change compared to a step or time."
   reactivepower: "Difference between the electricity supplied and the electricity converted into useful power."
-  reactiveenergy: "Measures alternating exchange of stored energy in inductors and capacitors"
   resistance: "Electrical resistance."
   rotationalvelocity: "Vector measure of rotation rate, that refers to how fast an object rotates or revolves relative to another point."
   specificenergy: "Energy per unit mass."
