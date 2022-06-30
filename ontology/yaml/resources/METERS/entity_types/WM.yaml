@@ -28,6 +28,6 @@ WM_WF:
   - WM
   is_canonical: true
   uses:
-  - supply_water_flowrate_sensor
+  - flowrate_sensor
   opt_uses:
   - water_volume_accumulator  
