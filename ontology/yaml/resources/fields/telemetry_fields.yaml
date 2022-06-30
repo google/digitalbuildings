@@ -732,7 +732,7 @@ literals:
 - refrigerant_failed_alarm:
   - ACTIVE
   - INACTIVE
-- outside_heating_exchange_failed_alarm:
+- heating_exchange_failed_alarm:
   - ACTIVE
   - INACTIVE
 - compressor_failed_alarm:
