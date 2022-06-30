@@ -4984,7 +4984,7 @@ SCRSS:
   is_abstract: true
   opt_uses:
   - scrubber_run_mode
-  - filter_status
+  - filter_alarm
   - differential_pressure_sensor
   - fire_alarm
   uses:

@@ -91,6 +91,12 @@ literals:
   - ON
   - OFF
   - UNKNOWN
+- exhaust_fan_run_mode:
+  - AUTO
+  - MANUAL
+- exhaust_fan_bypass_status:
+  - NORMAL
+  - BYPASS
 - exhaust_fan_speed_frequency_sensor
 - exhaust_fan_speed_percentage_command
 - exhaust_fan_speed_percentage_sensor
@@ -126,6 +132,12 @@ literals:
 - outside_air_relative_humidity_sensor
 - outside_air_temperature_sensor
 - outside_air_wetbulb_temperature_sensor
+- outside_air_fan_run_status:
+  - ON
+  - OFF
+- outside_air_fan_run_command:
+  - ON
+  - OFF
 - power_sensor
 - return_air_relative_humidity_sensor
 - return_air_temperature_sensor
@@ -1297,5 +1309,16 @@ literals:
   - ON
   - OFF
 - high_exhaust_fan_speed_status:
+  - ON
+  - OFF
+
+# Addition of telemetry for scrubber
+- scrubber_run_mode:
+  - AUTO
+  - MANUAL
+- scrubber_run_command:
+  - ON
+  - OFF
+- scrubber_run_status:
   - ON
   - OFF
