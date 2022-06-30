@@ -208,8 +208,6 @@ pressure:
 - millibars
 rate:
 - inv_second: STANDARD
-reactiveenergy:
-- kilovolt_amperes_reactive_hours: STANDARD
 reactivepower:
 - volt_amperes_reactive: STANDARD
 - kilovolt_amperes_reactive
