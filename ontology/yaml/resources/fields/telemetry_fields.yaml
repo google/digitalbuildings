@@ -1331,8 +1331,6 @@ literals:
 - speed_mode:
   - VFD
   - BYPASS
- 
-
   
   ## New fields for EM##
 
