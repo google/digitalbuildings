@@ -1323,27 +1323,10 @@ literals:
   - ON
   - OFF
   
-
-#Telemetry fields for Fan#
-- fan_run_mode:
-  - AUTO
-  - MANUAL 
-
-- fan_run_time_accumulator
-
-
-- high_limit_speed_percentage_command
-- low_limit_speed_percentage_command
-- high_speed_status:
-  - ON
-  - OFF 
-- low_speed_status:
-  - ON
-  - OFF
-
+#Telemetry fields for APU(MAU)# 
 - dc_voltage_sensor
 - ac_voltage_sensor
-- discharge_fan_run_mode:
+- supply_fan_run_mode:
   - AUTO
   - MANUAL
   
