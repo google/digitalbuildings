@@ -69,6 +69,7 @@ PVCM:
   - phase3_neutral_line_voltage_sensor
   
 PWMRDM:
+  id: "14764494613133656064"
   description: "Energy monitoring from Electrical Grid and Generator with run hours monitoring."
   is_abstract: true
   uses:

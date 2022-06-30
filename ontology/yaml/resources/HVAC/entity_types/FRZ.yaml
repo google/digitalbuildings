@@ -20,6 +20,7 @@
 
   
 FRZ_DXZTC_DFSS:
+  id: "12904507967029641216"
   description: "Freezer with discharge fan run duration monitoring with compressor run control ."
   is_canonical: true
   implements:
