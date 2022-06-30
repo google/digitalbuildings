@@ -3232,17 +3232,17 @@ SFVSC3X:
   is_abstract: true
   opt_uses:
   - supply_fan_speed_frequency_sensor_1
-#  - supply_fan_speed_percentage_sensor_1
+  - supply_fan_speed_percentage_sensor_1
   - supply_fan_current_sensor_1
-#  - supply_fan_power_sensor_1
+  - supply_fan_power_sensor_1
   - supply_fan_speed_frequency_sensor_2
-#  - supply_fan_speed_percentage_sensor_2
+  - supply_fan_speed_percentage_sensor_2
   - supply_fan_current_sensor_2
-#  - supply_fan_power_sensor_2
+  - supply_fan_power_sensor_2
   - supply_fan_speed_frequency_sensor_3
-#  - supply_fan_speed_percentage_sensor_3
+  - supply_fan_speed_percentage_sensor_3
   - supply_fan_current_sensor_3
-#  - supply_fan_power_sensor_3
+  - supply_fan_power_sensor_3
   - dc_voltage_sensor_1
   - dc_voltage_sensor_2
   - dc_voltage_sensor_3
