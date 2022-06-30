@@ -14,7 +14,7 @@
 
  
   
-GEN_SS_TKLS_OTPM_PWM_RDM:
+GEN_SS_TKLS_OTPM_PWM_RDM_BTEPM:
   description: "Generator with run duration, Tank level, oil temperature, pressure, and run duration monitoring."
   is_canonical: true
   implements:
@@ -23,4 +23,5 @@ GEN_SS_TKLS_OTPM_PWM_RDM:
   - TKLS
   - OTPM
   - PWM  
-  - RDM 
+  - RDM
+  - BTEPM

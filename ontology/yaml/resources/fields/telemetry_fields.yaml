@@ -1329,6 +1329,7 @@ literals:
 - oil_pressure_sensor
 - tank_level_status
 - battery_voltage_sensor
+- battery_current_sensor
 
   
   ## New fields for EM##

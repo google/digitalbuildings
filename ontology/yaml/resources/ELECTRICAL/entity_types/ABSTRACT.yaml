@@ -59,8 +59,7 @@ PWM:
   - power_sensor
   - energy_accumulator
   - powerfactor_sensor 
-  - apparent_power_sensor
-  - battery_voltage_sensor  
+  - apparent_power_sensor 
 
 RMM:
   description: "Run mode monitoring."
@@ -97,5 +96,13 @@ PPWM:
   - phase1_apparent_power_sensor
   - phase2_apparent_power_sensor
   - phase3_apparent_power_sensor
-  - line_frequency_sensor  
+  - line_frequency_sensor
+
+BTEPM:
+  description: "Basic battery electrical parameter monitoring"
+  is_abstract: true
+  uses:
+  - battery_voltage_sensor
+  - battery_current_sensor
+ 
 
