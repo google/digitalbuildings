@@ -49,7 +49,7 @@ HM_CHW_WAC:
   uses:
   - water_volume_accumulator
   opt_uses:
-  - exchange_thermal_temperature_sensor
+  - differential_temperature_sensor
   - failed_alarm
 
 #New type for CH ZRH EURD
