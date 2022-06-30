@@ -428,8 +428,10 @@ literals:
 - zone_air_static_pressure_setpoint
 - zone_air_voc_concentration_sensor
 - zone_air_voc_concentration_setpoint
-- zone_min_air_flowrate_sensor
-- zone_max_air_flowrate_sensor
+- min_supply_air_flowrate_sensor
+- max_supply_air_flowrate_sensor
+- zone_air_occupied_cooling_temperature_setpoint
+- zone_air_unoccupied_cooling_temperature_setpoint
 
 ## Added on 2019/03/12
 - cooling_percentage_command
