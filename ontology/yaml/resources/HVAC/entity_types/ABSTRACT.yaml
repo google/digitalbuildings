@@ -113,7 +113,6 @@ REFM:
   uses:
   - zone_air_refrigerant_concentration_sensor
 
-
 CSP:
   id: "2456298668530073600"
   description: "Single cooling setpoint control (IDF room typically)."
@@ -412,7 +411,6 @@ DFVSC2X:
   - discharge_fan_run_command_2
   implements:
   - OPERATIONAL
-
 
 DFVSFC:
   id: "3819485279274663936"
@@ -809,7 +807,6 @@ RWTC:
   uses:
   - return_water_temperature_setpoint
   - return_water_temperature_sensor
-
 
 PSWTC:
   id: "10474579573063286784"
@@ -4978,28 +4975,21 @@ EFHLC:
   - high_exhaust_fan_speed_status
   implements:
   - OPERATIONAL
-
-  
+ 
 PHWTC:
   description: "potable water temperature monitoring and control."
   is_abstract: true
   uses:
   - potable_hot_water_temperature_sensor  
 
-  
 LM:
   description: "level monitoring of devices storing media."
   is_abstract: true
   uses:
   - level_status
  
-
-
 PLPM:  
   description: "Pipeline Fluid pressure monitoring"
   is_abstract: true
   uses:
   - line_pressure_sensor 
-
-
-
