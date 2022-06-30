@@ -162,6 +162,12 @@ literals:
   - ON
   - OFF
   - UNKNOWN
+- supply_fan_run_mode:
+  - AUTO
+  - MANUAL
+- supply_fan_bypass_status:
+  - NORMAL
+  - BYPASS
 - supply_fan_speed_frequency_command
 - supply_fan_speed_frequency_sensor
 - supply_fan_speed_percentage_command
