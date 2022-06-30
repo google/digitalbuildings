@@ -1325,7 +1325,6 @@ literals:
   - ON
   - OFF
 
-
 # telemetry fields for exhaust fan#
 
 - speed_mode:
