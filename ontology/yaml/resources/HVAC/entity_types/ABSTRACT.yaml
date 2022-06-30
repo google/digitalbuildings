@@ -4987,6 +4987,7 @@ LM:
   is_abstract: true
   uses:
   - level_status
+  - percentage_sensor
  
 PLPM:  
   description: "Pipeline Fluid pressure monitoring"

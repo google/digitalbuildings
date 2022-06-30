@@ -33,4 +33,11 @@ TK_LM_PLPM:
   implements:
   - /TK # Inherits from global namespace 
   - LM
-  - PLPM  
+  - PLPM
+
+TK_LM:  
+  description: "Tank with level monitoring "
+  is_canonical: true
+  implements:
+  - /TK # Inherits from global namespace 
+  - LM
