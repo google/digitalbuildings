@@ -489,25 +489,6 @@ SSPC:
   implements:
   - OPERATIONAL
 
-SSPC2X:
-  description: "Supply static pressure control via supply fan speed with mutiple sensors"
-  is_abstract: true
-  opt_uses:
-  - supply_fan_speed_frequency_sensor
-  - supply_fan_run_command
-  - supply_fan_run_status
-  - pressurization_request_count
-  - supply_air_damper_percentage_command
-  - supply_air_flowrate_sensor
-  - supply_fan_speed_percentage_command
-  - average_supply_air_static_pressure
-  uses:
-  - supply_air_static_pressure_sensor_1
-  - supply_air_static_pressure_sensor_2
-  - supply_air_static_pressure_setpoint
-  implements:
-  - OPERATIONAL
-
 SPSS:
   id: "8029265712889462784"
   description: "Spray pump start stop monitoring."
