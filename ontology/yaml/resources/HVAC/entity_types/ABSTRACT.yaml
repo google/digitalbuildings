@@ -4973,7 +4973,7 @@ EFHLC:
 OAFSS:
   description: "Start/stop command and status monitoring for fresh air fans."
   is_abstract: true
-    uses:
+  uses:
   - outside_air_fan_run_status
   - outside_air_fan_run_command
   implements:
