@@ -31,10 +31,10 @@ WM_WF:
   - supply_water_flowrate_sensor
 
 WM_WVFM:
-  description: "Water flow rate meter with volume accumulator."
+  description: "Water volume accumulator and flow rate measurement."
   implements:
   - WM
   is_canonical: true
   uses:
   - flowrate_sensor
-  - water_volume_accumulator
+  - volume_accumulator

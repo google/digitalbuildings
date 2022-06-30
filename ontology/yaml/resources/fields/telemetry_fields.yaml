@@ -1299,3 +1299,4 @@ literals:
 - high_exhaust_fan_speed_status:
   - ON
   - OFF
+- volume_accumulator
