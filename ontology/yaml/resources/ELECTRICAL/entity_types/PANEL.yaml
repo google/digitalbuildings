@@ -19,5 +19,5 @@ SWITCHBOARD:
   implements:
   - PANEL
   opt_uses: 
-  - circuit_breaker_status
-  - circuit_breaker_trip_status
+  - circuitbreaker_status
+  - circuitbreaker_failed_alarm
