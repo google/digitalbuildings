@@ -205,8 +205,8 @@ pressure:
 - bars
 - millibars
 pulserate:
-- beats_per_minute: STANDARD
-- pulse_per_minute
+- pulse_per_minute: STANDARD
+
 rate:
 - inv_second: STANDARD
 reactivepower:
