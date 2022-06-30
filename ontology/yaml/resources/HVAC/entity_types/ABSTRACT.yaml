@@ -4983,7 +4983,6 @@ EFHLC:
   implements:
   - OPERATIONAL
 
-
 SRC:
   description: "Very basic run scheduling command. "
   is_abstract: true
@@ -4991,13 +4990,3 @@ SRC:
   - schedule_run_command
   implements:
   - CONTROL
-  
- 
-
-
-   
-  
-
-
-
-
