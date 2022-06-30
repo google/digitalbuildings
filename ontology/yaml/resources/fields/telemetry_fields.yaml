@@ -1330,6 +1330,8 @@ literals:
   - AUTO
   - MANUAL
   
+ - supply_fan_run_time_accumulator  
+  
   ## New fields for EM##
 
 - generator_energy_accumulator
