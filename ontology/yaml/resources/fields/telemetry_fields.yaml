@@ -155,6 +155,21 @@ literals:
 - supply_air_temperature_setpoint
 - supply_fan_current_sensor
 - supply_fan_power_sensor
+- supply_air_damper_open_status:
+  - OPEN
+  - CLOSE
+- supply_air_damper_closed_status:
+  - OPEN
+  - CLOSE
+- return_air_damper_open_status:
+  - OPEN
+  - CLOSE
+- return_air_damper_closed_status:
+  - OPEN
+  - CLOSE
+- high_temperature_alarm:
+  - ALARM
+  - NORMAL
 - supply_fan_run_command:
   - ON
   - OFF
