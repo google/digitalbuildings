@@ -2701,6 +2701,14 @@ CDWPVM:
   implements:
   - OPERATIONAL
 
+CDWFRSM:
+  description: "Condenser water flowrate status monitoring."
+  is_abstract: true
+  uses:
+  - condensing_water_flowrate_status
+  implements:
+  - OPERATIONAL
+
 BYPVPM:
   id: "9735989234174525440"
   description: "Bypass water valve percentage monitoring."
