@@ -2705,6 +2705,14 @@ CDWPVM:
   implements:
   - OPERATIONAL
 
+CDWFRSM:
+  description: "Condenser water flowrate status monitoring."
+  is_abstract: true
+  uses:
+  - condensing_water_flowrate_status
+  implements:
+  - OPERATIONAL
+
 BYPVPM:
   id: "9735989234174525440"
   description: "Bypass water valve percentage monitoring."
@@ -3373,6 +3381,16 @@ RWISOVPM:
   uses:
   - return_water_isolation_valve_percentage_command
   - return_water_isolation_valve_percentage_sensor
+  implements:
+  - MONITORING
+
+CICHVISOVM3X:
+  description: "Circuit changeover valve for switching between Hot water system and Chiller "
+  is_abstract: true
+  uses:
+  - circulation_changeover_isolation_valve_status_1
+  - circulation_changeover_isolation_valve_status_2
+  - circulation_changeover_isolation_valve_status_3
   implements:
   - MONITORING
 
@@ -5113,6 +5131,30 @@ EFHLC:
   - high_exhaust_fan_speed_status
   implements:
   - OPERATIONAL
+
+CO2M4X:
+  description: "Basic carbon dioxide monitoring for 4 Zones."
+  is_abstract: true
+  uses:
+  - zone_air_co2_concentration_sensor_1
+  - zone_air_co2_concentration_sensor_2
+  - zone_air_co2_concentration_sensor_3
+  - zone_air_co2_concentration_sensor_4
+  implements:
+  - MONITORING
+
+CO2M6X:
+  description: "Basic carbon dioxide monitoring for 6 Zones."
+  is_abstract: true
+  uses:
+  - zone_air_co2_concentration_sensor_1
+  - zone_air_co2_concentration_sensor_2
+  - zone_air_co2_concentration_sensor_3
+  - zone_air_co2_concentration_sensor_4
+  - zone_air_co2_concentration_sensor_5
+  - zone_air_co2_concentration_sensor_6
+  implements:
+  - MONITORING
   
 DFRMM:
   description: "Discharge fan run mode monitoring."
