@@ -416,7 +416,6 @@ DFVSC2X:
   implements:
   - OPERATIONAL
 
-
 DFVSFC:
   id: "3819485279274663936"
   description: "Variable speed control with frequency setting for discharge fans."
@@ -814,7 +813,6 @@ RWTC:
   uses:
   - return_water_temperature_setpoint
   - return_water_temperature_sensor
-
 
 PSWTC:
   id: "10474579573063286784"
@@ -5151,6 +5149,29 @@ EFHLC:
   implements:
   - OPERATIONAL
 
+
+ 
+PHWTC:
+  description: "potable water temperature monitoring and control."
+  is_abstract: true
+  uses:
+  - potable_hot_water_temperature_sensor  
+
+LM:
+  description: "level monitoring of devices storing media."
+  is_abstract: true
+  uses:
+  - level_status
+  - percentage_sensor
+ 
+PLPM:  
+  description: "Pipeline Fluid pressure monitoring"
+  is_abstract: true
+  uses:
+  - line_pressure_sensor 
+
+
+
 CO2M4X:
   description: "Basic carbon dioxide monitoring for 4 Zones."
   is_abstract: true
@@ -5182,3 +5203,4 @@ DFRMM:
   - discharge_fan_run_mode
   implements:
   - MONITORING
+
