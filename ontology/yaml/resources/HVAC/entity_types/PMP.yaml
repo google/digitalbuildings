@@ -120,7 +120,7 @@ PMP_SS_CWCS_VSFC:
   - lost_power_alarm
 
 PMP_SS_RMM:
-  description: "RO Pump with pressure switch and failed alarm monitoring"
+  description: "Pump with pressure switch and failed alarm monitoring"
   is_canonical: true
   implements:
   - PMP
