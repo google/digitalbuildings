@@ -1410,19 +1410,11 @@ literals:
 - supply_fan_voltage_sensor
 - discharge_fan_energy_accumulator
 - discharge_fan_voltage_sensor
-- return_air_isolation_damper_status
-- return_air_isolation_damper_command:
-  - OPEN
-  - CLOSED
 
 - supply_fan_power_status:
   - ON
   - OFF
 - discharge_fan_run_mode:
-  - AUTO
-  - MANUAL
-
-- supply_fan_run_mode:
   - AUTO
   - MANUAL
  
@@ -1431,6 +1423,4 @@ literals:
 - generator_run_time_accumulator
 - electricalgrid_run_time_accumulator 
 - generator_energy_accumulator 
-- compressor_run_time_accumulator
-- supply_fan_energy_accumulator
 - compressor_run_time_accumulator
