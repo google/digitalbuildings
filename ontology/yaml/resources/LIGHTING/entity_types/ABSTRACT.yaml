@@ -140,12 +140,14 @@ LC:
   - illuminance_sensor
 
 SRC:
+  id: "12879738169079103488"
   description: "Basic run scheduling "
   is_abstract: true
   uses:
   - schedule_run_command 
 
 PWM:
+  id: "13467457920450953216"
   description: "Basic power monitoring "
   is_abstract: true
   uses:

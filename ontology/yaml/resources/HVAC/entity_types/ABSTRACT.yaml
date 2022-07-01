@@ -60,6 +60,7 @@ DD:
   - CONTROL
 
 RDM:
+  id: "10008693406630412288"
   description: "Very basic system run duration monitoring. "
   is_abstract: true
   uses:
@@ -68,6 +69,7 @@ RDM:
   - MONITORING
 
 SRC:
+  id: "6232425119080251392"
   description: "Very basic run scheduling command. "
   is_abstract: true
   uses:
@@ -1293,6 +1295,7 @@ FDPM:
   - MONITORING
 
 FDPSM:
+  id: "5397007388203024384"
   description: "Filter pressure status monitoring."
   is_abstract: true
   uses:
@@ -2738,6 +2741,7 @@ CDWPVM:
   - OPERATIONAL
 
 CDWFRSM:
+  id: "14620379425057800192"
   description: "Condenser water flowrate status monitoring."
   is_abstract: true
   uses:
@@ -2963,6 +2967,7 @@ FDPM2X:
   - MONITORING
 
 FDPSM2X:
+  id: "14032659673685950464"
   description: "Filter pressure status monitoring (2 sensors)."
   is_abstract: true
   uses:
@@ -3429,6 +3434,7 @@ RWISOVPM:
   - MONITORING
 
 CICHVISOVM3X:
+  id: "2503444627617480704"
   description: "Circuit changeover valve for switching between Hot water system and Chiller "
   is_abstract: true
   uses:
@@ -4915,6 +4921,7 @@ DEFSS:
   - MONITORING
     
 VOADC2X:
+  id: "15455797155935027200"
   description: "Variable outside air damper control and monitoring, where there are two separate, equal sets of dampers that operate in conjunction."
   is_abstract: true
   uses:
@@ -4926,6 +4933,7 @@ VOADC2X:
   - OPERATIONAL  
   
 RAIDC:
+  id: "8470714133883387904"
   description: "Return air isolation damper control and monitoring."
   is_abstract: true
   uses:
@@ -4934,6 +4942,7 @@ RAIDC:
  
 
 RAIDC3X:
+  id: "6574698690760409088"
   description: "Return air isolation damper control and monitoring, where there are three separate, equal sets of dampers that operate in conjunction."
   is_abstract: true
   uses:
@@ -4947,6 +4956,7 @@ RAIDC3X:
   - MONITORING
 
 RAIDC2X:
+  id: "11726816664472256512"
   description: "Return air isolation damper control and monitoring, where there are two separate, equal sets of dampers that operate in conjunction."
   is_abstract: true
   uses:
@@ -4958,6 +4968,7 @@ RAIDC2X:
   - MONITORING
 
 RAIDC4X:
+  id: "3091164378989330432"
   description: "Return air isolation damper control and monitoring, where there are four separate, equal sets of dampers that operate in conjunction."
   is_abstract: true
   uses:
@@ -4974,6 +4985,7 @@ RAIDC4X:
 
 
 SAIDC:
+  id: "3926582109866557440"
   description: "isolation damper status monitoring and control on the supply side."
   is_abstract: true
   uses:
@@ -4983,6 +4995,7 @@ SAIDC:
   - MONITORING
 
 SAIDC2X:
+  id: "17694086170738163712"
   description: "isolation damper status monitoring and control on the supply side, where there are two separate, equal sets of dampers that operate in conjunction."
   is_abstract: true
   uses:
@@ -4994,6 +5007,7 @@ SAIDC2X:
   - MONITORING
 
 SAIDC3X:
+  id: "15798070727615184896"
   description: "isolation damper status monitoring and control on the supply side, where there are three separate, equal sets of dampers that operate in conjunction."
   is_abstract: true
   uses:
@@ -5007,6 +5021,7 @@ SAIDC3X:
   - MONITORING   
   
 SSPC2X:
+  id: "7115130646044868608"
   description: "Supply static pressure control via supply fan speed with 2 sensors"
   is_abstract: true
   opt_uses:
@@ -5026,6 +5041,7 @@ SSPC2X:
   - OPERATIONAL
 
 SFMSC:
+  id: "12314536415844106240"
   description: "Supply fan multi-speed control."
   is_abstract: true
   uses:
@@ -5179,6 +5195,7 @@ EFHLC:
 ##Abstracts for sensors
 
 PCM:
+  id: "13149954146721333248"
   description: "General particulate matter monitoring."
   is_abstract: true
   uses:
@@ -5187,6 +5204,7 @@ PCM:
   - MONITORING 
 
 PMM:
+  id: "976724353938882560"
   description: "Zone air particulate matter monitoring."
   is_abstract: true
   uses:
@@ -5196,12 +5214,14 @@ PMM:
   - MONITORING   
 
 PHWTC:
+  id: "4268855681546715136"
   description: "potable water temperature monitoring and control."
   is_abstract: true
   uses:
   - potable_hot_water_temperature_sensor  
 
 LM:
+  id: "16338502682899644416"
   description: "level monitoring of devices storing media."
   is_abstract: true
   uses:
@@ -5209,12 +5229,14 @@ LM:
   - percentage_sensor
  
 PLPM:  
+  id: "7702850397416718336"
   description: "Pipeline Fluid pressure monitoring"
   is_abstract: true
   uses:
   - line_pressure_sensor 
 
 CO2M4X:
+  id: "8538268128293945344"
   description: "Basic carbon dioxide monitoring for 4 Zones."
   is_abstract: true
   uses:
@@ -5226,6 +5248,7 @@ CO2M4X:
   - MONITORING
 
 CO2M6X:
+  id: "10200096390793658368"
   description: "Basic carbon dioxide monitoring for 6 Zones."
   is_abstract: true
   uses:
@@ -5241,6 +5264,7 @@ CO2M6X:
 
   
 MIPCVM:
+  id: "13492227718401490944"
   description: "Motor phase-level input current and voltage monitoring."
   is_abstract: true
   implements:
@@ -5251,6 +5275,7 @@ MIPCVM:
   - input_motor_power_sensor  
   
 EPM:
+  id: "1350523123010633728"
   description: "Basic Electrical parameter monitoring."
   is_abstract: true
 
@@ -5266,9 +5291,14 @@ EPM:
 
 
 DFRMM:
+  id: "16926222434271494144"
   description: "Discharge fan run mode monitoring."
   is_abstract: true
   uses:
   - discharge_fan_run_mode
   implements:
+
   - MONITORING  
+
+  
+

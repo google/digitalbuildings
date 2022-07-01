@@ -1052,6 +1052,7 @@ FCU_DFSS_CHWZC_RTM_ZHM:
     - ZHM
     
 FCU_DFVSC_CHWRC_FDPSM2X:
+  id: "521860791574462464"
   description: "FCU with VFD ,return air temperature based Chilled water valve modulation, pre filter and fine filter status,return air humidity monitoring"
   is_canonical: true
   implements:
