@@ -12,22 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-########################
-### Canonical Types  ###
-########################
-
-### FREEZER ###
-
-  
-FRZ_DXZTC_DFSS:
-  id: "12904507967029641216"
-  description: "Freezer with discharge fan run duration monitoring with compressor run control ."
+CB_SS:
+  description: "Standard CB unit."
   is_canonical: true
   implements:
-  - FRZ
-  - DXZTC
-  - DFSS
-
-
-
-  
+  - CB
+  - SS

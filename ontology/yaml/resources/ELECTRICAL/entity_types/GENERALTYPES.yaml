@@ -32,5 +32,14 @@ PANEL:
   is_abstract: true
   implements:
   - EQUIPMENT
+
   
  
+
+
+CB:
+  description: "Tag for all circuit breakers."
+  is_abstract: true
+  implements:
+  - EQUIPMENT
+

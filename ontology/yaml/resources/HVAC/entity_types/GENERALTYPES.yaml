@@ -81,6 +81,7 @@ PMP:
   - EQUIPMENT
 
 FRZ:
+  id: "3681135930174865408"
   description: "Tag for Freezers. "
   is_abstract: true
   implements:
@@ -364,4 +365,9 @@ GTWS:
   - thermal_power_capacity
   - differential_pressure_specification
   - flowrate_requirement
-
+  
+CRREF:
+  description: "Tag for coldroom refigeration."
+  is_abstract: true
+  implements:
+  - EQUIPMENT

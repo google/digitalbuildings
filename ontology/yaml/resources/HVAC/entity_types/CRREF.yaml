@@ -16,18 +16,13 @@
 ### Canonical Types  ###
 ########################
 
-### FREEZER ###
-
-  
-FRZ_DXZTC_DFSS:
-  id: "12904507967029641216"
-  description: "Freezer with discharge fan run duration monitoring with compressor run control ."
+CRREF_DXZTC_DFSS:
+  description: "Typical coldroom refigrator."
   is_canonical: true
   implements:
-  - FRZ
+  - CRREF
   - DXZTC
   - DFSS
-
-
-
-  
+  opt_uses:
+  - run_time_accumulator
+  - master_alarm
