@@ -213,6 +213,17 @@ LGRP_ROS_LSC_LC_VADC_RC:
   - VADC
   - RC
 
+LGRP_OS_IM_LSC_LC_PWM_SCZ:
+  description: "Standard lighting fixture group control with scene control, dimming control and knx actuators,based on scene and room occupancy and/or light switch status"
+  is_canonical: true
+  implements:
+  - LGRP
+  - OS
+  - IM
+  - LSC
+  - PWM
+  - SCZ
+
 #Noncanonical types
 LGRP_DC_MS_IM:
   id: "1231780265257336832"
