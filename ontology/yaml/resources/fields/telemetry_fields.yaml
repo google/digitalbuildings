@@ -1327,7 +1327,6 @@ literals:
 
 - volume_accumulator
 
-  
   ## New fields for EM##
 
 - return_air_isolation_damper_status
