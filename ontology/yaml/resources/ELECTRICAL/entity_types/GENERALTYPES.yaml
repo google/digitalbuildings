@@ -33,12 +33,20 @@ PANEL:
   implements:
   - EQUIPMENT
 
+
   
 GEN:
   description: "Tag for all Electricity generating equipments."
+
+ATS:
+  description: "Tag for automatic transfer switch (ATS) units."
+
   is_abstract: true
   implements:
   - EQUIPMENT
+
+
+
 
 
 CB:

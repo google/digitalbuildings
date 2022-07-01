@@ -97,6 +97,7 @@ PPWM:
   - phase1_apparent_power_sensor
   - phase2_apparent_power_sensor
   - phase3_apparent_power_sensor
+
   - line_frequency_sensor
 
 BTEPM:
@@ -106,4 +107,37 @@ BTEPM:
   - battery_voltage_sensor
   - battery_current_sensor
  
+
+
+  - line_frequency_sensor  
+
+SRC1:
+  description: "Source 1 parameters typically for ATS"
+  is_abstract: true
+  uses:
+  - source1_phase1_phase2_voltage_sensor
+  - source1_phase2_phase3_voltage_sensor
+  - source1_phase3_phase1_voltage_sensor
+  - source1_frequency_sensor
+  opt_uses:
+  - source1_phase1_phase2_over_voltage_status
+  - source1_phase2_phase3_over_voltage_status
+  - source1_phase3_phase1_over_voltage_status
+  - source1_over_voltage_status
+  - source1_lost_power_alarm
+
+SRC2:
+  description: "Source 1 parameters typically for ATS"
+  is_abstract: true
+  uses:
+  - source2_phase1_phase2_voltage_sensor
+  - source2_phase2_phase3_voltage_sensor
+  - source2_phase3_phase1_voltage_sensor
+  - source2_frequency_sensor 
+  opt_uses:
+  - source2_phase1_phase2_over_voltage_status
+  - source2_phase2_phase3_over_voltage_status
+  - source2_phase3_phase1_over_voltage_status
+  - source2_over_voltage_status
+  - source2_lost_power_alarm
 
