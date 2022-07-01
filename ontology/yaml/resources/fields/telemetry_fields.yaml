@@ -173,8 +173,8 @@ literals:
   - OPEN
   - CLOSED
 - high_temperature_alarm:
-  - ALARM
-  - NORMAL
+  - ACTIVE
+  - INACTIVE
 - supply_fan_run_command:
   - ON
   - OFF
