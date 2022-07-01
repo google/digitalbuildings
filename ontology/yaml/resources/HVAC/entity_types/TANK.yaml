@@ -19,6 +19,7 @@
 ### Tanks ###
 
 TK_SWTC_PHWTC:
+  id: "4244085883596177408"
   description: "Tank with water temperature monitoring"
   is_canonical: true
   implements:
@@ -27,6 +28,7 @@ TK_SWTC_PHWTC:
   - PHWTC
   
 TK_LM_PLPM:  
+  id: "10267650385204215808"
   description: "Tank with level and pipeline pressure monitoring "
   is_canonical: true
   implements:
@@ -35,6 +37,7 @@ TK_LM_PLPM:
   - PLPM
 
 TK_LM:  
+  id: "12505939400007352320"
   description: "Tank with level monitoring "
   is_canonical: true
   implements:

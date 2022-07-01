@@ -78,10 +78,10 @@ LDS:
 
 
 PA:
+  id: "5962209141438021632"
   description: "Public Address system ."
   is_abstract: true
   implements:
   - EQUIPMENT
   
-
 

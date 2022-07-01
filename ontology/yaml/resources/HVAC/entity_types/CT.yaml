@@ -144,6 +144,7 @@ CT_SS_VSC_RWISOVM_SWISOVM_SWTM:
   - SWTM
  
 CT_SS_RWISOVM_SWISOVM_SWTM:
+  id: "9420973655258562560"
   description: "Cooling tower with supply and return isolation valves and supply & return temp monitoring."
   is_canonical: true
   implements:
