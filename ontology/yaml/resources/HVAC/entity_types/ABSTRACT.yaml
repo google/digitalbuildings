@@ -5202,17 +5202,6 @@ PMM:
   - MONITORING   
 
   - OPERATIONAL
-
-
-
-SRC:
-  description: "Very basic run scheduling command. "
-  is_abstract: true
-  uses:
-  - schedule_run_command
-  implements:
-  - CONTROL
-
  
 PHWTC:
   description: "potable water temperature monitoring and control."
