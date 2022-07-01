@@ -25,14 +25,7 @@ FAN_SS:
   implements:
   - FAN
   - SS
-  
-FAN_SS_RMM:
-  description: "Basic fan with run mode monitoring."
-  is_canonical: true
-  implements:
-  - FAN
-  - SS
-  - RMM  
+   
 
 ### FAN SPEED CONTROL ###
 
