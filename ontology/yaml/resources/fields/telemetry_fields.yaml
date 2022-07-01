@@ -1385,8 +1385,6 @@ literals:
 
 #telemetry fields for discharge fan#
 - discharge_fan_voltage_sensor
-- compressor_run_time_accumulator
-
 
 #Telemetry addition for MAU#
 
@@ -1416,13 +1414,7 @@ literals:
   - MANUAL
 
 - supply_fan_run_time_accumulator
-- supply_fan_energy_accumulator
 - supply_fan_voltage_sensor
-
-
-- discharge_fan_energy_accumulator
-- discharge_fan_voltage_sensor
-
 
 - supply_fan_power_status:
   - ON
@@ -1441,8 +1433,5 @@ literals:
 - discharge_fan_energy_accumulator
 - electricalgrid_run_time_accumulator
 - generator_energy_accumulator 
-
 - supply_fan_energy_accumulator
-
 - compressor_run_time_accumulator
-
