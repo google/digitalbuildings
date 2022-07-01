@@ -1325,8 +1325,6 @@ literals:
   - ON
   - OFF
 
-
-
 ##Fields for generator##
 - oil_temperature_sensor
 - oil_pressure_sensor
@@ -1341,18 +1339,21 @@ literals:
 - return_air_isolation_damper_command:
   - OPEN
   - CLOSED
+
 - supply_fan_speed_mode:
   - VFD
   - BYPASS
+  
 - supply_fan_run_time_accumulator
 - supply_fan_voltage_sensor
+
 - supply_fan_power_status:
   - ON
   - OFF
+
 - discharge_fan_run_mode:
   - AUTO
   - MANUAL
-
 
 - supply_fan_run_mode:
   - AUTO
@@ -1361,12 +1362,7 @@ literals:
 ## New fields for EM##
 - electricalgrid_energy_accumulator
 - generator_run_time_accumulator
-
 - electricalgrid_run_time_accumulator 
-
-
-
-- electricalgrid_run_time_accumulator
 - generator_energy_accumulator 
 - supply_fan_energy_accumulator
 - compressor_run_time_accumulator
