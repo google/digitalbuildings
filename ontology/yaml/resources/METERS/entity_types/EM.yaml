@@ -20,6 +20,22 @@ EM_PWM:
   - EM
   - PWM
 
+EM_PLPM:
+  id: "13541767314302566400"
+  description: "Power meter with basic Phase-level power monitoring."
+  is_canonical: true
+  implements:
+  - EM
+  - PLPM
+  
+EM_PWMRDM:
+  id: "5027712218758643712"
+  description: "Energy metering from Grid Electricity and Diesel Generator."
+  is_canonical: true
+  implements:
+  - EM
+  - PWMRDM 
+
 EM_PWM_PVCM:
   id: "9147692239198093312"
   description: "Power meter with phase level voltage and current monitoring."
@@ -68,6 +84,15 @@ EM_PWM_AVCM_PLPM_PVCM:
   - AVCM
   - PLPM
   - PVCM
+  
+EM_PWM_PWMRDM:
+  id: "8930081295875178496"
+  description: "Energy metering from Grid Electricity and Diesel Generator with power monitoring."
+  is_canonical: true
+  implements:
+  - EM
+  - PWM
+  - PWMRDM   
 
 #############################
 ### Non-Canonical Devices ###
