@@ -157,16 +157,16 @@ literals:
 - supply_fan_power_sensor
 - supply_air_damper_open_status:
   - OPEN
-  - CLOSE
+  - CLOSED
 - supply_air_damper_closed_status:
   - OPEN
-  - CLOSE
+  - CLOSED
 - return_air_damper_open_status:
   - OPEN
-  - CLOSE
+  - CLOSED
 - return_air_damper_closed_status:
   - OPEN
-  - CLOSE
+  - CLOSED
 - high_temperature_alarm:
   - ALARM
   - NORMAL
