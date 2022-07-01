@@ -67,18 +67,6 @@ DD:
   implements:
   - CONTROL
 
-  
-
-
-RDM:
-  id: "10008693406630412288"
-  description: "Very basic system run duration monitoring. "
-  is_abstract: true
-  uses:
-  - run_time_accumulator
-  implements:
-  - MONITORING
-
 
 SRC:
   id: "6232425119080251392"
