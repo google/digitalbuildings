@@ -1325,8 +1325,6 @@ literals:
   - ON
   - OFF
 
-  
-
 #Addition of new fields for Tanks##
 - level_status:
   - LOW
@@ -1351,8 +1349,6 @@ literals:
 - discharge_fan_run_mode:
   - AUTO
   - MANUAL
-
-
 - supply_fan_run_mode:
   - AUTO
   - MANUAL
@@ -1360,11 +1356,7 @@ literals:
 ## New fields for EM##
 - electricalgrid_energy_accumulator
 - generator_run_time_accumulator
-
 - electricalgrid_run_time_accumulator 
-
-- electricalgrid_run_time_accumulator
 - generator_energy_accumulator 
 - supply_fan_energy_accumulator
 - compressor_run_time_accumulator
-

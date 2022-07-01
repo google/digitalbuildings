@@ -364,9 +364,6 @@ GTWS:
   opt_uses:
   - thermal_power_capacity
   - differential_pressure_specification
-
-  - flowrate_requirement
-
   - flowrate_requirement
   
 CRREF:
