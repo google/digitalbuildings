@@ -275,6 +275,17 @@ CHWS_SWTM:
   - CHWS
   - SWTM
 
+CHWS_WDT_CWDT_CICHVISOVM3X:
+  description: "Chilled Water system with provision to switch to Hot water system "
+  is_canonical: true
+  implements:
+  - CHWS
+  - WDT
+  - CWDT
+  - CICHVISOVM3X
+  uses:
+  - flowrate_sensor
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
