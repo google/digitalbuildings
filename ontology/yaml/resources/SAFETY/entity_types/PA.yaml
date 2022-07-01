@@ -12,22 +12,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-WM_STANDARD:
-  id: "440559603281821696"
-  description: "Standard building water meter."
-  implements:
-  - WM
-  is_canonical: true
-  uses:
-  - water_volume_accumulator
-  - failed_alarm
-  - flowrate_sensor
+### ABSTRACT TYPES
 
-WM_WF:
-  id: "5379261270530719744"
-  description: "Water supply flow rate meter."
-  implements:
-  - WM
+PA_STD:
+  description: "Standard public address system."
   is_canonical: true
+  implements:
+  - PA
   uses:
-  - supply_water_flowrate_sensor
+  - panel_alarm
