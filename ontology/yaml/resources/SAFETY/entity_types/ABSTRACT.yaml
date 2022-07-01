@@ -74,6 +74,7 @@ FA2X:
   - fire_alarm_2
   
 LM:
+  id: "15773300929664647168"
   description: "Tank level monitoring."
   is_abstract: true
   uses:

@@ -190,6 +190,7 @@ SENSOR_ZA_PML:
   - zone_air_voc_concentration_sensor
   
 SENSOR_COC:
+  id: "7894253381579964416"
   description: "Carbon monoxide monitoring and control"
   is_canonical: true
   implements:
@@ -197,6 +198,7 @@ SENSOR_COC:
   - COC
  
 SENSOR_PCM:
+  id: "5133546810001850368"
   description: "Particulate matter monitoring"
   is_canonical: true
   implements:
@@ -204,6 +206,7 @@ SENSOR_PCM:
   - PCM
   
 SENSOR_ZA_CO2M_PMM_HCHO:
+  id: "8268052150651715584"
   description: "Sensor with zone temperature, humidity, CO2, HCHO and particulate matter monitoring"
   is_canonical: true
   implements:
