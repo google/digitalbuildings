@@ -416,7 +416,6 @@ DFVSC2X:
   implements:
   - OPERATIONAL
 
-
 DFVSFC:
   id: "3819485279274663936"
   description: "Variable speed control with frequency setting for discharge fans."
@@ -814,7 +813,6 @@ RWTC:
   uses:
   - return_water_temperature_setpoint
   - return_water_temperature_sensor
-
 
 PSWTC:
   id: "10474579573063286784"
@@ -1270,6 +1268,16 @@ FDPM:
   implements:
   - MONITORING
 
+FDPSM:
+  description: "Filter pressure status monitoring."
+  is_abstract: true
+  uses:
+  - filter_differential_pressure_status
+  opt_uses:
+  - filter_alarm
+  implements:
+  - MONITORING
+
 # Chilled water valve control
 
 CHWDC:
@@ -1298,6 +1306,7 @@ CHWSC:
   - chilled_supply_water_temperature_sensor
   - chilled_water_valve_percentage_sensor
   - cooling_request_count
+  - supply_air_relative_humidity_sensor
   uses:
   - supply_air_temperature_sensor
   - supply_air_temperature_setpoint
@@ -2923,6 +2932,18 @@ FDPM2X:
   uses:
   - filter_differential_pressure_sensor_1
   - filter_differential_pressure_sensor_2
+  implements:
+  - MONITORING
+
+FDPSM2X:
+  description: "Filter pressure status monitoring (2 sensors)."
+  is_abstract: true
+  uses:
+  - filter_differential_pressure_status_1
+  - filter_differential_pressure_status_2
+  opt_uses:
+  - filter_alarm_1
+  - filter_alarm_2
   implements:
   - MONITORING
 
@@ -5127,7 +5148,53 @@ EFHLC:
   - low_exhaust_fan_speed_status
   - high_exhaust_fan_speed_status
   implements:
+
+
   - OPERATIONAL
+  
+##Abstracts for sensors
+
+PCM:
+  description: "General particulate matter monitoring."
+  is_abstract: true
+  uses:
+  - particle_concentration_sensor
+  implements:
+  - MONITORING 
+
+PMM:
+  description: "Zone air particulate matter monitoring."
+  is_abstract: true
+  uses:
+  - zone_air_pm2pt5_concentration_sensor
+  - zone_air_pm10pt0_concentration_sensor
+  implements:
+  - MONITORING   
+
+  - OPERATIONAL
+
+
+ 
+PHWTC:
+  description: "potable water temperature monitoring and control."
+  is_abstract: true
+  uses:
+  - potable_hot_water_temperature_sensor  
+
+LM:
+  description: "level monitoring of devices storing media."
+  is_abstract: true
+  uses:
+  - level_status
+  - percentage_sensor
+ 
+PLPM:  
+  description: "Pipeline Fluid pressure monitoring"
+  is_abstract: true
+  uses:
+  - line_pressure_sensor 
+
+
 
 CO2M4X:
   description: "Basic carbon dioxide monitoring for 4 Zones."
@@ -5160,4 +5227,8 @@ DFRMM:
   - discharge_fan_run_mode
   implements:
   - MONITORING
+
   
+
+
+
