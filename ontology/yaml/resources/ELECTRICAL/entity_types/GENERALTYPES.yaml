@@ -33,9 +33,11 @@ PANEL:
   implements:
   - EQUIPMENT
 
-  
- 
-
+ATS:
+  description: "Tag for automatic transfer switch (ATS) units."
+  is_abstract: true
+  implements:
+  - EQUIPMENT
 
 CB:
   description: "Tag for all circuit breakers."
