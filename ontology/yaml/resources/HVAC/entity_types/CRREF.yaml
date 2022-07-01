@@ -12,32 +12,17 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-WM_STANDARD:
-  id: "440559603281821696"
-  description: "Standard building water meter."
-  implements:
-  - WM
+########################
+### Canonical Types  ###
+########################
+
+CRREF_DXZTC_DFSS:
+  description: "Typical coldroom refigrator."
   is_canonical: true
-  uses:
-  - water_volume_accumulator
+  implements:
+  - CRREF
+  - DXZTC
+  - DFSS
   opt_uses:
-  - failed_alarm
-  - flowrate_sensor
-
-WM_WF:
-  id: "5379261270530719744"
-  description: "Water supply flow rate meter."
-  implements:
-  - WM
-  is_canonical: true
-  uses:
-  - supply_water_flowrate_sensor
-
-WM_WVFM:
-  description: "Water volume accumulator and flow rate measurement."
-  implements:
-  - WM
-  is_canonical: true
-  uses:
-  - flowrate_sensor
-  - volume_accumulator
+  - run_time_accumulator
+  - master_alarm

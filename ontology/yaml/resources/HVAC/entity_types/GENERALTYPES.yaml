@@ -365,3 +365,9 @@ GTWS:
   - thermal_power_capacity
   - differential_pressure_specification
   - flowrate_requirement
+  
+CRREF:
+  description: "Tag for coldroom refigeration."
+  is_abstract: true
+  implements:
+  - EQUIPMENT
