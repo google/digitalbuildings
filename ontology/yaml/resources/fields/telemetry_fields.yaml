@@ -1411,17 +1411,8 @@ literals:
   - CLOSED
 - supply_fan_speed_mode:
   - BYPASS
-
-
   - VFD
   
-- supply_fan_run_mode:
-  - AUTO
-  - MANUAL
-
-- supply_fan_run_time_accumulator
-- supply_fan_energy_accumulator
-
 - supply_fan_voltage_sensor
 - discharge_fan_energy_accumulator
 - discharge_fan_voltage_sensor
@@ -1438,10 +1429,5 @@ literals:
 - generator_run_time_accumulator
 - electricalgrid_run_time_accumulator 
 - generator_energy_accumulator 
-
 - supply_fan_energy_accumulator
 - compressor_run_time_accumulator
-
-
-- compressor_run_time_accumulator
-
