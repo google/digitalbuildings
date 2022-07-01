@@ -13,10 +13,10 @@
 # limitations under the License.
 
 ELV_SS:
+  id: "785321369775636480"
   description: "Elevator run status monitoring."
   is_canonical: true
   implements:
   - ELV
   - SS  
-
 

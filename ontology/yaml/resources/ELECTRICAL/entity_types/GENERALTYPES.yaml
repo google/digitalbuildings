@@ -34,14 +34,15 @@ PANEL:
   - EQUIPMENT
 
 ATS:
+  id: "17117625418434740224"
   description: "Tag for automatic transfer switch (ATS) units."
   is_abstract: true
   implements:
   - EQUIPMENT
 
 CB:
+  id: "10844111137507639296"
   description: "Tag for all circuit breakers."
   is_abstract: true
   implements:
   - EQUIPMENT
-
