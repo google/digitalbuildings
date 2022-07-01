@@ -290,6 +290,17 @@ HWS_WFRM_SWTC_HLPM:
   - SWTC
   - HLPM
 
+HWS_SS_HWTTC_PWDPM2X:
+  description: "Solar Heating water system with tank temp,pressure,pump and compressor monitoring."
+  is_canonical: true
+  implements:
+  - HWS
+  - SS
+  - HWTTC
+  - PWDPM2X
+  opt_uses:
+  - compressor_run_status
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
