@@ -56,6 +56,7 @@ INCOMPLETE:
   
 ##Global namespace for tanks##
 TK:
+  id: "3656366132224327680"
   description: "Device used to store media. Used to model individual tanks when they don't belong explicitly to one piece of equipment."
   is_abstract: true
   implements:
