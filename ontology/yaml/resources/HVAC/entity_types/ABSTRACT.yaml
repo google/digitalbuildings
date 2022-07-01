@@ -45,7 +45,6 @@ RDM:
   implements:
   - MONITORING
   
-
 DD:
   id: "8927971333061476352"
   description: "Dual duct flow control (hot deck, cold deck)."
@@ -68,15 +67,6 @@ DD:
   implements:
   - CONTROL
   
- 
-
-RDM:
-  description: "Very basic system run duration monitoring. "
-  is_abstract: true
-  uses:
-  - run_time_accumulator
-  implements:
-  - MONITORING
 
 SRC:
   description: "Very basic run scheduling command. "
@@ -5247,9 +5237,6 @@ PLPM:
   uses:
   - line_pressure_sensor 
 
-
-
-
 CO2M4X:
   description: "Basic carbon dioxide monitoring for 4 Zones."
   is_abstract: true
@@ -5305,4 +5292,3 @@ DFRMM:
   - discharge_fan_run_mode
   implements:
   - MONITORING
-

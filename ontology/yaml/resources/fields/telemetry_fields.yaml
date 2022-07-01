@@ -1378,9 +1378,6 @@ literals:
   - ON
   - OFF
 
-
-  
-
 - high_discharge_fan_speed_status:
   - ON
   - OFF
@@ -1390,7 +1387,6 @@ literals:
 - exhaust_fan_run_mode:
   - AUTO
   - MANUAL
-
 
 #Telemetry addition for MAU#
 
@@ -1420,7 +1416,6 @@ literals:
   - MANUAL
 
 - supply_fan_run_time_accumulator
-- supply_fan_energy_accumulator
 - supply_fan_voltage_sensor
 - discharge_fan_energy_accumulator
 - discharge_fan_voltage_sensor
@@ -1432,20 +1427,11 @@ literals:
   - AUTO
   - MANUAL
 
-
-
-
-  
-  
-
-
- 
 ## New fields for EM##
 - electricalgrid_energy_accumulator
 - generator_run_time_accumulator
 - electricalgrid_run_time_accumulator 
 - generator_energy_accumulator 
-
 - supply_fan_energy_accumulator
 - compressor_run_time_accumulator
 
