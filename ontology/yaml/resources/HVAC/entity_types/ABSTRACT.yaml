@@ -5173,8 +5173,4 @@ DFRMM:
   uses:
   - discharge_fan_run_mode
   implements:
-
   - MONITORING  
-
-  - MONITORING
-

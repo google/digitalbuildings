@@ -1328,15 +1328,10 @@ literals:
 - high_exhaust_fan_speed_status:
   - ON
   - OFF
-
   
 #telemetry fields for discharge fan#
 - discharge_fan_run_time_accumulator
 - discharge_fan_voltage_sensor
-- discharge_fan_run_mode:
-  - AUTO
-  - MANUAL
-
 - compressor_run_time_accumulator
 
 ## New fields for EM##
@@ -1357,7 +1352,6 @@ literals:
   - AUTO
   - MANUAL
 
-
 - supply_fan_run_mode:
   - AUTO
   - MANUAL
@@ -1366,15 +1360,10 @@ literals:
 - electricalgrid_energy_accumulator
 - generator_run_time_accumulator
 
-- electricalgrid_run_time_accumulator 
-
 ## New fields for fans##
 - discharge_fan_energy_accumulator
-
-
-
 - electricalgrid_run_time_accumulator
 - generator_energy_accumulator 
 - supply_fan_energy_accumulator
-- compressor_run_time_accumulator
+
 
