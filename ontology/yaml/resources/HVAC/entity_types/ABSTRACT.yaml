@@ -5159,8 +5159,6 @@ EFHLC:
   - low_exhaust_fan_speed_status
   - high_exhaust_fan_speed_status
   implements:
-
-
   - OPERATIONAL
   
 ##Abstracts for sensors
@@ -5182,12 +5180,6 @@ PMM:
   implements:
   - MONITORING   
 
-  - OPERATIONAL
-
-
-
-
- 
 PHWTC:
   description: "potable water temperature monitoring and control."
   is_abstract: true
@@ -5206,9 +5198,6 @@ PLPM:
   is_abstract: true
   uses:
   - line_pressure_sensor 
-
-
-
 
 CO2M4X:
   description: "Basic carbon dioxide monitoring for 4 Zones."
@@ -5233,7 +5222,6 @@ CO2M6X:
   - zone_air_co2_concentration_sensor_6
   implements:
   - MONITORING
-  
 
 DFRMM:
   description: "Discharge fan run mode monitoring."
@@ -5241,9 +5229,4 @@ DFRMM:
   uses:
   - discharge_fan_run_mode
   implements:
-
   - MONITORING  
-
-  - MONITORING
-
-
