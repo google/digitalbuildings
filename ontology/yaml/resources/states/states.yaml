@@ -62,5 +62,12 @@ LOCAL: "The control is operating locally and independently with the remote syste
 FADING: "An operation mode of a lighting dimmer: dimming speed based on a duration to dim from minimum to maximum"
 RAMPING: "An operation mode of a lighting dimmer: dimming speed defined in percent per second"
 
+#FOR ATS
+SOURCEA: "An operation mode having source 1 as priority" 
+NOSOURCE: "An operation mode having no source as priority"
+POSITIONA: "Automatic Transfer switch position 0"
+POSITIONB: "Automatic Transfer switch position 1"
+POSITIONC: "Automatic Transfer switch position 2"
+
 
 
