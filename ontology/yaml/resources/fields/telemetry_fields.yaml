@@ -1321,7 +1321,6 @@ literals:
   - ON
   - OFF
 
-
 - supply_fan_run_time_accumulator
 - return_air_isolation_damper_status
 - return_air_isolation_damper_command:
@@ -1330,7 +1329,6 @@ literals:
 - supply_fan_speed_mode:
   - VFD
   - BYPASS
-- supply_fan_run_time_accumulator
 - supply_fan_voltage_sensor
 - supply_fan_power_status:
   - ON
