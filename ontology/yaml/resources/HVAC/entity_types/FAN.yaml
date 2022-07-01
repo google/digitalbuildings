@@ -44,7 +44,19 @@ FAN_SS_VSC:
   - FAN
   - SS
   - VSC
+
  
+
+
+FAN_SS_RMM:
+  description: "Fan with start/stop status and run mode monitoring"
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - RMM
+
+
 ### ZONE TEMPERATURE CONTROL ###
 
 FAN_SS_ZTM:
@@ -187,6 +199,15 @@ FAN_SS_DWI:
   - SS
   uses:
   - dishwasher_run_status
+
+FAN_SS_STM:
+  description: "Basic fan with supply air temperature monitoring."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - STM
+
 
 ### BUILDING STATIC PRESSURE CONTROL ###
 

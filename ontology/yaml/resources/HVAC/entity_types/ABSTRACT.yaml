@@ -113,7 +113,6 @@ REFM:
   uses:
   - zone_air_refrigerant_concentration_sensor
 
-
 CSP:
   id: "2456298668530073600"
   description: "Single cooling setpoint control (IDF room typically)."
@@ -367,6 +366,10 @@ SFVSC:
   - supply_fan_speed_percentage_sensor
   - supply_fan_current_sensor
   - supply_fan_power_sensor
+  - supply_fan_power_status
+  - supply_fan_voltage_sensor
+  - supply_fan_failed_alarm
+  - supply_fan_energy_accumulator
   uses:
   - supply_fan_run_command
   - supply_fan_run_status
@@ -473,7 +476,11 @@ SS:
   - powerfactor_sensor
   - current_sensor
   - power_sensor
+
   - run_time_accumulator
+
+
+  
 
 SSPC:
   id: "10526749200778002432"
@@ -531,6 +538,7 @@ DFSS:
   - discharge_fan_power_sensor
   - discharge_air_static_pressure_sensor
   - discharge_fan_lost_power_alarm
+  - schedule_run_command
   - discharge_fan_run_time_accumulator
   uses:
   - discharge_fan_run_command
@@ -644,6 +652,7 @@ SFSS:
   - supply_fan_power_capacity
   - supply_fan_current_sensor
   - supply_fan_power_sensor
+  - supply_fan_run_time_accumulator
   uses:
   - supply_fan_run_command
   - supply_fan_run_status
@@ -1435,6 +1444,7 @@ DXZTC:
   - cooling_thermal_power_capacity
   - cooling_percentage_command
   - compressor_speed_percentage_command
+  - compressor_run_time_accumulator
   uses:
   - zone_air_temperature_setpoint
   - zone_air_temperature_sensor
@@ -1453,6 +1463,8 @@ DX2ZTC:
   - cooling_thermal_power_capacity
   - cooling_percentage_command
   - compressor_speed_percentage_command
+  - compressor_run_time_accumulator_1
+  - compressor_run_time_accumulator_2   
   uses:
   - zone_air_temperature_setpoint
   - zone_air_temperature_sensor
@@ -2697,6 +2709,14 @@ CDWPVM:
   implements:
   - OPERATIONAL
 
+CDWFRSM:
+  description: "Condenser water flowrate status monitoring."
+  is_abstract: true
+  uses:
+  - condensing_water_flowrate_status
+  implements:
+  - OPERATIONAL
+
 BYPVPM:
   id: "9735989234174525440"
   description: "Bypass water valve percentage monitoring."
@@ -3365,6 +3385,16 @@ RWISOVPM:
   uses:
   - return_water_isolation_valve_percentage_command
   - return_water_isolation_valve_percentage_sensor
+  implements:
+  - MONITORING
+
+CICHVISOVM3X:
+  description: "Circuit changeover valve for switching between Hot water system and Chiller "
+  is_abstract: true
+  uses:
+  - circulation_changeover_isolation_valve_status_1
+  - circulation_changeover_isolation_valve_status_2
+  - circulation_changeover_isolation_valve_status_3
   implements:
   - MONITORING
 
@@ -4843,6 +4873,128 @@ DEFSS:
   - defrost_run_command  
   implements:
   - MONITORING
+    
+VOADC2X:
+  description: "Variable outside air damper control and monitoring, where there are two separate, equal sets of dampers that operate in conjunction."
+  is_abstract: true
+  uses:
+  - outside_air_damper_percentage_sensor_1
+  - outside_air_damper_percentage_sensor_2
+  - outside_air_damper_percentage_command_1
+  - outside_air_damper_percentage_command_2
+  implements:
+  - OPERATIONAL  
+  
+RAIDC:
+  description: "Return air isolation damper control and monitoring."
+  is_abstract: true
+  uses:
+  - return_air_isolation_damper_status
+  - return_air_isolation_damper_command
+ 
+
+RAIDC3X:
+  description: "Return air isolation damper control and monitoring, where there are three separate, equal sets of dampers that operate in conjunction."
+  is_abstract: true
+  uses:
+  - return_air_isolation_damper_status_1
+  - return_air_isolation_damper_status_2
+  - return_air_isolation_damper_status_3 
+  - return_air_isolation_damper_command_1
+  - return_air_isolation_damper_command_2
+  - return_air_isolation_damper_command_3   
+  implements:
+  - MONITORING
+
+RAIDC2X:
+  description: "Return air isolation damper control and monitoring, where there are two separate, equal sets of dampers that operate in conjunction."
+  is_abstract: true
+  uses:
+  - return_air_isolation_damper_status_1
+  - return_air_isolation_damper_status_2 
+  - return_air_isolation_damper_command_1
+  - return_air_isolation_damper_command_2  
+  implements:
+  - MONITORING
+
+RAIDC4X:
+  description: "Return air isolation damper control and monitoring, where there are four separate, equal sets of dampers that operate in conjunction."
+  is_abstract: true
+  uses:
+  - return_air_isolation_damper_status_1
+  - return_air_isolation_damper_status_2
+  - return_air_isolation_damper_status_3
+  - return_air_isolation_damper_status_4
+  - return_air_isolation_damper_command_1
+  - return_air_isolation_damper_command_2
+  - return_air_isolation_damper_command_3 
+  - return_air_isolation_damper_command_4  
+  implements:
+  - MONITORING
+
+
+SAIDC:
+  description: "isolation damper status monitoring and control on the supply side."
+  is_abstract: true
+  uses:
+  - supply_air_isolation_damper_status
+  - supply_air_isolation_damper_command  
+  implements:
+  - MONITORING
+
+SAIDC2X:
+  description: "isolation damper status monitoring and control on the supply side, where there are two separate, equal sets of dampers that operate in conjunction."
+  is_abstract: true
+  uses:
+  - supply_air_isolation_damper_status_1
+  - supply_air_isolation_damper_status_2
+  - supply_air_isolation_damper_command_1
+  - supply_air_isolation_damper_command_2  
+  implements:
+  - MONITORING
+
+SAIDC3X:
+  description: "isolation damper status monitoring and control on the supply side, where there are three separate, equal sets of dampers that operate in conjunction."
+  is_abstract: true
+  uses:
+  - supply_air_isolation_damper_status_1
+  - supply_air_isolation_damper_status_2
+  - supply_air_isolation_damper_status_3
+  - supply_air_isolation_damper_command_1
+  - supply_air_isolation_damper_command_2
+  - supply_air_isolation_damper_command_3  
+  implements:
+  - MONITORING   
+  
+SSPC2X:
+  description: "Supply static pressure control via supply fan speed with 2 sensors"
+  is_abstract: true
+  opt_uses:
+  - supply_fan_speed_frequency_sensor
+  - supply_fan_run_command
+  - supply_fan_run_status
+  - pressurization_request_count
+  - supply_air_damper_percentage_command
+  - supply_air_flowrate_sensor
+  - supply_fan_speed_percentage_command
+  uses:
+  - supply_air_static_pressure_sensor_1
+  - supply_air_static_pressure_sensor_2  
+  - supply_air_static_pressure_setpoint_1
+  - supply_air_static_pressure_setpoint_2  
+  implements:
+  - OPERATIONAL
+
+SFMSC:
+  description: "Supply fan multi-speed control."
+  is_abstract: true
+  uses:
+  - supply_fan_run_command
+  - supply_fan_run_status
+  - supply_fan_speed_mode
+  - supply_fan_run_mode
+  opt_uses:  
+  - schedule_run_command
 
 MIPVCM:
   id: "10283962739713900544"
@@ -4984,6 +5136,7 @@ EFHLC:
   implements:
   - OPERATIONAL
 
+
 SRC:
   description: "Very basic run scheduling command. "
   is_abstract: true
@@ -4991,3 +5144,36 @@ SRC:
   - schedule_run_command
   implements:
   - CONTROL
+
+CO2M4X:
+  description: "Basic carbon dioxide monitoring for 4 Zones."
+  is_abstract: true
+  uses:
+  - zone_air_co2_concentration_sensor_1
+  - zone_air_co2_concentration_sensor_2
+  - zone_air_co2_concentration_sensor_3
+  - zone_air_co2_concentration_sensor_4
+  implements:
+  - MONITORING
+
+CO2M6X:
+  description: "Basic carbon dioxide monitoring for 6 Zones."
+  is_abstract: true
+  uses:
+  - zone_air_co2_concentration_sensor_1
+  - zone_air_co2_concentration_sensor_2
+  - zone_air_co2_concentration_sensor_3
+  - zone_air_co2_concentration_sensor_4
+  - zone_air_co2_concentration_sensor_5
+  - zone_air_co2_concentration_sensor_6
+  implements:
+  - MONITORING
+  
+DFRMM:
+  description: "Discharge fan run mode monitoring."
+  is_abstract: true
+  uses:
+  - discharge_fan_run_mode
+  implements:
+  - MONITORING
+
