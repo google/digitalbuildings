@@ -29,5 +29,3 @@ WM_WF:
   is_canonical: true
   uses:
   - supply_water_flowrate_sensor
-  opt_uses:
-  - water_linearvelocity_sensor
