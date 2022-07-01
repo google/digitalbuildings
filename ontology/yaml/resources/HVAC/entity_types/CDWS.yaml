@@ -122,6 +122,14 @@ CDWS_CLPM_WDT_WFRM:
   - CLPM
   - WDT
   - WFRM
+CDWS_CWDT_CDWISOVM_CDWFRSM:
+  description: "Condensing water system with temperature, isolation valve , flowrate monitoring. "
+  is_canonical: true
+  implements:
+  - CDWS
+  - CWDT
+  - CDWISOVM
+  - CDWFRSM
 
 ###################################
 ### Existing Non-standard Types ###

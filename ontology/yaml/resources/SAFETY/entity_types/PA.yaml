@@ -12,22 +12,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-########################
-### Canonical Types  ###
-########################
+### ABSTRACT TYPES
 
-### FREEZER ###
-
-  
-FRZ_DXZTC_DFSS:
-  id: "12904507967029641216"
-  description: "Freezer with discharge fan run duration monitoring with compressor run control ."
+PA_STD:
+  description: "Standard public address system."
   is_canonical: true
   implements:
-  - FRZ
-  - DXZTC
-  - DFSS
-
-
-
-  
+  - PA
+  uses:
+  - panel_alarm
