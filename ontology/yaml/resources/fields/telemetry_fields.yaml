@@ -1382,9 +1382,14 @@ literals:
   - ON
   - OFF
 
+
 #telemetry fields for discharge fan#
 - discharge_fan_voltage_sensor
 - compressor_run_time_accumulator
+
+
+#Telemetry addition for MAU#
+
 
 # Addition of telemetry for outside sensors
 - outside_air_co2_concentration_sensor
@@ -1403,19 +1408,27 @@ literals:
   - OPEN
   - CLOSED
 - supply_fan_speed_mode:
-  - VFD
   - BYPASS
+  - VFD
+  
+- supply_fan_run_mode:
+  - AUTO
+  - MANUAL
+
 - supply_fan_run_time_accumulator
+- supply_fan_energy_accumulator
 - supply_fan_voltage_sensor
+
+
+- discharge_fan_energy_accumulator
+- discharge_fan_voltage_sensor
+
 
 - supply_fan_power_status:
   - ON
   - OFF
   
 - discharge_fan_run_mode:
-  - AUTO
-  - MANUAL
-- supply_fan_run_mode:
   - AUTO
   - MANUAL
  
@@ -1428,4 +1441,8 @@ literals:
 - discharge_fan_energy_accumulator
 - electricalgrid_run_time_accumulator
 - generator_energy_accumulator 
+
 - supply_fan_energy_accumulator
+
+- compressor_run_time_accumulator
+
