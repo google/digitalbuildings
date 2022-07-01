@@ -367,8 +367,8 @@ GTWS:
   - flowrate_requirement
   
 CRREF:
+  id: "4809287636831174656"
   description: "Tag for coldroom refigeration."
   is_abstract: true
   implements:
   - EQUIPMENT
-
