@@ -13,6 +13,7 @@
 # limitations under the License.
 
 TK_LM:
+  id: "1044278348349440000"
   description: "level monitoring for tanks. Like Fire hydrant tanks."
   is_canonical: true
   implements:

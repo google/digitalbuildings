@@ -15,6 +15,7 @@
 
 
 ATS_SRC1_SRC2:
+  id: "14879336403631603712"
   description: "Standard Automatic Transfer Switches."
   is_canonical: true
   implements:
