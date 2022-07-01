@@ -633,6 +633,17 @@ MAU_SFSS2X_SFVSC2X_CHWSC_HWSC_FDPM_SSPC_STC_VOADM2X:
   - STC
   - VOADM2X
 
+MAU_SFVSC_CHWSC_SSPC_FDPSM2X:
+  description: "MAU with chilled water valve modulation,VFD speed control based on static pressure,two filters."
+  is_canonical: true
+  implements:
+  - MAU
+  - SFVSC
+  - CHWSC
+  - SSPC
+  - FDPSM2X
+  opt_uses:
+  - supply_air_isolation_damper_status 
 ###################################
 ### Existing Non-standard Types ###
 ###################################

@@ -43,6 +43,8 @@ SENSOR_OA:
   implements:
   - /SENSOR # Inherits from global namespace
   - OA
+  opt_uses:
+  - outside_air_co2_concentration_sensor
 
 SENSOR_CAAT:
   id: "16195377055288786944"
@@ -186,3 +188,33 @@ SENSOR_ZA_PML:
   - zone_air_pm4pt0_volumetricconcentration_sensor
   - zone_air_pm10pt0_volumetricconcentration_sensor
   - zone_air_voc_concentration_sensor
+  
+SENSOR_COC:
+  description: "Carbon monoxide monitoring and control"
+  is_canonical: true
+  implements:
+  - /SENSOR
+  - COC
+ 
+SENSOR_PCM:
+  description: "Particulate matter monitoring"
+  is_canonical: true
+  implements:
+  - /SENSOR
+  - PCM
+  
+SENSOR_ZA_CO2M_PMM_HCHO:
+  description: "Sensor with zone temperature, humidity, CO2, HCHO and particulate matter monitoring"
+  is_canonical: true
+  implements:
+  - /SENSOR
+  - ZTM
+  - ZHM
+  - CO2M
+  - PMM
+  uses:
+  - zone_air_formaldehyde_concentration_sensor  
+  
+
+
+ 
