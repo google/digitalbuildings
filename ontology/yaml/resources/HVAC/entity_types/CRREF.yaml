@@ -17,6 +17,7 @@
 ########################
 
 CRREF_DXZTC_DFSS:
+  id: "9720463030478700544"
   description: "Typical coldroom refigrator."
   is_canonical: true
   implements:

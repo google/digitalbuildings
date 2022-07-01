@@ -13,6 +13,7 @@
 # limitations under the License.
 
 CB_SS:
+  id: "18212000127885770752"
   description: "Standard CB unit."
   is_canonical: true
   implements:

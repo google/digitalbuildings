@@ -14,6 +14,7 @@
 
 
 SS:
+  id: "17502683186574917632"
   description: "Basic combination of run command and status (start/stop); indicates the light is active or inactive."
   is_abstract: true
   implements:
@@ -21,5 +22,4 @@ SS:
   opt_uses:
   - failed_alarm
   - lost_power_alarm
-
 
