@@ -227,6 +227,19 @@ BLR_SS_SWTC_CPC_RWISOVPM:
   - SWTC
   - CPC
   - RWISOVPM
+ 
+BLR_SS_SWTM_SWISOVM:
+  id: "2087411417899597824"
+  description: "Simple boiler with supply water temperature monitoring and supply water isolation valve ."
+  is_canonical: true
+  implements:
+  - BLR
+  - SS
+  - SWTM
+  - SWISOVM
+  opt_uses:
+  - condensing_water_flowrate_status
+  
 
 ###################################
 ### Existing Non-standard Types ###
