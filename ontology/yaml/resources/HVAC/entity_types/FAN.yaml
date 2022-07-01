@@ -38,6 +38,7 @@ FAN_SS_VSC:
   - VSC
 
 FAN_SS_RMM:
+  id: "3859028115456000000"
   description: "Fan with start/stop status and run mode monitoring"
   is_canonical: true
   implements:
@@ -189,6 +190,7 @@ FAN_SS_DWI:
   - dishwasher_run_status
 
 FAN_SS_STM:
+  id: "13082400152310775808"
   description: "Basic fan with supply air temperature monitoring."
   is_canonical: true
   implements:

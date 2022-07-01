@@ -112,6 +112,7 @@ BTEPM:
   - line_frequency_sensor  
 
 SRC1:
+  id: "15185581178292797440"
   description: "Source 1 parameters typically for ATS"
   is_abstract: true
   uses:
@@ -127,6 +128,7 @@ SRC1:
   - source1_lost_power_alarm
 
 SRC2:
+  id: "6549928892809871360"
   description: "Source 1 parameters typically for ATS"
   is_abstract: true
   uses:
