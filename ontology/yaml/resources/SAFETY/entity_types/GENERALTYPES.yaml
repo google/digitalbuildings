@@ -75,3 +75,13 @@ LDS:
   is_abstract: true
   implements:
   - EQUIPMENT
+
+
+PA:
+  description: "Public Address system ."
+  is_abstract: true
+  implements:
+  - EQUIPMENT
+  
+
+
