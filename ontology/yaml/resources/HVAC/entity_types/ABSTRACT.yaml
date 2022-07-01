@@ -5138,9 +5138,6 @@ EFHLC:
   - low_exhaust_fan_speed_status
   - high_exhaust_fan_speed_status
   implements:
-
-  - OPERATIONAL
-
   - OPERATIONAL
 
 CO2M4X:
@@ -5174,4 +5171,3 @@ DFRMM:
   - discharge_fan_run_mode
   implements:
   - MONITORING
-

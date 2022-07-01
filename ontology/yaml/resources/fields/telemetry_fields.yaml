@@ -1343,7 +1343,6 @@ literals:
 - supply_fan_speed_mode:
   - VFD
   - BYPASS
-- supply_fan_run_time_accumulator
 - supply_fan_voltage_sensor
 - supply_fan_power_status:
   - ON
@@ -1351,21 +1350,11 @@ literals:
 - discharge_fan_run_mode:
   - AUTO
   - MANUAL
-
-
-- supply_fan_run_mode:
-  - AUTO
-  - MANUAL
  
 ## New fields for EM##
 - electricalgrid_energy_accumulator
 - generator_run_time_accumulator
-
 - electricalgrid_run_time_accumulator 
-
-
-
-- electricalgrid_run_time_accumulator
 - generator_energy_accumulator 
 - supply_fan_energy_accumulator
 - compressor_run_time_accumulator
