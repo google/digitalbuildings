@@ -72,3 +72,9 @@ FA2X:
   uses:
   - fire_alarm_1
   - fire_alarm_2
+  
+LM:
+  description: "Tank level monitoring."
+  is_abstract: true
+  uses:
+  - level_status 
