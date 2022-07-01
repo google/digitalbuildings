@@ -142,6 +142,18 @@ CT_SS_VSC_RWISOVM_SWISOVM_SWTM:
   - RWISOVM
   - SWISOVM
   - SWTM
+ 
+CT_SS_RWISOVM_SWISOVM_SWTM:
+  description: "Cooling tower with supply and return isolation valves and supply & return temp monitoring."
+  is_canonical: true
+  implements:
+  - CT
+  - SS
+  - RWISOVM
+  - SWISOVM
+  - SWTM
+  opt_uses:
+  - low_level_status
 
 ###################################
 ### Existing Non-standard Types ###
@@ -192,3 +204,12 @@ CT_SS_CWDT_OA_VSFC_CSWIVS_CRWIVS_CSWTC:
   - control_mode
   - run_mode
   - lost_power_alarm
+  
+  
+CT_SS:
+  id: "14895648758141288448"
+  description: "cooling tower with run command and status. "
+  is_canonical: true
+  implements:
+  - CT
+  - SS

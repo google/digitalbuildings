@@ -42,6 +42,7 @@ UPS_IOBM:
   - phase3_power_sensor  
   
 UPS_PPWM:
+  id: "17075390977788608512"
   description: "UPS with phase power monitoring."
   is_canonical: true
   implements:
