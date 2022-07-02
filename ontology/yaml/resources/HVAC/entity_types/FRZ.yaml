@@ -28,6 +28,15 @@ FRZ_DXZTC_DFSS:
   - DXZTC
   - DFSS
 
-
-
+FRZ_DFSS_DEFSS_DEFSTC:
+  description: "Freezer with discharge fan,compressor, defrost run and temperature control."
+  is_canonical: true
+  implements:
+  - FRZ
+  - DFSS
+  - DEFSS
+  - DEFSTC
+  opt_uses:
+  - run_time_accumulator
+  - master_alarm
   
