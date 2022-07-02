@@ -25,7 +25,9 @@ do
     else
       echo "$PYTHON_VERSION is newer than $REQUIRED_VERSION"
     fi
+    alias python=$pa
     FOUND=true
+    break
   else
     echo "$PYTHON_VERSION is older than $REQUIRED_VERSION"
   fi
