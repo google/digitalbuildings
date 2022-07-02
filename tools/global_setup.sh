@@ -12,13 +12,11 @@ for pa in "${POSSIBLE_ALIAS[@]}"
 do
   which $pa
   EXIT_STATUS=$?
-  echo $EXIT_STATUS
   if [ $EXIT_STATUS -ne 0 ]; then
     continue
   fi
 
   PYTHON_VERSION=$($pa -c 'import sys; version=sys.version_info[:2]; print("{}.{}".format(*version))')
-
   if [ $(printf "%s\n" "$PYTHON_VERSION" "$REQUIRED_VERSION" | sort -V -r | head -1) = "$PYTHON_VERSION" ] ; then
     if [ "$PYTHON_VERSION" = "$REQUIRED_VERSION" ] ; then
       echo "$PYTHON_VERSION is equal to $REQUIRED_VERSION"
