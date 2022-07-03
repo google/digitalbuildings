@@ -634,6 +634,7 @@ MAU_SFSS2X_SFVSC2X_CHWSC_HWSC_FDPM_SSPC_STC_VOADM2X:
   - VOADM2X
 
 MAU_SFVSC_CHWSC_SSPC_FDPSM2X:
+  id: "11161614911237259264"
   description: "MAU with chilled water valve modulation,VFD speed control based on static pressure,two filters."
   is_canonical: true
   implements:
@@ -764,3 +765,14 @@ MAU_US_SBO_1000_1:
   - DEPRECATED
   uses:
   - humidification_run_command
+  
+MAU_DFMSC_DFVSC_FDPM_DTM:
+  id: "9745232828429238272"
+  description: "Makeup Air Unit with discharge air monitoring along with fan speed control"
+  implements:
+  - MAU
+  - DFMSC
+  - DFVSC
+  - FDPM
+  - DTM
+  
