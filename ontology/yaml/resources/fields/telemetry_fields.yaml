@@ -1200,11 +1200,6 @@ literals:
 - potable_hot_leaving_water_temperature_sensor
 - potable_hot_leaving_water_temperature_setpoint
 
-## New fields for tanks
-- level_status:
-  - LOW
-  - HIGH
-
 ## New fields for electrical system additions
 - voltage_sensor
 - input_frequency_sensor
