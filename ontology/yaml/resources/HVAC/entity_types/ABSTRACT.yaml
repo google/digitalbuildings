@@ -377,9 +377,6 @@ SFVSC:
   - supply_fan_failed_alarm
   - control_mode
   - supply_fan_power_status
-  - supply_fan_voltage_sensor
-  - supply_fan_failed_alarm
-  - supply_fan_energy_accumulator
   uses:
   - supply_fan_run_command
   - supply_fan_run_status

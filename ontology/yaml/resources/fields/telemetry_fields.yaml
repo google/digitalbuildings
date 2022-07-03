@@ -163,8 +163,6 @@ literals:
 - supply_fan_power_sensor
 - supply_fan_voltage_sensor
 - supply_fan_torque_sensor
-- supply_fan_run_time_accumulator
-- supply_fan_energy_accumulator
 - supply_fan_run_command:
   - ON
   - OFF
@@ -555,7 +553,6 @@ literals:
 - discharge_air_heating_percentage_command
 - discharge_fan_voltage_sensor
 - discharge_fan_torque_sensor
-- discharge_fan_run_time_accumulator
 - discharge_fan_energy_accumulator 
 - supply_air_damper_command:
   - OPEN
@@ -1394,7 +1391,6 @@ literals:
   - VFD
   - BYPASS
 - supply_fan_run_time_accumulator
-- supply_fan_voltage_sensor
 - supply_fan_power_status:
   - ON
   - OFF
