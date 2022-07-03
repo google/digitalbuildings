@@ -31,6 +31,7 @@ GTWS_CHWRWISOVPM_CHWRWISOVM_CHWSWISOVM_HWRWISOVPM_HWRWISOVM_HWSWISOVM:
   - HWSWISOVM
 
 GTWS_CLPM_GTWFCISOVM_GTWGRISOVM_GTWHEISOVM_GTWHRISOVM_PCHWDT_PHWDT_RMM_WFRC:
+  id: "7852018940933832704"
   description: "Complex geothermal water system with heat rejection/extraction as well as ground recharge and free cooling (WSE) modes."
   is_canonical: true
   implements:
