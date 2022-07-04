@@ -12,19 +12,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-""" Setup file """
+### ABSTRACT TYPES
 
-from setuptools import setup, find_packages
-
-setup(
-    name='ontology-rdf-generator',
-    version='0.0.1',
-    url='https://github.com/google/digitalbuildings',
-    license='Apache License',
-    author='charbelk',
-    author_email='charbelk@google.com',
-    description='',
-    packages=find_packages(),
-    install_requires=['absl-py', 'pyglib', 'ruamel.yaml==0.17.4', 'rdflib==5.0.0'],
-    python_requires='>=3.6',
-)
+PA_STD:
+  id: "497090993623924736"
+  description: "Standard public address system."
+  is_canonical: true
+  implements:
+  - PA
+  uses:
+  - panel_alarm
