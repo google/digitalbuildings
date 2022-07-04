@@ -34,7 +34,7 @@ H2M:
   description: "Hydrogen gas monitoring"
   is_abstract: true
   uses:
-  - Zone_air_h2_concentration_sensor
+  - zone_air_h2_concentration_sensor
 
 WLDS:
   id: "1407482223375941632"
