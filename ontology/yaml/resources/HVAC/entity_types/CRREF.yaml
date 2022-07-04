@@ -28,9 +28,9 @@ CRREF_DXZTC_DFSS:
   - run_time_accumulator
   - master_alarm
 
-CRREF_REFM:
+CRREF_CREFM:
   description: "Typical coldroom refigrator monitoring."
   is_canonical: true
   implements:
   - CRREF
-  - REFM
+  - CREFM

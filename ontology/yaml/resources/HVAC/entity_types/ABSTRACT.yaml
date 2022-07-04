@@ -1113,7 +1113,7 @@ REFC:
   implements:
   - OPERATIONAL
 
-REFM:
+CREFM:
   description: "Cold Room Refrigerator monitoring."
   is_abstract: true
   opt_uses:
