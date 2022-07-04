@@ -243,7 +243,7 @@ UK-LON-S2-1:
 UK-LON-S2-1-1C3G:
   type: FACILITIES/ROOM
   connections:
-    UK-LON-S2-2: CONTAINS
+    UK-LON-S2-1: CONTAINS
 
 ```
 
