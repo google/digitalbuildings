@@ -745,8 +745,8 @@ literals:
 - min_battery_temperature_sensor
 - min_battery_voltage_sensor
 - battery_failed_alarm:
-  - ALARM
-  - NORMAL
+  - ACTIVE
+  - INACTIVE
 - brightness_percentage_command
 
 # New fields for emergency systems
