@@ -870,7 +870,7 @@ AHU_DFSS_DXZC_ECOND_ZHM:
   - ECOND
   - ZHM
 
-AHU_SS_CHWDT_ECONM_RWISOVPC_VSC_SD_FA2X:
+AHU_SS_CHWDT_ECONM_RWISOVPC_VSC_SD:
   description: "Smart AHU."
   is_canonical: true
   implements:
@@ -881,7 +881,8 @@ AHU_SS_CHWDT_ECONM_RWISOVPC_VSC_SD_FA2X:
   - RWISOVPC
   - VSC
   - SD
-  - FA2X
+  opt_uses:
+  - fire_alarm
 
 ### Multi-zone Units ###
 
