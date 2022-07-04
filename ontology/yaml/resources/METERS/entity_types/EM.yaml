@@ -21,6 +21,7 @@ EM_PWM:
   - PWM
 
 EM_PLPM:
+  id: "13541767314302566400"
   description: "Power meter with basic Phase-level power monitoring."
   is_canonical: true
   implements:
@@ -28,6 +29,7 @@ EM_PLPM:
   - PLPM
   
 EM_PWMRDM:
+  id: "5027712218758643712"
   description: "Energy metering from Grid Electricity and Diesel Generator."
   is_canonical: true
   implements:
@@ -87,6 +89,7 @@ EM_PWM_AVCM_PLPM_PVCM:
   - PVCM
   
 EM_PWM_PWMRDM:
+  id: "8930081295875178496"
   description: "Energy metering from Grid Electricity and Diesel Generator with power monitoring."
   is_canonical: true
   implements:

@@ -16,18 +16,30 @@
 ### Canonical Types  ###
 ########################
 
-### FREEZER ###
+### Tanks ###
 
-  
-FRZ_DXZTC_DFSS:
-  id: "12904507967029641216"
-  description: "Freezer with discharge fan run duration monitoring with compressor run control ."
+TK_SWTC_PHWTC:
+  id: "4244085883596177408"
+  description: "Tank with water temperature monitoring"
   is_canonical: true
   implements:
-  - FRZ
-  - DXZTC
-  - DFSS
-
-
-
+  - /TK # Inherits from global namespace 
+  - SWTC
+  - PHWTC
   
+TK_LM_PLPM:  
+  id: "10267650385204215808"
+  description: "Tank with level and pipeline pressure monitoring "
+  is_canonical: true
+  implements:
+  - /TK # Inherits from global namespace 
+  - LM
+  - PLPM
+
+TK_LM:  
+  id: "12505939400007352320"
+  description: "Tank with level monitoring "
+  is_canonical: true
+  implements:
+  - /TK # Inherits from global namespace 
+  - LM

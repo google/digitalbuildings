@@ -79,3 +79,9 @@ WLS:
   uses:
   - water_leak_cable_distance_sensor
   
+LM:
+  id: "15773300929664647168"
+  description: "Tank level monitoring."
+  is_abstract: true
+  uses:
+  - level_status 
