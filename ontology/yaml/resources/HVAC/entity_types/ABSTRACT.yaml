@@ -324,7 +324,7 @@ VSC:
   - power_sensor
   - voltage_sensor
   - failed_alarm
-  - temperature_sensor
+  - motor_temperature_sensor
   - torque_sensor
   - energy_accumulator
   - run_time_accumulator
