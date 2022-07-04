@@ -23,8 +23,3 @@ BATT_STD:
   opt_uses:
   - remaining_charge_time_sensor
   - local_air_temperature_sensor
-  - max_battery_voltage_sensor
-  - min_battery_temperature_sensor
-  - min_battery_voltage_sensor
-  - battery_charge_status
-  - battery_failed_alarm
