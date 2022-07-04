@@ -22,9 +22,11 @@ SS:
   opt_uses:
   - failed_alarm
   - lost_power_alarm
+  - power_status
 
 
 IOBM:
+  id: "11309587186103353344"
   description: "Input, output, and bypass electrical monitoring, typically for a UPS."
   is_abstract: true
   uses:
@@ -49,3 +51,45 @@ IOBM:
   - bypass_phase1_neutral_voltage_sensor
   - bypass_phase2_neutral_voltage_sensor
   - bypass_phase3_neutral_voltage_sensor
+  
+PPWM:
+  id: "14668216976959078400"
+  description: "Phase power monitoring"
+  is_abstract: true
+  uses:
+  - phase1_apparent_power_sensor
+  - phase2_apparent_power_sensor
+  - phase3_apparent_power_sensor
+  - line_frequency_sensor  
+
+SRC1:
+  id: "15185581178292797440"
+  description: "Source 1 parameters typically for ATS"
+  is_abstract: true
+  uses:
+  - source1_phase1_phase2_voltage_sensor
+  - source1_phase2_phase3_voltage_sensor
+  - source1_phase3_phase1_voltage_sensor
+  - source1_frequency_sensor
+  opt_uses:
+  - source1_phase1_phase2_over_voltage_status
+  - source1_phase2_phase3_over_voltage_status
+  - source1_phase3_phase1_over_voltage_status
+  - source1_over_voltage_status
+  - source1_lost_power_alarm
+
+SRC2:
+  id: "6549928892809871360"
+  description: "Source 1 parameters typically for ATS"
+  is_abstract: true
+  uses:
+  - source2_phase1_phase2_voltage_sensor
+  - source2_phase2_phase3_voltage_sensor
+  - source2_phase3_phase1_voltage_sensor
+  - source2_frequency_sensor 
+  opt_uses:
+  - source2_phase1_phase2_over_voltage_status
+  - source2_phase2_phase3_over_voltage_status
+  - source2_phase3_phase1_over_voltage_status
+  - source2_over_voltage_status
+  - source2_lost_power_alarm

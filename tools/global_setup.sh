@@ -1,5 +1,33 @@
 #!/bin/sh
+shopt -s expand_aliases
+
 echo "Starting setup..."
+
+# handle different python alias
+echo "Looking through possible python aliases"
+alias PYTHON3="which python3"
+alias PYTHON="which python"
+alias PY="which py"
+
+PYTHON3 > /dev/null
+PYTHON3_EXIT_STATUS=$?
+PYTHON > /dev/null
+PYTHON_EXIT_STATUS=$?
+PY > /dev/null
+PY_EXIT_STATUS=$?
+
+if [ "$PYTHON3_EXIT_STATUS" -eq 0 ]; then
+  alias python='f(){ python3 "$@"; }; f'
+elif [ "$PYTHON_EXIT_STATUS" -eq 0 ]; then
+  alias python='f(){ python "$@"; }; f'
+elif [ "$PY_EXIT_STATUS" -eq 0 ]; then
+  alias python='f(){ py "$@"; }; f'
+else
+  echo "Could not find python executable"
+  exit 125
+fi
+
+echo "Python executable found"
 
 ontology_validator_setup()
 {
@@ -60,6 +88,6 @@ ontology_validator_setup
 instance_validator_setup
 explorer_setup
 guid_generator_setup
-scoring_setup
-rdf_generator_setup
+#scoring_setup
+#rdf_generator_setup
 echo "Setup finished!"
