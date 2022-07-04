@@ -983,14 +983,16 @@ FCU_DFSS_CHWZC_RTM_ZHM:
     - RTM
     - ZHM
 
-FCU_CHWZTC_HWZTC_DFVSC_RTM:
+FCU_DFSS_DFVSC_ZTC_CHWZTC_HWZTC_RTM:
   description: "FCU with zone temperature control and return air temperature monitoring."
   is_canonical: true
   implements:
   - FCU
+  - DFSS
+  - DFVSC
+  - ZTC
   - CHWZTC
   - HWZTC
-  - DFVSC
   - RTM
     
 ###################################
