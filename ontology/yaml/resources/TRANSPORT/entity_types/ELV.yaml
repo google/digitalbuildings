@@ -12,19 +12,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-""" Setup file """
+ELV_SS:
+  id: "785321369775636480"
+  description: "Elevator run status monitoring."
+  is_canonical: true
+  implements:
+  - ELV
+  - SS  
 
-from setuptools import setup, find_packages
-
-setup(
-    name='ontology-rdf-generator',
-    version='0.0.1',
-    url='https://github.com/google/digitalbuildings',
-    license='Apache License',
-    author='charbelk',
-    author_email='charbelk@google.com',
-    description='',
-    packages=find_packages(),
-    install_requires=['absl-py', 'pyglib', 'ruamel.yaml==0.17.4', 'rdflib==5.0.0'],
-    python_requires='>=3.6',
-)
