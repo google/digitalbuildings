@@ -201,7 +201,7 @@ FRZM:
    - compressor_run_status
    - run_time_accumulator
   uses:
-   - temperature_sensor
+   - room_temperature_sensor
    - defrost_temperature_sensor
   
 DFSMC:

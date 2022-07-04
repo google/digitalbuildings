@@ -46,6 +46,7 @@ literals:
 - compressor_speed_percentage_sensor
 - refrigerant_condenser_saturation_temperature_sensor
 - defrost_temperature_sensor
+- room_temperature_sensor
 - condensing_return_water_temperature_sensor
 - condensing_supply_water_temperature_sensor
 - condensing_supply_water_temperature_setpoint
