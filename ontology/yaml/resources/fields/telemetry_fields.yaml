@@ -657,6 +657,9 @@ literals:
 - water_high_level_status:
   - ACTIVE
   - INACTIVE
+- motor_input_power_status:
+  - ON
+  - OFF
 
 # Added 10/5/20 for TW-NTC-TPKD
 # Additional functionality for alarms and status points.
