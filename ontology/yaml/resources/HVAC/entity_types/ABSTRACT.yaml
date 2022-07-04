@@ -4734,7 +4734,7 @@ HWRWISOVPM:
   implements:
   - MONITORING
 
-RDM:
+RDC:
   description: "Return air damper percentage monitoring"
   is_abstract: true
   uses:
