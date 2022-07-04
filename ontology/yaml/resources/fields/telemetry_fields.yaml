@@ -664,7 +664,7 @@ literals:
 - water_high_level_status:
   - ACTIVE
   - INACTIVE
-- motor_input_power_status:
+- input_motor_power_status:
   - ON
   - OFF
 

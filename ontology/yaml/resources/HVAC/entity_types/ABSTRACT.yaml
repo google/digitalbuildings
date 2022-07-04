@@ -3881,7 +3881,7 @@ DRPM:
   - water_low_level_status
   - water_high_level_status
   - drain_pump_failed_alarm
-  - motor_input_power_status
+  - input_motor_power_status
   uses:
   - drain_pump_run_status
   implements:
