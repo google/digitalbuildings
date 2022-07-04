@@ -4951,6 +4951,6 @@ PM:
   description: "Particle Concentration monitoring."
   is_abstract: true
   uses:
-  - zone_particle_concentration_sensor
+  - zone_air_pm2pt5_concentration_sensor
   implements:
   - MONITORING

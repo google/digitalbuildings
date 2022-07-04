@@ -28,6 +28,8 @@ IOBM:
   id: "11309587186103353344"
   description: "Input, output, and bypass electrical monitoring, typically for a UPS."
   is_abstract: true
+  opt_uses:
+  - bypass_phase_status
   uses:
   - input_phase1_phase2_voltage_sensor
   - input_phase2_phase3_voltage_sensor
@@ -50,4 +52,3 @@ IOBM:
   - bypass_phase1_neutral_voltage_sensor
   - bypass_phase2_neutral_voltage_sensor
   - bypass_phase3_neutral_voltage_sensor
-  - bypass_phase_status
