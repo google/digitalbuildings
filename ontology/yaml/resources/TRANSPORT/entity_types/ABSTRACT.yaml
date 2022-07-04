@@ -12,19 +12,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-""" Setup file """
 
-from setuptools import setup, find_packages
+SS:
+  id: "17502683186574917632"
+  description: "Basic combination of run command and status (start/stop); indicates the light is active or inactive."
+  is_abstract: true
+  implements:
+  - /SS
+  opt_uses:
+  - failed_alarm
+  - lost_power_alarm
 
-setup(
-    name='ontology-rdf-generator',
-    version='0.0.1',
-    url='https://github.com/google/digitalbuildings',
-    license='Apache License',
-    author='charbelk',
-    author_email='charbelk@google.com',
-    description='',
-    packages=find_packages(),
-    install_requires=['absl-py', 'pyglib', 'ruamel.yaml==0.17.4', 'rdflib==5.0.0'],
-    python_requires='>=3.6',
-)
