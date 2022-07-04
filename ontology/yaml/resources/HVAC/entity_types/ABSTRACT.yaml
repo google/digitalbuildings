@@ -4946,11 +4946,3 @@ EFHLC:
   - high_exhaust_fan_speed_status
   implements:
   - OPERATIONAL
-
-PM:
-  description: "Particle Concentration monitoring."
-  is_abstract: true
-  uses:
-  - zone_air_pm2pt5_concentration_sensor
-  implements:
-  - MONITORING
