@@ -12,23 +12,34 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-WM_STANDARD:
-  id: "440559603281821696"
-  description: "Standard building water meter."
-  implements:
-  - WM
-  is_canonical: true
-  uses:
-  - water_volume_accumulator
-  opt_uses:
-  - failed_alarm
-  - flowrate_sensor
+########################
+### Canonical Types  ###
+########################
 
-WM_WF:
-  id: "5379261270530719744"
-  description: "Water supply flow rate meter."
-  implements:
-  - WM
+### Tanks ###
+
+TK_SWTC_PHWTC:
+  id: "4244085883596177408"
+  description: "Tank with water temperature monitoring"
   is_canonical: true
-  uses:
-  - supply_water_flowrate_sensor
+  implements:
+  - /TK # Inherits from global namespace 
+  - SWTC
+  - PHWTC
+  
+TK_LM_PLPM:  
+  id: "10267650385204215808"
+  description: "Tank with level and pipeline pressure monitoring "
+  is_canonical: true
+  implements:
+  - /TK # Inherits from global namespace 
+  - LM
+  - PLPM
+
+TK_LM:  
+  id: "12505939400007352320"
+  description: "Tank with level monitoring "
+  is_canonical: true
+  implements:
+  - /TK # Inherits from global namespace 
+  - LM
