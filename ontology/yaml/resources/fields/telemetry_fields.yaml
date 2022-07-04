@@ -359,8 +359,6 @@ literals:
   - OFF
   - AUTO
   - MANUAL
-  - STANDBY
-  - WORKING
 - dial_resistance_sensor
 - zone_occupancy_status:
   - OCCUPIED
@@ -743,6 +741,9 @@ literals:
   - ACTIVE
   - INACTIVE
 - overload_compressor_alarm:
+  - ACTIVE
+  - INACTIVE
+- overload_fan_alarm:
   - ACTIVE
   - INACTIVE
 - high_pressure_status:
@@ -1430,6 +1431,9 @@ literals:
 - supply_fan_voltage_sensor
 - discharge_fan_energy_accumulator
 - discharge_fan_voltage_sensor
+- fan_run_time_accumulator
+- humidifier_run_time_accumulator
+- heater_run_time_accumulator
 
 - supply_fan_power_status:
   - ON
