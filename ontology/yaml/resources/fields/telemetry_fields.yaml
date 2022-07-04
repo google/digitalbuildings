@@ -768,7 +768,13 @@ literals:
 - fire_alarm:
   - ACTIVE
   - INACTIVE
-
+  
+- valve_command:
+  - OPEN
+  - CLOSE
+- valve_status:
+  - OPEN
+  - CLOSED
 - emergency_release_status:
   - ACTIVE
   - INACTIVE
