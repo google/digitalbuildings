@@ -81,32 +81,6 @@ AHU_CSP_DFSS_DXZC:
   - DFSS
   - DXZC
 
-AHU_SS_STC_RTM:
-  description: "CRAC unit cooling and humidification with compressor and alarm monitoring."
-  is_canonical: true
-  implements:
-  - AHU
-  - SS
-  - STC
-  - RTM
-  opt_uses:
-  - fan_run_time_accumulator
-  - compressor_run_time_accumulator
-  - humidifier_run_time_accumulator
-  - heater_run_time_accumulator
-  - overload_fan_alarm
-  - high_pressure_status
-  - low_pressure_status
-  - overload_compressor_alarm
-  - humidifier_failed_alarm
-  - high_return_air_temperature_alarm
-  - low_return_air_temperature_alarm
-  - high_return_air_relative_humidity_alarm
-  - low_return_air_relative_humidity_alarm
-  - filter_alarm
-  - fan_failed_alarm
-  - run_mode
-
 AHU_DFSS_DSP_DXZC_ECONZ:
   id: "17015354344377155584"
   description: "Single zone AHU."

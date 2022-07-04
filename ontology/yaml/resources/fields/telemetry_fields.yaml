@@ -737,8 +737,23 @@ literals:
   - ACTIVE
   - INACTIVE
 - overload_alarm:
-  - OVERLOAD
-  - NORMAL
+  - ACTIVE
+  - INACTIVE
+- overload_compressor_alarm:
+  - ACTIVE
+  - INACTIVE
+- high_pressure_status:
+  - ACTIVE
+  - INACTIVE
+- low_pressure_status:
+  - ACTIVE
+  - INACTIVE
+- humidifier_failed_alarm:
+  - ACTIVE
+  - INACTIVE
+- fan_failed_alarm:
+  - ACTIVE
+  - INACTIVE
 
 # New fields for lighting and fire systems.
 - motion_status:
