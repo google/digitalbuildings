@@ -12,32 +12,34 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-UPS_SS:
-  id: "5802995459689545728"
-  description: "Standard UPS unit."
+########################
+### Canonical Types  ###
+########################
+
+### Tanks ###
+
+TK_SWTC_PHWTC:
+  id: "4244085883596177408"
+  description: "Tank with water temperature monitoring"
   is_canonical: true
   implements:
-  - UPS
-  - SS  
-
-
-UPS_IOBM:
-  id: "8787571394775875584"
-  description: "UPS with input and output electrical monitoring"
-  is_canonical: true
-  implements:
-  - UPS
-  - IOBM
-  opt_uses:
-  - input_frequency_sensor
-  - output_frequency_sensor
-  - bypass_frequency_sensor
-  - failed_alarm
+  - /TK # Inherits from global namespace 
+  - SWTC
+  - PHWTC
   
-UPS_PPWM:
-  id: "17075390977788608512"
-  description: "UPS with phase power monitoring."
+TK_LM_PLPM:  
+  id: "10267650385204215808"
+  description: "Tank with level and pipeline pressure monitoring "
   is_canonical: true
   implements:
-  - UPS
-  - PPWM   
+  - /TK # Inherits from global namespace 
+  - LM
+  - PLPM
+
+TK_LM:  
+  id: "12505939400007352320"
+  description: "Tank with level monitoring "
+  is_canonical: true
+  implements:
+  - /TK # Inherits from global namespace 
+  - LM
