@@ -59,6 +59,24 @@ DD:
   implements:
   - CONTROL
 
+RDM:
+  id: "10008693406630412288"
+  description: "Very basic system run duration monitoring. "
+  is_abstract: true
+  uses:
+  - run_time_accumulator
+  implements:
+  - MONITORING
+
+SRC:
+  id: "6232425119080251392"
+  description: "Very basic run scheduling command. "
+  is_abstract: true
+  uses:
+  - schedule_run_command
+  implements:
+  - CONTROL  
+
 # Not deprecated but probably not useful
 OADM:
   id: "13985513714598543360"
@@ -322,6 +340,12 @@ VSC:
   - speed_frequency_sensor
   - power_sensor
   - voltage_sensor
+  - run_time_accumulator
+  - energy_accumulator
+  - lost_power_alarm
+  - torque_sensor
+  - failed_alarm
+  - control_mode
   uses:
   - speed_percentage_command
   - run_status
@@ -363,10 +387,14 @@ SFVSC:
   - supply_fan_speed_percentage_sensor
   - supply_fan_current_sensor
   - supply_fan_power_sensor
-  - supply_fan_power_status
   - supply_fan_voltage_sensor
-  - supply_fan_failed_alarm
+  - supply_fan_torque_sensor
+  - supply_fan_run_time_accumulator
   - supply_fan_energy_accumulator
+  - supply_fan_lost_power_alarm
+  - supply_fan_failed_alarm
+  - control_mode
+  - supply_fan_power_status
   uses:
   - supply_fan_run_command
   - supply_fan_run_status
@@ -384,6 +412,12 @@ DFVSC:
   - discharge_fan_speed_frequency_sensor
   - discharge_fan_speed_percentage_sensor
   - discharge_fan_lost_power_alarm
+  - discharge_fan_voltage_sensor
+  - discharge_fan_torque_sensor
+  - discharge_fan_run_time_accumulator
+  - discharge_fan_energy_accumulator
+  - discharge_fan_failed_alarm
+  - control_mode
   uses:
   - discharge_fan_speed_percentage_command
   - discharge_fan_run_status
@@ -416,7 +450,6 @@ DFVSC2X:
   implements:
   - OPERATIONAL
 
-
 DFVSFC:
   id: "3819485279274663936"
   description: "Variable speed control with frequency setting for discharge fans."
@@ -438,6 +471,11 @@ DFMSC:
   - discharge_fan_run_command
   - discharge_fan_run_status
   - discharge_fan_speed_mode
+  opt_uses:
+  - discharge_fan_run_mode
+  - schedule_run_command 
+  
+ 
 
 ZHM:
   id: "17192076649286336512"
@@ -814,7 +852,6 @@ RWTC:
   uses:
   - return_water_temperature_setpoint
   - return_water_temperature_sensor
-
 
 PSWTC:
   id: "10474579573063286784"
@@ -1270,6 +1307,17 @@ FDPM:
   implements:
   - MONITORING
 
+FDPSM:
+  id: "5397007388203024384"
+  description: "Filter pressure status monitoring."
+  is_abstract: true
+  uses:
+  - filter_differential_pressure_status
+  opt_uses:
+  - filter_alarm
+  implements:
+  - MONITORING
+
 # Chilled water valve control
 
 CHWDC:
@@ -1298,6 +1346,7 @@ CHWSC:
   - chilled_supply_water_temperature_sensor
   - chilled_water_valve_percentage_sensor
   - cooling_request_count
+  - supply_air_relative_humidity_sensor
   uses:
   - supply_air_temperature_sensor
   - supply_air_temperature_setpoint
@@ -2706,6 +2755,7 @@ CDWPVM:
   - OPERATIONAL
 
 CDWFRSM:
+  id: "14620379425057800192"
   description: "Condenser water flowrate status monitoring."
   is_abstract: true
   uses:
@@ -2927,6 +2977,19 @@ FDPM2X:
   uses:
   - filter_differential_pressure_sensor_1
   - filter_differential_pressure_sensor_2
+  implements:
+  - MONITORING
+
+FDPSM2X:
+  id: "14032659673685950464"
+  description: "Filter pressure status monitoring (2 sensors)."
+  is_abstract: true
+  uses:
+  - filter_differential_pressure_status_1
+  - filter_differential_pressure_status_2
+  opt_uses:
+  - filter_alarm_1
+  - filter_alarm_2
   implements:
   - MONITORING
 
@@ -3385,6 +3448,7 @@ RWISOVPM:
   - MONITORING
 
 CICHVISOVM3X:
+  id: "2503444627617480704"
   description: "Circuit changeover valve for switching between Hot water system and Chiller "
   is_abstract: true
   uses:
@@ -4871,6 +4935,7 @@ DEFSS:
   - MONITORING
     
 VOADC2X:
+  id: "15455797155935027200"
   description: "Variable outside air damper control and monitoring, where there are two separate, equal sets of dampers that operate in conjunction."
   is_abstract: true
   uses:
@@ -4882,6 +4947,7 @@ VOADC2X:
   - OPERATIONAL  
   
 RAIDC:
+  id: "8470714133883387904"
   description: "Return air isolation damper control and monitoring."
   is_abstract: true
   uses:
@@ -4890,6 +4956,7 @@ RAIDC:
  
 
 RAIDC3X:
+  id: "6574698690760409088"
   description: "Return air isolation damper control and monitoring, where there are three separate, equal sets of dampers that operate in conjunction."
   is_abstract: true
   uses:
@@ -4903,6 +4970,7 @@ RAIDC3X:
   - MONITORING
 
 RAIDC2X:
+  id: "11726816664472256512"
   description: "Return air isolation damper control and monitoring, where there are two separate, equal sets of dampers that operate in conjunction."
   is_abstract: true
   uses:
@@ -4914,6 +4982,7 @@ RAIDC2X:
   - MONITORING
 
 RAIDC4X:
+  id: "3091164378989330432"
   description: "Return air isolation damper control and monitoring, where there are four separate, equal sets of dampers that operate in conjunction."
   is_abstract: true
   uses:
@@ -4930,6 +4999,7 @@ RAIDC4X:
 
 
 SAIDC:
+  id: "3926582109866557440"
   description: "isolation damper status monitoring and control on the supply side."
   is_abstract: true
   uses:
@@ -4939,6 +5009,7 @@ SAIDC:
   - MONITORING
 
 SAIDC2X:
+  id: "17694086170738163712"
   description: "isolation damper status monitoring and control on the supply side, where there are two separate, equal sets of dampers that operate in conjunction."
   is_abstract: true
   uses:
@@ -4950,6 +5021,7 @@ SAIDC2X:
   - MONITORING
 
 SAIDC3X:
+  id: "15798070727615184896"
   description: "isolation damper status monitoring and control on the supply side, where there are three separate, equal sets of dampers that operate in conjunction."
   is_abstract: true
   uses:
@@ -4963,6 +5035,7 @@ SAIDC3X:
   - MONITORING   
   
 SSPC2X:
+  id: "7115130646044868608"
   description: "Supply static pressure control via supply fan speed with 2 sensors"
   is_abstract: true
   opt_uses:
@@ -4982,6 +5055,7 @@ SSPC2X:
   - OPERATIONAL
 
 SFMSC:
+  id: "12314536415844106240"
   description: "Supply fan multi-speed control."
   is_abstract: true
   uses:
@@ -5130,9 +5204,61 @@ EFHLC:
   - low_exhaust_fan_speed_status
   - high_exhaust_fan_speed_status
   implements:
+
+
+  - OPERATIONAL
+  
+##Abstracts for sensors
+
+PCM:
+  id: "13149954146721333248"
+  description: "General particulate matter monitoring."
+  is_abstract: true
+  uses:
+  - particle_concentration_sensor
+  implements:
+  - MONITORING 
+
+PMM:
+  id: "976724353938882560"
+  description: "Zone air particulate matter monitoring."
+  is_abstract: true
+  uses:
+  - zone_air_pm2pt5_concentration_sensor
+  - zone_air_pm10pt0_concentration_sensor
+  implements:
+  - MONITORING   
+
   - OPERATIONAL
 
+
+ 
+PHWTC:
+  id: "4268855681546715136"
+  description: "potable water temperature monitoring and control."
+  is_abstract: true
+  uses:
+  - potable_hot_water_temperature_sensor  
+
+LM:
+  id: "16338502682899644416"
+  description: "level monitoring of devices storing media."
+  is_abstract: true
+  uses:
+  - level_status
+  - percentage_sensor
+ 
+PLPM:  
+  id: "7702850397416718336"
+  description: "Pipeline Fluid pressure monitoring"
+  is_abstract: true
+  uses:
+  - line_pressure_sensor 
+
+
+
 CO2M4X:
+  id: "8538268128293945344"
   description: "Basic carbon dioxide monitoring for 4 Zones."
   is_abstract: true
   uses:
@@ -5144,6 +5270,7 @@ CO2M4X:
   - MONITORING
 
 CO2M6X:
+  id: "10200096390793658368"
   description: "Basic carbon dioxide monitoring for 6 Zones."
   is_abstract: true
   uses:
@@ -5156,7 +5283,34 @@ CO2M6X:
   implements:
   - MONITORING
   
+MIPCVM:
+  id: "13492227718401490944"
+  description: "Motor phase-level input current and voltage monitoring."
+  is_abstract: true
+  implements:
+  - MONITORING
+  uses:
+  - average_input_line_motor_current_sensor
+  - average_input_inter_line_motor_voltage_sensor
+  - input_motor_power_sensor  
+  
+EPM:
+  id: "1350523123010633728"
+  description: "Basic Electrical parameter monitoring."
+  is_abstract: true
+
+  opt_uses:
+  - power_status
+  uses:  
+  - voltage_sensor
+  - current_sensor
+  - power_sensor
+  - energy_accumulator
+  implements:
+  - MONITORING
+
 DFRMM:
+  id: "16926222434271494144"
   description: "Discharge fan run mode monitoring."
   is_abstract: true
   uses:
