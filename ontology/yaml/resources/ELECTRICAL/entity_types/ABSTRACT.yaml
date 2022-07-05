@@ -51,7 +51,7 @@ IOBM:
   - bypass_phase1_neutral_voltage_sensor
   - bypass_phase2_neutral_voltage_sensor
   - bypass_phase3_neutral_voltage_sensor
-  
+ 
 PPWM:
   id: "14668216976959078400"
   description: "Phase power monitoring"
