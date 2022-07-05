@@ -170,7 +170,7 @@ literals:
 - supply_fan_run_mode:
   - AUTO
   - MANUAL
-- supply_fan_bypass_status:
+- bypass_supply_fan_status:
   - NORMAL
   - BYPASS
 - supply_fan_speed_frequency_command
@@ -1406,11 +1406,6 @@ literals:
 - supply_fan_speed_mode:
   - BYPASS
   - VFD
-  
-- supply_fan_run_mode:
-  - AUTO
-  - MANUAL
-
 - supply_fan_run_time_accumulator
 - supply_fan_energy_accumulator
 - supply_fan_voltage_sensor
