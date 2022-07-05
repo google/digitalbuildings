@@ -51,7 +51,6 @@ IOBM:
   - bypass_phase1_neutral_voltage_sensor
   - bypass_phase2_neutral_voltage_sensor
   - bypass_phase3_neutral_voltage_sensor
-  
 
 PWM:
   description: "Very basic power and energy monitoring."
@@ -80,7 +79,6 @@ RDM:
   is_abstract: true
   uses:
   - run_time_accumulator
- 
   
 TKLS:  
   description: "Very basic tank level status monitoring for Electrical generator equipments."
@@ -88,7 +86,6 @@ TKLS:
   uses:
   - tank_level_status
 
-  
 PPWM:
   id: "14668216976959078400"
   description: "Phase power monitoring"
@@ -97,7 +94,6 @@ PPWM:
   - phase1_apparent_power_sensor
   - phase2_apparent_power_sensor
   - phase3_apparent_power_sensor
-
   - line_frequency_sensor
 
 BTEPM:
@@ -106,9 +102,6 @@ BTEPM:
   uses:
   - battery_voltage_sensor
   - battery_current_sensor
- 
-
-
   - line_frequency_sensor  
 
 SRC1:
