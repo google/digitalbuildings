@@ -25,6 +25,7 @@ OCCUPIED: Occupied sensor state or operation mode.
 UNOCCUPIED: Unoccupied sensor state or operation mode.
 VFD: Discrete speed (frequency) control
 BYPASS: Bypassing an element or entity.
+NORMAL: Equipment, function, flow or state that is working as expected
 
 # Moved from HVAC namespace because all fields are currently global in DL.
 COMMISSIONING: The fan speed and valve positions are set to preconfigured parameters.
