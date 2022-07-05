@@ -357,7 +357,7 @@ EFVSC:
   - exhaust_fan_current_sensor
   - exhaust_fan_power_sensor
   - exhaust_fan_run_mode
-  - exhaust_fan_bypass_status
+  - bypass_exhaust_fan_status
   uses:
   - exhaust_fan_run_command
   - exhaust_fan_run_status

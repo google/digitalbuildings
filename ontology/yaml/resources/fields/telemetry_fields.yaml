@@ -99,7 +99,7 @@ literals:
 - exhaust_fan_run_mode:
   - AUTO
   - MANUAL
-- exhaust_fan_bypass_status:
+- bypass_exhaust_fan_status:
   - NORMAL
   - BYPASS
 - exhaust_fan_speed_frequency_sensor
