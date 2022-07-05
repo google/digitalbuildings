@@ -49,23 +49,26 @@ FCU_DFSS_CSP_DXZC:
   - CSP
   - DXZC
 
-FCU_DXRC_RMM_FA2X:
+FCU_DXRC_RMM:
   description: "Typical DX FCU with cooling-only (return control) with run mode and fire monitoring ."
   is_canonical: true
+  opt_uses:
+  - fire_alarm
   implements:
   - FCU
   - DXRC
   - RMM
-  - FA2X
-
-FCU_DXASP2_DRPM_FA2X:
+  
+FCU_DXASP2_DRPM:
   description: "Typical two DX unit auto sequential panel monitoring with drain pump,damper and fire monitoring ."
   is_canonical: true
+  opt_uses:
+  - fire_alarm
   implements:
   - FCU
   - DXASP2
   - DRPM
-  - FA2X
+  
 
 FCU_DFSS_CSP_DX2ZC:
   id: "2962575394609299456"
@@ -434,15 +437,17 @@ FCU_DFSS_DFVSC_CHWRC_RHDHC:
   - CHWRC
   - RHDHC
 
-FCU_DFVSC_CHWRC_CPC_FA2X:
+FCU_DFVSC_CHWRC_CPC:
   description: "Variable speed DX fan coil with chilled water return temp control with drain pump and fire alarm monitoring ."
   is_canonical: true
+  opt_uses:
+  - fire_alarm
   implements:
   - FCU
   - DFVSC
   - CHWRC
   - CPC
-  - FA2X
+  
 
 FCU_DFSS_DFHLC_DSP_DXZC:
   id: "12762408183767498752"
