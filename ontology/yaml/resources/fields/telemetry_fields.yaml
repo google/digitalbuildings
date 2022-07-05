@@ -1380,8 +1380,8 @@ literals:
 
 # Addition of telemetry for door alarm
  - door_open_alarm
-  - NORMAL
-  - ALARM
+  - ACTIVE
+  - INACTIVE
 
 #Telemetry addition for MAU#
 
