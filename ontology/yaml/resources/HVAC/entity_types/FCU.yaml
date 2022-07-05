@@ -59,16 +59,15 @@ FCU_DXRC_RMM:
   - DXRC
   - RMM
   
-FCU_DXASP2_DRPM:
+FCU_DXASP2:
   description: "Typical two DX unit auto sequential panel monitoring with drain pump,damper and fire monitoring ."
   is_canonical: true
   opt_uses:
   - fire_alarm
+  - drain_pump_failed_alarm
   implements:
   - FCU
   - DXASP2
-  - DRPM
-  
 
 FCU_DFSS_CSP_DX2ZC:
   id: "2962575394609299456"

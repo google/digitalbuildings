@@ -317,6 +317,9 @@ literals:
 - spray_pump_run_status:
   - ON
   - OFF
+- drain_pump_failed_alarm:
+  - ACTIVE
+  - INACTIVE  
 - supply_air_cooling_temperature_setpoint
 - supply_air_heating_temperature_setpoint
 - supply_air_relative_humidity_sensor

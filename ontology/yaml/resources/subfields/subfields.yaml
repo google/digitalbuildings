@@ -90,6 +90,7 @@ descriptor:
   discharge: "Media leaving system to enter ambient conditioned space. Typically applies only to air-side systems."
   dutycycle: "The fraction of one period in which a signal or system is active."
   defrost: "De-freezing ice from a surface."
+  drain: "Media drained from system, typically applied to water-side system "
   east: "Cardinal direction; opposite of west."
   economizer: "Process or component responsible for the utilization of free cooling."
   electric: "Process or component driven by electricity (as to distinguish from natural gas, for instance)."
