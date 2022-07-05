@@ -168,9 +168,6 @@ literals:
 - return_air_damper_closed_status:
   - OPEN
   - CLOSED
-- high_temperature_alarm:
-  - ACTIVE
-  - INACTIVE
 - supply_fan_run_command:
   - ON
   - OFF
