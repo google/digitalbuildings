@@ -51,6 +51,7 @@ literals:
 - condensing_water_flowrate_sensor
 - cooling_output_percentage_command
 - current_sensor
+- torque_sensor
 - differential_pressure_sensor
 - differential_pressure_setpoint
 - discharge_air_cooling_temperature_setpoint
@@ -160,6 +161,7 @@ literals:
 - supply_air_temperature_setpoint
 - supply_fan_current_sensor
 - supply_fan_power_sensor
+- supply_fan_torque_sensor
 - supply_fan_run_command:
   - ON
   - OFF
@@ -548,6 +550,8 @@ literals:
 - humidification_percentage_command
 - discharge_fan_speed_percentage_sensor
 - discharge_air_heating_percentage_command
+- discharge_fan_voltage_sensor
+- discharge_fan_torque_sensor
 - supply_air_damper_command:
   - OPEN
   - CLOSED
@@ -1409,8 +1413,6 @@ literals:
 - supply_fan_energy_accumulator
 - supply_fan_voltage_sensor
 - discharge_fan_energy_accumulator
-- discharge_fan_voltage_sensor
-
 - supply_fan_power_status:
   - ON
   - OFF
