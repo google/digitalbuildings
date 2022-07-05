@@ -505,7 +505,7 @@ VAV_RD_CO2C:
   - CO2C
 
 VAV_PDSCV_CO2C_HLSAFS_SRC:
-  description: "VAV with CO2 monitor, dampers (open/close), hi/low flowrate setpoint and sensor, schedule run"
+  description: "VAV with CO2 monitor, dampers, hi/low flowrate setpoint and sensor, schedule run"
   is_canonical: true
   implements:
   - VAV
