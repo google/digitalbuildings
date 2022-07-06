@@ -342,7 +342,6 @@ VSC:
   - voltage_sensor
   - speed_mode
   - run_mode
-  - energy_accumulator
   - run_time_accumulator
   - energy_accumulator
   - lost_power_alarm
