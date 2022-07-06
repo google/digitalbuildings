@@ -5108,6 +5108,9 @@ MIPWM:
   - MONITORING
   uses:
   - input_motor_power_sensor
+  opt_uses:
+  - motor_powerfactor_sensor
+  - input_motor_frequency_sensor
   
 MSM:
   description: "Motor speed monitoring for fan."
