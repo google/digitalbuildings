@@ -73,6 +73,7 @@ FA2X:
   - fire_alarm_1
   - fire_alarm_2
   
+
 WA4B:
   description: "A rodent system with 4 bands."
   is_abstract: true
@@ -82,3 +83,10 @@ WA4B:
   - wave_pulserate_sensor
   - wave_frequency_sensor
   - total_failed_counter
+LM:
+  id: "15773300929664647168"
+  description: "Tank level monitoring."
+  is_abstract: true
+  uses:
+  - level_status 
+

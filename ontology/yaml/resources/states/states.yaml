@@ -67,6 +67,13 @@ BANDA: "Frequency range from 20KHz to 50KHz"
 BANDB: "Frequency range from 30KHz to 60KHz"
 BANDC: "Frequency range from 27KHz to 57KHz"
 BANDD: "Frequency range from 24KHz to 61sKHz"
+#FOR ATS
+SOURCEA: "An operation mode having source 1 as priority" 
+NOSOURCE: "An operation mode having no source as priority"
+POSITIONA: "Automatic Transfer switch position 0"
+POSITIONB: "Automatic Transfer switch position 1"
+POSITIONC: "Automatic Transfer switch position 2"
+
 
 
 
