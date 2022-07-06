@@ -117,6 +117,7 @@ ZTM:
   is_abstract: true
   opt_uses:
   - discharge_air_temperature_sensor
+  - zone_air_relative_humidity_sensor
   uses:
   - zone_air_temperature_sensor
   implements:
