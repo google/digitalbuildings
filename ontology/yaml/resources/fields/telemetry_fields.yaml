@@ -1409,7 +1409,6 @@ literals:
   - HIGH
 - line_pressure_sensor
 
-
   ## New fields for EM##
 
 - return_air_isolation_damper_status
@@ -1425,22 +1424,14 @@ literals:
   - AUTO
   - MANUAL
 
-
 - supply_fan_run_time_accumulator
 - supply_fan_voltage_sensor
-
 
 - supply_fan_power_status:
   - ON
   - OFF
   
-
 - discharge_fan_energy_accumulator
-- supply_fan_power_status:
-  - ON
-  - OFF
-
-
 - discharge_fan_run_mode:
   - AUTO
   - MANUAL
@@ -1448,7 +1439,6 @@ literals:
 ## New fields for EM##
 - electricalgrid_energy_accumulator
 - generator_run_time_accumulator
-
 
 ## New fields for fans##
 - discharge_fan_energy_accumulator
