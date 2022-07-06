@@ -1393,9 +1393,6 @@ literals:
 - battery_voltage_sensor
 - battery_current_sensor
 
-#telemetry fields for discharge fan#
-- discharge_fan_voltage_sensor
-
 #Telemetry addition for MAU#
 
 
@@ -1431,7 +1428,6 @@ literals:
   - ON
   - OFF
   
-- discharge_fan_energy_accumulator
 - discharge_fan_run_mode:
   - AUTO
   - MANUAL
