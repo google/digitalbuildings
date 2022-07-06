@@ -340,6 +340,8 @@ VSC:
   - speed_frequency_sensor
   - power_sensor
   - voltage_sensor
+  - speed_mode
+  - run_mode
   - run_time_accumulator
   - energy_accumulator
   - lost_power_alarm
@@ -511,7 +513,12 @@ SS:
   - powerfactor_sensor
   - current_sensor
   - power_sensor
+
+  - run_time_accumulator
+
+
   
+
 SSPC:
   id: "10526749200778002432"
   description: "Supply static pressure control via supply fan speed"
@@ -5245,11 +5252,7 @@ PMM:
   - zone_air_pm2pt5_concentration_sensor
   - zone_air_pm10pt0_concentration_sensor
   implements:
-  - MONITORING   
-
- 
-
-
+  - MONITORING
 
 PHWTC:
   id: "4268855681546715136"
@@ -5271,7 +5274,7 @@ PLPM:
   description: "Pipeline Fluid pressure monitoring"
   is_abstract: true
   uses:
-  - line_pressure_sensor 
+  - line_pressure_sensor
 
 CO2M4X:
   id: "8538268128293945344"
@@ -5332,8 +5335,4 @@ DFRMM:
   uses:
   - discharge_fan_run_mode
   implements:
-
   - MONITORING
-
-  
-

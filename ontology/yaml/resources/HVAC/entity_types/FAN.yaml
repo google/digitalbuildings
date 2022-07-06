@@ -25,6 +25,7 @@ FAN_SS:
   implements:
   - FAN
   - SS
+   
 
 
 ### FAN SPEED CONTROL ###
@@ -38,6 +39,8 @@ FAN_SS_VSC:
   - SS
   - VSC
 
+
+
 FAN_SS_RMM:
   id: "3859028115456000000"
   description: "Fan with start/stop status and run mode monitoring"
@@ -46,6 +49,7 @@ FAN_SS_RMM:
   - FAN
   - SS
   - RMM
+
 
 ### ZONE TEMPERATURE CONTROL ###
 
@@ -674,7 +678,15 @@ FAN_SS_VSC_EPC_EHHRC_EHHRC3X:
   - heat_recovery_water_isolation_valve_command_2
   - heat_recovery_water_isolation_valve_command_3
 
-  
+FAN_SS_FDPM_VSC_SRC: 
+  description: "Fan with power, voltage, current, differential pressure and run durating monitoring ."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - FDPM
+  - VSC
+  - SRC 
 
 
 FAN_SS_MSM:  
@@ -682,9 +694,3 @@ FAN_SS_MSM:
   implements:
   - FAN
   - MSM
-  
-
-
-
-  
-

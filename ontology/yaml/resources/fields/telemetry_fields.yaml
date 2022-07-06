@@ -410,6 +410,8 @@ literals:
   - OFF
   - LOW
   - HIGH
+  - AUTO
+  - MANUAL
 - heat_exchange_isolation_valve_command:
   - OPEN
   - CLOSED
@@ -1381,6 +1383,12 @@ literals:
   - ON
   - OFF
 
+
+# telemetry fields for exhaust fan#
+
+- speed_mode:
+  - VFD
+  - BYPASS
 - high_discharge_fan_speed_status:
   - ON
   - OFF
