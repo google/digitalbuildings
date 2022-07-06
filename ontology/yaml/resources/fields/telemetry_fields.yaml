@@ -1418,11 +1418,6 @@ literals:
   - AUTO
   - MANUAL 
 - supply_fan_run_time_accumulator  
-  
-
-
-#Telemetry addition for MAU#
-
 
 # Addition of telemetry for outside sensors
 - outside_air_co2_concentration_sensor
@@ -1433,9 +1428,6 @@ literals:
   - MEDIUM
   - HIGH
 - line_pressure_sensor
-
-  ## New fields for EM##
-
 
 - return_air_isolation_damper_status
 - return_air_isolation_damper_command:
