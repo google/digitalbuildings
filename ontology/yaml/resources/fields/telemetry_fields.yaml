@@ -51,6 +51,7 @@ literals:
 - condensing_water_flowrate_sensor
 - cooling_output_percentage_command
 - current_sensor
+- torque_sensor
 - differential_pressure_sensor
 - differential_pressure_setpoint
 - discharge_air_cooling_temperature_setpoint
@@ -160,6 +161,7 @@ literals:
 - supply_air_temperature_setpoint
 - supply_fan_current_sensor
 - supply_fan_power_sensor
+- supply_fan_torque_sensor
 - supply_fan_run_command:
   - ON
   - OFF
@@ -408,6 +410,8 @@ literals:
   - OFF
   - LOW
   - HIGH
+  - AUTO
+  - MANUAL
 - heat_exchange_isolation_valve_command:
   - OPEN
   - CLOSED
@@ -548,6 +552,8 @@ literals:
 - humidification_percentage_command
 - discharge_fan_speed_percentage_sensor
 - discharge_air_heating_percentage_command
+- discharge_fan_voltage_sensor
+- discharge_fan_torque_sensor
 - supply_air_damper_command:
   - OPEN
   - CLOSED
@@ -1288,7 +1294,6 @@ literals:
   - OFF
 - ground_temperature_sensor
 
-
 ## Addition of new fields#
 
 ## New fields for Freezer (Walk in Cold room)
@@ -1379,7 +1384,41 @@ literals:
   - OFF
 
 
+# telemetry fields for exhaust fan#
+
+- speed_mode:
+  - VFD
+  - BYPASS
+- high_discharge_fan_speed_status:
+  - ON
+  - OFF
+- low_discharge_fan_speed_status:
+  - ON
+  - OFF 
+- exhaust_fan_run_mode:
+  - AUTO
+  - MANUAL
+
+##Fields for generator##
+- oil_temperature_sensor
+- oil_pressure_sensor
+- tank_level_status
+- battery_voltage_sensor
+- battery_current_sensor
+
+  
+#Telemetry fields for APU(MAU)# 
+- dc_voltage_sensor
+- ac_voltage_sensor
+- supply_fan_run_mode:
+  - AUTO
+  - MANUAL 
+- supply_fan_run_time_accumulator  
+  
+
+
 #Telemetry addition for MAU#
+
 
 # Addition of telemetry for outside sensors
 - outside_air_co2_concentration_sensor
@@ -1391,36 +1430,33 @@ literals:
   - HIGH
 - line_pressure_sensor
 
+
   ## New fields for EM##
+
 
 - return_air_isolation_damper_status
 - return_air_isolation_damper_command:
   - OPEN
   - CLOSED
+
 - supply_fan_speed_mode:
   - BYPASS
   - VFD
   
-- supply_fan_run_mode:
-  - AUTO
-  - MANUAL
-
-- supply_fan_run_time_accumulator
-- supply_fan_energy_accumulator
 - supply_fan_voltage_sensor
 - discharge_fan_energy_accumulator
-- discharge_fan_voltage_sensor
-
 - supply_fan_power_status:
   - ON
   - OFF
+
 - discharge_fan_run_mode:
   - AUTO
   - MANUAL
- 
+
 ## New fields for EM##
 - electricalgrid_energy_accumulator
 - generator_run_time_accumulator
 - electricalgrid_run_time_accumulator 
 - generator_energy_accumulator 
+- supply_fan_energy_accumulator
 - compressor_run_time_accumulator
