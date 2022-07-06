@@ -1292,7 +1292,6 @@ literals:
   - OFF
 - ground_temperature_sensor
 
-
 ## Addition of new fields#
 
 ## New fields for Freezer (Walk in Cold room)
@@ -1402,6 +1401,7 @@ literals:
 
 #Telemetry addition for MAU#
 
+
 # Addition of telemetry for outside sensors
 - outside_air_co2_concentration_sensor
 
@@ -1414,6 +1414,7 @@ literals:
 
 
   ## New fields for EM##
+
 
 - return_air_isolation_damper_status
 - return_air_isolation_damper_command:
