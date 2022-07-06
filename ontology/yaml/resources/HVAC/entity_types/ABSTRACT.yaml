@@ -5206,6 +5206,7 @@ SCRSS:
   - scrubber_run_mode
   - filter_alarm
   - differential_pressure_sensor
+  - differential_pressure_setpoint
   - fire_alarm
   uses:
   - scrubber_run_command
