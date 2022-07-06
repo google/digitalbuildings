@@ -12,10 +12,16 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-CB_SS:
-  id: "18212000127885770752"
-  description: "Standard CB unit."
+ 
+  
+GEN_SS_TKLS_OTPM_PWM_RDM_BTEPM:
+  description: "Generator with run duration, Tank level, oil temperature, pressure, and run duration monitoring."
   is_canonical: true
   implements:
-  - CB
+  - GEN
   - SS
+  - TKLS
+  - OTPM
+  - PWM  
+  - RDM
+  - BTEPM

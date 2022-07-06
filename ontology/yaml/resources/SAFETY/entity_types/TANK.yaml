@@ -12,10 +12,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-CB_SS:
-  id: "18212000127885770752"
-  description: "Standard CB unit."
+TK_LM:
+  id: "1044278348349440000"
+  description: "level monitoring for tanks. Like Fire hydrant tanks."
   is_canonical: true
   implements:
-  - CB
-  - SS
+  - /TK # Inherits from global namespace
+  - LM

@@ -12,10 +12,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-CB_SS:
-  id: "18212000127885770752"
-  description: "Standard CB unit."
-  is_canonical: true
+
+  
+ELV:
+  id: "197601618403786752"
+  description: "Tag for all elevators."
+  is_abstract: true
   implements:
-  - CB
-  - SS
+  - EQUIPMENT  

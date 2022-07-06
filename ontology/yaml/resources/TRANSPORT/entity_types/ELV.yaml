@@ -12,10 +12,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-CB_SS:
-  id: "18212000127885770752"
-  description: "Standard CB unit."
+ELV_SS:
+  id: "785321369775636480"
+  description: "Elevator run status monitoring."
   is_canonical: true
   implements:
-  - CB
-  - SS
+  - ELV
+  - SS  
+

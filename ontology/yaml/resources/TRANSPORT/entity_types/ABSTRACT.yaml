@@ -12,10 +12,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-CB_SS:
-  id: "18212000127885770752"
-  description: "Standard CB unit."
-  is_canonical: true
+
+SS:
+  id: "17502683186574917632"
+  description: "Basic combination of run command and status (start/stop); indicates the light is active or inactive."
+  is_abstract: true
   implements:
-  - CB
-  - SS
+  - /SS
+  opt_uses:
+  - failed_alarm
+  - lost_power_alarm
+

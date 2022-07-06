@@ -5,6 +5,7 @@ echo "Starting setup..."
 
 # handle different python alias
 echo "Looking through possible python aliases"
+
 REQUIRED_VERSION=3.9
 POSSIBLE_ALIAS=("python3" "python" "py")
 FOUND=false
@@ -36,7 +37,6 @@ if ! $FOUND; then
   exit 125
 fi
 echo "Python executable found"
-
 
 ontology_validator_setup()
 {
