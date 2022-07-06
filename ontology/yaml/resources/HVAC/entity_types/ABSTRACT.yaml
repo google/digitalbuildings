@@ -5069,6 +5069,7 @@ SFMSC:
   opt_uses:  
   - schedule_run_command
 
+ 
 MIPVCM:
   id: "10283962739713900544"
   description: "Motor phase-level input current and voltage monitoring."
@@ -5207,8 +5208,6 @@ EFHLC:
   - low_exhaust_fan_speed_status
   - high_exhaust_fan_speed_status
   implements:
-
-
   - OPERATIONAL
   
 ##Abstracts for sensors
@@ -5232,8 +5231,11 @@ PMM:
   implements:
   - MONITORING   
 
+
   - OPERATIONAL
  
+
+
 PHWTC:
   id: "4268855681546715136"
   description: "potable water temperature monitoring and control."
@@ -5255,6 +5257,9 @@ PLPM:
   is_abstract: true
   uses:
   - line_pressure_sensor 
+
+
+
 
 
 

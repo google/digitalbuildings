@@ -766,6 +766,19 @@ MAU_US_SBO_1000_1:
   uses:
   - humidification_run_command
   
+
+ 
+#Canonical for Air washers#
+MAU_SFSS_FDPM_SSPM_STM_SHM:
+  description: "makeup Air Unit with run command, status, dufferential pressure, static T,RH, monitoring and control"
+  implements:
+  - MAU
+  - SFSS
+  - FDPM
+  - SSPM
+  - STM
+  - SHM
+
 MAU_DFMSC_DFVSC_FDPM_DTM:
   id: "9745232828429238272"
   description: "Makeup Air Unit with discharge air monitoring along with fan speed control"
@@ -776,3 +789,4 @@ MAU_DFMSC_DFVSC_FDPM_DTM:
   - FDPM
   - DTM
   
+

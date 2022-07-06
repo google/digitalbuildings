@@ -1294,7 +1294,6 @@ literals:
   - OFF
 - ground_temperature_sensor
 
-
 ## Addition of new fields#
 
 ## New fields for Freezer (Walk in Cold room)
@@ -1412,6 +1411,7 @@ literals:
 
 
   ## New fields for EM##
+
 
 - return_air_isolation_damper_status
 - return_air_isolation_damper_command:
