@@ -1379,7 +1379,7 @@ literals:
   - OFF
 
 # Addition of telemetry for door alarm
- - door_open_alarm
+- door_open_alarm
   - ACTIVE
   - INACTIVE
 
