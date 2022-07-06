@@ -410,6 +410,8 @@ literals:
   - OFF
   - LOW
   - HIGH
+  - AUTO
+  - MANUAL
 - heat_exchange_isolation_valve_command:
   - OPEN
   - CLOSED
@@ -1385,12 +1387,39 @@ literals:
   - ON
   - OFF
 
+
+# telemetry fields for exhaust fan#
+
+- speed_mode:
+  - VFD
+  - BYPASS
+- high_discharge_fan_speed_status:
+  - ON
+  - OFF
+- low_discharge_fan_speed_status:
+  - ON
+  - OFF 
+- exhaust_fan_run_mode:
+  - AUTO
+  - MANUAL
+
 ##Fields for generator##
 - oil_temperature_sensor
 - oil_pressure_sensor
 - tank_level_status
 - battery_voltage_sensor
 - battery_current_sensor
+
+  
+#Telemetry fields for APU(MAU)# 
+- dc_voltage_sensor
+- ac_voltage_sensor
+- supply_fan_run_mode:
+  - AUTO
+  - MANUAL 
+- supply_fan_run_time_accumulator  
+  
+
 
 #Telemetry addition for MAU#
 
@@ -1417,11 +1446,14 @@ literals:
   - BYPASS
   - VFD
   
+
 - supply_fan_run_mode:
   - AUTO
   - MANUAL
 
 - supply_fan_run_time_accumulator
+
+
 - supply_fan_voltage_sensor
 
 - supply_fan_power_status:
@@ -1431,7 +1463,7 @@ literals:
 - discharge_fan_run_mode:
   - AUTO
   - MANUAL
- 
+
 ## New fields for EM##
 - electricalgrid_energy_accumulator
 - generator_run_time_accumulator
