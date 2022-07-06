@@ -1381,6 +1381,16 @@ literals:
   - ON
   - OFF
 
+- high_discharge_fan_speed_status:
+  - ON
+  - OFF
+- low_discharge_fan_speed_status:
+  - ON
+  - OFF 
+- exhaust_fan_run_mode:
+  - AUTO
+  - MANUAL
+
 ##Fields for generator##
 - oil_temperature_sensor
 - oil_pressure_sensor
@@ -1434,7 +1444,7 @@ literals:
 - discharge_fan_run_mode:
   - AUTO
   - MANUAL
- 
+
 ## New fields for EM##
 - electricalgrid_energy_accumulator
 - generator_run_time_accumulator

@@ -36,7 +36,15 @@ SD:
   - supply_air_damper_percentage_command
   implements:
   - CONTROL
-
+  
+RDM:
+  description: "Very basic system run duration monitoring. "
+  is_abstract: true
+  uses:
+  - run_time_accumulator
+  implements:
+  - MONITORING
+  
 DD:
   id: "8927971333061476352"
   description: "Dual duct flow control (hot deck, cold deck)."
@@ -59,14 +67,6 @@ DD:
   implements:
   - CONTROL
 
-RDM:
-  id: "10008693406630412288"
-  description: "Very basic system run duration monitoring. "
-  is_abstract: true
-  uses:
-  - run_time_accumulator
-  implements:
-  - MONITORING
 
 SRC:
   id: "6232425119080251392"
@@ -551,6 +551,7 @@ EFSS:
   - exhaust_fan_power_sensor
   - exhaust_air_flowrate_capacity
   - exhaust_fan_power_capacity
+  - exhaust_fan_run_mode
   uses:
   - exhaust_fan_run_command
   - exhaust_fan_run_status
@@ -5100,9 +5101,19 @@ MIPWM:
   - MONITORING
   uses:
   - input_motor_power_sensor
+  
+MSM:
+  description: "Motor speed monitoring for fan."
+  is_abstract: true
+  implements:
+  - MONITORING
+  uses:
+  - discharge_fan_run_status
+  - high_discharge_fan_speed_status
+  - low_discharge_fan_speed_status
   opt_uses:
-  - motor_powerfactor_sensor
-  - input_motor_frequency_sensor
+  - discharge_fan_failed_alarm
+ 
 
 INVOPWM:
   id: "10056530958531690496"
