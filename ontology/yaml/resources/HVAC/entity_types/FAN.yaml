@@ -26,6 +26,7 @@ FAN_SS:
   - FAN
   - SS
 
+
 ### FAN SPEED CONTROL ###
 
 FAN_SS_VSC:
@@ -56,6 +57,8 @@ FAN_SS_ZTM:
   - FAN
   - SS
   - ZTM
+  
+ 
 
 FAN_SS_CSP:
   id: "17863112993764540416"
@@ -670,4 +673,18 @@ FAN_SS_VSC_EPC_EHHRC_EHHRC3X:
   - heat_recovery_water_isolation_valve_command_1
   - heat_recovery_water_isolation_valve_command_2
   - heat_recovery_water_isolation_valve_command_3
+
   
+
+
+FAN_SS_MSM:  
+  description: "Basic fan with speed monitoring (used in jet-fans for ventilation purpose)"
+  implements:
+  - FAN
+  - MSM
+  
+
+
+
+  
+
