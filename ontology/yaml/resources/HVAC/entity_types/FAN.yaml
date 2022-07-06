@@ -311,7 +311,8 @@ FAN_SS_VSC_OA:
   - OA
   opt_uses:
   - filter_alarm
-  - differntial_pressure_sensor
+  - differential_pressure_sensor
+  - differential_pressure_setpoint
   - run_mode
   - door_open_alarm
   - fire_alarm
