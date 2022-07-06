@@ -62,7 +62,7 @@ component:
 descriptor:
   air: "Atmospheric air, either conditioned or unconditioned."
   aisle: "Passage between two rows of server racks."
-  ac: "Electric charge which periodically reverses direction and changes its magnitude continuously with time."  
+  ac: "Electric charge which periodically reverses direction and changes its magnitude continuously with time."
   ammonia: "Ammonia gas."
   blowdown: "Process of expelling water filled with mineral deposits for the purposes of water treatment."
   blue: "blue light fracture of ambient light."

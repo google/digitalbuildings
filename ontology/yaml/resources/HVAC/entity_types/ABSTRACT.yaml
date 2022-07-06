@@ -3323,6 +3323,18 @@ SFVSC3X:
   - supply_fan_speed_percentage_sensor_3
   - supply_fan_current_sensor_3
   - supply_fan_power_sensor_3
+  - dc_voltage_sensor_1
+  - dc_voltage_sensor_2
+  - dc_voltage_sensor_3
+  - ac_voltage_sensor_1
+  - ac_voltage_sensor_2
+  - ac_voltage_sensor_3 
+  - supply_fan_run_time_accumulator_1
+  - supply_fan_run_time_accumulator_2
+  - supply_fan_run_time_accumulator_3
+  - supply_fan_run_mode_1
+  - supply_fan_run_mode_2
+  - supply_fan_run_mode_3  
   uses:
   - supply_fan_run_command_1
   - supply_fan_run_status_1
@@ -5235,6 +5247,10 @@ PMM:
   implements:
   - MONITORING   
 
+ 
+
+
+
 PHWTC:
   id: "4268855681546715136"
   description: "potable water temperature monitoring and control."
@@ -5316,4 +5332,8 @@ DFRMM:
   uses:
   - discharge_fan_run_mode
   implements:
+
   - MONITORING
+
+  
+

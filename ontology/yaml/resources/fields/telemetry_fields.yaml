@@ -1398,6 +1398,17 @@ literals:
 - battery_voltage_sensor
 - battery_current_sensor
 
+  
+#Telemetry fields for APU(MAU)# 
+- dc_voltage_sensor
+- ac_voltage_sensor
+- supply_fan_run_mode:
+  - AUTO
+  - MANUAL 
+- supply_fan_run_time_accumulator  
+  
+
+
 #Telemetry addition for MAU#
 
 
@@ -1424,12 +1435,6 @@ literals:
   - BYPASS
   - VFD
   
-- supply_fan_run_mode:
-  - AUTO
-  - MANUAL
-
-
-- supply_fan_run_time_accumulator
 - supply_fan_voltage_sensor
 - discharge_fan_energy_accumulator
 - supply_fan_power_status:
