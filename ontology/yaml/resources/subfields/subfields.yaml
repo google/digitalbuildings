@@ -49,6 +49,7 @@ component:
   lamp: "The component of a lighting device that emits the light."
   louver: "A device comprising multiple blades that regulates the flow of air"
   motor: "A machine, especially one powered by electricity or internal combustion, that supplies motive power for a vehicle or for some other device with moving parts."
+  overload: "An equipment or load consuming or working more than that it is rated for."
   pump: "Component used for the distribution of liquid media."
   riser: "Water riser for heating, cooling and so on"
   rectifier: "Component that converts alternating current to direct current"

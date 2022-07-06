@@ -113,7 +113,7 @@ UPSBM:
  description: "UPS battery monitoring points"
  is_abstract: true
  opt_uses:
-  - fan_failed_alarm
+  - exhaust_fan_failed_alarm
   - battery_percentage_sensor
   - rectifier_mode
   - inverter_status
@@ -121,7 +121,7 @@ UPSBM:
   - overload_alarm
  uses:
   - remaining_charge_time_sensor
-  - battery_voltage
+  - battery_voltage_sensor
   - battery_status
   - input_supply_mode
   - battery_test_status

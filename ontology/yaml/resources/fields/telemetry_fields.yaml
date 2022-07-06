@@ -1420,6 +1420,7 @@ literals:
 - tank_level_status
 - battery_voltage_sensor
 - battery_current_sensor
+- battery_percentage_sensor
 
 #Telemetry addition for MAU#
 
