@@ -340,6 +340,12 @@ VSC:
   - speed_frequency_sensor
   - power_sensor
   - voltage_sensor
+  - run_time_accumulator
+  - energy_accumulator
+  - lost_power_alarm
+  - torque_sensor
+  - failed_alarm
+  - control_mode
   uses:
   - speed_percentage_command
   - run_status
@@ -383,10 +389,14 @@ SFVSC:
   - supply_fan_speed_percentage_sensor
   - supply_fan_current_sensor
   - supply_fan_power_sensor
-  - supply_fan_power_status
   - supply_fan_voltage_sensor
-  - supply_fan_failed_alarm
+  - supply_fan_torque_sensor
+  - supply_fan_run_time_accumulator
   - supply_fan_energy_accumulator
+  - supply_fan_lost_power_alarm
+  - supply_fan_failed_alarm
+  - control_mode
+  - supply_fan_power_status
   uses:
   - supply_fan_run_command
   - supply_fan_run_status
@@ -405,7 +415,11 @@ DFVSC:
   - discharge_fan_speed_percentage_sensor
   - discharge_fan_lost_power_alarm
   - discharge_fan_voltage_sensor
-  - discharge_fan_energy_accumulator  
+  - discharge_fan_torque_sensor
+  - discharge_fan_run_time_accumulator
+  - discharge_fan_energy_accumulator
+  - discharge_fan_failed_alarm
+  - control_mode
   uses:
   - discharge_fan_speed_percentage_command
   - discharge_fan_run_status
