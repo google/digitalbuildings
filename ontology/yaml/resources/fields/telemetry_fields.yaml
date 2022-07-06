@@ -1046,12 +1046,12 @@ literals:
 - apparent_energy_accumulator
 
 #Electrical panel fields
-  - circuitbreaker_status:
-    - ON
-    - OFF
-  - circuitbreaker_failed_alarm:
-    - ALARM
-    - NORMAL
+- circuitbreaker_status:
+  - ON
+  - OFF
+- circuitbreaker_failed_alarm:
+  - ACTIVE
+  - INACTIVE
 
 #Lighting controller battery status
 - emergency_battery_status
