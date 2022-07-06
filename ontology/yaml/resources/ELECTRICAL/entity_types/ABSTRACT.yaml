@@ -29,6 +29,11 @@ IOBM:
   id: "11309587186103353344"
   description: "Input, output, and bypass electrical monitoring, typically for a UPS."
   is_abstract: true
+   opt_uses:
+  - bypass_status
+  - bypass_phase_status
+  - input_frequency_sensor
+  - output_frequency_sensor
   uses:
   - input_phase1_phase2_voltage_sensor
   - input_phase2_phase3_voltage_sensor
@@ -51,10 +56,6 @@ IOBM:
   - bypass_phase1_neutral_voltage_sensor
   - bypass_phase2_neutral_voltage_sensor
   - bypass_phase3_neutral_voltage_sensor
- opt_uses:
-  - bypass_phase_status
-  - input_frequency_sensor
-  - output_frequency_sensor
   
 PPWM:
   id: "14668216976959078400"
@@ -72,8 +73,6 @@ UPSBM:
  opt_uses:
   - fan_failed_alarm
   - battery_percentage_sensor
-  - bypass_status
-  - bypass_phase_status
   - rectifier_mode
   - inverter_status
   - inverter_mode

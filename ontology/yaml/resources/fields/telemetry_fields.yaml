@@ -1378,32 +1378,34 @@ literals:
   - ON
   - OFF
 
-
 # Addition of telemetry for UPS battery monitoring
 - battery_status:
-  - CONNECTED
-  - NOT_CONNECTED
+  - ACTIVE
+  - INACTIVE
  - bypass_status:
-  - NORMAL
-  - ABNORMAL
+  - ACTIVE
+  - INACTIVE
 - inverter_mode:
   - SYNCHRONOUS
   - ASYNCHRONOUS
+- overload_alarm:
+  - ACTIVE
+  - INACTIVE
 - bypass_phase_status:
   - NORMAL
   - REVERSED
 - rectifier_mode:
   - OFF
-  - SOFT_START
-  - MAIN_INPUT_ON
-  - BATTERY_INPUT_ON
+  - ON
+  - SOFTSTART
+  - BATTERY
 - input_supply_mode:
   - NORMAL
   - BATTERY
   - OFF
 - battery_test_status:
-  - TRUE
-  - FALSE
+  - ACTIVE
+  - INACTIVE
 - inverter_status:
   - OFF
   - ON

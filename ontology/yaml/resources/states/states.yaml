@@ -69,5 +69,10 @@ POSITIONA: "Automatic Transfer switch position 0"
 POSITIONB: "Automatic Transfer switch position 1"
 POSITIONC: "Automatic Transfer switch position 2"
 
-
-
+#FOR UPS
+BATTERY: "Operation mode or input power is via Battery"
+SYNCHRONOUS: "Mode of operation of inverter"
+ASYNCHRONOUS: "Mode of operation of inverter"
+SOFTSTART: "Mode of operation of rectifier"
+NORMAL: "Function, state or flow which is an ideal or expected condition."
+REVERSED: "Function, state or flow which is opposed to the expected or normal condition.""
