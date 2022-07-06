@@ -4577,14 +4577,6 @@ HWDDC:
   implements:
   - CONTROL
   
-SRC:
-   description: "Scheduled run controller"
-   is_abstract: true
-   uses:
-   - schedule_run_command
-   implements:
-   - CONTROL
-
 CFDPM:
   id: "13838358376871886848"
   description: "Carbon filter pressure monitoring, where specific filter type is required."
@@ -5215,8 +5207,8 @@ SWCM:
   description: "Solenoid water valve control and monitoring."
   is_abstract: true
   uses:
-  - valve_run_command
-  - valve_run_status
+  - valve_command
+  - valve_status
   
 ##Abstracts for sensors
 PCM:
