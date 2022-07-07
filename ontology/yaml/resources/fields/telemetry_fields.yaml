@@ -1301,7 +1301,11 @@ literals:
   - ON
   - OFF
 - defrost_temperature_sensor
+
+
+
 - discharge_fan_run_time_accumulator
+
 - defrost_temperature_setpoint
 - defrost_run_command
 - input_motor_frequency_sensor
@@ -1414,11 +1418,6 @@ literals:
   - AUTO
   - MANUAL 
 - supply_fan_run_time_accumulator  
-  
-
-
-#Telemetry addition for MAU#
-
 
 # Addition of telemetry for outside sensors
 - outside_air_co2_concentration_sensor
@@ -1430,10 +1429,6 @@ literals:
   - HIGH
 - line_pressure_sensor
 
-
-  ## New fields for EM##
-
-
 - return_air_isolation_damper_status
 - return_air_isolation_damper_command:
   - OPEN
@@ -1444,11 +1439,11 @@ literals:
   - VFD
   
 - supply_fan_voltage_sensor
-- discharge_fan_energy_accumulator
+
 - supply_fan_power_status:
   - ON
   - OFF
-
+  
 - discharge_fan_run_mode:
   - AUTO
   - MANUAL
@@ -1456,7 +1451,10 @@ literals:
 ## New fields for EM##
 - electricalgrid_energy_accumulator
 - generator_run_time_accumulator
-- electricalgrid_run_time_accumulator 
+
+## New fields for fans##
+- discharge_fan_energy_accumulator
+- electricalgrid_run_time_accumulator
 - generator_energy_accumulator 
 - supply_fan_energy_accumulator
 - compressor_run_time_accumulator
