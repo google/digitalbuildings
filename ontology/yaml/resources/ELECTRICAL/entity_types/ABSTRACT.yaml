@@ -22,6 +22,7 @@ SS:
   opt_uses:
   - failed_alarm
   - lost_power_alarm
+  - power_status
 
 
 IOBM:
@@ -50,3 +51,88 @@ IOBM:
   - bypass_phase1_neutral_voltage_sensor
   - bypass_phase2_neutral_voltage_sensor
   - bypass_phase3_neutral_voltage_sensor
+
+PWM:
+  description: "Very basic power and energy monitoring."
+  is_abstract: true
+  uses:
+  - power_sensor
+  - energy_accumulator
+  - powerfactor_sensor 
+  - apparent_power_sensor 
+
+RMM:
+  description: "Run mode monitoring."
+  is_abstract: true
+  uses:
+  - run_mode
+
+OTPM:
+  description: "Oil temperature and pressure monitoring"
+  is_abstract: true
+  uses:
+  - oil_temperature_sensor
+  - oil_pressure_sensor
+  
+RDM:
+  description: "Very basic system run duration monitoring."
+  is_abstract: true
+  uses:
+  - run_time_accumulator
+  
+TKLS:  
+  description: "Very basic tank level status monitoring for Electrical generator equipments."
+  is_abstract: true
+  uses:
+  - tank_level_status
+
+PPWM:
+  id: "14668216976959078400"
+  description: "Phase power monitoring"
+  is_abstract: true
+  uses:
+  - phase1_apparent_power_sensor
+  - phase2_apparent_power_sensor
+  - phase3_apparent_power_sensor
+  - line_frequency_sensor
+
+BTEPM:
+  description: "Basic battery electrical parameter monitoring"
+  is_abstract: true
+  uses:
+  - battery_voltage_sensor
+  - battery_current_sensor
+  - line_frequency_sensor  
+
+SRC1:
+  id: "15185581178292797440"
+  description: "Source 1 parameters typically for ATS"
+  is_abstract: true
+  uses:
+  - source1_phase1_phase2_voltage_sensor
+  - source1_phase2_phase3_voltage_sensor
+  - source1_phase3_phase1_voltage_sensor
+  - source1_frequency_sensor
+  opt_uses:
+  - source1_phase1_phase2_over_voltage_status
+  - source1_phase2_phase3_over_voltage_status
+  - source1_phase3_phase1_over_voltage_status
+  - source1_over_voltage_status
+  - source1_lost_power_alarm
+
+SRC2:
+  id: "6549928892809871360"
+  description: "Source 1 parameters typically for ATS"
+  is_abstract: true
+  uses:
+  - source2_phase1_phase2_voltage_sensor
+  - source2_phase2_phase3_voltage_sensor
+  - source2_phase3_phase1_voltage_sensor
+  - source2_frequency_sensor 
+  opt_uses:
+  - source2_phase1_phase2_over_voltage_status
+  - source2_phase2_phase3_over_voltage_status
+  - source2_phase3_phase1_over_voltage_status
+  - source2_over_voltage_status
+  - source2_lost_power_alarm
+

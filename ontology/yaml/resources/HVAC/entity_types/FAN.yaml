@@ -25,6 +25,8 @@ FAN_SS:
   implements:
   - FAN
   - SS
+   
+
 
 ### FAN SPEED CONTROL ###
 
@@ -37,6 +39,18 @@ FAN_SS_VSC:
   - SS
   - VSC
 
+
+
+FAN_SS_RMM:
+  id: "3859028115456000000"
+  description: "Fan with start/stop status and run mode monitoring"
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - RMM
+
+
 ### ZONE TEMPERATURE CONTROL ###
 
 FAN_SS_ZTM:
@@ -47,6 +61,8 @@ FAN_SS_ZTM:
   - FAN
   - SS
   - ZTM
+  
+ 
 
 FAN_SS_CSP:
   id: "17863112993764540416"
@@ -74,6 +90,20 @@ FAN_SS_REFM:
   - FAN
   - SS
   - REFM
+
+FAN_SS_VSC_REFM4X:
+  id: "1060590702859124736"
+  description: "Fan with start/stop status and speed control with four (4) refrigerant concentration sensors."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - VSC
+  uses:
+  - zone_air_refrigerant_concentration_sensor_1
+  - zone_air_refrigerant_concentration_sensor_2
+  - zone_air_refrigerant_concentration_sensor_3
+  - zone_air_refrigerant_concentration_sensor_4
 
 FAN_SS_REFC:
   id: "12258005025502003200"
@@ -165,6 +195,16 @@ FAN_SS_DWI:
   - SS
   uses:
   - dishwasher_run_status
+
+FAN_SS_STM:
+  id: "13082400152310775808"
+  description: "Basic fan with supply air temperature monitoring."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - STM
+
 
 ### BUILDING STATIC PRESSURE CONTROL ###
 
@@ -427,6 +467,16 @@ FAN_SS_DWI2X:
   - dishwasher_run_status_1
   - dishwasher_run_status_2
 
+FAN_EFHLC_COCDSP_NOCDSP:
+  id: "13969877559739940864"
+  description: "Two-speed exhaust fan (low/high) with CO concentration dual setpoint control and NO concentration dual setpoint control."
+  is_canonical: true
+  implements:
+  - FAN
+  - EFHLC
+  - COCDSP
+  - NOCDSP
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
@@ -627,3 +677,20 @@ FAN_SS_VSC_EPC_EHHRC_EHHRC3X:
   - heat_recovery_water_isolation_valve_command_1
   - heat_recovery_water_isolation_valve_command_2
   - heat_recovery_water_isolation_valve_command_3
+
+FAN_SS_FDPM_VSC_SRC: 
+  description: "Fan with power, voltage, current, differential pressure and run durating monitoring ."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - FDPM
+  - VSC
+  - SRC 
+
+
+FAN_SS_MSM:  
+  description: "Basic fan with speed monitoring (used in jet-fans for ventilation purpose)"
+  implements:
+  - FAN
+  - MSM

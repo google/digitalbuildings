@@ -29,6 +29,7 @@ FCU_DFSS_CSP_CHWDC:
   - CSP
   - CHWDC
 
+  
 FCU_DFSS_CSP_CHWZC:
   id: "7358088630922903552"
   description: "Typical chilled water FCU with cooling-only (zone control)."
@@ -931,6 +932,73 @@ FCU_DFSS_DFVSC_DXRC_HTRC_RHC_RHDHC_RTC:
   - RHDHC
   - RTC
 
+FCU_DFSS_DXZTC:
+  id: "13797614873993019392"
+  description: "Single split unit with zone air temperature control"
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - DXZTC
+  opt_uses:
+  - failed_alarm
+  - lost_power_alarm
+  - schedule_run_command
+
+FCU_DFSS_CHWZTC:
+  id: "13197510223645900800"
+  description: "Chilled water FCU with zone temperature control and chilled water valve control"
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - CHWZTC
+  opt_uses:
+  - schedule_run_command
+
+FCU_DFSS_ZTC:
+  id: "767575252103331840"
+  description: "Chilled water FCU with binary mode (open/closed) and zone temperature control"
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - ZTC
+  uses:
+  - chilled_water_valve_command
+  opt_uses:
+  - schedule_run_command
+
+FCU_DFSS_CHWDC_CO2DFVSC_ZTC:
+  id: "12774171858673074176"
+  description: "Chilled water FCU with discharge air, zone air temperature and co2 concentration control. The fan speed is adjusted based on co2 value."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - CHWDC
+  - CO2DFVSC
+  - ZTC
+  opt_uses:
+  - filter_alarm
+  - discharge_air_linearvelocity_sensor
+  - schedule_run_command
+
+FCU_DFSS_CHWDC_DFVSC_ZTC:
+  id: "3667893412129931264"
+  description: "Chilled water FCU with discharge air, zone air temperature and co2 concentration control."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - CHWDC
+  - DFVSC
+  - ZTC
+  opt_uses:
+  - filter_alarm
+  - discharge_air_linearvelocity_sensor
+  - schedule_run_command
+  
 FCU_CHWRC_DFSS_RHDHC:
   id: "4146805492817068032"
   description: "FCU with chilled water coil and return air relative humidity control."
@@ -983,6 +1051,19 @@ FCU_DFSS_CHWZC_RTM_ZHM:
     - RTM
     - ZHM
     
+FCU_DFVSC_CHWRC_FDPSM2X:
+  id: "521860791574462464"
+  description: "FCU with VFD ,return air temperature based Chilled water valve modulation, pre filter and fine filter status,return air humidity monitoring"
+  is_canonical: true
+  implements:
+  - FCU
+  - DFVSC
+  - CHWRC
+  - FDPSM2X
+  opt_uses:
+  - isolation_damper_status
+  
+     
 ###################################
 ### Existing Non-standard Types ###
 ###################################
@@ -1354,3 +1435,76 @@ FCU_NON_CANONICAL_TYPE_4:
   - zone_air_temperature_sensor
   - zone_air_temperature_setpoint
   - return_air_temperature_setpoint
+
+FCU_LPA_FA:
+  id: "12891265448984707072"
+  description: "Unit with lost power and failed alarms only"
+  implements:
+  - FCU
+  uses:
+  - lost_power_alarm
+  - failed_alarm
+
+FCU_RTC_RHDHS_DTM_DFSS:
+  id: "9185928855565631488"
+  description: "Crac unit with return air temperature control, return air humidity monitor and dehumidification/humidification monitor."
+  implements:
+  - FCU
+  - RTC
+  - RHDHS
+  - DTM
+  - DFSS
+  uses:
+  - cooling_percentage_command
+  - run_command
+  - compressor_run_status_1
+  - compressor_run_status_2
+  opt_uses:
+  - discharge_fan_failed_alarm
+  - low_discharge_air_flowrate_alarm
+  - master_alarm
+  - water_leak_alarm
+  - fire_alarm
+  - schedule_run_command
+  
+#PAC Unit #  
+FCU_CHWDC_DFSS_DXDC_DFVSC_REFPM_ZHC_DFRMM_CHWDT:
+  description: "CRAC with chilled water temperature monitoring and compressor monitoring with zone temperature and humidity monitoring."
+  is_canonical: true
+  implements:
+  - FCU
+  - CHWDC
+  - DFSS
+  - DXDC
+  - DFVSC
+  - REFPM
+  - ZHC
+  - DFRMM
+  - CHWDT  
+
+#PAC Unit #  
+FCU_DFSS_DX2DC_DFVSC_REFPM2X_ZHC_DFRMM:
+  description: "CRAC with dual compressor with temperature monitoring and compressor monitoring with humidity monitoring."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - DX2DC
+  - DFVSC
+  - REFPM2X
+  - ZHC
+  - DFRMM 
+  
+#CSU canonical#  
+FCU_DFSS_DFVSC_FDPM_CHWDC_SRC_DFRMM:
+  description: "FCU with temperature control, humidity monitor with electrical parameter monitoring."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - DFVSC
+  - FDPM
+  - CHWDC
+  - SRC
+  - DFRMM 
+
