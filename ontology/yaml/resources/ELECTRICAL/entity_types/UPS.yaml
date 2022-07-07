@@ -33,13 +33,6 @@ UPS_IOBM:
   - output_frequency_sensor
   - bypass_frequency_sensor
   - failed_alarm
-  - phase1_apparent_power_sensor
-  - phase2_apparent_power_sensor
-  - phase3_apparent_power_sensor
-  - line_frequency_sensor
-  - phase1_power_sensor
-  - phase2_power_sensor
-  - phase3_power_sensor  
   
 UPS_PPWM:
   id: "17075390977788608512"

@@ -22,8 +22,9 @@ from os import path
 from absl.testing import absltest
 from tests import test_constants
 from validate import entity_instance
+from validate import handler
 from validate import instance_parser
-from validate import telemetry_error
+from validate import telemetry_validation_reporting as tvr
 from validate import telemetry_validator
 
 _TELEMETRY_PATH = test_constants.TEST_TELEMETRY
@@ -64,8 +65,8 @@ with open(
     path.join(_TELEMETRY_PATH, 'telemetry_good.json'),
     encoding='utf-8') as file:
   file_contents = file.read()
-  _MESSAGE_GOOD = FakeMessage(_MESSAGE_ATTRIBUTES_1, file_contents)
-  _MESSAGE_GOOD_2 = FakeMessage(_MESSAGE_ATTRIBUTES_3, file_contents)
+  _MESSAGEGOOD = FakeMessage(_MESSAGE_ATTRIBUTES_1, file_contents)
+  _MESSAGEGOOD_2 = FakeMessage(_MESSAGE_ATTRIBUTES_3, file_contents)
 
 with open(
     path.join(_TELEMETRY_PATH, 'telemetry_missing_point.json'),
@@ -75,8 +76,8 @@ with open(
 with open(
     path.join(_TELEMETRY_PATH, 'telemetry_missing_point_partial.json'),
     encoding='utf-8') as file:
-  _MESSAGE_MISSING_POINT_PARTIAL = FakeMessage(_MESSAGE_ATTRIBUTES_1,
-                                               file.read())
+  _MESSAGE_MISSING_GOOD_POINT_PARTIAL = FakeMessage(_MESSAGE_ATTRIBUTES_1,
+                                                    file.read())
 
 with open(
     path.join(_TELEMETRY_PATH, 'telemetry_missing_present_value.json'),
@@ -108,8 +109,7 @@ with open(
 with open(
     path.join(_TELEMETRY_PATH, 'telemetry_good_multistates.json'),
     encoding='utf-8') as file:
-  _MESSAGE_GOOD_MULTIPLE_STATES = FakeMessage(_MESSAGE_ATTRIBUTES_4,
-                                              file.read())
+  _MESSAGEGOOD_MULTIPLE_STATES = FakeMessage(_MESSAGE_ATTRIBUTES_4, file.read())
 
 with open(
     path.join(_TELEMETRY_PATH, 'telemetry_string_state.json'),
@@ -119,7 +119,7 @@ with open(
 with open(
     path.join(_TELEMETRY_PATH, 'telemetry_good_states_list.json'),
     encoding='utf-8') as file:
-  _MESSAGE_GOOD_STATES_LIST = FakeMessage(_MESSAGE_ATTRIBUTES_2, file.read())
+  _MESSAGEGOOD_STATES_LIST = FakeMessage(_MESSAGE_ATTRIBUTES_2, file.read())
 
 # TODO(nkilmer): fix inconsistency between telemetry parser expecting a string,
 # but instance parser expecting a file
@@ -129,50 +129,46 @@ def _CreateEntityInstances(yaml_filename):
   parser = instance_parser.InstanceParser()
   parser.AddFile(path.join(_INSTANCES_PATH, yaml_filename))
   parser.Finalize()
+  default_operation = handler.GetDefaultOperation(parser.GetConfigMode())
   parsed_yaml = parser.GetEntities()
 
   return {
-      key:
-      entity_instance.EntityInstance.FromYaml(key, value, code_to_guid_map={})
+      key: entity_instance.EntityInstance.FromYaml(
+          key, value, default_operation=default_operation)
       for key, value in parsed_yaml.items()
   }
 
 
 # A single test entity with numeric fields.
-_ENTITIES_1 = _CreateEntityInstances('good_translation_units.yaml')
-_ENTITY_NAME_1 = 'CHWS_WDT-17'
+GOOD_ENTITIES_1 = _CreateEntityInstances('translation_units.yaml')
+GOOD_ENTITY_NAME_1 = 'CHWS_WDT-17'
 
 # A single test entity with multistate fields.
-_ENTITIES_2 = _CreateEntityInstances('good_translation_states.yaml')
-_ENTITY_NAME_2 = 'DMP_EDM-17'
+GOOD_ENTITIES_2 = _CreateEntityInstances('translation_states.yaml')
+GOOD_ENTITY_NAME_2 = 'DMP_EDM-17'
 
 # A set of two test entities with identical points.
-_ENTITIES_3_4 = _CreateEntityInstances('good_translation_identical.yaml')
-_ENTITY_NAME_3 = 'SDC_EXT-17'
-_ENTITY_NAME_4 = 'SDC_EXT-18'
+GOOD_ENTITIES_3_4 = _CreateEntityInstances('translation_identical.yaml')
+GOOD_ENTITY_NAME_3 = 'SDC_EXT-17'
+GOOD_ENTITY_NAME_4 = 'SDC_EXT-18'
 # A test entity to make sure that booleans are retrieved and validated.
-_ENTITIES_5 = _CreateEntityInstances('good_translation_multi_states.yaml')
-_ENTITY_NAME_5 = 'FAN-17'
+GOOD_ENTITIES_5 = _CreateEntityInstances('translation_multi_states.yaml')
+GOOD_ENTITY_NAME_5 = 'FAN-17'
 
 # A test entity with a field that maps multiple raw values to one state.
-_ENTITIES_6 = _CreateEntityInstances('good_translation_states_list.yaml')
-_ENTITY_NAME_6 = 'DMP_EDM-17'
+GOOD_ENTITIES_6 = _CreateEntityInstances('translation_states_list.yaml')
+GOOD_ENTITY_NAME_6 = 'DMP_EDM-17'
 
 # A test entity with a field that maps multiple raw values to one state.
-_ENTITIES_7 = _CreateEntityInstances('good_translation_string_states.yaml')
-_ENTITY_NAME_7 = 'DMP_EDM-17'
+GOOD_ENTITIES_7 = _CreateEntityInstances('translation_string_states.yaml')
+GOOD_ENTITY_NAME_7 = 'DMP_EDM-17'
 
-_POINT_NAME_1 = 'points.return_water_temperature_sensor.present_value'
-_POINT_NAME_2 = 'points.supply_water_temperature_sensor.present_value'
-_POINT_NAME_3 = 'points.exhaust_air_damper_command.present_value'
-_POINT_NAME_4 = 'points.exhaust_air_damper_status.present_value'
+GOOD_POINT_NAME_1 = 'points.return_water_temperature_sensor.present_value'
+GOOD_POINT_NAME_2 = 'points.supply_water_temperature_sensor.present_value'
+GOOD_POINT_NAME_3 = 'points.exhaust_air_damper_command.present_value'
+GOOD_POINT_NAME_4 = 'points.exhaust_air_damper_status.present_value'
 
-
-def _NullCallback(validator) -> None:
-  """Replacement for _NULL_CALLBACK lambda function."""
-  if validator:
-    return None
-  return None
+_NULL_CALLBACK = lambda validator: None
 
 
 class TelemetryValidatorTest(absltest.TestCase):
@@ -186,12 +182,14 @@ class TelemetryValidatorTest(absltest.TestCase):
   #   threading.Timer(2, lambda: self.assertIsTrue(timeout))
 
   def testTelemetryValidatorGetErrorsReturnsAllErrors(self):
-    validator = telemetry_validator.TelemetryValidator(_ENTITIES_1, 1,
-                                                       _NullCallback)
-    error_one = telemetry_error.TelemetryError(_ENTITY_NAME_1, _POINT_NAME_1,
-                                               'Test error 1')
-    error_two = telemetry_error.TelemetryError(_ENTITY_NAME_2, _POINT_NAME_2,
-                                               'Test error 2')
+    validator = telemetry_validator.TelemetryValidator(GOOD_ENTITIES_1, 1,
+                                                       _NULL_CALLBACK)
+    error_one = tvr.TelemetryReportPoint(GOOD_ENTITY_NAME_1, GOOD_POINT_NAME_1,
+                                         'Test error 1',
+                                         tvr.TelemetryReportPointType.ERROR)
+    error_two = tvr.TelemetryReportPoint(GOOD_ENTITY_NAME_2, GOOD_POINT_NAME_2,
+                                         'Test error 2',
+                                         tvr.TelemetryReportPointType.ERROR)
 
     validator.AddError(error_one)
     validator.AddError(error_two)
@@ -202,62 +200,66 @@ class TelemetryValidatorTest(absltest.TestCase):
     self.assertLen(errors, 2)
 
   def testTelemetryValidatorGetUnvalidatedEntitiesReturnsMissingEntities(self):
-    validator = telemetry_validator.TelemetryValidator(_ENTITIES_3_4, 1,
-                                                       _NullCallback)
+    validator = telemetry_validator.TelemetryValidator(GOOD_ENTITIES_3_4, 1,
+                                                       _NULL_CALLBACK)
 
-    validator.ValidateMessage(_MESSAGE_GOOD_2)
+    validator.ValidateMessage(_MESSAGEGOOD_2)
 
     unvalidated_entities = validator.GetUnvalidatedEntityNames()
-    self.assertNotIn(_ENTITY_NAME_3, unvalidated_entities)
-    self.assertIn(_ENTITY_NAME_4, unvalidated_entities)
+    self.assertNotIn(GOOD_ENTITY_NAME_3, unvalidated_entities)
+    self.assertIn(GOOD_ENTITY_NAME_4, unvalidated_entities)
     self.assertLen(unvalidated_entities, 1)
 
   def testTelemetryValidatorIgnoresMissingPointOnPartialUpdate(self):
-    validator = telemetry_validator.TelemetryValidator(_ENTITIES_1, 1,
-                                                       _NullCallback)
+    validator = telemetry_validator.TelemetryValidator(GOOD_ENTITIES_1, 1,
+                                                       _NULL_CALLBACK)
 
-    validator.ValidateMessage(_MESSAGE_MISSING_POINT_PARTIAL)
+    validator.ValidateMessage(_MESSAGE_MISSING_GOOD_POINT_PARTIAL)
 
     self.assertEmpty(validator.GetErrors())
 
   def testTelemetryValidatorDetectsMissingPoint(self):
-    validator = telemetry_validator.TelemetryValidator(_ENTITIES_1, 1,
-                                                       _NullCallback)
+    validator = telemetry_validator.TelemetryValidator(GOOD_ENTITIES_1, 1,
+                                                       _NULL_CALLBACK)
 
     validator.ValidateMessage(_MESSAGE_MISSING_POINT)
 
-    error = telemetry_error.TelemetryError(
-        _ENTITY_NAME_1, _POINT_NAME_2, 'Field missing from '
-        'telemetry message')
+    error = tvr.TelemetryReportPoint(GOOD_ENTITY_NAME_1, GOOD_POINT_NAME_2,
+                                     'Field missing from '
+                                     'telemetry message',
+                                     tvr.TelemetryReportPointType.ERROR)
     errors = validator.GetErrors()
     self.assertIn(error, errors)
     self.assertLen(errors, 1)
 
   def testTelemetryValidatorDetectsMissingPresentValue(self):
-    validator = telemetry_validator.TelemetryValidator(_ENTITIES_1, 1,
-                                                       _NullCallback)
+    validator = telemetry_validator.TelemetryValidator(GOOD_ENTITIES_1, 1,
+                                                       _NULL_CALLBACK)
 
     validator.ValidateMessage(_MESSAGE_MISSING_PRESENT_VALUE)
 
-    error = telemetry_error.TelemetryError(
-        _ENTITY_NAME_1, _POINT_NAME_1, 'Missing number in telemetry message'
-        ': None')
+    error = tvr.TelemetryReportPoint(
+        GOOD_ENTITY_NAME_1, GOOD_POINT_NAME_1,
+        'Missing number in telemetry message'
+        ': None', tvr.TelemetryReportPointType.ERROR)
 
     errors = validator.GetErrors()
     self.assertIn(error, errors)
     self.assertLen(errors, 1)
 
   def testTelemetryValidatorDetectsUnmappedState(self):
-    validator = telemetry_validator.TelemetryValidator(_ENTITIES_2, 1,
-                                                       _NullCallback)
+    validator = telemetry_validator.TelemetryValidator(GOOD_ENTITIES_2, 1,
+                                                       _NULL_CALLBACK)
 
     validator.ValidateMessage(_MESSAGE_INVALID_STATE)
 
-    error1 = telemetry_error.TelemetryError(
-        _ENTITY_NAME_2, _POINT_NAME_3, 'Unmapped state in telemetry message'
-        ': BAD_STATE')
-    error2 = telemetry_error.TelemetryError(
-        _ENTITY_NAME_2, _POINT_NAME_4, 'Unmapped state in telemetry message: 3')
+    error1 = tvr.TelemetryReportPoint(
+        GOOD_ENTITY_NAME_2, GOOD_POINT_NAME_3,
+        'Unmapped state in telemetry message'
+        ': BAD_STATE', tvr.TelemetryReportPointType.ERROR)
+    error2 = tvr.TelemetryReportPoint(GOOD_ENTITY_NAME_2, GOOD_POINT_NAME_4,
+                                      'Unmapped state in telemetry message: 3',
+                                      tvr.TelemetryReportPointType.ERROR)
 
     errors = validator.GetErrors()
     self.assertIn(error1, errors)
@@ -265,45 +267,48 @@ class TelemetryValidatorTest(absltest.TestCase):
     self.assertLen(errors, 2)
 
   def testTelemetryValidatorDetectsStringAsInvalidNumber(self):
-    validator = telemetry_validator.TelemetryValidator(_ENTITIES_1, 1,
-                                                       _NullCallback)
+    validator = telemetry_validator.TelemetryValidator(GOOD_ENTITIES_1, 1,
+                                                       _NULL_CALLBACK)
 
     validator.ValidateMessage(_MESSAGE_INVALID_NUMBER)
 
-    error = telemetry_error.TelemetryError(
-        _ENTITY_NAME_1, _POINT_NAME_1, 'Invalid number in telemetry message'
-        ': BAD_NUMBER')
+    error = tvr.TelemetryReportPoint(
+        GOOD_ENTITY_NAME_1, GOOD_POINT_NAME_1,
+        'Invalid number in telemetry message'
+        ': BAD_NUMBER', tvr.TelemetryReportPointType.ERROR)
 
     errors = validator.GetErrors()
     self.assertIn(error, errors)
     self.assertLen(errors, 1)
 
   def testTelemetryValidatorDetectsBooleanAsInvalidNumber(self):
-    validator = telemetry_validator.TelemetryValidator(_ENTITIES_1, 1,
-                                                       _NullCallback)
+    validator = telemetry_validator.TelemetryValidator(GOOD_ENTITIES_1, 1,
+                                                       _NULL_CALLBACK)
 
     validator.ValidateMessage(_MESSAGE_INVALID_NUMBER_BOOLEAN)
 
-    error = telemetry_error.TelemetryError(
-        _ENTITY_NAME_1, _POINT_NAME_1, 'Invalid number in telemetry message'
-        ': false')
+    error = tvr.TelemetryReportPoint(
+        GOOD_ENTITY_NAME_1, GOOD_POINT_NAME_1,
+        'Invalid number in telemetry message'
+        ': false', tvr.TelemetryReportPointType.ERROR)
 
     errors = validator.GetErrors()
     self.assertIn(error, errors)
     self.assertLen(errors, 1)
 
   def testTelemetryValidatorDetectsMultipleErrorsInMessage(self):
-    validator = telemetry_validator.TelemetryValidator(_ENTITIES_1, 1,
-                                                       _NullCallback)
+    validator = telemetry_validator.TelemetryValidator(GOOD_ENTITIES_1, 1,
+                                                       _NULL_CALLBACK)
 
     validator.ValidateMessage(_MESSAGE_MULTIPLE_ERRORS)
 
-    error_one = telemetry_error.TelemetryError(
-        _ENTITY_NAME_1, _POINT_NAME_1,
-        'Invalid number in telemetry message: BAD_NUMBER')
-    error_two = telemetry_error.TelemetryError(
-        _ENTITY_NAME_1, _POINT_NAME_2, 'Field missing from telemetry '
-        'message')
+    error_one = tvr.TelemetryReportPoint(
+        GOOD_ENTITY_NAME_1, GOOD_POINT_NAME_1,
+        'Invalid number in telemetry message: BAD_NUMBER',
+        tvr.TelemetryReportPointType.ERROR)
+    error_two = tvr.TelemetryReportPoint(
+        GOOD_ENTITY_NAME_1, GOOD_POINT_NAME_2, 'Field missing from telemetry '
+        'message', tvr.TelemetryReportPointType.ERROR)
 
     errors = validator.GetErrors()
     self.assertIn(error_one, errors)
@@ -316,10 +321,10 @@ class TelemetryValidatorTest(absltest.TestCase):
       self.assertEmpty(validator.GetErrors())
       self.assertTrue(validator.AllEntitiesValidated())
 
-    validator = telemetry_validator.TelemetryValidator(_ENTITIES_1, 1,
+    validator = telemetry_validator.TelemetryValidator(GOOD_ENTITIES_1, 1,
                                                        ValidationCallback)
 
-    validator.ValidateMessage(_MESSAGE_GOOD)
+    validator.ValidateMessage(_MESSAGEGOOD)
 
   def testTelemetryValidatorOnMultiStateWithBooleanSuccess(self):
 
@@ -327,10 +332,10 @@ class TelemetryValidatorTest(absltest.TestCase):
       self.assertEmpty(validator.GetErrors())
       self.assertTrue(validator.AllEntitiesValidated())
 
-    validator = telemetry_validator.TelemetryValidator(_ENTITIES_5, 1,
+    validator = telemetry_validator.TelemetryValidator(GOOD_ENTITIES_5, 1,
                                                        ValidationCallback)
 
-    validator.ValidateMessage(_MESSAGE_GOOD_MULTIPLE_STATES)
+    validator.ValidateMessage(_MESSAGEGOOD_MULTIPLE_STATES)
 
   def testTelemetryValidatorOnMultiStateWithRawValueList(self):
 
@@ -338,10 +343,10 @@ class TelemetryValidatorTest(absltest.TestCase):
       self.assertEmpty(validator.GetErrors())
       self.assertTrue(validator.AllEntitiesValidated())
 
-    validator = telemetry_validator.TelemetryValidator(_ENTITIES_6, 1,
+    validator = telemetry_validator.TelemetryValidator(GOOD_ENTITIES_6, 1,
                                                        ValidationCallback)
 
-    validator.ValidateMessage(_MESSAGE_GOOD_STATES_LIST)
+    validator.ValidateMessage(_MESSAGEGOOD_STATES_LIST)
 
   def testTelemetryValidatorOnMultiStateWithStringSuccess(self):
 
@@ -349,7 +354,7 @@ class TelemetryValidatorTest(absltest.TestCase):
       self.assertEmpty(validator.GetErrors())
       self.assertTrue(validator.AllEntitiesValidated())
 
-    validator = telemetry_validator.TelemetryValidator(_ENTITIES_7, 1,
+    validator = telemetry_validator.TelemetryValidator(GOOD_ENTITIES_7, 1,
                                                        ValidationCallback)
 
     validator.ValidateMessage(_MESSAGE_STRING_STATES)

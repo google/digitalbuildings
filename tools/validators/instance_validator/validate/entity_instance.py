@@ -13,6 +13,7 @@
 # limitations under the License.
 """Representations and validators for DigitalBuildings Entities."""
 
+from __future__ import annotations
 from __future__ import print_function
 
 from typing import Any, Dict, List, Optional, Set, Tuple
@@ -101,13 +102,13 @@ class CombinationValidator(object):
 
   def __init__(self, universe: pvt.ConfigUniverse,
                config_mode: parse.ConfigMode,
-               entity_instances: Dict[str, 'EntityInstance']):
+               entity_instances: Dict[str, EntityInstance]):
     super().__init__()
     self.universe = universe
     self.config_mode = config_mode
     self.entity_instances = entity_instances
 
-  def Validate(self, entity: 'EntityInstance') -> bool:
+  def Validate(self, entity: EntityInstance) -> bool:
     """Returns true if an entity follows all instance and graph rules."""
 
     iv = InstanceValidator(self.universe, self.config_mode)
@@ -133,13 +134,13 @@ class GraphValidator(object):
 
   def __init__(self, universe: pvt.ConfigUniverse,
                config_mode: parse.ConfigMode,
-               entity_instances: Dict[str, 'EntityInstance']):
+               entity_instances: Dict[str, EntityInstance]):
     super().__init__()
     self.universe = universe
     self.config_mode = config_mode
     self.entity_instances = entity_instances
 
-  def _ConnectionsAreValid(self, entity: 'EntityInstance') -> bool:
+  def _ConnectionsAreValid(self, entity: EntityInstance) -> bool:
     """Returns true if an entity's connections are complete."""
     if not entity.connections:
       return True
@@ -147,7 +148,8 @@ class GraphValidator(object):
     is_valid = True
     for conn_inst in entity.connections:
       if conn_inst.source not in self.entity_instances:
-        if self.config_mode == parse.ConfigMode.INITIALIZE:
+        if (self.config_mode == parse.ConfigMode.INITIALIZE or
+            self.config_mode == parse.ConfigMode.UPDATE):
           print(f'Orphan connection to: {conn_inst.source}')
           is_valid = False
         continue
@@ -157,7 +159,7 @@ class GraphValidator(object):
         is_valid = False
     return is_valid
 
-  def _LinksAreValid(self, entity: 'EntityInstance') -> bool:
+  def _LinksAreValid(self, entity: EntityInstance) -> bool:
     """Returns true if an entity's links are complete."""
 
     if entity.links is None:
@@ -166,7 +168,7 @@ class GraphValidator(object):
 
     for link_inst in entity.links:
       if link_inst.source not in self.entity_instances.keys():
-        if self.config_mode == parse.ConfigMode.INITIALIZE:
+        if self.config_mode == parse.ConfigMode.INITIALIZE or parse.ConfigMode.UPDATE:
           print(f'Invalid link source entity GUID: {link_inst.source}')
           is_valid = False
         continue
@@ -188,7 +190,7 @@ class GraphValidator(object):
 
     return is_valid
 
-  def Validate(self, entity: 'EntityInstance') -> bool:
+  def Validate(self, entity: EntityInstance) -> bool:
     """Returns true if the entity follows all instance validation rules.
 
     Args:
@@ -226,7 +228,7 @@ class InstanceValidator(object):
     self.universe = universe
     self.config_mode = config_mode
 
-  def _ValidateType(self, entity: 'EntityInstance') -> bool:
+  def _ValidateType(self, entity: EntityInstance) -> bool:
     """Returns true if an entity's type is in the ontology.
 
     This method assues the type is defined on the entity.
@@ -253,7 +255,7 @@ class InstanceValidator(object):
 
     return True
 
-  def _ValidateTranslation(self, entity: 'EntityInstance') -> bool:
+  def _ValidateTranslation(self, entity: EntityInstance) -> bool:
     """Validate an entity's translation against the entity's type or ontology.
 
     If entity operation is ADD, this code ensures that all fields are in the
@@ -343,7 +345,7 @@ class InstanceValidator(object):
         if unit not in valid_units:
           print(
               f'Field {qualified_field_name} has an undefined measurement unit:'
-              + f' {unit}')
+              + ' {unit}')
           is_valid = False
       return is_valid
 
@@ -388,7 +390,7 @@ class InstanceValidator(object):
 
     return True
 
-  def _ConnectionsAreValid(self, entity: 'EntityInstance') -> bool:
+  def _ConnectionsAreValid(self, entity: EntityInstance) -> bool:
     """Validate's an entity's connections against the ontology universe.
 
     Checks both fields and connection type against the ontology.
@@ -414,7 +416,7 @@ class InstanceValidator(object):
 
     return is_valid
 
-  def _LinksAreValid(self, entity: 'EntityInstance') -> bool:
+  def _LinksAreValid(self, entity: EntityInstance) -> bool:
     """Validates an entity's links against the ontology universe.
 
     Logic checks the existence of both fields in the contology, additionally
@@ -494,7 +496,7 @@ class InstanceValidator(object):
       return False
     return True
 
-  def Validate(self, entity: 'EntityInstance') -> bool:
+  def Validate(self, entity: EntityInstance) -> bool:
     """Uses the generated ontology universe to validate an entity.
 
     Args:
@@ -505,12 +507,14 @@ class InstanceValidator(object):
     """
     is_valid = True
 
-    # This check should never fail as syntax checks currently catch this
-    if not entity.id:
-      print('All entities require IDs')
-      is_valid = False
+    if entity.update_mask is not None:
+      if entity.operation != parse.EntityOperation.UPDATE:
+        print('Update mask is required for update operations')
+        is_valid = False
+      if entity.type_name is None and parse.ENTITY_TYPE_KEY in entity.update_mask:
+        print('Update mask to clear Entity Type not allowed')
+        is_valid = False
 
-    # This check should replace the above entity.id check
     if not entity.guid:
       print('Entity GUID is required.')
       is_valid = False
@@ -527,9 +531,9 @@ class InstanceValidator(object):
     if entity.operation == parse.EntityOperation.DELETE:
       return is_valid
 
-    # This check should never fail as syntax checks currently catch this
-    if entity.operation == parse.EntityOperation.UPDATE and not entity.etag:
-      print('etag is required on update')
+    if (self.config_mode == parse.ConfigMode.UPDATE or
+        self.config_mode == parse.ConfigMode.EXPORT) and not entity.etag:
+      print('etag is required on update or export')
       is_valid = False
 
     if entity.namespace is None or entity.type_name is None:
@@ -636,36 +640,6 @@ def _ParseTranslation(
   return translation
 
 
-def _ParseConnectionsWithEntityCode(
-    connections_body: List[Tuple[str, Any]],
-    code_to_guid_map: Optional[Dict[str, str]]) -> Set[connection.Connection]:
-  """Parses YAML defining connections between one entity and another.
-
-  Entities are identified by code.
-
-  Connections are always defined on the target entity.
-
-  Args:
-    connections_body: list of tuples with the source entity code and connection
-      type.
-    code_to_guid_map: map from entity code to GUID for all entities in the
-      building config.
-
-  Returns:
-    A set of Connection instances
-  """
-
-  guid_connections = []
-  for source_entity_code, item_body in connections_body:
-    source_entity_guid = code_to_guid_map.get(source_entity_code)
-    if not source_entity_guid:
-      raise ValueError(
-          f'Connected entity "{source_entity_code}" not found in config file.'
-      )
-    guid_connections.append((source_entity_guid, item_body))
-  return _ParseConnections(guid_connections)
-
-
 def _ParseConnections(
     connections_body: List[Tuple[str, Any]]) -> Set[connection.Connection]:
   """Parses YAML defining connections between one entity and another.
@@ -692,38 +666,6 @@ def _ParseConnections(
             connection.Connection(connection_type, source_entity_guid))
 
   return connections
-
-
-def _ParseLinksWithEntityCode(
-    links_body: List[Tuple[str, Any]],
-    code_to_guid_map: Optional[Dict[str, str]]) -> Set[link.Link]:
-  """Parses YAML defining links between the fields of one entity and another.
-
-  Entities are identified by code.
-
-  Links are always defined on the target entity.
-
-  Args:
-    links_body: list of tuples with the source entity code and field map.
-    code_to_guid_map: map from entity code to GUID for all entities in the
-      building config.
-
-  Returns:
-    A set of Link instances
-
-  Raises:
-    ValueError: if any source entity is not found in code_to_guid_map.
-  """
-
-  guid_links = []
-  for source_entity_code, field_map in links_body:
-    source_entity_guid = code_to_guid_map.get(source_entity_code)
-    if not source_entity_guid:
-      raise ValueError(
-          f'Linked entity "{source_entity_code}" not found in config file.'
-      )
-    guid_links.append((source_entity_guid, field_map))
-  return _ParseLinks(guid_links)
 
 
 def _ParseLinks(links_body: List[Tuple[str, Any]]) -> Set[link.Link]:
@@ -772,7 +714,6 @@ class EntityInstance(findings_lib.Findings):
 
   def __init__(self,
                operation,
-               entity_id,
                guid,
                code,
                cloud_device_id=None,
@@ -786,7 +727,6 @@ class EntityInstance(findings_lib.Findings):
     super().__init__()
 
     self.operation = operation
-    self.id = entity_id
     self.guid = guid
     self.code = code
     self.cloud_device_id = cloud_device_id
@@ -799,20 +739,18 @@ class EntityInstance(findings_lib.Findings):
     self.etag = etag
 
   @classmethod
-  def FromYaml(cls,
-               entity_key: str,
-               entity_yaml: Dict[str, Any],
-               code_to_guid_map: Dict[str, str],
-               default_operation: Optional[
-                   parse.EntityOperation] = parse.EntityOperation.ADD):
+  def FromYaml(
+      cls,
+      entity_key: str,
+      entity_yaml: Dict[str, Any],
+      default_operation: parse.EntityOperation
+  ) -> EntityInstance:
     """Class method to instantiate an Entity Instance from yaml.
 
     Args:
       entity_key: yaml mapping key (code or GUID) for entity_yaml.
       entity_yaml: yaml document containing entity data.
-      code_to_guid_map: map from entity code to GUID for all entities in the
-        building config.
-      default_operation: entity operation, add or update.
+      default_operation: entity operation - ADD or EXPORT.
 
     Returns:
       An instance of EntityInstance class.
@@ -821,17 +759,35 @@ class EntityInstance(findings_lib.Findings):
       ValueError: if an invalid combination of "code" and "guid" are in
         entity_yaml.
     """
+    update_mask = None
+    # prepare flags
+    mask_present = parse.UPDATE_MASK_KEY in entity_yaml
+    operation_present = parse.ENTITY_OPERATION_KEY in entity_yaml
 
-    operation = default_operation
-    if parse.ENTITY_OPERATION_KEY in entity_yaml:
+    # case 1: need to check that the mask and operation match
+    if mask_present and operation_present:
+      # validate that operation is UPDATE if update_mask is present
+      if parse.EntityOperation.FromString(entity_yaml[
+          parse.ENTITY_OPERATION_KEY]) != parse.EntityOperation.UPDATE:
+        raise ValueError(
+            'Entity block can only specify "UPDATE" operation when "update_mask" is present.'
+        )
+      update_mask = entity_yaml[parse.UPDATE_MASK_KEY]
+      operation = parse.EntityOperation.UPDATE
+    # case 2: update_mask implies update operation
+    elif mask_present:
+      update_mask = entity_yaml[parse.UPDATE_MASK_KEY]
+      operation = parse.EntityOperation.UPDATE
+    # case 3: no update_mask; check yaml block if operation is specified
+    elif operation_present:
       operation = parse.EntityOperation.FromString(
           entity_yaml[parse.ENTITY_OPERATION_KEY])
+    # case 4: no update_mask or operation in entity block; default to ConfigMode
+    # GetDefaultOperation
+    else:
+      operation = default_operation
 
-    entity_id = None
-    if parse.ENTITY_ID_KEY in entity_yaml:
-      entity_id = entity_yaml[parse.ENTITY_ID_KEY]
-
-    entity_key_is_guid = False
+    # we require that entities be keyed by guid
     code = None
     guid = None
     if (parse.ENTITY_CODE_KEY in entity_yaml and
@@ -840,10 +796,10 @@ class EntityInstance(findings_lib.Findings):
     elif parse.ENTITY_CODE_KEY in entity_yaml:
       code = entity_yaml[parse.ENTITY_CODE_KEY]
       guid = entity_key
-      entity_key_is_guid = True
     elif parse.ENTITY_GUID_KEY in entity_yaml:
-      code = entity_key
-      guid = entity_yaml[parse.ENTITY_GUID_KEY]
+      # here we use the presence of ENTITY_GUID_KEY in the entity attributes as
+      # as proxy that the block is keyed by code
+      raise ValueError('Entity block must be keyed by guid.')
     else:
       raise ValueError('Entity block must contain either "code" or "guid".')
 
@@ -857,6 +813,12 @@ class EntityInstance(findings_lib.Findings):
       namespace, type_name = _ParseTypeString(
           entity_yaml[parse.ENTITY_TYPE_KEY])
 
+    # introduce translations requirement for updating cloud_device_id; necessary
+    # to use telemetry validator for cloud_device_id validation
+    if update_mask:
+      if parse.ENTITY_CLOUD_DEVICE_ID_KEY in entity_yaml[
+          parse.UPDATE_MASK_KEY] and parse.TRANSLATION_KEY not in entity_yaml:
+        raise ValueError('Update of cloud device id requires translations')
     translation = None
     cloud_device_id = None
     if parse.TRANSLATION_KEY in entity_yaml:
@@ -866,23 +828,12 @@ class EntityInstance(findings_lib.Findings):
     connections = None
     if parse.CONNECTIONS_KEY in entity_yaml:
       connections_body = entity_yaml[parse.CONNECTIONS_KEY].items()
-      if entity_key_is_guid:
-        connections = _ParseConnections(connections_body)
-      else:
-        connections = _ParseConnectionsWithEntityCode(connections_body,
-                                                      code_to_guid_map)
+      connections = _ParseConnections(connections_body)
 
     links = None
     if parse.LINKS_KEY in entity_yaml:
       links_body = entity_yaml[parse.LINKS_KEY].items()
-      if entity_key_is_guid:
-        links = _ParseLinks(links_body)
-      else:
-        links = _ParseLinksWithEntityCode(links_body, code_to_guid_map)
-
-    update_mask = None
-    if parse.UPDATE_MASK_KEY in entity_yaml:
-      update_mask = entity_yaml[parse.UPDATE_MASK_KEY]
+      links = _ParseLinks(links_body)
 
     etag = None
     if parse.ETAG_KEY in entity_yaml:
@@ -890,7 +841,6 @@ class EntityInstance(findings_lib.Findings):
 
     return cls(
         operation,
-        entity_id=entity_id,
         guid=guid,
         code=code,
         cloud_device_id=cloud_device_id,

@@ -330,9 +330,9 @@ class OntologyWrapper(object):
         field.ljust(col_width) for field in ['='*(col_width-padding)]*3)
     return_string += '\n'
     for row in final_matrix:
-      if row[2] is False:
+      if not row[2] and isinstance(row[2], bool):
         row[2] = 'Required'
-      elif row[2] is True:
+      elif row[2]:
         row[2] = 'Optional'
       if row[0] and row[1]:
         return_string += ''.join(

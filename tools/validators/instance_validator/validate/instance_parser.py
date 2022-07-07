@@ -12,6 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 """Parses and validates YAML instance files for syntax."""
+from __future__ import annotations
 from __future__ import print_function
 
 import collections
@@ -54,6 +55,7 @@ class EntityOperation(enum.Enum):
   UPDATE = 'UPDATE'
   ADD = 'ADD'
   DELETE = 'DELETE'
+  EXPORT = 'EXPORT'
 
   @classmethod
   def FromString(cls, value: str):
@@ -101,7 +103,6 @@ def _MergeSchemas(first: Dict[syaml.ScalarValidator, syaml.Validator],
 
 
 #### Public Text parsing Constants ####
-ENTITY_ID_KEY = 'id'
 ENTITY_GUID_KEY = 'guid'
 ENTITY_CODE_KEY = 'code'
 ENTITY_CLOUD_DEVICE_ID_KEY = 'cloud_device_id'
@@ -172,16 +173,14 @@ _METADATA_SCHEMA = syaml.Map({
 })
 
 _ENTITY_IDS_SCHEMA = {
-    # this is the Phred primary key, this should not be surfaced/checked
-    # TODO(b/202278941): remove id reference
-    syaml.Optional(ENTITY_ID_KEY):
-        syaml.Str(),
-
     # this is the entity instance global primary key, used to identify instances
-    # TODO(b/202279412): guid will be non-optional in the future.
+    # entities are now keyed by guid (instead of code); however, the
+    # primary key check is enforced in the AddFile method of InstanceParser.
+    # below we allow for guid and code attributes to be optionally specified
+    # as the InstanceParser must be able to parse both; homogeneity validation
+    # should be enforced, but not in this subsystem.
     syaml.Optional(ENTITY_GUID_KEY):
         syaml.Str(),
-
     # this is the numeric cloud device id from Cloud IoT
     syaml.Optional(ENTITY_CLOUD_DEVICE_ID_KEY):
         syaml.Str(),
@@ -214,7 +213,7 @@ _ENTITY_UPDATE_SCHEMA = _MergeSchemas(
             syaml.Str(),
         syaml.Optional(ENTITY_OPERATION_KEY):
             EnumToRegex(exactly=EntityOperation.UPDATE),
-        syaml.Optional(UPDATE_MASK_KEY):
+        UPDATE_MASK_KEY:
             syaml.UniqueSeq(syaml.Str())
     })
 _ENTITY_ADD_SCHEMA = _MergeSchemas(
@@ -223,10 +222,21 @@ _ENTITY_ADD_SCHEMA = _MergeSchemas(
         ENTITY_OPERATION_KEY: EnumToRegex(exactly=EntityOperation.ADD)
     })
 _ENTITY_DELETE_SCHEMA = _MergeSchemas(
-    _ENTITY_IDS_SCHEMA,
+    _ENTITY_BASE_SCHEMA,
     {ENTITY_OPERATION_KEY: EnumToRegex(exactly=EntityOperation.DELETE)})
+_ENTITY_EXPORT_SCHEMA = _MergeSchemas(
+    _ENTITY_BASE_SCHEMA, {
+        ETAG_KEY:
+            syaml.Str(),
+        ENTITY_TYPE_KEY:
+            syaml.Str(),
+        syaml.Optional(ENTITY_OPERATION_KEY):
+            EnumToRegex(exactly=EntityOperation.EXPORT)
+    })
 
 
+# TODO(b/234492090): id depreciated and no longer used; remove from syntax and
+# content validation - 05312022
 class InstanceParser():
   """One-shot state machine for parsing and syntax checking YAML config files.
 
@@ -364,12 +374,24 @@ class InstanceParser():
     if ConfigMode.INITIALIZE == self._config_mode:
       schema = syaml.Map(_ENTITY_INIT_SCHEMA)
     elif ConfigMode.UPDATE == self._config_mode:
-      schema = syaml.Map(_ENTITY_UPDATE_SCHEMA)
+      # ConfigMode.UPDATE allows for any operation to be specified; however
+      # if no operation or update_mask is specified it defaults to EXPORT.
+      schema = syaml.Map(_ENTITY_EXPORT_SCHEMA)
       if ENTITY_OPERATION_KEY in entity:
-        if entity[ENTITY_OPERATION_KEY] == EntityOperation.ADD.value:
+        if entity[ENTITY_OPERATION_KEY] == EntityOperation.UPDATE.value:
+          schema = syaml.Map(_ENTITY_UPDATE_SCHEMA)
+        elif entity[ENTITY_OPERATION_KEY] == EntityOperation.ADD.value:
           schema = syaml.Map(_ENTITY_ADD_SCHEMA)
         elif entity[ENTITY_OPERATION_KEY] == EntityOperation.DELETE.value:
           schema = syaml.Map(_ENTITY_DELETE_SCHEMA)
+        elif entity[ENTITY_OPERATION_KEY] == EntityOperation.EXPORT.value:
+          schema = syaml.Map(_ENTITY_EXPORT_SCHEMA)
+        else:  # no-op catch all
+          raise KeyError(
+              f'Entity Operation type: {entity[ENTITY_OPERATION_KEY]} is not',
+              ' valid')
+      elif UPDATE_MASK_KEY in entity:
+        schema = syaml.Map(_ENTITY_UPDATE_SCHEMA)
     else:
       raise KeyError('No valid _config_mode is set')
 
