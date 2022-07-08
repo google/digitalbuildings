@@ -38,7 +38,10 @@ SD:
   implements:
   - CONTROL
   
+
+
 RDM:
+  id: "10008693406630412288"
   description: "Very basic system run duration monitoring. "
   is_abstract: true
   uses:
@@ -46,6 +49,7 @@ RDM:
   implements:
   - MONITORING
   
+
 DD:
   id: "8927971333061476352"
   description: "Dual duct flow control (hot deck, cold deck)."
@@ -379,7 +383,6 @@ VSFC:
   uses:
   - speed_frequency_command
   - speed_frequency_sensor
- 
 
 SFVSC:
   id: "16291356723812237312"
@@ -748,6 +751,7 @@ RTC:
   uses:
   - return_air_temperature_sensor
   - return_air_temperature_setpoint
+ 
 
 # Rename to OTM
 OA:
@@ -1867,6 +1871,7 @@ DXDC:
   - cooling_thermal_power_capacity
   - cooling_percentage_command
   - compressor_speed_percentage_command
+  - compressor_run_time_accumulator
   uses:
   - compressor_run_status
   - compressor_run_command
@@ -1884,6 +1889,8 @@ DX2DC:
   - cooling_thermal_power_capacity
   - cooling_percentage_command
   - compressor_speed_percentage_command
+  - compressor_run_time_accumulator_1
+  - compressor_run_time_accumulator_2  
   uses:
   - discharge_air_temperature_sensor
   - discharge_air_temperature_setpoint
@@ -5311,6 +5318,8 @@ CO2M6X:
   - zone_air_co2_concentration_sensor_6
   implements:
   - MONITORING
+
+
   
 MIPCVM:
   id: "13492227718401490944"
@@ -5338,6 +5347,7 @@ EPM:
   implements:
   - MONITORING
 
+
 DFRMM:
   id: "16926222434271494144"
   description: "Discharge fan run mode monitoring."
@@ -5345,4 +5355,8 @@ DFRMM:
   uses:
   - discharge_fan_run_mode
   implements:
-  - MONITORING
+
+  - MONITORING  
+
+  
+
