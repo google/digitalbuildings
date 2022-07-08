@@ -36,6 +36,18 @@ SD:
   - supply_air_damper_percentage_command
   implements:
   - CONTROL
+  
+
+
+RDM:
+  id: "10008693406630412288"
+  description: "Very basic system run duration monitoring. "
+  is_abstract: true
+  uses:
+  - run_time_accumulator
+  implements:
+  - MONITORING
+  
 
 DD:
   id: "8927971333061476352"
@@ -59,14 +71,6 @@ DD:
   implements:
   - CONTROL
 
-RDM:
-  id: "10008693406630412288"
-  description: "Very basic system run duration monitoring. "
-  is_abstract: true
-  uses:
-  - run_time_accumulator
-  implements:
-  - MONITORING
 
 SRC:
   id: "6232425119080251392"
@@ -345,6 +349,14 @@ VSC:
   - torque_sensor
   - energy_accumulator
   - run_time_accumulator
+  - speed_mode
+  - run_mode
+  - run_time_accumulator
+  - energy_accumulator
+  - lost_power_alarm
+  - torque_sensor
+  - failed_alarm
+  - control_mode
   uses:
   - speed_percentage_command
   - run_status
@@ -375,7 +387,6 @@ VSFC:
   uses:
   - speed_frequency_command
   - speed_frequency_sensor
- 
 
 SFVSC:
   id: "16291356723812237312"
@@ -386,10 +397,14 @@ SFVSC:
   - supply_fan_speed_percentage_sensor
   - supply_fan_current_sensor
   - supply_fan_power_sensor
-  - supply_fan_power_status
   - supply_fan_voltage_sensor
-  - supply_fan_failed_alarm
+  - supply_fan_torque_sensor
+  - supply_fan_run_time_accumulator
   - supply_fan_energy_accumulator
+  - supply_fan_lost_power_alarm
+  - supply_fan_failed_alarm
+  - control_mode
+  - supply_fan_power_status
   uses:
   - supply_fan_run_command
   - supply_fan_run_status
@@ -408,7 +423,11 @@ DFVSC:
   - discharge_fan_speed_percentage_sensor
   - discharge_fan_lost_power_alarm
   - discharge_fan_voltage_sensor
-  - discharge_fan_energy_accumulator  
+  - discharge_fan_torque_sensor
+  - discharge_fan_run_time_accumulator
+  - discharge_fan_energy_accumulator
+  - discharge_fan_failed_alarm
+  - control_mode
   uses:
   - discharge_fan_speed_percentage_command
   - discharge_fan_run_status
@@ -502,7 +521,12 @@ SS:
   - powerfactor_sensor
   - current_sensor
   - power_sensor
+
+  - run_time_accumulator
+
+
   
+
 SSPC:
   id: "10526749200778002432"
   description: "Supply static pressure control via supply fan speed"
@@ -542,6 +566,7 @@ EFSS:
   - exhaust_fan_power_sensor
   - exhaust_air_flowrate_capacity
   - exhaust_fan_power_capacity
+  - exhaust_fan_run_mode
   uses:
   - exhaust_fan_run_command
   - exhaust_fan_run_status
@@ -730,6 +755,7 @@ RTC:
   uses:
   - return_air_temperature_sensor
   - return_air_temperature_setpoint
+ 
 
 # Rename to OTM
 OA:
@@ -1849,6 +1875,7 @@ DXDC:
   - cooling_thermal_power_capacity
   - cooling_percentage_command
   - compressor_speed_percentage_command
+  - compressor_run_time_accumulator
   uses:
   - compressor_run_status
   - compressor_run_command
@@ -1866,6 +1893,8 @@ DX2DC:
   - cooling_thermal_power_capacity
   - cooling_percentage_command
   - compressor_speed_percentage_command
+  - compressor_run_time_accumulator_1
+  - compressor_run_time_accumulator_2  
   uses:
   - discharge_air_temperature_sensor
   - discharge_air_temperature_setpoint
@@ -3313,6 +3342,18 @@ SFVSC3X:
   - supply_fan_speed_percentage_sensor_3
   - supply_fan_current_sensor_3
   - supply_fan_power_sensor_3
+  - dc_voltage_sensor_1
+  - dc_voltage_sensor_2
+  - dc_voltage_sensor_3
+  - ac_voltage_sensor_1
+  - ac_voltage_sensor_2
+  - ac_voltage_sensor_3 
+  - supply_fan_run_time_accumulator_1
+  - supply_fan_run_time_accumulator_2
+  - supply_fan_run_time_accumulator_3
+  - supply_fan_run_mode_1
+  - supply_fan_run_mode_2
+  - supply_fan_run_mode_3  
   uses:
   - supply_fan_run_command_1
   - supply_fan_run_status_1
@@ -5053,6 +5094,7 @@ SFMSC:
   opt_uses:  
   - schedule_run_command
 
+ 
 MIPVCM:
   id: "10283962739713900544"
   description: "Motor phase-level input current and voltage monitoring."
@@ -5081,6 +5123,19 @@ MIPWM:
   opt_uses:
   - motor_powerfactor_sensor
   - input_motor_frequency_sensor
+  
+MSM:
+  description: "Motor speed monitoring for fan."
+  is_abstract: true
+  implements:
+  - MONITORING
+  uses:
+  - discharge_fan_run_status
+  - high_discharge_fan_speed_status
+  - low_discharge_fan_speed_status
+  opt_uses:
+  - discharge_fan_failed_alarm
+ 
 
 INVOPWM:
   id: "10056530958531690496"
@@ -5191,8 +5246,6 @@ EFHLC:
   - low_exhaust_fan_speed_status
   - high_exhaust_fan_speed_status
   implements:
-
-
   - OPERATIONAL
   
 ##Abstracts for sensors
@@ -5214,12 +5267,8 @@ PMM:
   - zone_air_pm2pt5_concentration_sensor
   - zone_air_pm10pt0_concentration_sensor
   implements:
-  - MONITORING   
+  - MONITORING
 
-  - OPERATIONAL
-
-
- 
 PHWTC:
   id: "4268855681546715136"
   description: "potable water temperature monitoring and control."
@@ -5240,9 +5289,7 @@ PLPM:
   description: "Pipeline Fluid pressure monitoring"
   is_abstract: true
   uses:
-  - line_pressure_sensor 
-
-
+  - line_pressure_sensor
 
 CO2M4X:
   id: "8538268128293945344"
@@ -5269,6 +5316,8 @@ CO2M6X:
   - zone_air_co2_concentration_sensor_6
   implements:
   - MONITORING
+
+
   
 MIPCVM:
   id: "13492227718401490944"
@@ -5296,6 +5345,7 @@ EPM:
   implements:
   - MONITORING
 
+
 DFRMM:
   id: "16926222434271494144"
   description: "Discharge fan run mode monitoring."
@@ -5303,4 +5353,8 @@ DFRMM:
   uses:
   - discharge_fan_run_mode
   implements:
-  - MONITORING
+
+  - MONITORING  
+
+  
+
