@@ -291,6 +291,7 @@ HWS_WFRM_SWTC_HLPM:
   - HLPM
 
 HWS_SS_HWTTC_PWDPM2X:
+  id: "3282567363152576512"
   description: "Solar Heating water system with tank temp,pressure,pump and compressor monitoring."
   is_canonical: true
   implements:

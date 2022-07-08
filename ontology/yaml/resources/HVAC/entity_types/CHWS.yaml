@@ -276,6 +276,7 @@ CHWS_SWTM:
   - SWTM
 
 CHWS_WDT_CWDT_CICHVISOVM3X:
+  id: "8855771902023565312"
   description: "Chilled Water system with provision to switch to Hot water system "
   is_canonical: true
   implements:
