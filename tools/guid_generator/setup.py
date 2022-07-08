@@ -23,6 +23,6 @@ setup(
     license='Apache License',
     author='Travis Welch',
     packages=find_packages(),
-    install_requires=['strictyaml==1.1.0'],
+    install_requires=['strictyaml==1.4.2'],
     python_requires='==3.9',
 )

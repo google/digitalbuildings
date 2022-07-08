@@ -15,6 +15,7 @@
 ### ABSTRACT TYPES
 
 PA_STD:
+  id: "497090993623924736"
   description: "Standard public address system."
   is_canonical: true
   implements:
