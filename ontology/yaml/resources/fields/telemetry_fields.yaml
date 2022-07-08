@@ -1235,7 +1235,6 @@ literals:
 - remaining_charge_time_sensor
 - output_power_sensor
 - output_apparent_power_sensor
-- battery_voltage_sensor
 - low_battery_charge_alarm:
   - ACTIVE
   - INACTIVE
