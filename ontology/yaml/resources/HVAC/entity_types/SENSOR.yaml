@@ -43,6 +43,8 @@ SENSOR_OA:
   implements:
   - /SENSOR # Inherits from global namespace
   - OA
+  opt_uses:
+  - outside_air_co2_concentration_sensor
 
 SENSOR_CAAT:
   id: "16195377055288786944"
@@ -58,16 +60,24 @@ SENSOR_ZTM:
   description: "Zone air property sensor (temperature)."
   is_canonical: true
   implements:
-    - /SENSOR # Inherits from global namespace
-    - ZTM
+  - /SENSOR # Inherits from global namespace
+  - ZTM
 
 SENSOR_CO2M:
   id: "12938043071676809216"
   description: "CO2 concentration monitoring."
   is_canonical: true
   implements:
-    - /SENSOR # Inherits from global namespace
-    - CO2M
+  - /SENSOR # Inherits from global namespace
+  - CO2M
+
+SENSOR_ZHM:
+  id: "9990947288958107648"
+  description: "Zone air property sensor (humidity)."
+  is_canonical: true
+  implements:
+  - /SENSOR # Inherits from global namespace
+  - ZHM
 
 SENSOR_LA3A:
   id: "15072608557562068992"
@@ -178,4 +188,36 @@ SENSOR_ZA_PML:
   - zone_air_pm4pt0_volumetricconcentration_sensor
   - zone_air_pm10pt0_volumetricconcentration_sensor
   - zone_air_voc_concentration_sensor
+  
+SENSOR_COC:
+  id: "7894253381579964416"
+  description: "Carbon monoxide monitoring and control"
+  is_canonical: true
+  implements:
+  - /SENSOR
+  - COC
+ 
+SENSOR_PCM:
+  id: "5133546810001850368"
+  description: "Particulate matter monitoring"
+  is_canonical: true
+  implements:
+  - /SENSOR
+  - PCM
+  
+SENSOR_ZA_CO2M_PMM_HCHO:
+  id: "8268052150651715584"
+  description: "Sensor with zone temperature, humidity, CO2, HCHO and particulate matter monitoring"
+  is_canonical: true
+  implements:
+  - /SENSOR
+  - ZTM
+  - ZHM
+  - CO2M
+  - PMM
+  uses:
+  - zone_air_formaldehyde_concentration_sensor  
+  
 
+
+ 

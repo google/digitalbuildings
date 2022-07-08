@@ -57,6 +57,8 @@ LDS_GASDET:
   implements:
   - LDS
   - GASDET
+  opt_uses:
+  - failed_alarm
 
 LDS_NHDET:
   id: "6860294637051969536"
@@ -74,4 +76,14 @@ LDS_WLA:
   - LDS
   - WLA
 
-
+LDS_WLA_BCM:
+  id: "17809196242073288704"
+  description: "Water Leak sensing and broken cable sensing device."
+  is_canonical: true
+  implements:
+  - LDS
+  - WLA
+  - BCM
+  opt_uses:
+  - water_leak_cable_distance_sensor
+  - failed_alarm

@@ -267,6 +267,26 @@ CHWS_BYPVPM_CLPM_SWTC_TDTM_WFRM:
   - TDTM
   - WFRM
 
+CHWS_SWTM:
+  id: "7601365474172993536"
+  description: "Simple chilled water system with supply water monitoring."
+  is_canonical: true
+  implements:
+  - CHWS
+  - SWTM
+
+CHWS_WDT_CWDT_CICHVISOVM3X:
+  id: "8855771902023565312"
+  description: "Chilled Water system with provision to switch to Hot water system "
+  is_canonical: true
+  implements:
+  - CHWS
+  - WDT
+  - CWDT
+  - CICHVISOVM3X
+  uses:
+  - flowrate_sensor
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
