@@ -62,6 +62,7 @@ component:
 descriptor:
   air: "Atmospheric air, either conditioned or unconditioned."
   aisle: "Passage between two rows of server racks."
+  ac: "Electric charge which periodically reverses direction and changes its magnitude continuously with time."
   ammonia: "Ammonia gas."
   blowdown: "Process of expelling water filled with mineral deposits for the purposes of water treatment."
   blue: "blue light fracture of ambient light."
@@ -85,6 +86,7 @@ descriptor:
   conference: "An instance of speaking or meeting among multiple people."
   control: "The process of governing the actions of a device."
   cooling: "Process, measured effect or requirement for cooling."
+  dc: "Unidirectional flow of Electric Charge"
   dehumidification: "Process of removing moisture from air."
   detection : "Process of identifying conditions."
   discharge: "Media leaving system to enter ambient conditioned space. Typically applies only to air-side systems."
