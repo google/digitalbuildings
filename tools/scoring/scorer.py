@@ -14,31 +14,31 @@
 """Command line interface and entry point for the configuration scoring tool."""
 
 import argparse
-import pprint
 import sys
+import pprint
 
 from score import parse_config
 
 
 def parse_args() -> argparse.ArgumentParser:
-  """Parses the args."""
+
   parser = argparse.ArgumentParser(description='Score a configuration')
 
   parser.add_argument(
-      '-ont',
-      '--ontology',
+      '-m',
+      '--modified-ontology-types',
       dest='ontology',
-      required=True,
+      required=False,
+      default='ontology/yaml/resources',
       help='Absolute path for the directory which contains your ontology',
       metavar='ontology')
 
-  parser.add_argument(
-      '-sol',
-      '--solution',
-      dest='solution',
-      required=True,
-      help='Absolute path for your solution configuration file',
-      metavar='solution')
+  parser.add_argument('-sol',
+                      '--solution',
+                      dest='solution',
+                      required=True,
+                      help='Absolute path for your solution configuration file',
+                      metavar='solution')
 
   parser.add_argument(
       '-prop',
@@ -64,11 +64,9 @@ def parse_args() -> argparse.ArgumentParser:
 
 if __name__ == '__main__':
   pp = pprint.PrettyPrinter()
-  # pylint: disable=too-many-function-args
-  args = parse_args().parse_args(sys.argv[1:])
-  results = parse_config.ParseConfig(
-      ontology=args.ontology,
-      solution=args.solution,
-      proposed=args.proposed,
-      verbose=args.verbose)
-  pp.pprint(results.append_types())
+  args = parse_args().parse_args(sys.argv[1:])  # pylint: disable=too-many-function-args
+  scorer = parse_config.ParseConfig(ontology=args.ontology,
+                                    solution=args.solution,
+                                    proposed=args.proposed,
+                                    verbose=args.verbose)
+  pp.pprint(scorer.execute())
