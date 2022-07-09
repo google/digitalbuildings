@@ -39,6 +39,10 @@ HM_CHW:
   - chilled_return_water_temperature_sensor
   - cooling_thermal_power_sensor
   - cooling_thermal_energy_accumulator
+  opt_uses:
+  - differential_temperature_sensor
+  - failed_alarm
+  - water_volume_accumulator
 
 HM_CHW_WAC:
   id: "7296264191604686848"
