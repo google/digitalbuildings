@@ -13,7 +13,7 @@
 # limitations under the License.
 
 TXMR_SS:
-  description: "Typical standard Tranformer ."
+  description: "Typical standard Transformer ."
   is_canonical: true
   implements:
   - TXMR
