@@ -193,7 +193,6 @@ powerfactor:
 powerflux:
 - watts_per_square_meter: STANDARD
 - watts_per_square_foot
-precipitation: length
 
 pressure:
 - pascals: STANDARD
