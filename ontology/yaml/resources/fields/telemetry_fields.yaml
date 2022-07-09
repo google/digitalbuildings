@@ -188,7 +188,6 @@ literals:
 - zone_air_relative_humidity_sensor
 - zone_air_deadband_temperature_setpoint
 - zone_air_temperature_sensor
-- outside_air_co2_concentration_sensor
 - outside_air_co_concentration_sensor
 - outside_air_so2_concentration_sensor
 - outside_air_no2_concentration_sensor
