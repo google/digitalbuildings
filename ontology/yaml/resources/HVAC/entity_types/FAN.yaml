@@ -25,6 +25,8 @@ FAN_SS:
   implements:
   - FAN
   - SS
+   
+
 
 ### FAN SPEED CONTROL ###
 
@@ -37,6 +39,18 @@ FAN_SS_VSC:
   - SS
   - VSC
 
+
+
+FAN_SS_RMM:
+  id: "3859028115456000000"
+  description: "Fan with start/stop status and run mode monitoring"
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - RMM
+
+
 ### ZONE TEMPERATURE CONTROL ###
 
 FAN_SS_ZTM:
@@ -47,6 +61,8 @@ FAN_SS_ZTM:
   - FAN
   - SS
   - ZTM
+  
+ 
 
 FAN_SS_CSP:
   id: "17863112993764540416"
@@ -179,6 +195,16 @@ FAN_SS_DWI:
   - SS
   uses:
   - dishwasher_run_status
+
+FAN_SS_STM:
+  id: "13082400152310775808"
+  description: "Basic fan with supply air temperature monitoring."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - STM
+
 
 ### BUILDING STATIC PRESSURE CONTROL ###
 
@@ -651,3 +677,20 @@ FAN_SS_VSC_EPC_EHHRC_EHHRC3X:
   - heat_recovery_water_isolation_valve_command_1
   - heat_recovery_water_isolation_valve_command_2
   - heat_recovery_water_isolation_valve_command_3
+
+FAN_SS_FDPM_VSC_SRC: 
+  description: "Fan with power, voltage, current, differential pressure and run durating monitoring ."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - FDPM
+  - VSC
+  - SRC 
+
+
+FAN_SS_MSM:  
+  description: "Basic fan with speed monitoring (used in jet-fans for ventilation purpose)"
+  implements:
+  - FAN
+  - MSM
