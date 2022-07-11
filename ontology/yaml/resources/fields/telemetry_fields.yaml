@@ -1367,7 +1367,6 @@ literals:
 ## New fields for Fresh Air Fan With VFD
 - output_voltage_sensor
 - run_time_accumulator
-- torque_sensor
 - motor_temperature_sensor
 
 # Addition of telemetry for parking exhaust fan
