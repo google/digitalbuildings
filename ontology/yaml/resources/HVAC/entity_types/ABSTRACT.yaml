@@ -5264,6 +5264,15 @@ PMM:
   implements:
   - MONITORING
 
+PMM2X:
+  description: "Particulate matter monitoring for 2 zones."
+  is_abstract: true
+  uses:
+  - zone_air_pm2pt5_concentration_sensor
+  - zone_air_pm10pt0_concentration_sensor
+  implements:
+  - MONITORING
+
 PHWTC:
   id: "4268855681546715136"
   description: "potable water temperature monitoring and control."
@@ -5309,6 +5318,26 @@ CO2M6X:
   - zone_air_co2_concentration_sensor_4
   - zone_air_co2_concentration_sensor_5
   - zone_air_co2_concentration_sensor_6
+  implements:
+  - MONITORING
+
+CO2M13X:
+  description: "Basic carbon dioxide monitoring for 13 Zones."
+  is_abstract: true
+  uses:
+  - zone_air_co2_concentration_sensor_1
+  - zone_air_co2_concentration_sensor_2
+  - zone_air_co2_concentration_sensor_3
+  - zone_air_co2_concentration_sensor_4
+  - zone_air_co2_concentration_sensor_5
+  - zone_air_co2_concentration_sensor_6
+  - zone_air_co2_concentration_sensor_7
+  - zone_air_co2_concentration_sensor_8
+  - zone_air_co2_concentration_sensor_9
+  - zone_air_co2_concentration_sensor_10
+  - zone_air_co2_concentration_sensor_11
+  - zone_air_co2_concentration_sensor_12
+  - zone_air_co2_concentration_sensor_13  
   implements:
   - MONITORING
 
