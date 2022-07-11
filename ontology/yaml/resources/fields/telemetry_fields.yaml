@@ -1301,7 +1301,6 @@ literals:
   - ON
   - OFF
 - defrost_temperature_sensor
-- room_temperature_sensor
 - discharge_fan_run_time_accumulator
 
 - defrost_temperature_setpoint

@@ -1148,7 +1148,7 @@ CREFM:
    - compressor_run_status
    - run_time_accumulator
   uses:
-   - room_temperature_sensor
+   - zone_air_temperature_sensor
    - defrost_temperature_sensor
 
 EPC:
