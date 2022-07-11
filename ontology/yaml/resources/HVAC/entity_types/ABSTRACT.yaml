@@ -348,14 +348,10 @@ VSC:
   - motor_temperature_sensor
   - torque_sensor
   - energy_accumulator
-  - run_time_accumulator
   - speed_mode
   - run_mode
   - run_time_accumulator
-  - energy_accumulator
   - lost_power_alarm
-  - torque_sensor
-  - failed_alarm
   - control_mode
   uses:
   - speed_percentage_command
