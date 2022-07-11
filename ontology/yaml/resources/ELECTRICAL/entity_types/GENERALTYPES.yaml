@@ -36,6 +36,7 @@ PANEL:
 
   
 GEN:
+  id: "4890352430123843584"
   description: "Tag for all Electricity generating equipments."
 
 ATS:
@@ -53,6 +54,12 @@ ATS:
 CB:
   id: "10844111137507639296"
   description: "Tag for all circuit breakers."
+  is_abstract: true
+  implements:
+  - EQUIPMENT
+
+TXMR:
+  description: "Typical Transformer tag used for device that transfers electric energy from one alternating-current circuit to one or more other circuits, either increasing (stepping up) or reducing (stepping down) the voltage."
   is_abstract: true
   implements:
   - EQUIPMENT
