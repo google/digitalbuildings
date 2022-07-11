@@ -1396,6 +1396,10 @@ literals:
   - OFF
 - ground_temperature_sensor
 
+# Addition of mixed_air_damper telemetry for AHU
+- mixed_air_damper_percentage_command
+- mixed_air_damper_percentage_sensor
+
 ## Addition of new fields#
 
 ## New fields for Freezer (Walk in Cold room)
