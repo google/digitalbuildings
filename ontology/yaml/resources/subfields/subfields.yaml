@@ -175,7 +175,6 @@ descriptor:
   pm4pt0: "Particulate of diameter 4.0 micrometers or less."
   pm10pt0: "Particulate of diameter 10.0 micrometers or less."
   potable: "quality of water" 
-  precipitation: "Used to measure amount of  rainfall." 
   preheating: "Process of preheating."
   pressurization: "Relating to the level of pressure in a system or vessel."
   primary: "Associated with the primary (production) loop of a production process."
