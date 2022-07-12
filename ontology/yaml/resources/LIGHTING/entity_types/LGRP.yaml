@@ -225,6 +225,19 @@ LGRP_OS_IM_LSC_LC_PWM_SCZ:
   - PWM
   - SCZ
 
+LGRP_OS_LSC_ENM:
+  description: "Standard Lighting fixture group with occupancy based,area switch status and energy monitoring."
+  is_canonical: true
+  implements:
+  - LGRP
+  - OS
+  - LSC
+  - ENM
+  opt_uses:
+  - total_lamp_failed_counter
+  - wireless_device_failed_counter
+  - communication_failed_counter
+
 #Noncanonical types
 LGRP_DC_MS_IM:
   id: "1231780265257336832"
