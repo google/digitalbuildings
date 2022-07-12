@@ -709,6 +709,7 @@ FAN_SS_VSC_EPC_EHHRC_EHHRC3X:
   - heat_recovery_water_isolation_valve_command_3
 
 FAN_SS_FDPM_VSC_SRC: 
+  id: "4892604229937528832"
   description: "Fan with power, voltage, current, differential pressure and run durating monitoring ."
   is_canonical: true
   implements:
@@ -720,6 +721,7 @@ FAN_SS_FDPM_VSC_SRC:
 
 
 FAN_SS_MSM:  
+  id: "278666411696455680"
   description: "Basic fan with speed monitoring (used in jet-fans for ventilation purpose)"
   implements:
   - FAN
