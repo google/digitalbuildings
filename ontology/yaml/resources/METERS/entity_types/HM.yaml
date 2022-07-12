@@ -52,10 +52,7 @@ HM_CHW_WAC:
   is_canonical: true
   uses:
   - water_volume_accumulator
-  opt_uses:
-  - differential_temperature_sensor
-  - failed_alarm
-
+  
 #New type for CH ZRH EURD
 HM_HW:
   id: "3199325536836911104"
