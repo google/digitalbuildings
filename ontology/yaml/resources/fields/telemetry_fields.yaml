@@ -374,6 +374,7 @@ literals:
   - OCCUPIED
   - UNKNOWN
   - UNOCCUPIED
+  - inactive
 
 
 ## Added on 12/12
