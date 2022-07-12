@@ -14,7 +14,7 @@
 
 ### ABSTRACT TYPES
 
-SSD_STD:
+SSS_STD:
   description: "Standard seismic detector."
   is_canonical: true
   implements:

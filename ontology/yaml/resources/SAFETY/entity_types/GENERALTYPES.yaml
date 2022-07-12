@@ -84,7 +84,7 @@ PA:
   implements:
   - EQUIPMENT
 
-SSD:
+SSS:
   description: "Seismic detector ."
   is_abstract: true
   implements:
