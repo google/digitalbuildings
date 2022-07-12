@@ -18,7 +18,7 @@ SSS_STD:
   description: "Standard seismic detector."
   is_canonical: true
   implements:
-  - SSD
+  - SSS
   uses:
   - seismic_alarm
   - failed_alarm
