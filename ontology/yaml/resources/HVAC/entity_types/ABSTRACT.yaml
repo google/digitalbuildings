@@ -5123,6 +5123,7 @@ MIPWM:
   - input_motor_frequency_sensor
   
 MSM:
+  id: "2084609862272024576"
   description: "Motor speed monitoring for fan."
   is_abstract: true
   implements:
@@ -5355,4 +5356,3 @@ DFRMM:
   - MONITORING  
 
   
-
