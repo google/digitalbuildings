@@ -335,7 +335,6 @@ literals:
 
 ## Added on 10/25/2018
 - compressor_speed_percentage_command
-- compressor_current_sensor
 - compressor_voltage_sensor
 - compressor_lost_power_alarm
 - compressor_frequency_sensor
