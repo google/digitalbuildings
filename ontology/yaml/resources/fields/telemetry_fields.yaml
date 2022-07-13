@@ -1464,7 +1464,7 @@ literals:
 - supply_fan_speed_mode:
   - BYPASS
   - VFD
-  - supply_fan_voltage_sensor
+- supply_fan_voltage_sensor
 
 - supply_fan_power_status:
   - ON
