@@ -12,32 +12,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-########################
-### Canonical Types  ###
-########################
+### ABSTRACT TYPES
 
-### FREEZER ###
-
-  
-FRZ_DXZTC_DFSS:
-  id: "12904507967029641216"
-  description: "Freezer with discharge fan run duration monitoring with compressor run control ."
+SSS_STD:
+  description: "Standard seismic detector."
   is_canonical: true
   implements:
-  - FRZ
-  - DXZTC
-  - DFSS
-
-FRZ_DFSS_DEFSS_DEFSTC_DXZTC:
-  description: "Freezer with discharge fan,compressor, defrost run and temperature control."
-  is_canonical: true
-  implements:
-  - FRZ
-  - DFSS
-  - DEFSS
-  - DEFSTC
-  - DXZTC
-  opt_uses:
-  - run_time_accumulator
-  - master_alarm
-  
+  - SSS
+  uses:
+  - seismic_alarm
+  - failed_alarm

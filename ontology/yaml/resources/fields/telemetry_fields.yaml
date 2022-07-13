@@ -666,6 +666,22 @@ literals:
   - ON
   - OFF
 
+- drain_pump_run_status:
+  - ON
+  - OFF
+- drain_pump_failed_alarm:
+  - ACTIVE
+  - INACTIVE
+- water_low_level_status:
+  - ACTIVE
+  - INACTIVE
+- water_high_level_status:
+  - ACTIVE
+  - INACTIVE
+- input_motor_power_status:
+  - ON
+  - OFF
+
 # Added 10/5/20 for TW-NTC-TPKD
 # Additional functionality for alarms and status points.
 # For alarms, they will end in `alarm` and be two-state. 
@@ -1482,3 +1498,6 @@ literals:
 - generator_energy_accumulator 
 - supply_fan_energy_accumulator
 - compressor_run_time_accumulator
+
+## New fields for seismic detector
+- seismic_alarm
