@@ -34,3 +34,4 @@ WM_WF:
   - supply_water_flowrate_sensor
   opt_uses:
   - water_linearvelocity_sensor
+  - water_volume_accumulator
