@@ -477,6 +477,9 @@ FAN_EFVSC_SCRSS:
   - FAN
   - EFVSC
   - SCRSS
+  opt_uses:
+  - bypass_air_damper_percentage_command
+  - bypass_air_damper_percentage_sensor
 
 FAN_OAFSS:
   description: "Outside air fan with start/stop and status."
