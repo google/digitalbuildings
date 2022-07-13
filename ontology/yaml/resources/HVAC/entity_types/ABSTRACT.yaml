@@ -1854,6 +1854,7 @@ DXRC:
   - cooling_thermal_power_capacity
   - cooling_percentage_command
   - compressor_speed_percentage_command
+  - compressor_failed_alarm
   uses:
   - return_air_temperature_setpoint
   - return_air_temperature_sensor
