@@ -4969,6 +4969,13 @@ DEFSS:
   - defrost_run_command  
   implements:
   - MONITORING
+
+DEFSTC:
+  description: "Defrost temperature control."
+  is_abstract: true
+  uses:
+  - defrost_temperature_sensor
+  - defrost_temperature_setpoint  
     
 VOADC2X:
   id: "15455797155935027200"
@@ -5133,6 +5140,7 @@ MIPWM:
   - input_motor_frequency_sensor
   
 MSM:
+  id: "2084609862272024576"
   description: "Motor speed monitoring for fan."
   is_abstract: true
   implements:
@@ -5365,4 +5373,3 @@ DFRMM:
   - MONITORING  
 
   
-
