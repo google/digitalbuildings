@@ -1062,7 +1062,6 @@ FCU_DFSS_DXRC_RHDHC_AL:
   opt_uses:
   - filter_alarm
   - master_alarm
-  - refrigerant_failed_alarm 
   - heat_exchange_failed_alarm 
   - water_leak_alarm 
     

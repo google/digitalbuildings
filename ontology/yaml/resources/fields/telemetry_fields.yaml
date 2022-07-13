@@ -743,9 +743,6 @@ literals:
 - lost_power_alarm:
   - ACTIVE
   - INACTIVE
-- refrigerant_failed_alarm:
-  - ACTIVE
-  - INACTIVE
 - heat_exchange_failed_alarm:
   - ACTIVE
   - INACTIVE
