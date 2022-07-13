@@ -1429,9 +1429,6 @@ literals:
 - low_discharge_fan_speed_status:
   - ON
   - OFF 
-- exhaust_fan_run_mode:
-  - AUTO
-  - MANUAL
 
 ##Fields for generator##
 - oil_temperature_sensor
@@ -1467,8 +1464,7 @@ literals:
 - supply_fan_speed_mode:
   - BYPASS
   - VFD
-  
-- supply_fan_voltage_sensor
+  - supply_fan_voltage_sensor
 
 - supply_fan_power_status:
   - ON
@@ -1486,7 +1482,5 @@ literals:
 
 ## New fields for fans##
 - discharge_fan_energy_accumulator
-- electricalgrid_run_time_accumulator
-- generator_energy_accumulator 
 - supply_fan_energy_accumulator
 - compressor_run_time_accumulator
