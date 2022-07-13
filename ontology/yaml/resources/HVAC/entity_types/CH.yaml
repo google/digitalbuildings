@@ -523,12 +523,13 @@ CH_SS_RMM_SCHWTC_CHDXSC_CCM_CHWSWISOVPM_CWSWISOVPM_IGM_REFPM_REFSM_MIPVCM_MIPWM_
   - INVOPWM
   - INVIPCM
   
-CH_VSC_CHWFRSM_CHDXSC_CHWISOVM:
+CH_SS_CHDXVSC_CHWFRSM_CHDXSC_CHWISOVM:
   description: "Water cooled chiller with VFD ,supply ,return water temperature ,flow and isolation valve monitoring."
   is_canonical: true
   implements:
   - CH
-  - VSC
+  - SS
+  - CHDXVSC
   - CHWFRSM
   - CHDXSC
   - CHWISOVM
