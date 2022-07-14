@@ -343,6 +343,8 @@ literals:
 
 ## Added on 10/25/2018
 - compressor_speed_percentage_command
+- compressor_voltage_sensor
+- compressor_lost_power_alarm
 - east_wind_linearvelocity_sensor
 - west_wind_linearvelocity_sensor
 - condenser_pressure_sensor
