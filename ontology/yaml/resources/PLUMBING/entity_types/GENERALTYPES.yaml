@@ -12,17 +12,21 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
- 
-  
-GEN_SS_TKLS_OTPM_PWM_RDM_BTEPM:
-  id: "17826942359745593344"
-  description: "Generator with run duration, Tank level, oil temperature, pressure, and run duration monitoring."
-  is_canonical: true
+TK:
+  description: "Tank water system used to store water"
+  is_abstract: true
   implements:
-  - GEN
-  - SS
-  - TKLS
-  - OTPM
-  - PWM  
-  - RDM
-  - BTEPM
+  - EQUIPMENT
+
+WSTC:
+  description: " Waste Compactor system used for compacting organic waste essential for conversion into manure."
+  is_abstract: true
+  implements:
+  - EQUIPMENT
+
+PMP:
+  description: "Tag for pumps. Pumps move liquid (water, glycol, liquid CO2, etc.)from one part of a system
+    to another. Used for(irrigation, domestic purposes)different usecase than HVAC."
+  is_abstract: true
+  implements:
+  - EQUIPMENT

@@ -188,6 +188,14 @@ literals:
 - zone_air_relative_humidity_sensor
 - zone_air_deadband_temperature_setpoint
 - zone_air_temperature_sensor
+- outside_air_co_concentration_sensor
+- outside_air_so2_concentration_sensor
+- outside_air_no2_concentration_sensor
+- outside_air_no_concentration_sensor
+- outside_air_h2s_concentration_sensor
+- outside_air_ozone_concentration_sensor
+- outside_air_pm2pt5_density_sensor
+- outside_air_pm10pt0_density_sensor
 
 ---
 
@@ -658,6 +666,22 @@ literals:
   - ON
   - OFF
 
+- drain_pump_run_status:
+  - ON
+  - OFF
+- drain_pump_failed_alarm:
+  - ACTIVE
+  - INACTIVE
+- water_low_level_status:
+  - ACTIVE
+  - INACTIVE
+- water_high_level_status:
+  - ACTIVE
+  - INACTIVE
+- input_motor_power_status:
+  - ON
+  - OFF
+
 # Added 10/5/20 for TW-NTC-TPKD
 # Additional functionality for alarms and status points.
 # For alarms, they will end in `alarm` and be two-state. 
@@ -743,7 +767,13 @@ literals:
 - lost_power_alarm:
   - ACTIVE
   - INACTIVE
-
+- heat_exchange_failed_alarm:
+  - ACTIVE
+  - INACTIVE
+- compressor_failed_alarm:
+  - ACTIVE
+  - INACTIVE
+  
 # New fields for lighting and fire systems.
 - motion_status:
   - PRESENT
@@ -1050,7 +1080,7 @@ literals:
 #Electrical meter fields
 - neutral_line_current_sensor # A measure of current on the neutral line
 - apparent_energy_accumulator
-
+- reactive_energy_accumulator
 #Lighting controller battery status
 - emergency_battery_status
 
@@ -1233,6 +1263,22 @@ literals:
 - bypass_phase2_neutral_voltage_sensor
 - bypass_phase3_neutral_voltage_sensor
 - remaining_charge_time_sensor
+- output_power_sensor
+- output_apparent_power_sensor
+- low_battery_charge_alarm:
+  - ACTIVE
+  - INACTIVE
+- load_percentage_sensor
+- overload_alarm:
+  - ACTIVE
+  - INACTIVE
+- bypass_status:
+  - BYPASS
+  - INACTIVE  
+- inverter_failed_alarm:
+  - ACTIVE
+  - INACTIVE
+
 
 
 ## Refrigerant monitoring fields for AHUs
@@ -1458,3 +1504,6 @@ literals:
 - generator_energy_accumulator 
 - supply_fan_energy_accumulator
 - compressor_run_time_accumulator
+
+## New fields for seismic detector
+- seismic_alarm

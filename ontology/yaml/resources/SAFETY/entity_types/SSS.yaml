@@ -12,17 +12,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
- 
-  
-GEN_SS_TKLS_OTPM_PWM_RDM_BTEPM:
-  id: "17826942359745593344"
-  description: "Generator with run duration, Tank level, oil temperature, pressure, and run duration monitoring."
+### ABSTRACT TYPES
+
+SSS_STD:
+  description: "Standard seismic detector."
   is_canonical: true
   implements:
-  - GEN
-  - SS
-  - TKLS
-  - OTPM
-  - PWM  
-  - RDM
-  - BTEPM
+  - SSS
+  uses:
+  - seismic_alarm
+  - failed_alarm

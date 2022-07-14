@@ -784,6 +784,7 @@ MAU_US_SBO_1000_1:
 
 #New canonical#
 MAU_FDPM_SSPC_STC_SHM_SFVSC3X_SFSS3X:
+  id: "2586761220723834880"
   description: "Air purifier unit (MAU) with 3 fan with differential pressure, static pressure, temperature, humidity and electrical parameter monitoring. "
   implements:
   - MAU
@@ -797,6 +798,7 @@ MAU_FDPM_SSPC_STC_SHM_SFVSC3X_SFSS3X:
  
 #Canonical for Air washers#
 MAU_SFSS_FDPM_SSPM_STM_SHM:
+  id: "6696295880699412480"
   description: "makeup Air Unit with run command, status, dufferential pressure, static T,RH, monitoring and control"
   implements:
   - MAU
@@ -821,5 +823,4 @@ MAU_DFMSC_DFVSC_FDPM_DTM:
   
 
   
-
 

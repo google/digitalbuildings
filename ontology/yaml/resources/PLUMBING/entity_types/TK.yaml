@@ -11,18 +11,17 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+# canonical types
 
- 
-  
-GEN_SS_TKLS_OTPM_PWM_RDM_BTEPM:
-  id: "17826942359745593344"
-  description: "Generator with run duration, Tank level, oil temperature, pressure, and run duration monitoring."
+########################
+### Canonical Types  ###
+########################
+
+
+TK_LVLM:
+  description: "Standard Tank level monitoring."
   is_canonical: true
   implements:
-  - GEN
-  - SS
-  - TKLS
-  - OTPM
-  - PWM  
-  - RDM
-  - BTEPM
+  - TK
+  - LVLM
+  
