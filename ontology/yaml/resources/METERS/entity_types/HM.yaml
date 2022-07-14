@@ -42,7 +42,6 @@ HM_CHW:
   opt_uses:
   - differential_temperature_sensor
   - failed_alarm
-  - water_volume_accumulator
 
 HM_CHW_WAC:
   id: "7296264191604686848"
