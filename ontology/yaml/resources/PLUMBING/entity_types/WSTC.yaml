@@ -11,33 +11,19 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+# canonical types
 
 ########################
 ### Canonical Types  ###
 ########################
 
-### FREEZER ###
 
-  
-FRZ_DXZTC_DFSS:
-  id: "12904507967029641216"
-  description: "Freezer with discharge fan run duration monitoring with compressor run control ."
+WSTC_SS:
+  description: "Basic waste compactor system."
   is_canonical: true
   implements:
-  - FRZ
-  - DXZTC
-  - DFSS
+  - WSTC
+  - SS  
 
-FRZ_DFSS_DEFSS_DEFSTC_DXZTC:
-  description: "Freezer with discharge fan,compressor, defrost run and temperature control."
-  is_canonical: true
-  implements:
-  - FRZ
-  - DFSS
-  - DEFSS
-  - DEFSTC
-  - DXZTC
-  opt_uses:
-  - run_time_accumulator
-  - master_alarm
-  
+
+

@@ -11,33 +11,25 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+### ABSTRACT TYPES
 
-########################
-### Canonical Types  ###
-########################
 
-### FREEZER ###
-
-  
-FRZ_DXZTC_DFSS:
-  id: "12904507967029641216"
-  description: "Freezer with discharge fan run duration monitoring with compressor run control ."
-  is_canonical: true
+SS:
+  description: "Basic combination of run command and status (start/stop); indicates the equipment is active or inactive."
+  is_abstract: true
   implements:
-  - FRZ
-  - DXZTC
-  - DFSS
-
-FRZ_DFSS_DEFSS_DEFSTC_DXZTC:
-  description: "Freezer with discharge fan,compressor, defrost run and temperature control."
-  is_canonical: true
-  implements:
-  - FRZ
-  - DFSS
-  - DEFSS
-  - DEFSTC
-  - DXZTC
+  - /SS
   opt_uses:
-  - run_time_accumulator
-  - master_alarm
+  - failed_alarm
+  - lost_power_alarm
+  - control_mode
+
+
+LVLM:
+  description: "Level Monitoring for tanks."
+  is_abstract: true
+  uses:
+  - level_status
+  opt_uses:
+  - percentage_sensor
   
