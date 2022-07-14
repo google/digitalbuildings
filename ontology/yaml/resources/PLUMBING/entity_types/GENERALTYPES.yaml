@@ -12,32 +12,21 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-########################
-### Canonical Types  ###
-########################
-
-### FREEZER ###
-
-  
-FRZ_DXZTC_DFSS:
-  id: "12904507967029641216"
-  description: "Freezer with discharge fan run duration monitoring with compressor run control ."
-  is_canonical: true
+TK:
+  description: "Tank water system used to store water"
+  is_abstract: true
   implements:
-  - FRZ
-  - DXZTC
-  - DFSS
+  - EQUIPMENT
 
-FRZ_DFSS_DEFSS_DEFSTC_DXZTC:
-  description: "Freezer with discharge fan,compressor, defrost run and temperature control."
-  is_canonical: true
+WSTC:
+  description: " Waste Compactor system used for compacting organic waste essential for conversion into manure."
+  is_abstract: true
   implements:
-  - FRZ
-  - DFSS
-  - DEFSS
-  - DEFSTC
-  - DXZTC
-  opt_uses:
-  - run_time_accumulator
-  - master_alarm
-  
+  - EQUIPMENT
+
+PMP:
+  description: "Tag for pumps. Pumps move liquid (water, glycol, liquid CO2, etc.)from one part of a system
+    to another. Used for(irrigation, domestic purposes)different usecase than HVAC."
+  is_abstract: true
+  implements:
+  - EQUIPMENT
