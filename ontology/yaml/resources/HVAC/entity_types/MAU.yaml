@@ -642,7 +642,7 @@ MAU_SFSS_SFVSC_SPSS_STM_SHM_SFC_FDPSM:
   - SFVSC
   - SPSS
   - STM
-  - RTM
+  - SHM
   - SFC
   - FDPSM
 
