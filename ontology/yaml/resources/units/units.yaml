@@ -86,6 +86,8 @@ energy:
 - kilovolt_ampere_reactive_hours
 - ton_hours
 - watt_hours
+- kilovolt_amperes_reactive_hours
+- kilovolt_amperes_apparent_hours
 energydensity:
 - kilojoules_per_kilogram: STANDARD
 entropy:

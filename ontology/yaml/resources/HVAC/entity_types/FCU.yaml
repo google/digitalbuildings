@@ -1050,6 +1050,20 @@ FCU_DFSS_CHWZC_RTM_ZHM:
     - CHWZC
     - RTM
     - ZHM
+
+FCU_DFSS_DXRC_RHDHC_AL:
+  description: "Typical Precision Air conditioning unit with alarms."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - DXRC
+  - RHDHC
+  opt_uses:
+  - filter_alarm
+  - master_alarm
+  - heat_exchange_failed_alarm 
+  - water_leak_alarm 
     
 FCU_DFVSC_CHWRC_FDPSM2X:
   id: "521860791574462464"
