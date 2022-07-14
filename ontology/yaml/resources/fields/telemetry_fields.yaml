@@ -345,7 +345,6 @@ literals:
 - compressor_speed_percentage_command
 - compressor_voltage_sensor
 - compressor_lost_power_alarm
-- compressor_failed_alarm
 - east_wind_linearvelocity_sensor
 - west_wind_linearvelocity_sensor
 - condenser_pressure_sensor
