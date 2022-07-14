@@ -3740,7 +3740,7 @@ CHDXVSC:
   - compressor_current_sensor
   - compressor_voltage_sensor
   - compressor_lost_power_alarm
-  - compressor_frequency_sensor
+  - compressor_speed_frequency_sensor
   - compressor_failed_alarm
  
 CDWFRM:
