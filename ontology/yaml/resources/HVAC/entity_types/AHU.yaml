@@ -3602,7 +3602,7 @@ AHU_DFSS_DXZC_ECONZ_EFSS2X_HT2ZC_CO2C:
   - CO2C
   
 AHU_SFSS_SFVSC_CHWRC_OAFC_SSPC_RAVOCC_RACO2C_ESFM:
-  description: "Single zone AHU with CO2, VOC based outside air control, static pressure based VFD speed control,return air temperature based Chilled water valve modulation."
+  description: "AHU with CO2, VOC based outside air control, static pressure based VFD speed control,return air temperature based Chilled water valve modulation."
   is_canonical: true
   implements:
   - AHU
