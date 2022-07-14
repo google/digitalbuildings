@@ -220,6 +220,7 @@ descriptor:
   sweeper: "Action performed in a sump to prevent sediment build-up via water turbulence."
   sync: "The simultaneous operation or activity of two or more things."
   tertiary: "Associated with the tertiary (peripheral) loops of a production process."
+  transducer: "A transducer is a device that converts energy from one form to another."
   ultraviolet: "A short wavelength type of light that is beyond the visible spectrum. It is damaging to DNA and cells, and is commonly used to sterilize surfaces."
   unoccupied: "State of being outside of scheduled (time of day or week) run-time parameters."
   use: "A descriptor for how the entity in question is used (e.g. zone_use_label = 'office') "

@@ -1286,7 +1286,7 @@ literals:
   - BANDB
   - BANDC
   - BANDD
-- total_failed_counter
+- total_transducer_failed_counter
 # Buffer tanks with temperature sensors
 - chilled_water_temperature_sensor
 - heating_water_temperature_sensor
