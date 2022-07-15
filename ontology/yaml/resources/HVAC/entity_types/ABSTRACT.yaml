@@ -1324,7 +1324,8 @@ ESFM:
   is_abstract: true
   uses:
   - electrostatic_filter_run_status
-  - filter_alarm
+  opt_uses:
+  - electrostatic_filter_alarm
   implements:
   - MONITORING
 

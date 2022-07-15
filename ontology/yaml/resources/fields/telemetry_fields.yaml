@@ -733,6 +733,9 @@ literals:
 - electrostatic_filter_run_status:
   - ON
   - OFF
+- electrostatic_filter_alarm:
+  - ACTIVE
+  - INACTIVE
 - high_level_status:
   - PRESENT
   - ABSENT
