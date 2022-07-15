@@ -18,20 +18,26 @@ from __future__ import print_function
 
 from concurrent import futures
 import json
-
 import google.auth
-from google.cloud import pubsub_v1
 
+from google.cloud import pubsub_v1
+from google.auth import jwt
+
+from typing import Optional
 
 class Subscriber(object):
   """Reads payload from a subscription.
 
   Args:
     subscription_name: name of the subscription.
-    service_account_info: service account information from the GCP project.
+    service_account_info: (optional) service account information from the GCP
+      project. When not provided, application default credentials are used
+
   """
 
-  def __init__(self, subscription_name, service_account_info_json_file = None):
+  def __init__( self,
+                subscription_name,
+                service_account_info_json_file: Optional[str] = None):
     super().__init__()
     assert subscription_name
     self.subscription_name = subscription_name
@@ -50,10 +56,9 @@ class Subscriber(object):
       credentials = jwt.Credentials.from_service_account_info(service_account_info
                                                               , audience=audience)
     else:
-      print("No service account provided. Tying application default credentials ...")
+      print("No service account. Using application default credentials")
       credentials = google.auth.default()
 
-    
     sub_client = pubsub_v1.SubscriberClient(credentials=credentials)
     future = sub_client.subscribe(self.subscription_name, callback)
     print("Listening to pubsub, please wait ...")
