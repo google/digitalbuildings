@@ -135,7 +135,6 @@ literals:
 - wind_linearvelocity_sensor
 - wind_direction_angle_sensor
 - outside_air_rain_level_sensor
-- outside_air_co2_concentration_sensor
 - outside_air_voc_concentration_sensor
 - power_sensor
 - return_air_relative_humidity_sensor
