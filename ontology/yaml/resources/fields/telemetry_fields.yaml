@@ -132,6 +132,9 @@ literals:
 - outside_air_relative_humidity_sensor
 - outside_air_temperature_sensor
 - outside_air_wetbulb_temperature_sensor
+- wind_linearvelocity_sensor
+- wind_direction_angle_sensor
+- outside_air_rain_level_sensor
 - power_sensor
 - return_air_relative_humidity_sensor
 - return_air_temperature_sensor
@@ -343,6 +346,8 @@ literals:
 
 ## Added on 10/25/2018
 - compressor_speed_percentage_command
+- compressor_voltage_sensor
+- compressor_lost_power_alarm
 - east_wind_linearvelocity_sensor
 - west_wind_linearvelocity_sensor
 - condenser_pressure_sensor
@@ -1229,6 +1234,7 @@ literals:
 - leaving_coil_temperature_sensor
 - heat_recovery_supply_water_temperature_sensor
 - heat_recovery_return_water_temperature_sensor
+- differential_temperature_sensor
 - hot_water_tank_temperature_sensor
 - hot_water_tank_temperature_setpoint
 - preheating_water_tank_temperature_sensor

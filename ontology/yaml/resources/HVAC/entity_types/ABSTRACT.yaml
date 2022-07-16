@@ -344,13 +344,14 @@ VSC:
   - speed_frequency_sensor
   - power_sensor
   - voltage_sensor
+  - lost_power_alarm
+  - master_alarm
+  - failed_alarm
   - speed_mode
   - run_mode
   - run_time_accumulator
   - energy_accumulator
-  - lost_power_alarm
   - torque_sensor
-  - failed_alarm
   - control_mode
   uses:
   - speed_percentage_command
@@ -763,6 +764,9 @@ OA:
   - outside_air_wetbulb_temperature_sensor
   - outside_air_specificenthalpy_sensor
   - outside_air_pressure_sensor
+  - wind_linearvelocity_sensor
+  - wind_direction_angle_sensor
+  - outside_air_rain_level_sensor 
   uses:
   - outside_air_temperature_sensor
   implements:
@@ -2921,6 +2925,14 @@ CHWFRM:
   implements:
   - MONITORING
 
+CHWFRSM:
+  description: "Chilled water flowrate status monitoring."
+  is_abstract: true
+  uses:
+  - chilled_water_flowrate_status
+  implements:
+  - MONITORING
+
 SEPM:
   id: "3971381711140290560"
   description: "Shade extent monitoring."
@@ -3728,7 +3740,13 @@ CHDXVSC:
   - compressor_speed_percentage_sensor
   - compressor_run_command
   - compressor_run_status
-
+  opt_uses:
+  - compressor_current_sensor
+  - compressor_voltage_sensor
+  - compressor_lost_power_alarm
+  - compressor_speed_frequency_sensor
+  - compressor_failed_alarm
+ 
 CDWFRM:
   id: "632877381119377408"
   description: "Condenser water flowrate monitoring."

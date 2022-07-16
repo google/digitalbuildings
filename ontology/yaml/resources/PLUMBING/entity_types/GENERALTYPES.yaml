@@ -19,14 +19,14 @@ TK:
   - EQUIPMENT
 
 WSTC:
-  description: " Waste Compactor system used for compacting organic waste essential for conversion into manure."
+  description: "Waste Compactor system used for compacting organic waste essential for conversion into manure."
   is_abstract: true
   implements:
   - EQUIPMENT
 
 PMP:
-  description: "Tag for pumps. Pumps move liquid (water, glycol, liquid CO2, etc.)from one part of a system
-    to another. Used for(irrigation, domestic purposes)different usecase than HVAC."
+  description: "Pumps move liquid (e.g., water, glycol, liquid CO2) from one part of a system
+    to another. In this namespace, pumps are used for irrigation and domestic purposes."
   is_abstract: true
   implements:
   - EQUIPMENT
