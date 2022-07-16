@@ -80,9 +80,9 @@ WA4B:
   uses:
   - wave_band_mode
   opt_uses:
-  - wave_pulserate_sensor
-  - wave_frequency_sensor
-  - total_transducer_failed_counter
+  - wavespeed_rate_sensor
+  - wavedensity_rate_sensor
+  - transducer_failed_alarm
 LM:
   id: "15773300929664647168"
   description: "Tank level monitoring."

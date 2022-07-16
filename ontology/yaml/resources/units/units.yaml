@@ -206,11 +206,9 @@ pressure:
 - pounds_force_per_square_inch
 - bars
 - millibars
-pulserate:
-- pulse_per_minute: STANDARD
-
 rate:
 - inv_second: STANDARD
+- inv_minute
 reactivepower:
 - volt_amperes_reactive: STANDARD
 - kilovolt_amperes_reactive

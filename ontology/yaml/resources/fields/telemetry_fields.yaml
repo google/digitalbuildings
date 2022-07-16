@@ -1317,14 +1317,17 @@ literals:
 - outside_condensing_loop_return_water_temperature_sensor
 
 # Rodent Repellent system
-- wave_pulserate_sensor
-- wave_frequency_sensor
+- wavespeed_rate_sensor
+- wavedensity_rate_sensor
 - wave_band_mode:
   - BANDA
   - BANDB
   - BANDC
   - BANDD
-- total_transducer_failed_counter
+- transducer_failed_alarm:
+  - ACTIVE
+  - INACTIVE
+ 
 # Buffer tanks with temperature sensors
 - chilled_water_temperature_sensor
 - heating_water_temperature_sensor
