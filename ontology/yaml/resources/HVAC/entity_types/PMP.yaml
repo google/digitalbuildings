@@ -34,6 +34,7 @@ PMP_SS_VSC:
   - VSC
 
 PMP_DRPM:
+  id: "16761559572895760384"
   description: "Pump implemented with drain pump monitoring ."
   is_canonical: true
   implements:
