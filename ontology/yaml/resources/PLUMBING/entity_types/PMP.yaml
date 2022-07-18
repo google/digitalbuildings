@@ -19,11 +19,11 @@
 
 
 PMP_SS:
+  id: "7862446709211660288"
   description: "Basic water pump."
   is_canonical: true
   implements:
   - PMP
   - SS  
-
 
 

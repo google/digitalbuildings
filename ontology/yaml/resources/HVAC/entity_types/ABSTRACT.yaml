@@ -2926,6 +2926,7 @@ CHWFRM:
   - MONITORING
 
 CHWFRSM:
+  id: "11667988394339729408"
   description: "Chilled water flowrate status monitoring."
   is_abstract: true
   uses:
@@ -3935,6 +3936,7 @@ SWPSS:
   - OPERATIONAL
 
 DRPM:
+  id: "14779975736852742144"
   description: "Drain pump monitoring."
   is_abstract: true
   opt_uses:
@@ -4990,6 +4992,7 @@ DEFSS:
   - MONITORING
 
 DEFSTC:
+  id: "13973831403553423360"
   description: "Defrost temperature control."
   is_abstract: true
   uses:
