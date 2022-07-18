@@ -33,6 +33,13 @@ PMP_SS_VSC:
   - SS
   - VSC
 
+PMP_DRPM:
+  description: "Pump implemented with drain pump monitoring ."
+  is_canonical: true
+  implements:
+  - PMP
+  - DRPM
+
 PMP_SS_VSC_WDPM:
   id: "11113967574847586304"
   description: "Variable speed pump with differential pressure monitoring."
