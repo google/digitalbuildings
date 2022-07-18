@@ -190,6 +190,7 @@ SENSOR_ZA_PML:
   - zone_air_voc_concentration_sensor
 
 SENSOR_AQT:
+  id: "17085818746066436096"
   description: "Air quality multiple property sensor."
   is_canonical: true
   implements:

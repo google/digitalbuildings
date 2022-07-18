@@ -15,6 +15,7 @@
 ### ABSTRACT TYPES
 
 SSS_STD:
+  id: "1291694852878106624"
   description: "Standard seismic detector."
   is_canonical: true
   implements:
