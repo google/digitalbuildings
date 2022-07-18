@@ -453,6 +453,8 @@ literals:
 - zone_air_static_pressure_setpoint
 - zone_air_voc_concentration_sensor
 - zone_air_voc_concentration_setpoint
+- return_air_voc_concentration_sensor
+- return_air_voc_concentration_setpoint
 
 ## Added on 2019/03/12
 - cooling_percentage_command
@@ -733,6 +735,12 @@ literals:
 - filter_differential_pressure_status:
   - PRESENT
   - ABSENT
+- electrostatic_filter_run_status:
+  - ON
+  - OFF
+- electrostatic_filter_alarm:
+  - ACTIVE
+  - INACTIVE
 - high_level_status:
   - PRESENT
   - ABSENT

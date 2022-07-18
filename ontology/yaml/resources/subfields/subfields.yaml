@@ -98,6 +98,7 @@ descriptor:
   economizer: "Process or component responsible for the utilization of free cooling."
   electric: "Process or component driven by electricity (as to distinguish from natural gas, for instance)."
   electricalgrid: "An electrical grid is an interconnected network for electricity delivery from producers to consumers."
+  electrostatic: "Attractive or repulsive forces between particles that are caused by their electric charges."
   email: "A unique identifier address in the Internet."
   emergency: "a situation that poses an immediate risk to health, life property,  or environment."
   entering: " The process of going into a thing (e.g. entering a heat exchanger)."
