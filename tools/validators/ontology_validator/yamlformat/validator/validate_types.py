@@ -23,8 +23,8 @@ import os
 from absl import app
 from absl import flags
 
-from yamlformat.validator import internal_file_lib
-from yamlformat.validator import presubmit_validate_types_lib
+from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.validator import internal_file_lib
+from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.validator import presubmit_validate_types_lib
 
 FLAGS = flags.FLAGS
 

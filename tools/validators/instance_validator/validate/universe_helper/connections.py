@@ -13,7 +13,7 @@
 # limitations under the License.
 """Sets up a minimal connection universe required for testing."""
 
-from yamlformat.validator import connection_lib
+from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.validator import connection_lib
 
 CONNECTION_FOLDER = connection_lib.ConnectionFolder(folderpath='connections')
 CONNECTION_UNIVERSE = connection_lib.ConnectionUniverse(

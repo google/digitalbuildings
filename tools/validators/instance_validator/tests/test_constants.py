@@ -1,7 +1,7 @@
 """Constants for the instance validator application tests."""
 from os import path
 
-from validate import constants
+from google3.third_party.digitalbuildings.tools.validators.instance_validator.validate import constants
 
 ONTOLOGY_ROOT = constants.ONTOLOGY_ROOT
 TEST_ROOT = path.join(constants.APPLICATION_ROOT, 'tests')

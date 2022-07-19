@@ -18,10 +18,10 @@ from __future__ import division
 from __future__ import print_function
 import os
 from absl.testing import absltest
-from yamlformat.validator import entity_type_lib
-from yamlformat.validator import field_lib
-from yamlformat.validator import findings_lib
-from yamlformat.validator import test_helpers_lib
+from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.validator import entity_type_lib
+from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.validator import field_lib
+from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.validator import findings_lib
+from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.validator import test_helpers_lib
 
 _GOOD_PATH_FORMAT = '{0}/entity_types/anyfolder'
 _GOOD_PATH = _GOOD_PATH_FORMAT.format('mynamespace')

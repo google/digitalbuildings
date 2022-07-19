@@ -18,9 +18,9 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
-from yamlformat.validator import entity_type_lib
-from yamlformat.validator import findings_lib
-from yamlformat.validator import test_helpers_lib
+from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.validator import entity_type_lib
+from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.validator import findings_lib
+from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.validator import test_helpers_lib
 from absl.testing import absltest
 
 _F = test_helpers_lib.Fields

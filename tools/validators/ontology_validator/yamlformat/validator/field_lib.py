@@ -21,12 +21,12 @@ import re
 
 from typing import Dict, List, NamedTuple, Optional
 
-from yamlformat.validator import base_lib
-from yamlformat.validator import config_folder_lib
-from yamlformat.validator import entity_type_lib
-from yamlformat.validator import findings_lib
-from yamlformat.validator import state_lib
-from yamlformat.validator import subfield_lib
+from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.validator import base_lib
+from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.validator import config_folder_lib
+from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.validator import entity_type_lib
+from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.validator import findings_lib
+from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.validator import state_lib
+from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.validator import subfield_lib
 
 # We currently are enforcing that fields are lower case only.
 FIELD_CHARACTER_REGEX = re.compile(r'^[a-z][a-z0-9]*(?:_[a-z][a-z0-9]*)*$')

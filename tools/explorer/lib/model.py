@@ -13,10 +13,10 @@
 # limitations under the License.
 
 """Helper Field model classes for Ontology explorer."""
-from typing import List, Optional
 import re
+from typing import List, Optional
 
-from yamlformat.validator.entity_type_lib import EntityType
+from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.validator.entity_type_lib import EntityType
 
 FQ_FIELD_NAME = re.compile(
     r'(^[a-z]+[a-z0-9]*(?:_[a-z]+[a-z0-9]*)*)((?:_[0-9]+)+)?$')

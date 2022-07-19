@@ -13,17 +13,17 @@
 # limitations under the License.
 """Sets up a minimal test config universe required for testing."""
 
-from validate.universe_helper import connections
-from validate.universe_helper import fields
-from validate.universe_helper import states
-from validate.universe_helper import subfields
-from validate.universe_helper import types
-from validate.universe_helper import units
-from yamlformat.validator import entity_type_lib
-from yamlformat.validator import field_lib
-from yamlformat.validator import namespace_validator
-from yamlformat.validator import presubmit_validate_types_lib
-from yamlformat.validator import unit_lib
+from google3.third_party.digitalbuildings.tools.validators.instance_validator.validate.universe_helper import connections
+from google3.third_party.digitalbuildings.tools.validators.instance_validator.validate.universe_helper import fields
+from google3.third_party.digitalbuildings.tools.validators.instance_validator.validate.universe_helper import states
+from google3.third_party.digitalbuildings.tools.validators.instance_validator.validate.universe_helper import subfields
+from google3.third_party.digitalbuildings.tools.validators.instance_validator.validate.universe_helper import types
+from google3.third_party.digitalbuildings.tools.validators.instance_validator.validate.universe_helper import units
+from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.validator import entity_type_lib
+from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.validator import field_lib
+from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.validator import namespace_validator
+from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.validator import presubmit_validate_types_lib
+from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.validator import unit_lib
 
 
 def create_simplified_universe() -> presubmit_validate_types_lib.ConfigUniverse:

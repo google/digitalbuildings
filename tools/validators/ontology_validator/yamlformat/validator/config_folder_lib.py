@@ -15,8 +15,8 @@
 """Shared base class for all configuration folders."""
 import re
 
-from yamlformat.validator import base_lib
-from yamlformat.validator import findings_lib
+from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.validator import base_lib
+from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.validator import findings_lib
 
 
 def IsValidFolderForType(path, component_type):

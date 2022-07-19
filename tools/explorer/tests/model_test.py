@@ -14,14 +14,14 @@
 
 """Testing module for model.py."""
 from absl.testing import absltest
-from lib.model import EntityTypeField
-from lib.model import Match
-from lib.model import StandardField
-from lib.model import StandardizeField
+from google3.third_party.digitalbuildings.tools.explorer.lib.model import EntityTypeField
+from google3.third_party.digitalbuildings.tools.explorer.lib.model import Match
+from google3.third_party.digitalbuildings.tools.explorer.lib.model import StandardField
+from google3.third_party.digitalbuildings.tools.explorer.lib.model import StandardizeField
 
-from validate.universe_helper.config_universe import create_simplified_universe
-from yamlformat.validator import namespace_validator as nv
-from yamlformat.validator.entity_type_lib import EntityType
+from google3.third_party.digitalbuildings.tools.validators.instance_validator.validate.universe_helper.config_universe import create_simplified_universe
+from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.validator import namespace_validator as nv
+from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.validator.entity_type_lib import EntityType
 
 
 class StandardFieldTest(absltest.TestCase):

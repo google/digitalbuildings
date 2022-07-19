@@ -18,11 +18,11 @@ from __future__ import print_function
 
 from os import path
 
-from validate import constants
-from validate import universe_helper
-from yamlformat.validator import external_file_lib
-from yamlformat.validator import namespace_validator
-from yamlformat.validator import presubmit_validate_types_lib
+from google3.third_party.digitalbuildings.tools.validators.instance_validator.validate import constants
+from google3.third_party.digitalbuildings.tools.validators.instance_validator.validate import universe_helper
+from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.validator import external_file_lib
+from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.validator import namespace_validator
+from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.validator import presubmit_validate_types_lib
 
 
 def BuildUniverse(

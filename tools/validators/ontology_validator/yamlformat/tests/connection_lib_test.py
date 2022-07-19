@@ -19,9 +19,9 @@ from __future__ import print_function
 
 from absl.testing import absltest
 
-from yamlformat.validator import base_lib
-from yamlformat.validator import connection_lib
-from yamlformat.validator import findings_lib
+from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.validator import base_lib
+from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.validator import connection_lib
+from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.validator import findings_lib
 
 _GOOD_PATH = '{0}/connections/anyfolder'.format(base_lib.GLOBAL_NAMESPACE)
 _BAD_PATH = '{0}/connections/anyfolder'.format('nonglobal')

@@ -20,9 +20,9 @@ from __future__ import print_function
 import enum
 import re
 
-from yamlformat.validator import base_lib
-from yamlformat.validator import config_folder_lib
-from yamlformat.validator import findings_lib
+from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.validator import base_lib
+from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.validator import config_folder_lib
+from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.validator import findings_lib
 
 _SUBFIELD_NAME_VALIDATOR = re.compile(r'^[a-z][a-z0-9]*$')
 

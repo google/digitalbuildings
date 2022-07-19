@@ -17,7 +17,7 @@
 from os import path
 
 # internally, absolute path is used; github uses relative path
-_USE_ABSOLUTE_PATH = False
+_USE_ABSOLUTE_PATH = True
 
 if _USE_ABSOLUTE_PATH:
   REPO_ROOT = path.join('third_party', 'digitalbuildings')

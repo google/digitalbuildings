@@ -20,9 +20,9 @@ from __future__ import print_function
 import re
 from typing import NamedTuple
 
-from yamlformat.validator import base_lib
-from yamlformat.validator import config_folder_lib
-from yamlformat.validator import findings_lib
+from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.validator import base_lib
+from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.validator import config_folder_lib
+from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.validator import findings_lib
 
 UNIT_NAME_VALIDATOR = re.compile(r'^[a-z]+(_[a-z]+)*$')
 

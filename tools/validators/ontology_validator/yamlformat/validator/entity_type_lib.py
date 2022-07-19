@@ -21,10 +21,10 @@ import re
 import typing
 from typing import Optional, Tuple
 
-from yamlformat.validator import base_lib
-from yamlformat.validator import config_folder_lib
-from yamlformat.validator import field_lib
-from yamlformat.validator import findings_lib
+from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.validator import base_lib
+from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.validator import config_folder_lib
+from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.validator import field_lib
+from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.validator import findings_lib
 
 ENTITY_TYPE_NAME_REGEX = re.compile(r'^[a-zA-Z][a-zA-Z0-9]*(?:_[a-zA-Z0-9]+)*$')
 FIELD_INCREMENT_STRIPPER_REGEX = re.compile(

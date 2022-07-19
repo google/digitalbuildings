@@ -22,12 +22,12 @@ import os
 
 from absl.testing import absltest
 
-from yamlformat.validator import entity_type_lib
-from yamlformat.validator import entity_type_manager
-from yamlformat.validator import field_lib
-from yamlformat.validator import findings_lib
-from yamlformat.validator import namespace_validator
-from yamlformat.validator.entity_type_lib import FieldParts
+from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.validator import entity_type_lib
+from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.validator import entity_type_manager
+from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.validator import field_lib
+from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.validator import findings_lib
+from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.validator import namespace_validator
+from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.validator.entity_type_lib import FieldParts
 
 # Overwrite thresholds for grouping to ensure stability
 entity_type_manager.MIN_SET_SIZE = 1

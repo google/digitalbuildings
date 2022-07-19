@@ -20,10 +20,10 @@ from typing import List
 import colorama
 from termcolor import colored
 
-from lib import model
-from lib.model import StandardField
+from google3.third_party.digitalbuildings.tools.explorer.lib import model
+from google3.third_party.digitalbuildings.tools.explorer.lib.model import StandardField
 
-from yamlformat.validator.field_lib import FIELD_INCREMENT_REGEX
+from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.validator.field_lib import FIELD_INCREMENT_REGEX
 
 colorama.init()
 DEFAULT_MATCHED_TYPES_LIST_SIZE = 10

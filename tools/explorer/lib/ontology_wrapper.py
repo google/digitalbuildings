@@ -19,13 +19,13 @@ from typing import Set
 import colorama
 from termcolor import colored
 
-from lib.model import EntityTypeField
-from lib.model import Match
-from lib.model import StandardField
-from lib.model import StandardizeField
-from yamlformat.validator.entity_type_lib import EntityType
-from yamlformat.validator.entity_type_manager import EntityTypeManager
-from yamlformat.validator.presubmit_validate_types_lib import ConfigUniverse
+from google3.third_party.digitalbuildings.tools.explorer.lib.model import EntityTypeField
+from google3.third_party.digitalbuildings.tools.explorer.lib.model import Match
+from google3.third_party.digitalbuildings.tools.explorer.lib.model import StandardField
+from google3.third_party.digitalbuildings.tools.explorer.lib.model import StandardizeField
+from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.validator.entity_type_lib import EntityType
+from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.validator.entity_type_manager import EntityTypeManager
+from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.validator.presubmit_validate_types_lib import ConfigUniverse
 
 colorama.init()
 
@@ -330,9 +330,9 @@ class OntologyWrapper(object):
         field.ljust(col_width) for field in ['='*(col_width-padding)]*3)
     return_string += '\n'
     for row in final_matrix:
-      if row[2] is False:
+      if not row[2] and isinstance(row[2], bool):
         row[2] = 'Required'
-      elif row[2] is True:
+      elif row[2]:
         row[2] = 'Optional'
       if row[0] and row[1]:
         return_string += ''.join(

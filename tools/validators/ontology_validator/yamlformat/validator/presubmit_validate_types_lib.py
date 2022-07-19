@@ -27,17 +27,17 @@ from typing import Dict, List, NamedTuple, Optional
 
 from six.moves import input
 
-from yamlformat.validator import base_lib
-from yamlformat.validator import connection_lib
-from yamlformat.validator import entity_type_lib
-from yamlformat.validator import entity_type_manager
-from yamlformat.validator import field_lib
-from yamlformat.validator import findings_lib
-from yamlformat.validator import namespace_validator
-from yamlformat.validator import parse_config_lib as parse
-from yamlformat.validator import state_lib
-from yamlformat.validator import subfield_lib
-from yamlformat.validator import unit_lib
+from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.validator import base_lib
+from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.validator import connection_lib
+from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.validator import entity_type_lib
+from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.validator import entity_type_manager
+from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.validator import field_lib
+from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.validator import findings_lib
+from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.validator import namespace_validator
+from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.validator import parse_config_lib as parse
+from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.validator import state_lib
+from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.validator import subfield_lib
+from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.validator import unit_lib
 
 # Define namedtuple Config to store the different kinds of config files
 # All attributes should be tuples.

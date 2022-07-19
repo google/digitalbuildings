@@ -19,9 +19,9 @@ from __future__ import print_function
 
 from absl.testing import absltest
 
-from yamlformat.validator import field_lib
-from yamlformat.validator import findings_lib
-from yamlformat.validator import subfield_lib
+from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.validator import field_lib
+from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.validator import findings_lib
+from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.validator import subfield_lib
 
 AGGREGATION = subfield_lib.SubfieldCategory.AGGREGATION
 AGGREGATION_DESCRIPTOR = subfield_lib.SubfieldCategory.AGGREGATION_DESCRIPTOR

@@ -116,4 +116,3 @@ validation logic and cause the validator to exit prematurely because the instanc
           zone_air_temperature_sensor: zone_air_temperature_sensor
           zone_air_temperature_setpoint: zone_air_temperature_setpoint
       type: HVAC/VAV_SD_CSP
-

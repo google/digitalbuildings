@@ -17,7 +17,7 @@ import argparse
 import ast
 from absl.testing import absltest
 
-from yamlformat import arg_parser
+from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat import arg_parser
 
 
 class ArgParserTest(absltest.TestCase):

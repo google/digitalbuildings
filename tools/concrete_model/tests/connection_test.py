@@ -11,49 +11,36 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-"""Tests for Connection class."""
+"""Tests for States class."""
 
 from absl.testing import absltest
 
-from model.connection import Connection
-from model.connection_type import ConnectionType
+from google3.third_party.digitalbuildings.tools.concrete_model.model.connection import Connection
+from google3.third_party.digitalbuildings.tools.concrete_model.model.connection_type import ConnectionType
+from google3.third_party.digitalbuildings.tools.concrete_model.model.constants import CONNECTION_TYPE
+from google3.third_party.digitalbuildings.tools.concrete_model.model.constants import SOURCE_ENTITY_GUID
+from google3.third_party.digitalbuildings.tools.concrete_model.model.constants import TARGET_ENTITY_GUID
+
+
+_TEST_CONNECTION_DICT = {
+    SOURCE_ENTITY_GUID: 'source_guid',
+    TARGET_ENTITY_GUID: 'target_guid',
+    CONNECTION_TYPE: 'CONTROLS'
+}
 
 
 class ConnectionTest(absltest.TestCase):
 
-  def setUp(self):
-    super().setUp()
-    self.source_entity_guid = '1234'
-    self.target_entity_guid = '5678'
-    self.valid_connection_type = ConnectionType.FEEDS
+  def testFromDict(self):
+    test_connection = Connection.FromDict(_TEST_CONNECTION_DICT)
 
-  def testConnectionInitsFromDict(self):
-    """Tests that a Connection instance is correctly initialized using the FromDict() class method."""
-    test_connection_dict = {
-        'source_entity_guid': self.source_entity_guid,
-        'target_entity_guid': self.target_entity_guid,
-        'connection_type': self.valid_connection_type
-    }
-    test_connection_instance = Connection.FromDict(test_connection_dict)
+    self.assertEqual(test_connection.source_entity_guid,
+                     _TEST_CONNECTION_DICT[SOURCE_ENTITY_GUID])
+    self.assertEqual(test_connection.target_entity_guid,
+                     _TEST_CONNECTION_DICT[TARGET_ENTITY_GUID])
+    self.assertEqual(test_connection.connection_type,
+                     ConnectionType[_TEST_CONNECTION_DICT[CONNECTION_TYPE]])
 
-    self.assertIsInstance(test_connection_instance, Connection)
-    self.assertEqual(self.valid_connection_type,
-                     test_connection_instance.connection_type)
-    self.assertEqual(self.source_entity_guid,
-                     test_connection_instance.source_entity_guid)
-    self.assertEqual(self.target_entity_guid,
-                     test_connection_instance.target_entity_guid)
-
-  def testInvalidConnectionTypeRaisesTypeError(self):
-    """Test that a type error is raised when connection type is not passed in as a ConnectionType instance."""
-    test_connection_dict = {
-        'source_entity_guid': self.source_entity_guid,
-        'target_entity_guid': self.target_entity_guid,
-        'connection_type': 'FEEDS'
-    }
-
-    with self.assertRaises(TypeError):
-      Connection.FromDict(test_connection_dict)
 
 if __name__ == '__main__':
   absltest.main()

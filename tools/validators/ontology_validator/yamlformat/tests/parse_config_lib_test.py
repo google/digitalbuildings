@@ -23,14 +23,14 @@ import re
 from absl import flags
 from absl.testing import absltest
 
-from yamlformat.tests import test_constants
-from yamlformat.validator import base_lib
-from yamlformat.validator import field_lib
-from yamlformat.validator import findings_lib
-from yamlformat.validator import parse_config_lib as parse
-from yamlformat.validator import state_lib
-from yamlformat.validator import subfield_lib
-from yamlformat.validator import unit_lib
+from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.tests import test_constants
+from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.validator import base_lib
+from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.validator import field_lib
+from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.validator import findings_lib
+from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.validator import parse_config_lib as parse
+from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.validator import state_lib
+from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.validator import subfield_lib
+from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.validator import unit_lib
 
 _F = field_lib.Field
 

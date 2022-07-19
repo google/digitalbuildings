@@ -21,8 +21,8 @@ from os import path
 
 from absl.testing import absltest
 
-from tests import test_constants
-from validate import generate_universe
+from google3.third_party.digitalbuildings.tools.validators.instance_validator.tests import test_constants
+from google3.third_party.digitalbuildings.tools.validators.instance_validator.validate import generate_universe
 
 _BAD_MODIFIED_ONTOLOGY = path.join(test_constants.TEST_RESOURCES, 'BAD',
                                    'BAD_FORMAT')

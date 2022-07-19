@@ -22,18 +22,18 @@ from os import path
 from absl import flags
 from absl.testing import absltest
 
-from yamlformat.tests import test_constants
-from yamlformat.validator import base_lib
-from yamlformat.validator import connection_lib
-from yamlformat.validator import entity_type_lib
-from yamlformat.validator import field_lib
-from yamlformat.validator import findings_lib
-from yamlformat.validator import namespace_validator
-from yamlformat.validator import presubmit_validate_types_lib
-from yamlformat.validator import state_lib
-from yamlformat.validator import subfield_lib
-from yamlformat.validator import test_helpers_lib
-from yamlformat.validator import unit_lib
+from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.tests import test_constants
+from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.validator import base_lib
+from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.validator import connection_lib
+from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.validator import entity_type_lib
+from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.validator import field_lib
+from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.validator import findings_lib
+from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.validator import namespace_validator
+from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.validator import presubmit_validate_types_lib
+from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.validator import state_lib
+from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.validator import subfield_lib
+from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.validator import test_helpers_lib
+from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.validator import unit_lib
 
 FLAGS = flags.FLAGS
 

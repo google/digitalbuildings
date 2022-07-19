@@ -16,7 +16,7 @@
 # License.
 """Sets up a minimal subfield universe required for testing."""
 
-from yamlformat.validator import subfield_lib
+from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.validator import subfield_lib
 
 SUBFIELD_FOLDER = subfield_lib.SubfieldFolder(folderpath='subfields')
 SUBFIELD_UNIVERSE = subfield_lib.SubfieldUniverse(folders=[SUBFIELD_FOLDER])

@@ -22,7 +22,7 @@ from __future__ import print_function
 
 from typing import List
 
-from yamlformat.validator import entity_type_lib
+from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.validator import entity_type_lib
 
 
 def Field(fq_name: str, optional: bool = False) -> entity_type_lib.OptWrapper:

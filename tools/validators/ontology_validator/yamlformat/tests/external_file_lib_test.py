@@ -21,8 +21,8 @@ from os import path
 
 from absl.testing import absltest
 
-from yamlformat.tests import test_constants
-from yamlformat.validator import external_file_lib
+from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.tests import test_constants
+from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.validator import external_file_lib
 
 DIR_ONE_LEVEL = path.join(test_constants.TEST_RESOURCES, 'dir1')
 DIR_MULTI_DIR = path.join(test_constants.TEST_RESOURCES, 'dir2')

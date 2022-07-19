@@ -20,8 +20,8 @@ from __future__ import print_function
 
 from absl.testing import absltest
 
-from yamlformat.validator import findings_lib
-from yamlformat.validator import subfield_lib
+from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.validator import findings_lib
+from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.validator import subfield_lib
 
 _GOOD_PATH = '{0}/subfields/anyfolder'.format('mynamespace')
 _BAD_SUBFOLDER = '{0}/subfield/anyfolder'.format('mynamespace')

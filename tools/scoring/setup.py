@@ -26,5 +26,5 @@ setup(
     description='',
     packages=find_packages(),
     install_requires=['absl-py', 'argparse', 'typing_extensions'],
-    python_requires='==3.9',
+    python_requires='>=3.7',
 )

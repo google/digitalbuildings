@@ -12,12 +12,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 """Main module for DBO explorer."""
-from lib import constants
-from lib.ontology_wrapper import OntologyWrapper
+from google3.third_party.digitalbuildings.tools.explorer.lib import constants
+from google3.third_party.digitalbuildings.tools.explorer.lib.ontology_wrapper import OntologyWrapper
 
-from yamlformat.validator import external_file_lib
-from yamlformat.validator import namespace_validator as nv
-from yamlformat.validator import presubmit_validate_types_lib
+from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.validator import external_file_lib
+from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.validator import namespace_validator as nv
+from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.validator import presubmit_validate_types_lib
 
 
 def Build(ontology_path: str) -> OntologyWrapper:

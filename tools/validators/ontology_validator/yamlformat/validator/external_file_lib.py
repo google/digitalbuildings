@@ -23,9 +23,9 @@ from __future__ import print_function
 
 import os
 
-from yamlformat.validator import base_lib
-from yamlformat.validator import findings_lib
-from yamlformat.validator import presubmit_validate_types_lib
+from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.validator import base_lib
+from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.validator import findings_lib
+from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.validator import presubmit_validate_types_lib
 
 
 def Validate(filter_text, original_directory, changed_directory, interactive=True):

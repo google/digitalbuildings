@@ -18,9 +18,9 @@ import sys
 import colorama
 from termcolor import colored
 
-from lib import arg_parser
-from lib import explorer_handler
-from lib import parse_input
+from google3.third_party.digitalbuildings.tools.explorer.lib import arg_parser
+from google3.third_party.digitalbuildings.tools.explorer.lib import explorer_handler
+from google3.third_party.digitalbuildings.tools.explorer.lib import parse_input
 
 colorama.init()
 

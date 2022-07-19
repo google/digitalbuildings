@@ -18,11 +18,11 @@ from typing import Any, Dict
 import uuid
 import strictyaml as syaml
 
-from validate import instance_parser
+from google3.third_party.digitalbuildings.tools.validators.instance_validator.validate import instance_parser
 
 
 class GuidGenerator(object):
-  """Class for gnerator entity GUIDs."""
+  """Class for generator entity GUIDs."""
 
   @staticmethod
   def WriteYamlToFile(filename: str, entity_yaml_dict: Dict[str,
@@ -30,7 +30,8 @@ class GuidGenerator(object):
     """Converts a dictionary of entity instances to yaml file.
 
     Args:
-      filename: Building Config instance name which is being validated.
+      filename: path to import/export building config yaml file; input building
+      config file is overwritten with entities keyed by guid.
       entity_yaml_dict: Dictionary with entity yaml blocks keyed by entity
         instance code or GUID.
     """
