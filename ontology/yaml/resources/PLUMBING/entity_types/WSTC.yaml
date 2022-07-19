@@ -11,18 +11,19 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+# canonical types
 
- 
-  
-GEN_SS_TKLS_OTPM_PWM_RDM_BTEPM:
-  id: "17826942359745593344"
-  description: "Generator with run duration, Tank level, oil temperature, pressure, and run duration monitoring."
+########################
+### Canonical Types  ###
+########################
+
+
+WSTC_SS:
+  id: "7056302375912341504"
+  description: "Basic waste compactor system."
   is_canonical: true
   implements:
-  - GEN
-  - SS
-  - TKLS
-  - OTPM
-  - PWM  
-  - RDM
-  - BTEPM
+  - WSTC
+  - SS  
+
+
