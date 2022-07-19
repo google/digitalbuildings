@@ -1052,6 +1052,7 @@ FCU_DFSS_CHWZC_RTM_ZHM:
     - ZHM
 
 FCU_DFSS_DXRC_RHDHC_AL:
+  id: "15608638068288913408"
   description: "Typical Precision Air conditioning unit with alarms."
   is_canonical: true
   implements:
