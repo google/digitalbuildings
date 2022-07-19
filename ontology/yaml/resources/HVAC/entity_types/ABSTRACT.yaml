@@ -1184,6 +1184,7 @@ VOCC:
   - OPERATIONAL
 
 RAVOCC:
+  id: "1041182123605622784"
   description: "Volatile organic compound control for return air from zone."
   is_abstract: true
   uses:
@@ -1324,6 +1325,7 @@ CHPM:
   - MONITORING
 
 ESFM:
+  id: "12354224387560308736"
   description: " An Electrostatic filter used to maintain air quality its run status and alarm monitoring"
   is_abstract: true
   uses:
