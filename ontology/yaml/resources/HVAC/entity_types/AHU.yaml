@@ -3600,6 +3600,22 @@ AHU_DFSS_DXZC_ECONZ_EFSS2X_HT2ZC_CO2C:
   - EFSS2X
   - HT2ZC
   - CO2C
+  
+AHU_SFSS_SFVSC_CHWRC_OAFC_SSPC_RAVOCC_RACO2C_ESFM_SAIDC:
+  description: "AHU with CO2, VOC based outside air control, static pressure based VFD speed control,return air temperature based Chilled water valve modulation."
+  is_canonical: true
+  implements:
+  - AHU
+  - SFSS
+  - SFVSC
+  - CHWRC
+  - OAFC
+  - SSPC
+  - RAVOCC
+  - RACO2C
+  - ESFM
+  - SAIDC
+
 
 AHU_CHWSC_EFVSC_FDPM3X_HTWHLSTC_HWSC_RCO2M_RSPC_SFM_SFVSC_SSPC_VOADM_VMADC:
   description: "Complex multi zone AHU with heat recovery wheel and recirculated air control."
