@@ -1053,15 +1053,28 @@ FCU_DFSS_CHWZC_RTM_ZHM:
 
 FCU_DFSS_DFVSC_ZTC_CHWZTC_HWZTC_RTM:
   description: "FCU with zone temperature control and return air temperature monitoring."
-  is_canonical: true
   implements:
-  - FCU
-  - DFSS
   - DFVSC
   - ZTC
   - CHWZTC
   - HWZTC
   - RTM
+
+FCU_DFSS_DXRC_RHDHC_AL:
+  id: "15608638068288913408"
+  description: "Typical Precision Air conditioning unit with alarms."
+
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - DXRC
+  - RHDHC
+  opt_uses:
+  - filter_alarm
+  - master_alarm
+  - heat_exchange_failed_alarm 
+  - water_leak_alarm 
     
 FCU_DFVSC_CHWRC_FDPSM2X:
   id: "521860791574462464"
@@ -1481,6 +1494,7 @@ FCU_RTC_RHDHS_DTM_DFSS:
   
 #PAC Unit #  
 FCU_CHWDC_DFSS_DXDC_DFVSC_REFPM_ZHC_DFRMM_CHWDT:
+  id: "14561832629901983744"
   description: "CRAC with chilled water temperature monitoring and compressor monitoring with zone temperature and humidity monitoring."
   is_canonical: true
   implements:
@@ -1496,6 +1510,7 @@ FCU_CHWDC_DFSS_DXDC_DFVSC_REFPM_ZHC_DFRMM_CHWDT:
 
 #PAC Unit #  
 FCU_DFSS_DX2DC_DFVSC_REFPM2X_ZHC_DFRMM:
+  id: "14115976266792304640"
   description: "CRAC with dual compressor with temperature monitoring and compressor monitoring with humidity monitoring."
   is_canonical: true
   implements:
@@ -1509,6 +1524,7 @@ FCU_DFSS_DX2DC_DFVSC_REFPM2X_ZHC_DFRMM:
   
 #CSU canonical#  
 FCU_DFSS_DFVSC_FDPM_CHWDC_SRC_DFRMM:
+  id: "11307981899126800384"
   description: "FCU with temperature control, humidity monitor with electrical parameter monitoring."
   is_canonical: true
   implements:
@@ -1519,4 +1535,3 @@ FCU_DFSS_DFVSC_FDPM_CHWDC_SRC_DFRMM:
   - CHWDC
   - SRC
   - DFRMM 
-
