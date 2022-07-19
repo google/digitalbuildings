@@ -12,17 +12,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
- 
-  
-GEN_SS_TKLS_OTPM_PWM_RDM_BTEPM:
-  id: "17826942359745593344"
-  description: "Generator with run duration, Tank level, oil temperature, pressure, and run duration monitoring."
+TXMR_SS:
+  id: "5556603699997966336"
+  description: "Typical standard Transformer ."
   is_canonical: true
   implements:
-  - GEN
+  - TXMR
   - SS
-  - TKLS
-  - OTPM
-  - PWM  
-  - RDM
-  - BTEPM
