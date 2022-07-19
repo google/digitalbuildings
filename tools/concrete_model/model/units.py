@@ -11,40 +11,46 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-"""Module for concrete model units."""
+"""Module for EntityField units."""
 
 from typing import Dict
 
+from model.constants import RAW_UNIT_PATH
+from model.constants import RAW_UNIT_VALUE
+from model.constants import STANDARD_UNIT_VALUE
+
 
 class Units(object):
-  """Class for concrete model states.
+  """Data container class for an Entity Field's Units.
 
   Attributes:
-    raw_unit_path: the units path in the payload device.
-    standard_to_raw_unit_map: A mapping DBO
-      unit to raw unit value.
+    raw_unit_path: Bacnet device path to a data point's units.
+    standard_to_raw_unit_map: A mapping of standard units names to bacnet device
+      data units.
   """
 
-  def __init__(self,
-               raw_unit_path: str,
+  def __init__(self, raw_unit_path: str,
                standard_to_raw_unit_map: Dict[str, str]) -> None:
     """Init.
 
     Args:
-      raw_unit_path: the units path in the payload device.
-      standard_to_raw_unit_map: A mapping DBO
-        unit to raw unit value.
+      raw_unit_path: Bacnet device path to a data point's units.
+      standard_to_raw_unit_map: A mapping of standard units names to bacnet
+        device data units.
     """
     self.raw_unit_path = raw_unit_path
     self.standard_to_raw_unit_map = standard_to_raw_unit_map
 
-  def AddUnit(self, raw_unit_path: str, dbo_to_raw_unit_map: Dict[str,
-                                                                  str]) -> None:
-    """Adds a new unit to self.standard_to_raw_unit_map.
+  def GetSpreadsheetRowMapping(self) -> Dict[str, str]:
+    """Returns a dictionary of EntityField attributes by spreadsheet headers.
 
-    Args:
-      raw_unit_path: a devices path to a unit value. i.e.
-        pointset.points.supply_fan_speed_percentage_command.units
-      dbo_to_raw_unit_map: A mapping of standard unit name to raw units from
-        payload device.
+    Corresponds to a single row in a concrete model spreadsheet.
     """
+    spreadsheet_row_mapping = {RAW_UNIT_PATH: self.raw_unit_path}
+    standard_to_raw_unit_map = self.standard_to_raw_unit_map
+    for standard_unit_value, raw_unit_value in standard_to_raw_unit_map.items():
+      spreadsheet_row_mapping.update({
+          STANDARD_UNIT_VALUE: standard_unit_value,
+          RAW_UNIT_VALUE: raw_unit_value
+      })
+    return spreadsheet_row_mapping

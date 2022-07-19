@@ -20,13 +20,14 @@ from __future__ import print_function
 
 import os
 import tempfile
-from typing import Dict, List
+from typing import Dict, List, Tuple
 from unittest import mock
 
 from absl.testing import absltest
 
 from tests import test_constants
 from validate import entity_instance
+from validate import generate_universe
 from validate import handler
 from validate import instance_parser
 from validate import subscriber
@@ -34,8 +35,8 @@ from validate import telemetry_validator
 from yamlformat.validator import presubmit_validate_types_lib
 
 _TESTCASE_PATH = test_constants.TEST_INSTANCES
-_TESTCASE_DIR = test_constants.TEST_RESOURCES
 _INIT_CFG = instance_parser.ConfigMode.INITIALIZE
+_UPDATE_CFG = instance_parser.ConfigMode.UPDATE
 
 _RunValidation = handler.RunValidation
 _RunEntityHelperValidation = handler.EntityHelper.Validate
@@ -50,16 +51,19 @@ def _ParserHelper(testpaths: List[str]) -> instance_parser.InstanceParser:
   return parser
 
 
-def _Helper(testpaths: List[str]) -> Dict[str, entity_instance.EntityInstance]:
-  return _ParserHelper(testpaths).GetEntities()
+def _Helper(testpaths: List[str]) -> Tuple[
+    Dict[str, entity_instance.EntityInstance], instance_parser.EntityOperation]:
+  parser = _ParserHelper(testpaths)
+  entities = parser.GetEntities()
+  default_operation = handler.GetDefaultOperation(parser.GetConfigMode())
+  return entities, default_operation
 
 
 class HandlerTest(absltest.TestCase):
 
   def testValidateOneBuildingExist(self):
     try:
-      input_file = os.path.join(_TESTCASE_PATH, 'GOOD',
-                                'good_building_type.yaml')
+      input_file = os.path.join(_TESTCASE_PATH, 'GOOD', 'building_type.yaml')
       _RunValidation([input_file], use_simplified_universe=True)
     except SyntaxError:
       self.fail('ValidationHelper:Validate raised ExceptionType unexpectedly!')
@@ -68,8 +72,7 @@ class HandlerTest(absltest.TestCase):
     report_fd, report_filename = '', ''
     try:
       report_fd, report_filename = tempfile.mkstemp(text=True)
-      input_file = os.path.join(_TESTCASE_PATH, 'GOOD',
-                                'good_building_type.yaml')
+      input_file = os.path.join(_TESTCASE_PATH, 'GOOD', 'building_type.yaml')
       _RunValidation([input_file],
                      use_simplified_universe=True,
                      report_filename=report_filename)
@@ -85,35 +88,13 @@ class HandlerTest(absltest.TestCase):
 
   def testValidateOneBuildingExistFails(self):
     with self.assertRaises(SyntaxError):
-      input_file = os.path.join(_TESTCASE_PATH, 'BAD',
-                                'bad_missing_building.yaml')
+      input_file = os.path.join(_TESTCASE_PATH, 'BAD', 'missing_building.yaml')
       _RunValidation([input_file], use_simplified_universe=True)
-
-  def testDirectoryWalkerHandlesDirs(self):
-    """ Check that the directory walker works with multiple input
-    directories. """
-    try:
-      dir1 = os.path.join(_TESTCASE_DIR,'fakedir')
-      _RunValidation([dir1], use_simplified_universe=True)
-    except SyntaxError:
-      self.fail('ValidationHelper:Validate unexpectedly raised Exception')
-
-  def testDirectoryWalkerHandlesDirsAndFiles(self):
-    """ Check that the directory walker can handle both directories
-    and files passed to it. """
-    try:
-      dir1 = os.path.join(_TESTCASE_DIR,'fakedir','another_fan')
-      dir2 = os.path.join(_TESTCASE_DIR,'fakedir','fans')
-      file1 = os.path.join(_TESTCASE_DIR,'fakedir','bldg.yaml')
-
-      _RunValidation([dir1,dir2,file1], use_simplified_universe=True)
-    except SyntaxError:
-      self.fail('ValidationHelper:Validate unexpectedly raised Exception')
 
   def testValidateTranslationWithNoConfigID(self):
     try:
       input_file = os.path.join(_TESTCASE_PATH, 'GOOD',
-                                'good_translation_nobuilding.yaml')
+                                'translation_nobuilding.yaml')
       with self.assertRaises(KeyError):
         _RunValidation([input_file], use_simplified_universe=True)
     except SyntaxError:
@@ -121,10 +102,8 @@ class HandlerTest(absltest.TestCase):
 
   def testValidateMultipleInputFilesSuccess(self):
     try:
-      input_file1 = os.path.join(_TESTCASE_PATH, 'GOOD',
-                                 'good_building_type.yaml')
-      input_file2 = os.path.join(_TESTCASE_PATH, 'GOOD',
-                                 'good_translation.yaml')
+      input_file1 = os.path.join(_TESTCASE_PATH, 'GOOD', 'building_type.yaml')
+      input_file2 = os.path.join(_TESTCASE_PATH, 'GOOD', 'translation.yaml')
       _RunValidation([input_file1, input_file2], use_simplified_universe=True)
     except SyntaxError:
       self.fail('ValidationHelper:Validate unexpectedly raised Exception')
@@ -133,8 +112,7 @@ class HandlerTest(absltest.TestCase):
   @mock.patch.object(subscriber, 'Subscriber')
   def testTelemetryArgsBothSetSuccess(self, mock_subscriber, mock_validator):
     try:
-      input_file = os.path.join(_TESTCASE_PATH, 'GOOD',
-                                'good_building_type.yaml')
+      input_file = os.path.join(_TESTCASE_PATH, 'GOOD', 'building_type.yaml')
       _RunValidation([input_file],
                      subscription='a',
                      service_account='file',
@@ -152,16 +130,14 @@ class HandlerTest(absltest.TestCase):
 
   def testTelemetryArgsMissingSubscription(self):
     with self.assertRaises(SystemExit):
-      input_file = os.path.join(_TESTCASE_PATH, 'GOOD',
-                                'good_building_type.yaml')
+      input_file = os.path.join(_TESTCASE_PATH, 'GOOD', 'building_type.yaml')
       _RunValidation([input_file],
                      service_account='file',
                      use_simplified_universe=True)
 
   def testTelemetryArgsMissingServiceAccount(self):
     with self.assertRaises(SystemExit):
-      input_file = os.path.join(_TESTCASE_PATH, 'GOOD',
-                                'good_building_type.yaml')
+      input_file = os.path.join(_TESTCASE_PATH, 'GOOD', 'building_type.yaml')
       _RunValidation([input_file],
                      subscription='a',
                      use_simplified_universe=True)
@@ -170,14 +146,14 @@ class HandlerTest(absltest.TestCase):
   @mock.patch.object(presubmit_validate_types_lib, 'ConfigUniverse')
   def testValidateAcceptsEntitiesWithExpectedTypes(self, mock_universe,
                                                    mock_validator):
-    parsed = _Helper(
-        [os.path.join(_TESTCASE_PATH, 'GOOD', 'good_translation.yaml')])
+    parsed, default_operation = _Helper(
+        [os.path.join(_TESTCASE_PATH, 'GOOD', 'translation.yaml')])
     entity_helper = handler.EntityHelper(mock_universe)
     parsed = dict(parsed)
     instances = {}
     for name, ei in parsed.items():
       instances[name] = entity_instance.EntityInstance.FromYaml(
-          name, ei, code_to_guid_map={})
+          name, ei, default_operation=default_operation)
 
     valid_entities = entity_helper.Validate(instances, _INIT_CFG)
 
@@ -186,11 +162,45 @@ class HandlerTest(absltest.TestCase):
 
   def testValidateLinksWithNetworkEntity(self):
     try:
-      input_file = os.path.join(_TESTCASE_PATH, 'GOOD', 'good_links.yaml')
+      input_file = os.path.join(_TESTCASE_PATH, 'GOOD', 'links.yaml')
       _RunValidation([input_file], use_simplified_universe=True)
     except SyntaxError:
       self.fail('ValidationHelper:Validate raised ExceptionType unexpectedly!')
 
+  def testValidateRejectsWithInterdependency(self):
+    parsed, default_operation = _Helper([
+        os.path.join(_TESTCASE_PATH, 'BAD',
+                     'entity_interdependency_v1_alpha.yaml')
+    ])
+    config_universe = generate_universe.BuildUniverse(
+        use_simplified_universe=True)
+    entity_helper = handler.EntityHelper(config_universe)
+    parsed = dict(parsed)
+    instances = {}
+    for name, ei in parsed.items():
+      instances[name] = entity_instance.EntityInstance.FromYaml(
+          name, ei, default_operation=default_operation)
+
+    with self.assertRaises(ValueError):
+      entity_helper.Validate(instances, _UPDATE_CFG)
+
+  def testValidateAcceptsWithInterdependency(self):
+    parsed, default_operation = _Helper([
+        os.path.join(_TESTCASE_PATH, 'GOOD',
+                     'entity_interdependency_v1_alpha.yaml')
+    ])
+    config_universe = generate_universe.BuildUniverse(
+        use_simplified_universe=True)
+    entity_helper = handler.EntityHelper(config_universe)
+    parsed = dict(parsed)
+    instances = {}
+    for name, ei in parsed.items():
+      instances[name] = entity_instance.EntityInstance.FromYaml(
+          name, ei, default_operation=default_operation)
+
+    valid_entities = entity_helper.Validate(instances, _UPDATE_CFG)
+
+    self.assertEqual(valid_entities, instances)
 
 if __name__ == '__main__':
   absltest.main()

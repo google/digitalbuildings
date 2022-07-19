@@ -22,7 +22,7 @@ import ast
 from os import path
 import sys
 
-from arg_parser import CreateParser
+from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.arg_parser import CreateParser
 
 from yamlformat.validator import external_file_lib
 

@@ -13,37 +13,42 @@
 # limitations under the License.
 """Core component."""
 
+from score.constants import FileTypes
 from score.dimensions.dimension import Dimension
-from score.constants import FileTypes, DimensionCategories, MappingTypes
+from score.types_ import TranslationsDict
 
-STATE, UNIT = MappingTypes
 PROPOSED, SOLUTION = FileTypes
 
 
 class StateMapping(Dimension):
-  """Quantifies how accurately the proposed file
-  mapped multi-state values for relevant fields."""
+  """Quantifies how accurately the proposed file mapped multi-state values for relevant fields."""
 
-  # SIMPLE category indicates this dimension receives `translations`
-  # rather than `deserialized_files` to do its calculations
-  category = DimensionCategories.SIMPLE
+  def __init__(self, *, translations: TranslationsDict):
+    super().__init__(translations=translations)
 
-  def evaluate(self):
-    """Calculates and assigns properties necessary for generating a score."""
+    multistate_solutions = (
+        field for field in translations[SOLUTION]
+        if type(field[1]).__name__ == 'MultiStateValue')
+    solution_mappings = set()
+    for field in multistate_solutions:
+      for kv in field[1].states.items():
+        solution_mappings.add((field[0], kv))
 
-    proposed_translations, solution_translations = map(
-        self._condense_translations, (PROPOSED, SOLUTION))
-
-    proposed_mappings = self._isolate_mappings(proposed_translations,
-                                               mapping_type=STATE)
-    solution_mappings = self._isolate_mappings(solution_translations,
-                                               mapping_type=STATE)
+    # TODO(b/210741084): clarify this comment and add test case
+    # 'if isinstance(kv[1], str)' added 20211102 due to list value in
+    # Mapped US-SVL-MP2 proposal
+    multistate_proposed = (
+        field for field in translations[PROPOSED]
+        if type(field[1]).__name__ == 'MultiStateValue')
+    proposed_mappings = set()
+    for field in multistate_proposed:
+      for kv in field[1].states.items():
+        if isinstance(kv[1], str):
+          proposed_mappings.add((field[0], kv))
 
     correct_mappings = proposed_mappings.intersection(solution_mappings)
 
     self.correct_reporting = len(correct_mappings)
     self.correct_ceiling_reporting = len(solution_mappings)
-    self.incorrect_reporting = (self.correct_ceiling_reporting -
-                                self.correct_reporting)
-
-    return self
+    self.incorrect_reporting = (
+        self.correct_ceiling_reporting - self.correct_reporting)
