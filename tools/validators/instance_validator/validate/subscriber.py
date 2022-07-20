@@ -18,10 +18,9 @@ from __future__ import print_function
 
 from concurrent import futures
 import json
-import google.auth
 
+from google import auth
 from google.cloud import pubsub_v1
-from google.auth import jwt
 
 from typing import Optional
 
@@ -53,11 +52,12 @@ class Subscriber(object):
       with open(self.service_account_info_json_file, encoding="utf-8") as f:
         service_account_info = json.load(f)
       audience = "https://pubsub.googleapis.com/google.pubsub.v1.Subscriber"
-      credentials = jwt.Credentials.from_service_account_info(service_account_info
+      credentials = auth.jwt.Credentials.from_service_account_info(service_account_info
                                                               , audience=audience)
     else:
       print("No service account. Using application default credentials")
-      credentials, project_id = google.auth.default()
+      # pylint: disable=unused-variable
+      credentials, project_id = auth.default()
 
     sub_client = pubsub_v1.SubscriberClient(credentials=credentials)
     future = sub_client.subscribe(self.subscription_name, callback)
