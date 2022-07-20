@@ -57,7 +57,7 @@ class Subscriber(object):
                                                               , audience=audience)
     else:
       print("No service account. Using application default credentials")
-      credentials = google.auth.default()
+      credentials, project_id = google.auth.default()
 
     sub_client = pubsub_v1.SubscriberClient(credentials=credentials)
     future = sub_client.subscribe(self.subscription_name, callback)
