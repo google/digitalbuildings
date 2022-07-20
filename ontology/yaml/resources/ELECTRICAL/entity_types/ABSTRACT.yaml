@@ -22,6 +22,7 @@ SS:
   opt_uses:
   - failed_alarm
   - lost_power_alarm
+  - power_status
 
 
 IOBM:
@@ -50,3 +51,116 @@ IOBM:
   - bypass_phase1_neutral_voltage_sensor
   - bypass_phase2_neutral_voltage_sensor
   - bypass_phase3_neutral_voltage_sensor
+  opt_uses:
+  - input_frequency_sensor
+  - output_frequency_sensor
+  - bypass_frequency_sensor
+  - failed_alarm
+  - output_power_sensor
+  - output_apparent_power_sensor
+  - bypass_status
+  - overload_alarm
+  - lost_power_alarm
+  - load_percentage_sensor
+
+PWM:
+  id: "13215256341318205440"
+  description: "Very basic power and energy monitoring."
+  is_abstract: true
+  uses:
+  - power_sensor
+  - energy_accumulator
+  - powerfactor_sensor 
+  - apparent_power_sensor 
+
+RMM:
+  id: "3032617583833513984"
+  description: "Run mode monitoring."
+  is_abstract: true
+  uses:
+  - run_mode
+
+OTPM:
+  id: "11810133257578610688"
+  description: "Oil temperature and pressure monitoring"
+  is_abstract: true
+  uses:
+  - oil_temperature_sensor
+  - oil_pressure_sensor
+  
+RDM:
+  id: "15919667917554188288"
+  description: "Very basic system run duration monitoring."
+  is_abstract: true
+  uses:
+  - run_time_accumulator
+  
+TKLS:  
+  id: "9502038448551231488"
+  description: "Very basic tank level status monitoring for Electrical generator equipments."
+  is_abstract: true
+  uses:
+  - tank_level_status
+
+PPWM:
+  id: "14668216976959078400"
+  description: "Phase power monitoring"
+  is_abstract: true
+  uses:
+  - phase1_apparent_power_sensor
+  - phase2_apparent_power_sensor
+  - phase3_apparent_power_sensor
+  - line_frequency_sensor 
+
+BATM:
+  id: "10996952049861525504"
+  description: "Battery typically used with UPS"
+  is_abstract: true
+  uses:
+  - battery_voltage_sensor
+  - battery_charge_percentage_sensor
+  opt_uses:
+  - low_battery_charge_alarm
+  - inverter_failed_alarm
+  - line_frequency_sensor
+
+BTEPM:
+  id: "8603570322890817536"
+  description: "Basic battery electrical parameter monitoring"
+  is_abstract: true
+  uses:
+  - battery_voltage_sensor
+  - battery_current_sensor
+  - line_frequency_sensor  
+
+SRC1:
+  id: "15185581178292797440"
+  description: "Source 1 parameters typically for ATS"
+  is_abstract: true
+  uses:
+  - source1_phase1_phase2_voltage_sensor
+  - source1_phase2_phase3_voltage_sensor
+  - source1_phase3_phase1_voltage_sensor
+  - source1_frequency_sensor
+  opt_uses:
+  - source1_phase1_phase2_over_voltage_status
+  - source1_phase2_phase3_over_voltage_status
+  - source1_phase3_phase1_over_voltage_status
+  - source1_over_voltage_status
+  - source1_lost_power_alarm
+
+SRC2:
+  id: "6549928892809871360"
+  description: "Source 1 parameters typically for ATS"
+  is_abstract: true
+  uses:
+  - source2_phase1_phase2_voltage_sensor
+  - source2_phase2_phase3_voltage_sensor
+  - source2_phase3_phase1_voltage_sensor
+  - source2_frequency_sensor 
+  opt_uses:
+  - source2_phase1_phase2_over_voltage_status
+  - source2_phase2_phase3_over_voltage_status
+  - source2_phase3_phase1_over_voltage_status
+  - source2_over_voltage_status
+  - source2_lost_power_alarm

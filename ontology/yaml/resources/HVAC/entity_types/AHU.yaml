@@ -3345,6 +3345,22 @@ AHU_DX2SC_ECON_SHM_SFSS_SFVSC_SSPC:
   - SFVSC
   - SSPC
 
+
+AHU_CHWSC_OAMC_RTM_SFVSC_RACO2C:
+  id: "3974138186791124992"
+  description: "AHU with return air monitor and supply air temperature, fan and zone air co2 control where the co2 sensor installed at return air duct."
+  is_canonical: true
+  implements:
+  - AHU
+  - CHWSC
+  - OAMC
+  - RTM
+  - SFVSC
+  - RACO2C
+  opt_uses:
+  - supply_fan_lost_power_alarm
+
+
 AHU_BSPC_DX4SC_ECONM_EFSS_EFVSC_SARC_SHC_SFSS2X_SFVSC_SSPC:
   id: "15162610181365301248"
   description: "Multi-zone AHU with four-stage DX cooling and supply air humidity control."
@@ -3584,6 +3600,22 @@ AHU_DFSS_DXZC_ECONZ_EFSS2X_HT2ZC_CO2C:
   - EFSS2X
   - HT2ZC
   - CO2C
+  
+AHU_SFSS_SFVSC_CHWRC_OAFC_SSPC_RAVOCC_RACO2C_ESFM_SAIDC:
+  description: "AHU with CO2, VOC based outside air control, static pressure based VFD speed control,return air temperature based Chilled water valve modulation."
+  is_canonical: true
+  implements:
+  - AHU
+  - SFSS
+  - SFVSC
+  - CHWRC
+  - OAFC
+  - SSPC
+  - RAVOCC
+  - RACO2C
+  - ESFM
+  - SAIDC
+
 
 ###################################
 ### Existing Non-standard Types ###
@@ -4596,3 +4628,137 @@ AHU_DFSS_DX2ZC_ECONZ_CO2C_DSP_RCKTM2X_HTZC_CC2XM_RTM_DTM:
   - DTM
   opt_uses:
   - condensing_fan_current_sensor
+  
+#AHU Unit#  
+AHU_SFSS_SFMSC_SFVSC_FDPM_CHWSC_RTM_RACO2C_SSPC_VOADM2X_SAIDC_RAIDC2X:
+  id: "5588410372366270464"
+  description: "AHUs with chilled water temperature monitoring, compressor monitoring with zone temperature and humidity monitoring with 2 dampers monitoring and control ."
+  is_canonical: true
+  implements:
+  - AHU
+  - SFSS
+  - SFMSC
+  - SFVSC
+  - FDPM
+  - CHWSC
+  - RTM
+  - RACO2C
+  - SSPC
+  - VOADM2X
+  - SAIDC
+  - RAIDC2X
+  
+  
+AHU_SFSS_SFMSC_SFVSC_FDPM_CHWSC_RTM_RACO2C_VOADM2X_SAIDC:
+  id: "8880541699974103040"
+  description: "AHUs with chilled water temperature monitoring and compressor monitoring with zone temperature and humidity monitoring ."
+  is_canonical: true
+  implements:
+  - AHU
+  - SFSS
+  - SFMSC
+  - SFVSC
+  - FDPM
+  - CHWSC
+  - RTM
+  - RACO2C
+  - VOADM2X
+  - SAIDC
+  
+  
+AHU_SFSS_SFMSC_SFVSC_FDPM_CHWSC_RTM_RACO2C_SSPC_VOADM2X_SAIDC3X:
+  id: "10573895159865409536"
+  description: "AHUs with chilled water temperature monitoring and compressor monitoring with zone temperature and humidity monitoring ."
+  is_canonical: true
+  implements:
+  - AHU
+  - SFSS
+  - SFMSC
+  - SFVSC
+  - FDPM
+  - CHWSC
+  - RTM
+  - RACO2C
+  - SSPC
+  - VOADM2X
+  - SAIDC3X
+
+AHU_SFSS_SFMSC_SFVSC_FDPM_CHWSC_RTM_RACO2C_SSPC2X_VOADM2X_SAIDC2X_RAIDC4X_SSPC:
+  id: "1938242874382483456"
+  description: "AHUs with chilled water temperature monitoring and compressor monitoring with zone temperature and humidity monitoring ."
+  is_canonical: true
+  implements:
+  - AHU
+  - SFSS
+  - SFMSC
+  - SFVSC
+  - FDPM
+  - CHWSC
+  - RTM
+  - RACO2C
+  - SSPC2X
+  - VOADM2X
+  - SAIDC2X
+  - RAIDC4X
+  - SSPC
+
+
+AHU_SFSS_SFMSC_SFVSC_FDPM_CHWSC_RTM_RACO2C_SSPC_VOADM2X_SAIDC2X_RAIDC2X:
+  id: "17761640165148721152"
+  description: "AHUs with chilled water temperature monitoring and compressor monitoring with zone temperature and humidity monitoring ."
+  is_canonical: true
+  implements:  
+  - AHU
+  - SFSS
+  - SFMSC
+  - SFVSC
+  - FDPM
+  - CHWSC
+  - RTM
+  - RACO2C
+  - SSPC
+  - VOADM2X
+  - SAIDC2X
+  - RAIDC2X
+
+  
+AHU_SFSS_SFMSC_SFVSC_FDPM_CHWSC_RTM_RACO2C_SSPC2X_VOADM2X_SAIDC2X_RAIDC3X_SSPC:
+  id: "14811782409221046272"
+  description: "AHUs with chilled water temperature monitoring and compressor monitoring with zone temperature and humidity monitoring ."
+  is_canonical: true
+  implements: 
+  - AHU
+  - SFSS
+  - SFMSC
+  - SFVSC
+  - FDPM
+  - CHWSC
+  - RTM
+  - RACO2C
+  - SSPC2X
+  - VOADM2X
+  - SAIDC2X
+  - RAIDC3X
+  - SSPC
+  
+  
+
+AHU_SFSS_SFMSC_SFVSC_FDPM_CHWSC_RTM_RACO2C_SSPC2X_VOADM2X_SAIDC2X_RAIDC2X_SSPC:
+  id: "18103913736828878848"
+  description: "AHUs with chilled water temperature monitoring and compressor monitoring with zone temperature and humidity monitoring ."
+  is_canonical: true
+  implements:   
+  - AHU
+  - SFSS
+  - SFMSC
+  - SFVSC
+  - FDPM
+  - CHWSC
+  - RTM
+  - RACO2C
+  - SSPC2X
+  - VOADM2X
+  - SAIDC2X
+  - RAIDC2X
+  - SSPC
+

@@ -24,6 +24,8 @@ PWM:
   - reactive_power_sensor
   - powerfactor_sensor
   - line_frequency_sensor
+  - apparent_energy_accumulator
+  - reactive_energy_accumulator
   uses:
   - power_sensor
   - energy_accumulator
@@ -67,3 +69,14 @@ PVCM:
   - phase1_neutral_line_voltage_sensor
   - phase2_neutral_line_voltage_sensor
   - phase3_neutral_line_voltage_sensor
+  
+PWMRDM:
+  id: "14764494613133656064"
+  description: "Energy monitoring from Electrical Grid and Generator with run hours monitoring."
+  is_abstract: true
+  uses:
+  - generator_energy_accumulator
+  - electricalgrid_energy_accumulator
+  - generator_run_time_accumulator
+  - electricalgrid_run_time_accumulator 
+  
