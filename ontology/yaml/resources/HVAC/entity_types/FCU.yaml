@@ -55,6 +55,7 @@ FCU_DXRC_RMM:
   is_canonical: true
   opt_uses:
   - failed_alarm
+  - fan_speed_mode
   implements:
   - FCU
   - DXRC
