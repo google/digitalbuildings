@@ -11,20 +11,15 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-"""Setup file for the ontology explorer."""
 
-from setuptools import find_packages
-from setuptools import setup
+### ABSTRACT TYPES
 
-setup(
-    name='ontology-explorer',
-    version='0.0.1',
-    url='https://github.com/google/digitalbuildings',
-    license='Apache License',
-    author='Travis Welch',
-    packages=find_packages(),
-    install_requires=[
-        'absl-py', 'pyfiglet', 'argparse', 'termcolor', 'colorama'
-    ],
-    python_requires='==3.9',
-)
+SSS_STD:
+  id: "1291694852878106624"
+  description: "Standard seismic detector."
+  is_canonical: true
+  implements:
+  - SSS
+  uses:
+  - seismic_alarm
+  - failed_alarm
