@@ -126,9 +126,8 @@ def RunValidation(filenames: List[str],
     report_file = open(report_filename, 'w', encoding='utf-8')
     sys.stdout = report_file
   try:
-    if bool(subscription) != bool(service_account):
-      print('Subscription and a service account file are '
-            'both needed for the telemetry validation!')
+    if not bool(subscription):
+      print('Subscription is needed for telemetry validation!')
       sys.exit(0)
     print('\nStarting validator...\n')
     print('\nStarting universe generation...\n')

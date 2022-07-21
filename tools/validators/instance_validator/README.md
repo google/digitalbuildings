@@ -36,14 +36,17 @@ Note: as of the current development stage, you must clone the entire repository 
 
 The validator supports a telemetry validation mode. When this mode is enabled, the validator will listen on a provided pubsub subscription for telemetry messages, and validate the message contents against the instance configuration. It is recommended that you first use the instance validator with telemetry validation mode disabled, and then enable it after that passes.
 
-If you would like to use the telemetry validation mode, you must provide the `--subscription` and `--service-account` parameters when running instance_validator.py. Failure to provide both of these parameters will result in early termination of the validator and an error message. If you do not provide either parameter, the validator will run with telemetry validation mode disabled.
+If you would like to use the telemetry validation mode, you must provide the `--subscription` parameter, and you must either:
+- Have the both the `gcloud` CLI installed and configured using `gcloud init` using an appropiate project, and [`gcloud application-default` credentials](https://cloud.google.com/sdk/gcloud/reference/auth/application-default) setup with an account which has adequate permissions to access the given subscription
+- Provide a `--service-account` parameter when running instance_validator.py. Failure to provide both of these parameters will result in early termination of the validator and an error message. If you do not provide either parameter, the validator will run with telemetry validation mode disabled.
+
+**NOTE** The service account key and subscription are provided by the Google team. Please reach out to your IoT TPM for guidance.
 
 The `--subscription parameter` value should be a fully-qualified path to a Google Cloud Pubsub subscription, e.g. projects/google.com:your-project/subscriptions/your-subscription.
 
-The `--service-account` parameter value should be a path to a service account key file corresponding to an account that has permission to pull messages from the subscription.
-**NOTE** The service account key and subscription are provided by the Google team. Please reach out to your IoT TPM for guidance.
-
 Optional parameter for the telemetry validation mode are:
+
+The `--service-account` parameter value should be a path to a service account key file corresponding to an account that has permission to pull messages from the subscription.
 
 `--timeout`: The timeout duration in seconds for the telemetry validation test. The default value is 600 seconds, or 10 minutes. If this time limit is exceeded before the validator receives a test pubsub message for each of the entities configured in the given instance config file, the test will fail with an error and report the entities that were not heard from.
 
