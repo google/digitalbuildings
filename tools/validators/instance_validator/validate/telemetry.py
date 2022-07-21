@@ -21,6 +21,7 @@ DEVICE_ID = 'deviceId'
 DEVICE_REGISTRY_ID = 'deviceRegistryId'
 DEVICE_NUM_ID = 'deviceNumId'
 SUB_FOLDER = 'subFolder'
+SUB_TYPE = 'subType'
 VERSION = 'version'
 POINTS = 'points'
 TIMESTAMP = 'timestamp'
@@ -61,6 +62,8 @@ class Telemetry(object):
       pubsub_message_attributes.get(DEVICE_NUM_ID)
     parsed_attributes[SUB_FOLDER] = \
       pubsub_message_attributes.get(SUB_FOLDER)
+    parsed_attributes[SUB_TYPE] = \
+      pubsub_message_attributes.get(SUB_TYPE)
     return parsed_attributes
 
   def _parse_data(self, data):

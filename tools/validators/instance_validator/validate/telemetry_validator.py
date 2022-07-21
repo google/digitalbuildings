@@ -26,7 +26,10 @@ from validate import telemetry_error
 from validate import telemetry_warning
 
 DEVICE_ID = 'deviceId'
-
+SUB_FOLDER = 'subFolder'
+SUB_TYPE = 'subType'
+STATE = 'state'
+POINTSET = 'pointset'
 
 class TelemetryValidator(object):
   """Validates telemetry messages against a building config file.
@@ -115,6 +118,12 @@ class TelemetryValidator(object):
 
     tele = telemetry.Telemetry(message)
     entity_name = tele.attributes[DEVICE_ID]
+
+    # Pub/Sub stream includes messages which aren't telemetry, ignore these
+    if (tele.attributes[SUB_FOLDER] != POINTSET
+      or tele.attributes[SUB_TYPE] == STATE):
+      message.ack()
+      return
 
     # Telemetry message received for an entity not in building config
     if entity_name not in self.entities_with_translation.keys():
