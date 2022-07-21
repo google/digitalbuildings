@@ -50,10 +50,10 @@ FCU_DFSS_CSP_DXZC:
   - DXZC
 
 FCU_DXRC_RMM:
-  description: "Typical DX FCU with cooling-only (return control) with run mode and fire monitoring ."
+  description: "Typical DX FCU with cooling-only (return control) with run mode and failed alarm ."
   is_canonical: true
   opt_uses:
-  - fire_alarm
+  - failed_alarm
   implements:
   - FCU
   - DXRC
