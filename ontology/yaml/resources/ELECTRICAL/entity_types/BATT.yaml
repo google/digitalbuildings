@@ -28,4 +28,5 @@ BATT_STD:
   - min_battery_temperature_sensor
   - min_battery_voltage_sensor
   - battery_charge_status
+  - battery_charge_percentage_sensor
   - battery_failed_alarm
