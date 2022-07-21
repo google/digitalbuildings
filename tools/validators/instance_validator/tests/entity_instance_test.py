@@ -57,7 +57,7 @@ def _ParserHelper(testpaths: List[str]) -> instance_parser.InstanceParser:
 def _Helper(
     testpaths: List[str]
 ) -> Tuple[Dict[str, syaml.YAML], instance_parser.EntityOperation]:
-  """Helper function to handle the loading of a building config given by a List of yaml filepaths.
+  """Helper function for loading a list of building configuration filepaths.
 
   Args:
     testpaths: list of files to validate against
@@ -711,8 +711,7 @@ class EntityInstanceTest(absltest.TestCase):
 
     self.assertFalse(self.update_validator.Validate(entity))
 
-  def testInstance_InvalidDimensionalTranslationMissingUnitMapping_ReturnsValueError(
-      self):
+  def testDimensionalTranslationMissingUnitMapping_ReturnsValueError(self):
     try:
       entity_instance.EntityInstance(
           _UPDATE,

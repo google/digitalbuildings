@@ -142,14 +142,15 @@ class GraphValidator(object):
 
   def _ConnectionsAreValid(self, entity: EntityInstance) -> bool:
     """Returns true if an entity's connections are complete."""
+    config_init = parse.ConfigMode.INITIALIZE
+    config_update = parse.ConfigMode.UPDATE
     if not entity.connections:
       return True
 
     is_valid = True
     for conn_inst in entity.connections:
       if conn_inst.source not in self.entity_instances:
-        if (self.config_mode == parse.ConfigMode.INITIALIZE or
-            self.config_mode == parse.ConfigMode.UPDATE):
+        if self.config_mode in (config_init, config_update):
           print(f'Orphan connection to: {conn_inst.source}')
           is_valid = False
         continue
@@ -161,14 +162,15 @@ class GraphValidator(object):
 
   def _LinksAreValid(self, entity: EntityInstance) -> bool:
     """Returns true if an entity's links are complete."""
-
+    config_init = parse.ConfigMode.INITIALIZE
+    config_update = parse.ConfigMode.UPDATE
     if entity.links is None:
       return True
     is_valid = True
 
     for link_inst in entity.links:
       if link_inst.source not in self.entity_instances.keys():
-        if self.config_mode == parse.ConfigMode.INITIALIZE or parse.ConfigMode.UPDATE:
+        if self.config_mode == config_init or config_update:
           print(f'Invalid link source entity GUID: {link_inst.source}')
           is_valid = False
         continue
@@ -506,14 +508,18 @@ class InstanceValidator(object):
       True if the entity is valid
     """
     is_valid = True
+    config_update = parse.ConfigMode.UPDATE
+    config_export = parse.ConfigMode.EXPORT
+    config_init = parse.ConfigMode.INITIALIZE
 
     if entity.update_mask is not None:
       if entity.operation != parse.EntityOperation.UPDATE:
         print('Update mask is required for update operations')
         is_valid = False
-      if entity.type_name is None and parse.ENTITY_TYPE_KEY in entity.update_mask:
-        print('Update mask to clear Entity Type not allowed')
-        is_valid = False
+      if entity.type_name is None:
+        if parse.ENTITY_TYPE_KEY in entity.update_mask:
+          print('Update mask to clear Entity Type not allowed')
+          is_valid = False
 
     if not entity.guid:
       print('Entity GUID is required.')
@@ -523,7 +529,7 @@ class InstanceValidator(object):
       print('Entity code is required.')
       is_valid = False
 
-    if (self.config_mode == parse.ConfigMode.INITIALIZE and
+    if (self.config_mode == config_init and
         entity.operation != parse.EntityOperation.ADD):
       print('only ADD operation is allowed in INITIALIZE mode')
       return False
@@ -531,8 +537,7 @@ class InstanceValidator(object):
     if entity.operation == parse.EntityOperation.DELETE:
       return is_valid
 
-    if (self.config_mode == parse.ConfigMode.UPDATE or
-        self.config_mode == parse.ConfigMode.EXPORT) and not entity.etag:
+    if self.config_mode in (config_update, config_export) and not entity.etag:
       print('etag is required on update or export')
       is_valid = False
 
@@ -770,7 +775,7 @@ class EntityInstance(findings_lib.Findings):
       if parse.EntityOperation.FromString(entity_yaml[
           parse.ENTITY_OPERATION_KEY]) != parse.EntityOperation.UPDATE:
         raise ValueError(
-            'Entity block can only specify "UPDATE" operation when "update_mask" is present.'
+            'Only specify "UPDATE" operation when "update_mask" is present.'
         )
       update_mask = entity_yaml[parse.UPDATE_MASK_KEY]
       operation = parse.EntityOperation.UPDATE
