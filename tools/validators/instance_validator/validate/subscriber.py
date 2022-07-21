@@ -52,8 +52,9 @@ class Subscriber(object):
       with open(self.service_account_info_json_file, encoding="utf-8") as f:
         service_account_info = json.load(f)
       audience = "https://pubsub.googleapis.com/google.pubsub.v1.Subscriber"
-      credentials = auth.jwt.Credentials.from_service_account_info(service_account_info
-                                                              , audience=audience)
+      credentials = auth.jwt.Credentials.from_service_account_info(
+        service_account_info,
+        audience=audience)
     else:
       print("No service account. Using application default credentials")
       # pylint: disable=unused-variable
