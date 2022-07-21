@@ -423,7 +423,6 @@ DFVSC:
   - discharge_fan_torque_sensor
   - discharge_fan_run_time_accumulator
   - discharge_fan_energy_accumulator
-  - discharge_fan_failed_alarm
   - control_mode
   uses:
   - discharge_fan_speed_percentage_command
