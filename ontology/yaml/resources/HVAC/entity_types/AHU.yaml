@@ -870,19 +870,21 @@ AHU_DFSS_DXZC_ECOND_ZHM:
   - ECOND
   - ZHM
 
-AHU_SS_CHWDT_ECONM_RWISOVPC_VSC_SD:
+AHU_SS_CHWDT_STM_RTM_RWISOVPC:
   description: "Smart AHU."
   is_canonical: true
   implements:
   - AHU
   - SS
   - CHWDT
-  - ECONM
+  - STM
+  - RTM
   - RWISOVPC
-  - VSC
-  - SD
   opt_uses:
   - fire_alarm
+  - supply_fan_failed_alarm
+  - filter_alarm
+  - return_air_temperature_setpoint
 
 ### Multi-zone Units ###
 
