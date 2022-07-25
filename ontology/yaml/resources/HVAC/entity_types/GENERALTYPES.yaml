@@ -372,3 +372,9 @@ CRREF:
   is_abstract: true
   implements:
   - EQUIPMENT
+
+CHB:
+  description: "Tag for chilled beams."
+  is_abstract: true
+  implements:
+  - EQUIPMENT
