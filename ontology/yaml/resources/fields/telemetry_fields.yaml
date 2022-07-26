@@ -386,6 +386,8 @@ literals:
   - OFF
   - AUTO
   - MANUAL
+  - DRY
+  - FAN
 - dial_resistance_sensor
 - zone_occupancy_status:
   - OCCUPIED
