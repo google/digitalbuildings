@@ -51,6 +51,7 @@ literals:
 - condensing_water_flowrate_sensor
 - cooling_output_percentage_command
 - current_sensor
+- torque_sensor
 - differential_pressure_sensor
 - differential_pressure_setpoint
 - discharge_air_cooling_temperature_setpoint
@@ -131,6 +132,9 @@ literals:
 - outside_air_relative_humidity_sensor
 - outside_air_temperature_sensor
 - outside_air_wetbulb_temperature_sensor
+- wind_linearvelocity_sensor
+- wind_direction_angle_sensor
+- outside_air_rain_level_sensor
 - power_sensor
 - return_air_relative_humidity_sensor
 - return_air_temperature_sensor
@@ -160,6 +164,7 @@ literals:
 - supply_air_temperature_setpoint
 - supply_fan_current_sensor
 - supply_fan_power_sensor
+- supply_fan_torque_sensor
 - supply_fan_run_command:
   - ON
   - OFF
@@ -186,6 +191,14 @@ literals:
 - zone_air_relative_humidity_sensor
 - zone_air_deadband_temperature_setpoint
 - zone_air_temperature_sensor
+- outside_air_co_concentration_sensor
+- outside_air_so2_concentration_sensor
+- outside_air_no2_concentration_sensor
+- outside_air_no_concentration_sensor
+- outside_air_h2s_concentration_sensor
+- outside_air_ozone_concentration_sensor
+- outside_air_pm2pt5_density_sensor
+- outside_air_pm10pt0_density_sensor
 
 ---
 
@@ -196,6 +209,9 @@ literals:
 - bypass_return_air_temperature_sensor
 - bypass_valve_percentage_sensor
 - chilled_water_isolation_valve_status:
+  - OPEN
+  - CLOSED
+- circulation_changeover_isolation_valve_status:
   - OPEN
   - CLOSED
 - circulation_pump_run_command:
@@ -330,6 +346,8 @@ literals:
 
 ## Added on 10/25/2018
 - compressor_speed_percentage_command
+- compressor_voltage_sensor
+- compressor_lost_power_alarm
 - east_wind_linearvelocity_sensor
 - west_wind_linearvelocity_sensor
 - condenser_pressure_sensor
@@ -405,6 +423,8 @@ literals:
   - OFF
   - LOW
   - HIGH
+  - AUTO
+  - MANUAL
 - heat_exchange_isolation_valve_command:
   - OPEN
   - CLOSED
@@ -433,6 +453,8 @@ literals:
 - zone_air_static_pressure_setpoint
 - zone_air_voc_concentration_sensor
 - zone_air_voc_concentration_setpoint
+- return_air_voc_concentration_sensor
+- return_air_voc_concentration_setpoint
 
 ## Added on 2019/03/12
 - cooling_percentage_command
@@ -545,6 +567,8 @@ literals:
 - humidification_percentage_command
 - discharge_fan_speed_percentage_sensor
 - discharge_air_heating_percentage_command
+- discharge_fan_voltage_sensor
+- discharge_fan_torque_sensor
 - supply_air_damper_command:
   - OPEN
   - CLOSED
@@ -649,6 +673,22 @@ literals:
   - ON
   - OFF
 
+- drain_pump_run_status:
+  - ON
+  - OFF
+- drain_pump_failed_alarm:
+  - ACTIVE
+  - INACTIVE
+- water_low_level_status:
+  - ACTIVE
+  - INACTIVE
+- water_high_level_status:
+  - ACTIVE
+  - INACTIVE
+- input_motor_power_status:
+  - ON
+  - OFF
+
 # Added 10/5/20 for TW-NTC-TPKD
 # Additional functionality for alarms and status points.
 # For alarms, they will end in `alarm` and be two-state. 
@@ -695,6 +735,12 @@ literals:
 - filter_differential_pressure_status:
   - PRESENT
   - ABSENT
+- electrostatic_filter_run_status:
+  - ON
+  - OFF
+- electrostatic_filter_alarm:
+  - ACTIVE
+  - INACTIVE
 - high_level_status:
   - PRESENT
   - ABSENT
@@ -734,7 +780,13 @@ literals:
 - lost_power_alarm:
   - ACTIVE
   - INACTIVE
-
+- heat_exchange_failed_alarm:
+  - ACTIVE
+  - INACTIVE
+- compressor_failed_alarm:
+  - ACTIVE
+  - INACTIVE
+  
 # New fields for lighting and fire systems.
 - motion_status:
   - PRESENT
@@ -794,6 +846,59 @@ literals:
 - phase1_apparent_power_sensor
 - phase2_apparent_power_sensor
 - phase3_apparent_power_sensor
+
+# Added for Automatic transfer switch
+- source1_phase1_phase2_voltage_sensor
+- source1_phase2_phase3_voltage_sensor
+- source1_phase3_phase1_voltage_sensor
+- source1_frequency_sensor
+- source2_phase1_phase2_voltage_sensor
+- source2_phase2_phase3_voltage_sensor
+- source2_phase3_phase1_voltage_sensor
+- source2_frequency_sensor
+- master_mode:
+  - SOURCEA
+  - NOSOURCE
+  - REMOTE
+  - MANUAL
+- source1_lost_power_alarm:
+  - ACTIVE
+  - INACTIVE 
+- source2_lost_power_alarm:
+  - ACTIVE
+  - INACTIVE
+- generator_status:
+  - ON
+  - OFF
+- source1_phase1_phase2_over_voltage_status:
+  - PRESENT
+  - ABSENT
+- source1_phase2_phase3_over_voltage_status:
+  - PRESENT
+  - ABSENT
+- source1_phase3_phase1_over_voltage_status:
+  - PRESENT
+  - ABSENT
+- source1_over_voltage_status:
+  - PRESENT
+  - ABSENT
+- source2_phase1_phase2_over_voltage_status:
+  - PRESENT
+  - ABSENT
+- source2_phase2_phase3_over_voltage_status:
+  - PRESENT
+  - ABSENT
+- source2_phase3_phase1_over_voltage_status:
+  - PRESENT
+  - ABSENT
+- source2_over_voltage_status:
+  - ACTIVE
+  - INACTIVE
+- switch_position_mode:
+  - POSITIONA
+  - POSITIONB
+  - POSITIONC
+
 
 # Added for UK-LON-S2
 
@@ -988,7 +1093,7 @@ literals:
 #Electrical meter fields
 - neutral_line_current_sensor # A measure of current on the neutral line
 - apparent_energy_accumulator
-
+- reactive_energy_accumulator
 #Lighting controller battery status
 - emergency_battery_status
 
@@ -1099,7 +1204,6 @@ literals:
 - tenminutefixed_max_zaxis_frequency_sensor
 - signal_strength_percentage_sensor
 - dutycycle_percentage_sensor
-
 - min_zone_air_relative_humidity_sensor
 - min_zone_air_relative_humidity_setpoint
 
@@ -1139,7 +1243,7 @@ literals:
 - leaving_coil_temperature_sensor
 - heat_recovery_supply_water_temperature_sensor
 - heat_recovery_return_water_temperature_sensor
-
+- differential_temperature_sensor
 - hot_water_tank_temperature_sensor
 - hot_water_tank_temperature_setpoint
 - preheating_water_tank_temperature_sensor
@@ -1174,6 +1278,22 @@ literals:
 - bypass_phase2_neutral_voltage_sensor
 - bypass_phase3_neutral_voltage_sensor
 - remaining_charge_time_sensor
+- output_power_sensor
+- output_apparent_power_sensor
+- low_battery_charge_alarm:
+  - ACTIVE
+  - INACTIVE
+- load_percentage_sensor
+- overload_alarm:
+  - ACTIVE
+  - INACTIVE
+- bypass_status:
+  - BYPASS
+  - INACTIVE  
+- inverter_failed_alarm:
+  - ACTIVE
+  - INACTIVE
+
 
 
 ## Refrigerant monitoring fields for AHUs
@@ -1190,6 +1310,11 @@ literals:
 - return_air_specificenthalpy_sensor
 - compressor_current_sensor
 
+## Water Level status
+- water_level_status:
+  - HIGH
+  - MEDIUM
+  - LOW
 ## New fields for steam/water heat exchanger
 - supply_steam_static_pressure_sensor
 - supply_steam_static_pressure_setpoint
@@ -1214,7 +1339,6 @@ literals:
 
 # Tank level
 - percentage_sensor
-
 - secondary_heating_supply_water_temperature_sensor
 - secondary_heating_return_water_temperature_sensor
 - primary_heating_supply_water_temperature_sensor
@@ -1230,6 +1354,18 @@ literals:
   - ON
   - OFF
 - ground_temperature_sensor
+
+## Addition of new fields#
+
+## New fields for Freezer (Walk in Cold room)
+- defrost_run_status:
+  - ON
+  - OFF
+- defrost_temperature_sensor
+- discharge_fan_run_time_accumulator
+
+- defrost_temperature_setpoint
+- defrost_run_command
 - input_motor_frequency_sensor
 - input_motor_power_sensor
 - motor_powerfactor_sensor
@@ -1241,14 +1377,12 @@ literals:
 - input_phase1_phase3_line_motor_voltage_sensor
 - input_phase1_phase2_line_motor_voltage_sensor
 - input_phase2_phase3_line_motor_voltage_sensor
-
 - input_phase1_line_inverter_current_sensor
 - input_phase2_line_inverter_current_sensor
 - input_phase3_line_inverter_current_sensor
 - output_inverter_voltage_sensor
 - input_inverter_frequency_sensor
 - output_inverter_power_sensor
-
 - refrigerant_differential_pressure_sensor
 
 - chilled_side_ground_supply_economizer_isolation_valve_status:
@@ -1310,3 +1444,78 @@ literals:
 - high_exhaust_fan_speed_status:
   - ON
   - OFF
+
+
+# telemetry fields for exhaust fan#
+
+- speed_mode:
+  - VFD
+  - BYPASS
+- high_discharge_fan_speed_status:
+  - ON
+  - OFF
+- low_discharge_fan_speed_status:
+  - ON
+  - OFF 
+- exhaust_fan_run_mode:
+  - AUTO
+  - MANUAL
+
+##Fields for generator##
+- oil_temperature_sensor
+- oil_pressure_sensor
+- tank_level_status
+- battery_voltage_sensor
+- battery_current_sensor
+
+  
+#Telemetry fields for APU(MAU)# 
+- dc_voltage_sensor
+- ac_voltage_sensor
+- supply_fan_run_mode:
+  - AUTO
+  - MANUAL 
+- supply_fan_run_time_accumulator  
+
+# Addition of telemetry for outside sensors
+- outside_air_co2_concentration_sensor
+
+#Addition of new fields for Tanks##
+- level_status:
+  - LOW
+  - MEDIUM
+  - HIGH
+- line_pressure_sensor
+
+- return_air_isolation_damper_status
+- return_air_isolation_damper_command:
+  - OPEN
+  - CLOSED
+
+- supply_fan_speed_mode:
+  - BYPASS
+  - VFD
+  
+- supply_fan_voltage_sensor
+
+- supply_fan_power_status:
+  - ON
+  - OFF
+  
+- discharge_fan_run_mode:
+  - AUTO
+  - MANUAL
+
+## New fields for EM##
+- electricalgrid_energy_accumulator
+- generator_run_time_accumulator
+
+## New fields for fans##
+- discharge_fan_energy_accumulator
+- electricalgrid_run_time_accumulator
+- generator_energy_accumulator 
+- supply_fan_energy_accumulator
+- compressor_run_time_accumulator
+
+## New fields for seismic detector
+- seismic_alarm

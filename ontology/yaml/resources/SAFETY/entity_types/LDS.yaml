@@ -96,4 +96,4 @@ LDS_WLA_BCM:
   - BCM
   opt_uses:
   - water_leak_cable_distance_sensor
-
+  - failed_alarm

@@ -12,23 +12,24 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-WM_STANDARD:
-  id: "440559603281821696"
-  description: "Standard building water meter."
+TK:
+  id: "2444616357484953600"
+  description: "Tank water system used to store water"
+  is_abstract: true
   implements:
-  - WM
-  is_canonical: true
-  uses:
-  - water_volume_accumulator
-  opt_uses:
-  - failed_alarm
-  - flowrate_sensor
+  - EQUIPMENT
 
-WM_WF:
-  id: "5379261270530719744"
-  description: "Water supply flow rate meter."
+WSTC:
+  id: "3250760690784272384"
+  description: "Waste Compactor system used for compacting organic waste essential for conversion into manure."
+  is_abstract: true
   implements:
-  - WM
-  is_canonical: true
-  uses:
-  - supply_water_flowrate_sensor
+  - EQUIPMENT
+
+PMP:
+  id: "15559098472387837952"
+  description: "Pumps move liquid (e.g., water, glycol, liquid CO2) from one part of a system
+    to another. In this namespace, pumps are used for irrigation and domestic purposes."
+  is_abstract: true
+  implements:
+  - EQUIPMENT
