@@ -1145,6 +1145,7 @@ REFC:
   - OPERATIONAL
 
 CREFM:
+  id: "450084672513245184"
   description: "Cold Room Refrigerator monitoring."
   is_abstract: true
   opt_uses:
@@ -5428,6 +5429,7 @@ DFRMM:
   - MONITORING
 
 RDC:
+  id: "9673456709368020992"
   description: "Return air damper percentage monitoring"
   is_abstract: true
   uses:

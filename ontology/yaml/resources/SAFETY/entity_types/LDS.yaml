@@ -69,6 +69,7 @@ LDS_NHDET:
   - NHDET
 
 LDS_H2M:
+  id: "11537946955099406336"
   description: "Hydrogen gas monitoring device with monitoring, typically used in battery room"
   is_canonical: true
   implements:
