@@ -18,8 +18,7 @@ from __future__ import print_function
 import _thread
 import datetime
 import sys
-from typing import Dict, List
-import os
+from typing import Dict, List, Tuple
 
 from validate import entity_instance
 from validate import generate_universe
@@ -29,15 +28,32 @@ from validate import telemetry_validator
 from yamlformat.validator import presubmit_validate_types_lib as pvt
 
 
+def GetDefaultOperation(
+    config_mode: instance_parser.ConfigMode) -> instance_parser.EntityOperation:
+  """Returns the default EntityOperation for the ConfigMode."""
+  if config_mode == instance_parser.ConfigMode.INITIALIZE:
+    return instance_parser.EntityOperation.ADD
+  # we default to export for a config update when no operation is specified
+  elif config_mode == instance_parser.ConfigMode.UPDATE:
+    return instance_parser.EntityOperation.EXPORT
+  elif config_mode == instance_parser.ConfigMode.EXPORT:
+    return instance_parser.EntityOperation.EXPORT
+  else:
+    raise LookupError
+
+
 def Deserialize(
-    yaml_files: List[str]) -> Dict[str, entity_instance.EntityInstance]:
+    yaml_files: List[str]
+) -> Tuple[Dict[str, entity_instance.EntityInstance],
+           instance_parser.ConfigMode]:
   """Parses a yaml configuration file and deserializes it.
 
   Args:
     yaml_files: list of building configuration files.
 
   Returns:
-    A map of entity GUID to EntityInstance.
+    entities: A map of entity GUID to EntityInstance.
+    ConfigMode: INITIALIZE or UPDATE
   """
 
   print('Validating syntax please wait ...')
@@ -47,40 +63,18 @@ def Deserialize(
     parser.AddFile(yaml_file)
   parser.Finalize()
 
-  default_entity_operation = instance_parser.EntityOperation.ADD
-  if parser.GetConfigMode() == instance_parser.ConfigMode.UPDATE:
-    default_entity_operation = instance_parser.EntityOperation.UPDATE
-
-  code_to_guid_map = _CreateCodeToGuidMap(parser)
+  default_entity_operation = GetDefaultOperation(parser.GetConfigMode())
 
   entities = {}
   for entity_key, entity_yaml in parser.GetEntities().items():
     try:
       entity = entity_instance.EntityInstance.FromYaml(
-          entity_key, entity_yaml, code_to_guid_map, default_entity_operation)
+          entity_key, entity_yaml, default_entity_operation)
       entities[entity.guid] = entity
     except ValueError as ex:
       print(f'Invalid Entity {entity_key}: {ex}')
       raise
   return entities, parser.GetConfigMode()
-
-
-def _CreateCodeToGuidMap(
-    parser: instance_parser.InstanceParser) -> Dict[str, str]:
-  """Creates a map from entity code to GUID for all entities."""
-  code_to_guid_map: Dict[str, str] = {}
-
-  for entity_key, entity_yaml in parser.GetEntities().items():
-    if instance_parser.ENTITY_CODE_KEY in entity_yaml:
-      entity_code = entity_yaml[instance_parser.ENTITY_CODE_KEY]
-      entity_guid = entity_key
-      code_to_guid_map[entity_code] = entity_guid
-    else:
-      entity_code = entity_key
-      entity_guid = entity_yaml.get(instance_parser.ENTITY_GUID_KEY)
-      code_to_guid_map[entity_code] = entity_guid
-
-  return code_to_guid_map
 
 
 def _ValidateConfig(
@@ -101,15 +95,6 @@ def _ValidateTelemetry(subscription: str, service_account: str,
   helper = TelemetryHelper(subscription, service_account)
   helper.Validate(entities, timeout)
 
-def _GetFilepathsFromDir(root_dir):
-  """ Takes in a directory and returns a filepath list for all YAML
-  files it finds. """
-  file_paths = []
-  for root, _, files in os.walk(root_dir, topdown=False):
-    for name in files:
-      if name.endswith('.yaml'):
-        file_paths.append(os.path.join(root,name))
-  return file_paths
 
 def RunValidation(filenames: List[str],
                   use_simplified_universe: bool = False,
@@ -126,6 +111,10 @@ def RunValidation(filenames: List[str],
     report_file = open(report_filename, 'w', encoding='utf-8')
     sys.stdout = report_file
   try:
+    if bool(subscription) != bool(service_account):
+      print('Subscription and a service account file are '
+            'both needed for the telemetry validation!')
+      sys.exit(0)
     print('\nStarting validator...\n')
     print('\nStarting universe generation...\n')
     universe = generate_universe.BuildUniverse(
@@ -135,27 +124,10 @@ def RunValidation(filenames: List[str],
       print('\nError generating universe')
       sys.exit(0)
     print('\nStarting config validation...\n')
-
-    # Check if the filenames are in fact directories.
-    # If they are not directories, but are instead yaml files,
-    # append them to the list.
-    unpacked_files = set()
-    for file in filenames:
-      if os.path.isdir(file):
-        unpacked_files.update(_GetFilepathsFromDir(file))
-      else:
-        unpacked_files.add(file)
-
-    # Get rid of duplicate files if parent-child directories were passed.
-    unpacked_files = list(unpacked_files)
-
-    # Validate the entities from the final set of unpacked files.
-    entities = _ValidateConfig(unpacked_files, universe)
+    entities = _ValidateConfig(filenames, universe)
     if subscription:
       print('\nStarting telemetry validation...\n')
       _ValidateTelemetry(subscription, service_account, entities, timeout)
-    else:
-      print('Subscription is needed for telemetry validation!')
 
   finally:
     sys.stdout = saved_stdout
@@ -265,7 +237,12 @@ class EntityHelper(object):
     valid_entities = {}
     validator = entity_instance.CombinationValidator(self.universe, config_mode,
                                                      entities)
+    alpha_interdep_helper = AlphaInterdependencyHelper()
     for entity_guid, current_entity in entities.items():
+      if not alpha_interdep_helper.ValidateAndUpdateState(
+          current_entity.operation):
+        raise ValueError('v1 Alpha: Building Config cannot have more than 2 '
+                         'operations; one being EXPORT')
       if (current_entity.operation is not instance_parser.EntityOperation.DELETE
           and current_entity.type_name.lower() == 'building'):
         building_found = True
@@ -280,3 +257,40 @@ class EntityHelper(object):
                         'entity with a building type')
     print('All entities validated')
     return valid_entities
+
+
+class AlphaInterdependencyHelper(object):
+  """A validation helper to enforce v1 Alpha interdependency constraints."""
+
+  def __init__(self):
+    self.__other_entity_operation = None
+    self.__validation_state = True
+
+  def GetValidationState(self) -> bool:
+    return self.__validation_state
+
+  def ValidateAndUpdateState(
+      self, entity_operation: instance_parser.EntityOperation) -> bool:
+    """Validates entity instance operation against v1 Alpha Milestones.
+
+    Enforces the constraint that only one type of operation along with export
+    operations are allowed.
+
+    Args:
+      entity_operation: entity instance operation
+
+    Returns:
+      True if entities seen thus far conform to v1 Alpha constraint; False o.w.
+    """
+    # first branch by EXPORT
+    if entity_operation == instance_parser.EntityOperation.EXPORT:
+      return self.GetValidationState()
+    # either: ADD, DELETE, UPDATE
+    # an entity operation of the three has been detected
+    if self.__other_entity_operation is not None:
+      # if this isn't the same one
+      if self.__other_entity_operation != entity_operation:
+        self.__validation_state = False
+    else:
+      self.__other_entity_operation = entity_operation
+    return self.GetValidationState()
