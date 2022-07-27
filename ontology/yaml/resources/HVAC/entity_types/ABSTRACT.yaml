@@ -344,13 +344,14 @@ VSC:
   - speed_frequency_sensor
   - power_sensor
   - voltage_sensor
+  - lost_power_alarm
+  - master_alarm
+  - failed_alarm
   - speed_mode
   - run_mode
   - run_time_accumulator
   - energy_accumulator
-  - lost_power_alarm
   - torque_sensor
-  - failed_alarm
   - control_mode
   uses:
   - speed_percentage_command
@@ -763,6 +764,9 @@ OA:
   - outside_air_wetbulb_temperature_sensor
   - outside_air_specificenthalpy_sensor
   - outside_air_pressure_sensor
+  - wind_linearvelocity_sensor
+  - wind_direction_angle_sensor
+  - outside_air_rain_level_sensor 
   uses:
   - outside_air_temperature_sensor
   implements:
@@ -1139,6 +1143,18 @@ REFC:
   implements:
   - OPERATIONAL
 
+CREFM:
+  description: "Cold Room Refrigerator monitoring."
+  is_abstract: true
+  opt_uses:
+   - failed_alarm
+   - run_status
+   - compressor_run_status
+   - run_time_accumulator
+  uses:
+   - zone_air_temperature_sensor
+   - defrost_temperature_sensor
+
 EPC:
   id: "11105083520895156224"
   description: "Exhaust pressure control."
@@ -1179,6 +1195,16 @@ VOCC:
   implements:
   - OPERATIONAL
 
+RAVOCC:
+  id: "1041182123605622784"
+  description: "Volatile organic compound control for return air from zone."
+  is_abstract: true
+  uses:
+  - return_air_voc_concentration_setpoint
+  - return_air_voc_concentration_sensor
+  implements:
+  - OPERATIONAL
+  
 VOCPC:
   id: "668891884487180288"
   description: "Volatile organic compound percentage control."
@@ -1307,6 +1333,17 @@ CHPM:
   - evaporator_pressure_sensor
   - condenser_pressure_sensor
   - differential_pressure_sensor # consider removing or renaming, may not be descriptive enough for WCC
+  implements:
+  - MONITORING
+
+ESFM:
+  id: "12354224387560308736"
+  description: " An Electrostatic filter used to maintain air quality its run status and alarm monitoring"
+  is_abstract: true
+  uses:
+  - electrostatic_filter_run_status
+  opt_uses:
+  - electrostatic_filter_alarm
   implements:
   - MONITORING
 
@@ -1854,6 +1891,7 @@ DXRC:
   - cooling_thermal_power_capacity
   - cooling_percentage_command
   - compressor_speed_percentage_command
+  - compressor_failed_alarm
   uses:
   - return_air_temperature_setpoint
   - return_air_temperature_sensor
@@ -2920,6 +2958,15 @@ CHWFRM:
   implements:
   - MONITORING
 
+CHWFRSM:
+  id: "11667988394339729408"
+  description: "Chilled water flowrate status monitoring."
+  is_abstract: true
+  uses:
+  - chilled_water_flowrate_status
+  implements:
+  - MONITORING
+
 SEPM:
   id: "3971381711140290560"
   description: "Shade extent monitoring."
@@ -3727,7 +3774,13 @@ CHDXVSC:
   - compressor_speed_percentage_sensor
   - compressor_run_command
   - compressor_run_status
-
+  opt_uses:
+  - compressor_current_sensor
+  - compressor_voltage_sensor
+  - compressor_lost_power_alarm
+  - compressor_speed_frequency_sensor
+  - compressor_failed_alarm
+ 
 CDWFRM:
   id: "632877381119377408"
   description: "Condenser water flowrate monitoring."
@@ -3914,6 +3967,20 @@ SWPSS:
   - sweeper_pump_run_status
   implements:
   - OPERATIONAL
+
+DRPM:
+  id: "14779975736852742144"
+  description: "Drain pump monitoring."
+  is_abstract: true
+  opt_uses:
+  - water_low_level_status
+  - water_high_level_status
+  - drain_pump_failed_alarm
+  - input_motor_power_status
+  uses:
+  - drain_pump_run_status
+  implements:
+  - MONITORING
 
 SDM:
   id: "5997878398154702848"
@@ -4956,6 +5023,14 @@ DEFSS:
   - defrost_run_command  
   implements:
   - MONITORING
+
+DEFSTC:
+  id: "13973831403553423360"
+  description: "Defrost temperature control."
+  is_abstract: true
+  uses:
+  - defrost_temperature_sensor
+  - defrost_temperature_setpoint  
     
 VOADC2X:
   id: "15455797155935027200"
@@ -5120,6 +5195,7 @@ MIPWM:
   - input_motor_frequency_sensor
   
 MSM:
+  id: "2084609862272024576"
   description: "Motor speed monitoring for fan."
   is_abstract: true
   implements:
@@ -5352,4 +5428,3 @@ DFRMM:
   - MONITORING  
 
   
-

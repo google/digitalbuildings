@@ -150,22 +150,6 @@ class HandlerTest(absltest.TestCase):
     except SystemExit:
       self.fail('ValidationHelper:Validate raised ExceptionType unexpectedly!')
 
-  def testTelemetryArgsMissingSubscription(self):
-    with self.assertRaises(SystemExit):
-      input_file = os.path.join(_TESTCASE_PATH, 'GOOD',
-                                'good_building_type.yaml')
-      _RunValidation([input_file],
-                     service_account='file',
-                     use_simplified_universe=True)
-
-  def testTelemetryArgsMissingServiceAccount(self):
-    with self.assertRaises(SystemExit):
-      input_file = os.path.join(_TESTCASE_PATH, 'GOOD',
-                                'good_building_type.yaml')
-      _RunValidation([input_file],
-                     subscription='a',
-                     use_simplified_universe=True)
-
   @mock.patch.object(_CV, 'Validate', return_value=True)
   @mock.patch.object(presubmit_validate_types_lib, 'ConfigUniverse')
   def testValidateAcceptsEntitiesWithExpectedTypes(self, mock_universe,
