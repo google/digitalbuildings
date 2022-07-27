@@ -123,6 +123,7 @@ CDWS_CLPM_WDT_WFRM:
   - WDT
   - WFRM
 CDWS_CWDT_CDWISOVM_CDWFRSM:
+  id: "18079143938878341120"
   description: "Condensing water system with temperature, isolation valve , flowrate monitoring. "
   is_canonical: true
   implements:

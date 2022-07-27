@@ -632,7 +632,34 @@ MAU_SFSS2X_SFVSC2X_CHWSC_HWSC_FDPM_SSPC_STC_VOADM2X:
   - SSPC
   - STC
   - VOADM2X
+  
+MAU_SFSS_SFVSC_SPSS_STM_SHM_SFC_FDPSM:
+  id: "10515066889732882432"
+  description: "MAU with VFD, spray pump, filter, supply air temperature and humidity monitoring."
+  is_canonical: true
+  implements:
+  - MAU
+  - SFSS
+  - SFVSC
+  - SPSS
+  - STM
+  - SHM
+  - SFC
+  - FDPSM
 
+
+MAU_SFVSC_CHWSC_SSPC_FDPSM2X:
+  id: "11161614911237259264"
+  description: "MAU with chilled water valve modulation,VFD speed control based on static pressure,two filters."
+  is_canonical: true
+  implements:
+  - MAU
+  - SFVSC
+  - CHWSC
+  - SSPC
+  - FDPSM2X
+  opt_uses:
+  - supply_air_isolation_damper_status 
 ###################################
 ### Existing Non-standard Types ###
 ###################################
@@ -753,3 +780,47 @@ MAU_US_SBO_1000_1:
   - DEPRECATED
   uses:
   - humidification_run_command
+  
+
+
+#New canonical#
+MAU_FDPM_SSPC_STC_SHM_SFVSC3X_SFSS3X:
+  id: "2586761220723834880"
+  description: "Air purifier unit (MAU) with 3 fan with differential pressure, static pressure, temperature, humidity and electrical parameter monitoring. "
+  implements:
+  - MAU
+  - FDPM
+  - SSPC
+  - STC
+  - SHM
+  - SFVSC3X
+  - SFSS3X
+
+ 
+#Canonical for Air washers#
+MAU_SFSS_FDPM_SSPM_STM_SHM:
+  id: "6696295880699412480"
+  description: "makeup Air Unit with run command, status, dufferential pressure, static T,RH, monitoring and control"
+  implements:
+  - MAU
+  - SFSS
+  - FDPM
+  - SSPM
+  - STM
+  - SHM
+
+
+MAU_DFMSC_DFVSC_FDPM_DTM:
+  id: "9745232828429238272"
+  description: "Makeup Air Unit with discharge air monitoring along with fan speed control"
+  implements:
+  - MAU
+  - DFMSC
+  - DFVSC
+  - FDPM
+  - DTM
+
+
+  
+
+  
