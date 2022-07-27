@@ -344,6 +344,7 @@ VSC:
   - speed_frequency_sensor
   - power_sensor
   - voltage_sensor
+  - motor_temperature_sensor
   - lost_power_alarm
   - master_alarm
   - failed_alarm
