@@ -11,18 +11,27 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+### ABSTRACT TYPES
 
- 
-  
-GEN_SS_TKLS_OTPM_PWM_RDM_BTEPM:
-  id: "17826942359745593344"
-  description: "Generator with run duration, Tank level, oil temperature, pressure, and run duration monitoring."
-  is_canonical: true
+
+SS:
+  id: "1773580013006749696"
+  description: "Basic combination of run command and status (start/stop); indicates the equipment is active or inactive."
+  is_abstract: true
   implements:
-  - GEN
-  - SS
-  - TKLS
-  - OTPM
-  - PWM  
-  - RDM
-  - BTEPM
+  - /SS
+  opt_uses:
+  - failed_alarm
+  - lost_power_alarm
+  - control_mode
+
+
+LVLM:
+  id: "10947412453960450048"
+  description: "Level Monitoring for tanks."
+  is_abstract: true
+  uses:
+  - level_status
+  opt_uses:
+  - percentage_sensor
+  

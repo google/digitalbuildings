@@ -418,6 +418,12 @@ VAV_RD:
   - VAV
   - RD
 
+VAV_RDC:
+  description: "Return control VAV without built-in regulation"
+  is_canonical: true
+  implements:
+  - VAV
+  - RDC
 
 ###################################
 ### Existing Non-standard Types ###
