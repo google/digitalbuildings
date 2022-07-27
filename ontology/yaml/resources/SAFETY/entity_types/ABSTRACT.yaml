@@ -29,6 +29,12 @@ NHDET:
   uses:
   - ammonia_leak_detection_alarm
 
+H2M:
+  description: "Hydrogen gas monitoring"
+  is_abstract: true
+  uses:
+  - zone_air_h2_concentration_sensor
+
 WLDS:
   id: "1407482223375941632"
   description: "Basic watre leak monitoring."
