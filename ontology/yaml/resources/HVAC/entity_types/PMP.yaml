@@ -127,6 +127,18 @@ PMP_SS_CWCS_VSFC:
   - run_mode
   - lost_power_alarm
 
+PMP_SS_RMM:
+  description: "Pump with pressure switch and failed alarm monitoring"
+  is_canonical: true
+  implements:
+  - PMP
+  - SS
+  - RMM
+  opt_uses:
+  - failed_alarm
+  - low_pressure_status
+  - high_pressure_status
+  
 ###################################
 ### Existing Non-standard Types ###
 ###################################
