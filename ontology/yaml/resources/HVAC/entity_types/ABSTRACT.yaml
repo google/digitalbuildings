@@ -344,6 +344,7 @@ VSC:
   - speed_frequency_sensor
   - power_sensor
   - voltage_sensor
+  - motor_temperature_sensor
   - lost_power_alarm
   - master_alarm
   - failed_alarm
@@ -1143,6 +1144,18 @@ REFC:
   implements:
   - OPERATIONAL
 
+CREFM:
+  description: "Cold Room Refrigerator monitoring."
+  is_abstract: true
+  opt_uses:
+   - failed_alarm
+   - run_status
+   - compressor_run_status
+   - run_time_accumulator
+  uses:
+   - zone_air_temperature_sensor
+   - defrost_temperature_sensor
+
 EPC:
   id: "11105083520895156224"
   description: "Exhaust pressure control."
@@ -1184,6 +1197,7 @@ VOCC:
   - OPERATIONAL
 
 RAVOCC:
+  id: "1041182123605622784"
   description: "Volatile organic compound control for return air from zone."
   is_abstract: true
   uses:
@@ -1324,6 +1338,7 @@ CHPM:
   - MONITORING
 
 ESFM:
+  id: "12354224387560308736"
   description: " An Electrostatic filter used to maintain air quality its run status and alarm monitoring"
   is_abstract: true
   uses:
@@ -5410,7 +5425,14 @@ DFRMM:
   uses:
   - discharge_fan_run_mode
   implements:
+  - MONITORING
 
-  - MONITORING  
+RDC:
+  description: "Return air damper percentage monitoring"
+  is_abstract: true
+  uses:
+  - return_air_damper_percentage_sensor
+  - return_air_damper_percentage_command
+  implements:
+  - MONITORING
 
-  

@@ -3602,6 +3602,7 @@ AHU_DFSS_DXZC_ECONZ_EFSS2X_HT2ZC_CO2C:
   - CO2C
   
 AHU_SFSS_SFVSC_CHWRC_OAFC_SSPC_RAVOCC_RACO2C_ESFM_SAIDC:
+  id: "6697703255582965760"
   description: "AHU with CO2, VOC based outside air control, static pressure based VFD speed control,return air temperature based Chilled water valve modulation."
   is_canonical: true
   implements:
@@ -4782,4 +4783,3 @@ AHU_SFSS_SFMSC_SFVSC_FDPM_CHWSC_RTM_RACO2C_SSPC2X_VOADM2X_SAIDC2X_RAIDC2X_SSPC:
   - SAIDC2X
   - RAIDC2X
   - SSPC
-
