@@ -514,9 +514,10 @@ class InstanceValidator(object):
       if entity.operation != parse.EntityOperation.UPDATE:
         print('Update mask is required for update operations')
         is_valid = False
-      if entity.type_name is None and parse.ENTITY_TYPE_KEY in entity.update_mask:
-        print('Update mask to clear Entity Type not allowed')
-        is_valid = False
+      if entity.type_name is None:
+        if parse.ENTITY_TYPE_KEY in entity.update_mask:
+          print('Update mask to clear Entity Type not allowed')
+          is_valid = False
 
     if not entity.guid:
       print('Entity GUID is required.')
