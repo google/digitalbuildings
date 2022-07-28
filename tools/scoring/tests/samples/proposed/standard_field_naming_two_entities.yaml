@@ -12,6 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# NOTE: This file is used as a test fixture; it is a valid DBO instance
+# which demonstrates the features of reporting entities.
+
 FCU-1:
   cloud_device_id: 2599571827844401
   guid: 90ebdd30-efdf-4aec-82d7-90f8e03a6792
@@ -22,4 +25,16 @@ FCU-1:
         key: pointset.points.chilled_water_flowrate_sensor.units
         values:
           liters_per_second: L/s
+  type: HVAC/CHWS_WDT # This is arbitrary but loaded with the minimal universe
+
+VLV-1:
+  cloud_device_id: 2599571827855501
+  guid: daf3048f-2118-4afc-a5f0-8b4ce0c25fef
+  translation:
+    chilled_water_percentage_command:
+      present_value: points.cooling_percentage_command.present_value
+      units:
+        key: pointset.points.cooling_percentage_command.units
+        values:
+          percent: '%'
   type: HVAC/CHWS_WDT # This is arbitrary but loaded with the minimal universe
