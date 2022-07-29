@@ -419,6 +419,7 @@ VAV_RD:
   - RD
 
 VAV_RDC:
+  id: "5061770690940633088"
   description: "Return control VAV without built-in regulation"
   is_canonical: true
   implements:
