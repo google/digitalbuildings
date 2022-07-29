@@ -38,9 +38,9 @@ f00744b4-489e-4dd7-803c-d7d092ec3a2c:
 
 0899c249-3854-40d8-ba14-2dfe64e36bcb:
   cloud_device_id: 2754543054948093
-  code: Shelter/Purge / 1804 Shoreline:
+  code: Shelter/Purge / 1804 Shoreline
   connections:
-    US-MTV-1804:
+    f1124cdb-7893-4d08-943c-ad777c081fce:
     - CONTAINS
   translation:
     outside_air_dewpoint_temperature_sensor:
