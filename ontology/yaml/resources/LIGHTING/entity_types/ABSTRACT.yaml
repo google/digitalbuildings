@@ -152,3 +152,48 @@ PWM:
   is_abstract: true
   uses:
   - power_sensor  
+
+#New abstracts for DE-FRA-NEM32
+CCIEM:
+  description: "CIE light color monitoring"
+  is_abstract: true
+  uses: 
+  - lighting_color_cie_xvalue_sensor
+  - lighting_color_cie_yvalue_sensor
+
+CHSLM:
+  description: "HSL light color monitoring"
+  is_abstract: true
+  uses: 
+  - lighting_color_hsl_saturation_percentage_sensor
+  - lighting_color_hsl_hue_angle_sensor
+
+OM:
+  description: "Operation monitoring for lighting fixtures"
+  is_abstract: true
+  uses:
+  - energy_accumulator
+  - run_hours_accumulator
+  - luminaire_failed_alarm
+
+CIECC:
+  description: "CIE light color control"
+  is_abstract: true
+  uses: 
+  - lighting_color_cie_xvalue_setpoint
+  - lighting_color_cie_yvalue_setpoint
+
+HSLCC:
+  description: "HSL light color control"
+  is_abstract: true
+  uses: 
+  - lighting_color_hsl_saturation_percentage_setpoint
+  - lighting_color_hsl_hue_angle_setpoint
+
+DM:
+  description: "Brightness dimming monitoring."
+  is_abstract: true
+  opt_uses:
+  - dimmer_run_status
+  uses:
+  - brightness_percentage_sensor

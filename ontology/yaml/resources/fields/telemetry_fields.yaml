@@ -1536,3 +1536,37 @@ literals:
 
 ## New fields for seismic detector
 - seismic_alarm
+
+#New fields for DE-FRA-NEM32
+- lighting_color_cie_xvalue_sensor
+- lighting_color_cie_yvalue_sensor
+- lighting_color_hsl_saturation_percentage_sensor
+- lighting_color_hsl_hue_angle_sensor
+- lighting_color_cie_xvalue_setpoint
+- lighting_color_cie_yvalue_setpoint
+- lighting_color_hsl_saturation_percentage_setpoint
+- lighting_color_hsl_hue_angle_setpoint
+- run_hours_accumulator
+
+- luminaire_failed_alarm:
+  - NORMAL
+  - ALARM
+
+- group_alarm:
+  - NORMAL
+  - ALARM
+
+- group_mode:
+  - DIMMING
+  - CONSTANT_LIGHT_CONTROL
+  - AUTO
+  - SCENE_CONTROL
+
+- max_illuminance_setpoint
+- min_illuminance_setpoint
+- brightness_percentage_sensor
+- heating_output_percentage_command
+
+- dimmer_run_status:
+  - ON
+  - OFF

@@ -59,6 +59,8 @@ component:
   vane: "Component for guiding media flow."
   wheel: "Component used for transfer of heat from incoming to outgoing air streams. "
   winding: "Conductive wires wrapped around a magnetic core."
+  #New subfields for DE-FRA-NEM32
+  luminaire: "Device that emits light"
 descriptor:
   air: "Atmospheric air, either conditioned or unconditioned."
   aisle: "Passage between two rows of server racks."
@@ -241,6 +243,11 @@ descriptor:
   yaxis: "Horizontal axis of a three-dimensional Cartesian coordinate system (ordinate)."
   zaxis: "Vertical axis of a three-dimensional Cartesian coordinate system (applicate)."
   zone: "Region of building which is conditioned."
+  #New subfields for DE-FRA-NEM32
+  color: "Color of light or of a physical medium"
+  cie: "cie light color schema"
+  hsl: "hsl light color schema"
+  group: "A group of entities or devices"
 measurement:
   acceleration: "The rate of change of velocity per unit of time."
   angle: "The figure formed by two rays, sharing a common endpoint."
@@ -311,6 +318,10 @@ measurement:
   voltageratio: "The ratio of the Primary voltage of the transformer to the secondary voltage."
   volume: "The quantity of three-dimensional space contained by a closed surface."
   volumetricconcentration: "Concentration in terms of volume (parts per unit volume)."
+  #New subfields for DE-FRA-NEM32
+  xvalue: "X-value of a matrix"
+  yvalue: "Y-value of a matrix"
+  hours: "Measurement of elapsed time in hours"
 measurement_descriptor:
   absolute: "Quality of media with respect to non-relativistic boudaries (e.g. absolute temperature)."
   apparent: "The combination of reactive and real components (power)."
@@ -347,6 +358,10 @@ measurement_descriptor:
   thermal: "Relating to the transfer of heat."
   tilt: "Degree of radial rotation."
   wetbulb: "Describes air temperature measured at 100% relative humidity (saturation)."
+  #New fields for DE-FRA-NEM32
+  operating: "State when a decvice active"
+  hue: "degree on color wheel from 0 to 360°"
+  orientation: "Description of cardinal direction"
 point_type:
   accumulator: "The total accumulated quantity (e.g. total energy accumulated)."
   alarm: "A point that interprets some input values qualitatively (e.g. as good or bad, normal or in alarm, etc.). Alarms are always binary."

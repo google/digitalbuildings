@@ -52,3 +52,22 @@ ELT_GENERIC:
   is_canonical: false
   implements:
   - ELT
+
+#New entity types for DE-FRA-NEM32
+LT_DM_CCIEM_OM:
+  description: "Standard light with dimming and CIE color control."
+  is_canonical: true
+  implements:
+  - LT
+  - DM
+  - CCIEM
+  - OM
+
+LT_DM_CHSLM_OM:
+  description: "Standard light with dimming and HSL color control."
+  is_canonical: true
+  implements:
+  - LT
+  - DM
+  - CHSLM
+  - OM

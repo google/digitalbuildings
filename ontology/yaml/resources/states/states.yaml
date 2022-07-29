@@ -69,5 +69,10 @@ POSITIONA: "Automatic Transfer switch position 0"
 POSITIONB: "Automatic Transfer switch position 1"
 POSITIONC: "Automatic Transfer switch position 2"
 
-
+#New states for DE-FRA-NEM32
+NORMAL: "Device is in normal operation"
+ALARM: "Device is not in normal operation"
+DIMMING: "Dimmer is operated by setting a constant dimming setpoint"
+CONSTANT_LIGHT_CONTROL: "Dimmer controls the room illuminance"
+SCENE_CONTROL: "Dimmer activates scene presets"
 

@@ -235,3 +235,40 @@ LGRP_DC_MS_IM:
   - DC
   - MS
   - IM
+
+#New entity types for DE-FRA-NEM32
+LGRP_ROS_LC_CIECC:
+  description: "Standard lighting fixture group control with scene control, dimming control and CIE light color control"
+  is_canonical: true
+  implements:
+  - LGRP
+  - OS 
+  - LC
+  - CIECC
+  opt_uses:
+  - group_alarm
+  uses:
+  - group_mode
+
+LGRP_ROS_LC_HSLCC:
+  description: "Standard lighting fixture group control with scene control, dimming control and HSL light color control"
+  is_canonical: true
+  implements:
+  - LGRP
+  - OS 
+  - LC
+  - HSLCC
+  opt_uses:
+  - group_alarm
+  uses:
+  - group_mode
+
+LGRP_SS_OS_IM:
+  description: "Standard lighting fixture group control with scene control and dimming control"
+  is_canonical: true
+  implements:
+  - LGRP
+  - SS
+  - IM
+  uses:
+  - group_mode

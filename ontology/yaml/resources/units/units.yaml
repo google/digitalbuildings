@@ -276,3 +276,15 @@ volume:
 - cubic_feet
 volumetricconcentration:
 - parts_per_cubic_centimeter: STANDARD # can be approximated using Avogadro
+
+#Units for new fields for DE-FRA-NEM32
+xvalue:
+- no_units: STANDARD
+yvalue:
+- no_units: STANDARD
+orientation: 
+- no_units: STANDARD
+group: 
+- no_units: STANDARD
+hours:
+- no_units: STANDARD
