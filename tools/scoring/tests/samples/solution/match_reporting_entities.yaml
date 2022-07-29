@@ -13,10 +13,9 @@
 # limitations under the License.
 
 # This WILL match as cloud_device_id corresponds and translation is present
-FCU-1:
+90ebdd30-efdf-4aec-82d7-90f8e03a6792:
   cloud_device_id: 2599571827844401
-  guid: 90ebdd30-efdf-4aec-82d7-90f8e03a6792
-  id: CDM/32HyWf6Zv3XumC7od2m$$H
+  code: FCU-1
   translation:
     chilled_water_flowrate_sensor:
       present_value: points.chilled_water_flowrate_sensor.present_value
@@ -27,10 +26,9 @@ FCU-1:
   type: HVAC/FCU_DFSS_DFVSC_ZTC_ZHC_CHWDC_HWDC_FDPM_RMM
 
 # This WILL NOT match as cloud_device_id does not correspond
-VLV-1:
+daf3048f-2118-4afc-a5f0-8b4ce0c25fef:
   cloud_device_id: 2599571827855501
-  guid: daf3048f-2118-4afc-a5f0-8b4ce0c25fef
-  id: CDM/196h$V6TP3C8vhrwG9nopt
+  code: VLV-1
   translation:
     chilled_water_flowrate_sensor:
       present_value: points.chilled_water_flowrate_sensor.present_value
@@ -42,14 +40,12 @@ VLV-1:
 
 # This WILL NOT match as cloud_device_id is not set when translation is absent
 # (this is invalid and should not occur)
-VLV-2:
+edfa7b3a-80da-4243-a95a-5ca24311ac45:
   cloud_device_id: 2599571827866601
-  guid: edfa7b3a-80da-4243-a95a-5ca24311ac45
-  id: CDM/196h$V6TP3C8vhrwG9nopt
+  code: VLV-2
   type: HVAC/VLV_HWVM
 
 # This WILL NOT match as cloud_device_id is not present (it is a virtual device)
-XX-YYY-ZZ:
-  guid: df651868-e22c-490c-b122-7337e0af0fc1
-  id: FACILITIES/9601e8a4-5f1c-424c-9738-2090b190573a
+df651868-e22c-490c-b122-7337e0af0fc1:
+  code: XX-YYY-ZZ
   type: FACILITIES/BUILDING
