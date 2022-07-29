@@ -688,9 +688,9 @@ FAN_VSC_SRC_DPM:
   - DPM
 
 FAN_ST:
-  description: "Basic fan with flowrate status only"
+  description: "Basic fan with flowrate sensor"
   uses:
-  - air_flowrate_status
+  - air_flowrate_sensor
   implements:
   - FAN
 

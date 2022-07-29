@@ -836,8 +836,18 @@ literals:
   
 - valve_command:
   - OPEN
-  - CLOSE
+  - CLOSED
 - valve_status:
+  - OPEN
+  - CLOSED
+- low_battery_alarm:
+  - ACTIVE
+  - INACTIVE
+- load_bypass_mode:
+  - OFF
+  - MANUAL
+  - AUTO
+- gas_flowrate_status:
   - OPEN
   - CLOSED
 - emergency_release_status:
@@ -1253,9 +1263,7 @@ literals:
 # added for WM_WFR 
 - water_flowrate_sensor 
 # added for FAN_ST
-- air_flowrate_status:
-  - ACTIVE
-  - INACTIVE
+- air_flowrate_sensor
 
 - heat_recovery_water_isolation_valve_command:
   - OPEN

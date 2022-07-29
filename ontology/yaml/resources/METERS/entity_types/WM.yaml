@@ -26,9 +26,10 @@ WM_STANDARD:
 
 WM_WF:
   id: "5379261270530719744"
-  description: "Water supply flow rate meter."
+  description: "Water supply flow rate meter with counter."
   implements:
   - WM
   is_canonical: true
   uses:
   - supply_water_flowrate_sensor
+  - water_volume_accumulator
