@@ -1052,6 +1052,7 @@ FCU_DFSS_CHWZC_RTM_ZHM:
     - ZHM
 
 FCU_DFSS_DFVSC_ZTC_CHWZTC_HWZTC_RTM:
+  id: "2314574918244630528"
   description: "FCU with zone temperature control and return air temperature monitoring."
   implements:
   - FCU

@@ -30,6 +30,7 @@ NHDET:
   - ammonia_leak_detection_alarm
 
 H2M:
+  id: "2296560519735148544"
   description: "Hydrogen gas monitoring"
   is_abstract: true
   uses:
