@@ -235,8 +235,8 @@ LGRP_OS_LSC_ENM:
   - ENM
   opt_uses:
   - total_lamp_failed_counter
-  - wireless_device_failed_counter
-  - communication_failed_counter
+  - total_wireless_device_failed_counter
+  - total_communication_failed_counter
 
 #Noncanonical types
 LGRP_DC_MS_IM:

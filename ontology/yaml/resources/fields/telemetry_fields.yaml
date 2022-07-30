@@ -1513,8 +1513,8 @@ literals:
 - compressor_run_time_accumulator
 
 - total_lamp_failed_counter
-- wireless_device_failed_counter
-- communication_failed_counter
+- total_wireless_device_failed_counter
+- total_communication_failed_counter
 
 ## New fields for seismic detector
 - seismic_alarm
