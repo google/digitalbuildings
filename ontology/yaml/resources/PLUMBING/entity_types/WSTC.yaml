@@ -19,11 +19,11 @@
 
 
 WSTC_SS:
+  id: "7056302375912341504"
   description: "Basic waste compactor system."
   is_canonical: true
   implements:
   - WSTC
   - SS  
-
 
 

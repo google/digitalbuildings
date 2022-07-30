@@ -113,6 +113,7 @@ PPWM:
   - line_frequency_sensor 
 
 BATM:
+  id: "10996952049861525504"
   description: "Battery typically used with UPS"
   is_abstract: true
   uses:

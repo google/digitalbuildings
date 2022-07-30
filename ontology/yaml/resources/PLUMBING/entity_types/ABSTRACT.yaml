@@ -15,6 +15,7 @@
 
 
 SS:
+  id: "1773580013006749696"
   description: "Basic combination of run command and status (start/stop); indicates the equipment is active or inactive."
   is_abstract: true
   implements:
@@ -26,6 +27,7 @@ SS:
 
 
 LVLM:
+  id: "10947412453960450048"
   description: "Level Monitoring for tanks."
   is_abstract: true
   uses:

@@ -13,18 +13,21 @@
 # limitations under the License.
 
 TK:
+  id: "2444616357484953600"
   description: "Tank water system used to store water"
   is_abstract: true
   implements:
   - EQUIPMENT
 
 WSTC:
+  id: "3250760690784272384"
   description: "Waste Compactor system used for compacting organic waste essential for conversion into manure."
   is_abstract: true
   implements:
   - EQUIPMENT
 
 PMP:
+  id: "15559098472387837952"
   description: "Pumps move liquid (e.g., water, glycol, liquid CO2) from one part of a system
     to another. In this namespace, pumps are used for irrigation and domestic purposes."
   is_abstract: true
