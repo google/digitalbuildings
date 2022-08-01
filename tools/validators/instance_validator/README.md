@@ -20,7 +20,7 @@ You can run the command with just the version flag (e.g. `python --version`) to 
 
 Navigate to digitalbuildings/tools/validators/instance_validator and run `python3 instance_validator.py --input path/to/YOUR_BUILDING_CONFIG.yaml` to validate your input file using the ontology defined in this repository.
 
-To validate multiple input files at the same time, you can provide the `-i/--input` parameter multiple times.
+To validate multiple input files at the same time, you can provide the "`-i/--input` parameter multiple times.
 
 If the optional `-r/--report-filename` parameter is provided, the validation results will be written to this report file. Otherwise, the results will be written to stdout.
 
@@ -36,10 +36,9 @@ Note: as of the current development stage, you must clone the entire repository 
 
 The validator supports a telemetry validation mode. When this mode is enabled, the validator will listen on a provided pubsub subscription for telemetry messages, and validate the message contents against the instance configuration. It is recommended that you first use the instance validator with telemetry validation mode disabled, and then enable it after that passes.
 
-If you would like to use the telemetry validation mode, you must provide the `--subscription` parameter and you must either:
-
-- Have both the `gcloud` CLI installed and configured using `gcloud init` using an appropriate project, and [`gcloud application-default` credentials](https://cloud.google.com/sdk/gcloud/reference/auth/application-default) setup with an account which has adequate permissions to access the given subscription.
-- Provide a `--service-account` parameter when running `instance_validator.py`. Failure to provide both of these parameters will result in early termination of the validator and an error message. If you do not provide either parameter, the validator will run with telemetry validation disabled.
+If you would like to use the telemetry validation mode, you must provide the `--subscription` parameter, and you must either:
+- Have the both the `gcloud` CLI installed and configured using `gcloud init` using an appropiate project, and [`gcloud application-default` credentials](https://cloud.google.com/sdk/gcloud/reference/auth/application-default) setup with an account which has adequate permissions to access the given subscription
+- Provide a `--service-account` parameter when running instance_validator.py. Failure to provide both of these parameters will result in early termination of the validator and an error message. If you do not provide either parameter, the validator will run with telemetry validation mode disabled.
 
 **NOTE** The service account key and subscription are provided by the Google team. Please reach out to your IoT TPM for guidance.
 
@@ -120,3 +119,4 @@ validation logic and cause the validator to exit prematurely because the instanc
           zone_air_temperature_sensor: zone_air_temperature_sensor
           zone_air_temperature_setpoint: zone_air_temperature_setpoint
       type: HVAC/VAV_SD_CSP
+
