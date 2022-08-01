@@ -518,11 +518,7 @@ SS:
   - powerfactor_sensor
   - current_sensor
   - power_sensor
-
   - run_time_accumulator
-
-
-  
 
 SSPC:
   id: "10526749200778002432"
@@ -5243,15 +5239,6 @@ EFHLC:
   - high_exhaust_fan_speed_command
   - low_exhaust_fan_speed_status
   - high_exhaust_fan_speed_status
-  implements:
-  - OPERATIONAL
-
-OAFSS:
-  description: "Start/stop command and status monitoring for fresh air fans."
-  is_abstract: true
-  uses:
-  - outside_air_fan_run_status
-  - outside_air_fan_run_command
   implements:
   - OPERATIONAL
 
