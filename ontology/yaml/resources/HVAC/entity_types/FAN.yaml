@@ -301,7 +301,7 @@ FAN_SS_VSC_EFC_FDPM:
   - EFC
   - FDPM
 
-FAN_SS_VSC_OA:
+FAN_SS_VSC_WDPC_STM_RMM:
   description: "Fan with start/stop status, speed control with fire, EC fan and filter monitoring for purification"
   is_canonical: true
   implements:
@@ -309,10 +309,10 @@ FAN_SS_VSC_OA:
   - SS
   - VSC
   - OA
+  - WDPC
+  - RMM
   opt_uses:
   - filter_alarm
-  - differential_pressure_sensor
-  - differential_pressure_setpoint
   - run_mode
   - door_open_alarm
   - fire_alarm
