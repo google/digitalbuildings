@@ -16,22 +16,30 @@
 ### Canonical Types  ###
 ########################
 
-CRREF_DXZTC_DFSS:
-  id: "9720463030478700544"
-  description: "Typical coldroom refigrator."
-  is_canonical: true
-  implements:
-  - CRREF
-  - DXZTC
-  - DFSS
-  opt_uses:
-  - run_time_accumulator
-  - master_alarm
+### Tanks ###
 
-CRREF_CREFM:
-  id: "6926260936672018432"
-  description: "Typical coldroom refigrator monitoring."
+TK_SWTC_PHWTC:
+  id: "4244085883596177408"
+  description: "Tank with water temperature monitoring"
   is_canonical: true
   implements:
-  - CRREF
-  - CREFM
+  - /TK # Inherits from global namespace 
+  - SWTC
+  - PHWTC
+  
+TK_LM_PLPM:  
+  id: "10267650385204215808"
+  description: "Tank with level and pipeline pressure monitoring "
+  is_canonical: true
+  implements:
+  - /TK # Inherits from global namespace 
+  - LM
+  - PLPM
+
+TK_LM:  
+  id: "12505939400007352320"
+  description: "Tank with level monitoring "
+  is_canonical: true
+  implements:
+  - /TK # Inherits from global namespace 
+  - LM
