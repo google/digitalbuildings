@@ -98,32 +98,6 @@ FAN_SS_VSC_REFM4X:
   - zone_air_refrigerant_concentration_sensor_3
   - zone_air_refrigerant_concentration_sensor_4
 
-FAN_SS_STM_RTM:
-  description: "CRAC unit cooling and humidification with compressor and alarm monitoring."
-  is_canonical: true
-  implements:
-  - FAN
-  - SS
-  - STM
-  - RTM
-  opt_uses:
-  - fan_run_time_accumulator
-  - compressor_run_time_accumulator
-  - humidifier_run_time_accumulator
-  - heater_run_time_accumulator
-  - overload_fan_alarm
-  - high_pressure_status
-  - low_pressure_status
-  - overload_compressor_alarm
-  - humidifier_failed_alarm
-  - high_return_air_temperature_alarm
-  - low_return_air_temperature_alarm
-  - high_return_air_relative_humidity_alarm
-  - low_return_air_relative_humidity_alarm
-  - filter_alarm
-  - fan_failed_alarm
-  - run_mode
-
 FAN_SS_REFC:
   id: "12258005025502003200"
   description: "Refrigerant control fan."
