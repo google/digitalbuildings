@@ -12,10 +12,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-TXMR_SS:
-  id: "5556603699997966336"
-  description: "Typical standard Transformer ."
+### ABSTRACT TYPES
+
+SSS_STD:
+  id: "1291694852878106624"
+  description: "Standard seismic detector."
   is_canonical: true
   implements:
-  - TXMR
-  - SS
+  - SSS
+  uses:
+  - seismic_alarm
+  - failed_alarm
