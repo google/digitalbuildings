@@ -39,6 +39,15 @@ VAV_SD_DSP:
   - SD
   - DSP
 
+VAV_SD_ZTC_CSPO:
+  description: "Simple cooling only VAV with occupancy."
+  is_canonical: true
+  implements:
+  - VAV
+  - SD
+  - ZTC
+  - CSPO
+
 VAV_SD_DSP_CO2C:
   id: "18439573746067963904"
   description: "CO2 control VAV."

@@ -20,6 +20,7 @@ WM_STANDARD:
   is_canonical: true
   uses:
   - water_volume_accumulator
+  opt_uses:
   - failed_alarm
   - flowrate_sensor
 
