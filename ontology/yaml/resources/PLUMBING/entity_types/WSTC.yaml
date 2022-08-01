@@ -11,11 +11,19 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+# canonical types
 
-TXMR_SS:
-  id: "5556603699997966336"
-  description: "Typical standard Transformer ."
+########################
+### Canonical Types  ###
+########################
+
+
+WSTC_SS:
+  id: "7056302375912341504"
+  description: "Basic waste compactor system."
   is_canonical: true
   implements:
-  - TXMR
-  - SS
+  - WSTC
+  - SS  
+
+

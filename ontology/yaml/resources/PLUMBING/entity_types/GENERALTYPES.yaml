@@ -12,21 +12,24 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-BATT_STD:
-  id: "11958105532444704768"
-  description: "Standard battery."
+TK:
+  id: "2444616357484953600"
+  description: "Tank water system used to store water"
+  is_abstract: true
   implements:
-  - BATT
-  uses:
-  - voltage_sensor
-  - current_sensor
-  opt_uses:
-  - remaining_charge_time_sensor
-  - local_air_temperature_sensor
-  - max_battery_temperature_sensor
-  - max_battery_voltage_sensor
-  - min_battery_temperature_sensor
-  - min_battery_voltage_sensor
-  - battery_charge_status
-  - battery_charge_percentage_sensor
-  - battery_failed_alarm
+  - EQUIPMENT
+
+WSTC:
+  id: "3250760690784272384"
+  description: "Waste Compactor system used for compacting organic waste essential for conversion into manure."
+  is_abstract: true
+  implements:
+  - EQUIPMENT
+
+PMP:
+  id: "15559098472387837952"
+  description: "Pumps move liquid (e.g., water, glycol, liquid CO2) from one part of a system
+    to another. In this namespace, pumps are used for irrigation and domestic purposes."
+  is_abstract: true
+  implements:
+  - EQUIPMENT

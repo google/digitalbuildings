@@ -68,6 +68,17 @@ LDS_NHDET:
   - LDS
   - NHDET
 
+LDS_H2M:
+  id: "11537946955099406336"
+  description: "Hydrogen gas monitoring device with monitoring, typically used in battery room"
+  is_canonical: true
+  implements:
+  - LDS
+  - H2M
+  opt_uses:
+  - run_status
+  - failed_alarm
+
 LDS_WLA:
   id: "12466396563826016256"
   description: "Water Leak sensing device."
