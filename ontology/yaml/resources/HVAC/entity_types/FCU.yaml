@@ -796,7 +796,7 @@ FCU_SS_STM_RTM:
   - supply_fan_failed_alarm
   - run_mode
   
-  FCU_SS_ZTM:
+FCU_SS_ZTM:
   id: "11594563007836848128"
   description: "FCU with zone temperature monitoring and start/stop control."
   is_canonical: true
