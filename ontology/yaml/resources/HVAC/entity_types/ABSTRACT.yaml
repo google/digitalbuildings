@@ -130,7 +130,7 @@ CSP:
   - zone_air_cooling_temperature_setpoint
 
 CSPO:
-description: "Single cooling setpoint control with occupancy."
+  description: "Single cooling setpoint control with occupancy."
   is_abstract: true
   implements:
   - OPERATIONAL
