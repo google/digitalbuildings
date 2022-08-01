@@ -99,4 +99,4 @@ explorer_setup
 guid_generator_setup
 #scoring_setup
 #rdf_generator_setup
-echo "Setup finished!"#!/bin/bash
+echo "Setup finished!"
