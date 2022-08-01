@@ -753,12 +753,6 @@ literals:
 - power_status:
   - PRESENT
   - ABSENT
-- low_pressure_status:
-  - ON
-  - OFF
-- high_pressure_status:
-  - ON
-  - OFF
   
 # New alarms using alarm as a point type, and existing alarms moved here
 # TODO (tsodorff): change these to ALARM/NORMAL after determining how this can be done safely to existing translations. 
@@ -1321,9 +1315,6 @@ literals:
   - ACTIVE
   - INACTIVE
 - load_percentage_sensor
-- overload_alarm:
-  - ACTIVE
-  - INACTIVE
 - bypass_status:
   - BYPASS
   - INACTIVE  
@@ -1532,8 +1523,6 @@ literals:
   - BYPASS
   - VFD
 - supply_fan_voltage_sensor
-- discharge_fan_energy_accumulator
-- discharge_fan_voltage_sensor
 - fan_run_time_accumulator
 - humidifier_run_time_accumulator
 - heater_run_time_accumulator
