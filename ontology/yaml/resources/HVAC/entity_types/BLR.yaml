@@ -240,6 +240,15 @@ BLR_SS_SWTM_SWISOVM:
   opt_uses:
   - condensing_water_flowrate_status
   
+BLR_SS_SWTC_CPC_HT2SWC:
+  description: "Two-stage boiler with circulation pump."
+  is_canonical: true
+  implements:
+  - BLR
+  - SS
+  - SWTC
+  - CPC
+  - HT2SWC
 
 ###################################
 ### Existing Non-standard Types ###
