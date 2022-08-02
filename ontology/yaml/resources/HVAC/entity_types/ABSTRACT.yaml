@@ -403,7 +403,6 @@ SFVSC:
   - supply_fan_lost_power_alarm
   - supply_fan_failed_alarm
   - control_mode
-  - supply_fan_power_status
   uses:
   - supply_fan_run_command
   - supply_fan_run_status

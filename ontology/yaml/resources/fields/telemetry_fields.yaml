@@ -173,9 +173,6 @@ literals:
   - ON
   - OFF
   - UNKNOWN
-- supply_fan_run_mode:
-  - AUTO
-  - MANUAL
 - bypass_supply_fan_status:
   - NORMAL
   - BYPASS
@@ -1519,8 +1516,6 @@ literals:
 - supply_fan_speed_mode:
   - BYPASS
   - VFD
-- supply_fan_run_time_accumulator
-- supply_fan_energy_accumulator
 - supply_fan_voltage_sensor
 
 - supply_fan_power_status:
