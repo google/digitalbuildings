@@ -1488,8 +1488,7 @@ literals:
 - tank_level_status
 - battery_voltage_sensor
 - battery_current_sensor
-
-  
+ 
 #Telemetry fields for APU(MAU)# 
 - dc_voltage_sensor
 - ac_voltage_sensor
