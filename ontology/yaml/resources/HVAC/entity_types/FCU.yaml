@@ -770,16 +770,16 @@ FCU_DFMSS_DSP_ZHM_RTM_CHWZC_CHWDT:
   - CHWZC
   - CHWDT
 
-FCU_SS_STM_RTM:
+FCU_SFSS_STM_RTM:
   description: "CRAC unit cooling and humidification with compressor and alarm monitoring."
   is_canonical: true
   implements:
   - FCU
-  - SS
+  - SFSS
   - STM
   - RTM
   opt_uses:
-  - fan_run_time_accumulator
+  - supply_fan_run_time_accumulator
   - compressor_run_time_accumulator
   - humidifier_run_time_accumulator
   - heater_run_time_accumulator
