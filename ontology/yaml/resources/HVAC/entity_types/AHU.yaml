@@ -3617,6 +3617,27 @@ AHU_SFSS_SFVSC_CHWRC_OAFC_SSPC_RAVOCC_RACO2C_ESFM_SAIDC:
   - ESFM
   - SAIDC
 
+AHU_DFSS_DFVSC_ECONZ_HP2ZC:
+  description: "Single zone heat pump AHU."
+  is_canonical: true
+  implements:
+  - AHU
+  - DFSS
+  - DFVSC
+  - ECONZ
+  - HP2ZC
+
+AHU_DFSS_DFVSC_ECONZ_EFSS_HP2ZC_ZSPC:
+  description: "Single zone heat pump AHU with zone pressure relief."
+  is_canonical: true
+  implements:
+  - AHU
+  - DFSS
+  - DFVSC
+  - ECONZ
+  - EFSS
+  - HP2ZC
+  - ZSPC
 
 ###################################
 ### Existing Non-standard Types ###
