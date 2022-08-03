@@ -1,0 +1,19 @@
+// jsonlint:permit-trailing-commas
+{
+  "points" : {
+    "batt_5_voltage_sensor" : {
+      "present_value" : 536.2
+    },
+    "batt_5_current_sensor" : {
+      "present_value" : 6.5526
+    },
+    "batt_5_local_air_temperature_sensor" : {
+      "present_value" : 24.4
+    },
+    "batt_5_remaining_charge_time_sensor" : {
+      "present_value" : 3.8158
+    },
+  },
+  "timestamp" : "2022-07-20T20:51:22.864Z",
+  "version" : "1"
+}
