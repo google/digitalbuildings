@@ -62,11 +62,6 @@ LOCAL: "The control is operating locally and independently with the remote syste
 FADING: "An operation mode of a lighting dimmer: dimming speed based on a duration to dim from minimum to maximum"
 RAMPING: "An operation mode of a lighting dimmer: dimming speed defined in percent per second"
 
-#For Rodent Repellent
-BANDA: "Frequency range from 20KHz to 50KHz"
-BANDB: "Frequency range from 30KHz to 60KHz"
-BANDC: "Frequency range from 27KHz to 57KHz"
-BANDD: "Frequency range from 24KHz to 61sKHz"
 #FOR ATS
 SOURCEA: "An operation mode having source 1 as priority" 
 NOSOURCE: "An operation mode having no source as priority"

@@ -18,5 +18,7 @@ RDT_WA4B:
   description: "Standard Rodent Repellent."
   is_canonical: true
   implements:
-  - WA4B
+  - RDT
+  uses:
+  transducer_failed_alarm
 

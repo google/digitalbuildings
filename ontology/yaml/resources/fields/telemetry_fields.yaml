@@ -1323,13 +1323,7 @@ literals:
 - outside_condensing_loop_return_water_temperature_sensor
 
 # Rodent Repellent system
-- wavespeed_rate_sensor
-- wavedensity_rate_sensor
-- wave_band_mode:
-  - BANDA
-  - BANDB
-  - BANDC
-  - BANDD
+
 - transducer_failed_alarm:
   - ACTIVE
   - INACTIVE
