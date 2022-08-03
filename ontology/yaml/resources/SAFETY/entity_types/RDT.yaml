@@ -14,11 +14,11 @@
 
 ### ABSTRACT TYPES
 
-RDT_WA4B:
+RDT_STD:
   description: "Standard Rodent Repellent."
   is_canonical: true
   implements:
   - RDT
   uses:
-  transducer_failed_alarm
+  - transducer_failed_alarm
 
