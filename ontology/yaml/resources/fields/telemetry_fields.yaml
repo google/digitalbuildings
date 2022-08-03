@@ -135,6 +135,7 @@ literals:
 - wind_linearvelocity_sensor
 - wind_direction_angle_sensor
 - outside_air_rain_level_sensor
+- outside_air_voc_concentration_sensor
 - power_sensor
 - return_air_relative_humidity_sensor
 - return_air_temperature_sensor
@@ -453,6 +454,8 @@ literals:
 - zone_air_static_pressure_setpoint
 - zone_air_voc_concentration_sensor
 - zone_air_voc_concentration_setpoint
+- return_air_voc_concentration_sensor
+- return_air_voc_concentration_setpoint
 
 ## Added on 2019/03/12
 - cooling_percentage_command
@@ -519,6 +522,9 @@ literals:
 - phase3_powerfactor_sensor
 - powerfactor_sensor
 - reactive_power_sensor
+- phase1_reactive_power_sensor
+- phase2_reactive_power_sensor
+- phase3_reactive_power_sensor
 
 # Added on 2019/06/27 for Enlighted
 - dimmer_percentage_command # Should be adjusted to brightness_percentage_command
@@ -733,6 +739,12 @@ literals:
 - filter_differential_pressure_status:
   - PRESENT
   - ABSENT
+- electrostatic_filter_run_status:
+  - ON
+  - OFF
+- electrostatic_filter_alarm:
+  - ACTIVE
+  - INACTIVE
 - high_level_status:
   - PRESENT
   - ABSENT
@@ -742,7 +754,13 @@ literals:
 - power_status:
   - PRESENT
   - ABSENT
-
+- low_pressure_status:
+  - ON
+  - OFF
+- high_pressure_status:
+  - ON
+  - OFF
+  
 # New alarms using alarm as a point type, and existing alarms moved here
 # TODO (tsodorff): change these to ALARM/NORMAL after determining how this can be done safely to existing translations. 
 - fabric_protection_alarm:
@@ -788,6 +806,13 @@ literals:
   - DISCHARGING
   - STANDBY
 - battery_charge_percentage_sensor
+- max_battery_temperature_sensor
+- max_battery_voltage_sensor
+- min_battery_temperature_sensor
+- min_battery_voltage_sensor
+- battery_failed_alarm:
+  - ACTIVE
+  - INACTIVE
 - brightness_percentage_command
 
 # New fields for emergency systems
@@ -1139,6 +1164,7 @@ literals:
 - zone_air_no2_concentration_sensor
 - zone_air_formaldehyde_concentration_sensor
 - zone_air_ozone_concentration_sensor
+- zone_air_h2_concentration_sensor
 
 - zone_air_h2s_density_sensor
 - zone_air_so2_density_sensor
@@ -1359,9 +1385,6 @@ literals:
   - ON
   - OFF
 - defrost_temperature_sensor
-
-
-
 - discharge_fan_run_time_accumulator
 
 - defrost_temperature_setpoint
@@ -1425,6 +1448,7 @@ literals:
 ## New fields for Fresh Air Fan With VFD
 - output_voltage_sensor
 - run_time_accumulator
+- motor_temperature_sensor
 
 # Addition of telemetry for parking exhaust fan
 - low_limit_zone_air_co_concentration_setpoint

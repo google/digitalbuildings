@@ -1051,7 +1051,20 @@ FCU_DFSS_CHWZC_RTM_ZHM:
     - RTM
     - ZHM
 
+FCU_DFSS_DFVSC_ZTC_CHWZTC_HWZTC_RTM:
+  id: "2314574918244630528"
+  description: "FCU with zone temperature control and return air temperature monitoring."
+  implements:
+  - FCU
+  - DFSS
+  - DFVSC
+  - ZTC
+  - CHWZTC
+  - HWZTC
+  - RTM
+
 FCU_DFSS_DXRC_RHDHC_AL:
+  id: "15608638068288913408"
   description: "Typical Precision Air conditioning unit with alarms."
   is_canonical: true
   implements:
