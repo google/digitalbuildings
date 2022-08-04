@@ -1264,7 +1264,7 @@ literals:
 # added for WM_WFR 
 - water_flowrate_sensor 
 # added for FAN_ST
-- air_flowrate_sensor
+- air_pressure_sensor
 
 - heat_recovery_water_isolation_valve_command:
   - OPEN
