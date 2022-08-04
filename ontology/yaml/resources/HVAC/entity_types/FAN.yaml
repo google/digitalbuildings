@@ -687,7 +687,7 @@ FAN_VSC_SRC_DPM:
   - SRC
   - DPM
 
-FAN_ST:
+FAN_PS:
   description: "Basic fan with pressure sensor"
   uses:
   - air_pressure_sensor
