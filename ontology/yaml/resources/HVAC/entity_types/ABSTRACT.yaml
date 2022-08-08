@@ -767,7 +767,9 @@ OA:
   - outside_air_pressure_sensor
   - wind_linearvelocity_sensor
   - wind_direction_angle_sensor
-  - outside_air_rain_level_sensor 
+  - outside_air_rain_level_sensor
+  - outside_air_co2_concentration_sensor
+  - outside_air_voc_concentration_sensor
   uses:
   - outside_air_temperature_sensor
   implements:
