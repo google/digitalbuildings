@@ -226,7 +226,7 @@ descriptor:
   sweeper: "Action performed in a sump to prevent sediment build-up via water turbulence."
   sync: "The simultaneous operation or activity of two or more things."
   tertiary: "Associated with the tertiary (peripheral) loops of a production process."
-  transducer: "A transducer is a device that coverts high frequency signals into high frequency sound waves (e.g. used to repel rodent)."
+  transducer: "make more generic: "A device that converts energy from one form to another (e.g., sound energy to electrical energy in a microphone, electrical energy to sound energy in a speaker, etc.)."  
   ultraviolet: "A short wavelength type of light that is beyond the visible spectrum. It is damaging to DNA and cells, and is commonly used to sterilize surfaces."
   unoccupied: "State of being outside of scheduled (time of day or week) run-time parameters."
   use: "A descriptor for how the entity in question is used (e.g. zone_use_label = 'office') "
@@ -347,8 +347,6 @@ measurement_descriptor:
   superheat: "The amount a gas is heated above its boiling point."
   thermal: "Relating to the transfer of heat."
   tilt: "Degree of radial rotation."
-  wavespeed: "Indicates the number of frequency sweeps per minute and it varies with frequency bands."
-  wavedensity: "Is an indicator for the number of divisions within a frequency band and it varies with frequency bands."
   wetbulb: "Describes air temperature measured at 100% relative humidity (saturation)."
 point_type:
   accumulator: "The total accumulated quantity (e.g. total energy accumulated)."
