@@ -3641,6 +3641,68 @@ AHU_DFSS_DFVSC_ECONZ_EFSS_HP2ZC_ZSPC:
   - HP2ZC
   - ZSPC
 
+AHU_DX4ZC_DFSS_DFVSC_EFSS_EFVSC_DSP_ECONZ_ZSPC:
+  description: "Single zone AHU, four-stage DX cooling and zone static pressure control."
+  is_canonical: true
+  implements:
+  - AHU
+  - DX4ZC
+  - DFSS
+  - DFVSC
+  - EFSS
+  - EFVSC
+  - DSP
+  - ECONZ
+  - ZSPC
+
+AHU_CHW2XSC_EFSS2X_EFVSC2X_SFSS2X_SFVSC2X_RFC_RSPC_RTM_SARC_SFM_SSPC_VOADM2X:
+  description: "Multi zone lab unit with two CHW and two OAD."
+  is_canonical: true
+  implements:
+  - AHU
+  - CHW2XSC
+  - EFSS2X
+  - EFVSC2X
+  - SFSS2X
+  - SFVSC2X
+  - RFC
+  - RSPC
+  - RTM
+  - SARC
+  - SFC
+  - SSPC
+  - VOADM2X
+
+AHU_CHWDC_DFSS_DFVSC_DSP_ECONZ_EFSS_SSPC_ZSPC:
+  description: "Single zone AHU with zone static pressure control."
+  is_canonical: true
+  implements:
+  - AHU
+  - CHWDC
+  - DFSS
+  - DFVSC
+  - DSP
+  - ECONZ
+  - EFSS
+  - SSPC
+  - ZSPC
+
+AHU_BSPC_CHWSC_ECON_EFSS_EFVSC_FDPM_RSPC_SFSS_SFVSC_SSPC:
+  description: "Multi-zone chilled water AHU with building static pressure control."
+  is_canonical: true
+  implements:
+  - AHU
+  - BSPC
+  - CHWSC
+  - ECON
+  - EFSS
+  - EFVSC
+  - FDPM
+  - RSPC
+  - SFSS
+  - SFVSC
+  - SSPC
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################

@@ -1285,6 +1285,8 @@ ZSPC:
   id: "4403727275367858176"
   description: "Zone static pressure control."
   is_abstract: true
+  opt_uses:
+  - exhaust_air_damper_percentage_command
   uses:
   - zone_air_static_pressure_setpoint
   - zone_air_static_pressure_sensor
@@ -1304,6 +1306,8 @@ RSPC:
   id: "9015413293795246080"
   description: "Return air static pressure control."
   is_abstract: true
+  opt_uses:
+  - exhaust_air_damper_percentage_command
   uses:
   - return_air_static_pressure_sensor
   - return_air_static_pressure_setpoint
