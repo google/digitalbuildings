@@ -241,6 +241,7 @@ BLR_SS_SWTM_SWISOVM:
   - condensing_water_flowrate_status
   
 BLR_SS_SWTC_CPC_HT2SWC:
+  id: "13237352126989991936"
   description: "Two-stage boiler with circulation pump."
   is_canonical: true
   implements:
