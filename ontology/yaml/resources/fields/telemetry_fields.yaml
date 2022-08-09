@@ -834,21 +834,12 @@ literals:
 - fire_alarm:
   - ACTIVE
   - INACTIVE
-  
+
+- supply_water_volume_accumulator
 - valve_command:
   - OPEN
   - CLOSED
 - valve_status:
-  - OPEN
-  - CLOSED
-- low_battery_alarm:
-  - ACTIVE
-  - INACTIVE
-- load_bypass_mode:
-  - OFF
-  - MANUAL
-  - AUTO
-- gas_flowrate_status:
   - OPEN
   - CLOSED
 - emergency_release_status:

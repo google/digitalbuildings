@@ -25,8 +25,8 @@ FAN_SS:
   implements:
   - FAN
   - SS
-   
-
+  opt_uses:
+  - air_pressure_sensor
 
 ### FAN SPEED CONTROL ###
 
@@ -686,13 +686,6 @@ FAN_VSC_SRC_DPM:
   - VSC
   - SRC
   - DPM
-
-FAN_PS:
-  description: "Basic fan with pressure sensor"
-  uses:
-  - air_pressure_sensor
-  implements:
-  - FAN
 
 FAN_SS_VSC_EPC_EHHRC_EHHRC3X:
   id: "13340710618047447040"

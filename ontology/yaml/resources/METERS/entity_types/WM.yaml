@@ -32,4 +32,4 @@ WM_WF:
   is_canonical: true
   uses:
   - supply_water_flowrate_sensor
-  - water_volume_accumulator
+  - supply_water_volume_accumulator
