@@ -112,9 +112,6 @@ def RunValidation(filenames: List[str],
     report_file = open(report_filename, 'w', encoding='utf-8')
     sys.stdout = report_file
   try:
-    if not bool(subscription):
-      print('Subscription is needed for telemetry validation!')
-      sys.exit(0)
     print('\nStarting validator...\n')
     print('\nStarting universe generation...\n')
     universe = generate_universe.BuildUniverse(
