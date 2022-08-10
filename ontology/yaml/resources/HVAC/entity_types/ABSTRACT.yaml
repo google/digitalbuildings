@@ -30,8 +30,6 @@ SD:
   - supply_air_heating_flowrate_capacity
   - cooling_thermal_power_capacity
   - supply_air_temperature_sensor
-  - min_supply_air_flowrate_sensor
-  - max_supply_air_flowrate_sensor
   - supply_air_damper_percentage_sensor
   uses:
   - supply_air_flowrate_sensor
