@@ -173,9 +173,6 @@ literals:
   - ON
   - OFF
   - UNKNOWN
-- bypass_supply_fan_status:
-  - NORMAL
-  - BYPASS
 - supply_fan_speed_frequency_command
 - supply_fan_speed_frequency_sensor
 - supply_fan_speed_percentage_command
