@@ -96,10 +96,10 @@ def _ValidateConfig(
 
 def _ValidateTelemetry(subscription: str, service_account: str,
                        entities: Dict[str, entity_instance.EntityInstance],
-                       timeout: int) -> None:
+                       timeout: int, udmi: bool) -> None:
   """Runs all telemetry validation checks."""
-  helper = TelemetryHelper(subscription, service_account)
-  helper.Validate(entities, timeout)
+  helper = TelemetryHelper(subscription, service_account) # UDMIHERE
+  helper.Validate(entities, timeout, udmi)
 
 def _GetFilepathsFromDir(root_dir):
   """ Takes in a directory and returns a filepath list for all YAML
@@ -117,7 +117,8 @@ def RunValidation(filenames: List[str],
                   subscription: str = None,
                   service_account: str = None,
                   report_filename: str = None,
-                  timeout: int = 60) -> None:
+                  timeout: int = 60,
+                  udmi: bool = False) -> None:
   """Master runner for all validations."""
   saved_stdout = sys.stdout
   report_file = None
@@ -156,7 +157,7 @@ def RunValidation(filenames: List[str],
     entities = _ValidateConfig(unpacked_files, universe)
     if subscription:
       print('\nStarting telemetry validation...\n')
-      _ValidateTelemetry(subscription, service_account, entities, timeout)
+      _ValidateTelemetry(subscription, service_account, entities, timeout, udmi)
 
   finally:
     sys.stdout = saved_stdout
@@ -178,18 +179,19 @@ class TelemetryHelper(object):
     self.service_account_file = service_account_file
 
   def Validate(self, entities: Dict[str, entity_instance.EntityInstance],
-               timeout: int) -> None:
+               timeout: int, udmi: bool) -> None:
     """Validates telemetry payload received from the subscription.
 
     Args:
       entities: EntityInstance dictionary keyed by entity name
       timeout: number of seconds to wait for telemetry
+      udmi: true/false treat telemetry stream as UDMI
     """
 
     print('Connecting to pubsub subscription: ', self.subscription)
     sub = subscriber.Subscriber(self.subscription, self.service_account_file)
     validator = telemetry_validator.TelemetryValidator(
-        entities, timeout, _TelemetryValidationCallback)
+        entities, timeout, udmi, _TelemetryValidationCallback)
     validator.StartTimer()
     try:
       sub.Listen(validator.ValidateMessage)
