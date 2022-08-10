@@ -236,7 +236,7 @@ SENSOR_ZA_CO2M_PMM_HCHO:
   - zone_air_formaldehyde_concentration_sensor
 
 SENSOR_PMM2X_CO2M13X:
-  description: "Sensor with zone carbondioxide and particulate matter monitoring."
+  description: "Sensor with single zone having carbondioxide and particulate matter monitoring."
   is_canonical: true
   implements:
   - /SENSOR

@@ -5345,11 +5345,11 @@ PMM:
   - MONITORING
 
 PMM2X:
-  description: "Particulate matter monitoring for 2 zones."
+  description: "Particulate matter monitoring for single zone having 2 pm2pt5 sensor."
   is_abstract: true
   uses:
-  - zone_air_pm2pt5_concentration_sensor
-  - zone_air_pm10pt0_concentration_sensor
+  - zone_air_pm2pt5_concentration_sensor_1
+  - zone_air_pm2pt5_concentration_sensor_2
   implements:
   - MONITORING
 
@@ -5402,7 +5402,7 @@ CO2M6X:
   - MONITORING
 
 CO2M13X:
-  description: "Basic carbon dioxide monitoring for 13 Zones."
+  description: "Basic carbon dioxide monitoring for single zone having 13 CO2 sensors."
   is_abstract: true
   uses:
   - zone_air_co2_concentration_sensor_1
