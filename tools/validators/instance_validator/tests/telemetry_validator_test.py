@@ -194,7 +194,7 @@ class TelemetryValidatorTest(absltest.TestCase):
 
   def testTelemetryValidatorGetErrorsReturnsAllErrors(self):
     validator = telemetry_validator.TelemetryValidator(GOOD_ENTITIES_1, 1,
-                                                       _NullCallback)
+                                                       False, _NullCallback)
     error_one = tvr.TelemetryReportPoint(GOOD_ENTITY_NAME_1, GOOD_POINT_NAME_1,
                                          'Test error 1',
                                          tvr.TelemetryReportPointType.ERROR)
@@ -212,7 +212,7 @@ class TelemetryValidatorTest(absltest.TestCase):
 
   def testTelemetryValidatorGetUnvalidatedEntitiesReturnsMissingEntities(self):
     validator = telemetry_validator.TelemetryValidator(GOOD_ENTITIES_3_4, 1,
-                                                       _NullCallback)
+                                                       False, _NullCallback)
 
     validator.ValidateMessage(_MESSAGEGOOD_2)
 
@@ -223,7 +223,7 @@ class TelemetryValidatorTest(absltest.TestCase):
 
   def testTelemetryValidatorIgnoresMissingPointOnPartialUpdate(self):
     validator = telemetry_validator.TelemetryValidator(GOOD_ENTITIES_1, 1,
-                                                       _NullCallback)
+                                                       False, _NullCallback)
 
     validator.ValidateMessage(_MESSAGE_MISSING_GOOD_POINT_PARTIAL)
 
@@ -231,7 +231,7 @@ class TelemetryValidatorTest(absltest.TestCase):
 
   def testTelemetryValidatorDetectsMissingPoint(self):
     validator = telemetry_validator.TelemetryValidator(GOOD_ENTITIES_1, 1,
-                                                       _NullCallback)
+                                                       False, _NullCallback)
 
     validator.ValidateMessage(_MESSAGE_MISSING_POINT)
 
@@ -245,7 +245,7 @@ class TelemetryValidatorTest(absltest.TestCase):
 
   def testTelemetryValidatorDetectsMissingPresentValue(self):
     validator = telemetry_validator.TelemetryValidator(GOOD_ENTITIES_1, 1,
-                                                       _NullCallback)
+                                                       False, _NullCallback)
 
     validator.ValidateMessage(_MESSAGE_MISSING_PRESENT_VALUE)
 
@@ -260,7 +260,7 @@ class TelemetryValidatorTest(absltest.TestCase):
 
   def testTelemetryValidatorDetectsUnmappedState(self):
     validator = telemetry_validator.TelemetryValidator(GOOD_ENTITIES_2, 1,
-                                                       _NullCallback)
+                                                       False, _NullCallback)
 
     validator.ValidateMessage(_MESSAGE_INVALID_STATE)
 
@@ -279,7 +279,7 @@ class TelemetryValidatorTest(absltest.TestCase):
 
   def testTelemetryValidatorDetectsStringAsInvalidNumber(self):
     validator = telemetry_validator.TelemetryValidator(GOOD_ENTITIES_1, 1,
-                                                       _NullCallback)
+                                                       False, _NullCallback)
 
     validator.ValidateMessage(_MESSAGE_INVALID_NUMBER)
 
@@ -294,7 +294,7 @@ class TelemetryValidatorTest(absltest.TestCase):
 
   def testTelemetryValidatorDetectsBooleanAsInvalidNumber(self):
     validator = telemetry_validator.TelemetryValidator(GOOD_ENTITIES_1, 1,
-                                                       _NullCallback)
+                                                       False, _NullCallback)
 
     validator.ValidateMessage(_MESSAGE_INVALID_NUMBER_BOOLEAN)
 
@@ -309,7 +309,7 @@ class TelemetryValidatorTest(absltest.TestCase):
 
   def testTelemetryValidatorDetectsMultipleErrorsInMessage(self):
     validator = telemetry_validator.TelemetryValidator(GOOD_ENTITIES_1, 1,
-                                                       _NullCallback)
+                                                       False, _NullCallback)
 
     validator.ValidateMessage(_MESSAGE_MULTIPLE_ERRORS)
 
@@ -333,6 +333,7 @@ class TelemetryValidatorTest(absltest.TestCase):
       self.assertTrue(validator.AllEntitiesValidated())
 
     validator = telemetry_validator.TelemetryValidator(GOOD_ENTITIES_1, 1,
+                                                       False,
                                                        ValidationCallback)
 
     validator.ValidateMessage(_MESSAGEGOOD)
@@ -344,6 +345,7 @@ class TelemetryValidatorTest(absltest.TestCase):
       self.assertTrue(validator.AllEntitiesValidated())
 
     validator = telemetry_validator.TelemetryValidator(GOOD_ENTITIES_5, 1,
+                                                       False,
                                                        ValidationCallback)
 
     validator.ValidateMessage(_MESSAGEGOOD_MULTIPLE_STATES)
@@ -355,6 +357,7 @@ class TelemetryValidatorTest(absltest.TestCase):
       self.assertTrue(validator.AllEntitiesValidated())
 
     validator = telemetry_validator.TelemetryValidator(GOOD_ENTITIES_6, 1,
+                                                       False,
                                                        ValidationCallback)
 
     validator.ValidateMessage(_MESSAGEGOOD_STATES_LIST)
@@ -366,6 +369,7 @@ class TelemetryValidatorTest(absltest.TestCase):
       self.assertTrue(validator.AllEntitiesValidated())
 
     validator = telemetry_validator.TelemetryValidator(GOOD_ENTITIES_7, 1,
+                                                       False,
                                                        ValidationCallback)
 
     validator.ValidateMessage(_MESSAGE_STRING_STATES)
@@ -376,6 +380,7 @@ class TelemetryValidatorTest(absltest.TestCase):
       self.assertTrue(validator.AllEntitiesValidated())
 
     validator = telemetry_validator.TelemetryValidator(GOOD_ENTITIES_1, 1,
+                                                       False,
                                                        ValidationCallback)
     validator.ValidateMessage(_MESSAGE_INVALID_JSON)
 

@@ -92,7 +92,7 @@ def _ValidateTelemetry(subscription: str, service_account: str,
                        entities: Dict[str, entity_instance.EntityInstance],
                        timeout: int, udmi: bool) -> None:
   """Runs all telemetry validation checks."""
-  helper = TelemetryHelper(subscription, service_account) # UDMIHERE
+  helper = TelemetryHelper(subscription, service_account)
   helper.Validate(entities, timeout, udmi)
 
 
@@ -127,7 +127,7 @@ def RunValidation(filenames: List[str],
     entities = _ValidateConfig(filenames, universe)
     if subscription:
       print('\nStarting telemetry validation...\n')
-      _ValidateTelemetry(subscription, service_account, entities, timeout)
+      _ValidateTelemetry(subscription, service_account, entities, timeout, udmi)
     else:
       print('Subscription is needed for telemetry validation')
 

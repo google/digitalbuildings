@@ -77,7 +77,6 @@ class Telemetry(object):
       pubsub_message_attributes.get(SUB_FOLDER)
     parsed_attributes[SUB_TYPE] = \
       pubsub_message_attributes.get(SUB_TYPE)
-    
     return parsed_attributes
 
   def _parse_data(self,

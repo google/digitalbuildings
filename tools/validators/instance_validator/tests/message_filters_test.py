@@ -21,15 +21,15 @@ class MessageFilterTests(absltest.TestCase):
   """Tests"""
 
   def testTelemetryWithEmptyMessage(self):
-    self.assertFalse(message_filters.Udmi.telemetry({}, {}))
+    self.assertFalse(message_filters.Udmi.telemetry({}))
 
   def testTelemetryWithStateMessage(self):
     attrs = {'subFolder': 'update', 'subType': 'state'}
-    self.assertFalse(message_filters.Udmi.telemetry({}, attrs))
+    self.assertFalse(message_filters.Udmi.telemetry(attrs))
 
   def testTelemetryWithTelemetry(self):
     attrs = {'subFolder': 'pointset'}
-    self.assertTrue(message_filters.Udmi.telemetry({}, attrs))
+    self.assertTrue(message_filters.Udmi.telemetry(attrs))
 
 if __name__ == '__main__':
   absltest.main()

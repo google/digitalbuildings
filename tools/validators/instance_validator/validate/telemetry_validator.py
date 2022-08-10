@@ -115,14 +115,15 @@ class TelemetryValidator(object):
     Adds all validation errors for the message to a list of all errors
     discovered by this validator.
     """
-    tele = telemetry.Telemetry(message)
-    entity_name = tele.attributes[DEVICE_ID]
 
-    # UDMI Pub/Sub streams include messages which aren't telemetry, silently 
+    # UDMI Pub/Sub streams include messages which aren't telemetry, silently
     # ignore these if validator configured with --udmi flag
-    if self.udmi and not message_filters.Udmi.telemetry(tele.attributes):
+    if self.udmi and not message_filters.Udmi.telemetry(message.attributes):
       message.ack()
       return
+
+    tele = telemetry.Telemetry(message)
+    entity_name = tele.attributes[DEVICE_ID]
 
     # Telemetry message received for an entity not in building config
     if entity_name not in self.entities_with_translation.keys():
