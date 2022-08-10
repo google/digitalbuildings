@@ -147,19 +147,10 @@ CSP:
   opt_uses:
   - zone_air_relative_humidity_sensor
   - discharge_air_temperature_sensor
+  - zone_occupancy_status
   uses:
   - zone_air_temperature_sensor
   - zone_air_cooling_temperature_setpoint
-
-CSPO:
-  description: "Single cooling setpoint control with occupancy."
-  is_abstract: true
-  implements:
-  - OPERATIONAL
-  uses:
-  - zone_air_occupied_cooling_temperature_setpoint
-  - zone_air_unoccupied_cooling_temperature_setpoint
-  - zone_occupancy_status
 
 ZTC:
   id: "10742921982891786240"

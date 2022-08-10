@@ -453,8 +453,6 @@ literals:
 - zone_air_static_pressure_setpoint
 - zone_air_voc_concentration_sensor
 - zone_air_voc_concentration_setpoint
-- min_supply_air_flowrate_sensor
-- max_supply_air_flowrate_sensor
 - zone_air_occupied_cooling_temperature_setpoint
 - zone_air_unoccupied_cooling_temperature_setpoint
 - return_air_voc_concentration_sensor
