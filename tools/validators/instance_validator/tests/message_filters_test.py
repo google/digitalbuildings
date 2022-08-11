@@ -1,4 +1,4 @@
-# Copyright 2020 Google LLC
+# Copyright 2022 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the License);
 # you may not use this file except in compliance with the License.
@@ -30,6 +30,10 @@ class MessageFilterTests(absltest.TestCase):
   def testTelemetryWithTelemetry(self):
     attrs = {'subFolder': 'pointset'}
     self.assertTrue(message_filters.Udmi.telemetry(attrs))
+
+  def testTelemetryWithStatePointset(self):
+    attrs = {'subFolder': 'pointset', 'subType': 'state'}
+    self.assertFalse(message_filters.Udmi.telemetry(attrs))
 
 if __name__ == '__main__':
   absltest.main()

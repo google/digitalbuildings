@@ -34,11 +34,11 @@ class TelemetryValidator(object):
   Attributes;
     entities: a dict with entity_name as a key and EntityInstance as value.
     timeout: the max time the validator must read messages from pubsub.
-    udmi: true/false treat telemetry stream as UDMI
+    is_udmi: true/false treat telemetry stream as UDMI
     callback: the method called by the pubsub listener upon receiving a msg.
   """
 
-  def __init__(self, entities, timeout, udmi, callback):
+  def __init__(self, entities, timeout, is_udmi, callback):
     """Init.
 
     Args:
@@ -56,7 +56,7 @@ class TelemetryValidator(object):
     }
     self.timeout = timeout
     self.callback = callback
-    self.udmi = udmi
+    self.is_udmi = is_udmi
     self.validated_entities = {}
     # TODO(charbull): refactor by having on validation_report object instead
     #  of two: warning and errors
@@ -118,7 +118,7 @@ class TelemetryValidator(object):
 
     # UDMI Pub/Sub streams include messages which aren't telemetry, silently
     # ignore these if validator configured with --udmi flag
-    if self.udmi and not message_filters.Udmi.telemetry(message.attributes):
+    if self.is_udmi and not message_filters.Udmi.telemetry(message.attributes):
       message.ack()
       return
 
