@@ -40,7 +40,7 @@ class GuidGeneratorTest(absltest.TestCase):
         yaml_dict = syaml.load(filename.read_text())
         for i in range(1, len(yaml_dict.values())):
           self.assertIsNotNone(
-              yaml_dict.values()[i][instance_parser.ENTITY_GUID_KEY])
+              yaml_dict.values()[i][instance_parser.ENTITY_CODE_KEY])
 
   def testGenerateGuidSkipsGoodGuid(self):
     input_file_path = os.path.join(_TEST_INSTANCES_PATH, 'GOOD',
