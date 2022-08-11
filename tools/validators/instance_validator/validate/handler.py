@@ -124,7 +124,8 @@ def RunValidation(filenames: List[str],
     entities = _ValidateConfig(filenames, universe)
     if subscription:
       print('\nStarting telemetry validation...\n')
-      _ValidateTelemetry(subscription, service_account, entities, timeout, is_udmi)
+      _ValidateTelemetry(subscription, service_account, entities,
+                         timeout, is_udmi)
     else:
       print('Subscription is needed for telemetry validation')
 
