@@ -3655,25 +3655,25 @@ AHU_DX4ZC_DFSS_DFVSC_EFSS_EFVSC_DSP_ECONZ_ZSPC:
   - ECONZ
   - ZSPC
 
-AHU_CHW2XSC_EFSS2X_EFVSC2X_SFSS2X_SFVSC2X_RFC_RSPC_RTM_SARC_SFM_SSPC_VOADM2X:
-  description: "Multi zone lab unit with two CHW and two OAD."
+AHU_CHW2XSC_RFSS2X_RFVSC2X_SFSS2X_SFVSC2X_RFC_EDRPC_RTM_SARC_SFM_SSPC_VOADM2X:
+  description: "Multi zone lab unit with two CHW, two OAD, and return static pressure control."
   is_canonical: true
   implements:
   - AHU
   - CHW2XSC
-  - EFSS2X
-  - EFVSC2X
+  - RFSS2X
+  - RFVSC2X
   - SFSS2X
   - SFVSC2X
   - RFC
-  - RSPC
+  - EDRPC
   - RTM
   - SARC
   - SFC
   - SSPC
   - VOADM2X
 
-AHU_CHWDC_DFSS_DFVSC_DSP_ECONZ_EFSS_SSPC_ZSPC:
+AHU_CHWDC_DFSS_DFVSC_DSP_ECONZ_EFSS_ZSPC:
   description: "Single zone AHU with zone static pressure control."
   is_canonical: true
   implements:
@@ -3684,21 +3684,19 @@ AHU_CHWDC_DFSS_DFVSC_DSP_ECONZ_EFSS_SSPC_ZSPC:
   - DSP
   - ECONZ
   - EFSS
-  - SSPC
   - ZSPC
 
-AHU_BSPC_CHWSC_ECON_EFSS_EFVSC_FDPM_RSPC_SFSS_SFVSC_SSPC:
-  description: "Multi-zone chilled water AHU with building static pressure control."
+AHU_CHWSC_ECON_FDPM_EDRPC_RFSS_RFVSC_SFSS_SFVSC_SSPC:
+  description: "Multi-zone chilled water AHU with return static pressure control."
   is_canonical: true
   implements:
   - AHU
-  - BSPC
   - CHWSC
   - ECON
-  - EFSS
-  - EFVSC
   - FDPM
-  - RSPC
+  - EDRPC
+  - RFSS
+  - RFVSC
   - SFSS
   - SFVSC
   - SSPC

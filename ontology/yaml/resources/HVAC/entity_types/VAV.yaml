@@ -426,21 +426,21 @@ VAV_RDC:
   - VAV
   - RDC
 
-VAV_RD_DSP:
-  description: "Return control VAV with cooling control."
+VAV_RD_DSPRTC:
+  description: "Return control VAV with return cooling control."
   is_canonical: true
   implements:
   - VAV
   - RD
-  - DSP
+  - DSPRTC
  
-VAV_RD_DSP_ZSPC:
-  description: "Return control VAV with cooling control and zone pressure control."
+VAV_RD_DSPRTC_ZSPC:
+  description: "Return control VAV with return cooling control and zone pressure control."
   is_canonical: true
   implements:
   - VAV
   - RD
-  - DSP
+  - DSPRTC
   - ZSPC
 
 ###################################

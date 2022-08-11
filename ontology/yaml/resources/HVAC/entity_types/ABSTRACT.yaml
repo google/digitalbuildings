@@ -309,6 +309,18 @@ EDBPC:
   implements:
   - CONTROL
 
+EDRPC:
+  description: "Return static control with exhaust damper."
+  is_abstract: true
+  opt_uses:
+  - exhaust_air_damper_percentage_sensor
+  uses:
+  - return_air_static_pressure_sensor
+  - return_air_static_pressure_setpoint
+  - exhaust_air_damper_percentage_command
+  implements:
+  - CONTROL
+
 EFFC:
   id: "3108154032661725184"
   description: "Exhaust fan flow control."
@@ -1306,8 +1318,6 @@ RSPC:
   id: "9015413293795246080"
   description: "Return air static pressure control."
   is_abstract: true
-  opt_uses:
-  - exhaust_air_damper_percentage_command
   uses:
   - return_air_static_pressure_sensor
   - return_air_static_pressure_setpoint
@@ -5443,3 +5453,68 @@ RDC:
   - return_air_damper_percentage_command
   implements:
   - MONITORING
+
+RFSS:
+  description: "Basic combination of return fan run command and status (start/stop)."
+  is_abstract: true
+  opt_uses:
+  - return_fan_current_sensor
+  - return_fan_power_sensor
+  uses:
+  - return_fan_run_command
+  - return_fan_run_status
+  implements:
+  - OPERATIONAL
+
+RFSS2X:
+  description: "Return fan start-stop and feedback with two fan."
+  is_abstract: true
+  opt_uses:
+  - return_fan_current_sensor_1
+  - return_fan_current_sensor_2
+  - return_fan_power_sensor_1
+  - return_fan_power_sensor_2
+  uses:
+  - return_fan_run_command_1
+  - return_fan_run_command_2
+  - return_fan_run_status_1
+  - return_fan_run_status_2
+  implements:
+  - OPERATIONAL
+
+RFVSC:
+  description: "Variable speed control for a return fan."
+  is_abstract: true
+  opt_uses:
+  - return_fan_speed_frequency_sensor
+  - return_fan_speed_percentage_sensor
+  - return_fan_current_sensor
+  - return_fan_power_sensor
+  uses:
+  - return_fan_run_command
+  - return_fan_run_status
+  - return_fan_speed_percentage_command
+  implements:
+  - OPERATIONAL
+
+RFVSC2X:
+  description: "Return fan variable speed control with feedback and sensoring for two fanss."
+  is_abstract: true
+  opt_uses:
+  - return_fan_speed_frequency_sensor_1
+  - return_fan_speed_percentage_sensor_1
+  - return_fan_current_sensor_1
+  - return_fan_power_sensor_1
+  - return_fan_speed_frequency_sensor_2
+  - return_fan_speed_percentage_sensor_2
+  - return_fan_current_sensor_2
+  - return_fan_power_sensor_2
+  uses:
+  - return_fan_run_command_1
+  - return_fan_run_status_1
+  - return_fan_speed_percentage_command_1
+  - return_fan_run_command_2
+  - return_fan_run_status_2
+  - return_fan_speed_percentage_command_2
+  implements:
+  - OPERATIONAL
