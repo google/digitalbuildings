@@ -18,7 +18,7 @@ import os
 from absl.testing import absltest
 import strictyaml as syaml
 
-from guid_generator.guid_generator import GuidGenerator
+from guid_generator.guid_handler import GuidGenerator
 from guid_generator.tests import test_constants
 from validate import instance_parser
 
