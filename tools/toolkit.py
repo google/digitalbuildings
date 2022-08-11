@@ -132,5 +132,5 @@ if __name__ == '__main__':
         service_account=args.service_account,
         report_filename=args.report_filename,
         timeout=int(args.timeout),
-        udmi=args.udmi)
+        is_udmi=args.udmi)
 
