@@ -15,6 +15,7 @@
 
 import os
 
+from absl import flags
 from absl.testing import absltest
 import strictyaml as syaml
 
@@ -23,6 +24,9 @@ from tests import test_constants
 from validate import instance_parser
 
 _TEST_INSTANCES_PATH = test_constants.TEST_INSTANCES
+
+FLAGS = flags.FLAGS
+FLAGS.DEFINE_string('test_tmpdir', '.', '.')
 
 
 class GuidGeneratorTest(absltest.TestCase):
