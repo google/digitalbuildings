@@ -25,9 +25,6 @@ from validate import instance_parser
 
 _TEST_INSTANCES_PATH = test_constants.TEST_INSTANCES
 
-FLAGS = flags.FLAGS
-FLAGS.DEFINE_string('test_tmpdir', '.', '.')
-
 
 class GuidGeneratorTest(absltest.TestCase):
 
