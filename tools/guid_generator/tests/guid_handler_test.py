@@ -18,8 +18,8 @@ import os
 from absl.testing import absltest
 import strictyaml as syaml
 
-from guid_generator.guid_handler import GuidGenerator
-from guid_generator.tests import test_constants
+from guid_handler import GuidGenerator
+from tests import test_constants
 from validate import instance_parser
 
 _TEST_INSTANCES_PATH = test_constants.TEST_INSTANCES
