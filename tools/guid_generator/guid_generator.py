@@ -37,7 +37,9 @@ class GuidGenerator(object):
     """
     try:
       with open(filename, 'w', encoding='utf-8') as file:
-        for entity_key, entity_block in eneitty_yaml_dict.items():
+        file.write('')
+      with open(filename, 'a', encoding='utf-8') as file:
+        for entity_key, entity_block in entity_yaml_dict.items():
           file.write(syaml.as_document({entity_key: entity_block}).as_yaml())
           file.write('\n')
     except PermissionError:
