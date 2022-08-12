@@ -68,6 +68,8 @@ Run `python instance_validator.py` and provide the following arguments:
 
   * `-t/--timeout` **[Optional]** The timeout duration in seconds for the telemetry validation test. The default value is 600 seconds, or 10 minutes. If this time limit is exceeded before the validator receives a test pubsub message for each of the entities configured in the given instance config file, the test will fail with an error and report the entities that were not heard from.
 
+  * `--udmi` **[Optional]** Treat message stream on PubSub subscription as [UDMI](https://github.com/faucetsdn/udmi/). **NOTE:** This is required for telemetry validation when devices implement the UDMI specification.
+
   * **NOTE:** The service account key and subscription are provided by the Google team. Please reach out to your IoT TPM for guidance.
 
 4. `-r/--report-filename` To write results to a validation log.
