@@ -587,6 +587,23 @@ DFSS:
   - discharge_fan_run_command
   - discharge_fan_run_status
 
+DF2SS:
+  id: "8437078973678092288"
+  description: "Two discharge fan run command and status (start/stop). With dampers"
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  opt_uses:
+  - supply_air_damper_status_1
+  - return_air_damper_status_1
+  - supply_air_damper_status_2
+  - return_air_damper_status_2
+  uses:
+  - discharge_fan_run_command_1
+  - discharge_fan_run_status_1
+  - discharge_fan_run_command_2
+  - discharge_fan_run_status_2
+
 HT2RC:
   id: "12331526069516500992"
   description: "Two gas or electric heater control on zone side (HSP, DSP)."
