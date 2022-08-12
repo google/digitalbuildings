@@ -50,26 +50,16 @@ FCU_DFSS_CSP_DXZC:
   - CSP
   - DXZC
 
-FCU_DXRC_RMM:
+FCU_DFSS_DXRC_DFRMM:
   description: "Typical DX FCU with cooling-only (return control) with run mode and failed alarm ."
   is_canonical: true
   opt_uses:
   - failed_alarm
-  - fan_speed_mode
   implements:
   - FCU
+  - DFSS
   - DXRC
-  - RMM
-  
-FCU_DXASP2:
-  description: "Typical two DX unit auto sequential panel monitoring with drain pump,damper and fire monitoring ."
-  is_canonical: true
-  opt_uses:
-  - fire_alarm
-  - drain_pump_failed_alarm
-  implements:
-  - FCU
-  - DXASP2
+  - DFRMM
 
 FCU_DFSS_CSP_DX2ZC:
   id: "2962575394609299456"
@@ -438,21 +428,18 @@ FCU_DFSS_DFVSC_CHWRC_RHDHC:
   - CHWRC
   - RHDHC
 
-FCU_SFSS_STM_RTM:
+FCU_DFSS_DTM_CHWRC:
   description: "Variable speed DX fan coil with chilled water return temp control with drain pump monitoring ."
   is_canonical: true
   opt_uses:
   - drain_pump_run_status
-  - supply_fan_speed_mode
   - run_mode
-  - return_air_temperature_setpoint
   implements:
   - FCU
-  - SFSS
-  - STM
-  - RTM
+  - DFSS
+  - DTM
+  - CHWRC
   
-
 FCU_DFSS_DFHLC_DSP_DXZC:
   id: "12762408183767498752"
   description: "Mult-speed DX fan coil with zone temp control."
