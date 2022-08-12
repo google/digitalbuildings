@@ -96,11 +96,6 @@ class Telemetry(object):
     version, timestamp, points, is_partial = (None, None, None, None)
     try:
       json_object = json.loads(message)
-    except json.JSONDecodeError:
-      print(f'The following Json payload is invalid:\n{message}')
-    except AttributeError:
-      print(f'The following Json raised an attribute error:\n{message}')
-    else:
       version = json_object[VERSION]
       timestamp = json_object[TIMESTAMP]
       is_partial = bool(json_object.get(PARTIAL_UPDATE, False))
@@ -112,4 +107,12 @@ class Telemetry(object):
       for point_name, value in json_points.items():
         p = point.Point(point_name, value.get(PRESENT_VALUE))
         points[point_name] = p
+    except (json.JSONDecodeError, TypeError):
+      print(f'The following payload is invalid:\n{message}')
+    except AttributeError:
+      print(f'The following Json raised an attribute error:\n{message}')
+    except KeyError as err:
+      print(f'The following Json payload is missing required field {err}')
+      print(message)
+
     return version, timestamp, points, is_partial
