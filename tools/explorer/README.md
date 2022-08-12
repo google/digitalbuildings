@@ -6,6 +6,18 @@ The Ontology explorer allows a user to ask a few basic question of the ontology:
 * Is a field defined within a certain namespace
 
 ## Install
+
+There are two ways to install the explorer.
+
+## Pip
+
+1. Run `python3 -m pip install --upgrade pip` to ensure that your Python package management tools are up-to-date.
+2. Run `python3 -m pip install -r requirements.txt ` from the following directories, in order:
+* digitalbuildings/tools/validators/ontology_validator
+* digitalbuildings/tools/validators/instance_validator
+* digitalbuildings/tools/explorer
+
+### Setup
 To install the dependencies, please run `python setup.py install` from the following directories, in order:
 * digitalbuildings/tools/validators/ontology_validator
 * digitalbuildings/tools/validators/instance_validator
