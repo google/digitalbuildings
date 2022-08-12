@@ -588,7 +588,6 @@ DFSS:
   - discharge_fan_run_status
 
 DF2SS:
-  id: "8437078973678092288"
   description: "Two discharge fan run command and status (start/stop). With dampers"
   is_abstract: true
   implements:
