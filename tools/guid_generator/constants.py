@@ -12,10 +12,17 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-BUILDING-GUID:
-  code: BUILDING
-  type: FACILITIES/BUILDING
+"""Constants for the GUID generator application."""
 
-GATEWAY-ENTITY-GUID:
-  code: GATEWAY-ENTITY
-  type: GATEWAYS/PASSTHROUGH
+from os import path
+
+# internally, absolute path is used; github uses relative path
+_USE_ABSOLUTE_PATH = False
+
+if _USE_ABSOLUTE_PATH:
+  REPO_ROOT = path.join('third_party', 'digitalbuildings')
+else:
+  REPO_ROOT = path.join(
+      path.dirname(path.realpath(__file__)), path.join('..', '..'))
+
+APPLICATION_ROOT = path.join(REPO_ROOT, 'tools', 'guid_generator')
