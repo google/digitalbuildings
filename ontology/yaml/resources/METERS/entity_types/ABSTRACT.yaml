@@ -21,7 +21,7 @@ PWM:
   is_abstract: true
   opt_uses:
   - apparent_power_sensor
-  - reactive_power_sensor
+  - reactivepower_sensor
   - powerfactor_sensor
   - line_frequency_sensor
   - apparent_energy_accumulator
@@ -50,9 +50,9 @@ PLPM:
   - phase1_apparent_power_sensor
   - phase2_apparent_power_sensor
   - phase3_apparent_power_sensor
-  - phase1_reactive_power_sensor
-  - phase2_reactive_power_sensor
-  - phase3_reactive_power_sensor
+  - phase1_reactivepower_sensor
+  - phase2_reactivepower_sensor
+  - phase3_reactivepower_sensor
   uses:
   - phase1_power_sensor
   - phase2_power_sensor
