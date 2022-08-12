@@ -2,6 +2,14 @@
 
 The Ontology Validator allows you to extend the ontology and then validate it to make sure it is comform to guidelines.
 
+## Install requirements
+
+To install the requirements please run the following pip command:
+
+1. Run `python3 -m pip install --upgrade pip` to ensure that your Python package management tools are up-to-date.
+2. Run `python3 -m pip install -r requirements.txt ` from digitalbuildings/tools/validators/ontology_validator.
+
+
 ## Yaml Validator
 The validator source code can be found [here](yamlformat/validator/validate_types.py).
 
