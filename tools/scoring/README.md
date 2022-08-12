@@ -14,10 +14,7 @@ The scoring tool evaluates _proposed_ configuration files against "known good" _
 
 1. Run `python3 -m pip install --upgrade pip` to ensure that your Python package management tools are up-to-date.
 
-2. Run `python3 -m pip install -r requirements.txt ` from the following directories in the following order:
-* digitalbuildings/tools/validators/ontology_validator
-* digitalbuildings/tools/validators/instance_validator
-* digitalbuildings/tools/scoring
+2. Run `python3 -m pip install -r requirements.txt ` from the following directory digitalbuildings/tools/scoring.
 
 
 ### Setup
