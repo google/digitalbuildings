@@ -1,3 +1,4 @@
 absl-py
 argparse
 typing_extensions
+-r ../validators/instance_validator/requirements.txt
