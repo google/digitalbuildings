@@ -28,6 +28,24 @@ _TEST_INSTANCES_PATH = test_constants.TEST_INSTANCES
 
 class GuidGeneratorTest(absltest.TestCase):
 
+  def testGeneratorWritesAllEntitiesBackToFile(self):
+    input_file_path = os.path.join(_TEST_INSTANCES_PATH, 'GOOD',
+                                   'building_config_keyed_by_code.yaml')
+    with open(input_file_path, 'r', encoding='utf-8') as input_file:
+      input_parsed_yaml = syaml.load(input_file.read())
+
+    with open(input_file_path, 'r', encoding='utf-8') as input_file:
+      temp_file_path = os.path.join(tempfile.gettempdir(), 'test_bc.yaml')
+      with open(temp_file_path, 'w', encoding='utf-8') as temp_file:
+        temp_file.write(input_file.read())
+      GuidGenerator.GenerateGuids(os.path.abspath(temp_file_path))
+
+      with open(temp_file_path, 'r', encoding='utf-8') as temp_file:
+        output_parsed_yaml = syaml.load(temp_file.read())
+
+    self.assertEqual(len(input_parsed_yaml), len(output_parsed_yaml))
+
+
   def testGenerateGuidGeneratesGuid(self):
     input_file = os.path.join(_TEST_INSTANCES_PATH, 'GOOD',
                               'building_missing_guid.yaml')

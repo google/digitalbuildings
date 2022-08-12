@@ -36,9 +36,11 @@ class GuidGenerator(object):
         instance code or GUID.
     """
     try:
+      # First truncate the file. Necessary to append entity blocks one by one.
       with open(filename, 'w', encoding='utf-8') as file:
         file.write('')
       with open(filename, 'a', encoding='utf-8') as file:
+        # Then append each entity block with a blank line in-between
         for entity_key, entity_block in entity_yaml_dict.items():
           file.write(syaml.as_document({entity_key: entity_block}).as_yaml())
           file.write('\n')
