@@ -583,6 +583,8 @@ DFSS:
   - discharge_fan_lost_power_alarm
   - schedule_run_command
   - discharge_fan_run_time_accumulator
+  - discharge_fan_failed_alarm
+  - discharge_fan_run_mode
   uses:
   - discharge_fan_run_command
   - discharge_fan_run_status
