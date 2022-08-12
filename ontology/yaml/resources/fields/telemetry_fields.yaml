@@ -179,6 +179,8 @@ literals:
 - pressurization_request_count
 - zone_air_co2_concentration_sensor
 - zone_air_co2_concentration_setpoint
+- max_zone_air_co2_concentration_sensor
+- average_zone_air_co2_concentration_sensor
 - zone_air_co_concentration_setpoint
 - zone_air_cooling_temperature_setpoint
 - zone_air_heating_temperature_setpoint

@@ -4477,6 +4477,17 @@ CO2DFVSC:
   implements:
   - CONTROL
 
+CO2EFVSC:
+  description: "Carbon dioxide levels controlled by a variable speed exhaust fan."
+  opt_uses:
+  - exhaust_fan_speed_percentage_sensor
+  uses:
+  - zone_air_co2_concentration_sensor
+  - zone_air_co2_concentration_setpoint
+  - exhaust_fan_speed_percentage_command
+  implements:
+  - CONTROL
+
 RACO2C:
   id: "15503353232859594752"
   description: "Returned air carbon dioxide levels controls."
@@ -5258,6 +5269,9 @@ CO2M6X:
   id: "10200096390793658368"
   description: "Basic carbon dioxide monitoring for 6 Zones."
   is_abstract: true
+  opt_uses:
+  - max_zone_air_co2_concentration_sensor
+  - average_zone_air_co2_concentration_sensor
   uses:
   - zone_air_co2_concentration_sensor_1
   - zone_air_co2_concentration_sensor_2
