@@ -5,3 +5,4 @@ strictyaml==1.4.2
 google-cloud-pubsub==2.6.1
 google-auth<2.0
 googleapis-common-protos==1.56.0
+-r ../ontology_validator/requirements.txt
