@@ -484,9 +484,6 @@ FAN_VSC_SCRSS:
   - FAN
   - VSC
   - SCRSS
-  opt_uses:
-  - bypass_air_damper_percentage_command
-  - bypass_air_damper_percentage_sensor
  
 ###################################
 ### Existing Non-standard Types ###

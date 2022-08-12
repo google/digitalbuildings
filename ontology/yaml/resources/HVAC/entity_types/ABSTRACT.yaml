@@ -371,7 +371,7 @@ EFVSC:
   - exhaust_fan_current_sensor
   - exhaust_fan_power_sensor
   - exhaust_fan_run_mode
-  - bypass_exhaust_fan_status
+  - exhaust_fan_speed_mode
   uses:
   - exhaust_fan_run_command
   - exhaust_fan_run_status
@@ -5328,6 +5328,8 @@ SCRSS:
   - differential_pressure_sensor
   - differential_pressure_setpoint
   - fire_alarm
+  - bypass_air_damper_percentage_command
+  - bypass_air_damper_percentage_sensor
   uses:
   - scrubber_run_command
   - scrubber_run_status
