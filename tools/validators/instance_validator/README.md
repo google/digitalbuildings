@@ -15,8 +15,7 @@ You can run the command with just the version flag (e.g. `python --version`) to 
 ### PIP
 
 1. Run `python3 -m pip install --upgrade pip` to ensure that your Python package management tools are up-to-date.
-2. Run `python3 -m pip install -r requirements.txt ` from digitalbuildings/tools/validators/ontology_validator.
-3. Run `python3 -m pip install -r requirements.txt ` from digitalbuildings/tools/validators/instance_validator.
+2. Run `python3 -m pip install -r requirements.txt ` from digitalbuildings/tools/validators/instance_validator.
 
 ## SetUpTools
 
