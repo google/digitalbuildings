@@ -83,6 +83,9 @@ class Telemetry(object):
                   message) -> Tuple[str, str, Dict[str, point.Point], bool]:
     """Receives a pubsub message data and parses it.
 
+    Handles parsing as outlined in:
+    https://faucetsdn.github.io/udmi/gencode/docs/event_pointset.html
+
     Args:
       message: pubsub telemetry payload, UDMI compliant
 
@@ -109,6 +112,7 @@ class Telemetry(object):
       if type(json_object) is int:
         print(f'Received an invalid Json payload containing: \n{json_object}')
         return version, timestamp, points, is_partial
+
       # UDMI v1 sends as int and v1+ sends version as String
       if VERSION not in json_object.keys():
         print('Error: no version in ', json_object)
