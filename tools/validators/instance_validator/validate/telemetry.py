@@ -98,7 +98,7 @@ class Telemetry(object):
     """
     version, timestamp, points, is_partial = (None, None, None, None)
     try:
-      if type(message) is int:
+      if isinstance(message, int):
         print(f'Received an invalid message (non Json payload)\n{message}')
         return version, timestamp, points, is_partial
       json_object = json.loads(message)
@@ -109,7 +109,7 @@ class Telemetry(object):
     except ValueError:
       print(f'The following Json raised an ValueError error:\n{message}')
     else:
-      if type(json_object) is int:
+      if isinstance(json_object, int):
         print(f'Received an invalid Json payload containing: \n{json_object}')
         return version, timestamp, points, is_partial
 
