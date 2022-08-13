@@ -116,12 +116,12 @@ class Telemetry(object):
       # UDMI v1 sends as int and v1+ sends version as String
       if VERSION not in json_object.keys():
         print('Error: no version in ', json_object)
-      return version, timestamp, points, is_partial
+        return version, timestamp, points, is_partial
       version = str(json_object[VERSION])
 
       if TIMESTAMP not in json_object.keys():
         print('Error: no timestamp in ', json_object)
-      return version, timestamp, points, is_partial
+        return version, timestamp, points, is_partial
       timestamp = json_object[TIMESTAMP]
 
       is_partial = bool(json_object.get(PARTIAL_UPDATE, False))
