@@ -10,14 +10,43 @@ The scoring tool evaluates _proposed_ configuration files against "known good" _
 
 ## Install
 
+To install please follow the instructions below.
+
+### First create a virtual env
+
+Create the virutal environment with `virtualenv` followed by the environment name, in this example: `tooling`
+
+```
+virtualenv tooling
+```
+
+
+Activate the virtual environment
+
+Mac OS / Linux:
+```
+source tooling/bin/activate
+```
+
+Windows
+```
+tooling\Scripts\activate
+```
+
+
+Then you can either use pip or setuptools.
+
 ### Pip
 
 1. Run `python3 -m pip install --upgrade pip` to ensure that your Python package management tools are up-to-date.
 
-2. Run `python3 -m pip install -r requirements.txt ` from the following directory digitalbuildings/tools/scoring.
+2. Run `python3 -m pip install .` from the following directory digitalbuildings/tools/scoring.
+* digitalbuildings/tools/validators/ontology_validator
+* digitalbuildings/tools/validators/instance_validator
+* digitalbuildings/tools/scoring
 
 
-### Setup
+### Setup (to be deprecated)
 To install the dependencies, please run the `python3 setup.py install` from the following directories, in order:
 * digitalbuildings/tools/validators/ontology_validator
 * digitalbuildings/tools/validators/instance_validator

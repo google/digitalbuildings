@@ -1,6 +1,0 @@
-absl-py
-pyfiglet
-argparse
-termcolor
-colorama
--r ../validators/instance_validator/requirements.txt

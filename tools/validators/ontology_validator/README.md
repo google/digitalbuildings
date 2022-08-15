@@ -4,10 +4,33 @@ The Ontology Validator allows you to extend the ontology and then validate it to
 
 ## Install requirements
 
+### First create a virtual env
+
+Create the virutal environment with `virtualenv` followed by the environment name, in this example: `tooling`
+
+```
+virtualenv tooling
+```
+
+
+Activate the virtual environment
+
+Mac OS / Linux:
+```
+source tooling/bin/activate
+```
+
+Windows
+```
+tooling\Scripts\activate
+```
+
+### Install the validator
+
 To install the requirements please run the following pip command:
 
 1. Run `python3 -m pip install --upgrade pip` to ensure that your Python package management tools are up-to-date.
-2. Run `python3 -m pip install -r requirements.txt ` from digitalbuildings/tools/validators/ontology_validator.
+2. Run `python3 -m pip install .` from digitalbuildings/tools/validators/ontology_validator.
 
 
 ## Yaml Validator

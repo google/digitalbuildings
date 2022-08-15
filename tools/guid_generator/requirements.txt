@@ -1,2 +1,0 @@
-strictyaml==1.4.2
--r ../validators/instance_validator/requirements.txt
