@@ -1548,4 +1548,4 @@ literals:
 ## New fields for seismic detector
 - seismic_alarm
 
-- zone_air_temperature_sensor_failed_alarm
+- override_alarm
