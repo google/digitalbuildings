@@ -1548,4 +1548,4 @@ literals:
 ## New fields for seismic detector
 - seismic_alarm
 
-- override_alarm
+- supply_fan_override_alarm
