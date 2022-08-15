@@ -1,4 +1,4 @@
-# Copyright 2020 Google LLC
+# Copyright 2022 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the License);
 # you may not use this file except in compliance with the License.
@@ -83,6 +83,9 @@ class Telemetry(object):
                   message) -> Tuple[str, str, Dict[str, point.Point], bool]:
     """Receives a pubsub message data and parses it.
 
+    Handles parsing as outlined in:
+    https://faucetsdn.github.io/udmi/gencode/docs/event_pointset.html
+
     Args:
       message: pubsub telemetry payload, UDMI compliant
 
@@ -95,15 +98,34 @@ class Telemetry(object):
     """
     version, timestamp, points, is_partial = (None, None, None, None)
     try:
+      if isinstance(message, int):
+        print(f'Received an invalid message (non Json payload)\n{message}')
+        return version, timestamp, points, is_partial
       json_object = json.loads(message)
     except json.JSONDecodeError:
       print(f'The following Json payload is invalid:\n{message}')
     except AttributeError:
       print(f'The following Json raised an attribute error:\n{message}')
+    except ValueError:
+      print(f'The following Json raised an ValueError error:\n{message}')
     else:
-      version = json_object[VERSION]
+      if isinstance(json_object, int):
+        print(f'Received an invalid Json payload containing: \n{json_object}')
+        return version, timestamp, points, is_partial
+
+      # UDMI v1 sends as int and v1+ sends version as String
+      if VERSION not in json_object.keys():
+        print('Error: no version in ', json_object)
+        return version, timestamp, points, is_partial
+      version = str(json_object[VERSION])
+
+      if TIMESTAMP not in json_object.keys():
+        print('Error: no timestamp in ', json_object)
+        return version, timestamp, points, is_partial
       timestamp = json_object[TIMESTAMP]
+
       is_partial = bool(json_object.get(PARTIAL_UPDATE, False))
+
       points = {}
       if POINTS not in json_object.keys():
         print('Error: no points in ', json_object)
