@@ -51,7 +51,7 @@ instance_validator_setup()
 {
   echo "Starting instance validator setup"
   cd validators/instance_validator
-  python setup.py install
+  python -m pip install .
   echo "Finished instance validator setup"
   cd ../..
 }
