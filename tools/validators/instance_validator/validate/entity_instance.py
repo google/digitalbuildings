@@ -17,6 +17,7 @@ from __future__ import annotations
 from __future__ import print_function
 
 from typing import Any, Dict, List, Optional, Set, Tuple
+import re
 
 import strictyaml as syaml
 
@@ -31,6 +32,8 @@ from yamlformat.validator import presubmit_validate_types_lib as pvt
 _CONFIG_UPDATE = parse.ConfigMode.UPDATE
 _CONFIG_INIT = parse.ConfigMode.INITIALIZE
 _CONFIG_EXPORT = parse.ConfigMode.EXPORT
+_UDMI_PRESENT_VALUE_REGEX = r'^[a-z][a-z0-9]*(_[a-z0-9]+)*$'
+_UDMI_PRESENT_VALUE_PATTERN = re.compile(_UDMI_PRESENT_VALUE_REGEX)
 
 
 def _FieldIsAllowed(
@@ -112,13 +115,13 @@ class CombinationValidator(object):
     self.config_mode = config_mode
     self.entity_instances = entity_instances
 
-  def Validate(self, entity: EntityInstance) -> bool:
+  def Validate(self, entity: EntityInstance, is_udmi: bool= False) -> bool:
     """Returns true if an entity follows all instance and graph rules."""
 
     iv = InstanceValidator(self.universe, self.config_mode)
     gv = GraphValidator(self.universe, self.config_mode, self.entity_instances)
     # This will not return Combination validations if instance validations fail
-    return iv.Validate(entity) and gv.Validate(entity)
+    return iv.Validate(entity, is_udmi) and gv.Validate(entity)
 
 
 class GraphValidator(object):
@@ -234,7 +237,7 @@ class InstanceValidator(object):
   def _ValidateType(self, entity: EntityInstance) -> bool:
     """Returns true if an entity's type is in the ontology.
 
-    This method assues the type is defined on the entity.
+    This method assumes the type is defined on the entity.
 
     Args:
       entity: EntityInstance to validate
@@ -258,7 +261,10 @@ class InstanceValidator(object):
 
     return True
 
-  def _ValidateTranslation(self, entity: EntityInstance) -> bool:
+  def _ValidateTranslation(
+    self,
+    entity: EntityInstance,
+    is_udmi: bool= False) -> bool:
     """Validate an entity's translation against the entity's type or ontology.
 
     If entity operation is ADD, this code ensures that all fields are in the
@@ -266,6 +272,7 @@ class InstanceValidator(object):
 
     Args:
       entity: EntityInstance to validate
+      is_udmi: flag to validate under udmi
 
     Returns:
       Returns boolean for validity of entity translation, defaults to True if
@@ -308,6 +315,10 @@ class InstanceValidator(object):
       if not self._FieldTranslationIsValid(qualified_field_name, ft):
         is_valid = False
       if isinstance(ft, ft_lib.DimensionalValue):
+      	if is_udmi and not _UDMI_PRESENT_VALUE_PATTERN.fullmatch(ft.raw_field_name):
+      	  print(f'present value {ft.raw_field_name} does not conform to udmi ',
+      	    'regex pattern {_UDMI_PRESENT_VALUE_REGEX}')
+      	    is_valid = False
         for std_unit, raw_unit in ft.unit_mappings.items():
           if std_unit not in found_units:
             found_units[std_unit] = raw_unit
@@ -499,11 +510,12 @@ class InstanceValidator(object):
       return False
     return True
 
-  def Validate(self, entity: EntityInstance) -> bool:
+  def Validate(self, entity: EntityInstance, is_udmi: bool= False) -> bool:
     """Uses the generated ontology universe to validate an entity.
 
     Args:
       entity: EntityInstance to validate
+      is_udmi: flag to validate under udmi
 
     Returns:
       True if the entity is valid
@@ -547,7 +559,7 @@ class InstanceValidator(object):
       if not self._ValidateType(entity):
         is_valid = False
 
-    if not self._ValidateTranslation(entity):
+    if not self._ValidateTranslation(entity, is_udmi):
       is_valid = False
 
     if not self._ConnectionsAreValid(entity):

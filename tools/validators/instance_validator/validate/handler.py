@@ -79,13 +79,14 @@ def Deserialize(
 
 def _ValidateConfig(
     filenames: List[str],
-    universe: pvt.ConfigUniverse) -> List[entity_instance.EntityInstance]:
+    universe: pvt.ConfigUniverse,
+    is_udmi) -> List[entity_instance.EntityInstance]:
   """Runs all config validation checks."""
   print('\nLoading config files...\n')
   entities, config_mode = Deserialize(filenames)
   print('\nStarting config validation...\n')
   helper = EntityHelper(universe)
-  return helper.Validate(entities, config_mode)
+  return helper.Validate(entities, config_mode, is_udmi)
 
 
 def _ValidateTelemetry(subscription: str, service_account: str,
@@ -121,7 +122,7 @@ def RunValidation(filenames: List[str],
       print('\nError generating universe')
       sys.exit(0)
     print('\nStarting config validation...\n')
-    entities = _ValidateConfig(filenames, universe)
+    entities = _ValidateConfig(filenames, universe, is_udmi)
     if subscription:
       print('\nStarting telemetry validation...\n')
       _ValidateTelemetry(subscription, service_account, entities,
@@ -219,13 +220,15 @@ class EntityHelper(object):
 
   def Validate(
       self, entities: Dict[str, entity_instance.EntityInstance],
-      config_mode: instance_parser.ConfigMode
+      config_mode: instance_parser.ConfigMode,
+      is_udmi: bool= False
   ) -> Dict[str, entity_instance.EntityInstance]:
     """Validates entity instances that are already deserialized.
 
     Args:
       entities: a dict of entity instances
       config_mode: processing mode of the configuration
+      is_udmi: flag to indicate validation under udmi
 
     Returns:
       A dictionary containing valid entities by GUID
@@ -247,7 +250,7 @@ class EntityHelper(object):
       if (current_entity.operation is not instance_parser.EntityOperation.DELETE
           and current_entity.type_name.lower() == 'building'):
         building_found = True
-      if not validator.Validate(current_entity):
+      if not validator.Validate(current_entity, is_udmi):
         print(entity_guid, 'is not a valid instance')
         continue
       valid_entities[entity_guid] = current_entity
