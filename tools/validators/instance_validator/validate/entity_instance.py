@@ -320,7 +320,7 @@ class InstanceValidator(object):
       	if is_udmi and not _UDMI_PRESENT_VALUE_PATTERN.fullmatch(ft.raw_field_name):
       	  print(f'present value {ft.raw_field_name} does not conform to udmi ',
       	    'regex pattern {_UDMI_PRESENT_VALUE_REGEX}')
-      	    is_valid = False
+      	  is_valid = False
         for std_unit, raw_unit in ft.unit_mappings.items():
           if std_unit not in found_units:
             found_units[std_unit] = raw_unit
