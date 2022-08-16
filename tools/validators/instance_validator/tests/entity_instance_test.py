@@ -1039,5 +1039,38 @@ class EntityInstanceTest(absltest.TestCase):
     self.assertEqual(entity_instances['PHYSICAL-ENTITY-GUID'].operation,
                      _EXPORT)
 
+  def testValidate_UdmiEntityPresentValue_Fails(self):
+    # the example used is a valid entity according to dbo; however, not udmi
+    parsed, default_operation = _Helper(
+        [path.join(_TESTCASE_PATH, 'BAD', 'translation_udmi_present_value.yaml')])
+
+    entity_instances = {}
+    for entity_guid, entity_parsed in parsed.items():
+      entity = entity_instance.EntityInstance.FromYaml(
+          entity_guid, entity_parsed, default_operation=default_operation)
+      entity_instances[entity_guid] = entity
+    combination_validator = entity_instance.CombinationValidator(
+        self.config_universe, _INIT_CFG, entity_instances)
+        
+    self.assertFalse(combination_validator.Validate(
+      entity_instances['SDC_EXT-17-GUID'], True))
+    
+  def testValidate_UdmiEntityPresentValue_Success(self):
+    parsed, default_operation = _Helper([
+        path.join(_TESTCASE_PATH, 'GOOD',
+                  'translation_udmi_present_value.yaml')
+    ])
+
+    entity_instances = {}
+    for entity_guid, entity_parsed in parsed.items():
+      entity = entity_instance.EntityInstance.FromYaml(
+          entity_guid, entity_parsed, default_operation=default_operation)
+      entity_instances[entity_guid] = entity
+    combination_validator = entity_instance.CombinationValidator(
+        self.config_universe, _INIT_CFG, entity_instances)
+
+    self.assertTrue(combination_validator.Validate(
+      entity_instances['SDC_EXT-17-GUID'], True))
+
 if __name__ == '__main__':
   absltest.main()
