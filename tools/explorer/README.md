@@ -6,6 +6,45 @@ The Ontology explorer allows a user to ask a few basic question of the ontology:
 * Is a field defined within a certain namespace
 
 ## Install
+
+To install please follow the instructions below.
+
+## First create a virtual env
+
+Create the virutal environment with `virtualenv` followed by the environment name, in this example: `tooling`
+
+```
+virtualenv tooling
+```
+
+
+Activate the virtual environment
+
+Mac OS / Linux:
+```
+source tooling/bin/activate
+```
+
+Windows
+```
+tooling\Scripts\activate
+```
+
+
+Then you can either use pip or setuptools.
+
+
+## Pip
+
+1. Run `python3 -m pip install --upgrade pip` to ensure that your Python package management tools are up-to-date.
+2. Run `python3 -m pip install .` from the following directories:
+
+* digitalbuildings/tools/validators/ontology_validator
+* digitalbuildings/tools/validators/instance_validator
+* digitalbuildings/tools/explorer
+
+
+### Setup (to be deprecated)
 To install the dependencies, please run `python setup.py install` from the following directories, in order:
 * digitalbuildings/tools/validators/ontology_validator
 * digitalbuildings/tools/validators/instance_validator
