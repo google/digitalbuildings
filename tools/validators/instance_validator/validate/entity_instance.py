@@ -32,9 +32,10 @@ from yamlformat.validator import presubmit_validate_types_lib as pvt
 _CONFIG_UPDATE = parse.ConfigMode.UPDATE
 _CONFIG_INIT = parse.ConfigMode.INITIALIZE
 _CONFIG_EXPORT = parse.ConfigMode.EXPORT
-# udmi present value: points.$name.present_value 
+# udmi present value: points.$name.present_value
 # where name follows: [a-z][a-z0-9]*(_[a-z0-9]+)*
-_UDMI_PRESENT_VALUE_REGEX = r'^(points.)[a-z][a-z0-9]*(_[a-z0-9]+)*(.present_value)$'
+_UDMI_PRESENT_VALUE_REGEX = \
+  r'^(points.)[a-z][a-z0-9]*(_[a-z0-9]+)*(.present_value)$'
 _UDMI_PRESENT_VALUE_PATTERN = re.compile(_UDMI_PRESENT_VALUE_REGEX)
 
 
@@ -317,7 +318,8 @@ class InstanceValidator(object):
       if not self._FieldTranslationIsValid(qualified_field_name, ft):
         is_valid = False
       if isinstance(ft, ft_lib.DimensionalValue):
-        if is_udmi and not _UDMI_PRESENT_VALUE_PATTERN.fullmatch(ft.raw_field_name):
+        if is_udmi and not _UDMI_PRESENT_VALUE_PATTERN.fullmatch(
+          ft.raw_field_name):
           print(f'present value {ft.raw_field_name} does not conform to udmi ',
             'regex pattern {_UDMI_PRESENT_VALUE_REGEX}')
           is_valid = False
