@@ -235,8 +235,6 @@ _ENTITY_EXPORT_SCHEMA = _MergeSchemas(
     })
 
 
-# TODO(b/234492090): id depreciated and no longer used; remove from syntax and
-# content validation - 05312022
 class InstanceParser():
   """One-shot state machine for parsing and syntax checking YAML config files.
 
