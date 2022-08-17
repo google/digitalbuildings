@@ -97,9 +97,9 @@ class EntityInstanceTest(absltest.TestCase):
     validator = entity_instance.CombinationValidator(self.config_universe,
                                                      _UPDATE_CFG, {})
 
-    self.assertTrue(validator.Validate(mock_entity))
-    mock_iv.assert_called_once_with(mock_entity)
-    mock_gv.assert_called_once_with(mock_entity)
+    self.assertTrue(validator.Validate(mock_entity()))
+    mock_iv.assert_called_once_with(mock_entity.return_value, False)
+    mock_gv.assert_called_once_with(mock_entity.return_value)
 
   def testInstance_ValidEtagOnUpdate_Success(self):
     valid_instance = entity_instance.EntityInstance(
