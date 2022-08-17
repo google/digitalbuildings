@@ -23,5 +23,5 @@ setup(
     license='Apache License',
     author='Travis Welch',
     packages=find_packages(),
-    python_requires='==3.9',
+    python_requires='>=3.9',
 )

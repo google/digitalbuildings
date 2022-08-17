@@ -6,7 +6,42 @@ Buildings Repository. Currently, the toolkit only supports building configuratio
 instance validation and guid generation, but additional funcionality will be
 implemented in the future.
 
-## Setup
+## Install
+
+To install please follow the instructions below.
+
+### First create a virtual env
+
+Create the virutal environment with `virtualenv` followed by the environment name, in this example: `tooling`
+
+```
+virtualenv tooling
+```
+
+
+Activate the virtual environment
+
+Mac OS / Linux:
+```
+source tooling/bin/activate
+```
+
+Windows
+```
+tooling\Scripts\activate
+```
+
+
+Then you can either use pip or setuptools.
+
+### Pip
+1. Run `python3 -m pip install --upgrade pip` to ensure that your Python package management tools are up-to-date.
+
+2. Run `pip_install.sh` or `pip_install.bat` (windows) from the following directory digitalbuildings/tools.
+
+
+
+### Setup (to be deprecated)
 
 1. Follow setup instructions for the [Instance Validator](./validators/instance_validator).
 2. Follow setup instructions for the [GUID Generator](./guid_generator).
