@@ -1,0 +1,53 @@
+# Copyright 2022 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the License);
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#    https://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an AS IS BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+CONFIG_METADATA:
+  operation: INITIALIZE
+UK-LON-X1:
+  type: FACILITIES/BUILDING
+  guid: d5936dbe-f337-41d5-8bc0-91c6202fe2e6
+UK-LON-X1-L00:
+  type: FACILITIES/FLOOR
+  connections:
+    UK-LON-X1: CONTAINS
+  guid: 9f434b84-2152-4c12-8654-a48e4986e4c8
+UK-LON-X1-L01:
+  type: FACILITIES/FLOOR
+  connections:
+    UK-LON-X1: CONTAINS
+  guid: e3837c80-45ea-425e-9b5a-a6b3668f21eb
+UK-LON-X1-L02:
+  type: FACILITIES/FLOOR
+  connections:
+    UK-LON-X1: CONTAINS
+  guid: c5d5acc1-b88b-4d09-a3df-8992289096e9
+UK-LON-X1_L00_Z01:
+  type: HVAC/ZONE_HVAC
+  connections:
+    UK-LON-X1-L00: CONTAINS
+  guid: 16b5bc99-6234-456d-9781-a0c44bf36dad
+UK-LON-X1_L00_Z02:
+  type: HVAC/ZONE_HVAC
+  connections:
+    UK-LON-X1-L00: CONTAINS
+  guid: 35df3229-3713-4236-8d3b-0e5a480703ae
+UK-LON-X1_L00_Z03:
+  type: HVAC/ZONE_HVAC
+  connections:
+    UK-LON-X1-L00: CONTAINS
+  guid: b63b6ccf-b821-4da9-9e43-bf5bd8a32648
+UK-LON-X1_L00_Z04:
+  type: HVAC/ZONE_HVAC
+  connections:
+    UK-LON-X1-L00: CONTAINS
