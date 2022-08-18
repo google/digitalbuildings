@@ -156,7 +156,7 @@ class TelemetryHelper(object):
     Args:
       entities: EntityInstance dictionary keyed by entity name
       timeout: number of seconds to wait for telemetry
-      is_udmi: true/false treat telemetry stream as UDMI
+      is_udmi: true/false treat telemetry stream as UDMI; defaults to false
     """
 
     print('Connecting to pubsub subscription: ', self.subscription)
