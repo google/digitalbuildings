@@ -228,7 +228,7 @@ class EntityHelper(object):
     Args:
       entities: a dict of entity instances
       config_mode: processing mode of the configuration
-      is_udmi: flag to indicate validation under udmi
+      is_udmi: flag to indicate validation under udmi; defaults to false
 
     Returns:
       A dictionary containing valid entities by GUID
