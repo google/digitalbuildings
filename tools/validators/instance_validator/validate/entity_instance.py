@@ -275,7 +275,7 @@ class InstanceValidator(object):
 
     Args:
       entity: EntityInstance to validate
-      is_udmi: flag to validate under udmi
+      is_udmi: flag to validate under udmi; defaults to false
 
     Returns:
       Returns boolean for validity of entity translation, defaults to True if
@@ -519,7 +519,7 @@ class InstanceValidator(object):
 
     Args:
       entity: EntityInstance to validate
-      is_udmi: flag to validate under udmi
+      is_udmi: flag to validate under udmi; defaults to false
 
     Returns:
       True if the entity is valid

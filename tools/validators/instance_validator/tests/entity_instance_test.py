@@ -98,6 +98,9 @@ class EntityInstanceTest(absltest.TestCase):
                                                      _UPDATE_CFG, {})
 
     self.assertTrue(validator.Validate(mock_entity()))
+    # to ensure that we called the mock with is_udmi= False
+    # i.e. we didn't call it with is_udmi= True
+    mock_iv.assert_called_once()
     mock_iv.assert_called_once_with(mock_entity.return_value, False)
     mock_gv.assert_called_once_with(mock_entity.return_value)
 
@@ -1054,7 +1057,7 @@ class EntityInstanceTest(absltest.TestCase):
         self.config_universe, _INIT_CFG, entity_instances)
 
     self.assertFalse(combination_validator.Validate(
-      entity_instances['SDC_EXT-17-GUID'], True))
+      entity_instances['SDC_EXT-17-GUID'], is_udmi= True))
 
   def testValidate_UdmiEntityPresentValue_Success(self):
     parsed, default_operation = _Helper([
@@ -1071,7 +1074,7 @@ class EntityInstanceTest(absltest.TestCase):
         self.config_universe, _INIT_CFG, entity_instances)
 
     self.assertTrue(combination_validator.Validate(
-      entity_instances['SDC_EXT-17-GUID'], True))
+      entity_instances['SDC_EXT-17-GUID'], is_udmi= True))
 
 if __name__ == '__main__':
   absltest.main()
