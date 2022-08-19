@@ -246,7 +246,7 @@ class ParserTest(absltest.TestCase):
     self.assertLen(parser.GetEntities().keys(), 1)
     self.assertEqual(parser.GetEntities(), expected)
 
-  def testGoodEntityDefaultExportOperationParses_Success(self):
+  def testGoodEntity_DefaultExportOperationParses_Success(self):
     parser = _ParserHelper(
         [path.join(_TESTCASE_PATH, 'GOOD', 'entity_export_operation.yaml')])
 
@@ -270,6 +270,20 @@ class ParserTest(absltest.TestCase):
       parser = _Helper(
           [path.join(_TESTCASE_PATH, 'BAD', 'update_mask_operation.yaml')])
       del parser
+
+def testGoodBuildingConfig_entityWithId_Success(self):
+    parser = _ParserHelper(
+        [path.join(_TESTCASE_PATH, 'GOOD', 'bc_entity_with_id.yaml')])
+
+    parsed = parser.GetEntities()
+    _, entity = next(iter(parsed.items()))
+    entity_operation = entity.get(instance_parser.ENTITY_OPERATION_KEY, None)
+    default_operation = handler.GetDefaultOperation(parser.GetConfigMode())
+
+    self.assertIsNone(entity_operation)
+    self.assertLen(parser.GetEntities().keys(), 2)
+    self.assertEqual(entity.get(instance_parser.ENTITY_ID_KEY),
+        "deprecated but doesn't break")
 
 if __name__ == '__main__':
   absltest.main()
