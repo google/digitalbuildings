@@ -271,7 +271,7 @@ class ParserTest(absltest.TestCase):
           [path.join(_TESTCASE_PATH, 'BAD', 'update_mask_operation.yaml')])
       del parser
 
-def testGoodBuildingConfig_EntityWithId_Success(self):
+def testEntityBlock_EntityWithId_Success(self):
   parser = _ParserHelper(
       [path.join(_TESTCASE_PATH, 'GOOD', 'bc_entity_with_id.yaml')])
 
