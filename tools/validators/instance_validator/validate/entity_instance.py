@@ -215,7 +215,7 @@ class GraphValidator(object):
 
 
 def IsEntityIdPresent(entity: EntityInstance) -> bool:
-  return entity._id is not None
+  return entity.entity_id is not None
 
 
 class InstanceValidator(object):
@@ -737,7 +737,7 @@ class EntityInstance(findings_lib.Findings):
                connections=None,
                links=None,
                etag=None,
-               _id=None,
+               entity_id=None,
                update_mask=None):
     super().__init__()
 
@@ -751,7 +751,7 @@ class EntityInstance(findings_lib.Findings):
     self.connections = connections
     self.links = links
     self.etag = etag
-    self._id = _id
+    self.entity_id = entity_id
     self.update_mask = update_mask
 
   @classmethod
@@ -854,11 +854,11 @@ class EntityInstance(findings_lib.Findings):
     etag = None
     if parse.ETAG_KEY in entity_yaml:
       etag = entity_yaml[parse.ETAG_KEY]
-    
+
     # deprecated; kept for legacy reasons
-    _id = None
+    entity_id = None
     if parse.ENTITY_ID_KEY in entity_yaml:
-      _id = entity_yaml[parse.ENTITY_ID_KEY]
+      entity_id = entity_yaml[parse.ENTITY_ID_KEY]
 
     return cls(
         operation,
@@ -871,5 +871,5 @@ class EntityInstance(findings_lib.Findings):
         connections=connections,
         links=links,
         etag=etag,
-        _id=_id,
+        entity_id=entity_id,
         update_mask=update_mask)

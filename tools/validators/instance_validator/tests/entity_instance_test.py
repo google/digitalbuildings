@@ -1039,7 +1039,7 @@ class EntityInstanceTest(absltest.TestCase):
     self.assertEqual(entity_instances['PHYSICAL-ENTITY-GUID'].operation,
                      _EXPORT)
 
-  def testValidate_buildingConfigEntityWithId_Success(self):
+  def testValidate_BuildingConfigEntityWithId_Success(self):
     parsed, default_operation = _Helper(
         [path.join(_TESTCASE_PATH, 'GOOD', 'bc_entity_with_id.yaml')])
     entity_iter = iter(parsed.items())
@@ -1055,7 +1055,7 @@ class EntityInstanceTest(absltest.TestCase):
     self.assertFalse(entity_instance.IsEntityIdPresent(entity_1))
     self.assertTrue(self.init_validator.Validate(entity_2))
     self.assertTrue(entity_instance.IsEntityIdPresent(entity_2))
-    self.assertEqual(entity_2._id,
+    self.assertEqual(entity_2.entity_id,
         parsed['UK-LON-S2-GUID'].get(instance_parser.ENTITY_ID_KEY))
 
 if __name__ == '__main__':

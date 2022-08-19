@@ -277,10 +277,7 @@ def testGoodBuildingConfig_entityWithId_Success(self):
 
     parsed = parser.GetEntities()
     _, entity = next(next(iter(parsed.items())))
-    entity_operation = entity.get(instance_parser.ENTITY_OPERATION_KEY, None)
-    default_operation = handler.GetDefaultOperation(parser.GetConfigMode())
 
-    self.assertIsNone(entity_operation)
     self.assertLen(parser.GetEntities().keys(), 2)
     self.assertEqual(entity.get(instance_parser.ENTITY_ID_KEY),
         "deprecated-but-doesn't-break")
