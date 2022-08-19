@@ -418,6 +418,30 @@ VAV_RD:
   - VAV
   - RD
 
+VAV_RDC:
+  id: "5061770690940633088"
+  description: "Return control VAV without built-in regulation"
+  is_canonical: true
+  implements:
+  - VAV
+  - RDC
+
+VAV_RD_DSPRTC:
+  description: "Return control VAV with return cooling control."
+  is_canonical: true
+  implements:
+  - VAV
+  - RD
+  - DSPRTC
+ 
+VAV_RD_DSPRTC_ZSPC:
+  description: "Return control VAV with return cooling control and zone pressure control."
+  is_canonical: true
+  implements:
+  - VAV
+  - RD
+  - DSPRTC
+  - ZSPC
 
 ###################################
 ### Existing Non-standard Types ###

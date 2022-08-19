@@ -309,6 +309,18 @@ EDBPC:
   implements:
   - CONTROL
 
+EDRPC:
+  description: "Return static control with exhaust damper."
+  is_abstract: true
+  opt_uses:
+  - exhaust_air_damper_percentage_sensor
+  uses:
+  - return_air_static_pressure_sensor
+  - return_air_static_pressure_setpoint
+  - exhaust_air_damper_percentage_command
+  implements:
+  - CONTROL
+
 EFFC:
   id: "3108154032661725184"
   description: "Exhaust fan flow control."
@@ -344,6 +356,7 @@ VSC:
   - speed_frequency_sensor
   - power_sensor
   - voltage_sensor
+  - motor_temperature_sensor
   - lost_power_alarm
   - master_alarm
   - failed_alarm
@@ -766,7 +779,9 @@ OA:
   - outside_air_pressure_sensor
   - wind_linearvelocity_sensor
   - wind_direction_angle_sensor
-  - outside_air_rain_level_sensor 
+  - outside_air_rain_level_sensor
+  - outside_air_co2_concentration_sensor
+  - outside_air_voc_concentration_sensor
   uses:
   - outside_air_temperature_sensor
   implements:
@@ -1143,6 +1158,19 @@ REFC:
   implements:
   - OPERATIONAL
 
+CREFM:
+  id: "450084672513245184"
+  description: "Cold Room Refrigerator monitoring."
+  is_abstract: true
+  opt_uses:
+   - failed_alarm
+   - run_status
+   - compressor_run_status
+   - run_time_accumulator
+  uses:
+   - zone_air_temperature_sensor
+   - defrost_temperature_sensor
+
 EPC:
   id: "11105083520895156224"
   description: "Exhaust pressure control."
@@ -1184,6 +1212,7 @@ VOCC:
   - OPERATIONAL
 
 RAVOCC:
+  id: "1041182123605622784"
   description: "Volatile organic compound control for return air from zone."
   is_abstract: true
   uses:
@@ -1268,6 +1297,8 @@ ZSPC:
   id: "4403727275367858176"
   description: "Zone static pressure control."
   is_abstract: true
+  opt_uses:
+  - exhaust_air_damper_percentage_command
   uses:
   - zone_air_static_pressure_setpoint
   - zone_air_static_pressure_sensor
@@ -1324,6 +1355,7 @@ CHPM:
   - MONITORING
 
 ESFM:
+  id: "12354224387560308736"
   description: " An Electrostatic filter used to maintain air quality its run status and alarm monitoring"
   is_abstract: true
   uses:
@@ -5410,8 +5442,17 @@ DFRMM:
   uses:
   - discharge_fan_run_mode
   implements:
+  - MONITORING
 
-  - MONITORING  
+RDC:
+  id: "9673456709368020992"
+  description: "Return air damper percentage monitoring"
+  is_abstract: true
+  uses:
+  - return_air_damper_percentage_sensor
+  - return_air_damper_percentage_command
+  implements:
+  - MONITORING
 
 CHWZOUC:
   description: "Chilled water valve control with occupied/unoccupied setpoints and temperature monitoring."
@@ -5451,5 +5492,70 @@ ZTOUC:
   - zone_air_occupied_temperature_setpoint
   - zone_air_unoccupied_heating_temperature_setpoint
   - zone_air_unoccupied_cooling_temperature_setpoint
+  implements:
+  - OPERATIONAL
+
+RFSS:
+  description: "Basic combination of return fan run command and status (start/stop)."
+  is_abstract: true
+  opt_uses:
+  - return_fan_current_sensor
+  - return_fan_power_sensor
+  uses:
+  - return_fan_run_command
+  - return_fan_run_status
+  implements:
+  - OPERATIONAL
+
+RFSS2X:
+  description: "Return fan start-stop and feedback with two fan."
+  is_abstract: true
+  opt_uses:
+  - return_fan_current_sensor_1
+  - return_fan_current_sensor_2
+  - return_fan_power_sensor_1
+  - return_fan_power_sensor_2
+  uses:
+  - return_fan_run_command_1
+  - return_fan_run_command_2
+  - return_fan_run_status_1
+  - return_fan_run_status_2
+  implements:
+  - OPERATIONAL
+
+RFVSC:
+  description: "Variable speed control for a return fan."
+  is_abstract: true
+  opt_uses:
+  - return_fan_speed_frequency_sensor
+  - return_fan_speed_percentage_sensor
+  - return_fan_current_sensor
+  - return_fan_power_sensor
+  uses:
+  - return_fan_run_command
+  - return_fan_run_status
+  - return_fan_speed_percentage_command
+  implements:
+  - OPERATIONAL
+
+RFVSC2X:
+  description: "Return fan variable speed control with feedback and sensoring for two fanss."
+  is_abstract: true
+  opt_uses:
+  - return_fan_speed_frequency_sensor_1
+  - return_fan_speed_percentage_sensor_1
+  - return_fan_current_sensor_1
+  - return_fan_power_sensor_1
+  - return_fan_speed_frequency_sensor_2
+  - return_fan_speed_percentage_sensor_2
+  - return_fan_current_sensor_2
+  - return_fan_power_sensor_2
+  uses:
+  - return_fan_run_command_1
+  - return_fan_run_status_1
+  - return_fan_speed_percentage_command_1
+  - return_fan_run_command_2
+  - return_fan_run_status_2
+  - return_fan_speed_percentage_command_2
   implements:
   - OPERATIONAL
