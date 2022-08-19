@@ -1525,8 +1525,8 @@ literals:
 ## New fields for chilled beams
 - zone_air_occupied_temperature_setpoint
 - zone_air_unoccupied_cooling_temperature_setpoint
-- perimeter_heating_valve_percentage_sensor
-- perimeter_heating_valve_percentage_command
+- perimeter_heating_water_valve_percentage_sensor
+- perimeter_heating_water_valve_percentage_command
 - perimeter_heating_supply_water_temperature_sensor
 
 
