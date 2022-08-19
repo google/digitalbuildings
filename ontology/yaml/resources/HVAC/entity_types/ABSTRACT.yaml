@@ -5413,4 +5413,56 @@ DFRMM:
 
   - MONITORING  
 
+CHWZOUC:
+  description: "Chilled water valve control with occupied/unoccupied setpoints and temperature monitoring."
+  is_abstract: true
+  opt_uses:
+  - chilled_supply_water_temperature_sensor
+  uses:  
+  - chilled_water_valve_percentage_command
+  - zone_air_temperature_sensor
+  - zone_air_occupied_temperature_setpoint
+  - zone_air_unoccupied_cooling_temperature_setpoint
+  implements:
+  - CONTROL
   
+HWZOUC:
+  description: "Heating water valve control with occupied/unoccupied setpoints and temperature monitoring."
+  is_abstract: true
+  opt_uses:
+  - heating_supply_water_temperature_sensor
+  uses:  
+  - heating_water_valve_percentage_command
+  - zone_air_temperature_sensor
+  - zone_air_occupied_temperature_setpoint
+  - zone_air_unoccupied_heating_temperature_setpoint
+  implements:
+  - CONTROL
+  
+PERHWZOUC:
+  description: "Perimeter heating water valve control with occupied/unoccupied setpoints and temperature monitoring."
+  is_abstract: true
+  opt_uses:
+  - perimeter_heating_supply_water_temperature_sensor
+  uses:  
+  - perimeter_heating_water_valve_percentage_command
+  - perimeter_heating_water_valve_percentage_sensor
+  - zone_air_temperature_sensor
+  - zone_air_occupied_temperature_setpoint
+  - zone_air_unoccupied_heating_temperature_setpoint
+  implements:
+  - CONTROL
+  
+ZTOUC:
+  description: "Zone air temperature unoccupied/occupied control."
+  is_abstract: true
+  opt_uses:
+  - zone_air_relative_humidity_sensor
+  - zone_occupancy_status
+  uses:  
+  - zone_air_temperature_sensor
+  - zone_air_occupied_temperature_setpoint
+  - zone_air_unoccupied_heating_temperature_setpoint
+  - zone_air_unoccupied_cooling_temperature_setpoint
+  implements:
+  - OPERATIONAL
