@@ -16,8 +16,13 @@
 ### Canonical Types  ###
 ########################
 
-CHB_test:
-  description: "Chilled beam with perimeter heating."
+CHB_ZTOUC_CHWZOUC_PERHWZOUC_CO2M_RMM:
+  description: "Chilled beam with perimeter heating, CO2 and run mode monitoring."
   is_canonical: true
   implements:
   - CHB
+  - ZTOUC
+  - CHWZOUC
+  - PERHWZOUC
+  - CO2M
+  - RMM
