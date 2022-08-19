@@ -276,10 +276,13 @@ class ParserTest(absltest.TestCase):
         [path.join(_TESTCASE_PATH, 'GOOD', 'bc_entity_with_id.yaml')])
 
     parsed = parser.GetEntities()
-    _, entity = next(next(iter(parsed.items())))
+    iterator = iter(parsed.items())
+    _, entity_1 = next(iterator)
+    _, entity_2 = next(iterator)
 
     self.assertLen(parser.GetEntities().keys(), 2)
-    self.assertEqual(entity.get(instance_parser.ENTITY_ID_KEY),
+    self.assertIsNone(entity_1.get(instance_parser.ENTITY_ID_KEY))
+    self.assertEqual(entity_2.get(instance_parser.ENTITY_ID_KEY),
         "deprecated-but-doesn't-break")
 
 if __name__ == '__main__':
