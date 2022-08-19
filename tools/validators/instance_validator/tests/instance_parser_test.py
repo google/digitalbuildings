@@ -271,16 +271,16 @@ class ParserTest(absltest.TestCase):
           [path.join(_TESTCASE_PATH, 'BAD', 'update_mask_operation.yaml')])
       del parser
 
-def testEntityBlock_EntityWithId_Success(self):
-  parser = _ParserHelper(
-      [path.join(_TESTCASE_PATH, 'GOOD', 'bc_entity_with_id.yaml')])
+  def testEntityBlock_EntityWithId_Success(self):
+    parser = _ParserHelper(
+        [path.join(_TESTCASE_PATH, 'GOOD', 'bc_entity_with_id.yaml')])
 
-  parsed = parser.GetEntities()
-  _, entity = next(next(iter(parsed.items())))
+    parsed = parser.GetEntities()
+    _, entity = next(next(iter(parsed.items())))
 
-  self.assertLen(parser.GetEntities().keys(), 2)
-  self.assertEqual(entity.get(instance_parser.ENTITY_ID_KEY),
-      "deprecated-but-doesn't-break")
+    self.assertLen(parser.GetEntities().keys(), 2)
+    self.assertEqual(entity.get(instance_parser.ENTITY_ID_KEY),
+        "deprecated-but-doesn't-break")
 
 if __name__ == '__main__':
   absltest.main()
