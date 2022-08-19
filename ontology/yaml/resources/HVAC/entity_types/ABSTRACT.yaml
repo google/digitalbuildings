@@ -5426,27 +5426,14 @@ CHWZOUC:
   implements:
   - CONTROL
   
-HWZOUC:
-  description: "Heating water valve control with occupied/unoccupied setpoints and temperature monitoring."
-  is_abstract: true
-  opt_uses:
-  - heating_supply_water_temperature_sensor
-  uses:  
-  - heating_water_valve_percentage_command
-  - zone_air_temperature_sensor
-  - zone_air_occupied_temperature_setpoint
-  - zone_air_unoccupied_heating_temperature_setpoint
-  implements:
-  - CONTROL
-  
 PERHWZOUC:
   description: "Perimeter heating water valve control with occupied/unoccupied setpoints and temperature monitoring."
   is_abstract: true
   opt_uses:
   - perimeter_heating_supply_water_temperature_sensor
+  - perimeter_heating_water_valve_percentage_sensor
   uses:  
   - perimeter_heating_water_valve_percentage_command
-  - perimeter_heating_water_valve_percentage_sensor
   - zone_air_temperature_sensor
   - zone_air_occupied_temperature_setpoint
   - zone_air_unoccupied_heating_temperature_setpoint
