@@ -512,9 +512,12 @@ class InstanceValidator(object):
     Returns:
       True if the entity is valid
     """
-    if IsEntityIdPresent(entity):
-      print('Warning: Entity id detected in block. Planned depre')
 
+    if IsEntityIdPresent(entity):
+      print('Warning: Entity id detected in block. Planned deprecation, ',
+        'will result in validation error in a future releases. Please ',
+        'review digitalbuildings/ontology/docs/building_config.md for ',
+        'more info')
 
     is_valid = True
 

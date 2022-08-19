@@ -276,14 +276,14 @@ def testGoodBuildingConfig_entityWithId_Success(self):
         [path.join(_TESTCASE_PATH, 'GOOD', 'bc_entity_with_id.yaml')])
 
     parsed = parser.GetEntities()
-    _, entity = next(iter(parsed.items()))
+    _, entity = next(next(iter(parsed.items())))
     entity_operation = entity.get(instance_parser.ENTITY_OPERATION_KEY, None)
     default_operation = handler.GetDefaultOperation(parser.GetConfigMode())
 
     self.assertIsNone(entity_operation)
     self.assertLen(parser.GetEntities().keys(), 2)
     self.assertEqual(entity.get(instance_parser.ENTITY_ID_KEY),
-        "deprecated but doesn't break")
+        "deprecated-but-doesn't-break")
 
 if __name__ == '__main__':
   absltest.main()

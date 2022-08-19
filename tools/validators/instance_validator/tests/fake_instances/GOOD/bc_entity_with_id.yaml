@@ -15,7 +15,6 @@
 # Test entity with ids
 
 DMP_EDM-17-GUID:
-  id: "deprecated but doesn't break"
   type: HVAC/DMP_EDM
   code: DMP_EDM-17
   cloud_device_id: "foobar"
@@ -32,5 +31,6 @@ DMP_EDM-17-GUID:
         CLOSED: "0"
 
 UK-LON-S2-GUID:
+  id: "deprecated-but-doesn't-break"
   type: FACILITIES/BUILDING
   code: UK-LON-S2
