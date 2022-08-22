@@ -1567,11 +1567,10 @@ literals:
 - chilled_supply_water_failed_temperature_alarm
 - chilled_water_bypass_valve_failed_alarm
 - chilled_water_failed_flowrate_alarm
-- compressor_failed_alarm
 - damper_failed_alarm
 - discharge_air_failed_temperature_alarm
 - dryer_failed_alarm
-- exhaust_fan_inverter_failed_alarm
+- failed_exhaust_fan_inverter_alarm
 - failed_flowrate_alarm
 - heater_failed_alarm
 - heating_water_valve_failed_alarm
@@ -1585,7 +1584,7 @@ literals:
 - return_water_failed_temperature_alarm
 - standby_device_failed_alarm
 - supply_air_failed_temperature_alarm
-- supply_fan_inverter_failed_alarm
+- failed_supply_fan_inverter_alarm
 - supply_water_failed_temperature_alarm
 - zone_air_co2_failed_concentration_alarm
 - zone_air_failed_temperature_alarm
@@ -1606,7 +1605,7 @@ literals:
 - high_inverter_temperature_alarm
 - high_mixed_air_temperature_alarm
 - high_outside_air_flowrate_alarm
-- high_pressure_request_alarm
+- high_pressurization_request_alarm
 - high_primary_supply_water_temperature_alarm
 - high_process_supply_water_temperature_alarm
 - high_process_water_differential_pressure_alarm
@@ -1628,13 +1627,13 @@ literals:
 - high_zone_air_temperature_alarm
 - hot_aisle_temperature_alarm
 - local_alarm
-- local_lost_signal_alarm
+- local_signal_lost_alarm
 - local_override_alarm
 - exhaust_fan_override_alarm
 - isolation_valve_override_alarm
 - supply_fan_override_alarm
 - local_stop_alarm
-- lost_signal_alarm
+- signal_lost_alarm
 - low_building_air_static_pressure_alarm
 - low_chilled_return_water_temperature_alarm
 - low_chilled_supply_water_temperature_alarm
@@ -1646,7 +1645,7 @@ literals:
 - low_condensing_supply_water_temperature_alarm
 - low_discharge_air_temperature_alarm
 - low_evaporator_differential_pressure_alarm
-- evaporator_low_flowrate_alarm
+- low_evaporator_flowrate_alarm
 - low_flowrate_alarm
 - low_mixed_air_temperature_alarm
 - low_outside_air_flowrate_alarm
@@ -1663,7 +1662,7 @@ literals:
 - low_water_level_alarm
 - low_zone_air_relative_humidity_alarm
 - low_zone_air_temperature_alarm
-- remote_stop_alarm
+- controller_stop_alarm
 - purge_run_alarm
 - standby_device_run_alarm
 - standby_fan_run_alarm
