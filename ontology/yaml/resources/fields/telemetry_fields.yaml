@@ -1570,7 +1570,7 @@ literals:
 - damper_failed_alarm
 - discharge_air_failed_temperature_alarm
 - dryer_failed_alarm
-- failed_exhaust_fan_inverter_alarm
+- exhaust_fan_inverter_failed_alarm
 - failed_flowrate_alarm
 - heater_failed_alarm
 - heating_water_valve_failed_alarm
@@ -1584,7 +1584,7 @@ literals:
 - return_water_failed_temperature_alarm
 - standby_device_failed_alarm
 - supply_air_failed_temperature_alarm
-- failed_supply_fan_inverter_alarm
+- supply_fan_inverter_failed_alarm
 - supply_water_failed_temperature_alarm
 - zone_air_co2_failed_concentration_alarm
 - zone_air_failed_temperature_alarm
