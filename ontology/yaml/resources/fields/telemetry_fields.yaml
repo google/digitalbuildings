@@ -140,6 +140,20 @@ literals:
 - return_air_relative_humidity_sensor
 - return_air_temperature_sensor
 - return_air_temperature_setpoint
+- return_fan_current_sensor
+- return_fan_power_sensor
+- return_fan_torque_sensor
+- return_fan_run_command:
+  - ON
+  - OFF
+- return_fan_run_status:
+  - ON
+  - OFF
+  - UNKNOWN
+- return_fan_speed_frequency_command
+- return_fan_speed_frequency_sensor
+- return_fan_speed_percentage_command
+- return_fan_speed_percentage_sensor
 - return_water_temperature_sensor
 - reversing_valve_command:
   - AUTO
