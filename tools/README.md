@@ -1,5 +1,7 @@
 # Digital Buildings Toolkit
 
+### THIS IS A CHANGE
+
 The Digital Buildings Toolkit provides a centralized
 method for interfacing with all of the tools contained within the Digital
 Buildings Repository. Currently, the toolkit only supports building configuration
@@ -84,4 +86,4 @@ For example:
 
 **NOTE:** The new building configuration format switches entities being keyed by codes
 to being keyed by guids, and Ids are removed. To convert from old format to the
-new format, run your building configuration file(.yaml) through the [guid generator](https://github.com/google/digitalbuildings/tree/master/tools/guid_generator).
+T new format, run your building configuration file(.yaml) through the [guid generator](https://github.com/google/digitalbuildings/tree/master/tools/guid_generator).
