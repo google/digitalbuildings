@@ -19,6 +19,8 @@ from typing import Dict, Tuple
 
 from validate import point
 
+# HERE IS ANOTHER CHANGE
+
 DEVICE_ID = 'deviceId'
 DEVICE_REGISTRY_ID = 'deviceRegistryId'
 DEVICE_NUM_ID = 'deviceNumId'
