@@ -70,7 +70,7 @@ FCU_DFSS_CSP_DXZTC:
   - CSP
   - DXZTC
 
-FCU_DF2SS_CHWRC:
+FCU_DFSS2X_CHWRC_DAIDC2X_RAIDC2X:
   description: "System with two FCU with cooling-only and drain pumps with common return air control for same zone."
   is_canonical: true
   opt_uses:
@@ -79,8 +79,10 @@ FCU_DF2SS_CHWRC:
   - drain_pump_failed_alarm_2
   implements:
   - FCU
-  - DF2SS
+  - DFSS2X
   - CHWRC
+  - DAIDC2X
+  - RAIDC2X
 
 FCU_DFSS_DSP_CHWDC:
   id: "4691957651519569920"

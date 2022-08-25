@@ -587,16 +587,11 @@ DFSS:
   - discharge_fan_run_command
   - discharge_fan_run_status
 
-DF2SS:
+DFSS2X:
   description: "Two discharge fan run command and status (start/stop). With dampers"
   is_abstract: true
   implements:
   - OPERATIONAL
-  opt_uses:
-  - supply_air_damper_status_1
-  - return_air_damper_status_1
-  - supply_air_damper_status_2
-  - return_air_damper_status_2
   uses:
   - discharge_fan_run_command_1
   - discharge_fan_run_status_1
@@ -5096,6 +5091,18 @@ RAIDC2X:
   - return_air_isolation_damper_status_2 
   - return_air_isolation_damper_command_1
   - return_air_isolation_damper_command_2  
+  implements:
+  - MONITORING
+
+DAIDC2X:
+  id: "11726816664472256512"
+  description: "Discharge air isolation damper control and monitoring, where there are two separate, equal sets of dampers that operate in conjunction."
+  is_abstract: true
+  uses:
+  - discharge_air_isolation_damper_status_1
+  - discharge_air_isolation_damper_status_2 
+  - discharge_air_isolation_damper_command_1
+  - discharge_air_isolation_damper_command_2  
   implements:
   - MONITORING
 
