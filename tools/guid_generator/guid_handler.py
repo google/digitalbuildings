@@ -36,8 +36,14 @@ class GuidGenerator(object):
         instance code or GUID.
     """
     try:
+      # First truncate the file. Necessary to append entity blocks one by one.
       with open(filename, 'w', encoding='utf-8') as file:
-        file.write(syaml.as_document(entity_yaml_dict).as_yaml())
+        file.write('')
+      with open(filename, 'a', encoding='utf-8') as file:
+        # Then append each entity block with a blank line in-between
+        for entity_key, entity_block in entity_yaml_dict.items():
+          file.write(syaml.as_document({entity_key: entity_block}).as_yaml())
+          file.write('\n')
     except PermissionError:
       print(f'Permission denied when writing to {filename}')
 
@@ -81,7 +87,7 @@ class GuidGenerator(object):
       return
     # If the document contains any entities in the GUID-based format, all
     # entities must be converted to that format in the output.
-    if guid_key_entities:
+    if code_key_entities:
       entity_yaml_dict.update(guid_key_entities)
       for entity_code, entity_yaml in code_key_entities.items():
         entity_guid = entity_yaml[instance_parser.ENTITY_GUID_KEY]

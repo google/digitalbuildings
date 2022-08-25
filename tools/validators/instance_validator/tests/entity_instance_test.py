@@ -1016,7 +1016,7 @@ class EntityInstanceTest(absltest.TestCase):
 
     self.assertFalse(self.update_validator.Validate(entity))
 
-  def testValidateGoodUpdateOperationDefaultExport(self):
+  def testValidate_GoodUpdateOperationDefaultExport_Success(self):
     parsed, default_operation = _Helper([
         path.join(_TESTCASE_PATH, 'GOOD',
                   'update_no_operation_default_export.yaml')
@@ -1038,6 +1038,25 @@ class EntityInstanceTest(absltest.TestCase):
         combination_validator.Validate(entity_instances['VIRTUAL-ENTITY-GUID']))
     self.assertEqual(entity_instances['PHYSICAL-ENTITY-GUID'].operation,
                      _EXPORT)
+
+  def testValidate_BuildingConfigEntityWithId_Success(self):
+    parsed, default_operation = _Helper(
+        [path.join(_TESTCASE_PATH, 'GOOD', 'bc_entity_with_id.yaml')])
+    entity_iter = iter(parsed.items())
+    entity_1_guid, entity_1_block = next(entity_iter)
+    entity_2_guid, entity_2_block = next(entity_iter)
+
+    entity_1 = entity_instance.EntityInstance.FromYaml(
+        entity_1_guid, entity_1_block, default_operation=default_operation)
+    entity_2 = entity_instance.EntityInstance.FromYaml(
+        entity_2_guid, entity_2_block, default_operation=default_operation)
+
+    self.assertTrue(self.init_validator.Validate(entity_1))
+    self.assertFalse(entity_instance.IsEntityIdPresent(entity_1))
+    self.assertTrue(self.init_validator.Validate(entity_2))
+    self.assertTrue(entity_instance.IsEntityIdPresent(entity_2))
+    self.assertEqual(entity_2.entity_id,
+        parsed['UK-LON-S2-GUID'].get(instance_parser.ENTITY_ID_KEY))
 
 if __name__ == '__main__':
   absltest.main()

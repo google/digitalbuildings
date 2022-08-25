@@ -12,10 +12,25 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-BUILDING-GUID:
-  code: BUILDING
-  type: FACILITIES/BUILDING
+# Test entity with ids
 
-GATEWAY-ENTITY-GUID:
-  code: GATEWAY-ENTITY
-  type: GATEWAYS/PASSTHROUGH
+DMP_EDM-17-GUID:
+  type: HVAC/DMP_EDM
+  code: DMP_EDM-17
+  cloud_device_id: "foobar"
+  translation:
+    exhaust_air_damper_command:
+      present_value: "points.exhaust_air_damper_command.present_value"
+      states:
+        OPEN: "1"
+        CLOSED: "0"
+    exhaust_air_damper_status:
+      present_value: "points.exhaust_air_damper_status.present_value"
+      states:
+        OPEN: "1"
+        CLOSED: "0"
+
+UK-LON-S2-GUID:
+  id: "deprecated-but-doesn't-break"
+  type: FACILITIES/BUILDING
+  code: UK-LON-S2
