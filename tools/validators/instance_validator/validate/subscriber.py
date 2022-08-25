@@ -57,7 +57,7 @@ class Subscriber(object):
     else:
       print("No service account. Using application default credentials")
       # pylint: disable=unused-variable
-      credentials.project_id = auth.default()
+      credentials, project_id = auth.default()
 
     sub_client = pubsub_v1.SubscriberClient(credentials=credentials)
     future = sub_client.subscribe(self.subscription_name, callback)
