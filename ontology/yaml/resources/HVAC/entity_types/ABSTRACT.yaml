@@ -5095,7 +5095,7 @@ RAIDC2X:
   - MONITORING
 
 DAIDC2X:
-  id: "11726816664472256512"
+  id:
   description: "Discharge air isolation damper control and monitoring, where there are two separate, equal sets of dampers that operate in conjunction."
   is_abstract: true
   uses:
