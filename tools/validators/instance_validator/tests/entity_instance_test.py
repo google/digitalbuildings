@@ -1075,7 +1075,7 @@ class EntityInstanceTest(absltest.TestCase):
 
     self.assertTrue(combination_validator.Validate(
       entity_instances['SDC_EXT-17-GUID'], is_udmi= True))
- 
+
   def testValidate_BuildingConfigEntityWithId_Success(self):
     parsed, default_operation = _Helper(
         [path.join(_TESTCASE_PATH, 'GOOD', 'bc_entity_with_id.yaml')])
