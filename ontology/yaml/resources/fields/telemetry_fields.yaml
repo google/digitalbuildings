@@ -1500,6 +1500,9 @@ literals:
   - AUTO
   - MANUAL 
 - supply_fan_run_time_accumulator  
+- exhaust_fan_run_mode:
+  - AUTO
+  - MANUAL
 
 # Addition of telemetry for outside sensors
 - outside_air_co2_concentration_sensor
@@ -1529,9 +1532,15 @@ literals:
   - AUTO
   - MANUAL
 
+- exhaust_fan_speed_mode:
+  - BYPASS
+  - VFD
+
 ## New fields for EM##
 - electricalgrid_energy_accumulator
 - generator_run_time_accumulator
+- generator_energy_accumulator
+- electricalgrid_run_time_accumulator
 
 ## New fields for fans##
 - discharge_fan_energy_accumulator
