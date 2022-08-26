@@ -477,12 +477,12 @@ FAN_EFHLC_COCDSP_NOCDSP:
   - COCDSP
   - NOCDSP
 
-FAN_EFVSC_SCRSS:
-  description: "Kitchen exhaust fan with scrubber start/stop and status."
+FAN_VSC_SCRSS:
+  description: "Fan with scrubber start/stop and status."
   is_canonical: true
   implements:
   - FAN
-  - EFVSC
+  - VSC
   - SCRSS
  
 ###################################
