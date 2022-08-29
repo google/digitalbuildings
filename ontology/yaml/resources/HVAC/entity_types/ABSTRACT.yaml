@@ -30,6 +30,7 @@ SD:
   - supply_air_heating_flowrate_capacity
   - cooling_thermal_power_capacity
   - supply_air_temperature_sensor
+  - supply_air_damper_percentage_sensor
   uses:
   - supply_air_flowrate_sensor
   - supply_air_flowrate_setpoint
@@ -144,6 +145,7 @@ CSP:
   opt_uses:
   - zone_air_relative_humidity_sensor
   - discharge_air_temperature_sensor
+  - zone_occupancy_status
   uses:
   - zone_air_temperature_sensor
   - zone_air_cooling_temperature_setpoint
