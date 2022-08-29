@@ -406,6 +406,8 @@ SFVSC:
   - supply_fan_speed_percentage_sensor
   - supply_fan_current_sensor
   - supply_fan_power_sensor
+  - supply_fan_speed_mode
+  - supply_fan_power_status
   - supply_fan_voltage_sensor
   - supply_fan_torque_sensor
   - supply_fan_run_time_accumulator
@@ -413,7 +415,6 @@ SFVSC:
   - supply_fan_lost_power_alarm
   - supply_fan_failed_alarm
   - control_mode
-  - supply_fan_power_status
   uses:
   - supply_fan_run_command
   - supply_fan_run_status
@@ -707,7 +708,9 @@ SFSS:
   - supply_fan_power_capacity
   - supply_fan_current_sensor
   - supply_fan_power_sensor
+  - supply_fan_failed_alarm
   - supply_fan_run_time_accumulator
+  - supply_fan_run_mode
   uses:
   - supply_fan_run_command
   - supply_fan_run_status
