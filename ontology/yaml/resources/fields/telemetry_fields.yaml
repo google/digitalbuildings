@@ -1535,8 +1535,7 @@ literals:
 - tank_level_status
 - battery_voltage_sensor
 - battery_current_sensor
-
-  
+ 
 #Telemetry fields for APU(MAU)# 
 - dc_voltage_sensor
 - ac_voltage_sensor
@@ -1563,7 +1562,6 @@ literals:
 - supply_fan_speed_mode:
   - BYPASS
   - VFD
-  
 - supply_fan_voltage_sensor
 
 - supply_fan_power_status:
