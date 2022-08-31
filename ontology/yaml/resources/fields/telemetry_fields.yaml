@@ -1593,3 +1593,26 @@ literals:
 - dimmer_run_status:
   - ON
   - OFF
+
+- wind_alarm:
+  - ACTIVE
+  - INACTIVE
+
+- rain_alarm:
+  - ACTIVE
+  - INACTIVE
+- outside_illuminance_sensor
+
+- shade_orientation_specification:
+  - NORTH
+  - SOUTH
+  - EAST
+  - WEST
+
+- shade_mode:
+  - MANUAL
+  - AUTO
+  - DAY_NIGHT
+  - THERMAL
+  - SCENE
+  - WINDOW

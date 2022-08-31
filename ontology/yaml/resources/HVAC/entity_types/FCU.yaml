@@ -1537,3 +1537,29 @@ FCU_DFSS_DFVSC_FDPM_CHWDC_SRC_DFRMM:
   - CHWDC
   - SRC
   - DFRMM 
+
+ #New entity types for DE-FRA-NEM32
+FCU_DFVSCS_ZTC_RTM_WDT:
+  description: "Hydronic cooling or heating fan coil unit with cooling temperature setpoint control"
+  implements:
+  - FCU
+  - DFVSCS
+  - CSP
+  - RTM
+  - WDT 
+  uses: 
+  - master_alarm
+  - run_mode
+
+FCU_DFSS_CSP_DXSZC:
+  description: "Typical DX FCU with cooling-only (discharge control)"
+  implements:
+  - FCU
+  - DFSS
+  - CSP
+  - RTM
+  - DXSZC
+  uses: 
+  - master_alarm
+  - filter_alarm
+  - run_mode

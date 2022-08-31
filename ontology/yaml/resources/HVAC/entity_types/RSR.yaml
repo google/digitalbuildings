@@ -35,3 +35,18 @@ RARSR_UNDEFINED:
   description: "Return air riser without any data points."
   implements:
   - RARSR
+
+#New entity types for DE-FRA-NEM32
+RSR_HHCD42_CPC:
+  description: "Cooling or heating changeover function for radiant panels or fcu's. 4/2-pipe"
+  implements:
+  - RSR
+  - HHCD42
+  - CPC
+
+RSR_HHCD44_CPC:
+  description: "Cooling or heating changeover function for radiant panels or fcu's. 4/4-pipe"
+  implements:
+  - RSR
+  - HHCD44
+  - CPC

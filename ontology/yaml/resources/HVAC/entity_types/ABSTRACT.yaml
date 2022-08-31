@@ -5523,3 +5523,111 @@ RFVSC2X:
   - return_fan_speed_percentage_command_2
   implements:
   - OPERATIONAL
+
+#New abstracts for DE-FRA-NEM32
+
+EXTOR:
+  description: "shade control with extension monitoring based on outside illuminance"
+  is_abstract: true
+  uses:
+  - shade_extent_percentage_command
+  - outside_illuminance_sensor
+  - min_illuminance_setpoint
+  - max_illuminance_setpoint
+
+DPHC2:
+  description: "Two-pipe heating and cooling control for radiant panels"
+  is_abstract: true
+  opt_uses:
+  - supply_water_isolation_valve_status
+  - return_water_isolation_valve_status
+  - supply_water_temperature_setpoint
+  uses:
+  - supply_water_temperature_sensor
+  - return_water_temperature_sensor
+  - water_riser_mode
+
+DPHC4:
+  description: "Four pipe heating and cooling controls for radiant panels"
+  is_abstract: true
+  opt_uses:
+  - supply_water_isolation_valve_status
+  - return_water_isolation_valve_status
+  - heating_supply_water_temperature_setpoint
+  - chilled_supply_water_temperature_setpoint
+  uses:
+  - heating_supply_water_temperature_sensor
+  - heating_return_water_temperature_sensor
+  - chilled_supply_water_temperature_sensor
+  - chilled_return_water_temperature_sensor
+  - water_riser_mode
+
+
+HHCD42:
+  description: "Hydronic heating and cooling distribution monitoring for change over group with a heat and a cold exchanger. Primary side: Four-pipe installation 
+                with flow control valves for cooling and heating. Two pipe installation with isolation valves on the secondary side towards the radiant panels. 
+                Heating or cooling only"
+  is_abstract: true
+  implements:
+  - MONITORING
+  uses:
+  - chilled_supply_water_isolation_valve_status
+  - chilled_return_water_isolation_valve_status
+  - heating_supply_water_isolation_valve_status
+  - heating_return_water_isolation_valve_status
+  - heating_request_count
+  - cooling_request_count
+  opt_uses:
+  - average_zone_air_temperature_sensor
+  - chilled_water_valve_percentage_command
+  - heating_water_valve_percentage_command
+  - supply_water_temperature_sensor
+  - return_water_temperature_sensor
+
+HHCD44:
+  description: "Hydronic heating and cooling distribution monitoring for change over group with a heat and a cold exchanger. Primary side: Four-pipe installation 
+                with flow control valves for cooling and heating. Four pipe installation with isolation valves on the secondary side towards the radiant panels.
+                Heating and cooling in parallel"
+  is_abstract: true
+  implements:
+  - MONITORING
+  uses:
+  - chilled_supply_water_isolation_valve_status
+  - chilled_return_water_isolation_valve_status
+  - heating_supply_water_isolation_valve_status
+  - heating_return_water_isolation_valve_status
+  - heating_request_count
+  - cooling_request_count
+  opt_uses:
+  - average_zone_air_temperature_sensor
+  - chilled_water_valve_percentage_command
+  - heating_water_valve_percentage_command
+  - supply_water_temperature_sensor
+  - return_water_temperature_sensor
+
+DFVSCS:
+  description: "Variable speed control for discharge fans (simple)."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  opt_uses:
+  - discharge_fan_run_status
+  uses:
+  - discharge_fan_speed_percentage_sensor
+  - discharge_fan_run_command
+
+DXSZC:
+  description: "Simple compressor run control on zone side (DSP, CSP)."
+  is_abstract: true
+  implements:
+  - CONTROL
+  opt_uses:
+  - discharge_air_temperature_sensor
+  - leaving_cooling_coil_temperature_sensor
+  - cooling_thermal_power_capacity
+  - cooling_percentage_command
+  - compressor_speed_percentage_command
+  uses:
+  - zone_air_cooling_temperature_setpoint
+  - zone_air_temperature_sensor
+  - compressor_run_status
