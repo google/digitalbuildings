@@ -140,6 +140,20 @@ literals:
 - return_air_relative_humidity_sensor
 - return_air_temperature_sensor
 - return_air_temperature_setpoint
+- return_fan_current_sensor
+- return_fan_power_sensor
+- return_fan_torque_sensor
+- return_fan_run_command:
+  - ON
+  - OFF
+- return_fan_run_status:
+  - ON
+  - OFF
+  - UNKNOWN
+- return_fan_speed_frequency_command
+- return_fan_speed_frequency_sensor
+- return_fan_speed_percentage_command
+- return_fan_speed_percentage_sensor
 - return_water_temperature_sensor
 - reversing_valve_command:
   - AUTO
@@ -1110,7 +1124,17 @@ literals:
 #Electrical meter fields
 - neutral_line_current_sensor # A measure of current on the neutral line
 - apparent_energy_accumulator
+
+#Electrical panel fields
+- circuitbreaker_status:
+  - ON
+  - OFF
+- circuitbreaker_failed_alarm:
+  - ACTIVE
+  - INACTIVE
+
 - reactive_energy_accumulator
+
 #Lighting controller battery status
 - emergency_battery_status
 
@@ -1493,7 +1517,7 @@ literals:
 
 #Telemetry addition for MAU#
 
-  
+ 
 #Telemetry fields for APU(MAU)# 
 - dc_voltage_sensor
 - ac_voltage_sensor
@@ -1520,7 +1544,6 @@ literals:
 - supply_fan_speed_mode:
   - BYPASS
   - VFD
-  
 - supply_fan_voltage_sensor
 
 - supply_fan_power_status:
