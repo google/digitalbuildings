@@ -477,11 +477,12 @@ FAN_EFHLC_COCDSP_NOCDSP:
   - COCDSP
   - NOCDSP
 
-FAN_VSC_SCRSS:
+FAN_SS_VSC_SCRSS:
   description: "Fan with scrubber start/stop and status."
   is_canonical: true
   implements:
   - FAN
+  - SS
   - VSC
   - SCRSS
  
