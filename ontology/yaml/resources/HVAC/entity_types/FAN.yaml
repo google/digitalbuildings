@@ -308,7 +308,7 @@ FAN_SS_VSC_EFC_FDPM:
   - EFC
   - FDPM
 
-FAN_SS_VSC_WDPC_STM_RMM:
+FAN_SS_VSC_WDPC_STM:
   description: "Fan with start/stop status, speed control with fire, EC fan and filter alarm monitoring for purification"
   is_canonical: true
   implements:
@@ -317,7 +317,6 @@ FAN_SS_VSC_WDPC_STM_RMM:
   - VSC
   - WDPC
   - STM
-  - RMM
   opt_uses:
   - filter_alarm_1
   - filter_alarm_2
