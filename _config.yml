@@ -1,4 +1,2 @@
 theme: jekyll-theme-cayman
-
-url: "https://google.github.io"
-baseurl: 'digitalbuildings/'
+baseurl: '/digitalbuildings'
