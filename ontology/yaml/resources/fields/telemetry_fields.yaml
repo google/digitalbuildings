@@ -396,6 +396,8 @@ literals:
   - UNOCCUPIED
   - INACTIVE
 
+ # INACTIVE indicates the device is being overridden to not run, irrespective of occupancy status.
+
 
 ## Added on 12/12
 - leaving_cooling_coil_temperature_sensor
