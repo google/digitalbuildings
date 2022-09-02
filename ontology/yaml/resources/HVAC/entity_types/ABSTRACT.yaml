@@ -312,6 +312,7 @@ EDBPC:
   - CONTROL
 
 EDRPC:
+  id: "14956319809761968128"
   description: "Return static control with exhaust damper."
   is_abstract: true
   opt_uses:
@@ -5460,6 +5461,7 @@ RDC:
   - MONITORING
 
 RFSS:
+  id: "17406278007051517952"
   description: "Basic combination of return fan run command and status (start/stop)."
   is_abstract: true
   opt_uses:
@@ -5472,6 +5474,7 @@ RFSS:
   - OPERATIONAL
 
 RFSS2X:
+  id: "1895880890387529728"
   description: "Return fan start-stop and feedback with two fan."
   is_abstract: true
   opt_uses:
@@ -5488,6 +5491,7 @@ RFSS2X:
   - OPERATIONAL
 
 RFVSC:
+  id: "13641268718569783296"
   description: "Variable speed control for a return fan."
   is_abstract: true
   opt_uses:
@@ -5503,6 +5507,7 @@ RFVSC:
   - OPERATIONAL
 
 RFVSC2X:
+  id: "6093235743096832000"
   description: "Return fan variable speed control with feedback and sensoring for two fanss."
   is_abstract: true
   opt_uses:

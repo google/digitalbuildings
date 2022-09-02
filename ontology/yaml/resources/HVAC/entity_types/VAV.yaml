@@ -40,6 +40,7 @@ VAV_SD_DSP:
   - DSP
 
 VAV_SD_CSP_HLSAFS:
+  id: "11314244717358612480"
   description: "Simple cooling only VAV with occupancy."
   is_canonical: true
   implements:
@@ -436,6 +437,7 @@ VAV_RDC:
   - RDC
 
 VAV_RD_DSPRTC:
+  id: "9912288227107012608"
   description: "Return control VAV with return cooling control."
   is_canonical: true
   implements:
@@ -444,6 +446,7 @@ VAV_RD_DSPRTC:
   - DSPRTC
  
 VAV_RD_DSPRTC_ZSPC:
+  id: "6507566908814917632"
   description: "Return control VAV with return cooling control and zone pressure control."
   is_canonical: true
   implements:
