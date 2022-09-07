@@ -4845,3 +4845,23 @@ AHU_SFSS_SFMSC_SFVSC_FDPM_CHWSC_RTM_RACO2C_SSPC2X_VOADM2X_SAIDC2X_RAIDC2X_SSPC:
   - SAIDC2X
   - RAIDC2X
   - SSPC
+
+AHU_CHWSC_EFSS_EFVSC_FDPM3X_HTWHLSTC_HWSC_RCO2M_RSPC_SFM_SFSS_SFVSC_SSPC_VOADM_VMADC:
+  description: "Complex multi zone AHU with heat recovery wheel and recirculated air control."
+  is_canonical: true
+  implements:
+  - DOAS
+  - CHWSC
+  - EFSS
+  - EFVSC
+  - FDPM3X
+  - HTWHLSTC
+  - HWSC
+  - RCO2M
+  - RSPC
+  - SFM
+  - SFSS
+  - SFVSC
+  - SSPC
+  - VOADM
+  - VMADC

@@ -2135,6 +2135,7 @@ HWSC:
   is_abstract: true
   opt_uses:
   - heating_water_valve_percentage_sensor
+  - heating_supply_water_temperature_sensor
   - heating_thermal_power_capacity
   - leaving_heating_coil_temperature_sensor
   - heating_request_count
@@ -4560,6 +4561,7 @@ PHRU:
   - outside_air_temperature_sensor
   - bypass_air_damper_command
   - bypass_air_damper_status
+  - bypass_air_damper_percentage_sensor
 
 CHWDT2X:
   id: "17588854111866978304"
@@ -5523,3 +5525,20 @@ RFVSC2X:
   - return_fan_speed_percentage_command_2
   implements:
   - OPERATIONAL
+
+RCO2M:
+  description: "Return air co2 monitoring"
+  is_abstract: true
+  uses:
+  - return_air_co2_concentration_sensor
+  implements:
+  - MONITORING
+
+VMADC:
+  description: "Variable mixed air damper monitoring (for recirculated air in AHU)."
+  is_abstract: true
+  uses:
+  - mixed_air_damper_percentage_command
+  - mixed_air_damper_percentage_sensor
+  implements:
+  - CONTROL
