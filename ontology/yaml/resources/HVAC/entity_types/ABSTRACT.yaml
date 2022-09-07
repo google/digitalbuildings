@@ -2137,6 +2137,7 @@ HWSC:
   - heating_water_valve_percentage_sensor
   - heating_thermal_power_capacity
   - leaving_heating_coil_temperature_sensor
+  - heating_supply_water_temperature_sensor
   - heating_request_count
   - heating_supply_water_temperature_sensor
   uses:
@@ -5036,7 +5037,24 @@ HWRWISOVPM:
   - heating_return_water_isolation_valve_percentage_command
   - heating_return_water_isolation_valve_percentage_sensor
   implements:
-  - MONITORING 
+  - MONITORING
+
+RCO2M:
+  description: "Return air co2 monitoring"
+  is_abstract: true
+  uses:
+  - return_air_co2_concentration_sensor
+  implements:
+  - MONITORING
+
+VMADC:
+  description: "Variable mixed air damper monitoring (for recirculated air in AHU)."
+  is_abstract: true
+  uses:
+  - mixed_air_damper_percentage_command
+  - mixed_air_damper_percentage_sensor
+  implements:
+  - CONTROL
 
 DEFSS:
   id: "8292821948602253312"

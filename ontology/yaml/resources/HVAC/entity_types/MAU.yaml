@@ -648,6 +648,19 @@ MAU_SFSS_SFVSC_SPSS_STM_SHM_SFC_FDPSM:
   - FDPSM
 
 
+MAU_CHWSC_HWSC_SSPC_SFVSC_FDPM2X_SFM_OA:
+  description: "Multi-zone MAU with chilled water and heating water."
+  is_canonical: true
+  implements:
+  - MAU
+  - CHWSC
+  - HWSC
+  - SSPC
+  - SFVSC
+  - FDPM2X
+  - SFM
+  - OA
+
 MAU_SFVSC_CHWSC_SSPC_FDPSM2X:
   id: "11161614911237259264"
   description: "MAU with chilled water valve modulation,VFD speed control based on static pressure,two filters."

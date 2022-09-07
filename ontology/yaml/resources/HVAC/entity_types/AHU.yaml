@@ -3721,6 +3721,24 @@ AHU_CHWSC_EFVSC_FDPM3X_HTWHLSTC_HWSC_RCO2M_RSPC_SFM_SFVSC_SSPC_VOADM_VMADC:
   - VOADM
   - VMADC
 
+AHU_CHWSC_EFVSC_FDPM3X_HTWHLSTC_HWSC_RCO2M_RSPC_SFM_SFVSC_SSPC_VOADM_VMADC:
+  description: "Complex multi zone AHU with heat recovery wheel and recirculated air control."
+  is_canonical: true
+  implements:
+  - DOAS
+  - CHWSC
+  - EFVSC
+  - FDPM3X
+  - HTWHLSTC
+  - HWSC
+  - RCO2M
+  - RSPC
+  - SFM
+  - SFVSC
+  - SSPC
+  - VOADM
+  - VMADC
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
