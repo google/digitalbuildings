@@ -49,18 +49,12 @@ RP_CAM_DPHC2_ZTC:
   - CAM
   - DPHC2
   - ZTC
-  uses:
-  - cooling_output_percentage_command
-  - heating_output_percentage_command
 
 RP_CAM_DPHC4_ZTC:
-  description: "Radiant panel for room heating and cooling, Two pipe installation."
+  description: "Radiant panel for room heating and cooling, four pipe installation."
   is_canonical: true
   implements:
   - RP
   - CAM
   - DPHC4
   - ZTC
-  uses:
-  - cooling_output_percentage_command
-  - heating_output_percentage_command

@@ -5546,6 +5546,8 @@ DPHC2:
   - supply_water_temperature_sensor
   - return_water_temperature_sensor
   - water_riser_mode
+  - cooling_output_percentage_command
+  - heating_output_percentage_command
 
 DPHC4:
   description: "Four pipe heating and cooling controls for radiant panels"
@@ -5561,7 +5563,8 @@ DPHC4:
   - chilled_supply_water_temperature_sensor
   - chilled_return_water_temperature_sensor
   - water_riser_mode
-
+  - cooling_output_percentage_command
+  - heating_output_percentage_command
 
 HHCD42:
   description: "Hydronic heating and cooling distribution monitoring for change over group with a heat and a cold exchanger. Primary side: Four-pipe installation 
