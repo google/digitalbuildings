@@ -5562,7 +5562,6 @@ DPHC4:
   - heating_return_water_temperature_sensor
   - chilled_supply_water_temperature_sensor
   - chilled_return_water_temperature_sensor
-  - water_riser_mode
   - cooling_output_percentage_command
   - heating_output_percentage_command
 
