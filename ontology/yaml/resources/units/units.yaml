@@ -282,8 +282,6 @@ xvalue:
 - no_units: STANDARD
 yvalue:
 - no_units: STANDARD
-orientation: 
-- no_units: STANDARD
 group: 
 - no_units: STANDARD
 hours:
