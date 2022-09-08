@@ -1585,8 +1585,8 @@ literals:
   - AUTO
   - SCENE_CONTROL
 
-- max_illuminance_setpoint
-- min_illuminance_setpoint
+- high_limit_illuminance_setpoint
+- low_limit_illuminance_setpoint
 - brightness_percentage_sensor
 - heating_output_percentage_command
 
