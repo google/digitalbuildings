@@ -1,0 +1,35 @@
+# Copyright 2020 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the License);
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#    https://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an AS IS BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+TK:
+  id: "2444616357484953600"
+  description: "Tank water system used to store water"
+  is_abstract: true
+  implements:
+  - EQUIPMENT
+
+WSTC:
+  id: "3250760690784272384"
+  description: "Waste Compactor system used for compacting organic waste essential for conversion into manure."
+  is_abstract: true
+  implements:
+  - EQUIPMENT
+
+PMP:
+  id: "15559098472387837952"
+  description: "Pumps move liquid (e.g., water, glycol, liquid CO2) from one part of a system
+    to another. In this namespace, pumps are used for irrigation and domestic purposes."
+  is_abstract: true
+  implements:
+  - EQUIPMENT

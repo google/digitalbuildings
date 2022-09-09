@@ -142,6 +142,30 @@ CT_SS_VSC_RWISOVM_SWISOVM_SWTM:
   - RWISOVM
   - SWISOVM
   - SWTM
+ 
+CT_SS_RWISOVM_SWISOVM_SWTM:
+  id: "9420973655258562560"
+  description: "Cooling tower with supply and return isolation valves and supply & return temp monitoring."
+  is_canonical: true
+  implements:
+  - CT
+  - SS
+  - RWISOVM
+  - SWISOVM
+  - SWTM
+  opt_uses:
+  - low_level_status
+
+CT_SS_VSC_SPSS_SWTC_RWISOVM:
+  description: "Evaporative cooler with onboard spray pump and variable speed control."
+  is_canonical: true
+  implements:
+  - CT
+  - SS
+  - VSC
+  - SPSS
+  - SWTC
+  - RWISOVM
 
 ###################################
 ### Existing Non-standard Types ###
