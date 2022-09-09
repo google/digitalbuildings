@@ -309,7 +309,7 @@ FAN_SS_VSC_EFC_FDPM:
   - FDPM
 
 FAN_SS_VSC_WDPC_STM_FDPSM4X:
-  description: "Fan with start/stop status, speed control with fire, EC fan and filter alarm monitoring for purification"
+  description: "Fan with start/stop status, speed control with fire, EC fan and filter status monitoring for purification"
   is_canonical: true
   implements:
   - FAN
