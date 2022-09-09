@@ -25,8 +25,8 @@ OCCUPIED: Occupied sensor state or operation mode.
 UNOCCUPIED: Unoccupied sensor state or operation mode.
 VFD: Discrete speed (frequency) control
 BYPASS: Bypassing an element or entity.
-DRY: Modes of operation in DX unit
-FAN: Modes of operation in DX unit
+DEHUMIDIFY: Modes of operation in DX unit where the unit acts as a dehumidifier by removing moisture from air
+FAN_ONLY: Modes of operation in DX unit where only fan runs and heating/cooling is disabled
 
 # Moved from HVAC namespace because all fields are currently global in DL.
 COMMISSIONING: The fan speed and valve positions are set to preconfigured parameters.

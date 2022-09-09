@@ -164,18 +164,6 @@ literals:
 - supply_air_temperature_setpoint
 - supply_fan_current_sensor
 - supply_fan_power_sensor
-- supply_damper_open_status:
-  - OPEN
-  - CLOSED
-- supply_damper_closed_status:
-  - OPEN
-  - CLOSED
-- return_damper_open_status:
-  - OPEN
-  - CLOSED
-- return_damper_closed_status:
-  - OPEN
-  - CLOSED
 - supply_fan_torque_sensor
 - supply_fan_run_command:
   - ON
@@ -386,8 +374,8 @@ literals:
   - OFF
   - AUTO
   - MANUAL
-  - DRY
-  - FAN
+  - DEHUMIDIFY
+  - FAN_ONLY
 - dial_resistance_sensor
 - zone_occupancy_status:
   - OCCUPIED

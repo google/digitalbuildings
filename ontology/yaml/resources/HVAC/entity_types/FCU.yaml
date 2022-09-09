@@ -50,7 +50,7 @@ FCU_DFSS_CSP_DXZC:
   - CSP
   - DXZC
 
-FCU_DFSS_DXRC_DFRMM:
+FCU_DFSS_DFVSC_DXRC_DFRMM:
   description: "Typical DX FCU with cooling-only (return control) with run mode and failed alarm ."
   is_canonical: true
   opt_uses:
@@ -58,6 +58,7 @@ FCU_DFSS_DXRC_DFRMM:
   implements:
   - FCU
   - DFSS
+  - DFVSC
   - DXRC
   - DFRMM
 
