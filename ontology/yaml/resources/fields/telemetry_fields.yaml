@@ -1487,11 +1487,6 @@ literals:
   - ON
   - OFF
 
-# Addition of telemetry for door alarm
-- door_open_alarm:
-  - ACTIVE
-  - INACTIVE
-
 # telemetry fields for exhaust fan#
 
 - speed_mode:

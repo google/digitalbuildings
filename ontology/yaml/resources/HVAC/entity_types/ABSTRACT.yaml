@@ -3074,6 +3074,22 @@ FDPSM2X:
   implements:
   - MONITORING
 
+FDPSM4X:
+  description: "Filter pressure status monitoring (4 sensors)."
+  is_abstract: true
+  uses:
+  - filter_differential_pressure_status_1
+  - filter_differential_pressure_status_2
+  - filter_differential_pressure_status_3
+  - filter_differential_pressure_status_4
+  opt_uses:
+  - filter_alarm_1
+  - filter_alarm_2
+  - filter_alarm_3
+  - filter_alarm_4
+  implements:
+  - MONITORING
+
 FDPM3X:
   id: "16670119787883397120"
   description: "Filter pressure monitoring (3 sensors)."
