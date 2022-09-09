@@ -1502,16 +1502,12 @@ literals:
   - AUTO
   - MANUAL
 
-
 ##Fields for generator##
 - oil_temperature_sensor
 - oil_pressure_sensor
 - tank_level_status
 - battery_voltage_sensor
 - battery_current_sensor
-
-#Telemetry addition for MAU#
-
  
 #Telemetry fields for APU(MAU)# 
 - dc_voltage_sensor
