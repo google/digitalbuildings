@@ -17,12 +17,12 @@ from setuptools import find_packages
 from setuptools import setup
 
 setup(
-    name='guid-generator',
+    name='guid_generator',
     version='0.0.1',
     url='https://github.com/google/digitalbuildings',
     license='Apache License',
     author='Travis Welch',
     packages=find_packages(),
-    install_requires=['strictyaml==1.1.0'],
-    python_requires='==3.9',
+    install_requires=['strictyaml==1.4.2'],
+    python_requires='>=3.9',
 )
