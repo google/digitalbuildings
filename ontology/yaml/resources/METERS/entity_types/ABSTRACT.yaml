@@ -50,6 +50,9 @@ PLPM:
   - phase1_apparent_power_sensor
   - phase2_apparent_power_sensor
   - phase3_apparent_power_sensor
+  - phase1_reactive_power_sensor
+  - phase2_reactive_power_sensor
+  - phase3_reactive_power_sensor
   uses:
   - phase1_power_sensor
   - phase2_power_sensor
