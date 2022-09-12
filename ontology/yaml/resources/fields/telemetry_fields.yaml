@@ -1528,8 +1528,17 @@ literals:
   - HIGH
 - line_pressure_sensor
 
-- return_air_isolation_damper_status
+- return_air_isolation_damper_status:
+  - OPEN
+  - CLOSED
 - return_air_isolation_damper_command:
+  - OPEN
+  - CLOSED
+
+- discharge_air_isolation_damper_status:
+  - OPEN
+  - CLOSED
+- discharge_air_isolation_damper_command:
   - OPEN
   - CLOSED
 
