@@ -584,7 +584,7 @@ DFSS:
   - schedule_run_command
   - discharge_fan_run_time_accumulator
   - discharge_fan_failed_alarm
-  - discharge_fan_run_mode
+  - overload_discharge_fan_alarm
   uses:
   - discharge_fan_run_command
   - discharge_fan_run_status
@@ -1066,6 +1066,11 @@ RHC:
   id: "2169941860192092160"
   description: "Return air relative humidity control."
   is_abstract: true
+  opt_uses:
+  - humidifier_failed_alarm
+  - high_return_air_relative_humidity_alarm
+  - low_return_air_relative_humidity_alarm
+  - humidifier_run_time_accumulator
   uses:
   - return_air_relative_humidity_sensor
   - return_air_relative_humidity_setpoint
@@ -1896,6 +1901,10 @@ DXRC:
   - cooling_percentage_command
   - compressor_speed_percentage_command
   - compressor_failed_alarm
+  - overload_compressor_alarm
+  - compressor_run_time_accumulator
+  - high_return_air_temperature_alarm
+  - low_return_air_temperature_alarm
   uses:
   - return_air_temperature_setpoint
   - return_air_temperature_sensor
@@ -2281,7 +2290,6 @@ HTSDC:
   - CONTROL
 
 
-
 HTRC:
   id: "80271633092182016"
   description: "Gas or electric heater control on return side (RC)."
@@ -2291,6 +2299,7 @@ HTRC:
   - discharge_air_temperature_sensor
   - heating_percentage_command
   - heater_run_status
+  - heater_run_time_accumulator
   uses:
   - heater_run_command
   - return_air_temperature_setpoint
@@ -3944,6 +3953,8 @@ REFPM:
   is_abstract: true
   opt_uses:
   - refrigerant_differential_pressure_sensor
+  - refrigerant_high_pressure_status
+  - refrigerant_low_pressure_status
   uses:
   - refrigerant_evaporator_pressure_sensor
   - refrigerant_condenser_pressure_sensor

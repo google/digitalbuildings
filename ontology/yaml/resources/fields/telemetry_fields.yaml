@@ -783,25 +783,19 @@ literals:
 - lost_power_alarm:
   - ACTIVE
   - INACTIVE
-- overload_alarm:
-  - ACTIVE
-  - INACTIVE
 - overload_compressor_alarm:
   - ACTIVE
   - INACTIVE
-- overload_fan_alarm:
+- overload_discharge_fan_alarm:
   - ACTIVE
   - INACTIVE
-- high_pressure_status:
+- refrigerant_high_pressure_status:
   - ACTIVE
   - INACTIVE
-- low_pressure_status:
+- refrigerant_low_pressure_status:
   - ACTIVE
   - INACTIVE
 - humidifier_failed_alarm:
-  - ACTIVE
-  - INACTIVE
-- fan_failed_alarm:
   - ACTIVE
   - INACTIVE
 - heat_exchange_failed_alarm:
@@ -1523,7 +1517,6 @@ literals:
   - BYPASS
   - VFD
 - supply_fan_voltage_sensor
-- fan_run_time_accumulator
 - humidifier_run_time_accumulator
 - heater_run_time_accumulator
 - supply_fan_power_status:
