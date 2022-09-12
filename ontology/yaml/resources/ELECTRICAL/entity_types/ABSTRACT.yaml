@@ -61,10 +61,7 @@ IOBM:
   - overload_alarm
   - lost_power_alarm
   - load_percentage_sensor
-  - bypass_status
   - bypass_phase_status
-  - input_frequency_sensor
-  - output_frequency_sensor
 
 PWM:
   id: "13215256341318205440"
