@@ -135,10 +135,25 @@ literals:
 - wind_linearvelocity_sensor
 - wind_direction_angle_sensor
 - outside_air_rain_level_sensor
+- outside_air_voc_concentration_sensor
 - power_sensor
 - return_air_relative_humidity_sensor
 - return_air_temperature_sensor
 - return_air_temperature_setpoint
+- return_fan_current_sensor
+- return_fan_power_sensor
+- return_fan_torque_sensor
+- return_fan_run_command:
+  - ON
+  - OFF
+- return_fan_run_status:
+  - ON
+  - OFF
+  - UNKNOWN
+- return_fan_speed_frequency_command
+- return_fan_speed_frequency_sensor
+- return_fan_speed_percentage_command
+- return_fan_speed_percentage_sensor
 - return_water_temperature_sensor
 - reversing_valve_command:
   - AUTO
@@ -379,6 +394,9 @@ literals:
   - OCCUPIED
   - UNKNOWN
   - UNOCCUPIED
+  - INACTIVE
+
+ # INACTIVE indicates the device is being overridden to not run, irrespective of occupancy status.
 
 
 ## Added on 12/12
@@ -1127,7 +1145,17 @@ literals:
 #Electrical meter fields
 - neutral_line_current_sensor # A measure of current on the neutral line
 - apparent_energy_accumulator
+
+#Electrical panel fields
+- circuitbreaker_status:
+  - ON
+  - OFF
+- circuitbreaker_failed_alarm:
+  - ACTIVE
+  - INACTIVE
+
 - reactive_energy_accumulator
+
 #Lighting controller battery status
 - emergency_battery_status
 
@@ -1499,8 +1527,7 @@ literals:
 - tank_level_status
 - battery_voltage_sensor
 - battery_current_sensor
-
-  
+ 
 #Telemetry fields for APU(MAU)# 
 - dc_voltage_sensor
 - ac_voltage_sensor
@@ -1522,6 +1549,21 @@ literals:
 - return_air_isolation_damper_command:
   - OPEN
   - CLOSED
+
+- return_air_isolation_damper_status:
+  - OPEN
+  - CLOSED
+- return_air_isolation_damper_command:
+  - OPEN
+  - CLOSED
+
+- discharge_air_isolation_damper_status:
+  - OPEN
+  - CLOSED
+- discharge_air_isolation_damper_command:
+  - OPEN
+  - CLOSED
+
 - supply_fan_speed_mode:
   - BYPASS
   - VFD
@@ -1545,6 +1587,10 @@ literals:
 - generator_energy_accumulator 
 - supply_fan_energy_accumulator
 - compressor_run_time_accumulator
+
+- total_lamp_failed_counter
+- total_wireless_device_failed_counter
+- total_communication_failed_counter
 
 ## New fields for seismic detector
 - seismic_alarm

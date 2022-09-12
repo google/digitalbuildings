@@ -3617,6 +3617,93 @@ AHU_SFSS_SFVSC_CHWRC_OAFC_SSPC_RAVOCC_RACO2C_ESFM_SAIDC:
   - ESFM
   - SAIDC
 
+AHU_DFSS_DFVSC_ECONZ_HP2ZC:
+  id: "5878470335866601472"
+  description: "Single zone heat pump AHU."
+  is_canonical: true
+  implements:
+  - AHU
+  - DFSS
+  - DFVSC
+  - ECONZ
+  - HP2ZC
+
+AHU_DFSS_DFVSC_ECONZ_EFSS_HP2ZC_ZSPC:
+  id: "17858045344672120832"
+  description: "Single zone heat pump AHU with zone pressure relief."
+  is_canonical: true
+  implements:
+  - AHU
+  - DFSS
+  - DFVSC
+  - ECONZ
+  - EFSS
+  - HP2ZC
+  - ZSPC
+
+AHU_DX4ZC_DFSS_DFVSC_EFSS_EFVSC_DSP_ECONZ_ZSPC:
+  id: "688916190252236800"
+  description: "Single zone AHU, four-stage DX cooling and zone static pressure control."
+  is_canonical: true
+  implements:
+  - AHU
+  - DX4ZC
+  - DFSS
+  - DFVSC
+  - EFSS
+  - EFVSC
+  - DSP
+  - ECONZ
+  - ZSPC
+
+AHU_CHW2XSC_RFSS2X_RFVSC2X_SFSS2X_SFVSC2X_RFC_EDRPC_RTM_SARC_SFC_SSPC_VOADM2X:
+  id: "11119252927242305536"
+  description: "Multi zone lab unit with two CHW, two OAD, and return static pressure control."
+  is_canonical: true
+  implements:
+  - AHU
+  - CHW2XSC
+  - RFSS2X
+  - RFVSC2X
+  - SFSS2X
+  - SFVSC2X
+  - RFC
+  - EDRPC
+  - RTM
+  - SARC
+  - SFC
+  - SSPC
+  - VOADM2X
+
+AHU_CHWDC_DFSS_DFVSC_DSP_ECONZ_EFSS_ZSPC:
+  id: "9029582700142395392"
+  description: "Single zone AHU with zone static pressure control."
+  is_canonical: true
+  implements:
+  - AHU
+  - CHWDC
+  - DFSS
+  - DFVSC
+  - DSP
+  - ECONZ
+  - EFSS
+  - ZSPC
+
+AHU_CHWSC_ECON_FDPM_EDRPC_RFSS_RFVSC_SFSS_SFVSC_SSPC:
+  id: "15316607779951607808"
+  description: "Multi-zone chilled water AHU with return static pressure control."
+  is_canonical: true
+  implements:
+  - AHU
+  - CHWSC
+  - ECON
+  - FDPM
+  - EDRPC
+  - RFSS
+  - RFVSC
+  - SFSS
+  - SFVSC
+  - SSPC
 
 ###################################
 ### Existing Non-standard Types ###
