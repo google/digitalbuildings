@@ -71,8 +71,8 @@ POSITIONC: "Automatic Transfer switch position 2"
 
 #FOR UPS
 BATTERY: "Operation mode or input power is via Battery"
-SYNCHRONOUS: "Mode of operation of inverter"
-ASYNCHRONOUS: "Mode of operation of inverter"
-SOFTSTART: "Mode of operation of rectifier"
+SYNCHRONOUS: "Mode of operation of inverter where inverter operation is in line with the bypass voltage and frequency"
+ASYNCHRONOUS: "Mode of operation of inverter where either the bypass supply fails or the inverter is not in line bypass voltage and frequency"
+SOFTSTART: "Mode of operation of rectifier where the input power supply is gradually turned on to avoid overloading"
 NORMAL: "Function, state or flow which is an ideal or expected condition."
 REVERSED: "Function, state or flow which is opposed to the expected or normal condition."
