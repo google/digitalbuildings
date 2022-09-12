@@ -870,6 +870,18 @@ AHU_DFSS_DXZC_ECOND_ZHM:
   - ECOND
   - ZHM
 
+AHU_DFSS_CHWDT_DTM_RTC_RWISOVPC_OAFC_FDPSM2X:
+  description: "Smart AHU."
+  is_canonical: true
+  implements:
+  - AHU
+  - DFSS
+  - CHWDT
+  - DTM
+  - RTC
+  - RWISOVPC
+  - OAFC
+  - FDPSM2X
 
 ### Multi-zone Units ###
 
