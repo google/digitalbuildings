@@ -20,6 +20,7 @@ UPS_SS:
   - UPS
   - SS
 
+
 UPS_IOBM:
   id: "8787571394775875584"
   description: "UPS with input and output electrical monitoring"
@@ -39,7 +40,7 @@ UPS_IOBM:
   - phase1_power_sensor
   - phase2_power_sensor
   - phase3_power_sensor  
-  
+
 UPS_PPWM:
   id: "17075390977788608512"
   description: "UPS with phase power monitoring."
@@ -48,6 +49,14 @@ UPS_PPWM:
   - UPS
   - PPWM
 
+UPS_IOBM_BATM:
+  id: "16279674412767117312"
+  description: "UPS with battery parameters and input output electrical monitoring"
+  is_canonical: true
+  implements:
+  - UPS
+  - IOBM
+  - BATM
 UPS_IOBM_PPWM_UPSBM:
   description: "UPS with input and output electrical monitoring, phase power monitoring and battery monitoring."
   is_canonical: true
@@ -56,3 +65,4 @@ UPS_IOBM_PPWM_UPSBM:
   - IOBM
   - PPWM
   - UPSBM  
+
