@@ -24,9 +24,11 @@ if _USE_ABSOLUTE_PATH:
   REPO_ROOT = path.join('third_party', 'digitalbuildings')
 else:
   REPO_ROOT = path.join(
-      path.dirname(path.realpath(__file__)), path.join('..', '..', '..', '..'))
+      path.dirname(path.realpath(__file__)), path.join('..', '..', '..'))
 
 APPLICATION_ROOT = path.join(REPO_ROOT, 'tools', 'abel')
+
+ONTOLOGY_ROOT = path.join(REPO_ROOT, 'ontology', 'yaml', 'resources')
 
 BC_GUID_REGEX = '^[0-9a-f]{8}-([0-9a-f]{4}-){3}[0-9a-f]{12}:'
 

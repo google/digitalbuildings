@@ -16,12 +16,14 @@
 import datetime
 import os
 import sys
+from typing import Optional
 
 from model import authenticator
 from model import export_helper
 from model import import_helper
 from model.arg_parser import ParseArgs
 from model.constants import SPREADSHEET_RANGE
+from model.constants import ONTOLOGY_ROOT
 from model.model_builder import ModelBuilder
 from validators.spreadsheet_validator import SpreadsheetValidator
 from validate import handler
@@ -84,8 +86,10 @@ def _spreadsheet_workflow(spreadsheet_id: str, gcp_token_path: str) -> None:
     print(f'Exported Building Configuration: {BC_EXPORT_PATH}')
 
 
-def _bc_workflow(spreadsheet_id: str, bc_filepath: str,
-                 gcp_token_path: str) -> None:
+def _bc_workflow(spreadsheet_id: str,
+                 bc_filepath: str,
+                 gcp_token_path: str,
+                 ontology_path: Optional[str] = ONTOLOGY_ROOT) -> None:
   """Helper function for Building Config -> spreadsheet workflow.
 
   Args:
@@ -94,10 +98,15 @@ def _bc_workflow(spreadsheet_id: str, bc_filepath: str,
     gcp_token_path: Path to GCP token for authenticating against Google sheets
       API. This is a short-lived credential for a service account as documented
       https://cloud.google.com/iam/docs/create-short-lived-credentials-direct.
+    ontology_path: [Optional] A path to a modified ontology. Default is the
+      DigitalBuildings Ontology.
   """
   print('Validating imported Building Config.')
   handler.RunValidation(
-      filenames=[bc_filepath], report_filename=INSTANCE_VALIDATOR_LOG_PATH)
+      filenames=[bc_filepath],
+      report_filename=INSTANCE_VALIDATOR_LOG_PATH,
+      modified_types_filepath=ontology_path
+  )
   print(f'Importing Building Configuration file from {bc_filepath}.')
   imported_building_config = import_helper.DeserializeBuildingConfiguration(
       filepath=bc_filepath)
