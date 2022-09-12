@@ -15,13 +15,13 @@
 # This file is used as an example of a valid building configuration with
 # the most common and important features, e.g. translations and links.
 
-FCU-1:
+90ebdd30-efdf-4aec-82d7-90f8e03a6792:
   cloud_device_id: 2599571827844401
+  code: FCU-1
   connections:
-    VLV-1: CONTROLS
-    VLV-2: CONTROLS
-    ZONE-G00: FEEDS
-  guid: 90ebdd30-efdf-4aec-82d7-90f8e03a6792
+    daf3048f-2118-4afc-a5f0-8b4ce0c25fef: CONTROLS
+    edfa7b3a-80da-4243-a95a-5ca24311ac45: CONTROLS
+    abac04e2-948a-40df-a77f-bc5798c2d7e6: FEEDS
   translation:
     chilled_water_flowrate_sensor:
       present_value: points.chilled_water_flowrate_sensor.present_value
@@ -137,10 +137,10 @@ FCU-1:
           degrees_celsius: degC
   type: HVAC/FCU_DFSS_DFVSC_ZTC_ZHC_CHWDC_HWDC_FDPM_RMM
 
-VLV-1:
-  guid: daf3048f-2118-4afc-a5f0-8b4ce0c25fef
+daf3048f-2118-4afc-a5f0-8b4ce0c25fef:
+  code: VLV-1
   links:
-    FCU-1:
+    90ebdd30-efdf-4aec-82d7-90f8e03a6792:
       chilled_water_flowrate_sensor: chilled_water_flowrate_sensor
       chilled_water_valve_percentage_command: chilled_water_valve_percentage_command
       chilled_water_valve_percentage_sensor: chilled_water_valve_percentage_sensor
@@ -148,33 +148,33 @@ VLV-1:
       return_air_temperature_sensor: return_air_temperature_sensor
   type: HVAC/VLV_CHWVM_RTM_DTM
 
-VLV-2:
-  guid: edfa7b3a-80da-4243-a95a-5ca24311ac45
+edfa7b3a-80da-4243-a95a-5ca24311ac45:
+  code: VLV-2
   links:
-    FCU-1:
+    90ebdd30-efdf-4aec-82d7-90f8e03a6792:
       heating_water_flowrate_sensor: heating_water_flowrate_sensor
       heating_water_valve_percentage_command: heating_water_valve_percentage_command
       heating_water_valve_percentage_sensor: heating_water_valve_percentage_sensor
   type: HVAC/VLV_HWVM
 
-ZONE-G00:
+abac04e2-948a-40df-a77f-bc5798c2d7e6:
   connections:
-    XX-YYY-ZZ-G-G00: CONTAINS
-  guid: abac04e2-948a-40df-a77f-bc5798c2d7e6
+    1a0e0e19-89e5-444e-958f-5611cd0601da: CONTAINS
+  code: ZONE-G00
   type: HVAC/ZONE_HVAC
 
-XX-YYY-ZZ-G-G00:
+1a0e0e19-89e5-444e-958f-5611cd0601da:
   connections:
-    XX-YYY-ZZ-G: CONTAINS
-  guid: 1a0e0e19-89e5-444e-958f-5611cd0601da
+    d67b9179-7e91-41cf-989f-f5d96564b00a: CONTAINS
+  code: XX-YYY-ZZ-G-G00
   type: FACILITIES/ROOM
 
-XX-YYY-ZZ-G:
+d67b9179-7e91-41cf-989f-f5d96564b00a:
   connections:
-    XX-YYY-ZZ: CONTAINS
-  guid: d67b9179-7e91-41cf-989f-f5d96564b00a
+    df651868-e22c-490c-b122-7337e0af0fc1: CONTAINS
+  code: XX-YYY-ZZ-G
   type: FACILITIES/FLOOR
 
-XX-YYY-ZZ:
-  guid: df651868-e22c-490c-b122-7337e0af0fc1
+df651868-e22c-490c-b122-7337e0af0fc1:
+  code: XX-YYY-ZZ
   type: FACILITIES/BUILDING

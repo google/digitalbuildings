@@ -33,5 +33,5 @@ setup(
         'google-cloud-pubsub==2.6.1', 'google-auth<2.0',
         'googleapis-common-protos==1.56.0'
     ],
-    python_requires='==3.9',
+    python_requires='>=3.9',
 )

@@ -16,6 +16,7 @@
 
 
 FSS_STD:
+  id: "4029883426319368192"
   description: "Basic fire suppression."
   is_canonical: true
   implements:

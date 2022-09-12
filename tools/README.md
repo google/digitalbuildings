@@ -6,7 +6,42 @@ Buildings Repository. Currently, the toolkit only supports building configuratio
 instance validation and guid generation, but additional funcionality will be
 implemented in the future.
 
-## Setup
+## Install
+
+To install please follow the instructions below.
+
+### First create a virtual env
+
+Create the virutal environment with `virtualenv` followed by the environment name, in this example: `tooling`
+
+```
+virtualenv tooling
+```
+
+
+Activate the virtual environment
+
+Mac OS / Linux:
+```
+source tooling/bin/activate
+```
+
+Windows
+```
+tooling\Scripts\activate
+```
+
+
+Then you can either use pip or setuptools.
+
+### Pip
+1. Run `python3 -m pip install --upgrade pip` to ensure that your Python package management tools are up-to-date.
+
+2. Run `pip_install.sh` or `pip_install.bat` (windows) from the following directory digitalbuildings/tools.
+
+
+
+### Setup (to be deprecated)
 
 1. Follow setup instructions for the [Instance Validator](./validators/instance_validator).
 2. Follow setup instructions for the [GUID Generator](./guid_generator).
@@ -31,6 +66,8 @@ Run `python toolkit.py` and provide the following arguments:
   * `-a/--service-account` The fully-qualified path to a service account key file corresponding to an account that has permission to pull messages from the subscription.
 
   * `-t/--timeout` **[Optional]** The timeout duration in seconds for the telemetry validation test. The default value is 600 seconds, or 10 minutes. If this time limit is exceeded before the validator receives a test pubsub message for each of the entities configured in the given instance config file, the test will fail with an error and report the entities that were not heard from.
+
+  * `--udmi` **[Optional]** Treat message stream on PubSub subscription as [UDMI](https://github.com/faucetsdn/udmi/). **NOTE:** This is required for telemetry validation when devices implement the UDMI specification.
 
   * **NOTE:** The service account key and subscription are provided by the Google team. Please reach out to your IoT TPM for guidance.
 

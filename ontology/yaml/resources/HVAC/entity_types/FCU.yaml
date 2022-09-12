@@ -50,6 +50,18 @@ FCU_DFSS_CSP_DXZC:
   - CSP
   - DXZC
 
+FCU_DFSS_DFVSC_DXRC_DFRMM:
+  description: "Typical DX FCU with cooling-only (return control) with run mode and failed alarm ."
+  is_canonical: true
+  opt_uses:
+  - failed_alarm
+  implements:
+  - FCU
+  - DFSS
+  - DFVSC
+  - DXRC
+  - DFRMM
+
 FCU_DFSS_CSP_DX2ZC:
   id: "2962575394609299456"
   description: "Typical 2-stage DX FCU with cooling-only (zone control)."
@@ -69,6 +81,20 @@ FCU_DFSS_CSP_DXZTC:
   - DFSS
   - CSP
   - DXZTC
+
+FCU_DFSS2X_CHWRC_DAIDC2X_RAIDC2X:
+  description: "System with two FCU with cooling-only and drain pumps with common return air control for same zone."
+  is_canonical: true
+  opt_uses:
+  - failed_alarm
+  - drain_pump_failed_alarm_1
+  - drain_pump_failed_alarm_2
+  implements:
+  - FCU
+  - DFSS2X
+  - CHWRC
+  - DAIDC2X
+  - RAIDC2X
 
 FCU_DFSS_DSP_CHWDC:
   id: "4691957651519569920"
@@ -417,6 +443,18 @@ FCU_DFSS_DFVSC_CHWRC_RHDHC:
   - CHWRC
   - RHDHC
 
+FCU_DFSS_DTM_CHWRC:
+  description: "Variable speed DX fan coil with chilled water return temp control with drain pump monitoring ."
+  is_canonical: true
+  opt_uses:
+  - drain_pump_run_status
+  - run_mode
+  implements:
+  - FCU
+  - DFSS
+  - DTM
+  - CHWRC
+  
 FCU_DFSS_DFHLC_DSP_DXZC:
   id: "12762408183767498752"
   description: "Mult-speed DX fan coil with zone temp control."
@@ -1050,6 +1088,33 @@ FCU_DFSS_CHWZC_RTM_ZHM:
     - CHWZC
     - RTM
     - ZHM
+
+FCU_DFSS_DFVSC_ZTC_CHWZTC_HWZTC_RTM:
+  id: "2314574918244630528"
+  description: "FCU with zone temperature control and return air temperature monitoring."
+  implements:
+  - FCU
+  - DFSS
+  - DFVSC
+  - ZTC
+  - CHWZTC
+  - HWZTC
+  - RTM
+
+FCU_DFSS_DXRC_RHDHC_AL:
+  id: "15608638068288913408"
+  description: "Typical Precision Air conditioning unit with alarms."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - DXRC
+  - RHDHC
+  opt_uses:
+  - filter_alarm
+  - master_alarm
+  - heat_exchange_failed_alarm 
+  - water_leak_alarm 
     
 FCU_DFVSC_CHWRC_FDPSM2X:
   id: "521860791574462464"

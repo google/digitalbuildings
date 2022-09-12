@@ -151,4 +151,11 @@ PWM:
   description: "Basic power monitoring "
   is_abstract: true
   uses:
-  - power_sensor  
+  - power_sensor
+
+ENM:
+  description: "Basic energy monitoring "
+  is_abstract: true
+  uses:
+  - energy_accumulator
+    
