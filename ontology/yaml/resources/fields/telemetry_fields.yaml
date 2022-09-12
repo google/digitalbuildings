@@ -389,6 +389,8 @@ literals:
   - OFF
   - AUTO
   - MANUAL
+  - DEHUMIDIFY
+  - FAN_ONLY
 - dial_resistance_sensor
 - zone_occupancy_status:
   - OCCUPIED
@@ -440,6 +442,7 @@ literals:
 - fan_speed_mode:
   - OFF
   - LOW
+  - MEDIUM
   - HIGH
   - AUTO
   - MANUAL
