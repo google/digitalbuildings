@@ -385,6 +385,8 @@ EFVSC:
   - exhaust_fan_speed_percentage_sensor
   - exhaust_fan_current_sensor
   - exhaust_fan_power_sensor
+  - exhaust_fan_run_mode
+  - exhaust_fan_speed_mode
   uses:
   - exhaust_fan_run_command
   - exhaust_fan_run_status
@@ -535,11 +537,7 @@ SS:
   - powerfactor_sensor
   - current_sensor
   - power_sensor
-
   - run_time_accumulator
-
-
-  
 
 SSPC:
   id: "10526749200778002432"
@@ -5367,7 +5365,24 @@ EFHLC:
   - high_exhaust_fan_speed_status
   implements:
   - OPERATIONAL
-  
+
+SCRSS:
+  description: "Scurbber start stop monitoring."
+  is_abstract: true
+  opt_uses:
+  - scrubber_run_mode
+  - filter_alarm
+  - differential_pressure_sensor
+  - differential_pressure_setpoint
+  - fire_alarm
+  - bypass_air_damper_percentage_command
+  - bypass_air_damper_percentage_sensor
+  uses:
+  - scrubber_run_command
+  - scrubber_run_status
+  implements:
+  - OPERATIONAL
+
 ##Abstracts for sensors
 
 PCM:

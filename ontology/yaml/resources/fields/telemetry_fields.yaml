@@ -1494,6 +1494,16 @@ literals:
   - ON
   - OFF
 
+# Addition of telemetry for scrubber
+- scrubber_run_mode:
+  - AUTO
+  - MANUAL
+- scrubber_run_command:
+  - ON
+  - OFF
+- scrubber_run_status:
+  - ON
+  - OFF
 
 # telemetry fields for exhaust fan#
 
@@ -1506,9 +1516,6 @@ literals:
 - low_discharge_fan_speed_status:
   - ON
   - OFF 
-- exhaust_fan_run_mode:
-  - AUTO
-  - MANUAL
 
 ##Fields for generator##
 - oil_temperature_sensor
@@ -1524,6 +1531,9 @@ literals:
   - AUTO
   - MANUAL 
 - supply_fan_run_time_accumulator  
+- exhaust_fan_run_mode:
+  - AUTO
+  - MANUAL
 
 # Addition of telemetry for outside sensors
 - outside_air_co2_concentration_sensor
@@ -1562,14 +1572,18 @@ literals:
   - AUTO
   - MANUAL
 
+- exhaust_fan_speed_mode:
+  - BYPASS
+  - VFD
+
 ## New fields for EM##
 - electricalgrid_energy_accumulator
 - generator_run_time_accumulator
+- generator_energy_accumulator
+- electricalgrid_run_time_accumulator
 
 ## New fields for fans##
 - discharge_fan_energy_accumulator
-- electricalgrid_run_time_accumulator
-- generator_energy_accumulator 
 - supply_fan_energy_accumulator
 - compressor_run_time_accumulator
 
