@@ -11,17 +11,26 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-"""Setup file for Digital Buildings Toolkit."""
 
-from setuptools import find_packages
-from setuptools import setup
+# Test entity with ids
 
-setup(
-    name='digital-buildings-toolkit',
-    version='0.0.1',
-    url='https://github.com/google/digitalbuildings',
-    license='Apache License',
-    author='Travis Welch',
-    packages=find_packages(),
-    python_requires='>=3.9',
-)
+DMP_EDM-17-GUID:
+  type: HVAC/DMP_EDM
+  code: DMP_EDM-17
+  cloud_device_id: "foobar"
+  translation:
+    exhaust_air_damper_command:
+      present_value: "points.exhaust_air_damper_command.present_value"
+      states:
+        OPEN: "1"
+        CLOSED: "0"
+    exhaust_air_damper_status:
+      present_value: "points.exhaust_air_damper_status.present_value"
+      states:
+        OPEN: "1"
+        CLOSED: "0"
+
+UK-LON-S2-GUID:
+  id: "deprecated-but-doesn't-break"
+  type: FACILITIES/BUILDING
+  code: UK-LON-S2
