@@ -394,6 +394,9 @@ literals:
   - OCCUPIED
   - UNKNOWN
   - UNOCCUPIED
+  - INACTIVE
+
+ # INACTIVE indicates the device is being overridden to not run, irrespective of occupancy status.
 
 
 ## Added on 12/12
@@ -1565,6 +1568,10 @@ literals:
 - generator_energy_accumulator 
 - supply_fan_energy_accumulator
 - compressor_run_time_accumulator
+
+- total_lamp_failed_counter
+- total_wireless_device_failed_counter
+- total_communication_failed_counter
 
 ## New fields for seismic detector
 - seismic_alarm
