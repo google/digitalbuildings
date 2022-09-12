@@ -535,6 +535,24 @@ CH_SS_CHDXVSC_CHWFRSM_CHDXSC_CHWISOVM:
   - CHDXSC
   - CHWISOVM
 
+CH_SS_SCHWTC_CDWFRM_CHWSWISOVM_CWSISOVM_CHWDPM_CHWFRM_CWDT_REFPM_IGM_DXSWC:
+  id: "10704921761524219904"
+  description: "Complex water cooled chiller."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - SCHWTC
+  - CDWFRM
+  - CHWSWISOVM
+  - CWSISOVM
+  - CHWDPM
+  - CHWFRM
+  - CWDT
+  - REFPM
+  - IGM
+  - DXSWC
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################

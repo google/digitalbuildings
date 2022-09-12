@@ -22,10 +22,10 @@ import threading
 
 from validate import field_translation as ft_lib
 from validate import telemetry
-from validate import telemetry_error
-from validate import telemetry_warning
+from validate import message_filters
+from validate import telemetry_validation_reporting as tvr
 
-DEVICE_ID = 'deviceId'
+DEVICE_ID = telemetry.DEVICE_ID
 
 
 class TelemetryValidator(object):
@@ -34,10 +34,11 @@ class TelemetryValidator(object):
   Attributes;
     entities: a dict with entity_name as a key and EntityInstance as value.
     timeout: the max time the validator must read messages from pubsub.
+    is_udmi: true/false treat telemetry stream as UDMI
     callback: the method called by the pubsub listener upon receiving a msg.
   """
 
-  def __init__(self, entities, timeout, callback):
+  def __init__(self, entities, timeout, is_udmi, callback):
     """Init.
 
     Args:
@@ -47,6 +48,7 @@ class TelemetryValidator(object):
        entities were seen or because the timeout duration was reached
     """
     super().__init__()
+    # cloud_device_id update requires translations; enforced in entity_instance
     self.entities_with_translation = {
         entity.code: entity
         for entity in entities.values()
@@ -54,6 +56,7 @@ class TelemetryValidator(object):
     }
     self.timeout = timeout
     self.callback = callback
+    self.is_udmi = is_udmi
     self.validated_entities = {}
     # TODO(charbull): refactor by having on validation_report object instead
     #  of two: warning and errors
@@ -113,16 +116,21 @@ class TelemetryValidator(object):
     discovered by this validator.
     """
 
+    # UDMI Pub/Sub streams include messages which aren't telemetry, silently
+    # ignore these if validator configured with --udmi flag
+    if self.is_udmi and not message_filters.Udmi.telemetry(message.attributes):
+      message.ack()
+      return
+
     tele = telemetry.Telemetry(message)
     entity_name = tele.attributes[DEVICE_ID]
 
     # Telemetry message received for an entity not in building config
     if entity_name not in self.entities_with_translation.keys():
-      # TODO(charbull): refactor warning class
       self.AddWarning(
-          telemetry_warning.TelemetryWarning(
+          tvr.TelemetryReportPoint(
               entity_name, None, 'Telemetry message received for an entity not '
-              'in building config'))
+              'in building config', tvr.TelemetryReportPointType.WARNING))
       message.ack()
       return
 
@@ -145,45 +153,51 @@ class TelemetryValidator(object):
       if field_translation.raw_field_name not in point_full_paths:
         if not tele.is_partial:
           self.AddError(
-              telemetry_error.TelemetryError(
-                  entity_name, field_translation.raw_field_name,
-                  'Field missing from telemetry message'))
+              tvr.TelemetryReportPoint(entity_name,
+                                       field_translation.raw_field_name,
+                                       'Field missing from telemetry message',
+                                       tvr.TelemetryReportPointType.ERROR))
         continue
       point = tele.points[point_full_paths[field_translation.raw_field_name]]
       pv = point.present_value
       if pv is None:
         if isinstance(field_translation, ft_lib.MultiStateValue):
           self.AddError(
-              telemetry_error.TelemetryError(
+              tvr.TelemetryReportPoint(
                   entity_name, field_translation.raw_field_name,
-                  f'Missing state in telemetry message: {pv}'))
+                  f'Missing state in telemetry message: {pv}',
+                  tvr.TelemetryReportPointType.ERROR))
         elif isinstance(field_translation, ft_lib.DimensionalValue):
           self.AddError(
-              telemetry_error.TelemetryError(
+              tvr.TelemetryReportPoint(
                   entity_name, field_translation.raw_field_name,
-                  f'Missing number in telemetry message: {pv}'))
+                  f'Missing number in telemetry message: {pv}',
+                  tvr.TelemetryReportPointType.ERROR))
         else:
           self.AddError(
-              telemetry_error.TelemetryError(
+              tvr.TelemetryReportPoint(
                   entity_name, field_translation.raw_field_name,
-                  'Present value missing from telemetry message'))
+                  'Present value missing from telemetry message',
+                  tvr.TelemetryReportPointType.ERROR))
         continue
 
       if isinstance(field_translation, ft_lib.MultiStateValue):
         if pv not in field_translation.raw_values:
           self.AddError(
-              telemetry_error.TelemetryError(
+              tvr.TelemetryReportPoint(
                   entity_name, field_translation.raw_field_name,
-                  f'Unmapped state in telemetry message: {pv}'))
+                  f'Unmapped state in telemetry message: {pv}',
+                  tvr.TelemetryReportPointType.ERROR))
 
           continue
 
       if isinstance(field_translation,
                     ft_lib.DimensionalValue) and not self.ValueIsNumeric(pv):
         self.AddError(
-            telemetry_error.TelemetryError(
+            tvr.TelemetryReportPoint(
                 entity_name, field_translation.raw_field_name,
-                f'Invalid number in telemetry message: {pv}'))
+                f'Invalid number in telemetry message: {pv}',
+                tvr.TelemetryReportPointType.ERROR))
 
     message.ack()
     self.CallbackIfCompleted()

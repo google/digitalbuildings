@@ -156,6 +156,18 @@ CT_SS_RWISOVM_SWISOVM_SWTM:
   opt_uses:
   - low_level_status
 
+CT_SS_VSC_SPSS_SWTC_RWISOVM:
+  id: "8182905970196742144"
+  description: "Evaporative cooler with onboard spray pump and variable speed control."
+  is_canonical: true
+  implements:
+  - CT
+  - SS
+  - VSC
+  - SPSS
+  - SWTC
+  - RWISOVM
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
