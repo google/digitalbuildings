@@ -24,7 +24,6 @@ SS:
   - lost_power_alarm
   - power_status
 
-
 IOBM:
   id: "11309587186103353344"
   description: "Input, output, and bypass electrical monitoring, typically for a UPS."
