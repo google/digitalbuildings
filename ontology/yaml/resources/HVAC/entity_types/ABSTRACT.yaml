@@ -312,6 +312,7 @@ EDBPC:
   - CONTROL
 
 EDRPC:
+  id: "14956319809761968128"
   description: "Return static control with exhaust damper."
   is_abstract: true
   opt_uses:
@@ -602,6 +603,17 @@ DFSS:
   uses:
   - discharge_fan_run_command
   - discharge_fan_run_status
+
+DFSS2X:
+  description: "Two discharge fan run command and status (start/stop). With dampers"
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  uses:
+  - discharge_fan_run_command_1
+  - discharge_fan_run_status_1
+  - discharge_fan_run_command_2
+  - discharge_fan_run_status_2
 
 HT2RC:
   id: "12331526069516500992"
@@ -5103,6 +5115,18 @@ RAIDC2X:
   implements:
   - MONITORING
 
+DAIDC2X:
+  id:
+  description: "Discharge air isolation damper control and monitoring, where there are two separate, equal sets of dampers that operate in conjunction."
+  is_abstract: true
+  uses:
+  - discharge_air_isolation_damper_status_1
+  - discharge_air_isolation_damper_status_2 
+  - discharge_air_isolation_damper_command_1
+  - discharge_air_isolation_damper_command_2  
+  implements:
+  - MONITORING
+
 RAIDC4X:
   id: "3091164378989330432"
   description: "Return air isolation damper control and monitoring, where there are four separate, equal sets of dampers that operate in conjunction."
@@ -5461,6 +5485,7 @@ RDC:
   - MONITORING
 
 RFSS:
+  id: "17406278007051517952"
   description: "Basic combination of return fan run command and status (start/stop)."
   is_abstract: true
   opt_uses:
@@ -5473,6 +5498,7 @@ RFSS:
   - OPERATIONAL
 
 RFSS2X:
+  id: "1895880890387529728"
   description: "Return fan start-stop and feedback with two fan."
   is_abstract: true
   opt_uses:
@@ -5489,6 +5515,7 @@ RFSS2X:
   - OPERATIONAL
 
 RFVSC:
+  id: "13641268718569783296"
   description: "Variable speed control for a return fan."
   is_abstract: true
   opt_uses:
@@ -5504,6 +5531,7 @@ RFVSC:
   - OPERATIONAL
 
 RFVSC2X:
+  id: "6093235743096832000"
   description: "Return fan variable speed control with feedback and sensoring for two fanss."
   is_abstract: true
   opt_uses:
