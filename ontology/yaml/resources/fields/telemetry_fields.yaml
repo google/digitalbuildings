@@ -783,10 +783,19 @@ literals:
 - lost_power_alarm:
   - ACTIVE
   - INACTIVE
+- overload_alarm:
+  - ACTIVE
+  - INACTIVE
 - overload_compressor_alarm:
   - ACTIVE
   - INACTIVE
 - overload_discharge_fan_alarm:
+  - ACTIVE
+  - INACTIVE
+- high_pressure_status:
+  - ACTIVE
+  - INACTIVE
+- low_pressure_status:
   - ACTIVE
   - INACTIVE
 - refrigerant_high_pressure_status:
