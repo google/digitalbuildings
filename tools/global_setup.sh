@@ -5,28 +5,37 @@ echo "Starting setup..."
 
 # handle different python alias
 echo "Looking through possible python aliases"
-alias PYTHON3="which python3"
-alias PYTHON="which python"
-alias PY="which py"
 
-PYTHON3 > /dev/null
-PYTHON3_EXIT_STATUS=$?
-PYTHON > /dev/null
-PYTHON_EXIT_STATUS=$?
-PY > /dev/null
-PY_EXIT_STATUS=$?
+REQUIRED_VERSION=3.9
+POSSIBLE_ALIAS=("python3" "python" "py")
+FOUND=false
+for pa in "${POSSIBLE_ALIAS[@]}"
+do
+  which $pa
+  EXIT_STATUS=$?
+  if [ $EXIT_STATUS -ne 0 ]; then
+    continue
+  fi
 
-if [ "$PYTHON3_EXIT_STATUS" -eq 0 ]; then
-  alias python='f(){ python3 "$@"; }; f'
-elif [ "$PYTHON_EXIT_STATUS" -eq 0 ]; then
-  alias python='f(){ python "$@"; }; f'
-elif [ "$PY_EXIT_STATUS" -eq 0 ]; then
-  alias python='f(){ py "$@"; }; f'
-else
-  echo "Could not find python executable"
+  PYTHON_VERSION=$($pa -c 'import sys; version=sys.version_info[:2]; print("{}.{}".format(*version))')
+  if [ $(printf "%s\n" "$PYTHON_VERSION" "$REQUIRED_VERSION" | sort -V -r | head -1) = "$PYTHON_VERSION" ] ; then
+    if [ "$PYTHON_VERSION" = "$REQUIRED_VERSION" ] ; then
+      echo "$PYTHON_VERSION is equal to $REQUIRED_VERSION"
+    else
+      echo "$PYTHON_VERSION is newer than $REQUIRED_VERSION"
+    fi
+    alias python=$pa
+    FOUND=true
+    break
+  else
+    echo "$PYTHON_VERSION is older than $REQUIRED_VERSION"
+  fi
+done
+
+if ! $FOUND; then
+  echo "Could not find a python 3.9 executable"
   exit 125
 fi
-
 echo "Python executable found"
 
 ontology_validator_setup()

@@ -84,6 +84,18 @@ jobs:
       run: |
         python -m unittest discover -p '*_test.py' --failfast -v
       working-directory: ./tools/scoring
+     #---------- GUID Generator ----------#
+    - name:  GUID Generator Install dependencies
+      run: |
+        python setup.py install
+      working-directory: ./tools/guid_generator
+    - name:  GUID Generator Tests
+      run: |
+       python -m unittest discover -p '*_test.py' --failfast -v
+      working-directory: ./tools/guid_generator
+    - name: Run Pylint on GUID Generator
+      run: |
+        pylint --rcfile ./styles/pylintrc ./tools/guid_generator
      #---------- RDF Generator ----------#
     - name:  RDF Generator Install dependencies
       run: |

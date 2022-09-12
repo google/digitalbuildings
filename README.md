@@ -8,7 +8,7 @@
 
 The Digital Buildings project is an open-source, Apache-licensed effort to create a uniform schema and toolset for representing structured information about buildings and building-installed equipment. A version of the Digital Buildings ontology and toolset is currently being used by Google to manage buildings in its portfolio. 
 
-The Digital Buildings project originated from the need to manage a very large, heterogeneous building portfolio in a scalable way. The project aims to enable management applications/analyses that are trivially portable between buildings.  This goal is achieved through a combination of semantically-expressive abstract modeling, an easy-to-use configuration language, and robust validation tooling.  Digital Buildings work has been inspired by [Project Haystack](https://project-haystack.org/tag) and [BrickSchema](https://brickschema.org/), and maintains cross-compatibility and/or convergence as a long-term objective.
+The Digital Buildings project originated from the need to manage a very large, heterogeneous building portfolio in a scalable way. The project aims to enable management applications/analyses that are trivially portable between buildings.  This goal is achieved through a combination of semantically-expressive abstract modeling, an easy-to-use configuration language, and robust validation tooling.  Digital Buildings work has been inspired by [Project Haystack](https://project-haystack.org/tag) and [BrickSchema](https://brickschema.org/) and maintains cross-compatibility and/or convergence as a long-term objective.
 
 In creating the Digital Buildings project, we have considered the following:
 
@@ -21,12 +21,12 @@ In creating the Digital Buildings project, we have considered the following:
 
 ## Project Structure
 
-This project is structured as following:
-*  An [**ontology**](/ontology/README.md) that defines the parameters of the semantic data model (Terminology box) and tools for building, validating and associating real equipment with a specific model. It contains the following formats:
+This project is structured as follows:
+*  An [**ontology**](/ontology/README.md) that defines the parameters of the semantic data model (Terminology box) and tools for building, validating, and associating real equipment with a specific model. It contains the following formats:
    * [Yaml format](/ontology/yaml/README.md)
    * [RDF/OWL format](/ontology/rdf/README.md)
 * [Building Configuration](/ontology/docs/building_config.md) which contains a mapping between the ontology and the "raw" data. Building Config is the Assertion Box.
-* Tools which allow the following:
+* Tools that allow the following:
   * [Yaml Validator](/tools/validators/ontology_validator/README.md) which allows to validate the yaml ontology upon a change or an extension.
   * [RDF/OWL Generator](/tools/rdf_generator/README.md) which allows to generate an RDF version from the yaml ontology files.
 * [Internal Building Representation](/ibr/README.md) (IBR) File Format to represent data from different verticals such as spatial, assets.
@@ -50,9 +50,9 @@ The learning modules provide an overview of:
 9.  Namespaces [Lesson 9](https://github.com/google/digitalbuildings/blob/master/ontology/docs/learning/Module%201%2C%20Lesson%209_%20Namespaces%20(v1_git).pdf)
 
 ### Module 2
-1. Get ready to Data Model [Lesson 1](https://github.com/google/digitalbuildings/blob/master/ontology/docs/learning/Module%202%2C%20Lesson%201_%20Get%20ready%20to%20data%20model%20(v1_git).pdf)
-2. Determin which devices need to be modeled [Lesson 2](https://github.com/google/digitalbuildings/blob/master/ontology/docs/learning/Module%202%2C%20Lesson%202_%20Determine%20which%20devices%20need%20to%20be%20modeled%20(v1_git).pdf)
-3. Determin which data points are required [Lesson 3](https://github.com/google/digitalbuildings/blob/master/ontology/docs/learning/Module%202%2C%20Lesson%203_%20Determine%20which%20data%20points%20are%20required%20(v1_git).pdf)
+1. Get ready for Data Model [Lesson 1](https://github.com/google/digitalbuildings/blob/master/ontology/docs/learning/Module%202%2C%20Lesson%201_%20Get%20ready%20to%20data%20model%20(v1_git).pdf)
+2. Determine which devices need to be modeled [Lesson 2](https://github.com/google/digitalbuildings/blob/master/ontology/docs/learning/Module%202%2C%20Lesson%202_%20Determine%20which%20devices%20need%20to%20be%20modeled%20(v1_git).pdf)
+3. Determine which data points are required [Lesson 3](https://github.com/google/digitalbuildings/blob/master/ontology/docs/learning/Module%202%2C%20Lesson%203_%20Determine%20which%20data%20points%20are%20required%20(v1_git).pdf)
 4. Name each data point using the DBO [Lesson 4](https://github.com/google/digitalbuildings/blob/master/ontology/docs/learning/Module%202%2C%20Lesson%204_%20Name%20each%20data%20point%20using%20the%20DBO%20(v1_git).pdf)
 5. Propose an ontology extension [Lesson 5](https://github.com/google/digitalbuildings/blob/master/ontology/docs/learning/Module%202%2C%20Lesson%205_%20Propose%20an%20ontology%20extension%20(v1_git).pdf)
 6. Construct and finalize the building configuration file [Lesson 6](https://github.com/google/digitalbuildings/blob/master/ontology/docs/learning/Module%202%2C%20Lesson%206_%20Construct%20and%20finalize%20the%20building%20configuration%20file%20(v1_git).pdf)
@@ -62,7 +62,7 @@ The learning modules provide an overview of:
 Please post issues in [Issues](https://github.com/google/digitalbuildings/issues) section.
 
 ## Discussion
-Open mailing list to discuss Google's Digital Building effort. Discussion could include general questions, standards, APIs, and more. [google-digital-building-discuss@googlegroups.com](mailto:google-digital-building-discuss@googlegroups.com)
+Open mailing list to discuss Google's Digital Building effort. The discussion could include general questions, standards, APIs, and more. [google-digital-building-discuss@googlegroups.com](mailto:google-digital-building-discuss@googlegroups.com)
 
 Members are expected to adhere to this code of conduct: [https://opensource.google.com/conduct](https://opensource.google.com/conduct)
 
@@ -94,5 +94,3 @@ limitations under the License.
 * [ICML 2020](http://proceedings.mlr.press/v119/sipple20a/sipple20a.pdf)
 * [Semantics 2019](https://2019.semantics.cc/role-semantics-googles-smart-building-platform)
 * [Google Cloud Next'19](https://youtu.be/Zz6jkLYkzSQ)
-
-
