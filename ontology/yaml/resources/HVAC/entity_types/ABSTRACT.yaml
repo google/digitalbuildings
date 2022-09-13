@@ -5524,8 +5524,6 @@ RFVSC2X:
   implements:
   - OPERATIONAL
 
-#New abstracts for DE-FRA-NEM32
-
 EXTOR:
   description: "shade control with extension monitoring based on outside illuminance"
   is_abstract: true

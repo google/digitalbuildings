@@ -153,7 +153,6 @@ PWM:
   uses:
   - power_sensor  
 
-#New abstracts for DE-FRA-NEM32
 CCIEM:
   description: "CIE light color monitoring"
   is_abstract: true

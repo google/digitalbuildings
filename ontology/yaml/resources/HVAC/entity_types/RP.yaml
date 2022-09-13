@@ -39,8 +39,6 @@ RP_DPBHCC_FTC:
   - DPBHCC
   - FTC
 
-#Entity Types for DE-FRA-NEM32
-
 RP_CAM_DPHC2_ZTC:
   description: "Radiant panel for room heating and cooling, Two pipe installation."
   is_canonical: true

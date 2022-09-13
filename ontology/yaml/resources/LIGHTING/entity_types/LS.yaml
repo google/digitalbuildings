@@ -82,7 +82,6 @@ LS_MS_IS:
   - MS
   - IS
 
-#New Entity Type for DE-FRA-NEM32
 LS_OS_IS_MTS:
   description: "Ceiling mounted multi sensor for zone occupancy monitoring, brightness- and temperature control"
   is_canonical: true

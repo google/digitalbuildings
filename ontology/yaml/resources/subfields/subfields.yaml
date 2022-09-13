@@ -244,10 +244,9 @@ descriptor:
   yaxis: "Horizontal axis of a three-dimensional Cartesian coordinate system (ordinate)."
   zaxis: "Vertical axis of a three-dimensional Cartesian coordinate system (applicate)."
   zone: "Region of building which is conditioned."
-  #New subfields for DE-FRA-NEM32
   color: "Color of light or of a physical medium"
-  cie: "cie light color schema"
-  hsl: "hsl light color schema"
+  cie: "CIE light color schema"
+  hsl: "HSL light color schema"
   group: "A group of entities or devices"
 measurement:
   acceleration: "The rate of change of velocity per unit of time."

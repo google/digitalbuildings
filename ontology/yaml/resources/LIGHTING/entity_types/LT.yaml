@@ -53,7 +53,6 @@ ELT_GENERIC:
   implements:
   - ELT
 
-#New entity types for DE-FRA-NEM32
 LT_DM_CCIEM_OM:
   description: "Standard light with dimming and CIE color control."
   is_canonical: true

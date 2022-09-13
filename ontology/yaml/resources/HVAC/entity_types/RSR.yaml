@@ -36,7 +36,6 @@ RARSR_UNDEFINED:
   implements:
   - RARSR
 
-#New entity types for DE-FRA-NEM32
 RSR_HHCD42_CPC:
   description: "Cooling or heating changeover function for radiant panels or fcu's. 4/2-pipe"
   implements:
