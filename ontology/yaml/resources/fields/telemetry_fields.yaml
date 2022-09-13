@@ -49,6 +49,7 @@ literals:
 - condensing_supply_water_temperature_sensor
 - condensing_supply_water_temperature_setpoint
 - condensing_water_flowrate_sensor
+- water_linearvelocity_sensor
 - cooling_output_percentage_command
 - current_sensor
 - torque_sensor
@@ -199,6 +200,8 @@ literals:
 - pressurization_request_count
 - zone_air_co2_concentration_sensor
 - zone_air_co2_concentration_setpoint
+- max_zone_air_co2_concentration_sensor
+- average_zone_air_co2_concentration_sensor
 - zone_air_co_concentration_setpoint
 - zone_air_cooling_temperature_setpoint
 - zone_air_heating_temperature_setpoint
@@ -389,6 +392,8 @@ literals:
   - OFF
   - AUTO
   - MANUAL
+  - DEHUMIDIFY
+  - FAN_ONLY
 - dial_resistance_sensor
 - zone_occupancy_status:
   - OCCUPIED
@@ -440,6 +445,7 @@ literals:
 - fan_speed_mode:
   - OFF
   - LOW
+  - MEDIUM
   - HIGH
   - AUTO
   - MANUAL
@@ -716,6 +722,7 @@ literals:
 # Status fields must be distinguished from alarms in that status is an objective qualitative state (flowing/not) whereas alarms are judgmental interpretations of such statuses to draww a conclusion about function (alarm/normal) 
 
 - average_supply_air_temperature_sensor
+- average_supply_air_static_pressure_sensor
 - control_mode:
   - AUTO
   - MANUAL
@@ -1505,6 +1512,16 @@ literals:
   - ON
   - OFF
 
+# Addition of telemetry for scrubber
+- scrubber_run_mode:
+  - AUTO
+  - MANUAL
+- scrubber_run_command:
+  - ON
+  - OFF
+- scrubber_run_status:
+  - ON
+  - OFF
 
 # telemetry fields for exhaust fan#
 
@@ -1517,9 +1534,6 @@ literals:
 - low_discharge_fan_speed_status:
   - ON
   - OFF 
-- exhaust_fan_run_mode:
-  - AUTO
-  - MANUAL
 
 ##Fields for generator##
 - oil_temperature_sensor
@@ -1535,6 +1549,9 @@ literals:
   - AUTO
   - MANUAL 
 - supply_fan_run_time_accumulator  
+- exhaust_fan_run_mode:
+  - AUTO
+  - MANUAL
 
 # Addition of telemetry for outside sensors
 - outside_air_co2_concentration_sensor
@@ -1572,14 +1589,18 @@ literals:
   - AUTO
   - MANUAL
 
+- exhaust_fan_speed_mode:
+  - BYPASS
+  - VFD
+
 ## New fields for EM##
 - electricalgrid_energy_accumulator
 - generator_run_time_accumulator
+- generator_energy_accumulator
+- electricalgrid_run_time_accumulator
 
 ## New fields for fans##
 - discharge_fan_energy_accumulator
-- electricalgrid_run_time_accumulator
-- generator_energy_accumulator 
 - supply_fan_energy_accumulator
 - compressor_run_time_accumulator
 

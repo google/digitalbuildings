@@ -385,6 +385,8 @@ EFVSC:
   - exhaust_fan_speed_percentage_sensor
   - exhaust_fan_current_sensor
   - exhaust_fan_power_sensor
+  - exhaust_fan_run_mode
+  - exhaust_fan_speed_mode
   uses:
   - exhaust_fan_run_command
   - exhaust_fan_run_status
@@ -435,11 +437,12 @@ DFVSC:
   - discharge_fan_speed_frequency_sensor
   - discharge_fan_speed_percentage_sensor
   - discharge_fan_lost_power_alarm
+  - discharge_fan_failed_alarm
   - discharge_fan_voltage_sensor
   - discharge_fan_torque_sensor
   - discharge_fan_run_time_accumulator
   - discharge_fan_energy_accumulator
-  - discharge_fan_failed_alarm
+  - discharge_fan_speed_mode
   - control_mode
   uses:
   - discharge_fan_speed_percentage_command
@@ -534,11 +537,7 @@ SS:
   - powerfactor_sensor
   - current_sensor
   - power_sensor
-
   - run_time_accumulator
-
-
-  
 
 SSPC:
   id: "10526749200778002432"
@@ -597,6 +596,7 @@ DFSS:
   - discharge_fan_power_sensor
   - discharge_air_static_pressure_sensor
   - discharge_fan_lost_power_alarm
+  - discharge_fan_failed_alarm
   - schedule_run_command
   - discharge_fan_run_time_accumulator
   - overload_discharge_fan_alarm
@@ -1297,6 +1297,8 @@ ESPC:
   id: "6709570284581552128"
   description: "Exhaust air static pressure control."
   is_abstract: true
+  opt_uses:
+  - exhaust_fan_speed_percentage_sensor
   uses:
   - exhaust_air_damper_percentage_command
   - exhaust_fan_run_command
@@ -1396,7 +1398,7 @@ FDPM:
   - filter_differential_pressure_sensor
   implements:
   - MONITORING
-
+ 
 FDPSM:
   id: "5397007388203024384"
   description: "Filter pressure status monitoring."
@@ -4630,6 +4632,17 @@ CO2DFVSC:
   implements:
   - CONTROL
 
+CO2EFVSC:
+  description: "Carbon dioxide levels controlled by a variable speed exhaust fan."
+  opt_uses:
+  - exhaust_fan_speed_percentage_sensor
+  uses:
+  - zone_air_co2_concentration_sensor
+  - zone_air_co2_concentration_setpoint
+  - exhaust_fan_speed_percentage_command
+  implements:
+  - CONTROL
+
 RACO2C:
   id: "15503353232859594752"
   description: "Returned air carbon dioxide levels controls."
@@ -5203,6 +5216,7 @@ SSPC2X:
   - supply_air_damper_percentage_command
   - supply_air_flowrate_sensor
   - supply_fan_speed_percentage_command
+  - average_supply_air_static_pressure_sensor
   uses:
   - supply_air_static_pressure_sensor_1
   - supply_air_static_pressure_sensor_2  
@@ -5377,7 +5391,24 @@ EFHLC:
   - high_exhaust_fan_speed_status
   implements:
   - OPERATIONAL
-  
+
+SCRSS:
+  description: "Scurbber start stop monitoring."
+  is_abstract: true
+  opt_uses:
+  - scrubber_run_mode
+  - filter_alarm
+  - differential_pressure_sensor
+  - differential_pressure_setpoint
+  - fire_alarm
+  - bypass_air_damper_percentage_command
+  - bypass_air_damper_percentage_sensor
+  uses:
+  - scrubber_run_command
+  - scrubber_run_status
+  implements:
+  - OPERATIONAL
+
 ##Abstracts for sensors
 
 PCM:
@@ -5437,6 +5468,9 @@ CO2M6X:
   id: "10200096390793658368"
   description: "Basic carbon dioxide monitoring for 6 Zones."
   is_abstract: true
+  opt_uses:
+  - max_zone_air_co2_concentration_sensor
+  - average_zone_air_co2_concentration_sensor
   uses:
   - zone_air_co2_concentration_sensor_1
   - zone_air_co2_concentration_sensor_2

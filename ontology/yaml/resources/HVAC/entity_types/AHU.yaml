@@ -513,6 +513,24 @@ AHU_DFSS_DSP_DX2ZC_ECONZ_EFSS_HTZC:
   - EFSS
   - HTZC
 
+AHU_SFSS_SFVSC_EFSS_CHWSC_RTM_FDPM2X_CO2EFVSC_SSPC2X_CO2M6X_OAFC_VOCM_PMM:
+  description: "Multi zone AHU."
+  is_canonical: true
+  implements:
+  - AHU
+  - SFSS
+  - EFSS
+  - SFVSC
+  - CHWSC
+  - RTM
+  - FDPM2X
+  - CO2EFVSC
+  - SSPC2X
+  - CO2M6X
+  - OAFC
+  - VOCM
+  - PMM
+
 AHU_BSPC_DFSS_DSP_DX2ZC_ECONZ_EFSS:
   id: "13160273063348011008"
   description: "Single zone AHU."
@@ -870,6 +888,18 @@ AHU_DFSS_DXZC_ECOND_ZHM:
   - ECOND
   - ZHM
 
+AHU_DFSS_CHWDT_DTM_RTC_RWISOVPC_OAFC_FDPSM2X:
+  description: "Smart AHU."
+  is_canonical: true
+  implements:
+  - AHU
+  - DFSS
+  - CHWDT
+  - DTM
+  - RTC
+  - RWISOVPC
+  - OAFC
+  - FDPSM2X
 
 ### Multi-zone Units ###
 
