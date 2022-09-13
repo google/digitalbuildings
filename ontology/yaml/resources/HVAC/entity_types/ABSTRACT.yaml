@@ -599,7 +599,6 @@ DFSS:
   - discharge_fan_lost_power_alarm
   - schedule_run_command
   - discharge_fan_run_time_accumulator
-  - discharge_fan_failed_alarm
   - overload_discharge_fan_alarm
   uses:
   - discharge_fan_run_command
