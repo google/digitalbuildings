@@ -271,9 +271,9 @@ def CreateCompositionInGraph(list_standard_field_names,
         logging.error("Unknown operator %s", composition_operator)
         return graph
     else:  # there is only one element
+      # pylint: disable=E1131
       class_owl.subClassOf = [
-          composition_property |= restriction |= first_element
-      ]
+          composition_property | restriction | first_element ]
       return graph
 
     index += 1
@@ -285,7 +285,8 @@ def CreateCompositionInGraph(list_standard_field_names,
           graph=graph,
           subClassOf=sub_class_of)
       index += 1
-    class_owl.subClassOf = [composition_property |= restriction |= concat]
+    # pylint: disable=E1131
+    class_owl.subClassOf = [composition_property | restriction | concat]
 
   return graph
 
