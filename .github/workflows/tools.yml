@@ -15,8 +15,8 @@ on:
 
 jobs:
   build:
-
     runs-on: ${{ matrix.os }}
+    timeout-minutes: 60
     strategy:
       matrix:
         os: [macos-latest, ubuntu-latest, windows-latest]
@@ -38,7 +38,7 @@ jobs:
       working-directory: ./tools/validators/ontology_validator
     - name: Instance Validator Install dependencies
       run: |
-        python setup.py install
+        python -m pip install .
       working-directory: ./tools/validators/instance_validator
     - name: Ontology Explorer Install dependencies
       run: |
