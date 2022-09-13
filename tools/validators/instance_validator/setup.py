@@ -28,10 +28,8 @@ setup(
     'Nigel Kilmer',
     packages=find_packages(),
     install_requires=[
-        'protobuf', 'proto-plus',
         'ruamel.yaml==0.17.4', 'strictyaml==1.4.2',
-        'google-cloud-pubsub', 'google-auth',
-        'googleapis-common-protos'
-    ],
+        'google-cloud-pubsub', 'googleapis-common-protos',
+        'google-auth', 'protobuf', 'proto-plus'],
     python_requires='>=3.9',
 )
