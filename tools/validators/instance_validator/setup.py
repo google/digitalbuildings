@@ -29,6 +29,6 @@ setup(
     packages=find_packages(),
     install_requires=[
         'ruamel.yaml==0.17.4', 'strictyaml==1.4.2',
-        'google-cloud-pubsub==2.7.1', 'google-auth'],
+        'google-cloud-pubsub==2.6.1', 'google-auth'],
     python_requires='>=3.9',
 )
