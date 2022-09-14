@@ -133,6 +133,7 @@ CDWS_CWDT_CDWISOVM_CDWFRSM:
   - CDWFRSM
 
 CDWS_BYPVPM_CLPM_SWTC_WDPC_WFRM:
+  id: "18252954736997171200"
   description: "Condensing water system with supply temp and differential pressure control; and thermal power and flowrate monitoring."
   is_canonical: true
   implements:
