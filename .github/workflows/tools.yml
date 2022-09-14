@@ -80,10 +80,10 @@ jobs:
     - name: Run Pylint on Configuration Scorer
       run: |
         pylint --rcfile ./styles/pylintrc ./tools/scoring
-#     - name: Configuration Scorer Tests
-#       run: |
-#         python -m unittest discover -p '*_test.py' --failfast -v
-#       working-directory: ./tools/scoring
+    - name: Configuration Scorer Tests
+      run: |
+        python -m unittest discover -p '*_test.py' --failfast -v
+      working-directory: ./tools/scoring
      #---------- GUID Generator ----------#
     - name:  GUID Generator Install dependencies
       run: |
