@@ -478,6 +478,7 @@ FAN_EFHLC_COCDSP_NOCDSP:
   - NOCDSP
 
 FAN_SS_VSC_SCRSS:
+  id: "6171415417878216704"
   description: "Fan with scrubber start/stop and status."
   is_canonical: true
   implements:

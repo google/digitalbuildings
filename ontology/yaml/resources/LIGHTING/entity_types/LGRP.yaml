@@ -226,6 +226,7 @@ LGRP_OS_IM_LSC_LC_PWM_SCZ:
   - SCZ
 
 LGRP_OS_LSC_ENM:
+  id: "8999675983866888192"
   description: "Standard Lighting fixture group with occupancy based,area switch status and energy monitoring."
   is_canonical: true
   implements:
