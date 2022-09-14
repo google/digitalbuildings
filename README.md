@@ -1,4 +1,4 @@
-![Tools](https://github.com/google/digitalbuildings/actions/workflows/Tools/badge.svg)
+![Tools](https://github.com/google/digitalbuildings/workflows/Tools/badge.svg)
 ![Ontology Type Validator](https://github.com/google/digitalbuildings/workflows/Ontology%20Type%20Validator/badge.svg)
 ![Node.js CI](https://github.com/google/digitalbuildings/workflows/Node.js%20CI/badge.svg)
 [![GitHub stars](https://img.shields.io/github/stars/google/digitalbuildings.svg)](https://github.com/google/digitalbuildings/stargazers)
