@@ -1538,6 +1538,32 @@ literals:
   - ON
   - OFF
 
+# Addition of telemetry for UPS battery monitoring
+- battery_status:
+  - ACTIVE
+  - INACTIVE
+- inverter_mode:
+  - SYNCHRONOUS
+  - ASYNCHRONOUS
+- bypass_phase_status:
+  - NORMAL
+  - REVERSED
+- rectifier_mode:
+  - OFF
+  - ON
+  - SOFTSTART
+  - BATTERY
+- input_supply_mode:
+  - NORMAL
+  - BATTERY
+  - OFF
+- battery_test_status:
+  - ACTIVE
+  - INACTIVE
+- inverter_status:
+  - OFF
+  - ON
+
 # Addition of telemetry for scrubber
 - scrubber_run_mode:
   - AUTO
@@ -1548,6 +1574,7 @@ literals:
 - scrubber_run_status:
   - ON
   - OFF
+
 
 
 # telemetry fields for exhaust fan#
@@ -1562,12 +1589,17 @@ literals:
   - ON
   - OFF 
 
+
 ##Fields for generator##
 - oil_temperature_sensor
 - oil_pressure_sensor
 - tank_level_status
 - battery_voltage_sensor
 - battery_current_sensor
+- battery_percentage_sensor
+
+#Telemetry addition for MAU#
+
  
 #Telemetry fields for APU(MAU)# 
 - dc_voltage_sensor
