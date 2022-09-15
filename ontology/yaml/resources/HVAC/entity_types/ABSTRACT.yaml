@@ -4747,7 +4747,7 @@ HWDDC:
   - discharge_air_temperature_sensor
   implements:
   - CONTROL
-
+  
 CFDPM:
   id: "13838358376871886848"
   description: "Carbon filter pressure monitoring, where specific filter type is required."
@@ -5409,6 +5409,13 @@ EFHLC:
   - high_exhaust_fan_speed_status
   implements:
   - OPERATIONAL
+  
+SWCM:
+  description: "Solenoid water valve control and monitoring."
+  is_abstract: true
+  uses:
+  - valve_command
+  - valve_status
 
 SCRSS:
   id: "3343154851889545216"
@@ -5429,7 +5436,6 @@ SCRSS:
   - OPERATIONAL
 
 ##Abstracts for sensors
-
 PCM:
   id: "13149954146721333248"
   description: "General particulate matter monitoring."

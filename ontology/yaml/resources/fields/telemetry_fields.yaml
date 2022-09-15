@@ -858,6 +858,9 @@ literals:
 - brightness_percentage_command
 
 # New fields for emergency systems
+- emergency_alarm:
+  - ACTIVE
+  - INACTIVE
 - broken_cable_alarm:
   - ACTIVE
   - INACTIVE
@@ -874,6 +877,13 @@ literals:
   - ACTIVE
   - INACTIVE
 
+- supply_water_volume_accumulator
+- valve_command:
+  - OPEN
+  - CLOSED
+- valve_status:
+  - OPEN
+  - CLOSED
 - emergency_release_status:
   - ACTIVE
   - INACTIVE
@@ -1281,6 +1291,22 @@ literals:
 - thirtysecondrolling_average_zone_air_particle_diameter_sensor
 - zone_air_no2_probability_percentage_sensor
 - zone_air_no2_ozone_concentration_sensor
+
+#added for new Pre-action Fire Supression system
+- supervisor_alarm:
+  - ACTIVE
+  - INACTIVE
+- water_flowrate_status:
+  - ACTIVE
+  - INACTIVE
+- air_pressure_status:
+  - ACTIVE
+  - INACTIVE
+
+# added for WM_WFR 
+- water_flowrate_sensor 
+# added for FAN_ST
+- air_pressure_sensor
 
 - heat_recovery_water_isolation_valve_command:
   - OPEN
