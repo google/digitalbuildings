@@ -811,6 +811,20 @@ FCU_DFMSS_DSP_ZHM_RTM_CHWZC_CHWDT:
   - CHWZC
   - CHWDT
 
+FCU_DFSS_DFRMM_DXRC_RHC_HTRC_REFPM:
+  description: "CRAC unit cooling and humidification with compressor and alarm monitoring."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - DFRMM
+  - DXRC
+  - RHC
+  - HTRC
+  - REFPM
+  opt_uses:
+  - filter_alarm
+  
 FCU_SS_ZTM:
   id: "11594563007836848128"
   description: "FCU with zone temperature monitoring and start/stop control."
