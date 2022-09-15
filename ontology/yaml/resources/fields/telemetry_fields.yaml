@@ -49,6 +49,7 @@ literals:
 - condensing_supply_water_temperature_sensor
 - condensing_supply_water_temperature_setpoint
 - condensing_water_flowrate_sensor
+- water_linearvelocity_sensor
 - cooling_output_percentage_command
 - current_sensor
 - torque_sensor
@@ -199,6 +200,8 @@ literals:
 - pressurization_request_count
 - zone_air_co2_concentration_sensor
 - zone_air_co2_concentration_setpoint
+- max_zone_air_co2_concentration_sensor
+- average_zone_air_co2_concentration_sensor
 - zone_air_co_concentration_setpoint
 - zone_air_cooling_temperature_setpoint
 - zone_air_heating_temperature_setpoint
@@ -389,11 +392,16 @@ literals:
   - OFF
   - AUTO
   - MANUAL
+  - DEHUMIDIFY
+  - FAN_ONLY
 - dial_resistance_sensor
 - zone_occupancy_status:
   - OCCUPIED
   - UNKNOWN
   - UNOCCUPIED
+  - INACTIVE
+
+ # INACTIVE indicates the device is being overridden to not run, irrespective of occupancy status.
 
 
 ## Added on 12/12
@@ -437,6 +445,7 @@ literals:
 - fan_speed_mode:
   - OFF
   - LOW
+  - MEDIUM
   - HIGH
   - AUTO
   - MANUAL
@@ -713,6 +722,7 @@ literals:
 # Status fields must be distinguished from alarms in that status is an objective qualitative state (flowing/not) whereas alarms are judgmental interpretations of such statuses to draww a conclusion about function (alarm/normal) 
 
 - average_supply_air_temperature_sensor
+- average_supply_air_static_pressure_sensor
 - control_mode:
   - AUTO
   - MANUAL
@@ -768,12 +778,6 @@ literals:
 - power_status:
   - PRESENT
   - ABSENT
-- low_pressure_status:
-  - ON
-  - OFF
-- high_pressure_status:
-  - ON
-  - OFF
   
 # New alarms using alarm as a point type, and existing alarms moved here
 # TODO (tsodorff): change these to ALARM/NORMAL after determining how this can be done safely to existing translations. 
@@ -804,13 +808,37 @@ literals:
 - lost_power_alarm:
   - ACTIVE
   - INACTIVE
+- overload_alarm:
+  - ACTIVE
+  - INACTIVE
+- overload_compressor_alarm:
+  - ACTIVE
+  - INACTIVE
+- overload_discharge_fan_alarm:
+  - ACTIVE
+  - INACTIVE
+- high_pressure_status:
+  - ACTIVE
+  - INACTIVE
+- low_pressure_status:
+  - ACTIVE
+  - INACTIVE
+- refrigerant_high_pressure_status:
+  - ACTIVE
+  - INACTIVE
+- refrigerant_low_pressure_status:
+  - ACTIVE
+  - INACTIVE
+- humidifier_failed_alarm:
+  - ACTIVE
+  - INACTIVE
 - heat_exchange_failed_alarm:
   - ACTIVE
   - INACTIVE
 - compressor_failed_alarm:
   - ACTIVE
   - INACTIVE
-  
+ 
 # New fields for lighting and fire systems.
 - motion_status:
   - PRESENT
@@ -830,6 +858,9 @@ literals:
 - brightness_percentage_command
 
 # New fields for emergency systems
+- emergency_alarm:
+  - ACTIVE
+  - INACTIVE
 - broken_cable_alarm:
   - ACTIVE
   - INACTIVE
@@ -846,6 +877,13 @@ literals:
   - ACTIVE
   - INACTIVE
 
+- supply_water_volume_accumulator
+- valve_command:
+  - OPEN
+  - CLOSED
+- valve_status:
+  - OPEN
+  - CLOSED
 - emergency_release_status:
   - ACTIVE
   - INACTIVE
@@ -1254,6 +1292,22 @@ literals:
 - zone_air_no2_probability_percentage_sensor
 - zone_air_no2_ozone_concentration_sensor
 
+#added for new Pre-action Fire Supression system
+- supervisor_alarm:
+  - ACTIVE
+  - INACTIVE
+- water_flowrate_status:
+  - ACTIVE
+  - INACTIVE
+- air_pressure_status:
+  - ACTIVE
+  - INACTIVE
+
+# added for WM_WFR 
+- water_flowrate_sensor 
+# added for FAN_ST
+- air_pressure_sensor
+
 - heat_recovery_water_isolation_valve_command:
   - OPEN
   - CLOSED
@@ -1325,9 +1379,6 @@ literals:
   - ACTIVE
   - INACTIVE
 - load_percentage_sensor
-- overload_alarm:
-  - ACTIVE
-  - INACTIVE
 - bypass_status:
   - BYPASS
   - INACTIVE  
@@ -1513,6 +1564,19 @@ literals:
   - OFF
   - ON
 
+# Addition of telemetry for scrubber
+- scrubber_run_mode:
+  - AUTO
+  - MANUAL
+- scrubber_run_command:
+  - ON
+  - OFF
+- scrubber_run_status:
+  - ON
+  - OFF
+
+
+
 # telemetry fields for exhaust fan#
 
 - speed_mode:
@@ -1524,9 +1588,6 @@ literals:
 - low_discharge_fan_speed_status:
   - ON
   - OFF 
-- exhaust_fan_run_mode:
-  - AUTO
-  - MANUAL
 
 
 ##Fields for generator##
@@ -1547,6 +1608,9 @@ literals:
   - AUTO
   - MANUAL 
 - supply_fan_run_time_accumulator  
+- exhaust_fan_run_mode:
+  - AUTO
+  - MANUAL
 
 # Addition of telemetry for outside sensors
 - outside_air_co2_concentration_sensor
@@ -1557,9 +1621,17 @@ literals:
   - MEDIUM
   - HIGH
 - line_pressure_sensor
-
-- return_air_isolation_damper_status
+- return_air_isolation_damper_status:
+  - OPEN
+  - CLOSED
 - return_air_isolation_damper_command:
+  - OPEN
+  - CLOSED
+
+- discharge_air_isolation_damper_status:
+  - OPEN
+  - CLOSED
+- discharge_air_isolation_damper_command:
   - OPEN
   - CLOSED
 
@@ -1567,25 +1639,33 @@ literals:
   - BYPASS
   - VFD
 - supply_fan_voltage_sensor
-
+- humidifier_run_time_accumulator
+- heater_run_time_accumulator
 - supply_fan_power_status:
   - ON
   - OFF
-  
 - discharge_fan_run_mode:
   - AUTO
   - MANUAL
 
+- exhaust_fan_speed_mode:
+  - BYPASS
+  - VFD
+
 ## New fields for EM##
 - electricalgrid_energy_accumulator
 - generator_run_time_accumulator
+- generator_energy_accumulator
+- electricalgrid_run_time_accumulator
 
 ## New fields for fans##
 - discharge_fan_energy_accumulator
-- electricalgrid_run_time_accumulator
-- generator_energy_accumulator 
 - supply_fan_energy_accumulator
 - compressor_run_time_accumulator
+
+- total_lamp_failed_counter
+- total_wireless_device_failed_counter
+- total_communication_failed_counter
 
 ## New fields for seismic detector
 - seismic_alarm

@@ -40,6 +40,7 @@ VAV_SD_DSP:
   - DSP
 
 VAV_SD_CSP_HLSAFS:
+  id: "11314244717358612480"
   description: "Simple cooling only VAV with occupancy."
   is_canonical: true
   implements:
@@ -436,6 +437,7 @@ VAV_RDC:
   - RDC
 
 VAV_RD_DSPRTC:
+  id: "9912288227107012608"
   description: "Return control VAV with return cooling control."
   is_canonical: true
   implements:
@@ -444,6 +446,7 @@ VAV_RD_DSPRTC:
   - DSPRTC
  
 VAV_RD_DSPRTC_ZSPC:
+  id: "6507566908814917632"
   description: "Return control VAV with return cooling control and zone pressure control."
   is_canonical: true
   implements:
@@ -536,6 +539,16 @@ VAV_RD_CO2C:
   - VAV
   - RD
   - CO2C
+
+VAV_SD_CO2C_HLSAFS_SRC:
+  description: "VAV with CO2 monitor, dampers, hi/low flowrate setpoint and sensor, schedule run"
+  is_canonical: true
+  implements:
+  - VAV
+  - SD
+  - CO2C
+  - HLSAFS
+  - SRC
 
 # Additional type for FR-PAR-50A
 VAV_HWZTC_CHWZTC_DTM:
