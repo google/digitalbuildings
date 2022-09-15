@@ -605,6 +605,7 @@ DFSS:
   - discharge_fan_run_status
 
 DFSS2X:
+  id: "10783101436305604608"
   description: "Two discharge fan run command and status (start/stop). With dampers"
   is_abstract: true
   implements:
@@ -4633,6 +4634,7 @@ CO2DFVSC:
   - CONTROL
 
 CO2EFVSC:
+  id: "8098956058392788992"
   description: "Carbon dioxide levels controlled by a variable speed exhaust fan."
   opt_uses:
   - exhaust_fan_speed_percentage_sensor
@@ -5140,7 +5142,7 @@ RAIDC2X:
   - MONITORING
 
 DAIDC2X:
-  id:
+  id: "14872369897958014976"
   description: "Discharge air isolation damper control and monitoring, where there are two separate, equal sets of dampers that operate in conjunction."
   is_abstract: true
   uses:
@@ -5393,6 +5395,7 @@ EFHLC:
   - OPERATIONAL
 
 SCRSS:
+  id: "3343154851889545216"
   description: "Scurbber start stop monitoring."
   is_abstract: true
   opt_uses:
