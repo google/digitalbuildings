@@ -308,6 +308,17 @@ FAN_SS_VSC_EFC_FDPM:
   - EFC
   - FDPM
 
+FAN_SS_VSC_WDPC_STM_FDPSM4X:
+  description: "Fan with start/stop status, speed control with EC fan and filter status monitoring for purification"
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - VSC
+  - WDPC
+  - STM
+  - FDPSM4X
+  
 FAN_SS_VSC_EPC_ZSPM:
   id: "1890595537992810496"
   description: "Fan with exhaust static pressure control."
