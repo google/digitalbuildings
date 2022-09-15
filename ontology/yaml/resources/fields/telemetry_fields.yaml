@@ -778,12 +778,6 @@ literals:
 - power_status:
   - PRESENT
   - ABSENT
-- low_pressure_status:
-  - ON
-  - OFF
-- high_pressure_status:
-  - ON
-  - OFF
   
 # New alarms using alarm as a point type, and existing alarms moved here
 # TODO (tsodorff): change these to ALARM/NORMAL after determining how this can be done safely to existing translations. 
@@ -814,13 +808,37 @@ literals:
 - lost_power_alarm:
   - ACTIVE
   - INACTIVE
+- overload_alarm:
+  - ACTIVE
+  - INACTIVE
+- overload_compressor_alarm:
+  - ACTIVE
+  - INACTIVE
+- overload_discharge_fan_alarm:
+  - ACTIVE
+  - INACTIVE
+- high_pressure_status:
+  - ACTIVE
+  - INACTIVE
+- low_pressure_status:
+  - ACTIVE
+  - INACTIVE
+- refrigerant_high_pressure_status:
+  - ACTIVE
+  - INACTIVE
+- refrigerant_low_pressure_status:
+  - ACTIVE
+  - INACTIVE
+- humidifier_failed_alarm:
+  - ACTIVE
+  - INACTIVE
 - heat_exchange_failed_alarm:
   - ACTIVE
   - INACTIVE
 - compressor_failed_alarm:
   - ACTIVE
   - INACTIVE
-  
+ 
 # New fields for lighting and fire systems.
 - motion_status:
   - PRESENT
@@ -1361,9 +1379,6 @@ literals:
   - ACTIVE
   - INACTIVE
 - load_percentage_sensor
-- overload_alarm:
-  - ACTIVE
-  - INACTIVE
 - bypass_status:
   - BYPASS
   - INACTIVE  
@@ -1534,6 +1549,7 @@ literals:
   - ON
   - OFF
 
+
 # telemetry fields for exhaust fan#
 
 - speed_mode:
@@ -1573,7 +1589,6 @@ literals:
   - MEDIUM
   - HIGH
 - line_pressure_sensor
-
 - return_air_isolation_damper_status:
   - OPEN
   - CLOSED
@@ -1592,11 +1607,11 @@ literals:
   - BYPASS
   - VFD
 - supply_fan_voltage_sensor
-
+- humidifier_run_time_accumulator
+- heater_run_time_accumulator
 - supply_fan_power_status:
   - ON
   - OFF
-  
 - discharge_fan_run_mode:
   - AUTO
   - MANUAL
