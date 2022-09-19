@@ -120,7 +120,7 @@ class CombinationValidator(object):
 
   def Validate(self, entity: EntityInstance, is_udmi: bool= False) -> bool:
     """Returns true if an entity follows all instance and graph rules.
-    
+
     Arguments
       entity: EntityInstance object to be validated against the ontology for
         content and connectivity.
