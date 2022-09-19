@@ -35,6 +35,7 @@ FACP_FA2X:
   - panel_alarm
 
 FACP_PAS:
+  id: "10168360087169531904"
   description: "Fire alarm panel with Pre-action suppression."
   is_canonical: true
   implements:

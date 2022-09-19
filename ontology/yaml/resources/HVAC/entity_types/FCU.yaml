@@ -812,6 +812,7 @@ FCU_DFMSS_DSP_ZHM_RTM_CHWZC_CHWDT:
   - CHWDT
 
 FCU_DFSS_DFRMM_DXRC_RHC_HTRC_REFPM:
+  id: "13050663848686649344"
   description: "CRAC unit cooling and humidification with compressor and alarm monitoring."
   is_canonical: true
   implements:
@@ -1446,6 +1447,7 @@ FCU_CHWZTC2X_HT2XZTC2X_DFVSC2X:
   - DFVSC2X
   
 FCU_RTM_DXZTC_SRC:
+  id: "12582289487440117760"
   description: "FCU with SS, supply and return temp sensors, zone control and sensor, schedule run, filter change and general fail alarm"
   is_canonical: true
   implements:

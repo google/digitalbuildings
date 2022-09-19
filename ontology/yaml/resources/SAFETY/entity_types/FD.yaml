@@ -22,6 +22,7 @@ FD_STD:
   - damper_status
   
 FD_SD:
+  id: "18184767423889014784"
   description: "Basic smoke detector fire damper"
   is_canonical: true
   implements:

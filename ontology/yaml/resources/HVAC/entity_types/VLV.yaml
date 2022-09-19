@@ -59,6 +59,7 @@ VLV_CDWPVM:
   - CDWPVM
 
 VLV_SWCM:
+  id: "17662349867114037248"
   description: "Solenoid water valve control and monitoring."
   is_canonical: true
   implements:

@@ -58,6 +58,7 @@ UPS_IOBM_BATM:
   - IOBM
   - BATM
 UPS_IOBM_PPWM_UPSBM:
+  id: "15356506857900343296"
   description: "UPS with input and output electrical monitoring, phase power monitoring and battery monitoring."
   is_canonical: true
   implements:
@@ -65,4 +66,3 @@ UPS_IOBM_PPWM_UPSBM:
   - IOBM
   - PPWM
   - UPSBM  
-

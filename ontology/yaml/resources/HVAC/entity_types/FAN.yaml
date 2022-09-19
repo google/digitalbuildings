@@ -309,6 +309,7 @@ FAN_SS_VSC_EFC_FDPM:
   - FDPM
 
 FAN_SS_VSC_WDPC_STM_FDPSM4X:
+  id: "5232414895571468288"
   description: "Fan with start/stop status, speed control with EC fan and filter status monitoring for purification"
   is_canonical: true
   implements:
@@ -686,6 +687,7 @@ FAN_SS_AL:
   - control_status
 
 FAN_SS_VSC_SRC:
+  id: "8961395387034238976"
   description: "Basic Exhaust fan with start/stop, speed sensor, alarms, scheduled run"
   uses:
   - lost_power_alarm
@@ -698,6 +700,7 @@ FAN_SS_VSC_SRC:
   - SRC
 
 FAN_SS_VSC_SRC_DPM:
+  id: "3827291811831873536"
   description: "Basic Exhaust fan with start/stop, speed sensor, fail alarm, scheduled run, dampers"
   uses:
   - lost_power_alarm

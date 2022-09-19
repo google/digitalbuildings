@@ -3100,6 +3100,7 @@ FDPSM2X:
   - MONITORING
 
 FDPSM4X:
+  id: "17338090693943361536"
   description: "Filter pressure status monitoring (4 sensors)."
   is_abstract: true
   uses:
@@ -5411,6 +5412,7 @@ EFHLC:
   - OPERATIONAL
   
 SWCM:
+  id: "620728877144080384"
   description: "Solenoid water valve control and monitoring."
   is_abstract: true
   uses:
