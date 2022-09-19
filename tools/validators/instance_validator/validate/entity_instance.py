@@ -214,6 +214,10 @@ class GraphValidator(object):
     return is_valid
 
 
+def IsEntityIdPresent(entity: EntityInstance) -> bool:
+  return entity.entity_id is not None
+
+
 class InstanceValidator(object):
   """Class to support validation of intra-entity rules in config.
 
@@ -508,6 +512,13 @@ class InstanceValidator(object):
     Returns:
       True if the entity is valid
     """
+
+    if IsEntityIdPresent(entity):
+      print('Warning: Entity id detected in block. Planned deprecation, ',
+        'will result in validation error in a future releases. Please ',
+        'review digitalbuildings/ontology/docs/building_config.md for ',
+        'more info')
+
     is_valid = True
 
     if entity.update_mask is not None:
@@ -726,6 +737,7 @@ class EntityInstance(findings_lib.Findings):
                connections=None,
                links=None,
                etag=None,
+               entity_id=None,
                update_mask=None):
     super().__init__()
 
@@ -738,8 +750,9 @@ class EntityInstance(findings_lib.Findings):
     self.translation = translation
     self.connections = connections
     self.links = links
-    self.update_mask = update_mask
     self.etag = etag
+    self.entity_id = entity_id
+    self.update_mask = update_mask
 
   @classmethod
   def FromYaml(
@@ -842,6 +855,11 @@ class EntityInstance(findings_lib.Findings):
     if parse.ETAG_KEY in entity_yaml:
       etag = entity_yaml[parse.ETAG_KEY]
 
+    # deprecated; kept for legacy reasons
+    entity_id = None
+    if parse.ENTITY_ID_KEY in entity_yaml:
+      entity_id = entity_yaml[parse.ENTITY_ID_KEY]
+
     return cls(
         operation,
         guid=guid,
@@ -853,4 +871,5 @@ class EntityInstance(findings_lib.Findings):
         connections=connections,
         links=links,
         etag=etag,
+        entity_id=entity_id,
         update_mask=update_mask)

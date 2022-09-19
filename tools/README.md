@@ -2,9 +2,7 @@
 
 The Digital Buildings Toolkit provides a centralized
 method for interfacing with all of the tools contained within the Digital
-Buildings Repository. Currently, the toolkit only supports building configuration
-instance validation and guid generation, but additional funcionality will be
-implemented in the future.
+Buildings Repository.
 
 ## Install
 

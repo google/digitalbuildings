@@ -272,8 +272,7 @@ def CreateCompositionInGraph(list_standard_field_names,
         return graph
     else:  # there is only one element
       class_owl.subClassOf = [
-          composition_property | restriction | first_element
-      ]
+          composition_property | restriction | first_element ]  # pylint: disable=E1131
       return graph
 
     index += 1
@@ -285,6 +284,7 @@ def CreateCompositionInGraph(list_standard_field_names,
           graph=graph,
           subClassOf=sub_class_of)
       index += 1
+    # pylint: disable=E1131
     class_owl.subClassOf = [composition_property | restriction | concat]
 
   return graph
