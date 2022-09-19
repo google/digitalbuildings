@@ -340,6 +340,7 @@ HWS_SWTC_CPC:
   - failed_alarm
   
 HWS_SS:
+  id: "8438977830259261440"
   description: "Simple hot water system with status only"
   implements:
   - HWS

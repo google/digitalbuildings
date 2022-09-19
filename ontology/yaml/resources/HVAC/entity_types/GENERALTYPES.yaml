@@ -306,6 +306,7 @@ ADY:
   - EQUIPMENT
 
 AION:
+  id: "3358917450585341952"
   description: "Air ionizer."
   is_abstract: true
   implements:

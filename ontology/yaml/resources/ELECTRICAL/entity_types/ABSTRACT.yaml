@@ -134,16 +134,17 @@ BTEPM:
   - line_frequency_sensor  
 
 UPSBM:
- description: "UPS battery monitoring points"
- is_abstract: true
- opt_uses:
+  id: "6133134821045567488"
+  description: "UPS battery monitoring points"
+  is_abstract: true
+  opt_uses:
   - exhaust_fan_failed_alarm
   - battery_percentage_sensor
   - rectifier_mode
   - inverter_status
   - inverter_mode
   - overload_alarm
- uses:
+  uses:
   - remaining_charge_time_sensor
   - battery_voltage_sensor
   - battery_status
