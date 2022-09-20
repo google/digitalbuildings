@@ -94,6 +94,7 @@ RAW_UNIT_VALUE = 'Raw Unit Value'
 ETAG = 'Etag'
 CLOUD_DEVICE_ID = 'Cloud Device ID'
 NAMESPACE = 'Namespace'
+FACILITIES_NAMESPACE = 'FACILITIES'
 GENERAL_TYPE = 'General Type'
 IS_REPORTING = 'Is Reporting'
 

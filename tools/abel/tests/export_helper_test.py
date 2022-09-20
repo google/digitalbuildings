@@ -137,7 +137,20 @@ class ExportHelperTest(absltest.TestCase):
     self.assertEqual(
         ['cloud_device_id', 'code', 'translation', 'type'],
         list(exported_building_config.get('test_reporting_guid').keys()))
-
+    self.assertIsInstance(
+        exported_building_config.get('test_reporting_guid').get(
+            'cloud_device_id'), str)
+    self.assertEqual(
+        exported_building_config.get('test_reporting_guid').get(
+            'cloud_device_id'), '2541901344105616')
+    states = exported_building_config.get('test_reporting_guid').get(
+        'translation').get('fire_alarm_5').get('states')
+    for raw_state in states.values():
+      self.assertIsInstance(raw_state, str)
+    units = exported_building_config.get('test_reporting_guid').get(
+        'translation').get('supply_water_temperature_sensor_1').get('units')
+    for raw_unit_value in units.get('values').values():
+      self.assertIsInstance(raw_unit_value, str)
 
 if __name__ == '__main__':
   absltest.main()

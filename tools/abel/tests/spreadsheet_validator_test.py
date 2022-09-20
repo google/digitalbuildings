@@ -24,19 +24,37 @@ from model.constants import CONNECTION_TYPE
 from model.constants import CONNECTIONS
 from model.constants import ENTITIES
 from model.constants import ENTITY_CODE
+from model.constants import ENTITY_FIELDS
 from model.constants import IS_REPORTING
 from model.constants import METADATA
 from model.constants import NAMESPACE
+from model.constants import RAW_FIELD_NAME
+from model.constants import RAW_STATE
+from model.constants import RAW_UNIT_PATH
+from model.constants import RAW_UNIT_VALUE
+from model.constants import REPORTING_ENTITY_CODE
+from model.constants import REPORTING_ENTITY_FIELD_NAME
+from model.constants import REPORTING_ENTITY_GUID
 from model.constants import SOURCE_ENTITY_CODE
 from model.constants import SOURCE_ENTITY_GUID
+from model.constants import STANDARD_FIELD_NAME
+from model.constants import STANDARD_STATE
+from model.constants import STANDARD_UNIT_VALUE
+from model.constants import STATES
 from model.constants import TARGET_ENTITY_CODE
 from model.constants import TARGET_ENTITY_GUID
 from model.constants import TYPE_NAME
 from abel.tests.test_constants import TEST_NAMESPACE
 from abel.tests.test_constants import TEST_REPORTING_ENTITY_CODE
 from abel.tests.test_constants import TEST_REPORTING_ENTITY_DICT
+from abel.tests.test_constants import TEST_REPORTING_GUID
 from abel.tests.test_constants import TEST_SPREADSHEET
+from validators.spreadsheet_error import ConnectionDependencyError
+from validators.spreadsheet_error import CrossSheetDependencyError
+from validators.spreadsheet_error import MissingSpreadsheetValueError
+from validators.spreadsheet_error import SpreadsheetHeaderError
 from validators.spreadsheet_validator import SpreadsheetValidator
+
 
 _TEST_VALIDATOR_LOG_PATH = os.path.join(
     os.path.expanduser('~'), 'code/test_model_validation_out.log')
@@ -50,24 +68,73 @@ class SpreadsheetValidatorTest(absltest.TestCase):
     self.test_spreadsheet = copy.deepcopy(TEST_SPREADSHEET)
 
   def testValidate(self):
-    validator_result = self.validator.Validate(self.test_spreadsheet)
+    is_valid = self.validator.Validate(self.test_spreadsheet)
 
-    self.assertTrue(validator_result)
+    self.assertTrue(is_valid)
+    self.assertEmpty(self.validator.validation_errors)
+
+  def testBadFieldNameDependencyLogsError(self):
+    bad_test_state = {
+        ENTITY_CODE: TEST_REPORTING_ENTITY_CODE,
+        BC_GUID: TEST_REPORTING_GUID,
+        STANDARD_FIELD_NAME: 'not a valid field name',
+        STANDARD_STATE: 'ON',
+        RAW_STATE: 'TRUE'
+    }
+    self.test_spreadsheet[STATES].append(bad_test_state)
+
+    is_valid = self.validator.Validate(self.test_spreadsheet)
+
+    self.assertFalse(is_valid)
+    self.assertIsInstance(self.validator.validation_errors.pop(),
+                          CrossSheetDependencyError)
+
+  def testBadEntityCodeDependencyLogsError(self):
+    bad_test_field = {
+        STANDARD_FIELD_NAME: 'test_field_name',
+        RAW_FIELD_NAME: 'pointset.raw_field_name',
+        ENTITY_CODE: 'Not a valid entity code',
+        REPORTING_ENTITY_FIELD_NAME: 'test_resporting_field_name',
+        REPORTING_ENTITY_CODE: TEST_REPORTING_ENTITY_CODE,
+        REPORTING_ENTITY_GUID: TEST_REPORTING_GUID,
+        BC_GUID: TEST_REPORTING_GUID,
+        RAW_UNIT_PATH: 'no-units',
+        STANDARD_UNIT_VALUE: 'no-units',
+        RAW_UNIT_VALUE: 'no-units',
+        METADATA + '.test': 'test metadata'
+    }
+    self.test_spreadsheet[ENTITY_FIELDS].append(bad_test_field)
+
+    is_valid = self.validator.Validate(self.test_spreadsheet)
+    validation_error = self.validator.validation_errors.pop()
+
+    self.assertFalse(is_valid)
+    self.assertEmpty(self.validator.validation_errors)
+    self.assertIsInstance(validation_error, CrossSheetDependencyError)
+    self.assertEqual(validation_error.column, ENTITY_CODE)
+    self.assertEqual(validation_error.table, ENTITY_FIELDS)
+    self.assertEqual(validation_error.target_table, ENTITIES)
 
   def testValidateContainsLogsMissingSpreadsheetValueError(self):
     test_virtual_entity_dict = {
         ENTITY_CODE: None,
         BC_GUID: None,
         NAMESPACE: TEST_NAMESPACE,
-        TYPE_NAME: None,
+        TYPE_NAME: 'test_type',
         IS_REPORTING: 'FASLE',
         METADATA + '.test': 'test metadata'
     }
     self.test_spreadsheet[ENTITIES].append(test_virtual_entity_dict)
 
-    validator_results = self.validator.Validate(self.test_spreadsheet)
+    is_valid = self.validator.Validate(self.test_spreadsheet)
+    validation_error = self.validator.validation_errors.pop()
 
-    self.assertFalse(validator_results)
+    self.assertFalse(is_valid)
+    # Validation errors should be empty after one error is popped.
+    self.assertEmpty(self.validator.validation_errors)
+    self.assertIsInstance(validation_error, MissingSpreadsheetValueError)
+    # Error is thrown on empty entity code.
+    self.assertEqual(validation_error.column, ENTITY_CODE)
 
   def testInsufficientHeadersCreatesErrors(self):
     test_virtual_entity_dict_missing_type_name_header = {
@@ -81,9 +148,11 @@ class SpreadsheetValidatorTest(absltest.TestCase):
         test_virtual_entity_dict_missing_type_name_header
     ]
 
-    validator_results = self.validator.Validate(self.test_spreadsheet)
+    is_valid = self.validator.Validate(self.test_spreadsheet)
 
-    self.assertFalse(validator_results)
+    self.assertFalse(is_valid)
+    self.assertIsInstance(self.validator.validation_errors.pop(),
+                          SpreadsheetHeaderError)
 
   def testConnectionToBuildingIsValid(self):
     test_connection_to_building = {
@@ -95,9 +164,26 @@ class SpreadsheetValidatorTest(absltest.TestCase):
     }
     self.test_spreadsheet[CONNECTIONS].append(test_connection_to_building)
 
-    validator_results = self.validator.Validate(self.test_spreadsheet)
+    is_valid = self.validator.Validate(self.test_spreadsheet)
 
-    self.assertTrue(validator_results)
+    self.assertTrue(is_valid)
+    self.assertEmpty(self.validator.validation_errors)
+
+  def testInvalidConnectionDependencyLogsError(self):
+    test_connection_to_building = {
+        SOURCE_ENTITY_CODE: 'INVALID_ENTITY_CODE',
+        SOURCE_ENTITY_GUID: None,
+        TARGET_ENTITY_CODE: TEST_REPORTING_ENTITY_CODE,
+        TARGET_ENTITY_GUID: None,
+        CONNECTION_TYPE: 'CONTAINS'
+    }
+    self.test_spreadsheet[CONNECTIONS].append(test_connection_to_building)
+
+    is_valid = self.validator.Validate(self.test_spreadsheet)
+
+    self.assertFalse(is_valid)
+    self.assertIsInstance(self.validator.validation_errors.pop(),
+                          ConnectionDependencyError)
 
   def testDuplicateEntityCodes(self):
     test_entity_with_duplicate_code = TEST_REPORTING_ENTITY_DICT.copy()
@@ -107,9 +193,39 @@ class SpreadsheetValidatorTest(absltest.TestCase):
 
     self.assertFalse(validator_results)
 
+  def testFacilitiesEntityMissingGuid(self):
+    facilities_entity_no_guid = {
+        ENTITY_CODE: 'A_BUILDING_FLOOR',
+        BC_GUID: None,
+        NAMESPACE: 'FACILITIES',
+        IS_REPORTING: 'FALSE',
+        METADATA + '.test': 'test metadata'
+    }
+    facilities_entity_with_guid = {
+        ENTITY_CODE: 'A_BUILDING_FLOOR',
+        BC_GUID: 'a_guid',
+        NAMESPACE: 'FACILITIES',
+        IS_REPORTING: 'FALSE',
+        METADATA + '.test': 'test metadata'
+    }
+    self.test_spreadsheet[ENTITIES].append(facilities_entity_no_guid)
+
+    no_guid_validator_results = self.validator.ValidateFacilitiesGuids(
+        sheet=[facilities_entity_no_guid])
+    with_guid_validator_results = self.validator.ValidateFacilitiesGuids(
+        sheet=[facilities_entity_with_guid])
+    is_valid = self.validator.Validate(self.test_spreadsheet)
+
+    self.assertLen(no_guid_validator_results, 1)
+    self.assertIsInstance(no_guid_validator_results.pop(),
+                          MissingSpreadsheetValueError)
+    self.assertEmpty(with_guid_validator_results)
+    self.assertFalse(is_valid)
+
   def testCreatesLogFile(self):
     log_path = '/build/work/e1cb3532038491632c91c4936844ac13345a/google3/tmp/code/test_model_validation_out.log'
     self.assertIsNotNone(pl.Path(log_path).resolve().is_file())
+
 
 if __name__ == '__main__':
   absltest.main()

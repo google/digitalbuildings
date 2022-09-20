@@ -162,7 +162,7 @@ class BuildingConfigExport(object):
       A dicitionary in Building Config format ready to be parsed into yaml.
     """
     reporting_entity_yaml = {
-        CONFIG_CLOUD_DEVICE_ID: entity.cloud_device_id,
+        CONFIG_CLOUD_DEVICE_ID: str(entity.cloud_device_id),
         CONFIG_CODE: entity.code,
     }
     reporting_entity_yaml.update(self._GetConnections(entity=entity))
@@ -243,12 +243,12 @@ class BuildingConfigExport(object):
       return_dict[CONFIG_UNITS] = {
           CONFIG_UNITS_KEY: field.units.raw_unit_path,
           CONFIG_UNITS_VALUES: {
-              standard_unit: raw_unit for standard_unit, raw_unit in
+              standard_unit: str(raw_unit) for standard_unit, raw_unit in
               field.units.standard_to_raw_unit_map.items()
           }
       }
     elif field.states:
       return_dict[CONFIG_STATES] = {
-          state.standard_state: state.raw_state for state in field.states
+          state.standard_state: str(state.raw_state) for state in field.states
       }
     return return_dict
