@@ -8,7 +8,7 @@ Installing and using the Instance Validator requires Python 3.9, and the specifi
 
 * MacOS & Linux: `python3`
 * Windows (with only Python 3 installed): `python` or `py -3`
-* Windows (with Python 2 and 3 installed): `py -3`
+* Windows (with Python 3 installed): `py -3`
 
 You can run the command with just the version flag (e.g. `python --version`) to verify that the result is `Python 3.*`.
 

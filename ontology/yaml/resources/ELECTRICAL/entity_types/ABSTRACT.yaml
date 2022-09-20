@@ -24,7 +24,6 @@ SS:
   - lost_power_alarm
   - power_status
 
-
 IOBM:
   id: "11309587186103353344"
   description: "Input, output, and bypass electrical monitoring, typically for a UPS."
@@ -62,6 +61,7 @@ IOBM:
   - overload_alarm
   - lost_power_alarm
   - load_percentage_sensor
+  - bypass_phase_status
 
 PWM:
   id: "13215256341318205440"
@@ -132,6 +132,24 @@ BTEPM:
   - battery_voltage_sensor
   - battery_current_sensor
   - line_frequency_sensor  
+
+UPSBM:
+  id: "6133134821045567488"
+  description: "UPS battery monitoring points"
+  is_abstract: true
+  opt_uses:
+  - exhaust_fan_failed_alarm
+  - battery_percentage_sensor
+  - rectifier_mode
+  - inverter_status
+  - inverter_mode
+  - overload_alarm
+  uses:
+  - remaining_charge_time_sensor
+  - battery_voltage_sensor
+  - battery_status
+  - input_supply_mode
+  - battery_test_status
 
 SRC1:
   id: "15185581178292797440"

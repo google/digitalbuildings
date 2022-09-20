@@ -97,9 +97,12 @@ class EntityInstanceTest(absltest.TestCase):
     validator = entity_instance.CombinationValidator(self.config_universe,
                                                      _UPDATE_CFG, {})
 
-    self.assertTrue(validator.Validate(mock_entity))
-    mock_iv.assert_called_once_with(mock_entity)
-    mock_gv.assert_called_once_with(mock_entity)
+    self.assertTrue(validator.Validate(mock_entity()))
+    # to ensure that we called the mock with is_udmi= False
+    # i.e. we didn't call it with is_udmi= True
+    mock_iv.assert_called_once()
+    mock_iv.assert_called_once_with(mock_entity.return_value, False)
+    mock_gv.assert_called_once_with(mock_entity.return_value)
 
   def testInstance_ValidEtagOnUpdate_Success(self):
     valid_instance = entity_instance.EntityInstance(
@@ -1038,6 +1041,40 @@ class EntityInstanceTest(absltest.TestCase):
         combination_validator.Validate(entity_instances['VIRTUAL-ENTITY-GUID']))
     self.assertEqual(entity_instances['PHYSICAL-ENTITY-GUID'].operation,
                      _EXPORT)
+
+  def testValidate_UdmiEntityPresentValue_Fails(self):
+    # the example used is a valid entity according to dbo; however, not udmi
+    parsed, default_operation = _Helper(
+        [path.join(_TESTCASE_PATH, 'BAD',
+            'translation_udmi_present_value.yaml')])
+
+    entity_instances = {}
+    for entity_guid, entity_parsed in parsed.items():
+      entity = entity_instance.EntityInstance.FromYaml(
+          entity_guid, entity_parsed, default_operation=default_operation)
+      entity_instances[entity_guid] = entity
+    combination_validator = entity_instance.CombinationValidator(
+        self.config_universe, _INIT_CFG, entity_instances)
+
+    self.assertFalse(combination_validator.Validate(
+      entity_instances['SDC_EXT-17-GUID'], is_udmi= True))
+
+  def testValidate_UdmiEntityPresentValue_Success(self):
+    parsed, default_operation = _Helper([
+        path.join(_TESTCASE_PATH, 'GOOD',
+                  'translation_udmi_present_value.yaml')
+    ])
+
+    entity_instances = {}
+    for entity_guid, entity_parsed in parsed.items():
+      entity = entity_instance.EntityInstance.FromYaml(
+          entity_guid, entity_parsed, default_operation=default_operation)
+      entity_instances[entity_guid] = entity
+    combination_validator = entity_instance.CombinationValidator(
+        self.config_universe, _INIT_CFG, entity_instances)
+
+    self.assertTrue(combination_validator.Validate(
+      entity_instances['SDC_EXT-17-GUID'], is_udmi= True))
 
   def testValidate_BuildingConfigEntityWithId_Success(self):
     parsed, default_operation = _Helper(

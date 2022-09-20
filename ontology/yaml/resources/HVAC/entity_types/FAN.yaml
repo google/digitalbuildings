@@ -25,8 +25,8 @@ FAN_SS:
   implements:
   - FAN
   - SS
-   
-
+  opt_uses:
+  - air_pressure_sensor
 
 ### FAN SPEED CONTROL ###
 
@@ -308,6 +308,18 @@ FAN_SS_VSC_EFC_FDPM:
   - EFC
   - FDPM
 
+FAN_SS_VSC_WDPC_STM_FDPSM4X:
+  id: "5232414895571468288"
+  description: "Fan with start/stop status, speed control with EC fan and filter status monitoring for purification"
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - VSC
+  - WDPC
+  - STM
+  - FDPSM4X
+  
 FAN_SS_VSC_EPC_ZSPM:
   id: "1890595537992810496"
   description: "Fan with exhaust static pressure control."
@@ -478,6 +490,7 @@ FAN_EFHLC_COCDSP_NOCDSP:
   - NOCDSP
 
 FAN_SS_VSC_SCRSS:
+  id: "6171415417878216704"
   description: "Fan with scrubber start/stop and status."
   is_canonical: true
   implements:
@@ -673,6 +686,33 @@ FAN_SS_AL:
   - schedule_run_command
   - control_status
 
+FAN_SS_VSC_SRC:
+  id: "8961395387034238976"
+  description: "Basic Exhaust fan with start/stop, speed sensor, alarms, scheduled run"
+  uses:
+  - lost_power_alarm
+  opt_uses:
+  - filter_alarm
+  implements:
+  - FAN
+  - SS
+  - VSC
+  - SRC
+
+FAN_SS_VSC_SRC_DPM:
+  id: "3827291811831873536"
+  description: "Basic Exhaust fan with start/stop, speed sensor, fail alarm, scheduled run, dampers"
+  uses:
+  - lost_power_alarm
+  opt_uses:
+  - filter_alarm
+  implements:
+  - FAN
+  - SS
+  - VSC
+  - SRC
+  - DPM
+
 FAN_SS_VSC_EPC_EHHRC_EHHRC3X:
   id: "13340710618047447040"
   description: "Non-standard fan with exhaust static pressure control and heat recovery coils."
@@ -696,8 +736,7 @@ FAN_SS_FDPM_VSC_SRC:
   - SS
   - FDPM
   - VSC
-  - SRC 
-
+  - SRC
 
 FAN_SS_MSM:  
   id: "278666411696455680"

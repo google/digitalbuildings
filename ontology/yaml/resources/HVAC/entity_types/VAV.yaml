@@ -540,6 +540,17 @@ VAV_RD_CO2C:
   - RD
   - CO2C
 
+VAV_SD_CO2C_HLSAFS_SRC:
+  id: "14455786932426244096"
+  description: "VAV with CO2 monitor, dampers, hi/low flowrate setpoint and sensor, schedule run"
+  is_canonical: true
+  implements:
+  - VAV
+  - SD
+  - CO2C
+  - HLSAFS
+  - SRC
+
 # Additional type for FR-PAR-50A
 VAV_HWZTC_CHWZTC_DTM:
   id: "3139001930890608640"

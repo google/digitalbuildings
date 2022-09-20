@@ -154,6 +154,7 @@ PWM:
   - power_sensor
 
 ENM:
+  id: "11197432602023690240"
   description: "Basic energy monitoring "
   is_abstract: true
   uses:
