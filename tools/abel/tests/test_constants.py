@@ -15,38 +15,38 @@
 
 from os import path
 
-from model.constants import APPLICATION_ROOT
-from model.constants import BC_GUID
-from model.constants import BUILDING_CODE
-from model.constants import CLOUD_DEVICE_ID
-from model.constants import CONNECTION_TYPE
-from model.constants import CONNECTIONS
-from model.constants import ENTITIES
-from model.constants import ENTITY_CODE
-from model.constants import ENTITY_FIELDS
-from model.constants import ETAG
-from model.constants import IS_REPORTING
-from model.constants import METADATA
-from model.constants import NAMESPACE
-from model.constants import RAW_FIELD_NAME
-from model.constants import RAW_STATE
-from model.constants import RAW_UNIT_PATH
-from model.constants import RAW_UNIT_VALUE
-from model.constants import REPORTING_ENTITY_CODE
-from model.constants import REPORTING_ENTITY_FIELD_NAME
-from model.constants import REPORTING_ENTITY_GUID
-from model.constants import SITES
-from model.constants import SOURCE_ENTITY_CODE
-from model.constants import SOURCE_ENTITY_GUID
-from model.constants import STANDARD_FIELD_NAME
-from model.constants import STANDARD_STATE
-from model.constants import STANDARD_UNIT_VALUE
-from model.constants import STATES
-from model.constants import TARGET_ENTITY_CODE
-from model.constants import TARGET_ENTITY_GUID
-from model.constants import TYPE_NAME
-from model.units import Units
-from tests import test_constants
+from google3.third_party.digitalbuildings.tools.abel.model.constants import APPLICATION_ROOT
+from google3.third_party.digitalbuildings.tools.abel.model.constants import BC_GUID
+from google3.third_party.digitalbuildings.tools.abel.model.constants import BUILDING_CODE
+from google3.third_party.digitalbuildings.tools.abel.model.constants import CLOUD_DEVICE_ID
+from google3.third_party.digitalbuildings.tools.abel.model.constants import CONNECTION_TYPE
+from google3.third_party.digitalbuildings.tools.abel.model.constants import CONNECTIONS
+from google3.third_party.digitalbuildings.tools.abel.model.constants import ENTITIES
+from google3.third_party.digitalbuildings.tools.abel.model.constants import ENTITY_CODE
+from google3.third_party.digitalbuildings.tools.abel.model.constants import ENTITY_FIELDS
+from google3.third_party.digitalbuildings.tools.abel.model.constants import ETAG
+from google3.third_party.digitalbuildings.tools.abel.model.constants import IS_REPORTING
+from google3.third_party.digitalbuildings.tools.abel.model.constants import METADATA
+from google3.third_party.digitalbuildings.tools.abel.model.constants import NAMESPACE
+from google3.third_party.digitalbuildings.tools.abel.model.constants import RAW_FIELD_NAME
+from google3.third_party.digitalbuildings.tools.abel.model.constants import RAW_STATE
+from google3.third_party.digitalbuildings.tools.abel.model.constants import RAW_UNIT_PATH
+from google3.third_party.digitalbuildings.tools.abel.model.constants import RAW_UNIT_VALUE
+from google3.third_party.digitalbuildings.tools.abel.model.constants import REPORTING_ENTITY_CODE
+from google3.third_party.digitalbuildings.tools.abel.model.constants import REPORTING_ENTITY_FIELD_NAME
+from google3.third_party.digitalbuildings.tools.abel.model.constants import REPORTING_ENTITY_GUID
+from google3.third_party.digitalbuildings.tools.abel.model.constants import SITES
+from google3.third_party.digitalbuildings.tools.abel.model.constants import SOURCE_ENTITY_CODE
+from google3.third_party.digitalbuildings.tools.abel.model.constants import SOURCE_ENTITY_GUID
+from google3.third_party.digitalbuildings.tools.abel.model.constants import STANDARD_FIELD_NAME
+from google3.third_party.digitalbuildings.tools.abel.model.constants import STANDARD_STATE
+from google3.third_party.digitalbuildings.tools.abel.model.constants import STANDARD_UNIT_VALUE
+from google3.third_party.digitalbuildings.tools.abel.model.constants import STATES
+from google3.third_party.digitalbuildings.tools.abel.model.constants import TARGET_ENTITY_CODE
+from google3.third_party.digitalbuildings.tools.abel.model.constants import TARGET_ENTITY_GUID
+from google3.third_party.digitalbuildings.tools.abel.model.constants import TYPE_NAME
+from google3.third_party.digitalbuildings.tools.abel.model.units import Units
+from google3.third_party.digitalbuildings.tools.validators.instance_validator.tests import test_constants
 
 TEST_ROOT = path.join(APPLICATION_ROOT, 'tests')
 TEST_RESOURCES = path.join(TEST_ROOT, 'test_resources')
@@ -58,9 +58,10 @@ TEST_TYPE_NAME = 'CHWS_WDT'
 
 # Constants for EntityField testing
 TEST_STANDARD_FIELD_NAME = 'supply_water_temperature_sensor'
-TEST_STANDARD_FIELD_NAME_2 = 'run_command'
+TEST_STANDARD_FIELD_NAME_2 = 'fire_alarm'
+TEST_REPORTING_FIELD_NAME = 'fire_alarm_5'
 TEST_RAW_FIELD_NAME = 'points.supply_water_temperature_sensor.present_value'
-TEST_RAW_FIELD_NAME_2 = 'points.run_command.present_value'
+TEST_RAW_FIELD_NAME_2 = 'points.fire_alarm_5.present_value'
 TEST_RAW_UNIT_PATH = 'points.supply_water_temperature_sensor.units'
 TEST_STANDARD_UNIT_VALUE = 'degrees-celsius'
 TEST_DEVICE_ID = '12345'
@@ -69,7 +70,7 @@ TEST_DEVICE_ID = '12345'
 TEST_VIRTUAL_ENTITY_CODE = 'VLV-23'
 TEST_REPORTING_ENTITY_CODE = 'CHWS-1'
 TEST_ENTITY_IS_REPORTING = False
-TEST_CLOUD_DEVICE_ID = '12345678910'
+TEST_CLOUD_DEVICE_ID = '2541901344105616'
 TEST_REPORTING_GUID = 'test_reporting_guid'
 TEST_VIRTUAL_GUID = 'test_virtual_guid'
 TEST_ETAG = '1234567'
@@ -107,11 +108,11 @@ TEST_VIRTUAL_ENTITY_DICT = {
     METADATA + '.test': 'test metadata'
 }
 
-TEST_ENTITY_FIELD_DICT_WITH_NO_UNITS = {
+TEST_ENTITY_FIELD_DICT_WITH_STATES = {
     STANDARD_FIELD_NAME: TEST_STANDARD_FIELD_NAME_2,
     RAW_FIELD_NAME: TEST_RAW_FIELD_NAME_2,
     ENTITY_CODE: TEST_REPORTING_ENTITY_CODE,
-    REPORTING_ENTITY_FIELD_NAME: TEST_STANDARD_FIELD_NAME_2,
+    REPORTING_ENTITY_FIELD_NAME: TEST_REPORTING_FIELD_NAME,
     REPORTING_ENTITY_CODE: TEST_REPORTING_ENTITY_CODE,
     REPORTING_ENTITY_GUID: TEST_REPORTING_GUID,
     BC_GUID: TEST_REPORTING_GUID,
@@ -157,7 +158,7 @@ TEST_CONNECTION_DICT = {
 TEST_STATE_DICT = {
     ENTITY_CODE: TEST_REPORTING_ENTITY_CODE,
     BC_GUID: TEST_REPORTING_GUID,
-    STANDARD_FIELD_NAME: TEST_STANDARD_FIELD_NAME_2,
+    STANDARD_FIELD_NAME: TEST_REPORTING_FIELD_NAME,
     STANDARD_STATE: 'ON',
     RAW_STATE: 'TRUE'
 }
@@ -170,7 +171,7 @@ TEST_SPREADSHEET = {
     SITES: [TEST_SITE_DICT],
     ENTITIES: [TEST_REPORTING_ENTITY_DICT, TEST_VIRTUAL_ENTITY_DICT],
     ENTITY_FIELDS: [
-        TEST_ENTITY_FIELD_DICT_WITH_UNITS, TEST_ENTITY_FIELD_DICT_WITH_NO_UNITS
+        TEST_ENTITY_FIELD_DICT_WITH_UNITS, TEST_ENTITY_FIELD_DICT_WITH_STATES
     ],
     CONNECTIONS: [TEST_CONNECTION_DICT],
     STATES: [TEST_STATE_DICT]

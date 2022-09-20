@@ -18,7 +18,7 @@
 from os import path
 
 # internally, absolute path is used; github uses relative path
-_USE_ABSOLUTE_PATH = False
+_USE_ABSOLUTE_PATH = True
 
 if _USE_ABSOLUTE_PATH:
   REPO_ROOT = path.join('third_party', 'digitalbuildings')
@@ -94,6 +94,7 @@ RAW_UNIT_VALUE = 'Raw Unit Value'
 ETAG = 'Etag'
 CLOUD_DEVICE_ID = 'Cloud Device ID'
 NAMESPACE = 'Namespace'
+FACILITIES_NAMESPACE = 'FACILITIES'
 GENERAL_TYPE = 'General Type'
 IS_REPORTING = 'Is Reporting'
 

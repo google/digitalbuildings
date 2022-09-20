@@ -17,14 +17,14 @@ import datetime
 import os
 import sys
 
-from model import authenticator
-from model import export_helper
-from model import import_helper
-from model.arg_parser import ParseArgs
-from model.constants import SPREADSHEET_RANGE
-from model.model_builder import ModelBuilder
-from validators.spreadsheet_validator import SpreadsheetValidator
-from validate import handler
+from google3.third_party.digitalbuildings.tools.abel.model import authenticator
+from google3.third_party.digitalbuildings.tools.abel.model import export_helper
+from google3.third_party.digitalbuildings.tools.abel.model import import_helper
+from google3.third_party.digitalbuildings.tools.abel.model.arg_parser import ParseArgs
+from google3.third_party.digitalbuildings.tools.abel.model.constants import SPREADSHEET_RANGE
+from google3.third_party.digitalbuildings.tools.abel.model.model_builder import ModelBuilder
+from google3.third_party.digitalbuildings.tools.abel.validators.spreadsheet_validator import SpreadsheetValidator
+from google3.third_party.digitalbuildings.tools.validators.instance_validator.validate import handler
 
 # TODO(b/235149197) Implement telemetry validation.
 DATETIME_STRING = datetime.datetime.now().strftime('%m-%d-%Y_%H:%M')

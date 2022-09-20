@@ -15,11 +15,11 @@
 
 from absl.testing import absltest
 
-from model.constants import BC_GUID
-from model.constants import RAW_STATE
-from model.constants import STANDARD_FIELD_NAME
-from model.constants import STANDARD_STATE
-from model.state import State
+from google3.third_party.digitalbuildings.tools.abel.model.constants import BC_GUID
+from google3.third_party.digitalbuildings.tools.abel.model.constants import RAW_STATE
+from google3.third_party.digitalbuildings.tools.abel.model.constants import STANDARD_FIELD_NAME
+from google3.third_party.digitalbuildings.tools.abel.model.constants import STANDARD_STATE
+from google3.third_party.digitalbuildings.tools.abel.model.state import State
 
 _TEST_STATE_DICT = {
     BC_GUID: 'test_guid',

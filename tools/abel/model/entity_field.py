@@ -15,24 +15,25 @@
 
 from typing import Dict, List, Optional
 
-from model.constants import BC_GUID
-from model.constants import ENTITY_CODE
-from model.constants import METADATA
-from model.constants import NO_UNITS
-from model.constants import RAW_FIELD_NAME
-from model.constants import RAW_UNIT_PATH
-from model.constants import RAW_UNIT_VALUE
-from model.constants import REPORTING_ENTITY_CODE
-from model.constants import REPORTING_ENTITY_FIELD_NAME
-from model.constants import REPORTING_ENTITY_GUID
-from model.constants import STANDARD_FIELD_NAME
-from model.constants import STANDARD_UNIT_VALUE
-from model.guid_to_entity_map import GuidToEntityMap
-from model.state import State
-from model.units import Units
+from google3.third_party.digitalbuildings.tools.abel.model.constants import BC_GUID
+from google3.third_party.digitalbuildings.tools.abel.model.constants import ENTITY_CODE
+from google3.third_party.digitalbuildings.tools.abel.model.constants import METADATA
+from google3.third_party.digitalbuildings.tools.abel.model.constants import NO_UNITS
+from google3.third_party.digitalbuildings.tools.abel.model.constants import RAW_FIELD_NAME
+from google3.third_party.digitalbuildings.tools.abel.model.constants import RAW_UNIT_PATH
+from google3.third_party.digitalbuildings.tools.abel.model.constants import RAW_UNIT_VALUE
+from google3.third_party.digitalbuildings.tools.abel.model.constants import REPORTING_ENTITY_CODE
+from google3.third_party.digitalbuildings.tools.abel.model.constants import REPORTING_ENTITY_FIELD_NAME
+from google3.third_party.digitalbuildings.tools.abel.model.constants import REPORTING_ENTITY_GUID
+from google3.third_party.digitalbuildings.tools.abel.model.constants import STANDARD_FIELD_NAME
+from google3.third_party.digitalbuildings.tools.abel.model.constants import STANDARD_UNIT_VALUE
+from google3.third_party.digitalbuildings.tools.abel.model.guid_to_entity_map import GuidToEntityMap
+from google3.third_party.digitalbuildings.tools.abel.model.state import State
+from google3.third_party.digitalbuildings.tools.abel.model.units import Units
 
 
-# TODO(b/229631364) Extend to telemetry field and metadata field classes
+# TODO(b/229631364) Extend to telemetry field and metadata field classes.
+# TODO(b/247624350) Deprecate device_id attribute.
 class EntityField(object):
   """A class to store information on an entity field.
 

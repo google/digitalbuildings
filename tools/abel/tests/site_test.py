@@ -16,20 +16,20 @@
 
 from absl.testing import absltest
 
-from model.constants import BC_GUID
-from model.constants import BUILDING_CODE
-from model.constants import CLOUD_DEVICE_ID
-from model.constants import ENTITY_CODE
-from model.constants import METADATA
-from model.constants import NAMESPACE
-from model.constants import TYPE_NAME
-from model.entity import ReportingEntity
-from model.site import Site
-from abel.tests.test_constants import TEST_CLOUD_DEVICE_ID
-from abel.tests.test_constants import TEST_NAMESPACE
-from abel.tests.test_constants import TEST_REPORTING_ENTITY_CODE
-from abel.tests.test_constants import TEST_REPORTING_GUID
-from abel.tests.test_constants import TEST_TYPE_NAME
+from google3.third_party.digitalbuildings.tools.abel.model.constants import BC_GUID
+from google3.third_party.digitalbuildings.tools.abel.model.constants import BUILDING_CODE
+from google3.third_party.digitalbuildings.tools.abel.model.constants import CLOUD_DEVICE_ID
+from google3.third_party.digitalbuildings.tools.abel.model.constants import ENTITY_CODE
+from google3.third_party.digitalbuildings.tools.abel.model.constants import METADATA
+from google3.third_party.digitalbuildings.tools.abel.model.constants import NAMESPACE
+from google3.third_party.digitalbuildings.tools.abel.model.constants import TYPE_NAME
+from google3.third_party.digitalbuildings.tools.abel.model.entity import ReportingEntity
+from google3.third_party.digitalbuildings.tools.abel.model.site import Site
+from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_CLOUD_DEVICE_ID
+from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_NAMESPACE
+from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_REPORTING_ENTITY_CODE
+from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_REPORTING_GUID
+from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_TYPE_NAME
 
 _TEST_REPORTING_ENTITY_DICT = {
     ENTITY_CODE: TEST_REPORTING_ENTITY_CODE,

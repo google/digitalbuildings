@@ -15,7 +15,7 @@
 
 from absl.testing import absltest
 
-from model import authenticator
+from google3.third_party.digitalbuildings.tools.abel.model import authenticator
 
 
 class AuthenticatorTest(absltest.TestCase):

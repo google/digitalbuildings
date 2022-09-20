@@ -15,15 +15,15 @@
 
 from absl.testing import absltest
 
-from model.entity_field import EntityField
-from model.state import State
-from model.units import Units
-from abel.tests.test_constants import TEST_ENTITY_FIELD_DICT_WITH_NO_UNITS
-from abel.tests.test_constants import TEST_ENTITY_FIELD_DICT_WITH_UNITS
-from abel.tests.test_constants import TEST_RAW_FIELD_NAME
-from abel.tests.test_constants import TEST_STANDARD_FIELD_NAME
-from abel.tests.test_constants import TEST_STATE_DICT
-from abel.tests.test_constants import TEST_UNITS
+from google3.third_party.digitalbuildings.tools.abel.model.entity_field import EntityField
+from google3.third_party.digitalbuildings.tools.abel.model.state import State
+from google3.third_party.digitalbuildings.tools.abel.model.units import Units
+from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_ENTITY_FIELD_DICT_WITH_STATES
+from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_ENTITY_FIELD_DICT_WITH_UNITS
+from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_RAW_FIELD_NAME
+from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_STANDARD_FIELD_NAME
+from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_STATE_DICT
+from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_UNITS
 
 
 class EntityFieldTest(absltest.TestCase):
@@ -42,7 +42,7 @@ class EntityFieldTest(absltest.TestCase):
 
   def testAddState(self):
     test_entity_field_instance = EntityField.FromDict(
-        TEST_ENTITY_FIELD_DICT_WITH_NO_UNITS)
+        TEST_ENTITY_FIELD_DICT_WITH_STATES)
     test_state = State.FromDict(TEST_STATE_DICT)
 
     test_entity_field_instance.states = [test_state]
@@ -51,14 +51,14 @@ class EntityFieldTest(absltest.TestCase):
 
   def testAddStateRaisesTypeError(self):
     test_entity_field_instance = EntityField.FromDict(
-        TEST_ENTITY_FIELD_DICT_WITH_NO_UNITS)
+        TEST_ENTITY_FIELD_DICT_WITH_STATES)
 
     with self.assertRaises(TypeError):
       test_entity_field_instance.AddState('state_string')
 
   def testAddUnits(self):
     test_entity_field_instance = EntityField.FromDict(
-        TEST_ENTITY_FIELD_DICT_WITH_NO_UNITS)
+        TEST_ENTITY_FIELD_DICT_WITH_STATES)
 
     test_entity_field_instance.units = TEST_UNITS
 
@@ -66,7 +66,7 @@ class EntityFieldTest(absltest.TestCase):
 
   def testEntityFieldWithStatesRaisesAttributeError(self):
     test_entity_field_instance = EntityField.FromDict(
-        TEST_ENTITY_FIELD_DICT_WITH_NO_UNITS)
+        TEST_ENTITY_FIELD_DICT_WITH_STATES)
     test_state = State.FromDict(TEST_STATE_DICT)
 
     test_entity_field_instance.states = [test_state]

@@ -15,13 +15,14 @@
 
 from typing import Dict, List, Optional
 
-from model.constants import BC_GUID
-from model.constants import BUILDING_CODE
-from model.constants import SITE_NAMESPACE
-from model.constants import SITE_TYPE_NAME
-from model.entity import Entity
+from google3.third_party.digitalbuildings.tools.abel.model.constants import BC_GUID
+from google3.third_party.digitalbuildings.tools.abel.model.constants import BUILDING_CODE
+from google3.third_party.digitalbuildings.tools.abel.model.constants import SITE_NAMESPACE
+from google3.third_party.digitalbuildings.tools.abel.model.constants import SITE_TYPE_NAME
+from google3.third_party.digitalbuildings.tools.abel.model.entity import Entity
 
 
+# TODO(b/247621096): Combine site namespace and type name into one attribute.
 class Site(object):
   """Data container for a Building Configuration site.
 

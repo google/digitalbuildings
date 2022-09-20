@@ -20,16 +20,16 @@ from absl.testing import absltest
 from googleapiclient.discovery import build
 from googleapiclient.http import HttpMockSequence
 
-from model import import_helper
-from model.constants import SHEETS
-from model.constants import V4
-from model.export_helper import BuildingConfigExport
-from model.export_helper import GoogleSheetExport
-from model.guid_to_entity_map import GuidToEntityMap
-from model.model_builder import ModelBuilder
-from model.model_error import SpreadsheetAuthorizationError
-from abel.tests.test_constants import TEST_RESOURCES
-from abel.tests.test_constants import TEST_SPREADSHEET
+from google3.third_party.digitalbuildings.tools.abel.model import import_helper
+from google3.third_party.digitalbuildings.tools.abel.model.constants import SHEETS
+from google3.third_party.digitalbuildings.tools.abel.model.constants import V4
+from google3.third_party.digitalbuildings.tools.abel.model.export_helper import BuildingConfigExport
+from google3.third_party.digitalbuildings.tools.abel.model.export_helper import GoogleSheetExport
+from google3.third_party.digitalbuildings.tools.abel.model.guid_to_entity_map import GuidToEntityMap
+from google3.third_party.digitalbuildings.tools.abel.model.model_builder import ModelBuilder
+from google3.third_party.digitalbuildings.tools.abel.model.model_error import SpreadsheetAuthorizationError
+from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_RESOURCES
+from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_SPREADSHEET
 
 _GOOD_TEST_BUILDING_CONFIG = os.path.join(TEST_RESOURCES,
                                           'good_test_building_config.yaml')
@@ -137,7 +137,20 @@ class ExportHelperTest(absltest.TestCase):
     self.assertEqual(
         ['cloud_device_id', 'code', 'translation', 'type'],
         list(exported_building_config.get('test_reporting_guid').keys()))
-
+    self.assertIsInstance(
+        exported_building_config.get('test_reporting_guid').get(
+            'cloud_device_id'), str)
+    self.assertEqual(
+        exported_building_config.get('test_reporting_guid').get(
+            'cloud_device_id'), '2541901344105616')
+    states = exported_building_config.get('test_reporting_guid').get(
+        'translation').get('fire_alarm_5').get('states')
+    for raw_state in states.values():
+      self.assertIsInstance(raw_state, str)
+    units = exported_building_config.get('test_reporting_guid').get(
+        'translation').get('supply_water_temperature_sensor_1').get('units')
+    for raw_unit_value in units.get('values').values():
+      self.assertIsInstance(raw_unit_value, str)
 
 if __name__ == '__main__':
   absltest.main()

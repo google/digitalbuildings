@@ -16,8 +16,8 @@
 import abc
 from typing import Optional
 
-from model.constants import CONNECTIONS
-from model.constants import ENTITIES
+from google3.third_party.digitalbuildings.tools.abel.model.constants import CONNECTIONS
+from google3.third_party.digitalbuildings.tools.abel.model.constants import ENTITIES
 
 
 class BaseSpreadsheetError(Exception):

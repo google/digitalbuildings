@@ -16,40 +16,40 @@
 from typing import Dict, List
 import uuid
 
-from model.connection import Connection as ABELConnection
-from model.constants import ALL_CONNECTION_HEADERS
-from model.constants import ALL_ENTITY_HEADERS
-from model.constants import ALL_FIELD_HEADERS
-from model.constants import ALL_SITE_HEADERS
-from model.constants import ALL_STATE_HEADERS
-from model.constants import BC_GUID
-from model.constants import CONNECTION_TYPE
-from model.constants import CONNECTIONS
-from model.constants import ENTITIES
-from model.constants import ENTITY_CODE
-from model.constants import ENTITY_FIELDS
-from model.constants import IS_REPORTING
-from model.constants import REPORTING_ENTITY_CODE
-from model.constants import REPORTING_ENTITY_GUID
-from model.constants import SITES
-from model.constants import SOURCE_ENTITY_CODE
-from model.constants import SOURCE_ENTITY_GUID
-from model.constants import STATES
-from model.constants import TARGET_ENTITY_CODE
-from model.constants import TARGET_ENTITY_GUID
-from model.entity import Entity
-from model.entity import ReportingEntity
-from model.entity import VirtualEntity
-from model.entity_field import EntityField
-from model.guid_to_entity_map import GuidToEntityMap
-from model.site import Site
-from model.state import State
-from model.units import Units
-from validate.connection import Connection as IVConnection
-from validate.entity_instance import EntityInstance
-from validate.field_translation import DimensionalValue
-from validate.field_translation import MultiStateValue
-from validate.link import Link
+from google3.third_party.digitalbuildings.tools.abel.model.connection import Connection as ABELConnection
+from google3.third_party.digitalbuildings.tools.abel.model.constants import ALL_CONNECTION_HEADERS
+from google3.third_party.digitalbuildings.tools.abel.model.constants import ALL_ENTITY_HEADERS
+from google3.third_party.digitalbuildings.tools.abel.model.constants import ALL_FIELD_HEADERS
+from google3.third_party.digitalbuildings.tools.abel.model.constants import ALL_SITE_HEADERS
+from google3.third_party.digitalbuildings.tools.abel.model.constants import ALL_STATE_HEADERS
+from google3.third_party.digitalbuildings.tools.abel.model.constants import BC_GUID
+from google3.third_party.digitalbuildings.tools.abel.model.constants import CONNECTION_TYPE
+from google3.third_party.digitalbuildings.tools.abel.model.constants import CONNECTIONS
+from google3.third_party.digitalbuildings.tools.abel.model.constants import ENTITIES
+from google3.third_party.digitalbuildings.tools.abel.model.constants import ENTITY_CODE
+from google3.third_party.digitalbuildings.tools.abel.model.constants import ENTITY_FIELDS
+from google3.third_party.digitalbuildings.tools.abel.model.constants import IS_REPORTING
+from google3.third_party.digitalbuildings.tools.abel.model.constants import REPORTING_ENTITY_CODE
+from google3.third_party.digitalbuildings.tools.abel.model.constants import REPORTING_ENTITY_GUID
+from google3.third_party.digitalbuildings.tools.abel.model.constants import SITES
+from google3.third_party.digitalbuildings.tools.abel.model.constants import SOURCE_ENTITY_CODE
+from google3.third_party.digitalbuildings.tools.abel.model.constants import SOURCE_ENTITY_GUID
+from google3.third_party.digitalbuildings.tools.abel.model.constants import STATES
+from google3.third_party.digitalbuildings.tools.abel.model.constants import TARGET_ENTITY_CODE
+from google3.third_party.digitalbuildings.tools.abel.model.constants import TARGET_ENTITY_GUID
+from google3.third_party.digitalbuildings.tools.abel.model.entity import Entity
+from google3.third_party.digitalbuildings.tools.abel.model.entity import ReportingEntity
+from google3.third_party.digitalbuildings.tools.abel.model.entity import VirtualEntity
+from google3.third_party.digitalbuildings.tools.abel.model.entity_field import EntityField
+from google3.third_party.digitalbuildings.tools.abel.model.guid_to_entity_map import GuidToEntityMap
+from google3.third_party.digitalbuildings.tools.abel.model.site import Site
+from google3.third_party.digitalbuildings.tools.abel.model.state import State
+from google3.third_party.digitalbuildings.tools.abel.model.units import Units
+from google3.third_party.digitalbuildings.tools.validators.instance_validator.validate.connection import Connection as IVConnection
+from google3.third_party.digitalbuildings.tools.validators.instance_validator.validate.entity_instance import EntityInstance
+from google3.third_party.digitalbuildings.tools.validators.instance_validator.validate.field_translation import DimensionalValue
+from google3.third_party.digitalbuildings.tools.validators.instance_validator.validate.field_translation import MultiStateValue
+from google3.third_party.digitalbuildings.tools.validators.instance_validator.validate.link import Link
 
 
 class ModelBuilder(object):
@@ -134,7 +134,7 @@ class ModelBuilder(object):
           entity.AddConnection(connection)
       for field in self.fields:
         for state in self.states:
-          if state.standard_field_name == field.standard_field_name and state.entity_guid == guid:
+          if state.standard_field_name == field.reporting_entity_field_name and state.entity_guid == guid:
             field.AddState(state)
         if isinstance(entity, VirtualEntity):
           if field.entity_guid == guid:

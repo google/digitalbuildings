@@ -15,9 +15,9 @@
 
 from typing import Dict
 
-from model.constants import RAW_UNIT_PATH
-from model.constants import RAW_UNIT_VALUE
-from model.constants import STANDARD_UNIT_VALUE
+from google3.third_party.digitalbuildings.tools.abel.model.constants import RAW_UNIT_PATH
+from google3.third_party.digitalbuildings.tools.abel.model.constants import RAW_UNIT_VALUE
+from google3.third_party.digitalbuildings.tools.abel.model.constants import STANDARD_UNIT_VALUE
 
 
 class Units(object):

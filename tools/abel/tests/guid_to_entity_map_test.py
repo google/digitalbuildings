@@ -15,15 +15,15 @@
 
 from absl.testing import absltest
 
-from model.entity import ReportingEntity
-from model.entity import VirtualEntity
-from model.guid_to_entity_map import GuidToEntityMap
-from model.site import Site
-from abel.tests.test_constants import TEST_REPORTING_ENTITY_DICT
-from abel.tests.test_constants import TEST_REPORTING_GUID
-from abel.tests.test_constants import TEST_SITE_DICT
-from abel.tests.test_constants import TEST_SITE_DICT_NO_GUID
-from abel.tests.test_constants import TEST_VIRTUAL_ENTITY_DICT
+from google3.third_party.digitalbuildings.tools.abel.model.entity import ReportingEntity
+from google3.third_party.digitalbuildings.tools.abel.model.entity import VirtualEntity
+from google3.third_party.digitalbuildings.tools.abel.model.guid_to_entity_map import GuidToEntityMap
+from google3.third_party.digitalbuildings.tools.abel.model.site import Site
+from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_REPORTING_ENTITY_DICT
+from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_REPORTING_GUID
+from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_SITE_DICT
+from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_SITE_DICT_NO_GUID
+from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_VIRTUAL_ENTITY_DICT
 
 _TEST_REPORTING_ENTITY = ReportingEntity.FromDict(TEST_REPORTING_ENTITY_DICT)
 _TEST_VIRTUAL_ENTITY = VirtualEntity.FromDict(TEST_VIRTUAL_ENTITY_DICT)
