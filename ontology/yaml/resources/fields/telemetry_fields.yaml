@@ -1669,3 +1669,6 @@ literals:
 
 ## New fields for seismic detector
 - seismic_alarm
+
+## New fields for RO water system
+- water_totaldissolvedsolids_concentration_sensor

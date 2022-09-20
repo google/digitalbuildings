@@ -230,6 +230,7 @@ descriptor:
   sweeper: "Action performed in a sump to prevent sediment build-up via water turbulence."
   sync: "The simultaneous operation or activity of two or more things."
   tertiary: "Associated with the tertiary (peripheral) loops of a production process."
+  totaldissolvedsolids: "Total dissolved solids (TDS) is the amount of minerals, metals, organic material and salts that are dissolved in a certain water volume."
   ultraviolet: "A short wavelength type of light that is beyond the visible spectrum. It is damaging to DNA and cells, and is commonly used to sterilize surfaces."
   unoccupied: "State of being outside of scheduled (time of day or week) run-time parameters."
   use: "A descriptor for how the entity in question is used (e.g. zone_use_label = 'office') "
@@ -246,6 +247,7 @@ descriptor:
   yaxis: "Horizontal axis of a three-dimensional Cartesian coordinate system (ordinate)."
   zaxis: "Vertical axis of a three-dimensional Cartesian coordinate system (applicate)."
   zone: "Region of building which is conditioned."
+
 measurement:
   acceleration: "The rate of change of velocity per unit of time."
   angle: "The figure formed by two rays, sharing a common endpoint."

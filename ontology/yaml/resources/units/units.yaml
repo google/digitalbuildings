@@ -36,6 +36,7 @@ concentration:
 - parts_per_billion
 - grams_per_kilogram # Can convert approximately using Avogadro
 - grams_of_water_per_kilogram
+- miligrams_per_litre
 current:
 - amperes: STANDARD
 - milliamperes
