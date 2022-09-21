@@ -109,3 +109,15 @@ jobs:
     - name: Run Pylint on RDF Generator
       run: |
         pylint --rcfile ./styles/pylintrc ./tools/rdf_generator
+      #---------- ABEL ----------#
+    - name: Run ABEL install dependencies
+      run: |
+        python setup.py install
+      working-directory: ./tools/abel
+    - name: ABEL tests
+      run: |
+        python -m unittest discover -p '*_test.py' --failfast -v
+      working-directory: ./tools/abel/tests
+    - name: Run pylint on ABEL
+      run: |
+111         pylint --rcfile ./styles/pylintrc ./tools/abel
