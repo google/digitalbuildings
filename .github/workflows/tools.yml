@@ -39,7 +39,7 @@ jobs:
             - 'tools/rdf_generator/**'
           type_validator:
             - 'tools/validators/ontology_validator/**'
-          scorer:
+          scoring:
             - 'tools/scoring/**'
     - name: Set up Python 3.9
       uses: actions/setup-python@v1
