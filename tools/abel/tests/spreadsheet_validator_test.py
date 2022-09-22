@@ -222,6 +222,7 @@ class SpreadsheetValidatorTest(absltest.TestCase):
     self.assertEmpty(with_guid_validator_results)
     self.assertFalse(is_valid)
 
+  # pylint: disable=line-too-long
   def testCreatesLogFile(self):
     log_path = '/build/work/e1cb3532038491632c91c4936844ac13345a/google3/tmp/code/test_model_validation_out.log'
     self.assertIsNotNone(pl.Path(log_path).resolve().is_file())

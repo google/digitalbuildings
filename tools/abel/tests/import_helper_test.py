@@ -29,6 +29,7 @@ from abel.tests.test_constants import TEST_RESOURCES
 _TEST_API_KEY = 'mock_api_key'
 
 
+# pylint: disable=consider-using-with
 class ImportTest(absltest.TestCase):
   """Tests import methods for ABEL."""
 

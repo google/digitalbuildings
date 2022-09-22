@@ -35,6 +35,7 @@ _GOOD_TEST_BUILDING_CONFIG = os.path.join(TEST_RESOURCES,
                                           'good_test_building_config.yaml')
 
 
+# pylint: disable=consider-using-with
 class ExportHelperTest(absltest.TestCase):
   """Tests export methods for ABEL."""
 
