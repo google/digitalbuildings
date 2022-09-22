@@ -87,8 +87,7 @@ jobs:
     - name: Run pylint on ABEL
       if: steps.changes.outputs.abel == 'true'
       run: |
-        pylint --rcfile ./styles/pylintrc ./tools/guid_generator
-      working-directory: ./tools/abel
+        pylint --rcfile ./styles/pylintrc ./tools/abel
     - name: ABEL Tests
       if: steps.changes.outputs.abel == 'true'
       run: |
