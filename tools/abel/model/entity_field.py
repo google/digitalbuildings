@@ -32,8 +32,6 @@ from model.state import State
 from model.units import Units
 
 
-# TODO(b/229631364) Extend to telemetry field and metadata field classes.
-# TODO(b/247624350) Deprecate device_id attribute.
 class EntityField(object):
   """A class to store information on an entity field.
 

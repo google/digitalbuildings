@@ -126,7 +126,11 @@ class ModelBuilder(object):
   # pylint: disable=line-too-long
   # TODO(b/234630862) Refactor Build method for readability.
   def Build(self) -> None:
-    """Connects ABEL graph with Guids as edges."""
+    """Connects ABEL graph with Guids as edges.
+
+    Connects all entities to a site, fields to entities, and entities to
+    entities based on attributes.
+    """
     self.site.entities = self.entities
     for guid in self.site.entities:
       entity = self.guid_to_entity_map.GetEntityByGuid(guid)
