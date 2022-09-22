@@ -44,6 +44,7 @@ from model.constants import STATES
 from model.constants import TARGET_ENTITY_CODE
 from model.constants import TARGET_ENTITY_GUID
 from model.constants import TYPE_NAME
+<<<<<<< HEAD
 from abel.tests.test_constants import TEST_NAMESPACE
 from abel.tests.test_constants import TEST_REPORTING_ENTITY_CODE
 from abel.tests.test_constants import TEST_REPORTING_ENTITY_DICT
@@ -53,6 +54,12 @@ from validators.spreadsheet_error import ConnectionDependencyError
 from validators.spreadsheet_error import CrossSheetDependencyError
 from validators.spreadsheet_error import MissingSpreadsheetValueError
 from validators.spreadsheet_error import SpreadsheetHeaderError
+=======
+from tests.test_constants import TEST_NAMESPACE
+from tests.test_constants import TEST_REPORTING_ENTITY_CODE
+from tests.test_constants import TEST_REPORTING_ENTITY_DICT
+from tests.test_constants import TEST_SPREADSHEET
+>>>>>>> master
 from validators.spreadsheet_validator import SpreadsheetValidator
 
 

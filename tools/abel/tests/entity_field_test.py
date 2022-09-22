@@ -18,12 +18,21 @@ from absl.testing import absltest
 from model.entity_field import EntityField
 from model.state import State
 from model.units import Units
+<<<<<<< HEAD
 from abel.tests.test_constants import TEST_ENTITY_FIELD_DICT_WITH_STATES
 from abel.tests.test_constants import TEST_ENTITY_FIELD_DICT_WITH_UNITS
 from abel.tests.test_constants import TEST_RAW_FIELD_NAME
 from abel.tests.test_constants import TEST_STANDARD_FIELD_NAME
 from abel.tests.test_constants import TEST_STATE_DICT
 from abel.tests.test_constants import TEST_UNITS
+=======
+from tests.test_constants import TEST_ENTITY_FIELD_DICT_WITH_NO_UNITS
+from tests.test_constants import TEST_ENTITY_FIELD_DICT_WITH_UNITS
+from tests.test_constants import TEST_RAW_FIELD_NAME
+from tests.test_constants import TEST_STANDARD_FIELD_NAME
+from tests.test_constants import TEST_STATE_DICT
+from tests.test_constants import TEST_UNITS
+>>>>>>> master
 
 
 class EntityFieldTest(absltest.TestCase):
