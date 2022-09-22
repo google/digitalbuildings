@@ -94,18 +94,6 @@ jobs:
        python -m unittest discover -p '*_test.py' --failfast -v
       working-directory: ./tools/guid_generator
 
-      #---------- ABEL ----------#
-    - name: Run ABEL install dependencies
-      if: steps.changes.outputs.abel == 'true'
-      run: |
-        python setup.py install
-      working-directory: ./tools/abel
-    - name: ABEL tests
-      if: steps.changes.outputs.abel == 'true'
-      run: |
-        python -m unittest discover -p '*_test.py' --failfast -v
-      working-directory: ./tools/abel/tests
-
      #---------- RDF Generator ----------#
     - name:  RDF Generator Install dependencies
       if: steps.changes.outputs.rdf_generator == 'true'
