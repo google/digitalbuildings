@@ -28,6 +28,8 @@ else:
 
 APPLICATION_ROOT = path.join(REPO_ROOT, 'tools', 'abel')
 
+ONTOLOGY_ROOT = path.join(REPO_ROOT, 'ontology', 'yaml', 'resources')
+
 BC_GUID_REGEX = '^[0-9a-f]{8}-([0-9a-f]{4}-){3}[0-9a-f]{12}:'
 
 CLIENT_CREDENTIALS = path.join(path.expanduser('~'), 'abel/client_secrets.json')

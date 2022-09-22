@@ -74,6 +74,15 @@ guid_generator_setup()
   cd ..
 }
 
+abel_setup()
+{
+  echo "Starting ABEL setup"
+  cd abel
+  python -m pip install .
+  echo "Finished ABEL setup"
+  cd ..
+}
+
 
 
 ontology_validator_setup
