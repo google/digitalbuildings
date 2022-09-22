@@ -24,7 +24,7 @@ if _USE_ABSOLUTE_PATH:
   REPO_ROOT = path.join('third_party', 'digitalbuildings')
 else:
   REPO_ROOT = path.join(
-      path.dirname(path.realpath(__file__)), path.join('..', '..', '..', '..'))
+      path.dirname(path.realpath(__file__)), path.join('..', '..', '..'))
 
 APPLICATION_ROOT = path.join(REPO_ROOT, 'tools', 'abel')
 
@@ -94,6 +94,7 @@ RAW_UNIT_VALUE = 'Raw Unit Value'
 ETAG = 'Etag'
 CLOUD_DEVICE_ID = 'Cloud Device ID'
 NAMESPACE = 'Namespace'
+FACILITIES_NAMESPACE = 'FACILITIES'
 GENERAL_TYPE = 'General Type'
 IS_REPORTING = 'Is Reporting'
 
