@@ -210,6 +210,8 @@ class BuildingConfigExport(object):
   def _SortLinks(self, entity: VirtualEntity) -> Dict[str, object]:
     """Sorts an entity's links by guid and returns mapping.
 
+    The returning mapping is compliant with the Building Config Schema.
+
     Args:
       entity: A VirtualEntity instance
 
