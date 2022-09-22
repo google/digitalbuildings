@@ -32,10 +32,10 @@ from model.constants import SOURCE_ENTITY_GUID
 from model.constants import TARGET_ENTITY_CODE
 from model.constants import TARGET_ENTITY_GUID
 from model.constants import TYPE_NAME
-from abel.tests.test_constants import TEST_NAMESPACE
-from abel.tests.test_constants import TEST_REPORTING_ENTITY_CODE
-from abel.tests.test_constants import TEST_REPORTING_ENTITY_DICT
-from abel.tests.test_constants import TEST_SPREADSHEET
+from tests.test_constants import TEST_NAMESPACE
+from tests.test_constants import TEST_REPORTING_ENTITY_CODE
+from tests.test_constants import TEST_REPORTING_ENTITY_DICT
+from tests.test_constants import TEST_SPREADSHEET
 from validators.spreadsheet_validator import SpreadsheetValidator
 
 _TEST_VALIDATOR_LOG_PATH = os.path.join(
