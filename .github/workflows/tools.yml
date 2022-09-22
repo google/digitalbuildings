@@ -15,7 +15,6 @@ on:
 
 jobs:
   build:
-    name: [ master-runner ]
     runs-on: ${{ matrix.os }}
     timeout-minutes: 60
     strategy:
@@ -52,19 +51,7 @@ jobs:
       run: |
         pylint --rcfile ./styles/pylintrc ./tools
 
-
      #TODO(b/210730979): Investigate calling ontology validator setup with instance validator setup
-     #---------- Ontology Explorer ----------#
-    - name: Ontology Explorer Install dependencies
-      if: steps.changes.outputs.explorer == 'true'
-      run: |
-        python setup.py install
-      working-directory: ./tools/explorer
-    - name: Ontology Explorer Tests
-      if: steps.changes.outputs.explorer == 'true'
-      run: |
-       python -m unittest discover -p '*_test.py' --failfast -v
-      working-directory: ./tools/explorer
 
     #---------- Ontology Yaml Type Validator ----------#
     - name:  Ontology Yaml Type Validator Install dependencies
@@ -77,6 +64,7 @@ jobs:
       run: |
        python -m unittest discover -p '*_test.py' --failfast -v
       working-directory: ./tools/validators/ontology_validator
+
     #---------- Ontology Yaml Instance Validator ----------#
     - name: Instance Yaml Validator Install dependencies
       if: steps.changes.outputs.instance_validator == 'true'
@@ -88,6 +76,18 @@ jobs:
       run: |
        python -m unittest discover -p '*_test.py' --failfast -v
       working-directory: ./tools/validators/instance_validator
+
+     #---------- Ontology Explorer ----------#
+    - name: Ontology Explorer Install dependencies
+      if: steps.changes.outputs.explorer == 'true'
+      run: |
+        python setup.py install
+      working-directory: ./tools/explorer
+    - name: Ontology Explorer Tests
+      if: steps.changes.outputs.explorer == 'true'
+      run: |
+       python -m unittest discover -p '*_test.py' --failfast -v
+      working-directory: ./tools/explorer
 
     #---------- Configuration scoring ----------#
     - name: Configuration scoring Install dependencies
