@@ -16,6 +16,7 @@
 import copy
 import os
 import pathlib as pl
+import tempfile
 
 from absl.testing import absltest
 
@@ -56,8 +57,8 @@ from validators.spreadsheet_error import SpreadsheetHeaderError
 from validators.spreadsheet_validator import SpreadsheetValidator
 
 
-_TEST_VALIDATOR_LOG_PATH = os.path.join(
-    os.path.expanduser('~'), 'code/test_model_validation_out.log')
+_TEST_VALIDATOR_LOG_PATH = os.path.join(tempfile.gettempdir(),
+                                        'test_model_validation_out.log')
 
 
 class SpreadsheetValidatorTest(absltest.TestCase):
