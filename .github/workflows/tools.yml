@@ -154,7 +154,7 @@ jobs:
       run: |
         pylint --rcfile ./styles/pylintrc ./tools/scoring
     - name: Configuration Scorer Tests
-      if: steps.changes.outputs.scoring == 'true' == steps.changes.outputs.instance_validator == 'true'
+      if: steps.changes.outputs.scoring == 'true' OR steps.changes.outputs.instance_validator == 'true'
       run: |
         python -m unittest discover -p '*_test.py' --failfast -v
       working-directory: ./tools/scoring
