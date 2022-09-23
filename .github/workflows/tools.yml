@@ -80,7 +80,7 @@ jobs:
 
      #---------- ABEL ----------#
     - name: ABEL install dependencies
-      if: steps.changes.outputs.abel == 'true'
+      if: steps.changes.outputs.abel == 'true' || steps.changes.outputs.instance_validator == 'true' || steps.changes.outputs.type_validator == 'true'
       run: |
         python setup.py install
       working-directory: ./tools/abel
@@ -96,7 +96,7 @@ jobs:
 
      #---------- GUID Generator ----------#
     - name:  GUID Generator Install dependencies
-      if: steps.changes.outputs.guid_generator == 'true'
+      if: steps.changes.outputs.guid_generator == 'true' || steps.changes.outputs.instance_validator == 'true'
       run: |
         python setup.py install
       working-directory: ./tools/guid_generator
@@ -129,7 +129,7 @@ jobs:
 
      #---------- Ontology Explorer ----------#
     - name: Ontology Explorer Install dependencies
-      if: steps.changes.outputs.explorer == 'true'
+      if: steps.changes.outputs.explorer == 'true' || steps.changes.outputs.type_validator == 'true' || steps.changes.outputs.instance_validator == 'true'
       run: |
         python setup.py install
       working-directory: ./tools/explorer
@@ -145,7 +145,7 @@ jobs:
 
     #---------- Configuration scoring ----------#
     - name: Configuration scoring Install dependencies
-      if: steps.changes.outputs.scoring == 'true'
+      if: steps.changes.outputs.scoring == 'true' || steps.changes.outputs.instance_validator == 'true'
       run: |
         python setup.py install
       working-directory: ./tools/scoring
