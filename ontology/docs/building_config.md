@@ -204,8 +204,7 @@ ENTITY-CODE:
     represents this entity.
 *   **Code:** The human readable identifier for the entity. This should
     be unique in document scope.
-*   **cloud_device_id:** the cloud device numeric id from the cloud iot registry. A server-generated device numeric ID. The device numeric ID is automatically created by Cloud IoT Core; it's globally unique and not editable. To view a device numeric ID, go to the [Device details page](https://cloud.google.com/iot/docs/how-tos/devices#getting_device_details).
-    This field is mandatory when a translation exists.
+*   **cloud_device_id:** the cloud device numeric id from the cloud iot registry. A server-generated device numeric ID. The device numeric ID is automatically created by Cloud IoT Core; it's globally unique and not editable. To view a device numeric ID, go to the [Device ids page(https://cloud.google.com/iot/docs/concepts/devices#device_identifiers). This field is mandatory when a translation exists.
 *   **Connections:** Used to specify connections from other entities (sources)
     pointing to this entity, with connection types. Entities are keys and cannot
     be repeated. Values are one or more connections, specified as a single
