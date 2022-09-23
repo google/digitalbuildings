@@ -22,6 +22,8 @@ import ast
 from os import path
 import sys
 
+# SMOKE TEST COMMENT
+
 from yamlformat.arg_parser import CreateParser
 
 from yamlformat.validator import external_file_lib
