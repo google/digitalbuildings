@@ -718,11 +718,11 @@ grouped in the following categories:
 
 1. [type](#type-update)
 2. [code](#code-update)
-3. [cloud_device_id](#cloud-device-id-update)
-4. [translation](#translation-update)
-5. [connections](connections-update)
-6. [links](#links-update)
-
+3. [translation](#translation-update)
+4. [connections](connections-update)
+5. [links](#links-update)
+<!-- 6. [cloud_device_id](#cloud-device-id-update)
+ -->
 #### Type update
 This update typically occurs alongside an update to the `translation` or `links`
 . If the update to another type contains the same fields, as the previous type,
