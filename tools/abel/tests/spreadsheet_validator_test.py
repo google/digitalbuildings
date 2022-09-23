@@ -56,7 +56,6 @@ from validators.spreadsheet_error import MissingSpreadsheetValueError
 from validators.spreadsheet_error import SpreadsheetHeaderError
 from validators.spreadsheet_validator import SpreadsheetValidator
 
-
 _TEST_VALIDATOR_LOG_PATH = os.path.join(tempfile.gettempdir(),
                                         'test_model_validation_out.log')
 
