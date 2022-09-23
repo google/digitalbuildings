@@ -24,6 +24,8 @@ This tool allows clients to independently validate their configuration files.
 It saves time and provides more accuracy than manual error checks.
 """
 
+# SMOKE TEST COMMENT
+
 from __future__ import print_function
 
 import argparse
