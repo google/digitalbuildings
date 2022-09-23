@@ -89,4 +89,5 @@ ontology_validator_setup
 instance_validator_setup
 explorer_setup
 guid_generator_setup
+abel_setup
 echo "Setup finished!"
