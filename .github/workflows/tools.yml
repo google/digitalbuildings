@@ -73,7 +73,7 @@ jobs:
       run: |
         pylint --rcfile ./styles/pylintrc ./tools/validators/instance_validator
     - name: Instance Yaml Validator Tests
-      if: steps.changes.outputs.instance_validator == 'true' OR steps.changes.outputs.type_validator == 'true'
+      if: steps.changes.outputs.instance_validator == 'true' || steps.changes.outputs.type_validator == 'true'
       run: |
        python -m unittest discover -p '*_test.py' --failfast -v
       working-directory: ./tools/validators/instance_validator
@@ -89,7 +89,7 @@ jobs:
       run: |
         pylint --rcfile ./styles/pylintrc ./tools/abel
     - name: ABEL Tests
-      if: steps.changes.outputs.abel == 'true' OR steps.changes.outputs.instance_validator == 'true' OR steps.changes.outputs.type_validator == 'true'
+      if: steps.changes.outputs.abel == 'true' || steps.changes.outputs.instance_validator == 'true' || steps.changes.outputs.type_validator == 'true'
       run: |
        python -m unittest discover -p '*_test.py' --failfast -v
       working-directory: ./tools/abel
@@ -105,7 +105,7 @@ jobs:
       run: |
         pylint --rcfile ./styles/pylintrc ./tools/guid_generator
     - name:  GUID Generator Tests
-      if: steps.changes.outputs.guid_generator == 'true' OR steps.changes.outputs.instance_validator == 'true'
+      if: steps.changes.outputs.guid_generator == 'true' || steps.changes.outputs.instance_validator == 'true'
       run: |
        python -m unittest discover -p '*_test.py' --failfast -v
       working-directory: ./tools/guid_generator
@@ -138,7 +138,7 @@ jobs:
       run: |
         pylint --rcfile ./styles/pylintrc ./tools/explorer
     - name: Ontology Explorer Tests
-      if: steps.changes.outputs.explorer == 'true' OR steps.changes.outputs.type_validator == 'true' OR steps.changes.outputs.instance_validator == 'true'
+      if: steps.changes.outputs.explorer == 'true' || steps.changes.outputs.type_validator == 'true' || steps.changes.outputs.instance_validator == 'true'
       run: |
        python -m unittest discover -p '*_test.py' --failfast -v
       working-directory: ./tools/explorer
@@ -154,7 +154,7 @@ jobs:
       run: |
         pylint --rcfile ./styles/pylintrc ./tools/scoring
     - name: Configuration Scorer Tests
-      if: steps.changes.outputs.scoring == 'true' OR steps.changes.outputs.instance_validator == 'true'
+      if: steps.changes.outputs.scoring == 'true' || steps.changes.outputs.instance_validator == 'true'
       run: |
         python -m unittest discover -p '*_test.py' --failfast -v
       working-directory: ./tools/scoring
