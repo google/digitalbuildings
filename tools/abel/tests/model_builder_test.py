@@ -29,14 +29,14 @@ from model.guid_to_entity_map import GuidToEntityMap
 from model.model_builder import ModelBuilder
 from model.site import Site
 from model.state import State
-from abel.tests.test_constants import TEST_CONNECTION_DICT
-from abel.tests.test_constants import TEST_ENTITY_FIELD_DICT_WITH_NO_UNITS
-from abel.tests.test_constants import TEST_ENTITY_FIELD_DICT_WITH_UNITS
-from abel.tests.test_constants import TEST_REPORTING_ENTITY_DICT
-from abel.tests.test_constants import TEST_RESOURCES
-from abel.tests.test_constants import TEST_SITE_DICT
-from abel.tests.test_constants import TEST_STATE_DICT
-from abel.tests.test_constants import TEST_VIRTUAL_ENTITY_DICT
+from tests.test_constants import TEST_CONNECTION_DICT
+from tests.test_constants import TEST_ENTITY_FIELD_DICT_WITH_STATES
+from tests.test_constants import TEST_ENTITY_FIELD_DICT_WITH_UNITS
+from tests.test_constants import TEST_REPORTING_ENTITY_DICT
+from tests.test_constants import TEST_RESOURCES
+from tests.test_constants import TEST_SITE_DICT
+from tests.test_constants import TEST_STATE_DICT
+from tests.test_constants import TEST_VIRTUAL_ENTITY_DICT
 
 
 class ModelBuilderTest(absltest.TestCase):
@@ -51,7 +51,7 @@ class ModelBuilderTest(absltest.TestCase):
         ENTITIES: [TEST_REPORTING_ENTITY_DICT, TEST_VIRTUAL_ENTITY_DICT],
         ENTITY_FIELDS: [
             TEST_ENTITY_FIELD_DICT_WITH_UNITS,
-            TEST_ENTITY_FIELD_DICT_WITH_NO_UNITS
+            TEST_ENTITY_FIELD_DICT_WITH_STATES
         ],
         CONNECTIONS: [TEST_CONNECTION_DICT],
         STATES: [TEST_STATE_DICT]
@@ -68,7 +68,7 @@ class ModelBuilderTest(absltest.TestCase):
             model.site.entities[1]).connections[0].source_entity_guid)
 
     self.assertEqual(added_entity.translations[1],
-                     EntityField.FromDict(TEST_ENTITY_FIELD_DICT_WITH_NO_UNITS))
+                     EntityField.FromDict(TEST_ENTITY_FIELD_DICT_WITH_STATES))
     self.assertEqual(added_entity.translations[1].states[0],
                      State.FromDict(TEST_STATE_DICT))
     self.assertEqual(source_entity.code,
@@ -80,7 +80,7 @@ class ModelBuilderTest(absltest.TestCase):
         ENTITIES: [TEST_REPORTING_ENTITY_DICT, TEST_VIRTUAL_ENTITY_DICT],
         ENTITY_FIELDS: [
             TEST_ENTITY_FIELD_DICT_WITH_UNITS,
-            TEST_ENTITY_FIELD_DICT_WITH_NO_UNITS
+            TEST_ENTITY_FIELD_DICT_WITH_STATES
         ],
         CONNECTIONS: [TEST_CONNECTION_DICT],
         STATES: [TEST_STATE_DICT]
@@ -115,12 +115,16 @@ class ModelBuilderTest(absltest.TestCase):
     self.assertLen(model.states, 2)
 
   def testToModelDictionary(self):
+    """Builds a dictionary model of an ABEL spreadsheet.
+
+    Values correspond to spreadsheet headers and values.
+    """
     test_spreadsheet = {
         SITES: [TEST_SITE_DICT],
         ENTITIES: [TEST_REPORTING_ENTITY_DICT, TEST_VIRTUAL_ENTITY_DICT],
         ENTITY_FIELDS: [
             TEST_ENTITY_FIELD_DICT_WITH_UNITS,
-            TEST_ENTITY_FIELD_DICT_WITH_NO_UNITS
+            TEST_ENTITY_FIELD_DICT_WITH_STATES
         ],
         CONNECTIONS: [TEST_CONNECTION_DICT],
         STATES: [TEST_STATE_DICT]
@@ -129,18 +133,35 @@ class ModelBuilderTest(absltest.TestCase):
     model = ModelBuilder.FromSpreadsheet(test_spreadsheet)
     expected_result = {
         'Site': [['Building Code', 'Guid'], ['UK-LON-S2', 'test_site_guid']],
-        'Entities': [[
-            'Entity Code', 'Guid', 'Is Reporting', 'Cloud Device ID', 'Etag',
-            'Namespace', 'Type Name'
+        'Entities': [
+            [
+                'Entity Code', 'Guid', 'Is Reporting', 'Cloud Device ID',
+                'Etag', 'Namespace', 'Type Name'
+            ],
+            [
+                'CHWS-1',
+                'test_reporting_guid',
+                # Is reporting = True
+                True,
+                '2541901344105616',
+                # Etag = None
+                None,
+                'HVAC',
+                'CHWS_WDT'
+            ],
+            [
+                'VLV-23',
+                'test_virtual_guid',
+                # Is reporting = False
+                False,
+                # Cloud device id = None because this is a virtual entity
+                None,
+                # Etag = None
+                None,
+                'HVAC',
+                'CHWS_WDT'
+            ]
         ],
-                     [
-                         'CHWS-1', 'test_reporting_guid', True, '12345678910',
-                         None, 'HVAC', 'CHWS_WDT'
-                     ],
-                     [
-                         'VLV-23', 'test_virtual_guid', False, None, None,
-                         'HVAC', 'CHWS_WDT'
-                     ]],
         'Entity Fields':
             [[
                 'Standard Field Name', 'Raw Field Name',
@@ -157,14 +178,14 @@ class ModelBuilderTest(absltest.TestCase):
                  'pascals', 'Pa'
              ],
              [
-                 'run_command', 'points.run_command.present_value',
-                 'run_command', 'CHWS-1', 'test_reporting_guid', 'CHWS-1',
+                 'fire_alarm', 'points.fire_alarm_5.present_value',
+                 'fire_alarm_5', 'CHWS-1', 'test_reporting_guid', 'CHWS-1',
                  'test_reporting_guid'
              ]],
         'States': [[
             'Entity Code', 'Guid', 'Standard Field Name', 'Standard State',
             'Payload State'
-        ], ['CHWS-1', 'test_reporting_guid', 'run_command', 'ON', 'TRUE']],
+        ], ['CHWS-1', 'test_reporting_guid', 'fire_alarm_5', 'ON', 'TRUE']],
         'Connections': [[
             'Source Entity Code', 'Source Entity Guid', 'Target Entity Code',
             'Target Entity Guid', 'Connection Type'
