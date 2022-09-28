@@ -50,6 +50,19 @@ FCU_DFSS_CSP_DXZC:
   - CSP
   - DXZC
 
+FCU_DFSS_DFVSC_DXRC_DFRMM:
+  id: "13611362002294276096"
+  description: "Typical DX FCU with cooling-only (return control) with run mode and failed alarm ."
+  is_canonical: true
+  opt_uses:
+  - failed_alarm
+  implements:
+  - FCU
+  - DFSS
+  - DFVSC
+  - DXRC
+  - DFRMM
+
 FCU_DFSS_CSP_DX2ZC:
   id: "2962575394609299456"
   description: "Typical 2-stage DX FCU with cooling-only (zone control)."
@@ -69,6 +82,21 @@ FCU_DFSS_CSP_DXZTC:
   - DFSS
   - CSP
   - DXZTC
+
+FCU_DFSS2X_CHWRC_DAIDC2X_RAIDC2X:
+  id: "15394787454732992512"
+  description: "System with two FCU with cooling-only and drain pumps with common return air control for same zone."
+  is_canonical: true
+  opt_uses:
+  - failed_alarm
+  - drain_pump_failed_alarm_1
+  - drain_pump_failed_alarm_2
+  implements:
+  - FCU
+  - DFSS2X
+  - CHWRC
+  - DAIDC2X
+  - RAIDC2X
 
 FCU_DFSS_DSP_CHWDC:
   id: "4691957651519569920"
@@ -417,6 +445,19 @@ FCU_DFSS_DFVSC_CHWRC_RHDHC:
   - CHWRC
   - RHDHC
 
+FCU_DFSS_DTM_CHWRC:
+  id: "604966278448283648"
+  description: "Variable speed DX fan coil with chilled water return temp control with drain pump monitoring ."
+  is_canonical: true
+  opt_uses:
+  - drain_pump_run_status
+  - run_mode
+  implements:
+  - FCU
+  - DFSS
+  - DTM
+  - CHWRC
+  
 FCU_DFSS_DFHLC_DSP_DXZC:
   id: "12762408183767498752"
   description: "Mult-speed DX fan coil with zone temp control."
@@ -770,6 +811,21 @@ FCU_DFMSS_DSP_ZHM_RTM_CHWZC_CHWDT:
   - CHWZC
   - CHWDT
 
+FCU_DFSS_DFRMM_DXRC_RHC_HTRC_REFPM:
+  id: "13050663848686649344"
+  description: "CRAC unit cooling and humidification with compressor and alarm monitoring."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - DFRMM
+  - DXRC
+  - RHC
+  - HTRC
+  - REFPM
+  opt_uses:
+  - filter_alarm
+  
 FCU_SS_ZTM:
   id: "11594563007836848128"
   description: "FCU with zone temperature monitoring and start/stop control."
@@ -1051,7 +1107,20 @@ FCU_DFSS_CHWZC_RTM_ZHM:
     - RTM
     - ZHM
 
+FCU_DFSS_DFVSC_ZTC_CHWZTC_HWZTC_RTM:
+  id: "2314574918244630528"
+  description: "FCU with zone temperature control and return air temperature monitoring."
+  implements:
+  - FCU
+  - DFSS
+  - DFVSC
+  - ZTC
+  - CHWZTC
+  - HWZTC
+  - RTM
+
 FCU_DFSS_DXRC_RHDHC_AL:
+  id: "15608638068288913408"
   description: "Typical Precision Air conditioning unit with alarms."
   is_canonical: true
   implements:
@@ -1376,6 +1445,19 @@ FCU_CHWZTC2X_HT2XZTC2X_DFVSC2X:
   - CHWZTC2X
   - HT2XZTC2X
   - DFVSC2X
+  
+FCU_RTM_DXZTC_SRC:
+  id: "12582289487440117760"
+  description: "FCU with SS, supply and return temp sensors, zone control and sensor, schedule run, filter change and general fail alarm"
+  is_canonical: true
+  implements:
+  - FCU
+  - RTM
+  - DXZTC
+  - SRC
+  uses:
+  - filter_alarm
+  - lost_power_alarm
 
 #Additional types for CH ZRH EURD
 FCU_NON_CANONICAL_TYPE_1:

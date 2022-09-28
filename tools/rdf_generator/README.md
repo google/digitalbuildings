@@ -4,6 +4,12 @@ The RDF Generator generates an OWL/RDF ontology from the yaml files.
 
 It relies on the python library [RDFLib](https://github.com/RDFLib).
 
+## Install
+
+To install the generator and its dependencies:
+1. Run `python3 -m pip install --upgrade pip` to ensure that your Python package management tools are up-to-date.
+2. Run `python3 -m pip install -r requirements.txt ` from this directory.
+
 ## Run
 
 The RDF Generator takes two arguments:

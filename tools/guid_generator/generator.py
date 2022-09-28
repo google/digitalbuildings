@@ -15,7 +15,7 @@
 from __future__ import print_function
 
 from typing import List
-from guid_generator.guid_generator import GuidGenerator
+from guid_generator.guid_handler import GuidGenerator
 
 
 def Generate(filenames: List[str]) -> None:

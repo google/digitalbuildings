@@ -34,6 +34,7 @@ PMP_SS_VSC:
   - VSC
 
 PMP_DRPM:
+  id: "16761559572895760384"
   description: "Pump implemented with drain pump monitoring ."
   is_canonical: true
   implements:
@@ -126,6 +127,19 @@ PMP_SS_CWCS_VSFC:
   - run_mode
   - lost_power_alarm
 
+PMP_SS_RMM:
+  id: "1864214955507580928"
+  description: "Pump with pressure switch and failed alarm monitoring"
+  is_canonical: true
+  implements:
+  - PMP
+  - SS
+  - RMM
+  opt_uses:
+  - failed_alarm
+  - low_pressure_status
+  - high_pressure_status
+  
 ###################################
 ### Existing Non-standard Types ###
 ###################################

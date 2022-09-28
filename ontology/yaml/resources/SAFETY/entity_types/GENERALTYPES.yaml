@@ -77,6 +77,7 @@ LDS:
   - EQUIPMENT
 
 FSS:
+  id: "12474132727639048192"
   description: "Generic fire suppression system which uses gas to extinguish fire."
   is_abstract: true
   implements:
@@ -90,6 +91,7 @@ PA:
   - EQUIPMENT
 
 SSS:
+  id: "6385266031434137600"
   description: "Seismic detector ."
   is_abstract: true
   implements:

@@ -15,9 +15,9 @@
 # NOTE: This file is used as a test fixture; it is a valid DBO instance
 # which demonstrates the features of a reporting entity.
 
-VLV-2:
+edfa7b3a-80da-4243-a95a-5ca24311ac45:
   cloud_device_id: 2599571827855502
-  guid: edfa7b3a-80da-4243-a95a-5ca24311ac45
+  code: VLV-2
   translation:
     chilled_water_flowrate_sensor:
       present_value: points.chilled_water_flowrate_sensor.present_value

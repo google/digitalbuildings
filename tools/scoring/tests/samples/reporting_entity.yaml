@@ -12,9 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FCU-1:
+90ebdd30-efdf-4aec-82d7-90f8e03a6792:
   cloud_device_id: 2599571827844401
-  guid: 90ebdd30-efdf-4aec-82d7-90f8e03a6792
+  code: FCU-1
   translation:
     chilled_water_flowrate_sensor:
       present_value: points.chilled_water_flowrate_sensor.present_value
