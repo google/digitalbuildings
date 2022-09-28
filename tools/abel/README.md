@@ -10,27 +10,48 @@ ABEL is a tool allowing system integrators to easily and efficiently create and 
 
 Clone the Digital Buildings respository
 
-  ```git clone https://github.com/google/digitalbuildings.git```
+  ```
+  git clone https://github.com/google/digitalbuildings.git
+  ```
 
 Navigate to the Digital Buildings Repository's tooling library
 
-  ```cd digitalbuildings/tools/```
+  ```
+  cd digitalbuildings/tools/
+  ```
 
 Create a virtual environment with an environment name, in this example: `tooling`
 
-  ```virtualenv tooling```
+  ```
+  virtualenv tooling
+  ```
 
 Activate your virtual environment
 
-* MacOs/Linux: `source tooling/bin/activate`
+* MacOs/Linux:
 
-* Windows: `tooling/Scripts/activate`
+  ```
+  source tooling/bin/activate
+  ```
+
+* Windows:
+
+  ```
+  tooling/Scripts/activate
+  ```
 
 Depending on your operating system run either of the global setup scripts to configure dependencies
 
-* Linux/MacOs: `bash pip_install.sh`
+* Linux/MacOs:
+  ```
+  bash pip_install.sh
+  ```
 
-* Windows: `pip_install.bat`
+* Windows:
+
+  ```
+  pip_install.bat
+  ```
 
 ### Obtain a spreadsheet token for your google sheets account
 
@@ -81,7 +102,7 @@ The core functionality of ABEL is to:
   * Refer to Google Sheets documentation on [how to share a google sheet](https://support.google.com/docs/answer/9331169?hl=en#6.1)
 
 `-b` or `--building_config` (optional) absolute path to a local building configuration file
-  * [View a sample building config](https://github.com/google/digitalbuildings/blob/master/ontology/docs/building_config.md)
+  * [Building Configuration Docs](https://github.com/google/digitalbuildings/blob/master/ontology/docs/building_config.md)
 
 `-t` or `--token` (optional) path to the GCP project token. Default path for
   the token is the current directory, but an alternate relative or absolute path
