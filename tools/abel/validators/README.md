@@ -26,7 +26,7 @@ The `Site` tab holds all information about a project site or building.
 - The human-readable code for a building.
 - e.g. `US-SVL-TC2`
 
-`GUID`
+`Entity Guid`
 - String
 - Optional
 - [UUID4](https://en.wikipedia.org/wiki/Universally_unique_identifier#Version_4_(random)) value for a building.
@@ -49,7 +49,7 @@ entities in the `FACILTITIES` namespace.
 - Human-readable code for an entity.
 - e.g. `AHU-1001`
 
-`Guid`
+`Entity Guid`
 - String
 - Optional
 - [UUID4](https://en.wikipedia.org/wiki/Universally_unique_identifier#Version_4_(random)) value for an entity.
@@ -84,7 +84,7 @@ entities in the `FACILTITIES` namespace.
 - General Type for an entity as defined in the [Digital Buildings Ontology](https://github.com/google/digitalbuildings/tree/master/ontology).
 - e.g. `AHU`
 
-`DBO Type Name`
+`DBO Entity Type Name`
 - String
 - **Required**
 - Entity Type Name for an Entity as defined in the [Digital Buildings Ontology](https://github.com/google/digitalbuildings/tree/master/ontology).
@@ -100,7 +100,7 @@ The `Entity Fields` tab defines fields for reporting and virtual entities define
 - Human-readable code for an entity which a field is a data point of.
 - e.g. `AHU-1001`
 
-`Guid`
+`Entity Guid`
 - String
 - Optional
 - [UUID4](https://en.wikipedia.org/wiki/Universally_unique_identifier#Version_4_(random)) value for an entity corresponding to the entity in the Entity Code column.
@@ -116,7 +116,7 @@ The `Entity Fields` tab defines fields for reporting and virtual entities define
 - Optional
 - [UUID4](https://en.wikipedia.org/wiki/Universally_unique_identifier#Version_4_(random)) value for an entity correspong to the entity in the Reporting Entity Code Column.
 
-`Standard Field Name`
+`DBO Standard Field Name`
 - String
 - **Required**
 - Standardized field name belonging to an entity type as defined in the [Digital Buildings Ontology](https://github.com/google/digitalbuildings/tree/master/ontology).
@@ -140,8 +140,8 @@ The `Entity Fields` tab defines fields for reporting and virtual entities define
 - Path to a data point's units in a telemetry payload
 - e.g. `pointset.points.zone_air_cooling_temperature_setpoint.units`
 
-`Standard Unit Value`
-- String 
+`DBO Standard Unit Value`
+- String
 - Optional
 - Standardized unit for a standard field as defined in [Digital Buildings Ontology](https://github.com/google/digitalbuildings/tree/master/ontology/yaml/resources/fields).
 - e.g. `degrees_celsius`
@@ -163,17 +163,17 @@ Fields` tab.
 - Human-readable code for an entity which a field is a data point of.
 - e.g. `AHU-1001`
 
-`Guid`
+`Entity Guid`
 - String
 - Optional
 - [UUID4](https://en.wikipedia.org/wiki/Universally_unique_identifier#Version_4_(random)) value for an entity corresponding to the entity in the Entity Code column.
 
-`Standard Field Name`
+`Reporting Entity Field`
 - String
 - **Required**
-- Standardized field name belonging to an entity type as defined in the [Digital Buildings Ontology](https://github.com/google/digitalbuildings/tree/master/ontology) and [Entity Fields](#entity-fields) tab.
+- Name of the entity field which reports a multi-state value in its telemetry payload.
 
-`Standard State`
+`DBO Standard State`
 - String
 - **Required**
 - Stanardized multi-state value name as defined in [Digital Buildings Ontology](https://github.com/google/digitalbuildings/blob/master/ontology/yaml/resources/states/states.yaml).
@@ -187,6 +187,9 @@ Fields` tab.
 
 ### Connections
 
+Connections between entities within a building. `CONTAINS` connections to the
+building do not need to be defined as they are implied.
+
 `Source Entity Code`
 - String
 - **Required**
@@ -198,7 +201,7 @@ Fields` tab.
 - Optional
 - [UUID4](https://en.wikipedia.org/wiki/Universally_unique_identifier#Version_4_(random)) value for an entity corresponding to an entity in the `Entities` tab for connection source.
 
-`Connection Type`
+`DBO Connection Type`
 - **Required**
 - A connection type as defined by [Digital Buildings Ontology connections](https://github.com/google/digitalbuildings/blob/master/ontology/yaml/resources/connections/connections.yaml).
 - e.g. CONTAINS
