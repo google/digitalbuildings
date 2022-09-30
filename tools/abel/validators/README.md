@@ -22,7 +22,7 @@ The `Site` tab holds all information about a project site or building.
 
 `Building Code` *string* **required**
 
-- The human-readable code for a building. e.g. `US-SVL-TC2`
+- A [human-readable code](https://github.com/google/digitalbuildings/blob/master/ontology/docs/building_config.md#identifiers) for a building. e.g. `US-SVL-TC2`
 
 `Entity Guid` *string*
 
@@ -34,8 +34,7 @@ the `Entities` tab.
 
 ### Entities
 
-The `Entities` tab holds all information about [reporting entities](https://github.com/google/digitalbuildings/blob/master/ontology/docs/building_config.md#reporting-physical-devices) and [virtual entities](https://github.com/google/digitalbuildings/blob/master/ontology/docs/building_config.md#virtual-devices) in a building or site. ***Note:*** If ABEL is being used for Google then Guids are required for all
-entities in the `FACILTITIES` namespace and can be retrieved via DB API.
+The `Entities` tab holds all information about [reporting entities](https://github.com/google/digitalbuildings/blob/master/ontology/docs/building_config.md#reporting-physical-devices) and [virtual entities](https://github.com/google/digitalbuildings/blob/master/ontology/docs/building_config.md#virtual-devices) in a building or site. If ABEL is being used for Google then Guids are required for all entities in the `FACILTITIES` namespace which can be retrieved from DB API.
 
 `Entity Code` *string* **required**
 
@@ -53,7 +52,7 @@ entities in the `FACILTITIES` namespace and can be retrieved via DB API.
 - TRUE if an entity is [reporting its own data](https://github.com/google/digitalbuildings/blob/master/ontology/docs/building_config.md#reporting-physical-devices) and FALSE if [the entity is virtual](https://github.com/google/digitalbuildings/blob/master/ontology/docs/building_config.md#virtual-devices).
 
 `Cloud Device ID` *string*
-- Cloud registry [device identifier](https://github.com/google/digitalbuildings/blob/master/ontology/docs/building_config.md#identifiers). If `Is Reporting` is set to `TRUE` and this device is [reporting its own data](https://github.com/google/digitalbuildings/blob/master/ontology/docs/building_config.md#reporting-physical-devices), then this field is **required**. e.g. `2801644336271390`
+- Cloud registry [device numeric identifier](https://github.com/google/digitalbuildings/blob/master/ontology/docs/building_config.md#identifiers). The device numeric ID is automatically created by a Cloud IoT application, and it is globally unique and not editable.
 
 `DBO Namespace` *string* **required**
 - [Namespace](https://github.com/google/digitalbuildings/blob/master/ontology/docs/ontology.md#namespaces) for an entity as defined in the [Digital Buidings Ontology](https://github.com/google/digitalbuildings/tree/master/ontology). e.g. `HVAC`
