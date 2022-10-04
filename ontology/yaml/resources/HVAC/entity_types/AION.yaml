@@ -1,4 +1,4 @@
-# Copyright 2020 Google LLC
+# Copyright 2021 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the License);
 # you may not use this file except in compliance with the License.
@@ -12,22 +12,27 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-### ABSTRACT TYPES
+########################
+### Canonical Types  ###
+########################
 
-HS_STD:
-  id: "1623655005489725440"
-  description: "Standard horn strobe."
+
+AION_SS:
+  id: "11213195200719486976"
+  description: "Basic air ionizer with start/stop"
   is_canonical: true
   implements:
-  - HS
-  uses:
-  - run_status
+  - AION
+  - SS
 
-HS_AL:
-  id: "6601509182292099072"
-  description: "Horn strobe with alarm."
+AION_SS_SRC:
+  id: "9844100913998856192"
+  description: "Basic air ionizer with start/stop, switch control/status, trip alarm, scheduled run, dirty filter alarm."
   is_canonical: true
   implements:
-  - HS
+  - AION
+  - SS
+  - SRC
   uses:
-  - emergency_alarm
+  - lost_power_alarm
+  - filter_alarm

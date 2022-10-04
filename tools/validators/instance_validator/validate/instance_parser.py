@@ -103,6 +103,7 @@ def _MergeSchemas(first: Dict[syaml.ScalarValidator, syaml.Validator],
 
 
 #### Public Text parsing Constants ####
+ENTITY_ID_KEY = 'id'  # deprecated; kept for legacy reasons
 ENTITY_GUID_KEY = 'guid'
 ENTITY_CODE_KEY = 'code'
 ENTITY_CLOUD_DEVICE_ID_KEY = 'cloud_device_id'
@@ -184,6 +185,9 @@ _ENTITY_IDS_SCHEMA = {
     # this is the numeric cloud device id from Cloud IoT
     syaml.Optional(ENTITY_CLOUD_DEVICE_ID_KEY):
         syaml.Str(),
+    # this is deprecated; kept for legacy reasons
+    syaml.Optional(ENTITY_ID_KEY):
+        syaml.Str(),
 }
 _ENTITY_ATTRIB_SCHEMA = {
     syaml.Optional(ENTITY_CODE_KEY):
@@ -235,8 +239,6 @@ _ENTITY_EXPORT_SCHEMA = _MergeSchemas(
     })
 
 
-# TODO(b/234492090): id depreciated and no longer used; remove from syntax and
-# content validation - 05312022
 class InstanceParser():
   """One-shot state machine for parsing and syntax checking YAML config files.
 

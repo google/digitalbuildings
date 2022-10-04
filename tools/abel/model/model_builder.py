@@ -123,9 +123,14 @@ class ModelBuilder(object):
       model_builder.AddReportingEntitiesFromEntityInstance(entity_instance)
     return model_builder
 
+  # pylint: disable=line-too-long
   # TODO(b/234630862) Refactor Build method for readability.
   def Build(self) -> None:
-    """Connects all entities to a site, fields to entities, and entities to entities based on attributes."""
+    """Connects ABEL graph with Guids as edges.
+
+    Connects all entities to a site, fields to entities, and entities to
+    entities based on attributes.
+    """
     self.site.entities = self.entities
     for guid in self.site.entities:
       entity = self.guid_to_entity_map.GetEntityByGuid(guid)
@@ -134,17 +139,17 @@ class ModelBuilder(object):
           entity.AddConnection(connection)
       for field in self.fields:
         for state in self.states:
-          if state.standard_field_name == field.standard_field_name and state.entity_guid == guid:
+          if state.standard_field_name == field.reporting_entity_field_name and state.entity_guid == guid:
             field.AddState(state)
         if isinstance(entity, VirtualEntity):
           if field.entity_guid == guid:
             entity.AddLink(field)
         elif isinstance(entity, ReportingEntity):
-          if field.entity_guid == guid or field.reporting_entity_guid == guid:
+          if guid in (field.entity_guid, field.reporting_entity_guid):
             entity.AddTranslation(field)
 
   def LoadEntities(self, entity_entries: List[Dict[str, str]]) -> None:
-    """Loads a list of entity dictionary mappings into Entity instances and adds to the model.
+    """Loads a list of entity maps into Entity instances and adds to the model.
 
     Args:
       entity_entries: A list of Python Dictionaries mapping entity attributes
@@ -162,7 +167,10 @@ class ModelBuilder(object):
 
   def LoadEntityFields(self, entity_field_entries: List[Dict[str,
                                                              str]]) -> None:
-    """Loads a list of entity field dictionary mappings into EntityField instances and adds to the model.
+    """Loads list of entity field maps into EntityField instances.
+
+    Once the entity field mapping is loaded into an EntityField instance, it
+    is then added to the ABEL internal model.
 
     Args:
       entity_field_entries: A list of python dictionaries mapping entity field

@@ -8,9 +8,41 @@ Installing and using the Instance Validator requires Python 3.9, and the specifi
 
 * MacOS & Linux: `python3`
 * Windows (with only Python 3 installed): `python` or `py -3`
-* Windows (with Python 2 and 3 installed): `py -3`
+* Windows (with Python 3 installed): `py -3`
 
 You can run the command with just the version flag (e.g. `python --version`) to verify that the result is `Python 3.*`.
+
+
+### First create a virtual env
+
+Create the virutal environment with `virtualenv` followed by the environment name, in this example: `tooling`
+
+```
+virtualenv tooling
+```
+
+
+Activate the virtual environment
+
+Mac OS / Linux:
+```
+source tooling/bin/activate
+```
+
+Windows
+```
+tooling\Scripts\activate
+```
+
+
+Then you can either use pip or setuptools.
+
+### PIP
+
+1. Run `python3 -m pip install --upgrade pip` to ensure that your Python package management tools are up-to-date.
+2. Run `python3 -m pip install . ` from digitalbuildings/tools/validators/instance_validator.
+
+### SetUpTools (to be deprecated)
 
 1. Run `python3 -m pip install --upgrade pip setuptools` to ensure that your Python package management tools are up-to-date.
 2. Run `python3 setup.py install` from digitalbuildings/tools/validators/ontology_validator.

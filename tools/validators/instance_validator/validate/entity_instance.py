@@ -17,6 +17,7 @@ from __future__ import annotations
 from __future__ import print_function
 
 from typing import Any, Dict, List, Optional, Set, Tuple
+import re
 
 import strictyaml as syaml
 
@@ -31,6 +32,11 @@ from yamlformat.validator import presubmit_validate_types_lib as pvt
 _CONFIG_UPDATE = parse.ConfigMode.UPDATE
 _CONFIG_INIT = parse.ConfigMode.INITIALIZE
 _CONFIG_EXPORT = parse.ConfigMode.EXPORT
+# udmi present value: points.$name.present_value
+# where name follows: [a-z][a-z0-9]*(_[a-z0-9]+)*
+_UDMI_PRESENT_VALUE_REGEX = \
+  r'^(points.)[a-z][a-z0-9]*(_[a-z0-9]+)*(.present_value)$'
+_UDMI_PRESENT_VALUE_PATTERN = re.compile(_UDMI_PRESENT_VALUE_REGEX)
 
 
 def _FieldIsAllowed(
@@ -112,13 +118,20 @@ class CombinationValidator(object):
     self.config_mode = config_mode
     self.entity_instances = entity_instances
 
-  def Validate(self, entity: EntityInstance) -> bool:
-    """Returns true if an entity follows all instance and graph rules."""
+  def Validate(self, entity: EntityInstance, is_udmi: bool= False) -> bool:
+    """Returns true if an entity follows all instance and graph rules.
+
+    Arguments
+      entity: EntityInstance object to be validated against the ontology for
+        content and connectivity.
+      is_udmi: flag to indicate process of validation under udmi specification;
+        bool default False.
+    """
 
     iv = InstanceValidator(self.universe, self.config_mode)
     gv = GraphValidator(self.universe, self.config_mode, self.entity_instances)
     # This will not return Combination validations if instance validations fail
-    return iv.Validate(entity) and gv.Validate(entity)
+    return iv.Validate(entity, is_udmi) and gv.Validate(entity)
 
 
 class GraphValidator(object):
@@ -214,6 +227,10 @@ class GraphValidator(object):
     return is_valid
 
 
+def IsEntityIdPresent(entity: EntityInstance) -> bool:
+  return entity.entity_id is not None
+
+
 class InstanceValidator(object):
   """Class to support validation of intra-entity rules in config.
 
@@ -234,7 +251,7 @@ class InstanceValidator(object):
   def _ValidateType(self, entity: EntityInstance) -> bool:
     """Returns true if an entity's type is in the ontology.
 
-    This method assues the type is defined on the entity.
+    This method assumes the type is defined on the entity.
 
     Args:
       entity: EntityInstance to validate
@@ -258,7 +275,10 @@ class InstanceValidator(object):
 
     return True
 
-  def _ValidateTranslation(self, entity: EntityInstance) -> bool:
+  def _ValidateTranslation(
+    self,
+    entity: EntityInstance,
+    is_udmi: bool= False) -> bool:
     """Validate an entity's translation against the entity's type or ontology.
 
     If entity operation is ADD, this code ensures that all fields are in the
@@ -266,6 +286,7 @@ class InstanceValidator(object):
 
     Args:
       entity: EntityInstance to validate
+      is_udmi: flag to validate under udmi; defaults to false
 
     Returns:
       Returns boolean for validity of entity translation, defaults to True if
@@ -308,6 +329,11 @@ class InstanceValidator(object):
       if not self._FieldTranslationIsValid(qualified_field_name, ft):
         is_valid = False
       if isinstance(ft, ft_lib.DimensionalValue):
+        if is_udmi and not _UDMI_PRESENT_VALUE_PATTERN.fullmatch(
+          ft.raw_field_name):
+          print(f'present value {ft.raw_field_name} does not conform to udmi ',
+            'regex pattern {_UDMI_PRESENT_VALUE_REGEX}')
+          is_valid = False
         for std_unit, raw_unit in ft.unit_mappings.items():
           if std_unit not in found_units:
             found_units[std_unit] = raw_unit
@@ -499,15 +525,23 @@ class InstanceValidator(object):
       return False
     return True
 
-  def Validate(self, entity: EntityInstance) -> bool:
+  def Validate(self, entity: EntityInstance, is_udmi: bool= False) -> bool:
     """Uses the generated ontology universe to validate an entity.
 
     Args:
       entity: EntityInstance to validate
+      is_udmi: flag to validate under udmi; defaults to false
 
     Returns:
       True if the entity is valid
     """
+
+    if IsEntityIdPresent(entity):
+      print('Warning: Entity id detected in block. Planned deprecation, ',
+        'will result in validation error in a future releases. Please ',
+        'review digitalbuildings/ontology/docs/building_config.md for ',
+        'more info')
+
     is_valid = True
 
     if entity.update_mask is not None:
@@ -547,7 +581,7 @@ class InstanceValidator(object):
       if not self._ValidateType(entity):
         is_valid = False
 
-    if not self._ValidateTranslation(entity):
+    if not self._ValidateTranslation(entity, is_udmi):
       is_valid = False
 
     if not self._ConnectionsAreValid(entity):
@@ -726,6 +760,7 @@ class EntityInstance(findings_lib.Findings):
                connections=None,
                links=None,
                etag=None,
+               entity_id=None,
                update_mask=None):
     super().__init__()
 
@@ -738,8 +773,9 @@ class EntityInstance(findings_lib.Findings):
     self.translation = translation
     self.connections = connections
     self.links = links
-    self.update_mask = update_mask
     self.etag = etag
+    self.entity_id = entity_id
+    self.update_mask = update_mask
 
   @classmethod
   def FromYaml(
@@ -842,6 +878,11 @@ class EntityInstance(findings_lib.Findings):
     if parse.ETAG_KEY in entity_yaml:
       etag = entity_yaml[parse.ETAG_KEY]
 
+    # deprecated; kept for legacy reasons
+    entity_id = None
+    if parse.ENTITY_ID_KEY in entity_yaml:
+      entity_id = entity_yaml[parse.ENTITY_ID_KEY]
+
     return cls(
         operation,
         guid=guid,
@@ -853,4 +894,5 @@ class EntityInstance(findings_lib.Findings):
         connections=connections,
         links=links,
         etag=etag,
+        entity_id=entity_id,
         update_mask=update_mask)

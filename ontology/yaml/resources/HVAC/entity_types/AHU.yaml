@@ -513,6 +513,25 @@ AHU_DFSS_DSP_DX2ZC_ECONZ_EFSS_HTZC:
   - EFSS
   - HTZC
 
+AHU_SFSS_SFVSC_EFSS_CHWSC_RTM_FDPM2X_CO2EFVSC_SSPC2X_CO2M6X_OAFC_VOCM_PMM:
+  id: "1974060565168914432"
+  description: "Multi zone AHU."
+  is_canonical: true
+  implements:
+  - AHU
+  - SFSS
+  - EFSS
+  - SFVSC
+  - CHWSC
+  - RTM
+  - FDPM2X
+  - CO2EFVSC
+  - SSPC2X
+  - CO2M6X
+  - OAFC
+  - VOCM
+  - PMM
+
 AHU_BSPC_DFSS_DSP_DX2ZC_ECONZ_EFSS:
   id: "13160273063348011008"
   description: "Single zone AHU."
@@ -870,6 +889,19 @@ AHU_DFSS_DXZC_ECOND_ZHM:
   - ECOND
   - ZHM
 
+AHU_DFSS_CHWDT_DTM_RTC_RWISOVPC_OAFC_FDPSM2X:
+  id: "17322328095247564800"
+  description: "Smart AHU."
+  is_canonical: true
+  implements:
+  - AHU
+  - DFSS
+  - CHWDT
+  - DTM
+  - RTC
+  - RWISOVPC
+  - OAFC
+  - FDPSM2X
 
 ### Multi-zone Units ###
 
@@ -3475,7 +3507,7 @@ AHU_DX3SC_ECON_HTSC_SFSS_SFVSC_SHM_SSPC:
   - SFVSC
   - SHM
   - SSPC
-  
+
 AHU_DFSS_DFVSC_DX2DC_ECOND_EFSS_EFVSC_HWDC_ZHM:
   id: "3869411903268716544"
   description: "Single zone AHU."
@@ -3640,6 +3672,70 @@ AHU_DFSS_DFVSC_ECONZ_EFSS_HP2ZC_ZSPC:
   - EFSS
   - HP2ZC
   - ZSPC
+
+AHU_DX4ZC_DFSS_DFVSC_EFSS_EFVSC_DSP_ECONZ_ZSPC:
+  id: "688916190252236800"
+  description: "Single zone AHU, four-stage DX cooling and zone static pressure control."
+  is_canonical: true
+  implements:
+  - AHU
+  - DX4ZC
+  - DFSS
+  - DFVSC
+  - EFSS
+  - EFVSC
+  - DSP
+  - ECONZ
+  - ZSPC
+
+AHU_CHW2XSC_RFSS2X_RFVSC2X_SFSS2X_SFVSC2X_RFC_EDRPC_RTM_SARC_SFC_SSPC_VOADM2X:
+  id: "11119252927242305536"
+  description: "Multi zone lab unit with two CHW, two OAD, and return static pressure control."
+  is_canonical: true
+  implements:
+  - AHU
+  - CHW2XSC
+  - RFSS2X
+  - RFVSC2X
+  - SFSS2X
+  - SFVSC2X
+  - RFC
+  - EDRPC
+  - RTM
+  - SARC
+  - SFC
+  - SSPC
+  - VOADM2X
+
+AHU_CHWDC_DFSS_DFVSC_DSP_ECONZ_EFSS_ZSPC:
+  id: "9029582700142395392"
+  description: "Single zone AHU with zone static pressure control."
+  is_canonical: true
+  implements:
+  - AHU
+  - CHWDC
+  - DFSS
+  - DFVSC
+  - DSP
+  - ECONZ
+  - EFSS
+  - ZSPC
+
+AHU_CHWSC_ECON_FDPM_EDRPC_RFSS_RFVSC_SFSS_SFVSC_SSPC:
+  id: "15316607779951607808"
+  description: "Multi-zone chilled water AHU with return static pressure control."
+  is_canonical: true
+  implements:
+  - AHU
+  - CHWSC
+  - ECON
+  - FDPM
+  - EDRPC
+  - RFSS
+  - RFVSC
+  - SFSS
+  - SFVSC
+  - SSPC
 
 ###################################
 ### Existing Non-standard Types ###

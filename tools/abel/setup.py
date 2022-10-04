@@ -1,4 +1,4 @@
-# Copyright 2020 Google LLC
+# Copyright 2022 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the License);
 # you may not use this file except in compliance with the License.
@@ -11,23 +11,20 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+"""Setup file for the ABEL."""
 
-### ABSTRACT TYPES
+from setuptools import find_packages
+from setuptools import setup
 
-HS_STD:
-  id: "1623655005489725440"
-  description: "Standard horn strobe."
-  is_canonical: true
-  implements:
-  - HS
-  uses:
-  - run_status
-
-HS_AL:
-  id: "6601509182292099072"
-  description: "Horn strobe with alarm."
-  is_canonical: true
-  implements:
-  - HS
-  uses:
-  - emergency_alarm
+setup(
+    name='abel',
+    version='0.0.1',
+    url='https://github.com/google/digitalbuildings',
+    license='Apache License',
+    author='Travis Welch',
+    packages=find_packages(),
+    install_requires=[
+        'absl-py', 'pyfiglet', 'argparse', 'pyyaml', 'google-api-python-client'
+    ],
+    python_requires='>=3.9',
+)
