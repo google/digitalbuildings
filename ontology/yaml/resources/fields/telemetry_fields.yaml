@@ -575,7 +575,7 @@ literals:
 - ongoing_event_start_timestamp
 - ongoing_event_id_label
 - room_calendar_email_label
-- user_occupancy_override_status:
+- user_override_occupancy_status:
   - DISABLED
   - ENABLED
 
