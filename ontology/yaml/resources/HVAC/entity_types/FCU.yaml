@@ -89,8 +89,8 @@ FCU_DFSS2X_CHWRC_DAIDC2X_RAIDC2X:
   is_canonical: true
   opt_uses:
   - failed_alarm
-  - drain_pump_failed_alarm_1
-  - drain_pump_failed_alarm_2
+  - failed_drain_pump_alarm_1
+  - failed_drain_pump_alarm_2
   implements:
   - FCU
   - DFSS2X
@@ -1131,7 +1131,7 @@ FCU_DFSS_DXRC_RHDHC_AL:
   opt_uses:
   - filter_alarm
   - master_alarm
-  - heat_exchange_failed_alarm 
+  - failed_heat_exchange_alarm 
   - water_leak_alarm 
     
 FCU_DFVSC_CHWRC_FDPSM2X:
@@ -1494,7 +1494,7 @@ FCU_NON_CANONICAL_TYPE_2:
   - water_leak_alarm
   - condensate_water_pump_alarm
   - master_alarm
-  - supply_fan_failed_alarm
+  - failed_supply_fan_alarm
   - return_air_temperature_sensor
   - return_air_temperature_setpoint
 
@@ -1513,7 +1513,7 @@ FCU_NON_CANONICAL_TYPE_3:
   - chilled_supply_water_temperature_sensor
   - chilled_return_water_temperature_sensor
   - master_alarm
-  - supply_fan_failed_alarm
+  - failed_supply_fan_alarm
   - condensate_water_pump_alarm
   - return_air_temperature_sensor
   - return_air_temperature_setpoint
@@ -1556,7 +1556,7 @@ FCU_RTC_RHDHS_DTM_DFSS:
   - compressor_run_status_1
   - compressor_run_status_2
   opt_uses:
-  - discharge_fan_failed_alarm
+  - failed_discharge_fan_alarm
   - low_discharge_air_flowrate_alarm
   - master_alarm
   - water_leak_alarm
