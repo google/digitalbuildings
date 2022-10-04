@@ -2,12 +2,12 @@
 
 ### Overview
 The ABEL Spreadsheet serves as a frontend for the ABEL application. The
-spreadsheet is the human-friendly interface that allows users to make changes to
+spreadsheet is the user-friendly interface that allows users to make changes to
 a Building Configuration file.
 
 ## Google Sheets template
 Since the format of an ABEL spreadsheet is well-defined, it is suggested that
-you use the following [template](https://docs.google.com/spreadsheets/d/1qKMlpJI5-_h_8innNniEkpatMBcRHSGekrRwTsPQ618/copy#gid=980240783) as either your input or output spreadsheet.
+you use the following [Google Sheets Template](https://docs.google.com/spreadsheets/d/1tcLjFnHiXUT-xh5C1hRKiUVaUH_CzgSI8zFQ_B8q7vs/copy#gid=980240783) as either your input or output spreadsheet.
 
 Below is a definition of each table and column in the ABEL spreadsheet:
 - [Site](#site)
@@ -15,6 +15,24 @@ Below is a definition of each table and column in the ABEL spreadsheet:
 - [Entity Fields](#entity-fields)
 - [States](#states)
 - [Connections](#connections)
+
+### Generating GUIDs
+
+There are two use cases for ABEL, brown field an green field.
+
+#### Brown Field
+
+This the case where a pre-existing building configuration file is fed into ABEL
+in order to modify it with the ABEL spreadsheet. In this case, GUIDs will
+**not** need to be generated because they will already exist in the Building
+Config.
+
+#### Green Field
+
+This is the case where ABEL is used to create a Building Config from scratch. In
+this case **GUIDs will also not need to be generated except** for when there are
+duplicate entity codes. Then **and only then** will the user need to provide
+GUIDs for the entities with duplicate codes in the `Entities` table.
 
 ### Site
 
@@ -34,34 +52,34 @@ the `Entities` tab.
 
 ### Entities
 
-The `Entities` tab holds all information about [reporting entities](https://github.com/google/digitalbuildings/blob/master/ontology/docs/building_config.md#reporting-physical-devices) and [virtual entities](https://github.com/google/digitalbuildings/blob/master/ontology/docs/building_config.md#virtual-devices) in a building or site. If ABEL is being used for Google then Guids are required for all entities in the `FACILTITIES` namespace which can be retrieved from DB API.
+The `Entities` tab holds all information about [reporting entities](../../../ontology/docs/building_config.md#reporting-physical-devices) and [virtual entities](../../../ontology/docs/building_config.md#virtual-devices) in a building or site. If ABEL is being used for Google then Guids are required for all entities in the `FACILTITIES` namespace which can be retrieved from DB API.
 
 `Entity Code` *string* **required**
 
-[Human-readable code](https://github.com/google/digitalbuildings/blob/master/ontology/docs/building_config.md#identifiers) for an entity an should  e.g. `AHU-1001`
+[Human-readable code](../../../ontology/docs/building_config.md#identifiers) for an entity an should  e.g. `AHU-1001`
 
 `Entity Guid` *string*
 - [UUID4](https://en.wikipedia.org/wiki/Universally_unique_identifier#Version_4_(random))
-  [identifier](https://github.com/google/digitalbuildings/blob/master/ontology/docs/building_config.md#identifiers) for an entity. **Note:** If an entity belongs to the `FACITITLIES` namespace and ABEL is
+  [identifier](../../../ontology/docs/building_config.md#identifiers) for an entity. **Note:** If an entity belongs to the `FACITITLIES` namespace and ABEL is
   being used or Google, then this field is **required**.
 
 `Etag` *string*
 - Version control tag for entities in an entity type database. Used only when updating an existing building config.
 
 `Is Reporting` *Boolean* **required**
-- TRUE if an entity is [reporting its own data](https://github.com/google/digitalbuildings/blob/master/ontology/docs/building_config.md#reporting-physical-devices) and FALSE if [the entity is virtual](https://github.com/google/digitalbuildings/blob/master/ontology/docs/building_config.md#virtual-devices).
+- TRUE if an entity is [reporting its own data](../../../ontology/docs/building_config.md#reporting-physical-devices) and FALSE if [the entity is virtual](../../../ontology/docs/building_config.md#virtual-devices).
 
 `Cloud Device ID` *string*
-- Cloud registry [device numeric identifier](https://github.com/google/digitalbuildings/blob/master/ontology/docs/building_config.md#identifiers). The device numeric ID is automatically created by a Cloud IoT application, and it is globally unique and not editable.
+- Cloud registry [device numeric identifier](../../../ontology/docs/building_config.md#identifiers). The device numeric ID is automatically created by a Cloud IoT application, and it is globally unique and not editable.
 
 `DBO Namespace` *string* **required**
-- [Namespace](https://github.com/google/digitalbuildings/blob/master/ontology/docs/ontology.md#namespaces) for an entity as defined in the [Digital Buidings Ontology](https://github.com/google/digitalbuildings/tree/master/ontology). e.g. `HVAC`
+- [Namespace](../../../ontology/docs/ontology.md#namespaces) for an entity as defined in the [Digital Buidings Ontology](../../../ontology/README.md). e.g. `HVAC`
 
 `DBO General Type`
-- [General Type](https://github.com/google/digitalbuildings/blob/master/ontology/docs/model.md#general-types) for an entity as defined in the [Digital Buildings Ontology](https://github.com/google/digitalbuildings/tree/master/ontology). e.g. `AHU`
+- [General Type](../../../ontology/docs/model.md#general-types) for an entity as defined in the [Digital Buildings Ontology](../../../ontology/README.md). e.g. `AHU`
 
 `DBO Entity Type Name` *string* **required**
-- [Entity Type Name](https://github.com/google/digitalbuildings/blob/master/ontology/docs/ontology.md#type-names) for an Entity as defined in the [Digital Buildings Ontology](https://github.com/google/digitalbuildings/tree/master/ontology). e.g. `VAV_SD_DSP`
+- [Entity Type Name](../../../ontology.md#type-names) for an Entity as defined in the [Digital Buildings Ontology](../../../ontology/README.md). e.g. `VAV_SD_DSP`
 
 ### Entity Fields
 

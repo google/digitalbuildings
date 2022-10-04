@@ -87,7 +87,7 @@ Depending on your operating system run either of the global setup scripts to con
 ## The ABEL Spreadsheet
 The ABEL spreadsheet serves as a frontend for ABEL.
 
-Please see the [ABEL spreadsheet docs](./validators/README.md) for detailed instructions on how to use the spreadsheet.
+Please see the [ABEL spreadsheet docs](../../tools/abel/validators/README.md) for detailed instructions on how to use the spreadsheet.
 
 ## Using ABEL
 The core functionality of ABEL is to:
@@ -102,7 +102,7 @@ The core functionality of ABEL is to:
   * Refer to Google Sheets documentation on [how to share a google sheet](https://support.google.com/docs/answer/9331169?hl=en#6.1)
 
 `-b` or `--building_config` (optional) absolute path to a local building configuration file
-  * [Building Configuration Docs](https://github.com/google/digitalbuildings/blob/master/ontology/docs/building_config.md)
+  * [Building Configuration Docs](../../ontology/docs/building_config.md)
 
 `-t` or `--token` (optional) path to the GCP project token. Default path for
   the token is the current directory, but an alternate relative or absolute path
