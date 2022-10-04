@@ -121,7 +121,7 @@ BATM:
   - battery_charge_percentage_sensor
   opt_uses:
   - low_battery_charge_alarm
-  - inverter_failed_alarm
+  - failed_inverter_alarm
   - line_frequency_sensor
 
 BTEPM:
@@ -138,7 +138,7 @@ UPSBM:
   description: "UPS battery monitoring points"
   is_abstract: true
   opt_uses:
-  - exhaust_fan_failed_alarm
+  - failed_exhaust_fan_alarm
   - battery_percentage_sensor
   - rectifier_mode
   - inverter_status
