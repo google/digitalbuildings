@@ -91,8 +91,8 @@ Please see the [ABEL spreadsheet docs](../../tools/abel/validators/README.md) fo
 
 ## Using ABEL
 The core functionality of ABEL is to:
-* Ingest a ABEL spreadsheet and export a valid Building Config document
-* Ingest a Building config and export an ABEL spreadsheet
+* Ingest an [ABEL spreadsheet](https://docs.google.com/spreadsheets/d/1qKMlpJI5-_h_8innNniEkpatMBcRHSGekrRwTsPQ618/copy#gid=980240783) and export a valid [Building Config](../../ontology/docs/building_config.md) file.
+* Ingest a [Building Config](../../ontology/docs/building_config.md) and export an ABEL spreadsheet.
 
 ### Command-line arguments for ABEL:
 `-s` or `--spreadsheet_id` (required) id for a google sheets spreadsheet.
