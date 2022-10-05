@@ -2,7 +2,7 @@
 ### Automated Building Entity Loader
 
 ## Overview
-ABEL is a tool allowing system integrators to easily and efficiently create and modify [Building Configuration files](https://github.com/google/digitalbuildings/blob/master/ontology/docs/building_config.md).
+ABEL is a tool allowing system integrators to easily and efficiently create and modify [Building Configuration files](../../ontology/docs/building_config.md).
 
 ## Setup and installation
 
@@ -113,7 +113,15 @@ The core functionality of ABEL is to:
 python3 abel.py -s <input_spreadsheet_id>
 ```
 
+The only required argument for the spreadsheet to building config workflow is
+the `spreadsheet` argument because the exported building config will be written
+to a user's current directory. The [ABEL Spreadsheet template](https://docs.google.com/spreadsheets/d/1tcLjFnHiXUT-xh5C1hRKiUVaUH_CzgSI8zFQ_B8q7vs/copy#gid=980240783) should be used to create an input for ABEL.
+
 ### Building Config -> Spreadsheet
 ```
 python3 abel.py -b absolute/path/to/building/config -s <output_spreadsheet_id>
 ```
+
+In the building config to spreadsheet workflow, the path to the input building
+config must be provided as well as a blank spreadsheet for ABEL to write to.
+This can also be an [ABEL Spreadsheet template](https://docs.google.com/spreadsheets/d/1tcLjFnHiXUT-xh5C1hRKiUVaUH_CzgSI8zFQ_B8q7vs/copy#gid=980240783) or another blank Google Sheet.
