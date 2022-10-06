@@ -97,3 +97,8 @@ SSS:
   implements:
   - /SENSOR
   
+ASD:
+  description: "Aspirating type, smoke detector"
+  is_abstract: true
+  implements:
+  - EQUIPMENT

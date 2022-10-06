@@ -234,4 +234,11 @@ SENSOR_ZA_CO2M_PMM_HCHO:
   - PMM
   uses:
   - zone_air_formaldehyde_concentration_sensor  
+
+SENSOR_WDPM:
+  description: "Sensor with differential pressure monitor"
+  is_canonical: true
+  implements:
+  - /SENSOR
+  - WDPM
   

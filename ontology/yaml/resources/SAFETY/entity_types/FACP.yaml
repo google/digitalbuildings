@@ -45,3 +45,22 @@ FACP_PAS:
   - supervisor_alarm
   - water_flowrate_status
   - air_pressure_status
+
+FACP_LOC:
+  description: "Fire alarm panel with location alarm."
+  is_canonical: true
+  implements:
+  - FACP
+  uses:
+  - fire_alarm
+  - supervisor_alarm
+
+FACP_FA2X_GS:
+  description: "Fire alarm panel with 2-level alarm and gas suppression."
+  is_canonical: true
+  implements:
+  - FACP
+  - FA2X
+  uses:
+  - supervisor_alarm
+  - gas_release_status

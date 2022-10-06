@@ -182,3 +182,12 @@ SRC2:
   - source2_phase3_phase1_over_voltage_status
   - source2_over_voltage_status
   - source2_lost_power_alarm
+
+ALM:
+  description: "Tag for basic alarms."
+  is_abstract: true
+  opt_uses:
+  - lost_power_alarm 
+  - low_battery_alarm
+  uses:
+  - failed_alarm

@@ -23,6 +23,8 @@ CMP_SS:
   implements:
   - CMP
   - SS
+  opt_uses:
+  - zone_control_cooling_command
 
 CMP_SS_WDPM:
   id: "4395946031578087424"

@@ -29,7 +29,6 @@ FCU_DFSS_CSP_CHWDC:
   - CSP
   - CHWDC
 
-  
 FCU_DFSS_CSP_CHWZC:
   id: "7358088630922903552"
   description: "Typical chilled water FCU with cooling-only (zone control)."
@@ -1605,4 +1604,20 @@ FCU_DFSS_DFVSC_FDPM_CHWDC_SRC_DFRMM:
   - FDPM
   - CHWDC
   - SRC
-  - DFRMM 
+  - DFRMM
+
+FCU_RHDHS_DTM_DFSS_STM_DTC_SHM_SFVSC_ALM_SS_SRC:
+  description: "FCU with temperature control, humidity monitor with electrical parameter monitoring."
+  is_canonical: true
+  implements:
+  - FCU
+  - RHDHS
+  - DTM
+  - DFSS
+  - STM
+  - DTC
+  - SHM
+  - SFVSC
+  - ALM
+  - SS
+  - SRC

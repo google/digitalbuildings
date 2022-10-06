@@ -22,6 +22,8 @@ PWM:
   opt_uses:
   - apparent_power_sensor
   - reactive_power_sensor
+  - apparentpower_sensor
+  - reactivepower_sensor
   - powerfactor_sensor
   - line_frequency_sensor
   - apparent_energy_accumulator

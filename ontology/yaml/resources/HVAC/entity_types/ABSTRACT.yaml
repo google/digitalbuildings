@@ -37,8 +37,6 @@ SD:
   - supply_air_damper_percentage_command
   implements:
   - CONTROL
-  
-
 
 RDM:
   id: "10008693406630412288"
@@ -783,7 +781,6 @@ RTC:
   uses:
   - return_air_temperature_sensor
   - return_air_temperature_setpoint
- 
 
 # Rename to OTM
 OA:
@@ -1399,7 +1396,7 @@ FDPM:
   - filter_differential_pressure_sensor
   implements:
   - MONITORING
- 
+
 FDPSM:
   id: "5397007388203024384"
   description: "Filter pressure status monitoring."
@@ -3845,7 +3842,7 @@ CHDXVSC:
   - compressor_lost_power_alarm
   - compressor_speed_frequency_sensor
   - compressor_failed_alarm
- 
+
 CDWFRM:
   id: "632877381119377408"
   description: "Condenser water flowrate monitoring."
@@ -5256,7 +5253,6 @@ SFMSC:
   opt_uses:  
   - schedule_run_command
 
- 
 MIPVCM:
   id: "10283962739713900544"
   description: "Motor phase-level input current and voltage monitoring."
@@ -5285,7 +5281,7 @@ MIPWM:
   opt_uses:
   - motor_powerfactor_sensor
   - input_motor_frequency_sensor
-  
+
 MSM:
   id: "2084609862272024576"
   description: "Motor speed monitoring for fan."
@@ -5298,7 +5294,6 @@ MSM:
   - low_discharge_fan_speed_status
   opt_uses:
   - discharge_fan_failed_alarm
- 
 
 INVOPWM:
   id: "10056530958531690496"
@@ -5410,7 +5405,7 @@ EFHLC:
   - high_exhaust_fan_speed_status
   implements:
   - OPERATIONAL
-  
+
 SWCM:
   id: "620728877144080384"
   description: "Solenoid water valve control and monitoring."
@@ -5508,8 +5503,6 @@ CO2M6X:
   implements:
   - MONITORING
 
-
-  
 MIPCVM:
   id: "13492227718401490944"
   description: "Motor phase-level input current and voltage monitoring."
@@ -5624,3 +5617,16 @@ RFVSC2X:
   - return_fan_speed_percentage_command_2
   implements:
   - OPERATIONAL
+
+ALM:
+  description: "Tag for basic alarms."
+  is_abstract: true
+  opt_uses:
+  - low_discharge_air_flowrate_alarm
+  - lost_power_alarm
+  - water_leak_detection_alarm  
+  - low_battery_alarm
+  uses:
+  - failed_alarm
+  implements:
+  - MONITORING

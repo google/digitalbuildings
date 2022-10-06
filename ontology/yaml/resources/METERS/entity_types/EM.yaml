@@ -87,7 +87,7 @@ EM_PWM_AVCM_PLPM_PVCM:
   - AVCM
   - PLPM
   - PVCM
-  
+
 EM_PWM_PWMRDM:
   id: "8930081295875178496"
   description: "Energy metering from Grid Electricity and Diesel Generator with power monitoring."

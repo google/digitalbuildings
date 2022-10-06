@@ -778,7 +778,7 @@ literals:
 - power_status:
   - PRESENT
   - ABSENT
-  
+
 # New alarms using alarm as a point type, and existing alarms moved here
 # TODO (tsodorff): change these to ALARM/NORMAL after determining how this can be done safely to existing translations. 
 - fabric_protection_alarm:
@@ -838,7 +838,7 @@ literals:
 - compressor_failed_alarm:
   - ACTIVE
   - INACTIVE
- 
+
 # New fields for lighting and fire systems.
 - motion_status:
   - PRESENT
@@ -876,6 +876,21 @@ literals:
 - fire_alarm:
   - ACTIVE
   - INACTIVE
+- primary_fire_alarm: # better than using fire_alarm_1 (which will lead to fire_alarm_1_23)
+  - ACTIVE
+  - INACTIVE
+- secondary_fire_alarm:
+  - ACTIVE
+  - INACTIVE
+- primary_smoke_alarm: # for aspirating type smoke detectors
+  - ACTIVE
+  - INACTIVE
+- secondary_smoke_alarm: # for aspirating type smoke detectors
+  - ACTIVE
+  - INACTIVE
+- particle_concentration_alarm:
+  - ACTIVE
+  - INACTIVE
 
 - supply_water_volume_accumulator
 - valve_command:
@@ -884,6 +899,23 @@ literals:
 - valve_status:
   - OPEN
   - CLOSED
+- zone_control_cooling_command:
+  - COOLING
+  - OFF
+- low_battery_alarm:
+  - ACTIVE
+  - INACTIVE
+- load_bypass_mode:
+  - OFF
+  - BYPASS
+- gas_release_status:
+  - OPEN
+  - CLOSED
+# apparent_power_sensor (and reactive_power_sensor) has error on units and can't be resolved
+# but using these has no errors
+- apparentpower_sensor
+- reactivepower_sensor
+  
 - emergency_release_status:
   - ACTIVE
   - INACTIVE
@@ -1575,8 +1607,6 @@ literals:
   - ON
   - OFF
 
-
-
 # telemetry fields for exhaust fan#
 
 - speed_mode:
@@ -1589,7 +1619,6 @@ literals:
   - ON
   - OFF 
 
-
 ##Fields for generator##
 - oil_temperature_sensor
 - oil_pressure_sensor
@@ -1600,7 +1629,7 @@ literals:
 
 #Telemetry addition for MAU#
 
- 
+
 #Telemetry fields for APU(MAU)# 
 - dc_voltage_sensor
 - ac_voltage_sensor
@@ -1638,6 +1667,7 @@ literals:
 - supply_fan_speed_mode:
   - BYPASS
   - VFD
+
 - supply_fan_voltage_sensor
 - humidifier_run_time_accumulator
 - heater_run_time_accumulator

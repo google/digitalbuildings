@@ -632,7 +632,7 @@ MAU_SFSS2X_SFVSC2X_CHWSC_HWSC_FDPM_SSPC_STC_VOADM2X:
   - SSPC
   - STC
   - VOADM2X
-  
+
 MAU_SFSS_SFVSC_SPSS_STM_SHM_SFC_FDPSM:
   id: "10515066889732882432"
   description: "MAU with VFD, spray pump, filter, supply air temperature and humidity monitoring."
@@ -780,8 +780,6 @@ MAU_US_SBO_1000_1:
   - DEPRECATED
   uses:
   - humidification_run_command
-  
-
 
 #New canonical#
 MAU_FDPM_SSPC_STC_SHM_SFVSC3X_SFSS3X:
@@ -819,8 +817,3 @@ MAU_DFMSC_DFVSC_FDPM_DTM:
   - DFVSC
   - FDPM
   - DTM
-
-
-  
-
-  

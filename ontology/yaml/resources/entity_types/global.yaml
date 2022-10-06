@@ -53,7 +53,7 @@ INCOMPLETE:
   id: "4665780478685478912"
   description: "A known incomplete type."
   is_abstract: true
-  
+
 ##Global namespace for tanks##
 TK:
   id: "3656366132224327680"
