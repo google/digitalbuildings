@@ -25,3 +25,15 @@ WSR_STD:
   - lost_power_alarm
   - water_flowrate_status
   - run_mode
+
+WSR_ALM:
+  description: "Standard water softener with alarms."
+  is_canonical: true
+  implements:
+  - WSR
+  - ALM
+  uses:
+  - run_status
+  opt_uses:
+  - water_flowrate_status
+  - run_mode

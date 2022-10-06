@@ -127,5 +127,7 @@ ALM:
   - supervisor_alarm
   - primary_smoke_alarm
   - secondary_smoke_alarm
+  - emergency_alarm
+  - lost_power_alarm
   implements:
   - EQUIPMENT
