@@ -379,3 +379,9 @@ CRREF:
   is_abstract: true
   implements:
   - EQUIPMENT
+
+EHT:
+  description: "Tag for heat tracer."
+  is_abstract: true
+  implements:
+  - EQUIPMENT

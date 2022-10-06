@@ -5626,7 +5626,6 @@ ALM:
   - lost_power_alarm
   - water_leak_detection_alarm  
   - low_battery_alarm
-  uses:
   - failed_alarm
   implements:
   - MONITORING

@@ -345,11 +345,3 @@ HWS_SS:
   implements:
   - HWS
   - SS
-  
-HWS_TH:
-  description: "Simple trace heater water system with status and trip alarm"
-  implements:
-  - HWS
-  - SS
-  uses:
-  - lost_power_alarm
