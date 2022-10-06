@@ -136,6 +136,13 @@ generic entity with all possible top level fields looks like this[^5]:
 to being keyed by guids and Ids are removed. To convert the old format to the
 new format, run your config.yaml through the [guid generator](https://github.com/google/digitalbuildings/tree/master/tools/guid_generator).
 
+#### Identifiers
+*   **GUID:** A globally unique identifier for the entity. This field does not
+    need to be included initially and can be generated with guid generator.
+*   **Code:** The human readable identifier for the entity. This should
+    be unique in document scope.
+*   **cloud_device_id:** the cloud device numeric id from the cloud iot registry. A server-generated device numeric ID. The device numeric ID is automatically created by Cloud IoT Core; it's globally unique and not editable. To view a device numeric ID, go to the [Device ids page](https://cloud.google.com/iot/docs/concepts/devices#device_identifiers). This field is mandatory when a translation exists.
+
 #### New Format
 ``` yaml
 f7d82b75-ea41-49e2-bb5a-53228044eb4c # Entity keyed by a GUID
