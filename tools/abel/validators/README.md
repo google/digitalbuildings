@@ -18,13 +18,15 @@ Below is a definition of each table and column in the ABEL spreadsheet:
 
 ### Generating GUIDs
 
-There are two use cases for ABEL, brown field and green field. Currently ABEL
-only supports Green Field buildings or Building Configs under the [Initialize
+There are two use cases for ABEL, brownfield and greenfield. Currently ABEL
+only supports greenfield buildings or Building Configs under the [Initialize
 operation](../../../ontology/docs/building_config.md#initialize)
 
-#### Green Field
+#### Greenfield building
 
-This is the case where ABEL is used to create a Building Config from scratch. In
+A [greenfield building](../../../ontology/docs/building_config.md#initialize) 
+is one that has yet to be onboarded, and ABEL is used to 
+create a Building Config from scratch. In
 this case **GUIDs do not need to be provided except for when there are
 duplicate entity codes.** Then and only then will the user need to provide
 GUIDs for the entities with duplicate codes in every one of the ABEL
@@ -72,11 +74,11 @@ Version control tag for entities in an entity type database. Used only when upda
 
 `Is Reporting` *Boolean* **required**
 
-`TRUE` if an entity is [reporting its own data](../../../ontology/docs/building_config.md#reporting-physical-devices) and `FALSE` if [the entity is virtual](../../../ontology/docs/building_config.md#virtual-devices).
+`TRUE` if an entity is [reporting data](../../../ontology/docs/building_config.md#reporting-physical-devices) and `FALSE` if [the entity is virtual](../../../ontology/docs/building_config.md#virtual-devices).
 
 `Cloud Device ID` *string*
 
-Cloud registry [device numeric identifier](../../../ontology/docs/building_config.md#identifiers). The device numeric ID is automatically created by a Cloud IoT application, and it is globally unique and not editable.
+Cloud registry [device numeric identifier](../../../ontology/docs/building_config.md#identifiers). The device numeric ID is automatically created by a Cloud IoT Core(or similar cloud iot service) and it is globally unique and not editable.
 
 `DBO Namespace` *string* **required**
 
@@ -100,12 +102,12 @@ A [human-readable code](../../../onotology/docs/building_config.md#identifiers) 
 
 `Entity Guid` *string*
 
-[UUID4](https://en.wikipedia.org/wiki/Universally_unique_identifier#Version_4_(random)) value for an entity corresponding to the entity in the Entity Code column ad is a unique [identifier for an entity](../../../onotology/docs/building_config.md#identifiers). This column need not be filled in unless the corresponding entity code is **not unique**. This column will be used when ABEL writes to a blank spreadsheet.
+[UUID4](https://en.wikipedia.org/wiki/Universally_unique_identifier#Version_4_(random)) value for an entity corresponding to the entity in the Entity Code column ad is a unique [identifier for an entity](../../../onotology/docs/building_config.md#identifiers). This column does not need be filled in unless the corresponding entity code is **not unique**. This column will be used when ABEL writes to a blank spreadsheet.
 
 `Reporting Entity Code` *string* **required**
 
 If a field is linked to a [virtual entity](../../../ontology/docs/building_config.md#virtual-devices) and its telemetry data is reported
-by some [reporting enity](../../../ontology/docs/building_config.md#reporting-physical-devices), then the `Entity Code` column must be the virtual entity code and the `reporting entity code` is the code of the
+by a [reporting enity](../../../ontology/docs/building_config.md#reporting-physical-devices), then the `Entity Code` column must be the virtual entity code and the `reporting entity code` is the code of the
 entity reporting the field's data. This may be a gateway or some other IoT connected entity.
 
 `Reporting Entity Guid` *string*
@@ -118,15 +120,15 @@ entity reporting the field's data. This may be a gateway or some other IoT conne
 
 `Reporting Entity Field` *string*
 
-Name of a field as it is reported by a [gateway or other reporting entity](../../../onotology/docs/building_config.md#reporting-physical-devices). e.g. `zone_air_temperature_sensor_1` where the standard field name is `zone_air_temperature_sensor`. If the a field is not linked to a virtual entity then this value does not need to be filled in. Reporting entity fields may be [enumerated](../../../onotology/docs/ontology.md#enumeration).
+Name of a field as it is reported by a [gateway or other reporting entity](../../../onotology/docs/building_config.md#reporting-physical-devices). e.g. `zone_air_temperature_sensor_1` where the standard field name is `zone_air_temperature_sensor`. If the a field is not linked to a virtual entity then this value does not need to be filled in. Reporting entity fields may be [enumerated](../../../ontology/docs/ontology.md#enumeration).
 
 `Raw Field Path` *string* **required**
 
-Path to data point on a physical device's telemetry payload. The field path is used as the `present_value` in an entity type's [translation](../../../ontology/docs/building_config.md#defining-translations) to a physical device payload. e.g. `pointset.points.discharge_fan_run_command.present_value`.
+Path to data point on a physical device's telemetry payload. The field path is used as the `present_value` in an entity type's [translation](../../../ontology/docs/building_config.md#defining-translations) to a physical device payload. e.g. `points.discharge_fan_run_command.present_value`.
 
 `Raw Unit Path` *string*
 
-Path to a data point's units in a telemetry payload. Used as the `key` for `units` in an entity type [translation](../../../onotology/docs/building_config.md#defining-translations). e.g. `pointset.points.zone_air_cooling_temperature_setpoint.unit`. Leave blank or put `no-units` if a field is a [multi-state value](../../../ontology/docs/ontology.md#multi-state-values)
+Path to a data point's units in a telemetry payload. Used as the `key` for `units` in an entity type [translation](../../../onotology/docs/building_config.md#defining-translations). e.g. `points.zone_air_cooling_temperature_setpoint.unit`. Leave blank or put `no-units` if a field is a [multi-state value](../../../ontology/docs/ontology.md#multi-state-values)
 
 `DBO Standard Unit Value` *string*
 
@@ -160,7 +162,7 @@ Name of the [entity field](#entity-fields) which [reports](../../../ontology/doc
 
 Stanardized [multi-state value](../../../ontology/docs/ontology.md#multi-state-values) name as defined in [Digital Buildings Ontology](https://github.com/google/digitalbuildings/blob/master/ontology/yaml/resources/states/states.yaml). e.g. `ON`
 
-`Payload State` *string* **required**
+`Raw State` *string* **required**
 
 Raw [multi-state value](../../../../../../ontology/docs/ontology.md#multi-state0-values) for a data point in the telemetry payload for a device. e.g. `on`
 
@@ -169,7 +171,9 @@ Raw [multi-state value](../../../../../../ontology/docs/ontology.md#multi-state0
 Connections define the [device
 relationships](../../../ontology/docs/building_config.md#device-relationships) that exist between two entities
 in a building. Connections to a building such as a building having a `CONTAINS`
-relationship to a floor do not need to be defined as they are implied.
+relationship to a floor do not need to be defined as they are implied. For
+Google buildings, relationships to a building are already accounted for and do
+not need to be re-defined.
 
 `Source Entity Code` *string* **required**
 
