@@ -56,7 +56,7 @@ class TelemetryReportPoint(object):
     return (self.entity == other.entity and self.point == other.point and
             self.error_message == other.error_message)
 
-  def GetPrintableErrorMessage(self):
+  def GetPrintableMessage(self):
     """Returns a human-readable error_message."""
     msg = f'- entity [{self.entity}]'
     if self.point:
