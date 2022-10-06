@@ -108,9 +108,24 @@ WCR:
   is_abstract: true
   uses:
   - run_status
+  implements:
+  - EQUIPMENT
 
 WSR:
   description: "Water softener"
   is_abstract: true
   uses:
   - run_status
+  implements:
+  - EQUIPMENT
+
+ALM:
+  description: "Tag for basic alarms"
+  is_abstract: true
+  opt_uses:
+  - fire_alarm
+  - supervisor_alarm
+  - primary_smoke_alarm
+  - secondary_smoke_alarm
+  implements:
+  - EQUIPMENT
