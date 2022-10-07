@@ -46,9 +46,11 @@ from model.constants import TARGET_ENTITY_CODE
 from model.constants import TARGET_ENTITY_GUID
 from model.constants import TYPE_NAME
 from model.units import Units
+from tests import test_constants
 
 TEST_ROOT = path.join(APPLICATION_ROOT, 'tests')
 TEST_RESOURCES = path.join(TEST_ROOT, 'test_resources')
+TEST_BUILDING_CONFIG_PATH = test_constants.TEST_INSTANCES
 
 TEST_NAMESPACE = 'HVAC'
 TEST_GENERAL_TYPE = 'CHWS'
@@ -156,7 +158,7 @@ TEST_CONNECTION_DICT = {
 TEST_STATE_DICT = {
     ENTITY_CODE: TEST_REPORTING_ENTITY_CODE,
     BC_GUID: TEST_REPORTING_GUID,
-    STANDARD_FIELD_NAME: TEST_REPORTING_FIELD_NAME,
+    REPORTING_ENTITY_FIELD_NAME: TEST_REPORTING_FIELD_NAME,
     STANDARD_STATE: 'ON',
     RAW_STATE: 'TRUE'
 }

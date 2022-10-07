@@ -29,14 +29,14 @@ from model.guid_to_entity_map import GuidToEntityMap
 from model.model_builder import ModelBuilder
 from model.site import Site
 from model.state import State
-from tests.test_constants import TEST_CONNECTION_DICT
-from tests.test_constants import TEST_ENTITY_FIELD_DICT_WITH_STATES
-from tests.test_constants import TEST_ENTITY_FIELD_DICT_WITH_UNITS
-from tests.test_constants import TEST_REPORTING_ENTITY_DICT
-from tests.test_constants import TEST_RESOURCES
-from tests.test_constants import TEST_SITE_DICT
-from tests.test_constants import TEST_STATE_DICT
-from tests.test_constants import TEST_VIRTUAL_ENTITY_DICT
+from abel.tests.test_constants import TEST_CONNECTION_DICT
+from abel.tests.test_constants import TEST_ENTITY_FIELD_DICT_WITH_STATES
+from abel.tests.test_constants import TEST_ENTITY_FIELD_DICT_WITH_UNITS
+from abel.tests.test_constants import TEST_REPORTING_ENTITY_DICT
+from abel.tests.test_constants import TEST_RESOURCES
+from abel.tests.test_constants import TEST_SITE_DICT
+from abel.tests.test_constants import TEST_STATE_DICT
+from abel.tests.test_constants import TEST_VIRTUAL_ENTITY_DICT
 
 
 class ModelBuilderTest(absltest.TestCase):
@@ -132,11 +132,12 @@ class ModelBuilderTest(absltest.TestCase):
     self.guid_to_entity_map.Clear()
     model = ModelBuilder.FromSpreadsheet(test_spreadsheet)
     expected_result = {
-        'Site': [['Building Code', 'Guid'], ['UK-LON-S2', 'test_site_guid']],
+        'Site': [['Building Code', 'Entity Guid'],
+                 ['UK-LON-S2', 'test_site_guid']],
         'Entities': [
             [
-                'Entity Code', 'Guid', 'Is Reporting', 'Cloud Device ID',
-                'Etag', 'Namespace', 'Type Name'
+                'Entity Code', 'Entity Guid', 'Is Reporting', 'Cloud Device ID',
+                'Etag', 'DBO Namespace', 'DBO Entity Type Name'
             ],
             [
                 'CHWS-1',
@@ -164,10 +165,10 @@ class ModelBuilderTest(absltest.TestCase):
         ],
         'Entity Fields':
             [[
-                'Standard Field Name', 'Raw Field Name',
-                'Reporting Entity Field', 'Entity Code', 'Guid',
+                'DBO Standard Field Name', 'Raw Field Name',
+                'Reporting Entity Field', 'Entity Code', 'Entity Guid',
                 'Reporting Entity Code', 'Reporting Entity Guid',
-                'Raw Unit Path', 'Standard Unit Value', 'Raw Unit Value'
+                'Raw Unit Path', 'DBO Standard Unit Value', 'Raw Unit Value'
             ],
              [
                  'supply_water_temperature_sensor',
@@ -183,12 +184,12 @@ class ModelBuilderTest(absltest.TestCase):
                  'test_reporting_guid'
              ]],
         'States': [[
-            'Entity Code', 'Guid', 'Standard Field Name', 'Standard State',
-            'Payload State'
+            'Entity Code', 'Entity Guid', 'Reporting Entity Field',
+            'DBO Standard State', 'Raw State'
         ], ['CHWS-1', 'test_reporting_guid', 'fire_alarm_5', 'ON', 'TRUE']],
         'Connections': [[
             'Source Entity Code', 'Source Entity Guid', 'Target Entity Code',
-            'Target Entity Guid', 'Connection Type'
+            'Target Entity Guid', 'DBO Connection Type'
         ],
                         [
                             'CHWS-1', 'test_reporting_guid', 'VLV-23',

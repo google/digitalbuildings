@@ -84,7 +84,7 @@ def _ImportSheetFromGoogleSheets(
 
   values = google_sheets_spreadsheet.get(BODY_VALUE_RANGE_KEY, [])
   if values:
-    headers = dict(enumerate(values[0]))
+    headers = {i: v for i, v in enumerate(values[0])}
     for row_index in range(1, len(values)):
       row = values[row_index]
       spreadsheet_rows.append({
