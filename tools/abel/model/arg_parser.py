@@ -14,6 +14,7 @@
 """Command line argument parser for ABEL."""
 
 import argparse
+from google3.third_party.digitalbuildings.tools.abel.model.constants import DEFAULT_TOKEN_PATH
 
 
 def ParseArgs() -> argparse.ArgumentParser:
@@ -26,19 +27,20 @@ def ParseArgs() -> argparse.ArgumentParser:
       description='Instantiate an ABEL argument parser')
 
   parser.add_argument(
-      '-t',
-      '--token',
-      dest='token',
-      required=True,
-      help='Path to GCP project token.')
-
-  parser.add_argument(
       '-s',
       '--spreadsheet-id',
       dest='spreadsheet_id',
       required=True,
       help='Google sheets spreadsheet ID.',
       metavar='STRING')
+
+  parser.add_argument(
+      '-t',
+      '--token',
+      dest='token',
+      required=False,
+      default=DEFAULT_TOKEN_PATH,
+      help='Path to GCP project token.')
 
   parser.add_argument(
       '-b',

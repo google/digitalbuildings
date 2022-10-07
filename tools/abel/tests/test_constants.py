@@ -15,40 +15,42 @@
 
 from os import path
 
-from model.constants import APPLICATION_ROOT
-from model.constants import BC_GUID
-from model.constants import BUILDING_CODE
-from model.constants import CLOUD_DEVICE_ID
-from model.constants import CONNECTION_TYPE
-from model.constants import CONNECTIONS
-from model.constants import ENTITIES
-from model.constants import ENTITY_CODE
-from model.constants import ENTITY_FIELDS
-from model.constants import ETAG
-from model.constants import IS_REPORTING
-from model.constants import METADATA
-from model.constants import NAMESPACE
-from model.constants import RAW_FIELD_NAME
-from model.constants import RAW_STATE
-from model.constants import RAW_UNIT_PATH
-from model.constants import RAW_UNIT_VALUE
-from model.constants import REPORTING_ENTITY_CODE
-from model.constants import REPORTING_ENTITY_FIELD_NAME
-from model.constants import REPORTING_ENTITY_GUID
-from model.constants import SITES
-from model.constants import SOURCE_ENTITY_CODE
-from model.constants import SOURCE_ENTITY_GUID
-from model.constants import STANDARD_FIELD_NAME
-from model.constants import STANDARD_STATE
-from model.constants import STANDARD_UNIT_VALUE
-from model.constants import STATES
-from model.constants import TARGET_ENTITY_CODE
-from model.constants import TARGET_ENTITY_GUID
-from model.constants import TYPE_NAME
-from model.units import Units
+from google3.third_party.digitalbuildings.tools.abel.model.constants import APPLICATION_ROOT
+from google3.third_party.digitalbuildings.tools.abel.model.constants import BC_GUID
+from google3.third_party.digitalbuildings.tools.abel.model.constants import BUILDING_CODE
+from google3.third_party.digitalbuildings.tools.abel.model.constants import CLOUD_DEVICE_ID
+from google3.third_party.digitalbuildings.tools.abel.model.constants import CONNECTION_TYPE
+from google3.third_party.digitalbuildings.tools.abel.model.constants import CONNECTIONS
+from google3.third_party.digitalbuildings.tools.abel.model.constants import ENTITIES
+from google3.third_party.digitalbuildings.tools.abel.model.constants import ENTITY_CODE
+from google3.third_party.digitalbuildings.tools.abel.model.constants import ENTITY_FIELDS
+from google3.third_party.digitalbuildings.tools.abel.model.constants import ETAG
+from google3.third_party.digitalbuildings.tools.abel.model.constants import IS_REPORTING
+from google3.third_party.digitalbuildings.tools.abel.model.constants import METADATA
+from google3.third_party.digitalbuildings.tools.abel.model.constants import NAMESPACE
+from google3.third_party.digitalbuildings.tools.abel.model.constants import RAW_FIELD_NAME
+from google3.third_party.digitalbuildings.tools.abel.model.constants import RAW_STATE
+from google3.third_party.digitalbuildings.tools.abel.model.constants import RAW_UNIT_PATH
+from google3.third_party.digitalbuildings.tools.abel.model.constants import RAW_UNIT_VALUE
+from google3.third_party.digitalbuildings.tools.abel.model.constants import REPORTING_ENTITY_CODE
+from google3.third_party.digitalbuildings.tools.abel.model.constants import REPORTING_ENTITY_FIELD_NAME
+from google3.third_party.digitalbuildings.tools.abel.model.constants import REPORTING_ENTITY_GUID
+from google3.third_party.digitalbuildings.tools.abel.model.constants import SITES
+from google3.third_party.digitalbuildings.tools.abel.model.constants import SOURCE_ENTITY_CODE
+from google3.third_party.digitalbuildings.tools.abel.model.constants import SOURCE_ENTITY_GUID
+from google3.third_party.digitalbuildings.tools.abel.model.constants import STANDARD_FIELD_NAME
+from google3.third_party.digitalbuildings.tools.abel.model.constants import STANDARD_STATE
+from google3.third_party.digitalbuildings.tools.abel.model.constants import STANDARD_UNIT_VALUE
+from google3.third_party.digitalbuildings.tools.abel.model.constants import STATES
+from google3.third_party.digitalbuildings.tools.abel.model.constants import TARGET_ENTITY_CODE
+from google3.third_party.digitalbuildings.tools.abel.model.constants import TARGET_ENTITY_GUID
+from google3.third_party.digitalbuildings.tools.abel.model.constants import TYPE_NAME
+from google3.third_party.digitalbuildings.tools.abel.model.units import Units
+from google3.third_party.digitalbuildings.tools.validators.instance_validator.tests import test_constants
 
 TEST_ROOT = path.join(APPLICATION_ROOT, 'tests')
 TEST_RESOURCES = path.join(TEST_ROOT, 'test_resources')
+TEST_BUILDING_CONFIG_PATH = test_constants.TEST_INSTANCES
 
 TEST_NAMESPACE = 'HVAC'
 TEST_GENERAL_TYPE = 'CHWS'
@@ -156,7 +158,7 @@ TEST_CONNECTION_DICT = {
 TEST_STATE_DICT = {
     ENTITY_CODE: TEST_REPORTING_ENTITY_CODE,
     BC_GUID: TEST_REPORTING_GUID,
-    STANDARD_FIELD_NAME: TEST_REPORTING_FIELD_NAME,
+    REPORTING_ENTITY_FIELD_NAME: TEST_REPORTING_FIELD_NAME,
     STANDARD_STATE: 'ON',
     RAW_STATE: 'TRUE'
 }

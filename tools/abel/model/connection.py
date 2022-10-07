@@ -15,13 +15,13 @@
 
 from typing import Dict
 
-from model.connection_type import ConnectionType
-from model.constants import CONNECTION_TYPE
-from model.constants import SOURCE_ENTITY_CODE
-from model.constants import SOURCE_ENTITY_GUID
-from model.constants import TARGET_ENTITY_CODE
-from model.constants import TARGET_ENTITY_GUID
-from model.guid_to_entity_map import GuidToEntityMap
+from google3.third_party.digitalbuildings.tools.abel.model.connection_type import ConnectionType
+from google3.third_party.digitalbuildings.tools.abel.model.constants import CONNECTION_TYPE
+from google3.third_party.digitalbuildings.tools.abel.model.constants import SOURCE_ENTITY_CODE
+from google3.third_party.digitalbuildings.tools.abel.model.constants import SOURCE_ENTITY_GUID
+from google3.third_party.digitalbuildings.tools.abel.model.constants import TARGET_ENTITY_CODE
+from google3.third_party.digitalbuildings.tools.abel.model.constants import TARGET_ENTITY_GUID
+from google3.third_party.digitalbuildings.tools.abel.model.guid_to_entity_map import GuidToEntityMap
 
 
 class Connection(object):
@@ -49,7 +49,6 @@ class Connection(object):
     self.connection_type = connection_type
     self.guid_to_entity_map = GuidToEntityMap()
 
-  # pylint: disable=line-too-long
   def __str__(self):
     return f'{self.source_entity_guid} - {self.connection_type} - {self.target_entity_guid}'
 
@@ -59,7 +58,7 @@ class Connection(object):
 
   @classmethod
   def FromDict(cls, connection_dict: Dict[str, object]) ->...:
-    """Creates Connection instance from map of connection values by names.
+    """Creates a Connection object from mapping of connection attributes to values.
 
     Args:
       connection_dict: A mapping of attributes to values pertaining to a

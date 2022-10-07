@@ -19,31 +19,31 @@ from googleapiclient.discovery import Resource
 from googleapiclient.errors import HttpError
 from strictyaml import as_document
 
-from model.constants import BODY_VALUE_RANGE_KEY
-from model.constants import CONFIG_CLOUD_DEVICE_ID
-from model.constants import CONFIG_CODE
-from model.constants import CONFIG_CONNECTIONS
-from model.constants import CONFIG_INITIALIZE
-from model.constants import CONFIG_LINKS
-from model.constants import CONFIG_METADATA
-from model.constants import CONFIG_OPERATION
-from model.constants import CONFIG_STATES
-from model.constants import CONFIG_TRANSLATION
-from model.constants import CONFIG_TYPE
-from model.constants import CONFIG_UNITS
-from model.constants import CONFIG_UNITS_KEY
-from model.constants import CONFIG_UNITS_PRESENT_VALUE
-from model.constants import CONFIG_UNITS_VALUES
-from model.constants import UTF_8
-from model.constants import VALUE_INPUT_OPTION_RAW
-from model.constants import WRITE
-from model.entity import Entity
-from model.entity import ReportingEntity
-from model.entity import VirtualEntity
-from model.entity_field import EntityField
-from model.guid_to_entity_map import GuidToEntityMap
-from model.model_builder import ModelBuilder
-from model.model_error import SpreadsheetAuthorizationError
+from google3.third_party.digitalbuildings.tools.abel.model.constants import BODY_VALUE_RANGE_KEY
+from google3.third_party.digitalbuildings.tools.abel.model.constants import CONFIG_CLOUD_DEVICE_ID
+from google3.third_party.digitalbuildings.tools.abel.model.constants import CONFIG_CODE
+from google3.third_party.digitalbuildings.tools.abel.model.constants import CONFIG_CONNECTIONS
+from google3.third_party.digitalbuildings.tools.abel.model.constants import CONFIG_INITIALIZE
+from google3.third_party.digitalbuildings.tools.abel.model.constants import CONFIG_LINKS
+from google3.third_party.digitalbuildings.tools.abel.model.constants import CONFIG_METADATA
+from google3.third_party.digitalbuildings.tools.abel.model.constants import CONFIG_OPERATION
+from google3.third_party.digitalbuildings.tools.abel.model.constants import CONFIG_STATES
+from google3.third_party.digitalbuildings.tools.abel.model.constants import CONFIG_TRANSLATION
+from google3.third_party.digitalbuildings.tools.abel.model.constants import CONFIG_TYPE
+from google3.third_party.digitalbuildings.tools.abel.model.constants import CONFIG_UNITS
+from google3.third_party.digitalbuildings.tools.abel.model.constants import CONFIG_UNITS_KEY
+from google3.third_party.digitalbuildings.tools.abel.model.constants import CONFIG_UNITS_PRESENT_VALUE
+from google3.third_party.digitalbuildings.tools.abel.model.constants import CONFIG_UNITS_VALUES
+from google3.third_party.digitalbuildings.tools.abel.model.constants import UTF_8
+from google3.third_party.digitalbuildings.tools.abel.model.constants import VALUE_INPUT_OPTION_RAW
+from google3.third_party.digitalbuildings.tools.abel.model.constants import WRITE
+from google3.third_party.digitalbuildings.tools.abel.model.entity import Entity
+from google3.third_party.digitalbuildings.tools.abel.model.entity import ReportingEntity
+from google3.third_party.digitalbuildings.tools.abel.model.entity import VirtualEntity
+from google3.third_party.digitalbuildings.tools.abel.model.entity_field import EntityField
+from google3.third_party.digitalbuildings.tools.abel.model.guid_to_entity_map import GuidToEntityMap
+from google3.third_party.digitalbuildings.tools.abel.model.model_builder import ModelBuilder
+from google3.third_party.digitalbuildings.tools.abel.model.model_error import SpreadsheetAuthorizationError
 
 
 class GoogleSheetExport(object):
@@ -208,9 +208,7 @@ class BuildingConfigExport(object):
     return {}
 
   def _SortLinks(self, entity: VirtualEntity) -> Dict[str, object]:
-    """Sorts an entity's links by guid and returns mapping.
-
-    The returning mapping is compliant with the Building Config Schema.
+    """Sorts an entity's links by guid and returns a Building Config compliant mapping.
 
     Args:
       entity: A VirtualEntity instance
@@ -222,7 +220,7 @@ class BuildingConfigExport(object):
     link_map = {}
     if entity.links:
       for field in entity.links:
-        if field.reporting_entity_guid not in link_map:
+        if field.reporting_entity_guid not in link_map.keys():
           link_map[field.reporting_entity_guid] = {
               field.standard_field_name: field.reporting_entity_field_name
           }

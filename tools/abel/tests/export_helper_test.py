@@ -20,22 +20,21 @@ from absl.testing import absltest
 from googleapiclient.discovery import build
 from googleapiclient.http import HttpMockSequence
 
-from model import import_helper
-from model.constants import SHEETS
-from model.constants import V4
-from model.export_helper import BuildingConfigExport
-from model.export_helper import GoogleSheetExport
-from model.guid_to_entity_map import GuidToEntityMap
-from model.model_builder import ModelBuilder
-from model.model_error import SpreadsheetAuthorizationError
-from tests.test_constants import TEST_RESOURCES
-from tests.test_constants import TEST_SPREADSHEET
+from google3.third_party.digitalbuildings.tools.abel.model import import_helper
+from google3.third_party.digitalbuildings.tools.abel.model.constants import SHEETS
+from google3.third_party.digitalbuildings.tools.abel.model.constants import V4
+from google3.third_party.digitalbuildings.tools.abel.model.export_helper import BuildingConfigExport
+from google3.third_party.digitalbuildings.tools.abel.model.export_helper import GoogleSheetExport
+from google3.third_party.digitalbuildings.tools.abel.model.guid_to_entity_map import GuidToEntityMap
+from google3.third_party.digitalbuildings.tools.abel.model.model_builder import ModelBuilder
+from google3.third_party.digitalbuildings.tools.abel.model.model_error import SpreadsheetAuthorizationError
+from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_RESOURCES
+from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_SPREADSHEET
 
 _GOOD_TEST_BUILDING_CONFIG = os.path.join(TEST_RESOURCES,
                                           'good_test_building_config.yaml')
 
 
-# pylint: disable=consider-using-with
 class ExportHelperTest(absltest.TestCase):
   """Tests export methods for ABEL."""
 

@@ -19,16 +19,16 @@ from absl.testing import absltest
 from googleapiclient.discovery import build
 from googleapiclient.http import HttpMockSequence
 
-from model import import_helper
-from model.constants import SHEETS
-from model.constants import V4
-from model.model_error import SpreadsheetAuthorizationError
-from tests.test_constants import TEST_RESOURCES
+from google3.third_party.digitalbuildings.tools.abel.model import import_helper
+from google3.third_party.digitalbuildings.tools.abel.model.constants import SHEETS
+from google3.third_party.digitalbuildings.tools.abel.model.constants import V4
+from google3.third_party.digitalbuildings.tools.abel.model.model_error import SpreadsheetAuthorizationError
+from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_BUILDING_CONFIG_PATH
+from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_RESOURCES
 
 _TEST_API_KEY = 'mock_api_key'
 
 
-# pylint: disable=consider-using-with
 class ImportTest(absltest.TestCase):
   """Tests import methods for ABEL."""
 
@@ -82,8 +82,8 @@ class ImportTest(absltest.TestCase):
           google_sheets_service=google_sheets_service)
 
   def testDeserializeBuildingConfiguration(self):
-    test_building_config_path = os.path.join(TEST_RESOURCES,
-                                             'good_test_building_config.yaml')
+    test_building_config_path = os.path.join(TEST_BUILDING_CONFIG_PATH, 'GOOD',
+                                             'guid_format.yaml')
 
     function_result = import_helper.DeserializeBuildingConfiguration(
         test_building_config_path)
@@ -91,8 +91,8 @@ class ImportTest(absltest.TestCase):
     self.assertIsNotNone(function_result)
 
   def testDeserializeBuildingConfigurationRaisesFileNotFoundError(self):
-    test_building_config_path = os.path.join(TEST_RESOURCES,
-                                             'not_a_file.yaml')
+    test_building_config_path = os.path.join(TEST_BUILDING_CONFIG_PATH, 'BAD',
+                                             'guid_format.yaml')
 
     with self.assertRaises(FileNotFoundError):
       import_helper.DeserializeBuildingConfiguration(test_building_config_path)

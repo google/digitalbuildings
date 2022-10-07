@@ -11,28 +11,60 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
-# TODO(b/231443840) Clean up constants.
 """Constants for ABEL application."""
 
-from os import path
+import datetime
+import os
+
 
 # internally, absolute path is used; github uses relative path
-_USE_ABSOLUTE_PATH = False
+_USE_ABSOLUTE_PATH = True
 
+# Path to the repository root.
 if _USE_ABSOLUTE_PATH:
-  REPO_ROOT = path.join('third_party', 'digitalbuildings')
+  REPO_ROOT = os.path.join('third_party', 'digitalbuildings')
 else:
-  REPO_ROOT = path.join(
-      path.dirname(path.realpath(__file__)), path.join('..', '..', '..'))
+  REPO_ROOT = os.path.join(
+      os.path.dirname(os.path.realpath(__file__)),
+      os.path.join('..', '..', '..'))
 
-APPLICATION_ROOT = path.join(REPO_ROOT, 'tools', 'abel')
+# Path to abel/ from repo root.
+APPLICATION_ROOT = os.path.join(REPO_ROOT, 'tools', 'abel')
 
-ONTOLOGY_ROOT = path.join(REPO_ROOT, 'ontology', 'yaml', 'resources')
-
+# Reg-ex pattern for GUIDs
 BC_GUID_REGEX = '^[0-9a-f]{8}-([0-9a-f]{4}-){3}[0-9a-f]{12}:'
 
-CLIENT_CREDENTIALS = path.join(path.expanduser('~'), 'abel/client_secrets.json')
+# Faciltities naming patterns
+MEZZANINE_PATTERN = '([0-9]*)M'
+SINGLE_LETTER_PATTERN = 'R|D|LG|FB|S|SBA|SBB'
+PERMUTED_NUMBER_LETTER_PATTERN = 'B[0-9]*|[0-9]+B'
+LETTER_NUMBER_PATTERN = '(G|UG|M)[0-9]*'
+NUMBERS_PATTERN = '[0-9]+'
+
+COUNTRY_ID_PATTERN = '[A-Za-z]{2}'
+CITY_ID_PATTERN = '[A-Za-z]{2,4}'
+BUILDING_ID_PATTERN = '[A-Za-z0-9]{2,10}'
+FLOOR_ID_PATTERN = f'{MEZZANINE_PATTERN}|{SINGLE_LETTER_PATTERN}|{BUILDING_ID_PATTERN}|{PERMUTED_NUMBER_LETTER_PATTERN}|{LETTER_NUMBER_PATTERN}|{NUMBERS_PATTERN}'
+
+BUILDING_CODE_REGEX = f'^{COUNTRY_ID_PATTERN}-{CITY_ID_PATTERN}-{BUILDING_ID_PATTERN}'
+FACILTITIES_ENTITY_CODE_REGEX = BUILDING_CODE_REGEX + f'-({FLOOR_ID_PATTERN})'
+
+# Current date and time
+DATETIME_STRING = datetime.datetime.now().strftime('%Y-%m-%d-%H-%M')
+
+# Output path for spreadsheet validation report
+SPREADSHEET_VALIDATOR_LOG_PATH = os.path.join(
+    os.getcwd(), f'spreadsheet_validation_{DATETIME_STRING}.log')
+
+# Output path for Building Config instance validation report.
+INSTANCE_VALIDATOR_LOG_PATH = os.path.join(
+    os.getcwd(), f'instance_validation_{DATETIME_STRING}.log')
+
+# Output path for exporting a Building Config file.
+BC_EXPORT_PATH = os.path.join(os.getcwd(), f'bc_export_{DATETIME_STRING}.yaml')
+
+# Default path for spreadsheet token
+DEFAULT_TOKEN_PATH = os.path.join(os.getcwd(), 'spreadsheet_token.json')
 
 # Google Sheets API constants
 BODY_VALUE_RANGE_KEY = 'values'
@@ -73,7 +105,7 @@ SOURCE_ENTITY_GUID = 'Source Entity Guid'
 TARGET_ENTITY_GUID = 'Target Entity Guid'
 SOURCE_ENTITY_CODE = 'Source Entity Code'
 TARGET_ENTITY_CODE = 'Target Entity Code'
-CONNECTION_TYPE = 'Connection Type'
+CONNECTION_TYPE = 'DBO Connection Type'
 
 # EntityField keys
 RAW_FIELD_NAME = 'Raw Field Name'
@@ -84,20 +116,19 @@ DATA_TYPE = 'Data Type'
 UNITS = 'units'
 STATES = 'states'
 DEVICE_ID = 'Device ID'
-INITIAL_VALUE = 'Initial Value'
 NO_UNITS = 'no-units'
 
 # Units keys
 RAW_UNIT_PATH = 'Raw Unit Path'
-STANDARD_UNIT_VALUE = 'Standard Unit Value'
+STANDARD_UNIT_VALUE = 'DBO Standard Unit Value'
 RAW_UNIT_VALUE = 'Raw Unit Value'
 
 # Entity keys
 ETAG = 'Etag'
 CLOUD_DEVICE_ID = 'Cloud Device ID'
-NAMESPACE = 'Namespace'
+NAMESPACE = 'DBO Namespace'
 FACILITIES_NAMESPACE = 'FACILITIES'
-GENERAL_TYPE = 'General Type'
+GENERAL_TYPE = 'DBO General Type'
 IS_REPORTING = 'Is Reporting'
 
 # Site Keys
@@ -122,15 +153,15 @@ WEATHER_STATION_REF = 'weather_station_ref'
 REGISTRY_ID = 'registry_id'
 
 # state keys
-RAW_STATE = 'Payload State'
-STANDARD_STATE = 'Standard State'
+RAW_STATE = 'Raw State'
+STANDARD_STATE = 'DBO Standard State'
 
 # multi-use keys
-STANDARD_FIELD_NAME = 'Standard Field Name'
+STANDARD_FIELD_NAME = 'DBO Standard Field Name'
 ENTITY_CODE = 'Entity Code'
-TYPE_NAME = 'Type Name'
+TYPE_NAME = 'DBO Entity Type Name'
 METADATA = 'Metadata'
-BC_GUID = 'Guid'
+BC_GUID = 'Entity Guid'
 CODE = 'code'
 
 # Spreadsheet sheet title keys
@@ -146,7 +177,7 @@ REQUIRED_SITE_HEADERS = [BUILDING_CODE]
 REQUIRED_ENTITY_HEADERS = [ENTITY_CODE, IS_REPORTING, NAMESPACE, TYPE_NAME]
 REQUIRED_FIELD_HEADERS = [ENTITY_CODE, STANDARD_FIELD_NAME, RAW_FIELD_NAME]
 REQUIRED_STATE_HEADERS = [
-    ENTITY_CODE, STANDARD_FIELD_NAME, STANDARD_STATE, RAW_STATE
+    ENTITY_CODE, REPORTING_ENTITY_FIELD_NAME, STANDARD_STATE, RAW_STATE
 ]
 REQUIRED_CONNECTION_HEADERS = [
     SOURCE_ENTITY_CODE, TARGET_ENTITY_CODE, CONNECTION_TYPE
@@ -163,7 +194,7 @@ ALL_FIELD_HEADERS = [
     RAW_UNIT_PATH, STANDARD_UNIT_VALUE, RAW_UNIT_VALUE
 ]
 ALL_STATE_HEADERS = [
-    ENTITY_CODE, BC_GUID, STANDARD_FIELD_NAME, STANDARD_STATE, RAW_STATE
+    ENTITY_CODE, BC_GUID, REPORTING_ENTITY_FIELD_NAME, STANDARD_STATE, RAW_STATE
 ]
 ALL_CONNECTION_HEADERS = [
     SOURCE_ENTITY_CODE, SOURCE_ENTITY_GUID, TARGET_ENTITY_CODE,
@@ -187,7 +218,7 @@ ENTITY_FIELD_ATTRIBUTE_LIST = [('standard_field_name', STANDARD_FIELD_NAME),
                                ('reporting_entity_field_name',
                                 REPORTING_ENTITY_FIELD_NAME)]
 STATE_ATTRIBUTE_LIST = [('entity_code', ENTITY_CODE), ('entity_guid', BC_GUID),
-                        ('standard_field_name', STANDARD_FIELD_NAME),
+                        ('standard_field_name', REPORTING_ENTITY_FIELD_NAME),
                         ('standard_state', STANDARD_STATE),
                         ('raw_state', RAW_STATE)]
 UNITS_ATTRIBUTE_LIST = [('raw_unit_path', RAW_UNIT_PATH),

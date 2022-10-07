@@ -16,16 +16,16 @@
 import abc
 from typing import Dict, List, Optional
 
-from model.connection import Connection
-from model.constants import BC_GUID
-from model.constants import CLOUD_DEVICE_ID
-from model.constants import ENTITY_CODE
-from model.constants import ETAG
-from model.constants import IS_REPORTING
-from model.constants import METADATA
-from model.constants import NAMESPACE
-from model.constants import TYPE_NAME
-from model.entity_field import EntityField
+from google3.third_party.digitalbuildings.tools.abel.model.connection import Connection
+from google3.third_party.digitalbuildings.tools.abel.model.constants import BC_GUID
+from google3.third_party.digitalbuildings.tools.abel.model.constants import CLOUD_DEVICE_ID
+from google3.third_party.digitalbuildings.tools.abel.model.constants import ENTITY_CODE
+from google3.third_party.digitalbuildings.tools.abel.model.constants import ETAG
+from google3.third_party.digitalbuildings.tools.abel.model.constants import IS_REPORTING
+from google3.third_party.digitalbuildings.tools.abel.model.constants import METADATA
+from google3.third_party.digitalbuildings.tools.abel.model.constants import NAMESPACE
+from google3.third_party.digitalbuildings.tools.abel.model.constants import TYPE_NAME
+from google3.third_party.digitalbuildings.tools.abel.model.entity_field import EntityField
 
 
 class Entity(object):
@@ -155,7 +155,7 @@ class VirtualEntity(Entity):
 
   @classmethod
   def FromDict(cls, entity_dict: Dict[str, str]) ->...:
-    """Create an Entity instance from a mapping of entity attributes to values.
+    """Class method to create an Entity instance from a mapping of entity attributes to values.
 
     Args:
       entity_dict: Dictionary mapping entity attributes to values from a
@@ -204,7 +204,7 @@ class VirtualEntity(Entity):
     self._links.append(new_link)
 
   def GetSpreadsheetRowMapping(self) -> Dict[str, str]:
-    """Returns map of virtual entity attributes by spreadsheet headers."""
+    """Returns a dictionary of  virtual entity attributes by spreadsheet headers."""
     return {
         ENTITY_CODE: self.code,
         BC_GUID: self.bc_guid,
@@ -257,7 +257,7 @@ class ReportingEntity(Entity):
 
   @classmethod
   def FromDict(cls, entity_dict: Dict[str, str]) ->...:
-    """Creates ReportingEntity instance from map of entity attributes to values.
+    """Class method to create a ReportingEntity instance from a mapping of entity attributes to values.
 
     Args:
       entity_dict: Dictionary mapping entity attributes to values from a
@@ -284,7 +284,7 @@ class ReportingEntity(Entity):
 
   @property
   def translations(self) -> List[EntityField]:
-    """Returns list of EntityField instances in entity translation."""
+    """Returns a list of EntityField instances associated with a reporting entity."""
     return self._translations
 
   @translations.setter
@@ -306,7 +306,7 @@ class ReportingEntity(Entity):
     self._translations.append(new_translation)
 
   def GetSpreadsheetRowMapping(self) -> Dict[str, str]:
-    """Returns map of virtual entity attributes by spreadsheet headers."""
+    """Returns a dictionary of virtual entity attributes by spreadsheet headers."""
     return {
         ENTITY_CODE: self.code,
         BC_GUID: self.bc_guid,
