@@ -45,11 +45,11 @@ from model.guid_to_entity_map import GuidToEntityMap
 from model.site import Site
 from model.state import State
 from model.units import Units
-from validate.connection import Connection as IVConnection
-from validate.entity_instance import EntityInstance
-from validate.field_translation import DimensionalValue
-from validate.field_translation import MultiStateValue
-from validate.link import Link
+from google3.third_party.digitalbuildings.tools.validators.instance_validator.validate.connection import Connection as IVConnection
+from google3.third_party.digitalbuildings.tools.validators.instance_validator.validate.entity_instance import EntityInstance
+from google3.third_party.digitalbuildings.tools.validators.instance_validator.validate.field_translation import DimensionalValue
+from google3.third_party.digitalbuildings.tools.validators.instance_validator.validate.field_translation import MultiStateValue
+from google3.third_party.digitalbuildings.tools.validators.instance_validator.validate.link import Link
 
 
 class ModelBuilder(object):
@@ -123,14 +123,9 @@ class ModelBuilder(object):
       model_builder.AddReportingEntitiesFromEntityInstance(entity_instance)
     return model_builder
 
-  # pylint: disable=line-too-long
   # TODO(b/234630862) Refactor Build method for readability.
   def Build(self) -> None:
-    """Connects ABEL graph with Guids as edges.
-
-    Connects all entities to a site, fields to entities, and entities to
-    entities based on attributes.
-    """
+    """Connects all entities to a site, fields to entities, and entities to entities based on attributes."""
     self.site.entities = self.entities
     for guid in self.site.entities:
       entity = self.guid_to_entity_map.GetEntityByGuid(guid)
@@ -145,11 +140,11 @@ class ModelBuilder(object):
           if field.entity_guid == guid:
             entity.AddLink(field)
         elif isinstance(entity, ReportingEntity):
-          if guid in (field.entity_guid, field.reporting_entity_guid):
+          if field.entity_guid == guid or field.reporting_entity_guid == guid:
             entity.AddTranslation(field)
 
   def LoadEntities(self, entity_entries: List[Dict[str, str]]) -> None:
-    """Loads a list of entity maps into Entity instances and adds to the model.
+    """Loads a list of entity dictionary mappings into Entity instances and adds to the model.
 
     Args:
       entity_entries: A list of Python Dictionaries mapping entity attributes
@@ -167,10 +162,7 @@ class ModelBuilder(object):
 
   def LoadEntityFields(self, entity_field_entries: List[Dict[str,
                                                              str]]) -> None:
-    """Loads list of entity field maps into EntityField instances.
-
-    Once the entity field mapping is loaded into an EntityField instance, it
-    is then added to the ABEL internal model.
+    """Loads a list of entity field dictionary mappings into EntityField instances and adds to the model.
 
     Args:
       entity_field_entries: A list of python dictionaries mapping entity field

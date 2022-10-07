@@ -32,6 +32,8 @@ from model.state import State
 from model.units import Units
 
 
+# TODO(b/229631364) Extend to telemetry field and metadata field classes.
+# TODO(b/247624350) Deprecate device_id attribute.
 class EntityField(object):
   """A class to store information on an entity field.
 
@@ -86,7 +88,6 @@ class EntityField(object):
     self.metadata = metadata
     self.guid_to_entity_map = GuidToEntityMap()
 
-  # pylint: disable=line-too-long
   def __eq__(self, other: ...) -> bool:
     if not isinstance(other, EntityField):
       raise TypeError(f'{str(other)} must be an EntityField instance')
@@ -100,10 +101,7 @@ class EntityField(object):
 
   @classmethod
   def FromDict(cls, entity_field_dict: Dict[str, str]):
-    """Returns EntityField instance.
-
-    Constructs EntityField instance from a map of device data points by entity
-    field attribute names.
+    """Class method to construct an EntityField from a dictionary of device data points by entity field attribute names.
 
     Args:
       entity_field_dict: Dictionary mapping field attribute names to values from
@@ -124,9 +122,9 @@ class EntityField(object):
         reporting_entity_guid=entity_field_dict[REPORTING_ENTITY_GUID])
     if entity_field_dict[STANDARD_UNIT_VALUE] and entity_field_dict[
         RAW_UNIT_VALUE]:
-      if NO_UNITS not in (
-          entity_field_dict[STANDARD_UNIT_VALUE],
-          entity_field_dict[RAW_UNIT_VALUE]):
+      if entity_field_dict[
+          STANDARD_UNIT_VALUE] != NO_UNITS and entity_field_dict[
+              RAW_UNIT_VALUE] != NO_UNITS:
         units_from_dict = Units(
             raw_unit_path=entity_field_dict[RAW_UNIT_PATH],
             standard_to_raw_unit_map={

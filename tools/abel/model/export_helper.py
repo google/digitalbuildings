@@ -208,9 +208,7 @@ class BuildingConfigExport(object):
     return {}
 
   def _SortLinks(self, entity: VirtualEntity) -> Dict[str, object]:
-    """Sorts an entity's links by guid and returns mapping.
-
-    The returning mapping is compliant with the Building Config Schema.
+    """Sorts an entity's links by guid and returns a Building Config compliant mapping.
 
     Args:
       entity: A VirtualEntity instance
@@ -222,7 +220,7 @@ class BuildingConfigExport(object):
     link_map = {}
     if entity.links:
       for field in entity.links:
-        if field.reporting_entity_guid not in link_map:
+        if field.reporting_entity_guid not in link_map.keys():
           link_map[field.reporting_entity_guid] = {
               field.standard_field_name: field.reporting_entity_field_name
           }

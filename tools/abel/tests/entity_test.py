@@ -42,7 +42,6 @@ from tests.test_constants import TEST_VIRTUAL_ENTITY_DICT
 from tests.test_constants import TEST_VIRTUAL_GUID
 
 
-# pylint: disable=unnecessary-dunder-call
 class EntityTest(absltest.TestCase):
 
   def testVirtualEntityInstantiatesFromDict(self):
