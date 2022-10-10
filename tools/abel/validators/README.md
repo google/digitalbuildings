@@ -84,7 +84,7 @@ Cloud registry [device numeric identifier](../../../ontology/docs/building_confi
 
 [Namespace](../../../ontology/docs/ontology.md#namespaces) for an entity as defined in the [Digital Buidings Ontology](../../../ontology/README.md). e.g. `HVAC`
 
-`DBO General Type`
+`DBO General Type` *string*
 
 [General Type](../../../ontology/docs/model.md#general-types) for an entity as defined in the [Digital Buildings Ontology](../../../ontology/README.md). e.g. `AHU`
 
@@ -98,7 +98,7 @@ The `Entity Fields` tab defines fields translated by [reporting entities](../../
 
 `Entity Code` *string* **required**
 
-A [human-readable code](../../../onotology/docs/building_config.md#identifiers) for an entity which an entity field is a data point of. This code must already be defined in the [Entities](#entities) table. e.g. `AHU-1001`
+A [human-readable code](../../../onotology/docs/building_config.md#identifiers) for an entity of which an entity field is a data point. This code must already be defined in the [Entities](#entities) table. e.g. `AHU-1001`
 
 `Entity Guid` *string*
 
@@ -147,7 +147,7 @@ Fields` tab.
 `Entity Code` *string* **required**
 
 If a field is linked to a [virtual entity](../../../ontology/docs/building_config.md#virtual-devices) and its telemetry data is reported
-by some [reporting enity](../../../ontology/docs/building_config.md#reporting-physical-devices), then the `Entity Code` column must be the virtual entity code and the `reporting entity code` is the code of the
+by some [reporting entity](../../../ontology/docs/building_config.md#reporting-physical-devices), then the `Entity Code` column must be the virtual entity code and the `reporting entity code` is the code of the
 entity reporting the field's data. This may be a gateway or some other IoT connected entity.
 
 `Entity Guid` *string*
@@ -160,7 +160,7 @@ Name of the [entity field](#entity-fields) which [reports](../../../ontology/doc
 
 `DBO Standard State` *string* **required**
 
-Stanardized [multi-state value](../../../ontology/docs/ontology.md#multi-state-values) name as defined in [Digital Buildings Ontology](https://github.com/google/digitalbuildings/blob/master/ontology/yaml/resources/states/states.yaml). e.g. `ON`
+Standardized [multi-state value](../../../ontology/docs/ontology.md#multi-state-values) name as defined in [Digital Buildings Ontology](https://github.com/google/digitalbuildings/blob/master/ontology/yaml/resources/states/states.yaml). e.g. `ON`
 
 `Raw State` *string* **required**
 
