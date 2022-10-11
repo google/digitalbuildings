@@ -25,11 +25,11 @@ from model.constants import NAMESPACE
 from model.constants import TYPE_NAME
 from model.entity import ReportingEntity
 from model.site import Site
-from abel.tests.test_constants import TEST_CLOUD_DEVICE_ID
-from abel.tests.test_constants import TEST_NAMESPACE
-from abel.tests.test_constants import TEST_REPORTING_ENTITY_CODE
-from abel.tests.test_constants import TEST_REPORTING_GUID
-from abel.tests.test_constants import TEST_TYPE_NAME
+from abel_tests.test_constants import TEST_CLOUD_DEVICE_ID
+from abel_tests.test_constants import TEST_NAMESPACE
+from abel_tests.test_constants import TEST_REPORTING_ENTITY_CODE
+from abel_tests.test_constants import TEST_REPORTING_GUID
+from abel_tests.test_constants import TEST_TYPE_NAME
 
 _TEST_REPORTING_ENTITY_DICT = {
     ENTITY_CODE: TEST_REPORTING_ENTITY_CODE,

@@ -30,8 +30,8 @@ from model.constants import TYPE_NAME
 from model.entity import ReportingEntity
 from model.entity import VirtualEntity
 from model.entity_field import EntityField
-from abel.tests.test_constants import TEST_CLOUD_DEVICE_ID
-from abel.tests.test_constants import TEST_ENTITY_FIELD_DICT_WITH_UNITS
+from abel_tests.test_constants import TEST_CLOUD_DEVICE_ID
+from abel_tests.test_constants import TEST_ENTITY_FIELD_DICT_WITH_UNITS
 from abel.tests.test_constants import TEST_NAMESPACE
 from abel.tests.test_constants import TEST_REPORTING_ENTITY_CODE
 from abel.tests.test_constants import TEST_REPORTING_ENTITY_DICT

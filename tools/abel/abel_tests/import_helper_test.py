@@ -12,23 +12,20 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 """Tests for Import."""
-
 import os
-
 from absl.testing import absltest
 from googleapiclient.discovery import build
 from googleapiclient.http import HttpMockSequence
-
 from model import import_helper
 from model.constants import SHEETS
 from model.constants import V4
 from model.model_error import SpreadsheetAuthorizationError
-from abel.tests.test_constants import TEST_BUILDING_CONFIG_PATH
-from abel.tests.test_constants import TEST_RESOURCES
+from abel_tests.test_constants import TEST_RESOURCES
 
 _TEST_API_KEY = 'mock_api_key'
 
 
+# pylint: disable=consider-using-with
 class ImportTest(absltest.TestCase):
   """Tests import methods for ABEL."""
 
@@ -40,15 +37,12 @@ class ImportTest(absltest.TestCase):
     }, open(test_request, 'rb').read())])
     google_sheets_service = build(
         SHEETS, V4, http=mock_http, developerKey=_TEST_API_KEY)
-
     result_spreadsheet = import_helper.GetAllSheets(
         spreadsheet_id='mock_spreadsheet_id',
         spreadsheet_range=test_spreadsheet_range,
         google_sheets_service=google_sheets_service)
-
     self.assertNotEmpty(result_spreadsheet[test_spreadsheet_range[0]])
     self.assertIn(test_spreadsheet_range[0], result_spreadsheet)
-
   def testGetAllSheetsWithNoValues(self):
     test_spreadsheet_range = ['Entities']
     test_request = os.path.join(TEST_RESOURCES,
@@ -58,14 +52,11 @@ class ImportTest(absltest.TestCase):
     }, open(test_request, 'rb').read())])
     google_sheets_service = build(
         SHEETS, V4, http=mock_http, developerKey=_TEST_API_KEY)
-
     result_spreadsheet = import_helper.GetAllSheets(
         spreadsheet_id='spreadsheet_id',
         spreadsheet_range=test_spreadsheet_range,
         google_sheets_service=google_sheets_service)
-
     self.assertEmpty(result_spreadsheet[test_spreadsheet_range[0]])
-
   def testGetAllSheetsRaisesSpreadsheetAuthorizationError(self):
     test_spreadsheet_range = ['Entities']
     test_request = os.path.join(TEST_RESOURCES, 'test_entities_sheet.json')
@@ -74,7 +65,6 @@ class ImportTest(absltest.TestCase):
     }, open(test_request, 'rb').read())])
     google_sheets_service = build(
         SHEETS, V4, http=mock_http, developerKey=_TEST_API_KEY)
-
     with self.assertRaises(SpreadsheetAuthorizationError):
       import_helper.GetAllSheets(
           spreadsheet_id='spreadsheet_id',
@@ -82,8 +72,8 @@ class ImportTest(absltest.TestCase):
           google_sheets_service=google_sheets_service)
 
   def testDeserializeBuildingConfiguration(self):
-    test_building_config_path = os.path.join(TEST_BUILDING_CONFIG_PATH, 'GOOD',
-                                             'guid_format.yaml')
+    test_building_config_path = os.path.join(TEST_RESOURCES,
+                                             'good_test_building_config.yaml')
 
     function_result = import_helper.DeserializeBuildingConfiguration(
         test_building_config_path)
@@ -91,12 +81,10 @@ class ImportTest(absltest.TestCase):
     self.assertIsNotNone(function_result)
 
   def testDeserializeBuildingConfigurationRaisesFileNotFoundError(self):
-    test_building_config_path = os.path.join(TEST_BUILDING_CONFIG_PATH, 'BAD',
-                                             'guid_format.yaml')
+    test_building_config_path = os.path.join(TEST_RESOURCES,
+                                             'not_a_file.yaml')
 
     with self.assertRaises(FileNotFoundError):
       import_helper.DeserializeBuildingConfiguration(test_building_config_path)
-
-
 if __name__ == '__main__':
   absltest.main()

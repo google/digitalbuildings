@@ -16,6 +16,7 @@
 import copy
 import os
 import pathlib as pl
+import tempfile
 
 from absl.testing import absltest
 
@@ -46,11 +47,11 @@ from model.constants import STATES
 from model.constants import TARGET_ENTITY_CODE
 from model.constants import TARGET_ENTITY_GUID
 from model.constants import TYPE_NAME
-from abel.tests.test_constants import TEST_NAMESPACE
-from abel.tests.test_constants import TEST_REPORTING_ENTITY_CODE
-from abel.tests.test_constants import TEST_REPORTING_ENTITY_DICT
-from abel.tests.test_constants import TEST_REPORTING_GUID
-from abel.tests.test_constants import TEST_SPREADSHEET
+from abel_tests.test_constants import TEST_NAMESPACE
+from abel_tests.test_constants import TEST_REPORTING_ENTITY_CODE
+from abel_tests.test_constants import TEST_REPORTING_ENTITY_DICT
+from abel_tests.test_constants import TEST_REPORTING_GUID
+from abel_tests.test_constants import TEST_SPREADSHEET
 from validators.spreadsheet_error import ConnectionDependencyError
 from validators.spreadsheet_error import CrossSheetDependencyError
 from validators.spreadsheet_error import InvalidNamingError
@@ -58,9 +59,8 @@ from validators.spreadsheet_error import MissingSpreadsheetValueError
 from validators.spreadsheet_error import SpreadsheetHeaderError
 from validators.spreadsheet_validator import SpreadsheetValidator
 
-
-_TEST_VALIDATOR_LOG_PATH = os.path.join(
-    os.path.expanduser('~'), 'code/test_model_validation_out.log')
+_TEST_VALIDATOR_LOG_PATH = os.path.join(tempfile.gettempdir(),
+                                        'test_model_validation_out.log')
 
 
 class SpreadsheetValidatorTest(absltest.TestCase):
