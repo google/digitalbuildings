@@ -16,7 +16,7 @@
 import datetime
 import os
 
-
+# pylint: disable=line-too-long
 # internally, absolute path is used; github uses relative path
 _USE_ABSOLUTE_PATH = False
 

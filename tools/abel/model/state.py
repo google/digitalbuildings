@@ -54,6 +54,7 @@ class State(object):
     entity_code = self.guid_to_entity_map.GetEntityByGuid(self.entity_guid).code
     return f'State for {entity_code}: {self.standard_field_name}'
 
+  # pylint: disable=line-too-long
   def __eq__(self, other: ...) -> bool:
     if not isinstance(other, State):
       raise TypeError('Other object must be a state instance.')
