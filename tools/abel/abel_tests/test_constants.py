@@ -46,11 +46,9 @@ from model.constants import TARGET_ENTITY_CODE
 from model.constants import TARGET_ENTITY_GUID
 from model.constants import TYPE_NAME
 from model.units import Units
-from tests import test_constants
 
 TEST_ROOT = path.join(APPLICATION_ROOT, 'tests')
 TEST_RESOURCES = path.join(TEST_ROOT, 'test_resources')
-TEST_BUILDING_CONFIG_PATH = test_constants.TEST_INSTANCES
 
 TEST_NAMESPACE = 'HVAC'
 TEST_GENERAL_TYPE = 'CHWS'

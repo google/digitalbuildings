@@ -11,7 +11,8 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-"""Tests for Import."""
+"""Tests for Import Helper."""
+
 import os
 from absl.testing import absltest
 from googleapiclient.discovery import build
@@ -43,6 +44,7 @@ class ImportTest(absltest.TestCase):
         google_sheets_service=google_sheets_service)
     self.assertNotEmpty(result_spreadsheet[test_spreadsheet_range[0]])
     self.assertIn(test_spreadsheet_range[0], result_spreadsheet)
+
   def testGetAllSheetsWithNoValues(self):
     test_spreadsheet_range = ['Entities']
     test_request = os.path.join(TEST_RESOURCES,
@@ -57,6 +59,7 @@ class ImportTest(absltest.TestCase):
         spreadsheet_range=test_spreadsheet_range,
         google_sheets_service=google_sheets_service)
     self.assertEmpty(result_spreadsheet[test_spreadsheet_range[0]])
+
   def testGetAllSheetsRaisesSpreadsheetAuthorizationError(self):
     test_spreadsheet_range = ['Entities']
     test_request = os.path.join(TEST_RESOURCES, 'test_entities_sheet.json')
@@ -86,5 +89,7 @@ class ImportTest(absltest.TestCase):
 
     with self.assertRaises(FileNotFoundError):
       import_helper.DeserializeBuildingConfiguration(test_building_config_path)
+
+
 if __name__ == '__main__':
   absltest.main()

@@ -29,7 +29,7 @@ else:
       os.path.join('..', '..', '..'))
 
 # Path to ontology from abel
-ONTOLOGY_ROOT = path.join(REPO_ROOT, 'ontology', 'yaml', 'resources')
+ONTOLOGY_ROOT = os.path.join(REPO_ROOT, 'ontology', 'yaml', 'resources')
 
 # Path to abel/ from repo root.
 APPLICATION_ROOT = os.path.join(REPO_ROOT, 'tools', 'abel')
