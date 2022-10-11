@@ -5,20 +5,16 @@ The ABEL Spreadsheet serves as a user interface for the ABEL application. The
 spreadsheet is the user-friendly interface that allows users to create a
 [Building Configuration file](../../../ontology/docs/building_config.md) from scratch.
 
-## Google Sheets template
-
-The format of an ABEL spreadsheet is well-defined, and it is suggested that you use the following [Google Sheets Template](https://docs.google.com/spreadsheets/d/1tcLjFnHiXUT-xh5C1hRKiUVaUH_CzgSI8zFQ_B8q7vs/copy#gid=980240783)
-
-Below is a definition of each table and column in the ABEL spreadsheet:
-- [Site](#site)
-- [Entities](#entities)
-- [Entity Fields](#entity-fields)
-- [States](#states)
-- [Connections](#connections)
+***Note:*** ABEL can ingest Building Config files using the [initialize
+operation](../../../ontology/docs/building_config.md#initialize) but it does not
+currently support [update
+operations](../../../ontology/docs/building_config.md#update)
 
 ### Generating GUIDs
 
-There are two use cases for ABEL, brownfield and greenfield. Currently ABEL
+There are two use cases for ABEL,
+[brownfield](../../../ontology/docs/building_config.md#update) and
+[greenfield](../../../ontology/docs/building_config.md#initialize). Currently ABEL
 only supports greenfield buildings or Building Configs under the [Initialize
 operation](../../../ontology/docs/building_config.md#initialize)
 
@@ -32,10 +28,16 @@ duplicate entity codes.** Then and only then will the user need to provide
 GUIDs for the entities with duplicate codes in every one of the ABEL
 spreadsheet tables.
 
-***Note:*** ABEL can ingest Building Config files using the [initialize
-operation](../../../ontology/docs/building_config.md#initialize) but it does not
-currently support [update
-operations](../../../ontology/docs/building_config.md#update)
+## Google Sheets template
+
+The format of an ABEL spreadsheet is well-defined, and it is suggested that you use the following [Google Sheets Template](https://docs.google.com/spreadsheets/d/1tcLjFnHiXUT-xh5C1hRKiUVaUH_CzgSI8zFQ_B8q7vs/copy#gid=980240783)
+
+Below is a definition of each table and column in the ABEL spreadsheet:
+- [Site](#site)
+- [Entities](#entities)
+- [Entity Fields](#entity-fields)
+- [States](#states)
+- [Connections](#connections)
 
 ### Site
 
@@ -78,7 +80,7 @@ Version control tag for entities in an entity type database. Used only when upda
 
 `Cloud Device ID` *string*
 
-Cloud registry [device numeric identifier](../../../ontology/docs/building_config.md#identifiers). The device numeric ID is automatically created by a Cloud IoT Core(or similar cloud iot service) and it is globally unique and not editable.
+Cloud registry [device numeric identifier](../../../ontology/docs/building_config.md#identifiers). The device numeric ID is automatically created by a Cloud IoT Core (or similar cloud iot service), and it is globally unique and not editable.
 
 `DBO Namespace` *string* **required**
 
@@ -185,7 +187,7 @@ not need to be re-defined.
 
 `DBO Connection Type` *string* **required**
 
-A connection type as defined in [Digital Buildings Ontology connections](https://github.com/google/digitalbuildings/blob/master/ontology/yaml/resources/connections/connections.yaml). e.g. `FEEDS`
+A connection type as defined in [Digital Buildings Ontology connections](../../../ontology/yaml/resources/connections/connections.yaml). e.g. `FEEDS`
 
 `Target Entity Code` *string* **required**
 
