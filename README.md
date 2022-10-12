@@ -58,13 +58,13 @@ In this module, you’ll fully explore the core modeling and organizational conc
 In this module, you’ll deepen your understanding of the DBO and practice applying it. Through several hands-on activities, you'll walk through the recommended workflow for creating a building configuration file
 
 
-* [Lesson 1: Get Ready to data model](./ontology/docs/learning/.pdf)
-* [Lesson 2: Determine which devices need to be modeled](./ontology/docs/learning/.pdf)
-* [Lesson 3: Determine which data points are required](./ontology/docs/learning/.pdf)
-* [Lesson 4: Name each data point using the DBO](./ontology/docs/learning/.pdf)
-* [Lesson 5: Propose an ontology extension](./ontology/docs/learning/.pdf)
-* [Lesson 6: Construct and finalize the building configuration file](./ontology/docs/learning/.pdf)
-* [Lesson 7: Validate the instance and telemetry](./ontology/docs/learning/.pdf)
+* [Lesson 1: Get Ready to data model](./ontology/docs/learning/Module_2_Lesson_1_Get_ready_to_data_model.pdf)
+* [Lesson 2: Determine which devices need to be modeled](./ontology/docs/learning/Module_2_Lesson_2_Determine_which_devices_need_to_be_modeled.pdf)
+* [Lesson 3: Determine which data points are required](./ontology/docs/learning/Module_2_Lesson_3_Determine_which_data_points_are_required.pdf)
+* [Lesson 4: Name each data point using the DBO](./ontology/docs/learning/Module_2_Lesson_4_Name_each_data_point_using_the_DBO.pdf)
+* [Lesson 5: Propose an ontology extension](./ontology/docs/learning/Module_2_Lesson_5_Propose_an_ontology_extension.pdf)
+* [Lesson 6: Construct and finalize the building configuration file](./ontology/docs/learning/Module_2_Lesson_6_Construct_and_finalize_the_building_configuration_file.pdf)
+* [Lesson 7: Validate the instance and telemetry](./ontology/docs/learning/Module_2_Lesson_7_Validate_the_instance_and_telemetry.pdf)
 
 
 ## Issues
