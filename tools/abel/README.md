@@ -146,8 +146,8 @@ python3 abel.py -s <input_spreadsheet_id>
    fail and `a validation
    report will be created in your current directory with the name,
    `spreadsheet_validation_<todays_date_and_time>.yaml`
-6. The resulting Building Config and instance validaiton report will be written
-   to the current directory with named as:
+6. The resulting Building Config and instance validation report will be written
+   to the current directory with names:
    * `bc_export_<today_date_and_time>.yaml`
    * `instance_validation_<today_date_and_time>.txt`
 
