@@ -91,7 +91,7 @@ dependencies are met:
         "https://iamcredentials.googleapis.com/v1/projects/-/serviceAccounts/your-service-account@project-id.iam.gserviceaccount.com:generateAccessToken" >| spreadsheet_token.json
     ```
 
-4. Confim `spreadsheet_token.json` looks something like:
+4. Confirm `spreadsheet_token.json` looks something like:
 
     ```
     {
