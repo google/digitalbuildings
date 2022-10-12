@@ -21,7 +21,7 @@ from model import import_helper
 from model.constants import SHEETS
 from model.constants import V4
 from model.model_error import SpreadsheetAuthorizationError
-from abel_tests.test_constants import TEST_RESOURCES
+from tests.test_constants import TEST_RESOURCES
 
 _TEST_API_KEY = 'mock_api_key'
 

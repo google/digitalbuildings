@@ -47,11 +47,11 @@ from model.constants import STATES
 from model.constants import TARGET_ENTITY_CODE
 from model.constants import TARGET_ENTITY_GUID
 from model.constants import TYPE_NAME
-from abel_tests.test_constants import TEST_NAMESPACE
-from abel_tests.test_constants import TEST_REPORTING_ENTITY_CODE
-from abel_tests.test_constants import TEST_REPORTING_ENTITY_DICT
-from abel_tests.test_constants import TEST_REPORTING_GUID
-from abel_tests.test_constants import TEST_SPREADSHEET
+from tests.test_constants import TEST_NAMESPACE
+from tests.test_constants import TEST_REPORTING_ENTITY_CODE
+from tests.test_constants import TEST_REPORTING_ENTITY_DICT
+from tests.test_constants import TEST_REPORTING_GUID
+from tests.test_constants import TEST_SPREADSHEET
 from validators.spreadsheet_error import ConnectionDependencyError
 from validators.spreadsheet_error import CrossSheetDependencyError
 from validators.spreadsheet_error import InvalidNamingError

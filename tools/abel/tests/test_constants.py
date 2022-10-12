@@ -47,7 +47,7 @@ from model.constants import TARGET_ENTITY_GUID
 from model.constants import TYPE_NAME
 from model.units import Units
 
-TEST_ROOT = path.join(APPLICATION_ROOT, 'abel_tests')
+TEST_ROOT = path.join(APPLICATION_ROOT, 'tests')
 TEST_RESOURCES = path.join(TEST_ROOT, 'test_resources')
 
 TEST_NAMESPACE = 'HVAC'
