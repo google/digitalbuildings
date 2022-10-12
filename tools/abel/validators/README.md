@@ -1,8 +1,7 @@
 # ABEL Spreadsheet
 
 ### Overview
-The ABEL Spreadsheet serves as a user interface for the ABEL application. The
-spreadsheet is the user-friendly interface that allows users to create a
+The ABEL Spreadsheet serves as a user-friendly interface for ABEL and allows users to create a
 [Building Configuration file](../../../ontology/docs/building_config.md) from scratch.
 
 ***Note:*** ABEL can ingest Building Config files using the [initialize
@@ -22,7 +21,7 @@ operation](../../../ontology/docs/building_config.md#initialize)
 
 A [greenfield building](../../../ontology/docs/building_config.md#initialize) 
 is one that has yet to be onboarded, and ABEL is used to 
-create a Building Config from scratch. In
+create a Building Config from scratch to model this building. In
 this case **GUIDs do not need to be provided except for when there are
 duplicate entity codes.** Then and only then will the user need to provide
 GUIDs for the entities with duplicate codes in every one of the ABEL
@@ -30,7 +29,7 @@ spreadsheet tables.
 
 ## Google Sheets template
 
-The format of an ABEL spreadsheet is well-defined, and it is suggested that you use the following [Google Sheets Template](https://docs.google.com/spreadsheets/d/1tcLjFnHiXUT-xh5C1hRKiUVaUH_CzgSI8zFQ_B8q7vs/copy#gid=980240783)
+The [ABEL Spreadsheet Template](https://docs.google.com/spreadsheets/d/1tcLjFnHiXUT-xh5C1hRKiUVaUH_CzgSI8zFQ_B8q7vs/copy#gid=980240783) has a strict format that must be adhered to.
 
 Below is a definition of each table and column in the ABEL spreadsheet:
 - [Site](#site)

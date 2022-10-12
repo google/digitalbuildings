@@ -17,10 +17,10 @@ Total setup process should only take about 15 minutes.
 
 Before starting the setup and installation process, please ensure that the
 dependencies are met:
-1. You are running **python 3.9** or higher
+1. You are running **Python 3.9** or higher
 3. You have installed [virtualenv](https://pypi.org/project/virtualenv/)
 2. you have installed the [Google Cloud CLI](https://cloud.google.com/sdk/docs/install)
-4. [Initialize the gcloud cli](https://cloud.google.com/sdk/docs/initializing)
+4. [Initialize the gcloud CLI](https://cloud.google.com/sdk/docs/initializing)
 
 ### Set up a tooling environment
 
@@ -91,7 +91,7 @@ dependencies are met:
         "https://iamcredentials.googleapis.com/v1/projects/-/serviceAccounts/your-service-account@project-id.iam.gserviceaccount.com:generateAccessToken" >| spreadsheet_token.json
     ```
 
-4. `spreadsheet_token.json` should look something like:
+4. Confim `spreadsheet_token.json` looks something like:
 
     ```
     {
@@ -100,33 +100,33 @@ dependencies are met:
     }
     ```
 
- ***note:*** spreadsheet tokens only last one hour and the command from step #3
+ ***note:*** Spreadsheet tokens only last one hour and the command from step #3
  must be run again to generate a new token.
-
-## The ABEL Spreadsheet
-The ABEL spreadsheet serves as a user-friendly interface for ABEL and is what
-allows a user to make changes to machine readable documents like [Building
-Config](../../ontology/docs/building_config.md).
-
-Please see the [ABEL spreadsheet docs](../../tools/abel/validators/README.md) for detailed instructions on how to use the spreadsheet.
 
 ## Using ABEL
 ABEL has a few pieces of core functionality, they are:
-* Ingest an [ABEL spreadsheet](https://docs.google.com/spreadsheets/d/1qKMlpJI5-_h_8innNniEkpatMBcRHSGekrRwTsPQ618/copy#gid=980240783) and export a valid [Building Config](../../ontology/docs/building_config.md) file.
-* Ingest a [Building Config](../../ontology/docs/building_config.md) and export an ABEL spreadsheet.
+* Ingest an [ABEL spreadsheet](../../tools/abel/validators/README.md) and export a valid [Building Config](../../ontology/docs/building_config.md) file
+* Ingest a [Building Config](../../ontology/docs/building_config.md) and export an [ABEL spreadsheet](../../tools/abel/validators/README.md)
 
 ### Command-line arguments for ABEL:
-`-s` or `--spreadsheet_id` (required) id for a google sheets spreadsheet
+`-s` or `--spreadsheet_id` **required** id for a google sheets spreadsheet
   * [ABEL Spreadsheet Template](https://docs.google.com/spreadsheets/d/1qKMlpJI5-_h_8innNniEkpatMBcRHSGekrRwTsPQ618/copy#gid=980240783)
   * A Google Sheets ID is found embedded into the spreadsheet's url.
   e.g. `https://docs/google/com/spreadsheets/d/<spreadsheet_id>/edit#gid=123467`
 
-`-b` or `--building_config` (optional) absolute path to a local building configuration file
+`-b` or `--building_config` absolute path to a local building configuration file
   * [Building Configuration Docs](../../ontology/docs/building_config.md)
 
-`-t` or `--token` (optional) path to the GCP project token. Default path for
+`-t` or `--token` path to the GCP project token. Default path for
   the token is the current directory, but an alternate relative or absolute path
   may be provided.
+
+### The ABEL Spreadsheet
+The ABEL spreadsheet serves as a user-friendly interface for ABEL and is what
+allows a user to make changes to machine readable documents like [Building
+Config](../../ontology/docs/building_config.md).
+
+Please see the [ABEL spreadsheet docs](../../tools/abel/validators/README.md) for detailed instructions on how to create your own spreadsheet.
 
 ### Spreadsheet -> Building Config
 
@@ -134,7 +134,7 @@ The process for using an ABEL spreadsheet to generate a Building Config is as
 follows:
 
 1. Create a spreadsheet for ABEL from [ABEL Spreadsheet template](https://docs.google.com/spreadsheets/d/1tcLjFnHiXUT-xh5C1hRKiUVaUH_CzgSI8zFQ_B8q7vs/copy#gid=980240783)
-2. Share your spreadsheet with your GCP service account and project id as an editor. Refer to Google Sheets documentation on [how to share a google sheet](https://support.google.com/docs/answer/9331169?hl=en#6.1).
+2. Share your spreadsheet with your GCP service account and project id as an editor. Refer to Google Sheets documentation on [how to share a google sheet](https://support.google.com/docs/answer/9331169?hl=en#6.1)
 3. Populate your spreadsheet. A well defined guide on how to populate your
    spreadsheet can be found in the [spreadsheet docs](../../tools/abel/validators/README.md)
 4. Run ABEL with the command:
@@ -143,13 +143,13 @@ python3 abel.py -s <input_spreadsheet_id>
 ```
 5. If your spreadsheet does not pass the validation criteria found in the
    [spreadsheet docs](../../tools/abel/validators/README.md) then ABEL will fast
-   fail and `a validation
+   fail and a validation
    report will be created in your current directory with the name,
-   `spreadsheet_validation_<todays_date_and_time>.yaml`
+   `spreadsheet_validation_<todays_date_and_time>.log`
 6. The resulting Building Config and instance validation report will be written
    to the current directory with names:
    * `bc_export_<today_date_and_time>.yaml`
-   * `instance_validation_<today_date_and_time>.txt`
+   * `instance_validation_<today_date_and_time>.log`
 
 ### Building Config -> Spreadsheet
 
