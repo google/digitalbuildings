@@ -84,7 +84,6 @@ abel_setup()
 }
 
 
-
 ontology_validator_setup
 instance_validator_setup
 explorer_setup
