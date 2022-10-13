@@ -13,8 +13,6 @@
 # limitations under the License.
 """Main module for DBO explorer."""
 
-import datetime
-import os
 import sys
 from typing import Optional
 
