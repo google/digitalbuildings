@@ -22,27 +22,14 @@ from model import authenticator
 from model import export_helper
 from model import import_helper
 from model.arg_parser import ParseArgs
-from model.constants import SPREADSHEET_RANGE
+from model.constants import BC_EXPORT_PATH
+from model.constants import INSTANCE_VALIDATOR_LOG_PATH
 from model.constants import ONTOLOGY_ROOT
+from model.constants import SPREADSHEET_RANGE
+from model.constants import SPREADSHEET_VALIDATOR_LOG_PATH
 from model.model_builder import ModelBuilder
 from validators.spreadsheet_validator import SpreadsheetValidator
 from validate import handler
-
-DATETIME_STRING = datetime.datetime.now().strftime('%m-%d-%Y_%H:%M')
-
-# Output path for spreadsheet validation report
-SPREADSHEET_VALIDATOR_LOG_PATH = os.path.join(
-    os.path.expanduser('~'),
-    f'abel/spreadsheet_validation_{DATETIME_STRING}.log')
-
-# Output path for Building Config instance validation report.
-INSTANCE_VALIDATOR_LOG_PATH = os.path.join(
-    os.path.expanduser('~'), f'abel/instance_validation_{DATETIME_STRING}.log')
-
-# Output path for exporting a Building Config file.
-BC_EXPORT_PATH = os.path.join(
-    os.path.expanduser('~'), f'abel/bc_export_{DATETIME_STRING}.yaml')
-
 
 def _spreadsheet_workflow(spreadsheet_id: str,
                           gcp_token_path: str,

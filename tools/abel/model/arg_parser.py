@@ -14,6 +14,7 @@
 """Command line argument parser for ABEL."""
 
 import argparse
+from model.constants import DEFAULT_TOKEN_PATH
 
 
 def ParseArgs() -> argparse.ArgumentParser:
@@ -29,7 +30,8 @@ def ParseArgs() -> argparse.ArgumentParser:
       '-t',
       '--token',
       dest='token',
-      required=True,
+      required=False,
+      default=DEFAULT_TOKEN_PATH,
       help='Path to GCP project token.')
 
   parser.add_argument(

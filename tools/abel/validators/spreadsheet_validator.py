@@ -204,14 +204,15 @@ class SpreadsheetValidator(object):
                 row=row_num,
                 column=ENTITY_CODE,
                 cell_value=field_entity_code))
-      if field_reporting_entity_code not in entity_codes:
-        validation_errors.append(
-            CrossSheetDependencyError(
-                source_table=ENTITY_FIELDS,
-                target_table=ENTITIES,
-                row=row_num,
-                column=REPORTING_ENTITY_CODE,
-                cell_value=field_reporting_entity_code))
+      if field_reporting_entity_code:
+        if field_reporting_entity_code not in entity_codes:
+          validation_errors.append(
+              CrossSheetDependencyError(
+                  source_table=ENTITY_FIELDS,
+                  target_table=ENTITIES,
+                  row=row_num,
+                  column=REPORTING_ENTITY_CODE,
+                  cell_value=field_reporting_entity_code))
     return validation_errors
 
   def _ValidateStatesAcrossSheets(

@@ -139,8 +139,11 @@ class ModelBuilder(object):
           entity.AddConnection(connection)
       for field in self.fields:
         for state in self.states:
-          if state.standard_field_name == field.reporting_entity_field_name and state.entity_guid == guid:
-            field.AddState(state)
+          if state.entity_guid == guid:
+            if state.standard_field_name == field.reporting_entity_field_name:
+              field.AddState(state)
+            elif state.standard_field_name == field.standard_field_name:
+              field.AddState(state)
         if isinstance(entity, VirtualEntity):
           if field.entity_guid == guid:
             entity.AddLink(field)
