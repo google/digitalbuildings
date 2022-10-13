@@ -114,12 +114,14 @@ ABEL has a few pieces of core functionality, they are:
   * A Google Sheets ID is found embedded into the spreadsheet's url.
   e.g. `https://docs/google/com/spreadsheets/d/<spreadsheet_id>/edit#gid=123467`
 
-`-b` or `--building_config` absolute path to a local building configuration file
+`-b` or `--building_config` absolute path to a local building configuration
+file. Only required for the `Building Config -> Spreadsheet` workflow.
   * [Building Configuration Docs](../../ontology/docs/building_config.md)
 
 `-t` or `--token` path to the GCP project token. Default path for
   the token is the current directory, but an alternate relative or absolute path
-  may be provided.
+  may be provided. Only required if the token is stored in a directory that isn't
+  the current directory.
 
 ### The ABEL Spreadsheet
 The ABEL spreadsheet serves as a user-friendly interface for ABEL and is what

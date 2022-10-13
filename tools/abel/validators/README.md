@@ -44,7 +44,7 @@ The `Site` tab holds all information about a project site or building.
 
 `Building Code` *string* **required**
 
-A [human-readable code](../../../ontology/docs/building_config.md#identifiers) for a building. e.g. `US-SVL-TC2`
+A [human-readable code](../../../ontology/docs/building_config.md#identifiers) for a building. e.g. `US-SEA-BLDG1`
 
 `Entity Guid` *string*
 
@@ -87,7 +87,7 @@ Cloud registry [device numeric identifier](../../../ontology/docs/building_confi
 
 `DBO General Type` *string*
 
-[General Type](../../../ontology/docs/model.md#general-types) for an entity as defined in the [Digital Buildings Ontology](../../../ontology/README.md). e.g. `AHU`
+[General Type](../../../ontology/docs/model.md#general-types) for an entity as defined in a particular namespace in the [Digital Buildings Ontology](../../../ontology/README.md). e.g. `AHU`
 
 `DBO Entity Type Name` *string* **required**
 
