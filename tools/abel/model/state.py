@@ -18,7 +18,7 @@ from typing import Dict
 from model.constants import BC_GUID
 from model.constants import ENTITY_CODE
 from model.constants import RAW_STATE
-from model.constants import STANDARD_FIELD_NAME
+from model.constants import REPORTING_ENTITY_FIELD_NAME
 from model.constants import STANDARD_STATE
 from model.guid_to_entity_map import GuidToEntityMap
 
@@ -54,7 +54,7 @@ class State(object):
     entity_code = self.guid_to_entity_map.GetEntityByGuid(self.entity_guid).code
     return f'State for {entity_code}: {self.standard_field_name}'
 
-  #pylint: disable=line-too-long
+  # pylint: disable=line-too-long
   def __eq__(self, other: ...) -> bool:
     if not isinstance(other, State):
       raise TypeError('Other object must be a state instance.')
@@ -64,7 +64,7 @@ class State(object):
   def FromDict(cls, states_dict: Dict[str, str]) ->...:
     new_state = cls(
         entity_guid=states_dict[BC_GUID],
-        standard_field_name=states_dict[STANDARD_FIELD_NAME],
+        standard_field_name=states_dict[REPORTING_ENTITY_FIELD_NAME],
         standard_state=states_dict[STANDARD_STATE],
         raw_state=states_dict[RAW_STATE])
     return new_state
@@ -76,7 +76,7 @@ class State(object):
             self.guid_to_entity_map.GetEntityCodeByGuid(self.entity_guid),
         BC_GUID:
             self.entity_guid,
-        STANDARD_FIELD_NAME:
+        REPORTING_ENTITY_FIELD_NAME:
             self.standard_field_name,
         STANDARD_STATE:
             self.standard_state,
