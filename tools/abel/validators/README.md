@@ -105,15 +105,15 @@ A [human-readable code](../../../onotology/docs/building_config.md#identifiers) 
 
 [UUID4](https://en.wikipedia.org/wiki/Universally_unique_identifier#Version_4_(random)) value for an entity corresponding to the entity in the Entity Code column ad is a unique [identifier for an entity](../../../onotology/docs/building_config.md#identifiers). This column does not need be filled in unless the corresponding entity code is **not unique**. This column will be used when ABEL writes to a blank spreadsheet.
 
-`Reporting Entity Code` *string* **required**
+`Reporting Entity Code` *string*
 
 If a field is linked to a [virtual entity](../../../ontology/docs/building_config.md#virtual-devices) and its telemetry data is reported
-by a [reporting enity](../../../ontology/docs/building_config.md#reporting-physical-devices), then the `Entity Code` column must be the virtual entity code and the `reporting entity code` is the code of the
-entity reporting the field's data. This may be a gateway or some other IoT connected entity.
+by a [reporting entity](../../../ontology/docs/building_config.md#reporting-physical-devices), then the `Entity Code` column must be the virtual entity code and the `reporting entity code` is the code of the
+entity reporting the field's data. This may be a gateway or some other IoT connected entity. This value may be left blank unless a field is linked to a [virtual entity](../../../ontology/docs/building_config.md#virtual-devices).
 
 `Reporting Entity Guid` *string*
 
-[UUID4](https://en.wikipedia.org/wiki/Universally_unique_identifier#Version_4_(random)) [identifier](../../../ontology/docs/building_config.md#identifiers) for an entity correspong to the entity in the Reporting Entity Code Column. This value may be left blank unless the `reporting entity code` is **not unique**
+[UUID4](https://en.wikipedia.org/wiki/Universally_unique_identifier#Version_4_(random)) [identifier](../../../ontology/docs/building_config.md#identifiers) for an entity corresponding to the entity in the Reporting Entity Code Column. This value may be left blank unless the `reporting entity code` is **not unique**.
 
 `DBO Standard Field Name` *string* **required**
 
@@ -178,11 +178,11 @@ not need to be re-defined.
 
 `Source Entity Code` *string* **required**
 
-[Human-readable code](../../../ontology/docs/building_config.md#identifiers) for a connection source entity. e.g. `AHU-1001` This does not need to be provided **unless the source entity code is not unique**
+[Human-readable code](../../../ontology/docs/building_config.md#identifiers) for a connection source entity. e.g. `AHU-1001`
 
 `Source Entity Guid` *string*
 
-[UUID4](https://en.wikipedia.org/wiki/Universally_unique_identifier#Version_4_(random)) [identifier](../../../ontology/docs/building_config.md#identifiers) for an entity corresponding to an entity in the `Entities` tab for connection source.
+[UUID4](https://en.wikipedia.org/wiki/Universally_unique_identifier#Version_4_(random)) [identifier](../../../ontology/docs/building_config.md#identifiers) for an entity corresponding to an entity in the `Entities` tab for connection source. This does not need to be provided **unless the source entity code is not unique**.
 
 `DBO Connection Type` *string* **required**
 
@@ -194,4 +194,4 @@ A connection type as defined in [Digital Buildings Ontology connections](../../.
 
 `Target Entity Guid` *string*
 
-[UUID4](https://en.wikipedia.org/wiki/Universally_unique_identifier#Version_4_(random)) [identifier](../../../ontology/docs/building_config.md#identifiers) for an entity corresponding to an entity in the `Entities` tab for a connection target. This does not need to be provided **unless the target entity code is non-unique**
+[UUID4](https://en.wikipedia.org/wiki/Universally_unique_identifier#Version_4_(random)) [identifier](../../../ontology/docs/building_config.md#identifiers) for an entity corresponding to an entity in the `Entities` tab for a connection target. This does not need to be provided **unless the target entity code is non-unique**.
