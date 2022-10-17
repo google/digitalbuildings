@@ -24,3 +24,7 @@ SDC_EXT-19-GUID:
   etag: a56790
   update_mask:
   - type
+
+US-SEA-BLDG1-GUID:
+  type: FACILITIES/BUILDING
+  code: US-SEA-BLDG1

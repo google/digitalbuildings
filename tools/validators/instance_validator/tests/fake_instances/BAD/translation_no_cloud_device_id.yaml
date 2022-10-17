@@ -16,9 +16,9 @@
 # for translation. The devices listed in translation need to follow specific
 # formats, and `invalid_key` is not a valid part of any of them.
 
-UK-LON-S2-GUID:
-  type: FACILITIES/BUILDING
-  code: UK-LON-S2
+SDC_EXT-17-GUID:
+  type: HVAC/SDC_EXT
+  code: SDC_EXT-17
   translation:
     zone_air_temperature_sensor:
       present_value: "temp_1"
@@ -27,3 +27,7 @@ UK-LON-S2-GUID:
         values:
           degrees_celsius: "degC"
           degrees_fahrenheit: "degF"
+
+US-SEA-BLDG1-GUID:
+  type: FACILITIES/BUILDING
+  code: US-SEA-BLDG1

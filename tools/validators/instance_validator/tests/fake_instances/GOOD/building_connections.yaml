@@ -12,11 +12,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Building
-UK-LON-S2-GUID:
-  type: FACILITIES/BUILDING
-  code: UK-LON-S2
+US-SEA-BLDG1-1-GUID:
+  type: FACILITIES/FLOOR
+  code: US-SEA-BLDG1-1
   connections:
     # Listed entities are sources on connections
     ANOTHER-ENTITY-GUID: FEEDS
     A-THIRD-ENTITY-GUID: CONTAINS
+
+US-SEA-BLDG1-GUID:
+  type: FACILITIES/BUILDING
+  code: US-SEA-BLDG1

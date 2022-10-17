@@ -12,9 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-UK-LON-S2-GUID:
-  type: FACILITIES/BUILDING
-  code: UK-LON-S2
+SDC_EXT-17-GUID:
+  type: HVAC/SDC_EXT
+  code: SDC_EXT-17
   translation:
     zone_air_temperature_sensor:
       present_value: "points.temp_1.present_value"
@@ -22,3 +22,7 @@ UK-LON-S2-GUID:
         values:
           degrees_celsius: "degC"
           degrees_fahrenheit: "degF"
+
+US-SEA-BLDG1-GUID:
+  type: FACILITIES/BUILDING
+  code: US-SEA-BLDG1

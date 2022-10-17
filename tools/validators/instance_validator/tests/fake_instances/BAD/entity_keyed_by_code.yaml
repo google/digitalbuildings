@@ -47,6 +47,6 @@ PHYSICAL-ENTITY:
         values:
           pascals: "pascals"
 
-UK-LON-S2:
+US-SEA-BLDG1:
   type: FACILITIES/BUILDING
-  guid: UK-LON-S2-GUID
+  guid: US-SEA-BLDG1-GUID

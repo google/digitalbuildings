@@ -13,6 +13,6 @@
 # limitations under the License.
 
 # Building
-UK-LON-S2-GUID:
+US-SEA-BLDG1-GUID:
   type: FACILITIES/BUILDING
-  code UK-LON-S2
+  code US-SEA-BLDG1

@@ -25,3 +25,7 @@ SDC_EXT-19-GUID:
   operation: EXPORT
   update_mask:
     - connections
+
+US-SEA-BLDG1-GUID:
+  type: FACILITIES/BUILDING
+  code: US-SEA-BLDG1

@@ -244,3 +244,7 @@ FCU-10-GUID:
         values:
           degrees_celsius: degC
   type: HVAC/FCU_DFSS_DFVSC_ZTC_ZHC_CHWDC_FDPM_RMM
+
+US-SEA-BLDG1-GUID:
+  type: FACILITIES/BUILDING
+  code: US-SEA-BLDG1

@@ -33,3 +33,7 @@ SDC_EXT-19-GUID:
         key: "points.units"
         values:
           percent: "%"
+
+US-SEA-BLDG1-GUID:
+  type: FACILITIES/BUILDING
+  code: US-SEA-BLDG1

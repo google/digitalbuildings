@@ -22,7 +22,7 @@ from os import path
 from absl.testing import absltest
 import strictyaml as syaml
 
-from tests import test_constants
+from google3.third_party.digitalbuildings.tools.validators.instance_validator.tests import test_constants
 from validate import handler
 from validate import instance_parser
 
@@ -271,6 +271,11 @@ class ParserTest(absltest.TestCase):
           [path.join(_TESTCASE_PATH, 'BAD', 'update_mask_operation.yaml')])
       del parser
 
+  def testInstanceValidator_translationFieldStatesCaseInsensitive_Success(self):
+    parser = _ParserHelper(
+        [path.join(_TESTCASE_PATH, 'GOOD', 'states_case_insensitive.yaml')])
+    self.assertLen(parser.GetEntities().keys(), 2)
+
   def testEntityBlock_EntityWithId_Success(self):
     parser = _ParserHelper(
         [path.join(_TESTCASE_PATH, 'GOOD', 'bc_entity_with_id.yaml')])
@@ -282,7 +287,8 @@ class ParserTest(absltest.TestCase):
 
     self.assertLen(parser.GetEntities().keys(), 2)
     self.assertIsNone(entity_1.get(instance_parser.ENTITY_ID_KEY))
-    self.assertEqual(entity_2.get(instance_parser.ENTITY_ID_KEY),
+    self.assertEqual(
+        entity_2.get(instance_parser.ENTITY_ID_KEY),
         "deprecated-but-doesn't-break")
 
 if __name__ == '__main__':

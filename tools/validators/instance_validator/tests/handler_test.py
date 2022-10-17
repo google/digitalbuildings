@@ -25,7 +25,7 @@ from unittest import mock
 
 from absl.testing import absltest
 
-from tests import test_constants
+from google3.third_party.digitalbuildings.tools.validators.instance_validator.tests import test_constants
 from validate import entity_instance
 from validate import generate_universe
 from validate import handler
@@ -122,7 +122,7 @@ class HandlerTest(absltest.TestCase):
            mock.call().Listen(mock.ANY)])
       # TODO(berkoben): Make this assert stricter
       mock_validator.assert_has_calls(
-          [mock.call(mock.ANY, mock.ANY, mock.ANY, mock.ANY),
+          [mock.call(mock.ANY, mock.ANY, mock.ANY),
            mock.call().StartTimer()])
 
     except SystemExit:
