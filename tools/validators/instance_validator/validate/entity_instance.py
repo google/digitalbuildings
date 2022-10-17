@@ -522,6 +522,7 @@ class InstanceValidator(object):
 
     is_valid = True
 
+    # pylint: disable=line-too-long
     if entity.update_mask is not None:
       if entity.operation != parse.EntityOperation.UPDATE:
         print('Update mask is required for update operations')

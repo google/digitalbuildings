@@ -244,6 +244,7 @@ class TelemetryValidatorTest(absltest.TestCase):
     self.assertIn(error, errors)
     self.assertLen(errors, 1)
 
+  # pylint: disable=line-too-long
   def testGetErrorMessage(self):
     validator = telemetry_validator.TelemetryValidator(GOOD_ENTITIES_1, 1,
                                                        _NullCallback)
