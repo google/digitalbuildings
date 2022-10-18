@@ -16,9 +16,9 @@
 # for translation. The devices listed in translation need to follow specific
 # formats, and `invalid_key` is not a valid part of any of them.
 
-UK-LON-S2-GUID:
+US-SEA-BLDG1-GUID:
   type: FACILITIES/BUILDING
-  code: UK-LON-S2
+  code: US-SEA-BLDG1
   cloud_device_id: "foobar"
   translation:
     zone_air_temperature_sensor:

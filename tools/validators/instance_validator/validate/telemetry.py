@@ -1,4 +1,4 @@
-# Copyright 2022 Google LLC
+# Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the License);
 # you may not use this file except in compliance with the License.
@@ -23,7 +23,6 @@ DEVICE_ID = 'deviceId'
 DEVICE_REGISTRY_ID = 'deviceRegistryId'
 DEVICE_NUM_ID = 'deviceNumId'
 SUB_FOLDER = 'subFolder'
-SUB_TYPE = 'subType'
 VERSION = 'version'
 POINTS = 'points'
 TIMESTAMP = 'timestamp'
@@ -69,14 +68,12 @@ class Telemetry(object):
     """
     parsed_attributes = {}
     parsed_attributes[DEVICE_ID] = pubsub_message_attributes.get(DEVICE_ID)
+    # pylint: disable=g-backslash-cointuation
     parsed_attributes[DEVICE_REGISTRY_ID] = \
     pubsub_message_attributes.get(DEVICE_REGISTRY_ID)
     parsed_attributes[DEVICE_NUM_ID] = \
-      pubsub_message_attributes.get(DEVICE_NUM_ID)
-    parsed_attributes[SUB_FOLDER] = \
-      pubsub_message_attributes.get(SUB_FOLDER)
-    parsed_attributes[SUB_TYPE] = \
-      pubsub_message_attributes.get(SUB_TYPE)
+    pubsub_message_attributes.get(DEVICE_NUM_ID)
+    parsed_attributes[SUB_FOLDER] = pubsub_message_attributes.get(SUB_FOLDER)
     return parsed_attributes
 
   def _parse_data(self,
@@ -90,11 +87,11 @@ class Telemetry(object):
       message: pubsub telemetry payload, UDMI compliant
 
     Returns:
-      version: the version in the payload
-      timestamp: timestamp of the message in the payload
-      points: a dictionary containing as key the points name and as value a
+      version: The version in the payload.
+      timestamp: Timestamp of the message in the payload.
+      points: A dictionary containing as key the points name and as value a
       Point class.
-      is_partial: true if this message has only a partial pointset
+      is_partial: True if this message has only a partial pointset.
     """
     version, timestamp, points, is_partial = (None, None, None, None)
     try:
@@ -102,8 +99,19 @@ class Telemetry(object):
         print(f'Received an invalid message (non Json payload)\n{message}')
         return version, timestamp, points, is_partial
       json_object = json.loads(message)
-    except json.JSONDecodeError:
-      print(f'The following Json payload is invalid:\n{message}')
+      version = json_object[VERSION]
+      timestamp = json_object[TIMESTAMP]
+      is_partial = bool(json_object.get(PARTIAL_UPDATE, False))
+      points = {}
+      if POINTS not in json_object.keys():
+        print('Error: no points in ', json_object)
+        return version, timestamp, points, is_partial
+      json_points = json_object[POINTS]
+      for point_name, value in json_points.items():
+        p = point.Point(point_name, value.get(PRESENT_VALUE))
+        points[point_name] = p
+    except (json.JSONDecodeError, TypeError):
+      print(f'The following payload is invalid:\n{message}')
     except AttributeError:
       print(f'The following Json raised an attribute error:\n{message}')
     except ValueError:

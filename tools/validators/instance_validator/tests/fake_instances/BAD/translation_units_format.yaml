@@ -12,9 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-UK-LON-S2-GUID:
+US-SEA-BLDG1-GUID:
   type: FACILITIES/BUILDING
-  code: UK-LON-S2
+  code: US-SEA-BLDG1
   translation:
     zone_air_temperature_sensor:
       present_value: "points.temp_1.present_value"

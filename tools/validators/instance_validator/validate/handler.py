@@ -79,22 +79,21 @@ def Deserialize(
 
 def _ValidateConfig(
     filenames: List[str],
-    universe: pvt.ConfigUniverse,
-    is_udmi) -> List[entity_instance.EntityInstance]:
+    universe: pvt.ConfigUniverse) -> List[entity_instance.EntityInstance]:
   """Runs all config validation checks."""
   print('\nLoading config files...\n')
   entities, config_mode = Deserialize(filenames)
   print('\nStarting config validation...\n')
   helper = EntityHelper(universe)
-  return helper.Validate(entities, config_mode, is_udmi)
+  return helper.Validate(entities, config_mode)
 
 
 def _ValidateTelemetry(subscription: str, service_account: str,
                        entities: Dict[str, entity_instance.EntityInstance],
-                       timeout: int, is_udmi: bool) -> None:
+                       timeout: int) -> None:
   """Runs all telemetry validation checks."""
   helper = TelemetryHelper(subscription, service_account)
-  helper.Validate(entities, timeout, is_udmi)
+  helper.Validate(entities, timeout)
 
 
 def RunValidation(filenames: List[str],
@@ -103,8 +102,7 @@ def RunValidation(filenames: List[str],
                   subscription: str = None,
                   service_account: str = None,
                   report_filename: str = None,
-                  timeout: int = 60,
-                  is_udmi: bool = False) -> None:
+                  timeout: int = 60) -> None:
   """Master runner for all validations."""
   saved_stdout = sys.stdout
   report_file = None
@@ -122,11 +120,10 @@ def RunValidation(filenames: List[str],
       print('\nError generating universe')
       sys.exit(0)
     print('\nStarting config validation...\n')
-    entities = _ValidateConfig(filenames, universe, is_udmi)
+    entities = _ValidateConfig(filenames, universe)
     if subscription:
       print('\nStarting telemetry validation...\n')
-      _ValidateTelemetry(subscription, service_account, entities,
-                         timeout, is_udmi)
+      _ValidateTelemetry(subscription, service_account, entities, timeout)
     else:
       print('Subscription is needed for telemetry validation')
 
@@ -150,19 +147,18 @@ class TelemetryHelper(object):
     self.service_account_file = service_account_file
 
   def Validate(self, entities: Dict[str, entity_instance.EntityInstance],
-               timeout: int, is_udmi: bool) -> None:
+               timeout: int) -> None:
     """Validates telemetry payload received from the subscription.
 
     Args:
       entities: EntityInstance dictionary keyed by entity name
       timeout: number of seconds to wait for telemetry
-      is_udmi: true/false treat telemetry stream as UDMI; defaults to false
     """
 
     print('Connecting to pubsub subscription: ', self.subscription)
     sub = subscriber.Subscriber(self.subscription, self.service_account_file)
     validator = telemetry_validator.TelemetryValidator(
-        entities, timeout, is_udmi, _TelemetryValidationCallback)
+        entities, timeout, _TelemetryValidationCallback)
     validator.StartTimer()
     try:
       sub.Listen(validator.ValidateMessage)
@@ -220,15 +216,13 @@ class EntityHelper(object):
 
   def Validate(
       self, entities: Dict[str, entity_instance.EntityInstance],
-      config_mode: instance_parser.ConfigMode,
-      is_udmi: bool= False
+      config_mode: instance_parser.ConfigMode
   ) -> Dict[str, entity_instance.EntityInstance]:
     """Validates entity instances that are already deserialized.
 
     Args:
       entities: a dict of entity instances
       config_mode: processing mode of the configuration
-      is_udmi: flag to indicate validation under udmi; defaults to false
 
     Returns:
       A dictionary containing valid entities by GUID
@@ -250,7 +244,7 @@ class EntityHelper(object):
       if (current_entity.operation is not instance_parser.EntityOperation.DELETE
           and current_entity.type_name.lower() == 'building'):
         building_found = True
-      if not validator.Validate(current_entity, is_udmi):
+      if not validator.Validate(current_entity):
         print(entity_guid, 'is not a valid instance')
         continue
       valid_entities[entity_guid] = current_entity

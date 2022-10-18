@@ -11,32 +11,40 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
-"""Reads payload from a pubsub subscription"""
+"""Reads payload from a pubsub subscription."""
 
 from __future__ import print_function
 
 from concurrent import futures
 import json
+from typing import Optional
 
 from google import auth
 from google.cloud import pubsub_v1
-
-from typing import Optional
 
 
 class Subscriber(object):
   """Reads payload from a subscription.
 
-  Args:
+  Attributes:
     subscription_name: Name of the subscription.
-    service_account_info:[optional ] Service account information from the GCP
-      project. When not provided, appplication default credentials are used.
+    service_account_info_json_file: [optional] Service account information from
+      the GCP project. When not provided, appplication default credentials are
+      used.
   """
 
   def __init__(self,
-               subscription_name,
+               subscription_name: str,
                service_account_info_json_file: Optional[str] = None):
+    """Init.
+
+    Args:
+      subscription_name: Pubsub subscription name.
+      service_account_info_json_file: [optional] Service account information
+        from the GCP project. When not provided, appplication default
+        credentials are used.
+    """
+
     super().__init__()
     assert subscription_name
     self.subscription_name = subscription_name
@@ -57,7 +65,7 @@ class Subscriber(object):
     else:
       print("No service account. Using application default credentials")
       # pylint: disable=unused-variable
-      credentials, project_id = auth.default()
+      credentials.project_id = auth.default()
 
     sub_client = pubsub_v1.SubscriberClient(credentials=credentials)
     future = sub_client.subscribe(self.subscription_name, callback)

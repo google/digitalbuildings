@@ -28,3 +28,6 @@ else:
 APPLICATION_ROOT = path.join(REPO_ROOT, 'tools', 'validators',
                              'instance_validator')
 ONTOLOGY_ROOT = path.join(REPO_ROOT, 'ontology', 'yaml', 'resources')
+
+# Default timeout duration for telemetry validation test
+DEFAULT_TIMEOUT = 600
