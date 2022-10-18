@@ -97,9 +97,12 @@ class EntityInstanceTest(absltest.TestCase):
     validator = entity_instance.CombinationValidator(self.config_universe,
                                                      _UPDATE_CFG, {})
 
-    self.assertTrue(validator.Validate(mock_entity))
-    mock_iv.assert_called_once_with(mock_entity)
-    mock_gv.assert_called_once_with(mock_entity)
+    self.assertTrue(validator.Validate(mock_entity()))
+    # to ensure that we called the mock with is_udmi= False
+    # i.e. we didn't call it with is_udmi= True
+    mock_iv.assert_called_once()
+    mock_iv.assert_called_once_with(mock_entity.return_value, False)
+    mock_gv.assert_called_once_with(mock_entity.return_value)
 
   def testInstance_ValidEtagOnUpdate_Success(self):
     valid_instance = entity_instance.EntityInstance(
@@ -1039,22 +1042,11 @@ class EntityInstanceTest(absltest.TestCase):
     self.assertEqual(entity_instances['PHYSICAL-ENTITY-GUID'].operation,
                      _EXPORT)
 
-  def testValidate_UpdateCloudDeviceID_Fails(self):
-    instance = entity_instance.EntityInstance(
-        _UPDATE,
-        guid='ENTITY-GUID',
-        code='ENTITY-NAME',
-        namespace='FACILITIES',
-        type_name='BUILDING',
-        etag='a12345',
-        cloud_device_id='CLOUD-DEVICE-ID',
-        update_mask=['cloud_device_id'])
-
-    self.assertFalse(self.update_validator.Validate(instance))
-
-  def testValidate_GoodStatesCaseSensitivity_Success(self):
+  def testValidate_UdmiEntityPresentValue_Fails(self):
+    # the example used is a valid entity according to dbo; however, not udmi
     parsed, default_operation = _Helper(
-        [path.join(_TESTCASE_PATH, 'GOOD', 'states_case_sensitive.yaml')])
+        [path.join(_TESTCASE_PATH, 'BAD',
+            'translation_udmi_present_value.yaml')])
 
     entity_instances = {}
     for entity_guid, entity_parsed in parsed.items():
@@ -1064,16 +1056,14 @@ class EntityInstanceTest(absltest.TestCase):
     combination_validator = entity_instance.CombinationValidator(
         self.config_universe, _INIT_CFG, entity_instances)
 
-    self.assertTrue(
-        combination_validator.Validate(entity_instances['FC2-1-1-GUID']))
+    self.assertFalse(combination_validator.Validate(
+      entity_instances['SDC_EXT-17-GUID'], is_udmi= True))
 
-  def testValidate_BadStatesCaseSensitivity_Failure(self):
-    # The example states_case_insensitive.yaml is used in instance validator and
-    # this (entity instance) test. Case-insensitive is allowed to pass;
-    # however, case-sensitivity is enforced between concrete and ontology
-    # specifications
-    parsed, default_operation = _Helper(
-        [path.join(_TESTCASE_PATH, 'GOOD', 'states_case_insensitive.yaml')])
+  def testValidate_UdmiEntityPresentValue_Success(self):
+    parsed, default_operation = _Helper([
+        path.join(_TESTCASE_PATH, 'GOOD',
+                  'translation_udmi_present_value.yaml')
+    ])
 
     entity_instances = {}
     for entity_guid, entity_parsed in parsed.items():
@@ -1083,8 +1073,8 @@ class EntityInstanceTest(absltest.TestCase):
     combination_validator = entity_instance.CombinationValidator(
         self.config_universe, _INIT_CFG, entity_instances)
 
-    self.assertFalse(
-        combination_validator.Validate(entity_instances['FC2-1-1-GUID']))
+    self.assertTrue(combination_validator.Validate(
+      entity_instances['SDC_EXT-17-GUID'], is_udmi= True))
 
   def testValidate_BuildingConfigEntityWithId_Success(self):
     parsed, default_operation = _Helper(
@@ -1102,8 +1092,7 @@ class EntityInstanceTest(absltest.TestCase):
     self.assertFalse(entity_instance.IsEntityIdPresent(entity_1))
     self.assertTrue(self.init_validator.Validate(entity_2))
     self.assertTrue(entity_instance.IsEntityIdPresent(entity_2))
-    self.assertEqual(
-        entity_2.entity_id,
+    self.assertEqual(entity_2.entity_id,
         parsed['US-SEA-BLDG1-GUID'].get(instance_parser.ENTITY_ID_KEY))
 
 if __name__ == '__main__':
