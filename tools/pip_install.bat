@@ -29,6 +29,5 @@ START py -m pip install .
 ECHO "Finished ABEL setup"
 CD ..
 
-
 ECHO "Setup finished!"
 PAUSE
