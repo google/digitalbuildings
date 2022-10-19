@@ -16,10 +16,10 @@
 CONFIG_METADATA:
   operation: INITIALIZE
 
-UK-LON-S2-GUID:
+US-SEA-BLDG1-GUID:
   operation: ADD
   type: FACILITIES/BUILDING
-  code: UK-LON-S2
+  code: US-SEA-BLDG1
 
 SDC_EXT-18-GUID:
   code: SDC_EXT-18
