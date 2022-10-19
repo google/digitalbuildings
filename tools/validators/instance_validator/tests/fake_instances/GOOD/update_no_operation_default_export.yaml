@@ -62,7 +62,7 @@ PHYSICAL-ENTITY-GUID:
         values:
           pascals: "pascals"
 
-UK-LON-S2-GUID:
+US-SEA-BLDG1-GUID:
   type: FACILITIES/BUILDING
   etag: a56790
-  code: UK-LON-S2
+  code: US-SEA-BLDG1

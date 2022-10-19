@@ -1093,7 +1093,7 @@ class EntityInstanceTest(absltest.TestCase):
     self.assertTrue(self.init_validator.Validate(entity_2))
     self.assertTrue(entity_instance.IsEntityIdPresent(entity_2))
     self.assertEqual(entity_2.entity_id,
-        parsed['UK-LON-S2-GUID'].get(instance_parser.ENTITY_ID_KEY))
+        parsed['US-SEA-BLDG1-GUID'].get(instance_parser.ENTITY_ID_KEY))
 
 if __name__ == '__main__':
   absltest.main()
