@@ -20,7 +20,6 @@ dependencies are met:
 1. You are running **Python 3.9** or higher
 3. You have installed [virtualenv](https://pypi.org/project/virtualenv/)
 2. you have installed the [Google Cloud CLI](https://cloud.google.com/sdk/docs/install)
-4. [Initialize the gcloud CLI](https://cloud.google.com/sdk/docs/initializing)
 
 ### Set up a tooling environment
 
@@ -69,33 +68,45 @@ dependencies are met:
   pip_install.bat
   ```
 
+5. Navigate to the [ABEL directory](./)
+
+```
+cd abel
+```
+
 ### Obtain a spreadsheet token for your google sheets account
 
-1. Contact your IoT Technical Program Manager and ask to be added to a GCP service account.
+1. [Initialize gcloud CLI](https://cloud.google.com/sdk/docs/initializing)
+  1. Run `gcloud init`
+  2. Choose option 1: `re-initialize default configuration`
+  3. Choose option 2: Enter your Google credentials
+  4. Choose option 1: Enter your GCP project id
 
-2. Create a token request file, `token_request.json` with contents:
+![gcloud init screenshot](../../ontology/docs/figures/tools/abel/gcloud_init.png?raw=true)
+
+More info can be found in [gcloud docs on authorizing with the gcloud CLI](https://cloud.google.com/sdk/docs/authorizing)
+
+2. Contact your IoT Technical Program Manager and ask to be added to a GCP service account.
+
+3. Create a token request file, `token_request.json` with contents:
 
     ```
-    {"scope": [    "https://www.googleapis.com/auth/spreadsheets" ],  "lifetime": "3600s"}
+    {"scope": ["https://www.googleapis.com/auth/spreadsheets"],  "lifetime": "3600s"}
     ```
 
-3. Run the below curl command to obtain a token modifying the command with your
+4. Run the below curl command to obtain a token modifying the command with your
    service account from step #1. This command uses a dummy service account,
    `your-service-account@project-id.iam.gserviceaccount.com`
 
     ```
-        curl -X POST \
-        -H "Authorization: Bearer "$(gcloud auth application-default print-access-token) \
-        -H "Content-Type: application/json; charset=utf-8" \
-        -d @token_request.json \
-        "https://iamcredentials.googleapis.com/v1/projects/-/serviceAccounts/your-service-account@project-id.iam.gserviceaccount.com:generateAccessToken" >| spreadsheet_token.json
+        curl -X POST -H "Authorization: Bearer "$(gcloud auth application-default print-access-token) -H "Content-Type: application/json; charset=utf-8" -d @token_request.json "https://iamcredentials.googleapis.com/v1/projects/-/serviceAccounts/<your-service-account>@<project-id>.iam.gserviceaccount.com:generateAccessToken" >| spreadsheet_token.json
     ```
 
-4. Confirm `spreadsheet_token.json` looks something like:
+5. Confirm `spreadsheet_token.json` looks similar to:
 
     ```
     {
-      "accessToken": "ya29.c.AXv0zTOa9p5K78GtGntoIQCqyt2R572qZ3…",
+      "accessToken": "ya29.c...",
       "expireTime": "2022-02-24T19:57:26Z"
     }
     ```
@@ -123,6 +134,12 @@ file. Only required for the `Building Config -> Spreadsheet` workflow.
   may be provided. Only required if the token is stored in a directory that isn't
   the current directory.
 
+`-p` or `--subscription` fully-qualified path to a Google Cloud Pubsub subscription, e.g. `projects/google.com:your-project/subscriptions/your-subscription`. This parameter is optional and it only required to run telemetry validation in a newly generated building config.
+
+`-a` or `--service-account` path to a service account key file corresponding to an account that has permission to pull messages from the subscription. Optional for telemetry validation if gcloud default service account authentication is used.
+
+`-o` or `--timeout` timeout duration in seconds for the telemetry validation test. The default value is 600 seconds, or 10 minutes. If this time limit is exceeded before the validator receives a test pubsub message for each of the entities configured in the given instance config file, the test will fail with an error and report the entities that were not heard from.
+
 ### The ABEL Spreadsheet
 The ABEL spreadsheet serves as a user-friendly interface for ABEL and is what
 allows a user to make changes to machine readable documents like [Building
@@ -139,7 +156,7 @@ follows:
 2. Share your spreadsheet with your GCP service account and project id as an editor. Refer to Google Sheets documentation on [how to share a google sheet](https://support.google.com/docs/answer/9331169?hl=en#6.1)
 3. Populate your spreadsheet. A well defined guide on how to populate your
    spreadsheet can be found in the [spreadsheet docs](../../tools/abel/validators/README.md)
-4. Run ABEL with the command:
+4. In `digitalbuildings/tools/abel` run ABEL with the command:
 ```
 python3 abel.py -s <input_spreadsheet_id>
 ```
@@ -160,7 +177,7 @@ follows:
 
 1. Create a blank spreadsheet for ABEL to write to from [ABEL Spreadsheet template](https://docs.google.com/spreadsheets/d/1tcLjFnHiXUT-xh5C1hRKiUVaUH_CzgSI8zFQ_B8q7vs/copy#gid=980240783)
 2. Share your spreadsheet with your GCP service account and project id as an editor. Refer to Google Sheets documentation on [how to share a google sheet](https://support.google.com/docs/answer/9331169?hl=en#6.1).
-3. Run ABEL with the command:
+3. In `digitalbuildings/tools/abel` run ABEL with the command:
 ```
 python3 abel.py -b absolute/path/to/building/config -s <output_spreadsheet_id>
 ```
