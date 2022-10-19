@@ -15,31 +15,31 @@
 
 from absl.testing import absltest
 
-from model.connection import Connection
-from model.constants import BC_GUID
-from model.constants import CLOUD_DEVICE_ID
-from model.constants import CONNECTION_TYPE
-from model.constants import ENTITY_CODE
-from model.constants import ETAG
-from model.constants import IS_REPORTING
-from model.constants import METADATA
-from model.constants import NAMESPACE
-from model.constants import SOURCE_ENTITY_GUID
-from model.constants import TARGET_ENTITY_GUID
-from model.constants import TYPE_NAME
-from model.entity import ReportingEntity
-from model.entity import VirtualEntity
-from model.entity_field import EntityField
-from tests.test_constants import TEST_CLOUD_DEVICE_ID
-from tests.test_constants import TEST_ENTITY_FIELD_DICT_WITH_UNITS
-from tests.test_constants import TEST_NAMESPACE
-from tests.test_constants import TEST_REPORTING_ENTITY_CODE
-from tests.test_constants import TEST_REPORTING_ENTITY_DICT
-from tests.test_constants import TEST_REPORTING_GUID
-from tests.test_constants import TEST_TYPE_NAME
-from tests.test_constants import TEST_VIRTUAL_ENTITY_CODE
-from tests.test_constants import TEST_VIRTUAL_ENTITY_DICT
-from tests.test_constants import TEST_VIRTUAL_GUID
+from google3.third_party.digitalbuildings.tools.abel.model.connection import Connection
+from google3.third_party.digitalbuildings.tools.abel.model.constants import BC_GUID
+from google3.third_party.digitalbuildings.tools.abel.model.constants import CLOUD_DEVICE_ID
+from google3.third_party.digitalbuildings.tools.abel.model.constants import CONNECTION_TYPE
+from google3.third_party.digitalbuildings.tools.abel.model.constants import ENTITY_CODE
+from google3.third_party.digitalbuildings.tools.abel.model.constants import ETAG
+from google3.third_party.digitalbuildings.tools.abel.model.constants import IS_REPORTING
+from google3.third_party.digitalbuildings.tools.abel.model.constants import METADATA
+from google3.third_party.digitalbuildings.tools.abel.model.constants import NAMESPACE
+from google3.third_party.digitalbuildings.tools.abel.model.constants import SOURCE_ENTITY_GUID
+from google3.third_party.digitalbuildings.tools.abel.model.constants import TARGET_ENTITY_GUID
+from google3.third_party.digitalbuildings.tools.abel.model.constants import TYPE_NAME
+from google3.third_party.digitalbuildings.tools.abel.model.entity import ReportingEntity
+from google3.third_party.digitalbuildings.tools.abel.model.entity import VirtualEntity
+from google3.third_party.digitalbuildings.tools.abel.model.entity_field import EntityField
+from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_CLOUD_DEVICE_ID
+from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_ENTITY_FIELD_DICT_WITH_UNITS
+from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_NAMESPACE
+from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_REPORTING_ENTITY_CODE
+from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_REPORTING_ENTITY_DICT
+from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_REPORTING_GUID
+from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_TYPE_NAME
+from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_VIRTUAL_ENTITY_CODE
+from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_VIRTUAL_ENTITY_DICT
+from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_VIRTUAL_GUID
 
 
 # pylint: disable=unnecessary-dunder-call

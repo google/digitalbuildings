@@ -23,10 +23,10 @@ from google.oauth2.credentials import Credentials
 from googleapiclient.discovery import build
 from googleapiclient.discovery import Resource
 
-from model.constants import ACCESS_TOKEN
-from model.constants import EXPIRE_TIME
-from model.constants import SHEETS
-from model.constants import V4
+from google3.third_party.digitalbuildings.tools.abel.model.constants import ACCESS_TOKEN
+from google3.third_party.digitalbuildings.tools.abel.model.constants import EXPIRE_TIME
+from google3.third_party.digitalbuildings.tools.abel.model.constants import SHEETS
+from google3.third_party.digitalbuildings.tools.abel.model.constants import V4
 
 _SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
 

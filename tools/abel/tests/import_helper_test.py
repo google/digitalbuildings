@@ -17,11 +17,11 @@ import os
 from absl.testing import absltest
 from googleapiclient.discovery import build
 from googleapiclient.http import HttpMockSequence
-from model import import_helper
-from model.constants import SHEETS
-from model.constants import V4
-from model.model_error import SpreadsheetAuthorizationError
-from tests.test_constants import TEST_RESOURCES
+from google3.third_party.digitalbuildings.tools.abel.model import import_helper
+from google3.third_party.digitalbuildings.tools.abel.model.constants import SHEETS
+from google3.third_party.digitalbuildings.tools.abel.model.constants import V4
+from google3.third_party.digitalbuildings.tools.abel.model.model_error import SpreadsheetAuthorizationError
+from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_RESOURCES
 
 _TEST_API_KEY = 'mock_api_key'
 

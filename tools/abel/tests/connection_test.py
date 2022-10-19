@@ -15,11 +15,11 @@
 
 from absl.testing import absltest
 
-from model.connection import Connection
-from model.connection_type import ConnectionType
-from model.constants import CONNECTION_TYPE
-from model.constants import SOURCE_ENTITY_GUID
-from model.constants import TARGET_ENTITY_GUID
+from google3.third_party.digitalbuildings.tools.abel.model.connection import Connection
+from google3.third_party.digitalbuildings.tools.abel.model.connection_type import ConnectionType
+from google3.third_party.digitalbuildings.tools.abel.model.constants import CONNECTION_TYPE
+from google3.third_party.digitalbuildings.tools.abel.model.constants import SOURCE_ENTITY_GUID
+from google3.third_party.digitalbuildings.tools.abel.model.constants import TARGET_ENTITY_GUID
 
 
 _TEST_CONNECTION_DICT = {

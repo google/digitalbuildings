@@ -27,6 +27,13 @@ duplicate entity codes.** Then and only then will the user need to provide
 GUIDs for the entities with duplicate codes in every one of the ABEL
 spreadsheet tables.
 
+GUIDs can be generated manually by using the `GUID` tab in the menu bar at the top 
+of the ABEL spreadsheet template. ***Note:*** Upon using the `Generate GUIDs` 
+function, the user will have to give the guid generation script permission to 
+edit a user's spreadsheet.
+
+![using guid tab](../../../ontology/docs/figures/tools/abel/abel_guid_tab.png?raw=true)
+
 ## Google Sheets template
 
 The [ABEL Spreadsheet Template](https://docs.google.com/spreadsheets/d/1tcLjFnHiXUT-xh5C1hRKiUVaUH_CzgSI8zFQ_B8q7vs/copy#gid=980240783) has a strict format that must be adhered to.

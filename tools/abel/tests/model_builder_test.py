@@ -17,26 +17,26 @@ import os
 
 from absl.testing import absltest
 
-from model import import_helper
-from model.constants import CONNECTIONS
-from model.constants import ENTITIES
-from model.constants import ENTITY_FIELDS
-from model.constants import SITES
-from model.constants import STATES
-from model.entity import ReportingEntity
-from model.entity_field import EntityField
-from model.guid_to_entity_map import GuidToEntityMap
-from model.model_builder import ModelBuilder
-from model.site import Site
-from model.state import State
-from tests.test_constants import TEST_CONNECTION_DICT
-from tests.test_constants import TEST_ENTITY_FIELD_DICT_WITH_STATES
-from tests.test_constants import TEST_ENTITY_FIELD_DICT_WITH_UNITS
-from tests.test_constants import TEST_REPORTING_ENTITY_DICT
-from tests.test_constants import TEST_RESOURCES
-from tests.test_constants import TEST_SITE_DICT
-from tests.test_constants import TEST_STATE_DICT
-from tests.test_constants import TEST_VIRTUAL_ENTITY_DICT
+from google3.third_party.digitalbuildings.tools.abel.model import import_helper
+from google3.third_party.digitalbuildings.tools.abel.model.constants import CONNECTIONS
+from google3.third_party.digitalbuildings.tools.abel.model.constants import ENTITIES
+from google3.third_party.digitalbuildings.tools.abel.model.constants import ENTITY_FIELDS
+from google3.third_party.digitalbuildings.tools.abel.model.constants import SITES
+from google3.third_party.digitalbuildings.tools.abel.model.constants import STATES
+from google3.third_party.digitalbuildings.tools.abel.model.entity import ReportingEntity
+from google3.third_party.digitalbuildings.tools.abel.model.entity_field import EntityField
+from google3.third_party.digitalbuildings.tools.abel.model.guid_to_entity_map import GuidToEntityMap
+from google3.third_party.digitalbuildings.tools.abel.model.model_builder import ModelBuilder
+from google3.third_party.digitalbuildings.tools.abel.model.site import Site
+from google3.third_party.digitalbuildings.tools.abel.model.state import State
+from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_CONNECTION_DICT
+from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_ENTITY_FIELD_DICT_WITH_STATES
+from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_ENTITY_FIELD_DICT_WITH_UNITS
+from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_REPORTING_ENTITY_DICT
+from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_RESOURCES
+from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_SITE_DICT
+from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_STATE_DICT
+from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_VIRTUAL_ENTITY_DICT
 
 
 class ModelBuilderTest(absltest.TestCase):

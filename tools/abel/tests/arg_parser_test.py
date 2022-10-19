@@ -15,7 +15,7 @@
 import argparse
 
 from absl.testing import absltest
-from model import arg_parser
+from google3.third_party.digitalbuildings.tools.abel.model import arg_parser
 
 
 class ArgParserTest(absltest.TestCase):

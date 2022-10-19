@@ -19,10 +19,10 @@ from typing import Any, Dict, List
 from googleapiclient.discovery import Resource
 from googleapiclient.http import HttpError
 
-from model.constants import BODY_VALUE_RANGE_KEY
-from model.constants import SITE_TYPE_NAME
-from model.model_error import SpreadsheetAuthorizationError
-from model.site import Site
+from google3.third_party.digitalbuildings.tools.abel.model.constants import BODY_VALUE_RANGE_KEY
+from google3.third_party.digitalbuildings.tools.abel.model.constants import SITE_TYPE_NAME
+from google3.third_party.digitalbuildings.tools.abel.model.model_error import SpreadsheetAuthorizationError
+from google3.third_party.digitalbuildings.tools.abel.model.site import Site
 from validate import handler
 
 

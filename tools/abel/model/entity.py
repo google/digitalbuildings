@@ -16,16 +16,16 @@
 import abc
 from typing import Dict, List, Optional
 
-from model.connection import Connection
-from model.constants import BC_GUID
-from model.constants import CLOUD_DEVICE_ID
-from model.constants import ENTITY_CODE
-from model.constants import ETAG
-from model.constants import IS_REPORTING
-from model.constants import METADATA
-from model.constants import NAMESPACE
-from model.constants import TYPE_NAME
-from model.entity_field import EntityField
+from google3.third_party.digitalbuildings.tools.abel.model.connection import Connection
+from google3.third_party.digitalbuildings.tools.abel.model.constants import BC_GUID
+from google3.third_party.digitalbuildings.tools.abel.model.constants import CLOUD_DEVICE_ID
+from google3.third_party.digitalbuildings.tools.abel.model.constants import ENTITY_CODE
+from google3.third_party.digitalbuildings.tools.abel.model.constants import ETAG
+from google3.third_party.digitalbuildings.tools.abel.model.constants import IS_REPORTING
+from google3.third_party.digitalbuildings.tools.abel.model.constants import METADATA
+from google3.third_party.digitalbuildings.tools.abel.model.constants import NAMESPACE
+from google3.third_party.digitalbuildings.tools.abel.model.constants import TYPE_NAME
+from google3.third_party.digitalbuildings.tools.abel.model.entity_field import EntityField
 
 
 class Entity(object):

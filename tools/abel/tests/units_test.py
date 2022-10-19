@@ -14,7 +14,7 @@
 """Tests for Units class."""
 
 from absl.testing import absltest
-from model.units import Units
+from google3.third_party.digitalbuildings.tools.abel.model.units import Units
 
 _TEST_UNIT_PATH = 'pointset.points.filter_differential_pressure_setpoint.units'
 _TEST_UNIT_MAP = {'pascals': 'Pa'}

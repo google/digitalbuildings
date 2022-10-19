@@ -20,38 +20,38 @@ import tempfile
 
 from absl.testing import absltest
 
-from model.constants import BC_GUID
-from model.constants import CONNECTION_TYPE
-from model.constants import CONNECTIONS
-from model.constants import ENTITIES
-from model.constants import ENTITY_CODE
-from model.constants import ENTITY_FIELDS
-from model.constants import FACILITIES_NAMESPACE
-from model.constants import FACILTITIES_ENTITY_CODE_REGEX
-from model.constants import IS_REPORTING
-from model.constants import METADATA
-from model.constants import NAMESPACE
-from model.constants import RAW_FIELD_NAME
-from model.constants import RAW_STATE
-from model.constants import RAW_UNIT_PATH
-from model.constants import RAW_UNIT_VALUE
-from model.constants import REPORTING_ENTITY_CODE
-from model.constants import REPORTING_ENTITY_FIELD_NAME
-from model.constants import REPORTING_ENTITY_GUID
-from model.constants import SOURCE_ENTITY_CODE
-from model.constants import SOURCE_ENTITY_GUID
-from model.constants import STANDARD_FIELD_NAME
-from model.constants import STANDARD_STATE
-from model.constants import STANDARD_UNIT_VALUE
-from model.constants import STATES
-from model.constants import TARGET_ENTITY_CODE
-from model.constants import TARGET_ENTITY_GUID
-from model.constants import TYPE_NAME
-from tests.test_constants import TEST_NAMESPACE
-from tests.test_constants import TEST_REPORTING_ENTITY_CODE
-from tests.test_constants import TEST_REPORTING_ENTITY_DICT
-from tests.test_constants import TEST_REPORTING_GUID
-from tests.test_constants import TEST_SPREADSHEET
+from google3.third_party.digitalbuildings.tools.abel.model.constants import BC_GUID
+from google3.third_party.digitalbuildings.tools.abel.model.constants import CONNECTION_TYPE
+from google3.third_party.digitalbuildings.tools.abel.model.constants import CONNECTIONS
+from google3.third_party.digitalbuildings.tools.abel.model.constants import ENTITIES
+from google3.third_party.digitalbuildings.tools.abel.model.constants import ENTITY_CODE
+from google3.third_party.digitalbuildings.tools.abel.model.constants import ENTITY_FIELDS
+from google3.third_party.digitalbuildings.tools.abel.model.constants import FACILITIES_NAMESPACE
+from google3.third_party.digitalbuildings.tools.abel.model.constants import FACILTITIES_ENTITY_CODE_REGEX
+from google3.third_party.digitalbuildings.tools.abel.model.constants import IS_REPORTING
+from google3.third_party.digitalbuildings.tools.abel.model.constants import METADATA
+from google3.third_party.digitalbuildings.tools.abel.model.constants import NAMESPACE
+from google3.third_party.digitalbuildings.tools.abel.model.constants import RAW_FIELD_NAME
+from google3.third_party.digitalbuildings.tools.abel.model.constants import RAW_STATE
+from google3.third_party.digitalbuildings.tools.abel.model.constants import RAW_UNIT_PATH
+from google3.third_party.digitalbuildings.tools.abel.model.constants import RAW_UNIT_VALUE
+from google3.third_party.digitalbuildings.tools.abel.model.constants import REPORTING_ENTITY_CODE
+from google3.third_party.digitalbuildings.tools.abel.model.constants import REPORTING_ENTITY_FIELD_NAME
+from google3.third_party.digitalbuildings.tools.abel.model.constants import REPORTING_ENTITY_GUID
+from google3.third_party.digitalbuildings.tools.abel.model.constants import SOURCE_ENTITY_CODE
+from google3.third_party.digitalbuildings.tools.abel.model.constants import SOURCE_ENTITY_GUID
+from google3.third_party.digitalbuildings.tools.abel.model.constants import STANDARD_FIELD_NAME
+from google3.third_party.digitalbuildings.tools.abel.model.constants import STANDARD_STATE
+from google3.third_party.digitalbuildings.tools.abel.model.constants import STANDARD_UNIT_VALUE
+from google3.third_party.digitalbuildings.tools.abel.model.constants import STATES
+from google3.third_party.digitalbuildings.tools.abel.model.constants import TARGET_ENTITY_CODE
+from google3.third_party.digitalbuildings.tools.abel.model.constants import TARGET_ENTITY_GUID
+from google3.third_party.digitalbuildings.tools.abel.model.constants import TYPE_NAME
+from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_NAMESPACE
+from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_REPORTING_ENTITY_CODE
+from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_REPORTING_ENTITY_DICT
+from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_REPORTING_GUID
+from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_SPREADSHEET
 from validators.spreadsheet_error import ConnectionDependencyError
 from validators.spreadsheet_error import CrossSheetDependencyError
 from validators.spreadsheet_error import InvalidNamingError
@@ -246,6 +246,7 @@ class SpreadsheetValidatorTest(absltest.TestCase):
                           MissingSpreadsheetValueError)
     self.assertEmpty(with_guid_validator_results)
     self.assertFalse(is_valid)
+
   # pylint: disable=line-too-long
   def testFacilititesEntityWithInvalidCode(self):
     facilities_entity_with_bad_code = {
@@ -266,6 +267,7 @@ class SpreadsheetValidatorTest(absltest.TestCase):
     invalid_name_error = invalid_name_validator_results.pop()
     self.assertIsInstance(invalid_name_error, InvalidNamingError)
     self.assertEqual(error_message, invalid_name_error.GetErrorMessage())
+
   # pylint: disable=line-too-long
   def testCreatesLogFile(self):
     log_path = '/build/work/e1cb3532038491632c91c4936844ac13345a/google3/tmp/code/test_model_validation_out.log'

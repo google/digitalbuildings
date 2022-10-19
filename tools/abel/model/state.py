@@ -15,12 +15,12 @@
 
 from typing import Dict
 
-from model.constants import BC_GUID
-from model.constants import ENTITY_CODE
-from model.constants import RAW_STATE
-from model.constants import REPORTING_ENTITY_FIELD_NAME
-from model.constants import STANDARD_STATE
-from model.guid_to_entity_map import GuidToEntityMap
+from google3.third_party.digitalbuildings.tools.abel.model.constants import BC_GUID
+from google3.third_party.digitalbuildings.tools.abel.model.constants import ENTITY_CODE
+from google3.third_party.digitalbuildings.tools.abel.model.constants import RAW_STATE
+from google3.third_party.digitalbuildings.tools.abel.model.constants import REPORTING_ENTITY_FIELD_NAME
+from google3.third_party.digitalbuildings.tools.abel.model.constants import STANDARD_STATE
+from google3.third_party.digitalbuildings.tools.abel.model.guid_to_entity_map import GuidToEntityMap
 
 
 class State(object):
