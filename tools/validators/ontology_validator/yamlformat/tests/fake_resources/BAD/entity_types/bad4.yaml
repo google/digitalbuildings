@@ -1,4 +1,0 @@
-FAN_4:
-  # description is missing
-  uses:
-  - dryer_run_status

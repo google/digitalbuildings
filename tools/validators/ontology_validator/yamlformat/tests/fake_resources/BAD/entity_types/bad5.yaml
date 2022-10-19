@@ -1,4 +1,0 @@
-FAN_5:
-  description: 'like FAN_4, but with a description'
-  uses:
-  - dryer_run_status

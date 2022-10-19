@@ -1,105 +1,183 @@
-[![Tools](https://github.com/google/digitalbuildings/actions/workflows/tools.yml/badge.svg)](https://github.com/google/digitalbuildings/actions/workflows/tools.yml)
-![Ontology Type Validator](https://github.com/google/digitalbuildings/workflows/Ontology%20Type%20Validator/badge.svg)
-![Node.js CI](https://github.com/google/digitalbuildings/workflows/Node.js%20CI/badge.svg)
-[![GitHub stars](https://img.shields.io/github/stars/google/digitalbuildings.svg)](https://github.com/google/digitalbuildings/stargazers)
-[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+# ABEL
+### Automated Building Entity Loader
 
-# Digital Buildings Project
+Allows system integrators to easily and efficiently create and
+modify [Building Configuration files](../../ontology/docs/building_config.md).
 
-The Digital Buildings project is an open-source, Apache-licensed effort to create a uniform schema and toolset for representing structured information about buildings and building-installed equipment. A version of the Digital Buildings ontology and toolset is currently being used by Google to manage buildings in its portfolio. 
+## Setup and installation
 
-The Digital Buildings project originated from the need to manage a very large, heterogeneous building portfolio in a scalable way. The project aims to enable management applications/analyses that are trivially portable between buildings.  This goal is achieved through a combination of semantically-expressive abstract modeling, an easy-to-use configuration language, and robust validation tooling.  Digital Buildings work has been inspired by [Project Haystack](https://project-haystack.org/tag) and [BrickSchema](https://brickschema.org/) and maintains cross-compatibility and/or convergence as a long-term objective.
+The setup process is broken into two parts:
 
-In creating the Digital Buildings project, we have considered the following:
+1. Setup a virtual environment using [virtualenv](https://virtualenv.pypa.io/en/latest/) and install all of the
+proper dependencies
+2. Obtain credentials for [Google Sheets API](https://developers.google.com/sheets/api/reference/rest) for use with
+ABEL
 
-* Human Readability
-* Machine readability and interpretation
-* Composable functionality
-* Dimensional Analysis
-* Correctness validation
-* Cross compatibility
+Total setup process should only take about 15 minutes.
 
-## Project Structure
+Before starting the setup and installation process, please ensure that the
+dependencies are met:
+1. You are running **Python 3.9** or higher
+3. You have installed [virtualenv](https://pypi.org/project/virtualenv/)
+2. you have installed the [Google Cloud CLI](https://cloud.google.com/sdk/docs/install)
 
-This project is structured as follows:
-*  An [**ontology**](/ontology/README.md) that defines the parameters of the semantic data model (Terminology box) and tools for building, validating, and associating real equipment with a specific model. It contains the following formats:
-   * [Yaml format](/ontology/yaml/README.md)
-   * [RDF/OWL format](/ontology/rdf/README.md)
-* [Building Configuration](/ontology/docs/building_config.md) which contains a mapping between the ontology and the "raw" data. Building Config is the Assertion Box.
-* Tools that allow the following:
-  * [Yaml Validator](/tools/validators/ontology_validator/README.md) which allows to validate the yaml ontology upon a change or an extension.
-  * [RDF/OWL Generator](/tools/rdf_generator/README.md) which allows to generate an RDF version from the yaml ontology files.
-* [Internal Building Representation](/ibr/README.md) (IBR) File Format to represent data from different verticals such as spatial, assets.
+### Set up a tooling environment
 
-## Learning Modules
-The learning modules provide an overview of:
-* The main concepts of the Digital Buildings Ontology.
-* How to model and extend types.
-* The Building configuration file concepts.
-* The validation tools for the Building Configuration file.
+1. Clone the Digital Buildings repository
 
-### Module 1: Digital Buildings Ontology (DBO)
-In this module, you’ll fully explore the core modeling and organizational concepts of the DBO. These are essential concepts for data modeling and creating building configuration files.
+  ```
+  git clone https://github.com/google/digitalbuildings.git
+  ```
 
+2. Navigate to the [digitalbuildings tooling library](../../tools/)
 
-* [Lesson 1: Introduction to the DBO](./ontology/docs/learning/Module_1_Lesson_1_Introduction_to_the_DBO.pdf)
-* [Lesson 2: Conceptual Model](./ontology/docs/learning/Module_1_Lesson_2_Conceptual_model.pdf)
-* [Lesson 3: Subfields](./ontology/docs/learning/Module_1_Lesson_3_Subfields.pdf)
-* [Lesson 4: Fields](./ontology/docs/learning/Module_1_Lesson_4_Fields.pdf)
-* [Lesson 5: States and Multi-states](./ontology/docs/learning/Module_1_Lesson_5_States_and_multistates.pdf)
-* [Lesson 6: Entity Types](./ontology/docs/learning/Module_1_Lesson_6_Entity_types.pdf)
-* [Lesson 7: Mappings](./ontology/docs/learning/Module_1_Lesson_7_Mappings.pdf)
-* [Lesson 8: Connections](./ontology/docs/learning/Module_1_Lesson_8_Connections.pdf)
-* [Lesson 9: Namespaces](./ontology/docs/learning/Module_1_Lesson_9_Namespaces.pdf)
+  ```
+  cd digitalbuildings/tools/
+  ```
 
+3. Create a virtual environment with an environment name, in this example: `tooling`
 
-### Module 2: Module 2: Data Modeling with the DBO
+  ```
+  virtualenv tooling
+  ```
 
-In this module, you’ll deepen your understanding of the DBO and practice applying it. Through several hands-on activities, you'll walk through the recommended workflow for creating a building configuration file
+4. Activate your virtual environment
 
+* MacOs/Linux:
 
-* [Lesson 1: Get Ready to data model](./ontology/docs/learning/Module_2_Lesson_1_Get_ready_to_data_model.pdf)
-* [Lesson 2: Determine which devices need to be modeled](./ontology/docs/learning/Module_2_Lesson_2_Determine_which_devices_need_to_be_modeled.pdf)
-* [Lesson 3: Determine which data points are required](./ontology/docs/learning/Module_2_Lesson_3_Determine_which_data_points_are_required.pdf)
-* [Lesson 4: Name each data point using the DBO](./ontology/docs/learning/Module_2_Lesson_4_Name_each_data_point_using_the_DBO.pdf)
-* [Lesson 5: Propose an ontology extension](./ontology/docs/learning/Module_2_Lesson_5_Propose_an_ontology_extension.pdf)
-* [Lesson 6: Construct and finalize the building configuration file](./ontology/docs/learning/Module_2_Lesson_6_Construct_and_finalize_the_building_configuration_file.pdf)
-* [Lesson 7: Validate the instance and telemetry](./ontology/docs/learning/Module_2_Lesson_7_Validate_the_instance_and_telemetry.pdf)
+  ```
+  source tooling/bin/activate
+  ```
 
+* Windows:
 
-## Issues
-Please post issues in [Issues](https://github.com/google/digitalbuildings/issues) section.
+  ```
+  tooling/Scripts/activate
+  ```
 
-## Discussion
-Open mailing list to discuss Google's Digital Building effort. The discussion could include general questions, standards, APIs, and more. [google-digital-building-discuss@googlegroups.com](mailto:google-digital-building-discuss@googlegroups.com)
+5. Depending on your operating system, run either of the global setup scripts to configure dependencies
 
-Members are expected to adhere to this code of conduct: [https://opensource.google.com/conduct](https://opensource.google.com/conduct)
+* Linux/MacOs:
+  ```
+  bash pip_install.sh
+  ```
 
-## How to Contribute
+* Windows:
 
-Please see the [contribution section](CONTRIBUTING.md)
+  ```
+  pip_install.bat
+  ```
 
-## License
+5. Navigate to the [ABEL directory](./)
+
 ```
-Copyright 2022 Google LLC
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-    https://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
+cd abel
 ```
 
-## Publications & Talks
-* [Québec Bâtiment Vert et Intelligent 2020](https://www.eventbrite.ca/e/billets-rendez-vous-annuel-quebec-bvi-presente-par-google-128034116489)
-* [ISWC 2020](http://ceur-ws.org/Vol-2721/paper510.pdf)
-* [LDAC 2020](http://linkedbuildingdata.net/ldac2020/abstracts.html#industry10)
-* [ICML 2020](http://proceedings.mlr.press/v119/sipple20a/sipple20a.pdf)
-* [Semantics 2019](https://2019.semantics.cc/role-semantics-googles-smart-building-platform)
-* [Google Cloud Next'19](https://youtu.be/Zz6jkLYkzSQ)
+### Obtain a spreadsheet token for your google sheets account
+
+1. [Initialize gcloud CLI](https://cloud.google.com/sdk/docs/initializing)
+  1. Run `gcloud init`
+  2. Choose option 1: `re-initialize default configuration`
+  3. Choose option 2: Enter your Google credentials
+  4. Choose option 1: Enter your GCP project id
+
+![gcloud init screenshot](../../ontology/docs/figures/tools/abel/gcloud_init.png?raw=true)
+
+More info can be found in [gcloud docs on authorizing with the gcloud CLI](https://cloud.google.com/sdk/docs/authorizing)
+
+2. Contact your IoT Technical Program Manager and ask to be added to a GCP service account.
+
+3. Create a token request file, `token_request.json` with contents:
+
+    ```
+    {"scope": ["https://www.googleapis.com/auth/spreadsheets"],  "lifetime": "3600s"}
+    ```
+
+4. Run the below curl command to obtain a token modifying the command with your
+   service account from step #1. This command uses a dummy service account,
+   `your-service-account@project-id.iam.gserviceaccount.com`
+
+    ```
+        curl -X POST -H "Authorization: Bearer "$(gcloud auth application-default print-access-token) -H "Content-Type: application/json; charset=utf-8" -d @token_request.json "https://iamcredentials.googleapis.com/v1/projects/-/serviceAccounts/<your-service-account>@<project-id>.iam.gserviceaccount.com:generateAccessToken" >| spreadsheet_token.json
+    ```
+
+5. Confirm `spreadsheet_token.json` looks similar to:
+
+    ```
+    {
+      "accessToken": "ya29.c...",
+      "expireTime": "2022-02-24T19:57:26Z"
+    }
+    ```
+
+ ***note:*** Spreadsheet tokens only last one hour and the command from step #3
+ must be run again to generate a new token.
+
+## Using ABEL
+ABEL has a few pieces of core functionality, they are:
+* Ingest an [ABEL spreadsheet](../../tools/abel/validators/README.md) and export a valid [Building Config](../../ontology/docs/building_config.md) file
+* Ingest a [Building Config](../../ontology/docs/building_config.md) and export an [ABEL spreadsheet](../../tools/abel/validators/README.md)
+
+### Command-line arguments for ABEL:
+`-s` or `--spreadsheet_id` **required** id for a google sheets spreadsheet
+  * [ABEL Spreadsheet Template](https://docs.google.com/spreadsheets/d/1qKMlpJI5-_h_8innNniEkpatMBcRHSGekrRwTsPQ618/copy#gid=980240783)
+  * A Google Sheets ID is found embedded into the spreadsheet's url.
+  e.g. `https://docs/google/com/spreadsheets/d/<spreadsheet_id>/edit#gid=123467`
+
+`-b` or `--building_config` absolute path to a local building configuration
+file. Only required for the `Building Config -> Spreadsheet` workflow.
+  * [Building Configuration Docs](../../ontology/docs/building_config.md)
+
+`-t` or `--token` path to the GCP project token. Default path for
+  the token is the current directory, but an alternate relative or absolute path
+  may be provided. Only required if the token is stored in a directory that isn't
+  the current directory.
+
+`-p` or `--subscription` fully-qualified path to a Google Cloud Pubsub subscription, e.g. `projects/google.com:your-project/subscriptions/your-subscription`. This parameter is optional and it only required to run telemetry validation in a newly generated building config.
+
+`-a` or `--service-account` path to a service account key file corresponding to an account that has permission to pull messages from the subscription. Optional for telemetry validation if gcloud default service account authentication is used.
+
+`-o` or `--timeout` timeout duration in seconds for the telemetry validation test. The default value is 600 seconds, or 10 minutes. If this time limit is exceeded before the validator receives a test pubsub message for each of the entities configured in the given instance config file, the test will fail with an error and report the entities that were not heard from.
+
+### The ABEL Spreadsheet
+The ABEL spreadsheet serves as a user-friendly interface for ABEL and is what
+allows a user to make changes to machine readable documents like [Building
+Config](../../ontology/docs/building_config.md).
+
+Please see the [ABEL spreadsheet docs](../../tools/abel/validators/README.md) for detailed instructions on how to create your own spreadsheet.
+
+### Spreadsheet -> Building Config
+
+The process for using an ABEL spreadsheet to generate a Building Config is as
+follows:
+
+1. Create a spreadsheet for ABEL from [ABEL Spreadsheet template](https://docs.google.com/spreadsheets/d/1tcLjFnHiXUT-xh5C1hRKiUVaUH_CzgSI8zFQ_B8q7vs/copy#gid=980240783)
+2. Share your spreadsheet with your GCP service account and project id as an editor. Refer to Google Sheets documentation on [how to share a google sheet](https://support.google.com/docs/answer/9331169?hl=en#6.1)
+3. Populate your spreadsheet. A well defined guide on how to populate your
+   spreadsheet can be found in the [spreadsheet docs](../../tools/abel/validators/README.md)
+4. In `digitalbuildings/tools/abel` run ABEL with the command:
+```
+python3 abel.py -s <input_spreadsheet_id>
+```
+5. If your spreadsheet does not pass the validation criteria found in the
+   [spreadsheet docs](../../tools/abel/validators/README.md) then ABEL will fast
+   fail and a validation
+   report will be created in your current directory with the name,
+   `spreadsheet_validation_<todays_date_and_time>.log`
+6. The resulting Building Config and instance validation report will be written
+   to the current directory with names:
+   * `bc_export_<today_date_and_time>.yaml`
+   * `instance_validation_<today_date_and_time>.log`
+
+### Building Config -> Spreadsheet
+
+The process for using a building config to generate an ABEL spreadsheet is as
+follows:
+
+1. Create a blank spreadsheet for ABEL to write to from [ABEL Spreadsheet template](https://docs.google.com/spreadsheets/d/1tcLjFnHiXUT-xh5C1hRKiUVaUH_CzgSI8zFQ_B8q7vs/copy#gid=980240783)
+2. Share your spreadsheet with your GCP service account and project id as an editor. Refer to Google Sheets documentation on [how to share a google sheet](https://support.google.com/docs/answer/9331169?hl=en#6.1).
+3. In `digitalbuildings/tools/abel` run ABEL with the command:
+```
+python3 abel.py -b absolute/path/to/building/config -s <output_spreadsheet_id>
+```
