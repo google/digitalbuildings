@@ -82,7 +82,7 @@ cd abel
   3. Choose option 2: Enter your Google credentials
   4. Choose option 1: Enter your GCP project id
 
-![gcloud init screenshot](../../ontology/docs/figures/tools/abel/gcloud_init.png?raw=true)
+![gcloud init screenshot](../../ontology/docs/figures/tools/gcloud_init.png?raw=true)
 
 More info can be found in [gcloud docs on authorizing with the gcloud CLI](https://cloud.google.com/sdk/docs/authorizing)
 
