@@ -30,9 +30,7 @@ import argparse
 import sys
 
 from validate import handler
-
-# Default timeout duration for telemetry validation test
-DEFAULT_TIMEOUT = 600
+from validate.constants import DEFAULT_TIMEOUT
 
 
 # TODO(berkoben): Make this its own file with tests.

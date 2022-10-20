@@ -16,8 +16,8 @@
 US-SEA-BLDG1-GUID:
   type: FACILITIES/BUILDING
   code: US-SEA-BLDG1
-
-CHWS-1-GUID:
+  
+CHWS-1-GUID:  
   type: HVAC/CHWS_WDT
   code: CHWS-1
   cloud_device_id: "foobar"
@@ -28,13 +28,13 @@ CHWS-1-GUID:
         key: points.supply_water_temperature_sensor.units
         values:
           degrees_celsius: degC
-    return_water_temperature_sensor:
+    return_water_temperature_sensor: 
       present_value: points.return_water_temperature_sensor.present_value
       units:
         key: points.return_water_temperature_sensor.units
         values:
           degrees_celsius: degC
-
+ 
 CHWS-2-GUID:
   type: HVAC/CHWS_WDT
   code: CHWS-2
