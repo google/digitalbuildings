@@ -94,9 +94,9 @@ More info can be found in [gcloud docs on authorizing with the gcloud CLI](https
     {"scope": ["https://www.googleapis.com/auth/spreadsheets"],  "lifetime": "3600s"}
     ```
 
-4. Run the below curl command to obtain a token modifying the command with your
-   service account from step #1. This command uses a dummy service account,
-   `your-service-account@project-id.iam.gserviceaccount.com`
+4. Run the following curl command to obtain a token by replacing dummy service account,
+   `your-service-account@project-id.iam.gserviceaccount.com` with your service
+   account from step #1.
 
     ```
         curl -X POST -H "Authorization: Bearer "$(gcloud auth application-default print-access-token) -H "Content-Type: application/json; charset=utf-8" -d @token_request.json "https://iamcredentials.googleapis.com/v1/projects/-/serviceAccounts/<your-service-account>@<project-id>.iam.gserviceaccount.com:generateAccessToken" >| spreadsheet_token.json
@@ -153,7 +153,7 @@ The process for using an ABEL spreadsheet to generate a Building Config is as
 follows:
 
 1. Create a spreadsheet for ABEL from [ABEL Spreadsheet template](https://docs.google.com/spreadsheets/d/1tcLjFnHiXUT-xh5C1hRKiUVaUH_CzgSI8zFQ_B8q7vs/copy#gid=980240783)
-2. Share your spreadsheet with your GCP service account and project id as an editor. Refer to Google Sheets documentation on [how to share a google sheet](https://support.google.com/docs/answer/9331169?hl=en#6.1)
+2. Share your spreadsheet with your GCP service account and project id as an editor. Refer to Google Sheets documentation on [how to share a google sheet](https://support.google.com/docs/answer/9331169?hl=en#6.1).
 3. Populate your spreadsheet. A well defined guide on how to populate your
    spreadsheet can be found in the [spreadsheet docs](../../tools/abel/validators/README.md)
 4. In `digitalbuildings/tools/abel` run ABEL with the command:
