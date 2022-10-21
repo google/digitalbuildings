@@ -393,9 +393,6 @@ class ParseConfigLibTest(absltest.TestCase):
         unit_folder.HasFindingTypes([findings_lib.StandardUnitCountError]))
     self.assertTrue(
         unit_folder.HasFindingTypes([findings_lib.UnknownUnitTagError]))
-    self.assertTrue(
-        unit_folder.HasFindingTypes([findings_lib.DuplicateUnitDefinitionError
-                                    ]))
 
   def testParseUnitFoldersFromBadFileWithSubfieldUniverse(self):
     subfield_folders = parse.ParseSubfieldFoldersFromFiles(

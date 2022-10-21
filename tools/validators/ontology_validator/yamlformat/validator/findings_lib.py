@@ -18,6 +18,8 @@ import operator
 MAX_RANK = 1000000000  # A big number, but not so big it breaks sorting
 MISSING_PARENT_VALIDATION_RANK = 60
 
+# TODO(b/254872070): Add type annotations
+
 
 def MakeFieldString(field):
   """Represents OptWrapper as a string prepending '(opt)' for optional fields.
@@ -58,8 +60,7 @@ def _DedupFindings(findings):
 # Base classes for findings.
 # ---------------------------------------------------------------------------- #
 class FileContext(object):
-  """Wrapper class to store file-related information.
-  """
+  """Wrapper class to store file-related information."""
 
   def __init__(self, filepath, begin_line_number=None, end_line_number=None):
     """Creates a FileContext.
@@ -89,8 +90,7 @@ class FileContext(object):
 
 
 class Finding(object):
-  """Virtual class for findings.
-  """
+  """Virtual class for findings."""
 
   def __init__(self,
                message: str,
@@ -276,7 +276,8 @@ class FindingsUniverse(Findings):
     return {ns.namespace: self._GetNamespaceMapValue(ns) for ns in namespaces}
 
   def _GetNamespaceMapValue(self, namespace):
-    """Override in the subclass to define how values in the namespace map are populated."""
+    """Override in the subclass to define how values in the namespace map are populated.
+    """
     # Delete the unused parameter so the linter doesn't complain.
     del namespace
     return []
@@ -764,19 +765,37 @@ class DuplicateUnitDefinitionError(DuplicateDefinitionError):
                          current_instance.file_context, prev_context)
 
 
-class InvalidUnitFormatError(ValidationError):
-  """A unit's YAML specification is invalid."""
+class InvalidMeasurementFormatError(ValidationError):
+  """The content of a measurement is invalidly formatted."""
 
-  def __init__(self, key, context):
+  def __init__(self, measurement, context):
     """Init.
 
     Args:
-      key: YAML specification for unit.
+      measurement: Name of the measurement subfield.
+      context: Instance of FileContext class for unit.
+    """
+    super(InvalidMeasurementFormatError, self).__init__(
+        'Measurement type "{0}" has an invalid format; each measurement type '
+        'should map to either a string (another measurement type) or a map '
+        'containing the units that belong to the measurement type.'.format(
+            measurement), context)
+
+
+class InvalidUnitFormatError(ValidationError):
+  """A unit's YAML specification is invalid."""
+
+  def __init__(self, unit_name, context):
+    """Init.
+
+    Args:
+      unit_name: The unit name.
       context: Instance of FileContext class for unit.
     """
     super(InvalidUnitFormatError, self).__init__(
-        'Unit "{0}" definition has an invalid format; expected only a single '
-        'unit name and tag.'.format(str(key)), context)
+        'Unit "{0}" definition has an invalid format; expected either the unit '
+        'name and a "STANDARD" tag or the unit name and a map containing the '
+        'conversion multiplier and offset.'.format(str(unit_name)), context)
 
 
 class InvalidUnitNamespaceError(ValidationError):
@@ -800,6 +819,58 @@ class UnknownUnitTagError(ValidationError):
   def __init__(self, unit_name, tag, context):
     super(UnknownUnitTagError, self).__init__(
         'Unit "{0}" has an unrecognized tag "{1}".'.format(unit_name, tag),
+        context)
+
+
+class InvalidUnitConversionKeyError(ValidationError):
+  """A unit entry has a conversion map with an invalid key."""
+
+  def __init__(self, unit_name, key, context):
+    """Init.
+
+    Args:
+      unit_name: The unit name.
+      key: The key in the conversion map item.
+      context: Instance of FileContext class for unit.
+    """
+    super(InvalidUnitConversionKeyError, self).__init__(
+        'Unit "{0}" has a conversion map with key "{1}". The '
+        'conversion map for a non-standard unit must contain only the '
+        '"multiplier" and "offset" keys.'.format(unit_name, key), context)
+
+
+class InvalidUnitConversionValueError(ValidationError):
+  """A unit entry has a conversion map with an invalid value."""
+
+  def __init__(self, unit_name, key, value, context):
+    """Init.
+
+    Args:
+      unit_name: The unit name.
+      key: The key in the conversion map item.
+      value: The value in the conversion map item.
+      context: Instance of FileContext class for unit.
+    """
+    super(InvalidUnitConversionValueError, self).__init__(
+        'Unit "{0}" has a conversion map with key "{1}" and invalid value "{2}"'
+        '. The value must be numeric.'.format(unit_name, key, value), context)
+
+
+class InvalidUnitConversionMapError(ValidationError):
+  """A unit entry has a conversion map with an invalid size."""
+
+  def __init__(self, unit_name, num_items, context):
+    """Init.
+
+    Args:
+      unit_name: The unit name.
+      num_items: The number of items in the conversion map.
+      context: Instance of FileContext class for unit.
+    """
+    super(InvalidUnitConversionMapError, self).__init__(
+        'Unit "{0}" has a conversion map with {1} items when there should be '
+        'exactly 2. The conversion map for a non-standard unit must contain '
+        'only the "multiplier" and "offset" keys.'.format(unit_name, num_items),
         context)
 
 
@@ -1149,7 +1220,6 @@ class MissingParentWarning(ValidationWarning):
 
   def __init__(self, typenames, set_size, qualified_parents, context,
                sum_match_quality, curation_bonus, key):
-
     """Init.
 
     Args:
