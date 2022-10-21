@@ -134,7 +134,7 @@ file. Only required for the `Building Config -> Spreadsheet` workflow.
   may be provided. Only required if the token is stored in a directory that isn't
   the current directory.
 
-`-p` or `--subscription` fully-qualified path to a Google Cloud Pubsub subscription, e.g. `projects/google.com:your-project/subscriptions/your-subscription`. This parameter is only required for telemetry validation in a newly generated building config.
+`-p` or `--subscription` fully-qualified path to a Google Cloud Pubsub subscription, e.g. `projects/google.com:your-project/subscriptions/your-subscription`. This parameter is only required for telemetry validation.
 
 `-a` or `--service-account` path to a service account key file corresponding to an account that has permission to pull messages from the subscription. Optional for telemetry validation if gcloud default service account authentication is used.
 
