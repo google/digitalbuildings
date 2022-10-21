@@ -235,12 +235,16 @@ class PresubmitValidateTypesTest(absltest.TestCase):
 
   def testConfigUniverseGetUnitsForMeasurementMultipleNoUnits(self):
     doc = {
-        'powerfactor': [{
+        'powerfactor': {
+            'no_units': 'STANDARD',
+            'another_one': {
+                'multiplier': 2,
+                'offset': 0
+            }
+        },
+        'voltageratio': {
             'no_units': 'STANDARD'
-        }, 'another_one'],
-        'voltageratio': [{
-            'no_units': 'STANDARD'
-        }],
+        },
     }
     folder = unit_lib.UnitFolder('units/anyfolder')
     folder.AddFromConfig([doc], 'units/anyfolder/units.yaml')
