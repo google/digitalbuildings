@@ -136,8 +136,8 @@ class ModelBuilderTest(absltest.TestCase):
                  ['UK-LON-S2', 'test_site_guid']],
         'Entities': [
             [
-                'Entity Code', 'Entity Guid', 'Is Reporting', 'Cloud Device ID',
-                'Etag', 'DBO Namespace', 'DBO Entity Type Name'
+                'Entity Code', 'Entity Guid', 'Etag', 'Is Reporting', 'Cloud Device ID',
+                 'DBO Namespace', 'DBO Entity Type Name'
             ],
             [
                 'CHWS-1',
