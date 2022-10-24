@@ -52,7 +52,7 @@ dependencies are met:
 * Windows:
 
   ```
-  tooling/Scripts/activate
+  tooling\Scripts\activate
   ```
 
 5. Depending on your operating system, run either of the global setup scripts to configure dependencies
@@ -77,13 +77,13 @@ cd abel
 ### Obtain a spreadsheet token for your google sheets account
 
 1. [Initialize gcloud CLI](https://cloud.google.com/sdk/docs/initializing)
-  1. Run `gcloud init`
-  2. Choose option 1: `re-initialize default configuration`
-  3. Choose option 2: Enter your Google credentials
-  4. Choose option 1: Enter your GCP project id
-  5. Don't configure a cloud region and zone
-  6. Run `gcloud auth application-default login` to set your current login as your
-     default configuration
+    1. Run `gcloud init`
+    2. Choose option 1: `re-initialize default configuration`
+    3. Choose option 2: Enter your Google credentials
+    4. Choose option 1: Enter your GCP project id
+    5. Don't configure a cloud region and zone
+    6. Run `gcloud auth application-default login` to set your current login as your
+       default configuration
 
 ![gcloud init screenshot](../../ontology/docs/figures/tools/gcloud_init.png?raw=true)
 
@@ -111,8 +111,8 @@ More info can be found in [gcloud docs on authorizing with the gcloud CLI](https
     ```
     @echo off
 
-    FOR /F "delims=" %%i IN ('gcloud auth application-default print-access-token') DO set token=%%i
-    SET header=Authorization: Bearer 
+    FOR /F "delims=" %i IN ('gcloud auth application-default print-access-t`oken') DO set token=%i
+    SET header=Authorization: Bearer
 
     SET auth_token="%header%%token%"
 
@@ -122,7 +122,7 @@ More info can be found in [gcloud docs on authorizing with the gcloud CLI](https
     ```
 
     Remember to replace
-    <your-service-account>@<project-id>.iam.gserviceaccount.com:generateAccessToken
+    `<your-service-account>@<project-id>.iam.gserviceaccount.com:generateAccessToken`
     with the service account from step #1 in either `get_token.bat` or the above
     script.
 
