@@ -81,6 +81,9 @@ cd abel
   2. Choose option 1: `re-initialize default configuration`
   3. Choose option 2: Enter your Google credentials
   4. Choose option 1: Enter your GCP project id
+  5. Don't configure a cloud region and zone
+  6. Run `gcloud auth application-default login` to set your current login as your
+     default configuration
 
 ![gcloud init screenshot](../../ontology/docs/figures/tools/gcloud_init.png?raw=true)
 
@@ -94,13 +97,34 @@ More info can be found in [gcloud docs on authorizing with the gcloud CLI](https
     {"scope": ["https://www.googleapis.com/auth/spreadsheets"],  "lifetime": "3600s"}
     ```
 
-4. Run the following curl command to obtain a token by replacing dummy service account,
-   `your-service-account@project-id.iam.gserviceaccount.com` with your service
+4. Send an http request to gcloud auth server to receive an access token:
+
+* Linux/MacOS: Run the following curl command to obtain a token by replacing
+   `<your-service-account>@<project-id>.iam.gserviceaccount.com` with your service
    account from step #1.
 
     ```
         curl -X POST -H "Authorization: Bearer "$(gcloud auth application-default print-access-token) -H "Content-Type: application/json; charset=utf-8" -d @token_request.json "https://iamcredentials.googleapis.com/v1/projects/-/serviceAccounts/<your-service-account>@<project-id>.iam.gserviceaccount.com:generateAccessToken" >| spreadsheet_token.json
     ```
+* Windows: Execute `get_token.bat` or run the following script in your command prompt:
+
+    ```
+    @echo off
+
+    FOR /F "delims=" %%i IN ('gcloud auth application-default print-access-token') DO set token=%%i
+    SET header=Authorization: Bearer 
+
+    SET auth_token="%header%%token%"
+
+    curl -X POST -H %auth_token% -H "Content-Type: application/json; charset=utf-8" -d @token_request.json "https://iamcredentials.googleapis.com/v1/projects/-/serviceAccounts/<your-service-account>@<project-id>.iam.gserviceaccount.com:generateAccessToken" > spreadsheet_token.json
+
+    more spreadsheet_token.json
+    ```
+
+    Remember to replace
+    <your-service-account>@<project-id>.iam.gserviceaccount.com:generateAccessToken
+    with the service account from step #1 in either `get_token.bat` or the above
+    script.
 
 5. Confirm `spreadsheet_token.json` looks similar to:
 
