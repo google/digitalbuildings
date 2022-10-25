@@ -246,6 +246,7 @@ class SpreadsheetValidatorTest(absltest.TestCase):
                           MissingSpreadsheetValueError)
     self.assertEmpty(with_guid_validator_results)
     self.assertFalse(is_valid)
+
   # pylint: disable=line-too-long
   def testFacilititesEntityWithInvalidCode(self):
     facilities_entity_with_bad_code = {
@@ -266,6 +267,7 @@ class SpreadsheetValidatorTest(absltest.TestCase):
     invalid_name_error = invalid_name_validator_results.pop()
     self.assertIsInstance(invalid_name_error, InvalidNamingError)
     self.assertEqual(error_message, invalid_name_error.GetErrorMessage())
+
   # pylint: disable=line-too-long
   def testCreatesLogFile(self):
     log_path = '/build/work/e1cb3532038491632c91c4936844ac13345a/google3/tmp/code/test_model_validation_out.log'

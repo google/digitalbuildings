@@ -29,8 +29,12 @@ from model.model_builder import ModelBuilder
 from validators.spreadsheet_validator import SpreadsheetValidator
 from validate import handler
 
+
 def _spreadsheet_workflow(spreadsheet_id: str,
                           gcp_token_path: str,
+                          subscription: Optional[str] = None,
+                          service_account: Optional[str] = None,
+                          timeout: Optional[float] = None,
                           ontology_path: Optional[str] = ONTOLOGY_ROOT) -> None:
   """Helper function for executing the spreadsheet -> building config workflow.
 
@@ -39,6 +43,13 @@ def _spreadsheet_workflow(spreadsheet_id: str,
     gcp_token_path: Path to GCP token for authenticating against Google sheets
       API. This is a short-lived credential for a service account as documented
       https://cloud.google.com/iam/docs/create-short-lived-credentials-direct.
+    subscription: [Optional] Fully qualified path to a Google Cloud pubsub
+      subscription.
+    service_account: [Optional] Fully qualified path to a service account key
+      file corresponding to an account that can read subscription topic
+      messages.
+    timeout: [Optional] The timeout duration in seconds for the telemetry
+      validation test. The default value is 600 seconds, or 10 minutes.
     ontology_path: [Optional] A path to a modified ontology. Default is the
       DigitalBuildings Ontology.
   """
@@ -71,7 +82,10 @@ def _spreadsheet_workflow(spreadsheet_id: str,
     handler.RunValidation(
         filenames=[BC_EXPORT_PATH],
         report_filename=INSTANCE_VALIDATOR_LOG_PATH,
-        modified_types_filepath=ontology_path
+        modified_types_filepath=ontology_path,
+        subscription=subscription,
+        service_account=service_account,
+        timeout=timeout
     )
     print(f'Instance validator log: {INSTANCE_VALIDATOR_LOG_PATH}')
     print(f'Exported Building Configuration: {BC_EXPORT_PATH}')
@@ -122,7 +136,9 @@ def main(parsed_args: ParseArgs) -> None:
   if parsed_args.spreadsheet_id and not parsed_args.building_config:
     _spreadsheet_workflow(
         spreadsheet_id=parsed_args.spreadsheet_id,
-        gcp_token_path=parsed_args.token)
+        gcp_token_path=parsed_args.token,
+        subscription=parsed_args.subscription,
+        service_account=parsed_args.service_account)
   elif parsed_args.building_config and parsed_args.spreadsheet_id:
     _bc_workflow(
         spreadsheet_id=parsed_args.spreadsheet_id,
