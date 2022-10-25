@@ -96,8 +96,8 @@ PHYSICAL-ENTITY-2-GUID:
   update_mask:
     - translation
 
-UK-LON-S2-GUID:
+US-SEA-BLDG1-GUID:
   type: FACILITIES/BUILDING
-  code: UK-LON-S2
+  code: US-SEA-BLDG1
   etag: a56789
   operation: EXPORT

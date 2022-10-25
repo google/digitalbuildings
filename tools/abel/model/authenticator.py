@@ -33,7 +33,10 @@ _SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
 
 # TODO(b/232013816) Investigate refresh tokens.
 def GetGoogleSheetsService(gcp_token_path: str) -> Resource:
-  """Uses client API credentials to obtain a Resource instance with methods for interacting with the Google Sheets service.
+  """Uses client API credentials to obtain a Resource instance.
+
+  Resource instance contains methods for interacting with the Google Sheets
+  service.
 
   Args:
     gcp_token_path: Path to GCP token for authenticating against Google sheets
@@ -49,7 +52,7 @@ def GetGoogleSheetsService(gcp_token_path: str) -> Resource:
   """
   creds = None
   try:
-    with open(os.path.abspath(gcp_token_path)) as token:
+    with open(os.path.abspath(gcp_token_path), encoding='utf-8') as token:
       token_data = json.load(token)
       expiry = datetime.datetime.strptime(token_data[EXPIRE_TIME],
                                           '%Y-%m-%dT%H:%M:%SZ')

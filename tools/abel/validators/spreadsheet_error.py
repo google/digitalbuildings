@@ -44,6 +44,40 @@ class BaseSpreadsheetError(Exception):
     pass
 
 
+class InvalidNamingError(BaseSpreadsheetError):
+  """Custom exception for invalid or incorrectly formatted entity names.
+
+  Attributes:
+    table: Table name where the name is invalid.
+    row: Row number where the name is invalid.
+    column: Column header for the invalid name.
+    message: Custom exception message for the invalid name.
+    invalid_name: Name that does not conform to provided pattern.
+    naming_pattern: Regex pattern for entity names.
+  """
+
+  def __init__(self, table: str, row: str, column: str, invalid_name: str,
+               naming_pattern: str, message: Optional[str] = ''):
+    """Init.
+
+    Args:
+      table: Table name where the name is invalid.
+      row: Row number where the name is invalid.
+      column: Column header for the invalid name.
+      invalid_name: Name that does not conform to provided pattern.
+      naming_pattern: Regex pattern for entity names.
+      message: [Optional] Custom exception message for the invalid name.
+    """
+    super().__init__(table, message)
+    self.row = row
+    self.column = column
+    self.invalid_name = invalid_name
+    self.naming_pattern = naming_pattern
+
+  def GetErrorMessage(self) -> str:
+    return f'Table: {self.table}, Row: {self.row}, Column: {self.column}, Message: {self.message}, entity name: {self.invalid_name} must follow naming pattern: {self.naming_pattern}'
+
+
 class MissingSpreadsheetValueError(BaseSpreadsheetError):
   """Custom exception for missing values in an ABEL spreadsheet.
 

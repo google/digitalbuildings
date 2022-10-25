@@ -13,8 +13,8 @@
 # limitations under the License.
 
 # Cannot have update mask when config in in INITIALIZE mode
-UK-LON-S2-GUID:
+US-SEA-BLDG1-GUID:
   type: FACILITIES/BUILDING
-  code: UK-LON-S2
+  code: US-SEA-BLDG1
   update_mask:
   - description
