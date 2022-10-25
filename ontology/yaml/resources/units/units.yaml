@@ -41,13 +41,19 @@ current:
 - milliamperes
 currentratio:
 - no_units: STANDARD
-diameter: length
-distance: length
+diameter: distance
 density:
 - kilograms_per_cubic_meter: STANDARD
 - grams_per_cubic_meter
 - micrograms_per_cubic_meter
 - milligrams_per_cubic_meter
+distance:
+- meters: STANDARD
+- centimeters
+- millimeters
+- micrometers
+- feet
+- inches
 electriccapacitance:
 - farads: STANDARD
 electricconductance:
@@ -76,6 +82,8 @@ energy:
 - megajoules
 - megawatt_hours
 - therms
+- kilovolt_ampere_hours
+- kilovolt_ampere_reactive_hours
 - ton_hours
 - watt_hours
 - kilovolt_amperes_reactive_hours
@@ -116,18 +124,12 @@ humidity:
 illuminance:
 - lux: STANDARD
 - foot_candles
+length: distance
+level: distance
 impulse:
 - newton_seconds: STANDARD
 irradiance:
 - watt_per_square_metre: STANDARD
-length:
-- meters: STANDARD
-- centimeters
-- millimeters
-- micrometers
-- feet
-- inches
-level: length
 linearacceleration:
 - meters_per_square_second: STANDARD
 - gravity
@@ -204,8 +206,9 @@ pressure:
 - inches_of_water
 - inches_of_mercury
 - pounds_force_per_square_inch
+- atmospheres
+- millibar
 - bars
-- millibars
 rate:
 - inv_second: STANDARD
 reactivepower:

@@ -43,7 +43,7 @@ SDC_EXT-17-GUID:
         values:
           percent: "%"
 
-UK-LON-S2-GUID:
+US-SEA-BLDG1-GUID:
   type: FACILITIES/BUILDING
   etag: a5678910
-  code: UK-LON-S2
+  code: US-SEA-BLDG1

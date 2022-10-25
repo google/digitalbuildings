@@ -25,7 +25,7 @@ c773b86d-b0c0-46fc-bd3f-d726fadd5f1e:
   type: HVAC/VAV_SD_CSP
 
 0a85029e-96c5-48a0-afa8-23139f6eda67:
-  cloud_device_id: cdid-1
+  cloud_device_id: "2541901344105616"
   code: GTWY-1
   translation:
     zone_air_temperature_sensor:
@@ -43,7 +43,7 @@ c773b86d-b0c0-46fc-bd3f-d726fadd5f1e:
   type: GATEWAY/PASSTHROUGH
 
 547a33c5-0ce4-4dfb-9924-5169a3475c89:
-  cloud_device_id: cdid-2
+  cloud_device_id: "2541901344105618"
   code: GTWY-2
   translation:
     supply_air_flowrate_sensor_1:
@@ -61,7 +61,7 @@ c773b86d-b0c0-46fc-bd3f-d726fadd5f1e:
   type: GATEWAY/PASSTHROUGH
 
 2b152e08-3440-4358-9067-3f2acc58c982:
-  cloud_device_id: cdid-3
+  cloud_device_id: "2541901344105617"
   code: GTWY-3
   translation:
     zone_air_temperature_sensor:
@@ -79,7 +79,7 @@ c773b86d-b0c0-46fc-bd3f-d726fadd5f1e:
   type: GATEWAY/PASSTHROUGH
 
 8318f346-10b4-44f0-ac0b-bf7659510bfa:
-  cloud_device_id: cdid-4
+  cloud_device_id: "2541901344105619"
   code: VAV-3
   translation:
     zone_air_temperature_sensor:
