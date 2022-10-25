@@ -136,28 +136,28 @@ class ModelBuilderTest(absltest.TestCase):
                  ['UK-LON-S2', 'test_site_guid']],
         'Entities': [
             [
-                'Entity Code', 'Entity Guid', 'Is Reporting', 'Cloud Device ID',
-                'Etag', 'DBO Namespace', 'DBO Entity Type Name'
+                'Entity Code', 'Entity Guid', 'Etag', 'Is Reporting',
+                'Cloud Device ID', 'DBO Namespace', 'DBO Entity Type Name'
             ],
             [
                 'CHWS-1',
                 'test_reporting_guid',
+                # Etag = None
+                None,
                 # Is reporting = True
                 True,
                 '2541901344105616',
-                # Etag = None
-                None,
                 'HVAC',
                 'CHWS_WDT'
             ],
             [
                 'VLV-23',
                 'test_virtual_guid',
+                # Etag = None
+                None,
                 # Is reporting = False
                 False,
                 # Cloud device id = None because this is a virtual entity
-                None,
-                # Etag = None
                 None,
                 'HVAC',
                 'CHWS_WDT'

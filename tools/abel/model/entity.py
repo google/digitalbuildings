@@ -208,9 +208,9 @@ class VirtualEntity(Entity):
     return {
         ENTITY_CODE: self.code,
         BC_GUID: self.bc_guid,
+        ETAG: self.etag,
         IS_REPORTING: False,
         CLOUD_DEVICE_ID: None,
-        ETAG: self.etag,
         NAMESPACE: self.namespace,
         TYPE_NAME: self.type_name
     }
@@ -310,9 +310,9 @@ class ReportingEntity(Entity):
     return {
         ENTITY_CODE: self.code,
         BC_GUID: self.bc_guid,
+        ETAG: self.etag,
         IS_REPORTING: True,
         CLOUD_DEVICE_ID: self.cloud_device_id,
-        ETAG: self.etag,
         NAMESPACE: self.namespace,
         TYPE_NAME: self.type_name
     }
