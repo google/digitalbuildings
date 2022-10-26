@@ -29,6 +29,14 @@ def ParseArgs() -> argparse.ArgumentParser:
       description='Instantiate an ABEL argument parser')
 
   parser.add_argument(
+      '-m',
+      '--modified-ontology-types',
+      dest='modified_types_filepath',
+      required=False,
+      help='Filepath to modified type filepaths',
+      metavar='MODIFIED_TYPE_FILEPATHS')
+
+  parser.add_argument(
       '-t',
       '--token',
       dest='token',

@@ -35,7 +35,8 @@ def _spreadsheet_workflow(spreadsheet_id: str,
                           subscription: Optional[str] = None,
                           service_account: Optional[str] = None,
                           timeout: Optional[float] = None,
-                          ontology_path: Optional[str] = ONTOLOGY_ROOT) -> None:
+                          modified_types_filepath: Optional[str] = None
+                          ) -> None:
   """Helper function for executing the spreadsheet -> building config workflow.
 
   Args:
@@ -82,7 +83,8 @@ def _spreadsheet_workflow(spreadsheet_id: str,
     handler.RunValidation(
         filenames=[BC_EXPORT_PATH],
         report_filename=INSTANCE_VALIDATOR_LOG_PATH,
-        default_types_filepath=ontology_path,
+        modified_types_filepath=modified_types_filepath,
+        default_types_filepath=ONTOLOGY_ROOT,
         subscription=subscription,
         service_account=service_account,
         timeout=timeout
@@ -94,7 +96,8 @@ def _spreadsheet_workflow(spreadsheet_id: str,
 def _bc_workflow(spreadsheet_id: str,
                  bc_filepath: str,
                  gcp_token_path: str,
-                 ontology_path: Optional[str] = ONTOLOGY_ROOT) -> None:
+                 modified_types_filepath: Optional[str] = ONTOLOGY_ROOT
+                 ) -> None:
   """Helper function for Building Config -> spreadsheet workflow.
 
   Args:
@@ -110,7 +113,8 @@ def _bc_workflow(spreadsheet_id: str,
   handler.RunValidation(
       filenames=[bc_filepath],
       report_filename=INSTANCE_VALIDATOR_LOG_PATH,
-      default_types_filepath=ontology_path
+      modified_types_filepath=modified_types_filepath,
+      default_types_filepath=ONTOLOGY_ROOT
   )
   print(f'Importing Building Configuration file from {bc_filepath}.')
   imported_building_config = import_helper.DeserializeBuildingConfiguration(
@@ -137,13 +141,15 @@ def main(parsed_args: ParseArgs) -> None:
     _spreadsheet_workflow(
         spreadsheet_id=parsed_args.spreadsheet_id,
         gcp_token_path=parsed_args.token,
+        modified_types_filepath=args.modified_types_filepath,
         subscription=parsed_args.subscription,
         service_account=parsed_args.service_account)
   elif parsed_args.building_config and parsed_args.spreadsheet_id:
     _bc_workflow(
         spreadsheet_id=parsed_args.spreadsheet_id,
         bc_filepath=parsed_args.building_config,
-        gcp_token_path=parsed_args.token)
+        gcp_token_path=parsed_args.token,
+        modified_types_filepath=args.modified_types_filepath)
 
 
 if __name__ == '__main__':
