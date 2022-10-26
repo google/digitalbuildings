@@ -100,6 +100,7 @@ def _ValidateTelemetry(subscription: str, service_account: str,
 def RunValidation(filenames: List[str],
                   use_simplified_universe: bool = False,
                   modified_types_filepath: str = None,
+                  default_types_filepath: str = None,
                   subscription: str = None,
                   service_account: str = None,
                   report_filename: str = None,
@@ -115,9 +116,11 @@ def RunValidation(filenames: List[str],
   try:
     print('\nStarting validator...\n')
     print('\nStarting universe generation...\n')
+    print(f'DEFAULT TYPES PATH: {default_types_filepath}')
     universe = generate_universe.BuildUniverse(
         use_simplified_universe=use_simplified_universe,
-        modified_types_filepath=modified_types_filepath)
+        modified_types_filepath=modified_types_filepath,
+        default_types_filepath=default_types_filepath)
     if not universe:
       print('\nError generating universe')
       sys.exit(0)

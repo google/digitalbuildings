@@ -81,8 +81,8 @@ def _spreadsheet_workflow(spreadsheet_id: str,
     print('Validating Export.')
     handler.RunValidation(
         filenames=[BC_EXPORT_PATH],
-        report_filename=INSTANCE_VALIDATOR_LOG_PATH,
-        modified_types_filepath=ontology_path,
+        report_filename=INSTANCE_VALIDATOR_LOG_PATH
+        default_types_filepath=ontology_path,
         subscription=subscription,
         service_account=service_account,
         timeout=timeout
@@ -110,7 +110,7 @@ def _bc_workflow(spreadsheet_id: str,
   handler.RunValidation(
       filenames=[bc_filepath],
       report_filename=INSTANCE_VALIDATOR_LOG_PATH,
-      modified_types_filepath=ontology_path
+      default_types_filepath=ontology_path
   )
   print(f'Importing Building Configuration file from {bc_filepath}.')
   imported_building_config = import_helper.DeserializeBuildingConfiguration(
