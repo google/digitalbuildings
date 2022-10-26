@@ -63,7 +63,7 @@ def Deserialize(
   parser = instance_parser.InstanceParser()
   for yaml_file in yaml_files:
     print('[INFO]\t{time}\tOpening file: {yaml_file}.'
-          .fomrat(time=datetime.datetime.now(),yaml_file=yaml_file)
+          .format(time=datetime.datetime.now(),yaml_file=yaml_file)
           )
     parser.AddFile(yaml_file)
   parser.Finalize()
