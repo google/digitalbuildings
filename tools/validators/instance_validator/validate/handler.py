@@ -27,6 +27,7 @@ from validate import subscriber
 from validate import telemetry_validator
 from yamlformat.validator import presubmit_validate_types_lib as pvt
 
+# pylint: disable=consider-using-f-string
 
 def GetDefaultOperation(
     config_mode: instance_parser.ConfigMode) -> instance_parser.EntityOperation:
@@ -56,10 +57,14 @@ def Deserialize(
     ConfigMode: INITIALIZE or UPDATE
   """
 
-  print('Validating syntax please wait ...')
+  print('[INFO]\t{time}\tStarting syntax validation.'
+        .format(time=datetime.datetime.now())
+        )
   parser = instance_parser.InstanceParser()
   for yaml_file in yaml_files:
-    print(f'Opening file: {yaml_file}, please wait ...')
+    print('[INFO]\t{time}\tOpening file: {yaml_file}.'
+          .fomrat(time=datetime.datetime.now(),yaml_file=yaml_file)
+          )
     parser.AddFile(yaml_file)
   parser.Finalize()
 
@@ -72,7 +77,11 @@ def Deserialize(
           entity_key, entity_yaml, default_entity_operation)
       entities[entity.guid] = entity
     except ValueError as ex:
-      print(f'Invalid Entity {entity_key}: {ex}')
+      print('[ERROR]\t{time}\tInvalid Entity syntax found. Guid: '
+            '{entity_key}; Error: {ex}'.format(time=datetime.datetime.now(),
+                                               entity_key=entity_key,
+                                               ex=ex)
+            )
       raise
   return entities, parser.GetConfigMode()
 
@@ -82,9 +91,14 @@ def _ValidateConfig(
     universe: pvt.ConfigUniverse,
     is_udmi) -> List[entity_instance.EntityInstance]:
   """Runs all config validation checks."""
-  print('\nLoading config files...\n')
+  print('[INFO]\t{time}\tLoading config files: {files}'
+        .format(time=datetime.datetime.now(),
+                files=filenames)
+        )
   entities, config_mode = Deserialize(filenames)
-  print('\nStarting config validation...\n')
+  print('[INFO]\t{time}\tStarting config validation.'
+        .format(time=datetime.datetime.now())
+        )
   helper = EntityHelper(universe)
   return helper.Validate(entities, config_mode, is_udmi)
 
@@ -108,31 +122,47 @@ def RunValidation(filenames: List[str],
   """Master runner for all validations."""
   saved_stdout = sys.stdout
   report_file = None
+  print('[INFO]\t{time}\tStarting validation process.'
+        .format(time=datetime.datetime.now())
+        )
   if report_filename:
     # pylint: disable=consider-using-with
     report_file = open(report_filename, 'w', encoding='utf-8')
     sys.stdout = report_file
   try:
-    print('\nStarting validator...\n')
-    print('\nStarting universe generation...\n')
+    print('[INFO]\t{time}\tGenerating ontology.'
+          .format(time=datetime.datetime.now())
+          )
     universe = generate_universe.BuildUniverse(
         use_simplified_universe=use_simplified_universe,
         modified_types_filepath=modified_types_filepath)
     if not universe:
-      print('\nError generating universe')
+      print('[ERROR]\t\tUniverse did not generate properly.')
       sys.exit(0)
-    print('\nStarting config validation...\n')
+    print('[INFO]\t{time}\tOntology generated.'
+          .format(time=datetime.datetime.now())
+          )
     entities = _ValidateConfig(filenames, universe, is_udmi)
     if subscription:
-      print('\nStarting telemetry validation...\n')
+      print('[INFO]\t{time}\tStarting telemetry validation.'
+            .format(time=datetime.datetime.now())
+            )
       _ValidateTelemetry(subscription, service_account, entities,
                          timeout, is_udmi)
     else:
-      print('Subscription is needed for telemetry validation')
-
+      print('[WARNING]\t{time}\tTelemetry validation skipped, subscription '
+            'not found. Please provide a subscription and service account to '
+            'run telemetry validation. See here for more details: '
+            'https://github.com/google/digitalbuildings/tree/master/tools/'
+            'validators/instance_validator#telemetry-validation'
+            .format(time=datetime.datetime.now())
+            )
   finally:
     sys.stdout = saved_stdout
     if report_file:
+      print('[INFO]\t{time}\tReport generated.'
+            .format(time=datetime.datetime.now())
+            )
       report_file.close()
 
 
@@ -159,14 +189,22 @@ class TelemetryHelper(object):
       is_udmi: true/false treat telemetry stream as UDMI; defaults to false
     """
 
-    print('Connecting to pubsub subscription: ', self.subscription)
+    print('[INFO]\t{time}\tConnecting to PubSub subscription {sub}'
+          .format(time=datetime.datetime.now(),sub=self.subscription)
+          )
     sub = subscriber.Subscriber(self.subscription, self.service_account_file)
     validator = telemetry_validator.TelemetryValidator(
         entities, timeout, is_udmi, _TelemetryValidationCallback)
     validator.StartTimer()
     try:
+      print('[INFO]\t{time}\tStaring to listen to subscription messages.'
+        .format(time=datetime.datetime.now())
+        )
       sub.Listen(validator.ValidateMessage)
     finally:
+      print('[INFO]\t{time}\tStopping subscription listener.'
+            .format(time=datetime.datetime.now())
+            )
       validator.StopTimer()
 
 
@@ -181,29 +219,31 @@ def _TelemetryValidationCallback(
     validator: the telemetry validator that triggered the callback.
   """
 
-  print('Generating validation report ...')
-  current_time = datetime.datetime.now()
-  timestamp = current_time.strftime('%d-%b-%Y (%H:%M:%S)')
-  report = f'\nReport Generated at: {timestamp}\n'
-
+  print('[INFO]\t{time}\tGenerating telemetry validation report.'
+        .format(time=datetime.datetime.now())
+        )
   if not validator.AllEntitiesValidated():
-    report += ('No telemetry message was received for the following '
-               'entities:')
-    report += '\n'
     for entity_name in validator.GetUnvalidatedEntityNames():
-      report += f'  {entity_name}\n'
+      print('[WARNING]\t{time}\tNo telemetry message was received for '
+            'entity: {en}. Ensure the device is transmitting data in order '
+            'to validate.'.format(time=datetime.datetime.now(),en=entity_name)
+            )
 
-  report += '\nTelemetry validation errors:\n'
   for error in validator.GetErrors():
-    report += error.GetPrintableMessage()
+    print('[ERROR]\t{time}\tAn error was found while validating telemetry: '
+          '{error}'.format(time=datetime.datetime.now(),
+                           error=error.GetPrintableMessage())
+          )
 
-  report += '\nTelemetry validation warnings:\n'
-  for warnings in validator.GetWarnings():
-    report += warnings.GetPrintableMessage()
+  for warning in validator.GetWarnings():
+    print('[WARNING]\t{time}\tA warning was generated while validating '
+          'telemetry: {warning}'.format(time=datetime.datetime.now(),
+                                        warning=warning.GetPrintableMessage())
+          )
 
-  print('\n')
-  print(report)
-  print('Report Generated')
+  print('[INFO]\t{time}\tInterrupting main thread now.'
+        .format(time=datetime.datetime.now())
+        )
   _thread.interrupt_main()
 
 
@@ -236,30 +276,52 @@ class EntityHelper(object):
     Raises:
       SyntaxError: If no building is found in the config
     """
-    print('Validating entities ...')
+    print('[INFO]\t{time}\tValidating entity instance definitions.'
+          .format(time=datetime.datetime.now())
+          )
     building_found = False
     valid_entities = {}
     validator = entity_instance.CombinationValidator(self.universe, config_mode,
                                                      entities)
     alpha_interdep_helper = AlphaInterdependencyHelper()
+    is_valid = True
     for entity_guid, current_entity in entities.items():
       if not alpha_interdep_helper.ValidateAndUpdateState(
           current_entity.operation):
-        raise ValueError('v1 Alpha: Building Config cannot have more than 2 '
-                         'operations; one being EXPORT')
+        print('[ERROR]\t{time}\t(v1 Alpha): Building Config cannot have more '
+              'than 2 operations; one being EXPORT.'
+              .format(time=datetime.datetime.now())
+              )
+        raise ValueError
       if (current_entity.operation is not instance_parser.EntityOperation.DELETE
           and current_entity.type_name.lower() == 'building'):
         building_found = True
       if not validator.Validate(current_entity, is_udmi):
-        print(entity_guid, 'is not a valid instance')
+        print('[ERROR]\t{time}\tEntity {guid} ({code}) is not a valid '
+              'instance. See errors above.'.format(time=datetime.datetime.now(),
+                                                   guid=entity_guid,
+                                                   code=current_entity.code)
+              )
+        is_valid = False
         continue
       valid_entities[entity_guid] = current_entity
 
     if not building_found:
-      print('Config must contain a non-deleted entity with a building type')
-      raise SyntaxError('Building Config must contain an '
-                        'entity with a building type')
-    print('All entities validated')
+      print('[ERROR]\t{time}\tBuilding entity not found. Configs must contain '
+            'a non-deleted entity of type FACILITIES/BUILDING.'
+            .format(time=datetime.datetime.now())
+            )
+      raise SyntaxError
+
+    if is_valid:
+      print('[INFO]\t{time}\tAll entities validated SUCCESSFULLY.'
+            .format(time=datetime.datetime.now())
+            )
+    else:
+      print('[ERROR]\t{time}\tSome entities FAILED validation. See logs.'
+            .format(time=datetime.datetime.now())
+            )
+      raise ValueError
     return valid_entities
 
 

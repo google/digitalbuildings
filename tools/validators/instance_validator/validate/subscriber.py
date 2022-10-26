@@ -21,7 +21,9 @@ from typing import Optional
 
 from google import auth
 from google.cloud import pubsub_v1
+import datetime
 
+# pylint: disable=consider-using-f-string
 
 class Subscriber(object):
   """Reads payload from a subscription.
@@ -57,19 +59,21 @@ class Subscriber(object):
       callback: a callback function to handle the message.
     """
     if self.service_account_info_json_file:
-      with open(self.service_account_info_json_file, encoding="utf-8") as f:
+      with open(self.service_account_info_json_file, encoding='utf-8') as f:
         service_account_info = json.load(f)
-      audience = "https://pubsub.googleapis.com/google.pubsub.v1.Subscriber"
+      audience = 'https://pubsub.googleapis.com/google.pubsub.v1.Subscriber'
       credentials = auth.jwt.Credentials.from_service_account_info(
           service_account_info, audience=audience)
     else:
-      print("No service account. Using application default credentials")
+      print('No service account. Using application default credentials')
       # pylint: disable=unused-variable
       credentials, project_id = auth.default()
 
     sub_client = pubsub_v1.SubscriberClient(credentials=credentials)
     future = sub_client.subscribe(self.subscription_name, callback)
-    print("Listening to pubsub, please wait ...")
+    print('[INFO]\t{time}\tListening to pub/sub topic.'
+          .format(time=datetime.datetime.now())
+          )
     # KeyboardInterrupt does not always cause `result` to exit early, so we
     # give the thread a chance to handle that within a reasonable amount of
     # time by repeatedly calling `result` with a short timeout.
@@ -81,6 +85,8 @@ class Subscriber(object):
       except (futures.CancelledError, KeyboardInterrupt):
         future.cancel()
       except Exception as ex:  # pylint: disable=broad-except
-        print(f"PubSub subscription failed with error: {ex}")
+        print('[ERROR]\t{time}\tPub/sub subscription failed with error: {ex}'
+              .format(time=datetime.datetime.now(),ex=ex)
+              )
         future.cancel()
       break

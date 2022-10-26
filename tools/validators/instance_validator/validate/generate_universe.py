@@ -23,7 +23,9 @@ from validate import universe_helper
 from yamlformat.validator import external_file_lib
 from yamlformat.validator import namespace_validator
 from yamlformat.validator import presubmit_validate_types_lib
+import datetime
 
+# pylint: disable=consider-using-f-string
 
 def BuildUniverse(
     use_simplified_universe: bool = False,
@@ -45,8 +47,10 @@ def BuildUniverse(
   elif modified_types_filepath:
     modified_ontology_exists = path.exists(modified_types_filepath)
     if not modified_ontology_exists:
-      print(f'Specified filepath [{modified_types_filepath}] '
-            'modified ontology does not exist')
+      print('[ERROR]\t{time}\tSpecified filepath [{mod_ont_path}] does not '
+            'exist.'.format(time=datetime.datetime.now(),
+                            mod_ont_path=modified_types_filepath)
+            )
       return None
 
     modified_types_filepath = path.expanduser(modified_types_filepath)
@@ -60,8 +64,10 @@ def BuildUniverse(
   else:
     default_ontology_exists = path.exists(constants.ONTOLOGY_ROOT)
     if not default_ontology_exists:
-      print(f'Specified filepath [{constants.ONTOLOGY_ROOT}] '
-            'for default ontology does not exist')
+      print('[ERROR]\t{time}\tSpecified filepath [{root}] for default '
+            'ontology does not exist.'.format(time=datetime.datetime.now(),
+                                              root=constants.ONTOLOGY_ROOT)
+            )
       return None
     # use default location for ontology files
     yaml_files = external_file_lib.RecursiveDirWalk(constants.ONTOLOGY_ROOT)
@@ -74,7 +80,9 @@ def BuildUniverse(
       universe.GetEntityTypeNamespaces())
 
   if not namespace_validation.IsValid():
-    print('Universe is not valid')
+    print('[ERROR]\t{time}\tOntology is not valid.'
+          .format(time=datetime.datetime.now())
+          )
     return None
 
   return universe

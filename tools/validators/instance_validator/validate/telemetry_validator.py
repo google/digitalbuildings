@@ -24,9 +24,11 @@ from validate import field_translation as ft_lib
 from validate import telemetry
 from validate import message_filters
 from validate import telemetry_validation_reporting as tvr
+import datetime
 
 DEVICE_ID = telemetry.DEVICE_ID
 
+# pylint: disable=consider-using-f-string
 
 class TelemetryValidator(object):
   """Validates telemetry messages against a building config file.
@@ -143,7 +145,10 @@ class TelemetryValidator(object):
 
     entity = self.entities_with_translation[entity_name]
 
-    print(f'Validating telemetry message for entity: {entity_name}')
+    print('[INFO]\t{time}\tValidating telemetry message for entity '
+          '{entity_name}'.format(time=datetime.datetime.now(),
+                                 entity_name=entity_name)
+          )
     point_full_paths = {
         f'points.{key}.present_value': key for key in tele.points
     }
