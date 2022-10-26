@@ -78,7 +78,7 @@ def Deserialize(
       entity = entity_instance.EntityInstance.FromYaml(
           entity_key, entity_yaml, default_entity_operation)
       entities[entity.guid] = entity
-    except Exception as ex: 
+    except Exception as ex:
       print('[ERROR]\t{time}\tInvalid Entity syntax found for this entity: '
             '{entity_key} and this content: "{entity_yaml}" and with error'
             ': "{ex}"'
