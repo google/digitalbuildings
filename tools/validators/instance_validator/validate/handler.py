@@ -76,13 +76,16 @@ def Deserialize(
       entity = entity_instance.EntityInstance.FromYaml(
           entity_key, entity_yaml, default_entity_operation)
       entities[entity.guid] = entity
-    except ValueError as ex:
-      print('[ERROR]\t{time}\tInvalid Entity syntax found. Guid: '
-            '{entity_key}; Error: {ex}'.format(time=datetime.datetime.now(),
-                                               entity_key=entity_key,
-                                               ex=ex)
+    except Exception as ex:
+      print('[ERROR]\t{time}\tInvalid Entity syntax found for this entity: '
+            '{entity_key} and this content: "{entity_yaml}" and with error'
+            ': "{ex}"'
+            .format(time=datetime.datetime.now(),
+                    entity_key=entity_key,
+                    entity_yaml=entity_yaml,
+                    ex=str(ex))
             )
-      raise
+      raise Exception
   return entities, parser.GetConfigMode()
 
 
@@ -122,6 +125,7 @@ def RunValidation(filenames: List[str],
   """Master runner for all validations."""
   saved_stdout = sys.stdout
   report_file = None
+
   print('[INFO]\t{time}\tStarting validation process.'
         .format(time=datetime.datetime.now())
         )
@@ -157,6 +161,12 @@ def RunValidation(filenames: List[str],
             'validators/instance_validator#telemetry-validation'
             .format(time=datetime.datetime.now())
             )
+  except:
+    print('[ERROR]\t{time}\tSomething failed during validation and has '
+          'terminated validation. See logs above.'
+          .format(time=datetime.datetime.now())
+          )
+    return
   finally:
     sys.stdout = saved_stdout
     if report_file:
@@ -164,7 +174,9 @@ def RunValidation(filenames: List[str],
             .format(time=datetime.datetime.now())
             )
       report_file.close()
-
+    print('[INFO]\t{time}\tInstance validation completed.'
+          .format(time=datetime.datetime.now())
+          )
 
 class TelemetryHelper(object):
   """A validation helper to encapsulate telemetry validation.
@@ -297,11 +309,6 @@ class EntityHelper(object):
           and current_entity.type_name.lower() == 'building'):
         building_found = True
       if not validator.Validate(current_entity, is_udmi):
-        print('[ERROR]\t{time}\tEntity {guid} ({code}) is not a valid '
-              'instance. See errors above.'.format(time=datetime.datetime.now(),
-                                                   guid=entity_guid,
-                                                   code=current_entity.code)
-              )
         is_valid = False
         continue
       valid_entities[entity_guid] = current_entity
@@ -313,6 +320,7 @@ class EntityHelper(object):
             )
       raise SyntaxError
 
+    # Final validity determination.
     if is_valid:
       print('[INFO]\t{time}\tAll entities validated SUCCESSFULLY.'
             .format(time=datetime.datetime.now())
@@ -321,7 +329,6 @@ class EntityHelper(object):
       print('[ERROR]\t{time}\tSome entities FAILED validation. See logs.'
             .format(time=datetime.datetime.now())
             )
-      raise ValueError
     return valid_entities
 
 

@@ -404,6 +404,18 @@ class InstanceValidator(object):
     for qualified_field_name, ft in found_fields.items():
       if not self._FieldTranslationIsValid(qualified_field_name, ft, entity):
         is_valid = False
+      if isinstance(ft, ft_lib.UndefinedField):
+        print('[WARNING]\t{time}\tEntity {guid} ({code}) provides MISSING '
+              'translation for field {field}. This feature should only be '
+              'used when the device cannot physically send the data and '
+              'it truly is an instance of the assigned type. You must '
+              'provide justification for all MISSING translations and that '
+              'the applied type is correct, otherwise your building config '
+              'will be rejected.'.format(time=datetime.datetime.now(),
+                                         guid=entity.guid,
+                                         code=entity.code,
+                                         field=qualified_field_name)
+              )
       if isinstance(ft, ft_lib.DimensionalValue):
         if is_udmi and not _UDMI_PRESENT_VALUE_PATTERN.fullmatch(
           ft.raw_field_name):
@@ -764,7 +776,7 @@ class InstanceValidator(object):
                         guid=entity.guid,
                         code=entity.code)
                 )
-          # What is this error? Why would we ever
+          # What is this error? Why would we ever 
           # allow an entity without a type?
           # print('Update mask to clear Entity Type not allowed')
           is_valid = False
@@ -1108,7 +1120,7 @@ class EntityInstance(findings_lib.Findings):
       print('[ERROR]\t{time}\tEntity block must contain either "code" or '
             '"guid".'.format(time=datetime.datetime.now())
             )
-      raise ValueError
+      raise ValueError('No code or guid keys in block.')
 
     if operation in [parse.EntityOperation.ADD, parse.EntityOperation.UPDATE]:
       if not guid:
@@ -1130,7 +1142,7 @@ class EntityInstance(findings_lib.Findings):
         print('[ERROR]\t{time}\tUpdate of cloud device id requires '
               'translations.'.format(time=datetime.datetime.now())
               )
-        raise ValueError
+        raise ValueError('Update of cloud device id requires translation.')
 
     translation = None
     cloud_device_id = None
