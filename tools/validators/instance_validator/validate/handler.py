@@ -28,6 +28,8 @@ from validate import telemetry_validator
 from yamlformat.validator import presubmit_validate_types_lib as pvt
 
 # pylint: disable=consider-using-f-string
+# pylint: disable=raise-missing-from
+# pylint: disable=broad-except
 
 def GetDefaultOperation(
     config_mode: instance_parser.ConfigMode) -> instance_parser.EntityOperation:
@@ -76,7 +78,7 @@ def Deserialize(
       entity = entity_instance.EntityInstance.FromYaml(
           entity_key, entity_yaml, default_entity_operation)
       entities[entity.guid] = entity
-    except Exception as ex: # pylint: disable=raise-missing-from
+    except Exception as ex: 
       print('[ERROR]\t{time}\tInvalid Entity syntax found for this entity: '
             '{entity_key} and this content: "{entity_yaml}" and with error'
             ': "{ex}"'
