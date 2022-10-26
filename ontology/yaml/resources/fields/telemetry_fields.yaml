@@ -1455,6 +1455,12 @@ literals:
 - outside_condensing_loop_return_water_isolation_valve_percentage_sensor
 - outside_condensing_loop_return_water_temperature_sensor
 
+# Rodent Repellent system
+
+- transducer_failed_alarm:
+  - ACTIVE
+  - INACTIVE
+ 
 # Buffer tanks with temperature sensors
 - chilled_water_temperature_sensor
 - heating_water_temperature_sensor
@@ -1699,3 +1705,6 @@ literals:
 
 ## New fields for seismic detector
 - seismic_alarm
+
+## New fields for RO water system
+- water_totaldissolvedsolids_concentration_sensor
