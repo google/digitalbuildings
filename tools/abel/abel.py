@@ -81,7 +81,7 @@ def _spreadsheet_workflow(spreadsheet_id: str,
     print('Validating Export.')
     handler.RunValidation(
         filenames=[BC_EXPORT_PATH],
-        report_filename=INSTANCE_VALIDATOR_LOG_PATH
+        report_filename=INSTANCE_VALIDATOR_LOG_PATH,
         default_types_filepath=ontology_path,
         subscription=subscription,
         service_account=service_account,
