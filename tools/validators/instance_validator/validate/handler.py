@@ -76,7 +76,7 @@ def Deserialize(
       entity = entity_instance.EntityInstance.FromYaml(
           entity_key, entity_yaml, default_entity_operation)
       entities[entity.guid] = entity
-    except Exception as ex:
+    except Exception as ex: # pylint: disable=raise-missing-from
       print('[ERROR]\t{time}\tInvalid Entity syntax found for this entity: '
             '{entity_key} and this content: "{entity_yaml}" and with error'
             ': "{ex}"'
@@ -161,10 +161,10 @@ def RunValidation(filenames: List[str],
             'validators/instance_validator#telemetry-validation'
             .format(time=datetime.datetime.now())
             )
-  except:
+  except Exception as ex:
     print('[ERROR]\t{time}\tSomething failed during validation and has '
-          'terminated validation. See logs above.'
-          .format(time=datetime.datetime.now())
+          'terminated validation. See logs above and error here: {ex}.'
+          .format(time=datetime.datetime.now(),ex=ex)
           )
     return
   finally:

@@ -776,7 +776,7 @@ class InstanceValidator(object):
                         guid=entity.guid,
                         code=entity.code)
                 )
-          # What is this error? Why would we ever 
+          # What is this error? Why would we ever
           # allow an entity without a type?
           # print('Update mask to clear Entity Type not allowed')
           is_valid = False

@@ -23,7 +23,6 @@ from typing import Callable, Dict, List, Optional, Type, TypeVar
 
 import ruamel
 import strictyaml as syaml
-import datetime
 
 #### Program constants ####
 # Size of entity block to send to the syntax validator
