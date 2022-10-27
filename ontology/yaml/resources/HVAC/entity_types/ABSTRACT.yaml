@@ -31,6 +31,12 @@ SD:
   - cooling_thermal_power_capacity
   - supply_air_temperature_sensor
   - supply_air_damper_percentage_sensor
+  - cycling_supply_air_damper_alarm
+  - failed_supply_air_damper_alarm
+  - high_supply_air_flowrate_alarm
+  - low_supply_air_flowrate_alarm
+  - supply_air_leak_detection_alarm
+  - unoccupied_supply_air_flowrate_alarm
   uses:
   - supply_air_flowrate_sensor
   - supply_air_flowrate_setpoint
@@ -44,6 +50,8 @@ RDM:
   id: "10008693406630412288"
   description: "Very basic system run duration monitoring. "
   is_abstract: true
+  opt_uses: 
+  - high_run_time_alarm
   uses:
   - run_time_accumulator
   implements:
@@ -95,6 +103,7 @@ MOAFC:
   is_abstract: true
   opt_uses:
   - economizer_mode
+  - cycling_ventilation_outside_air_damper_alarm
   uses:
   - ventilation_outside_air_damper_percentage_command
   - ventilation_outside_air_flowrate_setpoint
@@ -109,6 +118,7 @@ OAFC:
   opt_uses:
   - economizer_mode
   - mixed_air_temperature_sensor
+  - cycling_outside_air_damper_alarm
   uses:
   - outside_air_flowrate_setpoint
   - outside_air_flowrate_sensor
@@ -122,6 +132,9 @@ ZTM:
   is_abstract: true
   opt_uses:
   - discharge_air_temperature_sensor
+  - failed_zone_air_temperature_alarm
+  - high_zone_air_temperature_alarm
+  - low_zone_air_temperature_alarm
   uses:
   - zone_air_temperature_sensor
   implements:
@@ -146,6 +159,9 @@ CSP:
   - zone_air_relative_humidity_sensor
   - discharge_air_temperature_sensor
   - zone_occupancy_status
+  - failed_zone_air_temperature_alarm
+  - high_zone_air_temperature_alarm
+  - low_zone_air_temperature_alarm
   uses:
   - zone_air_temperature_sensor
   - zone_air_cooling_temperature_setpoint
@@ -159,6 +175,9 @@ ZTC:
   opt_uses:
   - zone_air_deadband_temperature_setpoint
   - zone_air_relative_humidity_sensor
+  - failed_zone_air_temperature_alarm
+  - high_zone_air_temperature_alarm
+  - low_zone_air_temperature_alarm
   uses:
   - zone_air_temperature_setpoint
   - zone_air_temperature_sensor
@@ -170,6 +189,8 @@ DSARC:
   opt_uses:
   - supply_air_flowrate_sensor
   - heating_request_count
+  - high_cooling_request_alarm
+  - high_pressurization_request_alarm
   uses:
   - supply_air_cooling_temperature_setpoint
   - supply_air_heating_temperature_setpoint
@@ -201,7 +222,10 @@ DX2RC:
   is_abstract: true
   opt_uses:
   - discharge_air_temperature_sensor
+  - failed_return_air_temperature_alarm
+  - high_return_air_temperature_alarm
   - leaving_cooling_coil_temperature_sensor
+  - low_return_air_temperature_alarm
   - cooling_thermal_power_capacity
   - cooling_percentage_command
   - compressor_speed_percentage_command
@@ -232,6 +256,9 @@ DSP:
   opt_uses:
   - discharge_air_temperature_sensor
   - zone_air_relative_humidity_sensor
+  - failed_zone_air_temperature_alarm
+  - high_zone_air_temperature_alarm
+  - low_zone_air_temperature_alarm
   uses:
   - zone_air_temperature_sensor
   - zone_air_cooling_temperature_setpoint
@@ -245,6 +272,9 @@ DDSP:
   - OPERATIONAL
   opt_uses:
   - discharge_air_temperature_sensor
+  - failed_zone_air_temperature_alarm
+  - high_zone_air_temperature_alarm
+  - low_zone_air_temperature_alarm
   uses:
   - zone_air_temperature_sensor_1
   - zone_air_temperature_sensor_2
@@ -257,7 +287,11 @@ CO2C:
   is_abstract: true
   implements:
   - OPERATIONAL
-  uses:
+  opt_uses: 
+  - critically_high_zone_air_co2_concentration_alarm
+  - failed_zone_air_co2_concentration_alarm
+  - high_zone_air_co2_concentration_alarm
+  uses: 
   - zone_air_co2_concentration_sensor
   - zone_air_co2_concentration_setpoint
 
@@ -275,6 +309,10 @@ BPC:
   id: "16869691043929391104"
   description: "Building pressure control (stand-alone fan)."
   is_abstract: true
+  opt_uses: 
+  - failed_building_air_static_pressure_alarm
+  - high_building_air_static_pressure_alarm
+  - low_building_air_static_pressure_alarm
   uses:
   - building_air_static_pressure_sensor
   - building_air_static_pressure_setpoint
@@ -304,6 +342,9 @@ EDBPC:
   opt_uses:
   - exhaust_air_differential_pressure_sensor
   - exhaust_air_damper_percentage_sensor
+  - failed_building_air_static_pressure_alarm
+  - high_building_air_static_pressure_alarm
+  - low_building_air_static_pressure_alarm
   uses:
   - building_air_static_pressure_sensor
   - building_air_static_pressure_setpoint
@@ -342,6 +383,9 @@ BSPC:
   opt_uses:
   - exhaust_air_damper_percentage_command
   - exhaust_fan_run_status
+  - failed_building_air_static_pressure_alarm
+  - high_building_air_static_pressure_alarm
+  - low_building_air_static_pressure_alarm
   uses:
   - building_air_static_pressure_sensor
   - building_air_static_pressure_setpoint
@@ -420,6 +464,7 @@ SFVSC:
   - supply_fan_lost_power_alarm
   - supply_fan_failed_alarm
   - control_mode
+  - local_supply_fan_override_alarm
   uses:
   - supply_fan_run_command
   - supply_fan_run_status
@@ -519,6 +564,9 @@ DTM:
   opt_uses:
   - discharge_air_relative_humidity_sensor
   - discharge_air_specificenthalpy_sensor
+  - failed_discharge_air_temperature_alarm
+  - high_discharge_air_temperature_alarm
+  - low_discharge_air_temperature_alarm
   uses:
   - discharge_air_temperature_sensor
   implements:
@@ -538,6 +586,12 @@ SS:
   - current_sensor
   - power_sensor
   - run_time_accumulator
+  - emergency_stop_alarm
+  - failed_alarm
+  - local_override_alarm
+  - local_stop_alarm
+  - lost_power_alarm
+  - program_stop_alarm
 
 SSPC:
   id: "10526749200778002432"
@@ -551,6 +605,9 @@ SSPC:
   - supply_air_damper_percentage_command
   - supply_air_flowrate_sensor
   - supply_fan_speed_percentage_command
+  - failed_supply_air_static_pressure_alarm
+  - high_supply_air_static_pressure_alarm
+  - low_supply_air_static_pressure_alarm
   uses:
   - supply_air_static_pressure_sensor
   - supply_air_static_pressure_setpoint
@@ -624,6 +681,9 @@ HT2RC:
   - discharge_air_temperature_sensor
   - heating_thermal_power_capacity
   - heating_percentage_command
+  - failed_return_air_temperature_alarm
+  - high_return_air_temperature_alarm
+  - low_return_air_temperature_alarm
   uses:
   - heater_run_command_1
   - heater_run_command_2
@@ -641,6 +701,9 @@ HTZTC:
   - discharge_air_temperature_sensor
   - heating_percentage_command
   - heater_run_status
+  - failed_zone_air_temperature_alarm
+  - high_zone_air_temperature_alarm
+  - low_zone_air_temperature_alarm
   uses:
   - heater_run_command
   - zone_air_temperature_setpoint
@@ -656,6 +719,9 @@ HT3ZTC:
   - discharge_air_temperature_sensor
   - heating_thermal_power_capacity
   - heating_percentage_command
+  - failed_zone_air_temperature_alarm
+  - high_zone_air_temperature_alarm
+  - low_zone_air_temperature_alarm
   uses:
   - heater_run_command_1
   - heater_run_command_2
@@ -669,6 +735,10 @@ HSOUC:
   id: "3000067641604833280"
   description: "Heating occupied/unoccupied setpoint control."
   is_abstract: true
+  opt_uses: 
+  - failed_zone_air_temperature_alarm
+  - high_zone_air_temperature_alarm
+  - low_zone_air_temperature_alarm
   uses:
   - zone_air_unoccupied_heating_temperature_setpoint
   - zone_air_occupied_heating_temperature_setpoint
@@ -681,7 +751,10 @@ HTZOUC:
   description: "Gas or electric heater control on zone side (ZC)."
   is_abstract: true
   opt_uses:
+  - failed_zone_air_temperature_alarm
   - heater_run_status
+  - high_zone_air_temperature_alarm
+  - low_zone_air_temperature_alarm
   uses:
   - heater_run_command
   - zone_air_unoccupied_heating_temperature_setpoint
@@ -727,6 +800,8 @@ SFSS:
   - supply_fan_failed_alarm
   - supply_fan_run_time_accumulator
   - supply_fan_run_mode
+  - local_supply_fan_override_alarm
+  - supply_fan_failed_alarm
   uses:
   - supply_fan_run_command
   - supply_fan_run_status
@@ -757,6 +832,10 @@ DTC:
   is_abstract: true
   implements:
   - OPERATIONAL
+  opt_uses: 
+  - failed_discharge_air_temperature_alarm
+  - high_discharge_air_temperature_alarm
+  - low_discharge_air_temperature_alarm
   uses:
   - discharge_air_temperature_setpoint
   - discharge_air_temperature_sensor
@@ -766,7 +845,10 @@ STC:
   description: "Supply air temperature control"
   is_abstract: true
   opt_uses:
+  - failed_supply_air_temperature_alarm
   - heating_request_count
+  - high_supply_air_temperature_alarm
+  - low_supply_air_temperature_alarm
   - cooling_request_count
   uses:
   - supply_air_temperature_setpoint
@@ -780,6 +862,10 @@ RTC:
   is_abstract: true
   implements:
   - OPERATIONAL
+  opt_uses: 
+  - failed_return_air_temperature_alarm
+  - high_return_air_temperature_alarm
+  - low_return_air_temperature_alarm
   uses:
   - return_air_temperature_sensor
   - return_air_temperature_setpoint
@@ -791,6 +877,7 @@ OA:
   description: "Basic weather station (drybulb temp and humidity)."
   is_abstract: true
   opt_uses:
+  - failed_outside_air_temperature_alarm
   - outside_air_relative_humidity_sensor
   - outside_air_dewpoint_temperature_sensor
   - outside_air_wetbulb_temperature_sensor
@@ -810,6 +897,10 @@ ZA:
   id: "3244379125296660480"
   description: "Grouped type for zone air psychrometric conditions (RH and temp)"
   is_abstract: true
+  opt_uses: 
+  - failed_zone_air_temperature_alarm
+  - high_zone_air_temperature_alarm
+  - low_zone_air_temperature_alarm
   uses:
   - zone_air_temperature_sensor
   - zone_air_relative_humidity_sensor
@@ -820,6 +911,13 @@ WDT:
   is_abstract: true
   implements:
   - MONITORING
+  opt_uses: 
+  - failed_return_water_temperature_alarm
+  - high_return_water_temperature_alarm
+  - low_return_water_temperature_alarm
+  - failed_supply_water_temperature_alarm
+  - high_supply_water_temperature_alarm
+  - low_supply_water_temperature_alarm
   uses:
   - return_water_temperature_sensor
   - supply_water_temperature_sensor
@@ -886,6 +984,9 @@ SWTC:
   - heating_request_count
   - return_water_temperature_sensor
   - run_command
+  - failed_supply_water_temperature_alarm
+  - high_supply_water_temperature_alarm
+  - low_supply_water_temperature_alarm
   uses:
   - supply_water_temperature_setpoint
   - supply_water_temperature_sensor
@@ -1031,6 +1132,9 @@ MTM:
   opt_uses:
   - mixed_air_relative_humidity_sensor
   - mixed_air_dewpoint_temperature_sensor
+  - failed_mixed_air_temperature_alarm
+  - high_mixed_air_temperature_alarm
+  - low_mixed_air_temperature_alarm
   uses:
   - mixed_air_temperature_sensor
   implements:
@@ -1040,6 +1144,10 @@ MTC:
   id: "10168334798402093056"
   description: "Mixed air temperature control."
   is_abstract: true
+  opt_uses: 
+  - failed_mixed_air_temperature_alarm
+  - high_mixed_air_temperature_alarm
+  - low_mixed_air_temperature_alarm
   uses:
   - mixed_air_temperature_sensor
   - mixed_air_temperature_setpoint
@@ -1050,6 +1158,10 @@ STM:
   id: "5556648779974705152"
   description: "Basic supply temperature monitoring."
   is_abstract: true
+  opt_uses: 
+  - failed_supply_air_temperature_alarm
+  - high_supply_air_temperature_alarm
+  - low_supply_air_temperature_alarm
   uses:
   - supply_air_temperature_sensor
   implements:
@@ -1060,7 +1172,10 @@ STDSPC:
   description: "Supply temperature control dual setpoint."
   is_abstract: true
   opt_uses:
+  - failed_supply_air_temperature_alarm
   - heating_request_count
+  - high_supply_air_temperature_alarm
+  - low_supply_air_temperature_alarm
   - cooling_request_count
   uses:
   - supply_air_cooling_temperature_setpoint
@@ -1075,6 +1190,9 @@ DSPRTC:
   is_abstract: true
   opt_uses:
   - discharge_air_temperature_sensor
+  - failed_return_air_temperature_alarm
+  - high_return_air_temperature_alarm
+  - low_return_air_temperature_alarm
   - return_air_relative_humidity_sensor
   uses:
   - return_air_temperature_sensor
@@ -1187,13 +1305,16 @@ CREFM:
   description: "Cold Room Refrigerator monitoring."
   is_abstract: true
   opt_uses:
-   - failed_alarm
-   - run_status
-   - compressor_run_status
-   - run_time_accumulator
+  - failed_alarm
+  - failed_zone_air_temperature_alarm
+  - high_zone_air_temperature_alarm
+  - low_zone_air_temperature_alarm
+  - run_status
+  - compressor_run_status
+  - run_time_accumulator
   uses:
-   - zone_air_temperature_sensor
-   - defrost_temperature_sensor
+  - zone_air_temperature_sensor
+  - defrost_temperature_sensor
 
 EPC:
   id: "11105083520895156224"
@@ -1211,7 +1332,11 @@ CO2M:
   id: "7862491789188399104"
   description: "Basic carbon dioxide monitoring."
   is_abstract: true
-  uses:
+  opt_uses: 
+  - critically_high_zone_air_co2_concentration_alarm
+  - failed_zone_air_co2_concentration_alarm
+  - high_zone_air_co2_concentration_alarm
+  uses: 
   - zone_air_co2_concentration_sensor
   implements:
   - MONITORING
@@ -1314,6 +1439,10 @@ SSPM:
   id: "15932942321436327936"
   description: "Supply static pressure monitoring."
   is_abstract: true
+  opt_uses: 
+  - failed_supply_air_static_pressure_alarm
+  - high_supply_air_static_pressure_alarm
+  - low_supply_air_static_pressure_alarm
   uses:
   - supply_air_static_pressure_sensor
   implements:
@@ -1364,6 +1493,13 @@ PWDT:
   id: "289266803299844096"
   description: "Primary-side water delta-T monitoring."
   is_abstract: true
+  opt_uses: 
+  - failed_primary_return_water_temperature_alarm
+  - high_primary_return_water_temperature_alarm
+  - low_primary_return_water_temperature_alarm
+  - failed_primary_supply_water_temperature_alarm
+  - high_primary_supply_water_temperature_alarm
+  - low_primary_supply_water_temperature_alarm
   uses:
   - primary_supply_water_temperature_sensor
   - primary_return_water_temperature_sensor
@@ -1418,7 +1554,10 @@ CHWDC:
   description: "Chilled water valve monitoring on discharge side."
   is_abstract: true
   opt_uses:
+  - failed_discharge_air_temperature_alarm
+  - high_discharge_air_temperature_alarm
   - leaving_cooling_coil_temperature_sensor
+  - low_discharge_air_temperature_alarm
   - cooling_thermal_power_capacity
   - chilled_water_valve_percentage_sensor
   - chilled_water_flowrate_sensor
@@ -1434,7 +1573,10 @@ CHWSC:
   description: "Chilled water valve monitoring on supply side."
   is_abstract: true
   opt_uses:
+  - failed_supply_air_temperature_alarm
+  - high_supply_air_temperature_alarm
   - leaving_cooling_coil_temperature_sensor
+  - low_supply_air_temperature_alarm
   - cooling_thermal_power_capacity
   - chilled_supply_water_temperature_sensor
   - chilled_water_valve_percentage_sensor
@@ -1452,7 +1594,10 @@ CHWSDC:
   description: "Chilled water valve monitoring on supply side."
   is_abstract: true
   opt_uses:
+  - failed_supply_air_temperature_alarm
+  - high_supply_air_temperature_alarm
   - leaving_cooling_coil_temperature_sensor
+  - low_supply_air_temperature_alarm
   - cooling_thermal_power_capacity
   - chilled_water_valve_percentage_sensor
   uses:
@@ -1468,7 +1613,10 @@ CHW2XSC:
   description: "Two chilled water valves."
   is_abstract: true
   opt_uses:
+  - failed_supply_air_temperature_alarm
+  - high_supply_air_temperature_alarm
   - leaving_cooling_coil_temperature_sensor
+  - low_supply_air_temperature_alarm
   - cooling_thermal_power_capacity
   - chilled_supply_water_temperature_sensor
   - chilled_water_valve_percentage_sensor
@@ -1487,7 +1635,10 @@ CHWRC:
   is_abstract: true
   opt_uses:
   - discharge_air_temperature_sensor
+  - failed_return_air_temperature_alarm
+  - high_return_air_temperature_alarm
   - leaving_cooling_coil_temperature_sensor
+  - low_return_air_temperature_alarm
   - cooling_thermal_power_capacity
   - return_air_relative_humidity_sensor
   - chilled_water_valve_percentage_sensor
@@ -1505,7 +1656,10 @@ CHWZC:
   is_abstract: true
   opt_uses:
   - discharge_air_temperature_sensor
+  - failed_zone_air_temperature_alarm
+  - high_zone_air_temperature_alarm
   - leaving_cooling_coil_temperature_sensor
+  - low_zone_air_temperature_alarm
   - cooling_thermal_power_capacity
   - chilled_water_valve_percentage_sensor
   - chilled_supply_water_isolation_valve_command
@@ -1524,7 +1678,10 @@ CHWZTC:
   is_abstract: true
   opt_uses:
   - discharge_air_temperature_sensor
+  - failed_zone_air_temperature_alarm
+  - high_zone_air_temperature_alarm
   - leaving_cooling_coil_temperature_sensor
+  - low_zone_air_temperature_alarm
   - cooling_thermal_power_capacity
   - chilled_water_flowrate_sensor
   - chilled_water_valve_percentage_sensor
@@ -1553,7 +1710,10 @@ CHWZTC2X:
   opt_uses:
   - discharge_air_temperature_sensor_1
   - discharge_air_temperature_sensor_2
+  - failed_zone_air_temperature_alarm
+  - high_zone_air_temperature_alarm
   - leaving_cooling_coil_temperature_sensor
+  - low_zone_air_temperature_alarm
   - cooling_thermal_power_capacity
   - chilled_water_flowrate_sensor
   - chilled_water_valve_percentage_sensor
@@ -1574,7 +1734,10 @@ DXZTC:
   is_abstract: true
   opt_uses:
   - discharge_air_temperature_sensor
+  - failed_zone_air_temperature_alarm
+  - high_zone_air_temperature_alarm
   - leaving_cooling_coil_temperature_sensor
+  - low_zone_air_temperature_alarm
   - cooling_thermal_power_capacity
   - cooling_percentage_command
   - compressor_speed_percentage_command
@@ -1593,7 +1756,10 @@ DX2ZTC:
   is_abstract: true
   opt_uses:
   - discharge_air_temperature_sensor
+  - failed_zone_air_temperature_alarm
+  - high_zone_air_temperature_alarm
   - leaving_cooling_coil_temperature_sensor
+  - low_zone_air_temperature_alarm
   - cooling_thermal_power_capacity
   - cooling_percentage_command
   - compressor_speed_percentage_command
@@ -1615,7 +1781,10 @@ DXZC:
   is_abstract: true
   opt_uses:
   - discharge_air_temperature_sensor
+  - failed_zone_air_temperature_alarm
+  - high_zone_air_temperature_alarm
   - leaving_cooling_coil_temperature_sensor
+  - low_zone_air_temperature_alarm
   - cooling_thermal_power_capacity
   - cooling_percentage_command
   - compressor_speed_percentage_command
@@ -1634,7 +1803,10 @@ DXDSPRTC:
   is_abstract: true
   opt_uses:
   - discharge_air_temperature_sensor
+  - failed_return_air_temperature_alarm
+  - high_return_air_temperature_alarm
   - leaving_cooling_coil_temperature_sensor
+  - low_return_air_temperature_alarm
   - cooling_thermal_power_capacity
   - cooling_percentage_command
   - compressor_speed_percentage_command
@@ -1654,7 +1826,10 @@ DX2ZC:
   is_abstract: true
   opt_uses:
   - discharge_air_temperature_sensor
+  - failed_zone_air_temperature_alarm
+  - high_zone_air_temperature_alarm
   - leaving_cooling_coil_temperature_sensor
+  - low_zone_air_temperature_alarm
   - cooling_thermal_power_capacity
   - cooling_percentage_command
   - compressor_speed_percentage_command
@@ -1674,7 +1849,10 @@ DX3ZC:
   is_abstract: true
   opt_uses:
   - discharge_air_temperature_sensor
+  - failed_zone_air_temperature_alarm
+  - high_zone_air_temperature_alarm
   - leaving_cooling_coil_temperature_sensor
+  - low_zone_air_temperature_alarm
   - cooling_thermal_power_capacity
   - cooling_percentage_command
   - compressor_speed_percentage_command
@@ -1696,7 +1874,10 @@ DX4ZC:
   is_abstract: true
   opt_uses:
   - discharge_air_temperature_sensor
+  - failed_zone_air_temperature_alarm
+  - high_zone_air_temperature_alarm
   - leaving_cooling_coil_temperature_sensor
+  - low_zone_air_temperature_alarm
   - cooling_thermal_power_capacity
   - cooling_percentage_command
   - compressor_speed_percentage_command
@@ -1720,7 +1901,10 @@ DX2ZC2X:
   is_abstract: true
   opt_uses:
   - discharge_air_temperature_sensor
+  - failed_zone_air_temperature_alarm
+  - high_zone_air_temperature_alarm
   - leaving_cooling_coil_temperature_sensor
+  - low_zone_air_temperature_alarm
   - cooling_thermal_power_capacity
   - cooling_percentage_command
   - compressor_speed_percentage_command
@@ -1757,7 +1941,10 @@ DX2SC:
   description: "Two compressor run control on supply air side."
   is_abstract: true
   opt_uses:
+  - failed_supply_air_temperature_alarm
+  - high_supply_air_temperature_alarm
   - leaving_cooling_coil_temperature_sensor
+  - low_supply_air_temperature_alarm
   - cooling_thermal_power_capacity
   - cooling_percentage_command
   - compressor_speed_percentage_command
@@ -1777,7 +1964,10 @@ DX3SC:
   description: "Three compressor run control on supply air side."
   is_abstract: true
   opt_uses:
+  - failed_supply_air_temperature_alarm
+  - high_supply_air_temperature_alarm
   - leaving_cooling_coil_temperature_sensor
+  - low_supply_air_temperature_alarm
   - cooling_thermal_power_capacity
   - cooling_percentage_command
   - compressor_speed_percentage_command
@@ -1799,7 +1989,10 @@ DX4SC:
   description: "Four compressor run control on supply air side."
   is_abstract: true
   opt_uses:
+  - failed_supply_air_temperature_alarm
+  - high_supply_air_temperature_alarm
   - leaving_cooling_coil_temperature_sensor
+  - low_supply_air_temperature_alarm
   - cooling_thermal_power_capacity
   - cooling_percentage_command
   - compressor_speed_percentage_command
@@ -1824,7 +2017,10 @@ DX2SDC:
   description: "Two compressor run control on supply air side (dual temp setpoint)."
   is_abstract: true
   opt_uses:
+  - failed_supply_air_temperature_alarm
+  - high_supply_air_temperature_alarm
   - leaving_cooling_coil_temperature_sensor
+  - low_supply_air_temperature_alarm
   - cooling_thermal_power_capacity
   - cooling_percentage_command
   - compressor_speed_percentage_command
@@ -1849,6 +2045,9 @@ DX4SWC:
   - cooling_percentage_command
   - compressor_speed_percentage_command
   - compressor_speed_percentage_sensor
+  - failed_supply_water_temperature_alarm
+  - high_supply_water_temperature_alarm
+  - low_supply_water_temperature_alarm
   uses:
   - compressor_run_command_1
   - compressor_run_command_2
@@ -1872,6 +2071,9 @@ DX2SWC:
   - cooling_percentage_command
   - compressor_speed_percentage_command
   - compressor_speed_percentage_sensor
+  - failed_supply_water_temperature_alarm
+  - high_supply_water_temperature_alarm
+  - low_supply_water_temperature_alarm
   uses:
   - compressor_run_command_1
   - compressor_run_command_2
@@ -1892,6 +2094,9 @@ DXSWC:
   - cooling_percentage_command
   - compressor_speed_percentage_command
   - compressor_speed_percentage_sensor
+  - failed_supply_water_temperature_alarm
+  - high_supply_water_temperature_alarm
+  - low_supply_water_temperature_alarm
   uses:
   - compressor_run_command
   - compressor_run_status
@@ -1905,7 +2110,10 @@ DX5SC:
   description: "Five compressor run control on supply side."
   is_abstract: true
   opt_uses:
+  - failed_supply_air_temperature_alarm
+  - high_supply_air_temperature_alarm
   - leaving_cooling_coil_temperature_sensor
+  - low_supply_air_temperature_alarm
   - cooling_thermal_power_capacity
   - cooling_percentage_command
   - compressor_speed_percentage_command
@@ -1970,7 +2178,10 @@ DX2DC:
   description: "Two compressor run control on discharge side (DTC)."
   is_abstract: true
   opt_uses:
+  - failed_discharge_air_temperature_alarm
+  - high_discharge_air_temperature_alarm
   - leaving_cooling_coil_temperature_sensor
+  - low_discharge_air_temperature_alarm
   - cooling_thermal_power_capacity
   - cooling_percentage_command
   - compressor_speed_percentage_command
@@ -1991,7 +2202,10 @@ DX3DC:
   description: "Three compressor run control on discharge side (DTC)."
   is_abstract: true
   opt_uses:
+  - failed_discharge_air_temperature_alarm
+  - high_discharge_air_temperature_alarm
   - leaving_cooling_coil_temperature_sensor
+  - low_discharge_air_temperature_alarm
   - cooling_thermal_power_capacity
   - cooling_percentage_command
   - compressor_speed_percentage_command
@@ -2017,6 +2231,9 @@ HPSC:
   - compressor_speed_percentage_command
   - cooling_request_count
   - heating_request_count
+  - failed_supply_air_temperature_alarm
+  - high_supply_air_temperature_alarm
+  - low_supply_air_temperature_alarm
   uses:
   - supply_air_temperature_sensor
   - supply_air_temperature_setpoint
@@ -2036,6 +2253,9 @@ HP2SC:
   - compressor_speed_percentage_command
   - cooling_request_count
   - heating_request_count
+  - failed_supply_air_temperature_alarm
+  - high_supply_air_temperature_alarm
+  - low_supply_air_temperature_alarm
   uses:
   - supply_air_temperature_sensor
   - supply_air_temperature_setpoint
@@ -2053,7 +2273,10 @@ HPDC:
   is_abstract: true
   opt_uses:
   - cooling_thermal_power_capacity
+  - failed_discharge_air_temperature_alarm
   - heating_thermal_power_capacity
+  - high_discharge_air_temperature_alarm
+  - low_discharge_air_temperature_alarm
   - compressor_speed_percentage_command
   uses:
   - discharge_air_temperature_sensor
@@ -2071,7 +2294,10 @@ HPZTC:
   opt_uses:
   - discharge_air_temperature_sensor
   - cooling_thermal_power_capacity
+  - failed_zone_air_temperature_alarm
   - heating_thermal_power_capacity
+  - high_zone_air_temperature_alarm
+  - low_zone_air_temperature_alarm
   - compressor_speed_percentage_command
   uses:
   - zone_air_temperature_setpoint
@@ -2089,7 +2315,10 @@ HPZC:
   opt_uses:
   - discharge_air_temperature_sensor
   - cooling_thermal_power_capacity
+  - failed_zone_air_temperature_alarm
   - heating_thermal_power_capacity
+  - high_zone_air_temperature_alarm
+  - low_zone_air_temperature_alarm
   - compressor_speed_percentage_command
   uses:
   - zone_air_cooling_temperature_setpoint
@@ -2108,7 +2337,10 @@ HP2ZC:
   opt_uses:
   - discharge_air_temperature_sensor
   - cooling_thermal_power_capacity
+  - failed_zone_air_temperature_alarm
   - heating_thermal_power_capacity
+  - high_zone_air_temperature_alarm
+  - low_zone_air_temperature_alarm
   - compressor_speed_percentage_command
   uses:
   - zone_air_cooling_temperature_setpoint
@@ -2127,7 +2359,13 @@ HWDC:
   description: "Heating water valve monitoring on discharge air side."
   is_abstract: true
   opt_uses:
+  - cycling_heating_water_valve_alarm
+  - failed_discharge_air_temperature_alarm
+  - failed_heating_water_valve_alarm
+  - heating_water_leak_detection_alarm
   - heating_water_valve_percentage_sensor
+  - high_discharge_air_temperature_alarm
+  - low_discharge_air_temperature_alarm
   - heating_thermal_power_capacity
   - discharge_air_relative_humidity_sensor
   - heating_water_flowrate_sensor
@@ -2143,9 +2381,15 @@ HWRC:
   description: "Heating water valve monitoring on discharge air side."
   is_abstract: true
   opt_uses:
+  - heating_water_leak_detection_alarm
   - heating_water_valve_percentage_sensor
+  - high_return_air_temperature_alarm
+  - low_return_air_temperature_alarm
   - heating_thermal_power_capacity
+  - cycling_heating_water_valve_alarm
   - discharge_air_relative_humidity_sensor
+  - failed_heating_water_valve_alarm
+  - failed_return_air_temperature_alarm
   - heating_water_flowrate_sensor
   uses:
   - heating_water_valve_percentage_command
@@ -2159,10 +2403,16 @@ HWSC:
   description: "Heating water valve monitoring on supply air side."
   is_abstract: true
   opt_uses:
+  - heating_water_leak_detection_alarm
   - heating_water_valve_percentage_sensor
+  - high_supply_air_temperature_alarm
   - heating_thermal_power_capacity
   - leaving_heating_coil_temperature_sensor
   - heating_request_count
+  - cycling_heating_water_valve_alarm
+  - failed_heating_water_valve_alarm
+  - failed_supply_air_temperature_alarm
+  - low_supply_air_temperature_alarm
   uses:
   - heating_water_valve_percentage_command
   - supply_air_temperature_setpoint
@@ -2175,8 +2425,14 @@ HW2SC:
   description: "Two heating water valves on supply air side."
   is_abstract: true
   opt_uses:
+  - cycling_heating_water_valve_alarm
+  - failed_heating_water_valve_alarm
+  - failed_supply_air_temperature_alarm
   - heating_thermal_power_capacity
+  - heating_water_leak_detection_alarm
+  - high_supply_air_temperature_alarm
   - leaving_heating_coil_temperature_sensor
+  - low_supply_air_temperature_alarm
   - heating_request_count
   uses:
   - heating_water_valve_percentage_command_1
@@ -2191,8 +2447,14 @@ HWZC:
   description: "Heating water valve monitoring on zone side (DSP/CSP)."
   is_abstract: true
   opt_uses:
+  - cycling_heating_water_valve_alarm
   - discharge_air_temperature_sensor
+  - failed_heating_water_valve_alarm
+  - failed_zone_air_temperature_alarm
+  - heating_water_leak_detection_alarm
   - heating_water_valve_percentage_sensor
+  - high_zone_air_temperature_alarm
+  - low_zone_air_temperature_alarm
   - heating_thermal_power_capacity
   - heating_supply_water_isolation_valve_command
   - heating_supply_water_isolation_valve_status
@@ -2208,8 +2470,14 @@ HWZTC:
   description: "Heating water valve monitoring on zone side (ZTC)."
   is_abstract: true
   opt_uses:
+  - cycling_heating_water_valve_alarm
   - discharge_air_temperature_sensor
+  - failed_heating_water_valve_alarm
+  - failed_zone_air_temperature_alarm
+  - heating_water_leak_detection_alarm
   - heating_water_valve_percentage_sensor
+  - high_zone_air_temperature_alarm
+  - low_zone_air_temperature_alarm
   - heating_thermal_power_capacity
   - heating_water_flowrate_sensor
   uses:
@@ -2225,8 +2493,14 @@ HWSWC:
   is_abstract: true
   opt_uses:
   - heating_water_valve_percentage_sensor
+  - cycling_heating_water_valve_alarm
+  - failed_heating_water_valve_alarm
   - heating_thermal_power_capacity
+  - heating_water_leak_detection_alarm
   - return_water_temperature_sensor
+  - failed_supply_water_temperature_alarm
+  - high_supply_water_temperature_alarm
+  - low_supply_water_temperature_alarm
   uses:
   - heating_water_valve_percentage_command
   - supply_water_temperature_setpoint
@@ -2239,7 +2513,13 @@ PHWSC:
   description: "Preheating water valve monitoring on supply air side."
   is_abstract: true
   opt_uses:
+  - cycling_preheating_water_valve_alarm
+  - failed_preheating_water_valve_alarm
+  - failed_supply_air_temperature_alarm
+  - preheating_water_leak_detection_alarm
+  - high_supply_air_temperature_alarm
   - leaving_air_preheating_coil_temperature_sensor
+  - low_supply_air_temperature_alarm
   uses:
   - preheating_water_valve_percentage_command
   - supply_air_temperature_setpoint
@@ -2252,7 +2532,10 @@ HWPVM:
   description: "Heating water pressure valve command and position monitoring (without regard to what controls it)."
   is_abstract: true
   opt_uses:
+  - cycling_heating_water_valve_alarm
+  - failed_heating_water_valve_alarm
   - heating_water_flowrate_sensor
+  - heating_water_leak_detection_alarm
   uses:
   - heating_water_valve_percentage_sensor
   implements:
@@ -2267,6 +2550,9 @@ HTDC:
   - heating_thermal_power_capacity
   - heating_percentage_command
   - heater_run_status
+  - failed_discharge_air_temperature_alarm
+  - high_discharge_air_temperature_alarm
+  - low_discharge_air_temperature_alarm
   uses:
   - heater_run_command
   - discharge_air_temperature_setpoint
@@ -2281,7 +2567,10 @@ HT2DC:
   opt_uses:
   - heating_thermal_power_capacity
   - heating_percentage_command
+  - high_discharge_air_temperature_alarm
   - leaving_heating_coil_temperature_sensor
+  - low_discharge_air_temperature_alarm
+  - failed_discharge_air_temperature_alarm
   uses:
   - heater_run_command_1
   - heater_run_command_2
@@ -2300,6 +2589,9 @@ HTSC:
   - heating_percentage_command
   - heater_run_status
   - heating_request_count
+  - failed_supply_air_temperature_alarm
+  - high_supply_air_temperature_alarm
+  - low_supply_air_temperature_alarm
   uses:
   - heater_run_command
   - supply_air_temperature_setpoint
@@ -2316,6 +2608,9 @@ HTSDC:
   - heating_thermal_power_capacity
   - heater_run_status
   - heating_percentage_command
+  - failed_supply_air_temperature_alarm
+  - high_supply_air_temperature_alarm
+  - low_supply_air_temperature_alarm
   uses:
   - heater_run_command
   - supply_air_heating_temperature_setpoint
@@ -2335,6 +2630,9 @@ HTRC:
   - heating_percentage_command
   - heater_run_status
   - heater_run_time_accumulator
+  - failed_return_air_temperature_alarm
+  - high_return_air_temperature_alarm
+  - low_return_air_temperature_alarm
   uses:
   - heater_run_command
   - return_air_temperature_setpoint
@@ -2351,6 +2649,9 @@ HTZC:
   - discharge_air_temperature_sensor
   - heating_percentage_command
   - heater_run_status
+  - failed_zone_air_temperature_alarm
+  - high_zone_air_temperature_alarm
+  - low_zone_air_temperature_alarm
   uses:
   - heater_run_command
   - zone_air_heating_temperature_setpoint
@@ -2366,6 +2667,9 @@ HT2ZC:
   - discharge_air_temperature_sensor
   - heating_thermal_power_capacity
   - heating_percentage_command
+  - failed_zone_air_temperature_alarm
+  - high_zone_air_temperature_alarm
+  - low_zone_air_temperature_alarm
   uses:
   - heater_run_command_1
   - heater_run_command_2
@@ -2383,6 +2687,9 @@ HT2XZTC2X:
   - discharge_air_temperature_sensor_1
   - heating_percentage_command_2
   - discharge_air_temperature_sensor_2
+  - failed_zone_air_temperature_alarm
+  - high_zone_air_temperature_alarm
+  - low_zone_air_temperature_alarm
   uses:
   - zone_air_temperature_setpoint_1
   - zone_air_temperature_sensor_1
@@ -2401,7 +2708,10 @@ HT3ZC:
   is_abstract: true
   opt_uses:
   - discharge_air_temperature_sensor
+  - failed_zone_air_temperature_alarm
   - heating_thermal_power_capacity
+  - high_zone_air_temperature_alarm
+  - low_zone_air_temperature_alarm
   uses:
   - heater_run_command_1
   - heater_run_command_2
@@ -2420,6 +2730,9 @@ HTSWC:
   opt_uses:
   - heating_thermal_power_capacity
   - heating_percentage_command
+  - failed_supply_water_temperature_alarm
+  - high_supply_water_temperature_alarm
+  - low_supply_water_temperature_alarm
   uses:
   - heater_run_command
   - supply_water_temperature_sensor
@@ -2435,6 +2748,9 @@ HT2SWC:
   opt_uses:
   - heating_thermal_power_capacity
   - heating_percentage_command
+  - failed_supply_water_temperature_alarm
+  - high_supply_water_temperature_alarm
+  - low_supply_water_temperature_alarm
   uses:
   - heater_run_command_1
   - heater_run_command_2
@@ -2450,6 +2766,9 @@ HT4SWC:
   opt_uses:
   - heating_thermal_power_capacity
   - heating_percentage_command
+  - failed_supply_water_temperature_alarm
+  - high_supply_water_temperature_alarm
+  - low_supply_water_temperature_alarm
   uses:
   - heater_run_command_1
   - heater_run_command_2
@@ -2469,6 +2788,9 @@ HT2SC:
   - heating_thermal_power_capacity
   - heating_percentage_command
   - heating_request_count
+  - failed_supply_air_temperature_alarm
+  - high_supply_air_temperature_alarm
+  - low_supply_air_temperature_alarm
   uses:
   - heater_run_command_1
   - heater_run_command_2
@@ -2486,6 +2808,9 @@ HT3SC:
   - heating_thermal_power_capacity
   - heating_percentage_command
   - heating_request_count
+  - failed_supply_air_temperature_alarm
+  - high_supply_air_temperature_alarm
+  - low_supply_air_temperature_alarm
   uses:
   - heater_run_command_1
   - heater_run_command_2
@@ -2504,6 +2829,9 @@ HT4SC:
   - heating_thermal_power_capacity
   - heating_percentage_command
   - heating_request_count
+  - failed_supply_air_temperature_alarm
+  - high_supply_air_temperature_alarm
+  - low_supply_air_temperature_alarm
   uses:
   - heater_run_command_1
   - heater_run_command_2
@@ -2521,6 +2849,9 @@ HT2SDC:
   opt_uses:
   - heating_thermal_power_capacity
   - heating_percentage_command
+  - failed_supply_air_temperature_alarm
+  - high_supply_air_temperature_alarm
+  - low_supply_air_temperature_alarm
   uses:
   - heater_run_command_1
   - heater_run_command_2
@@ -2535,8 +2866,11 @@ HTVSC:
   description: "Variable gas to electric control on supply air side."
   is_abstract: true
   opt_uses:
-  - heating_thermal_power_capacity
+  - failed_supply_air_temperature_alarm
   - heating_request_count
+  - heating_thermal_power_capacity
+  - high_supply_air_temperature_alarm
+  - low_supply_air_temperature_alarm
   uses:
   - heater_run_command
   - heater_run_status
@@ -2551,7 +2885,15 @@ ECON:
   description: "Economizer mode control"
   is_abstract: true
   opt_uses:
+  - cycling_outside_air_damper_alarm
+  - failed_mixed_air_temperature_alarm
+  - failed_outside_air_temperature_alarm
+  - failed_return_air_temperature_alarm
+  - high_mixed_air_temperature_alarm
+  - high_return_air_temperature_alarm
   - low_limit_outside_air_damper_percentage_command
+  - low_mixed_air_temperature_alarm
+  - low_return_air_temperature_alarm
   - supply_air_temperature_sensor
   - outside_air_flowrate_sensor
   - outside_air_flowrate_setpoint
@@ -2572,6 +2914,11 @@ ECOND:
   description: "Economizer mode control - single zone"
   is_abstract: true
   opt_uses:
+  - cycling_outside_air_damper_alarm
+  - failed_discharge_air_temperature_alarm
+  - failed_outside_air_temperature_alarm
+  - high_discharge_air_temperature_alarm
+  - low_discharge_air_temperature_alarm
   - return_air_temperature_sensor
   - outside_air_flowrate_sensor
   - outside_air_flowrate_setpoint
@@ -2597,7 +2944,15 @@ ECONM:
   - outside_air_flowrate_setpoint
   - supply_air_temperature_sensor
   - outside_air_damper_percentage_sensor
+  - cycling_outside_air_damper_alarm
+  - failed_mixed_air_temperature_alarm
+  - failed_outside_air_temperature_alarm
+  - failed_return_air_temperature_alarm
+  - high_mixed_air_temperature_alarm
+  - high_return_air_temperature_alarm
   - low_limit_outside_air_damper_percentage_command
+  - low_mixed_air_temperature_alarm
+  - low_return_air_temperature_alarm
   - return_air_damper_percentage_command
   uses:
   - outside_air_temperature_sensor
@@ -2618,7 +2973,15 @@ ECONM2X:
   - outside_air_flowrate_setpoint
   - supply_air_temperature_sensor
   - outside_air_damper_percentage_sensor
+  - cycling_outside_air_damper_alarm
+  - failed_mixed_air_temperature_alarm
+  - failed_outside_air_temperature_alarm
+  - failed_return_air_temperature_alarm
+  - high_mixed_air_temperature_alarm
+  - high_return_air_temperature_alarm
   - low_limit_outside_air_damper_percentage_command
+  - low_mixed_air_temperature_alarm
+  - low_return_air_temperature_alarm
   - return_air_damper_percentage_command
   uses:
   - outside_air_temperature_sensor
@@ -2637,7 +3000,12 @@ ECONMD:
   is_abstract: true
   opt_uses:
   - low_limit_outside_air_damper_percentage_command
+  - low_mixed_air_temperature_alarm
+  - cycling_outside_air_damper_alarm
   - discharge_air_temperature_sensor
+  - failed_mixed_air_temperature_alarm
+  - failed_outside_air_temperature_alarm
+  - high_mixed_air_temperature_alarm
   - outside_air_flowrate_sensor
   - outside_air_flowrate_setpoint
   - return_air_temperature_sensor
@@ -2658,7 +3026,12 @@ ECONZ:
   is_abstract: true
   opt_uses:
   - low_limit_outside_air_damper_percentage_command
+  - cycling_outside_air_damper_alarm
   - discharge_air_temperature_sensor
+  - failed_outside_air_temperature_alarm
+  - failed_zone_air_temperature_alarm
+  - high_zone_air_temperature_alarm
+  - low_zone_air_temperature_alarm
   - outside_air_flowrate_sensor
   - outside_air_relative_humidity_sensor
   - outside_air_flowrate_setpoint
@@ -2679,7 +3052,10 @@ VOADM:
   description: "Variable outside air damper monitoring."
   is_abstract: true
   opt_uses:
+  - cycling_outside_air_damper_alarm
+  - failed_outside_air_damper_alarm
   - economizer_mode
+  - failed_outside_air_temperature_alarm
   - mixed_air_temperature_sensor
   - outside_air_damper_percentage_sensor
   - low_limit_outside_air_damper_percentage_command
@@ -2718,6 +3094,7 @@ OAFMC:
   opt_uses:
   - economizer_mode
   - mixed_air_temperature_sensor
+  - cycling_outside_air_damper_alarm
   uses:
   - ventilation_outside_air_flowrate_setpoint
   - outside_air_flowrate_sensor
@@ -2731,6 +3108,8 @@ OAMC:
   is_abstract: true
   opt_uses:
   - outside_air_flowrate_sensor
+  - cycling_outside_air_damper_alarm
+  - failed_outside_air_damper_alarm
   uses:
   - outside_air_damper_percentage_sensor
   - outside_air_damper_percentage_command
@@ -2752,6 +3131,11 @@ SFM:
   id: "1953769078078308352"
   description: "Supply air flow monitoring."
   is_abstract: true
+  opt_uses: 
+  - high_supply_air_flowrate_alarm
+  - low_supply_air_flowrate_alarm
+  - supply_air_leak_detection_alarm
+  - unoccupied_supply_air_flowrate_alarm
   uses:
   - supply_air_flowrate_sensor
   implements:
@@ -2761,6 +3145,11 @@ SFC:
   id: "11177141114933084160"
   description: "Supply air flow control."
   is_abstract: true
+  opt_uses: 
+  - high_supply_air_flowrate_alarm
+  - low_supply_air_flowrate_alarm
+  - supply_air_leak_detection_alarm
+  - unoccupied_supply_air_flowrate_alarm
   uses:
   - supply_air_flowrate_setpoint
   - supply_air_flowrate_sensor
@@ -2784,6 +3173,8 @@ SARC:
   opt_uses:
   - supply_air_flowrate_sensor
   - heating_request_count
+  - high_cooling_request_alarm
+  - high_pressurization_request_alarm
   uses:
   - supply_air_temperature_setpoint
   - supply_air_static_pressure_setpoint
@@ -2944,7 +3335,11 @@ CHWBZC:
   is_abstract: true
   implements:
   - OPERATIONAL
-  uses:
+  opt_uses: 
+  - failed_zone_air_temperature_alarm
+  - high_zone_air_temperature_alarm
+  - low_zone_air_temperature_alarm
+  uses: 
   - chilled_water_valve_command
   - zone_air_temperature_sensor
   - zone_air_cooling_temperature_setpoint
@@ -3143,7 +3538,11 @@ CO2C2X:
   id: "14924136004905336832"
   description: "Carbon dioxide control with dual zone sensors."
   is_abstract: true
-  uses:
+  opt_uses: 
+  - critically_high_zone_air_co2_concentration_alarm
+  - failed_zone_air_co2_concentration_alarm
+  - high_zone_air_co2_concentration_alarm
+  uses: 
   - zone_air_co2_concentration_setpoint
   - zone_air_co2_concentration_sensor_1
   - zone_air_co2_concentration_sensor_2
@@ -3156,6 +3555,9 @@ DSP3X:
   is_abstract: true
   opt_uses:
   - discharge_air_temperature_sensor
+  - failed_zone_air_temperature_alarm
+  - high_zone_air_temperature_alarm
+  - low_zone_air_temperature_alarm
   uses:
   - zone_air_temperature_sensor_1
   - zone_air_temperature_sensor_2
@@ -3261,6 +3663,10 @@ SFSS2X:
   - supply_fan_current_sensor_2
   - supply_fan_power_sensor_1
   - supply_fan_power_sensor_2
+  - local_supply_fan_override_alarm_1
+  - local_supply_fan_override_alarm_2
+  - supply_fan_failed_alarm_1
+  - supply_fan_failed_alarm_2
   uses:
   - supply_fan_run_command_1
   - supply_fan_run_status_1
@@ -3282,6 +3688,12 @@ SFSS3X:
   - supply_fan_power_sensor_1
   - supply_fan_power_sensor_2
   - supply_fan_power_sensor_3
+  - local_supply_fan_override_alarm_1
+  - local_supply_fan_override_alarm_2
+  - local_supply_fan_override_alarm_3
+  - supply_fan_failed_alarm_1
+  - supply_fan_failed_alarm_2
+  - supply_fan_failed_alarm_3
   uses:
   - supply_fan_run_command_1
   - supply_fan_run_status_1
@@ -3307,6 +3719,14 @@ SFSS4X:
   - supply_fan_power_sensor_2
   - supply_fan_power_sensor_3
   - supply_fan_power_sensor_4
+  - local_supply_fan_override_alarm_1
+  - local_supply_fan_override_alarm_2
+  - local_supply_fan_override_alarm_3
+  - local_supply_fan_override_alarm_4
+  - supply_fan_failed_alarm_1
+  - supply_fan_failed_alarm_2
+  - supply_fan_failed_alarm_3
+  - supply_fan_failed_alarm_4
   uses:
   - supply_fan_run_command_1
   - supply_fan_run_status_1
@@ -3422,6 +3842,10 @@ SFVSC2X:
   - supply_fan_speed_percentage_sensor_2
   - supply_fan_current_sensor_2
   - supply_fan_power_sensor_2
+  - local_supply_fan_override_alarm_1
+  - local_supply_fan_override_alarm_2
+  - supply_fan_failed_alarm_1
+  - supply_fan_failed_alarm_2
   uses:
   - supply_fan_run_command_1
   - supply_fan_run_status_1
@@ -3460,7 +3884,13 @@ SFVSC3X:
   - supply_fan_run_time_accumulator_3
   - supply_fan_run_mode_1
   - supply_fan_run_mode_2
-  - supply_fan_run_mode_3  
+  - supply_fan_run_mode_3
+  - local_supply_fan_override_alarm_1
+  - local_supply_fan_override_alarm_2
+  - local_supply_fan_override_alarm_3
+  - supply_fan_failed_alarm_1
+  - supply_fan_failed_alarm_2
+  - supply_fan_failed_alarm_3
   uses:
   - supply_fan_run_command_1
   - supply_fan_run_status_1
@@ -3495,6 +3925,14 @@ SFVSC4X:
   - supply_fan_speed_percentage_sensor_4
   - supply_fan_current_sensor_4
   - supply_fan_power_sensor_4
+  - local_supply_fan_override_alarm_1
+  - local_supply_fan_override_alarm_2
+  - local_supply_fan_override_alarm_3
+  - local_supply_fan_override_alarm_4
+  - supply_fan_failed_alarm_1
+  - supply_fan_failed_alarm_2
+  - supply_fan_failed_alarm_3
+  - supply_fan_failed_alarm_4
   uses:
   - supply_fan_run_command_1
   - supply_fan_run_status_1
@@ -3516,6 +3954,11 @@ BYPSSPC:
   description: "Supply static pressure control with bypass damper."
   is_abstract: true
   opt_uses:
+  - failed_supply_air_static_pressure_alarm
+  - failed_supply_fan_alarm
+  - high_supply_air_static_pressure_alarm
+  - local_supply_fan_override_alarm
+  - low_supply_air_static_pressure_alarm
   - supply_air_flowrate_sensor
   uses:
   - supply_air_static_pressure_sensor
@@ -3531,6 +3974,10 @@ BYPSSPC2X: # Consider virtual point for instances where dampers control to same 
   description: "Supply static pressure control with bypass damper."
   is_abstract: true
   opt_uses:
+  - failed_supply_air_static_pressure_alarm
+  - high_supply_air_static_pressure_alarm
+  - local_supply_fan_override_alarm
+  - low_supply_air_static_pressure_alarm
   - supply_air_flowrate_sensor
   uses:
   - supply_air_static_pressure_sensor
@@ -3873,6 +4320,9 @@ PDSCV:
   id: "2539113884334161920"
   description: "Pressure-dependent supply damper control for ventilation purposes (CO2 or VOC)."
   is_abstract: true
+  opt_uses: 
+  - cycling_supply_air_damper_alarm
+  - failed_supply_air_damper_alarm
   uses:
   - supply_air_damper_percentage_command
   - supply_air_damper_percentage_sensor
@@ -3885,6 +4335,11 @@ SDBPC:
   is_abstract: true
   opt_uses:
   - supply_air_flowrate_sensor
+  - cycling_supply_air_damper_alarm
+  - failed_supply_air_damper_alarm
+  - failed_supply_air_static_pressure_alarm
+  - high_supply_air_static_pressure_alarm
+  - low_supply_air_static_pressure_alarm
   uses:
   - supply_air_static_pressure_sensor
   - supply_air_static_pressure_setpoint
@@ -3898,8 +4353,11 @@ HWVM:
   description: "Heating water valve command and position monitoring (without regard to what controls it)."
   is_abstract: true
   opt_uses:
+  - cycling_heating_water_valve_alarm
+  - failed_heating_water_valve_alarm
   - heating_thermal_power_capacity
   - heating_water_flowrate_sensor
+  - heating_water_leak_detection_alarm
   uses:
   - heating_water_valve_percentage_sensor
   - heating_water_valve_percentage_command
@@ -3959,6 +4417,9 @@ DXDDC:
   opt_uses:
   - cooling_percentage_command
   - compressor_run_status
+  - failed_discharge_air_temperature_alarm
+  - high_discharge_air_temperature_alarm
+  - low_discharge_air_temperature_alarm
   uses:
   - compressor_run_command
   - discharge_air_heating_temperature_setpoint
@@ -3972,8 +4433,11 @@ HTDDC:
   description: "gas or electric heating dual setpoint control on discharge side"
   is_abstract: true
   opt_uses:
-  - heating_percentage_command
+  - failed_discharge_air_temperature_alarm
   - heater_run_status
+  - heating_percentage_command
+  - high_discharge_air_temperature_alarm
+  - low_discharge_air_temperature_alarm
   uses:
   - heater_run_command
   - discharge_air_heating_temperature_setpoint
@@ -4053,6 +4517,9 @@ SDM:
   id: "5997878398154702848"
   description: "Supply air damper monitoring."
   is_abstract: true
+  opt_uses: 
+  - cycling_supply_air_damper_alarm
+  - failed_supply_air_damper_alarm
   uses:
   - supply_air_damper_command
   - supply_air_damper_status
@@ -4064,6 +4531,9 @@ ECDDC:
   opt_uses:
   - evaporative_cooler_run_status
   - cooling_percentage_sensor
+  - failed_discharge_air_temperature_alarm
+  - high_discharge_air_temperature_alarm
+  - low_discharge_air_temperature_alarm
   uses:
   - evaporative_cooler_run_command
   - discharge_air_temperature_sensor
@@ -4077,7 +4547,10 @@ DXSDC:
   description: "Compressor run control on supply side, dual setpoints."
   is_abstract: true
   opt_uses:
+  - failed_supply_air_temperature_alarm
+  - high_supply_air_temperature_alarm
   - leaving_cooling_coil_temperature_sensor
+  - low_supply_air_temperature_alarm
   - cooling_thermal_power_capacity
   - cooling_percentage_command #Serves as a duty cycle for single-stage DX sections.
   - compressor_speed_percentage_command
@@ -4107,7 +4580,10 @@ DX6SC:
   description: "Six compressor run control on supply air side."
   is_abstract: true
   opt_uses:
+  - failed_supply_air_temperature_alarm
+  - high_supply_air_temperature_alarm
   - leaving_cooling_coil_temperature_sensor
+  - low_supply_air_temperature_alarm
   - cooling_thermal_power_capacity
   - cooling_percentage_command
   - compressor_speed_percentage_command
@@ -4135,7 +4611,10 @@ DX2DSPRTC:
   description: "Two-stage compressor run control with dual return temp control."
   is_abstract: true
   opt_uses:
+  - failed_return_air_temperature_alarm
+  - high_return_air_temperature_alarm
   - leaving_cooling_coil_temperature_sensor
+  - low_return_air_temperature_alarm
   - cooling_thermal_power_capacity
   - cooling_percentage_command
   - compressor_speed_percentage_command
@@ -4156,7 +4635,10 @@ DX4DC:
   description: "Compressor run control on discharge air side (DTC)."
   is_abstract: true
   opt_uses:
+  - failed_discharge_air_temperature_alarm
+  - high_discharge_air_temperature_alarm
   - leaving_cooling_coil_temperature_sensor
+  - low_discharge_air_temperature_alarm
   - cooling_thermal_power_capacity
   - cooling_percentage_command
   - compressor_speed_percentage_command
@@ -4184,6 +4666,9 @@ DX6SWC:
   - cooling_percentage_command
   - compressor_speed_percentage_command
   - compressor_speed_percentage_sensor
+  - failed_supply_water_temperature_alarm
+  - high_supply_water_temperature_alarm
+  - low_supply_water_temperature_alarm
   uses:
   - compressor_run_command_1
   - compressor_run_status_1
@@ -4274,6 +4759,9 @@ SWTM:
   - cooling_request_count
   - heating_request_count
   - return_water_temperature_sensor
+  - failed_supply_water_temperature_alarm
+  - high_supply_water_temperature_alarm
+  - low_supply_water_temperature_alarm
   uses:
   - supply_water_temperature_sensor  
 
@@ -4325,6 +4813,10 @@ CHWBRC:
   is_abstract: true
   implements:
   - OPERATIONAL
+  opt_uses: 
+  - failed_return_air_temperature_alarm
+  - high_return_air_temperature_alarm
+  - low_return_air_temperature_alarm
   uses:
   - chilled_water_valve_command
   - return_air_temperature_sensor
@@ -4510,7 +5002,11 @@ HTWHLSTC:
   implements:
   - CONTROL
   opt_uses:
+  - failed_outside_air_temperature_alarm
+  - failed_supply_air_temperature_alarm
   - heat_wheel_speed_percentage_sensor
+  - high_supply_air_temperature_alarm
+  - low_supply_air_temperature_alarm
   - exhaust_air_temperature_sensor
   - return_air_temperature_sensor
   uses:
@@ -4547,6 +5043,9 @@ DPHCC:
   - zone_air_cooling_temperature_setpoint
   - zone_air_heating_temperature_setpoint
   - condensate_water_alarm
+  - failed_zone_air_temperature_alarm
+  - high_zone_air_temperature_alarm
+  - low_zone_air_temperature_alarm
   - zone_conditioning_mode
   - supply_water_valve_flowrate_sensor
   uses:
@@ -4569,6 +5068,8 @@ HHCDM:
   - cooling_request_count
   opt_uses:
   - average_zone_air_temperature_sensor
+  - high_cooling_request_alarm
+  - high_heating_request_alarm
 
 
 HHRU:
@@ -4587,6 +5088,15 @@ HHRU:
   opt_uses:
   - exhaust_air_temperature_sensor
   - outside_air_temperature_sensor
+  - failed_return_air_temperature_alarm
+  - failed_supply_air_temperature_alarm
+  - high_return_air_temperature_alarm
+  - high_supply_air_temperature_alarm
+  - low_return_air_temperature_alarm
+  - low_supply_air_temperature_alarm
+  - failed_supply_water_temperature_alarm
+  - high_supply_water_temperature_alarm
+  - low_supply_water_temperature_alarm
 
 PHRU:
   id: "5194420171762040832"
@@ -4604,6 +5114,12 @@ PHRU:
   - outside_air_temperature_sensor
   - bypass_air_damper_command
   - bypass_air_damper_status
+  - failed_return_air_temperature_alarm
+  - failed_supply_air_temperature_alarm
+  - high_return_air_temperature_alarm
+  - high_supply_air_temperature_alarm
+  - low_return_air_temperature_alarm
+  - low_supply_air_temperature_alarm
 
 CHWDT2X:
   id: "17588854111866978304"
@@ -4676,6 +5192,9 @@ DX2DDC:
   opt_uses:
   - cooling_percentage_command
   - compressor_speed_percentage_command
+  - failed_discharge_air_temperature_alarm
+  - high_discharge_air_temperature_alarm
+  - low_discharge_air_temperature_alarm
   uses:
   - compressor_run_command_1
   - compressor_run_command_2
@@ -4693,6 +5212,13 @@ HWDT:
   is_abstract: true
   implements:
   - MONITORING
+  opt_uses: 
+  - failed_heating_return_water_temperature_alarm
+  - high_heating_return_water_temperature_alarm
+  - low_heating_return_water_temperature_alarm
+  - failed_heating_supply_water_temperature_alarm
+  - high_heating_supply_water_temperature_alarm
+  - low_heating_supply_water_temperature_alarm
   uses:
   - heating_return_water_temperature_sensor
   - heating_supply_water_temperature_sensor
@@ -4703,7 +5229,10 @@ HPDDC:
   is_abstract: true
   opt_uses:
   - cooling_thermal_power_capacity
+  - failed_discharge_air_temperature_alarm
   - heating_thermal_power_capacity
+  - high_discharge_air_temperature_alarm
+  - low_discharge_air_temperature_alarm
   - compressor_speed_percentage_command
   - cooling_percentage_command
   uses:
@@ -4725,6 +5254,9 @@ EC2SC:
   - evaporative_cooler_run_status_2
   - cooling_percentage_sensor
   - cooling_request_count
+  - failed_supply_air_temperature_alarm
+  - high_supply_air_temperature_alarm
+  - low_supply_air_temperature_alarm
   uses:
   - evaporative_cooler_run_command_1
   - evaporative_cooler_run_command_2
@@ -4738,10 +5270,16 @@ HWDDC:
   description: "Heating water valve with dual setpoint control on discharge side."
   is_abstract: true
   opt_uses:
+  - heating_water_leak_detection_alarm
   - heating_water_valve_percentage_sensor
+  - high_discharge_air_temperature_alarm
+  - low_discharge_air_temperature_alarm
   - heating_thermal_power_capacity
   - discharge_air_relative_humidity_sensor
+  - failed_discharge_air_temperature_alarm
+  - failed_heating_water_valve_alarm
   - heating_water_flowrate_sensor
+  - cycling_heating_water_valve_alarm
   uses:
   - heating_water_valve_percentage_command
   - discharge_air_heating_temperature_setpoint
@@ -4763,7 +5301,10 @@ VOADM2X:
   description: "Variable outside air damper monitoring, where there are two separate, equal sets of dampers that operate in conjunction."
   is_abstract: true
   opt_uses:
+  - cycling_outside_air_damper_alarm
   - economizer_mode
+  - failed_outside_air_damper_alarm
+  - failed_outside_air_temperature_alarm
   - mixed_air_temperature_sensor
   - outside_air_damper_percentage_sensor_1
   - outside_air_damper_percentage_sensor_2
@@ -4797,7 +5338,10 @@ DPBHCC:
   is_abstract: true
   opt_uses:
   - cooling_request_count
+  - failed_zone_air_temperature_alarm
   - heating_request_count
+  - high_zone_air_temperature_alarm
+  - low_zone_air_temperature_alarm
   - zone_air_relative_humidity_sensor
   uses:
   - chilled_supply_water_isolation_valve_command
@@ -4825,9 +5369,12 @@ DPCHWHRWSC:
   description: "Two-pipe chilled water and heat recovery water control using the same coils."
   is_abstract: true
   opt_uses:
+  - high_supply_air_temperature_alarm
   - leaving_coil_temperature_sensor
+  - low_supply_air_temperature_alarm
   - chilled_supply_water_temperature_sensor
   - chilled_return_water_temperature_sensor
+  - failed_supply_air_temperature_alarm
   - heat_recovery_supply_water_temperature_sensor
   - heat_recovery_return_water_temperature_sensor
   - supply_water_valve_percentage_sensor
@@ -4979,6 +5526,13 @@ SHWDT:
   is_abstract: true
   implements:
   - MONITORING
+  opt_uses: 
+  - failed_secondary_heating_return_water_temperature_alarm
+  - high_secondary_heating_return_water_temperature_alarm
+  - low_secondary_heating_return_water_temperature_alarm
+  - failed_secondary_heating_supply_water_temperature_alarm
+  - high_secondary_heating_supply_water_temperature_alarm
+  - low_secondary_heating_supply_water_temperature_alarm
   uses:
   - secondary_heating_supply_water_temperature_sensor
   - secondary_heating_return_water_temperature_sensor
@@ -4999,6 +5553,13 @@ PHWDT:
   is_abstract: true
   implements:
   - MONITORING
+  opt_uses: 
+  - failed_primary_heating_return_water_temperature_alarm
+  - high_primary_heating_return_water_temperature_alarm
+  - low_primary_heating_return_water_temperature_alarm
+  - failed_primary_heating_supply_water_temperature_alarm
+  - high_primary_heating_supply_water_temperature_alarm
+  - low_primary_heating_supply_water_temperature_alarm
   uses:
   - primary_heating_return_water_temperature_sensor
   - primary_heating_supply_water_temperature_sensor
@@ -5115,6 +5676,9 @@ VOADC2X:
   id: "15455797155935027200"
   description: "Variable outside air damper control and monitoring, where there are two separate, equal sets of dampers that operate in conjunction."
   is_abstract: true
+  opt_uses: 
+  - cycling_outside_air_damper_alarm
+  - failed_outside_air_damper_alarm
   uses:
   - outside_air_damper_percentage_sensor_1
   - outside_air_damper_percentage_sensor_2
@@ -5236,6 +5800,9 @@ SSPC2X:
   - supply_air_flowrate_sensor
   - supply_fan_speed_percentage_command
   - average_supply_air_static_pressure_sensor
+  - failed_supply_air_static_pressure_alarm
+  - high_supply_air_static_pressure_alarm
+  - low_supply_air_static_pressure_alarm
   uses:
   - supply_air_static_pressure_sensor_1
   - supply_air_static_pressure_sensor_2  
@@ -5255,6 +5822,7 @@ SFMSC:
   - supply_fan_run_mode
   opt_uses:  
   - schedule_run_command
+  - local_supply_fan_override_alarm
 
  
 MIPVCM:
@@ -5483,6 +6051,10 @@ CO2M4X:
   id: "8538268128293945344"
   description: "Basic carbon dioxide monitoring for 4 Zones."
   is_abstract: true
+  opt_uses: 
+  - critically_high_zone_air_co2_concentration_alarm
+  - failed_zone_air_co2_concentration_alarm
+  - high_zone_air_co2_concentration_alarm
   uses:
   - zone_air_co2_concentration_sensor_1
   - zone_air_co2_concentration_sensor_2
@@ -5498,6 +6070,9 @@ CO2M6X:
   opt_uses:
   - max_zone_air_co2_concentration_sensor
   - average_zone_air_co2_concentration_sensor
+  - critically_high_zone_air_co2_concentration_alarm
+  - failed_zone_air_co2_concentration_alarm
+  - high_zone_air_co2_concentration_alarm
   uses:
   - zone_air_co2_concentration_sensor_1
   - zone_air_co2_concentration_sensor_2
