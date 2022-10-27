@@ -51,7 +51,7 @@ def _spreadsheet_workflow(spreadsheet_id: str,
       messages.
     timeout: [Optional] The timeout duration in seconds for the telemetry
       validation test. The default value is 600 seconds, or 10 minutes.
-    ontology_path: [Optional] A path to a modified ontology. Default is the
+    modified_types_filepath: [Optional] A path to a modified ontology. Default is the
       DigitalBuildings Ontology.
   """
   print(f'Importing spreadsheet from Google sheets: {spreadsheet_id}')
@@ -96,7 +96,7 @@ def _spreadsheet_workflow(spreadsheet_id: str,
 def _bc_workflow(spreadsheet_id: str,
                  bc_filepath: str,
                  gcp_token_path: str,
-                 modified_types_filepath: Optional[str] = ONTOLOGY_ROOT
+                 modified_types_filepath: Optional[str] = None
                  ) -> None:
   """Helper function for Building Config -> spreadsheet workflow.
 
@@ -106,7 +106,7 @@ def _bc_workflow(spreadsheet_id: str,
     gcp_token_path: Path to GCP token for authenticating against Google sheets
       API. This is a short-lived credential for a service account as documented
       https://cloud.google.com/iam/docs/create-short-lived-credentials-direct.
-    ontology_path: [Optional] A path to a modified ontology. Default is the
+    modified_types_filepath: [Optional] A path to a modified ontology. Default is the
       DigitalBuildings Ontology.
   """
   print('Validating imported Building Config.')

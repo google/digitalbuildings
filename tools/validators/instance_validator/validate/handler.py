@@ -20,6 +20,7 @@ import datetime
 import sys
 from typing import Dict, List, Tuple
 
+from validate import constants
 from validate import entity_instance
 from validate import generate_universe
 from validate import instance_parser
@@ -104,9 +105,22 @@ def RunValidation(filenames: List[str],
                   subscription: str = None,
                   service_account: str = None,
                   report_filename: str = None,
-                  timeout: int = 60,
+                  timeout: int = constants.DEFAULT_TIMEOUT,
                   is_udmi: bool = False) -> None:
-  """Master runner for all validations."""
+  """Master runner for all validations.
+
+  Args:
+    filenames: List of building config filenames to validate.
+    use_simplified_universe: Boolean to use small testing ConfigUniverse.
+    modified_types_filepath: Relative path to a modified ontology.
+    default_types_filepath: Relative path to the DigitalBuildings ontology.
+    subscription: Fully qualified path to a Google Cloud Pubsub subscription.
+    service_account: Fully qualified path to a service account key file.
+    report_filename: Fully qualified path to write a validation report to.
+    timeout: Timeout duration of the telemetry validator. Default is 60 seconds.
+    is_udmi: Telemetry follows UDMI standards.
+
+  """
   saved_stdout = sys.stdout
   report_file = None
   if report_filename:
@@ -116,7 +130,6 @@ def RunValidation(filenames: List[str],
   try:
     print('\nStarting validator...\n')
     print('\nStarting universe generation...\n')
-    print(f'DEFAULT TYPES PATH: {default_types_filepath}')
     universe = generate_universe.BuildUniverse(
         use_simplified_universe=use_simplified_universe,
         modified_types_filepath=modified_types_filepath,
