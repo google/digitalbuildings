@@ -28,6 +28,7 @@ from yamlformat.validator import presubmit_validate_types_lib
 def BuildUniverse(
     use_simplified_universe: bool = False,
     modified_types_filepath: str = None,
+    default_types_filepath: str = constants.ONTOLOGY_ROOT,
 ) -> presubmit_validate_types_lib.ConfigUniverse:
   """Generates the ontology universe.
 
@@ -54,17 +55,17 @@ def BuildUniverse(
     external_file_lib.Validate(
         filter_text=None,
         changed_directory=modified_types_filepath,
-        original_directory=constants.ONTOLOGY_ROOT,
+        original_directory=default_types_filepath,
         interactive=False)
     yaml_files = external_file_lib.RecursiveDirWalk(modified_types_filepath)
   else:
-    default_ontology_exists = path.exists(constants.ONTOLOGY_ROOT)
+    default_ontology_exists = path.exists(default_types_filepath)
     if not default_ontology_exists:
       print(f'Specified filepath [{constants.ONTOLOGY_ROOT}] '
             'for default ontology does not exist')
       return None
     # use default location for ontology files
-    yaml_files = external_file_lib.RecursiveDirWalk(constants.ONTOLOGY_ROOT)
+    yaml_files = external_file_lib.RecursiveDirWalk(default_types_filepath)
 
   if yaml_files:
     config = presubmit_validate_types_lib.SeparateConfigFiles(yaml_files)
