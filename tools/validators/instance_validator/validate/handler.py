@@ -107,7 +107,7 @@ def RunValidation(filenames: List[str],
                   report_filename: str = None,
                   timeout: int = constants.DEFAULT_TIMEOUT,
                   is_udmi: bool = False) -> None:
-  """Master runner for all validations.
+  """Top level runner for all validations.
 
   Args:
     filenames: List of building config filenames to validate.
