@@ -24,7 +24,6 @@ SS:
   - lost_power_alarm
   - power_status
 
-
 IOBM:
   id: "11309587186103353344"
   description: "Input, output, and bypass electrical monitoring, typically for a UPS."
@@ -51,8 +50,21 @@ IOBM:
   - bypass_phase1_neutral_voltage_sensor
   - bypass_phase2_neutral_voltage_sensor
   - bypass_phase3_neutral_voltage_sensor
+  opt_uses:
+  - input_frequency_sensor
+  - output_frequency_sensor
+  - bypass_frequency_sensor
+  - failed_alarm
+  - output_power_sensor
+  - output_apparent_power_sensor
+  - bypass_status
+  - overload_alarm
+  - lost_power_alarm
+  - load_percentage_sensor
+  - bypass_phase_status
 
 PWM:
+  id: "13215256341318205440"
   description: "Very basic power and energy monitoring."
   is_abstract: true
   uses:
@@ -62,12 +74,14 @@ PWM:
   - apparent_power_sensor 
 
 RMM:
+  id: "3032617583833513984"
   description: "Run mode monitoring."
   is_abstract: true
   uses:
   - run_mode
 
 OTPM:
+  id: "11810133257578610688"
   description: "Oil temperature and pressure monitoring"
   is_abstract: true
   uses:
@@ -75,12 +89,14 @@ OTPM:
   - oil_pressure_sensor
   
 RDM:
+  id: "15919667917554188288"
   description: "Very basic system run duration monitoring."
   is_abstract: true
   uses:
   - run_time_accumulator
   
 TKLS:  
+  id: "9502038448551231488"
   description: "Very basic tank level status monitoring for Electrical generator equipments."
   is_abstract: true
   uses:
@@ -94,15 +110,46 @@ PPWM:
   - phase1_apparent_power_sensor
   - phase2_apparent_power_sensor
   - phase3_apparent_power_sensor
+  - line_frequency_sensor 
+
+BATM:
+  id: "10996952049861525504"
+  description: "Battery typically used with UPS"
+  is_abstract: true
+  uses:
+  - battery_voltage_sensor
+  - battery_charge_percentage_sensor
+  opt_uses:
+  - low_battery_charge_alarm
+  - inverter_failed_alarm
   - line_frequency_sensor
 
 BTEPM:
+  id: "8603570322890817536"
   description: "Basic battery electrical parameter monitoring"
   is_abstract: true
   uses:
   - battery_voltage_sensor
   - battery_current_sensor
   - line_frequency_sensor  
+
+UPSBM:
+  id: "6133134821045567488"
+  description: "UPS battery monitoring points"
+  is_abstract: true
+  opt_uses:
+  - exhaust_fan_failed_alarm
+  - battery_percentage_sensor
+  - rectifier_mode
+  - inverter_status
+  - inverter_mode
+  - overload_alarm
+  uses:
+  - remaining_charge_time_sensor
+  - battery_voltage_sensor
+  - battery_status
+  - input_supply_mode
+  - battery_test_status
 
 SRC1:
   id: "15185581178292797440"
@@ -135,4 +182,3 @@ SRC2:
   - source2_phase3_phase1_over_voltage_status
   - source2_over_voltage_status
   - source2_lost_power_alarm
-

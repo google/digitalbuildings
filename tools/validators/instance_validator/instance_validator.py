@@ -30,9 +30,7 @@ import argparse
 import sys
 
 from validate import handler
-
-# Default timeout duration for telemetry validation test
-DEFAULT_TIMEOUT = 600
+from validate.constants import DEFAULT_TIMEOUT
 
 
 # TODO(berkoben): Make this its own file with tests.
@@ -96,6 +94,14 @@ def _ParseArgs() -> argparse.ArgumentParser:
       help='Filename for the validation report',
       metavar='report-filename')
 
+  parser.add_argument(
+      '--udmi',
+      dest='udmi',
+      required=False,
+      default=False,
+      action='store_true',
+      help='Parse messages as UDMI')
+
   return parser
 
 
@@ -107,4 +113,5 @@ if __name__ == '__main__':
       subscription=args.subscription,
       service_account=args.service_account,
       report_filename=args.report_filename,
-      timeout=int(args.timeout))
+      timeout=int(args.timeout),
+      is_udmi=args.udmi)

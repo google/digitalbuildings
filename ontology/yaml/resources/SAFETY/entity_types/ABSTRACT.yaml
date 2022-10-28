@@ -29,6 +29,13 @@ NHDET:
   uses:
   - ammonia_leak_detection_alarm
 
+H2M:
+  id: "2296560519735148544"
+  description: "Hydrogen gas monitoring"
+  is_abstract: true
+  uses:
+  - zone_air_h2_concentration_sensor
+
 WLDS:
   id: "1407482223375941632"
   description: "Basic watre leak monitoring."
@@ -72,6 +79,13 @@ FA2X:
   uses:
   - fire_alarm_1
   - fire_alarm_2
+    
+WLS:
+  id: "944988050314756096"
+  description: "Water leak location monitoring."
+  is_abstract: true
+  uses:
+  - water_leak_cable_distance_sensor
   
 LM:
   id: "15773300929664647168"
@@ -79,3 +93,4 @@ LM:
   is_abstract: true
   uses:
   - level_status 
+

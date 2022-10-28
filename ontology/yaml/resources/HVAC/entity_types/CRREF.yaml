@@ -27,3 +27,11 @@ CRREF_DXZTC_DFSS:
   opt_uses:
   - run_time_accumulator
   - master_alarm
+
+CRREF_CREFM:
+  id: "6926260936672018432"
+  description: "Typical coldroom refigrator monitoring."
+  is_canonical: true
+  implements:
+  - CRREF
+  - CREFM
