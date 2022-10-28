@@ -159,9 +159,9 @@ class EntityTest(absltest.TestCase):
     expected_row_mapping = {
         ENTITY_CODE: TEST_VIRTUAL_ENTITY_CODE,
         BC_GUID: TEST_VIRTUAL_GUID,
+        ETAG: None,
         IS_REPORTING: False,
         CLOUD_DEVICE_ID: None,
-        ETAG: None,
         NAMESPACE: TEST_NAMESPACE,
         TYPE_NAME: TEST_TYPE_NAME
     }
