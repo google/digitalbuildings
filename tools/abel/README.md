@@ -164,6 +164,12 @@ file. Only required for the `Building Config -> Spreadsheet` workflow.
 
 `-o` or `--timeout` timeout duration in seconds for the telemetry validation test. The default value is 600 seconds, or 10 minutes. If this time limit is exceeded before the validator receives a test pubsub message for each of the entities configured in the given instance config file, the test will fail with an error and report the entities that were not heard from.
 
+`-m` or `--modified-types-filepath` fully-qualified path to a modified ontology
+that is not in the [DigitalBuildings repository](../..). The [Ontology
+Validator](../validators/ontology_validator) will surface validation results
+from the modified ontology, and Building Configuration files will be validated
+against the modified ontology.
+
 ### The ABEL Spreadsheet
 The ABEL spreadsheet serves as a user-friendly interface for ABEL and is what
 allows a user to make changes to machine readable documents like [Building
