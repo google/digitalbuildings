@@ -21,7 +21,6 @@ from typing import Optional
 
 from google import auth
 from google.cloud import pubsub_v1
-import datetime
 
 # pylint: disable=consider-using-f-string
 
@@ -65,15 +64,13 @@ class Subscriber(object):
       credentials = auth.jwt.Credentials.from_service_account_info(
           service_account_info, audience=audience)
     else:
-      print('No service account. Using application default credentials')
+      print('[INFO]\tNo service account. Using application default credentials')
       # pylint: disable=unused-variable
       credentials, project_id = auth.default()
 
     sub_client = pubsub_v1.SubscriberClient(credentials=credentials)
     future = sub_client.subscribe(self.subscription_name, callback)
-    print('[INFO]\t{time}\tListening to pub/sub topic.'
-          .format(time=datetime.datetime.now())
-          )
+    print('[INFO]\t{time}\tListening to pub/sub topic.')
     # KeyboardInterrupt does not always cause `result` to exit early, so we
     # give the thread a chance to handle that within a reasonable amount of
     # time by repeatedly calling `result` with a short timeout.

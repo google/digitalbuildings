@@ -278,7 +278,8 @@ class EntityHelper(object):
           current_entity.operation):
         print('[ERROR]\t(v1 Alpha): Building Config cannot have more '
               'than 2 operations; one being EXPORT.')
-        raise ValueError
+        raise ValueError('(v1 Alpha): Building Config cannot have more '
+                         'than 2 operations; one being EXPORT.')
       if (current_entity.operation is not instance_parser.EntityOperation.DELETE
           and current_entity.type_name.lower() == 'building'):
         building_found = True
@@ -291,7 +292,8 @@ class EntityHelper(object):
       print('[ERROR]\tBuilding entity not found. Configs must contain '
             'a non-deleted entity of type FACILITIES/BUILDING.'
             )
-      raise SyntaxError
+      raise SyntaxError('Building entity not found. Configs must contain '
+                        'a non-deleted entity of type FACILITIES/BUILDING.')
 
     # Final validity determination.
     if is_valid:

@@ -17,7 +17,6 @@ import enum
 
 from typing import Dict, List, Union
 
-# pylint: disable=consider-using-f-string
 
 class PresenceMode(enum.Enum):
   """Presence modes for a field in a translation."""

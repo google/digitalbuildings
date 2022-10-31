@@ -485,11 +485,8 @@ class InstanceValidator(object):
                       code=entity.code,
                       field=qualified_field_name)
               )
-        # print('Units must be provided for dimensional value '
-        #       f'{qualified_field_name}')
         return False
 
-      # Is this a duplicate of the error above?
       if not ft.unit_mappings:
         print('[ERROR]\tEntity {guid} ({code}) defines field {field} '
               'without providing at least one unit. Add at least one unit.'
@@ -497,8 +494,6 @@ class InstanceValidator(object):
                       code=entity.code,
                       field=qualified_field_name)
               )
-        # print('At least one unit must be provided for dimensional value '
-        #       f'{qualified_field_name}')
         return False
 
       is_valid = True
@@ -526,6 +521,14 @@ class InstanceValidator(object):
 
     valid_states = self.universe.GetStatesByField(qualified_field_name)
     if valid_states:
+      if not isinstance(ft, ft_lib.MultiStateValue):
+        print('[ERROR]\tEntity {guid} ({code}) defines field {field} '
+              'without states, which are expected on the field. Define '
+              'states.'.format(guid=entity.guid,
+                               code=entity.code,
+                               field=qualified_field_name)
+              )
+
       if not ft.states:
         print('[ERROR]\tEntity {guid} ({code}) defines field {field} '
               'without states, which are expected for this field. Define '
@@ -564,7 +567,6 @@ class InstanceValidator(object):
 
       return is_valid
 
-    # is below check correct? shouldnt it be IF NOT INSTANCE?
     if isinstance(ft, ft_lib.MultiStateValue):
       print('[ERROR]\tEntity {guid} ({code}) defines field {field} '
             'with states, but this field is not multi-state.'
@@ -737,7 +739,8 @@ class InstanceValidator(object):
     if IsEntityIdPresent(entity):
       print('[WARNING]\tEntity {guid} ({code}) defines "id" but this '
             'will be deprecated in future releases. Please review '
-            'digitalbuildings/ontology/docs/building_config.md for more '
+            'https://github.com/google/digitalbuildings/'
+            'ontology/docs/building_config.md for more '
             'information.'.format(guid=entity.guid,
                                   code=entity.code)
             )
@@ -758,9 +761,6 @@ class InstanceValidator(object):
                 .format(guid=entity.guid,
                         code=entity.code)
                 )
-          # What is this error? Why would we ever
-          # allow an entity without a type?
-          # print('Update mask to clear Entity Type not allowed')
           is_valid = False
 
     if not entity.guid:
@@ -847,14 +847,19 @@ def _ParseTypeString(type_str: syaml.YAML) -> Tuple[str, str]:
     print('[ERROR]\tNamespace is missing for type: {type_str}. Proper '
           'format is NAMESPACE/TYPE_NAME.'.format(type_str=type_str)
           )
-    raise TypeError
+    raise TypeError('Namespace is missing for type: {type_str}. Proper '
+          'format is NAMESPACE/TYPE_NAME.'.format(type_str=type_str)
+          )
 
   if len(type_parse) > 2:
     print('[ERROR]\tType is improperly formatted: {type_str}. Proper '
           'formatting is: NAMESPACE/TYPE_NAME'
           .format(type_str=type_str)
           )
-    raise TypeError
+    raise TypeError('Type is improperly formatted: {type_str}. Proper '
+          'formatting is: NAMESPACE/TYPE_NAME'
+          .format(type_str=type_str)
+          )
 
   return type_parse[0], type_parse[1]
 
@@ -877,7 +882,9 @@ def _ParseTranslation(
     print('[ERROR]\tTranslation body "{tb}" is not valid.'
           .format(tb=translation_body)
           )
-    raise ValueError
+    raise ValueError('Translation body "{tb}" is not valid.'
+          .format(tb=translation_body)
+          )
 
   translation = {}
   for std_field_name in translation_body:
@@ -887,7 +894,9 @@ def _ParseTranslation(
         print('[ERROR]\tTranslation details are empty for field: '
               '{std_field_name}.'.format(std_field_name=std_field_name)
               )
-        raise ValueError
+        raise ValueError('Translation details are empty for field: '
+              '{std_field_name}.'.format(std_field_name=std_field_name)
+          )
       elif ft == ft_lib.PresenceMode.MISSING.value:
         translation[std_field_name] = ft_lib.UndefinedField(std_field_name)
         continue
@@ -895,7 +904,9 @@ def _ParseTranslation(
       print('[ERROR]\tThis is not an allowed scalar: {ft}.'
             .format(ft=ft)
             )
-      raise ValueError
+      raise ValueError('This is not an allowed scalar: {ft}.'
+            .format(ft=ft)
+            )
 
     raw_field_name = str(ft[parse.PRESENT_VALUE_KEY])
     ft_object = None
@@ -910,7 +921,8 @@ def _ParseTranslation(
       if ft_object:
         print('[ERROR]\tStates and units are not allowed in the same '
               'field translation.')
-        raise ValueError
+        raise ValueError('[ERROR]\tStates and units are not allowed in the '
+              'same field translation.')
       ft_object = ft_lib.MultiStateValue(std_field_name, raw_field_name,
                                          ft[parse.STATES_KEY])
 
@@ -1055,7 +1067,8 @@ class EntityInstance(findings_lib.Findings):
           parse.ENTITY_OPERATION_KEY]) != parse.EntityOperation.UPDATE:
         print('[ERROR]\tOnly specify UPDATE operation when '
               '"update_mask" is present.')
-        raise ValueError
+        raise ValueError('Only specify UPDATE operation when '
+              '"update_mask" is present.')
       update_mask = entity_yaml[parse.UPDATE_MASK_KEY]
       operation = parse.EntityOperation.UPDATE
     # case 2: update_mask implies update operation
@@ -1077,7 +1090,7 @@ class EntityInstance(findings_lib.Findings):
     if (parse.ENTITY_CODE_KEY in entity_yaml and
         parse.ENTITY_GUID_KEY in entity_yaml):
       print('[ERROR]\tEntity block cannot contain both "code" and "guid".')
-      raise ValueError
+      raise ValueError('Entity block cannot contain both "code" and "guid".')
     elif parse.ENTITY_CODE_KEY in entity_yaml:
       code = entity_yaml[parse.ENTITY_CODE_KEY]
       guid = entity_key
@@ -1085,16 +1098,17 @@ class EntityInstance(findings_lib.Findings):
       # here we use the presence of ENTITY_GUID_KEY in the entity attributes as
       # as proxy that the block is keyed by code
       print('[ERROR]\tEntity block must be keyed by a guid.')
-      raise ValueError
+      raise ValueError('Entity block must be keyed by a guid.')
     else:
-      print('[ERROR]\tEntity block must contain either "code" or "guid".')
+      print('Entity block must contain either "code" or "guid".')
       raise ValueError('No code or guid keys in block.')
 
     if operation in [parse.EntityOperation.ADD, parse.EntityOperation.UPDATE]:
       if not guid:
         print('[ERROR]\tEntity block must contain "guid" for '
               'ADD/UPDATE operations.')
-        raise ValueError
+        raise ValueError('Entity block must contain "guid" for '
+              'ADD/UPDATE operations.')
 
     namespace, type_name = None, None
     if parse.ENTITY_TYPE_KEY in entity_yaml:

@@ -77,7 +77,8 @@ def BuildUniverse(
       universe.GetEntityTypeNamespaces())
 
   if not namespace_validation.IsValid():
-    print('[ERROR]\tOntology is not valid.')
+    print('[ERROR]\tOntology is not valid. Ensure your current branch of the '
+          'ontology is correct and error-free.')
     return None
 
   return universe
