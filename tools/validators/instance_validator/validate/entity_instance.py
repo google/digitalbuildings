@@ -28,7 +28,6 @@ from validate import link
 from yamlformat.validator import entity_type_lib
 from yamlformat.validator import findings_lib
 from yamlformat.validator import presubmit_validate_types_lib as pvt
-import datetime
 
 # pylint: disable=consider-using-f-string
 
@@ -367,7 +366,6 @@ class InstanceValidator(object):
           print('[ERROR]\tEntity {guid} ({code}) translates field '
                 '"{field}" which does not exist in the ontology.'
                 .format(
-                  time=datetime.datetime.now(),
                   guid=entity.guid,
                   code=entity.code,
                   field=as_written_field_name)

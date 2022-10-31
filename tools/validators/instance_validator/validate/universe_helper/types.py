@@ -163,3 +163,14 @@ HVAC_DMP_TYPES_DOCUMENT = {
         'implements': ['DMP', 'EDM']
     },
 }
+
+
+HVAC_FAN_TYPES_DOCUMENT = {
+    'FAN_SS': {
+        'id': '4726112880724803584',
+        'description': 'Basic fan with start/stop and status.',
+        'is_canonical': True,
+        'uses': ['run_command','run_status'],
+        'opt_uses': ['power_sensor']
+    },
+}

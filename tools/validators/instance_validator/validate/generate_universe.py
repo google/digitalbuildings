@@ -23,7 +23,6 @@ from validate import universe_helper
 from yamlformat.validator import external_file_lib
 from yamlformat.validator import namespace_validator
 from yamlformat.validator import presubmit_validate_types_lib
-import datetime
 
 # pylint: disable=consider-using-f-string
 

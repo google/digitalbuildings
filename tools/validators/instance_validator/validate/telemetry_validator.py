@@ -24,7 +24,6 @@ from validate import field_translation as ft_lib
 from validate import telemetry
 from validate import message_filters
 from validate import telemetry_validation_reporting as tvr
-import datetime
 
 DEVICE_ID = telemetry.DEVICE_ID
 

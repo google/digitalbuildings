@@ -18,7 +18,6 @@ import json
 from typing import Dict, Tuple
 
 from validate import point
-import datetime
 
 DEVICE_ID = 'deviceId'
 DEVICE_REGISTRY_ID = 'deviceRegistryId'

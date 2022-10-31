@@ -16,7 +16,6 @@
 from __future__ import print_function
 
 import _thread
-import datetime
 import sys
 from typing import Dict, List, Tuple
 
@@ -74,7 +73,7 @@ def Deserialize(
       entity = entity_instance.EntityInstance.FromYaml(
           entity_key, entity_yaml, default_entity_operation)
       entities[entity.guid] = entity
-    except ValueError | KeyError as ex:
+    except ValueError as ex:
       print('[ERROR]\tInvalid Entity syntax found for this entity: '
             '{entity_key} and this content: "{entity_yaml}" and with error'
             ': "{ex}"'
@@ -83,6 +82,16 @@ def Deserialize(
                     ex=str(ex))
             )
       raise ex
+    except KeyError as ex:
+      print('[ERROR]\tInvalid Entity syntax found for this entity: '
+            '{entity_key} and this content: "{entity_yaml}" and with error'
+            ': "{ex}"'
+            .format(entity_key=entity_key,
+                    entity_yaml=entity_yaml,
+                    ex=str(ex))
+            )
+      raise ex
+
   return entities, parser.GetConfigMode()
 
 
