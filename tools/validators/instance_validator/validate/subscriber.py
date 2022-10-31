@@ -85,8 +85,8 @@ class Subscriber(object):
       except (futures.CancelledError, KeyboardInterrupt):
         future.cancel()
       except Exception as ex:  # pylint: disable=broad-except
-        print('[ERROR]\t{time}\tPub/sub subscription failed with error: {ex}'
-              .format(time=datetime.datetime.now(),ex=ex)
+        print('[ERROR]\tPub/sub subscription failed with error: {ex}'
+              .format(ex=ex)
               )
         future.cancel()
       break

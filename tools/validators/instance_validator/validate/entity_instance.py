@@ -169,10 +169,9 @@ class GraphValidator(object):
     for conn_inst in entity.connections:
       if conn_inst.source not in self.entity_instances:
         if self.config_mode in (_CONFIG_INIT, _CONFIG_UPDATE):
-          print('[ERROR]\t{time}\tEntity {guid} ({code}) is connected to an '
+          print('[ERROR]\tEntity {guid} ({code}) is connected to an '
                 'entity that doesn\'t exist: {orphan}. Check that this '
-                'entity is defined.'.format(time=datetime.datetime.now(),
-                                            guid=entity.guid,
+                'entity is defined.'.format(guid=entity.guid,
                                             code=entity.code,
                                             orphan=conn_inst.source)
                 )
@@ -180,9 +179,8 @@ class GraphValidator(object):
         continue
       if self.entity_instances[
           conn_inst.source].operation == parse.EntityOperation.DELETE:
-        print('[ERROR]\t{time}\tEntity {guid} ({code}) is connected to a '
-              'deleted entity: {delent}.'.format(time=datetime.datetime.now(),
-                                                 guid=entity.guid,
+        print('[ERROR]\tEntity {guid} ({code}) is connected to a '
+              'deleted entity: {delent}.'.format(guid=entity.guid,
                                                  code=entity.guid,
                                                  delent=conn_inst.source)
               )
@@ -199,10 +197,9 @@ class GraphValidator(object):
     for link_inst in entity.links:
       if link_inst.source not in self.entity_instances.keys():
         if self.config_mode == _CONFIG_INIT or _CONFIG_UPDATE:
-          print('[ERROR]\t{time}\tEntity {guid} ({code}) links to an invalid '
+          print('[ERROR]\tEntity {guid} ({code}) links to an invalid '
                 'source: {source}. Check that this source exists.'
                 .format(
-                  time=datetime.datetime.now(),
                   guid=entity.guid,
                   code=entity.code,
                   source=link_inst.source)
@@ -211,9 +208,8 @@ class GraphValidator(object):
         continue
       if self.entity_instances[
           link_inst.source].operation == parse.EntityOperation.DELETE:
-        print('[ERROR]\t{time}\tEntity {guid} ({code}) links to a deleted '
-              'entity: {delent}.'.format(time=datetime.datetime.now(),
-                                         guid=entity.guid,
+        print('[ERROR]\tEntity {guid} ({code}) links to a deleted '
+              'entity: {delent}.'.format(guid=entity.guid,
                                          code=entity.code,
                                          delent=link_inst.source)
               )
@@ -226,10 +222,10 @@ class GraphValidator(object):
 
       for _, source_field in link_inst.field_map.items():
         if not _FieldIsAllowed(self.universe, source_field, src_entity_type):
-          print('[ERROR]\t{time}\tEntity {guid} ({code}) defines a link field '
+          print('[ERROR]\tEntity {guid} ({code}) defines a link field '
                 'that is not valid in the ontology: {field}. Confirm this '
-                'field is defined in the ontology.'.format(
-                  time=datetime.datetime.now(),
+                'field is defined in the ontology.'
+                .format(
                   guid=entity.guid,
                   code=entity.code,
                   field=source_field)
@@ -294,10 +290,9 @@ class InstanceValidator(object):
       return True
 
     if self.universe.GetEntityTypeNamespace(entity.namespace) is None:
-      print('[ERROR]\t{time}\tEntity {guid} ({code}) is defined with an '
+      print('[ERROR]\tEntity {guid} ({code}) is defined with an '
             'invalid namespace: {namespace}. Confirm the namespace is '
-            'defined in the ontology.'.format(time=datetime.datetime.now(),
-                                              guid=entity.guid,
+            'defined in the ontology.'.format(guid=entity.guid,
                                               code=entity.code,
                                               namespace=entity.namespace))
       return False
@@ -305,23 +300,21 @@ class InstanceValidator(object):
     entity_type = self.universe.GetEntityType(entity.namespace,
                                               entity.type_name)
     if entity_type is None:
-      print('[ERROR]\t{time}\tEntity {guid} ({code}) is defined with an '
+      print('[ERROR]\tEntity {guid} ({code}) is defined with an '
             'invalid entity type: {et} in namespace {namespace}. Confirm '
             'the type is defined in the ontology, and in the correct '
-            'namespace.'.format(time=datetime.datetime.now(),
-                                guid=entity.guid,
+            'namespace.'.format(guid=entity.guid,
                                 code=entity.code,
                                 et=entity.type_name,
                                 namespace=entity.namespace)
             )
       return False
     elif entity_type.is_abstract:
-      print('[ERROR]\t{time}\tEntity {guid} ({code}) is defined with an '
+      print('[ERROR]\tEntity {guid} ({code}) is defined with an '
             'abstract entity type: {et}. Abstract types cannot be applied to '
             'individual entity instances. Define a non-abstract type that '
             'uses this abstract type and apply that to this instance.'
             .format(
-              time=datetime.datetime.now(),
               guid=entity.guid,
               code=entity.code,
               et=entity.type_name)
@@ -362,17 +355,16 @@ class InstanceValidator(object):
                                               entity_type)
       if not qualified_field_name:
         if entity_type and not entity_type.allow_undefined_fields:
-          print('[ERROR]\t{time}\tEntity {guid} ({code}) translates field '
+          print('[ERROR]\tEntity {guid} ({code}) translates field '
                 '"{field}" which is not defined on the type "{et}"'
                 .format(
-                  time=datetime.datetime.now(),
                   guid=entity.guid,
                   code=entity.code,
                   field=as_written_field_name,
                   et=entity.type_name)
                 )
         else:
-          print('[ERROR]\t{time}\tEntity {guid} ({code}) translates field '
+          print('[ERROR]\tEntity {guid} ({code}) translates field '
                 '"{field}" which does not exist in the ontology.'
                 .format(
                   time=datetime.datetime.now(),
@@ -390,40 +382,64 @@ class InstanceValidator(object):
       unmatched = set(type_fields.keys()).difference(set(found_fields.keys()))
       for unmatched_name in unmatched:
         if not type_fields[unmatched_name].optional:
-          print('[ERROR]\t{time}\tEntity {guid} ({code}) missing field '
+          print('[ERROR]\tEntity {guid} ({code}) missing field '
                 '"{field}" which is required for assigned type "{et}"'
                 .format(
-                  time=datetime.datetime.now(),
                   guid=entity.guid,
                   code=entity.code,
-                  field=unmatched_name,et=entity.type_name))
+                  field=unmatched_name,et=entity.type_name)
+                )
           is_valid = False
+
+    # Check that MISSING translation fields are handled properly.
 
     # Check that translations are properly defined
     found_units = {}
+    type_fields = entity_type.GetAllFields()
     for qualified_field_name, ft in found_fields.items():
       if not self._FieldTranslationIsValid(qualified_field_name, ft, entity):
         is_valid = False
+
+      # Check if the field is defined MISSING
       if isinstance(ft, ft_lib.UndefinedField):
-        print('[WARNING]\t{time}\tEntity {guid} ({code}) provides MISSING '
-              'translation for field {field}. This feature should only be '
-              'used when the device cannot physically send the data and '
-              'it truly is an instance of the assigned type. You must '
-              'provide justification for all MISSING translations and that '
-              'the applied type is correct, otherwise your building config '
-              'will be rejected.'.format(time=datetime.datetime.now(),
-                                         guid=entity.guid,
-                                         code=entity.code,
-                                         field=qualified_field_name)
-              )
+
+        # If its MISSING and REQUIRED, warn the user.
+        if not type_fields[qualified_field_name].optional:
+          print('[WARNING]\tEntity {guid} ({code}) provides MISSING '
+                'translation for field {field} which is required for type '
+                '{etype}. This feature should only be '
+                'used when the device cannot physically send required data and '
+                'it truly is an instance of the assigned type. You must '
+                'provide justification for all MISSING translations and that '
+                'the applied type is correct, otherwise your building config '
+                'will be rejected.'.format(guid=entity.guid,
+                                           code=entity.code,
+                                           field=qualified_field_name,
+                                           etype=entity.type_name)
+                )
+
+        # If its MISSING and OPTIONAL, raise rror. They shouldn't do this.
+        # Optional fields are automatically interpreted as missing if not
+        # provided explicitly.
+        if type_fields[qualified_field_name].optional:
+          print('[ERROR]\tEntity {guid} ({code}) provides MISSING '
+                'translation for field {field}, which is optional on '
+                'type {etype}. The use of MISSING fields is strictly '
+                'reserved for required fields. Adjust the '
+                'translation and remove MISSING optional fields.'
+                .format(guid=entity.guid,
+                        code=entity.code,
+                        field=qualified_field_name,
+                        etype=entity.type_name)
+                )
+          is_valid = False
       if isinstance(ft, ft_lib.DimensionalValue):
         if is_udmi and not _UDMI_PRESENT_VALUE_PATTERN.fullmatch(
           ft.raw_field_name):
-          print('[ERROR]\t{time}\tEntity {guid} ({code}) translates field '
+          print('[ERROR]\tEntity {guid} ({code}) translates field '
                 '"{field}" with a present value pattern that does not conform '
                 'to UDMI pattern "{pat}".'
-                .format(time=datetime.datetime.now(),
-                        guid=entity.guid,
+                .format(guid=entity.guid,
                         code=entity.code,
                         field=ft.raw_field_name,
                         pat=_UDMI_PRESENT_VALUE_REGEX)
@@ -434,13 +450,12 @@ class InstanceValidator(object):
             found_units[std_unit] = raw_unit
             continue
           if found_units[std_unit] != raw_unit:
-            print('[ERROR]\t{time}\tEntity {guid} ({code}) defines multiple '
+            print('[ERROR]\tEntity {guid} ({code}) defines multiple '
                   'raw units ({raw_unit},{std_unit}) to the same measurement '
                   'type. Raw units are expected to be the same across the '
                   'device: e.g. "degrees_fahrenheit" should not map to '
                   '"deg_f" and "fahrenheit" on the same device translation.'
-                  .format(time=datetime.datetime.now(),
-                          guid=entity.guid,
+                  .format(guid=entity.guid,
                           code=entity.code,
                           raw_unit=raw_unit,
                           std_unit=std_unit)
@@ -466,10 +481,9 @@ class InstanceValidator(object):
     valid_units = self.universe.GetUnitsForMeasurement(qualified_field_name)
     if valid_units and set(valid_units).difference({'no_units'}):
       if not isinstance(ft, ft_lib.DimensionalValue):
-        print('[ERROR]\t{time}\tEntity {guid} ({code}) defines field {field} '
+        print('[ERROR]\tEntity {guid} ({code}) defines field {field} '
               'but does not define valid units. Add units.'
-              .format(time=datetime.datetime.now(),
-                      guid=entity.guid,
+              .format(guid=entity.guid,
                       code=entity.code,
                       field=qualified_field_name)
               )
@@ -479,10 +493,9 @@ class InstanceValidator(object):
 
       # Is this a duplicate of the error above?
       if not ft.unit_mappings:
-        print('[ERROR]\t{time}\tEntity {guid} ({code}) defines field {field} '
+        print('[ERROR]\tEntity {guid} ({code}) defines field {field} '
               'without providing at least one unit. Add at least one unit.'
-              .format(time=datetime.datetime.now(),
-                      guid=entity.guid,
+              .format(guid=entity.guid,
                       code=entity.code,
                       field=qualified_field_name)
               )
@@ -493,10 +506,9 @@ class InstanceValidator(object):
       is_valid = True
       for unit in ft.unit_mappings.keys():
         if unit not in valid_units:
-          print('[ERROR]\t{time}\tEntity {guid} ({code}) defines field '
+          print('[ERROR]\tEntity {guid} ({code}) defines field '
                 '{field} with undefined units: {unit}.'
-                .format(time=datetime.datetime.now(),
-                        guid=entity.guid,
+                .format(guid=entity.guid,
                         code=entity.code,
                         field=qualified_field_name,
                         unit=unit)
@@ -506,48 +518,31 @@ class InstanceValidator(object):
 
     if isinstance(
         ft, ft_lib.DimensionalValue) and set(ft.unit_mappings) != {'no_units'}:
-      print('[ERROR]\t{time}\tEntity {guid} ({code}) defines {field} with '
-            'units, but this is not a dimensional field. Remove units or '
-            'adjust field.'.format(time=datetime.datetime.now(),
-                                   guid=entity.guid,
-                                   code=entity.code,
-                                   field=qualified_field_name)
+      print('[ERROR]\tEntity {guid} ({code}) defines {field} with '
+            'units, but this is not a dimensional field. Remove units and '
+            'add states.'.format(guid=entity.guid,
+                                 code=entity.code,
+                                 field=qualified_field_name)
             )
       return False
 
     valid_states = self.universe.GetStatesByField(qualified_field_name)
     if valid_states:
-      if not isinstance(ft, ft_lib.MultiStateValue):
-        print('[ERROR]\t{time}\tEntity {guid} ({code}) defines field {field} '
-              'without states, which are expected for this field. Define '
-              'states.'.format(time=datetime.datetime.now(),
-                               guid=entity.guid,
-                               code=entity.code,
-                               field=qualified_field_name)
-              )
-        # print('States not provided for multi-state value '
-        #       f'{qualified_field_name}')
-        return False
-      # is this the same error as above?
       if not ft.states:
-        print('[ERROR]\t{time}\tEntity {guid} ({code}) defines field {field} '
+        print('[ERROR]\tEntity {guid} ({code}) defines field {field} '
               'without states, which are expected for this field. Define '
-              'states.'.format(time=datetime.datetime.now(),
-                               guid=entity.guid,
+              'states.'.format(guid=entity.guid,
                                code=entity.code,
                                field=qualified_field_name)
               )
-        # print('At least one state must be provided for multi-state value '
-        #       f'{qualified_field_name}')
         return False
 
       is_valid = True
       for state, value in ft.states.items():
         if state not in valid_states:
-          print('[ERROR]\t{time}\tEntity {guid} ({code}) defines field {field} '
+          print('[ERROR]\tEntity {guid} ({code}) defines field {field} '
             'with an invalid state: {state}. Allowed states are '
-            '({valid_states}).'.format(time=datetime.datetime.now(),
-                                       guid=entity.guid,
+            '({valid_states}).'.format(guid=entity.guid,
                                        code=entity.code,
                                        field=qualified_field_name,
                                        state=state,
@@ -557,11 +552,10 @@ class InstanceValidator(object):
         raw_values = value if isinstance(value, list) else [value]
         for raw_value in raw_values:
           if ft.raw_values[raw_value] != state:
-            print('[ERROR]\t{time}\tEntity {guid} ({code}) defines field '
+            print('[ERROR]\tEntity {guid} ({code}) defines field '
                   '{field} has raw value {raw_value} mapped to more than '
                   'one state: {state} and {other}'
-                  .format(time=datetime.datetime.now(),
-                          guid=entity.guid,
+                  .format(guid=entity.guid,
                           code=entity.code,
                           field=qualified_field_name,
                           raw_value=raw_value,
@@ -574,10 +568,9 @@ class InstanceValidator(object):
 
     # is below check correct? shouldnt it be IF NOT INSTANCE?
     if isinstance(ft, ft_lib.MultiStateValue):
-      print('[ERROR]\t{time}\tEntity {guid} ({code}) defines field {field} '
+      print('[ERROR]\tEntity {guid} ({code}) defines field {field} '
             'with states, but this field is not multi-state.'
-            .format(time=datetime.datetime.now(),
-                    guid=entity.guid,
+            .format(guid=entity.guid,
                     code=entity.code,
                     field=qualified_field_name)
             )
@@ -605,10 +598,9 @@ class InstanceValidator(object):
     for conn_inst in entity.connections:
       conn_universe = self.universe.connection_universe
       if conn_universe and not conn_universe.IsDefined(conn_inst.ctype):
-        print('[ERROR]\t{time}\tEntity {guid} ({code}) defines connection '
+        print('[ERROR]\tEntity {guid} ({code}) defines connection '
               '{cnxn}, which does not exist in the ontology.'
-              .format(time=datetime.datetime.now(),
-                      guid=entity.guid,
+              .format(guid=entity.guid,
                       code=entity.code,
                       cnxn=conn_inst.ctype)
               )
@@ -635,10 +627,9 @@ class InstanceValidator(object):
     entity_type = self.universe.GetEntityType(entity.namespace,
                                               entity.type_name)
     if entity_type and entity_type.allow_undefined_fields and entity.links:
-      print('[ERROR]\t{time}\tEntity {guid} ({code}) is not allowed to be the '
+      print('[ERROR]\tEntity {guid} ({code}) is not allowed to be the '
             'target of links because it is defined as a passthrough entity.'
-            .format(time=datetime.datetime.now(),
-                    guid=entity.guid,
+            .format(guid=entity.guid,
                     code=entity.code)
             )
       return False
@@ -650,10 +641,9 @@ class InstanceValidator(object):
         qualified_tgt_field = _GetAllowedField(self.universe, target_field,
                                                entity_type)
         if not qualified_tgt_field:
-          print('[ERROR]\t{time}\tEntity {guid} ({code}) links to target '
+          print('[ERROR]\tEntity {guid} ({code}) links to target '
                 'field {target_field} that is invalid for link: {link_inst}'
-                .format(time=datetime.datetime.now(),
-                        guid=entity.guid,
+                .format(guid=entity.guid,
                         code=entity.code,
                         target_field=target_field,
                         link_inst=link_inst)
@@ -663,10 +653,9 @@ class InstanceValidator(object):
         qualified_src_field = _GetAllowedField(self.universe, source_field,
                                                None)
         if not qualified_src_field:
-          print('[ERROR]\t{time}\tEntity {guid} ({code}) links to source field '
+          print('[ERROR]\tEntity {guid} ({code}) links to source field '
             '{source_field} that is invalid for link: {link_inst}'
-            .format(time=datetime.datetime.now(),
-                    guid=entity.guid,
+            .format(guid=entity.guid,
                     code=entity.code,
                     source_field=source_field,
                     link_inst=link_inst)
@@ -705,11 +694,10 @@ class InstanceValidator(object):
     source_units = self.universe.GetUnitsForMeasurement(source_field)
     target_units = self.universe.GetUnitsForMeasurement(target_field)
     if source_units != target_units:
-      print('[ERROR]\t{time}\tEntity {guid} ({code}) links target field '
+      print('[ERROR]\tEntity {guid} ({code}) links target field '
             '{target_field} to source field {source_field} but the units '
             'do not match between the fields.'
-            .format(time=datetime.datetime.now(),
-                    guid=entity.guid,
+            .format(guid=entity.guid,
                     code=entity.code,
                     target_field=target_field,
                     source_field=source_field)
@@ -726,11 +714,10 @@ class InstanceValidator(object):
     source_states = self.universe.GetStatesByField(source_field)
     target_states = self.universe.GetStatesByField(target_field)
     if source_states != target_states:
-      print('[ERROR]\t{time}\tEntity {guid} ({code}) links target field '
+      print('[ERROR]\tEntity {guid} ({code}) links target field '
             '{target_field} to source field {source_field} but the states do '
             'not match between the fields.'
-            .format(time=datetime.datetime.now(),
-                    guid=entity.guid,
+            .format(guid=entity.guid,
                     code=entity.code,
                     target_field=target_field,
                     source_field=source_field)
@@ -750,11 +737,10 @@ class InstanceValidator(object):
     """
 
     if IsEntityIdPresent(entity):
-      print('[WARNING]\t{time}\tEntity {guid} ({code}) defines "id" but this '
+      print('[WARNING]\tEntity {guid} ({code}) defines "id" but this '
             'will be deprecated in future releases. Please review '
             'digitalbuildings/ontology/docs/building_config.md for more '
-            'information.'.format(time=datetime.datetime.now(),
-                                  guid=entity.guid,
+            'information.'.format(guid=entity.guid,
                                   code=entity.code)
             )
 
@@ -762,18 +748,16 @@ class InstanceValidator(object):
 
     if entity.update_mask is not None:
       if entity.operation != parse.EntityOperation.UPDATE:
-        print('[ERROR]\t{time}\tEntity {guid} ({code}) requires update mask '
-              'for update operations.'.format(time=datetime.datetime.now(),
-                                              guid=entity.guid,
+        print('[ERROR]\tEntity {guid} ({code}) requires update mask '
+              'for update operations.'.format(guid=entity.guid,
                                               code=entity.code)
               )
         is_valid = False
       if entity.type_name is None:
         if parse.ENTITY_TYPE_KEY in entity.update_mask:
-          print('[ERROR]\t{time}\tEntity {guid} ({code}) must define a clear '
+          print('[ERROR]\tEntity {guid} ({code}) must define a clear '
                 'Entity Type if performing an update.'
-                .format(time=datetime.datetime.now(),
-                        guid=entity.guid,
+                .format(guid=entity.guid,
                         code=entity.code)
                 )
           # What is this error? Why would we ever
@@ -782,23 +766,22 @@ class InstanceValidator(object):
           is_valid = False
 
     if not entity.guid:
-      print('[ERROR]\t{time}\tEntity ({code}) is missing a GUID. This must be '
-            'provided.'.format(time=datetime.datetime.now(),code=entity.code)
+      print('[ERROR]\tEntity ({code}) is missing a GUID. This must be '
+            'provided.'.format(code=entity.code)
             )
       is_valid = False
 
     if not entity.code and entity.operation != parse.EntityOperation.DELETE:
-      print('[ERROR]\t{time}\tEntity {guid} is missing a code. This must be '
-            'provided.'.format(time=datetime.datetime.now(),guid=entity.guid)
+      print('[ERROR]\tEntity {guid} is missing a code. This must be '
+            'provided.'.format(guid=entity.guid)
             )
       is_valid = False
 
     if (self.config_mode == _CONFIG_INIT and
         entity.operation != parse.EntityOperation.ADD):
-      print('[ERROR]\t{time}\tEntity {guid} ({code}) defines operation '
+      print('[ERROR]\tEntity {guid} ({code}) defines operation '
             '{operation} that is not valid. Only ADD operation is allowed in '
-            'INITIALIZE mode.'.format(time=datetime.datetime.now(),
-                                      guid=entity.guid,
+            'INITIALIZE mode.'.format(guid=entity.guid,
                                       code=entity.code,
                                       operation=entity.operation)
             )
@@ -808,28 +791,25 @@ class InstanceValidator(object):
       return is_valid
 
     if self.config_mode in (_CONFIG_EXPORT, _CONFIG_UPDATE) and not entity.etag:
-      print('[ERROR]\t{time}\tEntity {guid} ({code}) is missing an etag, which '
+      print('[ERROR]\tEntity {guid} ({code}) is missing an etag, which '
             'is required for EXPORT or UPDATE operations.'
-            .format(time=datetime.datetime.now(),
-                    guid=entity.guid,
+            .format(guid=entity.guid,
                     code=entity.code)
             )
       is_valid = False
 
     if entity.namespace is None:
       if entity.operation == parse.EntityOperation.ADD:
-        print('[ERROR]\t{time}\tEntity {guid} ({code}) is missing a namespace '
-          'for its type.'.format(time=datetime.datetime.now(),
-                                 guid=entity.guid,
+        print('[ERROR]\tEntity {guid} ({code}) is missing a namespace '
+          'for its type.'.format(guid=entity.guid,
                                  code=entity.code)
           )
         is_valid = False
 
     if entity.type_name is None:
       if entity.operation == parse.EntityOperation.ADD:
-        print('[ERROR]\t{time}\tEntity {guid} ({code}) is missing a type '
-              'definition.'.format(time=datetime.datetime.now(),
-                                   guid=entity.guid,
+        print('[ERROR]\tEntity {guid} ({code}) is missing a type '
+              'definition.'.format(guid=entity.guid,
                                    code=entity.code)
               )
         is_valid = False
@@ -866,17 +846,15 @@ def _ParseTypeString(type_str: syaml.YAML) -> Tuple[str, str]:
   type_parse = type_str.split('/')
 
   if len(type_parse) == 1:
-    print('[ERROR]\t{time}\tNamespace is missing for type: {type_str}. Proper '
-          'format is NAMESPACE/TYPE_NAME.'.format(time=datetime.datetime.now(),
-                                                  type_str=type_str)
+    print('[ERROR]\tNamespace is missing for type: {type_str}. Proper '
+          'format is NAMESPACE/TYPE_NAME.'.format(type_str=type_str)
           )
     raise TypeError
 
   if len(type_parse) > 2:
-    print('[ERROR]\t{time}\tType is improperly formatted: {type_str}. Proper '
+    print('[ERROR]\tType is improperly formatted: {type_str}. Proper '
           'formatting is: NAMESPACE/TYPE_NAME'
-          .format(time=datetime.datetime.now(),
-                  type_str=type_str)
+          .format(type_str=type_str)
           )
     raise TypeError
 
@@ -898,8 +876,8 @@ def _ParseTranslation(
   """
 
   if isinstance(translation_body, str):
-    print('[ERROR]\t{time}\tTranslation body "{tb}" is not valid.'
-          .format(time=datetime.datetime.now(),tb=translation_body)
+    print('[ERROR]\tTranslation body "{tb}" is not valid.'
+          .format(tb=translation_body)
           )
     raise ValueError
 
@@ -908,17 +886,16 @@ def _ParseTranslation(
     ft = translation_body[std_field_name]
     if isinstance(ft, str):
       if not ft:
-        print('[ERROR]\t{time}\tTranslation details are empty for field: '
-              '{std_field_name}.'.format(time=datetime.datetime.now(),
-                                         std_field_name=std_field_name)
+        print('[ERROR]\tTranslation details are empty for field: '
+              '{std_field_name}.'.format(std_field_name=std_field_name)
               )
         raise ValueError
       elif ft == ft_lib.PresenceMode.MISSING.value:
         translation[std_field_name] = ft_lib.UndefinedField(std_field_name)
         continue
       # TODO(b/187757180): support UDMI-compliant shorthand
-      print('[ERROR]\t{time}\tThis is not an allowed scalar: {ft}.'
-            .format(time=datetime.datetime.now(),ft=ft)
+      print('[ERROR]\tThis is not an allowed scalar: {ft}.'
+            .format(ft=ft)
             )
       raise ValueError
 
@@ -933,9 +910,8 @@ def _ParseTranslation(
 
     if parse.STATES_KEY in ft:
       if ft_object:
-        print('[ERROR]\t{time}\tStates and units are not allowed in the same '
-              'field translation.'.format(time=datetime.datetime.now())
-              )
+        print('[ERROR]\tStates and units are not allowed in the same '
+              'field translation.')
         raise ValueError
       ft_object = ft_lib.MultiStateValue(std_field_name, raw_field_name,
                                          ft[parse.STATES_KEY])
@@ -1079,9 +1055,8 @@ class EntityInstance(findings_lib.Findings):
       # validate that operation is UPDATE if update_mask is present
       if parse.EntityOperation.FromString(entity_yaml[
           parse.ENTITY_OPERATION_KEY]) != parse.EntityOperation.UPDATE:
-        print('[ERROR]\t{time}\tOnly specify UPDATE operation when '
-              '"update_mask" is present.'.format(time=datetime.datetime.now())
-              )
+        print('[ERROR]\tOnly specify UPDATE operation when '
+              '"update_mask" is present.')
         raise ValueError
       update_mask = entity_yaml[parse.UPDATE_MASK_KEY]
       operation = parse.EntityOperation.UPDATE
@@ -1103,8 +1078,7 @@ class EntityInstance(findings_lib.Findings):
     guid = None
     if (parse.ENTITY_CODE_KEY in entity_yaml and
         parse.ENTITY_GUID_KEY in entity_yaml):
-      print('[ERROR]\t{time}\tEntity block cannot contain both "code" and '
-            '"guid".'.format(time=datetime.datetime.now()))
+      print('[ERROR]\tEntity block cannot contain both "code" and "guid".')
       raise ValueError
     elif parse.ENTITY_CODE_KEY in entity_yaml:
       code = entity_yaml[parse.ENTITY_CODE_KEY]
@@ -1112,21 +1086,16 @@ class EntityInstance(findings_lib.Findings):
     elif parse.ENTITY_GUID_KEY in entity_yaml:
       # here we use the presence of ENTITY_GUID_KEY in the entity attributes as
       # as proxy that the block is keyed by code
-      print('[ERROR]\t{time}\tEntity block must be keyed by a guid.'
-            .format(time=datetime.datetime.now())
-            )
+      print('[ERROR]\tEntity block must be keyed by a guid.')
       raise ValueError
     else:
-      print('[ERROR]\t{time}\tEntity block must contain either "code" or '
-            '"guid".'.format(time=datetime.datetime.now())
-            )
+      print('[ERROR]\tEntity block must contain either "code" or "guid".')
       raise ValueError('No code or guid keys in block.')
 
     if operation in [parse.EntityOperation.ADD, parse.EntityOperation.UPDATE]:
       if not guid:
-        print('[ERROR]\t{time}\tEntity block must contain "guid" for '
-              'ADD/UPDATE operations.'.format(time=datetime.datetime.now())
-              )
+        print('[ERROR]\tEntity block must contain "guid" for '
+              'ADD/UPDATE operations.')
         raise ValueError
 
     namespace, type_name = None, None
@@ -1139,9 +1108,7 @@ class EntityInstance(findings_lib.Findings):
     if update_mask:
       if parse.ENTITY_CLOUD_DEVICE_ID_KEY in entity_yaml[
           parse.UPDATE_MASK_KEY] and parse.TRANSLATION_KEY not in entity_yaml:
-        print('[ERROR]\t{time}\tUpdate of cloud device id requires '
-              'translations.'.format(time=datetime.datetime.now())
-              )
+        print('[ERROR]\tUpdate of cloud device id requires translations.')
         raise ValueError('Update of cloud device id requires translation.')
 
     translation = None

@@ -47,8 +47,6 @@ class FieldTranslation(object):
   def __init__(self, std_field_name: str, mode: PresenceMode):
     super().__init__()
     if not std_field_name:
-      print('[ERROR]\t{time}\tStandard field name cannot be empty.'
-        .format(time=datetime.datetime.now()))
       raise ValueError('std_field_name cannot be empty')
     self.std_field_name = std_field_name
     self.mode = mode
@@ -82,9 +80,6 @@ class DefinedField(FieldTranslation):
   def __init__(self, std_field_name: str, raw_field_name: str):
     super().__init__(std_field_name, PresenceMode.PRESENT)
     if not raw_field_name:
-      print('[ERROR]\t{time}\tRaw field name cannot be empty.'
-            .format(time=datetime.datetime.now())
-            )
       raise ValueError('raw_field_name cannot be empty')
     self.raw_field_name = raw_field_name
 
@@ -109,9 +104,6 @@ class MultiStateValue(DefinedField):
                states: Dict[str, Union[str, List[str]]]):
     super().__init__(std_field_name, raw_field_name)
     if not states:
-      print('[ERROR]\t{time}\tStates cannot be empty.'
-            .format(time=datetime.datetime.now())
-            )
       raise ValueError('states cannot be empty')
     self.states = states
     self.raw_values = {}
@@ -142,14 +134,8 @@ class DimensionalValue(DefinedField):
                unit_field_name: str, unit_mappings: Dict[str, str]):
     super().__init__(std_field_name, raw_field_name)
     if not unit_field_name:
-      print('[ERROR]\t{time}\tCannot have empty unit_field_name.'
-            .format(time=datetime.datetime.now())
-            )
       raise ValueError('unit_field_name cannot be empty')
     if not unit_mappings:
-      print('[ERROR]\t{time}\tCannot have empty unit_mappings.'
-            .format(time=datetime.datetime.now())
-            )
       raise ValueError('unit_mappings cannot be empty')
     # Note: I didn't go so far as to define a units object yet since the
     # structure of units is being worked on. It can be retrofitted later.

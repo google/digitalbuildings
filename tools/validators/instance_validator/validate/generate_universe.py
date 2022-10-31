@@ -47,9 +47,8 @@ def BuildUniverse(
   elif modified_types_filepath:
     modified_ontology_exists = path.exists(modified_types_filepath)
     if not modified_ontology_exists:
-      print('[ERROR]\t{time}\tSpecified filepath [{mod_ont_path}] does not '
-            'exist.'.format(time=datetime.datetime.now(),
-                            mod_ont_path=modified_types_filepath)
+      print('[ERROR]\tSpecified filepath [{mod_ont_path}] does not '
+            'exist.'.format(mod_ont_path=modified_types_filepath)
             )
       return None
 
@@ -64,9 +63,8 @@ def BuildUniverse(
   else:
     default_ontology_exists = path.exists(constants.ONTOLOGY_ROOT)
     if not default_ontology_exists:
-      print('[ERROR]\t{time}\tSpecified filepath [{root}] for default '
-            'ontology does not exist.'.format(time=datetime.datetime.now(),
-                                              root=constants.ONTOLOGY_ROOT)
+      print('[ERROR]\tSpecified filepath [{root}] for default '
+            'ontology does not exist.'.format(root=constants.ONTOLOGY_ROOT)
             )
       return None
     # use default location for ontology files
@@ -80,9 +78,7 @@ def BuildUniverse(
       universe.GetEntityTypeNamespaces())
 
   if not namespace_validation.IsValid():
-    print('[ERROR]\t{time}\tOntology is not valid.'
-          .format(time=datetime.datetime.now())
-          )
+    print('[ERROR]\tOntology is not valid.')
     return None
 
   return universe
