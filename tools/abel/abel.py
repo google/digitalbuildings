@@ -35,7 +35,8 @@ def _spreadsheet_workflow(spreadsheet_id: str,
                           subscription: Optional[str] = None,
                           service_account: Optional[str] = None,
                           timeout: Optional[float] = None,
-                          ontology_path: Optional[str] = ONTOLOGY_ROOT) -> None:
+                          modified_types_filepath: Optional[str] = None
+                          ) -> None:
   """Helper function for executing the spreadsheet -> building config workflow.
 
   Args:
@@ -50,8 +51,8 @@ def _spreadsheet_workflow(spreadsheet_id: str,
       messages.
     timeout: [Optional] The timeout duration in seconds for the telemetry
       validation test. The default value is 600 seconds, or 10 minutes.
-    ontology_path: [Optional] A path to a modified ontology. Default is the
-      DigitalBuildings Ontology.
+    modified_types_filepath: [Optional] A path to a modified ontology.
+      Default is the DigitalBuildings Ontology.
   """
   print(f'Importing spreadsheet from Google sheets: {spreadsheet_id}')
   google_sheets_service = authenticator.GetGoogleSheetsService(
@@ -82,7 +83,8 @@ def _spreadsheet_workflow(spreadsheet_id: str,
     handler.RunValidation(
         filenames=[BC_EXPORT_PATH],
         report_filename=INSTANCE_VALIDATOR_LOG_PATH,
-        modified_types_filepath=ontology_path,
+        modified_types_filepath=modified_types_filepath,
+        default_types_filepath=ONTOLOGY_ROOT,
         subscription=subscription,
         service_account=service_account,
         timeout=timeout
@@ -94,7 +96,8 @@ def _spreadsheet_workflow(spreadsheet_id: str,
 def _bc_workflow(spreadsheet_id: str,
                  bc_filepath: str,
                  gcp_token_path: str,
-                 ontology_path: Optional[str] = ONTOLOGY_ROOT) -> None:
+                 modified_types_filepath: Optional[str] = None
+                 ) -> None:
   """Helper function for Building Config -> spreadsheet workflow.
 
   Args:
@@ -103,14 +106,15 @@ def _bc_workflow(spreadsheet_id: str,
     gcp_token_path: Path to GCP token for authenticating against Google sheets
       API. This is a short-lived credential for a service account as documented
       https://cloud.google.com/iam/docs/create-short-lived-credentials-direct.
-    ontology_path: [Optional] A path to a modified ontology. Default is the
-      DigitalBuildings Ontology.
+    modified_types_filepath: [Optional] A path to a modified ontology.
+      Default is the DigitalBuildings Ontology.
   """
   print('Validating imported Building Config.')
   handler.RunValidation(
       filenames=[bc_filepath],
       report_filename=INSTANCE_VALIDATOR_LOG_PATH,
-      modified_types_filepath=ontology_path
+      modified_types_filepath=modified_types_filepath,
+      default_types_filepath=ONTOLOGY_ROOT
   )
   print(f'Importing Building Configuration file from {bc_filepath}.')
   imported_building_config = import_helper.DeserializeBuildingConfiguration(
@@ -137,13 +141,15 @@ def main(parsed_args: ParseArgs) -> None:
     _spreadsheet_workflow(
         spreadsheet_id=parsed_args.spreadsheet_id,
         gcp_token_path=parsed_args.token,
+        modified_types_filepath=args.modified_types_filepath,
         subscription=parsed_args.subscription,
         service_account=parsed_args.service_account)
   elif parsed_args.building_config and parsed_args.spreadsheet_id:
     _bc_workflow(
         spreadsheet_id=parsed_args.spreadsheet_id,
         bc_filepath=parsed_args.building_config,
-        gcp_token_path=parsed_args.token)
+        gcp_token_path=parsed_args.token,
+        modified_types_filepath=args.modified_types_filepath)
 
 
 if __name__ == '__main__':

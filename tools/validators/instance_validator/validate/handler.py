@@ -19,6 +19,7 @@ import _thread
 import sys
 from typing import Dict, List, Tuple
 
+from validate import constants
 from validate import entity_instance
 from validate import generate_universe
 from validate import instance_parser
@@ -118,12 +119,26 @@ def _ValidateTelemetry(subscription: str, service_account: str,
 def RunValidation(filenames: List[str],
                   use_simplified_universe: bool = False,
                   modified_types_filepath: str = None,
+                  default_types_filepath: str = None,
                   subscription: str = None,
                   service_account: str = None,
                   report_filename: str = None,
-                  timeout: int = 60,
+                  timeout: int = constants.DEFAULT_TIMEOUT,
                   is_udmi: bool = False) -> None:
-  """Master runner for all validations."""
+  """Top level runner for all validations.
+
+  Args:
+    filenames: List of building config filenames to validate.
+    use_simplified_universe: Boolean to use small testing ConfigUniverse.
+    modified_types_filepath: Relative path to a modified ontology.
+    default_types_filepath: Relative path to the DigitalBuildings ontology.
+    subscription: Fully qualified path to a Google Cloud Pubsub subscription.
+    service_account: Fully qualified path to a service account key file.
+    report_filename: Fully qualified path to write a validation report to.
+    timeout: Timeout duration of the telemetry validator. Default is 60 seconds.
+    is_udmi: Telemetry follows UDMI standards.
+
+  """
   saved_stdout = sys.stdout
   report_file = None
 
@@ -136,7 +151,8 @@ def RunValidation(filenames: List[str],
     print('[INFO]\tGenerating ontology.')
     universe = generate_universe.BuildUniverse(
         use_simplified_universe=use_simplified_universe,
-        modified_types_filepath=modified_types_filepath)
+        modified_types_filepath=modified_types_filepath,
+        default_types_filepath=default_types_filepath)
     if not universe:
       print('[ERROR]\tUniverse did not generate properly.')
       sys.exit(0)
