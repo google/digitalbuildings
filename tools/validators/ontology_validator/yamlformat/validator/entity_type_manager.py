@@ -23,6 +23,7 @@ from __future__ import print_function
 
 import collections
 import itertools
+from typing import Dict
 
 from yamlformat.validator import base_lib
 from yamlformat.validator import findings_lib
@@ -39,6 +40,7 @@ MAX_FIELDS_FOR_INCOMPLETE = 3
 MAX_TYPE_SHARD_SIZE = 1
 
 
+# pylint: disable=consider-using-dict-items
 def _CreateOptionalityInsensitiveCopy(sets_to_types):
   """Makes Optionality-insensitive copy of the passed dict and returns it."""
   oi_sets_to_types = collections.defaultdict(set)
@@ -79,7 +81,7 @@ class EntityTypeManager(findings_lib.Findings):
     Args:
         entity_type_universe: ConfigUniverse to evaluate
     """
-    super(EntityTypeManager, self).__init__()
+    super().__init__()
     self._universe = entity_type_universe
     self._complete_field_sets_oi = None  # OI = optionality insensitive
     self._typenames_by_subset_oi = None  # OI = optionality insensitive
@@ -346,7 +348,7 @@ class EntityTypeManager(findings_lib.Findings):
       for entity_type in namespace.valid_types_map.values():
         if entity_type.allow_undefined_fields or entity_type.is_abstract:
           continue
-        full_qual_type = '{0}/{1}'.format(ns_name, entity_type.typename)
+        full_qual_type = f'{ns_name}/{entity_type.typename}'
 
         # Sharding list calculation
         if len(current_shard) >= MAX_TYPE_SHARD_SIZE:
@@ -445,7 +447,7 @@ class EntityTypeManager(findings_lib.Findings):
 
     return typenames_by_subset
 
-  def GetCompleteFieldSetsOI(self) -> dict():
+  def GetCompleteFieldSetsOI(self) -> Dict:
     """Returns a mapping of inheritied and local field sets to EntityType.
 
     Raises:
@@ -458,7 +460,7 @@ class EntityTypeManager(findings_lib.Findings):
       raise Exception('Run Analyze() to access this mapping')
     return self._complete_field_sets_oi
 
-  def GetTypenamesBySubsetOI(self) -> dict():
+  def GetTypenamesBySubsetOI(self) -> Dict:
     """Returns a mapping of greatest common field subsets to EntityType names.
 
     Raises:

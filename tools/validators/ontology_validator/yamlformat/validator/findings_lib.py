@@ -20,7 +20,7 @@ MISSING_PARENT_VALIDATION_RANK = 60
 
 # TODO(b/254872070): Add type annotations
 
-
+# pylint: disable=consider-using-f-string, super-with-arguments, line-too-long
 def MakeFieldString(field):
   """Represents OptWrapper as a string prepending '(opt)' for optional fields.
 
@@ -268,7 +268,7 @@ class FindingsUniverse(Findings):
         [folder.local_namespace for folder in folders])
 
   def _MakeNamespaceMap(self, namespaces):
-    """Returns mapping from namespace strings to sets of valid ontology entities.
+    """Returns namespace strings to sets of valid ontology entities map.
 
     Args:
       namespaces: list of namespace objects.

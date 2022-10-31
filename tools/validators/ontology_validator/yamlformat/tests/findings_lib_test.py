@@ -25,7 +25,7 @@ from absl.testing import absltest
 
 _F = test_helpers_lib.Fields
 
-
+# pylint: disable=no-value-for-parameter
 class FindingsLibTest(absltest.TestCase):
 
   def setUp(self):
@@ -38,7 +38,7 @@ class FindingsLibTest(absltest.TestCase):
   def testFindingBadMessage(self):
     # no message
     with self.assertRaises(TypeError):
-      findings_lib.Finding(self.file_context)
+      findings_lib.Finding(file_context=self.file_context)
 
     # message isn't string
     some_list = []

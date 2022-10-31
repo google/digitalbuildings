@@ -14,6 +14,7 @@
 
 """Tests google3.corp.bizapps.rews.carson.ontology.validation.subfield_lib."""
 
+# pylint: disable=consider-using-f-string
 from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function

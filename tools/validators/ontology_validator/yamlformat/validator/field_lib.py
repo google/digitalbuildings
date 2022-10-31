@@ -160,7 +160,7 @@ class FieldFolder(config_folder_lib.ConfigFolder):
     self.local_namespace.InsertField(field)
 
   def _AddFromConfigHelper(self, document, context):
-    """Helper method that reads a single yaml document and adds all fields found.
+    """Helper method that reads a yaml document and adds all fields found.
 
     Also adds any findings to the field.
 
@@ -333,7 +333,7 @@ class FieldNamespace(findings_lib.Findings):
     Raises:
       RuntimeError: when subfields are defined on the child and not the parent.
     """
-    super(FieldNamespace, self).__init__()
+    super().__init__()
     self.namespace = namespace
     self.subfields = subfields
     self.states = states
@@ -537,7 +537,7 @@ class Field(findings_lib.Findings):
         multistate field. Should be None for non-multistate fields.
       file_context: optional object with the config file location of this field.
     """
-    super(Field, self).__init__()
+    super().__init__()
     self.file_context = file_context
     self.name = name
     self.subfields = []

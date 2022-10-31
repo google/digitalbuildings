@@ -100,7 +100,7 @@ class EntityTypeUniverse(findings_lib.Findings):
     Args:
       entity_type_folders: list of EntityTypeFolder objects parsed from files.
     """
-    super(EntityTypeUniverse, self).__init__()
+    super().__init__()
     self.namespace_folder_map = {}
     self.type_namespaces_map = {}
     self.type_ids_map = {}
@@ -194,8 +194,7 @@ class EntityTypeFolder(config_folder_lib.ConfigFolder):
         trailing /.
       field_universe: optional FieldsUniverse object.
     """
-    super(EntityTypeFolder, self).__init__(folderpath,
-                                           base_lib.ComponentType.ENTITY_TYPE)
+    super().__init__(folderpath, base_lib.ComponentType.ENTITY_TYPE)
     self.local_namespace = TypeNamespace(self._namespace_name, field_universe)
 
   def Finalize(self):
@@ -317,7 +316,7 @@ class TypeNamespace(findings_lib.Findings):
   """
 
   def __init__(self, namespace, field_universe=None):
-    super(TypeNamespace, self).__init__()
+    super().__init__()
     self.namespace = namespace
     self._field_universe = field_universe
     self.valid_types_map = {}
@@ -410,7 +409,7 @@ class TypeNamespace(findings_lib.Findings):
       fq_tuplemap = {}
       for parent in entity_type.unqualified_parent_names:
         fq_tuple = self._BuildQualifiedParentTuple(parent)
-        fq_name = '{0}/{1}'.format(fq_tuple.namespace, fq_tuple.typename)
+        fq_name = f'{fq_tuple.namespace}/{fq_tuple.typename}'
         fq_tuplemap[fq_name] = fq_tuple
       entity_type.parent_names = fq_tuplemap
     self._parents_qualified = True
@@ -460,8 +459,7 @@ class TypeNamespace(findings_lib.Findings):
 
 def BuildQualifiedField(opt_tuple):
   field_tuple = opt_tuple.field
-  return '{0}/{1}{2}'.format(field_tuple.namespace, field_tuple.field,
-                             field_tuple.increment)
+  return f'{field_tuple.namespace}/{field_tuple.field}{field_tuple.increment}'
 
 
 class EntityType(findings_lib.Findings):
@@ -519,7 +517,7 @@ class EntityType(findings_lib.Findings):
        uid: the database ID string of this type if uploaded
        namespace: a reference to the namespace object the entity belongs to
     """
-    super(EntityType, self).__init__()
+    super().__init__()
 
     self.file_context = findings_lib.FileContext(
         begin_line_number=begin_line_number, filepath=filepath)
@@ -586,7 +584,7 @@ class EntityType(findings_lib.Findings):
     """
 
     if not (self.inherited_fields_expanded or run_unsafe):
-      raise RuntimeError('Type {0} has not been expanded'.format(self.typename))
+      raise RuntimeError(f'Type {self.typename} has not been expanded')
     if self._all_fields is None:
       tmp = self.local_field_names.copy()
       tmp.update(self.inherited_field_names)

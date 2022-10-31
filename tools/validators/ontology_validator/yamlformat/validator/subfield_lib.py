@@ -109,8 +109,7 @@ class SubfieldFolder(config_folder_lib.ConfigFolder):
       parent_namespace: object containing global namepsace information. When
         working in the global namespace folder, this should be None.
     """
-    super(SubfieldFolder, self).__init__(folderpath,
-                                         base_lib.ComponentType.SUBFIELD)
+    super().__init__(folderpath, base_lib.ComponentType.SUBFIELD)
     self.local_namespace = SubfieldNamespace(self._namespace_name,
                                              parent_namespace)
     self.parent_namespace = parent_namespace
@@ -133,7 +132,7 @@ class SubfieldFolder(config_folder_lib.ConfigFolder):
     self.local_namespace.InsertSubfield(subfield)
 
   def _AddFromConfigHelper(self, document, context):
-    """Helper method that reads a single yaml document and adds all subfields found.
+    """Helper method that reads a yaml document and adds all subfields found.
 
     Also adds any findings to the subfield.
 
@@ -188,7 +187,7 @@ class SubfieldNamespace(findings_lib.Findings):
       parent_namespace: Instance of SubfieldNamespace indicating global
         namespace, None if namespace is global namespace.
     """
-    super(SubfieldNamespace, self).__init__()
+    super().__init__()
     self.namespace = local_namespace
     self.parent_namespace = parent_namespace
     self.subfields = {}
@@ -278,7 +277,7 @@ class Subfield(findings_lib.Findings):
     Returns:
       An instance of the Subfield class.
     """
-    super(Subfield, self).__init__()
+    super().__init__()
     self.file_context = file_context
     self.name = name
     self.description = description

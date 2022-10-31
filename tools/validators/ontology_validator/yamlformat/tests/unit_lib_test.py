@@ -22,9 +22,10 @@ from absl.testing import absltest
 from yamlformat.validator import findings_lib
 from yamlformat.validator import unit_lib
 
-_GOOD_PATH = '{0}/units/anyfolder'.format('mynamespace')
+_GOOD_PATH = 'mynamespace/units/anyfolder'
 
 
+# pylint: disable=unexpected-keyword-arg
 class UnitLibTest(absltest.TestCase):
 
   def testUnitUniverseGetUnitsForMeasurement(self):
@@ -62,7 +63,7 @@ class UnitLibTest(absltest.TestCase):
     self.assertFalse(unit_universe.IsValid())
 
   def testUnitUniverseGetFindings(self):
-    context = findings_lib.FileContext('{0}/file.yaml'.format(_GOOD_PATH))
+    context = findings_lib.FileContext(f'{_GOOD_PATH}/file.yaml')
     folder = unit_lib.UnitFolder(_GOOD_PATH)
     folder.AddFinding(findings_lib.InconsistentFileLocationError('', context))
     namespace = folder.local_namespace
@@ -121,7 +122,7 @@ class UnitLibTest(absltest.TestCase):
         }
     }
     folder = unit_lib.UnitFolder(_GOOD_PATH)
-    folder.AddFromConfig([doc], '{0}/file.yaml'.format(_GOOD_PATH))
+    folder.AddFromConfig([doc], f'{_GOOD_PATH}/file.yaml')
 
     units = folder.local_namespace.GetUnitsForMeasurement('temperature')
     self.assertEmpty(folder.GetFindings())
@@ -146,7 +147,7 @@ class UnitLibTest(absltest.TestCase):
         },
     }
     folder = unit_lib.UnitFolder(_GOOD_PATH)
-    folder.AddFromConfig([doc], '{0}/file.yaml'.format(_GOOD_PATH))
+    folder.AddFromConfig([doc], f'{_GOOD_PATH}/file.yaml')
     pf_units = folder.local_namespace.GetUnitsForMeasurement('powerfactor')
     vr_units = folder.local_namespace.GetUnitsForMeasurement('voltageratio')
 
@@ -164,14 +165,14 @@ class UnitLibTest(absltest.TestCase):
         }],
     }
     folder = unit_lib.UnitFolder(_GOOD_PATH)
-    folder.AddFromConfig([doc], '{0}/file.yaml'.format(_GOOD_PATH))
+    folder.AddFromConfig([doc], f'{_GOOD_PATH}/file.yaml')
     self.assertIsInstance(folder.GetFindings()[0],
                           findings_lib.InvalidMeasurementFormatError)
 
   def testUnitFolderAddFromConfigInvalidUnitFormat(self):
     doc = {'temperature': {'kelvins': ['STANDARD']}}
     folder = unit_lib.UnitFolder(_GOOD_PATH)
-    folder.AddFromConfig([doc], '{0}/file.yaml'.format(_GOOD_PATH))
+    folder.AddFromConfig([doc], f'{_GOOD_PATH}/file.yaml')
     self.assertIsInstance(folder.GetFindings()[0],
                           findings_lib.InvalidUnitFormatError)
 
@@ -186,7 +187,7 @@ class UnitLibTest(absltest.TestCase):
         }
     }
     folder = unit_lib.UnitFolder(_GOOD_PATH)
-    folder.AddFromConfig([doc], '{0}/file.yaml'.format(_GOOD_PATH))
+    folder.AddFromConfig([doc], f'{_GOOD_PATH}/file.yaml')
     units = folder.local_namespace.GetUnitsForMeasurement('temperature')
     self.assertIsInstance(folder.GetFindings()[0],
                           findings_lib.InvalidUnitConversionKeyError)
@@ -203,7 +204,7 @@ class UnitLibTest(absltest.TestCase):
         }
     }
     folder = unit_lib.UnitFolder(_GOOD_PATH)
-    folder.AddFromConfig([doc], '{0}/file.yaml'.format(_GOOD_PATH))
+    folder.AddFromConfig([doc], f'{_GOOD_PATH}/file.yaml')
     units = folder.local_namespace.GetUnitsForMeasurement('temperature')
     self.assertIsInstance(folder.GetFindings()[0],
                           findings_lib.InvalidUnitConversionValueError)
@@ -220,7 +221,7 @@ class UnitLibTest(absltest.TestCase):
         }
     }
     folder = unit_lib.UnitFolder(_GOOD_PATH)
-    folder.AddFromConfig([doc], '{0}/file.yaml'.format(_GOOD_PATH))
+    folder.AddFromConfig([doc], f'{_GOOD_PATH}/file.yaml')
     units = folder.local_namespace.GetUnitsForMeasurement('temperature')
     self.assertIsInstance(folder.GetFindings()[0],
                           findings_lib.InvalidUnitConversionKeyError)
@@ -237,7 +238,7 @@ class UnitLibTest(absltest.TestCase):
         }
     }
     folder = unit_lib.UnitFolder(_GOOD_PATH)
-    folder.AddFromConfig([doc], '{0}/file.yaml'.format(_GOOD_PATH))
+    folder.AddFromConfig([doc], f'{_GOOD_PATH}/file.yaml')
     units = folder.local_namespace.GetUnitsForMeasurement('temperature')
     self.assertIsInstance(folder.GetFindings()[0],
                           findings_lib.InvalidUnitConversionValueError)
@@ -253,7 +254,7 @@ class UnitLibTest(absltest.TestCase):
         }
     }
     folder = unit_lib.UnitFolder(_GOOD_PATH)
-    folder.AddFromConfig([doc], '{0}/file.yaml'.format(_GOOD_PATH))
+    folder.AddFromConfig([doc], '{_GOOD_PATH}/file.yaml')
     units = folder.local_namespace.GetUnitsForMeasurement('temperature')
     self.assertIsInstance(folder.GetFindings()[0],
                           findings_lib.InvalidUnitConversionMapError)
@@ -262,7 +263,7 @@ class UnitLibTest(absltest.TestCase):
   def testUnitFolderAddFromConfigUnknownUnitTag(self):
     doc = {'temperature': {'kelvins': 'STANDARD', 'wrong': 'BAD_TAG'}}
     folder = unit_lib.UnitFolder(_GOOD_PATH)
-    folder.AddFromConfig([doc], '{0}/file.yaml'.format(_GOOD_PATH))
+    folder.AddFromConfig([doc], f'{_GOOD_PATH}/file.yaml')
     units = folder.local_namespace.GetUnitsForMeasurement('temperature')
     self.assertIsInstance(folder.GetFindings()[0],
                           findings_lib.UnknownUnitTagError)
@@ -282,7 +283,7 @@ class UnitLibTest(absltest.TestCase):
         }
     }
     folder = unit_lib.UnitFolder(_GOOD_PATH)
-    folder.AddFromConfig([doc], '{0}/file.yaml'.format(_GOOD_PATH))
+    folder.AddFromConfig([doc], f'{_GOOD_PATH}/file.yaml')
     self.assertIsInstance(folder.GetFindings()[0],
                           findings_lib.StandardUnitCountError)
 
@@ -294,7 +295,7 @@ class UnitLibTest(absltest.TestCase):
         }
     }
     folder = unit_lib.UnitFolder(_GOOD_PATH)
-    folder.AddFromConfig([doc], '{0}/file.yaml'.format(_GOOD_PATH))
+    folder.AddFromConfig([doc], f'{_GOOD_PATH}/file.yaml')
     self.assertIsInstance(folder.GetFindings()[0],
                           findings_lib.StandardUnitCountError)
 
@@ -331,7 +332,7 @@ class UnitLibTest(absltest.TestCase):
     folder = unit_lib.UnitFolder(_GOOD_PATH)
     expected_units = ['meters', 'feet']
 
-    folder.AddFromConfig([doc], '{0}/file.yaml'.format(_GOOD_PATH))
+    folder.AddFromConfig([doc], f'{_GOOD_PATH}/file.yaml')
     distance_units = folder.local_namespace.GetUnitsForMeasurement('distance')
     length_units = folder.local_namespace.GetUnitsForMeasurement('length')
 
@@ -352,7 +353,7 @@ class UnitLibTest(absltest.TestCase):
     }
     folder = unit_lib.UnitFolder(_GOOD_PATH)
 
-    folder.AddFromConfig([doc], '{0}/file.yaml'.format(_GOOD_PATH))
+    folder.AddFromConfig([doc], f'{_GOOD_PATH}/file.yaml')
 
     self.assertIsInstance(folder.local_namespace.GetFindings()[0],
                           findings_lib.UnrecognizedMeasurementAliasBaseError)
@@ -371,7 +372,7 @@ class UnitLibTest(absltest.TestCase):
     }
     folder = unit_lib.UnitFolder(_GOOD_PATH)
 
-    folder.AddFromConfig([doc], '{0}/file.yaml'.format(_GOOD_PATH))
+    folder.AddFromConfig([doc], f'{_GOOD_PATH}/file.yaml')
 
     self.assertIsInstance(folder.local_namespace.GetFindings()[0],
                           findings_lib.MeasurementAliasIsAliasedError)
@@ -399,7 +400,7 @@ class UnitLibTest(absltest.TestCase):
     }
     folder = unit_lib.UnitFolder(_GOOD_PATH)
 
-    folder.AddFromConfig([doc_1, doc_2], '{0}/file.yaml'.format(_GOOD_PATH))
+    folder.AddFromConfig([doc_1, doc_2], f'{_GOOD_PATH}/file.yaml')
 
     self.assertIsInstance(folder.local_namespace.GetFindings()[0],
                           findings_lib.DuplicateMeasurementAliasError)

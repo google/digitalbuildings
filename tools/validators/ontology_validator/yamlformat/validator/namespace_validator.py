@@ -45,7 +45,7 @@ class NamespaceValidator(findings_lib.Findings):
 
   def __init__(self, type_namespaces):
 
-    super(NamespaceValidator, self).__init__()
+    super().__init__()
 
     self.type_namespaces_map = {}
     self._CreateTypeNamespacesMap(type_namespaces)
@@ -118,7 +118,7 @@ class NamespaceValidator(findings_lib.Findings):
       return entity_type.GetAllFields()
 
     # Add current entity to recursion stack.
-    stack_key = '{0}/{1}'.format(namespace, entity_type.typename)
+    stack_key = f'{namespace}/{entity_type.typename}'
     on_stack.add(stack_key)
 
     # Recurse for all parents. If any parent is in on_stack,
@@ -190,7 +190,7 @@ class NamespaceValidator(findings_lib.Findings):
           field_only = field_tuple.field
 
           if field_tuple.increment:
-            key = '{0}/{1}'.format(namespace, field_only)
+            key = f'{namespace}/{field_only}'
             if key in field_lookup:
               field_lookup[key] = None
             else:
@@ -198,12 +198,12 @@ class NamespaceValidator(findings_lib.Findings):
           else:
             field_lookup[field] = None
 
-        for key in field_lookup:
-          if field_lookup[key] is not None:
+        for key, field in field_lookup.items():
+          if field is not None:
             # Don't worry about adding this finding to the namespace.  It is a
             # short-circuiting error, making universe integrity irrelevant.
             self.AddFinding(findings_lib.IllegalFieldIncrementError(
-                entity_type, field_lookup[key]))
+                entity_type, field))
             is_clean = False
 
     return is_clean

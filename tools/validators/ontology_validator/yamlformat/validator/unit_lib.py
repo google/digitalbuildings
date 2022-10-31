@@ -37,6 +37,7 @@ _MeasurementAlias = NamedTuple('MeasurementAlias',
 # TODO(b/254872070): Add type annotations
 
 
+# pylint: disable=line-too-long
 class UnitUniverse(findings_lib.FindingsUniverse):
   """Helper class to represent the defined universe of units."""
 
@@ -93,7 +94,7 @@ class UnitFolder(config_folder_lib.ConfigFolder):
       local_subfields: required map of subfield keys to Subfields for the local
         namespace.
     """
-    super(UnitFolder, self).__init__(folderpath, base_lib.ComponentType.UNIT)
+    super().__init__(folderpath, base_lib.ComponentType.UNIT)
     self.local_namespace = UnitNamespace(self._namespace_name, parent_namespace,
                                          local_subfields)
     self.parent_namespace = parent_namespace
@@ -168,14 +169,14 @@ class UnitFolder(config_folder_lib.ConfigFolder):
     if len(conversion_map) == 2:
       for key, value in conversion_map.items():
         if key == CONVERSION_MULTIPLIER_KEY:
-          if isinstance(value, int) or isinstance(value, float):
+          if isinstance(value, (float, int)):
             multiplier = float(value)
           else:
             self.AddFinding(
                 findings_lib.InvalidUnitConversionValueError(
                     unit_name, key, value, context))
         elif key == CONVERSION_OFFSET_KEY:
-          if isinstance(value, int) or isinstance(value, float):
+          if isinstance(value, (float, int)):
             offset = float(value)
           else:
             self.AddFinding(
@@ -217,7 +218,7 @@ class UnitNamespace(findings_lib.Findings):
       subfields: optional map of subfield names to Subfields. No validation of
         subfields will be performed if this is None.
     """
-    super(UnitNamespace, self).__init__()
+    super().__init__()
     self.namespace = namespace
     self.parent_namespace = parent_namespace
     self.subfields = subfields
@@ -313,7 +314,7 @@ class UnitNamespace(findings_lib.Findings):
     # unit_key is an opaque ID that is unique within the namespace. It is only
     # used by the backward compatibility checking, which needs all of the units
     # to be in a single dict.
-    unit_key = '{0}-{1}'.format(measurement_type, unit.name)
+    unit_key = f'{measurement_type}-{unit.name}'
     self.units[unit_key] = unit
 
   def InsertMeasurementAlias(self, alias):
@@ -394,7 +395,7 @@ class Unit(findings_lib.Findings):
     Returns:
       Instance of Unit class.
     """
-    super(Unit, self).__init__()
+    super().__init__()
     self.name = name
     self.is_standard = is_standard
     self.conversion_multiplier = conversion_multiplier
@@ -408,7 +409,7 @@ class Unit(findings_lib.Findings):
 
   def __eq__(self, other):
     if isinstance(other, Unit):
-      return (self.name == other.name and self.is_standard == other.is_standard)
+      return self.name == other.name and self.is_standard == other.is_standard
     return False
 
   def __ne__(self, other):

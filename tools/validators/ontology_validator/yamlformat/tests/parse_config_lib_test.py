@@ -41,11 +41,11 @@ RESOURCE_PATH = path.join(test_constants.TEST_RESOURCES)
 field_lib.FIELD_TO_NAMESPACE_REGEX = re.compile(
     r'^' + RESOURCE_PATH.replace('\\', '\\\\') + r'(\w*)[/\\]?fields.*')
 
-
+# pylint: disable=protected-access
 class ParseConfigLibTest(absltest.TestCase):
 
   def setUp(self):
-    super(ParseConfigLibTest, self).setUp()
+    super().setUp()
     self.base_dir = RESOURCE_PATH
     self.duplicate_types_file = base_lib.PathParts(
         root=self.base_dir,

@@ -35,7 +35,7 @@ from yamlformat.validator import unit_lib
 class ParseError(Exception):
 
   def __init__(self, finding):
-    super(ParseError, self).__init__(finding)
+    super().__init__(finding)
     self.finding = finding
 
 
@@ -50,6 +50,7 @@ class UniqueKeyLoader(yaml.SafeLoader):
       'false': False,
   }
 
+  # pylint: disable=raise-missing-from
   def construct_yaml_bool(self, node):
     """Returns a string if the node doesn't match a configured boolean value."""
     value = self.construct_scalar(node)
@@ -60,7 +61,7 @@ class UniqueKeyLoader(yaml.SafeLoader):
 
     if not isinstance(node, yaml.nodes.MappingNode):
       raise yaml.constructor.ConstructorError(
-          None, None, 'Expected a mapping node, but found %s' % node.id,
+          None, None, f'Expected a mapping node, but found {node.id}',
           node.start_mark)
     mapping = {}
     for key_node, value_node in node.value:
@@ -121,11 +122,12 @@ def _ParseFoldersFromFiles(files, component_type, create_folder_fn):
   return folders
 
 
+# pylint: disable=line-too-long
 def _CreateFolder(folderpath, global_namespace, create_folder_fn, file_tuples):
   """Creates a ConfigFolder for the given folderpath."""
   folder = create_folder_fn(folderpath, global_namespace)
   for ft in file_tuples:
-    with open(os.path.join(ft.root, ft.relative_path), 'r') as f:
+    with open(os.path.join(ft.root, ft.relative_path), 'r', encoding='utf-8') as f:
       try:
         documents = yaml.load_all(f, Loader=UniqueKeyLoader)
         folder.AddFromConfig(documents, ft.relative_path)

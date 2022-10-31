@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Classes and methods for working with state values for multistate fields in the ontology."""
+"""Classes and methods for working with multistate fields in the ontology."""
 
 from __future__ import absolute_import
 from __future__ import division
@@ -72,7 +72,7 @@ class StateFolder(config_folder_lib.ConfigFolder):
     Args:
       folderpath: required string with full path to folder containing states.
     """
-    super(StateFolder, self).__init__(folderpath,
+    super().__init__(folderpath,
                                       base_lib.ComponentType.MULTI_STATE)
     self.local_namespace = StateNamespace(self._namespace_name)
 
@@ -92,7 +92,7 @@ class StateFolder(config_folder_lib.ConfigFolder):
     self.local_namespace.InsertState(state)
 
   def _AddFromConfigHelper(self, document, context):
-    """Helper method that reads a single yaml document and adds all states found.
+    """Helper method that reads a yaml document and adds all states found.
 
     Args:
       document: yaml document
@@ -117,7 +117,7 @@ class StateNamespace(findings_lib.Findings):
     Args:
       namespace: required string representing the name of the namespace.
     """
-    super(StateNamespace, self).__init__()
+    super().__init__()
     self.namespace = namespace
     self.states = {}
 
@@ -165,7 +165,7 @@ class State(findings_lib.Findings):
     Returns:
       Instance of State class.
     """
-    super(State, self).__init__()
+    super().__init__()
     self.name = name
     self.description = description
     self.file_context = file_context

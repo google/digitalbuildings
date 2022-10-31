@@ -79,7 +79,7 @@ class ConfigUniverse(findings_lib.Findings):
       print('FieldUniverse undefined in ConfigUniverse')
       return None
 
-    states_by_field = dict()
+    states_by_field = {}
 
     fields = self.field_universe.GetFieldsMap()
     if fields:
@@ -363,8 +363,7 @@ def _ValidateConfigInner(unmodified,
   end_time = time.time()
 
   if interactive:
-    print('New universe build: {0} seconds.\n'.format(
-        str(end_time - start_time)))
+    print(f'New universe build: {str(end_time - start_time)} seconds.\n')
     start_time = end_time
 
   if not new_universe.IsValid():
@@ -390,7 +389,7 @@ def _ValidateConfigInner(unmodified,
 
   if interactive:
     end_time = time.time()
-    print('New ns check: {0} seconds.\n'.format(str(end_time - start_time)))
+    print(f'New ns check: {str(end_time - start_time)} seconds.\n')
     start_time = end_time
 
   base_paths = unmodified + modified_base
@@ -399,7 +398,7 @@ def _ValidateConfigInner(unmodified,
 
   if interactive:
     end_time = time.time()
-    print('Old uverse build: {0} seconds.\n'.format(str(end_time - start_time)))
+    print(f'Old uverse build: {str(end_time - start_time)} seconds.\n')
     start_time = end_time
 
   # Run validation on base universe to expand types.
@@ -407,7 +406,7 @@ def _ValidateConfigInner(unmodified,
 
   if interactive:
     end_time = time.time()
-    print('Old ns check: {0} seconds.\n'.format(str(end_time - start_time)))
+    print(f'Old ns check: {str(end_time - start_time)} seconds.\n')
     start_time = end_time
 
   mgr = entity_type_manager.EntityTypeManager(new_universe.entity_type_universe)
@@ -416,7 +415,7 @@ def _ValidateConfigInner(unmodified,
 
   if interactive:
     end_time = time.time()
-    print('Type analysis: {0} seconds.\n'.format(str(end_time - start_time)))
+    print(f'Type analysis: {str(end_time - start_time)} seconds.\n')
     start_time = end_time
 
   CheckBackwardsCompatibility(new_universe.entity_type_universe,
@@ -424,7 +423,7 @@ def _ValidateConfigInner(unmodified,
 
   if interactive:
     end_time = time.time()
-    print('Backwards compat: {0} seconds.\n'.format(str(end_time - start_time)))
+    print(f'Backwards compat: {str(end_time - start_time)} seconds.\n')
     start_time = end_time
 
   # TODO(berkoben) pass this to methods below when fixing b/116850383?
@@ -705,12 +704,11 @@ def PrintFindings(findings, filter_text):
         the finding output and cause only matching findings to print.
   """
   findings_by_file = OrganizeFindingsByFile(findings)
-  for filepath in findings_by_file:
-    findings_for_file = findings_by_file[filepath]
+  for filepath, findings_for_file in findings_by_file.items():
     if not findings_for_file:
-      print('no Findings in {0}'.format(filepath))
+      print(f'no Findings in {filepath}')
       continue
-    print('Findings in {0}'.format(filepath))
+    print(f'Findings in {filepath}')
     for finding in findings_for_file:
       if not filter_text or filter_text in str(finding):
         print(finding)
@@ -741,7 +739,7 @@ def RunInteractive(filter_text, modified_base, modified_client):
   PrintFindings(findings, filter_text)
 
   end_time = time.time()
-  print('Elapsed time: {0} seconds.\n'.format(str(end_time - start_time)))
+  print(f'Elapsed time: {str(end_time - start_time)} seconds.\n')
 
   etu = universe.entity_type_universe
   print('Enter one or more fully qualified names <NS/TYPE> separated by spaces')
@@ -785,8 +783,7 @@ def RunInteractive(filter_text, modified_base, modified_client):
         set(first_type.inherited_field_names)
         | set(first_type.local_field_names))
     print('Checking fields against ' + first_type_name)
-    for name in type_dict:
-      et = type_dict[name]
+    for name, et in type_dict:
       field_set = (set(et.inherited_field_names) | set(et.local_field_names))
       outer = first_field_set.symmetric_difference(field_set)
 

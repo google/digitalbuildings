@@ -31,7 +31,7 @@ _F1 = test_helpers_lib.Field
 class NamespaceValidatorTest(absltest.TestCase):
 
   def setUp(self):
-    super(NamespaceValidatorTest, self).setUp()
+    super().setUp()
     # Create a list of good TypeNamespace objects
     self.good_type1 = entity_type_lib.EntityType(
         filepath='path/to/ANIMAL/mammal',

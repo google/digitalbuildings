@@ -18,7 +18,7 @@ import re
 from yamlformat.validator import base_lib
 from yamlformat.validator import findings_lib
 
-
+# pylint: disable=consider-using-f-string
 def IsValidFolderForType(path, component_type):
   """Checks a folder is named correctly and in a valid tree for component type.
 
@@ -60,7 +60,7 @@ class ConfigFolder(findings_lib.Findings):
     Raises:
       RuntimeError: folderpath and type not valid.
     """
-    super(ConfigFolder, self).__init__()
+    super().__init__()
 
     if not IsValidFolderForType(folderpath, component_type):
       raise RuntimeError('{0} is not a correct resource path for {1}'.format(
@@ -104,7 +104,7 @@ class ConfigFolder(findings_lib.Findings):
     return
 
   def AddFromConfig(self, documents, config_filename):
-    """Reads the list of extracted yaml documents and adds all ontology items found.
+    """Reads extracted yaml documents and adds all ontology items found.
 
     Method checks that config_filename is a path in the correct folder.
     Valid items are added to the appropriate namespace objects.
@@ -129,10 +129,7 @@ class ConfigFolder(findings_lib.Findings):
               self._folderpath + r'[/\\]*.yaml', context))
       return
 
-    for document in documents:
-      self._AddFromConfigHelper(document, context)
-
-  def _AddFromConfigHelper(self, document, context):
+  def _AddFromConfigHelper(self):
     """Reads a single yaml document and adds all ontology items found.
 
     Also adds any findings to the object.

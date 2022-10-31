@@ -80,8 +80,7 @@ class ConnectionFolder(config_folder_lib.ConfigFolder):
     Args:
       folderpath: required str with full path to folder containing connections.
     """
-    super(ConnectionFolder, self).__init__(folderpath,
-                                           base_lib.ComponentType.CONNECTION)
+    super().__init__(folderpath, base_lib.ComponentType.CONNECTION)
     self.local_namespace = ConnectionNamespace(self._namespace_name)
 
     if base_lib.GLOBAL_NAMESPACE != self.local_namespace.namespace:
@@ -127,7 +126,7 @@ class ConnectionNamespace(findings_lib.Findings):
   """
 
   def __init__(self, namespace: str):
-    super(ConnectionNamespace, self).__init__()
+    super().__init__()
     self.namespace = namespace
     self.connections = {}
 
@@ -170,7 +169,7 @@ class Connection(findings_lib.Findings):
                name: str,
                description: str = None,
                file_context: findings_lib.FileContext = None):
-    super(Connection, self).__init__()
+    super().__init__()
     self.name = name
     self.description = description
     self.file_context = file_context
