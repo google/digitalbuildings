@@ -28,6 +28,7 @@ from yamlformat.validator import findings_lib
 from yamlformat.validator import presubmit_validate_types_lib
 
 
+# BREAKING CHANGE
 def Validate(filter_text, original_directory, changed_directory, interactive=True):
   """Validates two directory paths of a diff of ontology versions.
 
