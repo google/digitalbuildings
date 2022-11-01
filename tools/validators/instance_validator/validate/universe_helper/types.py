@@ -175,7 +175,7 @@ HVAC_FAN_TYPES_DOCUMENT = {
     },
     'FAN_SS_ABC':{
         'id': 'abxc',
-        'description': "Reffan",
+        'description': 'Reffan',
         'is_canonical': True,
         'uses': [
             'run_command',
