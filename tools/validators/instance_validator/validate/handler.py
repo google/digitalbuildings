@@ -148,15 +148,15 @@ def RunValidation(filenames: List[str],
     report_file = open(report_filename, 'w', encoding='utf-8')
     sys.stdout = report_file
   try:
-    print('[INFO]\tGenerating ontology.')
+    print('[INFO]\tLoading ontology.')
     universe = generate_universe.BuildUniverse(
         use_simplified_universe=use_simplified_universe,
         modified_types_filepath=modified_types_filepath,
         default_types_filepath=default_types_filepath)
     if not universe:
-      print('[ERROR]\tUniverse did not generate properly.')
+      print('[ERROR]\tUniverse did not load properly.')
       sys.exit(0)
-    print('[INFO]\tOntology generated.')
+    print('[INFO]\tOntology loaded.')
 
     entities = _ValidateConfig(filenames, universe, is_udmi)
     if subscription:
@@ -249,7 +249,7 @@ def _TelemetryValidationCallback(
           'telemetry: {warning}'.format(warning=warning.GetPrintableMessage())
           )
 
-  print('[INFO]\tInterrupting main thread now.')
+  print('[INFO]\tTelemetry validation ending. See logs above.')
   _thread.interrupt_main()
 
 

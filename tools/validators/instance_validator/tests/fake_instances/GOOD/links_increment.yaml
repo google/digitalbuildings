@@ -13,12 +13,14 @@
 # limitations under the License.
 
 VIRTUAL-ENTITY-GUID:
-  type: HVAC/FAN_SS
+  type: HVAC/FAN_SS_ABC
   code: FAN-TEST
   links:
     PHYSICAL-ENTITY-GUID:
       run_command: run_command_2
       run_status: run_status_2
+      zone_air_temperature_sensor_1: zone_air_temperature_sensor_3
+      zone_air_temperature_sensor_2: zone_air_temperature_sensor_4
 
 PHYSICAL-ENTITY-GUID:
   type: GATEWAYS/PASSTHROUGH
@@ -45,6 +47,30 @@ PHYSICAL-ENTITY-GUID:
       states:
         ON: "on"
         OFF: "off"
+    zone_air_temperature_sensor_1:
+      present_value: "points.zone_air_temperature_sensor_1.present_value"
+      units:
+        key: "pointset.points.zone_air_temperature_sensor_1.units"
+        values:
+          degrees_fahrenheit: "degF"
+    zone_air_temperature_sensor_2:
+      present_value: "points.zone_air_temperature_sensor_2.present_value"
+      units:
+        key: "pointset.points.zone_air_temperature_sensor_2.units"
+        values:
+          degrees_fahrenheit: "degF"
+    zone_air_temperature_sensor_3:
+      present_value: "points.zone_air_temperature_sensor_3.present_value"
+      units:
+        key: "pointset.points.zone_air_temperature_sensor_3.units"
+        values:
+          degrees_fahrenheit: "degF"
+    zone_air_temperature_sensor_4:
+      present_value: "points.zone_air_temperature_sensor_4.present_value"
+      units:
+        key: "pointset.points.zone_air_temperature_sensor_4.units"
+        values:
+          degrees_fahrenheit: "degF"
 
 US-SEA-BLDG1-GUID:
   type: FACILITIES/BUILDING

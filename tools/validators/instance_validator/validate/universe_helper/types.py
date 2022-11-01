@@ -173,4 +173,16 @@ HVAC_FAN_TYPES_DOCUMENT = {
         'uses': ['run_command','run_status'],
         'opt_uses': ['power_sensor']
     },
+    'FAN_SS_ABC':{
+        'id': 'abxc',
+        'description': "Reffan",
+        'is_canonical': True,
+        'uses': [
+            'run_command',
+            'run_status',
+            'zone_air_temperature_sensor_1',
+            'zone_air_temperature_sensor_2'
+        ]
+    },
+
 }
