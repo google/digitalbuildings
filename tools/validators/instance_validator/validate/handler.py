@@ -167,8 +167,8 @@ def RunValidation(filenames: List[str],
       print('[WARNING]\tTelemetry validation skipped, subscription '
             'not found. Please provide a subscription and service account to '
             'run telemetry validation. See here for more details: '
-            'https://github.com/google/digitalbuildings/tree/master/tools/'
-            'validators/instance_validator#telemetry-validation')
+            'https://google.github.io/digitalbuildings/tools/validators/'
+            'instance_validator/#telemetry-validation')
   except Exception as ex:
     print('[ERROR]\tSomething failed during validation and has '
           'terminated validation. See logs above and error here: {ex}.'
