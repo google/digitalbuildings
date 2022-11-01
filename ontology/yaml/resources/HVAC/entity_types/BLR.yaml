@@ -227,7 +227,7 @@ BLR_SS_SWTC_CPC_RWISOVPM:
   - SWTC
   - CPC
   - RWISOVPM
- 
+
 BLR_SS_SWTM_SWISOVM:
   id: "2087411417899597824"
   description: "Simple boiler with supply water temperature monitoring and supply water isolation valve ."
@@ -239,7 +239,7 @@ BLR_SS_SWTM_SWISOVM:
   - SWISOVM
   opt_uses:
   - condensing_water_flowrate_status
-  
+
 BLR_SS_SWTC_CPC_HT2SWC:
   id: "13237352126989991936"
   description: "Two-stage boiler with circulation pump."
@@ -251,59 +251,6 @@ BLR_SS_SWTC_CPC_HT2SWC:
   - CPC
   - HT2SWC
 
-###################################
-### Existing Non-standard Types ###
-###################################
-
-BLR_US_MTV_1201_1:
-  id: "3859257913386205184"
-  description: "Non-standard type for 1201 BLRs"
-  implements:
-  - BLR_SS_SWTC_SWISOVM
-  - INCOMPLETE
-  uses:
-  - heating_stage_run_count
-
-BLR_US_MTV_45_1:
-  id: "10031511571441647616"
-  description: "Non-standard type for B45 BLR"
-  implements:
-  - BLR_SS_SWTC
-  - INCOMPLETE
-  uses:
-  - bypass_valve_percentage_command
-
-BLR_US_MTV_QD4_1:
-  id: "9468332919601758208"
-  description: "Non-standard type for QD4 BLRs"
-  implements:
-  - BLR_SS_SWTC
-  - INCOMPLETE
-  uses:
-  - heating_stage_run_count
-
-BLR_US_SBO_1000_1:
-  id: "5763154655857082368"
-  description: "Non-standard type for SBO-1000 BLRs"
-  implements:
-  - BLR_SS_SWTC_SWISOVM
-  - INCOMPLETE
-  uses:
-  - heating_percentage_command
-
-BLR_US_SVL_BORD1212_1:
-  id: "16471430340162879488"
-  description: "Non-standard type for BORD1212 BLRs"
-  implements:
-  - BLR_SS_SWTC_HTSWC_RWISOVPM
-  - INCOMPLETE
-  uses:
-  - flue_gas_temperature_sensor
-
-
-##################
-# WIP
-##################
 BLR_SS_SWTC_WDPC:
   id: "17823041292490244096"
   description: "Boiler with supply water temperature and pressure control"
@@ -313,3 +260,53 @@ BLR_SS_SWTC_WDPC:
   - SS
   - SWTC
   - WDPC
+
+###################################
+### Existing Non-standard Types ###
+###################################
+
+BLR_SS_SWTC_NONCANONICAL_1:
+  id: "10031511571441647616"
+  description: "Non-standard type."
+  implements:
+  - BLR_SS_SWTC
+  - INCOMPLETE
+  uses:
+  - bypass_valve_percentage_command
+
+BLR_SS_SWTC_NONCANONICAL_2:
+  id: "9468332919601758208"
+  description: "Non-standard type."
+  implements:
+  - BLR_SS_SWTC
+  - INCOMPLETE
+  uses:
+  - heating_stage_run_count
+
+BLR_SS_SWTC_SWISOVM_NONCANONICAL_1:
+  id: "3859257913386205184"
+  description: "Non-standard type."
+  implements:
+  - BLR_SS_SWTC_SWISOVM
+  - INCOMPLETE
+  uses:
+  - heating_stage_run_count
+
+BLR_SS_SWTC_SWISOVM_NONCANONICAL_2:
+  id: "5763154655857082368"
+  description: "Non-standard type."
+  implements:
+  - BLR_SS_SWTC_SWISOVM
+  - INCOMPLETE
+  uses:
+  - heating_percentage_command
+
+BLR_SS_SWTC_HTSWC_RWISOVPM_NONCANONICAL_1:
+  id: "16471430340162879488"
+  description: "Non-standard type for BORD1212 BLRs"
+  implements:
+  - BLR_SS_SWTC_HTSWC_RWISOVPM
+  - INCOMPLETE
+  uses:
+  - flue_gas_temperature_sensor
+
