@@ -921,7 +921,7 @@ def _ParseTranslation(
       if ft_object:
         print('[ERROR]\tStates and units are not allowed in the same '
               'field translation.')
-        raise ValueError('[ERROR]\tStates and units are not allowed in the '
+        raise ValueError('States and units are not allowed in the '
               'same field translation.')
       ft_object = ft_lib.MultiStateValue(std_field_name, raw_field_name,
                                          ft[parse.STATES_KEY])

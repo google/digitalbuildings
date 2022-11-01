@@ -61,6 +61,9 @@ def BuildUniverse(
         interactive=False)
     yaml_files = external_file_lib.RecursiveDirWalk(modified_types_filepath)
   else:
+    if default_types_filepath is None:
+      raise TypeError('default_types_filepath cannot be None! Should be '
+                      'specified somewhere')
     default_ontology_exists = path.exists(default_types_filepath)
     if not default_ontology_exists:
       print('[ERROR]\tSpecified filepath [{root}] for default '
