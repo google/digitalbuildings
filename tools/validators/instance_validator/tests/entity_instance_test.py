@@ -165,7 +165,7 @@ class EntityInstanceTest(absltest.TestCase):
       self.fail(f'{TypeError} was not raised')
 
   def testInstance_RequiresEntityTypeToExistUpdate_Fails(self):
-    """ Test that the entity type exists"""
+    """ Test that the entity type exists. """
     instance = entity_instance.EntityInstance(
         _UPDATE,
         guid='ENTITY-GUID',
@@ -278,9 +278,7 @@ class EntityInstanceTest(absltest.TestCase):
     self.assertTrue(self.init_validator.Validate(instance))
 
   def testInstance_ValidTranslationWithExplicityMissingOptField_Fails(self):
-    """ Test that a MISSING optional field is not allowed. We do not want
-    optional fields explicitly marked missing; that is why we allow for
-    optional fields in the first place. """
+    """ Test that a MISSING optional field is not allowed. """
     parsed, default_operation = _Helper([])
     parsed, default_operation = _Helper([
         path.join(_TESTCASE_PATH, 'BAD',
@@ -291,6 +289,7 @@ class EntityInstanceTest(absltest.TestCase):
         entity_guid,
         entity,
         default_operation=default_operation)
+
     self.assertFalse(self.init_validator.Validate(instance))
 
   def testInstance_ValidMultipleTranslationsWithIdenticalTypes_Success(self):

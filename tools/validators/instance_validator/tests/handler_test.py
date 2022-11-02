@@ -89,19 +89,23 @@ class HandlerTest(absltest.TestCase):
 
   def testValidateOneBuildingExistFails(self):
     """ Check that a config without a building is found to be invalid. """
+    input_file = os.path.join(_TESTCASE_PATH, 'BAD', 'missing_building.yaml')
+    config_universe = generate_universe.BuildUniverse(
+      use_simplified_universe=True)
+    entities, config_mode = _Deserialize([input_file])
+
+    helper = handler.EntityHelper(config_universe)
+
     with self.assertRaises(SyntaxError):
-      input_file = os.path.join(_TESTCASE_PATH, 'BAD', 'missing_building.yaml')
-      config_universe = generate_universe.BuildUniverse(
-        use_simplified_universe=True)
-      entities, config_mode = _Deserialize([input_file])
-      helper = handler.EntityHelper(config_universe)
       helper.Validate(entities, config_mode, is_udmi=True)
 
   def testMissingBuildingDoesntKillValidation(self):
     """ Validation runs to completion even with missing building. """
     try:
       input_file = os.path.join(_TESTCASE_PATH, 'BAD','missing_building.yaml')
+
       _RunValidation([input_file], use_simplified_universe=True)
+
     except SyntaxError:
       self.fail('ValidationHelper:Validate unexpectedly raised Exception '
                 'when building missing. This should be handled without '
