@@ -271,10 +271,12 @@ class EntityInstanceTest(absltest.TestCase):
                   'translation_req_field_marked_missing.yaml')
     ])
     entity_guid, entity = next(iter(parsed.items()))
+
     instance = entity_instance.EntityInstance.FromYaml(
         entity_guid,
         entity,
         default_operation=default_operation)
+
     self.assertTrue(self.init_validator.Validate(instance))
 
   def testInstance_ValidTranslationWithExplicityMissingOptField_Fails(self):
@@ -285,6 +287,7 @@ class EntityInstanceTest(absltest.TestCase):
                   'translation_opt_field_marked_missing.yaml')
     ])
     entity_guid, entity = next(iter(parsed.items()))
+
     instance = entity_instance.EntityInstance.FromYaml(
         entity_guid,
         entity,
