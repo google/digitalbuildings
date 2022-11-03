@@ -18,6 +18,7 @@ from typing import Dict, List, Optional
 from model.constants import BC_GUID
 from model.constants import ENTITY_CODE
 from model.constants import METADATA
+from model.constants import MISSING
 from model.constants import NO_UNITS
 from model.constants import RAW_FIELD_NAME
 from model.constants import RAW_UNIT_PATH
@@ -46,6 +47,8 @@ class EntityField(object):
       standard unit names to raw unit names.
     states: A list of State instances associate with an EntityField.
     device_id: Physical device id for this field's device.
+    missing: whether a required field is missing from a device's telemetry
+      payload.
     metadata: Contextual metadata coming from a physical device. e.g. {
         location: '/Sif-Solo/Site 1 - Sif/Charleston Road North/B13 - 1875
           Charleston/Roof',
@@ -54,13 +57,15 @@ class EntityField(object):
         object_name: 'stat_press_1' }
     guid_to_entity_map: Global mapping of entity guids to Entity instances.
   NOTE: Only units or states can be set. If both are set, then the EntityField
-    instance will raise an Attribute Error.
+    instance will raise an Attribute Error. If neither are set, then the field
+    should either be removed or marked as MISSING.
   """
 
   def __init__(self,
                standard_field_name: str,
-               raw_field_name: str,
                entity_guid: str,
+               missing: bool = False,
+               raw_field_name: Optional[str] = None,
                reporting_entity_guid: Optional[str] = None,
                reporting_entity_field_name: Optional[str] = None,
                metadata: Optional[Dict[str, str]] = None):
@@ -68,8 +73,10 @@ class EntityField(object):
 
     Args:
       standard_field_name: Standardized name of the field.
-      raw_field_name: A field's raw data point value.
       entity_guid: Parent entity GUID for a field.
+      missing: whether a required field is missing from a device's telemetry
+        payload.
+      raw_field_name: A field's raw data point value.
       reporting_entity_guid: [Optional] guid of the reporting entity the field
         is translated on.
       reporting_entity_field_name: Enumerated standard field name for fields
@@ -81,6 +88,7 @@ class EntityField(object):
     self.reporting_entity_field_name = reporting_entity_field_name
     self.reporting_entity_guid = reporting_entity_guid
     self.entity_guid = entity_guid
+    self.missing = missing
     self._states = []
     self._units = None
     self.metadata = metadata
@@ -121,6 +129,7 @@ class EntityField(object):
         reporting_entity_field_name=entity_field_dict[
             REPORTING_ENTITY_FIELD_NAME],
         entity_guid=entity_field_dict[BC_GUID],
+        missing=True if entity_field_dict[MISSING].upper() == 'TRUE' else False,
         reporting_entity_guid=entity_field_dict[REPORTING_ENTITY_GUID])
     if entity_field_dict[STANDARD_UNIT_VALUE] and entity_field_dict[
         RAW_UNIT_VALUE]:
@@ -179,12 +188,6 @@ class EntityField(object):
   def GetSpreadsheetRowMapping(self) -> Dict[str, str]:
     """Returns a dictionary of EntityField attributes by spreadsheet headers."""
     result_dictionary = {
-        STANDARD_FIELD_NAME:
-            self.standard_field_name,
-        RAW_FIELD_NAME:
-            self.raw_field_name,
-        REPORTING_ENTITY_FIELD_NAME:
-            self.reporting_entity_field_name,
         ENTITY_CODE:
             self.guid_to_entity_map.GetEntityCodeByGuid(self.entity_guid),
         BC_GUID:
@@ -193,7 +196,15 @@ class EntityField(object):
             self.guid_to_entity_map.GetEntityCodeByGuid(
                 self.reporting_entity_guid),
         REPORTING_ENTITY_GUID:
-            self.reporting_entity_guid
+            self.reporting_entity_guid,
+        REPORTING_ENTITY_FIELD_NAME:
+            self.reporting_entity_field_name,
+        STANDARD_FIELD_NAME:
+            self.standard_field_name,
+        MISSING:
+            str(self.missing).upper(),
+        RAW_FIELD_NAME:
+            self.raw_field_name,
     }
     if self.units:
       result_dictionary.update(self.units.GetSpreadsheetRowMapping())
