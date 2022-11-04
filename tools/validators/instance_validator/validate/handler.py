@@ -292,8 +292,6 @@ class EntityHelper(object):
     for entity_guid, current_entity in entities.items():
       if not alpha_interdep_helper.ValidateAndUpdateState(
           current_entity.operation):
-        print('[ERROR]\t(v1 Alpha): Building Config cannot have more '
-              'than 2 operations; one being EXPORT.')
         raise ValueError('(v1 Alpha): Building Config cannot have more '
                          'than 2 operations; one being EXPORT.')
       if (current_entity.operation is not instance_parser.EntityOperation.DELETE
@@ -305,9 +303,6 @@ class EntityHelper(object):
       valid_entities[entity_guid] = current_entity
 
     if not building_found:
-      print('[ERROR]\tBuilding entity not found. Configs must contain '
-            'a non-deleted entity of type FACILITIES/BUILDING.'
-            )
       raise SyntaxError('Building entity not found. Configs must contain '
                         'a non-deleted entity of type FACILITIES/BUILDING.')
 

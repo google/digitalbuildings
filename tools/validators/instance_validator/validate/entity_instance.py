@@ -844,18 +844,11 @@ def _ParseTypeString(type_str: syaml.YAML) -> Tuple[str, str]:
   type_parse = type_str.split('/')
 
   if len(type_parse) == 1:
-    print('[ERROR]\tNamespace is missing for type: {type_str}. Proper '
-          'format is NAMESPACE/TYPE_NAME.'.format(type_str=type_str)
-          )
     raise TypeError('Namespace is missing for type: {type_str}. Proper '
           'format is NAMESPACE/TYPE_NAME.'.format(type_str=type_str)
           )
 
   if len(type_parse) > 2:
-    print('[ERROR]\tType is improperly formatted: {type_str}. Proper '
-          'formatting is: NAMESPACE/TYPE_NAME'
-          .format(type_str=type_str)
-          )
     raise TypeError('Type is improperly formatted: {type_str}. Proper '
           'formatting is: NAMESPACE/TYPE_NAME'
           .format(type_str=type_str)
@@ -879,9 +872,6 @@ def _ParseTranslation(
   """
 
   if isinstance(translation_body, str):
-    print('[ERROR]\tTranslation body "{tb}" is not valid.'
-          .format(tb=translation_body)
-          )
     raise ValueError('Translation body "{tb}" is not valid.'
           .format(tb=translation_body)
           )
@@ -891,9 +881,6 @@ def _ParseTranslation(
     ft = translation_body[std_field_name]
     if isinstance(ft, str):
       if not ft:
-        print('[ERROR]\tTranslation details are empty for field: '
-              '{std_field_name}.'.format(std_field_name=std_field_name)
-              )
         raise ValueError('Translation details are empty for field: '
               '{std_field_name}.'.format(std_field_name=std_field_name)
           )
@@ -901,9 +888,6 @@ def _ParseTranslation(
         translation[std_field_name] = ft_lib.UndefinedField(std_field_name)
         continue
       # TODO(b/187757180): support UDMI-compliant shorthand
-      print('[ERROR]\tThis is not an allowed scalar: {ft}.'
-            .format(ft=ft)
-            )
       raise ValueError('This is not an allowed scalar: {ft}.'
             .format(ft=ft)
             )
@@ -919,8 +903,6 @@ def _ParseTranslation(
 
     if parse.STATES_KEY in ft:
       if ft_object:
-        print('[ERROR]\tStates and units are not allowed in the same '
-              'field translation.')
         raise ValueError('States and units are not allowed in the '
               'same field translation.')
       ft_object = ft_lib.MultiStateValue(std_field_name, raw_field_name,
@@ -1065,8 +1047,6 @@ class EntityInstance(findings_lib.Findings):
       # validate that operation is UPDATE if update_mask is present
       if parse.EntityOperation.FromString(entity_yaml[
           parse.ENTITY_OPERATION_KEY]) != parse.EntityOperation.UPDATE:
-        print('[ERROR]\tOnly specify UPDATE operation when '
-              '"update_mask" is present.')
         raise ValueError('Only specify UPDATE operation when '
               '"update_mask" is present.')
       update_mask = entity_yaml[parse.UPDATE_MASK_KEY]
@@ -1089,7 +1069,6 @@ class EntityInstance(findings_lib.Findings):
     guid = None
     if (parse.ENTITY_CODE_KEY in entity_yaml and
         parse.ENTITY_GUID_KEY in entity_yaml):
-      print('[ERROR]\tEntity block cannot contain both "code" and "guid".')
       raise ValueError('Entity block cannot contain both "code" and "guid".')
     elif parse.ENTITY_CODE_KEY in entity_yaml:
       code = entity_yaml[parse.ENTITY_CODE_KEY]
@@ -1097,16 +1076,12 @@ class EntityInstance(findings_lib.Findings):
     elif parse.ENTITY_GUID_KEY in entity_yaml:
       # here we use the presence of ENTITY_GUID_KEY in the entity attributes as
       # as proxy that the block is keyed by code
-      print('[ERROR]\tEntity block must be keyed by a guid.')
       raise ValueError('Entity block must be keyed by a guid.')
     else:
-      print('Entity block must contain either "code" or "guid".')
       raise ValueError('No code or guid keys in block.')
 
     if operation in [parse.EntityOperation.ADD, parse.EntityOperation.UPDATE]:
       if not guid:
-        print('[ERROR]\tEntity block must contain "guid" for '
-              'ADD/UPDATE operations.')
         raise ValueError('Entity block must contain "guid" for '
               'ADD/UPDATE operations.')
 
@@ -1120,7 +1095,6 @@ class EntityInstance(findings_lib.Findings):
     if update_mask:
       if parse.ENTITY_CLOUD_DEVICE_ID_KEY in entity_yaml[
           parse.UPDATE_MASK_KEY] and parse.TRANSLATION_KEY not in entity_yaml:
-        print('[ERROR]\tUpdate of cloud device id requires translations.')
         raise ValueError('Update of cloud device id requires translation.')
 
     translation = None
