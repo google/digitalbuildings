@@ -175,20 +175,6 @@ OM:
   - run_hours_accumulator
   - luminaire_failed_alarm
 
-CIECC:
-  description: "CIE light color control"
-  is_abstract: true
-  uses: 
-  - lighting_color_cie_xvalue_setpoint
-  - lighting_color_cie_yvalue_setpoint
-
-HSLCC:
-  description: "HSL light color control"
-  is_abstract: true
-  uses: 
-  - lighting_color_hsl_saturation_percentage_setpoint
-  - lighting_color_hsl_hue_angle_setpoint
-
 DM:
   description: "Brightness dimming monitoring."
   is_abstract: true
