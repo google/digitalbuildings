@@ -106,6 +106,7 @@ class ConnectionLibTest(absltest.TestCase):
                           findings_lib.DuplicateConnectionDefinitionError)
 
   def testConnectionFolderAddFromConfig(self):
+    # Smoke test comment
     doc = {
         'FEEDS': {'description': 'one'},
         'CONTAINS': {'description': 'two'},
