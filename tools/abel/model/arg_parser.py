@@ -90,7 +90,7 @@ def ParseArgs() -> argparse.ArgumentParser:
       '--output-dir',
       dest='output_dir',
       required=False,
-      help='Absolute or relative path to a directory for output files to be written to',
+      help='Path to a directory for output files to be written to',
       metavar='output-directory')
 
   return parser
