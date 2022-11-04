@@ -85,4 +85,12 @@ def ParseArgs() -> argparse.ArgumentParser:
       help='Timeout duration (in seconds) for telemetry validation test',
       metavar='timeout')
 
+  parser.add_argument(
+      '-d',
+      '--output-dir',
+      dest='output_dir',
+      required=False,
+      help='Path to a directory for output files to be written to',
+      metavar='output-directory')
+
   return parser
