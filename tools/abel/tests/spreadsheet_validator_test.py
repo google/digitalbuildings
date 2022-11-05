@@ -30,6 +30,7 @@ from model.constants import FACILITIES_NAMESPACE
 from model.constants import FACILTITIES_ENTITY_CODE_REGEX
 from model.constants import IS_REPORTING
 from model.constants import METADATA
+from model.constants import MISSING
 from model.constants import NAMESPACE
 from model.constants import RAW_FIELD_NAME
 from model.constants import RAW_STATE
@@ -55,9 +56,11 @@ from tests.test_constants import TEST_SPREADSHEET
 from validators.spreadsheet_error import ConnectionDependencyError
 from validators.spreadsheet_error import CrossSheetDependencyError
 from validators.spreadsheet_error import InvalidNamingError
+from validators.spreadsheet_error import MissingFieldError
 from validators.spreadsheet_error import MissingSpreadsheetValueError
 from validators.spreadsheet_error import SpreadsheetHeaderError
 from validators.spreadsheet_validator import SpreadsheetValidator
+
 
 _TEST_VALIDATOR_LOG_PATH = os.path.join(tempfile.gettempdir(),
                                         'test_model_validation_out.log')
@@ -98,6 +101,7 @@ class SpreadsheetValidatorTest(absltest.TestCase):
         RAW_FIELD_NAME: 'pointset.raw_field_name',
         ENTITY_CODE: 'Not a valid entity code',
         REPORTING_ENTITY_FIELD_NAME: 'test_resporting_field_name',
+        MISSING: 'False',
         REPORTING_ENTITY_CODE: TEST_REPORTING_ENTITY_CODE,
         REPORTING_ENTITY_GUID: TEST_REPORTING_GUID,
         BC_GUID: TEST_REPORTING_GUID,
@@ -267,6 +271,31 @@ class SpreadsheetValidatorTest(absltest.TestCase):
     invalid_name_error = invalid_name_validator_results.pop()
     self.assertIsInstance(invalid_name_error, InvalidNamingError)
     self.assertEqual(error_message, invalid_name_error.GetErrorMessage())
+
+  def testMissingFieldWithExtraCellValues(self):
+    bad_test_field = {
+        STANDARD_FIELD_NAME: 'test_field_name',
+        RAW_FIELD_NAME: 'pointset.raw_field_name',
+        ENTITY_CODE: 'Not a valid entity code',
+        REPORTING_ENTITY_FIELD_NAME: 'test_resporting_field_name',
+        MISSING: 'TRUE',
+        REPORTING_ENTITY_CODE: TEST_REPORTING_ENTITY_CODE,
+        REPORTING_ENTITY_GUID: TEST_REPORTING_GUID,
+        BC_GUID: TEST_REPORTING_GUID,
+        RAW_UNIT_PATH: 'no-units',
+        STANDARD_UNIT_VALUE: 'no-units',
+        RAW_UNIT_VALUE: 'no-units',
+    }
+    self.test_spreadsheet[ENTITY_FIELDS].append(bad_test_field)
+
+    is_valid = self.validator.Validate(self.test_spreadsheet)
+    validation_error = self.validator.validation_errors.pop()
+
+    self.assertFalse(is_valid)
+    self.assertEmpty(self.validator.validation_errors)
+    self.assertIsInstance(validation_error, MissingFieldError)
+    self.assertEqual(validation_error.column, RAW_FIELD_NAME)
+    self.assertEqual(validation_error.table, ENTITY_FIELDS)
 
   # pylint: disable=line-too-long
   def testCreatesLogFile(self):

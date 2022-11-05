@@ -20,6 +20,7 @@ from model.state import State
 from model.units import Units
 from tests.test_constants import TEST_ENTITY_FIELD_DICT_WITH_STATES
 from tests.test_constants import TEST_ENTITY_FIELD_DICT_WITH_UNITS
+from tests.test_constants import TEST_MISSING_ENTITY_FIELD
 from tests.test_constants import TEST_RAW_FIELD_NAME
 from tests.test_constants import TEST_STANDARD_FIELD_NAME
 from tests.test_constants import TEST_STATE_DICT
@@ -82,6 +83,13 @@ class EntityFieldTest(absltest.TestCase):
     with self.assertRaises(AttributeError):
       test_entity_field_instance.states = [test_state]
 
+  def testMisingEntityFieldInstantiatesFromDict(self):
+    missing_field_instance = EntityField.FromDict(TEST_MISSING_ENTITY_FIELD)
+
+    self.assertIsInstance(missing_field_instance, EntityField)
+    self.assertIsNone(missing_field_instance.units)
+    self.assertEmpty(missing_field_instance.states)
+    self.assertTrue(missing_field_instance.missing)
 
 if __name__ == '__main__':
   absltest.main()
