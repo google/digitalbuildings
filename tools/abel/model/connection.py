@@ -98,11 +98,11 @@ class Connection(object):
                                                        ),
         SOURCE_ENTITY_GUID:
             self.source_entity_guid,
+        CONNECTION_TYPE:
+            self.connection_type.name,
         TARGET_ENTITY_CODE:
             self.guid_to_entity_map.GetEntityCodeByGuid(self.target_entity_guid
                                                        ),
         TARGET_ENTITY_GUID:
-            self.target_entity_guid,
-        CONNECTION_TYPE:
-            self.connection_type.name
+            self.target_entity_guid
     }
