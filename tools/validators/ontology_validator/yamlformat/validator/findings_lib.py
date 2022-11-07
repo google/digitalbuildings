@@ -21,6 +21,7 @@ MISSING_PARENT_VALIDATION_RANK = 60
 # TODO(b/254872070): Add type annotations
 
 
+# pylint: disable=consider-using-f-string
 def MakeFieldString(field):
   """Represents OptWrapper as a string prepending '(opt)' for optional fields.
 
@@ -268,7 +269,7 @@ class FindingsUniverse(Findings):
         [folder.local_namespace for folder in folders])
 
   def _MakeNamespaceMap(self, namespaces):
-    """Returns mapping from namespace strings to sets of valid ontology entities.
+    """Returns mapping from namespace strings to valid ontology entity sets.
 
     Args:
       namespaces: list of namespace objects.
@@ -276,7 +277,7 @@ class FindingsUniverse(Findings):
     return {ns.namespace: self._GetNamespaceMapValue(ns) for ns in namespaces}
 
   def _GetNamespaceMapValue(self, namespace):
-    """Override in the subclass to define how values in the namespace map are populated.
+    """Override subclass to define how values in namespace map are populated.
     """
     # Delete the unused parameter so the linter doesn't complain.
     del namespace
@@ -328,7 +329,7 @@ class ValidationWarning(Finding):
 
 
 class DuplicateDefinitionError(ValidationError):
-  """Base class for errors that represent the same component name being defined more than once.
+  """Base class for error for same component name being defined more than once.
 
   Returns:
     An instance of the DuplicateDefinitionError.
@@ -580,6 +581,7 @@ class MissingSubfieldDescriptionWarning(ValidationWarning):
 class MissingUnitError(ValidationError):
   """Measurement subfield has no corresponding unit definitions."""
 
+  # pylint: disable=line-too-long
   def __init__(self, subfield):
     super(MissingUnitError, self).__init__(
         'Measurement subfield "{0}" has no corresponding unit definitions in the same namespace.'
@@ -1090,6 +1092,7 @@ class DuplicateIdsError(ValidationError):
 class DuplicateLocalFieldSetsWarning(ValidationWarning):
   """Two types declare the exact same local field sets."""
 
+  #pylint: disable=line-too-long
   def __init__(self, entity_type, dup_entity_types):
     field_list = list(entity_type.local_field_names)
     field_list.sort()
@@ -1112,6 +1115,7 @@ class DuplicateLocalFieldSetsWarning(ValidationWarning):
 class DuplicateExpandedFieldSetsWarning(ValidationWarning):
   """Two types have the exact same expanded field sets."""
 
+  # pylint: disable=line-too-long
   def __init__(self, entity_type, dup_entity_typenames, equality_key):
     field_count = len(
         set(entity_type.local_field_names.keys())
@@ -1290,7 +1294,7 @@ class PotentialParentReplacementWarning(ValidationWarning):
 
 class ParentReplacementCandidateWarning(ValidationWarning):
   """This type could simplify the inheritance of another type(s)."""
-
+  # pylint: disable=line-too-long
   def __init__(self, entity_type, field_count, replacement_targets):
     field_count = len(entity_type.local_field_names) + len(
         entity_type.inherited_field_names)
