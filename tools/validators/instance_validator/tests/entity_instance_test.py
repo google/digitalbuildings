@@ -872,23 +872,6 @@ class EntityInstanceTest(absltest.TestCase):
 
     self.assertTrue(self.update_validator.Validate(entity))
 
-  def testInstance_DimensionalValueUnitsExpected_Fails(self):
-    entity = entity_instance.EntityInstance(
-        _UPDATE,
-        guid='VAV-123-GUID',
-        code='VAV-123',
-        etag='1234',
-        translation={
-            'zone_air_cooling_temperature_setpoint':
-                field_translation.DimensionalValue(
-                    std_field_name='foo/bar',
-                    unit_field_name='foo/unit',
-                    raw_field_name='foo/raw',
-                    unit_mappings={'no_units': 'no_units'}),
-        })
-
-    self.assertFalse(self.update_validator.Validate(entity))
-
   def testValidate_EmptyCode_Fails(self):
     entity = entity_instance.EntityInstance(_ADD, guid='VAV-123-GUID', code='')
 
