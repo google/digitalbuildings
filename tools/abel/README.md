@@ -145,7 +145,7 @@ ABEL has a few pieces of core functionality, they are:
 
 ### Command-line arguments for ABEL:
 `-s` or `--spreadsheet_id` **required** id for a google sheets spreadsheet
-  * [ABEL Spreadsheet Template](https://docs.google.com/spreadsheets/d/1b6IRimNS1dAtPjkNN-fk4TirnLzOiDyyUmOKP_MhMM0/copy#gid=980240783)
+  * [ABEL Spreadsheet Template](https://docs.google.com/spreadsheets/d/1b6IRimNS1dAtPjkNN-fk4TirnLzOiDyyUmOKP_MhMM0/copy?usp=sharing)
   * A Google Sheets ID is found embedded into the spreadsheet's url.
   e.g. `https://docs/google/com/spreadsheets/d/<spreadsheet_id>/edit#gid=123467`
 
