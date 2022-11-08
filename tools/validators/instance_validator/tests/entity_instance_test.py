@@ -34,6 +34,8 @@ from validate import handler
 from validate import instance_parser
 from validate import link
 
+# SMOKE TEST COMMENT
+
 
 _TESTCASE_PATH = test_constants.TEST_INSTANCES
 
