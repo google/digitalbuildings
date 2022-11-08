@@ -103,7 +103,7 @@ def _MergeSchemas(first: Dict[syaml.ScalarValidator, syaml.Validator],
 
 
 #### Public Text parsing Constants ####
-ENTITY_ID_KEY = 'id'  # deprecated; kept for legacy reasons
+ENTITY_ID_KEY = 'id'
 ENTITY_GUID_KEY = 'guid'
 ENTITY_CODE_KEY = 'code'
 ENTITY_CLOUD_DEVICE_ID_KEY = 'cloud_device_id'
@@ -116,6 +116,7 @@ CONNECTIONS_KEY = 'connections'
 METADATA_KEY = 'metadata'
 PRESENT_VALUE_KEY = 'present_value'
 POINTS = 'points'
+VALUE_RANGE_KEY = 'value_range'
 UNITS_KEY = 'units'
 UNIT_NAME_KEY = 'key'
 UNIT_VALUES_KEY = 'values'
@@ -159,13 +160,15 @@ _TRANSLATION_SCHEMA = syaml.MapPattern(
             syaml.Str(),
         syaml.Optional(STATES_KEY):
             syaml.MapPattern(
-                syaml.Regex(str('^[A-Z][A-Z_]+')),
+                syaml.Regex(str('^[a-zA-Z][a-zA-Z_]+')),
                 syaml.Str() | syaml.Seq(syaml.Str())),
         syaml.Optional(UNITS_KEY):
             syaml.Map({
                 UNIT_NAME_KEY: syaml.Str(),
                 UNIT_VALUES_KEY: syaml.MapPattern(syaml.Str(), syaml.Str())
             }),
+        syaml.Optional(VALUE_RANGE_KEY):
+            syaml.Str(),
     }))
 
 _METADATA_SCHEMA = syaml.Map({
@@ -239,6 +242,8 @@ _ENTITY_EXPORT_SCHEMA = _MergeSchemas(
     })
 
 
+# TODO(b/234492090): id depreciated and no longer used; remove from syntax and
+# content validation - 05312022
 class InstanceParser():
   """One-shot state machine for parsing and syntax checking YAML config files.
 

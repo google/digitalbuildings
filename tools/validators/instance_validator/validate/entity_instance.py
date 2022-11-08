@@ -17,7 +17,6 @@ from __future__ import annotations
 from __future__ import print_function
 
 from typing import Any, Dict, List, Optional, Set, Tuple
-import re
 
 import strictyaml as syaml
 
@@ -32,11 +31,6 @@ from yamlformat.validator import presubmit_validate_types_lib as pvt
 _CONFIG_UPDATE = parse.ConfigMode.UPDATE
 _CONFIG_INIT = parse.ConfigMode.INITIALIZE
 _CONFIG_EXPORT = parse.ConfigMode.EXPORT
-# udmi present value: points.$name.present_value
-# where name follows: [a-z][a-z0-9]*(_[a-z0-9]+)*
-_UDMI_PRESENT_VALUE_REGEX = \
-  r'^(points.)[a-z][a-z0-9]*(_[a-z0-9]+)*(.present_value)$'
-_UDMI_PRESENT_VALUE_PATTERN = re.compile(_UDMI_PRESENT_VALUE_REGEX)
 
 
 def _FieldIsAllowed(
@@ -118,20 +112,13 @@ class CombinationValidator(object):
     self.config_mode = config_mode
     self.entity_instances = entity_instances
 
-  def Validate(self, entity: EntityInstance, is_udmi: bool= False) -> bool:
-    """Returns true if an entity follows all instance and graph rules.
-
-    Arguments
-      entity: EntityInstance object to be validated against the ontology for
-        content and connectivity.
-      is_udmi: flag to indicate process of validation under udmi specification;
-        bool default False.
-    """
+  def Validate(self, entity: EntityInstance) -> bool:
+    """Returns true if an entity follows all instance and graph rules."""
 
     iv = InstanceValidator(self.universe, self.config_mode)
     gv = GraphValidator(self.universe, self.config_mode, self.entity_instances)
     # This will not return Combination validations if instance validations fail
-    return iv.Validate(entity, is_udmi) and gv.Validate(entity)
+    return iv.Validate(entity) and gv.Validate(entity)
 
 
 class GraphValidator(object):
@@ -228,6 +215,7 @@ class GraphValidator(object):
 
 
 def IsEntityIdPresent(entity: EntityInstance) -> bool:
+  """Returns true if the entity has an id; note: planned deprecation."""
   return entity.entity_id is not None
 
 
@@ -251,7 +239,7 @@ class InstanceValidator(object):
   def _ValidateType(self, entity: EntityInstance) -> bool:
     """Returns true if an entity's type is in the ontology.
 
-    This method assumes the type is defined on the entity.
+    This method assues the type is defined on the entity.
 
     Args:
       entity: EntityInstance to validate
@@ -275,10 +263,7 @@ class InstanceValidator(object):
 
     return True
 
-  def _ValidateTranslation(
-    self,
-    entity: EntityInstance,
-    is_udmi: bool= False) -> bool:
+  def _ValidateTranslation(self, entity: EntityInstance) -> bool:
     """Validate an entity's translation against the entity's type or ontology.
 
     If entity operation is ADD, this code ensures that all fields are in the
@@ -286,7 +271,6 @@ class InstanceValidator(object):
 
     Args:
       entity: EntityInstance to validate
-      is_udmi: flag to validate under udmi; defaults to false
 
     Returns:
       Returns boolean for validity of entity translation, defaults to True if
@@ -324,23 +308,9 @@ class InstanceValidator(object):
           is_valid = False
 
     # Check that translations are properly defined
-    found_units = {}
     for qualified_field_name, ft in found_fields.items():
       if not self._FieldTranslationIsValid(qualified_field_name, ft):
         is_valid = False
-      if isinstance(ft, ft_lib.DimensionalValue):
-        if is_udmi and not _UDMI_PRESENT_VALUE_PATTERN.fullmatch(
-          ft.raw_field_name):
-          print(f'present value {ft.raw_field_name} does not conform to udmi ',
-            'regex pattern {_UDMI_PRESENT_VALUE_REGEX}')
-          is_valid = False
-        for std_unit, raw_unit in ft.unit_mappings.items():
-          if std_unit not in found_units:
-            found_units[std_unit] = raw_unit
-            continue
-          if found_units[std_unit] != raw_unit:
-            print(f'found two mappings for {std_unit}')
-            is_valid = False
 
     return is_valid
 
@@ -364,22 +334,22 @@ class InstanceValidator(object):
               f'{qualified_field_name}')
         return False
 
-      if not ft.unit_mappings:
+      if not ft.unit_mapping:
         print('At least one unit must be provided for dimensional value '
               f'{qualified_field_name}')
         return False
 
       is_valid = True
-      for unit in ft.unit_mappings.keys():
-        if unit not in valid_units:
-          print(
-              f'Field {qualified_field_name} has an undefined measurement unit:'
-              + f' {unit}')
-          is_valid = False
+      unit = list(ft.unit_mapping.keys())[0]
+      if unit not in valid_units:
+        print(
+            f'Field {qualified_field_name} has an undefined measurement unit:' +
+            f' {unit}')
+        is_valid = False
       return is_valid
 
     if isinstance(
-        ft, ft_lib.DimensionalValue) and set(ft.unit_mappings) != {'no_units'}:
+        ft, ft_lib.DimensionalValue) and set(ft.unit_mapping) != {'no_units'}:
       print(f'Units are provided for non-dimensional value '
             f'{qualified_field_name}')
       return False
@@ -525,22 +495,21 @@ class InstanceValidator(object):
       return False
     return True
 
-  def Validate(self, entity: EntityInstance, is_udmi: bool= False) -> bool:
+  def Validate(self, entity: EntityInstance) -> bool:
     """Uses the generated ontology universe to validate an entity.
 
     Args:
       entity: EntityInstance to validate
-      is_udmi: flag to validate under udmi; defaults to false
 
     Returns:
       True if the entity is valid
     """
 
     if IsEntityIdPresent(entity):
-      print('Warning: Entity id detected in block. Planned deprecation, ',
-        'will result in validation error in a future releases. Please ',
-        'review digitalbuildings/ontology/docs/building_config.md for ',
-        'more info')
+      print('Warning: Entity id detected in block. Planned deprecation , ',
+            'will result in validation error in a future releases. Please ',
+            'review digitalbuildings/ontology/docs/building_config.md for ',
+            'more info')
 
     is_valid = True
 
@@ -548,10 +517,12 @@ class InstanceValidator(object):
       if entity.operation != parse.EntityOperation.UPDATE:
         print('Update mask is required for update operations')
         is_valid = False
-      if entity.type_name is None:
-        if parse.ENTITY_TYPE_KEY in entity.update_mask:
-          print('Update mask to clear Entity Type not allowed')
-          is_valid = False
+      if entity.type_name is None and parse.ENTITY_TYPE_KEY in entity.update_mask:
+        print('Update mask to clear Entity Type not allowed')
+        is_valid = False
+      if parse.ENTITY_CLOUD_DEVICE_ID_KEY in entity.update_mask:
+        print('Update to Cloud Device ID not allowed')
+        is_valid = False
 
     if not entity.guid:
       print('Entity GUID is required.')
@@ -581,7 +552,7 @@ class InstanceValidator(object):
       if not self._ValidateType(entity):
         is_valid = False
 
-    if not self._ValidateTranslation(entity, is_udmi):
+    if not self._ValidateTranslation(entity):
       is_valid = False
 
     if not self._ConnectionsAreValid(entity):
@@ -640,8 +611,7 @@ def _ParseTranslation(
     raise ValueError(translation_body + ' is not a valid translation')
 
   translation = {}
-  for std_field_name in translation_body:
-    ft = translation_body[std_field_name]
+  for std_field_name, ft in translation_body.items():
     if isinstance(ft, str):
       if not ft:
         raise ValueError(
@@ -654,13 +624,7 @@ def _ParseTranslation(
       raise ValueError(ft + ' is not yet an allowed scalar')
 
     raw_field_name = str(ft[parse.PRESENT_VALUE_KEY])
-    ft_object = None
-
-    if parse.UNITS_KEY in ft:
-      unit_field_name = ft[parse.UNITS_KEY][parse.UNIT_NAME_KEY]
-      unit_mappings = ft[parse.UNITS_KEY][parse.UNIT_VALUES_KEY]
-      ft_object = ft_lib.DimensionalValue(std_field_name, raw_field_name,
-                                          unit_field_name, unit_mappings)
+    ft_object = _ParseUnitsAndValueRange(ft, std_field_name, raw_field_name)
 
     if parse.STATES_KEY in ft:
       if ft_object:
@@ -675,6 +639,54 @@ def _ParseTranslation(
     translation[std_field_name] = ft_object
 
   return translation
+
+
+def _ParseUnitsAndValueRange(ft: Dict[str, Any], std_field_name: str,
+                             raw_field_name: str) -> ft_lib.DimensionalValue:
+  """Parses the value range and units (if any) from a field translation.
+
+  see:
+  https://github.com/google/digitalbuildings/blob/master/ontology/docs/building_config.md#defining-translations
+
+  Args:
+    ft: YAML body for the entity translation for a particular field
+    std_field_name: The standard field name to which the translation belongs
+    raw_field_name: The raw field name for the field
+
+  Returns:
+    A DimensionalValue object
+  """
+
+  if parse.UNITS_KEY in ft:
+    unit_field_name = ft[parse.UNITS_KEY][parse.UNIT_NAME_KEY]
+    unit_mapping = ft[parse.UNITS_KEY][parse.UNIT_VALUES_KEY]
+    if len(unit_mapping) != 1:
+      raise ValueError(
+          'There should be exactly 1 unit mapping in the translation for ' +
+          f'field "{std_field_name}".')
+    if parse.VALUE_RANGE_KEY in ft:
+      value_range = str(ft[parse.VALUE_RANGE_KEY])
+      range_values = value_range.split(',')
+      if len(range_values) != 2:
+        raise ValueError(
+            f'Value range in the translation for field "{std_field_name}" ' +
+            'should be formatted: <min>,<max>.')
+      min_value = float(range_values[0].strip())
+      max_value = float(range_values[1].strip())
+      if min_value >= max_value:
+        raise ValueError(
+            f'Value range in the translation for field "{std_field_name}" ' +
+            'should have a min value that is less than the max value.')
+      return ft_lib.DimensionalValue(std_field_name, raw_field_name,
+                                     unit_field_name, unit_mapping,
+                                     (min_value, max_value))
+    return ft_lib.DimensionalValue(std_field_name, raw_field_name,
+                                   unit_field_name, unit_mapping)
+  elif parse.VALUE_RANGE_KEY in ft:
+    raise ValueError(
+        'A value range cannot be provided without units in the translation ' +
+        f'for field "{std_field_name}".')
+  return None
 
 
 def _ParseConnections(
@@ -778,12 +790,8 @@ class EntityInstance(findings_lib.Findings):
     self.update_mask = update_mask
 
   @classmethod
-  def FromYaml(
-      cls,
-      entity_key: str,
-      entity_yaml: Dict[str, Any],
-      default_operation: parse.EntityOperation
-  ) -> EntityInstance:
+  def FromYaml(cls, entity_key: str, entity_yaml: Dict[str, Any],
+               default_operation: parse.EntityOperation) -> EntityInstance:
     """Class method to instantiate an Entity Instance from yaml.
 
     Args:
@@ -809,8 +817,7 @@ class EntityInstance(findings_lib.Findings):
       if parse.EntityOperation.FromString(entity_yaml[
           parse.ENTITY_OPERATION_KEY]) != parse.EntityOperation.UPDATE:
         raise ValueError(
-            'Only specify "UPDATE" operation when "update_mask" is present.'
-        )
+            'Only specify "UPDATE" operation when "update_mask" is present.')
       update_mask = entity_yaml[parse.UPDATE_MASK_KEY]
       operation = parse.EntityOperation.UPDATE
     # case 2: update_mask implies update operation
