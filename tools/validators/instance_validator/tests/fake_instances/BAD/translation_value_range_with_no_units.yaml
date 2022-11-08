@@ -1,4 +1,4 @@
-# Copyright 2022 Google LLC
+# Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the License);
 # you may not use this file except in compliance with the License.
@@ -12,20 +12,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# bad translation with present value not adhereing to udmi
-
-SDC_EXT-17-GUID:
-  type: HVAC/SDC_EXT
-  code: SDC_EXT-17
+US-SEA-BLDG1-GUID:
+  type: FACILITIES/BUILDING
+  code: US-SEA-BLDG1
   cloud_device_id: "foobar"
   translation:
-    shade_extent_percentage_command:
-      present_value: "bad_prefix.brightness_percentage_sensor_66679452.bad_suffix"
-      units:
-        key: "points.shade_extent_percentage_command.units"
-        values:
-          percent: "%"
-
-US-SEA-BLDG3-GUID:
-  type: FACILITIES/BUILDING
-  code: US-SEA-BLDG3
+    zone_air_temperature_sensor:
+      present_value: "temp_1"
+      value_range: 15,25

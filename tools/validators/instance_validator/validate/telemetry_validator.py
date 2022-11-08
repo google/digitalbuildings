@@ -22,7 +22,6 @@ import threading
 
 from validate import field_translation as ft_lib
 from validate import telemetry
-from validate import message_filters
 from validate import telemetry_validation_reporting as tvr
 
 DEVICE_ID = telemetry.DEVICE_ID
@@ -34,11 +33,10 @@ class TelemetryValidator(object):
   Attributes;
     entities: a dict with entity_name as a key and EntityInstance as value.
     timeout: the max time the validator must read messages from pubsub.
-    is_udmi: true/false treat telemetry stream as UDMI
     callback: the method called by the pubsub listener upon receiving a msg.
   """
 
-  def __init__(self, entities, timeout, is_udmi, callback):
+  def __init__(self, entities, timeout, callback):
     """Init.
 
     Args:
@@ -56,7 +54,6 @@ class TelemetryValidator(object):
     }
     self.timeout = timeout
     self.callback = callback
-    self.is_udmi = is_udmi
     self.validated_entities = {}
     # TODO(charbull): refactor by having on validation_report object instead
     #  of two: warning and errors
@@ -115,13 +112,6 @@ class TelemetryValidator(object):
     Adds all validation errors for the message to a list of all errors
     discovered by this validator.
     """
-
-    # UDMI Pub/Sub streams include messages which aren't telemetry, silently
-    # ignore these if validator configured with --udmi flag
-    if self.is_udmi and not message_filters.Udmi.telemetry(message.attributes):
-      message.ack()
-      return
-
     tele = telemetry.Telemetry(message)
     entity_name = tele.attributes[DEVICE_ID]
 
