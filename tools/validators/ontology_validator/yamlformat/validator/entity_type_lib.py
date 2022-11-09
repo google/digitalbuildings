@@ -410,7 +410,7 @@ class TypeNamespace(findings_lib.Findings):
       fq_tuplemap = {}
       for parent in entity_type.unqualified_parent_names:
         fq_tuple = self._BuildQualifiedParentTuple(parent)
-        fq_name = '{0}/{1}'.format(fq_tuple.namespace, fq_tuple.typename)
+        fq_name = f'{fq_tuple.namespace}/{fq_tuple.typename}'
         fq_tuplemap[fq_name] = fq_tuple
       entity_type.parent_names = fq_tuplemap
     self._parents_qualified = True
@@ -460,8 +460,7 @@ class TypeNamespace(findings_lib.Findings):
 
 def BuildQualifiedField(opt_tuple):
   field_tuple = opt_tuple.field
-  return '{0}/{1}{2}'.format(field_tuple.namespace, field_tuple.field,
-                             field_tuple.increment)
+  return f'{field_tuple.namespace}/{field_tuple.field}{field_tuple.increment}'
 
 
 class EntityType(findings_lib.Findings):
@@ -586,7 +585,7 @@ class EntityType(findings_lib.Findings):
     """
 
     if not (self.inherited_fields_expanded or run_unsafe):
-      raise RuntimeError('Type {0} has not been expanded'.format(self.typename))
+      raise RuntimeError(f'Type {self.typename} has not been expanded')
     if self._all_fields is None:
       tmp = self.local_field_names.copy()
       tmp.update(self.inherited_field_names)
