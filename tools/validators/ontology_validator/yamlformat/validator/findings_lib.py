@@ -18,7 +18,10 @@ import operator
 MAX_RANK = 1000000000  # A big number, but not so big it breaks sorting
 MISSING_PARENT_VALIDATION_RANK = 60
 
+# TODO(b/254872070): Add type annotations
 
+
+# pylint: disable=consider-using-f-string
 def MakeFieldString(field):
   """Represents OptWrapper as a string prepending '(opt)' for optional fields.
 
@@ -58,8 +61,7 @@ def _DedupFindings(findings):
 # Base classes for findings.
 # ---------------------------------------------------------------------------- #
 class FileContext(object):
-  """Wrapper class to store file-related information.
-  """
+  """Wrapper class to store file-related information."""
 
   def __init__(self, filepath, begin_line_number=None, end_line_number=None):
     """Creates a FileContext.
@@ -89,8 +91,7 @@ class FileContext(object):
 
 
 class Finding(object):
-  """Virtual class for findings.
-  """
+  """Virtual class for findings."""
 
   def __init__(self,
                message: str,
@@ -268,7 +269,7 @@ class FindingsUniverse(Findings):
         [folder.local_namespace for folder in folders])
 
   def _MakeNamespaceMap(self, namespaces):
-    """Returns mapping from namespace strings to sets of valid ontology entities.
+    """Returns mapping from namespace strings to valid ontology entity sets.
 
     Args:
       namespaces: list of namespace objects.
@@ -276,7 +277,8 @@ class FindingsUniverse(Findings):
     return {ns.namespace: self._GetNamespaceMapValue(ns) for ns in namespaces}
 
   def _GetNamespaceMapValue(self, namespace):
-    """Override in the subclass to define how values in the namespace map are populated."""
+    """Override subclass to define how values in namespace map are populated.
+    """
     # Delete the unused parameter so the linter doesn't complain.
     del namespace
     return []
@@ -327,7 +329,7 @@ class ValidationWarning(Finding):
 
 
 class DuplicateDefinitionError(ValidationError):
-  """Base class for errors that represent the same component name being defined more than once.
+  """Base class for error for same component name being defined more than once.
 
   Returns:
     An instance of the DuplicateDefinitionError.
@@ -579,6 +581,7 @@ class MissingSubfieldDescriptionWarning(ValidationWarning):
 class MissingUnitError(ValidationError):
   """Measurement subfield has no corresponding unit definitions."""
 
+  # pylint: disable=line-too-long
   def __init__(self, subfield):
     super(MissingUnitError, self).__init__(
         'Measurement subfield "{0}" has no corresponding unit definitions in the same namespace.'
@@ -764,19 +767,37 @@ class DuplicateUnitDefinitionError(DuplicateDefinitionError):
                          current_instance.file_context, prev_context)
 
 
-class InvalidUnitFormatError(ValidationError):
-  """A unit's YAML specification is invalid."""
+class InvalidMeasurementFormatError(ValidationError):
+  """The content of a measurement is invalidly formatted."""
 
-  def __init__(self, key, context):
+  def __init__(self, measurement, context):
     """Init.
 
     Args:
-      key: YAML specification for unit.
+      measurement: Name of the measurement subfield.
+      context: Instance of FileContext class for unit.
+    """
+    super(InvalidMeasurementFormatError, self).__init__(
+        'Measurement type "{0}" has an invalid format; each measurement type '
+        'should map to either a string (another measurement type) or a map '
+        'containing the units that belong to the measurement type.'.format(
+            measurement), context)
+
+
+class InvalidUnitFormatError(ValidationError):
+  """A unit's YAML specification is invalid."""
+
+  def __init__(self, unit_name, context):
+    """Init.
+
+    Args:
+      unit_name: The unit name.
       context: Instance of FileContext class for unit.
     """
     super(InvalidUnitFormatError, self).__init__(
-        'Unit "{0}" definition has an invalid format; expected only a single '
-        'unit name and tag.'.format(str(key)), context)
+        'Unit "{0}" definition has an invalid format; expected either the unit '
+        'name and a "STANDARD" tag or the unit name and a map containing the '
+        'conversion multiplier and offset.'.format(str(unit_name)), context)
 
 
 class InvalidUnitNamespaceError(ValidationError):
@@ -800,6 +821,58 @@ class UnknownUnitTagError(ValidationError):
   def __init__(self, unit_name, tag, context):
     super(UnknownUnitTagError, self).__init__(
         'Unit "{0}" has an unrecognized tag "{1}".'.format(unit_name, tag),
+        context)
+
+
+class InvalidUnitConversionKeyError(ValidationError):
+  """A unit entry has a conversion map with an invalid key."""
+
+  def __init__(self, unit_name, key, context):
+    """Init.
+
+    Args:
+      unit_name: The unit name.
+      key: The key in the conversion map item.
+      context: Instance of FileContext class for unit.
+    """
+    super(InvalidUnitConversionKeyError, self).__init__(
+        'Unit "{0}" has a conversion map with key "{1}". The '
+        'conversion map for a non-standard unit must contain only the '
+        '"multiplier" and "offset" keys.'.format(unit_name, key), context)
+
+
+class InvalidUnitConversionValueError(ValidationError):
+  """A unit entry has a conversion map with an invalid value."""
+
+  def __init__(self, unit_name, key, value, context):
+    """Init.
+
+    Args:
+      unit_name: The unit name.
+      key: The key in the conversion map item.
+      value: The value in the conversion map item.
+      context: Instance of FileContext class for unit.
+    """
+    super(InvalidUnitConversionValueError, self).__init__(
+        'Unit "{0}" has a conversion map with key "{1}" and invalid value "{2}"'
+        '. The value must be numeric.'.format(unit_name, key, value), context)
+
+
+class InvalidUnitConversionMapError(ValidationError):
+  """A unit entry has a conversion map with an invalid size."""
+
+  def __init__(self, unit_name, num_items, context):
+    """Init.
+
+    Args:
+      unit_name: The unit name.
+      num_items: The number of items in the conversion map.
+      context: Instance of FileContext class for unit.
+    """
+    super(InvalidUnitConversionMapError, self).__init__(
+        'Unit "{0}" has a conversion map with {1} items when there should be '
+        'exactly 2. The conversion map for a non-standard unit must contain '
+        'only the "multiplier" and "offset" keys.'.format(unit_name, num_items),
         context)
 
 
@@ -1019,6 +1092,7 @@ class DuplicateIdsError(ValidationError):
 class DuplicateLocalFieldSetsWarning(ValidationWarning):
   """Two types declare the exact same local field sets."""
 
+  #pylint: disable=line-too-long
   def __init__(self, entity_type, dup_entity_types):
     field_list = list(entity_type.local_field_names)
     field_list.sort()
@@ -1041,6 +1115,7 @@ class DuplicateLocalFieldSetsWarning(ValidationWarning):
 class DuplicateExpandedFieldSetsWarning(ValidationWarning):
   """Two types have the exact same expanded field sets."""
 
+  # pylint: disable=line-too-long
   def __init__(self, entity_type, dup_entity_typenames, equality_key):
     field_count = len(
         set(entity_type.local_field_names.keys())
@@ -1149,7 +1224,6 @@ class MissingParentWarning(ValidationWarning):
 
   def __init__(self, typenames, set_size, qualified_parents, context,
                sum_match_quality, curation_bonus, key):
-
     """Init.
 
     Args:
@@ -1220,7 +1294,7 @@ class PotentialParentReplacementWarning(ValidationWarning):
 
 class ParentReplacementCandidateWarning(ValidationWarning):
   """This type could simplify the inheritance of another type(s)."""
-
+  # pylint: disable=line-too-long
   def __init__(self, entity_type, field_count, replacement_targets):
     field_count = len(entity_type.local_field_names) + len(
         entity_type.inherited_field_names)

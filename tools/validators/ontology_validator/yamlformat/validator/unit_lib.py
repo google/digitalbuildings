@@ -26,12 +26,15 @@ from yamlformat.validator import findings_lib
 
 UNIT_NAME_VALIDATOR = re.compile(r'^[a-z]+(_[a-z]+)*$')
 
-STANDARD_UNIT_TAG = 'STANDARD'
-
+STANDARD_UNIT_TAG: str = 'STANDARD'
+CONVERSION_MULTIPLIER_KEY: str = 'multiplier'
+CONVERSION_OFFSET_KEY: str = 'offset'
 
 _MeasurementAlias = NamedTuple('MeasurementAlias',
                                [('alias_name', str), ('base_name', str),
                                 ('file_context', findings_lib.FileContext)])
+
+# TODO(b/254872070): Add type annotations
 
 
 class UnitUniverse(findings_lib.FindingsUniverse):
@@ -51,7 +54,11 @@ class UnitUniverse(findings_lib.FindingsUniverse):
     return namespace
 
   def GetUnitsForMeasurement(self, measurement_type, namespace_name=''):
-    """Returns the collection of units that are defined for the given measurement type as a dictionary from unit names to Unit objects, or None if there are no units for that measurement type.
+    """Returns a collection of units for a given measurement type.
+
+    Returns a collection of units that are defined for the given measurement
+    type as a dictionary from unit names to Unit objects, or None if there
+    are no units for that measurement type.
 
     Args:
       measurement_type: Name of the measurement subfield.
@@ -61,7 +68,7 @@ class UnitUniverse(findings_lib.FindingsUniverse):
         measurement_type)
 
   def GetMeasurementTypes(self, namespace_name=''):
-    """Returns the list of measurement type names that have units defined in the namespace.
+    """Returns list of measurement types having units defined in the namespace.
 
     Args:
       namespace_name: Name of the namespace.
@@ -124,32 +131,72 @@ class UnitFolder(config_folder_lib.ConfigFolder):
       if isinstance(content, str):
         self.local_namespace.InsertMeasurementAlias(
             _MeasurementAlias(measurement, content, context))
-      else:
-        for unit in content:
-          is_standard = False
-          unit_name = ''
-          if isinstance(unit, dict):
-            if len(unit) == 1:
-              unit_name, tag = next(iter(unit.items()))
-            else:
-              unit_name = next(iter(unit), '(Blank)')
-              self.AddFinding(
-                  findings_lib.InvalidUnitFormatError(unit_name, context))
-              continue
-            if tag == STANDARD_UNIT_TAG:
-              is_standard = True
+      elif isinstance(content, dict):
+        for unit_name, attr in content.items():
+          # Unit has the STANDARD tag
+          if isinstance(attr, str):
+            if attr == STANDARD_UNIT_TAG:
               standard_tag_count += 1
+              self.AddUnit(measurement, Unit(unit_name, True, 1.0, 0.0,
+                                             context))
             else:
               self.AddFinding(
-                  findings_lib.UnknownUnitTagError(unit_name, tag, context))
+                  findings_lib.UnknownUnitTagError(unit_name, attr, context))
+          # Unit has a conversion map
+          elif isinstance(attr, dict):
+            self._ParseConversionInfo(unit_name, attr, measurement, context)
           else:
-            unit_name = unit
-          self.AddUnit(measurement, Unit(unit_name, is_standard, context))
+            self.AddFinding(
+                findings_lib.InvalidUnitFormatError(unit_name, context))
         if standard_tag_count != 1:
           self.AddFinding(
               findings_lib.StandardUnitCountError(measurement,
                                                   standard_tag_count, context))
+      else:
+        self.AddFinding(
+            findings_lib.InvalidMeasurementFormatError(measurement, context))
     self.local_namespace.ResolveMeasurementAliases()
+
+  def _ParseConversionInfo(self, unit_name, conversion_map, measurement,
+                           context):
+    """Helper method that reads the conversion information for a unit from yaml.
+
+    Args:
+      unit_name: the name of the unit
+      conversion_map: the dictionary containing conversion information
+      measurement: the measurement type of the unit
+      context: config file context
+    """
+    multiplier = None
+    offset = None
+    if len(conversion_map) == 2:
+      for key, value in conversion_map.items():
+        if key == CONVERSION_MULTIPLIER_KEY:
+          if isinstance(value, (int, float)):
+            multiplier = float(value)
+          else:
+            self.AddFinding(
+                findings_lib.InvalidUnitConversionValueError(
+                    unit_name, key, value, context))
+        elif key == CONVERSION_OFFSET_KEY:
+          if isinstance(value, (int, float)):
+            offset = float(value)
+          else:
+            self.AddFinding(
+                findings_lib.InvalidUnitConversionValueError(
+                    unit_name, key, value, context))
+        else:
+          self.AddFinding(
+              findings_lib.InvalidUnitConversionKeyError(
+                  unit_name, key, context))
+      if multiplier is not None and offset is not None:
+        self.AddUnit(measurement,
+                     Unit(unit_name, False, multiplier, offset, context))
+    else:
+      self.AddFinding(
+          findings_lib.InvalidUnitConversionMapError(unit_name,
+                                                     len(conversion_map),
+                                                     context))
 
 
 class UnitNamespace(findings_lib.Findings):
@@ -239,8 +286,8 @@ class UnitNamespace(findings_lib.Findings):
     # Assert namespace is global namespace otherwise add finding.
     elif self.parent_namespace is not None:
       self.AddFinding(
-          findings_lib.InvalidUnitNamespaceError(
-              self.namespace, unit.file_context))
+          findings_lib.InvalidUnitNamespaceError(self.namespace,
+                                                 unit.file_context))
     self._InsertEffectiveUnit(measurement_type, unit)
 
   def _InsertEffectiveUnit(self, measurement_type, unit):
@@ -270,7 +317,7 @@ class UnitNamespace(findings_lib.Findings):
     # unit_key is an opaque ID that is unique within the namespace. It is only
     # used by the backward compatibility checking, which needs all of the units
     # to be in a single dict.
-    unit_key = '{0}-{1}'.format(measurement_type, unit.name)
+    unit_key = f'{measurement_type}-{unit.name}'
     self.units[unit_key] = unit
 
   def InsertMeasurementAlias(self, alias):
@@ -291,8 +338,10 @@ class UnitNamespace(findings_lib.Findings):
       return
     self._measurement_aliases[alias.alias_name] = alias
 
+# pylint: disable=line-too-long
   def ResolveMeasurementAliases(self):
-    """Validates all measurement alias references and populates the collections of units for all aliased measurement types."""
+    """Validates all measurement alias references and populates the collections of units for all aliased measurement types.
+    """
     for alias in self._measurement_aliases.values():
       if alias.base_name in self._measurement_aliases:
         self.AddFinding(findings_lib.MeasurementAliasIsAliasedError(alias))
@@ -312,7 +361,8 @@ class UnitNamespace(findings_lib.Findings):
     return self._units_by_measurement.get(measurement_type)
 
   def GetMeasurementTypes(self):
-    """Returns the list of measurement type names that have units defined in the namespace."""
+    """Returns the list of measurement type names that have units defined in the namespace.
+    """
     return self._units_by_measurement.keys()
 
 
@@ -322,15 +372,28 @@ class Unit(findings_lib.Findings):
   Attributes:
     name: the full name (without namespace) of this unit
     is_standard: whether this is the standard unit for the measurement type
+    conversion_multiplier: the number to multiply by to convert a value using
+      this unit to the standard unit
+    conversion_offset: the number to add to convert a value using this unit to
+      the standard unit
     file_context: the config file context for where this unit was defined
   """
 
-  def __init__(self, name, is_standard=False, file_context=None):
+  def __init__(self,
+               name,
+               is_standard=False,
+               conversion_multiplier=1.0,
+               conversion_offset=0.0,
+               file_context=None):
     """Init.
 
     Args:
       name: required string name for the unit
       is_standard: whether this is the standard unit for the measurement type
+      conversion_multiplier: the number to multiply by to convert a value using
+        this unit to the standard unit
+      conversion_offset: the number to add to convert a value using this unit to
+        the standard unit
       file_context: optional object with the config file location of this unit.
 
     Returns:
@@ -339,6 +402,8 @@ class Unit(findings_lib.Findings):
     super(Unit, self).__init__()
     self.name = name
     self.is_standard = is_standard
+    self.conversion_multiplier = conversion_multiplier
+    self.conversion_offset = conversion_offset
     self.file_context = file_context
 
     if not isinstance(name, str):
@@ -348,8 +413,7 @@ class Unit(findings_lib.Findings):
 
   def __eq__(self, other):
     if isinstance(other, Unit):
-      return (self.name == other.name and
-              self.is_standard == other.is_standard)
+      return self.name == other.name and self.is_standard == other.is_standard
     return False
 
   def __ne__(self, other):
