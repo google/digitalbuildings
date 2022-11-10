@@ -133,7 +133,7 @@ class SubfieldFolder(config_folder_lib.ConfigFolder):
     self.local_namespace.InsertSubfield(subfield)
 
   def _AddFromConfigHelper(self, document, context):
-    """Helper method that reads a single yaml document and adds all subfields found.
+    """Helper method that reads a yaml document and adds all subfields found.
 
     Also adds any findings to the subfield.
 

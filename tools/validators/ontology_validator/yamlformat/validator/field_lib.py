@@ -33,6 +33,7 @@ FIELD_CHARACTER_REGEX = re.compile(r'^[a-z][a-z0-9]*(?:_[a-z][a-z0-9]*)*$')
 FIELD_INCREMENT_REGEX = re.compile(r'((?:_[0-9]+)*)$')
 
 
+#pylint: disable=super-with-arguments
 def SplitFieldName(qualified_field_name):
   """Splits the field name on '/' and returns the parts separately.
 
@@ -160,7 +161,7 @@ class FieldFolder(config_folder_lib.ConfigFolder):
     self.local_namespace.InsertField(field)
 
   def _AddFromConfigHelper(self, document, context):
-    """Helper method that reads a single yaml document and adds all fields found.
+    """Helper method that reads a yaml document and adds all fields found.
 
     Also adds any findings to the field.
 
