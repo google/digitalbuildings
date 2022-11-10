@@ -281,6 +281,17 @@ BPC:
   implements:
   - OPERATIONAL
 
+BPC2X:
+  id: "16869691043929391104"
+  description: "Building pressure control for two pressure sensors (stand-alone fan)."
+  is_abstract: true
+  uses:
+  - building_air_static_pressure_sensor_1
+  - building_air_static_pressure_sensor_2
+  - building_air_static_pressure_setpoint
+  implements:
+  - OPERATIONAL
+
 EDPM:
   id: "18075318737925308416"
   description: "Exhaust air damper percentage monitoring."
@@ -597,6 +608,7 @@ DFSS:
   - discharge_air_static_pressure_sensor
   - discharge_fan_lost_power_alarm
   - discharge_fan_failed_alarm
+  - discharge_fan_speed_mode
   - schedule_run_command
   - discharge_fan_run_time_accumulator
   - overload_discharge_fan_alarm
@@ -2240,6 +2252,7 @@ PHWSC:
   is_abstract: true
   opt_uses:
   - leaving_air_preheating_coil_temperature_sensor
+  - heating_request_count
   uses:
   - preheating_water_valve_percentage_command
   - supply_air_temperature_setpoint
@@ -2556,6 +2569,7 @@ ECON:
   - outside_air_flowrate_sensor
   - outside_air_flowrate_setpoint
   - return_air_damper_percentage_command
+  - outside_air_damper_percentage_sensor
   uses:
   - outside_air_temperature_sensor
   - economizer_mode
@@ -5167,6 +5181,15 @@ DAIDC2X:
   - discharge_air_isolation_damper_status_2 
   - discharge_air_isolation_damper_command_1
   - discharge_air_isolation_damper_command_2  
+  implements:
+  - MONITORING
+
+DAIDC:
+  description: "Discharge air isolation damper control and monitoring."
+  is_abstract: true
+  uses:
+  - discharge_air_isolation_damper_status
+  - discharge_air_isolation_damper_command
   implements:
   - MONITORING
 
