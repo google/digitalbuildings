@@ -36,6 +36,7 @@ _F = field_lib.Field
 
 FLAGS = flags.FLAGS
 
+# pylint: disable=protected-access
 # Constant to point to test files.
 RESOURCE_PATH = path.join(test_constants.TEST_RESOURCES)
 field_lib.FIELD_TO_NAMESPACE_REGEX = re.compile(
@@ -393,9 +394,6 @@ class ParseConfigLibTest(absltest.TestCase):
         unit_folder.HasFindingTypes([findings_lib.StandardUnitCountError]))
     self.assertTrue(
         unit_folder.HasFindingTypes([findings_lib.UnknownUnitTagError]))
-    self.assertTrue(
-        unit_folder.HasFindingTypes([findings_lib.DuplicateUnitDefinitionError
-                                    ]))
 
   def testParseUnitFoldersFromBadFileWithSubfieldUniverse(self):
     subfield_folders = parse.ParseSubfieldFoldersFromFiles(
