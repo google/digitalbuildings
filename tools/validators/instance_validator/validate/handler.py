@@ -28,8 +28,8 @@ from validate import telemetry_validator
 from yamlformat.validator import presubmit_validate_types_lib as pvt
 
 # pylint: disable=consider-using-f-string
-# pylint: disable=raise-missing-from
-# pylint: disable=broad-except
+
+
 
 def GetDefaultOperation(
     config_mode: instance_parser.ConfigMode) -> instance_parser.EntityOperation:
@@ -169,6 +169,9 @@ def RunValidation(filenames: List[str],
             'run telemetry validation. See here for more details: '
             'https://google.github.io/digitalbuildings/tools/validators/'
             'instance_validator/#telemetry-validation')
+  # pylint: disable=broad-except
+  # Using broad exception to catch any underlying error that might cause
+  # validation to fail
   except Exception as ex:
     print('[ERROR]\tSomething failed during validation and has '
           'terminated validation. See logs above and error here: {ex}.'

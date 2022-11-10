@@ -401,7 +401,7 @@ class InstanceValidator(object):
       # Check if the field is defined MISSING
       if isinstance(ft, ft_lib.UndefinedField):
 
-        # If its MISSING and REQUIRED, warn the user.
+        # If the field is MISSING and REQUIRED, warn the user.
         if not type_fields[qualified_field_name].optional:
           print('[WARNING]\tEntity {guid} ({code}) provides MISSING '
                 'translation for field {field} which is required for type '
@@ -416,7 +416,7 @@ class InstanceValidator(object):
                                            etype=entity.type_name)
                 )
 
-        # If its MISSING and OPTIONAL, raise rror. They shouldn't do this.
+        # If its MISSING and OPTIONAL, raise error. They shouldn't do this.
         # Optional fields are automatically interpreted as missing if not
         # provided explicitly.
         if type_fields[qualified_field_name].optional:
@@ -844,7 +844,7 @@ def _ParseTypeString(type_str: syaml.YAML) -> Tuple[str, str]:
   type_parse = type_str.split('/')
 
   if len(type_parse) == 1:
-    raise TypeError('Namespace is missing for type: {type_str}. Proper '
+    raise TypeError('Namespace is malformed for type: {type_str}. Proper '
           'format is NAMESPACE/TYPE_NAME.'.format(type_str=type_str)
           )
 
@@ -1076,9 +1076,11 @@ class EntityInstance(findings_lib.Findings):
     elif parse.ENTITY_GUID_KEY in entity_yaml:
       # here we use the presence of ENTITY_GUID_KEY in the entity attributes as
       # as proxy that the block is keyed by code
-      raise ValueError('Entity block must be keyed by a guid.')
+      raise ValueError('Entity block must be keyed by a guid. Please adjust.')
     else:
-      raise ValueError('No code or guid keys in block.')
+      raise ValueError('Keys "code" and "guid" missing from entity block. '
+                       'Fix this by adding one of these keys to the entity '
+                       'definition.')
 
     if operation in [parse.EntityOperation.ADD, parse.EntityOperation.UPDATE]:
       if not guid:
