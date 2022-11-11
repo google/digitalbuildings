@@ -1678,3 +1678,6 @@ literals:
 
 ## New fields for RO water system
 - water_totaldissolvedsolids_concentration_sensor
+
+## New field for SDC
+- shade_extent_percentage_sensor
