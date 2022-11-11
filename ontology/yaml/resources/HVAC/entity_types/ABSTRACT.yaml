@@ -608,7 +608,6 @@ DFSS:
   - discharge_air_static_pressure_sensor
   - discharge_fan_lost_power_alarm
   - discharge_fan_failed_alarm
-  - discharge_fan_speed_mode
   - schedule_run_command
   - discharge_fan_run_time_accumulator
   - overload_discharge_fan_alarm
