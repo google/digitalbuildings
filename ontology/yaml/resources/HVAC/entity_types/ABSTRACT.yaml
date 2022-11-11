@@ -2570,7 +2570,6 @@ ECON:
   - outside_air_relative_humidity_sensor
   - outside_air_damper_percentage_sensor
   - return_air_damper_percentage_command
-  - outside_air_damper_percentage_sensor
   uses:
   - outside_air_temperature_sensor
   - economizer_mode
