@@ -3752,6 +3752,21 @@ AHU_CHWSC_ECON_FDPM_EDRPC_RFSS_RFVSC_SFSS_SFVSC_SSPC:
   - SFSS
   - SFVSC
   - SSPC
+  
+AHU_SFSS_SFVSC_CHWSC_OAFC_SSPC_RAVOCC_RACO2C_ESFM_SAIDC:
+  description: "AHU with CO2, VOC based outside air control, static pressure based VFD speed control,supply temperature based Chilled water valve modulation."
+  is_canonical: true
+  implements:
+  - AHU
+  - SFSS
+  - SFVSC
+  - CHWSC
+  - OAFC
+  - SSPC
+  - RAVOCC
+  - RACO2C
+  - ESFM
+  - SAIDC
 
 ###################################
 ### Existing Non-standard Types ###
