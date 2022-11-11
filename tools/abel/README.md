@@ -145,7 +145,7 @@ ABEL has a few pieces of core functionality, they are:
 
 ### Command-line arguments for ABEL:
 `-s` or `--spreadsheet_id` **required** id for a google sheets spreadsheet
-  * [ABEL Spreadsheet Template](https://docs.google.com/spreadsheets/d/1tcLjFnHiXUT-xh5C1hRKiUVaUH_CzgSI8zFQ_B8q7vs/copy#gid=455639674)
+  * [ABEL Spreadsheet Template](https://docs.google.com/spreadsheets/d/1b6IRimNS1dAtPjkNN-fk4TirnLzOiDyyUmOKP_MhMM0/copy?usp=sharing)
   * A Google Sheets ID is found embedded into the spreadsheet's url.
   e.g. `https://docs/google/com/spreadsheets/d/<spreadsheet_id>/edit#gid=123467`
 
@@ -163,6 +163,12 @@ file. Only required for the `Building Config -> Spreadsheet` workflow.
 `-a` or `--service-account` path to a service account key file corresponding to an account that has permission to pull messages from the subscription. Optional for telemetry validation if gcloud default service account authentication is used.
 
 `-o` or `--timeout` timeout duration in seconds for the telemetry validation test. The default value is 600 seconds, or 10 minutes. If this time limit is exceeded before the validator receives a test pubsub message for each of the entities configured in the given instance config file, the test will fail with an error and report the entities that were not heard from.
+
+`-m` or `--modified-types-filepath` fully-qualified path to a modified ontology
+that is not in the [DigitalBuildings repository](../..). The [Ontology
+Validator](../validators/ontology_validator) will surface validation results
+from the modified ontology, and Building Configuration files will be validated
+against the modified ontology.
 
 ### The ABEL Spreadsheet
 The ABEL spreadsheet serves as a user-friendly interface for ABEL and is what

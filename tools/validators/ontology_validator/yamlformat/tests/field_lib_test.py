@@ -32,7 +32,7 @@ MEASUREMENT = subfield_lib.SubfieldCategory.MEASUREMENT
 POINT_TYPE = subfield_lib.SubfieldCategory.POINT_TYPE
 
 _GOOD_NAMESPACE = 'mynamespace'
-_GOOD_PATH = '{0}/fields/anyfolder'.format(_GOOD_NAMESPACE)
+_GOOD_PATH = f'{_GOOD_NAMESPACE}/fields/anyfolder'
 _GOOD_GLOBAL_PATH = 'fields/anyfolder'
 
 

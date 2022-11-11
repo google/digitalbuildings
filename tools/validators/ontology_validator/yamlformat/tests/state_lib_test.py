@@ -22,7 +22,7 @@ from yamlformat.validator import findings_lib
 from yamlformat.validator import state_lib
 from absl.testing import absltest
 
-_GOOD_PATH = '{0}/states/anyfolder'.format('mynamespace')
+_GOOD_PATH = 'mynamespace/states/anyfolder'
 
 
 class StateLibTest(absltest.TestCase):
@@ -40,7 +40,7 @@ class StateLibTest(absltest.TestCase):
     self.assertIn('STATE_TWO', states)
 
   def testStateUniverseGetFindings(self):
-    context = findings_lib.FileContext('{0}/file.yaml'.format(_GOOD_PATH))
+    context = findings_lib.FileContext(f'{_GOOD_PATH}/file.yaml')
     folder = state_lib.StateFolder(_GOOD_PATH)
     folder.AddFinding(findings_lib.InconsistentFileLocationError('', context))
     namespace = folder.local_namespace
@@ -92,7 +92,7 @@ class StateLibTest(absltest.TestCase):
         'STATE_TWO': 'two',
     }
     folder = state_lib.StateFolder(_GOOD_PATH)
-    folder.AddFromConfig([doc], '{0}/file.yaml'.format(_GOOD_PATH))
+    folder.AddFromConfig([doc], f'{_GOOD_PATH}/file.yaml')
 
     self.assertCountEqual(['STATE_ONE', 'STATE_TWO'],
                           folder.local_namespace.states)
@@ -100,7 +100,7 @@ class StateLibTest(absltest.TestCase):
 
   def testStateFolderAddFromConfigNotYamlFails(self):
     folder = state_lib.StateFolder(_GOOD_PATH)
-    folder.AddFromConfig([{}], '{0}/file.txt'.format(_GOOD_PATH))
+    folder.AddFromConfig([{}], f'{_GOOD_PATH}/file.txt')
     self.assertIsInstance(folder.GetFindings()[0],
                           findings_lib.InconsistentFileLocationError)
 

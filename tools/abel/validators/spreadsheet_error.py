@@ -20,6 +20,7 @@ from model.constants import CONNECTIONS
 from model.constants import ENTITIES
 
 
+# pylint: disable=line-too-long
 class BaseSpreadsheetError(Exception):
   """Custom exception to model validation errors on a concrete model spreadsheet.
 
@@ -56,8 +57,13 @@ class InvalidNamingError(BaseSpreadsheetError):
     naming_pattern: Regex pattern for entity names.
   """
 
-  def __init__(self, table: str, row: str, column: str, invalid_name: str,
-               naming_pattern: str, message: Optional[str] = ''):
+  def __init__(self,
+               table: str,
+               row: str,
+               column: str,
+               invalid_name: str,
+               naming_pattern: str,
+               message: Optional[str] = ''):
     """Init.
 
     Args:
@@ -97,6 +103,25 @@ class MissingSpreadsheetValueError(BaseSpreadsheetError):
       column: Column header for the missing value.
       message: [Optional] Custom exception message for the missing value.
     """
+    super().__init__(table, message)
+    self.row = row
+    self.column = column
+
+  def GetErrorMessage(self) -> str:
+    return f'Table: {self.table}, Row: {self.row}, Column: {self.column}, Message: {self.message}'
+
+
+class MissingFieldError(BaseSpreadsheetError):
+  """Exception to raise errors for validations associated with missing fields.
+
+  Attributes:
+    table: The Entity Fields table.
+    row: Row number of invalid missing field values.
+    column: column name of invalid cell values.
+    Message: [Optional] Custom exception message for invalid cell values.
+  """
+
+  def __init__(self, table: str, row: str, column: str, message: Optional[str]):
     super().__init__(table, message)
     self.row = row
     self.column = column
@@ -177,8 +202,13 @@ class CrossSheetDependencyError(BaseSpreadsheetError):
     message: Custom error message.
   """
 
-  def __init__(self, source_table: str, target_table: str, row: str,
-               column: str, cell_value: str, message: Optional[str] = ''):
+  def __init__(self,
+               source_table: str,
+               target_table: str,
+               row: str,
+               column: str,
+               cell_value: str,
+               message: Optional[str] = ''):
     """Init.
 
     Args:

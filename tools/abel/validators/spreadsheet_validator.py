@@ -32,7 +32,12 @@ from model.constants import ENTITY_CODE
 from model.constants import ENTITY_FIELDS
 from model.constants import FACILITIES_NAMESPACE
 from model.constants import FACILTITIES_ENTITY_CODE_REGEX
+from model.constants import MISSING
 from model.constants import NAMESPACE
+from model.constants import NO_UNITS
+from model.constants import RAW_FIELD_NAME
+from model.constants import RAW_UNIT_PATH
+from model.constants import RAW_UNIT_VALUE
 from model.constants import REPORTING_ENTITY_CODE
 from model.constants import REPORTING_ENTITY_FIELD_NAME
 from model.constants import REQUIRED_CONNECTION_HEADERS
@@ -43,6 +48,7 @@ from model.constants import REQUIRED_STATE_HEADERS
 from model.constants import SITES
 from model.constants import SOURCE_ENTITY_CODE
 from model.constants import STANDARD_FIELD_NAME
+from model.constants import STANDARD_UNIT_VALUE
 from model.constants import STATES
 from model.constants import TARGET_ENTITY_CODE
 from validators.spreadsheet_error import BaseSpreadsheetError
@@ -50,9 +56,9 @@ from validators.spreadsheet_error import ConnectionDependencyError
 from validators.spreadsheet_error import CrossSheetDependencyError
 from validators.spreadsheet_error import DuplicateCodeError
 from validators.spreadsheet_error import InvalidNamingError
+from validators.spreadsheet_error import MissingFieldError
 from validators.spreadsheet_error import MissingSpreadsheetValueError
 from validators.spreadsheet_error import SpreadsheetHeaderError
-
 
 _COLUMN_HEADER_INDEX = 1
 _ROW_START_INDEX = 2
@@ -115,8 +121,10 @@ class SpreadsheetValidator(object):
     self.validation_errors += self._ValidateBuildingCodes(
         parsed_spreadsheet[SITES])
     entities_sheet = parsed_spreadsheet[ENTITIES]
+    fields_sheet = parsed_spreadsheet[ENTITY_FIELDS]
     self.validation_errors += self._ValidateEntityCodes(entities_sheet)
     self.validation_errors += self.ValidateFacilitiesEntities(entities_sheet)
+    self.validation_errors += self._ValidateMissingFields(fields_sheet)
     for parameter_list in validation_parameters:
       self.validation_errors += self._ValidateHeaders(
           table=parameter_list[0],
@@ -230,7 +238,6 @@ class SpreadsheetValidator(object):
 
     Returns:
       List of CrossSheetDependencyError instances.
-
     """
     # pylint: disable=line-too-long
     validation_errors = []
@@ -414,6 +421,37 @@ class SpreadsheetValidator(object):
                 column=BUILDING_CODE,
                 invalid_name=building_code,
                 naming_pattern=BUILDING_CODE_REGEX))
+    return validation_errors
+
+  def _ValidateMissingFields(
+      self, fields_sheet: List[Dict[str, str]]) -> List[MissingFieldError]:
+    """Validates empty cell values for a Missing field.
+
+    If a field is marked as missing then, it cannot have a raw field name or
+    units. This method validates the spreadsheet to ensure the raw field name
+    and Units cells are left empty.
+
+    Args:
+      fields_sheet: A parsed Entity Fields sheet.
+
+    Returns:
+      A list of MissingFieldError instances.
+    """
+    validation_errors = []
+    missing_field_headers = [
+        RAW_FIELD_NAME, RAW_UNIT_VALUE, RAW_UNIT_PATH, STANDARD_UNIT_VALUE
+    ]
+    for row_number, field in enumerate(fields_sheet, _ROW_START_INDEX):
+      for column_header in missing_field_headers:
+        if field[MISSING].upper() == 'TRUE':
+          if field[column_header] and field[column_header] != NO_UNITS:
+            validation_errors.append(
+                MissingFieldError(
+                    table=ENTITY_FIELDS,
+                    row=row_number,
+                    column=column_header,
+                    message=f"{column_header} must be blank if a field is missing from an entity's translation."
+                ))
     return validation_errors
 
   def _LogErrors(self, validation_errors: List[BaseSpreadsheetError]) -> None:
