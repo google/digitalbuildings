@@ -1031,6 +1031,9 @@ literals:
 - supervisor_control_mode:
   - ENABLED
   - DISABLED
+- supervisor_run_command:
+  - ON
+  - OFF
 - supervisor_supply_air_static_pressure_setpoint
 - supervisor_supply_air_temperature_setpoint
 - program_supply_air_static_pressure_setpoint
