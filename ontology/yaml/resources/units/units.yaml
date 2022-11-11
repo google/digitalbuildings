@@ -12,271 +12,506 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 acceleration:
-- meters_per_second_per_second: STANDARD
+  meters_per_square_second: STANDARD
+  gravity:
+    multiplier: 9.80665
+    offset: 0
+  milligravity:
+    multiplier: 0.00980665
+    offset: 0
+  feet_per_square_second:
+    multiplier: 0.3048
+    offset: 0
+  millimeters_per_square_second:
+    multiplier: 0.001
+    offset: 0
 angle:
-- degrees: STANDARD
+  degrees: STANDARD
 angularmomentum:
-- joule_seconds: STANDARD
-apparentpower:
-- volt_amperes_apparent: STANDARD
-- kilovolt_amperes_apparent
-- megavolt_amperes_apparent
+  joule_seconds: STANDARD
+# TODO(tsodorff): Define a way of properly doing this conversion.
 aqi:
-- epa: STANDARD
-- eea
-- uab
+  epa: STANDARD #Environmental Protection Agency standard
+  eea: # European Air Quality Index
+    multiplier: 1
+    offset: 0
+  uba: # Umwelt Bundesamt, German air quality standard
+    multiplier: 1
+    offset: 0
 area:
-- square_meters: STANDARD
-- square_centimeters
-- square_feet
-- square_inches
+  square_meters: STANDARD
+  square_centimeters:
+    multiplier: 0.0001
+    offset: 0
+  square_feet:
+    multiplier: 0.09290304
+    offset: 0
+  square_inches:
+    multiplier: 0.00064516
+    offset: 0
 concentration:
-- parts_per_unit: STANDARD
-- parts_per_million
-- parts_per_billion
-- grams_per_kilogram # Can convert approximately using Avogadro
-- grams_of_water_per_kilogram
-- miligrams_per_liter
+  parts_per_unit: STANDARD
+  parts_per_million:
+    multiplier: 0.000001
+    offset: 0
+  parts_per_billion:
+    multiplier: 0.000000001
+    offset: 0
+  grams_per_kilogram: # Can convert approximately using Avogadro
+    multiplier: 0.001
+    offset: 0
+  grams_of_water_per_kilogram:
+    multiplier: 0.001
+    offset: 0
 current:
-- amperes: STANDARD
-- milliamperes
+  amperes: STANDARD
+  milliamperes:
+    multiplier: 0.001
+    offset: 0
 currentratio:
-- no_units: STANDARD
+  no_units: STANDARD
 diameter: distance
 density:
-- kilograms_per_cubic_meter: STANDARD
-- grams_per_cubic_meter
-- micrograms_per_cubic_meter
-- milligrams_per_cubic_meter
+  kilograms_per_cubic_meter: STANDARD
+  grams_per_cubic_meter:
+    multiplier: 0.001
+    offset: 0
+  micrograms_per_cubic_meter:
+    multiplier: 0.000000001
+    offset: 0
+  milligrams_per_cubic_meter:
+    multiplier: 0.000001
+    offset: 0
 distance:
-- meters: STANDARD
-- centimeters
-- millimeters
-- micrometers
-- feet
-- inches
+  meters: STANDARD
+  centimeters:
+    multiplier: 0.01
+    offset: 0
+  millimeters:
+    multiplier: 0.001
+    offset: 0
+  micrometers:
+    multiplier: 0.000001
+    offset: 0
+  feet:
+    multiplier: 0.3048
+    offset: 0
+  inches:
+    multiplier: 0.0254
+    offset: 0
 electriccapacitance:
-- farads: STANDARD
+  farads: STANDARD
 electricconductance:
-- siemens: STANDARD
+  siemens: STANDARD
 electricconductivity:
-- siemens_per_meter: STANDARD
+  siemens_per_meter: STANDARD
 electriccurrentdensity:
-- amperes_per_square_meter: STANDARD
+  amperes_per_square_meter: STANDARD
 electricfield:
-- volts_per_meter: STANDARD
+  volts_per_meter: STANDARD
 electricinductance:
-- henrys: STANDARD
+  henrys: STANDARD
 electricphasedifference:
-- degrees_phase: STANDARD
+  degrees_phase: STANDARD
 electricfieldstrength:
-- amperes_per_meter: STANDARD
+  amperes_per_meter: STANDARD
 electricresistivity:
-- ohm_meters: STANDARD
+  ohm_meters: STANDARD
 energy:
-- joules: STANDARD
-- kilowatt_hours
-- btus
-- kilobtus
-- kilojoules
-- megabtus
-- megajoules
-- megawatt_hours
-- therms
-- kilovolt_ampere_hours
-- kilovolt_ampere_reactive_hours
-- ton_hours
-- watt_hours
-- kilovolt_amperes_reactive_hours
-- kilovolt_amperes_apparent_hours
+  joules: STANDARD
+  kilowatt_hours:
+    multiplier: 3600000
+    offset: 0
+  btus:
+    multiplier: 1055.055853
+    offset: 0
+  kilobtus:
+    multiplier: 1055055.853
+    offset: 0
+  kilojoules:
+    multiplier: 1000
+    offset: 0
+  megabtus:
+    multiplier: 1055055853
+    offset: 0
+  megajoules:
+    multiplier: 1000000
+    offset: 0
+  megawatt_hours:
+    multiplier: 3600000000
+    offset: 0
+  therms:
+    multiplier: 105480400
+    offset: 0
+  kilovolt_ampere_hours:
+    multiplier: 3600000
+    offset: 0
+  ton_hours:
+    multiplier: 12660670.23144
+    offset: 0
+  watt_hours:
+    multiplier: 3600
+    offset: 0
 energydensity:
-- kilojoules_per_kilogram: STANDARD
+  kilojoules_per_kilogram: STANDARD
 entropy:
-- joules_per_kelvin: STANDARD
-- kilojoules_per_kelvin
-- megajoules_per_kelvin
+  joules_per_kelvin: STANDARD
+  kilojoules_per_kelvin:
+    multiplier: 1000
+    offset: 0
+  megajoules_per_kelvin:
+    multiplier: 1000000
+    offset: 0
 flowrate:
-- cubic_meters_per_second: STANDARD
-- cubic_feet_per_second
-- cubic_feet_per_minute
-- cubic_feet_per_hour
-- cubic_meters_per_minute
-- cubic_meters_per_hour
-- liters_per_second
-- liters_per_minute
-- liters_per_hour
-- gallons_per_minute
-- imperial_gallons_per_minute
-- us_gallons_per_minute
+  cubic_meters_per_second: STANDARD
+  cubic_feet_per_second:
+    multiplier: 0.028316846592
+    offset: 0
+  cubic_feet_per_minute:
+    multiplier: 0.0004719474432000001
+    offset: 0
+  cubic_feet_per_hour:
+    multiplier: 0.000007865792
+    offset: 0
+  cubic_meters_per_minute:
+    multiplier: 0.016666666666666667
+    offset: 0
+  cubic_meters_per_hour:
+    multiplier: 0.000277777777777778
+    offset: 0
+  liters_per_second:
+    multiplier: 0.001
+    offset: 0
+  liters_per_minute:
+    multiplier: 0.000016666666666667
+    offset: 0
+  liters_per_hour:
+    multiplier: 0.000000277777777778
+    offset: 0
+  gallons_per_minute:
+    multiplier: 0.0000630901964
+    offset: 0
+  imperial_gallons_per_minute:
+    multiplier: 0.000075768166666667
+    offset: 0
+  us_gallons_per_minute:
+    multiplier: 0.0000630901964
+    offset: 0
 force:
-- newton: STANDARD
+  newton: STANDARD
 frequency:
-- hertz: STANDARD
-- cycles_per_hour
-- cycles_per_minute
-- kilohertz
-- megahertz
-- per_hour
-- per_minute
-- per_second
-- percent_per_second
+  hertz: STANDARD
+  cycles_per_hour:
+    multiplier: 3600
+    offset: 0
+  cycles_per_minute:
+    multiplier: 60
+    offset: 0
+  kilohertz:
+    multiplier: 0.001
+    offset: 0
+  megahertz:
+    multiplier: 0.000001
+    offset: 0
+  per_hour:
+    multiplier: 3600
+    offset: 0
+  per_minute:
+    multiplier: 60
+    offset: 0
+  per_second:
+    multiplier: 1
+    offset: 0
 humidity:
-- percent_relative_humidity: STANDARD
+  percent_relative_humidity: STANDARD
 illuminance:
-- lux: STANDARD
-- foot_candles
+  lux: STANDARD
+  foot_candles:
+    multiplier: 10.7639
+    offset: 0
 length: distance
 level: distance
 impulse:
-- newton_seconds: STANDARD
+  newton_seconds: STANDARD
 irradiance:
-- watt_per_square_metre: STANDARD
-linearacceleration:
-- meters_per_square_second: STANDARD
-- gravity
-- milligravity
-- feet_per_square_second
-- millimeters_per_square_second
+  watt_per_square_metre: STANDARD
+linearacceleration: acceleration
 linearvelocity:
-- meters_per_second: STANDARD
-- meters_per_minute
-- meters_per_hour
-- millimeters_per_minute
-- millimeters_per_second
-- kilometers_per_hour
-- feet_per_minute
-- feet_per_second
-- miles_per_hour
+  meters_per_second: STANDARD
+  meters_per_minute:
+    multiplier: 0.016666666667
+    offset: 0
+  meters_per_hour:
+    multiplier: 0.000277777778
+    offset: 0
+  millimeters_per_minute:
+    multiplier: 0.000016666667
+    offset: 0
+  millimeters_per_second:
+    multiplier: 0.001
+    offset: 0
+  kilometers_per_hour:
+    multiplier: 0.277777777778
+    offset: 0
+  feet_per_minute:
+    multiplier: 0.00508
+    offset: 0
+  feet_per_second:
+    multiplier: 0.3048
+    offset: 0
+  miles_per_hour:
+    multiplier: 0.44704
+    offset: 0
 luminance:
-- candelas_per_square_meter: STANDARD
+  candelas_per_square_meter: STANDARD
 luminousflux:
-- lumens: STANDARD
+  lumens: STANDARD
 luminousintensity:
-- candelas: STANDARD
+  candelas: STANDARD
 magneticflux:
-- webers: STANDARD
+  webers: STANDARD
 magneticinduction:
-- teslas: STANDARD
+  teslas: STANDARD
 magneticmoment:
-- ampere_square_meters: STANDARD
+  ampere_square_meters: STANDARD
 mass:
-- grams: STANDARD
-- kilograms
-- pounds_mass
-- tons
+  grams: STANDARD
+  kilograms:
+    multiplier: 1000
+    offset: 0
+  pounds_mass:
+    multiplier: 453.592
+    offset: 0
+  tons:
+    multiplier: 907184
+    offset: 0
 massconcentration: concentration
 massflow:
-- grams_per_second: STANDARD
-- grams_per_minute
-- kilograms_per_hour
-- kilograms_per_minute
-- kilograms_per_second
-- tons_per_hour
-- pounds_mass_per_hour
-- pounds_mass_per_minute
-- pounds_mass_per_second
+  grams_per_second: STANDARD
+  grams_per_minute:
+    multiplier: 0.016666666667
+    offset: 0
+  kilograms_per_hour:
+    multiplier: 0.27778
+    offset: 0
+  kilograms_per_minute:
+    multiplier: 16.6667
+    offset: 0
+  kilograms_per_second:
+    multiplier: 1000
+    offset: 0
+  tons_per_hour:
+    multiplier: 251.996
+    offset: 0
+  pounds_mass_per_hour:
+    multiplier: 0.125998
+    offset: 0
+  pounds_mass_per_minute:
+    multiplier: 7.55987
+    offset: 0
+  pounds_mass_per_second:
+    multiplier: 453.592
+    offset: 0
 obscuration:
-- percent_obscuration_per_meter: STANDARD
-- percent_obscuration_per_foot
+  percent_obscuration_per_meter: STANDARD
+  percent_obscuration_per_foot:
+    multiplier: 0.3048
+    offset: 0
 percentage:
-- percent: STANDARD
+  percent: STANDARD
 power:
-- watts: STANDARD
-- kilowatts
-- volt_amperes
-- kilovolt_amperes
-- megawatts
-- milliwatts
-- tons_of_refrigeration
-- btus_per_hour
-- horsepower
-- kilobtus_per_hour
-- therms_per_hour
+  watts: STANDARD
+  kilowatts:
+    multiplier: 1000
+    offset: 0
+  volt_amperes:
+    multiplier: 1
+    offset: 0
+  kilovolt_amperes:
+    multiplier: 1000
+    offset: 0
+  megawatts:
+    multiplier: 1000000
+    offset: 0
+  milliwatts:
+    multiplier: 0.001
+    offset: 0
+  tons_of_refrigeration:
+    multiplier: 3517
+    offset: 0
+  btus_per_hour:
+    multiplier: 0.29307107
+    offset: 0
+  horsepower:
+    multiplier: 745.699872
+    offset: 0
+  kilobtus_per_hour:
+    multiplier: 293.07107
+    offset: 0
+  therms_per_hour:
+    multiplier: 29300.1111
+    offset: 0
+  volt_amperes_reactive:
+    multiplier: 1
+    offset: 0
+  kilovolt_amperes_reactive:
+    multiplier: 1000
+    offset: 0
+  megavolt_amperes_reactive:
+    multiplier: 1000000
+    offset: 0
+  volt_amperes_apparent:
+    multiplier: 1
+    offset: 0
+  kilovolt_amperes_apparent:
+    multiplier: 1000
+    offset: 0
+  megavolt_amperes_apparent:
+    multiplier: 1000000
+    offset: 0
 powerfactor:
-- no_units: STANDARD
+  no_units: STANDARD
 powerflux:
-- watts_per_square_meter: STANDARD
-- watts_per_square_foot
+  watts_per_square_meter: STANDARD
+  watts_per_square_foot:
+    multiplier: 0.092903
+    offset: 0
 pressure:
-- pascals: STANDARD
-- hectopascals
-- kilopascals
-- centimeters_of_mercury
-- centimeters_of_water
-- millimeters_of_mercury
-- inches_of_water
-- inches_of_mercury
-- pounds_force_per_square_inch
-- atmospheres
-- millibar
-- bars
+  pascals: STANDARD
+  hectopascals:
+    multiplier: 0.01
+    offset: 0
+  kilopascals:
+    multiplier: 1000
+    offset: 0
+  centimeters_of_mercury:
+    multiplier: 1333.22365
+    offset: 0
+  centimeters_of_water:
+    multiplier: 98.0665
+    offset: 0
+  millimeters_of_mercury:
+    multiplier: 133.322
+    offset: 0
+  inches_of_water:
+    multiplier: 249.080024
+    offset: 0
+  inches_of_mercury:
+    multiplier: 3386.39
+    offset: 0
+  pounds_force_per_square_inch:
+    multiplier: 6894.75789
+    offset: 0
+  atmospheres:
+    multiplier: 101325
+    offset: 0
+  millibar:
+    multiplier: 100
+    offset: 0
+  bars:
+    multiplier: 100000
+    offset: 0
 rate:
-- inv_second: STANDARD
-reactivepower:
-- volt_amperes_reactive: STANDARD
-- kilovolt_amperes_reactive
-- megavolt_amperes_reactive
+  inv_second: STANDARD
 resistance:
-- ohms: STANDARD
-- kiloohms
-- megaohms
-- milliohms
+  ohms: STANDARD
+  kiloohms:
+    multiplier: 1000
+    offset: 0
+  megaohms:
+    multiplier: 1000000
+    offset: 0
+  milliohms:
+    multiplier: 0.001
+    offset: 0
 rotationalvelocity:
-- revolutions_per_minute: STANDARD
+  revolutions_per_minute: STANDARD
 specificenergy:
-- joules_per_kilogram_kelvin: STANDARD
+  joules_per_kilogram_kelvin: STANDARD
 specificenthalpy:
-- joules_per_kilogram: STANDARD
-- btus_per_pound_dry_air
-- joules_per_kilogram_dry_air
-- kilojoules_per_kilogram_dry_air
-- megajoules_per_kilogram_dry_air
+  joules_per_kilogram: STANDARD
+  btus_per_pound_dry_air:
+    multiplier: 2326
+    offset: 0
+  joules_per_kilogram_dry_air:
+    multiplier: 1
+    offset: 0
+  kilojoules_per_kilogram_dry_air:
+    multiplier: 1000
+    offset: 0
+  megajoules_per_kilogram_dry_air:
+    multiplier: 1000000
+    offset: 0
 temperature:
-- kelvin: STANDARD
-- degrees_celsius
-- degrees_fahrenheit
-temperaturechangerate:
-- kelvin_per_second: STANDARD
-- kelvin_per_minute
-- kelvin_per_hour
-- degrees_celsius_per_hour
-- degrees_celsius_per_minute
-- degrees_fahrenheit_per_hour
-- degrees_fahrenheit_per_minute
+  kelvin: STANDARD
+  degrees_celsius:
+    multiplier: 1
+    offset: 273.15
+  degrees_fahrenheit:
+    multiplier: 0.5555555555555556
+    offset: 255.37037037037038
 timetemperature:
-- degree_days_kelvin: STANDARD
-- degree_days_celsius
-- degree_days_fahrenheit
+  degree_days_kelvin: STANDARD
+  degree_days_celsius:
+    multiplier: 1
+    offset: -273.15
+  degree_days_fahrenheit:
+    multiplier: 0.5555555556
+    offset: 255.37
 thermalconductivity:
-- watts_per_meter_per_kelvin: STANDARD
+  watts_per_meter_per_kelvin: STANDARD
 thermalcapacity:
-- btus_per_pound: STANDARD
+  btus_per_pound: STANDARD
 thermaltransmittance:
-- watts_per_square_meter_kelvin: STANDARD
+  watts_per_square_meter_kelvin: STANDARD
 time:
-- seconds: STANDARD
-- days
-- hours
-- hundredths_seconds
-- milliseconds
-- minutes
-- months
-- weeks
-- years
+  seconds: STANDARD
+  days:
+    multiplier: 84600
+    offset: 0
+  hours:
+    multiplier: 3600
+    offset: 0
+  hundredths_seconds:
+    multiplier: 0.01
+    offset: 0
+  milliseconds:
+    multiplier: 0.001
+    offset: 0
+  minutes:
+    multiplier: 60
+    offset: 0
+  weeks:
+    multiplier: 604800
+    offset: 0
 torque:
-- newton_meters: STANDARD
+  newton_meters: STANDARD
 voltage:
-- volts: STANDARD
-- kilovolts
-- megavolts
-- millivolts
+  volts: STANDARD
+  kilovolts:
+    multiplier: 1000
+    offset: 0
+  megavolts:
+    multiplier: 1000000
+    offset: 0
+  millivolts:
+    multiplier: 0.001
+    offset: 0
 voltageratio:
-- no_units: STANDARD
+  no_units: STANDARD
 volume:
-- cubic_meters: STANDARD
-- liters
-- imperial_gallons
-- us_gallons
-- cubic_feet
+  cubic_meters: STANDARD
+  liters:
+    multiplier: 0.001
+    offset: 0
+  imperial_gallons:
+    multiplier: 0.00454609
+    offset: 0
+  us_gallons:
+    multiplier: 0.003785412
+    offset: 0
+  cubic_feet:
+    multiplier: 0.028316846592
+    offset: 0
 volumetricconcentration:
-- parts_per_cubic_centimeter: STANDARD # can be approximated using Avogadro
+  parts_per_cubic_centimeter: STANDARD # can be approximated using Avogadro

@@ -2897,6 +2897,8 @@ ECON:
   - supply_air_temperature_sensor
   - outside_air_flowrate_sensor
   - outside_air_flowrate_setpoint
+  - outside_air_relative_humidity_sensor
+  - outside_air_damper_percentage_sensor
   - return_air_damper_percentage_command
   uses:
   - outside_air_temperature_sensor
@@ -5731,6 +5733,15 @@ DAIDC2X:
   - discharge_air_isolation_damper_status_2 
   - discharge_air_isolation_damper_command_1
   - discharge_air_isolation_damper_command_2  
+  implements:
+  - MONITORING
+
+DAIDC:
+  description: "Discharge air isolation damper control and monitoring."
+  is_abstract: true
+  uses:
+  - discharge_air_isolation_damper_status
+  - discharge_air_isolation_damper_command
   implements:
   - MONITORING
 

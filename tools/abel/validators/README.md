@@ -36,7 +36,7 @@ edit a user's spreadsheet.
 
 ## Google Sheets template
 
-The [ABEL Spreadsheet Template](https://docs.google.com/spreadsheets/d/1tcLjFnHiXUT-xh5C1hRKiUVaUH_CzgSI8zFQ_B8q7vs/copy#gid=980240783) has a strict format that must be adhered to.
+The [ABEL Spreadsheet Template](https://docs.google.com/spreadsheets/d/1b6IRimNS1dAtPjkNN-fk4TirnLzOiDyyUmOKP_MhMM0/copy?usp=sharing) has a strict format that must be adhered to.
 
 Below is a definition of each table and column in the ABEL spreadsheet:
 - [Site](#site)
@@ -122,15 +122,19 @@ entity reporting the field's data. This may be a gateway or some other IoT conne
 
 [UUID4](https://en.wikipedia.org/wiki/Universally_unique_identifier#Version_4_(random)) [identifier](../../../ontology/docs/building_config.md#identifiers) for an entity corresponding to the entity in the Reporting Entity Code Column. This value may be left blank unless the `reporting entity code` is **not unique**.
 
-`DBO Standard Field Name` *string* **required**
-
-[Standardized field name](../../../ontology/docs/ontology.md#fields) belonging to an entity type as defined in the [Digital Buildings Ontology](../../../ontology). e.g. `zone_air_temperature_sensor`
-
 `Reporting Entity Field` *string*
 
 Name of a field as it is reported by a [gateway or other reporting entity](../../../onotology/docs/building_config.md#reporting-physical-devices). e.g. `zone_air_temperature_sensor_1` where the standard field name is `zone_air_temperature_sensor`. If the a field is not linked to a virtual entity then this value does not need to be filled in. Reporting entity fields may be [enumerated](../../../ontology/docs/ontology.md#enumeration).
 
-`Raw Field Path` *string* **required**
+`DBO Standard Field Name` *string* **required**
+
+[Standardized field name](../../../ontology/docs/ontology.md#fields) belonging to an entity type as defined in the [Digital Buildings Ontology](../../../ontology). e.g. `zone_air_temperature_sensor`
+
+`Missing` *boolean* **required**
+
+Indicates whether a field should be present in an entity's [translation](../../../ontology/docs/building_config.md#defining-translations) to accurately model an [entity type](../../../ontology/docs/ontology.md#entity-types) even though it may not be reported in its telemetry payload.
+
+`Raw Field Path` *string*
 
 Path to data point on a physical device's telemetry payload. The field path is used as the `present_value` in an entity type's [translation](../../../ontology/docs/building_config.md#defining-translations) to a physical device payload. e.g. `points.discharge_fan_run_command.present_value`.
 

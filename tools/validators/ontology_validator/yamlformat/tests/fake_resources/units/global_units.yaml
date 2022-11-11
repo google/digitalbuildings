@@ -1,8 +1,14 @@
 current:
-- amperes: STANDARD
-- milliamperes
+  amperes: STANDARD
+  milliamperes:
+    multiplier: 0.001
+    offset: 0
 
 temperature:
-- kelvins: STANDARD
-- degrees_celsius
-- degrees_fahrenheit
+  kelvins: STANDARD
+  degrees_celsius:
+    multiplier: 1
+    offset: 273.15
+  degrees_fahrenheit:
+    multiplier: 0.5555555555555556
+    offset: 255.37037037037038

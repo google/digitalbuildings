@@ -79,7 +79,7 @@ class ConfigUniverse(findings_lib.Findings):
       print('FieldUniverse undefined in ConfigUniverse')
       return None
 
-    states_by_field = dict()
+    states_by_field = {}
 
     fields = self.field_universe.GetFieldsMap()
     if fields:
@@ -335,7 +335,7 @@ def SeparateConfigFiles(path_tuples):
       units=tuple(units),
       connections=tuple(connections))
 
-
+# pylint: disable=consider-using-f-string
 def _ValidateConfigInner(unmodified,
                          modified_base,
                          modified_client,

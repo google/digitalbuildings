@@ -31,6 +31,7 @@ _FS = test_helpers_lib.Fields
 _F = test_helpers_lib.Field
 
 
+#pylint: disable=protected-access
 class EntityTypeLibTest(absltest.TestCase):
 
   def testEntityTypeUniverseGetFindings(self):
