@@ -2567,6 +2567,8 @@ ECON:
   - supply_air_temperature_sensor
   - outside_air_flowrate_sensor
   - outside_air_flowrate_setpoint
+  - outside_air_relative_humidity_sensor
+  - outside_air_damper_percentage_sensor
   - return_air_damper_percentage_command
   - outside_air_damper_percentage_sensor
   uses:
