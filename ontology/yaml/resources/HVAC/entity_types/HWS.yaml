@@ -185,6 +185,9 @@ HWS_SWTC_WDPC_SWTCSCM_WDPCSCM:
   - HWS_SWTC_WDPC
   - SWTCSCM
   - WDPCSCM
+  opt_uses:
+  - supervisor_run_command
+  - run_command
 
 HWS_SS_ALS:
   id: "10375881911795974144"
@@ -345,4 +348,10 @@ HWS_SWTC_CPC:
   - circulation_pump_speed_percentage_command
   - circulation_pump_speed_percentage_setpoint
   - failed_alarm
-
+  
+HWS_SS:
+  id: "8438977830259261440"
+  description: "Simple hot water system with status only"
+  implements:
+  - HWS
+  - SS

@@ -1020,6 +1020,9 @@ literals:
 - supervisor_control_mode:
   - ENABLED
   - DISABLED
+- supervisor_run_command:
+  - ON
+  - OFF
 - supervisor_supply_air_static_pressure_setpoint
 - supervisor_supply_air_temperature_setpoint
 - program_supply_air_static_pressure_setpoint
@@ -1663,3 +1666,6 @@ literals:
 
 ## New fields for RO water system
 - water_totaldissolvedsolids_concentration_sensor
+
+## New field for SDC
+- shade_extent_percentage_sensor
