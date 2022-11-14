@@ -236,7 +236,6 @@ SENSOR_ZA_CO2M_PMM_HCHO:
   - zone_air_formaldehyde_concentration_sensor  
   
 SENSOR_CO2M_VOCM:
-
   description: "CO2 and VOCconcentration monitoring."
   is_canonical: true
   implements:
