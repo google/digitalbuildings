@@ -282,6 +282,16 @@ BPC:
   implements:
   - OPERATIONAL
 
+BPC2X:
+  description: "Building pressure control for two pressure sensors (stand-alone fan)."
+  is_abstract: true
+  uses:
+  - building_air_static_pressure_sensor_1
+  - building_air_static_pressure_sensor_2
+  - building_air_static_pressure_setpoint
+  implements:
+  - OPERATIONAL
+
 EDPM:
   id: "18075318737925308416"
   description: "Exhaust air damper percentage monitoring."
@@ -2245,6 +2255,7 @@ PHWSC:
   is_abstract: true
   opt_uses:
   - leaving_air_preheating_coil_temperature_sensor
+  - heating_request_count
   uses:
   - preheating_water_valve_percentage_command
   - supply_air_temperature_setpoint

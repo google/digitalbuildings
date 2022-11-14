@@ -65,6 +65,16 @@ BLR_SS_SWTC_SWISOVM:
   - SWTC
   - SWISOVM
 
+BLR_CPC_SS_SWTC_SWISOVM:
+  description: "Simple boiler with supply control, supply isolation, and circulation pump."
+  is_canonical: true
+  implements:
+  - BLR
+  - CPC
+  - SS
+  - SWTC
+  - SWISOVM
+
 BLR_SS_SWTC_HT2SWC:
   id: "6774450266713358336"
   description: "Two-stage boiler with supply control and supply isolation."
