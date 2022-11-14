@@ -60,7 +60,6 @@ component:
   vane: "Component for guiding media flow."
   wheel: "Component used for transfer of heat from incoming to outgoing air streams. "
   winding: "Conductive wires wrapped around a magnetic core."
-  #New subfields for DE-FRA-NEM32
   luminaire: "Device that emits light"
 descriptor:
   air: "Atmospheric air, either conditioned or unconditioned."
@@ -318,7 +317,6 @@ measurement:
   voltageratio: "The ratio of the Primary voltage of the transformer to the secondary voltage."
   volume: "The quantity of three-dimensional space contained by a closed surface."
   volumetricconcentration: "Concentration in terms of volume (parts per unit volume)."
-  #New subfields for DE-FRA-NEM32
   xvalue: "X-value of a matrix"
   yvalue: "Y-value of a matrix"
   hours: "Measurement of elapsed time in hours"
