@@ -358,7 +358,6 @@ measurement_descriptor:
   thermal: "Relating to the transfer of heat."
   tilt: "Degree of radial rotation."
   wetbulb: "Describes air temperature measured at 100% relative humidity (saturation)."
-  #New fields for DE-FRA-NEM32
   operating: "State when a decvice active"
   hue: "degree on color wheel from 0 to 360°"
   orientation: "Description of cardinal direction"
