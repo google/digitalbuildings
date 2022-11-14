@@ -282,7 +282,6 @@ BPC:
   - OPERATIONAL
 
 BPC2X:
-  id: "16869691043929391104"
   description: "Building pressure control for two pressure sensors (stand-alone fan)."
   is_abstract: true
   uses:
