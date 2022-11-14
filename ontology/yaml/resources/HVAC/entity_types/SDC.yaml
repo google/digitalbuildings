@@ -72,7 +72,6 @@ SDC_EXT_TLT_WEST_SOUTHWEST:
   uses:
   - southwest_illuminance_sensor
 
-#Additional entity types for DE-FRA-NEM32
 SDC_EXTOR:
   description: "Centralizend controlled directional shade with zone conditioning"
   is_canonical: true
