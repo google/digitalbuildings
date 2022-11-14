@@ -73,7 +73,7 @@ SDC_EXT_TLT_WEST_SOUTHWEST:
   - southwest_illuminance_sensor
 
 SDC_EXTOR:
-  description: "Centralizend controlled directional shade with zone conditioning"
+  description: "Centralized controlled directional shade with zone conditioning"
   is_canonical: true
   implements:
   - SDC
