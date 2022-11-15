@@ -12,6 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+
 ZONE_LT:
   id: "2202868934909100032"
   description: "A zone entity representing the area served by lighting devices."
