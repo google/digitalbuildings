@@ -38,8 +38,8 @@ they are confusing feel free to post an issue in the project.
       - [Device Relationships](#device-relationships)
     + [Zones and Control Groups](#zones-and-control-groups)
   * [Building Configuration Modes](#building-configuration-modes)
-    + [INITIALIZE](#initialize-mode)
-    + [UPDATE](#update-mode)
+    + [INITIALIZE](#initialize)
+    + [UPDATE](#update)
       - [General](#general-updates)
       - [Special Cases](#special-cases)
   * [Validation](#validation)
@@ -162,7 +162,7 @@ f7d82b75-ea41-49e2-bb5a-53228044eb4c # Entity keyed by a GUID
     zone_air_temperature_sensor:
       present_value: "points.temp_1.present_value"
       units:
-        key: "pointset.points.temp_1.units"
+        key: "points.temp_1.units"
         values:
           degrees_celsius: "degC"
     supply_air_isolation_damper_command:
@@ -193,7 +193,7 @@ ENTITY-CODE:
     zone_air_temperature_sensor:
       present_value: "points.temp_1.present_value"
       units:
-        key: "pointset.points.temp_1.units"
+        key: "points.temp_1.units"
         values:
           degrees_celsius: "degC"
     supply_air_isolation_damper_command:

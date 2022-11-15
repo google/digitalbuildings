@@ -1294,6 +1294,39 @@ AHU_BSPC_DXSC_ECON_SFSS_SFVSC_SSPC:
   - SFVSC
   - SSPC
 
+AHU_BPC_DXSC_ECON_PHWSC_RAIDC_RFSS_RFVSC_SAIDC_SFSS_SFVSC_SSPC:
+  description: "Multi-zone AHU with return fan VFD, RF and SF iso dampers, and PHW."
+  is_canonical: true
+  implements:
+  - AHU
+  - BPC
+  - DXSC
+  - ECON
+  - PHWSC
+  - RAIDC
+  - RFSS
+  - RFVSC
+  - SAIDC
+  - SFSS
+  - SFVSC
+  - SSPC
+
+AHU_BPC2X_DXSC_ECON_PHWSC_RFSS_RFVSC_SFSS_SFVSC_SSPC:
+  description: "Multi-zone AHU with return fan VFD and multiple pressure sensors"
+  is_canonical: true
+  implements:
+  - AHU
+  - BPC2X
+  - DXSC
+  - ECON
+  - PHWSC
+  - RFSS
+  - RFVSC
+  - SFSS
+  - SFVSC
+  - SSPC
+  
+
 AHU_CHWSC_ECONM2X_MOAFC_SFSS_SFVSC_SSPC:
   id: "6323808828999598080"
   description: "Multi-zone AHU."
@@ -3121,6 +3154,9 @@ AHU_BSPC_DX4SC_ECONM_EDPM_EFSS_EFVSC_SFSS_SFVSC_SSPC_STC_SSPCSCM_STCSCM:
   - AHU_BSPC_DX4SC_ECONM_EDPM_EFSS_EFVSC_SFSS_SFVSC_SSPC_STC
   - SSPCSCM
   - STCSCM
+  opt_uses:
+  - supervisor_run_command
+  - run_command
 
 AHU_BSPC_DX3SC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC_STC_REFSM2X_REFPM2X:
   id: "2888577162548346880"
@@ -3148,6 +3184,9 @@ AHU_BSPC_DX3SC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC_STC_REFSM2X_REFPM2X_SSPCSCM_STCSC
   - AHU_BSPC_DX3SC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC_STC_REFSM2X_REFPM2X
   - SSPCSCM
   - STCSCM
+  opt_uses:
+  - supervisor_run_command
+  - run_command
 
 AHU_BSPC_CHWSC_ECON_EFSS_EFVSC_HWSC_SFSS_SFVSC_SHC_SSPC:
   id: "7811011555264299008"
@@ -3264,6 +3303,22 @@ AHU_BSPC_DXSC_ECON_EFSS_EFVSC_HWSC_SARC_SFSS_SFVSC_SSPC:
   - SFVSC
   - SSPC
 
+AHU_BPC_DXSC_ECON_RFSS_RFVSC_HWSC_SARC_SFSS_SFVSC_SSPC:
+  description: "Multi-zone AHU with DX cooling and heating water valve and return air control."
+  is_canonical: true
+  implements:
+  - AHU
+  - BPC
+  - DXSC
+  - ECON
+  - RFSS
+  - RFVSC
+  - HWSC
+  - SARC
+  - SFSS
+  - SFVSC
+  - SSPC
+
 AHU_BSPC_BYPSSPC_DX2SC_ECON_EFSS_HTSC_SFSS:
   id: "15280600285970432"
   description: "Multi-zone AHU with bypass static pressure control, two-stage DX cooling and single-stage heating."
@@ -3286,6 +3341,10 @@ AHU_BSPC_DX4SC_ECON_EFSS_EFVSC_SARC_SFSS_SFVSC_SSPC_SSPCSCM_STCSCM:
   - AHU_BSPC_DX4SC_ECON_EFSS_EFVSC_SARC_SFSS_SFVSC_SSPC
   - SSPCSCM
   - STCSCM
+  opt_uses:
+  - supervisor_run_command
+  - run_command
+
 
 AHU_BSPC_DX2SC_ECON_EFSS_SFSS_SFVSC_SSPC_SSPCSCM_STCSCM:
   id: "9692108824621613056"
@@ -3295,6 +3354,10 @@ AHU_BSPC_DX2SC_ECON_EFSS_SFSS_SFVSC_SSPC_SSPCSCM_STCSCM:
   - AHU_BSPC_DX2SC_ECON_EFSS_SFSS_SFVSC_SSPC
   - SSPCSCM
   - STCSCM
+  opt_uses:
+  - supervisor_run_command
+  - run_command
+
 
 AHU_BSPC_DXSC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC_SARC_SSPCSCM_STCSCM:
   id: "7170093033294135296"
@@ -3304,6 +3367,10 @@ AHU_BSPC_DXSC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC_SARC_SSPCSCM_STCSCM:
   - AHU_BSPC_DXSC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC_SARC
   - SSPCSCM
   - STCSCM
+  opt_uses:
+  - supervisor_run_command
+  - run_command
+
 
 AHU_BSPC_DXSC_ECON_SFSS_SFVSC_SSPC_SSPCSCM_STCSCM:
   id: "15294586761070510080"
@@ -3313,6 +3380,10 @@ AHU_BSPC_DXSC_ECON_SFSS_SFVSC_SSPC_SSPCSCM_STCSCM:
   - AHU_BSPC_DXSC_ECON_SFSS_SFVSC_SSPC
   - SSPCSCM
   - STCSCM
+  opt_uses:
+  - supervisor_run_command
+  - run_command
+
 
 AHU_BSPC_DX2SC_ECON_EFSS_EFVSC_FDPM_SFSS3X_SFVSC3X_SSPC:
   id: "18264569977832996864"
@@ -3736,6 +3807,21 @@ AHU_CHWSC_ECON_FDPM_EDRPC_RFSS_RFVSC_SFSS_SFVSC_SSPC:
   - SFSS
   - SFVSC
   - SSPC
+  
+AHU_SFSS_SFVSC_CHWSC_OAFC_SSPC_RAVOCC_RACO2C_ESFM_SAIDC:
+  description: "AHU with CO2, VOC based outside air control, static pressure based VFD speed control,supply temperature based Chilled water valve modulation."
+  is_canonical: true
+  implements:
+  - AHU
+  - SFSS
+  - SFVSC
+  - CHWSC
+  - OAFC
+  - SSPC
+  - RAVOCC
+  - RACO2C
+  - ESFM
+  - SAIDC
 
 ###################################
 ### Existing Non-standard Types ###

@@ -15,6 +15,7 @@
 
 import collections
 import logging
+import re
 from typing import Dict, List
 
 from model.constants import ALL_CONNECTION_HEADERS
@@ -24,12 +25,19 @@ from model.constants import ALL_SITE_HEADERS
 from model.constants import ALL_STATE_HEADERS
 from model.constants import BC_GUID
 from model.constants import BUILDING_CODE
+from model.constants import BUILDING_CODE_REGEX
 from model.constants import CONNECTIONS
 from model.constants import ENTITIES
 from model.constants import ENTITY_CODE
 from model.constants import ENTITY_FIELDS
 from model.constants import FACILITIES_NAMESPACE
+from model.constants import FACILTITIES_ENTITY_CODE_REGEX
+from model.constants import MISSING
 from model.constants import NAMESPACE
+from model.constants import NO_UNITS
+from model.constants import RAW_FIELD_NAME
+from model.constants import RAW_UNIT_PATH
+from model.constants import RAW_UNIT_VALUE
 from model.constants import REPORTING_ENTITY_CODE
 from model.constants import REPORTING_ENTITY_FIELD_NAME
 from model.constants import REQUIRED_CONNECTION_HEADERS
@@ -40,12 +48,15 @@ from model.constants import REQUIRED_STATE_HEADERS
 from model.constants import SITES
 from model.constants import SOURCE_ENTITY_CODE
 from model.constants import STANDARD_FIELD_NAME
+from model.constants import STANDARD_UNIT_VALUE
 from model.constants import STATES
 from model.constants import TARGET_ENTITY_CODE
 from validators.spreadsheet_error import BaseSpreadsheetError
 from validators.spreadsheet_error import ConnectionDependencyError
 from validators.spreadsheet_error import CrossSheetDependencyError
 from validators.spreadsheet_error import DuplicateCodeError
+from validators.spreadsheet_error import InvalidNamingError
+from validators.spreadsheet_error import MissingFieldError
 from validators.spreadsheet_error import MissingSpreadsheetValueError
 from validators.spreadsheet_error import SpreadsheetHeaderError
 
@@ -78,7 +89,21 @@ class SpreadsheetValidator(object):
 
     Returns:
       A boolean value indicating whether parsed_spreadsheet is valid.
+
+    Raises:
+      ValueError: Raises value exception when input spreadsheet is blank.
     """
+
+    if not parsed_spreadsheet:
+      raise ValueError('ABEL Spreadsheet cannot be blank')
+    elif not parsed_spreadsheet[SITES]:
+      self.validation_errors.append(
+          MissingSpreadsheetValueError(
+              table=SITES,
+              row=2,
+              column='',
+              message='Please provide a building code and guid.'))
+
     validation_parameters = [
         (SITES, parsed_spreadsheet[SITES], REQUIRED_SITE_HEADERS,
          ALL_SITE_HEADERS),
@@ -93,9 +118,13 @@ class SpreadsheetValidator(object):
     ]
     is_valid = True
 
+    self.validation_errors += self._ValidateBuildingCodes(
+        parsed_spreadsheet[SITES])
     entities_sheet = parsed_spreadsheet[ENTITIES]
+    fields_sheet = parsed_spreadsheet[ENTITY_FIELDS]
     self.validation_errors += self._ValidateEntityCodes(entities_sheet)
-    self.validation_errors += self.ValidateFacilitiesGuids(entities_sheet)
+    self.validation_errors += self.ValidateFacilitiesEntities(entities_sheet)
+    self.validation_errors += self._ValidateMissingFields(fields_sheet)
     for parameter_list in validation_parameters:
       self.validation_errors += self._ValidateHeaders(
           table=parameter_list[0],
@@ -139,17 +168,17 @@ class SpreadsheetValidator(object):
     Returns:
       A boolean value for whether parsed_sheet is valid.
     """
-    self.validation_errors = []
+    validation_errors = []
     for row_number, row in enumerate(parsed_sheet, _ROW_START_INDEX):
       for header in col_headers_values:
         if not row[header]:
-          self.validation_errors.append(
+          validation_errors.append(
               MissingSpreadsheetValueError(
                   table=table,
                   row=row_number,
                   column=header,
                   message=f'{table} entry must have a {header}'))
-    return self.validation_errors
+    return validation_errors
 
   def _ValidateFieldsAcrossSheets(
       self, parsed_spreadsheet: Dict[str, List[Dict[str, str]]]
@@ -165,7 +194,7 @@ class SpreadsheetValidator(object):
     Returns:
       List of CrossSheetDependencyError instances.
     """
-    self.validation_errors = []
+    validation_errors = []
     fields = parsed_spreadsheet.get(ENTITY_FIELDS, [])
     entities = parsed_spreadsheet.get(ENTITIES, [])
 
@@ -176,22 +205,23 @@ class SpreadsheetValidator(object):
       entity_codes = set(entity.get(ENTITY_CODE) for entity in entities)
 
       if field_entity_code not in entity_codes:
-        self.validation_errors.append(
+        validation_errors.append(
             CrossSheetDependencyError(
                 source_table=ENTITY_FIELDS,
                 target_table=ENTITIES,
                 row=row_num,
                 column=ENTITY_CODE,
                 cell_value=field_entity_code))
-      if field_reporting_entity_code not in entity_codes:
-        self.validation_errors.append(
-            CrossSheetDependencyError(
-                source_table=ENTITY_FIELDS,
-                target_table=ENTITIES,
-                row=row_num,
-                column=REPORTING_ENTITY_CODE,
-                cell_value=field_reporting_entity_code))
-    return self.validation_errors
+      if field_reporting_entity_code:
+        if field_reporting_entity_code not in entity_codes:
+          validation_errors.append(
+              CrossSheetDependencyError(
+                  source_table=ENTITY_FIELDS,
+                  target_table=ENTITIES,
+                  row=row_num,
+                  column=REPORTING_ENTITY_CODE,
+                  cell_value=field_reporting_entity_code))
+    return validation_errors
 
   def _ValidateStatesAcrossSheets(
       self, parsed_spreadsheet: Dict[str, List[Dict[str, str]]]
@@ -208,19 +238,21 @@ class SpreadsheetValidator(object):
 
     Returns:
       List of CrossSheetDependencyError instances.
-
     """
+    # pylint: disable=line-too-long
     validation_errors = []
     states = parsed_spreadsheet.get(STATES, [])
     fields = parsed_spreadsheet.get(ENTITY_FIELDS, [])
     for row_num, state in enumerate(states, _ROW_START_INDEX):
-      reporting_field_name = state.get(STANDARD_FIELD_NAME)
+      reporting_field_name = state.get(REPORTING_ENTITY_FIELD_NAME)
       entity_code = state.get(ENTITY_CODE)
       num_dependencies = 0
       for field in fields:
+        # If a state's entity code is the same as a field's entity code, then the field is not linked. Check that a state's reporting field name exists in the fields table as a standard field name.
         if entity_code == field[ENTITY_CODE]:
           if field[STANDARD_FIELD_NAME] == reporting_field_name:
             num_dependencies += 1
+        # If a state's entity code is a field's reporting entity code, then the field is linked. Check that a state's reporting field name exists in the fields table as a reporting field name.
         if entity_code == field[REPORTING_ENTITY_CODE]:
           if field[REPORTING_ENTITY_FIELD_NAME] == reporting_field_name:
             num_dependencies += 1
@@ -231,7 +263,7 @@ class SpreadsheetValidator(object):
             source_table=STATES,
             target_table=ENTITY_FIELDS,
             row=row_num,
-            column=STANDARD_FIELD_NAME,
+            column=REPORTING_ENTITY_FIELD_NAME,
             cell_value=reporting_field_name)
         validation_errors.append(cross_sheet_dependency_error)
     return validation_errors
@@ -306,9 +338,10 @@ class SpreadsheetValidator(object):
                 present_code=connection[TARGET_ENTITY_CODE]))
     return validation_errors
 
-  def ValidateFacilitiesGuids(
+  # TODO(b/243387129): Make this function only run for Google users.
+  def ValidateFacilitiesEntities(
       self, sheet: List[Dict[str, str]]) -> List[DuplicateCodeError]:
-    """Validates that Guids are present for all Facilities entities.
+    """Validates that Guids are present for all Facilities entities and Facilities entity codes conform to a regex pattern.
 
     Args:
       sheet: A sheet for guid validation.
@@ -316,17 +349,30 @@ class SpreadsheetValidator(object):
     Returns:
       A list of Spreadsheet instances for missing Guids.
     """
+    # Validate Building code
+    # Validate facilitites entities
+
     # pylint: disable=line-too-long
     validation_errors = []
     for row_number, row in enumerate(sheet):
-      if not row[BC_GUID] and row[NAMESPACE] == FACILITIES_NAMESPACE:
-        validation_errors.append(
-            MissingSpreadsheetValueError(
-                table=ENTITIES,
-                row=row_number,
-                column=BC_GUID,
-                message=f'{row[ENTITY_CODE]} in {FACILITIES_NAMESPACE} namespace must have a guid obtained through DB API export building config operation.'
-            ))
+      if row[NAMESPACE] == FACILITIES_NAMESPACE:
+        if not row[BC_GUID]:
+          validation_errors.append(
+              MissingSpreadsheetValueError(
+                  table=ENTITIES,
+                  row=row_number,
+                  column=BC_GUID,
+                  message=f'{row[ENTITY_CODE]} in {FACILITIES_NAMESPACE} namespace must have a guid obtained through DB API export building config operation.'
+              ))
+        if not re.compile(FACILTITIES_ENTITY_CODE_REGEX).match(
+            row[ENTITY_CODE]):
+          validation_errors.append(
+              InvalidNamingError(
+                  table=ENTITIES,
+                  row=row_number,
+                  column=ENTITY_CODE,
+                  invalid_name=row[ENTITY_CODE],
+                  naming_pattern=FACILTITIES_ENTITY_CODE_REGEX))
     return validation_errors
 
   def _ValidateEntityCodes(
@@ -351,6 +397,61 @@ class SpreadsheetValidator(object):
               code=duplicate,
               message=f'Entity Code: {duplicate} is defined more than once in {ENTITIES} table.'
           ))
+    return validation_errors
+
+  def _ValidateBuildingCodes(
+      self, sheet: List[Dict[str, str]]) -> List[MissingSpreadsheetValueError]:
+    """Validates a building code conforms to the BUILDING_CODE_REGEX pattern.
+
+    Args:
+      sheet: Sheet containing building code.
+
+    Returns:
+      List of SpreadsheetError instances.
+    """
+    validation_errors = []
+    building_codes = [(row_number, row[BUILDING_CODE])
+                      for row_number, row in enumerate(sheet, _ROW_START_INDEX)]
+    for row_number, building_code in building_codes:
+      if not re.compile(BUILDING_CODE_REGEX).match(building_code):
+        validation_errors.append(
+            InvalidNamingError(
+                table=SITES,
+                row=row_number,
+                column=BUILDING_CODE,
+                invalid_name=building_code,
+                naming_pattern=BUILDING_CODE_REGEX))
+    return validation_errors
+
+  def _ValidateMissingFields(
+      self, fields_sheet: List[Dict[str, str]]) -> List[MissingFieldError]:
+    """Validates empty cell values for a Missing field.
+
+    If a field is marked as missing then, it cannot have a raw field name or
+    units. This method validates the spreadsheet to ensure the raw field name
+    and Units cells are left empty.
+
+    Args:
+      fields_sheet: A parsed Entity Fields sheet.
+
+    Returns:
+      A list of MissingFieldError instances.
+    """
+    validation_errors = []
+    missing_field_headers = [
+        RAW_FIELD_NAME, RAW_UNIT_VALUE, RAW_UNIT_PATH, STANDARD_UNIT_VALUE
+    ]
+    for row_number, field in enumerate(fields_sheet, _ROW_START_INDEX):
+      for column_header in missing_field_headers:
+        if field[MISSING].upper() == 'TRUE':
+          if field[column_header] and field[column_header] != NO_UNITS:
+            validation_errors.append(
+                MissingFieldError(
+                    table=ENTITY_FIELDS,
+                    row=row_number,
+                    column=column_header,
+                    message=f"{column_header} must be blank if a field is missing from an entity's translation."
+                ))
     return validation_errors
 
   def _LogErrors(self, validation_errors: List[BaseSpreadsheetError]) -> None:

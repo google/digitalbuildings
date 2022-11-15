@@ -118,7 +118,7 @@ class NamespaceValidator(findings_lib.Findings):
       return entity_type.GetAllFields()
 
     # Add current entity to recursion stack.
-    stack_key = '{0}/{1}'.format(namespace, entity_type.typename)
+    stack_key = f'{namespace}/{entity_type.typename}'
     on_stack.add(stack_key)
 
     # Recurse for all parents. If any parent is in on_stack,
@@ -190,7 +190,7 @@ class NamespaceValidator(findings_lib.Findings):
           field_only = field_tuple.field
 
           if field_tuple.increment:
-            key = '{0}/{1}'.format(namespace, field_only)
+            key = f'{namespace}/{field_only}'
             if key in field_lookup:
               field_lookup[key] = None
             else:

@@ -13,7 +13,6 @@
 # limitations under the License.
 """Main module for DBO explorer."""
 
-import datetime
 import os
 import sys
 from typing import Optional
@@ -22,31 +21,26 @@ from model import authenticator
 from model import export_helper
 from model import import_helper
 from model.arg_parser import ParseArgs
-from model.constants import SPREADSHEET_RANGE
+from model.constants import EXPORT_BUILDING_CONFIG_NAME
+from model.constants import INSTANCE_VALIDATION_REPORT_NAME
 from model.constants import ONTOLOGY_ROOT
+from model.constants import SPREADSHEET_RANGE
+from model.constants import SPREADSHEET_VALIDATOR_FILE_NAME
 from model.model_builder import ModelBuilder
 from validators.spreadsheet_validator import SpreadsheetValidator
 from validate import handler
 
-DATETIME_STRING = datetime.datetime.now().strftime('%m-%d-%Y_%H:%M')
 
-# Output path for spreadsheet validation report
-SPREADSHEET_VALIDATOR_LOG_PATH = os.path.join(
-    os.path.expanduser('~'),
-    f'abel/spreadsheet_validation_{DATETIME_STRING}.log')
-
-# Output path for Building Config instance validation report.
-INSTANCE_VALIDATOR_LOG_PATH = os.path.join(
-    os.path.expanduser('~'), f'abel/instance_validation_{DATETIME_STRING}.log')
-
-# Output path for exporting a Building Config file.
-BC_EXPORT_PATH = os.path.join(
-    os.path.expanduser('~'), f'abel/bc_export_{DATETIME_STRING}.yaml')
-
-
-def _spreadsheet_workflow(spreadsheet_id: str,
-                          gcp_token_path: str,
-                          ontology_path: Optional[str] = ONTOLOGY_ROOT) -> None:
+# pylint: disable=line-too-long
+def _spreadsheet_workflow(
+    spreadsheet_id: str,
+    gcp_token_path: str,
+    subscription: Optional[str] = None,
+    service_account: Optional[str] = None,
+    timeout: Optional[float] = None,
+    modified_types_filepath: Optional[str] = None,
+    output_dir: Optional[str] = os.getcwd()
+) -> None:
   """Helper function for executing the spreadsheet -> building config workflow.
 
   Args:
@@ -54,8 +48,17 @@ def _spreadsheet_workflow(spreadsheet_id: str,
     gcp_token_path: Path to GCP token for authenticating against Google sheets
       API. This is a short-lived credential for a service account as documented
       https://cloud.google.com/iam/docs/create-short-lived-credentials-direct.
-    ontology_path: [Optional] A path to a modified ontology. Default is the
-      DigitalBuildings Ontology.
+    subscription: [Optional] Fully qualified path to a Google Cloud pubsub
+      subscription.
+    service_account: [Optional] Fully qualified path to a service account key
+      file corresponding to an account that can read subscription topic
+      messages.
+    timeout: [Optional] The timeout duration in seconds for the telemetry
+      validation test. The default value is 600 seconds, or 10 minutes.
+    modified_types_filepath: [Optional] A path to a modified ontology.
+      Default is the DigitalBuildings Ontology.
+    output_dir: [Optional] A path to a directory where ABEL can output
+      Building Config files and validation logs.
   """
   print(f'Importing spreadsheet from Google sheets: {spreadsheet_id}')
   google_sheets_service = authenticator.GetGoogleSheetsService(
@@ -64,13 +67,13 @@ def _spreadsheet_workflow(spreadsheet_id: str,
       google_sheets_service=google_sheets_service,
       spreadsheet_id=spreadsheet_id,
       spreadsheet_range=SPREADSHEET_RANGE)
-  print('Validating spreadsheet')
   spreadsheet_validator = SpreadsheetValidator(
-      filepath=SPREADSHEET_VALIDATOR_LOG_PATH)
+      filepath=os.path.join(output_dir, SPREADSHEET_VALIDATOR_FILE_NAME))
   is_spreadsheet_valid = spreadsheet_validator.Validate(imported_spreadsheet)
   if not is_spreadsheet_valid:
     print(
-        f'Please resolve spreadsheet errors: {SPREADSHEET_VALIDATOR_LOG_PATH}')
+        f'Please resolve spreadsheet errors: {os.path.join(output_dir, SPREADSHEET_VALIDATOR_FILE_NAME)}'
+    )
   else:
     print('Spreadsheet validated.')
     # Build model
@@ -80,22 +83,27 @@ def _spreadsheet_workflow(spreadsheet_id: str,
     print('Model built!')
     # export
     new_bc_exporter = export_helper.BuildingConfigExport(model_builder)
-    new_bc_exporter.ExportBuildingConfiguration(filepath=BC_EXPORT_PATH)
+    new_bc_exporter.ExportBuildingConfiguration(
+        filepath=os.path.join(output_dir, EXPORT_BUILDING_CONFIG_NAME))
     # Run instance validator
     print('Validating Export.')
     handler.RunValidation(
-        filenames=[BC_EXPORT_PATH],
-        report_filename=INSTANCE_VALIDATOR_LOG_PATH,
-        modified_types_filepath=ontology_path
-    )
-    print(f'Instance validator log: {INSTANCE_VALIDATOR_LOG_PATH}')
-    print(f'Exported Building Configuration: {BC_EXPORT_PATH}')
+        filenames=[os.path.join(output_dir, EXPORT_BUILDING_CONFIG_NAME)],
+        report_filename=os.path.join(output_dir, INSTANCE_VALIDATION_REPORT_NAME),
+        modified_types_filepath=modified_types_filepath,
+        default_types_filepath=ONTOLOGY_ROOT,
+        subscription=subscription,
+        service_account=service_account,
+        timeout=timeout)
+    print(f'Instance validator log: os.path.join(output_location, {INSTANCE_VALIDATION_REPORT_NAME}')
+    print(f'Exported Building Configuration: {EXPORT_BUILDING_CONFIG_NAME}')
 
 
 def _bc_workflow(spreadsheet_id: str,
                  bc_filepath: str,
                  gcp_token_path: str,
-                 ontology_path: Optional[str] = ONTOLOGY_ROOT) -> None:
+                 modified_types_filepath: Optional[str] = None,
+                 output_dir: Optional[str] = os.getcwd()) -> None:
   """Helper function for Building Config -> spreadsheet workflow.
 
   Args:
@@ -104,15 +112,17 @@ def _bc_workflow(spreadsheet_id: str,
     gcp_token_path: Path to GCP token for authenticating against Google sheets
       API. This is a short-lived credential for a service account as documented
       https://cloud.google.com/iam/docs/create-short-lived-credentials-direct.
-    ontology_path: [Optional] A path to a modified ontology. Default is the
-      DigitalBuildings Ontology.
+    modified_types_filepath: [Optional] A path to a modified ontology.
+      Default is the DigitalBuildings Ontology.
+    output_dir: [Optional] A path to a directory where ABEL can output
+      Building Config files and validation logs.
   """
   print('Validating imported Building Config.')
   handler.RunValidation(
       filenames=[bc_filepath],
-      report_filename=INSTANCE_VALIDATOR_LOG_PATH,
-      modified_types_filepath=ontology_path
-  )
+      report_filename=os.path.join(output_dir, INSTANCE_VALIDATION_REPORT_NAME),
+      modified_types_filepath=modified_types_filepath,
+      default_types_filepath=ONTOLOGY_ROOT)
   print(f'Importing Building Configuration file from {bc_filepath}.')
   imported_building_config = import_helper.DeserializeBuildingConfiguration(
       filepath=bc_filepath)
@@ -137,12 +147,18 @@ def main(parsed_args: ParseArgs) -> None:
   if parsed_args.spreadsheet_id and not parsed_args.building_config:
     _spreadsheet_workflow(
         spreadsheet_id=parsed_args.spreadsheet_id,
-        gcp_token_path=parsed_args.token)
+        gcp_token_path=parsed_args.token,
+        modified_types_filepath=args.modified_types_filepath,
+        subscription=parsed_args.subscription,
+        service_account=parsed_args.service_account,
+        output_dir=args.output_dir)
   elif parsed_args.building_config and parsed_args.spreadsheet_id:
     _bc_workflow(
         spreadsheet_id=parsed_args.spreadsheet_id,
         bc_filepath=parsed_args.building_config,
-        gcp_token_path=parsed_args.token)
+        gcp_token_path=parsed_args.token,
+        modified_types_filepath=args.modified_types_filepath,
+        output_dir=args.output_dir)
 
 
 if __name__ == '__main__':

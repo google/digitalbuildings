@@ -26,8 +26,11 @@ from model.constants import CONNECTIONS
 from model.constants import ENTITIES
 from model.constants import ENTITY_CODE
 from model.constants import ENTITY_FIELDS
+from model.constants import FACILITIES_NAMESPACE
+from model.constants import FACILTITIES_ENTITY_CODE_REGEX
 from model.constants import IS_REPORTING
 from model.constants import METADATA
+from model.constants import MISSING
 from model.constants import NAMESPACE
 from model.constants import RAW_FIELD_NAME
 from model.constants import RAW_STATE
@@ -52,9 +55,12 @@ from tests.test_constants import TEST_REPORTING_GUID
 from tests.test_constants import TEST_SPREADSHEET
 from validators.spreadsheet_error import ConnectionDependencyError
 from validators.spreadsheet_error import CrossSheetDependencyError
+from validators.spreadsheet_error import InvalidNamingError
+from validators.spreadsheet_error import MissingFieldError
 from validators.spreadsheet_error import MissingSpreadsheetValueError
 from validators.spreadsheet_error import SpreadsheetHeaderError
 from validators.spreadsheet_validator import SpreadsheetValidator
+
 
 _TEST_VALIDATOR_LOG_PATH = os.path.join(tempfile.gettempdir(),
                                         'test_model_validation_out.log')
@@ -77,7 +83,7 @@ class SpreadsheetValidatorTest(absltest.TestCase):
     bad_test_state = {
         ENTITY_CODE: TEST_REPORTING_ENTITY_CODE,
         BC_GUID: TEST_REPORTING_GUID,
-        STANDARD_FIELD_NAME: 'not a valid field name',
+        REPORTING_ENTITY_FIELD_NAME: 'not a valid field name',
         STANDARD_STATE: 'ON',
         RAW_STATE: 'TRUE'
     }
@@ -95,6 +101,7 @@ class SpreadsheetValidatorTest(absltest.TestCase):
         RAW_FIELD_NAME: 'pointset.raw_field_name',
         ENTITY_CODE: 'Not a valid entity code',
         REPORTING_ENTITY_FIELD_NAME: 'test_resporting_field_name',
+        MISSING: 'False',
         REPORTING_ENTITY_CODE: TEST_REPORTING_ENTITY_CODE,
         REPORTING_ENTITY_GUID: TEST_REPORTING_GUID,
         BC_GUID: TEST_REPORTING_GUID,
@@ -115,7 +122,29 @@ class SpreadsheetValidatorTest(absltest.TestCase):
     self.assertEqual(validation_error.table, ENTITY_FIELDS)
     self.assertEqual(validation_error.target_table, ENTITIES)
 
-  def testValidateContainsLogsMissingSpreadsheetValueError(self):
+  def testEmptySpreadsheetRaisesException(self):
+    with self.assertRaises(ValueError):
+      self.validator.Validate({})
+
+  def testSpreadsheetWithoutBuildingIsNotValid(self):
+    blank_spreadsheet = {
+        'Site': [],
+        'Entities': [],
+        'Entity Fields': [],
+        'States': [],
+        'Connections': []
+    }
+
+    is_valid = self.validator.Validate(blank_spreadsheet)
+    validation_error = self.validator.validation_errors.pop()
+
+    self.assertFalse(is_valid)
+    self.assertEmpty(self.validator.validation_errors)
+    self.assertIsInstance(validation_error, MissingSpreadsheetValueError)
+    self.assertEqual(validation_error.message,
+                     'Please provide a building code and guid.')
+
+  def testValidateLogsMissingSpreadsheetValueError(self):
     test_virtual_entity_dict = {
         ENTITY_CODE: None,
         BC_GUID: None,
@@ -171,7 +200,7 @@ class SpreadsheetValidatorTest(absltest.TestCase):
 
   def testInvalidConnectionDependencyLogsError(self):
     test_connection_to_building = {
-        SOURCE_ENTITY_CODE: 'INVALID_ENTITY_CODE',
+        SOURCE_ENTITY_CODE: 'UK-LON-X1',
         SOURCE_ENTITY_GUID: None,
         TARGET_ENTITY_CODE: TEST_REPORTING_ENTITY_CODE,
         TARGET_ENTITY_GUID: None,
@@ -195,14 +224,14 @@ class SpreadsheetValidatorTest(absltest.TestCase):
 
   def testFacilitiesEntityMissingGuid(self):
     facilities_entity_no_guid = {
-        ENTITY_CODE: 'A_BUILDING_FLOOR',
+        ENTITY_CODE: 'US-SEA-BUILD1-1',
         BC_GUID: None,
         NAMESPACE: 'FACILITIES',
         IS_REPORTING: 'FALSE',
         METADATA + '.test': 'test metadata'
     }
     facilities_entity_with_guid = {
-        ENTITY_CODE: 'A_BUILDING_FLOOR',
+        ENTITY_CODE: 'US-SEA-BUILD2-1',
         BC_GUID: 'a_guid',
         NAMESPACE: 'FACILITIES',
         IS_REPORTING: 'FALSE',
@@ -210,9 +239,9 @@ class SpreadsheetValidatorTest(absltest.TestCase):
     }
     self.test_spreadsheet[ENTITIES].append(facilities_entity_no_guid)
 
-    no_guid_validator_results = self.validator.ValidateFacilitiesGuids(
+    no_guid_validator_results = self.validator.ValidateFacilitiesEntities(
         sheet=[facilities_entity_no_guid])
-    with_guid_validator_results = self.validator.ValidateFacilitiesGuids(
+    with_guid_validator_results = self.validator.ValidateFacilitiesEntities(
         sheet=[facilities_entity_with_guid])
     is_valid = self.validator.Validate(self.test_spreadsheet)
 
@@ -221,6 +250,52 @@ class SpreadsheetValidatorTest(absltest.TestCase):
                           MissingSpreadsheetValueError)
     self.assertEmpty(with_guid_validator_results)
     self.assertFalse(is_valid)
+
+  # pylint: disable=line-too-long
+  def testFacilititesEntityWithInvalidCode(self):
+    facilities_entity_with_bad_code = {
+        ENTITY_CODE: 'bad_entity_code',
+        BC_GUID: 'a_guid',
+        TYPE_NAME: 'FLOOR',
+        NAMESPACE: FACILITIES_NAMESPACE,
+        IS_REPORTING: 'FALSE',
+        METADATA + '.test': 'test metadata'
+    }
+    self.test_spreadsheet[ENTITIES].append(facilities_entity_with_bad_code)
+
+    invalid_name_validator_results = self.validator.ValidateFacilitiesEntities(
+        sheet=self.test_spreadsheet[ENTITIES])
+    error_message = f'Table: {ENTITIES}, Row: 2, Column: {ENTITY_CODE}, Message: , entity name: bad_entity_code must follow naming pattern: {FACILTITIES_ENTITY_CODE_REGEX}'
+
+    self.assertLen(invalid_name_validator_results, 1)
+    invalid_name_error = invalid_name_validator_results.pop()
+    self.assertIsInstance(invalid_name_error, InvalidNamingError)
+    self.assertEqual(error_message, invalid_name_error.GetErrorMessage())
+
+  def testMissingFieldWithExtraCellValues(self):
+    bad_test_field = {
+        STANDARD_FIELD_NAME: 'test_field_name',
+        RAW_FIELD_NAME: 'pointset.raw_field_name',
+        ENTITY_CODE: 'Not a valid entity code',
+        REPORTING_ENTITY_FIELD_NAME: 'test_resporting_field_name',
+        MISSING: 'TRUE',
+        REPORTING_ENTITY_CODE: TEST_REPORTING_ENTITY_CODE,
+        REPORTING_ENTITY_GUID: TEST_REPORTING_GUID,
+        BC_GUID: TEST_REPORTING_GUID,
+        RAW_UNIT_PATH: 'no-units',
+        STANDARD_UNIT_VALUE: 'no-units',
+        RAW_UNIT_VALUE: 'no-units',
+    }
+    self.test_spreadsheet[ENTITY_FIELDS].append(bad_test_field)
+
+    is_valid = self.validator.Validate(self.test_spreadsheet)
+    validation_error = self.validator.validation_errors.pop()
+
+    self.assertFalse(is_valid)
+    self.assertEmpty(self.validator.validation_errors)
+    self.assertIsInstance(validation_error, MissingFieldError)
+    self.assertEqual(validation_error.column, RAW_FIELD_NAME)
+    self.assertEqual(validation_error.table, ENTITY_FIELDS)
 
   # pylint: disable=line-too-long
   def testCreatesLogFile(self):
