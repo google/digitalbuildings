@@ -66,6 +66,7 @@ BLR_SS_SWTC_SWISOVM:
   - SWISOVM
 
 BLR_CPC_SS_SWTC_SWISOVM:
+  id: "5665710437845434368"
   description: "Simple boiler with supply control, supply isolation, and circulation pump."
   is_canonical: true
   implements:

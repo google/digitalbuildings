@@ -282,6 +282,7 @@ BPC:
   - OPERATIONAL
 
 BPC2X:
+  id: "4764990512371335168"
   description: "Building pressure control for two pressure sensors (stand-alone fan)."
   is_abstract: true
   uses:
@@ -5184,6 +5185,7 @@ DAIDC2X:
   - MONITORING
 
 DAIDC:
+  id: "16510378340553588736"
   description: "Discharge air isolation damper control and monitoring."
   is_abstract: true
   uses:
