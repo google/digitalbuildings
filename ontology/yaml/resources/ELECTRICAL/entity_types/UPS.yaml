@@ -18,7 +18,8 @@ UPS_SS:
   is_canonical: true
   implements:
   - UPS
-  - SS  
+  - SS
+
 
 UPS_IOBM:
   id: "8787571394775875584"
@@ -56,4 +57,12 @@ UPS_IOBM_BATM:
   - UPS
   - IOBM
   - BATM
-  
+UPS_IOBM_PPWM_UPSBM:
+  id: "15356506857900343296"
+  description: "UPS with input and output electrical monitoring, phase power monitoring and battery monitoring."
+  is_canonical: true
+  implements:
+  - UPS
+  - IOBM
+  - PPWM
+  - UPSBM  

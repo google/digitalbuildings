@@ -19,6 +19,7 @@ from googleapiclient.discovery import Resource
 from googleapiclient.errors import HttpError
 from strictyaml import as_document
 
+from model.constants import BC_MISSING
 from model.constants import BODY_VALUE_RANGE_KEY
 from model.constants import CONFIG_CLOUD_DEVICE_ID
 from model.constants import CONFIG_CODE
@@ -159,10 +160,10 @@ class BuildingConfigExport(object):
       entity: A ReportingEntity instance.
 
     Returns:
-      A dicitionary in Building Config format ready to be parsed into yaml.
+      A dictionary in Building Config format ready to be parsed into yaml.
     """
     reporting_entity_yaml = {
-        CONFIG_CLOUD_DEVICE_ID: entity.cloud_device_id,
+        CONFIG_CLOUD_DEVICE_ID: str(entity.cloud_device_id),
         CONFIG_CODE: entity.code,
     }
     reporting_entity_yaml.update(self._GetConnections(entity=entity))
@@ -170,8 +171,10 @@ class BuildingConfigExport(object):
       reporting_entity_yaml[CONFIG_TRANSLATION] = {}
       for field in entity.translations:
         if field.reporting_entity_field_name:
-          reporting_entity_yaml[CONFIG_TRANSLATION].update(
-              {field.reporting_entity_field_name: self._TranslateField(field)})
+          reporting_entity_yaml[CONFIG_TRANSLATION].update({
+              field.reporting_entity_field_name:
+                  BC_MISSING if field.missing else self._TranslateField(field)
+          })
         else:
           reporting_entity_yaml[CONFIG_TRANSLATION].update(
               {field.standard_field_name: self._TranslateField(field)})
@@ -208,7 +211,9 @@ class BuildingConfigExport(object):
     return {}
 
   def _SortLinks(self, entity: VirtualEntity) -> Dict[str, object]:
-    """Sorts an entity's links by guid and returns a Building Config compliant mapping.
+    """Sorts an entity's links by guid and returns mapping.
+
+    The returning mapping is compliant with the Building Config Schema.
 
     Args:
       entity: A VirtualEntity instance
@@ -220,7 +225,7 @@ class BuildingConfigExport(object):
     link_map = {}
     if entity.links:
       for field in entity.links:
-        if field.reporting_entity_guid not in link_map.keys():
+        if field.reporting_entity_guid not in link_map:
           link_map[field.reporting_entity_guid] = {
               field.standard_field_name: field.reporting_entity_field_name
           }
@@ -243,12 +248,12 @@ class BuildingConfigExport(object):
       return_dict[CONFIG_UNITS] = {
           CONFIG_UNITS_KEY: field.units.raw_unit_path,
           CONFIG_UNITS_VALUES: {
-              standard_unit: raw_unit for standard_unit, raw_unit in
+              standard_unit: str(raw_unit) for standard_unit, raw_unit in
               field.units.standard_to_raw_unit_map.items()
           }
       }
     elif field.states:
       return_dict[CONFIG_STATES] = {
-          state.standard_state: state.raw_state for state in field.states
+          state.standard_state: str(state.raw_state) for state in field.states
       }
     return return_dict

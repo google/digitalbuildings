@@ -155,7 +155,7 @@ class VirtualEntity(Entity):
 
   @classmethod
   def FromDict(cls, entity_dict: Dict[str, str]) ->...:
-    """Class method to create an Entity instance from a mapping of entity attributes to values.
+    """Create an Entity instance from a mapping of entity attributes to values.
 
     Args:
       entity_dict: Dictionary mapping entity attributes to values from a
@@ -204,13 +204,13 @@ class VirtualEntity(Entity):
     self._links.append(new_link)
 
   def GetSpreadsheetRowMapping(self) -> Dict[str, str]:
-    """Returns a dictionary of  virtual entity attributes by spreadsheet headers."""
+    """Returns map of virtual entity attributes by spreadsheet headers."""
     return {
         ENTITY_CODE: self.code,
         BC_GUID: self.bc_guid,
+        ETAG: self.etag,
         IS_REPORTING: False,
         CLOUD_DEVICE_ID: None,
-        ETAG: self.etag,
         NAMESPACE: self.namespace,
         TYPE_NAME: self.type_name
     }
@@ -257,7 +257,7 @@ class ReportingEntity(Entity):
 
   @classmethod
   def FromDict(cls, entity_dict: Dict[str, str]) ->...:
-    """Class method to create a ReportingEntity instance from a mapping of entity attributes to values.
+    """Creates ReportingEntity instance from map of entity attributes to values.
 
     Args:
       entity_dict: Dictionary mapping entity attributes to values from a
@@ -284,7 +284,7 @@ class ReportingEntity(Entity):
 
   @property
   def translations(self) -> List[EntityField]:
-    """Returns a list of EntityField instances associated with a reporting entity."""
+    """Returns list of EntityField instances in entity translation."""
     return self._translations
 
   @translations.setter
@@ -306,13 +306,13 @@ class ReportingEntity(Entity):
     self._translations.append(new_translation)
 
   def GetSpreadsheetRowMapping(self) -> Dict[str, str]:
-    """Returns a dictionary of virtual entity attributes by spreadsheet headers."""
+    """Returns map of virtual entity attributes by spreadsheet headers."""
     return {
         ENTITY_CODE: self.code,
         BC_GUID: self.bc_guid,
+        ETAG: self.etag,
         IS_REPORTING: True,
         CLOUD_DEVICE_ID: self.cloud_device_id,
-        ETAG: self.etag,
         NAMESPACE: self.namespace,
         TYPE_NAME: self.type_name
     }

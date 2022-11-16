@@ -20,6 +20,7 @@ import datetime
 import sys
 from typing import Dict, List, Tuple
 
+from validate import constants
 from validate import entity_instance
 from validate import generate_universe
 from validate import instance_parser
@@ -79,13 +80,14 @@ def Deserialize(
 
 def _ValidateConfig(
     filenames: List[str],
-    universe: pvt.ConfigUniverse) -> List[entity_instance.EntityInstance]:
+    universe: pvt.ConfigUniverse,
+    is_udmi) -> List[entity_instance.EntityInstance]:
   """Runs all config validation checks."""
   print('\nLoading config files...\n')
   entities, config_mode = Deserialize(filenames)
   print('\nStarting config validation...\n')
   helper = EntityHelper(universe)
-  return helper.Validate(entities, config_mode)
+  return helper.Validate(entities, config_mode, is_udmi)
 
 
 def _ValidateTelemetry(subscription: str, service_account: str,
@@ -99,12 +101,26 @@ def _ValidateTelemetry(subscription: str, service_account: str,
 def RunValidation(filenames: List[str],
                   use_simplified_universe: bool = False,
                   modified_types_filepath: str = None,
+                  default_types_filepath: str = None,
                   subscription: str = None,
                   service_account: str = None,
                   report_filename: str = None,
-                  timeout: int = 60,
+                  timeout: int = constants.DEFAULT_TIMEOUT,
                   is_udmi: bool = False) -> None:
-  """Master runner for all validations."""
+  """Top level runner for all validations.
+
+  Args:
+    filenames: List of building config filenames to validate.
+    use_simplified_universe: Boolean to use small testing ConfigUniverse.
+    modified_types_filepath: Relative path to a modified ontology.
+    default_types_filepath: Relative path to the DigitalBuildings ontology.
+    subscription: Fully qualified path to a Google Cloud Pubsub subscription.
+    service_account: Fully qualified path to a service account key file.
+    report_filename: Fully qualified path to write a validation report to.
+    timeout: Timeout duration of the telemetry validator. Default is 60 seconds.
+    is_udmi: Telemetry follows UDMI standards.
+
+  """
   saved_stdout = sys.stdout
   report_file = None
   if report_filename:
@@ -116,12 +132,13 @@ def RunValidation(filenames: List[str],
     print('\nStarting universe generation...\n')
     universe = generate_universe.BuildUniverse(
         use_simplified_universe=use_simplified_universe,
-        modified_types_filepath=modified_types_filepath)
+        modified_types_filepath=modified_types_filepath,
+        default_types_filepath=default_types_filepath)
     if not universe:
       print('\nError generating universe')
       sys.exit(0)
     print('\nStarting config validation...\n')
-    entities = _ValidateConfig(filenames, universe)
+    entities = _ValidateConfig(filenames, universe, is_udmi)
     if subscription:
       print('\nStarting telemetry validation...\n')
       _ValidateTelemetry(subscription, service_account, entities,
@@ -155,7 +172,7 @@ class TelemetryHelper(object):
     Args:
       entities: EntityInstance dictionary keyed by entity name
       timeout: number of seconds to wait for telemetry
-      is_udmi: true/false treat telemetry stream as UDMI
+      is_udmi: true/false treat telemetry stream as UDMI; defaults to false
     """
 
     print('Connecting to pubsub subscription: ', self.subscription)
@@ -219,13 +236,15 @@ class EntityHelper(object):
 
   def Validate(
       self, entities: Dict[str, entity_instance.EntityInstance],
-      config_mode: instance_parser.ConfigMode
+      config_mode: instance_parser.ConfigMode,
+      is_udmi: bool= False
   ) -> Dict[str, entity_instance.EntityInstance]:
     """Validates entity instances that are already deserialized.
 
     Args:
       entities: a dict of entity instances
       config_mode: processing mode of the configuration
+      is_udmi: flag to indicate validation under udmi; defaults to false
 
     Returns:
       A dictionary containing valid entities by GUID
@@ -247,7 +266,7 @@ class EntityHelper(object):
       if (current_entity.operation is not instance_parser.EntityOperation.DELETE
           and current_entity.type_name.lower() == 'building'):
         building_found = True
-      if not validator.Validate(current_entity):
+      if not validator.Validate(current_entity, is_udmi):
         print(entity_guid, 'is not a valid instance')
         continue
       valid_entities[entity_guid] = current_entity

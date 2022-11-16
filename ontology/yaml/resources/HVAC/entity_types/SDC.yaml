@@ -22,6 +22,8 @@ SDC_EXT:
   is_canonical: true
   implements:
   - SDC
+  opt_uses:
+  - shade_extent_percentage_sensor
   uses:
   - shade_extent_percentage_command
 
