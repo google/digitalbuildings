@@ -38,8 +38,8 @@ they are confusing feel free to post an issue in the project.
       - [Device Relationships](#device-relationships)
     + [Zones and Control Groups](#zones-and-control-groups)
   * [Building Configuration Modes](#building-configuration-modes)
-    + [INITIALIZE](#initialize-mode)
-    + [UPDATE](#update-mode)
+    + [INITIALIZE](#initialize)
+    + [UPDATE](#update)
       - [General](#general-updates)
       - [Special Cases](#special-cases)
   * [Validation](#validation)
@@ -136,6 +136,13 @@ generic entity with all possible top level fields looks like this[^5]:
 to being keyed by guids and Ids are removed. To convert the old format to the
 new format, run your config.yaml through the [guid generator](https://github.com/google/digitalbuildings/tree/master/tools/guid_generator).
 
+#### Identifiers
+*   **GUID:** A globally unique identifier for the entity. This field does not
+    need to be included initially and can be generated with guid generator.
+*   **Code:** The human readable identifier for the entity. This should
+    be unique in document scope.
+*   **cloud_device_id:** the cloud device numeric id from the cloud iot registry. A server-generated device numeric ID. The device numeric ID is automatically created by Cloud IoT Core; it's globally unique and not editable. To view a device numeric ID, go to the [Device ids page](https://cloud.google.com/iot/docs/concepts/devices#device_identifiers). This field is mandatory when a translation exists.
+
 #### New Format
 ``` yaml
 f7d82b75-ea41-49e2-bb5a-53228044eb4c # Entity keyed by a GUID
@@ -155,7 +162,7 @@ f7d82b75-ea41-49e2-bb5a-53228044eb4c # Entity keyed by a GUID
     zone_air_temperature_sensor:
       present_value: "points.temp_1.present_value"
       units:
-        key: "pointset.points.temp_1.units"
+        key: "points.temp_1.units"
         values:
           degrees_celsius: "degC"
     supply_air_isolation_damper_command:
@@ -186,7 +193,7 @@ ENTITY-CODE:
     zone_air_temperature_sensor:
       present_value: "points.temp_1.present_value"
       units:
-        key: "pointset.points.temp_1.units"
+        key: "points.temp_1.units"
         values:
           degrees_celsius: "degC"
     supply_air_isolation_damper_command:
@@ -204,8 +211,7 @@ ENTITY-CODE:
     represents this entity.
 *   **Code:** The human readable identifier for the entity. This should
     be unique in document scope.
-*   **cloud_device_id:** the cloud device id from the cloud iot registry.
-    This field is mandatory when a translation exists.
+*   **cloud_device_id:** the cloud device numeric id from the cloud iot registry. A server-generated device numeric ID. The device numeric ID is automatically created by Cloud IoT Core; it's globally unique and not editable. To view a device numeric ID, go to the [Device ids page](https://cloud.google.com/iot/docs/concepts/devices#device_identifiers). This field is mandatory when a translation exists.
 *   **Connections:** Used to specify connections from other entities (sources)
     pointing to this entity, with connection types. Entities are keys and cannot
     be repeated. Values are one or more connections, specified as a single
@@ -299,7 +305,6 @@ FCU-123:
   translation:
     zone_air_temperature_sensor:
       present_value: "points.temp_1.present_value"
-      value_range: 15,25
       units:
         key: "pointset.points.temp_1.units"
         values:
@@ -317,21 +322,15 @@ FCU-123:
 Inside the `translation` block, keys correspond to standard fields in the
 ontology. Within each field block we provide information about the following:
 
-*   `present_value`: defines the fully qualified path in the device's native
-    JSON payload that contains the value of this field
-*   `value_range`: If `present_value` is a dimensional number, defines the
-    expected minimum and maximum value for the field, in the unit that is
-    specified in the `units` block. This is an optional key and can be specified
-    when there is a fixed range of values that the field is expected to have. If
-    it is specified, then units must also be specified. The value range is used
-    to measure data quality of telemetry and to validate writeback requests.
+*   `present_value`: defines the fully qualified path in the devices native JSON
+    payload that contains the value of this field
 *   `units`: when `present_value` is a dimensional number, this block defines
     information about the payload location that defines dimensional units for
     this field's `present_value`
     *   `key`: defines the fully qualified path to the section of the payload
         that calls out the units
-    *   `values`: Maps a standard Digital Buildings unit to the value in the
-        payload that represents that unit. Only one unit is allowed per field.
+    *   `values`: Maps standard Digital Buildings units to the values in the
+        payload that represent those units
 *   `states`: If `present_value` represents a multistate value, this block is
     used to map the native state values to standard ones. Each map key is a
     standard state, and its value is the corresponding native value, or a list
@@ -509,8 +508,8 @@ The current version, v1 Alpha, is available with limited functionality.
 
  * v1 Alpha:
   - **Interdependencies** among entities are **not allowed**
-  - At most **2 different operations** throughout all entities in the same
-    building configuration; **one of them being EXPORT**.
+  - At most **2 different operations** throughout all entities in the same building
+    configuration; **one of them being EXPORT**.
   - Instance Validator will reject a building config when more than 2 operations
     are specified building config and EXPORT is not present.
 <!--
@@ -519,9 +518,9 @@ The current version, v1 Alpha, is available with limited functionality.
   - **No constraints for operations** on entities in a building configuration
 -->
 A building configuration file, with regard to data representation, can be
-grouped into two mutually exclusive parts:
+grouped into two mutually exclusive parts: 
 
-1. A configuration metadata block that informs the program how to handle the
+1. a configuration metadata block that informs the program how to handle the 
    entities contained in the building configuration.
 
 2. Entity block(s) derived from a physical building; they model physical and
@@ -578,17 +577,17 @@ to place this at the very top of the building configuration.
 ``` yaml
 CONFIG_METADATA:
   operation: INITIALIZE
-
+  
 E1-GUID:
   type: ...
   code: E1
   ...
-
+  
 E2-GUID:
   type: ...
   code: E2
   ...
-
+  
 E3-GUID:
   type: ...
   code: E3
@@ -604,28 +603,25 @@ specified. Allowed entity operation values in this mode are of `ADD` or `EXPORT`
 and is enforced by the instance validator. The building config must pass all
 standard offline validation checks. If the `CONFIG_METADATA` block is missing
 from the building configuration the program will assume this mode of operation.
-An `INITIALIZE` configuration only allows `EXPORT` operations on previously
-onboarded entities. This is shown below with specified operations for entities
-E1, E2, and an export of building entity E3; note that there is no specification
-of operation for entity E2.
+An `INITIALIZE` configuration only allows `EXPORT` operations on previously onboarded entities. This is shown below with specified operations for entities E1, E2, and an export of building entity E3; note that there is no specification of operation for entity E2.
 
 ``` yaml
 CONFIG_METADATA:
   operation: INITIALIZE
-
+  
 E1-GUID:
   type: ...
   code: E1
   operation: ADD
   ...
-
+  
 E2-GUID: # no operation specified, ADD assumed
   type: ...
   code: E2
   connections:
     E3-GUID: CONNECTS_TO  # reference connection to an onboarded building
   ...
-
+  
 E3-GUID: # export an onboarded building as its referenced by E2
   type: FACILITIES/BUILDING
   code: E3
@@ -723,17 +719,17 @@ E4-GUID:
     - cloud_device_id
 ```
 
-There are various types of updates that can be performed. All of these updates
+There are various types of updates that can be performed. All of this updates
 are performed according to the fields provided in the `update_mask`. They are
 grouped in the following categories:
 
 1. [type](#type-update)
 2. [code](#code-update)
-3. [cloud_device_id](#cloud-device-id-update)
-4. [translation](#translation-update)
-5. [connections](connections-update)
-6. [links](#links-update)
-
+3. [translation](#translation-update)
+4. [connections](connections-update)
+5. [links](#links-update)
+<!-- 6. [cloud_device_id](#cloud-device-id-update)
+ -->
 #### Type update
 This update typically occurs alongside an update to the `translation` or `links`
 . If the update to another type contains the same fields, as the previous type,
@@ -742,7 +738,7 @@ identifier but cannot be cleared. This is shown in the description for [Code upd
 
 #### Code update
 This update may be completed independently; however, it typically follows a type
-update. In the following example: the code is updated from `FAN-123` to
+update. In the following example: the code is updated from `FAN-123` to 
 `PMP-123` which follows a change of type from HVAC/FAN_SS to HVAC/PMP_SS. Since
 the two types share the same fields there is no need to make updates to the
 translations.
@@ -757,7 +753,7 @@ translations.
 
   * Update:
     ``` yaml
-    GUID-123:
+    GUID-123: 
       type: HVAC/PMP_SS
       code: PMP-123
       ...
@@ -781,7 +777,7 @@ ENTITY-123-GUID:
   code: ENTITY-123
   etag: ...
   cloud_device_id: NEW-CLOUD-DEVICE-ID
-  update_mask:
+  update_mask: 
     - cloud_device_id
   translations:
     ...
@@ -801,15 +797,15 @@ ENTITY-GUID:
   etag: ...
   cloud_device_id: NEW-CLOUD-DEVICE-ID
   translation:
-    field_a:
+    field_a: 
       present_value: points.analog-value_1.present_value
-      units: ...
-    field_b:
+      units: …
+    field_b: 
       present_value: points.analog-value_2.present_value
-      units: ...
-    field_c:
+      units: …
+    field_c: 
       present_value: points.analog-value_3.present_value
-      units: ...
+      units: …
 ```
 
 To change the type from SOME_TYPE_A to SOME_TYPE_B in the same namespace
@@ -823,15 +819,15 @@ ENTITY-GUID:
   etag: ...
   cloud_device_id: ...
   translation:
-    field_b:
+    field_b: 
       present_value: points.analog-value_2.present_value
-      units: ...
-    field_c:
+      units: …
+    field_c: 
       present_value: points.analog-value_3.present_value
-      units: ...
-    field_d:
+      units: …
+    field_d: 
       present_value: points.analog-value_4.present_value
-      units: ...
+      units: …
   update_mask:
     - type
     - translation
@@ -840,38 +836,6 @@ ENTITY-GUID:
 Note: a type update typically requires a code update. This has been omitted from
 the example for brevity. Any field that is omitted is deleted, not present in
 the instantiated entity is added, or present is ignored.
-
-#### Value range update
-The value ranges for particular fields on an entity can be updated as part of
-the translation:
-
-``` yaml
-ENTITY-GUID:
-  type: SOME_TYPE_NAMESPACE/SOME_TYPE_A
-  code: ENTITY-CODE
-  etag: ...
-  cloud_device_id: NEW-CLOUD-DEVICE-ID
-  translation:
-    field_a:
-      present_value: points.analog-value_1.present_value
-      value_range: 4.5,90.0
-      units: ...
-    field_b:
-      present_value: points.analog-value_2.present_value
-      units: ...
-    field_c:
-      present_value: points.analog-value_3.present_value
-      value_range: 15,25
-      units: ...
-  update_mask:
-    - value_range
-    - translation
-```
-
-Since the value range is not actually part of a device translation, it must be
-listed separately in the update mask. Whenever a value range is specified, it
-overrides any previously specified value range and can only be overridden by a
-new value range in a new building config.
 
 #### Connections update
 The entity's connections can be updated to reflect a new connection type,
@@ -946,15 +910,15 @@ ENTITY-A-123-GUID:
   etag: ...
   cloud_device_id: ...
   translation:
-    field_a:
+    field_a: 
       present_value: points.analog-value_1.present_value
       units: ...
-    field_b:
+    field_b: 
       present_value: points.analog-value_2.present_value
       units: ...
-    field_c:
+    field_c: 
       present_value: points.analog-value_3.present_value
-      units: ...
+      units: ...   
 
 VIRTUAL-ENTITY-C-123-GUID:
   type: SOME_TYPE_NAMESPACE/TYPE-C
@@ -980,13 +944,13 @@ ENTITY-A-123-GUID:
   etag: ...
   cloud_device_id: ...
   translation:
-    field_b:
+    field_b: 
       present_value: points.analog-value_1.present_value
       units: ...
-    field_c:
+    field_c: 
       present_value: points.analog-value_2.present_value
       units: ...
-    field_d:
+    field_d: 
       present_value: points.analog-value_3.present_value
       units: ...
   update_mask:
