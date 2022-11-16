@@ -47,3 +47,7 @@ In this module, you’ll deepen your understanding of the DBO and practice apply
 * [Lesson 5: Propose an ontology extension](./docs/learning/Module_2_Lesson_5_Propose_an_ontology_extension.pdf)
 * [Lesson 6: Construct and finalize the building configuration file](./docs/learning/Module_2_Lesson_6_Construct_and_finalize_the_building_configuration_file.pdf)
 * [Lesson 7: Validate the instance and telemetry](./docs/learning/Module_2_Lesson_7_Validate_the_instance_and_telemetry.pdf)
+
+
+
+Enjoy!
