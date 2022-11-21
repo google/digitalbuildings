@@ -88,9 +88,9 @@ DMP_EDBPC_ZTM:
 ### Existing Non-standard Types ###
 ###################################
 
-DMP_US_MTV_900_1:
+DMP_NONCANONICAL_1:
   id: "715815742225776640"
-  description: "Non-standard type for SBO-900"
+  description: "Non-standard type."
   implements:
   - DMP
   uses:
@@ -100,9 +100,9 @@ DMP_US_MTV_900_1:
   - supply_air_damper_percentage_command_2
   - west_building_air_static_pressure_sensor
 
-DMP_US_SBO_901_1:
+DMP_BPC_NONCANONICAL_1:
   id: "12983550758438830080"
-  description: "Non-standard type for SBO-901"
+  description: "Non-standard type."
   implements:
   - DMP
   - BPC
