@@ -27,6 +27,6 @@ CHWS_WDT-17-GUID:
           degrees_celsius: "degC"
     #flowrate_requirement optional missing
 
-UK-LON-S2-GUID:
+US-SEA-BLDG1-GUID:
   type: FACILITIES/BUILDING
-  code: UK-LON-S2
+  code: US-SEA-BLDG1

@@ -14,9 +14,9 @@
 
 # INVALID is not a valid connection for an entity to have.
 
-UK-LON-S2-GUID:
+US-SEA-BLDG1-GUID:
   type: FACILITIES/BUILDING
-  code: UK-LON-S2
+  code: US-SEA-BLDG1 
   connections:
     # Listed entities are sources on connections
     ANOTHER-ENTITY-GUID: FEEDS

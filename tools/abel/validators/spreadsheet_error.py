@@ -20,6 +20,7 @@ from model.constants import CONNECTIONS
 from model.constants import ENTITIES
 
 
+# pylint: disable=line-too-long
 class BaseSpreadsheetError(Exception):
   """Custom exception to model validation errors on a concrete model spreadsheet.
 
@@ -44,6 +45,45 @@ class BaseSpreadsheetError(Exception):
     pass
 
 
+class InvalidNamingError(BaseSpreadsheetError):
+  """Custom exception for invalid or incorrectly formatted entity names.
+
+  Attributes:
+    table: Table name where the name is invalid.
+    row: Row number where the name is invalid.
+    column: Column header for the invalid name.
+    message: Custom exception message for the invalid name.
+    invalid_name: Name that does not conform to provided pattern.
+    naming_pattern: Regex pattern for entity names.
+  """
+
+  def __init__(self,
+               table: str,
+               row: str,
+               column: str,
+               invalid_name: str,
+               naming_pattern: str,
+               message: Optional[str] = ''):
+    """Init.
+
+    Args:
+      table: Table name where the name is invalid.
+      row: Row number where the name is invalid.
+      column: Column header for the invalid name.
+      invalid_name: Name that does not conform to provided pattern.
+      naming_pattern: Regex pattern for entity names.
+      message: [Optional] Custom exception message for the invalid name.
+    """
+    super().__init__(table, message)
+    self.row = row
+    self.column = column
+    self.invalid_name = invalid_name
+    self.naming_pattern = naming_pattern
+
+  def GetErrorMessage(self) -> str:
+    return f'Table: {self.table}, Row: {self.row}, Column: {self.column}, Message: {self.message}, entity name: {self.invalid_name} must follow naming pattern: {self.naming_pattern}'
+
+
 class MissingSpreadsheetValueError(BaseSpreadsheetError):
   """Custom exception for missing values in an ABEL spreadsheet.
 
@@ -63,6 +103,25 @@ class MissingSpreadsheetValueError(BaseSpreadsheetError):
       column: Column header for the missing value.
       message: [Optional] Custom exception message for the missing value.
     """
+    super().__init__(table, message)
+    self.row = row
+    self.column = column
+
+  def GetErrorMessage(self) -> str:
+    return f'Table: {self.table}, Row: {self.row}, Column: {self.column}, Message: {self.message}'
+
+
+class MissingFieldError(BaseSpreadsheetError):
+  """Exception to raise errors for validations associated with missing fields.
+
+  Attributes:
+    table: The Entity Fields table.
+    row: Row number of invalid missing field values.
+    column: column name of invalid cell values.
+    Message: [Optional] Custom exception message for invalid cell values.
+  """
+
+  def __init__(self, table: str, row: str, column: str, message: Optional[str]):
     super().__init__(table, message)
     self.row = row
     self.column = column
@@ -143,8 +202,13 @@ class CrossSheetDependencyError(BaseSpreadsheetError):
     message: Custom error message.
   """
 
-  def __init__(self, source_table: str, target_table: str, row: str,
-               column: str, cell_value: str, message: Optional[str] = ''):
+  def __init__(self,
+               source_table: str,
+               target_table: str,
+               row: str,
+               column: str,
+               cell_value: str,
+               message: Optional[str] = ''):
     """Init.
 
     Args:

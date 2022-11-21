@@ -12,6 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-UK-LON-S3-GUID:
+US-SEA-BLDG1-GUID:
   type: NONEXISTENT/BUILDING
-  code: UK-LON-S3
+  code: US-SEA-BLDG1

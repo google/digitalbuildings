@@ -2,9 +2,7 @@
 
 The Digital Buildings Toolkit provides a centralized
 method for interfacing with all of the tools contained within the Digital
-Buildings Repository. Currently, the toolkit only supports building configuration
-instance validation and guid generation, but additional funcionality will be
-implemented in the future.
+Buildings Repository.
 
 ## Install
 
@@ -37,7 +35,7 @@ Then you can either use pip or setuptools.
 ### Pip
 1. Run `python3 -m pip install --upgrade pip` to ensure that your Python package management tools are up-to-date.
 
-2. Run `pip_install.sh` or `pip_install.bat` (windows) from the following directory digitalbuildings/tools.
+2. Run `bash pip_install.sh` or `pip_install.bat` (windows) from the following directory digitalbuildings/tools.
 
 
 

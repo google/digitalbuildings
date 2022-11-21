@@ -26,3 +26,17 @@ information on using pull requests.
 
 This project follows
 [Google's Open Source Community Guidelines](https://opensource.google/conduct/).
+
+## Pull requests
+
+If you are Google partner, please make sure not to add sensitive data on github when:
+* Extending the ontology types through a pull request 
+* Opening an issue
+* Asking a question
+
+Sensitive data is one of the following:
+* Building names or their locations, same applied for floors, rooms and zones.
+* Indentifiers such as project id, subscription names
+* Equipment names and their locations.
+* Others
+

@@ -15,7 +15,7 @@
 # This is an invalid config file because the content of translation needs to
 # case-sensitive match the string `COMPLIANT` if the translation is compliant.
 
-UK-LON-S2-GUID:
+US-SEA-BLDG1-GUID:
   type: FACILITIES/BUILDING
   translation: COMPLIANT_INVALID
-  code: UK-LON-S2
+  code: US-SEA-BLDG1

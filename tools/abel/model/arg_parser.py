@@ -15,6 +15,9 @@
 
 import argparse
 
+from model.constants import DEFAULT_TOKEN_PATH
+from validate.constants import DEFAULT_TIMEOUT
+
 
 def ParseArgs() -> argparse.ArgumentParser:
   """Generates an argument parser for user input.
@@ -26,10 +29,19 @@ def ParseArgs() -> argparse.ArgumentParser:
       description='Instantiate an ABEL argument parser')
 
   parser.add_argument(
+      '-m',
+      '--modified-ontology-types',
+      dest='modified_types_filepath',
+      required=False,
+      help='Filepath to modified type filepaths',
+      metavar='MODIFIED_TYPE_FILEPATHS')
+
+  parser.add_argument(
       '-t',
       '--token',
       dest='token',
-      required=True,
+      required=False,
+      default=DEFAULT_TOKEN_PATH,
       help='Path to GCP project token.')
 
   parser.add_argument(
@@ -47,5 +59,38 @@ def ParseArgs() -> argparse.ArgumentParser:
       required=False,
       help='Filepath to Building Configuration YAML file.',
       metavar='FILE')
+
+  parser.add_argument(
+      '-p',
+      '--subscription',
+      dest='subscription',
+      required=False,
+      help='Pubsub subscription for telemetry to validate',
+      metavar='subscription')
+
+  parser.add_argument(
+      '-a',
+      '--service-account',
+      dest='service_account',
+      required=False,
+      help='Service account used to pull messages from the subscription',
+      metavar='service-account')
+
+  parser.add_argument(
+      '-o',
+      '--timeout',
+      dest='timeout',
+      required=False,
+      default=DEFAULT_TIMEOUT,
+      help='Timeout duration (in seconds) for telemetry validation test',
+      metavar='timeout')
+
+  parser.add_argument(
+      '-d',
+      '--output-dir',
+      dest='output_dir',
+      required=False,
+      help='Path to a directory for output files to be written to',
+      metavar='output-directory')
 
   return parser

@@ -17,7 +17,7 @@ from typing import Dict
 
 
 class GuidToEntityMap(object):
-  """Class to store and manage accessibility to a global mapping of entity guids to Entity instances.
+  """Container for global mapping of Entity instances by entity guids.
 
   Attributes: guid_to_entity_map(class variable): Global mapping of entity guids
   to Entity instances.
@@ -44,7 +44,7 @@ class GuidToEntityMap(object):
     """
     if not site.guid:
       raise AttributeError(f'{site.code}: guid missing')
-    elif site.guid not in self._guid_to_entity_map.keys():
+    elif site.guid not in self._guid_to_entity_map:
       self._guid_to_entity_map[site.guid] = site
     else:
       raise KeyError(
@@ -67,7 +67,7 @@ class GuidToEntityMap(object):
       raise ValueError('Cannot add None values to global entity map.')
     if not entity.bc_guid:
       raise AttributeError(f'{entity.code}: guid missing')
-    if entity.bc_guid not in self._guid_to_entity_map.keys():
+    if entity.bc_guid not in self._guid_to_entity_map:
       self._guid_to_entity_map[entity.bc_guid] = entity
     else:
       raise KeyError(
@@ -103,7 +103,7 @@ class GuidToEntityMap(object):
     return self.GetEntityByGuid(guid).code
 
   def GetEntityGuidByCode(self, code: str) -> str:
-    """Returns an entity code mapped to by a guid in the global guid to entity mapping.
+    """Returns entity code mapped by guid in the global guid to entity mapping.
 
     Args:
       code: A non-duplicate entity code.
