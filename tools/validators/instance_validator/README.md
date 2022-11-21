@@ -8,9 +8,41 @@ Installing and using the Instance Validator requires Python 3.9, and the specifi
 
 * MacOS & Linux: `python3`
 * Windows (with only Python 3 installed): `python` or `py -3`
-* Windows (with Python 2 and 3 installed): `py -3`
+* Windows (with Python 3 installed): `py -3`
 
 You can run the command with just the version flag (e.g. `python --version`) to verify that the result is `Python 3.*`.
+
+
+### First create a virtual env
+
+Create the virutal environment with `virtualenv` followed by the environment name, in this example: `tooling`
+
+```
+virtualenv tooling
+```
+
+
+Activate the virtual environment
+
+Mac OS / Linux:
+```
+source tooling/bin/activate
+```
+
+Windows
+```
+tooling\Scripts\activate
+```
+
+
+Then you can either use pip or setuptools.
+
+### PIP
+
+1. Run `python3 -m pip install --upgrade pip` to ensure that your Python package management tools are up-to-date.
+2. Run `python3 -m pip install . ` from digitalbuildings/tools/validators/instance_validator.
+
+### SetUpTools (to be deprecated)
 
 1. Run `python3 -m pip install --upgrade pip setuptools` to ensure that your Python package management tools are up-to-date.
 2. Run `python3 setup.py install` from digitalbuildings/tools/validators/ontology_validator.
@@ -68,6 +100,8 @@ Run `python instance_validator.py` and provide the following arguments:
 
   * `-t/--timeout` **[Optional]** The timeout duration in seconds for the telemetry validation test. The default value is 600 seconds, or 10 minutes. If this time limit is exceeded before the validator receives a test pubsub message for each of the entities configured in the given instance config file, the test will fail with an error and report the entities that were not heard from.
 
+  * `--udmi` **[Optional]** Treat message stream on PubSub subscription as [UDMI](https://github.com/faucetsdn/udmi/). **NOTE:** This is required for telemetry validation when devices implement the UDMI specification.
+
   * **NOTE:** The service account key and subscription are provided by the Google team. Please reach out to your IoT TPM for guidance.
 
 4. `-r/--report-filename` To write results to a validation log.
@@ -101,6 +135,7 @@ validation logic and cause the validator to exit prematurely because the instanc
             key: "units"
             values:
               degrees_celsius: "degC"
+              degrees_fahrenheit: "degF"
 
 **Warnings** on the other hand expose inconsistencies in the content of an entity block but do not cause the validator to fail since the core elements of what make an entity block readable are still present. For example, if the fields defined in `translation` or `links` do not align with the fields for the entity's type as defined in [Digital Builings Ontology](https://github.com/google/digitalbuildings/tree/master/ontology/yaml), then the validator will warn the user it is not a valid entity.
 
