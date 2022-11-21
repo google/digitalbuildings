@@ -241,6 +241,7 @@ FCU_DFSS_DSP_HTZC_DXZC:
   - DXZC
 
 FCU_DFSS_DSP_HTZC_DXZC_DFSMC:
+  id: "12727354653562372096"
   description: "DX fan coil with reheat (zone temp control)."
   is_canonical: true
   implements:
@@ -504,6 +505,7 @@ FCU_DFSS_DFMSC_DSP_DXZC:
   - DXZC
 
 FCU_DFSS_DFMSC_DSP_DXZC_DAIDC:
+  id: "14889082474700210176"
   description: "Multi-speed DX fan coil with zone temp control, and discharge air isolation damper control."
   is_canonical: true
   implements:
@@ -548,6 +550,7 @@ FCU_DFSS_DFMSC_CSP_DXZC:
   - DXZC
 
 FCU_DFSS_DFMSC_CSP_DXZC_DAIDC:
+  id: "10745770817519353856"
   description: "DX fan coil with multi-speed control (zone control) and discharge isolation damper control."
   is_canonical: true
   implements:
