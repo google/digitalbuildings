@@ -27,6 +27,7 @@ VFD: Discrete speed (frequency) control
 BYPASS: Bypassing an element or entity.
 DEHUMIDIFY: Modes of operation in DX unit where the unit acts as a dehumidifier by removing moisture from air
 FAN_ONLY: Modes of operation in DX unit where only fan runs and heating/cooling is disabled
+SETPOINT: Mode of operation in DX unit where the unit runs as per the setpoint provided.
 
 # Moved from HVAC namespace because all fields are currently global in DL.
 COMMISSIONING: The fan speed and valve positions are set to preconfigured parameters.

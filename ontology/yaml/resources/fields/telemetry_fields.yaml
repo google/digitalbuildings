@@ -1641,6 +1641,11 @@ literals:
 - discharge_fan_run_mode:
   - AUTO
   - MANUAL
+  - HEATING
+  - COOLING
+  - DEHUMIDIFY
+  - FAN_ONLY
+  - SETPOINT
 
 - exhaust_fan_speed_mode:
   - BYPASS
