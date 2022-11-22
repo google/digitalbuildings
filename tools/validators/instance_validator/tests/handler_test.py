@@ -122,7 +122,7 @@ class HandlerTest(absltest.TestCase):
            mock.call().Listen(mock.ANY)])
       # TODO(berkoben): Make this assert stricter
       mock_validator.assert_has_calls(
-          [mock.call(mock.ANY, mock.ANY, mock.ANY),
+          [mock.call(mock.ANY, mock.ANY, mock.ANY, mock.ANY),
            mock.call().StartTimer()])
 
     except SystemExit:
