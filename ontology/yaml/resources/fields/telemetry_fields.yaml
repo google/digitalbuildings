@@ -1664,6 +1664,62 @@ literals:
 ## New fields for seismic detector
 - seismic_alarm
 
+- lighting_color_cie_xvalue_sensor
+- lighting_color_cie_yvalue_sensor
+- lighting_color_hsl_saturation_percentage_sensor
+- lighting_color_hsl_hue_angle_sensor
+- lighting_color_cie_xvalue_setpoint
+- lighting_color_cie_yvalue_setpoint
+- lighting_color_hsl_saturation_percentage_setpoint
+- lighting_color_hsl_hue_angle_setpoint
+- run_hours_accumulator
+
+- luminaire_failed_alarm:
+  - NORMAL
+  - ALARM
+
+- group_alarm:
+  - NORMAL
+  - ALARM
+
+- group_mode:
+  - DIMMING
+  - CONSTANT_LIGHT_CONTROL
+  - AUTO
+  - SCENE_CONTROL
+
+- high_limit_illuminance_setpoint
+- low_limit_illuminance_setpoint
+- brightness_percentage_sensor
+- heating_output_percentage_command
+
+- dimmer_run_status:
+  - ON
+  - OFF
+
+- wind_alarm:
+  - ACTIVE
+  - INACTIVE
+
+- rain_alarm:
+  - ACTIVE
+  - INACTIVE
+- outside_illuminance_sensor
+
+- shade_orientation_specification:
+  - NORTH
+  - SOUTH
+  - EAST
+  - WEST
+
+- shade_mode:
+  - MANUAL
+  - AUTO
+  - DAY_NIGHT
+  - THERMAL
+  - SCENE
+  - WINDOW
+  
 ## New fields for RO water system
 - water_totaldissolvedsolids_concentration_sensor
 

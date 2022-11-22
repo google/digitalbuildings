@@ -1638,3 +1638,27 @@ FCU_RTC_RHDHS_DTM_DFSS:
   - fire_alarm
   - schedule_run_command
 
+FCU_DFVSCS_CSP_RTM_WDT:
+  description: "Hydronic cooling or heating fan coil unit with cooling temperature setpoint control"
+  implements:
+  - FCU
+  - DFVSCS
+  - CSP
+  - RTM
+  - WDT 
+  uses: 
+  - master_alarm
+  - run_mode
+
+FCU_DFSS_CSP_DXSZC:
+  description: "Typical DX FCU with cooling-only (discharge control)"
+  implements:
+  - FCU
+  - DFSS
+  - CSP
+  - RTM
+  - DXSZC
+  uses: 
+  - master_alarm
+  - filter_alarm
+  - run_mode
