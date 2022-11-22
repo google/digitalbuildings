@@ -57,9 +57,9 @@ DH_SS_HTSC:
 ### Need to Remap These  ###
 ############################
 
-DFR_US_PAO_HV4_2:
+DFR_NONCANONICAL_1:
   id: "8271659648302448640"
-  description: "Non-standard type for HV4"
+  description: "Non-standard type."
   uses:
   - discharge_air_relative_humidity_sensor
   - discharge_air_temperature_sensor

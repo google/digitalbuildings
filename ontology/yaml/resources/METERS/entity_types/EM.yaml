@@ -27,14 +27,14 @@ EM_PLPM:
   implements:
   - EM
   - PLPM
-  
+
 EM_PWMRDM:
   id: "5027712218758643712"
   description: "Energy metering from Grid Electricity and Diesel Generator."
   is_canonical: true
   implements:
   - EM
-  - PWMRDM 
+  - PWMRDM
 
 EM_PWM_PVCM:
   id: "9147692239198093312"
@@ -87,7 +87,7 @@ EM_PWM_AVCM_PLPM_PVCM:
   - AVCM
   - PLPM
   - PVCM
-  
+
 EM_PWM_PWMRDM:
   id: "8930081295875178496"
   description: "Energy metering from Grid Electricity and Diesel Generator with power monitoring."
@@ -95,7 +95,7 @@ EM_PWM_PWMRDM:
   implements:
   - EM
   - PWM
-  - PWMRDM   
+  - PWMRDM
 
 #############################
 ### Non-Canonical Devices ###
@@ -108,34 +108,34 @@ EM_ION:
   - EM_PWM_AVCM_PLPM_PVCM
   - DEPRECATED
 
-EM_US_MTV_1200_1:
+EM_PWM_NONCANONICAL_1:
   id: "2029916855371563008"
-  description: "Entities: US-MTV-1200:power-meter-MAIN_Meter, US-MTV-E475:power-meter-MAIN_Meter, US-MTV-GWC4:power-meter-MAIN_Meter, US-MTV-LMK5:power-meter-MAIN_Meter, US-MTV-SB75:power-meter-MAIN_Meter, US-PAO-1010:power-meter-MAIN_Meter, US-PAO-1129:power-meter-MAIN_Meter, US-SVL-CRSM1265:power-meter-MAIN_Meter, US-SVL-MP2:power-meter-MAIN_Meter, US-SVL-MP4:power-meter-MAIN_Meter, US-SVL-MP5:power-meter-MAIN_Meter"
+  description: "Non-standard type."
   implements:
   - EM_PWM
   uses:
   - average_line_current_sensor
   - average_inter_line_voltage_sensor
 
-EM_US_MTV_PR55_1:
+EM_PWM_PLPM_PVCM_NONCANONICAL_1:
   id: "4660019037755932672"
-  description: "Non-standard type for US-MTV-PT55 Main meter."
+  description: "Non-standard type."
   implements:
   - EM_PWM_PLPM_PVCM
   uses:
   - average_line_neutral_voltage_sensor
   - average_inter_line_voltage_sensor
 
-EM_US_SVL_TC1_1:
+EM_PWM_NONCANONICAL_2:
   id: "3723270315262869504"
-  description: "Non-standard type for TC Main meters."
+  description: "Non-standard type."
   implements:
   - EM_PWM
   uses:
   - average_line_current_sensor
   - average_inter_line_voltage_sensor
 
-EM_NONCANONICAL_1: 
+EM_PWM_PLPM_PVCM_NONCANONICAL_2:
   id: "15021802324265795584"
   description: "SE PM5100 Meter"
   uses:
