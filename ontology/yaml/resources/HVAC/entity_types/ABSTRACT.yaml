@@ -2796,7 +2796,7 @@ SFM:
   - supply_air_flowrate_sensor
   implements:
   - MONITORING
-  
+
 DFM:
   description: "Discharge air flow monitoring."
   is_abstract: true
