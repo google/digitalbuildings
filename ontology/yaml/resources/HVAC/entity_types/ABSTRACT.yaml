@@ -86,6 +86,7 @@ SRC:
 OADM:
   id: "13985513714598543360"
   description: "Outside air damper monitoring."
+  is_abstract: true
   uses:
   - outside_air_damper_command
 
@@ -282,6 +283,7 @@ BPC:
   - OPERATIONAL
 
 BPC2X:
+  id: "4764990512371335168"
   description: "Building pressure control for two pressure sensors (stand-alone fan)."
   is_abstract: true
   uses:
@@ -753,6 +755,7 @@ RHM:
 RTM:
   id: "2924673029776605184"
   description: "Return air temperature monitoring"
+  is_abstract: true
   implements:
   - MONITORING
   opt_uses:
@@ -1748,6 +1751,7 @@ DX2ZC2X:
 DXSC:
   id: "2530229830381731840"
   description: "Compressor run control on supply air side (STC)."
+  is_abstract: true
   opt_uses:
   - leaving_cooling_coil_temperature_sensor
   - cooling_thermal_power_capacity
@@ -1939,6 +1943,7 @@ DX5SC:
 DXRC:
   id: "5628706374012633088"
   description: "Compressor run control on return air side (RC)."
+  is_abstract: true
   opt_uses:
   - discharge_air_temperature_sensor
   - leaving_cooling_coil_temperature_sensor
@@ -1961,6 +1966,7 @@ DXRC:
 DXDC:
   id: "5988994344202272768"
   description: "Compressor run control on discharge air side (DTC)."
+  is_abstract: true
   opt_uses:
   - leaving_cooling_coil_temperature_sensor
   - cooling_thermal_power_capacity
@@ -4656,6 +4662,7 @@ RHDHS:
 CO2DFVSC:
   id: "4574242837138243584"
   description: "Carbon dioxide levels controlled by a variable speed discharge fan."
+  is_abstract: true
   uses:
   - zone_air_co2_concentration_sensor
   - zone_air_co2_concentration_setpoint
@@ -4666,6 +4673,7 @@ CO2DFVSC:
 CO2EFVSC:
   id: "8098956058392788992"
   description: "Carbon dioxide levels controlled by a variable speed exhaust fan."
+  is_abstract: true
   opt_uses:
   - exhaust_fan_speed_percentage_sensor
   uses:
@@ -4678,6 +4686,7 @@ CO2EFVSC:
 RACO2C:
   id: "15503353232859594752"
   description: "Returned air carbon dioxide levels controls."
+  is_abstract: true
   uses:
   - return_air_co2_concentration_sensor
   - return_air_co2_concentration_setpoint
@@ -5184,6 +5193,7 @@ DAIDC2X:
   - MONITORING
 
 DAIDC:
+  id: "16510378340553588736"
   description: "Discharge air isolation damper control and monitoring."
   is_abstract: true
   uses:
@@ -5762,3 +5772,4 @@ DXSZC:
   - zone_air_cooling_temperature_setpoint
   - zone_air_temperature_sensor
   - compressor_run_status
+
