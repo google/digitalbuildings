@@ -2235,6 +2235,22 @@ HWZTC:
   implements:
   - CONTROL
 
+HWSDC:
+  description: "Heating water valve control on supply air side with dual setpoint control."
+  is_abstract: true
+  opt_uses:
+  - heating_water_valve_percentage_sensor
+  - heating_thermal_power_capacity
+  - leaving_heating_coil_temperature_sensor
+  - heating_request_count
+  uses:
+  - heating_water_valve_percentage_command
+  - supply_air_cooling_temperature_setpoint
+  - supply_air_heating_temperature_setpoint
+  - supply_air_temperature_sensor
+  implements:
+  - CONTROL
+
 HWSWC:
   id: "8294837353415966720"
   description: "Heating water valve monitoring on supply water side."
