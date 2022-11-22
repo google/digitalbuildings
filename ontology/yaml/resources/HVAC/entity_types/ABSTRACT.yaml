@@ -2022,6 +2022,27 @@ DX3DC:
   - compressor_run_status_3
   implements:
   - CONTROL
+  
+DX2DDC:
+  description: "Two compressor run control on with dual discharge air temperature setpoints."
+  is_abstract: true
+  opt_uses:
+  - leaving_cooling_coil_temperature_sensor
+  - cooling_thermal_power_capacity
+  - cooling_percentage_command
+  - compressor_speed_percentage_command
+  - compressor_run_time_accumulator_1
+  - compressor_run_time_accumulator_2  
+  uses:
+  - discharge_air_temperature_sensor
+  - discharge_air_heating_temperature_setpoint
+  - discharge_air_cooling_temperature_setpoint
+  - compressor_run_command_1
+  - compressor_run_command_2
+  - compressor_run_status_1
+  - compressor_run_status_2
+  implements:
+  - CONTROL
 
 HPSC:
   id: "15212366381057048576"
@@ -2232,22 +2253,6 @@ HWZTC:
   - heating_water_valve_percentage_command
   - zone_air_temperature_setpoint
   - zone_air_temperature_sensor
-  implements:
-  - CONTROL
-
-HWSDC:
-  description: "Heating water valve control on supply air side with dual setpoint control."
-  is_abstract: true
-  opt_uses:
-  - heating_water_valve_percentage_sensor
-  - heating_thermal_power_capacity
-  - leaving_heating_coil_temperature_sensor
-  - heating_request_count
-  uses:
-  - heating_water_valve_percentage_command
-  - supply_air_cooling_temperature_setpoint
-  - supply_air_heating_temperature_setpoint
-  - supply_air_temperature_sensor
   implements:
   - CONTROL
 
@@ -2789,6 +2794,14 @@ SFM:
   is_abstract: true
   uses:
   - supply_air_flowrate_sensor
+  implements:
+  - MONITORING
+  
+DFM:
+  description: "Discharge air flow monitoring."
+  is_abstract: true
+  uses:
+  - discharge_air_flowrate_sensor
   implements:
   - MONITORING
 
