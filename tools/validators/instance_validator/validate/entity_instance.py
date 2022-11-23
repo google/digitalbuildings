@@ -124,7 +124,7 @@ class CombinationValidator(object):
       Args:
         entity: EntityInstance object to be validated against the ontology for
           content and connectivity.
-        is_udmi: Flag to indicate process of validation under udmi specification;
+        is_udmi: Indicate validation process under udmi specification;
           bool default False.
     """
 
@@ -330,7 +330,7 @@ class InstanceValidator(object):
       if isinstance(ft, ft_lib.DimensionalValue):
         if is_udmi and not _UDMI_PRESENT_VALUE_PATTERN.fullmatch(
           ft.raw_field_name):
-          print(f'present value {ft.raw_field_name} does not conform to udmi ',	
+          print(f'present value {ft.raw_field_name} does not conform to udmi ',
             'regex pattern {_UDMI_PRESENT_VALUE_REGEX}')
           is_valid = False
         for std_unit, raw_unit in ft.unit_mappings.items():
@@ -547,9 +547,10 @@ class InstanceValidator(object):
       if entity.operation != parse.EntityOperation.UPDATE:
         print('Update mask is required for update operations')
         is_valid = False
-      if entity.type_name is None and parse.ENTITY_TYPE_KEY in entity.update_mask:
-        print('Update mask to clear Entity Type not allowed')
-        is_valid = False
+      if entity.type_name is None:
+        if parse.ENTITY_TYPE_KEY in entity.update_mask:
+          print('Update mask to clear Entity Type not allowed')
+          is_valid = False
       if parse.ENTITY_CLOUD_DEVICE_ID_KEY in entity.update_mask:
         print('Update to Cloud Device ID not allowed')
         is_valid = False
@@ -707,6 +708,7 @@ def _ParseUnitsAndValueRange(ft: Dict[str, Any], std_field_name: str,
         raise ValueError(
             f'Value range in the translation for field "{std_field_name}" ' +
             'should have a min value that is less than the max value.')
+      # pylint: disable=too-many-function-args
       return ft_lib.DimensionalValue(std_field_name, raw_field_name,
                                      unit_field_name, unit_mapping,
                                      (min_value, max_value))
