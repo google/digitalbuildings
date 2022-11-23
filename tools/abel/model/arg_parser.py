@@ -14,6 +14,7 @@
 """Command line argument parser for ABEL."""
 
 import argparse
+import os
 
 from model.constants import DEFAULT_TOKEN_PATH
 from validate.constants import DEFAULT_TIMEOUT
@@ -90,6 +91,7 @@ def ParseArgs() -> argparse.ArgumentParser:
       '--output-dir',
       dest='output_dir',
       required=False,
+      default-os.getcwd(),
       help='Path to a directory for output files to be written to',
       metavar='output-directory')
 
