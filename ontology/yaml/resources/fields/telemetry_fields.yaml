@@ -723,6 +723,12 @@ literals:
   - AUTO
   - MANUAL
   - OFF
+  - HEATING
+  - COOLING
+  - DEHUMIDIFY
+  - FAN_ONLY
+  - SETPOINT
+  
 - cooling_thermal_energy_accumulator
 - particle_concentration_sensor
 - high_limit_supply_air_cooling_flowrate_setpoint
@@ -1641,11 +1647,6 @@ literals:
 - discharge_fan_run_mode:
   - AUTO
   - MANUAL
-  - HEATING
-  - COOLING
-  - DEHUMIDIFY
-  - FAN_ONLY
-  - SETPOINT
 
 - exhaust_fan_speed_mode:
   - BYPASS
