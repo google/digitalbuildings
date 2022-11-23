@@ -97,7 +97,8 @@ class EntityInstanceTest(absltest.TestCase):
                                                      _UPDATE_CFG, {})
 
     self.assertTrue(validator.Validate(mock_entity))
-    mock_iv.assert_called_once_with(mock_entity)
+    # Add False to mock assertion for is_udmi argument
+    mock_iv.assert_called_once_with(mock_entity, False)
     mock_gv.assert_called_once_with(mock_entity)
 
   def testInstance_ValidEtagOnUpdate_Success(self):
