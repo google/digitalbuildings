@@ -111,7 +111,7 @@ More info can be found in [gcloud docs on authorizing with the gcloud CLI](https
     ```
     @echo off
 
-    FOR /F "delims=" %i IN ('gcloud auth application-default print-access-t`oken') DO set token=%i
+    FOR /F "delims=" %i IN ('gcloud auth application-default print-access-token') DO set token=%i
     SET header=Authorization: Bearer
 
     SET auth_token="%header%%token%"
