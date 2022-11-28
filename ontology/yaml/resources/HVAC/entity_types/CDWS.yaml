@@ -112,7 +112,7 @@ CDWS_CLPM_SWTC_WDPM_WFRC:
   - SWTC
   - WDPM
   - WFRC
-  
+
 CDWS_CLPM_WDT_WFRM:
   id: "11680091818338287616"
   description: "Condensing water system with delta-T, flowrate, and thermal power monitoring."
@@ -122,6 +122,7 @@ CDWS_CLPM_WDT_WFRM:
   - CLPM
   - WDT
   - WFRM
+
 CDWS_CWDT_CDWISOVM_CDWFRSM:
   id: "18079143938878341120"
   description: "Condensing water system with temperature, isolation valve , flowrate monitoring. "
@@ -148,9 +149,9 @@ CDWS_BYPVPM_CLPM_SWTC_WDPC_WFRM:
 ### Existing Non-standard Types ###
 ###################################
 
-CDWS_US_MTV_2081_1:
+CDWS_NONCANONICAL_1:
   id: "2724350807288840192"
-  description: "Non-standard 2081 CDWS"
+  description: "Non-standard CDWS"
   implements:
   - CDWS
   uses:

@@ -35,6 +35,7 @@ PMP:
   - EQUIPMENT
   
 RO:
+  id: "8115668635134984192"
   description: "Reverse osmosis is a water purification process that uses a semi-permeable membrane (synthetic lining) to filter out unwanted molecules and large particles such as contaminants and sediments like chlorine, salt, and dirt from drinking water."
   is_abstract: true
   implements:
