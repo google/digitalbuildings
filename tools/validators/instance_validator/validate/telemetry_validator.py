@@ -27,7 +27,6 @@ from validate import telemetry_validation_reporting as tvr
 
 DEVICE_ID = telemetry.DEVICE_ID
 
-# pylint: disable=consider-using-f-string
 
 class TelemetryValidator(object):
   """Validates telemetry messages against a building config file.

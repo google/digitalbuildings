@@ -22,7 +22,6 @@ from typing import Optional
 from google import auth
 from google.cloud import pubsub_v1
 
-# pylint: disable=consider-using-f-string
 
 class Subscriber(object):
   """Reads payload from a subscription.
@@ -82,8 +81,6 @@ class Subscriber(object):
       except (futures.CancelledError, KeyboardInterrupt):
         future.cancel()
       except Exception as ex:  # pylint: disable=broad-except
-        print('[ERROR]\tPub/sub subscription failed with error: {ex}'
-              .format(ex=ex)
-              )
+        print(f'[ERROR]\tPub/sub subscription failed with error: {ex}')
         future.cancel()
       break

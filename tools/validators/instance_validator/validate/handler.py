@@ -27,9 +27,6 @@ from validate import subscriber
 from validate import telemetry_validator
 from yamlformat.validator import presubmit_validate_types_lib as pvt
 
-# pylint: disable=consider-using-f-string
-
-
 
 def GetDefaultOperation(
     config_mode: instance_parser.ConfigMode) -> instance_parser.EntityOperation:
@@ -62,7 +59,7 @@ def Deserialize(
   print('[INFO]\tStarting syntax validation.')
   parser = instance_parser.InstanceParser()
   for yaml_file in yaml_files:
-    print('[INFO]\tOpening file: {yaml_file}.'.format(yaml_file=yaml_file))
+    print(f'[INFO]\tOpening file: {yaml_file}.')
     parser.AddFile(yaml_file)
   parser.Finalize()
 
@@ -75,22 +72,14 @@ def Deserialize(
           entity_key, entity_yaml, default_entity_operation)
       entities[entity.guid] = entity
     except ValueError as ex:
-      print('[ERROR]\tInvalid Entity syntax found for this entity: '
-            '{entity_key} and this content: "{entity_yaml}" and with error'
-            ': "{ex}"'
-            .format(entity_key=entity_key,
-                    entity_yaml=entity_yaml,
-                    ex=str(ex))
-            )
+      print(f'[ERROR]\tInvalid Entity syntax found for this entity: '
+            f'{entity_key} and this content: "{entity_yaml}" and with error'
+            f': "{ex}"')
       raise ex
     except KeyError as ex:
-      print('[ERROR]\tInvalid Entity syntax found for this entity: '
-            '{entity_key} and this content: "{entity_yaml}" and with error'
-            ': "{ex}"'
-            .format(entity_key=entity_key,
-                    entity_yaml=entity_yaml,
-                    ex=str(ex))
-            )
+      print(f'[ERROR]\tInvalid Entity syntax found for this entity: '
+            f'{entity_key} and this content: "{entity_yaml}" and with error'
+            f': "{ex}"')
       raise ex
 
   return entities, parser.GetConfigMode()
@@ -101,7 +90,7 @@ def _ValidateConfig(
     universe: pvt.ConfigUniverse,
     is_udmi) -> List[entity_instance.EntityInstance]:
   """Runs all config validation checks."""
-  print('[INFO]\tLoading config files: {files}'.format(files=filenames))
+  print(f'[INFO]\tLoading config files: {filenames}')
   entities, config_mode = Deserialize(filenames)
   print('[INFO]\tStarting config validation.')
   helper = EntityHelper(universe)
@@ -173,10 +162,8 @@ def RunValidation(filenames: List[str],
   # Using broad exception to catch any underlying error that might cause
   # validation to fail
   except Exception as ex:
-    print('[ERROR]\tSomething failed during validation and has '
-          'terminated validation. See logs above and error here: {ex}.'
-          .format(ex=ex)
-          )
+    print(f'[ERROR]\tSomething failed during validation and has '
+          f'terminated validation. See logs above and error here: {ex}.')
     return
   finally:
     sys.stdout = saved_stdout
@@ -208,9 +195,7 @@ class TelemetryHelper(object):
       is_udmi: true/false treat telemetry stream as UDMI; defaults to false
     """
 
-    print('[INFO]\tConnecting to PubSub subscription {sub}'
-          .format(sub=self.subscription)
-          )
+    print(f'[INFO]\tConnecting to PubSub subscription {self.subscription}')
     sub = subscriber.Subscriber(self.subscription, self.service_account_file)
     validator = telemetry_validator.TelemetryValidator(
         entities, timeout, is_udmi, _TelemetryValidationCallback)
@@ -237,20 +222,17 @@ def _TelemetryValidationCallback(
   print('[INFO]\tGenerating telemetry validation report.')
   if not validator.AllEntitiesValidated():
     for entity_name in validator.GetUnvalidatedEntityNames():
-      print('[WARNING]\tNo telemetry message was received for '
-            'entity: {en}. Ensure the device is transmitting data in order '
-            'to validate.'.format(en=entity_name)
-            )
+      print(f'[WARNING]\tNo telemetry message was received for '
+            f'entity: {entity_name}. Ensure the device is transmitting data '
+            f'in order to validate.')
 
   for error in validator.GetErrors():
-    print('[ERROR]\tAn error was found while validating telemetry: '
-          '{error}'.format(error=error.GetPrintableMessage())
-          )
+    print(f'[ERROR]\tAn error was found while validating telemetry: '
+          f'{error.GetPrintableMessage()}')
 
   for warning in validator.GetWarnings():
-    print('[WARNING]\tA warning was generated while validating '
-          'telemetry: {warning}'.format(warning=warning.GetPrintableMessage())
-          )
+    print(f'[WARNING]\tA warning was generated while validating '
+          f'telemetry: {warning.GetPrintableMessage()}')
 
   print('[INFO]\tTelemetry validation ending. See logs above.')
   _thread.interrupt_main()

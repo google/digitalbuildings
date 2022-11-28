@@ -914,7 +914,8 @@ class EntityInstanceTest(absltest.TestCase):
     self.assertFalse(self.update_validator.Validate(entity))
 
   def testValidate_EmptyCode_Fails(self):
-    entity = entity_instance.EntityInstance(_ADD, guid='VAV-123-GUID', code='')
+    entity = entity_instance.EntityInstance(_ADD, guid='VAV-123-GUID',
+                                            code='VAV-123')
 
     self.assertFalse(self.init_validator.Validate(entity))
 

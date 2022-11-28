@@ -30,7 +30,6 @@ TIMESTAMP = 'timestamp'
 PRESENT_VALUE = 'present_value'
 PARTIAL_UPDATE = 'partial_update'
 
-# pylint: disable=consider-using-f-string
 
 class Telemetry(object):
   """Container for pubsub message.
@@ -100,42 +99,33 @@ class Telemetry(object):
     version, timestamp, points, is_partial = (None, None, None, None)
     try:
       if isinstance(message, int):
-        print('[ERROR]\tReceived a non-JSON payload: {message}'
-              .format(message=message)
-              )
+        print(f'[ERROR]\tReceived a non-JSON payload: {message}')
         return version, timestamp, points, is_partial
       json_object = json.loads(message)
     except json.JSONDecodeError:
-      print('[ERROR]\tReceived an invalid JSON payload: {message}'
-            .format(message=message)
-            )
+      print(f'[ERROR]\tReceived an invalid JSON payload: {message}')
     except AttributeError:
-      print('[ERROR]\tReceived a JSON payload with an attribute '
-            'error: {message}'.format(message=message)
-            )
+      print(f'[ERROR]\tReceived a JSON payload with an attribute '
+            f'error: {message}')
     except ValueError:
-      print('[ERROR]\tReceived a JSON payload with a value error: '
-            '{message}'.format(message=message)
-            )
+      print(f'[ERROR]\tReceived a JSON payload with a value error: '
+            f'{message}')
     else:
       if isinstance(json_object, int):
-        print('[ERROR]\tReceived an invalid JSON payload containing: '
-              '{json_obj}'.format(json_obj=json_object)
-              )
+        print(f'[ERROR]\tReceived an invalid JSON payload containing: '
+              f'{json_object}')
         return version, timestamp, points, is_partial
 
       # UDMI v1 sends as int and v1+ sends version as String
       if VERSION not in json_object.keys():
-        print('[ERROR]\tReceived a JSON payload with no version: '
-              '{message}'.format(message=json_object)
-              )
+        print(f'[ERROR]\tReceived a JSON payload with no version: '
+              f'{json_object}')
         return version, timestamp, points, is_partial
       version = str(json_object[VERSION])
 
       if TIMESTAMP not in json_object.keys():
-        print('[ERROR]\tReceived a JSON payload with no timestamp: '
-              '{message}'.format(message=json_object)
-              )
+        print(f'[ERROR]\tReceived a JSON payload with no timestamp: '
+              f'{json_object}')
         return version, timestamp, points, is_partial
       timestamp = json_object[TIMESTAMP]
 
@@ -143,9 +133,8 @@ class Telemetry(object):
 
       points = {}
       if POINTS not in json_object.keys():
-        print('[ERROR]\tReceived a JSON payload with no points: '
-              '{message}'.format(message=json_object)
-              )
+        print(f'[ERROR]\tReceived a JSON payload with no points: '
+              f'{json_object}')
         return version, timestamp, points, is_partial
       json_points = json_object[POINTS]
       for point_name, value in json_points.items():

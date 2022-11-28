@@ -24,7 +24,6 @@ from yamlformat.validator import external_file_lib
 from yamlformat.validator import namespace_validator
 from yamlformat.validator import presubmit_validate_types_lib
 
-# pylint: disable=consider-using-f-string
 
 def BuildUniverse(
     use_simplified_universe: bool = False,
@@ -47,8 +46,8 @@ def BuildUniverse(
   elif modified_types_filepath:
     modified_ontology_exists = path.exists(modified_types_filepath)
     if not modified_ontology_exists:
-      print('[ERROR]\tSpecified filepath [{mod_ont_path}] does not '
-            'exist.'.format(mod_ont_path=modified_types_filepath)
+      print(f'[ERROR]\tSpecified filepath [{modified_types_filepath}] does not '
+            f'exist.'
             )
       return None
 
@@ -65,9 +64,8 @@ def BuildUniverse(
       raise TypeError('default_types_filepath cannot be None.')
     default_ontology_exists = path.exists(default_types_filepath)
     if not default_ontology_exists:
-      print('[ERROR]\tSpecified filepath [{root}] for default '
-            'ontology does not exist.'.format(root=constants.ONTOLOGY_ROOT)
-            )
+      print(f'[ERROR]\tSpecified filepath [{constants.ONTOLOGY_ROOT}] for '
+            f'default ontology does not exist.')
       return None
     # use default location for ontology files
     yaml_files = external_file_lib.RecursiveDirWalk(default_types_filepath)
