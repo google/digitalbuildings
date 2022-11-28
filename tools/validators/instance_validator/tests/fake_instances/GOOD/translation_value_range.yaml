@@ -1,4 +1,4 @@
-# Copyright 2020 Google LLC
+# Copyright 2022 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the License);
 # you may not use this file except in compliance with the License.
@@ -23,13 +23,13 @@ CHWS_WDT-17-GUID:
       present_value: "points.return_water_temperature_sensor.present_value"
       value_range: 0, 100
       units:
-        key: "pointset.points.return_water_temperature_sensor.units"
+        key: "points.return_water_temperature_sensor.units"
         values:
           degrees_celsius: "degC"
     supply_water_temperature_sensor:
       present_value: "points.supply_water_temperature_sensor.present_value"
       units:
-        key: "pointset.points.temp_1.units"
+        key: "points.supply_water_temperature_sensor.units"
         values:
           degrees_fahrenheit: "degF"
 
