@@ -435,13 +435,8 @@ class InstanceValidator(object):
       is_valid = True
       for unit in ft.unit_mappings.keys():
         if unit not in valid_units:
-          print('[ERROR]\tEntity {guid} ({code}) defines field '
-                '{field} with undefined units: {unit}.'
-                .format(guid=entity.guid,
-                        code=entity.code,
-                        field=qualified_field_name,
-                        unit=unit)
-                )
+          print(f'[ERROR]\tEntity {entity.guid} ({entity.code}) defines field '
+                f'{qualified_field_name} with undefined units: {unit}.')
           is_valid = False
       return is_valid
 
@@ -768,8 +763,8 @@ def _ParseTranslation(
 
     if parse.STATES_KEY in ft:
       if ft_object:
-        raise ValueError(f'States and units are not allowed in the '
-                         f'same field translation.')
+        raise ValueError('States and units are not allowed in the '
+                         'same field translation.')
       ft_object = ft_lib.MultiStateValue(std_field_name, raw_field_name,
                                          ft[parse.STATES_KEY])
 
