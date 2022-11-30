@@ -16,6 +16,7 @@
 from __future__ import print_function
 
 import _thread
+import datetime
 import sys
 from typing import Dict, List, Tuple
 
@@ -211,30 +212,35 @@ class TelemetryHelper(object):
 def _TelemetryValidationCallback(
     validator: telemetry_validator.TelemetryValidator) -> None:
   """Callback when the telemetry validator finishes.
-
   This could be called due to a timeout or because telemetry messages were
   received and validated for every expected entity.
-
   Args:
     validator: the telemetry validator that triggered the callback.
   """
 
-  print('[INFO]\tGenerating telemetry validation report.')
+  print('Generating validation report ...')
+  current_time = datetime.datetime.now()
+  timestamp = current_time.strftime('%d-%b-%Y (%H:%M:%S)')
+  report = f'\nReport Generated at: {timestamp}\n'
+
   if not validator.AllEntitiesValidated():
+    report += ('No telemetry message was received for the following '
+               'entities:')
+    report += '\n'
     for entity_name in validator.GetUnvalidatedEntityNames():
-      print(f'[WARNING]\tNo telemetry message was received for '
-            f'entity: {entity_name}. Ensure the device is transmitting data '
-            f'in order to validate.')
+      report += f'  {entity_name}\n'
 
+  report += '\nTelemetry validation errors:\n'
   for error in validator.GetErrors():
-    print(f'[ERROR]\tAn error was found while validating telemetry: '
-          f'{error.GetPrintableMessage()}')
+    report += error.GetPrintableMessage()
 
-  for warning in validator.GetWarnings():
-    print(f'[WARNING]\tA warning was generated while validating '
-          f'telemetry: {warning.GetPrintableMessage()}')
+  report += '\nTelemetry validation warnings:\n'
+  for warnings in validator.GetWarnings():
+    report += warnings.GetPrintableMessage()
 
-  print('[INFO]\tTelemetry validation ending. See logs above.')
+  print('\n')
+  print(report)
+  print('Report Generated')
   _thread.interrupt_main()
 
 
