@@ -12,29 +12,27 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Building
+# Test entity with numeric points.
+
+CHWS_WDT-17-GUID:
+  type: HVAC/CHWS_WDT
+  code: CHWS_WDT-17
+  cloud_device_id: "foobar"
+  translation:
+    return_water_temperature_sensor:
+      present_value: "points.return_water_temperature_sensor.present_value"
+      value_range: 0, 100
+      units:
+        key: "points.return_water_temperature_sensor.units"
+        values:
+          degrees_celsius: "degC"
+    supply_water_temperature_sensor:
+      present_value: "points.supply_water_temperature_sensor.present_value"
+      units:
+        key: "points.supply_water_temperature_sensor.units"
+        values:
+          degrees_fahrenheit: "degF"
+
 US-SEA-BLDG1-GUID:
   type: FACILITIES/BUILDING
   code: US-SEA-BLDG1
-
-FAN-17-GUID:
-  type: HVAC/FAN_SS_VSC
-  code: FAN-17
-  cloud_device_id: "foobar"
-  translation:
-    run_command:
-      present_value: points.run_command.present_value
-      states:
-        OFF: false
-        ON: true
-    run_status:
-      present_value: points.run_status.present_value
-      states:
-        OFF: 0
-        ON: 1
-    speed_percentage_command:
-      present_value: points.supply_fan_speed_percentage_command.present_value
-      units:
-        key: pointset.points.supply_fan_speed_percentage_command.units
-        values:
-          percent: '%'
