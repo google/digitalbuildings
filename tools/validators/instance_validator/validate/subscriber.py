@@ -69,7 +69,7 @@ class Subscriber(object):
 
     sub_client = pubsub_v1.SubscriberClient(credentials=credentials)
     future = sub_client.subscribe(self.subscription_name, callback)
-    print('[INFO]\tListening to pub/sub topic.')
+    print('[INFO]\tListening to pub/sub topic. Please wait.')
     # KeyboardInterrupt does not always cause `result` to exit early, so we
     # give the thread a chance to handle that within a reasonable amount of
     # time by repeatedly calling `result` with a short timeout.

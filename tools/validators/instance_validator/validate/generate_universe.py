@@ -65,7 +65,7 @@ def BuildUniverse(
     default_ontology_exists = path.exists(default_types_filepath)
     if not default_ontology_exists:
       print(f'[ERROR]\tSpecified filepath [{constants.ONTOLOGY_ROOT}] for '
-            f'default ontology does not exist.')
+            'default ontology does not exist.')
       return None
     # use default location for ontology files
     yaml_files = external_file_lib.RecursiveDirWalk(default_types_filepath)
