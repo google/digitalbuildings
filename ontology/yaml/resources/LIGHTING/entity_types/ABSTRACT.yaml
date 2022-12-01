@@ -172,7 +172,7 @@ OM:
   is_abstract: true
   uses:
   - energy_accumulator
-  - run_hours_accumulator
+  - run_time_accumulator
   - luminaire_failed_alarm
 
 DM:

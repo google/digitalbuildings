@@ -49,6 +49,7 @@ component:
   inverter: "Device or circuitry that changes direct current to alternating current (e.g. variable frequency drive)"
   lamp: "The component of a lighting device that emits the light."
   louver: "A device comprising multiple blades that regulates the flow of air"
+  luminaire: "Device that emits light"
   motor: "A machine, especially one powered by electricity or internal combustion, that supplies motive power for a vehicle or for some other device with moving parts."
   pump: "Component used for the distribution of liquid media."
   riser: "Water riser for heating, cooling and so on"
@@ -62,7 +63,6 @@ component:
   vane: "Component for guiding media flow."
   wheel: "Component used for transfer of heat from incoming to outgoing air streams. "
   winding: "Conductive wires wrapped around a magnetic core."
-  luminaire: "Device that emits light"
 descriptor:
   air: "Atmospheric air, either conditioned or unconditioned."
   aisle: "Passage between two rows of server racks."
@@ -79,11 +79,13 @@ descriptor:
   carbon: "Nonmetallic chemical element with the atomic number of six (e.g. graphite)."
   chilled: "Cold water (typically 40 - 50F)."
   changeover: "Connecting to different equipment ciecuit (e.g. switching between chiller and hot water)."
+  cie: "CIE light color schema"
   circulation: "Process or component used to circulate fluid through a device or system (typically onboard a boiler)."
   co: "Measures carbon monoxide concentration."
   co2: "Measures carbon dioxide concentration."
   cogeneration: "Associated with a cogeneration process."
   cold: "Associated with cold area or process."
+  color: "Color of light or of a physical medium"
   communication: "Actual transmit and recieve of data or connectivity between devices."
   condensate: "Indicates moisture on surfaces"
   condensing: "Process of gaseous refrigerant changing to liquid."
@@ -124,6 +126,7 @@ descriptor:
   glycol: "Liquid mixture consisting of glycol and water "
   green: "green light fracture of ambient light"
   ground: "The solid surface of the earth."
+  group: "A group of entities or devices"
   guide: "Component used to guide flow of media or movement of component."
   h2s: "Hydrogen sulfide."
   h2: "Hydrogen"
@@ -132,6 +135,7 @@ descriptor:
   heat: "Quality of media indicating energy level."
   high: "Level of control or measurement; above medium and low; opposite of low."
   hot: "Associated with hot area or process."
+  hsl: "HSL light color schema"
   humidification: "Process of adding moisture to air."
   id: "An identification or identifier."
   inlet: "Area of media entrance."
@@ -249,10 +253,10 @@ descriptor:
   yaxis: "Horizontal axis of a three-dimensional Cartesian coordinate system (ordinate)."
   zaxis: "Vertical axis of a three-dimensional Cartesian coordinate system (applicate)."
   zone: "Region of building which is conditioned."
-  color: "Color of light or of a physical medium"
-  cie: "CIE light color schema"
-  hsl: "HSL light color schema"
-  group: "A group of entities or devices"
+
+
+
+
 measurement:
   acceleration: "The rate of change of velocity per unit of time."
   angle: "The figure formed by two rays, sharing a common endpoint."
@@ -322,7 +326,6 @@ measurement:
   volumetricconcentration: "Concentration in terms of volume (parts per unit volume)."
   xvalue: "X-value of a matrix"
   yvalue: "Y-value of a matrix"
-  hours: "Measurement of elapsed time in hours"
 measurement_descriptor:
   absolute: "Quality of media with respect to non-relativistic boudaries (e.g. absolute temperature)."
   apparent: "The combination of reactive and real components (power)."

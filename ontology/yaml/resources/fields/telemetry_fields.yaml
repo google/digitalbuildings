@@ -1672,7 +1672,6 @@ literals:
 - lighting_color_cie_yvalue_setpoint
 - lighting_color_hsl_saturation_percentage_setpoint
 - lighting_color_hsl_hue_angle_setpoint
-- run_hours_accumulator
 
 - luminaire_failed_alarm:
   - NORMAL
@@ -1717,7 +1716,6 @@ literals:
   - AUTO
   - DAY_NIGHT
   - THERMAL
-  - SCENE
   - WINDOW
   
 ## New fields for RO water system
