@@ -371,7 +371,7 @@ class Dimension:
       field = translation[1]
       if type(field).__name__ == mapping_type:
         if mapping_type == MappingTypes.STATE: attribute = 'states'
-        if mapping_type == MappingTypes.UNIT: attribute = 'unit_mappings'
+        if mapping_type == MappingTypes.UNIT: attribute = 'unit_mapping'
         for item in getattr(field, attribute).items():
           mappings.add((field.raw_field_name, item))
     return mappings
