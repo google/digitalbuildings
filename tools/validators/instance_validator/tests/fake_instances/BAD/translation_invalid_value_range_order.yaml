@@ -21,6 +21,6 @@ US-SEA-BLDG1-GUID:
       present_value: "points.zone_air_temperature_sensor.present_value"
       value_range: 25,15
       units:
-        key: "points.zone_air_temperature_sensior.units"
+        key: "points.zone_air_temperature_sensor.units"
         values:
           degrees_celsius: "degC"

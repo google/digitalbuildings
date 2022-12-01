@@ -23,18 +23,18 @@ FAN-17-GUID:
   cloud_device_id: "foobar"
   translation:
     run_command:
-      present_value: points.run_command.present_value
+      present_value: "points.run_command.present_value"
       states:
         OFF: false
         ON: true
     run_status:
-      present_value: points.run_status.present_value
+      present_value: "points.run_status.present_value"
       states:
         OFF: 0
         ON: 1
     speed_percentage_command:
-      present_value: points.supply_fan_speed_percentage_command.present_value
+      present_value: "points.supply_fan_speed_percentage_command.present_value"
       units:
-        key: pointset.points.supply_fan_speed_percentage_command.units
+        key: "points.supply_fan_speed_percentage_command.units"
         values:
-          percent: '%'
+          percent: "%"
