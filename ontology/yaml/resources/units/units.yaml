@@ -516,13 +516,9 @@ volume:
 volumetricconcentration:
   parts_per_cubic_centimeter: STANDARD # can be approximated using Avogadro
 xvalue:
-  no_units:
-    multiplier: 1
-    offset: 1
+  no_units: STANDARD
 yvalue:
-  no_units:
-    multiplier: 1
-    offset: 1
+  no_units: STANDARD
 group: 
   no_units: STANDARD
 
