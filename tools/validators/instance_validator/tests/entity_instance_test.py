@@ -160,7 +160,8 @@ class EntityInstanceTest(absltest.TestCase):
     else:
       self.fail(f'{TypeError} was not raised')
 
-  def testInstance_RequiresEntityTypeToExist_Fails(self):
+  def testInstance_RequiresEntityTypeToExistUpdate_Fails(self):
+    """ Test that the entity type exists. """
     instance = entity_instance.EntityInstance(
         _UPDATE,
         guid='ENTITY-GUID',
@@ -227,7 +228,7 @@ class EntityInstanceTest(absltest.TestCase):
   def testInstance_InvalidPassthroughTranslationFieldMissing_Fails(self):
     parsed, default_operation = _Helper([
         path.join(_TESTCASE_PATH, 'BAD',
-                  'passthrough_translation_with_required_field_missing.yaml')
+                  'translation_opt_field_marked_missing.yaml')
     ])
     entity_guid, entity = next(iter(parsed.items()))
 
@@ -259,10 +260,11 @@ class EntityInstanceTest(absltest.TestCase):
     self.assertTrue(self.init_validator.Validate(instance))
     self.assertEqual(instance.cloud_device_id, 'foobar')
 
-  def testInstance_ValidTranslationWithExplicitlyMissingField_Success(self):
+  def testInstance_ValidTranslationWithExplicitlyMissingReqField_Success(self):
+    """ Test that a MISSING required field is allowed. """
     parsed, default_operation = _Helper([
         path.join(_TESTCASE_PATH, 'GOOD',
-                  'translation_field_marked_missing.yaml')
+                  'translation_req_field_marked_missing.yaml')
     ])
     entity_guid, entity = next(iter(parsed.items()))
 
@@ -270,6 +272,22 @@ class EntityInstanceTest(absltest.TestCase):
         entity_guid, entity, default_operation=default_operation)
 
     self.assertTrue(self.init_validator.Validate(instance))
+
+  def testInstance_ValidTranslationWithExplicityMissingOptField_Fails(self):
+    """ Test that a MISSING optional field is not allowed. """
+    parsed, default_operation = _Helper([])
+    parsed, default_operation = _Helper([
+        path.join(_TESTCASE_PATH, 'BAD',
+                  'translation_opt_field_marked_missing.yaml')
+    ])
+    entity_guid, entity = next(iter(parsed.items()))
+
+    instance = entity_instance.EntityInstance.FromYaml(
+        entity_guid,
+        entity,
+        default_operation=default_operation)
+
+    self.assertFalse(self.init_validator.Validate(instance))
 
   def testInstance_ValidMultipleTranslationsWithIdenticalTypes_Success(self):
     parsed, default_operation = _Helper(
@@ -710,6 +728,8 @@ class EntityInstanceTest(absltest.TestCase):
         guid='VAV-123-GUID',
         code='VAV-123',
         etag='1234',
+        namespace='GATEWAYS',
+        type_name='PASSTHROUGH',
         translation={
             'foo_bar':
                 field_translation.DimensionalValue(
@@ -753,6 +773,8 @@ class EntityInstanceTest(absltest.TestCase):
         guid='VAV-123-GUID',
         code='VAV-123',
         etag='1234',
+        namespace='GATEWAYS',
+        type_name='PASSTHROUGH',
         translation={
             'UNDEFINED_UNIT':
                 field_translation.DimensionalValue(
@@ -770,6 +792,8 @@ class EntityInstanceTest(absltest.TestCase):
         guid='VAV-123-GUID',
         code='VAV-123',
         etag='1234',
+        namespace='GATEWAYS',
+        type_name='PASSTHROUGH',
         translation={
             'return_water_temperature_sensor':
                 field_translation.DimensionalValue(
@@ -787,6 +811,8 @@ class EntityInstanceTest(absltest.TestCase):
         guid='VAV-123-GUID',
         code='VAV-123',
         etag='1234',
+        namespace='GATEWAYS',
+        type_name='PASSTHROUGH',
         translation={
             'return_water_temperature_sensor':
                 field_translation.DimensionalValue(
@@ -805,6 +831,8 @@ class EntityInstanceTest(absltest.TestCase):
           guid='VAV-123-GUID',
           code='VAV-123',
           etag='1234',
+          namespace='GATEWAYS',
+          type_name='PASSTHROUGH',
           translation={
               'foo_bar':
                   field_translation.MultiStateValue(
@@ -823,6 +851,8 @@ class EntityInstanceTest(absltest.TestCase):
         guid='VAV-123-GUID',
         code='VAV-123',
         etag='1234',
+        namespace='GATEWAYS',
+        type_name='PASSTHROUGH',
         translation={
             'UNDEFINED_STATE':
                 field_translation.MultiStateValue(
@@ -839,6 +869,8 @@ class EntityInstanceTest(absltest.TestCase):
         guid='VAV-123-GUID',
         code='VAV-123',
         etag='1234',
+        namespace='GATEWAYS',
+        type_name='PASSTHROUGH',
         translation={
             'exhaust_air_damper_command':
                 field_translation.MultiStateValue(
@@ -855,6 +887,8 @@ class EntityInstanceTest(absltest.TestCase):
         guid='VAV-123-GUID',
         code='VAV-123',
         etag='1234',
+        namespace='GATEWAYS',
+        type_name='PASSTHROUGH',
         translation={
             'exhaust_air_damper_command':
                 field_translation.MultiStateValue(
@@ -874,6 +908,8 @@ class EntityInstanceTest(absltest.TestCase):
         guid='VAV-123-GUID',
         code='VAV-123',
         etag='1234',
+        namespace='GATEWAYS',
+        type_name='PASSTHROUGH',
         translation={
             'line_powerfactor_sensor':
                 field_translation.DimensionalValue(
@@ -891,6 +927,8 @@ class EntityInstanceTest(absltest.TestCase):
         guid='VAV-123-GUID',
         code='VAV-123',
         etag='1234',
+        namespace='GATEWAYS',
+        type_name='PASSTHROUGH',
         translation={
             'zone_air_cooling_temperature_setpoint':
                 field_translation.DimensionalValue(
@@ -903,7 +941,8 @@ class EntityInstanceTest(absltest.TestCase):
     self.assertFalse(self.update_validator.Validate(entity))
 
   def testValidate_EmptyCode_Fails(self):
-    entity = entity_instance.EntityInstance(_ADD, guid='VAV-123-GUID', code='')
+    entity = entity_instance.EntityInstance(_ADD, guid='VAV-123-GUID',
+                                            code='VAV-123')
 
     self.assertFalse(self.init_validator.Validate(entity))
 
