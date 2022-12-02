@@ -274,7 +274,7 @@ class ModelBuilder(object):
 
     entity_field.units = Units(
         raw_unit_path=field.unit_field_name,
-        standard_to_raw_unit_map=field.unit_mappings)
+        standard_to_raw_unit_map=field.unit_mapping)
 
     self.fields.append(entity_field)
 
