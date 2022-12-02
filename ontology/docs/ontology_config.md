@@ -278,13 +278,17 @@ in the global namespace and are grouped by measurement subfield. For example:
 
 ```
 concentration:
-- parts_per_million: STANDARD
+  parts_per_million: STANDARD
 current:
-- amperes: STANDARD
-- milliamperes
+  amperes: STANDARD
+  milliamperes:
+    multiplier: 0.001
+    offset: 0
 energy:
-- joules: STANDARD
-- kilowatt_hours
+  joules: STANDARD
+  kilowatt_hours:
+    multiplier: 3600000
+    offset: 0
 ```
 
 Under each subfield name, the configuration defines a list of dimensional units
@@ -293,6 +297,10 @@ of a single
 One of the listed units must be listed as the `STANDARD` unit for the type. All
 of the `STANDARD` units for all subfields must belong to the same unit family,
 such as standard SI units.
+All units that are not standard must map to a `multiplier` and an `offset`. The
+conversion multiplier for a unit is the number to multiply by to convert a value
+using this unit to the standard unit. The offset is the number to add to convert
+a value using this unit to the standard unit.
 
 If a subfield needs to use the same set of units as another subfield, it is
 defined as an alias by providing the other subfield name instead of a list of
@@ -300,9 +308,13 @@ units. For example:
 
 ```
 distance:
-- meters: STANDARD
-- feet
-- inches
+  meters: STANDARD
+  feet:
+    multiplier: 0.3048
+    offset: 0
+  inches:
+    multiplier: 0.0254
+    offset: 0
 length: distance
 level: distance
 ```
@@ -313,6 +325,8 @@ Validation enforces:
 *   Each dimensional unit is defined only once in the file
 *   Exactly one `STANDARD` designation is made per subfield
 *   Each subfield alias refers to a subfield that has units defined
+*   Each non-standard unit specifies exactly one multiplier and one offset
+*   Multiplier and offset values are numeric
 
 ## Validation
 

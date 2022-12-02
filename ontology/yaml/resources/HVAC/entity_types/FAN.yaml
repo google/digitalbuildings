@@ -606,6 +606,7 @@ FAN_SS_NONCANONICAL_5:
   - filter_differential_pressure_sensor
 
 FAN_SS_NONCANONICAL_6:
+  id: "2629158389090877440"
   description: "Non-canonical fan which uses differential airflow measured in a space to provide pressure balancing."
   is_canonical: false
   implements:
