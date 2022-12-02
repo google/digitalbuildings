@@ -2776,6 +2776,14 @@ SFM:
   implements:
   - MONITORING
 
+DFM:
+  description: "Discharge air flow monitoring."
+  is_abstract: true
+  uses:
+  - discharge_air_flowrate_sensor
+  implements:
+  - MONITORING
+
 SFC:
   id: "11177141114933084160"
   description: "Supply air flow control."
