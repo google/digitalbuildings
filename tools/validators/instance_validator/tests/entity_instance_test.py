@@ -228,7 +228,7 @@ class EntityInstanceTest(absltest.TestCase):
   def testInstance_InvalidPassthroughTranslationFieldMissing_Fails(self):
     parsed, default_operation = _Helper([
         path.join(_TESTCASE_PATH, 'BAD',
-                  'passthrough_translation_with_required_field_missing.yaml')
+                  'translation_opt_field_marked_missing.yaml')
     ])
     entity_guid, entity = next(iter(parsed.items()))
 
