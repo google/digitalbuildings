@@ -605,6 +605,15 @@ FAN_SS_NONCANONICAL_5:
   - dryer_run_status_5
   - filter_differential_pressure_sensor
 
+FAN_SS_NONCANONICAL_6:
+  description: "Non-canonical fan which uses differential airflow measured in a space to provide pressure balancing."
+  is_canonical: false
+  implements:
+  - FAN_SS
+  uses:
+  - exhaust_air_differential_flowrate_sensor
+  - exhaust_air_differential_flowrate_setpoint
+
 FAN_SS_VSC_BSPC_NONCANONICAL_3:
   id: "16746149917432479744"
   description: "Non-standard type."
