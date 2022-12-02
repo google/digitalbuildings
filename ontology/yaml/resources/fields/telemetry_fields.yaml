@@ -440,6 +440,8 @@ literals:
 - east_exhaust_air_damper_percentage_command
 - exhaust_air_flowrate_sensor
 - exhaust_air_flowrate_setpoint
+- exhaust_air_differential_flowrate_sensor
+- exhaust_air_differential_flowrate_setpoint
 - fan_speed_mode:
   - OFF
   - LOW
