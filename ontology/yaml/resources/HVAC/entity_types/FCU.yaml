@@ -560,6 +560,16 @@ FCU_DFSS_DFMSC_CSP_DXZC_DAIDC:
   - DXZC
   - DAIDC
 
+FCU_DFSS_CSP_DXZC_DAIDC:
+  description: "DX fan coil with discharge isolation damper control."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - CSP
+  - DXZC
+  - DAIDC
+
 FCU_DFSS_DFMSC_RTC_DXRC:
   id: "14852078410867408896"
   description: "DX fan coil with multi-speed control (return temp)."
