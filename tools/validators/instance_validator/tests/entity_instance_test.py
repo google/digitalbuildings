@@ -273,6 +273,19 @@ class EntityInstanceTest(absltest.TestCase):
 
     self.assertTrue(self.init_validator.Validate(instance))
 
+  def testInstance_ValidateMissingFieldOnGatewayEntity_Success(self):
+    """ Test that the MISSING fields on a gateway type are allowed. """
+    parsed, default_operation = _Helper([
+        path.join(_TESTCASE_PATH, 'GOOD',
+                  'translation_missing_fields_on_gateway.yaml')
+    ])
+    entity_guid, entity = next(iter(parsed.items()))
+
+    instance = entity_instance.EntityInstance.FromYaml(
+        entity_guid, entity, default_operation=default_operation)
+
+    self.assertTrue(self.init_validator.Validate(instance))
+
   def testInstance_ValidTranslationWithExplicityMissingOptField_Fails(self):
     """ Test that a MISSING optional field is not allowed. """
     parsed, default_operation = _Helper([])

@@ -358,28 +358,40 @@ class InstanceValidator(object):
 
       # Check if the field is defined MISSING
       if isinstance(ft, ft_lib.UndefinedField):
-
-        # If the field is MISSING and REQUIRED, warn the user.
-        if not type_fields[qualified_field_name].optional:
+        # If the type is allows undefined fields, we won't know if the field
+        # is required or not explicitly. Throw a warning that the user
+        if entity_type.allow_undefined_fields:
           print(f'[WARNING]\tEntity {entity.guid} ({entity.code}) provides '
-                f'MISSING translation for field {qualified_field_name} which '
-                f'is required for type {entity.type_name}. This feature should '
-                'only be used when the device cannot physically send required '
-                'data and it truly is an instance of the assigned type. You '
+                f'MISSING translation for field {qualified_field_name} for a '
+                f'type {entity.type_name}. This feature should '
+                'only be used when the gateway cannot physically send required '
+                'data and the virtual entity you are creating requires it. You '
                 'must provide justification for all MISSING translations and '
-                'that the applied type is correct, otherwise your building '
-                'config will be rejected.')
+                'that the applied virtual entity type is correct, otherwise '
+                'your building config will be rejected.')
+        else:
+          # If the field is MISSING and REQUIRED, warn the user.
+          if not type_fields[qualified_field_name].optional:
+            print(f'[WARNING]\tEntity {entity.guid} ({entity.code}) provides '
+                  f'MISSING translation for field {qualified_field_name} which '
+                  f'is required for type {entity.type_name}. This feature '
+                  'should only be used when the device cannot physically send '
+                  'required data and it truly is an instance of the assigned '
+                  'type. You must provide justification for all MISSING '
+                  'translations and that the applied type is correct, '
+                  'otherwise your building config will be rejected.')
 
-        # If its MISSING and OPTIONAL, raise error. They shouldn't do this.
-        # Optional fields are automatically interpreted as missing if not
-        # provided explicitly.
-        if type_fields[qualified_field_name].optional:
-          print(f'[ERROR]\tEntity {entity.guid} ({entity.code}) provides '
-                f'MISSING translation for field {qualified_field_name}, which '
-                f'is optional on type {entity.type_name}. The use of MISSING '
-                'fields is strictly reserved for required fields. Adjust the '
-                'translation and remove MISSING optional fields.')
-          is_valid = False
+          # If its MISSING and OPTIONAL, raise error. They shouldn't do this.
+          # Optional fields are automatically interpreted as missing if not
+          # provided explicitly.
+          if type_fields[qualified_field_name].optional:
+            print(f'[ERROR]\tEntity {entity.guid} ({entity.code}) provides '
+                  f'MISSING translation for field {qualified_field_name}, '
+                  f'which is optional on type {entity.type_name}. The use of '
+                  'MISSING fields is strictly reserved for required fields. '
+                  'Adjust the translation and remove MISSING optional fields.')
+            is_valid = False
+
       if isinstance(ft, ft_lib.DimensionalValue):
         if is_udmi and not _UDMI_PRESENT_VALUE_PATTERN.fullmatch(
           ft.raw_field_name):
