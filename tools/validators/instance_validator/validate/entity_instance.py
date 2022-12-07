@@ -359,7 +359,8 @@ class InstanceValidator(object):
       # Check if the field is defined MISSING
       if isinstance(ft, ft_lib.UndefinedField):
         # If the type is allows undefined fields, we won't know if the field
-        # is required or not explicitly. Throw a warning that the user
+        # is required or not explicitly. Warn the user, but don't check
+        # for optionality.
         if entity_type.allow_undefined_fields:
           print(f'[WARNING]\tEntity {entity.guid} ({entity.code}) provides '
                 f'MISSING translation for field {qualified_field_name} for a '
