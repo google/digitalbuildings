@@ -99,18 +99,6 @@ class HandlerTest(absltest.TestCase):
     with self.assertRaises(SyntaxError):
       helper.Validate(entities, config_mode, is_udmi=True)
 
-  def testMissingBuildingDoesntKillValidation(self):
-    """ Validation runs to completion even with missing building. """
-    try:
-      input_file = os.path.join(_TESTCASE_PATH, 'BAD','missing_building.yaml')
-
-      _RunValidation([input_file], use_simplified_universe=True)
-
-    except SyntaxError:
-      self.fail('ValidationHelper:Validate unexpectedly raised Exception '
-                'when building missing. This should be handled without '
-                'failing.')
-
   def testValidateMultipleInputFilesSuccess(self):
     try:
       input_file1 = os.path.join(_TESTCASE_PATH, 'GOOD', 'building_type.yaml')

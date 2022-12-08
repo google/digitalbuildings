@@ -159,13 +159,6 @@ def RunValidation(filenames: List[str],
             'run telemetry validation. See here for more details: '
             'https://google.github.io/digitalbuildings/tools/validators/'
             'instance_validator/#telemetry-validation')
-  # pylint: disable=broad-except
-  # Using broad exception to catch any underlying error that might cause
-  # validation to fail
-  except Exception as ex:
-    print(f'[ERROR]\tSomething failed during validation and has '
-          f'terminated validation. See logs above and error here: {ex}.')
-    return
   finally:
     sys.stdout = saved_stdout
     if report_file:
