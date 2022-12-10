@@ -727,7 +727,6 @@ literals:
   - COOLING
   - DEHUMIDIFY
   - FAN_ONLY
-  - SETPOINT
   
 - cooling_thermal_energy_accumulator
 - particle_concentration_sensor
