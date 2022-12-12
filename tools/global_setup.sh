@@ -6,7 +6,7 @@ echo "Starting setup..."
 # handle different python alias
 echo "Looking through possible python aliases"
 
-REQUIRED_VERSION=3.9
+REQUIRED_VERSION=3.11
 POSSIBLE_ALIAS=("python3" "python" "py")
 FOUND=false
 for pa in "${POSSIBLE_ALIAS[@]}"

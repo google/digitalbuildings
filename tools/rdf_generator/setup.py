@@ -27,5 +27,5 @@ setup(
     packages=find_packages(),
     install_requires=['absl-py', 'pyglib', 'ruamel.yaml==0.17.4',
                       'rdflib==5.0.0'],
-    python_requires='>=3.9',
+    python_requires='>=3.11',
 )
