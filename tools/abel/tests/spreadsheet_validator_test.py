@@ -48,11 +48,11 @@ from model.constants import STATES
 from model.constants import TARGET_ENTITY_CODE
 from model.constants import TARGET_ENTITY_GUID
 from model.constants import TYPE_NAME
-from tests.test_constants import TEST_NAMESPACE
-from tests.test_constants import TEST_REPORTING_ENTITY_CODE
-from tests.test_constants import TEST_REPORTING_ENTITY_DICT
-from tests.test_constants import TEST_REPORTING_GUID
-from tests.test_constants import TEST_SPREADSHEET
+from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_NAMESPACE
+from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_REPORTING_ENTITY_CODE
+from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_REPORTING_ENTITY_DICT
+from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_REPORTING_GUID
+from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_SPREADSHEET
 from validators.spreadsheet_error import ConnectionDependencyError
 from validators.spreadsheet_error import CrossSheetDependencyError
 from validators.spreadsheet_error import InvalidNamingError
@@ -81,8 +81,8 @@ class SpreadsheetValidatorTest(absltest.TestCase):
 
   def testBadFieldNameDependencyLogsError(self):
     bad_test_state = {
-        ENTITY_CODE: TEST_REPORTING_ENTITY_CODE,
-        BC_GUID: TEST_REPORTING_GUID,
+        REPORTING_ENTITY_CODE: TEST_REPORTING_ENTITY_CODE,
+        REPORTING_ENTITY_GUID: TEST_REPORTING_GUID,
         REPORTING_ENTITY_FIELD_NAME: 'not a valid field name',
         STANDARD_STATE: 'ON',
         RAW_STATE: 'TRUE'
