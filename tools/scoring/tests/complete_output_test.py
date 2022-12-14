@@ -31,7 +31,7 @@ class CompleteOutputTest(absltest.TestCase):
     scorer = parse_config.ParseConfig(ontology=ontolgy,
                                       proposed=proposed,
                                       solution=solution)
-    self.output = scorer.execute()
+    cls.output = scorer.execute()
 
   def testEntityConnectionIdentification(self):
     score = self.output['EntityConnectionIdentification']
