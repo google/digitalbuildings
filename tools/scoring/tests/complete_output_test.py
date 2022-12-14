@@ -22,7 +22,7 @@ class CompleteOutputTest(absltest.TestCase):
 
   @classmethod
   def setUpClass(cls):
-    super().setUp()
+    super().setUpClass()
     ontolgy = '../../ontology/yaml/resources'
     proposed = 'tests/samples/proposed/real_world_proposed.yaml'
     solution = 'tests/samples/solution/real_world_solution.yaml'
