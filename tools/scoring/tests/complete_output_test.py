@@ -21,7 +21,7 @@ from score import parse_config
 class CompleteOutputTest(absltest.TestCase):
 
   @classmethod
-  def setUpClass(self):
+  def setUpClass(cls):
     super().setUp()
     ontolgy = '../../ontology/yaml/resources'
     proposed = 'tests/samples/proposed/real_world_proposed.yaml'
