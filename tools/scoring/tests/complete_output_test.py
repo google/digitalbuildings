@@ -19,8 +19,8 @@ from score import parse_config
 
 
 class CompleteOutputTest(absltest.TestCase):
-  def setUp(self):
-    super().setUp()
+  def setUpClass(cls):
+    super().setUpClass()
     ontolgy = '../../ontology/yaml/resources'
     proposed = 'tests/samples/proposed/real_world_proposed.yaml'
     solution = 'tests/samples/solution/real_world_solution.yaml'
@@ -29,7 +29,7 @@ class CompleteOutputTest(absltest.TestCase):
     scorer = parse_config.ParseConfig(ontology=ontolgy,
                                       proposed=proposed,
                                       solution=solution)
-    self.output = scorer.execute()
+    cls.output = scorer.execute()
 
   def testEntityConnectionIdentification(self):
     score = self.output['EntityConnectionIdentification']
