@@ -28,8 +28,8 @@ from model.export_helper import GoogleSheetExport
 from model.guid_to_entity_map import GuidToEntityMap
 from model.model_builder import ModelBuilder
 from model.model_error import SpreadsheetAuthorizationError
-from tests.test_constants import TEST_RESOURCES
-from tests.test_constants import TEST_SPREADSHEET
+from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_RESOURCES
+from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_SPREADSHEET
 
 _GOOD_TEST_BUILDING_CONFIG = os.path.join(TEST_RESOURCES,
                                           'good_test_building_config.yaml')
@@ -136,7 +136,7 @@ class ExportHelperTest(absltest.TestCase):
         ['code', 'connections', 'links', 'type'],
         list(exported_building_config.get('test_virtual_guid').keys()))
     self.assertEqual(
-        ['cloud_device_id', 'code', 'translation', 'type'],
+        ['cloud_device_id', 'code', 'etag', 'translation', 'type'],
         list(exported_building_config.get('test_reporting_guid').keys()))
     self.assertIsInstance(
         exported_building_config.get('test_reporting_guid').get(

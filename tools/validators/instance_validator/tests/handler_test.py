@@ -88,10 +88,11 @@ class HandlerTest(absltest.TestCase):
     self.assertGreater(report_size, 0)
 
   def testValidateOneBuildingExistFails(self):
-    """ Check that a config without a building is found to be invalid. """
+    """Check that a config without a building is found to be invalid."""
     input_file = os.path.join(_TESTCASE_PATH, 'BAD', 'missing_building.yaml')
     config_universe = generate_universe.BuildUniverse(
-      use_simplified_universe=True)
+        use_simplified_universe=True
+    )
     entities, config_mode = _Deserialize([input_file])
 
     helper = handler.EntityHelper(config_universe)
@@ -120,9 +121,10 @@ class HandlerTest(absltest.TestCase):
           [mock.call('a', 'file'),
            mock.call().Listen(mock.ANY)])
       # TODO(berkoben): Make this assert stricter
-      mock_validator.assert_has_calls(
-          [mock.call(mock.ANY, mock.ANY, mock.ANY, mock.ANY),
-           mock.call().StartTimer()])
+      mock_validator.assert_has_calls([
+          mock.call(mock.ANY, mock.ANY, mock.ANY, mock.ANY),
+          mock.call().StartTimer(),
+      ])
 
     except SystemExit:
       self.fail('ValidationHelper:Validate raised ExceptionType unexpectedly!')

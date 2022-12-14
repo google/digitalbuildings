@@ -1,6 +1,0 @@
-FAN_1:
-  description: 'a type with an undefined field.'
-  uses:
-  - dryer_run_status
-  - fan_run_commandddd
-
