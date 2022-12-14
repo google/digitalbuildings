@@ -129,7 +129,7 @@ class EntityField(object):
         reporting_entity_field_name=entity_field_dict[
             REPORTING_ENTITY_FIELD_NAME],
         entity_guid=entity_field_dict[BC_GUID],
-        missing=entity_field_dict[MISSING].upper() == 'TRUE',
+        missing=True if entity_field_dict[MISSING].upper() == 'TRUE' else False,
         reporting_entity_guid=entity_field_dict[REPORTING_ENTITY_GUID])
     if entity_field_dict[STANDARD_UNIT_VALUE] and entity_field_dict[
         RAW_UNIT_VALUE]:
