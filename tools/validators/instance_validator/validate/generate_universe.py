@@ -46,8 +46,9 @@ def BuildUniverse(
   elif modified_types_filepath:
     modified_ontology_exists = path.exists(modified_types_filepath)
     if not modified_ontology_exists:
-      print(f'Specified filepath [{modified_types_filepath}] '
-            'modified ontology does not exist')
+      print(f'[ERROR]\tSpecified filepath [{modified_types_filepath}] does not '
+            f'exist.'
+            )
       return None
 
     modified_types_filepath = path.expanduser(modified_types_filepath)
@@ -59,10 +60,12 @@ def BuildUniverse(
         interactive=False)
     yaml_files = external_file_lib.RecursiveDirWalk(modified_types_filepath)
   else:
+    if default_types_filepath is None:
+      raise TypeError('default_types_filepath cannot be None.')
     default_ontology_exists = path.exists(default_types_filepath)
     if not default_ontology_exists:
-      print(f'Specified filepath [{constants.ONTOLOGY_ROOT}] '
-            'for default ontology does not exist')
+      print(f'[ERROR]\tSpecified filepath [{constants.ONTOLOGY_ROOT}] for '
+            'default ontology does not exist.')
       return None
     # use default location for ontology files
     yaml_files = external_file_lib.RecursiveDirWalk(default_types_filepath)
@@ -75,7 +78,8 @@ def BuildUniverse(
       universe.GetEntityTypeNamespaces())
 
   if not namespace_validation.IsValid():
-    print('Universe is not valid')
+    print('[ERROR]\tOntology is not valid. Ensure your current branch of the '
+          'ontology is correct and error-free.')
     return None
 
   return universe
