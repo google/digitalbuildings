@@ -245,7 +245,7 @@ class SpreadsheetValidator(object):
     fields = parsed_spreadsheet.get(ENTITY_FIELDS, [])
     for row_num, state in enumerate(states, _ROW_START_INDEX):
       reporting_field_name = state.get(REPORTING_ENTITY_FIELD_NAME)
-      entity_code = state.get(ENTITY_CODE)
+      entity_code = state.get(REPORTING_ENTITY_CODE)
       num_dependencies = 0
       for field in fields:
         # If a state's entity code is the same as a field's entity code, then the field is not linked. Check that a state's reporting field name exists in the fields table as a standard field name.

@@ -82,7 +82,9 @@ The `--service-account` parameter value should be a path to a service account ke
 
 `--timeout`: The timeout duration in seconds for the telemetry validation test. The default value is 600 seconds, or 10 minutes. If this time limit is exceeded before the validator receives a test pubsub message for each of the entities configured in the given instance config file, the test will fail with an error and report the entities that were not heard from.
 
-`--report-filename`: If provided, errors from the telemetry validation test will be written to this report file. Otherwise, errors will be written to stdout.
+`--report-filename`: If provided, errors from the telemetry validation test will be written to this report file. Otherwise, errors will be written to the console.
+
+Running telemetry validation will also output a machine-readable log of the validation performed on a set of devices. This log will be output as `telemetry_validation_log.json` in the current working directory.
 
 ### Instance Validator Workflow
 
