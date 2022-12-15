@@ -3982,6 +3982,20 @@ AHU_SFSS_SFMSC_SFVSC_FDPM_CHWSC_RTM_RACO2C_SSPC2X_VOADM2X_SAIDC2X_RAIDC2X_SSPC:
   - RAIDC2X
   - SSPC
 
+AHU_SFSS_SFVSC_OAFC_CHWSC_SSPC_MTM_SAIDC_RAIDC_FDPSM:
+  description: "AHUs with chilled water based supply air temperature control, mixed air co2 based fresh air damper control, duct static pressure based vfd modulation ."
+  is_canonical: true
+  implements:
+  - AHU
+  - SFSS
+  - SFVSC
+  - OAFC
+  - CHWSC
+  - SSPC
+  - MTM
+  - SAIDC
+  - RAIDC
+  - FDPSM
 
 ###################################
 ### Existing Non-standard Types ###

@@ -125,6 +125,8 @@ literals:
 - ventilation_outside_air_flowrate_sensor
 - ventilation_outside_air_flowrate_setpoint
 - mixed_air_temperature_sensor
+- mixed_air_co2_concentration_sensor
+- mixed_air_co2_concentration_setpoint
 - outside_air_damper_percentage_command
 - outside_air_specificenthalpy_sensor
 - outside_air_flowrate_sensor
@@ -181,6 +183,7 @@ literals:
 - supply_fan_current_sensor
 - supply_fan_power_sensor
 - supply_fan_torque_sensor
+- supply_fan_dc_voltage_sensor
 - supply_fan_run_command:
   - ON
   - OFF

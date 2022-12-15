@@ -110,12 +110,16 @@ OAFC:
   opt_uses:
   - economizer_mode
   - mixed_air_temperature_sensor
+  - mixed_air_co2_concentration_setpoint
+  - mixed_air_co2_concentartion_sensor
+  - outside_air_damper_percentage_sensor
   uses:
   - outside_air_flowrate_setpoint
   - outside_air_flowrate_sensor
   - outside_air_damper_percentage_command
   implements:
   - CONTROL
+  
 
 ZTM:
   id: "5662861603217866752"
@@ -432,6 +436,7 @@ SFVSC:
   - supply_fan_lost_power_alarm
   - supply_fan_failed_alarm
   - control_mode
+  - supply_fan_dc_voltage_sensor
   uses:
   - supply_fan_run_command
   - supply_fan_run_status
@@ -739,6 +744,7 @@ SFSS:
   - supply_fan_failed_alarm
   - supply_fan_run_time_accumulator
   - supply_fan_run_mode
+  - schedule_run_command
   uses:
   - supply_fan_run_command
   - supply_fan_run_status
