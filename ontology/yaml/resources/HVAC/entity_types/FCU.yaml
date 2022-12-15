@@ -1232,34 +1232,6 @@ FCU_DFSS_DFVSC_FDPM_CHWDC_SRC_DFRMM:
   - SRC
   - DFRMM
 
-#PAC Unit #  
-FCU_DFSS_DX2DC_DFVSC_REFPM2X_ZHC_DFRMM:
-  id: "14115976266792304640"
-  description: "CRAC with dual compressor with temperature monitoring and compressor monitoring with humidity monitoring."
-  is_canonical: true
-  implements:
-  - FCU
-  - DFSS
-  - DX2DC
-  - DFVSC
-  - REFPM2X
-  - ZHC
-  - DFRMM 
-  
-#CSU canonical#  
-FCU_DFSS_DFVSC_FDPM_CHWDC_SRC_DFRMM:
-  id: "11307981899126800384"
-  description: "FCU with temperature control, humidity monitor with electrical parameter monitoring."
-  is_canonical: true
-  implements:
-  - FCU
-  - DFSS
-  - DFVSC
-  - FDPM
-  - CHWDC
-  - SRC
-  - DFRMM 
-
 ###################################
 ### Existing Non-standard Types ###
 ###################################
