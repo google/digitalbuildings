@@ -49,7 +49,7 @@ component:
   inverter: "Device or circuitry that changes direct current to alternating current (e.g. variable frequency drive)"
   lamp: "The component of a lighting device that emits the light."
   louver: "A device comprising multiple blades that regulates the flow of air"
-  luminaire: "Device that emits light"
+  luminaire: "Complete lighting unit, consisting of one or more lamps, their socket/holders, wiring and optics such as lenses and reflectors to distribute the light"
   motor: "A machine, especially one powered by electricity or internal combustion, that supplies motive power for a vehicle or for some other device with moving parts."
   pump: "Component used for the distribution of liquid media."
   riser: "Water riser for heating, cooling and so on"
