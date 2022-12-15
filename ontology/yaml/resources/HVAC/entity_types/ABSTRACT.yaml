@@ -4265,7 +4265,7 @@ AHAC:
   description: "Tag to indicate an after hours activation method e.g. push button associated with this device."
   is_abstract: true
   uses:  
-  - user_override_occupancy_status
+  - user_occupancy_override_status
   - zone_occupancy_status
   implements:
   - OPERATIONAL
