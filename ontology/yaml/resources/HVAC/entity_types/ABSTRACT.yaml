@@ -111,7 +111,7 @@ OAFC:
   - economizer_mode
   - mixed_air_temperature_sensor
   - mixed_air_co2_concentration_setpoint
-  - mixed_air_co2_concentartion_sensor
+  - mixed_air_co2_concentration_sensor
   - outside_air_damper_percentage_sensor
   uses:
   - outside_air_flowrate_setpoint
@@ -436,7 +436,7 @@ SFVSC:
   - supply_fan_lost_power_alarm
   - supply_fan_failed_alarm
   - control_mode
-  - supply_fan_dc_voltage_sensor
+  - dc_voltage_sensor
   uses:
   - supply_fan_run_command
   - supply_fan_run_status
