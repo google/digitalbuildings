@@ -119,7 +119,18 @@ OAFC:
   - outside_air_damper_percentage_command
   implements:
   - CONTROL
-  
+OADMPCO2C: 
+  description: "Outside Air Damper Percentage Control on basis of mixed air Co2."
+  is_abstract: true
+  opt_uses:
+  - mixed_air_temperature_sensor
+  - mixed_air_co2_concentration_setpoint
+  - mixed_air_co2_concentration_sensor
+  - outside_air_damper_percentage_sensor
+  uses:
+  - outside_air_damper_percentage_command
+  implements:
+  - CONTROL
 
 ZTM:
   id: "5662861603217866752"
