@@ -64,9 +64,9 @@ DFR_SFSS_SFVSC_BYPSSPC_HTSC:
 ### Existing Non-standard Types ###
 ###################################
 
-DFR_US_MTV_1098_1: # Instances: 1
+DFR_SFSS_BYPSSPC_HT2SC_RTM_NONCANONICAL_1:
   id: "13937821298232131584"
-  description: "Non-standard type for 1098"
+  description: "Non-standard type."
   implements:
   - DFR_SFSS_BYPSSPC_HT2SC_RTM
   - DEPRECATED
@@ -74,9 +74,9 @@ DFR_US_MTV_1098_1: # Instances: 1
   - heating_percentage_command_1
   - heating_percentage_command_2
 
-DH_US_MTV_1965_1: # Instances: 3 actually a DF
+DFR_SFSS_BYPSSPC_HT2SC_RTM_NONCANONICAL_2:
   id: "7551154076667346944"
-  description: "Non-standard type for 1965"
+  description: "Non-standard type."
   implements:
   - DFR_SFSS_BYPSSPC_HT2SC_RTM
   - DEPRECATED
@@ -84,9 +84,9 @@ DH_US_MTV_1965_1: # Instances: 3 actually a DF
   - heating_percentage_command_1
   - heating_percentage_command_2
 
-DH_US_MTV_1965_2: # Instances: 2 actually a DF
+DFR_SFSS_BYPSSPC_HT2SC_RTM_NONCANONICAL_3:
   id: "16053950173142843392"
-  description: "Non-standard type for 1965"
+  description: "Non-standard type."
   implements:
   - DFR_SFSS_BYPSSPC_HT3SC_RTM
   - DEPRECATED

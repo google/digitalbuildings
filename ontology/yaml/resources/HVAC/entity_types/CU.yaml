@@ -12,6 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+########################
+### Canonical Types  ###
+########################
 
 CU_SFSS_SFVSC_CHWSC_HTSC_SSPC_SARC_MTM:
   id: "14304102706304778240"
@@ -27,9 +30,13 @@ CU_SFSS_SFVSC_CHWSC_HTSC_SSPC_SARC_MTM:
   - SARC
   - MTM
 
-CU_US_NYC_9TH_16TH_1:
+###################################
+### Existing Non-standard Types ###
+###################################
+
+CU_NONCANONICAL_1:
   id: "14637369078730194944"
-  description: "Type to describe ['US-NYC-9TH:CU:AHU-16-1-todd']"
+  description: "Non-standard type."
   is_canonical: false
   implements:
   - CU

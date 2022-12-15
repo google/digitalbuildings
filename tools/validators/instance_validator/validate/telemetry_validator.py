@@ -143,7 +143,7 @@ class TelemetryValidator(object):
 
     entity = self.entities_with_translation[entity_name]
 
-    print(f'Validating telemetry message for entity: {entity_name}')
+    print(f'[INFO]\tValidating telemetry message for entity {entity_name}')
     point_full_paths = {
         f'points.{key}.present_value': key for key in tele.points
     }

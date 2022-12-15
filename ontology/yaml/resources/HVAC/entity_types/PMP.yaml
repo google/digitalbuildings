@@ -91,7 +91,7 @@ PMP_SS_CHWISOVPM_VSFC:
   - lost_power_alarm
   - low_differential_pressure_alarm
   - chilled_water_differential_pressure_setpoint
-  
+
 PMP_SS_VSC_WDPC_WFRC:
   id: "14706550350349860864"
   description: "Pump with variable speed control, differential pressure control and flow control."
@@ -102,7 +102,7 @@ PMP_SS_VSC_WDPC_WFRC:
   - VSC
   - WDPC
   - WFRC
-  
+
 PMP_SS_VSC_SWTC:
   id: "6293826246421774336"
   description: "Pump with variable speed control and supply water temperature control"
@@ -112,7 +112,7 @@ PMP_SS_VSC_SWTC:
   - SS
   - VSC
   - SWTC
- 
+
 PMP_SS_CWCS_VSFC:
   id: "15564028682526785536"
   description: "PMP device with condensing water valve and pump frequency control"
@@ -139,12 +139,12 @@ PMP_SS_RMM:
   - failed_alarm
   - low_pressure_status
   - high_pressure_status
-  
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
 
-PMP_S_VFCF:
+PMP_SS_VSC_NONCANONICAL_1:
   id: "9598937308795502592"
   description: "Non-standard variable speed pump."
   implements:
@@ -153,7 +153,7 @@ PMP_S_VFCF:
   uses:
   - speed_frequency_command
 
-PMP_S_VSCF_ISV:
+PMP_SS_VSC_NONCANONICAL_2:
   id: "8905453334924623872"
   description: "One-off pump that performs chilled water blending."
   implements:
