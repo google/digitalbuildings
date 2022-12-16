@@ -5678,9 +5678,10 @@ EXTOR:
 DPHC2:
   description: "Two-pipe heating and cooling control for radiant panels"
   is_abstract: true
-  uses:
+  opt_uses:
   - supply_water_temperature_sensor
   - return_water_temperature_sensor
+  uses:
   - water_riser_mode
   - supply_water_valve_percentage_command
 
@@ -5688,11 +5689,11 @@ DPHC4:
   description: "Four pipe heating and cooling controls for radiant panels"
   is_abstract: true
   opt_uses:
-  uses:
   - heating_supply_water_temperature_sensor
   - heating_return_water_temperature_sensor
   - chilled_supply_water_temperature_sensor
   - chilled_return_water_temperature_sensor
+  uses:
   - cooling_output_percentage_command
   - heating_output_percentage_command
 
