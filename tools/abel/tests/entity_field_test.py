@@ -18,13 +18,13 @@ from absl.testing import absltest
 from model.entity_field import EntityField
 from model.state import State
 from model.units import Units
-from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_ENTITY_FIELD_DICT_WITH_STATES
-from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_ENTITY_FIELD_DICT_WITH_UNITS
-from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_MISSING_ENTITY_FIELD
-from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_RAW_FIELD_NAME
-from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_STANDARD_FIELD_NAME
-from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_STATE_DICT
-from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_UNITS
+from tests.test_constants import TEST_ENTITY_FIELD_DICT_WITH_STATES
+from tests.test_constants import TEST_ENTITY_FIELD_DICT_WITH_UNITS
+from tests.test_constants import TEST_MISSING_ENTITY_FIELD
+from tests.test_constants import TEST_RAW_FIELD_NAME
+from tests.test_constants import TEST_STANDARD_FIELD_NAME
+from tests.test_constants import TEST_STATE_DICT
+from tests.test_constants import TEST_UNITS
 
 
 class EntityFieldTest(absltest.TestCase):

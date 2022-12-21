@@ -29,15 +29,15 @@ from model.guid_to_entity_map import GuidToEntityMap
 from model.model_builder import ModelBuilder
 from model.site import Site
 from model.state import State
-from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_CONNECTION_DICT
-from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_ENTITY_FIELD_DICT_WITH_STATES
-from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_ENTITY_FIELD_DICT_WITH_UNITS
-from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_MISSING_ENTITY_FIELD
-from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_REPORTING_ENTITY_DICT
-from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_RESOURCES
-from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_SITE_DICT
-from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_STATE_DICT
-from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_VIRTUAL_ENTITY_DICT
+from tests.test_constants import TEST_CONNECTION_DICT
+from tests.test_constants import TEST_ENTITY_FIELD_DICT_WITH_STATES
+from tests.test_constants import TEST_ENTITY_FIELD_DICT_WITH_UNITS
+from tests.test_constants import TEST_MISSING_ENTITY_FIELD
+from tests.test_constants import TEST_REPORTING_ENTITY_DICT
+from tests.test_constants import TEST_RESOURCES
+from tests.test_constants import TEST_SITE_DICT
+from tests.test_constants import TEST_STATE_DICT
+from tests.test_constants import TEST_VIRTUAL_ENTITY_DICT
 
 
 class ModelBuilderTest(absltest.TestCase):
