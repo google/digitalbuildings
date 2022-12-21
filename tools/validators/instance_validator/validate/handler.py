@@ -259,6 +259,7 @@ def _TelemetryValidationCallback(
   with open(
       os.path.join(os.getcwd(), 'telemetry_validation_report.json'),
       'w',
+      encoding='UTF-8'
   ) as report:
     report.write(json.dumps(validation_report_dict, indent=4))
 
