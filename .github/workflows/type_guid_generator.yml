@@ -36,5 +36,5 @@ jobs:
     
     - name: Types Ontology Guid Generator Run on Ontology Type Extensions
       run: |
-        python generator.py --original=../../../../ontology/yaml/resources
+        python generator.py
       working-directory: ./tools/guid_generator/ontology
