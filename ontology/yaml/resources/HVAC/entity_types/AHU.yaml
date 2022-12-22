@@ -12,6 +12,19 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+#### Testing
+
+AHU_CSP_DFSS_DX2ZC_ECONZ:
+  description: "Single zone AHU."
+  is_canonical: true
+  implements:
+  - AHU
+  - CSP
+  - DFSS
+  - DX2ZC
+  - ECONZ
+
+
 ########################
 ### Canonical Types  ###
 ########################
