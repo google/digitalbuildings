@@ -508,19 +508,20 @@ VAV_HWZTC_CHWZTC_DTM:
   description: "A zone VAV with heating and cooling control, but no flow control; part of DOAS system where air volume is not measured or controlled locally, but instead controlled by the upstream equipment."
   is_canonical: true
   implements:
-    - VAV
-    - HWZTC
-    - CHWZTC
-    - DTM
+  - VAV
+  - HWZTC
+  - CHWZTC
+  - DTM
+
 
 VAV_CSOUC_HLDCAFS_AHAC:
   description: "A zone VAV with cooling control,flow control having high limit and low limits, occupancy based setpoint.
   is_canonical: true
   implements:
-    - VAV 
-    - CSOUC
-    - HLDCAFS
-    - AHAC
+  - VAV 
+  - CSOUC
+  - HLDCAFS
+  - AHAC
 
   
 
