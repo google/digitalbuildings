@@ -688,6 +688,18 @@ HSOUC:
   implements:
   - CONTROL
 
+CSOUC:
+  description: "Cooling occupied/unoccupied setpoint control."
+  is_abstract: true
+  uses:
+  - zone_air_unoccupied_cooling_temperature_setpoint
+  - zone_air_occupied_cooling_temperature_setpoint
+  - zone_air_temperature_sensor
+  opt_uses:
+  - zone_air_temperature_setpoint
+  implements:
+  - CONTROL
+
 HTZOUC:
   id: "11998259697091084288"
   description: "Gas or electric heater control on zone side (ZC)."
@@ -4653,6 +4665,19 @@ HLSAFS:
   - high_limit_supply_air_flowrate_setpoint
   - low_limit_supply_air_flowrate_setpoint
   - supply_air_flowrate_setpoint
+  implements:
+  - CONTROL
+
+HLDCAFS:
+  description: " VAV type with high and low limit Cooling setpoint"
+  is_abstract: true
+  uses:
+  - high_limit_cooling_discharge_air_flowrate_setpoint
+  - low_limit_cooling_discharge_air_setpoint
+  - discharge_air_flowrate_sensor
+  - discharge_air_damper_percentage_command
+  opt_uses:
+  - discharge_air_damper_percentage_sensor
   implements:
   - CONTROL
 

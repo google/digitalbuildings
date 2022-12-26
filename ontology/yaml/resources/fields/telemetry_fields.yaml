@@ -622,7 +622,7 @@ literals:
 
 # Added 1/16/2020
 - discharge_air_damper_percentage_command
-
+- discharge_air_damper_percentage_sensor
 # Added 2/10/2020
 - supply_water_isolation_valve_command
 - supply_water_isolation_valve_status:
@@ -732,6 +732,8 @@ literals:
 - low_limit_supply_air_ventilation_flowrate_setpoint
 - low_limit_supply_air_flowrate_setpoint
 - high_limit_supply_air_flowrate_setpoint # used when the device doesn't necessarily provide a cooling max flow
+- high_limit_discharge_air_cooling_flowrate_setpoint
+- low_limit_discharge_air_cooling_flowrate_setpoint
 - schedule_run_command:
   - ON
   - OFF
@@ -970,6 +972,8 @@ literals:
 
 - zone_air_unoccupied_heating_temperature_setpoint
 - zone_air_occupied_heating_temperature_setpoint
+- zone_air_occupied_cooling_temperature_setpoint
+- zone_air_unoccupied_cooling_temperature_setpoint
 - mixed_air_relative_humidity_sensor
 - mixed_air_dewpoint_temperature_sensor
 

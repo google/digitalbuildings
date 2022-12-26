@@ -513,6 +513,17 @@ VAV_HWZTC_CHWZTC_DTM:
     - CHWZTC
     - DTM
 
+VAV_CSOUC_HLDCAFS_AHAC:
+  description: "A zone VAV with heating and cooling control, but no flow control; part of DOAS system where air volume is not measured or controlled locally, but instead controlled by the upstream equipment."
+  is_canonical: true
+  implements:
+    - VAV 
+    - CSOUC
+    - HLDCAFS
+    - AHAC
+
+  
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
