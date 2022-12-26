@@ -514,7 +514,7 @@ VAV_HWZTC_CHWZTC_DTM:
     - DTM
 
 VAV_CSOUC_HLDCAFS_AHAC:
-  description: "A zone VAV with cooling control,flow control having high limit & low limits, occupancy based setpoint, 
+  description: "A zone VAV with cooling control,flow control having high limit and low limits, occupancy based setpoint.
   is_canonical: true
   implements:
     - VAV 
