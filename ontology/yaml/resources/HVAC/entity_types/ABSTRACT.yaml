@@ -4669,11 +4669,11 @@ HLSAFS:
   - CONTROL
 
 HLDCAFS:
-  description: " VAV type with high and low limit Cooling setpoint"
+  description: " VAV type with high and low limit Cooling setpoints"
   is_abstract: true
   uses:
-  - high_limit_cooling_discharge_air_flowrate_setpoint
-  - low_limit_cooling_discharge_air_setpoint
+  - high_limit_discharge_air_cooling_flowrate_setpoint
+  - low_limit_discharge_air_cooling_flowrate_setpoint
   - discharge_air_flowrate_sensor
   - discharge_air_damper_percentage_command
   opt_uses:
