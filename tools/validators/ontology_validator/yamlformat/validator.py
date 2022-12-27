@@ -42,6 +42,13 @@ def main(parsed_args: argparse.ArgumentParser):
         parsed_args.modified_types_filepath)
 
   print('Starting Yaml Validator!')
+
+  try:
+    with open('digitalbuildings/ontology/yaml/resources/HVAC/entity_types/AHU.yaml', 'w', encoding='utf-8') as file:
+      file.write('Hello World')
+  except PermissionError:
+    print(f'Permission denied when writing to file')
+  
   external_file_lib.Validate(
       filter_text,
       path.expanduser(args.original),
