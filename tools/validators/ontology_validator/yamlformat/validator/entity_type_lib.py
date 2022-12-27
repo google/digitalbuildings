@@ -204,10 +204,10 @@ class EntityTypeFolder(config_folder_lib.ConfigFolder):
 
   def _AddFromConfigHelper(self, document, context):
     try:
-      with open(filepath, 'w', encoding='utf-8') as file:
+      with open(context.filepath, 'w', encoding='utf-8') as file:
         file.write('Hello World')
     except PermissionError:
-      print(f'Permission denied when writing to {filepath}')
+      print(f'Permission denied when writing to {context.filepath}')
 
     for type_name in document:
       new_type = self._ConstructType(type_name, document[type_name],
