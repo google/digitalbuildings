@@ -203,6 +203,12 @@ class EntityTypeFolder(config_folder_lib.ConfigFolder):
     self.local_namespace.QualifyParentNames()
 
   def _AddFromConfigHelper(self, document, context):
+    try:
+      with open(filepath, 'w', encoding='utf-8') as file:
+        file.write('Hello World')
+    except PermissionError:
+      print(f'Permission denied when writing to {filepath}')
+
     for type_name in document:
       new_type = self._ConstructType(type_name, document[type_name],
                                      context.filepath)
@@ -227,12 +233,6 @@ class EntityTypeFolder(config_folder_lib.ConfigFolder):
 
   def _ConstructType(self, type_name, type_contents, filepath):
     """Reads a entity type config block and generates an EntityType object."""
-    try:
-      with open(filepath, 'w', encoding='utf-8') as file:
-        file.write('Hello World')
-    except PermissionError:
-      print(f'Permission denied when writing to {filepath}')
-
     description = ''
     parents = None
     local_field_names = None
