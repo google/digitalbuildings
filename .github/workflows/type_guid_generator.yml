@@ -29,12 +29,12 @@ jobs:
       with:
         python-version: 3.7
         
-#     - name: Types Ontology Guid Generator Install dependencies
-#       run: |
-#         python setup.py install
-#       working-directory: ./tools/XXXX
+    - name: Types Ontology Guid Generator Install dependencies
+      run: |
+        python setup.py install
+      working-directory: ./tools/validators/ontology_validator
     
-#     - name: Types Ontology Guid Generator Run on Ontology Type Extensions
-#       run: |
-#         python generator.py
-#       working-directory: ./tools/guid_generator/ontology
+    - name: Types Ontology Guid Generator Run on Ontology Type Extensions
+      run: |
+        python validator.py --original=../../../../ontology/yaml/resources  --interactive=False
+      working-directory: ./tools/validators/ontology_validator/yamlformat
