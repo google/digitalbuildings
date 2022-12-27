@@ -54,7 +54,7 @@ def _ParserHelper(testpaths: List[str]) -> instance_parser.InstanceParser:
 
 
 def _Helper(
-    testpaths: List[str],
+    testpaths: List[str]
 ) -> Tuple[Dict[str, syaml.YAML], instance_parser.EntityOperation]:
   """Helper function for loading a list of building configuration filepaths.
 
