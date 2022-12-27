@@ -18,6 +18,21 @@
 
 ### Single Zone Units ###
 
+### TEST ###
+
+AHU_CSP_DFSS_DX2ZC_ECONZ_TEST:
+  id: "12345"
+  description: "TEST AHU."
+  is_canonical: true
+  implements:
+  - AHU
+  - CSP
+  - DFSS
+  - DX2ZC
+  - ECONZ
+  
+#############
+
 AHU_CSP_DFSS_DX2ZC_ECONZ:
   id: "7791982307522379776"
   description: "Single zone AHU."
