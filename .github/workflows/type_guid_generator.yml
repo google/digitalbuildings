@@ -12,7 +12,7 @@ on:
   pull_request:
     branches: [ master ]
     paths: 
-      - ontology/yaml/**
+      - ontology/yaml/resources/HVAC/entity_types/AHU.yaml
 
 jobs:
   build:
