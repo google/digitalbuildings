@@ -35,8 +35,7 @@ _CONFIG_EXPORT = parse.ConfigMode.EXPORT
 # udmi present value: points.$name.present_value
 # where name follows: [a-z][a-z0-9]*(_[a-z0-9]+)*
 _UDMI_PRESENT_VALUE_REGEX = (
-    r'^(points.)[a-z][a-z0-9]*(_[a-z0-9]+)*(.present_value)$'
-)
+    r'^(points.)[a-z][a-z0-9]*(_[a-z0-9]+)*(.present_value)$')
 _UDMI_PRESENT_VALUE_PATTERN = re.compile(_UDMI_PRESENT_VALUE_REGEX)
 
 

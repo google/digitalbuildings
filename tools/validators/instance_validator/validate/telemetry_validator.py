@@ -101,9 +101,9 @@ class TelemetryValidator(object):
       self._timer = None
 
   def AllEntitiesValidated(self):
-    """Returns if all enities in a building config have been validated.
+    """True if all enities in a building config have been validated.
 
-    True if a valid telemetry message was received for every entity in a
+    Returns true if a valid telemetry message was received for every entity in a
     building configuration file.
     """
     return len(self.entities_with_translation) == len(self.validated_entities)

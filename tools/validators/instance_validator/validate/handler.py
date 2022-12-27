@@ -111,7 +111,7 @@ def _ValidateTelemetry(
     service_account: str,
     entities: Dict[str, entity_instance.EntityInstance],
     timeout: int,
-    is_udmi: bool,
+    is_udmi: bool
 ) -> None:
   """Runs all telemetry validation checks."""
   helper = TelemetryHelper(subscription, service_account)
@@ -127,7 +127,7 @@ def RunValidation(
     service_account: str = None,
     report_filename: str = None,
     timeout: int = constants.DEFAULT_TIMEOUT,
-    is_udmi: bool = False,
+    is_udmi: bool = False
 ) -> None:
   """Top level runner for all validations.
 
@@ -155,7 +155,7 @@ def RunValidation(
     universe = generate_universe.BuildUniverse(
         use_simplified_universe=use_simplified_universe,
         modified_types_filepath=modified_types_filepath,
-        default_types_filepath=default_types_filepath,
+        default_types_filepath=default_types_filepath
     )
     if not universe:
       print('[ERROR]\tUniverse did not load properly.')

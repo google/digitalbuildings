@@ -44,6 +44,7 @@ TEST_CODE = 'ABC_123'
 TEST_TIMESTAMP = 'test_timestamp'
 
 
+# TODO: (b/263799046) Refactor re-used testing variables.
 class TelemetryValidatorReportTest(absltest.TestCase):
 
   @mock.patch.object(tvr, 'datetime')
@@ -71,7 +72,7 @@ class TelemetryValidatorReportTest(absltest.TestCase):
         code='DEVICE_5',
         version=1,
         timestamp=TEST_TIMESTAMP,
-        expected_points=expected_points,
+        expected_points=expected_points
     )
     error_device.AddMissingPoint(missing_point)
     error_device.AddExtraPoint(extra_point_1)
@@ -119,7 +120,7 @@ class TelemetryMessageValidationBlockTest(absltest.TestCase):
         ),
         tvr.TelemetryPoint(
             point_name='supply_water_temperature_sensor', present_value=200.0
-        ),
+        )
     ]
     test_validation_block = tvr.TelemetryMessageValidationBlock(
         guid=TEST_GUID,
@@ -128,7 +129,7 @@ class TelemetryMessageValidationBlockTest(absltest.TestCase):
         timestamp=datetime.datetime.now(tz=datetime.timezone.utc).strftime(
             TIMESTAMP_FORMAT
         ),
-        expected_points=expected_points,
+        expected_points=expected_points
     )
 
     self.assertEqual(test_validation_block.guid, TEST_GUID)
@@ -162,20 +163,20 @@ class TelemetryMessageValidationBlockTest(absltest.TestCase):
         ENTITY_GUID: TEST_GUID,
         EXPECTED_POINTS: {
             'return_water_temperature_sensor': {'present_value': 100.0},
-            'supply_water_temperature_sensor': {'present_value': 200.0},
+            'supply_water_temperature_sensor': {'present_value': 200.0}
         },
         TELEMETRY_MESSAGE_ERRORS: {
             MISSING_POINTS: {'run_command': {'present_value': True}},
             MISSING_PRESENT_VALUES: {},
-            INVALID_DIMENSIONAL_VALUES: {},
+            INVALID_DIMENSIONAL_VALUES: {}
         },
         TELEMETRY_MESSAGE_WARNINGS: {
             EXTRA_POINTS: {
                 'return_water_temperature_setpoint': {'present_value': 100.0},
                 'supply_water_temperature_setpoint': {'present_value': 200.0},
             },
-            UNMAPPED_STATES: {},
-        },
+            UNMAPPED_STATES: {}
+        }
     }
 
     test_validation_block = tvr.TelemetryMessageValidationBlock(
@@ -183,7 +184,7 @@ class TelemetryMessageValidationBlockTest(absltest.TestCase):
         code=TEST_CODE,
         version=1,
         timestamp=TEST_TIMESTAMP,
-        expected_points=expected_points,
+        expected_points=expected_points
     )
     test_validation_block.AddMissingPoint(missing_point)
     test_validation_block.AddExtraPoint(extra_point_1)
@@ -205,7 +206,7 @@ class TelemetryMessageValidationBlockTest(absltest.TestCase):
     test_validation_block = tvr.TelemetryMessageValidationBlock(
         guid=TEST_GUID,
         code=TEST_CODE,
-        expected_points=expected_points,
+        expected_points=expected_points
     )
 
     self.assertEqual(test_validation_block.guid, TEST_GUID)
@@ -221,13 +222,13 @@ class TelemetryMessageValidationBlockTest(absltest.TestCase):
         ),
         tvr.TelemetryPoint(
             point_name='supply_water_temperature_sensor', present_value=200.0
-        ),
+        )
     ]
     test_validation_block = tvr.TelemetryMessageValidationBlock(
         guid=TEST_GUID,
         code=TEST_CODE,
         expected_points=expected_points,
-        description='test description',
+        description='test description'
     )
 
     self.assertEqual(test_validation_block.description, 'test description')
