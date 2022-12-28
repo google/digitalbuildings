@@ -46,7 +46,7 @@ def main(parsed_args: argparse.ArgumentParser):
   try:
     with open(
       '../../../../ontology/yaml/resources/HVAC/entity_types/AHU.yaml',
-      'w',
+      'a',
       encoding='utf-8') as file:
       file.write('Hello World')
   except PermissionError:
