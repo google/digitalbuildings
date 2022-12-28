@@ -54,7 +54,7 @@ def _ParserHelper(testpaths: List[str]) -> instance_parser.InstanceParser:
 
 
 def _Helper(
-    testpaths: List[str]
+    testpaths: List[str],
 ) -> Tuple[Dict[str, syaml.YAML], instance_parser.EntityOperation]:
   """Helper function for loading a list of building configuration filepaths.
 
@@ -113,7 +113,7 @@ class EntityInstanceTest(absltest.TestCase):
         guid='ENTITY-GUID',
         code='ENTITY-NAME',
         etag='a12345',
-        update_mask=['connections']
+        update_mask=['connections'],
     )
 
     self.assertTrue(self.update_validator.Validate(valid_instance))
@@ -123,7 +123,7 @@ class EntityInstanceTest(absltest.TestCase):
         _UPDATE,
         guid='ENTITY-GUID',
         code='ENTITY-NAME',
-        update_mask=['connections']
+        update_mask=['connections'],
     )
 
     self.assertFalse(self.update_validator.Validate(invalid_instance))
@@ -136,7 +136,7 @@ class EntityInstanceTest(absltest.TestCase):
         namespace='FACILITIES',
         type_name='BUILDING',
         etag='a12345',
-        update_mask=['connections']
+        update_mask=['connections'],
     )
 
     self.assertTrue(self.update_validator.Validate(instance))
@@ -149,7 +149,7 @@ class EntityInstanceTest(absltest.TestCase):
         namespace='NOT_A_NAMESPACE',
         type_name='BUILDING',
         etag='a12345',
-        update_mask=['connections']
+        update_mask=['connections'],
     )
 
     is_valid = self.update_validator.Validate(instance)
@@ -181,7 +181,7 @@ class EntityInstanceTest(absltest.TestCase):
         namespace='FACILITIES',
         type_name='LIGHTING/NOT_A_LAMP',
         etag='a12345',
-        update_mask=['connections']
+        update_mask=['connections'],
     )
 
     self.assertFalse(self.update_validator.Validate(instance))
@@ -240,7 +240,7 @@ class EntityInstanceTest(absltest.TestCase):
             path.join(
                 _TESTCASE_PATH,
                 'BAD',
-                'translation_with_required_field_missing.yaml'
+                'translation_with_required_field_missing.yaml',
             )
         ]
     )
@@ -258,7 +258,7 @@ class EntityInstanceTest(absltest.TestCase):
             path.join(
                 _TESTCASE_PATH,
                 'BAD',
-                'translation_opt_field_marked_missing.yaml'
+                'translation_opt_field_marked_missing.yaml',
             )
         ]
     )
@@ -279,7 +279,7 @@ class EntityInstanceTest(absltest.TestCase):
               path.join(
                   _TESTCASE_PATH,
                   'BAD',
-                  'translation_missing_cloud_device_id.yaml'
+                  'translation_missing_cloud_device_id.yaml',
               )
           ]
       )
@@ -308,7 +308,7 @@ class EntityInstanceTest(absltest.TestCase):
             path.join(
                 _TESTCASE_PATH,
                 'GOOD',
-                'translation_req_field_marked_missing.yaml'
+                'translation_req_field_marked_missing.yaml',
             )
         ]
     )
@@ -327,7 +327,7 @@ class EntityInstanceTest(absltest.TestCase):
             path.join(
                 _TESTCASE_PATH,
                 'GOOD',
-                'translation_missing_fields_on_gateway.yaml'
+                'translation_missing_fields_on_gateway.yaml',
             )
         ]
     )
@@ -347,7 +347,7 @@ class EntityInstanceTest(absltest.TestCase):
             path.join(
                 _TESTCASE_PATH,
                 'BAD',
-                'translation_opt_field_marked_missing.yaml'
+                'translation_opt_field_marked_missing.yaml',
             )
         ]
     )
@@ -451,7 +451,7 @@ class EntityInstanceTest(absltest.TestCase):
             path.join(
                 _TESTCASE_PATH,
                 'BAD',
-                'translation_value_range_with_no_units.yaml'
+                'translation_value_range_with_no_units.yaml',
             )
         ]
     )
@@ -460,7 +460,7 @@ class EntityInstanceTest(absltest.TestCase):
     with self.assertRaises(
         ValueError,
         msg='A value range cannot be provided without units in the translation '
-        + 'for field "zone_air_temperature_sensor".'
+        + 'for field "zone_air_temperature_sensor".',
     ):
       entity_instance.EntityInstance.FromYaml(
           entity_guid, entity, default_operation=default_operation
@@ -481,7 +481,7 @@ class EntityInstanceTest(absltest.TestCase):
     with self.assertRaises(
         ValueError,
         msg='Value range in the translation for field '
-        + '"zone_air_temperature_sensor" should be formatted: <min>,<max>.'
+        + '"zone_air_temperature_sensor" should be formatted: <min>,<max>.',
     ):
       entity_instance.EntityInstance.FromYaml(
           entity_guid, entity, default_operation=default_operation
@@ -503,7 +503,7 @@ class EntityInstanceTest(absltest.TestCase):
         ValueError,
         msg='Value range in the translation for field '
         + '"zone_air_temperature_sensor" should have a min value that is less '
-        + 'than the max value.'
+        + 'than the max value.',
     ):
       entity_instance.EntityInstance.FromYaml(
           entity_guid, entity, default_operation=default_operation
@@ -539,7 +539,7 @@ class EntityInstanceTest(absltest.TestCase):
             path.join(
                 _TESTCASE_PATH,
                 'BAD',
-                'translation_states_list_with_duplicate.yaml'
+                'translation_states_list_with_duplicate.yaml',
             )
         ]
     )
@@ -730,7 +730,7 @@ class EntityInstanceTest(absltest.TestCase):
     entity_guid, entity = next(iter(parsed.items()))
     expected_connections = [
         connection.Connection('FEEDS', 'ANOTHER-ENTITY-GUID'),
-        connection.Connection('CONTAINS', 'A-THIRD-ENTITY-GUID')
+        connection.Connection('CONTAINS', 'A-THIRD-ENTITY-GUID'),
     ]
     instance = entity_instance.EntityInstance.FromYaml(
         entity_guid, entity, default_operation=default_operation
@@ -741,7 +741,7 @@ class EntityInstanceTest(absltest.TestCase):
     )
     self.assertIsNotNone(
         self.config_universe.connection_universe,
-        'universe does not have a valid connections universe'
+        'universe does not have a valid connections universe',
     )
     self.assertTrue(self.init_validator.Validate(instance))
     self.assertCountEqual(expected_connections, instance.connections)
@@ -754,7 +754,7 @@ class EntityInstanceTest(absltest.TestCase):
     entity_guid, entity = next(iter(parsed.items()))
     expected_connections = [
         connection.Connection('FEEDS', 'ANOTHER-ENTITY-GUID'),
-        connection.Connection('CONTAINS', 'ANOTHER-ENTITY-GUID')
+        connection.Connection('CONTAINS', 'ANOTHER-ENTITY-GUID'),
     ]
 
     self.assertIn(
@@ -762,7 +762,7 @@ class EntityInstanceTest(absltest.TestCase):
     )
     self.assertIsNotNone(
         self.config_universe.connection_universe,
-        'universe does not have a valid connections universe'
+        'universe does not have a valid connections universe',
     )
 
     instance = entity_instance.EntityInstance.FromYaml(
@@ -790,7 +790,7 @@ class EntityInstanceTest(absltest.TestCase):
         guid='AHU-1-GUID',
         code='AHU-1',
         links=[link.Link('CTRL-1-GUID', {'run_status': 'run_status'})],
-        etag='123'
+        etag='123',
     )
 
     self.assertTrue(self.update_validator.Validate(src_ok))
@@ -801,7 +801,7 @@ class EntityInstanceTest(absltest.TestCase):
         guid='AHU-1-GUID',
         code='AHU-1',
         links=[link.Link('CTRL-1-GUID', {'nonexistent_status': 'run_status'})],
-        etag='123'
+        etag='123',
     )
 
     self.assertFalse(self.update_validator.Validate(src_field))
@@ -812,7 +812,7 @@ class EntityInstanceTest(absltest.TestCase):
         guid='AHU-1-GUID',
         code='AHU-1',
         links=[link.Link('CTRL-1-GUID', {'run_status_1': 'run_status'})],
-        etag='123'
+        etag='123',
     )
     validator = entity_instance.GraphValidator(
         self.config_universe, _UPDATE_CFG, {'CTRL-1-GUID': target}
@@ -825,13 +825,13 @@ class EntityInstanceTest(absltest.TestCase):
         _ADD,
         guid='VAV-123-GUID',
         code='VAV-123',
-        connections=[connection.Connection('FEEDS', 'AHU-1-GUID')]
+        connections=[connection.Connection('FEEDS', 'AHU-1-GUID')],
     )
     source = entity_instance.EntityInstance(
         _ADD,
         guid='AHU-1-GUID',
         code='AHU-1',
-        connections=[connection.Connection('FEEDS', 'AHU-1-GUID')]
+        connections=[connection.Connection('FEEDS', 'AHU-1-GUID')],
     )
     instances = {'VAV-123-GUID': target, 'AHU-1-GUID': source}
     validator = entity_instance.GraphValidator(
@@ -845,7 +845,7 @@ class EntityInstanceTest(absltest.TestCase):
         _ADD,
         guid='VAV-123-GUID',
         code='VAV-123',
-        connections=[connection.Connection('FEEDS', 'AHU-1-GUID')]
+        connections=[connection.Connection('FEEDS', 'AHU-1-GUID')],
     )
     validator = entity_instance.GraphValidator(
         self.config_universe, _INIT_CFG, {'VAV-123-GUID': target}
@@ -859,7 +859,7 @@ class EntityInstanceTest(absltest.TestCase):
         guid='VAV-123-GUID',
         code='VAV-123',
         connections=[connection.Connection('FEEDS', 'AHU-1-GUID')],
-        etag='123'
+        etag='123',
     )
     validator = entity_instance.GraphValidator(
         self.config_universe, _UPDATE_CFG, {'VAV-123-GUID': target}
@@ -901,15 +901,15 @@ class EntityInstanceTest(absltest.TestCase):
                 std_field_name='foo/bar',
                 unit_field_name='foo/unit',
                 raw_field_name='foo/raw',
-                unit_mapping={'standard_unit_1': 'raw_unit_1'}
+                unit_mapping={'standard_unit_1': 'raw_unit_1'},
             ),
             'foo_baz': field_translation.DimensionalValue(
                 std_field_name='foo/baz',
                 unit_field_name='bar/unit',
                 raw_field_name='bar/raw',
-                unit_mapping={'standard_unit_1': 'raw_unit_2'}
-            )
-        }
+                unit_mapping={'standard_unit_1': 'raw_unit_2'},
+            ),
+        },
     )
 
     self.assertFalse(self.update_validator.Validate(entity))
@@ -926,9 +926,9 @@ class EntityInstanceTest(absltest.TestCase):
                   std_field_name='foo/bar',
                   unit_field_name='foo/unit',
                   raw_field_name='foo/raw',
-                  unit_mapping={}
-              )
-          }
+                  unit_mapping={},
+              ),
+          },
       )
     except ValueError as e:
       self.assertEqual(type(e), ValueError)
@@ -948,9 +948,9 @@ class EntityInstanceTest(absltest.TestCase):
                 std_field_name='foo/bar',
                 unit_field_name='foo/unit',
                 raw_field_name='foo/raw',
-                unit_mapping={'foo': 'bar'}
+                unit_mapping={'foo': 'bar'},
             )
-        }
+        },
     )
 
     self.assertFalse(self.update_validator.Validate(entity))
@@ -969,7 +969,7 @@ class EntityInstanceTest(absltest.TestCase):
                 std_field_name='foo/bar',
                 unit_field_name='foo/unit',
                 raw_field_name='foo/raw',
-                unit_mapping={'INVALID_SENSOR_UNIT': 'degF'}
+                unit_mapping={'INVALID_SENSOR_UNIT': 'degF'},
             )
         },
     )
@@ -990,9 +990,9 @@ class EntityInstanceTest(absltest.TestCase):
                 std_field_name='foo/bar',
                 unit_field_name='foo/unit',
                 raw_field_name='foo/raw',
-                unit_mapping={'degrees_fahrenheit': 'degF'}
+                unit_mapping={'degrees_fahrenheit': 'degF'},
             )
-        }
+        },
     )
 
     self.assertTrue(self.update_validator.Validate(entity))
@@ -1029,9 +1029,9 @@ class EntityInstanceTest(absltest.TestCase):
             'UNDEFINED_STATE': field_translation.MultiStateValue(
                 std_field_name='foo/bar',
                 raw_field_name='foo/raw',
-                states={'foo': 'bar'}
+                states={'foo': 'bar'},
             )
-        }
+        },
     )
 
     self.assertFalse(self.update_validator.Validate(entity))
@@ -1048,9 +1048,9 @@ class EntityInstanceTest(absltest.TestCase):
             'exhaust_air_damper_command': field_translation.MultiStateValue(
                 std_field_name='exhaust_air_damper_command',
                 raw_field_name='exhaust_air_damper_command',
-                states={'INVALID_STATE': '1'}
+                states={'INVALID_STATE': '1'},
             )
-        }
+        },
     )
 
     self.assertFalse(self.update_validator.Validate(entity))
@@ -1067,9 +1067,9 @@ class EntityInstanceTest(absltest.TestCase):
             'exhaust_air_damper_command': field_translation.MultiStateValue(
                 std_field_name='exhaust_air_damper_command',
                 raw_field_name='exhaust_air_damper_command',
-                states={'OPEN': '1', 'CLOSED': '0'}
+                states={'OPEN': '1', 'CLOSED': '0'},
             )
-        }
+        },
     )
 
     self.assertTrue(self.update_validator.Validate(entity))
@@ -1087,9 +1087,9 @@ class EntityInstanceTest(absltest.TestCase):
                 std_field_name='foo/bar',
                 unit_field_name='foo/unit',
                 raw_field_name='foo/raw',
-                unit_mapping={'no_units': 'no_units'}
-            )
-        }
+                unit_mapping={'no_units': 'no_units'},
+            ),
+        },
     )
 
     self.assertTrue(self.update_validator.Validate(entity))
@@ -1108,9 +1108,9 @@ class EntityInstanceTest(absltest.TestCase):
                 std_field_name='foo/bar',
                 unit_field_name='foo/unit',
                 raw_field_name='foo/raw',
-                unit_mapping={'no_units': 'no_units'}
-            )
-        }
+                unit_mapping={'no_units': 'no_units'},
+            ),
+        },
     )
 
     self.assertFalse(self.update_validator.Validate(entity))
@@ -1183,7 +1183,7 @@ class EntityInstanceTest(absltest.TestCase):
         namespace='FACILITIES',
         type_name='BUILDING',
         etag='a12345',
-        update_mask=['connections']
+        update_mask=['connections'],
     )
 
     self.assertFalse(self.update_validator.Validate(instance))
@@ -1196,7 +1196,7 @@ class EntityInstanceTest(absltest.TestCase):
         namespace='FACILITIES',
         type_name='BUILDING',
         etag='a12345',
-        update_mask=['connections']
+        update_mask=['connections'],
     )
 
     self.assertFalse(self.update_validator.Validate(instance))
@@ -1219,7 +1219,7 @@ class EntityInstanceTest(absltest.TestCase):
             path.join(
                 _TESTCASE_PATH,
                 'GOOD',
-                'update_entity_type_and_translations.yaml'
+                'update_entity_type_and_translations.yaml',
             )
         ]
     )
@@ -1261,7 +1261,7 @@ class EntityInstanceTest(absltest.TestCase):
             path.join(
                 _TESTCASE_PATH,
                 'GOOD',
-                'update_no_operation_default_export.yaml'
+                'update_no_operation_default_export.yaml',
             )
         ]
     )
@@ -1296,7 +1296,7 @@ class EntityInstanceTest(absltest.TestCase):
         type_name='BUILDING',
         etag='a12345',
         cloud_device_id='CLOUD-DEVICE-ID',
-        update_mask=['cloud_device_id']
+        update_mask=['cloud_device_id'],
     )
 
     self.assertFalse(self.update_validator.Validate(instance))

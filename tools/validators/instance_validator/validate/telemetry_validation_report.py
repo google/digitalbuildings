@@ -115,7 +115,7 @@ class TelemetryValidationReport(object):
 
 
 class TelemetryMessageValidationBlock(object):
-  """A container for telemetry validation result from pubsub message by entity.
+  """A container for telemetry validation result from a pubsub message by entity.
 
   Attributes:
     guid: Entity guid of the of the device whose pubsub message is being

@@ -13,6 +13,8 @@
 # limitations under the License.
 """Fields documents used for creating fake field universe."""
 
+# TODO(b/253696006): Add default value ranges to numeric fields
+
 TELEMETRY_FIELDS_DOCUMENT = {
     'literals': [
         'building_air_static_pressure_sensor',
