@@ -48,7 +48,7 @@ def main(parsed_args: argparse.ArgumentParser):
       '../../../../ontology/yaml/resources/HVAC/entity_types/AHU.yaml',
       'a',
       encoding='utf-8') as file:
-      file.write('Hello World')
+      file.write('AHU_CSP_DFSS_DX2ZC_ECONZ_TESTTT:\n  id: "123456"\n  description: "desc."\n)
   except PermissionError:
     print(f'Permission denied when writing to file') 
 
