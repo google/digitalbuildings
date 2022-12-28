@@ -227,6 +227,7 @@ class EntityTypeFolder(config_folder_lib.ConfigFolder):
 
   def _ConstructType(self, type_name, type_contents, filepath):
     """Reads a entity type config block and generates an EntityType object."""
+
     description = ''
     parents = None
     local_field_names = None
