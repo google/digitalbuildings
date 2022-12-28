@@ -41,7 +41,7 @@ def main(parsed_args: argparse.ArgumentParser):
     modified_types_filepath = path.expanduser(
         parsed_args.modified_types_filepath)
 
-  print('Starting Yaml Validator!')
+  print('Starting Yaml Validator!')  
   external_file_lib.Validate(
       filter_text,
       path.expanduser(args.original),
