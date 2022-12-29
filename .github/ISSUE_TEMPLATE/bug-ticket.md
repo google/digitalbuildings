@@ -1,7 +1,3 @@
-** DO NOT INCLUDE ANY PROJECT-SPECIFIC INFORMATION IN THIS TICKET! **
-** ANY PROJECT-SPECIFIC CONTEXT (E.G. BUILDING CONFIG INPUTS) SHOULD BE PASSED DIRECTLY TO: **
-**    digitalbuildings-support@googlegroups.com **
-
 ---
 name: Bug Ticket
 about: Create a report to help us improve
@@ -10,6 +6,13 @@ labels: ''
 assignees: ''
 
 ---
+
+**IMPORTANT**
+DO NOT INCLUDE ANY PROJECT-SPECIFIC INFORMATION IN THIS TICKET!
+ANY PROJECT-SPECIFIC CONTEXT (E.G. BUILDING CONFIG INPUTS) SHOULD BE
+EMAILED DIRECTLY TO: digitalbuildings-support@googlegroups.com
+
+PLEASE REFERENCE THIS ISSUE LINK IN YOUR EMAIL TO THAT GROUP
 
 **Describe the bug**
 A clear and concise description of what the bug is.
