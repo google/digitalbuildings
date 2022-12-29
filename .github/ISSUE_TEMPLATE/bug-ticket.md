@@ -1,3 +1,7 @@
+** DO NOT INCLUDE ANY PROJECT-SPECIFIC INFORMATION IN THIS TICKET! **
+** ANY PROJECT-SPECIFIC CONTEXT (E.G. BUILDING CONFIG INPUTS) SHOULD BE PASSED DIRECTLY TO: **
+**    digitalbuildings-support@googlegroups.com **
+
 ---
 name: Bug Ticket
 about: Create a report to help us improve
@@ -28,3 +32,5 @@ OS where the bug is reported (ubuntu, macos, windows, or others)
 
 **Additional context**
 Add any other context about the problem here.
+
+
