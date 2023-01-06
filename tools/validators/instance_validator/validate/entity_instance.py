@@ -1,4 +1,4 @@
-# Copyright 2020 Google LLC
+# Copyright 2023 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the License);
 # you may not use this file except in compliance with the License.
@@ -39,11 +39,15 @@ _UDMI_PRESENT_VALUE_REGEX = (
 )
 _UDMI_PRESENT_VALUE_PATTERN = re.compile(_UDMI_PRESENT_VALUE_REGEX)
 
+_DEVICE_NUMERIC_ID_REGEX = r'[0-9]{16}'
+_DEVICE_NUMERIC_ID_PATTERN = re.compile(_DEVICE_NUMERIC_ID_REGEX)
+
 
 def _FieldIsAllowed(
     universe: pvt.ConfigUniverse,
     as_written_field_name: str,
-    entity_type: Optional[entity_type_lib.EntityType] = None) -> bool:
+    entity_type: Optional[entity_type_lib.EntityType] = None,
+) -> bool:
   """Returns true if the name is plausibly correct in the provided context.
 
   See `_GetAllowedField_` for detail.
@@ -54,14 +58,16 @@ def _FieldIsAllowed(
     entity_type: the EntityType of the entity the field is defined on
   """
 
-  return _GetAllowedField(universe, as_written_field_name,
-                          entity_type) is not None
+  return (
+      _GetAllowedField(universe, as_written_field_name, entity_type) is not None
+  )
 
 
 def _GetAllowedField(
     universe: pvt.ConfigUniverse,
     as_written_field_name: str,
-    entity_type: Optional[entity_type_lib.EntityType] = None) -> Optional[str]:
+    entity_type: Optional[entity_type_lib.EntityType] = None,
+) -> Optional[str]:
   """Returns the most likely qualified field name given the provided context.
 
   If an entity type is provided, the method validates that the field is valid
@@ -89,7 +95,8 @@ def _GetAllowedField(
 
   try:
     namespace, field_name = entity_type_lib.SeparateFieldNamespace(
-        as_written_field_name)
+        as_written_field_name
+    )
   except TypeError:
     namespace = ''
     field_name = as_written_field_name
@@ -111,9 +118,12 @@ class CombinationValidator(object):
     entity_instances: name to entity mapping of all entities in the config
   """
 
-  def __init__(self, universe: pvt.ConfigUniverse,
-               config_mode: parse.ConfigMode,
-               entity_instances: Dict[str, EntityInstance]):
+  def __init__(
+      self,
+      universe: pvt.ConfigUniverse,
+      config_mode: parse.ConfigMode,
+      entity_instances: Dict[str, EntityInstance],
+  ):
     super().__init__()
     self.universe = universe
     self.config_mode = config_mode
@@ -150,9 +160,12 @@ class GraphValidator(object):
     entity_instances: name to entity mapping of all entities in the config
   """
 
-  def __init__(self, universe: pvt.ConfigUniverse,
-               config_mode: parse.ConfigMode,
-               entity_instances: Dict[str, EntityInstance]):
+  def __init__(
+      self,
+      universe: pvt.ConfigUniverse,
+      config_mode: parse.ConfigMode,
+      entity_instances: Dict[str, EntityInstance],
+  ):
     super().__init__()
     self.universe = universe
     self.config_mode = config_mode
@@ -174,8 +187,10 @@ class GraphValidator(object):
           )
           is_valid = False
         continue
-      if self.entity_instances[
-          conn_inst.source].operation == parse.EntityOperation.DELETE:
+      if (
+          self.entity_instances[conn_inst.source].operation
+          == parse.EntityOperation.DELETE
+      ):
         print(
             f'[ERROR]\tEntity {entity.guid} ({entity.code}) is connected to '
             f'a deleted entity: {conn_inst.source}.'
@@ -200,8 +215,10 @@ class GraphValidator(object):
           )
           is_valid = False
         continue
-      if self.entity_instances[
-          link_inst.source].operation == parse.EntityOperation.DELETE:
+      if (
+          self.entity_instances[link_inst.source].operation
+          == parse.EntityOperation.DELETE
+      ):
         print(
             f'[ERROR]\tEntity {entity.guid} ({entity.code}) links to a '
             f'deleted entity: {link_inst.source}.'
@@ -210,8 +227,9 @@ class GraphValidator(object):
         continue
 
       src_entity = self.entity_instances.get(link_inst.source)
-      src_entity_type = self.universe.GetEntityType(src_entity.namespace,
-                                                    src_entity.type_name)
+      src_entity_type = self.universe.GetEntityType(
+          src_entity.namespace, src_entity.type_name
+      )
 
       for _, source_field in link_inst.field_map.items():
         if not _FieldIsAllowed(self.universe, source_field, src_entity_type):
@@ -263,8 +281,9 @@ class InstanceValidator(object):
       UPDATE = partial)
   """
 
-  def __init__(self, universe: pvt.ConfigUniverse,
-               config_mode: parse.ConfigMode):
+  def __init__(
+      self, universe: pvt.ConfigUniverse, config_mode: parse.ConfigMode
+  ):
     super().__init__()
     self.universe = universe
     self.config_mode = config_mode
@@ -289,8 +308,9 @@ class InstanceValidator(object):
       )
       return False
 
-    entity_type = self.universe.GetEntityType(entity.namespace,
-                                              entity.type_name)
+    entity_type = self.universe.GetEntityType(
+        entity.namespace, entity.type_name
+    )
     if entity_type is None:
       print(
           f'[ERROR]\tEntity {entity.guid} ({entity.code}) is defined with an '
@@ -310,6 +330,34 @@ class InstanceValidator(object):
       return False
 
     return True
+
+  def _ValidateCloudDeviceId(self, entity: EntityInstance) -> bool:
+    """Validates a cloud device id exists and conforms to regex definition.
+
+    Args:
+      entity: EntityInstance to validate.
+
+    Returns:
+      Returns true if cloud device id exists and conforms to regex definition.
+    """
+    if entity.translation and not entity.cloud_device_id:
+      print(
+          f'[ERROR]\tEntity {entity.guid} ({entity.code}) must have a'
+          ' cloud_device_id, please refer to the documentation:'
+          ' https://github.com/google/digitalbuildings/blob/master/ontology/docs/building_config.md#identifiers'
+      )
+    elif entity.translation and not _DEVICE_NUMERIC_ID_PATTERN.fullmatch(
+        entity.cloud_device_id
+    ):
+      print(
+          f'[ERROR]\tEntity {entity.guid} ({entity.code}) invalid'
+          ' cloud_device_id, please refer to the documentation:'
+          ' https://github.com/google/digitalbuildings/blob/master/ontology/docs/building_config.md#identifiers'
+          f' {_DEVICE_NUMERIC_ID_REGEX}'
+      )
+    else:
+      return True
+    return False
 
   def _ValidateTranslation(
       self, entity: EntityInstance, is_udmi: bool = False
@@ -331,15 +379,16 @@ class InstanceValidator(object):
       return True
 
     is_valid = True
-    entity_type = self.universe.GetEntityType(entity.namespace,
-                                              entity.type_name)
+    entity_type = self.universe.GetEntityType(
+        entity.namespace, entity.type_name
+    )
     found_fields = {}
 
     # Check that defined fields are in the type
     for as_written_field_name, ft in entity.translation.items():
-      qualified_field_name = _GetAllowedField(self.universe,
-                                              as_written_field_name,
-                                              entity_type)
+      qualified_field_name = _GetAllowedField(
+          self.universe, as_written_field_name, entity_type
+      )
       if not qualified_field_name:
         if entity_type and not entity_type.allow_undefined_fields:
           print(
@@ -385,35 +434,41 @@ class InstanceValidator(object):
         # is required or not explicitly. Warn the user, but don't check
         # for optionality.
         if entity_type.allow_undefined_fields:
-          print(f'[WARNING]\tEntity {entity.guid} ({entity.code}) provides '
-                f'MISSING translation for field {qualified_field_name} for a '
-                f'type {entity.type_name}. This feature should '
-                'only be used when the gateway cannot physically send required '
-                'data and the virtual entity you are creating requires it. You '
-                'must provide justification for all MISSING translations and '
-                'that the applied virtual entity type is correct, otherwise '
-                'your building config will be rejected.')
+          print(
+              f'[WARNING]\tEntity {entity.guid} ({entity.code}) provides '
+              f'MISSING translation for field {qualified_field_name} for a '
+              f'type {entity.type_name}. This feature should '
+              'only be used when the gateway cannot physically send required '
+              'data and the virtual entity you are creating requires it. You '
+              'must provide justification for all MISSING translations and '
+              'that the applied virtual entity type is correct, otherwise '
+              'your building config will be rejected.'
+          )
         else:
           # If the field is MISSING and REQUIRED, warn the user.
           if not type_fields[qualified_field_name].optional:
-            print(f'[WARNING]\tEntity {entity.guid} ({entity.code}) provides '
-                  f'MISSING translation for field {qualified_field_name} which '
-                  f'is required for type {entity.type_name}. This feature '
-                  'should only be used when the device cannot physically send '
-                  'required data and it truly is an instance of the assigned '
-                  'type. You must provide justification for all MISSING '
-                  'translations and that the applied type is correct, '
-                  'otherwise your building config will be rejected.')
+            print(
+                f'[WARNING]\tEntity {entity.guid} ({entity.code}) provides '
+                f'MISSING translation for field {qualified_field_name} which '
+                f'is required for type {entity.type_name}. This feature '
+                'should only be used when the device cannot physically send '
+                'required data and it truly is an instance of the assigned '
+                'type. You must provide justification for all MISSING '
+                'translations and that the applied type is correct, '
+                'otherwise your building config will be rejected.'
+            )
 
           # If its MISSING and OPTIONAL, raise error. They shouldn't do this.
           # Optional fields are automatically interpreted as missing if not
           # provided explicitly.
           if type_fields[qualified_field_name].optional:
-            print(f'[ERROR]\tEntity {entity.guid} ({entity.code}) provides '
-                  f'MISSING translation for field {qualified_field_name}, '
-                  f'which is optional on type {entity.type_name}. The use of '
-                  'MISSING fields is strictly reserved for required fields. '
-                  'Adjust the translation and remove MISSING optional fields.')
+            print(
+                f'[ERROR]\tEntity {entity.guid} ({entity.code}) provides '
+                f'MISSING translation for field {qualified_field_name}, '
+                f'which is optional on type {entity.type_name}. The use of '
+                'MISSING fields is strictly reserved for required fields. '
+                'Adjust the translation and remove MISSING optional fields.'
+            )
             is_valid = False
 
       if isinstance(ft, ft_lib.DimensionalValue):
@@ -448,7 +503,8 @@ class InstanceValidator(object):
       self,
       qualified_field_name: str,
       ft: ft_lib.FieldTranslation,
-      entity: EntityInstance):
+      entity: EntityInstance,
+  ):
     """Returns a boolean indicating whether or not the translation is valid.
 
     Method assumes field has already been checked for existence in the ontology.
@@ -472,23 +528,28 @@ class InstanceValidator(object):
         return False
 
       if not ft.unit_mapping:
-        print('At least one unit must be provided for dimensional value '
-              f'{qualified_field_name}')
+        print(
+            'At least one unit must be provided for dimensional value '
+            f'{qualified_field_name}'
+        )
         return False
 
       is_valid = True
       unit = list(ft.unit_mapping.keys())[0]
       if unit not in valid_units:
         print(
-            f'Field {qualified_field_name} has an undefined measurement unit:' +
-            f' {unit}')
+            f'Field {qualified_field_name} has an undefined measurement unit:'
+            + f' {unit}'
+        )
         is_valid = False
       return is_valid
 
-    if isinstance(
-        ft, ft_lib.DimensionalValue) and set(ft.unit_mapping) != {'no_units'}:
-      print(f'Units are provided for non-dimensional value '
-            f'{qualified_field_name}')
+    if isinstance(ft, ft_lib.DimensionalValue) and set(ft.unit_mapping) != {
+        'no_units'
+    }:
+      print(
+          f'Units are provided for non-dimensional value {qualified_field_name}'
+      )
       return False
 
     valid_states = self.universe.GetStatesByField(qualified_field_name)
@@ -585,8 +646,9 @@ class InstanceValidator(object):
     if entity.links is None:
       return True
 
-    entity_type = self.universe.GetEntityType(entity.namespace,
-                                              entity.type_name)
+    entity_type = self.universe.GetEntityType(
+        entity.namespace, entity.type_name
+    )
     if entity_type and entity_type.allow_undefined_fields and entity.links:
       print(
           f'[ERROR]\tEntity {entity.guid} ({entity.code}) is not allowed to '
@@ -599,8 +661,9 @@ class InstanceValidator(object):
     found_fields = set()
     for link_inst in entity.links:
       for target_field, source_field in link_inst.field_map.items():
-        qualified_tgt_field = _GetAllowedField(self.universe, target_field,
-                                               entity_type)
+        qualified_tgt_field = _GetAllowedField(
+            self.universe, target_field, entity_type
+        )
         if not qualified_tgt_field:
           print(
               f'[ERROR]\tEntity {entity.guid} ({entity.code}) links to '
@@ -609,8 +672,9 @@ class InstanceValidator(object):
           )
           is_valid = False
           continue
-        qualified_src_field = _GetAllowedField(self.universe, source_field,
-                                               None)
+        qualified_src_field = _GetAllowedField(
+            self.universe, source_field, None
+        )
         if not qualified_src_field:
           print(
               f'[ERROR]\tEntity {entity.guid} ({entity.code}) links to '
@@ -728,8 +792,10 @@ class InstanceValidator(object):
       )
       is_valid = False
 
-    if (self.config_mode == _CONFIG_INIT and
-        entity.operation != parse.EntityOperation.ADD):
+    if (
+        self.config_mode == _CONFIG_INIT
+        and entity.operation != parse.EntityOperation.ADD
+    ):
       print(
           f'[ERROR]\tEntity {entity.guid} ({entity.code}) defines operation '
           f'{entity.operation} that is not valid. Only ADD operation is '
@@ -776,6 +842,9 @@ class InstanceValidator(object):
     if not self._LinksAreValid(entity):
       is_valid = False
 
+    if not self._ValidateCloudDeviceId(entity):
+      is_valid = False
+
     # TODO(berkoben): ADD entity needs transl'n or links if type has fields
 
     return is_valid
@@ -810,7 +879,8 @@ def _ParseTypeString(type_str: syaml.YAML) -> Tuple[str, str]:
 
 
 def _ParseTranslation(
-    translation_body: syaml.YAML) -> Dict[str, ft_lib.FieldTranslation]:
+    translation_body: syaml.YAML,
+) -> Dict[str, ft_lib.FieldTranslation]:
   """Parses YAML defining the translation of an entity's points.
 
   see:
@@ -847,8 +917,9 @@ def _ParseTranslation(
         raise ValueError(
             'States and units are not allowed in the same field translation.'
         )
-      ft_object = ft_lib.MultiStateValue(std_field_name, raw_field_name,
-                                         ft[parse.STATES_KEY])
+      ft_object = ft_lib.MultiStateValue(
+          std_field_name, raw_field_name, ft[parse.STATES_KEY]
+      )
 
     if not ft_object:
       ft_object = ft_lib.NonDimensionalValue(std_field_name, raw_field_name)
@@ -858,8 +929,9 @@ def _ParseTranslation(
   return translation
 
 
-def _ParseUnitsAndValueRange(ft: Dict[str, Any], std_field_name: str,
-                             raw_field_name: str) -> ft_lib.DimensionalValue:
+def _ParseUnitsAndValueRange(
+    ft: Dict[str, Any], std_field_name: str, raw_field_name: str
+) -> ft_lib.DimensionalValue:
   """Parses the value range and units (if any) from a field translation.
 
   see:
@@ -879,36 +951,46 @@ def _ParseUnitsAndValueRange(ft: Dict[str, Any], std_field_name: str,
     unit_mapping = ft[parse.UNITS_KEY][parse.UNIT_VALUES_KEY]
     if len(unit_mapping) != 1:
       raise ValueError(
-          'There should be exactly 1 unit mapping in the translation for ' +
-          f'field "{std_field_name}".')
+          'There should be exactly 1 unit mapping in the translation for '
+          + f'field "{std_field_name}".'
+      )
     if parse.VALUE_RANGE_KEY in ft:
       value_range = str(ft[parse.VALUE_RANGE_KEY])
       range_values = value_range.split(',')
       if len(range_values) != 2:
         raise ValueError(
-            f'Value range in the translation for field "{std_field_name}" ' +
-            'should be formatted: <min>,<max>.')
+            f'Value range in the translation for field "{std_field_name}" '
+            + 'should be formatted: <min>,<max>.'
+        )
       min_value = float(range_values[0].strip())
       max_value = float(range_values[1].strip())
       if min_value >= max_value:
         raise ValueError(
-            f'Value range in the translation for field "{std_field_name}" ' +
-            'should have a min value that is less than the max value.')
+            f'Value range in the translation for field "{std_field_name}" '
+            + 'should have a min value that is less than the max value.'
+        )
       # pylint: disable=too-many-function-args
-      return ft_lib.DimensionalValue(std_field_name, raw_field_name,
-                                     unit_field_name, unit_mapping,
-                                     (min_value, max_value))
-    return ft_lib.DimensionalValue(std_field_name, raw_field_name,
-                                   unit_field_name, unit_mapping)
+      return ft_lib.DimensionalValue(
+          std_field_name,
+          raw_field_name,
+          unit_field_name,
+          unit_mapping,
+          (min_value, max_value),
+      )
+    return ft_lib.DimensionalValue(
+        std_field_name, raw_field_name, unit_field_name, unit_mapping
+    )
   elif parse.VALUE_RANGE_KEY in ft:
     raise ValueError(
-        'A value range cannot be provided without units in the translation ' +
-        f'for field "{std_field_name}".')
+        'A value range cannot be provided without units in the translation '
+        + f'for field "{std_field_name}".'
+    )
   return None
 
 
 def _ParseConnections(
-    connections_body: List[Tuple[str, Any]]) -> Set[connection.Connection]:
+    connections_body: List[Tuple[str, Any]]
+) -> Set[connection.Connection]:
   """Parses YAML defining connections between one entity and another.
 
   Entites are identified by GUID.
@@ -930,7 +1012,8 @@ def _ParseConnections(
     else:
       for connection_type in item_body:
         connections.add(
-            connection.Connection(connection_type, source_entity_guid))
+            connection.Connection(connection_type, source_entity_guid)
+        )
 
   return connections
 
@@ -979,19 +1062,21 @@ class EntityInstance(findings_lib.Findings):
     update_mask: list of dot delimited paths to update (to clear them)
   """
 
-  def __init__(self,
-               operation,
-               guid,
-               code,
-               cloud_device_id=None,
-               namespace=None,
-               type_name=None,
-               translation=None,
-               connections=None,
-               links=None,
-               etag=None,
-               entity_id=None,
-               update_mask=None):
+  def __init__(
+      self,
+      operation,
+      guid,
+      code,
+      cloud_device_id=None,
+      namespace=None,
+      type_name=None,
+      translation=None,
+      connections=None,
+      links=None,
+      etag=None,
+      entity_id=None,
+      update_mask=None,
+  ):
     super().__init__()
 
     self.operation = operation
@@ -1008,8 +1093,12 @@ class EntityInstance(findings_lib.Findings):
     self.update_mask = update_mask
 
   @classmethod
-  def FromYaml(cls, entity_key: str, entity_yaml: Dict[str, Any],
-               default_operation: parse.EntityOperation) -> EntityInstance:
+  def FromYaml(
+      cls,
+      entity_key: str,
+      entity_yaml: Dict[str, Any],
+      default_operation: parse.EntityOperation,
+  ) -> EntityInstance:
     """Class method to instantiate an Entity Instance from yaml.
 
     Args:
@@ -1032,8 +1121,12 @@ class EntityInstance(findings_lib.Findings):
     # case 1: need to check that the mask and operation match
     if mask_present and operation_present:
       # validate that operation is UPDATE if update_mask is present
-      if parse.EntityOperation.FromString(entity_yaml[
-          parse.ENTITY_OPERATION_KEY]) != parse.EntityOperation.UPDATE:
+      if (
+          parse.EntityOperation.FromString(
+              entity_yaml[parse.ENTITY_OPERATION_KEY]
+          )
+          != parse.EntityOperation.UPDATE
+      ):
         raise ValueError(
             'Only specify UPDATE operation when "update_mask" is present.'
         )
@@ -1046,7 +1139,8 @@ class EntityInstance(findings_lib.Findings):
     # case 3: no update_mask; check yaml block if operation is specified
     elif operation_present:
       operation = parse.EntityOperation.FromString(
-          entity_yaml[parse.ENTITY_OPERATION_KEY])
+          entity_yaml[parse.ENTITY_OPERATION_KEY]
+      )
     # case 4: no update_mask or operation in entity block; default to ConfigMode
     # GetDefaultOperation
     else:
@@ -1055,8 +1149,10 @@ class EntityInstance(findings_lib.Findings):
     # we require that entities be keyed by guid
     code = None
     guid = None
-    if (parse.ENTITY_CODE_KEY in entity_yaml and
-        parse.ENTITY_GUID_KEY in entity_yaml):
+    if (
+        parse.ENTITY_CODE_KEY in entity_yaml
+        and parse.ENTITY_GUID_KEY in entity_yaml
+    ):
       raise ValueError('Entity block cannot contain both "code" and "guid".')
     elif parse.ENTITY_CODE_KEY in entity_yaml:
       code = entity_yaml[parse.ENTITY_CODE_KEY]
@@ -1081,13 +1177,16 @@ class EntityInstance(findings_lib.Findings):
     namespace, type_name = None, None
     if parse.ENTITY_TYPE_KEY in entity_yaml:
       namespace, type_name = _ParseTypeString(
-          entity_yaml[parse.ENTITY_TYPE_KEY])
+          entity_yaml[parse.ENTITY_TYPE_KEY]
+      )
 
     # introduce translations requirement for updating cloud_device_id; necessary
     # to use telemetry validator for cloud_device_id validation
     if update_mask:
-      if parse.ENTITY_CLOUD_DEVICE_ID_KEY in entity_yaml[
-          parse.UPDATE_MASK_KEY] and parse.TRANSLATION_KEY not in entity_yaml:
+      if (
+          parse.ENTITY_CLOUD_DEVICE_ID_KEY in entity_yaml[parse.UPDATE_MASK_KEY]
+          and parse.TRANSLATION_KEY not in entity_yaml
+      ):
         raise ValueError('Update of cloud device id requires translation.')
 
     translation = None
@@ -1127,4 +1226,5 @@ class EntityInstance(findings_lib.Findings):
         links=links,
         etag=etag,
         entity_id=entity_id,
-        update_mask=update_mask)
+        update_mask=update_mask,
+    )

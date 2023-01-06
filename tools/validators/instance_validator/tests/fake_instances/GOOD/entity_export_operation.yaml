@@ -1,4 +1,4 @@
-# Copyright 2020 Google LLC
+# Copyright 2023 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the License);
 # you may not use this file except in compliance with the License.
@@ -20,5 +20,5 @@ CONFIG_METADATA:
 SDC_EXT-19-GUID:
   type: HVAC/SDC_EXT
   code: SDC_EXT-19
-  cloud_device_id: "baz"
+  cloud_device_id: "2619178366980754"
   etag: a56790

@@ -1,4 +1,4 @@
-# Copyright 2020 Google LLC
+# Copyright 2023 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the License);
 # you may not use this file except in compliance with the License.
@@ -20,7 +20,7 @@ US-SEA-BLDG1-GUID:
   code: US-SEA-BLDG1
 
 FC2-1-1-GUID:
-  cloud_device_id: 'abc123'
+  cloud_device_id: '2619178366980754'
   code: FC2-1-1
   translation:
     compressor_run_command_1:

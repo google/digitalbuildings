@@ -1,4 +1,4 @@
-# Copyright 2022 Google LLC
+# Copyright 2023 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the License);
 # you may not use this file except in compliance with the License.
@@ -81,7 +81,7 @@ class TelemetryValidatorReportTest(absltest.TestCase):
         '74dcafa4-6cfa-47ac-a127-0697f9b72005': 'DEVICE_2',
         '22d390ef-de1f-4cba-acee-ecf0f697fd2f': 'DEVICE_5',
     }
-    extra_devices = {'e2e2918b-49a9-4921-a3a5-071c80629d87': 'DEVICE_3'}
+    extra_devices = {'cloud_device_id': 'DEVICE_3'}
     missing_devices = {'74dcafa4-6cfa-47ac-a127-0697f9b72005': 'DEVICE_2'}
     error_devices = [error_device]
 

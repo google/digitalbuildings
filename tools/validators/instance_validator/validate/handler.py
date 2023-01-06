@@ -1,4 +1,4 @@
-# Copyright 2020 Google LLC
+# Copyright 2023 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the License);
 # you may not use this file except in compliance with the License.
@@ -179,7 +179,7 @@ def RunValidation(
   finally:
     sys.stdout = saved_stdout
     if report_file:
-      print('[INFO]\tReport generated.')
+      print(f'[INFO]\tInstance valoidation report generated: {report_file}')
       report_file.close()
     print('[INFO]\tInstance validation completed.')
 
@@ -256,13 +256,16 @@ def _TelemetryValidationCallback(
   validation_report_dict = validation_report.GenerateReport()
 
   # Export to filepath and write to console.
+  telemetry_valdiation_report_path = os.path.join(
+      os.getcwd(), 'telemetry_validation_report.json'
+  )
   with open(
-      os.path.join(os.getcwd(), 'telemetry_validation_report.json'),
+      telemetry_valdiation_report_path,
       'w',
   ) as report:
     report.write(json.dumps(validation_report_dict, indent=4))
+    print(f'Report Generated: {telemetry_valdiation_report_path}')
 
-  print('Report Generated')
   _thread.interrupt_main()
 
 

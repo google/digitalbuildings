@@ -1,4 +1,4 @@
-# Copyright 2020 Google LLC
+# Copyright 2023 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the License);
 # you may not use this file except in compliance with the License.
@@ -17,7 +17,7 @@
 SDC_EXT-17-GUID:
   type: HVAC/SDC_EXT
   code: SDC_EXT-17
-  cloud_device_id: "foobar"
+  cloud_device_id: "2619178366980754"
   translation:
     shade_extent_percentage_command:
       present_value: "points.shade_extent_percentage_command.present_value"
@@ -29,7 +29,7 @@ SDC_EXT-17-GUID:
 SDC_EXT-18-GUID:
   type: HVAC/SDC_EXT
   code: SDC_EXT-18
-  cloud_device_id: "foobar"
+  cloud_device_id: "2619178366980754"
   translation:
     shade_extent_percentage_command:
       present_value: "points.shade_extent_percentage_command.present_value"

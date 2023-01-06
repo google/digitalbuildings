@@ -1,4 +1,4 @@
-# Copyright 2020 Google LLC
+# Copyright 2023 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the License);
 # you may not use this file except in compliance with the License.
@@ -288,6 +288,19 @@ class EntityInstanceTest(absltest.TestCase):
     else:
       self.fail(f'{KeyError} was not raised')
 
+  def testInstanceValidator_InvalidCloudDeviceId(self):
+    parsed, default_operation = _Helper(
+        [path.join(_TESTCASE_PATH, 'BAD', 'entity_bad_cloud_device_id.yaml')]
+    )
+    entity_guid, entity = next(iter(parsed.items()))
+
+    instance = entity_instance.EntityInstance.FromYaml(
+        entity_guid, entity, default_operation=default_operation
+    )
+
+    self.assertFalse(self.init_validator.Validate(instance))
+    self.assertEqual(instance.cloud_device_id, 'bad_device_id')
+
   def testInstance_ValidTranslation_Success(self):
     parsed, default_operation = _Helper(
         [path.join(_TESTCASE_PATH, 'GOOD', 'translation.yaml')]
@@ -299,7 +312,7 @@ class EntityInstanceTest(absltest.TestCase):
     )
 
     self.assertTrue(self.init_validator.Validate(instance))
-    self.assertEqual(instance.cloud_device_id, 'foobar')
+    self.assertEqual(instance.cloud_device_id, '2619178366980754')
 
   def testInstance_ValidTranslationWithExplicitlyMissingReqField_Success(self):
     """Test that a MISSING required field is allowed."""
@@ -965,11 +978,13 @@ class EntityInstanceTest(absltest.TestCase):
         namespace='GATEWAYS',
         type_name='PASSTHROUGH',
         translation={
-            'return_water_temperature_sensor': field_translation.DimensionalValue(
-                std_field_name='foo/bar',
-                unit_field_name='foo/unit',
-                raw_field_name='foo/raw',
-                unit_mapping={'INVALID_SENSOR_UNIT': 'degF'},
+            'return_water_temperature_sensor': (
+                field_translation.DimensionalValue(
+                    std_field_name='foo/bar',
+                    unit_field_name='foo/unit',
+                    raw_field_name='foo/raw',
+                    unit_mapping={'INVALID_SENSOR_UNIT': 'degF'},
+                )
             )
         },
     )
@@ -985,12 +1000,15 @@ class EntityInstanceTest(absltest.TestCase):
         etag='1234',
         namespace='GATEWAYS',
         type_name='PASSTHROUGH',
+        cloud_device_id='2619178366980754',
         translation={
-            'return_water_temperature_sensor': field_translation.DimensionalValue(
-                std_field_name='foo/bar',
-                unit_field_name='foo/unit',
-                raw_field_name='foo/raw',
-                unit_mapping={'degrees_fahrenheit': 'degF'},
+            'return_water_temperature_sensor': (
+                field_translation.DimensionalValue(
+                    std_field_name='foo/bar',
+                    unit_field_name='foo/unit',
+                    raw_field_name='foo/raw',
+                    unit_mapping={'degrees_fahrenheit': 'degF'},
+                )
             )
         },
     )
@@ -1063,6 +1081,7 @@ class EntityInstanceTest(absltest.TestCase):
         etag='1234',
         namespace='GATEWAYS',
         type_name='PASSTHROUGH',
+        cloud_device_id='2619178366980754',
         translation={
             'exhaust_air_damper_command': field_translation.MultiStateValue(
                 std_field_name='exhaust_air_damper_command',
@@ -1082,6 +1101,7 @@ class EntityInstanceTest(absltest.TestCase):
         etag='1234',
         namespace='GATEWAYS',
         type_name='PASSTHROUGH',
+        cloud_device_id='2619178366980754',
         translation={
             'line_powerfactor_sensor': field_translation.DimensionalValue(
                 std_field_name='foo/bar',
@@ -1104,11 +1124,13 @@ class EntityInstanceTest(absltest.TestCase):
         namespace='GATEWAYS',
         type_name='PASSTHROUGH',
         translation={
-            'zone_air_cooling_temperature_setpoint': field_translation.DimensionalValue(
-                std_field_name='foo/bar',
-                unit_field_name='foo/unit',
-                raw_field_name='foo/raw',
-                unit_mapping={'no_units': 'no_units'},
+            'zone_air_cooling_temperature_setpoint': (
+                field_translation.DimensionalValue(
+                    std_field_name='foo/bar',
+                    unit_field_name='foo/unit',
+                    raw_field_name='foo/raw',
+                    unit_mapping={'no_units': 'no_units'},
+                )
             ),
         },
     )
