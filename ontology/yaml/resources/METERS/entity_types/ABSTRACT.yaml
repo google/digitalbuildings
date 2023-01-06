@@ -17,7 +17,7 @@
 
 PWM:
   id: "17470344350578769920"
-  description: "Very basic power and enrgy monitoring only."
+  description: "Very basic power and energy monitoring only."
   is_abstract: true
   opt_uses:
   - apparent_power_sensor
