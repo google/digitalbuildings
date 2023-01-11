@@ -95,6 +95,9 @@ def create_simplified_universe() -> presubmit_validate_types_lib.ConfigUniverse:
       config_filename='HVAC/entity_types/CHWS.yaml',
       documents=[types.HVAC_CHWS_TYPES_DOCUMENT])
   hvac_type_folder.AddFromConfig(
+      config_filename='HVAC/entity_types/FAN.yaml',
+      documents=[types.HVAC_FAN_TYPES_DOCUMENT])
+  hvac_type_folder.AddFromConfig(
       config_filename='HVAC/entity_types/GENERALTYPES.yaml',
       documents=[types.HVAC_GENERAL_TYPES_DOCUMENT])
   hvac_type_folder.AddFromConfig(
