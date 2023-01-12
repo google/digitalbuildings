@@ -103,4 +103,9 @@ SSS:
   is_abstract: true
   implements:
   - /SENSOR
-  
+
+SENSOR:
+  description: "Safety Related Sensor ."
+  is_abstract: true
+  implements:
+  - /SENSOR
