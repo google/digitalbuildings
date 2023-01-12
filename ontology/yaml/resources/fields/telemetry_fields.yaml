@@ -612,7 +612,6 @@ literals:
 - gas_volume_accumulator
 - water_volume_accumulator
 - gas_temperature_sensor
-- liquid_volume_accumulator
 
 # Added 12/17/2019
 - cooling_water_valve_percentage_command
