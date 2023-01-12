@@ -652,15 +652,6 @@ MAU_DFSS_DFVSC_HWDDC_DX2DDC_ZTM_DFM:
   - ZTM
   - DFM
 
-MAU_SFSS_SFVSC_SSPC_FDPSM:
-  description: "Makeup air unit with supply air static pressure sensor based VFD Modulation."
-  is_canonical: true
-  implements:
-  - MAU
-  - SFSS
-  - SFVSC
-  - SSPC
-  - FDPSM
 
 
 ############################
