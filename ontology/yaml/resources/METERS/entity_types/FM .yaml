@@ -13,7 +13,6 @@
 # limitations under the License.
 
 FM_STANDARD:
-  id: "440559603281821696"
   description: "Standard flow meter typically for liquid.."
   implements:
   - FM
