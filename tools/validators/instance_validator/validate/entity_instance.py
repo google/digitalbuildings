@@ -365,7 +365,9 @@ class InstanceValidator(object):
     """Validate an entity's translation against the entity's type or ontology.
 
     If entity operation is ADD, this code ensures that all fields are in the
-    defined type and all required fields of the type are defined.
+    defined type and all required fields of the type are defined. Additionally,
+    it ensures that there is at least one field not marked with PresenceMode as
+    MISSING.
 
     Args:
       entity: EntityInstance to validate
@@ -383,6 +385,19 @@ class InstanceValidator(object):
         entity.namespace, entity.type_name
     )
     found_fields = {}
+
+    # ensure that not all fields are marked as MISSING
+    if all(
+        [
+            translation_field.mode == ft_lib.PresenceMode.MISSING
+            for _, translation_field in entity.translation.items()
+        ]
+    ):
+      is_valid = False
+      print(
+          f'[ERROR]\tEntity {entity.guid} ({entity.code}) has all field '
+          'translations marked as MISSING. This is not allowed.'
+      )
 
     # Check that defined fields are in the type
     for as_written_field_name, ft in entity.translation.items():

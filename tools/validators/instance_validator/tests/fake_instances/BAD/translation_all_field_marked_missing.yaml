@@ -12,21 +12,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-DMP_EDM-17-GUID:
-  type: HVAC/DMP_EDM
-  code: DMP_EDM-17
+SDC_EXT-17-GUID:
+  type: HVAC/SDC_EXT
+  code: SDC_EXT-17
   cloud_device_id: "2619178366980754"
   translation:
-    exhaust_air_damper_command:
-      present_value: "points.exhaust_air_damper_command.present_value"
-      states:
-        OPEN:
-        - "1"
-        - "2"
-        CLOSED:
-        - "0"
-        - "3"
-    exhaust_air_damper_status: MISSING
+    shade_extent_percentage_command: MISSING
 
 US-SEA-BLDG1-GUID:
   type: FACILITIES/BUILDING

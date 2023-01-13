@@ -321,7 +321,7 @@ class EntityInstanceTest(absltest.TestCase):
             path.join(
                 _TESTCASE_PATH,
                 'GOOD',
-                'translation_req_field_marked_missing.yaml',
+                'translation_field_marked_missing.yaml',
             )
         ]
     )
@@ -332,6 +332,25 @@ class EntityInstanceTest(absltest.TestCase):
     )
 
     self.assertTrue(self.init_validator.Validate(instance))
+
+  def testInstance_InvalidEntityAllFieldTranslationsMarkedMissing_Failure(self):
+    """Test that all translation fields are not marked with PresenceMode as MISSING."""
+    parsed, default_operation = _Helper(
+        [
+            path.join(
+                _TESTCASE_PATH,
+                'BAD',
+                'translation_all_field_marked_missing.yaml',
+            )
+        ]
+    )
+    entity_guid, entity = next(iter(parsed.items()))
+
+    instance = entity_instance.EntityInstance.FromYaml(
+        entity_guid, entity, default_operation=default_operation
+    )
+
+    self.assertFalse(self.init_validator.Validate(instance))
 
   def testInstance_ValidateMissingFieldOnGatewayEntity_Success(self):
     """Test that the MISSING fields on a gateway type are allowed."""
