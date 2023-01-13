@@ -25,6 +25,14 @@ CH_SS_SWTC:
   - SS
   - SWTC
 
+CH_SS_SCHWTC:
+  description: " Simple air cooled chiller."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - SCHWTC
+
 CH_SS_SCHWTC_RWISOVPM:
   id: "9962084009217359872"
   description: "Simple water-cooled chiller with condenser isolation."
