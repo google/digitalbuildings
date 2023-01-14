@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -e
 
+source /env/bin/activate
+
 TOOL="${1}"
 if [ -z "${TOOL}" ]
 then
@@ -34,6 +36,9 @@ case "${TOOL}" in
     ;;
   console)
     exec python "${@}"
+    ;;
+  shell)
+    exec bash "${@}"
     ;;
   *)
     echo "ERROR: Unknown tool ${TOOL}" >&2

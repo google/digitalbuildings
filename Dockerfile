@@ -1,6 +1,6 @@
 FROM python:3.9
 WORKDIR /source
 COPY . /source
-WORKDIR /source/tools
-RUN ./global_setup.sh
-ENTRYPOINT ["/source/tools/scripts/docker-entry.sh"]
+RUN /source/tools/scripts/docker_setup.sh
+WORKDIR /work
+ENTRYPOINT ["/source/tools/scripts/docker_entry.sh"]
