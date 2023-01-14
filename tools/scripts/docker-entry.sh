@@ -4,7 +4,7 @@ set -e
 TOOL="${1}"
 if [ -z "${TOOL}" ]
 then
-  echo "Usage: digitalbuildings-tools <TOOL> [ARGS]" >&2
+  echo "Usage: digitalbuildings <TOOL> [ARGS]" >&2
   exit 1
 fi
 
@@ -31,6 +31,9 @@ case "${TOOL}" in
     ;;
   ontology_validator)
     exec python /source/tools/ontology_validator/ontology_validator.py "${@}"
+    ;;
+  console)
+    exec python "${@}"
     ;;
   *)
     echo "ERROR: Unknown tool ${TOOL}" >&2
