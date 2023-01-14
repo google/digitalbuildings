@@ -29,7 +29,7 @@ setup(
         'argparse',
         'pyyaml',
         'google-api-python-client',
-        'google-auth-oauthlib'
+        'strictyaml'
     ],
     python_requires='>=3.9',
 )
