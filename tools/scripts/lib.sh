@@ -59,4 +59,7 @@ find_setup_py_projects() {
   done
 }
 
-PYTHON="$(find_compatible_python_version "${REQUIRED_PYTHON_VERSION}")"
+if [ "${SKIP_PYTHON_CHECK}" != "1" ]
+then
+  PYTHON="$(find_compatible_python_version "${REQUIRED_PYTHON_VERSION}")"
+fi
