@@ -187,7 +187,7 @@ class BuildingConfigExport(object):
     """Returns a Building Config formatted virtual entity block dictionary.
 
     Args:
-      entity: A VirutalEntity instance.
+      entity: A VirtualEntity instance.
 
     Returns:
       A dicitionary formatted for Building Config ready to be parsed into yaml.
