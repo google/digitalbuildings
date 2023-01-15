@@ -28,4 +28,7 @@ RO_STD:
   - control_mode
   - line_pressure_sensor
   - water_totaldissolvedsolids_concentration_sensor
+  opt_uses:
+  - high_pressure_status
+  - low_pressure_status
   
