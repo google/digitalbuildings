@@ -7,6 +7,7 @@ IMAGE_TAG="latest"
 PATH_TO_MOUNT="$(realpath .)"
 
 cd "$(dirname "${0}")"
+# shellcheck disable=SC2034
 SKIP_PYTHON_CHECK=1
 source "scripts/lib.sh"
 pushd .. > /dev/null
@@ -23,4 +24,5 @@ then
   )
 fi
 
+# shellcheck disable=SC2068
 exec docker run -it -v "${PATH_TO_MOUNT}:/work" ${MAYBE_GCLOUD_CREDENTIALS_FLAGS[@]} "${IMAGE_NAME}:${IMAGE_TAG}" "${@}"
