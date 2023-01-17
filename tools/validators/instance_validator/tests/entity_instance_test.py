@@ -583,6 +583,26 @@ class EntityInstanceTest(absltest.TestCase):
 
     self.assertFalse(self.init_validator.Validate(instance))
 
+  def testInstance_InvalidTranslationStateMissingValue_Fails(self):
+    parsed, default_operation = _Helper(
+        [
+            path.join(
+                _TESTCASE_PATH,
+                'BAD',
+                'entity_missing_state_mapping_value.yaml',
+            )
+        ]
+    )
+    entity_guid, entity = next(iter(parsed.items()))
+
+    with self.assertRaises(
+        ValueError,
+        msg='States must have defined key and value pairs'
+    ):
+      entity_instance.EntityInstance.FromYaml(
+          entity_guid, entity, default_operation=default_operation
+      )
+
   def testInstance_InvalidLinkFields_Fails(self):
     parsed, default_operation = _Helper(
         [path.join(_TESTCASE_PATH, 'BAD', 'building_links_fields.yaml')]

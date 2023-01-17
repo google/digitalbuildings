@@ -932,6 +932,11 @@ def _ParseTranslation(
         raise ValueError(
             'States and units are not allowed in the same field translation.'
         )
+      for _, value in ft[parse.STATES_KEY].items():
+        if not value or value is None:
+          raise ValueError(
+              'States must have defined string key and value pairs'
+          )
       ft_object = ft_lib.MultiStateValue(
           std_field_name, raw_field_name, ft[parse.STATES_KEY]
       )
