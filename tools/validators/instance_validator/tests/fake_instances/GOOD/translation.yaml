@@ -20,7 +20,7 @@ SDC_EXT-17-GUID:
     shade_extent_percentage_command:
       present_value: "points.shade_extent_percentage_command.present_value"
       units:
-        key: "points.shade_extent_percentage_command.units"
+        key: "pointset.points.shade_extent_percentage_command.units"
         values:
           percent: "%"
 

@@ -23,15 +23,15 @@ CHWS-1-GUID:
   cloud_device_id: "2619178366980754"
   translation:
     supply_water_temperature_sensor:
-      present_value: points.supply_water_temperature_sensor.present_value
+      present_value: "points.supply_water_temperature_sensor.present_value"
       units:
-        key: points.supply_water_temperature_sensor.units
+        key: "pointset.points.supply_water_temperature_sensor.units"
         values:
           degrees_celsius: degC
     return_water_temperature_sensor:
-      present_value: points.return_water_temperature_sensor.present_value
+      present_value: "points.return_water_temperature_sensor.present_value"
       units:
-        key: points.return_water_temperature_sensor.units
+        key: "pointset.points.return_water_temperature_sensor.units"
         values:
           degrees_celsius: degC
 

@@ -28,8 +28,8 @@ SDC_EXT-19-GUID:
     - translation
   translation:
     shade_extent_percentage_command:
-      present_value: "points.present_value"
+      present_value: "points.shade_extent_percentage_command.present_value"
       units:
-        key: "points.units"
+        key: "pointset.points.shade_extent_percentage_command.units"
         values:
           percent: "%"

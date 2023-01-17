@@ -1,0 +1,39 @@
+# Copyright 2023 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the License);
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#    https://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an AS IS BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+PHYSICAL-ENTITY-GUID:
+  type: GATEWAYS/PASSTHROUGH
+  code: PHYSICAL-ENTITY
+  cloud_device_id: "2619178366980754"
+  translation:
+    differential_pressure_specification:
+      present_value: "points.differential_pressure_specification.present_value"
+      units:
+        # This is a bad unit path. The suffix must be `.units` and not `.unit`
+        key: "points.differential_pressure_specification.present_value.unit"
+        values:
+          pascals: "pascals"
+
+PHYSICAL-ENTITY-GUID-2:
+  type: GATEWAYS/PASSTHROUGH
+  code: PHYSICAL-ENTITY
+  cloud_device_id: "2619178366980755"
+  translation:
+    differential_pressure_specification:
+      present_value: "points.differential_pressure_specification.present_value"
+      units:
+        # This is a bad unit path. The suffix must be `.units` and not `.unit`
+        key: "points.differential_pressure_specification"
+        values:
+          pascals: "pascals"

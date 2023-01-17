@@ -127,7 +127,7 @@ def RunValidation(
     service_account: str = None,
     report_filename: str = None,
     timeout: int = constants.DEFAULT_TIMEOUT,
-    is_udmi: bool = False,
+    is_udmi: bool = True,
 ) -> None:
   """Top level runner for all validations.
 
@@ -208,11 +208,13 @@ class TelemetryHelper(object):
     Args:
       entities: EntityInstance dictionary keyed by entity name
       timeout: number of seconds to wait for telemetry
-      is_udmi: true/false treat telemetry stream as UDMI; defaults to false
+      is_udmi: true/false treat telemetry stream as UDMI; default True.
     """
 
     print(f'[INFO]\tConnecting to PubSub subscription {self.subscription}')
     sub = subscriber.Subscriber(self.subscription, self.service_account_file)
+    if is_udmi:
+      print('[INFO]\tValidating telemetry payload for UDMI compliance.')
     validator = telemetry_validator.TelemetryValidator(
         entities, timeout, is_udmi, _TelemetryValidationCallback
     )
@@ -284,14 +286,14 @@ class EntityHelper(object):
       self,
       entities: Dict[str, entity_instance.EntityInstance],
       config_mode: instance_parser.ConfigMode,
-      is_udmi: bool = False,
+      is_udmi: bool = True,
   ) -> Dict[str, entity_instance.EntityInstance]:
     """Validates entity instances that are already deserialized.
 
     Args:
       entities: a dict of entity instances
       config_mode: processing mode of the configuration
-      is_udmi: flag to indicate validation under udmi; defaults to false
+      is_udmi: flag to indicate validation under udmi; default True.
 
     Returns:
       A dictionary containing valid entities by GUID

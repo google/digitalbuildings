@@ -33,11 +33,17 @@ _CONFIG_UPDATE = parse.ConfigMode.UPDATE
 _CONFIG_INIT = parse.ConfigMode.INITIALIZE
 _CONFIG_EXPORT = parse.ConfigMode.EXPORT
 # udmi present value: points.$name.present_value
+# udmi units: pointset.points.$name.units
 # where name follows: [a-z][a-z0-9]*(_[a-z0-9]+)*
 _UDMI_PRESENT_VALUE_REGEX = (
     r'^(points.)[a-z][a-z0-9]*(_[a-z0-9]+)*(.present_value)$'
 )
 _UDMI_PRESENT_VALUE_PATTERN = re.compile(_UDMI_PRESENT_VALUE_REGEX)
+
+_UDMI_UNIT_FIELD_REGEX = (
+    r'^(pointset.points.)[a-z][a-z0-9]*(_[a-z0-9]+)*(.units)$'
+)
+_UDMI_UNIT_FIELD_PATTERN = re.compile(_UDMI_UNIT_FIELD_REGEX)
 
 _DEVICE_NUMERIC_ID_REGEX = r'[0-9]{16}'
 _DEVICE_NUMERIC_ID_PATTERN = re.compile(_DEVICE_NUMERIC_ID_REGEX)
@@ -129,14 +135,14 @@ class CombinationValidator(object):
     self.config_mode = config_mode
     self.entity_instances = entity_instances
 
-  def Validate(self, entity: EntityInstance, is_udmi: bool = False) -> bool:
+  def Validate(self, entity: EntityInstance, is_udmi: bool = True) -> bool:
     """Returns true if an entity follows all instance and graph rules.
 
     Args:
       entity: EntityInstance object to be validated against the ontology for
         content and connectivity.
       is_udmi: Indicate validation process under udmi specification; bool
-        default False.
+        default True.
     """
 
     iv = InstanceValidator(self.universe, self.config_mode)
@@ -360,7 +366,7 @@ class InstanceValidator(object):
     return False
 
   def _ValidateTranslation(
-      self, entity: EntityInstance, is_udmi: bool = False
+      self, entity: EntityInstance, is_udmi: bool = True
   ) -> bool:
     """Validate an entity's translation against the entity's type or ontology.
 
@@ -371,7 +377,7 @@ class InstanceValidator(object):
 
     Args:
       entity: EntityInstance to validate
-      is_udmi: Flag to validate under udmi; defaults to false
+      is_udmi: Flag to validate under udmi; default True.
 
     Returns:
       Returns boolean for validity of entity translation, defaults to True if
@@ -487,16 +493,23 @@ class InstanceValidator(object):
             is_valid = False
 
       if isinstance(ft, ft_lib.DimensionalValue):
-        if is_udmi and not _UDMI_PRESENT_VALUE_PATTERN.fullmatch(
-            ft.raw_field_name
-        ):
-          print(
-              f'[ERROR]\tEntity {entity.guid} ({entity.code}) translates '
-              f'field "{ft.raw_field_name}" with a present value pattern '
-              'that does not conform to UDMI pattern '
-              f'"{_UDMI_PRESENT_VALUE_REGEX}".'
-          )
-          is_valid = False
+        if is_udmi:
+          if not _UDMI_PRESENT_VALUE_PATTERN.fullmatch(ft.raw_field_name):
+            print(
+                f'[ERROR]\tEntity {entity.guid} ({entity.code}) translates '
+                f'field "{ft.raw_field_name}" with a present value pattern '
+                'that does not conform to the UDMI pattern.'
+                f'"{_UDMI_PRESENT_VALUE_REGEX}".'
+            )
+            is_valid = False
+          if not _UDMI_UNIT_FIELD_PATTERN.fullmatch(ft.unit_field_name):
+            print(
+                f'[ERROR]\tEntity {entity.guid} ({entity.code}) translates '
+                f'field "{ft.unit_field_name}" with a unit field name pattern '
+                'that does not conform to UDMI pattern '
+                f'"{_UDMI_UNIT_FIELD_REGEX}".'
+            )
+            is_valid = False
         for std_unit, raw_unit in ft.unit_mapping.items():
           if std_unit not in found_units:
             found_units[std_unit] = raw_unit
@@ -753,12 +766,12 @@ class InstanceValidator(object):
       return False
     return True
 
-  def Validate(self, entity: EntityInstance, is_udmi: bool = False) -> bool:
+  def Validate(self, entity: EntityInstance, is_udmi: bool = True) -> bool:
     """Uses the generated ontology universe to validate an entity.
 
     Args:
       entity: EntityInstance to validate
-      is_udmi: flag to validate under udmi; defaults to false
+      is_udmi: flag to validate under udmi; default True.
 
     Returns:
       True if the entity is valid

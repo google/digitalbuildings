@@ -50,25 +50,25 @@ PHYSICAL-ENTITY-GUID:
     zone_air_temperature_sensor_1:
       present_value: "points.zone_air_temperature_sensor_1.present_value"
       units:
-        key: "points.zone_air_temperature_sensor_1.units"
+        key: "pointset.points.zone_air_temperature_sensor_1.units"
         values:
           degrees_fahrenheit: "degF"
     zone_air_temperature_sensor_2:
       present_value: "points.zone_air_temperature_sensor_2.present_value"
       units:
-        key: "points.zone_air_temperature_sensor_2.units"
+        key: "pointset.points.zone_air_temperature_sensor_2.units"
         values:
           degrees_fahrenheit: "degF"
     zone_air_temperature_sensor_3:
       present_value: "points.zone_air_temperature_sensor_3.present_value"
       units:
-        key: "points.zone_air_temperature_sensor_3.units"
+        key: "pointset.points.zone_air_temperature_sensor_3.units"
         values:
           degrees_fahrenheit: "degF"
     zone_air_temperature_sensor_4:
       present_value: "points.zone_air_temperature_sensor_4.present_value"
       units:
-        key: "points.zone_air_temperature_sensor_4.units"
+        key: "pointset.points.zone_air_temperature_sensor_4.units"
         values:
           degrees_fahrenheit: "degF"
 

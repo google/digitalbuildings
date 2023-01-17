@@ -103,8 +103,8 @@ class EntityInstanceTest(absltest.TestCase):
     )
 
     self.assertTrue(validator.Validate(mock_entity))
-    # Add False to mock assertion for is_udmi argument
-    mock_iv.assert_called_once_with(mock_entity, False)
+    # UDMI validation set to True by default.
+    mock_iv.assert_called_once_with(mock_entity, True)
     mock_gv.assert_called_once_with(mock_entity)
 
   def testInstance_ValidEtagOnUpdate_Success(self):
@@ -450,6 +450,59 @@ class EntityInstanceTest(absltest.TestCase):
 
     self.assertTrue(self.init_validator.Validate(instance))
 
+  def testInstance_InvalidUdmiUnitFieldName_Fails(self):
+    parsed, default_operation = _Helper(
+        [
+            path.join(
+                _TESTCASE_PATH,
+                'BAD',
+                'translation_invalid_udmi_unit_field_name.yaml',
+            )
+        ]
+    )
+    parsed_items = iter(parsed.items())
+    entity_guid_1, entity_1 = next(parsed_items)
+    entity_guid_2, entity_2 = next(parsed_items)
+
+    instance1 = entity_instance.EntityInstance.FromYaml(
+        entity_guid_1, entity_1, default_operation=default_operation
+    )
+    instance2 = entity_instance.EntityInstance.FromYaml(
+        entity_guid_2, entity_2, default_operation=default_operation
+    )
+
+    self.assertFalse(self.init_validator.Validate(instance1, is_udmi=True))
+    self.assertFalse(self.init_validator.Validate(instance2, is_udmi=True))
+
+  def testInstance_InvalidUdmiPresentValueName_Fails(self):
+    parsed, default_operation = _Helper(
+        [
+            path.join(
+                _TESTCASE_PATH,
+                'BAD',
+                'translation_invalid_udmi_present_value_name.yaml',
+            )
+        ]
+    )
+    parsed_items = iter(parsed.items())
+    entity_guid_1, entity_1 = next(parsed_items)
+    entity_guid_2, entity_2 = next(parsed_items)
+    entity_guid_3, entity_3 = next(parsed_items)
+
+    instance1 = entity_instance.EntityInstance.FromYaml(
+        entity_guid_1, entity_1, default_operation=default_operation
+    )
+    instance2 = entity_instance.EntityInstance.FromYaml(
+        entity_guid_2, entity_2, default_operation=default_operation
+    )
+    instance3 = entity_instance.EntityInstance.FromYaml(
+        entity_guid_3, entity_3, default_operation=default_operation
+    )
+
+    self.assertFalse(self.init_validator.Validate(instance1, is_udmi=True))
+    self.assertFalse(self.init_validator.Validate(instance2, is_udmi=True))
+    self.assertFalse(self.init_validator.Validate(instance3, is_udmi=True))
+
   def testInstance_MultipleUnitMappings_Fails(self):
     parsed, default_operation = _Helper(
         [path.join(_TESTCASE_PATH, 'BAD', 'translation_multiple_units.yaml')]
@@ -634,7 +687,6 @@ class EntityInstanceTest(absltest.TestCase):
             entity_guid, entity_parsed, default_operation=default_operation
         )
         entity_instances[entity.guid] = entity
-        print(entity.guid)
       except ValueError:
         continue
     combination_validator = entity_instance.CombinationValidator(
@@ -1041,13 +1093,15 @@ class EntityInstanceTest(absltest.TestCase):
         type_name='PASSTHROUGH',
         cloud_device_id='2619178366980754',
         translation={
-            'return_water_temperature_sensor': (
-                field_translation.DimensionalValue(
-                    std_field_name='foo/bar',
-                    unit_field_name='foo/unit',
-                    raw_field_name='foo/raw',
-                    unit_mapping={'degrees_fahrenheit': 'degF'},
-                )
+            'return_water_temperature_sensor': field_translation.DimensionalValue(
+                std_field_name='return_water_temperature_sensor',
+                unit_field_name=(
+                    'pointset.points.return_water_temperature_sensor.units'
+                ),
+                raw_field_name=(
+                    'points.return_water_temperature_sensor.present_value'
+                ),
+                unit_mapping={'degrees_fahrenheit': 'degF'},
             )
         },
     )
@@ -1143,9 +1197,9 @@ class EntityInstanceTest(absltest.TestCase):
         cloud_device_id='2619178366980754',
         translation={
             'line_powerfactor_sensor': field_translation.DimensionalValue(
-                std_field_name='foo/bar',
-                unit_field_name='foo/unit',
-                raw_field_name='foo/raw',
+                std_field_name='line_powerfactor_sensor',
+                unit_field_name='pointset.points.line_powerfactor_sensor.units',
+                raw_field_name='points.line_powerfactor_sensor.present_value',
                 unit_mapping={'no_units': 'no_units'},
             ),
         },
