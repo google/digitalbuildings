@@ -18,7 +18,7 @@ FM_STANDARD:
   - FM
   is_canonical: true
   uses:
-  - liquid_volume_accumulator
+  - volume_accumulator
   opt_uses:
   - failed_alarm
   - flowrate_sensor
