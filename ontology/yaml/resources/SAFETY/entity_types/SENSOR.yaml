@@ -18,7 +18,7 @@
 
 
 SENSOR_H2M:
-  description: "Zone air property sensor (humidity, temperature, CO2 level)."
+  description: "Zone air hydrogen level used for monitoring in battery rooms."
   is_canonical: true
   implements:
   - /SENSOR # Inherits from global namespace
