@@ -13,7 +13,7 @@
 # limitations under the License.
 
 FM_STANDARD:
-  description: "Standard flow meter typically for liquid.."
+  description: "Standard flow meter typically for liquid."
   implements:
   - FM
   is_canonical: true
