@@ -1423,8 +1423,6 @@ literals:
   - ACTIVE
   - INACTIVE
 
-
-
 ## Refrigerant monitoring fields for AHUs
 - condensing_fan_current_sensor
 - discharge_air_specificenthalpy_sensor

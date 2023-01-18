@@ -1233,7 +1233,6 @@ FCU_DFSS_DFVSC_FDPM_CHWDC_SRC_DFRMM:
   - SRC
   - DFRMM
 
-
 ###################################
 ### Existing Non-standard Types ###
 ###################################
@@ -1545,7 +1544,7 @@ FCU_RTM_DXZTC_SRC:
   uses:
   - filter_alarm
   - lost_power_alarm
-  
+
 FCU_DXZTC:
   description: "FCU with SS, discharge temp sensors, zone control and sensor, filter change"
   is_canonical: true
@@ -1555,7 +1554,7 @@ FCU_DXZTC:
   uses:
   - panel_controller_status
   - filter_alarm
-  
+
 FCU_NON_CANONICAL_TYPE_1:
   id: "17300095970133934080"
   description: "Typical chilled water FCU with cooling-only (discharge control) for MDF rooms,

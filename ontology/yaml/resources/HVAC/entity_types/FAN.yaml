@@ -38,8 +38,6 @@ FAN_SS_VSC:
   - SS
   - VSC
 
-
-
 FAN_SS_RMM:
   id: "3859028115456000000"
   description: "Fan with start/stop status and run mode monitoring"
@@ -127,7 +125,6 @@ FAN_SS_REFM_CSP:
   - SS
   - CSP
   - REFM
-
 
 FAN_SS_CO2C:
   id: "6546103691856838656"
@@ -320,7 +317,6 @@ FAN_SS_VSC_EPC_ZSPM:
   - EPC
   - ZSPM
 
-
 FAN_SS_VSC_FDPM_DRSM5X:
   id: "13635983366175064064"
   description: "Fan with exhaust air temp sensor."
@@ -331,7 +327,6 @@ FAN_SS_VSC_FDPM_DRSM5X:
   - VSC
   - FDPM
   - DRSM5X
-
 
 FAN_SS_DRSM8X:
   id: "16266085548559433728"
