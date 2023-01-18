@@ -121,7 +121,7 @@ BATM:
   - battery_charge_percentage_sensor
   opt_uses:
   - low_battery_charge_alarm
-  - inverter_failed_alarm
+  - failed_inverter_alarm
   - line_frequency_sensor
 
 BTEPM:
@@ -138,7 +138,7 @@ UPSBM:
   description: "UPS battery monitoring points"
   is_abstract: true
   opt_uses:
-  - exhaust_fan_failed_alarm
+  - failed_exhaust_fan_alarm
   - battery_percentage_sensor
   - rectifier_mode
   - inverter_status
@@ -183,11 +183,9 @@ SRC2:
   - source2_over_voltage_status
   - source2_lost_power_alarm
 
-ALM:
-  description: "Tag for basic alarms."
+BBM:
+  description: "For UPS with Load Bypass and Battery mode."
   is_abstract: true
-  opt_uses:
-  - lost_power_alarm 
-  - low_battery_alarm
   uses:
-  - failed_alarm
+  - load_bypass_mode
+  - battery_mode

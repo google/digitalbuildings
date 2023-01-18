@@ -67,15 +67,13 @@ UPS_IOBM_PPWM_UPSBM:
   - PPWM
   - UPSBM  
   
-UPS_SS_ALM:
-  description: "UPS unit with load bypass mode and alarms."
+UPS_SS_BBM:
+  description: "UPS unit with load bypass and battery mode and alarm."
   is_canonical: true
   implements:
   - UPS
-  - SS 
-  - ALM
+  - SS
+  - BBM
   uses:
-  - run_mode
-  opt_uses:
-  - load_bypass_mode
+  - low_battery_alarm
 

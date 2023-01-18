@@ -557,25 +557,25 @@ CH_SS_SCHWTC_CDWFRM_CHWSWISOVM_CWSISOVM_CHWDPM_CHWFRM_CWDT_REFPM_IGM_DXSWC:
 ### Existing Non-standard Types ###
 ###################################
 
-CH_US_MTV_41_1:
+CH_SS_SWTC_DX4SWC_SWISOVPM_NONCANONICAL_1:
   id: "16032487706168655872"
-  description: "Non-standard type for B41 CHs"
+  description: "Non-standard type."
   implements:
   - CH_SS_SWTC_DX4SWC_SWISOVPM
   - INCOMPLETE
 
-CH_US_SBO_900_1:
+CH_SS_SWTC_NONCANONICAL_1:
   id: "17436484890001408000"
-  description: "Non-standard type for SBO-900 CHs"
+  description: "Non-standard type."
   implements:
   - CH_SS_SWTC
   - INCOMPLETE
   uses:
   - cooling_percentage_sensor
 
-CH_US_SBO_901_1:
+CH_SS_SCHWTC_CWDT_NONCANONICAL_1:
   id: "11353247693330710528"
-  description: "Non-standard type for SBO-901 CHs"
+  description: "Non-standard type."
   implements:
   - CH_SS_SCHWTC_CWDT
   - INCOMPLETE
@@ -584,7 +584,7 @@ CH_US_SBO_901_1:
 
 CH_SS_CHWDT_CWDT_CWDPM_CHWDPM_REFM:
   id: "15066838320539500544"
-  description: "Non-standard type for SYD ODI chillers"
+  description: "Non-standard type."
   is_canonical: false
   implements:
   - CH
@@ -597,7 +597,7 @@ CH_SS_CHWDT_CWDT_CWDPM_CHWDPM_REFM:
 
 CH_SS_CHWDT2X_CWDT_CWDPM_CHWDPM_REFM:
   id: "2835061732601233408"
-  description: "Non-standard type for SYD ODI chillers"
+  description: "Non-standard type."
   is_canonical: false
   implements:
   - CH

@@ -240,7 +240,7 @@ CHWS_CLPM_WFRM_WDPC_WDT:
   implements:
   - CHWS
   - CLPM
-  - WFRM  
+  - WFRM
   - WDPC
   - WDT
 
@@ -291,9 +291,9 @@ CHWS_WDT_CWDT_CICHVISOVM3X:
 ### Existing Non-standard Types ###
 ###################################
 
-CHWS_US_MTV_E475_1:
+CHWS_SWTC_WDPC_BYPVPM_NONCANONICAL_1:
   id: "6339615408160505856"
-  description: "Non-standard type for E475"
+  description: "Non-standard type."
   implements:
   - CHWS_SWTC_WDPC_BYPVPM
   - INCOMPLETE
@@ -305,9 +305,9 @@ CHWS_US_MTV_E475_1:
   - west_flowrate_sensor
   - east_flowrate_sensor
 
-CHWS_US_SVL_MP4_1: #NEEDS FIXING, NOT SURE WHERE CHILLED POINTS CAME FROM...
+CHWS_SWTC_WDPC2X_BYPVPM_WFRM_NONCANONICAL_1:
   id: "10652779621600198656"
-  description: "Non-standard type for MP4"
+  description: "Non-standard type."
   implements:
   - CHWS_SWTC_WDPC2X_BYPVPM_WFRM
   - INCOMPLETE
@@ -316,9 +316,9 @@ CHWS_US_SVL_MP4_1: #NEEDS FIXING, NOT SURE WHERE CHILLED POINTS CAME FROM...
   - chilled_supply_water_temperature_setpoint
   - chilled_return_water_temperature_sensor
 
-CHWS_US_MTV_1667_1:
+CHWS_SWTC_WDPC_WFRM_PSWTC_PWVPM_MINFC_CLPM_NONCANONICAL_1:
   id: "3683617527918755840"
-  description: "Non-standard type for 1667"
+  description: "Non-standard type."
   implements:
   - CHWS_SWTC_WDPC_WFRM_PSWTC_PWVPM_MINFC_CLPM
   - DEPRECATED
@@ -327,12 +327,12 @@ CHWS_US_MTV_1667_1:
   - process_water_flowrate_setpoint
   - process_cooling_thermal_power_sensor
 
-CHWS_US_SVL_TC6_1:
+CHWS_SWTC_WDPC_BYPVPM_WFRM_NONCANONICAL_1:
   id: "16982940741590319104"
-  description: "Non-standard type for TC6"
+  description: "Non-standard type."
   implements:
   - CHWS_SWTC_WDPC_BYPVPM_WFRM
   - INCOMPLETE
   uses:
   - production_differential_pressure_sensor
-  - supply_water_flowrate_sensor # Need to rename to flowrate_sensor
+  - water_flowrate_sensor # Need to rename to flowrate_sensor

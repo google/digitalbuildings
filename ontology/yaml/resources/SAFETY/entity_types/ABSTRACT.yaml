@@ -95,40 +95,10 @@ LM:
   description: "Tank level monitoring."
   is_abstract: true
   uses:
-  - level_status 
+  - level_status
 
-HDS:
-  description: "Standard Hydrogen sensor."
+AL:
+  description: "Tag for those with alarms"
   is_abstract: true
   implements:
   - EQUIPMENT
-  
-WCR:
-  description: "Water conditioner"
-  is_abstract: true
-  uses:
-  - run_status
-  implements:
-  - EQUIPMENT
-
-WSR:
-  description: "Water softener"
-  is_abstract: true
-  uses:
-  - run_status
-  implements:
-  - EQUIPMENT
-
-ALM:
-  description: "Tag for basic alarms"
-  is_abstract: true
-  opt_uses:
-  - fire_alarm
-  - supervisor_alarm
-  - primary_smoke_alarm
-  - secondary_smoke_alarm
-  - emergency_alarm
-  - lost_power_alarm
-  implements:
-  - EQUIPMENT
-  

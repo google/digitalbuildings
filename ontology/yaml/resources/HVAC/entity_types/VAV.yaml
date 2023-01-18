@@ -444,7 +444,7 @@ VAV_RD_DSPRTC:
   - VAV
   - RD
   - DSPRTC
- 
+
 VAV_RD_DSPRTC_ZSPC:
   id: "6507566908814917632"
   description: "Return control VAV with return cooling control and zone pressure control."
@@ -454,53 +454,6 @@ VAV_RD_DSPRTC_ZSPC:
   - RD
   - DSPRTC
   - ZSPC
-
-###################################
-### Existing Non-standard Types ###
-###################################
-
-VAV_US_MTV_1250_1:
-  id: "17018776024562794496"
-  description: "Non-standard type for 1250"
-  implements:
-  - VAV_SD_DSP_HWDC
-  - INCOMPLETE
-  uses:
-  - heating_percentage_command
-
-VAV_US_MTV_2017_2:
-  id: "1012842211399696384"
-  description: "Non-standard type for 2017"
-  implements:
-  - VAV_SD_DSP_HTDC
-  - INCOMPLETE
-  uses:
-  - heating_percentage_command
-
-VAV_US_MTV_43_1:
-  id: "16125937398436593664"
-  description: "Non-standard type for B43"
-  implements:
-  - VAV_SD_CSP
-  uses:
-  - discharge_air_temperature_setpoint # Needs to be removed from this device. Then deprecate.
-
-VAV_US_PAO_MIR3_2:
-  id: "1877251864878120960"
-  description: "Non-standard type for MIR3"
-  implements:
-  - VAV_SD_CSP
-  uses:
-  - supply_air_isolation_damper_command
-
-DMP_US_MTV_1708_2: # Is Actually a VAV
-  id: "1373130181589336064"
-  description: "Non-standard type for 1700 CDs"
-  implements:
-  - VAV
-  - SD
-  - DDSP
-  - INCOMPLETE
 
 VAV_SD_ZTC_AHAC:
   id: "11563037810445254656"
@@ -520,8 +473,7 @@ VAV_ZTC_DTM:
   - VAV
   - ZTC
   - DTM
-  
-#Additional Types for CH_ZRH_EURD
+
 VAV_SD_CO2C:
   id: "1276288495949709312"
   description: "CO2 control VAV, regardless of room temperature for single duct supply air VAV's"
@@ -551,7 +503,6 @@ VAV_SD_CO2C_HLSAFS_SRC:
   - HLSAFS
   - SRC
 
-# Additional type for FR-PAR-50A
 VAV_HWZTC_CHWZTC_DTM:
   id: "3139001930890608640"
   description: "A zone VAV with heating and cooling control, but no flow control; part of DOAS system where air volume is not measured or controlled locally, but instead controlled by the upstream equipment."
@@ -561,3 +512,50 @@ VAV_HWZTC_CHWZTC_DTM:
     - HWZTC
     - CHWZTC
     - DTM
+
+###################################
+### Existing Non-standard Types ###
+###################################
+
+VAV_SD_DSP_HWDC_NONCANONICAL_1:
+  id: "17018776024562794496"
+  description: "Non-standard type."
+  implements:
+  - VAV_SD_DSP_HWDC
+  - INCOMPLETE
+  uses:
+  - heating_percentage_command
+
+VAV_SD_DSP_HTDC_NONCANONICAL_1:
+  id: "1012842211399696384"
+  description: "Non-standard type."
+  implements:
+  - VAV_SD_DSP_HTDC
+  - INCOMPLETE
+  uses:
+  - heating_percentage_command
+
+VAV_SD_CSP_NONCANONICAL_1:
+  id: "16125937398436593664"
+  description: "Non-standard type."
+  implements:
+  - VAV_SD_CSP
+  uses:
+  - discharge_air_temperature_setpoint # Needs to be removed from this device. Then deprecate.
+
+VAV_SD_CSP_NONCANONICAL_2:
+  id: "1877251864878120960"
+  description: "Non-standard type."
+  implements:
+  - VAV_SD_CSP
+  uses:
+  - supply_air_isolation_damper_command
+
+VAV_SD_DDSP_NONCANONICAL_1:
+  id: "1373130181589336064"
+  description: "Non-standard type."
+  implements:
+  - VAV
+  - SD
+  - DDSP
+  - INCOMPLETE

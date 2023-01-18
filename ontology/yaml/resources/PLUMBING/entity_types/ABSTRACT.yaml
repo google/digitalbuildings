@@ -34,4 +34,25 @@ LVLM:
   - level_status
   opt_uses:
   - percentage_sensor
-  
+
+WCR:
+  description: "Water conditioner"
+  is_abstract: true
+  uses:
+  - run_status
+  implements:
+  - EQUIPMENT
+
+WSR:
+  description: "Water softener"
+  is_abstract: true
+  uses:
+  - run_status
+  implements:
+  - EQUIPMENT
+
+AL:
+  description: "Tag for those with alarms"
+  is_abstract: true
+  implements:
+  - EQUIPMENT

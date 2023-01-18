@@ -23,23 +23,23 @@ TK_SWTC_PHWTC:
   description: "Tank with water temperature monitoring"
   is_canonical: true
   implements:
-  - /TK # Inherits from global namespace 
+  - /TK # Inherits from global namespace
   - SWTC
   - PHWTC
-  
-TK_LM_PLPM:  
+
+TK_LM_PLPM:
   id: "10267650385204215808"
   description: "Tank with level and pipeline pressure monitoring "
   is_canonical: true
   implements:
-  - /TK # Inherits from global namespace 
+  - /TK # Inherits from global namespace
   - LM
   - PLPM
 
-TK_LM:  
+TK_LM:
   id: "12505939400007352320"
   description: "Tank with level monitoring "
   is_canonical: true
   implements:
-  - /TK # Inherits from global namespace 
+  - /TK # Inherits from global namespace
   - LM

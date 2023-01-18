@@ -15,10 +15,10 @@
 ### ABSTRACT TYPES
 
 RDT_STD:
+  id: "3828241789878272000"
   description: "Standard Rodent Repellent."
   is_canonical: true
   implements:
   - RDT
   uses:
   - transducer_failed_alarm
-

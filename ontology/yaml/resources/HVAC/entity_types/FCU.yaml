@@ -88,8 +88,8 @@ FCU_DFSS2X_CHWRC_DAIDC2X_RAIDC2X:
   is_canonical: true
   opt_uses:
   - failed_alarm
-  - drain_pump_failed_alarm_1
-  - drain_pump_failed_alarm_2
+  - failed_drain_pump_alarm_1
+  - failed_drain_pump_alarm_2
   implements:
   - FCU
   - DFSS2X
@@ -238,6 +238,18 @@ FCU_DFSS_DSP_HTZC_DXZC:
   - DSP
   - HTZC
   - DXZC
+
+FCU_DFSS_DSP_HTZC_DXZC_DFSMC:
+  id: "12727354653562372096"
+  description: "DX fan coil with reheat (zone temp control)."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - DSP
+  - HTZC
+  - DXZC
+  - DFSMC
 
 FCU_DFSS_DSP_HTZC_HPZC:
   id: "10456565174553804800"
@@ -432,7 +444,7 @@ FCU_DFSS_DFVSC_RTC_RHC_RHDHC_DXRC:
   - RHC
   - RHDHC
   - DXRC
-  
+
 FCU_DFSS_DFVSC_CHWRC_RHDHC:
   id: "14452659921356849152"
   description: "Variable speed DX fan coil with chilled water return temp control and humidification/dehumidification."
@@ -456,7 +468,7 @@ FCU_DFSS_DTM_CHWRC:
   - DFSS
   - DTM
   - CHWRC
-  
+
 FCU_DFSS_DFHLC_DSP_DXZC:
   id: "12762408183767498752"
   description: "Mult-speed DX fan coil with zone temp control."
@@ -491,6 +503,18 @@ FCU_DFSS_DFMSC_DSP_DXZC:
   - DSP
   - DXZC
 
+FCU_DFSS_DFMSC_DSP_DXZC_DAIDC:
+  id: "14889082474700210176"
+  description: "Multi-speed DX fan coil with zone temp control, and discharge air isolation damper control."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - DFMSC
+  - DSP
+  - DXZC
+  - DAIDC
+
 FCU_DFSS_DFMSC_DSP_HPZC:
   id: "12185947431464075264"
   description: "Multi-speed heat pump fan coil with zone temp control."
@@ -523,6 +547,29 @@ FCU_DFSS_DFMSC_CSP_DXZC:
   - DFMSC
   - CSP
   - DXZC
+
+FCU_DFSS_DFMSC_CSP_DXZC_DAIDC:
+  id: "10745770817519353856"
+  description: "DX fan coil with multi-speed control (zone control) and discharge isolation damper control."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - DFMSC
+  - CSP
+  - DXZC
+  - DAIDC
+
+FCU_DFSS_CSP_DXZC_DAIDC:
+  id: "8639775041770225664"
+  description: "DX fan coil with discharge isolation damper control."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - CSP
+  - DXZC
+  - DAIDC
 
 FCU_DFSS_DFMSC_RTC_DXRC:
   id: "14852078410867408896"
@@ -824,7 +871,7 @@ FCU_DFSS_DFRMM_DXRC_RHC_HTRC_REFPM:
   - REFPM
   opt_uses:
   - filter_alarm
-  
+
 FCU_SS_ZTM:
   id: "11594563007836848128"
   description: "FCU with zone temperature monitoring and start/stop control."
@@ -852,7 +899,7 @@ FCU_HPZTC_CO2C:
   - FCU
   - HPZTC
   - CO2C
-  
+
 FCU_DFVSMC_CHWBRC:
   id: "15348700325343133696"
   description: "Chilled water FCU with chilled water percentage mode, discharge fan mode and return air temp control."
@@ -1053,7 +1100,7 @@ FCU_DFSS_CHWDC_DFVSC_ZTC:
   - filter_alarm
   - discharge_air_linearvelocity_sensor
   - schedule_run_command
-  
+
 FCU_CHWRC_DFSS_RHDHC:
   id: "4146805492817068032"
   description: "FCU with chilled water coil and return air relative humidity control."
@@ -1083,7 +1130,7 @@ FCU_DFSS_DFVSC_DPBHCC:
   - DFSS
   - DFVSC
   - DPBHCC
- 
+
 FCU_DFSS_DFMSC_CHWZC_DSP:
   id: "536976877433126912"
   description: "Multi-speed CHW fan coil with zone temp control."
@@ -1130,9 +1177,9 @@ FCU_DFSS_DXRC_RHDHC_AL:
   opt_uses:
   - filter_alarm
   - master_alarm
-  - heat_exchange_failed_alarm 
-  - water_leak_alarm 
-    
+  - failed_heat_exchange_alarm 
+  - water_leak_alarm
+
 FCU_DFVSC_CHWRC_FDPSM2X:
   id: "521860791574462464"
   description: "FCU with VFD ,return air temperature based Chilled water valve modulation, pre filter and fine filter status,return air humidity monitoring"
@@ -1144,8 +1191,49 @@ FCU_DFVSC_CHWRC_FDPSM2X:
   - FDPSM2X
   opt_uses:
   - isolation_damper_status
-  
-     
+
+FCU_CHWDC_DFSS_DXDC_DFVSC_REFPM_ZHC_DFRMM_CHWDT:
+  id: "14561832629901983744"
+  description: "CRAC with chilled water temperature monitoring and compressor monitoring with zone temperature and humidity monitoring."
+  is_canonical: true
+  implements:
+  - FCU
+  - CHWDC
+  - DFSS
+  - DXDC
+  - DFVSC
+  - REFPM
+  - ZHC
+  - DFRMM
+  - CHWDT
+
+FCU_DFSS_DX2DC_DFVSC_REFPM2X_ZHC_DFRMM:
+  id: "14115976266792304640"
+  description: "CRAC with dual compressor with temperature monitoring and compressor monitoring with humidity monitoring."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - DX2DC
+  - DFVSC
+  - REFPM2X
+  - ZHC
+  - DFRMM
+
+FCU_DFSS_DFVSC_FDPM_CHWDC_SRC_DFRMM:
+  id: "11307981899126800384"
+  description: "FCU with temperature control, humidity monitor with electrical parameter monitoring."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - DFVSC
+  - FDPM
+  - CHWDC
+  - SRC
+  - DFRMM
+
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
@@ -1161,9 +1249,9 @@ FCU_DFS_CH_RTC_RRHM_HMDHMM:
   - dehumidification_run_status
   - return_air_relative_humidity_sensor
 
-FCU_US_MTV_43_5:
+FCU_DFSS_DTC_CHWDC_NONCANONICAL_1:
   id: "14036267171336683520"
-  description: "Non-standard type for B43"
+  description: "Non-standard type."
   implements:
   - FCU_DFSS_DTC_CHWDC
   - INCOMPLETE
@@ -1171,18 +1259,18 @@ FCU_US_MTV_43_5:
   - discharge_air_cooling_temperature_setpoint
   - discharge_air_heating_temperature_setpoint
 
-FCU_US_MTV_43_6:
+FCU_DFSS_ZTC_ZHDHC_DXZTC_NONCANONICAL_1:
   id: "15441390255076278272"
-  description: "Non-standard type for B43 CRACs"
+  description: "Non-standard type."
   implements:
   - FCU_DFSS_ZTC_ZHDHC_DXZTC
   - INCOMPLETE
   uses:
   - economizer_mode
 
-FCU_US_MTV_41_1:
+FCU_DFSS_DSP_HWZC_CHWZC_NONCANONICAL_1:
   id: "10490667627200905216"
-  description: "Non-standard type for B41"
+  description: "Non-standard type."
   implements:
   - FCU_DFSS_DSP_HWZC_CHWZC
   - INCOMPLETE
@@ -1192,26 +1280,26 @@ FCU_US_MTV_41_1:
   - discharge_air_temperature_sensor_3
   - discharge_air_temperature_sensor_4
 
-FCU_US_SVL_MP7_3: # DO NOT DEPRECATE
+FCU_DFSS_CSP_DXZC_NONCANONICAL_1:
   id: "7320115897346031616"
-  description: "Non-standard type for MP7 FCs"
+  description: "Non-standard type."
   implements:
   - FCU_DFSS_CSP_DXZC
   - INCOMPLETE
   uses:
   - discharge_air_damper_command
 
-FCU_US_SVL_MP7_6:
+FCU_DFSS_CSP_DXZC_NONCANONICAL_2:
   id: "11218139704509595648"
-  description: "Non-standard type for MP7 FCs"
+  description: "Non-standard type."
   implements:
   - FCU_DFSS_CSP_DXZC
   uses:
   - discharge_air_damper_command
 
-FCU_US_MTV_GWC1_1:
+FCU_DFSS_DSP_HTZC_DXZC_NONCANONICAL_1:
   id: "9779098886076366848"
-  description: "Non-standard type for GWC1"
+  description: "Non-standard type."
   implements:
   - FCU_DFSS_DSP_HTZC_DXZC
   - INCOMPLETE
@@ -1220,27 +1308,27 @@ FCU_US_MTV_GWC1_1:
   - zone_air_temperature_sensor_2
   - zone_air_temperature_sensor_3
 
-FCU_US_PAO_HV1_1:
+FCU_DFSS_DFVSC_RTC_RHC_RHDHC_DXRC_NONCANONICAL_1:
   id: "1151468637429694464"
-  description: "Non-standard type for HV1 CRACs"
+  description: "Non-standard type."
   implements:
   - FCU_DFSS_DFVSC_RTC_RHC_RHDHC_DXRC
   - INCOMPLETE
   uses:
   - humidification_percentage_command
 
-FCU_US_SVL_MP5_7:
+FCU_DFSS_DFVSC_DSP_HWDC_CHWDC_NONCANONICAL_1:
   id: "10076318869296775168"
-  description: "Non-standard type for MP5 FCs"
+  description: "Non-standard type."
   implements:
   - FCU_DFSS_DFVSC_DSP_HWDC_CHWDC
   uses:
   - heating_water_valve_status
   - chilled_water_valve_command
 
-FCU_US_SVL_MP3_3:
+FCU_DFSS_DFVSC_DSP_HWDC_CHWDC_NONCANONICAL_2:
   id: "1573522772821278720"
-  description: "Non-standard type for MP3"
+  description: "Non-standard type."
   implements:
   - FCU_DFSS_DFVSC_DSP_HWDC_CHWDC
   - INCOMPLETE
@@ -1248,9 +1336,9 @@ FCU_US_SVL_MP3_3:
   - zone_air_co2_concentration_sensor
   - zone_air_co2_concentration_setpoint
 
-FCU_US_SVL_MP4_6:
+FCU_DFSS_DFVSC_DSP_HWDC_CHWDC_NONCANONICAL_3:
   id: "3194818638674657280"
-  description: "Non-standard type for MP4 FCs"
+  description: "Non-standard type."
   implements:
   - FCU_DFSS_DFVSC_DSP_HWDC_CHWDC
   - INCOMPLETE
@@ -1259,18 +1347,18 @@ FCU_US_SVL_MP4_6:
   - zone_air_co2_concentration_setpoint
   - mixed_air_temperature_sensor
 
-FCU_US_MTV_1250_1:
+FCU_DF2XSS_RTC_DXRC_NONCANONICAL_1:
   id: "3089142377105850368"
-  description: "Non-standard type for 1250"
+  description: "Non-standard type."
   implements:
   - FCU_DF2XSS_RTC_DXRC
   - INCOMPLETE
   uses:
   - discharge_fan_run_command
 
-FCU_US_MTV_2011_1:
+FCU_DF2XSS_RTC_DXRC_NONCANONICAL_2:
   id: "8717516011412127744"
-  description: "Non-standard type for 2011"
+  description: "Non-standard type."
   implements:
   - FCU_DFSS_RTC_DXRC
   - INCOMPLETE
@@ -1278,9 +1366,9 @@ FCU_US_MTV_2011_1:
   - discharge_air_temperature_setpoint
   - zone_air_relative_humidity_sensor
 
-FCU_UK_LON_6PS_1:
+FCU_DFSS_DFVSC_ZTC_CHWZTC_HWZTC_NONCANONICAL_1:
   id: "15721651370949869568"
-  description: "Non-standard type for 6PS"
+  description: "Non-standard type."
   implements:
   - FCU_DFSS_DFVSC_ZTC_CHWZTC_HWZTC
   uses:
@@ -1291,9 +1379,9 @@ FCU_UK_LON_6PS_1:
   - master_alarm
   - run_mode
 
-FCU_UK_LON_6PS_2:
+FCU_DFSS_DFVSC_ZTC_CHWZTC_HWZTC_NONCANONICAL_2:
   id: "14172413099134418944"
-  description: "Non-standard type for 6PS"
+  description: "Non-standard type."
   implements:
   - FCU_DFSS_DFVSC_ZTC_CHWZTC_HWZTC
   uses:
@@ -1306,9 +1394,9 @@ FCU_UK_LON_6PS_2:
   - exercise_mode
 
 
-FCU_UK_LON_6PS_3:
+FCU_NONCANONICAL_1:
   id: "3805126756927537152"
-  description: "Non-standard type for 6PS"
+  description: "Non-standard type."
   implements:
   - FCU
   uses:
@@ -1334,45 +1422,45 @@ FCU_UK_LON_6PS_3:
   - zone_occupancy_status_2
   - zone_occupancy_status_3
 
-FCU_US_MTV_1667_1:
+FCU_DFSS_CSP_ZHC_DXZC_NONCANONICAL_1:
   id: "10200326188723863552"
-  description: "Non-standard type for 1667 CRACs"
+  description: "Non-standard type."
   implements:
   - FCU_DFSS_CSP_ZHC_DXZC
   - INCOMPLETE
   uses:
   - zone_air_relative_humidity_setpoint
 
-FCU_US_MTV_1950_2:
+FCU_DFSS_CSP_DXZC_NONCANONICAL_3:
   id: "1557918503799881728"
-  description: "Non-standard type for 1950 WSHPs"
+  description: "Non-standard type."
   implements:
   - FCU_DFSS_CSP_DXZC
   - INCOMPLETE
   uses:
   - condensing_water_isolation_valve_command
 
-FCU_US_MTV_2171_2:
+FCU_DF2XSS_DSP_DXZC_NONCANONICAL_1:
   id: "14021700841291907072"
-  description: "Non-standard type for 2171 FCs"
+  description: "Non-standard type."
   implements:
   - FCU_DF2XSS_DSP_DXZC
   - INCOMPLETE
   uses:
   - discharge_fan_run_status
 
-FCU_US_MTV_PR55_1:
+FCU_DFSS_CSP_DXZC_NONCANONICAL_4:
   id: "10794801339536769024"
-  description: "Non-standard type for PR55 WSHPs"
+  description: "Non-standard type."
   implements:
   - FCU_DFSS_CSP_DXZC
   - INCOMPLETE
   uses:
   - chilled_water_valve_command
 
-FCU_US_MTV_946_2: # Weird dehumidification unit. Complete one-off.
+FCU_NONCANONICAL_2: # Weird dehumidification unit. Complete one-off.
   id: "6100660745119203328"
-  description: "Non-standard type for 946 FCs"
+  description: "Non-standard type."
   implements:
   - FCU
   uses:
@@ -1392,18 +1480,18 @@ FCU_US_MTV_946_2: # Weird dehumidification unit. Complete one-off.
   - zone_air_heating_temperature_setpoint
   - zone_air_temperature_sensor
 
-FCU_US_MTV_1600_2:
+FCU_DFSS_RTC_CHWRC_RHC_NONCANONICAL_1:
   id: "14099950884817469440"
-  description: "Non-standard type for 1600 CRACs"
+  description: "Non-standard type."
   implements:
   - FCU_DFSS_RTC_CHWRC_RHC
   - INCOMPLETE
   uses:
   - compressor_run_command
 
-FCU_US_MTV_1950_3:
+FCU_DFSS_DSPRTC_DXDSPRTC_NONCANONICAL_1:
   id: "10065218199902748672"
-  description: "Non-standard type for 1950 CRACs"
+  description: "Non-standard type."
   implements:
   - FCU_DFSS_DSPRTC_DXDSPRTC
   - INCOMPLETE
@@ -1444,7 +1532,7 @@ FCU_CHWZTC2X_HT2XZTC2X_DFVSC2X:
   - CHWZTC2X
   - HT2XZTC2X
   - DFVSC2X
-  
+
 FCU_RTM_DXZTC_SRC:
   id: "12582289487440117760"
   description: "FCU with SS, supply and return temp sensors, zone control and sensor, schedule run, filter change and general fail alarm"
@@ -1457,8 +1545,17 @@ FCU_RTM_DXZTC_SRC:
   uses:
   - filter_alarm
   - lost_power_alarm
-
-#Additional types for CH ZRH EURD
+  
+FCU_DXZTC:
+  description: "FCU with SS, discharge temp sensors, zone control and sensor, filter change"
+  is_canonical: true
+  implements:
+  - FCU
+  - DXZTC
+  uses:
+  - panel_controller_status
+  - filter_alarm
+  
 FCU_NON_CANONICAL_TYPE_1:
   id: "17300095970133934080"
   description: "Typical chilled water FCU with cooling-only (discharge control) for MDF rooms,
@@ -1493,7 +1590,7 @@ FCU_NON_CANONICAL_TYPE_2:
   - water_leak_alarm
   - condensate_water_pump_alarm
   - master_alarm
-  - supply_fan_failed_alarm
+  - failed_supply_fan_alarm
   - return_air_temperature_sensor
   - return_air_temperature_setpoint
 
@@ -1512,7 +1609,7 @@ FCU_NON_CANONICAL_TYPE_3:
   - chilled_supply_water_temperature_sensor
   - chilled_return_water_temperature_sensor
   - master_alarm
-  - supply_fan_failed_alarm
+  - failed_supply_fan_alarm
   - condensate_water_pump_alarm
   - return_air_temperature_sensor
   - return_air_temperature_setpoint
@@ -1555,69 +1652,24 @@ FCU_RTC_RHDHS_DTM_DFSS:
   - compressor_run_status_1
   - compressor_run_status_2
   opt_uses:
-  - discharge_fan_failed_alarm
+  - failed_discharge_fan_alarm
   - low_discharge_air_flowrate_alarm
   - master_alarm
   - water_leak_alarm
   - fire_alarm
   - schedule_run_command
-  
-#PAC Unit #  
-FCU_CHWDC_DFSS_DXDC_DFVSC_REFPM_ZHC_DFRMM_CHWDT:
-  id: "14561832629901983744"
-  description: "CRAC with chilled water temperature monitoring and compressor monitoring with zone temperature and humidity monitoring."
-  is_canonical: true
-  implements:
-  - FCU
-  - CHWDC
-  - DFSS
-  - DXDC
-  - DFVSC
-  - REFPM
-  - ZHC
-  - DFRMM
-  - CHWDT  
 
-#PAC Unit #  
-FCU_DFSS_DX2DC_DFVSC_REFPM2X_ZHC_DFRMM:
-  id: "14115976266792304640"
-  description: "CRAC with dual compressor with temperature monitoring and compressor monitoring with humidity monitoring."
-  is_canonical: true
-  implements:
-  - FCU
-  - DFSS
-  - DX2DC
-  - DFVSC
-  - REFPM2X
-  - ZHC
-  - DFRMM 
-  
-#CSU canonical#  
-FCU_DFSS_DFVSC_FDPM_CHWDC_SRC_DFRMM:
-  id: "11307981899126800384"
-  description: "FCU with temperature control, humidity monitor with electrical parameter monitoring."
-  is_canonical: true
-  implements:
-  - FCU
-  - DFSS
-  - DFVSC
-  - FDPM
-  - CHWDC
-  - SRC
-  - DFRMM
-
-FCU_RHDHS_DTM_DFSS_STM_DTC_SHM_SFVSC_ALM_SS_SRC:
-  description: "FCU with temperature control, humidity monitor with electrical parameter monitoring."
+FCU_RHDHS_DXSC_SHM_RTC:
+  description: "FCU with temperature control, humidity monitor with electrical parameter monitoring and water leak alarm."
   is_canonical: true
   implements:
   - FCU
   - RHDHS
-  - DTM
-  - DFSS
-  - STM
-  - DTC
+  - DXSC
   - SHM
-  - SFVSC
-  - ALM
-  - SS
-  - SRC
+  - RTC
+  uses:
+  - water_leak_detection_alarm
+  - supply_fan_run_status
+  - low_discharge_air_flowrate_alarm
+  - failed_alarm

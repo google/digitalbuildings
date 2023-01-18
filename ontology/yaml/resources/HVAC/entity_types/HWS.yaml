@@ -16,6 +16,14 @@
 ### Canonical Types  ###
 ########################
 
+HWS_SS:
+  id: "8438977830259261440"
+  description: "Simple hot water system with status only"
+  is_canonical: true
+  implements:
+  - HWS
+  - SS
+
 HWS_SWTC:
   id: "17871319748554260480"
   description: "Simple heating water system with supply temp control."
@@ -177,6 +185,9 @@ HWS_SWTC_WDPC_SWTCSCM_WDPCSCM:
   - HWS_SWTC_WDPC
   - SWTCSCM
   - WDPCSCM
+  opt_uses:
+  - supervisor_run_command
+  - run_command
 
 HWS_SS_ALS:
   id: "10375881911795974144"
@@ -306,9 +317,9 @@ HWS_SS_HWTTC_PWDPM2X:
 ### Existing Non-standard Types ###
 ###################################
 
-HWS_US_SVL_MAT2_1:
+HWS_SWTC_WDPC2X_NONCANONICAL_1:
   id: "8016273883495661568"
-  description: "Non-standard type for MAT2"
+  description: "Non-standard type."
   implements:
   - HWS_SWTC_WDPC2X
   - DEPRECATED
@@ -316,9 +327,9 @@ HWS_US_SVL_MAT2_1:
   - return_water_temperature_sensor_1
   - return_water_temperature_sensor_2
 
-HWS_US_MTV_2000_2:
+HWS_RWTC_MXVPM_NONCANONICAL_1:
   id: "17278858903043440640"
-  description: "Non-standard type for 2000"
+  description: "Non-standard type."
   implements:
   - HWS_RWTC_MXVPM
   - DEPRECATED
@@ -326,7 +337,6 @@ HWS_US_MTV_2000_2:
   - mixing_valve_percentage_command
   - heat_exchange_supply_water_isolation_valve_command
 
-# Non Standard Types for CH ZRH EURD
 HWS_SWTC_CPC:
   id: "8626163087818358784"
   description: "Simple hot water system with circulation pump"
@@ -339,9 +349,3 @@ HWS_SWTC_CPC:
   - circulation_pump_speed_percentage_setpoint
   - failed_alarm
   
-HWS_SS:
-  id: "8438977830259261440"
-  description: "Simple hot water system with status only"
-  implements:
-  - HWS
-  - SS

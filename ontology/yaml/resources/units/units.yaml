@@ -146,6 +146,12 @@ energy:
   kilovolt_ampere_hours:
     multiplier: 3600000
     offset: 0
+  kilovolt_ampere_apparent_hours:
+    multiplier: 3600000
+    offset: 0
+  kilovolt_ampere_reactive_hours:
+    multiplier: 3600000
+    offset: 0
   ton_hours:
     multiplier: 12660670.23144
     offset: 0

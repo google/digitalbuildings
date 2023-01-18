@@ -1,4 +1,4 @@
-# Copyright 2020 Google LLC
+# Copyright 2022 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the License);
 # you may not use this file except in compliance with the License.
@@ -12,22 +12,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-### ABSTRACT TYPES
-
-HS_STD:
-  id: "1623655005489725440"
-  description: "Standard horn strobe."
-  is_canonical: true
-  implements:
-  - HS
-  uses:
-  - run_status
-
-HS_AL:
-  id: "6601509182292099072"
-  description: "Horn strobe with alarm."
-  is_canonical: true
-  implements:
-  - HS
-  uses:
-  - emergency_alarm
+US-SEA-BLDG1-GUID:
+  type: FACILITIES/BUILDING
+  code: US-SEA-BLDG1
+  cloud_device_id: "foobar"
+  translation:
+    zone_air_temperature_sensor:
+      present_value: "points.zone_air_temperature_sensor.present_value"
+      value_range: 25
+      units:
+        key: "points.zone_air_temperature_sensor.units"
+        values:
+          degrees_celsius: "degC"

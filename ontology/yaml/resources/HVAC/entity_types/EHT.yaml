@@ -23,11 +23,3 @@ EHT_SS:
   implements:
   - EHT
   - SS
-
-EHT_SS_ALM:
-  description: "Basic Heat tracer with start/stop, control/status and trip alarm"
-  is_canonical: true
-  implements:
-  - EHT
-  - SS
-  - ALM

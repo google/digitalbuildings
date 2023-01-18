@@ -16,6 +16,14 @@
 ### Canonical Types  ###
 ########################
 
+CT_SS:
+  id: "14895648758141288448"
+  description: "cooling tower with run command and status. "
+  is_canonical: true
+  implements:
+  - CT
+  - SS
+
 CT_SS_SWTC:
   id: "6342104702485790720"
   description: "Simple supply temp controlling cooling tower."
@@ -172,18 +180,18 @@ CT_SS_VSC_SPSS_SWTC_RWISOVM:
 ### Existing Non-standard Types ###
 ###################################
 
-CT_US_SBO_901_1:
+CT_SS_SWTC_NONCANONICAL_1:
   id: "6975748855526588416"
-  description: "Non-standard type for SBO-901"
+  description: "Non-standard type."
   implements:
   - CT_SS_SWTC
   - INCOMPLETE
   uses:
   - fan_speed_mode
 
-CT_US_SVL_MP3_1:
+CT_SS_VSC_SWTC_NONCANONICAL_1:
   id: "605248852936622080"
-  description: "Non-standard type for MP3"
+  description: "Non-standard type."
   implements:
   - CT_SS_VSC_SWTC
   - INCOMPLETE
@@ -217,12 +225,4 @@ CT_SS_CWDT_OA_VSFC_CSWIVS_CRWIVS_CSWTC:
   - control_mode
   - run_mode
   - lost_power_alarm
-  
-  
-CT_SS:
-  id: "14895648758141288448"
-  description: "cooling tower with run command and status. "
-  is_canonical: true
-  implements:
-  - CT
-  - SS
+

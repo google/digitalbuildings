@@ -374,6 +374,7 @@ MAU_DFSS_DFVSC_HTDC_CO2C:
 
 MAU_DFSS_DFVSC_HTDC_OFC_CO2C:
   id: "4468522595104325632"
+  is_canonical: true
   description: "Exhaust fan with start/stop, status, and flowrate control."
   implements:
   - HTDC
@@ -382,65 +383,6 @@ MAU_DFSS_DFVSC_HTDC_OFC_CO2C:
   - CO2C
   - MAU
   - OFC
-
-############################
-###   Remap These Types  ###
-############################
-
-MAU_US_MTV_1225_1: # Needs remapping -- actually an AHU.
-  id: "4444233283735126016"
-  description: "Non-standard type for 1225 ACs"
-  implements:
-  - REMAP_REQUIRED # Actually an AHU.
-  uses:
-  - building_air_static_pressure_setpoint
-  - compressor_run_command_1
-  - compressor_run_command_2
-  - compressor_run_command_3
-  - compressor_run_command_4
-  - economizer_mode
-  - exhaust_fan_run_status
-  - return_air_temperature_sensor
-  - supply_air_static_pressure_sensor
-  - supply_fan_run_command
-  - supply_fan_run_status
-  - supply_air_flowrate_sensor
-
-MAU_US_MTV_900_1: # Looks removed from the controller (no graphics left).
-  id: "14298672218375192576"
-  description: "Non-standard type for 900"
-  implements:
-  - REMAP_REQUIRED
-  uses:
-  - exhaust_fan_run_status
-
-MAU_US_MTV_QD7_2: # Changed in the BMS
-  id: "17838431156744224768"
-  description: "Non-standard type for QD7"
-  implements:
-  - REMAP_REQUIRED # Changed in the BMS
-  uses:
-  - supply_fan_run_status
-
-MAU_US_PAO_HV3_2: # Actually an AHU.
-  id: "13847115986987122688"
-  description: "Non-standard type for HV3"
-  implements:
-  - REMAP_REQUIRED # Actually an AHU.
-  uses:
-  - building_air_static_pressure_sensor
-  - building_air_static_pressure_setpoint
-  - compressor_run_command
-  - compressor_speed_percentage_command
-  - economizer_mode
-  - heating_water_valve_percentage_command
-  - outside_air_damper_percentage_command
-  - return_air_temperature_sensor
-  - supply_air_static_pressure_setpoint
-  - supply_air_temperature_sensor
-  - supply_air_temperature_setpoint
-  - supply_fan_run_status
-  - supply_fan_speed_percentage_command
 
 MAU_SFSS_SFVSC_CHWSDC_HTSDC_BPC:
   id: "12347953872747102208"
@@ -518,7 +460,7 @@ MAU_SFSS_SFVSC_SFC_DXSC_HTSC_ZTM_ZSPM:
   - HTSC
   - ZTM
   - ZSPM
-  
+
 MAU_DFSS_DSP_FDPM_HT2ZC_OAFC:
   id: "12146816912143155200"
   description: "Single zone with two-stage heating, and supply flow control."
@@ -659,132 +601,12 @@ MAU_SFVSC_CHWSC_SSPC_FDPSM2X:
   - SSPC
   - FDPSM2X
   opt_uses:
-  - supply_air_isolation_damper_status 
-###################################
-### Existing Non-standard Types ###
-###################################
+  - supply_air_isolation_damper_status
 
-### Types requiring remapping:
-###   - MAU_US_MTV_1225_1 (actually an AHU)
-###   - MAU_US_MTV_900_1 (appears changed in the controller)
-###   - MAU_US_MTV_QD7_2 (appears changed in the controller)
-###   - MAU_US_PAO_HV3_2 (actually an AHU)
-
-MAU_US_MTV_1201_1:
-  id: "6867662464469696512"
-  description: "Non-standard type for 1201"
-  implements:
-  - MAU_DFSS_DFVSC_BPC_DXDC_HTDC_DSP
-  - INCOMPLETE
-  uses:
-  - outside_air_damper_percentage_command
-
-MAU_US_MTV_2000_1:
-  id: "201209116054519808"
-  description: "Non-standard type for 2000"
-  implements:
-  - MAU_DFSS_DFVSC_DSP_CHWZC_HWZC
-  - DEPRECATED
-  uses:
-  - discharge_air_flowrate_sensor
-  - discharge_air_static_pressure_sensor
-
-MAU_US_MTV_2015_1:
-  id: "1786546553633112064"
-  description: "Non-standard type for 2015"
-  implements:
-  - MAU_SFSS_SFVSC_HWSC_DX2SC_HT4SC_SSPC
-  - INCOMPLETE
-  uses:
-  - zone_air_temperature_sensor
-
-MAU_US_MTV_2644_2:
-  id: "15104746182930333696"
-  description: "Non-standard type for 2644"
-  implements:
-  - MAU_SFSS_SFVSC_DXSC_SSPC_HTSC
-  - INCOMPLETE
-  uses:
-  - outside_air_damper_percentage_command
-
-MAU_US_MTV_2644_3:
-  id: "5656194164707033088"
-  description: "Non-standard type for 2644"
-  implements:
-  - MAU_SFSS_SFVSC_DXSC_HTSC
-  - INCOMPLETE
-  uses:
-  - outside_air_damper_percentage_command
-
-MAU_US_MTV_43_2:
-  id: "1507253007991963648"
-  description: "Non-standard type for B43"
-  implements:
-  - MAU_SFSS_CHWSC_HT4SC
-  - INCOMPLETE
-  uses:
-  - zone_air_temperature_sensor
-
-MAU_US_MTV_CL4_1:
-  id: "16140644465969725440"
-  description: "Non-standard type for CL4"
-  implements:
-  - MAU_DFSS_DFVSC_DSP_HTSC
-  - INCOMPLETE
-  uses:
-  - spray_pump_run_command
-
-MAU_US_MTV_PR55_1:
-  id: "6795604870431768576"
-  description: "Non-standard type for PR55"
-  implements:
-  - MAU_SFSS_SFVSC_HTSC_BPC
-  - INCOMPLETE
-  uses:
-  - evaporative_cooler_run_command
-
-MAU_US_MTV_QD7_3:
-  id: "8853749900140085248"
-  description: "Non-standard type for QD7"
-  implements:
-  - MAU_SFSS_SFVSC_SSPC_HT2SC_DX2SC
-  - INCOMPLETE
-  uses:
-  - zone_air_temperature_sensor
-  - zone_air_temperature_setpoint # Has static control
-
-MAU_US_MTV_SB65_1:
-  id: "12506169197937557504"
-  description: "Non-standard type for SB65"
-  implements:
-  - MAU_SFSS_SFVSC_HTSC_DX2SC_SSPC
-  - INCOMPLETE
-  uses:
-  - zone_air_temperature_sensor
-  - heating_request_count
-
-MAU_US_PAO_MIR1_1:
-  id: "11307085797150162944"
-  description: "Non-standard type for MIR1"
-  implements:
-  - MAU_SFSS_SFVSC_HTSC_BPC_SHM
-  - DEPRECATED
-  uses:
-  - evaporative_cooler_run_command
-
-MAU_US_SBO_1000_1:
-  id: "6703281078070673408"
-  description: "Non-standard type for SBO-1000"
-  implements:
-  - MAU_SFSS_SFVSC_HTSC_BPC_SHM
-  - DEPRECATED
-  uses:
-  - humidification_run_command
-
-#New canonical#
 MAU_FDPM_SSPC_STC_SHM_SFVSC3X_SFSS3X:
   id: "2586761220723834880"
   description: "Air purifier unit (MAU) with 3 fan with differential pressure, static pressure, temperature, humidity and electrical parameter monitoring. "
+  is_canonical: true
   implements:
   - MAU
   - FDPM
@@ -794,11 +616,10 @@ MAU_FDPM_SSPC_STC_SHM_SFVSC3X_SFSS3X:
   - SFVSC3X
   - SFSS3X
 
- 
-#Canonical for Air washers#
 MAU_SFSS_FDPM_SSPM_STM_SHM:
   id: "6696295880699412480"
   description: "makeup Air Unit with run command, status, dufferential pressure, static T,RH, monitoring and control"
+  is_canonical: true
   implements:
   - MAU
   - SFSS
@@ -807,13 +628,201 @@ MAU_SFSS_FDPM_SSPM_STM_SHM:
   - STM
   - SHM
 
-
 MAU_DFMSC_DFVSC_FDPM_DTM:
   id: "9745232828429238272"
   description: "Makeup Air Unit with discharge air monitoring along with fan speed control"
+  is_canonical: true
   implements:
   - MAU
   - DFMSC
   - DFVSC
   - FDPM
   - DTM
+
+MAU_DFSS_DFVSC_HWDDC_DX2DDC_ZTM_DFM:
+  id: "11852530425945653248"
+  description: "Makeup air unit with discharge air flowrate monitoring and dual setpoint control."
+  is_canonical: true
+  implements:
+  - MAU
+  - DFSS
+  - DFVSC
+  - HWDDC
+  - DX2DDC
+  - ZTM
+  - DFM
+
+############################
+###   Remap These Types  ###
+############################
+
+MAU_NONCANONICAL_1:
+  id: "4444233283735126016"
+  description: "Non-standard type."
+  implements:
+  - REMAP_REQUIRED # Actually an AHU.
+  uses:
+  - building_air_static_pressure_setpoint
+  - compressor_run_command_1
+  - compressor_run_command_2
+  - compressor_run_command_3
+  - compressor_run_command_4
+  - economizer_mode
+  - exhaust_fan_run_status
+  - return_air_temperature_sensor
+  - supply_air_static_pressure_sensor
+  - supply_fan_run_command
+  - supply_fan_run_status
+  - supply_air_flowrate_sensor
+
+MAU_NONCANONICAL_2:
+  id: "14298672218375192576"
+  description: "Non-standard type."
+  implements:
+  - REMAP_REQUIRED
+  uses:
+  - exhaust_fan_run_status
+
+MAU_NONCANONICAL_3:
+  id: "17838431156744224768"
+  description: "Non-standard type."
+  implements:
+  - REMAP_REQUIRED
+  uses:
+  - supply_fan_run_status
+
+MAU_NONCANONICAL_4:
+  id: "13847115986987122688"
+  description: "Non-standard type."
+  implements:
+  - REMAP_REQUIRED # Actually an AHU.
+  uses:
+  - building_air_static_pressure_sensor
+  - building_air_static_pressure_setpoint
+  - compressor_run_command
+  - compressor_speed_percentage_command
+  - economizer_mode
+  - heating_water_valve_percentage_command
+  - outside_air_damper_percentage_command
+  - return_air_temperature_sensor
+  - supply_air_static_pressure_setpoint
+  - supply_air_temperature_sensor
+  - supply_air_temperature_setpoint
+  - supply_fan_run_status
+  - supply_fan_speed_percentage_command
+
+###################################
+### Existing Non-standard Types ###
+###################################
+
+MAU_DFSS_DFVSC_BPC_DXDC_HTDC_DSP_NONCANONICAL_1:
+  id: "6867662464469696512"
+  description: "Non-standard type."
+  implements:
+  - MAU_DFSS_DFVSC_BPC_DXDC_HTDC_DSP
+  - INCOMPLETE
+  uses:
+  - outside_air_damper_percentage_command
+
+MAU_DFSS_DFVSC_DSP_CHWZC_HWZC_NONCANONICAL_1:
+  id: "201209116054519808"
+  description: "Non-standard type."
+  implements:
+  - MAU_DFSS_DFVSC_DSP_CHWZC_HWZC
+  - DEPRECATED
+  uses:
+  - discharge_air_flowrate_sensor
+  - discharge_air_static_pressure_sensor
+
+MAU_SFSS_SFVSC_HWSC_DX2SC_HT4SC_SSPC_NONCANONICAL_1:
+  id: "1786546553633112064"
+  description: "Non-standard type."
+  implements:
+  - MAU_SFSS_SFVSC_HWSC_DX2SC_HT4SC_SSPC
+  - INCOMPLETE
+  uses:
+  - zone_air_temperature_sensor
+
+MAU_SFSS_SFVSC_DXSC_SSPC_HTSC_NONCANONICAL_1:
+  id: "15104746182930333696"
+  description: "Non-standard type."
+  implements:
+  - MAU_SFSS_SFVSC_DXSC_SSPC_HTSC
+  - INCOMPLETE
+  uses:
+  - outside_air_damper_percentage_command
+
+MAU_SFSS_SFVSC_DXSC_HTSC_NONCANONICAL_2:
+  id: "5656194164707033088"
+  description: "Non-standard type."
+  implements:
+  - MAU_SFSS_SFVSC_DXSC_HTSC
+  - INCOMPLETE
+  uses:
+  - outside_air_damper_percentage_command
+
+MAU_SFSS_CHWSC_HT4SC_NONCANONICAL_1:
+  id: "1507253007991963648"
+  description: "Non-standard type."
+  implements:
+  - MAU_SFSS_CHWSC_HT4SC
+  - INCOMPLETE
+  uses:
+  - zone_air_temperature_sensor
+
+MAU_DFSS_DFVSC_DSP_HTSC_NONCANONICAL_1:
+  id: "16140644465969725440"
+  description: "Non-standard type."
+  implements:
+  - MAU_DFSS_DFVSC_DSP_HTSC
+  - INCOMPLETE
+  uses:
+  - spray_pump_run_command
+
+MAU_SFSS_SFVSC_HTSC_BPC_NONCANONICAL_1:
+  id: "6795604870431768576"
+  description: "Non-standard type."
+  implements:
+  - MAU_SFSS_SFVSC_HTSC_BPC
+  - INCOMPLETE
+  uses:
+  - evaporative_cooler_run_command
+
+MAU_SFSS_SFVSC_SSPC_HT2SC_DX2SC_NONCANONICAL_1:
+  id: "8853749900140085248"
+  description: "Non-standard type."
+  implements:
+  - MAU_SFSS_SFVSC_SSPC_HT2SC_DX2SC
+  - INCOMPLETE
+  uses:
+  - zone_air_temperature_sensor
+  - zone_air_temperature_setpoint # Has static control
+
+MAU_SFSS_SFVSC_HTSC_DX2SC_SSPC_NONCANONICAL_1:
+  id: "12506169197937557504"
+  description: "Non-standard type."
+  implements:
+  - MAU_SFSS_SFVSC_HTSC_DX2SC_SSPC
+  - INCOMPLETE
+  uses:
+  - zone_air_temperature_sensor
+  - heating_request_count
+
+MAU_SFSS_SFVSC_HTSC_BPC_SHM_NONCANONICAL_1:
+  id: "11307085797150162944"
+  description: "Non-standard type."
+  implements:
+  - MAU_SFSS_SFVSC_HTSC_BPC_SHM
+  - DEPRECATED
+  uses:
+  - evaporative_cooler_run_command
+
+MAU_SFSS_SFVSC_HTSC_BPC_SHM_NONCANONICAL_2:
+  id: "6703281078070673408"
+  description: "Non-standard type."
+  implements:
+  - MAU_SFSS_SFVSC_HTSC_BPC_SHM
+  - DEPRECATED
+  uses:
+  - humidification_run_command
+

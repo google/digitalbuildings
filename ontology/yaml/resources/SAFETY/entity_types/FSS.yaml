@@ -24,10 +24,14 @@ FSS_STD:
   uses:
   - fire_alarm
 
-FSS_ASD_ALM:
+FSS_ASD_AL:
   description: "Basic aspirating type, fire suppression with alarms."
   is_canonical: true
   implements:
   - FSS
   - ASD
-  - ALM
+  uses:
+  - primary_smoke_alarm
+  - secondary_smoke_alarm
+  - fire_alarm
+  - supervisor_alarm

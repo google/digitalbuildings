@@ -12,22 +12,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-### ABSTRACT TYPES
+SDC_EXT-17-GUID:
+  type: HVAC/SDC_EXT
+  code: SDC_EXT-17
+  cloud_device_id: "foobar"
+  translation:
+    shade_extent_percentage_command: MISSING
 
-HS_STD:
-  id: "1623655005489725440"
-  description: "Standard horn strobe."
-  is_canonical: true
-  implements:
-  - HS
-  uses:
-  - run_status
-
-HS_AL:
-  id: "6601509182292099072"
-  description: "Horn strobe with alarm."
-  is_canonical: true
-  implements:
-  - HS
-  uses:
-  - emergency_alarm
+US-SEA-BLDG1-GUID:
+  type: FACILITIES/BUILDING
+  code: US-SEA-BLDG1

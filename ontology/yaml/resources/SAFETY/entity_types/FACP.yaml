@@ -34,30 +34,38 @@ FACP_FA2X:
   opt_uses:
   - panel_alarm
 
-FACP_ALM_PAS:
+FACP_AL_PAS:
   id: "10168360087169531904"
   description: "Fire alarm panel with Pre-action suppression."
   is_canonical: true
   implements:
   - FACP
-  - ALM
+  - AL
   uses:
+  - fire_alarm
+  - supervisor_alarm
   - water_flowrate_status
   - air_pressure_status
 
-FACP_ALM:
+FACP_AL:
   description: "Fire alarm panel with alarm."
   is_canonical: true
   implements:
   - FACP
-  - ALM
+  - AL
+  uses:
+  - fire_alarm
+  - supervisor_alarm
 
-FACP_FA2X_ALM_GS:
+FACP_FA2X_AL_GS:
   description: "Fire alarm panel with 2-level alarm and gas suppression."
   is_canonical: true
   implements:
   - FACP
   - FA2X
-  - ALM
+  - AL
   uses:
+  - primary_fire_alarm
+  - secondary_fire_alarm
+  - supervisor_alarm
   - gas_release_status

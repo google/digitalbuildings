@@ -26,12 +26,12 @@ WSR_STD:
   - water_flowrate_status
   - run_mode
 
-WSR_ALM:
+WSR_AL:
   description: "Standard water softener with alarms."
   is_canonical: true
   implements:
   - WSR
-  - ALM
+  - AL
   uses:
   - run_status
   opt_uses:

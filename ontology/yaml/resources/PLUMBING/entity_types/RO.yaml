@@ -19,6 +19,7 @@
 
 
 RO_STD:
+  id: "6134084799091965952"
   description: "Standard RO water system."
   is_canonical: true
   implements:

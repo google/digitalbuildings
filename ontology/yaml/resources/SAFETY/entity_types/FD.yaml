@@ -31,7 +31,3 @@ FD_SD:
   uses:
   - damper_percentage_sensor
   - damper_percentage_command
-  opt_uses:
-  - run_command
-  - run_status
- 

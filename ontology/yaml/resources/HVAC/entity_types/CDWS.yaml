@@ -148,9 +148,9 @@ CDWS_BYPVPM_CLPM_SWTC_WDPC_WFRM:
 ### Existing Non-standard Types ###
 ###################################
 
-CDWS_US_MTV_2081_1:
+CDWS_NONCANONICAL_1:
   id: "2724350807288840192"
-  description: "Non-standard 2081 CDWS"
+  description: "Non-standard CDWS"
   implements:
   - CDWS
   uses:
