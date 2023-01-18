@@ -19,7 +19,7 @@ Before starting the setup and installation process, please ensure that the
 dependencies are met:
 1. You are running **Python 3.9** or higher
 3. You have installed [virtualenv](https://pypi.org/project/virtualenv/)
-2. you have installed the [Google Cloud CLI](https://cloud.google.com/sdk/docs/install)
+2. You have installed the [Google Cloud CLI](https://cloud.google.com/sdk/docs/install)
 
 ### Set up a tooling environment
 
