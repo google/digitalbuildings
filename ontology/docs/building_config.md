@@ -400,7 +400,7 @@ FCU-123:
 ```
 --->
 <!--
-** metadata has not been implemented as of yet; this is an addition
+** metadata has not been implemented yet; this is an addition
    due to ABEL **
 ##### Metadata
 
@@ -524,7 +524,7 @@ grouped into two mutually exclusive parts:
    entities contained in the building configuration.
 
 2. Entity block(s) derived from a physical building; they model physical and
-   [virtual devices](#virutal-devices) within a building. For more information
+   [virtual devices](#virtual-devices) within a building. For more information
    please refer to the [learning modules](../../README.md#learning-modules).
 
 The configuration block, keyed by `CONFIG_METADATA`, currently allows for
