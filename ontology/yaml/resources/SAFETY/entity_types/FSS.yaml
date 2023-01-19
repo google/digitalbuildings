@@ -30,6 +30,7 @@ FSS_ASD_AL:
   implements:
   - FSS
   - ASD
+  - AL
   uses:
   - primary_smoke_alarm
   - secondary_smoke_alarm
