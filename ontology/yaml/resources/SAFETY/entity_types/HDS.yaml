@@ -17,11 +17,11 @@
 ########################
 
 
-SENSOR_H2M:
+HDS_H2M:
   description: "Zone air hydrogen level used for monitoring in battery rooms."
   is_canonical: true
   implements:
-  - /SENSOR # Inherits from global namespace
+  - HDS 
   - H2M
 
 

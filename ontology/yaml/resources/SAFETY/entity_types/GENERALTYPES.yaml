@@ -104,8 +104,8 @@ SSS:
   implements:
   - /SENSOR
 
-SENSOR:
-  description: "Safety Related Sensor ."
+HDS:
+  description: "Hydrogen Sensor ."
   is_abstract: true
   implements:
   - /SENSOR
