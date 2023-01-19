@@ -14,7 +14,7 @@ To install please follow the instructions below.
 
 ### First create a virtual env
 
-Create the virutal environment with `virtualenv` followed by the environment name, in this example: `tooling`
+Create the virtual environment with `virtualenv` followed by the environment name, in this example: `tooling`
 
 ```
 virtualenv tooling
