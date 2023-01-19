@@ -96,8 +96,6 @@ def _GetAllowedField(
     field_obj = entity_type.GetFieldFromConfigText(as_written_field_name)
     if field_obj:
       return entity_type_lib.BuildQualifiedField(field_obj)
-    else:
-      return None
 
   try:
     namespace, field_name = entity_type_lib.SeparateFieldNamespace(
@@ -109,6 +107,7 @@ def _GetAllowedField(
   std_field_name, _ = entity_type_lib.SeparateFieldIncrement(field_name)
   if universe.field_universe.IsFieldDefined(std_field_name, namespace):
     return namespace + '/' + as_written_field_name
+
   return None
 
 
@@ -213,15 +212,28 @@ class GraphValidator(object):
 
     for link_inst in entity.links:
       if link_inst.source not in self.entity_instances.keys():
-        if self.config_mode == _CONFIG_INIT or _CONFIG_UPDATE:
-          print(
-              f'[ERROR]\tEntity {entity.guid} ({entity.code}) links to an '
-              f'invalid source: {link_inst.source}. Check that this source '
-              'exists.'
-          )
-          is_valid = False
+        print(
+            f'[ERROR]\tEntity {entity.guid} ({entity.code}) links to an '
+            f'invalid source: {link_inst.source}. Check that this source '
+            'exists.'
+        )
+        is_valid = False
         continue
-      if (
+      # check that source entity contains target translation
+      if self.config_mode != _CONFIG_UPDATE:
+        source_entity = self.entity_instances[link_inst.source]
+        for source_field_name in link_inst.field_map.values():
+          if source_field_name not in source_entity.translation.keys():
+            print(
+                f'[ERROR]\tEntity {entity.guid} ({entity.code}) links to a'
+                f' source entity: {source_entity.guid} ({source_entity.code})'
+                ' that does not have the linked source field: '
+                f'{source_field_name}. Check that this field on source'
+                ' translation exists.'
+            )
+            is_valid = False
+            continue
+      elif (
           self.entity_instances[link_inst.source].operation
           == parse.EntityOperation.DELETE
       ):
@@ -365,6 +377,57 @@ class InstanceValidator(object):
       return True
     return False
 
+  def _IsUdmiCompliant(self, entity, ft: ft_lib.DimensionalValue) -> bool:
+    """Validates that a translation field is UDMI compliant.
+
+    Args:
+      entity: entity instance this field translation belongs to.
+      ft: field translation instance.
+
+    Returns:
+      true if translation field are UDMI compliant.
+    """
+    is_valid = True
+    if not _UDMI_PRESENT_VALUE_PATTERN.fullmatch(ft.raw_field_name):
+      print(
+          f'[ERROR]\tEntity {entity.guid} ({entity.code}) translates '
+          f'field "{ft.raw_field_name}" with a present value pattern '
+          'that does not conform to the UDMI pattern.'
+          f'"{_UDMI_PRESENT_VALUE_REGEX}".'
+      )
+      is_valid = False
+    if not _UDMI_UNIT_FIELD_PATTERN.fullmatch(ft.unit_field_name):
+      print(
+          f'[ERROR]\tEntity {entity.guid} ({entity.code}) translates '
+          f'field "{ft.unit_field_name}" with a unit field name pattern '
+          'that does not conform to UDMI pattern '
+          f'"{_UDMI_UNIT_FIELD_REGEX}".'
+      )
+      is_valid = False
+    return is_valid
+
+  def _IsAllMissingFields(self, entity: EntityInstance) -> bool:
+    """Validates that not all fields are marked as PresenceMode MISSING.
+
+    Args:
+      entity: EntityInstance to validate
+
+    Returns:
+      true if all translation fields are marked missing.
+    """
+    if all(
+        [
+            translation_field.mode == ft_lib.PresenceMode.MISSING
+            for translation_field in entity.translation.values()
+        ]
+    ):
+      print(
+          f'[ERROR]\tEntity {entity.guid} ({entity.code}) has all field '
+          'translations marked as MISSING. This is not allowed.'
+      )
+      return True
+    return False
+
   def _ValidateTranslation(
       self, entity: EntityInstance, is_udmi: bool = True
   ) -> bool:
@@ -393,17 +456,8 @@ class InstanceValidator(object):
     found_fields = {}
 
     # ensure that not all fields are marked as MISSING
-    if all(
-        [
-            translation_field.mode == ft_lib.PresenceMode.MISSING
-            for _, translation_field in entity.translation.items()
-        ]
-    ):
-      is_valid = False
-      print(
-          f'[ERROR]\tEntity {entity.guid} ({entity.code}) has all field '
-          'translations marked as MISSING. This is not allowed.'
-      )
+    if self._IsAllMissingFields(entity):
+      return False
 
     # Check that defined fields are in the type
     for as_written_field_name, ft in entity.translation.items():
@@ -494,22 +548,8 @@ class InstanceValidator(object):
 
       if isinstance(ft, ft_lib.DimensionalValue):
         if is_udmi:
-          if not _UDMI_PRESENT_VALUE_PATTERN.fullmatch(ft.raw_field_name):
-            print(
-                f'[ERROR]\tEntity {entity.guid} ({entity.code}) translates '
-                f'field "{ft.raw_field_name}" with a present value pattern '
-                'that does not conform to the UDMI pattern.'
-                f'"{_UDMI_PRESENT_VALUE_REGEX}".'
-            )
-            is_valid = False
-          if not _UDMI_UNIT_FIELD_PATTERN.fullmatch(ft.unit_field_name):
-            print(
-                f'[ERROR]\tEntity {entity.guid} ({entity.code}) translates '
-                f'field "{ft.unit_field_name}" with a unit field name pattern '
-                'that does not conform to UDMI pattern '
-                f'"{_UDMI_UNIT_FIELD_REGEX}".'
-            )
-            is_valid = False
+          is_valid = self._IsUdmiCompliant(entity, ft)
+
         for std_unit, raw_unit in ft.unit_mapping.items():
           if std_unit not in found_units:
             found_units[std_unit] = raw_unit
@@ -662,7 +702,7 @@ class InstanceValidator(object):
     """Validates an entity's links against the ontology universe.
 
     Logic checks the existence of both fields in the contology, additionally
-    checking source againt the type if the type is defined.
+    checking source against the type if the type is defined.
 
     Args:
       entity: EntityInstance to validate

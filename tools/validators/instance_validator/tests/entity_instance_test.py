@@ -772,6 +772,26 @@ class EntityInstanceTest(absltest.TestCase):
     for _, instance in entity_instances.items():
       self.assertTrue(combination_validator.Validate(instance))
 
+  def testInstance_MissingSourceFieldLink_Failure(self):
+    parsed, default_operation = _Helper(
+        [path.join(_TESTCASE_PATH, 'BAD', 'missing_link_in_source_entity.yaml')]
+    )
+
+    entity_instances = {}
+    for entity_guid, entity_parsed in parsed.items():
+      entity = entity_instance.EntityInstance.FromYaml(
+          entity_guid, entity_parsed, default_operation=default_operation
+      )
+      entity_instances[entity.guid] = entity
+    combination_validator = entity_instance.CombinationValidator(
+        self.config_universe, _INIT_CFG, entity_instances
+    )
+    invalid_instance = entity_instances.get(
+        'VIRTUAL-ENTITY-GUID'
+    )
+
+    self.assertFalse(combination_validator.Validate(invalid_instance))
+
   def testInstance_ValidLinkToPassthroughEntity_Success(self):
     parsed, default_operation = _Helper(
         [path.join(_TESTCASE_PATH, 'GOOD', 'links_passthrough.yaml')]
