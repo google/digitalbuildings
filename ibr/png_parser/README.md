@@ -4,7 +4,7 @@
     - Check if you have Bazel installed already using command `bazel --version`.
     - If no version number is shown, follow instruction [here](https://docs.bazel.build/versions/master/install.html).
 
-2. Compile the proto definition to python classes(Note: the compiled proto definition is already included in this repo. These instructures are only for your reference in case you would like to compiler your own proto definition.)
+2. Compile the proto definition to python classes(Note: the compiled proto definition is already included in this repo. These instructions are only for your reference in case you would like to compile your own proto definition.)
 	- move to current directory `cd digitalbuildings/ibr/png-parser`
 	- Install latest release of Protocol Compiler
 	    - Go to [Download Protocol Compiler](https://developers.google.com/protocol-buffers/docs/downloads)
