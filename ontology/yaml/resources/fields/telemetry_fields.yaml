@@ -1011,6 +1011,8 @@ literals:
   - ACTIVE
   - INACTIVE
 - panel_alarm
+  - ACTIVE
+  - INACTIVE
 - supply_air_flowrate_status:
   - ON
   - OFF
