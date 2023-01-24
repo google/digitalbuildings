@@ -86,6 +86,7 @@ SRC:
 OADM:
   id: "13985513714598543360"
   description: "Outside air damper monitoring."
+  is_abstract: true
   uses:
   - outside_air_damper_command
 
@@ -281,6 +282,17 @@ BPC:
   implements:
   - OPERATIONAL
 
+BPC2X:
+  id: "4764990512371335168"
+  description: "Building pressure control for two pressure sensors (stand-alone fan)."
+  is_abstract: true
+  uses:
+  - building_air_static_pressure_sensor_1
+  - building_air_static_pressure_sensor_2
+  - building_air_static_pressure_setpoint
+  implements:
+  - OPERATIONAL
+
 EDPM:
   id: "18075318737925308416"
   description: "Exhaust air damper percentage monitoring."
@@ -418,7 +430,7 @@ SFVSC:
   - supply_fan_run_time_accumulator
   - supply_fan_energy_accumulator
   - supply_fan_lost_power_alarm
-  - supply_fan_failed_alarm
+  - failed_supply_fan_alarm
   - control_mode
   uses:
   - supply_fan_run_command
@@ -437,7 +449,7 @@ DFVSC:
   - discharge_fan_speed_frequency_sensor
   - discharge_fan_speed_percentage_sensor
   - discharge_fan_lost_power_alarm
-  - discharge_fan_failed_alarm
+  - failed_discharge_fan_alarm
   - discharge_fan_voltage_sensor
   - discharge_fan_torque_sensor
   - discharge_fan_run_time_accumulator
@@ -596,7 +608,7 @@ DFSS:
   - discharge_fan_power_sensor
   - discharge_air_static_pressure_sensor
   - discharge_fan_lost_power_alarm
-  - discharge_fan_failed_alarm
+  - failed_discharge_fan_alarm
   - schedule_run_command
   - discharge_fan_run_time_accumulator
   - overload_discharge_fan_alarm
@@ -724,7 +736,7 @@ SFSS:
   - supply_fan_power_capacity
   - supply_fan_current_sensor
   - supply_fan_power_sensor
-  - supply_fan_failed_alarm
+  - failed_supply_fan_alarm
   - supply_fan_run_time_accumulator
   - supply_fan_run_mode
   uses:
@@ -743,6 +755,7 @@ RHM:
 RTM:
   id: "2924673029776605184"
   description: "Return air temperature monitoring"
+  is_abstract: true
   implements:
   - MONITORING
   opt_uses:
@@ -1098,7 +1111,7 @@ RHC:
   description: "Return air relative humidity control."
   is_abstract: true
   opt_uses:
-  - humidifier_failed_alarm
+  - failed_humidifier_alarm
   - high_return_air_relative_humidity_alarm
   - low_return_air_relative_humidity_alarm
   - humidifier_run_time_accumulator
@@ -1738,6 +1751,7 @@ DX2ZC2X:
 DXSC:
   id: "2530229830381731840"
   description: "Compressor run control on supply air side (STC)."
+  is_abstract: true
   opt_uses:
   - leaving_cooling_coil_temperature_sensor
   - cooling_thermal_power_capacity
@@ -1929,13 +1943,14 @@ DX5SC:
 DXRC:
   id: "5628706374012633088"
   description: "Compressor run control on return air side (RC)."
+  is_abstract: true
   opt_uses:
   - discharge_air_temperature_sensor
   - leaving_cooling_coil_temperature_sensor
   - cooling_thermal_power_capacity
   - cooling_percentage_command
   - compressor_speed_percentage_command
-  - compressor_failed_alarm
+  - failed_compressor_alarm
   - overload_compressor_alarm
   - compressor_run_time_accumulator
   - high_return_air_temperature_alarm
@@ -1951,6 +1966,7 @@ DXRC:
 DXDC:
   id: "5988994344202272768"
   description: "Compressor run control on discharge air side (DTC)."
+  is_abstract: true
   opt_uses:
   - leaving_cooling_coil_temperature_sensor
   - cooling_thermal_power_capacity
@@ -2240,6 +2256,7 @@ PHWSC:
   is_abstract: true
   opt_uses:
   - leaving_air_preheating_coil_temperature_sensor
+  - heating_request_count
   uses:
   - preheating_water_valve_percentage_command
   - supply_air_temperature_setpoint
@@ -2555,6 +2572,8 @@ ECON:
   - supply_air_temperature_sensor
   - outside_air_flowrate_sensor
   - outside_air_flowrate_setpoint
+  - outside_air_relative_humidity_sensor
+  - outside_air_damper_percentage_sensor
   - return_air_damper_percentage_command
   uses:
   - outside_air_temperature_sensor
@@ -2754,6 +2773,15 @@ SFM:
   is_abstract: true
   uses:
   - supply_air_flowrate_sensor
+  implements:
+  - MONITORING
+
+DFM:
+  id: "15288213991675920384"
+  description: "Discharge air flow monitoring."
+  is_abstract: true
+  uses:
+  - discharge_air_flowrate_sensor
   implements:
   - MONITORING
 
@@ -3844,7 +3872,7 @@ CHDXVSC:
   - compressor_voltage_sensor
   - compressor_lost_power_alarm
   - compressor_speed_frequency_sensor
-  - compressor_failed_alarm
+  - failed_compressor_alarm
  
 CDWFRM:
   id: "632877381119377408"
@@ -3913,7 +3941,7 @@ CHWVM:
   opt_uses:
   - cooling_thermal_power_capacity
   - chilled_water_flowrate_sensor
-  - chilled_water_valve_failed_alarm
+  - failed_chilled_water_valve_alarm
   uses:
   - chilled_water_valve_percentage_sensor
   - chilled_water_valve_percentage_command
@@ -4042,7 +4070,7 @@ DRPM:
   opt_uses:
   - water_low_level_status
   - water_high_level_status
-  - drain_pump_failed_alarm
+  - failed_drain_pump_alarm
   - input_motor_power_status
   uses:
   - drain_pump_run_status
@@ -4643,6 +4671,7 @@ RHDHS:
 CO2DFVSC:
   id: "4574242837138243584"
   description: "Carbon dioxide levels controlled by a variable speed discharge fan."
+  is_abstract: true
   uses:
   - zone_air_co2_concentration_sensor
   - zone_air_co2_concentration_setpoint
@@ -4653,6 +4682,7 @@ CO2DFVSC:
 CO2EFVSC:
   id: "8098956058392788992"
   description: "Carbon dioxide levels controlled by a variable speed exhaust fan."
+  is_abstract: true
   opt_uses:
   - exhaust_fan_speed_percentage_sensor
   uses:
@@ -4665,6 +4695,7 @@ CO2EFVSC:
 RACO2C:
   id: "15503353232859594752"
   description: "Returned air carbon dioxide levels controls."
+  is_abstract: true
   uses:
   - return_air_co2_concentration_sensor
   - return_air_co2_concentration_setpoint
@@ -5170,6 +5201,16 @@ DAIDC2X:
   implements:
   - MONITORING
 
+DAIDC:
+  id: "16510378340553588736"
+  description: "Discharge air isolation damper control and monitoring."
+  is_abstract: true
+  uses:
+  - discharge_air_isolation_damper_status
+  - discharge_air_isolation_damper_command
+  implements:
+  - MONITORING
+
 RAIDC4X:
   id: "3091164378989330432"
   description: "Return air isolation damper control and monitoring, where there are four separate, equal sets of dampers that operate in conjunction."
@@ -5297,7 +5338,7 @@ MSM:
   - high_discharge_fan_speed_status
   - low_discharge_fan_speed_status
   opt_uses:
-  - discharge_fan_failed_alarm
+  - failed_discharge_fan_alarm
  
 
 INVOPWM:

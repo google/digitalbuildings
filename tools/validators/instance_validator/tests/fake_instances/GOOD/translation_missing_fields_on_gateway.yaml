@@ -1,0 +1,18 @@
+bldg-guid:
+  type: FACILITIES/BUILDING
+  code: TEST-BLDG
+
+gateway-guid:
+  type: GATEWAYS/PASSTHROUGH
+  connections:
+    bldg-guid: CONTAINS
+  cloud_device_id: 12345
+  translation:
+    discharge_fan_voltage_sensor:
+      present_value: points.doas_1_voltage_sensor.present_value
+      units:
+        key: pointset.points.doas_1_voltage_sensor.units
+        values:
+          volts: V
+    discharge_fan_run_status: MISSING
+  code: TEST-GATEWAY

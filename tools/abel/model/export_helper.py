@@ -19,6 +19,7 @@ from googleapiclient.discovery import Resource
 from googleapiclient.errors import HttpError
 from strictyaml import as_document
 
+from model.constants import BC_MISSING
 from model.constants import BODY_VALUE_RANGE_KEY
 from model.constants import CONFIG_CLOUD_DEVICE_ID
 from model.constants import CONFIG_CODE
@@ -159,7 +160,7 @@ class BuildingConfigExport(object):
       entity: A ReportingEntity instance.
 
     Returns:
-      A dicitionary in Building Config format ready to be parsed into yaml.
+      A dictionary in Building Config format ready to be parsed into yaml.
     """
     reporting_entity_yaml = {
         CONFIG_CLOUD_DEVICE_ID: str(entity.cloud_device_id),
@@ -170,8 +171,10 @@ class BuildingConfigExport(object):
       reporting_entity_yaml[CONFIG_TRANSLATION] = {}
       for field in entity.translations:
         if field.reporting_entity_field_name:
-          reporting_entity_yaml[CONFIG_TRANSLATION].update(
-              {field.reporting_entity_field_name: self._TranslateField(field)})
+          reporting_entity_yaml[CONFIG_TRANSLATION].update({
+              field.reporting_entity_field_name:
+                  BC_MISSING if field.missing else self._TranslateField(field)
+          })
         else:
           reporting_entity_yaml[CONFIG_TRANSLATION].update(
               {field.standard_field_name: self._TranslateField(field)})
@@ -184,7 +187,7 @@ class BuildingConfigExport(object):
     """Returns a Building Config formatted virtual entity block dictionary.
 
     Args:
-      entity: A VirutalEntity instance.
+      entity: A VirtualEntity instance.
 
     Returns:
       A dicitionary formatted for Building Config ready to be parsed into yaml.

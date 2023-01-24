@@ -14,6 +14,7 @@
 """Command line argument parser for ABEL."""
 
 import argparse
+import os
 
 from model.constants import DEFAULT_TOKEN_PATH
 from validate.constants import DEFAULT_TIMEOUT
@@ -27,6 +28,14 @@ def ParseArgs() -> argparse.ArgumentParser:
   """
   parser = argparse.ArgumentParser(
       description='Instantiate an ABEL argument parser')
+
+  parser.add_argument(
+      '-m',
+      '--modified-ontology-types',
+      dest='modified_types_filepath',
+      required=False,
+      help='Filepath to modified type filepaths',
+      metavar='MODIFIED_TYPE_FILEPATHS')
 
   parser.add_argument(
       '-t',
@@ -76,5 +85,14 @@ def ParseArgs() -> argparse.ArgumentParser:
       default=DEFAULT_TIMEOUT,
       help='Timeout duration (in seconds) for telemetry validation test',
       metavar='timeout')
+
+  parser.add_argument(
+      '-d',
+      '--output-dir',
+      dest='output_dir',
+      required=False,
+      default=os.getcwd(),
+      help='Path to a directory for output files to be written to',
+      metavar='output-directory')
 
   return parser

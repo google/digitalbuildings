@@ -40,10 +40,10 @@ jobs:
             - 'tools/validators/ontology_validator/**'
           scoring:
             - 'tools/scoring/**'
-    - name: Set up Python 3.9
+    - name: Set up Python 3.10
       uses: actions/setup-python@v1
       with:
-        python-version: 3.9
+        python-version: '3.10'
     - name: Install Pylint
       run: |
         python -m pip install pylint

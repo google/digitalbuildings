@@ -20,4 +20,4 @@ SWITCHBOARD:
   - PANEL
   opt_uses: 
   - circuitbreaker_status
-  - circuitbreaker_failed_alarm
+  - failed_circuitbreaker_alarm

@@ -422,8 +422,6 @@ literals:
 ## Added on 2019/02/21
 - return_air_cooling_temperature_setpoint
 - return_air_heating_temperature_setpoint
-
-## Added on 2019/02/25 for US-MTV-45
 - condensing_fan_speed_percentage_command
 
 ## Added on 2019/02/27
@@ -442,6 +440,8 @@ literals:
 - east_exhaust_air_damper_percentage_command
 - exhaust_air_flowrate_sensor
 - exhaust_air_flowrate_setpoint
+- exhaust_air_differential_flowrate_sensor
+- exhaust_air_differential_flowrate_setpoint
 - fan_speed_mode:
   - OFF
   - LOW
@@ -582,7 +582,6 @@ literals:
 # Added on 2019/09/12 for Enlighted: generic light level sensor
 - illuminance_sensor
 
-# Added on 2019/09/26 for US-NYC-9TH
 - condensing_water_bypass_valve_percentage_command
 - condensing_water_valve_percentage_command
 
@@ -614,7 +613,7 @@ literals:
 - water_volume_accumulator
 - gas_temperature_sensor
 
-# Added 12/17/2019 for UK-LON-S2 FCU
+# Added 12/17/2019
 - cooling_water_valve_percentage_command
 - cooling_water_valve_percentage_sensor
 - cooling_water_flowrate_sensor
@@ -703,7 +702,7 @@ literals:
 - drain_pump_run_status:
   - ON
   - OFF
-- drain_pump_failed_alarm:
+- failed_drain_pump_alarm:
   - ACTIVE
   - INACTIVE
 - water_low_level_status:
@@ -716,9 +715,8 @@ literals:
   - ON
   - OFF
 
-# Added 10/5/20 for TW-NTC-TPKD
 # Additional functionality for alarms and status points.
-# For alarms, they will end in `alarm` and be two-state. 
+# For alarms, they will end in `alarm` and be two-state.
 # Status fields must be distinguished from alarms in that status is an objective qualitative state (flowing/not) whereas alarms are judgmental interpretations of such statuses to draww a conclusion about function (alarm/normal) 
 
 - average_supply_air_temperature_sensor
@@ -732,7 +730,7 @@ literals:
 - high_limit_supply_air_cooling_flowrate_setpoint
 - high_limit_supply_air_heating_flowrate_setpoint
 - low_limit_supply_air_ventilation_flowrate_setpoint
-- low_limit_supply_air_flowrate_setpoint 
+- low_limit_supply_air_flowrate_setpoint
 - high_limit_supply_air_flowrate_setpoint # used when the device doesn't necessarily provide a cooling max flow
 - schedule_run_command:
   - ON
@@ -746,7 +744,6 @@ literals:
   - ON
   - OFF
 
-# added for ETIQA
 - water_leak_cable_distance_sensor
 - discharge_air_linearvelocity_setpoint
 
@@ -778,7 +775,7 @@ literals:
 - power_status:
   - PRESENT
   - ABSENT
-  
+
 # New alarms using alarm as a point type, and existing alarms moved here
 # TODO (tsodorff): change these to ALARM/NORMAL after determining how this can be done safely to existing translations. 
 - fabric_protection_alarm:
@@ -793,7 +790,7 @@ literals:
 - master_alarm:
   - ACTIVE
   - INACTIVE
-- supply_fan_failed_alarm:
+- failed_supply_fan_alarm:
   - ACTIVE
   - INACTIVE
 - smoke_alarm:
@@ -829,16 +826,16 @@ literals:
 - refrigerant_low_pressure_status:
   - ACTIVE
   - INACTIVE
-- humidifier_failed_alarm:
+- failed_humidifier_alarm:
   - ACTIVE
   - INACTIVE
-- heat_exchange_failed_alarm:
+- failed_heat_exchange_alarm:
   - ACTIVE
   - INACTIVE
-- compressor_failed_alarm:
+- failed_compressor_alarm:
   - ACTIVE
   - INACTIVE
- 
+
 # New fields for lighting and fire systems.
 - motion_status:
   - PRESENT
@@ -852,7 +849,7 @@ literals:
 - max_battery_voltage_sensor
 - min_battery_temperature_sensor
 - min_battery_voltage_sensor
-- battery_failed_alarm:
+- failed_battery_alarm:
   - ACTIVE
   - INACTIVE
 - brightness_percentage_command
@@ -903,7 +900,7 @@ literals:
   - ACTIVE
   - INACTIVE
 - frequency_sensor
-- discharge_fan_failed_alarm:
+- failed_discharge_fan_alarm:
   - ACTIVE
   - INACTIVE
 - discharge_air_linearvelocity_sensor
@@ -932,7 +929,7 @@ literals:
   - MANUAL
 - source1_lost_power_alarm:
   - ACTIVE
-  - INACTIVE 
+  - INACTIVE
 - source2_lost_power_alarm:
   - ACTIVE
   - INACTIVE
@@ -968,19 +965,14 @@ literals:
   - POSITIONB
   - POSITIONC
 
-
-# Added for UK-LON-S2
-
 - zone_air_voc_percentage_setpoint
 - zone_air_voc_percentage_sensor
 
-# Added for US-NYC-9TH
 - zone_air_unoccupied_heating_temperature_setpoint
 - zone_air_occupied_heating_temperature_setpoint
 - mixed_air_relative_humidity_sensor
 - mixed_air_dewpoint_temperature_sensor
 
-# Added for TW
 - supply_air_isolation_damper_closed_status
 - supply_air_isolation_damper_open_status
 - control_status:
@@ -1003,7 +995,7 @@ literals:
 - low_return_air_relative_humidity_alarm:
   - ACTIVE
   - INACTIVE
-- chilled_water_valve_failed_alarm:
+- failed_chilled_water_valve_alarm:
   - ACTIVE
   - INACTIVE
 - discharge_fan_speed_frequency_command
@@ -1018,12 +1010,13 @@ literals:
 - supply_fan_lost_power_alarm:
   - ACTIVE
   - INACTIVE
-- panel_alarm
+- panel_alarm:
+  - ACTIVE
+  - INACTIVE
 - supply_air_flowrate_status:
   - ON
   - OFF
 
-# Added for ETIQA
 - return_air_co2_concentration_sensor
 - return_air_co2_concentration_setpoint
 
@@ -1031,6 +1024,9 @@ literals:
 - supervisor_control_mode:
   - ENABLED
   - DISABLED
+- supervisor_run_command:
+  - ON
+  - OFF
 - supervisor_supply_air_static_pressure_setpoint
 - supervisor_supply_air_temperature_setpoint
 - program_supply_air_static_pressure_setpoint
@@ -1040,7 +1036,6 @@ literals:
 - program_supply_water_temperature_setpoint
 - program_differential_pressure_setpoint
 
-#Additional fields for CH ZRH EURD - radiant panels
 - condensate_water_alarm:
   - ACTIVE
   - INACTIVE
@@ -1075,7 +1070,6 @@ literals:
 - heating_supply_water_isolation_valve_percentage_sensor
 - heating_return_water_isolation_valve_percentage_sensor
 
-#Additional fields for CH ZRH EURD - FCU's
 - maintenance_alarm:
   - ACTIVE
   - INACTIVE
@@ -1083,7 +1077,6 @@ literals:
   - ACTIVE
   - INACTIVE
 
-#Additional fields for CH ZRH EURD - Lighting
 - average_illuminance_sensor
 - illuminance_setpoint
 - scene_dimmer_percentage_command
@@ -1099,7 +1092,7 @@ literals:
 - dimmer_mode:
   - FADING
   - RAMPING
-- dimmer_failed_alarm:
+- failed_dimmer_alarm:
   - ACTIVE
   - INACTIVE
 - power_command:
@@ -1124,7 +1117,6 @@ literals:
   - BYPASS
   - STANDBY
 
-#Additional fields for CH ZRH EURD HVAC
 - bypass_air_damper_percentage_sensor
 - circulation_pump_speed_percentage_command
 - circulation_pump_speed_percentage_setpoint
@@ -1137,7 +1129,7 @@ literals:
 - exhaust_air_static_pressure_status:
   - PRESENT
   - ABSENT
-- exhaust_fan_failed_alarm:
+- failed_exhaust_fan_alarm:
   - ACTIVE
   - INACTIVE
 - return_air_damper_percentage_sensor
@@ -1167,7 +1159,7 @@ literals:
 - circuitbreaker_status:
   - ON
   - OFF
-- circuitbreaker_failed_alarm:
+- failed_circuitbreaker_alarm:
   - ACTIVE
   - INACTIVE
 
@@ -1303,8 +1295,8 @@ literals:
   - ACTIVE
   - INACTIVE
 
-# added for WM_WFR 
-- water_flowrate_sensor 
+# added for WM_WFR
+- water_flowrate_sensor
 # added for FAN_ST
 - air_pressure_sensor
 
@@ -1382,7 +1374,7 @@ literals:
 - bypass_status:
   - BYPASS
   - INACTIVE  
-- inverter_failed_alarm:
+- failed_inverter_alarm:
   - ACTIVE
   - INACTIVE
 
@@ -1428,7 +1420,7 @@ literals:
 - transducer_failed_alarm:
   - ACTIVE
   - INACTIVE
- 
+
 # Buffer tanks with temperature sensors
 - chilled_water_temperature_sensor
 - heating_water_temperature_sensor
@@ -1593,7 +1585,7 @@ literals:
   - OFF
 - low_discharge_fan_speed_status:
   - ON
-  - OFF 
+  - OFF
 
 
 ##Fields for generator##
@@ -1606,14 +1598,14 @@ literals:
 
 #Telemetry addition for MAU#
 
- 
-#Telemetry fields for APU(MAU)# 
+
+#Telemetry fields for APU(MAU)#
 - dc_voltage_sensor
 - ac_voltage_sensor
 - supply_fan_run_mode:
   - AUTO
-  - MANUAL 
-- supply_fan_run_time_accumulator  
+  - MANUAL
+- supply_fan_run_time_accumulator
 - exhaust_fan_run_mode:
   - AUTO
   - MANUAL
@@ -1669,12 +1661,15 @@ literals:
 - supply_fan_energy_accumulator
 - compressor_run_time_accumulator
 
-- total_lamp_failed_counter
-- total_wireless_device_failed_counter
-- total_communication_failed_counter
+- total_failed_lamp_counter
+- total_failed_wireless_device_counter
+- total_failed_communication_counter
 
 ## New fields for seismic detector
 - seismic_alarm
 
 ## New fields for RO water system
 - water_totaldissolvedsolids_concentration_sensor
+
+## New field for SDC
+- shade_extent_percentage_sensor

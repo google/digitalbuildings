@@ -16,9 +16,6 @@
 ### Canonical Types  ###
 ########################
 
-### FREEZER ###
-
-  
 FRZ_DXZTC_DFSS:
   id: "12904507967029641216"
   description: "Freezer with discharge fan run duration monitoring with compressor run control ."
@@ -41,4 +38,3 @@ FRZ_DFSS_DEFSS_DEFSTC_DXZTC:
   opt_uses:
   - run_time_accumulator
   - master_alarm
-  

@@ -28,6 +28,7 @@ from yamlformat.validator import presubmit_validate_types_lib
 def BuildUniverse(
     use_simplified_universe: bool = False,
     modified_types_filepath: str = None,
+    default_types_filepath: str = constants.ONTOLOGY_ROOT,
 ) -> presubmit_validate_types_lib.ConfigUniverse:
   """Generates the ontology universe.
 
@@ -45,8 +46,9 @@ def BuildUniverse(
   elif modified_types_filepath:
     modified_ontology_exists = path.exists(modified_types_filepath)
     if not modified_ontology_exists:
-      print(f'Specified filepath [{modified_types_filepath}] '
-            'modified ontology does not exist')
+      print(f'[ERROR]\tSpecified filepath [{modified_types_filepath}] does not '
+            f'exist.'
+            )
       return None
 
     modified_types_filepath = path.expanduser(modified_types_filepath)
@@ -54,17 +56,19 @@ def BuildUniverse(
     external_file_lib.Validate(
         filter_text=None,
         changed_directory=modified_types_filepath,
-        original_directory=constants.ONTOLOGY_ROOT,
+        original_directory=default_types_filepath,
         interactive=False)
     yaml_files = external_file_lib.RecursiveDirWalk(modified_types_filepath)
   else:
-    default_ontology_exists = path.exists(constants.ONTOLOGY_ROOT)
+    if default_types_filepath is None:
+      raise TypeError('default_types_filepath cannot be None.')
+    default_ontology_exists = path.exists(default_types_filepath)
     if not default_ontology_exists:
-      print(f'Specified filepath [{constants.ONTOLOGY_ROOT}] '
-            'for default ontology does not exist')
+      print(f'[ERROR]\tSpecified filepath [{constants.ONTOLOGY_ROOT}] for '
+            'default ontology does not exist.')
       return None
     # use default location for ontology files
-    yaml_files = external_file_lib.RecursiveDirWalk(constants.ONTOLOGY_ROOT)
+    yaml_files = external_file_lib.RecursiveDirWalk(default_types_filepath)
 
   if yaml_files:
     config = presubmit_validate_types_lib.SeparateConfigFiles(yaml_files)
@@ -74,7 +78,8 @@ def BuildUniverse(
       universe.GetEntityTypeNamespaces())
 
   if not namespace_validation.IsValid():
-    print('Universe is not valid')
+    print('[ERROR]\tOntology is not valid. Ensure your current branch of the '
+          'ontology is correct and error-free.')
     return None
 
   return universe

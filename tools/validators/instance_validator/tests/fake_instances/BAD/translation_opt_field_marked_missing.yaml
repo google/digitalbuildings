@@ -12,12 +12,23 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+FAN-1-GUID-FOR-OPT-FIELD-MARKED-MISSING:
+  type: HVAC/FAN_SS
+  code: FAN-1
+  cloud_device_id: "foobar"
+  translation:
+    run_command:
+      present_value: "points.run_command.present_value"
+      states:
+        ON: "on"
+        OFF: "off"
+    run_status:
+      present_value: "points.run_status.present_value"
+      states:
+        ON: "on"
+        OFF: "off"
+    power_sensor: MISSING
+
 US-SEA-BLDG1-GUID:
   type: FACILITIES/BUILDING
   code: US-SEA-BLDG1
-  translation:
-    zone_air_temperature_sensor:
-      present_value: "points.temp_1.present_value"
-      units:
-        values:
-          degrees_celsius: "degC"

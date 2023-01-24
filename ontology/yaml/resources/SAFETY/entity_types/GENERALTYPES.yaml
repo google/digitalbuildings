@@ -77,6 +77,7 @@ LDS:
   - EQUIPMENT
   
 RDT:
+  id: "15357456835946741760"
   description: "Rodent Repellent System"
   is_abstract: true
   implements:

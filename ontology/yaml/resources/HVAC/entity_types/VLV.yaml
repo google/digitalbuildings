@@ -41,7 +41,7 @@ VLV_CHWPVM:
   implements:
   - VLV
   - CHWPVM
-  
+
 VLV_HWPVM:
   id: "12747484512443695104"
   description: "Heating water pressure control valve."
@@ -49,7 +49,7 @@ VLV_HWPVM:
   implements:
   - VLV
   - HWPVM
-  
+
 VLV_CDWPVM:
   id: "8149309292898418688"
   description: "Condensing water pressure control valve."

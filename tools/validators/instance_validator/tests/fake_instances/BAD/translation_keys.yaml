@@ -27,5 +27,4 @@ US-SEA-BLDG1-GUID:
         key: "units"
         values:
           degrees_celsius: "degC"
-          degrees_fahrenheit: "degF"
       invalid_key: "invalid"

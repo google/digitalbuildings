@@ -49,6 +49,7 @@ from validate.connection import Connection as IVConnection
 from validate.entity_instance import EntityInstance
 from validate.field_translation import DimensionalValue
 from validate.field_translation import MultiStateValue
+from validate.field_translation import UndefinedField
 from validate.link import Link
 
 
@@ -245,6 +246,9 @@ class ModelBuilder(object):
         elif isinstance(field, MultiStateValue):
           self._MultistateValueToEntityField(
               reporting_entity_guid=entity_instance.guid, field=field)
+        elif isinstance(field, UndefinedField):
+          self._UndefinedFieldToEntityField(
+              reporting_entity_guid=entity_instance.guid, field=field)
 
     self.entities.append(entity)
     self.guid_to_entity_map.AddEntity(entity)
@@ -264,12 +268,13 @@ class ModelBuilder(object):
     entity_field = EntityField(
         standard_field_name=field.std_field_name,
         raw_field_name=field.raw_field_name,
+        missing=False,
         entity_guid=reporting_entity_guid,
         reporting_entity_guid=reporting_entity_guid)
 
     entity_field.units = Units(
         raw_unit_path=field.unit_field_name,
-        standard_to_raw_unit_map=field.unit_mappings)
+        standard_to_raw_unit_map=field.unit_mapping)
 
     self.fields.append(entity_field)
 
@@ -285,9 +290,25 @@ class ModelBuilder(object):
         EntityField(
             standard_field_name=field.std_field_name,
             raw_field_name=field.raw_field_name,
+            missing=False,
             entity_guid=reporting_entity_guid,
             reporting_entity_guid=reporting_entity_guid))
     self._TranslateStatesToABEL(entity_guid=reporting_entity_guid, field=field)
+
+  def _UndefinedFieldToEntityField(self, reporting_entity_guid: str,
+                                   field: UndefinedField) -> None:
+    """Maps UndefinedField attributes to ABEL EntityField instances.
+
+    Args:
+      reporting_entity_guid: Parent reporting entity guid.
+      field: An Instance Validator UndefinedField instance.
+    """
+    self.fields.append(
+        EntityField(
+            standard_field_name=field.std_field_name,
+            missing=True,
+            entity_guid=reporting_entity_guid,
+            reporting_entity_guid=reporting_entity_guid))
 
   def _TranslateStatesToABEL(self, entity_guid: str,
                              field: MultiStateValue) -> None:
