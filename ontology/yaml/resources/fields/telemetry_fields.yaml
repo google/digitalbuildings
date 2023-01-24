@@ -1010,9 +1010,7 @@ literals:
 - supply_fan_lost_power_alarm:
   - ACTIVE
   - INACTIVE
-- panel_alarm:
-  - ACTIVE
-  - INACTIVE
+- panel_alarm
 - supply_air_flowrate_status:
   - ON
   - OFF
