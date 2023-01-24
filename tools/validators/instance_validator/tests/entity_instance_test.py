@@ -649,8 +649,7 @@ class EntityInstanceTest(absltest.TestCase):
     entity_guid, entity = next(iter(parsed.items()))
 
     with self.assertRaises(
-        ValueError,
-        msg='States must have defined key and value pairs'
+        ValueError, msg='States must have defined key and value pairs'
     ):
       entity_instance.EntityInstance.FromYaml(
           entity_guid, entity, default_operation=default_operation

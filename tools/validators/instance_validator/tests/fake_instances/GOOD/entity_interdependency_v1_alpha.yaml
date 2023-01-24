@@ -65,7 +65,7 @@ PHYSICAL-ENTITY-GUID:
 PHYSICAL-ENTITY-2-GUID:
   type: HVAC/CHWS_WDT
   code: PHYSICAL-2-ENTITY
-  cloud_device_id: "2619178366980754"
+  cloud_device_id: "2619178366980755"
   etag: a56789
   translation:
     return_water_temperature_sensor:

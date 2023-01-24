@@ -1165,6 +1165,19 @@ class EntityInstance(findings_lib.Findings):
     self.entity_id = entity_id
     self.update_mask = update_mask
 
+  def __eq__(self, other):
+    return (
+        self.guid == other.guid
+        and self.code == other.code
+        and self.cloud_device_id == other.cloud_device_id
+        and self.operation == other.operation
+        and self.etag == other.etag
+        and self.entity_id == other.entity_id
+        and self.update_mask == other.update_mask
+        and self.namespace == other.namespace
+        and self.type_name == other.type_name
+    )
+
   @classmethod
   def FromYaml(
       cls,

@@ -209,6 +209,31 @@ class HandlerTest(absltest.TestCase):
 
     self.assertEqual(valid_entities, instances)
 
+  def testGraph_DoesNotAllowDuplicateCloudDeviceId(self):
+    parsed, default_operation = _Helper(
+        [
+            os.path.join(
+                _TESTCASE_PATH,
+                'BAD',
+                'entity_identical_cloud_device_ids.yaml',
+            )
+        ]
+    )
+    config_universe = generate_universe.BuildUniverse(
+        use_simplified_universe=True
+    )
+    entity_helper = handler.EntityHelper(config_universe)
+    parsed = dict(parsed)
+    instances = {}
+    for name, ei in parsed.items():
+      instances[name] = entity_instance.EntityInstance.FromYaml(
+          name, ei, default_operation=default_operation
+      )
+
+    valid_entities = entity_helper.Validate(instances, _INIT_CFG)
+    self.assertLen(valid_entities, 3)
+    self.assertFalse(entity_helper._IsDuplicateCDMIds(entities=instances))
+
 
 if __name__ == '__main__':
   absltest.main()

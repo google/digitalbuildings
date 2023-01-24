@@ -282,6 +282,35 @@ class EntityHelper(object):
     super().__init__()
     self.universe = universe
 
+  def _IsDuplicateCDMIds(
+      self, entities: Dict[str, entity_instance.EntityInstance]
+  ) -> bool:
+    """Returns whether a building config file has duplicate cloud device ids.
+
+    Args:
+      entities: Dict of entity guids to Entity instances.
+    """
+    cdm_dict = {}
+    duplicate_cdm_set = set()
+    for guid, entity in entities.items():
+      if entity.cloud_device_id:
+        if not cdm_dict.get(entity.cloud_device_id):
+          cdm_dict.update({entity.cloud_device_id: [guid]})
+        elif guid not in cdm_dict.get(entity.cloud_device_id):
+          cdm_dict.get(entity.cloud_device_id).append(guid)
+          duplicate_cdm_set.add(entity.cloud_device_id)
+    for cdm_id in duplicate_cdm_set:
+      print(
+          f'[ERROR]\tDuplicate cloud device id {cdm_id} used for multiple'
+          ' entities:'
+      )
+      for guid in cdm_dict.get(cdm_id):
+        print(f'{guid}: {entities.get(guid).code}')
+    if not duplicate_cdm_set:
+      return True
+    return False
+
+  # TODO(b/266449585): Implement logging package to log errors to log file.
   def Validate(
       self,
       entities: Dict[str, entity_instance.EntityInstance],
@@ -308,7 +337,7 @@ class EntityHelper(object):
         self.universe, config_mode, entities
     )
     alpha_interdep_helper = AlphaInterdependencyHelper()
-    is_valid = True
+    is_valid = self._IsDuplicateCDMIds(entities)
     for entity_guid, current_entity in entities.items():
       if not alpha_interdep_helper.ValidateAndUpdateState(
           current_entity.operation
