@@ -90,7 +90,7 @@ Cloud registry [device numeric identifier](../../../ontology/docs/building_confi
 
 `DBO Namespace` *string* **required**
 
-[Namespace](../../../ontology/docs/ontology.md#namespaces) for an entity as defined in the [Digital Buidings Ontology](../../../ontology/README.md). e.g. `HVAC`
+[Namespace](../../../ontology/docs/ontology.md#namespaces) for an entity as defined in the [Digital Buildings Ontology](../../../ontology/README.md). e.g. `HVAC`
 
 `DBO General Type` *string*
 
