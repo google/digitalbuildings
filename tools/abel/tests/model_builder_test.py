@@ -162,8 +162,8 @@ class ModelBuilderTest(absltest.TestCase):
             [
                 'CHWS-1',
                 'test_reporting_guid',
-                # Etag = None
-                None,
+                # Etag = 1234567
+                '1234567',
                 # Is reporting = True
                 True,
                 '2541901344105616',
@@ -208,8 +208,8 @@ class ModelBuilderTest(absltest.TestCase):
                  None, 'supply_water_temperature_sensor', 'TRUE', None
              ]],
         'States': [[
-            'Entity Code', 'Entity Guid', 'Reporting Entity Field',
-            'DBO Standard State', 'Raw State'
+            'Reporting Entity Code', 'Reporting Entity Guid',
+            'Reporting Entity Field', 'DBO Standard State', 'Raw State'
         ], ['CHWS-1', 'test_reporting_guid', 'fire_alarm_5', 'ON', 'TRUE']],
         'Connections': [[
             'Source Entity Code', 'Source Entity Guid', 'DBO Connection Type',
