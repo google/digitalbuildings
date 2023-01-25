@@ -65,4 +65,11 @@ UPS_IOBM_PPWM_UPSBM:
   - UPS
   - IOBM
   - PPWM
-  - UPSBM  
+  - UPSBM
+
+UPS_PWM:
+  description: "UPS with power monitoring."
+  is_canonical: true
+  implements:
+  - UPS
+  - PWM
