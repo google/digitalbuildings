@@ -222,6 +222,41 @@ class EntityInstanceTest(absltest.TestCase):
 
     self.assertFalse(self.init_validator.Validate(instance))
 
+  def testInstance_TranslationMissingStates_Fails(self):
+    parsed, default_operation = _Helper(
+        [
+            path.join(
+                _TESTCASE_PATH,
+                'BAD',
+                'translation_field_with_states_missing.yaml',
+            )
+        ]
+    )
+    entity_guid, entity = next(iter(parsed.items()))
+    instance = entity_instance.EntityInstance.FromYaml(
+        entity_guid, entity, default_operation=default_operation
+    )
+
+    self.assertFalse(self.init_validator.Validate(instance))
+
+  def testInstance_TranslationMissingUnits_Fails(self):
+    parsed, default_operation = _Helper(
+        [
+            path.join(
+                _TESTCASE_PATH,
+                'BAD',
+                'translation_field_with_units_missing.yaml',
+            )
+        ]
+    )
+    entity_guid, entity = next(iter(parsed.items()))
+
+    instance = entity_instance.EntityInstance.FromYaml(
+        entity_guid, entity, default_operation=default_operation
+    )
+
+    self.assertFalse(self.init_validator.Validate(instance))
+
   def testInstance_ValidMultipleTranslationWithFields_Success(self):
     parsed, default_operation = _Helper(
         [path.join(_TESTCASE_PATH, 'GOOD', 'building_translation_fields.yaml')]
@@ -768,7 +803,7 @@ class EntityInstanceTest(absltest.TestCase):
         self.config_universe, _INIT_CFG, entity_instances
     )
 
-    for _, instance in entity_instances.items():
+    for instance in entity_instances.values():
       self.assertTrue(combination_validator.Validate(instance))
 
   def testInstance_MissingSourceFieldLink_Failure(self):

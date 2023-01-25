@@ -500,6 +500,15 @@ class InstanceValidator(object):
     found_units = {}
     type_fields = entity_type.GetAllFields()
     for qualified_field_name, ft in found_fields.items():
+      is_valid = True
+
+      if isinstance(ft, ft_lib.NonDimensionalValue):
+        print(
+            f'[ERROR]\tEntity {entity.guid} ({entity.code}) defines field '
+            f'{qualified_field_name} but does not define units or states.'
+        )
+        is_valid = False
+
       if not self._FieldTranslationIsValid(qualified_field_name, ft, entity):
         is_valid = False
 
@@ -985,7 +994,7 @@ def _ParseTranslation(
         raise ValueError(
             'States and units are not allowed in the same field translation.'
         )
-      for _, value in ft[parse.STATES_KEY].items():
+      for value in ft[parse.STATES_KEY].values():
         if not value or value is None:
           raise ValueError(
               'States must have defined string key and value pairs'
@@ -1016,7 +1025,7 @@ def _ParseUnitsAndValueRange(
     raw_field_name: The raw field name for the field
 
   Returns:
-    A DimensionalValue object
+    A DimensionalValue object or None
   """
 
   if parse.UNITS_KEY in ft:
@@ -1113,6 +1122,59 @@ def _ParseLinks(links_body: List[Tuple[str, Any]]) -> Set[link.Link]:
   return links
 
 
+def _ParseOperationAndUpdateMask(
+    entity_yaml: Dict[str, Any], default_operation: parse.EntityOperation
+) -> Tuple[parse.EntityOperation, List[str]]:
+  """Helper method to parse the entity operation and update_mask (if present).
+
+  Args:
+    entity_yaml: yaml document containing entity data.
+    default_operation: a parse.EntityOpertion of ADD, EXPORT, DELETE, or UPDATE
+
+  Returns:
+    operation: entity operation - ADD, EXPORT, DELETE, UPDATE
+    update_mask: list of entity attributes for to modify if operation is UPDATE
+
+  Raises:
+    ValueError: if update_mask is present with any operation other than UPDATE
+  """
+
+  update_mask = None
+  # prepare flags
+  mask_present = parse.UPDATE_MASK_KEY in entity_yaml
+  operation_present = parse.ENTITY_OPERATION_KEY in entity_yaml
+
+  # case 1: need to check that the mask and operation match
+  if mask_present and operation_present:
+    # validate that operation is UPDATE if update_mask is present
+    if (
+        parse.EntityOperation.FromString(
+            entity_yaml[parse.ENTITY_OPERATION_KEY]
+        )
+        != parse.EntityOperation.UPDATE
+    ):
+      raise ValueError(
+          'Only specify UPDATE operation when "update_mask" is present.'
+      )
+    update_mask = entity_yaml[parse.UPDATE_MASK_KEY]
+    operation = parse.EntityOperation.UPDATE
+  # case 2: update_mask implies update operation
+  elif mask_present:
+    update_mask = entity_yaml[parse.UPDATE_MASK_KEY]
+    operation = parse.EntityOperation.UPDATE
+  # case 3: no update_mask; check yaml block if operation is specified
+  elif operation_present:
+    operation = parse.EntityOperation.FromString(
+        entity_yaml[parse.ENTITY_OPERATION_KEY]
+    )
+  # case 4: no update_mask or operation in entity block; default to ConfigMode
+  # GetDefaultOperation
+  else:
+    operation = default_operation
+
+  return operation, update_mask
+
+
 # TODO(nkilmer): move parsing and validation logic in this class into subclasses
 # TODO(berkoben): Change name to Entity
 # TODO(berkoben): Extract operation and etag to a wrapper class
@@ -1199,38 +1261,9 @@ class EntityInstance(findings_lib.Findings):
       ValueError: if an invalid combination of "code" and "guid" are in
         entity_yaml.
     """
-    update_mask = None
-    # prepare flags
-    mask_present = parse.UPDATE_MASK_KEY in entity_yaml
-    operation_present = parse.ENTITY_OPERATION_KEY in entity_yaml
-
-    # case 1: need to check that the mask and operation match
-    if mask_present and operation_present:
-      # validate that operation is UPDATE if update_mask is present
-      if (
-          parse.EntityOperation.FromString(
-              entity_yaml[parse.ENTITY_OPERATION_KEY]
-          )
-          != parse.EntityOperation.UPDATE
-      ):
-        raise ValueError(
-            'Only specify UPDATE operation when "update_mask" is present.'
-        )
-      update_mask = entity_yaml[parse.UPDATE_MASK_KEY]
-      operation = parse.EntityOperation.UPDATE
-    # case 2: update_mask implies update operation
-    elif mask_present:
-      update_mask = entity_yaml[parse.UPDATE_MASK_KEY]
-      operation = parse.EntityOperation.UPDATE
-    # case 3: no update_mask; check yaml block if operation is specified
-    elif operation_present:
-      operation = parse.EntityOperation.FromString(
-          entity_yaml[parse.ENTITY_OPERATION_KEY]
-      )
-    # case 4: no update_mask or operation in entity block; default to ConfigMode
-    # GetDefaultOperation
-    else:
-      operation = default_operation
+    operation, update_mask = _ParseOperationAndUpdateMask(
+        entity_yaml, default_operation
+    )
 
     # we require that entities be keyed by guid
     code = None
