@@ -103,7 +103,7 @@ def _MergeSchemas(first: Dict[syaml.ScalarValidator, syaml.Validator],
 
 
 #### Public Text parsing Constants ####
-ENTITY_ID_KEY = 'id' # deprecated; kept for legacy reasons
+ENTITY_ID_KEY = 'id'  # deprecated; kept for legacy reasons
 ENTITY_GUID_KEY = 'guid'
 ENTITY_CODE_KEY = 'code'
 ENTITY_CLOUD_DEVICE_ID_KEY = 'cloud_device_id'

@@ -12,6 +12,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+########################
+### Canonical Types  ###
+########################
+
 HDS_STD:
   description: "Standard Hydrogen sensor."
   implements:
@@ -20,3 +24,11 @@ HDS_STD:
   uses:
   - particle_concentration_sensor
   - particle_concentration_alarm
+
+HDS_H2M:
+  description: "Zone air hydrogen level used for monitoring in battery rooms."
+  is_canonical: true
+  implements:
+  - HDS 
+  - H2M
+

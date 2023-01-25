@@ -19,23 +19,36 @@ specfied timeout is reached. Current version only supports UDMI payloads.
 """
 
 import threading
+from typing import Dict
 
 from validate import field_translation as ft_lib
-from validate import telemetry
 from validate import message_filters
-from validate import telemetry_validation_reporting as tvr
+from validate import telemetry
+from validate import telemetry_validation_report as tvr
 
 DEVICE_ID = telemetry.DEVICE_ID
+DEVICE_NUM_ID = telemetry.DEVICE_NUM_ID
+GUID = 'guid'
 
 
 class TelemetryValidator(object):
   """Validates telemetry messages against a building config file.
 
-  Attributes;
-    entities: a dict with entity_name as a key and EntityInstance as value.
-    timeout: the max time the validator must read messages from pubsub.
-    is_udmi: true/false treat telemetry stream as UDMI
-    callback: the method called by the pubsub listener upon receiving a msg.
+  Attributes:
+    entities_with_translation: Mapping of entity codes to an EntityInstance
+      instances. that map 1:1 from a building config to a telemetry message.
+    timeout: The max time the validator must read messages from pubsub.
+    callback: The method called by the pubsub listener upon receiving a msg.
+    is_udmi: Flag to indicate whether telemtry payloads should conform to the
+      UDMI standard.
+    validated_entities: Map of entity guid to entity code Entities that have
+      been run through ValidateMessage() and passed.
+    timer: Validation timeout timer.
+    invalid_message_blocks: List of TelemetryMessageValidationBlock instances
+      for invalid pubsub messages.
+    extra_entities: Mapping of entity guids to entity codes for entities
+      reported in a tlemetry payload but not recorded in the building config
+      file being validated.
   """
 
   def __init__(self, entities, timeout, is_udmi, callback):
@@ -44,6 +57,8 @@ class TelemetryValidator(object):
     Args:
      entities: EntityInstance dictionary
      timeout: validation timeout duration in seconds
+     is_udmi: Flag to indicate whether telemtry payloads should conform to the
+       UDMI standard.
      callback: callback function to be called either because messages for all
        entities were seen or because the timeout duration was reached
     """
@@ -58,11 +73,20 @@ class TelemetryValidator(object):
     self.callback = callback
     self.is_udmi = is_udmi
     self.validated_entities = {}
-    # TODO(charbull): refactor by having on validation_report object instead
-    #  of two: warning and errors
-    self._validation_errors = []
-    self._validation_warnings = []
     self._timer: threading.Timer = None
+    self._invalid_message_blocks = []
+    self._extra_entities = {}
+
+  def AddInvalidMessageBlock(self, validation_block):
+    self._invalid_message_blocks.append(validation_block)
+
+  def GetInvalidMessageBlocks(self):
+    """Returns list of TelemetryMessageValidationBlock for invalid messages.
+
+    A TelemetryMessageValidationBlock instance is a container for validations
+    performed on a pubsub message.
+    """
+    return self._invalid_message_blocks
 
   def StartTimer(self):
     """Starts the validation timeout timer."""
@@ -77,73 +101,98 @@ class TelemetryValidator(object):
       self._timer = None
 
   def AllEntitiesValidated(self):
-    """Returns true if a message was received for every entity."""
+    """True if all enities in a building config have been validated.
+
+    Returns true if a valid telemetry message was received for every entity in a
+    building configuration file.
+    """
     return len(self.entities_with_translation) == len(self.validated_entities)
 
-  def GetUnvalidatedEntityNames(self):
-    """Returns a set of entities that have not been validated."""
-    return set(self.entities_with_translation.keys()) - set(
-        self.validated_entities.keys())
+  def GetUnvalidatedEntities(self) -> Dict[str, str]:
+    """Returns a mapping of entity_guid to entity_code
+
+    Entities in a building config file that do not map to a device in a pubsub
+    telemetry stream.
+    """
+    unvalidated_entities = self.entities_with_translation.copy()
+    for (
+        validated_entity_guid,
+        validated_entity_code,
+    ) in self.validated_entities.items():
+      try:
+        unvalidated_entities.pop(validated_entity_code)
+      except KeyError:
+        self._extra_entities.update(
+            {validated_entity_guid: validated_entity_code}
+        )
+        continue
+    return {
+        entity.guid: entity_code
+        for entity_code, entity in unvalidated_entities.items()
+    }
+
+  def GetExtraEntities(self) -> Dict[str, str]:
+    """Returns a mapping of entity_guid to entity_code
+
+    entities are reported in a pubsub payload but are not present in the
+    building config being validated.
+    """
+    return self._extra_entities
 
   def CallbackIfCompleted(self):
     """Checks if all entities have been validated, and calls the callback."""
     if self.AllEntitiesValidated():
       self.callback(self)
 
-  def AddError(self, error):
-    """Adds a validation error."""
-    self._validation_errors.append(error)
-
-  def GetErrors(self):
-    """Returns all validation errors."""
-    return self._validation_errors
-
-  def AddWarning(self, warning):
-    """Adds a validation Warning."""
-    self._validation_warnings.append(warning)
-
-  def GetWarnings(self):
-    """Returns all validation warnings."""
-    return self._validation_warnings
-
   def ValidateMessage(self, message):
     """Validates a telemetry message.
 
     Args:
-      message: the telemetry message to validate.
-
-    Adds all validation errors for the message to a list of all errors
-    discovered by this validator.
+      message: the telemetry message to validate.  Adds all validation errors
+        for the message to a list of all errors and warnings discovered by this
+        validator.
     """
 
-    # UDMI Pub/Sub streams include messages which aren't telemetry, silently
-    # ignore these if validator configured with --udmi flag
-    if self.is_udmi and not message_filters.Udmi.telemetry(message.attributes):
-      message.ack()
-      return
-
     tele = telemetry.Telemetry(message)
-    entity_name = tele.attributes[DEVICE_ID]
+    entity_code = tele.attributes[DEVICE_ID]
+    entity_guid = tele.attributes[DEVICE_NUM_ID]
+    message_timestamp = tele.timestamp
+    message_version = tele.version
 
     # Telemetry message received for an entity not in building config
-    if entity_name not in self.entities_with_translation.keys():
-      self.AddWarning(
-          tvr.TelemetryReportPoint(
-              entity_name, None, 'Telemetry message received for an entity not '
-              'in building config', tvr.TelemetryReportPointType.WARNING))
+    if entity_code not in self.entities_with_translation.keys():
+      self._extra_entities.update({entity_guid: entity_code})
       message.ack()
       return
 
-    if entity_name in self.validated_entities:
+    # Telemetry message received for a device that's already been validated.
+    if entity_guid in self.validated_entities:
       # Already validated telemetry for this entity,
       # so the message can be skipped.
       message.ack()
       return
-    self.validated_entities[entity_name] = True
+    self.validated_entities.update({entity_guid: entity_code})
 
-    entity = self.entities_with_translation[entity_name]
+    entity = self.entities_with_translation[entity_code]
 
-    print(f'[INFO]\tValidating telemetry message for entity {entity_name}')
+    validation_block = tvr.TelemetryMessageValidationBlock(
+        guid=None,
+        code=entity_code,
+        timestamp=message_timestamp,
+        version=message_version,
+        expected_points=entity.translation.values(),
+    )
+
+    # UDMI Pub/Sub streams could include messages which aren't telemetry
+    # Raise a warning for devices that are sending non-udmi compliant payloads
+    if self.is_udmi and not message_filters.Udmi.telemetry(message.attributes):
+      validation_block.description = (
+          f'Message for {entity_code} does not conform to UDMI standard.'
+      )
+      message.ack()
+      return
+
+    print(f'Validating telemetry message for entity: {entity_code}')
     point_full_paths = {
         f'points.{key}.present_value': key for key in tele.points
     }
@@ -152,53 +201,27 @@ class TelemetryValidator(object):
         continue
       if field_translation.raw_field_name not in point_full_paths:
         if not tele.is_partial:
-          self.AddError(
-              tvr.TelemetryReportPoint(entity_name,
-                                       field_translation.raw_field_name,
-                                       'Field missing from telemetry message',
-                                       tvr.TelemetryReportPointType.ERROR))
+          validation_block.AddMissingPoint(field_translation.raw_field_name)
         continue
+
       point = tele.points[point_full_paths[field_translation.raw_field_name]]
       pv = point.present_value
+
       if pv is None:
-        if isinstance(field_translation, ft_lib.MultiStateValue):
-          self.AddError(
-              tvr.TelemetryReportPoint(
-                  entity_name, field_translation.raw_field_name,
-                  f'Missing state in telemetry message: {pv}',
-                  tvr.TelemetryReportPointType.ERROR))
-        elif isinstance(field_translation, ft_lib.DimensionalValue):
-          self.AddError(
-              tvr.TelemetryReportPoint(
-                  entity_name, field_translation.raw_field_name,
-                  f'Missing number in telemetry message: {pv}',
-                  tvr.TelemetryReportPointType.ERROR))
-        else:
-          self.AddError(
-              tvr.TelemetryReportPoint(
-                  entity_name, field_translation.raw_field_name,
-                  'Present value missing from telemetry message',
-                  tvr.TelemetryReportPointType.ERROR))
-        continue
+        validation_block.AddMissingPresentValue(point=point)
 
-      if isinstance(field_translation, ft_lib.MultiStateValue):
+      elif isinstance(field_translation, ft_lib.MultiStateValue):
         if pv not in field_translation.raw_values:
-          self.AddError(
-              tvr.TelemetryReportPoint(
-                  entity_name, field_translation.raw_field_name,
-                  f'Unmapped state in telemetry message: {pv}',
-                  tvr.TelemetryReportPointType.ERROR))
-
+          validation_block.AddUnmappedState(state=pv, point=point)
           continue
 
-      if isinstance(field_translation,
-                    ft_lib.DimensionalValue) and not self.ValueIsNumeric(pv):
-        self.AddError(
-            tvr.TelemetryReportPoint(
-                entity_name, field_translation.raw_field_name,
-                f'Invalid number in telemetry message: {pv}',
-                tvr.TelemetryReportPointType.ERROR))
+      elif isinstance(
+          field_translation, ft_lib.DimensionalValue
+      ) and not self.ValueIsNumeric(pv):
+        validation_block.AddInvalidDimensionalValue(value=pv, point=point)
 
+    if not validation_block.valid:
+      self.AddInvalidMessageBlock(validation_block)
     message.ack()
     self.CallbackIfCompleted()
 
