@@ -140,7 +140,7 @@ class ModelBuilder(object):
           entity.AddConnection(connection)
       for field in self.fields:
         for state in self.states:
-          if state.entity_guid == guid:
+          if state.reporting_entity_guid == guid:
             if state.standard_field_name == field.reporting_entity_field_name:
               field.AddState(state)
             elif state.standard_field_name == field.standard_field_name:
@@ -198,7 +198,7 @@ class ModelBuilder(object):
     """
     for state_entry in state_entries:
       state_entry[BC_GUID] = self.guid_to_entity_map.GetEntityGuidByCode(
-          state_entry[ENTITY_CODE])
+          state_entry[REPORTING_ENTITY_CODE])
       self.states.append(State.FromDict(state_entry))
 
   def LoadConnections(self, connection_entries: List[Dict[str, str]]) -> None:
@@ -322,7 +322,7 @@ class ModelBuilder(object):
       self.states.append(
           State(
               standard_field_name=field.std_field_name,
-              entity_guid=entity_guid,
+              reporting_entity_guid=entity_guid,
               standard_state=std_state_value,
               raw_state=raw_state_value))
 
