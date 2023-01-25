@@ -12,22 +12,20 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Helper classes for filtering messages"""
+"""Helper classes for filtering messages."""
 
-class Udmi():
-  """ Helper functions for filtering UDMI messages based on message and
-      attributes
-  """
+
+class Udmi:
+  """Helper functions for filtering UDMI messages attributes."""
 
   SUB_FOLDER = 'subFolder'
   SUB_TYPE = 'subType'
   STATE = 'state'
   POINTSET = 'pointset'
 
-  @staticmethod
-  def telemetry(attributes):
-    """ Checks if a PubSub message is a UDMI Telemetry (pointset event) message
-    based on message attributes
+  @classmethod
+  def telemetry(cls, attributes):
+    """Checks if a PubSub message is a UDMI Telemetry (pointset event) message.
 
     Args:
       attributes: PubSub message attributes
@@ -35,7 +33,9 @@ class Udmi():
     Returns:
       true/false if message type is UDMI telemetry
     """
-    if (attributes.get(Udmi.SUB_FOLDER) == Udmi.POINTSET
-      and attributes.get(Udmi.SUB_TYPE) != Udmi.STATE):
+    if (
+        attributes.get(Udmi.SUB_FOLDER) == Udmi.POINTSET
+        and attributes.get(Udmi.SUB_TYPE) != Udmi.STATE
+    ):
       return True
     return False

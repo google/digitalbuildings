@@ -550,6 +550,9 @@ SS:
   - current_sensor
   - power_sensor
   - run_time_accumulator
+  - failed_alarm
+  - lost_power_alarm
+  - control_mode
 
 SSPC:
   id: "10526749200778002432"
