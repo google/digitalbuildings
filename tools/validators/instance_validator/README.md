@@ -15,7 +15,7 @@ You can run the command with just the version flag (e.g. `python --version`) to 
 
 ### First create a virtual env
 
-Create the virutal environment with `virtualenv` followed by the environment name, in this example: `tooling`
+Create the virtual environment with `virtualenv` followed by the environment name, in this example: `tooling`
 
 ```
 virtualenv tooling
@@ -69,7 +69,7 @@ Note: as of the current development stage, you must clone the entire repository 
 The validator supports a telemetry validation mode. When this mode is enabled, the validator will listen on a provided pubsub subscription for telemetry messages, and validate the message contents against the instance configuration. It is recommended that you first use the instance validator with telemetry validation mode disabled, and then enable it after that passes.
 
 If you would like to use the telemetry validation mode, you must provide the `--subscription` parameter, and you must either:
-- Have the both the `gcloud` CLI installed and configured using `gcloud init` using an appropiate project, and [`gcloud application-default` credentials](https://cloud.google.com/sdk/gcloud/reference/auth/application-default) setup with an account which has adequate permissions to access the given subscription
+- Have the both the `gcloud` CLI installed and configured using `gcloud init` using an appropriate project, and [`gcloud application-default` credentials](https://cloud.google.com/sdk/gcloud/reference/auth/application-default) setup with an account which has adequate permissions to access the given subscription
 - Provide a `--service-account` parameter when running instance_validator.py. Failure to provide both of these parameters will result in early termination of the validator and an error message. If you do not provide either parameter, the validator will run with telemetry validation mode disabled.
 
 **NOTE** The service account key and subscription are provided by the Google team. Please reach out to your IoT TPM for guidance.
@@ -82,7 +82,9 @@ The `--service-account` parameter value should be a path to a service account ke
 
 `--timeout`: The timeout duration in seconds for the telemetry validation test. The default value is 600 seconds, or 10 minutes. If this time limit is exceeded before the validator receives a test pubsub message for each of the entities configured in the given instance config file, the test will fail with an error and report the entities that were not heard from.
 
-`--report-filename`: If provided, errors from the telemetry validation test will be written to this report file. Otherwise, errors will be written to stdout.
+`--report-filename`: If provided, errors from the telemetry validation test will be written to this report file. Otherwise, errors will be written to the console.
+
+Running telemetry validation will also output a machine-readable log of the validation performed on a set of devices. This log will be output as `telemetry_validation_log.json` in the current working directory.
 
 ### Instance Validator Workflow
 
@@ -137,7 +139,7 @@ validation logic and cause the validator to exit prematurely because the instanc
               degrees_celsius: "degC"
               degrees_fahrenheit: "degF"
 
-**Warnings** on the other hand expose inconsistencies in the content of an entity block but do not cause the validator to fail since the core elements of what make an entity block readable are still present. For example, if the fields defined in `translation` or `links` do not align with the fields for the entity's type as defined in [Digital Builings Ontology](https://github.com/google/digitalbuildings/tree/master/ontology/yaml), then the validator will warn the user it is not a valid entity.
+**Warnings** on the other hand expose inconsistencies in the content of an entity block but do not cause the validator to fail since the core elements of what make an entity block readable are still present. For example, if the fields defined in `translation` or `links` do not align with the fields for the entity's type as defined in [Digital Buildings Ontology](https://github.com/google/digitalbuildings/tree/master/ontology/yaml), then the validator will warn the user it is not a valid entity.
 
     The following entity block would only expose a warning because these are not the fields for VAV_SD_DSP as defined in DBO:
 
