@@ -420,6 +420,14 @@ VAV_CO2C_PDSCV:
   - CO2C
   - PDSCV
 
+VAV_CO2CDSP_PDSCV:
+  description: "Discharge control VAV with dual setpoint CO2 regulation and damper percentage monitoring"
+  is_canonical: true
+  implements:
+  - VAV
+  - CO2CDSP
+  - PDSCV
+
 VAV_RD:
   id: "2714959878476005376"
   description: "Return control VAV with air flow setpoint control"
