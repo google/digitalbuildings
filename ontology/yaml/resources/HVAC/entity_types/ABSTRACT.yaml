@@ -6415,7 +6415,7 @@ EFHLC:
   - low_exhaust_fan_speed_command
   - low_exhaust_fan_speed_status
   implements:
-  - OPERATIONALM
+  - OPERATIONAL
 
 
 SWCM:
