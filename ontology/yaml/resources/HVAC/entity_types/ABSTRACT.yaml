@@ -21,7 +21,7 @@
 
 SD:
   id: "11449987124388954112"
-  description: Single duct VAV type, with basic airflow control.
+  description: "Single duct VAV type, with basic airflow control."
   is_abstract: true
   opt_uses:
   - cooling_thermal_power_capacity
@@ -53,7 +53,7 @@ RDM:
 
 DD:
   id: "8927971333061476352"
-  description: Dual duct flow control (hot deck, cold deck).
+  description: "Dual duct flow control (hot deck, cold deck)."
   is_abstract: true
   opt_uses:
   - cooling_thermal_power_capacity
@@ -87,7 +87,7 @@ SRC:
 # Not deprecated but probably not useful
 OADM:
   id: "13985513714598543360"
-  description: Outside air damper monitoring.
+  description: "Outside air damper monitoring."
   is_abstract: true
   uses:
   - outside_air_damper_command
@@ -95,7 +95,7 @@ OADM:
 
 MOAFC:
   id: "1519549946037010432"
-  description: Minimum (ventilation) outside air flow control.
+  description: "Minimum (ventilation) outside air flow control."
   is_abstract: true
   opt_uses:
   - economizer_mode
@@ -109,7 +109,7 @@ MOAFC:
 
 OAFC:
   id: "12724505818934804480"
-  description: Outside Air Flow Control
+  description: "Outside Air Flow Control"
   is_abstract: true
   opt_uses:
   - economizer_mode
@@ -125,7 +125,7 @@ OAFC:
 
 ZTM:
   id: "5662861603217866752"
-  description: Zone temperature monitoring.
+  description: "Zone temperature monitoring."
   is_abstract: true
   opt_uses:
   - discharge_air_temperature_sensor
@@ -141,7 +141,7 @@ ZTM:
 
 REFM:
   id: "18151343369916252160"
-  description: Refrigerant leak monitoring.
+  description: "Refrigerant leak monitoring."
   is_abstract: true
   implements:
   - MONITORING
@@ -151,7 +151,7 @@ REFM:
 
 CSP:
   id: "2456298668530073600"
-  description: Single cooling setpoint control (IDF room typically).
+  description: "Single cooling setpoint control (IDF room typically)."
   is_abstract: true
   implements:
   - OPERATIONAL
@@ -170,7 +170,7 @@ CSP:
 
 ZTC:
   id: "10742921982891786240"
-  description: Single control setpoint with deadband.
+  description: "Single control setpoint with deadband."
   is_abstract: true
   implements:
   - OPERATIONAL
@@ -187,7 +187,7 @@ ZTC:
 
 DSARC:
   id: "9767289031682424832"
-  description: AHU dual supply air reset control.
+  description: "AHU dual supply air reset control."
   is_abstract: true
   opt_uses:
   - heating_request_count
@@ -204,7 +204,7 @@ DSARC:
 
 DFMSS:
   id: "15946227720434745344"
-  description: Discharge fan Start Stop with uneven statuses.
+  description: "Discharge fan Start Stop with uneven statuses."
   is_abstract: true
   implements:
   - OPERATIONAL
@@ -223,7 +223,7 @@ DFMSS:
 
 DX2RC:
   id: "14529282687673303040"
-  description: Compressor run control on retun side (RC).
+  description: "Compressor run control on retun side (RC)."
   is_abstract: true
   opt_uses:
   - compressor_speed_percentage_command
@@ -250,7 +250,7 @@ DX2RC:
 
 DFSMC:
   id: "2774887660236308480"
-  description: Discharge fan multi-speed control.
+  description: "Discharge fan multi-speed control."
   is_abstract: true
   uses:
   - discharge_fan_run_command
@@ -259,8 +259,8 @@ DFSMC:
 
 DSP:
   id: "8112819800507416576"
-  description: Dual setpoint control (heating/cooling thresholds with deadband in
-    between).
+  description: "Dual setpoint control (heating/cooling thresholds with deadband in
+    between)."
   is_abstract: true
   implements:
   - OPERATIONAL
@@ -279,8 +279,8 @@ DSP:
 
 DDSP:
   id: "15044396188704964608"
-  description: Dual setpoint control (heating/cooling thresholds with deadband in
-    between) with two zone temp sensors.
+  description: "Dual setpoint control (heating/cooling thresholds with deadband in
+    between) with two zone temp sensors."
   is_abstract: true
   implements:
   - OPERATIONAL
@@ -299,7 +299,7 @@ DDSP:
 
 CO2C:
   id: "14886233640072642560"
-  description: Carbon dioxide control.
+  description: "Carbon dioxide control."
   is_abstract: true
   implements:
   - OPERATIONAL
@@ -312,7 +312,7 @@ CO2C:
 
 COC:
   id: "11679670705384849408"
-  description: Carbon monoxide control.
+  description: "Carbon monoxide control."
   is_abstract: true
   implements:
   - OPERATIONAL
@@ -323,7 +323,7 @@ COC:
 
 BPC:
   id: "16869691043929391104"
-  description: Building pressure control (stand-alone fan).
+  description: "Building pressure control (stand-alone fan)."
   is_abstract: true
   uses:
   - building_air_static_pressure_sensor
@@ -337,7 +337,7 @@ BPC:
 
 BPC2X:
   id: "4764990512371335168"
-  description: Building pressure control for two pressure sensors (stand-alone fan).
+  description: "Building pressure control for two pressure sensors (stand-alone fan)."
   is_abstract: true
   uses:
   - building_air_static_pressure_sensor_1
@@ -352,7 +352,7 @@ BPC2X:
 
 EDPM:
   id: "18075318737925308416"
-  description: Exhaust air damper percentage monitoring.
+  description: "Exhaust air damper percentage monitoring."
   is_abstract: true
   uses:
   - exhaust_air_damper_percentage_command
@@ -361,7 +361,7 @@ EDPM:
 
 EDM:
   id: "3621015733879701504"
-  description: Exhaust air damper monitoring.
+  description: "Exhaust air damper monitoring."
   is_abstract: true
   uses:
   - exhaust_air_damper_command
@@ -370,7 +370,7 @@ EDM:
 
 EDBPC:
   id: "15769475728711614464"
-  description: Building static control with exhaust damper.
+  description: "Building static control with exhaust damper."
   is_abstract: true
   opt_uses:
   - exhaust_air_damper_percentage_sensor
@@ -387,7 +387,7 @@ EDBPC:
 
 EDRPC:
   id: "14956319809761968128"
-  description: Return static control with exhaust damper.
+  description: "Return static control with exhaust damper."
   is_abstract: true
   opt_uses:
   - exhaust_air_damper_percentage_sensor
@@ -401,7 +401,7 @@ EDRPC:
 
 EFFC:
   id: "3108154032661725184"
-  description: Exhaust fan flow control.
+  description: "Exhaust fan flow control."
   is_abstract: true
   uses:
   - exhaust_air_flowrate_sensor
@@ -413,7 +413,7 @@ EFFC:
 
 BSPC:
   id: "6131235964464398336"
-  description: Building static pressure control (as part of a composite device).
+  description: "Building static pressure control (as part of a composite device)."
   is_abstract: true
   opt_uses:
   - exhaust_air_damper_percentage_command
@@ -431,7 +431,7 @@ BSPC:
 
 VSC:
   id: "3357018594004172800"
-  description: Variable speed control generic.
+  description: "Variable speed control generic."
   is_abstract: true
   opt_uses:
   - control_mode
@@ -460,7 +460,7 @@ VSC:
 
 EFVSC:
   id: "12580390630858948608"
-  description: Variable speed control for exhaust fans.
+  description: "Variable speed control for exhaust fans."
   is_abstract: true
   opt_uses:
   - exhaust_fan_current_sensor
@@ -480,7 +480,7 @@ EFVSC:
 
 VSFC:
   id: "17941929285778407424"
-  description: Variable speed control or monitor in frequency
+  description: "Variable speed control or monitor in frequency"
   is_abstract: true
   uses:
   - speed_frequency_command
@@ -489,7 +489,7 @@ VSFC:
 
 SFVSC:
   id: "16291356723812237312"
-  description: Variable speed control for supply fans.
+  description: "Variable speed control for supply fans."
   is_abstract: true
   opt_uses:
   - control_mode
@@ -515,7 +515,7 @@ SFVSC:
 
 DFVSC:
   id: "3825392955250704384"
-  description: Variable speed control for discharge fans.
+  description: "Variable speed control for discharge fans."
   is_abstract: true
   opt_uses:
   - control_mode
@@ -540,7 +540,7 @@ DFVSC:
 
 DFVSC2X:
   id: "2339665773590478848"
-  description: Variable speed control for discharge fans for 2 separate zones.
+  description: "Variable speed control for discharge fans for 2 separate zones."
   is_abstract: true
   opt_uses:
   - discharge_fan_current_sensor_1
@@ -568,7 +568,7 @@ DFVSC2X:
 
 DFVSFC:
   id: "3819485279274663936"
-  description: Variable speed control with frequency setting for discharge fans.
+  description: "Variable speed control with frequency setting for discharge fans."
   is_abstract: true
   uses:
   - discharge_fan_run_command
@@ -583,7 +583,7 @@ DFVSFC:
 
 DFMSC:
   id: "13122696153957138432"
-  description: Discharge fan multi-speed control.
+  description: "Discharge fan multi-speed control."
   is_abstract: true
   uses:
   - discharge_fan_run_command
@@ -597,7 +597,7 @@ DFMSC:
 
 ZHM:
   id: "17192076649286336512"
-  description: Zone humidity monitoring.
+  description: "Zone humidity monitoring."
   is_abstract: true
   implements:
   - MONITORING
@@ -607,7 +607,7 @@ ZHM:
 
 DTM:
   id: "7968704612431560704"
-  description: Discharge temperature monitoring.
+  description: "Discharge temperature monitoring."
   is_abstract: true
   opt_uses:
   - discharge_air_relative_humidity_sensor
@@ -621,7 +621,7 @@ DTM:
 
 SS:
   id: "2875133433875529728"
-  description: Basic combination of run command and status (start/stop).
+  description: "Basic combination of run command and status (start/stop)."
   is_abstract: true
   implements:
   - /SS
@@ -640,7 +640,7 @@ SS:
 
 SSPC:
   id: "10526749200778002432"
-  description: Supply static pressure control via supply fan speed
+  description: "Supply static pressure control via supply fan speed"
   is_abstract: true
   opt_uses:
   - pressurization_request_count
@@ -662,7 +662,7 @@ SSPC:
 
 SPSS:
   id: "8029265712889462784"
-  description: Spray pump start stop monitoring.
+  description: "Spray pump start stop monitoring."
   is_abstract: true
   uses:
   - spray_pump_run_command
@@ -673,7 +673,7 @@ SPSS:
 
 EFSS:
   id: "618830020562911232"
-  description: Basic combination of exhaust fan run command and status (start/stop).
+  description: "Basic combination of exhaust fan run command and status (start/stop)."
   is_abstract: true
   implements:
   - OPERATIONAL
@@ -691,7 +691,7 @@ EFSS:
 
 DFSS:
   id: "8437078973678092288"
-  description: Basic combination of discharge fan run command and status (start/stop).
+  description: "Basic combination of discharge fan run command and status (start/stop)."
   is_abstract: true
   implements:
   - OPERATIONAL
@@ -713,7 +713,7 @@ DFSS:
 
 DFSS2X:
   id: "10783101436305604608"
-  description: Two discharge fan run command and status (start/stop). With dampers
+  description: "Two discharge fan run command and status (start/stop). With dampers"
   is_abstract: true
   implements:
   - OPERATIONAL
@@ -728,7 +728,7 @@ DFSS2X:
 
 HT2RC:
   id: "12331526069516500992"
-  description: Two gas or electric heater control on zone side (HSP, DSP).
+  description: "Two gas or electric heater control on zone side (HSP, DSP)."
   is_abstract: true
   opt_uses:
   - discharge_air_temperature_sensor
@@ -748,7 +748,7 @@ HT2RC:
 
 HTZTC:
   id: "4417012674366275584"
-  description: Gas or electric heater control on zone side (ZC).
+  description: "Gas or electric heater control on zone side (ZC)."
   is_abstract: true
   opt_uses:
   - discharge_air_temperature_sensor
@@ -769,7 +769,7 @@ HTZTC:
 
 HT3ZTC:
   id: "5155603013255036928"
-  description: Two gas or electric heater control on zone side (HSP, ZTC).
+  description: "Two gas or electric heater control on zone side (HSP, ZTC)."
   is_abstract: true
   opt_uses:
   - discharge_air_temperature_sensor
@@ -791,7 +791,7 @@ HT3ZTC:
 
 HSOUC:
   id: "3000067641604833280"
-  description: Heating occupied/unoccupied setpoint control.
+  description: "Heating occupied/unoccupied setpoint control."
   is_abstract: true
   uses:
   - zone_air_occupied_heating_temperature_setpoint
@@ -807,7 +807,7 @@ HSOUC:
 
 HTZOUC:
   id: "11998259697091084288"
-  description: Gas or electric heater control on zone side (ZC).
+  description: "Gas or electric heater control on zone side (ZC)."
   is_abstract: true
   opt_uses:
   - heater_run_status
@@ -825,7 +825,7 @@ HTZOUC:
 
 LCC:
   id: "7719840051089113088"
-  description: Leaving coil temperature control.
+  description: "Leaving coil temperature control."
   is_abstract: true
   uses:
   - chilled_water_valve_percentage_command
@@ -837,7 +837,7 @@ LCC:
 
 LCC2X:
   id: "13640384711221051392"
-  description: Double valve leaving coil temperature control.
+  description: "Double valve leaving coil temperature control."
   is_abstract: true
   uses:
   - chilled_water_valve_percentage_command_1
@@ -850,7 +850,7 @@ LCC2X:
 
 SFSS:
   id: "5180976443089223680"
-  description: Basic combination of supply fan run command and status (start/stop).
+  description: "Basic combination of supply fan run command and status (start/stop)."
   is_abstract: true
   implements:
   - OPERATIONAL
@@ -870,7 +870,7 @@ SFSS:
 
 RHM:
   id: "14781568929201389568"
-  description: Return air humidity monitoring.
+  description: "Return air humidity monitoring."
   is_abstract: true
   implements:
   - MONITORING
@@ -883,7 +883,7 @@ RHM:
 
 RTM:
   id: "2924673029776605184"
-  description: Return air temperature monitoring
+  description: "Return air temperature monitoring"
   is_abstract: true
   implements:
   - MONITORING
@@ -900,7 +900,7 @@ RTM:
 
 DTC:
   id: "14404348479943999488"
-  description: Discharge air temperatore control
+  description: "Discharge air temperatore control"
   is_abstract: true
   implements:
   - OPERATIONAL
@@ -913,7 +913,7 @@ DTC:
 
 STC:
   id: "2204097089397325824"
-  description: Supply air temperature control
+  description: "Supply air temperature control"
   is_abstract: true
   opt_uses:
   - cooling_request_count
@@ -929,7 +929,7 @@ STC:
 
 RTC:
   id: "7486819452302917632"
-  description: Return air temperature control
+  description: "Return air temperature control"
   is_abstract: true
   implements:
   - OPERATIONAL
@@ -943,7 +943,7 @@ RTC:
 # Rename to OTM
 OA:
   id: "15138435219205390336"
-  description: Basic weather station (drybulb temp and humidity).
+  description: "Basic weather station (drybulb temp and humidity)."
   is_abstract: true
   opt_uses:
   - outside_air_co2_concentration_sensor
@@ -964,7 +964,7 @@ OA:
 
 ZA:
   id: "3244379125296660480"
-  description: Grouped type for zone air psychrometric conditions (RH and temp)
+  description: "Grouped type for zone air psychrometric conditions (RH and temp)"
   is_abstract: true
   uses:
   - zone_air_relative_humidity_sensor
@@ -977,7 +977,7 @@ ZA:
 
 WDT:
   id: "12148045066631380992"
-  description: Temperature differential across water.
+  description: "Temperature differential across water."
   is_abstract: true
   implements:
   - MONITORING
@@ -991,7 +991,7 @@ WDT:
 
 CHWDT:
   id: "6815783107824713728"
-  description: Temperature differential across chilled water.
+  description: "Temperature differential across chilled water."
   is_abstract: true
   implements:
   - MONITORING
@@ -1002,7 +1002,7 @@ CHWDT:
 
 CHWDPSC:
   id: "9028698692793663488"
-  description: Chilled water valve controlling supply air dewpoint temperature.
+  description: "Chilled water valve controlling supply air dewpoint temperature."
   is_abstract: true
   opt_uses:
   - chilled_supply_water_temperature_sensor
@@ -1018,7 +1018,7 @@ CHWDPSC:
 
 CHWDPSC2X:
   id: "14378975050109812736"
-  description: Chilled water valves (2x) controlling supply air dewpoint temperature.
+  description: "Chilled water valves (2x) controlling supply air dewpoint temperature."
   is_abstract: true
   opt_uses:
   - cooling_thermal_power_capacity
@@ -1034,7 +1034,7 @@ CHWDPSC2X:
 
 CWDT:
   id: "16710191489157693440"
-  description: Temperature differential across condenser water.
+  description: "Temperature differential across condenser water."
   is_abstract: true
   implements:
   - MONITORING
@@ -1045,7 +1045,7 @@ CWDT:
 # Rename SFN TOTAL_
 SWTC:
   id: "3609220173136920576"
-  description: Supply water temperature control.
+  description: "Supply water temperature control."
   is_abstract: true
   implements:
   - OPERATIONAL
@@ -1063,7 +1063,7 @@ SWTC:
 
 RWTC:
   id: "4684780039613448192"
-  description: Return water temperature control.
+  description: "Return water temperature control."
   is_abstract: true
   implements:
   - OPERATIONAL
@@ -1079,7 +1079,7 @@ RWTC:
 
 PSWTC:
   id: "10474579573063286784"
-  description: Process water temperature control.
+  description: "Process water temperature control."
   is_abstract: true
   opt_uses:
   - process_return_water_temperature_sensor
@@ -1092,7 +1092,7 @@ PSWTC:
 
 SCHWTC:
   id: "10166461230588362752"
-  description: Supply chilled water temperature control.
+  description: "Supply chilled water temperature control."
   is_abstract: true
   implements:
   - OPERATIONAL
@@ -1107,7 +1107,7 @@ SCHWTC:
 
 WDPC:
   id: "7536359048203993088"
-  description: Differential pressure control in whichever system.
+  description: "Differential pressure control in whichever system."
   is_abstract: true
   implements:
   - OPERATIONAL
@@ -1122,7 +1122,7 @@ WDPC:
 
 CGRWTC:
   id: "8601082128077160448"
-  description: Cogeneration return water temperature control.
+  description: "Cogeneration return water temperature control."
   is_abstract: true
   implements:
   - OPERATIONAL
@@ -1135,7 +1135,7 @@ CGRWTC:
 
 WDPC2X:
   id: "14149516868997611520"
-  description: Differential pressure control in whichever system, 2 sensors.
+  description: "Differential pressure control in whichever system, 2 sensors."
   is_abstract: true
   implements:
   - OPERATIONAL
@@ -1152,7 +1152,7 @@ WDPC2X:
 # Change to low_limit_flowrate_setpoint
 MINFC:
   id: "16039155144679489536"
-  description: Minimum flow control for entire loop.
+  description: "Minimum flow control for entire loop."
   is_abstract: true
   implements:
   - CONTROL
@@ -1164,7 +1164,7 @@ MINFC:
 # Rename to CPSS
 CPC:
   id: "1722211929268682752"
-  description: Circulation pump control
+  description: "Circulation pump control"
   is_abstract: true
   uses:
   - circulation_pump_run_command
@@ -1175,7 +1175,7 @@ CPC:
 ### NET NEW TYPES
 ETM:
   id: "13050638559919210496"
-  description: Basic exhaust temperature monitoring.
+  description: "Basic exhaust temperature monitoring."
   is_abstract: true
   uses:
   - exhaust_air_temperature_sensor
@@ -1187,7 +1187,7 @@ ETM:
 
 ED:
   id: "8438952541491822592"
-  description: Exhaust air flow control.
+  description: "Exhaust air flow control."
   is_abstract: true
   opt_uses:
   - exhaust_air_damper_percentage_sensor
@@ -1202,7 +1202,7 @@ ED:
 
 RD:
   id: "17662324578346598400"
-  description: Return damper flow control.
+  description: "Return damper flow control."
   is_abstract: true
   uses:
   - return_air_damper_percentage_command
@@ -1214,7 +1214,7 @@ RD:
 
 MTM:
   id: "944962761547317248"
-  description: Mixed air temperature monitoring.
+  description: "Mixed air temperature monitoring."
   is_abstract: true
   opt_uses:
   - mixed_air_dewpoint_temperature_sensor
@@ -1228,7 +1228,7 @@ MTM:
 
 MTC:
   id: "10168334798402093056"
-  description: Mixed air temperature control.
+  description: "Mixed air temperature control."
   is_abstract: true
   uses:
   - mixed_air_temperature_sensor
@@ -1241,7 +1241,7 @@ MTC:
 
 STM:
   id: "5556648779974705152"
-  description: Basic supply temperature monitoring.
+  description: "Basic supply temperature monitoring."
   is_abstract: true
   uses:
   - supply_air_temperature_sensor
@@ -1254,7 +1254,7 @@ STM:
 
 STDSPC:
   id: "14780020816829480960"
-  description: Supply temperature control dual setpoint.
+  description: "Supply temperature control dual setpoint."
   is_abstract: true
   opt_uses:
   - cooling_request_count
@@ -1271,7 +1271,7 @@ STDSPC:
 
 DSPRTC:
   id: "3250805770761011200"
-  description: Dual setpoint return air temp control.
+  description: "Dual setpoint return air temp control."
   is_abstract: true
   opt_uses:
   - discharge_air_temperature_sensor
@@ -1291,7 +1291,7 @@ DSPRTC:
 
 ZHC:
   id: "7286031036884975616"
-  description: Zone relative humidity control.
+  description: "Zone relative humidity control."
   is_abstract: true
   uses:
   - zone_air_relative_humidity_sensor
@@ -1302,7 +1302,7 @@ ZHC:
 
 RHC:
   id: "2169941860192092160"
-  description: Return air relative humidity control.
+  description: "Return air relative humidity control."
   is_abstract: true
   opt_uses:
   - humidifier_run_time_accumulator
@@ -1318,7 +1318,7 @@ RHC:
 
 RHDHC:
   id: "18310842924687949824"
-  description: Return humidification/dehumidification control.
+  description: "Return humidification/dehumidification control."
   is_abstract: true
   opt_uses:
   - economizer_mode
@@ -1337,7 +1337,7 @@ RHDHC:
 
 ZHDHC:
   id: "4475784869405786112"
-  description: Zone humidification/dehumidification control.
+  description: "Zone humidification/dehumidification control."
   is_abstract: true
   opt_uses:
   - humidification_percentage_command
@@ -1353,7 +1353,7 @@ ZHDHC:
 
 RHHC:
   id: "8019953948913827840"
-  description: Zone humidification control.
+  description: "Zone humidification control."
   is_abstract: true
   opt_uses:
   - humidification_percentage_command
@@ -1368,7 +1368,7 @@ RHHC:
 
 SHC:
   id: "12474177807615787008"
-  description: Supply air relative humidity control.
+  description: "Supply air relative humidity control."
   is_abstract: true
   opt_uses:
   - humidification_percentage_command
@@ -1385,7 +1385,7 @@ SHC:
 
 SHM:
   id: "2378937030399754240"
-  description: Supply air relative humidity monitoring.
+  description: "Supply air relative humidity monitoring."
   is_abstract: true
   uses:
   - supply_air_relative_humidity_sensor
@@ -1395,7 +1395,7 @@ SHM:
 
 REFC:
   id: "3034632988647227392"
-  description: Refrigerant leak control.
+  description: "Refrigerant leak control."
   is_abstract: true
   uses:
   - zone_air_refrigerant_concentration_sensor
@@ -1406,7 +1406,7 @@ REFC:
 
 CREFM:
   id: "450084672513245184"
-  description: Cold Room Refrigerator monitoring.
+  description: "Cold Room Refrigerator monitoring."
   is_abstract: true
   opt_uses:
   - compressor_run_status
@@ -1428,7 +1428,7 @@ CREFM:
 
 EPC:
   id: "11105083520895156224"
-  description: Exhaust pressure control.
+  description: "Exhaust pressure control."
   is_abstract: true
   uses:
   - exhaust_air_static_pressure_sensor
@@ -1441,7 +1441,7 @@ EPC:
 
 CO2M:
   id: "7862491789188399104"
-  description: Basic carbon dioxide monitoring.
+  description: "Basic carbon dioxide monitoring."
   is_abstract: true
   uses:
   - zone_air_co2_concentration_sensor
@@ -1453,7 +1453,7 @@ CO2M:
 
 VOCM:
   id: "17085863826043174912"
-  description: Volatile organic compound monitoring.
+  description: "Volatile organic compound monitoring."
   is_abstract: true
   uses:
   - zone_air_voc_concentration_sensor
@@ -1463,7 +1463,7 @@ VOCM:
 
 VOCC:
   id: "2097884266154164224"
-  description: Volatile organic compound control.
+  description: "Volatile organic compound control."
   is_abstract: true
   uses:
   - zone_air_voc_concentration_sensor
@@ -1474,7 +1474,7 @@ VOCC:
 
 RAVOCC:
   id: "1041182123605622784"
-  description: Volatile organic compound control for return air from zone.
+  description: "Volatile organic compound control for return air from zone."
   is_abstract: true
   uses:
   - return_air_voc_concentration_sensor
@@ -1485,7 +1485,7 @@ RAVOCC:
 
 VOCPC:
   id: "668891884487180288"
-  description: Volatile organic compound percentage control.
+  description: "Volatile organic compound percentage control."
   is_abstract: true
   uses:
   - zone_air_voc_percentage_sensor
@@ -1496,7 +1496,7 @@ VOCPC:
 
 BFSS:
   id: "11321256303008940032"
-  description: Booster fan start-stop and feedback.
+  description: "Booster fan start-stop and feedback."
   is_abstract: true
   uses:
   - boost_fan_run_command
@@ -1507,7 +1507,7 @@ BFSS:
 
 DFHLC:
   id: "3539036146912722944"
-  description: Discharge fan three-speed (high/low/off) speed control.
+  description: "Discharge fan three-speed (high/low/off) speed control."
   is_abstract: true
   opt_uses:
   - discharge_fan_run_command
@@ -1523,7 +1523,7 @@ DFHLC:
 
 DFHMLC:
   id: "8727182917643534336"
-  description: Discharge fan three-speed (high/medium/low/off) speed control.
+  description: "Discharge fan three-speed (high/medium/low/off) speed control."
   is_abstract: true
   opt_uses:
   - discharge_fan_run_command
@@ -1540,7 +1540,7 @@ DFHMLC:
 
 ESPC:
   id: "6709570284581552128"
-  description: Exhaust air static pressure control.
+  description: "Exhaust air static pressure control."
   is_abstract: true
   opt_uses:
   - exhaust_fan_speed_percentage_sensor
@@ -1558,7 +1558,7 @@ ESPC:
 
 SSPM:
   id: "15932942321436327936"
-  description: Supply static pressure monitoring.
+  description: "Supply static pressure monitoring."
   is_abstract: true
   uses:
   - supply_air_static_pressure_sensor
@@ -1571,7 +1571,7 @@ SSPM:
 
 ZSPC:
   id: "4403727275367858176"
-  description: Zone static pressure control.
+  description: "Zone static pressure control."
   is_abstract: true
   opt_uses:
   - exhaust_air_damper_percentage_command
@@ -1586,7 +1586,7 @@ ZSPC:
 
 ZSPM:
   id: "13627099312222633984"
-  description: Zone static pressure monitoring.
+  description: "Zone static pressure monitoring."
   is_abstract: true
   uses:
   - zone_air_static_pressure_sensor
@@ -1599,7 +1599,7 @@ ZSPM:
 
 RSPC:
   id: "9015413293795246080"
-  description: Return air static pressure control.
+  description: "Return air static pressure control."
   is_abstract: true
   uses:
   - return_air_static_pressure_sensor
@@ -1610,7 +1610,7 @@ RSPC:
 
 PWDPC:
   id: "18238785330650021888"
-  description: Process water differential pressure control.
+  description: "Process water differential pressure control."
   is_abstract: true
   uses:
   - process_water_differential_pressure_sensor
@@ -1621,7 +1621,7 @@ PWDPC:
 
 PWDT:
   id: "289266803299844096"
-  description: Primary-side water delta-T monitoring.
+  description: "Primary-side water delta-T monitoring."
   is_abstract: true
   uses:
   - primary_return_water_temperature_sensor
@@ -1630,7 +1630,7 @@ PWDT:
 
 CHPM:
   id: "224386821168037888"
-  description: Chiller pressure monitoring.
+  description: "Chiller pressure monitoring."
   is_abstract: true
   uses:
   - condenser_pressure_sensor
@@ -1658,7 +1658,7 @@ ESFM:
 
 FDPM:
   id: "9447758858022813696"
-  description: Filter pressure monitoring.
+  description: "Filter pressure monitoring."
   is_abstract: true
   uses:
   - filter_differential_pressure_sensor
@@ -1668,7 +1668,7 @@ FDPM:
 
 FDPSM:
   id: "5397007388203024384"
-  description: Filter pressure status monitoring.
+  description: "Filter pressure status monitoring."
   is_abstract: true
   uses:
   - filter_differential_pressure_status
@@ -1678,10 +1678,9 @@ FDPSM:
   - MONITORING
 
 # Chilled water valve control
-
 CHWDC:
   id: "16581460667777679360"
-  description: Chilled water valve monitoring on discharge side.
+  description: "Chilled water valve monitoring on discharge side."
   is_abstract: true
   opt_uses:
   - chilled_water_flowrate_sensor
@@ -1699,7 +1698,7 @@ CHWDC:
 
 CHWSC:
   id: "4836072839595425792"
-  description: Chilled water valve monitoring on supply side.
+  description: "Chilled water valve monitoring on supply side."
   is_abstract: true
   opt_uses:
   - chilled_supply_water_temperature_sensor
@@ -1720,7 +1719,7 @@ CHWSC:
 
 CHWSDC:
   id: "2207518769582964736"
-  description: Chilled water valve monitoring on supply side.
+  description: "Chilled water valve monitoring on supply side."
   is_abstract: true
   opt_uses:
   - chilled_water_valve_percentage_sensor
@@ -1739,7 +1738,7 @@ CHWSDC:
 
 CHW2XSC:
   id: "14565396147087605760"
-  description: Two chilled water valves.
+  description: "Two chilled water valves."
   is_abstract: true
   opt_uses:
   - chilled_supply_water_temperature_sensor
@@ -1760,7 +1759,7 @@ CHW2XSC:
 
 CHWRC:
   id: "10816853144743444480"
-  description: Chilled water valve monitoring on return side.
+  description: "Chilled water valve monitoring on return side."
   is_abstract: true
   opt_uses:
   - chilled_water_flowrate_sensor
@@ -1784,7 +1783,7 @@ CHWRC:
 
 CHWZC:
   id: "2746402612495515648"
-  description: Chilled water valve monitoring on zone side (DSP, CSP).
+  description: "Chilled water valve monitoring on zone side (DSP, CSP)."
   is_abstract: true
   opt_uses:
   - chilled_supply_water_isolation_valve_command
@@ -1808,7 +1807,7 @@ CHWZC:
 
 CHWZTC:
   id: "14203560064526057472"
-  description: Chilled water valve monitoring on zone side (ZTC).
+  description: "Chilled water valve monitoring on zone side (ZTC)."
   is_abstract: true
   opt_uses:
   - chilled_water_flowrate_sensor
@@ -1830,8 +1829,8 @@ CHWZTC:
 
 CHWPVM:
   id: "10410116305838407680"
-  description: Chilled water pressure valve command and position monitoring (without
-    regard to what controls it).
+  description: "Chilled water pressure valve command and position monitoring (without
+    regard to what controls it)."
   is_abstract: true
   opt_uses:
   - chilled_water_flowrate_sensor
@@ -1843,8 +1842,8 @@ CHWPVM:
 
 CHWZTC2X:
   id: "12977168093439590400"
-  description: Chilled water valve control on zone side (ZTC) for two separate zones.
-    Chilled water valve controls to the worst zone.
+  description: "Chilled water valve control on zone side (ZTC) for two separate zones.
+    Chilled water valve controls to the worst zone."
   is_abstract: true
   opt_uses:
   - chilled_water_flowrate_sensor
@@ -1870,7 +1869,7 @@ CHWZTC2X:
 
 DXZTC:
   id: "13699156906260561920"
-  description: Compressor run control on zone side (ZTC).
+  description: "Compressor run control on zone side (ZTC)."
   is_abstract: true
   opt_uses:
   - compressor_run_time_accumulator
@@ -1897,7 +1896,7 @@ DXZTC:
 
 DX2ZTC:
   id: "7764960709758156800"
-  description: Compressor run control on zone side (ZTC).
+  description: "Compressor run control on zone side (ZTC)."
   is_abstract: true
   opt_uses:
   - compressor_run_time_accumulator_1
@@ -1927,7 +1926,7 @@ DX2ZTC:
 
 DXZC:
   id: "5052245621709209600"
-  description: Compressor run control on zone side (DSP, CSP).
+  description: "Compressor run control on zone side (DSP, CSP)."
   is_abstract: true
   opt_uses:
   - compressor_speed_percentage_command
@@ -1953,7 +1952,7 @@ DXZC:
 
 DXDSPRTC:
   id: "13463632719497920512"
-  description: Compressor run control with dual return temp control.
+  description: "Compressor run control with dual return temp control."
   is_abstract: true
   opt_uses:
   - compressor_speed_percentage_command
@@ -1979,7 +1978,7 @@ DXDSPRTC:
 
 DX2ZC:
   id: "5844879156126416896"
-  description: Two compressor run control on zone side (DSP, CSP).
+  description: "Two compressor run control on zone side (DSP, CSP)."
   is_abstract: true
   opt_uses:
   - compressor_speed_percentage_command
@@ -2007,7 +2006,7 @@ DX2ZC:
 
 DX3ZC:
   id: "14059444876450201600"
-  description: Three compressor run control on zone side.
+  description: "Three compressor run control on zone side."
   is_abstract: true
   opt_uses:
   - compressor_speed_percentage_command
@@ -2037,7 +2036,7 @@ DX3ZC:
 
 DX4ZC:
   id: "7395665540313776128"
-  description: Four compressor run control on zone side.
+  description: "Four compressor run control on zone side."
   is_abstract: true
   opt_uses:
   - compressor_speed_percentage_command
@@ -2069,8 +2068,8 @@ DX4ZC:
 
 DX2ZC2X:
   id: "2288583562875633664"
-  description: Two compressor run control on zone side (DSP, CSP) with two zone temp
-    sensors.
+  description: "Two compressor run control on zone side (DSP, CSP) with two zone
+    temp sensors."
   is_abstract: true
   opt_uses:
   - compressor_speed_percentage_command
@@ -2099,7 +2098,7 @@ DX2ZC2X:
 
 DXSC:
   id: "2530229830381731840"
-  description: Compressor run control on supply air side (STC).
+  description: "Compressor run control on supply air side (STC)."
   is_abstract: true
   opt_uses:
   - compressor_speed_percentage_command
@@ -2123,7 +2122,7 @@ DXSC:
 
 DX2SC:
   id: "11753601867236507648"
-  description: Two compressor run control on supply air side.
+  description: "Two compressor run control on supply air side."
   is_abstract: true
   opt_uses:
   - compressor_speed_percentage_command
@@ -2149,7 +2148,7 @@ DX2SC:
 
 DX3SC:
   id: "7141915848809119744"
-  description: Three compressor run control on supply air side.
+  description: "Three compressor run control on supply air side."
   is_abstract: true
   opt_uses:
   - compressor_speed_percentage_command
@@ -2177,7 +2176,7 @@ DX3SC:
 
 DX4SC:
   id: "16365287885663895552"
-  description: Four compressor run control on supply air side.
+  description: "Four compressor run control on supply air side."
   is_abstract: true
   opt_uses:
   - compressor_speed_percentage_command
@@ -2207,7 +2206,7 @@ DX4SC:
 
 DX2SDC:
   id: "17195498329471975424"
-  description: Two compressor run control on supply air side (dual temp setpoint).
+  description: "Two compressor run control on supply air side (dual temp setpoint)."
   is_abstract: true
   opt_uses:
   - compressor_speed_percentage_command
@@ -2233,7 +2232,7 @@ DX2SDC:
 
 DX4SWC:
   id: "1377308325774884864"
-  description: Four compressor run control on supply water side.
+  description: "Four compressor run control on supply water side."
   is_abstract: true
   opt_uses:
   - compressor_speed_percentage_command
@@ -2262,7 +2261,7 @@ DX4SWC:
 
 DX2SWC:
   id: "8232701752307089408"
-  description: Two compressor run control on supply water side.
+  description: "Two compressor run control on supply water side."
   is_abstract: true
   opt_uses:
   - compressor_speed_percentage_command
@@ -2287,7 +2286,7 @@ DX2SWC:
 
 DXSWC:
   id: "11457067979271831552"
-  description: Compressor run control on supply water side.
+  description: "Compressor run control on supply water side."
   is_abstract: true
   opt_uses:
   - compressor_speed_percentage_command
@@ -2310,7 +2309,7 @@ DXSWC:
 
 DX5SC:
   id: "10600680362629660672"
-  description: Five compressor run control on supply side.
+  description: "Five compressor run control on supply side."
   is_abstract: true
   opt_uses:
   - compressor_speed_percentage_command
@@ -2342,7 +2341,7 @@ DX5SC:
 
 DXRC:
   id: "5628706374012633088"
-  description: Compressor run control on return air side (RC).
+  description: "Compressor run control on return air side (RC)."
   is_abstract: true
   opt_uses:
   - compressor_run_time_accumulator
@@ -2368,7 +2367,7 @@ DXRC:
 
 DXDC:
   id: "5988994344202272768"
-  description: Compressor run control on discharge air side (DTC).
+  description: "Compressor run control on discharge air side (DTC)."
   is_abstract: true
   opt_uses:
   - compressor_run_time_accumulator
@@ -2391,7 +2390,7 @@ DXDC:
 
 DX2DC:
   id: "8944903812129226752"
-  description: Two compressor run control on discharge side (DTC).
+  description: "Two compressor run control on discharge side (DTC)."
   is_abstract: true
   opt_uses:
   - compressor_run_time_accumulator_1
@@ -2417,7 +2416,7 @@ DX2DC:
 
 DX3DC:
   id: "13988935394784182272"
-  description: Three compressor run control on discharge side (DTC).
+  description: "Three compressor run control on discharge side (DTC)."
   is_abstract: true
   opt_uses:
   - compressor_speed_percentage_command
@@ -2443,7 +2442,7 @@ DX3DC:
 
 HPSC:
   id: "15212366381057048576"
-  description: Supply side heat pump control.
+  description: "Supply side heat pump control."
   is_abstract: true
   opt_uses:
   - compressor_speed_percentage_command
@@ -2468,7 +2467,7 @@ HPSC:
 
 HP2SC:
   id: "3360440274189811712"
-  description: Supply side heat pump control.
+  description: "Supply side heat pump control."
   is_abstract: true
   opt_uses:
   - compressor_speed_percentage_command
@@ -2495,7 +2494,7 @@ HP2SC:
 
 HPDC:
   id: "3683151334988578816"
-  description: Discharge side heat pump control.
+  description: "Discharge side heat pump control."
   is_abstract: true
   opt_uses:
   - compressor_speed_percentage_command
@@ -2517,7 +2516,7 @@ HPDC:
 
 HPZTC:
   id: "4115496899216146432"
-  description: Zone temp heat pump control (ZTC).
+  description: "Zone temp heat pump control (ZTC)."
   is_abstract: true
   opt_uses:
   - compressor_speed_percentage_command
@@ -2543,7 +2542,7 @@ HPZTC:
 
 HPZC:
   id: "15428539163170832384"
-  description: Zone temp heat pump control (CSP or DSP).
+  description: "Zone temp heat pump control (CSP or DSP)."
   is_abstract: true
   opt_uses:
   - compressor_speed_percentage_command
@@ -2570,7 +2569,7 @@ HPZC:
 
 HP2ZC:
   id: "16221172697588039680"
-  description: Zone temp heat pump control with two compressors.
+  description: "Zone temp heat pump control with two compressors."
   is_abstract: true
   opt_uses:
   - compressor_speed_percentage_command
@@ -2599,7 +2598,7 @@ HP2ZC:
 
 HWDC:
   id: "16507327195786510336"
-  description: Heating water valve monitoring on discharge air side.
+  description: "Heating water valve monitoring on discharge air side."
   is_abstract: true
   opt_uses:
   - discharge_air_relative_humidity_sensor
@@ -2617,7 +2616,7 @@ HWDC:
 
 HWRC:
   id: "17386253701286461440"
-  description: Heating water valve monitoring on discharge air side.
+  description: "Heating water valve monitoring on discharge air side."
   is_abstract: true
   opt_uses:
   - discharge_air_relative_humidity_sensor
@@ -2636,7 +2635,7 @@ HWRC:
 
 HWSC:
   id: "12906523371843354624"
-  description: Heating water valve monitoring on supply air side.
+  description: "Heating water valve monitoring on supply air side."
   is_abstract: true
   opt_uses:
   - heating_request_count
@@ -2655,7 +2654,7 @@ HWSC:
 
 HW2SC:
   id: "15111346551231873024"
-  description: Two heating water valves on supply air side.
+  description: "Two heating water valves on supply air side."
   is_abstract: true
   opt_uses:
   - heating_request_count
@@ -2674,7 +2673,7 @@ HW2SC:
 
 HWZC:
   id: "12546235401653714944"
-  description: Heating water valve monitoring on zone side (DSP/CSP).
+  description: "Heating water valve monitoring on zone side (DSP/CSP)."
   is_abstract: true
   opt_uses:
   - discharge_air_temperature_sensor
@@ -2696,7 +2695,7 @@ HWZC:
 
 HWZTC:
   id: "2674345018457587712"
-  description: Heating water valve monitoring on zone side (ZTC).
+  description: "Heating water valve monitoring on zone side (ZTC)."
   is_abstract: true
   opt_uses:
   - discharge_air_temperature_sensor
@@ -2717,7 +2716,7 @@ HWZTC:
 
 HWSWC:
   id: "8294837353415966720"
-  description: Heating water valve monitoring on supply water side.
+  description: "Heating water valve monitoring on supply water side."
   is_abstract: true
   opt_uses:
   - heating_thermal_power_capacity
@@ -2735,7 +2734,7 @@ HWSWC:
 
 PHWSC:
   id: "17518209390270742528"
-  description: Preheating water valve monitoring on supply air side.
+  description: "Preheating water valve monitoring on supply air side."
   is_abstract: true
   opt_uses:
   - heating_request_count
@@ -2752,8 +2751,8 @@ PHWSC:
 
 HWPVM:
   id: "5829955484802613248"
-  description: Heating water pressure valve command and position monitoring (without
-    regard to what controls it).
+  description: "Heating water pressure valve command and position monitoring (without
+    regard to what controls it)."
   is_abstract: true
   opt_uses:
   - heating_water_flowrate_sensor
@@ -2765,7 +2764,7 @@ HWPVM:
 
 HTDC:
   id: "656732385395605504"
-  description: Gas or electric heater control on discharge side.
+  description: "Gas or electric heater control on discharge side."
   is_abstract: true
   opt_uses:
   - heater_run_status
@@ -2782,7 +2781,7 @@ HTDC:
 
 HT2DC:
   id: "5268418403822993408"
-  description: Two gas or electric heater control on discharge control.
+  description: "Two gas or electric heater control on discharge control."
   is_abstract: true
   opt_uses:
   - heating_percentage_command
@@ -2800,7 +2799,7 @@ HT2DC:
 
 HTSC:
   id: "800847573471461376"
-  description: Gas or electric heater control on supply side.
+  description: "Gas or electric heater control on supply side."
   is_abstract: true
   opt_uses:
   - heater_run_status
@@ -2819,7 +2818,7 @@ HTSC:
 
 HTSDC:
   id: "16700102370461220864"
-  description: Gas or electric heater control on supply side.
+  description: "Gas or electric heater control on supply side."
   is_abstract: true
   opt_uses:
   - heater_run_status
@@ -2838,7 +2837,7 @@ HTSDC:
 
 HTRC:
   id: "80271633092182016"
-  description: Gas or electric heater control on return side (RC).
+  description: "Gas or electric heater control on return side (RC)."
   is_abstract: true
   opt_uses:
   - discharge_air_temperature_sensor
@@ -2859,7 +2858,7 @@ HTRC:
 
 HTZC:
   id: "2386114642305875968"
-  description: Gas or electric heater control on zone side (ZC).
+  description: "Gas or electric heater control on zone side (ZC)."
   is_abstract: true
   opt_uses:
   - discharge_air_temperature_sensor
@@ -2880,7 +2879,7 @@ HTZC:
 
 HT2ZC:
   id: "6997800660733263872"
-  description: Two gas or electric heater control on zone side (HSP, DSP).
+  description: "Two gas or electric heater control on zone side (HSP, DSP)."
   is_abstract: true
   opt_uses:
   - discharge_air_temperature_sensor
@@ -2901,8 +2900,8 @@ HT2ZC:
 
 HT2XZTC2X:
   id: "18111271668641955840"
-  description: Two separate heating sections going to two different zones on the device,
-    with independent heating control.
+  description: "Two separate heating sections going to two different zones on the
+    device, with independent heating control."
   is_abstract: true
   opt_uses:
   - discharge_air_temperature_sensor_1
@@ -2928,7 +2927,7 @@ HT2XZTC2X:
 
 HT3ZC:
   id: "3504555462265667584"
-  description: Two gas or electric heater control on zone side (HSP, DSP).
+  description: "Two gas or electric heater control on zone side (HSP, DSP)."
   is_abstract: true
   opt_uses:
   - discharge_air_temperature_sensor
@@ -2949,7 +2948,7 @@ HT3ZC:
 
 HTSWC:
   id: "2162764248285970432"
-  description: Two gas or electric heater control on supply water side.
+  description: "Two gas or electric heater control on supply water side."
   is_abstract: true
   opt_uses:
   - heating_percentage_command
@@ -2966,7 +2965,7 @@ HTSWC:
 
 HT2SWC:
   id: "10024219610326237184"
-  description: Two gas or electric heater control on supply water side.
+  description: "Two gas or electric heater control on supply water side."
   is_abstract: true
   opt_uses:
   - heating_percentage_command
@@ -2984,7 +2983,7 @@ HT2SWC:
 
 HT4SWC:
   id: "15090909928606400512"
-  description: Four gas or electric heater control on supply water side.
+  description: "Four gas or electric heater control on supply water side."
   is_abstract: true
   opt_uses:
   - heating_percentage_command
@@ -3004,7 +3003,7 @@ HT4SWC:
 
 HT2SC:
   id: "5412533591898849280"
-  description: Two gas or electric heater control on supply side.
+  description: "Two gas or electric heater control on supply side."
   is_abstract: true
   opt_uses:
   - heating_percentage_command
@@ -3023,7 +3022,7 @@ HT2SC:
 
 HT3SC:
   id: "10953790720913178624"
-  description: Three gas or electric heater control on supply side.
+  description: "Three gas or electric heater control on supply side."
   is_abstract: true
   opt_uses:
   - heating_percentage_command
@@ -3043,7 +3042,7 @@ HT3SC:
 
 HT4SC:
   id: "13793873235923697664"
-  description: Four gas or electric heater control on supply side.
+  description: "Four gas or electric heater control on supply side."
   is_abstract: true
   opt_uses:
   - heating_percentage_command
@@ -3064,7 +3063,7 @@ HT4SC:
 
 HT2SDC:
   id: "7476730333606445056"
-  description: Two gas or electric heater control on supply side (dual setpoint).
+  description: "Two gas or electric heater control on supply side (dual setpoint)."
   is_abstract: true
   opt_uses:
   - heating_percentage_command
@@ -3083,7 +3082,7 @@ HT2SDC:
 
 HTVSC:
   id: "14635905628753625088"
-  description: Variable gas to electric control on supply air side.
+  description: "Variable gas to electric control on supply air side."
   is_abstract: true
   opt_uses:
   - heating_request_count
@@ -3102,7 +3101,7 @@ HTVSC:
 
 ECON:
   id: "3106690582685155328"
-  description: Economizer mode control
+  description: "Economizer mode control"
   is_abstract: true
   opt_uses:
   - low_limit_outside_air_damper_percentage_command
@@ -3130,7 +3129,7 @@ ECON:
 
 ECOND:
   id: "2000353186723921920"
-  description: Economizer mode control - single zone
+  description: "Economizer mode control - single zone"
   is_abstract: true
   opt_uses:
   - low_limit_outside_air_damper_percentage_command
@@ -3156,7 +3155,7 @@ ECOND:
 
 ECONM:
   id: "8728731030015442944"
-  description: Economizer mode control
+  description: "Economizer mode control"
   is_abstract: true
   opt_uses:
   - low_limit_outside_air_damper_percentage_command
@@ -3183,7 +3182,7 @@ ECONM:
 
 ECONM2X:
   id: "10998545242210172928"
-  description: Economizer mode control
+  description: "Economizer mode control"
   is_abstract: true
   opt_uses:
   - low_limit_outside_air_damper_percentage_command
@@ -3211,7 +3210,7 @@ ECONM2X:
 
 ECONMD:
   id: "15646260057656524800"
-  description: Economizer mode control - single zone
+  description: "Economizer mode control - single zone"
   is_abstract: true
   opt_uses:
   - discharge_air_temperature_sensor
@@ -3237,7 +3236,7 @@ ECONMD:
 
 ECONZ:
   id: "10070803718971850752"
-  description: Economizer mode control - single room
+  description: "Economizer mode control - single room"
   is_abstract: true
   opt_uses:
   - discharge_air_temperature_sensor
@@ -3268,7 +3267,7 @@ ECONZ:
 
 VOADM:
   id: "12330062619539931136"
-  description: Variable outside air damper monitoring.
+  description: "Variable outside air damper monitoring."
   is_abstract: true
   opt_uses:
   - economizer_mode
@@ -3285,7 +3284,7 @@ VOADM:
 
 BYPDM:
   id: "7718376601112543232"
-  description: Bypass damper monitoring.
+  description: "Bypass damper monitoring."
   is_abstract: true
   uses:
   - bypass_air_damper_percentage_command
@@ -3295,7 +3294,7 @@ BYPDM:
 
 OAFM:
   id: "7386573678663696384"
-  description: Outside air flow monitoring
+  description: "Outside air flow monitoring"
   is_abstract: true
   opt_uses:
   - outside_air_damper_percentage_sensor
@@ -3308,7 +3307,7 @@ OAFM:
 
 OAFMC:
   id: "16941748637967319040"
-  description: Outside air flow control with minimum setpoint.
+  description: "Outside air flow control with minimum setpoint."
   is_abstract: true
   opt_uses:
   - economizer_mode
@@ -3324,7 +3323,7 @@ OAFMC:
 
 OAMC:
   id: "9583248377378766848"
-  description: Outside air flow control.
+  description: "Outside air flow control."
   is_abstract: true
   opt_uses:
   - outside_air_flowrate_sensor
@@ -3337,7 +3336,7 @@ OAMC:
 
 OFC:
   id: "18252070729648439296"
-  description: Outside air flow control monitoring (without a damper).
+  description: "Outside air flow control monitoring (without a damper)."
   is_abstract: true
   uses:
   - outside_air_flowrate_sensor
@@ -3348,7 +3347,7 @@ OFC:
 
 SFM:
   id: "1953769078078308352"
-  description: Supply air flow monitoring.
+  description: "Supply air flow monitoring."
   is_abstract: true
   uses:
   - supply_air_flowrate_sensor
@@ -3358,7 +3357,7 @@ SFM:
 
 DFM:
   id: "15288213991675920384"
-  description: Discharge air flow monitoring.
+  description: "Discharge air flow monitoring."
   is_abstract: true
   uses:
   - discharge_air_flowrate_sensor
@@ -3370,7 +3369,7 @@ DFM:
 
 SFC:
   id: "11177141114933084160"
-  description: Supply air flow control.
+  description: "Supply air flow control."
   is_abstract: true
   uses:
   - supply_air_flowrate_sensor
@@ -3381,7 +3380,7 @@ SFC:
 
 RFC:
   id: "6565455096505696256"
-  description: Return air flow control.
+  description: "Return air flow control."
   is_abstract: true
   uses:
   - return_air_flowrate_sensor
@@ -3392,7 +3391,7 @@ RFC:
 
 SARC:
   id: "15788827133360472064"
-  description: AHU supply air reset control.
+  description: "AHU supply air reset control."
   is_abstract: true
   opt_uses:
   - heating_request_count
@@ -3408,7 +3407,7 @@ SARC:
 
 RWISOVPC:
   id: "13482984124146778112"
-  description: Return water isolation valve percentage monitoring.
+  description: "Return water isolation valve percentage monitoring."
   is_abstract: true
   opt_uses:
   - run_command
@@ -3421,7 +3420,7 @@ RWISOVPC:
 
 CHWISOVM:
   id: "8871298105719390208"
-  description: Chilled water isolation valve monitoring.
+  description: "Chilled water isolation valve monitoring."
   is_abstract: true
   opt_uses:
   - run_command
@@ -3434,7 +3433,7 @@ CHWISOVM:
 
 CDWISOVM:
   id: "18094670142574166016"
-  description: Condensing water isolation valve monitoring.
+  description: "Condensing water isolation valve monitoring."
   is_abstract: true
   opt_uses:
   - run_command
@@ -3447,7 +3446,7 @@ CDWISOVM:
 
 CDWISOVPM:
   id: "512617197319749632"
-  description: Condensing water isolation valve percentage monitoring.
+  description: "Condensing water isolation valve percentage monitoring."
   is_abstract: true
   opt_uses:
   - run_command
@@ -3460,8 +3459,8 @@ CDWISOVPM:
 
 CDWPVM:
   id: "7446747751028621312"
-  description: Condensing water pressure valve command and position monitoring (without
-    regard to what controls it).
+  description: "Condensing water pressure valve command and position monitoring (without
+    regard to what controls it)."
   is_abstract: true
   opt_uses:
   - condensing_water_flowrate_sensor
@@ -3473,7 +3472,7 @@ CDWPVM:
 
 CDWFRSM:
   id: "14620379425057800192"
-  description: Condenser water flowrate status monitoring.
+  description: "Condenser water flowrate status monitoring."
   is_abstract: true
   uses:
   - condensing_water_flowrate_status
@@ -3483,7 +3482,7 @@ CDWFRSM:
 
 BYPVPM:
   id: "9735989234174525440"
-  description: Bypass water valve percentage monitoring.
+  description: "Bypass water valve percentage monitoring."
   is_abstract: true
   opt_uses:
   - bypass_valve_percentage_sensor
@@ -3495,7 +3494,7 @@ BYPVPM:
 
 MWVPM:
   id: "5124303215747137536"
-  description: Make-up water valve percentage monitoring.
+  description: "Make-up water valve percentage monitoring."
   is_abstract: true
   uses:
   - makeup_water_valve_percentage_command
@@ -3505,7 +3504,7 @@ MWVPM:
 
 HXSWISOVPM:
   id: "11812289399880679424"
-  description: Heat exchanger supply isolation water valve percentage monitoring.
+  description: "Heat exchanger supply isolation water valve percentage monitoring."
   is_abstract: true
   uses:
   - heat_exchange_supply_water_isolation_valve_percentage_command
@@ -3516,7 +3515,7 @@ HXSWISOVPM:
 
 HXRWISOVPM:
   id: "14124324858582007808"
-  description: Heat exchanger return isolation water valve percentage monitoring.
+  description: "Heat exchanger return isolation water valve percentage monitoring."
   is_abstract: true
   uses:
   - heat_exchange_return_water_isolation_valve_percentage_command
@@ -3527,7 +3526,7 @@ HXRWISOVPM:
 
 HXSWISOVM:
   id: "18037952934766968832"
-  description: Heat exchanger supply isolation water valve monitoring.
+  description: "Heat exchanger supply isolation water valve monitoring."
   is_abstract: true
   uses:
   - heat_exchange_supply_water_isolation_valve_command
@@ -3538,7 +3537,7 @@ HXSWISOVM:
 
 HXRWISOVM:
   id: "9182187217496309760"
-  description: Heat exchanger return isolation water valve monitoring.
+  description: "Heat exchanger return isolation water valve monitoring."
   is_abstract: true
   uses:
   - heat_exchange_return_water_isolation_valve_command
@@ -3549,7 +3548,7 @@ HXRWISOVM:
 
 PWISOVM:
   id: "2818460206533443584"
-  description: Process water iso valve monitoring.
+  description: "Process water iso valve monitoring."
   is_abstract: true
   uses:
   - process_water_isolation_valve_command
@@ -3559,7 +3558,7 @@ PWISOVM:
 
 PWVPM:
   id: "12041832243388219392"
-  description: Process water valve percentage monitoring.
+  description: "Process water valve percentage monitoring."
   is_abstract: true
   uses:
   - process_water_valve_percentage_command
@@ -3569,7 +3568,7 @@ PWVPM:
 
 CHWBZC:
   id: "16609945715518472192"
-  description: Chilled water valve binary (open/closed) control.
+  description: "Chilled water valve binary (open/closed) control."
   is_abstract: true
   implements:
   - OPERATIONAL
@@ -3586,7 +3585,7 @@ CHWBZC:
 
 CHWBYPVPM:
   id: "7430146224960831488"
-  description: Chilled water bypass valve percentage monitoring.
+  description: "Chilled water bypass valve percentage monitoring."
   is_abstract: true
   uses:
   - chilled_water_bypass_valve_percentage_command
@@ -3597,7 +3596,7 @@ CHWBYPVPM:
 
 MXVPM:
   id: "16653518261815607296"
-  description: Mixing valve percent monitoring.
+  description: "Mixing valve percent monitoring."
   is_abstract: true
   uses:
   - mixing_valve_percentage_command
@@ -3607,7 +3606,7 @@ MXVPM:
 
 WFRM:
   id: "1665538701926596608"
-  description: Water flowrate monitoring.
+  description: "Water flowrate monitoring."
   is_abstract: true
   uses:
   - flowrate_sensor
@@ -3617,7 +3616,7 @@ WFRM:
 
 WFRC:
   id: "10888910738781372416"
-  description: Water flowrate control.
+  description: "Water flowrate control."
   is_abstract: true
   uses:
   - flowrate_sensor
@@ -3628,7 +3627,7 @@ WFRC:
 
 MWFRC:
   id: "6277224720353984512"
-  description: Minimum water flowrate control.
+  description: "Minimum water flowrate control."
   is_abstract: true
   uses:
   - flowrate_sensor
@@ -3639,7 +3638,7 @@ MWFRC:
 
 CHWFRM:
   id: "15500596757208760320"
-  description: Chilled water flowrate monitoring.
+  description: "Chilled water flowrate monitoring."
   is_abstract: true
   uses:
   - chilled_water_flowrate_sensor
@@ -3649,7 +3648,7 @@ CHWFRM:
 
 CHWFRSM:
   id: "11667988394339729408"
-  description: Chilled water flowrate status monitoring.
+  description: "Chilled water flowrate status monitoring."
   is_abstract: true
   uses:
   - chilled_water_flowrate_status
@@ -3659,7 +3658,7 @@ CHWFRSM:
 
 SEPM:
   id: "3971381711140290560"
-  description: Shade extent monitoring.
+  description: "Shade extent monitoring."
   is_abstract: true
   uses:
   - shade_extent_percentage_command
@@ -3669,7 +3668,7 @@ SEPM:
 
 STPM:
   id: "13194753747995066368"
-  description: Shade tilt monitoring.
+  description: "Shade tilt monitoring."
   is_abstract: true
   uses:
   - shade_tilt_percentage_command
@@ -3679,7 +3678,7 @@ STPM:
 
 IGM:
   id: "8583067729567678464"
-  description: Inlet guidevane monitoring.
+  description: "Inlet guidevane monitoring."
   is_abstract: true
   uses:
   - inlet_guidevane_percentage_sensor
@@ -3689,7 +3688,7 @@ IGM:
 
 CLPM:
   id: "17806439766422454272"
-  description: Cooling thermal monitoring.
+  description: "Cooling thermal monitoring."
   is_abstract: true
   uses:
   - cooling_thermal_power_sensor
@@ -3699,7 +3698,7 @@ CLPM:
 
 PCLPM:
   id: "1089077949623173120"
-  description: Process cooling thermal monitoring.
+  description: "Process cooling thermal monitoring."
   is_abstract: true
   uses:
   - process_cooling_thermal_power_sensor
@@ -3709,7 +3708,7 @@ PCLPM:
 ### POTENTIALLY ONE-OFF TYPES ###
 DDCO:
   id: "10312449986477948928"
-  description: Flow control - dual duct, but only cooling.
+  description: "Flow control - dual duct, but only cooling."
   is_abstract: true
   uses:
   - cooling_air_damper_percentage_command_1
@@ -3724,7 +3723,7 @@ DDCO:
 
 FDPM2X:
   id: "871492295067697152"
-  description: Filter pressure monitoring (2 sensors).
+  description: "Filter pressure monitoring (2 sensors)."
   is_abstract: true
   uses:
   - filter_differential_pressure_sensor_1
@@ -3735,7 +3734,7 @@ FDPM2X:
 
 FDPSM2X:
   id: "14032659673685950464"
-  description: Filter pressure status monitoring (2 sensors).
+  description: "Filter pressure status monitoring (2 sensors)."
   is_abstract: true
   uses:
   - filter_differential_pressure_status_1
@@ -3749,7 +3748,7 @@ FDPSM2X:
 
 FDPSM4X:
   id: "17338090693943361536"
-  description: Filter pressure status monitoring (4 sensors).
+  description: "Filter pressure status monitoring (4 sensors)."
   is_abstract: true
   uses:
   - filter_differential_pressure_status_1
@@ -3767,7 +3766,7 @@ FDPSM4X:
 
 FDPM3X:
   id: "16670119787883397120"
-  description: Filter pressure monitoring (3 sensors).
+  description: "Filter pressure monitoring (3 sensors)."
   is_abstract: true
   uses:
   - filter_differential_pressure_sensor_1
@@ -3779,7 +3778,7 @@ FDPM3X:
 
 FDPM4X:
   id: "5700763968050561024"
-  description: Filter pressure monitoring (4 sensors).
+  description: "Filter pressure monitoring (4 sensors)."
   is_abstract: true
   uses:
   - filter_differential_pressure_sensor_1
@@ -3792,7 +3791,7 @@ FDPM4X:
 
 CO2C2X:
   id: "14924136004905336832"
-  description: Carbon dioxide control with dual zone sensors.
+  description: "Carbon dioxide control with dual zone sensors."
   is_abstract: true
   uses:
   - zone_air_co2_concentration_sensor_1
@@ -3806,7 +3805,7 @@ CO2C2X:
 
 DSP3X:
   id: "3394920958836867072"
-  description: Dual setpoint zone temp control with 3 temp sensors.
+  description: "Dual setpoint zone temp control with 3 temp sensors."
   is_abstract: true
   opt_uses:
   - discharge_air_temperature_sensor
@@ -3826,7 +3825,7 @@ DSP3X:
 
 EFSS2X:
   id: "12618292995691642880"
-  description: Exhaust fan start-stop and feedback with two fans.
+  description: "Exhaust fan start-stop and feedback with two fans."
   is_abstract: true
   opt_uses:
   - exhaust_air_flowrate_capacity
@@ -3847,7 +3846,7 @@ EFSS2X:
 
 EFSS3X:
   id: "8006606977264254976"
-  description: Exhaust fan start-stop and feedback with three fans.
+  description: "Exhaust fan start-stop and feedback with three fans."
   is_abstract: true
   opt_uses:
   - exhaust_air_flowrate_capacity
@@ -3872,7 +3871,7 @@ EFSS3X:
 
 EFSS4X:
   id: "17229979014119030784"
-  description: Exhaust fan start-stop and feedback with four fans.
+  description: "Exhaust fan start-stop and feedback with four fans."
   is_abstract: true
   opt_uses:
   - exhaust_air_flowrate_capacity
@@ -3901,7 +3900,7 @@ EFSS4X:
 
 DF2XSS:
   id: "9591874046098669568"
-  description: Discharge fan start-stop and feedback (2 pts).
+  description: "Discharge fan start-stop and feedback (2 pts)."
   is_abstract: true
   opt_uses:
   - discharge_fan_current_sensor
@@ -3919,7 +3918,7 @@ DF2XSS:
 
 SFSS2X:
   id: "2241999454230020096"
-  description: Supply fan start-stop and feedback for two fans.
+  description: "Supply fan start-stop and feedback for two fans."
   is_abstract: true
   opt_uses:
   - supply_air_flowrate_capacity
@@ -3941,7 +3940,7 @@ SFSS2X:
 
 SFSS3X:
   id: "11465371491084795904"
-  description: Supply fan start-stop and feedback for three fans.
+  description: "Supply fan start-stop and feedback for three fans."
   is_abstract: true
   opt_uses:
   - supply_air_flowrate_capacity
@@ -3967,7 +3966,7 @@ SFSS3X:
 
 SFSS4X:
   id: "12662092041384099840"
-  description: Supply fan start-stop and feedback for four fans.
+  description: "Supply fan start-stop and feedback for four fans."
   is_abstract: true
   opt_uses:
   - supply_air_flowrate_capacity
@@ -3997,8 +3996,8 @@ SFSS4X:
 
 EFVSC2X:
   id: "6853685472657408000"
-  description: Exhaust fan variable speed control with feedback and sensoring for
-    two fans.
+  description: "Exhaust fan variable speed control with feedback and sensoring for
+    two fans."
   is_abstract: true
   opt_uses:
   - exhaust_fan_current_sensor_1
@@ -4023,8 +4022,8 @@ EFVSC2X:
 
 EFVSC3X:
   id: "16077057509512183808"
-  description: Exhaust fan variable speed control with feedback and sensoring for
-    three fans.
+  description: "Exhaust fan variable speed control with feedback and sensoring for
+    three fans."
   is_abstract: true
   opt_uses:
   - exhaust_fan_current_sensor_1
@@ -4056,8 +4055,8 @@ EFVSC3X:
 
 EFVSC4X:
   id: "4547842463443714048"
-  description: Exhaust fan variable speed control with feedback and sensoring for
-    four fans.
+  description: "Exhaust fan variable speed control with feedback and sensoring for
+    four fans."
   is_abstract: true
   opt_uses:
   - exhaust_fan_current_sensor_1
@@ -4096,8 +4095,8 @@ EFVSC4X:
 
 SFVSC2X:
   id: "13771214500298489856"
-  description: Supply fan variable speed control with feedback and sensoring with
-    two fans.
+  description: "Supply fan variable speed control with feedback and sensoring with
+    two fans."
   is_abstract: true
   opt_uses:
   - supply_fan_current_sensor_1
@@ -4123,8 +4122,8 @@ SFVSC2X:
 
 SFVSC3X:
   id: "6519182149650743296"
-  description: Supply fan variable speed control with feedback and sensoring with
-    three fans.
+  description: "Supply fan variable speed control with feedback and sensoring with
+    three fans."
   is_abstract: true
   opt_uses:
   - ac_voltage_sensor_1
@@ -4169,8 +4168,8 @@ SFVSC3X:
 
 SFVSC4X:
   id: "17733145221803278336"
-  description: Supply fan variable speed control with feedback and sensoring with
-    four fans.
+  description: "Supply fan variable speed control with feedback and sensoring with
+    four fans."
   is_abstract: true
   opt_uses:
   - supply_fan_current_sensor_1
@@ -4210,7 +4209,7 @@ SFVSC4X:
 
 BYPSSPC:
   id: "622251700748550144"
-  description: Supply static pressure control with bypass damper.
+  description: "Supply static pressure control with bypass damper."
   is_abstract: true
   opt_uses:
   - supply_air_flowrate_sensor
@@ -4229,7 +4228,7 @@ BYPSSPC:
 
 BYPSSPC2X: # Consider virtual point for instances where dampers control to same value.
   id: "7071406367143100416"
-  description: Supply static pressure control with bypass damper.
+  description: "Supply static pressure control with bypass damper."
   is_abstract: true
   opt_uses:
   - supply_air_flowrate_sensor
@@ -4249,7 +4248,7 @@ BYPSSPC2X: # Consider virtual point for instances where dampers control to same 
 
 SWISOVM:
   id: "5867537891751624704"
-  description: Supply side isolation valve monitoring.
+  description: "Supply side isolation valve monitoring."
   is_abstract: true
   uses:
   - supply_water_isolation_valve_command
@@ -4260,7 +4259,7 @@ SWISOVM:
 
 SWISOVPM:
   id: "3561694882537930752"
-  description: Supply side isolation valve monitoring.
+  description: "Supply side isolation valve monitoring."
   is_abstract: true
   uses:
   - supply_water_isolation_valve_percentage_command
@@ -4271,7 +4270,7 @@ SWISOVPM:
 
 RWISOVM:
   id: "9884748759366107136"
-  description: Return side isolation valve monitoring.
+  description: "Return side isolation valve monitoring."
   is_abstract: true
   uses:
   - return_water_isolation_valve_command
@@ -4282,7 +4281,7 @@ RWISOVM:
 
 RWISOVPM:
   id: "5273062740938719232"
-  description: Return side isolation valve monitoring.
+  description: "Return side isolation valve monitoring."
   is_abstract: true
   uses:
   - return_water_isolation_valve_percentage_command
@@ -4306,7 +4305,7 @@ CICHVISOVM3X:
 
 CHWRWISOVPM:
   id: "10432710170277576704"
-  description: Return side isolation valve monitoring.
+  description: "Return side isolation valve monitoring."
   is_abstract: true
   uses:
   - chilled_return_water_isolation_valve_percentage_command
@@ -4317,7 +4316,7 @@ CHWRWISOVPM:
 
 CHWRWISOVM:
   id: "10538544761520783360"
-  description: Return side isolation valve monitoring.
+  description: "Return side isolation valve monitoring."
   is_abstract: true
   uses:
   - chilled_return_water_isolation_valve_command
@@ -4328,7 +4327,7 @@ CHWRWISOVM:
 
 CHWSWISOVPM:
   id: "493265792670892032"
-  description: Supply side isolation valve monitoring.
+  description: "Supply side isolation valve monitoring."
   is_abstract: true
   uses:
   - chilled_supply_water_isolation_valve_percentage_command
@@ -4339,7 +4338,7 @@ CHWSWISOVPM:
 
 CHWSWISOVM:
   id: "16767023046174179328"
-  description: Supply side isolation valve monitoring.
+  description: "Supply side isolation valve monitoring."
   is_abstract: true
   uses:
   - chilled_supply_water_isolation_valve_command
@@ -4350,7 +4349,7 @@ CHWSWISOVM:
 
 PRWDT:
   id: "73094021186060288"
-  description: Temperature differential across process water.
+  description: "Temperature differential across process water."
   is_abstract: true
   implements:
   - MONITORING
@@ -4363,7 +4362,7 @@ PRWDT:
 
 PRWDT2X:
   id: "2264658189855227904"
-  description: Temperature differential across 2 process water headers.
+  description: "Temperature differential across 2 process water headers."
   is_abstract: true
   implements:
   - MONITORING
@@ -4379,7 +4378,7 @@ PRWDT2X:
 
 PWFRM:
   id: "2595109812513538048"
-  description: Flowrate monitoring for process water.
+  description: "Flowrate monitoring for process water."
   is_abstract: true
   implements:
   - MONITORING
@@ -4389,7 +4388,7 @@ PWFRM:
 
 PWFRM2X:
   id: "9296466058040836096"
-  description: Flowrate monitoring for 2 process water headers.
+  description: "Flowrate monitoring for 2 process water headers."
   is_abstract: true
   implements:
   - MONITORING
@@ -4400,7 +4399,7 @@ PWFRM2X:
 
 PWDPM:
   id: "455899989512552448"
-  description: Differential pressure monitoring for process water.
+  description: "Differential pressure monitoring for process water."
   is_abstract: true
   implements:
   - MONITORING
@@ -4410,7 +4409,7 @@ PWDPM:
 
 PWDPM2X:
   id: "7200603381453291520"
-  description: Differential pressure monitoring for 2 process water headers.
+  description: "Differential pressure monitoring for 2 process water headers."
   is_abstract: true
   implements:
   - MONITORING
@@ -4421,7 +4420,7 @@ PWDPM2X:
 
 CWRISOVPM:
   id: "5821024151850188800"
-  description: Condensing water return isolation monitoring.
+  description: "Condensing water return isolation monitoring."
   is_abstract: true
   uses:
   - condensing_return_water_isolation_valve_percentage_command
@@ -4432,7 +4431,7 @@ CWRISOVPM:
 
 CWRISOVM:
   id: "8126867161063882752"
-  description: Condensing water return isolation monitoring.
+  description: "Condensing water return isolation monitoring."
   is_abstract: true
   uses:
   - condensing_return_water_isolation_valve_command
@@ -4443,7 +4442,7 @@ CWRISOVM:
 
 CWSISOVPM:
   id: "9716637829525667840"
-  description: Condensing water supply isolation monitoring.
+  description: "Condensing water supply isolation monitoring."
   is_abstract: true
   uses:
   - condensing_supply_water_isolation_valve_percentage_command
@@ -4454,7 +4453,7 @@ CWSISOVPM:
 
 CWSISOVM:
   id: "1779043486285168640"
-  description: Condensing water supply isolation monitoring.
+  description: "Condensing water supply isolation monitoring."
   is_abstract: true
   uses:
   - condensing_supply_water_isolation_valve_command
@@ -4465,7 +4464,7 @@ CWSISOVM:
 
 CHWRISOVPM:
   id: "17456073789161865216"
-  description: Chilled water return isolation monitoring.
+  description: "Chilled water return isolation monitoring."
   is_abstract: true
   uses:
   - chilled_return_water_isolation_valve_percentage_command
@@ -4476,7 +4475,7 @@ CHWRISOVPM:
 
 WDPM:
   id: "6845381960844443648"
-  description: Differential pressure monitoring.
+  description: "Differential pressure monitoring."
   is_abstract: true
   uses:
   - differential_pressure_sensor
@@ -4487,7 +4486,7 @@ WDPM:
 
 CHWDPM:
   id: "17350239197918658560"
-  description: Differential pressure monitoring for chilled water.
+  description: "Differential pressure monitoring for chilled water."
   is_abstract: true
   uses:
   - chilled_water_differential_pressure_sensor
@@ -4495,7 +4494,7 @@ CHWDPM:
 
 CHDX4SC:
   id: "5104951811098279936"
-  description: Chiller control.
+  description: "Chiller control."
   is_abstract: true
   opt_uses:
   - chilled_return_water_temperature_sensor
@@ -4521,7 +4520,7 @@ CHDX4SC:
 
 CHDX2SC:
   id: "11002415523139944448"
-  description: Chiller control.
+  description: "Chiller control."
   is_abstract: true
   opt_uses:
   - chilled_return_water_temperature_sensor
@@ -4544,7 +4543,7 @@ CHDX2SC:
 
 CHDXSC:
   id: "738711972362584064"
-  description: Chiller control single stage.
+  description: "Chiller control single stage."
   is_abstract: true
   opt_uses:
   - chilled_return_water_temperature_sensor
@@ -4564,7 +4563,7 @@ CHDXSC:
 
 CHDXVSC:
   id: "16068753997699219456"
-  description: Variable speed compressor control.
+  description: "Variable speed compressor control."
   is_abstract: true
   uses:
   - compressor_run_command
@@ -4581,7 +4580,7 @@ CHDXVSC:
 
 CDWFRM:
   id: "632877381119377408"
-  description: Condenser water flowrate monitoring.
+  description: "Condenser water flowrate monitoring."
   is_abstract: true
   uses:
   - condensing_water_flowrate_sensor
@@ -4591,7 +4590,7 @@ CDWFRM:
 
 REFSM:
   id: "14328323847953055744"
-  description: Refrigerant saturation monitoring.
+  description: "Refrigerant saturation monitoring."
   is_abstract: true
   opt_uses:
   - refrigerant_discharge_temperature_sensor
@@ -4605,8 +4604,8 @@ REFSM:
 
 PDSCV:
   id: "2539113884334161920"
-  description: Pressure-dependent supply damper control for ventilation purposes (CO2
-    or VOC).
+  description: "Pressure-dependent supply damper control for ventilation purposes
+    (CO2 or VOC)."
   is_abstract: true
   uses:
   - supply_air_damper_percentage_command
@@ -4617,7 +4616,7 @@ PDSCV:
 
 SDBPC:
   id: "11762485921188937728"
-  description: Back-pressure controlling supply damper.
+  description: "Back-pressure controlling supply damper."
   is_abstract: true
   opt_uses:
   - supply_air_flowrate_sensor
@@ -4634,8 +4633,8 @@ SDBPC:
 
 HWVM:
   id: "12990740464972857344"
-  description: Heating water valve command and position monitoring (without regard
-    to what controls it).
+  description: "Heating water valve command and position monitoring (without regard
+    to what controls it)."
   is_abstract: true
   opt_uses:
   - heating_thermal_power_capacity
@@ -4649,8 +4648,8 @@ HWVM:
 
 CHWVM:
   id: "16809792948983037952"
-  description: Chilled water valve command and position monitoring (without regard
-    to what controls it).
+  description: "Chilled water valve command and position monitoring (without regard
+    to what controls it)."
   is_abstract: true
   opt_uses:
   - chilled_water_flowrate_sensor
@@ -4665,7 +4664,7 @@ CHWVM:
 
 RMM:
   id: "16071202610094276608"
-  description: Run mode monitoring.
+  description: "Run mode monitoring."
   is_abstract: true
   uses:
   - run_mode
@@ -4673,7 +4672,7 @@ RMM:
 
 DSPZDHC:
   id: "8195635016311504896"
-  description: Zone dual setpoint humidification/dehumidification control.
+  description: "Zone dual setpoint humidification/dehumidification control."
   is_abstract: true
   opt_uses:
   - humidification_percentage_command
@@ -4690,7 +4689,7 @@ DSPZDHC:
 
 EFC:
   id: "9564729303032135680"
-  description: Exhaust air flow control.
+  description: "Exhaust air flow control."
   is_abstract: true
   uses:
   - exhaust_air_flowrate_sensor
@@ -4701,7 +4700,7 @@ EFC:
 
 DXDDC:
   id: "14536703291649163264"
-  description: DX cooling dual setpoint control on discharge side
+  description: "DX cooling dual setpoint control on discharge side"
   is_abstract: true
   opt_uses:
   - compressor_run_status
@@ -4721,7 +4720,7 @@ DXDDC:
 
 HTDDC:
   id: "11978658703302721536"
-  description: gas or electric heating dual setpoint control on discharge side
+  description: "gas or electric heating dual setpoint control on discharge side"
   is_abstract: true
   opt_uses:
   - heater_run_status
@@ -4738,7 +4737,7 @@ HTDDC:
 
 REFSM2X:
   id: "16374171939616325632"
-  description: Refrigerant temperature monitoring for 2 circuits.
+  description: "Refrigerant temperature monitoring for 2 circuits."
   is_abstract: true
   opt_uses:
   - refrigerant_discharge_temperature_sensor_1
@@ -4756,7 +4755,7 @@ REFSM2X:
 
 REFPM:
   id: "5061129675661639680"
-  description: Refrigerant pressure monitoring for single circuits.
+  description: "Refrigerant pressure monitoring for single circuits."
   is_abstract: true
   opt_uses:
   - refrigerant_differential_pressure_sensor
@@ -4771,7 +4770,7 @@ REFPM:
 
 REFPM2X:
   id: "3800121779997900800"
-  description: Refrigerant pressure monitoring for 2 circuits.
+  description: "Refrigerant pressure monitoring for 2 circuits."
   is_abstract: true
   uses:
   - refrigerant_condenser_pressure_sensor_1
@@ -4784,7 +4783,7 @@ REFPM2X:
 
 SWPSS:
   id: "14653796881960796160"
-  description: Sweeper pump start stop monitoring.
+  description: "Sweeper pump start stop monitoring."
   is_abstract: true
   uses:
   - sweeper_pump_run_command
@@ -4795,7 +4794,7 @@ SWPSS:
 
 DRPM:
   id: "14779975736852742144"
-  description: Drain pump monitoring.
+  description: "Drain pump monitoring."
   is_abstract: true
   opt_uses:
   - input_motor_power_status
@@ -4810,7 +4809,7 @@ DRPM:
 
 SDM:
   id: "5997878398154702848"
-  description: Supply air damper monitoring.
+  description: "Supply air damper monitoring."
   is_abstract: true
   uses:
   - supply_air_damper_command
@@ -4819,7 +4818,7 @@ SDM:
 
 ECDDC:
   id: "17635179835280064512"
-  description: Evaporative cooler control on discharge side.
+  description: "Evaporative cooler control on discharge side."
   is_abstract: true
   opt_uses:
   - cooling_percentage_sensor
@@ -4836,7 +4835,7 @@ ECDDC:
 
 DXSDC:
   id: "3007488245580693504"
-  description: Compressor run control on supply side, dual setpoints.
+  description: "Compressor run control on supply side, dual setpoints."
   is_abstract: true
   opt_uses:
   - compressor_run_status
@@ -4860,7 +4859,7 @@ DXSDC:
 
 ETM4X:
   id: "11771493120443678720"
-  description: Basic exhaust temperature monitoring.
+  description: "Basic exhaust temperature monitoring."
   is_abstract: true
   uses:
   - exhaust_air_temperature_sensor_1
@@ -4875,7 +4874,7 @@ ETM4X:
 
 DX6SC:
   id: "7258886293818441728"
-  description: Six compressor run control on supply air side.
+  description: "Six compressor run control on supply air side."
   is_abstract: true
   opt_uses:
   - compressor_speed_percentage_command
@@ -4909,7 +4908,7 @@ DX6SC:
 
 DX2DSPRTC:
   id: "3583948997884116992"
-  description: Two-stage compressor run control with dual return temp control.
+  description: "Two-stage compressor run control with dual return temp control."
   is_abstract: true
   opt_uses:
   - compressor_speed_percentage_command
@@ -4936,7 +4935,7 @@ DX2DSPRTC:
 
 DX4DC:
   id: "233270875120467968"
-  description: Compressor run control on discharge air side (DTC).
+  description: "Compressor run control on discharge air side (DTC)."
   is_abstract: true
   opt_uses:
   - compressor_speed_percentage_command
@@ -4964,7 +4963,7 @@ DX4DC:
 
 DX6SWC:
   id: "10609564416582090752"
-  description: Six compressor run control on supply water side.
+  description: "Six compressor run control on supply water side."
   is_abstract: true
   opt_uses:
   - compressor_speed_percentage_command
@@ -4997,7 +4996,7 @@ DX6SWC:
 
 DRSM5X:
   id: "7159807102016290816"
-  description: Dryer status monitoring.
+  description: "Dryer status monitoring."
   is_abstract: true
   uses:
   - dryer_run_status_1
@@ -5011,7 +5010,7 @@ DRSM5X:
 
 DRSM8X:
   id: "4953043284604747776"
-  description: Dryer status monitoring.
+  description: "Dryer status monitoring."
   is_abstract: true
   uses:
   - dryer_run_status_1
@@ -5028,8 +5027,8 @@ DRSM8X:
 
 AHAC:
   id: "529218723387539456"
-  description: Tag to indicate an after hours activation method e.g. push button associated
-    with this device.
+  description: "Tag to indicate an after hours activation method e.g. push button
+    associated with this device."
   is_abstract: true
   uses:
   - user_occupancy_override_status
@@ -5040,7 +5039,7 @@ AHAC:
 
 DFFC:
   id: "10094864331922472960"
-  description: Discharge fan flow control
+  description: "Discharge fan flow control"
   is_abstract: true
   uses:
   - discharge_air_flowrate_sensor
@@ -5057,7 +5056,7 @@ DFFC:
 
 EFM:
   id: "1682140227994386432"
-  description: Exhaust air flow monitoring
+  description: "Exhaust air flow monitoring"
   is_abstract: true
   uses:
   - exhaust_air_flowrate_sensor
@@ -5067,7 +5066,7 @@ EFM:
 
 SWTM:
   id: "12058433769456009216"
-  description: Supply water temperature monitoring.
+  description: "Supply water temperature monitoring."
   is_abstract: true
   implements:
   - MONITORING
@@ -5083,7 +5082,7 @@ SWTM:
 
 CWDPM:
   id: "16174723828872642560"
-  description: Differential pressure monitoring for condenser water.
+  description: "Differential pressure monitoring for condenser water."
   is_abstract: true
   implements:
   - MONITORING
@@ -5103,7 +5102,7 @@ DICM:
 
 UV:
   id: "6143342686997839872"
-  description: Ultraviolet lamp operation.
+  description: "Ultraviolet lamp operation."
   is_abstract: true
   opt_uses:
   - ultraviolet_lamp_run_mode
@@ -5114,7 +5113,7 @@ UV:
 
 H3X:
   id: "3243024526971240448"
-  description: Heater monitoring.
+  description: "Heater monitoring."
   is_abstract: true
   implements:
   - MONITORING
@@ -5129,8 +5128,8 @@ H3X:
 
 CHWBRC:
   id: "9602107200818380800"
-  description: Chilled water valve binary (open/closed) monitoring/controlling. Return
-    air temperature control.
+  description: "Chilled water valve binary (open/closed) monitoring/controlling.
+    Return air temperature control."
   is_abstract: true
   implements:
   - OPERATIONAL
@@ -5146,7 +5145,7 @@ CHWBRC:
 
 CHWISOVPM:
   id: "10952342664099397632"
-  description: Chllled water isolation valve control.
+  description: "Chllled water isolation valve control."
   is_abstract: true
   implements:
   - OPERATIONAL
@@ -5157,7 +5156,7 @@ CHWISOVPM:
 
 CWCS:
   id: "1207397495399776256"
-  description: Condensing water valve control.
+  description: "Condensing water valve control."
   is_abstract: true
   implements:
   - OPERATIONAL
@@ -5168,7 +5167,7 @@ CWCS:
 
 DPM:
   id: "14194934395806154752"
-  description: Damper percentage control.
+  description: "Damper percentage control."
   is_abstract: true
   implements:
   - OPERATIONAL
@@ -5179,7 +5178,7 @@ DPM:
 
 DFVSMC:
   id: "6412714239709937664"
-  description: Variable speed control mode for discharge fans.
+  description: "Variable speed control mode for discharge fans."
   is_abstract: true
   uses:
   - discharge_fan_run_command
@@ -5193,9 +5192,9 @@ DFVSMC:
 
 DFVDSC:
   id: "7493578150278856704"
-  description: Discharge fan control with toggled variable or discrete speed control.
+  description: "Discharge fan control with toggled variable or discrete speed control.
     This allows the fan to run either VFD or discrete speed stages (LOW/MED/HIGH,
-    etc.) and to switch between the mode.
+    etc.) and to switch between the mode."
   is_abstract: true
   uses:
   - discharge_fan_run_command
@@ -5210,9 +5209,9 @@ DFVDSC:
 
 DFVDSFC:
   id: "15636086276564713472"
-  description: Discharge fan control with toggled variable or discrete speed (frequency)
+  description: "Discharge fan control with toggled variable or discrete speed (frequency)
     control. This allows the fan to run either VFD or discrete speed stages (LOW/MED/HIGH,
-    etc.) and to switch between the mode.
+    etc.) and to switch between the mode."
   is_abstract: true
   uses:
   - discharge_fan_run_command
@@ -5227,8 +5226,8 @@ DFVDSFC:
 
 SSPCSCM:
   id: "6685507472607674368"
-  description: Supply air static pressure control for supervisor control (Machine
-    learning).
+  description: "Supply air static pressure control for supervisor control (Machine
+    learning)."
   is_abstract: true
   uses:
   - program_supply_air_static_pressure_setpoint
@@ -5241,7 +5240,7 @@ SSPCSCM:
 
 STCSCM:
   id: "6577421081550782464"
-  description: Supply air temperature control for supervisor control (Machine learning).
+  description: "Supply air temperature control for supervisor control (Machine learning)."
   is_abstract: true
   uses:
   - program_supply_air_temperature_setpoint
@@ -5254,7 +5253,8 @@ STCSCM:
 
 SWTCSCM:
   id: "8591656014892236800"
-  description: Supply water temperature control for supervisor control (Machine learning).
+  description: "Supply water temperature control for supervisor control (Machine
+    learning)."
   is_abstract: true
   uses:
   - program_supply_water_temperature_setpoint
@@ -5267,8 +5267,8 @@ SWTCSCM:
 
 WDPCSCM:
   id: "11032607012927045632"
-  description: Water differential pressure control for supervisor control (Machine
-    learning).
+  description: "Water differential pressure control for supervisor control (Machine
+    learning)."
   is_abstract: true
   uses:
   - differential_pressure_setpoint
@@ -5281,7 +5281,7 @@ WDPCSCM:
 
 CSWIVS:
   id: "359876340523991040"
-  description: Condensing return water isolation valve control.
+  description: "Condensing return water isolation valve control."
   is_abstract: true
   implements:
   - OPERATIONAL
@@ -5294,6 +5294,11 @@ CSWIVS:
   - condensing_return_water_isolation_valve_command_6
   - condensing_return_water_isolation_valve_command_7
   - condensing_return_water_isolation_valve_status_1
+  - condensing_return_water_isolation_valve_status_10
+  - condensing_return_water_isolation_valve_status_11
+  - condensing_return_water_isolation_valve_status_12
+  - condensing_return_water_isolation_valve_status_13
+  - condensing_return_water_isolation_valve_status_14
   - condensing_return_water_isolation_valve_status_2
   - condensing_return_water_isolation_valve_status_3
   - condensing_return_water_isolation_valve_status_4
@@ -5302,16 +5307,11 @@ CSWIVS:
   - condensing_return_water_isolation_valve_status_7
   - condensing_return_water_isolation_valve_status_8
   - condensing_return_water_isolation_valve_status_9
-  - condensing_return_water_isolation_valve_status_10
-  - condensing_return_water_isolation_valve_status_11
-  - condensing_return_water_isolation_valve_status_12
-  - condensing_return_water_isolation_valve_status_13
-  - condensing_return_water_isolation_valve_status_14
 
 
 CRWIVS:
   id: "10755028705425227776"
-  description: Condensing supply water isolation valve control.
+  description: "Condensing supply water isolation valve control."
   is_abstract: true
   implements:
   - OPERATIONAL
@@ -5324,6 +5324,11 @@ CRWIVS:
   - condensing_supply_water_isolation_valve_command_6
   - condensing_supply_water_isolation_valve_command_7
   - condensing_supply_water_isolation_valve_status_1
+  - condensing_supply_water_isolation_valve_status_10
+  - condensing_supply_water_isolation_valve_status_11
+  - condensing_supply_water_isolation_valve_status_12
+  - condensing_supply_water_isolation_valve_status_13
+  - condensing_supply_water_isolation_valve_status_14
   - condensing_supply_water_isolation_valve_status_2
   - condensing_supply_water_isolation_valve_status_3
   - condensing_supply_water_isolation_valve_status_4
@@ -5332,16 +5337,11 @@ CRWIVS:
   - condensing_supply_water_isolation_valve_status_7
   - condensing_supply_water_isolation_valve_status_8
   - condensing_supply_water_isolation_valve_status_9
-  - condensing_supply_water_isolation_valve_status_10
-  - condensing_supply_water_isolation_valve_status_11
-  - condensing_supply_water_isolation_valve_status_12
-  - condensing_supply_water_isolation_valve_status_13
-  - condensing_supply_water_isolation_valve_status_14
 
 
 CSWTC:
   id: "14772239573039710208"
-  description: Condensing supply water temperature control.
+  description: "Condensing supply water temperature control."
   is_abstract: true
   implements:
   - OPERATIONAL
@@ -5352,7 +5352,7 @@ CSWTC:
 
 HTWHLSTC:
   id: "5798430287411019776"
-  description: Heat wheel which controls supply temperature using speed control.
+  description: "Heat wheel which controls supply temperature using speed control."
   is_abstract: true
   implements:
   - CONTROL
@@ -5376,7 +5376,7 @@ HTWHLSTC:
 #New abstracts for CH ZRH EURD
 CAM:
   id: "10932006097032052736"
-  description: ztc alarm monitoring based on moisture sensor on coil or in pan.
+  description: "ztc alarm monitoring based on moisture sensor on coil or in pan."
   is_abstract: true
   implements:
   - MONITORING
@@ -5386,10 +5386,10 @@ CAM:
 
 DPHCC:
   id: "12422697573691686912"
-  description: Two-pipe heating and cooling control. Has a single control valve that
-    is fed by two separate headers for heating and cooling water. There is an isolation
-    valve for each incoming system and a single control valve. Valve and mode control
-    to zone temperature (heating/cooling setpoint configuration).
+  description: "Two-pipe heating and cooling control. Has a single control valve
+    that is fed by two separate headers for heating and cooling water. There is an
+    isolation valve for each incoming system and a single control valve. Valve and
+    mode control to zone temperature (heating/cooling setpoint configuration)."
   is_abstract: true
   opt_uses:
   - chilled_return_water_isolation_valve_percentage_command
@@ -5412,7 +5412,7 @@ DPHCC:
 
 HHCDM:
   id: "3582131505163403264"
-  description: Hydronic heating and cooling distribution monitoring
+  description: "Hydronic heating and cooling distribution monitoring"
   is_abstract: true
   implements:
   - MONITORING
@@ -5429,8 +5429,8 @@ HHCDM:
 
 HHRU:
   id: "9211631039376523264"
-  description: Hydronic heat recovery unit for ahu"s with bypass valve and circulation
-    pump
+  description: "Hydronic heat recovery unit for ahu"s with bypass valve and circulation
+    pump"
   is_abstract: true
   implements:
   - MONITORING
@@ -5455,8 +5455,8 @@ HHRU:
 
 PHRU:
   id: "5194420171762040832"
-  description: heat recovery unit for ahu"s with plate heat exchanger valve and bypass
-    damper
+  description: "heat recovery unit for ahu"s with plate heat exchanger valve and
+    bypass damper"
   is_abstract: true
   implements:
   - MONITORING
@@ -5479,7 +5479,7 @@ PHRU:
 
 CHWDT2X:
   id: "17588854111866978304"
-  description: Temperature differential across chilled water with two sets of sensors.
+  description: "Temperature differential across chilled water with two sets of sensors."
   is_abstract: true
   implements:
   - MONITORING
@@ -5492,7 +5492,7 @@ CHWDT2X:
 
 HLSAFS:
   id: "3550799821818298368"
-  description: Duct VAV type with high and low limit setpoint
+  description: "Duct VAV type with high and low limit setpoint"
   is_abstract: true
   uses:
   - high_limit_supply_air_flowrate_setpoint
@@ -5504,7 +5504,7 @@ HLSAFS:
 
 RHDHS:
   id: "15197108458198401024"
-  description: Return humidification/dehumidification monitor.
+  description: "Return humidification/dehumidification monitor."
   is_abstract: true
   uses:
   - dehumidification_run_status
@@ -5521,7 +5521,7 @@ RHDHS:
 
 CO2DFVSC:
   id: "4574242837138243584"
-  description: Carbon dioxide levels controlled by a variable speed discharge fan.
+  description: "Carbon dioxide levels controlled by a variable speed discharge fan."
   is_abstract: true
   uses:
   - discharge_fan_speed_percentage_command
@@ -5535,7 +5535,7 @@ CO2DFVSC:
 
 CO2EFVSC:
   id: "8098956058392788992"
-  description: Carbon dioxide levels controlled by a variable speed exhaust fan.
+  description: "Carbon dioxide levels controlled by a variable speed exhaust fan."
   is_abstract: true
   opt_uses:
   - exhaust_fan_speed_percentage_sensor
@@ -5550,7 +5550,7 @@ CO2EFVSC:
 
 RACO2C:
   id: "15503353232859594752"
-  description: Returned air carbon dioxide levels controls.
+  description: "Returned air carbon dioxide levels controls."
   is_abstract: true
   uses:
   - return_air_co2_concentration_sensor
@@ -5559,8 +5559,8 @@ RACO2C:
 
 DX2DDC:
   id: "6446737527519838208"
-  description: Two compressor run control with dual setpoint control on discharge
-    side
+  description: "Two compressor run control with dual setpoint control on discharge
+    side"
   is_abstract: true
   opt_uses:
   - compressor_speed_percentage_command
@@ -5583,7 +5583,7 @@ DX2DDC:
 
 HWDT:
   id: "6441530240450691072"
-  description: Temperature differential across heating water for heat recovery chiller.
+  description: "Temperature differential across heating water for heat recovery chiller."
   is_abstract: true
   implements:
   - MONITORING
@@ -5594,7 +5594,7 @@ HWDT:
 
 HPDDC:
   id: "5130419798932455424"
-  description: Dual setpoint discharge side heat pump control.
+  description: "Dual setpoint discharge side heat pump control."
   is_abstract: true
   opt_uses:
   - compressor_speed_percentage_command
@@ -5618,7 +5618,7 @@ HPDDC:
 
 EC2SC:
   id: "9093587471018491904"
-  description: Evaporative cooler control on supply side.
+  description: "Evaporative cooler control on supply side."
   is_abstract: true
   opt_uses:
   - cooling_percentage_sensor
@@ -5638,7 +5638,7 @@ EC2SC:
 
 HWDDC:
   id: "5695815066213941248"
-  description: Heating water valve with dual setpoint control on discharge side.
+  description: "Heating water valve with dual setpoint control on discharge side."
   is_abstract: true
   opt_uses:
   - discharge_air_relative_humidity_sensor
@@ -5656,7 +5656,8 @@ HWDDC:
 
 CFDPM:
   id: "13838358376871886848"
-  description: Carbon filter pressure monitoring, where specific filter type is required.
+  description: "Carbon filter pressure monitoring, where specific filter type is
+    required."
   is_abstract: true
   uses:
   - carbon_filter_differential_pressure_sensor
@@ -5666,8 +5667,8 @@ CFDPM:
 
 VOADM2X:
   id: "13507343804260155392"
-  description: Variable outside air damper monitoring, where there are two separate,
-    equal sets of dampers that operate in conjunction.
+  description: "Variable outside air damper monitoring, where there are two separate,
+    equal sets of dampers that operate in conjunction."
   is_abstract: true
   opt_uses:
   - economizer_mode
@@ -5688,7 +5689,7 @@ VOADM2X:
 
 EHHRC:
   id: "3300321589723136"
-  description: Exhaust hydronic heat recovery coil with an isolation valve.
+  description: "Exhaust hydronic heat recovery coil with an isolation valve."
   is_abstract: true
   uses:
   - entering_heat_recovery_coil_temperature_sensor
@@ -5701,9 +5702,9 @@ EHHRC:
 
 DPBHCC:
   id: "6697901167675965440"
-  description: Two-pipe binary (open/closed) heating and cooling control. There is
-    an isolation valve for each incoming system. Valve and mode control to zone temperature
-    (heating/cooling setpoint configuration).
+  description: "Two-pipe binary (open/closed) heating and cooling control. There
+    is an isolation valve for each incoming system. Valve and mode control to zone
+    temperature (heating/cooling setpoint configuration)."
   is_abstract: true
   opt_uses:
   - cooling_request_count
@@ -5726,8 +5727,8 @@ DPBHCC:
 
 FTC:
   id: "18010943431630651392"
-  description: Floor temperature control, where the temperature sensors are embedded
-    in the floor (as opposed to open to the air).
+  description: "Floor temperature control, where the temperature sensors are embedded
+    in the floor (as opposed to open to the air)."
   is_abstract: true
   uses:
   - zone_floor_temperature_sensor
@@ -5738,8 +5739,8 @@ FTC:
 
 DPCHWHRWSC:
   id: "370343691220418560"
-  description: Two-pipe chilled water and heat recovery water control using the same
-    coils.
+  description: "Two-pipe chilled water and heat recovery water control using the
+    same coils."
   is_abstract: true
   opt_uses:
   - chilled_return_water_isolation_valve_status
@@ -5767,7 +5768,7 @@ DPCHWHRWSC:
 
 CPVSC2X:
   id: "2309143330803417088"
-  description: Circulation pump variable speed control with 2 circulation pumps.
+  description: "Circulation pump variable speed control with 2 circulation pumps."
   is_abstract: true
   uses:
   - circulation_pump_run_command_1
@@ -5784,7 +5785,7 @@ CPVSC2X:
 
 HWTTC:
   id: "8895657785832767488"
-  description: Hot water tank temperature control.
+  description: "Hot water tank temperature control."
   is_abstract: true
   uses:
   - hot_water_tank_temperature_sensor
@@ -5795,7 +5796,7 @@ HWTTC:
 
 PHWTTC:
   id: "15921273204530741248"
-  description: Preheating water tank temperature control.
+  description: "Preheating water tank temperature control."
   is_abstract: true
   uses:
   - preheating_water_tank_temperature_sensor
@@ -5806,7 +5807,7 @@ PHWTTC:
 
 RCKTM:
   id: "4150552628444528640"
-  description: Refrigeration circuit monitoring for a DX compressor loop.
+  description: "Refrigeration circuit monitoring for a DX compressor loop."
   is_abstract: true
   uses:
   - refrigerant_discharge_pressure_sensor
@@ -5823,7 +5824,7 @@ RCKTM:
 
 RCKTM2X:
   id: "9248627406627930112"
-  description: Refrigeration circuits (2x) monitoring for a DX compressor loop.
+  description: "Refrigeration circuits (2x) monitoring for a DX compressor loop."
   is_abstract: true
   uses:
   - refrigerant_discharge_pressure_sensor_1
@@ -5850,7 +5851,7 @@ RCKTM2X:
 
 CCM:
   id: "7375129961641803776"
-  description: Compressor current monitoring.
+  description: "Compressor current monitoring."
   is_abstract: true
   uses:
   - compressor_current_sensor
@@ -5859,7 +5860,7 @@ CCM:
 
 CC2XM:
   id: "15229407711775948800"
-  description: Compressor current monitoring for 2 compressors.
+  description: "Compressor current monitoring for 2 compressors."
   is_abstract: true
   uses:
   - compressor_current_sensor_1
@@ -5870,7 +5871,7 @@ CC2XM:
 
 SSSPC:
   id: "12462508690710200320"
-  description: Supply static steam pressure control for steam/water heat exchanger
+  description: "Supply static steam pressure control for steam/water heat exchanger"
   is_abstract: true
   uses:
   - steam_valve_percentage_command
@@ -5882,7 +5883,7 @@ SSSPC:
 
 SCHWISOVPM:
   id: "428890486376235008"
-  description: Secondary chilled water return side isolation valve percentage monitoring.
+  description: "Secondary chilled water return side isolation valve percentage monitoring."
   is_abstract: true
   uses:
   - secondary_chilled_return_water_isolation_valve_percentage_command
@@ -5893,7 +5894,7 @@ SCHWISOVPM:
 
 SCHWDT:
   id: "9593715728075194368"
-  description: Secondary-side chilled water delta-T monitoring.
+  description: "Secondary-side chilled water delta-T monitoring."
   is_abstract: true
   implements:
   - MONITORING
@@ -5904,7 +5905,7 @@ SCHWDT:
 
 SHWDT:
   id: "11532515367658192896"
-  description: Secondary-side heating water delta-T monitoring.
+  description: "Secondary-side heating water delta-T monitoring."
   is_abstract: true
   implements:
   - MONITORING
@@ -5915,7 +5916,7 @@ SHWDT:
 
 PCHWDT:
   id: "18119029822687543296"
-  description: Temperature differential across primary chilled water loop.
+  description: "Temperature differential across primary chilled water loop."
   is_abstract: true
   implements:
   - MONITORING
@@ -5926,7 +5927,7 @@ PCHWDT:
 
 PHWDT:
   id: "4392058158462271488"
-  description: Temperature differential across primary heating water loop.
+  description: "Temperature differential across primary heating water loop."
   is_abstract: true
   implements:
   - MONITORING
@@ -5937,7 +5938,7 @@ PHWDT:
 
 TDTM:
   id: "9652262523231010816"
-  description: water tank delta-T monitoring.
+  description: "water tank delta-T monitoring."
   is_abstract: true
   uses:
   - entering_water_tank_temperature_sensor
@@ -5948,7 +5949,7 @@ TDTM:
 
 HLPM:
   id: "4982029709647806464"
-  description: Heating thermal power sensor.
+  description: "Heating thermal power sensor."
   is_abstract: true
   uses:
   - heating_thermal_power_sensor
@@ -5958,7 +5959,7 @@ HLPM:
 
 CWRWISOVM:
   id: "15646553627261140992"
-  description: Condensing water supply side isolation valve monitoring.
+  description: "Condensing water supply side isolation valve monitoring."
   is_abstract: true
   uses:
   - condensing_return_water_isolation_valve_command
@@ -5969,7 +5970,7 @@ CWRWISOVM:
 
 CWRWISOVPM:
   id: "7850822672282812416"
-  description: Condensing water return side isolation valve percentage monitoring.
+  description: "Condensing water return side isolation valve percentage monitoring."
   is_abstract: true
   uses:
   - condensing_return_water_isolation_valve_percentage_command
@@ -5980,7 +5981,7 @@ CWRWISOVPM:
 
 OCWRWISOVM:
   id: "18443288995858219008"
-  description: Open-loop CDW return side isolation valve monitoring.
+  description: "Open-loop CDW return side isolation valve monitoring."
   is_abstract: true
   uses:
   - outside_condensing_loop_return_water_isolation_valve_command
@@ -5991,7 +5992,7 @@ OCWRWISOVM:
 
 OCWRWISOVPM:
   id: "15705100422416957440"
-  description: Open-loop CDW return side isolation valve monitoring.
+  description: "Open-loop CDW return side isolation valve monitoring."
   is_abstract: true
   uses:
   - outside_condensing_loop_return_water_isolation_valve_percentage_command
@@ -6002,7 +6003,7 @@ OCWRWISOVPM:
 
 HWRWISOVM:
   id: "8729024599620059136"
-  description: Heating return side isolation valve monitoring.
+  description: "Heating return side isolation valve monitoring."
   is_abstract: true
   uses:
   - heating_return_water_isolation_valve_command
@@ -6013,7 +6014,7 @@ HWRWISOVM:
 
 HWSWISOVM:
   id: "4614986340017111040"
-  description: Heating supply side isolation valve monitoring.
+  description: "Heating supply side isolation valve monitoring."
   is_abstract: true
   uses:
   - heating_supply_water_isolation_valve_command
@@ -6024,7 +6025,7 @@ HWSWISOVM:
 
 HWRWISOVPM:
   id: "13399257413203263488"
-  description: Heating return side isolation valve percentage monitoring.
+  description: "Heating return side isolation valve percentage monitoring."
   is_abstract: true
   uses:
   - heating_return_water_isolation_valve_percentage_command
@@ -6048,7 +6049,7 @@ DEFSS:
 
 DEFSTC:
   id: "13973831403553423360"
-  description: Defrost temperature control.
+  description: "Defrost temperature control."
   is_abstract: true
   uses:
   - defrost_temperature_sensor
@@ -6059,8 +6060,8 @@ DEFSTC:
 
 VOADC2X:
   id: "15455797155935027200"
-  description: Variable outside air damper control and monitoring, where there are
-    two separate, equal sets of dampers that operate in conjunction.
+  description: "Variable outside air damper control and monitoring, where there are
+    two separate, equal sets of dampers that operate in conjunction."
   is_abstract: true
   uses:
   - outside_air_damper_percentage_command_1
@@ -6073,7 +6074,7 @@ VOADC2X:
 
 RAIDC:
   id: "8470714133883387904"
-  description: Return air isolation damper control and monitoring.
+  description: "Return air isolation damper control and monitoring."
   is_abstract: true
   uses:
   - return_air_isolation_damper_command
@@ -6084,8 +6085,8 @@ RAIDC:
 
 RAIDC3X:
   id: "6574698690760409088"
-  description: Return air isolation damper control and monitoring, where there are
-    three separate, equal sets of dampers that operate in conjunction.
+  description: "Return air isolation damper control and monitoring, where there are
+    three separate, equal sets of dampers that operate in conjunction."
   is_abstract: true
   uses:
   - return_air_isolation_damper_command_1
@@ -6102,8 +6103,8 @@ RAIDC3X:
 
 RAIDC2X:
   id: "11726816664472256512"
-  description: Return air isolation damper control and monitoring, where there are
-    two separate, equal sets of dampers that operate in conjunction.
+  description: "Return air isolation damper control and monitoring, where there are
+    two separate, equal sets of dampers that operate in conjunction."
   is_abstract: true
   uses:
   - return_air_isolation_damper_command_1
@@ -6118,8 +6119,8 @@ RAIDC2X:
 
 DAIDC2X:
   id: "14872369897958014976"
-  description: Discharge air isolation damper control and monitoring, where there
-    are two separate, equal sets of dampers that operate in conjunction.
+  description: "Discharge air isolation damper control and monitoring, where there
+    are two separate, equal sets of dampers that operate in conjunction."
   is_abstract: true
   uses:
   - discharge_air_isolation_damper_command_1
@@ -6132,7 +6133,7 @@ DAIDC2X:
 
 DAIDC:
   id: "16510378340553588736"
-  description: Discharge air isolation damper control and monitoring.
+  description: "Discharge air isolation damper control and monitoring."
   is_abstract: true
   uses:
   - discharge_air_isolation_damper_command
@@ -6143,8 +6144,8 @@ DAIDC:
 
 RAIDC4X:
   id: "3091164378989330432"
-  description: Return air isolation damper control and monitoring, where there are
-    four separate, equal sets of dampers that operate in conjunction.
+  description: "Return air isolation damper control and monitoring, where there are
+    four separate, equal sets of dampers that operate in conjunction."
   is_abstract: true
   uses:
   - return_air_isolation_damper_command_1
@@ -6163,7 +6164,7 @@ RAIDC4X:
 
 SAIDC:
   id: "3926582109866557440"
-  description: isolation damper status monitoring and control on the supply side.
+  description: "isolation damper status monitoring and control on the supply side."
   is_abstract: true
   uses:
   - supply_air_isolation_damper_command
@@ -6176,8 +6177,8 @@ SAIDC:
 
 SAIDC2X:
   id: "17694086170738163712"
-  description: isolation damper status monitoring and control on the supply side,
-    where there are two separate, equal sets of dampers that operate in conjunction.
+  description: "isolation damper status monitoring and control on the supply side,
+    where there are two separate, equal sets of dampers that operate in conjunction."
   is_abstract: true
   uses:
   - supply_air_isolation_damper_command_1
@@ -6192,8 +6193,8 @@ SAIDC2X:
 
 SAIDC3X:
   id: "15798070727615184896"
-  description: isolation damper status monitoring and control on the supply side,
-    where there are three separate, equal sets of dampers that operate in conjunction.
+  description: "isolation damper status monitoring and control on the supply side,
+    where there are three separate, equal sets of dampers that operate in conjunction."
   is_abstract: true
   uses:
   - supply_air_isolation_damper_command_1
@@ -6210,7 +6211,7 @@ SAIDC3X:
 
 SSPC2X:
   id: "7115130646044868608"
-  description: Supply static pressure control via supply fan speed with 2 sensors
+  description: "Supply static pressure control via supply fan speed with 2 sensors"
   is_abstract: true
   opt_uses:
   - average_supply_air_static_pressure_sensor
@@ -6235,7 +6236,7 @@ SSPC2X:
 
 SFMSC:
   id: "12314536415844106240"
-  description: Supply fan multi-speed control.
+  description: "Supply fan multi-speed control."
   is_abstract: true
   uses:
   - supply_fan_run_command
@@ -6249,7 +6250,7 @@ SFMSC:
 
 MIPVCM:
   id: "10283962739713900544"
-  description: Motor phase-level input current and voltage monitoring.
+  description: "Motor phase-level input current and voltage monitoring."
   is_abstract: true
   implements:
   - MONITORING
@@ -6267,7 +6268,7 @@ MIPVCM:
 
 MIPWM:
   id: "2094166817340653568"
-  description: Motor input power monitoring.
+  description: "Motor input power monitoring."
   is_abstract: true
   implements:
   - MONITORING
@@ -6280,7 +6281,7 @@ MIPWM:
 
 MSM:
   id: "2084609862272024576"
-  description: Motor speed monitoring for fan.
+  description: "Motor speed monitoring for fan."
   is_abstract: true
   implements:
   - MONITORING
@@ -6294,7 +6295,7 @@ MSM:
 
 INVOPWM:
   id: "10056530958531690496"
-  description: Inverter (VFD) output power monitoring.
+  description: "Inverter (VFD) output power monitoring."
   is_abstract: true
   implements:
   - MONITORING
@@ -6307,7 +6308,7 @@ INVOPWM:
 
 INVIPCM:
   id: "3240332922506444800"
-  description: Inverter (VFD) 3-phase input current monitoring.
+  description: "Inverter (VFD) 3-phase input current monitoring."
   is_abstract: true
   implements:
   - MONITORING
@@ -6319,7 +6320,7 @@ INVIPCM:
 
 CWSWISOVPM:
   id: "14769547968574914560"
-  description: Condensing water supply side isolation valve percentage monitoring.
+  description: "Condensing water supply side isolation valve percentage monitoring."
   is_abstract: true
   uses:
   - condensing_supply_water_isolation_valve_percentage_command
@@ -6330,8 +6331,8 @@ CWSWISOVPM:
 
 GTWFCISOVM:
   id: "5444844940104302592"
-  description: Geothermal water free-cooling isolation valve monitoring; exclusively
-    using ground as heat sink for building load.
+  description: "Geothermal water free-cooling isolation valve monitoring; exclusively
+    using ground as heat sink for building load."
   is_abstract: true
   uses:
   - chilled_side_ground_return_economizer_isolation_valve_command
@@ -6343,8 +6344,8 @@ GTWFCISOVM:
 
 GTWGRISOVM:
   id: "12463704959361220608"
-  description: Geothermal water ground-recharge isolation valve monitoring; rejecting
-    ground heat to atmosphere via cooling towers.
+  description: "Geothermal water ground-recharge isolation valve monitoring; rejecting
+    ground heat to atmosphere via cooling towers."
   is_abstract: true
   uses:
   - heating_side_ground_return_economizer_isolation_valve_command
@@ -6356,8 +6357,8 @@ GTWGRISOVM:
 
 GTWHEISOVM:
   id: "3366433712072818688"
-  description: Geothermal water heat-extraction isolation valve monitoring; extracting
-    ground heat to to use in building.
+  description: "Geothermal water heat-extraction isolation valve monitoring; extracting
+    ground heat to to use in building."
   is_abstract: true
   uses:
   - chilled_side_ground_return_water_isolation_valve_status
@@ -6369,8 +6370,8 @@ GTWHEISOVM:
 
 GTWHRISOVM:
   id: "11317538854195429376"
-  description: Geothermal water heat-rejection isolation valve monitoring; rejecting
-    building heat to ground.
+  description: "Geothermal water heat-rejection isolation valve monitoring; rejecting
+    building heat to ground."
   is_abstract: true
   uses:
   - heating_side_ground_return_water_isolation_valve_status
@@ -6382,7 +6383,7 @@ GTWHRISOVM:
 
 COCDSP:
   id: "3620605616042541056"
-  description: Dual setpoint CO concentration control.
+  description: "Dual setpoint CO concentration control."
   is_abstract: true
   uses:
   - high_limit_zone_air_co_concentration_setpoint
@@ -6394,7 +6395,7 @@ COCDSP:
 
 NOCDSP:
   id: "10177846673493983232"
-  description: Dual setpoint NO concentration control.
+  description: "Dual setpoint NO concentration control."
   is_abstract: true
   uses:
   - high_limit_zone_air_no_concentration_setpoint
@@ -6406,7 +6407,7 @@ NOCDSP:
 
 EFHLC:
   id: "16708066133181202432"
-  description: Two-speed exhaust fan (low/high).
+  description: "Two-speed exhaust fan (low/high)."
   is_abstract: true
   uses:
   - high_exhaust_fan_speed_command
@@ -6419,7 +6420,7 @@ EFHLC:
 
 SWCM:
   id: "620728877144080384"
-  description: Solenoid water valve control and monitoring.
+  description: "Solenoid water valve control and monitoring."
   is_abstract: true
   uses:
   - valve_command
@@ -6428,7 +6429,7 @@ SWCM:
 
 SCRSS:
   id: "3343154851889545216"
-  description: Scurbber start stop monitoring.
+  description: "Scurbber start stop monitoring."
   is_abstract: true
   opt_uses:
   - bypass_air_damper_percentage_command
@@ -6449,7 +6450,7 @@ SCRSS:
 ##Abstracts for sensors
 PCM:
   id: "13149954146721333248"
-  description: General particulate matter monitoring.
+  description: "General particulate matter monitoring."
   is_abstract: true
   uses:
   - particle_concentration_sensor
@@ -6459,7 +6460,7 @@ PCM:
 
 PMM:
   id: "976724353938882560"
-  description: Zone air particulate matter monitoring.
+  description: "Zone air particulate matter monitoring."
   is_abstract: true
   uses:
   - zone_air_pm10pt0_concentration_sensor
@@ -6470,7 +6471,7 @@ PMM:
 
 PHWTC:
   id: "4268855681546715136"
-  description: potable water temperature monitoring and control.
+  description: "potable water temperature monitoring and control."
   is_abstract: true
   uses:
   - potable_hot_water_temperature_sensor
@@ -6478,7 +6479,7 @@ PHWTC:
 
 LM:
   id: "16338502682899644416"
-  description: level monitoring of devices storing media.
+  description: "level monitoring of devices storing media."
   is_abstract: true
   uses:
   - level_status
@@ -6487,7 +6488,7 @@ LM:
 
 PLPM:
   id: "7702850397416718336"
-  description: Pipeline Fluid pressure monitoring
+  description: "Pipeline Fluid pressure monitoring"
   is_abstract: true
   uses:
   - line_pressure_sensor
@@ -6495,7 +6496,7 @@ PLPM:
 
 CO2M4X:
   id: "8538268128293945344"
-  description: Basic carbon dioxide monitoring for 4 Zones.
+  description: "Basic carbon dioxide monitoring for 4 Zones."
   is_abstract: true
   uses:
   - zone_air_co2_concentration_sensor_1
@@ -6510,7 +6511,7 @@ CO2M4X:
 
 CO2M6X:
   id: "10200096390793658368"
-  description: Basic carbon dioxide monitoring for 6 Zones.
+  description: "Basic carbon dioxide monitoring for 6 Zones."
   is_abstract: true
   opt_uses:
   - average_zone_air_co2_concentration_sensor
@@ -6529,7 +6530,7 @@ CO2M6X:
 
 MIPCVM:
   id: "13492227718401490944"
-  description: Motor phase-level input current and voltage monitoring.
+  description: "Motor phase-level input current and voltage monitoring."
   is_abstract: true
   implements:
   - MONITORING
@@ -6541,7 +6542,7 @@ MIPCVM:
 
 EPM:
   id: "1350523123010633728"
-  description: Basic Electrical parameter monitoring.
+  description: "Basic Electrical parameter monitoring."
   is_abstract: true
   opt_uses:
   - power_status
@@ -6556,7 +6557,7 @@ EPM:
 
 DFRMM:
   id: "16926222434271494144"
-  description: Discharge fan run mode monitoring.
+  description: "Discharge fan run mode monitoring."
   is_abstract: true
   uses:
   - discharge_fan_run_mode
@@ -6566,7 +6567,7 @@ DFRMM:
 
 RDC:
   id: "9673456709368020992"
-  description: Return air damper percentage monitoring
+  description: "Return air damper percentage monitoring"
   is_abstract: true
   uses:
   - return_air_damper_percentage_command
@@ -6577,7 +6578,7 @@ RDC:
 
 RFSS:
   id: "17406278007051517952"
-  description: Basic combination of return fan run command and status (start/stop).
+  description: "Basic combination of return fan run command and status (start/stop)."
   is_abstract: true
   opt_uses:
   - return_fan_current_sensor
@@ -6591,7 +6592,7 @@ RFSS:
 
 RFSS2X:
   id: "1895880890387529728"
-  description: Return fan start-stop and feedback with two fan.
+  description: "Return fan start-stop and feedback with two fan."
   is_abstract: true
   opt_uses:
   - return_fan_current_sensor_1
@@ -6609,7 +6610,7 @@ RFSS2X:
 
 RFVSC:
   id: "13641268718569783296"
-  description: Variable speed control for a return fan.
+  description: "Variable speed control for a return fan."
   is_abstract: true
   opt_uses:
   - return_fan_current_sensor
@@ -6626,8 +6627,8 @@ RFVSC:
 
 RFVSC2X:
   id: "6093235743096832000"
-  description: Return fan variable speed control with feedback and sensoring for two
-    fanss.
+  description: "Return fan variable speed control with feedback and sensoring for
+    two fans."
   is_abstract: true
   opt_uses:
   - return_fan_current_sensor_1
