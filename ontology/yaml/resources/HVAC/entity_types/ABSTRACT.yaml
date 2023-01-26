@@ -617,6 +617,9 @@ SS:
   - power_sensor
   - powerfactor_sensor
   - run_time_accumulator
+  - failed_alarm
+  - lost_power_alarm
+  - control_mode
 
 
 SSPC:
