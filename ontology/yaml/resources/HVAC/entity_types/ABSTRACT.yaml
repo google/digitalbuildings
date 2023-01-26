@@ -5429,7 +5429,7 @@ HHCDM:
 
 HHRU:
   id: "9211631039376523264"
-  description: "Hydronic heat recovery unit for ahu"s with bypass valve and circulation
+  description: "Hydronic heat recovery unit for ahu's with bypass valve and circulation
     pump"
   is_abstract: true
   implements:
@@ -5455,7 +5455,7 @@ HHRU:
 
 PHRU:
   id: "5194420171762040832"
-  description: "heat recovery unit for ahu"s with plate heat exchanger valve and
+  description: "heat recovery unit for ahu's with plate heat exchanger valve and
     bypass damper"
   is_abstract: true
   implements:
@@ -6415,7 +6415,7 @@ EFHLC:
   - low_exhaust_fan_speed_command
   - low_exhaust_fan_speed_status
   implements:
-  - OPERATIONAL
+  - OPERATIONALM
 
 
 SWCM:
