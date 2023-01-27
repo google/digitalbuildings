@@ -134,43 +134,19 @@ Fields are added in fully constructed form using the `"literals"` tag[^5].
 
 ```
 literals:
+- zone_air_temperature_sensor
+- zone_air_temperature_setpoint
 - zone_air_temperature_mode:
   - AUTO
   - OCCUPIED
   - UNOCCUPIED
-- outside_air_temperature_sensor:
-    flexible_min: 248.15
-    flexible_max: 318.15
-- bypass_air_damper_percentage_command:
-    fixed_min: 0
-    fixed_max: 100
-- power_sensor:
-    fixed_min: 0
-    flexible_max: 318000
 ```
 
-For numeric fields, users must define the default value range: the minimum and
-maximum expected values for the field across all entities that have the field.
-The range should be specified as a map containing exactly two entries:
-
-* the minimum, with a key of either `flexible_min` or `fixed_min`
-* the maximum, with a key of either `flexible_max` or `fixed_max`
-
-Each key should map to a double value, expressed in the SI unit for the field.
-"Fixed" means the value should never be changed and should always apply across
-all entities that have the field. For example, a percentage field may have an
-expected range of 0 to 100 regardless of the entity. "Flexible" means the value
-may be adjusted through the range calculation pipeline, which periodically
-calculates new ranges for fields by using the interquartile-range method on
-timeseries data. A range may consist of two flexible bounds, two fixed bounds,
-or one flexible bound and one fixed bound.
-
-For multistate fields (any field with a status, alarm, mode, or command point
-type, e.g. `zone_air_temperature_mode` in the example above), users must define
-the valid states inline as a nested array. Each state is considered a reference
-to a state value in the global namespace unless a state with the same name is
-defined in the local namespace, in which case the definition is assumed to use
-the local version.
+Users may also define the values for any multi-states (any field with a status
+or command point type) inline as a nested array. Each state is considered a
+reference to a state value in the global namespace unless a state with the same
+name is defined in the local namespace, in which case the definition is assumed
+to use the local version.
 
 Use of locally defined states across namespaces is not currently supported as it
 would require support for aliasing of unqualified state names[^2].
@@ -185,8 +161,6 @@ The validation enforces that:
 *   fields follow construction rules
 *   only defined states are assigned to fields
 *   each state is only defined once in a multi-state group for a field
-*   default value range maps have exactly two entries: one "min" and one "max"
-*   default value ranges have a min that is less than the max
 
 #### Elevating Fields
 
@@ -304,17 +278,13 @@ in the global namespace and are grouped by measurement subfield. For example:
 
 ```
 concentration:
-  parts_per_million: STANDARD
+- parts_per_million: STANDARD
 current:
-  amperes: STANDARD
-  milliamperes:
-    multiplier: 0.001
-    offset: 0
+- amperes: STANDARD
+- milliamperes
 energy:
-  joules: STANDARD
-  kilowatt_hours:
-    multiplier: 3600000
-    offset: 0
+- joules: STANDARD
+- kilowatt_hours
 ```
 
 Under each subfield name, the configuration defines a list of dimensional units
@@ -323,10 +293,6 @@ of a single
 One of the listed units must be listed as the `STANDARD` unit for the type. All
 of the `STANDARD` units for all subfields must belong to the same unit family,
 such as standard SI units.
-All units that are not standard must map to a `multiplier` and an `offset`. The
-conversion multiplier for a unit is the number to multiply by to convert a value
-using this unit to the standard unit. The offset is the number to add to convert
-a value using this unit to the standard unit.
 
 If a subfield needs to use the same set of units as another subfield, it is
 defined as an alias by providing the other subfield name instead of a list of
@@ -334,13 +300,9 @@ units. For example:
 
 ```
 distance:
-  meters: STANDARD
-  feet:
-    multiplier: 0.3048
-    offset: 0
-  inches:
-    multiplier: 0.0254
-    offset: 0
+- meters: STANDARD
+- feet
+- inches
 length: distance
 level: distance
 ```
@@ -351,8 +313,6 @@ Validation enforces:
 *   Each dimensional unit is defined only once in the file
 *   Exactly one `STANDARD` designation is made per subfield
 *   Each subfield alias refers to a subfield that has units defined
-*   Each non-standard unit specifies exactly one multiplier and one offset
-*   Multiplier and offset values are numeric
 
 ## Validation
 
