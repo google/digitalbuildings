@@ -702,7 +702,7 @@ literals:
 - drain_pump_run_status:
   - ON
   - OFF
-- drain_pump_failed_alarm:
+- failed_drain_pump_alarm:
   - ACTIVE
   - INACTIVE
 - water_low_level_status:
@@ -725,6 +725,11 @@ literals:
   - AUTO
   - MANUAL
   - OFF
+  - HEATING
+  - COOLING
+  - DEHUMIDIFY
+  - FAN_ONLY
+  
 - cooling_thermal_energy_accumulator
 - particle_concentration_sensor
 - high_limit_supply_air_cooling_flowrate_setpoint
@@ -790,7 +795,7 @@ literals:
 - master_alarm:
   - ACTIVE
   - INACTIVE
-- supply_fan_failed_alarm:
+- failed_supply_fan_alarm:
   - ACTIVE
   - INACTIVE
 - smoke_alarm:
@@ -826,13 +831,13 @@ literals:
 - refrigerant_low_pressure_status:
   - ACTIVE
   - INACTIVE
-- humidifier_failed_alarm:
+- failed_humidifier_alarm:
   - ACTIVE
   - INACTIVE
-- heat_exchange_failed_alarm:
+- failed_heat_exchange_alarm:
   - ACTIVE
   - INACTIVE
-- compressor_failed_alarm:
+- failed_compressor_alarm:
   - ACTIVE
   - INACTIVE
 
@@ -849,7 +854,7 @@ literals:
 - max_battery_voltage_sensor
 - min_battery_temperature_sensor
 - min_battery_voltage_sensor
-- battery_failed_alarm:
+- failed_battery_alarm:
   - ACTIVE
   - INACTIVE
 - brightness_percentage_command
@@ -900,7 +905,7 @@ literals:
   - ACTIVE
   - INACTIVE
 - frequency_sensor
-- discharge_fan_failed_alarm:
+- failed_discharge_fan_alarm:
   - ACTIVE
   - INACTIVE
 - discharge_air_linearvelocity_sensor
@@ -995,7 +1000,7 @@ literals:
 - low_return_air_relative_humidity_alarm:
   - ACTIVE
   - INACTIVE
-- chilled_water_valve_failed_alarm:
+- failed_chilled_water_valve_alarm:
   - ACTIVE
   - INACTIVE
 - discharge_fan_speed_frequency_command
@@ -1010,7 +1015,9 @@ literals:
 - supply_fan_lost_power_alarm:
   - ACTIVE
   - INACTIVE
-- panel_alarm
+- panel_alarm:
+  - ACTIVE
+  - INACTIVE
 - supply_air_flowrate_status:
   - ON
   - OFF
@@ -1090,7 +1097,7 @@ literals:
 - dimmer_mode:
   - FADING
   - RAMPING
-- dimmer_failed_alarm:
+- failed_dimmer_alarm:
   - ACTIVE
   - INACTIVE
 - power_command:
@@ -1127,7 +1134,7 @@ literals:
 - exhaust_air_static_pressure_status:
   - PRESENT
   - ABSENT
-- exhaust_fan_failed_alarm:
+- failed_exhaust_fan_alarm:
   - ACTIVE
   - INACTIVE
 - return_air_damper_percentage_sensor
@@ -1157,7 +1164,7 @@ literals:
 - circuitbreaker_status:
   - ON
   - OFF
-- circuitbreaker_failed_alarm:
+- failed_circuitbreaker_alarm:
   - ACTIVE
   - INACTIVE
 
@@ -1371,8 +1378,8 @@ literals:
 - load_percentage_sensor
 - bypass_status:
   - BYPASS
-  - INACTIVE
-- inverter_failed_alarm:
+  - INACTIVE  
+- failed_inverter_alarm:
   - ACTIVE
   - INACTIVE
 
@@ -1659,9 +1666,9 @@ literals:
 - supply_fan_energy_accumulator
 - compressor_run_time_accumulator
 
-- total_lamp_failed_counter
-- total_wireless_device_failed_counter
-- total_communication_failed_counter
+- total_failed_lamp_counter
+- total_failed_wireless_device_counter
+- total_failed_communication_counter
 
 ## New fields for seismic detector
 - seismic_alarm

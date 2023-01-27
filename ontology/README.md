@@ -9,8 +9,8 @@ The model is provided in two versions:
 Documentation for the model can be found in the [docs](docs/) folder.  
 *   [Ontology Overview](/ontology/docs/ontology.md) provides an overview of the structure and first principles of the ontology
 *   [Ontology Configuration](/ontology/docs/ontology_config.md) explains how to write and validate the .yaml configuration files
-*   [Model](/ontology/docs/model.md) describes the convcentions used in the provided abstract model
-*   [Building Configuration](/ontology/docs/building_config.md) describes the confguration format for mapping concrete assets to a model and 
+*   [Model](/ontology/docs/model.md) describes the conventions used in the provided abstract model
+*   [Building Configuration](/ontology/docs/building_config.md) describes the configuration format for mapping concrete assets to a model and 
 validating the mapping
 
 ## Learning Modules
@@ -47,7 +47,5 @@ In this module, you’ll deepen your understanding of the DBO and practice apply
 * [Lesson 5: Propose an ontology extension](./docs/learning/Module_2_Lesson_5_Propose_an_ontology_extension.pdf)
 * [Lesson 6: Construct and finalize the building configuration file](./docs/learning/Module_2_Lesson_6_Construct_and_finalize_the_building_configuration_file.pdf)
 * [Lesson 7: Validate the instance and telemetry](./docs/learning/Module_2_Lesson_7_Validate_the_instance_and_telemetry.pdf)
-
-
 
 Enjoy!
