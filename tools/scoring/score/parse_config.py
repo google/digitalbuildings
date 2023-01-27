@@ -117,11 +117,11 @@ class ParseConfig:
                     translations_absent.append(
                         f'{link.source}.translation.{source_field}')
 
-      print(f'    {file_type.value} translations absent: ' +
+      print(f'    {file_type} translations absent: ' +
             f'{len(set(translations_absent))} ' +
             f'(from {len(translations_absent)} links)')
 
-      print(f'    {file_type.value} types absent: {len(set(types_absent))} ' +
+      print(f'    {file_type} types absent: {len(set(types_absent))} ' +
             f'({len(types_absent)} instances)')
 
     return deserialized_files
