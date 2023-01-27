@@ -132,7 +132,7 @@ This version of CHWS has a single set of variable speed chilled water pumps serv
 ### BMS Example
 ![CHWS Variable Primary WC](./figures/bms_screenshots/chws_watercooled.png)
 **Notes:**
-- This example includes a parallel air-cooled chiller. It is simple enough to add; it doesn't change the way the rest of the system is modeled.
+- This example includes a parallel air-cooled chiller. It is simple enough to add; it doesnt change the way the rest of the system is modeled.
 
 ### System Diagram and Connections
 ![CHWS Variable Primary WC](./figures/system_diagrams/chws_watercooled.png)

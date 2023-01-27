@@ -18,10 +18,10 @@
 
 
 HDS_H2M:
+  id: "15173284240247750656"
   description: "Zone air hydrogen level used for monitoring in battery rooms."
   is_canonical: true
   implements:
   - HDS 
   - H2M
-
 
