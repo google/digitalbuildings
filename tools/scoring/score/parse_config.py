@@ -117,11 +117,11 @@ class ParseConfig:
                     translations_absent.append(
                         f'{link.source}.translation.{source_field}')
 
-      print(f'    {file_type} translations absent: ' +
+      print(f'    {file_type.value} translations absent: ' +
             f'{len(set(translations_absent))} ' +
             f'(from {len(translations_absent)} links)')
 
-      print(f'    {file_type} types absent: {len(set(types_absent))} ' +
+      print(f'    {file_type.value} types absent: {len(set(types_absent))} ' +
             f'({len(types_absent)} instances)')
 
     return deserialized_files
@@ -181,8 +181,8 @@ class ParseConfig:
         return []
 
       translations[cloud_device_id] = {
-          f'{PROPOSED}': aggregate_translations(proposed_entity),
-          f'{SOLUTION}': aggregate_translations(solution_entity)
+          PROPOSED: aggregate_translations(proposed_entity),
+          SOLUTION: aggregate_translations(solution_entity)
       }
 
     return translations
