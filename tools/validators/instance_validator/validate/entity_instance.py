@@ -815,28 +815,36 @@ class InstanceValidator(object):
       return False
     return True
 
-  def Validate(self, entity: EntityInstance, is_udmi: bool = True) -> bool:
-    """Uses the generated ontology universe to validate an entity.
+  def _EntityOperationAndConfigModeValid(self, entity: EntityInstance) -> bool:
+    """Validates the entity operation and config mode against DBO standards.
+
+    The DBO standards allow for a building configuration file to contain a
+    ConfigMode of either INITIALIZE or UPDATE. The entites continued within the
+    building configuration are each allowed to have operations of either ADD,
+    EXPORT, DELETE, or UPDATE. This method validates that the operations
+    specified for the entities, in the building configuration, are in alignment
+    with the building configuration ConfigMode and that that the entity(s)
+    definition is correct for the operation specified. Please see
+    https://github.com/google/digitalbuildings/blob/master/ontology/docs/building_config.md#building-configuration-modes
 
     Args:
       entity: EntityInstance to validate
-      is_udmi: flag to validate under udmi; default True.
 
     Returns:
       True if the entity is valid
     """
-
-    if IsEntityIdPresent(entity):
+    if (
+        self.config_mode == _CONFIG_INIT
+        and entity.operation != parse.EntityOperation.ADD
+    ):
       print(
-          f'[WARNING]\tEntity {entity.guid} ({entity.code}) defines "id" but '
-          'this will be deprecated in future releases. Please review '
-          'https://github.com/google/digitalbuildings/'
-          'ontology/docs/building_config.md for more '
-          'information.'
+          f'[ERROR]\tEntity {entity.guid} ({entity.code}) defines operation '
+          f'{entity.operation} that is not valid. Only ADD operation is '
+          'allowed in INITIALIZE mode.'
       )
+      return False
 
     is_valid = True
-
     if entity.update_mask is not None:
       if entity.operation != parse.EntityOperation.UPDATE:
         print(
@@ -855,30 +863,12 @@ class InstanceValidator(object):
         print('Update to Cloud Device ID not allowed')
         is_valid = False
 
-    if not entity.guid:
-      print(
-          f'[ERROR]\tEntity ({entity.code}) is missing a GUID. This must be '
-          'provided.'
-      )
-      is_valid = False
-
     if not entity.code and entity.operation != parse.EntityOperation.DELETE:
       print(
           f'[ERROR]\tEntity {entity.guid} is missing a code. This must be '
           'provided.'
       )
       is_valid = False
-
-    if (
-        self.config_mode == _CONFIG_INIT
-        and entity.operation != parse.EntityOperation.ADD
-    ):
-      print(
-          f'[ERROR]\tEntity {entity.guid} ({entity.code}) defines operation '
-          f'{entity.operation} that is not valid. Only ADD operation is '
-          'allowed in INITIALIZE mode.'
-      )
-      return False
 
     if entity.operation == parse.EntityOperation.DELETE:
       return is_valid
@@ -905,10 +895,42 @@ class InstanceValidator(object):
             'type definition.'
         )
         is_valid = False
-
     else:
       if not self._ValidateType(entity):
         is_valid = False
+
+    return is_valid
+
+  def Validate(self, entity: EntityInstance, is_udmi: bool = True) -> bool:
+    """Uses the generated ontology universe to validate an entity.
+
+    Args:
+      entity: EntityInstance to validate
+      is_udmi: flag to validate under udmi; default True.
+
+    Returns:
+      True if the entity is valid
+    """
+
+    if IsEntityIdPresent(entity):
+      print(
+          f'[WARNING]\tEntity {entity.guid} ({entity.code}) defines "id" but '
+          'this will be deprecated in future releases. Please review '
+          'https://github.com/google/digitalbuildings/'
+          'ontology/docs/building_config.md for more '
+          'information.'
+      )
+
+    is_valid = True
+    if not entity.guid:
+      print(
+          f'[ERROR]\tEntity ({entity.code}) is missing a GUID. This must be '
+          'provided.'
+      )
+      is_valid = False
+
+    if not self._EntityOperationAndConfigModeValid(entity):
+      is_valid = False
 
     if not self._ValidateTranslation(entity, is_udmi):
       is_valid = False
@@ -1133,7 +1155,7 @@ def _ParseOperationAndUpdateMask(
 
   Returns:
     operation: entity operation - ADD, EXPORT, DELETE, UPDATE
-    update_mask: list of entity attributes for to modify if operation is UPDATE
+    update_mask: list of entity attributes to modify if operation is UPDATE
 
   Raises:
     ValueError: if update_mask is present with any operation other than UPDATE
