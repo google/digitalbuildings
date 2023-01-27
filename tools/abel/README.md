@@ -19,7 +19,7 @@ Before starting the setup and installation process, please ensure that the
 dependencies are met:
 1. You are running **Python 3.9** or higher
 3. You have installed [virtualenv](https://pypi.org/project/virtualenv/)
-2. you have installed the [Google Cloud CLI](https://cloud.google.com/sdk/docs/install)
+2. You have installed the [Google Cloud CLI](https://cloud.google.com/sdk/docs/install)
 
 ### Set up a tooling environment
 
@@ -145,7 +145,7 @@ ABEL has a few pieces of core functionality, they are:
 
 ### Command-line arguments for ABEL:
 `-s` or `--spreadsheet_id` **required** id for a google sheets spreadsheet
-  * [ABEL Spreadsheet Template](https://docs.google.com/spreadsheets/d/1b6IRimNS1dAtPjkNN-fk4TirnLzOiDyyUmOKP_MhMM0/copy?usp=sharing)
+  * [ABEL Spreadsheet Template](https://docs.google.com/spreadsheets/d/1b6IRimNS1dAtPjkNN-fk4TirnLzOiDyyUmOKP_MhMM0/copy#gid=980240783)
   * A Google Sheets ID is found embedded into the spreadsheet's url.
   e.g. `https://docs/google/com/spreadsheets/d/<spreadsheet_id>/edit#gid=123467`
 
@@ -169,6 +169,8 @@ that is not in the [DigitalBuildings repository](../..). The [Ontology
 Validator](../validators/ontology_validator) will surface validation results
 from the modified ontology, and Building Configuration files will be validated
 against the modified ontology.
+
+`-d` or `--output-dir` fully qualified or relative file path to a directory which ABEL can write validation logs to. ABEL must have write access to this directory or else an error will be raised.
 
 ### The ABEL Spreadsheet
 The ABEL spreadsheet serves as a user-friendly interface for ABEL and is what
@@ -205,7 +207,7 @@ python3 abel.py -s <input_spreadsheet_id>
 The process for using a building config to generate an ABEL spreadsheet is as
 follows:
 
-1. Create a blank spreadsheet for ABEL to write to from [ABEL Spreadsheet template](https://docs.google.com/spreadsheets/d/1b6IRimNS1dAtPjkNN-fk4TirnLzOiDyyUmOKP_MhMM0/copy?usp=sharing)
+1. Create a blank spreadsheet for ABEL to write to from [ABEL Spreadsheet template](https://docs.google.com/spreadsheets/d/1tcLjFnHiXUT-xh5C1hRKiUVaUH_CzgSI8zFQ_B8q7vs/copy#gid=980240783)
 2. Share your spreadsheet with your GCP service account and project id as an editor. Refer to Google Sheets documentation on [how to share a google sheet](https://support.google.com/docs/answer/9331169?hl=en#6.1).
 3. In `digitalbuildings/tools/abel` run ABEL with the command:
 ```

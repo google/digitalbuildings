@@ -151,11 +151,11 @@ application and provides basic guidelines for constructing new types.
 
 ### General Types
 
-The concept of an **general type** (see
+The concept of a **general type** (see
 [general types](model.md#general-types) for model details) is used to broadly
 classify equipment based on its holistic function. Because types with very
 similar function (such as fans or AHUs) can be extremely varied, it is important
-to have an general concept that allows *similar enough* devices to be
+to have a general concept that allows *similar enough* devices to be
 considered together, even when their specific type definitions otherwise
 wouldn’t strongly group them.
 

@@ -1,12 +1,12 @@
 # Validator
 
-The Ontology Validator allows you to extend the ontology and then validate it to make sure it is comform to guidelines.
+The Ontology Validator allows you to extend the ontology and then validate it to make sure it is conform to guidelines.
 
 ## Install requirements
 
 ### First create a virtual env
 
-Create the virutal environment with `virtualenv` followed by the environment name, in this example: `tooling`
+Create the virtual environment with `virtualenv` followed by the environment name, in this example: `tooling`
 
 ```
 virtualenv tooling

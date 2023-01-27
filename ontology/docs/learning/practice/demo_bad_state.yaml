@@ -1,0 +1,21 @@
+abc-123-ff6:
+  type: FACILITIES/BUILDING
+  code: US-SVL-MP2
+
+def-234-fss:
+  type: HVAC/FAN_SS
+  code: EF-1
+  cloud_device_id: 1234567
+  connections:
+    abc-123-ff6: CONTAINS
+  translation:
+    run_command:
+      present_value: "points.fan_ss.present_value"
+      states:
+        BANANA: "true" # An invalid state.
+        OFF: "false"
+    run_status:
+      present_value: "points.fan_sts.present_value"
+      states:
+        OFF: "false"
+        ON: "true"

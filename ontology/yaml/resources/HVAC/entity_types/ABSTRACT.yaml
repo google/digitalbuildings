@@ -430,7 +430,7 @@ SFVSC:
   - supply_fan_run_time_accumulator
   - supply_fan_energy_accumulator
   - supply_fan_lost_power_alarm
-  - supply_fan_failed_alarm
+  - failed_supply_fan_alarm
   - control_mode
   uses:
   - supply_fan_run_command
@@ -449,7 +449,7 @@ DFVSC:
   - discharge_fan_speed_frequency_sensor
   - discharge_fan_speed_percentage_sensor
   - discharge_fan_lost_power_alarm
-  - discharge_fan_failed_alarm
+  - failed_discharge_fan_alarm
   - discharge_fan_voltage_sensor
   - discharge_fan_torque_sensor
   - discharge_fan_run_time_accumulator
@@ -550,6 +550,9 @@ SS:
   - current_sensor
   - power_sensor
   - run_time_accumulator
+  - failed_alarm
+  - lost_power_alarm
+  - control_mode
 
 SSPC:
   id: "10526749200778002432"
@@ -608,7 +611,7 @@ DFSS:
   - discharge_fan_power_sensor
   - discharge_air_static_pressure_sensor
   - discharge_fan_lost_power_alarm
-  - discharge_fan_failed_alarm
+  - failed_discharge_fan_alarm
   - schedule_run_command
   - discharge_fan_run_time_accumulator
   - overload_discharge_fan_alarm
@@ -736,7 +739,7 @@ SFSS:
   - supply_fan_power_capacity
   - supply_fan_current_sensor
   - supply_fan_power_sensor
-  - supply_fan_failed_alarm
+  - failed_supply_fan_alarm
   - supply_fan_run_time_accumulator
   - supply_fan_run_mode
   uses:
@@ -1111,7 +1114,7 @@ RHC:
   description: "Return air relative humidity control."
   is_abstract: true
   opt_uses:
-  - humidifier_failed_alarm
+  - failed_humidifier_alarm
   - high_return_air_relative_humidity_alarm
   - low_return_air_relative_humidity_alarm
   - humidifier_run_time_accumulator
@@ -1950,7 +1953,7 @@ DXRC:
   - cooling_thermal_power_capacity
   - cooling_percentage_command
   - compressor_speed_percentage_command
-  - compressor_failed_alarm
+  - failed_compressor_alarm
   - overload_compressor_alarm
   - compressor_run_time_accumulator
   - high_return_air_temperature_alarm
@@ -3872,7 +3875,7 @@ CHDXVSC:
   - compressor_voltage_sensor
   - compressor_lost_power_alarm
   - compressor_speed_frequency_sensor
-  - compressor_failed_alarm
+  - failed_compressor_alarm
  
 CDWFRM:
   id: "632877381119377408"
@@ -3941,7 +3944,7 @@ CHWVM:
   opt_uses:
   - cooling_thermal_power_capacity
   - chilled_water_flowrate_sensor
-  - chilled_water_valve_failed_alarm
+  - failed_chilled_water_valve_alarm
   uses:
   - chilled_water_valve_percentage_sensor
   - chilled_water_valve_percentage_command
@@ -4070,7 +4073,7 @@ DRPM:
   opt_uses:
   - water_low_level_status
   - water_high_level_status
-  - drain_pump_failed_alarm
+  - failed_drain_pump_alarm
   - input_motor_power_status
   uses:
   - drain_pump_run_status
@@ -5338,7 +5341,7 @@ MSM:
   - high_discharge_fan_speed_status
   - low_discharge_fan_speed_status
   opt_uses:
-  - discharge_fan_failed_alarm
+  - failed_discharge_fan_alarm
  
 
 INVOPWM:
