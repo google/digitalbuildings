@@ -1760,3 +1760,26 @@ literals:
 - low_zone_air_temperature_alarm:
   - ACTIVE
   - INACTIVE
+- high_cafe_air_static_pressure_alarm:
+  - ACTIVE
+  - INACTIVE
+- low_cafe_air_static_pressure_alarm:
+  - ACTIVE
+  - INACTIVE
+- high_kitchen_air_static_pressure_alarm:
+  - ACTIVE
+  - INACTIVE
+- failed_communication_alarm:
+  - ACTIVE
+  - INACTIVE
+- low_flowrate_alarm:
+  - ACTIVE
+  - INACTIVE
+- high_zone_air_co_concentration_alarm:
+  - ACTIVE
+  - INACTIVE
+- failed_discharge_air_isolation_damper_alarm:
+  - ACTIVE
+  - INACTIVE
+
+
