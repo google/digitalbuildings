@@ -6,7 +6,7 @@ echo "Starting setup..."
 # handle different python alias
 echo "Looking through possible python aliases"
 
-REQUIRED_VERSION=3.11
+REQUIRED_VERSION=3.9
 POSSIBLE_ALIAS=("python3" "python" "py")
 FOUND=false
 for pa in "${POSSIBLE_ALIAS[@]}"
@@ -33,7 +33,7 @@ do
 done
 
 if ! $FOUND; then
-  echo "Could not find a python 3.11 executable"
+  echo "Could not find a python 3.9 executable"
   exit 125
 fi
 echo "Python executable found"

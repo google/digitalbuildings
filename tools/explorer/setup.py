@@ -26,5 +26,5 @@ setup(
     install_requires=[
         'absl-py', 'pyfiglet', 'argparse', 'termcolor', 'colorama'
     ],
-    python_requires='>=3.11',
+    python_requires='>=3.9',
 )
