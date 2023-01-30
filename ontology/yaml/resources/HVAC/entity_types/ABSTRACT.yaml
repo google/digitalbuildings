@@ -591,6 +591,7 @@ EFSS:
   - exhaust_air_flowrate_capacity
   - exhaust_fan_power_capacity
   - exhaust_fan_run_mode
+  - exhaust_fan_failed_alarm
   uses:
   - exhaust_fan_run_command
   - exhaust_fan_run_status
