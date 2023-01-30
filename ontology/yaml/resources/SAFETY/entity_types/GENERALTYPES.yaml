@@ -103,4 +103,9 @@ SSS:
   is_abstract: true
   implements:
   - /SENSOR
-  
+
+HDS:
+  description: "Hydrogen Sensor."
+  is_abstract: true
+  implements:
+  - /SENSOR
