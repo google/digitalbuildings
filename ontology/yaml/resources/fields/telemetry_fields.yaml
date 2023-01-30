@@ -725,6 +725,11 @@ literals:
   - AUTO
   - MANUAL
   - OFF
+  - HEATING
+  - COOLING
+  - DEHUMIDIFY
+  - FAN_ONLY
+  
 - cooling_thermal_energy_accumulator
 - particle_concentration_sensor
 - high_limit_supply_air_cooling_flowrate_setpoint

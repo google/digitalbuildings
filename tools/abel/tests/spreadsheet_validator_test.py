@@ -81,8 +81,8 @@ class SpreadsheetValidatorTest(absltest.TestCase):
 
   def testBadFieldNameDependencyLogsError(self):
     bad_test_state = {
-        ENTITY_CODE: TEST_REPORTING_ENTITY_CODE,
-        BC_GUID: TEST_REPORTING_GUID,
+        REPORTING_ENTITY_CODE: TEST_REPORTING_ENTITY_CODE,
+        REPORTING_ENTITY_GUID: TEST_REPORTING_GUID,
         REPORTING_ENTITY_FIELD_NAME: 'not a valid field name',
         STANDARD_STATE: 'ON',
         RAW_STATE: 'TRUE'

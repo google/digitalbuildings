@@ -170,10 +170,10 @@ HVAC_FAN_TYPES_DOCUMENT = {
         'id': '4726112880724803584',
         'description': 'Basic fan with start/stop and status.',
         'is_canonical': True,
-        'uses': ['run_command','run_status'],
-        'opt_uses': ['power_sensor']
+        'uses': ['run_command', 'run_status'],
+        'opt_uses': ['power_sensor'],
     },
-    'FAN_SS_ABC':{
+    'FAN_SS_ABC': {
         'id': 'abxc',
         'description': 'Reffan',
         'is_canonical': True,
@@ -181,8 +181,7 @@ HVAC_FAN_TYPES_DOCUMENT = {
             'run_command',
             'run_status',
             'zone_air_temperature_sensor_1',
-            'zone_air_temperature_sensor_2'
-        ]
+            'zone_air_temperature_sensor_2',
+        ],
     },
-
 }
