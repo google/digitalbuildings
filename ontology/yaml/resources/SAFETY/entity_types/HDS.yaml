@@ -12,21 +12,16 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-BATT_STD:
-  id: "11958105532444704768"
-  description: "Standard battery."
+########################
+### Canonical Types  ###
+########################
+
+
+HDS_H2M:
+  id: "15173284240247750656"
+  description: "Zone air hydrogen level used for monitoring in battery rooms."
+  is_canonical: true
   implements:
-  - BATT
-  uses:
-  - voltage_sensor
-  - current_sensor
-  opt_uses:
-  - remaining_charge_time_sensor
-  - local_air_temperature_sensor
-  - max_battery_temperature_sensor
-  - max_battery_voltage_sensor
-  - min_battery_temperature_sensor
-  - min_battery_voltage_sensor
-  - battery_charge_status
-  - battery_charge_percentage_sensor
-  - failed_battery_alarm
+  - HDS 
+  - H2M
+

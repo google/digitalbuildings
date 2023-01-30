@@ -136,7 +136,7 @@ class ExportHelperTest(absltest.TestCase):
         ['code', 'connections', 'links', 'type'],
         list(exported_building_config.get('test_virtual_guid').keys()))
     self.assertEqual(
-        ['cloud_device_id', 'code', 'translation', 'type'],
+        ['cloud_device_id', 'code', 'etag', 'translation', 'type'],
         list(exported_building_config.get('test_reporting_guid').keys()))
     self.assertIsInstance(
         exported_building_config.get('test_reporting_guid').get(
