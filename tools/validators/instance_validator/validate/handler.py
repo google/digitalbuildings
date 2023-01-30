@@ -16,7 +16,8 @@
 from __future__ import print_function
 
 import _thread
-import datetime
+import json
+import os
 import sys
 from typing import Dict, List, Tuple
 
@@ -25,12 +26,14 @@ from validate import entity_instance
 from validate import generate_universe
 from validate import instance_parser
 from validate import subscriber
+from validate import telemetry_validation_report as tvr
 from validate import telemetry_validator
 from yamlformat.validator import presubmit_validate_types_lib as pvt
 
 
 def GetDefaultOperation(
-    config_mode: instance_parser.ConfigMode) -> instance_parser.EntityOperation:
+    config_mode: instance_parser.ConfigMode,
+) -> instance_parser.EntityOperation:
   """Returns the default EntityOperation for the ConfigMode."""
   if config_mode == instance_parser.ConfigMode.INITIALIZE:
     return instance_parser.EntityOperation.ADD
@@ -44,9 +47,10 @@ def GetDefaultOperation(
 
 
 def Deserialize(
-    yaml_files: List[str]
-) -> Tuple[Dict[str, entity_instance.EntityInstance],
-           instance_parser.ConfigMode]:
+    yaml_files: List[str],
+) -> Tuple[
+    Dict[str, entity_instance.EntityInstance], instance_parser.ConfigMode
+]:
   """Parses a yaml configuration file and deserializes it.
 
   Args:
@@ -70,26 +74,30 @@ def Deserialize(
   for entity_key, entity_yaml in parser.GetEntities().items():
     try:
       entity = entity_instance.EntityInstance.FromYaml(
-          entity_key, entity_yaml, default_entity_operation)
+          entity_key, entity_yaml, default_entity_operation
+      )
       entities[entity.guid] = entity
     except ValueError as ex:
-      print(f'[ERROR]\tInvalid Entity syntax found for this entity: '
-            f'{entity_key} and this content: "{entity_yaml}" and with error'
-            f': "{ex}"')
+      print(
+          '[ERROR]\tInvalid Entity syntax found for this entity: '
+          f'{entity_key} and this content: "{entity_yaml}" and with error'
+          f': "{ex}"'
+      )
       raise ex
     except KeyError as ex:
-      print(f'[ERROR]\tInvalid Entity syntax found for this entity: '
-            f'{entity_key} and this content: "{entity_yaml}" and with error'
-            f': "{ex}"')
+      print(
+          '[ERROR]\tInvalid Entity syntax found for this entity: '
+          f'{entity_key} and this content: "{entity_yaml}" and with error'
+          f': "{ex}"'
+      )
       raise ex
 
   return entities, parser.GetConfigMode()
 
 
 def _ValidateConfig(
-    filenames: List[str],
-    universe: pvt.ConfigUniverse,
-    is_udmi) -> List[entity_instance.EntityInstance]:
+    filenames: List[str], universe: pvt.ConfigUniverse, is_udmi
+) -> List[entity_instance.EntityInstance]:
   """Runs all config validation checks."""
   print(f'[INFO]\tLoading config files: {filenames}')
   entities, config_mode = Deserialize(filenames)
@@ -98,23 +106,29 @@ def _ValidateConfig(
   return helper.Validate(entities, config_mode, is_udmi)
 
 
-def _ValidateTelemetry(subscription: str, service_account: str,
-                       entities: Dict[str, entity_instance.EntityInstance],
-                       timeout: int, is_udmi: bool) -> None:
+def _ValidateTelemetry(
+    subscription: str,
+    service_account: str,
+    entities: Dict[str, entity_instance.EntityInstance],
+    timeout: int,
+    is_udmi: bool
+) -> None:
   """Runs all telemetry validation checks."""
   helper = TelemetryHelper(subscription, service_account)
   helper.Validate(entities, timeout, is_udmi)
 
 
-def RunValidation(filenames: List[str],
-                  use_simplified_universe: bool = False,
-                  modified_types_filepath: str = None,
-                  default_types_filepath: str = constants.ONTOLOGY_ROOT,
-                  subscription: str = None,
-                  service_account: str = None,
-                  report_filename: str = None,
-                  timeout: int = constants.DEFAULT_TIMEOUT,
-                  is_udmi: bool = False) -> None:
+def RunValidation(
+    filenames: List[str],
+    use_simplified_universe: bool = False,
+    modified_types_filepath: str = None,
+    default_types_filepath: str = constants.ONTOLOGY_ROOT,
+    subscription: str = None,
+    service_account: str = None,
+    report_filename: str = None,
+    timeout: int = constants.DEFAULT_TIMEOUT,
+    is_udmi: bool = False
+) -> None:
   """Top level runner for all validations.
 
   Args:
@@ -127,7 +141,6 @@ def RunValidation(filenames: List[str],
     report_filename: Fully qualified path to write a validation report to.
     timeout: Timeout duration of the telemetry validator. Default is 60 seconds.
     is_udmi: Telemetry follows UDMI standards.
-
   """
   saved_stdout = sys.stdout
   report_file = None
@@ -142,7 +155,8 @@ def RunValidation(filenames: List[str],
     universe = generate_universe.BuildUniverse(
         use_simplified_universe=use_simplified_universe,
         modified_types_filepath=modified_types_filepath,
-        default_types_filepath=default_types_filepath)
+        default_types_filepath=default_types_filepath
+    )
     if not universe:
       print('[ERROR]\tUniverse did not load properly.')
       sys.exit(0)
@@ -151,20 +165,24 @@ def RunValidation(filenames: List[str],
     entities = _ValidateConfig(filenames, universe, is_udmi)
     if subscription:
       print('[INFO]\tStarting telemetry validation.')
-      _ValidateTelemetry(subscription, service_account, entities,
-                         timeout, is_udmi)
+      _ValidateTelemetry(
+          subscription, service_account, entities, timeout, is_udmi
+      )
     else:
-      print('[WARNING]\tTelemetry validation skipped, subscription '
-            'not found. Please provide a subscription and service account to '
-            'run telemetry validation. See here for more details: '
-            'https://google.github.io/digitalbuildings/tools/validators/'
-            'instance_validator/#telemetry-validation')
+      print(
+          '[WARNING]\tTelemetry validation skipped, subscription '
+          'not found. Please provide a subscription and service account to '
+          'run telemetry validation. See here for more details: '
+          'https://google.github.io/digitalbuildings/tools/validators/'
+          'instance_validator/#telemetry-validation'
+      )
   finally:
     sys.stdout = saved_stdout
     if report_file:
       print('[INFO]\tReport generated.')
       report_file.close()
     print('[INFO]\tInstance validation completed.')
+
 
 class TelemetryHelper(object):
   """A validation helper to encapsulate telemetry validation.
@@ -179,8 +197,12 @@ class TelemetryHelper(object):
     self.subscription = subscription
     self.service_account_file = service_account_file
 
-  def Validate(self, entities: Dict[str, entity_instance.EntityInstance],
-               timeout: int, is_udmi: bool) -> None:
+  def Validate(
+      self,
+      entities: Dict[str, entity_instance.EntityInstance],
+      timeout: int,
+      is_udmi: bool,
+  ) -> None:
     """Validates telemetry payload received from the subscription.
 
     Args:
@@ -192,7 +214,8 @@ class TelemetryHelper(object):
     print(f'[INFO]\tConnecting to PubSub subscription {self.subscription}')
     sub = subscriber.Subscriber(self.subscription, self.service_account_file)
     validator = telemetry_validator.TelemetryValidator(
-        entities, timeout, is_udmi, _TelemetryValidationCallback)
+        entities, timeout, is_udmi, _TelemetryValidationCallback
+    )
     validator.StartTimer()
     try:
       print('[INFO]\tStaring to listen to subscription messages.')
@@ -203,36 +226,43 @@ class TelemetryHelper(object):
 
 
 def _TelemetryValidationCallback(
-    validator: telemetry_validator.TelemetryValidator) -> None:
+    validator: telemetry_validator.TelemetryValidator,
+) -> None:
   """Callback when the telemetry validator finishes.
+
   This could be called due to a timeout or because telemetry messages were
   received and validated for every expected entity.
+
   Args:
     validator: the telemetry validator that triggered the callback.
   """
 
-  print('Generating validation report ...')
-  current_time = datetime.datetime.now()
-  timestamp = current_time.strftime('%d-%b-%Y (%H:%M:%S)')
-  report = f'\nReport Generated at: {timestamp}\n'
+  print('[INFO]\tGenerating telemetry validation report.')
+  expected_devices = {
+      entity.guid: entity_code
+      for entity_code, entity in validator.entities_with_translation.items()
+  }
+  error_devices = list(validator.GetInvalidMessageBlocks())
 
-  if not validator.AllEntitiesValidated():
-    report += ('No telemetry message was received for the following '
-               'entities:')
-    report += '\n'
-    for entity_name in validator.GetUnvalidatedEntityNames():
-      report += f'  {entity_name}\n'
+  # create validation report object
+  validation_report = tvr.TelemetryValidationReport(
+      expected_devices=expected_devices,
+      missing_devices=validator.GetUnvalidatedEntities(),
+      error_devices=error_devices,
+      extra_devices=validator.GetExtraEntities(),
+  )
 
-  report += '\nTelemetry validation errors:\n'
-  for error in validator.GetErrors():
-    report += error.GetPrintableMessage()
+  # create formatted validation report string
+  validation_report_dict = validation_report.GenerateReport()
 
-  report += '\nTelemetry validation warnings:\n'
-  for warnings in validator.GetWarnings():
-    report += warnings.GetPrintableMessage()
+  # Export to filepath and write to console.
+  with open(
+      os.path.join(os.getcwd(), 'telemetry_validation_report.json'),
+      'w',
+      encoding='UTF-8'
+  ) as report:
+    report.write(json.dumps(validation_report_dict, indent=4))
 
-  print('\n')
-  print(report)
   print('Report Generated')
   _thread.interrupt_main()
 
@@ -249,9 +279,10 @@ class EntityHelper(object):
     self.universe = universe
 
   def Validate(
-      self, entities: Dict[str, entity_instance.EntityInstance],
+      self,
+      entities: Dict[str, entity_instance.EntityInstance],
       config_mode: instance_parser.ConfigMode,
-      is_udmi: bool= False
+      is_udmi: bool = False,
   ) -> Dict[str, entity_instance.EntityInstance]:
     """Validates entity instances that are already deserialized.
 
@@ -269,17 +300,23 @@ class EntityHelper(object):
     print('[INFO]\tValidating entity instance definitions.')
     building_found = False
     valid_entities = {}
-    validator = entity_instance.CombinationValidator(self.universe, config_mode,
-                                                     entities)
+    validator = entity_instance.CombinationValidator(
+        self.universe, config_mode, entities
+    )
     alpha_interdep_helper = AlphaInterdependencyHelper()
     is_valid = True
     for entity_guid, current_entity in entities.items():
       if not alpha_interdep_helper.ValidateAndUpdateState(
-          current_entity.operation):
-        raise ValueError('(v1 Alpha): Building Config cannot have more '
-                         'than 2 operations; one being EXPORT.')
-      if (current_entity.operation is not instance_parser.EntityOperation.DELETE
-          and current_entity.type_name.lower() == 'building'):
+          current_entity.operation
+      ):
+        raise ValueError(
+            '(v1 Alpha): Building Config cannot have more '
+            'than 2 operations; one being EXPORT.'
+        )
+      if (
+          current_entity.operation is not instance_parser.EntityOperation.DELETE
+          and current_entity.type_name.lower() == 'building'
+      ):
         building_found = True
       if not validator.Validate(current_entity, is_udmi):
         is_valid = False
@@ -287,8 +324,10 @@ class EntityHelper(object):
       valid_entities[entity_guid] = current_entity
 
     if not building_found:
-      raise SyntaxError('Building entity not found. Configs must contain '
-                        'a non-deleted entity of type FACILITIES/BUILDING.')
+      raise SyntaxError(
+          'Building entity not found. Configs must contain '
+          'a non-deleted entity of type FACILITIES/BUILDING.'
+      )
 
     # Final validity determination.
     if is_valid:
@@ -309,7 +348,8 @@ class AlphaInterdependencyHelper(object):
     return self.__validation_state
 
   def ValidateAndUpdateState(
-      self, entity_operation: instance_parser.EntityOperation) -> bool:
+      self, entity_operation: instance_parser.EntityOperation
+  ) -> bool:
     """Validates entity instance operation against v1 Alpha Milestones.
 
     Enforces the constraint that only one type of operation along with export

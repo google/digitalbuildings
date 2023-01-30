@@ -17,7 +17,7 @@
 
 PWM:
   id: "17470344350578769920"
-  description: "Very basic power and enrgy monitoring only."
+  description: "Very basic power and energy monitoring only."
   is_abstract: true
   opt_uses:
   - apparent_power_sensor
@@ -81,5 +81,12 @@ PWMRDM:
   - generator_energy_accumulator
   - electricalgrid_energy_accumulator
   - generator_run_time_accumulator
-  - electricalgrid_run_time_accumulator 
+  - electricalgrid_run_time_accumulator
+
+VCM:
+  description: "Current and voltage monitoring"
+  is_abstract: true
+  uses:
+  - current_sensor
+  - voltage_sensor
   
