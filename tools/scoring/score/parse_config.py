@@ -181,8 +181,8 @@ class ParseConfig:
         return []
 
       translations[cloud_device_id] = {
-          f'{PROPOSED}': aggregate_translations(proposed_entity),
-          f'{SOLUTION}': aggregate_translations(solution_entity)
+          PROPOSED: aggregate_translations(proposed_entity),
+          SOLUTION: aggregate_translations(solution_entity)
       }
 
     return translations
