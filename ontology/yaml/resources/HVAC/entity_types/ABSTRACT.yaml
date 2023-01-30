@@ -550,8 +550,6 @@ SS:
   - current_sensor
   - power_sensor
   - run_time_accumulator
-  - lost_power_alarm
-  - failed_alarm
   - failed_alarm
   - lost_power_alarm
   - control_mode
