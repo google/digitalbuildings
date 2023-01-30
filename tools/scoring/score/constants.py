@@ -22,6 +22,9 @@ class FileTypes(str, Enum):
   """The file which is being compared against."""
   SOLUTION = 'solution'
 
+  def __str__(self):
+    return self.value
+
 
 class DimensionCategories(str, Enum):
   """Dimensions in this category receive `translations`
