@@ -132,7 +132,7 @@ class EntityInstanceTest(absltest.TestCase):
     instance = entity_instance.EntityInstance(
         _UPDATE,
         guid='ENTITY-GUID',
-        code='ENTITY-NAME',
+        code='US-SEA-BLDG1',
         namespace='FACILITIES',
         type_name='BUILDING',
         etag='a12345',
@@ -141,11 +141,71 @@ class EntityInstanceTest(absltest.TestCase):
 
     self.assertTrue(self.update_validator.Validate(instance))
 
+  def testInstance_InvalidFacilitiesFloorCode_Fails(self):
+    instance = entity_instance.EntityInstance(
+        _ADD,
+        guid='ENTITY-GUID',
+        code='UK-LON-X1-L01',
+        namespace='FACILITIES',
+        type_name='FLOOR',
+        etag='a12345',
+    )
+
+    self.assertFalse(self.init_validator.Validate(instance))
+
+  def testInstance_InvalidFacilitiesRoomCode_Fails(self):
+    instance = entity_instance.EntityInstance(
+        _ADD,
+        guid='ENTITY-GUID',
+        code='UK-LON-X1-L01-R25',
+        namespace='FACILITIES',
+        type_name='ROOM',
+        etag='a12345',
+    )
+
+    self.assertFalse(self.init_validator.Validate(instance))
+
+  def testInstance_ValidBuildingCode_Success(self):
+    instance = entity_instance.EntityInstance(
+        _ADD,
+        guid='ENTITY-GUID',
+        code='US-SEA-BLDG1',
+        namespace='FACILITIES',
+        type_name='BUILDING',
+        etag='a12345',
+    )
+
+    self.assertTrue(self.init_validator.Validate(instance))
+
+  def testInstance_ValidFacilitiesEntityCode_Success(self):
+    instance = entity_instance.EntityInstance(
+        _ADD,
+        guid='ENTITY-GUID',
+        code='US-SEA-B1-1-R25',
+        namespace='FACILITIES',
+        type_name='ROOM',
+        etag='a12345',
+    )
+
+    self.assertTrue(self.init_validator.Validate(instance))
+
+  def testInstance_InvalidFacilitiesBuildingCode_Fails(self):
+    instance = entity_instance.EntityInstance(
+        _ADD,
+        guid='ENTITY-GUID',
+        code='building-1',
+        namespace='FACILITIES',
+        type_name='BUILDING',
+        etag='a12345',
+    )
+
+    self.assertFalse(self.init_validator.Validate(instance))
+
   def testInstance_InvalidNamespace_Fails(self):
     instance = entity_instance.EntityInstance(
         _UPDATE,
         guid='ENTITY-GUID',
-        code='ENTITY-NAME',
+        code='US-SEA-BLDG1',
         namespace='NOT_A_NAMESPACE',
         type_name='BUILDING',
         etag='a12345',
@@ -803,7 +863,7 @@ class EntityInstanceTest(absltest.TestCase):
         self.config_universe, _INIT_CFG, entity_instances
     )
 
-    for instance in entity_instances.values():
+    for _, instance in entity_instances.items():
       self.assertTrue(combination_validator.Validate(instance))
 
   def testInstance_MissingSourceFieldLink_Failure(self):
@@ -820,9 +880,7 @@ class EntityInstanceTest(absltest.TestCase):
     combination_validator = entity_instance.CombinationValidator(
         self.config_universe, _INIT_CFG, entity_instances
     )
-    invalid_instance = entity_instances.get(
-        'VIRTUAL-ENTITY-GUID'
-    )
+    invalid_instance = entity_instances.get('VIRTUAL-ENTITY-GUID')
 
     self.assertFalse(combination_validator.Validate(invalid_instance))
 

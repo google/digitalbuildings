@@ -16,7 +16,7 @@
 
 bldg-guid:
   type: FACILITIES/BUILDING
-  code: TEST-BLDG
+  code: US-SEA-BLDG1
 
 gateway-guid:
   type: GATEWAYS/PASSTHROUGH

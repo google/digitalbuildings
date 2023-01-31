@@ -33,6 +33,14 @@ FACILITIES_TYPES_DOCUMENT = {
     'BUILDING': {
         'id': '15204152342002794496',
         'description': 'This is a type for BUILDING facilities object'
+    },
+    'FLOOR': {
+        'id': '15204152342002795557',
+        'description': 'This is a type for FLOOR facilities object'
+    },
+    'ROOM': {
+        'id': '15204152342002795558',
+        'description': 'This is a type for ROOM facilities object'
     }
 }
 

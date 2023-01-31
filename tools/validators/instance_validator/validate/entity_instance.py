@@ -48,6 +48,35 @@ _UDMI_UNIT_FIELD_PATTERN = re.compile(_UDMI_UNIT_FIELD_REGEX)
 _DEVICE_NUMERIC_ID_REGEX = r'[0-9]{16}'
 _DEVICE_NUMERIC_ID_PATTERN = re.compile(_DEVICE_NUMERIC_ID_REGEX)
 
+# Faciltities naming patterns
+MEZZANINE_PATTERN = '([0-9]*)M'
+SINGLE_LETTER_PATTERN = 'R|D|LG|FB|S|SBA|SBB'
+# Same as BASEMENT_LEVEL_PATERN
+PERMUTED_NUMBER_LETTER_PATTERN = 'B[0-9]*|[0-9]+B'
+# Same as GARAGE_LEVEL_PATTERN
+LETTER_NUMBER_PATTERN = '(G|UG|M)[0-9]*'
+# Same as NORMAL_PATTERN
+NUMBERS_PATTERN = '[0-9]+'
+EXTRA_INFO_PATTERN = '(.*)'
+
+COUNTRY_ID_PATTERN = '[A-Za-z]{2}'
+CITY_ID_PATTERN = '[A-Za-z]{2,4}'
+BUILDING_ID_PATTERN = '[A-Za-z0-9]{2,10}'
+FLOOR_ID_PATTERN = f'{MEZZANINE_PATTERN}|{SINGLE_LETTER_PATTERN}|{PERMUTED_NUMBER_LETTER_PATTERN}|{LETTER_NUMBER_PATTERN}|{NUMBERS_PATTERN}'
+ROOM_ID_PATTERN = '([0-9A-Z]+)'
+
+BUILDING_CODE_REGEX = (
+    f'^{COUNTRY_ID_PATTERN}-{CITY_ID_PATTERN}-{BUILDING_ID_PATTERN}'
+)
+FLOOR_CODE_REGEX = BUILDING_CODE_REGEX + f'-({FLOOR_ID_PATTERN})'
+ROOM_CODE_REGEX = FLOOR_CODE_REGEX + f'-({ROOM_ID_PATTERN})'
+FACILITIES_ENTITY_CODE_REGEX = FLOOR_CODE_REGEX + f'-{EXTRA_INFO_PATTERN}'
+
+_BUILDING_TYPE_NAME = 'BUILDING'
+_FLOOR_TYPE_NAME = 'FLOOR'
+_ROOM_TYPE_NAME = 'ROOM'
+_FACILITIES_NAMESPACE = 'FACILITIES'
+
 
 def _FieldIsAllowed(
     universe: pvt.ConfigUniverse,
@@ -815,6 +844,38 @@ class InstanceValidator(object):
       return False
     return True
 
+  def _IsFaciltitiesEntitiesMatchPattern(self, entity: EntityInstance) -> bool:
+    """Returns True if facilitities entities match regex patterns."""
+    if entity.type_name == _BUILDING_TYPE_NAME:
+      if not re.compile(BUILDING_CODE_REGEX).fullmatch(entity.code):
+        print(
+            f'Building code {entity.code} ({entity.guid}) does not match regex'
+            f' pattern {BUILDING_CODE_REGEX}'
+        )
+        return False
+    elif entity.type_name == _FLOOR_TYPE_NAME:
+      if not re.compile(FLOOR_CODE_REGEX).fullmatch(entity.code):
+        print(
+            f'Floor code {entity.code} ({entity.guid}) does not match regex'
+            f' pattern {FLOOR_CODE_REGEX}'
+        )
+        return False
+    elif entity.type_name == _ROOM_TYPE_NAME:
+      if not re.compile(ROOM_CODE_REGEX).fullmatch(entity.code):
+        print(
+            f'Room code {entity.code} ({entity.guid}) does not match regex'
+            f' pattern {ROOM_CODE_REGEX}'
+        )
+        return False
+    elif entity.namespace == _FACILITIES_NAMESPACE:
+      if not re.compile(FACILITIES_ENTITY_CODE_REGEX).match(entity.code):
+        print(
+            f'Facilities entity with code {entity.code} ({entity.guid}) does'
+            f' not match regex pattern {FACILITIES_ENTITY_CODE_REGEX}'
+        )
+        return False
+    return True
+
   def _EntityOperationAndConfigModeValid(self, entity: EntityInstance) -> bool:
     """Validates the entity operation and config mode against DBO standards.
 
@@ -942,6 +1003,9 @@ class InstanceValidator(object):
       is_valid = False
 
     if not self._ValidateCloudDeviceId(entity):
+      is_valid = False
+
+    if not self._IsFaciltitiesEntitiesMatchPattern(entity):
       is_valid = False
 
     # TODO(berkoben): ADD entity needs transl'n or links if type has fields
