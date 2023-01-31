@@ -78,9 +78,9 @@ UPS_SS_BBM:
   - low_battery_alarm
 
 UPS_PWM:
+  id: "4040385961387884544"
   description: "UPS with power monitoring."
   is_canonical: true
   implements:
   - UPS
   - PWM
-  
