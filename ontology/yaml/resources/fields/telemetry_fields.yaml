@@ -717,7 +717,7 @@ literals:
 
 # Additional functionality for alarms and status points.
 # For alarms, they will end in `alarm` and be two-state.
-# Status fields must be distinguished from alarms in that status is an objective qualitative state (flowing/not) whereas alarms are judgmental interpretations of such statuses to draww a conclusion about function (alarm/normal) 
+# Status fields must be distinguished from alarms in that status is an objective qualitative state (flowing/not) whereas alarms are judgmental interpretations of such statuses to draww a conclusion about function (alarm/normal)
 
 - average_supply_air_temperature_sensor
 - average_supply_air_static_pressure_sensor
@@ -729,7 +729,6 @@ literals:
   - COOLING
   - DEHUMIDIFY
   - FAN_ONLY
-  
 - cooling_thermal_energy_accumulator
 - particle_concentration_sensor
 - high_limit_supply_air_cooling_flowrate_setpoint
@@ -782,7 +781,7 @@ literals:
   - ABSENT
 
 # New alarms using alarm as a point type, and existing alarms moved here
-# TODO (tsodorff): change these to ALARM/NORMAL after determining how this can be done safely to existing translations. 
+# TODO (tsodorff): change these to ALARM/NORMAL after determining how this can be done safely to existing translations.
 - fabric_protection_alarm:
   - ACTIVE
   - INACTIVE
@@ -1378,7 +1377,7 @@ literals:
 - load_percentage_sensor
 - bypass_status:
   - BYPASS
-  - INACTIVE  
+  - INACTIVE
 - failed_inverter_alarm:
   - ACTIVE
   - INACTIVE
@@ -1678,3 +1677,100 @@ literals:
 
 ## New field for SDC
 - shade_extent_percentage_sensor
+
+## New alarms added 1/25/23
+- failed_circulation_pump_alarm:
+  - ACTIVE
+  - INACTIVE
+- failed_discharge_air_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
+- failed_exhaust_air_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
+- failed_heating_water_valve_alarm:
+  - ACTIVE
+  - INACTIVE
+- failed_isolation_valve_alarm:
+  - ACTIVE
+  - INACTIVE
+- failed_mixed_air_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
+- failed_return_air_isolation_damper_alarm:
+  - ACTIVE
+  - INACTIVE
+- failed_smoke_detection_alarm:
+  - ACTIVE
+  - INACTIVE
+- failed_supply_air_isolation_damper_alarm:
+  - ACTIVE
+  - INACTIVE
+- failed_zone_air_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
+- high_differential_pressure_alarm:
+  - ACTIVE
+  - INACTIVE
+- high_supply_air_static_pressure_alarm:
+  - ACTIVE
+  - INACTIVE
+- high_supply_air_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
+- high_supply_water_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
+- high_zone_air_co2_concentration_alarm:
+  - ACTIVE
+  - INACTIVE
+- high_zone_air_static_pressure_alarm:
+  - ACTIVE
+  - INACTIVE
+- high_zone_air_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
+- local_alarm:
+  - ACTIVE
+  - INACTIVE
+- local_override_alarm:
+  - ACTIVE
+  - INACTIVE
+- local_override_isolation_valve_alarm:
+  - ACTIVE
+  - INACTIVE
+- high_building_air_static_pressure_alarm:
+  - ACTIVE
+  - INACTIVE
+- low_building_air_static_pressure_alarm:
+  - ACTIVE
+  - INACTIVE
+- low_supply_air_static_pressure_alarm:
+  - ACTIVE
+  - INACTIVE
+- low_supply_air_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
+- low_supply_water_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
+- low_zone_air_static_pressure_alarm:
+  - ACTIVE
+  - INACTIVE
+- low_zone_air_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
+- failed_communication_alarm:
+  - ACTIVE
+  - INACTIVE
+- low_flowrate_alarm:
+  - ACTIVE
+  - INACTIVE
+- high_zone_air_co_concentration_alarm:
+  - ACTIVE
+  - INACTIVE
+- failed_discharge_air_isolation_damper_alarm:
+  - ACTIVE
+  - INACTIVE
+
+
