@@ -25,7 +25,7 @@ VIRTUAL-ENTITY-GUID:
 PHYSICAL-ENTITY-GUID:
   type: GATEWAYS/PASSTHROUGH
   code: PHYSICAL-ENTITY
-  cloud_device_id: "foobar"
+  cloud_device_id: "2619178366980754"
   translation:
     run_command_1:
       present_value: "points.ss1.present_value"
@@ -50,25 +50,25 @@ PHYSICAL-ENTITY-GUID:
     zone_air_temperature_sensor_1:
       present_value: "points.zone_air_temperature_sensor_1.present_value"
       units:
-        key: "points.zone_air_temperature_sensor_1.units"
+        key: "pointset.points.zone_air_temperature_sensor_1.units"
         values:
           degrees_fahrenheit: "degF"
     zone_air_temperature_sensor_2:
       present_value: "points.zone_air_temperature_sensor_2.present_value"
       units:
-        key: "points.zone_air_temperature_sensor_2.units"
+        key: "pointset.points.zone_air_temperature_sensor_2.units"
         values:
           degrees_fahrenheit: "degF"
     zone_air_temperature_sensor_3:
       present_value: "points.zone_air_temperature_sensor_3.present_value"
       units:
-        key: "points.zone_air_temperature_sensor_3.units"
+        key: "pointset.points.zone_air_temperature_sensor_3.units"
         values:
           degrees_fahrenheit: "degF"
     zone_air_temperature_sensor_4:
       present_value: "points.zone_air_temperature_sensor_4.present_value"
       units:
-        key: "points.zone_air_temperature_sensor_4.units"
+        key: "pointset.points.zone_air_temperature_sensor_4.units"
         values:
           degrees_fahrenheit: "degF"
 

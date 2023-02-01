@@ -1,4 +1,4 @@
-# Copyright 2020 Google LLC
+# Copyright 2023 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the License);
 # you may not use this file except in compliance with the License.
@@ -52,8 +52,11 @@ def _ParserHelper(testpaths: List[str]) -> instance_parser.InstanceParser:
   return parser
 
 
-def _Helper(testpaths: List[str]) -> Tuple[
-    Dict[str, entity_instance.EntityInstance], instance_parser.EntityOperation]:
+def _Helper(
+    testpaths: List[str],
+) -> Tuple[
+    Dict[str, entity_instance.EntityInstance], instance_parser.EntityOperation
+]:
   parser = _ParserHelper(testpaths)
   entities = parser.GetEntities()
   default_operation = handler.GetDefaultOperation(parser.GetConfigMode())
@@ -74,9 +77,11 @@ class HandlerTest(absltest.TestCase):
     try:
       report_fd, report_filename = tempfile.mkstemp(text=True)
       input_file = os.path.join(_TESTCASE_PATH, 'GOOD', 'building_type.yaml')
-      _RunValidation([input_file],
-                     use_simplified_universe=True,
-                     report_filename=report_filename)
+      _RunValidation(
+          [input_file],
+          use_simplified_universe=True,
+          report_filename=report_filename,
+      )
 
       report_size = os.path.getsize(report_filename)
     except SyntaxError:
@@ -113,13 +118,15 @@ class HandlerTest(absltest.TestCase):
   def testTelemetryArgsBothSetSuccess(self, mock_subscriber, mock_validator):
     try:
       input_file = os.path.join(_TESTCASE_PATH, 'GOOD', 'building_type.yaml')
-      _RunValidation([input_file],
-                     subscription='a',
-                     service_account='file',
-                     use_simplified_universe=True)
+      _RunValidation(
+          [input_file],
+          subscription='a',
+          service_account='file',
+          use_simplified_universe=True,
+      )
       mock_subscriber.assert_has_calls(
-          [mock.call('a', 'file'),
-           mock.call().Listen(mock.ANY)])
+          [mock.call('a', 'file'), mock.call().Listen(mock.ANY)]
+      )
       # TODO(berkoben): Make this assert stricter
       mock_validator.assert_has_calls([
           mock.call(mock.ANY, mock.ANY, mock.ANY, mock.ANY),
@@ -131,16 +138,19 @@ class HandlerTest(absltest.TestCase):
 
   @mock.patch.object(_CV, 'Validate', return_value=True)
   @mock.patch.object(presubmit_validate_types_lib, 'ConfigUniverse')
-  def testValidateAcceptsEntitiesWithExpectedTypes(self, mock_universe,
-                                                   mock_validator):
+  def testValidateAcceptsEntitiesWithExpectedTypes(
+      self, mock_universe, mock_validator
+  ):
     parsed, default_operation = _Helper(
-        [os.path.join(_TESTCASE_PATH, 'GOOD', 'translation.yaml')])
+        [os.path.join(_TESTCASE_PATH, 'GOOD', 'translation.yaml')]
+    )
     entity_helper = handler.EntityHelper(mock_universe)
     parsed = dict(parsed)
     instances = {}
     for name, ei in parsed.items():
       instances[name] = entity_instance.EntityInstance.FromYaml(
-          name, ei, default_operation=default_operation)
+          name, ei, default_operation=default_operation
+      )
 
     valid_entities = entity_helper.Validate(instances, _INIT_CFG)
 
@@ -155,39 +165,75 @@ class HandlerTest(absltest.TestCase):
       self.fail('ValidationHelper:Validate raised ExceptionType unexpectedly!')
 
   def testValidateRejectsWithInterdependency(self):
-    parsed, default_operation = _Helper([
-        os.path.join(_TESTCASE_PATH, 'BAD',
-                     'entity_interdependency_v1_alpha.yaml')
-    ])
+    parsed, default_operation = _Helper(
+        [
+            os.path.join(
+                _TESTCASE_PATH, 'BAD', 'entity_interdependency_v1_alpha.yaml'
+            )
+        ]
+    )
     config_universe = generate_universe.BuildUniverse(
-        use_simplified_universe=True)
+        use_simplified_universe=True
+    )
     entity_helper = handler.EntityHelper(config_universe)
     parsed = dict(parsed)
     instances = {}
     for name, ei in parsed.items():
       instances[name] = entity_instance.EntityInstance.FromYaml(
-          name, ei, default_operation=default_operation)
+          name, ei, default_operation=default_operation
+      )
 
     with self.assertRaises(ValueError):
       entity_helper.Validate(instances, _UPDATE_CFG)
 
   def testValidateAcceptsWithInterdependency(self):
-    parsed, default_operation = _Helper([
-        os.path.join(_TESTCASE_PATH, 'GOOD',
-                     'entity_interdependency_v1_alpha.yaml')
-    ])
+    parsed, default_operation = _Helper(
+        [
+            os.path.join(
+                _TESTCASE_PATH, 'GOOD', 'entity_interdependency_v1_alpha.yaml'
+            )
+        ]
+    )
     config_universe = generate_universe.BuildUniverse(
-        use_simplified_universe=True)
+        use_simplified_universe=True
+    )
     entity_helper = handler.EntityHelper(config_universe)
     parsed = dict(parsed)
     instances = {}
     for name, ei in parsed.items():
       instances[name] = entity_instance.EntityInstance.FromYaml(
-          name, ei, default_operation=default_operation)
+          name, ei, default_operation=default_operation
+      )
 
     valid_entities = entity_helper.Validate(instances, _UPDATE_CFG)
 
     self.assertEqual(valid_entities, instances)
+
+  def testGraph_DoesNotAllowDuplicateCloudDeviceId(self):
+    parsed, default_operation = _Helper(
+        [
+            os.path.join(
+                _TESTCASE_PATH,
+                'BAD',
+                'entity_identical_cloud_device_ids.yaml',
+            )
+        ]
+    )
+    config_universe = generate_universe.BuildUniverse(
+        use_simplified_universe=True
+    )
+    entity_helper = handler.EntityHelper(config_universe)
+    parsed = dict(parsed)
+    instances = {}
+    for name, ei in parsed.items():
+      instances[name] = entity_instance.EntityInstance.FromYaml(
+          name, ei, default_operation=default_operation
+      )
+
+    valid_entities = entity_helper.Validate(instances, _INIT_CFG)
+    self.assertLen(valid_entities, 3)
+    self.assertFalse(entity_helper._IsDuplicateCDMIds(entities=instances))
+
 
 if __name__ == '__main__':
   absltest.main()

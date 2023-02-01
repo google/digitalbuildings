@@ -1,4 +1,4 @@
-# Copyright 2020 Google LLC
+# Copyright 2023 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the License);
 # you may not use this file except in compliance with the License.
@@ -224,7 +224,7 @@ class ParserTest(absltest.TestCase):
         'SDC_EXT-17-GUID': {
             'type': 'HVAC/SDC_EXT',
             'code': 'SDC_EXT-17',
-            'cloud_device_id': 'foobar',
+            'cloud_device_id': '2619178366980754',
             'etag': 'a56789',
             'update_mask': ['translation', 'connection'],
             'translation': {

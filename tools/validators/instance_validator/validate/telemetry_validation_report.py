@@ -1,4 +1,4 @@
-# Copyright 2022 Google LLC
+# Copyright 2023 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the License);
 # you may not use this file except in compliance with the License.
@@ -115,7 +115,7 @@ class TelemetryValidationReport(object):
 
 
 class TelemetryMessageValidationBlock(object):
-  """A container for telemetry validation result from pubsub message by entity.
+  """A container for telemetry validation result from a pubsub message by entity.
 
   Attributes:
     guid: Entity guid of the of the device whose pubsub message is being

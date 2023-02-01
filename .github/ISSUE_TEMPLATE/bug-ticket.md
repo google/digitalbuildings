@@ -7,13 +7,6 @@ assignees: ''
 
 ---
 
-**IMPORTANT**
-DO NOT INCLUDE ANY PROJECT-SPECIFIC INFORMATION IN THIS TICKET!
-ANY PROJECT-SPECIFIC CONTEXT (E.G. BUILDING CONFIG INPUTS) SHOULD BE
-EMAILED DIRECTLY TO: digitalbuildings-support@googlegroups.com
-
-PLEASE REFERENCE THIS ISSUE LINK IN YOUR EMAIL TO THAT GROUP
-
 **Describe the bug**
 A clear and concise description of what the bug is.
 
@@ -35,5 +28,3 @@ OS where the bug is reported (ubuntu, macos, windows, or others)
 
 **Additional context**
 Add any other context about the problem here.
-
-

@@ -1,4 +1,4 @@
-# Copyright 2020 Google LLC
+# Copyright 2023 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the License);
 # you may not use this file except in compliance with the License.
@@ -35,8 +35,8 @@ class TelemetryValidator(object):
   """Validates telemetry messages against a building config file.
 
   Attributes:
-    entities_with_translation: Mapping of entity codes to an EntityInstance
-      instances. that map 1:1 from a building config to a telemetry message.
+    entities_with_translation: Mapping of entity codes to EntityInstances that
+      map 1:1 from a building config to a telemetry message.
     timeout: The max time the validator must read messages from pubsub.
     callback: The method called by the pubsub listener upon receiving a msg.
     is_udmi: Flag to indicate whether telemtry payloads should conform to the
@@ -81,7 +81,7 @@ class TelemetryValidator(object):
     self._invalid_message_blocks.append(validation_block)
 
   def GetInvalidMessageBlocks(self):
-    """Returns list of TelemetryMessageValidationBlock for invalid messages.
+    """Returns a list of TelemetryMessageValidationBlock instances for for invalid pubsub messages.
 
     A TelemetryMessageValidationBlock instance is a container for validations
     performed on a pubsub message.
@@ -101,19 +101,11 @@ class TelemetryValidator(object):
       self._timer = None
 
   def AllEntitiesValidated(self):
-    """True if all enities in a building config have been validated.
-
-    Returns true if a valid telemetry message was received for every entity in a
-    building configuration file.
-    """
+    """Returns true if a valid telemetry message was received for every entity in a building configuration file."""
     return len(self.entities_with_translation) == len(self.validated_entities)
 
   def GetUnvalidatedEntities(self) -> Dict[str, str]:
-    """Returns a mapping of entity_guid to entity_code
-
-    Entities in a building config file that do not map to a device in a pubsub
-    telemetry stream.
-    """
+    """Returns a mapping of entity_guid to entity_code for entities in a building config file that do not map to a device in a pubsub telemetry stream."""
     unvalidated_entities = self.entities_with_translation.copy()
     for (
         validated_entity_guid,
@@ -132,11 +124,7 @@ class TelemetryValidator(object):
     }
 
   def GetExtraEntities(self) -> Dict[str, str]:
-    """Returns a mapping of entity_guid to entity_code
-
-    entities are reported in a pubsub payload but are not present in the
-    building config being validated.
-    """
+    """Returns a mapping of entity_guid to entity_code for entities are reported in a pubsub payload but are not present in the building config being validated."""
     return self._extra_entities
 
   def CallbackIfCompleted(self):
@@ -155,39 +143,48 @@ class TelemetryValidator(object):
 
     tele = telemetry.Telemetry(message)
     entity_code = tele.attributes[DEVICE_ID]
-    entity_guid = tele.attributes[DEVICE_NUM_ID]
+    cloud_device_id = tele.attributes[DEVICE_NUM_ID]
     message_timestamp = tele.timestamp
     message_version = tele.version
 
     # Telemetry message received for an entity not in building config
     if entity_code not in self.entities_with_translation.keys():
-      self._extra_entities.update({entity_guid: entity_code})
+      self._extra_entities.update({cloud_device_id: entity_code})
       message.ack()
       return
 
+    entity = self.entities_with_translation[entity_code]
+
     # Telemetry message received for a device that's already been validated.
-    if entity_guid in self.validated_entities:
+    if entity.guid in self.validated_entities:
       # Already validated telemetry for this entity,
       # so the message can be skipped.
       message.ack()
       return
-    self.validated_entities.update({entity_guid: entity_code})
-
-    entity = self.entities_with_translation[entity_code]
+    self.validated_entities.update({entity.guid: entity_code})
 
     validation_block = tvr.TelemetryMessageValidationBlock(
-        guid=None,
+        guid=entity.guid,
         code=entity_code,
         timestamp=message_timestamp,
         version=message_version,
         expected_points=entity.translation.values(),
     )
 
+    # Check a telemetry message cloud device id exists in the building config.
+    if cloud_device_id != entity.cloud_device_id:
+      validation_block.description = (
+          f'[ERROR]\tBuilding Config entity: {entity.code} with Guid:'
+          f' {entity.guid} has invalid cloud device id:'
+          f' {entity.cloud_device_id}. Expecting {cloud_device_id}'
+      )
+
     # UDMI Pub/Sub streams could include messages which aren't telemetry
     # Raise a warning for devices that are sending non-udmi compliant payloads
     if self.is_udmi and not message_filters.Udmi.telemetry(message.attributes):
-      validation_block.description = (
-          f'Message for {entity_code} does not conform to UDMI standard.'
+      validation_block.description += (
+          f'[ERROR]\tMessage for {entity_code} does not conform to UDMI'
+          ' standard.'
       )
       message.ack()
       return

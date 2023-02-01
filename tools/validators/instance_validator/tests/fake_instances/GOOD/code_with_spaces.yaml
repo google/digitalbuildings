@@ -14,7 +14,7 @@
 SDC_EXT 2-1 / Rm 2D2-GUID:
   type: HVAC/SDC_EXT
   code: SDC_EXT-2-1
-  cloud_device_id: "foobar"
+  cloud_device_id: "2619178366980754"
   translation:
     shade_extent_percentage_command:
       present_value: "points.shade_extent_percentage_command.present_value"
