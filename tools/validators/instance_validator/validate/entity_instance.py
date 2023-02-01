@@ -462,23 +462,35 @@ class InstanceValidator(object):
   ) -> bool:
     """Validate an entity's translation against the entity's type or ontology.
 
-    If entity operation is ADD, this code ensures that all fields are in the
-    defined type and all required fields of the type are defined. Additionally,
-    it ensures that there is at least one field not marked with PresenceMode as
-    MISSING.
+    Validates a translation block on a reporting entity with a cloud device id.
+    It asserts all fields are in the defined type and all required fields of the
+    type are defined. It ensures that there is at least one field not marked
+    with PresenceMode as MISSING.
 
     Args:
       entity: EntityInstance to validate
       is_udmi: Flag to validate under udmi; default True.
 
     Returns:
-      Returns boolean for validity of entity translation, defaults to True if
-      translation is not specified.
+      Returns true when the translation is valid on a reporting entity.
     """
+
+    if entity.cloud_device_id and not entity.translation:
+      if entity.operation in [
+          parse.EntityOperation.UPDATE,
+          parse.EntityOperation.ADD,
+          parse.EntityOperation.EXPORT,
+      ]:
+        print(
+            f'[ERROR]\tEntity {entity.guid} ({entity.code}) has a'
+            ' cloud_device_id but is missing a translation. Reporting devices'
+            ' must have a translation'
+        )
+        return False
+
     if entity.translation is None:
       return True
 
-    is_valid = True
     entity_type = self.universe.GetEntityType(
         entity.namespace, entity.type_name
     )
@@ -488,6 +500,7 @@ class InstanceValidator(object):
     if self._IsAllMissingFields(entity):
       return False
 
+    is_valid = True
     # Check that defined fields are in the type
     for as_written_field_name, ft in entity.translation.items():
       qualified_field_name = _GetAllowedField(
@@ -1395,10 +1408,9 @@ class EntityInstance(findings_lib.Findings):
         raise ValueError('Update of cloud device id requires translation.')
 
     translation = None
-    cloud_device_id = None
+    cloud_device_id = entity_yaml.get(parse.ENTITY_CLOUD_DEVICE_ID_KEY)
     if parse.TRANSLATION_KEY in entity_yaml:
       translation = _ParseTranslation(entity_yaml[parse.TRANSLATION_KEY])
-      cloud_device_id = entity_yaml[parse.ENTITY_CLOUD_DEVICE_ID_KEY]
 
     connections = None
     if parse.CONNECTIONS_KEY in entity_yaml:

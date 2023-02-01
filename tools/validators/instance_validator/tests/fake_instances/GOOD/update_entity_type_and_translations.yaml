@@ -21,7 +21,7 @@ CONFIG_METADATA:
 SDC_EXT-19-GUID:
   type: HVAC/SDC_EXT
   code: SDC_EXT-19
-  cloud_device_id: "2619178366980754"
+  cloud_device_id: "1234567890123456"
   etag: a56790
   update_mask:
     - type

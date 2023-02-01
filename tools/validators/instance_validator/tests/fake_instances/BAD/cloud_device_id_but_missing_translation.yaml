@@ -12,23 +12,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Good update specification of entity type; special case of entity type change only
-# where new type shares the same fields/translations
+# entity with cloud_device_id specified but no translations; fails as detault operation is ADD
 
-CONFIG_METADATA:
-  operation: UPDATE
-
-SDC_EXT-19-GUID:
-  type: HVAC/SDC_EXT
-  code: SDC_EXT-19
+DMP_EDM-17-GUID:
+  type: HVAC/DMP_EDM
+  code: DMP_EDM-17
   cloud_device_id: "1234567890123456"
-  etag: a56790
-  update_mask:
-    - type
-  translation:
-    shade_extent_percentage_command:
-      present_value: "points.shade_extent_percentage_command.present_value"
-      units:
-        key: "pointset.points.shade_extent_percentage_command.units"
-        values:
-          percent: "%"
+
+US-SEA-BLDG1-GUID:
+  type: FACILITIES/BUILDING
+  code: US-SEA-BLDG1

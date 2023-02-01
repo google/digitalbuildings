@@ -1528,6 +1528,24 @@ class EntityInstanceTest(absltest.TestCase):
 
     self.assertFalse(self.update_validator.Validate(instance))
 
+  def testValidate_EntityWithCloudDeviceIdMissingTranslation_Fails(self):
+    parsed, default_operation = _Helper(
+        [
+            path.join(
+                _TESTCASE_PATH,
+                'BAD',
+                'cloud_device_id_but_missing_translation.yaml',
+            )
+        ]
+    )
+    entity_guid, entity_block = next(iter(parsed.items()))
+
+    entity = entity_instance.EntityInstance.FromYaml(
+        entity_guid, entity_block, default_operation=default_operation
+    )
+
+    self.assertFalse(self.init_validator.Validate(entity))
+
   def testValidate_GoodStatesCaseSensitivity_Success(self):
     parsed, default_operation = _Helper(
         [path.join(_TESTCASE_PATH, 'GOOD', 'states_case_sensitive.yaml')]
