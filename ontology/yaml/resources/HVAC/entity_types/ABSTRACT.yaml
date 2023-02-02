@@ -91,6 +91,7 @@ OADM:
   uses:
   - outside_air_damper_command
 
+
 MOAFC:
   id: "1519549946037010432"
   description: "Minimum (ventilation) outside air flow control."
@@ -103,6 +104,7 @@ MOAFC:
   - ventilation_outside_air_flowrate_setpoint
   implements:
   - CONTROL
+
 
 OAFC:
   id: "12724505818934804480"
@@ -119,6 +121,7 @@ OAFC:
   implements:
   - CONTROL
 
+
 ZTM:
   id: "5662861603217866752"
   description: "Zone temperature monitoring."
@@ -134,6 +137,7 @@ ZTM:
   implements:
   - MONITORING
 
+
 REFM:
   id: "18151343369916252160"
   description: "Refrigerant leak monitoring."
@@ -142,6 +146,7 @@ REFM:
   - MONITORING
   uses:
   - zone_air_refrigerant_concentration_sensor
+
 
 CSP:
   id: "2456298668530073600"
@@ -195,6 +200,7 @@ DSARC:
   implements:
   - CONTROL
 
+
 DFMSS:
   id: "15946227720434745344"
   description: "Discharge fan Start Stop with uneven statuses."
@@ -211,6 +217,7 @@ DFMSS:
   - discharge_fan_run_command
   - discharge_fan_run_status_1
   - discharge_fan_run_status_2
+
 
 DX2RC:
   id: "14529282687673303040"
@@ -235,6 +242,7 @@ DX2RC:
   implements:
   - CONTROL
 
+
 DFSMC:
   id: "2774887660236308480"
   description: "Discharge fan multi-speed control."
@@ -242,6 +250,7 @@ DFSMC:
   uses:
   - discharge_fan_run_command
   - discharge_fan_speed_mode
+
 
 DSP:
   id: "8112819800507416576"
@@ -334,6 +343,7 @@ BPC2X:
   implements:
   - OPERATIONAL
 
+
 EDPM:
   id: "18075318737925308416"
   description: "Exhaust air damper percentage monitoring."
@@ -342,6 +352,7 @@ EDPM:
   - exhaust_air_damper_percentage_command
   - exhaust_air_damper_percentage_sensor
 
+
 EDM:
   id: "3621015733879701504"
   description: "Exhaust air damper monitoring."
@@ -349,6 +360,7 @@ EDM:
   uses:
   - exhaust_air_damper_command
   - exhaust_air_damper_status
+
 
 EDBPC:
   id: "15769475728711614464"
@@ -366,6 +378,7 @@ EDBPC:
   implements:
   - CONTROL
 
+
 EDRPC:
   id: "14956319809761968128"
   description: "Return static control with exhaust damper."
@@ -379,6 +392,7 @@ EDRPC:
   implements:
   - CONTROL
 
+
 EFFC:
   id: "3108154032661725184"
   description: "Exhaust fan flow control."
@@ -389,6 +403,7 @@ EFFC:
   - speed_percentage_command
   implements:
   - CONTROL
+
 
 BSPC:
   id: "6131235964464398336"
@@ -406,6 +421,7 @@ BSPC:
   - exhaust_fan_run_command
   implements:
   - CONTROL
+
 
 VSC:
   id: "3357018594004172800"
@@ -435,6 +451,7 @@ VSC:
   implements:
   - OPERATIONAL
 
+
 EFVSC:
   id: "12580390630858948608"
   description: "Variable speed control for exhaust fans."
@@ -454,6 +471,7 @@ EFVSC:
   implements:
   - OPERATIONAL
 
+
 VSFC:
   id: "17941929285778407424"
   description: "Variable speed control or monitor in frequency"
@@ -461,6 +479,7 @@ VSFC:
   uses:
   - speed_frequency_command
   - speed_frequency_sensor
+
 
 SFVSC:
   id: "16291356723812237312"
@@ -487,6 +506,7 @@ SFVSC:
   implements:
   - OPERATIONAL
 
+
 DFVSC:
   id: "3825392955250704384"
   description: "Variable speed control for discharge fans."
@@ -510,6 +530,7 @@ DFVSC:
   - discharge_fan_speed_percentage_command
   implements:
   - OPERATIONAL
+
 
 DFVSC2X:
   id: "2339665773590478848"
@@ -536,6 +557,7 @@ DFVSC2X:
   implements:
   - OPERATIONAL
 
+
 DFVSFC:
   id: "3819485279274663936"
   description: "Variable speed control with frequency setting for discharge fans."
@@ -549,6 +571,7 @@ DFVSFC:
   - failed_discharge_fan_alarm
   implements:
   - OPERATIONAL
+
 
 DFMSC:
   id: "13122696153957138432"
@@ -573,6 +596,7 @@ ZHM:
   uses:
   - zone_air_relative_humidity_sensor
 
+
 DTM:
   id: "7968704612431560704"
   description: "Discharge temperature monitoring."
@@ -585,6 +609,7 @@ DTM:
   - discharge_air_temperature_sensor
   implements:
   - MONITORING
+
 
 SS:
   id: "2875133433875529728"
@@ -627,6 +652,7 @@ SSPC:
   implements:
   - OPERATIONAL
 
+
 SPSS:
   id: "8029265712889462784"
   description: "Spray pump start stop monitoring."
@@ -636,6 +662,7 @@ SPSS:
   - spray_pump_run_status
   implements:
   - OPERATIONAL
+
 
 EFSS:
   id: "618830020562911232"
@@ -653,6 +680,7 @@ EFSS:
   uses:
   - exhaust_fan_run_command
   - exhaust_fan_run_status
+
 
 DFSS:
   id: "8437078973678092288"
@@ -675,6 +703,7 @@ DFSS:
   - discharge_fan_run_command
   - discharge_fan_run_status
 
+
 DFSS2X:
   id: "10783101436305604608"
   description: "Two discharge fan run command and status (start/stop). With dampers"
@@ -686,6 +715,7 @@ DFSS2X:
   - discharge_fan_run_command_2
   - discharge_fan_run_status_1
   - discharge_fan_run_status_2
+
 
 HT2RC:
   id: "12331526069516500992"
@@ -705,6 +735,7 @@ HT2RC:
   - return_air_temperature_setpoint
   implements:
   - CONTROL
+
 
 HTZTC:
   id: "4417012674366275584"
@@ -726,6 +757,7 @@ HTZTC:
   implements:
   - CONTROL
 
+
 HT3ZTC:
   id: "5155603013255036928"
   description: "Two gas or electric heater control on zone side (HSP, ZTC)."
@@ -746,6 +778,7 @@ HT3ZTC:
   - zone_air_temperature_setpoint
   implements:
   - CONTROL
+
 
 HSOUC:
   id: "3000067641604833280"
@@ -780,6 +813,7 @@ HTZOUC:
   implements:
   - CONTROL
 
+
 LCC:
   id: "7719840051089113088"
   description: "Leaving coil temperature control."
@@ -790,6 +824,7 @@ LCC:
   - leaving_cooling_coil_temperature_setpoint
   implements:
   - CONTROL
+
 
 LCC2X:
   id: "13640384711221051392"
@@ -802,6 +837,7 @@ LCC2X:
   - leaving_cooling_coil_temperature_setpoint
   implements:
   - CONTROL
+
 
 SFSS:
   id: "5180976443089223680"
@@ -821,6 +857,7 @@ SFSS:
   uses:
   - supply_fan_run_command
   - supply_fan_run_status
+
 
 RHM:
   id: "14781568929201389568"
@@ -851,6 +888,7 @@ RTM:
   uses:
   - return_air_temperature_sensor
 
+
 DTC:
   id: "14404348479943999488"
   description: "Discharge air temperatore control"
@@ -878,6 +916,7 @@ STC:
   - supply_air_temperature_setpoint
   implements:
   - OPERATIONAL
+
 
 RTC:
   id: "7486819452302917632"
@@ -912,6 +951,7 @@ OA:
   - outside_air_temperature_sensor
   implements:
   - MONITORING
+
 
 ZA:
   id: "3244379125296660480"
@@ -950,6 +990,7 @@ CHWDT:
   - chilled_return_water_temperature_sensor
   - chilled_supply_water_temperature_sensor
 
+
 CHWDPSC:
   id: "9028698692793663488"
   description: "Chilled water valve controlling supply air dewpoint temperature."
@@ -965,6 +1006,7 @@ CHWDPSC:
   implements:
   - CONTROL
 
+
 CHWDPSC2X:
   id: "14378975050109812736"
   description: "Chilled water valves (2x) controlling supply air dewpoint temperature."
@@ -979,6 +1021,7 @@ CHWDPSC2X:
   - supply_air_dewpoint_temperature_setpoint
   implements:
   - CONTROL
+
 
 CWDT:
   id: "16710191489157693440"
@@ -1037,6 +1080,7 @@ PSWTC:
   implements:
   - OPERATIONAL
 
+
 SCHWTC:
   id: "10166461230588362752"
   description: "Supply chilled water temperature control."
@@ -1066,6 +1110,7 @@ WDPC:
   - differential_pressure_sensor
   - differential_pressure_setpoint
 
+
 CGRWTC:
   id: "8601082128077160448"
   description: "Cogeneration return water temperature control."
@@ -1077,6 +1122,7 @@ CGRWTC:
   uses:
   - cogeneration_return_water_temperature_sensor
   - cogeneration_return_water_temperature_setpoint
+
 
 WDPC2X:
   id: "14149516868997611520"
@@ -1144,6 +1190,7 @@ ED:
   implements:
   - CONTROL
 
+
 RD:
   id: "17662324578346598400"
   description: "Return damper flow control."
@@ -1154,6 +1201,7 @@ RD:
   - return_air_flowrate_setpoint
   implements:
   - CONTROL
+
 
 MTM:
   id: "944962761547317248"
@@ -1167,6 +1215,7 @@ MTM:
   - mixed_air_temperature_sensor
   implements:
   - MONITORING
+
 
 MTC:
   id: "10168334798402093056"
@@ -1210,6 +1259,7 @@ STDSPC:
   implements:
   - OPERATIONAL
 
+
 DSPRTC:
   id: "3250805770761011200"
   description: "Dual setpoint return air temp control."
@@ -1229,6 +1279,7 @@ DSPRTC:
   implements:
   - OPERATIONAL
 
+
 ZHC:
   id: "7286031036884975616"
   description: "Zone relative humidity control."
@@ -1238,6 +1289,7 @@ ZHC:
   - zone_air_relative_humidity_setpoint
   implements:
   - OPERATIONAL
+
 
 RHC:
   id: "2169941860192092160"
@@ -1253,6 +1305,7 @@ RHC:
   - return_air_relative_humidity_setpoint
   implements:
   - OPERATIONAL
+
 
 RHDHC:
   id: "18310842924687949824"
@@ -1272,6 +1325,7 @@ RHDHC:
   implements:
   - CONTROL
 
+
 ZHDHC:
   id: "4475784869405786112"
   description: "Zone humidification/dehumidification control."
@@ -1286,6 +1340,7 @@ ZHDHC:
   - zone_air_relative_humidity_setpoint
   implements:
   - CONTROL
+
 
 RHHC:
   id: "8019953948913827840"
@@ -1318,6 +1373,7 @@ SHC:
   implements:
   - OPERATIONAL
 
+
 SHM:
   id: "2378937030399754240"
   description: "Supply air relative humidity monitoring."
@@ -1326,6 +1382,7 @@ SHM:
   - supply_air_relative_humidity_sensor
   implements:
   - MONITORING
+
 
 REFC:
   id: "3034632988647227392"
@@ -1336,6 +1393,7 @@ REFC:
   - zone_air_refrigerant_concentration_setpoint
   implements:
   - OPERATIONAL
+
 
 CREFM:
   id: "450084672513245184"
@@ -1371,6 +1429,7 @@ EPC:
   implements:
   - OPERATIONAL
 
+
 CO2M:
   id: "7862491789188399104"
   description: "Basic carbon dioxide monitoring."
@@ -1392,6 +1451,7 @@ VOCM:
   implements:
   - MONITORING
 
+
 VOCC:
   id: "2097884266154164224"
   description: "Volatile organic compound control."
@@ -1401,6 +1461,7 @@ VOCC:
   - zone_air_voc_concentration_setpoint
   implements:
   - OPERATIONAL
+
 
 RAVOCC:
   id: "1041182123605622784"
@@ -1423,6 +1484,7 @@ VOCPC:
   implements:
   - OPERATIONAL
 
+
 BFSS:
   id: "11321256303008940032"
   description: "Booster fan start-stop and feedback."
@@ -1432,6 +1494,7 @@ BFSS:
   - boost_fan_run_status
   implements:
   - OPERATIONAL
+
 
 DFHLC:
   id: "3539036146912722944"
@@ -1447,6 +1510,7 @@ DFHLC:
   implements:
   - OPERATIONAL
   - REMAP_REQUIRED
+
 
 DFHMLC:
   id: "8727182917643534336"
@@ -1464,6 +1528,7 @@ DFHMLC:
   - OPERATIONAL
   - REMAP_REQUIRED
 
+
 ESPC:
   id: "6709570284581552128"
   description: "Exhaust air static pressure control."
@@ -1480,6 +1545,7 @@ ESPC:
   - exhaust_fan_speed_percentage_command
   implements:
   - OPERATIONAL
+
 
 SSPM:
   id: "15932942321436327936"
@@ -1508,6 +1574,7 @@ ZSPC:
   implements:
   - OPERATIONAL
 
+
 ZSPM:
   id: "13627099312222633984"
   description: "Zone static pressure monitoring."
@@ -1531,6 +1598,7 @@ RSPC:
   implements:
   - OPERATIONAL
 
+
 PWDPC:
   id: "18238785330650021888"
   description: "Process water differential pressure control."
@@ -1540,6 +1608,7 @@ PWDPC:
   - process_water_differential_pressure_setpoint
   implements:
   - OPERATIONAL
+
 
 PWDT:
   id: "289266803299844096"
@@ -1575,6 +1644,7 @@ ESFM:
   - electrostatic_filter_alarm
   implements:
   - MONITORING
+
 
 FDPM:
   id: "9447758858022813696"
@@ -1615,6 +1685,7 @@ CHWDC:
   implements:
   - CONTROL
 
+
 CHWSC:
   id: "4836072839595425792"
   description: "Chilled water valve monitoring on supply side."
@@ -1635,6 +1706,7 @@ CHWSC:
   implements:
   - CONTROL
 
+
 CHWSDC:
   id: "2207518769582964736"
   description: "Chilled water valve monitoring on supply side."
@@ -1652,6 +1724,7 @@ CHWSDC:
   - supply_air_temperature_sensor
   implements:
   - CONTROL
+
 
 CHW2XSC:
   id: "14565396147087605760"
@@ -1672,6 +1745,7 @@ CHW2XSC:
   - supply_air_temperature_setpoint
   implements:
   - CONTROL
+
 
 CHWRC:
   id: "10816853144743444480"
@@ -1696,6 +1770,7 @@ CHWRC:
   implements:
   - CONTROL
 
+
 CHWZC:
   id: "2746402612495515648"
   description: "Chilled water valve monitoring on zone side (DSP, CSP)."
@@ -1719,6 +1794,7 @@ CHWZC:
   implements:
   - CONTROL
 
+
 CHWZTC:
   id: "14203560064526057472"
   description: "Chilled water valve monitoring on zone side (ZTC)."
@@ -1740,6 +1816,7 @@ CHWZTC:
   implements:
   - CONTROL
 
+
 CHWPVM:
   id: "10410116305838407680"
   description: "Chilled water pressure valve command and position monitoring (without regard to what controls it)."
@@ -1750,6 +1827,7 @@ CHWPVM:
   - chilled_water_valve_percentage_sensor
   implements:
   - OPERATIONAL
+
 
 CHWZTC2X:
   id: "12977168093439590400"
@@ -1799,6 +1877,7 @@ DXZTC:
   implements:
   - CONTROL
 
+
 DX2ZTC:
   id: "7764960709758156800"
   description: "Compressor run control on zone side (ZTC)."
@@ -1824,6 +1903,7 @@ DX2ZTC:
   - zone_air_temperature_setpoint
   implements:
   - CONTROL
+
 
 DXZC:
   id: "5052245621709209600"
@@ -1901,6 +1981,7 @@ DX2ZC:
   implements:
   - CONTROL
 
+
 DX3ZC:
   id: "14059444876450201600"
   description: "Three compressor run control on zone side."
@@ -1926,6 +2007,7 @@ DX3ZC:
   - zone_air_temperature_sensor
   implements:
   - CONTROL
+
 
 DX4ZC:
   id: "7395665540313776128"
@@ -1955,6 +2037,7 @@ DX4ZC:
   implements:
   - CONTROL
 
+
 DX2ZC2X:
   id: "2288583562875633664"
   description: "Two compressor run control on zone side (DSP, CSP) with two zone temp sensors."
@@ -1976,6 +2059,7 @@ DX2ZC2X:
   - zone_air_temperature_sensor_2
   implements:
   - CONTROL
+
 
 DXSC:
   id: "2530229830381731840"
@@ -2000,6 +2084,7 @@ DXSC:
   implements:
   - CONTROL
 
+
 DX2SC:
   id: "11753601867236507648"
   description: "Two compressor run control on supply air side."
@@ -2021,6 +2106,7 @@ DX2SC:
   - supply_air_temperature_setpoint
   implements:
   - CONTROL
+
 
 DX3SC:
   id: "7141915848809119744"
@@ -2045,6 +2131,7 @@ DX3SC:
   - supply_air_temperature_setpoint
   implements:
   - CONTROL
+
 
 DX4SC:
   id: "16365287885663895552"
@@ -2121,6 +2208,7 @@ DX4SWC:
   implements:
   - CONTROL
 
+
 DX2SWC:
   id: "8232701752307089408"
   description: "Two compressor run control on supply water side."
@@ -2165,6 +2253,7 @@ DXSWC:
   implements:
   - CONTROL
 
+
 DX5SC:
   id: "10600680362629660672"
   description: "Five compressor run control on supply side."
@@ -2193,6 +2282,7 @@ DX5SC:
   implements:
   - CONTROL
 
+
 DXRC:
   id: "5628706374012633088"
   description: "Compressor run control on return air side (RC)."
@@ -2218,6 +2308,7 @@ DXRC:
   implements:
   - CONTROL
 
+
 DXDC:
   id: "5988994344202272768"
   description: "Compressor run control on discharge air side (DTC)."
@@ -2239,6 +2330,7 @@ DXDC:
   - discharge_air_temperature_setpoint
   implements:
   - CONTROL
+
 
 DX2DC:
   id: "8944903812129226752"
@@ -2262,6 +2354,7 @@ DX2DC:
   implements:
   - CONTROL
 
+
 DX3DC:
   id: "13988935394784182272"
   description: "Three compressor run control on discharge side (DTC)."
@@ -2283,6 +2376,7 @@ DX3DC:
   - discharge_air_temperature_setpoint
   implements:
   - CONTROL
+
 
 HPSC:
   id: "15212366381057048576"
@@ -2308,6 +2402,7 @@ HPSC:
   implements:
   - CONTROL
 
+
 HP2SC:
   id: "3360440274189811712"
   description: "Supply side heat pump control."
@@ -2331,6 +2426,7 @@ HP2SC:
   implements:
   - CONTROL
 
+
 HPDC:
   id: "3683151334988578816"
   description: "Discharge side heat pump control."
@@ -2351,6 +2447,7 @@ HPDC:
   - reversing_valve_command
   implements:
   - CONTROL
+
 
 HPZTC:
   id: "4115496899216146432"
@@ -2376,6 +2473,7 @@ HPZTC:
   - zone_air_temperature_setpoint
   implements:
   - CONTROL
+
 
 HPZC:
   id: "15428539163170832384"
@@ -2403,6 +2501,7 @@ HPZC:
   implements:
   - CONTROL
 
+
 HP2ZC:
   id: "16221172697588039680"
   description: "Zone temp heat pump control with two compressors."
@@ -2428,6 +2527,7 @@ HP2ZC:
   implements:
   - CONTROL
 
+
 HWDC:
   id: "16507327195786510336"
   description: "Heating water valve monitoring on discharge air side."
@@ -2445,6 +2545,7 @@ HWDC:
   - heating_water_valve_percentage_command
   implements:
   - CONTROL
+
 
 HWRC:
   id: "17386253701286461440"
@@ -2464,6 +2565,7 @@ HWRC:
   implements:
   - CONTROL
 
+
 HWSC:
   id: "12906523371843354624"
   description: "Heating water valve monitoring on supply air side."
@@ -2482,6 +2584,7 @@ HWSC:
   implements:
   - CONTROL
 
+
 HW2SC:
   id: "15111346551231873024"
   description: "Two heating water valves on supply air side."
@@ -2499,6 +2602,7 @@ HW2SC:
   - supply_air_temperature_setpoint
   implements:
   - CONTROL
+
 
 HWZC:
   id: "12546235401653714944"
@@ -2521,6 +2625,7 @@ HWZC:
   implements:
   - CONTROL
 
+
 HWZTC:
   id: "2674345018457587712"
   description: "Heating water valve monitoring on zone side (ZTC)."
@@ -2541,6 +2646,7 @@ HWZTC:
   implements:
   - CONTROL
 
+
 HWSWC:
   id: "8294837353415966720"
   description: "Heating water valve monitoring on supply water side."
@@ -2557,6 +2663,7 @@ HWSWC:
   - supply_water_temperature_setpoint
   implements:
   - CONTROL
+
 
 PHWSC:
   id: "17518209390270742528"
@@ -2602,6 +2709,7 @@ HTDC:
   - heater_run_command
   implements:
   - CONTROL
+
 
 HT2DC:
   id: "5268418403822993408"
@@ -2679,6 +2787,7 @@ HTRC:
   implements:
   - CONTROL
 
+
 HTZC:
   id: "2386114642305875968"
   description: "Gas or electric heater control on zone side (ZC)."
@@ -2699,6 +2808,7 @@ HTZC:
   implements:
   - CONTROL
 
+
 HT2ZC:
   id: "6997800660733263872"
   description: "Two gas or electric heater control on zone side (HSP, DSP)."
@@ -2718,6 +2828,7 @@ HT2ZC:
   - zone_air_temperature_sensor
   implements:
   - CONTROL
+
 
 HT2XZTC2X:
   id: "18111271668641955840"
@@ -2740,6 +2851,7 @@ HT2XZTC2X:
   implements:
   - CONTROL
 
+
 HT3ZC:
   id: "3504555462265667584"
   description: "Two gas or electric heater control on zone side (HSP, DSP)."
@@ -2759,7 +2871,6 @@ HT3ZC:
   - zone_air_temperature_sensor
   implements:
   - CONTROL
-
 
 
 HTSWC:
@@ -2795,6 +2906,7 @@ HT2SWC:
   - supply_water_temperature_setpoint
   implements:
   - CONTROL
+
 
 HT4SWC:
   id: "15090909928606400512"
@@ -2875,6 +2987,7 @@ HT4SC:
   implements:
   - CONTROL
 
+
 HT2SDC:
   id: "7476730333606445056"
   description: "Two gas or electric heater control on supply side (dual setpoint)."
@@ -2893,6 +3006,7 @@ HT2SDC:
   implements:
   - CONTROL
 
+
 HTVSC:
   id: "14635905628753625088"
   description: "Variable gas to electric control on supply air side."
@@ -2910,6 +3024,7 @@ HTVSC:
   - supply_air_temperature_setpoint
   implements:
   - CONTROL
+
 
 ECON:
   id: "3106690582685155328"
@@ -2964,6 +3079,7 @@ ECOND:
   implements:
   - CONTROL
 
+
 ECONM:
   id: "8728731030015442944"
   description: "Economizer mode control"
@@ -2989,6 +3105,7 @@ ECONM:
   - return_air_temperature_sensor
   implements:
   - CONTROL
+
 
 ECONM2X:
   id: "10998545242210172928"
@@ -3016,6 +3133,7 @@ ECONM2X:
   implements:
   - CONTROL
 
+
 ECONMD:
   id: "15646260057656524800"
   description: "Economizer mode control - single zone"
@@ -3040,6 +3158,7 @@ ECONMD:
   - outside_air_temperature_sensor
   implements:
   - CONTROL
+
 
 ECONZ:
   id: "10070803718971850752"
@@ -3070,6 +3189,8 @@ ECONZ:
   - zone_air_temperature_sensor
   implements:
   - CONTROL
+
+
 VOADM:
   id: "12330062619539931136"
   description: "Variable outside air damper monitoring."
@@ -3085,6 +3206,7 @@ VOADM:
   - outside_air_temperature_sensor
   implements:
   - MONITORING
+
 
 BYPDM:
   id: "7718376601112543232"
@@ -3108,6 +3230,7 @@ OAFM:
   implements:
   - MONITORING
 
+
 OAFMC:
   id: "16941748637967319040"
   description: "Outside air flow control with minimum setpoint."
@@ -3122,6 +3245,7 @@ OAFMC:
   - ventilation_outside_air_flowrate_setpoint
   implements:
   - CONTROL
+
 
 OAMC:
   id: "9583248377378766848"
@@ -3146,6 +3270,7 @@ OFC:
   implements:
   - OPERATIONAL
 
+
 SFM:
   id: "1953769078078308352"
   description: "Supply air flow monitoring."
@@ -3154,6 +3279,7 @@ SFM:
   - supply_air_flowrate_sensor
   implements:
   - MONITORING
+
 
 DFM:
   id: "15288213991675920384"
@@ -3177,6 +3303,7 @@ SFC:
   implements:
   - OPERATIONAL
 
+
 RFC:
   id: "6565455096505696256"
   description: "Return air flow control."
@@ -3186,6 +3313,7 @@ RFC:
   - return_air_flowrate_setpoint
   implements:
   - OPERATIONAL
+
 
 SARC:
   id: "15788827133360472064"
@@ -3202,6 +3330,7 @@ SARC:
   implements:
   - CONTROL
 
+
 RWISOVPC:
   id: "13482984124146778112"
   description: "Return water isolation valve percentage monitoring."
@@ -3213,6 +3342,7 @@ RWISOVPC:
   - return_water_valve_percentage_sensor
   implements:
   - OPERATIONAL
+
 
 CHWISOVM:
   id: "8871298105719390208"
@@ -3226,6 +3356,7 @@ CHWISOVM:
   implements:
   - MONITORING
 
+
 CDWISOVM:
   id: "18094670142574166016"
   description: "Condensing water isolation valve monitoring."
@@ -3237,6 +3368,7 @@ CDWISOVM:
   - condensing_water_isolation_valve_status
   implements:
   - MONITORING
+
 
 CDWISOVPM:
   id: "512617197319749632"
@@ -3251,6 +3383,7 @@ CDWISOVPM:
   implements:
   - MONITORING
 
+
 CDWPVM:
   id: "7446747751028621312"
   description: "Condensing water pressure valve command and position monitoring (without regard to what controls it)."
@@ -3262,6 +3395,7 @@ CDWPVM:
   implements:
   - OPERATIONAL
 
+
 CDWFRSM:
   id: "14620379425057800192"
   description: "Condenser water flowrate status monitoring."
@@ -3270,6 +3404,7 @@ CDWFRSM:
   - condensing_water_flowrate_status
   implements:
   - OPERATIONAL
+
 
 BYPVPM:
   id: "9735989234174525440"
@@ -3282,6 +3417,7 @@ BYPVPM:
   implements:
   - MONITORING
 
+
 MWVPM:
   id: "5124303215747137536"
   description: "Make-up water valve percentage monitoring."
@@ -3290,6 +3426,7 @@ MWVPM:
   - makeup_water_valve_percentage_command
   implements:
   - MONITORING
+
 
 HXSWISOVPM:
   id: "11812289399880679424"
@@ -3301,6 +3438,7 @@ HXSWISOVPM:
   implements:
   - MONITORING
 
+
 HXRWISOVPM:
   id: "14124324858582007808"
   description: "Heat exchanger return isolation water valve percentage monitoring."
@@ -3310,6 +3448,7 @@ HXRWISOVPM:
   - heat_exchange_return_water_isolation_valve_percentage_sensor
   implements:
   - MONITORING
+
 
 HXSWISOVM:
   id: "18037952934766968832"
@@ -3321,6 +3460,7 @@ HXSWISOVM:
   implements:
   - MONITORING
 
+
 HXRWISOVM:
   id: "9182187217496309760"
   description: "Heat exchanger return isolation water valve monitoring."
@@ -3331,6 +3471,7 @@ HXRWISOVM:
   implements:
   - MONITORING
 
+
 PWISOVM:
   id: "2818460206533443584"
   description: "Process water iso valve monitoring."
@@ -3340,6 +3481,7 @@ PWISOVM:
   implements:
   - MONITORING
 
+
 PWVPM:
   id: "12041832243388219392"
   description: "Process water valve percentage monitoring."
@@ -3348,6 +3490,7 @@ PWVPM:
   - process_water_valve_percentage_command
   implements:
   - MONITORING
+
 
 CHWBZC:
   id: "16609945715518472192"
@@ -3376,6 +3519,7 @@ CHWBYPVPM:
   implements:
   - MONITORING
 
+
 MXVPM:
   id: "16653518261815607296"
   description: "Mixing valve percent monitoring."
@@ -3384,6 +3528,7 @@ MXVPM:
   - mixing_valve_percentage_command
   implements:
   - MONITORING
+
 
 WFRM:
   id: "1665538701926596608"
@@ -3432,6 +3577,7 @@ CHWFRM:
   implements:
   - MONITORING
 
+
 CHWFRSM:
   id: "11667988394339729408"
   description: "Chilled water flowrate status monitoring."
@@ -3440,6 +3586,7 @@ CHWFRSM:
   - chilled_water_flowrate_status
   implements:
   - MONITORING
+
 
 SEPM:
   id: "3971381711140290560"
@@ -3450,6 +3597,7 @@ SEPM:
   implements:
   - MONITORING
 
+
 STPM:
   id: "13194753747995066368"
   description: "Shade tilt monitoring."
@@ -3458,6 +3606,7 @@ STPM:
   - shade_tilt_percentage_command
   implements:
   - MONITORING
+
 
 IGM:
   id: "8583067729567678464"
@@ -3468,6 +3617,7 @@ IGM:
   implements:
   - OPERATIONAL
 
+
 CLPM:
   id: "17806439766422454272"
   description: "Cooling thermal monitoring."
@@ -3477,6 +3627,7 @@ CLPM:
   implements:
   - MONITORING
 
+
 PCLPM:
   id: "1089077949623173120"
   description: "Process cooling thermal monitoring."
@@ -3485,7 +3636,6 @@ PCLPM:
   - process_cooling_thermal_power_sensor
   implements:
   - MONITORING
-
 
 ### POTENTIALLY ONE-OFF TYPES ###
 DDCO:
@@ -3502,6 +3652,7 @@ DDCO:
   implements:
   - CONTROL
 
+
 FDPM2X:
   id: "871492295067697152"
   description: "Filter pressure monitoring (2 sensors)."
@@ -3511,6 +3662,7 @@ FDPM2X:
   - filter_differential_pressure_sensor_2
   implements:
   - MONITORING
+
 
 FDPSM2X:
   id: "14032659673685950464"
@@ -3524,6 +3676,7 @@ FDPSM2X:
   - filter_alarm_2
   implements:
   - MONITORING
+
 
 FDPSM4X:
   id: "17338090693943361536"
@@ -3542,6 +3695,7 @@ FDPSM4X:
   implements:
   - MONITORING
 
+
 FDPM3X:
   id: "16670119787883397120"
   description: "Filter pressure monitoring (3 sensors)."
@@ -3552,6 +3706,7 @@ FDPM3X:
   - filter_differential_pressure_sensor_3
   implements:
   - MONITORING
+
 
 FDPM4X:
   id: "5700763968050561024"
@@ -3565,6 +3720,7 @@ FDPM4X:
   implements:
   - MONITORING
 
+
 CO2C2X:
   id: "14924136004905336832"
   description: "Carbon dioxide control with dual zone sensors."
@@ -3575,6 +3731,7 @@ CO2C2X:
   - zone_air_co2_concentration_setpoint
   implements:
   - OPERATIONAL
+
 
 DSP3X:
   id: "3394920958836867072"
@@ -3612,6 +3769,7 @@ EFSS2X:
   implements:
   - OPERATIONAL
 
+
 EFSS3X:
   id: "8006606977264254976"
   description: "Exhaust fan start-stop and feedback with three fans."
@@ -3634,6 +3792,7 @@ EFSS3X:
   - exhaust_fan_run_status_3
   implements:
   - OPERATIONAL
+
 
 EFSS4X:
   id: "17229979014119030784"
@@ -3662,6 +3821,7 @@ EFSS4X:
   implements:
   - OPERATIONAL
 
+
 DF2XSS:
   id: "9591874046098669568"
   description: "Discharge fan start-stop and feedback (2 pts)."
@@ -3677,6 +3837,7 @@ DF2XSS:
   - discharge_fan_run_status_2
   implements:
   - OPERATIONAL
+
 
 SFSS2X:
   id: "2241999454230020096"
@@ -3696,6 +3857,7 @@ SFSS2X:
   - supply_fan_run_status_2
   implements:
   - OPERATIONAL
+
 
 SFSS3X:
   id: "11465371491084795904"
@@ -3719,6 +3881,7 @@ SFSS3X:
   - supply_fan_run_status_3
   implements:
   - OPERATIONAL
+
 
 SFSS4X:
   id: "12662092041384099840"
@@ -3747,6 +3910,7 @@ SFSS4X:
   implements:
   - OPERATIONAL
 
+
 EFVSC2X:
   id: "6853685472657408000"
   description: "Exhaust fan variable speed control with feedback and sensoring for two fans."
@@ -3769,6 +3933,7 @@ EFVSC2X:
   - exhaust_fan_speed_percentage_command_2
   implements:
   - OPERATIONAL
+
 
 EFVSC3X:
   id: "16077057509512183808"
@@ -3799,6 +3964,7 @@ EFVSC3X:
   - exhaust_fan_speed_percentage_command_3
   implements:
   - OPERATIONAL
+
 
 EFVSC4X:
   id: "4547842463443714048"
@@ -3837,6 +4003,7 @@ EFVSC4X:
   implements:
   - OPERATIONAL
 
+
 SFVSC2X:
   id: "13771214500298489856"
   description: "Supply fan variable speed control with feedback and sensoring with two fans."
@@ -3859,6 +4026,7 @@ SFVSC2X:
   - supply_fan_speed_percentage_command_2
   implements:
   - OPERATIONAL
+
 
 SFVSC3X:
   id: "6519182149650743296"
@@ -3902,6 +4070,7 @@ SFVSC3X:
   implements:
   - OPERATIONAL
 
+
 SFVSC4X:
   id: "17733145221803278336"
   description: "Supply fan variable speed control with feedback and sensoring with four fans."
@@ -3939,6 +4108,7 @@ SFVSC4X:
   implements:
   - OPERATIONAL
 
+
 BYPSSPC:
   id: "622251700748550144"
   description: "Supply static pressure control with bypass damper."
@@ -3956,6 +4126,7 @@ BYPSSPC:
   - supply_fan_run_status
   implements:
   - CONTROL
+
 
 BYPSSPC2X: # Consider virtual point for instances where dampers control to same value.
   id: "7071406367143100416"
@@ -3975,6 +4146,7 @@ BYPSSPC2X: # Consider virtual point for instances where dampers control to same 
   - supply_fan_run_status
   implements:
   - CONTROL
+
 
 SWISOVM:
   id: "5867537891751624704"
@@ -4000,6 +4172,7 @@ SWISOVPM:
   implements:
   - MONITORING
 
+
 RWISOVM:
   id: "9884748759366107136"
   description: "Return side isolation valve monitoring."
@@ -4010,6 +4183,7 @@ RWISOVM:
   implements:
   - MONITORING
 
+
 RWISOVPM:
   id: "5273062740938719232"
   description: "Return side isolation valve monitoring."
@@ -4019,6 +4193,7 @@ RWISOVPM:
   - return_water_isolation_valve_percentage_sensor
   implements:
   - MONITORING
+
 
 CICHVISOVM3X:
   id: "2503444627617480704"
@@ -4031,6 +4206,7 @@ CICHVISOVM3X:
   implements:
   - MONITORING
 
+
 CHWRWISOVPM:
   id: "10432710170277576704"
   description: "Return side isolation valve monitoring."
@@ -4040,6 +4216,7 @@ CHWRWISOVPM:
   - chilled_return_water_isolation_valve_percentage_sensor
   implements:
   - MONITORING
+
 
 CHWRWISOVM:
   id: "10538544761520783360"
@@ -4061,6 +4238,7 @@ CHWSWISOVPM:
   - chilled_supply_water_isolation_valve_percentage_sensor
   implements:
   - MONITORING
+
 
 CHWSWISOVM:
   id: "16767023046174179328"
@@ -4084,6 +4262,7 @@ PRWDT:
   uses:
   - process_return_water_temperature_sensor
   - process_supply_water_temperature_sensor
+
 
 PRWDT2X:
   id: "2264658189855227904"
@@ -4110,6 +4289,7 @@ PWFRM:
   uses:
   - process_water_flowrate_sensor
 
+
 PWFRM2X:
   id: "9296466058040836096"
   description: "Flowrate monitoring for 2 process water headers."
@@ -4120,6 +4300,7 @@ PWFRM2X:
   - process_water_flowrate_sensor_1
   - process_water_flowrate_sensor_2
 
+
 PWDPM:
   id: "455899989512552448"
   description: "Differential pressure monitoring for process water."
@@ -4128,6 +4309,7 @@ PWDPM:
   - MONITORING
   uses:
   - process_water_differential_pressure_sensor
+
 
 PWDPM2X:
   id: "7200603381453291520"
@@ -4150,6 +4332,7 @@ CWRISOVPM:
   implements:
   - MONITORING
 
+
 CWRISOVM:
   id: "8126867161063882752"
   description: "Condensing water return isolation monitoring."
@@ -4171,6 +4354,7 @@ CWSISOVPM:
   implements:
   - MONITORING
 
+
 CWSISOVM:
   id: "1779043486285168640"
   description: "Condensing water supply isolation monitoring."
@@ -4180,8 +4364,6 @@ CWSISOVM:
   - condensing_supply_water_isolation_valve_status
   implements:
   - MONITORING
-
-
 
 
 CHWRISOVPM:
@@ -4298,7 +4480,6 @@ CHDXVSC:
   - failed_compressor_alarm
   - overload_compressor_alarm
 
-
 CDWFRM:
   id: "632877381119377408"
   description: "Condenser water flowrate monitoring."
@@ -4307,6 +4488,7 @@ CDWFRM:
   - condensing_water_flowrate_sensor
   implements:
   - MONITORING
+
 
 REFSM:
   id: "14328323847953055744"
@@ -4332,6 +4514,7 @@ PDSCV:
   implements:
   - CONTROL
 
+
 SDBPC:
   id: "11762485921188937728"
   description: "Back-pressure controlling supply damper."
@@ -4348,6 +4531,7 @@ SDBPC:
   implements:
   - MONITORING
 
+
 HWVM:
   id: "12990740464972857344"
   description: "Heating water valve command and position monitoring (without regard to what controls it)."
@@ -4360,6 +4544,7 @@ HWVM:
   - heating_water_valve_percentage_sensor
   implements:
   - OPERATIONAL
+
 
 CHWVM:
   id: "16809792948983037952"
@@ -4375,12 +4560,14 @@ CHWVM:
   implements:
   - OPERATIONAL
 
+
 RMM:
   id: "16071202610094276608"
   description: "Run mode monitoring."
   is_abstract: true
   uses:
   - run_mode
+
 
 DSPZDHC:
   id: "8195635016311504896"
@@ -4398,6 +4585,7 @@ DSPZDHC:
   implements:
   - CONTROL
 
+
 EFC:
   id: "9564729303032135680"
   description: "Exhaust air flow control."
@@ -4407,6 +4595,7 @@ EFC:
   - exhaust_air_flowrate_setpoint
   implements:
   - OPERATIONAL
+
 
 DXDDC:
   id: "14536703291649163264"
@@ -4427,6 +4616,7 @@ DXDDC:
   implements:
   - CONTROL
 
+
 HTDDC:
   id: "11978658703302721536"
   description: "gas or electric heating dual setpoint control on discharge side"
@@ -4442,6 +4632,7 @@ HTDDC:
   - heater_run_command
   implements:
   - CONTROL
+
 
 REFSM2X:
   id: "16374171939616325632"
@@ -4460,6 +4651,7 @@ REFSM2X:
   implements:
   - MONITORING
 
+
 REFPM:
   id: "5061129675661639680"
   description: "Refrigerant pressure monitoring for single circuits."
@@ -4474,6 +4666,7 @@ REFPM:
   implements:
   - MONITORING
 
+
 REFPM2X:
   id: "3800121779997900800"
   description: "Refrigerant pressure monitoring for 2 circuits."
@@ -4486,6 +4679,7 @@ REFPM2X:
   implements:
   - MONITORING
 
+
 SWPSS:
   id: "14653796881960796160"
   description: "Sweeper pump start stop monitoring."
@@ -4495,6 +4689,7 @@ SWPSS:
   - sweeper_pump_run_status
   implements:
   - OPERATIONAL
+
 
 DRPM:
   id: "14779975736852742144"
@@ -4510,6 +4705,7 @@ DRPM:
   implements:
   - MONITORING
 
+
 SDM:
   id: "5997878398154702848"
   description: "Supply air damper monitoring."
@@ -4517,6 +4713,7 @@ SDM:
   uses:
   - supply_air_damper_command
   - supply_air_damper_status
+
 
 ECDDC:
   id: "17635179835280064512"
@@ -4533,6 +4730,7 @@ ECDDC:
   - evaporative_cooler_run_command
   implements:
   - CONTROL
+
 
 DXSDC:
   id: "3007488245580693504"
@@ -4557,6 +4755,7 @@ DXSDC:
   implements:
   - CONTROL
 
+
 ETM4X:
   id: "11771493120443678720"
   description: "Basic exhaust temperature monitoring."
@@ -4568,6 +4767,7 @@ ETM4X:
   - exhaust_air_temperature_sensor_4
   implements:
   - MONITORING
+
 
 DX6SC:
   id: "7258886293818441728"
@@ -4599,6 +4799,7 @@ DX6SC:
   implements:
   - CONTROL
 
+
 DX2DSPRTC:
   id: "3583948997884116992"
   description: "Two-stage compressor run control with dual return temp control."
@@ -4621,6 +4822,7 @@ DX2DSPRTC:
   - return_air_temperature_sensor
   implements:
   - CONTROL
+
 
 DX4DC:
   id: "233270875120467968"
@@ -4690,6 +4892,7 @@ DRSM5X:
   implements:
   - MONITORING
 
+
 DRSM8X:
   id: "4953043284604747776"
   description: "Dryer status monitoring."
@@ -4744,6 +4947,7 @@ EFM:
   implements:
   - OPERATIONAL
 
+
 SWTM:
   id: "12058433769456009216"
   description: "Supply water temperature monitoring."
@@ -4769,6 +4973,7 @@ CWDPM:
   uses:
   - condensing_water_differential_pressure_sensor
 
+
 DICM:
   id: "4971562358951378944"
   description: "Damper isolation control and monitoring. "
@@ -4788,6 +4993,7 @@ UV:
   uses:
   - ultraviolet_lamp_run_command
   - ultraviolet_lamp_run_status
+
 
 H3X:
   id: "3243024526971240448"
@@ -4830,6 +5036,7 @@ CHWISOVPM:
   - chilled_water_isolation_valve_percentage_command
   - chilled_water_isolation_valve_percentage_sensor
 
+
 CWCS:
   id: "1207397495399776256"
   description: "Condensing water valve control."
@@ -4840,6 +5047,7 @@ CWCS:
   - condensing_water_valve_percentage_command
   - condensing_water_valve_percentage_sensor
 
+
 DPM:
   id: "14194934395806154752"
   description: "Damper percentage control."
@@ -4849,6 +5057,7 @@ DPM:
   uses:
   - damper_percentage_command
   - damper_percentage_sensor
+
 
 DFVSMC:
   id: "6412714239709937664"
@@ -5050,6 +5259,7 @@ CAM:
   uses:
   - condensate_water_alarm
 
+
 DPHCC:
   id: "12422697573691686912"
   description: "Two-pipe heating and cooling control. Has a single control valve
@@ -5153,6 +5363,7 @@ CHWDT2X:
   - chilled_supply_water_temperature_sensor_1
   - chilled_supply_water_temperature_sensor_2
 
+
 HLSAFS:
   id: "3550799821818298368"
   description: "Duct VAV type with high and low limit setpoint"
@@ -5163,6 +5374,7 @@ HLSAFS:
   - supply_air_flowrate_setpoint
   implements:
   - CONTROL
+
 
 RHDHS:
   id: "15197108458198401024"
@@ -5209,6 +5421,7 @@ CO2EFVSC:
   implements:
   - CONTROL
 
+
 RACO2C:
   id: "15503353232859594752"
   description: "Returned air carbon dioxide levels controls."
@@ -5237,6 +5450,7 @@ DX2DDC:
   implements:
   - CONTROL
 
+
 HWDT:
   id: "6441530240450691072"
   description: "Temperature differential across heating water for heat recovery chiller."
@@ -5246,6 +5460,7 @@ HWDT:
   uses:
   - heating_return_water_temperature_sensor
   - heating_supply_water_temperature_sensor
+
 
 HPDDC:
   id: "5130419798932455424"
@@ -5270,6 +5485,7 @@ HPDDC:
   implements:
   - CONTROL
 
+
 EC2SC:
   id: "9093587471018491904"
   description: "Evaporative cooler control on supply side."
@@ -5288,6 +5504,7 @@ EC2SC:
   - supply_air_temperature_setpoint
   implements:
   - CONTROL
+
 
 HWDDC:
   id: "5695815066213941248"
@@ -5414,6 +5631,7 @@ DPCHWHRWSC:
   implements:
   - CONTROL
 
+
 CPVSC2X:
   id: "2309143330803417088"
   description: "Circulation pump variable speed control with 2 circulation pumps."
@@ -5428,6 +5646,7 @@ CPVSC2X:
   implements:
   - OPERATIONAL
 
+
 HWTTC:
   id: "8895657785832767488"
   description: "Hot water tank temperature control."
@@ -5437,6 +5656,7 @@ HWTTC:
   - hot_water_tank_temperature_setpoint
   implements:
   - OPERATIONAL
+
 
 PHWTTC:
   id: "15921273204530741248"
@@ -5524,6 +5744,7 @@ SSSPC:
   implements:
   - CONTROL
 
+
 SCHWISOVPM:
   id: "428890486376235008"
   description: "Secondary chilled water return side isolation valve percentage monitoring."
@@ -5533,6 +5754,7 @@ SCHWISOVPM:
   - secondary_chilled_return_water_isolation_valve_percentage_sensor
   implements:
   - MONITORING
+
 
 SCHWDT:
   id: "9593715728075194368"
@@ -5566,6 +5788,7 @@ PCHWDT:
   - primary_chilled_return_water_temperature_sensor
   - primary_chilled_supply_water_temperature_sensor
 
+
 PHWDT:
   id: "4392058158462271488"
   description: "Temperature differential across primary heating water loop."
@@ -5575,6 +5798,7 @@ PHWDT:
   uses:
   - primary_heating_return_water_temperature_sensor
   - primary_heating_supply_water_temperature_sensor
+
 
 TDTM:
   id: "9652262523231010816"
@@ -5586,6 +5810,7 @@ TDTM:
   implements:
   - MONITORING
 
+
 HLPM:
   id: "4982029709647806464"
   description: "Heating thermal power sensor."
@@ -5594,6 +5819,7 @@ HLPM:
   - heating_thermal_power_sensor
   implements:
   - MONITORING
+
 
 CWRWISOVM:
   id: "15646553627261140992"
@@ -5605,6 +5831,7 @@ CWRWISOVM:
   implements:
   - MONITORING
 
+
 CWRWISOVPM:
   id: "7850822672282812416"
   description: "Condensing water return side isolation valve percentage monitoring."
@@ -5614,6 +5841,7 @@ CWRWISOVPM:
   - condensing_return_water_isolation_valve_percentage_sensor
   implements:
   - MONITORING
+
 
 OCWRWISOVM:
   id: "18443288995858219008"
@@ -5625,6 +5853,7 @@ OCWRWISOVM:
   implements:
   - MONITORING
 
+
 OCWRWISOVPM:
   id: "15705100422416957440"
   description: "Open-loop CDW return side isolation valve monitoring."
@@ -5634,6 +5863,7 @@ OCWRWISOVPM:
   - outside_condensing_loop_return_water_isolation_valve_percentage_sensor
   implements:
   - MONITORING
+
 
 HWRWISOVM:
   id: "8729024599620059136"
@@ -5645,6 +5875,7 @@ HWRWISOVM:
   implements:
   - MONITORING
 
+
 HWSWISOVM:
   id: "4614986340017111040"
   description: "Heating supply side isolation valve monitoring."
@@ -5654,6 +5885,7 @@ HWSWISOVM:
   - heating_supply_water_isolation_valve_status
   implements:
   - MONITORING
+
 
 HWRWISOVPM:
   id: "13399257413203263488"
@@ -5728,6 +5960,7 @@ RAIDC3X:
   implements:
   - MONITORING
 
+
 RAIDC2X:
   id: "11726816664472256512"
   description: "Return air isolation damper control and monitoring, where there are two separate, equal sets of dampers that operate in conjunction."
@@ -5740,6 +5973,7 @@ RAIDC2X:
   implements:
   - MONITORING
 
+
 DAIDC2X:
   id: "14872369897958014976"
   description: "Discharge air isolation damper control and monitoring, where there are two separate, equal sets of dampers that operate in conjunction."
@@ -5751,6 +5985,7 @@ DAIDC2X:
   - discharge_air_isolation_damper_status_2
   implements:
   - MONITORING
+
 
 DAIDC:
   id: "16510378340553588736"
@@ -5807,6 +6042,7 @@ SAIDC2X:
   implements:
   - MONITORING
 
+
 SAIDC3X:
   id: "15798070727615184896"
   description: "isolation damper status monitoring and control on the supply side, where there are three separate, equal sets of dampers that operate in conjunction."
@@ -5843,6 +6079,7 @@ SSPC2X:
   - supply_air_static_pressure_setpoint_2
   implements:
   - OPERATIONAL
+
 
 SFMSC:
   id: "12314536415844106240"
@@ -5927,6 +6164,7 @@ INVIPCM:
   - input_phase2_line_inverter_current_sensor
   - input_phase3_line_inverter_current_sensor
 
+
 CWSWISOVPM:
   id: "14769547968574914560"
   description: "Condensing water supply side isolation valve percentage monitoring."
@@ -5936,6 +6174,7 @@ CWSWISOVPM:
   - condensing_supply_water_isolation_valve_percentage_sensor
   implements:
   - MONITORING
+
 
 GTWFCISOVM:
   id: "5444844940104302592"
@@ -5948,6 +6187,7 @@ GTWFCISOVM:
   implements:
   - MONITORING
 
+
 GTWGRISOVM:
   id: "12463704959361220608"
   description: "Geothermal water ground-recharge isolation valve monitoring; rejecting ground heat to atmosphere via cooling towers."
@@ -5959,6 +6199,7 @@ GTWGRISOVM:
   implements:
   - MONITORING
 
+
 GTWHEISOVM:
   id: "3366433712072818688"
   description: "Geothermal water heat-extraction isolation valve monitoring; extracting ground heat to to use in building."
@@ -5969,6 +6210,7 @@ GTWHEISOVM:
   - chilled_side_ground_supply_water_isolation_valve_status
   implements:
   - MONITORING
+
 
 GTWHRISOVM:
   id: "11317538854195429376"
@@ -6006,6 +6248,7 @@ NOCDSP:
   - zone_air_no_concentration_sensor
   implements:
   - CONTROL
+
 
 EFHLC:
   id: "16708066133181202432"
@@ -6075,6 +6318,7 @@ PMM:
   implements:
   - MONITORING
 
+
 PHWTC:
   id: "4268855681546715136"
   description: "potable water temperature monitoring and control."
@@ -6099,6 +6343,7 @@ PLPM:
   uses:
   - line_pressure_sensor
 
+
 CO2M4X:
   id: "8538268128293945344"
   description: "Basic carbon dioxide monitoring for 4 Zones."
@@ -6110,6 +6355,7 @@ CO2M4X:
   - zone_air_co2_concentration_sensor_4
   implements:
   - MONITORING
+
 
 CO2M6X:
   id: "10200096390793658368"
@@ -6144,7 +6390,6 @@ EPM:
   id: "1350523123010633728"
   description: "Basic Electrical parameter monitoring."
   is_abstract: true
-
   opt_uses:
   - power_status
   uses:
@@ -6165,6 +6410,7 @@ DFRMM:
   implements:
   - MONITORING
 
+
 RDC:
   id: "9673456709368020992"
   description: "Return air damper percentage monitoring"
@@ -6174,6 +6420,7 @@ RDC:
   - return_air_damper_percentage_sensor
   implements:
   - MONITORING
+
 
 RFSS:
   id: "17406278007051517952"
@@ -6187,6 +6434,7 @@ RFSS:
   - return_fan_run_status
   implements:
   - OPERATIONAL
+
 
 RFSS2X:
   id: "1895880890387529728"
@@ -6205,6 +6453,7 @@ RFSS2X:
   implements:
   - OPERATIONAL
 
+
 RFVSC:
   id: "13641268718569783296"
   description: "Variable speed control for a return fan."
@@ -6220,6 +6469,7 @@ RFVSC:
   - return_fan_speed_percentage_command
   implements:
   - OPERATIONAL
+
 
 RFVSC2X:
   id: "6093235743096832000"
