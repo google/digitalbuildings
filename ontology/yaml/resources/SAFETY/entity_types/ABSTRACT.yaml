@@ -38,7 +38,7 @@ H2M:
 
 WLDS:
   id: "1407482223375941632"
-  description: "Basic watre leak monitoring."
+  description: "Basic water leak monitoring."
   is_abstract: true
   uses:
   - water_leak_detection_alarm

@@ -36,7 +36,7 @@ edit a user's spreadsheet.
 
 ## Google Sheets template
 
-The [ABEL Spreadsheet Template](https://docs.google.com/spreadsheets/d/1b6IRimNS1dAtPjkNN-fk4TirnLzOiDyyUmOKP_MhMM0/copy?usp=sharing) has a strict format that must be adhered to.
+The [ABEL Spreadsheet Template](https://docs.google.com/spreadsheets/d/1b6IRimNS1dAtPjkNN-fk4TirnLzOiDyyUmOKP_MhMM0/copy#gid=980240783) has a strict format that must be adhered to.
 
 Below is a definition of each table and column in the ABEL spreadsheet:
 - [Site](#site)
@@ -156,15 +156,13 @@ device](../../../onotology/docs/building_config.md#reporting-physical-devices). 
 The `States` tab defines values for [multi-state value](../../../ontology/docs/building_config.md#multi-state-values) fields defined in the `Entity
 Fields` tab.
 
-`Entity Code` *string* **required**
+`Reporting Entity Code` *string* **required**
 
-If a field is linked to a [virtual entity](../../../ontology/docs/building_config.md#virtual-devices) and its telemetry data is reported
-by some [reporting entity](../../../ontology/docs/building_config.md#reporting-physical-devices), then the `Entity Code` column must be the virtual entity code and the `reporting entity code` is the code of the
-entity reporting the field's data. This may be a gateway or some other IoT connected entity.
+The code or name of the entity reporting this state in its telemetry payload. This will the be the code of some [reporting entity](../../../ontology/docs/building_config.md#reporting-physical-devices).
 
 `Entity Guid` *string*
 
-[UUID4](https://en.wikipedia.org/wiki/Universally_unique_identifier#Version_4_(random)) [identifier](../../../ontology/docs/building_config.md#identifiers) for an entity corresponding to the entity in the Entity Code column.
+[UUID4](https://en.wikipedia.org/wiki/Universally_unique_identifier#Version_4_(random)) [identifier](../../../ontology/docs/building_config.md#identifiers) for an entity corresponding to the entity in the Reporting Entity Code column.
 
 `Reporting Entity Field` *string* **required**
 
