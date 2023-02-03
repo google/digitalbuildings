@@ -210,6 +210,7 @@ class HandlerTest(absltest.TestCase):
     self.assertEqual(valid_entities, instances)
 
   def testGraph_DoesNotAllowDuplicateCloudDeviceId(self):
+    # pylint: disable=protected-access
     parsed, default_operation = _Helper(
         [
             os.path.join(

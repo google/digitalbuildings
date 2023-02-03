@@ -29,6 +29,7 @@ from yamlformat.validator import findings_lib
 from yamlformat.validator import presubmit_validate_types_lib as pvt
 
 
+# pylint: disable=line-too-long
 _CONFIG_UPDATE = parse.ConfigMode.UPDATE
 _CONFIG_INIT = parse.ConfigMode.INITIALIZE
 _CONFIG_EXPORT = parse.ConfigMode.EXPORT
@@ -444,6 +445,7 @@ class InstanceValidator(object):
     Returns:
       true if all translation fields are marked missing.
     """
+    # pylint: disable=use-a-generator
     if all(
         [
             translation_field.mode == ft_lib.PresenceMode.MISSING

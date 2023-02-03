@@ -429,7 +429,8 @@ class EntityInstanceTest(absltest.TestCase):
     self.assertTrue(self.init_validator.Validate(instance))
 
   def testInstance_InvalidEntityAllFieldTranslationsMarkedMissing_Failure(self):
-    """Test that all translation fields are not marked with PresenceMode as MISSING."""
+    """Test that all translation fields not marked with PresenceMode as MISSING.
+    """
     parsed, default_operation = _Helper(
         [
             path.join(

@@ -81,7 +81,7 @@ class TelemetryValidator(object):
     self._invalid_message_blocks.append(validation_block)
 
   def GetInvalidMessageBlocks(self):
-    """Returns a list of TelemetryMessageValidationBlock instances for for invalid pubsub messages.
+    """Returns list of TelemetryMessageValidationBlock for invalid messages.
 
     A TelemetryMessageValidationBlock instance is a container for validations
     performed on a pubsub message.
@@ -101,11 +101,16 @@ class TelemetryValidator(object):
       self._timer = None
 
   def AllEntitiesValidated(self):
-    """Returns true if a valid telemetry message was received for every entity in a building configuration file."""
+    """Returns True if every entity maps to a telemetry message."""
     return len(self.entities_with_translation) == len(self.validated_entities)
 
   def GetUnvalidatedEntities(self) -> Dict[str, str]:
-    """Returns a mapping of entity_guid to entity_code for entities in a building config file that do not map to a device in a pubsub telemetry stream."""
+    """Gets entities in a building config that do not map to a telemetry stream.
+
+    Returns:
+      Mapping of entity_guid to entity_code of entities not present in telemetry
+      stream.
+    """
     unvalidated_entities = self.entities_with_translation.copy()
     for (
         validated_entity_guid,
@@ -124,7 +129,11 @@ class TelemetryValidator(object):
     }
 
   def GetExtraEntities(self) -> Dict[str, str]:
-    """Returns a mapping of entity_guid to entity_code for entities are reported in a pubsub payload but are not present in the building config being validated."""
+    """Gets entities reported by in telemetry payload not in building config.
+
+    Returns:
+        Mapping of entity_guid to entity_code.
+    """
     return self._extra_entities
 
   def CallbackIfCompleted(self):
