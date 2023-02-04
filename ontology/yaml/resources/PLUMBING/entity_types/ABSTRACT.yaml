@@ -35,11 +35,9 @@ LVLM:
   opt_uses:
   - percentage_sensor
 
-WDT:
+WTS:
   description: "Temperature for supply & return temperature across water."
   is_abstract: true
-  implements:
-  - MONITORING
   uses:
   - return_water_temperature_sensor
   - supply_water_temperature_sensor

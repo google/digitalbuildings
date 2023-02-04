@@ -18,11 +18,11 @@
 ########################
 
 
-SWHP_WDT:
-  description: "Basic Solar hot water system with supply & return temperature."
+SWHP_WTS:
+  description: "Basic Solar hot water system with supply & return water temperature."
   is_canonical: true
   implements:
   - SWHP 
-  - WDT 
+  - WTS 
 
 
