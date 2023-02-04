@@ -34,4 +34,16 @@ LVLM:
   - level_status
   opt_uses:
   - percentage_sensor
+
+WDT:
+  description: "Temperature for supply & return temperature across water."
+  is_abstract: true
+  implements:
+  - MONITORING
+  uses:
+  - return_water_temperature_sensor
+  - supply_water_temperature_sensor
+  opt_uses:
+  - high_supply_water_temperature_alarm
+  - low_supply_water_temperature_alarm
   

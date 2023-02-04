@@ -40,4 +40,10 @@ RO:
   is_abstract: true
   implements:
   - EQUIPMENT
+
+SWHP:
+  description: "Solar hot water system is a hot water system used for heating water by sunlight, using a solar thermal collector"
+  is_abstract: true
+  implements:
+  - EQUIPMENT
   
