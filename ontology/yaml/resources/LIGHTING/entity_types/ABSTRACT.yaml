@@ -180,9 +180,9 @@ DM:
   is_abstract: true
   opt_uses:
   - dimmer_run_status
+  - power_sensor
   uses:
   - brightness_percentage_sensor
-  - power_sensor
 
 ENM:
   id: "11197432602023690240"

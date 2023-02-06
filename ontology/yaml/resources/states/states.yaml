@@ -80,8 +80,8 @@ SOUTH: "Cardinal direction; opposite of north"
 EAST: "Cardinal direction; opposite of west"
 WEST: "Cardinal direction; opposite of east"
 DAY_NIGHT: "Operation mode for blinds: Drives the blinds to predefined positions for either day- and nighttime"
-THERMAL: "Operation mode for blinds: Drives the binds in order support the room climate control"
-WINDOW: "Operation mode for blinds: Stops the blinds from operating when a window opening sensor is activated"
+THERMAL: "Operation mode for blinds: Drives the binds in order support the room climate control based on the inside temperature and the outside brightness"
+WINDOW_OPEN: "Operation mode for blinds: Stops the blinds from operating when a window opening sensor is activated"
 
 #FOR UPS
 BATTERY: "Operation mode or input power is via Battery"

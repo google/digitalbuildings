@@ -1676,12 +1676,12 @@ literals:
 - lighting_color_hsl_hue_angle_setpoint
 
 - luminaire_failed_alarm:
-  - NORMAL
-  - ALARM
+  - ACTIVE
+  - INACTIVE
 
 - group_alarm:
-  - NORMAL
-  - ALARM
+  - ACTIVE
+  - INACTIVE
 
 - group_mode:
   - DIMMING
@@ -1718,7 +1718,7 @@ literals:
   - AUTO
   - DAY_NIGHT
   - THERMAL
-  - WINDOW
+  - WINDOW_OPEN
   
 ## New fields for RO water system
 - water_totaldissolvedsolids_concentration_sensor
