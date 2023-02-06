@@ -21,6 +21,7 @@ EM_PWM:
   - PWM
 
 EM_PWM_VCM:
+  id: "7427092881170497536"
   description: "Power meter with basic power, current and voltage monitoring."
   is_canonical: true
   implements:
@@ -106,6 +107,7 @@ EM_PWM_PWMRDM:
   - PWMRDM
 
 EM_PWM_AVCM_PWMRDM:
+  id: "13263757998242660352"
   description: "Energy metering from Grid Electricity and Diesel Generator with power, current, voltage monitoring."
   is_canonical: true
   implements:
