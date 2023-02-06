@@ -1341,6 +1341,19 @@ class EntityInstance(findings_lib.Findings):
         and self.type_name == other.type_name
     )
 
+  def __hash__(self):
+    return hash((
+        self.guid,
+        self.code,
+        self.cloud_device_id,
+        self.operation,
+        self.etag,
+        self.entity_id,
+        self.update_mask,
+        self.namespace,
+        self.type_name
+    ))
+
   @classmethod
   def FromYaml(
       cls,
