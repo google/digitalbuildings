@@ -84,6 +84,7 @@ PWMRDM:
   - electricalgrid_run_time_accumulator
 
 VCM:
+  id: "9300590326156623872"
   description: "Current and voltage monitoring"
   is_abstract: true
   uses:
