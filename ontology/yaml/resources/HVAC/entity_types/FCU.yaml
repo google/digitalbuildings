@@ -1662,13 +1662,13 @@ FCU_DFVSC_CHWZC_CSP_RTM_WDT:
   - master_alarm
   - run_mode
 
-FCU_DFSS_CHWZC_CSP_RTM_DXZC:
+FCU_DFSS_CHWDC_CSP_RTM_DXZC:
   description: "Typical DX FCU with cooling-only (discharge control)"
   is_canonical: true
   implements:
   - FCU
   - DFSS
-  - CHWZC
+  - CHWDC
   - CSP
   - RTM
   - DXZC
