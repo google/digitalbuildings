@@ -5,3 +5,10 @@ SS:
   uses:
   - run_command
   - run_status
+
+WDT:
+  description: "Temperature differential across water."
+  is_abstract: true
+  uses:
+  - return_water_temperature_sensor
+  - supply_water_temperature_sensor
