@@ -173,7 +173,7 @@ OM:
   uses:
   - energy_accumulator
   - run_time_accumulator
-  - luminaire_failed_alarm
+  - luminaire_alarm
 
 DM:
   description: "Brightness dimming monitoring."

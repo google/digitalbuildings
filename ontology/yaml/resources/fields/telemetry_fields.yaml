@@ -1681,7 +1681,7 @@ literals:
 - lighting_color_hsl_saturation_percentage_setpoint
 - lighting_color_hsl_hue_angle_setpoint
 
-- luminaire_failed_alarm:
+- luminaire_alarm:
   - ACTIVE
   - INACTIVE
 
