@@ -22,7 +22,7 @@ gateway-guid:
   type: GATEWAYS/PASSTHROUGH
   connections:
     bldg-guid: CONTAINS
-  cloud_device_id: "2619178366980754"
+  cloud_device_id: "1234567890123456"
   translation:
     discharge_fan_voltage_sensor:
       present_value: points.doas_1_voltage_sensor.present_value

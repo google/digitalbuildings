@@ -407,7 +407,7 @@ class EntityInstanceTest(absltest.TestCase):
     )
 
     self.assertTrue(self.init_validator.Validate(instance))
-    self.assertEqual(instance.cloud_device_id, '2619178366980754')
+    self.assertEqual(instance.cloud_device_id, '1234567890123456')
 
   def testInstance_ValidTranslationWithExplicitlyMissingReqField_Success(self):
     """Test that a MISSING required field is allowed."""

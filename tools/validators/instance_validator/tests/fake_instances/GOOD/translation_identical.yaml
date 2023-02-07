@@ -17,7 +17,7 @@
 SDC_EXT-17-GUID:
   type: HVAC/SDC_EXT
   code: SDC_EXT-17
-  cloud_device_id: "2619178366980754"
+  cloud_device_id: "1234567890123456"
   translation:
     shade_extent_percentage_command:
       present_value: "points.shade_extent_percentage_command.present_value"
@@ -29,7 +29,7 @@ SDC_EXT-17-GUID:
 SDC_EXT-18-GUID:
   type: HVAC/SDC_EXT
   code: SDC_EXT-18
-  cloud_device_id: "2619178366980755"
+  cloud_device_id: "1234567890123458"
   translation:
     shade_extent_percentage_command:
       present_value: "points.shade_extent_percentage_command.present_value"

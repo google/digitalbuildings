@@ -35,7 +35,7 @@ VIRTUAL-ENTITY-B-GUID:
 GATEWAY-ENTITY-GUID:
   type: GATEWAYS/PASSTHROUGH
   code: GATEWAY-ENTITY
-  cloud_device_id: "2619178366980754"
+  cloud_device_id: "1234567890123456"
   translation:
     return_water_temperature_sensor_1:
       present_value: "points.return_water_temperature_sensor_1.present_value"

@@ -15,7 +15,7 @@
 PHYSICAL-ENTITY-GUID:
   type: GATEWAYS/PASSTHROUGH
   code: PHYSICAL-ENTITY
-  cloud_device_id: "2619178366980754"
+  cloud_device_id: "1234567890123456"
   translation:
     differential_pressure_specification:
       present_value: "points.differential_pressure_specification.present_value"
@@ -28,7 +28,7 @@ PHYSICAL-ENTITY-GUID:
 PHYSICAL-ENTITY-GUID-2:
   type: GATEWAYS/PASSTHROUGH
   code: PHYSICAL-ENTITY
-  cloud_device_id: "2619178366980755"
+  cloud_device_id: "1234567890123456"
   translation:
     differential_pressure_specification:
       present_value: "points.differential_pressure_specification.present_value"

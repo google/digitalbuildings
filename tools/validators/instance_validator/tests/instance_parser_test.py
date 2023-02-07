@@ -224,7 +224,7 @@ class ParserTest(absltest.TestCase):
         'SDC_EXT-17-GUID': {
             'type': 'HVAC/SDC_EXT',
             'code': 'SDC_EXT-17',
-            'cloud_device_id': '2619178366980754',
+            'cloud_device_id': '1234567890123456',
             'etag': 'a56789',
             'update_mask': ['translation', 'connection'],
             'translation': {

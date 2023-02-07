@@ -20,7 +20,7 @@
 DMP_EDM-17-GUID:
   type: HVAC/DMP_EDM
   code: DMP_EDM-17
-  cloud_device_id: "2619178366980754"
+  cloud_device_id: "1234567890123456"
   translation:
     exhaust_air_damper_command:
       present_value: "points.exhaust_air_damper_command.present_value"

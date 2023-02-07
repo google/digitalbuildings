@@ -20,7 +20,7 @@ US-SEA-BLDG1-GUID:
 CHWS-1-GUID:
   type: HVAC/CHWS_WDT
   code: CHWS-1
-  cloud_device_id: "2619178366980754"
+  cloud_device_id: "1234567890123456"
   translation:
     supply_water_temperature_sensor:
       present_value: "points.supply_water_temperature_sensor.present_value"

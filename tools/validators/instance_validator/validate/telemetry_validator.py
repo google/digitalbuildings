@@ -129,10 +129,10 @@ class TelemetryValidator(object):
     }
 
   def GetExtraEntities(self) -> Dict[str, str]:
-    """Gets entities reported by in telemetry payload not in building config.
+    """Gets entities reported in telemetry payload but not in building config.
 
     Returns:
-        Mapping of entity_guid to entity_code.
+        Mapping of cloud_device_id to entity_code.
     """
     return self._extra_entities
 

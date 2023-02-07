@@ -25,7 +25,7 @@ VIRTUAL-ENTITY-GUID:
 PHYSICAL-ENTITY-GUID:
   type: HVAC/CHWS_WDT
   code: PHYSICAL-ENTITY
-  cloud_device_id: "2619178366980754"
+  cloud_device_id: "1234567890123456"
   translation:
     return_water_temperature_sensor:
       present_value: "points.return_water_temperature_sensor.present_value"
