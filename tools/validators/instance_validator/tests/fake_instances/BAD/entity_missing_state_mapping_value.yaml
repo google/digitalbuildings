@@ -16,7 +16,7 @@
 # this is only used in entity instance test: pass
 
 FC2-1-1-GUID:
-  cloud_device_id: '2619178366980754'
+  cloud_device_id: '1234567890123456'
   code: FC2-1-1
   translation:
     compressor_run_command_1:
