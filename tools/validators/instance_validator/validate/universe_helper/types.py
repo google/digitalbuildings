@@ -1,4 +1,4 @@
-# Copyright 2021 Google LLC
+# Copyright 2023 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the License);
 # you may not use this file except in compliance with the License.
@@ -33,6 +33,14 @@ FACILITIES_TYPES_DOCUMENT = {
     'BUILDING': {
         'id': '15204152342002794496',
         'description': 'This is a type for BUILDING facilities object'
+    },
+    'FLOOR': {
+        'id': '15204152342002795557',
+        'description': 'This is a type for FLOOR facilities object'
+    },
+    'ROOM': {
+        'id': '15204152342002795558',
+        'description': 'This is a type for ROOM facilities object'
     }
 }
 
@@ -184,4 +192,38 @@ HVAC_FAN_TYPES_DOCUMENT = {
             'zone_air_temperature_sensor_2',
         ],
     },
+}
+
+
+SAFETY_ABSTRACT_TYPES_DOCUMENT = {
+    'FA2X': {
+        'id': '16519636228459462656',
+        'description': 'Fire alarm monitoring.',
+        'is_abstract': True,
+        'uses': ['fire_alarm_1', 'fire_alarm_2'],
+    }
+}
+
+
+SAFETY_GENERAL_TYPES_DOCUMENT = {
+    'FACP': {
+        'id': '4650073955082698752',
+        'description': 'Fire alarm control panel.',
+        'is_abstract': True,
+        'implements': ['EQUIPMENT'],
+    }
+}
+
+
+SAFETY_FACP_TYPES_DOCUMENT = {
+    'FACP_FA2X': {
+        'id': '937181517757546496',
+        'description': (
+            'Fire alarm panel with 2 fire alarm alertness and a fire fault'
+            ' status'
+        ),
+        'is_canonical': True,
+        'implements': ['FACP', 'FA2X'],
+        'opt_uses': ['panel_alarm'],
+    }
 }

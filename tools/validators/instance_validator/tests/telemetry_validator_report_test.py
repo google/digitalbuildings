@@ -1,4 +1,4 @@
-# Copyright 2022 Google LLC
+# Copyright 2023 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the License);
 # you may not use this file except in compliance with the License.
@@ -43,46 +43,47 @@ TEST_GUID = 'b93304dc-1dce-4f8b-8f69-8e34b93fa69c'
 TEST_CODE = 'ABC_123'
 TEST_TIMESTAMP = 'test_timestamp'
 
+TELEMETRY_POINT_1 = tvr.TelemetryPoint(
+    point_name='return_water_temperature_sensor', present_value=100.0
+)
+TELEMETRY_POINT_2 = tvr.TelemetryPoint(
+    point_name='supply_water_temperature_sensor', present_value=200.0
+)
+EXPECTED_PAYLOAD_POINTS = [TELEMETRY_POINT_1, TELEMETRY_POINT_2]
 
-# TODO: (b/263799046) Refactor re-used testing variables.
+MISSING_PAYLOAD_POINT = tvr.TelemetryPoint(
+    point_name='run_command', present_value=True
+)
+EXTRA_PAYLOAD_POINT_1 = tvr.TelemetryPoint(
+    point_name='return_water_temperature_setpoint', present_value=100.0
+)
+EXTRA_PAYLOAD_POINT_2 = tvr.TelemetryPoint(
+    point_name='supply_water_temperature_setpoint', present_value=200.0
+)
+
+
 class TelemetryValidatorReportTest(absltest.TestCase):
 
   @mock.patch.object(tvr, 'datetime')
   def testGenerateReport(self, mock_datetime):
     mock_datetime.datetime.now().strftime.return_value = TEST_TIMESTAMP
-    expected_points = [
-        tvr.TelemetryPoint(
-            point_name='return_water_temperature_sensor', present_value=100.0
-        ),
-        tvr.TelemetryPoint(
-            point_name='supply_water_temperature_sensor', present_value=200.0
-        ),
-    ]
-    missing_point = tvr.TelemetryPoint(
-        point_name='run_command', present_value=True
-    )
-    extra_point_1 = tvr.TelemetryPoint(
-        point_name='return_water_temperature_setpoint', present_value=100.0
-    )
-    extra_point_2 = tvr.TelemetryPoint(
-        point_name='supply_water_temperature_setpoint', present_value=200.0
-    )
+
     error_device = tvr.TelemetryMessageValidationBlock(
         guid='22d390ef-de1f-4cba-acee-ecf0f697fd2f',
         code='DEVICE_5',
         version=1,
         timestamp=TEST_TIMESTAMP,
-        expected_points=expected_points
+        expected_points=EXPECTED_PAYLOAD_POINTS,
     )
-    error_device.AddMissingPoint(missing_point)
-    error_device.AddExtraPoint(extra_point_1)
-    error_device.AddExtraPoint(extra_point_2)
+    error_device.AddMissingPoint(MISSING_PAYLOAD_POINT)
+    error_device.AddExtraPoint(EXTRA_PAYLOAD_POINT_1)
+    error_device.AddExtraPoint(EXTRA_PAYLOAD_POINT_2)
     expected_devices = {
         '633c8617-635f-4ee0-86df-78a996027ca1': 'DEVICE_1',
         '74dcafa4-6cfa-47ac-a127-0697f9b72005': 'DEVICE_2',
         '22d390ef-de1f-4cba-acee-ecf0f697fd2f': 'DEVICE_5',
     }
-    extra_devices = {'e2e2918b-49a9-4921-a3a5-071c80629d87': 'DEVICE_3'}
+    extra_devices = {'cloud_device_id': 'DEVICE_3'}
     missing_devices = {'74dcafa4-6cfa-47ac-a127-0697f9b72005': 'DEVICE_2'}
     error_devices = [error_device]
 
@@ -114,14 +115,6 @@ class TelemetryValidatorReportTest(absltest.TestCase):
 class TelemetryMessageValidationBlockTest(absltest.TestCase):
 
   def testInit(self):
-    expected_points = [
-        tvr.TelemetryPoint(
-            point_name='return_water_temperature_sensor', present_value=100.0
-        ),
-        tvr.TelemetryPoint(
-            point_name='supply_water_temperature_sensor', present_value=200.0
-        )
-    ]
     test_validation_block = tvr.TelemetryMessageValidationBlock(
         guid=TEST_GUID,
         code=TEST_CODE,
@@ -129,33 +122,17 @@ class TelemetryMessageValidationBlockTest(absltest.TestCase):
         timestamp=datetime.datetime.now(tz=datetime.timezone.utc).strftime(
             TIMESTAMP_FORMAT
         ),
-        expected_points=expected_points
+        expected_points=EXPECTED_PAYLOAD_POINTS,
     )
 
     self.assertEqual(test_validation_block.guid, TEST_GUID)
     self.assertEqual(test_validation_block.code, TEST_CODE)
     self.assertEqual(test_validation_block.version, 1)
-    self.assertEqual(test_validation_block.expected_points, expected_points)
+    self.assertEqual(
+        test_validation_block.expected_points, EXPECTED_PAYLOAD_POINTS
+    )
 
   def testJsonReportBlockStringFormat(self):
-    expected_points = [
-        tvr.TelemetryPoint(
-            point_name='return_water_temperature_sensor', present_value=100.0
-        ),
-        tvr.TelemetryPoint(
-            point_name='supply_water_temperature_sensor', present_value=200.0
-        ),
-    ]
-    missing_point = tvr.TelemetryPoint(
-        point_name='run_command', present_value=True
-    )
-    extra_point_1 = tvr.TelemetryPoint(
-        point_name='return_water_temperature_setpoint', present_value=100.0
-    )
-    extra_point_2 = tvr.TelemetryPoint(
-        point_name='supply_water_temperature_setpoint', present_value=200.0
-    )
-
     expected_json_dict = {
         MESSAGE_TIMESTAMP: TEST_TIMESTAMP,
         MESSAGE_VERSION: 1,
@@ -163,20 +140,20 @@ class TelemetryMessageValidationBlockTest(absltest.TestCase):
         ENTITY_GUID: TEST_GUID,
         EXPECTED_POINTS: {
             'return_water_temperature_sensor': {'present_value': 100.0},
-            'supply_water_temperature_sensor': {'present_value': 200.0}
+            'supply_water_temperature_sensor': {'present_value': 200.0},
         },
         TELEMETRY_MESSAGE_ERRORS: {
             MISSING_POINTS: {'run_command': {'present_value': True}},
             MISSING_PRESENT_VALUES: {},
-            INVALID_DIMENSIONAL_VALUES: {}
+            INVALID_DIMENSIONAL_VALUES: {},
         },
         TELEMETRY_MESSAGE_WARNINGS: {
             EXTRA_POINTS: {
                 'return_water_temperature_setpoint': {'present_value': 100.0},
                 'supply_water_temperature_setpoint': {'present_value': 200.0},
             },
-            UNMAPPED_STATES: {}
-        }
+            UNMAPPED_STATES: {},
+        },
     }
 
     test_validation_block = tvr.TelemetryMessageValidationBlock(
@@ -184,57 +161,45 @@ class TelemetryMessageValidationBlockTest(absltest.TestCase):
         code=TEST_CODE,
         version=1,
         timestamp=TEST_TIMESTAMP,
-        expected_points=expected_points
+        expected_points=EXPECTED_PAYLOAD_POINTS,
     )
-    test_validation_block.AddMissingPoint(missing_point)
-    test_validation_block.AddExtraPoint(extra_point_1)
-    test_validation_block.AddExtraPoint(extra_point_2)
+    test_validation_block.AddMissingPoint(MISSING_PAYLOAD_POINT)
+    test_validation_block.AddExtraPoint(EXTRA_PAYLOAD_POINT_1)
+    test_validation_block.AddExtraPoint(EXTRA_PAYLOAD_POINT_2)
 
     result_json_dict = test_validation_block.CreateJsonReportBlock()
 
     self.assertEqual(expected_json_dict, result_json_dict)
 
   def testMissingTimetsampAndVersion(self):
-    expected_points = [
-        tvr.TelemetryPoint(
-            point_name='return_water_temperature_sensor', present_value=100.0
-        ),
-        tvr.TelemetryPoint(
-            point_name='supply_water_temperature_sensor', present_value=200.0
-        ),
-    ]
     test_validation_block = tvr.TelemetryMessageValidationBlock(
         guid=TEST_GUID,
         code=TEST_CODE,
-        expected_points=expected_points
+        expected_points=EXPECTED_PAYLOAD_POINTS,
     )
 
     self.assertEqual(test_validation_block.guid, TEST_GUID)
     self.assertEqual(test_validation_block.code, TEST_CODE)
     self.assertIsNone(test_validation_block.version)
     self.assertIsNone(test_validation_block.timestamp)
-    self.assertEqual(test_validation_block.expected_points, expected_points)
+    self.assertEqual(
+        test_validation_block.expected_points, EXPECTED_PAYLOAD_POINTS
+    )
 
   def testMessageBlockAddsDescription(self):
-    expected_points = [
-        tvr.TelemetryPoint(
-            point_name='return_water_temperature_sensor', present_value=100.0
-        ),
-        tvr.TelemetryPoint(
-            point_name='supply_water_temperature_sensor', present_value=200.0
-        )
-    ]
     test_validation_block = tvr.TelemetryMessageValidationBlock(
         guid=TEST_GUID,
         code=TEST_CODE,
-        expected_points=expected_points,
-        description='test description'
+        expected_points=EXPECTED_PAYLOAD_POINTS,
+        description='test description',
     )
 
     self.assertEqual(test_validation_block.description, 'test description')
     self.assertEqual(test_validation_block.guid, TEST_GUID)
     self.assertEqual(test_validation_block.code, TEST_CODE)
-    self.assertEqual(test_validation_block.expected_points, expected_points)
+    self.assertEqual(
+        test_validation_block.expected_points, EXPECTED_PAYLOAD_POINTS
+    )
 
 
 if __name__ == '__main__':

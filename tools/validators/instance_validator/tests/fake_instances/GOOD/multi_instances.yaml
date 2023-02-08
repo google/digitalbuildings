@@ -1,4 +1,4 @@
-# Copyright 2020 Google LLC
+# Copyright 2023 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the License);
 # you may not use this file except in compliance with the License.
@@ -26,7 +26,7 @@ FCU-1-GUID:
     VLV-2: CONTROLS
     ZONE-G00: FEEDS
   code: FCU-1
-  cloud_device_id: "foobar"
+  cloud_device_id: "1234567890123456"
   translation:
     chilled_water_flowrate_sensor:
       present_value: points.chilled_water_flowrate_sensor.present_value
@@ -147,7 +147,7 @@ FCU-10-GUID:
     VLV-17: CONTROLS
     ZONE-G03: FEEDS
   code: FCU-10
-  cloud_device_id: "foobar"
+  cloud_device_id: "1234567890123457"
   translation:
     chilled_water_flowrate_sensor:
       present_value: points.chilled_water_flowrate_sensor.present_value
