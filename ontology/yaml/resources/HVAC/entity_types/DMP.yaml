@@ -90,8 +90,8 @@ DMP_MFSD:
   - DMP
   - MFSD
   uses:
-  - motorized_damper_run_command
-  - motorized_damper_run_status
+  - motorized_damper_position_command
+  - motorized_damper_position_status
 
 ###################################
 ### Existing Non-standard Types ###
