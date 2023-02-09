@@ -22,7 +22,6 @@ from absl.testing import absltest
 from yamlformat.validator import findings_lib
 from yamlformat.validator import unit_lib
 
-#pylint: disable=consider-using-f-string, unexpected-keyword-arg
 _GOOD_PATH = '{0}/units/anyfolder'.format('mynamespace')
 
 

@@ -23,8 +23,8 @@ from absl.testing import absltest
 from yamlformat.validator import findings_lib
 from yamlformat.validator import subfield_lib
 
-_GOOD_PATH = 'mynamespace/subfields/anyfolder'
-_BAD_SUBFOLDER = '{mynamespace}/subfield/anyfolder'
+_GOOD_PATH = '{0}/subfields/anyfolder'.format('mynamespace')
+_BAD_SUBFOLDER = '{0}/subfield/anyfolder'.format('mynamespace')
 
 
 class SubfieldLibTest(absltest.TestCase):
@@ -85,7 +85,7 @@ class SubfieldLibTest(absltest.TestCase):
 
   def testAddValidSubfield(self):
     sff = subfield_lib.SubfieldFolder(_GOOD_PATH)
-    ctx = findings_lib.FileContext(f'{_GOOD_PATH}/file.yaml')
+    ctx = findings_lib.FileContext('{0}/file.yaml'.format(_GOOD_PATH))
     sff.AddSubfield(
         subfield_lib.Subfield('good', subfield_lib.SubfieldCategory.DESCRIPTOR,
                               'hi', ctx))
@@ -93,7 +93,7 @@ class SubfieldLibTest(absltest.TestCase):
 
   def testAddInvalidSubfieldFails(self):
     sff = subfield_lib.SubfieldFolder(_GOOD_PATH)
-    ctx = findings_lib.FileContext('{_GOOSD_PATH}/file.yaml')
+    ctx = findings_lib.FileContext('{0}/file.yaml'.format(_GOOD_PATH))
     sff.AddSubfield(
         subfield_lib.Subfield('1-bad', subfield_lib.SubfieldCategory.DESCRIPTOR,
                               'hi', ctx))
@@ -102,7 +102,7 @@ class SubfieldLibTest(absltest.TestCase):
 
   def testAddDuplicateSubfieldFails(self):
     sff = subfield_lib.SubfieldFolder(_GOOD_PATH)
-    ctx = findings_lib.FileContext(f'{_GOOD_PATH}/file.yaml')
+    ctx = findings_lib.FileContext('{0}/file.yaml'.format(_GOOD_PATH))
     sf = subfield_lib.Subfield('good', subfield_lib.SubfieldCategory.DESCRIPTOR,
                                'hi', ctx)
     sf2 = subfield_lib.Subfield(
@@ -115,7 +115,7 @@ class SubfieldLibTest(absltest.TestCase):
 
   def testAddSubfieldWithUpperFails(self):
     sff = subfield_lib.SubfieldFolder(_GOOD_PATH)
-    ctx = findings_lib.FileContext(f'{_GOOD_PATH}/file.yaml')
+    ctx = findings_lib.FileContext('{0}/file.yaml'.format(_GOOD_PATH))
     sf = subfield_lib.Subfield('gOod', subfield_lib.SubfieldCategory.DESCRIPTOR,
                                'hi', ctx)
     sff.AddSubfield(sf)
@@ -148,7 +148,7 @@ class SubfieldLibTest(absltest.TestCase):
     }
 
     sff = subfield_lib.SubfieldFolder(_GOOD_PATH)
-    sff.AddFromConfig([doc], f'{_GOOD_PATH}/file.yaml')
+    sff.AddFromConfig([doc], '{0}/file.yaml'.format(_GOOD_PATH))
     ns = sff.local_namespace
     self.assertCountEqual(
         ['agg', 'aggdesc', 'comp', 'desc', 'mdesc', 'meas', 'ptype'],
@@ -163,7 +163,7 @@ class SubfieldLibTest(absltest.TestCase):
     }
 
     sff = subfield_lib.SubfieldFolder(_GOOD_PATH)
-    sff.AddFromConfig([doc], f'{_GOOD_PATH}/file.yaaaml')
+    sff.AddFromConfig([doc], '{0}/file.yaaaml'.format(_GOOD_PATH))
 
     self.assertIsInstance(sff.GetFindings()[0],
                           findings_lib.InconsistentFileLocationError)
@@ -172,32 +172,32 @@ class SubfieldLibTest(absltest.TestCase):
     doc = {'aggregation': {}}
 
     sff = subfield_lib.SubfieldFolder(_GOOD_PATH)
-    sff.AddFromConfig([doc], f'{_GOOD_PATH}/file.yaml')
+    sff.AddFromConfig([doc], '{0}/file.yaml'.format(_GOOD_PATH))
 
     self.assertIsInstance(sff.GetFindings()[0], findings_lib.EmptyBlockWarning)
 
   def testCreateSubfieldNoDescription(self):
-    ctx = findings_lib.FileContext(f'{_GOOD_PATH}/file.yaml')
+    ctx = findings_lib.FileContext('{0}/file.yaml'.format(_GOOD_PATH))
     sf = subfield_lib.Subfield('good', subfield_lib.SubfieldCategory.DESCRIPTOR,
                                '', ctx)
     self.assertIsInstance(sf.GetFindings()[0],
                           findings_lib.MissingSubfieldDescriptionWarning)
 
   def testCreateSubfieldIllegalKeyType(self):
-    ctx = findings_lib.FileContext(f'{_GOOD_PATH}/file.yaml')
+    ctx = findings_lib.FileContext('{0}/file.yaml'.format(_GOOD_PATH))
     sf = subfield_lib.Subfield(False, subfield_lib.SubfieldCategory.DESCRIPTOR,
                                'hi', ctx)
     self.assertIsInstance(sf.GetFindings()[0], findings_lib.IllegalKeyTypeError)
 
   def testCreateSubfieldIllegalName(self):
-    ctx = findings_lib.FileContext(f'{_GOOD_PATH}/file.yaml')
+    ctx = findings_lib.FileContext('{0}/file.yaml'.format(_GOOD_PATH))
     sf = subfield_lib.Subfield(
         'goo-1d', subfield_lib.SubfieldCategory.DESCRIPTOR, 'hi', ctx)
     self.assertIsInstance(sf.GetFindings()[0],
                           findings_lib.InvalidSubfieldNameError)
 
   def testCreateSubfield(self):
-    ctx = findings_lib.FileContext(f'{_GOOD_PATH}/file.yaml')
+    ctx = findings_lib.FileContext('{0}/file.yaml'.format(_GOOD_PATH))
     sf = subfield_lib.Subfield('good', subfield_lib.SubfieldCategory.DESCRIPTOR,
                                'hi', ctx)
     self.assertEmpty(sf.GetFindings())

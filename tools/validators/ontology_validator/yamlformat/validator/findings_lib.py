@@ -21,7 +21,6 @@ MISSING_PARENT_VALIDATION_RANK = 60
 # TODO(b/254872070): Add type annotations
 
 
-# pylint: disable=consider-using-f-string
 def MakeFieldString(field):
   """Represents OptWrapper as a string prepending '(opt)' for optional fields.
 
@@ -116,7 +115,7 @@ class Finding(object):
         case of duplication.  Only one finding should be the master in a set.
         Defaults to false.
     """
-    super(Finding, self).__init__()
+    super().__init__()
 
     if not isinstance(message, str):
       raise TypeError('Argument {0} is not a string'.format(message))
@@ -263,13 +262,13 @@ class FindingsUniverse(Findings):
     Args:
       folders: list of ConfigFolder objects parsed from field files.
     """
-    super(FindingsUniverse, self).__init__()
+    super().__init__()
     self.folders = folders
     self._namespace_map = self._MakeNamespaceMap(
         [folder.local_namespace for folder in folders])
 
   def _MakeNamespaceMap(self, namespaces):
-    """Returns mapping from namespace strings to valid ontology entity sets.
+    """Returns mapping from namespace strings to sets of valid ontology entities.
 
     Args:
       namespaces: list of namespace objects.
@@ -277,7 +276,7 @@ class FindingsUniverse(Findings):
     return {ns.namespace: self._GetNamespaceMapValue(ns) for ns in namespaces}
 
   def _GetNamespaceMapValue(self, namespace):
-    """Override subclass to define how values in namespace map are populated.
+    """Override in the subclass to define how values in the namespace map are populated.
     """
     # Delete the unused parameter so the linter doesn't complain.
     del namespace
@@ -304,9 +303,8 @@ class ValidationError(Finding):
     error_info = 'ERROR '
     if file_context is not None:
       error_info += file_context.GetLineInfo()
-    super(ValidationError,
-          self).__init__('{0}: {1}\n'.format(error_info, message), file_context,
-                         1, category_rank, inner_rank)
+    super().__init__('{0}: {1}\n'.format(error_info, message), file_context, 1,
+                     category_rank, inner_rank)
 
 
 class ValidationWarning(Finding):
@@ -322,14 +320,12 @@ class ValidationWarning(Finding):
     warning_info = 'Warning '
     if file_context is not None:
       warning_info += file_context.GetLineInfo()
-    super(ValidationWarning,
-          self).__init__('{0}: {1}\n'.format(warning_info,
-                                             message), file_context, 2,
-                         category_rank, inner_rank, equality_key, is_master)
+    super().__init__('{0}: {1}\n'.format(warning_info, message), file_context,
+                     2, category_rank, inner_rank, equality_key, is_master)
 
 
 class DuplicateDefinitionError(ValidationError):
-  """Base class for error for same component name being defined more than once.
+  """Base class for errors that represent the same component name being defined more than once.
 
   Returns:
     An instance of the DuplicateDefinitionError.
@@ -351,7 +347,7 @@ class DuplicateDefinitionError(ValidationError):
     if prev_context:
       file_info = '<{0}> {1}'.format(prev_context.filepath,
                                      prev_context.GetLineInfo())
-    super(DuplicateDefinitionError, self).__init__(
+    super().__init__(
         '{0} "{1}/{2}" was already defined in:\n\t{3}'.format(
             component_type, namespace.namespace, component_name, file_info),
         context)
@@ -369,7 +365,7 @@ class InconsistentFileLocationError(ValidationError):
 
   def __init__(self, expected_path, file_context):
     fp = file_context.filepath
-    super(InconsistentFileLocationError, self).__init__(
+    super().__init__(
         'File "{0}" is not at the expected path "{1}".'.format(
             fp, expected_path), file_context)
 
@@ -381,7 +377,7 @@ class DuplicateKeyError(ValidationError):
   """Config contains two identical keys."""
 
   def __init__(self, key, context):
-    super(DuplicateKeyError, self).__init__(
+    super().__init__(
         'Key "{0}" cannot appear multiple times in the same mapping.'.format(
             key), context)
 
@@ -390,7 +386,7 @@ class IllegalKeyTypeError(ValidationError):
   """Config contains a key of an invalid non-string type."""
 
   def __init__(self, key, context):
-    super(IllegalKeyTypeError, self).__init__(
+    super().__init__(
         'Expected mapping key "{0}" to be a string; found {1}.'.format(
             key, type(key)), context)
 
@@ -405,7 +401,7 @@ class UnrecognizedKeyError(ValidationError):
       content: Invalid mapping key
       context: instance of FileContext class for content
     """
-    super(UnrecognizedKeyError, self).__init__(
+    super().__init__(
         '"{0}" is not recognized as a valid mapping key here.'.format(
             str(content)), context)
 
@@ -414,16 +410,15 @@ class EmptyBlockWarning(ValidationWarning):
   """Mapping value is empty."""
 
   def __init__(self, key, context):
-    super(EmptyBlockWarning,
-          self).__init__('Mapping for "{0}" has no content.'.format(str(key)),
-                         context)
+    super().__init__('Mapping for "{0}" has no content.'.format(str(key)),
+                     context)
 
 
 class EmptyFileWarning(ValidationWarning):
   """Validator found an empty YAML file."""
 
   def __init__(self, context):
-    super(EmptyFileWarning, self).__init__('YAML file is empty.', context)
+    super().__init__('YAML file is empty.', context)
 
 
 # ---------------------------------------------------------------------------- #
@@ -439,7 +434,7 @@ class InvalidFieldNameError(ValidationError):
       name: The field name.
       context: Instance of FileContext for the field defined in DBO.
     """
-    super(InvalidFieldNameError, self).__init__(
+    super().__init__(
         'Field name "{0}" is not valid. It must contain only lowercase letters,'
         ' digits, and underscores. The first character of the name and the'
         ' first character after each underscore must be a letter.'.format(name),
@@ -450,7 +445,7 @@ class DuplicateSubfieldError(ValidationError):
   """Field has more than one identical subfield."""
 
   def __init__(self, subfield, field):
-    super(DuplicateSubfieldError, self).__init__(
+    super().__init__(
         'Field "{0}" is not allowed to contain subfield "{1}" more than once.'
         .format(field.name, subfield), field.file_context)
 
@@ -459,7 +454,7 @@ class UnrecognizedSubfieldError(ValidationError):
   """Field references an unrecognized subfield."""
 
   def __init__(self, subfield, field):
-    super(UnrecognizedSubfieldError, self).__init__(
+    super().__init__(
         'Field "{0}" references unrecognized subfield "{1}".'.format(
             field.name, subfield), field.file_context)
 
@@ -468,7 +463,7 @@ class InvalidFieldConstructionError(ValidationError):
   """One or more subfield in this field is in the wrong location / order."""
 
   def __init__(self, field):
-    super(InvalidFieldConstructionError, self).__init__(
+    super().__init__(
         'Field "{0}" contains subfields in an incorrect order or is missing a '
         'required subfield.'.format(field.name), field.file_context)
 
@@ -484,9 +479,8 @@ class DuplicateFieldDefinitionError(DuplicateDefinitionError):
        current_instance: Instance of FileContext class for duplicate field.
        prev_context: Instance of FileContext class for duplicated field.
     """
-    super(DuplicateFieldDefinitionError,
-          self).__init__('Field', namespace, current_instance.name,
-                         current_instance.file_context, prev_context)
+    super().__init__('Field', namespace, current_instance.name,
+                     current_instance.file_context, prev_context)
 
 
 class InvalidFieldFormatError(ValidationError):
@@ -497,7 +491,7 @@ class InvalidFieldFormatError(ValidationError):
   """
 
   def __init__(self, key, context):
-    super(InvalidFieldFormatError, self).__init__(
+    super().__init__(
         'Field "{0}" definition has an invalid format; expected only a sequence'
         ' of state names.'.format(str(key)), context)
 
@@ -506,7 +500,7 @@ class InvalidStateFormatError(ValidationError):
   """A state string in a field's state list does not have proper formatting."""
 
   def __init__(self, state, field):
-    super(InvalidStateFormatError, self).__init__(
+    super().__init__(
         'State "{0}" in list for field "{1}" has an invalid format.'.format(
             state, field.name), field.file_context)
 
@@ -515,7 +509,7 @@ class DuplicateStateError(ValidationError):
   """A state appears multiple times in a field's state list."""
 
   def __init__(self, state, field):
-    super(DuplicateStateError, self).__init__(
+    super().__init__(
         'Field "{0}" references state "{1}" more than once.'.format(
             field.name, state), field.file_context)
 
@@ -530,9 +524,75 @@ class UnrecognizedStateError(ValidationError):
       state: Unrecognized state name as a string.
       field: Instance of Field class for field referencing unrecognized state.
     """
-    super(UnrecognizedStateError, self).__init__(
+    super().__init__(
         'Field "{0}" references unrecognized state "{1}".'.format(
             field.name, state), field.file_context)
+
+
+class InvalidDefaultValueRangeError(ValidationError):
+  """Field references an invalid default value range."""
+
+  def __init__(self, default_value_range, field):
+    """Init.
+
+    Args:
+      default_value_range: The invalid default value range map.
+      field: Instance of Field class for field referencing the invalid value
+        range.
+    """
+    super().__init__(
+        'Field "{0}" references invalid default value range {1}. Numeric fields'
+        ' must define exactly one default minimum value (with a key of either'
+        ' "flexible_min" or "fixed_min") and one default maximum value (with a'
+        ' key of either "flexible_max" or "fixed_max").'.format(
+            field.name, default_value_range), field.file_context)
+
+
+class InvalidDefaultValueRangeValueError(ValidationError):
+  """Field has a default value range with invalid values."""
+
+  def __init__(self, min_value, max_value, field):
+    """Init.
+
+    Args:
+      min_value: The min value in the default value range map.
+      max_value: The max value in the default value range map.
+      field: Instance of Field class for field referencing the invalid value
+        range.
+    """
+    super().__init__(
+        'Field "{0}" references invalid default value range [{1}, {2}]. The min'
+        ' and max values must be numeric, and the min value must be less than'
+        ' the max value.'.format(field.name, min_value, max_value),
+        field.file_context)
+
+
+class NumericFieldMissingValueRangeError(ValidationError):
+  """Field has a measurement subfield but no default value range."""
+
+  def __init__(self, field):
+    """Init.
+
+    Args:
+      field: Instance of Field class for field missing a value range.
+    """
+    super().__init__(
+        'Field "{0}" is numeric (has a measurement subfield) but is missing a'
+        ' default value range.'.format(field.name), field.file_context)
+
+
+class NonNumericFieldWithValueRangeError(ValidationError):
+  """Field has no measurement subfield but specifies a default value range."""
+
+  def __init__(self, field):
+    """Init.
+
+    Args:
+      field: Instance of Field class for field with a default value range.
+    """
+    super().__init__(
+        'Field "{0}" is not numeric (has no measurement subfield) but specifies'
+        ' a default value range.'.format(field.name), field.file_context)
 
 
 # ---------------------------------------------------------------------------- #
@@ -548,7 +608,7 @@ class InvalidSubfieldNameError(ValidationError):
       name: Current name of the incorrectly named subfield.
       context: Instance of FileContext class for subfield.
     """
-    super(InvalidSubfieldNameError, self).__init__(
+    super().__init__(
         'Subfield name "{0}" is not valid. It must contain only lowercase '
         'letters and digits, and it must begin with a letter.'.format(name),
         context)
@@ -558,9 +618,8 @@ class DuplicateSubfieldDefinitionError(DuplicateDefinitionError):
   """Subfield is defined multiple times in a namespace."""
 
   def __init__(self, namespace, current_instance, prev_context):
-    super(DuplicateSubfieldDefinitionError,
-          self).__init__('Subfield', namespace, current_instance.name,
-                         current_instance.file_context, prev_context)
+    super().__init__('Subfield', namespace, current_instance.name,
+                     current_instance.file_context, prev_context)
 
 
 class MissingSubfieldDescriptionWarning(ValidationWarning):
@@ -573,7 +632,7 @@ class MissingSubfieldDescriptionWarning(ValidationWarning):
       subfield_name: Name of subfield as a string.
       context: Instance of FileContext class for subfield.
     """
-    super(MissingSubfieldDescriptionWarning, self).__init__(
+    super().__init__(
         'Subfield "{0}" description is empty.'.format(subfield_name), context,
         10)
 
@@ -581,11 +640,10 @@ class MissingSubfieldDescriptionWarning(ValidationWarning):
 class MissingUnitError(ValidationError):
   """Measurement subfield has no corresponding unit definitions."""
 
-  # pylint: disable=line-too-long
   def __init__(self, subfield):
-    super(MissingUnitError, self).__init__(
-        'Measurement subfield "{0}" has no corresponding unit definitions in the same namespace.'
-        .format(subfield.name), subfield.file_context)
+    super().__init__(
+        'Measurement subfield "{0}" has no corresponding unit definitions in '
+        'the same namespace.'.format(subfield.name), subfield.file_context)
 
 
 class MeasurementAliasIsAliasedError(ValidationError):
@@ -597,7 +655,7 @@ class MeasurementAliasIsAliasedError(ValidationError):
     Args:
       alias: The invalid MeasurementAlias object.
     """
-    super(MeasurementAliasIsAliasedError, self).__init__(
+    super().__init__(
         'Measurement subfield "{0}" is not allowed to be an alias of "{1}" '
         'because that subfield is also an alias.'.format(
             alias.alias_name, alias.base_name), alias.file_context)
@@ -612,7 +670,7 @@ class UnrecognizedMeasurementAliasBaseError(ValidationError):
     Args:
       alias: The invalid MeasurementAlias object.
     """
-    super(UnrecognizedMeasurementAliasBaseError, self).__init__(
+    super().__init__(
         'The alias definition of measurement subfield "{0}" references '
         'unrecognized subfield "{1}".'.format(alias.alias_name,
                                               alias.base_name),
@@ -630,9 +688,8 @@ class DuplicateMeasurementAliasError(DuplicateDefinitionError):
       alias: The invalid MeasurementAlias object.
       prev_context: FileContext of the previous definition of the alias.
     """
-    super(DuplicateMeasurementAliasError,
-          self).__init__('measurement alias', namespace, alias.alias_name,
-                         alias.file_context, prev_context)
+    super().__init__('measurement alias', namespace, alias.alias_name,
+                     alias.file_context, prev_context)
 
 
 class InvalidSubfieldNamespaceError(ValidationError):
@@ -645,7 +702,7 @@ class InvalidSubfieldNamespaceError(ValidationError):
       namespace: The subfield's defined namespace.
       subfield: instance of Subfield class which is incorrectly defined.
     """
-    super(InvalidSubfieldNamespaceError, self).__init__(
+    super().__init__(
         'Subfield {0} cannot be defined in the namespace {1}'.format(
             subfield.name, namespace), subfield.file_context)
 
@@ -663,7 +720,7 @@ class InvalidStateNameError(ValidationError):
       name: State name as a string.
       context: Instance of FileContext for invalid state name.
     """
-    super(InvalidStateNameError, self).__init__(
+    super().__init__(
         'State name "{0}" is not valid. It must contain only uppercase '
         'letters and underscores, and it must begin with a letter.'.format(
             name), context)
@@ -673,18 +730,16 @@ class DuplicateStateDefinitionError(DuplicateDefinitionError):
   """A state is defined multiple times in a namespace."""
 
   def __init__(self, namespace, current_instance, prev_context):
-    super(DuplicateStateDefinitionError,
-          self).__init__('State', namespace, current_instance.name,
-                         current_instance.file_context, prev_context)
+    super().__init__('State', namespace, current_instance.name,
+                     current_instance.file_context, prev_context)
 
 
 class MissingStateDescriptionWarning(ValidationWarning):
   """State description is empty."""
 
   def __init__(self, state):
-    super(MissingStateDescriptionWarning,
-          self).__init__('State "{0}" description is empty.'.format(state.name),
-                         state.file_context, 10)
+    super().__init__('State "{0}" description is empty.'.format(state.name),
+                     state.file_context, 10)
 
 
 # ---------------------------------------------------------------------------- #
@@ -694,7 +749,7 @@ class InvalidConnectionNameError(ValidationError):
   """A connection name does not match the accepted format."""
 
   def __init__(self, name, context):
-    super(InvalidConnectionNameError, self).__init__(
+    super().__init__(
         'Connection name "{0}" is not valid. It must contain only uppercase '
         'letters and underscores, and it must begin with a letter.'.format(
             name), context)
@@ -704,16 +759,15 @@ class DuplicateConnectionDefinitionError(DuplicateDefinitionError):
   """A connection is defined multiple times in a namespace."""
 
   def __init__(self, namespace, current_instance, prev_context):
-    super(DuplicateConnectionDefinitionError,
-          self).__init__('Connection', namespace, current_instance.name,
-                         current_instance.file_context, prev_context)
+    super().__init__('Connection', namespace, current_instance.name,
+                     current_instance.file_context, prev_context)
 
 
 class InvalidConnectionNamespaceError(ValidationError):
   """A connection is defined outside the global namespace."""
 
   def __init__(self, namespace_name, context):
-    super(InvalidConnectionNamespaceError, self).__init__(
+    super().__init__(
         'Namespace "{0}" contains connection definitions; connections are only '
         'allowed in the global namespace.'.format(namespace_name), context)
 
@@ -727,7 +781,7 @@ class MissingConnectionDescriptionWarning(ValidationWarning):
     Args:
       connection: Instance of Connection class missing a description.
     """
-    super(MissingConnectionDescriptionWarning, self).__init__(
+    super().__init__(
         'Connection "{0}" description is empty.'.format(connection.name),
         connection.file_context, 10)
 
@@ -745,7 +799,7 @@ class InvalidUnitNameError(ValidationError):
       name: Invalid name as a string.
       context: Instance of FileContext for invalid unit name.
     """
-    super(InvalidUnitNameError, self).__init__(
+    super().__init__(
         'Unit name "{0}" is not valid. It must contain only lowercase '
         'letters and underscores, and it must begin with a letter.'.format(
             name), context)
@@ -762,9 +816,8 @@ class DuplicateUnitDefinitionError(DuplicateDefinitionError):
       current_instance: Instance of FileContext class for duplicate unit.
       prev_context: Instance of FileContext class for unit.
     """
-    super(DuplicateUnitDefinitionError,
-          self).__init__('Unit', namespace, current_instance.name,
-                         current_instance.file_context, prev_context)
+    super().__init__('Unit', namespace, current_instance.name,
+                     current_instance.file_context, prev_context)
 
 
 class InvalidMeasurementFormatError(ValidationError):
@@ -777,7 +830,7 @@ class InvalidMeasurementFormatError(ValidationError):
       measurement: Name of the measurement subfield.
       context: Instance of FileContext class for unit.
     """
-    super(InvalidMeasurementFormatError, self).__init__(
+    super().__init__(
         'Measurement type "{0}" has an invalid format; each measurement type '
         'should map to either a string (another measurement type) or a map '
         'containing the units that belong to the measurement type.'.format(
@@ -794,7 +847,7 @@ class InvalidUnitFormatError(ValidationError):
       unit_name: The unit name.
       context: Instance of FileContext class for unit.
     """
-    super(InvalidUnitFormatError, self).__init__(
+    super().__init__(
         'Unit "{0}" definition has an invalid format; expected either the unit '
         'name and a "STANDARD" tag or the unit name and a map containing the '
         'conversion multiplier and offset.'.format(str(unit_name)), context)
@@ -810,7 +863,7 @@ class InvalidUnitNamespaceError(ValidationError):
       namespace: Namespace string for incorrectly defined unit.
       context: A FileContext Instance for incorrectly defined unit.
     """
-    super(InvalidUnitNamespaceError, self).__init__(
+    super().__init__(
         'All units must be defined in global namespace instead of {0}.'.format(
             namespace), context)
 
@@ -819,7 +872,7 @@ class UnknownUnitTagError(ValidationError):
   """A unit entry has an unknown tag."""
 
   def __init__(self, unit_name, tag, context):
-    super(UnknownUnitTagError, self).__init__(
+    super().__init__(
         'Unit "{0}" has an unrecognized tag "{1}".'.format(unit_name, tag),
         context)
 
@@ -835,7 +888,7 @@ class InvalidUnitConversionKeyError(ValidationError):
       key: The key in the conversion map item.
       context: Instance of FileContext class for unit.
     """
-    super(InvalidUnitConversionKeyError, self).__init__(
+    super().__init__(
         'Unit "{0}" has a conversion map with key "{1}". The '
         'conversion map for a non-standard unit must contain only the '
         '"multiplier" and "offset" keys.'.format(unit_name, key), context)
@@ -853,7 +906,7 @@ class InvalidUnitConversionValueError(ValidationError):
       value: The value in the conversion map item.
       context: Instance of FileContext class for unit.
     """
-    super(InvalidUnitConversionValueError, self).__init__(
+    super().__init__(
         'Unit "{0}" has a conversion map with key "{1}" and invalid value "{2}"'
         '. The value must be numeric.'.format(unit_name, key, value), context)
 
@@ -869,7 +922,7 @@ class InvalidUnitConversionMapError(ValidationError):
       num_items: The number of items in the conversion map.
       context: Instance of FileContext class for unit.
     """
-    super(InvalidUnitConversionMapError, self).__init__(
+    super().__init__(
         'Unit "{0}" has a conversion map with {1} items when there should be '
         'exactly 2. The conversion map for a non-standard unit must contain '
         'only the "multiplier" and "offset" keys.'.format(unit_name, num_items),
@@ -880,7 +933,7 @@ class StandardUnitCountError(ValidationError):
   """A measurement type does not have exactly one unit tagged as standard."""
 
   def __init__(self, measurement_type, tag_count, context):
-    super(StandardUnitCountError, self).__init__(
+    super().__init__(
         'Measurement type "{0}" has {1} units tagged as standard. Expected 1.'
         .format(measurement_type, tag_count), context)
 
@@ -889,7 +942,7 @@ class UnknownMeasurementTypeError(ValidationError):
   """A unit has an unknown measurement type."""
 
   def __init__(self, unit, measurement_type):
-    super(UnknownMeasurementTypeError, self).__init__(
+    super().__init__(
         'Unit "{0}" is defined under the unrecognized measurement type "{1}".'
         .format(unit.name, measurement_type), unit.file_context)
 
@@ -901,8 +954,7 @@ class MissingTypenameError(ValidationError):
   """Typename is empty."""
 
   def __init__(self, entity_type):
-    super(MissingTypenameError, self).__init__('Missing typename.',
-                                               entity_type.file_context)
+    super().__init__('Missing typename.', entity_type.file_context)
 
 
 class InvalidTypenameError(ValidationError):
@@ -915,17 +967,28 @@ class InvalidTypenameError(ValidationError):
       name: Invalid type name as a string.
       context: Instance of FileContext class for type name.
     """
-    super(InvalidTypenameError, self).__init__(
+    super().__init__(
         'Entity type name "{0}" is not valid. It must contain only letters, '
         'digits, and underscores, and it must begin with a letter.'.format(
             name), context)
+
+
+class InvalidTypeGuidError(ValidationError):
+  """An entity type guid does not follow the UUID v4 format."""
+
+  def __init__(self, entity_type):
+    super().__init__(
+        'The GUID {0} for entity type name "{1}" is missing or invalid. The '
+        'GUID must have the UUID v4 format.'.format(entity_type.guid,
+                                                    entity_type.typename),
+        entity_type.file_context)
 
 
 class IllegalFieldIncrementError(ValidationError):
   """Field is incremented unnecessarily."""
 
   def __init__(self, entity_type, field_name):
-    super(IllegalFieldIncrementError, self).__init__(
+    super().__init__(
         'Field {0} of {1} is incremented but there are no other increments of '
         'the same base field on this entity.'.format(field_name,
                                                      entity_type.typename),
@@ -936,7 +999,7 @@ class IllegalFieldIncrementWarning(ValidationError):
   """Field is incremented unnecessarily."""
 
   def __init__(self, entity_type, field_name):
-    super(IllegalFieldIncrementWarning, self).__init__(
+    super().__init__(
         'Field {0} of {1} is incremented but there are no other increments of '
         'the same base field on this entity.'.format(field_name,
                                                      entity_type.typename),
@@ -947,7 +1010,7 @@ class MissingEntityTypeDescriptionWarning(ValidationWarning):
   """Entity type description is empty."""
 
   def __init__(self, entity_type):
-    super(MissingEntityTypeDescriptionWarning, self).__init__(
+    super().__init__(
         'Entity type "{0}" description is empty.'.format(entity_type.typename),
         entity_type.file_context, 20)
 
@@ -956,7 +1019,7 @@ class DuplicateFieldError(ValidationError):
   """Duplicate fields defined within an entity type."""
 
   def __init__(self, entity_type, field):
-    super(DuplicateFieldError, self).__init__(
+    super().__init__(
         'Entity type "{0}" defines field "{1}" multiple times.'.format(
             entity_type.typename, field), entity_type.file_context)
 
@@ -965,7 +1028,7 @@ class UndefinedFieldError(ValidationError):
   """Field is undefined."""
 
   def __init__(self, entity_type, field):
-    super(UndefinedFieldError, self).__init__(
+    super().__init__(
         'Entity type "{0}" references unrecognized field "{1}".'.format(
             entity_type.typename, field), entity_type.file_context)
 
@@ -974,7 +1037,7 @@ class UnrecognizedFieldFormatError(ValidationError):
   """Declared field has incorrect format."""
 
   def __init__(self, entity_type, field):
-    super(UnrecognizedFieldFormatError, self).__init__(
+    super().__init__(
         'Field name "{0}" has incorrect formatting. The format should be '
         'either "<fieldname>" or "<namespace>/<fieldname>".'.format(field),
         entity_type.file_context)
@@ -984,7 +1047,7 @@ class UnrecognizedParentFormatError(ValidationError):
   """Declared parent has incorrect format."""
 
   def __init__(self, entity_type, parent_name):
-    super(UnrecognizedParentFormatError, self).__init__(
+    super().__init__(
         'Parent name "{0}" has incorrect formatting. The format should be '
         'either "<parent_name>" or "<namespace>/<parent_name>".'.format(
             parent_name), entity_type.file_context)
@@ -994,7 +1057,7 @@ class DuplicateParentError(ValidationError):
   """Entity has duplicate parent ids defined."""
 
   def __init__(self, entity_type, parent_name):
-    super(DuplicateParentError, self).__init__(
+    super().__init__(
         'Entity type "{0}" references "{1}" as a parent type more than once.'
         .format(entity_type.typename, parent_name), entity_type.file_context)
 
@@ -1003,9 +1066,8 @@ class InheritedFieldsSetError(ValidationError):
   """The inherited_fields_set field is set."""
 
   def __init__(self, entity_type):
-    super(InheritedFieldsSetError,
-          self).__init__('Inherited_fields_expanded should not be set.',
-                         entity_type.file_context)
+    super().__init__('Inherited_fields_expanded should not be set.',
+                     entity_type.file_context)
 
 
 class AbstractPassthroughTypeError(ValidationError):
@@ -1018,7 +1080,7 @@ class AbstractPassthroughTypeError(ValidationError):
     Args:
       entity_type: The invalid EntityType object.
     """
-    super(AbstractPassthroughTypeError, self).__init__(
+    super().__init__(
         'Type "{0}" cannot be abstract while allowing undefined fields.'.format(
             entity_type.typename), entity_type.file_context)
 
@@ -1030,7 +1092,7 @@ class NonexistentParentError(ValidationError):
   """Parent id specified by a type does not exist."""
 
   def __init__(self, entity_type, parent_name):
-    super(NonexistentParentError, self).__init__(
+    super().__init__(
         'Entity type "{0}" references unrecognized parent type "{1}".'.format(
             entity_type.typename, parent_name), entity_type.file_context)
 
@@ -1045,7 +1107,7 @@ class PassthroughParentError(ValidationError):
       entity_type: The invalid EntityType object.
       parent_name: Name of the parent entity type.
     """
-    super(PassthroughParentError, self).__init__(
+    super().__init__(
         'Entity type "{0}" is not allowed to implement passthrough type "{1}".'
         .format(entity_type.typename, parent_name), entity_type.file_context)
 
@@ -1054,7 +1116,7 @@ class InheritanceCycleError(ValidationError):
   """Cycle detected in the type inheritance graph."""
 
   def __init__(self, entity_type, parent_name):
-    super(InheritanceCycleError, self).__init__(
+    super().__init__(
         'Inheritance cycle detected between entity types "{0}" and "{1}".'
         .format(entity_type.typename, parent_name), entity_type.file_context)
 
@@ -1063,13 +1125,12 @@ class DuplicateEntityTypeDefinitionError(DuplicateDefinitionError):
   """Duplicate type names defined within the same namespace."""
 
   def __init__(self, namespace, current_instance, prev_context):
-    super(DuplicateEntityTypeDefinitionError,
-          self).__init__('Entity type', namespace, current_instance.typename,
-                         current_instance.file_context, prev_context)
+    super().__init__('Entity type', namespace, current_instance.typename,
+                     current_instance.file_context, prev_context)
 
 
-class DuplicateIdsError(ValidationError):
-  """Duplicate type IDs defined within the ontology."""
+class DuplicateGuidsError(ValidationError):
+  """Duplicate type GUIDs defined within the ontology."""
 
   def __init__(self, namespace, entity_type, mapped_entity_type):
     """Init.
@@ -1079,59 +1140,59 @@ class DuplicateIdsError(ValidationError):
       entity_type: Instance of EntityType class for dupicate entity type
       mapped_entity_type: Instance of EntityType class mapped to namespace
     """
-    super(DuplicateIdsError, self).__init__(
-        'Duplicate type IDs are not allowed. Entity type name "{0}" '
-        'within namespace "{1}" with ID "{4}" was already defined in \n'
-        '\t<{2}> (Line {3}).'.format(
-            entity_type.typename, namespace,
+    super().__init__(
+        'Duplicate type GUIDs are not allowed. Entity type name "{0}" '
+        'within namespace "{1}" with GUID "{4}" was already defined in \n'
+        '\t<{2}> (Line {3}). Please remove one of these GUIDs and create a new '
+        'PR so that the GUID generator runs again.'.format(
+            entity_type.typename,
+            namespace,
             mapped_entity_type.file_context.filepath,
-            mapped_entity_type.file_context.begin_line_number, entity_type.uid),
+            mapped_entity_type.file_context.begin_line_number,
+            entity_type.guid),
         entity_type.file_context)
 
 
 class DuplicateLocalFieldSetsWarning(ValidationWarning):
   """Two types declare the exact same local field sets."""
 
-  #pylint: disable=line-too-long
   def __init__(self, entity_type, dup_entity_types):
     field_list = list(entity_type.local_field_names)
     field_list.sort()
     fieldstr = ''
     for f in field_list:
       fieldstr += '\n\t\t' + f
-    t = 'Entity type "{0}" has the same local {1} field set:{2}\n\tas:\n'.format(
-        entity_type.typename, len(entity_type.local_field_names), fieldstr)
+    t = ('Entity type "{0}" has the same local {1} field set:{2}\n\tas:\n'
+         .format(entity_type.typename, len(entity_type.local_field_names),
+                 fieldstr))
 
     for dup in dup_entity_types:
       t += '\t\t<{0}> in {1}\n'.format(dup.typename, dup.file_context.filepath)
     key_arr = dup_entity_types.copy()
     key_arr.append(entity_type)
-    super(DuplicateLocalFieldSetsWarning,
-          self).__init__(t, entity_type.file_context, 40,
-                         MAX_RANK - len(field_list), frozenset(key_arr),
-                         entity_type.is_canonical)
+    super().__init__(t, entity_type.file_context, 40,
+                     MAX_RANK - len(field_list), frozenset(key_arr),
+                     entity_type.is_canonical)
 
 
 class DuplicateExpandedFieldSetsWarning(ValidationWarning):
   """Two types have the exact same expanded field sets."""
 
-  # pylint: disable=line-too-long
   def __init__(self, entity_type, dup_entity_typenames, equality_key):
     field_count = len(
         set(entity_type.local_field_names.keys())
         | set(entity_type.inherited_field_names.keys()))
-    text = 'Entity type "{0}" has the same expanded set of {1} fields as:\n'.format(
-        entity_type.typename, field_count)
+    text = ('Entity type "{0}" has the same expanded set of {1} fields as:\n'
+            .format(entity_type.typename, field_count))
 
     for typename in dup_entity_typenames:
       text += '\t<{0}> with {1} optionality changes\n'.format(
           typename, dup_entity_typenames[typename])
 
     text += '\tAre they the same type?'
-    super(DuplicateExpandedFieldSetsWarning,
-          self).__init__(text, entity_type.file_context, 30,
-                         MAX_RANK - len(dup_entity_typenames), equality_key,
-                         entity_type.is_canonical)
+    super().__init__(text, entity_type.file_context, 30,
+                     MAX_RANK - len(dup_entity_typenames), equality_key,
+                     entity_type.is_canonical)
 
 
 class OverlappingFlexTypeChildWarning(ValidationWarning):
@@ -1149,9 +1210,8 @@ class OverlappingFlexTypeChildWarning(ValidationWarning):
       for field in dup_entity_typenames[typename]:
         text += '\t\t\t{0}\n'.format(field)
 
-    super(OverlappingFlexTypeChildWarning,
-          self).__init__(text, entity_type.file_context, 32,
-                         MAX_RANK - field_count + best_diff)
+    super().__init__(text, entity_type.file_context, 32,
+                     MAX_RANK - field_count + best_diff)
 
 
 class OverlappingFlexTypeParentWarning(ValidationWarning):
@@ -1169,9 +1229,8 @@ class OverlappingFlexTypeParentWarning(ValidationWarning):
       for field in dup_entity_typenames[typename]:
         text += '\t\t\t{0}\n'.format(field)
 
-    super(OverlappingFlexTypeParentWarning,
-          self).__init__(text, entity_type.file_context, 31,
-                         MAX_RANK - len(dup_entity_typenames))
+    super().__init__(text, entity_type.file_context, 31,
+                     MAX_RANK - len(dup_entity_typenames))
 
 
 class PossibleOverlappingFlexTypeChildWarning(ValidationWarning):
@@ -1189,9 +1248,8 @@ class PossibleOverlappingFlexTypeChildWarning(ValidationWarning):
       for field in dup_entity_typenames[typename]:
         text += '\t\t\t{0}\n'.format(field)
 
-    super(PossibleOverlappingFlexTypeChildWarning,
-          self).__init__(text, entity_type.file_context, 34,
-                         MAX_RANK - field_count + best_diff)
+    super().__init__(text, entity_type.file_context, 34,
+                     MAX_RANK - field_count + best_diff)
 
 
 class PossibleOverlappingFlexTypeParentWarning(ValidationWarning):
@@ -1209,9 +1267,8 @@ class PossibleOverlappingFlexTypeParentWarning(ValidationWarning):
       for field in dup_entity_typenames[typename]:
         text += '\t\t\t{0}\n'.format(field)
 
-    super(PossibleOverlappingFlexTypeParentWarning,
-          self).__init__(text, entity_type.file_context, 33,
-                         MAX_RANK - len(dup_entity_typenames))
+    super().__init__(text, entity_type.file_context, 33,
+                     MAX_RANK - len(dup_entity_typenames))
 
 
 # ---------------------------------------------------------------------------- #
@@ -1252,9 +1309,7 @@ class MissingParentWarning(ValidationWarning):
     # fraction of free fields they replace, the number of types that have the
     # replacement and how big the replacement is.
     match_score = sum_match_quality + len(typenames) * set_size / 25
-    super(MissingParentWarning,
-          self).__init__(text, context, rank, MAX_RANK - match_score, key,
-                         False)
+    super().__init__(text, context, rank, MAX_RANK - match_score, key, False)
 
 
 class UnusedParentWarning(ValidationWarning):
@@ -1272,9 +1327,9 @@ class UnusedParentWarning(ValidationWarning):
     # fraction of free fields they replace, the number of types that have the
     # replacement and how big the replacement is.
     match_score = sum_match_quality + len(qualified_children) * field_count / 25
-    super(UnusedParentWarning, self).__init__(text, entity_type.file_context,
-                                              MISSING_PARENT_VALIDATION_RANK,
-                                              MAX_RANK - match_score, key, True)
+    super().__init__(text, entity_type.file_context,
+                     MISSING_PARENT_VALIDATION_RANK,
+                     MAX_RANK - match_score, key, True)
 
 
 class PotentialParentReplacementWarning(ValidationWarning):
@@ -1287,23 +1342,20 @@ class PotentialParentReplacementWarning(ValidationWarning):
                                str(sorted(replaced_parents)),
                                str(sorted(qualified_parents)), field_count)
 
-    super(PotentialParentReplacementWarning,
-          self).__init__(text, entity_type.file_context, 50,
-                         MAX_RANK - field_count)
+    super().__init__(text, entity_type.file_context, 50, MAX_RANK - field_count)
 
 
 class ParentReplacementCandidateWarning(ValidationWarning):
   """This type could simplify the inheritance of another type(s)."""
-  # pylint: disable=line-too-long
+
   def __init__(self, entity_type, field_count, replacement_targets):
     field_count = len(entity_type.local_field_names) + len(
         entity_type.inherited_field_names)
-    text = 'Entity type "{0}" replaces multiple parents in {1} ({2} fields).'.format(
-        entity_type.typename, str(sorted(replacement_targets)), field_count)
+    text = ('Entity type "{0}" replaces multiple parents in {1} ({2} fields).'
+            .format(entity_type.typename, str(sorted(replacement_targets)),
+                    field_count))
 
-    super(ParentReplacementCandidateWarning,
-          self).__init__(text, entity_type.file_context, 48,
-                         MAX_RANK - field_count)
+    super().__init__(text, entity_type.file_context, 48, MAX_RANK - field_count)
 
 
 class SmallFieldDeviationWarning(ValidationWarning):
@@ -1328,9 +1380,8 @@ class SmallFieldDeviationWarning(ValidationWarning):
                  | set(entity_type.inherited_field_names.keys())),
              str(sorted(parents)), parent_size, str(sorted(diff_str)))
 
-    super(SmallFieldDeviationWarning,
-          self).__init__(t, entity_type.file_context, 49,
-                         MAX_RANK - field_score, key, is_master)
+    super().__init__(t, entity_type.file_context, 49, MAX_RANK - field_score,
+                     key, is_master)
 
 
 class SuggestParentCreationWarning(ValidationWarning):
@@ -1343,8 +1394,7 @@ class SuggestParentCreationWarning(ValidationWarning):
             '\t{5}').format(entity_type.typename, len(match_list),
                             len(field_list), set_name, str(field_list),
                             str(match_list))
-    super(SuggestParentCreationWarning,
-          self).__init__(text, entity_type.file_context, 70)
+    super().__init__(text, entity_type.file_context, 70)
 
 
 # ---------------------------------------------------------------------------- #
@@ -1356,7 +1406,7 @@ class RemovedNamespaceWarning(ValidationWarning):
   """A namespace that used to have non-abstract types was removed."""
 
   def __init__(self, context, ns_name, disappearing_types):
-    super(RemovedNamespaceWarning, self).__init__(
+    super().__init__(
         'Namespace {0}, defined in\n'
         '\t<{1}>\n'
         'has been removed, causing the following types to disappear:\n'
@@ -1368,7 +1418,7 @@ class RemovedTypeWarning(ValidationWarning):
   """A non-abstract type was removed."""
 
   def __init__(self, entity_type):
-    super(RemovedTypeWarning, self).__init__(
+    super().__init__(
         'Entity type {0}, defined in\n'
         '\t<{1}>\n'
         'has been removed.\n'.format(entity_type.typename,
@@ -1380,7 +1430,7 @@ class RemovedFieldWarning(ValidationWarning):
   """A field was removed from a non-abstract type."""
 
   def __init__(self, entity_type, field_name):
-    super(RemovedFieldWarning, self).__init__(
+    super().__init__(
         'Field {0} of non-abstract type {1} has been removed.'.format(
             field_name, entity_type.typename), entity_type.file_context, 5)
 
@@ -1389,7 +1439,7 @@ class AddedFieldWarning(ValidationWarning):
   """A field was removed added to a non-abstract type."""
 
   def __init__(self, entity_type, field_name):
-    super(AddedFieldWarning, self).__init__(
+    super().__init__(
         'Field {0} of non-abstract type {1} has been added.'.format(
             field_name, entity_type.typename), entity_type.file_context, 6)
 
@@ -1398,7 +1448,7 @@ class SuppressedFindingsWarning(ValidationWarning):
   """Findings on unchanged types have been suppressed in the results."""
 
   def __init__(self, number_suppressed):
-    super(SuppressedFindingsWarning, self).__init__(
+    super().__init__(
         '{0} warnings from unchanged files were suppressed'.format(
             number_suppressed), FileContext(''), 1)
 
@@ -1410,22 +1460,18 @@ class SuppressedFindingsWarning(ValidationWarning):
 
 class ProcessError(Exception):
   """Base level exception class."""
-  pass
 
 
 class ReadProcessError(ProcessError):
   """File can't be read."""
 
   def __init__(self, filepath):
-    super(ReadProcessError,
-          self).__init__("'{0}' can't be opened.".format(filepath))
+    super().__init__("'{0}' can't be opened.".format(filepath))
 
 
 class NonexistentEntityProcessError(ProcessError):
   """Entity type does not exist in configuration."""
-  pass
 
 
 class InheritanceCycleProcessError(ProcessError):
   """Cycle detected in the type inheritance graph."""
-  pass

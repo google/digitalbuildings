@@ -19,7 +19,6 @@ from yamlformat.validator import base_lib
 from yamlformat.validator import findings_lib
 
 
-# pylint:disable=consider-using-f-string
 def IsValidFolderForType(path, component_type):
   """Checks a folder is named correctly and in a valid tree for component type.
 
@@ -49,7 +48,6 @@ class ConfigFolder(findings_lib.Findings):
     a ConfigFolder object
   """
 
-  # pylint: disable=consider-using-f-string
   def __init__(self, folderpath, component_type):
     """Creates a ConfigFolder.
 
@@ -76,8 +74,8 @@ class ConfigFolder(findings_lib.Findings):
 
     self._namespace_name = self._GetNamespaceFromPath()
     if self._namespace_name is None:
-      raise RuntimeError(
-          'Cannot get a valid namespace name for {self._folderpath}')
+      raise RuntimeError('Cannot get a valid namespace name for {0}'.format(
+          self._folderpath))
     self._local_namespace = None
 
   @property
@@ -106,7 +104,7 @@ class ConfigFolder(findings_lib.Findings):
     return
 
   def AddFromConfig(self, documents, config_filename):
-    """Reads list of extracted yaml documents and adds all ontology items found.
+    """Reads the list of extracted yaml documents and adds all ontology items found.
 
     Method checks that config_filename is a path in the correct folder.
     Valid items are added to the appropriate namespace objects.
@@ -134,7 +132,6 @@ class ConfigFolder(findings_lib.Findings):
     for document in documents:
       self._AddFromConfigHelper(document, context)
 
-  # pylint: disable=unused-argument
   def _AddFromConfigHelper(self, document, context):
     """Reads a single yaml document and adds all ontology items found.
 
@@ -161,7 +158,6 @@ class ConfigFolder(findings_lib.Findings):
       return False
     return True
 
-  # pylint: disable=consider-using-f-string
   def _GetNamespaceFromPath(self):
     """Extracts the namespace name from the filepath.
 

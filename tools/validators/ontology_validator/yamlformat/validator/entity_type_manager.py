@@ -23,7 +23,6 @@ from __future__ import print_function
 
 import collections
 import itertools
-from typing import Dict
 
 from yamlformat.validator import base_lib
 from yamlformat.validator import findings_lib
@@ -347,7 +346,7 @@ class EntityTypeManager(findings_lib.Findings):
       for entity_type in namespace.valid_types_map.values():
         if entity_type.allow_undefined_fields or entity_type.is_abstract:
           continue
-        full_qual_type = f'{ns_name}/{entity_type.typename}'
+        full_qual_type = '{0}/{1}'.format(ns_name, entity_type.typename)
 
         # Sharding list calculation
         if len(current_shard) >= MAX_TYPE_SHARD_SIZE:
@@ -446,7 +445,7 @@ class EntityTypeManager(findings_lib.Findings):
 
     return typenames_by_subset
 
-  def GetCompleteFieldSetsOI(self) -> Dict:
+  def GetCompleteFieldSetsOI(self) -> dict():
     """Returns a mapping of inheritied and local field sets to EntityType.
 
     Raises:
@@ -459,7 +458,7 @@ class EntityTypeManager(findings_lib.Findings):
       raise Exception('Run Analyze() to access this mapping')
     return self._complete_field_sets_oi
 
-  def GetTypenamesBySubsetOI(self) -> Dict:
+  def GetTypenamesBySubsetOI(self) -> dict():
     """Returns a mapping of greatest common field subsets to EntityType names.
 
     Raises:

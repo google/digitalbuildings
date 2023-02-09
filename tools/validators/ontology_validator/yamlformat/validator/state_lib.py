@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Classes and methods for working with state values for multistate fields."""
+"""Classes and methods for working with state values for multistate fields in the ontology."""
 
 from __future__ import absolute_import
 from __future__ import division
@@ -92,7 +92,7 @@ class StateFolder(config_folder_lib.ConfigFolder):
     self.local_namespace.InsertState(state)
 
   def _AddFromConfigHelper(self, document, context):
-    """Helper method that reads a yaml document and adds all states found.
+    """Helper method that reads a single yaml document and adds all states found.
 
     Args:
       document: yaml document

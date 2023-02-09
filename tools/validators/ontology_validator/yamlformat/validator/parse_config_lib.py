@@ -55,13 +55,12 @@ class UniqueKeyLoader(yaml.SafeLoader):
     value = self.construct_scalar(node)
     return self.bool_values.get(value.lower(), value)
 
-  # pylint: disable=raise-missing-from
   def construct_mapping(self, node, deep=False):
     """Overrides default mapper with a version that detects duplicate keys."""
 
     if not isinstance(node, yaml.nodes.MappingNode):
       raise yaml.constructor.ConstructorError(
-          None, None, f'Expected a mapping node, but found {node.id}',
+          None, None, 'Expected a mapping node, but found %s' % node.id,
           node.start_mark)
     mapping = {}
     for key_node, value_node in node.value:
@@ -126,8 +125,7 @@ def _CreateFolder(folderpath, global_namespace, create_folder_fn, file_tuples):
   """Creates a ConfigFolder for the given folderpath."""
   folder = create_folder_fn(folderpath, global_namespace)
   for ft in file_tuples:
-    with open(os.path.join(ft.root, ft.relative_path),
-              'r', encoding='utf-8') as f:
+    with open(os.path.join(ft.root, ft.relative_path), 'r') as f:
       try:
         documents = yaml.load_all(f, Loader=UniqueKeyLoader)
         folder.AddFromConfig(documents, ft.relative_path)

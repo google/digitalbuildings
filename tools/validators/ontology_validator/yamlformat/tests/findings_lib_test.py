@@ -26,7 +26,6 @@ from absl.testing import absltest
 _F = test_helpers_lib.Fields
 
 
-# pylint: disable=no-value-for-parameter
 class FindingsLibTest(absltest.TestCase):
 
   def setUp(self):

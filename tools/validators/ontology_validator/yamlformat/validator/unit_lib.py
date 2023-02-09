@@ -54,11 +54,7 @@ class UnitUniverse(findings_lib.FindingsUniverse):
     return namespace
 
   def GetUnitsForMeasurement(self, measurement_type, namespace_name=''):
-    """Returns a collection of units for a given measurement type.
-
-    Returns a collection of units that are defined for the given measurement
-    type as a dictionary from unit names to Unit objects, or None if there
-    are no units for that measurement type.
+    """Returns the collection of units that are defined for the given measurement type as a dictionary from unit names to Unit objects, or None if there are no units for that measurement type.
 
     Args:
       measurement_type: Name of the measurement subfield.
@@ -68,7 +64,7 @@ class UnitUniverse(findings_lib.FindingsUniverse):
         measurement_type)
 
   def GetMeasurementTypes(self, namespace_name=''):
-    """Returns list of measurement types having units defined in the namespace.
+    """Returns the list of measurement type names that have units defined in the namespace.
 
     Args:
       namespace_name: Name of the namespace.
@@ -172,14 +168,14 @@ class UnitFolder(config_folder_lib.ConfigFolder):
     if len(conversion_map) == 2:
       for key, value in conversion_map.items():
         if key == CONVERSION_MULTIPLIER_KEY:
-          if isinstance(value, (int, float)):
+          if isinstance(value, int) or isinstance(value, float):
             multiplier = float(value)
           else:
             self.AddFinding(
                 findings_lib.InvalidUnitConversionValueError(
                     unit_name, key, value, context))
         elif key == CONVERSION_OFFSET_KEY:
-          if isinstance(value, (int, float)):
+          if isinstance(value, int) or isinstance(value, float):
             offset = float(value)
           else:
             self.AddFinding(
@@ -317,7 +313,7 @@ class UnitNamespace(findings_lib.Findings):
     # unit_key is an opaque ID that is unique within the namespace. It is only
     # used by the backward compatibility checking, which needs all of the units
     # to be in a single dict.
-    unit_key = f'{measurement_type}-{unit.name}'
+    unit_key = '{0}-{1}'.format(measurement_type, unit.name)
     self.units[unit_key] = unit
 
   def InsertMeasurementAlias(self, alias):
@@ -338,7 +334,6 @@ class UnitNamespace(findings_lib.Findings):
       return
     self._measurement_aliases[alias.alias_name] = alias
 
-# pylint: disable=line-too-long
   def ResolveMeasurementAliases(self):
     """Validates all measurement alias references and populates the collections of units for all aliased measurement types.
     """
@@ -413,7 +408,7 @@ class Unit(findings_lib.Findings):
 
   def __eq__(self, other):
     if isinstance(other, Unit):
-      return self.name == other.name and self.is_standard == other.is_standard
+      return (self.name == other.name and self.is_standard == other.is_standard)
     return False
 
   def __ne__(self, other):

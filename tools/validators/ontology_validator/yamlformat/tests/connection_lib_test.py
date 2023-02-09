@@ -23,8 +23,8 @@ from yamlformat.validator import base_lib
 from yamlformat.validator import connection_lib
 from yamlformat.validator import findings_lib
 
-_GOOD_PATH = f'{base_lib.GLOBAL_NAMESPACE}/connections/anyfolder'
-_BAD_PATH = 'nonglobal/connections/anyfolder'
+_GOOD_PATH = '{0}/connections/anyfolder'.format(base_lib.GLOBAL_NAMESPACE)
+_BAD_PATH = '{0}/connections/anyfolder'.format('nonglobal')
 
 
 class ConnectionLibTest(absltest.TestCase):
@@ -52,7 +52,7 @@ class ConnectionLibTest(absltest.TestCase):
     self.assertFalse(connection_universe.IsDefined('CONTAINS'))
 
   def testConnectionUniverseGetFindings(self):
-    context = findings_lib.FileContext(f'{_GOOD_PATH}/file.yaml')
+    context = findings_lib.FileContext('{0}/file.yaml'.format(_GOOD_PATH))
     folder = connection_lib.ConnectionFolder(_GOOD_PATH)
     folder.AddFinding(findings_lib.InconsistentFileLocationError('', context))
     namespace = folder.local_namespace
@@ -111,7 +111,7 @@ class ConnectionLibTest(absltest.TestCase):
         'CONTAINS': {'description': 'two'},
     }
     folder = connection_lib.ConnectionFolder(_GOOD_PATH)
-    folder.AddFromConfig([doc], f'{_GOOD_PATH}/file.yaml')
+    folder.AddFromConfig([doc], '{0}/file.yaml'.format(_GOOD_PATH))
 
     self.assertCountEqual(['FEEDS', 'CONTAINS'],
                           folder.local_namespace.connections)
@@ -119,7 +119,7 @@ class ConnectionLibTest(absltest.TestCase):
 
   def testConnectionFolderAddFromConfigNotYamlFails(self):
     folder = connection_lib.ConnectionFolder(_GOOD_PATH)
-    folder.AddFromConfig([{}], f'{_GOOD_PATH}/file.txt')
+    folder.AddFromConfig([{}], '{0}/file.txt'.format(_GOOD_PATH))
     self.assertIsInstance(folder.GetFindings()[0],
                           findings_lib.InconsistentFileLocationError)
 
