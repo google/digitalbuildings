@@ -1,4 +1,4 @@
-# Copyright 2020 Google LLC
+# Copyright 2023 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the License);
 # you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
 9a86a19b-b687-4db1-888e-2cf34d04b74c:
   type: HVAC/CHWS_WDT
   code: CHWS-1
-  cloud_device_id: "foobar"
+  cloud_device_id: "1234567890123456"
   translation:
     supply_water_temperature_sensor:
       present_value: points.supply_water_temperature_sensor.present_value
