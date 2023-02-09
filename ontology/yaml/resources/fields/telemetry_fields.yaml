@@ -919,16 +919,16 @@ literals:
   - NORMAL
   - UNKNOWN
 - static_pressure_sensor
-- motorized_valve_run_command:
+- motorized_valve_position_command:
   - CLOSED
   - OPEN
-- motorized_valve_run_status:
+- motorized_valve_position_status:
   - CLOSED
   - OPEN
-- motorized_damper_run_command:
+- motorized_damper_position_command:
   - CLOSED
   - OPEN
-- motorized_damper_run_status:
+- motorized_damper_position_status:
   - CLOSED
   - OPEN
   
