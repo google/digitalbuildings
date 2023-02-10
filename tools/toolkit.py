@@ -47,7 +47,7 @@ def _ParseArgs() -> argparse.ArgumentParser:
       action='append',
       dest='filenames',
       required=True,
-      help='Filepath(s) or directory path for Builcing Configurations',
+      help='Filepath(s) or directory path for Building Configurations',
       metavar='FILE')
 
   parser.add_argument(
