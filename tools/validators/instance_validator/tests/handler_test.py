@@ -19,6 +19,7 @@ from __future__ import division
 from __future__ import print_function
 
 import os
+import shutil
 import tempfile
 from typing import Dict, List, Tuple
 from unittest import mock
@@ -73,22 +74,23 @@ class HandlerTest(absltest.TestCase):
       self.fail('ValidationHelper:Validate raised ExceptionType unexpectedly!')
 
   def testValidateReportFileNotEmpty(self):
-    report_fd, report_filename = '', ''
+    report_directory = ''
     try:
-      report_fd, report_filename = tempfile.mkstemp(text=True)
+      report_directory = tempfile.mkdtemp()
       input_file = os.path.join(_TESTCASE_PATH, 'GOOD', 'building_type.yaml')
       _RunValidation(
           [input_file],
           use_simplified_universe=True,
-          report_filename=report_filename,
+          report_directory=report_directory,
       )
 
-      report_size = os.path.getsize(report_filename)
+      report_size = os.path.getsize(
+          os.path.join(report_directory, handler.INSTANCE_VALIDATION_FILENAME)
+      )
     except SyntaxError:
       pass
     finally:
-      os.close(report_fd)
-      os.remove(report_filename)
+      shutil.rmtree(report_directory)
 
     self.assertGreater(report_size, 0)
 
@@ -129,7 +131,7 @@ class HandlerTest(absltest.TestCase):
       )
       # TODO(berkoben): Make this assert stricter
       mock_validator.assert_has_calls([
-          mock.call(mock.ANY, mock.ANY, mock.ANY, mock.ANY),
+          mock.call(mock.ANY, mock.ANY, mock.ANY, mock.ANY, mock.ANY),
           mock.call().StartTimer(),
       ])
 

@@ -15,174 +15,183 @@
 
 GLOBAL_TYPES_DOCUMENT = {
     'EQUIPMENT': {
-        'id': '9693662434551660544',
+        'guid': 'a65cc651-ef1f-4d01-b49a-47a567f66d04',
         'description': 'A piece of equipment.',
         'is_abstract': True,
-        'opt_uses': ['manufacturer_label', 'model_label']
+        'opt_uses': ['manufacturer_label', 'model_label'],
     },
     'NO_ANALYSIS': {
-        'id': '10044943205486559232',
-        'description':
+        'guid': '20a95bff-a5b8-4fee-b31c-6fc52c0b41bc',
+        'description': (
             'Devices which are not useful in and of themselves. Can be ignored'
-            ' by analysis.',
-        'is_abstract': True
+            ' by analysis.'
+        ),
+        'is_abstract': True,
     },
 }
 
 FACILITIES_TYPES_DOCUMENT = {
     'BUILDING': {
-        'id': '15204152342002794496',
-        'description': 'This is a type for BUILDING facilities object'
+        'guid': '34b2b505-d412-46a2-b9dd-08a8dbb96a87',
+        'description': 'This is a type for BUILDING facilities object',
     },
     'FLOOR': {
-        'id': '15204152342002795557',
-        'description': 'This is a type for FLOOR facilities object'
+        'guid': '4439f98a-c52b-4fff-8765-84e689862423',
+        'description': 'This is a type for FLOOR facilities object',
     },
     'ROOM': {
-        'id': '15204152342002795558',
-        'description': 'This is a type for ROOM facilities object'
-    }
+        'guid': '39dd2cf1-b5c0-4b3b-942a-e02620eed5c3',
+        'description': 'This is a type for ROOM facilities object',
+    },
 }
 
 GATEWAYS_TYPES_DOCUMENT = {
     'PASSTHROUGH': {
-        'id': '',
-        'description':
-            'A device that provides translations for virtual entities.',
-        'allow_undefined_fields': True
+        'guid': '498af1d0-0ec8-45a3-88a0-c6bc22c632f4',
+        'description': (
+            'A device that provides translations for virtual entities.'
+        ),
+        'allow_undefined_fields': True,
     }
 }
 
 HVAC_ANALYSIS_TYPES_DOCUMENT = {
     'CONTROL': {
-        'id': '14773441339248869376',
-        'description':
+        'guid': '3b5321c4-7f89-41c4-baa3-8b444ad0a696',
+        'description': (
             'A tag to represent that the subtype forms a control unit. Ex: '
-            'temperature, setpoint, heater output',
-        'is_abstract': True
+            'temperature, setpoint, heater output'
+        ),
+        'is_abstract': True,
     },
     'MONITORING': {
-        'id': '8216200281797427200',
-        'description':
+        'guid': '1800a4cf-ef6c-4e7c-b811-f2004c0df85b',
+        'description': (
             'A tag to represent that the subtype forms a monitoring group. Ex:'
-            ' temperature sensor only.',
-        'is_abstract': True
-    }
+            ' temperature sensor only.'
+        ),
+        'is_abstract': True,
+    },
 }
 
 HVAC_ABSTRACT_TYPES_DOCUMENT = {
     'WDT': {
-        'id': '12148045066631380992',
+        'guid': 'c56fdfa0-fba7-4842-b61e-a0e6a891ea46',
         'description': 'Temperature differential across water.',
         'is_abstract': True,
         'implements': ['MONITORING'],
         'uses': [
             'return_water_temperature_sensor',
             'supply_water_temperature_sensor',
-        ]
+        ],
     },
     'EDBPC': {
-        'id': '15769475728711614464',
+        'guid': '162682bb-e4af-4776-9ba0-2c458ede278f',
         'description': 'Building static control with exhaust damper.',
         'is_abstract': True,
         'uses': [
             'building_air_static_pressure_sensor',
             'building_air_static_pressure_setpoint',
-            'exhaust_air_damper_percentage_command'
+            'exhaust_air_damper_percentage_command',
         ],
-        'implements': ['CONTROL']
-    }
+        'implements': ['CONTROL'],
+    },
 }
 
 HVAC_CHWS_TYPES_DOCUMENT = {
     'CHWS': {
-        'id': '5338602430047191040',
+        'guid': '10509e2e-4105-407b-9688-2b9fefde79c8',
         'description': 'Tag for chilled water systems.',
         'is_abstract': True,
         'opt_uses': [
             'thermal_power_capacity',
             'differential_pressure_specification',
             'flowrate_requirement',
-        ]
+        ],
     },
     'CHWS_WDT': {
-        'id': '1917740281059344384',
-        'description':
-            'Chilled water system with only basic delta-T monitoring.',
+        'guid': '1ede5c8b-7ebc-4011-8220-a92b262e1ec1',
+        'description': (
+            'Chilled water system with only basic delta-T monitoring.'
+        ),
         'is_canonical': True,
-        'implements': ['CHWS', 'WDT']
+        'implements': ['CHWS', 'WDT'],
     },
     'CHWS_WDT_GATEWAY': {
+        'guid': 'a65cc651-ef1f-4d01-b49a-47a567f66d04',
         'description': 'A gateway with required fields.',
         'allow_undefined_fields': True,
-        'implements': ['CHWS_WDT']
+        'implements': ['CHWS_WDT'],
     },
     'CHWS_WDT_WDPC2X': {
-        'description':
-            'Chilled water system with dual differential pressure control.',
+        'guid': '20a95bff-a5b8-4fee-b31c-6fc52c0b41bc',
+        'description': (
+            'Chilled water system with dual differential pressure control.'
+        ),
         'is_canonical': True,
         'implements': ['CHWS_WDT'],
         'uses': [
             'differential_pressure_sensor_1',
             'differential_pressure_sensor_2',
-            'differential_pressure_setpoint'
-        ]
-    }
+            'differential_pressure_setpoint',
+        ],
+    },
 }
 
 HVAC_GENERAL_TYPES_DOCUMENT = {
     'SDC': {
-        'id': '4852143301546999808',
+        'guid': '34b2b505-d412-46a2-b9dd-08a8dbb96a87',
         'description': 'Tag for automated window shades.',
         'is_abstract': True,
-        'implements': ['EQUIPMENT']
+        'implements': ['EQUIPMENT'],
     },
     'DMP': {
-        'id': '2708579412500021248',
-        'description':
+        'guid': '498af1d0-0ec8-45a3-88a0-c6bc22c632f4',
+        'description': (
             'Tag for general, stand-alone dampers. Dampers are devices which '
             'control the flow of air from one space to another (or to '
-            'outside). ',
+            'outside). '
+        ),
         'is_abstract': True,
-        'implements': ['EQUIPMENT']
+        'implements': ['EQUIPMENT'],
     },
     'EDM': {
-        'id': '3621015733879701504',
+        'guid': '10509e2e-4105-407b-9688-2b9fefde79c8',
         'description': 'Exhaust air damper monitoring.',
         'is_abstract': True,
-        'uses': ['exhaust_air_damper_command', 'exhaust_air_damper_status']
+        'uses': ['exhaust_air_damper_command', 'exhaust_air_damper_status'],
     },
 }
 
 HVAC_SDC_TYPES_DOCUMENT = {
     'SDC_EXT': {
-        'id': '6117654796838109184',
+        'guid': '1ede5c8b-7ebc-4011-8220-a92b262e1ec1',
         'description': 'Simple shade with extension control only.',
         'is_canonical': True,
         'implements': ['SDC'],
-        'uses': ['shade_extent_percentage_command']
+        'uses': ['shade_extent_percentage_command'],
     },
 }
 
 HVAC_DMP_TYPES_DOCUMENT = {
     'DMP_EDM': {
-        'id': '17221675502306066432',
+        'guid': 'a65cc651-ef1f-4d01-b49a-47a567f66d04',
         'description': 'Exhaust damper monitoring.',
-        'implements': ['DMP', 'EDM']
+        'implements': ['DMP', 'EDM'],
     },
 }
 
 
 HVAC_FAN_TYPES_DOCUMENT = {
     'FAN_SS': {
-        'id': '4726112880724803584',
+        'guid': '20a95bff-a5b8-4fee-b31c-6fc52c0b41bc',
         'description': 'Basic fan with start/stop and status.',
         'is_canonical': True,
         'uses': ['run_command', 'run_status'],
         'opt_uses': ['power_sensor'],
     },
     'FAN_SS_ABC': {
-        'id': 'abxc',
+        'guid': '34b2b505-d412-46a2-b9dd-08a8dbb96a87',
         'description': 'Reffan',
         'is_canonical': True,
         'uses': [
@@ -197,7 +206,7 @@ HVAC_FAN_TYPES_DOCUMENT = {
 
 SAFETY_ABSTRACT_TYPES_DOCUMENT = {
     'FA2X': {
-        'id': '16519636228459462656',
+        'guid': '350243a7-bac9-45b8-b614-6ada6cf48ef6',
         'description': 'Fire alarm monitoring.',
         'is_abstract': True,
         'uses': ['fire_alarm_1', 'fire_alarm_2'],
@@ -207,7 +216,7 @@ SAFETY_ABSTRACT_TYPES_DOCUMENT = {
 
 SAFETY_GENERAL_TYPES_DOCUMENT = {
     'FACP': {
-        'id': '4650073955082698752',
+        'guid': '2b337ced-6542-48aa-8440-42f40dde61d5',
         'description': 'Fire alarm control panel.',
         'is_abstract': True,
         'implements': ['EQUIPMENT'],
@@ -217,7 +226,7 @@ SAFETY_GENERAL_TYPES_DOCUMENT = {
 
 SAFETY_FACP_TYPES_DOCUMENT = {
     'FACP_FA2X': {
-        'id': '937181517757546496',
+        'guid': '2e387831-935a-4d81-849f-47af7943c0ce',
         'description': (
             'Fire alarm panel with 2 fire alarm alertness and a fire fault'
             ' status'

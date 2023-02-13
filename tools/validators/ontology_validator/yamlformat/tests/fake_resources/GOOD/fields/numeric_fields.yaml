@@ -12,19 +12,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-component:
-  fan: blah.
-  dryer: blah.
-
-measurement_descriptor:
-  run: blah.
-
-measurement:
-  current: blah.
-  temperature: blah.
-
-point_type:
-  sensor: blah.
-  status: blah.
-  command: blah.
-  alarm: blah.
+literals:
+- outside_air_temperature_sensor:
+    flexible_min: 248.15
+    flexible_max: 318.15
+- bypass_air_damper_percentage_command:
+    fixed_min: 0
+    fixed_max: 100
+- power_sensor:
+    fixed_min: 0
+    flexible_max: 318000
