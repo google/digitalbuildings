@@ -19,6 +19,6 @@
 ##############################################################
 
 PASSTHROUGH:
-  id: "5942334369254342656"
+  guid: "065f9ad3-7c50-44cd-8cad-5a8ae4d16d2c"
   description: "A device that provides translations for virtual entities."
   allow_undefined_fields: true
