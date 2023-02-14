@@ -64,7 +64,7 @@ def Validate(filter_text,
     findings_class = findings_lib.Findings()
     findings_class.AddFindings(findings)
     if not findings_class.IsValid():
-      raise Exception('The Ontology is no longer valid.')
+      raise ValueError('The Ontology is no longer valid.')
 
 
 def RecursiveDirWalk(directory):

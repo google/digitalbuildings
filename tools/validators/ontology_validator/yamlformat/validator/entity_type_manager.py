@@ -457,6 +457,7 @@ class EntityTypeManager(findings_lib.Findings):
     # TODO(travis) : Refactor underlying logic to expose field set to entity
     # type maps
     if self._complete_field_sets_oi is None:
+      # pylint: disable=broad-exception-raised
       raise Exception('Run Analyze() to access this mapping')
     return self._complete_field_sets_oi
 
@@ -470,5 +471,6 @@ class EntityTypeManager(findings_lib.Findings):
     # TODO(travis) :Refactor underlying logic to expose field subset to entity
     # type maps
     if self._typenames_by_subset_oi is None:
+      # pylint: disable=broad-exception-raised
       raise Exception('Run Analyze() to access this mapping')
     return self._typenames_by_subset_oi

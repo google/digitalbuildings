@@ -1348,6 +1348,7 @@ class SmallFieldDeviationWarning(ValidationWarning):
 
     field_score = (len(entity_type.local_field_names) +
                    len(entity_type.inherited_field_names)) / len(field_diff)
+    # pylint: disable=line-too-long
     t = (
         f'Entity types "{entity_type.typename}"'
         f' ({len(set(entity_type.local_field_names.keys()) | set(entity_type.inherited_field_names.keys()))} fields)'
