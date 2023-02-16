@@ -948,6 +948,7 @@ OA:
   - outside_air_wetbulb_temperature_sensor
   - wind_direction_angle_sensor
   - wind_linearvelocity_sensor
+  - ultraviolet_irradiance_sensor
   uses:
   - outside_air_temperature_sensor
   implements:
