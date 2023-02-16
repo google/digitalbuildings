@@ -1648,3 +1648,11 @@ FCU_RTC_RHDHS_DTM_DFSS:
   - fire_alarm
   - schedule_run_command
 
+FCU_DSP_VSC_STM_RTM:
+  description: "Hybrid variable refrigerant flow unit with supply and return air temperature monitoring, zone cooling and heating setpoints, fan speed command"
+  implements:
+  - FCU
+  - DSP
+  - VSC
+  - STM
+  - RTM
