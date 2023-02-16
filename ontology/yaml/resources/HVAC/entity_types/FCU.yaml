@@ -1656,3 +1656,14 @@ FCU_DSP_VSC_STM_RTM:
   - VSC
   - STM
   - RTM
+  uses:
+  - run_command
+  - run_mode
+  - failed_alarm
+  - return_air_temperature_sensor
+  - supply_air_temperature_sensor
+  - zone_air_temperature_sensor
+  - run_status
+  - speed_percentage_command
+  - zone_air_cooling_temperature_setpoint
+  - zone_air_heating_temperature_setpoint
