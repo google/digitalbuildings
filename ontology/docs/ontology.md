@@ -369,7 +369,6 @@ and type Y, bothi having field A are distinguishable from each other, even thoug
 they have the exact same fields.
 
 #### GUIDs
-
 Each type has a GUID (UUID4) that is version independent.
 
 #### Type names 
