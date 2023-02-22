@@ -482,7 +482,7 @@ FAN_SS_VSC_SCRSS:
   - VSC
   - SCRSS
 
-FAN_SS_VSC_SPC_FDPSM:
+FAN_SS_VSC_SSPC_FDPSM:
   description: "Fresh air fan with supply air static pressure sensor based VFD Modulation."
   is_canonical: true
   implements:

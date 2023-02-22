@@ -652,15 +652,7 @@ SSPC:
   - supply_air_static_pressure_setpoint
   implements:
   - OPERATIONAL
-
-SPC:
-  description: "Supply static pressure control via fan speed"
-  is_abstract: true
-  uses:
-  - static_pressure_sensor
-  - static_pressure_setpoint
-  implements:
-  - OPERATIONAL
+  
 
 SPSS:
   id: "8029265712889462784"

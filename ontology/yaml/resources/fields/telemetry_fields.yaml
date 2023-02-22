@@ -1039,8 +1039,6 @@ literals:
 - supervisor_differential_pressure_setpoint
 - program_supply_water_temperature_setpoint
 - program_differential_pressure_setpoint
-- static_pressure_sensor
-- static_pressure_setpoint
 
 - condensate_water_alarm:
   - ACTIVE
