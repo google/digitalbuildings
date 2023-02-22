@@ -489,7 +489,7 @@ FAN_SS_VSC_SSPC_FDPSM:
   - FAN
   - SS
   - VSC
-  - SPC
+  - SSPC
   - FDPSM
   
 ###################################
