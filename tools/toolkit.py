@@ -23,7 +23,7 @@ from __future__ import print_function
 import argparse
 import sys
 
-from guid_generator import generator
+from guid_generator.instance import generator
 from validate import handler
 
 # Default timeout duration for telemetry validation test
@@ -47,7 +47,7 @@ def _ParseArgs() -> argparse.ArgumentParser:
       action='append',
       dest='filenames',
       required=True,
-      help='Filepath(s) or directory path for Builcing Configurations',
+      help='Filepath(s) or directory path for Building Configurations',
       metavar='FILE')
 
   parser.add_argument(
