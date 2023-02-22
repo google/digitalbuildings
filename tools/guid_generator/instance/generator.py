@@ -11,20 +11,19 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+"""GUID generator runner."""
+from __future__ import print_function
 
-BUILDING-GUID:
-  code: BUILDING
-  type: FACILITIES/BUILDING
+from typing import List
+from guid_generator.instance.guid_handler import GuidGenerator
 
-GATEWAY-ENTITY:
-  guid: GATEWAY-ENTITY-GUID
-  type: GATEWAYS/PASSTHROUGH
-  connections:
-    BUILDING: CONTAINS
 
-VIRTUAL-ENTITY:
-  type: HVAC/CHWS_WDT
-  links:
-    GATEWAY-ENTITY:
-      supply_water_temperature_sensor: supply_water_temperature_sensor
-      return_water_temperature_sensor: return_water_temperature_sensor
+def Generate(filenames: List[str]) -> None:
+  """Runner method for GUID generation.
+
+  Args:
+    filenames: file paths for Building Coniguration instances.
+  """
+  for filename in filenames:
+    print(f'Generating GUIDs for {filename}')
+    GuidGenerator.GenerateGuids(filename)

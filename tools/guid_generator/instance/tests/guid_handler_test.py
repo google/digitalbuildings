@@ -19,8 +19,8 @@ import tempfile
 from absl.testing import absltest
 import strictyaml as syaml
 
-from guid_handler import GuidGenerator
-from tests import test_constants
+from guid_generator.instance.guid_handler import GuidGenerator
+from guid_generator.instance.tests import test_constants
 from validate import instance_parser
 
 _TEST_INSTANCES_PATH = test_constants.TEST_INSTANCES
@@ -45,7 +45,6 @@ class GuidGeneratorTest(absltest.TestCase):
 
     self.assertEqual(len(input_parsed_yaml), len(output_parsed_yaml))
 
-
   def testGenerateGuidGeneratesGuid(self):
     input_file = os.path.join(_TEST_INSTANCES_PATH, 'GOOD',
                               'building_missing_guid.yaml')
@@ -67,7 +66,7 @@ class GuidGeneratorTest(absltest.TestCase):
 
   def testGenerateGuidSkipsGoodGuid(self):
     input_file = os.path.join(_TEST_INSTANCES_PATH, 'GOOD',
-                                   'building_type_keyed_by_guid.yaml')
+                              'building_type_keyed_by_guid.yaml')
     with open(input_file, 'r', encoding='utf-8') as test_instance:
       temp_file = os.path.join(tempfile.gettempdir(), 'test_bc.yaml')
       with open(temp_file, 'w', encoding='utf-8') as test_file:
@@ -75,7 +74,7 @@ class GuidGeneratorTest(absltest.TestCase):
       test_filenames = [temp_file]
       initial_guids = []
       for filename in test_filenames:
-        with open(filename, 'r', encoding = 'utf-8') as file:
+        with open(filename, 'r', encoding='utf-8') as file:
           yaml_dict = syaml.load(file.read())
           # this test assumes that entities are keyed by guid
           guids = list(yaml_dict.keys())
@@ -95,7 +94,7 @@ class GuidGeneratorTest(absltest.TestCase):
           later_guids.extend(guids)
 
       self.assertEqual(initial_guids, later_guids)
-      self.assertEqual(initial_guids[0], 'UK-LON-S2-GUID')
+      self.assertEqual(initial_guids[0], 'BUILDING-GUID')
 
   def testGenerateGuidsSkipsGuidBasedFormat(self):
     input_file_content = ''
@@ -121,13 +120,15 @@ class GuidGeneratorTest(absltest.TestCase):
       temp_file_name = os.path.join(tempfile.gettempdir(), 'test_bc.yaml')
       with open(temp_file_name, 'w', encoding='utf-8') as temp_file:
         temp_file.write(input_file.read())
-
     GuidGenerator.GenerateGuids(os.path.abspath(temp_file_name))
     with open(temp_file_name, 'r', encoding='utf-8') as temp_file:
       output_yaml = syaml.load(temp_file.read())
     virtual_entity_guid = next(
-        key for key, value in output_yaml.items()
-        if value.get(instance_parser.ENTITY_CODE_KEY, '') == 'VIRTUAL-ENTITY')
+        key
+        for key, value in output_yaml.items()
+        if value.get(instance_parser.ENTITY_CODE_KEY, '')
+        == 'VIRTUAL-ENTITY-CODE'
+    )
 
     self.assertIn('BUILDING-GUID', output_yaml)
     self.assertIn('GATEWAY-ENTITY-GUID', output_yaml)
@@ -141,13 +142,14 @@ class GuidGeneratorTest(absltest.TestCase):
                      output_yaml[virtual_entity_guid])
     self.assertEqual(
         output_yaml['BUILDING-GUID'].get(instance_parser.ENTITY_CODE_KEY),
-        'BUILDING')
+        'US-BLDG-CODE',
+    )
     self.assertEqual(
         output_yaml['GATEWAY-ENTITY-GUID'].get(instance_parser.ENTITY_CODE_KEY),
-        'GATEWAY-ENTITY')
+        'GATEWAY-ENTITY-CODE')
     self.assertEqual(
         output_yaml[virtual_entity_guid].get(instance_parser.ENTITY_CODE_KEY),
-        'VIRTUAL-ENTITY')
+        'VIRTUAL-ENTITY-CODE')
     self.assertIn(
         'BUILDING-GUID',
         output_yaml['GATEWAY-ENTITY-GUID'][instance_parser.CONNECTIONS_KEY])
