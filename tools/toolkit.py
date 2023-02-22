@@ -101,13 +101,17 @@ def _ParseArgs() -> argparse.ArgumentParser:
       metavar='timeout')
 
   parser.add_argument(
-      '-r',
-      '--report-filename',
-      dest='report_filename',
+      '-d',
+      '--report-directory',
+      dest='report_directory',
       required=False,
       default=None,
-      help='Filename for the validation report',
-      metavar='report-filename')
+      help=(
+          'Directory to output instance validation and telemetry validation'
+          ' reports'
+      ),
+      metavar='report-directory',
+  )
 
   parser.add_argument(
       '--udmi',
@@ -130,7 +134,7 @@ if __name__ == '__main__':
         modified_types_filepath=args.modified_types_filepath,
         subscription=args.subscription,
         service_account=args.service_account,
-        report_filename=args.report_filename,
+        report_directory=args.report_directory,
         timeout=int(args.timeout),
-        is_udmi=args.udmi)
-
+        is_udmi=args.udmi,
+    )

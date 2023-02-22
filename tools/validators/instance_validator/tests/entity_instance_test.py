@@ -79,7 +79,7 @@ class EntityInstanceTest(absltest.TestCase):
 
   @classmethod
   def setUpClass(cls):
-    super(EntityInstanceTest, cls).setUpClass()
+    super().setUpClass()
     cls.config_universe = generate_universe.BuildUniverse(
         use_simplified_universe=True
     )
