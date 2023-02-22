@@ -54,7 +54,7 @@ jobs:
       uses: EndBug/add-and-commit@v9
       with:
         author_name: auto_type_guid_generator
-        author_email: carson-eng@google.com
+        author_email: support-digitalbuildings@google.com
         message: 'Add GUIDs to new entity types'
         
     - name: Install dependencies for ontology YAML validator 
