@@ -900,9 +900,6 @@ literals:
 - valve_status:
   - OPEN
   - CLOSED
-- zone_control_cooling_command:
-  - COOLING
-  - OFF
 - low_battery_alarm:
   - ACTIVE
   - INACTIVE
