@@ -1,4 +1,4 @@
-# Copyright 2020 Google LLC
+# Copyright 2022 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the License);
 # you may not use this file except in compliance with the License.
@@ -12,10 +12,17 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Building
-UK-LON-S2:
-  type: FACILITIES/BUILDING
-  guid: 
+"""Constants for the GUID generator application."""
 
-UK-LON-S3:
-  type: FACILITIES/BUILDING
+from os import path
+
+# internally, absolute path is used; github uses relative path
+_USE_ABSOLUTE_PATH = False
+
+if _USE_ABSOLUTE_PATH:
+  REPO_ROOT = path.join('third_party', 'digitalbuildings')
+else:
+  REPO_ROOT = path.join(
+      path.dirname(path.realpath(__file__)), path.join('..', '..'))
+
+APPLICATION_ROOT = path.join(REPO_ROOT, 'tools', 'guid_generator', 'instance')
