@@ -19,8 +19,8 @@ import tempfile
 from absl.testing import absltest
 import strictyaml as syaml
 
-from guid_generator.instance.guid_handler import GuidGenerator
-from guid_generator.instance.tests import test_constants
+from instance_guid_generator.guid_handler import GuidGenerator
+from instance_guid_generator.tests import test_constants
 from validate import instance_parser
 
 _TEST_INSTANCES_PATH = test_constants.TEST_INSTANCES

@@ -20,8 +20,8 @@ import tempfile
 from absl.testing import absltest
 import strictyaml as syaml
 
-from guid_generator.ontology.tests import test_constants
-from guid_generator.ontology.types_guid_generator import GenerateGuids
+from types_guid_generator.tests import test_constants
+from types_guid_generator.types_guid_generator import GenerateGuids
 
 _TEST_INSTANCES_PATH = test_constants.TEST_INSTANCES
 

@@ -1,7 +1,7 @@
 """Constants for the guid generator application tests."""
 from os import path
 
-from guid_generator.instance import constants
+from instance_guid_generator import constants
 
 GUID_GENERATOR_ROOT = path.join(
     constants.REPO_ROOT, 'tools', 'guid_generator', 'instance')
