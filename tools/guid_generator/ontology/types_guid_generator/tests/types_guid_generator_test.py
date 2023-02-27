@@ -20,8 +20,8 @@ import tempfile
 from absl.testing import absltest
 import strictyaml as syaml
 
-from types_guid_generator.tests import test_constants
-from types_guid_generator.types_guid_generator import GenerateGuids
+from google3.third_party.digitalbuildings.tools.guid_generator.ontology.tests import test_constants
+from google3.third_party.digitalbuildings.tools.guid_generator.ontology.types_guid_generator import GenerateGuids
 
 _TEST_INSTANCES_PATH = test_constants.TEST_INSTANCES
 
@@ -31,14 +31,15 @@ class TypesGuidGeneratorTest(absltest.TestCase):
   def testAllTypesHaveGuidsFileUnchanged(self):
     input_file_path = os.path.join(_TEST_INSTANCES_PATH,
                                    'entity_types_with_guids.yaml')
-    temp_file_path = os.path.join(tempfile.gettempdir(), 'test.yaml')
+    temp_dir = tempfile.mkdtemp(suffix='entity_types')
+    temp_file_path = os.path.join(temp_dir, 'test.yaml')
 
     with open(input_file_path, encoding='utf-8') as input_file, open(
         temp_file_path, 'w', encoding='utf-8') as temp_file:
       input_file_content = input_file.read()
       temp_file.write(input_file_content)
 
-    GenerateGuids([os.path.abspath(temp_file_path)])
+    GenerateGuids(os.path.abspath(temp_file_path))
 
     with open(temp_file_path, encoding='utf-8') as temp_file:
       output_file_content = temp_file.read()
@@ -48,13 +49,14 @@ class TypesGuidGeneratorTest(absltest.TestCase):
   def testGenerateGuidsGeneratesGuidsWhenMissing(self):
     input_file_path = os.path.join(_TEST_INSTANCES_PATH,
                                    'entity_types_with_missing_guids.yaml')
-    temp_file_path = os.path.join(tempfile.gettempdir(), 'test.yaml')
+    temp_dir = tempfile.mkdtemp(suffix='entity_types')
+    temp_file_path = os.path.join(temp_dir, 'test.yaml')
 
     with open(input_file_path, encoding='utf-8') as input_file, open(
         temp_file_path, 'w', encoding='utf-8') as temp_file:
       temp_file.write(input_file.read())
 
-    GenerateGuids([os.path.abspath(temp_file_path)])
+    GenerateGuids(os.path.abspath(temp_file_path))
 
     with open(temp_file_path, encoding='utf-8') as temp_file:
       yaml_dict = syaml.load(temp_file.read())
