@@ -1678,6 +1678,9 @@ literals:
 ## New field for SDC
 - shade_extent_percentage_sensor
 
+- low_limit_zone_air_temperature_setpoint
+- high_limit_zone_air_temperature_setpoint
+
 ## New alarms added 1/25/23
 - failed_circulation_pump_alarm:
   - ACTIVE
