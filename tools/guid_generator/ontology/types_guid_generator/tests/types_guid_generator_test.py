@@ -28,20 +28,22 @@ _TEST_INSTANCES_PATH = test_constants.TEST_INSTANCES
 
 class TypesGuidGeneratorTest(absltest.TestCase):
 
+  def setUp(self):
+    self.temp_dir = tempfile.mkdtemp(suffix='entity_types')
+    self.temp_file_path = os.path.join(self.temp_dir, 'test.yaml')
+
   def testAllTypesHaveGuidsFileUnchanged(self):
     input_file_path = os.path.join(_TEST_INSTANCES_PATH,
                                    'entity_types_with_guids.yaml')
-    temp_dir = tempfile.mkdtemp(suffix='entity_types_have_guids')
-    temp_file_path = os.path.join(temp_dir, 'test.yaml')
 
     with open(input_file_path, encoding='utf-8') as input_file, open(
-        temp_file_path, 'w', encoding='utf-8') as temp_file:
+        self.temp_file_path, 'w', encoding='utf-8') as temp_file:
       input_file_content = input_file.read()
       temp_file.write(input_file_content)
 
-    GenerateGuids(os.path.abspath(temp_file_path))
+    GenerateGuids(os.path.abspath(self.temp_file_path))
 
-    with open(temp_file_path, encoding='utf-8') as temp_file:
+    with open(self.temp_file_path, encoding='utf-8') as temp_file:
       output_file_content = temp_file.read()
 
     self.assertEqual(input_file_content, output_file_content)
@@ -49,17 +51,15 @@ class TypesGuidGeneratorTest(absltest.TestCase):
   def testGenerateGuidsGeneratesGuidsWhenMissing(self):
     input_file_path = os.path.join(_TEST_INSTANCES_PATH,
                                    'entity_types_with_missing_guids.yaml')
-    temp_dir = tempfile.mkdtemp(suffix='entity_types_missing_guid')
-    temp_file_path = os.path.join(temp_dir, 'test.yaml')
 
     with open(input_file_path, encoding='utf-8') as input_file, open(
-        temp_file_path, 'w', encoding='utf-8') as temp_file:
+        self.temp_file_path, 'w', encoding='utf-8') as temp_file:
       temp_file.write(input_file.read())
 
-    GenerateGuids(os.path.abspath(temp_file_path))
+    GenerateGuids(os.path.abspath(self.temp_file_path))
 
-    with open(temp_file_path, encoding='utf-8') as temp_file:
-      yaml_dict = syaml.load(temp_file.read())
+    with open(self.temp_file_path, encoding='utf-8') as temp_file:
+      yaml_dict = dict(syaml.load(temp_file.read()))
       for type_content in yaml_dict.values():
         self.assertIsNotNone(type_content['guid'])
 
