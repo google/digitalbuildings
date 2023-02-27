@@ -1773,4 +1773,7 @@ literals:
   - ACTIVE
   - INACTIVE
 
+- high_hot_water_tank_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
 
