@@ -31,7 +31,7 @@ class TypesGuidGeneratorTest(absltest.TestCase):
   def testAllTypesHaveGuidsFileUnchanged(self):
     input_file_path = os.path.join(_TEST_INSTANCES_PATH,
                                    'entity_types_with_guids.yaml')
-    temp_dir = tempfile.mkdtemp(suffix='entity_types')
+    temp_dir = tempfile.mkdtemp(suffix='entity_types_have_guids')
     temp_file_path = os.path.join(temp_dir, 'test.yaml')
 
     with open(input_file_path, encoding='utf-8') as input_file, open(
@@ -49,7 +49,7 @@ class TypesGuidGeneratorTest(absltest.TestCase):
   def testGenerateGuidsGeneratesGuidsWhenMissing(self):
     input_file_path = os.path.join(_TEST_INSTANCES_PATH,
                                    'entity_types_with_missing_guids.yaml')
-    temp_dir = tempfile.mkdtemp(suffix='entity_types')
+    temp_dir = tempfile.mkdtemp(suffix='entity_types_missing_guid')
     temp_file_path = os.path.join(temp_dir, 'test.yaml')
 
     with open(input_file_path, encoding='utf-8') as input_file, open(
