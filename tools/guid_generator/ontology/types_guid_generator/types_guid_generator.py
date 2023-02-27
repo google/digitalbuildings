@@ -18,10 +18,14 @@ import re
 import sys
 import uuid
 import yaml
-from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.validator import parse_config_lib
+from yamlformat.validator import parse_config_lib
+
 ENTITY_TYPE_GUID_PATTERN = re.compile(r'^(.*)entity_types/.*\.yaml$')
+
+
 def GenerateGuids(file_path: str) -> None:
   """Runner method for GUID generation.
+
   Args:
     file_path: path for an entity types ontology YAML file
   """
@@ -38,6 +42,7 @@ def GenerateGuids(file_path: str) -> None:
     for entity_type in document:
       if 'guid' not in document[entity_type]:
         types_missing_guid.add(entity_type)
+
   # Write all original file content with added GUIDs.
   with open(file_path, 'w', encoding='utf-8') as file:
     for line in file_contents:
@@ -46,6 +51,8 @@ def GenerateGuids(file_path: str) -> None:
         type_name = line[:-2]
         if type_name in types_missing_guid:
           file.write(f'  guid: "{str(uuid.uuid4())}"\n')
+
+
 if __name__ == '__main__':
   parser = argparse.ArgumentParser()
   parser.add_argument(
