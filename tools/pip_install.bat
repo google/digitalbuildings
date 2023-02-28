@@ -15,12 +15,19 @@ START py -m pip install .
 ECHO "Finished instance validator setup"
 CD ..\..
 
-:guid_generator_setup
-ECHO "Starting GUID generator setup"
-CD guid_generator
+:instance_guid_generator_setup
+ECHO "Starting instance GUID generator setup"
+CD guid_generator\instance
 START py -m pip install .
 ECHO "Finished GUID generator setup"
-CD ..
+CD ..\..
+
+:ontology_guid_generator_setup
+ECHO "Starting instance GUID generator setup"
+CD guid_generator\ontology
+START py -m pip install .
+ECHO "Finished GUID generator setup"
+CD ..\..
 
 :abel_setup
 ECHO "Starting ABEL setup"
