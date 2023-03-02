@@ -6499,4 +6499,4 @@ DSTLM:
   - section2_water_high_level_status
   - section2_water_low_level_status
   implements:
-  - OPERATIONAL
+  - MONITORING
