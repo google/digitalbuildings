@@ -30,6 +30,18 @@ CU_SFSS_SFVSC_CHWSC_HTSC_SSPC_SARC_MTM:
   - SARC
   - MTM
 
+CU_DFSS_DFVSC_CHWZTC_HWZTC_RTM_ZHM:
+  description: "Discharge fan with start/stop, status, cooling and heating (zone temp control)."
+  is_canonical: true
+  implements:
+  - CU
+  - DFSS
+  - DFVSC
+  - CHWZTC
+  - HWZTC
+  - RTM
+  - ZHM
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
