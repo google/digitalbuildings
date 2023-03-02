@@ -421,7 +421,7 @@ VAV_CO2C_PDSCV:
   - PDSCV
 
 VAV_CO2CDSP_PDSCV:
-  description: "Discharge control VAV with dual setpoint CO2 regulation and damper percentage monitoring"
+  description: "Supply control VAV with dual setpoint CO2 regulation and damper percentage monitoring"
   is_canonical: true
   implements:
   - VAV
