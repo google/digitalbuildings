@@ -1773,4 +1773,20 @@ literals:
   - ACTIVE
   - INACTIVE
 
+# fields for dual section tank
+- section1_water_temperature_sensor
+- section2_water_temperature_sensor
+- section1_water_high_level_status:
+  - NORMAL
+  - HIGH
+- section2_water_high_level_status:
+  - NORMAL
+  - HIGH
+- section1_water_low_level_status:
+  - NORMAL
+  - LOW
+- section2_water_low_level_status:
+  - NORMAL
+  - LOW
+
 

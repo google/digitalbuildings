@@ -43,3 +43,10 @@ TK_LM:
   implements:
   - /TK # Inherits from global namespace
   - LM
+
+TK_DSTLM:
+  description: "Dual section tank with level and temperature monitoring"
+  is_canonical: true
+  implements:
+  - /TK # Inherits from global namespace
+  - DSTLM
