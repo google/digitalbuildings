@@ -11,20 +11,18 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+"""Setup file for the entity types ontology GUID generator."""
 
-BUILDING-GUID:
-  code: BUILDING
-  type: FACILITIES/BUILDING
+from setuptools import find_packages
+from setuptools import setup
 
-GATEWAY-ENTITY:
-  guid: GATEWAY-ENTITY-GUID
-  type: GATEWAYS/PASSTHROUGH
-  connections:
-    BUILDING: CONTAINS
-
-VIRTUAL-ENTITY:
-  type: HVAC/CHWS_WDT
-  links:
-    GATEWAY-ENTITY:
-      supply_water_temperature_sensor: supply_water_temperature_sensor
-      return_water_temperature_sensor: return_water_temperature_sensor
+setup(
+    name='types_guid_generator',
+    version='0.0.1',
+    url='https://github.com/google/digitalbuildings',
+    license='Apache License',
+    author='Jessy Ma',
+    packages=find_packages(),
+    install_requires=['strictyaml==1.4.2'],
+    python_requires='>=3.9',
+)
