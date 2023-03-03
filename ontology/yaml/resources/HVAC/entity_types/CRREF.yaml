@@ -17,7 +17,7 @@
 ########################
 
 CRREF_DXZTC_DFSS:
-  id: "9720463030478700544"
+  guid: "2b1ae7c9-4b27-4e45-830e-46d1d413fd18"
   description: "Typical coldroom refigrator."
   is_canonical: true
   implements:
@@ -29,7 +29,7 @@ CRREF_DXZTC_DFSS:
   - master_alarm
 
 CRREF_CREFM:
-  id: "6926260936672018432"
+  guid: "dd9e8925-2d93-40ef-9344-05c5a725714b"
   description: "Typical coldroom refigrator monitoring."
   is_canonical: true
   implements:

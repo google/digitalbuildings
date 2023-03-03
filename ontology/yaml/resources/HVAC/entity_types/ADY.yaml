@@ -17,7 +17,7 @@
 ########################
 
 ADY_BS_SS:
-  id: "14790253971549192192"
+  guid: "397629f2-aa58-4c3f-9de1-2897227007b4"
   description: "Basic air dryer."
   is_canonical: true
   implements:

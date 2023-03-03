@@ -20,7 +20,7 @@
 # This is used to model individual batteries when those battery statuses don't map nicely to a single lighting device.
 
 LTB_SS:
-  id: "3190907675814658048"
+  guid: "b162ff3b-1f5e-48bd-b68d-ec0349572241"
   description: "Lighting battery with basic feedback. "
   is_canonical: true
   implements:
