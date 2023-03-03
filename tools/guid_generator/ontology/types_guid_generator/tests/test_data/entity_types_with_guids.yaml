@@ -1,4 +1,4 @@
-# Copyright 2022 Google LLC
+# Copyright 2023 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the License);
 # you may not use this file except in compliance with the License.
@@ -12,10 +12,33 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-BUILDING-GUID:
-  code: BUILDING
-  type: FACILITIES/BUILDING
+AHU_CSP_DFSS_DX2ZC_ECONZ:
+  guid: "guid1"
+  description: "Single zone AHU."
+  is_canonical: true
+  implements:
+  - AHU
+  - CSP
+  - DFSS
+  - DX2ZC
+  - ECONZ
 
-GATEWAY-ENTITY-GUID:
-  code: GATEWAY-ENTITY
-  type: GATEWAYS/PASSTHROUGH
+AHU_DFSS_DXRC_RHDHC:
+  guid: "guid2"
+  description: "Single zone AHU with humidity control."
+  is_canonical: true
+  implements:
+  - AHU
+  - DFSS
+  - DXRC
+  - RHDHC
+
+AHU_DFSS_DSP_DXZC:
+  guid: "guid3"
+  description: "Single zone AHU."
+  is_canonical: true
+  implements:
+  - AHU
+  - DFSS
+  - DSP
+  - DXZC
