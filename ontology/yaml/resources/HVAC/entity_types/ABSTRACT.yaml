@@ -6487,3 +6487,17 @@ RFVSC2X:
   - return_fan_speed_percentage_command_2
   implements:
   - OPERATIONAL
+
+DSPZTC:
+  description: "Fan with dual setpoint control, high + low zone temperature alarms"
+  is_abstract: true
+  uses:
+  - run_status
+  - failed_discharge_fan_alarm
+  - zone_air_temperature_sensor
+  - high_limit_zone_air_temperature_setpoint
+  - low_limit_zone_air_temperature_setpoint
+  - high_zone_air_temperature_alarm
+  - low_zone_air_temperature_alarm
+  implements:
+  - MONITORING

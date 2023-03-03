@@ -737,3 +737,9 @@ FAN_SS_MSM:
   implements:
   - FAN
   - MSM
+
+FAN_DSPZTC:
+  description: "Fan with dual setpoint control, high + low zone temperature alarms"
+  implements:
+  - FAN 
+  - DSPZTC
