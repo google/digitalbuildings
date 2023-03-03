@@ -39,7 +39,7 @@ jobs:
       if: steps.changed-entity-type-files.outputs.any_changed == 'true'
       run: |
         python setup.py install
-      working-directory: ./tools/guid_generator/ontology/types_guid_generator
+      working-directory: ./tools/guid_generator/ontology
 
     - name: Run types GUID generator if any entity types files are changed
       if: steps.changed-entity-type-files.outputs.any_changed == 'true'
