@@ -1,4 +1,4 @@
-# Copyright 2020 Google LLC
+# Copyright 2022 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the License);
 # you may not use this file except in compliance with the License.
@@ -12,8 +12,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-ZONE_LT:
-  guid: "427bd512-9d12-47c7-863e-01a87d671927"
-  description: "A zone entity representing the area served by lighting devices."
-  implements:
-  - ZONE
+literals:
+- outside_air_temperature_sensor:
+    flexible_min: 248.15
+    flexible_max: 318.15
+- bypass_air_damper_percentage_command:
+    fixed_min: 0
+    fixed_max: 100
+- power_sensor:
+    fixed_min: 0
+    flexible_max: 318000

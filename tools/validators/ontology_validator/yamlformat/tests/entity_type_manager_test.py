@@ -32,6 +32,12 @@ from yamlformat.validator.entity_type_lib import FieldParts
 # Overwrite thresholds for grouping to ensure stability
 entity_type_manager.MIN_SET_SIZE = 1
 
+_GUID_1 = '5d68ac84-786f-425c-9a65-097b1fb04c91'
+_GUID_2 = '4d68ac84-786f-425c-9a65-097b1fb04c91'
+_GUID_3 = '3d68ac84-786f-425c-9a65-097b1fb04c91'
+_GUID_4 = '2d68ac84-786f-425c-9a65-097b1fb04c91'
+_GUID_5 = '1d68ac84-786f-425c-9a65-097b1fb04c91'
+
 
 def _GetFieldFolder(yaml, namespace=''):
   folderpath = os.path.join(namespace, 'fields')
@@ -63,25 +69,30 @@ class EntityTypeManagerTest(absltest.TestCase):
         [_GetFieldFolder(yaml)])
     yaml = {
         'VAV_parent': {
+            'guid': _GUID_1,
             'description': 'parent',
             'is_canonical': True,
             'uses': ['field1', 'field4'],
             'opt_uses': ['field2', 'field3']
         },
         'VAV_child1': {
+            'guid': _GUID_2,
             'description': 'child1',
             'uses': ['field1', 'field4'],
             'opt_uses': ['field2']
         },
         'VAV_child2': {
+            'guid': _GUID_3,
             'description': 'child2',
             'uses': ['field1', 'field3', 'field4']
         },
         'different_equip_type': {
+            'guid': _GUID_4,
             'description': 'different',
             'uses': ['field1', 'field3', 'field4']
         },
         'VAV_nomatch': {
+            'guid': _GUID_5,
             'description': 'nomatch',
             'uses': ['field1', 'field2', 'field3']
         },
@@ -126,11 +137,13 @@ class EntityTypeManagerTest(absltest.TestCase):
         [_GetFieldFolder(yaml)])
     yaml = {
         'VAV_parent': {
+            'guid': _GUID_1,
             'description': 'parent',
             'uses': ['field1', 'field4'],
             'opt_uses': ['field2', 'field3']
         },
         'VAV_child1': {
+            'guid': _GUID_2,
             'description': 'child1',
             'uses': ['field1', 'field4'],
             'opt_uses': ['field2']
@@ -154,15 +167,18 @@ class EntityTypeManagerTest(absltest.TestCase):
         [_GetFieldFolder(yaml)])
     yaml = {
         'parent': {
+            'guid': _GUID_1,
             'description': 'parent',
             'uses': ['field1', 'field2', 'field3']
         },
         'child1': {
+            'guid': _GUID_2,
             'description': 'child1',
             'implements': ['parent'],
             'uses': ['field4']
         },
         'child2': {
+            'guid': _GUID_3,
             'description': 'child2',
             'uses': ['field1', 'field2', 'field3', 'field4']
         },
@@ -190,10 +206,12 @@ class EntityTypeManagerTest(absltest.TestCase):
         [_GetFieldFolder(yaml)])
     yaml = {
         'parent': {
+            'guid': _GUID_1,
             'description': 'parent',
             'uses': ['field1', 'field2', 'field3']
         },
         'PASSTHROUGH': {
+            'guid': _GUID_2,
             'description': 'PASSTHROUGH',
             'allow_undefined_fields': True,
             'uses': ['field1', 'field2', 'field3', 'field4']
@@ -217,12 +235,14 @@ class EntityTypeManagerTest(absltest.TestCase):
     field_universe = field_lib.FieldUniverse([field_folder1, field_folder2])
     yaml1 = {
         'parent': {
+            'guid': _GUID_1,
             'description': 'parent',
             'uses': ['HVAC/field1', 'field2', 'field3']
         },
     }
     yaml2 = {
         'child1': {
+            'guid': _GUID_2,
             'description': 'child1',
             'uses': ['field1', 'field2', 'field3']
         },
@@ -255,15 +275,18 @@ class EntityTypeManagerTest(absltest.TestCase):
         [_GetFieldFolder(yaml)])
     yaml = {
         'parent': {
+            'guid': _GUID_1,
             'description': 'parent',
             'uses': ['field1', 'field2', 'field3']
         },
         'child1': {
+            'guid': _GUID_2,
             'description': 'child1',
             'implements': ['parent'],
             'uses': ['field4']
         },
         'child2': {
+            'guid': _GUID_3,
             'description': 'child2',
             'uses': ['field1', 'field2', 'field3', 'field4']
         },
@@ -302,11 +325,13 @@ class EntityTypeManagerTest(absltest.TestCase):
         [_GetFieldFolder(yaml)])
     yaml = {
         'VAV_child1': {
+            'guid': _GUID_1,
             'description': 'child1',
             'uses': ['field1', 'field4'],
             'opt_uses': ['field2']
         },
         'VAV_child2': {
+            'guid': _GUID_2,
             'description': 'child2',
             'uses': ['field1', 'field3', 'field4']
         },

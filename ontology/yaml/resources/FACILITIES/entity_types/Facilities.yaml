@@ -13,31 +13,31 @@
 # limitations under the License.
 
 DOOR:
-  id: "13631635897198837760"
+  guid: "a8aab043-80c4-4276-ac2d-6aeca9e4644f"
   description: "A physical door"
 
 ROOM:
-  id: "9223372036854775808"
+  guid: "731dcd1a-b680-4562-b05d-af250d0c77eb"
   description: "This is a type for ROOM facilities object"
 
 FLOOR:
-  id: "7349874591868649472"
+  guid: "8acebf40-7bb2-483f-8c3f-045a78c95906"
   description: "This is a type for FLOOR facilities object"
   implements:
   - CARSON/COORDINATE_BASIS
 
 BUILDING:
-  id: "15204152342002794496"
+  guid: "7ef90bf9-b82e-4819-be57-e23c0575ae1b"
   description: "This is a type for BUILDING facilities object"
 
 CORRIDOR:
-  id: "6951351792017866752"
+  guid: "39a80a67-fba4-41d4-8bd9-4ea6195fb610"
   description: "This is a type for CORRIDOR facilities object"
 
 STAIRWELL:
-  id: "10441641503230001152"
+  guid: "26c316c2-6910-48f5-8acd-b467b256fc7a"
   description: "This is a type for STAIRWELL facilities object"
   
 RAMP:
-  id: "5843466283684724736"
+  guid: "a7c9c7da-5024-446f-969c-78d0e40d74b9"
   description: "This is a type for RAMP facilities object"

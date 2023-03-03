@@ -335,6 +335,7 @@ def SeparateConfigFiles(path_tuples):
       units=tuple(units),
       connections=tuple(connections))
 
+
 # pylint: disable=consider-using-f-string
 def _ValidateConfigInner(unmodified,
                          modified_base,
@@ -570,15 +571,15 @@ def CheckBackwardsCompatibility(new_universe, old_universe):
     new_ns_types = new_ns.valid_types_map.copy()
     for type_name in old_ns.valid_types_map:
       old_type = old_ns.valid_types_map[type_name]
-      if old_type.uid:
-        new_type_uid_entry = new_universe.type_ids_map.get(old_type.uid)
-        if new_type_uid_entry:
-          if (new_type_uid_entry.namespace == ns_name and
-              new_type_uid_entry.typename == type_name):
+      if old_type.guid:
+        new_type_guid_entry = new_universe.type_guids_map.get(old_type.guid)
+        if new_type_guid_entry:
+          if (new_type_guid_entry.namespace == ns_name and
+              new_type_guid_entry.typename == type_name):
             new_type = new_ns_types.pop(type_name)
           else:
-            new_type = new_universe.GetEntityType(new_type_uid_entry.namespace,
-                                                  new_type_uid_entry.typename)
+            new_type = new_universe.GetEntityType(new_type_guid_entry.namespace,
+                                                  new_type_guid_entry.typename)
         else:
           # type has been removed
           if not old_type.is_abstract:
