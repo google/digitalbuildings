@@ -39,7 +39,7 @@ jobs:
       if: steps.changed-entity-type-files.outputs.any_changed == 'true'
       run: |
         python setup.py install
-      working-directory: ./tools/guid_generator/ontology
+      working-directory: ./tools/guid_generator/ontology/types_guid_generator
 
     - name: Run types GUID generator if any entity types files are changed
       if: steps.changed-entity-type-files.outputs.any_changed == 'true'
@@ -47,7 +47,7 @@ jobs:
         for file in ${{ steps.changed-entity-type-files.outputs.all_changed_files }}; do
           python types_guid_generator.py -f=file
         done
-      working-directory: ./tools/guid_generator/ontology
+      working-directory: ./tools/guid_generator/ontology/types_guid_generator
 
     - name: Commit files changed by types GUID generator
       if: ${{ github.event.pull_request != null}}
