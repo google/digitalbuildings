@@ -220,12 +220,12 @@ class TelemetryMessageValidationBlock(object):
     self._description += description
 
   def AddExtraPoint(self, point: str) -> None:
-    """Add a point that exists in the telemetry message but not in the building config."""
+    """Add a point that exists in message but not in building config."""
     self._valid = False
     self._extra_points.append(point)
 
   def AddMissingPoint(self, point: str) -> None:
-    """Add a point that exists in the building config but not in the telemetry message."""
+    """Add a point that exists in building config but not in message."""
     self._valid = False
     self._missing_points.append(point)
 
@@ -235,7 +235,7 @@ class TelemetryMessageValidationBlock(object):
     self._missing_present_values.append(point)
 
   def AddUnmappedState(self, state: str, point: str) -> None:
-    """Add a state that exists in the telemetry message but does not map to a standard state."""
+    """Add a state that exists in message but does not map to standard state."""
     self._valid = False
     self._unmapped_states.append((point, state))
 
@@ -285,5 +285,5 @@ def _TelemetryPointListToDict(
 ) -> Dict[str, str]:
   """Returns a dictionary representation of a tuple of point and value."""
 
-  point_dictionary = {point: value for point, value in point_tuple_list}
+  point_dictionary = dict(point_tuple_list)
   return point_dictionary

@@ -408,7 +408,7 @@ class TelemetryValidatorTest(absltest.TestCase):
 
     validator.ValidateMessage(_MESSAGE_INVALID_JSON)
 
-  def testTelemetryValidator_fieldTranslationMarkedMissing_notExpectedInTelemetry(
+  def testTelemetryValidator_fieldTranslationMissing_notExpectedInTelemetry(
       self,
   ):
     validator = telemetry_validator.TelemetryValidator(
