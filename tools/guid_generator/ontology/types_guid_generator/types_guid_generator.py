@@ -19,7 +19,7 @@ import sys
 import uuid
 import yaml
 
-from yamlformat.validator import parse_config_lib
+from tools.validators.ontology_validator.yamlformat.validator import parse_config_lib
 
 ENTITY_TYPE_GUID_PATTERN = re.compile(r'^(.*)entity_types(\/|\\).*\.yaml$')
 
