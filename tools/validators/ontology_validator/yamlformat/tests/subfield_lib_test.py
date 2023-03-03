@@ -24,7 +24,7 @@ from yamlformat.validator import findings_lib
 from yamlformat.validator import subfield_lib
 
 _GOOD_PATH = 'mynamespace/subfields/anyfolder'
-_BAD_SUBFOLDER = '{mynamespace}/subfield/anyfolder'
+_BAD_SUBFOLDER = 'mynamespace/subfield/anyfolder'
 
 
 class SubfieldLibTest(absltest.TestCase):

@@ -368,8 +368,8 @@ A type has meaning beyond its defined fields. For instance an entity of type X
 and type Y, bothi having field A are distinguishable from each other, even though
 they have the exact same fields.
 
-#### GUIDs 
-Each type has a numeric ID that is version independent
+#### GUIDs
+Each type has a GUID (UUID4) that is version independent.
 
 #### Type names 
 

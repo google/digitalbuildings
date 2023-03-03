@@ -82,7 +82,7 @@ The `--service-account` parameter value should be a path to a service account ke
 
 `--timeout`: The timeout duration in seconds for the telemetry validation test. The default value is 600 seconds, or 10 minutes. If this time limit is exceeded before the validator receives a test pubsub message for each of the entities configured in the given instance config file, the test will fail with an error and report the entities that were not heard from.
 
-`--report-filename`: If provided, errors from the telemetry validation test will be written to this report file. Otherwise, errors will be written to the console.
+`--report_directory`: If provided, instance validation and telemetry validation reports (named instance_validation_report.txt and telemetry_validation_report.json) will be written to this directory. Otherwise, the instance validation report will be written to the console and the telemetry validation report to the current working directory.
 
 Running telemetry validation will also output a machine-readable log of the validation performed on a set of devices. This log will be output as `telemetry_validation_log.json` in the current working directory.
 
@@ -106,14 +106,14 @@ Run `python instance_validator.py` and provide the following arguments:
 
   * **NOTE:** The service account key and subscription are provided by the Google team. Please reach out to your IoT TPM for guidance.
 
-4. `-r/--report-filename` To write results to a validation log.
+4. `-d/--report-directory` To write instance validation (instance_validation_report.txt) and telemetry validation (telemetry_validation_report.json) reports to the report-directory; otherwise writes instance validation to console and telemetry validation to current working directory.
 
 For example:
-`python instance_validator.py.py -i //path/to/file -s subscription-name -a service-account-name -r //path/to/report`
+`python instance_validator.py.py -i //path/to/file -s subscription-name -a service-account-name -d //path/to/report-directory`
 1. Takes in an building configuration file.
-4. Validates the building configuration.
+2. Validates the building configuration.
 3. Validates telemetry payload.
-5. Writes validation results to the report filepath.
+4. Writes validation results to the report directory as //path/to/report-directory/instance_validation_report.txt and //path/to/report-directory/telemetry_validation_report.json for instance validation and telemetry validation respectfully.
 
 **NOTE:** The new Building Config format switches entities being keyed by codes
 to being keyed by guids and Ids are removed. To convert the old format to the

@@ -19,7 +19,7 @@
 
 
 TK_LVLM:
-  id: "8222734679401299968"
+  guid: "428168a1-a50b-42cc-935e-694bd8bd8045"
   description: "Standard Tank level monitoring."
   is_canonical: true
   implements:

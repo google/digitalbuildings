@@ -17,7 +17,7 @@
 ########################
 
 CMP_SS:
-  id: "5566881934694416384"
+  guid: "d6bbe824-1b03-4ee2-ac4c-a0c4233d4078"
   description: "Basic air compressor."
   is_canonical: true
   implements:
@@ -25,7 +25,7 @@ CMP_SS:
   - SS
 
 CMP_SS_WDPM:
-  id: "4395946031578087424"
+  guid: "47c842ee-9b4b-452d-8f1a-9a28e0437a80"
   description: "Basic features of air compressor."
   is_canonical: true
   implements:

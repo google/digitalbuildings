@@ -19,7 +19,7 @@
 
 
 PMP_SS:
-  id: "7862446709211660288"
+  guid: "75f16a18-aebc-4abc-92f6-294b0dd48f8c"
   description: "Basic water pump."
   is_canonical: true
   implements:
