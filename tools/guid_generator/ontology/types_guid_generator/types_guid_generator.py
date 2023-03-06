@@ -30,9 +30,9 @@ def GenerateGuids(file_path: str) -> None:
   Args:
     file_path: path for an entity types ontology YAML file
   """
-  print(f'Generating GUIDs for {file_path}')
   if not ENTITY_TYPE_GUID_PATTERN.match(file_path):
     return
+  print(f'Generating GUIDs for {file_path}')
   file_contents = []
   types_missing_guid = set()
   with open(file_path, encoding='utf-8') as file:
@@ -59,7 +59,6 @@ if __name__ == '__main__':
   parser.add_argument(
       '-f',
       '--file',
-      action='append',
       dest='filename',
       required=True,
       help='File path of a modified entity type ontology YAML file',
