@@ -13,7 +13,7 @@
 # limitations under the License.
 
 FD_STD:
-  id: "4694766903728537600"
+  guid: "82d766cf-9d92-40b1-8782-16ec2fcc55b2"
   description: "Basic fire damper"
   is_canonical: true
   implements:
@@ -22,7 +22,7 @@ FD_STD:
   - damper_status
   
 FD_SD:
-  id: "18184767423889014784"
+  guid: "70dad00c-3334-4a77-8ce2-2d41d6a97c78"
   description: "Basic smoke detector fire damper"
   is_canonical: true
   implements:

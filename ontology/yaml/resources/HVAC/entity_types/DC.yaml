@@ -17,7 +17,7 @@
 ########################
 
 DC_SS_SWTC:
-  id: "14928780342021062656"
+  guid: "c52ba68c-f685-40c6-b2e2-baa5cd75e049"
   description: "Typical dry-cooler (closed loop sensible cooler)."
   is_canonical: true
   implements:

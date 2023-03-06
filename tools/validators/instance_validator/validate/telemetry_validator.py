@@ -49,18 +49,23 @@ class TelemetryValidator(object):
     extra_entities: Mapping of entity guids to entity codes for entities
       reported in a tlemetry payload but not recorded in the building config
       file being validated.
+    report_directory: fully qualified path to report output directory
   """
 
-  def __init__(self, entities, timeout, is_udmi, callback):
+  def __init__(
+      self, entities, timeout, is_udmi, callback, report_directory=None
+  ):
     """Init.
 
     Args:
-     entities: EntityInstance dictionary
-     timeout: validation timeout duration in seconds
-     is_udmi: Flag to indicate whether telemtry payloads should conform to the
-       UDMI standard.
-     callback: callback function to be called either because messages for all
-       entities were seen or because the timeout duration was reached
+      entities: EntityInstance dictionary
+      timeout: validation timeout duration in seconds
+      is_udmi: Flag to indicate whether telemtry payloads should conform to the
+        UDMI standard.
+      callback: callback function to be called either because messages for all
+        entities were seen or because the timeout duration was reached.
+      report_directory: [Optional] fully quailified path to report output
+        directory.
     """
     super().__init__()
     # cloud_device_id update requires translations; enforced in entity_instance
@@ -76,6 +81,7 @@ class TelemetryValidator(object):
     self._timer: threading.Timer = None
     self._invalid_message_blocks = []
     self._extra_entities = {}
+    self.report_directory = report_directory
 
   def AddInvalidMessageBlock(self, validation_block):
     self._invalid_message_blocks.append(validation_block)

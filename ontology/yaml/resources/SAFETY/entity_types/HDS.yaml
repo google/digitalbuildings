@@ -27,7 +27,7 @@ HDS_STD:
   - particle_concentration_alarm
 
 HDS_H2M:
-  id: "15173284240247750656"
+  guid: "c433b9fa-2e3c-42a9-9574-d601941e23c9"
   description: "Zone air hydrogen level used for monitoring in battery rooms."
   is_canonical: true
   implements:

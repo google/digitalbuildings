@@ -13,7 +13,7 @@
 # limitations under the License.
 
 ZONE_LT:
-  id: "2202868934909100032"
+  guid: "427bd512-9d12-47c7-863e-01a87d671927"
   description: "A zone entity representing the area served by lighting devices."
   implements:
   - ZONE

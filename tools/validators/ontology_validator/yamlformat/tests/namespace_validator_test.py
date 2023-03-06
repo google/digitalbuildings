@@ -24,6 +24,7 @@ from yamlformat.validator import namespace_validator
 from yamlformat.validator import test_helpers_lib
 from absl.testing import absltest
 
+# pylint: disable=superfluous-parens
 _F = test_helpers_lib.Fields
 _F1 = test_helpers_lib.Field
 
