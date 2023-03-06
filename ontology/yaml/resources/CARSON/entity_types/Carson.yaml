@@ -17,4 +17,5 @@ COORDINATE_BASIS:
   description: "Entity that represents the coordinate basis for other entities"
 
 SOME_NEW_TYPE:
+  guid: "4dec0b8f-a148-496d-a100-ad8bdb630522"
   description: "New test type"
