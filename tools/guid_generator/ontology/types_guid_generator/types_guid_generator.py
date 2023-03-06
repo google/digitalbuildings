@@ -21,7 +21,7 @@ import yaml
 
 from yamlformat.validator import parse_config_lib
 
-ENTITY_TYPE_GUID_PATTERN = re.compile(r'^(.*)entity_types/.*\.yaml$')
+ENTITY_TYPE_GUID_PATTERN = re.compile(r'^(.*)entity_types(\/|\\).*\.yaml$')
 
 
 def GenerateGuids(file_path: str) -> None:
