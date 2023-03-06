@@ -23,7 +23,17 @@ jobs:
         os: [ubuntu-latest]
 
     steps:
-    - uses: actions/checkout@v2
+    - name: Checkout the branch the PR is coming from
+      if: ${{ github.event_name == 'pull_request' }}
+      uses: actions/checkout@v3
+      with:
+        repository: ${{ github.event.pull_request.head.repo.full_name }}
+        ref: ${{ github.event.pull_request.head.ref }}
+    
+    - name: Checkout head
+      if: ${{ github.event_name == 'push' }}
+      uses: actions/checkout@v3
+    
     - name: Set up Python 3.7
       uses: actions/setup-python@v2
       with:
@@ -55,7 +65,6 @@ jobs:
       working-directory: ./tools/guid_generator/ontology/types_guid_generator
 
     - name: Commit files changed by types GUID generator
-      if: ${{ github.event.pull_request != null}}
       uses: EndBug/add-and-commit@v9
       with:
         author_name: auto_type_guid_generator
