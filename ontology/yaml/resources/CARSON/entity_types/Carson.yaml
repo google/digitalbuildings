@@ -15,7 +15,3 @@
 COORDINATE_BASIS:
   guid: "f6f0b964-7e0e-4bab-892a-156c7989b014"
   description: "Entity that represents the coordinate basis for other entities"
-
-SOME_NEW_TYPE:
-  guid: "4dec0b8f-a148-496d-a100-ad8bdb630522"
-  description: "New test type"
