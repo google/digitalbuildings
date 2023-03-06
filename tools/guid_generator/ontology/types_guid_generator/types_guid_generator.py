@@ -59,7 +59,6 @@ if __name__ == '__main__':
   parser.add_argument(
       '-f',
       '--file',
-      action='append',
       dest='filename',
       required=True,
       help='File path of a modified entity type ontology YAML file',

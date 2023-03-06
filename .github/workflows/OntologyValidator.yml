@@ -23,7 +23,17 @@ jobs:
         os: [ubuntu-latest]
 
     steps:
-    - uses: actions/checkout@v2
+    - name: Checkout the branch the PR is coming from
+      if: ${{ github.event_name == 'pull_request' }}
+      uses: actions/checkout@v3
+      with:
+        repository: ${{ github.event.pull_request.head.repo.full_name }}
+        ref: ${{ github.event.pull_request.head.ref }}
+    
+    - name: Checkout head
+      if: ${{ github.event_name == 'push' }}
+      uses: actions/checkout@v3
+    
     - name: Set up Python 3.7
       uses: actions/setup-python@v2
       with:
@@ -35,6 +45,11 @@ jobs:
       with:
         files: '**/entity_types/*.yaml'
         
+    - name: Install dependencies for ontology YAML validator 
+      run: |
+        python setup.py install
+      working-directory: ./tools/validators/ontology_validator
+        
     - name: Install dependencies for types GUID generator if any entity types files are changed
       if: steps.changed-entity-type-files.outputs.any_changed == 'true'
       run: |
@@ -45,22 +60,16 @@ jobs:
       if: steps.changed-entity-type-files.outputs.any_changed == 'true'
       run: |
         for file in ${{ steps.changed-entity-type-files.outputs.all_changed_files }}; do
-          python types_guid_generator.py -f=file
+          python types_guid_generator.py -f=../../../../$file
         done
       working-directory: ./tools/guid_generator/ontology/types_guid_generator
 
     - name: Commit files changed by types GUID generator
-      if: ${{ github.event.pull_request != null}}
       uses: EndBug/add-and-commit@v9
       with:
         author_name: auto_type_guid_generator
         author_email: support-digitalbuildings@google.com
         message: 'Add GUIDs to new entity types'
-        
-    - name: Install dependencies for ontology YAML validator 
-      run: |
-        python setup.py install
-      working-directory: ./tools/validators/ontology_validator
     
     - name: Run ontology YAML validator on ontology extensions
       run: |
