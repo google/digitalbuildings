@@ -34,10 +34,10 @@ jobs:
       if: ${{ github.event_name == 'push' }}
       uses: actions/checkout@v3
     
-    - name: Set up Python 3.7
-      uses: actions/setup-python@v2
+    - name: Set up Python 3.11
+      uses: actions/setup-python@v1
       with:
-        python-version: 3.7
+        python-version: '3.11'
         
     - name: Get modified entity type files
       id: changed-entity-type-files
@@ -67,8 +67,8 @@ jobs:
     - name: Commit files changed by types GUID generator
       uses: EndBug/add-and-commit@v9
       with:
-        author_name: auto_type_guid_generator
-        author_email: support-digitalbuildings@google.com
+        author_name: db-robot
+        author_email: db-robot@google.com
         message: 'Add GUIDs to new entity types'
     
     - name: Run ontology YAML validator on ontology extensions

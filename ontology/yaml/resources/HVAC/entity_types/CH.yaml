@@ -25,6 +25,22 @@ CH_SS_SWTC:
   - SS
   - SWTC
 
+CH_SS_SWTC_TEST:
+  description: "TEST Simple air cooled chiller."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - SWTC
+
+CH_SS_SWTC_ANOTHER_TEST:
+  description: "ANOTHER TEST Simple air cooled chiller."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - SWTC
+
 CH_SS_SCHWTC_RWISOVPM:
   guid: "69ac8219-82ca-46d1-88dc-7fc8ce0f16d3"
   description: "Simple water-cooled chiller with condenser isolation."
