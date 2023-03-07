@@ -11,8 +11,11 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
 """GUID generator runner for entity types ontology YAML files."""
+
 from __future__ import print_function
+
 import argparse
 import re
 import sys
@@ -58,7 +61,6 @@ if __name__ == '__main__':
   parser.add_argument(
       '-f',
       '--file',
-      action='append',
       dest='filename',
       required=True,
       help='File path of a modified entity type ontology YAML file',
