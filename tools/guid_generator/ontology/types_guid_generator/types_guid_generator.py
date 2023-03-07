@@ -13,6 +13,7 @@
 # limitations under the License.
 """GUID generator runner for entity types ontology YAML files."""
 from __future__ import print_function
+
 import argparse
 import re
 import sys
