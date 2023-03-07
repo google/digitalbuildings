@@ -23,6 +23,6 @@ setup(
     license='Apache License',
     author='Jessy Ma',
     packages=find_packages(),
-    install_requires=['strictyaml==1.4.2'],
+    install_requires=['pyyaml>=5.3'],
     python_requires='>=3.9',
 )
