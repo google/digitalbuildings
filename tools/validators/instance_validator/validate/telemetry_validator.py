@@ -18,6 +18,7 @@ is received for all of the entities in the building config file, or if the
 specfied timeout is reached. Current version only supports UDMI payloads.
 """
 
+import sys
 import threading
 from typing import Dict
 
@@ -128,7 +129,6 @@ class TelemetryValidator(object):
         self._extra_entities.update(
             {validated_entity_guid: validated_entity_code}
         )
-        continue
     return {
         entity.guid: entity_code
         for entity_code, entity in unvalidated_entities.items()
@@ -155,12 +155,15 @@ class TelemetryValidator(object):
         for the message to a list of all errors and warnings discovered by this
         validator.
     """
+    # TODO(b/267794785): Calling flush to work around an assert in the Python
+    # runtime when the stdout is flushed with large buffers. The actual issue
+    # is likely caused by a threading bug somewhere else.
+    # See https://yaqs.corp.google.com/eng/q/4487223501186400256.
+    sys.stdout.flush()
 
     tele = telemetry.Telemetry(message)
     entity_code = tele.attributes[DEVICE_ID]
     cloud_device_id = tele.attributes[DEVICE_NUM_ID]
-    message_timestamp = tele.timestamp
-    message_version = tele.version
 
     # Telemetry message received for an entity not in building config
     if entity_code not in self.entities_with_translation.keys():
@@ -178,17 +181,48 @@ class TelemetryValidator(object):
       return
     self.validated_entities.update({entity.guid: entity_code})
 
+    validation_block = self._ValidationBlockHelper(message, entity)
+
+    if not validation_block.valid:
+      self.AddInvalidMessageBlock(validation_block)
+    message.ack()
+    self.CallbackIfCompleted()
+
+  def _ValidationBlockHelper(
+      self, message, entity
+  ) -> tvr.TelemetryMessageValidationBlock:
+    """Validates a telemetry message points and creates a validation block.
+
+    Args:
+      message: the telemetry message to validate.
+      entity: the entity corresponding to the message
+
+    Returns:
+      validation_block: results of comparing entity points to telemetry message
+    """
+    tele = telemetry.Telemetry(message)
+    entity_code = tele.attributes[DEVICE_ID]
+    cloud_device_id = tele.attributes[DEVICE_NUM_ID]
+    message_timestamp = tele.timestamp
+    message_version = tele.version
+
+    expected_points = [
+        field_translation.std_field_name
+        for field_translation in entity.translation.values()
+        if field_translation.mode == ft_lib.PresenceMode.PRESENT
+    ]
+
     validation_block = tvr.TelemetryMessageValidationBlock(
         guid=entity.guid,
         code=entity_code,
         timestamp=message_timestamp,
         version=message_version,
-        expected_points=entity.translation.values(),
+        expected_points=expected_points,
     )
 
     # Check a telemetry message cloud device id exists in the building config.
     if cloud_device_id != entity.cloud_device_id:
-      validation_block.description = (
+      validation_block.AddDescription(
           f'[ERROR]\tBuilding Config entity: {entity.code} with Guid:'
           f' {entity.guid} has invalid cloud device id:'
           f' {entity.cloud_device_id}. Expecting {cloud_device_id}'
@@ -197,45 +231,56 @@ class TelemetryValidator(object):
     # UDMI Pub/Sub streams could include messages which aren't telemetry
     # Raise a warning for devices that are sending non-udmi compliant payloads
     if self.is_udmi and not message_filters.Udmi.telemetry(message.attributes):
-      validation_block.description += (
+      validation_block.AddDescription(
           f'[ERROR]\tMessage for {entity_code} does not conform to UDMI'
           ' standard.'
       )
-      message.ack()
-      return
+      return validation_block
 
     print(f'Validating telemetry message for entity: {entity_code}')
     point_full_paths = {
         f'points.{key}.present_value': key for key in tele.points
     }
+    # check telemetry points against entity points to determine extra points
+    raw_field_names = {
+        field_translation.raw_field_name: field_translation.std_field_name
+        for field_translation in entity.translation.values()
+        if isinstance(field_translation, ft_lib.DefinedField)
+    }
+    for point_path, point_name in point_full_paths.items():
+      if point_path in raw_field_names:
+        continue
+      validation_block.AddExtraPoint(point_name)
+    # check entity points against telemetry points to determine missing and
+    # others
     for field_translation in entity.translation.values():
       if isinstance(field_translation, ft_lib.UndefinedField):
         continue
       if field_translation.raw_field_name not in point_full_paths:
         if not tele.is_partial:
-          validation_block.AddMissingPoint(field_translation.raw_field_name)
+          validation_block.AddMissingPoint(field_translation.std_field_name)
         continue
 
       point = tele.points[point_full_paths[field_translation.raw_field_name]]
       pv = point.present_value
 
       if pv is None:
-        validation_block.AddMissingPresentValue(point=point)
+        validation_block.AddMissingPresentValue(point=point.point_name)
+        continue
 
-      elif isinstance(field_translation, ft_lib.MultiStateValue):
+      if isinstance(field_translation, ft_lib.MultiStateValue):
         if pv not in field_translation.raw_values:
-          validation_block.AddUnmappedState(state=pv, point=point)
+          validation_block.AddUnmappedState(state=pv, point=point.point_name)
           continue
 
       elif isinstance(
           field_translation, ft_lib.DimensionalValue
       ) and not self.ValueIsNumeric(pv):
-        validation_block.AddInvalidDimensionalValue(value=pv, point=point)
+        validation_block.AddInvalidDimensionalValue(
+            value=pv, point=point.point_name
+        )
 
-    if not validation_block.valid:
-      self.AddInvalidMessageBlock(validation_block)
-    message.ack()
-    self.CallbackIfCompleted()
+    return validation_block
 
   def ValueIsNumeric(self, value):
     """Returns true if the value is numeric."""
