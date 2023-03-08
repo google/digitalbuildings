@@ -89,7 +89,7 @@ cd abel
 
 More info can be found in [gcloud docs on authorizing with the gcloud CLI](https://cloud.google.com/sdk/docs/authorizing)
 
-2. Contact your IoT Technical Program Manager and ask to be added to a GCP service account.
+2. Contact your IoT Technical Program Manager and ask to be added to a GCP service account. (The service account will need the Service Account Token Creator role and the Google Sheets API must be enabled)
 
 3. Create a token request file, `token_request.json` with contents:
 

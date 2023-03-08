@@ -1,4 +1,4 @@
-# Copyright 2020 Google LLC
+# Copyright 2023 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the License);
 # you may not use this file except in compliance with the License.
@@ -11,11 +11,13 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+#
+# good example of a building config keyed by guid with code (new format)
 
-# Building
-UK-LON-S2:
+BUILDING-GUID:
+  code: US-BLDG-CODE
   type: FACILITIES/BUILDING
-  guid: 
 
-UK-LON-S3:
-  type: FACILITIES/BUILDING
+GATEWAY-ENTITY-GUID:
+  code: GATEWAY-ENTITY-CODE
+  type: GATEWAYS/PASSTHROUGH

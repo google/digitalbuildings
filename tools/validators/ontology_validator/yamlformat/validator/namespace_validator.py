@@ -26,12 +26,7 @@ MIN_SIZE_FOR_LOCAL_FIELD_DUPES = 2
 
 
 class NamespaceValidator(findings_lib.Findings):
-  """Creates NamespaceValidator object to validate types across namespaces.
-
-  Records any findings found during validation.
-
-  Args:
-    type_namespaces: a list of TypeNamespace objects.
+  """Validates types across namespaces and records findings.
 
   Attributes:
     type_namespaces_map: a dictionary. Keys are namespace strings and
@@ -44,6 +39,11 @@ class NamespaceValidator(findings_lib.Findings):
   """
 
   def __init__(self, type_namespaces):
+    """Creates NamespaceValidator object to validate types across namespaces.
+
+    Args:
+      type_namespaces: a list of TypeNamespace objects.
+    """
 
     super(NamespaceValidator, self).__init__()
 
