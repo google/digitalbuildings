@@ -6491,8 +6491,8 @@ RFVSC2X:
 EPMX2:
   description: "Evaporator pump status monitoring with 2 pumps"
   uses:
-  - evaporator_pump_status_1
-  - evaporator_pump_status_2
+  - refrigerant_evaporator_pump_status_1
+  - refrigerant_evaporator_pump_status_2
   implements:
   - MONITORING
 
@@ -6503,8 +6503,8 @@ HRCTMPSM:
   - heat_recovery_supply_water_temperature_sensor
   - heat_recovery_pump_status
   - condensing_return_water_temperature_sensor
-  - condenser_pump_status
-  - evaporator_return_water_temperature_sensor
+  - refrigerant_condenser_pump_status
+  - refrigerant_evaporator_return_water_temperature_sensor
   - outside_air_temperature_sensor
   implements:
   - MONITORING
