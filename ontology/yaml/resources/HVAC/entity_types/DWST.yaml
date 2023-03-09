@@ -73,14 +73,14 @@ DWST_WDT:
   - DWST
   - WDT
 
-  DWST_CPC_RMM_SS_REFPM_EPMX2_HRCTMPSM:
-    description: "Domestic water system with air source heat pump with condenser pump, recovery pump, 2 evaporator pumps and temperature monitoring"
-    is_canonical: true
-    implements:
-    - DWST
-    - CPC
-    - RMM
-    - SS
-    - REFPM
-    - EPMX2
-    - HRCTMPSM
+DWST_CPC_RMM_SS_REFPM_EPMX2_HRCTMPSM:
+  description: "Domestic water system with air source heat pump with condenser pump, recovery pump, 2 evaporator pumps and temperature monitoring"
+  is_canonical: true
+  implements:
+  - DWST
+  - CPC
+  - RMM
+  - SS
+  - REFPM
+  - EPMX2
+  - HRCTMPSM
