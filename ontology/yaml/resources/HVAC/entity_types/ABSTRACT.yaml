@@ -6508,3 +6508,4 @@ HRCTMPSM:
   - outside_air_temperature_sensor
   implements:
   - MONITORING
+  
