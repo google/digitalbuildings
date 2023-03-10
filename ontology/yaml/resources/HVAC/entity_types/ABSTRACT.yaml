@@ -6496,7 +6496,7 @@ NEW_TYPE_TEST:
   - heat_recovery_supply_water_temperature_sensor
 
 
-NEW_TYPE_TEST:  
+NEW_TYPE_TEST_TWO:  
   description: "testing action permissions"
   uses:
   - return_fan_speed_percentage_command_1
