@@ -6489,15 +6489,8 @@ RFVSC2X:
   - OPERATIONAL
 
 NEW_TYPE_TEST:  
-  guid: 9"cfe1202-d100-4803-a630-251e56e438bc"  
+  guid: "9cfe1202-d100-4803-a630-251e56e438bc"  
   description: "testing action permissions"
   uses:
   - heat_recovery_return_water_temperature_sensor
   - heat_recovery_supply_water_temperature_sensor
-
-
-NEW_TYPE_TEST_TWO:  
-  description: "testing action permissions"
-  uses:
-  - return_fan_speed_percentage_command_1
-  - return_fan_speed_percentage_command_2
