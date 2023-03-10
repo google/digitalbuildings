@@ -16,15 +16,8 @@
 ### Canonical Types  ###
 ########################
 
-TK_TPKD:
-  description: "Tpkd water tank."
+TK_WLAM3X:
+  description: "A water tank with three sets of alarms for high, low, and overflow alerting."
   implements:
   - TK
-  uses:
-  - water_high_level_alarm_1
-  - water_high_level_alarm_2
-  - water_high_level_alarm_3
-  - water_low_level_alarm_1
-  - water_low_level_alarm_2
-  - water_overflow_level_alarm_1
-  - water_overflow_level_alarm_2
+  - WLAM3X

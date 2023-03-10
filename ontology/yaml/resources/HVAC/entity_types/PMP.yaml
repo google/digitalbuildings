@@ -119,38 +119,23 @@ PMP_SS_CWCS_VSFC:
   - run_mode
   - lost_power_alarm
 
-PMP_SS_PSMC_VSFC_CDWISVPCM:
-  description: "Primary condenser water pump"
+PMP_SS_CDWISOVPM_VSFC:
+  description: "Primary condenser water pump with condensing water isolation valve control"
   is_canonical: true
   implements:
   - PMP
   - SS
-  - PSMC
+  - CDWISOVPM
   - VSFC
-  - CDWISVPCM
   opt_uses:
   - lost_power_alarm
   - control_status
   - low_differential_pressure_alarm
   - run_mode
   - reset_command
-
-PMP_SS_PSMC_VSFC_CHWISVPCM:
-  description: "Generic chilled & secondary chilled water pump with chilled water isolation valve control"
-  is_canonical: true
-  implements:
-  - PMP
-  - SS
-  - PSMC
-  - VSFC
-  - CHWISVPCM
-  opt_uses:
-  - lost_power_alarm
-  - control_status
-  - low_differential_pressure_alarm
-  - chilled_water_flowrate_status
-  - run_mode
-  - reset_command
+  - condensing_water_isolation_valve_mode
+  - condensing_water_flowrate_status
+  - control_mode
 
 ###################################
 ### Existing Non-standard Types ###
@@ -187,12 +172,11 @@ PMP_SS_CHWP_PCWP:
   - low_differential_pressure_alarm
   - reset_command
 
-PMP_SS_PSMC_VSFC:
+PMP_SS_VSFC_SHWP:
   description: "Non standard secondary chilled water pump"
   implements:
   - PMP
   - SS
-  - PSMC
   - VSFC
   opt_uses:
   - lost_power_alarm
@@ -200,5 +184,23 @@ PMP_SS_PSMC_VSFC:
   - chilled_water_flowrate_status
   - run_mode
   - reset_command
-  - average_line_current_sensor
   - heat_percentage_sensor
+  - control_mode
+
+
+PMP_SS_CHWISOVPM_VSFC_CHWP_PCWP:
+  description: "Non standard chilled & secondary chilled water pump with chilled water isolation valve control"
+  implements:
+  - PMP
+  - SS
+  - CHWISOVPM
+  - VSFC
+  opt_uses:
+  - lost_power_alarm
+  - control_status
+  - low_differential_pressure_alarm
+  - run_mode
+  - reset_command
+  - chilled_water_flowrate_status
+  - chilled_water_isolation_valve_mode
+  - control_mode

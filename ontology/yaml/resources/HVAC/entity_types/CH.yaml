@@ -499,6 +499,39 @@ CH_SS_SCHWTC_CHDX2SC_REFSM2X_REFPM2X_CWDT:
   - REFPM2X
   - CWDT
 
+CH_SS_CHPM_REFSM_CHDXSC_ECHWTM_ECWTM:
+  description: "water cooled chiller single stage"
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - CHPM
+  - REFSM
+  - CHDXSC
+  - ECHWTM
+  - ECWTM
+  opt_uses:
+  - lost_power_alarm
+  - control_mode
+  - reset_command
+  - control_status
+
+CH_SS_CHDX2SC_CWDT:
+  description: "water cooled chiller single stage with compressor & condenser control"
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - CHDX2SC
+  - CWDT
+  opt_uses:
+  - lost_power_alarm
+  - control_mode
+  - reset_command
+  - control_status
+  - chilled_water_flowrate_status
+  - condensing_water_flowrate_status
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
@@ -585,142 +618,26 @@ CH_SS_CHWSWISOVM_CWSISOVM_CWRISOVM_CHWRWISOVM_CHWDT:
   - lost_power_alarm
   - run_mode
 
-CH_SS_CHPM_REFSM_SCHWTC_DXSWC:
-  description: "Non standard water cooled chiller single stage"
-  implements:
-  - CH
-  - SS
-  - CHPM
-  - REFSM
-  - SCHWTC
-  - DXSWC
-  opt_uses:
-  - lost_power_alarm
-  - control_mode
-  - reset_command
-  - run_mode
-  - failed_alarm
-  - control_status
-  - chilled_water_flowrate_status
-  - condensing_water_flowrate_status
-  - oil_heater_status
-  - oil_temperature_sensor
-  - oil_pump_differential_pressure_sensor
-  - total_compressor_count
-  - guidevane_percentage_sensor
-  - exhaust_gas_compressor_temperature_sensor
-  - bearing_temperature_sensor
-  - winding_temperature_sensor
-  - entering_chilled_water_temperature_sensor
-  - leaving_chilled_water_temperature_sensor
-  - entering_condensing_water_temperature_sensor
-  - leaving_condensing_water_temperature_sensor
-  - average_line_electric_percentage_sensor
-  - line_current_sensor
-  - line_voltage_sensor
-
-CH_SS_CHPM_REFSM_SCHWTC_DXSWC_CHWSWISOVPM_CHWRWISOVPM_CWDT_CSWISVC_CSWISVC:
+CH_SS_VSFC_CWDT_CWSISOVPM2X_CWRISOVM2X_CHWSWISOVPM_CHWRWISOVPM_REFSM_CHDXSC_CHPM_ECHWTM_ECWTM:
   description: "Non standard water cooled chiller single stage with chilled/condensing supply/return water isolation valve control. Chilled water flowrate status"
   implements:
-  - CH
   - SS
-  - CHPM
-  - REFSM
-  - SCHWTC
-  - DXSWC
   - VSFC
-  - PSMC
+  - CWDT
+  - CWSISOVPM2X
+  - CWRISOVM2X
   - CHWSWISOVPM
   - CHWRWISOVPM
-  - CWDT
-  - CSWISVC
-  - CRWISVC
+  - REFSM
+  - CHDXSC
+  - CHPM
+  - ECHWTM
+  - ECWTM
   opt_uses:
   - lost_power_alarm
   - control_status
-  - control_mode
-  - reset_command
   - run_mode
-  - failed_alarm
-  - condensing_water_flowrate_status
-  - chilled_water_flowrate_status
-  - chilled_supply_water_isolation_valve_mode
-  - chilled_supply_water_isolation_valve_percentage_setpoint
-  - chilled_return_water_isolation_valve_mode
-  - chilled_return_water_isolation_valve_percentage_setpoint
-  - open_command_1
-  - closed_command_1
-  - stop_command_1
-  - local_status_1
-  - open_command_2
-  - closed_command_2
-  - stop_command_2
-  - local_status_2
-  - average_line_electric_percentage_sensor
-  - line_current_sensor
-  - line_voltage_sensor
-  - total_compressor_count
-  - guidevane_percentage_sensor
-  - oil_heater_status
-  - oil_temperature_sensor
-  - oil_pump_differential_pressure_sensor
-  - exhaust_gas_compressor_temperature_sensor
-  - bearing_temperature_sensor
-  - winding_temperature_sensor
-  - entering_chilled_water_temperature_sensor
-  - leaving_chilled_water_temperature_sensor
-  - entering_condensing_water_temperature_sensor
-  - leaving_condensing_water_temperature_sensor
-
-CH_SS_CHDX2SC_CWDT:
-  description: "Non standard water cooled chiller single stage with compressor & condenser control"
-  implements:
-  - CH
-  - SS
-  - CHDX2SC
-  - CWDT
-  opt_uses:
-  - lost_power_alarm
-  - control_mode
   - reset_command
-  - start_mode
-  - control_status
-  - chilled_water_flowrate_status
-  - condensing_water_flowrate_status
-  - condensing_water_differential_pressure_alarm
-  - chilled_supply_water_low_temperature_alarm
-  - chilled_water_flowrate_alarm
-  - chilled_water_differential_pressure_alarm
-  - condensing_water_flowrate_alarm
-  - compressor_temperature_setpoint_1
-  - load_compressor_percentage_setpoint_1
-  - compressor_power_sensor_1
-  - compressor_open_percentage_command_1
-  - high_pressure_sensor_1
-  - high_temperature_sensor_1
-  - low_pressure_sensor_1
-  - low_temperature_sensor_1
-  - compressor_current_sensor_1
-  - compressor_temperature_setpoint_2
-  - load_compressor_percentage_setpoint_2
-  - compressor_power_sensor_2
-  - compressor_open_percentage_command_2
-  - high_pressure_sensor_2
-  - high_temperature_sensor_2
-  - low_pressure_sensor_2
-  - low_temperature_sensor_2
-  - compressor_current_sensor_2
-  - failed_alarm_1
-  - failed_alarm_2
-  - standby_compressor_alarm_1
-  - standby_compressor_alarm_2
-  - high_pressure_alarm_1
-  - high_pressure_alarm_2
-  - low_pressure_alarm_1
-  - low_pressure_alarm_2
-  - low_temperature_alarm_1
-  - compressor_current_alarm_1
-  - low_temperature_alarm_2
-  - compressor_current_alarm_2
-  - compressor_run_time_alarm_1
-  - compressor_run_time_alarm_2
+  - control_mode
+  - chilled_supply_water_isolation_valve_mode
+  - chilled_return_water_isolation_valve_mode

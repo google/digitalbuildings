@@ -131,21 +131,40 @@ CT_SS_VSFC:
   - run_mode
   - lost_power_alarm
 
-CT_SS_VSFC_CDWISVPCM_PSMC:
+CT_SS_VSFC_CDWISOVPM:
   description: "Cooling tower with condensing water isolation valve control"
   is_canonical: true
   implements:
   - CT
   - SS
   - VSFC
-  - CDWISVPCM
-  - PSMC
+  - CDWISOVPM
   opt_uses:
   - lost_power_alarm
   - control_status
   - run_mode
   - schedule_run_command
   - reset_command
+  - condensing_water_isolation_valve_mode
+  - condensing_water_flowrate_status
+  - control_mode
+
+CT_SS_VSFC_CWSISOVPM2X_CWRISOVM2X:
+  description: "Non standard cooling tower with condensing return/supply isolation valve control"
+  is_canonical: true
+  implements:
+  - CT
+  - SS
+  - VSFC
+  - CWSISOVPM2X
+  - CWRISOVM2X
+  opt_uses:
+  - lost_power_alarm
+  - control_status
+  - run_mode
+  - reset_command
+  - heat_percentage_sensor
+  - control_mode
 
 ###################################
 ### Existing Non-standard Types ###
@@ -196,22 +215,3 @@ CT_SS_CWDT_OA_VSFC_CSWIVS_CRWIVS_CSWTC:
   - control_mode
   - run_mode
   - lost_power_alarm
-
-CT_SS_VSFC_PSMC_CSWISVC_CRWISVC:
-  description: "Non standard cooling tower with condensing return/supply isolation valve control"
-  implements:
-  - CT
-  - SS
-  - VSFC
-  - PSMC
-  - CSWISVC
-  - CRWISVC
-  opt_uses:
-  - lost_power_alarm
-  - control_status
-  - run_mode
-  - reset_command
-  - average_line_current_sensor
-  - heat_percentage_sensor
-  - condensing_return_water_isolation_control_status
-  - condensing_supply_water_isolation_control_status
