@@ -6492,12 +6492,12 @@ DSTLM:
   description: "Dual section tank with level and temperature monitoring"
   is_abstract: true
   uses:
-  - section1_water_temperature_sensor
-  - section1_water_high_level_status
-  - section1_water_low_level_status
-  - section2_water_temperature_sensor
-  - section2_water_high_level_status
-  - section2_water_low_level_status
+  - heating_water_temperature_sensor_1
+  - section1_water_high_level_status_1
+  - section1_water_low_level_status_1
+  - heating_water_temperature_sensor_2
+  - water_high_level_status_2
+  - water_low_level_status_2
   - failed_alarm
   - run_status
   implements:

@@ -44,7 +44,7 @@ TK_LM:
   - /TK # Inherits from global namespace
   - LM
 
-TK_DSTLM_BST:
+TK_DSTLM:
   description: "Dual section tank with level and temperature monitoring, booster monitoring"
   is_canonical: true
   implements:
