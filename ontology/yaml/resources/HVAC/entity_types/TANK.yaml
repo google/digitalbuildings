@@ -45,6 +45,7 @@ TK_LM:
   - LM
 
 TK_DSTLM:
+  guid: "8182788c-8800-40c8-98a7-a10ca0d1f50b"
   description: "Dual section tank with level and temperature monitoring, booster monitoring"
   is_canonical: true
   implements:
