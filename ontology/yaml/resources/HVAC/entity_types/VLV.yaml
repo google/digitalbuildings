@@ -65,7 +65,7 @@ VLV_SWCM:
   implements:
   - VLV
   - SWCM
-  
+
 VLV_MWCM:
   description: "Motorized water valve control and monitoring."
   is_canonical: true

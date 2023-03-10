@@ -20,11 +20,9 @@ WSR_STD:
   implements:
   - WSR
   uses:
-  - run_status
-  opt_uses:
-  - lost_power_alarm
-  - water_flowrate_status
   - run_mode
+  opt_uses:
+  - water_flowrate_status
 
 WSR_AL:
   description: "Standard water softener with alarms."
@@ -33,7 +31,7 @@ WSR_AL:
   - WSR
   - AL
   uses:
-  - run_status
+  - run_mode
+  - lost_power_alarm
   opt_uses:
   - water_flowrate_status
-  - run_mode

@@ -241,10 +241,3 @@ SENSOR_WDPM:
   implements:
   - /SENSOR
   - WDPM
-
-SENSOR_SPM:
-  description: "Sensor with static pressure monitor"
-  is_canonical: true
-  implements:
-  - /SENSOR
-  - SPM

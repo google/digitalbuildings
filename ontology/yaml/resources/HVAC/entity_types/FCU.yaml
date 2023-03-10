@@ -1544,17 +1544,7 @@ FCU_RTM_DXZTC_SRC:
   uses:
   - filter_alarm
   - lost_power_alarm
-  
-FCU_DXZTC:
-  description: "FCU with SS, discharge temp sensors, zone control and sensor, filter change"
-  is_canonical: true
-  implements:
-  - FCU
-  - DXZTC
-  uses:
-  - panel_controller_status
-  - filter_alarm
-  
+
 FCU_NON_CANONICAL_TYPE_1:
   guid: "c8343898-b5c4-4540-a792-3630b28e2a16"
   description: "Typical chilled water FCU with cooling-only (discharge control) for MDF rooms,
@@ -1658,17 +1648,27 @@ FCU_RTC_RHDHS_DTM_DFSS:
   - fire_alarm
   - schedule_run_command
 
-FCU_RHDHS_DXSC_SHM_RTC:
-  description: "FCU with temperature control, humidity monitor with electrical parameter monitoring and water leak alarm."
+FCU_DXZTC:
+  description: "FCU with SS, discharge temp sensors, zone control and sensor, filter change"
+  is_canonical: true
+  implements:
+  - FCU
+  - DXZTC
+  uses:
+  - panel_controller_status
+  - filter_alarm
+
+FCU_RHDHS_DXRC:
+  description: "FCU with temperature & pressure monitor, humidity monitor and water leak & status alarm."
   is_canonical: true
   implements:
   - FCU
   - RHDHS
-  - DXSC
-  - SHM
-  - RTC
+  - DXRC
   uses:
+  - fan_run_status
   - water_leak_detection_alarm
-  - supply_fan_run_status
-  - low_discharge_air_flowrate_alarm
   - failed_alarm
+  - low_discharge_air_flowrate_alarm
+  - high_air_static_pressure_alarm
+  - low_air_static_pressure_alarm

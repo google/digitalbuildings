@@ -27,7 +27,6 @@ FAN_SS:
   - SS
   opt_uses:
   - air_pressure_sensor
-  - lost_power_alarm
 
 FAN_SS_VSC:
   guid: "b58b9431-ff2c-4cc2-adab-a8c51c4ee6ab"

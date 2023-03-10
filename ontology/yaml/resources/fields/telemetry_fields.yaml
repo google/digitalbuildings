@@ -1568,6 +1568,16 @@ literals:
 - fire_alarm:
   - ACTIVE
   - INACTIVE
+- supply_water_volume_accumulator:
+    fixed_min: -0.000315451
+    flexible_max: 0.315451
+- valve_command:
+  - OPEN
+  - CLOSED
+- valve_status:
+  - OPEN
+  - CLOSED
+
 - primary_fire_alarm: # better than using fire_alarm_1 (which will lead to fire_alarm_1_23)
   - ACTIVE
   - INACTIVE
@@ -1583,16 +1593,6 @@ literals:
 - particle_concentration_alarm:
   - ACTIVE
   - INACTIVE
-
-- supply_water_volume_accumulator:
-    fixed_min: -0.000315451
-    flexible_max: 0.315451
-- valve_command:
-  - OPEN
-  - CLOSED
-- valve_status:
-  - OPEN
-  - CLOSED
 - low_battery_alarm:
   - ACTIVE
   - INACTIVE
@@ -1608,7 +1608,6 @@ literals:
 - panel_controller_status:
   - NORMAL
   - UNKNOWN
-- static_pressure_sensor
 - motorized_valve_position_command:
   - CLOSED
   - OPEN
@@ -1621,7 +1620,13 @@ literals:
 - motorized_damper_position_status:
   - CLOSED
   - OPEN
-  
+- high_air_static_pressure_alarm:
+  - ACTIVE
+  - INACTIVE
+- low_air_static_pressure_alarm:
+  - ACTIVE
+  - INACTIVE
+
 - emergency_release_status:
   - ACTIVE
   - INACTIVE

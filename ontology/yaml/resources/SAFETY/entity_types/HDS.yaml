@@ -24,6 +24,7 @@ HDS_STD:
   is_canonical: true
   uses:
   - particle_concentration_sensor
+  opt_uses:
   - particle_concentration_alarm
 
 HDS_H2M:

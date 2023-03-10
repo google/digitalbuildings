@@ -25,7 +25,6 @@ WM_STANDARD:
   - flowrate_sensor
 
 WM_WF:
-  id: "5379261270530719744"
   guid: "df942136-4b98-4da7-9e68-acc210d6cf03"
   description: "Water flow rate meter with counter."
   implements:
