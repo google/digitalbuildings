@@ -1649,6 +1649,7 @@ FCU_RTC_RHDHS_DTM_DFSS:
   - schedule_run_command
 
 FCU_DXZTC:
+  guid: "9a927a3f-2c3c-4516-b934-9ee1fa1fc89d"
   description: "FCU with SS, discharge temp sensors, zone control and sensor, filter change"
   is_canonical: true
   implements:
@@ -1659,6 +1660,7 @@ FCU_DXZTC:
   - filter_alarm
 
 FCU_RHDHS_DXRC:
+  guid: "5e7fdbec-85f0-4b4b-a205-3864198d37c5"
   description: "FCU with temperature & pressure monitor, humidity monitor and water leak & status alarm."
   is_canonical: true
   implements:

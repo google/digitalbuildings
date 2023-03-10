@@ -48,6 +48,7 @@ FACP_PAS_AL:
   - air_pressure_status
 
 FACP_AL:
+  guid: "4f71f3df-ed93-498b-aea3-1ab444055c84"
   description: "Fire alarm panel with alarm."
   is_canonical: true
   implements:
@@ -58,6 +59,7 @@ FACP_AL:
   - supervisor_alarm
 
 FACP_FA2X_GS_AL:
+  guid: "3bbda411-751e-43d2-92c8-ce11cb2fa03a"
   description: "Fire alarm panel with 2-level alarm and gas suppression."
   is_canonical: true
   implements:

@@ -15,6 +15,7 @@
 ### CANONICAL TYPES
 
 WSR_STD:
+  guid: "9d768dfb-547d-40cf-9af2-6a4e01d8f284"
   description: "Standard water softener."
   is_canonical: true
   implements:
@@ -25,6 +26,7 @@ WSR_STD:
   - water_flowrate_status
 
 WSR_AL:
+  guid: "b1e9300f-e4e1-419d-af6f-ecea599919ec"
   description: "Standard water softener with alarms."
   is_canonical: true
   implements:

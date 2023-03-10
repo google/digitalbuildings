@@ -236,6 +236,7 @@ SENSOR_ZA_CO2M_PMM_HCHO:
   - zone_air_formaldehyde_concentration_sensor
 
 SENSOR_WDPM:
+  guid: "cd28badd-dbed-4104-932a-e83a2a4e947c"
   description: "Sensor with differential pressure monitor"
   is_canonical: true
   implements:

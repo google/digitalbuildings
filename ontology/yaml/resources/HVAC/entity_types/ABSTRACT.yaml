@@ -6265,6 +6265,7 @@ SWCM:
   - valve_status
 
 MWCM:
+  guid: "817a97fb-124e-4039-b26a-636188194dcc"
   description: "Motorized water valve control and monitoring."
   is_abstract: true
   uses:
@@ -6489,6 +6490,7 @@ RFVSC2X:
   - OPERATIONAL
 
 MFSD:
+  guid: "d9cc060f-62b9-4f97-b4c4-6d888038f534"
   description: "Motorized fire smoke damper"
   is_canonical: true
   implements:
