@@ -35,4 +35,5 @@ NEW_TYPE_TESTING:
   description: "testing action permissions"
 
 NEW_TYPE_TESTING_TWO:
+  guid: "af3e7ad4-ef97-4683-b9a9-97b0ad1ac96e"
   description: "testing action permissions again"
