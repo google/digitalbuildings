@@ -32,3 +32,6 @@ ADY_BS_SS:
 
 NEW_TYPE_TEST:
   description: "testing action permissions"
+
+NEW_TYPE_TESTING:
+  description: "testing action permissions"
