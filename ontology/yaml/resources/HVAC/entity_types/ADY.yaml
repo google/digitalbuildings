@@ -29,6 +29,3 @@ ADY_BS_SS:
   - control_mode
   - schedule_run_command
   - control_status
-
-NEW_TYPE_TEST:
-  description: "testing action permissions"
