@@ -6489,6 +6489,7 @@ RFVSC2X:
   - OPERATIONAL
 
 DSTLM:
+  guid: "ee8ca120-6fe7-42a9-aeeb-52e81952f990"
   description: "Dual section tank with level and temperature monitoring"
   is_abstract: true
   uses:
