@@ -31,4 +31,5 @@ ADY_BS_SS:
   - control_status
 
 NEW_TYPE_TEST:
+  guid: "f37eaed8-3d6b-44ea-8318-835bd59527c3"
   description: "testing action permissions"
