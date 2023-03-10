@@ -661,7 +661,7 @@ MAU_SFVSC_CHWSC_SSPC_FDPSM2X:
   opt_uses:
   - supply_air_isolation_damper_status 
 
-MAU_CHWSC_HWSC_SSPC_SFSS_SFVSC_FDPM2X_SFM_OA:
+MAU_CHWSC_HWSC_SSPC_SFSS_SFVSC_FDPM2X_SFM:
   description: "Multi-zone MAU with chilled water and heating water."
   is_canonical: true
   implements:
@@ -673,7 +673,6 @@ MAU_CHWSC_HWSC_SSPC_SFSS_SFVSC_FDPM2X_SFM_OA:
   - SFVSC
   - FDPM2X
   - SFM
-  - OA
   
 ###################################
 ### Existing Non-standard Types ###
