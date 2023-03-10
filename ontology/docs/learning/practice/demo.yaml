@@ -6,7 +6,7 @@ abc-123-ff6:
 def-234-fss:
   type: HVAC/FAN_SS
   code: EF-1
-  cloud_device_id: 1234567890123456
+  cloud_device_id: 1234567
   connections:
     abc-123-ff6: CONTAINS
   translation:
