@@ -263,9 +263,9 @@ def _TelemetryValidationCallback(
   # create validation report object
   validation_report = tvr.TelemetryValidationReport(
       expected_devices=expected_devices,
+      extra_devices=validator.GetExtraEntities(),
       missing_devices=validator.GetUnvalidatedEntities(),
       error_devices=error_devices,
-      extra_devices=validator.GetExtraEntities(),
   )
 
   # create formatted validation report string
@@ -273,20 +273,20 @@ def _TelemetryValidationCallback(
 
   if validator.report_directory:
     # Export to filepath or current working directory.
-    telemetry_valdiation_report_path = os.path.join(
+    telemetry_validation_report_path = os.path.join(
         validator.report_directory, TELEMETRY_VALIDATION_FILENAME
     )
   else:
-    telemetry_valdiation_report_path = os.path.join(
+    telemetry_validation_report_path = os.path.join(
         os.getcwd(), TELEMETRY_VALIDATION_FILENAME
     )
   with open(
-      telemetry_valdiation_report_path,
+      telemetry_validation_report_path,
       'w',
       encoding='utf-8'
   ) as report:
     report.write(json.dumps(validation_report_dict, indent=4))
-    print(f'Report Generated: {telemetry_valdiation_report_path}')
+    print(f'Report Generated: {telemetry_validation_report_path}')
     print('[INFO]\tTelemetry validation report generated.')
 
   _thread.interrupt_main()
