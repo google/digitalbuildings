@@ -6506,7 +6506,8 @@ HRCTMPSM:
   - heat_recovery_pump_status
   - condensing_return_water_temperature_sensor
   - condenser_status
-  - return_evaporator_water_temperature_sensor
+  - return_evaporative_water_temperature_sensor
   - outside_air_temperature_sensor
   implements:
   - MONITORING
+  

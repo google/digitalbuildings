@@ -3013,6 +3013,7 @@ literals:
   - ON
   - OFF
 
-- return_evaporator_water_temperature_sensor:
+- return_evaporative_water_temperature_sensor:
     flexible_min: 353.15
     flexible_max: 373.15
+    
