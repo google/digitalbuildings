@@ -6489,6 +6489,7 @@ RFVSC2X:
   - OPERATIONAL
 
 EPMX2:
+  guid: "0a522594-bae1-4e24-9da0-58f1df970ce0"
   description: "Evaporator pump status monitoring with 2 pumps"
   uses:
   - refrigerant_evaporator_pump_status_1
@@ -6497,6 +6498,7 @@ EPMX2:
   - MONITORING
 
 HRCTMPSM:
+  guid: "8bfc3f2d-b6de-47f8-99ee-a08bf208fdb3"
   description: "Heat recovery temperature monitoring, pump status monitoring"
   uses:
   - heat_recovery_return_water_temperature_sensor
