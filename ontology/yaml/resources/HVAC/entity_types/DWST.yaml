@@ -74,6 +74,7 @@ DWST_WDT:
   - WDT
 
 DWST_CPC_RMM_SS_REFPM_EPMX2_HRCTMPSM:
+  guid: "89538b79-a310-4b06-ac1b-ff1a7a4a5fef"
   description: "Domestic water system with air source heat pump with condenser pump, recovery pump, 2 evaporator pumps and temperature monitoring"
   is_canonical: true
   implements:
