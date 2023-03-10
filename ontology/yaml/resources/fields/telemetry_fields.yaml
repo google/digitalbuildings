@@ -3005,14 +3005,14 @@ literals:
   - ON
   - OFF
 
-- refrigerant_condenser_pump_status:
+- condenser_status:
   - ON
   - OFF
 
-- refrigerant_evaporator_pump_status:
+- evaporator_status:
   - ON
   - OFF
 
-- refrigerant_evaporator_return_water_temperature_sensor:
+- return_evaporator_water_temperature_sensor:
     flexible_min: 353.15
     flexible_max: 373.15
