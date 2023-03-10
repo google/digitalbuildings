@@ -3000,3 +3000,19 @@ literals:
 - failed_discharge_air_isolation_damper_alarm:
   - ACTIVE
   - INACTIVE
+
+- heat_recovery_pump_status:
+  - ON
+  - OFF
+
+- condenser_pump_status:
+  - ON
+  - OFF
+
+- evaporator_pump_status:
+  - ON
+  - OFF
+
+- evaporator_return_water_temperature_sensor:
+    flexible_min: 353.15
+    flexible_max: 373.15
