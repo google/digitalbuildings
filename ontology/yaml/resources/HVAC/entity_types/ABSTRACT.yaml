@@ -902,6 +902,7 @@ SWTC:
   - heating_request_count
   - return_water_temperature_sensor
   - run_command
+  - cooling_percentage_command
   uses:
   - supply_water_temperature_setpoint
   - supply_water_temperature_sensor
