@@ -72,10 +72,10 @@ DWST_WDT:
   implements:
   - DWST
   - WDT
-<<<<<<< HEAD
 
 DWST_SS_PWDT_HWTTC_SEWTM:
-  description: ""
+  guid: "bbde1c7a-fd21-410f-969a-65ebcf65234d"
+  description: "DWST with primary, secondary temperature monitoring, tank temperature sensor"
   is_canonical: false
   implements:
   - SS
@@ -84,5 +84,3 @@ DWST_SS_PWDT_HWTTC_SEWTM:
   - SEWTM
   uses:
   - heater_run_command
-=======
->>>>>>> master
