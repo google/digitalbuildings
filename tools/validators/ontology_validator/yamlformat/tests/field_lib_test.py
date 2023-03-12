@@ -252,7 +252,9 @@ class FieldLibTest(absltest.TestCase):
         'seventh': subfield_lib.Subfield('seventh', POINT_TYPE)
     }
     ns = field_lib.FieldNamespace('local', subfields=sf_dict)
-    field = field_lib.Field('first_second_third_fourth_fifth_sixth_seventh')
+    field = field_lib.Field(
+        'first_second_third_fourth_fifth_sixth_seventh',
+        default_value_range={'fixed_min': 0, 'fixed_max': 1})
 
     ns.InsertField(field)
     self.assertEmpty(ns.GetFindings())
@@ -485,6 +487,201 @@ class FieldLibTest(absltest.TestCase):
 
     self.assertIsInstance(folder.GetFindings()[0],
                           findings_lib.InvalidFieldFormatError)
+
+  def testAddFromConfigWithInvalidFieldFormat(self):
+    yaml = {'literals': [{'field_name': 2}]}
+    folder = field_lib.FieldFolder('/fields')
+    rel_filepath = '/fields/f.yaml'
+    folder.AddFromConfig([yaml], rel_filepath)
+
+    self.assertIsInstance(folder.GetFindings()[0],
+                          findings_lib.InvalidFieldFormatError)
+
+  def testAddFromConfigWithDefaultValueRange(self):
+    sf_dict = {
+        'zone': subfield_lib.Subfield('zone', DESCRIPTOR),
+        'outside': subfield_lib.Subfield('outside', DESCRIPTOR),
+        'discharge': subfield_lib.Subfield('discharge', DESCRIPTOR),
+        'sensor': subfield_lib.Subfield('sensor', POINT_TYPE),
+        'air': subfield_lib.Subfield('air', DESCRIPTOR),
+        'temperature': subfield_lib.Subfield('temperature', MEASUREMENT),
+    }
+    yaml = {
+        'literals': [
+            {
+                'zone_air_temperature_sensor': {
+                    'flexible_min': 0,
+                    'fixed_max': 1,
+                }
+            },
+            {
+                'outside_air_temperature_sensor': {
+                    'fixed_min': 2.5,
+                    'fixed_max': 3.5,
+                }
+            },
+            {
+                'discharge_air_temperature_sensor': {
+                    'flexible_min': 0,
+                    'flexible_max': 1,
+                }
+            },
+        ]
+    }
+    folder = field_lib.FieldFolder('/fields', local_subfields=sf_dict)
+    rel_filepath = '/fields/f.yaml'
+    folder.AddFromConfig([yaml], rel_filepath)
+
+    self.assertEmpty(folder.GetFindings())
+
+  def testAddFromConfigCounterFieldsWithDefaultValueRange(self):
+    sf_dict = {
+        'cooling': subfield_lib.Subfield('cooling', DESCRIPTOR),
+        'request': subfield_lib.Subfield('request', DESCRIPTOR),
+        'count': subfield_lib.Subfield('count', POINT_TYPE),
+        'message': subfield_lib.Subfield('message', DESCRIPTOR),
+        'counter': subfield_lib.Subfield('counter', POINT_TYPE),
+    }
+    yaml = {
+        'literals': [
+            {
+                'cooling_request_count': {
+                    'flexible_min': 0,
+                    'fixed_max': 10,
+                }
+            },
+            {
+                'message_counter': {
+                    'fixed_min': 0,
+                    'fixed_max': 5,
+                }
+            }
+        ]
+    }
+    folder = field_lib.FieldFolder('/fields', local_subfields=sf_dict)
+    rel_filepath = '/fields/f.yaml'
+    folder.AddFromConfig([yaml], rel_filepath)
+
+    self.assertEmpty(folder.GetFindings())
+
+  def testAddFromConfigCommandFields(self):
+    sf_dict = {
+        'power': subfield_lib.Subfield('power', MEASUREMENT),
+        'command': subfield_lib.Subfield('command', POINT_TYPE),
+        'percentage': subfield_lib.Subfield('percentage', MEASUREMENT),
+        'speed': subfield_lib.Subfield('speed', MEASUREMENT_DESCRIPTOR),
+    }
+    yaml = {
+        'literals': [
+            {
+                'speed_percentage_command': {
+                    'fixed_min': 0,
+                    'fixed_max': 100,
+                }
+            },
+            {'power_command': ['ON', 'OFF']},
+        ]
+    }
+    folder = field_lib.FieldFolder('/fields', local_subfields=sf_dict)
+    rel_filepath = '/fields/f.yaml'
+    folder.AddFromConfig([yaml], rel_filepath)
+
+    self.assertEmpty(folder.GetFindings())
+
+  def testAddFromConfigWithInvalidDefaultValueRangeMap(self):
+    yaml = {
+        'literals': [
+            {
+                'zone_air_temperature_sensor': {
+                    'flexible_min': 0,
+                    'fixed_max': 1,
+                    'flexible_max': 2,
+                }
+            }
+        ]
+    }
+    folder = field_lib.FieldFolder('/fields')
+    rel_filepath = '/fields/f.yaml'
+    folder.AddFromConfig([yaml], rel_filepath)
+
+    self.assertIsInstance(folder.GetFindings()[0],
+                          findings_lib.InvalidDefaultValueRangeError)
+
+  def testAddFromConfigWithInvalidDefaultValueRangeKey(self):
+    yaml = {
+        'literals': [
+            {'zone_air_temperature_sensor': {'flexible_min': 0, 'max': 1}}
+        ]
+    }
+    folder = field_lib.FieldFolder('/fields')
+    rel_filepath = '/fields/f.yaml'
+    folder.AddFromConfig([yaml], rel_filepath)
+
+    self.assertIsInstance(folder.GetFindings()[0],
+                          findings_lib.InvalidDefaultValueRangeError)
+
+  def testAddFromConfigWithInvalidDefaultValueRangeValue(self):
+    yaml = {
+        'literals': [
+            {
+                'zone_air_temperature_sensor': {
+                    'flexible_min': 0,
+                    'fixed_max': 'invalid',
+                }
+            }
+        ]
+    }
+    folder = field_lib.FieldFolder('/fields')
+    rel_filepath = '/fields/f.yaml'
+    folder.AddFromConfig([yaml], rel_filepath)
+
+    self.assertIsInstance(folder.GetFindings()[0],
+                          findings_lib.InvalidDefaultValueRangeValueError)
+
+  def testAddFromConfigWithInvalidDefaultValueRangeValues(self):
+    yaml = {
+        'literals': [
+            {'zone_air_temperature_sensor': {'flexible_min': 1, 'fixed_max': 0}}
+        ]
+    }
+    folder = field_lib.FieldFolder('/fields')
+    rel_filepath = '/fields/f.yaml'
+    folder.AddFromConfig([yaml], rel_filepath)
+
+    self.assertIsInstance(folder.GetFindings()[0],
+                          findings_lib.InvalidDefaultValueRangeValueError)
+
+  def testAddFromConfigNumericFieldMissingDefaultValueRange(self):
+    sf_dict = {
+        'zone': subfield_lib.Subfield('zone', DESCRIPTOR),
+        'sensor': subfield_lib.Subfield('sensor', POINT_TYPE),
+        'air': subfield_lib.Subfield('air', DESCRIPTOR),
+        'temperature': subfield_lib.Subfield('temperature', MEASUREMENT),
+    }
+    yaml = {'literals': ['zone_air_temperature_sensor']}
+    folder = field_lib.FieldFolder('/fields', local_subfields=sf_dict)
+    rel_filepath = '/fields/f.yaml'
+    folder.AddFromConfig([yaml], rel_filepath)
+
+    self.assertIsInstance(folder.GetFindings()[0],
+                          findings_lib.NumericFieldMissingValueRangeError)
+
+  def testAddFromConfigNonNumericFieldWithDefaultValueRange(self):
+    sf_dict = {
+        'manufacturer': subfield_lib.Subfield('manufacturer', DESCRIPTOR),
+        'label': subfield_lib.Subfield('label', POINT_TYPE),
+    }
+    yaml = {
+        'literals': [
+            {'manufacturer_label': {'flexible_min': 0, 'fixed_max': 1}}
+        ]
+    }
+    folder = field_lib.FieldFolder('/fields', local_subfields=sf_dict)
+    rel_filepath = '/fields/f.yaml'
+    folder.AddFromConfig([yaml], rel_filepath)
+
+    self.assertIsInstance(folder.GetFindings()[0],
+                          findings_lib.NonNumericFieldWithValueRangeError)
 
   def testAddFromConfigIllegalKeyType(self):
     yaml = {'literals': [False]}
