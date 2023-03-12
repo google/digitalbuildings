@@ -162,3 +162,11 @@ PMP_SS_VSC_NONCANONICAL_2:
   - mixing_valve_percentage_command
   - chilled_supply_water_temperature_setpoint
   - chilled_supply_water_temperature_sensor
+
+PMP_CPCX2:
+  guid: "f6fba302-4fe4-41d2-8d11-7ac89fab0e1c"
+  description: "Circulation Pump X2 with run command, run status and failed alarm for each"
+  is_canonical: true
+  implements:
+  - PMP
+  - CPCX2
