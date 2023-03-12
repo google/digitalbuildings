@@ -5649,6 +5649,8 @@ HWTTC:
   id: "8895657785832767488"
   description: "Hot water tank temperature control."
   is_abstract: true
+  opt_uses:
+  - high_water_temperature_alarm
   uses:
   - hot_water_tank_temperature_sensor
   - hot_water_tank_temperature_setpoint
@@ -6487,3 +6489,12 @@ RFVSC2X:
   - return_fan_speed_percentage_command_2
   implements:
   - OPERATIONAL
+
+SEWTM:
+  description: "Secondary water temperature monitoring"
+  opt_uses:
+  - secondary_supply_water_temperature_sensor
+  uses:
+  - secondary_return_water_temperature_sensor
+  implements:
+  - MONITORING

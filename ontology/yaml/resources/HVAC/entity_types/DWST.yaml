@@ -72,3 +72,14 @@ DWST_WDT:
   implements:
   - DWST
   - WDT
+
+DWST_SS_PWDT_HWTTC_SEWTM:
+  description: ""
+  is_canonical: false
+  implements:
+  - SS
+  - PWDT
+  - HWTTC
+  - SEWTM
+  uses:
+  - heater_run_command
