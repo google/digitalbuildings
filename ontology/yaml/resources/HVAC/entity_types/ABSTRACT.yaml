@@ -6491,7 +6491,7 @@ RFVSC2X:
   - OPERATIONAL
 
 SEWTM:
-guid: "bca463b0-2ecb-41df-8ad9-aab7690751d7"
+  guid: "bca463b0-2ecb-41df-8ad9-aab7690751d7"
   description: "Secondary water temperature monitoring"
   opt_uses:
   - secondary_supply_water_temperature_sensor
