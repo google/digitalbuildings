@@ -30,8 +30,7 @@ ATS_SRC1_SRC2:
   - generator_status
   - fire_alarm
   
-  
-  ATS_SRC1_SRC2_CK:
+ATS_SRC1_SRC2_CK:
   description: "TEST DO NOT COMMIT."
   is_canonical: true
   implements:
