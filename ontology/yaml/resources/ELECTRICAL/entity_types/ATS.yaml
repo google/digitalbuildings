@@ -29,3 +29,19 @@ ATS_SRC1_SRC2:
   opt_uses:
   - generator_status
   - fire_alarm
+  
+  
+  ATS_SRC1_SRC2_CK:
+  description: "TEST DO NOT COMMIT."
+  is_canonical: true
+  implements:
+  - ATS
+  - SRC1
+  - SRC2
+  uses:
+  - master_mode
+  - control_mode
+  - switch_position_mode
+  opt_uses:
+  - generator_status
+  - fire_alarm
