@@ -31,6 +31,7 @@ ATS_SRC1_SRC2:
   - fire_alarm
   
 ATS_SRC1_SRC2_CK:
+  guid: "7aa7cefb-7876-437c-9f5f-57667821c498"
   description: "TEST DO NOT COMMIT."
   is_canonical: true
   implements:
