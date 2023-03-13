@@ -16,7 +16,7 @@
 
 
 PWM:
-  id: "17470344350578769920"
+  guid: "960f7009-b4bd-4c68-b7d1-33555bff2148"
   description: "Very basic power and energy monitoring only."
   is_abstract: true
   opt_uses:
@@ -31,7 +31,7 @@ PWM:
   - energy_accumulator
 
 AVCM:
-  id: "12498370361961742336"
+  guid: "0329a2b4-d474-444e-82af-c6c0432a9f48"
   description: "Average phase (line) level voltage and current monitoring. "
   is_abstract: true
   uses:
@@ -40,7 +40,7 @@ AVCM:
   - average_line_current_sensor
 
 PLPM:
-  id: "14407896603966832640"
+  guid: "2007bb49-2824-4e76-8c8c-772d9204bcc2"
   description: "Phase-level power monitoring."
   is_abstract: true
   opt_uses:
@@ -59,7 +59,7 @@ PLPM:
   - phase3_power_sensor
 
 PVCM:
-  id: "11021189684184219648"
+  guid: "97b8b9c1-21dd-4201-9424-c776e28de758"
   description: "Phase-level current and voltage monitoring."
   is_abstract: true
   uses:
@@ -74,7 +74,7 @@ PVCM:
   - phase3_neutral_line_voltage_sensor
   
 PWMRDM:
-  id: "14764494613133656064"
+  guid: "4bfb27f6-0a27-48d9-8830-81c84d95c8ab"
   description: "Energy monitoring from Electrical Grid and Generator with run hours monitoring."
   is_abstract: true
   uses:
@@ -84,7 +84,7 @@ PWMRDM:
   - electricalgrid_run_time_accumulator
 
 VCM:
-  id: "9300590326156623872"
+  guid: "dc4d2839-c00d-4935-bc67-013f7721535f"
   description: "Current and voltage monitoring"
   is_abstract: true
   uses:

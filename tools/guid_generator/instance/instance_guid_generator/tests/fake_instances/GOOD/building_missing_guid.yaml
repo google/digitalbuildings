@@ -1,4 +1,4 @@
-# Copyright 2022 Google LLC
+# Copyright 2023 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the License);
 # you may not use this file except in compliance with the License.
@@ -12,19 +12,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-BUILDING-GUID:
-  code: BUILDING
+# Building
+US-BLDG-CODE-1:
   type: FACILITIES/BUILDING
+  guid:
 
-GATEWAY-ENTITY:
-  guid: GATEWAY-ENTITY-GUID
-  type: GATEWAYS/PASSTHROUGH
-  connections:
-    BUILDING: CONTAINS
-
-VIRTUAL-ENTITY:
-  type: HVAC/CHWS_WDT
-  links:
-    GATEWAY-ENTITY:
-      supply_water_temperature_sensor: supply_water_temperature_sensor
-      return_water_temperature_sensor: return_water_temperature_sensor
+US-BLDG-CODE-2:
+  type: FACILITIES/BUILDING

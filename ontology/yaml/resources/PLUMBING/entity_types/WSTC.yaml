@@ -19,7 +19,7 @@
 
 
 WSTC_SS:
-  id: "7056302375912341504"
+  guid: "5cbe76a6-f279-4126-a64b-02910a475acd"
   description: "Basic waste compactor system."
   is_canonical: true
   implements:

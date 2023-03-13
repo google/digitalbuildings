@@ -14,7 +14,7 @@
 
 
 DWST_CHDT_SWTC_CPC:
-  id: "14417792208616816640"
+  guid: "0357108f-fddd-46e6-a532-e8550f8bbe54"
   description: "Domestic water system with condensing water heat exhanger without bypass valve"
   implements:
   - DWST
@@ -27,7 +27,7 @@ DWST_CHDT_SWTC_CPC:
   - potable_water_low_temperature_sensor
 
 DWST_SWTC_CPC_BYPVPM:
-  id: "6320320078604664832"
+  guid: "500218ff-8dbe-49f8-8319-3069b23de96b"
   description: "Domestic water system with bypass valve"
   implements:
   - DWST
@@ -41,7 +41,7 @@ DWST_SWTC_CPC_BYPVPM:
 
 # TODO: remove if we get more examples of water-to-water heat pumps
 DWST_SWTC_CPVSC2X_WSHP2X:
-  id: "14372034932715290624"
+  guid: "7f92f630-cd94-40a0-aa48-9d702bc50b30"
   description: "Non-standard domestic water system with 2 circulation pumps and 2 water-source heat pumps.
   The potable leaving water temperature is for the water leaving the heat pumps and the heat pumps share a
   common setpoint."
@@ -58,7 +58,7 @@ DWST_SWTC_CPVSC2X_WSHP2X:
   - potable_hot_leaving_water_temperature_setpoint
 
 DWST_PWDT:
-  id: "1720086573292191744"
+  guid: "a537d6c5-8187-4868-9918-18ed74052a26"
   description: "Domestic water system with primary side delta-T monitoring."
   is_canonical: true
   implements:
@@ -66,7 +66,7 @@ DWST_PWDT:
   - PWDT
 
 DWST_WDT:
-  id: "12843977652897316864"
+  guid: "f14e1dfa-9d12-4b6d-8ba3-262e3a62cd13"
   description: "Domestic water system with delta-T monitoring."
   is_canonical: true
   implements:

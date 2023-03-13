@@ -13,7 +13,7 @@
 # limitations under the License.
 
 BATT_STD:
-  id: "11958105532444704768"
+  guid: "d5b5721e-1194-4b1b-8e0e-ed24bc1fab70"
   description: "Standard battery."
   implements:
   - BATT
