@@ -30,8 +30,10 @@ jobs:
             - 'tools/abel/**'
           explorer:
             - 'tools/explorer/**'
-          guid_generator:
-            - 'tools/guid_generator/**'
+          instance_guid_generator:
+            - 'tools/guid_generator/instance/**'
+          ontology_guid_generator:
+            - 'tools/guid_generator/ontology/**'
           instance_validator:
             - 'tools/validators/instance_validator/**'
           rdf_generator:
@@ -94,21 +96,37 @@ jobs:
        python -m unittest discover -p '*_test.py' --failfast -v
       working-directory: ./tools/abel
 
-     #---------- GUID Generator ----------#
-    - name:  GUID Generator Install dependencies
-      if: steps.changes.outputs.guid_generator == 'true' || steps.changes.outputs.instance_validator == 'true'
+     #---------- Instance GUID Generator ----------#
+    - name:  Instance GUID Generator Install dependencies
+      if: steps.changes.outputs.instance_guid_generator == 'true' || steps.changes.outputs.instance_validator == 'true'
       run: |
         python setup.py install
-      working-directory: ./tools/guid_generator
-    - name: Run pylint on GUID Generator
-      if: steps.changes.outputs.guid_generator == 'true'
+      working-directory: ./tools/guid_generator/instance
+    - name: Run pylint on Instance GUID Generator
+      if: steps.changes.outputs.instance_guid_generator == 'true'
       run: |
-        pylint --rcfile ./styles/pylintrc ./tools/guid_generator
-    - name:  GUID Generator Tests
-      if: steps.changes.outputs.guid_generator == 'true' || steps.changes.outputs.instance_validator == 'true'
+        pylint --rcfile ./styles/pylintrc ./tools/guid_generator/instance
+    - name:  Instance GUID Generator Tests
+      if: steps.changes.outputs.instance_guid_generator == 'true' || steps.changes.outputs.instance_validator == 'true'
       run: |
        python -m unittest discover -p '*_test.py' --failfast -v
-      working-directory: ./tools/guid_generator
+      working-directory: ./tools/guid_generator/instance
+
+     #---------- Ontology GUID Generator ----------#
+    - name:  Ontology GUID Generator Install dependencies
+      if: steps.changes.outputs.ontology_guid_generator == 'true' || steps.changes.outputs.type_validator == 'true'
+      run: |
+        python setup.py install
+      working-directory: ./tools/guid_generator/ontology
+    - name: Run pylint on Ontology GUID Generator
+      if: steps.changes.outputs.ontology_guid_generator == 'true'
+      run: |
+        pylint --rcfile ./styles/pylintrc ./tools/guid_generator/ontology
+    - name:  Ontology GUID Generator Tests
+      if: steps.changes.outputs.ontology_guid_generator == 'true' || steps.changes.outputs.type_validator == 'true'
+      run: |
+       python -m unittest discover -p '*_test.py' --failfast -v
+      working-directory: ./tools/guid_generator/ontology
 
      #---------- RDF Generator ----------#
     - name:  RDF Generator Install dependencies

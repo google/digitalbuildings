@@ -20,16 +20,16 @@
 
 
 CONTROL:
-  id: "14773441339248869376"
+  guid: "7f01f97d-bc5a-4d03-a5ed-f38367af343c"
   description: "A tag to represent that the subtype forms a control unit. Ex: temperature, setpoint, heater output."
   is_abstract: true
 
 OPERATIONAL:
-  id: "799897595425062912"
+  guid: "f5252215-3db7-4d34-af1a-2e3a25f7047b"
   description: "A tag to represent that the subtype forms an operational group. Ex: temperature and setpoint."
   is_abstract: true
 
 MONITORING:
-  id: "8216200281797427200"
+  guid: "ddbc557c-0d40-4657-8575-f2ddaec96961"
   description: "A tag to represent that the subtype forms a monitoring group. Ex: temperature sensor only."
   is_abstract: true

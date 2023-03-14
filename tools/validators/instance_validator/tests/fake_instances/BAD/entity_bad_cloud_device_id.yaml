@@ -1,4 +1,4 @@
-# Copyright 2022 Google LLC
+# Copyright 2023 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the License);
 # you may not use this file except in compliance with the License.
@@ -11,18 +11,21 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-"""Setup file for Building Configuration GUID generator."""
 
-from setuptools import find_packages
-from setuptools import setup
+# Cloud device ID must be a 16 digit string
 
-setup(
-    name='guid_generator',
-    version='0.0.1',
-    url='https://github.com/google/digitalbuildings',
-    license='Apache License',
-    author='Travis Welch',
-    packages=find_packages(),
-    install_requires=['strictyaml==1.4.2'],
-    python_requires='>=3.9',
-)
+SDC_EXT-17-GUID:
+  type: HVAC/SDC_EXT
+  code: SDC_EXT-17
+  cloud_device_id: "bad_device_id"
+  translation:
+    shade_extent_percentage_command:
+      present_value: "points.shade_extent_percentage_command.present_value"
+      units:
+        key: "points.shade_extent_percentage_command.units"
+        values:
+          percent: "%"
+
+US-SEA-BLDG1-GUID:
+  type: FACILITIES/BUILDING
+  code: US-SEA-BLDG1

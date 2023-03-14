@@ -21,7 +21,7 @@
 # tied directly to an individual luminaire and must be modeled as stand-alone devices.
 
 LS_LPS:
-  id: "12720524487330627584"
+  guid: "8ad90cb4-3c19-4c41-81ab-22b192073539"
   description: "Lighting system photocell sensor."
   is_canonical: true
   implements:
@@ -30,7 +30,7 @@ LS_LPS:
   - illuminance_sensor
 
 LS_LMS:
-  id: "8541184033130807296"
+  guid: "62961442-f3b8-47e1-9b53-ac658cd2cf61"
   description: "Lighting system motion sensor."
   is_canonical: true
   implements:
@@ -39,7 +39,7 @@ LS_LMS:
 
 
 LS_MTS:
-  id: "12936697269444411392"
+  guid: "8bc3943d-da3e-406b-b3d4-c1b0874e2052"
   description: "Lighting multi-sensor, for temperature and brightness."
   is_canonical: true
   implements:
@@ -49,7 +49,7 @@ LS_MTS:
   - zone_air_temperature_sensor
 
 LS_IS_OS:
-  id: "1152509874941198336"
+  guid: "144f310a-7848-428a-ba09-24439d26d7d6"
   description: "Illuminance sensing and zone occupancy monitoring"
   is_canonical: true
   implements:
@@ -58,7 +58,7 @@ LS_IS_OS:
   - OS
 
 LS_OS:
-  id: "12736612541468246016"
+  guid: "b4e37b46-fd8d-45ce-bd0d-6604d945bfe7"
   description: "Zone occupancy monitoring"
   is_canonical: true
   implements:
@@ -66,7 +66,7 @@ LS_OS:
   - OS
 
 LS_LOS:
-  id: "699827743646285824"
+  guid: "f9589a72-3122-4b44-b31c-c37a17751590"
   description: "Lighting system motion sensor."
   is_canonical: true
   implements:
@@ -74,7 +74,7 @@ LS_LOS:
   - OS
 
 LS_MS_IS:
-  id: "16824737511027769344"
+  guid: "caf4990c-fdb2-47cb-ab7c-a8743cf855b6"
   description: "lighting multi-sensor for motion and illuminance."
   is_canonical: true
   implements:
@@ -92,3 +92,4 @@ LS_OS_IS_MTS:
   uses:
   - zone_air_temperature_sensor
   - zone_air_relative_humidity_sensor
+

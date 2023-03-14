@@ -14,7 +14,7 @@
 
 
 LT_SS:
-  id: "15296583474186551296"
+  guid: "75cb78f1-63d6-4442-9e05-2ee0d9b24360"
   description: "Standard light."
   is_canonical: true
   implements:
@@ -22,7 +22,7 @@ LT_SS:
   - SS
 
 LT_DC:
-  id: "18377045619307970560"
+  guid: "5eee1cd9-5a5c-4daf-8211-4a413bcdff5d"
   description: "Even more standaard light with dimming control."
   is_canonical: true
   implements:
@@ -30,7 +30,7 @@ LT_DC:
   - DC
 
 LT_DC_SC:
-  id: "16395461783264952320"
+  guid: "ec914daa-b767-4034-a072-cf33c6e4d60b"
   description: "Standard light with dimming control and scene control."
   is_canonical: true
   implements:
@@ -39,7 +39,7 @@ LT_DC_SC:
   - SC
 
 LT_DPC:
-  id: "17654543334556827648"
+  guid: "ec1e29c1-709b-451f-af2a-401867e8a4b5"
   description: "Dimmer lighting group control module."
   is_canonical: true
   implements:
@@ -47,7 +47,7 @@ LT_DPC:
   - DPC
 
 ELT_GENERIC:
-  id: "9752590760242315264"
+  guid: "93b0205f-5a69-45e9-8af8-7d2a862037af"
   description: "Generic, non-canonical emergency light"
   is_canonical: false
   implements:
