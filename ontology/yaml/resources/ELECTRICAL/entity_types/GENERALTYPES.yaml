@@ -13,21 +13,21 @@
 # limitations under the License.
 
 BATT:
-  id: "2974734893700874240"
+  guid: "b65c37c0-3820-4847-8bde-ae02cec805cb"
   description: "Tag for all batteries (devices used to store and discharge power for the use of a device or group of devices)."
   is_abstract: true
   implements:
   - EQUIPMENT
 
 UPS:
-  id: "9261759973510086656"
+  guid: "53a1903c-7b32-47da-a7ef-94b047a1aa50"
   description: "Tag for all uninterruptible power supply units."
   is_abstract: true
   implements:
   - EQUIPMENT
 
 PANEL:
-  id: "1218269466375225344"
+  guid: "f3f7245d-199a-4f73-845d-99c10991c778"
   description: "Tag for all electrical panels."
   is_abstract: true
   implements:
@@ -36,11 +36,11 @@ PANEL:
 
   
 GEN:
-  id: "4890352430123843584"
+  guid: "c935c4f5-019c-4eb7-9f81-8dcf47e7a594"
   description: "Tag for all Electricity generating equipments."
 
 ATS:
-  id: "17117625418434740224"
+  guid: "f2e50348-ce8d-4c2e-9e82-0d6056d4c89c"
   description: "Tag for automatic transfer switch (ATS) units."
 
   is_abstract: true
@@ -52,14 +52,14 @@ ATS:
 
 
 CB:
-  id: "10844111137507639296"
+  guid: "245e084f-a577-441d-a88e-662fd8396271"
   description: "Tag for all circuit breakers."
   is_abstract: true
   implements:
   - EQUIPMENT
 
 TXMR:
-  id: "12834420697828687872"
+  guid: "89a9ced0-3ee2-4d12-94b4-84e7179766e6"
   description: "Typical Transformer tag used for device that transfers electric energy from one alternating-current circuit to one or more other circuits, either increasing (stepping up) or reducing (stepping down) the voltage."
   is_abstract: true
   implements:
