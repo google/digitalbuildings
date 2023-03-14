@@ -17,7 +17,7 @@
 ########################
 
 CDWS_SWTC:
-  id: "11120423907125886976"
+  guid: "618090ae-c5bb-4a60-8433-c150654e482f"
   description: "Simple condenser water system with supply control."
   is_canonical: true
   implements:
@@ -25,7 +25,7 @@ CDWS_SWTC:
   - SWTC
 
 CDWS_SWTC_WDPC:
-  id: "17252637749744238592"
+  guid: "5bc2261e-6294-498a-b690-d673afb6da2e"
   description: "Condenser water system with supply temp and differential pressure control."
   is_canonical: true
   implements:
@@ -34,7 +34,7 @@ CDWS_SWTC_WDPC:
   - WDPC
 
 CDWS_SWTC_BYPVPM:
-  id: "18303665312781828096"
+  guid: "ce74369f-a6b2-4624-bf0f-543b8e00fb8b"
   description: "Condenser water system with supply and bypass control."
   is_canonical: true
   implements:
@@ -43,7 +43,7 @@ CDWS_SWTC_BYPVPM:
   - BYPVPM
 
 CDWS_SWTC_WDPC_WFRC_HXSWISOVPM:
-  id: "4036261693272096768"
+  guid: "6f9f09c8-9ccf-4204-a3c8-e24efea95dde"
   description: "Condenser water system with a heat exchanger."
   is_canonical: true
   implements:
@@ -54,7 +54,7 @@ CDWS_SWTC_WDPC_WFRC_HXSWISOVPM:
   - HXSWISOVPM
 
 CDWS_SWTC_WDPC_MINFC_CLPM:
-  id: "6508737888698499072"
+  guid: "10870d62-e1da-4dec-917f-0f0a13a23044"
   description: "Condenser water system with supply temp and differential pressure control."
   is_canonical: true
   implements:
@@ -65,7 +65,7 @@ CDWS_SWTC_WDPC_MINFC_CLPM:
   - CLPM
 
 CDWS_SWTC_WDPC_PWDPC_PRWDT_RWISOVM_PWISOVM:
-  id: "13259633730126872576"
+  guid: "f70bacc1-a512-4e92-98d1-32ccbdf6760d"
   description: "Condenser water system with supply temp and differential pressure control."
   is_canonical: true
   implements:
@@ -78,7 +78,7 @@ CDWS_SWTC_WDPC_PWDPC_PRWDT_RWISOVM_PWISOVM:
   - PWISOVM
 
 CDWS_SWTC_MINFC_WDPC2X_PCLPM_CLPM_PRWDT2X_PWFRM2X_PWDPM2X:
-  id: "8647947711699484672"
+  guid: "e05ded41-43a8-426e-a596-026c7e4f4752"
   description: "Condenser water system with duap process water headers."
   is_canonical: true
   implements:
@@ -93,7 +93,7 @@ CDWS_SWTC_MINFC_WDPC2X_PCLPM_CLPM_PRWDT2X_PWFRM2X_PWDPM2X:
   - PWDPM2X
 
 CDWS_SWTC_WDPM_SWPSS:
-  id: "10825737198695874560"
+  guid: "cd9c310c-a5ea-4fdc-a38a-d0fab58460c5"
   description: "Condenser water system with differential pressure monitoring and sweeper pump for CT basins."
   is_canonical: true
   implements:
@@ -103,7 +103,7 @@ CDWS_SWTC_WDPM_SWPSS:
   - SWPSS
 
 CDWS_CLPM_SWTC_WDPM_WFRC:
-  id: "12362373967745384448"
+  guid: "571a238d-3540-4f4d-ba11-5b61e43e9b3b"
   description: "Condensing water system with supply temp and flowrate control; and thermal power and differential pressure monitoring."
   is_canonical: true
   implements:
@@ -112,9 +112,9 @@ CDWS_CLPM_SWTC_WDPM_WFRC:
   - SWTC
   - WDPM
   - WFRC
-  
+
 CDWS_CLPM_WDT_WFRM:
-  id: "11680091818338287616"
+  guid: "1dc03a2c-5bfd-4edc-ab95-97ebba7a716b"
   description: "Condensing water system with delta-T, flowrate, and thermal power monitoring."
   is_canonical: true
   implements:
@@ -122,8 +122,9 @@ CDWS_CLPM_WDT_WFRM:
   - CLPM
   - WDT
   - WFRM
+
 CDWS_CWDT_CDWISOVM_CDWFRSM:
-  id: "18079143938878341120"
+  guid: "1314b4fb-8351-4b3f-9d6e-5a2aad3c71a1"
   description: "Condensing water system with temperature, isolation valve , flowrate monitoring. "
   is_canonical: true
   implements:
@@ -133,6 +134,7 @@ CDWS_CWDT_CDWISOVM_CDWFRSM:
   - CDWFRSM
 
 CDWS_BYPVPM_CLPM_SWTC_WDPC_WFRM:
+  guid: "a7f58153-de99-4e59-8439-e72f345f59c1"
   description: "Condensing water system with supply temp and differential pressure control; and thermal power and flowrate monitoring."
   is_canonical: true
   implements:
@@ -147,9 +149,9 @@ CDWS_BYPVPM_CLPM_SWTC_WDPC_WFRM:
 ### Existing Non-standard Types ###
 ###################################
 
-CDWS_US_MTV_2081_1:
-  id: "2724350807288840192"
-  description: "Non-standard 2081 CDWS"
+CDWS_NONCANONICAL_1:
+  guid: "48f8d011-97e7-4966-bda7-146fba1c4fcb"
+  description: "Non-standard CDWS"
   implements:
   - CDWS
   uses:

@@ -22,6 +22,7 @@ from model.constants import SITE_TYPE_NAME
 from model.entity import Entity
 
 
+# TODO(b/247621096): Combine site namespace and type name into one attribute.
 class Site(object):
   """Data container for a Building Configuration site.
 

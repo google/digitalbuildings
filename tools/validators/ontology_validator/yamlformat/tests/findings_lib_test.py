@@ -18,17 +18,20 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
+from absl.testing import absltest
+
 from yamlformat.validator import entity_type_lib
 from yamlformat.validator import findings_lib
 from yamlformat.validator import test_helpers_lib
-from absl.testing import absltest
 
 _F = test_helpers_lib.Fields
 
 
+# pylint: disable=no-value-for-parameter
 class FindingsLibTest(absltest.TestCase):
 
   def setUp(self):
+    super().setUp()
     self.findings_class = findings_lib.Findings()
     self.file_context = findings_lib.FileContext(filepath='some_path')
 

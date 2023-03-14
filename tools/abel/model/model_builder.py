@@ -49,6 +49,7 @@ from validate.connection import Connection as IVConnection
 from validate.entity_instance import EntityInstance
 from validate.field_translation import DimensionalValue
 from validate.field_translation import MultiStateValue
+from validate.field_translation import UndefinedField
 from validate.link import Link
 
 
@@ -123,9 +124,14 @@ class ModelBuilder(object):
       model_builder.AddReportingEntitiesFromEntityInstance(entity_instance)
     return model_builder
 
+  # pylint: disable=line-too-long
   # TODO(b/234630862) Refactor Build method for readability.
   def Build(self) -> None:
-    """Connects all entities to a site, fields to entities, and entities to entities based on attributes."""
+    """Connects ABEL graph with Guids as edges.
+
+    Connects all entities to a site, fields to entities, and entities to
+    entities based on attributes.
+    """
     self.site.entities = self.entities
     for guid in self.site.entities:
       entity = self.guid_to_entity_map.GetEntityByGuid(guid)
@@ -134,17 +140,20 @@ class ModelBuilder(object):
           entity.AddConnection(connection)
       for field in self.fields:
         for state in self.states:
-          if state.standard_field_name == field.standard_field_name and state.entity_guid == guid:
-            field.AddState(state)
+          if state.reporting_entity_guid == guid:
+            if state.standard_field_name == field.reporting_entity_field_name:
+              field.AddState(state)
+            elif state.standard_field_name == field.standard_field_name:
+              field.AddState(state)
         if isinstance(entity, VirtualEntity):
           if field.entity_guid == guid:
             entity.AddLink(field)
         elif isinstance(entity, ReportingEntity):
-          if field.entity_guid == guid or field.reporting_entity_guid == guid:
+          if guid in (field.entity_guid, field.reporting_entity_guid):
             entity.AddTranslation(field)
 
   def LoadEntities(self, entity_entries: List[Dict[str, str]]) -> None:
-    """Loads a list of entity dictionary mappings into Entity instances and adds to the model.
+    """Loads a list of entity maps into Entity instances and adds to the model.
 
     Args:
       entity_entries: A list of Python Dictionaries mapping entity attributes
@@ -162,7 +171,10 @@ class ModelBuilder(object):
 
   def LoadEntityFields(self, entity_field_entries: List[Dict[str,
                                                              str]]) -> None:
-    """Loads a list of entity field dictionary mappings into EntityField instances and adds to the model.
+    """Loads list of entity field maps into EntityField instances.
+
+    Once the entity field mapping is loaded into an EntityField instance, it
+    is then added to the ABEL internal model.
 
     Args:
       entity_field_entries: A list of python dictionaries mapping entity field
@@ -186,7 +198,7 @@ class ModelBuilder(object):
     """
     for state_entry in state_entries:
       state_entry[BC_GUID] = self.guid_to_entity_map.GetEntityGuidByCode(
-          state_entry[ENTITY_CODE])
+          state_entry[REPORTING_ENTITY_CODE])
       self.states.append(State.FromDict(state_entry))
 
   def LoadConnections(self, connection_entries: List[Dict[str, str]]) -> None:
@@ -234,6 +246,9 @@ class ModelBuilder(object):
         elif isinstance(field, MultiStateValue):
           self._MultistateValueToEntityField(
               reporting_entity_guid=entity_instance.guid, field=field)
+        elif isinstance(field, UndefinedField):
+          self._UndefinedFieldToEntityField(
+              reporting_entity_guid=entity_instance.guid, field=field)
 
     self.entities.append(entity)
     self.guid_to_entity_map.AddEntity(entity)
@@ -253,12 +268,13 @@ class ModelBuilder(object):
     entity_field = EntityField(
         standard_field_name=field.std_field_name,
         raw_field_name=field.raw_field_name,
+        missing=False,
         entity_guid=reporting_entity_guid,
         reporting_entity_guid=reporting_entity_guid)
 
     entity_field.units = Units(
         raw_unit_path=field.unit_field_name,
-        standard_to_raw_unit_map=field.unit_mappings)
+        standard_to_raw_unit_map=field.unit_mapping)
 
     self.fields.append(entity_field)
 
@@ -274,9 +290,25 @@ class ModelBuilder(object):
         EntityField(
             standard_field_name=field.std_field_name,
             raw_field_name=field.raw_field_name,
+            missing=False,
             entity_guid=reporting_entity_guid,
             reporting_entity_guid=reporting_entity_guid))
     self._TranslateStatesToABEL(entity_guid=reporting_entity_guid, field=field)
+
+  def _UndefinedFieldToEntityField(self, reporting_entity_guid: str,
+                                   field: UndefinedField) -> None:
+    """Maps UndefinedField attributes to ABEL EntityField instances.
+
+    Args:
+      reporting_entity_guid: Parent reporting entity guid.
+      field: An Instance Validator UndefinedField instance.
+    """
+    self.fields.append(
+        EntityField(
+            standard_field_name=field.std_field_name,
+            missing=True,
+            entity_guid=reporting_entity_guid,
+            reporting_entity_guid=reporting_entity_guid))
 
   def _TranslateStatesToABEL(self, entity_guid: str,
                              field: MultiStateValue) -> None:
@@ -290,7 +322,7 @@ class ModelBuilder(object):
       self.states.append(
           State(
               standard_field_name=field.std_field_name,
-              entity_guid=entity_guid,
+              reporting_entity_guid=entity_guid,
               standard_state=std_state_value,
               raw_state=raw_state_value))
 

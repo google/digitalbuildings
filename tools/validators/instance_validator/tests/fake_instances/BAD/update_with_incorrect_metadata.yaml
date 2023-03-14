@@ -1,4 +1,4 @@
-# Copyright 2020 Google LLC
+# Copyright 2023 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the License);
 # you may not use this file except in compliance with the License.
@@ -16,10 +16,10 @@
 CONFIG_METADATA:
   operation: INITIALIZE
 
-UK-LON-S2-GUID:
+US-SEA-BLDG1-GUID:
   operation: ADD
   type: FACILITIES/BUILDING
-  code: UK-LON-S2
+  code: US-SEA-BLDG1
 
 SDC_EXT-18-GUID:
   code: SDC_EXT-18

@@ -39,6 +39,9 @@ FLAGS = flags.FLAGS
 
 _F = test_helpers_lib.Fields
 _F1 = test_helpers_lib.Field
+_GUID_1 = '4d68ac84-786f-425c-9a65-097b1fb04c91'
+_GUID_2 = '3d68ac84-786f-425c-9a65-097b1fb04c91'
+_GUID_3 = '1800a4cf-ef6c-4e7c-b811-f2004c0df85b'
 
 # Constant to point to test files.
 RESOURCE_PATH = path.join(test_constants.TEST_RESOURCES)
@@ -90,32 +93,6 @@ class PresubmitValidateTypesTest(absltest.TestCase):
 
     self.good1_depot_path = path.join('//depot/google3', RESOURCE_PATH,
                                       'GOOD/entity_types/good1.yaml')
-
-  def CreateConfig(self,
-                   fields=tuple(),
-                   subfields=tuple(),
-                   states=tuple(),
-                   type_defs=tuple(),
-                   units=tuple()):
-    """Creates Config for the tests.
-
-    Args:
-      fields: the necessary fields.
-      subfields: the subfields.
-      states: the states.
-      type_defs: type definitions.
-      units: units for tests.
-
-    Returns:
-       created config.
-    """
-    # Config namedtuple
-    return presubmit_validate_types_lib.Config(
-        fields=fields,
-        subfields=subfields,
-        states=states,
-        type_defs=type_defs,
-        units=units)
 
   def ListHasType(self, findings_list, finding_type):
     for f in findings_list:
@@ -235,12 +212,16 @@ class PresubmitValidateTypesTest(absltest.TestCase):
 
   def testConfigUniverseGetUnitsForMeasurementMultipleNoUnits(self):
     doc = {
-        'powerfactor': [{
+        'powerfactor': {
+            'no_units': 'STANDARD',
+            'another_one': {
+                'multiplier': 2,
+                'offset': 0
+            }
+        },
+        'voltageratio': {
             'no_units': 'STANDARD'
-        }, 'another_one'],
-        'voltageratio': [{
-            'no_units': 'STANDARD'
-        }],
+        },
     }
     folder = unit_lib.UnitFolder('units/anyfolder')
     folder.AddFromConfig([doc], 'units/anyfolder/units.yaml')
@@ -378,7 +359,7 @@ class PresubmitValidateTypesTest(absltest.TestCase):
 
   def testBackwardsCompatibilityRemovedNamespace(self):
     # Two namespaces. Both have an entitytype. One type is abstract.
-    ns1_path = '{0}/entity_types/anyfolder'.format('namespace_one')
+    ns1_path = 'namespace_one/entity_types/anyfolder'
     folder1 = entity_type_lib.EntityTypeFolder(ns1_path)
     ns1 = folder1.local_namespace
     type1 = entity_type_lib.EntityType(
@@ -387,7 +368,7 @@ class PresubmitValidateTypesTest(absltest.TestCase):
         inherited_fields_expanded=True)
     ns1.InsertType(type1)
 
-    ns2_path = '{0}/entity_types/anyfolder'.format('namespace_two')
+    ns2_path = 'namespace_two/entity_types/anyfolder'
     folder2 = entity_type_lib.EntityTypeFolder(ns2_path)
     ns2 = folder2.local_namespace
     type2 = entity_type_lib.EntityType(
@@ -410,7 +391,7 @@ class PresubmitValidateTypesTest(absltest.TestCase):
 
   def testBackwardsCompatibilityRemovedType(self):
     # Two types.  One is abstract.
-    ns1_path = '{0}/entity_types/anyfolder'.format('namespace_one')
+    ns1_path = 'namespace_one/entity_types/anyfolder'
     folder1 = entity_type_lib.EntityTypeFolder(ns1_path)
     ns1 = folder1.local_namespace
     type1 = entity_type_lib.EntityType(
@@ -439,20 +420,20 @@ class PresubmitValidateTypesTest(absltest.TestCase):
 
   def testBackwardsCompatibilityRemovedTypeWithIds(self):
     # Two types.  One is abstract.
-    ns1_path = '{0}/entity_types/anyfolder'.format('namespace_one')
+    ns1_path = 'namespace_one/entity_types/anyfolder'
     folder1 = entity_type_lib.EntityTypeFolder(ns1_path)
     ns1 = folder1.local_namespace
     type1 = entity_type_lib.EntityType(
         filepath=ns1_path + '/file.yaml',
         typename='type1',
         inherited_fields_expanded=True,
-        uid='1')
+        guid=_GUID_1)
     ns1.InsertType(type1)
     type2 = entity_type_lib.EntityType(
         filepath=ns1_path + '/file.yaml',
         typename='type2',
         inherited_fields_expanded=True,
-        uid='2')
+        guid=_GUID_2)
     ns1.InsertType(type2)
     old_uv = entity_type_lib.EntityTypeUniverse([folder1])
 
@@ -462,13 +443,13 @@ class PresubmitValidateTypesTest(absltest.TestCase):
         filepath=ns1_path + '/file.yaml',
         typename='type1a',
         inherited_fields_expanded=True,
-        uid='1')
+        guid=_GUID_1)
     ns1a.InsertType(type1a)
     type2a = entity_type_lib.EntityType(
         filepath=ns1_path + '/file.yaml',
         typename='type2',
         inherited_fields_expanded=True,
-        uid='3')
+        guid=_GUID_3)
     ns1a.InsertType(type2a)
     new_uv = entity_type_lib.EntityTypeUniverse([folder1a])
 
@@ -481,15 +462,15 @@ class PresubmitValidateTypesTest(absltest.TestCase):
 
   def testBackwardsCompatibilityAcrossNamespaces(self):
     # Two types.  One is abstract.
-    ns1_path = '{0}/entity_types/anyfolder'.format('namespace_one')
-    ns2_path = '{0}/entity_types/anyfolder'.format('namespace_two')
+    ns1_path = 'namespace_one/entity_types/anyfolder'
+    ns2_path = 'namespace_two/entity_types/anyfolder'
     folder1 = entity_type_lib.EntityTypeFolder(ns1_path)
     ns1 = folder1.local_namespace
     type1 = entity_type_lib.EntityType(
         filepath=ns1_path + '/file.yaml',
         typename='type1',
         inherited_fields_expanded=True,
-        uid='1')
+        guid=_GUID_1)
     ns1.InsertType(type1)
     old_uv = entity_type_lib.EntityTypeUniverse([folder1])
 
@@ -500,7 +481,7 @@ class PresubmitValidateTypesTest(absltest.TestCase):
         filepath=ns2_path + '/file.yaml',
         typename='type1a',
         inherited_fields_expanded=True,
-        uid='1')
+        guid=_GUID_1)
     ns2.InsertType(type1a)
     new_uv = entity_type_lib.EntityTypeUniverse([folder1a, folder2])
 
@@ -511,7 +492,7 @@ class PresubmitValidateTypesTest(absltest.TestCase):
 
   def testBackwardsCompatibilityOptionalAddedFieldsOk(self):
     # Two types.  One is abstract.
-    ns1_path = '{0}/entity_types/anyfolder'.format('namespace_one')
+    ns1_path = 'namespace_one/entity_types/anyfolder'
     folder1 = entity_type_lib.EntityTypeFolder(ns1_path)
     ns1 = folder1.local_namespace
     type1 = entity_type_lib.EntityType(
@@ -556,7 +537,7 @@ class PresubmitValidateTypesTest(absltest.TestCase):
 
   def testBackwardsCompatibilityAddedFields(self):
     # Two types.  One is abstract.
-    ns1_path = '{0}/entity_types/anyfolder'.format('namespace_one')
+    ns1_path = 'namespace_one/entity_types/anyfolder'
     folder1 = entity_type_lib.EntityTypeFolder(ns1_path)
     ns1 = folder1.local_namespace
     type1 = entity_type_lib.EntityType(
@@ -618,7 +599,7 @@ class PresubmitValidateTypesTest(absltest.TestCase):
 
   def testBackwardsCompatibilityRemovedFields(self):
     # Two types.  One is abstract.
-    ns1_path = '{0}/entity_types/anyfolder'.format('namespace_one')
+    ns1_path = 'namespace_one/entity_types/anyfolder'
     folder1 = entity_type_lib.EntityTypeFolder(ns1_path)
     ns1 = folder1.local_namespace
     type1 = entity_type_lib.EntityType(

@@ -17,7 +17,7 @@
 ########################
 
 DMP_EDBPC:
-  id: "2931964990892015616"
+  guid: "9e811b60-42ab-4806-b816-c3b44deb654f"
   description: "Stand-alone building pressure control damper."
   is_canonical: true
   implements:
@@ -25,7 +25,7 @@ DMP_EDBPC:
   - EDBPC
 
 DMP_EDM:
-  id: "17221675502306066432"
+  guid: "a79e39e1-8b39-4fa7-8ce5-437e867eda34"
   description: "Exhaust damper monitoring."
   is_canonical: true
   implements:
@@ -33,7 +33,7 @@ DMP_EDM:
   - EDM
 
 DMP_ED:
-  id: "8312728606623137792"
+  guid: "f94434b4-3b01-4a69-a31c-9cc6e1afbc64"
   description: "Exhaust control damper."
   is_canonical: true
   uses:
@@ -43,7 +43,7 @@ DMP_ED:
   - ED
 
 DMP_SDBPC:
-  id: "6105964789211594752"
+  guid: "f475383f-8570-4813-8039-54c637e9be9a"
   description: "Exhaust control damper."
   is_canonical: true
   implements:
@@ -51,7 +51,7 @@ DMP_SDBPC:
   - SDBPC
 
 DMP_SDBPC_RMM:
-  id: "5496750685028352000"
+  guid: "c161977e-6835-477e-a806-b3eca5348ad7"
   description: "Back-pressure modulating damper (for pressure control of an AHU)."
   is_canonical: true
   implements:
@@ -60,7 +60,7 @@ DMP_SDBPC_RMM:
   - RMM
 
 DMP_DICM:
-  id: "8449185696211533824"
+  guid: "23c7940d-76b5-4605-97d6-95fe8829acbc"
   description: "Controlling and monitoring damper isolation system."
   is_canonical: true
   implements:
@@ -75,7 +75,7 @@ DMP_DICM:
   - lost_power_alarm
 
 DMP_EDBPC_ZTM:
-  id: "9003744176889659392"
+  guid: "8afff12c-042d-492b-a1b2-e8ee2dcb780e"
   description: "Stand-alone building pressure control damper."
   is_canonical: true
   implements:
@@ -88,9 +88,9 @@ DMP_EDBPC_ZTM:
 ### Existing Non-standard Types ###
 ###################################
 
-DMP_US_MTV_900_1:
-  id: "715815742225776640"
-  description: "Non-standard type for SBO-900"
+DMP_NONCANONICAL_1:
+  guid: "8c884e0d-0243-484f-ac9c-4e9240e05a16"
+  description: "Non-standard type."
   implements:
   - DMP
   uses:
@@ -100,9 +100,9 @@ DMP_US_MTV_900_1:
   - supply_air_damper_percentage_command_2
   - west_building_air_static_pressure_sensor
 
-DMP_US_SBO_901_1:
-  id: "12983550758438830080"
-  description: "Non-standard type for SBO-901"
+DMP_BPC_NONCANONICAL_1:
+  guid: "c7bba727-0cec-4348-9343-b7a9072d98dc"
+  description: "Non-standard type."
   implements:
   - DMP
   - BPC

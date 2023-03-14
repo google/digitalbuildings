@@ -19,27 +19,27 @@
 ### Tanks ###
 
 TK_SWTC_PHWTC:
-  id: "4244085883596177408"
+  guid: "afec4cde-0aa9-4f75-9cf8-1fa1512fd49a"
   description: "Tank with water temperature monitoring"
   is_canonical: true
   implements:
-  - /TK # Inherits from global namespace 
+  - /TK # Inherits from global namespace
   - SWTC
   - PHWTC
-  
-TK_LM_PLPM:  
-  id: "10267650385204215808"
+
+TK_LM_PLPM:
+  guid: "b523b52b-ee5d-42a8-95dd-cf64ccd87488"
   description: "Tank with level and pipeline pressure monitoring "
   is_canonical: true
   implements:
-  - /TK # Inherits from global namespace 
+  - /TK # Inherits from global namespace
   - LM
   - PLPM
 
-TK_LM:  
-  id: "12505939400007352320"
+TK_LM:
+  guid: "ae408041-ad81-41af-8dac-d05cd778ca1c"
   description: "Tank with level monitoring "
   is_canonical: true
   implements:
-  - /TK # Inherits from global namespace 
+  - /TK # Inherits from global namespace
   - LM

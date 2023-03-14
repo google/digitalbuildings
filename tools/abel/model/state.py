@@ -15,10 +15,10 @@
 
 from typing import Dict
 
-from model.constants import BC_GUID
-from model.constants import ENTITY_CODE
 from model.constants import RAW_STATE
-from model.constants import STANDARD_FIELD_NAME
+from model.constants import REPORTING_ENTITY_CODE
+from model.constants import REPORTING_ENTITY_FIELD_NAME
+from model.constants import REPORTING_ENTITY_GUID
 from model.constants import STANDARD_STATE
 from model.guid_to_entity_map import GuidToEntityMap
 
@@ -27,43 +27,45 @@ class State(object):
   """Class for concrete model states.
 
   Attributes:
-    entity_guid: UUID4 id of the parent entity for a field.
+    reporting_entity_guid: UUID4 id of the parent reporting entity for a field.
     standard_field_name: Standardized field name for an EntityField
     standard_state: Standardized state name.
     raw_state: Raw state name coming from bacnet payload device.
     guid_to_entity_map: Global entity by guid mapping.
   """
 
-  def __init__(self, entity_guid: str, standard_field_name: str,
+  def __init__(self, reporting_entity_guid: str, standard_field_name: str,
                standard_state: str, raw_state: str):
     """Init.
 
     Args:
-      entity_guid: UUID4 id of the parent entity for a field.
+      reporting_entity_guid: UUID4 id of the parent entity for a field.
       standard_field_name: Standardized field name for an EntityField
       standard_state: Standardized state name.
       raw_state: Raw state name coming from bacnet payload device.
     """
-    self.entity_guid = entity_guid
+    self.reporting_entity_guid = reporting_entity_guid
     self.standard_field_name = standard_field_name
     self.standard_state = standard_state
     self.raw_state = raw_state
     self.guid_to_entity_map = GuidToEntityMap()
 
   def __str__(self):
-    entity_code = self.guid_to_entity_map.GetEntityByGuid(self.entity_guid).code
-    return f'State for {entity_code}: {self.standard_field_name}'
+    reporting_entity_code = self.guid_to_entity_map.GetEntityByGuid(
+        self.reporting_entity_guid).code
+    return f'State for {reporting_entity_code}: {self.standard_field_name}'
 
+  # pylint: disable=line-too-long
   def __eq__(self, other: ...) -> bool:
     if not isinstance(other, State):
       raise TypeError('Other object must be a state instance.')
-    return self.entity_guid == other.entity_guid and self.standard_field_name == other.standard_field_name and self.standard_state == other.standard_state
+    return self.reporting_entity_guid == other.reporting_entity_guid and self.standard_field_name == other.standard_field_name and self.standard_state == other.standard_state
 
   @classmethod
   def FromDict(cls, states_dict: Dict[str, str]) ->...:
     new_state = cls(
-        entity_guid=states_dict[BC_GUID],
-        standard_field_name=states_dict[STANDARD_FIELD_NAME],
+        reporting_entity_guid=states_dict[REPORTING_ENTITY_GUID],
+        standard_field_name=states_dict[REPORTING_ENTITY_FIELD_NAME],
         standard_state=states_dict[STANDARD_STATE],
         raw_state=states_dict[RAW_STATE])
     return new_state
@@ -71,11 +73,12 @@ class State(object):
   def GetSpreadsheetRowMapping(self) -> Dict[str, str]:
     """Returns a dictionary of State attributes by spreadsheet headers."""
     return {
-        ENTITY_CODE:
-            self.guid_to_entity_map.GetEntityCodeByGuid(self.entity_guid),
-        BC_GUID:
-            self.entity_guid,
-        STANDARD_FIELD_NAME:
+        REPORTING_ENTITY_CODE:
+            self.guid_to_entity_map.GetEntityCodeByGuid(
+                self.reporting_entity_guid),
+        REPORTING_ENTITY_GUID:
+            self.reporting_entity_guid,
+        REPORTING_ENTITY_FIELD_NAME:
             self.standard_field_name,
         STANDARD_STATE:
             self.standard_state,

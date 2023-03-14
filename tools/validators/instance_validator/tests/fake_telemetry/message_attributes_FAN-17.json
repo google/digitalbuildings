@@ -1,8 +1,8 @@
 {
   "subFolder": "pointset",
   "deviceId": "FAN-17",
-  "deviceRegistryId": "UK-LON-S2",
+  "deviceRegistryId": "US-SEA-BLDG1",
   "deviceRegistryLocation": "us-central1",
-  "deviceNumId": "123456",
-  "projectId": "essential-keep-197822"
+  "deviceNumId": "1234567890123456",
+  "projectId": "fake-projectid-12345"
 }

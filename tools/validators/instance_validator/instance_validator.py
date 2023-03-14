@@ -1,4 +1,4 @@
-# Copyright 2020 Google LLC
+# Copyright 2023 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the License);
 # you may not use this file except in compliance with the License.
@@ -30,9 +30,7 @@ import argparse
 import sys
 
 from validate import handler
-
-# Default timeout duration for telemetry validation test
-DEFAULT_TIMEOUT = 600
+from validate.constants import DEFAULT_TIMEOUT
 
 
 # TODO(berkoben): Make this its own file with tests.
@@ -88,19 +86,20 @@ def _ParseArgs() -> argparse.ArgumentParser:
       metavar='timeout')
 
   parser.add_argument(
-      '-r',
-      '--report-filename',
-      dest='report_filename',
+      '-d',
+      '--report-directory',
+      dest='report_directory',
       required=False,
       default=None,
-      help='Filename for the validation report',
-      metavar='report-filename')
+      help='Absolute path to report output directory',
+      metavar='report-directory',
+  )
 
   parser.add_argument(
       '--udmi',
       dest='udmi',
       required=False,
-      default=False,
+      default=True,
       action='store_true',
       help='Parse messages as UDMI')
 
@@ -114,6 +113,7 @@ if __name__ == '__main__':
       modified_types_filepath=args.modified_types_filepath,
       subscription=args.subscription,
       service_account=args.service_account,
-      report_filename=args.report_filename,
+      report_directory=args.report_directory,
       timeout=int(args.timeout),
-      is_udmi=args.udmi)
+      is_udmi=args.udmi,
+  )

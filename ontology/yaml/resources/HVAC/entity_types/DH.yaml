@@ -17,7 +17,7 @@
 ########################
 
 DH_SS_HWSC:
-  id: "7661659393305346048"
+  guid: "074d5458-87d9-4397-914e-c25fd95243a3"
   description: "Hydronic duct heater."
   is_canonical: true
   implements:
@@ -26,7 +26,7 @@ DH_SS_HWSC:
   - HWSC
 
 DH_SS_HWZC:
-  id: "8851946701070532608"
+  guid: "da20a19f-eff7-47d9-8643-8a74afa4ea68"
   description: "Hydronic duct heater."
   is_canonical: true
   implements:
@@ -35,7 +35,7 @@ DH_SS_HWZC:
   - HWZC
 
 DH_SS_DSP_HTZC:
-  id: "12640951731316850688"
+  guid: "d42bd43f-519b-498f-867a-5fe4fbf742e2"
   description: "Electric single-zone duct heater."
   is_canonical: true
   implements:
@@ -45,7 +45,7 @@ DH_SS_DSP_HTZC:
   - HTZC
 
 DH_SS_HTSC:
-  id: "18408298137815875584"
+  guid: "f2b82aff-f9f6-42e4-ba79-bfdb95901871"
   description: "Electric duct heater."
   is_canonical: true
   implements:
@@ -57,9 +57,9 @@ DH_SS_HTSC:
 ### Need to Remap These  ###
 ############################
 
-DFR_US_PAO_HV4_2:
-  id: "8271659648302448640"
-  description: "Non-standard type for HV4"
+DFR_NONCANONICAL_1:
+  guid: "294ea391-5e4c-4867-aba7-a50658e74660"
+  description: "Non-standard type."
   uses:
   - discharge_air_relative_humidity_sensor
   - discharge_air_temperature_sensor

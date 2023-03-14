@@ -1,4 +1,4 @@
-# Copyright 2020 Google LLC
+# Copyright 2023 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the License);
 # you may not use this file except in compliance with the License.
@@ -16,9 +16,9 @@
 # for translation. The devices listed in translation need to follow specific
 # formats, and `invalid_key` is not a valid part of any of them.
 
-UK-LON-S2-GUID:
+US-SEA-BLDG1-GUID:
   type: FACILITIES/BUILDING
-  code: UK-LON-S2
+  code: US-SEA-BLDG1
   translation:
     zone_air_temperature_sensor:
       present_value: "temp_1"
@@ -26,4 +26,3 @@ UK-LON-S2-GUID:
         key: "units"
         values:
           degrees_celsius: "degC"
-          degrees_fahrenheit: "degF"

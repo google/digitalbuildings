@@ -13,7 +13,7 @@
 # limitations under the License.
 
 HM_STANDARD:
-  id: "1156221826196570112"
+  guid: "7f96b71e-3f47-4872-b770-71a4b8021677"
   description: "General water-side thermal load heat meter."
   is_canonical: true
   implements:
@@ -28,7 +28,7 @@ HM_STANDARD:
   - water_volume_accumulator
 
 HM_CHW:
-  id: "38387936655310848"
+  guid: "4439f98a-c52b-4fff-8765-84e689862423"
   description: "Cooling load heat meter."
   implements:
   - HM
@@ -44,17 +44,16 @@ HM_CHW:
   - failed_alarm
 
 HM_CHW_WAC:
-  id: "7296264191604686848"
+  guid: "441029f3-1324-42c5-aca2-74138500917a"
   description: "Cooling load heat meter with total chilled water volume accumulator."
   implements:
   - HM_CHW
   is_canonical: true
   uses:
   - water_volume_accumulator
-  
-#New type for CH ZRH EURD
+
 HM_HW:
-  id: "3199325536836911104"
+  guid: "12427c9d-7d96-4551-b5de-e7d78a7d3674"
   description: "Heating load heat meter."
   implements:
   - HM

@@ -16,11 +16,8 @@
 ### Canonical Types  ###
 ########################
 
-### FREEZER ###
-
-  
 FRZ_DXZTC_DFSS:
-  id: "12904507967029641216"
+  guid: "d5ce14f5-870e-41f4-8b6f-5faa9c756c8a"
   description: "Freezer with discharge fan run duration monitoring with compressor run control ."
   is_canonical: true
   implements:
@@ -29,7 +26,7 @@ FRZ_DXZTC_DFSS:
   - DFSS
 
 FRZ_DFSS_DEFSS_DEFSTC_DXZTC:
-  id: "1724040417105674240"
+  guid: "a9a121d9-d8e1-4239-b518-8f186f0199d0"
   description: "Freezer with discharge fan,compressor, defrost run and temperature control."
   is_canonical: true
   implements:
@@ -41,4 +38,3 @@ FRZ_DFSS_DEFSS_DEFSTC_DXZTC:
   opt_uses:
   - run_time_accumulator
   - master_alarm
-  

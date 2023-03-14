@@ -25,6 +25,8 @@ OCCUPIED: Occupied sensor state or operation mode.
 UNOCCUPIED: Unoccupied sensor state or operation mode.
 VFD: Discrete speed (frequency) control
 BYPASS: Bypassing an element or entity.
+DEHUMIDIFY: Modes of operation in DX unit where the unit acts as a dehumidifier by removing moisture from air
+FAN_ONLY: Modes of operation in DX unit where only fan runs and heating/cooling is disabled
 
 # Moved from HVAC namespace because all fields are currently global in DL.
 COMMISSIONING: The fan speed and valve positions are set to preconfigured parameters.
@@ -68,6 +70,11 @@ NOSOURCE: "An operation mode having no source as priority"
 POSITIONA: "Automatic Transfer switch position 0"
 POSITIONB: "Automatic Transfer switch position 1"
 POSITIONC: "Automatic Transfer switch position 2"
-
-
+#FOR UPS
+BATTERY: "Operation mode or input power is via Battery"
+SYNCHRONOUS: "Mode of operation of inverter where inverter operation is in line with the bypass voltage and frequency"
+ASYNCHRONOUS: "Mode of operation of inverter where either the bypass supply fails or the inverter is not in line bypass voltage and frequency"
+SOFTSTART: "Mode of operation of rectifier where the input power supply is gradually turned on to avoid overloading"
+NORMAL: "Function, state or flow which is an ideal or expected condition."
+REVERSED: "Function, state or flow which is opposed to the expected or normal condition."
 

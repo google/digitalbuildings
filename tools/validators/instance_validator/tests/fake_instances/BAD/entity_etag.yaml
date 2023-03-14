@@ -1,4 +1,4 @@
-# Copyright 2020 Google LLC
+# Copyright 2023 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the License);
 # you may not use this file except in compliance with the License.
@@ -17,7 +17,7 @@
 CONFIG_METADATA:
   operation: UPDATE
 
-UK-LON-S2-GUID:
+US-SEA-BLDG1-GUID:
   operation: UPDATE
   type: FACILITIES/BUILDING
-  code: UK-LON-S2
+  code: US-SEA-BLDG1

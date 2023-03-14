@@ -13,7 +13,7 @@
 # limitations under the License.
 
 WM_STANDARD:
-  id: "440559603281821696"
+  guid: "7cbdf4a9-82f0-4dd5-991f-14984cbce4cb"
   description: "Standard building water meter."
   implements:
   - WM
@@ -25,10 +25,14 @@ WM_STANDARD:
   - flowrate_sensor
 
 WM_WF:
-  id: "5379261270530719744"
-  description: "Water supply flow rate meter."
+  guid: "df942136-4b98-4da7-9e68-acc210d6cf03"
+  description: "Water supply flow rate meter with counter."
   implements:
   - WM
   is_canonical: true
   uses:
   - supply_water_flowrate_sensor
+  opt_uses:
+  - supply_water_volume_accumulator
+  - water_linearvelocity_sensor
+  - water_volume_accumulator

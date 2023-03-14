@@ -1,4 +1,4 @@
-# Copyright 2022 Google LLC
+# Copyright 2023 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the License);
 # you may not use this file except in compliance with the License.
@@ -11,14 +11,15 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-"""Tests tools.validators.instance_validator.message_filters"""
+"""Tests tools.validators.instance_validator.message_filters."""
 
 from __future__ import absolute_import
 from absl.testing import absltest
 from validate import message_filters
 
+
 class MessageFilterTests(absltest.TestCase):
-  """Tests"""
+  """Tests for Message Filter module."""
 
   def testTelemetryWithEmptyMessage(self):
     self.assertFalse(message_filters.Udmi.telemetry({}))
@@ -34,6 +35,7 @@ class MessageFilterTests(absltest.TestCase):
   def testTelemetryWithStatePointset(self):
     attrs = {'subFolder': 'pointset', 'subType': 'state'}
     self.assertFalse(message_filters.Udmi.telemetry(attrs))
+
 
 if __name__ == '__main__':
   absltest.main()

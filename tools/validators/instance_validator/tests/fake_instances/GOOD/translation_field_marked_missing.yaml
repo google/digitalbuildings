@@ -1,4 +1,4 @@
-# Copyright 2020 Google LLC
+# Copyright 2023 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the License);
 # you may not use this file except in compliance with the License.
@@ -12,13 +12,22 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-SDC_EXT-17-GUID:
-  type: HVAC/SDC_EXT
-  code: SDC_EXT-17
-  cloud_device_id: "foobar"
+DMP_EDM-17-GUID:
+  type: HVAC/DMP_EDM
+  code: DMP_EDM-17
+  cloud_device_id: "1234567890123456"
   translation:
-    shade_extent_percentage_command: MISSING
+    exhaust_air_damper_command:
+      present_value: "points.exhaust_air_damper_command.present_value"
+      states:
+        OPEN:
+        - "1"
+        - "2"
+        CLOSED:
+        - "0"
+        - "3"
+    exhaust_air_damper_status: MISSING
 
-UK-LON-S2-GUID:
+US-SEA-BLDG1-GUID:
   type: FACILITIES/BUILDING
-  code: UK-LON-S2
+  code: US-SEA-BLDG1

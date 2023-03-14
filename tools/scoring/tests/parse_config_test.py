@@ -32,14 +32,16 @@ SIMPLE, COMPLEX = DimensionCategories
 
 
 class ParseConfigTest(absltest.TestCase):
-  def setUp(self):
-    super().setUp()
-    self.ontology = '../../ontology/yaml/resources'
-    self.solution = 'tests/samples/solution/building_config_example.yaml'
-    self.proposed = 'tests/samples/proposed/building_config_example.yaml'
-    self.parse = parse_config.ParseConfig(ontology=self.ontology,
-                                          solution=self.solution,
-                                          proposed=self.proposed)
+
+  @classmethod
+  def setUpClass(cls):
+    super().setUpClass()
+    cls.ontology = '../../ontology/yaml/resources'
+    cls.solution = 'tests/samples/solution/building_config_example.yaml'
+    cls.proposed = 'tests/samples/proposed/building_config_example.yaml'
+    cls.parse = parse_config.ParseConfig(ontology=cls.ontology,
+                                          solution=cls.solution,
+                                          proposed=cls.proposed)
 
   def testInitialize(self):
     self.assertEqual(self.parse.args['ontology'], self.ontology)

@@ -12,11 +12,18 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-### TODO: Create standard versions when we have more examples
+########################
+### Canonical Types  ###
+########################
 
-HUM_US_MTV_946_1:
-  id: "3434529765715869696"
-  description: "946 Humidifiers"
+
+###################################
+### Existing Non-standard Types ###
+###################################
+
+HUM_NONCANONICAL_1:
+  guid: "e8cace88-fa54-4b09-9a35-3a1890f9c0de"
+  description: "Non-standard type."
   implements:
   - HUM
   uses:
@@ -24,10 +31,9 @@ HUM_US_MTV_946_1:
   - humidification_percentage_command
   - humidification_percentage_sensor
 
-
-HUM_US_SVL_BRG1_1:
-  id: "5330809091629514752"
-  description: "BRG1 Humidifiers"
+HUM_NONCANONICAL_2:
+  guid: "2ae8e262-a092-48bf-92ac-e5c0079e8db2"
+  description: "Non-standard type."
   implements:
   - HUM
   uses:

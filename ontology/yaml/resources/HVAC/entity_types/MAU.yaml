@@ -17,7 +17,7 @@
 ########################
 
 MAU_SFSS_STM:
-  id: "6047681876846444544"
+  guid: "9532ed28-f40c-472b-90aa-4a679911ef17"
   description: "Simple make-up air unit."
   is_canonical: true
   implements:
@@ -26,7 +26,7 @@ MAU_SFSS_STM:
   - STM
 
 MAU_SFSS_HTSC:
-  id: "11818481849368313856"
+  guid: "9fdbda01-7aa2-4051-91c9-09bf0158f2b2"
   description: "Simple reheat make-up air unit."
   is_canonical: true
   implements:
@@ -35,7 +35,7 @@ MAU_SFSS_HTSC:
   - HTSC
 
 MAU_SFSS_HT2SC:
-  id: "9679272026367328256"
+  guid: "e41e10e9-f6aa-4225-9c73-5b05a9f4b137"
   description: "Reheat (2 stage) make-up air unit."
   is_canonical: true
   implements:
@@ -44,7 +44,7 @@ MAU_SFSS_HT2SC:
   - HT2SC
 
 MAU_SFSS_SFVSC:
-  id: "18405559254351085568"
+  guid: "99473fb4-c483-446c-b699-5b0bc3b47ddf"
   description: "Variable speed make-up air unit."
   is_canonical: true
   implements:
@@ -53,7 +53,7 @@ MAU_SFSS_SFVSC:
   - SFVSC
 
 MAU_DFSS_DSP_HTZC:
-  id: "11602309067254530048"
+  guid: "08802916-920c-4e82-bb73-be913bde556a"
   description: "Single zone reheat make-up air unit."
   is_canonical: true
   implements:
@@ -64,7 +64,7 @@ MAU_DFSS_DSP_HTZC:
 
 
 MAU_SFSS_DXSC_HTSC:
-  id: "15271053913701220352"
+  guid: "f0717c09-d4cb-4818-ba0c-3959002f33db"
   description: "Heating and cooling make-up air unit."
   is_canonical: true
   implements:
@@ -74,7 +74,7 @@ MAU_SFSS_DXSC_HTSC:
   - HTSC
 
 MAU_SFSS_CHWSC_HT4SC:
-  id: "7206795830940925952"
+  guid: "ce6e1faa-8322-418f-a8c0-7c0ead8ffe02"
   description: "Heating (4-stage) and cooling (chilled water) make-up air unit."
   is_canonical: true
   implements:
@@ -84,7 +84,7 @@ MAU_SFSS_CHWSC_HT4SC:
   - HT4SC
 
 MAU_SFSS_SFVSC_HWSC:
-  id: "5067586007939940352"
+  guid: "67e2f9df-cf42-4dc0-bf63-43f4980f8d94"
   description: "Reheat (hydronic) make-up air unit."
   is_canonical: true
   implements:
@@ -94,7 +94,7 @@ MAU_SFSS_SFVSC_HWSC:
   - HWSC
 
 MAU_DFSS_ZTC_DX2ZTC:
-  id: "66901571698425856"
+  guid: "ed56957d-af33-4a41-95ad-ff9ed20dc8db"
   description: "Single zone cooling only (2 stage) make-up air unit."
   is_canonical: true
   implements:
@@ -104,7 +104,7 @@ MAU_DFSS_ZTC_DX2ZTC:
   - DX2ZTC
 
 MAU_DFSS_DXZC_HT2ZC_DSP:
-  id: "6990623048827142144"
+  guid: "c67f8695-f5a3-497b-981a-e6432e40f010"
   description: "Single zone heating (2-stage electric) and cooling (DX) make-up air unit."
   is_canonical: true
   implements:
@@ -115,7 +115,7 @@ MAU_DFSS_DXZC_HT2ZC_DSP:
   - DSP
 
 MAU_DFSS_DSP_DX2ZC_HTZC:
-  id: "3741838867632750592"
+  guid: "3e6f8809-4fe5-499d-b2ef-f70a52484466"
   description: "Single zone heating (electric) and cooling (2-stage) make-up air unit."
   is_canonical: true
   implements:
@@ -126,7 +126,7 @@ MAU_DFSS_DSP_DX2ZC_HTZC:
   - HTZC
 
 MAU_SFSS_SFVSC_DXSC_HTSC:
-  id: "16430167867795701760"
+  guid: "afeea656-322d-4386-9957-8c72c5cf61da"
   description: "Variable speed make-up air unit with heating/cooling make-up air unit.."
   is_canonical: true
   implements:
@@ -137,7 +137,7 @@ MAU_SFSS_SFVSC_DXSC_HTSC:
   - HTSC
 
 MAU_DFSS_DFVSC_HTZC_DX2ZC:
-  id: "14290958044794716160"
+  guid: "c6cd9eff-bfc6-4ecb-9222-a1605dd12e38"
   description: "Single zone heating and cooling make-up air unit."
   is_canonical: true
   implements:
@@ -148,7 +148,7 @@ MAU_DFSS_DFVSC_HTZC_DX2ZC:
   - DX2ZC
 
 MAU_SFSS_SFVSC_CHWSC_HWSC:
-  id: "9290273608553201664"
+  guid: "743b70fc-6ae5-4e10-94cb-e6d36ddc8966"
   description: "Variable speed heating and cooling make-up air unit."
   is_canonical: true
   implements:
@@ -159,7 +159,7 @@ MAU_SFSS_SFVSC_CHWSC_HWSC:
   - HWSC
 
 MAU_DFSS_DFVSC_DSP_HTSC:
-  id: "16213995085681917952"
+  guid: "17fa1ca0-687f-4134-8b0f-f0c97d79d590"
   description: "Single zone heating-only make-up air unit."
   is_canonical: true
   implements:
@@ -170,7 +170,7 @@ MAU_DFSS_DFVSC_DSP_HTSC:
   - HTSC
 
 MAU_DFSS_DSP_DX2ZC_HWZC:
-  id: "12965210904487526400"
+  guid: "033eafe2-08d7-4c3d-b2e5-8cdcf85d2392"
   description: "Single zone heating and cooling make-up air unit."
   is_canonical: true
   implements:
@@ -181,7 +181,7 @@ MAU_DFSS_DSP_DX2ZC_HWZC:
   - HWZC
 
 MAU_SFSS_SFVSC_HTSC_BPC:
-  id: "1442188307906691072"
+  guid: "5b1f27ef-2f13-478e-8153-737729c9f71a"
   description: "Building static control heating-only make-up air unit."
   is_canonical: true
   implements:
@@ -192,7 +192,7 @@ MAU_SFSS_SFVSC_HTSC_BPC:
   - BPC
 
 MAU_DFSS_HT2ZC_DX4ZC_DSP:
-  id: "2761742998726246400"
+  guid: "53cc6f16-1c72-4d23-9bc6-5cbb4b785a00"
   description: "Single zone heating and cooling make-up air unit."
   is_canonical: true
   implements:
@@ -203,7 +203,7 @@ MAU_DFSS_HT2ZC_DX4ZC_DSP:
   - DSP
 
 MAU_SFSS_SFVSC_SSPC_HT2SC_DX2SC:
-  id: "4678587590125813760"
+  guid: "b21768cc-5abc-47c3-9f46-965ecba8570a"
   description: "Heating and cooling make-up air unit."
   is_canonical: true
   implements:
@@ -215,7 +215,7 @@ MAU_SFSS_SFVSC_SSPC_HT2SC_DX2SC:
   - DX2SC
 
 MAU_DFSS_DFVSC_DSP_CHWZC_HWZC:
-  id: "1226015525792907264"
+  guid: "0645c947-0fe1-4168-99ee-b304ae87404d"
   description: "Single zone heating and cooling make-up air unit."
   is_canonical: true
   implements:
@@ -227,7 +227,7 @@ MAU_DFSS_DFVSC_DSP_CHWZC_HWZC:
   - HWZC
 
 MAU_SFSS_SFVSC_DXSC_SSPC_HTSC:
-  id: "8353524886060138496"
+  guid: "154f1b3b-590a-430b-b433-bb3f1f2db88c"
   description: "Heating and cooling make-up air unit."
   is_canonical: true
   implements:
@@ -239,7 +239,7 @@ MAU_SFSS_SFVSC_DXSC_SSPC_HTSC:
   - HTSC
 
 MAU_DFSS_DFVSC_DX2DC_HT2DC_DSP:
-  id: "10665560344761466880"
+  guid: "1443b4db-12cb-43bf-8498-c9aab6554516"
   description: "Single zone heating and cooling make-up air unit."
   is_canonical: true
   implements:
@@ -251,7 +251,7 @@ MAU_DFSS_DFVSC_DX2DC_HT2DC_DSP:
   - DSP
 
 MAU_DFSS_DFVSC_DSP_CHWZC_HTZC:
-  id: "11985115035581022208"
+  guid: "0ab19e68-307b-4c45-aabd-bbc797536951"
   description: "Single zone heating and cooling make-up air unit."
   is_canonical: true
   implements:
@@ -263,7 +263,7 @@ MAU_DFSS_DFVSC_DSP_CHWZC_HTZC:
   - HTZC
 
 MAU_SFSS_SFVSC_HTSC_DX2SC_SSPC:
-  id: "13901959626980589568"
+  guid: "907243ae-4173-40c4-99c0-2c5110066dba"
   description: "Heating and cooling make-up air unit."
   is_canonical: true
   implements:
@@ -275,7 +275,7 @@ MAU_SFSS_SFVSC_HTSC_DX2SC_SSPC:
   - SSPC
 
 MAU_SFSS_SFVSC_HTSC_BPC_SHM:
-  id: "10449387562647683072"
+  guid: "2493a9c3-5e32-4906-97ab-dd01c7b6c35d"
   description: "Heating and cooling make-up air unit."
   is_canonical: true
   implements:
@@ -287,7 +287,7 @@ MAU_SFSS_SFVSC_HTSC_BPC_SHM:
   - SHM
 
 MAU_SFSS_SFVSC_SSPC_HWSC_CHWSC:
-  id: "17576896922914914304"
+  guid: "273c82b9-3575-42a8-803e-9b8c0345920f"
   description: "Heating and cooling make-up air unit."
   is_canonical: true
   implements:
@@ -299,7 +299,7 @@ MAU_SFSS_SFVSC_SSPC_HWSC_CHWSC:
   - CHWSC
 
 MAU_SFSS_SFVSC_CHWSC_HTSC_BPC:
-  id: "6053874326334078976"
+  guid: "eac5d682-5787-4ae2-ab3b-fe01764513a9"
   description: "Building static control heating and cooling make-up air unit."
   is_canonical: true
   implements:
@@ -311,7 +311,7 @@ MAU_SFSS_SFVSC_CHWSC_HTSC_BPC:
   - BPC
 
 MAU_SFSS_SFVSC_CHWSDC_HTSC_BPC:
-  id: "7373429017153634304"
+  guid: "da397eaf-1dc1-4be5-adb4-1b715c064a0b"
   description: "Building static control heating and cooling make-up air unit."
   is_canonical: true
   implements:
@@ -323,7 +323,7 @@ MAU_SFSS_SFVSC_CHWSDC_HTSC_BPC:
   - BPC
 
 MAU_DFSS_DFVSC_BPC_DXDC_HTDC_DSP:
-  id: "2372744580912119808"
+  guid: "f5ccf6fc-c929-4205-ab93-c358b27c7ccd"
   description: "Single zone static control heating and cooling make-up air unit."
   is_canonical: true
   implements:
@@ -336,7 +336,7 @@ MAU_DFSS_DFVSC_BPC_DXDC_HTDC_DSP:
   - DSP
 
 MAU_SFSS_SFVSC_HPSC_SSPC_FDPM4X_OADM:
-  id: "5837701544220295168"
+  guid: "e35cb31c-0bbd-41b3-99ea-f3f6e10070b7"
   description: "Heating and cooling make-up air unit."
   is_canonical: true
   implements:
@@ -349,7 +349,7 @@ MAU_SFSS_SFVSC_HPSC_SSPC_FDPM4X_OADM:
   - OADM
 
 MAU_SFSS_SFVSC_HWSC_DX2SC_HT4SC_SSPC:
-  id: "859535106115633152"
+  guid: "a7b33554-df3f-451f-b35b-93a71518c6fa"
   description: "Heating and cooling make-up air unit."
   is_canonical: true
   implements:
@@ -362,7 +362,7 @@ MAU_SFSS_SFVSC_HWSC_DX2SC_HT4SC_SSPC:
   - SSPC
 
 MAU_DFSS_DFVSC_HTDC_CO2C:
-  id: "12223439678459609088"
+  guid: "048f01e7-7cba-44e7-bf77-6862c761144f"
   description: "Exhaust fan with start/stop, status, and flowrate control."
   is_canonical: true
   implements:
@@ -373,7 +373,8 @@ MAU_DFSS_DFVSC_HTDC_CO2C:
   - CO2C
 
 MAU_DFSS_DFVSC_HTDC_OFC_CO2C:
-  id: "4468522595104325632"
+  guid: "9cbf6432-eb01-4346-aa2e-4a68dfd84d8c"
+  is_canonical: true
   description: "Exhaust fan with start/stop, status, and flowrate control."
   implements:
   - HTDC
@@ -383,13 +384,296 @@ MAU_DFSS_DFVSC_HTDC_OFC_CO2C:
   - MAU
   - OFC
 
+MAU_SFSS_SFVSC_CHWSDC_HTSDC_BPC:
+  guid: "976f0082-bffe-4f7d-afbd-7976907235c8"
+  description: "Heating and cooling make-up air unit with dual supply control."
+  is_canonical: true
+  implements:
+  - MAU
+  - SFSS
+  - SFVSC
+  - CHWSDC
+  - HTSDC
+  - BPC
+
+MAU_SFSS_SFVSC_CHWSC_FDPM_SSPC_SFM:
+  guid: "b30ec3db-f2e1-4ccb-87d8-5588c5c791db"
+  description: "Cooling only unit with supply flow monitoring."
+  is_canonical: true
+  implements:
+  - MAU
+  - SFSS
+  - SFVSC
+  - CHWSC
+  - FDPM
+  - SSPC
+  - SFM
+
+MAU_DFSS_DFVSC_ECDDC_HTDDC_ZTM_ZSPM:
+  guid: "0253b0b6-1848-4d29-b1ed-dbc2bed009eb"
+  description: " Unit with evaporative cooling."
+  is_canonical: true
+  implements:
+  - MAU
+  - DFSS
+  - DFVSC
+  - HTDDC
+  - ECDDC
+  - ZTM
+  - ZSPM
+
+MAU_DFSS_DFVSC_HTDDC_DXDDC_ZTM_ZSPM:
+  guid: "1eb0812f-8aea-4388-a0cb-5ab5f7f5597e"
+  description: "Single zone with dual setpoint control."
+  is_canonical: true
+  implements:
+  - MAU
+  - DFSS
+  - DFVSC
+  - HTDDC
+  - DXDDC
+  - ZTM
+  - ZSPM
+
+MAU_DFSS_DFVSC_HTDDC_DXDDC_ZTM:
+  guid: "bf85f345-ca36-4e34-bc61-94c4ed2023ec"
+  description: "Single zone with dual discharge setpoint control for both heating and cooling."
+  is_canonical: true
+  implements:
+  - MAU
+  - DFSS
+  - DFVSC
+  - HTDDC
+  - DXDDC
+  - ZTM
+
+MAU_SFSS_SFVSC_SFC_DXSC_HTSC_ZTM_ZSPM:
+  guid: "06722146-8b95-44f5-bafa-257b518a8243"
+  description: "Single zone with cooling, heating, and supply flow control."
+  is_canonical: true
+  implements:
+  - MAU
+  - SFSS
+  - SFVSC
+  - SFC
+  - DXSC
+  - HTSC
+  - ZTM
+  - ZSPM
+
+MAU_DFSS_DSP_FDPM_HT2ZC_OAFC:
+  guid: "23959ceb-5c15-4c9a-962e-cfa0b8b88cfd"
+  description: "Single zone with two-stage heating, and supply flow control."
+  is_canonical: true
+  implements:
+  - MAU
+  - DFSS
+  - DSP
+  - FDPM
+  - HT2ZC
+  - OAFC
+
+MAU_DFSS_DFVSC_HTDC_ZTM:
+  guid: "80381ee4-6ab6-4a26-bf96-6cb809f3a600"
+  description: "Single zone heating make-up air unit."
+  is_canonical: true
+  implements:
+  - MAU
+  - DFSS
+  - DFVSC
+  - HTDC
+  - ZTM
+
+MAU_DFSS_DFVSC_DX2DDC_HTDDC_OAFC_ZTM:
+  guid: "9a47c443-d806-48b8-a951-168a8bc2cbc2"
+  description: "Single zone with dual discharge setpoint control for heating and cooling."
+  is_canonical: true
+  implements:
+  - MAU
+  - DFSS
+  - DFVSC
+  - DX2DDC
+  - HTDDC
+  - OAFC
+  - ZTM
+
+MAU_DF2XSS_DFVSC2X_HP2ZC_HTZC_OAFC:
+  guid: "c20f2186-66bd-41cd-a19f-08b20045d91c"
+  description: "Single zone with dual zone setpoint control for heating and cooling."
+  is_canonical: true
+  implements:
+  - MAU
+  - DF2XSS
+  - DFVSC2X
+  - HP2ZC
+  - HTZC
+  - OAFC
+
+MAU_DF2XSS_DFVSC2X_DSP_HTZC:
+  guid: "889b1215-4f1a-4962-a0b9-928a80b57737"
+  description: "Single zone with dual zone setpoint control."
+  is_canonical: true
+  implements:
+  - MAU
+  - DF2XSS
+  - DFVSC2X
+  - DSP
+  - HTZC
+
+MAU_DFSS_DFVSC_HPDDC_ZTM:
+  guid: "4fd455a8-2f72-4610-8615-29728707568d"
+  description: "Dual discharge setpoint control with zone monitoring for heat pump MAU."
+  is_canonical: true
+  implements:
+  - MAU
+  - DFSS
+  - DFVSC
+  - HPDDC
+  - ZTM
+
+MAU_DFSS_DFVSC_HWDDC_DXDDC_ZTM:
+  guid: "67d6d816-f511-4252-b2ad-cf2310dac459"
+  description: "Single zone with dual discharge setpoint control for both heating and cooling."
+  is_canonical: true
+  implements:
+  - MAU
+  - DFSS
+  - DFVSC
+  - HWDDC
+  - DXDDC
+  - ZTM
+
+MAU_SFSS2X_SFVSC2X_CFDPM_DPCHWHRWSC_HWSC_FDPM_SSPC_STC_VOADM2X:
+  guid: "8f08db3d-6f67-44e5-9605-d5ecdb227fff"
+  description: "Multi-zone MAU with heating water, chilled water, and heat recovery preheating water. The chilled water 
+  and heat recovery preheating water both go through the same coils, but uses isolation valves to switch the source."
+  is_canonical: true
+  implements:
+  - MAU
+  - SFSS2X
+  - SFVSC2X
+  - CFDPM
+  - DPCHWHRWSC
+  - FDPM
+  - HWSC
+  - SSPC
+  - STC
+  - VOADM2X
+
+MAU_SFSS2X_SFVSC2X_CHWSC_HWSC_FDPM_SSPC_STC_VOADM2X:
+  guid: "211a3d7b-3177-48c2-8260-219f525c7955"
+  description: "Multi-zone MAU with chilled water and heating water."
+  is_canonical: true
+  implements:
+  - MAU
+  - SFSS2X
+  - SFVSC2X
+  - CHWSC
+  - FDPM
+  - HWSC
+  - SSPC
+  - STC
+  - VOADM2X
+
+MAU_SFSS_SFVSC_SPSS_STM_SHM_SFC_FDPSM:
+  guid: "b6a59ea8-adb7-45a2-b3c5-e136af0fc9c2"
+  description: "MAU with VFD, spray pump, filter, supply air temperature and humidity monitoring."
+  is_canonical: true
+  implements:
+  - MAU
+  - SFSS
+  - SFVSC
+  - SPSS
+  - STM
+  - SHM
+  - SFC
+  - FDPSM
+
+
+MAU_SFVSC_CHWSC_SSPC_FDPSM2X:
+  guid: "f31fbb71-3aca-41fb-8fd4-3f1260809930"
+  description: "MAU with chilled water valve modulation,VFD speed control based on static pressure,two filters."
+  is_canonical: true
+  implements:
+  - MAU
+  - SFVSC
+  - CHWSC
+  - SSPC
+  - FDPSM2X
+  opt_uses:
+  - supply_air_isolation_damper_status 
+
+
+MAU_CHWSC_HWSC_SSPC_SFSS_SFVSC_FDPM2X_SFM:
+  description: "Multi-zone MAU with chilled water and heating water."
+  is_canonical: true
+  implements:
+  - MAU
+  - CHWSC
+  - HWSC
+  - SSPC
+  - SFSS
+  - SFVSC
+  - FDPM2X
+  - SFM
+ 
+
+MAU_FDPM_SSPC_STC_SHM_SFVSC3X_SFSS3X:
+  guid: "5c13ea89-9abe-4872-8b01-01aa97ad923e"
+  description: "Air purifier unit (MAU) with 3 fan with differential pressure, static pressure, temperature, humidity and electrical parameter monitoring. "
+  is_canonical: true
+  implements:
+  - MAU
+  - FDPM
+  - SSPC
+  - STC
+  - SHM
+  - SFVSC3X
+  - SFSS3X
+
+MAU_SFSS_FDPM_SSPM_STM_SHM:
+  guid: "b553e650-6e66-4062-8a51-d6ba187f2d78"
+  description: "makeup Air Unit with run command, status, dufferential pressure, static T,RH, monitoring and control"
+  is_canonical: true
+  implements:
+  - MAU
+  - SFSS
+  - FDPM
+  - SSPM
+  - STM
+  - SHM
+
+MAU_DFMSC_DFVSC_FDPM_DTM:
+  guid: "697d09c7-b09b-448f-b12b-3b253ca2b1a3"
+  description: "Makeup Air Unit with discharge air monitoring along with fan speed control"
+  is_canonical: true
+  implements:
+  - MAU
+  - DFMSC
+  - DFVSC
+  - FDPM
+  - DTM
+
+MAU_DFSS_DFVSC_HWDDC_DX2DDC_ZTM_DFM:
+  guid: "e9853dd8-ea63-4e03-8150-e5a10cd6f569"
+  description: "Makeup air unit with discharge air flowrate monitoring and dual setpoint control."
+  is_canonical: true
+  implements:
+  - MAU
+  - DFSS
+  - DFVSC
+  - HWDDC
+  - DX2DDC
+  - ZTM
+  - DFM
+
 ############################
 ###   Remap These Types  ###
 ############################
 
-MAU_US_MTV_1225_1: # Needs remapping -- actually an AHU.
-  id: "4444233283735126016"
-  description: "Non-standard type for 1225 ACs"
+MAU_NONCANONICAL_1:
+  guid: "58a4d4ec-c0c3-4623-8f59-5dcb2298db53"
+  description: "Non-standard type."
   implements:
   - REMAP_REQUIRED # Actually an AHU.
   uses:
@@ -406,25 +690,25 @@ MAU_US_MTV_1225_1: # Needs remapping -- actually an AHU.
   - supply_fan_run_status
   - supply_air_flowrate_sensor
 
-MAU_US_MTV_900_1: # Looks removed from the controller (no graphics left).
-  id: "14298672218375192576"
-  description: "Non-standard type for 900"
+MAU_NONCANONICAL_2:
+  guid: "f0419402-555b-47a3-8f68-b9fbf8e40965"
+  description: "Non-standard type."
   implements:
   - REMAP_REQUIRED
   uses:
   - exhaust_fan_run_status
 
-MAU_US_MTV_QD7_2: # Changed in the BMS
-  id: "17838431156744224768"
-  description: "Non-standard type for QD7"
+MAU_NONCANONICAL_3:
+  guid: "4cd8493e-0917-4485-b0e3-f5875e3245db"
+  description: "Non-standard type."
   implements:
-  - REMAP_REQUIRED # Changed in the BMS
+  - REMAP_REQUIRED
   uses:
   - supply_fan_run_status
 
-MAU_US_PAO_HV3_2: # Actually an AHU.
-  id: "13847115986987122688"
-  description: "Non-standard type for HV3"
+MAU_NONCANONICAL_4:
+  guid: "c8be4225-c20c-4c54-86b0-9a153825a84a"
+  description: "Non-standard type."
   implements:
   - REMAP_REQUIRED # Actually an AHU.
   uses:
@@ -442,260 +726,22 @@ MAU_US_PAO_HV3_2: # Actually an AHU.
   - supply_fan_run_status
   - supply_fan_speed_percentage_command
 
-MAU_SFSS_SFVSC_CHWSDC_HTSDC_BPC:
-  id: "12347953872747102208"
-  description: "Heating and cooling make-up air unit with dual supply control."
-  is_canonical: true
-  implements:
-  - MAU
-  - SFSS
-  - SFVSC
-  - CHWSDC
-  - HTSDC
-  - BPC
-
-MAU_SFSS_SFVSC_CHWSC_FDPM_SSPC_SFM:
-  id: "3692035388941008896"
-  description: "Cooling only unit with supply flow monitoring."
-  is_canonical: true
-  implements:
-  - MAU
-  - SFSS
-  - SFVSC
-  - CHWSC
-  - FDPM
-  - SSPC
-  - SFM
-
-MAU_DFSS_DFVSC_ECDDC_HTDDC_ZTM_ZSPM:
-  id: "10141190055335559168"
-  description: " Unit with evaporative cooling."
-  is_canonical: true
-  implements:
-  - MAU
-  - DFSS
-  - DFVSC
-  - HTDDC
-  - ECDDC
-  - ZTM
-  - ZSPM
-
-MAU_DFSS_DFVSC_HTDDC_DXDDC_ZTM_ZSPM:
-  id: "7619174264008081408"
-  description: "Single zone with dual setpoint control."
-  is_canonical: true
-  implements:
-  - MAU
-  - DFSS
-  - DFVSC
-  - HTDDC
-  - DXDDC
-  - ZTM
-  - ZSPM
-
-MAU_DFSS_DFVSC_HTDDC_DXDDC_ZTM:
-  id: "1602365161841098752"
-  description: "Single zone with dual discharge setpoint control for both heating and cooling."
-  is_canonical: true
-  implements:
-  - MAU
-  - DFSS
-  - DFVSC
-  - HTDDC
-  - DXDDC
-  - ZTM
-
-MAU_SFSS_SFVSC_SFC_DXSC_HTSC_ZTM_ZSPM:
-  id: "8705597305367035904"
-  description: "Single zone with cooling, heating, and supply flow control."
-  is_canonical: true
-  implements:
-  - MAU
-  - SFSS
-  - SFVSC
-  - SFC
-  - DXSC
-  - HTSC
-  - ZTM
-  - ZSPM
-  
-MAU_DFSS_DSP_FDPM_HT2ZC_OAFC:
-  id: "12146816912143155200"
-  description: "Single zone with two-stage heating, and supply flow control."
-  is_canonical: true
-  implements:
-  - MAU
-  - DFSS
-  - DSP
-  - FDPM
-  - HT2ZC
-  - OAFC
-
-MAU_DFSS_DFVSC_HTDC_ZTM:
-  id: "7815831814240468992"
-  description: "Single zone heating make-up air unit."
-  is_canonical: true
-  implements:
-  - MAU
-  - DFSS
-  - DFVSC
-  - HTDC
-  - ZTM
-
-MAU_DFSS_DFVSC_DX2DDC_HTDDC_OAFC_ZTM:
-  id: "15670109564374614016"
-  description: "Single zone with dual discharge setpoint control for heating and cooling."
-  is_canonical: true
-  implements:
-  - MAU
-  - DFSS
-  - DFVSC
-  - DX2DDC
-  - HTDDC
-  - OAFC
-  - ZTM
-
-MAU_DF2XSS_DFVSC2X_HP2ZC_HTZC_OAFC:
-  id: "7806824614985728000"
-  description: "Single zone with dual zone setpoint control for heating and cooling."
-  is_canonical: true
-  implements:
-  - MAU
-  - DF2XSS
-  - DFVSC2X
-  - HP2ZC
-  - HTZC
-  - OAFC
-
-MAU_DF2XSS_DFVSC2X_DSP_HTZC:
-  id: "8743573337478791168"
-  description: "Single zone with dual zone setpoint control."
-  is_canonical: true
-  implements:
-  - MAU
-  - DF2XSS
-  - DFVSC2X
-  - DSP
-  - HTZC
-
-MAU_DFSS_DFVSC_HPDDC_ZTM:
-  id: "16335375671830249472"
-  description: "Dual discharge setpoint control with zone monitoring for heat pump MAU."
-  is_canonical: true
-  implements:
-  - MAU
-  - DFSS
-  - DFVSC
-  - HPDDC
-  - ZTM
-
-MAU_DFSS_DFVSC_HWDDC_DXDDC_ZTM:
-  id: "13658179207404978176"
-  description: "Single zone with dual discharge setpoint control for both heating and cooling."
-  is_canonical: true
-  implements:
-  - MAU
-  - DFSS
-  - DFVSC
-  - HWDDC
-  - DXDDC
-  - ZTM
-
-MAU_SFSS2X_SFVSC2X_CFDPM_DPCHWHRWSC_HWSC_FDPM_SSPC_STC_VOADM2X:
-  id: "14263948541658398720"
-  description: "Multi-zone MAU with heating water, chilled water, and heat recovery preheating water. The chilled water 
-  and heat recovery preheating water both go through the same coils, but uses isolation valves to switch the source."
-  is_canonical: true
-  implements:
-  - MAU
-  - SFSS2X
-  - SFVSC2X
-  - CFDPM
-  - DPCHWHRWSC
-  - FDPM
-  - HWSC
-  - SSPC
-  - STC
-  - VOADM2X
-
-MAU_SFSS2X_SFVSC2X_CHWSC_HWSC_FDPM_SSPC_STC_VOADM2X:
-  id: "2676186700434112512"
-  description: "Multi-zone MAU with chilled water and heating water."
-  is_canonical: true
-  implements:
-  - MAU
-  - SFSS2X
-  - SFVSC2X
-  - CHWSC
-  - FDPM
-  - HWSC
-  - SSPC
-  - STC
-  - VOADM2X
-  
-MAU_SFSS_SFVSC_SPSS_STM_SHM_SFC_FDPSM:
-  id: "10515066889732882432"
-  description: "MAU with VFD, spray pump, filter, supply air temperature and humidity monitoring."
-  is_canonical: true
-  implements:
-  - MAU
-  - SFSS
-  - SFVSC
-  - SPSS
-  - STM
-  - SHM
-  - SFC
-  - FDPSM
-
-
-MAU_SFVSC_CHWSC_SSPC_FDPSM2X:
-  id: "11161614911237259264"
-  description: "MAU with chilled water valve modulation,VFD speed control based on static pressure,two filters."
-  is_canonical: true
-  implements:
-  - MAU
-  - SFVSC
-  - CHWSC
-  - SSPC
-  - FDPSM2X
-  opt_uses:
-  - supply_air_isolation_damper_status 
-
-MAU_CHWSC_HWSC_SSPC_SFSS_SFVSC_FDPM2X_SFM:
-  description: "Multi-zone MAU with chilled water and heating water."
-  is_canonical: true
-  implements:
-  - MAU
-  - CHWSC
-  - HWSC
-  - SSPC
-  - SFSS
-  - SFVSC
-  - FDPM2X
-  - SFM
-  
 ###################################
 ### Existing Non-standard Types ###
 ###################################
 
-### Types requiring remapping:
-###   - MAU_US_MTV_1225_1 (actually an AHU)
-###   - MAU_US_MTV_900_1 (appears changed in the controller)
-###   - MAU_US_MTV_QD7_2 (appears changed in the controller)
-###   - MAU_US_PAO_HV3_2 (actually an AHU)
-
-MAU_US_MTV_1201_1:
-  id: "6867662464469696512"
-  description: "Non-standard type for 1201"
+MAU_DFSS_DFVSC_BPC_DXDC_HTDC_DSP_NONCANONICAL_1:
+  guid: "9821db96-8384-4139-81f7-c3890ecf8202"
+  description: "Non-standard type."
   implements:
   - MAU_DFSS_DFVSC_BPC_DXDC_HTDC_DSP
   - INCOMPLETE
   uses:
   - outside_air_damper_percentage_command
 
-MAU_US_MTV_2000_1:
-  id: "201209116054519808"
-  description: "Non-standard type for 2000"
+MAU_DFSS_DFVSC_DSP_CHWZC_HWZC_NONCANONICAL_1:
+  guid: "e97a8505-bd80-4935-9057-9aee241bb146"
+  description: "Non-standard type."
   implements:
   - MAU_DFSS_DFVSC_DSP_CHWZC_HWZC
   - DEPRECATED
@@ -703,63 +749,63 @@ MAU_US_MTV_2000_1:
   - discharge_air_flowrate_sensor
   - discharge_air_static_pressure_sensor
 
-MAU_US_MTV_2015_1:
-  id: "1786546553633112064"
-  description: "Non-standard type for 2015"
+MAU_SFSS_SFVSC_HWSC_DX2SC_HT4SC_SSPC_NONCANONICAL_1:
+  guid: "f2c4cc02-e86a-43d1-8c9c-7cc0a9a26ae7"
+  description: "Non-standard type."
   implements:
   - MAU_SFSS_SFVSC_HWSC_DX2SC_HT4SC_SSPC
   - INCOMPLETE
   uses:
   - zone_air_temperature_sensor
 
-MAU_US_MTV_2644_2:
-  id: "15104746182930333696"
-  description: "Non-standard type for 2644"
+MAU_SFSS_SFVSC_DXSC_SSPC_HTSC_NONCANONICAL_1:
+  guid: "33a0a938-a15c-467f-9cf2-3e0bb8139aa0"
+  description: "Non-standard type."
   implements:
   - MAU_SFSS_SFVSC_DXSC_SSPC_HTSC
   - INCOMPLETE
   uses:
   - outside_air_damper_percentage_command
 
-MAU_US_MTV_2644_3:
-  id: "5656194164707033088"
-  description: "Non-standard type for 2644"
+MAU_SFSS_SFVSC_DXSC_HTSC_NONCANONICAL_2:
+  guid: "b603d5a5-5554-49c3-8c37-a6fbbaf77ffb"
+  description: "Non-standard type."
   implements:
   - MAU_SFSS_SFVSC_DXSC_HTSC
   - INCOMPLETE
   uses:
   - outside_air_damper_percentage_command
 
-MAU_US_MTV_43_2:
-  id: "1507253007991963648"
-  description: "Non-standard type for B43"
+MAU_SFSS_CHWSC_HT4SC_NONCANONICAL_1:
+  guid: "e3767b30-7299-44ed-b879-cfd22a1ee656"
+  description: "Non-standard type."
   implements:
   - MAU_SFSS_CHWSC_HT4SC
   - INCOMPLETE
   uses:
   - zone_air_temperature_sensor
 
-MAU_US_MTV_CL4_1:
-  id: "16140644465969725440"
-  description: "Non-standard type for CL4"
+MAU_DFSS_DFVSC_DSP_HTSC_NONCANONICAL_1:
+  guid: "adbab15e-0fc6-4df4-bd48-bb6359c40d5b"
+  description: "Non-standard type."
   implements:
   - MAU_DFSS_DFVSC_DSP_HTSC
   - INCOMPLETE
   uses:
   - spray_pump_run_command
 
-MAU_US_MTV_PR55_1:
-  id: "6795604870431768576"
-  description: "Non-standard type for PR55"
+MAU_SFSS_SFVSC_HTSC_BPC_NONCANONICAL_1:
+  guid: "f5fe11ba-0947-4021-86b0-d7955ab40093"
+  description: "Non-standard type."
   implements:
   - MAU_SFSS_SFVSC_HTSC_BPC
   - INCOMPLETE
   uses:
   - evaporative_cooler_run_command
 
-MAU_US_MTV_QD7_3:
-  id: "8853749900140085248"
-  description: "Non-standard type for QD7"
+MAU_SFSS_SFVSC_SSPC_HT2SC_DX2SC_NONCANONICAL_1:
+  guid: "c80e09ab-0518-47f2-9055-dc10aa250599"
+  description: "Non-standard type."
   implements:
   - MAU_SFSS_SFVSC_SSPC_HT2SC_DX2SC
   - INCOMPLETE
@@ -767,9 +813,9 @@ MAU_US_MTV_QD7_3:
   - zone_air_temperature_sensor
   - zone_air_temperature_setpoint # Has static control
 
-MAU_US_MTV_SB65_1:
-  id: "12506169197937557504"
-  description: "Non-standard type for SB65"
+MAU_SFSS_SFVSC_HTSC_DX2SC_SSPC_NONCANONICAL_1:
+  guid: "14a26393-4f00-48a2-a916-8fb80fe0cfd8"
+  description: "Non-standard type."
   implements:
   - MAU_SFSS_SFVSC_HTSC_DX2SC_SSPC
   - INCOMPLETE
@@ -777,64 +823,20 @@ MAU_US_MTV_SB65_1:
   - zone_air_temperature_sensor
   - heating_request_count
 
-MAU_US_PAO_MIR1_1:
-  id: "11307085797150162944"
-  description: "Non-standard type for MIR1"
+MAU_SFSS_SFVSC_HTSC_BPC_SHM_NONCANONICAL_1:
+  guid: "633b0308-e775-4799-a662-3d725627c569"
+  description: "Non-standard type."
   implements:
   - MAU_SFSS_SFVSC_HTSC_BPC_SHM
   - DEPRECATED
   uses:
   - evaporative_cooler_run_command
 
-MAU_US_SBO_1000_1:
-  id: "6703281078070673408"
-  description: "Non-standard type for SBO-1000"
+MAU_SFSS_SFVSC_HTSC_BPC_SHM_NONCANONICAL_2:
+  guid: "f2acc74c-9977-430e-8ff3-76dfdd7faab5"
+  description: "Non-standard type."
   implements:
   - MAU_SFSS_SFVSC_HTSC_BPC_SHM
   - DEPRECATED
   uses:
   - humidification_run_command
-  
-
-
-#New canonical#
-MAU_FDPM_SSPC_STC_SHM_SFVSC3X_SFSS3X:
-  id: "2586761220723834880"
-  description: "Air purifier unit (MAU) with 3 fan with differential pressure, static pressure, temperature, humidity and electrical parameter monitoring. "
-  implements:
-  - MAU
-  - FDPM
-  - SSPC
-  - STC
-  - SHM
-  - SFVSC3X
-  - SFSS3X
-
- 
-#Canonical for Air washers#
-MAU_SFSS_FDPM_SSPM_STM_SHM:
-  id: "6696295880699412480"
-  description: "makeup Air Unit with run command, status, dufferential pressure, static T,RH, monitoring and control"
-  implements:
-  - MAU
-  - SFSS
-  - FDPM
-  - SSPM
-  - STM
-  - SHM
-
-
-MAU_DFMSC_DFVSC_FDPM_DTM:
-  id: "9745232828429238272"
-  description: "Makeup Air Unit with discharge air monitoring along with fan speed control"
-  implements:
-  - MAU
-  - DFMSC
-  - DFVSC
-  - FDPM
-  - DTM
-
-
-  
-
-  

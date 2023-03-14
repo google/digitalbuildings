@@ -1,13 +1,13 @@
-US-SVL-MP2:
+abc-123-ff6:
   type: FACILITIES/BUILDING
-  guid: 839402
-  id: CDM/123
+  code: US-SVL-MP2
 
-EF-1:
+def-234-fss:
   type: HVAC/FAN_SS
-    id: 12345
-  guid: 12345566
-  cloud_device_id: 1234567
+  code: EF-1
+    cloud_device_id: 1234567 # Bad indent.
+  connections:
+    abc-123-ff6: CONTAINS
   translation:
     run_command:
       present_value: "points.fan_ss.present_value"

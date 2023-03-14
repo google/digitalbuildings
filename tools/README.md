@@ -2,9 +2,7 @@
 
 The Digital Buildings Toolkit provides a centralized
 method for interfacing with all of the tools contained within the Digital
-Buildings Repository. Currently, the toolkit only supports building configuration
-instance validation and guid generation, but additional funcionality will be
-implemented in the future.
+Buildings Repository.
 
 ## Install
 
@@ -12,7 +10,7 @@ To install please follow the instructions below.
 
 ### First create a virtual env
 
-Create the virutal environment with `virtualenv` followed by the environment name, in this example: `tooling`
+Create the virtual environment with `virtualenv` followed by the environment name, in this example: `tooling`
 
 ```
 virtualenv tooling
@@ -37,7 +35,7 @@ Then you can either use pip or setuptools.
 ### Pip
 1. Run `python3 -m pip install --upgrade pip` to ensure that your Python package management tools are up-to-date.
 
-2. Run `pip_install.sh` or `pip_install.bat` (windows) from the following directory digitalbuildings/tools.
+2. Run `bash pip_install.sh` or `pip_install.bat` (windows) from the following directory digitalbuildings/tools.
 
 
 
@@ -71,16 +69,16 @@ Run `python toolkit.py` and provide the following arguments:
 
   * **NOTE:** The service account key and subscription are provided by the Google team. Please reach out to your IoT TPM for guidance.
 
-6. `-r/--report-filename` To write results to a validation log.
+6. `-d/--report-directory` To write instance validation (instance_validation_report.txt) and telemetry validation (telemetry_validation_report.json) reports to the report-directory; otherwise writes instance validation to console and telemetry validation to current working directory. 
 
 For example:
-`python toolkit.py -i //path/to/file -g -v -s subscription-name -a service-account-name -r //path/to/report`
+`python toolkit.py -i //path/to/file -g -v -s subscription-name -a service-account-name -d //path/to/report-directory`
 1. Takes in a building configuration file.
 2. Generates guids for every entity instance.
 3. Re-writes building config in the new format.
 4. Validates the building configuration.
 5. Validates the telemetry payload.
-6. Writes validation results to the report filepath.
+6. Writes validation results to the report directory as //path/to/report-directory/instance_validation_report.txt and //path/to/report-directory/telemetry_validation_report.json for instance validation and telemetry validation respectfully.
 
 **NOTE:** The new building configuration format switches entities being keyed by codes
 to being keyed by guids, and Ids are removed. To convert from old format to the

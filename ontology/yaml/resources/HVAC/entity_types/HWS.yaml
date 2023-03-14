@@ -16,8 +16,16 @@
 ### Canonical Types  ###
 ########################
 
+HWS_SS:
+  guid: "a685a053-b644-4968-82c5-ecb6efc2ace6"
+  description: "Simple hot water system with status only"
+  is_canonical: true
+  implements:
+  - HWS
+  - SS
+
 HWS_SWTC:
-  id: "17871319748554260480"
+  guid: "81285228-4672-4997-9548-9b19d0b6ff28"
   description: "Simple heating water system with supply temp control."
   is_canonical: true
   implements:
@@ -25,7 +33,7 @@ HWS_SWTC:
   - SWTC
 
 HWS_SWTC_WDPC:
-  id: "15732109925553274880"
+  guid: "c2186199-e179-4aec-8be5-b8ac6c63ba1e"
   description: "Simple heating water system with supply temp and differential pressure control."
   is_canonical: true
   implements:
@@ -34,7 +42,7 @@ HWS_SWTC_WDPC:
   - WDPC
 
 HWS_SWTC_WDPC_WFRM:
-  id: "11488030226710003712"
+  guid: "dd3f6f24-5533-4285-b29a-6fc84e60f65d"
   description: "Simple heating water system with supply temp and differential pressure control."
   is_canonical: true
   implements:
@@ -44,7 +52,7 @@ HWS_SWTC_WDPC_WFRM:
   - WFRM
 
 HWS_RWTC:
-  id: "16423975418308067328"
+  guid: "cc001c3f-20b4-4dad-8fc6-64d2f4982dec"
   description: "Simple heating water system with return temp control."
   is_canonical: true
   implements:
@@ -52,7 +60,7 @@ HWS_RWTC:
   - RWTC
 
 HWS_RWTC_WDPC:
-  id: "12738553179491270656"
+  guid: "c676860c-9ecb-470b-9582-61803fc53b6d"
   description: "Simple heating water system with return temp control and differential pressure control."
   is_canonical: true
   implements:
@@ -61,7 +69,7 @@ HWS_RWTC_WDPC:
   - WDPC
 
 HWS_SWTC_WDPC_PWDT:
-  id: "4202894879484805120"
+  guid: "31027b39-08d3-44b8-b4ad-572e486cc804"
   description: "Primary/secondary heating water system with differential pressure and supply temp control."
   is_canonical: true
   implements:
@@ -71,7 +79,7 @@ HWS_SWTC_WDPC_PWDT:
   - PWDT
 
 HWS_SWTC_WFRM:
-  id: "6876344208282615808"
+  guid: "4b31f33a-afea-48fe-af3a-73e553c5fc40"
   description: "Simple heating water system with supply temp control."
   is_canonical: true
   implements:
@@ -80,7 +88,7 @@ HWS_SWTC_WFRM:
   - WFRM
 
 HWS_SWTC_MXVPM:
-  id: "1435995858419056640"
+  guid: "5ce507ee-216e-439a-9a54-dc05530dc25c"
   description: "Heating water system with mixed supply temp control."
   is_canonical: true
   implements:
@@ -89,7 +97,7 @@ HWS_SWTC_MXVPM:
   - MXVPM
 
 HWS_RWTC_MXVPM:
-  id: "9512638840154619904"
+  guid: "e89ca334-9842-4015-8fac-3902b90e2ffb"
   description: "Heating water system with mixed return temp control."
   is_canonical: true
   implements:
@@ -98,7 +106,7 @@ HWS_RWTC_MXVPM:
   - MXVPM
 
 HWS_SWTC_BYPVPM:
-  id: "13426266916339580928"
+  guid: "8d8652a9-6814-413e-9aa1-8772a831d6a3"
   description: "Heating water system with supply temp control and bypass."
   is_canonical: true
   implements:
@@ -107,7 +115,7 @@ HWS_SWTC_BYPVPM:
   - BYPVPM
 
 HWS_SWTC_WDPC2X:
-  id: "16099716245137391616"
+  guid: "186b69d9-53bd-4033-bc42-2c19d56643f5"
   description: "Heating water system with supply temp control and two differential pressure controlled headers."
   is_canonical: true
   implements:
@@ -116,7 +124,7 @@ HWS_SWTC_WDPC2X:
   - WDPC2X
 
 HWS_SWTC_WDPC_CGRWTC:
-  id: "10659367895273832448"
+  guid: "87ace6b4-f74d-40c3-8a36-4c3cb950a046"
   description: "Heating water system with supply temp and differential pressure control, with cogen tie-in."
   is_canonical: true
   implements:
@@ -126,7 +134,7 @@ HWS_SWTC_WDPC_CGRWTC:
   - CGRWTC
 
 HWS_SWTC_WDPC_WFRM_PWDT:
-  id: "4900952821727232000"
+  guid: "eb0ef1c5-5e57-4fc3-8449-fa79961f9b52"
   description: "Primary/secondary heating water system with differential pressure and supply temp control."
   is_canonical: true
   implements:
@@ -137,7 +145,7 @@ HWS_SWTC_WDPC_WFRM_PWDT:
   - PWDT
 
 HWS_SWTC_WDPC_BYPVPM_MXVPM:
-  id: "8814580897912193024"
+  guid: "f6ad7108-2dc3-49d7-b043-bb566b804f40"
   description: "Heating water system with differential pressure and supply temp control; bypass and mixing utilized."
   is_canonical: true
   implements:
@@ -148,7 +156,7 @@ HWS_SWTC_WDPC_BYPVPM_MXVPM:
   - MXVPM
 
 HWS_SWTC_SWISOVPM_RWISOVPM:
-  id: "4570501199068921856"
+  guid: "0efcd72f-a232-412a-ac49-5ddaf0dfbe79"
   description: "Simple heating water system with supply temp control and return/supply isolation."
   is_canonical: true
   implements:
@@ -158,7 +166,7 @@ HWS_SWTC_SWISOVPM_RWISOVPM:
   - RWISOVPM
 
 HWS_SWTC_WDPC_WFRC_BYPVPM_PWDT:
-  id: "13908152076468224000"
+  guid: "78dcf2d2-f3de-4ddf-8433-a6f5dc471c0b"
   description: "Primary secondary heating water system with operable decoupler."
   is_canonical: true
   implements:
@@ -170,16 +178,19 @@ HWS_SWTC_WDPC_WFRC_BYPVPM_PWDT:
   - PWDT
 
 HWS_SWTC_WDPC_SWTCSCM_WDPCSCM:
-  id: "15800793118405558272"
+  guid: "d595b71d-dff7-4929-8d5b-28f0cfe251fb"
   description: "Simple heating water system with supply temp and differential pressure control and with supervisor control mode types (machine learning)."
   is_canonical: true
   implements:
   - HWS_SWTC_WDPC
   - SWTCSCM
   - WDPCSCM
+  opt_uses:
+  - supervisor_run_command
+  - run_command
 
 HWS_SS_ALS:
-  id: "10375881911795974144"
+  guid: "8188f6ac-ea35-47d4-99ff-9d12cd5e2968"
   description: "Heating water system with optional alarm, mode and status are being operated and monitored."
   is_canonical: true
   implements:
@@ -193,7 +204,7 @@ HWS_SS_ALS:
   - control_status
 
 HWS_SS_WDT:
-  id: "8124926523040858112"
+  guid: "8dafea0a-ef40-4f91-973c-4e3dae11fac6"
   description: "Heating water system with temperature reading between return/supply water"
   is_canonical: true
   implements:
@@ -207,7 +218,7 @@ HWS_SS_WDT:
   - control_status
 
 HWS_SS_RWTC_SWTC:
-  id: "2014562175489671168"
+  guid: "259bd7d2-d49f-4888-a245-c7bf95f107f5"
   description: "Heating water system with temperature control between return/supply water"
   is_canonical: true
   implements:
@@ -221,7 +232,7 @@ HWS_SS_RWTC_SWTC:
   - lost_power_alarm
 
 HWS_SWTC_BYPVPM_WDPC_WFRM:
-  id: "12025993778390106112"
+  guid: "09460cb6-7641-4e8f-843e-1e4aa4287c3b"
   description: "Heating water system (temp/pressure control) with bypass control and flow monitoring."
   is_canonical: true
   implements:
@@ -232,7 +243,7 @@ HWS_SWTC_BYPVPM_WDPC_WFRM:
   - WFRC
 
 HWS_SWTM_WDPC_BYPVPM:
-  id: "4636941388200542208"
+  guid: "5cc7fe32-46bc-429c-b6d0-c2c41799be80"
   description: "Heating water system with supply temperature monitoring, differential pressure control and bypass valve control."
   is_canonical: true
   implements:
@@ -242,7 +253,7 @@ HWS_SWTM_WDPC_BYPVPM:
   - BYPVPM
 
 HWS_SWTC_WDPC_BYPVPM_HWVM:
-  id: "16598501998496579584"
+  guid: "6a7b40e8-b727-4e3a-a9b5-81e4a5f2339b"
   description: "Heating water system with water supply temperature control, differential pressure control, bypass valve control and heating water valve control."
   is_canonical: true
   implements:
@@ -253,7 +264,7 @@ HWS_SWTC_WDPC_BYPVPM_HWVM:
   - HWVM
 
 HWS_SWTM:
-  id: "5040576504803622912"
+  guid: "19f47da0-0f8e-48cc-ba71-9793bd827a48"
   description: "Heating water system with supply temperature monitoring"
   is_canonical: true
   implements:
@@ -261,7 +272,7 @@ HWS_SWTM:
   - SWTM
 
 HWS_HLPM_WDPC_WFRM_WDT:
-  id: "14205401746502582272"
+  guid: "7ec9057c-66cb-4475-8520-4270b60ca724"
   description: "Heating water system with differential pressure control, thermal power, flowrate and delta-T monitoring."
   is_canonical: true
   implements:
@@ -272,7 +283,7 @@ HWS_HLPM_WDPC_WFRM_WDT:
   - WDT
 
 HWS_WFRC_SWTC:
-  id: "16144201386085580800"
+  guid: "e661e319-1615-4059-acc7-3aed7758a0f4"
   description: "Heating water system with flowrate and suppy temp control."
   is_canonical: true
   implements:
@@ -281,7 +292,7 @@ HWS_WFRC_SWTC:
   - SWTC
 
 HWS_WFRM_SWTC_HLPM:
-  id: "9760348914287902720"
+  guid: "954cfc31-e656-4d03-8293-f262e9f2d903"
   description: "Heating water system with supply temp control, and flowrate and thermal power monitoring."
   is_canonical: true
   implements:
@@ -291,7 +302,7 @@ HWS_WFRM_SWTC_HLPM:
   - HLPM
 
 HWS_SS_HWTTC_PWDPM2X:
-  id: "3282567363152576512"
+  guid: "ae8740bf-de14-4e32-a435-efa06c1692bc"
   description: "Solar Heating water system with tank temp,pressure,pump and compressor monitoring."
   is_canonical: true
   implements:
@@ -306,9 +317,9 @@ HWS_SS_HWTTC_PWDPM2X:
 ### Existing Non-standard Types ###
 ###################################
 
-HWS_US_SVL_MAT2_1:
-  id: "8016273883495661568"
-  description: "Non-standard type for MAT2"
+HWS_SWTC_WDPC2X_NONCANONICAL_1:
+  guid: "78ce6510-bc0e-49be-809e-b035ab1b79a0"
+  description: "Non-standard type."
   implements:
   - HWS_SWTC_WDPC2X
   - DEPRECATED
@@ -316,9 +327,9 @@ HWS_US_SVL_MAT2_1:
   - return_water_temperature_sensor_1
   - return_water_temperature_sensor_2
 
-HWS_US_MTV_2000_2:
-  id: "17278858903043440640"
-  description: "Non-standard type for 2000"
+HWS_RWTC_MXVPM_NONCANONICAL_1:
+  guid: "5c99f349-15ce-4908-b3b2-185e758ca0ad"
+  description: "Non-standard type."
   implements:
   - HWS_RWTC_MXVPM
   - DEPRECATED
@@ -326,9 +337,8 @@ HWS_US_MTV_2000_2:
   - mixing_valve_percentage_command
   - heat_exchange_supply_water_isolation_valve_command
 
-# Non Standard Types for CH ZRH EURD
 HWS_SWTC_CPC:
-  id: "8626163087818358784"
+  guid: "e8ea2064-a575-4c7d-957b-948f83edc8a8"
   description: "Simple hot water system with circulation pump"
   implements:
   - HWS
@@ -338,3 +348,4 @@ HWS_SWTC_CPC:
   - circulation_pump_speed_percentage_command
   - circulation_pump_speed_percentage_setpoint
   - failed_alarm
+  

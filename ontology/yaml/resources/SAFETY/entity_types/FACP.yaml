@@ -16,7 +16,7 @@
 
 
 FACP_STD:
-  id: "7388262528523960320"
+  guid: "d2e0d72e-8dbc-4995-be53-3e0b23810611"
   description: "Basic fire alarm panel."
   is_canonical: true
   implements:
@@ -25,7 +25,7 @@ FACP_STD:
   - fire_alarm
 
 FACP_FA2X:
-  id: "937181517757546496"
+  guid: "a29a1bdd-0f8c-498e-b4ed-d09789f2487c"
   description: "Fire alarm panel with 2 fire alarm alertness and a fire fault status"
   is_canonical: true
   implements:
@@ -34,3 +34,14 @@ FACP_FA2X:
   opt_uses:
   - panel_alarm
 
+FACP_PAS:
+  guid: "34d56a9a-15ca-4921-a851-eb13c7be7dfd"
+  description: "Fire alarm panel with Pre-action suppression."
+  is_canonical: true
+  implements:
+  - FACP
+  uses:
+  - fire_alarm
+  - supervisor_alarm
+  - water_flowrate_status
+  - air_pressure_status

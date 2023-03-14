@@ -1,4 +1,4 @@
-# Copyright 2022 Google LLC
+# Copyright 2023 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the License);
 # you may not use this file except in compliance with the License.
@@ -54,8 +54,12 @@ class Telemetry(object):
     """
     super().__init__()
     self.attributes = self._parse_attributes(message.attributes)
-    self.version, self.timestamp, self.points, self.is_partial = (
-        self._parse_data(message.data))
+    (
+        self.version,
+        self.timestamp,
+        self.points,
+        self.is_partial,
+    ) = self._parse_data(message.data)
 
   def _parse_attributes(self, pubsub_message_attributes) -> Dict[str, str]:
     """Receives a pubsub message data and parses it.
@@ -69,18 +73,19 @@ class Telemetry(object):
     """
     parsed_attributes = {}
     parsed_attributes[DEVICE_ID] = pubsub_message_attributes.get(DEVICE_ID)
-    parsed_attributes[DEVICE_REGISTRY_ID] = \
-    pubsub_message_attributes.get(DEVICE_REGISTRY_ID)
-    parsed_attributes[DEVICE_NUM_ID] = \
-      pubsub_message_attributes.get(DEVICE_NUM_ID)
-    parsed_attributes[SUB_FOLDER] = \
-      pubsub_message_attributes.get(SUB_FOLDER)
-    parsed_attributes[SUB_TYPE] = \
-      pubsub_message_attributes.get(SUB_TYPE)
+    parsed_attributes[DEVICE_REGISTRY_ID] = pubsub_message_attributes.get(
+        DEVICE_REGISTRY_ID
+    )
+    parsed_attributes[DEVICE_NUM_ID] = pubsub_message_attributes.get(
+        DEVICE_NUM_ID
+    )
+    parsed_attributes[SUB_FOLDER] = pubsub_message_attributes.get(SUB_FOLDER)
+    parsed_attributes[SUB_TYPE] = pubsub_message_attributes.get(SUB_TYPE)
     return parsed_attributes
 
-  def _parse_data(self,
-                  message) -> Tuple[str, str, Dict[str, point.Point], bool]:
+  def _parse_data(
+      self, message
+  ) -> Tuple[str, str, Dict[str, point.Point], bool]:
     """Receives a pubsub message data and parses it.
 
     Handles parsing as outlined in:
@@ -99,28 +104,37 @@ class Telemetry(object):
     version, timestamp, points, is_partial = (None, None, None, None)
     try:
       if isinstance(message, int):
-        print(f'Received an invalid message (non Json payload)\n{message}')
+        print(f'[ERROR]\tReceived a non-JSON payload: {message}')
         return version, timestamp, points, is_partial
       json_object = json.loads(message)
     except json.JSONDecodeError:
-      print(f'The following Json payload is invalid:\n{message}')
+      print(f'[ERROR]\tReceived an invalid JSON payload: {message}')
     except AttributeError:
-      print(f'The following Json raised an attribute error:\n{message}')
+      print(
+          f'[ERROR]\tReceived a JSON payload with an attribute error: {message}'
+      )
     except ValueError:
-      print(f'The following Json raised an ValueError error:\n{message}')
+      print(f'[ERROR]\tReceived a JSON payload with a value error: {message}')
     else:
       if isinstance(json_object, int):
-        print(f'Received an invalid Json payload containing: \n{json_object}')
+        print(
+            '[ERROR]\tReceived an invalid JSON payload containing: '
+            f'{json_object}'
+        )
         return version, timestamp, points, is_partial
 
       # UDMI v1 sends as int and v1+ sends version as String
       if VERSION not in json_object.keys():
-        print('Error: no version in ', json_object)
+        print(
+            f'[ERROR]\tReceived a JSON payload with no version: {json_object}'
+        )
         return version, timestamp, points, is_partial
       version = str(json_object[VERSION])
 
       if TIMESTAMP not in json_object.keys():
-        print('Error: no timestamp in ', json_object)
+        print(
+            f'[ERROR]\tReceived a JSON payload with no timestamp: {json_object}'
+        )
         return version, timestamp, points, is_partial
       timestamp = json_object[TIMESTAMP]
 
@@ -128,7 +142,7 @@ class Telemetry(object):
 
       points = {}
       if POINTS not in json_object.keys():
-        print('Error: no points in ', json_object)
+        print(f'[ERROR]\tReceived a JSON payload with no points: {json_object}')
         return version, timestamp, points, is_partial
       json_points = json_object[POINTS]
       for point_name, value in json_points.items():

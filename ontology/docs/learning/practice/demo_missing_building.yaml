@@ -1,7 +1,8 @@
-EF-1:
+# Building not defined in this file.
+
+def-234-fss:
   type: HVAC/FAN_SS
-  id: 12345
-  guid: 12345566
+  code: EF-1
   cloud_device_id: 1234567
   translation:
     run_command:

@@ -20,7 +20,6 @@ from __future__ import print_function
 from os import path
 import re
 
-from absl import flags
 from absl.testing import absltest
 
 from yamlformat.tests import test_constants
@@ -34,8 +33,7 @@ from yamlformat.validator import unit_lib
 
 _F = field_lib.Field
 
-FLAGS = flags.FLAGS
-
+# pylint: disable=protected-access
 # Constant to point to test files.
 RESOURCE_PATH = path.join(test_constants.TEST_RESOURCES)
 field_lib.FIELD_TO_NAMESPACE_REGEX = re.compile(
@@ -45,7 +43,7 @@ field_lib.FIELD_TO_NAMESPACE_REGEX = re.compile(
 class ParseConfigLibTest(absltest.TestCase):
 
   def setUp(self):
-    super(ParseConfigLibTest, self).setUp()
+    super().setUp()
     self.base_dir = RESOURCE_PATH
     self.duplicate_types_file = base_lib.PathParts(
         root=self.base_dir,
@@ -241,6 +239,23 @@ class ParseConfigLibTest(absltest.TestCase):
     self.assertTrue(
         local_folder.HasFindingTypes([findings_lib.UnrecognizedStateError]))
 
+  def testParseFieldFoldersFromGoodFileWithValueRanges(self):
+    fields = base_lib.PathParts(
+        root=self.base_dir, relative_path='GOOD/fields/numeric_fields.yaml')
+    field_folders = parse.ParseFieldFoldersFromFiles([fields])
+    for folder in field_folders:
+      self.assertEmpty(folder.GetFindings())
+
+  def testParseFieldFoldersFromBadFileWithValueRanges(self):
+    bad_fields = base_lib.PathParts(
+        root=self.base_dir, relative_path='BAD/fields/bad_numeric_fields.yaml')
+    field_folders = parse.ParseFieldFoldersFromFiles([bad_fields])
+    local_folder = field_folders[1]
+    self.assertTrue(local_folder.HasFindingTypes(
+        [findings_lib.InvalidDefaultValueRangeError]))
+    self.assertTrue(local_folder.HasFindingTypes(
+        [findings_lib.InvalidDefaultValueRangeValueError]))
+
   def testParseFieldFoldersFromBadFile(self):
     bad_fields = base_lib.PathParts(
         root=self.base_dir, relative_path='BAD/fields/bad_local_fields.yaml')
@@ -393,9 +408,6 @@ class ParseConfigLibTest(absltest.TestCase):
         unit_folder.HasFindingTypes([findings_lib.StandardUnitCountError]))
     self.assertTrue(
         unit_folder.HasFindingTypes([findings_lib.UnknownUnitTagError]))
-    self.assertTrue(
-        unit_folder.HasFindingTypes([findings_lib.DuplicateUnitDefinitionError
-                                    ]))
 
   def testParseUnitFoldersFromBadFileWithSubfieldUniverse(self):
     subfield_folders = parse.ParseSubfieldFoldersFromFiles(

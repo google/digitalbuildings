@@ -17,7 +17,7 @@
 ########################
 
 CH_SS_SWTC:
-  id: "6390729504712556544"
+  guid: "76ab5a99-4b02-4a6a-a232-2954b16fafc0"
   description: " Simple air cooled chiller."
   is_canonical: true
   implements:
@@ -26,7 +26,7 @@ CH_SS_SWTC:
   - SWTC
 
 CH_SS_SCHWTC_RWISOVPM:
-  id: "9962084009217359872"
+  guid: "69ac8219-82ca-46d1-88dc-7fc8ce0f16d3"
   description: "Simple water-cooled chiller with condenser isolation."
   is_canonical: true
   implements:
@@ -36,7 +36,7 @@ CH_SS_SCHWTC_RWISOVPM:
   - RWISOVPM
 
 CH_SS_SWTC_DX4SWC_CHWDPM: # HERE
-  id: "4539538951630749696"
+  guid: "29d217b2-a914-4495-9c6c-34684a73bdf6"
   description: "Air cooled chiller with 4 stages cooling."
   is_canonical: true
   implements:
@@ -47,7 +47,7 @@ CH_SS_SWTC_DX4SWC_CHWDPM: # HERE
   - CHWDPM
 
 CH_SS_SCHWTC_CWDT_IGM_CWRISOVPM_CHWRWISOVPM_CHWRWISOVM_CHDXSC_CDWFRM_CHWDPM_CHPM_REFSM_CHWBYPVPM:
-  id: "9856249417974153216"
+  guid: "7e0c9db5-c872-4856-99c1-2bf92631105b"
   description: "Complex water cooled chiller."
   is_canonical: true
   implements:
@@ -67,7 +67,7 @@ CH_SS_SCHWTC_CWDT_IGM_CWRISOVPM_CHWRWISOVPM_CHWRWISOVM_CHDXSC_CDWFRM_CHWDPM_CHPM
   - CHWBYPVPM
 
 CH_SS_SWTC_DX2SWC:
-  id: "2799108801884585984"
+  guid: "342fa3f5-2c4b-4e62-9d83-0af7fcb91663"
   description: "Two stage air cooled chiller."
   is_canonical: true
   implements:
@@ -77,7 +77,7 @@ CH_SS_SWTC_DX2SWC:
   - DX2SWC
 
 CH_SS_SWTC_DX4SWC:
-  id: "15614101541567332352"
+  guid: "867d2d7c-563a-4f5b-a626-912615a75214"
   description: "Four stage air cooled chiller."
   is_canonical: true
   implements:
@@ -87,7 +87,7 @@ CH_SS_SWTC_DX4SWC:
   - DX4SWC
 
 CH_SS_SCHWTC_CWDT:
-  id: "5350397990789971968"
+  guid: "485a1a19-e110-45a2-8793-193287324b92"
   description: "Simple water cooled chiller."
   is_canonical: true
   implements:
@@ -97,7 +97,7 @@ CH_SS_SCHWTC_CWDT:
   - CWDT
 
 CH_SS_SCHWTC_CHWSWISOVM:
-  id: "13762910988485525504"
+  guid: "6b8e395a-94e3-4b25-8eda-0f2472d72332"
   description: "Simple water cooled chiller."
   is_canonical: true
   implements:
@@ -107,7 +107,7 @@ CH_SS_SCHWTC_CHWSWISOVM:
   - CHWSWISOVM
 
 CH_SS_SCHWTC_CWRISOVPM:
-  id: "5244563399546765312"
+  guid: "9e64a89d-bf31-48d6-86b6-4135ff55995e"
   description: "Simple water cooled chiller."
   is_canonical: true
   implements:
@@ -117,7 +117,7 @@ CH_SS_SCHWTC_CWRISOVPM:
   - CWRISOVPM
 
 CH_SS_SCHWTC_CHWRWISOVM:
-  id: "12022480838739361792"
+  guid: "b84e4440-23e0-4604-b533-e0f63763a430"
   description: "Simple water cooled chiller."
   is_canonical: true
   implements:
@@ -127,7 +127,7 @@ CH_SS_SCHWTC_CHWRWISOVM:
   - CHWRWISOVM
 
 CH_SS_SCHWTC_CHWRWISOVM_DX2SWC:
-  id: "4084886495498862592"
+  guid: "fe2ac3c6-603a-4da9-b387-3bf2a9777d6d"
   description: "Tw-stage air cooled chiller."
   is_canonical: true
   implements:
@@ -138,7 +138,7 @@ CH_SS_SCHWTC_CHWRWISOVM_DX2SWC:
   - DX2SWC
 
 CH_SS_SCHWTC_CHWRWISOVM_CWSISOVM:
-  id: "14573770027644747776"
+  guid: "3586e39f-ce12-4478-bdb8-da467b8f91af"
   description: "Two stage water cooled chiller."
   is_canonical: true
   implements:
@@ -149,7 +149,7 @@ CH_SS_SCHWTC_CHWRWISOVM_CWSISOVM:
   - CWSISOVM
 
 CH_SS_SWTC_DX4SWC_SWISOVPM:
-  id: "9151224970058137600"
+  guid: "5762f148-a3d3-4267-b759-bb7ba09300a6"
   description: "Four stage air cooled cooled chiller."
   is_canonical: true
   implements:
@@ -160,7 +160,7 @@ CH_SS_SWTC_DX4SWC_SWISOVPM:
   - SWISOVPM
 
 CH_SS_SWTC_DX2SWC_SWISOVM:
-  id: "14467935436401541120"
+  guid: "3f4de97b-6aa4-4a90-9ddc-df4949a841ad"
   description: "Two stage air cooled chiller."
   is_canonical: true
   implements:
@@ -171,7 +171,7 @@ CH_SS_SWTC_DX2SWC_SWISOVM:
   - SWISOVM
 
 CH_SS_CHWRWISOVPM_SCHWTC_CHWDPM:
-  id: "7410794820311973888"
+  guid: "6bf879c5-ec1b-478f-9fac-8318b285bd9c"
   description: "Simple air cooled chiller."
   is_canonical: true
   implements:
@@ -182,7 +182,7 @@ CH_SS_CHWRWISOVPM_SCHWTC_CHWDPM:
   - CHWDPM
 
 CH_SS_SCHWTC_CHWSWISOVM_CHWDPM:
-  id: "13308258532353638400"
+  guid: "b4758dbe-8d63-4479-8868-97cfdc4d71ab"
   description: "Simple air cooled chiller."
   is_canonical: true
   implements:
@@ -193,7 +193,7 @@ CH_SS_SCHWTC_CHWSWISOVM_CHWDPM:
   - CHWDPM
 
 CH_SS_SCHWTC_DX2SWC_CWSISOVPM_CHWRWISOVPM:
-  id: "3044554981576278016"
+  guid: "0a2ef912-fab8-408d-bb75-ec584aa286b7"
   description: "Two stage water cooled chiller."
   is_canonical: true
   implements:
@@ -205,7 +205,7 @@ CH_SS_SCHWTC_DX2SWC_CWSISOVPM_CHWRWISOVPM:
   - CHWRWISOVPM
 
 CH_SS_SCHWTC_DX2SWC_CHWSWISOVM_CWSISOVM:
-  id: "18374597006912913408"
+  guid: "d8fb2722-8966-4b59-b8ba-07aeb070caaf"
   description: "Two stage water cooled chiller."
   is_canonical: true
   implements:
@@ -217,7 +217,7 @@ CH_SS_SCHWTC_DX2SWC_CHWSWISOVM_CWSISOVM:
   - CWSISOVM
 
 CH_SS_SCHWTC_CWDT_CHWSWISOVM_CWSISOVM_CHWFRM:
-  id: "2938720390333071360"
+  guid: "6d82b9f8-d283-4c6a-a176-5b5aca16b391"
   description: "Water cooled chiller."
   is_canonical: true
   implements:
@@ -230,7 +230,7 @@ CH_SS_SCHWTC_CWDT_CHWSWISOVM_CWSISOVM_CHWFRM:
   - CHWFRM
 
 CH_SS_SCHWTC_CHPM_REFSM_DXSWC_CHWRWISOVM_IGM:
-  id: "16634166857166749696"
+  guid: "d05d0151-6a59-4526-92c9-9a827e70e34c"
   description: "Water cooled chiller."
   is_canonical: true
   implements:
@@ -244,7 +244,7 @@ CH_SS_SCHWTC_CHPM_REFSM_DXSWC_CHWRWISOVM_IGM:
   - IGM
 
 CH_SS_SCHWTC_CHWRWISOVPM_CWRISOVPM_CHPM_CWDT_REFSM_CHWDPM:
-  id: "8696572513926250496"
+  guid: "bca8842a-ad65-4ddc-925f-e97129f5c2d9"
   description: "Water cooled chiller."
   is_canonical: true
   implements:
@@ -259,7 +259,7 @@ CH_SS_SCHWTC_CHWRWISOVPM_CWRISOVPM_CHPM_CWDT_REFSM_CHWDPM:
   - CHWDPM
 
 CH_SS_SCHWTC_CHPM_REFSM_IGM_DXSWC_CHWSWISOVM_CHWDPM:
-  id: "12267927018431053824"
+  guid: "99502c4e-3975-46ea-adcb-1f04fd17909f"
   description: "Water cooled chiller."
   is_canonical: true
   implements:
@@ -274,7 +274,7 @@ CH_SS_SCHWTC_CHPM_REFSM_IGM_DXSWC_CHWSWISOVM_CHWDPM:
   - CHWDPM
 
 CH_SS_SCHWTC_DXSWC_IGM_CWDT_CHWRWISOVPM_CWRISOVPM_CHPM_REFSM:
-  id: "144025715317145600"
+  guid: "17092e52-d7cf-4b7e-a353-2f94bdde3844"
   description: "Water cooled chiller."
   is_canonical: true
   implements:
@@ -290,7 +290,7 @@ CH_SS_SCHWTC_DXSWC_IGM_CWDT_CHWRWISOVPM_CWRISOVPM_CHPM_REFSM:
   - REFSM
 
 CH_SS_SCHWTC_CHWRWISOVM_CHWSWISOVM_MINFC_CHWDPM_CLPM_CWDT:
-  id: "15329336826066370560"
+  guid: "7cd12570-3454-4c3b-8147-0d362cad9620"
   description: "Water cooled chiller with min flow control and chiller load monitoring."
   is_canonical: true
   implements:
@@ -305,7 +305,7 @@ CH_SS_SCHWTC_CHWRWISOVM_CHWSWISOVM_MINFC_CHWDPM_CLPM_CWDT:
   - CWDT
 
 CH_SS_SWTC_DX2SWC_WFRM:
-  id: "701645236366999552"
+  guid: "1b072c71-87de-40a0-8e19-e150050032de"
   description: " 2-stage air cooled chiller with flowrate monitoring."
   is_canonical: true
   implements:
@@ -316,7 +316,7 @@ CH_SS_SWTC_DX2SWC_WFRM:
   - WFRM
 
 CH_SS_SWTC_DX2SWC_REFSM_REFPM:
-  id: "818738826678632448"
+  guid: "6526d6b6-8fba-44c9-a5ec-b0c5da77b0eb"
   description: "Two stage air cooled chiller with single circuit refrigerant monitoring."
   is_canonical: true
   implements:
@@ -328,7 +328,7 @@ CH_SS_SWTC_DX2SWC_REFSM_REFPM:
   - REFPM
 
 CH_SS_SWTC_DX2SWC_REFSM2X_REFPM2X:
-  id: "9925017273221775360"
+  guid: "ca882db0-18a6-460b-9962-c63b8d1510f5"
   description: "Two stage air cooled chiller with two circuit refrigerant monitoring."
   is_canonical: true
   implements:
@@ -340,7 +340,7 @@ CH_SS_SWTC_DX2SWC_REFSM2X_REFPM2X:
   - REFPM2X
 
 CH_SS_SWTC_DX2SWC_RWISOVM_REFSM2X_REFPM2X:
-  id: "12759962869907324928"
+  guid: "6af261e4-ad47-44a0-b2f4-3d995bda804d"
   description: "Two stage air cooled chiller with two circuit refrigerant monitoring."
   is_canonical: true
   implements:
@@ -353,7 +353,7 @@ CH_SS_SWTC_DX2SWC_RWISOVM_REFSM2X_REFPM2X:
   - REFPM2X
 
 CH_SS_SWTC_DX4SWC_RWISOVPM_REFPM2X_WDPM:
-  id: "14284501712516415488"
+  guid: "9a15bda0-8058-43b7-b40f-0f7da4cdc5e1"
   description: "Four stage air cooled chiller with two circuit refrigerant monitoring."
   is_canonical: true
   implements:
@@ -366,7 +366,7 @@ CH_SS_SWTC_DX4SWC_RWISOVPM_REFPM2X_WDPM:
   - WDPM
 
 CH_SS_CHWRWISOVPM_SCHWTC_CHWDPM_CDWISOVPM_CWDT_REFPM_REFSM_IGV_DXSWC:
-  id: "5164642098346983424"
+  guid: "bd33ff3f-b562-4763-84da-241750c04453"
   description: "Complex water cooled chiller."
   is_canonical: true
   implements:
@@ -383,7 +383,7 @@ CH_SS_CHWRWISOVPM_SCHWTC_CHWDPM_CDWISOVPM_CWDT_REFPM_REFSM_IGV_DXSWC:
   - DXSWC
 
 CH_SS_SCHWTC_CHWSWISOVM_CHWDPM_CWDT_REFSM_REFPM_IGM_DXSWC:
-  id: "1386192379727314944"
+  guid: "e3e3ff1b-4d52-4234-aac0-1692fac0ee77"
   description: "Complex water cooled chiller."
   is_canonical: true
   implements:
@@ -399,7 +399,7 @@ CH_SS_SCHWTC_CHWSWISOVM_CHWDPM_CWDT_REFSM_REFPM_IGM_DXSWC:
   - DXSWC
 
 CH_SS_CHWRWISOVPM_SCHWTC_CHWDPM_CDWISOVPM_CWDT_REFPM_REFSM:
-  id: "13023493816852676608"
+  guid: "e4f34eb3-4e22-4601-8de3-c7dc7d6860ea"
   description: "Complex water cooled chiller."
   is_canonical: true
   implements:
@@ -414,7 +414,7 @@ CH_SS_CHWRWISOVPM_SCHWTC_CHWDPM_CDWISOVPM_CWDT_REFPM_REFSM:
   - REFSM
 
 CH_SS_SCHWTC_CWDT_CDWISOVPM_REFSM_REFPM:
-  id: "5313331254794387456"
+  guid: "32f963ba-f466-43ac-9302-bb38f819bdeb"
   description: "Simple water cooled chiller."
   is_canonical: true
   implements:
@@ -427,7 +427,7 @@ CH_SS_SCHWTC_CWDT_CDWISOVPM_REFSM_REFPM:
   - REFPM
 
 CH_SS_SWTC_DX2SWC_SWISOVM_REFPM:
-  id: "2755286666447945728"
+  guid: "109ccd0c-4605-471e-8388-53597142bb94"
   description: "Two stage air cooled chiller."
   is_canonical: true
   implements:
@@ -440,7 +440,7 @@ CH_SS_SWTC_DX2SWC_SWISOVM_REFPM:
 
 
 CH_SS_SWTC_REFSM2X_SWISOVM:
-  id: "5430424845106020352"
+  guid: "9a0447b5-bbf6-4165-91f8-8ba9667ece90"
   description: "Complex water cooled chiller."
   is_canonical: true
   implements:
@@ -451,7 +451,7 @@ CH_SS_SWTC_REFSM2X_SWISOVM:
   - SWISOVM
 
 CH_SS_SWTC_DX6SWC_RWISOVM_REFSM2X_REFPM2X:
-  id: "8411807798425288704"
+  guid: "dab13734-fb60-4990-8f3d-a84f386d09e0"
   description: "Six stage air cooled chiller with two circuit refrigerant monitoring."
   is_canonical: true
   implements:
@@ -464,7 +464,7 @@ CH_SS_SWTC_DX6SWC_RWISOVM_REFSM2X_REFPM2X:
   - REFPM2X
 
 CH_SS_SWTC_DX4SWC_SWISOVPM_REFSM2X_REFPM2X:
-  id: "15145744772506845184"
+  guid: "feae169d-9cf2-4eb0-9b23-1e67813c7204"
   description: "Four stage air cooled chiller with two circuit refrigerant monitoring."
   is_canonical: true
   implements:
@@ -477,7 +477,7 @@ CH_SS_SWTC_DX4SWC_SWISOVPM_REFSM2X_REFPM2X:
   - REFPM2X
 
 CH_SS_SCHWTC_HWDT:
-  id: "18403090850746728448"
+  guid: "ef865ad6-bf61-41f5-b717-ebaa4240d853"
   description: "Simple air-cooled heat recovery chiller."
   is_canonical: true
   implements:
@@ -487,7 +487,7 @@ CH_SS_SCHWTC_HWDT:
   - HWDT
 
 CH_SS_SCHWTC_CHDX2SC_REFSM2X_REFPM2X_CWDT:
-  id: "13705273489445879808"
+  guid: "66d78993-5a42-47b7-8505-01160c88234e"
   description: "Two stage chiller with refrigerant monitoring"
   is_canonical: true
   implements:
@@ -500,7 +500,7 @@ CH_SS_SCHWTC_CHDX2SC_REFSM2X_REFPM2X_CWDT:
   - CWDT
 
 CH_SS_RMM_SCHWTC_CHDXSC_CCM_CHWSWISOVPM_CWSWISOVPM_IGM_REFPM_REFSM_MIPVCM_MIPWM_CWDPM_CHWDPM_CWDT_INVOPWM_INVIPCM:
-  id: "5672276721286512640"
+  guid: "0f88a977-49bf-4d09-8078-8459134a3bff"
   description: "Complex water-cooled chiller with both motor and inverter (i.e., VFD) sensors."
   is_canonical: true
   implements:
@@ -522,9 +522,9 @@ CH_SS_RMM_SCHWTC_CHDXSC_CCM_CHWSWISOVPM_CWSWISOVPM_IGM_REFPM_REFSM_MIPVCM_MIPWM_
   - CWDT
   - INVOPWM
   - INVIPCM
-  
+
 CH_SS_CHDXVSC_CHWFRSM_CHDXSC_CHWISOVM:
-  id: "6335726435533062144"
+  guid: "b5854f21-b539-4c16-866c-1a06d353b247"
   description: "Water cooled chiller with VFD, supply ,return water temperature,flow and isolation valve monitoring."
   is_canonical: true
   implements:
@@ -536,6 +536,7 @@ CH_SS_CHDXVSC_CHWFRSM_CHDXSC_CHWISOVM:
   - CHWISOVM
 
 CH_SS_SCHWTC_CDWFRM_CHWSWISOVM_CWSISOVM_CHWDPM_CHWFRM_CWDT_REFPM_IGM_DXSWC:
+  guid: "64496940-6b53-48da-8a03-65dc029e1b66"
   description: "Complex water cooled chiller."
   is_canonical: true
   implements:
@@ -556,25 +557,25 @@ CH_SS_SCHWTC_CDWFRM_CHWSWISOVM_CWSISOVM_CHWDPM_CHWFRM_CWDT_REFPM_IGM_DXSWC:
 ### Existing Non-standard Types ###
 ###################################
 
-CH_US_MTV_41_1:
-  id: "16032487706168655872"
-  description: "Non-standard type for B41 CHs"
+CH_SS_SWTC_DX4SWC_SWISOVPM_NONCANONICAL_1:
+  guid: "d4bef12c-c41b-4ba8-9d06-035e9e9ba431"
+  description: "Non-standard type."
   implements:
   - CH_SS_SWTC_DX4SWC_SWISOVPM
   - INCOMPLETE
 
-CH_US_SBO_900_1:
-  id: "17436484890001408000"
-  description: "Non-standard type for SBO-900 CHs"
+CH_SS_SWTC_NONCANONICAL_1:
+  guid: "ae202987-6078-455c-8ee0-dfe43e223329"
+  description: "Non-standard type."
   implements:
   - CH_SS_SWTC
   - INCOMPLETE
   uses:
   - cooling_percentage_sensor
 
-CH_US_SBO_901_1:
-  id: "11353247693330710528"
-  description: "Non-standard type for SBO-901 CHs"
+CH_SS_SCHWTC_CWDT_NONCANONICAL_1:
+  guid: "30db6609-b1e4-40ac-8d03-12d38d41a64d"
+  description: "Non-standard type."
   implements:
   - CH_SS_SCHWTC_CWDT
   - INCOMPLETE
@@ -582,8 +583,8 @@ CH_US_SBO_901_1:
   - cooling_percentage_sensor
 
 CH_SS_CHWDT_CWDT_CWDPM_CHWDPM_REFM:
-  id: "15066838320539500544"
-  description: "Non-standard type for SYD ODI chillers"
+  guid: "48f951c0-42ca-4714-a3ef-e384fa1485d2"
+  description: "Non-standard type."
   is_canonical: false
   implements:
   - CH
@@ -595,8 +596,8 @@ CH_SS_CHWDT_CWDT_CWDPM_CHWDPM_REFM:
   - REFM
 
 CH_SS_CHWDT2X_CWDT_CWDPM_CHWDPM_REFM:
-  id: "2835061732601233408"
-  description: "Non-standard type for SYD ODI chillers"
+  guid: "d6b6a0e5-a5a1-4634-9792-0ba39cb3e1fd"
+  description: "Non-standard type."
   is_canonical: false
   implements:
   - CH
@@ -608,7 +609,7 @@ CH_SS_CHWDT2X_CWDT_CWDPM_CHWDPM_REFM:
   - REFM
 
 CH_SS_CHWDT:
-  id: "8718557248923631616"
+  guid: "471edb03-6731-4fe3-862e-c7ab9825e7e9"
   description: "Non-standard chiller."
   implements:
   - CH
@@ -620,7 +621,7 @@ CH_SS_CHWDT:
   - run_mode
 
 CH_SS_CHWSWISOVM_CWSISOVM_CWRISOVM_CHWRWISOVM_CHWDT:
-  id: "5548867536184934400"
+  guid: "bec266d2-2046-4142-a55a-fb7917d6d74f"
   description: "Non standard chiller with chilled/condensing supply/return water isolation valve control. Chilled water flowrate status "
   implements:
   - CH

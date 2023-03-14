@@ -16,8 +16,16 @@
 ### Canonical Types  ###
 ########################
 
+CT_SS:
+  guid: "c6fd270a-aa9d-4911-b486-1e27a514c0aa"
+  description: "cooling tower with run command and status. "
+  is_canonical: true
+  implements:
+  - CT
+  - SS
+
 CT_SS_SWTC:
-  id: "6342104702485790720"
+  guid: "0d4b0b64-aafb-4c00-9c6f-69154e5c4618"
   description: "Simple supply temp controlling cooling tower."
   is_canonical: true
   implements:
@@ -26,7 +34,7 @@ CT_SS_SWTC:
   - SWTC
 
 CT_SS_VSC_SWTC:
-  id: "16885031430160121856"
+  guid: "8b21ea06-b4cb-4810-a3ca-6127ab607f2c"
   description: "Variable speed supply temp controlling cooling tower."
   is_canonical: true
   implements:
@@ -36,7 +44,7 @@ CT_SS_VSC_SWTC:
   - SWTC
 
 CT_SS_SPSS_SWTC_RWISOVM:
-  id: "4894760372239597568"
+  guid: "2fc17f81-1b4f-43ed-a5ac-b728527dd2b0"
   description: "Evaporative cooler with onboard spray pump."
   is_canonical: true
   implements:
@@ -47,7 +55,7 @@ CT_SS_SPSS_SWTC_RWISOVM:
   - RWISOVM
 
 CT_SS_VSC_SWTC_BYPVPM:
-  id: "15565476739340566528"
+  guid: "7172fa58-50a6-4679-9834-b4792d6b171d"
   description: "Cooling tower with bypass."
   is_canonical: true
   implements:
@@ -58,7 +66,7 @@ CT_SS_VSC_SWTC_BYPVPM:
   - BYPVPM
 
 CT_SS_VSC_SWTC_RWISOVM:
-  id: "1897051870271111168"
+  guid: "2b0ac3dc-2a30-46a4-abe8-0c782097e170"
   description: "Variable speed supply temp controlling cooling tower."
   is_canonical: true
   implements:
@@ -69,7 +77,7 @@ CT_SS_VSC_SWTC_RWISOVM:
   - RWISOVM
 
 CT_SS_VSC_SWTC_SWISOVM:
-  id: "13691979294354440192"
+  guid: "5a86bb8e-a5d0-4bd4-b111-7b83616214e6"
   description: "Variable speed supply temp controlling cooling tower."
   is_canonical: true
   implements:
@@ -80,7 +88,7 @@ CT_SS_VSC_SWTC_SWISOVM:
   - SWISOVM
 
 CT_SS_VSC_SWTC_SWISOVM_RWISOVM:
-  id: "14118132409094373376"
+  guid: "0bab9f68-0946-4893-be6b-a9d6a29a8bbf"
   description: "Variable speed supply temp controlling cooling tower."
   is_canonical: true
   implements:
@@ -92,7 +100,7 @@ CT_SS_VSC_SWTC_SWISOVM_RWISOVM:
   - RWISOVM
 
 CT_SS_VSC_SWTC_SWISOVPM_RWISOVPM_MWVPM:
-  id: "9080293275927052288"
+  guid: "72dd74b5-7228-4459-a48e-8645b7c9d457"
   description: "Variable speed supply temp controlling cooling tower."
   is_canonical: true
   implements:
@@ -105,7 +113,7 @@ CT_SS_VSC_SWTC_SWISOVPM_RWISOVPM_MWVPM:
   - MWVPM
 
 CT_SS_VSC_SWTC_SWISOVPM_RWISOVPM_SWISOVM_MWVPM:
-  id: "2588917363025903616"
+  guid: "06cc2ccd-b434-4602-92e2-e03d931f1a00"
   description: "Variable speed supply temp controlling cooling tower."
   is_canonical: true
   implements:
@@ -119,7 +127,7 @@ CT_SS_VSC_SWTC_SWISOVPM_RWISOVPM_SWISOVM_MWVPM:
   - MWVPM
 
 CT_SS_VSFC:
-  id: "1531656668570451968"
+  guid: "9d5703a9-79ae-4876-8819-a7b6dce4a8c4"
   description: "Cooling tower with speed frequency control."
   is_canonical: true
   implements:
@@ -132,7 +140,7 @@ CT_SS_VSFC:
   - lost_power_alarm
 
 CT_SS_VSC_RWISOVM_SWISOVM_SWTM:
-  id: "9226672358444498944"
+  guid: "d5d988d7-fef0-413c-a363-39e925c01952"
   description: "Cooling tower with supply and return isolation valves and supply temp monitoring."
   is_canonical: true
   implements:
@@ -142,9 +150,9 @@ CT_SS_VSC_RWISOVM_SWISOVM_SWTM:
   - RWISOVM
   - SWISOVM
   - SWTM
- 
+
 CT_SS_RWISOVM_SWISOVM_SWTM:
-  id: "9420973655258562560"
+  guid: "6e0d37b0-51f3-4db9-a0dd-e659774f0aa6"
   description: "Cooling tower with supply and return isolation valves and supply & return temp monitoring."
   is_canonical: true
   implements:
@@ -157,6 +165,7 @@ CT_SS_RWISOVM_SWISOVM_SWTM:
   - low_level_status
 
 CT_SS_VSC_SPSS_SWTC_RWISOVM:
+  guid: "226b9d4e-cdf7-4106-bfd4-4b8a5e5a55c4"
   description: "Evaporative cooler with onboard spray pump and variable speed control."
   is_canonical: true
   implements:
@@ -171,18 +180,18 @@ CT_SS_VSC_SPSS_SWTC_RWISOVM:
 ### Existing Non-standard Types ###
 ###################################
 
-CT_US_SBO_901_1:
-  id: "6975748855526588416"
-  description: "Non-standard type for SBO-901"
+CT_SS_SWTC_NONCANONICAL_1:
+  guid: "1a4475ad-f918-40e7-bb50-a3a688c80e80"
+  description: "Non-standard type."
   implements:
   - CT_SS_SWTC
   - INCOMPLETE
   uses:
   - fan_speed_mode
 
-CT_US_SVL_MP3_1:
-  id: "605248852936622080"
-  description: "Non-standard type for MP3"
+CT_SS_VSC_SWTC_NONCANONICAL_1:
+  guid: "0eee9ffb-cad6-408a-b1ef-85ac2cf3e1e9"
+  description: "Non-standard type."
   implements:
   - CT_SS_VSC_SWTC
   - INCOMPLETE
@@ -191,7 +200,7 @@ CT_US_SVL_MP3_1:
 
 
 CT_SS_VSC_SWTM:
-  id: "1186744268983631872"
+  guid: "cb5d9702-fdf0-44be-9857-21ef98ad5739"
   description: "Cooling tower with variable speed control and supply water temperature monitoring"
   is_canonical: false
   implements:
@@ -201,7 +210,7 @@ CT_SS_VSC_SWTM:
   - SWTM
 
 CT_SS_CWDT_OA_VSFC_CSWIVS_CRWIVS_CSWTC:
-  id: "1728970627244621824"
+  guid: "503f5a06-47f3-4215-8ec2-fe634ad8e874"
   description: "CT with multi considering water isolation valve control, condensing return/supply water monitor and outside air monitor"
   implements:
   - CT
@@ -216,12 +225,4 @@ CT_SS_CWDT_OA_VSFC_CSWIVS_CRWIVS_CSWTC:
   - control_mode
   - run_mode
   - lost_power_alarm
-  
-  
-CT_SS:
-  id: "14895648758141288448"
-  description: "cooling tower with run command and status. "
-  is_canonical: true
-  implements:
-  - CT
-  - SS
+

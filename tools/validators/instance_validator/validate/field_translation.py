@@ -1,4 +1,4 @@
-# Copyright 2020 Google LLC
+# Copyright 2023 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the License);
 # you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
 
 import enum
 
-from typing import Dict, List, Union
+from typing import Dict, List, Optional, Tuple, Union
 
 
 class PresenceMode(enum.Enum):
@@ -124,21 +124,25 @@ class DimensionalValue(DefinedField):
       payload.
     unit_field_name: string. Fully qualified json path to the unit in the device
       payload.
-    unit_mappings: Dictionary from standard units to the text defining the unit
+    unit_mapping: Dictionary from standard units to the text defining the unit
       in the payload.
+    value_range: tuple. (Optional) The expected minimum and maximum values for
+      the field, expressed in the given unit.
   """
 
   def __init__(self, std_field_name: str, raw_field_name: str,
-               unit_field_name: str, unit_mappings: Dict[str, str]):
+               unit_field_name: str, unit_mapping: Dict[str, str],
+               value_range: Optional[Tuple[float, float]] = None):
     super().__init__(std_field_name, raw_field_name)
     if not unit_field_name:
       raise ValueError('unit_field_name cannot be empty')
-    if not unit_mappings:
-      raise ValueError('unit_mappings cannot be empty')
+    if not unit_mapping:
+      raise ValueError('unit_mapping cannot be empty')
     # Note: I didn't go so far as to define a units object yet since the
     # structure of units is being worked on. It can be retrofitted later.
     self.unit_field_name = unit_field_name
-    self.unit_mappings = unit_mappings
+    self.unit_mapping = unit_mapping
+    self.value_range = value_range
 
 
 class NonDimensionalValue(DefinedField):

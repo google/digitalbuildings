@@ -1,15 +1,14 @@
-US-SVL-MP2:
+abc-123-ff6:
+  code: US-SVL-MP2
   type: FACILITIES/BUILDING
-  guid: 839402
   id: CDM/123
 
-EF-1:
+def-234-ffs:
   type: HVAC/FAN_SS
-  id: 12345
-  guid: 12345566
+  code: EF-1
   cloud_device_id: 1234567
   connections:
-    US-SVL-MP2-2-FAKEZONE: FEEDS
+    efg-hij-klm: FEEDS # Guid to a device not defined yet
   translation:
     run_command:
       present_value: "points.fan_ss.present_value"

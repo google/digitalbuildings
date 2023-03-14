@@ -23,9 +23,11 @@ from __future__ import print_function
 
 import collections
 import itertools
+from typing import Dict, FrozenSet, Set
 
 from yamlformat.validator import base_lib
 from yamlformat.validator import findings_lib
+from yamlformat.validator.entity_type_lib import EntityType
 
 # Smallest set of fieldset we consider for automated matching. Must be >=1
 MIN_SET_SIZE = 1
@@ -346,7 +348,7 @@ class EntityTypeManager(findings_lib.Findings):
       for entity_type in namespace.valid_types_map.values():
         if entity_type.allow_undefined_fields or entity_type.is_abstract:
           continue
-        full_qual_type = '{0}/{1}'.format(ns_name, entity_type.typename)
+        full_qual_type = f'{ns_name}/{entity_type.typename}'
 
         # Sharding list calculation
         if len(current_shard) >= MAX_TYPE_SHARD_SIZE:
@@ -445,8 +447,8 @@ class EntityTypeManager(findings_lib.Findings):
 
     return typenames_by_subset
 
-  def GetCompleteFieldSetsOI(self) -> dict():
-    """Returns a mapping of inheritied and local field sets to EntityType.
+  def GetCompleteFieldSetsOI(self) -> Dict[FrozenSet[str], Set[EntityType]]:
+    """Returns a mapping of inherited and local field sets to EntityType.
 
     Raises:
         Exception: if the analyze() did not run.
@@ -455,10 +457,11 @@ class EntityTypeManager(findings_lib.Findings):
     # TODO(travis) : Refactor underlying logic to expose field set to entity
     # type maps
     if self._complete_field_sets_oi is None:
+      # pylint: disable=broad-exception-raised
       raise Exception('Run Analyze() to access this mapping')
     return self._complete_field_sets_oi
 
-  def GetTypenamesBySubsetOI(self) -> dict():
+  def GetTypenamesBySubsetOI(self) -> Dict[FrozenSet[str], Set[str]]:
     """Returns a mapping of greatest common field subsets to EntityType names.
 
     Raises:
@@ -468,5 +471,6 @@ class EntityTypeManager(findings_lib.Findings):
     # TODO(travis) :Refactor underlying logic to expose field subset to entity
     # type maps
     if self._typenames_by_subset_oi is None:
+      # pylint: disable=broad-exception-raised
       raise Exception('Run Analyze() to access this mapping')
     return self._typenames_by_subset_oi

@@ -1,4 +1,4 @@
-# Copyright 2020 Google LLC
+# Copyright 2023 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the License);
 # you may not use this file except in compliance with the License.
@@ -20,7 +20,7 @@ SDC_EXT-17-GUID:
   update_mask:
   - translation
 
-UK-LON-S2-GUID:
+US-SEA-BLDG1-GUID:
   type: FACILITIES/BUILDING
   etag: a1234
-  code: UK-LON-S2
+  code: US-SEA-BLDG1

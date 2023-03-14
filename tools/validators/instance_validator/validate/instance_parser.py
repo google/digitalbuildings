@@ -1,4 +1,4 @@
-# Copyright 2020 Google LLC
+# Copyright 2023 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the License);
 # you may not use this file except in compliance with the License.
@@ -116,6 +116,7 @@ CONNECTIONS_KEY = 'connections'
 METADATA_KEY = 'metadata'
 PRESENT_VALUE_KEY = 'present_value'
 POINTS = 'points'
+VALUE_RANGE_KEY = 'value_range'
 UNITS_KEY = 'units'
 UNIT_NAME_KEY = 'key'
 UNIT_VALUES_KEY = 'values'
@@ -159,13 +160,15 @@ _TRANSLATION_SCHEMA = syaml.MapPattern(
             syaml.Str(),
         syaml.Optional(STATES_KEY):
             syaml.MapPattern(
-                syaml.Regex(str('^[A-Z][A-Z_]+')),
+                syaml.Regex(str('^[a-zA-Z][a-zA-Z_]+')),
                 syaml.Str() | syaml.Seq(syaml.Str())),
         syaml.Optional(UNITS_KEY):
             syaml.Map({
                 UNIT_NAME_KEY: syaml.Str(),
                 UNIT_VALUES_KEY: syaml.MapPattern(syaml.Str(), syaml.Str())
             }),
+        syaml.Optional(VALUE_RANGE_KEY):
+            syaml.Str(),
     }))
 
 _METADATA_SCHEMA = syaml.Map({

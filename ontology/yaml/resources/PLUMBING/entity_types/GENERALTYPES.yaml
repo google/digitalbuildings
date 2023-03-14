@@ -13,23 +13,31 @@
 # limitations under the License.
 
 TK:
-  id: "2444616357484953600"
+  guid: "26a8e189-fba3-4b4c-8df1-9e3bd638547f"
   description: "Tank water system used to store water"
   is_abstract: true
   implements:
   - EQUIPMENT
 
 WSTC:
-  id: "3250760690784272384"
+  guid: "743edd10-ec99-42fd-b2e2-00357ab89c01"
   description: "Waste Compactor system used for compacting organic waste essential for conversion into manure."
   is_abstract: true
   implements:
   - EQUIPMENT
 
 PMP:
-  id: "15559098472387837952"
+  guid: "e299dffb-f686-47f8-9a0a-6ed48c116e72"
   description: "Pumps move liquid (e.g., water, glycol, liquid CO2) from one part of a system
     to another. In this namespace, pumps are used for irrigation and domestic purposes."
   is_abstract: true
   implements:
   - EQUIPMENT
+  
+RO:
+  guid: "9f9b8144-df6c-4b20-bbbb-110f718c1cb1"
+  description: "Reverse osmosis is a water purification process that uses a semi-permeable membrane (synthetic lining) to filter out unwanted molecules and large particles such as contaminants and sediments like chlorine, salt, and dirt from drinking water."
+  is_abstract: true
+  implements:
+  - EQUIPMENT
+  

@@ -15,15 +15,16 @@
 
 from absl.testing import absltest
 
-from model.constants import BC_GUID
 from model.constants import RAW_STATE
-from model.constants import STANDARD_FIELD_NAME
+from model.constants import REPORTING_ENTITY_FIELD_NAME
+from model.constants import REPORTING_ENTITY_GUID
 from model.constants import STANDARD_STATE
 from model.state import State
 
+
 _TEST_STATE_DICT = {
-    BC_GUID: 'test_guid',
-    STANDARD_FIELD_NAME: 'discharge_fan_run_command',
+    REPORTING_ENTITY_GUID: 'test_guid',
+    REPORTING_ENTITY_FIELD_NAME: 'discharge_fan_run_command',
     STANDARD_STATE: 'ON',
     RAW_STATE: 'TRUE'
 }
@@ -34,9 +35,10 @@ class StatesTest(absltest.TestCase):
   def testFromDict(self):
     test_state = State.FromDict(_TEST_STATE_DICT)
 
-    self.assertEqual(test_state.entity_guid, _TEST_STATE_DICT[BC_GUID])
+    self.assertEqual(test_state.reporting_entity_guid,
+                     _TEST_STATE_DICT[REPORTING_ENTITY_GUID])
     self.assertEqual(test_state.standard_field_name,
-                     _TEST_STATE_DICT[STANDARD_FIELD_NAME])
+                     _TEST_STATE_DICT[REPORTING_ENTITY_FIELD_NAME])
     self.assertEqual(test_state.standard_state,
                      _TEST_STATE_DICT[STANDARD_STATE])
     self.assertEqual(test_state.raw_state, _TEST_STATE_DICT[RAW_STATE])

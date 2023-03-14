@@ -49,6 +49,7 @@ class Connection(object):
     self.connection_type = connection_type
     self.guid_to_entity_map = GuidToEntityMap()
 
+  # pylint: disable=line-too-long
   def __str__(self):
     return f'{self.source_entity_guid} - {self.connection_type} - {self.target_entity_guid}'
 
@@ -58,7 +59,7 @@ class Connection(object):
 
   @classmethod
   def FromDict(cls, connection_dict: Dict[str, object]) ->...:
-    """Creates a Connection object from mapping of connection attributes to values.
+    """Creates Connection instance from map of connection values by names.
 
     Args:
       connection_dict: A mapping of attributes to values pertaining to a
@@ -97,11 +98,11 @@ class Connection(object):
                                                        ),
         SOURCE_ENTITY_GUID:
             self.source_entity_guid,
+        CONNECTION_TYPE:
+            self.connection_type.name,
         TARGET_ENTITY_CODE:
             self.guid_to_entity_map.GetEntityCodeByGuid(self.target_entity_guid
                                                        ),
         TARGET_ENTITY_GUID:
-            self.target_entity_guid,
-        CONNECTION_TYPE:
-            self.connection_type.name
+            self.target_entity_guid
     }

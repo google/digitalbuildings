@@ -13,76 +13,65 @@
 # limitations under the License.
 
 VIRTUAL-ENTITY-GUID:
-  type: HVAC/CHWS_WDT_WDPC2X
-  code: VIRTUAL-ENTITY
+  type: HVAC/FAN_SS_ABC
+  code: FAN-TEST
   links:
     PHYSICAL-ENTITY-GUID:
-      return_water_temperature_sensor: return_water_temperature_sensor_2
-      supply_water_temperature_sensor: supply_water_temperature_sensor_2
-      differential_pressure_sensor_1: differential_pressure_sensor_3
-      differential_pressure_sensor_2: differential_pressure_sensor_4
-      differential_pressure_setpoint: differential_pressure_setpoint
+      run_command: run_command_2
+      run_status: run_status_2
+      zone_air_temperature_sensor_1: zone_air_temperature_sensor_3
+      zone_air_temperature_sensor_2: zone_air_temperature_sensor_4
 
 PHYSICAL-ENTITY-GUID:
   type: GATEWAYS/PASSTHROUGH
   code: PHYSICAL-ENTITY
-  cloud_device_id: "foobar"
+  cloud_device_id: "1234567890123456"
   translation:
-    return_water_temperature_sensor_1:
-      present_value: "points.return_water_temperature_sensor_1.present_value"
+    run_command_1:
+      present_value: "points.ss1.present_value"
+      states:
+        ON: "on"
+        OFF: "off"
+    run_command_2:
+      present_value: "points.ss2.present_value"
+      states:
+        ON: "on"
+        OFF: "off"
+    run_status_1:
+      present_value: "points.sts1.present_value"
+      states:
+        ON: "on"
+        OFF: "off"
+    run_status_2:
+      present_value: "points.sts2.present_value"
+      states:
+        ON: "on"
+        OFF: "off"
+    zone_air_temperature_sensor_1:
+      present_value: "points.zone_air_temperature_sensor_1.present_value"
       units:
-        key: "points.return_water_temperature_sensor_1.units"
+        key: "pointset.points.zone_air_temperature_sensor_1.units"
         values:
-          degrees_celsius: "degC"
-    return_water_temperature_sensor_2:
-      present_value: "points.return_water_temperature_sensor_2.present_value"
+          degrees_fahrenheit: "degF"
+    zone_air_temperature_sensor_2:
+      present_value: "points.zone_air_temperature_sensor_2.present_value"
       units:
-        key: "points.return_water_temperature_sensor_2.units"
+        key: "pointset.points.zone_air_temperature_sensor_2.units"
         values:
-          degrees_celsius: "degC"
-    supply_water_temperature_sensor_1:
-      present_value: "points.supply_water_temperature_sensor_1.present_value"
+          degrees_fahrenheit: "degF"
+    zone_air_temperature_sensor_3:
+      present_value: "points.zone_air_temperature_sensor_3.present_value"
       units:
-        key: "points.supply_water_temperature_sensor_1.units"
+        key: "pointset.points.zone_air_temperature_sensor_3.units"
         values:
-          degrees_celsius: "degC"
-    supply_water_temperature_sensor_2:
-      present_value: "points.supply_water_temperature_sensor_2.present_value"
+          degrees_fahrenheit: "degF"
+    zone_air_temperature_sensor_4:
+      present_value: "points.zone_air_temperature_sensor_4.present_value"
       units:
-        key: "points.supply_water_temperature_sensor_2.units"
+        key: "pointset.points.zone_air_temperature_sensor_4.units"
         values:
-          degrees_celsius: "degC"
-    differential_pressure_sensor_1:
-      present_value: "points.differential_pressure_sensor_1.present_value"
-      units:
-        key: "points.differential_pressure_sensor_1.units"
-        values:
-          inches_of_water: "inWC"
-    differential_pressure_sensor_2:
-      present_value: "points.differential_pressure_sensor_2.present_value"
-      units:
-        key: "points.differential_pressure_sensor_2.units"
-        values:
-          inches_of_water: "inWC"
-    differential_pressure_sensor_3:
-      present_value: "points.differential_pressure_sensor_3.present_value"
-      units:
-        key: "points.differential_pressure_sensor_3.units"
-        values:
-          inches_of_water: "inWC"
-    differential_pressure_sensor_4:
-      present_value: "points.differential_pressure_sensor_4.present_value"
-      units:
-        key: "points.differential_pressure_sensor_4.units"
-        values:
-          inches_of_water: "inWC"
-    differential_pressure_setpoint:
-      present_value: "points.differential_pressure_setpoint.present_value"
-      units:
-        key: "points.differential_pressure_setpoint.units"
-        values:
-          inches_of_water: "inWC"
+          degrees_fahrenheit: "degF"
 
-UK-LON-S2-GUID:
+US-SEA-BLDG1-GUID:
   type: FACILITIES/BUILDING
-  code: UK-LON-S2
+  code: US-SEA-BLDG1
