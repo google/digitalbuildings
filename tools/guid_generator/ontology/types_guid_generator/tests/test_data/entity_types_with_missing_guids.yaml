@@ -1,0 +1,42 @@
+# Copyright 2023 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the License);
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#    https://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an AS IS BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+AHU_CSP_DFSS_DX2ZC_ECONZ:
+  description: "Single zone AHU."
+  is_canonical: true
+  implements:
+  - AHU
+  - CSP
+  - DFSS
+  - DX2ZC
+  - ECONZ
+
+AHU_DFSS_DXRC_RHDHC:
+  guid: "guid-123"
+  description: "Single zone AHU with humidity control."
+  is_canonical: true
+  implements:
+  - AHU
+  - DFSS
+  - DXRC
+  - RHDHC
+
+AHU_DFSS_DSP_DXZC:
+  description: "Single zone AHU."
+  is_canonical: true
+  implements:
+  - AHU
+  - DFSS
+  - DSP
+  - DXZC

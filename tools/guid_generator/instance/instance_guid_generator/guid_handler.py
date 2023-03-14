@@ -41,8 +41,8 @@ class GuidGenerator(object):
         file.write('')
       with open(filename, 'a', encoding='utf-8') as file:
         # Then append each entity block with a blank line in-between
-        for entity_key, entity_block in entity_yaml_dict.items():
-          file.write(syaml.as_document({entity_key: entity_block}).as_yaml())
+        for entity_key, entity_yaml in entity_yaml_dict.items():
+          file.write(syaml.as_document({entity_key: entity_yaml}).as_yaml())
           file.write('\n')
     except PermissionError:
       print(f'Permission denied when writing to {filename}')

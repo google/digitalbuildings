@@ -13,14 +13,14 @@
 # limitations under the License.
 
 ZONE_HVAC:
-  id: "3515181142636494848"
+  guid: "2de75786-a8d4-469c-91a8-8aa4e51ea725"
   description: "A zone entity representing the area served by connected HVAC entities."
   implements:
   - ZONE
 
 # DEPRECATED
 ZONE_ZTM:
-  id: "11967901081536561152"
+  guid: "ad65ab95-7297-41f3-9476-b40cb76098e2"
   description: "Zone with only temperature monitoring."
   implements:
   - ZONE

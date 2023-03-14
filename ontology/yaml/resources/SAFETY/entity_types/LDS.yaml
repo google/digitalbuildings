@@ -14,7 +14,7 @@
 
 
 LDS_WLDS:
-  id: "1821813389094027264"
+  guid: "b1cbee31-2314-470b-900f-0543bd8b9021"
   description: "Basic leak detection device."
   is_canonical: true
   implements:
@@ -22,7 +22,7 @@ LDS_WLDS:
   - WLDS
 
 LDS_WLDS_BCM:
-  id: "6955916964296392704"
+  guid: "e2d4f75a-d848-4653-8688-00102fbc6dee"
   description: "Leak sensing device with broken cable status."
   is_canonical: true
   implements:
@@ -31,7 +31,7 @@ LDS_WLDS_BCM:
   - BCM
 
 LDS_BC2X:
-  id: "10847027042344501248"
+  guid: "49057696-a063-4786-87f5-6ea4ef9ee19b"
   description: "Leak sensing device with broken cable status."
   is_canonical: true
   implements:
@@ -40,7 +40,7 @@ LDS_BC2X:
   - BC2X
 
 LDS_BC2X_LPA:
-  id: "10630854260230717440"
+  guid: "dd1b7b03-5246-4478-aef8-4ecdafb6d456"
   description: "Leak sensing device with broken cable status."
   is_canonical: true
   implements:
@@ -51,7 +51,7 @@ LDS_BC2X_LPA:
   
 # General Types
 LDS_GASDET:
-  id: "17602426483400245248"
+  guid: "6b24e8cc-d5e3-4516-8097-54fe857ace17"
   description: "Basic natural gas monitoring device."
   is_canonical: true
   implements:
@@ -61,7 +61,7 @@ LDS_GASDET:
   - failed_alarm
 
 LDS_NHDET:
-  id: "6860294637051969536"
+  guid: "04b71e1e-530b-4288-8fdd-b1b5f05b13c3"
   description: "Basic ammonia gas monitoring device"
   is_canonical: true
   implements:
@@ -69,7 +69,7 @@ LDS_NHDET:
   - NHDET
 
 LDS_H2M:
-  id: "11537946955099406336"
+  guid: "257bc52c-0010-4c25-a402-491fd3059e15"
   description: "Hydrogen gas monitoring device with monitoring, typically used in battery room"
   is_canonical: true
   implements:
@@ -80,7 +80,7 @@ LDS_H2M:
   - failed_alarm
 
 LDS_WLA:
-  id: "12466396563826016256"
+  guid: "3eee4387-6d06-4fdc-99d9-70cb1e780cb3"
   description: "Water Leak sensing device."
   is_canonical: true
   implements:
@@ -88,7 +88,7 @@ LDS_WLA:
   - WLA
 
 LDS_WLA_BCM:
-  id: "17809196242073288704"
+  guid: "83a30f4d-8999-4b8e-ae4e-bd4eec29271d"
   description: "Water Leak sensing and broken cable sensing device."
   is_canonical: true
   implements:

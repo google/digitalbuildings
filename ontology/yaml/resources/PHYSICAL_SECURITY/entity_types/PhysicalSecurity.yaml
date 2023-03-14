@@ -13,37 +13,37 @@
 # limitations under the License.
 
 fixed_camera:
-  id: "8326908046013890560"
+  guid: "848d6f6d-fec7-4937-bc35-f76903fac0fa"
   description: "A physical security camera with a fixed position and pose"
 
 MULTI_IMAGER_CAMERA:
-  id: "1591862626772582400"
+  guid: "765a1e13-2976-45b3-a783-5cd92aa549f4"
   description: "A physical security camera with multiple imagers for a wide view"
 
 SECURE_DOOR:
-  id: "17470332255950864384"
+  guid: "1cc39390-92f4-414f-b6f4-30d21278ff87"
   description: "A physical door that has an associated RTE, Door Strike, and Badge Reader"
   implements:
   - FACILITIES/DOOR
 
 REQUEST_TO_EXIT:
-  id: "3274986230479060992"
+  guid: "f7fb1157-ad14-4723-b060-3d4cfab881ba"
   description: "A request to exit sensor that reports if someone wants to exit the door"
 
 DOOR_STRIKE:
-  id: "11021177589556314112"
+  guid: "6e5fee36-3cdb-423e-bcb1-89f2a258de08"
   description: "A door strike monitor that reads if the door is open or closed"
 
 PANIC_BUTTON:
-  id: "9147680144570187776"
+  guid: "4bda2e5a-b3f3-40ce-bb30-38bfa8925658"
   description: "A panic button"
 
 BADGE_READER:
-  id: "14407884509338927104"
+  guid: "d62c206f-9e18-4f0b-8684-84bae16751f3"
   description: "A badge reader that unlocks a door"
 
 DOOR_STD:
-  id: "7586420912128262144"
+  guid: "c1bc639f-6797-42ce-b9c0-a20bc486eed0"
   description: "Typical door."
   is_canonical: true
   implements:
@@ -52,7 +52,7 @@ DOOR_STD:
   - position_status
 
 DOOR_EMER:
-  id: "2344230945869004800"
+  guid: "08ef500c-f9a2-40bd-9e8e-089313881b03"
   description: "A door with position and emergency release monitoring."
   is_canonical: true
   implements:

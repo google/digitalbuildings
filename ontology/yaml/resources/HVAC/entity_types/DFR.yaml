@@ -17,7 +17,7 @@
 ########################
 
 DFR_SFSS_BYPSSPC_HT2SC:
-  id: "4468607257499664384"
+  guid: "506eb1cf-41cf-413c-8ff5-846ad971b8e3"
   description: "Two-stage gas/electric duct furnace."
   is_canonical: true
   implements:
@@ -27,7 +27,7 @@ DFR_SFSS_BYPSSPC_HT2SC:
   - HT2SC
 
 DFR_SFSS_BYPSSPC_HT2SC_RTM:
-  id: "9506446390666985472"
+  guid: "3af1d70e-45fb-4b87-9048-7be7201ab612"
   description: "Two-stage gas/electric duct furnace."
   is_canonical: true
   implements:
@@ -38,7 +38,7 @@ DFR_SFSS_BYPSSPC_HT2SC_RTM:
   - RTM
 
 DFR_SFSS_BYPSSPC_HT3SC_RTM:
-  id: "12273345411732733952"
+  guid: "463909a7-38e2-4ff1-af86-206c366c1cec"
   description: "Three-stage gas/electric duct furnace."
   is_canonical: true
   implements:
@@ -49,7 +49,7 @@ DFR_SFSS_BYPSSPC_HT3SC_RTM:
   - RTM
 
 DFR_SFSS_SFVSC_BYPSSPC_HTSC:
-  id: "3417579694462074880"
+  guid: "0a910676-cd24-4779-a8c9-bf8510e035a7"
   description: "VFD converted gas/electric duct furnace."
   is_canonical: true
   implements:
@@ -65,7 +65,7 @@ DFR_SFSS_SFVSC_BYPSSPC_HTSC:
 ###################################
 
 DFR_SFSS_BYPSSPC_HT2SC_RTM_NONCANONICAL_1:
-  id: "13937821298232131584"
+  guid: "0539ecd5-d85c-4abd-9d1f-855b0180dbaf"
   description: "Non-standard type."
   implements:
   - DFR_SFSS_BYPSSPC_HT2SC_RTM
@@ -75,7 +75,7 @@ DFR_SFSS_BYPSSPC_HT2SC_RTM_NONCANONICAL_1:
   - heating_percentage_command_2
 
 DFR_SFSS_BYPSSPC_HT2SC_RTM_NONCANONICAL_2:
-  id: "7551154076667346944"
+  guid: "34afae9b-41bc-4432-87ca-fe59c74413bc"
   description: "Non-standard type."
   implements:
   - DFR_SFSS_BYPSSPC_HT2SC_RTM
@@ -85,7 +85,7 @@ DFR_SFSS_BYPSSPC_HT2SC_RTM_NONCANONICAL_2:
   - heating_percentage_command_2
 
 DFR_SFSS_BYPSSPC_HT2SC_RTM_NONCANONICAL_3:
-  id: "16053950173142843392"
+  guid: "cec9c01e-11ff-483d-aae6-f192cc7b343f"
   description: "Non-standard type."
   implements:
   - DFR_SFSS_BYPSSPC_HT3SC_RTM
