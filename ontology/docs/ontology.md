@@ -309,7 +309,7 @@ standardization. The ontology currently standardizes on SI as the unit family.
 
 While the current ontology configuration does not explicitly call out conversion
 factors, it generally tries to conform to unit names from
-[QUDT](http://www.qudt.org/release2/qudt-catalog.html) so that their conversion
+[QUDT](https://www.qudt.org/) so that their conversion
 factors can be used. Future development may integrate a unit ontology more
 directly.
 
