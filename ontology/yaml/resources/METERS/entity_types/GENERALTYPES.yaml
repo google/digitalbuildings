@@ -14,42 +14,42 @@
 
 #### GENERAL TYPES (BROAD CATEGORIES OF COMMON EQUIPMENT) ####
 MTR:
-  id: "4119587082471473152"
+  guid: "2f72cfcc-c161-44a4-b55c-17b2cc651ee2"
   description: "Tag for all the meters."
   is_abstract: true
   implements:
   - EQUIPMENT
 
 EM:
-  id: "9271705056183320576"
+  guid: "cba37f53-9e19-4498-80d1-6053d993f4ac"
   description: "Tag for all the electrical meter types."
   implements:
   - MTR
   is_abstract: true
 
 GM:
-  id: "15356481569132904448"
+  guid: "919ece3f-2f6f-4c9d-adcf-2a77eed49185"
   description: "Tag for all gas meters."
   implements:
   - MTR
   is_abstract: true
 
 FM:
-  id: "13351028435162497024"
+  guid: "e89d919e-ecfb-4852-aeab-c087b0fabf6d"
   description: "Tag for all closed-loop system flow meters. Distinct from water meters which are open-loop systems."
   is_abstract: true
   implements:
   - MTR  
 
 WM:
-  id: "18022612548536238080"
+  guid: "c1df623f-c71b-45a1-89eb-2bc7c82f291a"
   description: "Tag for all water meters (open-loop), such as the main building water consumption meter."
   implements:
   - MTR
   is_abstract: true
 
 HM:
-  id: "5280577902914568192"
+  guid: "9496631b-c154-4d86-857d-c2ffff88ffe4"
   description: "Tag for all heat meters (cooling or heating), commonly referred to as BTU meters."
   is_abstract: true
   implements:

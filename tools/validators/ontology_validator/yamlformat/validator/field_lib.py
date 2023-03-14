@@ -33,7 +33,7 @@ FIELD_CHARACTER_REGEX = re.compile(r'^[a-z][a-z0-9]*(?:_[a-z][a-z0-9]*)*$')
 FIELD_INCREMENT_REGEX = re.compile(r'((?:_[0-9]+)*)$')
 
 
-#pylint: disable=super-with-arguments
+# pylint: disable=super-with-arguments
 def SplitFieldName(qualified_field_name):
   """Splits the field name on '/' and returns the parts separately.
 
@@ -49,8 +49,7 @@ def SplitFieldName(qualified_field_name):
   namespace = ''
   split = qualified_field_name.split('/')
   if len(split) == 2:
-    namespace = split[0]
-    field_only = split[1]
+    namespace, field_only = split
   return namespace, field_only
 
 
@@ -179,12 +178,20 @@ class FieldFolder(config_folder_lib.ConfigFolder):
     for field_spec in field_list:
       field_name = ''
       states = None
+      default_value_range = None
       if isinstance(field_spec, dict):
-        # If the field has a list of states, field_spec must be a dict with
-        # a single entry.
+        # If the field has a list of states or a default value range, field_spec
+        # must be a dict with a single entry.
         if len(field_spec) == 1:
+          field_name, field_details = next(iter(field_spec.items()))
           # TODO(b/188242279) handle namespacing for states correctly.
-          field_name, states = next(iter(field_spec.items()))
+          if isinstance(field_details, list):
+            states = field_details
+          elif isinstance(field_details, dict):
+            default_value_range = field_details
+          else:
+            self.AddFinding(
+                findings_lib.InvalidFieldFormatError(field_name, context))
         else:
           field_name = next(iter(field_spec), '(Blank)')
           self.AddFinding(
@@ -192,7 +199,7 @@ class FieldFolder(config_folder_lib.ConfigFolder):
           continue
       else:
         field_name = field_spec
-      field = Field(field_name, states, context)
+      field = Field(field_name, states, default_value_range, context)
       self.AddField(field)
 
 
@@ -288,12 +295,20 @@ class _FieldValidationStateMachine(object):
     return False
 
   def IsFieldComplete(self):
-    """Indcates if the state machine has seen a completed field.
+    """Indicates if the state machine has seen a completed field.
 
     Returns:
       True if the subfield categories presented represent a complete field.
     """
     return self._has_required_fields
+
+  def HasMeasurementSubfield(self):
+    """Indicates whether the field has a measurement subfield.
+
+    Returns:
+      True if the field has a measurement subfield.
+    """
+    return self._has_measurement
 
 
 class FieldNamespace(findings_lib.Findings):
@@ -334,7 +349,7 @@ class FieldNamespace(findings_lib.Findings):
     Raises:
       RuntimeError: when subfields are defined on the child and not the parent.
     """
-    super(FieldNamespace, self).__init__()
+    super().__init__()
     self.namespace = namespace
     self.subfields = subfields
     self.states = states
@@ -402,17 +417,18 @@ class FieldNamespace(findings_lib.Findings):
     """
     return self.subfields is not None
 
-  def _IsValidConstruction(self, field):
+  def _IsValidConstruction(self, field, construction_validator):
     """Checks if the field has been constructed with properly ordered subfields.
 
     Args:
       field: the field to validate
+      construction_validator: state machine used to validate the construction of
+        a field from subfields
 
     Returns:
       True if the field is constructed properly.
     """
     pns = self.parent_namespace
-    construction_validator = _FieldValidationStateMachine()
     for subfield_name in field.subfields:
       if subfield_name in self.subfields:
         subfield = self.subfields[subfield_name]
@@ -424,13 +440,15 @@ class FieldNamespace(findings_lib.Findings):
         return False
     return construction_validator.IsFieldComplete()
 
-  def ValidateSubfields(self, field):
+  def ValidateSubfields(self, field, construction_validator):
     """Validates that the subfields that compose the field are valid.
 
     Adds any findings to the field.
 
     Args:
       field: reference to the Field object for subfield validation
+      construction_validator: state machine used to validate the construction of
+        a field from subfields
 
     Returns:
       True if the field uses any subfields from the local namespace.
@@ -453,7 +471,8 @@ class FieldNamespace(findings_lib.Findings):
         field.AddFinding(
             findings_lib.UnrecognizedSubfieldError(subfield, field))
 
-    if not missing_fields and not self._IsValidConstruction(field):
+    if not missing_fields and not self._IsValidConstruction(
+        field, construction_validator):
       field.AddFinding(findings_lib.InvalidFieldConstructionError(field))
 
     return uses_local_subfields
@@ -498,7 +517,8 @@ class FieldNamespace(findings_lib.Findings):
     # Validate subfields and states in the namespace context. The field could
     # become invalid after this validation is performed.
 
-    uses_local_subfields = self.ValidateSubfields(field)
+    construction_validator = _FieldValidationStateMachine()
+    uses_local_subfields = self.ValidateSubfields(field, construction_validator)
     uses_local_states = self.ValidateStates(field)
     if not field.IsValid():
       self.AddFindings(field.GetFindings())
@@ -514,6 +534,14 @@ class FieldNamespace(findings_lib.Findings):
           findings_lib.DuplicateFieldDefinitionError(insert_ns, field,
                                                      old_field.file_context))
 
+    if self.SubfieldsAreDefined():
+      is_numeric = field.IsNumeric(
+          construction_validator.HasMeasurementSubfield())
+      if is_numeric and not field.HasDefaultValueRange():
+        self.AddFinding(findings_lib.NumericFieldMissingValueRangeError(field))
+      elif (not is_numeric and field.HasDefaultValueRange()):
+        self.AddFinding(findings_lib.NonNumericFieldWithValueRangeError(field))
+
 
 class Field(findings_lib.Findings):
   """Namespace-unaware class representing an individual field definition.
@@ -524,25 +552,34 @@ class Field(findings_lib.Findings):
     subfields: a list of subfield keys for this field
     key: a hashable object representing the field's subfield set.
     states: a list of valid states for this field, or None
+    default_value_range: a dictionary containing the default expected value
+      range for this field if it is numeric, or None
 
   Returns:
     An instance of the Field class.
   """
 
-  def __init__(self, name, states=None, file_context=None):
+  def __init__(self,
+               name,
+               states=None,
+               default_value_range=None,
+               file_context=None):
     """Init.
 
     Args:
       name: required string representing the field.
       states: optional list of strings representing valid states for a
         multistate field. Should be None for non-multistate fields.
+      default_value_range: optional dictionary containing the default expected
+        value range for a numeric field. Should be None for non-numeric fields.
       file_context: optional object with the config file location of this field.
     """
-    super(Field, self).__init__()
+    super().__init__()
     self.file_context = file_context
     self.name = name
     self.subfields = []
     self.states = states
+    self.default_value_range = default_value_range
 
     if not isinstance(name, str):
       self.AddFinding(findings_lib.IllegalKeyTypeError(name, file_context))
@@ -551,6 +588,7 @@ class Field(findings_lib.Findings):
     else:
       self.InitAndValidateSubfields()
       self.ValidateStates()
+      self.ValidateDefaultValueRange()
 
   def InitAndValidateSubfields(self):
     subfield_list = self.name.split('_')
@@ -572,6 +610,66 @@ class Field(findings_lib.Findings):
         self.AddFinding(findings_lib.DuplicateStateError(state, self))
       else:
         unique_states.add(state)
+
+  def ValidateDefaultValueRange(self):
+    if self.default_value_range is None:
+      return
+    if len(self.default_value_range) != 2:
+      self.AddFinding(
+          findings_lib.InvalidDefaultValueRangeError(self.default_value_range,
+                                                     self))
+    min_value = None
+    max_value = None
+    for range_key, range_value in self.default_value_range.items():
+      if range_key in ('flexible_min', 'fixed_min'):
+        min_value = range_value
+      elif range_key in ('flexible_max', 'fixed_max'):
+        max_value = range_value
+      else:
+        self.AddFinding(
+            findings_lib.InvalidDefaultValueRangeError(self.default_value_range,
+                                                       self))
+    if min_value is None or max_value is None:
+      self.AddFinding(
+          findings_lib.InvalidDefaultValueRangeError(self.default_value_range,
+                                                     self))
+    if ((not isinstance(min_value, int) and not isinstance(min_value, float))
+        or (not isinstance(max_value, int) and not isinstance(max_value, float))
+        or float(min_value) >= float(max_value)):
+      self.AddFinding(
+          findings_lib.InvalidDefaultValueRangeValueError(min_value, max_value,
+                                                          self))
+
+  def HasDefaultValueRange(self):
+    return self.default_value_range is not None
+
+  def IsNumeric(self, has_measurement_subfield: bool):
+    """Returns a boolean indicating whether the field is numeric.
+
+    Numeric fields:
+    1. Do not end in "alarm", "mode", or "status". For fields that end with
+       "command", only those that end with "percentage_command" or
+       "frequency_command" are numeric.
+    2. Either have a measurement subfield (e.g. percentage, temperature) or end
+       in "count" or "counter".
+
+    Args:
+      has_measurement_subfield: A boolean indicating whether the field has a
+        measurement subfield.
+
+    Returns:
+      A boolean indicating whether the field is numeric.
+    """
+    if 'count' in self.subfields or 'counter' in self.subfields:
+      return True
+    if any(sf in self.subfields for sf in ['alarm', 'mode', 'status']):
+      return False
+    if 'command' in self.subfields and not (
+        'percentage_command' in self.name or 'frequency_command' in self.name):
+      return False
+    if has_measurement_subfield:
+      return True
+    return False
 
   def __eq__(self, other):
     if isinstance(other, Field):

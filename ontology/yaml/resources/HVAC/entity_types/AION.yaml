@@ -18,7 +18,7 @@
 
 
 AION_SS:
-  id: "11213195200719486976"
+  guid: "393d69be-da42-4f54-b25a-240db08a1aea"
   description: "Basic air ionizer with start/stop"
   is_canonical: true
   implements:
@@ -26,7 +26,7 @@ AION_SS:
   - SS
 
 AION_SS_SRC:
-  id: "9844100913998856192"
+  guid: "89d93de5-013f-40ed-8663-4c1a4ec93b6e"
   description: "Basic air ionizer with start/stop, switch control/status, trip alarm, scheduled run, dirty filter alarm."
   is_canonical: true
   implements:
