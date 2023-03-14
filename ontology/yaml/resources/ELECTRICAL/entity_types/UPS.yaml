@@ -13,7 +13,7 @@
 # limitations under the License.
 
 UPS_SS:
-  id: "5802995459689545728"
+  guid: "70d8719e-db43-4f6f-b44f-7047a4c30a26"
   description: "Standard UPS unit."
   is_canonical: true
   implements:
@@ -22,7 +22,7 @@ UPS_SS:
 
 
 UPS_IOBM:
-  id: "8787571394775875584"
+  guid: "5588b9bb-a6be-4b7b-b41d-301bbd2986cb"
   description: "UPS with input and output electrical monitoring"
   is_canonical: true
   implements:
@@ -42,7 +42,7 @@ UPS_IOBM:
   - phase3_power_sensor  
 
 UPS_PPWM:
-  id: "17075390977788608512"
+  guid: "1f1b7090-165f-4f75-a789-9c22c53be6dd"
   description: "UPS with phase power monitoring."
   is_canonical: true
   implements:
@@ -50,7 +50,7 @@ UPS_PPWM:
   - PPWM
 
 UPS_IOBM_BATM:
-  id: "16279674412767117312"
+  guid: "e6d89dac-b410-4968-87b8-ca21e6f4a99d"
   description: "UPS with battery parameters and input output electrical monitoring"
   is_canonical: true
   implements:
@@ -58,7 +58,7 @@ UPS_IOBM_BATM:
   - IOBM
   - BATM
 UPS_IOBM_PPWM_UPSBM:
-  id: "15356506857900343296"
+  guid: "decba346-0f1b-4094-9153-9ec044acb399"
   description: "UPS with input and output electrical monitoring, phase power monitoring and battery monitoring."
   is_canonical: true
   implements:
@@ -68,7 +68,7 @@ UPS_IOBM_PPWM_UPSBM:
   - UPSBM
 
 UPS_PWM:
-  id: "4040385961387884544"
+  guid: "64f90598-969d-4cf6-ace6-50793a46aed8"
   description: "UPS with power monitoring."
   is_canonical: true
   implements:

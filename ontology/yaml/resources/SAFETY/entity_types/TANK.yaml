@@ -13,7 +13,7 @@
 # limitations under the License.
 
 TK_LM:
-  id: "1044278348349440000"
+  guid: "9f11b022-b47f-4704-90c1-a3fb6e90b64f"
   description: "level monitoring for tanks. Like Fire hydrant tanks."
   is_canonical: true
   implements:
