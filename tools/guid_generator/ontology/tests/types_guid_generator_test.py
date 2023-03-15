@@ -20,50 +20,49 @@ import tempfile
 from absl.testing import absltest
 import strictyaml as syaml
 
-from google3.third_party.digitalbuildings.tools.guid_generator.ontology.types_guid_generator.tests import test_constants
-from google3.third_party.digitalbuildings.tools.guid_generator.ontology.types_guid_generator.types_guid_generator import GenerateGuids
+from google3.third_party.digitalbuildings.tools.guid_generator.ontology.tests import test_constants
+from google3.third_party.digitalbuildings.tools.guid_generator.ontology.types_guid_generator import GenerateGuids
 
 _TEST_INSTANCES_PATH = test_constants.TEST_INSTANCES
 
 
 class TypesGuidGeneratorTest(absltest.TestCase):
 
-  def setUp(self):
-    super().setUp()
-    self.temp_dir = tempfile.mkdtemp(suffix='entity_types')
-    self.temp_file_path = os.path.join(self.temp_dir, 'test.yaml')
-
-  def testAllTypesHaveGuidsFileUnchanged(self):
+  def testTypesGuidGenerator_allTypesHaveGuids_outputFileUnchangedSuccess(self):
     input_file_path = os.path.join(_TEST_INSTANCES_PATH,
                                    'entity_types_with_guids.yaml')
+    temp_dir = tempfile.mkdtemp(suffix='entity_types')
+    temp_file_path = os.path.join(temp_dir, 'test.yaml')
 
     with open(input_file_path, encoding='utf-8') as input_file, open(
-        self.temp_file_path, 'w', encoding='utf-8') as temp_file:
+        temp_file_path, 'w', encoding='utf-8') as temp_file:
       input_file_content = input_file.read()
       temp_file.write(input_file_content)
+    GenerateGuids(os.path.abspath(temp_file_path))
 
-    GenerateGuids(os.path.abspath(self.temp_file_path))
-
-    with open(self.temp_file_path, encoding='utf-8') as temp_file:
+    with open(temp_file_path, encoding='utf-8') as temp_file:
       output_file_content = temp_file.read()
-
     self.assertEqual(input_file_content, output_file_content)
 
-  def testGenerateGuidsGeneratesGuidsWhenMissing(self):
+  def testTypesGuidGenerator_generatesGuidsWhenMissing_success(self):
     input_file_path = os.path.join(_TEST_INSTANCES_PATH,
                                    'entity_types_with_missing_guids.yaml')
+    temp_dir = tempfile.mkdtemp(suffix='entity_types')
+    temp_file_path = os.path.join(temp_dir, 'test.yaml')
 
     with open(input_file_path, encoding='utf-8') as input_file, open(
-        self.temp_file_path, 'w', encoding='utf-8') as temp_file:
+        temp_file_path, 'w', encoding='utf-8') as temp_file:
       temp_file.write(input_file.read())
+    GenerateGuids(os.path.abspath(temp_file_path))
 
-    GenerateGuids(os.path.abspath(self.temp_file_path))
-
-    with open(self.temp_file_path, encoding='utf-8') as temp_file:
-      yaml_dict = dict(syaml.load(temp_file.read()))
-      for type_content in yaml_dict.values():
-        self.assertIsNotNone(type_content['guid'])
-
+    with open(temp_file_path, encoding='utf-8') as temp_file:
+      yaml_dict = syaml.load(temp_file.read())
+    type_content_1 = yaml_dict.values()[0]
+    type_content_2 = yaml_dict.values()[1]
+    type_content_3 = yaml_dict.values()[2]
+    self.assertIsNotNone(type_content_1.get('guid'))
+    self.assertIsNotNone(type_content_2.get('guid'))
+    self.assertIsNotNone(type_content_3.get('guid'))
 
 if __name__ == '__main__':
   absltest.main()
