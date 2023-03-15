@@ -28,24 +28,24 @@ class State(object):
 
   Attributes:
     reporting_entity_guid: UUID4 id of the parent reporting entity for a field.
-    standard_field_name: Standardized field name for an EntityField
+    std_field_name: Standardized field name for an EntityField
     standard_state: Standardized state name.
     raw_state: Raw state name coming from bacnet payload device.
     guid_to_entity_map: Global entity by guid mapping.
   """
 
-  def __init__(self, reporting_entity_guid: str, standard_field_name: str,
+  def __init__(self, reporting_entity_guid: str, std_field_name: str,
                standard_state: str, raw_state: str):
     """Init.
 
     Args:
       reporting_entity_guid: UUID4 id of the parent entity for a field.
-      standard_field_name: Standardized field name for an EntityField
+      std_field_name: Standardized field name for an EntityField
       standard_state: Standardized state name.
       raw_state: Raw state name coming from bacnet payload device.
     """
     self.reporting_entity_guid = reporting_entity_guid
-    self.standard_field_name = standard_field_name
+    self.std_field_name = std_field_name
     self.standard_state = standard_state
     self.raw_state = raw_state
     self.guid_to_entity_map = GuidToEntityMap()
@@ -53,19 +53,19 @@ class State(object):
   def __str__(self):
     reporting_entity_code = self.guid_to_entity_map.GetEntityByGuid(
         self.reporting_entity_guid).code
-    return f'State for {reporting_entity_code}: {self.standard_field_name}'
+    return f'State for {reporting_entity_code}: {self.std_field_name}'
 
   # pylint: disable=line-too-long
   def __eq__(self, other: ...) -> bool:
     if not isinstance(other, State):
       raise TypeError('Other object must be a state instance.')
-    return self.reporting_entity_guid == other.reporting_entity_guid and self.standard_field_name == other.standard_field_name and self.standard_state == other.standard_state
+    return self.reporting_entity_guid == other.reporting_entity_guid and self.std_field_name == other.std_field_name and self.standard_state == other.standard_state
 
   @classmethod
   def FromDict(cls, states_dict: Dict[str, str]) ->...:
     new_state = cls(
         reporting_entity_guid=states_dict[REPORTING_ENTITY_GUID],
-        standard_field_name=states_dict[REPORTING_ENTITY_FIELD_NAME],
+        std_field_name=states_dict[REPORTING_ENTITY_FIELD_NAME],
         standard_state=states_dict[STANDARD_STATE],
         raw_state=states_dict[RAW_STATE])
     return new_state
@@ -79,7 +79,7 @@ class State(object):
         REPORTING_ENTITY_GUID:
             self.reporting_entity_guid,
         REPORTING_ENTITY_FIELD_NAME:
-            self.standard_field_name,
+            self.std_field_name,
         STANDARD_STATE:
             self.standard_state,
         RAW_STATE:

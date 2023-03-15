@@ -29,8 +29,9 @@ class Units(object):
       data units.
   """
 
-  def __init__(self, raw_unit_path: str,
-               standard_to_raw_unit_map: Dict[str, str]) -> None:
+  def __init__(
+      self, raw_unit_path: str, standard_to_raw_unit_map: Dict[str, str]
+  ) -> None:
     """Init.
 
     Args:
@@ -40,6 +41,12 @@ class Units(object):
     """
     self.raw_unit_path = raw_unit_path
     self.standard_to_raw_unit_map = standard_to_raw_unit_map
+
+  def __eq__(self, other):
+    return (
+        self.raw_unit_path == other.raw_unit_path
+        and self.standard_to_raw_unit_map == other.standard_to_raw_unit_map
+    )
 
   def GetSpreadsheetRowMapping(self) -> Dict[str, str]:
     """Returns a dictionary of EntityField attributes by spreadsheet headers.
@@ -51,6 +58,6 @@ class Units(object):
     for standard_unit_value, raw_unit_value in standard_to_raw_unit_map.items():
       spreadsheet_row_mapping.update({
           STANDARD_UNIT_VALUE: standard_unit_value,
-          RAW_UNIT_VALUE: raw_unit_value
+          RAW_UNIT_VALUE: raw_unit_value,
       })
     return spreadsheet_row_mapping

@@ -13,13 +13,10 @@ on:
     branches: [ master ]
     paths:
       - ontology/yaml/**
- 
-permissions:
-    contents: write  # To push a branch 
-    pull-requests: write  # To create a PR from that branch    
 
 jobs:
-  build:      
+  build:
+
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -32,9 +29,6 @@ jobs:
       with:
         repository: ${{ github.event.pull_request.head.repo.full_name }}
         ref: ${{ github.event.pull_request.head.ref }}
-        github_token: ${{secrets.GITHUB_TOKEN}}
-
-        
 
     - name: Checkout head if push
       if: ${{ github.event_name == 'push' }}
@@ -49,7 +43,7 @@ jobs:
       id: changed-entity-type-files
       uses: tj-actions/changed-files@v35
       with:
-        files: '**/ontology/yaml/**/entity_types/*.yaml'
+        files: '**/entity_types/*.yaml'
 
     - name: Install dependencies for ontology YAML validator
       run: |
@@ -69,15 +63,14 @@ jobs:
           python types_guid_generator.py -f=../../../../$file
         done
       working-directory: ./tools/guid_generator/ontology/types_guid_generator
-        
+
     - name: Commit files changed by types GUID generator
       uses: EndBug/add-and-commit@v9
       with:
         author_name: db-robot
         author_email: db-robot@google.com
         message: 'Add GUIDs to new entity types'
-        github_token: ${{secrets.GITHUB_TOKEN}}
-      
+
     - name: Run ontology YAML validator on ontology extensions
       run: |
         python validator.py --original=../../../../ontology/yaml/resources  --interactive=False

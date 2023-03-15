@@ -29,24 +29,23 @@ from model.constants import TARGET_ENTITY_GUID
 from model.constants import TYPE_NAME
 from model.entity import ReportingEntity
 from model.entity import VirtualEntity
-from model.entity_field import EntityField
-from tests.test_constants import TEST_CLOUD_DEVICE_ID
-from tests.test_constants import TEST_ENTITY_FIELD_DICT_WITH_UNITS
-from tests.test_constants import TEST_NAMESPACE
-from tests.test_constants import TEST_REPORTING_ENTITY_CODE
-from tests.test_constants import TEST_REPORTING_ENTITY_DICT
-from tests.test_constants import TEST_REPORTING_GUID
-from tests.test_constants import TEST_TYPE_NAME
-from tests.test_constants import TEST_VIRTUAL_ENTITY_CODE
-from tests.test_constants import TEST_VIRTUAL_ENTITY_DICT
-from tests.test_constants import TEST_VIRTUAL_GUID
+from model.entity_field import DimensionalValueField
+from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_CLOUD_DEVICE_ID
+from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_DIMENSIONAL_VALUE_FIELD_DICT
+from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_NAMESPACE
+from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_REPORTING_ENTITY_CODE
+from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_REPORTING_ENTITY_DICT
+from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_REPORTING_GUID
+from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_TYPE_NAME
+from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_VIRTUAL_ENTITY_CODE
+from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_VIRTUAL_ENTITY_DICT
+from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_VIRTUAL_GUID
 
 
 # pylint: disable=unnecessary-dunder-call
 class EntityTest(absltest.TestCase):
 
   def testVirtualEntityInstantiatesFromDict(self):
-
     test_virtual_entity = VirtualEntity.FromDict(TEST_VIRTUAL_ENTITY_DICT)
 
     self.assertEqual(test_virtual_entity.code, TEST_VIRTUAL_ENTITY_CODE)
@@ -56,15 +55,15 @@ class EntityTest(absltest.TestCase):
     self.assertEqual(test_virtual_entity.metadata, {'test': 'test metadata'})
 
   def testReportingEntityInstantiatesFromDict(self):
-
     test_reporting_entity = ReportingEntity.FromDict(TEST_REPORTING_ENTITY_DICT)
 
     self.assertEqual(test_reporting_entity.code, TEST_REPORTING_ENTITY_CODE)
     self.assertEqual(test_reporting_entity.bc_guid, TEST_REPORTING_GUID)
     self.assertEqual(test_reporting_entity.namespace, TEST_NAMESPACE)
     self.assertEqual(test_reporting_entity.type_name, TEST_TYPE_NAME)
-    self.assertEqual(test_reporting_entity.cloud_device_id,
-                     TEST_CLOUD_DEVICE_ID)
+    self.assertEqual(
+        test_reporting_entity.cloud_device_id, TEST_CLOUD_DEVICE_ID
+    )
     self.assertEqual(test_reporting_entity.metadata, {'test': 'test metadata'})
 
   def testVirtualEntityEquality(self):
@@ -82,7 +81,7 @@ class EntityTest(absltest.TestCase):
         ETAG: '7654321',
         NAMESPACE: TEST_NAMESPACE,
         TYPE_NAME: None,
-        METADATA + '.test': 'test metadata'
+        METADATA + '.test': 'test metadata',
     }
     test_entity_1 = VirtualEntity.FromDict(TEST_VIRTUAL_ENTITY_DICT)
     test_entity_2 = VirtualEntity.FromDict(test_virtual_entity_dict_2)
@@ -100,7 +99,7 @@ class EntityTest(absltest.TestCase):
     test_connection = Connection.FromDict({
         SOURCE_ENTITY_GUID: 'source_guid',
         TARGET_ENTITY_GUID: TEST_REPORTING_GUID,
-        CONNECTION_TYPE: 'CONTROLS'
+        CONNECTION_TYPE: 'CONTROLS',
     })
     test_entity = ReportingEntity.FromDict(TEST_REPORTING_ENTITY_DICT)
 
@@ -119,7 +118,7 @@ class EntityTest(absltest.TestCase):
     bad_connection_dict = {
         SOURCE_ENTITY_GUID: 'source_entity_guid',
         TARGET_ENTITY_GUID: 'bad_target_entity_guid',
-        CONNECTION_TYPE: 'FEEDS'
+        CONNECTION_TYPE: 'FEEDS',
     }
     bad_connection = Connection.FromDict(bad_connection_dict)
 
@@ -127,7 +126,9 @@ class EntityTest(absltest.TestCase):
       test_entity.AddConnection(bad_connection)
 
   def testAddTranslation(self):
-    test_field = EntityField.FromDict(TEST_ENTITY_FIELD_DICT_WITH_UNITS)
+    test_field = DimensionalValueField.FromDict(
+        TEST_DIMENSIONAL_VALUE_FIELD_DICT
+    )
     test_reporting_entity = ReportingEntity.FromDict(TEST_REPORTING_ENTITY_DICT)
 
     test_reporting_entity.AddTranslation(test_field)
@@ -141,7 +142,9 @@ class EntityTest(absltest.TestCase):
       test_reporting_entity.AddTranslation('not an entity field')
 
   def testAddLink(self):
-    test_field = EntityField.FromDict(TEST_ENTITY_FIELD_DICT_WITH_UNITS)
+    test_field = DimensionalValueField.FromDict(
+        TEST_DIMENSIONAL_VALUE_FIELD_DICT
+    )
     test_virtual_entity = VirtualEntity.FromDict(TEST_VIRTUAL_ENTITY_DICT)
 
     test_virtual_entity.AddLink(test_field)
@@ -163,7 +166,7 @@ class EntityTest(absltest.TestCase):
         IS_REPORTING: False,
         CLOUD_DEVICE_ID: None,
         NAMESPACE: TEST_NAMESPACE,
-        TYPE_NAME: TEST_TYPE_NAME
+        TYPE_NAME: TEST_TYPE_NAME,
     }
 
     row_mapping = test_virtual_entity.GetSpreadsheetRowMapping()
