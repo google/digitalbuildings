@@ -42,6 +42,8 @@ def Validate(filter_text,
     original_directory: the original directory with ontology yaml files.
     changed_directory: the changed directory with ontology yaml files.
     interactive: flag to run validator in interactive mode or presubmit mode.
+  Raises:
+    Exception: The Ontology is not valid.
   """
   if not changed_directory:
     changed_directory = original_directory
@@ -52,17 +54,19 @@ def Validate(filter_text,
 
   if interactive:
     presubmit_validate_types_lib.RunInteractive(filter_text, modified_base,
-                                              modified_client)
+                                                modified_client)
   else:
     findings = presubmit_validate_types_lib.RunPresubmit([],
                                                          modified_base,
                                                          modified_client)
     presubmit_validate_types_lib.PrintFindings(findings, '')
-    #TODO(@charbull): add diff files in the presubmit in modified base
+    # TODO(charbelk): add diff files in the presubmit in modified base
     findings_class = findings_lib.Findings()
     findings_class.AddFindings(findings)
     if not findings_class.IsValid():
+      # pylint: disable=broad-exception-raised
       raise Exception('The Ontology is no longer valid.')
+
 
 def RecursiveDirWalk(directory):
   """Walks recursively a directory and returns a list of PathParts.

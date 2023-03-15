@@ -14,7 +14,7 @@
 
 
 RP_CAM_DPHCC_ZTC:
-  id: "13237849106245746688"
+  guid: "389f417a-6113-41ae-bacb-462453c15d5d"
   description: "Radiant panel for room heating and cooling."
   is_canonical: true
   implements:
@@ -24,14 +24,14 @@ RP_CAM_DPHCC_ZTC:
   - ZTC
 
 RSR_HHCDM:
-  id: "11269776069084839936"
+  guid: "c562fd61-d92b-4493-a290-ef35a11f34b8"
   description: "Cooling or heating changeover function for radiant panels or fcu's."
   implements:
   - RSR
   - HHCDM
 
 RP_DPBHCC_FTC:
-  id: "212717704262451200"
+  guid: "c83f158e-a4e5-4e14-ab93-e711e9af7aa5"
   description: "Radiant panel for room heating and cooling, along with floor temperature control."
   is_canonical: true
   implements:

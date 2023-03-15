@@ -15,49 +15,49 @@
 # General Types
 
 SD:
-  id: "15656871444376190976"
+  guid: "e6a159e2-505e-43ad-8411-382f5ee46de9"
   description: "Smoke detector."
   is_abstract: true
   implements:
   - SENSOR
 
 FACP:
-  id: "4650073955082698752"
+  guid: "0aebbaf1-0112-453e-9eae-83d3ac962a9d"
   description: "Fire alarm control panel."
   is_abstract: true
   implements:
   - EQUIPMENT
 
 FHP:
-  id: "15026367496544321536"
+  guid: "ee05233e-c9d3-4502-8db7-8d8ae6ce50ea"
   description: "Fire suppression system hydrant pump."
   is_abstract: true
   implements:
   - EQUIPMENT
 
 FD:
-  id: "3929498014703419392"
+  guid: "d57ff336-3c5f-49de-9dc2-b024952d6c05"
   description: "Fire damper."
   is_abstract: true
   implements:
   - EQUIPMENT
 
 HS:
-  id: "11567602982723780608"
+  guid: "a02c0de0-e626-4b5f-872f-87ba641b4375"
   description: "Fire system horn strobe."
   is_abstract: true
   implements:
   - EQUIPMENT
 
 BGU:
-  id: "15242540278658105344"
+  guid: "549385fa-f484-4da2-8f92-4ef9d843a849"
   description: "Emergency break-glass unit."
   is_abstract: true
   implements:
   - EQUIPMENT
   
 FDR:
-  id: "10108436703455739904"
+  guid: "27edaf6c-f2e0-473a-b64a-741a92faec61"
   description: "Fire door."
   is_abstract: true
   implements:
@@ -65,47 +65,47 @@ FDR:
   - FACILITIES/DOOR
 
 FAS:
-  id: "4127656398307721216"
+  guid: "30525f01-05e1-469c-8196-a2ea622b8019"
   description: "Fire alarm system"
   is_abstract: true
 
 LDS:
-  id: "8379054446545469440"
+  guid: "811f5020-7a8a-42b1-8acd-24dca39cafc2"
   description: "Generic leak detection systems."
   is_abstract: true
   implements:
   - EQUIPMENT
   
 RDT:
-  id: "15357456835946741760"
+  guid: "b2fc86a6-4220-40fc-b34e-6d2cf8396d3f"
   description: "Rodent Repellent System"
   is_abstract: true
   implements:
   - EQUIPMENT
 
 FSS:
-  id: "12474132727639048192"
+  guid: "2c9ed5e4-51d2-4883-a9b5-aa09a22f7bb4"
   description: "Generic fire suppression system which uses gas to extinguish fire."
   is_abstract: true
   implements:
   - EQUIPMENT
 
 PA:
-  id: "5962209141438021632"
+  guid: "337388a5-7919-4798-b33e-b2f003cff641"
   description: "Public Address system ."
   is_abstract: true
   implements:
   - EQUIPMENT
 
 SSS:
-  id: "6385266031434137600"
+  guid: "09a22ea8-9cb5-45c6-a78d-f84c0f44b82c"
   description: "Seismic detector ."
   is_abstract: true
   implements:
   - /SENSOR
 
 HDS:
-  id: "4688904307729235968"
+  guid: "025f5773-7626-4a30-bd44-ef0845a92215"
   description: "Hydrogen Sensor."
   is_abstract: true
   implements:

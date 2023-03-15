@@ -13,7 +13,7 @@
 # limitations under the License.
 
 ELV_SS:
-  id: "785321369775636480"
+  guid: "88818ae2-dd97-4292-82a7-acbbd76859db"
   description: "Elevator run status monitoring."
   is_canonical: true
   implements:

@@ -22,7 +22,7 @@
 # should be avoided if possible.
 
 VAV_SD_CSP:
-  id: "9662058072322867200"
+  guid: "89fa1c88-ffc3-4b62-a3bf-e185926b1d4f"
   description: "Simple IDF room unit."
   is_canonical: true
   implements:
@@ -31,7 +31,7 @@ VAV_SD_CSP:
   - CSP
 
 VAV_SD_DSP:
-  id: "13827887727640576000"
+  guid: "4386dd8c-9add-439d-82dd-7326c4e5541a"
   description: "Simple cooling only VAV."
   is_canonical: true
   implements:
@@ -40,7 +40,7 @@ VAV_SD_DSP:
   - DSP
 
 VAV_SD_CSP_HLSAFS:
-  id: "11314244717358612480"
+  guid: "ea3a576a-08af-40b2-ae0b-59451e0b88a4"
   description: "Simple cooling only VAV with occupancy."
   is_canonical: true
   implements:
@@ -50,7 +50,7 @@ VAV_SD_CSP_HLSAFS:
   - HLSAFS
 
 VAV_SD_DSP_CO2C:
-  id: "18439573746067963904"
+  guid: "a845ae84-e56d-438f-8cff-95405a90ad5a"
   description: "CO2 control VAV."
   is_canonical: true
   implements:
@@ -60,7 +60,7 @@ VAV_SD_DSP_CO2C:
   - CO2C
 
 VAV_SD_DSP_VOCC:
-  id: "14781709666689744896"
+  guid: "15b095f3-098a-43d9-9271-d0215423479c"
   description: "Single duct cooling-only VAV with dual setpoint and VOC control."
   is_canonical: true
   implements:
@@ -70,7 +70,7 @@ VAV_SD_DSP_VOCC:
   - VOCC
 
 VAV_SD_DSP_HWDC:
-  id: "8224468609238302720"
+  guid: "97c6ee09-664a-4776-b174-5d1a8abeeacb"
   description: "Single duct reheat VAV with dual setpoint control."
   is_canonical: true
   implements:
@@ -80,7 +80,7 @@ VAV_SD_DSP_HWDC:
   - HWDC
 
 VAV_SD_DSP_CO2M:
-  id: "9770144463379759104"
+  guid: "0de6754a-9094-4f93-a32a-af2ccee4f495"
   description: "VAV with zone CO2 monitoring."
   is_canonical: true
   implements:
@@ -90,7 +90,7 @@ VAV_SD_DSP_CO2M:
   - CO2M
 
 VAV_SD_ZTC_HWDC:
-  id: "7864180639048663040"
+  guid: "2dfc6526-df04-4eb1-9298-f36e3e709320"
   description: "Single duct reheat VAV with zone setpoint control."
   is_canonical: true
   implements:
@@ -100,7 +100,7 @@ VAV_SD_ZTC_HWDC:
   - HWDC
 
 VAV_SD_DSP_HWZC:
-  id: "13736874553139789824"
+  guid: "eb51aed4-551f-4438-821d-ef1127bbab93"
   description: "Single duct reheat VAV with dual setpoint control."
   is_canonical: true
   implements:
@@ -110,7 +110,7 @@ VAV_SD_DSP_HWZC:
   - HWZC
 
 VAV_SD_DSP_HTZC:
-  id: "6386999961271140352"
+  guid: "47b47e69-d873-4976-b578-a07cb3d85176"
   description: "Single duct reheat VAV with electric heat."
   is_canonical: true
   implements:
@@ -120,7 +120,7 @@ VAV_SD_DSP_HTZC:
   - HTZC
 
 VAV_SD_DSP_HTDC:
-  id: "5162020862626365440"
+  guid: "184e39f4-6a6d-4cba-9f0b-2337c7a7ba61"
   description: "Single duct reheat VAV with electric heat."
   is_canonical: true
   implements:
@@ -130,7 +130,7 @@ VAV_SD_DSP_HTDC:
   - HTDC
 
 VAV_SD_DSP_HWDC_CO2M:
-  id: "3252494620621275136"
+  guid: "5a8ecd77-b107-4532-8497-6e7c47762c16"
   description: "Single duct reheat VAV with temp control and CO2 monitoring."
   is_canonical: true
   implements:
@@ -141,7 +141,7 @@ VAV_SD_DSP_HWDC_CO2M:
   - CO2M
 
 VAV_SD_DSP_HWDC_CO2C:
-  id: "1775313942843752448"
+  guid: "d17dc38b-93ae-40a1-b0c4-f232548bc79a"
   description: "Single duct reheat VAV with CO2 and temp control."
   is_canonical: true
   implements:
@@ -152,7 +152,7 @@ VAV_SD_DSP_HWDC_CO2C:
   - CO2C
 
 VAV_SD_DSP_HWDC_VOCC:
-  id: "17447840646093078528"
+  guid: "f79768d5-31aa-4f42-a814-c0f901e36999"
   description: "Single duct reheat VAV with VOC and temp control."
   is_canonical: true
   implements:
@@ -163,7 +163,7 @@ VAV_SD_DSP_HWDC_VOCC:
   - VOCC
 
 VAV_SD_DSP_HWZC_CO2C:
-  id: "17087552675903438848"
+  guid: "d2f8854c-09b1-423c-b0cf-6f64e79663f6"
   description: "Single duct reheat VAV with CO2 and temp control."
   is_canonical: true
   implements:
@@ -174,7 +174,7 @@ VAV_SD_DSP_HWZC_CO2C:
   - CO2C
 
 VAV_SD_DSP_HWDC_DFSS:
-  id: "12475866657476050944"
+  guid: "a32cc2f4-902a-45f0-bffd-1d0065c31e76"
   description: "Single duct fan-powered series VAV with reheat."
   is_canonical: true
   implements:
@@ -185,7 +185,7 @@ VAV_SD_DSP_HWDC_DFSS:
   - DFSS
 
 VAV_SD_DSP_HWDC_DFSS_DFVSC:
-  id: "9125188534712401920"
+  guid: "c091de8b-9fa4-450a-bf9f-9cd03af33b35"
   description: "Single duct fan-powered series VAV with reheat."
   is_canonical: true
   implements:
@@ -197,7 +197,7 @@ VAV_SD_DSP_HWDC_DFSS_DFVSC:
   - DFVSC
 
 VAV_SD_DSP_DFSS:
-  id: "15610371998125916160"
+  guid: "76cdf2e6-e8c5-4832-aff8-844198fcfa18"
   description: "Fan powered VAV."
   is_canonical: true
   implements:
@@ -207,7 +207,7 @@ VAV_SD_DSP_DFSS:
   - DFSS
 
 VAV_SD_DSP_DFSS_DFVSC:
-  id: "14385392899481141248"
+  guid: "7986c34f-66dc-4c8a-817d-79ddf97eebd0"
   description: "Fan powered VAV with variable speed control."
   is_canonical: true
   implements:
@@ -218,7 +218,7 @@ VAV_SD_DSP_DFSS_DFVSC:
   - DFVSC
 
 VAV_SD_DSP_CO2C_DFSS_DFVSC:
-  id: "730478829293797376"
+  guid: "bc81486d-d20e-4f56-9485-b15b2e3584d3"
   description: "Fan powered VAV with variable speed control and CO2 control."
   is_canonical: true
   implements:
@@ -230,7 +230,7 @@ VAV_SD_DSP_CO2C_DFSS_DFVSC:
   - DFVSC
 
 VAV_SD_DSP_HWDC_CO2C_DFSS_DFVSC:
-  id: "10998685979698528256"
+  guid: "412520f7-3b69-48aa-b494-1324e4bc6494"
   description: "Single duct fan powered VAV with reheat and CO2 control."
   is_canonical: true
   implements:
@@ -243,7 +243,7 @@ VAV_SD_DSP_HWDC_CO2C_DFSS_DFVSC:
   - DFVSC
 
 VAV_SD_DSP_HWDC_CO2C_DFSS:
-  id: "2099573116014428160"
+  guid: "6e6ec4bd-912c-4c4c-a5bb-075ceedcb1f4"
   description: "Single duct fan powered VAV with reheat and CO2 control."
   is_canonical: true
   implements:
@@ -255,7 +255,7 @@ VAV_SD_DSP_HWDC_CO2C_DFSS:
   - DFSS
 
 VAV_DD_DSP:
-  id: "4081156952057446400"
+  guid: "7fdfa443-1942-4c0b-8d61-d3579302a314"
   description: "Typical dual duct VAV."
   is_canonical: true
   implements:
@@ -264,7 +264,7 @@ VAV_DD_DSP:
   - DSP
 
 VAV_DD_DSP_CO2C:
-  id: "2856177853412671488"
+  guid: "9da9b67a-9e17-4c94-b774-6f1c15a4bd12"
   description: "Typical dual duct VAV with CO2 conotrol."
   is_canonical: true
   implements:
@@ -274,7 +274,7 @@ VAV_DD_DSP_CO2C:
   - CO2C
 
 VAV_DDCO_DSP:
-  id: "11322945152869203968"
+  guid: "537f6091-5fe6-4e5f-9fe7-84afa1ad60ba"
   description: "Weird dual duct VAV with cooling only, twice."
   is_canonical: true
   implements:
@@ -283,7 +283,7 @@ VAV_DDCO_DSP:
   - DSP
 
 VAV_RD_ZSPC:
-  id: "12079549890267447296"
+  guid: "f91c3b86-25f0-497c-9192-510cd164b94c"
   description: "Return air zone pressure control VAV."
   is_canonical: true
   implements:
@@ -292,7 +292,7 @@ VAV_RD_ZSPC:
   - ZSPC
 
 VAV_SD_ZSPC:
-  id: "9953850866148573184"
+  guid: "3927e754-c9c6-42cd-83ba-8cd5a458bdbe"
   description: "Supply air zone pressure control VAV."
   is_canonical: true
   implements:
@@ -301,7 +301,7 @@ VAV_SD_ZSPC:
   - ZSPC
 
 VAV_ED:
-  id: "18348560571567177728"
+  guid: "9fc088db-123e-4aba-9e97-2aa90df1d3cd"
   description: "Exhaust control VAV."
   is_canonical: true
   implements:
@@ -309,7 +309,7 @@ VAV_ED:
   - ED
 
 VAV_SD_DSP_CO2C2X:
-  id: "7467863871840059392"
+  guid: "60aece88-09c0-4420-be6b-3c2ae6e36180"
   description: "Single duct VAV with two-zone CO2 control."
   is_canonical: true
   implements:
@@ -319,7 +319,7 @@ VAV_SD_DSP_CO2C2X:
   - CO2C2X
 
 VAV_SD_DSP_HWZC_CO2C2X:
-  id: "5342164847721185280"
+  guid: "bf097d7b-0055-4035-bf33-73ecaca3fa2d"
   description: "Single duct reheat VAV with two-zone CO2 control."
   is_canonical: true
   implements:
@@ -330,7 +330,7 @@ VAV_SD_DSP_HWZC_CO2C2X:
   - CO2C2X
 
 VAV_PDSCV_VOCC_ZHM_CO2C:
-  id: "10717650807638982656"
+  guid: "f60c5020-6980-4a9b-8d79-8425adfe75a9"
   description: "Pressure dependent ventilation control VAV."
   is_canonical: true
   implements:
@@ -341,7 +341,7 @@ VAV_PDSCV_VOCC_ZHM_CO2C:
   - CO2C
 
 VAV_PDSCV_CO2C_VOCPC_ZHM_RMM:
-  id: "13765359600880582656"
+  guid: "0a1d6be0-a057-4e0e-bdc5-f500b7da51e8"
   description: "VAV with pressure dependent supply valve control, for zone humidity and VOC control."
   is_canonical: true
   implements:
@@ -353,7 +353,7 @@ VAV_PDSCV_CO2C_VOCPC_ZHM_RMM:
   - RMM
 
 VAV_ED_RMM:
-  id: "5082419519310266368"
+  guid: "271eb93a-f6f3-4b1e-9cda-a681bc9fb31a"
   description: "Exhaust control VAV."
   is_canonical: true
   implements:
@@ -362,13 +362,13 @@ VAV_ED_RMM:
   - RMM
 
 VAV_UNDEFINED:
-  id: "7728847250343854080"
+  guid: "ef0afedd-fe0d-43fd-b0e0-f1c3c1310d87"
   description: "VAV with no defined fields. Note this is non-canonical, as it is typically expected that telemetry will normally be available."
   implements:
   - VAV
 
 VAV_SD_DSP_HWDC_DSPZDHC:
-  id: "449443657234251776"
+  guid: "00ca117a-0405-41d8-a73c-639457644db4"
   description: "Single duct reheat VAV with dual setpoint temperature and humidity control."
   is_canonical: true
   implements:
@@ -379,7 +379,7 @@ VAV_SD_DSP_HWDC_DSPZDHC:
   - DSPZDHC
 
 VAV_ZTM_PDSCV_SFM:
-  id: "2684578173177298944"
+  guid: "4f056be7-3830-4bfb-811f-1c86b00ded41"
   description: "VAV with supply air and zone air monitoring"
   is_canonical: true
   implements:
@@ -391,7 +391,7 @@ VAV_ZTM_PDSCV_SFM:
   - failed_alarm
 
 VAV_SD_ZTC_HLSAFS:
-  id: "8585824205218512896"
+  guid: "7f686037-a5eb-4542-9076-7134cc89f2d4"
   description: "VAV with flow rate control, supply air damper control and temperature control."
   is_canonical: true
   opt_uses:
@@ -403,7 +403,7 @@ VAV_SD_ZTC_HLSAFS:
   - HLSAFS
 
 VAV_DSP_ED:
-  id: "13615430195317047296"
+  guid: "5f9d376c-9349-451d-aa03-b56dfb927a71"
   description: "Exhaust control VAV with dual setpoint control."
   is_canonical: true
   implements:
@@ -412,7 +412,7 @@ VAV_DSP_ED:
   - ED
 
 VAV_CO2C_PDSCV:
-  id: "5566160655066595328"
+  guid: "28f8cd8d-086e-4a6d-8283-7a54a462adab"
   description: "Discharge control VAV with CO2 regulation and damper percentage monitoring"
   is_canonical: true
   implements:
@@ -421,7 +421,7 @@ VAV_CO2C_PDSCV:
   - PDSCV
 
 VAV_RD:
-  id: "2714959878476005376"
+  guid: "1ebc68cc-4dfe-4cfb-bf14-0d439a1ffca9"
   description: "Return control VAV with air flow setpoint control"
   is_canonical: true
   implements:
@@ -429,7 +429,7 @@ VAV_RD:
   - RD
 
 VAV_RDC:
-  id: "5061770690940633088"
+  guid: "3f88de96-d465-46e5-8ba0-4087ead11d3e"
   description: "Return control VAV without built-in regulation"
   is_canonical: true
   implements:
@@ -437,7 +437,7 @@ VAV_RDC:
   - RDC
 
 VAV_RD_DSPRTC:
-  id: "9912288227107012608"
+  guid: "794df238-efb4-418f-b65e-ad2326c951db"
   description: "Return control VAV with return cooling control."
   is_canonical: true
   implements:
@@ -446,7 +446,7 @@ VAV_RD_DSPRTC:
   - DSPRTC
 
 VAV_RD_DSPRTC_ZSPC:
-  id: "6507566908814917632"
+  guid: "4b42c819-5bb4-4c4d-9d00-64bcab9c33e8"
   description: "Return control VAV with return cooling control and zone pressure control."
   is_canonical: true
   implements:
@@ -456,7 +456,7 @@ VAV_RD_DSPRTC_ZSPC:
   - ZSPC
 
 VAV_SD_ZTC_AHAC:
-  id: "11563037810445254656"
+  guid: "33304129-5f50-493a-972b-7f9b87f5dbe8"
   description: "Single duct VAV with zone set-point control and after hours push button activation."
   is_canonical: true
   implements:
@@ -466,7 +466,7 @@ VAV_SD_ZTC_AHAC:
   - AHAC
 
 VAV_ZTC_DTM:
-  id: "16219759825146347520"
+  guid: "1ecc8249-0e23-4940-aa50-7637be2a0de5"
   description: "Single duct VAV with zone set-point control and discharge temperature monitoring."
   is_canonical: true
   implements:
@@ -475,7 +475,7 @@ VAV_ZTC_DTM:
   - DTM
 
 VAV_SD_CO2C:
-  id: "1276288495949709312"
+  guid: "4751a599-5bbf-4a0a-9eab-99ca0f7ef59f"
   description: "CO2 control VAV, regardless of room temperature for single duct supply air VAV's"
   is_canonical: true
   implements:
@@ -484,7 +484,7 @@ VAV_SD_CO2C:
   - CO2C
 
 VAV_RD_CO2C:
-  id: "16129160067017605120"
+  guid: "549e44e7-2c16-472c-a6d7-6ddb8aedd7d3"
   description: "CO2 control VAV, regardless of room temperature for return air VAV's"
   is_canonical: true
   implements:
@@ -493,7 +493,7 @@ VAV_RD_CO2C:
   - CO2C
 
 VAV_SD_CO2C_HLSAFS_SRC:
-  id: "14455786932426244096"
+  guid: "8e864118-85c8-4b5e-9da9-658623bcf9ac"
   description: "VAV with CO2 monitor, dampers, hi/low flowrate setpoint and sensor, schedule run"
   is_canonical: true
   implements:
@@ -504,7 +504,7 @@ VAV_SD_CO2C_HLSAFS_SRC:
   - SRC
 
 VAV_HWZTC_CHWZTC_DTM:
-  id: "3139001930890608640"
+  guid: "299540bd-cb38-4256-b84b-12eba206ffd8"
   description: "A zone VAV with heating and cooling control, but no flow control; part of DOAS system where air volume is not measured or controlled locally, but instead controlled by the upstream equipment."
   is_canonical: true
   implements:
@@ -518,7 +518,7 @@ VAV_HWZTC_CHWZTC_DTM:
 ###################################
 
 VAV_SD_DSP_HWDC_NONCANONICAL_1:
-  id: "17018776024562794496"
+  guid: "9b2cd4b7-3a7b-470c-abe5-66f51f84bc88"
   description: "Non-standard type."
   implements:
   - VAV_SD_DSP_HWDC
@@ -527,7 +527,7 @@ VAV_SD_DSP_HWDC_NONCANONICAL_1:
   - heating_percentage_command
 
 VAV_SD_DSP_HTDC_NONCANONICAL_1:
-  id: "1012842211399696384"
+  guid: "93c44e94-464c-40c5-bc02-7e21e40dc564"
   description: "Non-standard type."
   implements:
   - VAV_SD_DSP_HTDC
@@ -536,7 +536,7 @@ VAV_SD_DSP_HTDC_NONCANONICAL_1:
   - heating_percentage_command
 
 VAV_SD_CSP_NONCANONICAL_1:
-  id: "16125937398436593664"
+  guid: "ca0001c2-e4b1-46cf-95c3-d7c1d1420b4a"
   description: "Non-standard type."
   implements:
   - VAV_SD_CSP
@@ -544,7 +544,7 @@ VAV_SD_CSP_NONCANONICAL_1:
   - discharge_air_temperature_setpoint # Needs to be removed from this device. Then deprecate.
 
 VAV_SD_CSP_NONCANONICAL_2:
-  id: "1877251864878120960"
+  guid: "949df16e-ff6d-4aac-846e-682b755b6364"
   description: "Non-standard type."
   implements:
   - VAV_SD_CSP
@@ -552,7 +552,7 @@ VAV_SD_CSP_NONCANONICAL_2:
   - supply_air_isolation_damper_command
 
 VAV_SD_DDSP_NONCANONICAL_1:
-  id: "1373130181589336064"
+  guid: "9dda1f6d-eac3-416e-8d3f-00edb1abbf5b"
   description: "Non-standard type."
   implements:
   - VAV
