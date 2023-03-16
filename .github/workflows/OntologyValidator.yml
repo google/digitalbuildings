@@ -73,7 +73,7 @@ jobs:
         author_name: db-robot
         author_email: db-robot@google.com
         message: 'Add GUIDs to new entity types'
-        github_token: ${{ secrets.PA_TOKEN }}
+        github_token: ${{ secrets.GITHUB_TOKEN }}
       
 
     - name: Run ontology YAML validator on ontology extensions
