@@ -13,6 +13,7 @@
 # limitations under the License.
 
 FM_STANDARD:
+  guid: "05f00511-9d04-4c98-ac9f-6aba9f0c9fe7"
   description: "Standard flow meter typically for liquid."
   implements:
   - FM
