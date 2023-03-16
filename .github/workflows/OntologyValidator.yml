@@ -17,7 +17,7 @@ on:
 permissions:
     contents: write  # To push a branch 
     pull-requests: write  # To create a PR from that branch    
-    repository-projects: write
+
 jobs:
   build:      
     runs-on: ${{ matrix.os }}
@@ -73,7 +73,6 @@ jobs:
       uses: ad-m/github-push-action@master
       with:
         branch: ${{ github.head_ref }}
-        github_token: ${{secrets.GITHUB_TOKEN}}
 #         repository: ${{ github.event.pull_request.head.repo.full_name }}
 #         ref: ${{ github.event.pull_request.head.ref }}
         #branch: ${{ github.event.pull_request.head.ref }}
