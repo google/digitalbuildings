@@ -17,7 +17,7 @@ on:
 permissions:
     contents: write  # To push a branch 
     pull-requests: write  # To create a PR from that branch    
-      
+
 jobs:
   build:      
     runs-on: ${{ matrix.os }}
@@ -28,14 +28,17 @@ jobs:
     steps:
     - name: Checkout the branch the PR is coming from if PR
       if: ${{ github.event_name == 'pull_request' }}
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
       with:
         repository: ${{ github.event.pull_request.head.repo.full_name }}
         ref: ${{ github.event.pull_request.head.ref }}
+        github_token: ${{secrets.GITHUB_TOKEN}}
+
+        
 
     - name: Checkout head if push
       if: ${{ github.event_name == 'push' }}
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
     - name: Set up Python 3.11
       uses: actions/setup-python@v1
@@ -66,17 +69,15 @@ jobs:
           python types_guid_generator.py -f=../../../../$file
         done
       working-directory: ./tools/guid_generator/ontology/types_guid_generator
-      
+        
     - name: Commit files changed by types GUID generator
       uses: EndBug/add-and-commit@v9
       with:
         author_name: db-robot
         author_email: db-robot@google.com
         message: 'Add GUIDs to new entity types'
-        github_token: ${{secrets.BOT_TOKEN}}
-        branch: ${{ github.ref }}
+        github_token: ${{secrets.GITHUB_TOKEN}}
       
-
     - name: Run ontology YAML validator on ontology extensions
       run: |
         python validator.py --original=../../../../ontology/yaml/resources  --interactive=False
