@@ -13,6 +13,9 @@ on:
     branches: [ master ]
     paths:
       - ontology/yaml/**
+      
+permissions:
+  pull-requests: write
 
 jobs:
   build:
