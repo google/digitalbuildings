@@ -240,6 +240,7 @@ LGRP_OS_LSC_ENM:
   - total_failed_communication_counter
 
 LGRP_SS_DC_MS_LC_SC:
+  guid: "31414a96-c9f4-41e2-8706-19ee05e0a50a"
   description: "Lighting group with brightness, motion sensing, scene control and illuminance control"
   is_canonical: true
   implements:
