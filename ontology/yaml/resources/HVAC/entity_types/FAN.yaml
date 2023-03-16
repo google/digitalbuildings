@@ -483,6 +483,7 @@ FAN_SS_VSC_SCRSS:
   - SCRSS
 
 FAN_SS_VSC_SSPC_FDPSM:
+  guid: "8a4308e9-7357-4316-8ae5-6c4f34c17a40"
   description: "Fresh air fan with supply air static pressure sensor based VFD Modulation."
   is_canonical: true
   implements:
