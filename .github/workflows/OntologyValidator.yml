@@ -19,6 +19,15 @@ permissions:
   issues: write
   repository-projects: write
   contents: write
+  id-token: write
+  actions: write
+  checks: write
+  deployments: write
+  discussions: write
+  pages: read
+  packages: write
+  security-events: write
+  statuses: write  
 
 
 jobs:
