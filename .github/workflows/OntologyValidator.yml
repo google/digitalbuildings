@@ -63,21 +63,7 @@ jobs:
           python types_guid_generator.py -f=../../../../$file
         done
       working-directory: ./tools/guid_generator/ontology/types_guid_generator
-      permissions:
-        id-token: write
-        contents: write
-        actions: write
-        checks: write
-        deployments: write
-        discussions: write
-        issues: write
-        pages: read
-        packages: write
-        pull-requests: write
-        repository-projects: write
-        security-events: write
-        statuses: write
-
+      
     - name: Commit files changed by types GUID generator
       uses: EndBug/add-and-commit@v9
       with:
@@ -86,6 +72,7 @@ jobs:
         message: 'Add GUIDs to new entity types'
         github_token: ${{ secrets.PA_TOKEN }}
         branch: ${{ github.ref }}
+      
 
 
 
