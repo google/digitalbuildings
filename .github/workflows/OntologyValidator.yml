@@ -69,11 +69,15 @@ jobs:
         done
       working-directory: ./tools/guid_generator/ontology/types_guid_generator
       
-    - name: Push changes
+    - name: Push GUID changes
       uses: ad-m/github-push-action@master
       with:
-        branch: ${{ github.event.pull_request.head.ref }}
-       # ref: ${{ github.event.pull_request.head.ref }}
+        branch: ${{ github.head_ref }}
+        github_token: ${{secrets.GITHUB_TOKEN}}
+#         repository: ${{ github.event.pull_request.head.repo.full_name }}
+#         ref: ${{ github.event.pull_request.head.ref }}
+        #branch: ${{ github.event.pull_request.head.ref }}
+        #ref: ${{ github.event.pull_request.head.ref }}
        # github_token: ${{secrets.GITHUB_TOKEN}}
         
 #     - name: Commit files changed by types GUID generator
