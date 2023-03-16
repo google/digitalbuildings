@@ -28,17 +28,18 @@ jobs:
     steps:
     - name: Checkout the branch the PR is coming from if PR
       if: ${{ github.event_name == 'pull_request' }}
-      uses: actions/checkout@v3
+      uses: actions/checkout@v2
       with:
-        repository: ${{ github.event.pull_request.head.repo.full_name }}
-        ref: ${{ github.event.pull_request.head.ref }}
-        github_token: ${{secrets.GITHUB_TOKEN}}
-
-        
+        persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal access token.
+        fetch-depth: 0 # otherwise, there would be errors pushing refs to the destination repository.
+#       with:
+#         repository: ${{ github.event.pull_request.head.repo.full_name }}
+#         ref: ${{ github.event.pull_request.head.ref }}
+#         token: ${{secrets.BOT_TOKEN}}
 
     - name: Checkout head if push
       if: ${{ github.event_name == 'push' }}
-      uses: actions/checkout@v3
+      uses: actions/checkout@v2
 
     - name: Set up Python 3.11
       uses: actions/setup-python@v1
@@ -69,14 +70,29 @@ jobs:
           python types_guid_generator.py -f=../../../../$file
         done
       working-directory: ./tools/guid_generator/ontology/types_guid_generator
-        
+      
     - name: Commit files changed by types GUID generator
-      uses: EndBug/add-and-commit@v9
+      run: |-
+          git config user.name "db-robot"
+          git config user.email "db-robot@google.com"
+          git add -A
+          timestamp=$(date -u)
+          git commit -m "Latest data: ${timestamp}" || exit 0
+          
+    - name: Push changes
+      uses: ad-m/github-push-action@master
       with:
-        author_name: db-robot
-        author_email: db-robot@google.com
-        message: 'Add GUIDs to new entity types'
-        github_token: ${{secrets.GITHUB_TOKEN}}
+        github_token: ${{ secrets.BOT_TOKEN }}
+        branch: ${{ github.ref }}
+        
+         # git push origin HEAD:${{ github.event.pull_request.head.ref }}
+         # #${{ github.event.pull_request.head.repo.full_name }}:${{ github.event.pull_request.head.ref }}
+#     - name: Commit files changed by types GUID generator
+#       uses: EndBug/add-and-commit@v9
+#       with:
+#         author_name: db-robot
+#         author_email: db-robot@google.com
+#         message: 'Add GUIDs to new entity types'
       
     - name: Run ontology YAML validator on ontology extensions
       run: |
