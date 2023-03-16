@@ -16,6 +16,8 @@ on:
       
 permissions:
   pull-requests: write
+  issues: write
+  repository-projects: write
 
 jobs:
   build:
