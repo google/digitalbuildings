@@ -13,10 +13,13 @@ on:
     branches: [ master ]
     paths:
       - ontology/yaml/**
+ 
 
+    
 jobs:
   build:
-
+    permissions: write-all
+      
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
