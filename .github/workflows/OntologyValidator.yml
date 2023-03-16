@@ -79,10 +79,6 @@ jobs:
           python types_guid_generator.py -f=../../../../$file
         done
       working-directory: ./tools/guid_generator/ontology/types_guid_generator
-      with:
-          github_token: ${{ secrets.PA_TOKEN }}
-      with:
-          repo-token: ${{ secrets.PA_TOKEN }}
 
     - name: Commit files changed by types GUID generator
       uses: EndBug/add-and-commit@v9
@@ -90,6 +86,9 @@ jobs:
         author_name: db-robot
         author_email: db-robot@google.com
         message: 'Add GUIDs to new entity types'
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: ${{ github.ref }}
+
 
     - name: Run ontology YAML validator on ontology extensions
       run: |
