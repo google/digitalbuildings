@@ -28,7 +28,10 @@ jobs:
     steps:
     - name: Checkout the branch the PR is coming from if PR
       if: ${{ github.event_name == 'pull_request' }}
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
+      with:
+        ref: ${{ github.head_ref }}
+        fetch-depth: 0
 #       with:
 #         repository: ${{ github.event.pull_request.head.repo.full_name }}
 #         ref: ${{ github.event.pull_request.head.ref }}
@@ -75,7 +78,14 @@ jobs:
           git add -A
           timestamp=$(date -u)
           git commit -m "Latest data: ${timestamp}" || exit 0
-          git push
+          
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        branch: ${{ github.head_ref }}
+        
+         # git push origin HEAD:${{ github.event.pull_request.head.ref }}
+         # #${{ github.event.pull_request.head.repo.full_name }}:${{ github.event.pull_request.head.ref }}
 #     - name: Commit files changed by types GUID generator
 #       uses: EndBug/add-and-commit@v9
 #       with:
