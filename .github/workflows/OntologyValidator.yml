@@ -82,7 +82,8 @@ jobs:
     - name: Push changes
       uses: ad-m/github-push-action@master
       with:
-        branch: ${{ github.head_ref }}
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: ${{ github.ref }}
         
          # git push origin HEAD:${{ github.event.pull_request.head.ref }}
          # #${{ github.event.pull_request.head.repo.full_name }}:${{ github.event.pull_request.head.ref }}
