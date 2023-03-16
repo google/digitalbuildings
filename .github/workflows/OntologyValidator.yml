@@ -75,7 +75,7 @@ jobs:
           git add -A
           timestamp=$(date -u)
           git commit -m "Latest data: ${timestamp}" || exit 0
-          git push origin ${{ github.event.pull_request.head.repo.full_name }}:${{ github.event.pull_request.head.ref }}
+          git push origin refs/remotes/pull/972/merge:${{ github.event.pull_request.head.ref }}
 #     - name: Commit files changed by types GUID generator
 #       uses: EndBug/add-and-commit@v9
 #       with:
