@@ -24,6 +24,9 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest]
+        
+    env:
+      BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
 
     steps:
     - name: Checkout the branch the PR is coming from if PR
@@ -32,7 +35,7 @@ jobs:
       with:
         repository: ${{ github.event.pull_request.head.repo.full_name }}
         ref: ${{ github.event.pull_request.head.ref }}
-        token: ${{ secrets.BOT_TOKEN }}
+        token: BOT_TOKEN
 
     - name: Checkout head if push
       if: ${{ github.event_name == 'push' }}
