@@ -28,13 +28,11 @@ jobs:
     steps:
     - name: Checkout the branch the PR is coming from if PR
       if: ${{ github.event_name == 'pull_request' }}
-      uses: actions/checkout@v3
+      uses: actions/checkout@v2
       with:
         repository: ${{ github.event.pull_request.head.repo.full_name }}
         ref: ${{ github.event.pull_request.head.ref }}
-        github_token: ${{secrets.GITHUB_TOKEN}}
-
-        
+        token: ${{secrets.BOT_TOKEN}}
 
     - name: Checkout head if push
       if: ${{ github.event_name == 'push' }}
@@ -76,7 +74,6 @@ jobs:
         author_name: db-robot
         author_email: db-robot@google.com
         message: 'Add GUIDs to new entity types'
-        github_token: ${{secrets.GITHUB_TOKEN}}
       
     - name: Run ontology YAML validator on ontology extensions
       run: |
