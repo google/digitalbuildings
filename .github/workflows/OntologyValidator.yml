@@ -81,6 +81,8 @@ jobs:
       working-directory: ./tools/guid_generator/ontology/types_guid_generator
       with:
           github_token: ${{ secrets.PA_TOKEN }}
+      with:
+          repo-token: ${{ secrets.PA_TOKEN }}
 
     - name: Commit files changed by types GUID generator
       uses: EndBug/add-and-commit@v9
