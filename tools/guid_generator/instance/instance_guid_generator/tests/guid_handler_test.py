@@ -23,6 +23,7 @@ from instance_guid_generator.guid_handler import GuidGenerator
 from instance_guid_generator.tests import test_constants
 from validate import instance_parser
 
+# pylint:disable=protected-access
 _TEST_INSTANCES_PATH = test_constants.TEST_INSTANCES
 _CONFIG_METADATA_KEY = instance_parser._CONFIG_METADATA_KEY
 ENTITY_GUID_KEY = instance_parser.ENTITY_GUID_KEY
@@ -33,6 +34,7 @@ CONNECTIONS_KEY = instance_parser.CONNECTIONS_KEY
 
 class GuidGeneratorTest(absltest.TestCase):
 
+  # pylint:disable=line-too-long
   def testGuidGenerator_entitiesKeyedWithGuidKeyedByCode_writesBackEntitiesKeyedByGuidSuccess(
       self,
   ):
