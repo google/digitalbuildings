@@ -31,7 +31,7 @@ jobs:
     steps:
     - name: Checkout the branch the PR is coming from if PR
       if: ${{ github.event_name == 'pull_request' }}
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
       with:
 #         persist-credentials: false
 #         fetch-depth: 0
