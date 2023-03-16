@@ -15,8 +15,7 @@ on:
       - ontology/yaml/**
  
 
-permissions:
-  contents: write    
+permissions: write-all   
 jobs:
   build:
     permissions: write-all
