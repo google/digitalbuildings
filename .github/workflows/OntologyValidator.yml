@@ -19,15 +19,8 @@ permissions:
   contents: write
   actions: write
   checks: write
-  deployments: write
-  discussions: write
-  issues: write
-  pages: read
-  packages: write
   pull-requests: write
-  repository-projects: write
-  security-events: write
-  statuses: write
+
   
 jobs:
   build:
@@ -45,7 +38,7 @@ jobs:
         repository: ${{ github.event.pull_request.head.repo.full_name }}
         ref: ${{ github.event.pull_request.head.ref }}
         fetch-depth: 0
-#        persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal access token.
+        persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal access token.
 #       uses: actions/checkout@v3
 #       env:	
 #          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
@@ -97,7 +90,7 @@ jobs:
     - name: Push changes
       uses: ad-m/github-push-action@master
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+        github_token: ${{ secrets.BOT_TOKEN }}
         branch: ${{ github.ref }}
 
         #branch: ${{ github.head_ref }}
