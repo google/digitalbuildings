@@ -86,7 +86,7 @@ jobs:
       with:
         #branch: ${{ github.head_ref }}
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        branch: ${{ github.ref }
+        branch: ${{ github.ref }}
 #     - name: Commit files changed by types GUID generator
 #       uses: EndBug/add-and-commit@v9
 #       with:
