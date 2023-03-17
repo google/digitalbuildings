@@ -33,7 +33,7 @@ jobs:
     steps:
     - name: Checkout the branch the PR is coming from if PR
       if: ${{ github.event_name == 'pull_request' }}
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 #       with:
 #         repository: ${{ github.event.pull_request.head.repo.full_name }}
 #         ref: ${{ github.event.pull_request.head.ref }}
@@ -84,25 +84,26 @@ jobs:
 
 
     - name: Commit files changed by types GUID generator
-      run: |
-        git config --local user.email "github-actions[bot]@users.noreply.github.com"
-        git config --local user.name "github-actions[bot]"
-        git commit -a -m "Add changes"
-    - name: Push changes
-      uses: ad-m/github-push-action@master
+      uses: EndBug/add-and-commit@v9
       with:
-#         token: ${{ secrets.BOT_TOKEN }}
-        branch: ${{ github.ref }}
-
-        #branch: ${{ github.head_ref }}
- #       github_token: ${{ secrets.BOT_TOKEN }}
- #       branch: ${{ github.ref }}
-#     - name: Commit files changed by types GUID generator
-#       uses: EndBug/add-and-commit@v9
+        author_name: db-robot
+        author_email: db-robot@google.com
+        message: 'Add GUIDs to new entity types'
+        # still debugging below
+#       run: |
+#         git config --local user.email "github-actions[bot]@users.noreply.github.com"
+#         git config --local user.name "github-actions[bot]"
+#         git commit -a -m "Add changes"
+#     - name: Push changes
+#       uses: ad-m/github-push-action@master
 #       with:
-#         author_name: db-robot
-#         author_email: db-robot@google.com
-#         message: 'Add GUIDs to new entity types'
+# #         token: ${{ secrets.BOT_TOKEN }}
+#         branch: ${{ github.ref }}
+
+#         #branch: ${{ github.head_ref }}
+#  #       github_token: ${{ secrets.BOT_TOKEN }}
+#  #       branch: ${{ github.ref }}
+
 
     - name: Run ontology YAML validator on ontology extensions
       run: |
