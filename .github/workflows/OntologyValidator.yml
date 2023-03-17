@@ -41,12 +41,12 @@ jobs:
      #   github_token: ${{ secrets.BOT_TOKEN }}
      #   persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal access token.
 #       uses: actions/checkout@v3
-      env:	
-         BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+#       env:	
+#          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
       with:
         repository: ${{ github.event.pull_request.head.repo.full_name }}
         ref: ${{ github.event.pull_request.head.ref }}
-        token: BOT_TOKEN
+#         token: BOT_TOKEN
 
     - name: Checkout head if push
       if: ${{ github.event_name == 'push' }}
