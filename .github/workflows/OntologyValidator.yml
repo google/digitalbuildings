@@ -33,11 +33,11 @@ jobs:
     steps:
     - name: Checkout the branch the PR is coming from if PR
       if: ${{ github.event_name == 'pull_request' }}
-      uses: actions/checkout@v3
-      with:
-        repository: ${{ github.event.pull_request.head.repo.full_name }}
-        ref: ${{ github.event.pull_request.head.ref }}
-        fetch-depth: 0
+      uses: actions/checkout@v2
+#       with:
+#         repository: ${{ github.event.pull_request.head.repo.full_name }}
+#         ref: ${{ github.event.pull_request.head.ref }}
+#         fetch-depth: 0
      #   github_token: ${{ secrets.BOT_TOKEN }}
      #   persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal access token.
 #       uses: actions/checkout@v3
@@ -91,7 +91,7 @@ jobs:
     - name: Push changes
       uses: ad-m/github-push-action@master
       with:
-        token: ${{ secrets.BOT_TOKEN }}
+#         token: ${{ secrets.BOT_TOKEN }}
         branch: ${{ github.ref }}
 
         #branch: ${{ github.head_ref }}
