@@ -85,7 +85,7 @@ jobs:
       uses: ad-m/github-push-action@master
       with:
         #branch: ${{ github.head_ref }}
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+        github_token: ${{ secrets.BOT_TOKEN }}
         branch: ${{ github.ref }}
 #     - name: Commit files changed by types GUID generator
 #       uses: EndBug/add-and-commit@v9
