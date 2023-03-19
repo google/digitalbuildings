@@ -57,7 +57,7 @@ jobs:
       run: |
         python setup.py install
         for file in ${{ steps.changed-entity-type-files.outputs.all_changed_files }}; do
-          python types_guid_generator/types_guid_generator.py -f=../../../../$file
+          python types_guid_generator/types_guid_generator.py -f=../../../$file
         done
       working-directory: ./tools/guid_generator/ontology
 
