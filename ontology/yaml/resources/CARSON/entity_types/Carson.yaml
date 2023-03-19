@@ -17,4 +17,5 @@ COORDINATE_BASIS:
   description: "Entity that represents the coordinate basis for other entities"
 
 A_TYPE:
+  guid: "cfcd67e7-012a-4aef-801c-ab16686d8fd5"
   description: "Entity that represents the coordinate basis for other entities"
