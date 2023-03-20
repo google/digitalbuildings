@@ -3000,3 +3000,15 @@ literals:
 - failed_discharge_air_isolation_damper_alarm:
   - ACTIVE
   - INACTIVE
+- high_fan_speed_command:
+  - ON
+  - OFF
+- low_fan_speed_command:
+  - ON
+  - OFF
+- high_fan_speed_status:
+  - ON
+  - OFF
+- low_fan_speed_status:
+  - ON
+  - OFF
