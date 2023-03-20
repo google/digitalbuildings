@@ -13,7 +13,15 @@ on:
     branches: [ master ]
     paths:
       - ontology/yaml/**
+      
+# permissions:
+#   id-token: write
+#   contents: write
+#   actions: write
+#   checks: write
+#   pull-requests: write
 
+  
 jobs:
   build:
 
@@ -26,9 +34,19 @@ jobs:
     - name: Checkout the branch the PR is coming from if PR
       if: ${{ github.event_name == 'pull_request' }}
       uses: actions/checkout@v3
+#       with:
+#         repository: ${{ github.event.pull_request.head.repo.full_name }}
+#         ref: ${{ github.event.pull_request.head.ref }}
+#         fetch-depth: 0
+     #   github_token: ${{ secrets.BOT_TOKEN }}
+     #   persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal access token.
+#       uses: actions/checkout@v3
+#       env:	
+#          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
       with:
         repository: ${{ github.event.pull_request.head.repo.full_name }}
         ref: ${{ github.event.pull_request.head.ref }}
+#         token: BOT_TOKEN
 
     - name: Checkout head if push
       if: ${{ github.event_name == 'push' }}
@@ -43,7 +61,7 @@ jobs:
       id: changed-entity-type-files
       uses: tj-actions/changed-files@v35
       with:
-        files: '**/entity_types/*.yaml'
+        files: '**/ontology/yaml/**/entity_types/*.yaml'
 
     - name: Install dependencies for ontology YAML validator
       run: |
@@ -64,12 +82,27 @@ jobs:
         done
       working-directory: ./tools/guid_generator/ontology/types_guid_generator
 
+
     - name: Commit files changed by types GUID generator
       uses: EndBug/add-and-commit@v9
       with:
         author_name: db-robot
         author_email: db-robot@google.com
         message: 'Add GUIDs to new entity types'
+        # still debugging below
+#       run: |
+#         git config --local user.email "github-actions[bot]@users.noreply.github.com"
+#         git config --local user.name "github-actions[bot]"
+#         git commit -a -m "Add changes"
+#     - name: Push changes
+#       uses: ad-m/github-push-action@master
+#       with:
+# #         token: ${{ secrets.BOT_TOKEN }}
+#         branch: ${{ github.ref }}
+
+#         #branch: ${{ github.head_ref }}
+#  #       github_token: ${{ secrets.BOT_TOKEN }}
+#  #       branch: ${{ github.ref }}
 
     - name: Run ontology YAML validator on ontology extensions
       run: |
