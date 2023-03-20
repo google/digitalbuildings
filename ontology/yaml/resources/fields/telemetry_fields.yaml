@@ -2917,51 +2917,60 @@ literals:
 
 - lighting_color_cie_xvalue_sensor
 - lighting_color_cie_yvalue_sensor
-- lighting_color_hsl_saturation_percentage_sensor
-- lighting_color_hsl_hue_angle_sensor
+- lighting_color_hsl_saturation_percentage_sensor:
+    fixed_min: 0.0
+    fixed_max: 100.0
+- lighting_color_hsl_hue_angle_sensor:
+    fixed_min: 0.0
+    fixed_max: 360.0
 - lighting_color_cie_xvalue_setpoint
 - lighting_color_cie_yvalue_setpoint
-- lighting_color_hsl_saturation_percentage_setpoint
-- lighting_color_hsl_hue_angle_setpoint
-
+- lighting_color_hsl_saturation_percentage_setpoint:
+    fixed_min: 0.0
+    fixed_max: 100.0
+- lighting_color_hsl_hue_angle_setpoint:
+    fixed_min: 0.0
+    fixed_max: 360.0
 - luminaire_alarm:
   - ACTIVE
   - INACTIVE
-
 - group_alarm:
   - ACTIVE
   - INACTIVE
-
 - group_mode:
   - DIMMING
   - CONSTANT_LIGHT_CONTROL
   - AUTO
   - SCENE_CONTROL
-
-- high_limit_illuminance_setpoint
-- low_limit_illuminance_setpoint
-- brightness_percentage_sensor
-- heating_output_percentage_command
-
+- high_limit_illuminance_setpoint:
+    flexible_min: 0.0
+    flexible_max: 5000.0
+- low_limit_illuminance_setpoint:
+    flexible_min: 0.0
+    flexible_max: 5000.0
+- brightness_percentage_sensor:
+    fixed_min: 0.0
+    fixed_max: 100.0
+- heating_output_percentage_command:
+    fixed_min: 0.0
+    fixed_max: 100.0
 - dimmer_run_status:
   - ON
   - OFF
-
 - wind_alarm:
   - ACTIVE
   - INACTIVE
-
 - rain_alarm:
   - ACTIVE
   - INACTIVE
-- outside_illuminance_sensor
-
+- outside_illuminance_sensor:
+    flexible_min: 0.0
+    flexible_max: 5000.0
 - shade_orientation_specification:
   - NORTH
   - SOUTH
   - EAST
   - WEST
-
 - shade_mode:
   - MANUAL
   - AUTO
