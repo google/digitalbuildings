@@ -569,6 +569,8 @@ class FieldLibTest(absltest.TestCase):
         'power': subfield_lib.Subfield('power', MEASUREMENT),
         'command': subfield_lib.Subfield('command', POINT_TYPE),
         'percentage': subfield_lib.Subfield('percentage', MEASUREMENT),
+        'scene': subfield_lib.Subfield('scene', DESCRIPTOR),
+        'index': subfield_lib.Subfield('index', MEASUREMENT_DESCRIPTOR),
         'speed': subfield_lib.Subfield('speed', MEASUREMENT_DESCRIPTOR),
     }
     yaml = {
@@ -577,6 +579,12 @@ class FieldLibTest(absltest.TestCase):
                 'speed_percentage_command': {
                     'fixed_min': 0,
                     'fixed_max': 100,
+                }
+            },
+            {
+                'scene_index_command': {
+                    'fixed_min': 0,
+                    'fixed_max': 10,
                 }
             },
             {'power_command': ['ON', 'OFF']},
