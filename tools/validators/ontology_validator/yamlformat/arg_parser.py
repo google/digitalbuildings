@@ -52,7 +52,7 @@ def CreateParser() -> argparse.ArgumentParser:
       '--interactive',
       dest='interactive',
       default='False',
-      help='interactive mode',
+      help='interactive mode jsut a test',
       required=False,
       metavar='interactive mode'
   )
