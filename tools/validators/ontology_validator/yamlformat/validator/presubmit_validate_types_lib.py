@@ -198,7 +198,9 @@ def BuildUniverse(config, require_type_guids=True):
 
   Args:
     config: a Config namedtuple containing lists of localpaths to config files.
-    require_type_guids: whether entity type guids are required
+    require_type_guids: whether type guids are required to be present.
+       This is needed to bypass write permission issues on the ontology
+       validator GitHub Action.
 
   Returns:
      A ConfigUniverse that is fully populated with all content specified in the
