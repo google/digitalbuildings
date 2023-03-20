@@ -29,6 +29,7 @@ _TEST_INSTANCES_PATH = test_constants.TEST_INSTANCES
 class TypesGuidGeneratorTest(absltest.TestCase):
 
   def setUp(self):
+    super().setUp()
     self.temp_dir = tempfile.mkdtemp(suffix='entity_types')
     self.temp_file_path = os.path.join(self.temp_dir, 'test.yaml')
 

@@ -69,7 +69,7 @@ instance_guid_generator_setup()
 {
   echo "Starting Instance GUID generator setup"
   cd guid_generator/instance
-  python3 -m pip install .
+  python -m pip install .
   echo "Finished instance GUID generator setup"
   cd ../..
 }
@@ -78,7 +78,7 @@ ontology_guid_generator_setup()
 {
   echo "Starting Ontology GUID generator setup"
   cd guid_generator/ontology
-  python3 -m pip install .
+  python -m pip install .
   echo "Finished Ontology GUID generator setup"
   cd ../..
 }
