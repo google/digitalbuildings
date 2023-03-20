@@ -648,8 +648,8 @@ class Field(findings_lib.Findings):
 
     Numeric fields:
     1. Do not end in "alarm", "mode", or "status". For fields that end with
-       "command", only those that end with "percentage_command" or
-       "frequency_command" are numeric.
+       "command", only "scene_index_command" and fields that end with
+       "percentage_command" or "frequency_command" are numeric.
     2. Either have a measurement subfield (e.g. percentage, temperature) or end
        in "count" or "counter".
 
@@ -664,6 +664,8 @@ class Field(findings_lib.Findings):
       return True
     if any(sf in self.subfields for sf in ['alarm', 'mode', 'status']):
       return False
+    if self.name == 'scene_index_command':
+      return True
     if 'command' in self.subfields and not (
         'percentage_command' in self.name or 'frequency_command' in self.name):
       return False
