@@ -13,11 +13,10 @@ on:
     branches: [ master ]
     paths:
       - ontology/yaml/**
-  
+ 
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
     - name: Checkout the branch the PR is coming from if PR
       if: github.event_name == 'pull_request'
