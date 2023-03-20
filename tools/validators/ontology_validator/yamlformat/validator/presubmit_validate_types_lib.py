@@ -193,11 +193,14 @@ class ConfigUniverse(findings_lib.Findings):
     return self.state_universe_reverse_map.get(namespace + '/' + std_field)
 
 
-def BuildUniverse(config):
+def BuildUniverse(config, require_type_guids=True):
   """Verifies that the ontology config is consistent and valid.
 
   Args:
     config: a Config namedtuple containing lists of localpaths to config files.
+    require_type_guids: whether type guids are required to be present.
+       This is needed to bypass write permission issues on the ontology
+       validator GitHub Action.
 
   Returns:
      A ConfigUniverse that is fully populated with all content specified in the
@@ -240,7 +243,8 @@ def BuildUniverse(config):
 
   # Parse typedef files
   type_folders = parse.ParseTypeFoldersFromFiles(config.type_defs,
-                                                 fields_universe)
+                                                 fields_universe,
+                                                 require_type_guids)
   types_universe = entity_type_lib.EntityTypeUniverse(type_folders)
 
   # return findings_list, result_namespaces
@@ -340,7 +344,8 @@ def SeparateConfigFiles(path_tuples):
 def _ValidateConfigInner(unmodified,
                          modified_base,
                          modified_client,
-                         interactive=False):
+                         interactive=False,
+                         require_type_guids=True):
   """Runs config validation and finding filtration.
 
   Args:
@@ -348,6 +353,7 @@ def _ValidateConfigInner(unmodified,
     modified_base: paths to original versions of changed files in validation
     modified_client: paths to changed files in validation
     interactive: Set true for timing log messages.
+    require_type_guids: whether entity type guids are required
 
   Returns:
     A tuple with a list of findings from validation and the universe
@@ -360,7 +366,7 @@ def _ValidateConfigInner(unmodified,
   start_time = time.time()
   cl_paths = unmodified + modified_client
   cl_config = SeparateConfigFiles(cl_paths)
-  new_universe = BuildUniverse(cl_config)
+  new_universe = BuildUniverse(cl_config, require_type_guids)
   end_time = time.time()
 
   if interactive:
@@ -396,7 +402,7 @@ def _ValidateConfigInner(unmodified,
 
   base_paths = unmodified + modified_base
   base_config = SeparateConfigFiles(base_paths)
-  old_universe = BuildUniverse(base_config)
+  old_universe = BuildUniverse(base_config, require_type_guids)
 
   if interactive:
     end_time = time.time()
@@ -648,13 +654,17 @@ def CheckBackwardsCompatibility(new_universe, old_universe):
   return findings
 
 
-def RunPresubmit(unmodified, modified_base, modified_client):
+def RunPresubmit(unmodified,
+                 modified_base,
+                 modified_client,
+                 require_type_guids=True):
   """Top level runner for presubmit.
 
   Args:
     unmodified: unchanged file paths to include in validation
     modified_base: paths to original versions of changed files in validation
     modified_client: paths to changed files in validation
+    require_type_guids: whether entity type guids are required
 
   Returns:
       findings: from the validate configuration results.
@@ -662,7 +672,7 @@ def RunPresubmit(unmodified, modified_base, modified_client):
   """
 
   findings, _ = _ValidateConfigInner(unmodified, modified_base, modified_client,
-                                     False)
+                                     False, require_type_guids)
   return findings
 
 
@@ -719,7 +729,10 @@ def PrintFindings(findings, filter_text):
   print('\n' + str(len(findings)) + ' findings.\n')
 
 
-def RunInteractive(filter_text, modified_base, modified_client):
+def RunInteractive(filter_text,
+                   modified_base,
+                   modified_client,
+                   require_type_guids=True):
   """Runs interactive mode when presubmit is run as a standalone application.
 
   This will run all files in the ontology as if they were new.
@@ -730,6 +743,7 @@ def RunInteractive(filter_text, modified_base, modified_client):
         the finding output and cause only matching findings to print.
     modified_base: paths to original versions of changed files in validation.
     modified_client: the list of modified files to validate.
+    require_type_guids: whether entity type guids are required.
 
   Returns:
     zero.
@@ -737,7 +751,7 @@ def RunInteractive(filter_text, modified_base, modified_client):
   print('Analyzing...')
   start_time = time.time()
   findings, universe = _ValidateConfigInner([], modified_base, modified_client,
-                                            True)
+                                            True, require_type_guids)
 
   PrintFindings(findings, filter_text)
 
