@@ -186,6 +186,8 @@ class EntityTypeFolder(config_folder_lib.ConfigFolder):
   Attributes:
     local_namespace: TypeNamespace object representing this namespace.
     require_guid: boolean indicating whether the type guid is required.
+       This is needed to bypass write permission issues on the ontology
+       validator GitHub Action.
   """
 
   def __init__(self, folderpath, field_universe=None, require_guid=True):
