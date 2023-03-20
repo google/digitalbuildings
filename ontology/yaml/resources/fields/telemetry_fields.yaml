@@ -2902,6 +2902,14 @@ literals:
     fixed_min: 0.0
     flexible_max: 10000000.0
 
+## New field for AHU
+- mixed_air_damper_percentage_command:
+    fixed_min: 0.0
+    fixed_max: 100.0
+- mixed_air_damper_percentage_sensor:
+    fixed_min: 0.0
+    fixed_max: 100.0
+
 ## New fields for seismic detector
 - seismic_alarm:
   - ACTIVE
