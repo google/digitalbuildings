@@ -2920,6 +2920,14 @@ literals:
     flexible_min: 0.0
     flexible_max: 0.001
 
+## New field for VAV
+- high_limit_zone_air_co2_concentration_setpoint:
+    flexible_min: 0.00005
+    flexible_max: 0.005
+- low_limit_zone_air_co2_concentration_setpoint:
+    flexible_min: 0.00005
+    flexible_max: 0.005
+
 ## New field for SDC
 - shade_extent_percentage_sensor:
     fixed_min: 0.0
