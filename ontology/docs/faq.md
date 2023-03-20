@@ -47,7 +47,7 @@ It does not have to be translated into the model, but for extensibility purposes
 ## What device data should be modeled?
 **Model what you need for the applications and analytics that are reasonably anticipated.** 
 
-More data can always be added later (as long as it’s exposed in the gateway). The general rule is to model things that describe the device’s general behavior without superfluous detail regarding its low-level configuration; however, anything can be modeled, so if the need arises then the ontology can be extended to accommodate. There are a few types of data that devices typically sends:
+More data can always be added later (as long as it’s exposed in the gateway). The general rule is to model things that describe the device’s general behavior without superfluous detail regarding its low-level configuration; however, anything can be modeled, so if the need arises then the ontology can be extended to accommodate. There are a few types of data that devices typically send:
 
 ### Measured Telemetry
 These are sensors associated with the device, such as `supply_air_temperature_sensor` and `chilled_water_valve_percentage_sensor`. They are directly measured (or calculated) by the device and return updated values as the state of the device changes through time. All measured telemetry is normally modeled. *NOTE: we do not consider calculated telemetry differently from raw telemetry.*
