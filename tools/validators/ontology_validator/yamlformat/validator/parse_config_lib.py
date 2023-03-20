@@ -165,7 +165,9 @@ def ParseFieldFoldersFromFiles(field_files,
                                 CreateFieldFolder)
 
 
-def ParseTypeFoldersFromFiles(types_files, field_universe=None):
+def ParseTypeFoldersFromFiles(types_files,
+                              field_universe=None,
+                              guid_required=True):
   """Returns list of EntityTypeFolder objects parsed from types_files.
 
   Args:
@@ -176,7 +178,9 @@ def ParseTypeFoldersFromFiles(types_files, field_universe=None):
 
   def CreateEntityTypeFolder(folderpath, parent_namespace):
     del parent_namespace  # Unused by EntityTypeFolder.
-    return entity_type_lib.EntityTypeFolder(folderpath, field_universe)
+    return entity_type_lib.EntityTypeFolder(folderpath,
+                                            field_universe,
+                                            guid_required)
 
   return _ParseFoldersFromFiles(types_files, base_lib.ComponentType.ENTITY_TYPE,
                                 CreateEntityTypeFolder)
