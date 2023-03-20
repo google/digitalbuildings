@@ -1,4 +1,4 @@
-# Copyright 2020 Google LLC
+# Copyright 2023 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the License);
 # you may not use this file except in compliance with the License.
@@ -55,6 +55,14 @@ def CreateParser() -> argparse.ArgumentParser:
       help='interactive mode',
       required=False,
       metavar='interactive mode'
+  )
+
+  parser.add_argument(
+      '-a',
+      '--allow_missing_type_guids',
+      action='store_true',
+      dest='allow_missing_type_guids',
+      help='if the validator should not require entity type guids'
   )
 
   return parser
