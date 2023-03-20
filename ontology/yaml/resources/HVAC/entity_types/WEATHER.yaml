@@ -17,7 +17,7 @@
 ########################
 
 WEATHER_OA:
-  id: "8401050176659128320"
+  guid: "51b4f69c-e48a-4f0a-b47e-ecbbd11435d5"
   description: "Typical weather station."
   is_canonical: true
   implements:

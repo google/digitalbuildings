@@ -11,18 +11,18 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+"""Setup file for Building Configuration GUID generator."""
 
-"""Constants for the GUID generator application."""
+from setuptools import find_packages
+from setuptools import setup
 
-from os import path
-
-# internally, absolute path is used; github uses relative path
-_USE_ABSOLUTE_PATH = False
-
-if _USE_ABSOLUTE_PATH:
-  REPO_ROOT = path.join('third_party', 'digitalbuildings')
-else:
-  REPO_ROOT = path.join(
-      path.dirname(path.realpath(__file__)), path.join('..', '..'))
-
-APPLICATION_ROOT = path.join(REPO_ROOT, 'tools', 'guid_generator')
+setup(
+    name='instance_guid_generator',
+    version='0.0.1',
+    url='https://github.com/google/digitalbuildings',
+    license='Apache License',
+    author='Travis Welch',
+    packages=find_packages(),
+    install_requires=['strictyaml==1.4.2'],
+    python_requires='>=3.9',
+)
