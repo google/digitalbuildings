@@ -371,7 +371,7 @@ they have the exact same fields.
 #### GUIDs
 Each type has a GUID (UUID4) that is version independent.
 
-#### Type names 
+#### Type names
 
 Type names have no structural meaning in the ontology, but because this is the
 most visible identifier of the type, the concrete types adhere to the
