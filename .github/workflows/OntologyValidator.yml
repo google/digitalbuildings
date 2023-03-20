@@ -16,10 +16,7 @@ on:
  
 jobs:
   build:
-    runs-on:  ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-latest] 
+    runs-on: ubuntu-latest
     steps:
     - name: Checkout the branch the PR is coming from if PR
       if: github.event_name == 'pull_request'
