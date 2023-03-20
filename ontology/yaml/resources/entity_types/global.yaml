@@ -11,6 +11,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
 EQUIPMENT:
   guid: "b3fe24f2-6194-4300-95b1-506941487a19"
   description: "A piece of equipment."
