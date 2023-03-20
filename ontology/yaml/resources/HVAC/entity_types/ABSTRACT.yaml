@@ -301,6 +301,16 @@ CO2C:
   - high_zone_air_co2_concentration_alarm
 
 
+CO2CDSP:
+  description: "Carbon dioxide control with dual setpoint."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  uses:
+  - high_limit_zone_air_co2_concentration_setpoint
+  - low_limit_zone_air_co2_concentration_setpoint
+  - zone_air_co2_concentration_sensor
+
 COC:
   guid: "dee7cc87-51cb-460e-8202-eff4001319db"
   description: "Carbon monoxide control."
