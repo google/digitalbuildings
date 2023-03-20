@@ -44,6 +44,8 @@ def Validate(filter_text,
     changed_directory: the changed directory with ontology yaml files.
     interactive: flag to run validator in interactive mode or presubmit mode.
     require_type_guids: whether type guids are required to be present.
+       This is needed to bypass write permission issues on the ontology
+       validator GitHub Action.
   Raises:
     Exception: The Ontology is not valid.
   """
