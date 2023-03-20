@@ -302,6 +302,7 @@ CO2C:
 
 
 CO2CDSP:
+  guid: "668a3a75-e78d-4755-a360-b370bceda3c5"
   description: "Carbon dioxide control with dual setpoint."
   is_abstract: true
   implements:
@@ -6501,6 +6502,7 @@ RFVSC2X:
   - OPERATIONAL
 
 EXTOR:
+  guid: "6f650a5a-06d3-4316-af26-7d4b8241aecf"
   description: "shade control with extension monitoring based on outside illuminance"
   is_abstract: true
   uses:
@@ -6510,6 +6512,7 @@ EXTOR:
   - high_limit_illuminance_setpoint
 
 DPHC2:
+  guid: "6393d7b6-c538-4f2c-a43e-224f6f36ca6c"
   description: "Two-pipe heating and cooling control for radiant panels"
   is_abstract: true
   opt_uses:
@@ -6520,6 +6523,7 @@ DPHC2:
   - supply_water_valve_percentage_command
 
 DPHC4:
+  guid: "3d81e58b-2596-4a8a-97d2-8ef62de6b823"
   description: "Four pipe heating and cooling controls for radiant panels"
   is_abstract: true
   opt_uses:
@@ -6532,6 +6536,7 @@ DPHC4:
   - heating_output_percentage_command
 
 HHCD42:
+  guid: "994cd48f-ef49-4aa6-8be6-98f05d17c0b7"
   description: "Hydronic heating and cooling distribution monitoring for change over group with a heat and a cold exchanger. Primary side: Four-pipe installation 
                 with flow control valves for cooling and heating. Two pipe installation with isolation valves on the secondary side towards the radiant panels. 
                 Heating or cooling only"
@@ -6557,6 +6562,7 @@ HHCD42:
   - primary_heating_supply_water_temperature_sensor
 
 HHCD44:
+  guid: "da375227-c57b-4818-91ab-c7e9060ad1cc"
   description: "Hydronic heating and cooling distribution monitoring for change over group with a heat and a cold exchanger. Primary side: Four-pipe installation 
                 with flow control valves for cooling and heating. Four pipe installation with isolation valves on the secondary side towards the radiant panels.
                 Heating and cooling in parallel"
@@ -6582,6 +6588,7 @@ HHCD44:
   - primary_heating_supply_water_temperature_sensor
 
 RCO2M:
+  guid: "09a6c4bb-9bb3-4318-aa43-8ad379493788"
   description: "Return air co2 monitoring"
   is_abstract: true
   uses:
@@ -6590,6 +6597,7 @@ RCO2M:
   - MONITORING
 
 VMADC:
+  guid: "796e1551-7648-40cf-962d-9bbb28c8056b"
   description: "Variable mixed air damper monitoring (for recirculated air in AHU)."
   is_abstract: true
   uses:
