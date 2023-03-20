@@ -2915,16 +2915,24 @@ literals:
   - ACTIVE
   - INACTIVE
 
-- lighting_color_cie_xvalue_sensor
-- lighting_color_cie_yvalue_sensor
+- lighting_color_cie_xvalue_sensor:
+    flexible_min: 0.0
+    flexible_max: 500.0
+- lighting_color_cie_yvalue_sensor:
+    flexible_min: 0.0
+    flexible_max: 500.0
 - lighting_color_hsl_saturation_percentage_sensor:
     fixed_min: 0.0
     fixed_max: 100.0
 - lighting_color_hsl_hue_angle_sensor:
     fixed_min: 0.0
     fixed_max: 360.0
-- lighting_color_cie_xvalue_setpoint
-- lighting_color_cie_yvalue_setpoint
+- lighting_color_cie_xvalue_setpoint:
+    flexible_min: 0.0
+    flexible_max: 500.0
+- lighting_color_cie_yvalue_setpoint:
+    flexible_min: 0.0
+    flexible_max: 500.0
 - lighting_color_hsl_saturation_percentage_setpoint:
     fixed_min: 0.0
     fixed_max: 100.0
