@@ -1649,6 +1649,7 @@ FCU_RTC_RHDHS_DTM_DFSS:
   - schedule_run_command
 
 FCU_DFVSC_CHWZC_CSP_RTM_WDT:
+  guid: "8c3dc3ea-8344-4a5a-85c1-5f1491f7c256"
   description: "Hydronic cooling or heating fan coil unit with cooling temperature setpoint control"
   is_canonical: true
   implements:
@@ -1663,6 +1664,7 @@ FCU_DFVSC_CHWZC_CSP_RTM_WDT:
   - run_mode
 
 FCU_DFSS_CHWDC_CSP_RTM_DXZC:
+  guid: "fef47d51-3d01-40fd-9499-4f3bd65ed3ec"
   description: "Typical DX FCU with cooling-only (discharge control)"
   is_canonical: true
   implements:
