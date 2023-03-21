@@ -37,6 +37,7 @@ RARSR_UNDEFINED:
   - RARSR
 
 RSR_HHCD42_CPC:
+  guid: "1f74451f-7b9f-4bb9-9554-f26ac5f4980e"
   description: "Cooling or heating changeover function for radiant panels or fcu's. 4/2-pipe"
   implements:
   - RSR
@@ -44,6 +45,7 @@ RSR_HHCD42_CPC:
   - CPC
 
 RSR_HHCD44_CPC:
+  guid: "092edb37-26b0-4b75-b6f3-25e59bb32d4c"
   description: "Cooling or heating changeover function for radiant panels or fcu's. 4/4-pipe"
   implements:
   - RSR
