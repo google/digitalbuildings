@@ -236,8 +236,8 @@ SENSOR_ZA_CO2M_PMM_HCHO:
   - zone_air_formaldehyde_concentration_sensor  
   
 SENSOR_CO2M_VOCM:
-  guid: "56b19e83-c97f-4618-861d-15e528b0bff0"
-  description: "CO2 and VOCconcentration monitoring."
+  guid: "3eca4fc4-0a66-4a12-bbc1-88fedeb9ede5"
+  description: "CO2 and VOC concentration monitoring."
   is_canonical: true
   implements:
     - /SENSOR
