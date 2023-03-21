@@ -303,7 +303,7 @@ HWS_WFRM_SWTC_HLPM:
 
 HWS_SS_HWTTC_PWDPM2X:
   guid: "ae8740bf-de14-4e32-a435-efa06c1692bc"
-  description: "Solar Heating water system with tank temp,pressure,pump and compressor monitoring."
+  description: "Solar Heating water system with tank temp, pressure, pump and compressor monitoring."
   is_canonical: true
   implements:
   - HWS
