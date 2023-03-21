@@ -239,6 +239,18 @@ LGRP_OS_LSC_ENM:
   - total_failed_wireless_device_counter
   - total_failed_communication_counter
 
+LGRP_SS_DC_MS_LC_SC:
+  guid: "31414a96-c9f4-41e2-8706-19ee05e0a50a"
+  description: "Lighting group with brightness, motion sensing, scene control and illuminance control"
+  is_canonical: true
+  implements:
+  - LGRP
+  - SS
+  - DC
+  - MS
+  - LC
+  - SC
+
 #Noncanonical types
 LGRP_DC_MS_IM:
   guid: "5a1e9a7c-0b8d-4eb4-9e97-6abfc696e382"
