@@ -116,6 +116,16 @@ EM_PWM_AVCM_PWMRDM:
   - AVCM
   - PWMRDM
 
+EM_PVCM_PLPM_PWM_AVCM:
+  description: "Electrical Meter with inter phase voltage, reactive and apparent power sensing"
+  is_canonical: true
+  implements:
+  - EM
+  - PVCM
+  - PLPM
+  - PWM
+  - AVCM
+
 #############################
 ### Non-Canonical Devices ###
 #############################
