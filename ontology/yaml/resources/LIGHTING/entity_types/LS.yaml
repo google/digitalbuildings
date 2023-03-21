@@ -83,7 +83,7 @@ LS_MS_IS:
   - IS
 
 LS_OS_IS_MTS:
-  guid: "c6208c88-5617-4dac-b128-c5e65e2b8ac5"
+  guid: "a63a45d8-dbfc-4a48-b8ad-0879c15eb3b2"
   description: "Ceiling mounted multi sensor for zone occupancy monitoring, brightness- and temperature control"
   is_canonical: true
   implements:

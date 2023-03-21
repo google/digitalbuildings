@@ -154,7 +154,7 @@ PWM:
   - power_sensor  
 
 CCIEM:
-  guid: "2d9c2661-495c-4e21-8bc9-e4431ccc7061"
+  guid: "d2755279-6ccd-4d9e-838a-371ab23c022d"
   description: "CIE light color monitoring"
   is_abstract: true
   uses: 
@@ -162,7 +162,7 @@ CCIEM:
   - lighting_color_cie_yvalue_sensor
 
 CHSLM:
-  guid: "0fcd7072-1537-4e22-8cd2-1994e33e3498"
+  guid: "1ab195d7-4035-424c-b2d9-282ec0a9cc2a"
   description: "HSL light color monitoring"
   is_abstract: true
   uses: 
@@ -170,7 +170,7 @@ CHSLM:
   - lighting_color_hsl_hue_angle_sensor
 
 OM:
-  guid: "3c3c6f16-9ed2-4936-9985-a36e0dd3267d"
+  guid: "54221319-0bab-4aa9-aea0-d667419bee11"
   description: "Operation monitoring for lighting fixtures"
   is_abstract: true
   uses:
@@ -179,7 +179,7 @@ OM:
   - luminaire_alarm
 
 DM:
-  guid: "be222c77-a891-420d-a16c-e1f7293b1a2b"
+  guid: "0e3ab3d7-a378-4c72-91ca-32a1290c6d84"
   description: "Brightness dimming monitoring."
   is_abstract: true
   opt_uses:
