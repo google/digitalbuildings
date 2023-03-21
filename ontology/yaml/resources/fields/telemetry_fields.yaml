@@ -2906,6 +2906,14 @@ literals:
     fixed_min: 0.0
     flexible_max: 10000000.0
 
+## New field for AHU
+- mixed_air_damper_percentage_command:
+    fixed_min: 0.0
+    fixed_max: 100.0
+- mixed_air_damper_percentage_sensor:
+    fixed_min: 0.0
+    fixed_max: 100.0
+
 ## New fields for seismic detector
 - seismic_alarm:
   - ACTIVE
@@ -2915,6 +2923,14 @@ literals:
 - water_totaldissolvedsolids_concentration_sensor:
     flexible_min: 0.0
     flexible_max: 0.001
+
+## New field for VAV
+- high_limit_zone_air_co2_concentration_setpoint:
+    flexible_min: 0.00005
+    flexible_max: 0.005
+- low_limit_zone_air_co2_concentration_setpoint:
+    flexible_min: 0.00005
+    flexible_max: 0.005
 
 ## New field for SDC
 - shade_extent_percentage_sensor:

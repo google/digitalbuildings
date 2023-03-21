@@ -301,6 +301,16 @@ CO2C:
   - high_zone_air_co2_concentration_alarm
 
 
+CO2CDSP:
+  description: "Carbon dioxide control with dual setpoint."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  uses:
+  - high_limit_zone_air_co2_concentration_setpoint
+  - low_limit_zone_air_co2_concentration_setpoint
+  - zone_air_co2_concentration_sensor
+
 COC:
   guid: "dee7cc87-51cb-460e-8202-eff4001319db"
   description: "Carbon monoxide control."
@@ -2573,6 +2583,7 @@ HWSC:
   description: "Heating water valve monitoring on supply air side."
   is_abstract: true
   opt_uses:
+  - heating_supply_water_temperature_sensor
   - heating_request_count
   - heating_thermal_power_capacity
   - heating_water_valve_percentage_sensor
@@ -5340,6 +5351,7 @@ PHRU:
   opt_uses:
   - bypass_air_damper_command
   - bypass_air_damper_status
+  - bypass_air_damper_percentage_sensor
   - exhaust_air_temperature_sensor
   - outside_air_temperature_sensor
   - failed_exhaust_air_temperature_alarm
@@ -6487,3 +6499,20 @@ RFVSC2X:
   - return_fan_speed_percentage_command_2
   implements:
   - OPERATIONAL
+
+RCO2M:
+  description: "Return air co2 monitoring"
+  is_abstract: true
+  uses:
+  - return_air_co2_concentration_sensor
+  implements:
+  - MONITORING
+
+VMADC:
+  description: "Variable mixed air damper monitoring (for recirculated air in AHU)."
+  is_abstract: true
+  uses:
+  - mixed_air_damper_percentage_command
+  - mixed_air_damper_percentage_sensor
+  implements:
+  - CONTROL
