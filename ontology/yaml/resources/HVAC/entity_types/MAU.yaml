@@ -605,6 +605,7 @@ MAU_SFVSC_CHWSC_SSPC_FDPSM2X:
 
 
 MAU_CHWSC_HWSC_SSPC_SFSS_SFVSC_FDPM2X_SFM:
+  guid: "4e3327f0-8db2-4e6a-a5a1-634df2530dff"
   description: "Multi-zone MAU with chilled water and heating water."
   is_canonical: true
   implements:
