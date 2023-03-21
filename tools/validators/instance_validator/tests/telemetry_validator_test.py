@@ -446,7 +446,7 @@ class TelemetryValidatorTest(absltest.TestCase):
 
     validator.ValidateMessage(_MESSAGE_INVALID_JSON)
 
-  def testTelemetryValidator_fieldTranslationMarkedMissing_notExpectedInTelemetry(
+  def testTelemetryValidator_fieldTranslationMissing_notExpectedInTelemetry(
       self,
   ):
     validator = telemetry_validator.TelemetryValidator(
@@ -526,7 +526,7 @@ class TelemetryValidatorTest(absltest.TestCase):
     mock_ack.assert_called_once()
     mock_callback_if_completed.assert_called_once()
 
-  def testTelemetryValidator_publishTimeDiffersFromTimestampByMoreThanAllowed_failure(
+  def testTelemetryValidator_publishTimeDiffersFromTimestamp_failure(
       self,
   ):
     validator = telemetry_validator.TelemetryValidator(

@@ -246,7 +246,7 @@ class HandlerTest(absltest.TestCase):
     self.assertFalse(entity_helper._IsDuplicateCDMIds(entities=instances))
 
   @mock.patch.object(handler, 'datetime')
-  def testFileNameEnumerationHelper_generatesNaiveUTCTimestampEnumeratedFilename_success(
+  def testFileNameEnumerationHelper_generateTimestampEnumeratedFilename_success(
       self, mock_datetime
   ):
     mock_datetime.datetime.now.return_value = datetime.datetime(
