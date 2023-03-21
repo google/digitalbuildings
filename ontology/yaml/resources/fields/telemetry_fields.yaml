@@ -3099,4 +3099,6 @@ literals:
   - ACTIVE
   - INACTIVE
 
-- ultraviolet_irradiance_sensor
+- ultraviolet_irradiance_sensor:
+    fixed_min: 0.0
+    flexible_max: 2000.0
