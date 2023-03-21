@@ -18,6 +18,7 @@ is received for all of the entities in the building config file, or if the
 specfied timeout is reached. Current version only supports UDMI payloads.
 """
 
+import datetime
 import sys
 import threading
 from typing import Dict
@@ -26,10 +27,12 @@ from validate import field_translation as ft_lib
 from validate import message_filters
 from validate import telemetry
 from validate import telemetry_validation_report as tvr
+from validate.constants import TELEMETRY_TIMESTAMP_FORMAT
 
 DEVICE_ID = telemetry.DEVICE_ID
 DEVICE_NUM_ID = telemetry.DEVICE_NUM_ID
 GUID = 'guid'
+MAX_TIMESTAMP_DIFFERENCE_SEC = 10  # in seconds
 
 
 class TelemetryValidator(object):
@@ -188,6 +191,34 @@ class TelemetryValidator(object):
     message.ack()
     self.CallbackIfCompleted()
 
+  def _PublishTimeDifferenceHelper(
+      self, message_publish_time: datetime.datetime, message_timestamp: str
+  ) -> float:
+    """Returns the difference between the telemetry message timestamp and the publish time.
+
+    timestamp is given according to naive UTC; ISO8601 (ex.
+    2020-10-15T17:21:59.000Z)
+    Args:
+      message_publish_time: time, as a datetime.datetime object, the message was
+        published by pubsub.
+      message_timestamp: the recorded timestamp, as a string, of the data
+        payload
+
+    Returns:
+      publish_timestamp_difference: total absolute difference between
+      message_publish_time and message_timestamp in seconds as a float
+    """
+    publish_timestamp_difference = abs(
+        (
+            message_publish_time
+            - datetime.datetime.strptime(
+                message_timestamp, TELEMETRY_TIMESTAMP_FORMAT
+            )
+        ).total_seconds()
+    )
+
+    return publish_timestamp_difference
+
   def _ValidationBlockHelper(
       self, message, entity
   ) -> tvr.TelemetryMessageValidationBlock:
@@ -204,6 +235,7 @@ class TelemetryValidator(object):
     entity_code = tele.attributes[DEVICE_ID]
     cloud_device_id = tele.attributes[DEVICE_NUM_ID]
     message_timestamp = tele.timestamp
+    message_publish_time = tele.publish_time
     message_version = tele.version
 
     expected_points = [
@@ -219,6 +251,15 @@ class TelemetryValidator(object):
         version=message_version,
         expected_points=expected_points,
     )
+    # Check that pubsub message publish time vs message timestamp
+    publish_timestamp_difference = self._PublishTimeDifferenceHelper(
+        message_publish_time, message_timestamp
+    )
+    if publish_timestamp_difference > MAX_TIMESTAMP_DIFFERENCE_SEC:
+      validation_block.AddDescription(
+          '[WARNING]\tTelemetry message publish time vs timestamp'
+          f' differs by {publish_timestamp_difference} seconds.'
+      )
 
     # Check a telemetry message cloud device id exists in the building config.
     if cloud_device_id != entity.cloud_device_id:
