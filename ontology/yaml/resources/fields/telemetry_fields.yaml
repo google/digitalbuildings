@@ -462,10 +462,7 @@ literals:
     flexible_min: 0.0
     flexible_max: 0.001
 
----
-
 # Additional fields added to cover first hundred buildings
-literals:
 - bypass_air_damper_percentage_command:
     fixed_min: 0.0
     fixed_max: 100.0
@@ -789,7 +786,7 @@ literals:
   - UNOCCUPIED
   - INACTIVE
 
- # INACTIVE indicates the device is being overridden to not run, irrespective of occupancy status.
+# INACTIVE indicates the device is being overridden to not run, irrespective of occupancy status.
 
 ## Added on 12/12
 - leaving_cooling_coil_temperature_sensor:
@@ -1590,7 +1587,7 @@ literals:
     flexible_min: 255.9259259
     flexible_max: 338.7037037
 
- # We should not use this... represents scavenged outside air from near some heat pumps...
+# We should not use this... represents scavenged outside air from near some heat pumps...
 - mixed_outside_air_temperature_sensor:
     flexible_min: 255.9259259
     flexible_max: 338.7037037
@@ -1612,7 +1609,9 @@ literals:
 - condensing_water_bypass_valve_percentage_sensor:
     fixed_min: 0.0
     fixed_max: 100.0
-- scene_index_command
+- scene_index_command:
+    fixed_min: 0.0
+    flexible_max: 100.0
 
 # This is a change
 - line_frequency_sensor:
@@ -1713,12 +1712,18 @@ literals:
 - mixed_air_dewpoint_temperature_sensor:
     flexible_min: 255.9259259
     flexible_max: 322.037037
-- supply_air_isolation_damper_closed_status
-- supply_air_isolation_damper_open_status
+- supply_air_isolation_damper_closed_status:
+  - OPEN
+  - CLOSED
+- supply_air_isolation_damper_open_status:
+  - OPEN
+  - CLOSED
 - control_status:
   - REMOTE
   - LOCAL
-- zone_scene_command
+- zone_scene_command:
+  - ACTIVE
+  - INACTIVE
 - scene_command:
   - ACTIVE
   - INACTIVE
@@ -1839,8 +1844,12 @@ literals:
 - heating_return_water_isolation_valve_status:
   - OPEN
   - CLOSED
-- cooling_supply_water_isolation_valve_command
-- cooling_return_water_isolation_valve_command
+- cooling_supply_water_isolation_valve_command:
+  - OPEN
+  - CLOSED
+- cooling_return_water_isolation_valve_command:
+  - OPEN
+  - CLOSED
 - heating_supply_water_isolation_valve_percentage_command:
     fixed_min: 0.0
     fixed_max: 100.0
@@ -2014,7 +2023,9 @@ literals:
     flexible_max: 30000000.0
 
 #Lighting controller battery status
-- emergency_battery_status
+- emergency_battery_status:
+  - ON
+  - OFF
 
 # Condensing water monitoring
 - condensing_water_differential_pressure_sensor:
@@ -2891,6 +2902,14 @@ literals:
     fixed_min: 0.0
     flexible_max: 10000000.0
 
+## New field for AHU
+- mixed_air_damper_percentage_command:
+    fixed_min: 0.0
+    fixed_max: 100.0
+- mixed_air_damper_percentage_sensor:
+    fixed_min: 0.0
+    fixed_max: 100.0
+
 ## New fields for seismic detector
 - seismic_alarm:
   - ACTIVE
@@ -2900,6 +2919,14 @@ literals:
 - water_totaldissolvedsolids_concentration_sensor:
     flexible_min: 0.0
     flexible_max: 0.001
+
+## New field for VAV
+- high_limit_zone_air_co2_concentration_setpoint:
+    flexible_min: 0.00005
+    flexible_max: 0.005
+- low_limit_zone_air_co2_concentration_setpoint:
+    flexible_min: 0.00005
+    flexible_max: 0.005
 
 ## New field for SDC
 - shade_extent_percentage_sensor:
