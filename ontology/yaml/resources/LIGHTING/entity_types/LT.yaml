@@ -54,7 +54,7 @@ ELT_GENERIC:
   - ELT
 
 LT_DM_CCIEM_OM:
-  guid: "8494eaa8-8e83-4d8a-af77-5cc81451658a"
+  guid: "b0a36e56-d06d-4418-9636-cb1a3d9b5bab"
   description: "Standard light with dimming and CIE color control."
   is_canonical: true
   implements:
@@ -64,7 +64,7 @@ LT_DM_CCIEM_OM:
   - OM
 
 LT_DM_CHSLM_OM:
-  guid: "2178b351-e7d7-4b4b-8533-3327ceea6e40"
+  guid: "53c9336c-8285-4dad-af9c-ae3234e23beb"
   description: "Standard light with dimming and HSL color control."
   is_canonical: true
   implements:
