@@ -261,3 +261,28 @@ LGRP_DC_MS_IM:
   - DC
   - MS
   - IM
+
+LGRP_OS_LC:
+  guid: "c6296635-f9e9-4dc4-b963-0a3d517e7d44"
+  description: "Standard lighting fixture group control with zone occupancy montoring and luminance control"
+  is_canonical: true
+  implements:
+  - LGRP
+  - OS 
+  - LC
+  opt_uses:
+  - group_alarm
+  uses:
+  - group_mode
+
+LGRP_SS_OS_IM:
+  guid: "232f10a1-3c4e-4a10-8a50-3f0e85b20599"
+  description: "Standard lighting fixture group control with scene control and dimming control"
+  is_canonical: true
+  implements:
+  - LGRP
+  - SS
+  - IM
+  uses:
+  - group_mode
+
