@@ -1689,3 +1689,12 @@ FCU_DSP_DFVSC_DTM_RTM:
   - DTM
   - RTM
 
+FCU_ DFMSC_DSP_ZTC:
+  description: "Hybrid variable refrigerant flow unit with zone cooling and heating control, discharge fan speed modes"
+  implements:
+  - FCU
+  - DSP
+  - DFMSC
+  - ZTM
+  uses:
+  - failed_alarm
