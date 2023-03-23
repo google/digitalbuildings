@@ -422,6 +422,7 @@ VAV_CO2C_PDSCV:
   - PDSCV
 
 VAV_CO2CDSP_PDSCV:
+  guid: "ff31291b-9158-4204-8a08-aa132998fec2"
   description: "Supply control VAV with dual setpoint CO2 regulation and damper percentage monitoring"
   is_canonical: true
   implements:

@@ -4795,6 +4795,7 @@ AHU_BSPC_DX4SC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC_RHHC_NONCANONICAL_1:
   - min_zone_air_relative_humidity_setpoint
 
 AHU_CHWSC_EFSS_EFVSC_FDPM3X_HTWHLSTC_HWSC_RCO2M_RSPC_SFM_SFSS_SFVSC_SSPC_VOADM_VMADC:
+  guid: "f53a0828-f284-490f-aa56-e150de3d0ddf"
   description: "Complex multi zone AHU with heat recovery wheel and recirculated air control."
   is_canonical: true
   implements:

@@ -73,3 +73,14 @@ SDC_EXT_TLT_WEST_SOUTHWEST:
   - SDC_EXT_TLT_WEST
   uses:
   - southwest_illuminance_sensor
+
+SDC_EXTOR:
+  guid: "0a95d724-4746-401d-a935-ae607d299a2a"
+  description: "Centralized controlled directional shade with zone conditioning"
+  is_canonical: true
+  implements:
+  - SDC
+  - EXTOR
+  opt_uses:
+  - shade_orientation_specification
+  - shade_mode
