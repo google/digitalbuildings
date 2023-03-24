@@ -23,7 +23,7 @@ from __future__ import print_function
 import argparse
 import sys
 
-from instance_guid_generator import generator
+from guid_generator.instance.instance_guid_generator import generator
 from validate import handler
 
 # Default timeout duration for telemetry validation test

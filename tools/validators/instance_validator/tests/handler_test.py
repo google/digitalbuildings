@@ -13,12 +13,13 @@
 # limitations under the License.
 """Tests tools.validators.instance_validator.instance_validator."""
 
-
 from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
+import datetime
 import os
+import re
 import shutil
 import tempfile
 from typing import Dict, List, Tuple
@@ -35,6 +36,7 @@ from validate import subscriber
 from validate import telemetry_validator
 from yamlformat.validator import presubmit_validate_types_lib
 
+
 _TESTCASE_PATH = test_constants.TEST_INSTANCES
 _INIT_CFG = instance_parser.ConfigMode.INITIALIZE
 _UPDATE_CFG = instance_parser.ConfigMode.UPDATE
@@ -43,6 +45,10 @@ _RunValidation = handler.RunValidation
 _Deserialize = handler.Deserialize
 _RunEntityHelperValidation = handler.EntityHelper.Validate
 _CV = entity_instance.CombinationValidator
+
+TEST_DATETIME = datetime.datetime(
+        2020, 10, 15, 17, 21, 59, 0, tzinfo=datetime.timezone.utc
+    )  # 2020-10-15T17:21:59.000Z
 
 
 def _ParserHelper(testpaths: List[str]) -> instance_parser.InstanceParser:
@@ -73,7 +79,25 @@ class HandlerTest(absltest.TestCase):
     except SyntaxError:
       self.fail('ValidationHelper:Validate raised ExceptionType unexpectedly!')
 
-  def testValidateReportFileNotEmpty(self):
+  @mock.patch.object(handler, 'datetime')
+  def testFileNameEnumerationHelper_generatesISO8601UTCTimestampEnumeratedFilename_conformsToWindowsLinuxMacOSXSuccess(
+      self, mock_datetime
+  ):
+    mock_datetime.datetime.now.return_value = TEST_DATETIME
+    filename = 'test_filename.txt'
+    expected_enumerated_filename = '2020_10_15T17_21_59Z_test_filename.txt'
+    re_expr = r'^\.|[\\<>:"\/\?]'
+    re.compile(re_expr)
+
+    enumerated_filename = handler.FileNameEnumerationHelper(filename)
+    matched = re.search(re_expr, enumerated_filename)
+
+    self.assertEqual(enumerated_filename, expected_enumerated_filename)
+    self.assertFalse(matched)
+
+  @mock.patch.object(handler, 'datetime')
+  def testValidateReportFileNotEmpty(self, mock_datetime):
+    mock_datetime.datetime.now.return_value = TEST_DATETIME
     report_directory = ''
     try:
       report_directory = tempfile.mkdtemp()
@@ -85,7 +109,12 @@ class HandlerTest(absltest.TestCase):
       )
 
       report_size = os.path.getsize(
-          os.path.join(report_directory, handler.INSTANCE_VALIDATION_FILENAME)
+          os.path.join(
+              report_directory,
+              handler.FileNameEnumerationHelper(
+                  handler.INSTANCE_VALIDATION_FILENAME
+              ),
+          ),
       )
     except SyntaxError:
       pass
@@ -236,6 +265,50 @@ class HandlerTest(absltest.TestCase):
     valid_entities = entity_helper.Validate(instances, _INIT_CFG)
     self.assertLen(valid_entities, 3)
     self.assertFalse(entity_helper._IsDuplicateCDMIds(entities=instances))
+
+  @mock.patch.object(handler, '_ValidateTelemetry')
+  def testRunValidation_RunsWithReportDirectory(self, mock_validate_telemetry):
+    temp_report_directory = tempfile.mkdtemp()
+
+    try:
+      input_file = os.path.join(_TESTCASE_PATH, 'GOOD', 'building_type.yaml')
+      _RunValidation(
+          [input_file],
+          subscription='a',
+          service_account='file',
+          use_simplified_universe=True,
+          report_directory=temp_report_directory,
+      )
+
+      mock_validate_telemetry.assert_called_once_with(
+          mock.ANY,
+          mock.ANY,
+          mock.ANY,
+          mock.ANY,
+          mock.ANY,
+          temp_report_directory,
+      )
+    except SystemExit:
+      self.fail('ValidationHelper:Validate raised ExceptionType unexpectedly!')
+
+  @mock.patch.object(handler, '_ValidateTelemetry')
+  def testRunValidation_RunsWithoutReportDirectory(
+      self, mock_validate_telemetry
+  ):
+    try:
+      input_file = os.path.join(_TESTCASE_PATH, 'GOOD', 'building_type.yaml')
+      _RunValidation(
+          [input_file],
+          subscription='a',
+          service_account='file',
+          use_simplified_universe=True,
+      )
+
+      mock_validate_telemetry.assert_called_once_with(
+          mock.ANY, mock.ANY, mock.ANY, mock.ANY, mock.ANY, None
+      )
+    except SystemExit:
+      self.fail('ValidationHelper:Validate raised ExceptionType unexpectedly!')
 
 
 if __name__ == '__main__':
