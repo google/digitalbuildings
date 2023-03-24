@@ -6526,3 +6526,11 @@ VMADC:
   - mixed_air_damper_percentage_sensor
   implements:
   - CONTROL
+
+MSVO:
+  description: "Motion sensor for ventilation purpose (CO2, ...)"
+  is_abstract: true
+  uses:
+  - motion_status
+  implements:
+  - OPERATIONAL
