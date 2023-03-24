@@ -79,6 +79,7 @@ class HandlerTest(absltest.TestCase):
     except SyntaxError:
       self.fail('ValidationHelper:Validate raised ExceptionType unexpectedly!')
 
+  # pylint:disable=line-too-long
   @mock.patch.object(handler, 'datetime')
   def testFileNameEnumerationHelper_generatesISO8601UTCTimestampEnumeratedFilename_conformsToWindowsLinuxMacOSXSuccess(
       self, mock_datetime

@@ -195,7 +195,7 @@ class TelemetryValidator(object):
   def _PublishTimeDifferenceHelper(
       self, message_publish_time: datetime.datetime, message_timestamp: str
   ) -> float:
-    """Returns the difference between the telemetry message timestamp and the publish time.
+    """Returns difference between telemetry message timestamp and publish time.
 
     timestamp is given according to UTC ISO8601 (ex.
     2020-10-15T17:21:59.000Z)

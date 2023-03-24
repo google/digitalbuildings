@@ -1265,6 +1265,7 @@ class EntityInstanceTest(absltest.TestCase):
 
     self.assertFalse(self.update_validator.Validate(entity))
 
+  # pylint:disable=line-too-long
   def testInstance_EntityWithNonDimensionalValue_InstantiatesNonDimensionalValueObjectSuccessfully(
       self,
   ):
