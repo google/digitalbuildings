@@ -35,3 +35,19 @@ RARSR_UNDEFINED:
   description: "Return air riser without any data points."
   implements:
   - RARSR
+
+RSR_HHCD42_CPC:
+  guid: "374f5100-b148-47ac-b07b-d2bef0b556ef"
+  description: "Cooling or heating changeover function for radiant panels or fcu's. 4/2-pipe"
+  implements:
+  - RSR
+  - HHCD42
+  - CPC
+
+RSR_HHCD44_CPC:
+  guid: "bbd6959e-5a60-4b6a-b4ec-9d84b7c69fc5"
+  description: "Cooling or heating changeover function for radiant panels or fcu's. 4/4-pipe"
+  implements:
+  - RSR
+  - HHCD44
+  - CPC

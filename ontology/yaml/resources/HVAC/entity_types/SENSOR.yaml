@@ -242,3 +242,12 @@ SENSOR_WDPM:
   implements:
   - /SENSOR
   - WDPM
+  
+SENSOR_CO2M_VOCM:
+  guid: "3eca4fc4-0a66-4a12-bbc1-88fedeb9ede5"
+  description: "CO2 and VOC concentration monitoring."
+  is_canonical: true
+  implements:
+    - /SENSOR
+    - CO2M
+    - VOCM

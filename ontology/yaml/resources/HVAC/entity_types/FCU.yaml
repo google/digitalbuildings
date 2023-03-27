@@ -1674,3 +1674,44 @@ FCU_RHDHS_DXRC:
   - low_discharge_air_flowrate_alarm
   - high_air_static_pressure_alarm
   - low_air_static_pressure_alarm
+
+FCU_DFVSC_CHWZC_CSP_RTM_WDT:
+  guid: "8c3dc3ea-8344-4a5a-85c1-5f1491f7c256"
+  description: "Hydronic cooling or heating fan coil unit with cooling temperature setpoint control"
+  is_canonical: true
+  implements:
+  - FCU
+  - DFVSC
+  - CHWZC
+  - CSP
+  - RTM
+  - WDT 
+  uses: 
+  - master_alarm
+  - run_mode
+
+FCU_DFSS_CHWDC_CSP_RTM_DXZC:
+  guid: "fef47d51-3d01-40fd-9499-4f3bd65ed3ec"
+  description: "Typical DX FCU with cooling-only (discharge control)"
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - CHWDC
+  - CSP
+  - RTM
+  - DXZC
+  uses: 
+  - master_alarm
+  - filter_alarm
+  - run_mode
+
+FCU_DSP_DFVSC_DTM_RTM:
+  guid: "ff0b58c2-8446-47f9-913d-068fd3b43ae7"
+  description: "Hybrid variable refrigerant flow unit with discharge and return air temperature monitoring, zone cooling and heating setpoints, discharge fan speed command"
+  implements:
+  - FCU
+  - DSP
+  - DFVSC
+  - DTM
+  - RTM
