@@ -52,3 +52,23 @@ ELT_GENERIC:
   is_canonical: false
   implements:
   - ELT
+
+LT_DM_CCIEM_OM:
+  guid: "b0a36e56-d06d-4418-9636-cb1a3d9b5bab"
+  description: "Standard light with dimming and CIE color control."
+  is_canonical: true
+  implements:
+  - LT
+  - DM
+  - CCIEM
+  - OM
+
+LT_DM_CHSLM_OM:
+  guid: "53c9336c-8285-4dad-af9c-ae3234e23beb"
+  description: "Standard light with dimming and HSL color control."
+  is_canonical: true
+  implements:
+  - LT
+  - DM
+  - CHSLM
+  - OM
