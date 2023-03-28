@@ -1453,7 +1453,7 @@ CO2M:
   - MONITORING
   opt_uses:
   - high_zone_air_co2_concentration_alarm
-  - high_limit_zone_air_co2_setpoint
+  - high_limit_zone_co2_concentration_setpoint
   - failed_alarm
 
 
