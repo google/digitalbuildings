@@ -3027,3 +3027,6 @@ literals:
 - failed_discharge_air_isolation_damper_alarm:
   - ACTIVE
   - INACTIVE
+- high_water_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
