@@ -16,6 +16,7 @@
 from __future__ import print_function
 
 import _thread
+import datetime
 import json
 import os
 import sys
@@ -30,9 +31,28 @@ from validate import telemetry_validation_report as tvr
 from validate import telemetry_validator
 from yamlformat.validator import presubmit_validate_types_lib as pvt
 
-# TODO(b/268492445) allow enumeration for multiple programs runs
+
 INSTANCE_VALIDATION_FILENAME = 'instance_validation_report.txt'
 TELEMETRY_VALIDATION_FILENAME = 'telemetry_validation_report.json'
+
+
+def FileNameEnumerationHelper(filename: str) -> str:
+  """Adds an UTC timestamp enurmation prefix to the filename.
+
+  Args:
+    filename: string representing the filename to be enumerated with a local
+      timestamp.
+
+  Returns:
+    the filename enumerated as <timestamp>_<filename>. example:
+    2020_10_15T17_21_59Z_instance_validation_report.txt where the timestamp
+    is given as year_month_dayThour_min_secondZ and the filename as
+    instance_validation_report.txt
+  """
+  return '_'.join((
+      datetime.datetime.now().strftime('%Y_%m_%dT%H_%M_%SZ'),
+      filename,
+  ))
 
 
 def GetDefaultOperation(
@@ -154,7 +174,8 @@ def RunValidation(
   if report_directory:
     # pylint: disable=consider-using-with
     report_filename = os.path.join(
-        report_directory, INSTANCE_VALIDATION_FILENAME
+        report_directory,
+        FileNameEnumerationHelper(INSTANCE_VALIDATION_FILENAME)
     )
     report_file = open(report_filename, 'w', encoding='utf-8')
     sys.stdout = report_file
@@ -171,10 +192,16 @@ def RunValidation(
     print('[INFO]\tOntology loaded.')
 
     entities = _ValidateConfig(filenames, universe, is_udmi)
+
     if subscription:
       print('[INFO]\tStarting telemetry validation.')
       _ValidateTelemetry(
-          subscription, service_account, entities, timeout, is_udmi
+          subscription,
+          service_account,
+          entities,
+          timeout,
+          is_udmi,
+          report_directory,
       )
     else:
       print(
@@ -274,17 +301,15 @@ def _TelemetryValidationCallback(
   if validator.report_directory:
     # Export to filepath or current working directory.
     telemetry_validation_report_path = os.path.join(
-        validator.report_directory, TELEMETRY_VALIDATION_FILENAME
+        validator.report_directory,
+        FileNameEnumerationHelper(TELEMETRY_VALIDATION_FILENAME)
     )
   else:
     telemetry_validation_report_path = os.path.join(
-        os.getcwd(), TELEMETRY_VALIDATION_FILENAME
+        os.getcwd(),
+        FileNameEnumerationHelper(TELEMETRY_VALIDATION_FILENAME)
     )
-  with open(
-      telemetry_validation_report_path,
-      'w',
-      encoding='utf-8'
-  ) as report:
+  with open(telemetry_validation_report_path, 'w', encoding='utf-8') as report:
     report.write(json.dumps(validation_report_dict, indent=4))
     print(f'Report Generated: {telemetry_validation_report_path}')
     print('[INFO]\tTelemetry validation report generated.')

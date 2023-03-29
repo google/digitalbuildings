@@ -546,13 +546,6 @@ class InstanceValidator(object):
     for qualified_field_name, ft in found_fields.items():
       is_valid = True
 
-      if isinstance(ft, ft_lib.NonDimensionalValue):
-        print(
-            f'[ERROR]\tEntity {entity.guid} ({entity.code}) defines field '
-            f'{qualified_field_name} but does not define units or states.'
-        )
-        is_valid = False
-
       if not self._FieldTranslationIsValid(qualified_field_name, ft, entity):
         is_valid = False
 
@@ -680,13 +673,6 @@ class InstanceValidator(object):
             f'[ERROR]\tEntity {entity.guid} ({entity.code}) defines field '
             f'{qualified_field_name} without states, which are expected on '
             'the field. Define states.'
-        )
-
-      if not ft.states:
-        print(
-            f'[ERROR]\tEntity {entity.guid} ({entity.code}) defines '
-            f'field {qualified_field_name} without states, which are '
-            'expected for this field. Define states.'
         )
         return False
 
