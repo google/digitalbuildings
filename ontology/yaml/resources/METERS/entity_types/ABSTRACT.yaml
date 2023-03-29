@@ -92,7 +92,6 @@ VCM:
   - voltage_sensor
   
 GV:
-  guid:
   description: "Very basic gas monitoring"
   is_abstract: true
   implements:
