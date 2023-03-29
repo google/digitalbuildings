@@ -6608,7 +6608,6 @@ VMADC:
   - CONTROL
 
 SAQM:
-  guid:
   description: "Simple air quality monitoring"
   is_abstract: true
   uses:
