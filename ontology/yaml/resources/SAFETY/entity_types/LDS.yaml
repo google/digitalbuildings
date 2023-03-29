@@ -100,7 +100,6 @@ LDS_WLA_BCM:
   - failed_alarm
 
 LDS_WLA_WLDS_WLS:
-  guid: 
   description: "Water leak sensing device with broken cable sensing."
   is_canonical: true
   implements:
