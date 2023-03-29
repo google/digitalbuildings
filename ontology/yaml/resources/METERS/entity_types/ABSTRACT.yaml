@@ -91,3 +91,11 @@ VCM:
   - current_sensor
   - voltage_sensor
   
+GV:
+  guid:
+  description: "Very basic gas monitoring"
+  is_abstract: true
+  implements:
+  - MONITORING
+  uses:
+  - gas_volume_accumulator
