@@ -743,4 +743,4 @@ FAN_DSPZTM:
   is_canonical: true
   implements:
   - FAN
-  - DSZTM
+  - DSPZTM
