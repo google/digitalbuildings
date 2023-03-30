@@ -35,6 +35,7 @@ FACP_FA2X:
   - panel_alarm
 
 FACP_ALM:
+  guid: "c8858bab-a98c-4586-a236-1e5797b37161"
   description: "Fire alarm panel with alarm."
   is_canonical: true
   implements:
@@ -45,6 +46,7 @@ FACP_ALM:
   - failed_panel_alarm
 
 FACP_ASD:
+  guid: "82aca545-20fa-4f4e-8e54-ef8c09938c6c"
   description: "Basic aspirating type, fire detection with alarms."
   is_canonical: true
   implements:

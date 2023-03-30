@@ -95,6 +95,7 @@ LM:
   - level_status
 
 MDC:
+  guid: "98048385-3819-4f8e-9c45-2f868b91d686"
   description: "Tag for those with motorized dampers"
   is_abstract: true
   implements:
@@ -104,6 +105,7 @@ MDC:
   - motorized_damper_position_command
 
 EHT:
+  guid: "5706d4c8-be7a-45fd-a94c-347a1b225569"
   description: "Tag for heat tracer."
   is_abstract: true
   implements:
