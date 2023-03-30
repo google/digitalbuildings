@@ -109,6 +109,10 @@ ASD:
   is_abstract: true
   implements:
   - EQUIPMENT
+  opt_uses:
+  - low_smoke_alarm
+  - medium_smoke_alarm
+  - fire_alarm
 
 HDS:
   guid: "025f5773-7626-4a30-bd44-ef0845a92215"
@@ -116,3 +120,9 @@ HDS:
   is_abstract: true
   implements:
   - /SENSOR
+
+MFSD:
+  description: "Motorized fire smoke damper"
+  is_abstract: true
+  implements:
+  - EQUIPMENT

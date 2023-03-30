@@ -444,9 +444,3 @@ CRREF:
   - failed_communication_alarm
   implements:
   - EQUIPMENT
-
-EHT:
-  description: "Tag for heat tracer."
-  is_abstract: true
-  implements:
-  - EQUIPMENT

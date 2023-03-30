@@ -24,15 +24,24 @@ FSS_STD:
   uses:
   - fire_alarm
 
-FSS_ASD_AL:
-  description: "Basic aspirating type, fire suppression with alarms."
+FSS_PAS:
+  description: "Fire alarm panel with Pre-action suppression with alarm."
   is_canonical: true
   implements:
   - FSS
-  - ASD
-  - AL
   uses:
-  - primary_smoke_alarm
-  - secondary_smoke_alarm
   - fire_alarm
-  - supervisor_alarm
+  - failed_panel_alarm
+  - water_flowrate_status
+  - air_pressure_status
+
+FSS_FA2X_GS:
+  guid: "8d99b865-98d3-431f-bd28-fe04c853e396"
+  description: "Fire alarm panel with 2-level alarm and gas suppression."
+  is_canonical: true
+  implements:
+  - FSS
+  - FA2X
+  uses:
+  - failed_panel_alarm
+  - gas_release_status

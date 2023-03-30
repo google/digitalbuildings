@@ -1575,16 +1575,13 @@ literals:
   - OPEN
   - CLOSED
 
-- primary_fire_alarm: # better than using fire_alarm_1 (which will lead to fire_alarm_1_23)
+- failed_panel_alarm:
   - ACTIVE
   - INACTIVE
-- secondary_fire_alarm:
+- low_smoke_alarm: # for aspirating type smoke detectors
   - ACTIVE
   - INACTIVE
-- primary_smoke_alarm: # for aspirating type smoke detectors
-  - ACTIVE
-  - INACTIVE
-- secondary_smoke_alarm: # for aspirating type smoke detectors
+- medium_smoke_alarm: # for aspirating type smoke detectors
   - ACTIVE
   - INACTIVE
 - particle_concentration_alarm:
@@ -1593,10 +1590,10 @@ literals:
 - low_battery_alarm:
   - ACTIVE
   - INACTIVE
-- load_bypass_mode:
+- load_bypass_status:
   - OFF
   - ON
-- battery_mode:
+- use_battery_status:
   - OFF
   - ON
 - gas_release_status:

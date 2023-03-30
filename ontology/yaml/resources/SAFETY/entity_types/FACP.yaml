@@ -34,40 +34,21 @@ FACP_FA2X:
   opt_uses:
   - panel_alarm
 
-FACP_PAS_AL:
-  guid: "34d56a9a-15ca-4921-a851-eb13c7be7dfd"
-  description: "Fire alarm panel with Pre-action suppression with alarm."
-  is_canonical: true
-  implements:
-  - FACP
-  - AL
-  uses:
-  - fire_alarm
-  - supervisor_alarm
-  - water_flowrate_status
-  - air_pressure_status
-
-FACP_AL:
-  guid: "4f71f3df-ed93-498b-aea3-1ab444055c84"
+FACP_ALM:
   description: "Fire alarm panel with alarm."
   is_canonical: true
   implements:
   - FACP
-  - AL
   uses:
   - fire_alarm
-  - supervisor_alarm
+  opt_uses:
+  - failed_panel_alarm
 
-FACP_FA2X_GS_AL:
-  guid: "3bbda411-751e-43d2-92c8-ce11cb2fa03a"
-  description: "Fire alarm panel with 2-level alarm and gas suppression."
+FACP_ASD:
+  description: "Basic aspirating type, fire detection with alarms."
   is_canonical: true
   implements:
   - FACP
-  - FA2X
-  - AL
-  uses:
-  - primary_fire_alarm
-  - secondary_fire_alarm
-  - supervisor_alarm
-  - gas_release_status
+  - ASD
+  opt_uses:
+  - failed_panel_alarm

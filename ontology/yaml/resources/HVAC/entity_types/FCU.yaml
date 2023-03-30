@@ -1648,33 +1648,6 @@ FCU_RTC_RHDHS_DTM_DFSS:
   - fire_alarm
   - schedule_run_command
 
-FCU_DXZTC:
-  guid: "9a927a3f-2c3c-4516-b934-9ee1fa1fc89d"
-  description: "FCU with SS, discharge temp sensors, zone control and sensor, filter change"
-  is_canonical: true
-  implements:
-  - FCU
-  - DXZTC
-  uses:
-  - panel_controller_status
-  - filter_alarm
-
-FCU_RHDHS_DXRC:
-  guid: "5e7fdbec-85f0-4b4b-a205-3864198d37c5"
-  description: "FCU with temperature & pressure monitor, humidity monitor and water leak & status alarm."
-  is_canonical: true
-  implements:
-  - FCU
-  - RHDHS
-  - DXRC
-  uses:
-  - fan_run_status
-  - water_leak_detection_alarm
-  - failed_alarm
-  - low_discharge_air_flowrate_alarm
-  - high_air_static_pressure_alarm
-  - low_air_static_pressure_alarm
-
 FCU_DFVSC_CHWZC_CSP_RTM_WDT:
   guid: "8c3dc3ea-8344-4a5a-85c1-5f1491f7c256"
   description: "Hydronic cooling or heating fan coil unit with cooling temperature setpoint control"
@@ -1715,3 +1688,32 @@ FCU_DSP_DFVSC_DTM_RTM:
   - DFVSC
   - DTM
   - RTM
+
+
+FCU_DXZTC_DFSS:
+  guid: "38271d04-f2a1-417c-a3af-b2a2299c7979" 
+  description: "FCU with SS, discharge temp sensors, zone control and sensor, filter change"
+  is_canonical: true
+  implements:
+  - FCU
+  - DXZTC
+  - DFSS
+  opt_uses:
+  - panel_controller_status
+  - filter_alarm
+
+FCU_RHDHS_DXDC_DFSS:
+  guid: "958c49e9-464b-4e17-beda-07fbbf1b9e97"  
+  description: "FCU with temperature & pressure monitor, humidity monitor and water leak & status alarm."
+  is_canonical: true
+  implements:
+  - FCU
+  - RHDHS
+  - DXDC
+  - DFSS
+  opt_uses:
+  - water_leak_detection_alarm
+  - failed_alarm
+  - failed_discharge_fan_alarm
+  - high_air_static_pressure_alarm
+  - low_air_static_pressure_alarm

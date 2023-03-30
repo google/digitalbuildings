@@ -38,21 +38,13 @@ LVLM:
 WCR:
   description: "Water conditioner"
   is_abstract: true
-  uses:
-  - run_status
   implements:
+  - /SS
   - EQUIPMENT
 
 WSR:
   description: "Water softener"
   is_abstract: true
-  uses:
-  - run_status
   implements:
-  - EQUIPMENT
-
-AL:
-  description: "Tag for those with alarms"
-  is_abstract: true
-  implements:
+  - /SS
   - EQUIPMENT

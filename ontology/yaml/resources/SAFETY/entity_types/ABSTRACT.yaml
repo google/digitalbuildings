@@ -79,9 +79,6 @@ FA2X:
   uses:
   - fire_alarm_1
   - fire_alarm_2
-  opt_uses:
-  - primary_fire_alarm
-  - secondary_fire_alarm
     
 WLS:
   guid: "16a99ce4-3298-4f9a-9ba8-41edec6a48c8"
@@ -97,8 +94,17 @@ LM:
   uses:
   - level_status
 
-AL:
-  description: "Tag for those with alarms"
+MDC:
+  description: "Tag for those with motorized dampers"
+  is_abstract: true
+  implements:
+  - EQUIPMENT
+  uses:
+  - motorized_damper_position_status
+  - motorized_damper_position_command
+
+EHT:
+  description: "Tag for heat tracer."
   is_abstract: true
   implements:
   - EQUIPMENT

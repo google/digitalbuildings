@@ -83,16 +83,6 @@ DMP_EDBPC_ZTM:
   - EDBPC
   - ZTM
 
-DMP_MFSD:
-  description: "Motorized fire smoke damper."
-  is_canonical: true
-  implements:
-  - DMP
-  - MFSD
-  uses:
-  - motorized_damper_position_command
-  - motorized_damper_position_status
-
 ###################################
 ### Existing Non-standard Types ###
 ###################################

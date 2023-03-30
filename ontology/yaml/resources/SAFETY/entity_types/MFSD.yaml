@@ -1,4 +1,4 @@
-# Copyright 2022 Google LLC
+# Copyright 2023 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the License);
 # you may not use this file except in compliance with the License.
@@ -12,14 +12,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-### CANONICAL TYPES
+# Canonical types
 
-WSR_STD:
-  guid: "9d768dfb-547d-40cf-9af2-6a4e01d8f284"
-  description: "Standard water softener."
+
+MFSD_MDC:
+  guid: "fbfb943b-04b7-4d80-9bc3-1f1d6d8db99f"
+  description: "Basic fire suppression with motorized dampers."
   is_canonical: true
   implements:
-  - WSR
-  opt_uses:
-  - water_flowrate_status
-  - lost_power_alarm
+  - MFSD
+  - MDC
