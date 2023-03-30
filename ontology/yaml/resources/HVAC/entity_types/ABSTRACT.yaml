@@ -6614,7 +6614,7 @@ DSPZTM:
   uses:
   - high_limit_zone_air_temperature_setpoint
   - low_limit_zone_air_temperature_setpoint
-  - Zone_air_temperature_sensor
+  - zone_air_temperature_sensor
   - high_zone_air_temperature_alarm
   - low_zone_air_temperature_alarm
   - failed_zone_air_temperature_alarm
