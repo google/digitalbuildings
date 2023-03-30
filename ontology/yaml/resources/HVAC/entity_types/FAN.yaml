@@ -737,3 +737,10 @@ FAN_SS_MSM:
   implements:
   - FAN
   - MSM
+
+FAN_DSPZTM:
+  description: "idf room fan with monitoring and high, low alarm setpoints"
+  is_canonical: true
+  implements:
+  - FAN
+  - DSZTM

@@ -6606,3 +6606,16 @@ VMADC:
   - mixed_air_damper_percentage_sensor
   implements:
   - CONTROL
+
+
+DSPZTM:
+  description: "idf room fan with monitoring and high, low alarm setpoints"
+  is_abstract: true
+  uses:
+  - high_limit_zone_air_temperature_setpoint
+  - low_limit_zone_air_temperature_setpoint
+  - Zone_air_temperature_sensor
+  - high_zone_air_temperature_alarm
+  - low_zone_air_temperature_alarm
+  - failed_zone_air_temperature_alarm
+  - failed_alarm
