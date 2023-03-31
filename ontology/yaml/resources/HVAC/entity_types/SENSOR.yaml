@@ -243,3 +243,10 @@ SENSOR_CO2M_VOCM:
     - /SENSOR
     - CO2M
     - VOCM
+
+SENSOR_MAZTM:
+  description: "zone temperature monitoring with high, low alarm setpoints and unit failed alarms"
+  is_canonical: true
+  implements:
+  - /SENSOR
+  - MAZTM

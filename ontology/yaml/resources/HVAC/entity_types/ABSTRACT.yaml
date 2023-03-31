@@ -6606,3 +6606,17 @@ VMADC:
   - mixed_air_damper_percentage_sensor
   implements:
   - CONTROL
+
+MAZTM:
+  description: "Zone temperature monitoring for MDF room with high & low temperature alarms, sensor failed alarm "
+  is_abstract: true
+  uses:
+  - high_limit_zone_air_temperature_setpoint
+  - low_limit_zone_air_temperature_setpoint
+  - zone_air_temperature_sensor
+  - high_zone_air_temperature_alarm
+  - low_zone_air_temperature_alarm
+  - failed_zone_air_temperature_alarm
+  - failed_alarm
+  implements:
+  - OPERATIONAL

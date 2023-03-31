@@ -3102,3 +3102,11 @@ literals:
 - ultraviolet_irradiance_sensor:
     fixed_min: 0.0
     flexible_max: 2000.0
+
+- high_limit_zone_air_temperature_setpoint:
+    fixed_min: 255.9259259
+    flexible_max: 338.7037037
+
+- low_limit_zone_air_temperature_setpoint:
+    fixed_min: 255.9259259
+    flexible_max: 338.7037037
