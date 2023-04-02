@@ -157,7 +157,7 @@ SBATM:
   is_abstract: true
   uses:
   - battery_charge_percentage_sensor
-  - battery_capacity
+  - battery_energy_capacity
   - battery_status
   - battery_test_status
 
