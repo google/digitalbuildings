@@ -74,3 +74,12 @@ UPS_PWM:
   implements:
   - UPS
   - PWM
+
+UPS_PPWM_OM_SBATM:
+  description: "UPS with battery and power monitoring."
+  is_canonical: true
+  implements:
+  - UPS
+  - PPWM
+  - OM
+  - SBATM

@@ -160,8 +160,7 @@ SBATM:
   - battery_energy_capacity
   - battery_status
   - battery_test_status
-
-
+  - failed_battery_alarm
 
 UPSBM:
   guid: "71050ae3-45e3-49f2-b7e2-12059dd8f049"
