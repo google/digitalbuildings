@@ -4576,6 +4576,8 @@ RMM:
   guid: "162df361-7593-4e36-bf41-e7fa667244dd"
   description: "Run mode monitoring."
   is_abstract: true
+  opt_uses:
+  - run_status
   uses:
   - run_mode
 
