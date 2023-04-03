@@ -72,11 +72,3 @@ DWST_WDT:
   implements:
   - DWST
   - WDT
-
-DWST_CPC_RMM:
-  description: "Domestic water system with circulation pump and run mode monitoring."
-  is_canonical: true
-  implements:
-  - DWST
-  - CPC
-  - RMM
