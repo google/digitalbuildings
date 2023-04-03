@@ -145,7 +145,7 @@ PMP_CPC_RMM:
     is_canonical: true
     implements:
     - PMP
-    - SS
+    - CPC
     - RMM
 
 ###################################
