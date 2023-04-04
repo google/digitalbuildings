@@ -6607,11 +6607,11 @@ VMADC:
   implements:
   - CONTROL
 
-EPM2X:
-  description: "evaporator pump monitoring X2"
+CPM2X:
+  description: "circulation pump monitoring X2"
   is_abstract: true
   uses:
-  - evaporator_pump_run_status_1
-  - evaporator_pump_run_status_2
+  - circulation_pump_run_status_1
+  - circulation_pump_run_status_2
   implements:
   - MONITORING
