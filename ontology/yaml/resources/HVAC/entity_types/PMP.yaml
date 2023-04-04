@@ -162,3 +162,16 @@ PMP_SS_VSC_NONCANONICAL_2:
   - mixing_valve_percentage_command
   - chilled_supply_water_temperature_setpoint
   - chilled_supply_water_temperature_sensor
+
+
+PMP_SS_REFPM_REFSM_OA_EPM2X:
+  description: "air source heat pump with refrigerant temperature and pressure monitoring, 2 evaporator pumps"
+  is_canonical: true
+  implements:
+  - PMP
+  - SS
+  - REFM
+  - REFSM
+  - OA
+  - EPM2X
+  

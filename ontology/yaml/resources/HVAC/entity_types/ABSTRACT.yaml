@@ -6606,3 +6606,12 @@ VMADC:
   - mixed_air_damper_percentage_sensor
   implements:
   - CONTROL
+
+EPM2X:
+  description: "evaporator pump monitoring X2"
+  is_abstract: true
+  uses:
+  - evaporator_pump_run_status_1
+  - evaporator_pump_run_status_2
+  implements:
+  - MONITORING
