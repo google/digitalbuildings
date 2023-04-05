@@ -35,7 +35,7 @@ def Build(ontology_path: str) -> OntologyWrapper:
     yaml_file_path = constants.ONTOLOGY_ROOT
   yaml_files = external_file_lib.RecursiveDirWalk(yaml_file_path)
   config = presubmit_validate_types_lib.SeparateConfigFiles(yaml_files)
-  universe = presubmit_validate_types_lib.BuildUniverse(config)
+  universe = presubmit_validate_types_lib.BuildUniverse(config, require_type_guids=False)
   nv.NamespaceValidator(universe.GetEntityTypeNamespaces())
   ontology = OntologyWrapper(universe)
   return ontology
