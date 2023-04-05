@@ -3982,6 +3982,21 @@ AHU_SFSS_SFMSC_SFVSC_FDPM_CHWSC_RTM_RACO2C_SSPC2X_VOADM2X_SAIDC2X_RAIDC2X_SSPC:
   - RAIDC2X
   - SSPC
 
+AHU_SS_RMM_RTM_FDPM_EFPC_SFPC_HWSC_ESDC_FSAM:
+  description: "AHU with supply and exhaust pressure, florate control, cooling and heating valve control, fire and smoke alarms"
+  is_canonical: true
+  implements:
+  - AHU
+  - SS
+  - RMM
+  - RTM
+  - FDPM
+  - EFPC
+  - SFPC
+  - HWSC
+  - ESDC
+  - FSAM
+
 
 ###################################
 ### Existing Non-standard Types ###
@@ -4764,8 +4779,7 @@ AHU_NON_CANONICAL_TYPE_71:
 
 AHU_STDSPC_SSPC_EFFC_EFVSC_FDPM3X_HTWHLSTC_RHM_ETM:
   guid: "dbe00902-c2da-4efd-b8f2-2069ddd674c3"
-  description: "Non-Standard (Swegon) Multi-Zone AHU with heat wheel, isolation damper and filter pressure monitoring"
-  implements:
+
   - AHU
   - STDSPC
   - SSPC
@@ -4814,3 +4828,4 @@ AHU_CHWSC_EFSS_EFVSC_FDPM3X_HTWHLSTC_HWSC_RCO2M_RSPC_SFM_SFSS_SFVSC_SSPC_VOADM_V
   - SSPC
   - VOADM
   - VMADC
+
