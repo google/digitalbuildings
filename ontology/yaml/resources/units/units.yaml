@@ -49,6 +49,11 @@ area:
   square_inches:
     multiplier: 0.00064516
     offset: 0
+batterycapacity:
+  milliampere_hours: STANDARD
+  ampere_hours:
+    multiplier: 1000
+    offset: 0
 concentration:
   parts_per_unit: STANDARD
   parts_per_million:

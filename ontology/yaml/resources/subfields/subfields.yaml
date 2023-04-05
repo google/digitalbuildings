@@ -261,6 +261,7 @@ measurement:
   angularmomentum: "The quantity of rotation of a body, which is the product of its moment of inertia and its angular velocity."
   aqi: "Air quality index, a set of special standard gradings for the pollution in air."
   area: "Amount of space within the perimeter of a 2D shape"
+  batterycapacity: "Energy charge in a battery"
   concentration: "Concentration of something relative to something else (usually in parts per million or parts per billion)."
   current: "Flow of electric charge."
   currentratio: "The ratio of primary amps divided by secondary amps."
