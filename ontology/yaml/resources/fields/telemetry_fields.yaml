@@ -3106,3 +3106,7 @@ literals:
 - supply_air_linearvelocity_sensor:
     fixed_min: 0.0
     flexible_max:  25.4000508
+
+- supply_fan_rotationalvelocity_sensor:
+    fixed_min: 0.0
+    flexible_max:  25.4000508

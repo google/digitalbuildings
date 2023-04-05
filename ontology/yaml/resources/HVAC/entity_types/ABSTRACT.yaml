@@ -6613,6 +6613,7 @@ SFPC:
   opt_uses:
   - supply_fan_run_command
   - supply_air_linearvelocity_sensor
+  - supply_fan_rotationalvelocity_sensor
   uses:
   - supply_air_static_pressure_sensor
   - supply_air_flowrate_sensor
@@ -6625,6 +6626,7 @@ EFPC:
   is_abstract: true
   opt_uses:
   - exhaust_fan_run_command
+  - exhaust_fan_rotationalvelocity_sensor
   uses:
   - exhaust_air_flowrate_sensor
   - exhaust_air_flowrate_setpoint
