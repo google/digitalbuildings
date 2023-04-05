@@ -6625,8 +6625,6 @@ HWTTCX2:
   - high_water_temperature_alarm_1
   - high_water_temperature_alarm_2
   uses:
-  - hot_water_tank_temperature_sensor_1
-  - hot_water_tank_temperature_sensor_2
   - hot_water_tank_temperature_setpoint
   implements:
   - OPERATIONAL
