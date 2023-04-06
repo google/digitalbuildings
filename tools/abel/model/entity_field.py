@@ -96,7 +96,7 @@ class MissingField(field_translation.UndefinedField):
     return missing_field_instance
 
   def GetSpreadsheetRowMapping(self) -> Dict[str, str]:
-    """Returns a dictionary of spreadsheet headers to MissingField attributes."""
+    """Returns dictionary of spreadsheet headers to MissingField attributes."""
     missing_field_row_map = {
         STANDARD_FIELD_NAME: self.std_field_name,
         RAW_FIELD_NAME: '',
@@ -165,6 +165,7 @@ class MultistateValueField(field_translation.DefinedField):
   def __repr__(self) -> str:
     return f'{self.entity_guid}: {self.std_field_name}'
 
+  # pylint: disable=line-too-long
   @classmethod
   def FromDict(cls, multistate_field_dict: Dict[str, str]):
     """Class method to construct a MultistateValueField instance from a dictionary of device data points by entity field attribute names.
@@ -353,7 +354,8 @@ class DimensionalValueField(field_translation.DefinedField):
       self._units = new_units
 
   def GetSpreadsheetRowMapping(self) -> Dict[str, str]:
-    """Returns a dictionary of DimensionalValueField attributes by spreadsheet headers."""
+    """Returns dict of DimensionalValueField attributes by spreadsheet headers.
+    """
     result_dictionary = {
         STANDARD_FIELD_NAME: self.std_field_name,
         RAW_FIELD_NAME: self.raw_field_name,

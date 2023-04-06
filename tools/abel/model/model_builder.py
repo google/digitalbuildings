@@ -153,9 +153,8 @@ class ModelBuilder(object):
         for state in self.states:
           # Create edges between states and their corresponding Multi-state value field instances.
           if state.reporting_entity_guid == guid:
-            if (
-                state.std_field_name == field.reporting_entity_field_name
-                or state.std_field_name == field.std_field_name
+            if state.std_field_name in (
+                field.reporting_entity_field_name, field.std_field_name
             ):
               if isinstance(field, MultistateValueField):
                 field.AddState(state)

@@ -29,7 +29,7 @@ class AuthenticatorTest(absltest.TestCase):
     with self.assertRaises(FileNotFoundError):
       authenticator.GetGoogleSheetsServiceByToken(gcp_token_path=bad_file_path)
 
-  def testGetGoogleSheetsServiceByCredential_badFilePath_raisesFileNotFoundError(
+  def testGetGoogleSheetsServiceByCred_badFilePath_raisesFileNotFoundError(
       self,
   ):
     bad_file_path = './credential.json'

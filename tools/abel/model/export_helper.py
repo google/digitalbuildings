@@ -276,11 +276,12 @@ class BuildingConfigExport(object):
     """
     return_dict = {CONFIG_UNITS_PRESENT_VALUE: field.raw_field_name}
     if isinstance(field, DimensionalValueField):
+      field_unit_map = field.units.standard_to_raw_unit_map
       return_dict[CONFIG_UNITS] = {
           CONFIG_UNITS_KEY: field.units.raw_unit_path,
           CONFIG_UNITS_VALUES: {
               standard_unit: str(raw_unit)
-              for standard_unit, raw_unit in field.units.standard_to_raw_unit_map.items()
+              for standard_unit, raw_unit in field_unit_map.items()
           },
       }
     elif isinstance(field, MultistateValueField):
