@@ -25,11 +25,11 @@ from model.constants import NAMESPACE
 from model.constants import TYPE_NAME
 from model.entity import ReportingEntity
 from model.site import Site
-from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_CLOUD_DEVICE_ID
-from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_NAMESPACE
-from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_REPORTING_ENTITY_CODE
-from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_REPORTING_GUID
-from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_TYPE_NAME
+from tests.test_constants import TEST_CLOUD_DEVICE_ID
+from tests.test_constants import TEST_NAMESPACE
+from tests.test_constants import TEST_REPORTING_ENTITY_CODE
+from tests.test_constants import TEST_REPORTING_GUID
+from tests.test_constants import TEST_TYPE_NAME
 
 _TEST_REPORTING_ENTITY_DICT = {
     ENTITY_CODE: TEST_REPORTING_ENTITY_CODE,
