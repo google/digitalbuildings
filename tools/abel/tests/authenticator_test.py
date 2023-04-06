@@ -1,4 +1,4 @@
-# Copyright 2022 Google LLC
+# Copyright 2023 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the License);
 # you may not use this file except in compliance with the License.
@@ -21,11 +21,23 @@ from model import authenticator
 class AuthenticatorTest(absltest.TestCase):
   """Tests GetGoogleSheetsService method in authenticator module."""
 
-  def testGetGoogleSheetsServiceRaisesFileNotFoundError(self):
+  def testGetGoogleSheetsServiceByToken_badFilePath_raisesFileNotFoundError(
+      self,
+  ):
     bad_file_path = './token.json'
 
     with self.assertRaises(FileNotFoundError):
-      authenticator.GetGoogleSheetsService(gcp_token_path=bad_file_path)
+      authenticator.GetGoogleSheetsServiceByToken(gcp_token_path=bad_file_path)
+
+  def testGetGoogleSheetsServiceByCredential_badFilePath_raisesFileNotFoundError(
+      self,
+  ):
+    bad_file_path = './credential.json'
+
+    with self.assertRaises(FileNotFoundError):
+      authenticator.GetGoogleSheetsServiceByCredential(
+          gcp_credential_path=bad_file_path
+      )
 
 
 if __name__ == '__main__':
