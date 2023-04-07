@@ -69,7 +69,7 @@ def GetGoogleSheetsServiceByToken(gcp_token_path: str) -> Resource:
     ) from err
   except MutualTLSChannelError as err:
     raise MutualTLSChannelError(
-        'Unable to access google sheet service with credential provided'
+        'Unable to access google sheet service with GCP token provided'
     ) from err
 
 
