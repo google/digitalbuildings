@@ -19,7 +19,7 @@ Before starting the setup and installation process, please ensure that the
 dependencies are met:
 1. You are running **Python 3.9** or higher
 3. You have installed [virtualenv](https://pypi.org/project/virtualenv/)
-2. You have installed the [Google Cloud CLI](https://cloud.google.com/sdk/docs/install)
+2. you have installed the [Google Cloud CLI](https://cloud.google.com/sdk/docs/install)
 
 ### Set up a tooling environment
 
@@ -74,7 +74,13 @@ dependencies are met:
 cd abel
 ```
 
-### Obtain a spreadsheet token for your google sheets account
+### Obtain a GCP OAuth client credential
+
+1. Contact your IoT Technical Program Manager and ask for an oauth client `credential.json` file for authenticating against Google Sheets API.
+
+2. Use the `credential.json` file for ABEL's `--credential` command line argument.
+
+### Obtain a spreadsheet token for your google sheets account if authenticating with a service account
 
 1. [Initialize gcloud CLI](https://cloud.google.com/sdk/docs/initializing)
     1. Run `gcloud init`
@@ -153,10 +159,13 @@ ABEL has a few pieces of core functionality, they are:
 file. Only required for the `Building Config -> Spreadsheet` workflow.
   * [Building Configuration Docs](../../ontology/docs/building_config.md)
 
-`-t` or `--token` path to the GCP project token. Default path for
-  the token is the current directory, but an alternate relative or absolute path
-  may be provided. Only required if the token is stored in a directory that isn't
-  the current directory.
+`-t` or `--token` absolute or relative path to the GCP project token. Either an 
+oauth client credential or gcp project token is required for authentication 
+against Google Sheets service.
+
+`-c` or `--credential` absolute or relative path to a gcp OAuth client 
+credential file. Either an oauth client credential or gcp project token is
+required for authentication against Google Sheets service.
 
 `-p` or `--subscription` fully-qualified path to a Google Cloud Pubsub subscription, e.g. `projects/google.com:your-project/subscriptions/your-subscription`. This parameter is only required for telemetry validation.
 
