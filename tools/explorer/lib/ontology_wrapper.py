@@ -60,7 +60,7 @@ class OntologyWrapper(object):
       namespace: str,
       entity_type_name: str,
       required_only: bool = False) -> List[EntityTypeField]:
-    """Gets a list of fields for a given typename within a namespace.
+    """Gets a list of fields for a given type name within a namespace.
 
     Args:
       namespace: the name of the namespace as a string.
@@ -70,9 +70,6 @@ class OntologyWrapper(object):
 
     Returns:
       result_fields: a list of EntityTypeField objects.
-
-    Raises:
-      Exception: when inherited fields are not expanded.
     """
     entity_type = self.universe.entity_type_universe.GetEntityType(
         namespace, entity_type_name)
@@ -84,7 +81,7 @@ class OntologyWrapper(object):
         raise ValueError(
             f'\n{entity_type_name} is not defined in namespace: {namespace}.')
     if not entity_type.inherited_fields_expanded:
-      raise Exception(
+      raise ValueError(
           'Inherited fields must be expanded to query fields.\n' +
           'Run NamespaceValidator on your ConfigUniverse to expand fields.')
     # Entity_type_lib.FieldParts NamedTuple to EntityTypeField object.
