@@ -1,4 +1,4 @@
-# Copyright 2022 Google LLC
+# Copyright 2023 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the License);
 # you may not use this file except in compliance with the License.
@@ -8,7 +8,7 @@
 #
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an AS IS BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either exintess or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
 """Helper module for exporting a valid Building Configuration or spreadsheet."""
@@ -42,10 +42,13 @@ from model.constants import WRITE
 from model.entity import Entity
 from model.entity import ReportingEntity
 from model.entity import VirtualEntity
-from model.entity_field import EntityField
+from model.entity_field import DimensionalValueField
+from model.entity_field import MissingField
+from model.entity_field import MultistateValueField
 from model.guid_to_entity_map import GuidToEntityMap
 from model.model_builder import ModelBuilder
 from model.model_error import SpreadsheetAuthorizationError
+from validate.field_translation import FieldTranslation
 
 
 class GoogleSheetExport(object):
@@ -59,9 +62,13 @@ class GoogleSheetExport(object):
     """Init."""
     self.guid_to_entity_map = GuidToEntityMap()
 
-  def WriteAllSheets(self, spreadsheet_range: List[str], spreadsheet_id: str,
-                     model_dict: Dict[str, Dict[str, str]],
-                     google_sheets_service: Resource) -> str:
+  def WriteAllSheets(
+      self,
+      spreadsheet_range: List[str],
+      spreadsheet_id: str,
+      model_dict: Dict[str, Dict[str, str]],
+      google_sheets_service: Resource,
+  ) -> str:
     """Translates an ABEL concrete model into a Google Sheets spreadsheet.
 
     Args:
@@ -86,12 +93,14 @@ class GoogleSheetExport(object):
             spreadsheetId=spreadsheet_id,
             range=named_range,
             valueInputOption=VALUE_INPUT_OPTION_RAW,
-            body=body_value_range).execute()
+            body=body_value_range,
+        ).execute()
       except HttpError as http_error:
         raise SpreadsheetAuthorizationError(
             spreadsheet_id=spreadsheet_id,
             resp=http_error.resp,
-            content=http_error.content) from http_error
+            content=http_error.content,
+        ) from http_error
     return spreadsheet_id
 
 
@@ -131,19 +140,26 @@ class BuildingConfigExport(object):
     for entity_guid in site.entities:
       entity = self.guid_to_entity_map.GetEntityByGuid(entity_guid)
       if isinstance(entity, ReportingEntity):
-        entity_yaml_dict.update({
-            entity.bc_guid: self._GetReportingEntityBuildingConfigBlock(entity)
-        })
+        entity_yaml_dict.update(
+            {
+                entity.bc_guid: self._GetReportingEntityBuildingConfigBlock(
+                    entity
+                )
+            }
+        )
       elif isinstance(entity, VirtualEntity):
         entity_yaml_dict.update(
-            {entity.bc_guid: self._GetVirtualEntityBuildingConfigBlock(entity)})
+            {entity.bc_guid: self._GetVirtualEntityBuildingConfigBlock(entity)}
+        )
 
-    entity_yaml_dict.update({
-        site.guid: {
-            CONFIG_CODE: site.code,
-            CONFIG_TYPE: site.namespace + '/' + site.type_name
+    entity_yaml_dict.update(
+        {
+            site.guid: {
+                CONFIG_CODE: site.code,
+                CONFIG_TYPE: site.namespace + '/' + site.type_name,
+            }
         }
-    })
+    )
     try:
       with open(filepath, WRITE, encoding=UTF_8) as file:
         for key, value in entity_yaml_dict.items():
@@ -154,7 +170,8 @@ class BuildingConfigExport(object):
     return entity_yaml_dict
 
   def _GetReportingEntityBuildingConfigBlock(
-      self, entity: ReportingEntity) -> Dict[str, object]:
+      self, entity: ReportingEntity
+  ) -> Dict[str, object]:
     """Returns a Building Config formatted reporting entity block dictionary.
 
     Args:
@@ -166,30 +183,44 @@ class BuildingConfigExport(object):
     reporting_entity_yaml = {
         CONFIG_CLOUD_DEVICE_ID: str(entity.cloud_device_id),
         CONFIG_CODE: entity.code,
-        CONFIG_ETAG: entity.etag
+        CONFIG_ETAG: entity.etag,
     }
     reporting_entity_yaml.update(self._GetConnections(entity=entity))
     if entity.translations:
       reporting_entity_yaml[CONFIG_TRANSLATION] = {}
       for field in entity.translations:
         if field.reporting_entity_field_name:
-          reporting_entity_yaml[CONFIG_TRANSLATION].update({
-              field.reporting_entity_field_name:
-                  BC_MISSING if field.missing else self._TranslateField(field)
-          })
+          reporting_entity_yaml[CONFIG_TRANSLATION].update(
+              {
+                  field.reporting_entity_field_name: (
+                      BC_MISSING
+                      if isinstance(field, MissingField)
+                      else self._TranslateField(field)
+                  )
+              }
+          )
         else:
           reporting_entity_yaml[CONFIG_TRANSLATION].update(
-              {field.standard_field_name: self._TranslateField(field)})
+              {
+                  field.std_field_name: (
+                      BC_MISSING
+                      if isinstance(field, MissingField)
+                      else self._TranslateField(field)
+                  )
+              }
+          )
     reporting_entity_yaml.update(
-        {CONFIG_TYPE: entity.namespace + '/' + str(entity.type_name)})
+        {CONFIG_TYPE: entity.namespace + '/' + str(entity.type_name)}
+    )
     return reporting_entity_yaml
 
   def _GetVirtualEntityBuildingConfigBlock(
-      self, entity: VirtualEntity) -> Dict[str, object]:
+      self, entity: VirtualEntity
+  ) -> Dict[str, object]:
     """Returns a Building Config formatted virtual entity block dictionary.
 
     Args:
-      entity: A VirtualEntity instance.
+      entity: A VirutalEntity instance.
 
     Returns:
       A dicitionary formatted for Building Config ready to be parsed into yaml.
@@ -199,7 +230,8 @@ class BuildingConfigExport(object):
     if entity.links:
       virtual_entity_yaml.update({CONFIG_LINKS: self._SortLinks(entity)})
     virtual_entity_yaml.update(
-        {CONFIG_TYPE: entity.namespace + '/' + str(entity.type_name)})
+        {CONFIG_TYPE: entity.namespace + '/' + str(entity.type_name)}
+    )
     return virtual_entity_yaml
 
   def _GetConnections(self, entity: Entity) -> Dict[str, List[str]]:
@@ -229,33 +261,37 @@ class BuildingConfigExport(object):
       for field in entity.links:
         if field.reporting_entity_guid not in link_map:
           link_map[field.reporting_entity_guid] = {
-              field.standard_field_name: field.reporting_entity_field_name
+              field.std_field_name: field.reporting_entity_field_name
           }
-        else:
-          link_map[field.reporting_entity_guid].update(
-              {field.standard_field_name: field.reporting_entity_field_name})
     return link_map
 
-  def _TranslateField(self, field: EntityField) -> Dict[str, object]:
+  def _TranslateField(self, field: FieldTranslation) -> Dict[str, object]:
     """Returns a Building Configuration compliant translation mapping.
 
     Args:
-      field: An EntityField instance.
+      field: A FieldTranslation instance.
 
     Returns:
       A translation mapping.
     """
     return_dict = {CONFIG_UNITS_PRESENT_VALUE: field.raw_field_name}
-    if field.units:
+    if isinstance(field, DimensionalValueField):
+      field_unit_map = field.units.standard_to_raw_unit_map
       return_dict[CONFIG_UNITS] = {
           CONFIG_UNITS_KEY: field.units.raw_unit_path,
           CONFIG_UNITS_VALUES: {
-              standard_unit: str(raw_unit) for standard_unit, raw_unit in
-              field.units.standard_to_raw_unit_map.items()
-          }
+              standard_unit: str(raw_unit)
+              for standard_unit, raw_unit in field_unit_map.items()
+          },
       }
-    elif field.states:
-      return_dict[CONFIG_STATES] = {
-          state.standard_state: str(state.raw_state) for state in field.states
-      }
+    elif isinstance(field, MultistateValueField):
+      if not field.states:
+        raise ValueError(
+            f'field {field.reporting_entity_field_name} defined as a'
+            ' multi-state value but has no states.'
+        )
+      else:
+        return_dict[CONFIG_STATES] = {
+            state.standard_state: str(state.raw_state) for state in field.states
+        }
     return return_dict
