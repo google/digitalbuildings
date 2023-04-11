@@ -1187,6 +1187,7 @@ literals:
     fixed_max: 100.0
 
 # Added 11/12/2019
+
 - gas_flowrate_sensor:
     fixed_min: 0.0
     flexible_max: 0.003932896
@@ -1199,6 +1200,9 @@ literals:
 - gas_temperature_sensor:
     flexible_min: 283.1481481
     flexible_max: 533.1481481
+- volume_accumulator:
+    flexible_min: 0
+    flexible_max: 318000
 
 # Added 12/17/2019
 - cooling_water_valve_percentage_command:
@@ -3143,6 +3147,10 @@ literals:
   - ACTIVE
   - INACTIVE
 - failed_discharge_air_isolation_damper_alarm:
+  - ACTIVE
+  - INACTIVE
+
+- high_water_temperature_alarm:
   - ACTIVE
   - INACTIVE
 
