@@ -92,16 +92,14 @@ def _ParseArgs() -> argparse.ArgumentParser:
       required=False,
       default=None,
       help='Absolute path to report output directory',
-      metavar='report-directory',
-  )
+      metavar='report-directory')
 
   parser.add_argument(
       '--udmi',
       dest='udmi',
       required=False,
       action='store_true',
-      help='Parse messages as UDMI',
-      metavar='is udmi')
+      help='Parse messages as UDMI')
 
   return parser
 
