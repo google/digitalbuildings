@@ -116,5 +116,5 @@ if __name__ == '__main__':
       service_account=args.service_account,
       report_directory=args.report_directory,
       timeout=int(args.timeout),
-      is_udmi=bool(is_udmi),
+      is_udmi=is_udmi,
   )
