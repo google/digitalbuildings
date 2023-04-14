@@ -74,8 +74,6 @@ UPS_SS_BBM:
   - UPS
   - SS
   - BBM
-  uses:
-  - low_battery_alarm
 
 UPS_PWM:
   guid: "64f90598-969d-4cf6-ace6-50793a46aed8"
