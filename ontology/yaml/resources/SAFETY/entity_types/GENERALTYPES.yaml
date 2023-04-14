@@ -105,6 +105,7 @@ SSS:
   - /SENSOR
   
 ASD:
+  guid: "caff049c-045c-44d3-943e-4acd2ccad03c"
   description: "Aspirating type, smoke detector"
   is_abstract: true
   implements:
@@ -122,6 +123,7 @@ HDS:
   - /SENSOR
 
 MFSD:
+  guid: "27cbded8-5f48-4c65-8b1f-e2fc1a8aac1b"
   description: "Motorized fire smoke damper"
   is_abstract: true
   implements:
