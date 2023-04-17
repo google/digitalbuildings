@@ -380,7 +380,14 @@ class InstanceValidator(object):
     return True
 
   def _ValidateCloudDeviceId(self, entity: EntityInstance) -> bool:
-    """Validates a cloud device id exists and conforms to regex definition.
+    """Cloud id validation.
+
+    Validates that:
+      - If a cloud_device_id is present it conforms to the Regex Pattern
+      '[0-9]{16}'
+      - If a cloud_device_id is present the entity has translations defined for
+        ADD, UPDATE, and EXPORT operations.
+      - If the entity has translations defined then it has a cloud_device_id
 
     Args:
       entity: EntityInstance to validate.
@@ -388,7 +395,19 @@ class InstanceValidator(object):
     Returns:
       Returns true if cloud device id exists and conforms to regex definition.
     """
-    if entity.translation and not entity.cloud_device_id:
+    if entity.cloud_device_id and not entity.translation:
+      if entity.operation in [
+          parse.EntityOperation.UPDATE,
+          parse.EntityOperation.ADD,
+          parse.EntityOperation.EXPORT,
+      ]:
+        print(
+            f'[ERROR]\tEntity {entity.guid} ({entity.code}) has a'
+            ' cloud_device_id but is missing a translation. Reporting devices'
+            ' must have a translation when cloud_device_id is present for ADD,'
+            ' UPDATE, EXPORT opertions'
+        )
+    elif entity.translation and not entity.cloud_device_id:
       print(
           f'[ERROR]\tEntity {entity.guid} ({entity.code}) must have a'
           ' cloud_device_id, please refer to the documentation:'
@@ -476,19 +495,6 @@ class InstanceValidator(object):
     Returns:
       Returns true when the translation is valid on a reporting entity.
     """
-
-    if entity.cloud_device_id and not entity.translation:
-      if entity.operation in [
-          parse.EntityOperation.UPDATE,
-          parse.EntityOperation.ADD,
-          parse.EntityOperation.EXPORT,
-      ]:
-        print(
-            f'[ERROR]\tEntity {entity.guid} ({entity.code}) has a'
-            ' cloud_device_id but is missing a translation. Reporting devices'
-            ' must have a translation'
-        )
-        return False
 
     if entity.translation is None:
       return True
