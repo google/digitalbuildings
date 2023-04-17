@@ -46,7 +46,7 @@ from model.entity_field import DimensionalValueField
 from model.entity_field import MissingField
 from model.entity_field import MultistateValueField
 from model.guid_to_entity_map import GuidToEntityMap
-from model.model_builder import ModelBuilder
+from model.model_builder import Model
 from model.model_error import SpreadsheetAuthorizationError
 from validate.field_translation import FieldTranslation
 
@@ -112,14 +112,14 @@ class BuildingConfigExport(object):
     guid_to_entity_map: A global mapping of GUIDs to Entity instances.
   """
 
-  def __init__(self, model_builder: ModelBuilder):
+  def __init__(self, model: Model):
     """Init.
 
     Args:
-      model_builder: Instance of ModelBuilder class to be translated into a
+      model: Instance of Model class to be translated into a
         Building Configuration file.
     """
-    self.model = model_builder
+    self.model = model
     self.guid_to_entity_map = GuidToEntityMap()
 
   # TODO(b/233756557) Allow user to set config_metadata operation.

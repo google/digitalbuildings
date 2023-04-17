@@ -30,16 +30,16 @@ from model.constants import TYPE_NAME
 from model.entity import ReportingEntity
 from model.entity import VirtualEntity
 from model.entity_field import DimensionalValueField
-from tests.test_constants import TEST_CLOUD_DEVICE_ID
-from tests.test_constants import TEST_DIMENSIONAL_VALUE_FIELD_DICT
-from tests.test_constants import TEST_NAMESPACE
-from tests.test_constants import TEST_REPORTING_ENTITY_CODE
-from tests.test_constants import TEST_REPORTING_ENTITY_DICT
-from tests.test_constants import TEST_REPORTING_GUID
-from tests.test_constants import TEST_TYPE_NAME
-from tests.test_constants import TEST_VIRTUAL_ENTITY_CODE
-from tests.test_constants import TEST_VIRTUAL_ENTITY_DICT
-from tests.test_constants import TEST_VIRTUAL_GUID
+from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_CLOUD_DEVICE_ID
+from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_DIMENSIONAL_VALUE_FIELD_DICT
+from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_NAMESPACE
+from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_REPORTING_ENTITY_CODE
+from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_REPORTING_ENTITY_DICT
+from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_REPORTING_GUID
+from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_TYPE_NAME
+from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_VIRTUAL_ENTITY_CODE
+from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_VIRTUAL_ENTITY_DICT
+from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_VIRTUAL_GUID
 
 
 # pylint: disable=unnecessary-dunder-call
