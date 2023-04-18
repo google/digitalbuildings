@@ -188,6 +188,6 @@ BBM:
   is_abstract: true
   uses:
   - load_bypass_status
-  - use_battery_status
+  - battery_status
   opt_uses:
   - low_battery_alarm

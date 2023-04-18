@@ -20,6 +20,7 @@ WSR_STD:
   is_canonical: true
   implements:
   - WSR
-  opt_uses:
+  uses:
   - water_flowrate_status
+  opt_uses:
   - lost_power_alarm

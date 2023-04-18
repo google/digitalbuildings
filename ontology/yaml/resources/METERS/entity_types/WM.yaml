@@ -35,3 +35,14 @@ WM_WF:
   opt_uses:
   - water_linearvelocity_sensor
   - water_volume_accumulator
+
+WM_WFM:
+  description: "Generic water flow rate meter."
+  implements:
+  - WM
+  is_canonical: true
+  uses:
+  - water_flowrate_sensor
+  opt_uses:
+  - water_volume_accumulator
+  - water_linearvelocity_sensor

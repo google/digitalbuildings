@@ -35,6 +35,20 @@ LVLM:
   opt_uses:
   - percentage_sensor
 
+SWCM:
+  description: "Solenoid water valve control and monitoring."
+  is_abstract: true
+  uses:
+  - valve_command
+  - valve_status
+  
+MWCM:
+  description: "Motorized water valve control and monitoring."
+  is_abstract: true
+  uses:
+  - valve_command
+  - valve_status
+
 WCR:
   guid: "4dcd2843-a2bc-4cf0-8da6-3595da415120"
   description: "Water conditioner"

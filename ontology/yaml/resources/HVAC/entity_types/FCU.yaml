@@ -1699,7 +1699,7 @@ FCU_DXZTC_DFSS:
   - DXZTC
   - DFSS
   opt_uses:
-  - panel_controller_status
+  - failed_alarm
   - filter_alarm
 
 FCU_RHDHS_DXDC_DFSS:

@@ -40,4 +40,12 @@ RO:
   is_abstract: true
   implements:
   - EQUIPMENT
+
+VLV:
+  description: "Tag for valves. Valves are devices which control the flow of water. "
+  is_abstract: true
+  opt_uses:
+  - failed_communication_alarm
+  implements:
+  - EQUIPMENT
   

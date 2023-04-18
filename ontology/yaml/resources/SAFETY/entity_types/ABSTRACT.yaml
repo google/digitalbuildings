@@ -101,8 +101,8 @@ MDC:
   implements:
   - EQUIPMENT
   uses:
-  - motorized_damper_position_status
-  - motorized_damper_position_command
+  - damper_status
+  - damper_command
 
 EHT:
   guid: "5706d4c8-be7a-45fd-a94c-347a1b225569"
@@ -110,3 +110,13 @@ EHT:
   is_abstract: true
   implements:
   - EQUIPMENT
+
+ASD:
+  description: "Aspirating type, smoke detector"
+  is_abstract: true
+  implements:
+  - EQUIPMENT
+  opt_uses:
+  - low_smoke_alarm
+  - medium_smoke_alarm
+  - fire_alarm

@@ -34,6 +34,18 @@ FACP_FA2X:
   opt_uses:
   - panel_alarm
 
+FACP_PAS:
+  guid: "34d56a9a-15ca-4921-a851-eb13c7be7dfd"
+  description: "Fire alarm panel with Pre-action suppression."
+  is_canonical: true
+  implements:
+  - FACP
+  uses:
+  - fire_alarm
+  - supervisor_alarm
+  - water_flowrate_status
+  - air_pressure_status
+
 FACP_ALM:
   guid: "c8858bab-a98c-4586-a236-1e5797b37161"
   description: "Fire alarm panel with alarm."

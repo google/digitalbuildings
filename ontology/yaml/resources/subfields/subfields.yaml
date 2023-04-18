@@ -164,7 +164,6 @@ descriptor:
   mixed: "Process or component used to mix multiple streams of air."
   mixing: "Process of mixing substance."
   model: "Particular design version of an asset (e.g. model_label)."
-  motorized: "Process or component driven by a motor"
   neutral: "Line in the electrical cirucit which carries current back to the source. Distinct from ground."
   next: "Something that occurs directly in time after the present or most recent one."
   no: "Nitrogen monoxide, a colorless gas. It is a toxic air pollutant."

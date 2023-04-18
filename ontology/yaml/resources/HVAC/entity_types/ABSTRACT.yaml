@@ -6285,8 +6285,8 @@ MWCM:
   description: "Motorized water valve control and monitoring."
   is_abstract: true
   uses:
-  - motorized_valve_position_command
-  - motorized_valve_position_status
+  - valve_command
+  - valve_status
 
 SCRSS:
   guid: "636b1262-b08b-4e1b-b130-e1a510b79a0c"

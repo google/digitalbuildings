@@ -1597,31 +1597,13 @@ literals:
 - load_bypass_status:
   - OFF
   - ON
-- use_battery_status:
-  - OFF
-  - ON
 - gas_release_status:
   - OPEN
   - CLOSED
-- panel_controller_status:
-  - NORMAL
-  - UNKNOWN
-- motorized_valve_position_command:
-  - CLOSED
-  - OPEN
-- motorized_valve_position_status:
-  - CLOSED
-  - OPEN
-- motorized_damper_position_command:
-  - CLOSED
-  - OPEN
-- motorized_damper_position_status:
-  - CLOSED
-  - OPEN
-- high_air_static_pressure_alarm:
+- high_discharge_air_static_pressure_alarm:
   - ACTIVE
   - INACTIVE
-- low_air_static_pressure_alarm:
+- low_discharge_air_static_pressure_alarm:
   - ACTIVE
   - INACTIVE
 
@@ -2116,8 +2098,11 @@ literals:
   - OPEN
   - CLOSED
 
-# Damper status
+# Dampers
 - damper_status:
+  - OPEN
+  - CLOSED
+- damper_command:
   - OPEN
   - CLOSED
 - lighting_percentage_sensor: # For relative ranged illuminance inputs.

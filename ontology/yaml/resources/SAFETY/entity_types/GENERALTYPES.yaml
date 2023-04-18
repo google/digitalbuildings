@@ -104,17 +104,6 @@ SSS:
   implements:
   - /SENSOR
   
-ASD:
-  guid: "caff049c-045c-44d3-943e-4acd2ccad03c"
-  description: "Aspirating type, smoke detector"
-  is_abstract: true
-  implements:
-  - EQUIPMENT
-  opt_uses:
-  - low_smoke_alarm
-  - medium_smoke_alarm
-  - fire_alarm
-
 HDS:
   guid: "025f5773-7626-4a30-bd44-ef0845a92215"
   description: "Hydrogen Sensor."
