@@ -36,6 +36,7 @@ LVLM:
   - percentage_sensor
 
 SWCM:
+  guid: "66cfede5-b839-4504-82ac-60f89f7bbb45"
   description: "Solenoid water valve control and monitoring."
   is_abstract: true
   uses:
@@ -43,6 +44,7 @@ SWCM:
   - valve_status
   
 MWCM:
+  guid: "813c8a91-7f08-47ac-af20-95dda60f3211"
   description: "Motorized water valve control and monitoring."
   is_abstract: true
   uses:

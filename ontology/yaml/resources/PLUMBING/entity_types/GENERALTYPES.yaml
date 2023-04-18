@@ -42,6 +42,7 @@ RO:
   - EQUIPMENT
 
 VLV:
+  guid: "ffa75634-a382-494f-a75e-bcd41cb98f2e"
   description: "Tag for valves. Valves are devices which control the flow of water. "
   is_abstract: true
   opt_uses:
