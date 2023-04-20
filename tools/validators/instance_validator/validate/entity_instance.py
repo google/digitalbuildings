@@ -808,7 +808,7 @@ class InstanceValidator(object):
     if entity_type:
       for field_name, field in entity_type.GetAllFields().items():
         if not field.optional and field_name not in found_fields:
-          print(f'[ERROR]\t Required field {field_name} is missing from links for {entity.guid} ({entity.code})')
+          print(f'[ERROR]\t Required field {field_name} is missing from links for entity with Guid: {entity.guid} and code: ({entity.code})')
           is_valid = False
 
     return is_valid
