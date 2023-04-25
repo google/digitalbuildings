@@ -380,7 +380,14 @@ class InstanceValidator(object):
     return True
 
   def _ValidateCloudDeviceId(self, entity: EntityInstance) -> bool:
-    """Validates a cloud device id exists and conforms to regex definition.
+    """Cloud id validation.
+
+    Validates that:
+      - If a cloud_device_id is present it conforms to the Regex Pattern
+      '[0-9]{16}'
+      - If a cloud_device_id is present the entity has translations defined for
+        ADD, UPDATE, and EXPORT operations.
+      - If the entity has translations defined then it has a cloud_device_id
 
     Args:
       entity: EntityInstance to validate.
@@ -388,7 +395,19 @@ class InstanceValidator(object):
     Returns:
       Returns true if cloud device id exists and conforms to regex definition.
     """
-    if entity.translation and not entity.cloud_device_id:
+    if entity.cloud_device_id and not entity.translation:
+      if entity.operation in [
+          parse.EntityOperation.UPDATE,
+          parse.EntityOperation.ADD,
+          parse.EntityOperation.EXPORT,
+      ]:
+        print(
+            f'[ERROR]\tEntity {entity.guid} ({entity.code}) has a'
+            ' cloud_device_id but is missing a translation. Reporting devices'
+            ' must have a translation when cloud_device_id is present; unless the'
+            ' operation is DELETE'
+        )
+    elif entity.translation and not entity.cloud_device_id:
       print(
           f'[ERROR]\tEntity {entity.guid} ({entity.code}) must have a'
           ' cloud_device_id, please refer to the documentation:'
@@ -477,19 +496,6 @@ class InstanceValidator(object):
       Returns true when the translation is valid on a reporting entity.
     """
 
-    if entity.cloud_device_id and not entity.translation:
-      if entity.operation in [
-          parse.EntityOperation.UPDATE,
-          parse.EntityOperation.ADD,
-          parse.EntityOperation.EXPORT,
-      ]:
-        print(
-            f'[ERROR]\tEntity {entity.guid} ({entity.code}) has a'
-            ' cloud_device_id but is missing a translation. Reporting devices'
-            ' must have a translation'
-        )
-        return False
-
     if entity.translation is None:
       return True
 
@@ -544,7 +550,6 @@ class InstanceValidator(object):
     found_units = {}
     type_fields = entity_type.GetAllFields()
     for qualified_field_name, ft in found_fields.items():
-      is_valid = True
 
       if not self._FieldTranslationIsValid(qualified_field_name, ft, entity):
         is_valid = False
@@ -594,7 +599,7 @@ class InstanceValidator(object):
 
       if isinstance(ft, ft_lib.DimensionalValue):
         if is_udmi:
-          is_valid = self._IsUdmiCompliant(entity, ft)
+          is_valid &= self._IsUdmiCompliant(entity, ft)
 
         for std_unit, raw_unit in ft.unit_mapping.items():
           if std_unit not in found_units:
@@ -613,24 +618,25 @@ class InstanceValidator(object):
 
     return is_valid
 
-  def _FieldTranslationIsValid(
+  def _ValidateUnits(
       self,
       qualified_field_name: str,
       ft: ft_lib.FieldTranslation,
       entity: EntityInstance,
   ):
-    """Returns a boolean indicating whether or not the translation is valid.
+    """Returns a boolean indicating whether or not the field units are valid.
 
     Method assumes field has already been checked for existence in the ontology.
 
     Args:
       qualified_field_name: A qualified field name for the field
-      ft: Subclass of `FieldTranslation` for the field
+      ft: Subclass of `FieldTranslation` for the field of the following:
+        DimensionalValue, NonDimensionalValue
       entity: Instance of EntityInstance class
-    """
-    if isinstance(ft, ft_lib.UndefinedField):
-      return True
 
+    Returns:
+      true if units are valid or if units aren't required for the field
+    """
     valid_units = self.universe.GetUnitsForMeasurement(qualified_field_name)
     if valid_units and set(valid_units).difference({'no_units'}):
       if not isinstance(ft, ft_lib.DimensionalValue):
@@ -648,24 +654,49 @@ class InstanceValidator(object):
         )
         return False
 
-      is_valid = True
       unit = list(ft.unit_mapping.keys())[0]
       if unit not in valid_units:
         print(
             f'Field {qualified_field_name} has an undefined measurement unit:'
             + f' {unit}'
         )
-        is_valid = False
-      return is_valid
+        return False
+      return True
 
-    if isinstance(ft, ft_lib.DimensionalValue) and set(ft.unit_mapping) != {
-        'no_units'
-    }:
+    if isinstance(ft, ft_lib.DimensionalValue):
+      if set(ft.unit_mapping) == {'no_units'}:
+        return True
       print(
-          f'Units are provided for non-dimensional value {qualified_field_name}'
+          'Units are provided for dimensional value'
+          f' {qualified_field_name} that is defined to have "no_units" in the'
+          ' ontology'
       )
       return False
 
+    if isinstance(ft, ft_lib.NonDimensionalValue):
+      return True
+
+    return False
+
+  def _ValidateStates(
+      self,
+      qualified_field_name: str,
+      ft: ft_lib.FieldTranslation,
+      entity: EntityInstance,
+  ):
+    """Returns a boolean indicating whether or not the field states are valid.
+
+    Method assumes field has already been checked for existence in the ontology.
+
+    Args:
+      qualified_field_name: A qualified field name for the field
+      ft: Subclass of `FieldTranslation` for the field of the following:
+        MultiStateValue, NonDimensional
+      entity: Instance of EntityInstance class
+
+    Returns:
+      true if the states are valid or if states aren't required for the field
+    """
     valid_states = self.universe.GetStatesByField(qualified_field_name)
     if valid_states:
       if not isinstance(ft, ft_lib.MultiStateValue):
@@ -706,7 +737,49 @@ class InstanceValidator(object):
       )
       return False
 
-    return True
+    if isinstance(ft, ft_lib.NonDimensionalValue):
+      return True
+
+    return False
+
+  def _FieldTranslationIsValid(
+      self,
+      qualified_field_name: str,
+      ft: ft_lib.FieldTranslation,
+      entity: EntityInstance,
+  ):
+    """Returns a boolean indicating whether or not the field is valid.
+
+    Method assumes field has already been checked for existence in the ontology.
+    A field {@code FieldTranslation} is an instance of: {@code UndefinedField},
+    {@code DimensionalValue}, {@code NonDimensionalValue}, or {@code
+    MultistateValue}.
+
+    Args:
+      qualified_field_name: A qualified field name for the field
+      ft: a `FieldTranslation` sublcass, for the field, of the following:
+        UndefinedField, DimensionalValue, NonDimensionalValue, MultiStateValue.
+      entity: Instance of EntityInstance class
+    """
+    if isinstance(ft, ft_lib.UndefinedField):
+      return True
+
+    if isinstance(ft, ft_lib.DimensionalValue):
+      return self._ValidateUnits(qualified_field_name, ft, entity)
+
+    if isinstance(ft, ft_lib.MultiStateValue):
+      return self._ValidateStates(qualified_field_name, ft, entity)
+
+    # field is instantiated as NonDimensionValue at parse time if neither units
+    # or states are defined (for the field) on the entity in the building config.
+    # it is necessary to validate both units and state here according to the
+    # ontology.
+    if isinstance(ft, ft_lib.NonDimensionalValue):
+      return self._ValidateUnits(
+          qualified_field_name, ft, entity
+      ) and self._ValidateStates(qualified_field_name, ft, entity)
+
+    return False
 
   def _ConnectionsAreValid(self, entity: EntityInstance) -> bool:
     """Validate's an entity's connections against the ontology universe.
@@ -808,7 +881,7 @@ class InstanceValidator(object):
     if entity_type:
       for field_name, field in entity_type.GetAllFields().items():
         if not field.optional and field_name not in found_fields:
-          print(f'[ERROR]\t Required field {field_name} is missing from links for entity with Guid: {entity.guid} and code: ({entity.code})')
+          print(f'Required field {field_name} is missing from links')
           is_valid = False
 
     return is_valid

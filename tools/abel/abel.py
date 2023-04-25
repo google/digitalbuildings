@@ -27,7 +27,7 @@ from model.constants import INSTANCE_VALIDATION_REPORT_NAME
 from model.constants import ONTOLOGY_ROOT
 from model.constants import SPREADSHEET_RANGE
 from model.constants import SPREADSHEET_VALIDATOR_FILE_NAME
-from model.model_builder import ModelBuilder
+from model.model_builder import Model
 from validators.spreadsheet_validator import SpreadsheetValidator
 from validate import handler
 
@@ -91,11 +91,10 @@ def _token_spreadsheet_workflow(
     print('Spreadsheet validated.')
     # Build model
     print('Building model.')
-    model_builder = ModelBuilder.FromSpreadsheet(imported_spreadsheet)
-    model_builder.Build()
+    model = Model.Builder.FromSpreadsheet(imported_spreadsheet).Build()
     print('Model built!')
     # export
-    new_bc_exporter = export_helper.BuildingConfigExport(model_builder)
+    new_bc_exporter = export_helper.BuildingConfigExport(model)
     new_bc_exporter.ExportBuildingConfiguration(
         filepath=os.path.join(output_dir, EXPORT_BUILDING_CONFIG_NAME)
     )
@@ -151,11 +150,10 @@ def _token_bc_workflow(
       filepath=bc_filepath
   )
   print('Building model from building configuration file.')
-  model = ModelBuilder.FromBuildingConfig(
+  model = Model.Builder.FromBuildingConfig(
       site=imported_building_config[0],
       building_config_dict=imported_building_config[1],
-  )
-  model.Build()
+  ).Build()
   print('Exporting to spreadsheet to Google Sheets')
   model_dict = model.ToModelDictionary()
   export_engine = export_helper.GoogleSheetExport()
@@ -226,12 +224,12 @@ def _credential_spreadsheet_workflow(
     print('Spreadsheet validated.')
     # Build model
     print('Parsing Spreadsheet')
-    model_builder = ModelBuilder.FromSpreadsheet(imported_spreadsheet)
+    model_builder = Model.Builder.FromSpreadsheet(imported_spreadsheet)
     print('Building model.')
-    model_builder.Build()
+    model = model_builder.Build()
     print('Model built!')
     # export
-    new_bc_exporter = export_helper.BuildingConfigExport(model_builder)
+    new_bc_exporter = export_helper.BuildingConfigExport(model)
     new_bc_exporter.ExportBuildingConfiguration(
         filepath=os.path.join(output_dir, EXPORT_BUILDING_CONFIG_NAME)
     )
@@ -283,11 +281,10 @@ def _credential_bc_workflow(
       filepath=bc_filepath
   )
   print('Building model from building configuration file.')
-  model = ModelBuilder.FromBuildingConfig(
+  model = Model.Builder.FromBuildingConfig(
       site=imported_building_config[0],
       building_config_dict=imported_building_config[1],
-  )
-  model.Build()
+  ).Build()
   print('Exporting to spreadsheet to Google Sheets')
   model_dict = model.ToModelDictionary()
   export_engine = export_helper.GoogleSheetExport()

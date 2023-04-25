@@ -26,6 +26,7 @@ from model.constants import ENTITY_CODE
 from model.constants import ENTITY_FIELDS
 from model.constants import ETAG
 from model.constants import IS_REPORTING
+from model.constants import METADATA
 from model.constants import MISSING
 from model.constants import NAMESPACE
 from model.constants import NO_UNITS
@@ -104,6 +105,17 @@ TEST_REPORTING_ENTITY_DICT = {
     CLOUD_DEVICE_ID: TEST_CLOUD_DEVICE_ID,
     TYPE_NAME: TEST_TYPE_NAME,
     IS_REPORTING: 'TRUE',
+}
+
+TEST_REPORTING_ENTITY_DICT_NO_GUID = {
+    ENTITY_CODE: TEST_REPORTING_ENTITY_CODE,
+    BC_GUID: None,
+    NAMESPACE: TEST_NAMESPACE,
+    ETAG: TEST_ETAG,
+    CLOUD_DEVICE_ID: TEST_CLOUD_DEVICE_ID,
+    TYPE_NAME: TEST_TYPE_NAME,
+    IS_REPORTING: 'TRUE',
+    METADATA + '.test': 'test metadata',
 }
 
 TEST_VIRTUAL_ENTITY_DICT = {

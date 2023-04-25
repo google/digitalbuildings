@@ -214,8 +214,8 @@ def RunValidation(
   finally:
     sys.stdout = saved_stdout
     if report_file:
-      print(f'[INFO]\tInstance validation report generated: {report_file}')
       report_file.close()
+      print(f'[INFO]\tInstance validation report generated: {report_file.name}')
     print('[INFO]\tInstance validation completed.')
 
 
