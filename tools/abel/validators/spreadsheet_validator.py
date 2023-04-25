@@ -51,6 +51,7 @@ from model.constants import STANDARD_FIELD_NAME
 from model.constants import STANDARD_UNIT_VALUE
 from model.constants import STATES
 from model.constants import TARGET_ENTITY_CODE
+from model.constants import TYPE_NAME
 from validators.spreadsheet_error import BaseSpreadsheetError
 from validators.spreadsheet_error import ConnectionDependencyError
 from validators.spreadsheet_error import CrossSheetDependencyError
@@ -202,6 +203,8 @@ class SpreadsheetValidator(object):
     """
     validation_errors = []
     for row_number, row in enumerate(parsed_sheet, _ROW_START_INDEX):
+      print(row)
+      print(row.get(TYPE_NAME))
       for header in col_headers_values:
         if not row[header]:
           validation_errors.append(
@@ -441,7 +444,7 @@ class SpreadsheetValidator(object):
     """Validates that a spreadsheet does not contain duplicate entity codes.
 
     Args:
-      sheet: A sheet to be validated for dulicate codes.
+      sheet: Entities sheet to be validated for dulicate codes.
 
     Returns:
       A list of SpreadsheetError instances for duplicate entity codes.
@@ -471,7 +474,7 @@ class SpreadsheetValidator(object):
     """Validates a building code conforms to the BUILDING_CODE_REGEX pattern.
 
     Args:
-      sheet: Sheet containing building code.
+      sheet: A Sites Sheet containing building code.
 
     Returns:
       List of SpreadsheetError instances.

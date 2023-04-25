@@ -15,6 +15,8 @@
 
 import os
 
+from unittest import mock
+import uuid
 from absl.testing import absltest
 
 from model import import_helper
@@ -27,19 +29,20 @@ from model.entity import ReportingEntity
 from model.entity_field import MissingField
 from model.entity_field import MultistateValueField
 from model.guid_to_entity_map import GuidToEntityMap
-from model.model_builder import ModelBuilder
+from model.model_builder import Model
 from model.site import Site
 from model.state import State
-from tests.test_constants import TEST_CONNECTION_DICT
-from tests.test_constants import TEST_DIMENSIONAL_VALUE_FIELD_DICT
-from tests.test_constants import TEST_FIELD_DICT_NO_UNITS
-from tests.test_constants import TEST_MISSING_FIELD_DICT
-from tests.test_constants import TEST_MULTISTATE_VALUE_FIELD_DICT
-from tests.test_constants import TEST_REPORTING_ENTITY_DICT
-from tests.test_constants import TEST_RESOURCES
-from tests.test_constants import TEST_SITE_DICT
-from tests.test_constants import TEST_STATE_DICT
-from tests.test_constants import TEST_VIRTUAL_ENTITY_DICT
+from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_CONNECTION_DICT
+from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_DIMENSIONAL_VALUE_FIELD_DICT
+from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_FIELD_DICT_NO_UNITS
+from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_MISSING_FIELD_DICT
+from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_MULTISTATE_VALUE_FIELD_DICT
+from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_REPORTING_ENTITY_DICT
+from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_REPORTING_ENTITY_DICT_NO_GUID
+from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_RESOURCES
+from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_SITE_DICT
+from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_STATE_DICT
+from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_VIRTUAL_ENTITY_DICT
 
 
 class ModelBuilderTest(absltest.TestCase):
@@ -62,8 +65,7 @@ class ModelBuilderTest(absltest.TestCase):
     }
     self.guid_to_entity_map.Clear()
 
-    model = ModelBuilder.FromSpreadsheet(test_spreadsheet)
-    model.Build()
+    model = Model.Builder.FromSpreadsheet(test_spreadsheet).Build()
     # Traversing through the model to check that model is connected properly
     added_entity = self.guid_to_entity_map.GetEntityByGuid(
         model.site.entities[0]
@@ -86,7 +88,41 @@ class ModelBuilderTest(absltest.TestCase):
         ReportingEntity.FromDict(TEST_REPORTING_ENTITY_DICT).code,
     )
 
-  def testFromSpreadsheet(self):
+  @mock.patch.object(uuid, 'uuid4')
+  def testFromSpreadsheet_reportingEntityNoGuid_createsGuidFromUuid(
+      self, mock_uuid
+  ):
+    mock_uuid.uuid4().return_value = 'uuid-created-guid'
+    test_spreadsheet = {
+        SITES: [TEST_SITE_DICT],
+        ENTITIES: [
+            TEST_REPORTING_ENTITY_DICT_NO_GUID,
+            TEST_VIRTUAL_ENTITY_DICT,
+        ],
+        ENTITY_FIELDS: [
+            TEST_DIMENSIONAL_VALUE_FIELD_DICT,
+            TEST_FIELD_DICT_NO_UNITS,
+            TEST_MISSING_FIELD_DICT,
+        ],
+        CONNECTIONS: [TEST_CONNECTION_DICT],
+        STATES: [TEST_STATE_DICT],
+    }
+    self.guid_to_entity_map.Clear()
+
+    model = Model.Builder.FromSpreadsheet(test_spreadsheet).Build()
+
+    mock_uuid.assert_called_once_with()
+    self.assertIsInstance(
+        self.guid_to_entity_map.GetEntityByGuid(model.site.guid), Site
+    )
+    self.assertEqual(model.site, Site.FromDict(TEST_SITE_DICT))
+    self.assertLen(model.entities, 2)
+    self.assertLen(model.fields, 3)
+    self.assertLen(model.connections, 1)
+    self.assertLen(model.states, 1)
+    self.assertLen(model.guid_to_entity_map.GetGuidToEntityMap(), 3)
+
+  def testFromSpreadsheet_buildsModel(self):
     test_spreadsheet = {
         SITES: [TEST_SITE_DICT],
         ENTITIES: [TEST_REPORTING_ENTITY_DICT, TEST_VIRTUAL_ENTITY_DICT],
@@ -100,7 +136,7 @@ class ModelBuilderTest(absltest.TestCase):
     }
     self.guid_to_entity_map.Clear()
 
-    model = ModelBuilder.FromSpreadsheet(test_spreadsheet)
+    model = Model.Builder.FromSpreadsheet(test_spreadsheet).Build()
 
     self.assertIsInstance(
         self.guid_to_entity_map.GetEntityByGuid(model.site.guid), Site
@@ -110,6 +146,7 @@ class ModelBuilderTest(absltest.TestCase):
     self.assertLen(model.fields, 3)
     self.assertLen(model.connections, 1)
     self.assertLen(model.states, 1)
+    self.assertLen(model.guid_to_entity_map.GetGuidToEntityMap(), 3)
 
   def testFromBuildingConfig(self):
     self.guid_to_entity_map.Clear()
@@ -117,10 +154,10 @@ class ModelBuilderTest(absltest.TestCase):
         filepath=os.path.join(TEST_RESOURCES, 'good_test_building_config.yaml')
     )
 
-    model = ModelBuilder.FromBuildingConfig(
+    model = Model.Builder.FromBuildingConfig(
         site=imported_building_config[0],
         building_config_dict=imported_building_config[1],
-    )
+    ).Build()
 
     self.assertIsInstance(
         self.guid_to_entity_map.GetEntityByGuid(model.site.guid), Site
@@ -130,6 +167,7 @@ class ModelBuilderTest(absltest.TestCase):
     self.assertLen(model.fields, 9)
     self.assertLen(model.connections, 1)
     self.assertLen(model.states, 2)
+    self.assertLen(model.guid_to_entity_map.GetGuidToEntityMap(), 7)
 
   def testFromBuildingConfigWithMissingFields(self):
     self.guid_to_entity_map.Clear()
@@ -139,10 +177,10 @@ class ModelBuilderTest(absltest.TestCase):
         )
     )
 
-    model = ModelBuilder.FromBuildingConfig(
+    model = Model.Builder.FromBuildingConfig(
         site=imported_building_config[0],
         building_config_dict=imported_building_config[1],
-    )
+    ).Build()
 
     self.assertIsInstance(
         self.guid_to_entity_map.GetEntityByGuid(model.site.guid), Site
@@ -156,6 +194,7 @@ class ModelBuilderTest(absltest.TestCase):
     )
     self.assertEmpty(model.connections)
     self.assertLen(model.states, 2)
+    self.assertLen(model.guid_to_entity_map.GetGuidToEntityMap(), 2)
 
   def testToModelDictionary(self):
     """Builds a dictionary model of an ABEL spreadsheet.
@@ -174,7 +213,7 @@ class ModelBuilderTest(absltest.TestCase):
         STATES: [TEST_STATE_DICT],
     }
     self.guid_to_entity_map.Clear()
-    model = ModelBuilder.FromSpreadsheet(test_spreadsheet)
+    model = Model.Builder.FromSpreadsheet(test_spreadsheet).Build()
     expected_result = {
         'Site': [
             ['Building Code', 'Entity Guid'],
@@ -300,10 +339,10 @@ class ModelBuilderTest(absltest.TestCase):
         filepath=os.path.join(TEST_RESOURCES, 'good_test_building_config.yaml')
     )
 
-    model = ModelBuilder.FromBuildingConfig(
+    model = Model.Builder.FromBuildingConfig(
         site=imported_building_config[0],
         building_config_dict=imported_building_config[1],
-    )
+    ).Build()
 
     self.assertNotEqual(
         model.fields[2].entity_guid, model.fields[2].reporting_entity_guid

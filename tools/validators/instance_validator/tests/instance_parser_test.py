@@ -22,7 +22,7 @@ from os import path
 from absl.testing import absltest
 import strictyaml as syaml
 
-from tests import test_constants
+from google3.third_party.digitalbuildings.tools.validators.instance_validator.tests import test_constants
 from validate import handler
 from validate import instance_parser
 
