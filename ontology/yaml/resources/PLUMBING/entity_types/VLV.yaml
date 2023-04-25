@@ -16,18 +16,9 @@
 ### Canonical Types  ###
 ########################
 
-VLV_SWCM:
-  guid: "0ebc80de-36a6-4250-b453-55c62aa5021f"
+VLV_WVCM:
   description: "Solenoid water valve control and monitoring."
   is_canonical: true
   implements:
   - VLV
-  - SWCM
-
-VLV_MWCM:
-  guid: "5e0a1315-3a80-465f-9cb1-60b58d2f2b86"
-  description: "Motorized water valve control and monitoring."
-  is_canonical: true
-  implements:
-  - VLV
-  - MWCM
+  - WVCM
