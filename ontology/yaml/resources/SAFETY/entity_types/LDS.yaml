@@ -98,3 +98,12 @@ LDS_WLA_BCM:
   opt_uses:
   - water_leak_cable_distance_sensor
   - failed_alarm
+
+LDS_WLA_WLDS_WLS:
+  description: "Water leak sensing and broken cable sensing device."
+  is_canonical: true
+  implements:
+  - LDS
+  - WLA
+  - WLDS
+  - WLS
