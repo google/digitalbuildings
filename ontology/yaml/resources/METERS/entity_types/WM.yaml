@@ -26,13 +26,14 @@ WM_STANDARD:
 
 WM_WF:
   guid: "df942136-4b98-4da7-9e68-acc210d6cf03"
-  description: "Water flow rate meter with counter."
+  description: "Water supply flow rate meter with counter."
   implements:
   - WM
   is_canonical: true
   uses:
-  - water_flowrate_sensor
+  - supply_water_flowrate_sensor
   opt_uses:
+  - supply_water_volume_accumulator
   - water_linearvelocity_sensor
   - water_volume_accumulator
 

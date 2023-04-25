@@ -1715,5 +1715,5 @@ FCU_RHDHS_DXDC_DFSS:
   - water_leak_detection_alarm
   - failed_alarm
   - failed_discharge_fan_alarm
-  - high_air_static_pressure_alarm
-  - low_air_static_pressure_alarm
+  - high_discharge_air_static_pressure_alarm
+  - low_discharge_air_static_pressure_alarm

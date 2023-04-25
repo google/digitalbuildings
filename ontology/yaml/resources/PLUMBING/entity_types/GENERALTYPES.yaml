@@ -48,4 +48,17 @@ VLV:
   - failed_communication_alarm
   implements:
   - EQUIPMENT
-  
+
+WCR:
+  description: "Water conditioner"
+  is_abstract: true
+  implements:
+  - /SS
+  - EQUIPMENT
+
+WSR:
+  description: "Water softener"
+  is_abstract: true
+  implements:
+  - /SS
+  - EQUIPMENT
