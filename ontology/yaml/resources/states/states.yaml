@@ -18,9 +18,11 @@ AUTO: Running under automatic control.
 MANUAL: "Running under manual (hand) control."
 OPEN: Open position, typically for a valve or other pass-though.
 CLOSED: Closed position, typically for a valve or other pass-though.
+VERY_LOW : Very low speed or output setting.
 LOW: Low speed or output setting.
 MEDIUM: Medium speed or output setting.
 HIGH: High speed or output setting.
+VERY_HIGH: Very high speed or output setting.
 OCCUPIED: Occupied sensor state or operation mode.
 UNOCCUPIED: Unoccupied sensor state or operation mode.
 VFD: Discrete speed (frequency) control
