@@ -184,6 +184,7 @@ SRC2:
   - source2_lost_power_alarm
 
 BBM:
+  guid: "19a1ccef-bf9b-437a-ae4e-f7214e2ce75c"
   description: "For UPS with Load Bypass and Battery status."
   is_abstract: true
   uses:

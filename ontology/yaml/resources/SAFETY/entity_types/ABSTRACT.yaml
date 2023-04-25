@@ -112,6 +112,7 @@ EHT:
   - EQUIPMENT
 
 ASD:
+  guid: "78bb60a3-ed15-4c20-8428-a636f2b94c0d"
   description: "Aspirating type, smoke detector"
   is_abstract: true
   implements:
