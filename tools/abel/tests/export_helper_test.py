@@ -29,11 +29,11 @@ from model.export_helper import GoogleSheetExport
 from model.guid_to_entity_map import GuidToEntityMap
 from model.model_builder import Model
 from model.model_error import SpreadsheetAuthorizationError
-from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_BAD_MULTISTATE_FIELD_DICT_NO_STATES
-from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_FIELD_DICT_NO_REPORTING_FIELD_NAME
-from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_FIELD_DICT_NO_UNITS
-from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_RESOURCES
-from google3.third_party.digitalbuildings.tools.abel.tests.test_constants import TEST_SPREADSHEET
+from tests.test_constants import TEST_BAD_MULTISTATE_FIELD_DICT_NO_STATES
+from tests.test_constants import TEST_FIELD_DICT_NO_REPORTING_FIELD_NAME
+from tests.test_constants import TEST_FIELD_DICT_NO_UNITS
+from tests.test_constants import TEST_RESOURCES
+from tests.test_constants import TEST_SPREADSHEET
 
 
 _GOOD_TEST_BUILDING_CONFIG = os.path.join(

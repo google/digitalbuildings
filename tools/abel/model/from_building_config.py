@@ -183,7 +183,7 @@ def _TranslateStatesToABEL(
 def _UndefinedFieldToUndefinedField(
     reporting_entity_guid: str, field: IVUndefinedField
 ) -> MissingField:
-  """Maps Instance Validator UndefinedField attributes to ABEL UndefinedField instances.
+  """Maps IV UndefinedField attributes to ABEL UndefinedField instances.
 
   Args:
     reporting_entity_guid: Parent reporting entity guid.
@@ -221,7 +221,7 @@ def _TranslateConnectionsToABEL(
 def AddReportingEntitiesFromEntityInstance(
     entity_instance: EntityInstance, fields: List[FieldTranslation]
 ) -> None:
-  """Adds link attributes to FieldTranslation child instances for all virtual entities.
+  """Adds link attributes to FieldTranslation children for all virtual entities.
 
   Determines if an entity has links, and calls this method to fill in
   entity_guid, reporting_entity_field_name, and std_field_name for a field.
@@ -241,7 +241,7 @@ def AddReportingEntitiesFromEntityInstance(
 def _AddReportingEntitiesFromLinks(
     link: Link, entity_instance: EntityInstance, fields: List[FieldTranslation]
 ) -> None:
-  """Adds reporting entity code, guid and field name to an FieldTranslation child instance.
+  """Add reporting entity code, guid and field name to a FieldTranslation child.
 
   For each link, iterate through this model's fields and if the links source
   guid equals the field's reporting_entity_guid and the field's standard field

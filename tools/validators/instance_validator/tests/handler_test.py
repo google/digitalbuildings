@@ -27,7 +27,7 @@ from unittest import mock
 
 from absl.testing import absltest
 
-from google3.third_party.digitalbuildings.tools.validators.instance_validator.tests import test_constants
+from tests import test_constants
 from validate import entity_instance
 from validate import generate_universe
 from validate import handler

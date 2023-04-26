@@ -88,10 +88,9 @@ class Model(object):
       guid_to_entity_map = LoadEntitiesFromSpreadsheet(
           spreadsheet_dict[ENTITIES]
       )
-      model_builder.entities = [
-          entity
-          for entity in guid_to_entity_map.GetGuidToEntityMap().values()
-      ]
+      model_builder.entities = list(
+        guid_to_entity_map.GetGuidToEntityMap().values()
+      )
       guid_to_entity_map.AddSite(site)
       model_builder.fields = LoadFieldsFromSpreadsheet(
           spreadsheet_dict[ENTITY_FIELDS], guid_to_entity_map

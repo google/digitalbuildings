@@ -25,7 +25,7 @@ from absl.testing import absltest
 
 import strictyaml as syaml
 
-from google3.third_party.digitalbuildings.tools.validators.instance_validator.tests import test_constants
+from tests import test_constants
 from validate import connection
 from validate import entity_instance
 from validate import field_translation
@@ -45,6 +45,8 @@ _DELETE = instance_parser.EntityOperation.DELETE
 _EXPORT = instance_parser.EntityOperation.EXPORT
 
 
+#pylint: disable=line-too-long
+#pylint: disable=protected-access
 def _ParserHelper(testpaths: List[str]) -> instance_parser.InstanceParser:
   parser = instance_parser.InstanceParser()
   for filepath in testpaths:
