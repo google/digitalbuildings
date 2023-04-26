@@ -255,7 +255,6 @@ class TelemetryHelper(object):
     validator = telemetry_validator.TelemetryValidator(
         entities,
         timeout,
-        is_udmi,
         _TelemetryValidationCallback,
         self.report_directory,
     )

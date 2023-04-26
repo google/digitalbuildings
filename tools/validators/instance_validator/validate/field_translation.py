@@ -64,7 +64,7 @@ class UndefinedField(FieldTranslation):
 
 
 class DefinedField(FieldTranslation):
-  """A base class for translation of a single field present in the device payload.
+  """A base class for translation of a field present in the device payload.
 
   Attributes:
     std_field_name: string. Standard name of the field in the ontology. Field
