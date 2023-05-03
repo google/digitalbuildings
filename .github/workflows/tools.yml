@@ -74,10 +74,15 @@ jobs:
       if: steps.changes.outputs.instance_validator == 'true'
       run: |
         pylint --rcfile ./styles/pylintrc ./tools/validators/instance_validator
-    - name: Instance Yaml Validator Tests
+    - name: Instance Yaml Validator Unit Tests
       if: steps.changes.outputs.instance_validator == 'true' || steps.changes.outputs.type_validator == 'true'
       run: |
        python -m unittest discover -p '*_test.py' --failfast -v
+      working-directory: ./tools/validators/instance_validator
+    - name: Instance Yaml Validator Integraion Test
+      if: steps.changes.outputs.instance_validator == 'true' || steps.changes.outputs.type_validator == 'true'
+      run: | 
+        python instance_validator.py -i ../../abel/tests/test_resources/good_test_building_config.yaml
       working-directory: ./tools/validators/instance_validator
 
      #---------- ABEL ----------#
@@ -90,7 +95,7 @@ jobs:
       if: steps.changes.outputs.abel == 'true'
       run: |
         pylint --rcfile ./styles/pylintrc ./tools/abel
-    - name: ABEL Tests
+    - name: ABEL Unit Tests
       if: steps.changes.outputs.abel == 'true' || steps.changes.outputs.instance_validator == 'true' || steps.changes.outputs.type_validator == 'true'
       run: |
        python -m unittest discover -p '*_test.py' --failfast -v
