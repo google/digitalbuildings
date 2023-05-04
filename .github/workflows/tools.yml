@@ -26,6 +26,7 @@ jobs:
       name: 'Authenticating with Google Cloud'
       uses: 'google-github-actions/auth@v1'
       with:
+        service_account: 'db-eng-instance-validator@essential-keep-197822.iam.gserviceaccount.com'
         create_credentials_file: 'true'
     - uses: dorny/paths-filter@v2
       id: changes
