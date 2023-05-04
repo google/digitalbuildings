@@ -84,3 +84,12 @@ DWST_SS_PWDT_HWTTC_SEWTM:
   - SEWTM
   uses:
   - heater_run_command
+
+DWST_PHWDT_SHWDT_GWH3X:
+  description: "DWST with three gas fired water heaters controlled by 1 enable."
+  is_canonical: true
+  implements:
+  - SS
+  - PHWDT
+  - SHWDT
+
