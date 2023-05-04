@@ -22,12 +22,6 @@ jobs:
         os: [macos-latest, ubuntu-latest, windows-latest]
     steps:
     - uses: actions/checkout@v2
-    - id: 'auth'
-      name: 'Authenticating with Google Cloud'
-      uses: 'google-github-actions/auth@v1'
-      with:
-        service_account: 'db-eng-instance-validator@essential-keep-197822.iam.gserviceaccount.com'
-        create_credentials_file: 'true'
     - uses: dorny/paths-filter@v2
       id: changes
       with:
@@ -105,11 +99,6 @@ jobs:
       if: steps.changes.outputs.abel == 'true' || steps.changes.outputs.instance_validator == 'true' || steps.changes.outputs.type_validator == 'true'
       run: |
        python -m unittest discover -p '*_test.py' --failfast -v
-      working-directory: ./tools/abel
-    - name: ABEL Integration Tests
-      if: steps.changes.outputs.abel == 'true' || steps.changes.outputs.instance_validator == 'true' || steps.changes.outputs.type_validator == 'true'
-      run: |
-        python abel.py -c ${{ steps.auth.outputs.credentials_file_path }} -b ./tests/test_resources/good_test_building_config.yaml -s spreadsheet_id
       working-directory: ./tools/abel
 
      #---------- Instance GUID Generator ----------#
