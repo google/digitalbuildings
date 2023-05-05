@@ -33,3 +33,13 @@ TST_PCHWDY_SCHWDT_SCHWISOVPM_TS6X:
   - chilled_water_temperature_sensor_4
   - chilled_water_temperature_sensor_5
   - chilled_water_temperature_sensor_6
+
+TST_PHWDT_SHWDT_HWC:
+guid: "2c206ce0-a03c-4fbe-a901-00d5dd812e77"
+  description: "Buffer tank with primary and secondary temperature monitoring, water temperature control"
+  is_canonical: true
+  implements:
+  - TST
+  - PHWDT
+  - SHWDT
+  - HWC
