@@ -27,7 +27,7 @@ from model.constants import V4
 from model.export_helper import BuildingConfigExport
 from model.export_helper import GoogleSheetExport
 from model.guid_to_entity_map import GuidToEntityMap
-from model.model_builder import ModelBuilder
+from model.model_builder import Model
 from model.model_error import SpreadsheetAuthorizationError
 from tests.test_constants import TEST_BAD_MULTISTATE_FIELD_DICT_NO_STATES
 from tests.test_constants import TEST_FIELD_DICT_NO_REPORTING_FIELD_NAME
@@ -58,8 +58,7 @@ class ExportHelperTest(absltest.TestCase):
         TEST_FIELD_DICT_NO_REPORTING_FIELD_NAME
     )
     self.input_spreadsheet[ENTITY_FIELDS].append(TEST_FIELD_DICT_NO_UNITS)
-    model = ModelBuilder.FromSpreadsheet(self.input_spreadsheet)
-    model.Build()
+    model = Model.Builder.FromSpreadsheet(self.input_spreadsheet).Build()
     self.export_helper = BuildingConfigExport(model)
 
   def testWriteAllSheets(self):
@@ -70,9 +69,9 @@ class ExportHelperTest(absltest.TestCase):
     import_building_config = import_helper.DeserializeBuildingConfiguration(
         _GOOD_TEST_BUILDING_CONFIG
     )
-    model = ModelBuilder.FromBuildingConfig(
+    model = Model.Builder.FromBuildingConfig(
         import_building_config[0], import_building_config[1]
-    )
+    ).Build()
     mock_http = HttpMockSequence(
         [({'status': '200'}, open(update_entities_response, 'rb').read())]
     )
@@ -81,7 +80,6 @@ class ExportHelperTest(absltest.TestCase):
     )
     export_helper = GoogleSheetExport()
 
-    model.Build()
     model_dictionary = model.ToModelDictionary()
     result_spreadsheet_id = export_helper.WriteAllSheets(
         spreadsheet_id='fake_spreadsheet_id',
@@ -100,9 +98,9 @@ class ExportHelperTest(absltest.TestCase):
     import_building_config = import_helper.DeserializeBuildingConfiguration(
         _GOOD_TEST_BUILDING_CONFIG
     )
-    model = ModelBuilder.FromBuildingConfig(
+    model = Model.Builder.FromBuildingConfig(
         import_building_config[0], import_building_config[1]
-    )
+    ).Build()
     mock_http = HttpMockSequence(
         [({'status': '403'}, open(update_entities_response, 'rb').read())]
     )
@@ -111,7 +109,7 @@ class ExportHelperTest(absltest.TestCase):
         SHEETS, V4, http=mock_http, developerKey='fake_key'
     )
     export_helper = GoogleSheetExport()
-    model.Build()
+
     model_dictionary = model.ToModelDictionary()
 
     with self.assertRaises(SpreadsheetAuthorizationError):
@@ -130,9 +128,9 @@ class ExportHelperTest(absltest.TestCase):
     import_building_config = import_helper.DeserializeBuildingConfiguration(
         _GOOD_TEST_BUILDING_CONFIG
     )
-    model = ModelBuilder.FromBuildingConfig(
+    model = Model.Builder.FromBuildingConfig(
         import_building_config[0], import_building_config[1]
-    )
+    ).Build()
     mock_http = HttpMockSequence(
         [({'status': '403'}, open(update_entities_response, 'rb').read())]
     )
@@ -141,7 +139,6 @@ class ExportHelperTest(absltest.TestCase):
         SHEETS, V4, http=mock_http, developerKey='fake_key'
     )
     export_helper = GoogleSheetExport()
-    model.Build()
     model_dictionary = model.ToModelDictionary()
 
     with self.assertRaises(SpreadsheetAuthorizationError):
@@ -160,6 +157,8 @@ class ExportHelperTest(absltest.TestCase):
     exported_keys = list(
         exported_building_config.get('test_virtual_guid').keys()
     )
+    # model = Model.Builder.FromSpreadsheet(TEST_SPREADSHEET).Build()
+    # export_helper = BuildingConfigExport(model)
 
     self.assertEqual(expected_keys, exported_keys)
 
@@ -221,8 +220,7 @@ class ExportHelperTest(absltest.TestCase):
     bad_input_spreadsheet[ENTITY_FIELDS].append(
         TEST_BAD_MULTISTATE_FIELD_DICT_NO_STATES
     )
-    model = ModelBuilder.FromSpreadsheet(self.input_spreadsheet)
-    model.Build()
+    model = Model.Builder.FromSpreadsheet(self.input_spreadsheet).Build()
     export_helper = BuildingConfigExport(model)
 
     with self.assertRaises(ValueError):

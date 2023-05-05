@@ -92,7 +92,7 @@ def _ParseArgs() -> argparse.ArgumentParser:
       required=False,
       default=None,
       help='Absolute path to report output directory',
-      metavar='report-directory')
+      metavar='report-directory',)
 
   parser.add_argument(
       '--udmi',
