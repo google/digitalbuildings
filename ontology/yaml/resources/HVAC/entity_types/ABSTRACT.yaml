@@ -6627,7 +6627,7 @@ PSM2X:
   - low_pressure_status_2
   - failed_alarm_1
   - failed_alarm_2
-  - booster_pump_run_status_1
-  - booster_pump_run_status_2
+  - boost_pump_run_status_1
+  - boost_pump_run_status_2
   implements:
   - MONITORING
