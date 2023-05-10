@@ -3982,7 +3982,33 @@ AHU_SFSS_SFMSC_SFVSC_FDPM_CHWSC_RTM_RACO2C_SSPC2X_VOADM2X_SAIDC2X_RAIDC2X_SSPC:
   - RAIDC2X
   - SSPC
 
-AHU_EFVSC_EDM_SFVSC_SDM_SDTDPC_RTM_STC_ETM_OTM_MTM_CPVSC2X_SEDPM_DXC_SEMC_SFM_HWVPM_HRSM
+AHU_EFVSC_EDM_SFVSC_SDM_SDTDPC_RTM_STC_ETM_OTM_MTM_CPVSC2X_SEDPM_DXC_SEMC_SFM_HWVPM_HRSM:
+  description: "AHU with dx compressor monitoring, supply temperature, supply and exhaust fan control."
+  is_canonical: true
+  implements:
+  - AHU
+  - EFVSC
+  - EDM
+  - EDM
+  - SFVSC
+  - SDM
+  - SDTDPC
+  - RTM
+  - STC
+  - ETM
+  - OTM
+  - MTM
+  - CPVSC2X
+  - SEDPM
+  - DXC
+  - SEMC
+  - SFM
+  - HWVPM
+  - HRSM
+
+
+
+
 
 ###################################
 ### Existing Non-standard Types ###
