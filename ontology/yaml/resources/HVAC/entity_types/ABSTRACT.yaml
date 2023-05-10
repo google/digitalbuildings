@@ -6618,3 +6618,15 @@ VMADC:
   - mixed_air_damper_percentage_sensor
   implements:
   - CONTROL
+
+TLM:
+  description: "Level and temperature monitoring"
+  is_abstract: true
+  uses:
+  - supply_water_temperature_sensor
+  - water_high_level_status
+  - water_low_level_status
+  - high_water_temperature_alarm
+  - high_water_temperature_setpoint
+  implements:
+  - MONITORING
