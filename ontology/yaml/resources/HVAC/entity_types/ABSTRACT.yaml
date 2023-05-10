@@ -6618,3 +6618,16 @@ VMADC:
   - mixed_air_damper_percentage_sensor
   implements:
   - CONTROL
+
+PSM2X:
+  description: "Pressure and status monitoring for dual pump system"
+  is_abstract: true
+  uses:
+  - low_pressure_status_1
+  - low_pressure_status_2
+  - failed_alarm_1
+  - failed_alarm_2
+  - booster_pump_run_status_1
+  - booster_pump_run_status_2
+  implements:
+  - MONITORING
