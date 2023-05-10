@@ -50,3 +50,11 @@ TK_TLM:
   implements:
   - /TK # Inherits from global namespace
   - TLM
+
+
+TK_TLM2X:
+  description: "Tank with level monitoring "
+  is_canonical: true
+  implements:
+  - /TK # Inherits from global namespace
+  - TLM2X
