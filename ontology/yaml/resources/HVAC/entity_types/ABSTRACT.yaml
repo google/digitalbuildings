@@ -5648,6 +5648,11 @@ CPVSC2X:
   guid: "1be3e1ba-1a25-4b9a-9784-e4bbd9313db5"
   description: "Circulation pump variable speed control with 2 circulation pumps."
   is_abstract: true
+  opt_uses:
+  - failed_circulation_pump_alarm_1
+  - failed_circulation_pump_alarm_2
+  - circulation_pump_speed_percentage_setpoint
+  - low_supply_water_temperature_alarm
   uses:
   - circulation_pump_run_command_1
   - circulation_pump_run_command_2
@@ -6618,3 +6623,71 @@ VMADC:
   - mixed_air_damper_percentage_sensor
   implements:
   - CONTROL
+
+SEDPM:
+  description: "Supply, exhaust pressure monitoring"
+  is_abstract: true
+  uses:
+  - supply_air_differential_pressure_sensor
+  - exhaust_air_differential_pressure_sensor
+  implements:
+  - MONITORING
+
+DXC:
+  description: "Compressor with 3 stage cooling control, single status"
+  is_abstract: true
+  uses:
+  - cooling_percentage_command
+  - compressor_run_command_1
+  - compressor_run_command_2
+  - compressor_run_command_3
+  - compressor_run_status
+  - failed_compressor_alarm
+  implements:
+  - CONTROL
+
+SEMC:
+  description: "Season mode control"
+  is_abstract: true
+  uses:
+  - supply_air_temperature_setpoint_1
+  - supply_air_temperature_setpoint_2
+  - winter_outside_temperature_setpoint
+  - summer_outside_temperature_setpoint
+  - supply_air_deadband_temperature_setpoint
+  - season_mode
+  implements:
+  - CONTROL
+
+HWVPM:
+  description: "Heating water valve percent monitoring"
+  is_abstract: true
+  uses:
+  - heating_water_valve_percentage_command
+  implements: 
+  - MONITORING
+
+HRSM:
+  description: "Heat recovery mode monitoring"
+  is_abstract: true
+  opt_uses:
+  - leaving_heat_recovery_coil_temperature_sensor
+  uses:
+  - heat_recovery_status
+  implements:
+  - MONITORING
+
+WDPC2X:
+  description: "Differential pressure control on run around coil with 2 pumps."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  opt_uses:
+  - pressurization_request_count
+  - high_differential_pressure_alarm_1
+  - high_differential_pressure_alarm_2
+  - low_differential_pressure_alarm_1
+  - low_differential_pressure_alarm_2
+  uses:
+  - differential_pressure_sensor
+  - differential_pressure_setpoint
