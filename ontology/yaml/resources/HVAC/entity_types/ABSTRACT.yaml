@@ -6675,7 +6675,7 @@ HRCM:
   implements:
   - MONITORING
 
-WDPC2X:
+WDPCA2X:
   description: "Differential pressure control on run around coil with 2 pumps."
   is_abstract: true
   opt_uses:

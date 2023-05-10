@@ -3110,3 +3110,11 @@ literals:
 - ultraviolet_irradiance_sensor:
     fixed_min: 0.0
     flexible_max: 2000.0
+
+- winter_outside_temperature_setpoint:
+    flexible_min: 255.9259259
+    flexible_max: 322.037037
+
+- summer_outside_temperature_setpoint:
+    flexible_min:  255.9259259
+    flexible_max: 322.037037
