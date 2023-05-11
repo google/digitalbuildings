@@ -3110,3 +3110,7 @@ literals:
 - ultraviolet_irradiance_sensor:
     fixed_min: 0.0
     flexible_max: 2000.0
+
+- high_water_temperature_setpoint:
+    flexible_min: 255.9259259
+    flexible_max: 380.3703704
