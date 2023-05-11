@@ -1388,6 +1388,10 @@ literals:
   - COOLING
   - DEHUMIDIFY
   - FAN_ONLY
+  - ROOM
+  - SUPPLY
+  - EXTRACT
+
 - cooling_thermal_energy_accumulator:
     fixed_min: 0.0
     flexible_max: 3517000.0
