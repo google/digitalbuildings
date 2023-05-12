@@ -277,7 +277,7 @@ BLR_HT2SRC:
   is_canonical: true
   implements:
   - BLR
- - HT2SRC
+  - HT2SRC
 
 ###################################
 ### Existing Non-standard Types ###
