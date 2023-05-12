@@ -6619,7 +6619,6 @@ VMADC:
   implements:
   - CONTROL
 
-
 HT2SRC:
   description: "2 boiler system with supply return temperature control."
   is_abstract: true

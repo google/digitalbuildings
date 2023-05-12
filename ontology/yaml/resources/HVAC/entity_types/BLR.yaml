@@ -271,15 +271,13 @@ BLR_SS_SWTC_WDPC:
   - SS
   - SWTC
   - WDPC
-
+  
 BLR_HT2SRC:
   description: "2 boiler system with supply return temperature control."
   is_canonical: true
   implements:
   - BLR
-  - HT2SRC
-
-
+ - HT2SRC
 
 ###################################
 ### Existing Non-standard Types ###
