@@ -313,6 +313,19 @@ HWS_SS_HWTTC_PWDPM2X:
   opt_uses:
   - compressor_run_status
 
+HWS_CPVSC2X_SWTC_WDPC_BYPVPM_ZTM5X:
+  description: ""
+  is_canonical: true
+  implements:
+  - HWS
+  - CPVSC2X
+  - SWTC
+  - WDPC
+  - BYPVPM
+  - ZTM5X
+
+
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
