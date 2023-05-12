@@ -35,3 +35,10 @@ UH_SS_DSP_HTZC:
   - SS
   - DSP
   - HTZC
+
+UH_FA:
+  description: "Unit heater with failed alarm only."
+  is_canonical: true
+  implements:
+  - UH
+  - FA

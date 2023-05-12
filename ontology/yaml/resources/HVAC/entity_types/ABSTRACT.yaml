@@ -6618,3 +6618,11 @@ VMADC:
   - mixed_air_damper_percentage_sensor
   implements:
   - CONTROL
+
+FA:
+  description: "Failed alarm"
+  is_abstract: true
+  uses:
+  - failed_alarm
+  implements:
+  - MONITORING
