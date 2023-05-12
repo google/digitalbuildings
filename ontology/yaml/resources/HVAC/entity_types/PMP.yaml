@@ -140,6 +140,13 @@ PMP_SS_RMM:
   - low_pressure_status
   - high_pressure_status
 
+PMP_PSM:
+  description: "Pump with pressure status monitoring."
+  is_canonical: true
+  implements:
+  - PMP
+  - PSM
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################

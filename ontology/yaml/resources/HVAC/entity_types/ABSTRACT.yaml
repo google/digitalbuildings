@@ -6620,7 +6620,6 @@ VMADC:
   - CONTROL
 
 PSM:
-  guid: "893e5835-863c-4ca9-8971-a01390f405b6"
   description: "Pump pressure status monitoring."
   is_abstract: true
   uses:
