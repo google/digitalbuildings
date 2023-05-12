@@ -314,7 +314,7 @@ HWS_SS_HWTTC_PWDPM2X:
   - compressor_run_status
 
 HWS_CPVSC2X_SWTC_WDPC_BYPVPM_ZTM5X:
-  description: "HWS with dual pump"
+  description: "HWS with temperature control by pump speed, dual pump setup with 5 zone temperature sensors"
   is_canonical: true
   implements:
   - HWS
