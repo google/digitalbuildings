@@ -314,7 +314,7 @@ HWS_SS_HWTTC_PWDPM2X:
   - compressor_run_status
 
 HWS_CPVSC2X_SWTC_WDPC_BYPVPM_ZTM5X:
-  description: ""
+  description: "HWS with dual pump"
   is_canonical: true
   implements:
   - HWS
