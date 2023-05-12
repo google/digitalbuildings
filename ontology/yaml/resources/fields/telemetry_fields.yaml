@@ -3103,6 +3103,6 @@ literals:
     fixed_min: 0.0
     flexible_max: 2000.0
 
-- battery_energy_capacity:
+- batterycapacity_sensor:
     fixed_min: 0.0
     flexible_max: 10000.0
