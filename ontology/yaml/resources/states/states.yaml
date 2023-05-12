@@ -90,3 +90,5 @@ SOFTSTART: "Mode of operation of rectifier where the input power supply is gradu
 NORMAL: "Function, state or flow which is an ideal or expected condition."
 REVERSED: "Function, state or flow which is opposed to the expected or normal condition."
 
+HEATERA: "Option A for dual boiler system"
+HEATERB: "Option B for dual boiler system"
