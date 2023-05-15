@@ -456,9 +456,9 @@ VSC:
   - local_override_alarm
   - lost_power_alarm
   - master_alarm
-  uses:
   - run_command
   - run_status
+  uses:
   - speed_percentage_command
   implements:
   - OPERATIONAL
@@ -1171,9 +1171,9 @@ CPC:
   description: "Circulation pump control"
   is_abstract: true
   uses:
-  - circulation_pump_run_command
   - circulation_pump_run_status
   opt_uses:
+  - circulation_pump_run_command
   - failed_circulation_pump_alarm
 
 ### NET NEW TYPES

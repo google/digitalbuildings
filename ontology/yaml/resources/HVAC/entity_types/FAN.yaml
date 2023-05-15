@@ -36,6 +36,14 @@ FAN_SS_VSC:
   - FAN
   - SS
   - VSC
+  
+FAN_VSC:
+  guid: "ceb47075-3cc6-40c9-85fe-b7f5883127c0"
+  description: "Fan with open-loop speed control."
+  is_canonical: true
+  implements:
+  - FAN
+  - VSC
 
 FAN_SS_RMM:
   guid: "917a9051-01dc-4f41-ad4c-5fcb45fe2f0e"
