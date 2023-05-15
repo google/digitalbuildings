@@ -145,7 +145,8 @@ PMP_RSM_PSM:
   is_canonical: true
   implements:
   - PMP
-  - RSPSM
+  - RSM
+  - PSM
 
 ###################################
 ### Existing Non-standard Types ###
