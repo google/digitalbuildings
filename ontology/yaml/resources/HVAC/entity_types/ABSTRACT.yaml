@@ -6619,13 +6619,20 @@ VMADC:
   implements:
   - CONTROL
 
-RSPSM:
-  description: "Run status and pressure status monitoring"
+PSM:
+  description: "Pressure status monitoring"
+  is_abstract: true
+  uses:
+  - air_pressure_status
+  implements:
+  - MONITORING
+
+RSM:
+  description: "Run status monitoring"
   is_abstract: true
   uses:
   - run_status
-  - air_pressure_status
   opt_uses:
   - failed_alarm
   implements:
-  - MONITORING
+  - OPERATIONAL
