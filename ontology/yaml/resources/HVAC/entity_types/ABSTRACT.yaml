@@ -6618,3 +6618,14 @@ VMADC:
   - mixed_air_damper_percentage_sensor
   implements:
   - CONTROL
+
+RSPSM:
+  description: "Run status and pressure status monitoring"
+  is_abstract: true
+  uses:
+  - run_status
+  - air_pressure_status
+  opt_uses:
+  - failed_alarm
+  implements:
+  - MONITORING
