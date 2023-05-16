@@ -49,6 +49,7 @@ jobs:
     - name: Install Pylint
       run: |
         python -m pip install pylint
+        python -m pip install pyenchant 
 
     #---------- Ontology Yaml Type Validator ----------#
     - name:  Ontology Yaml Type Validator Install dependencies

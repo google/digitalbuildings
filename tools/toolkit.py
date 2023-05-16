@@ -13,6 +13,8 @@
 # limitations under the License.
 """A centralized runner for digitalbuildings/tools.
 
+asdkjhg typdoo
+
 Toolkit.py is an argument parsing application allowing a user to setup and run
 any of the tools within tools/. Currently, toolkit.py only supports the guid
 generator and the instance validator.
