@@ -228,7 +228,7 @@ def AddReportingEntitiesFromEntityInstance(
 
   Args:
     entity_instance: An EntityInstance instance from Instance Validator
-      deserialization.
+      de-serialization.
     fields: List of all building config FieldTranslations
   """
   if entity_instance.links:
@@ -250,7 +250,7 @@ def _AddReportingEntitiesFromLinks(
 
   Args:
     link: An Instance Validator Link instance.
-    entity_instance: An EntityInstance from Instance Validator deserialization.
+    entity_instance: An EntityInstance from Instance Validator de-serialization.
     fields: List of all building config fields
   """
   for source_field, target_field in link.field_map.items():

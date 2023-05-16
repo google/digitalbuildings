@@ -63,7 +63,7 @@ def _ImportSheetFromGoogleSheets(
       instance with methods for interacting with the Google Sheets service.
 
   Returns:
-    A list of Python dictionaries modeling rows in a spreadhsheet. Each
+    A list of Python dictionaries modeling rows in a spreadsheet. Each
     dictionary(row) is composed of cell values keyed by column headers.
 
   Raises:
@@ -95,7 +95,7 @@ def _ImportSheetFromGoogleSheets(
 
 
 def DeserializeBuildingConfiguration(filepath: str) -> Dict[str, Any]:
-  """Deserializes a building configuration into Instance Validator data types.
+  """De-serializes a building configuration into Instance Validator data types.
 
   Args:
     filepath: Path to a Building Configuration.

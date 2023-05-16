@@ -37,7 +37,7 @@ APPLICATION_ROOT = os.path.join(REPO_ROOT, 'tools', 'abel')
 # Reg-ex pattern for GUIDs
 BC_GUID_REGEX = '^[0-9a-f]{8}-([0-9a-f]{4}-){3}[0-9a-f]{12}:'
 
-# Faciltities naming patterns
+# Facilities naming patterns
 MEZZANINE_PATTERN = '([0-9]*)M'
 SINGLE_LETTER_PATTERN = 'R|D|LG|FB|S|SBA|SBB'
 PERMUTED_NUMBER_LETTER_PATTERN = 'B[0-9]*|[0-9]+B'
