@@ -44,7 +44,7 @@ FAN_VSC:
   implements:
   - FAN
   - VSC
-
+  
 FAN_SS_RMM:
   guid: "917a9051-01dc-4f41-ad4c-5fcb45fe2f0e"
   description: "Fan with start/stop status and run mode monitoring"
