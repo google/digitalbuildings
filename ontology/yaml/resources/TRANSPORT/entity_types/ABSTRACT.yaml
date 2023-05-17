@@ -23,8 +23,8 @@ SS:
   - failed_alarm
   - lost_power_alarm
 
-PM:
-  description: "Position monitoring"
+EPM:
+  description: "Elevator position monitoring"
   is_abstract: true
   uses:
   - floor_status
