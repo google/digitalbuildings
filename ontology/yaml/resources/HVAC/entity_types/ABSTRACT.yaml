@@ -6618,3 +6618,11 @@ VMADC:
   - mixed_air_damper_percentage_sensor
   implements:
   - CONTROL
+
+FM:
+  description: "Filter monitoring."
+  is_abstract: true
+  uses:
+  - filter_alarm
+  implements:
+  - MONITORING

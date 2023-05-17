@@ -1689,3 +1689,11 @@ FCU_DSP_DFVSC_DTM_RTM:
   - DTM
   - RTM
 
+FCU_DFMSC_ZTC_RMM_FM:
+  guid: "ff0b58c2-8446-47f9-913d-068fd3b43ae7"
+  description: "Variable refrigerant flow unit with zone air temperature monitoring, fan speed modes"
+  implements:
+  - DFMSC
+  - ZTC
+  - RMM
+  - FM
