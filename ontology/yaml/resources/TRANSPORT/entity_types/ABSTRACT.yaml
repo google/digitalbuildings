@@ -27,7 +27,7 @@ PM:
   description: "Position monitoring"
   is_abstract: true
   uses:
-  - position_status
+  - floor_status
   implements:
   - MONITORING
 
