@@ -28,8 +28,6 @@ EPM:
   is_abstract: true
   uses:
   - floor_status
-  implements:
-  - MONITORING
 
 BEA:
   description: "Basic elevator alarms"
@@ -37,5 +35,3 @@ BEA:
   uses:
   - fire_alarm
   - failed_alarm
-  implements:
-  - MONITORING
