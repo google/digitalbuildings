@@ -23,3 +23,20 @@ SS:
   - failed_alarm
   - lost_power_alarm
 
+PM:
+  description: "Position monitoring"
+  is_abstract: true
+  uses:
+  - position_status
+  implements:
+  - MONITORING
+
+# BEA:
+#   description: "Basic elevator alarms"
+#   is_abstract: true
+#   uses:
+#   - fire_alarm
+#   - peak_load_alarm
+#   - failed_alarm
+#   implements:
+#   - MONITORING

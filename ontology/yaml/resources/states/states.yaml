@@ -90,3 +90,11 @@ SOFTSTART: "Mode of operation of rectifier where the input power supply is gradu
 NORMAL: "Function, state or flow which is an ideal or expected condition."
 REVERSED: "Function, state or flow which is opposed to the expected or normal condition."
 
+# For elevator 
+GROUND: "Elevator floor status"
+FIRST: "Elevator floor status"
+SECOND: "Elevator floor status"
+THIRD: "Elevator floor status"
+FOURTH: "Elevator floor status"
+FIFTH: "Elevator floor status"
+SIXTH: "Elevator floor status"
