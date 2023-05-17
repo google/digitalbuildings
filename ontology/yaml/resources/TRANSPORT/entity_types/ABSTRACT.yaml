@@ -31,12 +31,11 @@ EPM:
   implements:
   - MONITORING
 
-# BEA:
-#   description: "Basic elevator alarms"
-#   is_abstract: true
-#   uses:
-#   - fire_alarm
-#   - peak_load_alarm
-#   - failed_alarm
-#   implements:
-#   - MONITORING
+BEA:
+  description: "Basic elevator alarms"
+  is_abstract: true
+  uses:
+  - fire_alarm
+  - failed_alarm
+  implements:
+  - MONITORING
