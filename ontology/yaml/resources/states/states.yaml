@@ -98,3 +98,6 @@ THIRD: "Elevator floor status"
 FOURTH: "Elevator floor status"
 FIFTH: "Elevator floor status"
 SIXTH: "Elevator floor status"
+
+PARKING: "Elevator returning to default floor"
+DOOR: "Elevator door opening"

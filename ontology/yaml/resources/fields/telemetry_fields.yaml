@@ -3120,6 +3120,11 @@ literals:
   - FIFTH
   - SIXTH
 
-- peak_load_alarm:
+- max_load_alarm:
   - ACTIVE
   - INACTIVE
+
+- elevator_status:
+  - NORMAL
+  - PARKING
+  - DOOR
