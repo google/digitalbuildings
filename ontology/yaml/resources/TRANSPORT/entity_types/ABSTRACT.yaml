@@ -35,3 +35,4 @@ BEA:
   uses:
   - fire_alarm
   - failed_alarm
+  - peak_load_alarm

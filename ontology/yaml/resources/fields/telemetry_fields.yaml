@@ -3119,3 +3119,7 @@ literals:
   - FOURTH
   - FIFTH
   - SIXTH
+
+- peak_load_alarm:
+  - ACTIVE
+  - INACTIVE
