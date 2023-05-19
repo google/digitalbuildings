@@ -110,3 +110,9 @@ HDS:
   is_abstract: true
   implements:
   - /SENSOR
+
+VBS:
+  description: "Vibration sensor."
+  is_abstract: true
+  implements:
+  - /SENSOR
