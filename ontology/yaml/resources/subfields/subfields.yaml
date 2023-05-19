@@ -246,6 +246,7 @@ descriptor:
   user: "A person who uses or operates something."
   vapor: "A substance in the gas phase at a temperature lower than its critical temperature."
   ventilation: "Process used to provide fresh air into a system or zone. "
+  vibration: "Periodic back-and-forth motion."
   voc: "Measures volatile organic component concentration."
   water: "Water in liquid form, conditioned or unconditioned"
   west: "Cardinal direction; opposite of east"

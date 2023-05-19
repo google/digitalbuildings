@@ -3111,12 +3111,12 @@ literals:
     fixed_min: 0.0
     flexible_max: 2000.0
 
-- elevator_vibration_alarm:
+- elevator_vibration_frequency_alarm:
   - ACTIVE
   - INACTIVE
-- heater_vibration_alarm:
+- heater_vibration_frequency_alarm:
   - ACTIVE
   - INACTIVE 
-- water_heater_vibration_alarm:
+- gas_heater_vibration_frequency_alarm:
   - ACTIVE
   - INACTIVE 
