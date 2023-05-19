@@ -3117,6 +3117,6 @@ literals:
 - heater_vibration_alarm:
   - ACTIVE
   - INACTIVE 
-- gas_heater_vibration_alarm:
+- water_heater_vibration_alarm:
   - ACTIVE
   - INACTIVE 
