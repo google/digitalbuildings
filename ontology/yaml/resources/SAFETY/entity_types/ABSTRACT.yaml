@@ -94,3 +94,13 @@ LM:
   uses:
   - level_status 
 
+VA6X:
+  description: "Vibration alarm 6X."
+  is_abstract: true
+  uses:
+  - elevator_vibration_alarm_1
+  - elevator_vibration_alarm_2
+  - heater_vibration_alarm_1
+  - heater_vibration_alarm_2
+  - gas_heater_vibration_alarm_1
+  - gas_heater_vibration_alarm_2 

@@ -3110,3 +3110,13 @@ literals:
 - ultraviolet_irradiance_sensor:
     fixed_min: 0.0
     flexible_max: 2000.0
+
+- elevator_vibration_alarm:
+  - ACTIVE
+  - INACTIVE
+- heater_vibration_alarm:
+  - ACTIVE
+  - INACTIVE 
+- gas_heater_vibration_alarm:
+  - ACTIVE
+  - INACTIVE 
