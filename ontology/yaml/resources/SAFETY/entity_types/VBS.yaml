@@ -14,8 +14,9 @@
 
 ### ABSTRACT TYPES
 
-VBS:
+VBS_VA6X:
   description: "Vibration system with 6 sensors."
   is_canonical: true
   implements:
   - VBS 
+  - VA6X
