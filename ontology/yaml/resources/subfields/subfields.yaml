@@ -319,7 +319,6 @@ measurement:
   time: "Defined duration of something."
   timetemperature: "Integral of temperature over time."
   torque: "A force that causes rotation."
-  vibration: "Periodic back-and-forth motion."
   voltage: "Electrical potential difference between two reference points."
   voltageratio: "The ratio of the Primary voltage of the transformer to the secondary voltage."
   volume: "The quantity of three-dimensional space contained by a closed surface."
@@ -365,7 +364,6 @@ measurement_descriptor:
   hue: "degree on color wheel from 0 to 360°"
   orientation: "Description of cardinal direction"
   vibration: "Periodic back-and-forth motion."
-
 point_type:
   accumulator: "The total accumulated quantity (e.g. total energy accumulated)."
   alarm: "A point that interprets some input values qualitatively (e.g. as good or bad, normal or in alarm, etc.). Alarms are always binary."
