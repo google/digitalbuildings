@@ -1235,7 +1235,7 @@ def _ParseConnections(
 ) -> Set[connection.Connection]:
   """Parses YAML defining connections between one entity and another.
 
-  Entites are identified by GUID.
+  Entities are identified by GUID.
 
   Connections are always defined on the target entity.
 
