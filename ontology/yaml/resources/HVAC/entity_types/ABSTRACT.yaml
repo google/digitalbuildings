@@ -6619,8 +6619,8 @@ VMADC:
   implements:
   - CONTROL
 
-PSM:
-  description: "Pressure status monitoring"
+APSM:
+  description: "Air pressure status monitoring"
   is_abstract: true
   uses:
   - air_pressure_status
