@@ -4835,6 +4835,33 @@ DX2DSPRTC:
   - CONTROL
 
 
+HPDSPRTC:
+  guid:
+  description: "Heat pump run control with dual return temp control."
+  is_abstract: true
+  opt_uses:
+  - compressor_speed_percentage_command
+  - cooling_percentage_command
+  - cooling_thermal_power_capacity
+  - discharge_air_temperature_sensor
+  - leaving_cooling_coil_temperature_sensor
+  - compressor_lost_power_alarm
+  - failed_compressor_alarm
+  - failed_discharge_air_temperature_alarm
+  - high_return_air_temperature_alarm
+  - low_return_air_temperature_alarm
+  - overload_compressor_alarm
+  uses:
+  - compressor_run_command
+  - compressor_run_status
+  - reversing_valve_command
+  - return_air_cooling_temperature_setpoint
+  - return_air_heating_temperature_setpoint
+  - return_air_temperature_sensor
+  implements:
+  - CONTROL
+
+
 DX4DC:
   guid: "f833b8eb-fdb9-4680-893f-77f87a0a991e"
   description: "Compressor run control on discharge air side (DTC)."
