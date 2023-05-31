@@ -6621,16 +6621,3 @@ VMADC:
   - mixed_air_damper_percentage_sensor
   implements:
   - CONTROL
-
-ZTM5X:  
-  description: "Zone temperature monitoring 5x."
-  is_abstract: true
-  uses:
-  - zone_air_temperature_sensor_1
-  - zone_air_temperature_sensor_2
-  - zone_air_temperature_sensor_3
-  - zone_air_temperature_sensor_4
-  - zone_air_temperature_sensor_5
-  implements:
-  - MONITORING
-  
