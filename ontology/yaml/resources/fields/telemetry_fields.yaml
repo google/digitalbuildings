@@ -461,6 +461,9 @@ literals:
 - outside_air_pm10pt0_density_sensor:
     flexible_min: 0.0
     flexible_max: 0.001
+- outside_air_pm1pt0_density_sensor:
+    flexible_min: 0.0
+    flexible_max: 0.001
 
 # Additional fields added to cover first hundred buildings
 - bypass_air_damper_percentage_command:
