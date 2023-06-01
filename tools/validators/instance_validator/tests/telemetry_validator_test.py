@@ -19,11 +19,11 @@ from __future__ import print_function
 import datetime
 import json
 from os import path
-
 from unittest import mock
+
 from absl.testing import absltest
 
-from tests import test_constants
+from google3.third_party.digitalbuildings.tools.validators.instance_validator.tests import test_constants
 from validate import entity_instance
 from validate import handler
 from validate import instance_parser

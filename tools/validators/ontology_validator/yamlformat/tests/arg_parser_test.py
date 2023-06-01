@@ -1,4 +1,4 @@
-# Copyright 2023 Google LLC
+# Copyright 2021 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the License);
 # you may not use this file except in compliance with the License.
@@ -34,13 +34,11 @@ class ArgParserTest(absltest.TestCase):
         '--original',
         './my/path/to/foo',
         '--interactive',
-        'False',
-        '--allow_missing_type_guids',
+        'False'
     ])
     self.assertEqual(parsed.original, './my/path/to/foo')
     self.assertIsNone(parsed.modified_types_filepath)
     self.assertFalse(ast.literal_eval(parsed.interactive))
-    self.assertTrue(parsed.allow_missing_type_guids)
 
   def testOriginalArgIsRequired(self):
     with self.assertRaises(SystemExit):
@@ -65,18 +63,6 @@ class ArgParserTest(absltest.TestCase):
     self.assertEqual(parsed.original, './my/path/to/foo')
     self.assertIsNone(parsed.modified_types_filepath)
     self.assertFalse(ast.literal_eval(parsed.interactive))
-
-  def testNoAllowMissingTypeGuidsFlag(self):
-    parsed = self.parser.parse_args([
-        '--original',
-        './my/path/to/foo',
-        '--interactive',
-        'True'
-    ])
-    self.assertEqual(parsed.original, './my/path/to/foo')
-    self.assertIsNone(parsed.modified_types_filepath)
-    self.assertTrue(ast.literal_eval(parsed.interactive))
-    self.assertFalse(parsed.allow_missing_type_guids)
 
 if __name__ == '__main__':
   absltest.main()

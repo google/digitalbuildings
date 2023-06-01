@@ -25,7 +25,7 @@ from absl.testing import absltest
 
 import strictyaml as syaml
 
-from tests import test_constants
+from google3.third_party.digitalbuildings.tools.validators.instance_validator.tests import test_constants
 from validate import connection
 from validate import entity_instance
 from validate import field_translation
@@ -45,8 +45,8 @@ _DELETE = instance_parser.EntityOperation.DELETE
 _EXPORT = instance_parser.EntityOperation.EXPORT
 
 
-#pylint: disable=line-too-long
-#pylint: disable=protected-access
+# pylint: disable=line-too-long
+# pylint: disable=protected-access
 def _ParserHelper(testpaths: List[str]) -> instance_parser.InstanceParser:
   parser = instance_parser.InstanceParser()
   for filepath in testpaths:
@@ -431,8 +431,7 @@ class EntityInstanceTest(absltest.TestCase):
     self.assertTrue(self.init_validator.Validate(instance))
 
   def testInstance_InvalidEntityAllFieldTranslationsMarkedMissing_Failure(self):
-    """Test that all translation fields not marked with PresenceMode as MISSING.
-    """
+    """Test that all translation fields not marked with PresenceMode as MISSING."""
     parsed, default_operation = _Helper(
         [
             path.join(
@@ -1208,15 +1207,17 @@ class EntityInstanceTest(absltest.TestCase):
         type_name='PASSTHROUGH',
         cloud_device_id='2619178366980754',
         translation={
-            'return_water_temperature_sensor': field_translation.DimensionalValue(
-                std_field_name='return_water_temperature_sensor',
-                unit_field_name=(
-                    'pointset.points.return_water_temperature_sensor.units'
-                ),
-                raw_field_name=(
-                    'points.return_water_temperature_sensor.present_value'
-                ),
-                unit_mapping={'degrees_fahrenheit': 'degF'},
+            'return_water_temperature_sensor': (
+                field_translation.DimensionalValue(
+                    std_field_name='return_water_temperature_sensor',
+                    unit_field_name=(
+                        'pointset.points.return_water_temperature_sensor.units'
+                    ),
+                    raw_field_name=(
+                        'points.return_water_temperature_sensor.present_value'
+                    ),
+                    unit_mapping={'degrees_fahrenheit': 'degF'},
+                )
             )
         },
     )
@@ -1236,15 +1237,17 @@ class EntityInstanceTest(absltest.TestCase):
         type_name='PASSTHROUGH',
         cloud_device_id='2619178366980754',
         translation={
-            'return_water_temperature_sensor': field_translation.DimensionalValue(
-                std_field_name='return_water_temperature_sensor',
-                unit_field_name=(
-                    'pointset.points.return_water_temperature_sensor.units'
-                ),
-                raw_field_name=(
-                    'points.return_water_temperature_sensor.present_value'
-                ),
-                unit_mapping={'invalid_unit': 'invalid_unit'},
+            'return_water_temperature_sensor': (
+                field_translation.DimensionalValue(
+                    std_field_name='return_water_temperature_sensor',
+                    unit_field_name=(
+                        'pointset.points.return_water_temperature_sensor.units'
+                    ),
+                    raw_field_name=(
+                        'points.return_water_temperature_sensor.present_value'
+                    ),
+                    unit_mapping={'invalid_unit': 'invalid_unit'},
+                )
             )
         },
     )
@@ -1330,11 +1333,13 @@ class EntityInstanceTest(absltest.TestCase):
                 raw_field_name='points.line_powerfactor_sensor.present_value',
                 unit_mapping={'no_units': 'no_units'},
             ),
-            'return_water_temperature_sensor': field_translation.NonDimensionalValue(
-                std_field_name='return_water_temperature_sensor',
-                raw_field_name=(
-                    'points.return_water_temperature_sensor.present_value'
-                ),
+            'return_water_temperature_sensor': (
+                field_translation.NonDimensionalValue(
+                    std_field_name='return_water_temperature_sensor',
+                    raw_field_name=(
+                        'points.return_water_temperature_sensor.present_value'
+                    ),
+                )
             ),
             'exhaust_air_damper_command': field_translation.MultiStateValue(
                 std_field_name='exhaust_air_damper_command',
