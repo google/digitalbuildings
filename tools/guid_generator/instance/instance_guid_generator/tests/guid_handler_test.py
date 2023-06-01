@@ -19,8 +19,8 @@ import tempfile
 from absl.testing import absltest
 import strictyaml as syaml
 
-from instance_guid_generator.guid_handler import GuidGenerator
-from instance_guid_generator.tests import test_constants
+from guid_generator.instance.instance_guid_generator.guid_handler import GuidGenerator
+from guid_generator.instance.instance_guid_generator.tests import test_constants
 from validate import instance_parser
 
 # pylint:disable=protected-access

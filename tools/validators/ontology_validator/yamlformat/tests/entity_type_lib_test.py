@@ -127,9 +127,9 @@ class EntityTypeLibTest(absltest.TestCase):
     findings = types_universe.GetFindings()
     self.assertLen(findings, 1)
     self.assertTrue(
-        types_universe.HasFindingTypes([findings_lib.MissingTypeGuidError]))
+        types_universe.HasFindingTypes([findings_lib.InvalidTypeGuidError]))
     self.assertTrue(
-        entity_type2.HasFindingTypes([findings_lib.MissingTypeGuidError]))
+        entity_type2.HasFindingTypes([findings_lib.InvalidTypeGuidError]))
     self.assertFalse(entity_type1.GetFindings())
 
   def testEntityTypeUniverseHandlesNamespaceMovesWithGuids(self):

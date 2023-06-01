@@ -1,4 +1,4 @@
-# Copyright 2023 Google LLC
+# Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the License);
 # you may not use this file except in compliance with the License.
@@ -12,6 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 """Library defining different types of validation errors."""
+from collections.abc import Iterable
+
 import copy
 import operator
 
@@ -220,7 +222,7 @@ class Findings(object):
         filtered_findings.append(finding)
     return _SortFindings(_DedupFindings(filtered_findings))
 
-  def HasFindingTypes(self, finding_types):
+  def HasFindingTypes(self, finding_types: Iterable[Finding]):
     """Returns true if any finding is one of the types in findings_types.
 
     Args:
@@ -958,23 +960,14 @@ class InvalidTypenameError(ValidationError):
         ' digits, and underscores, and it must begin with a letter.', context)
 
 
-class MissingTypeGuidError(ValidationError):
-  """An entity type is missing a guid."""
-
-  def __init__(self, entity_type):
-    super().__init__(
-        f'The entity type "{entity_type.typename}" is missing a GUID.',
-        entity_type.file_context)
-
-
 class InvalidTypeGuidError(ValidationError):
   """An entity type guid does not follow the UUID v4 format."""
 
   def __init__(self, entity_type):
     super().__init__(
         f'The GUID {entity_type.guid} for entity type name '
-        f'"{entity_type.typename}" is invalid. The GUID must have the UUID v4 '
-        f'format.', entity_type.file_context)
+        f'"{entity_type.typename}" is missing or invalid. The GUID must have '
+        f'the UUID v4 format.', entity_type.file_context)
 
 
 class IllegalFieldIncrementError(ValidationError):
