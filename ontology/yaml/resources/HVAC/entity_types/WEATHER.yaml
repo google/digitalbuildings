@@ -23,3 +23,11 @@ WEATHER_OA:
   implements:
   - WEATHER
   - OA
+
+WEATHER_OA_OAQM:
+  description: "Weather station with outdoor air quality monitoring."
+  is_canonical: true
+  implements:
+  - WEATHER
+  - OA
+  - OAQM
