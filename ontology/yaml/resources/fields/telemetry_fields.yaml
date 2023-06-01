@@ -3111,7 +3111,7 @@ literals:
     fixed_min: 0.0
     flexible_max: 2000.0
 
-heat_recovery_run_mode:
+- heat_recovery_run_mode:
   - OFF
   - ON
   - STARTUP
