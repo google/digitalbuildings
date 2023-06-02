@@ -99,9 +99,8 @@ BCM10X:
   is_abstract: true
   uses:
   - broken_cable_alarm_1
-  - broken_cable_alarm_1
-  - broken_cable_alarm_3
   - broken_cable_alarm_2
+  - broken_cable_alarm_3
   - broken_cable_alarm_4
   - broken_cable_alarm_5
   - broken_cable_alarm_6
