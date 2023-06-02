@@ -6629,3 +6629,37 @@ RSM:
   - failed_alarm
   implements:
   - OPERATIONAL
+
+SEFC:
+  description: "Supply and exhaust fan control, typically for Heat Recovry Unit."
+  is_abstract: true
+  uses:
+  - supply_fan_run_command
+  - supply_fan_speed_percentage_command
+  - exhaust_fan_run_command
+  - exhaust_fan_speed_percentage_command
+  - supply_air_flowrate_setpoint
+  - exhaust_air_flowrate_setpoint
+  opt_uses:
+  - failed_supply_fan_alarm
+  - failed_exhaust_fan_alarm
+  - return_fan_speed_percentage_command
+  implements:
+  - CONTROL
+
+FAM:
+  description: "Fire Alarm monitoring"
+  is_abstract: true
+  uses:
+  - fire_alarm
+  implements:
+  - MONITORING
+
+HRC:
+  description: "Heat recovery run mode control"
+  is_abstract: true
+  uses:
+  - heat_recovery_run_command
+  - heat_recovery_run_mode
+  implements:
+  - CONTROL
