@@ -157,17 +157,6 @@ FCU_DFSS_DSP_HP2ZC:
   - DSP
   - HP2ZC
 
-FCU_DFSS_DSP_DXZC_HTZC:
-  guid:
-  description: "FCU with cooling and heating (zone control)."
-  is_canonical: true
-  implements:
-  - FCU
-  - DFSS
-  - DSP
-  - DXZC
-  - HTZC
-
 FCU_DFSS_DFMSC_DSPRTC_HPDSPRTC:
   guid:
   description: "Return temp control multi-speed FCU with heat pump"

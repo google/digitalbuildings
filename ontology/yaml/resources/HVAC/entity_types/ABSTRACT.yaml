@@ -1057,6 +1057,8 @@ SWTC:
   - cooling_request_count
   - heating_request_count
   - return_water_temperature_sensor
+  - low_return_water_temperature_alarm
+  - high_return_water_temperature_alarm
   - run_command
   - high_supply_water_temperature_alarm
   - low_supply_water_temperature_alarm
@@ -1104,6 +1106,8 @@ SCHWTC:
   - chilled_return_water_temperature_sensor
   - cooling_percentage_command
   - cooling_request_count
+  - high_chilled_supply_water_temperature_alarm
+  - low_chilled_supply_water_temperature_alarm
   uses:
   - chilled_supply_water_temperature_sensor
   - chilled_supply_water_temperature_setpoint
@@ -3865,6 +3869,8 @@ SFSS2X:
   - supply_fan_power_capacity
   - supply_fan_power_sensor_1
   - supply_fan_power_sensor_2
+  - failed_supply_fan_alarm_1
+  - failed_supply_fan_alarm_2
   uses:
   - supply_fan_run_command_1
   - supply_fan_run_command_2
@@ -4259,6 +4265,9 @@ CHWSWISOVM:
   guid: "1a187792-767f-4132-9333-161c6db07ce4"
   description: "Supply side isolation valve monitoring."
   is_abstract: true
+  opt_uses:
+  - failed_isolation_valve_alarm
+  - local_override_isolation_valve_alarm
   uses:
   - chilled_supply_water_isolation_valve_command
   - chilled_supply_water_isolation_valve_status
@@ -4445,6 +4454,8 @@ CHDX2SC:
   - compressor_speed_percentage_sensor
   - cooling_percentage_command
   - cooling_request_count
+  - compressor_speed_percentage_sensor_1
+  - compressor_speed_percentage_sensor_2
   uses:
   - chilled_supply_water_temperature_sensor
   - chilled_supply_water_temperature_setpoint
