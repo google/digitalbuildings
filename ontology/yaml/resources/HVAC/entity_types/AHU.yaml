@@ -23,880 +23,885 @@ AHU_CSP_DFSS_DX2ZC_ECONZ:
   description: "Single zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - CSP
-    - DFSS
-    - DX2ZC
-    - ECONZ
+  - AHU
+  - CSP
+  - DFSS
+  - DX2ZC
+  - ECONZ
 
 AHU_CSP_DFSS_DX2ZC_ECONMD:
   guid: "39dd2cf1-b5c0-4b3b-942a-e02620eed5c3"
   description: "Single zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - CSP
-    - DFSS
-    - DX2ZC
-    - ECONMD
+  - AHU
+  - CSP
+  - DFSS
+  - DX2ZC
+  - ECONMD
 
 AHU_CSP_DFSS_DXZC_ECONZ:
   guid: "52746623-e5aa-48d1-8cb7-422bb889a0e3"
   description: "Single zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - CSP
-    - DFSS
-    - DXZC
-    - ECONZ
+  - AHU
+  - CSP
+  - DFSS
+  - DXZC
+  - ECONZ
 
 AHU_DFSS_DXRC_RHDHC:
   guid: "094ea5d7-0435-4881-93b2-6516da45de2d"
   description: "Single zone AHU with humidity control."
   is_canonical: true
   implements:
-    - AHU
-    - DFSS
-    - DXRC
-    - RHDHC
+  - AHU
+  - DFSS
+  - DXRC
+  - RHDHC
 
 AHU_DFSS_DSP_DXZC:
   guid: "33d3dac8-c894-4f18-859a-5c3ec9cbafe2"
   description: "Single zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - DFSS
-    - DSP
-    - DXZC
+  - AHU
+  - DFSS
+  - DSP
+  - DXZC
 
 AHU_CSP_DFSS_DXZC:
   guid: "9654f3c9-ef33-4273-8d42-c19e70f0726a"
   description: "Single zone AHU (cooling only)."
   is_canonical: true
   implements:
-    - AHU
-    - CSP
-    - DFSS
-    - DXZC
+  - AHU
+  - CSP
+  - DFSS
+  - DXZC
 
 AHU_DFSS_DSP_DXZC_ECONZ:
   guid: "04ea910f-047f-42e1-8d20-cbd1975be758"
   description: "Single zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - DFSS
-    - DSP
-    - DXZC
-    - ECONZ
+  - AHU
+  - DFSS
+  - DSP
+  - DXZC
+  - ECONZ
 
 AHU_DFSS_DSP_DXSC_ECONZ:
   guid: "834072a0-15e2-4366-b4f8-bec5ed83a4fe"
   description: "Single zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - DFSS
-    - DSP
-    - DXSC
-    - ECONZ
+  - AHU
+  - DFSS
+  - DSP
+  - DXSC
+  - ECONZ
 
 AHU_DFSS_DXZC_ECONZ_EFSS:
   guid: "fbca19b2-bc34-4f22-8b0a-3b35a892925a"
   description: "Single zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - DFSS
-    - DXZC
-    - ECONZ
-    - EFSS
+  - AHU
+  - DFSS
+  - DXZC
+  - ECONZ
+  - EFSS
 
 AHU_CSP_DFSS_DX2SC_ECONZ:
   guid: "2282f023-3ec5-4db3-89d4-40976d910a9c"
   description: "Single zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - CSP
-    - DFSS
-    - DX2SC
-    - ECONZ
+  - AHU
+  - CSP
+  - DFSS
+  - DX2SC
+  - ECONZ
 
 AHU_DFSS_DSP_DX2ZC_ECONZ:
   guid: "c399fba7-1e21-4fd2-ac35-bc2aa43c4d0c"
   description: "Single zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - DFSS
-    - DSP
-    - DX2ZC
-    - ECONZ
+  - AHU
+  - DFSS
+  - DSP
+  - DX2ZC
+  - ECONZ
 
 AHU_DFSS_DSP_DX4ZC_ECONZ:
   guid: "9064de94-7a42-40da-becd-45d9a62eed99"
   description: "Single zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - DFSS
-    - DSP
-    - DX4ZC
-    - ECONZ
+  - AHU
+  - DFSS
+  - DSP
+  - DX4ZC
+  - ECONZ
 
 AHU_CSP_DFSS_DXZC_ECONMD:
   guid: "42dc2ee7-78ed-4a3d-9c65-ca0a3bae853c"
   description: "Single zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - CSP
-    - DFSS
-    - DXZC
-    - ECONMD
+  - AHU
+  - CSP
+  - DFSS
+  - DXZC
+  - ECONMD
 
 AHU_DSP_DFSS_DXZC_ECONMD:
   guid: "acf1a9b2-4931-4d2c-b8f6-f601516d02ba"
   description: "Single zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - DSP
-    - DFSS
-    - DXZC
-    - ECONMD
+  - AHU
+  - DSP
+  - DFSS
+  - DXZC
+  - ECONMD
 
 AHU_DFSS_DXZC_ECONZ_HT2ZC:
   guid: "3f6757fd-3535-4e21-b035-d7bc59173522"
   description: "Single zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - DFSS
-    - DXZC
-    - ECONZ
-    - HT2ZC
+  - AHU
+  - DFSS
+  - DXZC
+  - ECONZ
+  - HT2ZC
 
 AHU_DFSS_DX2ZTC_ECONZ_EFSS:
   guid: "f13031b8-5f69-4a51-b868-2f1a47bc1f22"
   description: "Single zone AHU with exhaust control."
   is_canonical: true
   implements:
-    - AHU
-    - DFSS
-    - DX2ZTC
-    - ECONZ
-    - EFSS
+  - AHU
+  - DFSS
+  - DX2ZTC
+  - ECONZ
+  - EFSS
+
 
 AHU_DFSS_DXZC_ECONM:
   guid: "39d11efc-26e4-4b2e-9e33-2d6dbf17ba38"
   description: "Single zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - DFSS
-    - DXZC
-    - ECONM
+  - AHU
+  - DFSS
+  - DXZC
+  - ECONM
 
 AHU_DFSS_DSP_DX2ZC_ECONZ_HTZC:
   guid: "8b064238-63ae-4100-bafe-154ea86bef72"
   description: "Single zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - DFSS
-    - DSP
-    - DX2ZC
-    - ECONZ
-    - HTZC
+  - AHU
+  - DFSS
+  - DSP
+  - DX2ZC
+  - ECONZ
+  - HTZC
 
 AHU_CO2C_DFSS_DX2ZC_ECONZ_HT2ZC:
   guid: "fee08f4c-af69-4a7f-ab3b-954251565d2c"
   description: "Single zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - CO2C
-    - DFSS
-    - DX2ZC
-    - ECONZ
-    - HT2ZC
+  - AHU
+  - CO2C
+  - DFSS
+  - DX2ZC
+  - ECONZ
+  - HT2ZC
 
 AHU_CO2C_DFSS_DX2ZC_ECONZ_HTZC:
   guid: "58e3e32c-9415-48ad-b060-13684b77c782"
   description: "Single zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - CO2C
-    - DFSS
-    - DX2ZC
-    - ECONZ
-    - HTZC
+  - AHU
+  - CO2C
+  - DFSS
+  - DX2ZC
+  - ECONZ
+  - HTZC
 
 AHU_DFSS_DXDC_ECOND_ZHM_ZTM:
   guid: "73840b41-f773-4036-bf37-6df08ddacc1b"
   description: "Single zone AHU with minimal zone monitoring."
   is_canonical: true
   implements:
-    - AHU
-    - DFSS
-    - DXDC
-    - ECOND
-    - ZHM
-    - ZTM
+  - AHU
+  - DFSS
+  - DXDC
+  - ECOND
+  - ZHM
+  - ZTM
 
 AHU_DFSS_DSP_DXDC_ECOND_EFSS_HTDC:
   guid: "99403d6d-3c54-4c2c-ba4c-0de347f06313"
   description: "Single zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - DFSS
-    - DSP
-    - DXDC
-    - ECOND
-    - EFSS
-    - HTDC
+  - AHU
+  - DFSS
+  - DSP
+  - DXDC
+  - ECOND
+  - EFSS
+  - HTDC
 
 AHU_DFSS_DXZC_ECOND_EFSS_HTSC:
   guid: "86060be8-c709-4eb3-af23-111c000cd438"
   description: "Single zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - DFSS
-    - DXZC
-    - ECOND
-    - EFSS
-    - HTSC
+  - AHU
+  - DFSS
+  - DXZC
+  - ECOND
+  - EFSS
+  - HTSC
 
 AHU_DFSS_DSP_DXZC_ECONZ_EFSS:
   guid: "0fb2175e-7e02-4440-a2da-44ae33869921"
   description: "Single zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - DFSS
-    - DSP
-    - DXZC
-    - ECONZ
-    - EFSS
+  - AHU
+  - DFSS
+  - DSP
+  - DXZC
+  - ECONZ
+  - EFSS
 
 AHU_DFSS_DFVSC_DXZC_ECONZ_HWZC:
   guid: "49f93f87-7741-402c-b3a3-059cadf09050"
   description: "Single zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - DFSS
-    - DFVSC
-    - DXZC
-    - ECONZ
-    - HWZC
+  - AHU
+  - DFSS
+  - DFVSC
+  - DXZC
+  - ECONZ
+  - HWZC
 
 AHU_DFSS_DSP_DXZC_ECON_HTZC:
   guid: "83096e82-059e-4f54-8d3e-5248ef32c6e3"
   description: "Single zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - DFSS
-    - DSP
-    - DXZC
-    - ECON
-    - HTZC
+  - AHU
+  - DFSS
+  - DSP
+  - DXZC
+  - ECON
+  - HTZC
 
 AHU_CHWZC_DFSS_DSP_ECONZ:
   guid: "51c30c07-c226-4175-9e37-6fe713349d23"
   description: "Single zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - CHWZC
-    - DFSS
-    - DSP
-    - ECONZ
+  - AHU
+  - CHWZC
+  - DFSS
+  - DSP
+  - ECONZ
 
 AHU_CHWZTC_DFSS_ECONZ_HWZTC_ZTC:
   guid: "81dd7d9b-6b54-4095-b4ee-6da5d0e46e4f"
   description: "Single zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - CHWZTC
-    - DFSS
-    - ECONZ
-    - HWZTC
-    - ZTC
+  - AHU
+  - CHWZTC
+  - DFSS
+  - ECONZ
+  - HWZTC
+  - ZTC
 
 AHU_DFSS_ECONZ_HP2ZC:
   guid: "20f0bc07-c43e-407c-97cc-a849c613b2d5"
   description: "Single zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - DFSS
-    - ECONZ
-    - HP2ZC
+  - AHU
+  - DFSS
+  - ECONZ
+  - HP2ZC
 
 AHU_DFSS_DSP_ECONZ_HPZC_HTZC:
   guid: "80261608-f2bd-4c51-af89-83eb4ecdf35c"
   description: "Single zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - DFSS
-    - DSP
-    - ECONZ
-    - HPZC
-    - HTZC
+  - AHU
+  - DFSS
+  - DSP
+  - ECONZ
+  - HPZC
+  - HTZC
 
 AHU_DFSS_DSP_ECONZ_HPZC:
   guid: "d26c4142-9260-41e6-930b-c9ebe43a0063"
   description: "Single zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - DFSS
-    - DSP
-    - ECONZ
-    - HPZC
+  - AHU
+  - DFSS
+  - DSP
+  - ECONZ
+  - HPZC
 
 AHU_DFSS_DSP_ECONZ_HPZC_HT2ZC:
   guid: "211efa70-a9af-4748-bf24-30559573ab61"
   description: "Single zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - DFSS
-    - DSP
-    - ECONZ
-    - HPZC
-    - HT2ZC
+  - AHU
+  - DFSS
+  - DSP
+  - ECONZ
+  - HPZC
+  - HT2ZC
 
 AHU_DFSS_DSP_DX2ZC_ECONZ_EFSS:
   guid: "ceb87a73-0847-4203-bf37-d6f57619f4fd"
   description: "Single zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - DFSS
-    - DSP
-    - DX2ZC
-    - ECONZ
-    - EFSS
+  - AHU
+  - DFSS
+  - DSP
+  - DX2ZC
+  - ECONZ
+  - EFSS
 
 AHU_DFSS_DSP_DX2ZC_ECON_HTZC:
   guid: "cca6873d-457d-42a5-b161-79b8b8b88465"
   description: "Single zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - DFSS
-    - DSP
-    - DX2ZC
-    - ECON
-    - HTZC
+  - AHU
+  - DFSS
+  - DSP
+  - DX2ZC
+  - ECON
+  - HTZC
 
 AHU_DFSS_DSP_DX2ZC_ECONZ_HT2ZC:
   guid: "cccddd4a-8052-4bfa-b4b9-474d151e0d79"
   description: "Single zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - DFSS
-    - DSP
-    - DX2ZC
-    - ECONZ
-    - HT2ZC
+  - AHU
+  - DFSS
+  - DSP
+  - DX2ZC
+  - ECONZ
+  - HT2ZC
 
 AHU_DFSS_DSP_DXZC_ECONZ_ZHC:
   guid: "11ee2619-0647-4d96-8f98-fd0629e15cb7"
   description: "Single zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - DFSS
-    - DSP
-    - DXZC
-    - ECONZ
-    - ZHC
+  - AHU
+  - DFSS
+  - DSP
+  - DXZC
+  - ECONZ
+  - ZHC
 
 AHU_CO2M_DFSS_DSP_ECONZ_HP2ZC:
   guid: "f71c404f-ee4e-43f6-b79c-ddd086630c5a"
   description: "Single zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - CO2M
-    - DFSS
-    - DSP
-    - ECONZ
-    - HP2ZC
+  - AHU
+  - CO2M
+  - DFSS
+  - DSP
+  - ECONZ
+  - HP2ZC
 
 AHU_CO2M_DFSS_DSP_DX2ZC_ECONZ:
   guid: "5926d63d-ba31-47d6-ac13-7c30e52acd79"
   description: "Single zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - CO2M
-    - DFSS
-    - DSP
-    - DX2ZC
-    - ECONZ
+  - AHU
+  - CO2M
+  - DFSS
+  - DSP
+  - DX2ZC
+  - ECONZ
 
 AHU_DFSS_DSP_DX2ZC_ECOND:
   guid: "b29ed2c0-4b22-4191-b128-8b4bfb4fd7e3"
   description: "Single zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - DFSS
-    - DSP
-    - DX2ZC
-    - ECOND
+  - AHU
+  - DFSS
+  - DSP
+  - DX2ZC
+  - ECOND
 
 AHU_DFSS_DSP_DXZC_ECONZ_HTZC:
   guid: "3a088409-8986-472d-a0bf-dcd291a9172f"
   description: "Single zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - DSP
-    - DFSS
-    - DXZC
-    - ECONZ
-    - HTZC
+  - AHU
+  - DSP
+  - DFSS
+  - DXZC
+  - ECONZ
+  - HTZC
 
 AHU_CO2C2X_DFSS_DSP_DXZC_ECONZ_HTZC:
   guid: "78f56bbf-1f81-4a20-a2a5-ab24a0f4091e"
   description: "Single zone AHU"
   is_canonical: true
   implements:
-    - AHU
-    - CO2C2X
-    - DFSS
-    - DSP
-    - DXZC
-    - ECONZ
-    - HTZC
+  - AHU
+  - CO2C2X
+  - DFSS
+  - DSP
+  - DXZC
+  - ECONZ
+  - HTZC
 
 AHU_DFSS_DSP_ECONZ_HP2ZC_HT2ZC:
   guid: "8e478bcb-79c6-4750-babc-ebde0ee72307"
   description: "Single zone AHU"
   is_canonical: true
   implements:
-    - AHU
-    - DFSS
-    - DSP
-    - ECONZ
-    - HP2ZC
-    - HT2ZC
+  - AHU
+  - DFSS
+  - DSP
+  - ECONZ
+  - HP2ZC
+  - HT2ZC
+
 
 AHU_DFSS_DSP_DX2ZC_ECONZ_EFSS_HTZC:
   guid: "d0827748-2f6b-42ea-84d3-cca5d25ff267"
   description: "Single zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - DFSS
-    - DSP
-    - DX2ZC
-    - ECONZ
-    - EFSS
-    - HTZC
+  - AHU
+  - DFSS
+  - DSP
+  - DX2ZC
+  - ECONZ
+  - EFSS
+  - HTZC
 
 AHU_SFSS_SFVSC_EFSS_CHWSC_RTM_FDPM2X_CO2EFVSC_SSPC2X_CO2M6X_OAFC_VOCM_PMM:
   guid: "9a598063-a472-4db0-a894-1be5ef5538f9"
   description: "Multi zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - SFSS
-    - EFSS
-    - SFVSC
-    - CHWSC
-    - RTM
-    - FDPM2X
-    - CO2EFVSC
-    - SSPC2X
-    - CO2M6X
-    - OAFC
-    - VOCM
-    - PMM
+  - AHU
+  - SFSS
+  - EFSS
+  - SFVSC
+  - CHWSC
+  - RTM
+  - FDPM2X
+  - CO2EFVSC
+  - SSPC2X
+  - CO2M6X
+  - OAFC
+  - VOCM
+  - PMM
 
 AHU_BSPC_DFSS_DSP_DX2ZC_ECONZ_EFSS:
   guid: "e6708d02-8187-4f1c-803b-f18756d9da05"
   description: "Single zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - BSPC
-    - DFSS
-    - DSP
-    - DX2ZC
-    - ECONZ
-    - EFSS
+  - AHU
+  - BSPC
+  - DFSS
+  - DSP
+  - DX2ZC
+  - ECONZ
+  - EFSS
 
 AHU_DFSS_DSP_DX2ZC_ECONZ_EFSS_HT2ZC:
   guid: "147adf9a-2b3b-4842-a5e3-edb3baf15c02"
   description: "Single zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - DFSS
-    - DSP
-    - DX2ZC
-    - ECONZ
-    - EFSS
-    - HT2ZC
+  - AHU
+  - DFSS
+  - DSP
+  - DX2ZC
+  - ECONZ
+  - EFSS
+  - HT2ZC
 
 AHU_DFSS_DSP_DX2DC_ECOND_EFSS_HT2DC:
   guid: "4041b087-32e2-4186-9bfe-f89c3846b55e"
   description: "Single zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - DFSS
-    - DSP
-    - DX2DC
-    - ECOND
-    - EFSS
-    - HT2DC
+  - AHU
+  - DFSS
+  - DSP
+  - DX2DC
+  - ECOND
+  - EFSS
+  - HT2DC
 
 AHU_CO2C_DFSS_DSP_ECONZ_HPZC:
   guid: "68517941-59ce-4166-8321-186727514003"
   description: "Single zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - CO2C
-    - DFSS
-    - DSP
-    - ECONZ
-    - HPZC
+  - AHU
+  - CO2C
+  - DFSS
+  - DSP
+  - ECONZ
+  - HPZC
 
 AHU_CO2C_DFSS_DSP_DX2DC_ECOND_HTDC:
   guid: "aab3df2f-0ac6-48c4-ba7e-8c56d271acb2"
   description: "Single zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - CO2C
-    - DFSS
-    - DSP
-    - DX2DC
-    - ECOND
-    - HTDC
+  - AHU
+  - CO2C
+  - DFSS
+  - DSP
+  - DX2DC
+  - ECOND
+  - HTDC
 
 AHU_DFSS_DSP_DXZC_ECONZ_EFSS_HTZC:
   guid: "17e85d54-5f4e-4955-9272-ea0d0ab8953c"
   description: "Single zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - DFSS
-    - DSP
-    - DXZC
-    - ECONZ
-    - EFSS
-    - HTZC
+  - AHU
+  - DFSS
+  - DSP
+  - DXZC
+  - ECONZ
+  - EFSS
+  - HTZC
+
 
 AHU_BFSS_CO2C_DFSS_DX2ZC_ECONZ_HTZC:
   guid: "a4a4127a-e56d-49db-948e-015167d12190"
   description: "Single zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - BFSS
-    - CO2C
-    - DFSS
-    - DX2ZC
-    - ECONZ
-    - HTZC
+  - AHU
+  - BFSS
+  - CO2C
+  - DFSS
+  - DX2ZC
+  - ECONZ
+  - HTZC
+
 
 AHU_DFSS_DSP_DXDC_ECOND_HWDC_MTC:
   guid: "19aa4005-8164-4a79-b86a-871e8a2f1883"
   description: "Single zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - DFSS
-    - DSP
-    - DXDC
-    - ECOND
-    - HWDC
-    - MTC
+  - AHU
+  - DFSS
+  - DSP
+  - DXDC
+  - ECOND
+  - HWDC
+  - MTC
 
 AHU_BPC_CHWDC_DFSS_DSP_ECOND_HTDC_ZSPC:
   guid: "107d5f1c-c12f-4d0a-8358-a5ee7ad56289"
   description: "Single zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - BPC
-    - CHWDC
-    - DFSS
-    - DSP
-    - ECOND
-    - HTDC
-    - ZSPC
+  - AHU
+  - BPC
+  - CHWDC
+  - DFSS
+  - DSP
+  - ECOND
+  - HTDC
+  - ZSPC
 
 AHU_CO2C_DFSS_DSP_DXZC_ECONZ_HTZC:
   guid: "1ae90f4a-a5ef-4ea5-b0a3-94b1452d1ec6"
   description: "Single zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - CO2C
-    - DFSS
-    - DSP
-    - DXZC
-    - ECONZ
-    - HTZC
+  - AHU
+  - CO2C
+  - DFSS
+  - DSP
+  - DXZC
+  - ECONZ
+  - HTZC
 
 AHU_DFSS_DSP_ECOND_EFSS_FDPM_HWDC:
   guid: "1b02996f-c544-4e77-a8a4-66c23b855339"
   description: "Single zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - DFSS
-    - DSP
-    - ECOND
-    - EFSS
-    - FDPM
-    - HWDC
+  - AHU
+  - DFSS
+  - DSP
+  - ECOND
+  - EFSS
+  - FDPM
+  - HWDC
 
 AHU_DFSS_DFVSC_DX4ZC_ECONZ_HT3ZC_ZHM:
   guid: "f8801e01-9c45-4f17-a761-6e112ebd628e"
   description: "Single zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - DFSS
-    - DFVSC
-    - DX4ZC
-    - ECONZ
-    - HT3ZC
-    - ZHM
+  - AHU
+  - DFSS
+  - DFVSC
+  - DX4ZC
+  - ECONZ
+  - HT3ZC
+  - ZHM
 
 AHU_CO2M_DFSS_DSP_DX2ZC_ECONZ_HT2ZC:
   guid: "10c3e354-6e41-4e0c-805a-640941dd4bc4"
   description: "Single zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - CO2M
-    - DFSS
-    - DSP
-    - DX2ZC
-    - ECONZ
-    - HT2ZC
+  - AHU
+  - CO2M
+  - DFSS
+  - DSP
+  - DX2ZC
+  - ECONZ
+  - HT2ZC
 
 AHU_CO2M_DFSS_DSP_DXZC_ECONZ_HTZC:
   guid: "f15af8da-f503-475c-9de0-df2c9fb9f5c1"
   description: "Single zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - CO2M
-    - DFSS
-    - DSP
-    - DXZC
-    - ECONZ
-    - HTZC
+  - AHU
+  - CO2M
+  - DFSS
+  - DSP
+  - DXZC
+  - ECONZ
+  - HTZC
 
 AHU_BSPC_DFSS_DSP_DX2ZC_ECONZ_EFSS_EFVSC:
   guid: "677a848c-1d83-4094-9185-ce3c2956abc7"
   description: "Single zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - BSPC
-    - DFSS
-    - DSP
-    - DX2ZC
-    - ECONZ
-    - EFSS
-    - EFVSC
+  - AHU
+  - BSPC
+  - DFSS
+  - DSP
+  - DX2ZC
+  - ECONZ
+  - EFSS
+  - EFVSC
 
 AHU_DFSS_DSP_DXZC_ECOND_HTZC:
   guid: "bd86ee29-0990-4347-b114-1f9942133aa2"
   description: "Single zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - DFSS
-    - DSP
-    - DXZC
-    - ECOND
-    - HTZC
+  - AHU
+  - DFSS
+  - DSP
+  - DXZC
+  - ECOND
+  - HTZC
 
 AHU_CO2C_DFSS_DSP_DXZC_ECONZ_EFSS_HTZC:
   guid: "06019e28-c9e1-448f-8d11-775cbba3bf67"
   description: "Single zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - CO2C
-    - DFSS
-    - DSP
-    - DXZC
-    - ECONZ
-    - EFSS
-    - HTZC
+  - AHU
+  - CO2C
+  - DFSS
+  - DSP
+  - DXZC
+  - ECONZ
+  - EFSS
+  - HTZC
 
 AHU_BSPC_DFSS_DFVSC_DX2ZC_ECONZ_EFSS_EFVSC:
   guid: "3b0ffc69-3d75-44c6-8b83-dec95853aa14"
   description: "Single zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - BSPC
-    - DFSS
-    - DFVSC
-    - DX2ZC
-    - ECONZ
-    - EFSS
-    - EFVSC
+  - AHU
+  - BSPC
+  - DFSS
+  - DFVSC
+  - DX2ZC
+  - ECONZ
+  - EFSS
+  - EFVSC
 
 AHU_BSPC_DFSS_DFVSC_DSP_DX2ZC_ECONZ_EFSS_EFVSC:
   guid: "5b2e4afc-2eb2-40ce-8e4a-b9549866a00c"
   description: "Single zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - BSPC
-    - DFSS
-    - DFVSC
-    - DSP
-    - DX2ZC
-    - ECONZ
-    - EFSS
-    - EFVSC
+  - AHU
+  - BSPC
+  - DFSS
+  - DFVSC
+  - DSP
+  - DX2ZC
+  - ECONZ
+  - EFSS
+  - EFVSC
 
 AHU_CO2C_DFSS_DSP_DX2ZC_ECONZ_EFSS_HT2ZC:
   guid: "7f08604b-0f21-401b-ba8c-86a3ce0796c4"
   description: "Single zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - CO2C
-    - DFSS
-    - DSP
-    - DX2ZC
-    - ECONZ
-    - EFSS
-    - HT2ZC
+  - AHU
+  - CO2C
+  - DFSS
+  - DSP
+  - DX2ZC
+  - ECONZ
+  - EFSS
+  - HT2ZC
 
 AHU_DFSS_DFVSC_DSP_DXZC_ECOND_EFSS_EFVSC_HTZC:
   guid: "4f371358-79b8-48fc-bff1-a27ad597d855"
   description: "Single zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - DFSS
-    - DFVSC
-    - DSP
-    - DXZC
-    - ECOND
-    - EFSS
-    - EFVSC
-    - HTZC
+  - AHU
+  - DFSS
+  - DFVSC
+  - DSP
+  - DXZC
+  - ECOND
+  - EFSS
+  - EFVSC
+  - HTZC
 
 AHU_BSPC_DFSS_DFVSC_DX2ZC_ECONZ_EFSS_EFVSC_HTZC:
   guid: "73902e20-c242-4ba1-a608-714e3efc2ffc"
   description: "Single zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - BSPC
-    - DFSS
-    - DFVSC
-    - DX2ZC
-    - ECONZ
-    - EFSS
-    - EFVSC
-    - HTZC
+  - AHU
+  - BSPC
+  - DFSS
+  - DFVSC
+  - DX2ZC
+  - ECONZ
+  - EFSS
+  - EFVSC
+  - HTZC
 
 AHU_BSPC_DFSS_DFVSC_DSP_DX3DC_ECOND_EFSS_EFVSC_HTDC:
   guid: "5baab672-6729-41db-9f54-4bf3c45a39b4"
   description: "Single zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - BSPC
-    - DFSS
-    - DFVSC
-    - DSP
-    - DX3DC
-    - ECOND
-    - EFSS
-    - EFVSC
-    - HTDC
+  - AHU
+  - BSPC
+  - DFSS
+  - DFVSC
+  - DSP
+  - DX3DC
+  - ECOND
+  - EFSS
+  - EFVSC
+  - HTDC
+
 
 AHU_CO2C_DFSS_DFVSC_DSP_DX2DC_ECOND_EFSS_EFVSC_HTDC:
   guid: "0ed4c0d3-9fe9-4e39-9ea3-44f5aec750c4"
   description: "Single zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - CO2C
-    - DFSS
-    - DFVSC
-    - DSP
-    - DX2DC
-    - ECOND
-    - EFSS
-    - EFVSC
-    - HTDC
+  - AHU
+  - CO2C
+  - DFSS
+  - DFVSC
+  - DSP
+  - DX2DC
+  - ECOND
+  - EFSS
+  - EFVSC
+  - HTDC
 
 AHU_CO2M_DFSS_DFVSC_DSP_DXDC_ECONMD_EFSS_EFVSC_HWDC:
   guid: "4c30fc34-348c-4af2-bf7c-eee3cf5cebeb"
   description: "Single zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - CO2M
-    - DFSS
-    - DFVSC
-    - DSP
-    - DXDC
-    - ECONMD
-    - EFSS
-    - EFVSC
-    - HWDC
+  - AHU
+  - CO2M
+  - DFSS
+  - DFVSC
+  - DSP
+  - DXDC
+  - ECONMD
+  - EFSS
+  - EFVSC
+  - HWDC
 
 AHU_DFSS_DXZC_ECOND_ZHM:
   guid: "26cdceee-4336-4df6-9803-79f2d0fcd5fd"
   description: "Single-zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - DFSS
-    - DXZC
-    - ECOND
-    - ZHM
+  - AHU
+  - DFSS
+  - DXZC
+  - ECOND
+  - ZHM
 
 AHU_DFSS_CHWDT_DTM_RTC_RWISOVPC_OAFC_FDPSM2X:
   guid: "7a673576-2e77-4e23-9cad-9508fedb1571"
   description: "Smart AHU."
   is_canonical: true
   implements:
-    - AHU
-    - DFSS
-    - CHWDT
-    - DTM
-    - RTC
-    - RWISOVPC
-    - OAFC
-    - FDPSM2X
+  - AHU
+  - DFSS
+  - CHWDT
+  - DTM
+  - RTC
+  - RWISOVPC
+  - OAFC
+  - FDPSM2X
 
 ### Multi-zone Units ###
 
@@ -905,3068 +910,3092 @@ AHU_DXSC_ECON_EFSS_SFSS:
   description: "Single zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - DXSC
-    - ECON
-    - EFSS
-    - SFSS
+  - AHU
+  - DXSC
+  - ECON
+  - EFSS
+  - SFSS
 
 AHU_DXSC_ECON_HTSC_SFSS:
   guid: "742c5306-cc94-4a2d-8660-fe8a2bd0d4a2"
   description: "Single zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - DXSC
-    - ECON
-    - HTSC
-    - SFSS
+  - AHU
+  - DXSC
+  - ECON
+  - HTSC
+  - SFSS
 
 AHU_BYPSSPC_ECON_HP2SC_HTSC_SFSS:
   guid: "d7eab6ec-0cf6-4e0a-8e71-56ba842512d8"
   description: "Multi-zone AHU with bypass static control."
   is_canonical: true
   implements:
-    - AHU
-    - BYPSSPC
-    - ECON
-    - HP2SC
-    - HTSC
-    - SFSS
+  - AHU
+  - BYPSSPC
+  - ECON
+  - HP2SC
+  - HTSC
+  - SFSS
 
 AHU_BYPSSPC_DX2SC_ECON_HTSC_SFSS:
   guid: "f4a4cd0a-5618-4241-bdfa-3d0f5fea4c70"
   description: "Multi-zone AHU with bypass static control."
   is_canonical: true
   implements:
-    - AHU
-    - BYPSSPC
-    - DX2SC
-    - ECON
-    - HTSC
-    - SFSS
+  - AHU
+  - BYPSSPC
+  - DX2SC
+  - ECON
+  - HTSC
+  - SFSS
 
 AHU_BYPSSPC_DX2SC_ECON_HT2SC_SFSS:
   guid: "daa54d7b-8dbb-42ea-b314-80efe8ebf984"
   description: "Multi-zone AHU with bypass static control."
   is_canonical: true
   implements:
-    - AHU
-    - BYPSSPC
-    - DX2SC
-    - ECON
-    - HT2SC
-    - SFSS
+  - AHU
+  - BYPSSPC
+  - DX2SC
+  - ECON
+  - HT2SC
+  - SFSS
 
 AHU_BYPSSPC_DXSC_ECON_HTSC_SFSS:
   guid: "0067dcd1-b00a-4715-8b2c-b35565a36176"
   description: "Multi-zone AHU with bypass static control."
   is_canonical: true
   implements:
-    - AHU
-    - BYPSSPC
-    - DXSC
-    - ECON
-    - HTSC
-    - SFSS
+  - AHU
+  - BYPSSPC
+  - DXSC
+  - ECON
+  - HTSC
+  - SFSS
 
 AHU_BYPSSPC_ECON_EFSS_HP2SC_SFSS:
   guid: "488ec33d-6ebd-48e6-be59-5a091ef44d91"
   description: "Multi-zone AHU with bypass static control."
   is_canonical: true
   implements:
-    - AHU
-    - BYPSSPC
-    - ECON
-    - EFSS
-    - HP2SC
-    - SFSS
+  - AHU
+  - BYPSSPC
+  - ECON
+  - EFSS
+  - HP2SC
+  - SFSS
 
 AHU_DX2SC_ECON_SFSS_SFVSC_SSPC:
   guid: "7891e6d4-b2e8-4475-b4eb-f283c0c4fee9"
   description: "Multi zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - DX2SC
-    - ECON
-    - SFSS
-    - SFVSC
-    - SSPC
+  - AHU
+  - DX2SC
+  - ECON
+  - SFSS
+  - SFVSC
+  - SSPC
 
 AHU_BYPSSPC_DXSC_ECON_HP2SC_SFSS:
   guid: "a02bb3ee-8af6-45cb-b0cf-f254303a8b23"
   description: "Multi-zone AHU with bypass static control."
   is_canonical: true
   implements:
-    - AHU
-    - BYPSSPC
-    - DXSC
-    - ECON
-    - HP2SC
-    - SFSS
+  - AHU
+  - BYPSSPC
+  - DXSC
+  - ECON
+  - HP2SC
+  - SFSS
 
 AHU_BYPSSPC_ECON_HP2SC_HT2SC_SFSS:
   guid: "b7482bdc-3c72-4904-8ace-c19faaec08d7"
   description: "Multi-zone AHU with bypass static control."
   is_canonical: true
   implements:
-    - AHU
-    - BYPSSPC
-    - ECON
-    - HP2SC
-    - HT2SC
-    - SFSS
+  - AHU
+  - BYPSSPC
+  - ECON
+  - HP2SC
+  - HT2SC
+  - SFSS
+
 
 AHU_DXSC_ECON_SFSS_SFVSC_SSPC:
   guid: "f7513ae5-3133-47ef-bff0-82bbe8425d5e"
   description: "Multi-zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - DXSC
-    - ECON
-    - SFSS
-    - SFVSC
-    - SSPC
+  - AHU
+  - DXSC
+  - ECON
+  - SFSS
+  - SFVSC
+  - SSPC
 
 AHU_BYPSSPC2X_DX2SC_ECON_HT2SC_SFSS:
   guid: "f29bd444-7ab0-4293-8a97-3b200f0fa1c7"
   description: "Single zone AHU with bypass static pressure control."
   is_canonical: true
   implements:
-    - AHU
-    - BYPSSPC2X
-    - DX2SC
-    - ECON
-    - HT2SC
-    - SFSS
+  - AHU
+  - BYPSSPC2X
+  - DX2SC
+  - ECON
+  - HT2SC
+  - SFSS
 
 AHU_BYPSSPC_DSP_DX2ZC_ECON_HTZC_SFSS:
   guid: "89539e7e-93f7-40a9-b141-ee545be513d8"
   description: "Weird type where the unit serves a zone, but has static control."
   #is_canonical: true
   implements:
-    - AHU
-    - BYPSSPC
-    - DSP
-    - DX2ZC
-    - ECON
-    - HTZC
-    - SFSS
+  - AHU
+  - BYPSSPC
+  - DSP
+  - DX2ZC
+  - ECON
+  - HTZC
+  - SFSS
 
 AHU_BYPSSPC_DX2SDC_ECON_HT2SDC_SFSS:
   guid: "a9557fcb-b4d7-451b-8d29-30d8c1d2e38c"
   description: "Multi zone AHU with bypass static control."
   is_canonical: true
   implements:
-    - AHU
-    - BYPSSPC
-    - DX2SDC
-    - ECON
-    - HT2SDC
-    - SFSS
+  - AHU
+  - BYPSSPC
+  - DX2SDC
+  - ECON
+  - HT2SDC
+  - SFSS
 
 AHU_DX4SC_ECON_SFSS_SFVSC_SSPC:
   guid: "16a45594-84ef-4f23-bf9b-02b751d7b687"
   description: "Multi-zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - DX4SC
-    - ECON
-    - SFSS
-    - SFVSC
-    - SSPC
+  - AHU
+  - DX4SC
+  - ECON
+  - SFSS
+  - SFVSC
+  - SSPC
+
 
 AHU_CHWSDC_ECOND_HTSDC_SFSS_SHC:
   guid: "db92d74e-5c90-472a-a4e4-e3eaca4b20d8"
   description: "Multi-zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - CHWSDC
-    - ECOND
-    - HTSDC
-    - SFSS
-    - SHC
+  - AHU
+  - CHWSDC
+  - ECOND
+  - HTSDC
+  - SFSS
+  - SHC
+
 
 AHU_DX4SC_ECON_EFSS_SFSS_SSPC:
   guid: "af50e8f3-378e-4085-9dd3-77e9e0a3f3a3"
   description: "Multi-zone AHU with exhaust fan."
   is_canonical: true
   implements:
-    - AHU
-    - DX4SC
-    - ECON
-    - EFSS
-    - SFSS
-    - SSPC
+  - AHU
+  - DX4SC
+  - ECON
+  - EFSS
+  - SFSS
+  - SSPC
 
 AHU_DXSC_ECON_HTSC_SFSS_SFVSC:
   guid: "a432fbb8-db0d-4209-9102-ca481c544ce4"
   description: "Multi-zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - DXSC
-    - ECON
-    - HTSC
-    - SFSS
-    - SFVSC
+  - AHU
+  - DXSC
+  - ECON
+  - HTSC
+  - SFSS
+  - SFVSC
 
 AHU_CHWSC_ECON_SFSS_SFVSC_SSPC:
   guid: "e80e6380-6ef5-4b6c-b148-b14d829c6a38"
   description: "Multi-zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - CHWSC
-    - ECON
-    - SFSS
-    - SFVSC
-    - SSPC
+  - AHU
+  - CHWSC
+  - ECON
+  - SFSS
+  - SFVSC
+  - SSPC
 
 AHU_CHWSC_ECON_FDPM_HWSC_SFSS:
   guid: "216c48c3-a85b-4d17-b1b1-75df67832eb8"
   description: "Multi-zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - CHWSC
-    - ECON
-    - FDPM
-    - HWSC
-    - SFSS
+  - AHU
+  - CHWSC
+  - ECON
+  - FDPM
+  - HWSC
+  - SFSS
 
 AHU_CHWSC_ECON_SARC_SFSS_SFVSC_SSPC:
   guid: "7b3f417a-ae90-4081-ae73-5ea225886209"
   description: "Multi-zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - CHWSC
-    - ECON
-    - SARC
-    - SFSS
-    - SFVSC
-    - SSPC
+  - AHU
+  - CHWSC
+  - ECON
+  - SARC
+  - SFSS
+  - SFVSC
+  - SSPC
+
 
 AHU_DX2SC_ECON_HT2SC_SFSS_SFVSC_SSPC:
   guid: "1d6a352e-da19-4670-9ed2-50a6b99c5bc6"
   description: "Multi-zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - DX2SC
-    - ECON
-    - HT2SC
-    - SFSS
-    - SFVSC
-    - SSPC
+  - AHU
+  - DX2SC
+  - ECON
+  - HT2SC
+  - SFSS
+  - SFVSC
+  - SSPC
+
 
 AHU_BYPSSPC_DXSC_ECON_EFSS_HTSC_SFSS:
   guid: "750d0b4e-4b60-42c4-b5ba-16d97bd8982d"
   description: "Multi-zone AHU"
   is_canonical: true
   implements:
-    - AHU
-    - BYPSSPC
-    - DXSC
-    - ECON
-    - EFSS
-    - HTSC
-    - SFSS
+  - AHU
+  - BYPSSPC
+  - DXSC
+  - ECON
+  - EFSS
+  - HTSC
+  - SFSS
 
 AHU_BYPSSPC_DX2SC_ECON_EFSS_HTSC_SFSS:
   guid: "5eb6323d-72be-458f-b1f6-2abd16de026b"
   description: "Multi-zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - BYPSSPC
-    - DX2SC
-    - ECON
-    - EFSS
-    - HTSC
-    - SFSS
+  - AHU
+  - BYPSSPC
+  - DX2SC
+  - ECON
+  - EFSS
+  - HTSC
+  - SFSS
 
 AHU_BSPC_DX4SC_ECON_EFSS_SFSS_SSPC:
   guid: "f8f38f2c-7321-4355-8b37-1dfb2578c89c"
   description: "Multi-zone AHU"
   is_canonical: true
   implements:
-    - AHU
-    - BSPC
-    - DX4SC
-    - ECON
-    - EFSS
-    - SFSS
-    - SSPC
+  - AHU
+  - BSPC
+  - DX4SC
+  - ECON
+  - EFSS
+  - SFSS
+  - SSPC
+
 
 AHU_BYPSSPC_ECON_EFSS_HP2ZC_SFSS_STM:
   guid: "ca031704-2b49-48c9-8cb9-1e57541e8f5e"
   description: "Multi-zone AHU. Weird unit with supply static control for a single zone."
   #is_canonical: true
   implements:
-    - AHU
-    - BYPSSPC
-    - ECON
-    - EFSS
-    - HP2ZC
-    - SFSS
-    - STM
+  - AHU
+  - BYPSSPC
+  - ECON
+  - EFSS
+  - HP2ZC
+  - SFSS
+  - STM
 
 AHU_BYPSSPC_DX2SC_ECON_EFSS_HT2SC_SFSS:
   guid: "9cb3ee0a-77fe-4ff7-bcaf-2862013cd169"
   description: "Multi-zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - BYPSSPC
-    - DX2SC
-    - ECON
-    - EFSS
-    - HT2SC
-    - SFSS
+  - AHU
+  - BYPSSPC
+  - DX2SC
+  - ECON
+  - EFSS
+  - HT2SC
+  - SFSS
 
 AHU_CHWSC_ECON_HWSC_SFSS_SFVSC_SSPC:
   guid: "657ac31f-6d4c-43ce-aed5-a957aa4cd3a3"
   description: "Multi-zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - CHWSC
-    - ECON
-    - HWSC
-    - SFSS
-    - SFVSC
-    - SSPC
+  - AHU
+  - CHWSC
+  - ECON
+  - HWSC
+  - SFSS
+  - SFVSC
+  - SSPC
 
 AHU_CHWSC_ECON_SFC_SFSS_SFVSC_SSPC:
   guid: "65617b0a-c96f-4ccb-b66d-874c8f4991c4"
   description: "Multi-zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - CHWSC
-    - ECON
-    - SFC
-    - SFSS
-    - SFVSC
-    - SSPC
+  - AHU
+  - CHWSC
+  - ECON
+  - SFC
+  - SFSS
+  - SFVSC
+  - SSPC
 
 AHU_DX2SC_ECON_EFSS_SFSS_SFVSC_SSPC:
   guid: "5bc290b6-c5af-4d11-af4f-9f29b37c2d3d"
   description: "Multi-zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - DX2SC
-    - ECON
-    - EFSS
-    - SFSS
-    - SFVSC
-    - SSPC
+  - AHU
+  - DX2SC
+  - ECON
+  - EFSS
+  - SFSS
+  - SFVSC
+  - SSPC
+
 
 AHU_BSPC_DXSC_ECON_SFSS_SFVSC_SSPC:
   guid: "c735a775-e842-424a-bd6b-66894433a7cd"
   description: "Multi-zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - BSPC
-    - DXSC
-    - ECON
-    - SFSS
-    - SFVSC
-    - SSPC
+  - AHU
+  - BSPC
+  - DXSC
+  - ECON
+  - SFSS
+  - SFVSC
+  - SSPC
 
 AHU_BPC_DXSC_ECON_PHWSC_RAIDC_RFSS_RFVSC_SAIDC_SFSS_SFVSC_SSPC:
   guid: "6ed07a60-6042-4918-925a-95cca8e627a2"
   description: "Multi-zone AHU with return fan VFD, RF and SF iso dampers, and PHW."
   is_canonical: true
   implements:
-    - AHU
-    - BPC
-    - DXSC
-    - ECON
-    - PHWSC
-    - RAIDC
-    - RFSS
-    - RFVSC
-    - SAIDC
-    - SFSS
-    - SFVSC
-    - SSPC
+  - AHU
+  - BPC
+  - DXSC
+  - ECON
+  - PHWSC
+  - RAIDC
+  - RFSS
+  - RFVSC
+  - SAIDC
+  - SFSS
+  - SFVSC
+  - SSPC
 
 AHU_BPC2X_DXSC_ECON_PHWSC_RFSS_RFVSC_SFSS_SFVSC_SSPC:
   guid: "255af978-419a-4b4a-a1ba-35a04aa280ee"
   description: "Multi-zone AHU with return fan VFD and multiple pressure sensors"
   is_canonical: true
   implements:
-    - AHU
-    - BPC2X
-    - DXSC
-    - ECON
-    - PHWSC
-    - RFSS
-    - RFVSC
-    - SFSS
-    - SFVSC
-    - SSPC
+  - AHU
+  - BPC2X
+  - DXSC
+  - ECON
+  - PHWSC
+  - RFSS
+  - RFVSC
+  - SFSS
+  - SFVSC
+  - SSPC
+  
 
 AHU_CHWSC_ECONM2X_MOAFC_SFSS_SFVSC_SSPC:
   guid: "f152b105-28c2-4655-a42a-d378ee7bf9ed"
   description: "Multi-zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - CHWSC
-    - ECONM2X
-    - MOAFC
-    - SFSS
-    - SFVSC
-    - SSPC
+  - AHU
+  - CHWSC
+  - ECONM2X
+  - MOAFC
+  - SFSS
+  - SFVSC
+  - SSPC
 
 AHU_CHWSC_ECON_FDPM_SFSS_SFVSC_SSPC:
   guid: "45f43f06-1c09-4e01-8a22-02513375ccd1"
   description: "Multi-zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - CHWSC
-    - ECON
-    - FDPM
-    - SFSS
-    - SFVSC
-    - SSPC
+  - AHU
+  - CHWSC
+  - ECON
+  - FDPM
+  - SFSS
+  - SFVSC
+  - SSPC
 
 AHU_DXSC_ECONM_HWSC_SFSS_SFVSC_SSPC:
   guid: "45aa52cc-a95f-4c28-bb82-e777b03bc477"
   description: "Multi-zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - DXSC
-    - ECONM
-    - HWSC
-    - SFSS
-    - SFVSC
-    - SSPC
+  - AHU
+  - DXSC
+  - ECONM
+  - HWSC
+  - SFSS
+  - SFVSC
+  - SSPC
 
 AHU_BSPC_DXSC_ECON_EFSS_SFSS_SFVSC_SSPC:
   guid: "33f865c4-1475-482d-92fd-204af4e5bd0f"
   description: "Multi-zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - BSPC
-    - DXSC
-    - ECON
-    - EFSS
-    - SFSS
-    - SFVSC
-    - SSPC
+  - AHU
+  - BSPC
+  - DXSC
+  - ECON
+  - EFSS
+  - SFSS
+  - SFVSC
+  - SSPC
 
 AHU_BSPC_DX4SC_ECON_EFSS_SFSS_SFVSC_SSPC:
   guid: "36d2cefd-c823-49ab-8ad3-cf9b6d46ff5f"
   description: "Multi-zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - BSPC
-    - DX4SC
-    - ECON
-    - EFSS
-    - SFSS
-    - SFVSC
-    - SSPC
+  - AHU
+  - BSPC
+  - DX4SC
+  - ECON
+  - EFSS
+  - SFSS
+  - SFVSC
+  - SSPC
 
 AHU_DX2SC_ECON_EFSS_HT2SC_SFSS_SFVSC_SSPC:
   guid: "ffd0eedd-7d0c-4b33-9d9b-f26a7bb4c29f"
   description: "Multi-zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - DX2SC
-    - ECON
-    - EFSS
-    - HT2SC
-    - SFSS
-    - SFVSC
-    - SSPC
+  - AHU
+  - DX2SC
+  - ECON
+  - EFSS
+  - HT2SC
+  - SFSS
+  - SFVSC
+  - SSPC
 
 AHU_DXSC_ECON_EFSS_HTSC_SFSS_SFVSC_SSPC:
   guid: "06d0e12e-6678-4cc4-968d-bed801a36e3c"
   description: "Multi-zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - DXSC
-    - ECON
-    - EFSS
-    - HTSC
-    - SFSS
-    - SFVSC
-    - SSPC
+  - AHU
+  - DXSC
+  - ECON
+  - EFSS
+  - HTSC
+  - SFSS
+  - SFVSC
+  - SSPC
 
 AHU_BYPSSPC_DXSC_ECON_EFSS_HTSC_SFSS_SFVSC:
   guid: "1f7a0dbd-c2d0-461b-a35f-d4ba963c95cd"
   description: "Multi-zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - BYPSSPC
-    - DXSC
-    - ECON
-    - EFSS
-    - HTSC
-    - SFSS
-    - SFVSC
+  - AHU
+  - BYPSSPC
+  - DXSC
+  - ECON
+  - EFSS
+  - HTSC
+  - SFSS
+  - SFVSC
 
 AHU_BSPC_CHWSC_ECON_EFSS_SFSS_SFVSC_SSPC:
   guid: "e1272d1a-32de-468a-82ba-37d9be08ee86"
   description: "Multi-zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - BSPC
-    - CHWSC
-    - ECON
-    - EFSS
-    - SFSS
-    - SFVSC
-    - SSPC
+  - AHU
+  - BSPC
+  - CHWSC
+  - ECON
+  - EFSS
+  - SFSS
+  - SFVSC
+  - SSPC
 
 AHU_BSPC_CHWSC_ECON_EFSS_HWSC_SFSS_SSPC:
   guid: "8b5b166e-6707-4f47-ba41-3fc2705082e4"
   description: "Multi-zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - BSPC
-    - CHWSC
-    - ECON
-    - EFSS
-    - HWSC
-    - SFSS
-    - SSPC
+  - AHU
+  - BSPC
+  - CHWSC
+  - ECON
+  - EFSS
+  - HWSC
+  - SFSS
+  - SSPC
 
 AHU_BSPC_DX2SC_ECON_EFSS_SFSS_SFVSC_SSPC:
   guid: "2020e9c0-1471-4e8d-b9fc-0172af3c5b63"
   description: "Multi-zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - BSPC
-    - DX2SC
-    - ECON
-    - EFSS
-    - SFSS
-    - SFVSC
-    - SSPC
+  - AHU
+  - BSPC
+  - DX2SC
+  - ECON
+  - EFSS
+  - SFSS
+  - SFVSC
+  - SSPC
 
 AHU_DX4SC_ECON_EFSS_HWSC_SFSS_SFVSC_SSPC:
   guid: "4e0af562-86bc-4f25-b8dd-a18a41d35be3"
   description: "Multi-zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - DX4SC
-    - ECON
-    - EFSS
-    - HWSC
-    - SFSS
-    - SFVSC
-    - SSPC
+  - AHU
+  - DX4SC
+  - ECON
+  - EFSS
+  - HWSC
+  - SFSS
+  - SFVSC
+  - SSPC
 
 AHU_BSPC_DX4SC_ECON_EFSS_RHM_SFSS_SSPC:
   guid: "f9e31c77-5a78-4121-8f29-b6666de82ab3"
   description: "Multi-zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - BSPC
-    - DX4SC
-    - ECON
-    - EFSS
-    - RHM
-    - SFSS
-    - SSPC
+  - AHU
+  - BSPC
+  - DX4SC
+  - ECON
+  - EFSS
+  - RHM
+  - SFSS
+  - SSPC
 
 AHU_CHWSC_ECON_FDPM_HWSC_SFSS_SFVSC_SSPC:
   guid: "ad2bb44e-babe-4acd-996f-668783ed3c22"
   description: "Multi-zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - CHWSC
-    - ECON
-    - FDPM
-    - HWSC
-    - SFSS
-    - SFVSC
-    - SSPC
+  - AHU
+  - CHWSC
+  - ECON
+  - FDPM
+  - HWSC
+  - SFSS
+  - SFVSC
+  - SSPC
 
 AHU_DX4ZC_ECON_EFSS_HT3ZC_SFSS_SFVSC_ZHC:
   guid: "03b89e03-9196-421a-967d-28419737dbfa"
   description: "Multi-zone AHU with some weird zone points."
   #is_canonical: true
   implements:
-    - AHU
-    - DX4ZC
-    - ECON
-    - EFSS
-    - HT3ZC
-    - SFSS
-    - SFVSC
-    - ZHC
+  - AHU
+  - DX4ZC
+  - ECON
+  - EFSS
+  - HT3ZC
+  - SFSS
+  - SFVSC
+  - ZHC
 
 AHU_BSPC_DX4SC_ECONM_EFSS_EFVSC_SFSS_SFVSC_SSPC:
   guid: "3028f2ae-ebe5-4ce0-88c2-4926c08bbb89"
   description: "Multi-zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - BSPC
-    - DX4SC
-    - ECONM
-    - EFSS
-    - EFVSC
-    - SFSS
-    - SFVSC
-    - SSPC
+  - AHU
+  - BSPC
+  - DX4SC
+  - ECONM
+  - EFSS
+  - EFVSC
+  - SFSS
+  - SFVSC
+  - SSPC
 
 AHU_BSPC_DX4SC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC:
   guid: "c1a60cf1-6f30-4d34-aeba-ac40fde5d605"
   description: "Multi-zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - BSPC
-    - DX4SC
-    - ECON
-    - EFSS
-    - EFVSC
-    - SFSS
-    - SFVSC
-    - SSPC
+  - AHU
+  - BSPC
+  - DX4SC
+  - ECON
+  - EFSS
+  - EFVSC
+  - SFSS
+  - SFVSC
+  - SSPC
 
 AHU_DX2SC_ECON_EFSS_EFVSC_HTSC_SFSS_SFVSC_SSPC:
   guid: "d3d965e0-47d9-4194-b1a6-d2fffa088a87"
   description: "Multi-zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - DX2SC
-    - ECON
-    - EFSS
-    - EFVSC
-    - HTSC
-    - SFSS
-    - SFVSC
-    - SSPC
+  - AHU
+  - DX2SC
+  - ECON
+  - EFSS
+  - EFVSC
+  - HTSC
+  - SFSS
+  - SFVSC
+  - SSPC
 
 AHU_BSPC_DX4SC_ECON_EFSS_RHM_SFSS_SFVSC_SSPC:
   guid: "049aa3b3-f42a-4e2d-8a7c-8b9c760bae11"
   description: "Multi-zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - BSPC
-    - DX4SC
-    - ECON
-    - EFSS
-    - RHM
-    - SFSS
-    - SFVSC
-    - SSPC
+  - AHU
+  - BSPC
+  - DX4SC
+  - ECON
+  - EFSS
+  - RHM
+  - SFSS
+  - SFVSC
+  - SSPC
 
 AHU_CHWSC_ECON_EFSS_EFVSC_HWSC_SFSS_SFVSC_SSPC:
   guid: "2281d1f2-83a6-4625-a6cb-6a976eeff49b"
   description: "Multi-zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - CHWSC
-    - ECON
-    - EFSS
-    - EFVSC
-    - HWSC
-    - SFSS
-    - SFVSC
-    - SSPC
+  - AHU
+  - CHWSC
+  - ECON
+  - EFSS
+  - EFVSC
+  - HWSC
+  - SFSS
+  - SFVSC
+  - SSPC
 
 AHU_BSPC_CHWSC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC:
   guid: "a66a2231-fbac-497b-8b92-e7dd23694970"
   description: "Multi-zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - BSPC
-    - CHWSC
-    - ECON
-    - EFSS
-    - EFVSC
-    - SFSS
-    - SFVSC
-    - SSPC
+  - AHU
+  - BSPC
+  - CHWSC
+  - ECON
+  - EFSS
+  - EFVSC
+  - SFSS
+  - SFVSC
+  - SSPC
 
 AHU_BSPC_DX4SC_ECONM_EFSS_EFVSC_SFSS2X_SFVSC_SSPC:
   guid: "0402924a-3617-4248-a014-2bae40397b45"
   description: "Multi-zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - BSPC
-    - DX4SC
-    - ECONM
-    - EFSS
-    - EFVSC
-    - SFSS2X
-    - SFVSC
-    - SSPC
+  - AHU
+  - BSPC
+  - DX4SC
+  - ECONM
+  - EFSS
+  - EFVSC
+  - SFSS2X
+  - SFVSC
+  - SSPC
 
 AHU_BSPC_DX2SC_ECONM_EFSS_EFVSC_SFSS_SFVSC_SSPC_SARC:
   guid: "02f3b167-3be1-45b0-a0c5-8e1eb7881677"
   description: "Multi-zone AHU with supply air reset control."
   is_canonical: true
   implements:
-    - AHU
-    - BSPC
-    - DX2SC
-    - ECONM
-    - EFSS
-    - EFVSC
-    - SFSS
-    - SFVSC
-    - SSPC
-    - SARC
+  - AHU
+  - BSPC
+  - DX2SC
+  - ECONM
+  - EFSS
+  - EFVSC
+  - SFSS
+  - SFVSC
+  - SSPC
+  - SARC
 
 AHU_BSPC_DXSC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC:
   guid: "d79782e0-ca1a-40ce-afea-802988578518"
   description: "Multi-zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - BSPC
-    - DXSC
-    - ECON
-    - EFSS
-    - EFVSC
-    - SFSS
-    - SFVSC
-    - SSPC
+  - AHU
+  - BSPC
+  - DXSC
+  - ECON
+  - EFSS
+  - EFVSC
+  - SFSS
+  - SFVSC
+  - SSPC
 
 AHU_BSPC_CO2C_DX2SC_ECON_EFSS_SFSS_SFVSC_SSPC:
   guid: "39f7f971-bb7a-4e71-be4b-7b08282c2bbb"
   description: "Multi-zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - BSPC
-    - CO2C
-    - DX2SC
-    - ECON
-    - EFSS
-    - SFSS
-    - SFVSC
-    - SSPC
+  - AHU
+  - BSPC
+  - CO2C
+  - DX2SC
+  - ECON
+  - EFSS
+  - SFSS
+  - SFVSC
+  - SSPC
 
 AHU_BSPC_DX2SC_ECONM_EFSS_EFVSC_SFSS_SFVSC_SSPC:
   guid: "e0bea5be-7882-465c-a98a-a9e6cc2e31f7"
   description: "Multi-zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - BSPC
-    - DX2SC
-    - ECONM
-    - EFSS
-    - EFVSC
-    - SFSS
-    - SFVSC
-    - SSPC
+  - AHU
+  - BSPC
+  - DX2SC
+  - ECONM
+  - EFSS
+  - EFVSC
+  - SFSS
+  - SFVSC
+  - SSPC
 
 AHU_BSPC_DX4SC_ECON_EFSS_SARC_SFSS_SFVSC_SSPC:
   guid: "781a7403-8537-493b-83b6-20e9ff4670c5"
   description: "Multi-zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - BSPC
-    - DX4SC
-    - ECON
-    - EFSS
-    - SARC
-    - SFSS
-    - SFVSC
-    - SSPC
+  - AHU
+  - BSPC
+  - DX4SC
+  - ECON
+  - EFSS
+  - SARC
+  - SFSS
+  - SFVSC
+  - SSPC
 
 AHU_BSPC_DX2SC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC:
   guid: "93a1d3dd-0764-41fd-ab44-362469261b17"
   description: "Multi-zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - BSPC
-    - DX2SC
-    - ECON
-    - EFSS
-    - EFVSC
-    - SFSS
-    - SFVSC
-    - SSPC
+  - AHU
+  - BSPC
+  - DX2SC
+  - ECON
+  - EFSS
+  - EFVSC
+  - SFSS
+  - SFVSC
+  - SSPC
 
 AHU_BSPC_DX4SC_ECON_EFSS_OAFMC_SFSS_SFVSC_SSPC:
   guid: "dbda21a6-a19b-4f56-a72d-15a61d4afc97"
   description: "Multi-zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - BSPC
-    - DX4SC
-    - ECON
-    - EFSS
-    - OAFMC
-    - SFSS
-    - SFVSC
-    - SSPC
+  - AHU
+  - BSPC
+  - DX4SC
+  - ECON
+  - EFSS
+  - OAFMC
+  - SFSS
+  - SFVSC
+  - SSPC
 
 AHU_BSPC_DX2SC_ECON_EFSS_HWSC_SFSS_SFVSC_SSPC:
   guid: "ce6690b6-f809-4fbf-ac5d-4ae57e733f3c"
   description: "Multi-zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - BSPC
-    - DX2SC
-    - ECON
-    - EFSS
-    - HWSC
-    - SFSS
-    - SFVSC
-    - SSPC
+  - AHU
+  - BSPC
+  - DX2SC
+  - ECON
+  - EFSS
+  - HWSC
+  - SFSS
+  - SFVSC
+  - SSPC
 
 AHU_BSPC_DX2SC_ECON_EFSS_EFVSC_HWSC_SFSS_SFVSC_SSPC:
   guid: "c3069d60-9c53-4bc3-97e9-0591712f0b82"
   description: "Multi-zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - BSPC
-    - DX2SC
-    - ECON
-    - EFSS
-    - EFVSC
-    - HWSC
-    - SFSS
-    - SFVSC
-    - SSPC
+  - AHU
+  - BSPC
+  - DX2SC
+  - ECON
+  - EFSS
+  - EFVSC
+  - HWSC
+  - SFSS
+  - SFVSC
+  - SSPC
 
 AHU_BSPC_DX4SC_ECON_OAFMC_SFC_SFSS_SFVSC_SSPM:
   guid: "cfbc1111-5cf3-48fc-9596-eaed5a62b675"
   description: "Multi-zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - BSPC
-    - DX4SC
-    - ECON
-    - OAFMC
-    - SFC
-    - SFSS
-    - SFVSC
-    - SSPM
+  - AHU
+  - BSPC
+  - DX4SC
+  - ECON
+  - OAFMC
+  - SFC
+  - SFSS
+  - SFVSC
+  - SSPM
 
 AHU_DXSC_ECON_EFSS_EFVSC_HTSC_SFSS_SFVSC_SSPC:
   guid: "9b14b6e7-b8fb-45e6-9a76-b2a0768c69d5"
   description: "Multi-zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - DXSC
-    - ECON
-    - EFSS
-    - EFVSC
-    - HTSC
-    - SFSS
-    - SFVSC
-    - SSPC
+  - AHU
+  - DXSC
+  - ECON
+  - EFSS
+  - EFVSC
+  - HTSC
+  - SFSS
+  - SFVSC
+  - SSPC
 
 AHU_BSPC_DX5SC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC:
   guid: "213a3d3d-e368-462d-b036-773d12f8a57b"
   description: "Multi-zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - BSPC
-    - DX5SC
-    - ECON
-    - EFSS
-    - EFVSC
-    - SFSS
-    - SFVSC
-    - SSPC
+  - AHU
+  - BSPC
+  - DX5SC
+  - ECON
+  - EFSS
+  - EFVSC
+  - SFSS
+  - SFVSC
+  - SSPC
 
 AHU_BSPC_DX3SC_ECONM_EFSS4X_EFVSC4X_SFSS2X_SFVSC2X_SSPC:
   guid: "4f6724ac-28d0-43b5-96f9-f377bc493f63"
   description: "Multi-zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - BSPC
-    - DX3SC
-    - ECONM
-    - EFSS4X
-    - EFVSC4X
-    - SFSS2X
-    - SFVSC2X
-    - SSPC
+  - AHU
+  - BSPC
+  - DX3SC
+  - ECONM
+  - EFSS4X
+  - EFVSC4X
+  - SFSS2X
+  - SFVSC2X
+  - SSPC
 
 AHU_BSPC_DXSC_ECONM_EFSS_SFSS_SFVSC_SSPC_STC:
   guid: "454eca99-3b3a-4de9-9954-0dfa4366d9b3"
   description: "Multi-zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - BSPC
-    - DXSC
-    - ECONM
-    - EFSS
-    - SFSS
-    - SFVSC
-    - SSPC
-    - STC
+  - AHU
+  - BSPC
+  - DXSC
+  - ECONM
+  - EFSS
+  - SFSS
+  - SFVSC
+  - SSPC
+  - STC
 
 AHU_BSPC_DX3SC_ECONM_EFSS_EFVSC_SFSS_SFVSC_SSPC:
   guid: "67c07bd4-556e-4f0b-a713-001c76b4a005"
   description: "Multi-zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - BSPC
-    - DX3SC
-    - ECONM
-    - EFSS
-    - EFVSC
-    - SFSS
-    - SFVSC
-    - SSPC
+  - AHU
+  - BSPC
+  - DX3SC
+  - ECONM
+  - EFSS
+  - EFVSC
+  - SFSS
+  - SFVSC
+  - SSPC
 
 AHU_BSPC_DX2SC_ECON_EFSS_SARC_SFM_SFSS_SSPC:
   guid: "f32f304a-40cb-4a7f-a911-8cc09b71d3cf"
   description: "Multi-zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - BSPC
-    - DX2SC
-    - ECON
-    - EFSS
-    - SARC
-    - SFM
-    - SFSS
-    - SSPC
+  - AHU
+  - BSPC
+  - DX2SC
+  - ECON
+  - EFSS
+  - SARC
+  - SFM
+  - SFSS
+  - SSPC
 
 AHU_BSPC_DX3SC_ECON_EFSS_EFVSC_HTSC_SFSS_SFVSC_SSPC:
   guid: "7af41f37-de4b-46eb-9cd3-c6cfe4c8bcbf"
   description: "Multi-zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - BSPC
-    - DX3SC
-    - ECON
-    - EFSS
-    - EFVSC
-    - HTSC
-    - SFSS
-    - SFVSC
-    - SSPC
+  - AHU
+  - BSPC
+  - DX3SC
+  - ECON
+  - EFSS
+  - EFVSC
+  - HTSC
+  - SFSS
+  - SFVSC
+  - SSPC
 
 AHU_BSPC_DX2SC_ECON_EFSS_EFVSC_HTSC_SFSS_SFVSC_SSPC:
   guid: "abc5ea2a-9251-417a-9c4b-1b4f9b41f0c6"
   description: "Multi-zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - BSPC
-    - DX2SC
-    - ECON
-    - EFSS
-    - EFVSC
-    - HTSC
-    - SFSS
-    - SFVSC
-    - SSPC
+  - AHU
+  - BSPC
+  - DX2SC
+  - ECON
+  - EFSS
+  - EFVSC
+  - HTSC
+  - SFSS
+  - SFVSC
+  - SSPC
+
 
 AHU_BSPC_CHWSC_ECON_EFSS_EFVSC_HWSC_SFSS_SFVSC_SSPC:
   guid: "944c889a-1eeb-4296-9a4a-f1265c1a0914"
   description: "Multi-zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - BSPC
-    - CHWSC
-    - ECON
-    - EFSS
-    - EFVSC
-    - HWSC
-    - SFSS
-    - SFVSC
-    - SSPC
+  - AHU
+  - BSPC
+  - CHWSC
+  - ECON
+  - EFSS
+  - EFVSC
+  - HWSC
+  - SFSS
+  - SFVSC
+  - SSPC
+
 
 AHU_BSPC_CHW2XSC_ECON_EFSS2X_EFVSC2X_RSPC_SFSS2X_SFVSC2X_SSPC:
   guid: "b8b4caca-ea4f-44c0-b859-1704c5b7d971"
   description: "Multi-zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - BSPC
-    - CHW2XSC
-    - ECON
-    - EFSS2X
-    - EFVSC2X
-    - RSPC
-    - SFSS2X
-    - SFVSC2X
-    - SSPC
+  - AHU
+  - BSPC
+  - CHW2XSC
+  - ECON
+  - EFSS2X
+  - EFVSC2X
+  - RSPC
+  - SFSS2X
+  - SFVSC2X
+  - SSPC
 
 AHU_BSPC_DXSC_ECON_EFSS_EFVSC_FDPM_SFSS3X_SFVSC2X_SSPC:
   guid: "a524fcf1-fbb5-4106-9d19-31f39db33e7a"
   description: "Multi-zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - BSPC
-    - DXSC
-    - ECON
-    - EFSS
-    - EFVSC
-    - FDPM
-    - SFSS3X
-    - SFVSC2X
-    - SSPC
+  - AHU
+  - BSPC
+  - DXSC
+  - ECON
+  - EFSS
+  - EFVSC
+  - FDPM
+  - SFSS3X
+  - SFVSC2X
+  - SSPC
+
 
 AHU_BSPC_CHWSC_ECON_EFSS_EFVSC_OAFMC_SFSS_SFVSC_SSPC:
   guid: "a49081e5-d843-4182-abe1-4cfe3bbb0ddb"
   description: "Multi-zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - BSPC
-    - CHWSC
-    - ECON
-    - EFSS
-    - EFVSC
-    - OAFMC
-    - SFSS
-    - SFVSC
-    - SSPC
+  - AHU
+  - BSPC
+  - CHWSC
+  - ECON
+  - EFSS
+  - EFVSC
+  - OAFMC
+  - SFSS
+  - SFVSC
+  - SSPC
 
 AHU_BSPC_DX4SC_ECON_EFSS_EFVSC_SARC_SFSS_SFVSC_SSPC:
   guid: "ef3f5eba-7b89-4b29-a3d1-bed4d1aaf3db"
   description: "Multi-zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - BSPC
-    - DX4SC
-    - ECON
-    - EFSS
-    - EFVSC
-    - SARC
-    - SFSS
-    - SFVSC
-    - SSPC
+  - AHU
+  - BSPC
+  - DX4SC
+  - ECON
+  - EFSS
+  - EFVSC
+  - SARC
+  - SFSS
+  - SFVSC
+  - SSPC
 
 AHU_BSPC_DX4SC_ECON_EFSS_EFVSC_HWSC_SFSS_SFVSC_SSPC:
   guid: "980f6cbc-80ec-4a38-8e06-d38478ff3bdb"
   description: "Multi-zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - BSPC
-    - DX4SC
-    - ECON
-    - EFSS
-    - EFVSC
-    - HWSC
-    - SFSS
-    - SFVSC
-    - SSPC
+  - AHU
+  - BSPC
+  - DX4SC
+  - ECON
+  - EFSS
+  - EFVSC
+  - HWSC
+  - SFSS
+  - SFVSC
+  - SSPC
 
 AHU_BSPC_DX2SC_ECON_EFSS_EFVSC_OAFMC_SFSS_SFVSC_SSPC:
   guid: "e809e4f4-ab23-49b7-a742-da76a8622a54"
   description: "Multi-zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - BSPC
-    - DX2SC
-    - ECON
-    - EFSS
-    - EFVSC
-    - OAFMC
-    - SFSS
-    - SFVSC
-    - SSPC
+  - AHU
+  - BSPC
+  - DX2SC
+  - ECON
+  - EFSS
+  - EFVSC
+  - OAFMC
+  - SFSS
+  - SFVSC
+  - SSPC
 
 AHU_CHWSC_ECON_EFSS_EFVSC_FDPM_RFC_SFSS_SFVSC_SSPC:
   guid: "577c3da6-94da-4e22-a029-6c74119a7c3d"
   description: "Multi-zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - CHWSC
-    - ECON
-    - EFSS
-    - EFVSC
-    - FDPM
-    - RFC
-    - SFSS
-    - SFVSC
-    - SSPC
+  - AHU
+  - CHWSC
+  - ECON
+  - EFSS
+  - EFVSC
+  - FDPM
+  - RFC
+  - SFSS
+  - SFVSC
+  - SSPC
 
 AHU_BSPC_DX4SC_ECONM_EFSS_EFVSC_OAFMC_SFSS_SFVSC_SSPC:
   guid: "4a9f69bb-5f8b-41aa-aa92-3e4f85dd5bf8"
   description: "Multi-zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - BSPC
-    - DX4SC
-    - ECONM
-    - EFSS
-    - EFVSC
-    - OAFMC
-    - SFSS
-    - SFVSC
-    - SSPC
+  - AHU
+  - BSPC
+  - DX4SC
+  - ECONM
+  - EFSS
+  - EFVSC
+  - OAFMC
+  - SFSS
+  - SFVSC
+  - SSPC
 
 AHU_BSPC_CHWSC_ECON_EFSS_OAFMC_SARC_SFSS_SFVSC_SSPC:
   guid: "d6ce2c49-db4f-486a-8850-39f898dba743"
   description: "Multi-zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - BSPC
-    - CHWSC
-    - ECON
-    - EFSS
-    - OAFMC
-    - SARC
-    - SFSS
-    - SFVSC
-    - SSPC
+  - AHU
+  - BSPC
+  - CHWSC
+  - ECON
+  - EFSS
+  - OAFMC
+  - SARC
+  - SFSS
+  - SFVSC
+  - SSPC
 
 AHU_BSPC_DX4SC_ECON_EFSS_OAFMC_SARC_SFSS_SFVSC_SSPC:
   guid: "3577afab-0425-44f4-b776-b561d85b046a"
   description: "Multi-zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - BSPC
-    - DX4SC
-    - ECON
-    - EFSS
-    - OAFMC
-    - SARC
-    - SFSS
-    - SFVSC
-    - SSPC
+  - AHU
+  - BSPC
+  - DX4SC
+  - ECON
+  - EFSS
+  - OAFMC
+  - SARC
+  - SFSS
+  - SFVSC
+  - SSPC
 
 AHU_BSPC_CHWSC_ECON_EFSS_EFVSC_MOAFC_SARC_SFSS_SFVSC_SSPC:
   guid: "3daa60e5-f928-47c7-b6bc-b952235f2652"
   description: "Multi-zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - BSPC
-    - CHWSC
-    - ECON
-    - EFSS
-    - EFVSC
-    - MOAFC
-    - SARC
-    - SFSS
-    - SFVSC
-    - SSPC
+  - AHU
+  - BSPC
+  - CHWSC
+  - ECON
+  - EFSS
+  - EFVSC
+  - MOAFC
+  - SARC
+  - SFSS
+  - SFVSC
+  - SSPC
 
 AHU_BSPC_DX4SC_ECON_EFSS_EFVSC_HWSC_SARC_SFSS_SFVSC_SSPC:
   guid: "67b635b1-d1af-4441-940a-fd9ea088e6ff"
   description: "Multi-zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - BSPC
-    - DX4SC
-    - ECON
-    - EFSS
-    - EFVSC
-    - HWSC
-    - SARC
-    - SFSS
-    - SFVSC
-    - SSPC
+  - AHU
+  - BSPC
+  - DX4SC
+  - ECON
+  - EFSS
+  - EFVSC
+  - HWSC
+  - SARC
+  - SFSS
+  - SFVSC
+  - SSPC
 
 AHU_BSPC_CHWSC_ECON_EFSS4X_EFVSC4X_FDPM_HWSC_SFSS2X_SFVSC2X_SSPC:
   guid: "bd1c5457-585c-40ec-a919-12a7c0ce5faa"
   description: "Multi-zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - BSPC
-    - CHWSC
-    - ECON
-    - EFSS4X
-    - EFVSC4X
-    - FDPM
-    - HWSC
-    - SFSS2X
-    - SFVSC2X
-    - SSPC
+  - AHU
+  - BSPC
+  - CHWSC
+  - ECON
+  - EFSS4X
+  - EFVSC4X
+  - FDPM
+  - HWSC
+  - SFSS2X
+  - SFVSC2X
+  - SSPC
+
 
 AHU_BSPC_CHWSC_ECON_EFSS3X_EFVSC3X_MOAFC_SARC_SFSS2X_SFVSC2X_SSPC:
   guid: "35bbc7a3-828b-49cb-bfaa-baf1e6ab855c"
   description: "Multi-zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - BSPC
-    - CHWSC
-    - ECON
-    - EFSS3X
-    - EFVSC3X
-    - MOAFC
-    - SARC
-    - SFSS2X
-    - SFVSC2X
-    - SSPC
+  - AHU
+  - BSPC
+  - CHWSC
+  - ECON
+  - EFSS3X
+  - EFVSC3X
+  - MOAFC
+  - SARC
+  - SFSS2X
+  - SFVSC2X
+  - SSPC
 
 AHU_BPC_CHWSC_ECONM_EFSS4X_EFVSC4X_FDPM_HWSC_MOAFC_SFSS2X_SFVSC2X_SSPC:
   guid: "629577a8-3583-4fd4-86f7-3be67e08399b"
   description: "Multi-zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - BPC
-    - CHWSC
-    - ECONM
-    - EFSS4X
-    - EFVSC4X
-    - FDPM
-    - HWSC
-    - MOAFC
-    - SFSS2X
-    - SFVSC2X
-    - SSPC
+  - AHU
+  - BPC
+  - CHWSC
+  - ECONM
+  - EFSS4X
+  - EFVSC4X
+  - FDPM
+  - HWSC
+  - MOAFC
+  - SFSS2X
+  - SFVSC2X
+  - SSPC
 
 AHU_BSPC_CO2M_DX4SC_ECON_EFSS_EFVSC_FDPM4X_HTSC_MOAFC_OAFC_SFSS_SFVSC_SSPC:
   guid: "3bd06ead-f794-4bd3-8388-f1d2a6dc3868"
   description: "Multi-zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - BSPC
-    - CO2M
-    - DX4SC
-    - ECON
-    - EFSS
-    - EFVSC
-    - FDPM4X
-    - HTSC
-    - MOAFC
-    - OAFC
-    - SFSS
-    - SFVSC
-    - SSPC
+  - AHU
+  - BSPC
+  - CO2M
+  - DX4SC
+  - ECON
+  - EFSS
+  - EFVSC
+  - FDPM4X
+  - HTSC
+  - MOAFC
+  - OAFC
+  - SFSS
+  - SFVSC
+  - SSPC
 
 AHU_BSPC_CHWSC_ECON_EFSS_EFSS4X_EFVSC_EFVSC4X_FDPM_HWSC_MOAFC_SFSS2X_SFVSC2X_SSPC:
   guid: "d663e5cf-f848-4bf1-8523-a5a4da8fca61"
   description: "Multi-zone AHU with multiple supply/exhaust fans."
   is_canonical: true
   implements:
-    - AHU
-    - BSPC
-    - CHWSC
-    - ECON
-    - EFSS
-    - EFSS4X
-    - EFVSC
-    - EFVSC4X
-    - FDPM
-    - HWSC
-    - MOAFC
-    - SFSS2X
-    - SFVSC2X
-    - SSPC
+  - AHU
+  - BSPC
+  - CHWSC
+  - ECON
+  - EFSS
+  - EFSS4X
+  - EFVSC
+  - EFVSC4X
+  - FDPM
+  - HWSC
+  - MOAFC
+  - SFSS2X
+  - SFVSC2X
+  - SSPC
+
+
 
 AHU_BSPC_ECON_EFSS_SFSS_SFVSC_SSPC:
   guid: "700607e5-6200-4401-880e-ccb125ba0b89"
   description: "Multi-zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - BSPC
-    - ECON
-    - EFSS
-    - SFSS
-    - SFVSC
-    - SSPC
+  - AHU
+  - BSPC
+  - ECON
+  - EFSS
+  - SFSS
+  - SFVSC
+  - SSPC
 
 AHU_DXSC_ECON_EFSS_HWSC_SFSS_SFVSC:
   guid: "8e552330-ba1c-4a80-92e6-af5491a72b31"
   description: "Multi-zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - DXSC
-    - ECON
-    - EFSS
-    - HWSC
-    - SFSS
-    - SFVSC
+  - AHU
+  - DXSC
+  - ECON
+  - EFSS
+  - HWSC
+  - SFSS
+  - SFVSC
 
 AHU_BSPC_ECON_EFSS_SARC_SFSS_SFVSC_SSPC:
   guid: "2d16690c-e66e-421e-90fd-74d00885d25f"
   description: "Multi-zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - BSPC
-    - ECON
-    - EFSS
-    - SARC
-    - SFSS
-    - SFVSC
-    - SSPC
+  - AHU
+  - BSPC
+  - ECON
+  - EFSS
+  - SARC
+  - SFSS
+  - SFVSC
+  - SSPC
 
 AHU_BSPC_DX3SC_ECONM_EFSS_EFVSC_HTSC_SFSS_SFVSC_SSPC:
   guid: "89bf9c59-7157-4445-9be6-c7cfdef626c7"
   description: "Multi-zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - BSPC
-    - DX3SC
-    - ECONM
-    - EFSS
-    - EFVSC
-    - HTSC
-    - SFSS
-    - SFVSC
-    - SSPC
+  - AHU
+  - BSPC
+  - DX3SC
+  - ECONM
+  - EFSS
+  - EFVSC
+  - HTSC
+  - SFSS
+  - SFVSC
+  - SSPC
 
 AHU_BSPC_DX4SC_ECONM_EFSS_EFVSC_OAFC_SARC_SFSS_SFVSC_SSPC:
   guid: "120d5b81-4821-4c0f-a400-3e4cbf9d326d"
   description: "Multi-zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - BSPC
-    - DX4SC
-    - ECONM
-    - EFSS
-    - EFVSC
-    - OAFC
-    - SARC
-    - SFSS
-    - SFVSC
-    - SSPC
+  - AHU
+  - BSPC
+  - DX4SC
+  - ECONM
+  - EFSS
+  - EFVSC
+  - OAFC
+  - SARC
+  - SFSS
+  - SFVSC
+  - SSPC
 
 AHU_BSPC_CHWSC_ECON_EFSS_EFVSC_HWSC_PHWSC_SFSS_SFVSC_SSPC:
   guid: "a10c6ffe-8f75-4d43-995a-631cd0a7032f"
   description: "Multi-zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - BSPC
-    - CHWSC
-    - ECON
-    - EFSS
-    - EFVSC
-    - HWSC
-    - PHWSC
-    - SFSS
-    - SFVSC
-    - SSPC
+  - AHU
+  - BSPC
+  - CHWSC
+  - ECON
+  - EFSS
+  - EFVSC
+  - HWSC
+  - PHWSC
+  - SFSS
+  - SFVSC
+  - SSPC
 
 AHU_BSPC_DX4SC_ECON_EFSS_EFVSC_MOAFC_SFSS_SFVSC_SSPC_STC:
   guid: "7c3271d0-95ee-4401-860c-bf8df8f17b22"
   description: "Multi-zone AHU with minimum ventilation control."
   is_canonical: true
   implements:
-    - AHU
-    - BSPC
-    - DX4SC
-    - ECON
-    - EFSS
-    - EFVSC
-    - MOAFC
-    - SFSS
-    - SFVSC
-    - SSPC
-    - STC
+  - AHU
+  - BSPC
+  - DX4SC
+  - ECON
+  - EFSS
+  - EFVSC
+  - MOAFC
+  - SFSS
+  - SFVSC
+  - SSPC
+  - STC
 
 AHU_DX2SC_ECONM_EFSS_SARC_SFC_SFSS_SFVSC_SSPC:
   guid: "43567299-cca7-4ac0-8259-125609ec6cb3"
   description: "Multi zone unit with 2-stage compressor."
   is_canonical: true
   implements:
-    - AHU
-    - DX2SC
-    - ECONM
-    - EFSS
-    - SARC
-    - SFC
-    - SFSS
-    - SFVSC
-    - SSPC
+  - AHU
+  - DX2SC
+  - ECONM
+  - EFSS
+  - SARC
+  - SFC
+  - SFSS
+  - SFVSC
+  - SSPC
 
 AHU_BSPC_DX4SC_ECONM_EDPM_EFSS_EFVSC_SFSS_SFVSC_SSPC_STC:
   guid: "bd225999-9e48-439b-ae4d-9504a91c16e9"
   description: "Multi-zone AHU with exhaust damper monitoring"
   is_canonical: true
   implements:
-    - AHU
-    - BSPC
-    - DX4SC
-    - ECONM
-    - EDPM
-    - EFSS
-    - EFVSC
-    - SFSS
-    - SFVSC
-    - SSPC
-    - STC
+  - AHU
+  - BSPC
+  - DX4SC
+  - ECONM
+  - EDPM
+  - EFSS
+  - EFVSC
+  - SFSS
+  - SFVSC
+  - SSPC
+  - STC
 
 AHU_CHWSC_ECONM_FDPM_MOAFC_SFSS2X_SFVSC2X_SSPC_SARC:
   guid: "c93df86e-2592-480a-92aa-806eab3d2a20"
   description: "Multi-zone AHU with dual fans, static control and filter monitoring."
   is_canonical: true
   implements:
-    - AHU
-    - CHWSC
-    - ECONM
-    - FDPM
-    - MOAFC
-    - SFSS2X
-    - SFVSC2X
-    - SSPC
-    - SARC
+  - AHU
+  - CHWSC
+  - ECONM
+  - FDPM
+  - MOAFC
+  - SFSS2X
+  - SFVSC2X
+  - SSPC
+  - SARC
 
 AHU_CHWSC_ECONM_FDPM_HWSC_SFSS_STC:
   guid: "85cb71cb-8e2a-463f-affe-6df8b3a2c81c"
   description: "Multi-zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - CHWSC
-    - ECONM
-    - FDPM
-    - HWSC
-    - SFSS
-    - STC
+  - AHU
+  - CHWSC
+  - ECONM
+  - FDPM
+  - HWSC
+  - SFSS
+  - STC
 
 AHU_CHWSC_ECONM_FDPM_HWSC_SFSS_SFVSC_SSPC_SARC:
   guid: "2f8c18be-23c4-4fdc-a7af-4a90e9a93e9d"
   description: "Multi-zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - CHWSC
-    - ECONM
-    - FDPM
-    - HWSC
-    - SFSS
-    - SFVSC
-    - SSPC
-    - SARC
+  - AHU
+  - CHWSC
+  - ECONM
+  - FDPM
+  - HWSC
+  - SFSS
+  - SFVSC
+  - SSPC
+  - SARC
+
 
 AHU_EDBPC_DX4SC_ECONM_EFSS_EFVSC_SFSS_SFVSC_SARC_SSPC:
   guid: "9d123538-8cb1-4ad7-b712-4cce9693caaf"
   description: "Multi-zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - EDBPC
-    - DX4SC
-    - ECONM
-    - EFSS
-    - EFVSC
-    - SFSS
-    - SFVSC
-    - SARC
-    - SSPC
+  - AHU
+  - EDBPC
+  - DX4SC
+  - ECONM
+  - EFSS
+  - EFVSC
+  - SFSS
+  - SFVSC
+  - SARC
+  - SSPC
 
 AHU_BSPC_DX4SC_ECONM_EFSS_SARC_SFSS_SFVSC_SSPC:
   guid: "b1ee5cc8-502a-48b1-8a14-2ca7392a93f3"
   description: "Multi-zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - BSPC
-    - DX4SC
-    - ECONM
-    - EFSS
-    - SARC
-    - SFSS
-    - SFVSC
-    - SSPC
+  - AHU
+  - BSPC
+  - DX4SC
+  - ECONM
+  - EFSS
+  - SARC
+  - SFSS
+  - SFVSC
+  - SSPC
+
 
 AHU_BSPC_DX4SC_ECON_EFSS_SFSS_SFVSC_SSPC_HWSC:
   guid: "55eacfaf-cffe-4532-b274-d935ab534f22"
   description: "Multi-zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - BSPC
-    - DX4SC
-    - ECON
-    - EFSS
-    - SFSS
-    - SFVSC
-    - SSPC
-    - HWSC
+  - AHU
+  - BSPC
+  - DX4SC
+  - ECON
+  - EFSS
+  - SFSS
+  - SFVSC
+  - SSPC
+  - HWSC
 
 AHU_BSPC_DX4SC_ECONM_EFSS_EFVSC_SFSS2X_SFVSC2X_SSPC_SARC:
   guid: "271e95a7-ff11-4e33-816d-7050e313fa6e"
   description: "Multi-zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - BSPC
-    - DX4SC
-    - ECONM
-    - EFSS
-    - EFVSC
-    - SFSS2X
-    - SFVSC2X
-    - SSPC
-    - SARC
+  - AHU
+  - BSPC
+  - DX4SC
+  - ECONM
+  - EFSS
+  - EFVSC
+  - SFSS2X
+  - SFVSC2X
+  - SSPC
+  - SARC
 
 AHU_CHWSC_HWSC_SFSS_SFVSC_SSPC:
   guid: "82fc8cfc-9fc1-407c-8842-d71d3c0431c2"
   description: "Multi-zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - CHWSC
-    - HWSC
-    - SFSS
-    - SFVSC
-    - SSPC
+  - AHU
+  - CHWSC
+  - HWSC
+  - SFSS
+  - SFVSC
+  - SSPC
 
 AHU_BSPC_DFSS_DSP_DX4DC_HWDC_ECONM_EFSS:
   guid: "3a816efd-4775-41f3-90b1-702b8871fe0d"
   description: "Single zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - BSPC
-    - DFSS
-    - DSP
-    - DX4DC
-    - HWDC
-    - ECONM
-    - EFSS
+  - AHU
+  - BSPC
+  - DFSS
+  - DSP
+  - DX4DC
+  - HWDC
+  - ECONM
+  - EFSS
 
 AHU_DFSS_DSP_DX3ZC_ECONZ:
   guid: "6e3fe994-8012-453b-9bf5-9e9f74b60860"
   description: "Single zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - DFSS
-    - DSP
-    - DX3ZC
-    - ECONZ
+  - AHU
+  - DFSS
+  - DSP
+  - DX3ZC
+  - ECONZ
 
 AHU_DFSS_DFVSC_DSP_DX3ZC_ECONZ_HT3ZC:
   guid: "80df4e5f-eb0b-4383-9b82-4c4c814986c5"
   description: "Single zone AHU with three-stage DX cooling and three-stage heating."
   is_canonical: true
   implements:
-    - AHU
-    - DFSS
-    - DFVSC
-    - DSP
-    - DX3ZC
-    - ECONZ
-    - HT3ZC
+  - AHU
+  - DFSS
+  - DFVSC
+  - DSP
+  - DX3ZC
+  - ECONZ
+  - HT3ZC
 
 AHU_DX4SC_ECONM_EFSS_EFVSC_SFSS_SFVSC_SSPC:
   guid: "5326bea5-131d-4b0d-b2fb-1b324264aa12"
   description: "Multi-zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - DX4SC
-    - ECONM
-    - EFSS
-    - EFVSC
-    - SFSS
-    - SFVSC
-    - SSPC
+  - AHU
+  - DX4SC
+  - ECONM
+  - EFSS
+  - EFVSC
+  - SFSS
+  - SFVSC
+  - SSPC
 
 AHU_DX4ZC_DFSS_DFVSC_EFSS_EFVSC_DSP_ECONZ:
   guid: "6d4c4f20-58c1-474d-a65b-6f15b272ec1a"
   description: "Single zone AHU, four-stage DX cooling."
   is_canonical: true
   implements:
-    - AHU
-    - DX4ZC
-    - DFSS
-    - DFVSC
-    - EFSS
-    - EFVSC
-    - DSP
-    - ECONZ
+  - AHU
+  - DX4ZC
+  - DFSS
+  - DFVSC
+  - EFSS
+  - EFVSC
+  - DSP
+  - ECONZ
 
 AHU_CO2C_DFSS_DFVSC_EFS_EFVSC_DX2ZC_ECONZ_HTZC:
   guid: "86ce6d35-7fad-4598-aa62-33b5b00e9ca1"
   description: "Single zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - CO2C
-    - DFSS
-    - DFVSC
-    - EFSS
-    - EFVSC
-    - DX2ZC
-    - ECONZ
-    - HTZC
+  - AHU
+  - CO2C
+  - DFSS
+  - DFVSC
+  - EFSS
+  - EFVSC
+  - DX2ZC
+  - ECONZ
+  - HTZC
 
 AHU_BSPC_DX6SC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSP_SARC:
   guid: "e89c239b-2c41-40cf-999e-c8eac8d3ce23"
   description: "Multi-zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - BSPC
-    - DX6SC
-    - ECON
-    - EFSS
-    - EFVSC
-    - SFSS
-    - SFVSC
-    - SSPC
-    - SARC
+  - AHU
+  - BSPC
+  - DX6SC
+  - ECON
+  - EFSS
+  - EFVSC
+  - SFSS
+  - SFVSC
+  - SSPC
+  - SARC
 
 AHU_BSPC_DXSC_ECON_EFSS_SFSS_SFVSC_SSPC_SARC:
   guid: "62f71a8a-6f53-43d3-88b3-39aa8f81602e"
   description: "Multi-zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - BSPC
-    - DXSC
-    - ECON
-    - EFSS
-    - SFSS
-    - SFVSC
-    - SSPC
-    - SARC
+  - AHU
+  - BSPC
+  - DXSC
+  - ECON
+  - EFSS
+  - SFSS
+  - SFVSC
+  - SSPC
+  - SARC
 
 AHU_CO2M_DFSS_DFVSC_DSP_DXZC_ECOND_EFSS_EFVSC_HTZC:
   guid: "28b2e224-15c8-40f4-9992-d00688dc3faa"
   description: "Single zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - CO2M
-    - DFSS
-    - DFVSC
-    - DSP
-    - DXZC
-    - ECOND
-    - EFSS
-    - EFVSC
-    - HTZC
+  - AHU
+  - CO2M
+  - DFSS
+  - DFVSC
+  - DSP
+  - DXZC
+  - ECOND
+  - EFSS
+  - EFVSC
+  - HTZC
 
 AHU_BSPC_DXSC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC_SARC:
   guid: "a3b973fc-b763-48c9-938e-c3fb4ff09b11"
   description: "Multi-zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - BSPC
-    - DXSC
-    - ECON
-    - EFSS
-    - EFVSC
-    - SFSS
-    - SFVSC
-    - SSPC
-    - SARC
+  - AHU
+  - BSPC
+  - DXSC
+  - ECON
+  - EFSS
+  - EFVSC
+  - SFSS
+  - SFVSC
+  - SSPC
+  - SARC
 
 AHU_ZSPC_CHWDC_CSP_ECONMD_DFSS_DFVSC_HWDC:
   guid: "e0eadf0d-ea13-4d5d-8c35-0ca458d65dba"
   description: "Single zone unit with dehumidifcation CHW coil"
   is_canonical: true
   implements:
-    - AHU
-    - ZSPC
-    - CHWDC
-    - CSP
-    - ECONMD
-    - DFSS
-    - DFVSC
-    - HWDC
+  - AHU
+  - ZSPC
+  - CHWDC
+  - CSP
+  - ECONMD
+  - DFSS
+  - DFVSC
+  - HWDC
+
 
 AHU_DX2DSPRTC_SFSS_VOADM_ZHDHC_SSPC_STM_BYPDM:
   guid: "89de444e-f12a-48bc-b428-d309ce58c2de"
   description: "Multi-zone AHU with dual setpoint return air temperature control"
   is_canonical: true
   implements:
-    - AHU
-    - DX2DSPRTC
-    - SFSS
-    - VOADM
-    - ZHDHC
-    - SSPC
-    - STM
-    - BYPDM
+  - AHU
+  - DX2DSPRTC
+  - SFSS
+  - VOADM
+  - ZHDHC
+  - SSPC
+  - STM
+  - BYPDM
+
 
 AHU_CHW2XSC_ECON_ED_EFSS2X_EFVSC2X_HWSC_SFSS2X_SFVSC2X_SHM_RHM_SARC_SFM_SSPC_ZSPC_RSPC_RFC:
   guid: "02a87b43-d806-4cf4-8dda-023bf8e9220c"
   description: "Multi zone lab unit with two CHW and HW coils"
   is_canonical: true
   implements:
-    - AHU
-    - CHW2XSC
-    - ECON
-    - ED
-    - EFSS2X
-    - EFVSC2X
-    - HWSC
-    - SFSS2X
-    - SFVSC2X
-    - SHM
-    - RHM
-    - SARC
-    - SFM
-    - SSPC
-    - ZSPC
-    - RSPC
-    - RFC
+  - AHU
+  - CHW2XSC
+  - ECON
+  - ED
+  - EFSS2X
+  - EFVSC2X
+  - HWSC
+  - SFSS2X
+  - SFVSC2X
+  - SHM
+  - RHM
+  - SARC
+  - SFM
+  - SSPC
+  - ZSPC
+  - RSPC
+  - RFC
 
 AHU_ECON_DFSS_DFVSC_DSP_HWZC_CHWZC_CO2C:
   guid: "b1ec595a-5f57-4bd7-8815-4e1ec85796fb"
   description: "Hydronic variable speed fan coil with cooling and heating (zone temp control)."
   is_canonical: true
   implements:
-    - ECOND
-    - DFSS
-    - DFVSC
-    - DSP
-    - HWZC
-    - CHWZC
-    - CO2C
+  - ECOND
+  - DFSS
+  - DFVSC
+  - DSP
+  - HWZC
+  - CHWZC
+  - CO2C
 
 AHU_DFSS_DFVSC_DSP_HWZC_CHWZC_ECONZ_CO2C:
   guid: "16f573dd-efe0-4c96-b918-3ed39b5dca3e"
   description: "Hydronic variable speed fan coil with cooling and heating (zone temp control) and direct CO2 control."
   is_canonical: true
   implements:
-    - AHU
-    - DFSS
-    - DFVSC
-    - DSP
-    - HWZC
-    - CHWZC
-    - ECONZ
-    - CO2C
+  - AHU
+  - DFSS
+  - DFVSC
+  - DSP
+  - HWZC
+  - CHWZC
+  - ECONZ
+  - CO2C
 
 AHU_BYPSSPC_DX2SC_ECON_EFSS_HT2SC_SFSS_SARC:
   guid: "423afafb-9491-47d7-bd55-a968195717fd"
   description: "Air handler with bypass damper static control, two-stage DX cooling, two-stage heating, and supply air reset control."
   is_canonical: true
   implements:
-    - AHU
-    - BYPSSPC
-    - DX2SC
-    - ECON
-    - EFSS
-    - HT2SC
-    - SFSS
-    - SARC
+  - AHU
+  - BYPSSPC
+  - DX2SC
+  - ECON
+  - EFSS
+  - HT2SC
+  - SFSS
+  - SARC
 
 AHU_DFSS_DFVSC_DSP_DX3ZC_ECONZ_HT2ZC:
   guid: "4a017e57-cad4-4633-aa25-702403311920"
   description: "Single-zone AHU with dual setpoint control, 3-stage cooling, 2-stage heating"
   is_canonical: true
   implements:
-    - AHU
-    - DFSS
-    - DFVSC
-    - DSP
-    - DX3ZC
-    - ECONZ
-    - HT2ZC
+  - AHU
+  - DFSS
+  - DFVSC
+  - DSP
+  - DX3ZC
+  - ECONZ
+  - HT2ZC
 
 AHU_DFSS_DFVSC_DSP_DX3ZC_ECONZ:
   guid: "dd4fd722-50e6-41f9-97dc-533de754f31d"
   description: "Single-zone AHU with 3-stage cooling"
   is_canonical: true
   implements:
-    - AHU
-    - DFSS
-    - DFVSC
-    - DSP
-    - DX3ZC
-    - ECONZ
+  - AHU
+  - DFSS
+  - DFVSC
+  - DSP
+  - DX3ZC
+  - ECONZ
 
 AHU_BYPSSPC_DX3SC_ECON_HT2SC_SFSS_SFVSC:
   guid: "4557f283-0aae-4af8-9ea8-854147da6962"
   description: "Multi-zone AHU with bypass staic control, 3-stage cooling, 2-stage heating"
   is_canonical: true
   implements:
-    - AHU
-    - BYPSSPC
-    - DX3SC
-    - ECON
-    - HT2SC
-    - SFSS
-    - SFVSC
+  - AHU
+  - BYPSSPC
+  - DX3SC
+  - ECON
+  - HT2SC
+  - SFSS
+  - SFVSC
 
 AHU_DFVSC_ZTC_RTM_DTM_HPZTC_CWDT_CO2C_OADM_FDPM_AHAC_WLDS:
   guid: "2d143156-0001-496b-8413-a56cf51bdcf6"
   description: "Single zone variable speed water cooled heat pump with CO2 override, after hours override and leak detection"
   is_canonical: true
   implements:
-    - AHU
-    - DFVSC
-    - ZTC
-    - RTM
-    - DTM
-    - HPZTC
-    - CWDT
-    - CO2C
-    - OADM
-    - FDPM
-    - AHAC
-    - SAFETY/WLDS
+  - AHU
+  - DFVSC
+  - ZTC
+  - RTM
+  - DTM
+  - HPZTC
+  - CWDT
+  - CO2C
+  - OADM
+  - FDPM
+  - AHAC
+  - SAFETY/WLDS
 
 AHU_DFVSC_ZTC_RTM_DTM_HPZTC_CWDT_CO2C_OAFC_FDPM_AHAC_WLDS:
   guid: "f26ea3c9-14d1-46fd-b91c-2188bb52fbcd"
   description: "Single zone variable speed water cooled heat pump with CO2 override, filter monitoring, after hours override and leak detection"
   is_canonical: true
   implements:
-    - AHU
-    - DFVSC
-    - ZTC
-    - RTM
-    - DTM
-    - HPZTC
-    - CWDT
-    - CO2C
-    - OAFC
-    - FDPM
-    - AHAC
-    - SAFETY/WLDS
+  - AHU
+  - DFVSC
+  - ZTC
+  - RTM
+  - DTM
+  - HPZTC
+  - CWDT
+  - CO2C
+  - OAFC
+  - FDPM
+  - AHAC
+  - SAFETY/WLDS
 
 AHU_DFVSC_ZTC_RTM_DTM_HPZTC_CWDT_CO2C_OAFC_AHAC_WLDS:
   guid: "83b4ebbd-6c0a-407b-9a22-1748b55d2894"
   description: "Single zone variable speed water cooled heat pump with CO2 override, after hours override and leak detection"
   is_canonical: true
   implements:
-    - AHU
-    - DFVSC
-    - ZTC
-    - RTM
-    - DTM
-    - HPZTC
-    - CWDT
-    - CO2C
-    - OAFC
-    - AHAC
-    - SAFETY/WLDS
-
+  - AHU
+  - DFVSC
+  - ZTC
+  - RTM
+  - DTM
+  - HPZTC
+  - CWDT
+  - CO2C
+  - OAFC
+  - AHAC
+  - SAFETY/WLDS
+  
 AHU_DFVSC_ZTC_RTM_DTM_HPZTC_CWDT_CO2C_OADM_FDPM_AHAC:
   guid: "01979cce-71eb-4aba-8a96-3a1e9936870d"
   description: "Single zone variable speed water cooled heat pump with CO2 override and after hours override"
   is_canonical: true
   implements:
-    - AHU
-    - DFVSC
-    - ZTC
-    - RTM
-    - DTM
-    - HPZTC
-    - CWDT
-    - CO2C
-    - OADM
-    - FDPM
-    - AHAC
+  - AHU
+  - DFVSC
+  - ZTC
+  - RTM
+  - DTM
+  - HPZTC
+  - CWDT
+  - CO2C
+  - OADM
+  - FDPM
+  - AHAC
 
 AHU_DFVSC_ZTC_RTM_DTM_HPZTC_CWDT_CO2C_OAFC_FDPM_AHAC:
   guid: "bb551a56-3c80-4993-ad96-8d039af5195f"
   description: "Single zone variable speed water cooled heat pump with CO2 override, filter monitoring and after hours override"
   is_canonical: true
   implements:
-    - AHU
-    - DFVSC
-    - ZTC
-    - RTM
-    - DTM
-    - HPZTC
-    - CWDT
-    - CO2C
-    - OAFC
-    - FDPM
-    - AHAC
+  - AHU
+  - DFVSC
+  - ZTC
+  - RTM
+  - DTM
+  - HPZTC
+  - CWDT
+  - CO2C
+  - OAFC
+  - FDPM
+  - AHAC
 
 AHU_DFVSC_ZTC_RTM_DTM_HPZTC_CWDT_CO2C_OAFC_AHAC:
   guid: "3e72c6d2-3428-4b09-8499-d9071f52a190"
   description: "Single zone variable speed water cooled heat pump with CO2 override and after hours override"
   is_canonical: true
   implements:
-    - AHU
-    - DFVSC
-    - ZTC
-    - RTM
-    - DTM
-    - HPZTC
-    - CWDT
-    - CO2C
-    - OAFC
-    - AHAC
+  - AHU
+  - DFVSC
+  - ZTC
+  - RTM
+  - DTM
+  - HPZTC
+  - CWDT
+  - CO2C
+  - OAFC
+  - AHAC
 
 AHU_SS_SSPC_CHWVM_HWVM_STM_FDPM_OA:
   guid: "34250588-6c39-4b84-b890-701048abcb3b"
   description: "AHU for preconditioning supply air"
   is_canonical: true
   implements:
-    - AHU
-    - SS
-    - SSPC
-    - CHWVM
-    - HWVM
-    - STM
-    - FDPM
-    - OA
+  - AHU
+  - SS
+  - SSPC
+  - CHWVM
+  - HWVM
+  - STM
+  - FDPM
+  - OA
 
 AHU_SS_SSPC_CHWVM_HWVM_STM_OA:
   guid: "b69a79eb-7900-4f95-922d-edbe4c51b1ab"
   description: "AHU for preconditioning supply air"
   is_canonical: true
   implements:
-    - AHU
-    - SS
-    - SSPC
-    - CHWVM
-    - HWVM
-    - STM
-    - OA
+  - AHU
+  - SS
+  - SSPC
+  - CHWVM
+  - HWVM
+  - STM
+  - OA
 
 AHU_SFVSC_SSPC_STC_CHWSC_ECON_FDPM:
   guid: "b5411ff8-9082-4d83-bd1a-67c243821d1c"
   description: "AHU with supply fan speed control, supply temperature control and filter monitoring."
   is_canonical: true
   implements:
-    - AHU
-    - SFVSC
-    - SSPC
-    - STC
-    - CHWSC
-    - ECON
-    - FDPM
+  - AHU
+  - SFVSC
+  - SSPC
+  - STC
+  - CHWSC
+  - ECON
+  - FDPM
 
 AHU_SFVSC_SSPC_STC_CHWSC_ECON:
   guid: "4f2e07aa-1353-4e60-892b-d2c9fe5dde5b"
   description: "AHU with supply fan speed control, and supply temperature control."
   is_canonical: true
   implements:
-    - AHU
-    - SFVSC
-    - SSPC
-    - STC
-    - CHWSC
-    - ECON
+  - AHU
+  - SFVSC
+  - SSPC
+  - STC
+  - CHWSC
+  - ECON
 
 AHU_DFFC_ZTC_CHWZTC_HWZTC_ECONZ_DTM_RTM_CO2C_FDPM_AHAC:
   guid: "0ce5a99f-e424-4fad-a584-04b12bdc93d4"
   description: "Single zone AHU with zone temperature and CO2 control, and filter monitoring."
   is_canonical: true
   implements:
-    - AHU
-    - DFFC
-    - ZTC
-    - CHWZTC
-    - HWZTC
-    - DTM
-    - RTM
-    - CO2C
-    - FDPM
-    - ECONZ
-    - AHAC
+  - AHU
+  - DFFC
+  - ZTC
+  - CHWZTC
+  - HWZTC
+  - DTM
+  - RTM
+  - CO2C
+  - FDPM
+  - ECONZ
+  - AHAC
 
 AHU_DFFC_ZTC_CHWZTC_HWZTC_ECONZ_DTM_RTM_CO2C_AHAC:
   guid: "6b07bf60-15f0-4098-816f-4b64c502edad"
   description: "Single zone AHU with zone temperature and CO2 control."
   is_canonical: true
   implements:
-    - AHU
-    - DFFC
-    - ZTC
-    - CHWZTC
-    - HWZTC
-    - DTM
-    - RTM
-    - CO2C
-    - ECONZ
-    - AHAC
+  - AHU
+  - DFFC
+  - ZTC
+  - CHWZTC
+  - HWZTC
+  - DTM
+  - RTM
+  - CO2C
+  - ECONZ
+  - AHAC
 
 AHU_RTC_RHC_FDPM_REFM_WLDS:
   description: "AHU with return temperature and humidity control, filter monitoring, and refrigerant and water leak monitoring. "
   guid: "0fa6f1e1-279d-44e3-a865-e9ed8cbbd7f2"
   is_canonical: true
   implements:
-    - AHU
-    - RTC
-    - RHC
-    - FDPM
-    - REFM
-    - SAFETY/WLDS
+  - AHU
+  - RTC
+  - RHC
+  - FDPM
+  - REFM
+  - SAFETY/WLDS
 
 AHU_RTC_RHC_OAFM_WLDS:
   guid: "b5ee8bfa-4594-4a3e-bb71-99ac68e8777b"
   description: "AHU with return temperature and humidity control, and water leak monitoring. "
   is_canonical: true
   implements:
-    - AHU
-    - RTC
-    - RHC
-    - OAFM
-    - SAFETY/WLDS
+  - AHU
+  - RTC
+  - RHC
+  - OAFM
+  - SAFETY/WLDS
 
 AHU_DFSS_UV_H3X_DTC_DFVSFC_CHWVM:
   guid: "f728c3c0-68a0-41c0-9455-b3bef6ab2ea7"
   description: "AHU with discharge air/fan, chilled water valve and UV lamp operation."
   is_canonical: true
   implements:
-    - AHU
-    - UV
-    - H3X
-    - DTC
-    - DFVSFC
-    - CHWVM
-    - DFSS
+  - AHU
+  - UV
+  - H3X
+  - DTC
+  - DFVSFC
+  - CHWVM
+  - DFSS
   opt_uses:
-    - control_status
-    - lost_power_alarm
-    - filter_alarm
-    - control_mode
-    - run_mode
-    - schedule_run_command
-    - discharge_air_flowrate_status
+  - control_status
+  - lost_power_alarm
+  - filter_alarm
+  - control_mode
+  - run_mode
+  - schedule_run_command
+  - discharge_air_flowrate_status
 
 AHU_DFSS_DTC_DFVSFC_CHWVM_RTM:
   guid: "35db0d81-5419-41fb-a092-7930e51913b1"
   description: "AHU with discharge air/fan and chilled water valve operation."
   is_canonical: true
   implements:
-    - AHU
-    - DFSS
-    - DTC
-    - DFVSFC
-    - CHWVM
-    - RTM
+  - AHU
+  - DFSS
+  - DTC
+  - DFVSFC
+  - CHWVM
+  - RTM
   opt_uses:
-    - control_status
-    - lost_power_alarm
-    - filter_alarm
-    - control_mode
-    - run_mode
-    - schedule_run_command
-    - smoke_alarm
-    - discharge_air_flowrate_status
-    - leaving_cooling_coil_temperature_sensor
-    - entering_cooling_coil_temperature_sensor
+  - control_status
+  - lost_power_alarm
+  - filter_alarm
+  - control_mode
+  - run_mode
+  - schedule_run_command
+  - smoke_alarm
+  - discharge_air_flowrate_status
+  - leaving_cooling_coil_temperature_sensor
+  - entering_cooling_coil_temperature_sensor
 
 AHU_DFSS_DTC_CHWVM_RTM:
   guid: "bbe3f3af-b201-499a-a0c6-29a89b05b3cb"
   description: "AHU with discharge air and chilled water valve operation."
   is_canonical: true
   implements:
-    - AHU
-    - DFSS
-    - DTC
-    - CHWVM
-    - RTM
+  - AHU
+  - DFSS
+  - DTC
+  - CHWVM
+  - RTM
   opt_uses:
-    - lost_power_alarm
-    - discharge_air_flowrate_status
-    - filter_alarm
-    - control_mode
-    - run_mode
-    - schedule_run_command
-    - smoke_alarm
-    - entering_cooling_coil_temperature_sensor
-    - leaving_cooling_coil_temperature_sensor
-    - control_status
+  - lost_power_alarm
+  - discharge_air_flowrate_status
+  - filter_alarm
+  - control_mode
+  - run_mode
+  - schedule_run_command
+  - smoke_alarm
+  - entering_cooling_coil_temperature_sensor
+  - leaving_cooling_coil_temperature_sensor
+  - control_status
 
 AHU_CHWDT_CHWVM_CLPM_DFSS_CHWZTC:
   guid: "c212dd9f-86f3-40c5-9118-da4b8dfabf7d"
   description: "AHU with chilled water valve operation and discharge fan operation. Chilled return/supply temp and zone air temp monitoring."
   is_canonical: true
   implements:
-    - AHU
-    - CHWDT
-    - CHWVM
-    - CLPM
-    - DFSS
-    - CHWZTC
+  - AHU
+  - CHWDT
+  - CHWVM
+  - CLPM
+  - DFSS
+  - CHWZTC
   opt_uses:
-    - discharge_air_flowrate_status
-    - filter_differential_pressure_status
-    - lost_power_alarm
-    - filter_alarm
-    - control_mode
-    - run_mode
-    - schedule_run_command
-    - smoke_alarm
-    - control_status
+  - discharge_air_flowrate_status
+  - filter_differential_pressure_status
+  - lost_power_alarm
+  - filter_alarm
+  - control_mode
+  - run_mode
+  - schedule_run_command
+  - smoke_alarm
+  - control_status
 
 AHU_DFVSFC_CHWVM_CLPM_DTC_UV_CO2C_MTM_OAMC_RHM_CHWDT_RTC:
   guid: "06dead81-fe4d-4b61-b1d2-08ad5d98485f"
   description: "AHU with discharge air, chilled water valve, discharge air/fan, CO2, UV and chilled supply/return water operation."
   is_canonical: true
   implements:
-    - AHU
-    - DFVSFC
-    - CHWVM
-    - CLPM
-    - DTC
-    - UV
-    - CO2C
-    - MTM
-    - OAMC
-    - RHM
-    - CHWDT
-    - DFSS
-    - RTC
+  - AHU
+  - DFVSFC
+  - CHWVM
+  - CLPM
+  - DTC
+  - UV
+  - CO2C
+  - MTM
+  - OAMC
+  - RHM
+  - CHWDT
+  - DFSS
+  - RTC
   opt_uses:
-    - discharge_air_flowrate_status
-    - control_status
-    - filter_differential_pressure_status
-    - lost_power_alarm
-    - filter_alarm
-    - control_mode
-    - run_mode
-    - schedule_run_command
-    - smoke_alarm
+  - discharge_air_flowrate_status
+  - control_status
+  - filter_differential_pressure_status
+  - lost_power_alarm
+  - filter_alarm
+  - control_mode
+  - run_mode
+  - schedule_run_command
+  - smoke_alarm
 
 AHU_DTC_DFSS_CHWVM_CLPM_CHWDT_CO2C_UV:
   guid: "2a808dda-a383-4840-b677-96c5feaa4968"
   description: "AHU with discharge air, chilled water valve, discharge air/fan, CO2, UV and chilled supply/return water operation."
   is_canonical: true
   implements:
-    - AHU
-    - DTC
-    - DFSS
-    - CHWVM
-    - CLPM
-    - CHWDT
-    - CO2C
-    - UV
+  - AHU
+  - DTC
+  - DFSS
+  - CHWVM
+  - CLPM
+  - CHWDT
+  - CO2C
+  - UV
   opt_uses:
-    - filter_differential_pressure_status
-    - discharge_air_flowrate_status
-    - discharge_air_flowrate_sensor
-    - filter_alarm
-    - control_mode
-    - run_mode
-    - smoke_alarm
-    - control_status
+  - filter_differential_pressure_status
+  - discharge_air_flowrate_status
+  - discharge_air_flowrate_sensor
+  - filter_alarm
+  - control_mode
+  - run_mode
+  - smoke_alarm
+  - control_status
 
 AHU_DTC_CHWVM_H3X_OAMC_DFVSFC_UV_CO2C2X_ZHM_ZTM:
   guid: "076016fc-dbc9-45e7-a5a9-d94b607e1fb8"
   description: "AHU with discharge air, chilled water valve, outside air, discharge air/fan, CO2, heater, UV and chilled supply/return water operation."
   is_canonical: true
   implements:
-    - AHU
-    - DTC
-    - CHWVM
-    - H3X
-    - OAMC
-    - DFVSFC
-    - UV
-    - CO2C2X
-    - ZHM
-    - ZTM
+  - AHU
+  - DTC
+  - CHWVM
+  - H3X
+  - OAMC
+  - DFVSFC
+  - UV
+  - CO2C2X
+  - ZHM
+  - ZTM
   uses:
-    - discharge_air_damper_percentage_command
+  - discharge_air_damper_percentage_command
   opt_uses:
-    - discharge_air_flowrate_status
-    - filter_differential_pressure_status
-    - filter_alarm
-    - control_mode
-    - run_mode
-    - discharge_fan_lost_power_alarm
-    - smoke_alarm
-    - control_status
+  - discharge_air_flowrate_status
+  - filter_differential_pressure_status
+  - filter_alarm
+  - control_mode
+  - run_mode
+  - discharge_fan_lost_power_alarm
+  - smoke_alarm
+  - control_status
 
 AHU_CHWDT_CHWVM_CLPM_STC_SFSS_UV_CO2C:
   guid: "e8cce52e-04a5-492a-b5ab-4b5fe56c1375"
   description: "AHU with supply air, chilled water valve, outside air, supply air/fan, CO2, heater, UV and chilled supply/return water operation."
   is_canonical: true
   implements:
-    - AHU
-    - CHWDT
-    - CHWVM
-    - CLPM
-    - STC
-    - SFSS
-    - UV
-    - CO2C
+  - AHU
+  - CHWDT
+  - CHWVM
+  - CLPM
+  - STC
+  - SFSS
+  - UV
+  - CO2C
   opt_uses:
-    - filter_differential_pressure_status
-    - filter_alarm
-    - control_mode
-    - run_mode
-    - smoke_alarm
-    - supply_fan_lost_power_alarm
-    - supply_air_flowrate_status
-    - control_status
+  - filter_differential_pressure_status
+  - filter_alarm
+  - control_mode
+  - run_mode
+  - smoke_alarm
+  - supply_fan_lost_power_alarm
+  - supply_air_flowrate_status
+  - control_status
 
 AHU_BSPC_DX4SC_ECONM_EDPM_EFSS_EFVSC_SFSS_SFVSC_SSPC_STC_SSPCSCM_STCSCM:
   guid: "c88eb0a3-2261-4323-aea4-a808617ef9a5"
   description: "Multi-zone AHU with supply temperature and pressure control with supervisor control mode types (machine learning)."
   is_canonical: true
   implements:
-    - AHU_BSPC_DX4SC_ECONM_EDPM_EFSS_EFVSC_SFSS_SFVSC_SSPC_STC
-    - SSPCSCM
-    - STCSCM
+  - AHU_BSPC_DX4SC_ECONM_EDPM_EFSS_EFVSC_SFSS_SFVSC_SSPC_STC
+  - SSPCSCM
+  - STCSCM
   opt_uses:
-    - supervisor_run_command
-    - run_command
+  - supervisor_run_command
+  - run_command
 
 AHU_BSPC_DX3SC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC_STC_REFSM2X_REFPM2X:
   guid: "c68bdcfb-13f5-4b79-b045-43ea066a4374"
   description: "Multi-zone AHU with two-circuit refrigeration monitoring and supply air temperature and pressure control."
   is_canonical: true
   implements:
-    - AHU
-    - BSPC
-    - DX3SC
-    - ECON
-    - EFSS
-    - EFVSC
-    - SFSS
-    - SFVSC
-    - SSPC
-    - STC
-    - REFSM2X
-    - REFPM2X
+  - AHU
+  - BSPC
+  - DX3SC
+  - ECON
+  - EFSS
+  - EFVSC
+  - SFSS
+  - SFVSC
+  - SSPC
+  - STC
+  - REFSM2X
+  - REFPM2X
 
 AHU_BSPC_DX3SC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC_STC_REFSM2X_REFPM2X_SSPCSCM_STCSCM:
   guid: "53e23c40-a7c2-4083-aeed-61e7a78174ca"
   description: "Multi-zone AHU with refrigeration monitoring and supply air temperature and pressure control with supervisor control mode types (machine learning)."
   is_canonical: true
   implements:
-    - AHU_BSPC_DX3SC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC_STC_REFSM2X_REFPM2X
-    - SSPCSCM
-    - STCSCM
+  - AHU_BSPC_DX3SC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC_STC_REFSM2X_REFPM2X
+  - SSPCSCM
+  - STCSCM
   opt_uses:
-    - supervisor_run_command
-    - run_command
+  - supervisor_run_command
+  - run_command
 
 AHU_BSPC_CHWSC_ECON_EFSS_EFVSC_HWSC_SFSS_SFVSC_SHC_SSPC:
   guid: "9ec76470-522c-46df-b283-7cd3d1706db0"
   description: "Multi-zone AHU with chilled and heating water coils and supply air humidity control."
   is_canonical: true
   implements:
-    - AHU
-    - BSPC
-    - CHWSC
-    - ECON
-    - EFSS
-    - EFVSC
-    - HWSC
-    - SFSS
-    - SFVSC
-    - SHC
-    - SSPC
+  - AHU
+  - BSPC
+  - CHWSC
+  - ECON
+  - EFSS
+  - EFVSC
+  - HWSC
+  - SFSS
+  - SFVSC
+  - SHC
+  - SSPC
 
 AHU_BSPC_DX4SC_ECON_EFSS_EFVSC_HW2SC_SARC_SFSS_SFVSC_SSPC:
   guid: "59cc3f42-fb1e-4bfd-9e15-c17d2b3d8c82"
   description: "Multi-zone AHU with two heating water coils."
   is_canonical: true
   implements:
-    - AHU
-    - BSPC
-    - DX4SC
-    - ECON
-    - EFSS
-    - EFVSC
-    - HW2SC
-    - SARC
-    - SFSS
-    - SFVSC
-    - SSPC
+  - AHU
+  - BSPC
+  - DX4SC
+  - ECON
+  - EFSS
+  - EFVSC
+  - HW2SC
+  - SARC
+  - SFSS
+  - SFVSC
+  - SSPC
 
 AHU_DX6SC_CHWSC_ECON_EFSS2X_EFVSC2X_HWSC_SFSS2X_SFVSC2X_SSPC:
   guid: "bcc43d0f-003b-489b-b050-5976b89f2e88"
   description: "Multi-zone AHU with six-stage DX cooling and chilled and heating water valves."
   is_canonical: true
   implements:
-    - AHU
-    - DX6SC
-    - CHWSC
-    - ECON
-    - EFSS2X
-    - EFVSC2X
-    - HWSC
-    - SFSS2X
-    - SFVSC2X
-    - SSPC
+  - AHU
+  - DX6SC
+  - CHWSC
+  - ECON
+  - EFSS2X
+  - EFVSC2X
+  - HWSC
+  - SFSS2X
+  - SFVSC2X
+  - SSPC
 
 AHU_BSPC_DX6SC_ECON_EFSS_EFVSC_HWSC_SARC_SFSS_SFVSC_SSPC:
   guid: "011d727c-1f7d-4f54-9166-88a24122705b"
   description: "Multi-zone AHU with six-stage DX cooling and heating water valve."
   is_canonical: true
   implements:
-    - BSPC
-    - DX6SC
-    - ECON
-    - EFSS
-    - EFVSC
-    - HWSC
-    - SARC
-    - SFSS
-    - SFVSC
-    - SSPC
+  - BSPC
+  - DX6SC
+  - ECON
+  - EFSS
+  - EFVSC
+  - HWSC
+  - SARC
+  - SFSS
+  - SFVSC
+  - SSPC
 
 AHU_BSPC_DX3SC_ECON_EFSS_HT2SC_SFSS_SFVSC_SSPC:
   guid: "62c7768e-8f0b-45c9-b526-cc78367f29c7"
   description: "Multi-zone AHU with three-stage DX cooling and two-stage heating."
   is_canonical: true
   implements:
-    - AHU
-    - BSPC
-    - DX3SC
-    - ECON
-    - EFSS
-    - HT2SC
-    - SFSS
-    - SFVSC
-    - SSPC
+  - AHU
+  - BSPC
+  - DX3SC
+  - ECON
+  - EFSS
+  - HT2SC
+  - SFSS
+  - SFVSC
+  - SSPC
 
 AHU_BSPC_DXSC_ECON_EFSS_EFVSC_PHWSC_SFSS_SFVSC_SSPC_STC:
   guid: "6055a474-d660-4523-8cea-ca3e25974679"
   description: "Multi-zone AHU with DX cooling and preheating water valve."
   is_canonical: true
   implements:
-    - AHU
-    - BSPC
-    - DXSC
-    - ECON
-    - EFSS
-    - EFVSC
-    - PHWSC
-    - SFSS
-    - SFVSC
-    - SSPC
-    - STC
+  - AHU
+  - BSPC
+  - DXSC
+  - ECON
+  - EFSS
+  - EFVSC
+  - PHWSC
+  - SFSS
+  - SFVSC
+  - SSPC
+  - STC
 
 AHU_BSPC_DXSC_ECON_EFSS_EFVSC_HWSC_SARC_SFSS_SFVSC_SSPC:
   guid: "a20489fa-e249-4bf7-b86a-c13d457cc835"
   description: "Multi-zone AHU with DX cooling and heating water valve."
   is_canonical: true
   implements:
-    - AHU
-    - BSPC
-    - DXSC
-    - ECON
-    - EFSS
-    - EFVSC
-    - HWSC
-    - SARC
-    - SFSS
-    - SFVSC
-    - SSPC
+  - AHU
+  - BSPC
+  - DXSC
+  - ECON
+  - EFSS
+  - EFVSC
+  - HWSC
+  - SARC
+  - SFSS
+  - SFVSC
+  - SSPC
 
 AHU_BPC_DXSC_ECON_RFSS_RFVSC_HWSC_SARC_SFSS_SFVSC_SSPC:
   guid: "082aef7e-69aa-4019-975b-ef2cb221e91b"
   description: "Multi-zone AHU with DX cooling and heating water valve and return air control."
   is_canonical: true
   implements:
-    - AHU
-    - BPC
-    - DXSC
-    - ECON
-    - RFSS
-    - RFVSC
-    - HWSC
-    - SARC
-    - SFSS
-    - SFVSC
-    - SSPC
+  - AHU
+  - BPC
+  - DXSC
+  - ECON
+  - RFSS
+  - RFVSC
+  - HWSC
+  - SARC
+  - SFSS
+  - SFVSC
+  - SSPC
 
 AHU_BSPC_BYPSSPC_DX2SC_ECON_EFSS_HTSC_SFSS:
   guid: "2e387831-935a-4d81-849f-47af7943c0ce"
   description: "Multi-zone AHU with bypass static pressure control, two-stage DX cooling and single-stage heating."
   is_canonical: true
   implements:
-    - AHU
-    - BSPC
-    - BYPSSPC
-    - DX2SC
-    - ECON
-    - EFSS
-    - HTSC
-    - SFSS
+  - AHU
+  - BSPC
+  - BYPSSPC
+  - DX2SC
+  - ECON
+  - EFSS
+  - HTSC
+  - SFSS
 
 AHU_BSPC_DX4SC_ECON_EFSS_EFVSC_SARC_SFSS_SFVSC_SSPC_SSPCSCM_STCSCM:
   guid: "8dda71d3-ded5-461f-8d04-78aa99777f0a"
   description: "Multi-zone AHU with four-stage DX cooling and with supervisor control mode types (machine learning)."
   is_canonical: true
   implements:
-    - AHU_BSPC_DX4SC_ECON_EFSS_EFVSC_SARC_SFSS_SFVSC_SSPC
-    - SSPCSCM
-    - STCSCM
+  - AHU_BSPC_DX4SC_ECON_EFSS_EFVSC_SARC_SFSS_SFVSC_SSPC
+  - SSPCSCM
+  - STCSCM
   opt_uses:
-    - supervisor_run_command
-    - run_command
+  - supervisor_run_command
+  - run_command
+
 
 AHU_BSPC_DX2SC_ECON_EFSS_SFSS_SFVSC_SSPC_SSPCSCM_STCSCM:
   guid: "0676aa55-5712-4560-bd58-dd858aa4ce48"
   description: "Multi-zone AHU with two-stage DX cooling and with supervisor control mode types (machine learning)."
   is_canonical: true
   implements:
-    - AHU_BSPC_DX2SC_ECON_EFSS_SFSS_SFVSC_SSPC
-    - SSPCSCM
-    - STCSCM
+  - AHU_BSPC_DX2SC_ECON_EFSS_SFSS_SFVSC_SSPC
+  - SSPCSCM
+  - STCSCM
   opt_uses:
-    - supervisor_run_command
-    - run_command
+  - supervisor_run_command
+  - run_command
+
 
 AHU_BSPC_DXSC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC_SARC_SSPCSCM_STCSCM:
   guid: "265015b9-7c38-4fbb-95a6-518541335e96"
   description: "Multi-zone AHU with single-stage DX cooling and exhaust/supply fan spped control, and with supervisor control mode types (machine learning)."
   is_canonical: true
   implements:
-    - AHU_BSPC_DXSC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC_SARC
-    - SSPCSCM
-    - STCSCM
+  - AHU_BSPC_DXSC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC_SARC
+  - SSPCSCM
+  - STCSCM
   opt_uses:
-    - supervisor_run_command
-    - run_command
+  - supervisor_run_command
+  - run_command
+
 
 AHU_BSPC_DXSC_ECON_SFSS_SFVSC_SSPC_SSPCSCM_STCSCM:
   guid: "915418cd-2906-43fb-a6b5-3e4efdb3d036"
   description: "Multi-zone AHU with single-stage DX cooling and supply fan spped control, and with supervisor control mode types (machine learning)."
   is_canonical: true
   implements:
-    - AHU_BSPC_DXSC_ECON_SFSS_SFVSC_SSPC
-    - SSPCSCM
-    - STCSCM
+  - AHU_BSPC_DXSC_ECON_SFSS_SFVSC_SSPC
+  - SSPCSCM
+  - STCSCM
   opt_uses:
-    - supervisor_run_command
-    - run_command
+  - supervisor_run_command
+  - run_command
+
 
 AHU_BSPC_DX2SC_ECON_EFSS_EFVSC_FDPM_SFSS3X_SFVSC3X_SSPC:
   guid: "b8e98102-a3b8-41a2-a938-b61413c80f85"
   description: "Multi-zone AHU with two-stage DX cooling, filter DP monitoring, and three variable-speed supply fans."
   is_canonical: true
   implements:
-    - AHU
-    - BSPC
-    - DX2SC
-    - ECON
-    - EFSS
-    - EFVSC
-    - FDPM
-    - SFSS3X
-    - SFVSC3X
-    - SSPC
+  - AHU
+  - BSPC
+  - DX2SC
+  - ECON
+  - EFSS
+  - EFVSC
+  - FDPM
+  - SFSS3X
+  - SFVSC3X
+  - SSPC
 
 AHU_BSPC_CHWSC_ECON_EFSS3X_EFVSC3X_HWSC_SARC_SFSS4X_SFVSC4X_SSPC:
   guid: "99db542f-80ab-401e-a2ff-20f97bed83eb"
   description: "Multi-zone AHU with chilled and heating water coils, three variable-speed exhaust fans, and four variable-speed supply fans."
   is_canonical: true
   implements:
-    - AHU
-    - BSPC
-    - CHWSC
-    - ECON
-    - EFSS3X
-    - EFVSC3X
-    - HWSC
-    - SARC
-    - SFSS4X
-    - SFVSC4X
-    - SSPC
+  - AHU
+  - BSPC
+  - CHWSC
+  - ECON
+  - EFSS3X
+  - EFVSC3X
+  - HWSC
+  - SARC
+  - SFSS4X
+  - SFVSC4X
+  - SSPC
 
 AHU_BSPC_CHWSC_ECON_EFSS2X_EFVSC2X_HWSC_SARC_SFSS2X_SFVSC2X_SSPC:
   guid: "f343a3df-01ff-4a96-96a4-f7b3af9b3723"
   description: "Multi-zone AHU with chilled and heating water coils, two variable-speed exhaust fans, and two variable-speed supply fans."
   is_canonical: true
   implements:
-    - AHU
-    - BSPC
-    - CHWSC
-    - ECON
-    - EFSS2X
-    - EFVSC2X
-    - HWSC
-    - SARC
-    - SFSS2X
-    - SFVSC2X
-    - SSPC
+  - AHU
+  - BSPC
+  - CHWSC
+  - ECON
+  - EFSS2X
+  - EFVSC2X
+  - HWSC
+  - SARC
+  - SFSS2X
+  - SFVSC2X
+  - SSPC
 
 AHU_DX2SC_ECON_SHM_SFSS_SFVSC_SSPC:
   guid: "96704471-4bd4-4e7a-8880-ad074abe21f4"
   description: "Multi-zone AHU with two-stage DX cooling and supply air humidity monitoring."
   is_canonical: true
   implements:
-    - AHU
-    - DX2SC
-    - ECON
-    - SHM
-    - SFSS
-    - SFVSC
-    - SSPC
+  - AHU
+  - DX2SC
+  - ECON
+  - SHM
+  - SFSS
+  - SFVSC
+  - SSPC
+
 
 AHU_CHWSC_OAMC_RTM_SFVSC_RACO2C:
   guid: "9662a98e-5b36-4191-8b6c-256cb9f8cabf"
   description: "AHU with return air monitor and supply air temperature, fan and zone air co2 control where the co2 sensor installed at return air duct."
   is_canonical: true
   implements:
-    - AHU
-    - CHWSC
-    - OAMC
-    - RTM
-    - SFVSC
-    - RACO2C
+  - AHU
+  - CHWSC
+  - OAMC
+  - RTM
+  - SFVSC
+  - RACO2C
   opt_uses:
-    - supply_fan_lost_power_alarm
+  - supply_fan_lost_power_alarm
+
 
 AHU_BSPC_DX4SC_ECONM_EFSS_EFVSC_SARC_SHC_SFSS2X_SFVSC_SSPC:
   guid: "8d3f0769-8a91-412d-a13c-03697fc1581b"
   description: "Multi-zone AHU with four-stage DX cooling and supply air humidity control."
   is_canonical: true
   implements:
-    - AHU
-    - BSPC
-    - DX4SC
-    - ECONM
-    - EFSS
-    - EFVSC
-    - SARC
-    - SHC
-    - SFSS2X
-    - SFVSC
-    - SSPC
+  - AHU
+  - BSPC
+  - DX4SC
+  - ECONM
+  - EFSS
+  - EFVSC
+  - SARC
+  - SHC
+  - SFSS2X
+  - SFVSC
+  - SSPC
 
 AHU_DFSS_DFVSMC_DSP_ECONZ_HPZC:
   guid: "bbfd5368-f08e-4178-9416-6932e2148334"
   description: "Single zone AHU with fan multi-speed control."
   is_canonical: true
   implements:
-    - AHU
-    - DFSS
-    - DFVSMC
-    - DSP
-    - ECONZ
-    - HPZC
+  - AHU
+  - DFSS
+  - DFVSMC
+  - DSP
+  - ECONZ
+  - HPZC
 
 AHU_BSPC_ECON_EFSS_HTWHLSTC_HT2SC_SFSS_SFVSC:
   guid: "bdc27df1-35e8-41e2-86c2-42a5ea7154ca"
   description: "Multi zone AHU with heat recovery wheel."
   is_canonical: true
   implements:
-    - AHU
-    - BSPC
-    - ECON
-    - EFSS
-    - HTWHLSTC
-    - HT2SC
-    - SFSS
-    - SFVSC
+  - AHU
+  - BSPC
+  - ECON
+  - EFSS
+  - HTWHLSTC
+  - HT2SC
+  - SFSS
+  - SFVSC
 
 AHU_ECON_EFSS2X_EFVSC2X_EPC_HT4SC_HTWHLSTC_SFC_SFSS2X_SFVSC2X_SSPC:
   guid: "fefe85fa-90aa-41a3-afdf-2fe94e629d28"
   description: "Multi zone AHU with heat recovery wheel."
   is_canonical: true
   implements:
-    - AHU
-    - ECON
-    - EFSS2X
-    - EFVSC2X
-    - EPC
-    - HT4SC
-    - HTWHLSTC
-    - SFC
-    - SFSS2X
-    - SFVSC2X
-    - SSPC
+  - AHU
+  - ECON
+  - EFSS2X
+  - EFVSC2X
+  - EPC
+  - HT4SC
+  - HTWHLSTC
+  - SFC
+  - SFSS2X
+  - SFVSC2X
+  - SSPC
 
 AHU_DFSS_DFVSC_DSP_DX3ZC_ECONZ_EFSS_EFVSC_HT2ZC:
   guid: "52a97494-8bab-490b-985a-470122245522"
   description: "Single-zone AHU with dual zone setpoint control, 3-stage cooling, 2-stage heating"
   is_canonical: true
   implements:
-    - AHU
-    - DFSS
-    - DFVSC
-    - DSP
-    - DX3ZC
-    - ECONZ
-    - EFSS
-    - EFVSC
-    - HT2ZC
+  - AHU
+  - DFSS
+  - DFVSC
+  - DSP
+  - DX3ZC
+  - ECONZ
+  - EFSS
+  - EFVSC
+  - HT2ZC
 
 AHU_DFSS_DFVSC_DSP_DX3ZC_ECONZ_EFSS_EFVSC:
   guid: "f8a0f16d-c57e-41f5-8f58-6c1c5b545d04"
   description: "Single-zone AHU with dual zone setpoint control and 3-stage cooling"
   is_canonical: true
   implements:
-    - AHU
-    - DFSS
-    - DFVSC
-    - DSP
-    - DX3ZC
-    - ECONZ
-    - EFSS
-    - EFVSC
+  - AHU
+  - DFSS
+  - DFVSC
+  - DSP
+  - DX3ZC
+  - ECONZ
+  - EFSS
+  - EFVSC
 
 AHU_DFSS_DSP_ECONZ_HP2ZC_HTZC:
   guid: "a04735a4-3c8f-4917-a142-4ff526ba30b3"
   description: "Single zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - DFSS
-    - DSP
-    - ECONZ
-    - HP2ZC
-    - HTZC
+  - AHU
+  - DFSS
+  - DSP
+  - ECONZ
+  - HP2ZC
+  - HTZC
 
 AHU_DX3SC_ECON_HTSC_SFSS_SFVSC_SHM_SSPC:
   guid: "8f0a4e9c-77c5-45bf-af49-eb4ef2d142d4"
   description: "Multi zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - DX3SC
-    - ECON
-    - HTSC
-    - SFSS
-    - SFVSC
-    - SHM
-    - SSPC
+  - AHU
+  - DX3SC
+  - ECON
+  - HTSC
+  - SFSS
+  - SFVSC
+  - SHM
+  - SSPC
 
 AHU_DFSS_DFVSC_DX2DC_ECOND_EFSS_EFVSC_HWDC_ZHM:
   guid: "c247ffc2-c5ff-4c04-aaf4-e264e40afe1c"
   description: "Single zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - DFSS
-    - DFVSC
-    - DX2DC
-    - ECOND
-    - EFSS
-    - EFVSC
-    - HWDC
-    - ZHM
+  - AHU
+  - DFSS
+  - DFVSC
+  - DX2DC
+  - ECOND
+  - EFSS
+  - EFVSC
+  - HWDC
+  - ZHM
 
 AHU_BSPC_DX2SC_ECON_EFSS_FDPM_SARC_SFSS_SFVSC_SSPC:
   guid: "bf6dd241-4e43-456f-a5eb-456a276237c3"
   description: "Two stage compressor AHU with differential pressure filter monitoring."
   is_canonical: true
   implements:
-    - AHU
-    - BSPC
-    - DX2SC
-    - ECON
-    - EFSS
-    - FDPM
-    - SARC
-    - SFSS
-    - SFVSC
-    - SSPC
+  - AHU
+  - BSPC
+  - DX2SC
+  - ECON
+  - EFSS
+  - FDPM
+  - SARC
+  - SFSS
+  - SFVSC
+  - SSPC
 
 AHU_DFSS_DFVSC_DSP_DX4DC_ECONZ_EFSS_ZSPC:
   guid: "7bbafae0-44da-49c8-b5d0-aa695816901e"
   description: "Single zone AHU."
   is_canonical: true
   implements:
-    - AHU
-    - DFSS
-    - DFVSC
-    - DSP
-    - DX4DC
-    - ECONZ
-    - EFSS
-    - ZSPC
+  - AHU
+  - DFSS
+  - DFVSC
+  - DSP
+  - DX4DC
+  - ECONZ
+  - EFSS
+  - ZSPC
 
 AHU_BSPC_DX4SC_EC2SC_ECON_EFSS2X_EFVSC2X_SARC_SFSS4X_SFVSC_SSPC:
   guid: "3dd9a7e4-5ce5-4e93-870f-ed171b3333a4"
   description: "Multi-zone AHU with two evaporative precoolers and four-stage DX cooling."
   is_canonical: true
   implements:
-    - AHU
-    - BSPC
-    - DX4SC
-    - EC2SC
-    - ECON
-    - EFSS2X
-    - EFVSC2X
-    - SARC
-    - SFSS4X
-    - SFVSC
-    - SSPC
+  - AHU
+  - BSPC
+  - DX4SC
+  - EC2SC
+  - ECON
+  - EFSS2X
+  - EFVSC2X
+  - SARC
+  - SFSS4X
+  - SFVSC
+  - SSPC
 
 AHU_BSPC_CHW2XSC_HWSC_ECON_EFSS2X_EFVSC2X_SFSS2X_SFVSC2X_SHC:
   guid: "fc9e3bce-52ca-4b69-b2cb-bf45746d0541"
   description: "Multi-zone AHU with chilled and heating water coils and supply air humidity control."
   is_canonical: true
   implements:
-    - AHU
-    - BSPC
-    - CHW2XSC
-    - HWSC
-    - ECON
-    - EFSS2X
-    - EFVSC2X
-    - SFSS2X
-    - SFVSC2X
-    - SHC
+  - AHU
+  - BSPC
+  - CHW2XSC
+  - HWSC
+  - ECON
+  - EFSS2X
+  - EFVSC2X
+  - SFSS2X
+  - SFVSC2X
+  - SHC
 
 AHU_BSPC_CHWZC_DFSS_DFVSC_DSP_ECONZ_EFSS_EFVSC_FDPM_SSPC:
   guid: "10826b0f-fede-4809-a6c4-fbb37afb5d95"
   description: "Single zone AHU with chilled water coils."
   is_canonical: true
   implements:
-    - AHU
-    - BSPC
-    - CHWZC
-    - DFSS
-    - DFVSC
-    - DSP
-    - ECONZ
-    - EFSS
-    - EFVSC
-    - FDPM
-    - SSPC
+  - AHU
+  - BSPC
+  - CHWZC
+  - DFSS
+  - DFVSC
+  - DSP
+  - ECONZ
+  - EFSS
+  - EFVSC
+  - FDPM
+  - SSPC
 
 AHU_BSPC_DX4SC_ECONM_EFSS_EFVSC_PHWSC_SFSS2X_SFVSC2X_SSPC_SARC:
   guid: "17d1e1eb-a9ae-4ba5-8fe1-1c5c3506a049"
   description: "Multi-zone AHU with four-stage DX cooling and preheating water valve."
   is_canonical: true
   implements:
-    - AHU
-    - BSPC
-    - DX4SC
-    - ECONM
-    - EFSS
-    - EFVSC
-    - PHWSC
-    - SFSS2X
-    - SFVSC2X
-    - SSPC
-    - SARC
+  - AHU
+  - BSPC
+  - DX4SC
+  - ECONM
+  - EFSS
+  - EFVSC
+  - PHWSC
+  - SFSS2X
+  - SFVSC2X
+  - SSPC
+  - SARC
 
 AHU_DFSS_DXZC_ECONZ_EFSS2X_HT2ZC_CO2C:
   guid: "e91bfec8-7ad2-43ff-aeb2-f618e2e8bb24"
   description: "Single zone AHU with CO2 control."
   is_canonical: true
   implements:
-    - AHU
-    - DFSS
-    - DXZC
-    - ECONZ
-    - EFSS2X
-    - HT2ZC
-    - CO2C
+  - AHU
+  - DFSS
+  - DXZC
+  - ECONZ
+  - EFSS2X
+  - HT2ZC
+  - CO2C
 
 AHU_SFSS_SFVSC_CHWRC_OAFC_SSPC_RAVOCC_RACO2C_ESFM_SAIDC:
   guid: "bdd50329-5280-4134-9003-746b5a601ea2"
   description: "AHU with CO2, VOC based outside air control, static pressure based VFD speed control,return air temperature based Chilled water valve modulation."
   is_canonical: true
   implements:
-    - AHU
-    - SFSS
-    - SFVSC
-    - CHWRC
-    - OAFC
-    - SSPC
-    - RAVOCC
-    - RACO2C
-    - ESFM
-    - SAIDC
+  - AHU
+  - SFSS
+  - SFVSC
+  - CHWRC
+  - OAFC
+  - SSPC
+  - RAVOCC
+  - RACO2C
+  - ESFM
+  - SAIDC
 
 AHU_DFSS_DFVSC_ECONZ_HP2ZC:
   guid: "227a4859-0f0b-4384-8657-a29555137216"
   description: "Single zone heat pump AHU."
   is_canonical: true
   implements:
-    - AHU
-    - DFSS
-    - DFVSC
-    - ECONZ
-    - HP2ZC
+  - AHU
+  - DFSS
+  - DFVSC
+  - ECONZ
+  - HP2ZC
 
 AHU_DFSS_DFVSC_ECONZ_EFSS_HP2ZC_ZSPC:
   guid: "c2c6e7fa-02cb-447b-af00-04cf4c34bb9b"
   description: "Single zone heat pump AHU with zone pressure relief."
   is_canonical: true
   implements:
-    - AHU
-    - DFSS
-    - DFVSC
-    - ECONZ
-    - EFSS
-    - HP2ZC
-    - ZSPC
+  - AHU
+  - DFSS
+  - DFVSC
+  - ECONZ
+  - EFSS
+  - HP2ZC
+  - ZSPC
 
 AHU_DX4ZC_DFSS_DFVSC_EFSS_EFVSC_DSP_ECONZ_ZSPC:
   guid: "c1984dbc-4e9c-47bd-9bbd-df73d343f4b9"
   description: "Single zone AHU, four-stage DX cooling and zone static pressure control."
   is_canonical: true
   implements:
-    - AHU
-    - DX4ZC
-    - DFSS
-    - DFVSC
-    - EFSS
-    - EFVSC
-    - DSP
-    - ECONZ
-    - ZSPC
+  - AHU
+  - DX4ZC
+  - DFSS
+  - DFVSC
+  - EFSS
+  - EFVSC
+  - DSP
+  - ECONZ
+  - ZSPC
 
 AHU_CHW2XSC_RFSS2X_RFVSC2X_SFSS2X_SFVSC2X_RFC_EDRPC_RTM_SARC_SFC_SSPC_VOADM2X:
   guid: "c183a256-5fd6-4874-b971-6f09414fd67c"
   description: "Multi zone lab unit with two CHW, two OAD, and return static pressure control."
   is_canonical: true
   implements:
-    - AHU
-    - CHW2XSC
-    - RFSS2X
-    - RFVSC2X
-    - SFSS2X
-    - SFVSC2X
-    - RFC
-    - EDRPC
-    - RTM
-    - SARC
-    - SFC
-    - SSPC
-    - VOADM2X
+  - AHU
+  - CHW2XSC
+  - RFSS2X
+  - RFVSC2X
+  - SFSS2X
+  - SFVSC2X
+  - RFC
+  - EDRPC
+  - RTM
+  - SARC
+  - SFC
+  - SSPC
+  - VOADM2X
 
 AHU_CHWDC_DFSS_DFVSC_DSP_ECONZ_EFSS_ZSPC:
   guid: "9cdfd662-3ab3-4c75-b63f-c7020023ebcc"
   description: "Single zone AHU with zone static pressure control."
   is_canonical: true
   implements:
-    - AHU
-    - CHWDC
-    - DFSS
-    - DFVSC
-    - DSP
-    - ECONZ
-    - EFSS
-    - ZSPC
+  - AHU
+  - CHWDC
+  - DFSS
+  - DFVSC
+  - DSP
+  - ECONZ
+  - EFSS
+  - ZSPC
 
 AHU_CHWSC_ECON_FDPM_EDRPC_RFSS_RFVSC_SFSS_SFVSC_SSPC:
   guid: "2b82edd1-47ca-4bcf-8bef-dead850d9ac7"
   description: "Multi-zone chilled water AHU with return static pressure control."
   is_canonical: true
   implements:
-    - AHU
-    - CHWSC
-    - ECON
-    - FDPM
-    - EDRPC
-    - RFSS
-    - RFVSC
-    - SFSS
-    - SFVSC
-    - SSPC
-
+  - AHU
+  - CHWSC
+  - ECON
+  - FDPM
+  - EDRPC
+  - RFSS
+  - RFVSC
+  - SFSS
+  - SFVSC
+  - SSPC
+  
 AHU_SFSS_SFVSC_CHWSC_OAFC_SSPC_RAVOCC_RACO2C_ESFM_SAIDC:
   guid: "0d8bb03e-ebe6-4a93-b4ea-3062fde65c96"
   description: "AHU with CO2, VOC based outside air control, static pressure based VFD speed control,supply temperature based Chilled water valve modulation."
   is_canonical: true
   implements:
-    - AHU
-    - SFSS
-    - SFVSC
-    - CHWSC
-    - OAFC
-    - SSPC
-    - RAVOCC
-    - RACO2C
-    - ESFM
-    - SAIDC
+  - AHU
+  - SFSS
+  - SFVSC
+  - CHWSC
+  - OAFC
+  - SSPC
+  - RAVOCC
+  - RACO2C
+  - ESFM
+  - SAIDC
 
 AHU_DFSS_DX2ZC_ECONZ_CO2C_DSP_RCKTM2X_HTZC_CC2XM_RTM_DTM:
   guid: "ae68472d-7735-4988-b59e-176296e464d3"
   description: "AHU with dual compressor refrigeration circuits (with monitoring), heating, and zone-level temperature and ventilation control."
   is_canonical: true
   implements:
-    - AHU
-    - DFSS
-    - DX2ZC
-    - ECONZ
-    - CO2C
-    - DSP
-    - RCKTM2X
-    - HTZC
-    - CC2XM
-    - RTM
-    - DTM
+  - AHU
+  - DFSS
+  - DX2ZC
+  - ECONZ
+  - CO2C
+  - DSP
+  - RCKTM2X
+  - HTZC
+  - CC2XM
+  - RTM
+  - DTM
   opt_uses:
-    - condensing_fan_current_sensor
+  - condensing_fan_current_sensor
 
 AHU_SFSS_SFMSC_SFVSC_FDPM_CHWSC_RTM_RACO2C_SSPC_VOADM2X_SAIDC_RAIDC2X:
   guid: "31033705-cb2a-4be6-9a8b-aa4812923667"
   description: "AHUs with chilled water temperature monitoring, compressor monitoring with zone temperature and humidity monitoring with 2 dampers monitoring and control ."
   is_canonical: true
   implements:
-    - AHU
-    - SFSS
-    - SFMSC
-    - SFVSC
-    - FDPM
-    - CHWSC
-    - RTM
-    - RACO2C
-    - SSPC
-    - VOADM2X
-    - SAIDC
-    - RAIDC2X
+  - AHU
+  - SFSS
+  - SFMSC
+  - SFVSC
+  - FDPM
+  - CHWSC
+  - RTM
+  - RACO2C
+  - SSPC
+  - VOADM2X
+  - SAIDC
+  - RAIDC2X
 
 AHU_SFSS_SFMSC_SFVSC_FDPM_CHWSC_RTM_RACO2C_VOADM2X_SAIDC:
   guid: "d6cfd7e2-682b-4ca0-866f-b2b7abf75898"
   description: "AHUs with chilled water temperature monitoring and compressor monitoring with zone temperature and humidity monitoring ."
   is_canonical: true
   implements:
-    - AHU
-    - SFSS
-    - SFMSC
-    - SFVSC
-    - FDPM
-    - CHWSC
-    - RTM
-    - RACO2C
-    - VOADM2X
-    - SAIDC
+  - AHU
+  - SFSS
+  - SFMSC
+  - SFVSC
+  - FDPM
+  - CHWSC
+  - RTM
+  - RACO2C
+  - VOADM2X
+  - SAIDC
 
 AHU_SFSS_SFMSC_SFVSC_FDPM_CHWSC_RTM_RACO2C_SSPC_VOADM2X_SAIDC3X:
   guid: "6990ebfd-a792-49d4-867e-8d1fdca587fc"
   description: "AHUs with chilled water temperature monitoring and compressor monitoring with zone temperature and humidity monitoring ."
   is_canonical: true
   implements:
-    - AHU
-    - SFSS
-    - SFMSC
-    - SFVSC
-    - FDPM
-    - CHWSC
-    - RTM
-    - RACO2C
-    - SSPC
-    - VOADM2X
-    - SAIDC3X
+  - AHU
+  - SFSS
+  - SFMSC
+  - SFVSC
+  - FDPM
+  - CHWSC
+  - RTM
+  - RACO2C
+  - SSPC
+  - VOADM2X
+  - SAIDC3X
 
 AHU_SFSS_SFMSC_SFVSC_FDPM_CHWSC_RTM_RACO2C_SSPC2X_VOADM2X_SAIDC2X_RAIDC4X_SSPC:
   guid: "33be7977-3eb0-4210-a7da-4c19692b3f34"
   description: "AHUs with chilled water temperature monitoring and compressor monitoring with zone temperature and humidity monitoring ."
   is_canonical: true
   implements:
-    - AHU
-    - SFSS
-    - SFMSC
-    - SFVSC
-    - FDPM
-    - CHWSC
-    - RTM
-    - RACO2C
-    - SSPC2X
-    - VOADM2X
-    - SAIDC2X
-    - RAIDC4X
-    - SSPC
+  - AHU
+  - SFSS
+  - SFMSC
+  - SFVSC
+  - FDPM
+  - CHWSC
+  - RTM
+  - RACO2C
+  - SSPC2X
+  - VOADM2X
+  - SAIDC2X
+  - RAIDC4X
+  - SSPC
 
 AHU_SFSS_SFMSC_SFVSC_FDPM_CHWSC_RTM_RACO2C_SSPC_VOADM2X_SAIDC2X_RAIDC2X:
   guid: "5db36b82-6f10-4ef3-95e6-188d52106c60"
   description: "AHUs with chilled water temperature monitoring and compressor monitoring with zone temperature and humidity monitoring ."
   is_canonical: true
   implements:
-    - AHU
-    - SFSS
-    - SFMSC
-    - SFVSC
-    - FDPM
-    - CHWSC
-    - RTM
-    - RACO2C
-    - SSPC
-    - VOADM2X
-    - SAIDC2X
-    - RAIDC2X
+  - AHU
+  - SFSS
+  - SFMSC
+  - SFVSC
+  - FDPM
+  - CHWSC
+  - RTM
+  - RACO2C
+  - SSPC
+  - VOADM2X
+  - SAIDC2X
+  - RAIDC2X
 
 AHU_SFSS_SFMSC_SFVSC_FDPM_CHWSC_RTM_RACO2C_SSPC2X_VOADM2X_SAIDC2X_RAIDC3X_SSPC:
   guid: "5b77240c-0c2d-4592-8501-e4f45b6d2d7e"
   description: "AHUs with chilled water temperature monitoring and compressor monitoring with zone temperature and humidity monitoring ."
   is_canonical: true
   implements:
-    - AHU
-    - SFSS
-    - SFMSC
-    - SFVSC
-    - FDPM
-    - CHWSC
-    - RTM
-    - RACO2C
-    - SSPC2X
-    - VOADM2X
-    - SAIDC2X
-    - RAIDC3X
-    - SSPC
+  - AHU
+  - SFSS
+  - SFMSC
+  - SFVSC
+  - FDPM
+  - CHWSC
+  - RTM
+  - RACO2C
+  - SSPC2X
+  - VOADM2X
+  - SAIDC2X
+  - RAIDC3X
+  - SSPC
 
 AHU_SFSS_SFMSC_SFVSC_FDPM_CHWSC_RTM_RACO2C_SSPC2X_VOADM2X_SAIDC2X_RAIDC2X_SSPC:
   guid: "ce6b0017-274e-469f-b468-540d41126676"
   description: "AHUs with chilled water temperature monitoring and compressor monitoring with zone temperature and humidity monitoring ."
   is_canonical: true
   implements:
-    - AHU
-    - SFSS
-    - SFMSC
-    - SFVSC
-    - FDPM
-    - CHWSC
-    - RTM
-    - RACO2C
-    - SSPC2X
-    - VOADM2X
-    - SAIDC2X
-    - RAIDC2X
-    - SSPC
+  - AHU
+  - SFSS
+  - SFMSC
+  - SFVSC
+  - FDPM
+  - CHWSC
+  - RTM
+  - RACO2C
+  - SSPC2X
+  - VOADM2X
+  - SAIDC2X
+  - RAIDC2X
+  - SSPC
 
 AHU_HTSC_VOADM_ETM_RMM_FDPM2X_RSM_SEFC_FAM_HRC:
   description: ""
   is_canonical: true
   implements:
-    - AHU
-    - HTSC
-    - VOADM
-    - ETM
-    - RMM
-    - FDPM2X
-    - RSM
-    - SEFC
-    - FAM
-    - HRC
+  - AHU
+  - HTSC
+  - VOADM
+  - ETM
+  - RMM
+  - FDPM2X
+  - RSM
+  - SEFC
+  - FAM
+  - HRC
 
 ###################################
 ### Existing Non-standard Types ###
@@ -3979,823 +4008,823 @@ AHU_UNDEFINED:
   guid: "7d70f11b-ad04-4576-b974-bc3df9c9109e"
   description: "An AHU with no telemetry data. Note this is non-canonical, as it is typically expected that telemetry will normally be available."
   implements:
-    - AHU
+  - AHU
 
 AHU_NON_CANONICAL_TYPE_1:
   guid: "48831bff-5e24-4920-a961-f0d14845ea87"
   description: "Datapoint from for Ahu's on Landlords side."
   implements:
-    - AHU
-    - LANDLORD
+  - AHU
+  - LANDLORD
   uses:
-    - run_command
-    - supply_air_temperature_setpoint
-    - master_alarm
-    - run_status
-    - supply_air_temperature_sensor
+  - run_command
+  - supply_air_temperature_setpoint
+  - master_alarm
+  - run_status
+  - supply_air_temperature_sensor
 
 AHU_NON_CANONICAL_TYPE_2:
   guid: "c963f0f3-c19a-4447-b768-0d6b948864b7"
   description: "Ahu with variable speed supply and exhaust air fans, air cooler, hair heater, and hru."
   implements:
-    - AHU
-    - VOADM
-    - SFVSC
-    - SSPC
-    - SFSS
-    - STC
-    - HHRU
-    - HWSC
-    - CHWSC
-    - EFVSC
-    - ESPC
-    - EDPM
-    - EFSS
-    - RTM
-    - ZHM
+  - AHU
+  - VOADM
+  - SFVSC
+  - SSPC
+  - SFSS
+  - STC
+  - HHRU
+  - HWSC
+  - CHWSC
+  - EFVSC
+  - ESPC
+  - EDPM
+  - EFSS
+  - RTM
+  - ZHM
 
 AHU_NON_CANONICAL_TYPE_3:
   guid: "84559bca-4a3e-4f13-9801-8e9632703e4f"
   description: "Ahu with variable speed supply and exhaust air fans, air cooler, hair heater, and hru.-Incomplete"
   implements:
-    - AHU
-    - INCOMPLETE
-    - VOADM
-    - SFVSC
-    - SSPC
-    - SFSS
-    - STC
-    - PHRU
-    - HWSC
-    - CHWSC
-    - EFVSC
-    - ESPC
-    - EDPM
-    - EFSS
-    - RTM
-    - ZHM
+  - AHU
+  - INCOMPLETE
+  - VOADM
+  - SFVSC
+  - SSPC
+  - SFSS
+  - STC
+  - PHRU
+  - HWSC
+  - CHWSC
+  - EFVSC
+  - ESPC
+  - EDPM
+  - EFSS
+  - RTM
+  - ZHM
 
 AHU_NON_CANONICAL_TYPE_4:
   guid: "372a3f62-36b6-439f-b2d6-8d2c3968d361"
   description: "Non-standard type 4"
   implements:
-    - REMAP_REQUIRED
+  - REMAP_REQUIRED
   uses:
-    - compressor_run_command
-    - economizer_mode
-    - outside_air_damper_percentage_command
-    - return_air_temperature_sensor
-    - supply_air_temperature_sensor
-    - supply_fan_run_command
-    - supply_fan_run_status
-    - zone_air_cooling_temperature_setpoint
-    - zone_air_temperature_sensor
+  - compressor_run_command
+  - economizer_mode
+  - outside_air_damper_percentage_command
+  - return_air_temperature_sensor
+  - supply_air_temperature_sensor
+  - supply_fan_run_command
+  - supply_fan_run_status
+  - zone_air_cooling_temperature_setpoint
+  - zone_air_temperature_sensor
 
 AHU_NON_CANONICAL_TYPE_5:
   guid: "64d9c1dd-7322-47eb-ad07-c529941939a4"
   description: "Non-standard type 5"
   implements:
-    - AHU_BSPC_DX4SC_ECON_EFSS_SFSS_SFVSC_SSPC
-    - INCOMPLETE
+  - AHU_BSPC_DX4SC_ECON_EFSS_SFSS_SFVSC_SSPC
+  - INCOMPLETE
   uses:
-    - zone_air_temperature_sensor
-    - zone_air_cooling_temperature_setpoint
-    - zone_air_heating_temperature_setpoint
+  - zone_air_temperature_sensor
+  - zone_air_cooling_temperature_setpoint
+  - zone_air_heating_temperature_setpoint
 
 AHU_NON_CANONICAL_TYPE_6:
   guid: "c76dfc36-ac54-4f85-93d6-ded0b563a679"
   description: "Non-standard type 6"
   implements:
-    - AHU_BSPC_DX4SC_ECON_EFSS_SFSS_SFVSC_SSPC
-    - INCOMPLETE
+  - AHU_BSPC_DX4SC_ECON_EFSS_SFSS_SFVSC_SSPC
+  - INCOMPLETE
   uses:
-    - supply_air_damper_command
-    - supply_air_damper_status
+  - supply_air_damper_command
+  - supply_air_damper_status
 
 AHU_NON_CANONICAL_TYPE_7:
   guid: "58e4ffc1-f4ee-4401-9070-34897ff82ed6"
   description: "Non-standard type 7"
   implements:
-    - AHU_DXSC_ECON_EFSS_HTSC_SFSS_SFVSC_SSPC
-    - INCOMPLETE
+  - AHU_DXSC_ECON_EFSS_HTSC_SFSS_SFVSC_SSPC
+  - INCOMPLETE
   uses:
-    - zone_air_temperature_sensor
-    - zone_air_heating_temperature_setpoint
-    - zone_air_cooling_temperature_setpoint
+  - zone_air_temperature_sensor
+  - zone_air_heating_temperature_setpoint
+  - zone_air_cooling_temperature_setpoint
 
 AHU_NON_CANONICAL_TYPE_8:
   guid: "d7a81252-d646-4ce4-a0b1-cf93c0da99d2"
   description: "Non-standard type 8"
   implements:
-    - AHU_BYPSSPC_ECON_EFSS_HP2SC_SFSS
-    - INCOMPLETE
+  - AHU_BYPSSPC_ECON_EFSS_HP2SC_SFSS
+  - INCOMPLETE
   uses:
-    - zone_air_cooling_temperature_setpoint
-    - zone_air_heating_temperature_setpoint
-    - zone_air_temperature_sensor
+  - zone_air_cooling_temperature_setpoint
+  - zone_air_heating_temperature_setpoint
+  - zone_air_temperature_sensor
 
 AHU_NON_CANONICAL_TYPE_9:
   guid: "cac518e6-617e-47c9-a54f-3d9bb2ec2361"
   description: "Non-standard type 9"
   implements:
-    - AHU_DFSS_DSP_DXDC_ECOND_EFSS_HTDC
-    - INCOMPLETE
+  - AHU_DFSS_DSP_DXDC_ECOND_EFSS_HTDC
+  - INCOMPLETE
   uses:
-    - discharge_air_flowrate_sensor
+  - discharge_air_flowrate_sensor
 
 AHU_NON_CANONICAL_TYPE_10:
   guid: "5eb89d7f-8e69-4381-a0fd-bc5c6a2bb697"
   description: "Non-standard type 10"
   implements:
-    - AHU_NON_CANONICAL_TYPE_13
-    - DEPRECATED
+  - AHU_NON_CANONICAL_TYPE_13
+  - DEPRECATED
 
 AHU_NON_CANONICAL_TYPE_11:
   guid: "2b0f88b5-7e5d-47ec-b51d-3437bda40e40"
   description: "Non-standard type 11"
   implements:
-    - AHU_DX2SC_ECON_EFSS_EFVSC_HTSC_SFSS_SFVSC_SSPC
-    - INCOMPLETE
+  - AHU_DX2SC_ECON_EFSS_EFVSC_HTSC_SFSS_SFVSC_SSPC
+  - INCOMPLETE
   uses:
-    - zone_air_temperature_sensor
-    - zone_air_heating_temperature_setpoint
-    - zone_air_cooling_temperature_setpoint
+  - zone_air_temperature_sensor
+  - zone_air_heating_temperature_setpoint
+  - zone_air_cooling_temperature_setpoint
 
 AHU_NON_CANONICAL_TYPE_12:
   guid: "7de613e3-ca36-4992-8c4b-ea72966dca9f"
   description: "Non-standard type 12"
   implements:
-    - AHU_NON_CANONICAL_TYPE_13 # Deprecated
-    - DEPRECATED
+  - AHU_NON_CANONICAL_TYPE_13 # Deprecated
+  - DEPRECATED
 
 AHU_NON_CANONICAL_TYPE_13:
   guid: "a6aeb039-16c1-40d9-9c00-ac8704fc39d4"
   description: "Non-standard type 13"
   implements:
-    - AHU_BSPC_DX2SC_ECON_EFSS_EFVSC_HTSC_SFSS_SFVSC_SSPC
-    - INCOMPLETE
+  - AHU_BSPC_DX2SC_ECON_EFSS_EFVSC_HTSC_SFSS_SFVSC_SSPC
+  - INCOMPLETE
   uses:
-    - zone_air_temperature_sensor
+  - zone_air_temperature_sensor
 
 AHU_NON_CANONICAL_TYPE_14:
   guid: "7b02c57c-dda4-4676-884a-77fa1bfa6e64"
   description: "Non-standard type 14"
   implements:
-    - AHU_CO2C_DFSS_DFVSC_DSP_DX2DC_ECOND_EFSS_EFVSC_HTDC
-    - REMAP_REQUIRED
+  - AHU_CO2C_DFSS_DFVSC_DSP_DX2DC_ECOND_EFSS_EFVSC_HTDC
+  - REMAP_REQUIRED
   uses:
-    - supply_air_static_pressure_setpoint # Remove
-    - supply_air_static_pressure_sensor # Remove
+  - supply_air_static_pressure_setpoint # Remove
+  - supply_air_static_pressure_sensor # Remove
 
 AHU_NON_CANONICAL_TYPE_15:
   guid: "ae903e3a-4438-460d-af4c-58eff89780e1"
   description: "Non-standard type 15"
   implements:
-    - AHU_BYPSSPC_DXSC_ECON_HP2SC_SFSS
-    - INCOMPLETE
+  - AHU_BYPSSPC_DXSC_ECON_HP2SC_SFSS
+  - INCOMPLETE
   uses:
-    - zone_air_co2_concentration_setpoint
+  - zone_air_co2_concentration_setpoint
 
 AHU_NON_CANONICAL_TYPE_16:
   guid: "25f1eda5-8c88-4bc2-aa3e-6a083ec968c8"
   description: "Non-standard type 16"
   implements:
-    - AHU_BYPSSPC_ECON_HP2SC_HT2SC_SFSS
-    - INCOMPLETE
+  - AHU_BYPSSPC_ECON_HP2SC_HT2SC_SFSS
+  - INCOMPLETE
   uses:
-    - zone_air_co2_concentration_setpoint # Remove
+  - zone_air_co2_concentration_setpoint # Remove
 
 AHU_NON_CANONICAL_TYPE_17:
   guid: "71a21aca-2d0b-4d17-a2d4-9cd33738fbbb"
   description: "Non-standard type 17"
   implements:
-    - AHU_BSPC_DX4SC_ECON_EFSS_SFSS_SSPC
-    - INCOMPLETE
+  - AHU_BSPC_DX4SC_ECON_EFSS_SFSS_SSPC
+  - INCOMPLETE
   uses:
-    - zone_air_temperature_sensor
+  - zone_air_temperature_sensor
 
 AHU_NON_CANONICAL_TYPE_18:
   guid: "d1c35f45-fd26-4f4e-be91-9fec3d7e92ef"
   description: "Non-standard type 18"
   implements:
-    - AHU_BSPC_CHWSC_ECON_EFSS_EFVSC_HWSC_PHWSC_SFSS_SFVSC_SSPC
-    - INCOMPLETE
+  - AHU_BSPC_CHWSC_ECON_EFSS_EFVSC_HWSC_PHWSC_SFSS_SFVSC_SSPC
+  - INCOMPLETE
   uses:
-    - supply_air_damper_percentage_command
+  - supply_air_damper_percentage_command
 
 AHU_NON_CANONICAL_TYPE_19:
   guid: "9a984218-f71d-4267-b470-90c65f089285"
   description: "Non-standard type 19"
   implements:
-    - AHU_BSPC_CHWSC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC
-    - INCOMPLETE
+  - AHU_BSPC_CHWSC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC
+  - INCOMPLETE
   uses:
-    - supply_air_damper_percentage_command
+  - supply_air_damper_percentage_command
 
 AHU_NON_CANONICAL_TYPE_20:
   guid: "3e24e23d-dbf9-421e-9f65-93b0d4cbfe52"
   description: "Non-standard type 20"
   implements:
-    - AHU_BSPC_DX4SC_ECONM_EFSS_EFVSC_SFSS2X_SFVSC_SSPC
-    - INCOMPLETE
+  - AHU_BSPC_DX4SC_ECONM_EFSS_EFVSC_SFSS2X_SFVSC_SSPC
+  - INCOMPLETE
   uses:
-    - supply_air_damper_command
-    - supply_air_damper_status
+  - supply_air_damper_command
+  - supply_air_damper_status
 
 AHU_NON_CANONICAL_TYPE_21:
   guid: "599ec1ea-7930-479c-a239-c5cf20e041a5"
   description: "Non-standard type 21"
   implements:
-    - AHU_CHWSC_ECON_HWSC_SFSS_SFVSC_SSPC
-    - INCOMPLETE
+  - AHU_CHWSC_ECON_HWSC_SFSS_SFVSC_SSPC
+  - INCOMPLETE
   uses:
-    - zone_air_relative_humidity_sensor_1
-    - zone_air_relative_humidity_sensor_2
+  - zone_air_relative_humidity_sensor_1
+  - zone_air_relative_humidity_sensor_2
 
 AHU_NON_CANONICAL_TYPE_22:
   guid: "8d873d00-689a-47da-ac14-d2f8205ae098"
   description: "Non-standard type 22"
   implements:
-    - AHU_CHWSC_ECON_SFC_SFSS_SFVSC_SSPC
-    - INCOMPLETE
+  - AHU_CHWSC_ECON_SFC_SFSS_SFVSC_SSPC
+  - INCOMPLETE
   uses:
-    - outside_air_damper_command
+  - outside_air_damper_command
 
 AHU_NON_CANONICAL_TYPE_23:
   guid: "b1f99eb9-b7f4-4863-be07-5c4cb0f823b5"
   description: "Non-standard type 23"
   implements:
-    - AHU_BSPC_CHWSC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC
-    - INCOMPLETE
+  - AHU_BSPC_CHWSC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC
+  - INCOMPLETE
   uses:
-    - zone_air_temperature_sensor
-    - zone_air_cooling_temperature_setpoint
-    - zone_air_heating_temperature_setpoint
-    - exhaust_air_flowrate_sensor
-    - supply_air_damper_percentage_command
+  - zone_air_temperature_sensor
+  - zone_air_cooling_temperature_setpoint
+  - zone_air_heating_temperature_setpoint
+  - exhaust_air_flowrate_sensor
+  - supply_air_damper_percentage_command
 
 AHU_NON_CANONICAL_TYPE_24:
   guid: "33716ad8-3d76-4767-a309-a624f25f7245"
   description: "Non-standard type 24"
   implements:
-    - AHU_BSPC_DXSC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC
-    - INCOMPLETE
+  - AHU_BSPC_DXSC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC
+  - INCOMPLETE
   uses:
-    - compressor_speed_percentage_command
+  - compressor_speed_percentage_command
 
 AHU_NON_CANONICAL_TYPE_25:
   guid: "19c1edc6-1584-4694-a139-cff5914765a4"
   description: "Non-standard type 25"
   implements:
-    - AHU_BSPC_CHWSC_ECON_EFSS_HWSC_SFSS_SSPC
-    - INCOMPLETE
+  - AHU_BSPC_CHWSC_ECON_EFSS_HWSC_SFSS_SSPC
+  - INCOMPLETE
   uses:
-    - zone_air_cooling_temperature_setpoint
+  - zone_air_cooling_temperature_setpoint
 
 AHU_NON_CANONICAL_TYPE_26:
   guid: "d61f1e83-fe50-40f8-8fc3-7cffa11d3db9"
   description: "Non-standard type 26"
   implements:
-    - AHU_CHWZC_DFSS_DSP_ECONZ
-    - INCOMPLETE
+  - AHU_CHWZC_DFSS_DSP_ECONZ
+  - INCOMPLETE
   uses:
-    - exhaust_air_damper_percentage_command
+  - exhaust_air_damper_percentage_command
 
 AHU_NON_CANONICAL_TYPE_27:
   guid: "6f2107b2-0299-4f4d-bb76-a21d88863e8f"
   description: "Non-standard type 27"
   implements:
-    - AHU_BSPC_CHWSC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC
-    - INCOMPLETE
+  - AHU_BSPC_CHWSC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC
+  - INCOMPLETE
   uses:
-    - zone_air_temperature_sensor
+  - zone_air_temperature_sensor
 
 AHU_NON_CANONICAL_TYPE_28:
   guid: "5ade27ec-a2a1-4699-a881-d68dffde8c05"
   description: "Non-standard type 28"
   implements:
-    - AHU_BSPC_DX4SC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC
-    - INCOMPLETE
+  - AHU_BSPC_DX4SC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC
+  - INCOMPLETE
   uses:
-    - zone_air_temperature_sensor
-    - zone_air_cooling_temperature_setpoint
+  - zone_air_temperature_sensor
+  - zone_air_cooling_temperature_setpoint
 
 AHU_NON_CANONICAL_TYPE_29:
   guid: "9d73460d-d4aa-46ec-82ab-323774ab3013"
   description: "Non-standard type 29"
   implements:
-    - AHU_DFSS_DSP_DX2ZC_ECONZ_HTZC
-    - INCOMPLETE
+  - AHU_DFSS_DSP_DX2ZC_ECONZ_HTZC
+  - INCOMPLETE
   uses:
-    - supply_fan_run_command
-    - supply_fan_run_status
-    - supply_air_temperature_sensor
+  - supply_fan_run_command
+  - supply_fan_run_status
+  - supply_air_temperature_sensor
 
 AHU_NON_CANONICAL_TYPE_30:
   guid: "013a1f35-c3dd-4a14-a5f7-cf4fd7312329"
   description: "Non-standard type 30"
   implements:
-    - AHU_DSP_DFSS_DXZC_ECONMD
-    - INCOMPLETE
+  - AHU_DSP_DFSS_DXZC_ECONMD
+  - INCOMPLETE
   uses:
-    - outside_air_temperature_sensor
-    - ventilation_outside_air_damper_percentage_command
+  - outside_air_temperature_sensor
+  - ventilation_outside_air_damper_percentage_command
 
 AHU_NON_CANONICAL_TYPE_31:
   guid: "b258e547-4315-45a0-8cf8-a39dfc160e9d"
   description: "Non-standard type 31"
   implements:
-    - AHU_BYPSSPC_DX2SDC_ECON_HT2SDC_SFSS
-    - INCOMPLETE
+  - AHU_BYPSSPC_DX2SDC_ECON_HT2SDC_SFSS
+  - INCOMPLETE
   uses:
-    - zone_air_temperature_sensor
-    - outside_air_damper_command
+  - zone_air_temperature_sensor
+  - outside_air_damper_command
 
 AHU_NON_CANONICAL_TYPE_32:
   guid: "5867ea9c-4357-49d8-9e92-779d775c99ee"
   description: "Non-standard type 32"
   implements:
-    - AHU_BSPC_DXSC_ECON_EFSS_EFVSC_FDPM_SFSS3X_SFVSC2X_SSPC
-    - INCOMPLETE
+  - AHU_BSPC_DXSC_ECON_EFSS_EFVSC_FDPM_SFSS3X_SFVSC2X_SSPC
+  - INCOMPLETE
   uses:
-    - condensing_fan_speed_percentage_command_1
-    - compressor_speed_percentage_command_1
-    - condensing_fan_speed_percentage_command_2
-    - compressor_speed_percentage_command_2
+  - condensing_fan_speed_percentage_command_1
+  - compressor_speed_percentage_command_1
+  - condensing_fan_speed_percentage_command_2
+  - compressor_speed_percentage_command_2
 
 AHU_NON_CANONICAL_TYPE_33:
   guid: "46dd8e55-bbaf-4daf-9dbb-40a73bdddaf8"
   description: "Non-standard type 33"
   implements:
-    - AHU_BSPC_DX4SC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC
-    - INCOMPLETE
+  - AHU_BSPC_DX4SC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC
+  - INCOMPLETE
   uses:
-    - supply_air_damper_percentage_command
-    - return_air_damper_percentage_command
+  - supply_air_damper_percentage_command
+  - return_air_damper_percentage_command
 
 AHU_NON_CANONICAL_TYPE_34:
   guid: "72aa5614-ecc5-4228-91a7-35d56d662582"
   description: "Non-standard type 34"
   implements:
-    - AHU_BSPC_CHWSC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC
-    - INCOMPLETE
+  - AHU_BSPC_CHWSC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC
+  - INCOMPLETE
   uses:
-    - min_outside_air_damper_status
-    - min_outside_air_damper_command
+  - min_outside_air_damper_status
+  - min_outside_air_damper_command
 
 AHU_NON_CANONICAL_TYPE_35:
   guid: "01c95182-1617-403c-9a26-1cb04c9ec935"
   description: "Non-standard type 35"
   implements:
-    - REMAP_REQUIRED
+  - REMAP_REQUIRED
   uses:
-    - chilled_water_valve_percentage_command
-    - heating_percentage_command
-    - humidification_percentage_command
-    - supply_air_cooling_temperature_setpoint
-    - supply_air_dehumidification_relative_humidity_setpoint
-    - supply_air_heating_temperature_setpoint
-    - supply_air_humidification_relative_humidity_setpoint
-    - supply_air_relative_humidity_sensor
-    - supply_air_temperature_sensor
-    - supply_fan_run_command
-    - supply_fan_run_status
+  - chilled_water_valve_percentage_command
+  - heating_percentage_command
+  - humidification_percentage_command
+  - supply_air_cooling_temperature_setpoint
+  - supply_air_dehumidification_relative_humidity_setpoint
+  - supply_air_heating_temperature_setpoint
+  - supply_air_humidification_relative_humidity_setpoint
+  - supply_air_relative_humidity_sensor
+  - supply_air_temperature_sensor
+  - supply_fan_run_command
+  - supply_fan_run_status
 
 AHU_NON_CANONICAL_TYPE_36:
   guid: "42dc8beb-76a0-4bee-a913-1d37f89dc34d"
   description: "Non-standard type 36"
   implements:
-    - AHU_DFSS_DSP_DX2ZC_ECONZ
-    - INCOMPLETE
+  - AHU_DFSS_DSP_DX2ZC_ECONZ
+  - INCOMPLETE
   uses:
-    - zone_air_temperature_sensor_1
-    - zone_air_temperature_sensor_2
+  - zone_air_temperature_sensor_1
+  - zone_air_temperature_sensor_2
 
 AHU_NON_CANONICAL_TYPE_37:
   guid: "1e34b20e-77b1-4985-ad65-32ef6085e172"
   description: "Non-standard type 37"
   implements:
-    - REMAP_REQUIRED
+  - REMAP_REQUIRED
   uses:
-    - supply_fan_current_sensor_1
-    - supply_fan_current_sensor_2
+  - supply_fan_current_sensor_1
+  - supply_fan_current_sensor_2
 
 AHU_NON_CANONICAL_TYPE_38:
   guid: "649cc471-16a4-490a-a366-90744b5fd43b"
   description: "Non-standard type 38"
   implements:
-    - REMAP_REQUIRED
+  - REMAP_REQUIRED
   uses:
-    - supply_fan_run_status
+  - supply_fan_run_status
 
 AHU_NON_CANONICAL_TYPE_39:
   guid: "84342497-9ed0-49c6-86d3-eb55e005f03e"
   description: "Non-standard type 39"
   implements:
-    - REMAP_REQUIRED
+  - REMAP_REQUIRED
   uses:
-    - outside_air_damper_percentage_command
+  - outside_air_damper_percentage_command
 
 AHU_NON_CANONICAL_TYPE_40:
   guid: "1ffb1601-cfa6-43b5-b512-f5a7f4783beb"
   description: "Non-standard type 40"
   implements:
-    - AHU_CO2M_DFSS_DSP_ECONZ_HP2ZC
-    - INCOMPLETE
+  - AHU_CO2M_DFSS_DSP_ECONZ_HP2ZC
+  - INCOMPLETE
   uses:
-    - discharge_air_damper_command
+  - discharge_air_damper_command
 
 AHU_NON_CANONICAL_TYPE_41:
   guid: "5624c3fe-68a8-44dc-979e-11a26a1ea375"
   description: "Non-standard type 41"
   implements:
-    - AHU_CO2M_DFSS_DSP_DX2ZC_ECONZ
-    - INCOMPLETE
+  - AHU_CO2M_DFSS_DSP_DX2ZC_ECONZ
+  - INCOMPLETE
   uses:
-    - discharge_air_damper_command
+  - discharge_air_damper_command
 
 AHU_NON_CANONICAL_TYPE_42:
   guid: "60698f68-89d2-4593-a8ef-24e40fe6b79b"
   description: "Non-standard type 42"
   implements:
-    - AHU_BSPC_DX2SC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC
-    - INCOMPLETE
+  - AHU_BSPC_DX2SC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC
+  - INCOMPLETE
   uses:
-    - return_air_damper_status
-    - return_air_damper_command
-    - supply_air_damper_status
+  - return_air_damper_status
+  - return_air_damper_command
+  - supply_air_damper_status
 
 AHU_NON_CANONICAL_TYPE_43:
   guid: "68227b67-a609-4ea8-95b3-f1b711ef0ff7"
   description: "Non-standard type 43"
   implements:
-    - AHU_BSPC_DX4SC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC
-    - INCOMPLETE
+  - AHU_BSPC_DX4SC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC
+  - INCOMPLETE
   uses:
-    - return_air_damper_command
-    - return_air_damper_status
-    - supply_air_damper_status
+  - return_air_damper_command
+  - return_air_damper_status
+  - supply_air_damper_status
 
 AHU_NON_CANONICAL_TYPE_44:
   guid: "8c3958c3-4da5-4a58-8a52-4974b29afe5d"
   description: "Non-standard type 44"
   implements:
-    - AHU_BSPC_CO2C_DX2SC_ECON_EFSS_SFSS_SFVSC_SSPC
-    - INCOMPLETE
+  - AHU_BSPC_CO2C_DX2SC_ECON_EFSS_SFSS_SFVSC_SSPC
+  - INCOMPLETE
   uses:
-    - zone_air_temperature_sensor
+  - zone_air_temperature_sensor
 
 AHU_NON_CANONICAL_TYPE_45:
   guid: "11680ec9-d010-4a47-ae63-f83de58984ac"
   description: "Non-standard type 45"
   implements:
-    - AHU_BSPC_DX4SC_ECON_EFSS_EFVSC_SARC_SFSS_SFVSC_SSPC
-    - INCOMPLETE
+  - AHU_BSPC_DX4SC_ECON_EFSS_EFVSC_SARC_SFSS_SFVSC_SSPC
+  - INCOMPLETE
   uses:
-    - exhaust_air_damper_command
-    - outside_air_damper_percentage_sensor
+  - exhaust_air_damper_command
+  - outside_air_damper_percentage_sensor
 
 AHU_NON_CANONICAL_TYPE_46:
   guid: "8d09d92e-5630-48cc-93fd-25079fdfc58c"
   description: "Non-standard type 46"
   implements:
-    - AHU_BSPC_DX2SC_ECON_EFSS_EFVSC_HWSC_SFSS_SFVSC_SSPC
-    - INCOMPLETE
+  - AHU_BSPC_DX2SC_ECON_EFSS_EFVSC_HWSC_SFSS_SFVSC_SSPC
+  - INCOMPLETE
   uses:
-    - exhaust_air_damper_command
+  - exhaust_air_damper_command
 
 AHU_NON_CANONICAL_TYPE_47:
   guid: "2b337ced-6542-48aa-8440-42f40dde61d5"
   description: "Non-standard type 47"
   implements:
-    - AHU_DFSS_DSP_DXZC_ECONZ_HTZC
-    - INCOMPLETE
+  - AHU_DFSS_DSP_DXZC_ECONZ_HTZC
+  - INCOMPLETE
   uses:
-    - discharge_air_damper_command
+  - discharge_air_damper_command
 
 AHU_NON_CANONICAL_TYPE_48:
   guid: "8221843f-3b88-417b-9f7d-19ed7d820621"
   description: "Non-standard type 48"
   implements:
-    - AHU_CSP_DFSS_DXZC_ECONZ
-    - INCOMPLETE
+  - AHU_CSP_DFSS_DXZC_ECONZ
+  - INCOMPLETE
   uses:
-    - discharge_air_damper_percentage_command
+  - discharge_air_damper_percentage_command
 
 AHU_NON_CANONICAL_TYPE_49:
   guid: "95d23717-a285-49cc-87cc-4786b7694285"
   description: "Non-standard type 49"
   implements:
-    - AHU_BSPC_DX4SC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC
-    - INCOMPLETE
+  - AHU_BSPC_DX4SC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC
+  - INCOMPLETE
   uses:
-    - supply_air_damper_command
+  - supply_air_damper_command
 
 AHU_NON_CANONICAL_TYPE_50:
   guid: "24c5b803-3e19-4fad-935f-adc0973a2dc4"
   description: "Non-standard type 50"
   implements:
-    - AHU_DFSS_DXZC_ECOND_ZHM
-    - INCOMPLETE
+  - AHU_DFSS_DXZC_ECOND_ZHM
+  - INCOMPLETE
   uses:
-    - discharge_air_damper_command
+  - discharge_air_damper_command
 
 AHU_NON_CANONICAL_TYPE_51:
   guid: "533ed589-adbf-4151-9afb-b4455313b58f"
   description: "Non-standard type 51"
   implements:
-    - AHU_CHWSC_ECONM2X_MOAFC_SFSS_SFVSC_SSPC
-    - INCOMPLETE
+  - AHU_CHWSC_ECONM2X_MOAFC_SFSS_SFVSC_SSPC
+  - INCOMPLETE
   uses:
-    - return_air_flowrate_sensor
+  - return_air_flowrate_sensor
 
 AHU_NON_CANONICAL_TYPE_52:
   guid: "ffc90d01-7f05-4f78-b3c6-9207469df92e"
   description: "Non-standard type 52"
   implements:
-    - AHU_CHWSC_ECON_FDPM_SFSS_SFVSC_SSPC
-    - INCOMPLETE
+  - AHU_CHWSC_ECON_FDPM_SFSS_SFVSC_SSPC
+  - INCOMPLETE
   uses:
-    - outside_air_damper_command
+  - outside_air_damper_command
 
 AHU_NON_CANONICAL_TYPE_53:
   guid: "f4770c34-4186-4ba8-8301-10f99e11f815"
   description: "Non-standard type 53"
   implements:
-    - AHU_CHWSC_ECON_EFSS_EFVSC_FDPM_RFC_SFSS_SFVSC_SSPC
-    - INCOMPLETE
+  - AHU_CHWSC_ECON_EFSS_EFVSC_FDPM_RFC_SFSS_SFVSC_SSPC
+  - INCOMPLETE
   uses:
-    - outside_air_damper_command
+  - outside_air_damper_command
 
 AHU_NON_CANONICAL_TYPE_54:
   guid: "cd258658-29ee-404e-939d-fdbc05ca5ce8"
   description: "Non-standard type 54"
   implements:
-    - AHU_BSPC_DX5SC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC
-    - INCOMPLETE
+  - AHU_BSPC_DX5SC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC
+  - INCOMPLETE
   uses:
-    - run_command
+  - run_command
 
 AHU_NON_CANONICAL_TYPE_55:
   guid: "6804e5f9-627c-4a81-a277-353086b8d1f4"
   description: "Non-standard type 55"
   implements:
-    - AHU_DX4ZC_ECON_EFSS_HT3ZC_SFSS_SFVSC_ZHC
-    - INCOMPLETE
+  - AHU_DX4ZC_ECON_EFSS_HT3ZC_SFSS_SFVSC_ZHC
+  - INCOMPLETE
   uses:
-    - zone_air_dehumidification_relative_humidity_setpoint
+  - zone_air_dehumidification_relative_humidity_setpoint
 
 AHU_NON_CANONICAL_TYPE_56:
   guid: "89de4191-2deb-479d-b3cf-0ecdc851576d"
   description: "Non-standard type 56"
   implements:
-    - AHU_DFSS_DFVSC_DX4ZC_ECONZ_HT3ZC_ZHM
-    - INCOMPLETE
+  - AHU_DFSS_DFVSC_DX4ZC_ECONZ_HT3ZC_ZHM
+  - INCOMPLETE
   uses:
-    - zone_air_dehumidification_relative_humidity_setpoint
+  - zone_air_dehumidification_relative_humidity_setpoint
 
 AHU_NON_CANONICAL_TYPE_57:
   guid: "bc8f9357-22cd-4b9e-becd-9d1949aec990"
   description: "Non-standard type 57"
   implements:
-    - AHU_BSPC_DX2SC_ECON_EFSS_SFSS_SFVSC_SSPC
-    - INCOMPLETE
+  - AHU_BSPC_DX2SC_ECON_EFSS_SFSS_SFVSC_SSPC
+  - INCOMPLETE
   uses:
-    - run_command
+  - run_command
 
 AHU_NON_CANONICAL_TYPE_58:
   guid: "3ddf6e73-2fbb-4343-a0cc-004dcce1fa41"
   description: "Non-standard type 58"
   implements:
-    - AHU_BSPC_DX2SC_ECON_EFSS_SFSS_SFVSC_SSPC
-    - INCOMPLETE
+  - AHU_BSPC_DX2SC_ECON_EFSS_SFSS_SFVSC_SSPC
+  - INCOMPLETE
   uses:
-    - run_command
+  - run_command
 
 AHU_NON_CANONICAL_TYPE_59:
   guid: "628e884a-705d-43aa-81a7-9698e8f9979b"
   description: "Non-standard type 59"
   implements:
-    - AHU_BSPC_DX3SC_ECONM_EFSS4X_EFVSC4X_SFSS2X_SFVSC2X_SSPC
-    - INCOMPLETE
+  - AHU_BSPC_DX3SC_ECONM_EFSS4X_EFVSC4X_SFSS2X_SFVSC2X_SSPC
+  - INCOMPLETE
   uses:
-    - run_command
+  - run_command
 
 AHU_NON_CANONICAL_TYPE_60:
   guid: "fd94829b-78a2-4dd4-b3ed-7a8fa3069a1c"
   description: "Non-standard type 60"
   implements:
-    - AHU_BSPC_DX2SC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC
-    - INCOMPLETE
+  - AHU_BSPC_DX2SC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC
+  - INCOMPLETE
   uses:
-    - run_command
+  - run_command
 
 AHU_NON_CANONICAL_TYPE_61:
   guid: "5f755f41-930a-414e-9c97-b65ce941d996"
   description: "Non-standard type 61"
   implements:
-    - AHU_BSPC_DX4SC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC
-    - INCOMPLETE
+  - AHU_BSPC_DX4SC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC
+  - INCOMPLETE
   uses:
-    - run_command
-    - supply_air_damper_status
-    - supply_air_damper_command
+  - run_command
+  - supply_air_damper_status
+  - supply_air_damper_command
 
 AHU_NON_CANONICAL_TYPE_62:
   guid: "092739e8-86cd-4697-b07d-31a9230f776a"
   description: "Non-standard type 62"
   implements:
-    - AHU_BSPC_DX4SC_ECON_EFSS_SFSS_SFVSC_SSPC
-    - INCOMPLETE
+  - AHU_BSPC_DX4SC_ECON_EFSS_SFSS_SFVSC_SSPC
+  - INCOMPLETE
   uses:
-    - run_command
+  - run_command
 
 AHU_NON_CANONICAL_TYPE_63:
   guid: "bd1f4671-9f9c-4bea-a90b-18c3d86564ad"
   description: "Non-standard type 63"
   implements:
-    - AHU_BSPC_DXSC_ECONM_EFSS_SFSS_SFVSC_SSPC_STC
-    - INCOMPLETE
+  - AHU_BSPC_DXSC_ECONM_EFSS_SFSS_SFVSC_SSPC_STC
+  - INCOMPLETE
   uses:
-    - supply_air_damper_status
-    - supply_air_damper_command
+  - supply_air_damper_status
+  - supply_air_damper_command
 
 AHU_NON_CANONICAL_TYPE_64:
   guid: "e389fa86-beb4-42c8-a4b6-a570af95df57"
   description: "Non-standard type 64"
   implements:
-    - AHU_BSPC_CHWSC_ECON_EFSS_EFSS4X_EFVSC_EFVSC4X_FDPM_HWSC_MOAFC_SFSS2X_SFVSC2X_SSPC
-    - INCOMPLETE
+  - AHU_BSPC_CHWSC_ECON_EFSS_EFSS4X_EFVSC_EFVSC4X_FDPM_HWSC_MOAFC_SFSS2X_SFVSC2X_SSPC
+  - INCOMPLETE
   uses:
-    - heating_water_valve_status
-    - chilled_water_valve_command
+  - heating_water_valve_status
+  - chilled_water_valve_command
 
 AHU_NON_CANONICAL_TYPE_65:
   guid: "827ea84c-7844-4e7d-becf-f86cd3f85b7e"
   description: "Non-standard type 65"
   implements:
-    - REMAP_REQUIRED
+  - REMAP_REQUIRED
   uses:
-    - chilled_water_valve_percentage_command
-    - return_air_temperature_sensor
-    - supply_air_static_pressure_sensor
-    - supply_air_temperature_sensor
-    - supply_air_temperature_setpoint
-    - supply_fan_run_command
-    - supply_fan_run_status
-    - supply_fan_speed_frequency_sensor
-    - supply_fan_speed_percentage_command
-    - zone_air_cooling_temperature_setpoint
-    - zone_air_heating_temperature_setpoint
-    - zone_air_temperature_sensor
+  - chilled_water_valve_percentage_command
+  - return_air_temperature_sensor
+  - supply_air_static_pressure_sensor
+  - supply_air_temperature_sensor
+  - supply_air_temperature_setpoint
+  - supply_fan_run_command
+  - supply_fan_run_status
+  - supply_fan_speed_frequency_sensor
+  - supply_fan_speed_percentage_command
+  - zone_air_cooling_temperature_setpoint
+  - zone_air_heating_temperature_setpoint
+  - zone_air_temperature_sensor
 
 AHU_NON_CANONICAL_TYPE_66:
   guid: "fe969bce-99b8-46cb-8880-4ba91ca83e39"
   description: "Non-standard type 66"
   implements:
-    - AHU_BPC_CHWSC_ECONM_EFSS4X_EFVSC4X_FDPM_HWSC_MOAFC_SFSS2X_SFVSC2X_SSPC
-    - INCOMPLETE
+  - AHU_BPC_CHWSC_ECONM_EFSS4X_EFVSC4X_FDPM_HWSC_MOAFC_SFSS2X_SFVSC2X_SSPC
+  - INCOMPLETE
   uses:
-    - heating_water_valve_status
-    - chilled_water_valve_command
+  - heating_water_valve_status
+  - chilled_water_valve_command
 
 AHU_NON_CANONICAL_TYPE_67:
   guid: "a1ca7b56-7cb7-4c05-8a4e-fc118acc55c5"
   description: "Non-standard type 67"
   implements:
-    - AHU_BSPC_CHWSC_ECON_EFSS4X_EFVSC4X_FDPM_HWSC_SFSS2X_SFVSC2X_SSPC
-    - INCOMPLETE
+  - AHU_BSPC_CHWSC_ECON_EFSS4X_EFVSC4X_FDPM_HWSC_SFSS2X_SFVSC2X_SSPC
+  - INCOMPLETE
   uses:
-    - chilled_water_valve_command
-    - heating_water_valve_command
-    - ventilation_outside_air_damper_percentage_command
+  - chilled_water_valve_command
+  - heating_water_valve_command
+  - ventilation_outside_air_damper_percentage_command
 
 AHU_NON_CANONICAL_TYPE_68:
   guid: "2bf51669-f7da-410d-bd68-f4e6a41c1433"
   description: "Non-standard type 68"
   implements:
-    - AHU_BSPC_DX4SC_ECONM_EFSS_EFVSC_SFSS_SFVSC_SSPC
-    - INCOMPLETE
+  - AHU_BSPC_DX4SC_ECONM_EFSS_EFVSC_SFSS_SFVSC_SSPC
+  - INCOMPLETE
   uses:
-    - ventilation_outside_air_damper_percentage_command
-    - exhaust_air_damper_percentage_sensor
+  - ventilation_outside_air_damper_percentage_command
+  - exhaust_air_damper_percentage_sensor
 
 AHU_NON_CANONICAL_TYPE_69:
   guid: "f09c2a96-a28d-4ed3-8fb4-9bc4b47e276a"
   description: "Non-standard type 69"
   implements:
-    - REMAP_REQUIRED
+  - REMAP_REQUIRED
   uses:
-    - building_air_static_pressure_sensor
-    - building_air_static_pressure_setpoint
-    - compressor_run_command_1
-    - compressor_run_command_2
-    - compressor_run_command_3
-    - compressor_speed_percentage_command
-    - exhaust_air_damper_percentage_sensor
-    - exhaust_fan_run_command
-    - exhaust_fan_run_status
-    - exhaust_fan_speed_frequency_sensor
-    - exhaust_fan_speed_percentage_command
-    - heating_percentage_command
-    - mixed_air_temperature_sensor
-    - mixed_air_temperature_setpoint
-    - outside_air_damper_percentage_command
-    - return_air_temperature_sensor
-    - supply_air_static_pressure_sensor
-    - supply_air_static_pressure_setpoint
-    - supply_air_temperature_sensor
-    - supply_air_temperature_setpoint
-    - supply_fan_run_status
-    - supply_fan_speed_percentage_command
-    - zone_air_co2_concentration_sensor
-    - zone_air_co2_concentration_setpoint
-    - zone_air_temperature_sensor
-    - zone_air_temperature_setpoint
+  - building_air_static_pressure_sensor
+  - building_air_static_pressure_setpoint
+  - compressor_run_command_1
+  - compressor_run_command_2
+  - compressor_run_command_3
+  - compressor_speed_percentage_command
+  - exhaust_air_damper_percentage_sensor
+  - exhaust_fan_run_command
+  - exhaust_fan_run_status
+  - exhaust_fan_speed_frequency_sensor
+  - exhaust_fan_speed_percentage_command
+  - heating_percentage_command
+  - mixed_air_temperature_sensor
+  - mixed_air_temperature_setpoint
+  - outside_air_damper_percentage_command
+  - return_air_temperature_sensor
+  - supply_air_static_pressure_sensor
+  - supply_air_static_pressure_setpoint
+  - supply_air_temperature_sensor
+  - supply_air_temperature_setpoint
+  - supply_fan_run_status
+  - supply_fan_speed_percentage_command
+  - zone_air_co2_concentration_sensor
+  - zone_air_co2_concentration_setpoint
+  - zone_air_temperature_sensor
+  - zone_air_temperature_setpoint
 
 AHU_NON_CANONICAL_TYPE_70:
   guid: "f87c0b51-f63c-4125-b044-c97d0fbe6b87"
   description: "Non-standard type 70"
   implements:
-    - AHU_BSPC_ECON_EFSS_SARC_SFSS_SFVSC_SSPC
-    - INCOMPLETE
+  - AHU_BSPC_ECON_EFSS_SARC_SFSS_SFVSC_SSPC
+  - INCOMPLETE
   uses:
-    - supply_fan_speed_frequency_command
-    - ventilation_outside_air_flowrate_setpoint
+  - supply_fan_speed_frequency_command
+  - ventilation_outside_air_flowrate_setpoint
 
 AHU_NON_CANONICAL_TYPE_71:
   guid: "06ba3a10-2c56-4ed6-b306-f6a7a4b20dcf"
   description: "Non-standard type 71"
   implements:
-    - AHU
+  - AHU
   uses:
-    - compressor_speed_percentage_command
-    - heating_water_valve_percentage_command
-    - supply_air_damper_command
-    - supply_air_damper_status
-    - leaving_heating_coil_temperature_sensor
-    - mixed_air_temperature_sensor
-    - mixed_air_temperature_setpoint
-    - outside_air_damper_percentage_command
-    - return_air_temperature_sensor
-    - supply_air_static_pressure_sensor
-    - supply_air_static_pressure_setpoint
-    - supply_air_temperature_sensor
-    - supply_air_temperature_setpoint
-    - supply_fan_run_command
-    - supply_fan_speed_frequency_sensor
-    - supply_fan_speed_percentage_command
-    - supply_air_flowrate_sensor
+  - compressor_speed_percentage_command
+  - heating_water_valve_percentage_command
+  - supply_air_damper_command
+  - supply_air_damper_status
+  - leaving_heating_coil_temperature_sensor
+  - mixed_air_temperature_sensor
+  - mixed_air_temperature_setpoint
+  - outside_air_damper_percentage_command
+  - return_air_temperature_sensor
+  - supply_air_static_pressure_sensor
+  - supply_air_static_pressure_setpoint
+  - supply_air_temperature_sensor
+  - supply_air_temperature_setpoint
+  - supply_fan_run_command
+  - supply_fan_speed_frequency_sensor
+  - supply_fan_speed_percentage_command
+  - supply_air_flowrate_sensor
 
 AHU_STDSPC_SSPC_EFFC_EFVSC_FDPM3X_HTWHLSTC_RHM_ETM:
   guid: "dbe00902-c2da-4efd-b8f2-2069ddd674c3"
   description: "Non-Standard (Swegon) Multi-Zone AHU with heat wheel, isolation damper and filter pressure monitoring"
   implements:
-    - AHU
-    - STDSPC
-    - SSPC
-    - EFFC
-    - EFVSC
-    - FDPM3X
-    - HTWHLSTC
-    - RHM
-    - ETM
+  - AHU
+  - STDSPC
+  - SSPC
+  - EFFC
+  - EFVSC
+  - FDPM3X
+  - HTWHLSTC
+  - RHM
+  - ETM
   uses:
-    - compressor_speed_percentage_sensor
-    - outside_air_isolation_damper_command
-    - outside_air_isolation_damper_status
-    - exhaust_air_isolation_damper_command
-    - exhaust_air_isolation_damper_status
+  - compressor_speed_percentage_sensor
+  - outside_air_isolation_damper_command
+  - outside_air_isolation_damper_status
+  - exhaust_air_isolation_damper_command
+  - exhaust_air_isolation_damper_status
 
 AHU_BSPC_DX4SC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC_RHHC_NONCANONICAL_1:
   guid: "4f641024-9959-4ab3-9869-97fdf93ed47b"
   description: "Non-Standard AHU with humidification and heating water coils on return duct."
   is_canonical: false
   implements:
-    - AHU_BSPC_DX4SC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC
-    - RHHC
+  - AHU_BSPC_DX4SC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC
+  - RHHC
   uses:
-    - heating_water_valve_percentage_command
-    - min_zone_air_relative_humidity_sensor
-    - min_zone_air_relative_humidity_setpoint
+  - heating_water_valve_percentage_command
+  - min_zone_air_relative_humidity_sensor
+  - min_zone_air_relative_humidity_setpoint
 
 AHU_CHWSC_EFSS_EFVSC_FDPM3X_HTWHLSTC_HWSC_RCO2M_RSPC_SFM_SFSS_SFVSC_SSPC_VOADM_VMADC:
   guid: "f53a0828-f284-490f-aa56-e150de3d0ddf"
   description: "Complex multi zone AHU with heat recovery wheel and recirculated air control."
   is_canonical: true
   implements:
-    - AHU
-    - CHWSC
-    - EFSS
-    - EFVSC
-    - FDPM3X
-    - HTWHLSTC
-    - HWSC
-    - RCO2M
-    - RSPC
-    - SFM
-    - SFSS
-    - SFVSC
-    - SSPC
-    - VOADM
-    - VMADC
+  - AHU
+  - CHWSC
+  - EFSS
+  - EFVSC
+  - FDPM3X
+  - HTWHLSTC
+  - HWSC
+  - RCO2M
+  - RSPC
+  - SFM
+  - SFSS
+  - SFVSC
+  - SSPC
+  - VOADM
+  - VMADC
