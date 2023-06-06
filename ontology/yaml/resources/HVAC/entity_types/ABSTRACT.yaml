@@ -6631,7 +6631,7 @@ RSM:
   - OPERATIONAL
 
 SEFC:
-  description: "Supply and exhaust fan control, typically for Heat Recovry Unit."
+  description: "Supply fan and exhaust fan control."
   is_abstract: true
   uses:
   - supply_fan_run_command

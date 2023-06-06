@@ -91,8 +91,8 @@ NORMAL: "Function, state or flow which is an ideal or expected condition."
 REVERSED: "Function, state or flow which is opposed to the expected or normal condition."
 
 # FOR HEAT RECOVERY UNIT
-STARTUP: ""
-WARMUP: ""
+STARTUP: "Operation mode where unit is starting up"
+WARMUP: "Operation mode where unit is warming up"
 OVERRUN: ""
 INTERMITTENT: ""
 FIREMODE: ""

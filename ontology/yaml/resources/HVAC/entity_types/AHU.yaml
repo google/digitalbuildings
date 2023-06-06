@@ -3983,7 +3983,7 @@ AHU_SFSS_SFMSC_SFVSC_FDPM_CHWSC_RTM_RACO2C_SSPC2X_VOADM2X_SAIDC2X_RAIDC2X_SSPC:
   - SSPC
 
 AHU_HTSC_VOADM_ETM_RMM_FDPM2X_RSM_SEFC_FAM_HRC:
-  description: ""
+  description: "Unit with temperature monitoring, differential pressure sensors and heat recovery control."
   is_canonical: true
   implements:
   - AHU
