@@ -148,6 +148,13 @@ PMP_RSM_APSM:
   - RSM
   - APSM
 
+PMP_RSM:
+  description: "Pump with run status monitoring"
+  is_canonical: true
+  implements:
+  - PMP
+  - RSM
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
