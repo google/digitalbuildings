@@ -29,6 +29,7 @@ VAV:
   opt_uses:
   - zone_use_label # Needed until the zones can are joined to assets with connections.
   - failed_communication_alarm
+  - purge_mode
 
 FAN:
   guid: "5c59fe04-9af7-48d7-86c2-5410b4c01a3e"

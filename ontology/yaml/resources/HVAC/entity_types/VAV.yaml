@@ -206,6 +206,15 @@ VAV_SD_DSP_DFSS:
   - DSP
   - DFSS
 
+VAV_SD_CSP_DFSS:
+  description: "Fan powered VAV."
+  is_canonical: true
+  implements:
+  - VAV
+  - SD
+  - CSP
+  - DFSS
+
 VAV_SD_DSP_DFSS_DFVSC:
   guid: "7986c34f-66dc-4c8a-817d-79ddf97eebd0"
   description: "Fan powered VAV with variable speed control."
