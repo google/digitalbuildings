@@ -29,6 +29,7 @@ _F = test_helpers_lib.Fields
 _F1 = test_helpers_lib.Field
 
 
+# pylint: disable=line-too-long
 class NamespaceValidatorTest(absltest.TestCase):
 
   def setUp(self):
