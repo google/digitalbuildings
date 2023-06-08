@@ -89,7 +89,7 @@ class Model(object):
           spreadsheet_dict[ENTITIES]
       )
       model_builder.entities = list(
-        guid_to_entity_map.GetGuidToEntityMap().values()
+          guid_to_entity_map.GetGuidToEntityMap().values()
       )
       guid_to_entity_map.AddSite(site)
       model_builder.fields = LoadFieldsFromSpreadsheet(
@@ -177,7 +177,8 @@ class Model(object):
             # value field in stances.
             if state.reporting_entity_guid == guid:
               if state.std_field_name in (
-                  field.reporting_entity_field_name, field.std_field_name
+                  field.reporting_entity_field_name,
+                  field.std_field_name,
               ):
                 if isinstance(field, MultistateValueField):
                   field.AddState(state)
