@@ -53,8 +53,8 @@ class EntityOperation(object):
     self.entity = entity
     self.operation_type = operation_type
     self.update_mask = update_mask
-    if self.operation is EntityOperationType.UPDATE:
+    if self.operation_type is EntityOperationType.UPDATE:
       assert self.update_mask is not None, (
-          'update_mask must be present if operation is UPDATE for entity:'
+          'update_mask must be present if operation type is UPDATE for entity:'
           f' {self.entity.bc_guid}'
       )
