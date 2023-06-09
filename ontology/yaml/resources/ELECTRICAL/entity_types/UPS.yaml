@@ -75,10 +75,10 @@ UPS_PWM:
   - UPS
   - PWM
 
-UPS_BBM_UPSM:
+UPS_SS_UPSBM:
   description: "Basic UPS with battery monitoring"
   is_canonical: true
   implements:
   - UPS
-  - BBM
-  - UPSM
+  - SS
+  - UPSBM
