@@ -1,4 +1,4 @@
-# Copyright 2020 Google LLC
+# Copyright 2023 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the License);
 # you may not use this file except in compliance with the License.
@@ -23,7 +23,7 @@ import ast
 from os import path
 import sys
 
-from google3.third_party.digitalbuildings.tools.validators.ontology_validator.yamlformat.arg_parser import CreateParser
+from yamlformat.arg_parser import CreateParser
 from yamlformat.validator import external_file_lib
 
 
@@ -46,7 +46,8 @@ def main(parsed_args: argparse.ArgumentParser):
       filter_text,
       path.expanduser(args.original),
       modified_types_filepath,
-      interactive=ast.literal_eval(parsed_args.interactive))
+      interactive=ast.literal_eval(parsed_args.interactive),
+      require_type_guids=not parsed_args.allow_missing_type_guids)
 
 if __name__ == '__main__':
   args = CreateParser().parse_args(sys.argv[1:])

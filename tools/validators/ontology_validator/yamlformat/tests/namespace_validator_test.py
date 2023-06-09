@@ -18,136 +18,103 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
-from absl.testing import absltest
 from yamlformat.validator import entity_type_lib
 from yamlformat.validator import findings_lib
 from yamlformat.validator import namespace_validator
 from yamlformat.validator import test_helpers_lib
+from absl.testing import absltest
 
 # pylint: disable=superfluous-parens
 _F = test_helpers_lib.Fields
 _F1 = test_helpers_lib.Field
 
 
-# pylint: disable=line-too-long
 class NamespaceValidatorTest(absltest.TestCase):
 
   def setUp(self):
     super(NamespaceValidatorTest, self).setUp()
     # Create a list of good TypeNamespace objects
-    self.good_entity_type_1 = entity_type_lib.EntityType(
+    self.good_type1 = entity_type_lib.EntityType(
         filepath='path/to/ANIMAL/mammal',
         typename='animal',
         description='member of the animal kingdom',
-        local_field_tuples=_F(['/animalia']),
-    )
+        local_field_tuples=_F(['/animalia']))
 
-    self.good_entity_type_2 = entity_type_lib.EntityType(
+    self.good_type2 = entity_type_lib.EntityType(
         filepath='path/to/ANIMAL/mammal',
         typename='dog',
         description='canine animal',
         local_field_tuples=_F(['/woof', '/wag']),
-        parents=['ANIMAL/animal'],
-    )
+        parents=['ANIMAL/animal'])
 
-    self.good_entity_type_3 = entity_type_lib.EntityType(
+    self.good_type3 = entity_type_lib.EntityType(
         filepath='path/to/ANIMAL/mammal',
         typename='puppy',
         description='baby dog',
         local_field_tuples=_F(['/cute']),
-        parents=['ANIMAL/dog', 'ANIMAL/animal', 'ANIMAL/baby'],
-    )
+        parents=['ANIMAL/dog', 'ANIMAL/animal', 'ANIMAL/baby'])
 
-    self.good_entity_type_4 = entity_type_lib.EntityType(
+    self.good_type4 = entity_type_lib.EntityType(
         filepath='path/to/ANIMAL/mammal',
         typename='baby',
         description='young animal',
-        local_field_tuples=_F(['/young']),
-    )
+        local_field_tuples=_F(['/young']))
 
     self.type_namespace = entity_type_lib.TypeNamespace(namespace='ANIMAL')
-    self.type_namespace.InsertType(self.good_entity_type_1)
-    self.type_namespace.InsertType(self.good_entity_type_2)
-    self.type_namespace.InsertType(self.good_entity_type_3)
-    self.type_namespace.InsertType(self.good_entity_type_4)
+    self.type_namespace.InsertType(self.good_type1)
+    self.type_namespace.InsertType(self.good_type2)
+    self.type_namespace.InsertType(self.good_type3)
+    self.type_namespace.InsertType(self.good_type4)
 
     self.validate_good = (
         namespace_validator.NamespaceValidator([self.type_namespace]))
 
-  def testNamespaceValidator_goodEntityTypes_returnsEmptyListOfFindings(self):
+  def testValidateGoodEntityTypes(self):
     self.assertFalse(self.validate_good.GetFindings())
 
-  def testNamespaceValidator_typesMapInheritedFieldsCorrectly_success(self):
+  def testTypesMapInheritedFields(self):
     self.assertLen(self.validate_good.type_namespaces_map, 1)
 
     expanded_type_namespace = self.validate_good.type_namespaces_map.get(
         self.type_namespace.namespace)
 
-    entity_type_1 = expanded_type_namespace.valid_types_map.get(
-        self.good_entity_type_1.typename
-    )
-    entity_type_2 = expanded_type_namespace.valid_types_map.get(
-        self.good_entity_type_2.typename
-    )
-    entity_type_3 = expanded_type_namespace.valid_types_map.get(
-        self.good_entity_type_3.typename
-    )
-    entity_type_4 = expanded_type_namespace.valid_types_map.get(
-        self.good_entity_type_4.typename
-    )
+    type1 = expanded_type_namespace.valid_types_map.get(
+        self.good_type1.typename)
+    type2 = expanded_type_namespace.valid_types_map.get(
+        self.good_type2.typename)
+    type3 = expanded_type_namespace.valid_types_map.get(
+        self.good_type3.typename)
+    type4 = expanded_type_namespace.valid_types_map.get(
+        self.good_type4.typename)
 
-    self.assertEmpty(entity_type_1.inherited_field_names)
-    self.assertLen(entity_type_2.inherited_field_names, 1)
-    self.assertLen(entity_type_3.inherited_field_names, 4)
-    self.assertEmpty(entity_type_4.inherited_field_names)
+    self.assertEmpty(type1.inherited_field_names)
+    self.assertLen(type2.inherited_field_names, 1)
+    self.assertLen(type3.inherited_field_names, 4)
+    self.assertEmpty(type4.inherited_field_names)
 
-  def testNamespaceValidator_typesMapLocalFieldsCorrectly_success(self):
+  def testTypesMapLocalFields(self):
     expanded_type_namespace = self.validate_good.type_namespaces_map.get(
         self.type_namespace.namespace)
-    entity_type_1 = expanded_type_namespace.valid_types_map.get(
-        self.good_entity_type_1.typename
-    )
-    entity_type_2 = expanded_type_namespace.valid_types_map.get(
-        self.good_entity_type_2.typename
-    )
-    entity_type_3 = expanded_type_namespace.valid_types_map.get(
-        self.good_entity_type_3.typename
-    )
-    entity_type_4 = expanded_type_namespace.valid_types_map.get(
-        self.good_entity_type_4.typename
-    )
+    type1 = expanded_type_namespace.valid_types_map.get(
+        self.good_type1.typename)
+    type2 = expanded_type_namespace.valid_types_map.get(
+        self.good_type2.typename)
+    type3 = expanded_type_namespace.valid_types_map.get(
+        self.good_type3.typename)
+    type4 = expanded_type_namespace.valid_types_map.get(
+        self.good_type4.typename)
 
-    self.assertLen(entity_type_1.local_field_names, 1)
-    self.assertLen(entity_type_2.local_field_names, 2)
-    self.assertLen(entity_type_3.local_field_names, 1)
-    self.assertLen(entity_type_4.local_field_names, 1)
+    self.assertLen(type1.local_field_names, 1)
+    self.assertLen(type2.local_field_names, 2)
+    self.assertLen(type3.local_field_names, 1)
+    self.assertLen(type4.local_field_names, 1)
 
-  def testNamespaceValidator_typesMapIsExpandedForInheritedFields_success(self):
-    type_namespace = self.validate_good.type_namespaces_map.get(
-        self.type_namespace.namespace
-    )
+  def testTypesMapIsExpanded(self):
+    for namespace in self.validate_good.type_namespaces_map.values():
+      for entity in namespace.valid_types_map.values():
+        self.assertTrue(entity.inherited_fields_expanded)
 
-    entity_type_1 = type_namespace.valid_types_map.get(
-        self.good_entity_type_1.typename
-    )
-    entity_type_2 = type_namespace.valid_types_map.get(
-        self.good_entity_type_2.typename
-    )
-    entity_type_3 = type_namespace.valid_types_map.get(
-        self.good_entity_type_3.typename
-    )
-    entity_type_4 = type_namespace.valid_types_map.get(
-        self.good_entity_type_4.typename
-    )
-
-    self.assertTrue(entity_type_1.inherited_fields_expanded)
-    self.assertTrue(entity_type_2.inherited_fields_expanded)
-    self.assertTrue(entity_type_3.inherited_fields_expanded)
-    self.assertTrue(entity_type_4.inherited_fields_expanded)
-
-  def testNamespaceValidator_TypeHasNonexistentParent_AddsFindingToFindingsListSuccess(
-      self,
-  ):
+  def testNonexistentParent(self):
     entity_type = entity_type_lib.EntityType(
         filepath='path/to/ANIMAL/mammal',
         typename='dog',
@@ -164,9 +131,7 @@ class NamespaceValidatorTest(absltest.TestCase):
         namespace_validate.HasFindingTypes(
             [findings_lib.NonexistentParentError]))
 
-  def testNamespaceValidator_EntityTypeInheritsFromPassthroughType_errorAddsToFindings(
-      self,
-  ):
+  def testInheritingFromPassthroughIsError(self):
     passthrough_type = entity_type_lib.EntityType(
         filepath='path/to/ANIMAL/gateway',
         typename='dog',
@@ -189,7 +154,22 @@ class NamespaceValidatorTest(absltest.TestCase):
         namespace_validate.HasFindingTypes(
             [findings_lib.PassthroughParentError]))
 
-  def testNamespaceValidator_goodFieldIncrementWithDuplicateBase_success(self):
+  def testGoodPassthroughType(self):
+    passthrough_type = entity_type_lib.EntityType(
+        filepath='path/to/ANIMAL/gateway',
+        typename='dog',
+        description='a gateway to dogs',
+        allow_undefined_fields=True,
+        local_field_tuples=_F(['/woof_1', '/woof_2', '/woof_3']))
+
+    type_namespace = entity_type_lib.TypeNamespace(namespace='ANIMAL')
+    type_namespace.InsertType(passthrough_type)
+    namespace_validate = (
+        namespace_validator.NamespaceValidator([type_namespace]))
+
+    self.assertTrue(namespace_validate.IsValid())
+
+  def testGoodFieldIncrement(self):
     entity_type = entity_type_lib.EntityType(
         filepath='path/to/ANIMAL/mammal',
         typename='dog',
@@ -203,9 +183,7 @@ class NamespaceValidatorTest(absltest.TestCase):
 
     self.assertTrue(namespace_validate.IsValid())
 
-  def testNamespaceValidator_badFieldIncrementWithoutDuplicateBase_errorAddsToFindings(
-      self,
-  ):
+  def testBadFieldIncrement(self):
     entity_type = entity_type_lib.EntityType(
         filepath='path/to/ANIMAL/mammal',
         typename='dog',
@@ -221,54 +199,32 @@ class NamespaceValidatorTest(absltest.TestCase):
         namespace_validate.HasFindingTypes(
             [findings_lib.IllegalFieldIncrementError]))
 
-  def testNamespaceValidator_validatesPassthroughType_success(self):
-    passthrough_type = entity_type_lib.EntityType(
-        filepath='path/to/ANIMAL/gateway',
-        typename='dog',
-        description='a gateway to dogs',
-        allow_undefined_fields=True,
-        local_field_tuples=_F(['/woof_1', '/woof_2', '/woof_3']),
-    )
-
-    type_namespace = entity_type_lib.TypeNamespace(namespace='ANIMAL')
-    type_namespace.InsertType(passthrough_type)
-    namespace_validate = namespace_validator.NamespaceValidator(
-        [type_namespace]
-    )
-
-    self.assertTrue(namespace_validate.IsValid())
-
-  def testNamespaceValidator_detectsInheritanceCycleInCommonNamespace_errorAddsToFindings(
-      self,
-  ):
-    entity_type_1 = entity_type_lib.EntityType(
+  def testInheritanceCycle(self):
+    type1 = entity_type_lib.EntityType(
         filepath='path/to/ANIMAL/mammal',
         typename='dog',
         description='canine animal',
         local_field_tuples=_F(['/woof']),
-        parents=['ANIMAL/wolf'],
-    )
+        parents=['ANIMAL/wolf'])
 
-    entity_type_2 = entity_type_lib.EntityType(
+    type2 = entity_type_lib.EntityType(
         filepath='path/to/ANIMAL/mammal',
         typename='wolf',
         description='canine animal',
         local_field_tuples=_F(['/growl']),
-        parents=['ANIMAL/dingo'],
-    )
+        parents=['ANIMAL/dingo'])
 
-    entity_type_3 = entity_type_lib.EntityType(
+    type3 = entity_type_lib.EntityType(
         filepath='path/to/ANIMAL/mammal',
         typename='dingo',
         description='canine animal',
         local_field_tuples=_F(['/wag']),
-        parents=['ANIMAL/dog'],
-    )
+        parents=['ANIMAL/dog'])
 
     type_namespace = entity_type_lib.TypeNamespace(namespace='ANIMAL')
-    type_namespace.InsertType(entity_type_1)
-    type_namespace.InsertType(entity_type_2)
-    type_namespace.InsertType(entity_type_3)
+    type_namespace.InsertType(type1)
+    type_namespace.InsertType(type2)
+    type_namespace.InsertType(type3)
     namespace_validate = (
         namespace_validator.NamespaceValidator([type_namespace]))
 
@@ -276,9 +232,7 @@ class NamespaceValidatorTest(absltest.TestCase):
         namespace_validate.HasFindingTypes([findings_lib.InheritanceCycleError
                                            ]))
 
-  def testNamespaceValidator_detectsInheritanceCycleAcrossNamepsaces_errorAddsToFindings(
-      self,
-  ):
+  def testInheritanceCycleAcrossNamepsaces(self):
     type1 = entity_type_lib.EntityType(
         filepath='path/to/ANIMAL/mammal',
         typename='dog',
@@ -312,9 +266,7 @@ class NamespaceValidatorTest(absltest.TestCase):
         namespace_validate.HasFindingTypes([findings_lib.InheritanceCycleError
                                            ]))
 
-  def testNamespaceValidator_detectsDuplicateLocalFieldSets_warningAddsToFindings(
-      self,
-  ):
+  def testDuplicateLocalFieldSets(self):
     type1 = entity_type_lib.EntityType(
         filepath='path/to/ANIMAL/mammal',
         typename='dog',
@@ -339,7 +291,7 @@ class NamespaceValidatorTest(absltest.TestCase):
     self.assertTrue(
         type2.HasFindingTypes([findings_lib.DuplicateLocalFieldSetsWarning]))
 
-  def testNamespaceValidator_typesWithEmptyFields_success(self):
+  def testTypesWithEmptyFields(self):
     type1 = entity_type_lib.EntityType(
         filepath='path/to/ANIMAL/mammal',
         typename='dog',
@@ -354,75 +306,68 @@ class NamespaceValidatorTest(absltest.TestCase):
     type_namespace.InsertType(type1)
     type_namespace.InsertType(type2)
 
-    namespace_validate = namespace_validator.NamespaceValidator(
-        [type_namespace]
-    )
+    namespace_validator.NamespaceValidator([type_namespace])
 
     self.assertFalse(
         type1.HasFindingTypes([findings_lib.DuplicateLocalFieldSetsWarning]))
     self.assertFalse(
         type2.HasFindingTypes([findings_lib.DuplicateLocalFieldSetsWarning]))
-    self.assertTrue(namespace_validate.IsValid())
 
-  def testNamespaceValidator_InheritTypesFromDifferentNamespace_success(self):
-    entity_type_1 = entity_type_lib.EntityType(
+  def testInheritTypesFromDifferentNamespace(self):
+    type1 = entity_type_lib.EntityType(
         filepath='path/to/ANIMAL/mammal',
         typename='dog',
         description='canine animal',
-        local_field_tuples=_F(['/woof', '/howl']),
-    )
-    entity_type_2 = entity_type_lib.EntityType(
+        local_field_tuples=_F(['/woof', '/howl']))
+
+    type2 = entity_type_lib.EntityType(
         filepath='path/to/INSECT/fly',
         typename='moth',
         description='flying insect.',
         local_field_tuples=_F(['/wings']),
-        parents=['ANIMAL/dog'],
-    )
+        parents=['ANIMAL/dog'])
 
     type_namespace_1 = entity_type_lib.TypeNamespace(namespace='ANIMAL')
-    type_namespace_1.InsertType(entity_type_1)
+    type_namespace_1.InsertType(type1)
     type_namespace_2 = entity_type_lib.TypeNamespace(namespace='INSECT')
-    type_namespace_2.InsertType(entity_type_2)
+    type_namespace_2.InsertType(type2)
     namespace_validate = (
         namespace_validator.NamespaceValidator(
             [type_namespace_1, type_namespace_2]))
+
+    self.assertFalse(namespace_validate.GetFindings())
 
     expanded_type_namespace_1 = namespace_validate.type_namespaces_map.get(
         type_namespace_1.namespace)
     expanded_type_namespace_2 = namespace_validate.type_namespaces_map.get(
         type_namespace_2.namespace)
-    entity_type_1_expanded = expanded_type_namespace_1.valid_types_map.get(
-        entity_type_1.typename
-    )
-    entity_type_2_expanded = expanded_type_namespace_2.valid_types_map.get(
-        entity_type_2.typename
-    )
-    self.assertFalse(namespace_validate.GetFindings())
-    self.assertTrue(namespace_validate.IsValid())
-    self.assertEmpty(entity_type_1_expanded.inherited_field_names)
-    self.assertLen(entity_type_2_expanded.inherited_field_names, 2)
 
-  def testNamespaceValidator_inheritTypesFromNonExistentNamespace_errorAddsToFindings(
-      self,
-  ):
-    entity_type_1 = entity_type_lib.EntityType(
+    type1_expanded = expanded_type_namespace_1.valid_types_map.get(
+        type1.typename)
+    type2_expanded = expanded_type_namespace_2.valid_types_map.get(
+        type2.typename)
+
+    self.assertEmpty(type1_expanded.inherited_field_names)
+    self.assertLen(type2_expanded.inherited_field_names, 2)
+
+  def testInheritTypesFromDifferentNamespaceError(self):
+    type1 = entity_type_lib.EntityType(
         filepath='path/to/ANIMAL/mammal',
         typename='dog',
         description='canine animal',
-        local_field_tuples=_F(['/woof', '/howl']),
-    )
-    entity_type_2 = entity_type_lib.EntityType(
+        local_field_tuples=_F(['/woof', '/howl']))
+
+    type2 = entity_type_lib.EntityType(
         filepath='path/to/INSECT/fly',
         typename='moth',
         description='flying insect.',
         local_field_tuples=_F(['/wings']),
-        parents=['ANIMALLLLL/dog'],
-    )
+        parents=['ANIMALLLLL/dog'])
 
     type_namespace_1 = entity_type_lib.TypeNamespace(namespace='ANIMAL')
-    type_namespace_1.InsertType(entity_type_1)
+    type_namespace_1.InsertType(type1)
     type_namespace_2 = entity_type_lib.TypeNamespace(namespace='INSECT')
-    type_namespace_2.InsertType(entity_type_2)
+    type_namespace_2.InsertType(type2)
     namespace_validate = (
         namespace_validator.NamespaceValidator(
             [type_namespace_1, type_namespace_2]))
@@ -430,12 +375,9 @@ class NamespaceValidatorTest(absltest.TestCase):
     self.assertTrue(
         namespace_validate.HasFindingTypes(
             [findings_lib.NonexistentParentError]))
-    self.assertFalse(namespace_validate.IsValid())
 
-  def testNamespaceValidator_inheritsOptionality_setOptionalityOnInheritedFields(
-      self,
-  ):
-    entity_type_1 = entity_type_lib.EntityType(
+  def testSetsInheritedOptionality(self):
+    type1 = entity_type_lib.EntityType(
         filepath='path/to/ANIMAL/mammal',
         typename='dog',
         description='canine animal',
@@ -444,14 +386,16 @@ class NamespaceValidatorTest(absltest.TestCase):
             _F1('/growl', optional=True)
         ],
         parents=[])
-    entity_type_2 = entity_type_lib.EntityType(
+
+    type2 = entity_type_lib.EntityType(
         filepath='path/to/ANIMAL/mammal',
         typename='wolf',
         description='canine animal',
         local_field_tuples=[_F1('/woof', optional=True),
                             _F1('/growl', optional=False)],
         parents=[])
-    entity_type_3 = entity_type_lib.EntityType(
+
+    type3 = entity_type_lib.EntityType(
         filepath='path/to/ANIMAL/mammal',
         typename='dingo',
         description='canine animal',
@@ -459,14 +403,15 @@ class NamespaceValidatorTest(absltest.TestCase):
         parents=['ANIMAL/dog', 'ANIMAL/wolf'])
 
     type_namespace_1 = entity_type_lib.TypeNamespace(namespace='ANIMAL')
-    type_namespace_1.InsertType(entity_type_1)
-    type_namespace_1.InsertType(entity_type_2)
-    type_namespace_1.InsertType(entity_type_3)
+    type_namespace_1.InsertType(type1)
+    type_namespace_1.InsertType(type2)
+    type_namespace_1.InsertType(type3)
+
     namespace_validate = (
         namespace_validator.NamespaceValidator([type_namespace_1]))
 
     self.assertTrue(namespace_validate.IsValid())
-    field_map = entity_type_3.GetAllFields()
+    field_map = type3.GetAllFields()
     self.assertFalse(field_map['/growl'].optional)
     self.assertTrue(field_map['/woof'].optional)
     self.assertFalse(field_map['/wag'].optional)

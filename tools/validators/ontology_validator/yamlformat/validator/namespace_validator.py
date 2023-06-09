@@ -18,10 +18,9 @@
 from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
-from typing import List, Dict, Set
 
-from yamlformat.validator import entity_type_lib
 from yamlformat.validator import findings_lib
+
 
 MIN_SIZE_FOR_LOCAL_FIELD_DUPES = 2
 
@@ -39,7 +38,7 @@ class NamespaceValidator(findings_lib.Findings):
     An instance of the NamespaceValidator class.
   """
 
-  def __init__(self, type_namespaces: List[entity_type_lib.TypeNamespace]):
+  def __init__(self, type_namespaces):
     """Creates NamespaceValidator object to validate types across namespaces.
 
     Args:
@@ -57,9 +56,7 @@ class NamespaceValidator(findings_lib.Findings):
     if self.IsValid():
       self._CheckDuplicateFieldSets(self.type_namespaces_map)
 
-  def _CreateTypeNamespacesMap(
-      self, type_namespaces: List[entity_type_lib.TypeNamespace]
-  ):
+  def _CreateTypeNamespacesMap(self, type_namespaces):
     """Creates a dict mapping namespace strings to TypeNamespace objects.
 
     Sets the self.type_namespaces_map attribute of the class.
@@ -72,9 +69,7 @@ class NamespaceValidator(findings_lib.Findings):
       type_namespace.QualifyParentNames()
       self.type_namespaces_map[type_namespace.namespace] = type_namespace
 
-  def _ExpandTypesMap(
-      self, type_namespaces_map: Dict[str, entity_type_lib.TypeNamespace]
-  ):
+  def _ExpandTypesMap(self, type_namespaces_map):
     """Expand the fields for all types within type_namespaces_map."""
     for type_namespace in type_namespaces_map.values():
       namespace = type_namespace.namespace
@@ -87,12 +82,7 @@ class NamespaceValidator(findings_lib.Findings):
                 findings_lib.InheritanceCycleProcessError):
           break
 
-  def _ExpandFieldsForType(
-      self,
-      namespace: str,
-      entity_type: entity_type_lib.TypeNamespace,
-      on_stack: Set[str],
-  ):
+  def _ExpandFieldsForType(self, namespace, entity_type, on_stack):
     """Updates the inherited_field_names attribute for an entity recursively.
 
     Uses a DFS approach. Expands fields during the DFS according to parent

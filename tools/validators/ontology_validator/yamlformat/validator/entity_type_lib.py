@@ -1,4 +1,4 @@
-# Copyright 2020 Google LLC
+# Copyright 2023 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the License);
 # you may not use this file except in compliance with the License.
@@ -14,13 +14,12 @@
 """Classes and methods for working with entity types in the ontology."""
 
 from __future__ import absolute_import
-from __future__ import annotations
 from __future__ import division
 from __future__ import print_function
 
 import re
 import typing
-from typing import Optional, Tuple, Dict
+from typing import Optional, Tuple
 
 from yamlformat.validator import base_lib
 from yamlformat.validator import config_folder_lib
@@ -186,9 +185,12 @@ class EntityTypeFolder(config_folder_lib.ConfigFolder):
 
   Attributes:
     local_namespace: TypeNamespace object representing this namespace.
+    require_guid: boolean indicating whether the type guid is required.
+       This is needed to bypass write permission issues on the ontology
+       validator GitHub Action.
   """
 
-  def __init__(self, folderpath, field_universe=None):
+  def __init__(self, folderpath, field_universe=None, require_guid=True):
     """Init.
 
     Args:
@@ -196,10 +198,12 @@ class EntityTypeFolder(config_folder_lib.ConfigFolder):
         type files. Path should be relative to google3/ and have no leading or
         trailing /.
       field_universe: optional FieldsUniverse object.
+      require_guid: boolean indicating whether the type guid is required.
     """
     super(EntityTypeFolder, self).__init__(folderpath,
                                            base_lib.ComponentType.ENTITY_TYPE)
     self.local_namespace = TypeNamespace(self._namespace_name, field_universe)
+    self.require_guid = require_guid
 
   def Finalize(self):
     """Call to complete entity creation after all types are added."""
@@ -208,7 +212,7 @@ class EntityTypeFolder(config_folder_lib.ConfigFolder):
   def _AddFromConfigHelper(self, document, context):
     for type_name in document:
       new_type = self._ConstructType(type_name, document[type_name],
-                                     context.filepath)
+                                     context.filepath, self.require_guid)
       self._AddType(new_type)
 
   def _ConstructField(self, local_field_names, optional, output_array):
@@ -228,7 +232,7 @@ class EntityTypeFolder(config_folder_lib.ConfigFolder):
                   increment=increment),
               optional=optional))
 
-  def _ConstructType(self, type_name, type_contents, filepath):
+  def _ConstructType(self, type_name, type_contents, filepath, require_guid):
     """Reads a entity type config block and generates an EntityType object."""
 
     description = ''
@@ -280,6 +284,7 @@ class EntityTypeFolder(config_folder_lib.ConfigFolder):
         inherited_fields_expanded=False,
         is_canonical=is_canonical,
         guid=guid,
+        require_guid=require_guid,
         namespace=self.local_namespace)
 
     # Add errors to type if there's anything extra in the block.  We add to the
@@ -319,7 +324,7 @@ class TypeNamespace(findings_lib.Findings):
     valid_types_map: Dict mapping typename strings to EntityType objects.
   """
 
-  def __init__(self, namespace: str, field_universe=None):
+  def __init__(self, namespace, field_universe=None):
     super(TypeNamespace, self).__init__()
     self.namespace = namespace
     self._field_universe = field_universe
@@ -335,7 +340,7 @@ class TypeNamespace(findings_lib.Findings):
   def GetType(self, typename):
     return self.valid_types_map.get(typename, None)
 
-  def InsertType(self, entity_type: EntityType):
+  def InsertType(self, entity_type):
     """Validate that declared fields are defined.
 
     Adds type if valid and unique.
@@ -382,7 +387,7 @@ class TypeNamespace(findings_lib.Findings):
       return self.namespace
     return field_ns
 
-  def _BuildQualifiedParentTuple(self, parent_name: str) -> TypeParts:
+  def _BuildQualifiedParentTuple(self, parent_name):
     """Creates the two-part parent tuple with a fully-qualified namespace.
 
     Args:
@@ -404,7 +409,7 @@ class TypeNamespace(findings_lib.Findings):
 
     return TypeParts(namespace=namespace_name, typename=parent_name)
 
-  def QualifyParentNames(self) -> None:
+  def QualifyParentNames(self):
     """Sets parents attribute of this namespace with fully qualified names."""
 
     if self._parents_qualified:
@@ -501,6 +506,7 @@ class EntityType(findings_lib.Findings):
                inherited_fields_expanded=False,
                is_canonical=False,
                guid=None,
+               require_guid=True,
                namespace=None):
     """Init.
 
@@ -519,6 +525,7 @@ class EntityType(findings_lib.Findings):
        inherited_fields_expanded: boolean. Should be false at init.
        is_canonical: boolean indicating if this is a curated canonical type.
        guid: the UUID4-formatted GUID of this type
+       require_guid: boolean indicating if the guid is required to be present
        namespace: a reference to the namespace object the entity belongs to
     """
     super(EntityType, self).__init__()
@@ -557,7 +564,7 @@ class EntityType(findings_lib.Findings):
     self.guid = guid
 
     # TODO(berkoben) update this method to use tuples if possible
-    self._ValidateType(local_field_names)
+    self._ValidateType(local_field_names, require_guid)
 
   def HasOptionalFields(self, run_unsafe=False):
     if not (self.inherited_fields_expanded or run_unsafe):
@@ -572,7 +579,7 @@ class EntityType(findings_lib.Findings):
     self._has_optional_fields = False
     return self._has_optional_fields
 
-  def GetAllFields(self, run_unsafe=False) -> Dict[str, OptWrapper]:
+  def GetAllFields(self, run_unsafe=False):
     """Returns the expanded set of fields for this type.
 
     Args:
@@ -693,7 +700,7 @@ class EntityType(findings_lib.Findings):
                 run_unsafe: bool = False) -> Optional[OptWrapper]:
     return self.GetAllFields(run_unsafe).get(fully_qualified_fieldname)
 
-  def _ValidateType(self, local_field_names):
+  def _ValidateType(self, local_field_names, require_guid):
     """Validates that the entity type is formatted correctly.
 
     Checks for formatting and duplicate fields and parents.
@@ -702,6 +709,7 @@ class EntityType(findings_lib.Findings):
 
     Args:
       local_field_names: list of local field names for the type.
+      require_guid: boolean indicating whether the guid is required.
     """
     # Make sure the typename is non-empty.
     if not self.typename:
@@ -714,8 +722,10 @@ class EntityType(findings_lib.Findings):
           findings_lib.InvalidTypenameError(self.typename, self.file_context))
 
     # Check for correct GUID format.
-    if self.guid is None or not ENTITY_TYPE_GUID_PATTERN.match(self.guid):
+    if self.guid is not None and not ENTITY_TYPE_GUID_PATTERN.match(self.guid):
       self.AddFinding(findings_lib.InvalidTypeGuidError(self))
+    if require_guid and self.guid is None:
+      self.AddFinding(findings_lib.MissingTypeGuidError(self))
 
     # Passthrough types cannot be inherited, so make sure they are not defined
     # as abstract.
