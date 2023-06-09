@@ -16,23 +16,26 @@ class EntityOperationTest(absltest.TestCase):
 
   def test_entity_operation_init_add(self):
     test_entity_operation = EntityOperation(
-        entity=self.test_entity, operation=EntityOperationType.ADD
+        entity=self.test_entity, operation_type=EntityOperationType.ADD
     )
     self.assertIsInstance(test_entity_operation, EntityOperation)
     self.assertEqual(test_entity_operation.entity, self.test_entity)
-    self.assertEqual(test_entity_operation.operation, EntityOperationType.ADD)
+    self.assertEqual(
+        test_entity_operation.operation_type,
+        EntityOperationType.ADD
+    )
     self.assertIsNone(test_entity_operation.update_mask)
 
   def test_entity_operation_init_update(self):
     test_entity_operation = EntityOperation(
         entity=self.test_entity,
-        operation=EntityOperationType.UPDATE,
+        operation_type=EntityOperationType.UPDATE,
         update_mask=[EntityUpdateMaskAttribute.CONNECTIONS],
     )
     self.assertIsInstance(test_entity_operation, EntityOperation)
     self.assertEqual(test_entity_operation.entity, self.test_entity)
     self.assertEqual(
-        test_entity_operation.operation, EntityOperationType.UPDATE
+        test_entity_operation.operation_type, EntityOperationType.UPDATE
     )
     self.assertSequenceEqual(
         test_entity_operation.update_mask,
@@ -42,7 +45,7 @@ class EntityOperationTest(absltest.TestCase):
   def test_entity_operation_init_update_fails(self):
     with self.assertRaises(AssertionError):
       EntityOperation(
-          entity=self.test_entity, operation=EntityOperationType.UPDATE
+          entity=self.test_entity, operation_type=EntityOperationType.UPDATE
       )
 
 
