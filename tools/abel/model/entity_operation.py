@@ -45,8 +45,8 @@ class EntityOperation(object):
 
     Args:
       entity: The Entity instance which an operation is being performed on.
-      operation_type: The EntityOperationType instance defining the type of operation
-        being performed.
+      operation_type: The EntityOperationType instance defining the type of
+        operation being performed.
       update_mask: [Optional] An optional list of EntityUpdateMaskAttribute
         instances defining what elements of an entity are being updated.
     """
