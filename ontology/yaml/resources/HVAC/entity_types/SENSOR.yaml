@@ -243,3 +243,11 @@ SENSOR_CO2M_VOCM:
     - /SENSOR
     - CO2M
     - VOCM
+
+SENSOR_OA_OAQM:
+  description: "Outside temperature, humidity and air quality monitoring."
+  is_canonical: true
+  implements:
+    - /SENSOR
+    - OA
+    - OAQM
