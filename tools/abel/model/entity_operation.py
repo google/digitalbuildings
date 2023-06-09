@@ -15,7 +15,7 @@ class EntityOperation(object):
 
   Attributes:
     entity: The Entity instance which an operation is being performed on.
-    operation: The EntityOperationType instance defining the type of operation
+    operation_type: The EntityOperationType instance defining the type of operation
       being performed.
     update_mask: The EntityUpdateMaskAttribute instance defining what elements
       of an entity are being updated. update_mask must be present if operation
@@ -25,20 +25,20 @@ class EntityOperation(object):
   def __init__(
       self,
       entity: Entity,
-      operation: EntityOperationType,
+      operation_type: EntityOperationType,
       update_mask: Optional[List[EntityUpdateMaskAttribute]] = None,
   ):
     """Init.
 
     Args:
       entity: The Entity instance which an operation is being performed on.
-      operation: The EntityOperationType instance defining the type of operation
+      operation_type: The EntityOperationType instance defining the type of operation
         being performed.
       update_mask: [Optional] The EntityUpdateMaskAttribute instance defining
         what elements of an entity are being updated.
     """
     self.entity = entity
-    self.operation = operation
+    self.operation_type = operation_type
     self.update_mask = update_mask
     if self.operation is EntityOperationType.UPDATE:
       assert self.update_mask is not None, (
