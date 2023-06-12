@@ -234,10 +234,7 @@ level: distance
 impulse:
   newton_seconds: STANDARD
 irradiance:
-  watts_per_square_meter: STANDARD
-  kilowatts_per_square_meter: 
-    multiplier: 1000
-    offset: 0
+  kilowatts_per_square_meter: STANDARD
 linearacceleration: acceleration
 linearvelocity:
   meters_per_second: STANDARD
