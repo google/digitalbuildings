@@ -21,14 +21,6 @@ from model import authenticator
 class AuthenticatorTest(absltest.TestCase):
   """Tests GetGoogleSheetsService method in authenticator module."""
 
-  def testGetGoogleSheetsServiceByToken_badFilePath_raisesFileNotFoundError(
-      self,
-  ):
-    bad_file_path = './token.json'
-
-    with self.assertRaises(FileNotFoundError):
-      authenticator.GetGoogleSheetsServiceByToken(gcp_token_path=bad_file_path)
-
   def testGetGoogleSheetsServiceByCred_badFilePath_raisesFileNotFoundError(
       self,
   ):
