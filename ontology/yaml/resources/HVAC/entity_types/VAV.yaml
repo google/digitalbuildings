@@ -207,7 +207,7 @@ VAV_SD_DSP_DFSS:
   - DFSS
 
 VAV_SD_CSP_DFSS:
-  description: "Fan powered VAV."
+  description: "Fan powered VAV for cooling only applications (e.g. IDF or computer rooms)."
   is_canonical: true
   implements:
   - VAV
