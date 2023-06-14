@@ -302,6 +302,7 @@ CO2C:
 
 
 CO2CDSP:
+  guid: "668a3a75-e78d-4755-a360-b370bceda3c5"
   description: "Carbon dioxide control with dual setpoint."
   is_abstract: true
   implements:
@@ -662,7 +663,7 @@ SSPC:
   - supply_air_static_pressure_setpoint
   implements:
   - OPERATIONAL
-
+  
 
 SPSS:
   guid: "0b1c2a43-53d8-4349-883c-8bde722fccb5"
@@ -958,6 +959,7 @@ OA:
   - outside_air_wetbulb_temperature_sensor
   - wind_direction_angle_sensor
   - wind_linearvelocity_sensor
+  - ultraviolet_irradiance_sensor
   uses:
   - outside_air_temperature_sensor
   implements:
@@ -5671,6 +5673,8 @@ HWTTC:
   guid: "141c33da-9691-4e45-a572-3b06402a54d7"
   description: "Hot water tank temperature control."
   is_abstract: true
+  opt_uses:
+  - high_water_temperature_alarm
   uses:
   - hot_water_tank_temperature_sensor
   - hot_water_tank_temperature_setpoint
@@ -6510,7 +6514,104 @@ RFVSC2X:
   implements:
   - OPERATIONAL
 
+SEWTM:
+  guid: "bca463b0-2ecb-41df-8ad9-aab7690751d7"
+  description: "Secondary water temperature monitoring"
+  opt_uses:
+  - secondary_supply_water_temperature_sensor
+  uses:
+  - secondary_return_water_temperature_sensor
+  implements:
+  - MONITORING
+
+EXTOR:
+  guid: "6f650a5a-06d3-4316-af26-7d4b8241aecf"
+  description: "shade control with extension monitoring based on outside illuminance"
+  is_abstract: true
+  uses:
+  - shade_extent_percentage_command
+  - outside_illuminance_sensor
+  - low_limit_illuminance_setpoint
+  - high_limit_illuminance_setpoint
+
+DPHC2:
+  guid: "6393d7b6-c538-4f2c-a43e-224f6f36ca6c"
+  description: "Two-pipe heating and cooling control for radiant panels"
+  is_abstract: true
+  opt_uses:
+  - supply_water_temperature_sensor
+  - return_water_temperature_sensor
+  uses:
+  - water_riser_mode
+  - supply_water_valve_percentage_command
+
+DPHC4:
+  guid: "3d81e58b-2596-4a8a-97d2-8ef62de6b823"
+  description: "Four pipe heating and cooling controls for radiant panels"
+  is_abstract: true
+  opt_uses:
+  - heating_supply_water_temperature_sensor
+  - heating_return_water_temperature_sensor
+  - chilled_supply_water_temperature_sensor
+  - chilled_return_water_temperature_sensor
+  uses:
+  - cooling_output_percentage_command
+  - heating_output_percentage_command
+
+HHCD42:
+  guid: "994cd48f-ef49-4aa6-8be6-98f05d17c0b7"
+  description: "Hydronic heating and cooling distribution monitoring for change over group with a heat and a cold exchanger. Primary side: Four-pipe installation 
+                with flow control valves for cooling and heating. Two pipe installation with isolation valves on the secondary side towards the radiant panels. 
+                Heating or cooling only"
+  is_abstract: true
+  implements:
+  - MONITORING
+  uses:
+  - heating_supply_water_isolation_valve_status
+  - heating_return_water_isolation_valve_status
+  - chilled_supply_water_isolation_valve_status
+  - chilled_return_water_isolation_valve_status
+  - chilled_water_valve_percentage_command
+  - heating_water_valve_percentage_command
+  - secondary_heating_supply_water_temperature_sensor
+  - secondary_heating_return_water_temperature_sensor
+  - secondary_chilled_supply_water_temperature_sensor
+  - secondary_chilled_return_water_temperature_sensor
+  - heating_request_count
+  - cooling_request_count
+  opt_uses:
+  - average_zone_air_temperature_sensor
+  - primary_chilled_supply_water_temperature_sensor
+  - primary_heating_supply_water_temperature_sensor
+
+HHCD44:
+  guid: "da375227-c57b-4818-91ab-c7e9060ad1cc"
+  description: "Hydronic heating and cooling distribution monitoring for change over group with a heat and a cold exchanger. Primary side: Four-pipe installation 
+                with flow control valves for cooling and heating. Four pipe installation with isolation valves on the secondary side towards the radiant panels.
+                Heating and cooling in parallel"
+  is_abstract: true
+  implements:
+  - MONITORING
+  uses:
+  - heating_supply_water_isolation_valve_status
+  - heating_return_water_isolation_valve_status
+  - chilled_supply_water_isolation_valve_status
+  - chilled_return_water_isolation_valve_status
+  - chilled_water_valve_percentage_command
+  - heating_water_valve_percentage_command
+  - secondary_heating_supply_water_temperature_sensor
+  - secondary_heating_return_water_temperature_sensor
+  - secondary_chilled_supply_water_temperature_sensor
+  - secondary_chilled_return_water_temperature_sensor
+  - heating_request_count
+  - cooling_request_count
+  opt_uses:
+  - average_zone_air_temperature_sensor
+  - primary_chilled_supply_water_temperature_sensor
+  - primary_heating_supply_water_temperature_sensor
+
 RCO2M:
+  guid: "09a6c4bb-9bb3-4318-aa43-8ad379493788"
   description: "Return air co2 monitoring"
   is_abstract: true
   uses:
@@ -6519,6 +6620,7 @@ RCO2M:
   - MONITORING
 
 VMADC:
+  guid: "796e1551-7648-40cf-962d-9bbb28c8056b"
   description: "Variable mixed air damper monitoring (for recirculated air in AHU)."
   is_abstract: true
   uses:
@@ -6534,3 +6636,4 @@ MSVO:
   - motion_status
   implements:
   - OPERATIONAL
+

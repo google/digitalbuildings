@@ -18,18 +18,21 @@ is received for all of the entities in the building config file, or if the
 specfied timeout is reached. Current version only supports UDMI payloads.
 """
 
+import datetime
 import sys
 import threading
+import time
 from typing import Dict
 
 from validate import field_translation as ft_lib
-from validate import message_filters
 from validate import telemetry
 from validate import telemetry_validation_report as tvr
+from validate.constants import TELEMETRY_TIMESTAMP_FORMAT
 
 DEVICE_ID = telemetry.DEVICE_ID
 DEVICE_NUM_ID = telemetry.DEVICE_NUM_ID
 GUID = 'guid'
+MAX_TIMESTAMP_DIFFERENCE_SEC = 10  # in seconds
 
 
 class TelemetryValidator(object):
@@ -40,8 +43,6 @@ class TelemetryValidator(object):
       map 1:1 from a building config to a telemetry message.
     timeout: The max time the validator must read messages from pubsub.
     callback: The method called by the pubsub listener upon receiving a msg.
-    is_udmi: Flag to indicate whether telemtry payloads should conform to the
-      UDMI standard.
     validated_entities: Map of entity guid to entity code Entities that have
       been run through ValidateMessage() and passed.
     timer: Validation timeout timer.
@@ -54,15 +55,13 @@ class TelemetryValidator(object):
   """
 
   def __init__(
-      self, entities, timeout, is_udmi, callback, report_directory=None
+      self, entities, timeout, callback, report_directory=None
   ):
     """Init.
 
     Args:
       entities: EntityInstance dictionary
       timeout: validation timeout duration in seconds
-      is_udmi: Flag to indicate whether telemtry payloads should conform to the
-        UDMI standard.
       callback: callback function to be called either because messages for all
         entities were seen or because the timeout duration was reached.
       report_directory: [Optional] fully quailified path to report output
@@ -77,7 +76,6 @@ class TelemetryValidator(object):
     }
     self.timeout = timeout
     self.callback = callback
-    self.is_udmi = is_udmi
     self.validated_entities = {}
     self._timer: threading.Timer = None
     self._invalid_message_blocks = []
@@ -188,6 +186,36 @@ class TelemetryValidator(object):
     message.ack()
     self.CallbackIfCompleted()
 
+  def _PublishTimeDifferenceHelper(
+      self, message_publish_time: datetime.datetime, message_timestamp: str
+  ) -> float:
+    """Returns difference between telemetry message timestamp and publish time.
+
+    timestamp is given according to UTC ISO8601 (ex.
+    2020-10-15T17:21:59.000Z)
+    Args:
+      message_publish_time: time, as a datetime.datetime object, the message was
+        published by pubsub.
+      message_timestamp: the recorded timestamp, as a string, of the data
+        payload
+
+    Returns:
+      publish_timestamp_difference: total absolute difference between
+      message_publish_time and message_timestamp in seconds as a float
+    """
+    publish_timestamp_difference = abs(
+        (
+            message_publish_time
+            - datetime.datetime(
+                *time.strptime(message_timestamp, TELEMETRY_TIMESTAMP_FORMAT)[
+                    0:6],
+                tzinfo=datetime.timezone.utc,
+            )
+        ).total_seconds()
+    )
+
+    return publish_timestamp_difference
+
   def _ValidationBlockHelper(
       self, message, entity
   ) -> tvr.TelemetryMessageValidationBlock:
@@ -204,6 +232,7 @@ class TelemetryValidator(object):
     entity_code = tele.attributes[DEVICE_ID]
     cloud_device_id = tele.attributes[DEVICE_NUM_ID]
     message_timestamp = tele.timestamp
+    message_publish_time = tele.publish_time
     message_version = tele.version
 
     expected_points = [
@@ -219,6 +248,15 @@ class TelemetryValidator(object):
         version=message_version,
         expected_points=expected_points,
     )
+    # Check that pubsub message publish time vs message timestamp
+    publish_timestamp_difference = self._PublishTimeDifferenceHelper(
+        message_publish_time, message_timestamp
+    )
+    if publish_timestamp_difference > MAX_TIMESTAMP_DIFFERENCE_SEC:
+      validation_block.AddDescription(
+          '[WARNING]\tTelemetry message publish time vs timestamp'
+          f' differs by {publish_timestamp_difference} seconds.'
+      )
 
     # Check a telemetry message cloud device id exists in the building config.
     if cloud_device_id != entity.cloud_device_id:
@@ -227,15 +265,6 @@ class TelemetryValidator(object):
           f' {entity.guid} has invalid cloud device id:'
           f' {entity.cloud_device_id}. Expecting {cloud_device_id}'
       )
-
-    # UDMI Pub/Sub streams could include messages which aren't telemetry
-    # Raise a warning for devices that are sending non-udmi compliant payloads
-    if self.is_udmi and not message_filters.Udmi.telemetry(message.attributes):
-      validation_block.AddDescription(
-          f'[ERROR]\tMessage for {entity_code} does not conform to UDMI'
-          ' standard.'
-      )
-      return validation_block
 
     print(f'Validating telemetry message for entity: {entity_code}')
     point_full_paths = {

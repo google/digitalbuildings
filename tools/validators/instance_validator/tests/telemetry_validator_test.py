@@ -16,19 +16,26 @@
 from __future__ import absolute_import
 from __future__ import print_function
 
+import datetime
 import json
 from os import path
-
 from unittest import mock
+
 from absl.testing import absltest
 
 from tests import test_constants
 from validate import entity_instance
 from validate import handler
 from validate import instance_parser
-from validate import message_filters
 from validate import telemetry_validator
 
+
+GOOD_PUBLISH_TIME = datetime.datetime(
+    2020, 10, 15, 17, 21, 59, 0, tzinfo=datetime.timezone.utc
+)
+BAD_PUBLISH_TIME = datetime.datetime(
+    2020, 10, 15, 18, 30, 0, 0, tzinfo=datetime.timezone.utc
+)
 
 _TELEMETRY_PATH = test_constants.TEST_TELEMETRY
 _INSTANCES_PATH = path.join(test_constants.TEST_INSTANCES, 'GOOD')
@@ -59,11 +66,24 @@ with open(_MESSAGE_ATTRIBUTES_PATH_4, encoding='utf-8') as f:
 
 
 class FakeMessage(object):
+  """A minimal fake PubSub message as needed for testing purposes.
 
-  def __init__(self, attributes, data):
+  PubSub message formatted according to:
+    https://github.com/googleapis/python-pubsub/blob/main/google/cloud/pubsub_v1/subscriber/message.py
+
+  Attributes;
+    attributes: pubsub message attributes as a Dict-like object provided by
+    google.protobuf
+    data: pubsub message data formatted as a bytes object
+    publish_time: pubsub message publish time given as a datetime.datetime
+    object
+  """
+
+  def __init__(self, attributes, data, publish_time):
     super().__init__()
     self.attributes = attributes
     self.data = data
+    self.publish_time = publish_time
 
   def ack(self):
     return NotImplemented
@@ -73,20 +93,29 @@ with open(
     path.join(_TELEMETRY_PATH, 'telemetry_good.json'), encoding='utf-8'
 ) as file:
   file_contents = file.read()
-  _MESSAGE_GOOD = FakeMessage(_MESSAGE_ATTRIBUTES_1, file_contents)
-  _MESSAGE_GOOD_2 = FakeMessage(_MESSAGE_ATTRIBUTES_3, file_contents)
+  _MESSAGE_GOOD = FakeMessage(
+      _MESSAGE_ATTRIBUTES_1, file_contents, GOOD_PUBLISH_TIME
+  )
+  _MESSAGE_GOOD_2 = FakeMessage(
+      _MESSAGE_ATTRIBUTES_3, file_contents, GOOD_PUBLISH_TIME
+  )
+  _MESSAGE_BAD_PUBLISH_TIMESTAMP = FakeMessage(
+      _MESSAGE_ATTRIBUTES_1, file_contents, BAD_PUBLISH_TIME
+  )
 
 with open(
     path.join(_TELEMETRY_PATH, 'telemetry_missing_point.json'), encoding='utf-8'
 ) as file:
-  _MESSAGE_MISSING_POINT = FakeMessage(_MESSAGE_ATTRIBUTES_1, file.read())
+  _MESSAGE_MISSING_POINT = FakeMessage(
+      _MESSAGE_ATTRIBUTES_1, file.read(), GOOD_PUBLISH_TIME
+  )
 
 with open(
     path.join(_TELEMETRY_PATH, 'telemetry_missing_point_partial.json'),
     encoding='utf-8',
 ) as file:
   _MESSAGE_MISSING_GOOD_POINT_PARTIAL = FakeMessage(
-      _MESSAGE_ATTRIBUTES_1, file.read()
+      _MESSAGE_ATTRIBUTES_1, file.read(), GOOD_PUBLISH_TIME
   )
 
 with open(
@@ -94,64 +123,76 @@ with open(
     encoding='utf-8',
 ) as file:
   _MESSAGE_MISSING_PRESENT_VALUE = FakeMessage(
-      _MESSAGE_ATTRIBUTES_1, file.read()
+      _MESSAGE_ATTRIBUTES_1, file.read(), GOOD_PUBLISH_TIME
   )
 
 with open(
     path.join(_TELEMETRY_PATH, 'telemetry_invalid_state.json'), encoding='utf-8'
 ) as file:
-  _MESSAGE_INVALID_STATE = FakeMessage(_MESSAGE_ATTRIBUTES_2, file.read())
+  _MESSAGE_INVALID_STATE = FakeMessage(
+      _MESSAGE_ATTRIBUTES_2, file.read(), GOOD_PUBLISH_TIME
+  )
 
 with open(
     path.join(_TELEMETRY_PATH, 'telemetry_invalid_json.json'), encoding='utf-8'
 ) as file:
-  _MESSAGE_INVALID_JSON = FakeMessage(_MESSAGE_ATTRIBUTES_2, file.read())
+  _MESSAGE_INVALID_JSON = FakeMessage(
+      _MESSAGE_ATTRIBUTES_2, file.read(), GOOD_PUBLISH_TIME
+  )
 
 with open(
     path.join(_TELEMETRY_PATH, 'telemetry_invalid_number.json'),
     encoding='utf-8',
 ) as file:
-  _MESSAGE_INVALID_NUMBER = FakeMessage(_MESSAGE_ATTRIBUTES_1, file.read())
+  _MESSAGE_INVALID_NUMBER = FakeMessage(
+      _MESSAGE_ATTRIBUTES_1, file.read(), GOOD_PUBLISH_TIME
+  )
 
 with open(
     path.join(_TELEMETRY_PATH, 'telemetry_invalid_number_boolean.json'),
     encoding='utf-8',
 ) as file:
   _MESSAGE_INVALID_NUMBER_BOOLEAN = FakeMessage(
-      _MESSAGE_ATTRIBUTES_1, file.read()
+      _MESSAGE_ATTRIBUTES_1, file.read(), GOOD_PUBLISH_TIME
   )
 
 with open(
     path.join(_TELEMETRY_PATH, 'telemetry_multiple_errors.json'),
     encoding='utf-8',
 ) as file:
-  _MESSAGE_MULTIPLE_ERRORS = FakeMessage(_MESSAGE_ATTRIBUTES_1, file.read())
+  _MESSAGE_MULTIPLE_ERRORS = FakeMessage(
+      _MESSAGE_ATTRIBUTES_1, file.read(), GOOD_PUBLISH_TIME
+  )
 
 with open(
     path.join(_TELEMETRY_PATH, 'telemetry_good_multistates.json'),
     encoding='utf-8',
 ) as file:
   _MESSAGE_GOOD_MULTIPLE_STATES = FakeMessage(
-      _MESSAGE_ATTRIBUTES_4, file.read()
+      _MESSAGE_ATTRIBUTES_4, file.read(), GOOD_PUBLISH_TIME
   )
 
 with open(
     path.join(_TELEMETRY_PATH, 'telemetry_string_state.json'), encoding='utf-8'
 ) as file:
-  _MESSAGE_STRING_STATES = FakeMessage(_MESSAGE_ATTRIBUTES_2, file.read())
+  _MESSAGE_STRING_STATES = FakeMessage(
+      _MESSAGE_ATTRIBUTES_2, file.read(), GOOD_PUBLISH_TIME
+  )
 
 with open(
     path.join(_TELEMETRY_PATH, 'telemetry_good_states_list.json'),
     encoding='utf-8',
 ) as file:
-  _MESSAGE_GOOD_STATES_LIST = FakeMessage(_MESSAGE_ATTRIBUTES_2, file.read())
+  _MESSAGE_GOOD_STATES_LIST = FakeMessage(
+      _MESSAGE_ATTRIBUTES_2, file.read(), GOOD_PUBLISH_TIME
+  )
 
 with open(
     path.join(_TELEMETRY_PATH, 'telemetry_good_states_list_extra_point.json'),
     encoding='utf-8',
 ) as file:
   _MESSAGE_GOOD_STATES_LIST_EXTRA_POINT = FakeMessage(
-      _MESSAGE_ATTRIBUTES_2, file.read()
+      _MESSAGE_ATTRIBUTES_2, file.read(), GOOD_PUBLISH_TIME
   )
 
 
@@ -235,7 +276,7 @@ class TelemetryValidatorTest(absltest.TestCase):
       self,
   ):
     validator = telemetry_validator.TelemetryValidator(
-        GOOD_ENTITIES_3_4, 1, is_udmi=False, callback=_NullCallback
+        GOOD_ENTITIES_3_4, 1, callback=_NullCallback
     )
 
     validator.ValidateMessage(_MESSAGE_GOOD_2)
@@ -249,7 +290,7 @@ class TelemetryValidatorTest(absltest.TestCase):
 
   def testTelemetryValidator_getUnvalidatedEntities_returnsExtraEntities(self):
     validator = telemetry_validator.TelemetryValidator(
-        GOOD_ENTITIES_3_4, 1, is_udmi=False, callback=_NullCallback
+        GOOD_ENTITIES_3_4, 1, callback=_NullCallback
     )
     validator.ValidateMessage(_MESSAGE_GOOD_2)
     validator.validated_entities.update(
@@ -266,7 +307,7 @@ class TelemetryValidatorTest(absltest.TestCase):
 
   def testTelemetryValidator_ignoresMissingPointOnPartialUpdate_success(self):
     validator = telemetry_validator.TelemetryValidator(
-        GOOD_ENTITIES_1, 1, is_udmi=False, callback=_NullCallback
+        GOOD_ENTITIES_1, 1, callback=_NullCallback
     )
 
     validator.ValidateMessage(_MESSAGE_MISSING_GOOD_POINT_PARTIAL)
@@ -275,7 +316,7 @@ class TelemetryValidatorTest(absltest.TestCase):
 
   def testTelemetryValidator_detectsMissingPoint_success(self):
     validator = telemetry_validator.TelemetryValidator(
-        GOOD_ENTITIES_1, 1, is_udmi=False, callback=_NullCallback
+        GOOD_ENTITIES_1, 1, callback=_NullCallback
     )
 
     validator.ValidateMessage(_MESSAGE_MISSING_POINT)
@@ -286,7 +327,7 @@ class TelemetryValidatorTest(absltest.TestCase):
 
   def testTelemetryValidator_detectsMissingPresentValue_success(self):
     validator = telemetry_validator.TelemetryValidator(
-        GOOD_ENTITIES_1, 1, is_udmi=False, callback=_NullCallback
+        GOOD_ENTITIES_1, 1, callback=_NullCallback
     )
 
     validator.ValidateMessage(_MESSAGE_MISSING_PRESENT_VALUE)
@@ -297,7 +338,7 @@ class TelemetryValidatorTest(absltest.TestCase):
 
   def testTelemetryValidator_detectsUnmappedState_success(self):
     validator = telemetry_validator.TelemetryValidator(
-        GOOD_ENTITIES_2, 1, is_udmi=False, callback=_NullCallback
+        GOOD_ENTITIES_2, 1, callback=_NullCallback
     )
 
     validator.ValidateMessage(_MESSAGE_INVALID_STATE)
@@ -308,7 +349,7 @@ class TelemetryValidatorTest(absltest.TestCase):
 
   def testTelemetryValidator_detectsStringAsInvalidNumber_success(self):
     validator = telemetry_validator.TelemetryValidator(
-        GOOD_ENTITIES_1, 1, is_udmi=False, callback=_NullCallback
+        GOOD_ENTITIES_1, 1, callback=_NullCallback
     )
 
     validator.ValidateMessage(_MESSAGE_INVALID_NUMBER)
@@ -319,7 +360,7 @@ class TelemetryValidatorTest(absltest.TestCase):
 
   def testTelemetryValidator_detectsBooleanAsInvalidNumber_success(self):
     validator = telemetry_validator.TelemetryValidator(
-        GOOD_ENTITIES_1, 1, is_udmi=False, callback=_NullCallback
+        GOOD_ENTITIES_1, 1, callback=_NullCallback
     )
 
     validator.ValidateMessage(_MESSAGE_INVALID_NUMBER_BOOLEAN)
@@ -330,7 +371,7 @@ class TelemetryValidatorTest(absltest.TestCase):
 
   def testTelemetryValidator_DetectsMultipleErrorsInMessage(self):
     validator = telemetry_validator.TelemetryValidator(
-        GOOD_ENTITIES_1, 1, is_udmi=False, callback=_NullCallback
+        GOOD_ENTITIES_1, 1, callback=_NullCallback
     )
 
     validator.ValidateMessage(_MESSAGE_MULTIPLE_ERRORS)
@@ -346,14 +387,14 @@ class TelemetryValidatorTest(absltest.TestCase):
       self.assertTrue(validator.AllEntitiesValidated())
 
     validator = telemetry_validator.TelemetryValidator(
-        GOOD_ENTITIES_1, 1, is_udmi=False, callback=ValidationCallback
+        GOOD_ENTITIES_1, 1, callback=ValidationCallback
     )
 
     validator.ValidateMessage(_MESSAGE_GOOD)
 
   def testTelemetryValidator_DetectsAndAddsExtraDevice_success(self):
     validator = telemetry_validator.TelemetryValidator(
-        GOOD_ENTITIES_2, 1, is_udmi=False, callback=_NullCallback
+        GOOD_ENTITIES_2, 1, callback=_NullCallback
     )
 
     validator.ValidateMessage(_MESSAGE_MISSING_PRESENT_VALUE)
@@ -371,7 +412,7 @@ class TelemetryValidatorTest(absltest.TestCase):
       self.assertTrue(validator.AllEntitiesValidated())
 
     validator = telemetry_validator.TelemetryValidator(
-        GOOD_ENTITIES_5, 1, is_udmi=False, callback=ValidationCallback
+        GOOD_ENTITIES_5, 1, callback=ValidationCallback
     )
     validator.ValidateMessage(_MESSAGE_GOOD_MULTIPLE_STATES)
 
@@ -381,7 +422,7 @@ class TelemetryValidatorTest(absltest.TestCase):
       self.assertTrue(validator.AllEntitiesValidated())
 
     validator = telemetry_validator.TelemetryValidator(
-        GOOD_ENTITIES_6, 1, is_udmi=False, callback=ValidationCallback
+        GOOD_ENTITIES_6, 1, callback=ValidationCallback
     )
 
     validator.ValidateMessage(_MESSAGE_GOOD_STATES_LIST)
@@ -392,7 +433,7 @@ class TelemetryValidatorTest(absltest.TestCase):
       self.assertTrue(validator.AllEntitiesValidated())
 
     validator = telemetry_validator.TelemetryValidator(
-        GOOD_ENTITIES_7, 1, is_udmi=False, callback=ValidationCallback
+        GOOD_ENTITIES_7, 1, callback=ValidationCallback
     )
 
     validator.ValidateMessage(_MESSAGE_STRING_STATES)
@@ -403,7 +444,7 @@ class TelemetryValidatorTest(absltest.TestCase):
       self.assertTrue(validator.AllEntitiesValidated())
 
     validator = telemetry_validator.TelemetryValidator(
-        GOOD_ENTITIES_1, 1, is_udmi=False, callback=ValidationCallback
+        GOOD_ENTITIES_1, 1, callback=ValidationCallback
     )
 
     validator.ValidateMessage(_MESSAGE_INVALID_JSON)
@@ -412,7 +453,7 @@ class TelemetryValidatorTest(absltest.TestCase):
       self,
   ):
     validator = telemetry_validator.TelemetryValidator(
-        GOOD_ENTITIES_8, 1, is_udmi=False, callback=_NullCallback
+        GOOD_ENTITIES_8, 1, callback=_NullCallback
     )
 
     validator.ValidateMessage(_MESSAGE_GOOD_STATES_LIST)
@@ -432,7 +473,7 @@ class TelemetryValidatorTest(absltest.TestCase):
       self,
   ):
     validator = telemetry_validator.TelemetryValidator(
-        GOOD_ENTITIES_2, 1, is_udmi=False, callback=_NullCallback
+        GOOD_ENTITIES_2, 1, callback=_NullCallback
     )
 
     validator.ValidateMessage(_MESSAGE_GOOD_STATES_LIST_EXTRA_POINT)
@@ -442,27 +483,6 @@ class TelemetryValidatorTest(absltest.TestCase):
     self.assertLen(error_blocks[0].extra_points, 1)
     self.assertEqual(
         error_blocks[0].extra_points, ['extra_exhaust_air_damper_status']
-    )
-
-  @mock.patch.object(message_filters, 'Udmi')
-  def testTelemetryValidator_telemetryDoesNotConformToUdmi_addsToDescription(
-      self, mock_udmi
-  ):
-    mock_udmi.telemetry.return_value = False
-    validator = telemetry_validator.TelemetryValidator(
-        GOOD_ENTITIES_2, 1, is_udmi=True, callback=_NullCallback
-    )
-
-    validator.ValidateMessage(_MESSAGE_GOOD_STATES_LIST)
-    error_blocks = validator.GetInvalidMessageBlocks()
-
-    self.assertLen(error_blocks, 1)
-    self.assertEqual(
-        error_blocks[0].description,
-        (
-            f'[ERROR]\tMessage for {GOOD_ENTITY_NAME_2} does not conform to'
-            ' UDMI standard.'
-        ),
     )
 
   @mock.patch.object(
@@ -476,15 +496,37 @@ class TelemetryValidatorTest(absltest.TestCase):
         path.join(_TELEMETRY_PATH, 'telemetry_good_states_list.json'),
         encoding='utf-8',
     ) as this_file:
-      mocked_good_message = FakeMessage(_MESSAGE_ATTRIBUTES_2, this_file.read())
+      mocked_good_message = FakeMessage(
+          _MESSAGE_ATTRIBUTES_2, this_file.read(), GOOD_PUBLISH_TIME
+      )
 
     validator = telemetry_validator.TelemetryValidator(
-        GOOD_ENTITIES_6, 1, is_udmi=False, callback=_NullCallback
+        GOOD_ENTITIES_6, 1, callback=_NullCallback
     )
     validator.ValidateMessage(mocked_good_message)
 
     mock_ack.assert_called_once()
     mock_callback_if_completed.assert_called_once()
+
+  def testTelemetryValidator_publishTimeDiffersFromTimestamp_failure(
+      self,
+  ):
+    validator = telemetry_validator.TelemetryValidator(
+        GOOD_ENTITIES_1, 1, callback=_NullCallback
+    )
+
+    validator.ValidateMessage(_MESSAGE_BAD_PUBLISH_TIMESTAMP)
+    error_blocks = validator.GetInvalidMessageBlocks()
+
+    self.assertLen(error_blocks, 1)
+    self.assertEqual(
+        error_blocks[0].description,
+        (
+            '[WARNING]\tTelemetry message publish time vs timestamp'
+            ' differs by 4081.0 seconds.'
+        ),
+    )
+    self.assertTrue(validator.AllEntitiesValidated())
 
 
 if __name__ == '__main__':
