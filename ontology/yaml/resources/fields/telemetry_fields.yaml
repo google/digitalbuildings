@@ -3114,8 +3114,6 @@ literals:
 - heat_recovery_run_mode:
   - OFF
   - ON
-  - STARTUP
-  - WARMUP
+  - NORMAL
   - OVERRUN
   - INTERMITTENT
-  - FIREMODE
