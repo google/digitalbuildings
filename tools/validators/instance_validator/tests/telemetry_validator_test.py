@@ -19,8 +19,8 @@ from __future__ import print_function
 import datetime
 import json
 from os import path
-
 from unittest import mock
+
 from absl.testing import absltest
 
 from tests import test_constants
