@@ -71,26 +71,26 @@ def EntityInstanceToEntity(
         type_name=entity_instance.type_name,
         bc_guid=entity_instance.guid,
     )
-
-    for field in entity_instance.translation.values():
-      if isinstance(field, DimensionalValue):
-        fields.append(
-            _DimensionalValueToDimensionalValueField(
-                reporting_entity_guid=entity_instance.guid, field=field
-            )
-        )
-      elif isinstance(field, MultiStateValue):
-        this_field, this_states = _MultistateValueToMultistateValueField(
-            reporting_entity_guid=entity_instance.guid, field=field
-        )
-        fields.append(this_field)
-        states.extend(this_states)
-      elif isinstance(field, IVUndefinedField):
-        fields.append(
-            _UndefinedFieldToUndefinedField(
-                reporting_entity_guid=entity_instance.guid, field=field
-            )
-        )
+    if entity_instance.translation:
+      for field in entity_instance.translation.values():
+        if isinstance(field, DimensionalValue):
+          fields.append(
+              _DimensionalValueToDimensionalValueField(
+                  reporting_entity_guid=entity_instance.guid, field=field
+              )
+          )
+        elif isinstance(field, MultiStateValue):
+          this_field, this_states = _MultistateValueToMultistateValueField(
+              reporting_entity_guid=entity_instance.guid, field=field
+          )
+          fields.append(this_field)
+          states.extend(this_states)
+        elif isinstance(field, IVUndefinedField):
+          fields.append(
+              _UndefinedFieldToUndefinedField(
+                  reporting_entity_guid=entity_instance.guid, field=field
+              )
+          )
 
   if entity_instance.connections:
     for connection in entity_instance.connections:
