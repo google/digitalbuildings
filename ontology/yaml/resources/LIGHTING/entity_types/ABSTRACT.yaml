@@ -83,6 +83,7 @@ SCZ:
   description: "Scene control for a device and zone."
   opt_uses:
   - scene_command
+  - scene_index_command
   uses:
   - zone_scene_command
 

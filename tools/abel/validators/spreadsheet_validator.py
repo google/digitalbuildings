@@ -441,7 +441,7 @@ class SpreadsheetValidator(object):
     """Validates that a spreadsheet does not contain duplicate entity codes.
 
     Args:
-      sheet: A sheet to be validated for dulicate codes.
+      sheet: Entities sheet to be validated for dulicate codes.
 
     Returns:
       A list of SpreadsheetError instances for duplicate entity codes.
@@ -471,7 +471,7 @@ class SpreadsheetValidator(object):
     """Validates a building code conforms to the BUILDING_CODE_REGEX pattern.
 
     Args:
-      sheet: Sheet containing building code.
+      sheet: A Sites Sheet containing building code.
 
     Returns:
       List of SpreadsheetError instances.

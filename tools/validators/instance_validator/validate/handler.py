@@ -214,8 +214,8 @@ def RunValidation(
   finally:
     sys.stdout = saved_stdout
     if report_file:
-      print(f'[INFO]\tInstance validation report generated: {report_file}')
       report_file.close()
+      print(f'[INFO]\tInstance validation report generated: {report_file.name}')
     print('[INFO]\tInstance validation completed.')
 
 
@@ -255,7 +255,6 @@ class TelemetryHelper(object):
     validator = telemetry_validator.TelemetryValidator(
         entities,
         timeout,
-        is_udmi,
         _TelemetryValidationCallback,
         self.report_directory,
     )
