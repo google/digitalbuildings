@@ -1106,8 +1106,6 @@ SCHWTC:
   - chilled_return_water_temperature_sensor
   - cooling_percentage_command
   - cooling_request_count
-  - high_chilled_supply_water_temperature_alarm
-  - low_chilled_supply_water_temperature_alarm
   uses:
   - chilled_supply_water_temperature_sensor
   - chilled_supply_water_temperature_setpoint
@@ -2234,6 +2232,7 @@ DX2SWC:
   opt_uses:
   - compressor_speed_percentage_command
   - compressor_speed_percentage_sensor
+  - compressor_speed_frequency_sensor
   - cooling_percentage_command
   - cooling_thermal_power_capacity
   - high_supply_water_temperature_alarm
@@ -4266,8 +4265,8 @@ CHWSWISOVM:
   description: "Supply side isolation valve monitoring."
   is_abstract: true
   opt_uses:
-  - failed_isolation_valve_alarm
-  - local_override_isolation_valve_alarm
+  - failed_chilled_supply_water_isolation_valve_alarm
+  - local_override_chilled_supply_water_isolation_valve_alarm
   uses:
   - chilled_supply_water_isolation_valve_command
   - chilled_supply_water_isolation_valve_status
@@ -4454,8 +4453,6 @@ CHDX2SC:
   - compressor_speed_percentage_sensor
   - cooling_percentage_command
   - cooling_request_count
-  - compressor_speed_percentage_sensor_1
-  - compressor_speed_percentage_sensor_2
   uses:
   - chilled_supply_water_temperature_sensor
   - chilled_supply_water_temperature_setpoint
@@ -4847,7 +4844,6 @@ DX2DSPRTC:
 
 
 HPDSPRTC:
-  guid:
   description: "Heat pump run control with dual return temp control."
   is_abstract: true
   opt_uses:
