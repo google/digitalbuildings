@@ -493,13 +493,6 @@ FAN_SS_VSC_SSPC_FDPSM:
   - SSPC
   - FDPSM
 
-FAN_RSM:
-  description: "Fan with run status monitoring."
-  is_canonical: true
-  implements:
-  - FAN
-  - RSM
-
 ###################################
 ### Existing Non-standard Types ###
 ###################################
