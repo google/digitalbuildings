@@ -954,7 +954,7 @@ class InstanceValidator(object):
     """Validates the entity operation and config mode against DBO standards.
 
     The DBO standards allow for a building configuration file to contain a
-    ConfigMode of either INITIALIZE or UPDATE. The entites continued within the
+    ConfigMode of either INITIALIZE or UPDATE. The entities continued within the
     building configuration are each allowed to have operations of either ADD,
     EXPORT, DELETE, or UPDATE. This method validates that the operations
     specified for the entities, in the building configuration, are in alignment
@@ -1235,7 +1235,7 @@ def _ParseConnections(
 ) -> Set[connection.Connection]:
   """Parses YAML defining connections between one entity and another.
 
-  Entites are identified by GUID.
+  Entities are identified by GUID.
 
   Connections are always defined on the target entity.
 
