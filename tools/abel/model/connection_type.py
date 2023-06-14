@@ -1,4 +1,4 @@
-# Copyright 2022 Google LLC
+# Copyright 2023 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the License);
 # you may not use this file except in compliance with the License.
@@ -20,28 +20,28 @@ class ConnectionType(enum.Enum):
   """Enum class for different connection types."""
 
   # The type of the connection is not specified.
-  TYPE_UNSPECIFIED = 0
+  TYPE_UNSPECIFIED = 'TYPE_UNSPECIFIED'
 
   # "Source" physically encapsulates at least part of "Target".
-  CONTAINS = 1
+  CONTAINS = 'CONTAINS'
 
   # "Source" determines or affects the internal state of "Target".
-  CONTROLS = 2
+  CONTROLS = 'CONTROLS'
 
   # "Source" has some component or part "Target".
-  HAS_PART = 3
+  HAS_PART = 'HAS_PART'
 
   # "Source" flows to "Target".
-  FEEDS = 4
+  FEEDS = 'FEEDS'
 
   # (Mechanical) Function "Source" has an input "Target".
-  HAS_INPUT = 5
+  HAS_INPUT = 'HAS_INPUT'
 
   # (Mechanical) Function "Source" has an output "Target".
-  HAS_OUTPUT = 6
+  HAS_OUTPUT = 'HAS_OUTPUT'
 
   # "Source" has the detectable range of "Target".
-  HAS_RANGE = 7
+  HAS_RANGE = 'HAS_RANGE'
 
   # Connection is between two sites.
-  SITE = 8
+  SITE = 'SITE'
