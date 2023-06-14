@@ -45,6 +45,8 @@ _DELETE = instance_parser.EntityOperation.DELETE
 _EXPORT = instance_parser.EntityOperation.EXPORT
 
 
+# pylint: disable=line-too-long
+# pylint: disable=protected-access
 def _ParserHelper(testpaths: List[str]) -> instance_parser.InstanceParser:
   parser = instance_parser.InstanceParser()
   for filepath in testpaths:
@@ -429,8 +431,7 @@ class EntityInstanceTest(absltest.TestCase):
     self.assertTrue(self.init_validator.Validate(instance))
 
   def testInstance_InvalidEntityAllFieldTranslationsMarkedMissing_Failure(self):
-    """Test that all translation fields not marked with PresenceMode as MISSING.
-    """
+    """Test that all translation fields not marked with PresenceMode as MISSING."""
     parsed, default_operation = _Helper(
         [
             path.join(
@@ -1195,7 +1196,7 @@ class EntityInstanceTest(absltest.TestCase):
 
     self.assertFalse(self.update_validator.Validate(entity))
 
-  def testInstance_ValidDimensionalTranslationField_Success(self):
+  def testInstance_ValidDimensionalValueTranslationField_Success(self):
     # pylint: disable=line-too-long
     entity = entity_instance.EntityInstance(
         _UPDATE,
@@ -1206,20 +1207,190 @@ class EntityInstanceTest(absltest.TestCase):
         type_name='PASSTHROUGH',
         cloud_device_id='2619178366980754',
         translation={
-            'return_water_temperature_sensor': field_translation.DimensionalValue(
-                std_field_name='return_water_temperature_sensor',
-                unit_field_name=(
-                    'pointset.points.return_water_temperature_sensor.units'
-                ),
-                raw_field_name=(
-                    'points.return_water_temperature_sensor.present_value'
-                ),
-                unit_mapping={'degrees_fahrenheit': 'degF'},
+            'return_water_temperature_sensor': (
+                field_translation.DimensionalValue(
+                    std_field_name='return_water_temperature_sensor',
+                    unit_field_name=(
+                        'pointset.points.return_water_temperature_sensor.units'
+                    ),
+                    raw_field_name=(
+                        'points.return_water_temperature_sensor.present_value'
+                    ),
+                    unit_mapping={'degrees_fahrenheit': 'degF'},
+                )
             )
         },
     )
 
     self.assertTrue(self.update_validator.Validate(entity))
+
+  def testInstance_DimensionalValueInvalidUnitMappingTranslationField_Fails(
+      self,
+  ):
+    # pylint: disable=line-too-long
+    entity = entity_instance.EntityInstance(
+        _UPDATE,
+        guid='VAV-123-GUID',
+        code='VAV-123',
+        etag='1234',
+        namespace='GATEWAYS',
+        type_name='PASSTHROUGH',
+        cloud_device_id='2619178366980754',
+        translation={
+            'return_water_temperature_sensor': (
+                field_translation.DimensionalValue(
+                    std_field_name='return_water_temperature_sensor',
+                    unit_field_name=(
+                        'pointset.points.return_water_temperature_sensor.units'
+                    ),
+                    raw_field_name=(
+                        'points.return_water_temperature_sensor.present_value'
+                    ),
+                    unit_mapping={'invalid_unit': 'invalid_unit'},
+                )
+            )
+        },
+    )
+
+    self.assertFalse(self.update_validator.Validate(entity))
+
+  def testInstance_DimensionalValueNoUnitsExpected_Success(self):
+    entity = entity_instance.EntityInstance(
+        _UPDATE,
+        guid='VAV-123-GUID',
+        code='VAV-123',
+        etag='1234',
+        namespace='GATEWAYS',
+        type_name='PASSTHROUGH',
+        cloud_device_id='2619178366980754',
+        translation={
+            'line_powerfactor_sensor': field_translation.DimensionalValue(
+                std_field_name='line_powerfactor_sensor',
+                unit_field_name='pointset.points.line_powerfactor_sensor.units',
+                raw_field_name='points.line_powerfactor_sensor.present_value',
+                unit_mapping={'no_units': 'no_units'},
+            ),
+        },
+    )
+
+    self.assertTrue(self.update_validator.Validate(entity))
+
+  def testInstance_DimensionalValueUnitsExpected_Fails(self):
+    entity = entity_instance.EntityInstance(
+        _UPDATE,
+        guid='VAV-123-GUID',
+        code='VAV-123',
+        etag='1234',
+        namespace='GATEWAYS',
+        type_name='PASSTHROUGH',
+        translation={
+            'zone_air_cooling_temperature_setpoint': (
+                field_translation.DimensionalValue(
+                    std_field_name='foo/bar',
+                    unit_field_name='foo/unit',
+                    raw_field_name='foo/raw',
+                    unit_mapping={'no_units': 'no_units'},
+                )
+            ),
+        },
+    )
+
+    self.assertFalse(self.update_validator.Validate(entity))
+
+  def testInstance_FieldExpectedAsDimensionalValue_Fails(self):
+    entity = entity_instance.EntityInstance(
+        _UPDATE,
+        guid='VAV-123-GUID',
+        code='VAV-123',
+        etag='1234',
+        namespace='GATEWAYS',
+        type_name='PASSTHROUGH',
+        translation={
+            'zone_air_cooling_temperature_setpoint': (
+                field_translation.NonDimensionalValue(
+                    std_field_name='foo/bar',
+                    raw_field_name='foo/raw',
+                )
+            ),
+        },
+    )
+
+    self.assertFalse(self.update_validator.Validate(entity))
+
+  def testInstance_oneOfThreeFieldsIsInvalid_Fails(self):
+    entity = entity_instance.EntityInstance(
+        _UPDATE,
+        guid='VAV-123-GUID',
+        code='VAV-123',
+        etag='1234',
+        namespace='GATEWAYS',
+        type_name='PASSTHROUGH',
+        cloud_device_id='2619178366980754',
+        translation={
+            'line_powerfactor_sensor': field_translation.DimensionalValue(
+                std_field_name='line_powerfactor_sensor',
+                unit_field_name='pointset.points.line_powerfactor_sensor.units',
+                raw_field_name='points.line_powerfactor_sensor.present_value',
+                unit_mapping={'no_units': 'no_units'},
+            ),
+            'return_water_temperature_sensor': (
+                field_translation.NonDimensionalValue(
+                    std_field_name='return_water_temperature_sensor',
+                    raw_field_name=(
+                        'points.return_water_temperature_sensor.present_value'
+                    ),
+                )
+            ),
+            'exhaust_air_damper_command': field_translation.MultiStateValue(
+                std_field_name='exhaust_air_damper_command',
+                raw_field_name='exhaust_air_damper_command',
+                states={'OPEN': '1', 'CLOSED': '0'},
+            ),
+        },
+    )
+
+    self.assertFalse(self.update_validator.Validate(entity))
+
+  def testInstance_EntityWithNonDimensionalValue_InstantiatesNonDimensionalValueObjectSuccessfully(
+      self,
+  ):
+    parsed, default_operation = _Helper(
+        [
+            path.join(
+                _TESTCASE_PATH,
+                'GOOD',
+                'entity_with_non_dimensional_value.yaml',
+            )
+        ]
+    )
+    entity_guid, entity_parsed = next(iter(parsed.items()))
+
+    entity = entity_instance.EntityInstance.FromYaml(
+        entity_guid, entity_parsed, default_operation=default_operation
+    )
+
+    self.assertIsInstance(
+        entity.translation['model_label'],
+        field_translation.NonDimensionalValue,
+    )
+
+  def testInstance_EntityWithNonDimensionalValue_ValidatesSuccessfully(self):
+    parsed, default_operation = _Helper(
+        [
+            path.join(
+                _TESTCASE_PATH,
+                'GOOD',
+                'entity_with_non_dimensional_value.yaml',
+            )
+        ]
+    )
+    entity_guid, entity_parsed = next(iter(parsed.items()))
+
+    entity = entity_instance.EntityInstance.FromYaml(
+        entity_guid, entity_parsed, default_operation=default_operation
+    )
+
+    self.assertTrue(self.init_validator.Validate(entity))
 
   def testInstance_MultiStateTranslationMissingStates_RaisesValueError(self):
     try:
@@ -1298,50 +1469,6 @@ class EntityInstanceTest(absltest.TestCase):
     )
 
     self.assertTrue(self.update_validator.Validate(entity))
-
-  def testInstance_DimensionalValueNoUnitsExpected_Success(self):
-    entity = entity_instance.EntityInstance(
-        _UPDATE,
-        guid='VAV-123-GUID',
-        code='VAV-123',
-        etag='1234',
-        namespace='GATEWAYS',
-        type_name='PASSTHROUGH',
-        cloud_device_id='2619178366980754',
-        translation={
-            'line_powerfactor_sensor': field_translation.DimensionalValue(
-                std_field_name='line_powerfactor_sensor',
-                unit_field_name='pointset.points.line_powerfactor_sensor.units',
-                raw_field_name='points.line_powerfactor_sensor.present_value',
-                unit_mapping={'no_units': 'no_units'},
-            ),
-        },
-    )
-
-    self.assertTrue(self.update_validator.Validate(entity))
-
-  def testInstance_DimensionalValueUnitsExpected_Fails(self):
-    # pylint: disable=line-too-long
-    entity = entity_instance.EntityInstance(
-        _UPDATE,
-        guid='VAV-123-GUID',
-        code='VAV-123',
-        etag='1234',
-        namespace='GATEWAYS',
-        type_name='PASSTHROUGH',
-        translation={
-            'zone_air_cooling_temperature_setpoint': (
-                field_translation.DimensionalValue(
-                    std_field_name='foo/bar',
-                    unit_field_name='foo/unit',
-                    raw_field_name='foo/raw',
-                    unit_mapping={'no_units': 'no_units'},
-                )
-            ),
-        },
-    )
-
-    self.assertFalse(self.update_validator.Validate(entity))
 
   def testValidate_EmptyCode_Fails(self):
     entity = entity_instance.EntityInstance(
@@ -1611,6 +1738,106 @@ class EntityInstanceTest(absltest.TestCase):
     self.assertEqual(
         entity_2.entity_id,
         parsed['US-SEA-BLDG1-GUID'].get(instance_parser.ENTITY_ID_KEY),
+    )
+
+  def testPrivateFieldTranslationIsValid_BaseDefinedFieldNotCoveredByValidation_Fails(
+      self,
+  ):
+    as_written_field_name = 'zone_air_cooling_temperature_setpoint'
+    ft = field_translation.DefinedField(
+        std_field_name='foo/bar',
+        raw_field_name='foo/raw',
+    )
+    entity = entity_instance.EntityInstance(
+        _UPDATE,
+        guid='VAV-123-GUID',
+        code='VAV-123',
+        etag='1234',
+        namespace='GATEWAYS',
+        type_name='PASSTHROUGH',
+        translation={
+            as_written_field_name: ft,
+        },
+    )
+
+    entity_type = self.config_universe.GetEntityType(
+        entity.namespace, entity.type_name
+    )
+    qualified_field_name = entity_instance._GetAllowedField(
+        self.config_universe, as_written_field_name, entity_type
+    )
+
+    self.assertFalse(
+        self.update_validator._FieldTranslationIsValid(
+            qualified_field_name, ft, entity
+        )
+    )
+
+  def testPrivateValidateStates_FieldTranslationNotCoveredByValidation_Fails(
+      self,
+  ):
+    as_written_field_name = 'return_water_temperature_sensor'
+    ft = field_translation.DimensionalValue(
+        std_field_name='return_water_temperature_sensor',
+        unit_field_name='pointset.points.return_water_temperature_sensor.units',
+        raw_field_name='points.return_water_temperature_sensor.present_value',
+        unit_mapping={'degrees_fahrenheit': 'degF'},
+    )
+
+    entity = entity_instance.EntityInstance(
+        _UPDATE,
+        guid='VAV-123-GUID',
+        code='VAV-123',
+        etag='1234',
+        namespace='GATEWAYS',
+        type_name='PASSTHROUGH',
+        translation={
+            as_written_field_name: ft,
+        },
+    )
+
+    entity_type = self.config_universe.GetEntityType(
+        entity.namespace, entity.type_name
+    )
+    qualified_field_name = entity_instance._GetAllowedField(
+        self.config_universe, as_written_field_name, entity_type
+    )
+
+    self.assertFalse(
+        self.update_validator._ValidateStates(qualified_field_name, ft, entity)
+    )
+
+  def testPrivateValidateUnits_FieldTranslationNotCoveredByValidation_Fails(
+      self,
+  ):
+    as_written_field_name = 'exhaust_air_damper_command'
+    ft = field_translation.MultiStateValue(
+        std_field_name='exhaust_air_damper_command',
+        raw_field_name='exhaust_air_damper_command',
+        states={'OPEN': '1', 'CLOSED': '0'},
+    )
+
+    entity = entity_instance.EntityInstance(
+        _UPDATE,
+        guid='VAV-123-GUID',
+        code='VAV-123',
+        etag='1234',
+        namespace='GATEWAYS',
+        type_name='PASSTHROUGH',
+        translation={
+            as_written_field_name: ft,
+        },
+    )
+
+    entity_type = self.config_universe.GetEntityType(
+        entity.namespace, entity.type_name
+    )
+    qualified_field_name = entity_instance._GetAllowedField(
+        self.config_universe, as_written_field_name, entity_type
+    )
+
+    self.assertFalse(
+        self.update_validator._ValidateUnits(qualified_field_name, ft, entity)
     )
 
 

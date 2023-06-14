@@ -1,4 +1,4 @@
-# Copyright 2022 Google LLC
+# Copyright 2023 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the License);
 # you may not use this file except in compliance with the License.
@@ -64,9 +64,6 @@ INSTANCE_VALIDATION_REPORT_NAME = f'instance_validation_{DATETIME_STRING}.log'
 # Output path for exporting a Building Config file.
 EXPORT_BUILDING_CONFIG_NAME = f'bc_export_{DATETIME_STRING}.yaml'
 
-# Default path for spreadsheet token
-DEFAULT_TOKEN_PATH = os.path.join(os.getcwd(), 'spreadsheet_token.json')
-
 # Google Sheets API constants
 BODY_VALUE_RANGE_KEY = 'values'
 SHEETS = 'sheets'
@@ -121,6 +118,8 @@ STATES = 'states'
 DEVICE_ID = 'Device ID'
 NO_UNITS = 'no-units'
 MISSING = 'Missing'
+MISSING_FALSE = 'FALSE'
+MISSING_TRUE = 'TRUE'
 
 # Units keys
 RAW_UNIT_PATH = 'Raw Unit Path'
@@ -134,6 +133,7 @@ NAMESPACE = 'DBO Namespace'
 FACILITIES_NAMESPACE = 'FACILITIES'
 GENERAL_TYPE = 'DBO General Type'
 IS_REPORTING = 'Is Reporting'
+OPERATION = 'Operation'
 
 # Site Keys
 BUILDING_CODE = 'Building Code'
@@ -193,12 +193,17 @@ ALL_ENTITY_HEADERS = [
     TYPE_NAME
 ]
 ALL_FIELD_HEADERS = [
-    STANDARD_FIELD_NAME, MISSING, RAW_FIELD_NAME, REPORTING_ENTITY_FIELD_NAME,
-    ENTITY_CODE, BC_GUID, REPORTING_ENTITY_CODE, REPORTING_ENTITY_GUID,
-    RAW_UNIT_PATH, STANDARD_UNIT_VALUE, RAW_UNIT_VALUE
-]
-ALL_FIELD_HEADERS = [
-    ENTITY_CODE, BC_GUID, REPORTING_ENTITY_CODE, REPORTING_ENTITY_GUID, REPORTING_ENTITY_FIELD_NAME, STANDARD_FIELD_NAME, MISSING, RAW_FIELD_NAME, RAW_UNIT_PATH, STANDARD_UNIT_VALUE, RAW_UNIT_VALUE
+    STANDARD_FIELD_NAME,
+    RAW_FIELD_NAME,
+    REPORTING_ENTITY_FIELD_NAME,
+    ENTITY_CODE,
+    BC_GUID,
+    REPORTING_ENTITY_CODE,
+    REPORTING_ENTITY_GUID,
+    MISSING,
+    RAW_UNIT_PATH,
+    STANDARD_UNIT_VALUE,
+    RAW_UNIT_VALUE,
 ]
 ALL_STATE_HEADERS = [
     REPORTING_ENTITY_CODE, REPORTING_ENTITY_GUID, REPORTING_ENTITY_FIELD_NAME,

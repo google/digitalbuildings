@@ -1187,6 +1187,7 @@ literals:
     fixed_max: 100.0
 
 # Added 11/12/2019
+
 - gas_flowrate_sensor:
     fixed_min: 0.0
     flexible_max: 0.003932896
@@ -1199,6 +1200,9 @@ literals:
 - gas_temperature_sensor:
     flexible_min: 283.1481481
     flexible_max: 533.1481481
+- volume_accumulator:
+    flexible_min: 0
+    flexible_max: 318000
 
 # Added 12/17/2019
 - cooling_water_valve_percentage_command:
@@ -1784,14 +1788,14 @@ literals:
   - ON
   - OFF
 - supervisor_supply_air_static_pressure_setpoint:
-    flexible_min: -249.080024
-    flexible_max: 1245.40012
+    flexible_min: -124.540012
+    flexible_max: 2490.80024
 - supervisor_supply_air_temperature_setpoint:
     flexible_min: 255.9259259
     flexible_max: 338.7037037
 - program_supply_air_static_pressure_setpoint:
-    flexible_min: -249.080024
-    flexible_max: 1245.40012
+    flexible_min: -124.540012
+    flexible_max: 2490.80024
 - program_supply_air_temperature_setpoint:
     flexible_min: 255.9259259
     flexible_max: 338.7037037
@@ -2902,15 +2906,102 @@ literals:
     fixed_min: 0.0
     flexible_max: 10000000.0
 
+## New field for AHU
+- mixed_air_damper_percentage_command:
+    fixed_min: 0.0
+    fixed_max: 100.0
+- mixed_air_damper_percentage_sensor:
+    fixed_min: 0.0
+    fixed_max: 100.0
+
 ## New fields for seismic detector
 - seismic_alarm:
   - ACTIVE
   - INACTIVE
 
+- lighting_color_cie_xvalue_sensor:
+    flexible_min: 0.0
+    flexible_max: 500.0
+- lighting_color_cie_yvalue_sensor:
+    flexible_min: 0.0
+    flexible_max: 500.0
+- lighting_color_hsl_saturation_percentage_sensor:
+    fixed_min: 0.0
+    fixed_max: 100.0
+- lighting_color_hsl_hue_angle_sensor:
+    fixed_min: 0.0
+    fixed_max: 360.0
+- lighting_color_cie_xvalue_setpoint:
+    flexible_min: 0.0
+    flexible_max: 500.0
+- lighting_color_cie_yvalue_setpoint:
+    flexible_min: 0.0
+    flexible_max: 500.0
+- lighting_color_hsl_saturation_percentage_setpoint:
+    fixed_min: 0.0
+    fixed_max: 100.0
+- lighting_color_hsl_hue_angle_setpoint:
+    fixed_min: 0.0
+    fixed_max: 360.0
+- luminaire_alarm:
+  - ACTIVE
+  - INACTIVE
+- group_alarm:
+  - ACTIVE
+  - INACTIVE
+- group_mode:
+  - DIMMING
+  - CONSTANT_LIGHT_CONTROL
+  - AUTO
+  - SCENE_CONTROL
+- high_limit_illuminance_setpoint:
+    flexible_min: 0.0
+    flexible_max: 5000.0
+- low_limit_illuminance_setpoint:
+    flexible_min: 0.0
+    flexible_max: 5000.0
+- brightness_percentage_sensor:
+    fixed_min: 0.0
+    fixed_max: 100.0
+- heating_output_percentage_command:
+    fixed_min: 0.0
+    fixed_max: 100.0
+- dimmer_run_status:
+  - ON
+  - OFF
+- wind_alarm:
+  - ACTIVE
+  - INACTIVE
+- rain_alarm:
+  - ACTIVE
+  - INACTIVE
+- outside_illuminance_sensor:
+    flexible_min: 0.0
+    flexible_max: 5000.0
+- shade_orientation_specification:
+  - NORTH
+  - SOUTH
+  - EAST
+  - WEST
+- shade_mode:
+  - MANUAL
+  - AUTO
+  - DAY_NIGHT
+  - THERMAL
+  - WINDOW_OPEN
+  
 ## New fields for RO water system
 - water_totaldissolvedsolids_concentration_sensor:
     flexible_min: 0.0
     flexible_max: 0.001
+
+## New field for VAV
+- high_limit_zone_air_co2_concentration_setpoint:
+    flexible_min: 0.00005
+    flexible_max: 0.005
+- low_limit_zone_air_co2_concentration_setpoint:
+    flexible_min: 0.00005
+    flexible_max: 0.005
 
 ## New field for SDC
 - shade_extent_percentage_sensor:
@@ -3011,3 +3102,11 @@ literals:
 - failed_discharge_air_isolation_damper_alarm:
   - ACTIVE
   - INACTIVE
+
+- high_water_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
+
+- ultraviolet_irradiance_sensor:
+    fixed_min: 0.0
+    flexible_max: 2000.0
