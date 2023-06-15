@@ -133,6 +133,7 @@ NAMESPACE = 'DBO Namespace'
 FACILITIES_NAMESPACE = 'FACILITIES'
 GENERAL_TYPE = 'DBO General Type'
 IS_REPORTING = 'Is Reporting'
+OPERATION = 'Operation'
 
 # Site Keys
 BUILDING_CODE = 'Building Code'
