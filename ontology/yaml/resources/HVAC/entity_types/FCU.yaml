@@ -1689,9 +1689,10 @@ FCU_DSP_DFVSC_DTM_RTM:
   - DTM
   - RTM
 
-FCU_DFSMC_HWRC:
+FCU_DFSS_DFSMC_HWRC:
   description: "Warm air curtain with return air temperature control."
   implements:
   - FCU
+  - DFSS
   - DFSMC
   - HWRC
