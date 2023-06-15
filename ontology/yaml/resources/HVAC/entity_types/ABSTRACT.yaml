@@ -1374,6 +1374,9 @@ VOCM:
   guid: "d1d343aa-9b3a-41aa-99fe-850c2ba355a8"
   description: "Volatile organic compound monitoring."
   is_abstract: true
+  opt_uses:
+    - zone_air_pm2pt5_density_sensor
+    - zone_air_pm10pt0_density_sensor
   uses:
     - zone_air_voc_concentration_sensor
   implements:
@@ -6231,14 +6234,3 @@ VMADC:
     - mixed_air_damper_percentage_sensor
   implements:
     - CONTROL
-
-SAQM:
-  description: "Simple air quality monitoring"
-  is_abstract: true
-  uses:
-    - zone_air_pm2pt5_density_sensor
-    - zone_air_voc_concentration_sensor
-  opt_uses:
-    - zone_air_pm10pt0_density_sensor
-  implements:
-    - MONITORING
