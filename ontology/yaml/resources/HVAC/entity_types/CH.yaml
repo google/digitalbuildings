@@ -398,7 +398,7 @@ CH_SS_SCHWTC_CHWSWISOVM_CHWDPM_CWDT_REFSM_REFPM_IGM_DXSWC:
   - IGM
   - DXSWC
 
-CH_SS_WDT_SWISOVM_CHWDPM_DX2SWC_RCKTM2X:
+CH_SS_WDT_SWISOVM_WDPM_DX2SWC_RCKTM2X:
   description: "Complex air cooled chiller with 2 refrigeration circuits and supply water temperature differential monitoring."
   is_canonical: true
   implements:
@@ -406,7 +406,7 @@ CH_SS_WDT_SWISOVM_CHWDPM_DX2SWC_RCKTM2X:
   - SS
   - WDT
   - SWISOVM
-  - CHWDPM
+  - WDPM
   - DX2SWC
   - RCKTM2X
 
