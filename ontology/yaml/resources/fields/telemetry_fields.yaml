@@ -777,6 +777,8 @@ literals:
   - MANUAL
   - DEHUMIDIFY
   - FAN_ONLY
+  - HIGH
+  - ON
 - dial_resistance_sensor:
     flexible_min: 0.0
     flexible_max: 10000.0
