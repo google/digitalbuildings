@@ -24,7 +24,6 @@ from model.constants import BODY_VALUE_RANGE_KEY
 from model.constants import CONFIG_CLOUD_DEVICE_ID
 from model.constants import CONFIG_CODE
 from model.constants import CONFIG_CONNECTIONS
-from model.constants import CONFIG_ETAG
 from model.constants import CONFIG_INITIALIZE
 from model.constants import CONFIG_LINKS
 from model.constants import CONFIG_METADATA
@@ -46,7 +45,7 @@ from model.entity_field import DimensionalValueField
 from model.entity_field import MissingField
 from model.entity_field import MultistateValueField
 from model.guid_to_entity_map import GuidToEntityMap
-from model.model_builder import ModelBuilder
+from model.model_builder import Model
 from model.model_error import SpreadsheetAuthorizationError
 from validate.field_translation import FieldTranslation
 
@@ -112,14 +111,14 @@ class BuildingConfigExport(object):
     guid_to_entity_map: A global mapping of GUIDs to Entity instances.
   """
 
-  def __init__(self, model_builder: ModelBuilder):
+  def __init__(self, model: Model):
     """Init.
 
     Args:
-      model_builder: Instance of ModelBuilder class to be translated into a
-        Building Configuration file.
+      model: Instance of Model class to be translated into a Building
+        Configuration file.
     """
-    self.model = model_builder
+    self.model = model
     self.guid_to_entity_map = GuidToEntityMap()
 
   # TODO(b/233756557) Allow user to set config_metadata operation.
@@ -183,7 +182,6 @@ class BuildingConfigExport(object):
     reporting_entity_yaml = {
         CONFIG_CLOUD_DEVICE_ID: str(entity.cloud_device_id),
         CONFIG_CODE: entity.code,
-        CONFIG_ETAG: entity.etag,
     }
     reporting_entity_yaml.update(self._GetConnections(entity=entity))
     if entity.translations:
@@ -247,7 +245,11 @@ class BuildingConfigExport(object):
   def _SortLinks(self, entity: VirtualEntity) -> Dict[str, object]:
     """Sorts an entity's links by guid and returns mapping.
 
-    The returning mapping is compliant with the Building Config Schema.
+    The returning mapping is compliant with the Building Config Schema. Links
+    are stored in abel as a dictionary of EntityField instances keyed by
+    reporting entity guid. This method sorts that dictionary into a nested
+    dictionary of standard field to reporting field mappings keyed by a
+    reporting entity guid.
 
     Args:
       entity: A VirtualEntity instance
@@ -259,10 +261,17 @@ class BuildingConfigExport(object):
     link_map = {}
     if entity.links:
       for field in entity.links:
+        field_value = field.reporting_entity_field_name
+        if not field_value:
+          field_value = field.std_field_name
         if field.reporting_entity_guid not in link_map:
           link_map[field.reporting_entity_guid] = {
-              field.std_field_name: field.reporting_entity_field_name
+              field.std_field_name: field_value
           }
+        else:
+          link_map.get(field.reporting_entity_guid).update(
+              {field.std_field_name: field_value}
+          )
     return link_map
 
   def _TranslateField(self, field: FieldTranslation) -> Dict[str, object]:
