@@ -6277,7 +6277,6 @@ EFHLC:
   - OPERATIONAL
 
 FHLC:
-  guid: "4e075523-ef6e-4f3a-917e-1b8ac5b892bd"
   description: "Two-speed fan (high/low)."
   is_abstract: true
   opt_uses:
