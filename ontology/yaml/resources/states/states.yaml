@@ -90,6 +90,4 @@ SOFTSTART: "Mode of operation of rectifier where the input power supply is gradu
 NORMAL: "Function, state or flow which is an ideal or expected condition."
 REVERSED: "Function, state or flow which is opposed to the expected or normal condition."
 
-# FOR HEAT RECOVERY UNIT
-OVERRUN: ""
 INTERMITTENT: ""

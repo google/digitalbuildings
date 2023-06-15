@@ -3115,5 +3115,5 @@ literals:
   - OFF
   - ON
   - NORMAL
-  - OVERRUN
+  - FAN_ONLY
   - INTERMITTENT
