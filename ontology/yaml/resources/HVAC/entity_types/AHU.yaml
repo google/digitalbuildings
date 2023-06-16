@@ -3982,6 +3982,35 @@ AHU_SFSS_SFMSC_SFVSC_FDPM_CHWSC_RTM_RACO2C_SSPC2X_VOADM2X_SAIDC2X_RAIDC2X_SSPC:
   - RAIDC2X
   - SSPC
 
+AHU_CHWSC_ECON_EDBPC_RFSS_RFVSC_SFSS_SFVSC_SSPC:
+  description: "Multi-zone chilled water AHU with supply air static pressure control and building static pressure control."
+  is_canonical: true
+  implements:
+  - AHU
+  - CHWSC
+  - ECON
+  - EDBPC
+  - RFSS
+  - RFVSC
+  - SFSS
+  - SFVSC
+  - SSPC
+
+AHU_CHWSC_HWSC_ECON_EDBPC_RFSS2X_RFVSC2X_SFSS2X_SFVSC2X_SSPC:
+  description: "Multi-zone chilled water and heating water AHU with supply air static pressure control and building static pressure control."
+  is_canonical: true
+  implements:
+  - AHU
+  - CHWSC
+  - HWSC
+  - ECON
+  - EDBPC
+  - RFSS2X
+  - RFVSC2X
+  - SFSS2X
+  - SFVSC2X
+  - SSPC
+
 
 ###################################
 ### Existing Non-standard Types ###
