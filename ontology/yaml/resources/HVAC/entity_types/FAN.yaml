@@ -748,3 +748,9 @@ FAN_SS_MSM:
   implements:
   - FAN
   - MSM
+  
+FAN_GUID_TEST:
+  description: "Test GUID gen on non-ABSTRACT types."
+  implements:
+  - FAN
+  - SS
