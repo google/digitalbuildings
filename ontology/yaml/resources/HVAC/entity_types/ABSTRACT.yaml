@@ -4264,9 +4264,6 @@ CHWSWISOVM:
   guid: "1a187792-767f-4132-9333-161c6db07ce4"
   description: "Supply side isolation valve monitoring."
   is_abstract: true
-  opt_uses:
-  - failed_chilled_supply_water_isolation_valve_alarm
-  - local_override_chilled_supply_water_isolation_valve_alarm
   uses:
   - chilled_supply_water_isolation_valve_command
   - chilled_supply_water_isolation_valve_status

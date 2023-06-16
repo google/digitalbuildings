@@ -3024,9 +3024,6 @@ literals:
 - failed_isolation_valve_alarm:
   - ACTIVE
   - INACTIVE
-- failed_chilled_supply_water_isolation_valve_alarm:
-  - ACTIVE
-  - INACTIVE
 - failed_mixed_air_temperature_alarm:
   - ACTIVE
   - INACTIVE
@@ -3073,9 +3070,6 @@ literals:
   - ACTIVE
   - INACTIVE
 - local_override_isolation_valve_alarm:
-  - ACTIVE
-  - INACTIVE
-- local_override_chilled_supply_water_isolation_valve_alarm:
   - ACTIVE
   - INACTIVE
 - high_building_air_static_pressure_alarm:
