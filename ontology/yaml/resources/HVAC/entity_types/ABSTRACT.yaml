@@ -6652,3 +6652,11 @@ VMADC:
   - mixed_air_damper_percentage_sensor
   implements:
   - CONTROL
+
+TEST2:
+  description: "GUID generation test"
+  is_abstract: true
+  uses:
+  - run_status
+  implements:
+  - MONITORING
