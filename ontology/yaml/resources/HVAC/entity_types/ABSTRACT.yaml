@@ -960,6 +960,8 @@ OA:
   - wind_direction_angle_sensor
   - wind_linearvelocity_sensor
   - ultraviolet_irradiance_sensor
+  - outside_air_pm2pt5_density_sensor
+  - outside_air_aqi_sensor
   uses:
   - outside_air_temperature_sensor
   implements:
