@@ -20,11 +20,14 @@ ELV_SS:
   - ELV
   - SS  
 
-ELV_EPM_BEA:
+ELV_EPM_SS:
   description: "Elevator with position/floor and basic alarms."
   is_canonical: true
   implements:
   - ELV
   - EPM
-  - BEA
+  - SS
+  opt_uses:
+  - max_load_alarm
+
 

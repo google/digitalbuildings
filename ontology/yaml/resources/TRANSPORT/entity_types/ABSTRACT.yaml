@@ -22,17 +22,12 @@ SS:
   opt_uses:
   - failed_alarm
   - lost_power_alarm
+  - fire_alarm
+
 
 EPM:
   description: "Elevator position monitoring"
   is_abstract: true
   uses:
   - floor_status
-
-BEA:
-  description: "Basic elevator alarms"
-  is_abstract: true
-  uses:
-  - fire_alarm
-  - failed_alarm
-  - max_load_alarm
+  - elevator_status

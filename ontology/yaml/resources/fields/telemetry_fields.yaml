@@ -3112,13 +3112,18 @@ literals:
     flexible_max: 2000.0
 
 - floor_status:
+  - BASEMENT
+  - UPPERGROUND
+  - LOWERGROUND
   - GROUND
   - FIRST
   - SECOND
   - THIRD
   - FOURTH
+  - FOURTHMEZ
   - FIFTH
   - SIXTH
+  - PLANTROOM
 
 - max_load_alarm:
   - ACTIVE
