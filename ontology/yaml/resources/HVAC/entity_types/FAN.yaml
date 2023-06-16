@@ -164,7 +164,7 @@ FAN_SS_DRI:
   - dryer_run_status
 
 FAN_SS_VSC_DRI:
-  description: "Dryer-interlocked fan with variable speed control"
+  description: "Dryer-interlocked fan with variable speed control."
   is_canonical: true
   implements:
   - FAN
