@@ -1,4 +1,4 @@
-# Copyright 2022 Google LLC
+# Copyright 2023 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the License);
 # you may not use this file except in compliance with the License.
@@ -21,18 +21,24 @@ from googleapiclient.discovery import build
 from googleapiclient.http import HttpMockSequence
 
 from model import import_helper
+from model.constants import ENTITY_FIELDS
 from model.constants import SHEETS
 from model.constants import V4
 from model.export_helper import BuildingConfigExport
 from model.export_helper import GoogleSheetExport
 from model.guid_to_entity_map import GuidToEntityMap
-from model.model_builder import ModelBuilder
+from model.model_builder import Model
 from model.model_error import SpreadsheetAuthorizationError
+from tests.test_constants import TEST_BAD_MULTISTATE_FIELD_DICT_NO_STATES
+from tests.test_constants import TEST_FIELD_DICT_NO_REPORTING_FIELD_NAME
+from tests.test_constants import TEST_FIELD_DICT_NO_UNITS
 from tests.test_constants import TEST_RESOURCES
 from tests.test_constants import TEST_SPREADSHEET
 
-_GOOD_TEST_BUILDING_CONFIG = os.path.join(TEST_RESOURCES,
-                                          'good_test_building_config.yaml')
+
+_GOOD_TEST_BUILDING_CONFIG = os.path.join(
+    TEST_RESOURCES, 'good_test_building_config.yaml'
+)
 
 
 # pylint: disable=consider-using-with
@@ -41,51 +47,72 @@ class ExportHelperTest(absltest.TestCase):
 
   def setUp(self):
     super().setUp()
-    self.input_spreadsheet = TEST_SPREADSHEET
+    self.input_spreadsheet = TEST_SPREADSHEET.copy()
     self.guid_map = GuidToEntityMap()
     self.guid_map.Clear()
 
+    self.export_filepath = os.path.join(
+        tempfile.gettempdir(), 'exported_building_config.yaml'
+    )
+    # Add fields to spreadsheet specifically for export testing
+    self.input_spreadsheet[ENTITY_FIELDS].append(
+        TEST_FIELD_DICT_NO_REPORTING_FIELD_NAME
+    )
+    self.input_spreadsheet[ENTITY_FIELDS].append(TEST_FIELD_DICT_NO_UNITS)
+    # Build model
+    model = Model.Builder.FromSpreadsheet(self.input_spreadsheet).Build()
+    # Export a building config dictionary
+    self.export_helper = BuildingConfigExport(model)
+
   def testWriteAllSheets(self):
     test_spreadsheet_range = ['Entities']
-    update_entities_response = os.path.join(TEST_RESOURCES,
-                                            'update_entities_response.json')
+    update_entities_response = os.path.join(
+        TEST_RESOURCES, 'update_entities_response.json'
+    )
     import_building_config = import_helper.DeserializeBuildingConfiguration(
-        _GOOD_TEST_BUILDING_CONFIG)
-    model = ModelBuilder.FromBuildingConfig(import_building_config[0],
-                                            import_building_config[1])
-    mock_http = HttpMockSequence([({
-        'status': '200'
-    }, open(update_entities_response, 'rb').read())])
+        _GOOD_TEST_BUILDING_CONFIG
+    )
+    model = Model.Builder.FromBuildingConfig(
+        import_building_config[0], import_building_config[1]
+    ).Build()
+    mock_http = HttpMockSequence(
+        [({'status': '200'}, open(update_entities_response, 'rb').read())]
+    )
     google_sheets_service = build(
-        SHEETS, V4, http=mock_http, developerKey='fake_key')
+        SHEETS, V4, http=mock_http, developerKey='fake_key'
+    )
     export_helper = GoogleSheetExport()
 
-    model.Build()
     model_dictionary = model.ToModelDictionary()
     result_spreadsheet_id = export_helper.WriteAllSheets(
         spreadsheet_id='fake_spreadsheet_id',
         spreadsheet_range=test_spreadsheet_range,
         model_dict=model_dictionary,
-        google_sheets_service=google_sheets_service)
+        google_sheets_service=google_sheets_service,
+    )
 
     self.assertEqual('fake_spreadsheet_id', result_spreadsheet_id)
 
   def testWriteAllsheetsRaisesSpreadsheetAuthorizationError(self):
     test_spreadsheet_range = ['Entities']
-    update_entities_response = os.path.join(TEST_RESOURCES,
-                                            'update_entities_response.json')
+    update_entities_response = os.path.join(
+        TEST_RESOURCES, 'update_entities_response.json'
+    )
     import_building_config = import_helper.DeserializeBuildingConfiguration(
-        _GOOD_TEST_BUILDING_CONFIG)
-    model = ModelBuilder.FromBuildingConfig(import_building_config[0],
-                                            import_building_config[1])
-    mock_http = HttpMockSequence([({
-        'status': '403'
-    }, open(update_entities_response, 'rb').read())])
+        _GOOD_TEST_BUILDING_CONFIG
+    )
+    model = Model.Builder.FromBuildingConfig(
+        import_building_config[0], import_building_config[1]
+    ).Build()
+    mock_http = HttpMockSequence(
+        [({'status': '403'}, open(update_entities_response, 'rb').read())]
+    )
 
     google_sheets_service = build(
-        SHEETS, V4, http=mock_http, developerKey='fake_key')
+        SHEETS, V4, http=mock_http, developerKey='fake_key'
+    )
     export_helper = GoogleSheetExport()
-    model.Build()
+
     model_dictionary = model.ToModelDictionary()
 
     with self.assertRaises(SpreadsheetAuthorizationError):
@@ -93,24 +120,28 @@ class ExportHelperTest(absltest.TestCase):
           spreadsheet_id='fake_spreadsheet_id',
           spreadsheet_range=test_spreadsheet_range,
           model_dict=model_dictionary,
-          google_sheets_service=google_sheets_service)
+          google_sheets_service=google_sheets_service,
+      )
 
   def testWriteOneSheetRaisesSpreadsheetAuthorizationError(self):
     test_spreadsheet_range = ['Entities']
-    update_entities_response = os.path.join(TEST_RESOURCES,
-                                            'update_entities_response.json')
+    update_entities_response = os.path.join(
+        TEST_RESOURCES, 'update_entities_response.json'
+    )
     import_building_config = import_helper.DeserializeBuildingConfiguration(
-        _GOOD_TEST_BUILDING_CONFIG)
-    model = ModelBuilder.FromBuildingConfig(import_building_config[0],
-                                            import_building_config[1])
-    mock_http = HttpMockSequence([({
-        'status': '403'
-    }, open(update_entities_response, 'rb').read())])
+        _GOOD_TEST_BUILDING_CONFIG
+    )
+    model = Model.Builder.FromBuildingConfig(
+        import_building_config[0], import_building_config[1]
+    ).Build()
+    mock_http = HttpMockSequence(
+        [({'status': '403'}, open(update_entities_response, 'rb').read())]
+    )
 
     google_sheets_service = build(
-        SHEETS, V4, http=mock_http, developerKey='fake_key')
+        SHEETS, V4, http=mock_http, developerKey='fake_key'
+    )
     export_helper = GoogleSheetExport()
-    model.Build()
     model_dictionary = model.ToModelDictionary()
 
     with self.assertRaises(SpreadsheetAuthorizationError):
@@ -118,40 +149,106 @@ class ExportHelperTest(absltest.TestCase):
           spreadsheet_id='fake_spreadsheet_id',
           spreadsheet_range=test_spreadsheet_range,
           model_dict=model_dictionary,
-          google_sheets_service=google_sheets_service)
+          google_sheets_service=google_sheets_service,
+      )
 
-  def testExportBuildingConfiguration(self):
-    export_filepath = os.path.join(tempfile.gettempdir(),
-                                   'exported_building_config.yaml')
-    model = ModelBuilder.FromSpreadsheet(TEST_SPREADSHEET)
-    model.Build()
+  def testExportBuildingConfigExportsVirtualEntityKeysCorrectly(self):
+    exported_building_config = self.export_helper.ExportBuildingConfiguration(
+        self.export_filepath
+    )
+    expected_keys = ['code', 'connections', 'links', 'type']
+    exported_keys = list(
+        exported_building_config.get('test_virtual_guid').keys()
+    )
+    # model = Model.Builder.FromSpreadsheet(TEST_SPREADSHEET).Build()
+    # export_helper = BuildingConfigExport(model)
+
+    self.assertEqual(expected_keys, exported_keys)
+
+  def testExportBuildingConfigExportsReportingEntityKeysCorrectly(self):
+    exported_building_config = self.export_helper.ExportBuildingConfiguration(
+        self.export_filepath
+    )
+    expected_keys = ['cloud_device_id', 'code', 'translation', 'type']
+    exported_keys = list(
+        exported_building_config.get('test_reporting_guid').keys()
+    )
+
+    self.assertEqual(expected_keys, exported_keys)
+
+  def testExportBuildingConfigExportsCloudDeviceIDAsString(self):
+    exported_building_config = self.export_helper.ExportBuildingConfiguration(
+        self.export_filepath
+    )
+    expected_cdid = '2541901344105616'
+    exported_cdid = exported_building_config.get('test_reporting_guid').get(
+        'cloud_device_id'
+    )
+
+    self.assertIsInstance(exported_cdid, str)
+    self.assertEqual(exported_cdid, expected_cdid)
+
+  def testExportBuildingConfigExportsMultiStateValueFieldStates(self):
+    exported_building_config = self.export_helper.ExportBuildingConfiguration(
+        self.export_filepath
+    )
+    multi_state_value_field_states = (
+        exported_building_config.get('test_reporting_guid')
+        .get('translation')
+        .get('fire_alarm_5')
+        .get('states')
+    )
+
+    self.assertIsInstance(multi_state_value_field_states.get('ON'), str)
+    self.assertEqual(multi_state_value_field_states.get('ON'), 'TRUE')
+
+  def testExportBuildingConfigExportsUnitsCorrectly(self):
+    exported_building_config = self.export_helper.ExportBuildingConfiguration(
+        self.export_filepath
+    )
+    exported_units = (
+        exported_building_config.get('test_reporting_guid')
+        .get('translation')
+        .get('supply_water_temperature_sensor_1')
+        .get('units')
+        .get('values')
+    )
+
+    self.assertIsInstance(exported_units.get('pascals'), str)
+    self.assertEqual(exported_units.get('pascals'), 'Pa')
+
+  def testExportBuildingConfigExportsLinksCorrectly(self):
+    exported_building_config = self.export_helper.ExportBuildingConfiguration(
+        self.export_filepath
+    )
+    exported_links = exported_building_config.get('test_virtual_guid').get(
+        'links'
+    )
+
+    self.assertEqual(list(exported_links.keys()), ['test_reporting_guid'])
+    self.assertLen(exported_links.get('test_reporting_guid').items(), 2)
+    self.assertEqual(
+        exported_links.get('test_reporting_guid'),
+        {
+            'supply_water_temperature_sensor': (
+                'supply_water_temperature_sensor_1'
+            ),
+            'cooling_stage_run_count': 'cooling_stage_run_count',
+        },
+    )
+
+  def testExportBuildingConfigRaisesValueErrorForBadMultistate(self):
+    self.guid_map.Clear()
+    bad_input_spreadsheet = TEST_SPREADSHEET.copy()
+    bad_input_spreadsheet[ENTITY_FIELDS].append(
+        TEST_BAD_MULTISTATE_FIELD_DICT_NO_STATES
+    )
+    model = Model.Builder.FromSpreadsheet(self.input_spreadsheet).Build()
     export_helper = BuildingConfigExport(model)
 
-    exported_building_config = export_helper.ExportBuildingConfiguration(
-        export_filepath)
+    with self.assertRaises(ValueError):
+      export_helper.ExportBuildingConfiguration(self.export_filepath)
 
-    self.assertTrue(os.path.exists(export_filepath))
-    self.assertIsNotNone(exported_building_config)
-    self.assertEqual(
-        ['code', 'connections', 'links', 'type'],
-        list(exported_building_config.get('test_virtual_guid').keys()))
-    self.assertEqual(
-        ['cloud_device_id', 'code', 'etag', 'translation', 'type'],
-        list(exported_building_config.get('test_reporting_guid').keys()))
-    self.assertIsInstance(
-        exported_building_config.get('test_reporting_guid').get(
-            'cloud_device_id'), str)
-    self.assertEqual(
-        exported_building_config.get('test_reporting_guid').get(
-            'cloud_device_id'), '2541901344105616')
-    states = exported_building_config.get('test_reporting_guid').get(
-        'translation').get('fire_alarm_5').get('states')
-    for raw_state in states.values():
-      self.assertIsInstance(raw_state, str)
-    units = exported_building_config.get('test_reporting_guid').get(
-        'translation').get('supply_water_temperature_sensor_1').get('units')
-    for raw_unit_value in units.get('values').values():
-      self.assertIsInstance(raw_unit_value, str)
 
 if __name__ == '__main__':
   absltest.main()
