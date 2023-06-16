@@ -4843,6 +4843,7 @@ DX2DSPRTC:
 
 
 HPDSPRTC:
+  guid: "211fecae-8082-4a69-b27d-e39cdaf65362"
   description: "Heat pump run control with dual return temp control."
   is_abstract: true
   opt_uses:

@@ -164,6 +164,7 @@ FAN_SS_DRI:
   - dryer_run_status
 
 FAN_SS_VSC_DRI:
+  guid: "b482f7a1-ee4b-4c7a-aa04-0b8f0a6c80a3"
   description: "Dryer-interlocked fan with variable speed control"
   is_canonical: true
   implements:

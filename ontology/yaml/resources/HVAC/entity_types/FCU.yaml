@@ -158,6 +158,7 @@ FCU_DFSS_DSP_HP2ZC:
   - HP2ZC
 
 FCU_DFSS_DFMSC_HPDSPRTC:
+  guid: "eb4c0175-8340-4d03-97b5-e4f088cd914b"
   description: "Return temp control multi-speed FCU with heat pump"
   is_canonical: true
   implements:
