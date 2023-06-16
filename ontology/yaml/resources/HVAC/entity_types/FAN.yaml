@@ -750,6 +750,7 @@ FAN_SS_MSM:
   - MSM
   
 FAN_GUID_TEST:
+  guid: "119f10a0-9936-4ce9-8ce5-07540fbecc63"
   description: "Test GUID gen on non-ABSTRACT types."
   implements:
   - FAN
