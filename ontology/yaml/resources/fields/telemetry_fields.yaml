@@ -3121,8 +3121,6 @@ literals:
   - THIRD
   - FOURTH
   - FOURTHMEZ
-  - FIFTH
-  - SIXTH
   - PLANTROOM
 
 - max_load_alarm:
