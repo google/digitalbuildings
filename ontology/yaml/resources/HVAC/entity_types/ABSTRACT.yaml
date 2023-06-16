@@ -6649,3 +6649,10 @@ VMADC:
   - mixed_air_damper_percentage_sensor
   implements:
   - CONTROL
+
+TEST:
+  description: "Test to see if GUID is auto-generated. DO NOT MERGE."
+  uses:
+  - run_status
+  implements:
+  - MONITORING
