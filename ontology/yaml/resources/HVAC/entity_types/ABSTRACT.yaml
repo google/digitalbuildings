@@ -6654,7 +6654,6 @@ VMADC:
   - CONTROL
 
 TEST2:
-  guid:
   description: "GUID generation test"
   is_abstract: true
   uses:
