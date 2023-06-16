@@ -157,15 +157,6 @@ FCU_DFSS_DSP_HP2ZC:
   - DSP
   - HP2ZC
 
-FCU_DFSS_DFMSC_HPDSPRTC:
-  description: "Return temp control multi-speed FCU with heat pump"
-  is_canonical: true
-  implements:
-  - FCU
-  - DFSS
-  - DFMSC
-  - HPDSPRTC
-
 FCU_DFSS_ZTC_DXZTC:
   guid: "f22d6a0f-bc55-4dff-8164-8f79bf824715"
   description: "Typical DX FCU (zone control)."

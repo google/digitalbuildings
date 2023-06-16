@@ -163,16 +163,6 @@ FAN_SS_DRI:
   uses:
   - dryer_run_status
 
-FAN_SS_VSC_DRI:
-  description: "Dryer-interlocked fan with variable speed control"
-  is_canonical: true
-  implements:
-  - FAN
-  - SS
-  - VSC
-  uses:
-  - dryer_run_status
-
 FAN_MDRI:
   guid: "8838183b-c80b-4be0-84c7-3c9976c96d31"
   description: "Fan with multiple interlocked driers."
