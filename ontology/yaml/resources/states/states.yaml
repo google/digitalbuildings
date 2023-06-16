@@ -92,17 +92,15 @@ REVERSED: "Function, state or flow which is opposed to the expected or normal co
 
 # For elevator 
 BASEMENT: "Floor under ground level"
-LOWERGROUND: "Mezanine floor just below ground floor"
-UPPERGROUND: "Mezanine floor just above ground floor"
+LOWERGROUND: "Mezzanine floor just below ground floor"
+UPPERGROUND: "Mezzanine floor just above ground floor"
 GROUND: "Street level floor in a building"
 
 FIRST: "Function, state or Position number 1"
 SECOND: "Function, state or Position number 2"
 THIRD: "Function, state or Position number 3"
 FOURTH: "Function, state or Position number 4"
-FOURTHMEZ: "Mezanine floor just above the fourth floor in a building"
-FIFTH: "Function, state or Position number 5"
-SIXTH: "Function, state or Position number 6"
+FOURTHMEZ: "Mezzanine floor just above the fourth floor in a building"
 PLANTROOM: "Room/Floor in a building with plant equipment"
 
 PARKING: "Elevator status indicator for when the elevator is returning to the default floor"
