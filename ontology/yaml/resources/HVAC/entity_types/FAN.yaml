@@ -492,6 +492,13 @@ FAN_SS_VSC_SSPC_FDPSM:
   - VSC
   - SSPC
   - FDPSM
+
+FAN_EFVSC:
+  description: "Exhaust fan with variable speed control."
+  is_canonical: true
+  implements:
+  - FAN
+  - EFVSC
   
 ###################################
 ### Existing Non-standard Types ###
