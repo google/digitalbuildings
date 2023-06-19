@@ -17,7 +17,6 @@
 ########################
 
 VLV_WVCM:
-  guid: "5e2412fe-9c9f-4699-9b91-d17ecf56be59"
   description: "Solenoid water valve control and monitoring."
   is_canonical: true
   implements:

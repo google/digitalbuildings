@@ -6282,14 +6282,6 @@ SWCM:
   - valve_command
   - valve_status
 
-MWCM:
-  guid: "817a97fb-124e-4039-b26a-636188194dcc"
-  description: "Motorized water valve control and monitoring."
-  is_abstract: true
-  uses:
-  - valve_command
-  - valve_status
-
 SCRSS:
   guid: "636b1262-b08b-4e1b-b130-e1a510b79a0c"
   description: "Scurbber start stop monitoring."

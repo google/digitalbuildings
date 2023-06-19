@@ -65,11 +65,3 @@ VLV_SWCM:
   implements:
   - VLV
   - SWCM
-
-VLV_MWCM:
-  guid: "4a102754-83a1-4a6a-9ad4-c919677d185f"
-  description: "Motorized water valve control and monitoring."
-  is_canonical: true
-  implements:
-  - VLV
-  - MWCM

@@ -18,7 +18,6 @@
 
 
 EHT_SS:
-  guid: "9c6784e8-edfa-4110-84be-d7b1e71514a2"
   description: "Basic heat tracer with start/stop"
   is_canonical: true
   implements:

@@ -1691,7 +1691,6 @@ FCU_DSP_DFVSC_DTM_RTM:
 
 
 FCU_DXZTC_DFSS:
-  guid: "38271d04-f2a1-417c-a3af-b2a2299c7979" 
   description: "FCU with SS, discharge temp sensors, zone control and sensor, filter change"
   is_canonical: true
   implements:
@@ -1703,7 +1702,6 @@ FCU_DXZTC_DFSS:
   - filter_alarm
 
 FCU_RHDHS_DXDC_DFSS:
-  guid: "958c49e9-464b-4e17-beda-07fbbf1b9e97"  
   description: "FCU with temperature & pressure monitor, humidity monitor and water leak & status alarm."
   is_canonical: true
   implements:

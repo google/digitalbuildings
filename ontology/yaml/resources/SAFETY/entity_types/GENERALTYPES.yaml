@@ -112,7 +112,6 @@ HDS:
   - /SENSOR
 
 MFSD:
-  guid: "27cbded8-5f48-4c65-8b1f-e2fc1a8aac1b"
   description: "Motorized fire smoke damper"
   is_abstract: true
   implements:
