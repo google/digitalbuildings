@@ -28,4 +28,4 @@ ELV_SS_EPM:
   - SS
   - EPM
   opt_uses:
-  - max_load_alarm
+  - high_occupancy_alarm

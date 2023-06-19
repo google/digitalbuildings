@@ -3123,6 +3123,6 @@ literals:
   - FOURTHMEZ
   - PLANTROOM
 
-- max_load_alarm:
+- high_occupancy_alarm:
   - ACTIVE
   - INACTIVE
