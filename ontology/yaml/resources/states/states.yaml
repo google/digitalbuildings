@@ -102,6 +102,3 @@ THIRD: "Function, state or Position number 3"
 FOURTH: "Function, state or Position number 4"
 FOURTHMEZ: "Mezzanine floor just above the fourth floor in a building"
 PLANTROOM: "Room/Floor in a building with plant equipment"
-
-PARKING: "Elevator status indicator for when the elevator is returning to the default floor"
-DOOR: "Elevator status indicator for when the door is opening or closing"
