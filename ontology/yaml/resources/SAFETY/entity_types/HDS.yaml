@@ -18,6 +18,7 @@
 
 
 HDS_STD:
+  guid: "05e2fa4b-6ad7-4a63-a8b2-f0cf003dca1e"
   description: "Standard Hydrogen sensor."
   implements:
   - HDS

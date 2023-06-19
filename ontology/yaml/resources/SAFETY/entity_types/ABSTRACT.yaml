@@ -95,6 +95,7 @@ LM:
   - level_status
 
 MDC:
+  guid: "74bb9d42-e8f3-429c-96c1-7ad56842a9cd"
   description: "Tag for those with motorized dampers"
   is_abstract: true
   implements:
@@ -104,12 +105,14 @@ MDC:
   - damper_command
 
 EHT:
+  guid: "700c69bb-8d37-4e5f-806f-ae64d007cf35"
   description: "Tag for heat tracer."
   is_abstract: true
   implements:
   - EQUIPMENT
 
 ASD:
+  guid: "aaeb7587-fdfe-4e11-86d3-bbd6ea017515"
   description: "Aspirating type, smoke detector"
   is_abstract: true
   implements:

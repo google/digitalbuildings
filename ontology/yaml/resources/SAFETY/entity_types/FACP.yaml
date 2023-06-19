@@ -47,6 +47,7 @@ FACP_PAS:
   - air_pressure_status
 
 FACP_ALM:
+  guid: "b8bf8e9b-5db2-40a8-8052-868ac60b760b"
   description: "Fire alarm panel with alarm."
   is_canonical: true
   implements:
@@ -57,6 +58,7 @@ FACP_ALM:
   - failed_panel_alarm
 
 FACP_ASD:
+  guid: "3f21bbad-15ad-4253-982d-fed1324543d3"
   description: "Basic aspirating type, fire detection with alarms."
   is_canonical: true
   implements:

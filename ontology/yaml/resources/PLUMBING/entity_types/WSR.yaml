@@ -15,6 +15,7 @@
 ### CANONICAL TYPES
 
 WSR_STD:
+  guid: "c406cac4-2e0c-4396-8963-db72b7f1ccb6"
   description: "Standard water softener."
   is_canonical: true
   implements:

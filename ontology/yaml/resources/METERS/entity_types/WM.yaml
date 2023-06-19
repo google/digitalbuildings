@@ -38,6 +38,7 @@ WM_WF:
   - water_volume_accumulator
 
 WM_WFM:
+  guid: "ed5a4434-1d87-4a1e-abb5-563ab57a44b1"
   description: "Generic water flow rate meter."
   implements:
   - WM
