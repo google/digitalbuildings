@@ -29,6 +29,4 @@ EPM:
   description: "Elevator position monitoring"
   is_abstract: true
   uses:
-  - floor_status
-  opt_uses:
-  - elevator_status
+  - floor_position_mode

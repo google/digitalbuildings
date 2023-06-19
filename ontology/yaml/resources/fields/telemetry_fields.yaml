@@ -3111,7 +3111,7 @@ literals:
     fixed_min: 0.0
     flexible_max: 2000.0
 
-- floor_status:
+- floor_position_mode:
   - BASEMENT
   - UPPERGROUND
   - LOWERGROUND
@@ -3126,8 +3126,3 @@ literals:
 - max_load_alarm:
   - ACTIVE
   - INACTIVE
-
-- elevator_status:
-  - NORMAL
-  - PARKING
-  - DOOR
