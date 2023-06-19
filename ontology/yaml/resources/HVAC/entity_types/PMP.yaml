@@ -141,7 +141,7 @@ PMP_SS_RMM:
   - high_pressure_status
 
 PMP_SS_RMM_CPC:
-  description: "Circulation pump with run mode monitoring."
+  description: "Pump with circulation pump and run mode monitoring."
   is_canonical: true
   implements:
   - PMP
