@@ -663,7 +663,7 @@ SSPC:
   - supply_air_static_pressure_setpoint
   implements:
   - OPERATIONAL
-
+  
 
 SPSS:
   guid: "0b1c2a43-53d8-4349-883c-8bde722fccb5"
@@ -960,6 +960,8 @@ OA:
   - wind_direction_angle_sensor
   - wind_linearvelocity_sensor
   - ultraviolet_irradiance_sensor
+  - outside_air_pm2pt5_density_sensor
+  - outside_air_aqi_sensor
   uses:
   - outside_air_temperature_sensor
   implements:
@@ -5665,6 +5667,8 @@ HWTTC:
   guid: "141c33da-9691-4e45-a572-3b06402a54d7"
   description: "Hot water tank temperature control."
   is_abstract: true
+  opt_uses:
+  - high_water_temperature_alarm
   uses:
   - hot_water_tank_temperature_sensor
   - hot_water_tank_temperature_setpoint
@@ -6503,6 +6507,16 @@ RFVSC2X:
   - return_fan_speed_percentage_command_2
   implements:
   - OPERATIONAL
+
+SEWTM:
+  guid: "bca463b0-2ecb-41df-8ad9-aab7690751d7"
+  description: "Secondary water temperature monitoring"
+  opt_uses:
+  - secondary_supply_water_temperature_sensor
+  uses:
+  - secondary_return_water_temperature_sensor
+  implements:
+  - MONITORING
 
 EXTOR:
   guid: "6f650a5a-06d3-4316-af26-7d4b8241aecf"
