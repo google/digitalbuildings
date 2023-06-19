@@ -23,7 +23,6 @@ SS:
   - failed_alarm
   - lost_power_alarm
   - power_status
-  - bypass_status
 
 IOBM:
   guid: "d5c39e44-20c7-4193-9914-5f1b9225fffa"
