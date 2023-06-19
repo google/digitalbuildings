@@ -140,13 +140,14 @@ PMP_SS_RMM:
   - low_pressure_status
   - high_pressure_status
 
-PMP_CPC_RMM:
-  description: "Pump with circulation pump and run mode monitoring."
-    is_canonical: true
-    implements:
-    - PMP
-    - CPC
-    - RMM
+PMP_SS_RMM_CPC:
+  description: "Circulation pump with run mode monitoring."
+  is_canonical: true
+  implements:
+  - PMP
+  - SS
+  - RMM
+  - CPC
 
 ###################################
 ### Existing Non-standard Types ###
