@@ -3063,6 +3063,9 @@ literals:
 - high_supply_water_temperature_alarm:
   - ACTIVE
   - INACTIVE
+- high_return_water_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
 - high_zone_air_co2_concentration_alarm:
   - ACTIVE
   - INACTIVE
@@ -3094,6 +3097,9 @@ literals:
   - ACTIVE
   - INACTIVE
 - low_supply_water_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
+- low_return_water_temperature_alarm:
   - ACTIVE
   - INACTIVE
 - low_zone_air_static_pressure_alarm:
