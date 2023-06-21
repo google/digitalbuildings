@@ -3982,6 +3982,7 @@ AHU_SFSS_SFMSC_SFVSC_FDPM_CHWSC_RTM_RACO2C_SSPC2X_VOADM2X_SAIDC2X_RAIDC2X_SSPC:
   - RAIDC2X
   - SSPC
 
+
 AHU_SS_RMM_RTM_FDPM_EFPC_SFPC_HWSC_ESDC_FSAM:
   description: "AHU with supply and exhaust pressure, flowrate control, cooling and heating valve control, fire and smoke alarms"
   is_canonical: true
@@ -3996,6 +3997,37 @@ AHU_SS_RMM_RTM_FDPM_EFPC_SFPC_HWSC_ESDC_FSAM:
   - HWSC
   - ESDC
   - FSAM
+
+AHU_CHWSC_ECON_EDBPC_RFSS_RFVSC_SFSS_SFVSC_SSPC:
+  guid: "6856f47f-655a-4412-a1d9-9cc842a65e1b"
+  description: "Multi-zone chilled water AHU with supply air static pressure control and building static pressure control."
+  is_canonical: true
+  implements:
+  - AHU
+  - CHWSC
+  - ECON
+  - EDBPC
+  - RFSS
+  - RFVSC
+  - SFSS
+  - SFVSC
+  - SSPC
+
+AHU_CHWSC_HWSC_ECON_EDBPC_RFSS2X_RFVSC2X_SFSS2X_SFVSC2X_SSPC:
+  guid: "4aaac7e3-e781-47ff-92a1-8a27d8cc868a"
+  description: "Multi-zone chilled water and heating water AHU with supply air static pressure control and building static pressure control."
+  is_canonical: true
+  implements:
+  - AHU
+  - CHWSC
+  - HWSC
+  - ECON
+  - EDBPC
+  - RFSS2X
+  - RFVSC2X
+  - SFSS2X
+  - SFVSC2X
+  - SSPC
 
 AHU_SS_RMM_STM_FDPM_EFPC_SFPC_HWRC_ESDC_FSAM:
   description: "AHU with supply and exhaust pressure, flowrate control, cooling and heating valve control, fire and smoke alarms supply and exhaust rotational velocity sensors"
