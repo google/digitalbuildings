@@ -35,6 +35,8 @@ H2M:
   is_abstract: true
   uses:
   - zone_air_h2_concentration_sensor
+  opt_uses:
+  - zone_air_h2_concentration_alarm
 
 WLDS:
   guid: "6530f835-51a6-45c0-9130-382c297c2a01"

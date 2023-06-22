@@ -17,17 +17,6 @@
 ########################
 
 
-HDS_STD:
-  guid: "05e2fa4b-6ad7-4a63-a8b2-f0cf003dca1e"
-  description: "Standard Hydrogen sensor."
-  implements:
-  - HDS
-  is_canonical: true
-  uses:
-  - particle_concentration_sensor
-  opt_uses:
-  - particle_concentration_alarm
-
 HDS_H2M:
   guid: "c433b9fa-2e3c-42a9-9574-d601941e23c9"
   description: "Zone air hydrogen level used for monitoring in battery rooms."

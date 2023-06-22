@@ -188,7 +188,7 @@ BBM:
   description: "For UPS with Load Bypass and Battery status."
   is_abstract: true
   uses:
-  - load_bypass_status
+  - bypass_status
   - battery_status
   opt_uses:
   - low_battery_alarm

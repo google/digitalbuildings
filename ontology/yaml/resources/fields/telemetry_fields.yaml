@@ -1588,15 +1588,12 @@ literals:
 - medium_smoke_alarm: # for aspirating type smoke detectors
   - ACTIVE
   - INACTIVE
-- particle_concentration_alarm:
+- zone_air_h2_concentration_alarm:
   - ACTIVE
   - INACTIVE
 - low_battery_alarm:
   - ACTIVE
   - INACTIVE
-- load_bypass_status:
-  - OFF
-  - ON
 - gas_release_status:
   - OPEN
   - CLOSED
