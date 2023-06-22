@@ -140,6 +140,14 @@ PMP_SS_RMM:
   - low_pressure_status
   - high_pressure_status
 
+PMP_CPVSC2X_WDPC:
+  description: "Dual pump setup with variable speed control and pressure control"
+  is_canonical: true
+  implements:
+  - PMP
+  - CPVSC2X
+  - WDPC
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
