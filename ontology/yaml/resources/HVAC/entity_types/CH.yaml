@@ -398,6 +398,19 @@ CH_SS_SCHWTC_CHWSWISOVM_CHWDPM_CWDT_REFSM_REFPM_IGM_DXSWC:
   - IGM
   - DXSWC
 
+CH_SS_WDT_SWISOVM_WDPM_DX2SWC_RCKTM2X:
+  guid: "e5f66336-36cd-40c9-82a6-4389d6472bc1"
+  description: "Complex air cooled chiller with 2 refrigeration circuits and supply water temperature differential monitoring."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - WDT
+  - SWISOVM
+  - WDPM
+  - DX2SWC
+  - RCKTM2X
+
 CH_SS_CHWRWISOVPM_SCHWTC_CHWDPM_CDWISOVPM_CWDT_REFPM_REFSM:
   guid: "e4f34eb3-4e22-4601-8de3-c7dc7d6860ea"
   description: "Complex water cooled chiller."
