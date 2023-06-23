@@ -97,6 +97,7 @@ LM:
   - level_status
 
 MDC:
+  guid: "ec1aab74-c961-40fd-87b7-ce219c9c6d3a"
   description: "Tag for those with motorized dampers"
   is_abstract: true
   uses:
@@ -104,6 +105,7 @@ MDC:
   - damper_command
 
 ASD:
+  guid: "d5829c05-fc88-4ac4-8587-8c75ed0d0486"
   description: "Aspirating type, smoke detector"
   is_abstract: true
   opt_uses:
