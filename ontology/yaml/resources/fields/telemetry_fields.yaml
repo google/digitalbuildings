@@ -1591,9 +1591,6 @@ literals:
 - high_zone_air_h2_concentration_alarm:
   - ACTIVE
   - INACTIVE
-- low_battery_alarm:
-  - ACTIVE
-  - INACTIVE
 - gas_release_status:
   - OPEN
   - CLOSED

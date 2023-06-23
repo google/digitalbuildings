@@ -191,4 +191,4 @@ BBM:
   - bypass_status
   - battery_status
   opt_uses:
-  - low_battery_alarm
+  - low_battery_charge_alarm
