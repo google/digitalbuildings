@@ -111,6 +111,13 @@ HDS:
   implements:
   - /SENSOR
 
+EHT:
+  guid: "700c69bb-8d37-4e5f-806f-ae64d007cf35"
+  description: "Heat Tracer."
+  is_abstract: true
+  implements:
+  - EQUIPMENT
+
 MFSD:
   guid: "c7f22ce3-2c92-42b7-8a53-a788b6f002e8"
   description: "Motorized fire smoke damper"

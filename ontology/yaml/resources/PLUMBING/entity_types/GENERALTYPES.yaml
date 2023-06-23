@@ -50,14 +50,6 @@ VLV:
   implements:
   - EQUIPMENT
 
-WCR:
-  guid: "7bfd5568-c818-4952-98d3-e736e9e9428a"
-  description: "Water conditioner"
-  is_abstract: true
-  implements:
-  - /SS
-  - EQUIPMENT
-
 WSR:
   guid: "178274c8-ec3d-4c5a-b2f3-f5ae7cb894dc"
   description: "Water softener"

@@ -26,7 +26,7 @@ FSS_STD:
 
 FSS_PAS:
   guid: "a76f5813-f503-4388-96fe-82bcfeabc3f0"
-  description: "Fire alarm panel with Pre-action suppression with alarm."
+  description: "Fire Suppression System with pre-suppression fire alarms."
   is_canonical: true
   implements:
   - FSS
@@ -38,7 +38,7 @@ FSS_PAS:
 
 FSS_FA2X_GS:
   guid: "35b78ae1-19c1-4591-b88c-eefeb9f1951f"
-  description: "Fire alarm panel with 2-level alarm and gas suppression."
+  description: "Fire Suppression System with with 2-level alarm and gas suppression."
   is_canonical: true
   implements:
   - FSS

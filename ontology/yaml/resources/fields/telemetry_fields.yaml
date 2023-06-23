@@ -1588,7 +1588,7 @@ literals:
 - medium_smoke_alarm: # for aspirating type smoke detectors
   - ACTIVE
   - INACTIVE
-- zone_air_h2_concentration_alarm:
+- high_zone_air_h2_concentration_alarm:
   - ACTIVE
   - INACTIVE
 - low_battery_alarm:
