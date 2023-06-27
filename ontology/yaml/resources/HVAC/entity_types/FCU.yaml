@@ -1689,10 +1689,10 @@ FCU_DSP_DFVSC_DTM_RTM:
   - DTM
   - RTM
 
-FCU_DFMSC_ZTC_RMM_FM:
+FCU_DFMSC_ZTC_RMM_FDPSM:
   description: "Variable refrigerant flow unit with zone air temperature monitoring, fan speed modes"
   implements:
   - DFMSC
   - ZTC
   - RMM
-  - FM
+  - FDPSM
