@@ -6653,17 +6653,6 @@ VMADC:
   implements:
   - CONTROL
 
-RSM:
-  guid: "e6aa94d5-1860-4a5d-8269-0edb968895e1"
-  description: "Run status monitoring"
-  is_abstract: true
-  uses:
-  - run_status
-  opt_uses:
-  - failed_alarm
-  implements:
-  - OPERATIONAL
-
 SEFC:
   description: "Supply fan and exhaust fan control."
   is_abstract: true
@@ -6680,14 +6669,6 @@ SEFC:
   - return_fan_speed_percentage_command
   implements:
   - CONTROL
-
-FAM:
-  description: "Fire Alarm monitoring"
-  is_abstract: true
-  uses:
-  - fire_alarm
-  implements:
-  - MONITORING
 
 HRC:
   description: "Heat recovery run mode control"
