@@ -54,11 +54,14 @@ class ExportHelperTest(absltest.TestCase):
     self.export_filepath = os.path.join(
         tempfile.gettempdir(), 'exported_building_config.yaml'
     )
+    # Add fields to spreadsheet specifically for export testing
     self.input_spreadsheet[ENTITY_FIELDS].append(
         TEST_FIELD_DICT_NO_REPORTING_FIELD_NAME
     )
     self.input_spreadsheet[ENTITY_FIELDS].append(TEST_FIELD_DICT_NO_UNITS)
+    # Build model
     model = Model.Builder.FromSpreadsheet(self.input_spreadsheet).Build()
+    # Export a building config dictionary
     self.export_helper = BuildingConfigExport(model)
 
   def testWriteAllSheets(self):
@@ -166,7 +169,7 @@ class ExportHelperTest(absltest.TestCase):
     exported_building_config = self.export_helper.ExportBuildingConfiguration(
         self.export_filepath
     )
-    expected_keys = ['cloud_device_id', 'code', 'etag', 'translation', 'type']
+    expected_keys = ['cloud_device_id', 'code', 'translation', 'type']
     exported_keys = list(
         exported_building_config.get('test_reporting_guid').keys()
     )
@@ -213,6 +216,26 @@ class ExportHelperTest(absltest.TestCase):
 
     self.assertIsInstance(exported_units.get('pascals'), str)
     self.assertEqual(exported_units.get('pascals'), 'Pa')
+
+  def testExportBuildingConfigExportsLinksCorrectly(self):
+    exported_building_config = self.export_helper.ExportBuildingConfiguration(
+        self.export_filepath
+    )
+    exported_links = exported_building_config.get('test_virtual_guid').get(
+        'links'
+    )
+
+    self.assertEqual(list(exported_links.keys()), ['test_reporting_guid'])
+    self.assertLen(exported_links.get('test_reporting_guid').items(), 2)
+    self.assertEqual(
+        exported_links.get('test_reporting_guid'),
+        {
+            'supply_water_temperature_sensor': (
+                'supply_water_temperature_sensor_1'
+            ),
+            'cooling_stage_run_count': 'cooling_stage_run_count',
+        },
+    )
 
   def testExportBuildingConfigRaisesValueErrorForBadMultistate(self):
     self.guid_map.Clear()
