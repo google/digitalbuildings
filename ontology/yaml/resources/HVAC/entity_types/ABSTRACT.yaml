@@ -2905,13 +2905,11 @@ HTSWC:
   - CONTROL
 
 HTRWC:
-  description: "Gas or electric heater control on returnn water side."
+  description: "Gas or electric heater control on return water side."
   is_abstract: true
   opt_uses:
   - heating_percentage_command
   - heating_thermal_power_capacity
-  - high_return_water_temperature_alarm
-  - low_return_water_temperature_alarm
   - heater_run_command
   - heater_run_status
   uses:
