@@ -191,6 +191,7 @@ AHU_DFSS_DX2ZTC_ECONZ_EFSS:
   - ECONZ
   - EFSS
 
+
 AHU_DFSS_DXZC_ECONM:
   guid: "39d11efc-26e4-4b2e-9e33-2d6dbf17ba38"
   description: "Single zone AHU."
@@ -498,6 +499,7 @@ AHU_DFSS_DSP_ECONZ_HP2ZC_HT2ZC:
   - HP2ZC
   - HT2ZC
 
+
 AHU_DFSS_DSP_DX2ZC_ECONZ_EFSS_HTZC:
   guid: "d0827748-2f6b-42ea-84d3-cca5d25ff267"
   description: "Single zone AHU."
@@ -607,6 +609,7 @@ AHU_DFSS_DSP_DXZC_ECONZ_EFSS_HTZC:
   - EFSS
   - HTZC
 
+
 AHU_BFSS_CO2C_DFSS_DX2ZC_ECONZ_HTZC:
   guid: "a4a4127a-e56d-49db-948e-015167d12190"
   description: "Single zone AHU."
@@ -619,6 +622,7 @@ AHU_BFSS_CO2C_DFSS_DX2ZC_ECONZ_HTZC:
   - DX2ZC
   - ECONZ
   - HTZC
+
 
 AHU_DFSS_DSP_DXDC_ECOND_HWDC_MTC:
   guid: "19aa4005-8164-4a79-b86a-871e8a2f1883"
@@ -841,6 +845,7 @@ AHU_BSPC_DFSS_DFVSC_DSP_DX3DC_ECOND_EFSS_EFVSC_HTDC:
   - EFVSC
   - HTDC
 
+
 AHU_CO2C_DFSS_DFVSC_DSP_DX2DC_ECOND_EFSS_EFVSC_HTDC:
   guid: "0ed4c0d3-9fe9-4e39-9ea3-44f5aec750c4"
   description: "Single zone AHU."
@@ -1018,6 +1023,7 @@ AHU_BYPSSPC_ECON_HP2SC_HT2SC_SFSS:
   - HT2SC
   - SFSS
 
+
 AHU_DXSC_ECON_SFSS_SFVSC_SSPC:
   guid: "f7513ae5-3133-47ef-bff0-82bbe8425d5e"
   description: "Multi-zone AHU."
@@ -1079,6 +1085,7 @@ AHU_DX4SC_ECON_SFSS_SFVSC_SSPC:
   - SFVSC
   - SSPC
 
+
 AHU_CHWSDC_ECOND_HTSDC_SFSS_SHC:
   guid: "db92d74e-5c90-472a-a4e4-e3eaca4b20d8"
   description: "Multi-zone AHU."
@@ -1090,6 +1097,7 @@ AHU_CHWSDC_ECOND_HTSDC_SFSS_SHC:
   - HTSDC
   - SFSS
   - SHC
+
 
 AHU_DX4SC_ECON_EFSS_SFSS_SSPC:
   guid: "af50e8f3-378e-4085-9dd3-77e9e0a3f3a3"
@@ -1152,6 +1160,7 @@ AHU_CHWSC_ECON_SARC_SFSS_SFVSC_SSPC:
   - SFVSC
   - SSPC
 
+
 AHU_DX2SC_ECON_HT2SC_SFSS_SFVSC_SSPC:
   guid: "1d6a352e-da19-4670-9ed2-50a6b99c5bc6"
   description: "Multi-zone AHU."
@@ -1164,6 +1173,7 @@ AHU_DX2SC_ECON_HT2SC_SFSS_SFVSC_SSPC:
   - SFSS
   - SFVSC
   - SSPC
+
 
 AHU_BYPSSPC_DXSC_ECON_EFSS_HTSC_SFSS:
   guid: "750d0b4e-4b60-42c4-b5ba-16d97bd8982d"
@@ -1203,6 +1213,7 @@ AHU_BSPC_DX4SC_ECON_EFSS_SFSS_SSPC:
   - EFSS
   - SFSS
   - SSPC
+
 
 AHU_BYPSSPC_ECON_EFSS_HP2ZC_SFSS_STM:
   guid: "ca031704-2b49-48c9-8cb9-1e57541e8f5e"
@@ -1269,6 +1280,7 @@ AHU_DX2SC_ECON_EFSS_SFSS_SFVSC_SSPC:
   - SFVSC
   - SSPC
 
+
 AHU_BSPC_DXSC_ECON_SFSS_SFVSC_SSPC:
   guid: "c735a775-e842-424a-bd6b-66894433a7cd"
   description: "Multi-zone AHU."
@@ -1315,6 +1327,7 @@ AHU_BPC2X_DXSC_ECON_PHWSC_RFSS_RFVSC_SFSS_SFVSC_SSPC:
   - SFSS
   - SFVSC
   - SSPC
+  
 
 AHU_CHWSC_ECONM2X_MOAFC_SFSS_SFVSC_SSPC:
   guid: "f152b105-28c2-4655-a42a-d378ee7bf9ed"
@@ -1902,6 +1915,7 @@ AHU_BSPC_DX2SC_ECON_EFSS_EFVSC_HTSC_SFSS_SFVSC_SSPC:
   - SFVSC
   - SSPC
 
+
 AHU_BSPC_CHWSC_ECON_EFSS_EFVSC_HWSC_SFSS_SFVSC_SSPC:
   guid: "944c889a-1eeb-4296-9a4a-f1265c1a0914"
   description: "Multi-zone AHU."
@@ -1917,6 +1931,7 @@ AHU_BSPC_CHWSC_ECON_EFSS_EFVSC_HWSC_SFSS_SFVSC_SSPC:
   - SFSS
   - SFVSC
   - SSPC
+
 
 AHU_BSPC_CHW2XSC_ECON_EFSS2X_EFVSC2X_RSPC_SFSS2X_SFVSC2X_SSPC:
   guid: "b8b4caca-ea4f-44c0-b859-1704c5b7d971"
@@ -1949,6 +1964,7 @@ AHU_BSPC_DXSC_ECON_EFSS_EFVSC_FDPM_SFSS3X_SFVSC2X_SSPC:
   - SFSS3X
   - SFVSC2X
   - SSPC
+
 
 AHU_BSPC_CHWSC_ECON_EFSS_EFVSC_OAFMC_SFSS_SFVSC_SSPC:
   guid: "a49081e5-d843-4182-abe1-4cfe3bbb0ddb"
@@ -2129,6 +2145,7 @@ AHU_BSPC_CHWSC_ECON_EFSS4X_EFVSC4X_FDPM_HWSC_SFSS2X_SFVSC2X_SSPC:
   - SFVSC2X
   - SSPC
 
+
 AHU_BSPC_CHWSC_ECON_EFSS3X_EFVSC3X_MOAFC_SARC_SFSS2X_SFVSC2X_SSPC:
   guid: "35bbc7a3-828b-49cb-bfaa-baf1e6ab855c"
   description: "Multi-zone AHU."
@@ -2203,6 +2220,8 @@ AHU_BSPC_CHWSC_ECON_EFSS_EFSS4X_EFVSC_EFVSC4X_FDPM_HWSC_MOAFC_SFSS2X_SFVSC2X_SSP
   - SFSS2X
   - SFVSC2X
   - SSPC
+
+
 
 AHU_BSPC_ECON_EFSS_SFSS_SFVSC_SSPC:
   guid: "700607e5-6200-4401-880e-ccb125ba0b89"
@@ -2386,6 +2405,7 @@ AHU_CHWSC_ECONM_FDPM_HWSC_SFSS_SFVSC_SSPC_SARC:
   - SSPC
   - SARC
 
+
 AHU_EDBPC_DX4SC_ECONM_EFSS_EFVSC_SFSS_SFVSC_SARC_SSPC:
   guid: "9d123538-8cb1-4ad7-b712-4cce9693caaf"
   description: "Multi-zone AHU."
@@ -2416,6 +2436,7 @@ AHU_BSPC_DX4SC_ECONM_EFSS_SARC_SFSS_SFVSC_SSPC:
   - SFSS
   - SFVSC
   - SSPC
+
 
 AHU_BSPC_DX4SC_ECON_EFSS_SFSS_SFVSC_SSPC_HWSC:
   guid: "55eacfaf-cffe-4532-b274-d935ab534f22"
@@ -2618,6 +2639,7 @@ AHU_ZSPC_CHWDC_CSP_ECONMD_DFSS_DFVSC_HWDC:
   - DFVSC
   - HWDC
 
+
 AHU_DX2DSPRTC_SFSS_VOADM_ZHDHC_SSPC_STM_BYPDM:
   guid: "89de444e-f12a-48bc-b428-d309ce58c2de"
   description: "Multi-zone AHU with dual setpoint return air temperature control"
@@ -2631,6 +2653,7 @@ AHU_DX2DSPRTC_SFSS_VOADM_ZHDHC_SSPC_STM_BYPDM:
   - SSPC
   - STM
   - BYPDM
+
 
 AHU_CHW2XSC_ECON_ED_EFSS2X_EFVSC2X_HWSC_SFSS2X_SFVSC2X_SHM_RHM_SARC_SFM_SSPC_ZSPC_RSPC_RFC:
   guid: "02a87b43-d806-4cf4-8dda-023bf8e9220c"
@@ -2786,7 +2809,7 @@ AHU_DFVSC_ZTC_RTM_DTM_HPZTC_CWDT_CO2C_OAFC_AHAC_WLDS:
   - OAFC
   - AHAC
   - SAFETY/WLDS
-
+  
 AHU_DFVSC_ZTC_RTM_DTM_HPZTC_CWDT_CO2C_OADM_FDPM_AHAC:
   guid: "01979cce-71eb-4aba-8a96-3a1e9936870d"
   description: "Single zone variable speed water cooled heat pump with CO2 override and after hours override"
@@ -3335,6 +3358,7 @@ AHU_BSPC_DX4SC_ECON_EFSS_EFVSC_SARC_SFSS_SFVSC_SSPC_SSPCSCM_STCSCM:
   - supervisor_run_command
   - run_command
 
+
 AHU_BSPC_DX2SC_ECON_EFSS_SFSS_SFVSC_SSPC_SSPCSCM_STCSCM:
   guid: "0676aa55-5712-4560-bd58-dd858aa4ce48"
   description: "Multi-zone AHU with two-stage DX cooling and with supervisor control mode types (machine learning)."
@@ -3346,6 +3370,7 @@ AHU_BSPC_DX2SC_ECON_EFSS_SFSS_SFVSC_SSPC_SSPCSCM_STCSCM:
   opt_uses:
   - supervisor_run_command
   - run_command
+
 
 AHU_BSPC_DXSC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC_SARC_SSPCSCM_STCSCM:
   guid: "265015b9-7c38-4fbb-95a6-518541335e96"
@@ -3359,6 +3384,7 @@ AHU_BSPC_DXSC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC_SARC_SSPCSCM_STCSCM:
   - supervisor_run_command
   - run_command
 
+
 AHU_BSPC_DXSC_ECON_SFSS_SFVSC_SSPC_SSPCSCM_STCSCM:
   guid: "915418cd-2906-43fb-a6b5-3e4efdb3d036"
   description: "Multi-zone AHU with single-stage DX cooling and supply fan spped control, and with supervisor control mode types (machine learning)."
@@ -3370,6 +3396,7 @@ AHU_BSPC_DXSC_ECON_SFSS_SFVSC_SSPC_SSPCSCM_STCSCM:
   opt_uses:
   - supervisor_run_command
   - run_command
+
 
 AHU_BSPC_DX2SC_ECON_EFSS_EFVSC_FDPM_SFSS3X_SFVSC3X_SSPC:
   guid: "b8e98102-a3b8-41a2-a938-b61413c80f85"
@@ -3434,6 +3461,7 @@ AHU_DX2SC_ECON_SHM_SFSS_SFVSC_SSPC:
   - SFVSC
   - SSPC
 
+
 AHU_CHWSC_OAMC_RTM_SFVSC_RACO2C:
   guid: "9662a98e-5b36-4191-8b6c-256cb9f8cabf"
   description: "AHU with return air monitor and supply air temperature, fan and zone air co2 control where the co2 sensor installed at return air duct."
@@ -3447,6 +3475,7 @@ AHU_CHWSC_OAMC_RTM_SFVSC_RACO2C:
   - RACO2C
   opt_uses:
   - supply_fan_lost_power_alarm
+
 
 AHU_BSPC_DX4SC_ECONM_EFSS_EFVSC_SARC_SHC_SFSS2X_SFVSC_SSPC:
   guid: "8d3f0769-8a91-412d-a13c-03697fc1581b"
@@ -3791,7 +3820,7 @@ AHU_CHWSC_ECON_FDPM_EDRPC_RFSS_RFVSC_SFSS_SFVSC_SSPC:
   - SFSS
   - SFVSC
   - SSPC
-
+  
 AHU_SFSS_SFVSC_CHWSC_OAFC_SSPC_RAVOCC_RACO2C_ESFM_SAIDC:
   guid: "0d8bb03e-ebe6-4a93-b4ea-3062fde65c96"
   description: "AHU with CO2, VOC based outside air control, static pressure based VFD speed control,supply temperature based Chilled water valve modulation."
