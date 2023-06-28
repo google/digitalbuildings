@@ -4013,7 +4013,7 @@ AHU_CHWSC_HWSC_ECON_EDBPC_RFSS2X_RFVSC2X_SFSS2X_SFVSC2X_SSPC:
   - SFVSC2X
   - SSPC
 
-AHU_SS_HTSC_VOADM_ETM_RMM_FDPM2X_SEFC_HRC:
+AHU_SS_RMM_HTSC_SFVSC_SFC_EFVSC_EFC_VOADM_ETM_FDPM2X_HRC:
   description: "Unit with temperature monitoring, differential pressure sensors and heat recovery control."
   is_canonical: true
   opt_uses:
@@ -4021,12 +4021,15 @@ AHU_SS_HTSC_VOADM_ETM_RMM_FDPM2X_SEFC_HRC:
   implements:
   - AHU
   - SS
+  - RMM
   - HTSC
+  - SFVSC
+  - SFC
+  - EFVSC
+  - EFC
   - VOADM
   - ETM
-  - RMM
   - FDPM2X
-  - SEFC
   - HRC
 
 ###################################
