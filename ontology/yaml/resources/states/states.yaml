@@ -90,6 +90,6 @@ SOFTSTART: "Mode of operation of rectifier where the input power supply is gradu
 NORMAL: "Function, state or flow which is an ideal or expected condition."
 REVERSED: "Function, state or flow which is opposed to the expected or normal condition."
 
-ROOM: "AHU run mode"
-SUPPLY: "AHU run mode"
-EXTRACT: "AHU run mode"
+ROOM: "Device is controlled by room temperature"
+SUPPLY: "Device is controlled by supply temperature"
+EXTRACT: "Device is controlled by extract temperature"
