@@ -2897,8 +2897,9 @@ HTSWC:
   - heating_thermal_power_capacity
   - high_supply_water_temperature_alarm
   - low_supply_water_temperature_alarm
-  uses:
   - heater_run_command
+  - heater_run_status
+  uses:
   - supply_water_temperature_sensor
   - supply_water_temperature_setpoint
   implements:
@@ -2910,6 +2911,8 @@ HTRWC:
   opt_uses:
   - heating_percentage_command
   - heating_thermal_power_capacity
+  - high_return_water_temperature_alarm
+  - low_return_water_temperature_alarm
   - heater_run_command
   - heater_run_status
   uses:
