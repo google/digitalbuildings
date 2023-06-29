@@ -3117,9 +3117,3 @@ literals:
     fixed_min: 0.0
     flexible_max: 2000.0
 
-- high_return_water_temperature_alarm:
-  - ACTIVE
-  - INACTIVE
-- low_return_water_temperature_alarm:
-  - ACTIVE
-  - INACTIVE
