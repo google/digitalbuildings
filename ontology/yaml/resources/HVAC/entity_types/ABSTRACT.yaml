@@ -6668,3 +6668,19 @@ VMADC:
   - mixed_air_damper_percentage_sensor
   implements:
   - CONTROL
+
+OAQM:
+  description: "Outside air quality monitoring (particulates and gases)"
+  is_abstract: true
+  uses:
+  - outside_air_pm1pt0_density_sensor
+  - outside_air_pm2pt5_density_sensor
+  - outside_air_pm10pt0_density_sensor
+  - outside_air_no_density_sensor
+  - outside_air_no2_density_sensor
+  - outside_air_so2_density_sensor
+  - outside_air_co_concentration_sensor
+  opt_uses:
+  - outside_air_co2_concentration_sensor
+  implements:
+  - MONITORING
