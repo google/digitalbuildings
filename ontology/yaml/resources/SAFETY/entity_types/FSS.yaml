@@ -25,7 +25,6 @@ FSS_STD:
   - fire_alarm
 
 FSS_PAS:
-  guid: "eb21c6ee-73f8-408c-9790-d8be67b71696"
   description: "Fire Suppression System with pre-suppression fire alarms."
   is_canonical: true
   implements:
@@ -37,7 +36,6 @@ FSS_PAS:
   - air_pressure_status
 
 FSS_FA2X_GS:
-  guid: "26cd62af-1919-4251-b7a9-517f1ee4cadb"
   description: "Fire Suppression System with with 2-level alarm and gas suppression."
   is_canonical: true
   implements:

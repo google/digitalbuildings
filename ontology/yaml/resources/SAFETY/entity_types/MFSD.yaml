@@ -16,7 +16,6 @@
 
 
 MFSD_MDC:
-  guid: "c2a5c203-a475-4a3a-9e81-ce83e943189f"
   description: "Basic fire suppression with motorized dampers."
   is_canonical: true
   implements:
