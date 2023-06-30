@@ -98,3 +98,12 @@ LDS_WLA_BCM:
   opt_uses:
   - water_leak_cable_distance_sensor
   - failed_alarm
+
+LDS_WLCC:
+  description: Leak detection sensor with array of leak cable-based sensors."
+  is_canonical: true
+  uses:
+  - water_leak_detection_alarm
+  - water_leak_alarm
+  - water_leak_cable_distance_sensor
+  - broken_cable_alarm
