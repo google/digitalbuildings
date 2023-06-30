@@ -1719,8 +1719,11 @@ FCU_RHDHS_DXDC_DFSS:
   - RHDHS
   - DXDC
   - DFSS
+  uses:
+  - run_status
   opt_uses:
   - water_leak_detection_alarm
   - failed_alarm
   - high_discharge_air_static_pressure_alarm
   - low_discharge_air_static_pressure_alarm
+  - low_discharge_air_flowrate_alarm
