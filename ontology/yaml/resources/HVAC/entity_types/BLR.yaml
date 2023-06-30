@@ -271,6 +271,15 @@ BLR_SS_SWTC_WDPC:
   - SS
   - SWTC
   - WDPC
+  
+BLR_SS_RWTC_HTRWC:
+  description: "Single-stage boiler with return control."
+  is_canonical: true
+  implements:
+  - BLR
+  - SS
+  - RWTC
+  - HTRWC
 
 ###################################
 ### Existing Non-standard Types ###
