@@ -2911,6 +2911,7 @@ HTSWC:
   - CONTROL
 
 HTRWC:
+  guid: "4a0b5a76-9432-4572-832c-2ce41d70a587"
   description: "Gas or electric heater control on return water side."
   is_abstract: true
   opt_uses:
