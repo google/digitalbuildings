@@ -100,6 +100,7 @@ LDS_WLA_BCM:
   - failed_alarm
 
 LDS_WLCC:
+  guid: "1bc59b7b-cef7-4c39-b7b2-efaae420bf9f"
   description: Leak detection sensor with array of leak cable-based sensors."
   is_canonical: true
   uses:
