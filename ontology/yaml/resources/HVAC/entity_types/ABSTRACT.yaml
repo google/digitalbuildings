@@ -6618,4 +6618,3 @@ VMADC:
   - mixed_air_damper_percentage_sensor
   implements:
   - CONTROL
-
