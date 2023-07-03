@@ -82,3 +82,11 @@ UPS_PWM:
   implements:
   - UPS
   - PWM
+
+UPS_SS_UPSBM:
+  description: "Basic UPS with battery monitoring"
+  is_canonical: true
+  implements:
+  - UPS
+  - SS
+  - UPSBM

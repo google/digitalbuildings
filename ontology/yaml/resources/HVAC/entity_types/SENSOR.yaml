@@ -251,3 +251,14 @@ SENSOR_CO2M_VOCM:
     - /SENSOR
     - CO2M
     - VOCM
+
+SENSOR_ZTM_ZHM_CO2M_VOCM_PMM:
+  description: "Simple air quality sensor with VOC, particulates, CO2, temperature and humidity monitoring."
+  is_canonical: true
+  implements:
+  - /SENSOR
+  - ZTM
+  - ZHM
+  - CO2M
+  - VOCM
+  - PMM
