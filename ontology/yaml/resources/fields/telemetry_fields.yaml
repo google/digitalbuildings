@@ -3111,6 +3111,3 @@ literals:
     fixed_min: 0.0
     flexible_max: 2000.0
 
-- boost_pump_run_status:
-  - ACTIVE
-  - INACTIVE

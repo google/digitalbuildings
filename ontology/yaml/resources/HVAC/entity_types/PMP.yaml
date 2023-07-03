@@ -140,12 +140,13 @@ PMP_SS_RMM:
   - low_pressure_status
   - high_pressure_status
 
-PMP_PSM2X:
-  description: "Dual pump for gas pressure with pressure alarms and status monitoring"
+PMP_SS_WDPM:
+  description: "Pump with pressure alarms and status monitoring"
   is_canonical: true
   implements:
   - PMP
-  - PSM2X
+  - SS
+  - WDPM
 
 
 ###################################
