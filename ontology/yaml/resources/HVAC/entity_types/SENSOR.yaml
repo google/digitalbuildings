@@ -253,6 +253,7 @@ SENSOR_CO2M_VOCM:
     - VOCM
 
 SENSOR_ZTM_ZHM_CO2M_VOCM_PMM:
+  guid: "f4a549fa-d3a5-4584-8ae7-a8ace64f9650"
   description: "Simple air quality sensor with VOC, particulates, CO2, temperature and humidity monitoring."
   is_canonical: true
   implements:

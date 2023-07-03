@@ -25,6 +25,7 @@ WEATHER_OA:
   - OA
 
 WEATHER_OA_OAQM:
+  guid: "d944e31f-025a-43ed-abf2-381b8b887158"
   description: "Outside temperature, humidity and air quality monitoring."
   is_canonical: true
   implements:

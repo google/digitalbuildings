@@ -2909,6 +2909,7 @@ HTSWC:
   - CONTROL
 
 HTRWC:
+  guid: "11e774f7-bf89-430a-aece-1ff71bda5395"
   description: "Gas or electric heater control on return water side."
   is_abstract: true
   opt_uses:
@@ -6663,6 +6664,7 @@ VMADC:
   - CONTROL
 
 OAQM:
+  guid: "e1f0a2e5-1090-4bc6-baa9-c2eca1aed3fd"
   description: "Outside air quality monitoring (particulates and gases)"
   is_abstract: true
   uses:
