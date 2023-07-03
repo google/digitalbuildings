@@ -1451,15 +1451,13 @@ CO2M:
   guid: "c73f80ff-e57e-4fe4-8bd6-26e4581b7269"
   description: "Basic carbon dioxide monitoring."
   is_abstract: true
+  opt_uses:
+  - high_zone_air_co2_concentration_alarm
+  - high_limit_zone_air_co2_concentration_setpoint
   uses:
   - zone_air_co2_concentration_sensor
   implements:
   - MONITORING
-  opt_uses:
-  - high_zone_air_co2_concentration_alarm
-  - high_limit_zone_co2_concentration_setpoint
-  - failed_alarm
-
 
 VOCM:
   guid: "d1d343aa-9b3a-41aa-99fe-850c2ba355a8"

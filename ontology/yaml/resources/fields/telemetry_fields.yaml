@@ -3129,6 +3129,3 @@ literals:
     fixed_min: 0.0
     flexible_max: 2000.0
 
-- high_limit_zone_co2_concentration_setpoint:
-    fixed_min: 400.0
-    flexible_max: 1200.0
