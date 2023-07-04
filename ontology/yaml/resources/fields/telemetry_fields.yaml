@@ -3128,3 +3128,19 @@ literals:
 - ultraviolet_irradiance_sensor:
     fixed_min: 0.0
     flexible_max: 2000.0
+
+- floor_position_mode:
+  - BASEMENT
+  - UPPERGROUND
+  - LOWERGROUND
+  - GROUND
+  - FIRST
+  - SECOND
+  - THIRD
+  - FOURTH
+  - FOURTHMEZ
+  - PLANTROOM
+
+- high_occupancy_alarm:
+  - ACTIVE
+  - INACTIVE

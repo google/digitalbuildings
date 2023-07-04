@@ -20,3 +20,12 @@ ELV_SS:
   - ELV
   - SS  
 
+ELV_SS_EPM:
+  description: "Elevator with position/floor and basic alarms."
+  is_canonical: true
+  implements:
+  - ELV
+  - SS
+  - EPM
+  opt_uses:
+  - high_occupancy_alarm

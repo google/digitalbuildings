@@ -22,4 +22,11 @@ SS:
   opt_uses:
   - failed_alarm
   - lost_power_alarm
+  - fire_alarm
 
+
+EPM:
+  description: "Elevator position monitoring"
+  is_abstract: true
+  uses:
+  - floor_position_mode
