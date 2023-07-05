@@ -6670,6 +6670,7 @@ VMADC:
   - CONTROL
 
 OAQM:
+  guid: "99e4f482-278e-40ee-9524-9f687c41ba22"
   description: "Outside air quality monitoring (particulates and gases)"
   is_abstract: true
   uses:
