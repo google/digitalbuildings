@@ -207,6 +207,7 @@ VAV_SD_DSP_DFSS:
   - DFSS
 
 VAV_SD_CSP_DFSS:
+  guid: "a630f2a4-0ecd-4ad5-8f07-49c52e09d9a6"
   description: "Fan powered VAV for cooling only applications (e.g. IDF or computer rooms)."
   is_canonical: true
   implements:
