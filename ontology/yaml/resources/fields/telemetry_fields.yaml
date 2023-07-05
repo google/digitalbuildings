@@ -3128,3 +3128,15 @@ literals:
 - ultraviolet_irradiance_sensor:
     fixed_min: 0.0
     flexible_max: 2000.0
+
+- purge_command:
+  - ON
+  - OFF 
+
+- high_discharge_air_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
+
+- low_discharge_air_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
