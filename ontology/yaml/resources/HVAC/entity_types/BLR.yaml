@@ -273,6 +273,7 @@ BLR_SS_SWTC_WDPC:
   - WDPC
   
 BLR_SS_RWTC_HTRWC:
+  guid: "74aeaeeb-14b6-4592-ba27-e2845902d427"
   description: "Single-stage boiler with return control."
   is_canonical: true
   implements:
