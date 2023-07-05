@@ -85,7 +85,7 @@ UPS_PWM:
   - PWM
 
 UPS_SS_UPSBM:
-  guid: "6d106664-6b73-4ff7-bc8b-452d54875261"
+  guid: "13ee6bee-a1d7-4158-845e-a59dc9c117fe"
   description: "Basic UPS with battery monitoring"
   is_canonical: true
   implements:
