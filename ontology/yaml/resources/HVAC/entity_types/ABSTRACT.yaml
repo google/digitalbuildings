@@ -2902,6 +2902,7 @@ HTSWC:
   - heating_thermal_power_capacity
   - high_supply_water_temperature_alarm
   - low_supply_water_temperature_alarm
+  - heater_run_status
   uses:
   - heater_run_command
   - supply_water_temperature_sensor
@@ -2909,6 +2910,21 @@ HTSWC:
   implements:
   - CONTROL
 
+HTRWC:
+  description: "Gas or electric heater control on return water side."
+  is_abstract: true
+  opt_uses:
+  - heating_percentage_command
+  - heating_thermal_power_capacity
+  - high_return_water_temperature_alarm
+  - low_return_water_temperature_alarm
+  - heater_run_status
+  uses:
+  - heater_run_command
+  - return_water_temperature_sensor
+  - return_water_temperature_setpoint
+  implements:
+  - CONTROL
 
 HT2SWC:
   guid: "cc630fcd-8a18-4fbb-a34b-3eae05b8b49b"
@@ -6654,6 +6670,7 @@ VMADC:
   - CONTROL
 
 OAQM:
+  guid: "99e4f482-278e-40ee-9524-9f687c41ba22"
   description: "Outside air quality monitoring (particulates and gases)"
   is_abstract: true
   uses:
