@@ -39,15 +39,6 @@ def ParseArgs() -> argparse.ArgumentParser:
   )
 
   parser.add_argument(
-      '-t',
-      '--token',
-      dest='token',
-      required=False,
-      default=None,
-      help='Path to GCP project token',
-  )
-
-  parser.add_argument(
       '-c',
       '--credential',
       dest='credential',
