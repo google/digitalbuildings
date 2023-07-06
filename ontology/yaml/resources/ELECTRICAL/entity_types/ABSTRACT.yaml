@@ -14,7 +14,7 @@
 
 
 SS:
-  id: "6433499407521415168"
+  guid: "bcb655b9-7adf-4c58-82c3-d8d8bf42720d"
   description: "Basic combination of run command and status (start/stop); indicates the light is active or inactive."
   is_abstract: true
   implements:
@@ -25,7 +25,7 @@ SS:
   - power_status
 
 IOBM:
-  id: "11309587186103353344"
+  guid: "d5c39e44-20c7-4193-9914-5f1b9225fffa"
   description: "Input, output, and bypass electrical monitoring, typically for a UPS."
   is_abstract: true
   uses:
@@ -64,7 +64,7 @@ IOBM:
   - bypass_phase_status
 
 PWM:
-  id: "13215256341318205440"
+  guid: "fd2b653c-cb42-4158-8322-34421d1cf5bb"
   description: "Very basic power and energy monitoring."
   is_abstract: true
   uses:
@@ -74,14 +74,14 @@ PWM:
   - apparent_power_sensor 
 
 RMM:
-  id: "3032617583833513984"
+  guid: "322b2898-cb04-453b-8171-4e50d65e844f"
   description: "Run mode monitoring."
   is_abstract: true
   uses:
   - run_mode
 
 OTPM:
-  id: "11810133257578610688"
+  guid: "cf9a36d8-f852-4372-bed4-80b95263c2de"
   description: "Oil temperature and pressure monitoring"
   is_abstract: true
   uses:
@@ -89,21 +89,21 @@ OTPM:
   - oil_pressure_sensor
   
 RDM:
-  id: "15919667917554188288"
+  guid: "e1e402a7-fd60-4905-84d7-d926db979fc5"
   description: "Very basic system run duration monitoring."
   is_abstract: true
   uses:
   - run_time_accumulator
   
 TKLS:  
-  id: "9502038448551231488"
+  guid: "a759f985-e858-431f-a9f9-d4eaaa711aa4"
   description: "Very basic tank level status monitoring for Electrical generator equipments."
   is_abstract: true
   uses:
   - tank_level_status
 
 PPWM:
-  id: "14668216976959078400"
+  guid: "aab62bba-a92f-47bf-bf14-dcb8e61ac7a8"
   description: "Phase power monitoring"
   is_abstract: true
   uses:
@@ -113,7 +113,7 @@ PPWM:
   - line_frequency_sensor 
 
 BATM:
-  id: "10996952049861525504"
+  guid: "445a7a7f-9da2-4b56-99cd-9890cdf6fea1"
   description: "Battery typically used with UPS"
   is_abstract: true
   uses:
@@ -125,7 +125,7 @@ BATM:
   - line_frequency_sensor
 
 BTEPM:
-  id: "8603570322890817536"
+  guid: "dca372d2-3626-4f2d-90fc-30402aee90a6"
   description: "Basic battery electrical parameter monitoring"
   is_abstract: true
   uses:
@@ -134,7 +134,7 @@ BTEPM:
   - line_frequency_sensor  
 
 UPSBM:
-  id: "6133134821045567488"
+  guid: "71050ae3-45e3-49f2-b7e2-12059dd8f049"
   description: "UPS battery monitoring points"
   is_abstract: true
   opt_uses:
@@ -144,6 +144,7 @@ UPSBM:
   - inverter_status
   - inverter_mode
   - overload_alarm
+  - low_battery_charge_alarm
   uses:
   - remaining_charge_time_sensor
   - battery_voltage_sensor
@@ -152,7 +153,7 @@ UPSBM:
   - battery_test_status
 
 SRC1:
-  id: "15185581178292797440"
+  guid: "2705008d-a8ca-452c-bc3e-38364812f894"
   description: "Source 1 parameters typically for ATS"
   is_abstract: true
   uses:
@@ -168,7 +169,7 @@ SRC1:
   - source1_lost_power_alarm
 
 SRC2:
-  id: "6549928892809871360"
+  guid: "c0342f5a-2778-48b2-b70a-ae96571f7fc7"
   description: "Source 1 parameters typically for ATS"
   is_abstract: true
   uses:

@@ -13,25 +13,41 @@
 # limitations under the License.
 
 CHWRSR_UNDEFINED:
-  id: "3723458331751219200"
+  guid: "17800c9e-afac-4966-88af-d6aa2b1e1f30"
   description: "Chilled water distribution riser without any data points."
   implements:
   - CHWRSR
 
 HWSRSR_UNDEFINED:
-  id: "1435629721047007232"
+  guid: "037e42ec-3826-49f5-84a2-3b71858b53dc"
   description: "Heating water distribution riser without any data points."
   implements:
   - HWSRSR
 
 FARSR_UNDEFINED:
-  id: "16952219287198629888"
+  guid: "cd83cffe-fb37-4138-9ff0-9da7958eccf2"
   description: "Fresh air distribution riser without any data points."
   implements:
   - FARSR
 
 RARSR_UNDEFINED:
-  id: "18213227182862368768"
+  guid: "6ae66620-c729-4726-8f7d-533e81725668"
   description: "Return air riser without any data points."
   implements:
   - RARSR
+
+RSR_HHCD42_CPC:
+  guid: "374f5100-b148-47ac-b07b-d2bef0b556ef"
+  description: "Cooling or heating changeover function for radiant panels or fcu's. 4/2-pipe"
+  implements:
+  - RSR
+  - HHCD42
+  - CPC
+
+RSR_HHCD44_CPC:
+  guid: "bbd6959e-5a60-4b6a-b4ec-9d84b7c69fc5"
+  description: "Cooling or heating changeover function for radiant panels or fcu's. 4/4-pipe"
+  implements:
+  - RSR
+  - HHCD44
+  - CPC

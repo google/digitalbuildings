@@ -1,4 +1,4 @@
-# Copyright 2020 Google LLC
+# Copyright 2023 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the License);
 # you may not use this file except in compliance with the License.
@@ -64,7 +64,7 @@ class UndefinedField(FieldTranslation):
 
 
 class DefinedField(FieldTranslation):
-  """A class for translation of a single field present in the device payload.
+  """A base class for translation of a field present in the device payload.
 
   Attributes:
     std_field_name: string. Standard name of the field in the ontology. Field

@@ -15,7 +15,7 @@
 ### ABSTRACT TYPES
 
 PA_STD:
-  id: "497090993623924736"
+  guid: "721b187b-71e7-4b05-b0a4-b559ac1f7ae6"
   description: "Standard public address system."
   is_canonical: true
   implements:

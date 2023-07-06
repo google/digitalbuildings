@@ -1,4 +1,4 @@
-# Copyright 2022 Google LLC
+# Copyright 2023 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the License);
 # you may not use this file except in compliance with the License.
@@ -14,6 +14,7 @@
 """Parses Telemetry Payload."""
 
 from __future__ import print_function
+
 import json
 from typing import Dict, Tuple
 
@@ -37,10 +38,13 @@ class Telemetry(object):
   Attributes;
     attributes: pubsub message attributes
     version: the version in the payload
-    timestamp: timestamp of the message in the payload
+    timestamp: naive UTC timestamp of the message in the payload (ex.
+      2020-10-15T17:21:59.000Z)
     points: a dictionary containing as key the points name and as value a
     Point class.
     is_partial: true if this message has only a partial pointset
+    publish_time: the timestamp, as a datetime.datetime object, the message was
+    published to pubsub
   """
 
   def __init__(self, message):
@@ -60,6 +64,7 @@ class Telemetry(object):
         self.points,
         self.is_partial,
     ) = self._parse_data(message.data)
+    self.publish_time = message.publish_time
 
   def _parse_attributes(self, pubsub_message_attributes) -> Dict[str, str]:
     """Receives a pubsub message data and parses it.

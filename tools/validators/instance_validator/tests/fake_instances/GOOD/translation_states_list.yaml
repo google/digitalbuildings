@@ -1,4 +1,4 @@
-# Copyright 2020 Google LLC
+# Copyright 2023 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the License);
 # you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
 DMP_EDM-17-GUID:
   type: HVAC/DMP_EDM
   code: DMP_EDM-17
-  cloud_device_id: "foobar"
+  cloud_device_id: "1234567890123456"
   translation:
     exhaust_air_damper_command:
       present_value: "points.exhaust_air_damper_command.present_value"

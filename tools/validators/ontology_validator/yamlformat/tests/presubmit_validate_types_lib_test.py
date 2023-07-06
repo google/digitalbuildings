@@ -39,6 +39,9 @@ FLAGS = flags.FLAGS
 
 _F = test_helpers_lib.Fields
 _F1 = test_helpers_lib.Field
+_GUID_1 = '4d68ac84-786f-425c-9a65-097b1fb04c91'
+_GUID_2 = '3d68ac84-786f-425c-9a65-097b1fb04c91'
+_GUID_3 = '1800a4cf-ef6c-4e7c-b811-f2004c0df85b'
 
 # Constant to point to test files.
 RESOURCE_PATH = path.join(test_constants.TEST_RESOURCES)
@@ -90,32 +93,6 @@ class PresubmitValidateTypesTest(absltest.TestCase):
 
     self.good1_depot_path = path.join('//depot/google3', RESOURCE_PATH,
                                       'GOOD/entity_types/good1.yaml')
-
-  def CreateConfig(self,
-                   fields=tuple(),
-                   subfields=tuple(),
-                   states=tuple(),
-                   type_defs=tuple(),
-                   units=tuple()):
-    """Creates Config for the tests.
-
-    Args:
-      fields: the necessary fields.
-      subfields: the subfields.
-      states: the states.
-      type_defs: type definitions.
-      units: units for tests.
-
-    Returns:
-       created config.
-    """
-    # Config namedtuple
-    return presubmit_validate_types_lib.Config(
-        fields=fields,
-        subfields=subfields,
-        states=states,
-        type_defs=type_defs,
-        units=units)
 
   def ListHasType(self, findings_list, finding_type):
     for f in findings_list:
@@ -450,13 +427,13 @@ class PresubmitValidateTypesTest(absltest.TestCase):
         filepath=ns1_path + '/file.yaml',
         typename='type1',
         inherited_fields_expanded=True,
-        uid='1')
+        guid=_GUID_1)
     ns1.InsertType(type1)
     type2 = entity_type_lib.EntityType(
         filepath=ns1_path + '/file.yaml',
         typename='type2',
         inherited_fields_expanded=True,
-        uid='2')
+        guid=_GUID_2)
     ns1.InsertType(type2)
     old_uv = entity_type_lib.EntityTypeUniverse([folder1])
 
@@ -466,13 +443,13 @@ class PresubmitValidateTypesTest(absltest.TestCase):
         filepath=ns1_path + '/file.yaml',
         typename='type1a',
         inherited_fields_expanded=True,
-        uid='1')
+        guid=_GUID_1)
     ns1a.InsertType(type1a)
     type2a = entity_type_lib.EntityType(
         filepath=ns1_path + '/file.yaml',
         typename='type2',
         inherited_fields_expanded=True,
-        uid='3')
+        guid=_GUID_3)
     ns1a.InsertType(type2a)
     new_uv = entity_type_lib.EntityTypeUniverse([folder1a])
 
@@ -493,7 +470,7 @@ class PresubmitValidateTypesTest(absltest.TestCase):
         filepath=ns1_path + '/file.yaml',
         typename='type1',
         inherited_fields_expanded=True,
-        uid='1')
+        guid=_GUID_1)
     ns1.InsertType(type1)
     old_uv = entity_type_lib.EntityTypeUniverse([folder1])
 
@@ -504,7 +481,7 @@ class PresubmitValidateTypesTest(absltest.TestCase):
         filepath=ns2_path + '/file.yaml',
         typename='type1a',
         inherited_fields_expanded=True,
-        uid='1')
+        guid=_GUID_1)
     ns2.InsertType(type1a)
     new_uv = entity_type_lib.EntityTypeUniverse([folder1a, folder2])
 

@@ -234,7 +234,10 @@ level: distance
 impulse:
   newton_seconds: STANDARD
 irradiance:
-  watt_per_square_metre: STANDARD
+  watts_per_square_meter_irradiance: STANDARD
+  kilowatts_per_square_meter_irradiance:
+    multiplier: 1000
+    offset: 0
 linearacceleration: acceleration
 linearvelocity:
   meters_per_second: STANDARD
@@ -515,3 +518,9 @@ volume:
     offset: 0
 volumetricconcentration:
   parts_per_cubic_centimeter: STANDARD # can be approximated using Avogadro
+xvalue:
+  no_units: STANDARD
+yvalue:
+  no_units: STANDARD
+
+

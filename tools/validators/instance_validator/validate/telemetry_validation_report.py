@@ -1,4 +1,4 @@
-# Copyright 2022 Google LLC
+# Copyright 2023 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the License);
 # you may not use this file except in compliance with the License.
@@ -15,9 +15,8 @@
 
 from __future__ import annotations
 
-import dataclasses
 import datetime
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional, Tuple
 
 from validate.constants import ENTITY_CODE
 from validate.constants import ENTITY_GUID
@@ -35,7 +34,6 @@ from validate.constants import MISSING_POINTS
 from validate.constants import MISSING_PRESENT_VALUES
 from validate.constants import MISSING_TIMESTAMP
 from validate.constants import MISSING_VERSION
-from validate.constants import PRESENT_VALUE_KEY
 from validate.constants import REPORT_TIMESTAMP
 from validate.constants import TELEMETRY_MESSAGE_ERRORS
 from validate.constants import TELEMETRY_MESSAGE_WARNINGS
@@ -43,20 +41,7 @@ from validate.constants import TIMESTAMP_FORMAT
 from validate.constants import UNMAPPED_STATES
 
 
-@dataclasses.dataclass
-class TelemetryPoint(object):
-  """Class to hold telemetry point attributes.
-
-  Attributes:
-    point_name: Name of the point.
-    present_value: A point's present value which as a string, int, boolean, or
-      float.
-  """
-
-  point_name: str
-  present_value: Any
-
-
+# TODO(b/269321767)
 class TelemetryValidationReport(object):
   """Container for a telememtry validation report.
 
@@ -78,37 +63,69 @@ class TelemetryValidationReport(object):
   def __init__(
       self,
       expected_devices: Dict[str, str],
-      extra_devices: Dict[str, str],
-      missing_devices: Dict[str, str],
-      error_devices: List[TelemetryMessageValidationBlock],
+      extra_devices: Optional[Dict[str, str]] = None,
+      missing_devices: Optional[Dict[str, str]] = None,
+      error_devices: Optional[List[TelemetryMessageValidationBlock]] = None,
   ):
     """Init."""
-    self.timestamp = datetime.datetime.now(tz=datetime.timezone.utc).strftime(
+    self._timestamp = datetime.datetime.now(tz=datetime.timezone.utc).strftime(
         TIMESTAMP_FORMAT
     )
-    self.expected_devices = expected_devices
-    self.extra_devices = extra_devices
-    self.missing_devices = missing_devices
-    self.error_devices = error_devices
+    self._expected_devices = expected_devices
 
-  def AddExtraDevice(self, code: str) -> None:
-    self.extra_devices.append(code)
+    self._extra_devices = {}
+    if extra_devices:
+      self._extra_devices = extra_devices
+    self._missing_devices = {}
+    if missing_devices:
+      self._missing_devices = missing_devices
+    self._error_devices = []
+    if error_devices:
+      self._error_devices = error_devices
 
-  def AddMissingDevice(self, code: str) -> None:
-    self.missing_devices.append(code)
+  @property
+  def timestamp(self) -> str:
+    return self._timestamp
 
-  def AddErrorDevice(self, code: str) -> None:
-    self.error_devices.append(code)
+  @property
+  def expected_devices(self) -> Dict[str, str]:
+    return self._expected_devices
+
+  @property
+  def extra_devices(self) -> Dict[str, str]:
+    return self._extra_devices
+
+  @property
+  def missing_devices(self) -> Dict[str, str]:
+    return self._missing_devices
+
+  @property
+  def error_devices(self) -> List[TelemetryMessageValidationBlock]:
+    return self._error_devices
+
+  def AddExtraDevice(self, guid_to_code_map: Dict[str, str]) -> None:
+    """Add a device that exists in telemetry but not in the building config."""
+    self._extra_devices.update(guid_to_code_map)
+
+  def AddMissingDevice(self, guid_to_code_map: Dict[str, str]) -> None:
+    """Add a device that exists in the building config but not in telemetry."""
+    self._missing_devices.update(guid_to_code_map)
+
+  def AddErrorDevice(
+      self, validation_block: TelemetryMessageValidationBlock
+  ) -> None:
+    """Add a telemetry validation block for an entity in the bc."""
+    self._error_devices.append(validation_block)
 
   def GenerateReport(self) -> Dict[str, List[Any]]:
     """Returns json payload representation of validation report."""
     validation_report_dict = {
-        REPORT_TIMESTAMP: self.timestamp,
-        EXPECTED_DEVICES: self.expected_devices,
-        EXTRA_DEVICES: self.extra_devices,
-        MISSING_DEVICES: self.missing_devices,
+        REPORT_TIMESTAMP: self._timestamp,
+        EXPECTED_DEVICES: self._expected_devices,
+        EXTRA_DEVICES: self._extra_devices,
+        MISSING_DEVICES: self._missing_devices,
         ERROR_DEVICES: [
-            block.CreateJsonReportBlock() for block in self.error_devices
+            block.CreateJsonReportBlock() for block in self._error_devices
         ],
     }
     return validation_report_dict
@@ -149,7 +166,7 @@ class TelemetryMessageValidationBlock(object):
       expected_points: list[str],
       timestamp: Optional[datetime.datetime] = None,
       version: Optional[str] = None,
-      description: Optional[str] = None,
+      description: Optional[str] = '',
   ):
     """Init."""
 
@@ -157,34 +174,75 @@ class TelemetryMessageValidationBlock(object):
     self.code = code
     self.version = version
     self.timestamp = timestamp
-    self.expected_points = expected_points
-    self.extra_points = []
-    self.missing_points = []
-    self.missing_present_values = []
-    self.unmapped_states = []
-    self.invalid_dimensional_values = []
-    self.valid = True
-    self.description = description
+    self._expected_points = expected_points
+    self._extra_points = []
+    self._missing_points = []
+    self._missing_present_values = []
+    self._unmapped_states = []
+    self._invalid_dimensional_values = []
+    self._valid = True
+    self._description = description
+
+  @property
+  def expected_points(self) -> list[str]:
+    return self._expected_points
+
+  @property
+  def valid(self) -> bool:
+    return self._valid
+
+  @property
+  def description(self) -> str:
+    return self._description
+
+  @property
+  def extra_points(self) -> list[str]:
+    return self._extra_points
+
+  @property
+  def missing_points(self) -> list[str]:
+    return self._missing_points
+
+  @property
+  def missing_present_values(self) -> list[str]:
+    return self._missing_present_values
+
+  @property
+  def unmapped_states(self) -> list[Tuple[str, str]]:
+    return self._unmapped_states
+
+  @property
+  def invalid_dimensional_values(self) -> list[Tuple[str, str]]:
+    return self._invalid_dimensional_values
+
+  def AddDescription(self, description: str) -> None:
+    self._valid = False
+    self._description += description
 
   def AddExtraPoint(self, point: str) -> None:
-    self.valid = False
-    self.extra_points.append(point)
+    """Add a point that exists in message but not in building config."""
+    self._valid = False
+    self._extra_points.append(point)
 
   def AddMissingPoint(self, point: str) -> None:
-    self.valid = False
-    self.missing_points.append(point)
+    """Add a point that exists in building config but not in message."""
+    self._valid = False
+    self._missing_points.append(point)
 
   def AddMissingPresentValue(self, point: str) -> None:
-    self.valid = False
-    self.missing_present_values.append(point)
+    """Add a point that is missing the present_value field."""
+    self._valid = False
+    self._missing_present_values.append(point)
 
   def AddUnmappedState(self, state: str, point: str) -> None:
-    self.valid = False
-    self.unmapped_states.append((point, state))
+    """Add a state that exists in message but does not map to standard state."""
+    self._valid = False
+    self._unmapped_states.append((point, state))
 
   def AddInvalidDimensionalValue(self, value: str, point: str) -> None:
-    self.valid = False
-    self.invalid_dimensional_values.append((point, value))
+    """Add a point whose dimensional value is not of the correct type."""
+    self._valid = False
+    self._invalid_dimensional_values.append((point, value))
 
   def CreateJsonReportBlock(self) -> Dict[str, Any]:
     """Exports a telemetry validation report point(block) as valid json."""
@@ -192,21 +250,17 @@ class TelemetryMessageValidationBlock(object):
     json_report_block = {
         ENTITY_CODE: self.code,
         ENTITY_GUID: self.guid,
-        EXPECTED_POINTS: self._TelemetryPointListToDict(self.expected_points),
+        EXPECTED_POINTS: self._expected_points,
         TELEMETRY_MESSAGE_ERRORS: {
-            MISSING_POINTS: self._TelemetryPointListToDict(self.missing_points),
-            MISSING_PRESENT_VALUES: self._TelemetryPointListToDict(
-                self.missing_present_values
-            ),
-            INVALID_DIMENSIONAL_VALUES: self._TelemetryPointListToDict(
-                self.invalid_dimensional_values
+            MISSING_POINTS: self._missing_points,
+            MISSING_PRESENT_VALUES: self._missing_present_values,
+            INVALID_DIMENSIONAL_VALUES: _TelemetryPointListToDict(
+                self._invalid_dimensional_values
             ),
         },
         TELEMETRY_MESSAGE_WARNINGS: {
-            EXTRA_POINTS: self._TelemetryPointListToDict(self.extra_points),
-            UNMAPPED_STATES: self._TelemetryPointListToDict(
-                self.unmapped_states
-            ),
+            EXTRA_POINTS: self._extra_points,
+            UNMAPPED_STATES: _TelemetryPointListToDict(self._unmapped_states),
         },
     }
 
@@ -220,18 +274,16 @@ class TelemetryMessageValidationBlock(object):
     else:
       json_report_block.update({MESSAGE_VERSION: self.version})
 
-    if self.description:
-      json_report_block.update({MESSAGE_DESCRIPTION: self.description})
+    if self._description:
+      json_report_block.update({MESSAGE_DESCRIPTION: self._description})
 
     return json_report_block
 
-  def _TelemetryPointListToDict(
-      self, point_list: List[TelemetryPoint]
-  ) -> Dict[str, Any]:
-    """Returns a dictionary representation of a TelemetryPoint instance."""
 
-    point_dictionary = {
-        point.point_name: {PRESENT_VALUE_KEY: point.present_value}
-        for point in point_list
-    }
-    return point_dictionary
+def _TelemetryPointListToDict(
+    point_tuple_list: List[Tuple[str, str]]
+) -> Dict[str, str]:
+  """Returns a dictionary representation of a tuple of point and value."""
+
+  point_dictionary = dict(point_tuple_list)
+  return point_dictionary

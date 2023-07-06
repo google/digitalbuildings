@@ -1,4 +1,4 @@
-# Copyright 2020 Google LLC
+# Copyright 2023 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the License);
 # you may not use this file except in compliance with the License.
@@ -16,6 +16,7 @@
 from __future__ import print_function
 
 import _thread
+import datetime
 import json
 import os
 import sys
@@ -29,6 +30,29 @@ from validate import subscriber
 from validate import telemetry_validation_report as tvr
 from validate import telemetry_validator
 from yamlformat.validator import presubmit_validate_types_lib as pvt
+
+
+INSTANCE_VALIDATION_FILENAME = 'instance_validation_report.txt'
+TELEMETRY_VALIDATION_FILENAME = 'telemetry_validation_report.json'
+
+
+def FileNameEnumerationHelper(filename: str) -> str:
+  """Adds an UTC timestamp enurmation prefix to the filename.
+
+  Args:
+    filename: string representing the filename to be enumerated with a local
+      timestamp.
+
+  Returns:
+    the filename enumerated as <timestamp>_<filename>. example:
+    2020_10_15T17_21_59Z_instance_validation_report.txt where the timestamp
+    is given as year_month_dayThour_min_secondZ and the filename as
+    instance_validation_report.txt
+  """
+  return '_'.join((
+      datetime.datetime.now().strftime('%Y_%m_%dT%H_%M_%SZ'),
+      filename,
+  ))
 
 
 def GetDefaultOperation(
@@ -111,10 +135,11 @@ def _ValidateTelemetry(
     service_account: str,
     entities: Dict[str, entity_instance.EntityInstance],
     timeout: int,
-    is_udmi: bool
+    is_udmi: bool,
+    report_directory: str = None,
 ) -> None:
   """Runs all telemetry validation checks."""
-  helper = TelemetryHelper(subscription, service_account)
+  helper = TelemetryHelper(subscription, service_account, report_directory)
   helper.Validate(entities, timeout, is_udmi)
 
 
@@ -125,9 +150,9 @@ def RunValidation(
     default_types_filepath: str = constants.ONTOLOGY_ROOT,
     subscription: str = None,
     service_account: str = None,
-    report_filename: str = None,
+    report_directory: str = None,
     timeout: int = constants.DEFAULT_TIMEOUT,
-    is_udmi: bool = False
+    is_udmi: bool = True,
 ) -> None:
   """Top level runner for all validations.
 
@@ -138,7 +163,7 @@ def RunValidation(
     default_types_filepath: Relative path to the DigitalBuildings ontology.
     subscription: Fully qualified path to a Google Cloud Pubsub subscription.
     service_account: Fully qualified path to a service account key file.
-    report_filename: Fully qualified path to write a validation report to.
+    report_directory: Fully qualified path to validation reports.
     timeout: Timeout duration of the telemetry validator. Default is 60 seconds.
     is_udmi: Telemetry follows UDMI standards.
   """
@@ -146,8 +171,12 @@ def RunValidation(
   report_file = None
 
   print('[INFO]\tStarting validation process.')
-  if report_filename:
+  if report_directory:
     # pylint: disable=consider-using-with
+    report_filename = os.path.join(
+        report_directory,
+        FileNameEnumerationHelper(INSTANCE_VALIDATION_FILENAME)
+    )
     report_file = open(report_filename, 'w', encoding='utf-8')
     sys.stdout = report_file
   try:
@@ -155,7 +184,7 @@ def RunValidation(
     universe = generate_universe.BuildUniverse(
         use_simplified_universe=use_simplified_universe,
         modified_types_filepath=modified_types_filepath,
-        default_types_filepath=default_types_filepath
+        default_types_filepath=default_types_filepath,
     )
     if not universe:
       print('[ERROR]\tUniverse did not load properly.')
@@ -163,10 +192,16 @@ def RunValidation(
     print('[INFO]\tOntology loaded.')
 
     entities = _ValidateConfig(filenames, universe, is_udmi)
+
     if subscription:
       print('[INFO]\tStarting telemetry validation.')
       _ValidateTelemetry(
-          subscription, service_account, entities, timeout, is_udmi
+          subscription,
+          service_account,
+          entities,
+          timeout,
+          is_udmi,
+          report_directory,
       )
     else:
       print(
@@ -179,8 +214,8 @@ def RunValidation(
   finally:
     sys.stdout = saved_stdout
     if report_file:
-      print('[INFO]\tReport generated.')
       report_file.close()
+      print(f'[INFO]\tInstance validation report generated: {report_file.name}')
     print('[INFO]\tInstance validation completed.')
 
 
@@ -190,12 +225,14 @@ class TelemetryHelper(object):
   Attributes:
     subscription: resource string referencing the subscription to check
     service_account_file: path to file with service account information
+    report_directory: fully qualified path to report output directory
   """
 
-  def __init__(self, subscription, service_account_file):
+  def __init__(self, subscription, service_account_file, report_directory):
     super().__init__()
     self.subscription = subscription
     self.service_account_file = service_account_file
+    self.report_directory = report_directory
 
   def Validate(
       self,
@@ -208,13 +245,18 @@ class TelemetryHelper(object):
     Args:
       entities: EntityInstance dictionary keyed by entity name
       timeout: number of seconds to wait for telemetry
-      is_udmi: true/false treat telemetry stream as UDMI; defaults to false
+      is_udmi: true/false treat telemetry stream as UDMI; default True.
     """
 
     print(f'[INFO]\tConnecting to PubSub subscription {self.subscription}')
     sub = subscriber.Subscriber(self.subscription, self.service_account_file)
+    if is_udmi:
+      print('[INFO]\tValidating telemetry payload for UDMI compliance.')
     validator = telemetry_validator.TelemetryValidator(
-        entities, timeout, is_udmi, _TelemetryValidationCallback
+        entities,
+        timeout,
+        _TelemetryValidationCallback,
+        self.report_directory,
     )
     validator.StartTimer()
     try:
@@ -247,23 +289,30 @@ def _TelemetryValidationCallback(
   # create validation report object
   validation_report = tvr.TelemetryValidationReport(
       expected_devices=expected_devices,
+      extra_devices=validator.GetExtraEntities(),
       missing_devices=validator.GetUnvalidatedEntities(),
       error_devices=error_devices,
-      extra_devices=validator.GetExtraEntities(),
   )
 
   # create formatted validation report string
   validation_report_dict = validation_report.GenerateReport()
 
-  # Export to filepath and write to console.
-  with open(
-      os.path.join(os.getcwd(), 'telemetry_validation_report.json'),
-      'w',
-      encoding='UTF-8'
-  ) as report:
+  if validator.report_directory:
+    # Export to filepath or current working directory.
+    telemetry_validation_report_path = os.path.join(
+        validator.report_directory,
+        FileNameEnumerationHelper(TELEMETRY_VALIDATION_FILENAME)
+    )
+  else:
+    telemetry_validation_report_path = os.path.join(
+        os.getcwd(),
+        FileNameEnumerationHelper(TELEMETRY_VALIDATION_FILENAME)
+    )
+  with open(telemetry_validation_report_path, 'w', encoding='utf-8') as report:
     report.write(json.dumps(validation_report_dict, indent=4))
+    print(f'Report Generated: {telemetry_validation_report_path}')
+    print('[INFO]\tTelemetry validation report generated.')
 
-  print('Report Generated')
   _thread.interrupt_main()
 
 
@@ -278,18 +327,47 @@ class EntityHelper(object):
     super().__init__()
     self.universe = universe
 
+  def _IsDuplicateCDMIds(
+      self, entities: Dict[str, entity_instance.EntityInstance]
+  ) -> bool:
+    """Returns whether a building config file has duplicate cloud device ids.
+
+    Args:
+      entities: Dict of entity guids to Entity instances.
+    """
+    cdm_dict = {}
+    duplicate_cdm_set = set()
+    for guid, entity in entities.items():
+      if entity.cloud_device_id:
+        if not cdm_dict.get(entity.cloud_device_id):
+          cdm_dict.update({entity.cloud_device_id: [guid]})
+        elif guid not in cdm_dict.get(entity.cloud_device_id):
+          cdm_dict.get(entity.cloud_device_id).append(guid)
+          duplicate_cdm_set.add(entity.cloud_device_id)
+    for cdm_id in duplicate_cdm_set:
+      print(
+          f'[ERROR]\tDuplicate cloud device id {cdm_id} used for multiple'
+          ' entities:'
+      )
+      for guid in cdm_dict.get(cdm_id):
+        print(f'{guid}: {entities.get(guid).code}')
+    if not duplicate_cdm_set:
+      return True
+    return False
+
+  # TODO(b/266449585): Implement logging package to log errors to log file.
   def Validate(
       self,
       entities: Dict[str, entity_instance.EntityInstance],
       config_mode: instance_parser.ConfigMode,
-      is_udmi: bool = False,
+      is_udmi: bool = True,
   ) -> Dict[str, entity_instance.EntityInstance]:
     """Validates entity instances that are already deserialized.
 
     Args:
       entities: a dict of entity instances
       config_mode: processing mode of the configuration
-      is_udmi: flag to indicate validation under udmi; defaults to false
+      is_udmi: flag to indicate validation under udmi; default True.
 
     Returns:
       A dictionary containing valid entities by GUID
@@ -304,7 +382,7 @@ class EntityHelper(object):
         self.universe, config_mode, entities
     )
     alpha_interdep_helper = AlphaInterdependencyHelper()
-    is_valid = True
+    is_valid = self._IsDuplicateCDMIds(entities)
     for entity_guid, current_entity in entities.items():
       if not alpha_interdep_helper.ValidateAndUpdateState(
           current_entity.operation

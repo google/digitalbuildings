@@ -17,7 +17,7 @@
 ########################
 
 PMP_SS:
-  id: "13517139353352011776"
+  guid: "82eccf0f-5f19-470d-a27b-cd00e8cbe25e"
   description: "Typical pump."
   is_canonical: true
   implements:
@@ -25,7 +25,7 @@ PMP_SS:
   - SS
 
 PMP_SS_VSC:
-  id: "6133109532278128640"
+  guid: "4e1f807a-1811-4cad-9a6f-9776320a7de0"
   description: "Typical variable speed pump."
   is_canonical: true
   implements:
@@ -34,7 +34,7 @@ PMP_SS_VSC:
   - VSC
 
 PMP_DRPM:
-  id: "16761559572895760384"
+  guid: "d88d7308-a688-4b7a-9b94-ed9bd0b04266"
   description: "Pump implemented with drain pump monitoring ."
   is_canonical: true
   implements:
@@ -42,7 +42,7 @@ PMP_DRPM:
   - DRPM
 
 PMP_SS_VSC_WDPM:
-  id: "11113967574847586304"
+  guid: "6a2cba7a-5bfc-4cc6-9f82-52389d266159"
   description: "Variable speed pump with differential pressure monitoring."
   is_canonical: true
   implements:
@@ -52,7 +52,7 @@ PMP_SS_VSC_WDPM:
   - WDPM
 
 PMP_SS_VSC_WDPC:
-  id: "8104273296624713728"
+  guid: "8ea16672-10b9-4ca4-bf5b-bc6c1e10b065"
   description: "Pump with variable speed control and differential pressure control"
   is_canonical: true
   implements:
@@ -62,7 +62,7 @@ PMP_SS_VSC_WDPC:
   - WDPC
 
 PMP_SS_VSFC:
-  id: "3837499677784145920"
+  guid: "08683c47-596a-4e52-8545-5079201b55df"
   description: "PMP device with pump frequency control"
   is_canonical: true
   implements:
@@ -77,7 +77,7 @@ PMP_SS_VSFC:
   - chilled_water_differential_pressure_setpoint
 
 PMP_SS_CHWISOVPM_VSFC:
-  id: "2090103022364393472"
+  guid: "a3bbc05a-18ed-4b2e-a44c-ef65666ce160"
   description: "PMP device with chilled water valve and pump frequency control"
   is_canonical: true
   implements:
@@ -93,7 +93,7 @@ PMP_SS_CHWISOVPM_VSFC:
   - chilled_water_differential_pressure_setpoint
 
 PMP_SS_VSC_WDPC_WFRC:
-  id: "14706550350349860864"
+  guid: "626cf14c-537c-4dbf-85e1-1ed6d68d5aa3"
   description: "Pump with variable speed control, differential pressure control and flow control."
   is_canonical: true
   implements:
@@ -104,7 +104,7 @@ PMP_SS_VSC_WDPC_WFRC:
   - WFRC
 
 PMP_SS_VSC_SWTC:
-  id: "6293826246421774336"
+  guid: "51cb0ba6-9436-4fa9-a72f-a70d4fdbf711"
   description: "Pump with variable speed control and supply water temperature control"
   is_canonical: true
   implements:
@@ -114,7 +114,7 @@ PMP_SS_VSC_SWTC:
   - SWTC
 
 PMP_SS_CWCS_VSFC:
-  id: "15564028682526785536"
+  guid: "41b12d31-c1d7-4c9e-8118-ca52a3f90752"
   description: "PMP device with condensing water valve and pump frequency control"
   is_canonical: true
   implements:
@@ -128,7 +128,7 @@ PMP_SS_CWCS_VSFC:
   - lost_power_alarm
 
 PMP_SS_RMM:
-  id: "1864214955507580928"
+  guid: "a2b4b139-ef0a-48fc-91b6-317b51cf344f"
   description: "Pump with pressure switch and failed alarm monitoring"
   is_canonical: true
   implements:
@@ -140,12 +140,22 @@ PMP_SS_RMM:
   - low_pressure_status
   - high_pressure_status
 
+PMP_SS_WDPM:
+  guid: "ef2e7d16-8514-4b16-a1c0-03ed019c52ea"
+  description: "Pump with pressure alarms and status monitoring"
+  is_canonical: true
+  implements:
+  - PMP
+  - SS
+  - WDPM
+
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
 
 PMP_SS_VSC_NONCANONICAL_1:
-  id: "9598937308795502592"
+  guid: "026231f9-fae5-4250-8d4b-c8b33948dc5d"
   description: "Non-standard variable speed pump."
   implements:
   - PMP_SS_VSC
@@ -154,7 +164,7 @@ PMP_SS_VSC_NONCANONICAL_1:
   - speed_frequency_command
 
 PMP_SS_VSC_NONCANONICAL_2:
-  id: "8905453334924623872"
+  guid: "f9ffc542-75a0-4159-9b19-2b72fd1b4396"
   description: "One-off pump that performs chilled water blending."
   implements:
   - PMP_SS_VSC

@@ -19,7 +19,7 @@
 ##############################################################
 
 VAV:
-  id: "6599610325710929920"
+  guid: "c724ab62-5f19-4f70-852e-28616ace5928"
   description: "Tag for terminal units with variable volume control. A VAV is an air distribution terminal, 
     which is not responsible for its own primary airflow (i.e. it is served by some upstream unit, such as
     an AHU)."
@@ -28,17 +28,22 @@ VAV:
   - EQUIPMENT
   opt_uses:
   - zone_use_label # Needed until the zones can are joined to assets with connections.
+  - failed_communication_alarm
 
 FAN:
-  id: "13300966571238227968"
+  guid: "5c59fe04-9af7-48d7-86c2-5410b4c01a3e"
   description: "Tag for stand-alone fans. This is distinct from integral fans (i.e. fans contained within another
     device, such as an AHU). They transfer air from one space to another, or to ambient. They are unidirectional."
   is_abstract: true
+  opt_uses:
+  - failed_communication_alarm
+  - failed_exhaust_air_temperature_alarm
+  - failed_smoke_detection_alarm
   implements:
   - EQUIPMENT
 
 FCU:
-  id: "16867817476115660800"
+  guid: "649fb29c-d8cc-49cd-a316-0e78259a8b76"
   description: "Tag for fan-coil units. Fan coil units are distinguished from other air-side devices by the fact
     that they solely handle recirculated space air (they do not directly control their outside air, which
     separates them from AHUs)."
@@ -47,11 +52,12 @@ FCU:
   - return_air_temperature_sensor
   - return_air_relative_humidity_sensor
   - discharge_air_temperature_sensor
+  - failed_communication_alarm
   implements:
   - EQUIPMENT
 
 AHU:
-  id: "16759731085058768896"
+  guid: "02160ac8-659b-489c-9ba4-3a6523cbd6a1"
   description: "Tag for air-handling units. AHUs are devices which handle air distribution (either to a single
     space or to multiple via ductwork), and they have the capability of handling both return and outside air,
     in some combination (0% OA, 100% RA; 50% OA, 50% RA; 100% OA, 0% RA, etc.); that is, they can recirculate
@@ -63,61 +69,74 @@ AHU:
   - EQUIPMENT
   opt_uses:
   - outside_air_flowrate_requirement # Included at AHU because, regardless of avaiable data for OAD, it will have ventilation requirements.
+  - failed_communication_alarm
 
 HX:
-  id: "9849494018533097472"
+  guid: "9aa0dd1a-851c-4d4e-90da-6804c4f8b9f9"
   description: "Tag for heat exchangers. Heat exchangers facilitate heat transfer between two media (water, 
     air, refrigerant, etc.). "
   is_abstract: true
+  opt_uses:
+  - failed_communication_alarm
   implements:
   - EQUIPMENT
 
 PMP:
-  id: "13409052962295119872"
+  guid: "0984adbd-943c-4bf8-9b4e-af51c24c2736"
   description: "Tag for pumps. Pumps move liquid (water, glycol, liquid CO2, etc.) from one part of a system
     to another. "
   is_abstract: true
+  opt_uses:
+  - failed_communication_alarm
   implements:
   - EQUIPMENT
 
 FRZ:
-  id: "3681135930174865408"
+  guid: "98018a25-3cbc-4cc6-8405-527215394a2c"
   description: "Tag for Freezers. "
   is_abstract: true
+  opt_uses:
+  - failed_communication_alarm
   implements:
   - EQUIPMENT
 
 MAU:
-  id: "16471500708907057152"
+  guid: "9a8057d1-9ffd-4ef3-8e3e-7ba2b85ae523"
   description: "Tag for make-up air units. MAUs serve air to a space or group of spaces, but are not responsible
     for the exhaust of air from that space; this distinguishes it from a DOAS system, which supplies air and
     also exhausts it. "
   is_abstract: true
+  opt_uses:
+  - failed_communication_alarm
   implements:
   - EQUIPMENT
 
 UH:
-  id: "15102406422186426368"
+  guid: "0b375caf-466d-4078-8e7a-e1772f11f0cf"
   description: "Tag for unit heaters. These are stand-alone heaters, which can operate independently of an external 
     device (they are not integral to an AHU, for instance). "
   is_abstract: true
+  opt_uses:
+  - failed_communication_alarm
   implements:
   - EQUIPMENT
 
 IGNORE:
-  id: "15822982362565705728"
+  guid: "6c0308e6-7a45-42f3-bbca-6b5b2f9f9c7c"
   description: "Tag to ignore things. To be applied to devices which should not be onboarded."
   is_abstract: false
   implements:
   - NO_ANALYSIS
 
 WEATHER:
-  id: "11522044718426882048"
+  guid: "328ecf20-f894-4524-a6ae-8fd83a35a95b"
   description: "Tag for weather stations."
   is_abstract: true
+  opt_uses:
+  - failed_communication_alarm
 
 BLR:
-  id: "3248932202947280896"
+  guid: "927089b8-e4a1-4d8f-aa61-6858130a0d8d"
   description: "Tag for boilers. Boilers are devices which heat water to useful temperatures for 
     comfort or process heating. "
   is_abstract: true
@@ -128,9 +147,10 @@ BLR:
   - heating_thermal_power_capacity
   - efficiency_percentage_specification
   - flowrate_requirement # All boilers have it, so no need to associate to subtypes. If there are subtypes that could use it, should also be included there.
+  - failed_communication_alarm
 
 CH:
-  id: "9950288448474578944"
+  guid: "59c30711-5817-45d3-bad6-a5857f47c636"
   description: "Tag for chillers. Chillers are packaged mechanical devices which utilize the refrigeration
     cycle to extract heat from one flowing liquid (usually water or glycol mixture) and release it into 
     another flowing media (either air or water). "
@@ -142,20 +162,23 @@ CH:
   - power_capacity
   - efficiency_percentage_specification
   - flowrate_requirement # All chillers have it, so no need to associate to subtypes. If there are subtypes that could use it, should also be included there.
+  - failed_communication_alarm
 
 CU:
-  id: "9692416687877390336"
+  guid: "88d8e4ff-4c97-48c4-aed8-d1a890b28840"
   description: "Compartment unit, a device like an AHU which draws air from a mixed air plenum (usually
     a mechanical room) and supplies downstream VAVs or serves a zone directly. They are not responsible
     directly for the amount of outside air they recieve, but are indirectly responsible for ventilation
     (therefore neither an AHU, which has control of outside air directly, nor a FCU which recirculates
     space air more or less exclusively)."
   is_abstract: true
+  opt_uses:
+  - failed_communication_alarm
   implements:
   - EQUIPMENT
 
 HWS:
-  id: "8797366943867731968"
+  guid: "548fd420-92cb-47e1-926e-d5e2500bd3c7"
   description: "Tag for heating water systems. This tag represents the system itself, and fields are mapped
     to it when they don't belong to another device within that system (e.g. supply_water_temperature_sensor 
     for the supply header belongs to the system, not to any single device)."
@@ -165,9 +188,10 @@ HWS:
   - differential_pressure_specification
   - flowrate_requirement
   - heating_request_count
+  - failed_communication_alarm
 
 CHWS:
-  id: "5338602430047191040"
+  guid: "40d1831b-1031-4c1e-a0e1-1c38fc973b91"
   description: "Tag for chilled water systems."
   is_abstract: true
   opt_uses:
@@ -175,9 +199,10 @@ CHWS:
   - differential_pressure_specification
   - flowrate_requirement
   - cooling_request_count
+  - failed_communication_alarm
 
 CDWS:
-  id: "6383437543597146112"
+  guid: "d659edeb-607d-4c03-9f17-bb5159c0c48d"
   description: "Tag for condensing water systems. Distinct from chilled water systems in that they provide a 
     water-side condensing source for other devices (such as water-cooled chillers, water-condensing heat pumps,
     etc.). "
@@ -185,26 +210,30 @@ CDWS:
   opt_uses:
   - thermal_power_capacity
   - differential_pressure_specification
+  - failed_communication_alarm
 
 CT:
-  id: "14561974466901966848"
+  guid: "d3872cf4-a6c7-4baf-9115-4cbd92d62e64"
   description: "Tag for cooling tower. Cooling towers are devices which cool incoming fluid through the 
     evaporation of air. The tag applies to open- and closed-loop cooling towers. They are distinct from
     dry coolers, which utilize sensible cooling only. "
   is_abstract: true
+  opt_uses:
+  - failed_communication_alarm
   implements:
   - EQUIPMENT
 
 ZONE:
-  id: "1483521149018046464"
+  guid: "335e3ccc-35d7-43bf-9e2c-d8c68ef5c75c"
   description: "Tag for sensors attached to a zone. The sensors are not directly associated with any particular
     device, but can be referenced by devices (VAV zone sensors would not be in this general type)."
   is_abstract: true
   opt_uses:
   - zone_use_label
+  - failed_communication_alarm
 
 DC:  # Proposed in v2.3 naming standard
-  id: "7236632178472255488"
+  guid: "cb5301aa-fa83-4e0b-9d28-fb6f4f7e8acc"
   description: "Tag for dry coolers (sensible, closed-loop coolers). Distinct from cooling towers, which 
     utilize latent cooling. "
   is_abstract: true
@@ -212,170 +241,206 @@ DC:  # Proposed in v2.3 naming standard
   - EQUIPMENT
   opt_uses:
   - cooling_percentage_command
+  - failed_communication_alarm
 
 SDC:
-  id: "4852143301546999808"
+  guid: "25506deb-aa79-4eb1-9f48-173091472765"
   description: "Tag for automated window shades."
   is_abstract: true
+  opt_uses:
+  - failed_communication_alarm
   implements:
   - EQUIPMENT
 
 DMP:
-  id: "2708579412500021248"
+  guid: "b12196a9-bffd-40f3-ab47-7a681a8db7a6"
   description: "Tag for general, stand-alone dampers. Dampers are devices which control the flow of air from
     one space to another (or to outside). "
   is_abstract: true
+  opt_uses:
+  - failed_communication_alarm
   implements:
   - EQUIPMENT
 
 DHWT:  # Proposed in v2.3 naming standard
-  id: "1614204703048990720"
+  guid: "e730ede5-4b13-488f-9f10-affd7ac09dbd"
   description: "Tag for general domestic hot water tanks."
   is_abstract: true
+  opt_uses:
+  - failed_communication_alarm
   implements:
   - EQUIPMENT
 
 DFR:  # Proposed in v2.3 naming standard
-  id: "283074353812209664"
+  guid: "3521e6a8-0cac-423a-b03b-22db2c4fb1e6"
   description: "Tag for duct furnaces. Duct furnaces provide heating air to spaces, usually through dual duct
     VAV systems (i.e. they serve the 'hot deck'). They provide heating only. "
   is_abstract: true
+  opt_uses:
+  - failed_communication_alarm
   implements:
   - EQUIPMENT
 
 DH:
-  id: "1730418684058402816"
+  guid: "4dfacbae-a63b-4ce0-99d4-17974ebd2648"
   description: "Tag for duct heater. Similar to a unit heater, but within a supply duct. "
   is_abstract: true
+  opt_uses:
+  - failed_communication_alarm
   implements:
   - EQUIPMENT
 
 HUM:
-  id: "1122432734363385856"
+  guid: "258519e2-fa66-41bc-a68d-f4ed50b5510b"
   description: "Tag for humidifier. Provides humidification to air, as its primary function. "
   is_abstract: true
+  opt_uses:
+  - failed_communication_alarm
   implements:
   - EQUIPMENT
 
 VLV:
-  id: "6847830573239500800"
+  guid: "3b576a44-4ab8-4e9b-ad8f-65f1b9f08238"
   description: "Tag for valves. Valves are devices which control the flow of water. "
   is_abstract: true
+  opt_uses:
+  - failed_communication_alarm
   implements:
   - EQUIPMENT
 
 
 RSR:
-  id: "16423609280936017920"
+  guid: "95d5ac12-326d-45d3-94f2-0fac854af027"
   description: "A generic distribution riser."
   is_abstract: true
 
 RARSR:
-  id: "12340533268771241984"
+  guid: "e8988eed-dab9-4da7-9a6e-0d3c6e75e69b"
   description: "A return air riser."
   is_abstract: true
   implements:
   - RSR
 
 FARSR:
-  id: "4378169127580205056"
+  guid: "a651f03e-0163-45fe-bc68-b243ec9dcc5f"
   description: "A fresh air (ventilation) riser."
   is_abstract: true
   implements:
   - RSR
 
 CHWRSR:
-  id: "16465830527442616320"
+  guid: "b5fc5daa-3e22-443a-a206-7b58a20e6cc0"
   description: "A chilled water distribution riser."
   is_abstract: true
   implements:
   - RSR
 
 HWSRSR:
-  id: "15252673377819688960"
+  guid: "118edf5a-1e16-41ee-af5c-a4000be57aba"
   description: "A heating water distribution riser."
   is_abstract: true
   implements:
   - RSR
 
 ADY:
-  id: "378735163963604992"
+  guid: "89bed1b6-9963-4883-b913-109953392f27"
   description: "Air dryer."
   is_abstract: true
+  opt_uses:
+  - failed_communication_alarm
   implements:
   - EQUIPMENT
 
 AION:
-  id: "3358917450585341952"
+  guid: "d533add1-77ce-4644-a1df-2818c742da51"
   description: "Air ionizer."
   is_abstract: true
+  opt_uses:
+  - failed_communication_alarm
   implements:
   - EQUIPMENT
 
 CMP:
-  id: "6125328288488357888"
+  guid: "bca0b49e-48ec-46b0-ad10-5f7ba935d3b5"
   description: "Air compressor."
   is_abstract: true
+  opt_uses:
+  - failed_communication_alarm
   implements:
   - EQUIPMENT
 
 # New General Types for CH ZRH eurd
 RP:
-  id: "8076723933279158272"
+  guid: "9c59bbe5-c58a-4f5f-afa3-a4d027eb0bb7"
   description: "Radiant panel, consisting of a coil/panel with no fan providing either heating or cooling via primarily radiant heat transfer."
   is_abstract: true
+  opt_uses:
+  - failed_communication_alarm
   implements:
   - EQUIPMENT
 
 CO:
-  id: "12084927601638899712"
+  guid: "1462ba79-c977-4b29-9463-78e72777d681"
   description: "Tag for change over equipment which is providing either hot or chilled water for radiant panels in a zone "
   is_abstract: true
+  opt_uses:
+  - failed_communication_alarm
   implements:
   - EQUIPMENT
 
 DWST:
-  id: "17610844344422498304"
+  guid: "60b32fb4-e4c7-46ec-9ff3-0a5456657aef"
   description: "Domestic water system "
   is_abstract: true
+  opt_uses:
+  - failed_communication_alarm
   implements:
   - EQUIPMENT
 
 LANDLORD:
-  id: "16264268055838720000"
+  guid: "254a4e0e-c8b1-4002-b4fd-f63fac89fe72"
   description: "Equipment base on landlord's side"
   is_abstract: true
+  opt_uses:
+  - failed_communication_alarm
   implements:
   - EQUIPMENT
 
 DOAS:
-  id: "12427517832667856896"
+  guid: "7d0a3903-7fda-4d27-b954-7b54d1d01abc"
   description: "Tag for dedicated outdoor air system. DOASs are devices which deliver outdoor air for ventilation 
     to a space or group of spaces, and are responsible for the exhaust of air from that space, but does not recirculate air;
     this distinguishes it from AHUs, which have the capability to recirculate the air as well."
   is_abstract: true
+  opt_uses:
+  - failed_communication_alarm
   implements:
   - EQUIPMENT
 
 TST:
-  id: "17952396636474834944"
+  guid: "f512be0b-07c4-4829-b89f-6922dc9316ba"
   description: "Tag for thermal storage tanks."
   is_abstract: true
+  opt_uses:
+  - failed_communication_alarm
   implements:
   - EQUIPMENT
 
 GTWS:
-  id: "15813186813473849344"
+  guid: "c48b040d-1b7e-4f58-b722-287b6dcbe36f"
   description: "Tag for geothermal water systems."
   is_abstract: true
   opt_uses:
   - thermal_power_capacity
   - differential_pressure_specification
   - flowrate_requirement
+  - failed_communication_alarm
 
 CRREF:
-  id: "4809287636831174656"
+  guid: "800433de-f907-4213-bfde-a8f38d992381"
   description: "Tag for coldroom refigeration."
   is_abstract: true
+  opt_uses:
+  - failed_communication_alarm
   implements:
   - EQUIPMENT
