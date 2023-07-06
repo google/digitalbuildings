@@ -141,7 +141,7 @@ PMP_SS_RMM:
   - high_pressure_status
 
 PMP_SS_WDPM:
-  guid: "12948c15-169a-4965-81dd-1097cdaca393"
+  guid: "ef2e7d16-8514-4b16-a1c0-03ed019c52ea"
   description: "Pump with pressure alarms and status monitoring"
   is_canonical: true
   implements:
