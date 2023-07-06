@@ -31,3 +31,11 @@ FD_SD:
   uses:
   - damper_percentage_sensor
   - damper_percentage_command
+
+FD_MDC:
+  guid: "a731be05-13de-43a5-9edc-9fd89c6cfffc"
+  description: "Fire dampers with motorized binary dampers (open/closed)"
+  is_canonical: true
+  implements:
+  - FD
+  - MDC

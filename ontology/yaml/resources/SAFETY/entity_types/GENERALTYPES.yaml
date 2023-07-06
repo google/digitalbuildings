@@ -117,10 +117,3 @@ EHT:
   is_abstract: true
   implements:
   - EQUIPMENT
-
-MFSD:
-  guid: "c7f22ce3-2c92-42b7-8a53-a788b6f002e8"
-  description: "Motorized fire smoke damper"
-  is_abstract: true
-  implements:
-  - EQUIPMENT

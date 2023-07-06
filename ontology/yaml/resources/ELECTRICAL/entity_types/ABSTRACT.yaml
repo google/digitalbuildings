@@ -186,10 +186,9 @@ SRC2:
 
 BBM:
   guid: "6ea6a214-a12f-4f8c-b97b-512538566611"
-  description: "For UPS with Load Bypass and Battery status."
+  description: "For UPS with Battery status and alarm."
   is_abstract: true
   uses:
-  - bypass_status
   - battery_status
   opt_uses:
   - low_battery_charge_alarm
