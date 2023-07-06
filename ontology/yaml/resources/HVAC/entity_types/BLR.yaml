@@ -28,7 +28,7 @@ BLR_SS_SWTC_CPC:
 
 BLR_SS_SWTC:
   guid: "80dacf95-bd8f-4682-859a-f71cd8b80012"
-  description: "Simple boiler with start/stop and supply temperature control"
+  description: "Simple boiler with start/stop and supply temperature control."
   is_canonical: true
   implements:
   - BLR
@@ -37,7 +37,7 @@ BLR_SS_SWTC:
 
 BLR_SS_SWTC_SWISOVPM:
   guid: "51888830-2bc3-4c50-984f-f37e36aff2c2"
-  description: "Simple boiler with supply control and supply isolation."
+  description: "Simple boiler with supply temperature control and an isolation valve on the supply side."
   is_canonical: true
   implements:
   - BLR
@@ -47,7 +47,7 @@ BLR_SS_SWTC_SWISOVPM:
 
 BLR_SS_SWTC_RWISOVM:
   guid: "7e0edd0a-0e35-4fdd-b683-5ed34d6eb7d7"
-  description: "Simple boiler with supply control and return isolation."
+  description: "Simple boiler with supply temperature control and binary return isolation."
   is_canonical: true
   implements:
   - BLR
@@ -57,7 +57,7 @@ BLR_SS_SWTC_RWISOVM:
 
 BLR_SS_SWTC_SWISOVM:
   guid: "303c861e-7685-440e-b4ab-800a0f654e71"
-  description: "Simple boiler with supply control and supply isolation."
+  description: "Simple boiler with supply control and binary supply isolation."
   is_canonical: true
   implements:
   - BLR
@@ -67,7 +67,7 @@ BLR_SS_SWTC_SWISOVM:
 
 BLR_CPC_SS_SWTC_SWISOVM:
   guid: "98a97286-b59a-43f0-852e-25c7d736408f"
-  description: "Simple boiler with supply control, supply isolation, and circulation pump."
+  description: "Simple boiler with supply control, binary supply isolation, and an onboard circulation pump."
   is_canonical: true
   implements:
   - BLR
@@ -78,7 +78,7 @@ BLR_CPC_SS_SWTC_SWISOVM:
 
 BLR_SS_SWTC_HT2SWC:
   guid: "105211ef-439e-4699-b094-c4f5fb678bb0"
-  description: "Two-stage boiler with supply control and supply isolation."
+  description: "Two-stage boiler with supply temperature control."
   is_canonical: true
   implements:
   - BLR
@@ -118,7 +118,7 @@ BLR_SS_SWTC_HTSWC:
 
 BLR_SS_SWTC_RWISOVM_HT2SWC:
   guid: "79372ef8-3df7-4691-aafd-6be7909ea119"
-  description: "Two-stage boiler with supply control and return isolation."
+  description: "Two-stage boiler with supply control and binary return isolation."
   is_canonical: true
   implements:
   - BLR
@@ -130,7 +130,7 @@ BLR_SS_SWTC_RWISOVM_HT2SWC:
 BLR_SS_SWTC_RWISOVPM_RWISOVM:
   guid: "4d786107-a007-45d5-ad9a-ffe12bcc221f"
   description: "Boiler with supply control and two return isolation valves."
-  is_canonical: true # Maybe not... not very common to have two valves.
+  is_canonical: true  #Maybe not... not very common to have two valves.
   implements:
   - BLR
   - SS
@@ -140,7 +140,7 @@ BLR_SS_SWTC_RWISOVPM_RWISOVM:
 
 BLR_SS_SWTC_HTSWC_RWISOVM:
   guid: "a03a8441-8116-48fe-8fc1-48eba3ab39d0"
-  description: "Boiler with single stage heat and return isolation."
+  description: "Boiler with single-stage heat and binary return isolation."
   is_canonical: true
   implements:
   - BLR
@@ -151,7 +151,7 @@ BLR_SS_SWTC_HTSWC_RWISOVM:
 
 BLR_SS_SWTC_SWISOVM_HTSWC:
   guid: "6a98b287-c887-417d-ad9b-b787ab24452b"
-  description: "Boiler with single stage heat and supply isolation"
+  description: "Boiler with single-stage heater and binary supply isolation."
   is_canonical: true
   implements:
   - BLR
@@ -173,7 +173,7 @@ BLR_SS_SWTC_HTSWC_RWISOVPM:
 
 BLR_SS_SWTC_CPC_RWISOVM:
   guid: "e7e7cf52-d8ef-4949-bd28-d4dbc642e456"
-  description: "Simple boiler with onboard circulation pump and return water isolation valve monitoring."
+  description: "Simple boiler with onboard circulation pump and binary return water isolation valve monitoring."
   is_canonical: true
   implements:
   - BLR
@@ -184,7 +184,7 @@ BLR_SS_SWTC_CPC_RWISOVM:
 
 BLR_SS_SWTC_HT4SWC_RWISOVM_SWISOVM:
   guid: "e01c5d26-563a-44c3-af17-b3bc18f6e708"
-  description: "Four-stage boiler with supply and return isolation."
+  description: "Four-stage boiler with both supply and return isolation."
   is_canonical: true
   implements:
   - BLR
@@ -207,7 +207,7 @@ BLR_SS_SWTC_HTSWC_CPC:
 
 BLR_SS_SWTC_HTSWC_RWISOVM_SWISOVM:
   guid: "06bd735f-06d8-4f2d-9bec-7a3bc0ca1d1c"
-  description: "Single-stage boiler with supply and return isolation."
+  description: "Single-stage boiler with both supply and return isolation."
   is_canonical: true
   implements:
   - BLR
@@ -241,7 +241,7 @@ BLR_SS_SWTC_CPC_RWISOVPM:
 
 BLR_SS_SWTM_SWISOVM:
   guid: "5cf357ef-9451-48d3-97fa-821758645f53"
-  description: "Simple boiler with supply water temperature monitoring and supply water isolation valve ."
+  description: "Simple boiler with supply water temperature monitoring and supply water isolation valve."
   is_canonical: true
   implements:
   - BLR
@@ -253,7 +253,7 @@ BLR_SS_SWTM_SWISOVM:
 
 BLR_SS_SWTC_CPC_HT2SWC:
   guid: "b8c605e0-cae6-4252-9e0a-a0c74cf93d88"
-  description: "Two-stage boiler with circulation pump."
+  description: "Two-stage boiler with onboard circulation pump."
   is_canonical: true
   implements:
   - BLR
@@ -264,7 +264,7 @@ BLR_SS_SWTC_CPC_HT2SWC:
 
 BLR_SS_SWTC_WDPC:
   guid: "f9307528-e827-4f25-be91-4ef3caa19d94"
-  description: "Boiler with supply water temperature and pressure control"
+  description: "Boiler with supply water temperature control and differential pressure control."
   is_canonical: true
   implements:
   - BLR
@@ -274,7 +274,7 @@ BLR_SS_SWTC_WDPC:
   
 BLR_SS_RWTC_HTRWC:
   guid: "74aeaeeb-14b6-4592-ba27-e2845902d427"
-  description: "Single-stage boiler with return control."
+  description: "Single-stage boiler with return temperature control."
   is_canonical: true
   implements:
   - BLR
