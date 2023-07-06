@@ -3982,6 +3982,37 @@ AHU_SFSS_SFMSC_SFVSC_FDPM_CHWSC_RTM_RACO2C_SSPC2X_VOADM2X_SAIDC2X_RAIDC2X_SSPC:
   - RAIDC2X
   - SSPC
 
+AHU_CHWSC_ECON_EDBPC_RFSS_RFVSC_SFSS_SFVSC_SSPC:
+  guid: "6856f47f-655a-4412-a1d9-9cc842a65e1b"
+  description: "Multi-zone chilled water AHU with supply air static pressure control and building static pressure control."
+  is_canonical: true
+  implements:
+  - AHU
+  - CHWSC
+  - ECON
+  - EDBPC
+  - RFSS
+  - RFVSC
+  - SFSS
+  - SFVSC
+  - SSPC
+
+AHU_CHWSC_HWSC_ECON_EDBPC_RFSS2X_RFVSC2X_SFSS2X_SFVSC2X_SSPC:
+  guid: "4aaac7e3-e781-47ff-92a1-8a27d8cc868a"
+  description: "Multi-zone chilled water and heating water AHU with supply air static pressure control and building static pressure control."
+  is_canonical: true
+  implements:
+  - AHU
+  - CHWSC
+  - HWSC
+  - ECON
+  - EDBPC
+  - RFSS2X
+  - RFVSC2X
+  - SFSS2X
+  - SFVSC2X
+  - SSPC
+
 
 ###################################
 ### Existing Non-standard Types ###
@@ -4793,3 +4824,24 @@ AHU_BSPC_DX4SC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC_RHHC_NONCANONICAL_1:
   - heating_water_valve_percentage_command
   - min_zone_air_relative_humidity_sensor
   - min_zone_air_relative_humidity_setpoint
+
+AHU_CHWSC_EFSS_EFVSC_FDPM3X_HTWHLSTC_HWSC_RCO2M_RSPC_SFM_SFSS_SFVSC_SSPC_VOADM_VMADC:
+  guid: "f53a0828-f284-490f-aa56-e150de3d0ddf"
+  description: "Complex multi zone AHU with heat recovery wheel and recirculated air control."
+  is_canonical: true
+  implements:
+  - AHU
+  - CHWSC
+  - EFSS
+  - EFVSC
+  - FDPM3X
+  - HTWHLSTC
+  - HWSC
+  - RCO2M
+  - RSPC
+  - SFM
+  - SFSS
+  - SFVSC
+  - SSPC
+  - VOADM
+  - VMADC

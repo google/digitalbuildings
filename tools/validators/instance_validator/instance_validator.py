@@ -92,15 +92,13 @@ def _ParseArgs() -> argparse.ArgumentParser:
       required=False,
       default=None,
       help='Absolute path to report output directory',
-      metavar='report-directory',
-  )
+      metavar='report-directory',)
 
   parser.add_argument(
       '--udmi',
       dest='udmi',
       required=False,
-      default=True,
-      action='store_true',
+      default='True',
       help='Parse messages as UDMI')
 
   return parser
@@ -108,6 +106,9 @@ def _ParseArgs() -> argparse.ArgumentParser:
 
 if __name__ == '__main__':
   args = _ParseArgs().parse_args(sys.argv[1:])
+  is_udmi = True
+  if args.udmi.lower() == 'false':
+    is_udmi = False
   handler.RunValidation(
       filenames=args.filenames,
       modified_types_filepath=args.modified_types_filepath,
@@ -115,5 +116,5 @@ if __name__ == '__main__':
       service_account=args.service_account,
       report_directory=args.report_directory,
       timeout=int(args.timeout),
-      is_udmi=args.udmi,
+      is_udmi=is_udmi,
   )

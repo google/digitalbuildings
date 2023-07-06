@@ -12,23 +12,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-########################
-### Canonical Types  ###
-########################
-
-WEATHER_OA:
-  guid: "51b4f69c-e48a-4f0a-b47e-ecbbd11435d5"
-  description: "Typical weather station."
-  is_canonical: true
+FM_STANDARD:
+  guid: "05f00511-9d04-4c98-ac9f-6aba9f0c9fe7"
+  description: "Standard flow meter typically for liquid."
   implements:
-  - WEATHER
-  - OA
-
-WEATHER_OA_OAQM:
-  guid: "9980bb62-f2e0-4893-8649-e4587e6b096c"
-  description: "Outside temperature, humidity and air quality monitoring."
+  - FM
   is_canonical: true
-  implements:
-    - WEATHER
-    - OA
-    - OAQM
+  uses:
+  - volume_accumulator
+  - flowrate_sensor
+  opt_uses:
+  - failed_alarm
+

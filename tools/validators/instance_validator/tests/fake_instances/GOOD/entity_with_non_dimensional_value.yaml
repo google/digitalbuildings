@@ -1,4 +1,4 @@
-# Copyright 2020 Google LLC
+# Copyright 2023 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the License);
 # you may not use this file except in compliance with the License.
@@ -12,23 +12,22 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-########################
-### Canonical Types  ###
-########################
+# Good entity with non dimensional field
 
-WEATHER_OA:
-  guid: "51b4f69c-e48a-4f0a-b47e-ecbbd11435d5"
-  description: "Typical weather station."
-  is_canonical: true
-  implements:
-  - WEATHER
-  - OA
+CONFIG_METADATA:
+  operation: INITIALIZE
 
-WEATHER_OA_OAQM:
-  guid: "9980bb62-f2e0-4893-8649-e4587e6b096c"
-  description: "Outside temperature, humidity and air quality monitoring."
-  is_canonical: true
-  implements:
-    - WEATHER
-    - OA
-    - OAQM
+SDC_EXT-19-GUID:
+  type: HVAC/SDC_EXT
+  code: SDC_EXT-19
+  cloud_device_id: "1234567890123456"
+  translation:
+    shade_extent_percentage_command:
+      present_value: "points.shade_extent_percentage_command.present_value"
+      units:
+        key: "pointset.points.shade_extent_percentage_command.units"
+        values:
+          percent: "%"
+    model_label:
+      present_value: "this is a non-dimensional field"
+    

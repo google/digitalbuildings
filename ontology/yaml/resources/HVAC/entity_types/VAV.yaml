@@ -206,6 +206,16 @@ VAV_SD_DSP_DFSS:
   - DSP
   - DFSS
 
+VAV_SD_CSP_DFSS:
+  guid: "a630f2a4-0ecd-4ad5-8f07-49c52e09d9a6"
+  description: "Fan powered VAV for cooling only applications (e.g. IDF or computer rooms)."
+  is_canonical: true
+  implements:
+  - VAV
+  - SD
+  - CSP
+  - DFSS
+
 VAV_SD_DSP_DFSS_DFVSC:
   guid: "7986c34f-66dc-4c8a-817d-79ddf97eebd0"
   description: "Fan powered VAV with variable speed control."
@@ -414,10 +424,20 @@ VAV_DSP_ED:
 VAV_CO2C_PDSCV:
   guid: "28f8cd8d-086e-4a6d-8283-7a54a462adab"
   description: "Discharge control VAV with CO2 regulation and damper percentage monitoring"
+
   is_canonical: true
   implements:
   - VAV
   - CO2C
+  - PDSCV
+
+VAV_CO2CDSP_PDSCV:
+  guid: "ff31291b-9158-4204-8a08-aa132998fec2"
+  description: "Supply control VAV with dual setpoint CO2 regulation and damper percentage monitoring"
+  is_canonical: true
+  implements:
+  - VAV
+  - CO2CDSP
   - PDSCV
 
 VAV_RD:
