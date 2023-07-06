@@ -18,7 +18,7 @@
 
 VLV_CHWVM_RTM_DTM:
   guid: "b2223a12-07e8-455b-8ae4-eed3942df5a8"
-  description: "Chilled water valve with DT monitoring."
+  description: "Chilled water valve with discharge and return temperature monitoring."
   is_canonical: true
   implements:
   - VLV
