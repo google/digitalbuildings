@@ -75,6 +75,7 @@ UPS_PWM:
   - UPS
   - PWM
 
+<<<<<<< HEAD
 UPS_PPWM_OM_SBATM:
   description: "UPS with battery and power monitoring."
   is_canonical: true
@@ -83,3 +84,13 @@ UPS_PPWM_OM_SBATM:
   - PPWM
   - OM
   - SBATM
+=======
+UPS_SS_UPSBM:
+  guid: "13ee6bee-a1d7-4158-845e-a59dc9c117fe"
+  description: "Basic UPS with battery monitoring"
+  is_canonical: true
+  implements:
+  - UPS
+  - SS
+  - UPSBM
+>>>>>>> 931bb6d878b4fa05b05d993afd8091af2011ff73

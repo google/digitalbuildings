@@ -37,7 +37,7 @@ class StatesTest(absltest.TestCase):
 
     self.assertEqual(test_state.reporting_entity_guid,
                      _TEST_STATE_DICT[REPORTING_ENTITY_GUID])
-    self.assertEqual(test_state.standard_field_name,
+    self.assertEqual(test_state.std_field_name,
                      _TEST_STATE_DICT[REPORTING_ENTITY_FIELD_NAME])
     self.assertEqual(test_state.standard_state,
                      _TEST_STATE_DICT[STANDARD_STATE])

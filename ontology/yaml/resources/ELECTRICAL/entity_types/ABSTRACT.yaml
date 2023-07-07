@@ -173,6 +173,7 @@ UPSBM:
   - inverter_status
   - inverter_mode
   - overload_alarm
+  - low_battery_charge_alarm
   uses:
   - remaining_charge_time_sensor
   - battery_voltage_sensor
