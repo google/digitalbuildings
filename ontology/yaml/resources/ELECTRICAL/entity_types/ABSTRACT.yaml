@@ -77,6 +77,9 @@ OM:
   - output_frequency_sensor
   - output_power_sensor
   - output_apparent_power_sensor
+  opt_uses:
+  - bypass_status
+
 
 PWM:
   guid: "fd2b653c-cb42-4158-8322-34421d1cf5bb"
