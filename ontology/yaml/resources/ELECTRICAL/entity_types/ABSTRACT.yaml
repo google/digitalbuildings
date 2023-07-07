@@ -62,6 +62,8 @@ IOBM:
   - lost_power_alarm
   - load_percentage_sensor
   - bypass_phase_status
+  - bypass_status
+
 
 OM:
   description: "output electrical monitoring, typically for a UPS."
@@ -76,7 +78,6 @@ OM:
   - output_frequency_sensor
   - output_power_sensor
   - output_apparent_power_sensor
-  - bypass_status
 
 PWM:
   guid: "fd2b653c-cb42-4158-8322-34421d1cf5bb"
@@ -142,6 +143,11 @@ BATM:
   - low_battery_charge_alarm
   - failed_inverter_alarm
   - line_frequency_sensor
+  - batterycapacity_sensor
+  - battery_status
+  - battery_test_status
+  - failed_battery_alarm
+
 
 BTEPM:
   guid: "dca372d2-3626-4f2d-90fc-30402aee90a6"
@@ -152,15 +158,6 @@ BTEPM:
   - battery_current_sensor
   - line_frequency_sensor  
 
-SBATM:
-  description: "Simple battery monitoringy typically used with UPS"
-  is_abstract: true
-  uses:
-  - battery_charge_percentage_sensor
-  - batterycapacity_sensor
-  - battery_status
-  - battery_test_status
-  - failed_battery_alarm
 
 UPSBM:
   guid: "71050ae3-45e3-49f2-b7e2-12059dd8f049"
