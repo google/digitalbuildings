@@ -314,7 +314,7 @@ CO2CDSP:
   opt_uses:
   - high_zone_air_co2_concentration_alarm
   
-  
+
 COC:
   guid: "dee7cc87-51cb-460e-8202-eff4001319db"
   description: "Carbon monoxide control."
@@ -1458,6 +1458,8 @@ CO2M:
   - zone_air_co2_concentration_sensor
   implements:
   - MONITORING
+  opt_uses:
+  - high_zone_air_co2_concentration_alarm
 
 VOCM:
   guid: "d1d343aa-9b3a-41aa-99fe-850c2ba355a8"
