@@ -3129,11 +3129,10 @@ literals:
     fixed_min: 0.0
     flexible_max: 2000.0
 
-<<<<<<< HEAD
-- batterycapacity_sensor:
+- electriccharge_sensor:
     fixed_min: 0.0
     flexible_max: 10000.0
-=======
+
 - purge_command:
   - ON
   - OFF 
@@ -3145,4 +3144,3 @@ literals:
 - low_discharge_air_temperature_alarm:
   - ACTIVE
   - INACTIVE
->>>>>>> 931bb6d878b4fa05b05d993afd8091af2011ff73
