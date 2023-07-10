@@ -351,15 +351,13 @@ control as its own entity type in the ontology.
 
 Entity types can have any of the following attributes:
 
-*   A name (e.g., VAV_SD_DSP).
-*   A description.
-*   An abstract flag.
+*   A name (e.g., VAV_SD_DSP), which is the visible identifier for the type but has no structural meaning.
+*   A UUID4 GUID, which is version-independent and is automatically set by the system.
+*   A description giving a short and human-readable summary of the type and its meaning.
+*   An abstract or canonical flag.
 *   An allow undefined fields flag.
-*   A canonical flag.
 *   A list of zero or more parent types.
-*   A UUID4 GUID.
-*   Required fields.
-*   Optional fields.
+*   Required and/or optional fields (if the fields are not already inherited by one of the parent types).
 *   Required Relationships (coming soon).
 
 A type has meaning beyond its defined fields. For instance, an entity of type X
@@ -367,7 +365,7 @@ and type Y, both having field A are distinguishable from each other, even though
 they have the exact same fields.
 
 #### GUIDs
-Each type has a GUID (UUID4) that is version independent.
+Each type has a GUID (UUID4) that is version-independent.
 
 #### Type names
 
