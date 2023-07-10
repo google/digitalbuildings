@@ -5,9 +5,9 @@ The Digital Buildings Ontology defines both
 and concrete constructions of these primitives to model physical spaces and
 equipment. The sections below outline the conceptual model of the ontology.
 
-*   For an explanation of the existing abstract model see [model](model.md)
+*   For an explanation of the existing abstract model see [model](model.md).
 *   For an explanation of the model configuration files see
-    [config](ontology_config.md)
+    [config](ontology_config.md).
 
 - [Digital Buildings Ontology](#digital-buildings-ontology)
   * [Overview](#overview)
