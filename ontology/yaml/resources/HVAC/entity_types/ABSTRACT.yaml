@@ -312,6 +312,9 @@ CO2CDSP:
   - high_limit_zone_air_co2_concentration_setpoint
   - low_limit_zone_air_co2_concentration_setpoint
   - zone_air_co2_concentration_sensor
+  opt_uses:
+  - high_zone_air_co2_concentration_alarm
+  
 
 COC:
   guid: "dee7cc87-51cb-460e-8202-eff4001319db"
