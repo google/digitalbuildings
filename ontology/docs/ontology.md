@@ -56,8 +56,8 @@ meaning.
 
 Relationships between entities are defined by directed, named **connections**.
 
-Other components of the model stack, such as translations and links are
-discussed in [onboarding](building_config.md)
+Other components of the model stack, such as translations and links, are
+discussed in [onboarding](building_config.md).
 
 ## Namespaces
 
