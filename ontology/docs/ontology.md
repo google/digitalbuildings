@@ -78,17 +78,16 @@ consists of a single or compounded word[^5] with a very specific human-readable
 definition. Subfields are largely analogous to the concept of a "tag" in Brick
 or Haystack, but with a few more constraints.
 
-Subfields
+Subfields have the following attributes:
 
-*   are typically globally defined.
-*   are uniquely named in their namespace (typically the global namespace).
-*   each have a unique and specific meaning.
-*   may be camelCased for readability, but are not case sensitive.
-*   should be used nearly universally across different namespaces and
+*   Subfields are typically globally defined (i.e., defined in the global namespace).
+*   Subfields must be unique within their namespace (typically the global namespace).
+*   Each subfield have a unique and specific meaning.
+*   Subfield names may be camelCased for readability, but are not case sensitive.
+*   Subfields should be used nearly universally across different namespaces and
     applications.
-*   cannot be referred to with a namespace identifier.
-*   are grouped into categories that dictate their grouping with each other.
-*   are combined into sets to form fields.
+*   Subfields cannot be referred to with a namespace identifier (e.g., HVAC/subfield is not a valid reference).
+*   Subfields are grouped into categories that dictate their grouping with each other when they are combined into sets to form fields.
 
 There is no explicit namespacing for subfields, so an individual field's
 namespace can only use one definition of a subfield.[^6] It is expected that the
@@ -461,7 +460,7 @@ NB: This functionality is still in development.
 
 The ontology supports named relationships between entities called connections.
 Each relationship has a specific definition that defines the how the two
-entities are connected. This may be a physical (ex: `FEEDS`) or logical (ex:
+entities are connected. This may be a physical (e.g., `FEEDS`) or logical (e.g.,
 `HAS_PART`). Connections are always global. Connections and their descriptions
 can be found here. **TODO add link**.
 
