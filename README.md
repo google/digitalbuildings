@@ -35,10 +35,10 @@ This project is structured as follows:
 
 ## Learning Modules
 The learning modules provide an overview of the following key concepts:
-* The main concepts and components of the Digital Buildings Ontology.
-* How to model entities and extend types in the ontology.
-* The components of building configuration files.
-* How to use the validation tools for ontology extensions and building configuration files.
+* The main concepts and components of the Digital Buildings Ontology
+* How to model entities and extend types in the ontology
+* The components of building configuration files
+* How to use the validation tools for ontology extensions and building configuration files
 
 ### Module 1: Digital Buildings Ontology (DBO)
 In this module, you’ll fully explore the core modeling and organizational concepts of the DBO. These are essential concepts for data modeling and creating building configuration files.
