@@ -55,7 +55,7 @@ In this module, you’ll fully explore the core modeling and organizational conc
 * [Lesson 9: Namespaces](./ontology/docs/learning/Module_1_Lesson_9_Namespaces.pdf)
 
 
-### Module 2: Module 2: Data Modeling with the DBO
+### Module 2: Data Modeling with the DBO
 
 In this module, you’ll deepen your understanding of the DBO and practice applying it. Through several hands-on activities, you'll walk through the recommended workflow for creating a building configuration file
 
