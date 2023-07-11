@@ -70,10 +70,10 @@ In this module, you’ll deepen your understanding of the DBO and practice apply
 
 
 ## Issues
-Please post issues in [Issues](https://github.com/google/digitalbuildings/issues) section.
+Please post issues in the [Issues](https://github.com/google/digitalbuildings/issues) section.
 
 ## Discussion
-Open mailing list to discuss Google's Digital Building effort. The discussion could include general questions, standards, APIs, and more. [google-digital-building-discuss@googlegroups.com](mailto:google-digital-building-discuss@googlegroups.com).
+Our team has created an open mailing list to discuss Google's Digital Building effort. The discussion could include general questions, standards, APIs, and more. Join the discussion here: [google-digital-building-discuss@googlegroups.com](mailto:google-digital-building-discuss@googlegroups.com).
 
 Members are expected to adhere to this code of conduct: [https://opensource.google.com/conduct](https://opensource.google.com/conduct).
 
