@@ -311,6 +311,9 @@ CO2CDSP:
   - high_limit_zone_air_co2_concentration_setpoint
   - low_limit_zone_air_co2_concentration_setpoint
   - zone_air_co2_concentration_sensor
+  opt_uses:
+  - high_zone_air_co2_concentration_alarm
+  
 
 COC:
   guid: "dee7cc87-51cb-460e-8202-eff4001319db"
@@ -1062,6 +1065,7 @@ SWTC:
   - low_return_water_temperature_alarm
   - high_return_water_temperature_alarm
   - run_command
+  - cooling_percentage_command
   - high_supply_water_temperature_alarm
   - low_supply_water_temperature_alarm
   uses:
