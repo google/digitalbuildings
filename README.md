@@ -34,11 +34,11 @@ This project is structured as follows:
 * [Internal Building Representation](./ibr/README.md) (IBR) File Format to represent data from different verticals such as spatial, assets.
 
 ## Learning Modules
-The learning modules provide an overview of:
-* The main concepts of the Digital Buildings Ontology.
-* How to model and extend types.
-* The Building configuration file concepts.
-* The validation tools for the Building Configuration file.
+The learning modules provide an overview of the following key concepts:
+* The main concepts and components of the Digital Buildings Ontology.
+* How to model entities and extend types in the ontology.
+* The main concepts of building configuration files.
+* The validation tools for ontology extensions and building configuration files.
 
 ### Module 1: Digital Buildings Ontology (DBO)
 In this module, you’ll fully explore the core modeling and organizational concepts of the DBO. These are essential concepts for data modeling and creating building configuration files.
@@ -73,13 +73,13 @@ In this module, you’ll deepen your understanding of the DBO and practice apply
 Please post issues in [Issues](https://github.com/google/digitalbuildings/issues) section.
 
 ## Discussion
-Open mailing list to discuss Google's Digital Building effort. The discussion could include general questions, standards, APIs, and more. [google-digital-building-discuss@googlegroups.com](mailto:google-digital-building-discuss@googlegroups.com)
+Open mailing list to discuss Google's Digital Building effort. The discussion could include general questions, standards, APIs, and more. [google-digital-building-discuss@googlegroups.com](mailto:google-digital-building-discuss@googlegroups.com).
 
-Members are expected to adhere to this code of conduct: [https://opensource.google.com/conduct](https://opensource.google.com/conduct)
+Members are expected to adhere to this code of conduct: [https://opensource.google.com/conduct](https://opensource.google.com/conduct).
 
 ## How to Contribute
 
-Please see the [contribution section](CONTRIBUTING.md)
+Please see the [contribution section](CONTRIBUTING.md).
 
 ## License
 ```
