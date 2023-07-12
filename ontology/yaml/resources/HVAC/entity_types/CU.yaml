@@ -17,7 +17,7 @@
 ########################
 
 CU_SFSS_SFVSC_CHWSC_HTSC_SSPC_SARC_MTM:
-  id: "14304102706304778240"
+  guid: "60fc5e98-246f-4ddd-8bd7-b14468680455"
   description: "Exhaust fan with start/stop, status, and flowrate control."
   is_canonical: true
   implements:
@@ -47,7 +47,7 @@ CU_DFSS_DFVSC_CHWZTC_HWZTC_RTM_ZHM:
 ###################################
 
 CU_NONCANONICAL_1:
-  id: "14637369078730194944"
+  guid: "15d1f104-7000-4849-9d09-d21c7961aa6c"
   description: "Non-standard type."
   is_canonical: false
   implements:

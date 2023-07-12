@@ -22,7 +22,7 @@
 ###################################
 
 HUM_NONCANONICAL_1:
-  id: "3434529765715869696"
+  guid: "e8cace88-fa54-4b09-9a35-3a1890f9c0de"
   description: "Non-standard type."
   implements:
   - HUM
@@ -32,7 +32,7 @@ HUM_NONCANONICAL_1:
   - humidification_percentage_sensor
 
 HUM_NONCANONICAL_2:
-  id: "5330809091629514752"
+  guid: "2ae8e262-a092-48bf-92ac-e5c0079e8db2"
   description: "Non-standard type."
   implements:
   - HUM

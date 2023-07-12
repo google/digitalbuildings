@@ -17,7 +17,7 @@
 ########################
 
 SDC_EXT:
-  id: "6117654796838109184"
+  guid: "9016b718-36aa-4f8b-a04d-c872d38a5ba4"
   description: "Simple shade with extension control only."
   is_canonical: true
   implements:
@@ -28,7 +28,7 @@ SDC_EXT:
   - shade_extent_percentage_command
 
 SDC_EXT_TLT:
-  id: "14075515338401775616"
+  guid: "957a1440-4d7f-4f32-809b-281b9e6031f3"
   description: "Simple shade with extension and tilt control."
   is_canonical: true
   implements:
@@ -37,7 +37,7 @@ SDC_EXT_TLT:
   - shade_tilt_percentage_command
 
 SDC_EXT_TLT_WEST:
-  id: "11859744321735491584"
+  guid: "772573ae-ae15-44e7-afde-a0da2371d1f5"
   description: "Directional shade (West)."
   is_canonical: true
   implements:
@@ -47,7 +47,7 @@ SDC_EXT_TLT_WEST:
   - west_wind_linearvelocity_sensor
 
 SDC_EXT_TLT_EAST:
-  id: "4640474119060586496"
+  guid: "f58363bf-c149-4456-9448-18bf6a8cc920"
   description: "Directional shade (East)."
   is_canonical: true
   implements:
@@ -57,7 +57,7 @@ SDC_EXT_TLT_EAST:
   - east_wind_linearvelocity_sensor
 
 SDC_EXT_TLT_EAST_SOUTHEAST:
-  id: "11521974349682704384"
+  guid: "dbe680e3-58b7-4242-9a69-31ee5f8aea54"
   description: "Multi-directional shade (East and Southeast)."
   is_canonical: true
   implements:
@@ -66,10 +66,21 @@ SDC_EXT_TLT_EAST_SOUTHEAST:
   - southeast_illuminance_sensor
 
 SDC_EXT_TLT_WEST_SOUTHWEST:
-  id: "15341026833692884992"
+  guid: "e049b34a-3c2c-45dc-aee6-9cc96ba9a62d"
   description: "Multi-directional shade (West and Southwest)."
   is_canonical: true
   implements:
   - SDC_EXT_TLT_WEST
   uses:
   - southwest_illuminance_sensor
+
+SDC_EXTOR:
+  guid: "0a95d724-4746-401d-a935-ae607d299a2a"
+  description: "Centralized controlled directional shade with zone conditioning"
+  is_canonical: true
+  implements:
+  - SDC
+  - EXTOR
+  opt_uses:
+  - shade_orientation_specification
+  - shade_mode

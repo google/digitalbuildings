@@ -13,7 +13,7 @@
 # limitations under the License.
 
 SWITCHBOARD:
-  id: "10455152302112112640"
+  guid: "c2479a54-aafe-4bc4-9886-dc9361ab6de6"
   description: "Standard panel for holding electrical switching gear."
   is_canonical: true
   implements:

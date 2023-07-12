@@ -15,79 +15,80 @@
 ### ABSTRACT TYPES
 
 SS:
-  id: "7172089746410176512"
+  guid: "71ad241a-b4d5-413a-b86a-6102117feb8e"
   description: "Basic combination of run command and status (start/stop); indicates the light is active or inactive."
   is_abstract: true
   implements:
   - /SS
 
 DC:
-  id: "9892263921341956096"
+  guid: "f00c5ccb-1549-4620-9a2f-ba13a73a5aaf"
   description: "Brightness dimming control."
   is_abstract: true
   uses:
   - brightness_percentage_command
 
 MS:
-  id: "3497152450475851776"
+  guid: "d5244d01-e5e9-4592-8c76-bf3a7e196a28"
   description: "Motion sensing monitoring."
   is_abstract: true
   uses:
   - motion_status
 
 OS:
-  id: "13152870051558195200"
+  guid: "42e7e1d7-2da6-4be6-9d21-2d3e93e5af1c"
   is_abstract: true
   description: "Occupancy status for a specific zone."
   uses:
   - zone_occupancy_status
 
 ROS: 
-  id: "3689690130638962688"
+  guid: "e0421347-a54f-4ac7-a0f0-8183df183839"
   is_abstract: true
   description: "Room occupancy status based on one or multiple zone occupancy statuses"
   uses:
   - room_occupancy_status
 
 SC:
-  id: "2776576510096572416"
+  guid: "84c2b591-fbd8-47e1-982b-45bef8211bdb"
   is_abstract: true
   description: "Scene control for a device or group of devices."
   uses:
   - scene_index_command
 
 BM:
-  id: "3713325232589635584"
+  guid: "b2da7457-74d3-4ec3-95a5-6f272e67a48d"
   description: " Battery power status monitoring."
   is_abstract: true
   uses:
   - battery_charge_status
 
 IM:
-  id: "16206249026264236032"
+  guid: "13d6cfcb-8aa0-487e-a8b3-9f0f02ad63c6"
   description: "Individual illuminance sensor monitoring, not used for control"
   is_abstract: true
   uses:
   - illuminance_sensor
 
 DPC:
-  id: "11907950210032074752"
+  guid: "af54bb0b-795c-4b3e-bb74-b3a77d61eae2"
   description: " Dimmer control."
   is_abstract: true
   uses:
   - dimmer_percentage_command
 
 SCZ:
-  id: "2665719349737684992"
+  guid: "e61e393c-370e-4917-bdb4-2554e0d47f0b"
   is_abstract: true
   description: "Scene control for a device and zone."
   opt_uses:
   - scene_command
+  - scene_index_command
   uses:
   - zone_scene_command
 
 IS:
-  id: "10736169881985613824"
+  guid: "5c46b19e-f238-4299-baac-4bd6db5c1cc7"
   is_abstract: true
   description: "Illuminance sensing."
   uses:
@@ -95,7 +96,7 @@ IS:
 
   #Abstract types for CH ZRH EURD
 VADC:
-  id: "10499660532804485120"
+  guid: "dd477164-19aa-4b48-ad31-115c086cfc1e"
   description: "Variable dimmer control for standard luminaires."
   is_abstract: true
   uses:
@@ -105,7 +106,7 @@ VADC:
   - high_scene_dimmer_percentage_setpoint
 
 VADCRGB:
-  id: "5505168546050605056"
+  guid: "338fb60b-963b-4489-bf94-6796bb19d367"
   description: "Variable dimmer control for RGB luminaires."
   is_abstract: true
   uses:
@@ -118,21 +119,21 @@ VADCRGB:
   - blue_scene_dimmer_percentage_command
 
 RC:
-  id: "13823317057803911168"
+  guid: "4bd721fa-c80b-469f-ba59-4e201464b527"
   description: "Relay or switch to switch a socket or power supply for lumiaires or other devices"
   is_abstract: true
   uses:
   - switch_command
 
 LSC:
-  id: "582734153334652928"
+  guid: "e0fa76a9-1bd3-4844-914e-ed66eef7fcfb"
   description: "Lighting switch control."
   is_abstract: true
   uses:
   - lighting_switch_status
 
 LC:
-  id: "10116854564477992960"
+  guid: "fa06c1cc-0240-4e55-8956-300ec6f3e095"
   description: "Luminance control."
   is_abstract: true
   uses:
@@ -140,21 +141,56 @@ LC:
   - illuminance_sensor
 
 SRC:
-  id: "12879738169079103488"
+  guid: "2483cfe4-4196-42a4-b18f-f67f258a0220"
   description: "Basic run scheduling "
   is_abstract: true
   uses:
   - schedule_run_command 
 
 PWM:
-  id: "13467457920450953216"
+  guid: "fc70bbb6-5000-4f83-9e79-862f60ececfe"
   description: "Basic power monitoring "
   is_abstract: true
   uses:
+  - power_sensor  
+
+CCIEM:
+  guid: "d2755279-6ccd-4d9e-838a-371ab23c022d"
+  description: "CIE light color monitoring"
+  is_abstract: true
+  uses: 
+  - lighting_color_cie_xvalue_sensor
+  - lighting_color_cie_yvalue_sensor
+
+CHSLM:
+  guid: "1ab195d7-4035-424c-b2d9-282ec0a9cc2a"
+  description: "HSL light color monitoring"
+  is_abstract: true
+  uses: 
+  - lighting_color_hsl_saturation_percentage_sensor
+  - lighting_color_hsl_hue_angle_sensor
+
+OM:
+  guid: "54221319-0bab-4aa9-aea0-d667419bee11"
+  description: "Operation monitoring for lighting fixtures"
+  is_abstract: true
+  uses:
+  - energy_accumulator
+  - run_time_accumulator
+  - luminaire_alarm
+
+DM:
+  guid: "0e3ab3d7-a378-4c72-91ca-32a1290c6d84"
+  description: "Brightness dimming monitoring."
+  is_abstract: true
+  opt_uses:
+  - dimmer_run_status
   - power_sensor
+  uses:
+  - brightness_percentage_sensor
 
 ENM:
-  id: "11197432602023690240"
+  guid: "2f548e52-a2b3-492c-acd8-747f0ce4f8a9"
   description: "Basic energy monitoring "
   is_abstract: true
   uses:

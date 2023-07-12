@@ -13,7 +13,7 @@
 # limitations under the License.
 
 GM_STANDARD:
-  id: "9159528481871101952"
+  guid: "96de90c9-fb62-4557-b29c-aa723e255a8f"
   description: "The typical building gas meter."
   implements:
   - GM
@@ -24,7 +24,7 @@ GM_STANDARD:
   - gas_temperature_sensor
 
 GM_PULSE:
-  id: "5140904741814927360"
+  guid: "0b74bcd2-f3c6-42b2-9a91-88f34c5d472d"
   description: "Gas meter that operates by counting pulses, interpreted into flow and accumulated volume."
   implements:
   - GM

@@ -25,7 +25,7 @@ from model.constants import IS_REPORTING
 from model.constants import METADATA
 from model.constants import NAMESPACE
 from model.constants import TYPE_NAME
-from model.entity_field import EntityField
+from validate.field_translation import FieldTranslation
 
 
 class Entity(object):
@@ -124,7 +124,7 @@ class VirtualEntity(Entity):
   """Class to model virtual entities within a building.
 
   Attributes:
-    links: List of EntityField instances mapping to this virtual entity.
+    links: List of FieldTranslation extensions mapping to this virtual entity.
   """
 
   def __init__(self,
@@ -182,25 +182,25 @@ class VirtualEntity(Entity):
     return virtual_entity_instance
 
   @property
-  def links(self) -> List[EntityField]:
-    """Returns a list of linked EntityField instances."""
+  def links(self) -> List[FieldTranslation]:
+    """Returns a list of linked FieldTranslation instances."""
     return self._links
 
   @links.setter
-  def links(self, new_links: List[EntityField]) -> None:
+  def links(self, new_links: List[FieldTranslation]) -> None:
     """Sets new_links as self._links.
 
     Args:
-      new_links: A list of EntityField instances.
+      new_links: A list of FieldTranslation instances.
     """
     self._links.clear()
     for link in new_links:
       self.AddLink(new_link=link)
 
-  def AddLink(self, new_link: EntityField) -> None:
+  def AddLink(self, new_link: FieldTranslation) -> None:
     """Adds a new link to self._links."""
-    if not isinstance(new_link, EntityField):
-      raise TypeError(f'{str(new_link)} must be an EntityField instance.')
+    if not isinstance(new_link, FieldTranslation):
+      raise TypeError(f'{str(new_link)} must be an FieldTranslation instance.')
     self._links.append(new_link)
 
   def GetSpreadsheetRowMapping(self) -> Dict[str, str]:
@@ -221,7 +221,7 @@ class ReportingEntity(Entity):
 
   Attributes:
     cloud_device_id: Unique numeric ID for cloud iot service.
-    translations: List of EntityField instances modeling datapoints on a
+    translations: List of FieldTranslation instances modeling datapoints on a
       reporting entity/device.
   """
 
@@ -283,26 +283,27 @@ class ReportingEntity(Entity):
     return reporting_entity_instance
 
   @property
-  def translations(self) -> List[EntityField]:
-    """Returns list of EntityField instances in entity translation."""
+  def translations(self) -> List[FieldTranslation]:
+    """Returns list of FieldTranslation instances in entity translation."""
     return self._translations
 
   @translations.setter
-  def translations(self, new_translations: List[EntityField]) -> None:
-    """Sets the EntityField instances for this reporting entity.
+  def translations(self, new_translations: List[FieldTranslation]) -> None:
+    """Sets the FieldTranslation instances for this reporting entity.
 
     Args:
-      new_translations: List of EntityField instances.
+      new_translations: List of FieldTranslation instances.
     """
     self._translations.clear()
     for translation in new_translations:
       self.AddTranslation(new_translation=translation)
 
-  def AddTranslation(self, new_translation: EntityField) -> None:
-    """Adds an EntityField instance to self._translations."""
-    if not isinstance(new_translation, EntityField):
+  def AddTranslation(self, new_translation: FieldTranslation) -> None:
+    """Adds a FieldTranslation instance to self._translations."""
+    if not isinstance(new_translation, FieldTranslation):
       raise TypeError(
-          f'{str(new_translation)} must be an EntityField instance.')
+          f'{str(new_translation)} must be an FieldTranslation instance.'
+      )
     self._translations.append(new_translation)
 
   def GetSpreadsheetRowMapping(self) -> Dict[str, str]:

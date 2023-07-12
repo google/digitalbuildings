@@ -11,19 +11,18 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-"""GUID generator runner."""
-from __future__ import print_function
+"""Setup file for the entity types ontology GUID generator."""
 
-from typing import List
-from guid_generator.guid_handler import GuidGenerator
+from setuptools import find_packages
+from setuptools import setup
 
-
-def Generate(filenames: List[str]) -> None:
-  """Runner method for GUID generation.
-
-  Args:
-    filenames: file paths for Building Coniguration instances.
-  """
-  for filename in filenames:
-    print(f'Generating GUIDs for {filename}')
-    GuidGenerator.GenerateGuids(filename)
+setup(
+    name='types_guid_generator',
+    version='0.0.1',
+    url='https://github.com/google/digitalbuildings',
+    license='Apache License',
+    author='Jessy Ma',
+    packages=find_packages(),
+    install_requires=['pyyaml>=5.3'],
+    python_requires='>=3.9',
+)

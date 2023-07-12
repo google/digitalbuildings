@@ -59,19 +59,28 @@ instance_validator_setup()
 explorer_setup()
 {
   echo "Starting explorer setup"
-  cd explorer/
+  cd explorer
   python -m pip install .
   echo "Finished explorer setup"
   cd ..
 }
 
-guid_generator_setup()
+instance_guid_generator_setup()
 {
-  echo "Starting GUID generator setup"
-  cd guid_generator
+  echo "Starting Instance GUID generator setup"
+  cd guid_generator/instance
   python -m pip install .
-  echo "Finished GUID generator setup"
-  cd ..
+  echo "Finished instance GUID generator setup"
+  cd ../..
+}
+
+ontology_guid_generator_setup()
+{
+  echo "Starting Ontology GUID generator setup"
+  cd guid_generator/ontology
+  python -m pip install .
+  echo "Finished Ontology GUID generator setup"
+  cd ../..
 }
 
 abel_setup()
@@ -87,6 +96,7 @@ abel_setup()
 ontology_validator_setup
 instance_validator_setup
 explorer_setup
-guid_generator_setup
+instance_guid_generator_setup
+ontology_guid_generator_setup
 abel_setup
 echo "Setup finished!"
