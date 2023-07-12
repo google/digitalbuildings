@@ -1,4 +1,4 @@
-# Copyright 2022 Google LLC
+# Copyright 2023 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the License);
 # you may not use this file except in compliance with the License.
@@ -11,25 +11,23 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-"""Setup file for the ABEL."""
 
-from setuptools import find_packages
-from setuptools import setup
+# Good entity with non dimensional field
 
-setup(
-    name='abel',
-    version='0.0.1',
-    url='https://github.com/google/digitalbuildings',
-    license='Apache License',
-    author='Travis Welch',
-    packages=find_packages(),
-    install_requires=[
-        'absl-py',
-        'pyfiglet',
-        'argparse',
-        'pyyaml',
-        'google-api-python-client',
-        'google-auth-oauthlib'
-    ],
-    python_requires='>=3.9',
-)
+CONFIG_METADATA:
+  operation: INITIALIZE
+
+SDC_EXT-19-GUID:
+  type: HVAC/SDC_EXT
+  code: SDC_EXT-19
+  cloud_device_id: "1234567890123456"
+  translation:
+    shade_extent_percentage_command:
+      present_value: "points.shade_extent_percentage_command.present_value"
+      units:
+        key: "pointset.points.shade_extent_percentage_command.units"
+        values:
+          percent: "%"
+    model_label:
+      present_value: "this is a non-dimensional field"
+    

@@ -34,6 +34,7 @@ DEFAULT_TIMEOUT = 600
 
 # Telemetry validation constants
 TIMESTAMP_FORMAT = '%Y-%m-%dT%H:%M:%SZ'
+TELEMETRY_TIMESTAMP_FORMAT = '%Y-%m-%dT%H:%M:%S.%fZ'
 
 # Report-level constants
 REPORT_TIMESTAMP = 'updated'
