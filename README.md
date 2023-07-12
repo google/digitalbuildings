@@ -12,12 +12,12 @@ The Digital Buildings project originated from the need to manage a very large, h
 
 In creating the Digital Buildings project, we have considered the following:
 
-* Human Readability
+* Human readability
 * Machine readability and interpretation
 * Composable functionality
-* Dimensional Analysis
+* Dimensional analysis
 * Correctness validation
-* Cross compatibility
+* Cross-compatibility
 
 ## Project Structure
 
