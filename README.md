@@ -22,16 +22,16 @@ In creating the Digital Buildings project, we have considered the following:
 ## Project Structure
 
 This project is structured as follows:
-*  An [**ontology**](./ontology/README.md) that defines the parameters of the semantic data model (Terminology box) and tools for building, validating, and associating real equipment with a specific model. It contains the following formats:
+*  An [**ontology**](./ontology/README.md) that defines the parameters of the semantic data model ("Terminology box") and tools for building, validating, and associating real equipment with a specific model. It contains the following formats:
    * [Yaml format](./ontology/yaml/README.md)
    * [RDF/OWL format](./ontology/rdf/README.md)
-* [Building Configuration](./ontology/docs/building_config.md) which contains a mapping between the ontology and the "raw" data. Building Config is the Assertion Box.
-* Tools that allow the following:
-  * [ABEL](./tools/abel/README.md) generates from/to Google spreadsheet/[Building Configuration](./ontology/docs/building_config.md).
-  * [Explorer](./tools/explorer/README.md) allows users to explorer the ontology types and their associated fields.
-  * [Yaml Validator](./tools/validators/ontology_validator/README.md) which allows to validate the yaml ontology upon a change or an extension.
-  * [RDF/OWL Generator](./tools/rdf_generator/README.md) which allows to generate an RDF version from the yaml ontology files.
-* [Internal Building Representation](./ibr/README.md) (IBR) File Format to represent data from different verticals such as spatial, assets.
+* A [**model instance configuration**](./ontology/docs/building_config.md) (a.k.a building configuration file) that contains a mapping between the ontology and the "raw" data. Building configuration files are the "Assertion box."
+* Tools that enable the following:
+  * [**ABEL**](./tools/abel/README.md)**:** facilitates easier building confugration construction by converting from a templatized Google Sheet to a [building configuration file](./ontology/docs/building_config.md) (and from a building configuration file back to a Google Sheet).
+  * [**Explorer**](./tools/explorer/README.md)**:** allows users to explore ontology type fields and compare ontology types to each other.
+  * [**Ontology Validator**](./tools/validators/ontology_validator/README.md)**:** validates the ontology upon a change or an extension (currently only for the Yaml format).
+  * [**RDF/OWL Generator**](./tools/rdf_generator/README.md)**:** generates an RDF version from the yaml ontology files.
+* [**Internal Building Representation (IBR)**](./ibr/README.md)**:** a file format to represent data from different verticals such as spatial or assets.
 
 ## Learning Modules
 The learning modules provide an overview of the following key concepts:
@@ -79,7 +79,7 @@ Members are expected to adhere to this code of conduct: [https://opensource.goog
 
 ## How to Contribute
 
-Please see the [contribution section](CONTRIBUTING.md).
+Please see the [contribution](CONTRIBUTING.md) section.
 
 ## License
 ```
