@@ -31,7 +31,7 @@ CU_SFSS_SFVSC_CHWSC_HTSC_SSPC_SARC_MTM:
   - MTM
 
 CU_DFSS_DFVSC_CHWZTC_HWZTC_RTM_ZHM:
-  description: "Discharge fan with start/stop, status, cooling and heating (zone temp control)."
+  description: "Compartment unit on discharge side with start/stop, status, cooling and heating (zone temp control)."
   is_canonical: true
   implements:
   - CU
