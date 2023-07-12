@@ -429,14 +429,6 @@ VAV_CO2CDSP_PDSCV:
   - CO2CDSP
   - PDSCV
 
-VAV_CO2CDSP_PDDCV:
-  description: "Discharge control VAV with dual setpoint CO2 regulation and damper percentage monitoring"
-  is_canonical: true
-  implements:
-  - VAV
-  - CO2CDSP
-  - PDDCV
-
 VAV_RD:
   guid: "1ebc68cc-4dfe-4cfb-bf14-0d439a1ffca9"
   description: "Return control VAV with air flow setpoint control"
@@ -530,13 +522,13 @@ VAV_HWZTC_CHWZTC_DTM:
     - CHWZTC
     - DTM
 
-VAV_MSVO_PDDCV:
+VAV_MSVO_PDSCV:
   description: "A zone VAV with ventilation control based on a motion sensor."
   is_canonical: true
   implements:
     - VAV
     - MSVO
-    - PDDCV
+    - PDSCV
 
 ###################################
 ### Existing Non-standard Types ###

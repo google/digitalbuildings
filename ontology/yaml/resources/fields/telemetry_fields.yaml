@@ -3027,7 +3027,3 @@ literals:
 - failed_discharge_air_isolation_damper_alarm:
   - ACTIVE
   - INACTIVE
-
-- discharge_air_damper_percentage_sensor:
-    fixed_min: 0.0
-    fixed_max: 100.0

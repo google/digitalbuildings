@@ -4523,17 +4523,6 @@ PDSCV:
   implements:
   - CONTROL
 
-
-PDDCV:
-  description: "Pressure-dependent discharge damper control for ventilation purposes (CO2 or VOC)."
-  is_abstract: true
-  uses:
-  - discharge_air_damper_percentage_command
-  - discharge_air_damper_percentage_sensor
-  implements:
-  - CONTROL
-
-
 SDBPC:
   guid: "881f3d79-d107-4268-83c6-f16e3ae7fb5a"
   description: "Back-pressure controlling supply damper."
