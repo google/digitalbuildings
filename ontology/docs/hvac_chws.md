@@ -37,7 +37,10 @@ This version of CHWS has a single set of variable speed pumps which serve air-co
 ### System Diagram and Connections
 ![CHWS Variable Primary](./figures/system_diagrams/chws_aircooled.png)
 
-### Sample Building Config
+### Sample Building Configuration
+<details>
+ <summary>Click to expand the example building configuration</summary>
+ 
 ```yaml
 # System definition. Everything that it serves will be fed by it, everything that comprises it will be contained by it.
 CHWSYS-BLDG-1:
@@ -133,6 +136,7 @@ AHU-1:
 
 
 ```
+</details>
 
 ## Example: Variable Primary CHWS (Water-Cooled) 
 This version of CHWS has a single set of variable speed chilled water pumps serving water-cooled chillers and downstream equipment. The condensing side serves the chillers via two pumps.
@@ -145,7 +149,10 @@ This version of CHWS has a single set of variable speed chilled water pumps serv
 ### System Diagram and Connections
 ![CHWS Variable Primary WC](./figures/system_diagrams/chws_watercooled.png)
 
-### Sample Building Config
+### Sample Building Configuration
+<details>
+<summary>Click to expand the example building configuration</summary>
+ 
 ```yaml
 # Chilled water system feeds the equipment, and contains the distribution/production equipment.
 CHWSYS-BLDG-1:
@@ -360,7 +367,7 @@ AHU-1:
         values:
           percent: '%'
     ...
-
+</details>
 
 ```
 
