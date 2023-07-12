@@ -31,7 +31,7 @@ This project is structured as follows:
   * [**Explorer**](./tools/explorer/README.md)**:** allows users to explore ontology type fields and compare ontology types to each other.
   * [**Ontology Validator**](./tools/validators/ontology_validator/README.md)**:** validates the ontology upon a change or an extension (currently only for the Yaml format).
   * [**RDF/OWL Generator**](./tools/rdf_generator/README.md)**:** generates an RDF version from the yaml ontology files.
-* [**Internal Building Representation (IBR)**](./ibr/README.md)**:** a file format to represent data from different verticals such as spatial or assets.
+* An [Internal Building Representation (IBR)](./ibr/README.md) file format to represent data from different verticals such as spatial or assets.
 
 ## Learning Modules
 The learning modules provide an overview of the following key concepts:
