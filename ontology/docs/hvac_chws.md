@@ -11,7 +11,7 @@ Hydronic chilled and condensing water systems are two distinct systems. A typica
 
 Condensing water systems (CDWS) serve those mechanical devices which rely on water-source heat rejection. Typical condensing water systems consist of open-air cooling towers (which reject the heat absorbed from the condensing water into the atmosphere) and pumps to circulate the condensing water between the cooling towers and the condenser side of a water-cooled chiller.
 
-There are many varieties of chilled & condenser water system; some common examples include the following:
+There are many different types of chilled and condenser water system configurations; some common examples include the following:
 - **Constant volume:** the system pumps run at a constant speed to provide fixed flowrates at pre-defined stages (predominantly on condensing water systems)
 - **Variable-primary:** there is a single (primary) loop between the chillers and the end-devices and the system pumps operate at variable speed (typically controlling to a differential pressure setpoint)
 - **Primary/Secondary:** there are two separate loops, with the primary loop serving as the "production" loop (the chillers) and the secondary loop serving as the distribution loop (to downstream end-devices).
