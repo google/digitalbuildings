@@ -45,11 +45,11 @@ In this module, you’ll fully explore the core modeling and organizational conc
 
 
 * [Lesson 1: Introduction to the DBO](./ontology/docs/learning/Module_1_Lesson_1_Introduction_to_the_DBO.pdf)
-* [Lesson 2: Conceptual Model](./ontology/docs/learning/Module_1_Lesson_2_Conceptual_model.pdf)
+* [Lesson 2: Conceptual model](./ontology/docs/learning/Module_1_Lesson_2_Conceptual_model.pdf)
 * [Lesson 3: Subfields](./ontology/docs/learning/Module_1_Lesson_3_Subfields.pdf)
 * [Lesson 4: Fields](./ontology/docs/learning/Module_1_Lesson_4_Fields.pdf)
-* [Lesson 5: States and Multi-states](./ontology/docs/learning/Module_1_Lesson_5_States_and_multistates.pdf)
-* [Lesson 6: Entity Types](./ontology/docs/learning/Module_1_Lesson_6_Entity_types.pdf)
+* [Lesson 5: States and multi-states](./ontology/docs/learning/Module_1_Lesson_5_States_and_multistates.pdf)
+* [Lesson 6: Entity yypes](./ontology/docs/learning/Module_1_Lesson_6_Entity_types.pdf)
 * [Lesson 7: Mappings](./ontology/docs/learning/Module_1_Lesson_7_Mappings.pdf)
 * [Lesson 8: Connections](./ontology/docs/learning/Module_1_Lesson_8_Connections.pdf)
 * [Lesson 9: Namespaces](./ontology/docs/learning/Module_1_Lesson_9_Namespaces.pdf)
@@ -60,7 +60,7 @@ In this module, you’ll fully explore the core modeling and organizational conc
 In this module, you’ll deepen your understanding of the DBO and practice applying it. Through several hands-on activities, you'll walk through the recommended workflow for creating a building configuration file
 
 
-* [Lesson 1: Get Ready to data model](./ontology/docs/learning/Module_2_Lesson_1_Get_ready_to_data_model.pdf)
+* [Lesson 1: Get ready to data model](./ontology/docs/learning/Module_2_Lesson_1_Get_ready_to_data_model.pdf)
 * [Lesson 2: Determine which devices need to be modeled](./ontology/docs/learning/Module_2_Lesson_2_Determine_which_devices_need_to_be_modeled.pdf)
 * [Lesson 3: Determine which data points are required](./ontology/docs/learning/Module_2_Lesson_3_Determine_which_data_points_are_required.pdf)
 * [Lesson 4: Name each data point using the DBO](./ontology/docs/learning/Module_2_Lesson_4_Name_each_data_point_using_the_DBO.pdf)
