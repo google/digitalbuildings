@@ -46,8 +46,8 @@ FACP_PAS:
   - fire_alarm
   - water_flowrate_status
   - air_pressure_status
-  opt_uses:
   - supervisor_alarm
+  opt_uses:
   - failed_panel_alarm
 
 FACP_ASD:

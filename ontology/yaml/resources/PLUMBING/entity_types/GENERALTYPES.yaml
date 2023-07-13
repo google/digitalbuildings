@@ -55,5 +55,4 @@ WSR:
   description: "Water softener"
   is_abstract: true
   implements:
-  - /SS
   - EQUIPMENT

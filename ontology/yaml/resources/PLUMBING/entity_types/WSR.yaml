@@ -20,6 +20,7 @@ WSR_STD:
   is_canonical: true
   implements:
   - WSR
+  - /SS
   uses:
   - water_flowrate_status
   opt_uses:

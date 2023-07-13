@@ -66,15 +66,6 @@ UPS_IOBM_PPWM_UPSBM:
   - IOBM
   - PPWM
   - UPSBM
-  
-UPS_SS_BBM:
-  guid: "adcf545f-eb61-4130-a0f1-d611ab303d17"
-  description: "UPS unit with load bypass and battery mode and alarm."
-  is_canonical: true
-  implements:
-  - UPS
-  - SS
-  - BBM
 
 UPS_PWM:
   guid: "64f90598-969d-4cf6-ace6-50793a46aed8"
