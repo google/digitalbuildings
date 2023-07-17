@@ -1066,6 +1066,7 @@ SWTC:
   - low_return_water_temperature_alarm
   - high_return_water_temperature_alarm
   - run_command
+  - cooling_percentage_command
   - high_supply_water_temperature_alarm
   - low_supply_water_temperature_alarm
   uses:
