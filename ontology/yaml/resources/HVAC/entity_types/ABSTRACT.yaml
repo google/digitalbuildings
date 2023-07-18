@@ -6260,16 +6260,16 @@ EFHLC:
   implements:
   - OPERATIONAL
 
-FHLC:
+HLC:
   guid: "4e075523-ef6e-4f3a-917e-1b8ac5b892bd"
-  description: "Two-speed fan (high/low)."
+  description: "Two-speed motor (high/low)."
   is_abstract: true
   opt_uses:
-  - high_fan_speed_status
-  - low_fan_speed_status
+  - high_speed_status
+  - low_speed_status
   uses:
-  - high_fan_speed_command
-  - low_fan_speed_command
+  - high_speed_command
+  - low_speed_command
   implements:
   - OPERATIONAL
 
