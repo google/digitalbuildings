@@ -157,6 +157,16 @@ FCU_DFSS_DSP_HP2ZC:
   - DSP
   - HP2ZC
 
+FCU_DFSS_DFMSC_HPDSPRTC:
+  guid: "eb4c0175-8340-4d03-97b5-e4f088cd914b"
+  description: "Return temp control multi-speed FCU with heat pump"
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - DFMSC
+  - HPDSPRTC
+
 FCU_DFSS_ZTC_DXZTC:
   guid: "f22d6a0f-bc55-4dff-8164-8f79bf824715"
   description: "Typical DX FCU (zone control)."
@@ -1647,4 +1657,45 @@ FCU_RTC_RHDHS_DTM_DFSS:
   - water_leak_alarm
   - fire_alarm
   - schedule_run_command
+
+FCU_DFVSC_CHWZC_CSP_RTM_WDT:
+  guid: "8c3dc3ea-8344-4a5a-85c1-5f1491f7c256"
+  description: "Hydronic cooling or heating fan coil unit with cooling temperature setpoint control"
+  is_canonical: true
+  implements:
+  - FCU
+  - DFVSC
+  - CHWZC
+  - CSP
+  - RTM
+  - WDT 
+  uses: 
+  - master_alarm
+  - run_mode
+
+FCU_DFSS_CHWDC_CSP_RTM_DXZC:
+  guid: "fef47d51-3d01-40fd-9499-4f3bd65ed3ec"
+  description: "Typical DX FCU with cooling-only (discharge control)"
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - CHWDC
+  - CSP
+  - RTM
+  - DXZC
+  uses: 
+  - master_alarm
+  - filter_alarm
+  - run_mode
+
+FCU_DSP_DFVSC_DTM_RTM:
+  guid: "ff0b58c2-8446-47f9-913d-068fd3b43ae7"
+  description: "Hybrid variable refrigerant flow unit with discharge and return air temperature monitoring, zone cooling and heating setpoints, discharge fan speed command"
+  implements:
+  - FCU
+  - DSP
+  - DFVSC
+  - DTM
+  - RTM
 

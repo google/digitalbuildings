@@ -12,6 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# building config complete with guids keyed by code
+
 CONFIG_METADATA:
   operation: INITIALIZE
 US-BLDG-CODE:
@@ -51,3 +53,4 @@ US-BLDG-CODE_L00_Z04:
   type: HVAC/ZONE_HVAC
   connections:
     US-BLDG-CODE-L00: CONTAINS
+  guid: e78b7ffc-c934-3ae0-9f56-cd5ed8a46649

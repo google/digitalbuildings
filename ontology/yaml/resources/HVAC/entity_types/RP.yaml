@@ -38,3 +38,24 @@ RP_DPBHCC_FTC:
   - RP
   - DPBHCC
   - FTC
+
+RP_CAM_DPHC2_ZTC:
+  guid: "e443f377-cd9c-4ae2-ad92-e31ae79914e3"
+  description: "Radiant panel for room heating and cooling, Two pipe installation."
+  is_canonical: true
+  implements:
+  - RP
+  - CAM
+  - DPHC2
+  - ZTC
+
+RP_CAM_DPHC4_ZTC:
+  guid: "0fba5640-1b66-4bc0-aa62-75a4e71c8ad8"
+  description: "Radiant panel for room heating and cooling, four pipe installation."
+  is_canonical: true
+  implements:
+  - RP
+  - CAM
+  - DPHC4
+  - ZTC
+

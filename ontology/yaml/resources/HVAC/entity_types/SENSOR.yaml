@@ -233,4 +233,25 @@ SENSOR_ZA_CO2M_PMM_HCHO:
   - CO2M
   - PMM
   uses:
-  - zone_air_formaldehyde_concentration_sensor
+  - zone_air_formaldehyde_concentration_sensor  
+  
+SENSOR_CO2M_VOCM:
+  guid: "3eca4fc4-0a66-4a12-bbc1-88fedeb9ede5"
+  description: "CO2 and VOC concentration monitoring."
+  is_canonical: true
+  implements:
+    - /SENSOR
+    - CO2M
+    - VOCM
+
+SENSOR_ZTM_ZHM_CO2M_VOCM_PMM:
+  guid: "d5b180db-81b2-4141-ac56-6f5141b60ae6"
+  description: "Simple air quality sensor with VOC, particulates, CO2, temperature and humidity monitoring."
+  is_canonical: true
+  implements:
+  - /SENSOR
+  - ZTM
+  - ZHM
+  - CO2M
+  - VOCM
+  - PMM
