@@ -759,3 +759,11 @@ FAN_SS_MSM:
   implements:
   - FAN
   - MSM
+
+FAN_SS_WDPM:
+  description: "Fan with differential pressure monitoring."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - WDPM

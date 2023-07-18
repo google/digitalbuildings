@@ -53,6 +53,7 @@ FCU:
   - return_air_relative_humidity_sensor
   - discharge_air_temperature_sensor
   - failed_communication_alarm
+  - air_pressure_sensor
   implements:
   - EQUIPMENT
 
