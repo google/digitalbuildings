@@ -761,6 +761,7 @@ FAN_SS_MSM:
   - MSM
 
 FAN_SS_WDPM:
+  guid: "cd8f2cbd-ac27-4710-ba05-1ef09e48b5ce"
   description: "Fan with differential pressure monitoring."
   is_canonical: true
   implements:
