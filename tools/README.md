@@ -37,14 +37,7 @@ Then you can either use pip or setuptools.
 
 2. Run `bash pip_install.sh` or `pip_install.bat` (windows) from the following directory digitalbuildings/tools.
 
-### Docker
 
-1. Install [Docker Desktop](https://docs.docker.com/desktop/)
-2. Run `./tools/docker_run.sh` to build the docker image.
-3. All tools can now be called by passing the tool name and arguments to `./tools/docker_run.sh`, for example, to run ABEL:
-```
-$ ./tools/docker_run.sh abel
-```
 
 ### Setup (to be deprecated)
 

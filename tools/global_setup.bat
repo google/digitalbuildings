@@ -40,7 +40,7 @@ CD ..
 ECHO "Starting RDF Generator setup"
 CD rdf_generator
 START py setup.py install
-ECHO "Finished RDF Generator setup"
+ECHO "Finihed Scoring setup"
 CD ..
 
 ECHO "Setup finished!"
