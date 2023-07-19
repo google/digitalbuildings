@@ -1174,7 +1174,6 @@ AHU_DX2SC_ECON_HT2SC_SFSS_SFVSC_SSPC:
   - SFVSC
   - SSPC
 
-# new CFR
 AHU_DX2ZC_HT2ZC_SFSS_SFVSC_SSPC_STM_RCKTM2X:
   description: "Multi-zone AHU."
   is_canonical: true
@@ -1188,7 +1187,6 @@ AHU_DX2ZC_HT2ZC_SFSS_SFVSC_SSPC_STM_RCKTM2X:
   - STM
   - RCKTM2X
 
-# new CFR
 AHU_DX2ZC_HT2ZC_STM_RCKTM2X:
   description: "Multi-zone AHU."
   is_canonical: true
@@ -1591,7 +1589,7 @@ AHU_BSPC_DX4SC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC:
   - SFVSC
   - SSPC
 
-# new CFR
+
 AHU_BSPC_DX4SC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC_RCKTM2X:
   description: "Multi-zone AHU with 2-circuit refrigeration monitoring."
   is_canonical: true
