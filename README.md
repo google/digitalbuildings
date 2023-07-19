@@ -27,7 +27,7 @@ This project is structured as follows:
    * [RDF/OWL format](./ontology/rdf/README.md)
 * A [model instance configuration](./ontology/docs/building_config.md) (a.k.a building configuration file) that contains a mapping between the ontology and the "raw" data. Building configuration files are the "Assertion box."
 * Tools that enable the following:
-  * [**ABEL**](./tools/abel/README.md)**:** facilitates easier building confugration construction by converting from a templatized Google Sheet to a [building configuration file](./ontology/docs/building_config.md) (and from a building configuration file back to a Google Sheet).
+  * [**ABEL**](./tools/abel/README.md)**:** facilitates easier building configration construction by converting from a templatized Google Sheet to a [building configuration file](./ontology/docs/building_config.md) (and from a building configuration file back to a Google Sheet).
   * [**Explorer**](./tools/explorer/README.md)**:** allows users to explore ontology type fields and compare ontology types to each other.
   * [**Ontology Validator**](./tools/validators/ontology_validator/README.md)**:** validates the ontology upon a change or an extension (currently only for the Yaml format).
   * [**RDF/OWL Generator**](./tools/rdf_generator/README.md)**:** generates an RDF version from the yaml ontology files.
