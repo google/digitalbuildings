@@ -43,3 +43,18 @@ TK_LM:
   implements:
   - /TK # Inherits from global namespace
   - LM
+
+TK_TLM:
+  description: "Tank with level monitoring "
+  is_canonical: true
+  implements:
+  - /TK # Inherits from global namespace
+  - TLM
+
+
+TK_TLM2X:
+  description: "Tank with level monitoring "
+  is_canonical: true
+  implements:
+  - /TK # Inherits from global namespace
+  - TLM2X
