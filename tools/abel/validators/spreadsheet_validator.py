@@ -51,7 +51,6 @@ from model.constants import STANDARD_FIELD_NAME
 from model.constants import STANDARD_UNIT_VALUE
 from model.constants import STATES
 from model.constants import TARGET_ENTITY_CODE
-from model.constants import TYPE_NAME
 from validators.spreadsheet_error import BaseSpreadsheetError
 from validators.spreadsheet_error import ConnectionDependencyError
 from validators.spreadsheet_error import CrossSheetDependencyError
@@ -203,8 +202,6 @@ class SpreadsheetValidator(object):
     """
     validation_errors = []
     for row_number, row in enumerate(parsed_sheet, _ROW_START_INDEX):
-      print(row)
-      print(row.get(TYPE_NAME))
       for header in col_headers_values:
         if not row[header]:
           validation_errors.append(

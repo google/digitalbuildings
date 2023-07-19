@@ -105,6 +105,7 @@ TEST_REPORTING_ENTITY_DICT = {
     CLOUD_DEVICE_ID: TEST_CLOUD_DEVICE_ID,
     TYPE_NAME: TEST_TYPE_NAME,
     IS_REPORTING: 'TRUE',
+    METADATA + '.test': 'test metadata',
 }
 
 TEST_REPORTING_ENTITY_DICT_NO_GUID = {
@@ -126,6 +127,7 @@ TEST_VIRTUAL_ENTITY_DICT = {
     CLOUD_DEVICE_ID: None,
     TYPE_NAME: TEST_TYPE_NAME,
     IS_REPORTING: 'FALSE',
+    METADATA + '.test': 'test metadata',
 }
 
 # Test Entity Field instances
