@@ -1174,6 +1174,31 @@ AHU_DX2SC_ECON_HT2SC_SFSS_SFVSC_SSPC:
   - SFVSC
   - SSPC
 
+# new CFR
+AHU_DX2ZC_HT2ZC_SFSS_SFVSC_SSPC_STM_RCKTM2X:
+  description: "Multi-zone AHU."
+  is_canonical: true
+  implements:
+  - AHU
+  - DX2ZC
+  - HT2ZC
+  - SFSS
+  - SFVSC
+  - SSPC
+  - STM
+  - RCKTM2X
+
+# new CFR
+AHU_DX2ZC_HT2ZC_STM_RCKTM2X:
+  description: "Multi-zone AHU."
+  is_canonical: true
+  implements:
+  - AHU
+  - DX2ZC
+  - HT2ZC
+  - SFSS
+  - STM
+  - RCKTM2X
 
 AHU_BYPSSPC_DXSC_ECON_EFSS_HTSC_SFSS:
   guid: "750d0b4e-4b60-42c4-b5ba-16d97bd8982d"
@@ -1565,6 +1590,37 @@ AHU_BSPC_DX4SC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC:
   - SFSS
   - SFVSC
   - SSPC
+
+# new CFR
+AHU_BSPC_DX4SC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC_RCKTM2X:
+  description: "Multi-zone AHU with 2-circuit refrigeration monitoring."
+  is_canonical: true
+  implements:
+  - AHU
+  - BSPC
+  - DX4SC
+  - ECON
+  - EFSS
+  - EFVSC
+  - SFSS
+  - SFVSC
+  - SSPC
+  - RCKTM2X
+
+AHU_BSPC_DX3SC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC_RCKTM2X:
+  description: "Multi-zone AHU with 2-circuit refrigeration monitoring."
+  is_canonical: true
+  implements:
+  - AHU
+  - BSPC
+  - DX3SC
+  - ECON
+  - EFSS
+  - EFVSC
+  - SFSS
+  - SFVSC
+  - SSPC
+  - RCKTM2X
 
 AHU_DX2SC_ECON_EFSS_EFVSC_HTSC_SFSS_SFVSC_SSPC:
   guid: "d3d965e0-47d9-4194-b1a6-d2fffa088a87"
