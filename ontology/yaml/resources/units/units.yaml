@@ -236,8 +236,8 @@ impulse:
 irradiance:
   watts_per_square_meter_irradiance: STANDARD
   kilowatts_per_square_meter_irradiance:
-      multiplier: 1000
-      offset: 0
+    multiplier: 1000
+    offset: 0
 linearacceleration: acceleration
 linearvelocity:
   meters_per_second: STANDARD
