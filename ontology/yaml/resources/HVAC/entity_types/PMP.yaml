@@ -149,6 +149,15 @@ PMP_SS_RMM_CPC:
   - RMM
   - CPC
 
+PMP_SS_WDPM:
+  guid: "ef2e7d16-8514-4b16-a1c0-03ed019c52ea"
+  description: "Pump with pressure alarms and status monitoring"
+  is_canonical: true
+  implements:
+  - PMP
+  - SS
+  - WDPM
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################

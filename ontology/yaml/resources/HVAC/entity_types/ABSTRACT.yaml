@@ -33,6 +33,7 @@ SD:
   - supply_air_ventilation_flowrate_requirement
   - high_supply_air_temperature_alarm
   - low_supply_air_temperature_alarm
+  - purge_command
   uses:
   - supply_air_damper_percentage_command
   - supply_air_flowrate_sensor
@@ -311,6 +312,9 @@ CO2CDSP:
   - high_limit_zone_air_co2_concentration_setpoint
   - low_limit_zone_air_co2_concentration_setpoint
   - zone_air_co2_concentration_sensor
+  opt_uses:
+  - high_zone_air_co2_concentration_alarm
+  
 
 COC:
   guid: "dee7cc87-51cb-460e-8202-eff4001319db"
@@ -1059,7 +1063,10 @@ SWTC:
   - cooling_request_count
   - heating_request_count
   - return_water_temperature_sensor
+  - low_return_water_temperature_alarm
+  - high_return_water_temperature_alarm
   - run_command
+  - cooling_percentage_command
   - high_supply_water_temperature_alarm
   - low_supply_water_temperature_alarm
   uses:
@@ -2232,6 +2239,7 @@ DX2SWC:
   opt_uses:
   - compressor_speed_percentage_command
   - compressor_speed_percentage_sensor
+  - compressor_speed_frequency_sensor
   - cooling_percentage_command
   - cooling_thermal_power_capacity
   - high_supply_water_temperature_alarm
@@ -2899,6 +2907,7 @@ HTSWC:
   - heating_thermal_power_capacity
   - high_supply_water_temperature_alarm
   - low_supply_water_temperature_alarm
+  - heater_run_status
   uses:
   - heater_run_command
   - supply_water_temperature_sensor
@@ -2906,6 +2915,22 @@ HTSWC:
   implements:
   - CONTROL
 
+HTRWC:
+  guid: "4a0b5a76-9432-4572-832c-2ce41d70a587"
+  description: "Gas or electric heater control on return water side."
+  is_abstract: true
+  opt_uses:
+  - heating_percentage_command
+  - heating_thermal_power_capacity
+  - high_return_water_temperature_alarm
+  - low_return_water_temperature_alarm
+  - heater_run_status
+  uses:
+  - heater_run_command
+  - return_water_temperature_sensor
+  - return_water_temperature_setpoint
+  implements:
+  - CONTROL
 
 HT2SWC:
   guid: "cc630fcd-8a18-4fbb-a34b-3eae05b8b49b"
@@ -3867,6 +3892,8 @@ SFSS2X:
   - supply_fan_power_capacity
   - supply_fan_power_sensor_1
   - supply_fan_power_sensor_2
+  - failed_supply_fan_alarm_1
+  - failed_supply_fan_alarm_2
   uses:
   - supply_fan_run_command_1
   - supply_fan_run_command_2
@@ -4830,6 +4857,33 @@ DX2DSPRTC:
   - compressor_run_command_2
   - compressor_run_status_1
   - compressor_run_status_2
+  - return_air_cooling_temperature_setpoint
+  - return_air_heating_temperature_setpoint
+  - return_air_temperature_sensor
+  implements:
+  - CONTROL
+
+
+HPDSPRTC:
+  guid: "211fecae-8082-4a69-b27d-e39cdaf65362"
+  description: "Heat pump run control with dual return temp control."
+  is_abstract: true
+  opt_uses:
+  - compressor_speed_percentage_command
+  - cooling_percentage_command
+  - cooling_thermal_power_capacity
+  - discharge_air_temperature_sensor
+  - leaving_cooling_coil_temperature_sensor
+  - compressor_lost_power_alarm
+  - failed_compressor_alarm
+  - failed_discharge_air_temperature_alarm
+  - high_return_air_temperature_alarm
+  - low_return_air_temperature_alarm
+  - overload_compressor_alarm
+  uses:
+  - compressor_run_command
+  - compressor_run_status
+  - reversing_valve_command
   - return_air_cooling_temperature_setpoint
   - return_air_heating_temperature_setpoint
   - return_air_temperature_sensor
@@ -6620,3 +6674,20 @@ VMADC:
   - mixed_air_damper_percentage_sensor
   implements:
   - CONTROL
+
+OAQM:
+  guid: "99e4f482-278e-40ee-9524-9f687c41ba22"
+  description: "Outside air quality monitoring (particulates and gases)"
+  is_abstract: true
+  uses:
+  - outside_air_pm1pt0_density_sensor
+  - outside_air_pm2pt5_density_sensor
+  - outside_air_pm10pt0_density_sensor
+  - outside_air_no_density_sensor
+  - outside_air_no2_density_sensor
+  - outside_air_so2_density_sensor
+  - outside_air_co_concentration_sensor
+  opt_uses:
+  - outside_air_co2_concentration_sensor
+  implements:
+  - MONITORING
