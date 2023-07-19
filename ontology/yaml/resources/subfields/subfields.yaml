@@ -199,6 +199,7 @@ descriptor:
   production: "The loop in a system that is responsible for the conditioning of fluid."
   program: "Embedded, encoded instructions for the automatic performance of a task; typically within a controller."
   protection: "Act of preventing damage to object."
+  purge: "The act of removing impurities or contaminants from a space or system during particular phases of operation. For example, when purging a zone during morning warm up using additional ventilation air."
   rain: "Liquid water in the form of droplets that have condensed from atmospheric water vapor."
   recovery: "Component or process used for the reclamation of heat."
   red: "Red light fracture of ambient light"
