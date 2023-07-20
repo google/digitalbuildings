@@ -76,7 +76,7 @@ cd abel
 
 ### Obtain a GCP OAuth client credential
 
-1. Contact your IoT Technical Program Manager and ask for an oauth client `credential.json` file for authenticating against Google Sheets API.
+1. Contact `digitalbuildings-support@googlegroups.com` to ask for an oauth client `credential.json` file for authenticating against Google Sheets API.
 
 2. Use the `credential.json` file for ABEL's `--credential` command line argument.
 
