@@ -1490,6 +1490,7 @@ FCU_NONCANONICAL_2: # Weird dehumidification unit. Complete one-off.
   - zone_air_temperature_sensor
 
 FCU_NONCANONICAL_3:
+  guid: "8c41b0a5-c0a0-40bf-8367-13887fb04064"
   description: "Non-standard type."
   implements:
   - FCU
