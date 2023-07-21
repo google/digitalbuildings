@@ -171,6 +171,7 @@ descriptor:
   no2: "Nitrogen dioxide."
   north: "Cardinal direction; opposite of south"
   occupancy: "State of being occupied."
+  occupant: "A person who occupies a space."
   occupied: "State of being within scheduled (time of day or week) run-time parameters."
   oil: "A viscous liquid derived from petroleum, especially for use as a fuel or lubricant."
   ongoing: "Hapenning currently, right now."

@@ -3148,3 +3148,7 @@ literals:
 - soundintensitylevel_sensor:
     fixed_min: -60
     flexible_max: 200
+
+- zone_occupant_counter:
+    fixed_min: 0
+    flexible_max: 1000

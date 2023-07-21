@@ -6691,3 +6691,11 @@ OAQM:
   - outside_air_co2_concentration_sensor
   implements:
   - MONITORING
+
+ZOC:
+  description: "Occupancy counter monitoring"
+  is_abstract: true
+  uses:
+  - zone_occupant_counter
+  implements:
+  - MONITORING
