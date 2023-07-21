@@ -541,7 +541,7 @@ DFVSC:
   - discharge_fan_voltage_sensor
   - discharge_fan_lost_power_alarm
   - failed_discharge_fan_alarm
-  - discharge_air_flowrate_semsor
+  - discharge_air_flowrate_sensor
   uses:
   - discharge_fan_run_command
   - discharge_fan_run_status
