@@ -3140,3 +3140,11 @@ literals:
 - low_discharge_air_temperature_alarm:
   - ACTIVE
   - INACTIVE
+
+- fiveminutefixed_total_water_volume_sensor:
+    fixed_min: 0
+    flexible_max: 100
+
+- soundintensitylevel_sensor:
+    fixed_min: -60
+    flexible_max: 200

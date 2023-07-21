@@ -255,3 +255,17 @@ SENSOR_ZTM_ZHM_CO2M_VOCM_PMM:
   - CO2M
   - VOCM
   - PMM
+
+SENSOR_ZA_CO2M_VOCM_AQIM_ILL:
+  description: "Simple air quality sensor with VOC, PM 2.5, CO2, temperature and humidity, air quality index, illuminance and sound level monitoring."
+  is_canonical: true
+  implements:
+  - /SENSOR
+  - ZA
+  - CO2M
+  - VOCM
+  uses:
+  - soundintensitylevel_sensor
+  - illuminance_sensor
+  - zone_air_aqi_sensor
+  - zone_air_pm2pt5_density_sensor
