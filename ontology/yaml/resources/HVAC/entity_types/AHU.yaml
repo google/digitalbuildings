@@ -415,6 +415,20 @@ AHU_DFSS_DSP_DX2ZC_ECONZ_HT2ZC:
   - ECONZ
   - HT2ZC
 
+AHU_DFSS_DSP_DX2ZC_ECONZ_HT2ZC_RHM_RCKTM2X_CFCM:
+  description: "Single zone AHU with return air humidity monitoring, 2-circuit refrigeration monitoring and condenser fan current monitoring."
+  is_canonical: true
+  implements:
+  - AHU
+  - DFSS
+  - DSP
+  - DX2ZC
+  - ECONZ
+  - HT2ZC
+  - RHM
+  - RCKTM2X
+  - CFCM
+
 AHU_DFSS_DSP_DXZC_ECONZ_ZHC:
   guid: "11ee2619-0647-4d96-8f98-fd0629e15cb7"
   description: "Single zone AHU."
@@ -1174,32 +1188,6 @@ AHU_DX2SC_ECON_HT2SC_SFSS_SFVSC_SSPC:
   - SFVSC
   - SSPC
 
-AHU_DX2ZC_HT2ZC_SFSS_SFVSC_SSPC_STM_RCKTM2X:
-  guid: "2536959b-b347-4600-9377-bfc5688055e5"
-  description: "Multi-zone AHU."
-  is_canonical: true
-  implements:
-  - AHU
-  - DX2ZC
-  - HT2ZC
-  - SFSS
-  - SFVSC
-  - SSPC
-  - STM
-  - RCKTM2X
-
-AHU_DX2ZC_HT2ZC_STM_RCKTM2X:
-  guid: "a27ae880-c360-4b86-849f-2d08d681f775"
-  description: "Multi-zone AHU."
-  is_canonical: true
-  implements:
-  - AHU
-  - DX2ZC
-  - HT2ZC
-  - SFSS
-  - STM
-  - RCKTM2X
-
 AHU_BYPSSPC_DXSC_ECON_EFSS_HTSC_SFSS:
   guid: "750d0b4e-4b60-42c4-b5ba-16d97bd8982d"
   description: "Multi-zone AHU"
@@ -1421,6 +1409,22 @@ AHU_BSPC_DX4SC_ECON_EFSS_SFSS_SFVSC_SSPC:
   - SFVSC
   - SSPC
 
+AHU_BSPC_DX4SC_ECON_EFSS_SFSS_SFVSC_SSPC_RHM_RCKTM2X_CFCM6X:
+  description: "Multi-zone AHU with return air humidity monitoring, condenser fan current monitoring and 2-circuit refrigeration monitoring."
+  is_canonical: true
+  implements:
+  - AHU
+  - BSPC
+  - DX4SC
+  - ECON
+  - EFSS
+  - SFSS
+  - SFVSC
+  - SSPC
+  - RHM
+  - RCKTM2X
+  - CFCM6X
+
 AHU_DX2SC_ECON_EFSS_HT2SC_SFSS_SFVSC_SSPC:
   guid: "ffd0eedd-7d0c-4b33-9d9b-f26a7bb4c29f"
   description: "Multi-zone AHU."
@@ -1591,10 +1595,8 @@ AHU_BSPC_DX4SC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC:
   - SFVSC
   - SSPC
 
-
-AHU_BSPC_DX4SC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC_RCKTM2X:
-  guid: "a4b8cebc-8a3d-43ab-af9a-c1eed0a76e39"
-  description: "Multi-zone AHU with 2-circuit refrigeration monitoring."
+AHU_BSPC_DX4SC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC_RHM_RCKTM2X_CFCM6X:
+  description: "Multi-zone AHU with return air humidity monitoring, condenser fan current monitoring and 2-circuit refrigeration monitoring."
   is_canonical: true
   implements:
   - AHU
@@ -1606,23 +1608,9 @@ AHU_BSPC_DX4SC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC_RCKTM2X:
   - SFSS
   - SFVSC
   - SSPC
+  - RHM
   - RCKTM2X
-
-AHU_BSPC_DX3SC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC_RCKTM2X:
-  guid: "120ce79b-bb20-4161-b521-f4777467c7fe"
-  description: "Multi-zone AHU with 2-circuit refrigeration monitoring."
-  is_canonical: true
-  implements:
-  - AHU
-  - BSPC
-  - DX3SC
-  - ECON
-  - EFSS
-  - EFVSC
-  - SFSS
-  - SFVSC
-  - SSPC
-  - RCKTM2X
+  - CFCM6X
 
 AHU_DX2SC_ECON_EFSS_EFVSC_HTSC_SFSS_SFVSC_SSPC:
   guid: "d3d965e0-47d9-4194-b1a6-d2fffa088a87"
@@ -1804,6 +1792,23 @@ AHU_BSPC_DX4SC_ECON_EFSS_OAFMC_SFSS_SFVSC_SSPC:
   - SFSS
   - SFVSC
   - SSPC
+
+AHU_BSPC_DX4SC_ECON_EFSS_OAFMC_SFSS_SFVSC_SSPC_RHM_RCKTM2X_CFCM6X:
+  description: "Multi-zone AHU with return air humidity monitoring, 2-circuit refrigeration monitoring and condenser fan current monitoring."
+  is_canonical: true
+  implements:
+  - AHU
+  - BSPC
+  - DX4SC
+  - ECON
+  - EFSS
+  - OAFMC
+  - SFSS
+  - SFVSC
+  - SSPC
+  - RHM
+  - RCKTM2X
+  - CFCM6X
 
 AHU_BSPC_DX2SC_ECON_EFSS_HWSC_SFSS_SFVSC_SSPC:
   guid: "ce6690b6-f809-4fbf-ac5d-4ae57e733f3c"
@@ -2055,6 +2060,25 @@ AHU_BSPC_DX4SC_ECON_EFSS_EFVSC_SARC_SFSS_SFVSC_SSPC:
   - SFSS
   - SFVSC
   - SSPC
+
+AHU_BSPC_DX3SC_ECON_EFSS_EFVSC_SARC_SFSS_SFVSC_SSPC_EDM_RHM_RCKTM2X_CFCM4X:
+  description: "Multi-zone AHU with exhaust air damper monitoring, return air humidity monitoring, 2-circuit refrigerant monitoring and condenser fan monitoring"
+  is_canonical: true
+  implements:
+  - AHU
+  - BSPC
+  - DX3SC
+  - ECON
+  - EFSS
+  - EFVSC
+  - SARC
+  - SFSS
+  - SFVSC
+  - SSPC
+  - EDM
+  - RHM
+  - RCKTM2X
+  - CFCM4X
 
 AHU_BSPC_DX4SC_ECON_EFSS_EFVSC_HWSC_SFSS_SFVSC_SSPC:
   guid: "980f6cbc-80ec-4a38-8e06-d38478ff3bdb"

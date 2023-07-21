@@ -2143,9 +2143,6 @@ DX3SC:
   - leaving_cooling_coil_temperature_sensor
   - high_supply_air_temperature_alarm
   - low_supply_air_temperature_alarm
-  - compressor_current_sensor_1
-  - compressor_current_sensor_2
-  - compressor_current_sensor_3
   uses:
   - compressor_run_command_1
   - compressor_run_command_2
@@ -2171,10 +2168,6 @@ DX4SC:
   - leaving_cooling_coil_temperature_sensor
   - high_supply_air_temperature_alarm
   - low_supply_air_temperature_alarm
-  - compressor_current_sensor_1
-  - compressor_current_sensor_2
-  - compressor_current_sensor_3
-  - compressor_current_sensor_4
   uses:
   - compressor_run_command_1
   - compressor_run_command_2
@@ -3087,7 +3080,6 @@ ECON:
   - outside_air_relative_humidity_sensor
   - outside_air_specificenthalpy_sensor
   - return_air_damper_percentage_command
-  - return_air_relative_humidity_sensor
   - supply_air_temperature_sensor
   - failed_mixed_air_temperature_alarm
   - high_return_air_temperature_alarm
@@ -5769,13 +5761,6 @@ RCKTM2X:
   guid: "c8303789-9f0f-4a0f-9f27-474771b554a3"
   description: "Refrigeration circuits (2x) monitoring for a DX compressor loop."
   is_abstract: true
-  opt_uses:
-  - condensing_fan_current_sensor_1
-  - condensing_fan_current_sensor_2
-  - condensing_fan_current_sensor_3
-  - condensing_fan_current_sensor_4
-  - condensing_fan_current_sensor_5
-  - condensing_fan_current_sensor_6
   uses:
   - refrigerant_discharge_pressure_sensor_1
   - refrigerant_discharge_pressure_sensor_2
@@ -5818,6 +5803,31 @@ CC2XM:
   - compressor_run_command_1
   - compressor_run_command_2
 
+CFCM:
+  description: "Condenser fan current monitoring for a single fan."
+  is_abstract: true
+  uses:
+  - condensing_fan_current_sensor
+  
+CFCM4X:
+  description: "Condenser fan current monitoring for 4 fans."
+  is_abstract: true
+  uses:
+  - condensing_fan_current_sensor_1
+  - condensing_fan_current_sensor_2
+  - condensing_fan_current_sensor_3
+  - condensing_fan_current_sensor_4
+
+CFCM6X:
+  description: "Condenser fan current monitoring for 6 fans."
+  is_abstract: true
+  uses:
+  - condensing_fan_current_sensor_1
+  - condensing_fan_current_sensor_2
+  - condensing_fan_current_sensor_3
+  - condensing_fan_current_sensor_4
+  - condensing_fan_current_sensor_5
+  - condensing_fan_current_sensor_6
 
 SSSPC:
   guid: "f933f42e-faf1-4039-801a-83f3eff24461"
