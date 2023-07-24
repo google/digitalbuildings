@@ -1723,11 +1723,11 @@ literals:
     flexible_min: 255.9259259
     flexible_max: 308.1481481
 - zone_air_unoccupied_deadband_temperature_setpoint:
-    flexible_min: 0.0
-    flexible_max: 30.0
+    flexible_min: 255.372
+    flexible_max: 272.039
 - zone_air_occupied_deadband_temperature_setpoint:
-    flexible_min: 0.0
-    flexible_max: 30.0
+    flexible_min: 255.372
+    flexible_max: 272.039
 - mixed_air_relative_humidity_sensor:
     fixed_min: 0.0
     fixed_max: 100.0
