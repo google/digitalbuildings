@@ -6363,6 +6363,17 @@ EFHLC:
   implements:
   - OPERATIONAL
 
+HLC:
+  description: "Two-speed motor (high/low)."
+  is_abstract: true
+  opt_uses:
+  - high_speed_status
+  - low_speed_status
+  uses:
+  - high_speed_command
+  - low_speed_command
+  implements:
+  - OPERATIONAL
 
 SWCM:
   guid: "b82c4b84-96ae-48ee-a36b-29f274f6a41a"
