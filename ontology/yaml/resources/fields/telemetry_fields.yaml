@@ -3129,6 +3129,26 @@ literals:
     fixed_min: 0.0
     flexible_max: 2000.0
 
+- winter_outside_temperature_setpoint:
+    flexible_min: 255.9259259
+    flexible_max: 322.037037
+
+- summer_outside_temperature_setpoint:
+    flexible_min:  255.9259259
+    flexible_max: 322.037037
+
+- supply_air_differential_pressure_sensor:
+    flexible_min: -996.320096
+    flexible_max: 996.320096
+
+- supply_air_deadband_temperature_setpoint:
+    flexible_min: 255.9259259
+    flexible_max: 308.1481481
+
+- season_mode:
+  - SUMMER
+  - WINTER
+
 - purge_command:
   - ON
   - OFF 
@@ -3140,3 +3160,4 @@ literals:
 - low_discharge_air_temperature_alarm:
   - ACTIVE
   - INACTIVE
+
