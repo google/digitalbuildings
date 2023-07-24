@@ -1,0 +1,7 @@
+Dockerfile
+.git/
+ontology/docs
+/tools/**/build
+/tools/**/dist
+/tools/**/*.egg-info*
+**/venv/**
