@@ -6364,6 +6364,7 @@ EFHLC:
   - OPERATIONAL
 
 HLC:
+  guid: "c225f8c3-1bd8-4f59-aabe-012c1eb992b5"
   description: "Two-speed motor (high/low)."
   is_abstract: true
   opt_uses:
