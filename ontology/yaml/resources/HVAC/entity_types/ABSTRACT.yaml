@@ -181,6 +181,7 @@ ZTC:
   - failed_zone_air_temperature_alarm
   - high_zone_air_temperature_alarm
   - low_zone_air_temperature_alarm
+  - zone_occupancy_status
   uses:
   - zone_air_temperature_sensor
   - zone_air_temperature_setpoint
@@ -540,6 +541,7 @@ DFVSC:
   - discharge_fan_voltage_sensor
   - discharge_fan_lost_power_alarm
   - failed_discharge_fan_alarm
+  - discharge_air_flowrate_sensor
   uses:
   - discharge_fan_run_command
   - discharge_fan_run_status
