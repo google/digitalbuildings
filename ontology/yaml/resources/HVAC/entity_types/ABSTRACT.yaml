@@ -3080,6 +3080,7 @@ ECON:
   - outside_air_flowrate_sensor
   - outside_air_flowrate_setpoint
   - outside_air_relative_humidity_sensor
+  - outside_air_specificenthalpy_sensor
   - return_air_damper_percentage_command
   - supply_air_temperature_sensor
   - failed_mixed_air_temperature_alarm
@@ -5804,6 +5805,34 @@ CC2XM:
   - compressor_run_command_1
   - compressor_run_command_2
 
+CFCM:
+  guid: "6e4901e4-67f5-44d9-8239-84a1a2379419"
+  description: "Condenser fan current monitoring for a single fan."
+  is_abstract: true
+  uses:
+  - condensing_fan_current_sensor
+  
+CFCM4X:
+  guid: "3b5df213-0616-400f-a025-69e72cda4d7b"
+  description: "Condenser fan current monitoring for 4 fans."
+  is_abstract: true
+  uses:
+  - condensing_fan_current_sensor_1
+  - condensing_fan_current_sensor_2
+  - condensing_fan_current_sensor_3
+  - condensing_fan_current_sensor_4
+
+CFCM6X:
+  guid: "47dcd13d-d95c-44bf-988b-ce8ec32cebe2"
+  description: "Condenser fan current monitoring for 6 fans."
+  is_abstract: true
+  uses:
+  - condensing_fan_current_sensor_1
+  - condensing_fan_current_sensor_2
+  - condensing_fan_current_sensor_3
+  - condensing_fan_current_sensor_4
+  - condensing_fan_current_sensor_5
+  - condensing_fan_current_sensor_6
 
 SSSPC:
   guid: "f933f42e-faf1-4039-801a-83f3eff24461"
