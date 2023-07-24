@@ -74,10 +74,10 @@ OM:
   - output_phase1_current_sensor
   - output_phase2_current_sensor
   - output_phase3_current_sensor
+  opt_uses:
+  - output_apparent_power_sensor
   - output_frequency_sensor
   - output_power_sensor
-  - output_apparent_power_sensor
-  opt_uses:
   - bypass_status
 
 
@@ -159,7 +159,6 @@ BTEPM:
   - battery_voltage_sensor
   - battery_current_sensor
   - line_frequency_sensor  
-
 
 UPSBM:
   guid: "71050ae3-45e3-49f2-b7e2-12059dd8f049"
