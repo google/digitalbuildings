@@ -789,6 +789,8 @@ literals:
   - MANUAL
   - DEHUMIDIFY
   - FAN_ONLY
+  - HIGH
+  - ON
 - dial_resistance_sensor:
     flexible_min: 0.0
     flexible_max: 10000.0
@@ -3129,6 +3131,13 @@ literals:
     fixed_min: 0.0
     flexible_max: 2000.0
 
+- heat_recovery_run_mode:
+  - OFF
+  - ON
+  - NORMAL
+  - FAN_ONLY
+  - INTERMITTENT
+
 - purge_command:
   - ON
   - OFF 
@@ -3140,3 +3149,4 @@ literals:
 - low_discharge_air_temperature_alarm:
   - ACTIVE
   - INACTIVE
+
