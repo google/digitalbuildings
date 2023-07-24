@@ -31,6 +31,7 @@ CU_SFSS_SFVSC_CHWSC_HTSC_SSPC_SARC_MTM:
   - MTM
 
 CU_DFSS_DFVSC_CHWZTC_HWZTC_RTM_ZHM:
+  guid: "e17b91f8-99be-4870-8ee3-50250999e6d6"
   description: "Compartment unit on discharge side with start/stop, status, cooling and heating (zone temp control)."
   is_canonical: true
   implements:
