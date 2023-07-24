@@ -484,6 +484,7 @@ FAN_EFHLC_COCDSP_NOCDSP:
   - NOCDSP
 
 FAN_HLC_COCDSP_NOCDSP:
+  guid: "b630f2bd-46cb-4cb5-afec-66fa38e0617a"
   description: "Two-speed fan (low/high) with CO concentration dual setpoint control and NO concentration dual setpoint control."
   is_canonical: true
   implements:
