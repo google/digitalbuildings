@@ -483,6 +483,15 @@ FAN_EFHLC_COCDSP_NOCDSP:
   - COCDSP
   - NOCDSP
 
+FAN_HLC_COCDSP_NOCDSP:
+  description: "Two-speed fan (low/high) with CO concentration dual setpoint control and NO concentration dual setpoint control."
+  is_canonical: true
+  implements:
+  - FAN
+  - HLC
+  - COCDSP
+  - NOCDSP
+
 FAN_SS_VSC_SCRSS:
   guid: "3696faf3-2a9c-4202-856b-80d48bd19f10"
   description: "Fan with scrubber start/stop and status."
