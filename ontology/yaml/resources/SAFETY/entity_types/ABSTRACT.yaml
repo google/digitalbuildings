@@ -94,3 +94,9 @@ LM:
   uses:
   - level_status 
 
+SA:
+  guid: "a1c8da68-6799-43cb-ab24-8f229d1f882a"
+  description: "smoke alarm"
+  is_abstract: true
+  uses:
+  - smoke_alarm
