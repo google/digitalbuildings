@@ -1430,7 +1430,7 @@ FCU_NONCANONICAL_1:
   - zone_occupancy_status_1
   - zone_occupancy_status_2
   - zone_occupancy_status_3
-
+  
 FCU_DFSS_CSP_ZHC_DXZC_NONCANONICAL_1:
   guid: "0bca6899-fa9a-40ff-a3bd-8828991b39c1"
   description: "Non-standard type."
@@ -1489,6 +1489,46 @@ FCU_NONCANONICAL_2: # Weird dehumidification unit. Complete one-off.
   - zone_air_heating_temperature_setpoint
   - zone_air_temperature_sensor
 
+FCU_NONCANONICAL_3:
+  guid: "8c41b0a5-c0a0-40bf-8367-13887fb04064"
+  description: "Non-standard type."
+  implements:
+  - FCU
+  uses:
+  - chilled_water_valve_percentage_command
+  - discharge_air_flowrate_sensor_1
+  - discharge_air_flowrate_sensor_2
+  - discharge_air_flowrate_sensor_3
+  - discharge_air_temperature_sensor_1
+  - discharge_air_temperature_sensor_2
+  - discharge_air_temperature_sensor_3
+  - discharge_fan_run_status_1
+  - discharge_fan_run_status_2
+  - discharge_fan_run_status_3
+  - discharge_fan_speed_percentage_command_1
+  - discharge_fan_speed_percentage_command_2
+  - discharge_fan_speed_percentage_command_3
+  - heating_water_valve_percentage_command
+  - return_air_temperature_sensor
+  - thermal_power_sensor_1
+  - thermal_power_sensor_2
+  - thermal_power_sensor_3
+  - zone_air_occupied_deadband_temperature_setpoint_1
+  - zone_air_occupied_deadband_temperature_setpoint_2
+  - zone_air_occupied_deadband_temperature_setpoint_3
+  - zone_air_temperature_sensor_1
+  - zone_air_temperature_sensor_2
+  - zone_air_temperature_sensor_3
+  - zone_air_temperature_setpoint_1
+  - zone_air_temperature_setpoint_2
+  - zone_air_temperature_setpoint_3
+  - zone_air_unoccupied_deadband_temperature_setpoint_1
+  - zone_air_unoccupied_deadband_temperature_setpoint_2
+  - zone_air_unoccupied_deadband_temperature_setpoint_3
+  - zone_occupancy_status_1
+  - zone_occupancy_status_2
+  - zone_occupancy_status_3
+  
 FCU_DFSS_RTC_CHWRC_RHC_NONCANONICAL_1:
   guid: "025c2764-2de6-4839-ade6-0cf8551cd91c"
   description: "Non-standard type."
