@@ -6717,15 +6717,7 @@ VMADC:
   - mixed_air_damper_percentage_sensor
   implements:
   - CONTROL
-  
-SEWTM:
-  description: "Secondary water temperature monitoring"
-  opt_uses:
-  - secondary_supply_water_temperature_sensor
-  uses:
-  - secondary_return_water_temperature_sensor
-  implements:
-  - MONITORING
+
 
 HWTTCX2:
   description: "Hot water tank temperature control X2 with single setpoint"
