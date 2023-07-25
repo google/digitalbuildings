@@ -476,6 +476,7 @@ EFVSC:
   - exhaust_fan_speed_mode
   - exhaust_fan_speed_percentage_sensor
   - failed_exhaust_fan_alarm
+  - exhaust_fan_rotationalvelocity_sensor
   uses:
   - exhaust_fan_run_command
   - exhaust_fan_run_status
@@ -511,6 +512,7 @@ SFVSC:
   - supply_fan_voltage_sensor
   - failed_supply_fan_alarm
   - supply_fan_lost_power_alarm
+  - supply_fan_rotationalvelocity_sensor
   uses:
   - supply_fan_run_command
   - supply_fan_run_status
@@ -6654,20 +6656,6 @@ VMADC:
   - mixed_air_damper_percentage_sensor
   implements:
   - CONTROL
-
-SFPC:
-  description: "supply pressure monitoring, flow control."
-  is_abstract: true
-  opt_uses:
-  - supply_fan_run_command
-  - supply_air_linearvelocity_sensor
-  - supply_fan_rotationalvelocity_sensor
-  uses:
-  - supply_air_static_pressure_sensor
-  - supply_air_flowrate_sensor
-  - supply_air_flowrate_setpoint
-  implements:
-  - OPERATIONAL
 
 EFPC:
   description: "exhaust pressure monitoring, flow control."

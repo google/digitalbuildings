@@ -4029,20 +4029,22 @@ AHU_CHWSC_HWSC_ECON_EDBPC_RFSS2X_RFVSC2X_SFSS2X_SFVSC2X_SSPC:
   - SFVSC2X
   - SSPC
 
-AHU_SS_RMM_STM_FDPM_EFPC_SFPC_HWRC_EDM_SDM_FSAM:
+AHU_SS_SFSS_RMM_STM_FDPM_SSPM_SFC_HWRC_EDM_SDM_FSAM_SFVSC_EFVSC:
   description: "AHU with supply and exhaust pressure, flowrate control, cooling and heating valve control, fire and smoke alarms supply and exhaust rotational velocity sensors"
   is_canonical: true
   implements:
   - AHU
   - SS
+  - SFSS
   - RMM
   - STM
   - FDPM
-  - EFPC
-  - SFPC
+  - SSPM
+  - SFC
   - HWRC
   - ESDC
   - FSAM
+  - SFVSC
 ###################################
 ### Existing Non-standard Types ###
 ###################################
