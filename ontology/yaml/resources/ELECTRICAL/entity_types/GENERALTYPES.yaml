@@ -25,6 +25,8 @@ UPS:
   is_abstract: true
   implements:
   - EQUIPMENT
+  opt_uses:
+  - bypass_status
 
 PANEL:
   guid: "f3f7245d-199a-4f73-845d-99c10991c778"
