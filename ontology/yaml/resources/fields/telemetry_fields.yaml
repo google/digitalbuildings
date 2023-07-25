@@ -3163,7 +3163,7 @@ literals:
     fixed_min: 0
     flexible_max: 100
 
-- soundintensitylevel_sensor:
+- soundpressurelevel_sensor:
     fixed_min: -60
     flexible_max: 200
 

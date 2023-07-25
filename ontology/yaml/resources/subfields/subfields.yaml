@@ -314,7 +314,7 @@ measurement:
   rotationalvelocity: "Vector measure of rotation rate, that refers to how fast an object rotates or revolves relative to another point."
   specificenergy: "Energy per unit mass."
   specificenthalpy: "Measure of energy of air per unit mass."
-  soundintensitylevel: "Logarithmic measure of the sound intensity in comparison to a reference value (1e10-12 W/m^2)."
+  soundpressurelevel: "Logarithmic measure of the sound intensity in comparison to a reference value (1e10-12 W/m^2)."
   temperature: "Measures the temperature of media within a process or system."
   thermalconductivity: "Measure of a material's ability to conduct heat."
   thermalcapacity: "Amount of heat to be supplied to an object to produce a unit change in its temperature."
