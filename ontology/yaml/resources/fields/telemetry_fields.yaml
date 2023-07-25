@@ -3128,3 +3128,4 @@ literals:
 - exhaust_fan_rotationalvelocity_sensor:
     fixed_min: 0.0
     flexible_max:  25.4000508
+    
