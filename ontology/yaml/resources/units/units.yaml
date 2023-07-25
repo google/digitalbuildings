@@ -429,7 +429,7 @@ resistance:
     offset: 0
 rotationalvelocity:
   revolutions_per_minute: STANDARD
-soundintensitylevel:
+soundpressurelevel:
   decibels: STANDARD
 specificenergy:
   joules_per_kilogram_kelvin: STANDARD

@@ -255,12 +255,6 @@ SENSOR_ZTM_ZHM_CO2M_VOCM_PMM:
   - CO2M
   - VOCM
   - PMM
-  opt_uses:
-  - soundintensitylevel_sensor
-  - illuminance_sensor
-  - zone_air_aqi_sensor
-  - zone_air_pm10pt0_density_sensor
-  - zone_air_pm2pt5_density_sensor
 
 SENSOR_ZHM_ZOC:
   description: "Zone occupant counter with zone humidity monitoring."
@@ -269,3 +263,32 @@ SENSOR_ZHM_ZOC:
   - /SENSOR
   - ZHM
   - ZOC
+
+SENSOR_ZTM_ZHM_CO2M_VOCM_PML_SPLM:
+  description: "Indoor Air Quality sensor with temperature, humidity, CO2, VOC, particulates (density), illuminance and sound monitoring."
+  is_canonical: true
+  implements:
+  - /SENSOR
+  - ZTM
+  - ZHM
+  - CO2M
+  - VOCM
+  - SPLM
+  uses:
+  - zone_air_aqi_sensor
+  - illuminance_sensor
+  - zone_air_pm2pt5_density_sensor
+  - zone_air_pm10pt0_density_sensor
+
+SENSOR_ZTM_ZHM_CO2M_VOCM_PML:
+  description: "Indoor Air Quality sensor with temperature, humidity, CO2, VOC, particulates (density) monitoring."
+  is_canonical: true
+  implements:
+  - /SENSOR
+  - ZTM
+  - ZHM
+  - CO2M
+  - VOCM
+  uses:
+  - zone_air_pm2pt5_density_sensor
+  - zone_air_pm10pt0_density_sensor

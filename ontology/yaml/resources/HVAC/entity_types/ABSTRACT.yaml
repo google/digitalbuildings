@@ -6742,3 +6742,11 @@ ZOC:
   - zone_occupant_counter
   implements:
   - MONITORING
+
+SPLM:
+  description: "Sound pressure level monitoring"
+  is_abstract: true
+  uses:
+  - soundpressurelevel_sensor
+  implements:
+  - MONITORING

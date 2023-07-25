@@ -21,7 +21,6 @@ aggregation:
 aggregation_descriptor:
   fivesecondrolling: "Aggregation over advancing time intervals of five seconds."
   thirtysecondrolling: "Aggregation over advancing thirty second time interval."
-  fiveminutefixed: "Aggregation over fixed time intervals of five minutes."
   tenminutefixed: "Aggregation over fixed time intervals of ten minutes."
 component:
   battery: "A device used to store power for use at a later time (e.g. in an emergency where grid power is unavailable)."
