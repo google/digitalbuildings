@@ -84,11 +84,11 @@ UPS_SS_UPSBM:
   - SS
   - UPSBM
 
-UPS_PPWM_OM_BATM:
+UPS_PLPM_OM_BATM:
   description: "UPS with battery and power monitoring."
   is_canonical: true
   implements:
   - UPS
-  - PPWM
+  - PLPM
   - OM
   - BATM

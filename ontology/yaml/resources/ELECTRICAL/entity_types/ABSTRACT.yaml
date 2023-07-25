@@ -124,15 +124,24 @@ PPWM:
   guid: "aab62bba-a92f-47bf-bf14-dcb8e61ac7a8"
   description: "Phase power monitoring"
   is_abstract: true
-  opt_uses:
-  - phase1_power_sensor
-  - phase2_power_sensor
-  - phase3_power_sensor
   uses:
   - phase1_apparent_power_sensor
   - phase2_apparent_power_sensor
   - phase3_apparent_power_sensor
   - line_frequency_sensor 
+
+PLPM:
+  description: "Phase level power monitoring"
+  is_abstract: true
+  opt_uses:
+  - phase1_apparent_power_sensor
+  - phase2_apparent_power_sensor
+  - phase3_apparent_power_sensor
+  - line_frequency_sensor 
+  uses:
+  - phase1_power_sensor
+  - phase2_power_sensor
+  - phase3_power_sensor
 
 BATM:
   guid: "445a7a7f-9da2-4b56-99cd-9890cdf6fea1"
