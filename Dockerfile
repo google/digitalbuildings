@@ -1,4 +1,4 @@
-FROM python:3.9
+FROM python:3.10
 WORKDIR /source
 COPY . /source
 RUN /source/tools/scripts/docker_setup.sh

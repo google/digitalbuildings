@@ -20,7 +20,7 @@ case "${TOOL}" in
     exec python /source/tools/explorer/explorer.py "${@}"
     ;;
   guid_generator)
-    exec python /source/tools/guid_generator/generator.py "${@}"
+    exec python /source/tools/guid_generator/instance/instance_guid_generator.py "${@}"
     ;;
   rdf_generator)
     exec python /source/tools/rdf_generator/rdfformat/rdf_generator.py "${@}"
@@ -29,10 +29,10 @@ case "${TOOL}" in
     exec python /source/tools/scoring/scorer.py "${@}"
     ;;
   instance_validator)
-    exec python /source/tools/instance_validator/instance_validator.py "${@}"
+    exec python /source/tools/validators/instance_validator/instance_validator.py "${@}"
     ;;
   ontology_validator)
-    exec python /source/tools/ontology_validator/ontology_validator.py "${@}"
+    exec python /source/tools/validators/ontology_validator/yamlformat/validator.py "${@}"
     ;;
   console)
     exec python "${@}"
