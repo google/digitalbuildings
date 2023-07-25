@@ -1430,7 +1430,7 @@ FCU_NONCANONICAL_1:
   - zone_occupancy_status_1
   - zone_occupancy_status_2
   - zone_occupancy_status_3
-  
+
 FCU_DFSS_CSP_ZHC_DXZC_NONCANONICAL_1:
   guid: "0bca6899-fa9a-40ff-a3bd-8828991b39c1"
   description: "Non-standard type."
@@ -1762,8 +1762,6 @@ FCU_RHDHS_DXDC_DFSS_RTM:
   - DXDC
   - DFSS
   - RTM
-  uses:
-  - run_status
   opt_uses:
   - water_leak_alarm
   - failed_alarm
