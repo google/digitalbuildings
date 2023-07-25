@@ -566,6 +566,17 @@ CH_SS_SCHWTC_CDWFRM_CHWSWISOVM_CWSISOVM_CHWDPM_CHWFRM_CWDT_REFPM_IGM_DXSWC:
   - IGM
   - DXSWC
 
+CH_SS_REFPM_REFSM_OA_CPM2X:
+  description: "air source heat pump with refrigerant temperature and pressure monitoring, 2 evaporator pumps"
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - REFM
+  - REFSM
+  - OA
+  - CPM2X
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################

@@ -173,15 +173,4 @@ PMP_SS_VSC_NONCANONICAL_2:
   - chilled_supply_water_temperature_setpoint
   - chilled_supply_water_temperature_sensor
 
-
-PMP_SS_REFPM_REFSM_OA_CPM2X:
-  description: "air source heat pump with refrigerant temperature and pressure monitoring, 2 evaporator pumps"
-  is_canonical: true
-  implements:
-  - PMP
-  - SS
-  - REFM
-  - REFSM
-  - OA
-  - CPM2X
   
