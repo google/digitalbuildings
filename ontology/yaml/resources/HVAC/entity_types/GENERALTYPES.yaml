@@ -53,6 +53,8 @@ FCU:
   - return_air_relative_humidity_sensor
   - discharge_air_temperature_sensor
   - failed_communication_alarm
+  - master_alarm
+  - filter_alarm
   implements:
   - EQUIPMENT
 
