@@ -29,7 +29,7 @@ colorama.init()
 DEFAULT_MATCHED_TYPES_LIST_SIZE = 10
 
 def _InputStringToCommaSeparatedList(input_string: str) -> List[str]:
-  """Split the input string into a list of fields.
+  """Split the input string into a list of fields/subfields.
   
   Args:
     input_string: A string of fields/subfields delimited by any of the characters in the 'delimiters' list.
