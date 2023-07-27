@@ -32,11 +32,12 @@ def _InputStringToCommaSeparatedList(input_string: str) -> List[str]:
   """Split the input string into a list of fields/subfields.
   
   Args:
-    input_string: A string of fields/subfields delimited by any of the characters in the 'delimiters' list.
+    input_string: A string of fields/subfields delimited by any of the characters
+    in the 'delimiters' list.
   """
 
   for delimiter in [';', '|', '/', '\t', ' ']:
-      input_string = input_string.replace(delimiter, ',')
+    input_string = input_string.replace(delimiter, ',')
 
   return input_string.replace(' ', '').split(',')
 
@@ -142,7 +143,7 @@ def GetFieldsForSubfieldList(ontology):
   subfields = _InputStringToCommaSeparatedList(raw_subfields)
 
   all_fields = ontology.universe.field_universe.GetFieldsMap()
-  
+
   complete_match_list = []
 
   for field in all_fields:
