@@ -32,8 +32,8 @@ def _InputStringToCommaSeparatedList(input_string: str) -> List[str]:
   """Split the input string into a list of fields/subfields.
   
   Args:
-    input_string: A string of fields/subfields delimited by any of the characters
-    in the 'delimiters' list.
+    input_string: A string of fields/subfields delimited by any of the
+    characters in the 'delimiters' list.
   """
 
   for delimiter in [';', '|', '/', '\t', ' ']:
@@ -149,7 +149,7 @@ def GetFieldsForSubfieldList(ontology):
   for field in all_fields:
     if all(subfield in field for subfield in subfields):
       complete_match_list.append(field)
-          
+     
   print(f'\nComplete matches for {subfields}:')
   for field in complete_match_list:
     print(colored(field, 'green'))
