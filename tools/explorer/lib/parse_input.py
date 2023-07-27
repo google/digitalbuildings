@@ -28,6 +28,18 @@ from yamlformat.validator.field_lib import FIELD_INCREMENT_REGEX
 colorama.init()
 DEFAULT_MATCHED_TYPES_LIST_SIZE = 10
 
+def _InputStringToCommaSeparatedList(input_string: str) -> List[str]:
+  """Split the input string into a list of fields.
+  
+  Args:
+    input_string: A string of fields/subfields delimited by any of the characters in the 'delimiters' list.
+  """
+
+  for delimiter in [';', '|', '/', '\t', ' ']:
+      input_string = input_string.replace(delimiter, ',')
+
+  return input_string.replace(' ', '').split(',')
+
 
 def _InputFieldsFromUser() -> List[StandardField]:
   """Method to take in field inputs from the user.
@@ -119,3 +131,24 @@ def ValidateFieldName(ontology):
   else:
     print(colored(
         f'{field_name} is defined in {namespace}: {field_is_valid}', 'red'))
+
+def GetFieldsForSubfieldList(ontology):
+  """Prints a list of fields matching a list of input subfields.
+  
+  Args:
+    ontology: An instance of the OntologyWrapper class
+  """
+  raw_subfields = input('Enter your subfields here as a comma separated list: ')
+  subfields = _InputStringToCommaSeparatedList(raw_subfields)
+
+  all_fields = ontology.universe.field_universe.GetFieldsMap()
+  
+  complete_match_list = []
+
+  for field in all_fields:
+    if all(subfield in field for subfield in subfields):
+      complete_match_list.append(field)
+          
+  print(f'\nComplete matches for {subfields}:')
+  for field in complete_match_list:
+    print(colored(field, 'green'))

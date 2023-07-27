@@ -38,6 +38,7 @@ def main(parsed_args):
           '1: Get fields for a type name\n' +
           '2: Get types for a list of fields\n' +
           '3: Validate a field name\n' +
+          '4: Get fields for a list of subfields\n' +
           'q: quit\n'
       )
       function_choice = input('Please select an option: ')
@@ -47,6 +48,8 @@ def main(parsed_args):
         parse_input.GetTypesForFieldList(ontology)
       elif function_choice == '3':
         parse_input.ValidateFieldName(ontology)
+      elif function_choice == '4':
+        parse_input.GetFieldsForSubfieldList(ontology)
       elif function_choice == 'q':
         print('bye bye')
         done = True
