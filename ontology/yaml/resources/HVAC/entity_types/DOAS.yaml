@@ -80,3 +80,18 @@ DOAS_CHWSC_EFSS_EFVSC_FDPM3X_PHRU_HWSC_RCO2M_RSPC_SFM_SFSS_SFVSC_SSPC:
   - SFSS
   - SFVSC
   - SSPC
+
+DOAS_CHWSC_EFSS_EFVSC_FDPM2X_PHRU_HWSC_SFSS_SFVSC_SSPM:
+  description: "Complex multi zone DOAS with heat recovery plate exchanger, heating, cooling, and filter differential pressure monitoring."
+  is_canonical: true
+  implements:
+  - DOAS
+  - CHWSC
+  - EFSS
+  - EFVSC
+  - FDPM2X
+  - PHRU
+  - HWSC
+  - SFSS
+  - SFVSC
+  - SSPM
