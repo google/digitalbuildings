@@ -73,8 +73,10 @@ def GetFieldsForTypeName(ontology):
   type_name = input(f'Enter a type name defined in {namespace}: ').upper()
   fields = ontology.GetFieldsForTypeName(namespace, type_name)
   print(f'\nFields for {namespace}/{type_name}:')
-  for field in fields:
-    print(colored(field, 'green'))
+  for required_field in [field for field in fields if not field.IsOptional()]:
+    print(colored(required_field, 'green'))
+  for optional_field in [field for field in fields if field.IsOptional()]:
+    print(colored(optional_field, 'yellow'))
 
 
 def GetTypesForFieldList(ontology):
