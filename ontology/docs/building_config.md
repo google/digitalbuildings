@@ -239,20 +239,20 @@ The following example shows a building with one floor and one room:
 
 ``` yaml
 # Building
-A-BUILDING-CODE:
+UK-LON-S2:
   type: FACILITIES/BUILDING
 
 # Floor
-A-BUILDING-CODE-FLOOR1:
+UK-LON-S2-1:
   type: FACILITIES/FLOOR
   connections:
-    A-BUILDING-CODE: CONTAINS
+    UK-LON-S2: CONTAINS
 
 # Room
-A-BUILDING-CODE-FLOOR1-ROOM123:
+UK-LON-S2-1-1C3G:
   type: FACILITIES/ROOM
   connections:
-    A-BUILDING-CODE-FLOOR1: CONTAINS
+    UK-LON-S2-1: CONTAINS
 
 ```
 
