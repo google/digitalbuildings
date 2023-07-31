@@ -347,7 +347,18 @@ FCU_DFSS_DFVSC_RTC_CHWRC:
   - DFVSC
   - RTC
   - CHWRC
-
+  
+FCU_DFSS_DFVSC_DTM_RHC_CHWRC:
+  description: "Hydronic variable speed fan coil with return controlled cooling and humidity control."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - DFVSC
+  - DTM
+  - RHC
+  - CHWRC
+  
 FCU_DFSS_DFVSC_DSP_HWDC_CHWDC:
   guid: "fcf34e51-7056-4175-bb33-c6a488653d74"
   description: "Hydronic variable speed fan coil with heating and cooling (zone temp control)."
