@@ -85,6 +85,11 @@ jobs:
         python instance_validator.py -i ../../abel/tests/test_resources/good_test_building_config.yaml
       working-directory: ./tools/validators/instance_validator
 
+    - name: Correct Ontology Descriptions
+      run: |
+       pip install -r tools/spellcheck/requirements.txt
+       python tools/spellcheck/spellcheck.py
+
      #---------- ABEL ----------#
     - name: ABEL install dependencies
       if: steps.changes.outputs.abel == 'true' || steps.changes.outputs.instance_validator == 'true' || steps.changes.outputs.type_validator == 'true'
