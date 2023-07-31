@@ -313,6 +313,15 @@ HWS_SS_HWTTC_PWDPM2X:
   opt_uses:
   - compressor_run_status
 
+HWS_PWDT_HWTTCX2_SEWTM:
+  description: "hot water system with 2 tanks, high water temperature alarms"
+  is_canonical: true
+  implements:
+  - HWS
+  - PWDT
+  - HWTTCX2
+  - SEWTM
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
