@@ -1584,6 +1584,7 @@ SSPM:
   - low_supply_air_static_pressure_alarm
 
 DSPM:
+  guid: "7299212e-c70c-4d49-ac2f-004f1e4672e9"
   description: "Discharge static pressure monitoring."
   is_abstract: true
   uses:
@@ -1690,6 +1691,7 @@ FDPM:
   - MONITORING
 
 DFDPM:
+  guid: "a372c26b-010d-4ea3-aa7b-24c98377d9f4"
   description: "Discharge filter pressure monitoring."
   is_abstract: true
   uses:
@@ -1698,6 +1700,7 @@ DFDPM:
   - MONITORING
 
 EFDPM:
+  guid: "ea54f179-dfed-4d12-a987-f4919931f979"
   description: "Exhaust filter pressure monitoring."
   is_abstract: true
   uses:
@@ -5447,6 +5450,7 @@ PHRU:
   - low_supply_air_temperature_alarm
 
 PHRUD:
+  guid: "a43c1a7c-ec35-4eb8-8c3a-b6291ef79d31"
   description: "single zone heat recovery unit for ahu's with plate heat exchanger valve and bypass damper"
   is_abstract: true
   implements:
