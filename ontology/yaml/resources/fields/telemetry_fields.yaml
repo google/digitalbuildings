@@ -547,6 +547,12 @@ literals:
 - filter_differential_pressure_sensor:
     flexible_min: -249.080024
     flexible_max: 2490.80024
+- discharge_filter_differential_pressure_sensor:
+    flexible_min: -249.080024
+    flexible_max: 2490.80024
+- exhaust_filter_differential_pressure_sensor:
+    flexible_min: -249.080024
+    flexible_max: 2490.80024
 - flowrate_setpoint:
     flexible_min: 0.0
     flexible_max: 0.315451
@@ -3156,5 +3162,13 @@ literals:
   - INACTIVE
 
 - low_discharge_air_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
+
+- high_discharge_air_static_pressure_alarm:
+  - ACTIVE
+  - INACTIVE
+
+- low_discharge_air_static_pressure_alarm:
   - ACTIVE
   - INACTIVE
