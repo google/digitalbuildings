@@ -182,7 +182,6 @@ ZTC:
   - high_zone_air_temperature_alarm
   - low_zone_air_temperature_alarm
   - zone_occupancy_status
-  - discharge_air_temperature_sensor
   uses:
   - zone_air_temperature_sensor
   - zone_air_temperature_setpoint
