@@ -132,15 +132,17 @@ def _ValidateConfig(
 
 def _ValidateTelemetry(
     subscription: str,
-    service_account: str,
     entities: Dict[str, entity_instance.EntityInstance],
     timeout: int,
     is_udmi: bool,
+    gcp_credential_path: str,
     report_directory: str = None,
 ) -> None:
   """Runs all telemetry validation checks."""
-  helper = TelemetryHelper(subscription, service_account, report_directory)
-  helper.Validate(entities, timeout, is_udmi)
+  helper = TelemetryHelper(subscription, report_directory)
+  helper.Validate(
+      entities, timeout, is_udmi, gcp_credential_path=gcp_credential_path
+  )
 
 
 def RunValidation(
@@ -149,7 +151,7 @@ def RunValidation(
     modified_types_filepath: str = None,
     default_types_filepath: str = constants.ONTOLOGY_ROOT,
     subscription: str = None,
-    service_account: str = None,
+    gcp_credential_path: str = None,
     report_directory: str = None,
     timeout: int = constants.DEFAULT_TIMEOUT,
     is_udmi: bool = True,
@@ -162,10 +164,15 @@ def RunValidation(
     modified_types_filepath: Relative path to a modified ontology.
     default_types_filepath: Relative path to the DigitalBuildings ontology.
     subscription: Fully qualified path to a Google Cloud Pubsub subscription.
-    service_account: Fully qualified path to a service account key file.
+    gcp_credential_path: Path to GCP credential file for authenticating
+        against Google sheets API. This is an OAuth credential as documented.
+        https://developers.google.com/sheets/api/quickstart/python
     report_directory: Fully qualified path to validation reports.
     timeout: Timeout duration of the telemetry validator. Default is 60 seconds.
     is_udmi: Telemetry follows UDMI standards.
+    
+  Returns:
+    Report file name or None if no report file is generated.
   """
   saved_stdout = sys.stdout
   report_file = None
@@ -175,7 +182,7 @@ def RunValidation(
     # pylint: disable=consider-using-with
     report_filename = os.path.join(
         report_directory,
-        FileNameEnumerationHelper(INSTANCE_VALIDATION_FILENAME)
+        FileNameEnumerationHelper(INSTANCE_VALIDATION_FILENAME),
     )
     report_file = open(report_filename, 'w', encoding='utf-8')
     sys.stdout = report_file
@@ -196,12 +203,12 @@ def RunValidation(
     if subscription:
       print('[INFO]\tStarting telemetry validation.')
       _ValidateTelemetry(
-          subscription,
-          service_account,
-          entities,
-          timeout,
-          is_udmi,
-          report_directory,
+          subscription=subscription,
+          entities=entities,
+          timeout=timeout,
+          is_udmi=is_udmi,
+          gcp_credential_path=gcp_credential_path,
+          report_directory=report_directory,
       )
     else:
       print(
@@ -217,6 +224,9 @@ def RunValidation(
       report_file.close()
       print(f'[INFO]\tInstance validation report generated: {report_file.name}')
     print('[INFO]\tInstance validation completed.')
+  if report_file:
+    return report_file.name
+  return None
 
 
 class TelemetryHelper(object):
@@ -228,10 +238,9 @@ class TelemetryHelper(object):
     report_directory: fully qualified path to report output directory
   """
 
-  def __init__(self, subscription, service_account_file, report_directory):
+  def __init__(self, subscription, report_directory):
     super().__init__()
     self.subscription = subscription
-    self.service_account_file = service_account_file
     self.report_directory = report_directory
 
   def Validate(
@@ -239,6 +248,7 @@ class TelemetryHelper(object):
       entities: Dict[str, entity_instance.EntityInstance],
       timeout: int,
       is_udmi: bool,
+      gcp_credential_path: str,
   ) -> None:
     """Validates telemetry payload received from the subscription.
 
@@ -246,10 +256,13 @@ class TelemetryHelper(object):
       entities: EntityInstance dictionary keyed by entity name
       timeout: number of seconds to wait for telemetry
       is_udmi: true/false treat telemetry stream as UDMI; default True.
+      gcp_credential_path: Path to GCP credential file for authenticating
+        against Google sheets API. This is an OAuth credential as documented.
+        https://developers.google.com/sheets/api/quickstart/python
     """
 
     print(f'[INFO]\tConnecting to PubSub subscription {self.subscription}')
-    sub = subscriber.Subscriber(self.subscription, self.service_account_file)
+    sub = subscriber.Subscriber(self.subscription)
     if is_udmi:
       print('[INFO]\tValidating telemetry payload for UDMI compliance.')
     validator = telemetry_validator.TelemetryValidator(
@@ -261,7 +274,9 @@ class TelemetryHelper(object):
     validator.StartTimer()
     try:
       print('[INFO]\tStaring to listen to subscription messages.')
-      sub.Listen(validator.ValidateMessage)
+      sub.Listen(
+          validator.ValidateMessage, gcp_credential_path=gcp_credential_path
+      )
     finally:
       print('[INFO]\tStopping subscription listener.')
       validator.StopTimer()
@@ -301,12 +316,11 @@ def _TelemetryValidationCallback(
     # Export to filepath or current working directory.
     telemetry_validation_report_path = os.path.join(
         validator.report_directory,
-        FileNameEnumerationHelper(TELEMETRY_VALIDATION_FILENAME)
+        FileNameEnumerationHelper(TELEMETRY_VALIDATION_FILENAME),
     )
   else:
     telemetry_validation_report_path = os.path.join(
-        os.getcwd(),
-        FileNameEnumerationHelper(TELEMETRY_VALIDATION_FILENAME)
+        os.getcwd(), FileNameEnumerationHelper(TELEMETRY_VALIDATION_FILENAME)
     )
   with open(telemetry_validation_report_path, 'w', encoding='utf-8') as report:
     report.write(json.dumps(validation_report_dict, indent=4))
