@@ -13,9 +13,9 @@
 # limitations under the License.
 
 """Ontology wrapper class for DBO explorer."""
-from typing import List
-from typing import Set
+from typing import List, Set
 
+# pylint: disable=g-importing-member
 import colorama
 from termcolor import colored
 
@@ -33,15 +33,14 @@ colorama.init()
 class OntologyWrapper(object):
   """Class providing an interface to do lookups on DBO.
 
-    Attributes:
-      universe: A ConfigUniverse object detailing the various universes in
-        DBO.
-      manager: An EntityTypeManager object to find greatest common subsets
-        of fields between entity types and complete lists of inherited
-        fields for a concrete entity. This is primarily used for
-        _CreateMatch().
-    Returns:
-      An instance of OntologyWrapper class.
+  Attributes:
+    universe: A ConfigUniverse object detailing the various universes in DBO.
+    manager: An EntityTypeManager object to find greatest common subsets of
+      fields between entity types and complete lists of inherited fields for a
+      concrete entity. This is primarily used for _CreateMatch().
+
+  Returns:
+    An instance of OntologyWrapper class.
   """
 
   def __init__(self, universe: ConfigUniverse):
@@ -56,11 +55,9 @@ class OntologyWrapper(object):
     self.manager = EntityTypeManager(self.universe)
 
   def GetFieldsForTypeName(
-      self,
-      namespace: str,
-      entity_type_name: str,
-      required_only: bool = False) -> List[EntityTypeField]:
-    """Gets a list of fields for a given type name within a namespace.
+      self, namespace: str, entity_type_name: str, required_only: bool = False
+  ) -> List[EntityTypeField]:
+    """Gets a list of fields for a given typename within a namespace.
 
     Args:
       namespace: the name of the namespace as a string.
@@ -70,27 +67,36 @@ class OntologyWrapper(object):
 
     Returns:
       result_fields: a list of EntityTypeField objects.
+
+    Raises:
+      Exception: when inherited fields are not expanded.
     """
     entity_type = self.universe.entity_type_universe.GetEntityType(
-        namespace, entity_type_name)
+        namespace, entity_type_name
+    )
     if entity_type is None:
       if not namespace:
         raise ValueError(
-            f'\n{entity_type_name} is not defined in global namespace.')
+            f'\n{entity_type_name} is not defined in global namespace.'
+        )
       else:
         raise ValueError(
-            f'\n{entity_type_name} is not defined in namespace: {namespace}.')
+            f'\n{entity_type_name} is not defined in namespace: {namespace}.'
+        )
     if not entity_type.inherited_fields_expanded:
-      raise ValueError(
-          'Inherited fields must be expanded to query fields.\n' +
-          'Run NamespaceValidator on your ConfigUniverse to expand fields.')
+      raise Exception(
+          'Inherited fields must be expanded to query fields.\n'
+          + 'Run NamespaceValidator on your ConfigUniverse to expand fields.'
+      )
     # Entity_type_lib.FieldParts NamedTuple to EntityTypeField object.
     entity_type_fields = []
     for qualified_field in entity_type.GetAllFields().values():
-      new_entity_type_field = EntityTypeField(qualified_field.field.namespace,
-                                              qualified_field.field.field,
-                                              qualified_field.optional,
-                                              qualified_field.field.increment)
+      new_entity_type_field = EntityTypeField(
+          qualified_field.field.namespace,
+          qualified_field.field.field,
+          qualified_field.optional,
+          qualified_field.field.increment,
+      )
       entity_type_fields.append(new_entity_type_field)
 
     if required_only:
@@ -100,12 +106,16 @@ class OntologyWrapper(object):
     entity_type_fields_sorted = sorted(
         entity_type_fields,
         key=lambda x: x.GetStandardFieldName(),
-        reverse=False)
+        reverse=False,
+    )
 
     return entity_type_fields_sorted
 
-  def _CalculateMatchScore(self, concrete_fields: Set[StandardField],
-                           canonical_fields: Set[EntityTypeField])-> int:
+  def _CalculateMatchScore(
+      self,
+      concrete_fields: Set[StandardField],
+      canonical_fields: Set[EntityTypeField],
+  ) -> int:
     """Calculates a match's score in [0, 100].
 
     The score of a match is determined by calculating the average of two
@@ -117,58 +127,43 @@ class OntologyWrapper(object):
     [0, 100].
 
     Args:
-      concrete_fields: A set of StandardField objects belonging to the
-        concrete entity being matched.
+      concrete_fields: A set of StandardField objects belonging to the concrete
+        entity being matched.
       canonical_fields: A set of EntityTypeField objects belonging to an Entity
         Type defined in DBO.
 
     Returns:
       A match's score as an integer in [0, 100].
     """
-
-    required_canonical_fields = {
-        StandardizeField(field) for field in canonical_fields
-        if not field.IsOptional()
-    }
-
     standard_canonical_fields: Set[StandardField] = set()
     for field in canonical_fields:
       standard_canonical_fields.add(StandardizeField(field))
-
+    required_canonical_fields = {
+        StandardizeField(field)
+        for field in canonical_fields
+        if not field.IsOptional()
+    }
+    total_entity_fields = len(concrete_fields)
     matched_fields = len(
         concrete_fields.intersection(standard_canonical_fields)
     )
+    total_fields = len(concrete_fields.union(standard_canonical_fields))
+    total_required_type_fields = len(required_canonical_fields)
     matched_required_fields = len(
         concrete_fields.intersection(required_canonical_fields)
-    )
-
-    total_required_type_fields = len(required_canonical_fields)
-    total_entity_fields = len(concrete_fields)
-    unmatched_entity_fields = len(
-        concrete_fields.difference(standard_canonical_fields)
-    )
-    unmatched_required_fields = len(
-        required_canonical_fields.difference(concrete_fields)
     )
 
     if total_entity_fields <= 0:
       raise ValueError('Concrete field set cannot be empty.')
 
-    total_precision = matched_fields - unmatched_entity_fields
-    total_precision /= total_entity_fields
+    raw_score = matched_fields / total_fields
+    if total_required_type_fields > 0:
+      raw_score += (matched_required_fields / total_required_type_fields)
+    return int((raw_score / 2.0) * 100.0)
 
-    if total_required_type_fields <= 0:
-      match_score = total_precision / 2.0
-    else:
-      required_precision = matched_required_fields - unmatched_required_fields
-      required_precision /= total_required_type_fields
-      match_score = (total_precision + required_precision) / 2.0
-    final_score = int((match_score + 1.0) * 50)
-    assert final_score in range(0, 101), f'Score: {final_score} out of range'
-    return final_score
-
-  def _CreateMatch(self, field_list: List[StandardField],
-                   entity_type: EntityType) -> Match:
+  def _CreateMatch(
+      self, field_list: List[StandardField], entity_type: EntityType
+  ) -> Match:
     """Creates an instance of Match class.
 
     calls _CalculateMatchScore() on field_list and the set of fields belonging
@@ -189,37 +184,38 @@ class OntologyWrapper(object):
           qualified_field.field.namespace,
           qualified_field.field.field,
           qualified_field.optional,
-          qualified_field.field.increment
+          qualified_field.field.increment,
       )
       canonical_field_set.add(new_entity_type_field)
 
     match_score = self._CalculateMatchScore(
         concrete_fields=frozenset(field_list),
-        canonical_fields=frozenset(canonical_field_set)
+        canonical_fields=frozenset(canonical_field_set),
     )
-    new_match = Match(
-        field_list,
-        entity_type,
-        match_score
-    )
+    new_match = Match(field_list, entity_type, match_score)
     return new_match
 
-  def GetEntityTypesFromFields(self,
-                               field_list: List[StandardField],
-                               return_size: int = 0,
-                               general_type: str = None) -> List[Match]:
+  def GetEntityTypesFromFields(
+      self,
+      field_list: List[StandardField],
+      return_size: int = 0,
+      general_type: str = None,
+  ) -> List[Match]:
     """Get a list of Match objects for all entity types defined in DBO.
 
     Args:
       field_list: A list of StandardField objects to match to an entity.
-      return_size: An int for the length of the return list of matches.
-        e.g. if return_size is 10, the 10 matches with the highest score will
-        be returned.
+      return_size: An int for the length of the return list of matches. e.g. if
+        return_size is 10, the 10 matches with the highest score will be
+        returned.
       general_type: A string indicating a general type name to filter return
         results.
+
     Returns:
       A sorted list of Match objects.
     """
+    if True not in [self.IsFieldValid(field) for field in field_list]:
+      raise ValueError('List of fields contains only invalid fields.')
     entity_type_list = []
     type_namespaces_list = self.universe.GetEntityTypeNamespaces()
     for tns in type_namespaces_list:
@@ -237,9 +233,7 @@ class OntologyWrapper(object):
       match_list.append(self._CreateMatch(field_list, entity_type))
 
     match_list_sorted = sorted(
-        match_list,
-        key=lambda x: x.GetMatchScore(),
-        reverse=True
+        match_list, key=lambda x: x.GetMatchScore(), reverse=True
     )
     if return_size > 0:
       return match_list_sorted[:return_size]
@@ -264,7 +258,7 @@ class OntologyWrapper(object):
           qualified_field.field.namespace,
           qualified_field.field.field,
           qualified_field.optional,
-          qualified_field.field.increment
+          qualified_field.field.increment,
       )
       new_standard_field = StandardizeField(new_entity_type_field)
       canonical_field_dict[new_standard_field] = new_entity_type_field
@@ -275,26 +269,29 @@ class OntologyWrapper(object):
     for field in only_concrete:
       if not self.IsFieldValid(field):
         final_matrix.append(
-            [colored(str(field) + ' (undefined)', 'red'), '', ''])
+            [colored(str(field) + ' (undefined)', 'red'), '', '']
+        )
       else:
         final_matrix.append([str(field), '', ''])
 
     intersection = standard_canonical_field_set.intersection(concrete_field_set)
     for field in intersection:
       final_matrix.append(
-          [str(field), str(field), canonical_field_dict[field].IsOptional()])
+          [str(field), str(field), canonical_field_dict[field].IsOptional()]
+      )
 
     only_canonical = standard_canonical_field_set.difference(concrete_field_set)
     for field in only_canonical:
       final_matrix.append(
-          ['', str(field), canonical_field_dict[field].IsOptional()])
+          ['', str(field), canonical_field_dict[field].IsOptional()]
+      )
 
     all_fields = list(intersection) + list(only_concrete) + list(only_canonical)
 
     return final_matrix, all_fields
 
   # TODO(b/210673114): Have this method return an object rather than a string.
-  def PrintFieldSetComparison(self, match: Match)-> str:
+  def PrintFieldSetComparison(self, match: Match) -> str:
     """Creates a text representation of field set relations for a given match.
 
     Takes the intersection and differences in sets between a set of fields
@@ -304,8 +301,9 @@ class OntologyWrapper(object):
     between a list of fields and an entity type within a match.
 
     Args:
-      match: An instance of Match class for which a field set relation wants
-      to be visualized.
+      match: An instance of Match class for which a field set relation wants to
+        be visualized.
+
     Returns:
       A string to visualize a field set relation
     """
@@ -321,11 +319,14 @@ class OntologyWrapper(object):
     return_string += '\n'
     return_string += ''.join(
         colored(field.ljust(col_width), 'yellow')
-        for field in ['ACTUAL FIELDS', 'TYPE FIELDS', 'OPTIONALITY'])
+        for field in ['ACTUAL FIELDS', 'TYPE FIELDS', 'OPTIONALITY']
+    )
     return_string += '\n'
     return_string += ''.join(
-        field.ljust(col_width) for field in ['='*(col_width-padding)]*3)
+        field.ljust(col_width) for field in ['=' * (col_width - padding)] * 3
+    )
     return_string += '\n'
+    # pylint: disable=g-bool-id-comparison
     for row in final_matrix:
       if row[2] is False:
         row[2] = 'Required'
@@ -333,7 +334,8 @@ class OntologyWrapper(object):
         row[2] = 'Optional'
       if row[0] and row[1]:
         return_string += ''.join(
-            colored(field.ljust(col_width), 'green') for field in row)
+            colored(field.ljust(col_width), 'green') for field in row
+        )
       else:
         return_string += ''.join(field.ljust(col_width) for field in row)
       return_string += '\n'
@@ -344,10 +346,13 @@ class OntologyWrapper(object):
   def IsFieldValid(self, field: StandardField) -> bool:
     """A method to validate a field name against the ontology."""
     if not isinstance(field, StandardField):
-      raise TypeError('Field argument must be a StandardField object.\n' +
-                      f'You provided a {type(field)} object.')
+      raise TypeError(
+          'Field argument must be a StandardField object.\n'
+          + f'You provided a {type(field)} object.'
+      )
     namespace_name = field.GetNamespaceName()
     standard_field_name = field.GetStandardFieldName()
     validity = self.universe.field_universe.IsFieldDefined(
-        namespace_name=namespace_name, fieldname=standard_field_name)
+        namespace_name=namespace_name, fieldname=standard_field_name
+    )
     return validity
