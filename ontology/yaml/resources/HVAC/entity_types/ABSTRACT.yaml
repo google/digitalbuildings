@@ -1866,6 +1866,7 @@ CHWZTC:
   - failed_zone_air_temperature_alarm
   - high_zone_air_temperature_alarm
   - low_zone_air_temperature_alarm
+  - zone_air_deadband_temperature_setpoint
   uses:
   - chilled_water_valve_percentage_command
   - zone_air_temperature_sensor
@@ -2698,6 +2699,7 @@ HWZTC:
   - failed_zone_air_temperature_alarm
   - high_zone_air_temperature_alarm
   - low_zone_air_temperature_alarm
+  - zone_air_deadband_temperature_setpoint
   uses:
   - heating_water_valve_percentage_command
   - zone_air_temperature_sensor
