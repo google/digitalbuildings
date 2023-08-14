@@ -1739,12 +1739,13 @@ FCU_DSP_DFVSC_DTM_RTM:
   - DTM
   - RTM
 
-FCU_DFVSC_RTM_HWZTC_CO2M_CHWVM:
+FCU_DFVSC_RTM_ZTC_CO2M_HWVM_CHWVM:
   description: "Fan coil unit with zone temperature control, heating water and chilled water valve monitoring."
   implements:
   - FCU
   - DFVSC
   - RTM
-  - HWZTC
+  - ZTC
   - CO2M
+  - HWVM
   - CHWVM
