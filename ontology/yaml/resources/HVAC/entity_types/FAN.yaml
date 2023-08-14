@@ -769,3 +769,11 @@ FAN_SS_MSM:
   implements:
   - FAN
   - MSM
+
+FAN_SS_SRC:
+  description: "Basic fan with start/stop and schedule run command."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - SRC
