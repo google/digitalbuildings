@@ -306,12 +306,11 @@ SENSOR_ZTM_ZHM_CO2M_SPLM_PLM_COM_ZSPM_XXXXXXXX:
   - COM
   - ZSPM
   uses:
-  - zone_air_aqi_sensor
   - illuminance_sensor
   - zone_air_pm2pt5_density_sensor
-  - motion_status
   - zone_air_formaldehyde_concentration_sensor
-  # need to add:
-  # vape index
-  # tvoc index
-  # tamper status
+  - zone_air_aqi_sensor
+  - zone_air_voc_aqi_sensor
+  - zone_air_smoke_aqi_sensor
+  - motion_status
+  - tamper_status

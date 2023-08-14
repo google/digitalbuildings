@@ -3166,3 +3166,15 @@ literals:
 - zone_occupant_counter:
     fixed_min: 0
     flexible_max: 1000
+
+- zone_air_voc_aqi_sensor:
+    fixed_min: 0
+    flexible_max: 500
+
+- zone_air_smoke_aqi_sensor:
+    fixed_min: 0
+    flexible_max: 300
+
+- tamper_status:
+  - FALSE
+  - TRUE
