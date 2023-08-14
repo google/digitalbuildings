@@ -1696,7 +1696,7 @@ DFDPM:
   is_abstract: true
   uses:
   - discharge_air_filter_differential_pressure_sensor
-   opt_uses:
+  opt_uses:
   - discharge_air_filter_alarm
   implements:
   - MONITORING
@@ -1707,7 +1707,7 @@ EFDPM:
   is_abstract: true
   uses:
   - exhaust_air_filter_differential_pressure_sensor
-    opt_uses:
+  opt_uses:
   - exhaust_air_filter_alarm
   implements:
   - MONITORING
