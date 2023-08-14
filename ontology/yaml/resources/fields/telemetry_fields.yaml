@@ -3176,5 +3176,5 @@ literals:
     flexible_max: 300
 
 - tamper_status:
-  - FALSE
-  - TRUE
+  - ON
+  - OFF
