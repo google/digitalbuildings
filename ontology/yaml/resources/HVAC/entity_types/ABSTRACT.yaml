@@ -6734,3 +6734,15 @@ OAQM:
   - outside_air_co2_concentration_sensor
   implements:
   - MONITORING
+
+VSMC:
+  description: "Variable speed control mode."
+  is_abstract: true
+  uses:
+  - speed_mode
+  - run_command
+  - run_status
+  opt_uses:
+  - low_speed_status
+  - high_speed_status
+  - schedule_run_command
