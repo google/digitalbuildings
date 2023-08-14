@@ -69,7 +69,7 @@ class OntologyWrapper(object):
       result_fields: a list of EntityTypeField objects.
 
     Raises:
-      Exception: when inherited fields are not expanded.
+      ValueError: when inherited fields are not expanded.
     """
     entity_type = self.universe.entity_type_universe.GetEntityType(
         namespace, entity_type_name
@@ -84,7 +84,7 @@ class OntologyWrapper(object):
             f'\n{entity_type_name} is not defined in namespace: {namespace}.'
         )
     if not entity_type.inherited_fields_expanded:
-      raise Exception(
+      raise ValueError(
           'Inherited fields must be expanded to query fields.\n'
           + 'Run NamespaceValidator on your ConfigUniverse to expand fields.'
       )
