@@ -18,7 +18,7 @@ You can run the command with just the version flag (e.g. `python --version`) to 
 Create the virtual environment with `venv` followed by the environment name, in this example: `tooling`
 
 ```
-venv tooling
+python3 -m venv tooling
 ```
 
 
