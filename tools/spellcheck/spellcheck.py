@@ -16,7 +16,7 @@
 # pylint: disable=g-importing-member, bare-except
 import os
 from pathlib import Path
-from text_blob import TextBlob
+from textblob import TextBlob
 import yaml
 
 
