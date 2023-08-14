@@ -1695,7 +1695,9 @@ DFDPM:
   description: "Discharge filter pressure monitoring."
   is_abstract: true
   uses:
-  - discharge_filter_differential_pressure_sensor
+  - discharge_air_filter_differential_pressure_sensor
+   opt_uses:
+  - discharge_air_filter_alarm
   implements:
   - MONITORING
 
@@ -1704,7 +1706,9 @@ EFDPM:
   description: "Exhaust filter pressure monitoring."
   is_abstract: true
   uses:
-  - exhaust_filter_differential_pressure_sensor
+  - exhaust_air_filter_differential_pressure_sensor
+    opt_uses:
+  - exhaust_air_filter_alarm
   implements:
   - MONITORING
   
