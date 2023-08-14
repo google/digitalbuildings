@@ -256,11 +256,12 @@ SENSOR_ZTM_ZHM_CO2M_VOCM_PMM:
   - VOCM
   - PMM
 
-SENSOR_ZHM_ZOC:
-  description: "Zone occupant counter with zone humidity monitoring."
+SENSOR_ZTM_ZHM_ZOC:
+  description: "Zone occupant counter with zone temperature & humidity monitoring."
   is_canonical: true
   implements:
   - /SENSOR
+  - ZTM
   - ZHM
   - ZOC
 
