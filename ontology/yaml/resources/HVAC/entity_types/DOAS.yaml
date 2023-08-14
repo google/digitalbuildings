@@ -80,3 +80,21 @@ DOAS_CHWSC_EFSS_EFVSC_FDPM3X_PHRU_HWSC_RCO2M_RSPC_SFM_SFSS_SFVSC_SSPC:
   - SFSS
   - SFVSC
   - SSPC
+
+DOAS_EFSS_EFVSC_SFSS_SFVSC_CHWSC_HWSC_RSPC_SSPC_HTWHLSTC_OAIDC_RAIDC_FDPM3X:
+  description: "Complex multi zone DOAS with heat recovery wheel."
+  is_canonical: true
+  implements:
+  - DOAS
+  - EFSS
+  - EFVSC
+  - SFSS
+  - SFVSC
+  - CHWSC
+  - HWSC
+  - RSPC
+  - SSPC
+  - HTWHLSTC
+  - OAIDC
+  - RAIDC
+  - FDPM3X
