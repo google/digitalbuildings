@@ -329,6 +329,13 @@ COC:
   opt_uses:
   - high_zone_air_co_concentration_alarm
 
+COM:
+  description: "Carbon monoxide monitoring."
+  is_abstract: true
+  implements:
+  - MONITORING
+  uses:
+  - zone_air_co_concentration_sensor
 
 BPC:
   guid: "8199ef48-de0b-4112-bf7a-15876a4acaff"
