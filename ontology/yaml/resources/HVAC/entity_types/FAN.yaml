@@ -771,6 +771,7 @@ FAN_SS_MSM:
   - MSM
 
 FAN_VSMC:
+  guid: "189df1f4-81e8-4703-afb6-25628d0f87dc"
   description: "Basic fan with 2 speed control and schedule run command."
   is_canonical: true
   implements:
