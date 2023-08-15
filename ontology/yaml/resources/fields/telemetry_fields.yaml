@@ -1618,12 +1618,6 @@ literals:
 - gas_release_status:
   - OPEN
   - CLOSED
-- high_discharge_air_static_pressure_alarm:
-  - ACTIVE
-  - INACTIVE
-- low_discharge_air_static_pressure_alarm:
-  - ACTIVE
-  - INACTIVE
 
 - emergency_release_status:
   - ACTIVE
