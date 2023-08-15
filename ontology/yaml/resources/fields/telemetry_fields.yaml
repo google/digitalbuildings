@@ -3173,7 +3173,7 @@ literals:
 
 - zone_air_smoke_aqi_sensor:
     fixed_min: 0
-    flexible_max: 300
+    flexible_max: 80
 
 - tamper_status:
   - ON
