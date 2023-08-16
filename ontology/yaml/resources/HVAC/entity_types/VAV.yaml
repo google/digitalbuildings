@@ -523,13 +523,12 @@ VAV_HWZTC_CHWZTC_DTM:
     - CHWZTC
     - DTM
 
-VAV_MSVO_PDSCV:
+VAV_MDSCV:
   description: "A zone VAV with ventilation control based on a motion sensor."
   is_canonical: true
   implements:
     - VAV
-    - MSVO
-    - PDSCV
+    - MDSCV
 
 ###################################
 ### Existing Non-standard Types ###
