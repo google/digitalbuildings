@@ -71,15 +71,16 @@ class Subscriber(object):
         ) from err
       except MutualTLSChannelError as err:
         raise MutualTLSChannelError(
-            'ABEL cannot authenticate against Google Sheets API with the provided'
-            ' client credential.'
+            'ABEL cannot authenticate against Google Sheets API with the'
+            ' provided client credential.'
         ) from err
     else:
       print(
         '[INFO]\tNo GCP client credential. Using application default credential'
       )
+      #pylint: disable=unused-variable
       credentials, project_id = auth.default()
-    
+
 
     sub_client = pubsub_v1.SubscriberClient(credentials=credentials)
     future = sub_client.subscribe(self.subscription_name, callback)
