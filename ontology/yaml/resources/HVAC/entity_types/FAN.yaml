@@ -770,9 +770,10 @@ FAN_SS_MSM:
   - FAN
   - MSM
 
-FAN_HLC:
+FAN_SS_HLC:
   description: "Two speed fan control."
   is_canonical: true
   implements:
   - FAN
+  - SS
   - HLC
