@@ -19,6 +19,7 @@ from concurrent import futures
 import os
 
 # pylint: disable=g-importing-member
+from google import auth
 from google.auth.exceptions import MutualTLSChannelError
 from google.cloud import pubsub_v1
 from google_auth_oauthlib.flow import InstalledAppFlow
@@ -57,21 +58,28 @@ class Subscriber(object):
         against Google sheets API. This is an OAuth credential as documented.
         https://developers.google.com/sheets/api/quickstart/python
     """
-    try:
-      flow = InstalledAppFlow.from_client_secrets_file(
-          os.path.abspath(gcp_credential_path), scopes=_SCOPES
+    if gcp_credential_path:
+      try:
+        flow = InstalledAppFlow.from_client_secrets_file(
+            os.path.abspath(gcp_credential_path), scopes=_SCOPES
+        )
+        credentials = flow.run_local_server(port=0)
+      except FileNotFoundError as err:
+        raise FileNotFoundError(
+            'Oauth client id credential file json file not found. Please check'
+            ' the path provided.'
+        ) from err
+      except MutualTLSChannelError as err:
+        raise MutualTLSChannelError(
+            'ABEL cannot authenticate against Google Sheets API with the provided'
+            ' client credential.'
+        ) from err
+    else:
+      print(
+        '[INFO]\tNo GCP client credential. Using application default credential'
       )
-      credentials = flow.run_local_server(port=0)
-    except FileNotFoundError as err:
-      raise FileNotFoundError(
-          'Oauth client id credential file json file not found. Please check'
-          ' the path provided.'
-      ) from err
-    except MutualTLSChannelError as err:
-      raise MutualTLSChannelError(
-          'ABEL cannot authenticate against Google Sheets API with the provided'
-          ' client credential.'
-      ) from err
+      credentials, project_id = auth.default()
+    
 
     sub_client = pubsub_v1.SubscriberClient(credentials=credentials)
     future = sub_client.subscribe(self.subscription_name, callback)

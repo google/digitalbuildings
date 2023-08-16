@@ -106,7 +106,7 @@ Run `python instance_validator.py` and provide the following arguments:
 
 4. `-d/--report-directory` To write instance validation (instance_validation_report.txt) and telemetry validation (telemetry_validation_report.json) reports to the report-directory; otherwise writes instance validation to console and telemetry validation to current working directory.
 
-**NOTE** The GCP OAuth client credential and subscription are provided by the Google team. Please reach out to your IoT TPM for guidance.
+**NOTE** The GCP OAuth client credential and subscription are provided by the Google team. Please reach out to your IoT TPM for guidance. If a GCP Oauth client credential is not provided, then application default credentials will be used to authenticate against Google APIs.
 
 Running telemetry validation will also output a machine-readable log of the validation performed on a set of devices. This log will be output as `telemetry_validation_log.json` in the current working directory.
 
