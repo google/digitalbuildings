@@ -6792,6 +6792,7 @@ OAQM:
   - MONITORING
 
 VSMC:
+  guid: "6ff088d6-002e-4842-85a1-c40d3aef52a3"
   description: "Variable speed control mode."
   is_abstract: true
   uses:
