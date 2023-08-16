@@ -3158,3 +3158,9 @@ literals:
 - low_discharge_air_temperature_alarm:
   - ACTIVE
   - INACTIVE
+- up_shade_command:
+  - ACTIVE
+  - INACTIVE
+- down_shade_command:
+  - ACTIVE
+  - INACTIVE

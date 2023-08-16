@@ -6734,3 +6734,12 @@ OAQM:
   - outside_air_co2_concentration_sensor
   implements:
   - MONITORING
+
+UDEC:
+  description: "Up and down extension control for shades."
+  is_abstract: true
+  uses:
+  - up_shade_command
+  - down_shade_command
+  opt_uses:
+  - shade_extent_percentage_sensor
