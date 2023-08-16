@@ -769,3 +769,10 @@ FAN_SS_MSM:
   implements:
   - FAN
   - MSM
+
+FAN_VSMC:
+  description: "Basic fan with 2 speed control and schedule run command."
+  is_canonical: true
+  implements:
+  - FAN
+  - VSMC
