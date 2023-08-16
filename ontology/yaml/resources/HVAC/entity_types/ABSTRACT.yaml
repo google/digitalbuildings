@@ -6736,4 +6736,3 @@ OAQM:
   - outside_air_co2_concentration_sensor
   implements:
   - MONITORING
-  
