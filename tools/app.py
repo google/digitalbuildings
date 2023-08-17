@@ -1,48 +1,63 @@
-from flask import Flask, request, jsonify, send_file
+from flask import Flask, request, jsonify, send_file, render_template, send_from_directory, redirect, url_for
+from werkzeug.utils import secure_filename
 import os
-from custom_logic import process_yaml
+from validate import handler
+import asyncio
+from concurrent.futures import ThreadPoolExecutor
 
 app = Flask(__name__)
+    
+@app.route('/upload')
+def upload_file_landing():
+   if request.args.get('filename'):
+    f = open('.app_data/reports/' + request.args.get('filename'))
+    output = f.read()
+    return render_template('upload.html', output=output, filename=request.args.get('filename'))
+   else:
+       return render_template('upload.html')
+    
+@app.route('/validate', methods=['POST', 'GET'])
+async def validate_yaml_file():
+    # A building config is posted to the validate endpoint
+    # a sub process is created that runs the instance validator
+    # Report log is just displayed on the screen...and downloadable?
 
-UPLOAD_FOLDER = os.path.join(os.getcwd(), 'shared', 'uploads')
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+    if request.method == 'POST':
+        try:
+            f = request.files['file']
+            subscription_name = request.args.get('subscription_name')
+            filename= secure_filename(f.filename)
+            save_location = os.path.join('.app_data/uploads', filename)
+            f.save(save_location)
 
-@app.route('/process', methods=['POST'])
-def process():
-    try:
-        data = request.get_json()
-        yaml_content = data.get('content')
+            # validate file
+            report_directory = '.app_data/reports'
+            ontology_path = '../ontology/yaml/resources'
+            loop = asyncio.get_running_loop()
+            _executor = ThreadPoolExecutor(1)
+            report_filename = await loop.run_in_executor(_executor, lambda: handler.RunValidation(
+                filenames=[save_location],
+                default_types_filepath=ontology_path,
+                report_directory=report_directory,
+                subscription=subscription_name,
+                
+            ))
 
-        # Save the uploaded YAML file to local memory
-        with open(os.path.join(app.config['UPLOAD_FOLDER'], 'uploaded_file.yaml'), 'w') as f:
-            f.write(yaml_content)
+            base_filename = os.path.basename(report_filename)
 
-        # Process the YAML using custom logic
-        processed_content = process_yaml(yaml_content)
+            return redirect(
+                url_for('upload_file_landing', filename=base_filename))
+        except Exception as e:
+            return str(e), 500
+        
+@app.route('/download/<filename>')
+def download_file(filename):
+    return send_file(
+                path_or_file='.app_data/reports/' + filename,
+                download_name=filename,
+                as_attachment=True
+            )
 
-        # Save the processed content to a new text file
-        with open(os.path.join(app.config['UPLOAD_FOLDER'], 'processed_file.txt'), 'w') as f:
-            f.write(processed_content)
-
-        # Prepare the download response
-        download_url = '/download'
-        response = {
-            'downloadURL': download_url
-        }
-        return jsonify(response)
-
-    except Exception as e:
-        return jsonify({'error': str(e)}), 500
-
-@app.route('/download', methods=['GET'])
-def download():
-    try:
-        filename = 'processed_file.txt'
-        filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-        return send_file(filepath, as_attachment=True)
-
-    except Exception as e:
-        return jsonify({'error': str(e)}), 500
 
 if __name__ == '__main__':
     app.run(debug=True)

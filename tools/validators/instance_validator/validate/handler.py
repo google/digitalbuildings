@@ -155,7 +155,7 @@ def RunValidation(
     report_directory: str = None,
     timeout: int = constants.DEFAULT_TIMEOUT,
     is_udmi: bool = True,
-) -> None:
+) -> str:
   """Top level runner for all validations.
 
   Args:
@@ -180,11 +180,11 @@ def RunValidation(
   print('[INFO]\tStarting validation process.')
   if report_directory:
     # pylint: disable=consider-using-with
-    report_filename = os.path.join(
+    instance_report_filename = os.path.join(
         report_directory,
         FileNameEnumerationHelper(INSTANCE_VALIDATION_FILENAME),
     )
-    report_file = open(report_filename, 'w', encoding='utf-8')
+    report_file = open(instance_report_filename, 'w', encoding='utf-8')
     sys.stdout = report_file
   try:
     print('[INFO]\tLoading ontology.')
@@ -223,6 +223,7 @@ def RunValidation(
     if report_file:
       report_file.close()
       print(f'[INFO]\tInstance validation report generated: {report_file.name}')
+      return (instance_report_filename, telemtry_report_filename)
     print('[INFO]\tInstance validation completed.')
   if report_file:
     return report_file.name
