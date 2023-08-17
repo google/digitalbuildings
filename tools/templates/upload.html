@@ -1,12 +1,17 @@
+<link rel="stylesheet" href="{{ url_for('static', filename='upload.css') }}">
 <html>
    <body>
       <form action = "http://localhost:5000/validate" method = "POST" 
          enctype = "multipart/form-data">
          <input type = "file" name = "file" />
+         <input type = "text" name = "subscription_name" placeholder="Subscription Name"/>
          <input type = "submit"/>
       </form>
+      <form action="{{ url_for('download_file', filename=filename) }}">
+         <input type="submit" value="Download Validation Report" />
+      </form>
       <div>
-         {{output|safe}}
+         <textarea class="scrollabletextbox" name="note">{{output}}</textarea>
       </div>
    </body>
 </html>

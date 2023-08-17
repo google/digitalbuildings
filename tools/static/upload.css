@@ -1,0 +1,7 @@
+.scrollabletextbox {
+    height:500px;
+    width:1000px;
+    font-family: Verdana, Tahoma, Arial, Helvetica, sans-serif;
+    font-size: 82%;
+    overflow:scroll;
+}
