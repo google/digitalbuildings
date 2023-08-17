@@ -2827,6 +2827,10 @@ literals:
 - speed_mode:
   - VFD
   - BYPASS
+  - AUTO
+  - LOW
+  - HIGH
+  - OFF
 - high_discharge_fan_speed_status:
   - ON
   - OFF

@@ -47,8 +47,8 @@ _RunEntityHelperValidation = handler.EntityHelper.Validate
 _CV = entity_instance.CombinationValidator
 
 TEST_DATETIME = datetime.datetime(
-        2020, 10, 15, 17, 21, 59, 0, tzinfo=datetime.timezone.utc
-    )  # 2020-10-15T17:21:59.000Z
+    2020, 10, 15, 17, 21, 59, 0, tzinfo=datetime.timezone.utc
+)  # 2020-10-15T17:21:59.000Z
 
 
 def _ParserHelper(testpaths: List[str]) -> instance_parser.InstanceParser:
@@ -100,12 +100,14 @@ class HandlerTest(absltest.TestCase):
   def testValidateReportFileNotEmpty(self, mock_datetime):
     mock_datetime.datetime.now.return_value = TEST_DATETIME
     report_directory = ''
+    report_size = 0
     try:
       report_directory = tempfile.mkdtemp()
       input_file = os.path.join(_TESTCASE_PATH, 'GOOD', 'building_type.yaml')
       _RunValidation(
           [input_file],
           use_simplified_universe=True,
+          gcp_credential_path='fake_credential_path',
           report_directory=report_directory,
       )
 
@@ -153,12 +155,15 @@ class HandlerTest(absltest.TestCase):
       _RunValidation(
           [input_file],
           subscription='a',
-          service_account='file',
+          gcp_credential_path='fake_credential_path',
           use_simplified_universe=True,
       )
-      mock_subscriber.assert_has_calls(
-          [mock.call('a', 'file'), mock.call().Listen(mock.ANY)]
-      )
+      mock_subscriber.assert_has_calls([
+          mock.call('a'),
+          mock.call().Listen(
+              mock.ANY, gcp_credential_path='fake_credential_path'
+          ),
+      ])
       # TODO(berkoben): Make this assert stricter
       mock_validator.assert_has_calls([
           mock.call(mock.ANY, mock.ANY, mock.ANY, mock.ANY),
@@ -276,18 +281,18 @@ class HandlerTest(absltest.TestCase):
       _RunValidation(
           [input_file],
           subscription='a',
-          service_account='file',
+          gcp_credential_path='fake_credential_path',
           use_simplified_universe=True,
           report_directory=temp_report_directory,
       )
 
       mock_validate_telemetry.assert_called_once_with(
-          mock.ANY,
-          mock.ANY,
-          mock.ANY,
-          mock.ANY,
-          mock.ANY,
-          temp_report_directory,
+          subscription='a',
+          entities=mock.ANY,
+          timeout=600,
+          is_udmi=True,
+          gcp_credential_path='fake_credential_path',
+          report_directory=temp_report_directory,
       )
     except SystemExit:
       self.fail('ValidationHelper:Validate raised ExceptionType unexpectedly!')
@@ -301,12 +306,17 @@ class HandlerTest(absltest.TestCase):
       _RunValidation(
           [input_file],
           subscription='a',
-          service_account='file',
+          gcp_credential_path='fake_credential_path',
           use_simplified_universe=True,
       )
 
       mock_validate_telemetry.assert_called_once_with(
-          mock.ANY, mock.ANY, mock.ANY, mock.ANY, mock.ANY, None
+          subscription='a',
+          entities=mock.ANY,
+          timeout=mock.ANY,
+          is_udmi=True,
+          gcp_credential_path='fake_credential_path',
+          report_directory=None,
       )
     except SystemExit:
       self.fail('ValidationHelper:Validate raised ExceptionType unexpectedly!')
