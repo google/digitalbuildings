@@ -10,10 +10,10 @@ To install please follow the instructions below.
 
 ### First create a virtual env
 
-Create the virtual environment with `virtualenv` followed by the environment name, in this example: `tooling`
+Create the virtual environment with `venv` followed by the environment name, in this example: `tooling`
 
 ```
-virtualenv tooling
+python -m venv tooling
 ```
 
 
@@ -68,7 +68,7 @@ Run `python toolkit.py` and provide the following arguments:
 
   * `-s/--subscription` The fully-qualified path to a Google Cloud Pubsub subscription, e.g. projects/google.com:your-project/subscriptions/your-subscription.
 
-  * `-a/--service-account` The fully-qualified path to a service account key file corresponding to an account that has permission to pull messages from the subscription.
+  * `--credential` or `-c`: Should be an absolute or relative path to an OAuth client credential JSON file.
 
   * `-t/--timeout` **[Optional]** The timeout duration in seconds for the telemetry validation test. The default value is 600 seconds, or 10 minutes. If this time limit is exceeded before the validator receives a test pubsub message for each of the entities configured in the given instance config file, the test will fail with an error and report the entities that were not heard from.
 
@@ -76,12 +76,12 @@ Run `python toolkit.py` and provide the following arguments:
 
   `python instance_validator.py -i input.yaml` validates a building config against the udmi standard.
 
-  * **NOTE:** The service account key and subscription are provided by the Google team. Please reach out to your IoT TPM for guidance.
+  * **NOTE:** The OAuth credential and subscription are provided by the Google team. Please reach out to your IoT TPM for guidance.
 
-6. `-d/--report-directory` To write instance validation (instance_validation_report.txt) and telemetry validation (telemetry_validation_report.json) reports to the report-directory; otherwise writes instance validation to console and telemetry validation to current working directory. 
+6. `-d/--report-directory` To write instance validation (instance_validation_report.txt) and telemetry validation (telemetry_validation_report.json) reports to the report-directory; otherwise writes instance validation to console and telemetry validation to current working directory.
 
 For example:
-`python toolkit.py -i //path/to/file -g -v -s subscription-name -a service-account-name -d //path/to/report-directory`
+`python toolkit.py -i //path/to/file -g -v -s subscription-name -c //path/to/oauth/cred.json -d //path/to/report-directory`
 1. Takes in a building configuration file.
 2. Generates guids for every entity instance.
 3. Re-writes building config in the new format.
