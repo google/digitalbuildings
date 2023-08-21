@@ -6826,3 +6826,13 @@ SPLM:
   - soundpressurelevel_sensor
   implements:
   - MONITORING
+
+ZAQI:
+  description: "Zone air quality indexes monitoring"
+  is_abstract: true
+  uses:
+  - zone_air_aqi_sensor
+  - zone_air_voc_aqi_sensor
+  - zone_air_smoke_aqi_sensor
+  implements:
+  - MONITORING  
