@@ -579,3 +579,13 @@ VAV_SD_DDSP_NONCANONICAL_1:
   - SD
   - DDSP
   - INCOMPLETE
+
+VAV_CO2C_NONCANONICAL_1:
+  guid: "3b852c32-e7d5-4e1e-b0f8-2762a6e6d8e1"
+  description: "Non-standard type with CO2 control and flowrate monitoring."
+  implements:
+  - VAV
+  - CO2C
+  uses:
+  - supply_air_damper_percentage_sensor
+  - supply_air_flowrate_sensor

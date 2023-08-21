@@ -166,7 +166,7 @@ class Match(object):
     match_eq = self._match_score == other.GetMatchScore()
     return field_eq and type_eq and match_eq
 
-  def __str__(self):
+  def __repr__(self):
     return f'{self._entity_type.typename} -- score:{str(self._match_score)}'
 
   def GetFieldList(self) -> List[EntityTypeField]:

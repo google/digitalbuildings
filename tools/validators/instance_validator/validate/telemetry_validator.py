@@ -24,6 +24,7 @@ import threading
 import time
 from typing import Dict
 
+# pylint: disable=g-importing-member
 from validate import field_translation as ft_lib
 from validate import telemetry
 from validate import telemetry_validation_report as tvr
