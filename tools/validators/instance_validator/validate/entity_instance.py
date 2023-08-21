@@ -954,7 +954,7 @@ class InstanceValidator(object):
     """Validates the entity operation and config mode against DBO standards.
 
     The DBO standards allow for a building configuration file to contain a
-    ConfigMode of either INITIALIZE or UPDATE. The entities continued within the
+    ConfigMode of either INITIALIZE or UPDATE. The entites continued within the
     building configuration are each allowed to have operations of either ADD,
     EXPORT, DELETE, or UPDATE. This method validates that the operations
     specified for the entities, in the building configuration, are in alignment
@@ -1005,10 +1005,11 @@ class InstanceValidator(object):
       )
       is_valid = False
 
-    if entity.operation == parse.EntityOperation.DELETE:
-      return is_valid
-
-    if self.config_mode in (_CONFIG_EXPORT, _CONFIG_UPDATE) and not entity.etag:
+    if (
+        self.config_mode in (_CONFIG_EXPORT, _CONFIG_UPDATE)
+        and not entity.etag
+        and entity.operation != parse.EntityOperation.ADD
+    ):
       print(
           f'[ERROR]\tEntity {entity.guid} ({entity.code}) is missing an '
           'etag, which is required for EXPORT or UPDATE operations.'
@@ -1235,7 +1236,7 @@ def _ParseConnections(
 ) -> Set[connection.Connection]:
   """Parses YAML defining connections between one entity and another.
 
-  Entities are identified by GUID.
+  Entites are identified by GUID.
 
   Connections are always defined on the target entity.
 
