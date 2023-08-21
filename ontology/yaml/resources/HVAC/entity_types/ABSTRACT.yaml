@@ -1627,6 +1627,8 @@ RSPC:
   guid: "5b27a493-430f-4a61-8604-0a672ce3fd55"
   description: "Return air static pressure control."
   is_abstract: true
+  opt_uses:
+  - return_air_flowrate_sensor
   uses:
   - return_air_static_pressure_sensor
   - return_air_static_pressure_setpoint
