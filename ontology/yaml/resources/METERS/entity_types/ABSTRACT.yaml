@@ -91,3 +91,11 @@ VCM:
   - current_sensor
   - voltage_sensor
   
+PLEM:
+  guid: "e0b0b2a0-0b0a-4b0e-8b0b-0b0a0b0e0b0a"
+  description: "Phase-level energy monitoring."
+  is_abstract: true
+  uses:
+  - phase1_energy_accumulator
+  - phase2_energy_accumulator
+  - phase3_energy_accumulator

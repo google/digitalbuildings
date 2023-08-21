@@ -3182,3 +3182,13 @@ literals:
 - low_discharge_air_static_pressure_alarm:
   - ACTIVE
   - INACTIVE
+
+- phase1_energy_accumulator:
+    flexible_min: 0.0
+    flexible_max: 10000000.0
+- phase2_energy_accumulator:
+    flexible_min: 0.0
+    flexible_max: 10000000.0
+- phase3_energy_accumulator:
+    flexible_min: 0.0
+    flexible_max: 10000000.0

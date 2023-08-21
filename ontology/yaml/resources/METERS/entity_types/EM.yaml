@@ -116,6 +116,16 @@ EM_PWM_AVCM_PWMRDM:
   - AVCM
   - PWMRDM
 
+EM_PWM_PVCM_PLPM_PLEM:
+  description: "Energy meter with phase level voltage, current, power and energy monitoring."
+  is_canonical: true
+  implements:
+  - EM
+  - PWM
+  - PVCM
+  - PLPM
+  - PLEM
+
 #############################
 ### Non-Canonical Devices ###
 #############################
