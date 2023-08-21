@@ -15,6 +15,7 @@
 """Main module for DBO explorer."""
 import sys
 
+# pylint: disable=g-importing-member
 import colorama
 from termcolor import colored
 
@@ -34,11 +35,12 @@ def main(parsed_args):
   while not done:
     try:
       print(
-          '\nHow would you like to query DBO\n' +
-          '1: Get fields for a type name\n' +
-          '2: Get types for a list of fields\n' +
-          '3: Validate a field name\n' +
-          'q: quit\n'
+          '\nHow would you like to query DBO\n'
+          + '1: Get fields for a type name\n'
+          + '2: Get types for a list of fields\n'
+          + '3: Validate a field name\n'
+          + '4: Get fields for a list of subfields\n'
+          + 'q: quit\n'
       )
       function_choice = input('Please select an option: ')
       if function_choice == '1':
@@ -47,13 +49,17 @@ def main(parsed_args):
         parse_input.GetTypesForFieldList(ontology)
       elif function_choice == '3':
         parse_input.ValidateFieldName(ontology)
+      elif function_choice == '4':
+        parse_input.GetFieldsForSubfieldList(ontology)
       elif function_choice == 'q':
         print('bye bye')
         done = True
       else:
         print(
-            'You entered: ' + function_choice + '\n' +
-            'Please enter a valid input'
+            'You entered: '
+            + function_choice
+            + '\n'
+            + 'Please enter a valid input'
         )
     except TypeError as type_error:
       print(colored(type_error, 'red'))
@@ -64,6 +70,7 @@ def main(parsed_args):
     except AttributeError as attribute_error:
       print(colored(attribute_error, 'red'))
       continue
+
 
 if __name__ == '__main__':
   args = arg_parser.ParseArgs().parse_args(sys.argv[1:])

@@ -163,6 +163,17 @@ FAN_SS_DRI:
   uses:
   - dryer_run_status
 
+FAN_SS_VSC_DRI:
+  guid: "b482f7a1-ee4b-4c7a-aa04-0b8f0a6c80a3"
+  description: "Dryer-interlocked fan with variable speed control"
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - VSC
+  uses:
+  - dryer_run_status
+
 FAN_MDRI:
   guid: "8838183b-c80b-4be0-84c7-3c9976c96d31"
   description: "Fan with multiple interlocked driers."
@@ -472,6 +483,16 @@ FAN_EFHLC_COCDSP_NOCDSP:
   - COCDSP
   - NOCDSP
 
+FAN_HLC_COCDSP_NOCDSP:
+  guid: "b630f2bd-46cb-4cb5-afec-66fa38e0617a"
+  description: "Two-speed fan (low/high) with CO concentration dual setpoint control and NO concentration dual setpoint control."
+  is_canonical: true
+  implements:
+  - FAN
+  - HLC
+  - COCDSP
+  - NOCDSP
+
 FAN_SS_VSC_SCRSS:
   guid: "3696faf3-2a9c-4202-856b-80d48bd19f10"
   description: "Fan with scrubber start/stop and status."
@@ -748,3 +769,11 @@ FAN_SS_MSM:
   implements:
   - FAN
   - MSM
+
+FAN_VSMC:
+  guid: "189df1f4-81e8-4703-afb6-25628d0f87dc"
+  description: "Basic fan with 2 speed control and schedule run command."
+  is_canonical: true
+  implements:
+  - FAN
+  - VSMC
