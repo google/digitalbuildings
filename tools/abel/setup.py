@@ -24,7 +24,8 @@ setup(
     author='Travis Welch',
     packages=find_packages(),
     install_requires=[
-        'absl-py', 'pyfiglet', 'argparse', 'pyyaml', 'google-api-python-client'
+        'absl-py', 'pyfiglet', 'argparse', 'pyyaml', 'google-api-python-client',
+        'google-auth-oauthlib', 'strictyaml'
     ],
     python_requires='>=3.9',
 )

@@ -90,7 +90,7 @@ Cloud registry [device numeric identifier](../../../ontology/docs/building_confi
 
 `DBO Namespace` *string* **required**
 
-[Namespace](../../../ontology/docs/ontology.md#namespaces) for an entity as defined in the [Digital Buildings Ontology](../../../ontology/README.md). e.g. `HVAC`
+[Namespace](../../../ontology/docs/ontology.md#namespaces) for an entity as defined in the [Digital Buidings Ontology](../../../ontology/README.md). e.g. `HVAC`
 
 `DBO General Type` *string*
 
@@ -134,22 +134,28 @@ Name of a field as it is reported by a [gateway or other reporting entity](../..
 
 Indicates whether a field should be present in an entity's [translation](../../../ontology/docs/building_config.md#defining-translations) to accurately model an [entity type](../../../ontology/docs/ontology.md#entity-types) even though it may not be reported in its telemetry payload.
 
-`Raw Field Path` *string*
+**NOTE** `Raw Field Name`, `Raw Unit Path`, `DBO Standard Unit Value`, and `Raw Unit Value` should **not** be provided for a missing field.
+
+`Raw Field Name` *string*
 
 Path to data point on a physical device's telemetry payload. The field path is used as the `present_value` in an entity type's [translation](../../../ontology/docs/building_config.md#defining-translations) to a physical device payload. e.g. `points.discharge_fan_run_command.present_value`.
 
 `Raw Unit Path` *string*
 
-Path to a data point's units in a telemetry payload. Used as the `key` for `units` in an entity type [translation](../../../onotology/docs/building_config.md#defining-translations). e.g. `points.zone_air_cooling_temperature_setpoint.unit`. Leave blank or put `no-units` if a field is a [multi-state value](../../../ontology/docs/ontology.md#multi-state-values)
+Path to a data point's units in a telemetry payload. Used as the `key` for `units` in an entity type [translation](../../../onotology/docs/building_config.md#defining-translations). e.g. `points.zone_air_cooling_temperature_setpoint.unit`. Leave blank if a field is a [multi-state value](../../../ontology/docs/ontology.md#multi-state-values)
 
 `DBO Standard Unit Value` *string*
 
 [Standardized dimensional unit](../../../ontology/docs/ontology.md#dimensional-units) for a standard field as defined in [Digital Buildings Ontology](../../../ontology/yaml/resources/fields). e.g. `degrees_celsius`
 
+**NOTE** If a field truly has no units, then `DBO Standard Unit Value` should have the value of `no-units`.
+
 `Raw Unit Value` *string*
 
 Unit value as reported by a [reporting
 device](../../../onotology/docs/building_config.md#reporting-physical-devices). Used for a [dimensional unit's](../../../ontology/docs/ontology.md#dimensional-units) value mapping in an entity [translation](../../../ontology/docs/building_config.md#defining-translations) e.g. `degC`
+
+**NOTE** If a field truly has no units, then `Raw Unit Value` should have the value `no_units`.
 
 ### States
 
@@ -160,7 +166,7 @@ Fields` tab.
 
 The code or name of the entity reporting this state in its telemetry payload. This will the be the code of some [reporting entity](../../../ontology/docs/building_config.md#reporting-physical-devices).
 
-`Entity Guid` *string*
+`Reporting Entity Guid` *string*
 
 [UUID4](https://en.wikipedia.org/wiki/Universally_unique_identifier#Version_4_(random)) [identifier](../../../ontology/docs/building_config.md#identifiers) for an entity corresponding to the entity in the Reporting Entity Code column.
 

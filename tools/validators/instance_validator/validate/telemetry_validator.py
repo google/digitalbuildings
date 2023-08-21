@@ -24,8 +24,8 @@ import threading
 import time
 from typing import Dict
 
+# pylint: disable=g-importing-member
 from validate import field_translation as ft_lib
-from validate import message_filters
 from validate import telemetry
 from validate import telemetry_validation_report as tvr
 from validate.constants import TELEMETRY_TIMESTAMP_FORMAT
@@ -44,8 +44,6 @@ class TelemetryValidator(object):
       map 1:1 from a building config to a telemetry message.
     timeout: The max time the validator must read messages from pubsub.
     callback: The method called by the pubsub listener upon receiving a msg.
-    is_udmi: Flag to indicate whether telemtry payloads should conform to the
-      UDMI standard.
     validated_entities: Map of entity guid to entity code Entities that have
       been run through ValidateMessage() and passed.
     timer: Validation timeout timer.
@@ -58,15 +56,13 @@ class TelemetryValidator(object):
   """
 
   def __init__(
-      self, entities, timeout, is_udmi, callback, report_directory=None
+      self, entities, timeout, callback, report_directory=None
   ):
     """Init.
 
     Args:
       entities: EntityInstance dictionary
       timeout: validation timeout duration in seconds
-      is_udmi: Flag to indicate whether telemtry payloads should conform to the
-        UDMI standard.
       callback: callback function to be called either because messages for all
         entities were seen or because the timeout duration was reached.
       report_directory: [Optional] fully quailified path to report output
@@ -81,7 +77,6 @@ class TelemetryValidator(object):
     }
     self.timeout = timeout
     self.callback = callback
-    self.is_udmi = is_udmi
     self.validated_entities = {}
     self._timer: threading.Timer = None
     self._invalid_message_blocks = []
@@ -271,15 +266,6 @@ class TelemetryValidator(object):
           f' {entity.guid} has invalid cloud device id:'
           f' {entity.cloud_device_id}. Expecting {cloud_device_id}'
       )
-
-    # UDMI Pub/Sub streams could include messages which aren't telemetry
-    # Raise a warning for devices that are sending non-udmi compliant payloads
-    if self.is_udmi and not message_filters.Udmi.telemetry(message.attributes):
-      validation_block.AddDescription(
-          f'[ERROR]\tMessage for {entity_code} does not conform to UDMI'
-          ' standard.'
-      )
-      return validation_block
 
     print(f'Validating telemetry message for entity: {entity_code}')
     point_full_paths = {

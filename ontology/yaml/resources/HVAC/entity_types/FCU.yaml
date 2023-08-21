@@ -157,6 +157,16 @@ FCU_DFSS_DSP_HP2ZC:
   - DSP
   - HP2ZC
 
+FCU_DFSS_DFMSC_HPDSPRTC:
+  guid: "eb4c0175-8340-4d03-97b5-e4f088cd914b"
+  description: "Return temp control multi-speed FCU with heat pump"
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - DFMSC
+  - HPDSPRTC
+
 FCU_DFSS_ZTC_DXZTC:
   guid: "f22d6a0f-bc55-4dff-8164-8f79bf824715"
   description: "Typical DX FCU (zone control)."
@@ -337,7 +347,19 @@ FCU_DFSS_DFVSC_RTC_CHWRC:
   - DFVSC
   - RTC
   - CHWRC
-
+  
+FCU_DFSS_DFVSC_DTM_RHC_CHWRC:
+  guid: "5d32b824-a099-40d0-bff0-772de1ffe8bb"
+  description: "Hydronic variable speed fan coil with return controlled cooling and humidity control."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - DFVSC
+  - DTM
+  - RHC
+  - CHWRC
+  
 FCU_DFSS_DFVSC_DSP_HWDC_CHWDC:
   guid: "fcf34e51-7056-4175-bb33-c6a488653d74"
   description: "Hydronic variable speed fan coil with heating and cooling (zone temp control)."
@@ -1420,7 +1442,7 @@ FCU_NONCANONICAL_1:
   - zone_occupancy_status_1
   - zone_occupancy_status_2
   - zone_occupancy_status_3
-
+  
 FCU_DFSS_CSP_ZHC_DXZC_NONCANONICAL_1:
   guid: "0bca6899-fa9a-40ff-a3bd-8828991b39c1"
   description: "Non-standard type."
@@ -1479,6 +1501,46 @@ FCU_NONCANONICAL_2: # Weird dehumidification unit. Complete one-off.
   - zone_air_heating_temperature_setpoint
   - zone_air_temperature_sensor
 
+FCU_NONCANONICAL_3:
+  guid: "8c41b0a5-c0a0-40bf-8367-13887fb04064"
+  description: "Non-standard type."
+  implements:
+  - FCU
+  uses:
+  - chilled_water_valve_percentage_command
+  - discharge_air_flowrate_sensor_1
+  - discharge_air_flowrate_sensor_2
+  - discharge_air_flowrate_sensor_3
+  - discharge_air_temperature_sensor_1
+  - discharge_air_temperature_sensor_2
+  - discharge_air_temperature_sensor_3
+  - discharge_fan_run_status_1
+  - discharge_fan_run_status_2
+  - discharge_fan_run_status_3
+  - discharge_fan_speed_percentage_command_1
+  - discharge_fan_speed_percentage_command_2
+  - discharge_fan_speed_percentage_command_3
+  - heating_water_valve_percentage_command
+  - return_air_temperature_sensor
+  - thermal_power_sensor_1
+  - thermal_power_sensor_2
+  - thermal_power_sensor_3
+  - zone_air_occupied_deadband_temperature_setpoint_1
+  - zone_air_occupied_deadband_temperature_setpoint_2
+  - zone_air_occupied_deadband_temperature_setpoint_3
+  - zone_air_temperature_sensor_1
+  - zone_air_temperature_sensor_2
+  - zone_air_temperature_sensor_3
+  - zone_air_temperature_setpoint_1
+  - zone_air_temperature_setpoint_2
+  - zone_air_temperature_setpoint_3
+  - zone_air_unoccupied_deadband_temperature_setpoint_1
+  - zone_air_unoccupied_deadband_temperature_setpoint_2
+  - zone_air_unoccupied_deadband_temperature_setpoint_3
+  - zone_occupancy_status_1
+  - zone_occupancy_status_2
+  - zone_occupancy_status_3
+  
 FCU_DFSS_RTC_CHWRC_RHC_NONCANONICAL_1:
   guid: "025c2764-2de6-4839-ade6-0cf8551cd91c"
   description: "Non-standard type."
@@ -1689,3 +1751,13 @@ FCU_DSP_DFVSC_DTM_RTM:
   - DTM
   - RTM
 
+FCU_DFVSC_RTM_CO2M_HWZTC_CHWZTC:
+  guid: "6f6fd049-576c-4f0a-894d-a6433575b8dd"
+  description: "Fan coil unit with zone temperature control, heating water and chilled water valve monitoring."
+  implements:
+  - FCU
+  - DFVSC
+  - RTM
+  - CO2M
+  - HWZTC
+  - CHWZTC
