@@ -314,3 +314,10 @@ SENSOR_ZTM_ZHM_CO2M_SPLM_PLM_COM_ZSPM_MS_IAQMI_TMPR:
   - zone_air_smoke_aqi_sensor
   - motion_status
   - tamper_status
+
+SENSOR_ZOC:
+  description: "Zone occupant counter sensor."
+  is_canonical: true
+  implements:
+  - /SENSOR
+  - ZOC
