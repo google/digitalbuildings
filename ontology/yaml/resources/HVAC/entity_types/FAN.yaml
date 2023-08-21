@@ -770,6 +770,14 @@ FAN_SS_MSM:
   - FAN
   - MSM
 
+FAN_SS_HLC:
+  description: "Two speed fan control."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - HLC
+
 FAN_VSMC:
   guid: "189df1f4-81e8-4703-afb6-25628d0f87dc"
   description: "Basic fan with 2 speed control and schedule run command."
