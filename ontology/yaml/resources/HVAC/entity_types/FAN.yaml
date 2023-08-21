@@ -771,6 +771,7 @@ FAN_SS_MSM:
   - MSM
 
 FAN_SS_HLC:
+  guid: "092c2596-8086-4510-9d31-9c1a663ae9bc"
   description: "Two speed fan control."
   is_canonical: true
   implements:
