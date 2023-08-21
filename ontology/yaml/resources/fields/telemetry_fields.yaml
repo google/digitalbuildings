@@ -463,6 +463,18 @@ literals:
 - outside_air_pm10pt0_density_sensor:
     flexible_min: 0.0
     flexible_max: 0.001
+- outside_air_pm1pt0_density_sensor:
+    flexible_min: 0.0
+    flexible_max: 0.001
+- outside_air_no_density_sensor:
+    flexible_min: 0.0
+    flexible_max: 0.0002
+- outside_air_no2_density_sensor:
+    flexible_min: 0.0
+    flexible_max: 0.0002
+- outside_air_so2_density_sensor:
+    flexible_min: 0.0
+    flexible_max: 0.002
 
 # Additional fields added to cover first hundred buildings
 - bypass_air_damper_percentage_command:
@@ -535,6 +547,12 @@ literals:
     flexible_min: -996.320096
     flexible_max: 996.320096
 - filter_differential_pressure_sensor:
+    flexible_min: -249.080024
+    flexible_max: 2490.80024
+- discharge_air_filter_differential_pressure_sensor:
+    flexible_min: -249.080024
+    flexible_max: 2490.80024
+- exhaust_air_filter_differential_pressure_sensor:
     flexible_min: -249.080024
     flexible_max: 2490.80024
 - flowrate_setpoint:
@@ -1473,6 +1491,12 @@ literals:
 - filter_alarm:
   - ACTIVE
   - INACTIVE
+- discharge_air_filter_alarm:
+  - ACTIVE
+  - INACTIVE
+- exhaust_air_filter_alarm:
+  - ACTIVE
+  - INACTIVE
 - master_alarm:
   - ACTIVE
   - INACTIVE
@@ -1712,6 +1736,12 @@ literals:
 - zone_air_occupied_heating_temperature_setpoint:
     flexible_min: 255.9259259
     flexible_max: 308.1481481
+- zone_air_unoccupied_deadband_temperature_setpoint:
+    flexible_min: 255.372
+    flexible_max: 272.039
+- zone_air_occupied_deadband_temperature_setpoint:
+    flexible_min: 255.372
+    flexible_max: 272.039
 - mixed_air_relative_humidity_sensor:
     fixed_min: 0.0
     fixed_max: 100.0
@@ -2779,6 +2809,10 @@ literals:
 - speed_mode:
   - VFD
   - BYPASS
+  - AUTO
+  - LOW
+  - HIGH
+  - OFF
 - high_discharge_fan_speed_status:
   - ON
   - OFF
@@ -3053,6 +3087,9 @@ literals:
 - high_supply_water_temperature_alarm:
   - ACTIVE
   - INACTIVE
+- high_return_water_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
 - high_zone_air_co2_concentration_alarm:
   - ACTIVE
   - INACTIVE
@@ -3086,6 +3123,9 @@ literals:
 - low_supply_water_temperature_alarm:
   - ACTIVE
   - INACTIVE
+- low_return_water_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
 - low_zone_air_static_pressure_alarm:
   - ACTIVE
   - INACTIVE
@@ -3104,6 +3144,18 @@ literals:
 - failed_discharge_air_isolation_damper_alarm:
   - ACTIVE
   - INACTIVE
+- high_speed_command:
+  - ON
+  - OFF
+- low_speed_command:
+  - ON
+  - OFF
+- high_speed_status:
+  - ON
+  - OFF
+- low_speed_status:
+  - ON
+  - OFF
 
 - high_water_temperature_alarm:
   - ACTIVE
@@ -3112,3 +3164,23 @@ literals:
 - ultraviolet_irradiance_sensor:
     fixed_min: 0.0
     flexible_max: 2000.0
+
+- purge_command:
+  - ON
+  - OFF 
+
+- high_discharge_air_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
+
+- low_discharge_air_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
+
+- high_discharge_air_static_pressure_alarm:
+  - ACTIVE
+  - INACTIVE
+
+- low_discharge_air_static_pressure_alarm:
+  - ACTIVE
+  - INACTIVE

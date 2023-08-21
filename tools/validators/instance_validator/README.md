@@ -15,10 +15,10 @@ You can run the command with just the version flag (e.g. `python --version`) to 
 
 ### First create a virtual env
 
-Create the virtual environment with `virtualenv` followed by the environment name, in this example: `tooling`
+Create the virtual environment with `venv` followed by the environment name, in this example: `tooling`
 
 ```
-virtualenv tooling
+python3 -m venv tooling
 ```
 
 
@@ -68,21 +68,21 @@ Note: as of the current development stage, you must clone the entire repository 
 
 The validator supports a telemetry validation mode. When this mode is enabled, the validator will listen on a provided pubsub subscription for telemetry messages, and validate the message contents against the instance configuration. It is recommended that you first use the instance validator with telemetry validation mode disabled, and then enable it after that passes.
 
-If you would like to use the telemetry validation mode, you must provide the `--subscription` parameter, and you must either:
-- Have the both the `gcloud` CLI installed and configured using `gcloud init` using an appropriate project, and [`gcloud application-default` credentials](https://cloud.google.com/sdk/gcloud/reference/auth/application-default) setup with an account which has adequate permissions to access the given subscription
-- Provide a `--service-account` parameter when running instance_validator.py. Failure to provide both of these parameters will result in early termination of the validator and an error message. If you do not provide either parameter, the validator will run with telemetry validation mode disabled.
+#### Authentication
 
-**NOTE** The service account key and subscription are provided by the Google team. Please reach out to your IoT TPM for guidance.
+If you would like to use the telemetry validation mode, you must provide the `--subscription` or `-s` parameter and the `--credential` or `-c` parameter.
 
-The `--subscription parameter` value should be a fully-qualified path to a Google Cloud Pubsub subscription, e.g. projects/google.com:your-project/subscriptions/your-subscription.
+**NOTE** The GCP OAuth client credential and subscription are provided by the Google team. Please reach out to your IoT TPM for guidance.
+
+`--credential` or `-c`: Should be an absolute or relative path to an OAuth client credential JSON file.
+
+`--subscription` or `-s`: Should be a fully-qualified path to a Google Cloud Pubsub subscription, e.g. projects/google.com:your-project/subscriptions/your-subscription.
 
 Optional parameter for the telemetry validation mode are:
 
-The `--service-account` parameter value should be a path to a service account key file corresponding to an account that has permission to pull messages from the subscription.
+`--timeout` or `-t`: The timeout duration in seconds for the telemetry validation test. The default value is 600 seconds, or 10 minutes. If this time limit is exceeded before the validator receives a test pubsub message for each of the entities configured in the given instance config file, the test will fail with an error and report the entities that were not heard from.
 
-`--timeout`: The timeout duration in seconds for the telemetry validation test. The default value is 600 seconds, or 10 minutes. If this time limit is exceeded before the validator receives a test pubsub message for each of the entities configured in the given instance config file, the test will fail with an error and report the entities that were not heard from.
-
-`--report_directory`: If provided, instance validation and telemetry validation reports (named instance_validation_report.txt and telemetry_validation_report.json) will be written to this directory. Otherwise, the instance validation report will be written to the console and the telemetry validation report to the current working directory.
+`--report_directory` or `-d`: If provided, instance validation and telemetry validation reports (named instance_validation_report.txt and telemetry_validation_report.json) will be written to this directory. Otherwise, the instance validation report will be written to the console and the telemetry validation report to the current working directory.
 
 Running telemetry validation will also output a machine-readable log of the validation performed on a set of devices. This log will be output as `telemetry_validation_log.json` in the current working directory.
 
@@ -96,20 +96,22 @@ Run `python instance_validator.py` and provide the following arguments:
 
 3. After a building configuration's entity types are validated, validation must also be run on the telemetry payload using:
 
-  * `-s/--subscription` The fully-qualified path to a Google Cloud Pubsub subscription, e.g. projects/google.com:your-project/subscriptions/your-subscription.
+  * `--credential` or `-c`: Should be an absolute or relative path to an OAuth client credential JSON file.
 
-  * `-a/--service-account` The fully-qualified path to a service account key file corresponding to an account that has permission to pull messages from the subscription.
+  * `--subscription` or `-c`: The fully-qualified path to a Google Cloud Pubsub subscription, e.g. projects/google.com:your-project/subscriptions/your-subscription.
 
-  * `-t/--timeout` **[Optional]** The timeout duration in seconds for the telemetry validation test. The default value is 600 seconds, or 10 minutes. If this time limit is exceeded before the validator receives a test pubsub message for each of the entities configured in the given instance config file, the test will fail with an error and report the entities that were not heard from.
+  * `--timeout` or `-c` **[Optional]** The timeout duration in seconds for the telemetry validation test. The default value is 600 seconds, or 10 minutes. If this time limit is exceeded before the validator receives a test pubsub message for each of the entities configured in the given instance config file, the test will fail with an error and report the entities that were not heard from.
 
   * `--udmi` **[Optional]** Treat message stream on PubSub subscription as [UDMI](https://github.com/faucetsdn/udmi/). **NOTE:** This is required for telemetry validation when devices implement the UDMI specification. Set to true by default.
 
-  * **NOTE:** The service account key and subscription are provided by the Google team. Please reach out to your IoT TPM for guidance.
-
 4. `-d/--report-directory` To write instance validation (instance_validation_report.txt) and telemetry validation (telemetry_validation_report.json) reports to the report-directory; otherwise writes instance validation to console and telemetry validation to current working directory.
 
+**NOTE** The GCP OAuth client credential and subscription are provided by the Google team. Please reach out to your IoT TPM for guidance. If a GCP Oauth client credential is not provided, then application default credentials will be used to authenticate against Google APIs.
+
+Running telemetry validation will also output a machine-readable log of the validation performed on a set of devices. This log will be output as `telemetry_validation_log.json` in the current working directory.
+
 For example:
-`python instance_validator.py.py -i //path/to/file -s subscription-name -a service-account-name -d //path/to/report-directory`
+`python instance_validator.py.py -i //path/to/file -s subscription-name -c //path/to/client/cred.json -d //path/to/report-directory`
 1. Takes in an building configuration file.
 2. Validates the building configuration.
 3. Validates telemetry payload.

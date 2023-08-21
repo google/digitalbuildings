@@ -29,6 +29,7 @@ from __future__ import print_function
 import argparse
 import sys
 
+# pylint: disable=g-importing-member
 from validate import handler
 from validate.constants import DEFAULT_TIMEOUT
 
@@ -69,12 +70,12 @@ def _ParseArgs() -> argparse.ArgumentParser:
       metavar='subscription')
 
   parser.add_argument(
-      '-a',
-      '--service-account',
-      dest='service_account',
+      '-c',
+      '--credential',
+      dest='gcp_credential',
       required=False,
-      help='Service account used to pull messages from the subscription',
-      metavar='service-account')
+      help='gcp credential used to authenticate against pubsub api',
+      metavar='gcp credential')
 
   parser.add_argument(
       '-t',
@@ -109,11 +110,12 @@ if __name__ == '__main__':
   is_udmi = True
   if args.udmi.lower() == 'false':
     is_udmi = False
+  print(args.gcp_credential)
   handler.RunValidation(
       filenames=args.filenames,
       modified_types_filepath=args.modified_types_filepath,
       subscription=args.subscription,
-      service_account=args.service_account,
+      gcp_credential_path=args.gcp_credential,
       report_directory=args.report_directory,
       timeout=int(args.timeout),
       is_udmi=is_udmi,

@@ -13,8 +13,8 @@
 # limitations under the License.
 
 """Helper Field model classes for Ontology explorer."""
-from typing import List, Optional
 import re
+from typing import List, Optional
 
 from yamlformat.validator.entity_type_lib import EntityType
 
@@ -64,8 +64,8 @@ class StandardField(object):
     except AttributeError as ae:
       print(ae)
 
-  def __str__(self):
-    return f'{self._namespace}/{self._name}{self._increment}'
+  def __repr__(self):
+    return f'{self._name}{self._increment}'
 
   def GetNamespaceName(self) -> str:
     """Returns namespace variable as a string."""
@@ -166,7 +166,7 @@ class Match(object):
     match_eq = self._match_score == other.GetMatchScore()
     return field_eq and type_eq and match_eq
 
-  def __str__(self):
+  def __repr__(self):
     return f'{self._entity_type.typename} -- score:{str(self._match_score)}'
 
   def GetFieldList(self) -> List[EntityTypeField]:
