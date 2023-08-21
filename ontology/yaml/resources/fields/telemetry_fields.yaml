@@ -547,6 +547,12 @@ literals:
 - filter_differential_pressure_sensor:
     flexible_min: -249.080024
     flexible_max: 2490.80024
+- discharge_air_filter_differential_pressure_sensor:
+    flexible_min: -249.080024
+    flexible_max: 2490.80024
+- exhaust_air_filter_differential_pressure_sensor:
+    flexible_min: -249.080024
+    flexible_max: 2490.80024
 - flowrate_setpoint:
     flexible_min: 0.0
     flexible_max: 0.315451
@@ -1481,6 +1487,12 @@ literals:
   - ACTIVE
   - INACTIVE
 - filter_alarm:
+  - ACTIVE
+  - INACTIVE
+- discharge_air_filter_alarm:
+  - ACTIVE
+  - INACTIVE
+- exhaust_air_filter_alarm:
   - ACTIVE
   - INACTIVE
 - master_alarm:
@@ -2795,6 +2807,10 @@ literals:
 - speed_mode:
   - VFD
   - BYPASS
+  - AUTO
+  - LOW
+  - HIGH
+  - OFF
 - high_discharge_fan_speed_status:
   - ON
   - OFF
@@ -3158,9 +3174,19 @@ literals:
 - low_discharge_air_temperature_alarm:
   - ACTIVE
   - INACTIVE
+
 - up_shade_command:
   - ACTIVE
   - INACTIVE
 - down_shade_command:
   - ACTIVE
   - INACTIVE
+
+- high_discharge_air_static_pressure_alarm:
+  - ACTIVE
+  - INACTIVE
+
+- low_discharge_air_static_pressure_alarm:
+  - ACTIVE
+  - INACTIVE
+

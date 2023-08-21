@@ -84,12 +84,12 @@ def _ParseArgs() -> argparse.ArgumentParser:
       metavar='subscription')
 
   parser.add_argument(
-      '-a',
-      '--service-account',
-      dest='service_account',
+      '-c',
+      '--credential',
+      dest='gcp_credential',
       required=False,
-      help='Service account used to pull messages from the subscription',
-      metavar='service-account')
+      help='gcp credential used to authenticate against pubsub api',
+      metavar='gcp credential')
 
   parser.add_argument(
       '-t',
@@ -133,7 +133,7 @@ if __name__ == '__main__':
         filenames=args.filenames,
         modified_types_filepath=args.modified_types_filepath,
         subscription=args.subscription,
-        service_account=args.service_account,
+        gcp_credential_path=args.gcp_credential,
         report_directory=args.report_directory,
         timeout=int(args.timeout),
         is_udmi=args.udmi,
