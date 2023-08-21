@@ -1092,12 +1092,12 @@ class EntityInstanceTest(absltest.TestCase):
 
     self.assertFalse(self.update_validator.Validate(no_tag_update))
 
-  def testInstance_EtagNotRequiredForDelete_Success(self):
+  def testInstance_EtagRequiredForDelete_Success(self):
     no_tag_delete = entity_instance.EntityInstance(
         _DELETE, guid='VAV-123-GUID', code='VAV-123'
     )
 
-    self.assertTrue(self.update_validator.Validate(no_tag_delete))
+    self.assertFalse(self.update_validator.Validate(no_tag_delete))
 
   def testInstance_OperationRequiredOnUpdate_Fails(self):
     entity = entity_instance.EntityInstance(
