@@ -82,6 +82,7 @@ DOAS_CHWSC_EFSS_EFVSC_FDPM3X_PHRU_HWSC_RCO2M_RSPC_SFM_SFSS_SFVSC_SSPC:
   - SSPC
 
 DOAS_EFSS_EFVSC_SFSS_SFVSC_CHWSC_HWSC_RSPC_SSPC_HTWHLSTC_FDPM3X:
+  guid: "0839df06-cb50-4044-99d2-ded55d494ebb"
   description: "Complex multi zone DOAS with heat recovery wheel."
   is_canonical: true
   implements:
