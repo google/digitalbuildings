@@ -6428,6 +6428,7 @@ VSMC:
     - low_speed_status
     - high_speed_status
     - schedule_run_command
+
 ZOC:
   description: "Occupancy counter monitoring"
   is_abstract: true
