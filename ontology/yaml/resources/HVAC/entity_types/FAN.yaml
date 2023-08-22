@@ -768,6 +768,15 @@ FAN_SS_MSM:
   - FAN
   - MSM
 
+FAN_SS_HLC:
+  guid: "092c2596-8086-4510-9d31-9c1a663ae9bc"
+  description: "Two speed fan control."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - HLC
+
 FAN_VSMC:
   guid: "189df1f4-81e8-4703-afb6-25628d0f87dc"
   description: "Basic fan with 2 speed control and schedule run command."
@@ -775,13 +784,4 @@ FAN_VSMC:
   implements:
   - FAN
   - VSMC
-
-FAN_SS_WDPM:
-  guid: "cd8f2cbd-ac27-4710-ba05-1ef09e48b5ce"
-  description: "Fan with differential pressure monitoring."
-  is_canonical: true
-  implements:
-  - FAN
-  - SS
-  - WDPM
 
