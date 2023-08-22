@@ -38,6 +38,9 @@ aqi:
   uba: # Umwelt Bundesamt, German air quality standard
     multiplier: 1
     offset: 0
+  awair: # Awair Air Quality Score
+    multiplier: 1
+    offset: 0
 area:
   square_meters: STANDARD
   square_centimeters:
