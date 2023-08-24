@@ -3187,7 +3187,7 @@ literals:
     fixed_min: -60
     flexible_max: 200
 
-- zone_occupant_counter:
+- zone_occupancy_count:
     fixed_min: 0
     flexible_max: 1000
 
@@ -3199,7 +3199,7 @@ literals:
     fixed_min: 0
     flexible_max: 80
 
-- tamper_status:
-  - ON
-  - OFF
+- tamper_alarm:
+  - ACTIVE
+  - INACTIVE
 
