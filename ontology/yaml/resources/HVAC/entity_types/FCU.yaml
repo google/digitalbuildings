@@ -1775,7 +1775,7 @@ FCU_DXZTC_DFSS:
   - failed_alarm
   - filter_alarm
 
-FCU_RHDHS_DXDC_DFSS_RTM:
+FCU_RHDHS_DXDC_DFSS_RTM_DSPM_DFM:
   guid: "f60a2563-da8f-4360-b2d9-f471c065356c"
   description: "FCU with temperature & pressure monitor, humidity monitor and water leak & status alarm."
   is_canonical: true
@@ -1785,9 +1785,8 @@ FCU_RHDHS_DXDC_DFSS_RTM:
   - DXDC
   - DFSS
   - RTM
+  - DSPM
+  - DFM
   opt_uses:
   - water_leak_alarm
   - failed_alarm
-  - high_discharge_air_static_pressure_alarm
-  - low_discharge_air_static_pressure_alarm
-  - low_discharge_air_flowrate_alarm

@@ -32,5 +32,5 @@ FSS_FA2X_GS:
   - FSS
   - FA2X
   uses:
-  - failed_panel_alarm
+  - master_alarm
   - gas_release_status

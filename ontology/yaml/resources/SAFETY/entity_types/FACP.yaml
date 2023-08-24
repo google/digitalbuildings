@@ -24,7 +24,7 @@ FACP_STD:
   uses:
   - fire_alarm
   opt_uses:
-  - failed_panel_alarm
+  - master_alarm
 
 FACP_FA2X:
   guid: "a29a1bdd-0f8c-498e-b4ed-d09789f2487c"
@@ -48,7 +48,7 @@ FACP_PAS:
   - water_flowrate_status
   - air_pressure_status
   opt_uses:
-  - failed_panel_alarm
+  - master_alarm
 
 FACP_ASD:
   guid: "3f21bbad-15ad-4253-982d-fed1324543d3"
@@ -56,6 +56,8 @@ FACP_ASD:
   is_canonical: true
   implements:
   - FACP
-  - ASD
   opt_uses:
-  - failed_panel_alarm
+  - low_smoke_alarm
+  - medium_smoke_alarm
+  - fire_alarm
+  - master_alarm

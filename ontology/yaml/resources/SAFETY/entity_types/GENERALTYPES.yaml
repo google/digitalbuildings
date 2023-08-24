@@ -103,7 +103,7 @@ SSS:
   is_abstract: true
   implements:
   - /SENSOR
-  
+
 HDS:
   guid: "025f5773-7626-4a30-bd44-ef0845a92215"
   description: "Hydrogen Sensor."
