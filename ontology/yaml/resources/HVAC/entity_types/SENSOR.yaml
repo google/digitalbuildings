@@ -306,7 +306,7 @@ SENSOR_ZTM_ZHM_CO2M_SPLM_PMDM_COM_ZSPM_VOCM_MS_ZAQIM_TMPR:
   uses:
   - illuminance_sensor
   - motion_status
-  - tamper_status
+  - tamper_alarm
 
 SENSOR_ZOC:
   description: "Zone occupant counter sensor."
