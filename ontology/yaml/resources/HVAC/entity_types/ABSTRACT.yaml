@@ -6819,7 +6819,7 @@ ZOC:
   description: "Occupancy counter monitoring"
   is_abstract: true
   uses:
-  - zone_occupant_counter
+  - zone_occupancy_count
   implements:
   - MONITORING
 
