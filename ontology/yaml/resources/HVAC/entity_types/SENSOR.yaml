@@ -274,6 +274,7 @@ SENSOR_ZTM_ZHM_CO2M_VOCM_PMDM_SPLM_ZAQIM:
   - ZHM
   - CO2M
   - VOCM
+  - PMDM
   - SPLM
   - ZAQIM
   uses:
@@ -290,7 +291,7 @@ SENSOR_ZTM_ZHM_CO2M_VOCM_PMDM:
   - VOCM
   - PMDM
 
-SENSOR_ZTM_ZHM_CO2M_SPLM_PMDM_COM_ZSPM_VOCM_MS_ZAQIM_TMPR:
+SENSOR_ZTM_ZHM_CO2M_SPLM_PMDM_COM_ZSPM_VOCM_ZAQIM_MS_TMPR:
   description: "Indoor Air Quality sensor with temperature, humidity, CO2, CO, sound, particulates (density), illuminance, formaldehyde, pressure sensors with air quality, vape, TVOC indexes and motion & tamper detection."
   is_canonical: true
   implements:
@@ -303,6 +304,7 @@ SENSOR_ZTM_ZHM_CO2M_SPLM_PMDM_COM_ZSPM_VOCM_MS_ZAQIM_TMPR:
   - COM
   - ZSPM
   - VOCM
+  - ZAQIM
   uses:
   - illuminance_sensor
   - motion_status
