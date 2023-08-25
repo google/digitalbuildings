@@ -223,7 +223,7 @@ def RunValidation(
     if report_file:
       report_file.close()
       print(f'[INFO]\tInstance validation report generated: {report_file.name}')
-      return (instance_report_filename, telemtry_report_filename)
+      return instance_report_filename
     print('[INFO]\tInstance validation completed.')
   if report_file:
     return report_file.name

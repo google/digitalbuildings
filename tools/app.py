@@ -9,10 +9,14 @@ app = Flask(__name__)
     
 @app.route('/upload')
 def upload_file_landing():
-   if request.args.get('filename'):
-    f = open('.app_data/reports/' + request.args.get('filename'))
-    output = f.read()
-    return render_template('upload.html', output=output, filename=request.args.get('filename'))
+   if request.args.get('instance_validation_report_filename'):
+    iv_report = open('.app_data/reports/' + request.args.get('instance_validation_report_filename'))
+    iv_output = iv_report.read()
+   # if request.args.get('telemetry_validation_report_filename'):
+   #     tv_report = open('.app_data/reports/' + request.args.get('telemetry_validation_report_filename'))
+   #     tv_output = tv_report.read()
+   #     return render_template('upload.html', iv_output=iv_output)
+    return render_template('upload.html', iv_output=iv_output, iv_filename=request.args.get('instance_validation_report_filename'))
    else:
        return render_template('upload.html')
     
@@ -25,7 +29,7 @@ async def validate_yaml_file():
     if request.method == 'POST':
         try:
             f = request.files['file']
-            subscription_name = request.args.get('subscription_name')
+            subscription_name = request.form.get('subscription_name')
             filename= secure_filename(f.filename)
             save_location = os.path.join('.app_data/uploads', filename)
             f.save(save_location)
@@ -35,18 +39,22 @@ async def validate_yaml_file():
             ontology_path = '../ontology/yaml/resources'
             loop = asyncio.get_running_loop()
             _executor = ThreadPoolExecutor(1)
-            report_filename = await loop.run_in_executor(_executor, lambda: handler.RunValidation(
+            instance_validation_report_filename = await loop.run_in_executor(_executor, lambda: handler.RunValidation(
                 filenames=[save_location],
                 default_types_filepath=ontology_path,
                 report_directory=report_directory,
                 subscription=subscription_name,
-                
+                gcp_credential_path=os.path.expanduser('~/code/creds/oauth_client_credential.json')
+
             ))
 
-            base_filename = os.path.basename(report_filename)
+            instance_base_filename = os.path.basename(instance_validation_report_filename)
+            #telemetry_validation_base_filename = os.path.basename(telemetry_validation_report_filename)
+            print(instance_base_filename)
+            #print(telemetry_validation_base_filename)
 
             return redirect(
-                url_for('upload_file_landing', filename=base_filename))
+                url_for('upload_file_landing', instance_validation_report_filename=instance_base_filename))
         except Exception as e:
             return str(e), 500
         
