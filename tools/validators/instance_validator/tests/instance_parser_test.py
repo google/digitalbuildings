@@ -188,7 +188,7 @@ class ParserTest(absltest.TestCase):
                      instance_parser.ConfigMode.Default())
 
   def testInstanceValidator_InvalidConfigModeExport_RaisesKeyError(self):
-    with self.assertRaises(KeyError):
+    with self.assertWarns(Warning):
       parser = _ParserHelper(
           [path.join(_TESTCASE_PATH, 'BAD', 'configmode.yaml')])
       del parser

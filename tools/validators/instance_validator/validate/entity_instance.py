@@ -20,6 +20,7 @@ import re
 from typing import Any, Dict, List, Optional, Set, Tuple
 
 import strictyaml as syaml
+
 from validate import connection
 from validate import field_translation as ft_lib
 from validate import instance_parser as parse
@@ -126,6 +127,8 @@ def _GetAllowedField(
     field_obj = entity_type.GetFieldFromConfigText(as_written_field_name)
     if field_obj:
       return entity_type_lib.BuildQualifiedField(field_obj)
+    else:
+      return None
 
   try:
     namespace, field_name = entity_type_lib.SeparateFieldNamespace(
@@ -404,8 +407,8 @@ class InstanceValidator(object):
         print(
             f'[ERROR]\tEntity {entity.guid} ({entity.code}) has a'
             ' cloud_device_id but is missing a translation. Reporting devices'
-            ' must have a translation when cloud_device_id is present; unless the'
-            ' operation is DELETE'
+            ' must have a translation when cloud_device_id is present; unless'
+            ' the operation is DELETE'
         )
     elif entity.translation and not entity.cloud_device_id:
       print(
@@ -550,7 +553,6 @@ class InstanceValidator(object):
     found_units = {}
     type_fields = entity_type.GetAllFields()
     for qualified_field_name, ft in found_fields.items():
-
       if not self._FieldTranslationIsValid(qualified_field_name, ft, entity):
         is_valid = False
 
@@ -1411,7 +1413,7 @@ class EntityInstance(findings_lib.Findings):
         self.entity_id,
         self.update_mask,
         self.namespace,
-        self.type_name
+        self.type_name,
     ))
 
   @classmethod
@@ -1440,8 +1442,6 @@ class EntityInstance(findings_lib.Findings):
     )
 
     # we require that entities be keyed by guid
-    code = None
-    guid = None
     if (
         parse.ENTITY_CODE_KEY in entity_yaml
         and parse.ENTITY_GUID_KEY in entity_yaml
