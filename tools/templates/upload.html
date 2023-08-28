@@ -1,9 +1,15 @@
+<!DOCTYPE html>
 <link rel="stylesheet" href="{{ url_for('static', filename='upload.css') }}">
 <html>
+   <head>
+      <title>DBO Instance Validator</title>
+   </head>
    <body>
+      <h1>DBO Instance Validator</h1>
       <form action = "http://localhost:5000/validate" method = "POST" 
          enctype = "multipart/form-data">
          <input type = "file" name = "file" />
+         <input type = "text" name = "dbo_commit_hash" placeholder="Commit hash"/>
          <input type = "submit"/>
       </form>
       <div>

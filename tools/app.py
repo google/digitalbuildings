@@ -4,6 +4,8 @@ import os
 from validate import handler
 import asyncio
 from concurrent.futures import ThreadPoolExecutor
+from git import Repo, Remote
+import subprocess
 
 app = Flask(__name__)
     
@@ -29,10 +31,21 @@ async def validate_yaml_file():
     if request.method == 'POST':
         try:
             f = request.files['file']
-            subscription_name = request.form.get('subscription_name')
             filename= secure_filename(f.filename)
             save_location = os.path.join('.app_data/uploads', filename)
             f.save(save_location)
+
+            # Get remote repo branch ontology if passed in
+            pull_request_id = request.form.get('dbo_commit_hash')
+            repo = Repo('..')
+            remote_name = 'digitalbuildings'
+            if pull_request_id:
+                print(pull_request_id)
+                db_remote = Remote.create(repo=repo, name=remote_name, url='https://github.com/google/digitalbuildings')
+                fetched_branch = repo.remote(name=remote_name).fetch(f'pull/{pull_request_id}/head')
+                print('fetched branch')
+                repo.git.checkout(fetched_branch)
+                print('checkout branch')
 
             # validate file
             report_directory = '.app_data/reports'
@@ -43,15 +56,12 @@ async def validate_yaml_file():
                 filenames=[save_location],
                 default_types_filepath=ontology_path,
                 report_directory=report_directory,
-                subscription=subscription_name,
                 gcp_credential_path=os.path.expanduser('~/code/creds/oauth_client_credential.json')
 
             ))
 
             instance_base_filename = os.path.basename(instance_validation_report_filename)
-            #telemetry_validation_base_filename = os.path.basename(telemetry_validation_report_filename)
             print(instance_base_filename)
-            #print(telemetry_validation_base_filename)
 
             return redirect(
                 url_for('upload_file_landing', instance_validation_report_filename=instance_base_filename))
