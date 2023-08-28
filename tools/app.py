@@ -40,13 +40,10 @@ async def validate_yaml_file():
             repo = Repo('..')
             remote_name = 'digitalbuildings'
             if pull_request_id:
-                print(pull_request_id)
                 if not Remote(repo=repo, name=remote_name).exists():
                     Remote.create(repo=repo, name=remote_name, url='https://github.com/google/digitalbuildings')
                 fetched_branch = repo.remote(name=remote_name).fetch(f'pull/{pull_request_id}/head')
-                print('fetched branch')
                 repo.git.checkout(fetched_branch)
-                print('checkout branch')
 
             # validate file
             report_directory = '.app_data/reports'
@@ -60,6 +57,7 @@ async def validate_yaml_file():
                 gcp_credential_path=os.path.expanduser('~/code/creds/oauth_client_credential.json')
 
             ))
+            repo.git.checkout(repo.remote().fetch()[0])
 
             instance_base_filename = os.path.basename(instance_validation_report_filename)
             print(instance_base_filename)
