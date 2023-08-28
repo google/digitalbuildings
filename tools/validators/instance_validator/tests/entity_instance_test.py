@@ -22,7 +22,6 @@ from typing import Dict, List, Tuple
 from unittest import mock
 
 from absl.testing import absltest
-
 import strictyaml as syaml
 
 from tests import test_constants
@@ -331,6 +330,18 @@ class EntityInstanceTest(absltest.TestCase):
 
     self.assertTrue(self.init_validator.Validate(instance))
 
+  def testInstance_ExtraEnumeratedField_Fails(self):
+    parsed, default_operation = _Helper(
+        [path.join(_TESTCASE_PATH, 'BAD', 'entity_with_bad_enumeration.yaml')]
+    )
+    entity_guid, entity = next(iter(parsed.items()))
+
+    instance = entity_instance.EntityInstance.FromYaml(
+        entity_guid, entity, default_operation=default_operation
+    )
+
+    self.assertFalse(self.init_validator.Validate(instance))
+
   def testInstance_InvalidTranslationRequiredFieldMissing_Fails(self):
     parsed, default_operation = _Helper(
         [
@@ -470,7 +481,7 @@ class EntityInstanceTest(absltest.TestCase):
 
   def testInstance_ValidTranslationWithExplicityMissingOptField_Fails(self):
     """Test that a MISSING optional field is not allowed."""
-    parsed, default_operation = _Helper([])
+    # parsed, default_operation = _Helper([])
     parsed, default_operation = _Helper(
         [
             path.join(
@@ -606,9 +617,11 @@ class EntityInstanceTest(absltest.TestCase):
     )
     entity_guid, entity = next(iter(parsed.items()))
 
-    with self.assertRaises(
+    with self.assertRaisesWithLiteralMatch(
         ValueError,
-        msg='There should be exactly 1 unit mapping in the translation for '
+        expected_exception_message=(
+            'There should be exactly 1 unit mapping in the translation for '
+        )
         + 'field "zone_air_temperature_sensor".',
     ):
       entity_instance.EntityInstance.FromYaml(
@@ -639,9 +652,11 @@ class EntityInstanceTest(absltest.TestCase):
     )
     entity_guid, entity = next(iter(parsed.items()))
 
-    with self.assertRaises(
+    with self.assertRaisesWithLiteralMatch(
         ValueError,
-        msg='A value range cannot be provided without units in the translation '
+        expected_exception_message=(
+            'A value range cannot be provided without units in the translation '
+        )
         + 'for field "zone_air_temperature_sensor".',
     ):
       entity_instance.EntityInstance.FromYaml(
@@ -660,9 +675,9 @@ class EntityInstanceTest(absltest.TestCase):
     )
     entity_guid, entity = next(iter(parsed.items()))
 
-    with self.assertRaises(
+    with self.assertRaisesWithLiteralMatch(
         ValueError,
-        msg='Value range in the translation for field '
+        expected_exception_message='Value range in the translation for field '
         + '"zone_air_temperature_sensor" should be formatted: <min>,<max>.',
     ):
       entity_instance.EntityInstance.FromYaml(
@@ -681,9 +696,9 @@ class EntityInstanceTest(absltest.TestCase):
     )
     entity_guid, entity = next(iter(parsed.items()))
 
-    with self.assertRaises(
+    with self.assertRaisesWithLiteralMatch(
         ValueError,
-        msg='Value range in the translation for field '
+        expected_exception_message='Value range in the translation for field '
         + '"zone_air_temperature_sensor" should have a min value that is less '
         + 'than the max value.',
     ):
@@ -745,8 +760,11 @@ class EntityInstanceTest(absltest.TestCase):
     )
     entity_guid, entity = next(iter(parsed.items()))
 
-    with self.assertRaises(
-        ValueError, msg='States must have defined key and value pairs'
+    with self.assertRaisesWithLiteralMatch(
+        ValueError,
+        expected_exception_message=(
+            'States must have defined string key and value pairs'
+        ),
     ):
       entity_instance.EntityInstance.FromYaml(
           entity_guid, entity, default_operation=default_operation
@@ -1092,12 +1110,12 @@ class EntityInstanceTest(absltest.TestCase):
 
     self.assertFalse(self.update_validator.Validate(no_tag_update))
 
-  def testInstance_EtagNotRequiredForDelete_Success(self):
+  def testInstance_EtagRequiredForDelete_Success(self):
     no_tag_delete = entity_instance.EntityInstance(
         _DELETE, guid='VAV-123-GUID', code='VAV-123'
     )
 
-    self.assertTrue(self.update_validator.Validate(no_tag_delete))
+    self.assertFalse(self.update_validator.Validate(no_tag_delete))
 
   def testInstance_OperationRequiredOnUpdate_Fails(self):
     entity = entity_instance.EntityInstance(
@@ -1486,8 +1504,12 @@ class EntityInstanceTest(absltest.TestCase):
     entity_guid = 'VAV-123-GUID'
     entity_yaml = {}
 
-    with self.assertRaises(
-        ValueError, msg='Entity block must contain either "code" or "guid".'
+    with self.assertRaisesWithLiteralMatch(
+        ValueError,
+        expected_exception_message=(
+            'Keys "code" and "guid" missing from entity block. Fix this by'
+            ' adding one of these keys to the entity definition.'
+        ),
     ):
       entity_instance.EntityInstance.FromYaml(
           entity_guid, entity_yaml, default_operation=_EXPORT
@@ -1497,8 +1519,11 @@ class EntityInstanceTest(absltest.TestCase):
     entity_guid = 'VAV-123-GUID'
     entity_yaml = {'guid': entity_guid, 'code': 'VAV-123'}
 
-    with self.assertRaises(
-        ValueError, msg='Entity block cannot contain both "code" and "guid".'
+    with self.assertRaisesWithLiteralMatch(
+        ValueError,
+        expected_exception_message=(
+            'Entity block cannot contain both "code" and "guid".'
+        ),
     ):
       entity_instance.EntityInstance.FromYaml(
           entity_guid, entity_yaml, default_operation=_EXPORT
