@@ -41,7 +41,8 @@ async def validate_yaml_file():
             remote_name = 'digitalbuildings'
             if pull_request_id:
                 print(pull_request_id)
-                db_remote = Remote.create(repo=repo, name=remote_name, url='https://github.com/google/digitalbuildings')
+                if not Remote(repo=repo, name=remote_name).exists():
+                    Remote.create(repo=repo, name=remote_name, url='https://github.com/google/digitalbuildings')
                 fetched_branch = repo.remote(name=remote_name).fetch(f'pull/{pull_request_id}/head')
                 print('fetched branch')
                 repo.git.checkout(fetched_branch)
