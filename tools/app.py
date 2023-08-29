@@ -1,11 +1,12 @@
-from flask import Flask, request, jsonify, send_file, render_template, send_from_directory, redirect, url_for
+from flask import Flask, request, send_file, render_template, redirect, url_for
 from werkzeug.utils import secure_filename
 import os
 from validate import handler
 import asyncio
 from concurrent.futures import ThreadPoolExecutor
 from git import Repo, Remote
-import subprocess
+
+_APP_DATA_REPORTS = './app_data/reports'
 
 app = Flask(__name__)
     
@@ -14,20 +15,12 @@ def upload_file_landing():
    if request.args.get('instance_validation_report_filename'):
     iv_report = open('.app_data/reports/' + request.args.get('instance_validation_report_filename'))
     iv_output = iv_report.read()
-   # if request.args.get('telemetry_validation_report_filename'):
-   #     tv_report = open('.app_data/reports/' + request.args.get('telemetry_validation_report_filename'))
-   #     tv_output = tv_report.read()
-   #     return render_template('upload.html', iv_output=iv_output)
     return render_template('upload.html', iv_output=iv_output, iv_filename=request.args.get('instance_validation_report_filename'))
    else:
        return render_template('upload.html')
     
 @app.route('/validate', methods=['POST', 'GET'])
 async def validate_yaml_file():
-    # A building config is posted to the validate endpoint
-    # a sub process is created that runs the instance validator
-    # Report log is just displayed on the screen...and downloadable?
-
     if request.method == 'POST':
         try:
             f = request.files['file']
@@ -54,7 +47,7 @@ async def validate_yaml_file():
                 filenames=[save_location],
                 default_types_filepath=ontology_path,
                 report_directory=report_directory,
-                gcp_credential_path=os.path.expanduser('~/code/creds/oauth_client_credential.json')
+                gcp_credential_path=os.path.expanduser(os.environ['CREDENIAL'])
 
             ))
             repo.git.checkout(repo.remote().fetch()[0])

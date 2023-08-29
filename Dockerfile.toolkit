@@ -1,0 +1,12 @@
+FROM python:3.10
+
+WORKDIR /app
+
+COPY . /source
+RUN /source/tools/scripts/docker_setup.sh
+
+WORKDIR /work
+
+EXPOSE 5000
+
+CMD ["flask", "--app=/source/tools/app.py", "run", "--host=0.0.0.0"]
