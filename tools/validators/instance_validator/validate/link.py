@@ -30,3 +30,6 @@ class Link(object):
     super().__init__()
     self.source = source
     self.field_map = field_map
+
+  def __repr__(self):
+    return f'{self.source}: {self.field_map}'
