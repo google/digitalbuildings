@@ -35,7 +35,7 @@ case "${TOOL}" in
     exec python /source/tools/validators/ontology_validator/yamlformat/validator.py "${@}"
     ;;
   toolkit)
-    exec python /source/app.py "${@}"
+    exec python /source/tools/app.py "${@}"
     ;;
   console)
     exec python "${@}"
