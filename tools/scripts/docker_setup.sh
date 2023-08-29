@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 set -e
 
-pip install virtualenv
-virtualenv /env
+python -m venv /env
 source /env/bin/activate
 cd /source/tools
 ./pip_install.sh
+pip install -r ../../requirements.txt

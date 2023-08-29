@@ -34,6 +34,8 @@ case "${TOOL}" in
   ontology_validator)
     exec python /source/tools/validators/ontology_validator/yamlformat/validator.py "${@}"
     ;;
+  toolkit)
+    exec python /source/app.py
   console)
     exec python "${@}"
     ;;

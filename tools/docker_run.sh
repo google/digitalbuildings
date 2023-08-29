@@ -25,4 +25,4 @@ then
 fi
 
 # shellcheck disable=SC2068
-exec docker run -it -v "${PATH_TO_MOUNT}:/work" ${MAYBE_GCLOUD_CREDENTIALS_FLAGS[@]} "${IMAGE_NAME}:${IMAGE_TAG}" "${@}"
+exec docker run -p 5000:5000 -it -v "${PATH_TO_MOUNT}:/work" ${MAYBE_GCLOUD_CREDENTIALS_FLAGS[@]} "${IMAGE_NAME}:${IMAGE_TAG}" "${@}"
