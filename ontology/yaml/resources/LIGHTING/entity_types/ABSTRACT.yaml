@@ -25,6 +25,8 @@ DC:
   guid: "f00c5ccb-1549-4620-9a2f-ba13a73a5aaf"
   description: "Brightness dimming control."
   is_abstract: true
+  opt_uses:
+  - brightness_percentage_sensor
   uses:
   - brightness_percentage_command
 

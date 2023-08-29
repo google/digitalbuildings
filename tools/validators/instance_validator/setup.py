@@ -13,6 +13,7 @@
 # limitations under the License.
 """Setup file for Instance Validator."""
 
+# pylint: disable=g-importing-member
 from setuptools import find_packages
 from setuptools import setup
 
