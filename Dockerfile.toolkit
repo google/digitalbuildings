@@ -9,4 +9,4 @@ WORKDIR /work
 
 EXPOSE 5000
 
-CMD ["flask", "--app=/source/tools/app.py", "run", "--host=0.0.0.0"]
+CMD ["python3", "-m", "flask", "--app=/source/tools/app.py", "run", "--host=0.0.0.0"]
