@@ -5,4 +5,4 @@ python -m venv /env
 source /env/bin/activate
 cd /source/tools
 ./pip_install.sh
-pip install -r ../../requirements.txt
+pip install -r /source/requirements.txt
