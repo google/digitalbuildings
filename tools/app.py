@@ -10,9 +10,12 @@ _APP_DATA_REPORTS = './app_data/reports'
 
 app = Flask(__name__)
 
-app.route('/')
+@app.route('/')
+def index():
+    return render_template('index.html')
+
 @app.route('/upload')
-def upload_file_landing():
+def upload_building_config():
    if request.args.get('instance_validation_report_filename'):
     iv_report = open('.app_data/reports/' + request.args.get('instance_validation_report_filename'))
     iv_output = iv_report.read()
@@ -48,7 +51,6 @@ async def validate_building_config():
                 filenames=[save_location],
                 default_types_filepath=ontology_path,
                 report_directory=report_directory,
-                gcp_credential_path=os.path.expanduser(os.environ['CREDENIAL'])
 
             ))
             repo.git.checkout(repo.remote().fetch()[0])
@@ -57,7 +59,7 @@ async def validate_building_config():
             print(instance_base_filename)
 
             return redirect(
-                url_for('upload_file_landing', instance_validation_report_filename=instance_base_filename))
+                url_for('upload_building_config', instance_validation_report_filename=instance_base_filename))
         except Exception as e:
             return str(e), 500
         
