@@ -6,10 +6,10 @@
    </head>
    <body>
       <h1>DBO Instance Validator</h1>
-      <form action = "http://localhost:5000/validate" method = "POST" 
+      <form action = "{{ url_for('validate_building_config') }}" method = "POST" 
          enctype = "multipart/form-data">
          <input type = "file" name = "file" />
-         <input type = "text" name = "dbo_commit_hash" placeholder="Commit hash"/>
+         <input type = "text" name = "dbo_commit_hash" placeholder="Pull Request ID"/>
          <input type = "submit"/>
       </form>
       <div>

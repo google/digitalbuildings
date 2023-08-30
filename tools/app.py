@@ -9,7 +9,8 @@ from git import Repo, Remote
 _APP_DATA_REPORTS = './app_data/reports'
 
 app = Flask(__name__)
-    
+
+app.route('/')
 @app.route('/upload')
 def upload_file_landing():
    if request.args.get('instance_validation_report_filename'):
@@ -20,7 +21,7 @@ def upload_file_landing():
        return render_template('upload.html')
     
 @app.route('/validate', methods=['POST', 'GET'])
-async def validate_yaml_file():
+async def validate_building_config():
     if request.method == 'POST':
         try:
             f = request.files['file']
