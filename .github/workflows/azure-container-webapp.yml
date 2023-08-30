@@ -62,7 +62,7 @@ jobs:
         with:
           push: true
           tags: ghcr.io/${{ env.REPO }}:${{ github.sha }}
-          file: ./tools/Dockerfile.toolkit
+          file: ./Dockerfile.toolkit
 
   deploy:
     permissions:
