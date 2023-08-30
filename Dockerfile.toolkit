@@ -1,12 +1,7 @@
 FROM python:3.10
-
-WORKDIR /app
-
+WORKDIR /source
 COPY . /source
 RUN /source/tools/scripts/docker_setup.sh
-
 WORKDIR /work
-
 EXPOSE 5000
-
-CMD ["python3", "-m", "flask", "--app=/source/tools/app.py", "run", "--host=0.0.0.0"]
+ENTRYPOINT ["/source/tools/scripts/docker_entry.sh", "toolkit"]
