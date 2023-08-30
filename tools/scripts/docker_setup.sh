@@ -4,8 +4,8 @@ set -e
 python -m venv /env
 source /env/bin/activate
 cd /source/tools
-mkdir ./.app_data
-mkdir ./.app_data/uploads
-mkdir ./.app_data/reports
 ./pip_install.sh
 pip install -r /source/requirements.txt
+mkdir /source/tools.app_data
+mkdir /source/tools.app_data/uploads
+mkdir /source/tools.app_data/reports
