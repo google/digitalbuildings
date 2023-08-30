@@ -14,9 +14,10 @@ env:
   AZURE_WEBAPP_NAME: dbo-toolkit
 
 on:
+  workflow_dispatch
   push:
     branches:
-      - main
+      - master
 
 permissions:
   contents: 'read'
