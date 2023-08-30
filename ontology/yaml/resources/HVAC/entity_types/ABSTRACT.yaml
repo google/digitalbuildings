@@ -6833,7 +6833,7 @@ SPLM:
 
 ZAQIM:
   description: "Zone air quality indexes monitoring"
-  is_abstract: truezone_air_formaldehyde_concentration_sensor
+  is_abstract: true
   uses:
   - zone_air_aqi_sensor
   opt_uses:
