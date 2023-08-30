@@ -14,7 +14,14 @@ env:
   AZURE_WEBAPP_NAME: dbo-toolkit
 
 on:
-  workflow_dispatch
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Log level'     
+        required: true
+        default: 'warning'
+      tags:
+        description: 'dbo toolkit Azure deployment'  
   push:
     branches:
       - master
