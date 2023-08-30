@@ -6,7 +6,10 @@ import asyncio
 from concurrent.futures import ThreadPoolExecutor
 from git import Repo, Remote
 
-_APP_DATA_REPORTS = './app_data/reports'
+_APP_DATA_REPORTS = '/source/tools/.app_data/reports'
+_APP_DATA_UPLOADS = '/source/tools/.app_data/uploads'
+_ONTOLOGY_PATH = '/source/ontology/yaml/resources'
+_INSTANCE_VALIDATION_REPORT_FILENAME = 'instance_validation_report_filename'
 
 app = Flask(__name__)
 
@@ -16,10 +19,10 @@ def index():
 
 @app.route('/upload')
 def upload_building_config():
-   if request.args.get('instance_validation_report_filename'):
-    iv_report = open('.app_data/reports/' + request.args.get('instance_validation_report_filename'))
+   if request.args.get(_INSTANCE_VALIDATION_REPORT_FILENAME):
+    iv_report = open(_APP_DATA_REPORTS + request.args.get(_INSTANCE_VALIDATION_REPORT_FILENAME))
     iv_output = iv_report.read()
-    return render_template('upload.html', iv_output=iv_output, iv_filename=request.args.get('instance_validation_report_filename'))
+    return render_template('upload.html', iv_output=iv_output, iv_filename=request.args.get(_INSTANCE_VALIDATION_REPORT_FILENAME))
    else:
        return render_template('upload.html')
     
@@ -29,7 +32,7 @@ async def validate_building_config():
         try:
             f = request.files['file']
             filename= secure_filename(f.filename)
-            save_location = os.path.join('.app_data/uploads', filename)
+            save_location = os.path.join(_APP_DATA_UPLOADS, filename)
             f.save(save_location)
 
             # Get remote repo branch ontology if passed in
@@ -43,8 +46,8 @@ async def validate_building_config():
                 repo.git.checkout(fetched_branch)
 
             # validate file
-            report_directory = '.app_data/reports'
-            ontology_path = '../ontology/yaml/resources'
+            report_directory = _APP_DATA_REPORTS
+            ontology_path = _ONTOLOGY_PATH
             loop = asyncio.get_running_loop()
             _executor = ThreadPoolExecutor(1)
             instance_validation_report_filename = await loop.run_in_executor(_executor, lambda: handler.RunValidation(
@@ -66,7 +69,7 @@ async def validate_building_config():
 @app.route('/download/<filename>')
 def download_file(filename):
     return send_file(
-                path_or_file='.app_data/reports/' + filename,
+                path_or_file=_APP_DATA_REPORTS + filename,
                 download_name=filename,
                 as_attachment=True
             )
