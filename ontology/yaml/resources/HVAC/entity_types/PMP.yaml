@@ -149,6 +149,15 @@ PMP_SS_WDPM:
   - SS
   - WDPM
 
+PMP_VSC2X_WDPC_BYPVPM_WDT:
+  description: "Pump unit that controls 2 pumps which alternate operation"
+  is_canonical: true
+  implements:
+  - PMP
+  - VSC2X
+  - WDPC
+  - BYPVPM
+  - WDT
 
 ###################################
 ### Existing Non-standard Types ###

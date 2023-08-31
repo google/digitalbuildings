@@ -6805,3 +6805,20 @@ VSMC:
   - low_speed_status
   - high_speed_status
   - schedule_run_command
+
+VSC2X:
+  description: "Variable speed control single run command 2x run status ."
+  is_abstract: true
+  opt_uses:
+  - speed_percentage_sensor_1
+  - speed_percentage_sensor_2
+  - failed_alarm_1
+  - failed_alarm_2
+  uses:
+  - run_command
+  - run_status_1
+  - run_status_2
+  - speed_percentage_command_1
+  - speed_percentage_command_2
+  implements:
+  - OPERATIONAL
