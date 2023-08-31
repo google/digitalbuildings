@@ -4100,7 +4100,7 @@ AHU_CHWSC_HWSC_ECON_EDBPC_RFSS2X_RFVSC2X_SFSS2X_SFVSC2X_SSPC:
   - SFVSC2X
   - SSPC
 
-AHU_SFVSC_EFVSC_HTWHLSTC_CHWVM_HWVM_SDM_EDM_SFM_FDPSM_CO2C:
+AHU_SFVSC_EFVSC_HTWHLSTC_CHWVM_HWVM_SDM_EDM_SFM_FDPSM_CO2C_SDM2X_EDM2X:
   description: "Multi-zone chilled water and heating water AHU with heat wheel, supply, exhaust fan speed control"
   is_canonical: true
   implements:
@@ -4115,6 +4115,8 @@ AHU_SFVSC_EFVSC_HTWHLSTC_CHWVM_HWVM_SDM_EDM_SFM_FDPSM_CO2C:
   - SFM
   - FDPSM
   - CO2C
+  - SDM2X
+  - EDM2X
 
 ###################################
 ### Existing Non-standard Types ###
