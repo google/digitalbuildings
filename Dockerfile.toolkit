@@ -1,6 +1,7 @@
 FROM python:3.10
 WORKDIR /source
 COPY . /source
+RUN apt-get -y update && apt-get -y install git
 RUN /source/tools/scripts/docker_setup.sh
 WORKDIR /work
 EXPOSE 5000
