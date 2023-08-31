@@ -3115,6 +3115,9 @@ literals:
 - low_supply_air_static_pressure_alarm:
   - ACTIVE
   - INACTIVE
+- low_exhaust_air_static_pressure_alarm:
+  - ACTIVE
+  - INACTIVE
 - low_supply_air_temperature_alarm:
   - ACTIVE
   - INACTIVE
