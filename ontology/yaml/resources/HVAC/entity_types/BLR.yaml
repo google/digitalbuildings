@@ -283,7 +283,7 @@ BLR_SS_RWTC_HTRWC:
   - HTRWC
 
 BLR_HT2SWC_RWTM:
-  description: "Two-stage boiler with supply control."
+  description: "Two-stage boiler with supply control, return temperature monitoring."
   is_canonical: true
   implements:
   - BLR
