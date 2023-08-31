@@ -5074,6 +5074,21 @@ SWTM:
   - supply_water_temperature_sensor
 
 
+RWTM:
+  description: "Return water temperature monitoring."
+  is_abstract: true
+  implements:
+  - MONITORING
+  opt_uses:
+  - cooling_request_count
+  - heating_request_count
+  - return_water_temperature_sensor
+  - high_return_water_temperature_alarm
+  - low_return_water_temperature_alarm
+  uses:
+  - return_water_temperature_sensor
+
+
 CWDPM:
   guid: "d71e1e0d-35d6-4b53-a570-2e12959c951b"
   description: "Differential pressure monitoring for condenser water."
