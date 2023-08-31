@@ -5082,7 +5082,6 @@ RWTM:
   opt_uses:
   - cooling_request_count
   - heating_request_count
-  - return_water_temperature_sensor
   - high_return_water_temperature_alarm
   - low_return_water_temperature_alarm
   uses:
