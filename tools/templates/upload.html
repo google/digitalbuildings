@@ -13,9 +13,9 @@
          <input type = "submit"/>
       </form>
       <div>
-         <textarea class="scrollabletextbox" name="note">{{iv_output}}</textarea>
+        <textarea class="scrollabletextbox" name="note">{{iv_output}}</textarea>
       </div>
-      <form action="{{ url_for('download_file', filename=instance_validation_report_filename) }}">
+      <form action="{{ url_for('download_file', filename=iv_filename) }}">
          <input type="submit" value="Download Instance Validation Report" />
       </form>
    </body>
