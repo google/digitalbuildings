@@ -22,12 +22,12 @@ def index():
 
 @app.route('/upload')
 def upload_building_config():
-   if request.args.get(_INSTANCE_VALIDATION_REPORT_FILENAME):
-    iv_report = open(os.path.join(_APP_DATA_REPORTS, request.args.get(_INSTANCE_VALIDATION_REPORT_FILENAME)))
-    iv_output = iv_report.read()
-    return render_template('upload.html', iv_output=iv_output, iv_filename=request.args.get(_INSTANCE_VALIDATION_REPORT_FILENAME))
-   else:
-       return render_template('upload.html')
+    if request.args.get(_INSTANCE_VALIDATION_REPORT_FILENAME):
+        iv_report = open(os.path.join(_APP_DATA_REPORTS, request.args.get(_INSTANCE_VALIDATION_REPORT_FILENAME)))
+        iv_output = iv_report.read()
+        return render_template('upload.html', iv_output=iv_output, iv_filename=request.args.get(_INSTANCE_VALIDATION_REPORT_FILENAME))
+    else:
+        return render_template('upload.html')
     
 @app.route('/validate', methods=['POST', 'GET'])
 async def validate_building_config():
