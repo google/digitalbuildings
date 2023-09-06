@@ -37,7 +37,6 @@ async def validate_building_config():
             filename= secure_filename(f.filename)
             save_location = os.path.join(_APP_DATA_UPLOADS, filename)
             f.save(save_location)
-            print(save_location)
 
             # Get remote repo branch ontology if passed in
             pull_request_id = request.form.get('dbo_commit_hash')
