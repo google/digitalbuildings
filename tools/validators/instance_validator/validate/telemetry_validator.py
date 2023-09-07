@@ -55,9 +55,7 @@ class TelemetryValidator(object):
     report_directory: fully qualified path to report output directory
   """
 
-  def __init__(
-      self, entities, timeout, callback, report_directory=None
-  ):
+  def __init__(self, entities, timeout, callback, report_directory=None):
     """Init.
 
     Args:
@@ -204,14 +202,18 @@ class TelemetryValidator(object):
       publish_timestamp_difference: total absolute difference between
       message_publish_time and message_timestamp in seconds as a float
     """
+
+    def _FormatTimestamp(timestamp: str) -> datetime.datetime:
+      """Helper function to format string timestamps."""
+      return datetime.datetime(
+          *time.strptime(timestamp, TELEMETRY_TIMESTAMP_FORMAT)[0:6],
+          tzinfo=datetime.timezone.utc,
+      )
+
     publish_timestamp_difference = abs(
         (
-            message_publish_time
-            - datetime.datetime(
-                *time.strptime(message_timestamp, TELEMETRY_TIMESTAMP_FORMAT)[
-                    0:6],
-                tzinfo=datetime.timezone.utc,
-            )
+            _FormatTimestamp(message_publish_time)
+            - _FormatTimestamp(message_timestamp)
         ).total_seconds()
     )
 
