@@ -31,11 +31,12 @@ from validate import telemetry_validator
 
 
 GOOD_PUBLISH_TIME = datetime.datetime(
-    2020, 10, 15, 17, 21, 59, 0, tzinfo=datetime.timezone.utc
-)
+    2020, 10, 15, 17, 21, 59, tzinfo=datetime.timezone.utc
+).strftime('%Y-%m-%dT%H:%M:%SZ')
+
 BAD_PUBLISH_TIME = datetime.datetime(
     2020, 10, 15, 18, 30, 0, 0, tzinfo=datetime.timezone.utc
-)
+).strftime('%Y-%m-%dT%H:%M:%SZ')
 
 _TELEMETRY_PATH = test_constants.TEST_TELEMETRY
 _INSTANCES_PATH = path.join(test_constants.TEST_INSTANCES, 'GOOD')
