@@ -212,8 +212,7 @@ class TelemetryValidator(object):
 
     publish_timestamp_difference = abs(
         (
-            _FormatTimestamp(message_publish_time)
-            - _FormatTimestamp(message_timestamp)
+            message_publish_time - _FormatTimestamp(message_timestamp)
         ).total_seconds()
     )
 
