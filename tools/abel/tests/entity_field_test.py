@@ -94,7 +94,7 @@ class MissingFieldTest(absltest.TestCase):
     test_missing_field = MissingField.FromDict(TEST_MISSING_FIELD_DICT)
 
     with self.assertRaises(TypeError):
-      test_missing_field.__eq__('not a field')
+      test_missing_field == 'not a field'
 
   @mock.patch.object(GuidToEntityMap, 'GetEntityCodeByGuid')
   def testMissingFieldGetSpreadsheetRowMapping(self, test_get_code):

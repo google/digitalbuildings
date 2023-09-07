@@ -98,7 +98,7 @@ class Model(object):
 
       Returns:
         An instance of Model class and a list of EntityOperation intances
-        operating on a Model.
+        operating on Entity instances in a Model.
       """
       # Currently only supports one site per ABEL instance.
       site = Site.FromDict(spreadsheet_dict[SITES][0])
@@ -138,7 +138,7 @@ class Model(object):
 
       Returns:
         A Model instance and a list of EntityOperation instances operating on
-        Entities in the model.
+        Entity instances  in a model.
       """
       model_builder = cls(site)
       entities = []
@@ -273,7 +273,9 @@ class Model(object):
         CONNECTIONS: (ALL_CONNECTION_HEADERS, self.connections),
     }
     title = (
-        f'{self.site.code} {datetime.datetime.strftime(datetime.datetime.now(), "%Y-%m-%d %H:%M")}'
+        f'{self.site.code}
+        {datetime.datetime.strftime(datetime.datetime.now(), 
+        "%Y-%m-%d %H:%M")}'
     )
     spreadsheet_model = {PROPERTIES: {TITLE: title}, SHEETS: []}
     # pylint: disable = g-complex-comprehension

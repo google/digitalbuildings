@@ -64,7 +64,7 @@ class ConnectionTest(absltest.TestCase):
     test_connection = Connection.FromDict(_TEST_CONNECTION_DICT)
 
     with self.assertRaises(TypeError):
-      test_connection.__eq__('connection')
+      test_connection == 'connection'
 
   def testConnectionRepr(self):
     test_connection = Connection.FromDict(_TEST_CONNECTION_DICT)
