@@ -15,10 +15,14 @@
 
 from typing import Dict, List, Optional
 
+# pylint: disable=g-importing-member
 from model.constants import BC_GUID
 from model.constants import BUILDING_CODE
 from model.constants import SITE_NAMESPACE
 from model.constants import SITE_TYPE_NAME
+from model.constants import STRING_VALUE
+from model.constants import USER_ENTERED_VALUE
+from model.constants import VALUES
 from model.entity import Entity
 
 
@@ -38,9 +42,7 @@ class Site(object):
     entities: A list of GUIDs for entities cointained in a site.
   """
 
-  def __init__(self,
-               code: str,
-               guid: Optional[str] = None) -> None:
+  def __init__(self, code: str, guid: Optional[str] = None) -> None:
     """Init.
 
     Args:
@@ -62,10 +64,8 @@ class Site(object):
     return self.code == other.code and self.guid == other.guid
 
   @classmethod
-  def FromDict(cls, site_dict: Dict[str, object]) ->...:
-    site_instance = cls(
-        code=site_dict[BUILDING_CODE],
-        guid=site_dict[BC_GUID])
+  def FromDict(cls, site_dict: Dict[str, object]) -> ...:
+    site_instance = cls(code=site_dict[BUILDING_CODE], guid=site_dict[BC_GUID])
     return site_instance
 
   @property
@@ -91,6 +91,12 @@ class Site(object):
     """
     self._entities.append(entity.bc_guid)
 
-  def GetSpreadsheetRowMapping(self) -> Dict[str, str]:
+  # pylint: disable=unused-argument
+  def GetSpreadsheetRowMapping(self, *args) -> Dict[str, str]:
     """Returns a dictionary of Site attributes by spreadsheet headers."""
-    return {BUILDING_CODE: self.code, BC_GUID: self.guid}
+    return {
+        VALUES: [
+            {USER_ENTERED_VALUE: {STRING_VALUE: self.code}},
+            {USER_ENTERED_VALUE: {STRING_VALUE: self.guid}},
+        ]
+    }

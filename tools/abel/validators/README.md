@@ -166,7 +166,7 @@ Fields` tab.
 
 The code or name of the entity reporting this state in its telemetry payload. This will the be the code of some [reporting entity](../../../ontology/docs/building_config.md#reporting-physical-devices).
 
-`Reporting Entity Guid` *string*
+`Entity Guid` *string*
 
 [UUID4](https://en.wikipedia.org/wiki/Universally_unique_identifier#Version_4_(random)) [identifier](../../../ontology/docs/building_config.md#identifiers) for an entity corresponding to the entity in the Reporting Entity Code column.
 

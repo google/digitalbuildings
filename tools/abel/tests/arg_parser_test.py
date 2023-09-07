@@ -15,6 +15,7 @@
 import argparse
 
 from absl.testing import absltest
+
 from model import arg_parser
 
 
@@ -27,6 +28,23 @@ class ArgParserTest(absltest.TestCase):
   def testParseArgs(self):
     output_parser = arg_parser.ParseArgs()
     self.assertEqual(type(output_parser), argparse.ArgumentParser)
+
+  def testArgParserSucceedsWithRequiredArgs(self):
+    parsed_args = arg_parser.ParseArgs().parse_args(
+        ['--credential', 'credential.json']
+    )
+
+    self.assertIsNone(parsed_args.modified_types_filepath)
+    self.assertIsNone(parsed_args.spreadsheet_id)
+    self.assertIsNone(parsed_args.building_config)
+    self.assertIsNone(parsed_args.subscription)
+    self.assertIsNone(parsed_args.service_account)
+    self.assertEqual(parsed_args.timeout, 600)
+    self.assertIsNotNone(parsed_args.output_dir)
+
+  def testArgParserFailsWithoutRequiredArgs(self):
+    with self.assertRaises(SystemExit):
+      arg_parser.ParseArgs().parse_args()
 
 
 if __name__ == '__main__':
