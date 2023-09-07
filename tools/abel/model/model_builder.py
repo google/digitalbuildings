@@ -13,7 +13,6 @@
 # limitations under the License.
 """Helper module for concrete model construction."""
 
-import datetime
 from typing import Dict, List, Optional
 
 # pylint: disable=g-importing-member
