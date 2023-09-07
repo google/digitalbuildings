@@ -273,9 +273,9 @@ class Model(object):
         CONNECTIONS: (ALL_CONNECTION_HEADERS, self.connections),
     }
     title = (
-        f'{self.site.code}
-        {datetime.datetime.strftime(datetime.datetime.now(), 
-        "%Y-%m-%d %H:%M")}'
+        f'{self.site.code}'
+        '{datetime.datetime.strftime(datetime.datetime.now(),' 
+        ' "%Y-%m-%d %H:%M")}'
     )
     spreadsheet_model = {PROPERTIES: {TITLE: title}, SHEETS: []}
     # pylint: disable = g-complex-comprehension

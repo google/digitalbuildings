@@ -63,8 +63,9 @@ class ConnectionTest(absltest.TestCase):
   def testConnectionEqualityRaisesTypeError(self):
     test_connection = Connection.FromDict(_TEST_CONNECTION_DICT)
 
+    # pylint: disable=unnecessary-dunder-call
     with self.assertRaises(TypeError):
-      test_connection == 'connection'
+      test_connection.__eq__('connection')
 
   def testConnectionRepr(self):
     test_connection = Connection.FromDict(_TEST_CONNECTION_DICT)
