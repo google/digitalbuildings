@@ -31,8 +31,9 @@ from validate import telemetry_validator
 
 
 GOOD_PUBLISH_TIME = datetime.datetime(
-    2020, 10, 15, 17, 21, 59, 0, tzinfo=datetime.timezone.utc
+    2020, 10, 15, 17, 21, 59, tzinfo=datetime.timezone.utc
 )
+
 BAD_PUBLISH_TIME = datetime.datetime(
     2020, 10, 15, 18, 30, 0, 0, tzinfo=datetime.timezone.utc
 )
