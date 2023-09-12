@@ -481,6 +481,7 @@ EFVSC:
   - exhaust_fan_speed_mode
   - exhaust_fan_speed_percentage_sensor
   - failed_exhaust_fan_alarm
+  - exhaust_fan_rotationalvelocity_sensor
   uses:
   - exhaust_fan_run_command
   - exhaust_fan_run_status
@@ -516,6 +517,7 @@ SFVSC:
   - supply_fan_voltage_sensor
   - failed_supply_fan_alarm
   - supply_fan_lost_power_alarm
+  - supply_fan_rotationalvelocity_sensor
   uses:
   - supply_fan_run_command
   - supply_fan_run_status
@@ -647,6 +649,8 @@ SS:
   - failed_alarm
   - local_override_alarm
   - lost_power_alarm
+  - fire_alarm
+  - smoke_alarm
 
 
 SSPC:
@@ -6775,6 +6779,19 @@ VMADC:
   - mixed_air_damper_percentage_sensor
   implements:
   - CONTROL
+
+EFPC:
+  description: "exhaust pressure monitoring, flow control."
+  is_abstract: true
+  opt_uses:
+  - exhaust_fan_run_command
+  - exhaust_fan_rotationalvelocity_sensor
+  uses:
+  - exhaust_air_flowrate_sensor
+  - exhaust_air_flowrate_setpoint
+  - exhaust_air_static_pressure_sensor
+  implements:
+  - OPERATIONAL
 
 OAQM:
   guid: "99e4f482-278e-40ee-9524-9f687c41ba22"
