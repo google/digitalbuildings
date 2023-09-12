@@ -100,6 +100,14 @@ Cloud registry [device numeric identifier](../../../ontology/docs/building_confi
 
 [Entity Type Name](../../../ontology.md#type-names) for an Entity as defined in the [Digital Buildings Ontology](../../../ontology/README.md). e.g. `VAV_SD_DSP`
 
+`Operation` *string*
+
+An [update operation](../../../ontology/docs/building_config.md#update) for an entity which can be one of the following:
+* `ADD` - Will be generated automatically if an entity is being added to an existing building.
+* `UPDATE` - Will be generated automatically if an existing entity is being modified.
+* `DELETE` - Must be indicated by a user that an entity is being removed from a building.
+* `EXPORT` - Will be generated automatically and indicates that an entity exists in a building.
+
 ### Entity Fields
 
 The `Entity Fields` tab defines fields translated by [reporting entities](../../../ontology/docs/building_config.md#reporting-physical-devices) and linked to [virtual entities](../../../onotology/docs/building_config.md#virtual-devices) defined in the `Entities` tab.
