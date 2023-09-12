@@ -6776,6 +6776,15 @@ VMADC:
   implements:
   - CONTROL
 
+CPM2X:
+  description: "circulation pump monitoring X2"
+  is_abstract: true
+  uses:
+  - circulation_pump_run_status_1
+  - circulation_pump_run_status_2
+  implements:
+  - MONITORING
+
 OAQM:
   guid: "99e4f482-278e-40ee-9524-9f687c41ba22"
   description: "Outside air quality monitoring (particulates and gases)"
