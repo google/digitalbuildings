@@ -5,16 +5,21 @@ from validate import handler
 import asyncio
 from concurrent.futures import ThreadPoolExecutor
 from git import Repo, Remote
+import sys
 
-_APP_DATA_REPORTS = '/source/tools/.app_data/reports'
-_APP_DATA_UPLOADS = '/source/tools/.app_data/uploads'
-_ONTOLOGY_PATH = '/source/ontology/yaml/resources'
+#_APP_DATA_REPORTS = '/source/tools/.app_data/reports'
+#_APP_DATA_UPLOADS = '/source/tools/.app_data/uploads'
+#_ONTOLOGY_PATH = '/source/ontology/yaml/resources'
+_APP_DATA_REPORTS = './.app_data/reports'
+_APP_DATA_UPLOADS = './.app_data/uploads'
+_ONTOLOGY_PATH = '../ontology/yaml/resources'
 _INSTANCE_VALIDATION_REPORT_FILENAME = 'instance_validation_report_filename'
+_SUBSCRIPTION_NAME = 'subscription_name'
 _GIT_REPO_URL = 'https://github.com/google/digitalbuildings'
 _GIT_REPO_DIR = '/main'
 
 app = Flask(__name__)
-repo = Repo.clone_from(_GIT_REPO_URL, _GIT_REPO_DIR)
+#repo = Repo.clone_from(_GIT_REPO_URL, _GIT_REPO_DIR)
 
 @app.route('/')
 def index():
@@ -48,22 +53,28 @@ async def validate_building_config():
                 repo.git.checkout(fetched_branch)
 
             # validate file
+            # TODO: Add telemetry validation
             loop = asyncio.get_running_loop()
             _executor = ThreadPoolExecutor(1)
+            subscription_name = request.form.get(_SUBSCRIPTION_NAME)
             instance_validation_report_filename = await loop.run_in_executor(_executor, lambda: handler.RunValidation(
                 filenames=[save_location],
                 default_types_filepath=_ONTOLOGY_PATH,
                 report_directory=_APP_DATA_REPORTS,
+                gcp_credential_path=os.path.expanduser('~/code/creds/oauth_client_credential.json'),
+                subscription=subscription_name
 
             ))
-            repo.git.checkout(repo.remote().fetch()[0])
+            #repo.git.checkout(repo.remote().fetch()[0])
 
             instance_base_filename = os.path.basename(instance_validation_report_filename)
 
             return redirect(
                 url_for('upload_building_config', instance_validation_report_filename=instance_base_filename))
         except Exception as e:
-            return str(e), 500
+            exc_type, exc_obj, exc_tb = sys.exc_info()
+            fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
+            return str((str(e), exc_type, fname, exc_tb.tb_lineno)), 500
         
 @app.route('/download/<filename>')
 def download_file(filename):
