@@ -75,6 +75,26 @@ SPREADSHEET_TITLE = 'title'
 SPREADSHEET_URL = 'spreadsheetUrl'
 WRITE = 'w'
 UTF_8 = 'utf-8'
+STRING_VALUE = 'stringValue'
+VALUES = 'values'
+USER_ENTERED_VALUE = 'userEnteredValue'
+DATA = 'data'
+ROW_DATA = 'rowData'
+PROPERTIES = 'properties'
+TITLE = 'title'
+SHEETS = 'sheets'
+GRID_PROPERTIES = 'gridProperties'
+FROZEN_ROW_COUNT = 'frozenRowCount'
+DATA_VALIDATION = 'dataValidation'
+CONDITION = 'condition'
+CONDITION_TYPE = 'type'
+STRICT_VALIDATION = 'strict'
+SHOW_CUSTOM_UI = 'showCustomUi'
+ONE_OF_LIST = 'ONE_OF_LIST'
+USER_ENTERED_FORMAT = 'userEnteredFormat'
+BACKGROUND_COLOR_STYLE = 'backgroundColorStyle'
+RGB_COLOR = 'rgbColor'
+TEXT_FORMAT = 'textFormat'
 
 # Authenticator Constants
 EXPIRE_TIME = 'expireTime'
@@ -134,6 +154,8 @@ FACILITIES_NAMESPACE = 'FACILITIES'
 GENERAL_TYPE = 'DBO General Type'
 IS_REPORTING = 'Is Reporting'
 OPERATION = 'Operation'
+IS_REPORTING_TRUE = 'TRUE'
+IS_REPORTING_FALSE = 'FALSE'
 
 # Site Keys
 BUILDING_CODE = 'Building Code'
@@ -190,7 +212,7 @@ REQUIRED_CONNECTION_HEADERS = [
 ALL_SITE_HEADERS = [BUILDING_CODE, BC_GUID]
 ALL_ENTITY_HEADERS = [
     ENTITY_CODE, BC_GUID, ETAG, IS_REPORTING, CLOUD_DEVICE_ID, NAMESPACE,
-    TYPE_NAME
+    TYPE_NAME, OPERATION
 ]
 ALL_FIELD_HEADERS = [
     STANDARD_FIELD_NAME,
