@@ -18,6 +18,7 @@ import logging
 import re
 from typing import Dict, List
 
+# pylint: disable=g-importing-member
 from model.constants import ALL_CONNECTION_HEADERS
 from model.constants import ALL_ENTITY_HEADERS
 from model.constants import ALL_FIELD_HEADERS
@@ -203,13 +204,13 @@ class SpreadsheetValidator(object):
     validation_errors = []
     for row_number, row in enumerate(parsed_sheet, _ROW_START_INDEX):
       for header in col_headers_values:
-        if not row[header]:
+        if not row.get(header):
           validation_errors.append(
               MissingSpreadsheetValueError(
                   table=table,
                   row=row_number,
                   column=header,
-                  message=f'{table} entry must have a {header}',
+                  message=f'{table} entry must have a {header} value.',
               )
           )
     return validation_errors
@@ -375,8 +376,8 @@ class SpreadsheetValidator(object):
         validation_errors.append(
             ConnectionDependencyError(
                 row=row_number,
-                missing_code=connection[SOURCE_ENTITY_CODE],
-                present_code=connection[TARGET_ENTITY_CODE],
+                missing_code=connection.get(TARGET_ENTITY_CODE),
+                present_code=connection.get(SOURCE_ENTITY_CODE),
             )
         )
       if connection[TARGET_ENTITY_CODE] not in codes:
@@ -518,7 +519,7 @@ class SpreadsheetValidator(object):
     ]
     for row_number, field in enumerate(fields_sheet, _ROW_START_INDEX):
       for column_header in missing_field_headers:
-        if field[MISSING].upper() == 'TRUE':
+        if field.get(MISSING) and (field.get(MISSING).upper() == 'TRUE'):
           if field[column_header] and field[column_header] != NO_UNITS:
             validation_errors.append(
                 MissingFieldError(

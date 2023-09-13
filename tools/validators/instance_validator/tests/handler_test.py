@@ -189,8 +189,11 @@ class HandlerTest(absltest.TestCase):
           name, ei, default_operation=default_operation
       )
 
-    valid_entities = entity_helper.Validate(instances, _INIT_CFG)
+    valid_entities, all_entities_valid = entity_helper.Validate(
+        instances, _INIT_CFG
+    )
 
+    self.assertTrue(all_entities_valid)
     self.assertEqual(valid_entities, instances)
     self.assertEqual(mock_validator.call_count, 2)
 
@@ -242,8 +245,11 @@ class HandlerTest(absltest.TestCase):
           name, ei, default_operation=default_operation
       )
 
-    valid_entities = entity_helper.Validate(instances, _UPDATE_CFG)
+    valid_entities, all_entities_valid = entity_helper.Validate(
+        instances, _UPDATE_CFG
+    )
 
+    self.assertTrue(all_entities_valid)
     self.assertEqual(valid_entities, instances)
 
   def testGraph_DoesNotAllowDuplicateCloudDeviceId(self):
@@ -268,7 +274,10 @@ class HandlerTest(absltest.TestCase):
           name, ei, default_operation=default_operation
       )
 
-    valid_entities = entity_helper.Validate(instances, _INIT_CFG)
+    valid_entities, all_entities_valid = entity_helper.Validate(
+        instances, _INIT_CFG
+    )
+    self.assertFalse(all_entities_valid)
     self.assertLen(valid_entities, 3)
     self.assertFalse(entity_helper._IsDuplicateCDMIds(entities=instances))
 
