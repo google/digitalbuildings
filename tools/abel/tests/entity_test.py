@@ -15,20 +15,30 @@
 
 from absl.testing import absltest
 
+# pylint: disable=g-importing-member
 from model.connection import Connection
 from model.constants import BC_GUID
-from model.constants import CLOUD_DEVICE_ID
+from model.constants import CONDITION
+from model.constants import CONDITION_TYPE
 from model.constants import CONNECTION_TYPE
+from model.constants import DATA_VALIDATION
 from model.constants import ENTITY_CODE
 from model.constants import ETAG
-from model.constants import IS_REPORTING
-from model.constants import METADATA
+from model.constants import IS_REPORTING_FALSE
+from model.constants import IS_REPORTING_TRUE
 from model.constants import NAMESPACE
+from model.constants import ONE_OF_LIST
+from model.constants import SHOW_CUSTOM_UI
 from model.constants import SOURCE_ENTITY_GUID
+from model.constants import STRICT_VALIDATION
+from model.constants import STRING_VALUE
 from model.constants import TARGET_ENTITY_GUID
 from model.constants import TYPE_NAME
+from model.constants import USER_ENTERED_VALUE
+from model.constants import VALUES
 from model.entity import ReportingEntity
 from model.entity import VirtualEntity
+from model.entity_enumerations import EntityNamespace
 from model.entity_field import DimensionalValueField
 from tests.test_constants import TEST_CLOUD_DEVICE_ID
 from tests.test_constants import TEST_DIMENSIONAL_VALUE_FIELD_DICT
@@ -69,8 +79,6 @@ class EntityTest(absltest.TestCase):
     test_entity_2 = VirtualEntity.FromDict(TEST_VIRTUAL_ENTITY_DICT)
 
     self.assertEqual(test_entity_1, test_entity_2)
-    with self.assertRaises(TypeError):
-      test_entity_1.__eq__('Not an entity')
 
   def testVirtualEntityInequality(self):
     test_virtual_entity_dict_2 = {
@@ -79,19 +87,34 @@ class EntityTest(absltest.TestCase):
         ETAG: '7654321',
         NAMESPACE: TEST_NAMESPACE,
         TYPE_NAME: None,
-        METADATA + '.test': 'test metadata',
     }
     test_entity_1 = VirtualEntity.FromDict(TEST_VIRTUAL_ENTITY_DICT)
     test_entity_2 = VirtualEntity.FromDict(test_virtual_entity_dict_2)
 
     self.assertNotEqual(test_entity_1, test_entity_2)
+    self.assertNotEqual(test_entity_1, 'not_an_entity')
 
   def testReportingEntityEquality(self):
-    test_entity_1 = ReportingEntity.FromDict(TEST_REPORTING_ENTITY_DICT)
+    test_reporting_entity_1 = ReportingEntity.FromDict(
+        TEST_REPORTING_ENTITY_DICT
+    )
+    test_reporting_entity_2 = ReportingEntity.FromDict(
+        TEST_REPORTING_ENTITY_DICT
+    )
 
-    self.assertEqual(test_entity_1, test_entity_1)
-    with self.assertRaises(TypeError):
-      test_entity_1.__eq__('Not an entity')
+    self.assertEqual(test_reporting_entity_1, test_reporting_entity_2)
+
+  def testReportingEntityInequality(self):
+    test_reporting_entity_1 = ReportingEntity.FromDict(
+        TEST_REPORTING_ENTITY_DICT
+    )
+    test_reporting_entity_2 = ReportingEntity.FromDict(
+        TEST_REPORTING_ENTITY_DICT
+    )
+    test_reporting_entity_2.etag = 'not_an_etag'
+
+    self.assertNotEqual(test_reporting_entity_1, test_reporting_entity_2)
+    self.assertNotEqual(test_reporting_entity_1, 'not_an_entity')
 
   def testAddConnection(self):
     test_connection = Connection.FromDict({
@@ -158,13 +181,41 @@ class EntityTest(absltest.TestCase):
   def testVirtualGetSpreadsheetRowMapping(self):
     test_virtual_entity = VirtualEntity.FromDict(TEST_VIRTUAL_ENTITY_DICT)
     expected_row_mapping = {
-        ENTITY_CODE: TEST_VIRTUAL_ENTITY_CODE,
-        BC_GUID: TEST_VIRTUAL_GUID,
-        ETAG: None,
-        IS_REPORTING: False,
-        CLOUD_DEVICE_ID: None,
-        NAMESPACE: TEST_NAMESPACE,
-        TYPE_NAME: TEST_TYPE_NAME,
+        VALUES: [
+            {USER_ENTERED_VALUE: {STRING_VALUE: TEST_VIRTUAL_ENTITY_CODE}},
+            {USER_ENTERED_VALUE: {STRING_VALUE: TEST_VIRTUAL_GUID}},
+            {USER_ENTERED_VALUE: {STRING_VALUE: None}},
+            {
+                USER_ENTERED_VALUE: {STRING_VALUE: IS_REPORTING_FALSE},
+                DATA_VALIDATION: {
+                    CONDITION: {
+                        CONDITION_TYPE: ONE_OF_LIST,
+                        VALUES: [
+                            {USER_ENTERED_VALUE: IS_REPORTING_TRUE},
+                            {USER_ENTERED_VALUE: IS_REPORTING_FALSE},
+                        ],
+                    },
+                    STRICT_VALIDATION: True,
+                    SHOW_CUSTOM_UI: True,
+                },
+            },
+            {USER_ENTERED_VALUE: {STRING_VALUE: None}},
+            {
+                USER_ENTERED_VALUE: {STRING_VALUE: TEST_NAMESPACE},
+                DATA_VALIDATION: {
+                    CONDITION: {
+                        CONDITION_TYPE: ONE_OF_LIST,
+                        VALUES: [
+                            {USER_ENTERED_VALUE: namespace.value}
+                            for namespace in EntityNamespace
+                        ],
+                    },
+                    STRICT_VALIDATION: True,
+                    SHOW_CUSTOM_UI: True,
+                },
+            },
+            {USER_ENTERED_VALUE: {STRING_VALUE: TEST_TYPE_NAME}},
+        ]
     }
 
     row_mapping = test_virtual_entity.GetSpreadsheetRowMapping()
@@ -174,7 +225,10 @@ class EntityTest(absltest.TestCase):
   def testRepr(self):
     test_virtual_entity = VirtualEntity.FromDict(TEST_VIRTUAL_ENTITY_DICT)
 
-    self.assertEqual(str(test_virtual_entity), test_virtual_entity.code)
+    self.assertEqual(
+        str(test_virtual_entity),
+        f'{test_virtual_entity.bc_guid}: {test_virtual_entity.code}',
+    )
 
 
 if __name__ == '__main__':
