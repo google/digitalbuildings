@@ -15,6 +15,7 @@
 
 from typing import List, Tuple
 
+# pylint: disable=g-importing-member
 from model.connection import Connection as ABELConnection
 from model.constants import CONNECTION_TYPE
 from model.constants import SOURCE_ENTITY_GUID
@@ -22,9 +23,12 @@ from model.constants import TARGET_ENTITY_GUID
 from model.entity import Entity
 from model.entity import ReportingEntity
 from model.entity import VirtualEntity
+from model.entity_enumerations import EntityOperationType
+from model.entity_enumerations import EntityUpdateMaskAttribute
 from model.entity_field import DimensionalValueField
 from model.entity_field import MissingField
 from model.entity_field import MultistateValueField
+from model.entity_operation import EntityOperation
 from model.state import State
 from model.units import Units
 from validate.connection import Connection as IVConnection
@@ -53,6 +57,7 @@ def EntityInstanceToEntity(
   fields = []
   states = []
   connections = []
+  entity_operation = None
 
   if not entity_instance.cloud_device_id:
     entity = VirtualEntity(
@@ -97,8 +102,16 @@ def EntityInstanceToEntity(
       connections.append(
           _TranslateConnectionsToABEL(entity_instance.guid, connection)
       )
+  if entity_instance.operation:
+    operation = EntityOperationType(entity_instance.operation.value)
+    entity_operation = EntityOperation(operation=operation, entity=entity)
+    if entity_instance.update_mask:
+      entity_operation.update_mask = [
+          EntityUpdateMaskAttribute(mask_element)
+          for mask_element in entity_instance.update_mask
+      ]
 
-  return entity, fields, states, connections
+  return entity, fields, states, connections, entity_operation
 
 
 def _DimensionalValueToDimensionalValueField(

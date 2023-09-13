@@ -16,6 +16,7 @@
 import abc
 from typing import Optional
 
+# pylint: disable=g-importing-member
 from model.constants import CONNECTIONS
 from model.constants import ENTITIES
 
