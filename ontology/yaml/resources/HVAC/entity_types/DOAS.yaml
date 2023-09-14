@@ -99,6 +99,7 @@ DOAS_EFSS_EFVSC_SFSS_SFVSC_CHWSC_HWSC_RSPC_SSPC_HTWHLSTC_FDPM3X:
   - FDPM3X
 
 DOAS_EFSS_EFVSC_FDPM3X_PHRU_HWSC_RCO2M_RSPC_SFM_SFSS_SFVSC_SSPC:
+  guid: "5d827c8f-7703-4ace-92a7-95582547265b"
   description: "Complex multi zone DOAS with heat recovery plate exchanger (heating only)."
   is_canonical: true
   implements:
@@ -116,6 +117,7 @@ DOAS_EFSS_EFVSC_FDPM3X_PHRU_HWSC_RCO2M_RSPC_SFM_SFSS_SFVSC_SSPC:
   - SSPC
 
 DOAS_EFSS_EFVSC_FDPM3X_HTWHLSTC_HWSC_RCO2M_RSPC_SFM_SFSS_SFVSC_SSPC:
+  guid: "e1fa7ff9-b987-4604-9eaf-f45ed02d87e5"
   description: "Complex multi zone DOAS with heat recovery wheel (heating only)."
   is_canonical: true
   implements:
