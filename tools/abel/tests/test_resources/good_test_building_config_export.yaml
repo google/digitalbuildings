@@ -1,0 +1,106 @@
+CONFIG_METADATA:
+  operation: INITIALIZE
+
+c773b86d-b0c0-46fc-bd3f-d726fadd5f1e:
+  code: VAV-1
+  links:
+    0a85029e-96c5-48a0-afa8-23139f6eda67:
+      zone_air_temperature_sensor: zone_air_temperature_sensor
+      zone_air_temperature_setpoint: zone_air_temperature_setpoint
+    547a33c5-0ce4-4dfb-9924-5169a3475c89:
+      supply_air_flowrate_sensor: supply_air_flowrate_sensor_1
+  type: HVAC/VAV_SD_DSP
+
+4931e096-dea5-4b81-86ad-234c6d07b978:
+  code: VAV-2
+  connections:
+    c773b86d-b0c0-46fc-bd3f-d726fadd5f1e:
+    - FEEDS
+  links:
+    547a33c5-0ce4-4dfb-9924-5169a3475c89:
+      supply_air_flowrate_sensor: supply_air_flowrate_sensor_2
+    2b152e08-3440-4358-9067-3f2acc58c982:
+      zone_air_temperature_sensor: zone_air_temperature_sensor
+      zone_air_temperature_setpoint: zone_air_temperature_setpoint
+  type: HVAC/VAV_SD_CSP
+
+0a85029e-96c5-48a0-afa8-23139f6eda67:
+  cloud_device_id: "2541901344105616"
+  code: GTWY-1
+  translation:
+    zone_air_temperature_sensor:
+      present_value: zone_air_temperature_sensor.present_value
+      units:
+        key: zone_air_temperature_sensor.units
+        values:
+          degrees_fahrenheit: degrees-farenheit
+    zone_air_temperature_setpoint:
+      present_value: zone_air_temperature_setpoint.present_value
+      units:
+        key: zone_air_temperature_setpoint.units
+        values:
+          degrees_fahrenheit: degrees-farenheit
+  type: GATEWAYS/PASSTHROUGH
+
+547a33c5-0ce4-4dfb-9924-5169a3475c89:
+  cloud_device_id: "2541901344105618"
+  code: GTWY-2
+  translation:
+    supply_air_flowrate_sensor_1:
+      present_value: supply_air_flowrate_sensor.present_value
+      units:
+        key: supply_air_flowrate_sensor.units
+        values:
+          cubic_feet_per_minute: cubic-feet-per-minute
+    supply_air_flowrate_sensor_2:
+      present_value: supply_air_flowrate_sensor.present_value
+      units:
+        key: supply_air_flowrate_sensor.units
+        values:
+          cubic_feet_per_minute: cubic-feet-per-minute
+  type: GATEWAYS/PASSTHROUGH
+
+2b152e08-3440-4358-9067-3f2acc58c982:
+  cloud_device_id: "2541901344105617"
+  code: GTWY-3
+  translation:
+    zone_air_temperature_sensor:
+      present_value: zone_air_temperature_sensor.present_value
+      units:
+        key: zone_air_temperature_sensor.units
+        values:
+          degrees_fahrenheit: degrees-farenheit
+    zone_air_temperature_setpoint:
+      present_value: zone_air_temperature_setpoint.present_value
+      units:
+        key: zone_air_temperature_setpoint.units
+        values:
+          degrees_fahrenheit: degrees-farenheit
+  type: GATEWAYS/PASSTHROUGH
+
+8318f346-10b4-44f0-ac0b-bf7659510bfa:
+  cloud_device_id: "2541901344105619"
+  code: VAV-3
+  translation:
+    zone_air_temperature_sensor:
+      present_value: zone_air_temperature_sensor.present_value
+      units:
+        key: zone_air_temperature_sensor.units
+        values:
+          degrees_fahrenheit: degrees-farenheit
+    zone_air_temperature_setpoint:
+      present_value: zone_air_temperature_setpoint.present_value
+      units:
+        key: zone_air_temperature_setpoint.units
+        values:
+          degrees_fahrenheit: degrees-farenheit
+    run_command:
+      present_value: points.run_command.present-value
+      states:
+        'OFF': inactive
+        'ON': active
+  type: HVAC/VAV_SD_CSP
+
+c2ba089b-3a5e-4c56-bdeb-748a9d1b0e99:
+  code: TEST_BUILDING
+  type: FACILITIES/BUILDING
