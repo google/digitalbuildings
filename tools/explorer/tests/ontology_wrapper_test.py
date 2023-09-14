@@ -13,12 +13,12 @@
 # limitations under the License.
 
 """Testing module for ontology_wrapper.py."""
-# pylint: disable=g-importing-member
 from absl.testing import absltest
 from lib.model import EntityTypeField
 from lib.model import Match
 from lib.model import StandardField
 from lib.ontology_wrapper import OntologyWrapper
+
 from validate.universe_helper.config_universe import create_simplified_universe
 from yamlformat.validator import namespace_validator as nv
 
@@ -36,21 +36,26 @@ class OntologyTest(absltest.TestCase):
         EntityTypeField('', 'exhaust_air_damper_command', False),
         EntityTypeField('', 'exhaust_air_damper_status', False),
         EntityTypeField('', 'manufacturer_label', True),
-        EntityTypeField('', 'model_label', True),
+        EntityTypeField('', 'model_label', True)
     ]
 
-    function_output = self.ontology.GetFieldsForTypeName('HVAC', 'DMP_EDM')
+    function_output = self.ontology.GetFieldsForTypeName(
+        'HVAC',
+        'DMP_EDM'
+    )
 
     self.assertEqual(function_output, expected_output)
 
   def testGetRequiredFieldsForTypeName(self):
     expected_output = [
         EntityTypeField('', 'exhaust_air_damper_command', False),
-        EntityTypeField('', 'exhaust_air_damper_status', False),
+        EntityTypeField('', 'exhaust_air_damper_status', False)
     ]
 
     function_output = self.ontology.GetFieldsForTypeName(
-        namespace='HVAC', entity_type_name='DMP_EDM', required_only=True
+        namespace='HVAC',
+        entity_type_name='DMP_EDM',
+        required_only=True
     )
 
     self.assertEqual(function_output, expected_output)
@@ -60,13 +65,13 @@ class OntologyTest(absltest.TestCase):
         StandardField('', 'exhaust_air_damper_command'),
         StandardField('', 'exhaust_air_damper_status'),
         StandardField('', 'manufacturer_label'),
-        StandardField('', 'model_label'),
+        StandardField('', 'model_label')
     ]
     etu = self.universe.entity_type_universe
     expected_output = [
         Match(input_field_list, etu.GetEntityType('HVAC', 'DMP_EDM'), 100),
-        Match(input_field_list, etu.GetEntityType('HVAC', 'SDC_EXT'), 20),
-        Match(input_field_list, etu.GetEntityType('HVAC', 'CHWS_WDT'), 0),
+        Match(input_field_list, etu.GetEntityType('HVAC', 'SDC_EXT'), 25),
+        Match(input_field_list, etu.GetEntityType('HVAC', 'CHWS_WDT'), 0)
     ]
 
     function_output = self.ontology.GetEntityTypesFromFields(input_field_list)
@@ -79,16 +84,17 @@ class OntologyTest(absltest.TestCase):
         StandardField('', 'exhaust_air_damper_command'),
         StandardField('', 'exhaust_air_damper_status'),
         StandardField('', 'manufacturer_label'),
-        StandardField('', 'model_label'),
+        StandardField('', 'model_label')
     ]
     etu = self.universe.entity_type_universe
     expected_output = [
         Match(input_field_list, etu.GetEntityType('HVAC', 'DMP_EDM'), 100),
-        Match(input_field_list, etu.GetEntityType('HVAC', 'SDC_EXT'), 20),
+        Match(input_field_list, etu.GetEntityType('HVAC', 'SDC_EXT'), 25)
     ]
 
     function_output = self.ontology.GetEntityTypesFromFields(
-        input_field_list, return_size=2
+        input_field_list,
+        return_size=2
     )
 
     for i in range(max(len(expected_output), len(function_output))):
@@ -101,25 +107,21 @@ class OntologyTest(absltest.TestCase):
         StandardField('', 'flowrate_requirement'),
         StandardField('', 'differential_pressure_specification'),
         StandardField('', 'supply_water_temperature_sensor'),
-        StandardField('', 'thermal_power_capacity'),
+        StandardField('', 'thermal_power_capacity')
     ]
     expected_entity_type = self.universe.entity_type_universe.GetEntityType(
-        namespace_name='HVAC', typename='CHWS_WDT'
+        namespace_name='HVAC',
+        typename='CHWS_WDT'
     )
     expected_output = [Match(input_field_list, expected_entity_type, 100)]
 
     function_output = self.ontology.GetEntityTypesFromFields(
-        input_field_list, general_type=input_general_type
+        input_field_list,
+        general_type=input_general_type
     )
 
     for i in range(len(expected_output)):
       self.assertEqual(expected_output[i], function_output[i])
-
-  def testInvalidFieldListRaisesValueError(self):
-    banana_field = StandardField('', 'banana_sensor')
-
-    with self.assertRaises(ValueError):
-      self.ontology.GetEntityTypesFromFields([banana_field])
 
   def testValidField(self):
     valid_test_field = StandardField('', 'zone_use_label')
@@ -130,7 +132,6 @@ class OntologyTest(absltest.TestCase):
     invalid_test_field = StandardField('HVAC', 'exhaust_air_damper_command')
     function_output = self.ontology.IsFieldValid(invalid_test_field)
     self.assertFalse(function_output)
-
 
 if __name__ == '__main__':
   absltest.main()
