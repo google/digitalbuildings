@@ -15,11 +15,14 @@
 
 from typing import Dict
 
+# pylint: disable=g-importing-member
 from model.constants import RAW_STATE
-from model.constants import REPORTING_ENTITY_CODE
 from model.constants import REPORTING_ENTITY_FIELD_NAME
 from model.constants import REPORTING_ENTITY_GUID
 from model.constants import STANDARD_STATE
+from model.constants import STRING_VALUE
+from model.constants import USER_ENTERED_VALUE
+from model.constants import VALUES
 from model.guid_to_entity_map import GuidToEntityMap
 
 
@@ -34,8 +37,13 @@ class State(object):
     guid_to_entity_map: Global entity by guid mapping.
   """
 
-  def __init__(self, reporting_entity_guid: str, std_field_name: str,
-               standard_state: str, raw_state: str):
+  def __init__(
+      self,
+      reporting_entity_guid: str,
+      std_field_name: str,
+      standard_state: str,
+      raw_state: str,
+  ):
     """Init.
 
     Args:
@@ -48,40 +56,47 @@ class State(object):
     self.std_field_name = std_field_name
     self.standard_state = standard_state
     self.raw_state = raw_state
-    self.guid_to_entity_map = GuidToEntityMap()
 
-  def __str__(self):
-    reporting_entity_code = self.guid_to_entity_map.GetEntityByGuid(
-        self.reporting_entity_guid).code
-    return f'State for {reporting_entity_code}: {self.std_field_name}'
+  def __repr__(self) -> str:
+    return (
+        f'{self.raw_state}: {self.standard_state} for'
+        f' {self.reporting_entity_guid}: {self.std_field_name}'
+    )
 
-  # pylint: disable=line-too-long
   def __eq__(self, other: ...) -> bool:
     if not isinstance(other, State):
       raise TypeError('Other object must be a state instance.')
-    return self.reporting_entity_guid == other.reporting_entity_guid and self.std_field_name == other.std_field_name and self.standard_state == other.standard_state
+    return (
+        self.reporting_entity_guid == other.reporting_entity_guid
+        and self.std_field_name == other.std_field_name
+        and self.standard_state == other.standard_state
+    )
 
   @classmethod
-  def FromDict(cls, states_dict: Dict[str, str]) ->...:
-    new_state = cls(
+  def FromDict(cls, states_dict: Dict[str, str]) -> ...:
+    return cls(
         reporting_entity_guid=states_dict[REPORTING_ENTITY_GUID],
         std_field_name=states_dict[REPORTING_ENTITY_FIELD_NAME],
         standard_state=states_dict[STANDARD_STATE],
-        raw_state=states_dict[RAW_STATE])
-    return new_state
+        raw_state=states_dict[RAW_STATE],
+    )
 
-  def GetSpreadsheetRowMapping(self) -> Dict[str, str]:
+  def GetSpreadsheetRowMapping(
+      self, guid_to_entity_map: GuidToEntityMap
+  ) -> Dict[str, str]:
     """Returns a dictionary of State attributes by spreadsheet headers."""
     return {
-        REPORTING_ENTITY_CODE:
-            self.guid_to_entity_map.GetEntityCodeByGuid(
-                self.reporting_entity_guid),
-        REPORTING_ENTITY_GUID:
-            self.reporting_entity_guid,
-        REPORTING_ENTITY_FIELD_NAME:
-            self.std_field_name,
-        STANDARD_STATE:
-            self.standard_state,
-        RAW_STATE:
-            self.raw_state
+        VALUES: [
+            {
+                USER_ENTERED_VALUE: {
+                    STRING_VALUE: guid_to_entity_map.GetEntityCodeByGuid(
+                        self.reporting_entity_guid
+                    )
+                }
+            },
+            {USER_ENTERED_VALUE: {STRING_VALUE: self.reporting_entity_guid}},
+            {USER_ENTERED_VALUE: {STRING_VALUE: self.std_field_name}},
+            {USER_ENTERED_VALUE: {STRING_VALUE: self.standard_state}},
+            {USER_ENTERED_VALUE: {STRING_VALUE: self.raw_state}},
+        ]
     }

@@ -29,11 +29,12 @@ from validate import handler
 from validate import instance_parser
 from validate import telemetry_validator
 
-
+# Without microseconds
 GOOD_PUBLISH_TIME = datetime.datetime(
     2020, 10, 15, 17, 21, 59, tzinfo=datetime.timezone.utc
 )
 
+# With microseconds
 BAD_PUBLISH_TIME = datetime.datetime(
     2020, 10, 15, 18, 30, 0, 0, tzinfo=datetime.timezone.utc
 )

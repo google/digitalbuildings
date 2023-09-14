@@ -16,15 +16,26 @@
 import abc
 from typing import Dict, List, Optional
 
+# pylint: disable=g-importing-member
 from model.connection import Connection
 from model.constants import BC_GUID
 from model.constants import CLOUD_DEVICE_ID
+from model.constants import CONDITION
+from model.constants import CONDITION_TYPE
+from model.constants import DATA_VALIDATION
 from model.constants import ENTITY_CODE
 from model.constants import ETAG
-from model.constants import IS_REPORTING
-from model.constants import METADATA
+from model.constants import IS_REPORTING_FALSE
+from model.constants import IS_REPORTING_TRUE
 from model.constants import NAMESPACE
+from model.constants import ONE_OF_LIST
+from model.constants import SHOW_CUSTOM_UI
+from model.constants import STRICT_VALIDATION
+from model.constants import STRING_VALUE
 from model.constants import TYPE_NAME
+from model.constants import USER_ENTERED_VALUE
+from model.constants import VALUES
+from model.entity_enumerations import EntityNamespace
 from validate.field_translation import FieldTranslation
 
 
@@ -47,13 +58,15 @@ class Entity(object):
         manufacturer_label: blank }
   """
 
-  def __init__(self,
-               code: str,
-               namespace: str,
-               etag: Optional[str] = None,
-               type_name: Optional[str] = None,
-               bc_guid: Optional[str] = None,
-               metadata: Optional[Dict[str, str]] = None):
+  def __init__(
+      self,
+      code: str,
+      namespace: str,
+      etag: Optional[str] = None,
+      type_name: Optional[str] = None,
+      bc_guid: Optional[str] = None,
+      metadata: Optional[Dict[str, str]] = None,
+  ):
     """Init.
 
     Args:
@@ -77,7 +90,15 @@ class Entity(object):
     return hash((self.code, self.etag, self.bc_guid))
 
   def __repr__(self) -> str:
-    return f'{self.code}'
+    return f'{self.bc_guid}: {self.code}'
+
+  def __eq__(self, other: ...) -> bool:
+    return (self.code, self.bc_guid, self.etag, self.type_name) == (
+        other.code,
+        other.bc_guid,
+        other.etag,
+        other.type_name,
+    )
 
   @property
   def connections(self) -> List[Connection]:
@@ -105,14 +126,15 @@ class Entity(object):
       TypeError: If new_connection is not a Connection instance.
       AttributeError: If new_connection.target_entity_guid does not equal the
       entity's guid.
-
     """
     if not isinstance(new_connection, Connection):
       raise TypeError(
-          f'{new_connection} cannot be added as a connection to an entity.')
+          f'{new_connection} cannot be added as a connection to an entity.'
+      )
     if new_connection.target_entity_guid != self.bc_guid:
       raise AttributeError(
-          f'{new_connection.target_entity_guid} does not equal {self.bc_guid}')
+          f'{new_connection.target_entity_guid} does not equal {self.bc_guid}'
+      )
     self.connections.append(new_connection)
 
   @abc.abstractmethod
@@ -127,13 +149,15 @@ class VirtualEntity(Entity):
     links: List of FieldTranslation extensions mapping to this virtual entity.
   """
 
-  def __init__(self,
-               code: str,
-               namespace: str,
-               etag: Optional[str] = None,
-               type_name: Optional[str] = None,
-               bc_guid: Optional[str] = None,
-               metadata: Optional[Dict[str, str]] = None):
+  def __init__(
+      self,
+      code: str,
+      namespace: str,
+      etag: Optional[str] = None,
+      type_name: Optional[str] = None,
+      bc_guid: Optional[str] = None,
+      metadata: Optional[Dict[str, str]] = None,
+  ):
     """Init.
 
     Args:
@@ -149,12 +173,12 @@ class VirtualEntity(Entity):
     self._links = []
 
   def __eq__(self, other: ...) -> bool:
-    if not isinstance(other, Entity):
-      raise TypeError(f'{str(other)} must be an Entity instance')
-    return (self.code, self.bc_guid) == (other.code, other.bc_guid)
+    if not isinstance(other, VirtualEntity):
+      return False
+    return super().__eq__(other) and (self.links == other.links)
 
   @classmethod
-  def FromDict(cls, entity_dict: Dict[str, str]) ->...:
+  def FromDict(cls, entity_dict: Dict[str, str]) -> ...:
     """Create an Entity instance from a mapping of entity attributes to values.
 
     Args:
@@ -174,11 +198,6 @@ class VirtualEntity(Entity):
     if ETAG in entity_dict.keys():
       virtual_entity_instance.etag = entity_dict[ETAG]
     # Merge all metadata cells in a row into one dictionary
-    virtual_entity_instance.metadata = {
-        k[len(METADATA) + 1:]: v
-        for k, v in entity_dict.items()
-        if k[:len(METADATA)] == METADATA
-    }
     return virtual_entity_instance
 
   @property
@@ -203,17 +222,47 @@ class VirtualEntity(Entity):
       raise TypeError(f'{str(new_link)} must be an FieldTranslation instance.')
     self._links.append(new_link)
 
-  def GetSpreadsheetRowMapping(self) -> Dict[str, str]:
+  # pylint: disable=unused-argument
+  def GetSpreadsheetRowMapping(self, *args) -> Dict[str, str]:
     """Returns map of virtual entity attributes by spreadsheet headers."""
-    return {
-        ENTITY_CODE: self.code,
-        BC_GUID: self.bc_guid,
-        ETAG: self.etag,
-        IS_REPORTING: False,
-        CLOUD_DEVICE_ID: None,
-        NAMESPACE: self.namespace,
-        TYPE_NAME: self.type_name
+    row_map_object = {
+        VALUES: [
+            {USER_ENTERED_VALUE: {STRING_VALUE: self.code}},
+            {USER_ENTERED_VALUE: {STRING_VALUE: self.bc_guid}},
+            {USER_ENTERED_VALUE: {STRING_VALUE: self.etag}},
+            {
+                USER_ENTERED_VALUE: {STRING_VALUE: IS_REPORTING_FALSE},
+                DATA_VALIDATION: {
+                    CONDITION: {
+                        CONDITION_TYPE: ONE_OF_LIST,
+                        VALUES: [
+                            {USER_ENTERED_VALUE: IS_REPORTING_TRUE},
+                            {USER_ENTERED_VALUE: IS_REPORTING_FALSE},
+                        ],
+                    },
+                    STRICT_VALIDATION: True,
+                    SHOW_CUSTOM_UI: True,
+                },
+            },
+            {USER_ENTERED_VALUE: {STRING_VALUE: None}},
+            {
+                USER_ENTERED_VALUE: {STRING_VALUE: self.namespace},
+                DATA_VALIDATION: {
+                    CONDITION: {
+                        CONDITION_TYPE: ONE_OF_LIST,
+                        VALUES: [
+                            {USER_ENTERED_VALUE: namespace.value}
+                            for namespace in EntityNamespace
+                        ],
+                    },
+                    STRICT_VALIDATION: True,
+                    SHOW_CUSTOM_UI: True,
+                },
+            },
+            {USER_ENTERED_VALUE: {STRING_VALUE: self.type_name}},
+        ]
     }
+    return row_map_object
 
 
 class ReportingEntity(Entity):
@@ -225,14 +274,16 @@ class ReportingEntity(Entity):
       reporting entity/device.
   """
 
-  def __init__(self,
-               code: str,
-               namespace: str,
-               cloud_device_id: Optional[str] = None,
-               etag: Optional[str] = None,
-               type_name: Optional[str] = None,
-               bc_guid: Optional[str] = None,
-               metadata: Optional[Dict[str, str]] = None):
+  def __init__(
+      self,
+      code: str,
+      namespace: str,
+      cloud_device_id: Optional[str] = None,
+      etag: Optional[str] = None,
+      type_name: Optional[str] = None,
+      bc_guid: Optional[str] = None,
+      metadata: Optional[Dict[str, str]] = None,
+  ):
     """Init.
 
     Args:
@@ -250,13 +301,15 @@ class ReportingEntity(Entity):
     self._translations = []
 
   def __eq__(self, other: ...) -> bool:
-    if not isinstance(other, Entity):
-      raise TypeError(f'{str(other)} must be an Entity instance')
-    return (self.code, self.cloud_device_id,
-            self.bc_guid) == (other.code, other.cloud_device_id, other.bc_guid)
+    if not isinstance(other, ReportingEntity):
+      return False
+    return super().__eq__(other) and (
+        (self.cloud_device_id, self.translations)
+        == (other.cloud_device_id, other.translations)
+    )
 
   @classmethod
-  def FromDict(cls, entity_dict: Dict[str, str]) ->...:
+  def FromDict(cls, entity_dict: Dict[str, str]) -> ...:
     """Creates ReportingEntity instance from map of entity attributes to values.
 
     Args:
@@ -272,14 +325,10 @@ class ReportingEntity(Entity):
         bc_guid=entity_dict[BC_GUID],
         namespace=entity_dict[NAMESPACE],
         type_name=entity_dict[TYPE_NAME],
-        cloud_device_id=entity_dict[CLOUD_DEVICE_ID])
+        cloud_device_id=entity_dict[CLOUD_DEVICE_ID],
+    )
     if ETAG in entity_dict.keys():
       reporting_entity_instance.etag = entity_dict[ETAG]
-    reporting_entity_instance.metadata = {
-        k[len(METADATA) + 1:]: v
-        for k, v in entity_dict.items()
-        if k[:len(METADATA)] == METADATA
-    }
     return reporting_entity_instance
 
   @property
@@ -306,14 +355,44 @@ class ReportingEntity(Entity):
       )
     self._translations.append(new_translation)
 
-  def GetSpreadsheetRowMapping(self) -> Dict[str, str]:
-    """Returns map of virtual entity attributes by spreadsheet headers."""
-    return {
-        ENTITY_CODE: self.code,
-        BC_GUID: self.bc_guid,
-        ETAG: self.etag,
-        IS_REPORTING: True,
-        CLOUD_DEVICE_ID: self.cloud_device_id,
-        NAMESPACE: self.namespace,
-        TYPE_NAME: self.type_name
+  # pylint: disable=unused-argument
+  def GetSpreadsheetRowMapping(self, *args) -> Dict[str, str]:
+    """Returns map of reporting entity attributes by spreadsheet headers."""
+    row_map_object = {
+        VALUES: [
+            {USER_ENTERED_VALUE: {STRING_VALUE: self.code}},
+            {USER_ENTERED_VALUE: {STRING_VALUE: self.bc_guid}},
+            {USER_ENTERED_VALUE: {STRING_VALUE: self.etag}},
+            {
+                USER_ENTERED_VALUE: {STRING_VALUE: IS_REPORTING_TRUE},
+                DATA_VALIDATION: {
+                    CONDITION: {
+                        CONDITION_TYPE: ONE_OF_LIST,
+                        VALUES: [
+                            {USER_ENTERED_VALUE: IS_REPORTING_TRUE},
+                            {USER_ENTERED_VALUE: IS_REPORTING_FALSE},
+                        ],
+                    },
+                    STRICT_VALIDATION: True,
+                    SHOW_CUSTOM_UI: True,
+                },
+            },
+            {USER_ENTERED_VALUE: {STRING_VALUE: self.cloud_device_id}},
+            {
+                USER_ENTERED_VALUE: {STRING_VALUE: self.namespace},
+                DATA_VALIDATION: {
+                    CONDITION: {
+                        CONDITION_TYPE: ONE_OF_LIST,
+                        VALUES: [
+                            {USER_ENTERED_VALUE: namespace.value}
+                            for namespace in EntityNamespace
+                        ],
+                    },
+                    STRICT_VALIDATION: True,
+                    SHOW_CUSTOM_UI: True,
+                },
+            },
+            {USER_ENTERED_VALUE: {STRING_VALUE: self.type_name}},
+        ]
     }
+    return row_map_object

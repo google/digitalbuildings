@@ -164,13 +164,13 @@ def RunValidation(
     modified_types_filepath: Relative path to a modified ontology.
     default_types_filepath: Relative path to the DigitalBuildings ontology.
     subscription: Fully qualified path to a Google Cloud Pubsub subscription.
-    gcp_credential_path: Path to GCP credential file for authenticating
-        against Google sheets API. This is an OAuth credential as documented.
+    gcp_credential_path: Path to GCP credential file for authenticating against
+      Google sheets API. This is an OAuth credential as documented.
         https://developers.google.com/sheets/api/quickstart/python
     report_directory: Fully qualified path to validation reports.
     timeout: Timeout duration of the telemetry validator. Default is 60 seconds.
     is_udmi: Telemetry follows UDMI standards.
-    
+
   Returns:
     Report file name or None if no report file is generated.
   """
@@ -198,9 +198,9 @@ def RunValidation(
       sys.exit(0)
     print('[INFO]\tOntology loaded.')
 
-    entities = _ValidateConfig(filenames, universe, is_udmi)
+    entities, all_entities_valid = _ValidateConfig(filenames, universe, is_udmi)
 
-    if subscription:
+    if subscription and all_entities_valid:
       print('[INFO]\tStarting telemetry validation.')
       _ValidateTelemetry(
           subscription=subscription,
@@ -209,6 +209,11 @@ def RunValidation(
           is_udmi=is_udmi,
           gcp_credential_path=gcp_credential_path,
           report_directory=report_directory,
+      )
+    elif not all_entities_valid:
+      print(
+          '[WARNING]\tTelemetry validation skipped because all entities in the'
+          ' provided building configuration file are not valid.'
       )
     else:
       print(
@@ -385,7 +390,8 @@ class EntityHelper(object):
       is_udmi: flag to indicate validation under udmi; default True.
 
     Returns:
-      A dictionary containing valid entities by GUID
+      A dictionary containing valid entities by GUID and True if all entities
+      are valid, False otherwise.
 
     Raises:
       SyntaxError: If no building is found in the config
@@ -427,7 +433,7 @@ class EntityHelper(object):
       print('[INFO]\tAll entities validated SUCCESSFULLY.')
     else:
       print('[ERROR]\tSome entities FAILED validation. See logs.')
-    return valid_entities
+    return valid_entities, is_valid
 
 
 class AlphaInterdependencyHelper(object):
