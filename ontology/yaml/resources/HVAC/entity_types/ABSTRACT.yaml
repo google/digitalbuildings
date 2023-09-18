@@ -6774,8 +6774,8 @@ VMADC:
   implements:
   - CONTROL
 
-MDSCV:
-  description: "Motion-dependent supply damper control for ventilation purposes (CO2 or VOC)."
+MDSDC:
+  description: "Motion-dependent supply damper control."
   is_abstract: true
   uses:
   - motion_status
