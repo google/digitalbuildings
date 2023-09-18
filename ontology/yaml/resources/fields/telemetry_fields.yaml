@@ -3176,11 +3176,11 @@ literals:
   - INACTIVE
 
 - up_shade_command:
-  - ACTIVE
-  - INACTIVE
+  - ON
+  - OFF
 - down_shade_command:
-  - ACTIVE
-  - INACTIVE
+  - ON
+  - OFF
 
 - high_discharge_air_static_pressure_alarm:
   - ACTIVE
