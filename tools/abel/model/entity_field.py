@@ -86,7 +86,7 @@ class MissingField(field_translation.UndefinedField):
 
   def __eq__(self, other):
     if not isinstance(other, MissingField):
-      raise TypeError(f'{str(other)} must be an MissingField instance')
+      raise TypeError(f'{str(other)} must be a MissingField instance')
     standard_field_name_eq = self.std_field_name == other.std_field_name
     entity_guid_eq = self.entity_guid == other.entity_guid
     reporting_field_eq = (
@@ -478,7 +478,7 @@ class DimensionalValueField(field_translation.DefinedField):
   def GetSpreadsheetRowMapping(
       self, guid_to_entity_map: GuidToEntityMap
   ) -> Dict[str, str]:
-    """Returns dict of DimensionalValueField attributes by spreadsheet headers."""
+    """Returns dict of DimensionalValueField attributes for a spreadsheet."""
     dimensional_row_json_object = {
         VALUES: [
             {USER_ENTERED_VALUE: {STRING_VALUE: self.std_field_name}},
