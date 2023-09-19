@@ -110,7 +110,6 @@ if __name__ == '__main__':
   is_udmi = True
   if args.udmi.lower() == 'false':
     is_udmi = False
-  print(args.gcp_credential)
   handler.RunValidation(
       filenames=args.filenames,
       modified_types_filepath=args.modified_types_filepath,
