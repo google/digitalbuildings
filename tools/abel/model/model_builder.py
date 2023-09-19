@@ -249,7 +249,7 @@ class Model(object):
       entity_guid: str,
       std_field_name: str,
   ) -> List[State]:
-    """Helper function to get a list of State instances for a field name and guid."""
+    """Helper function to get State instances for a field name and guid."""
     state_map = {}
     for state in self.states:
       states_hash = hash((state.reporting_entity_guid, state.std_field_name))
@@ -290,6 +290,7 @@ class Model(object):
         STATES: (ALL_STATE_HEADERS, self.states),
         CONNECTIONS: (ALL_CONNECTION_HEADERS, self.connections),
     }
+    # pylint: disable=line-too-long
     title = (
         f'{self.site.code} {datetime.datetime.strftime(datetime.datetime.now(), "%Y-%m-%d %H:%M")}'
     )
