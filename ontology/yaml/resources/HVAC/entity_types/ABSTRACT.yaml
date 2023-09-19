@@ -1594,7 +1594,7 @@ DSPM:
   opt_uses:
   - high_discharge_air_static_pressure_alarm
   - low_discharge_air_static_pressure_alarm
-  
+
 ZSPC:
   guid: "e7494570-617c-4599-a57e-8e09128e0a07"
   description: "Zone static pressure control."
@@ -1713,7 +1713,7 @@ EFDPM:
   - exhaust_air_filter_alarm
   implements:
   - MONITORING
-  
+
 FDPSM:
   guid: "9cbbf1cf-51ae-44fd-a5ec-ef9ee7a3fcdf"
   description: "Filter pressure status monitoring."
@@ -5479,7 +5479,7 @@ PHRUD:
   - high_discharge_air_temperature_alarm
   - low_return_air_temperature_alarm
   - low_discharge_air_temperature_alarm
-  
+
 CHWDT2X:
   guid: "956a597b-e5e5-4c1c-9c06-834b7b8d28b4"
   description: "Temperature differential across chilled water with two sets of sensors."
