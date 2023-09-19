@@ -152,7 +152,7 @@ class ExportHelperTest(absltest.TestCase):
     exported_building_config = (
         self.export_helper.ExportInitBuildingConfiguration(self.export_filepath)
     )
-    expected_keys = ['code', 'connections', 'links', 'type']
+    expected_keys = ['code', 'etag', 'connections', 'links', 'type']
     exported_keys = list(
         exported_building_config.get('test_virtual_guid').keys()
     )
@@ -165,7 +165,7 @@ class ExportHelperTest(absltest.TestCase):
     exported_building_config = (
         self.export_helper.ExportInitBuildingConfiguration(self.export_filepath)
     )
-    expected_keys = ['cloud_device_id', 'code', 'translation', 'type']
+    expected_keys = ['cloud_device_id', 'code', 'etag', 'translation', 'type']
     exported_keys = list(
         exported_building_config.get('test_reporting_guid').keys()
     )

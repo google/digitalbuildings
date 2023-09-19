@@ -138,7 +138,7 @@ class Entity(object):
     self.connections.append(new_connection)
 
   @abc.abstractmethod
-  def GetSpreadsheetRowMapping(self):
+  def GetRowDataJsonObject(self):
     """Returns a dictionary of entity attributes by spreadsheet headers."""
 
 

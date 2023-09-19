@@ -74,6 +74,7 @@ class ModelHelperTest(absltest.TestCase):
     entity_guid = '8318f346-10b4-44f0-ac0b-bf7659510bfa'
     current_entity = self.current_model.GetEntity(entity_guid)
     updated_entity = self.updated_model.GetEntity(entity_guid)
+
     expected_updated_mask = [
         EntityUpdateMaskAttribute.TYPE,
         EntityUpdateMaskAttribute.CONNECTIONS,
@@ -81,7 +82,85 @@ class ModelHelperTest(absltest.TestCase):
     ]
 
     actual_updated_mask = model_helper.DetermineReportingEntityUpdateMask(
-        current_entity, updated_entity
+        self.current_model, self.updated_model, current_entity, updated_entity
+    )
+
+    self.assertEqual(actual_updated_mask, expected_updated_mask)
+
+  def testDetermineReportingEntityUpdateMask_UpdatedFieldRawUnitValue(self):
+    vav_4_guid = '15aa5434-3edc-47a9-8464-c01856d98db2'
+    current_entity = self.current_model.GetEntity(vav_4_guid)
+    updated_entity = self.updated_model.GetEntity(vav_4_guid)
+
+    expected_updated_mask = [EntityUpdateMaskAttribute.TRANSLATION]
+
+    actual_updated_mask = model_helper.DetermineReportingEntityUpdateMask(
+        self.current_model, self.updated_model, current_entity, updated_entity
+    )
+
+    self.assertEqual(actual_updated_mask, expected_updated_mask)
+
+  def testDetermineReportingEntityUpdateMask_UpdatedFieldRawStateValue(self):
+    vav_5_guid = 'fb2d9f0d-a2b7-4a9b-beb9-3bade8ebda17'
+    current_entity = self.current_model.GetEntity(vav_5_guid)
+    updated_entity = self.updated_model.GetEntity(vav_5_guid)
+
+    expected_updated_mask = [EntityUpdateMaskAttribute.TRANSLATION]
+
+    actual_updated_mask = model_helper.DetermineReportingEntityUpdateMask(
+        self.current_model, self.updated_model, current_entity, updated_entity
+    )
+
+    self.assertEqual(actual_updated_mask, expected_updated_mask)
+
+  def testDetermineReportingEntityUpdateMask_UpdatedFieldPresentValuePath(self):
+    vav_6_guid = '138d05e2-b7af-435c-9b6b-58c1af1adcbb'
+    current_entity = self.current_model.GetEntity(vav_6_guid)
+    updated_entity = self.updated_model.GetEntity(vav_6_guid)
+
+    expected_updated_mask = [EntityUpdateMaskAttribute.TRANSLATION]
+
+    actual_updated_mask = model_helper.DetermineReportingEntityUpdateMask(
+        self.current_model, self.updated_model, current_entity, updated_entity
+    )
+
+    self.assertEqual(actual_updated_mask, expected_updated_mask)
+
+  def testDetermineReportingEntityUpdateMask_UpdatedFieldUnitPath(self):
+    vav_7_guid = '2768f729-b389-4ebd-8c43-4eb25c46cdf3'
+    current_entity = self.current_model.GetEntity(vav_7_guid)
+    updated_entity = self.updated_model.GetEntity(vav_7_guid)
+
+    expected_updated_mask = [EntityUpdateMaskAttribute.TRANSLATION]
+
+    actual_updated_mask = model_helper.DetermineReportingEntityUpdateMask(
+        self.current_model, self.updated_model, current_entity, updated_entity
+    )
+
+    self.assertEqual(actual_updated_mask, expected_updated_mask)
+
+  def testDetermineReportingEntityUpdateMask_UpdatedMissingField(self):
+    vav_8_guid = 'e49b0687-e409-4a24-95d6-4629ed42e7b7'
+    current_entity = self.current_model.GetEntity(vav_8_guid)
+    updated_entity = self.updated_model.GetEntity(vav_8_guid)
+
+    expected_updated_mask = [EntityUpdateMaskAttribute.TRANSLATION]
+
+    actual_updated_mask = model_helper.DetermineReportingEntityUpdateMask(
+        self.current_model, self.updated_model, current_entity, updated_entity
+    )
+
+    self.assertEqual(actual_updated_mask, expected_updated_mask)
+
+  def testDetermineReportingEntityUpdateMask_UpdatedFieldIsMissing(self):
+    vav_9_guid = '585cd867-f66a-4cca-abc1-ba0789abc7f0'
+    current_entity = self.current_model.GetEntity(vav_9_guid)
+    updated_entity = self.updated_model.GetEntity(vav_9_guid)
+
+    expected_updated_mask = [EntityUpdateMaskAttribute.TRANSLATION]
+
+    actual_updated_mask = model_helper.DetermineReportingEntityUpdateMask(
+        self.current_model, self.updated_model, current_entity, updated_entity
     )
 
     self.assertEqual(actual_updated_mask, expected_updated_mask)
