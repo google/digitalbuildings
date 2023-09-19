@@ -16,6 +16,7 @@
 import os
 import tempfile
 
+# pylint: disable=g-importing-member
 from absl.testing import absltest
 from googleapiclient.discovery import build
 from googleapiclient.http import HttpMockSequence
@@ -26,7 +27,6 @@ from model.constants import SHEETS
 from model.constants import V4
 from model.export_helper import BuildingConfigExport
 from model.export_helper import GoogleSheetExport
-from model.guid_to_entity_map import GuidToEntityMap
 from model.model_builder import Model
 from model.model_error import SpreadsheetAuthorizationError
 from tests.test_constants import TEST_BAD_MULTISTATE_FIELD_DICT_NO_STATES
@@ -42,14 +42,13 @@ _GOOD_TEST_BUILDING_CONFIG = os.path.join(
 
 
 # pylint: disable=consider-using-with
+# pylint: disable=unused-variable
 class ExportHelperTest(absltest.TestCase):
   """Tests export methods for ABEL."""
 
   def setUp(self):
     super().setUp()
     self.input_spreadsheet = TEST_SPREADSHEET.copy()
-    self.guid_map = GuidToEntityMap()
-    self.guid_map.Clear()
 
     self.export_filepath = os.path.join(
         tempfile.gettempdir(), 'exported_building_config.yaml'
@@ -60,21 +59,24 @@ class ExportHelperTest(absltest.TestCase):
     )
     self.input_spreadsheet[ENTITY_FIELDS].append(TEST_FIELD_DICT_NO_UNITS)
     # Build model
-    model = Model.Builder.FromSpreadsheet(self.input_spreadsheet).Build()
+    unbuilt_model, operations = Model.Builder.FromSpreadsheet(
+        self.input_spreadsheet
+    )
+    model = unbuilt_model.Build()
     # Export a building config dictionary
     self.export_helper = BuildingConfigExport(model)
 
   def testWriteAllSheets(self):
-    test_spreadsheet_range = ['Entities']
     update_entities_response = os.path.join(
         TEST_RESOURCES, 'update_entities_response.json'
     )
     import_building_config = import_helper.DeserializeBuildingConfiguration(
         _GOOD_TEST_BUILDING_CONFIG
     )
-    model = Model.Builder.FromBuildingConfig(
+    unbuilt_model, operations = Model.Builder.FromBuildingConfig(
         import_building_config[0], import_building_config[1]
-    ).Build()
+    )
+    model = unbuilt_model.Build()
     mock_http = HttpMockSequence(
         [({'status': '200'}, open(update_entities_response, 'rb').read())]
     )
@@ -83,27 +85,25 @@ class ExportHelperTest(absltest.TestCase):
     )
     export_helper = GoogleSheetExport()
 
-    model_dictionary = model.ToModelDictionary()
-    result_spreadsheet_id = export_helper.WriteAllSheets(
-        spreadsheet_id='fake_spreadsheet_id',
-        spreadsheet_range=test_spreadsheet_range,
+    model_dictionary = model.ToModelDictionary(operations)
+    create_spreadsheet_response = export_helper.CreateSpreadsheet(
         model_dict=model_dictionary,
         google_sheets_service=google_sheets_service,
     )
 
-    self.assertEqual('fake_spreadsheet_id', result_spreadsheet_id)
+    self.assertIsNotNone(create_spreadsheet_response)
 
   def testWriteAllsheetsRaisesSpreadsheetAuthorizationError(self):
-    test_spreadsheet_range = ['Entities']
     update_entities_response = os.path.join(
         TEST_RESOURCES, 'update_entities_response.json'
     )
     import_building_config = import_helper.DeserializeBuildingConfiguration(
         _GOOD_TEST_BUILDING_CONFIG
     )
-    model = Model.Builder.FromBuildingConfig(
+    unbuilt_model, operations = Model.Builder.FromBuildingConfig(
         import_building_config[0], import_building_config[1]
-    ).Build()
+    )
+    model = unbuilt_model.Build()
     mock_http = HttpMockSequence(
         [({'status': '403'}, open(update_entities_response, 'rb').read())]
     )
@@ -113,27 +113,25 @@ class ExportHelperTest(absltest.TestCase):
     )
     export_helper = GoogleSheetExport()
 
-    model_dictionary = model.ToModelDictionary()
+    model_dictionary = model.ToModelDictionary(operations)
 
     with self.assertRaises(SpreadsheetAuthorizationError):
-      export_helper.WriteAllSheets(
-          spreadsheet_id='fake_spreadsheet_id',
-          spreadsheet_range=test_spreadsheet_range,
+      export_helper.CreateSpreadsheet(
           model_dict=model_dictionary,
           google_sheets_service=google_sheets_service,
       )
 
   def testWriteOneSheetRaisesSpreadsheetAuthorizationError(self):
-    test_spreadsheet_range = ['Entities']
     update_entities_response = os.path.join(
         TEST_RESOURCES, 'update_entities_response.json'
     )
     import_building_config = import_helper.DeserializeBuildingConfiguration(
         _GOOD_TEST_BUILDING_CONFIG
     )
-    model = Model.Builder.FromBuildingConfig(
+    unbuilt_model, operations = Model.Builder.FromBuildingConfig(
         import_building_config[0], import_building_config[1]
-    ).Build()
+    )
+    model = unbuilt_model.Build()
     mock_http = HttpMockSequence(
         [({'status': '403'}, open(update_entities_response, 'rb').read())]
     )
@@ -142,19 +140,17 @@ class ExportHelperTest(absltest.TestCase):
         SHEETS, V4, http=mock_http, developerKey='fake_key'
     )
     export_helper = GoogleSheetExport()
-    model_dictionary = model.ToModelDictionary()
+    model_dictionary = model.ToModelDictionary(operations)
 
     with self.assertRaises(SpreadsheetAuthorizationError):
-      export_helper.WriteAllSheets(
-          spreadsheet_id='fake_spreadsheet_id',
-          spreadsheet_range=test_spreadsheet_range,
+      export_helper.CreateSpreadsheet(
           model_dict=model_dictionary,
           google_sheets_service=google_sheets_service,
       )
 
   def testExportBuildingConfigExportsVirtualEntityKeysCorrectly(self):
-    exported_building_config = self.export_helper.ExportBuildingConfiguration(
-        self.export_filepath
+    exported_building_config = (
+        self.export_helper.ExportInitBuildingConfiguration(self.export_filepath)
     )
     expected_keys = ['code', 'connections', 'links', 'type']
     exported_keys = list(
@@ -166,8 +162,8 @@ class ExportHelperTest(absltest.TestCase):
     self.assertEqual(expected_keys, exported_keys)
 
   def testExportBuildingConfigExportsReportingEntityKeysCorrectly(self):
-    exported_building_config = self.export_helper.ExportBuildingConfiguration(
-        self.export_filepath
+    exported_building_config = (
+        self.export_helper.ExportInitBuildingConfiguration(self.export_filepath)
     )
     expected_keys = ['cloud_device_id', 'code', 'translation', 'type']
     exported_keys = list(
@@ -177,8 +173,8 @@ class ExportHelperTest(absltest.TestCase):
     self.assertEqual(expected_keys, exported_keys)
 
   def testExportBuildingConfigExportsCloudDeviceIDAsString(self):
-    exported_building_config = self.export_helper.ExportBuildingConfiguration(
-        self.export_filepath
+    exported_building_config = (
+        self.export_helper.ExportInitBuildingConfiguration(self.export_filepath)
     )
     expected_cdid = '2541901344105616'
     exported_cdid = exported_building_config.get('test_reporting_guid').get(
@@ -189,8 +185,8 @@ class ExportHelperTest(absltest.TestCase):
     self.assertEqual(exported_cdid, expected_cdid)
 
   def testExportBuildingConfigExportsMultiStateValueFieldStates(self):
-    exported_building_config = self.export_helper.ExportBuildingConfiguration(
-        self.export_filepath
+    exported_building_config = (
+        self.export_helper.ExportInitBuildingConfiguration(self.export_filepath)
     )
     multi_state_value_field_states = (
         exported_building_config.get('test_reporting_guid')
@@ -203,8 +199,8 @@ class ExportHelperTest(absltest.TestCase):
     self.assertEqual(multi_state_value_field_states.get('ON'), 'TRUE')
 
   def testExportBuildingConfigExportsUnitsCorrectly(self):
-    exported_building_config = self.export_helper.ExportBuildingConfiguration(
-        self.export_filepath
+    exported_building_config = (
+        self.export_helper.ExportInitBuildingConfiguration(self.export_filepath)
     )
     exported_units = (
         exported_building_config.get('test_reporting_guid')
@@ -218,8 +214,8 @@ class ExportHelperTest(absltest.TestCase):
     self.assertEqual(exported_units.get('pascals'), 'Pa')
 
   def testExportBuildingConfigExportsLinksCorrectly(self):
-    exported_building_config = self.export_helper.ExportBuildingConfiguration(
-        self.export_filepath
+    exported_building_config = (
+        self.export_helper.ExportInitBuildingConfiguration(self.export_filepath)
     )
     exported_links = exported_building_config.get('test_virtual_guid').get(
         'links'
@@ -238,16 +234,18 @@ class ExportHelperTest(absltest.TestCase):
     )
 
   def testExportBuildingConfigRaisesValueErrorForBadMultistate(self):
-    self.guid_map.Clear()
     bad_input_spreadsheet = TEST_SPREADSHEET.copy()
     bad_input_spreadsheet[ENTITY_FIELDS].append(
         TEST_BAD_MULTISTATE_FIELD_DICT_NO_STATES
     )
-    model = Model.Builder.FromSpreadsheet(self.input_spreadsheet).Build()
+    unbuilt_model, operations = Model.Builder.FromSpreadsheet(
+        self.input_spreadsheet
+    )
+    model = unbuilt_model.Build()
     export_helper = BuildingConfigExport(model)
 
     with self.assertRaises(ValueError):
-      export_helper.ExportBuildingConfiguration(self.export_filepath)
+      export_helper.ExportInitBuildingConfiguration(self.export_filepath)
 
 
 if __name__ == '__main__':

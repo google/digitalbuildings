@@ -15,9 +15,10 @@
 
 from typing import Dict
 
-from model.constants import RAW_UNIT_PATH
-from model.constants import RAW_UNIT_VALUE
-from model.constants import STANDARD_UNIT_VALUE
+# pylint: disable=g-importing-member
+from model.constants import STRING_VALUE
+from model.constants import USER_ENTERED_VALUE
+from model.constants import VALUES
 
 
 class Units(object):
@@ -55,11 +56,19 @@ class Units(object):
 
     Corresponds to a single row in a concrete model spreadsheet.
     """
-    spreadsheet_row_mapping = {RAW_UNIT_PATH: self.raw_unit_path}
-    standard_to_raw_unit_map = self.standard_to_raw_unit_map
-    for standard_unit_value, raw_unit_value in standard_to_raw_unit_map.items():
-      spreadsheet_row_mapping.update({
-          STANDARD_UNIT_VALUE: standard_unit_value,
-          RAW_UNIT_VALUE: raw_unit_value,
-      })
-    return spreadsheet_row_mapping
+    unit_row_mapping = {
+        VALUES: [
+            {USER_ENTERED_VALUE: {STRING_VALUE: self.raw_unit_path}},
+        ]
+    }
+    for (
+        standard_unit_value,
+        raw_unit_value,
+    ) in self.standard_to_raw_unit_map.items():
+      unit_row_mapping.get(VALUES).append(
+          {USER_ENTERED_VALUE: {STRING_VALUE: standard_unit_value}}
+      )
+      unit_row_mapping.get(VALUES).append(
+          {USER_ENTERED_VALUE: {STRING_VALUE: raw_unit_value}}
+      )
+    return unit_row_mapping
