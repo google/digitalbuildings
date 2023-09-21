@@ -48,6 +48,7 @@ class Workflow(object):
     self.google_sheets_service = (
         authenticator.GetGoogleSheetsServiceByCredential(argset.credential)
     )
+    self.gcp_credential_path = argset.credential
     self.subscription = argset.subscription
     self.spreadsheet_id = argset.spreadsheet_id
     if not argset.building_config:
@@ -172,6 +173,7 @@ class Workflow(object):
         modified_types_filepath=self.modified_types_filepath,
         default_types_filepath=ONTOLOGY_ROOT,
         subscription=self.subscription,
+        gcp_credential_path=self.gcp_credential_path,
         timeout=self.timeout,
     )
     print(f'Instance validator log: {report_name}')
