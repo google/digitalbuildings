@@ -90,6 +90,7 @@ class EntityOperation(object):
     operation_row_map = {
         VALUES: [
             {
+                USER_ENTERED_VALUE: {STRING_VALUE: self.entity.etag},
                 USER_ENTERED_VALUE: {STRING_VALUE: self.operation.name},
                 DATA_VALIDATION: {
                     CONDITION: {

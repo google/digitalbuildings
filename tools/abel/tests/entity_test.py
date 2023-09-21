@@ -42,6 +42,7 @@ from model.entity_enumerations import EntityNamespace
 from model.entity_field import DimensionalValueField
 from tests.test_constants import TEST_CLOUD_DEVICE_ID
 from tests.test_constants import TEST_DIMENSIONAL_VALUE_FIELD_DICT
+from tests.test_constants import TEST_ETAG
 from tests.test_constants import TEST_NAMESPACE
 from tests.test_constants import TEST_REPORTING_ENTITY_CODE
 from tests.test_constants import TEST_REPORTING_ENTITY_DICT
@@ -184,7 +185,7 @@ class EntityTest(absltest.TestCase):
         VALUES: [
             {USER_ENTERED_VALUE: {STRING_VALUE: TEST_VIRTUAL_ENTITY_CODE}},
             {USER_ENTERED_VALUE: {STRING_VALUE: TEST_VIRTUAL_GUID}},
-            {USER_ENTERED_VALUE: {STRING_VALUE: None}},
+            {USER_ENTERED_VALUE: {STRING_VALUE: TEST_ETAG}},
             {
                 USER_ENTERED_VALUE: {STRING_VALUE: IS_REPORTING_FALSE},
                 DATA_VALIDATION: {
