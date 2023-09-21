@@ -408,7 +408,7 @@ class EntityHelper(object):
           current_entity.operation
       ):
         print(
-            '[WARNING] (v1 Alpha): Building Config cannot have more '
+            '[WARNING]\t(v1 Alpha): Building Config cannot have more '
             'than 2 operations; one being EXPORT.'
         )
       if (

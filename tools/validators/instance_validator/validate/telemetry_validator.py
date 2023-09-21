@@ -204,12 +204,11 @@ class TelemetryValidator(object):
       message_publish_time and message_timestamp in seconds as a float
     """
 
-    # pylint: disable=line-too-long
     def _FormatTimestamp(timestamp: str) -> datetime.datetime:
       """Helper function to format string timestamps."""
       # remove microseconds if present
       timestamp_pattern = re.compile(
-          r'^([0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}\.[0-9]{2,}Z)'
+          r'^([0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}\.[0-9]{3}Z)'
       )
       if timestamp_pattern.match(timestamp):
         timestamp = timestamp[:19] + 'Z'
