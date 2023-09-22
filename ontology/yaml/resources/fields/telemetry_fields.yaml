@@ -3175,10 +3175,10 @@ literals:
   - ACTIVE
   - INACTIVE
 
-- up_shade_command:
+- shade_up_command:
   - ON
   - OFF
-- down_shade_command:
+- shade_down_command:
   - ON
   - OFF
 
