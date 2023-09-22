@@ -128,5 +128,5 @@ def DeserializeBuildingConfiguration(filepath: str) -> Dict[str, Any]:
       if instance.type_name == SITE_TYPE_NAME:
         site = instance
     del deserialized_bc[site.guid]
-    abel_site = Site(code=site.code, guid=site.guid)
+    abel_site = Site(code=site.code, guid=site.guid, etag=site.etag)
     return (abel_site, deserialized_bc)

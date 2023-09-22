@@ -70,6 +70,7 @@ class State(object):
         self.reporting_entity_guid == other.reporting_entity_guid
         and self.std_field_name == other.std_field_name
         and self.standard_state == other.standard_state
+        and self.raw_state == other.raw_state
     )
 
   @classmethod
