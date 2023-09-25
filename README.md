@@ -29,7 +29,7 @@ This project is structured as follows:
 * Tools that allow the following:
   * [ABEL](./tools/abel/README.md) generates from/to Google spreadsheet/[Building Configuration](./ontology/docs/building_config.md).
   * [Explorer](./tools/explorer/README.md) allows users to explorer the ontology types and their associated fields.
-  * [Yaml Validator](./tools/validators/ontology_validator/README.md) which allows to validate the yaml ontology upon a change or an extension.
+  * [Instance Validator](./tools/validators/ontology_validator/README.md) which allows to validate the yaml ontology upon a change or an extension.
   * [RDF/OWL Generator](./tools/rdf_generator/README.md) which allows to generate an RDF version from the yaml ontology files.
 * [Internal Building Representation](./ibr/README.md) (IBR) File Format to represent data from different verticals such as spatial, assets.
 
