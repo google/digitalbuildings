@@ -407,8 +407,8 @@ class EntityHelper(object):
       if not alpha_interdep_helper.ValidateAndUpdateState(
           current_entity.operation
       ):
-        raise ValueError(
-            '(v1 Alpha): Building Config cannot have more '
+        print(
+            '[WARNING] (v1 Alpha): Building Config cannot have more '
             'than 2 operations; one being EXPORT.'
         )
       if (

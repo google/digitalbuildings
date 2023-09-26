@@ -24,6 +24,7 @@ from model.constants import BC_MISSING
 from model.constants import CONFIG_CLOUD_DEVICE_ID
 from model.constants import CONFIG_CODE
 from model.constants import CONFIG_CONNECTIONS
+from model.constants import CONFIG_ETAG
 from model.constants import CONFIG_INITIALIZE
 from model.constants import CONFIG_LINKS
 from model.constants import CONFIG_METADATA
@@ -150,6 +151,7 @@ class BuildingConfigExport(object):
             site.guid: {
                 CONFIG_CODE: site.code,
                 CONFIG_TYPE: site.namespace + '/' + site.type_name,
+                CONFIG_ETAG: site.etag,
             }
         }
     )
@@ -241,6 +243,7 @@ class BuildingConfigExport(object):
     reporting_entity_yaml = {
         CONFIG_CLOUD_DEVICE_ID: str(entity.cloud_device_id),
         CONFIG_CODE: entity.code,
+        CONFIG_ETAG: entity.etag,
     }
     reporting_entity_yaml.update(self._GetConnections(entity=entity))
     if entity.translations:
@@ -285,7 +288,7 @@ class BuildingConfigExport(object):
     Returns:
       A dicitionary formatted for Building Config ready to be parsed into yaml.
     """
-    virtual_entity_yaml = {CONFIG_CODE: entity.code}
+    virtual_entity_yaml = {CONFIG_CODE: entity.code, CONFIG_ETAG: entity.etag,}
     virtual_entity_yaml.update(self._GetConnections(entity=entity))
     if entity.links:
       virtual_entity_yaml.update({CONFIG_LINKS: self._SortLinks(entity)})

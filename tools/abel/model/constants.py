@@ -26,7 +26,8 @@ if _USE_ABSOLUTE_PATH:
 else:
   REPO_ROOT = os.path.join(
       os.path.dirname(os.path.realpath(__file__)),
-      os.path.join('..', '..', '..'))
+      os.path.join('..', '..', '..'),
+  )
 
 # Path to ontology from abel
 ONTOLOGY_ROOT = os.path.join(REPO_ROOT, 'ontology', 'yaml', 'resources')
@@ -49,14 +50,18 @@ CITY_ID_PATTERN = '[A-Za-z]{2,4}'
 BUILDING_ID_PATTERN = '[A-Za-z0-9]{2,10}'
 FLOOR_ID_PATTERN = f'{MEZZANINE_PATTERN}|{SINGLE_LETTER_PATTERN}|{BUILDING_ID_PATTERN}|{PERMUTED_NUMBER_LETTER_PATTERN}|{LETTER_NUMBER_PATTERN}|{NUMBERS_PATTERN}'
 
-BUILDING_CODE_REGEX = f'^{COUNTRY_ID_PATTERN}-{CITY_ID_PATTERN}-{BUILDING_ID_PATTERN}'
+BUILDING_CODE_REGEX = (
+    f'^{COUNTRY_ID_PATTERN}-{CITY_ID_PATTERN}-{BUILDING_ID_PATTERN}'
+)
 FACILTITIES_ENTITY_CODE_REGEX = BUILDING_CODE_REGEX + f'-({FLOOR_ID_PATTERN})'
 
 # Current date and time
 DATETIME_STRING = datetime.datetime.now().strftime('%Y-%m-%d-%H-%M')
 
 # Output path for spreadsheet validation report
-SPREADSHEET_VALIDATOR_FILE_NAME = f'spreadsheet_validation_{DATETIME_STRING}.log'
+SPREADSHEET_VALIDATOR_FILE_NAME = (
+    f'spreadsheet_validation_{DATETIME_STRING}.log'
+)
 
 # Output path for Building Config instance validation report.
 INSTANCE_VALIDATION_REPORT_NAME = f'instance_validation_{DATETIME_STRING}.log'
@@ -203,16 +208,27 @@ REQUIRED_SITE_HEADERS = [BUILDING_CODE]
 REQUIRED_ENTITY_HEADERS = [ENTITY_CODE, IS_REPORTING, NAMESPACE, TYPE_NAME]
 REQUIRED_FIELD_HEADERS = [ENTITY_CODE, STANDARD_FIELD_NAME, MISSING]
 REQUIRED_STATE_HEADERS = [
-    REPORTING_ENTITY_CODE, REPORTING_ENTITY_FIELD_NAME, STANDARD_STATE, RAW_STATE
+    REPORTING_ENTITY_CODE,
+    REPORTING_ENTITY_FIELD_NAME,
+    STANDARD_STATE,
+    RAW_STATE,
 ]
 REQUIRED_CONNECTION_HEADERS = [
-    SOURCE_ENTITY_CODE, TARGET_ENTITY_CODE, CONNECTION_TYPE
+    SOURCE_ENTITY_CODE,
+    TARGET_ENTITY_CODE,
+    CONNECTION_TYPE,
 ]
 
-ALL_SITE_HEADERS = [BUILDING_CODE, BC_GUID]
+ALL_SITE_HEADERS = [BUILDING_CODE, BC_GUID, ETAG]
 ALL_ENTITY_HEADERS = [
-    ENTITY_CODE, BC_GUID, ETAG, IS_REPORTING, CLOUD_DEVICE_ID, NAMESPACE,
-    TYPE_NAME, OPERATION
+    ENTITY_CODE,
+    BC_GUID,
+    ETAG,
+    IS_REPORTING,
+    CLOUD_DEVICE_ID,
+    NAMESPACE,
+    TYPE_NAME,
+    OPERATION,
 ]
 ALL_FIELD_HEADERS = [
     STANDARD_FIELD_NAME,
@@ -228,45 +244,72 @@ ALL_FIELD_HEADERS = [
     RAW_UNIT_VALUE,
 ]
 ALL_STATE_HEADERS = [
-    REPORTING_ENTITY_CODE, REPORTING_ENTITY_GUID, REPORTING_ENTITY_FIELD_NAME,
-    STANDARD_STATE, RAW_STATE
+    REPORTING_ENTITY_CODE,
+    REPORTING_ENTITY_GUID,
+    REPORTING_ENTITY_FIELD_NAME,
+    STANDARD_STATE,
+    RAW_STATE,
 ]
 ALL_CONNECTION_HEADERS = [
-    SOURCE_ENTITY_CODE, SOURCE_ENTITY_GUID, CONNECTION_TYPE, TARGET_ENTITY_CODE,
-    TARGET_ENTITY_GUID
+    SOURCE_ENTITY_CODE,
+    SOURCE_ENTITY_GUID,
+    CONNECTION_TYPE,
+    TARGET_ENTITY_CODE,
+    TARGET_ENTITY_GUID,
 ]
 
 # List of tuples for an object attribute and a spreadsheet header for exporting
 # to a spreadsheet.
-SITE_ATTRIBUTE_LIST = [('code', BUILDING_CODE), ('guid', BC_GUID)]
-REPORTING_ENTITY_ATTRIBUTE_LIST = [('code', ENTITY_CODE), ('bc_guid', BC_GUID),
-                                   ('cloud_device_id', CLOUD_DEVICE_ID),
-                                   ('namespace', NAMESPACE),
-                                   ('type_name', TYPE_NAME)]
-VIRTUAL_ENTITY_ATTRIBUTE_LIST = [('code', ENTITY_CODE), ('bc_guid', BC_GUID),
-                                 ('namespace', NAMESPACE),
-                                 ('type_name', TYPE_NAME)]
-ENTITY_FIELD_ATTRIBUTE_LIST = [('standard_field_name', STANDARD_FIELD_NAME),
-                               ('raw_field_name', RAW_FIELD_NAME),
-                               ('entity_guid', BC_GUID),
-                               ('reporting_entity_guid', REPORTING_ENTITY_GUID),
-                               ('reporting_entity_field_name',
-                                REPORTING_ENTITY_FIELD_NAME)]
-STATE_ATTRIBUTE_LIST = [('reporting_entity_code', REPORTING_ENTITY_CODE),
-                        ('reporting_entity_guid', REPORTING_ENTITY_GUID),
-                        ('standard_field_name', REPORTING_ENTITY_FIELD_NAME),
-                        ('standard_state', STANDARD_STATE),
-                        ('raw_state', RAW_STATE)]
-UNITS_ATTRIBUTE_LIST = [('raw_unit_path', RAW_UNIT_PATH),
-                        ('standard_unit_value', STANDARD_UNIT_VALUE),
-                        ('raw_unit_value', RAW_UNIT_VALUE)]
-CONNECTION_ATTRIBUTE_LIST = [('source_entity_code', SOURCE_ENTITY_CODE),
-                             ('source_entity_guid', SOURCE_ENTITY_GUID),
-                             ('target_entity_code', TARGET_ENTITY_CODE),
-                             ('target_entity_guid', TARGET_ENTITY_GUID),
-                             ('connection_type', CONNECTION_TYPE)]
+SITE_ATTRIBUTE_LIST = [
+    ('code', BUILDING_CODE),
+    ('guid', BC_GUID),
+    ('etag', ETAG),
+]
+REPORTING_ENTITY_ATTRIBUTE_LIST = [
+    ('code', ENTITY_CODE),
+    ('bc_guid', BC_GUID),
+    ('cloud_device_id', CLOUD_DEVICE_ID),
+    ('namespace', NAMESPACE),
+    ('type_name', TYPE_NAME),
+]
+VIRTUAL_ENTITY_ATTRIBUTE_LIST = [
+    ('code', ENTITY_CODE),
+    ('bc_guid', BC_GUID),
+    ('namespace', NAMESPACE),
+    ('type_name', TYPE_NAME),
+]
+ENTITY_FIELD_ATTRIBUTE_LIST = [
+    ('standard_field_name', STANDARD_FIELD_NAME),
+    ('raw_field_name', RAW_FIELD_NAME),
+    ('entity_guid', BC_GUID),
+    ('reporting_entity_guid', REPORTING_ENTITY_GUID),
+    ('reporting_entity_field_name', REPORTING_ENTITY_FIELD_NAME),
+]
+STATE_ATTRIBUTE_LIST = [
+    ('reporting_entity_code', REPORTING_ENTITY_CODE),
+    ('reporting_entity_guid', REPORTING_ENTITY_GUID),
+    ('standard_field_name', REPORTING_ENTITY_FIELD_NAME),
+    ('standard_state', STANDARD_STATE),
+    ('raw_state', RAW_STATE),
+]
+UNITS_ATTRIBUTE_LIST = [
+    ('raw_unit_path', RAW_UNIT_PATH),
+    ('standard_unit_value', STANDARD_UNIT_VALUE),
+    ('raw_unit_value', RAW_UNIT_VALUE),
+]
+CONNECTION_ATTRIBUTE_LIST = [
+    ('source_entity_code', SOURCE_ENTITY_CODE),
+    ('source_entity_guid', SOURCE_ENTITY_GUID),
+    ('target_entity_code', TARGET_ENTITY_CODE),
+    ('target_entity_guid', TARGET_ENTITY_GUID),
+    ('connection_type', CONNECTION_TYPE),
+]
 OBJECT_ATTRIBUTE_LISTS = [
-    SITE_ATTRIBUTE_LIST, REPORTING_ENTITY_ATTRIBUTE_LIST,
-    VIRTUAL_ENTITY_ATTRIBUTE_LIST, ENTITY_FIELD_ATTRIBUTE_LIST,
-    STATE_ATTRIBUTE_LIST, UNITS_ATTRIBUTE_LIST, CONNECTION_ATTRIBUTE_LIST
+    SITE_ATTRIBUTE_LIST,
+    REPORTING_ENTITY_ATTRIBUTE_LIST,
+    VIRTUAL_ENTITY_ATTRIBUTE_LIST,
+    ENTITY_FIELD_ATTRIBUTE_LIST,
+    STATE_ATTRIBUTE_LIST,
+    UNITS_ATTRIBUTE_LIST,
+    CONNECTION_ATTRIBUTE_LIST,
 ]
