@@ -151,18 +151,16 @@ DOAS_CHWDC_EFSS_EFVSC_EFDPM_PHRUD_HWDC_DFSS_DFVSC_DSPM_DFDPM:
   - DSPM
   - DFDPM
 
-DOAS_SFVSC_EFVSC_HTWHLSTC_CHWVM_HWVM_SDM_EDM_SFM_FDPSM_CO2C_SDM2X_EDM2X:
+DOAS_SFVSC_EFVSC_HTWHLSTC_CHWVM_HWVM_SFM_FDPSM_CO2C_SDM2X_EDM2X:
   description: "Multi-zone chilled water and heating water DOAS with heat wheel, supply, exhaust fan speed control"
   is_canonical: true
   implements:
-  - AHU
+  - DOAS
   - SFVSC
   - EFVSC
   - HTWHLSTC
   - CHWVM
   - HWVM
-  - SDM
-  - EDM
   - SFM
   - FDPSM
   - CO2C
