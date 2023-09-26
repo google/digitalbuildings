@@ -75,9 +75,7 @@ class ModelBuilderTest(absltest.TestCase):
     expected_multistate_entity = MultistateValueField.FromDict(
         TEST_MULTISTATE_VALUE_FIELD_DICT,
     )
-    expected_multistate_entity.states.append(
-        State.FromDict(TEST_STATE_DICT)
-    )
+    expected_multistate_entity.states.append(State.FromDict(TEST_STATE_DICT))
 
     self.assertEqual(
         added_entity.translations[1],
@@ -218,6 +216,36 @@ class ModelBuilderTest(absltest.TestCase):
         model.fields[2].std_field_name,
         model.fields[2].reporting_entity_field_name,
     )
+
+  def testGetState(self):
+    imported_building_config = import_helper.DeserializeBuildingConfiguration(
+        filepath=os.path.join(TEST_RESOURCES, 'good_test_building_config.yaml')
+    )
+    expected_state_1 = State(
+        reporting_entity_guid='8318f346-10b4-44f0-ac0b-bf7659510bfa',
+        std_field_name='run_command',
+        standard_state='ON',
+        raw_state='active',
+    )
+    expected_state_2 = State(
+        reporting_entity_guid='8318f346-10b4-44f0-ac0b-bf7659510bfa',
+        std_field_name='run_command',
+        standard_state='OFF',
+        raw_state='inactive',
+    )
+
+    unbuilt_model, operation = Model.Builder.FromBuildingConfig(
+        site=imported_building_config[0],
+        building_config_dict=imported_building_config[1],
+    )
+    model = unbuilt_model.Build()
+    actual_states = model.GetStates(
+        '8318f346-10b4-44f0-ac0b-bf7659510bfa', 'run_command'
+    )
+
+    self.assertLen(actual_states, 2)
+    self.assertIn(expected_state_1, actual_states)
+    self.assertIn(expected_state_2, actual_states)
 
 
 if __name__ == '__main__':

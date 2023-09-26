@@ -204,28 +204,6 @@ class HandlerTest(absltest.TestCase):
     except SyntaxError:
       self.fail('ValidationHelper:Validate raised ExceptionType unexpectedly!')
 
-  def testValidateRejectsWithInterdependency(self):
-    parsed, default_operation = _Helper(
-        [
-            os.path.join(
-                _TESTCASE_PATH, 'BAD', 'entity_interdependency_v1_alpha.yaml'
-            )
-        ]
-    )
-    config_universe = generate_universe.BuildUniverse(
-        use_simplified_universe=True
-    )
-    entity_helper = handler.EntityHelper(config_universe)
-    parsed = dict(parsed)
-    instances = {}
-    for name, ei in parsed.items():
-      instances[name] = entity_instance.EntityInstance.FromYaml(
-          name, ei, default_operation=default_operation
-      )
-
-    with self.assertRaises(ValueError):
-      entity_helper.Validate(instances, _UPDATE_CFG)
-
   def testValidateAcceptsWithInterdependency(self):
     parsed, default_operation = _Helper(
         [

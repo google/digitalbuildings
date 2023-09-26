@@ -18,6 +18,7 @@ from typing import Dict, List, Optional
 # pylint: disable=g-importing-member
 from model.constants import BC_GUID
 from model.constants import BUILDING_CODE
+from model.constants import ETAG
 from model.constants import SITE_NAMESPACE
 from model.constants import SITE_TYPE_NAME
 from model.constants import STRING_VALUE
@@ -36,20 +37,25 @@ class Site(object):
 
   Attributes:
     code: A site's human-readable code.
+    etag: A site's version tag.
     namespace: A site's standardized DBO namespace.
     type_name: A site's standardized DBO entity type id.
     guid: A globally unique identifier(uuid4) for a site.
     entities: A list of GUIDs for entities cointained in a site.
   """
 
-  def __init__(self, code: str, guid: Optional[str] = None) -> None:
+  def __init__(
+      self, code: str, etag: Optional[str], guid: Optional[str] = None
+  ) -> None:
     """Init.
 
     Args:
       code: Site name.
+      etag: A site's version tag.
       guid: UUID4 value for site.
     """
     self.code = code
+    self.etag = etag
     self.namespace = SITE_NAMESPACE
     self.type_name = SITE_TYPE_NAME
     self._entities = []
@@ -65,7 +71,11 @@ class Site(object):
 
   @classmethod
   def FromDict(cls, site_dict: Dict[str, object]) -> ...:
-    site_instance = cls(code=site_dict[BUILDING_CODE], guid=site_dict[BC_GUID])
+    site_instance = cls(
+        code=site_dict.get(BUILDING_CODE),
+        etag=site_dict.get(ETAG),
+        guid=site_dict.get(BC_GUID),
+    )
     return site_instance
 
   @property
@@ -98,5 +108,6 @@ class Site(object):
         VALUES: [
             {USER_ENTERED_VALUE: {STRING_VALUE: self.code}},
             {USER_ENTERED_VALUE: {STRING_VALUE: self.guid}},
+            {USER_ENTERED_VALUE: {STRING_VALUE: self.etag}},
         ]
     }

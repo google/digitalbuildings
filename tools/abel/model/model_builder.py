@@ -13,6 +13,7 @@
 # limitations under the License.
 """Helper module for concrete model construction."""
 
+import datetime
 from typing import Dict, List, Optional
 
 # pylint: disable=g-importing-member
@@ -97,7 +98,7 @@ class Model(object):
 
       Returns:
         An instance of Model class and a list of EntityOperation intances
-        operating on Entity instances in a Model.
+        operating on a Model.
       """
       # Currently only supports one site per ABEL instance.
       site = Site.FromDict(spreadsheet_dict[SITES][0])
@@ -137,7 +138,7 @@ class Model(object):
 
       Returns:
         A Model instance and a list of EntityOperation instances operating on
-        Entity instances  in a model.
+        Entities in the model.
       """
       model_builder = cls(site)
       entities = []
@@ -240,7 +241,25 @@ class Model(object):
     return self._guid_to_entity_map
 
   def GetEntity(self, entity_guid: str) -> Entity:
+    """Helper function to get an Entity instance for a guid."""
     return self.guid_to_entity_map.GetEntityByGuid(entity_guid)
+
+  def GetStates(
+      self,
+      entity_guid: str,
+      std_field_name: str,
+  ) -> List[State]:
+    """Helper function to get State instances for a field name and guid."""
+    state_map = {}
+    for state in self.states:
+      states_hash = hash((state.reporting_entity_guid, state.std_field_name))
+      if state_map.get(states_hash) is None:
+        state_map[states_hash] = [state]
+      else:
+        state_map[states_hash].append(state)
+    return state_map.get(
+        hash((entity_guid, std_field_name))
+    )
 
   def ToModelDictionary(
       self, operations: Optional[List[EntityOperation]] = None
@@ -271,10 +290,9 @@ class Model(object):
         STATES: (ALL_STATE_HEADERS, self.states),
         CONNECTIONS: (ALL_CONNECTION_HEADERS, self.connections),
     }
+    # pylint: disable=line-too-long
     title = (
-        f'{self.site.code}'
-        '{datetime.datetime.strftime(datetime.datetime.now(),' 
-        ' "%Y-%m-%d %H:%M")}'
+        f'{self.site.code} {datetime.datetime.strftime(datetime.datetime.now(), "%Y-%m-%d %H:%M")}'
     )
     spreadsheet_model = {PROPERTIES: {TITLE: title}, SHEETS: []}
     # pylint: disable = g-complex-comprehension
