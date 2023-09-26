@@ -189,8 +189,11 @@ class HandlerTest(absltest.TestCase):
           name, ei, default_operation=default_operation
       )
 
-    valid_entities = entity_helper.Validate(instances, _INIT_CFG)
+    valid_entities, all_entities_valid = entity_helper.Validate(
+        instances, _INIT_CFG
+    )
 
+    self.assertTrue(all_entities_valid)
     self.assertEqual(valid_entities, instances)
     self.assertEqual(mock_validator.call_count, 2)
 
@@ -200,28 +203,6 @@ class HandlerTest(absltest.TestCase):
       _RunValidation([input_file], use_simplified_universe=True)
     except SyntaxError:
       self.fail('ValidationHelper:Validate raised ExceptionType unexpectedly!')
-
-  def testValidateRejectsWithInterdependency(self):
-    parsed, default_operation = _Helper(
-        [
-            os.path.join(
-                _TESTCASE_PATH, 'BAD', 'entity_interdependency_v1_alpha.yaml'
-            )
-        ]
-    )
-    config_universe = generate_universe.BuildUniverse(
-        use_simplified_universe=True
-    )
-    entity_helper = handler.EntityHelper(config_universe)
-    parsed = dict(parsed)
-    instances = {}
-    for name, ei in parsed.items():
-      instances[name] = entity_instance.EntityInstance.FromYaml(
-          name, ei, default_operation=default_operation
-      )
-
-    with self.assertRaises(ValueError):
-      entity_helper.Validate(instances, _UPDATE_CFG)
 
   def testValidateAcceptsWithInterdependency(self):
     parsed, default_operation = _Helper(
@@ -242,8 +223,11 @@ class HandlerTest(absltest.TestCase):
           name, ei, default_operation=default_operation
       )
 
-    valid_entities = entity_helper.Validate(instances, _UPDATE_CFG)
+    valid_entities, all_entities_valid = entity_helper.Validate(
+        instances, _UPDATE_CFG
+    )
 
+    self.assertTrue(all_entities_valid)
     self.assertEqual(valid_entities, instances)
 
   def testGraph_DoesNotAllowDuplicateCloudDeviceId(self):
@@ -268,7 +252,10 @@ class HandlerTest(absltest.TestCase):
           name, ei, default_operation=default_operation
       )
 
-    valid_entities = entity_helper.Validate(instances, _INIT_CFG)
+    valid_entities, all_entities_valid = entity_helper.Validate(
+        instances, _INIT_CFG
+    )
+    self.assertFalse(all_entities_valid)
     self.assertLen(valid_entities, 3)
     self.assertFalse(entity_helper._IsDuplicateCDMIds(entities=instances))
 

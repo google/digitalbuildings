@@ -20,6 +20,7 @@ import tempfile
 
 from absl.testing import absltest
 
+# pylint: disable=g-importing-member
 from model.constants import BC_GUID
 from model.constants import BUILDING_CODE
 from model.constants import BUILDING_CODE_REGEX

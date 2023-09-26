@@ -19,6 +19,7 @@ specfied timeout is reached. Current version only supports UDMI payloads.
 """
 
 import datetime
+import re
 import sys
 import threading
 import time
@@ -55,9 +56,7 @@ class TelemetryValidator(object):
     report_directory: fully qualified path to report output directory
   """
 
-  def __init__(
-      self, entities, timeout, callback, report_directory=None
-  ):
+  def __init__(self, entities, timeout, callback, report_directory=None):
     """Init.
 
     Args:
@@ -204,14 +203,24 @@ class TelemetryValidator(object):
       publish_timestamp_difference: total absolute difference between
       message_publish_time and message_timestamp in seconds as a float
     """
+
+    # pylint: disable=line-too-long
+    def _FormatTimestamp(timestamp: str) -> datetime.datetime:
+      """Helper function to format string timestamps."""
+      # remove microseconds if present
+      timestamp_pattern = re.compile(
+          r'^([0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}\.[0-9]{2,}Z)'
+      )
+      if timestamp_pattern.match(timestamp):
+        timestamp = timestamp[:19] + 'Z'
+      return datetime.datetime(
+          *time.strptime(timestamp, TELEMETRY_TIMESTAMP_FORMAT)[0:6],
+          tzinfo=datetime.timezone.utc,
+      )
+
     publish_timestamp_difference = abs(
         (
-            message_publish_time
-            - datetime.datetime(
-                *time.strptime(message_timestamp, TELEMETRY_TIMESTAMP_FORMAT)[
-                    0:6],
-                tzinfo=datetime.timezone.utc,
-            )
+            message_publish_time - _FormatTimestamp(message_timestamp)
         ).total_seconds()
     )
 
@@ -223,11 +232,11 @@ class TelemetryValidator(object):
     """Validates a telemetry message points and creates a validation block.
 
     Args:
-      message: the telemetry message to validate.
-      entity: the entity corresponding to the message
+      message: The telemetry message to validate.
+      entity: The entity corresponding to the message.
 
     Returns:
-      validation_block: results of comparing entity points to telemetry message
+      validation_block: Results of comparing entity points to telemetry message.
     """
     tele = telemetry.Telemetry(message)
     entity_code = tele.attributes[DEVICE_ID]

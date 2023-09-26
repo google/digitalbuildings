@@ -11,32 +11,32 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-"""Global mapping of guids to Entity instances."""
+"""Mapping of guids to Entity instances."""
 
 from typing import Dict
 
 
 class GuidToEntityMap(object):
-  """Container for global mapping of Entity instances by entity guids.
+  """Container for mapping of Entity instances by entity guids.
 
-  Attributes: guid_to_entity_map(class variable): Global mapping of entity guids
+  Attributes: guid_to_entity_map(class variable): Mapping of entity guids
   to Entity instances.
   """
-  _guid_to_entity_map = {}
 
   def __init__(self):
     """Init."""
+    self._guid_to_entity_map = {}
 
   def AddSite(self, site: ...) -> None:
-    """Adds a site by guid to the global map.
+    """Adds a site by guid to the mapping.
 
-    Adding a site to the global guid to entity instance map is necessary because
+    Adding a site to the guid to entity instance map is necessary because
     connections may reference a site by guid or code. Sites are handled
     separately than entities in the model_builder module, and therefore need to
-    be added to the global map separately.
+    be added to the map separately.
 
     Args:
-      site: Site instance to be added as a value to the global map.
+      site: Site instance to be added as a value to the map.
 
     Raises:
       AttributeError: When site guid attribute is None.
@@ -45,13 +45,13 @@ class GuidToEntityMap(object):
     if not site.guid:
       raise AttributeError(f'{site.code}: guid missing')
     elif site.guid not in self._guid_to_entity_map:
-      self._guid_to_entity_map[site.guid] = site
+      self._guid_to_entity_map.update({site.guid: site})
     else:
       raise KeyError(
           f'{site.guid} maps to {self._guid_to_entity_map[site.guid]}')
 
   def AddEntity(self, entity: ...) -> None:
-    """Adds an entity by guid to the global map.
+    """Adds an entity by guid to the mapping.
 
     This method does not generate a guid for an entity and will throw an
     exception if the entity's guid attribute is empty.
@@ -64,7 +64,7 @@ class GuidToEntityMap(object):
       KeyError: When a GUID already maps to another Entity in the model.
     """
     if entity is None:
-      raise ValueError('Cannot add None values to global entity map.')
+      raise ValueError('Cannot add None values to the guid to entity map.')
     if not entity.bc_guid:
       raise AttributeError(f'{entity.code}: guid missing')
     if entity.bc_guid not in self._guid_to_entity_map:
@@ -84,11 +84,11 @@ class GuidToEntityMap(object):
       The Entity instance keyed by guid.
 
     Raises:
-      KeyError: When guid is not a valid key in the global map.
+      KeyError: When guid is not a valid key in the map.
     """
     entity = self._guid_to_entity_map.get(guid)
     if entity is None:
-      raise KeyError(f'{guid} is not a valid guid in the global entity map')
+      raise KeyError(f'{guid} is not a valid guid in the guid to entity map')
     return entity
 
   def GetEntityCodeByGuid(self, guid: str) -> str:
@@ -103,7 +103,7 @@ class GuidToEntityMap(object):
     return self.GetEntityByGuid(guid).code
 
   def GetEntityGuidByCode(self, code: str) -> str:
-    """Returns entity code mapped by guid in the global guid to entity mapping.
+    """Returns entity code mapped by guid in the guid to entity mapping.
 
     Args:
       code: A non-duplicate entity code.
@@ -125,7 +125,7 @@ class GuidToEntityMap(object):
       return guid
 
   def RemoveEntity(self, guid: str) -> None:
-    """Removes a guid to Entity mapping.
+    """Removes a guid and entity pair from guid to entity mapping.
 
     Args:
       guid: A guid key.
@@ -144,9 +144,12 @@ class GuidToEntityMap(object):
       entity: An Entity instance.
 
     Raises:
-      KeyError: When guid is not a valid key in the global map.
+      KeyError: When guid is not a valid key in the guid to entity map.
+      ValueError: When entity is not an Entity instance.
     """
-    if not entity:
+    if not self._guid_to_entity_map.get(guid):
+      raise KeyError(f'{guid} is not a valid guid in the guid to entity map')
+    elif not entity:
       raise ValueError(f'{guid} cannot map to object of type None')
     self._guid_to_entity_map.update({guid: entity})
 
