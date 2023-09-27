@@ -668,8 +668,8 @@ MAU_DFSS_DFVSC_HWDDC_DX2DDC_ZTM_DFM:
   - ZTM
   - DFM
 
-MAU_SFSS_SFVSC_HWSC_CHWSC_RSPC_FDPM2X:
-  description: "Makeup air unit with heating, cooling and return static pressure control."
+MAU_SFSS_SFVSC_HWSC_CHWSC_FDPM2X:
+  description: "Makeup air unit with heating and cooling."
   is_canonical: true
   implements:
   - MAU
@@ -677,7 +677,6 @@ MAU_SFSS_SFVSC_HWSC_CHWSC_RSPC_FDPM2X:
   - SFVSC
   - HWSC
   - CHWSC
-  - RSPC
   - FDPM2X
 
 
