@@ -15,20 +15,27 @@
 
 from typing import Dict, List, Optional
 
+# pylint: disable=g-importing-member
 from model.constants import BC_GUID
-from model.constants import ENTITY_CODE
+from model.constants import CONDITION
+from model.constants import CONDITION_TYPE
+from model.constants import DATA_VALIDATION
 from model.constants import METADATA
-from model.constants import MISSING
 from model.constants import MISSING_FALSE
 from model.constants import MISSING_TRUE
+from model.constants import ONE_OF_LIST
 from model.constants import RAW_FIELD_NAME
 from model.constants import RAW_UNIT_PATH
 from model.constants import RAW_UNIT_VALUE
-from model.constants import REPORTING_ENTITY_CODE
 from model.constants import REPORTING_ENTITY_FIELD_NAME
 from model.constants import REPORTING_ENTITY_GUID
+from model.constants import SHOW_CUSTOM_UI
 from model.constants import STANDARD_FIELD_NAME
 from model.constants import STANDARD_UNIT_VALUE
+from model.constants import STRICT_VALIDATION
+from model.constants import STRING_VALUE
+from model.constants import USER_ENTERED_VALUE
+from model.constants import VALUES
 from model.guid_to_entity_map import GuidToEntityMap
 from model.state import State
 from model.units import Units
@@ -76,10 +83,38 @@ class MissingField(field_translation.UndefinedField):
     self.reporting_entity_guid = reporting_entity_guid
     self.entity_guid = entity_guid
     self.metadata = metadata
-    self.guid_to_entity_map = GuidToEntityMap()
+
+  def __eq__(self, other):
+    if not isinstance(other, MissingField):
+      raise TypeError(f'{str(other)} must be a MissingField instance')
+    standard_field_name_eq = self.std_field_name == other.std_field_name
+    entity_guid_eq = self.entity_guid == other.entity_guid
+    reporting_field_eq = (
+        self.reporting_entity_field_name == other.reporting_entity_field_name
+    )
+    reporting_guid_eq = (
+        self.reporting_entity_guid == other.reporting_entity_guid
+    )
+    return (
+        standard_field_name_eq
+        and entity_guid_eq
+        and reporting_field_eq
+        and reporting_guid_eq
+    )
+
+  def __hash__(self):
+    return hash((
+        self.std_field_name,
+        self.entity_guid,
+        self.reporting_entity_guid,
+        self.reporting_entity_field_name,
+    ))
 
   @classmethod
-  def FromDict(cls, missing_field_dict: Dict[str, str]):
+  def FromDict(
+      cls,
+      missing_field_dict: Dict[str, str],
+  ):
     missing_field_instance = cls(
         std_field_name=missing_field_dict[STANDARD_FIELD_NAME],
         reporting_entity_field_name=missing_field_dict[
@@ -95,21 +130,45 @@ class MissingField(field_translation.UndefinedField):
     }
     return missing_field_instance
 
-  def GetSpreadsheetRowMapping(self) -> Dict[str, str]:
+  def GetSpreadsheetRowMapping(
+      self, guid_to_entity_map: GuidToEntityMap
+  ) -> Dict[str, str]:
     """Returns dictionary of spreadsheet headers to MissingField attributes."""
     missing_field_row_map = {
-        STANDARD_FIELD_NAME: self.std_field_name,
-        RAW_FIELD_NAME: '',
-        REPORTING_ENTITY_FIELD_NAME: self.reporting_entity_field_name,
-        ENTITY_CODE: self.guid_to_entity_map.GetEntityCodeByGuid(
-            self.entity_guid
-        ),
-        BC_GUID: self.entity_guid,
-        REPORTING_ENTITY_CODE: self.guid_to_entity_map.GetEntityCodeByGuid(
-            self.reporting_entity_guid
-        ),
-        REPORTING_ENTITY_GUID: self.reporting_entity_guid,
-        MISSING: MISSING_TRUE,
+        VALUES: [
+            {USER_ENTERED_VALUE: {STRING_VALUE: self.std_field_name}},
+            {USER_ENTERED_VALUE: {STRING_VALUE: ''}},
+            {
+                USER_ENTERED_VALUE: {
+                    STRING_VALUE: guid_to_entity_map.GetEntityCodeByGuid(
+                        self.entity_guid
+                    )
+                }
+            },
+            {USER_ENTERED_VALUE: {STRING_VALUE: self.entity_guid}},
+            {
+                USER_ENTERED_VALUE: {
+                    STRING_VALUE: guid_to_entity_map.GetEntityCodeByGuid(
+                        self.reporting_entity_guid
+                    )
+                }
+            },
+            {USER_ENTERED_VALUE: {STRING_VALUE: self.reporting_entity_guid}},
+            {
+                USER_ENTERED_VALUE: {STRING_VALUE: MISSING_TRUE},
+                DATA_VALIDATION: {
+                    CONDITION: {
+                        CONDITION_TYPE: ONE_OF_LIST,
+                        VALUES: [
+                            {USER_ENTERED_VALUE: MISSING_TRUE},
+                            {USER_ENTERED_VALUE: MISSING_FALSE},
+                        ],
+                    },
+                    STRICT_VALIDATION: True,
+                    SHOW_CUSTOM_UI: True,
+                },
+            },
+        ]
     }
     return missing_field_row_map
 
@@ -152,22 +211,46 @@ class MultistateValueField(field_translation.DefinedField):
     self.reporting_entity_field_name = reporting_entity_field_name
     self.metadata = metadata
     self._states = []
-    self.guid_to_entity_map = GuidToEntityMap()
 
   def __eq__(self, other: ...) -> bool:
     if not isinstance(other, MultistateValueField):
-      raise TypeError(f'{str(other)} must be an MultistateValueField instance')
+      raise TypeError(f'{str(other)} must be a MultistateValueField instance')
     standard_field_name_eq = self.std_field_name == other.std_field_name
     raw_field_name_eq = self.raw_field_name == other.raw_field_name
     entity_guid_eq = self.entity_guid == other.entity_guid
-    return standard_field_name_eq and raw_field_name_eq and entity_guid_eq
+    reporting_entity_field_eq = (
+        self.reporting_entity_field_name == other.reporting_entity_field_name
+    )
+    reporting_entity_guid_eq = (
+        self.reporting_entity_guid == other.reporting_entity_guid
+    )
+    state_eq = self.states == other.states
+    return (
+        standard_field_name_eq
+        and raw_field_name_eq
+        and entity_guid_eq
+        and reporting_entity_field_eq
+        and reporting_entity_guid_eq
+        and state_eq
+    )
 
   def __repr__(self) -> str:
     return f'{self.entity_guid}: {self.std_field_name}'
 
+  def __hash__(self):
+    return hash((
+        self.entity_guid,
+        self.reporting_entity_guid,
+        self.reporting_entity_field_name,
+        self.std_field_name,
+    ))
+
   # pylint: disable=line-too-long
   @classmethod
-  def FromDict(cls, multistate_field_dict: Dict[str, str]):
+  def FromDict(
+      cls,
+      multistate_field_dict: Dict[str, str],
+  ):
     """Class method to construct a MultistateValueField instance from a dictionary of device data points by entity field attribute names.
 
     Args:
@@ -210,23 +293,52 @@ class MultistateValueField(field_translation.DefinedField):
       raise TypeError(f'{new_state} must be a State instance.')
     self.states.append(new_state)
 
-  def GetSpreadsheetRowMapping(self) -> Dict[str, str]:
+  def GetSpreadsheetRowMapping(
+      self, guid_to_entity_map: GuidToEntityMap
+  ) -> Dict[str, str]:
     """Returns a dictionary of MultistateValueField attributes by spreadsheet headers."""
-    result_dictionary = {
-        STANDARD_FIELD_NAME: self.std_field_name,
-        RAW_FIELD_NAME: self.raw_field_name,
-        REPORTING_ENTITY_FIELD_NAME: self.reporting_entity_field_name,
-        ENTITY_CODE: self.guid_to_entity_map.GetEntityCodeByGuid(
-            self.entity_guid
-        ),
-        BC_GUID: self.entity_guid,
-        REPORTING_ENTITY_CODE: self.guid_to_entity_map.GetEntityCodeByGuid(
-            self.reporting_entity_guid
-        ),
-        REPORTING_ENTITY_GUID: self.reporting_entity_guid,
-        MISSING: MISSING_FALSE,
+    multistate_row_json_object = {
+        VALUES: [
+            {USER_ENTERED_VALUE: {STRING_VALUE: self.std_field_name}},
+            {USER_ENTERED_VALUE: {STRING_VALUE: self.raw_field_name}},
+            {
+                USER_ENTERED_VALUE: {
+                    STRING_VALUE: self.reporting_entity_field_name
+                }
+            },
+            {
+                USER_ENTERED_VALUE: {
+                    STRING_VALUE: guid_to_entity_map.GetEntityCodeByGuid(
+                        self.entity_guid
+                    )
+                }
+            },
+            {USER_ENTERED_VALUE: {STRING_VALUE: self.entity_guid}},
+            {
+                USER_ENTERED_VALUE: {
+                    STRING_VALUE: guid_to_entity_map.GetEntityCodeByGuid(
+                        self.reporting_entity_guid
+                    )
+                }
+            },
+            {USER_ENTERED_VALUE: {STRING_VALUE: self.reporting_entity_guid}},
+            {
+                USER_ENTERED_VALUE: {STRING_VALUE: MISSING_FALSE},
+                DATA_VALIDATION: {
+                    CONDITION: {
+                        CONDITION_TYPE: ONE_OF_LIST,
+                        VALUES: [
+                            {USER_ENTERED_VALUE: MISSING_TRUE},
+                            {USER_ENTERED_VALUE: MISSING_FALSE},
+                        ],
+                    },
+                    STRICT_VALIDATION: True,
+                    SHOW_CUSTOM_UI: True,
+                },
+            },
+        ]
     }
-    return result_dictionary
+    return multistate_row_json_object
 
 
 class DimensionalValueField(field_translation.DefinedField):
@@ -247,7 +359,6 @@ class DimensionalValueField(field_translation.DefinedField):
         control_programs: ['control 1', 'control 2'],
         name: 'fake name',
         object_name: 'fake_object_name' }
-    guid_to_entity_map: Global mapping of entity guids to Entity instances.
   """
 
   def __init__(
@@ -277,7 +388,6 @@ class DimensionalValueField(field_translation.DefinedField):
     self.entity_guid = entity_guid
     self._units = None
     self.metadata = metadata
-    self.guid_to_entity_map = GuidToEntityMap()
 
   def __eq__(self, other: ...) -> bool:
     if not isinstance(other, DimensionalValueField):
@@ -296,8 +406,20 @@ class DimensionalValueField(field_translation.DefinedField):
   def __repr__(self) -> str:
     return f'{self.entity_guid}: {self.std_field_name}'
 
+  def __hash__(self):
+    return hash((
+        self.std_field_name,
+        self.raw_field_name,
+        self.entity_guid,
+        self.reporting_entity_guid,
+        self.reporting_entity_field_name,
+    ))
+
   @classmethod
-  def FromDict(cls, dimensional_field_dict: Dict[str, str]):
+  def FromDict(
+      cls,
+      dimensional_field_dict: Dict[str, str],
+  ):
     """Returns DimensionalValueField instance.
 
     Constructs a DimensionalValueField instance from a map of device data points
@@ -353,23 +475,52 @@ class DimensionalValueField(field_translation.DefinedField):
     else:
       self._units = new_units
 
-  def GetSpreadsheetRowMapping(self) -> Dict[str, str]:
-    """Returns dict of DimensionalValueField attributes by spreadsheet headers.
-    """
-    result_dictionary = {
-        STANDARD_FIELD_NAME: self.std_field_name,
-        RAW_FIELD_NAME: self.raw_field_name,
-        REPORTING_ENTITY_FIELD_NAME: self.reporting_entity_field_name,
-        ENTITY_CODE: self.guid_to_entity_map.GetEntityCodeByGuid(
-            self.entity_guid
-        ),
-        BC_GUID: self.entity_guid,
-        REPORTING_ENTITY_CODE: self.guid_to_entity_map.GetEntityCodeByGuid(
-            self.reporting_entity_guid
-        ),
-        REPORTING_ENTITY_GUID: self.reporting_entity_guid,
-        MISSING: MISSING_FALSE,
+  def GetSpreadsheetRowMapping(
+      self, guid_to_entity_map: GuidToEntityMap
+  ) -> Dict[str, str]:
+    """Returns dict of DimensionalValueField attributes for a spreadsheet."""
+    dimensional_row_json_object = {
+        VALUES: [
+            {USER_ENTERED_VALUE: {STRING_VALUE: self.std_field_name}},
+            {USER_ENTERED_VALUE: {STRING_VALUE: self.raw_field_name}},
+            {
+                USER_ENTERED_VALUE: {
+                    STRING_VALUE: self.reporting_entity_field_name
+                }
+            },
+            {
+                USER_ENTERED_VALUE: {
+                    STRING_VALUE: guid_to_entity_map.GetEntityCodeByGuid(
+                        self.entity_guid
+                    )
+                }
+            },
+            {USER_ENTERED_VALUE: {STRING_VALUE: self.entity_guid}},
+            {
+                USER_ENTERED_VALUE: {
+                    STRING_VALUE: guid_to_entity_map.GetEntityCodeByGuid(
+                        self.reporting_entity_guid
+                    )
+                }
+            },
+            {USER_ENTERED_VALUE: {STRING_VALUE: self.reporting_entity_guid}},
+            {
+                USER_ENTERED_VALUE: {STRING_VALUE: MISSING_FALSE},
+                DATA_VALIDATION: {
+                    CONDITION: {
+                        CONDITION_TYPE: ONE_OF_LIST,
+                        VALUES: [
+                            {USER_ENTERED_VALUE: MISSING_TRUE},
+                            {USER_ENTERED_VALUE: MISSING_FALSE},
+                        ],
+                    },
+                    STRICT_VALIDATION: True,
+                    SHOW_CUSTOM_UI: True,
+                },
+            },
+        ]
     }
     if self.units:
-      result_dictionary.update(self.units.GetSpreadsheetRowMapping())
-    return result_dictionary
+      for row_item in self.units.GetSpreadsheetRowMapping().get(VALUES):
+        dimensional_row_json_object.get(VALUES).append(row_item)
+    return dimensional_row_json_object

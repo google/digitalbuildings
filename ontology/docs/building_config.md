@@ -708,6 +708,9 @@ to the entity blocks keyed by `update_mask`. This is shown in the example for
 an entity coded as E4, showing all possible entity attributes, where
 `update_mask` is given with fields of `translation` and `cloud_device_id`.
 
+Note that `etag` is required for `UPDATE` and `DELETE` but not for `ADD`
+operations.
+
 ``` yaml
 CONFIG_METADATA:
   operation: UPDATE
