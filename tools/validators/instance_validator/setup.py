@@ -13,6 +13,7 @@
 # limitations under the License.
 """Setup file for Instance Validator."""
 
+# pylint: disable=g-importing-member
 from setuptools import find_packages
 from setuptools import setup
 
@@ -30,6 +31,7 @@ setup(
     install_requires=[
         'ruamel.yaml==0.17.4', 'strictyaml==1.4.2',
         'google-cloud-pubsub', 'googleapis-common-protos',
-        'google-auth', 'protobuf', 'proto-plus'],
+        'google-auth', 'google-auth-oauthlib',
+        'protobuf', 'proto-plus'],
     python_requires='>=3.9',
 )
