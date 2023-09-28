@@ -84,10 +84,3 @@ SDC_EXTOR:
   opt_uses:
   - shade_orientation_specification
   - shade_mode
-
-SDC_UDEC:
-  description: "Simple shade with up and down extent control."
-  is_canonical: true
-  implements:
-  - SDC
-  - UDEC
