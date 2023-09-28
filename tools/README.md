@@ -3,12 +3,12 @@
 Various tools have been developed to support the use of the Digital Buildings Ontology and Building Configuration files. 
 
 The tools are:
-  * [ABEL](./tools/abel/README.md) generates from/to Google spreadsheet/[Building Configuration](./ontology/docs/building_config.md).
-  * [Explorer](./tools/explorer/README.md) allows users to explorer the ontology types and their associated fields.
-  * [Instance Validator](./tools/validators/instance_validator/README.md) which allows to validate the yaml ontology upon a change or an extension.
-    * A sub function of the Instance Validator is to also [validate telemetry messages](./tools/validators/instance_validator/README.md#telemetry-validation) 
+  * [ABEL](./abel/README.md) generates from/to Google spreadsheet/[Building Configuration](../ontology/docs/building_config.md).
+  * [Explorer](./explorer/README.md) allows users to explorer the ontology types and their associated fields.
+  * [Instance Validator](./validators/instance_validator/README.md) which allows to validate the yaml ontology upon a change or an extension.
+    * A sub function of the Instance Validator is to also [validate telemetry messages](./validators/instance_validator/README.md#telemetry-validation) 
     corresponding to entity blocks in a building configuration file.
-  * [Ontology Validator](./tools/validators/ontology_validator/README.md) which allows to validate the yaml ontology upon a change or an extension.
+  * [Ontology Validator](./validators/ontology_validator/README.md) which allows to validate the yaml ontology upon a change or an extension.
 
 ## Digital Buildings Toolkit
 
