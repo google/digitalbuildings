@@ -3192,6 +3192,13 @@ literals:
   - ACTIVE
   - INACTIVE
 
+- shade_up_command:
+  - ON
+  - OFF
+- shade_down_command:
+  - ON
+  - OFF
+
 - high_discharge_air_static_pressure_alarm:
   - ACTIVE
   - INACTIVE
@@ -3199,3 +3206,4 @@ literals:
 - low_discharge_air_static_pressure_alarm:
   - ACTIVE
   - INACTIVE
+
