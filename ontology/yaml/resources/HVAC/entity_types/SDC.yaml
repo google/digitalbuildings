@@ -86,6 +86,7 @@ SDC_EXTOR:
   - shade_mode
 
 SDC_UDEC:
+  guid: "34201ca6-677b-47bc-b624-a80581490b6d"
   description: "Simple shade with up and down extent control."
   is_canonical: true
   implements:
