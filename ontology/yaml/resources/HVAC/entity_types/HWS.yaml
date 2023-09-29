@@ -313,6 +313,12 @@ HWS_SS_HWTTC_PWDPM2X:
   opt_uses:
   - compressor_run_status
 
+HWS_HWSWC:
+  description: Supply water temperature control with valve control
+  implements:
+  - HWS
+  - HWSWC
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
@@ -348,4 +354,4 @@ HWS_SWTC_CPC:
   - circulation_pump_speed_percentage_command
   - circulation_pump_speed_percentage_setpoint
   - failed_alarm
-  
+
