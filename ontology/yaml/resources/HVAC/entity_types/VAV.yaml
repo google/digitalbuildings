@@ -533,6 +533,14 @@ VAV_HWZTC_CHWZTC_DTM:
     - CHWZTC
     - DTM
 
+VAV_MDSDC:
+  guid: "2a74ea42-38ec-4832-ba83-cfa2d29486b1"
+  description: "A zone VAV with ventilation control based on a motion sensor."
+  is_canonical: true
+  implements:
+    - VAV
+    - MDSDC
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
