@@ -116,6 +116,157 @@ CONFIG_METADATA:
         'ON': active
   type: HVAC/VAV_SD_DSP
 
+# Updating field mappings in translation
+15aa5434-3edc-47a9-8464-c01856d98db2:
+  cloud_device_id: "2541901344105622"
+  code: VAV-4
+  etag: 1234567
+  translation:
+    # Update raw unit value
+    zone_air_temperature_sensor:
+      present_value: zone_air_temperature_sensor.present_value
+      units:
+        key: zone_air_temperature_sensor.units
+        values:
+          degrees_fahrenheit: DegF
+    zone_air_temperature_setpoint:
+      present_value: zone_air_temperature_setpoint.present_value
+      units:
+        key: zone_air_temperature_setpoint.units
+        values:
+          degrees_fahrenheit: degrees-farenheit
+    run_command:
+      present_value: points.run_command.present-value
+      states:
+        'OFF': inactive
+        'ON': active
+  type: HVAC/VAV_SD_CSP
+
+# Updating field value mappings
+fb2d9f0d-a2b7-4a9b-beb9-3bade8ebda17:
+  cloud_device_id: "2541901344105623"
+  code: VAV-5
+  etag: 1234567
+  translation:
+    zone_air_temperature_sensor:
+      present_value: zone_air_temperature_sensor.present_value
+      units:
+        key: zone_air_temperature_sensor.units
+        values:
+          degrees_fahrenheit: degrees-farenheit
+    zone_air_temperature_setpoint:
+      present_value: zone_air_temperature_setpoint.present_value
+      units:
+        key: zone_air_temperature_setpoint.units
+        values:
+          degrees_fahrenheit: degrees-farenheit
+    run_command:
+      present_value: points.run_command.present-value
+      # Update raw state value mappings
+      states:
+        'OFF': not_active
+        'ON': very_active
+  type: HVAC/VAV_SD_CSP
+
+# Update field value mappings
+138d05e2-b7af-435c-9b6b-58c1af1adcbb:
+  cloud_device_id: "2541901344105624"
+  code: VAV-6
+  etag: 1234567
+  translation:
+    zone_air_temperature_sensor:
+      # update present value path
+      present_value: zone_air_temperature_sensor_1.present_value
+      units:
+        key: zone_air_temperature_sensor.units
+        values:
+          degrees_fahrenheit: degrees-farenheit
+    zone_air_temperature_setpoint:
+      present_value: zone_air_temperature_setpoint.present_value
+      units:
+        key: zone_air_temperature_setpoint.units
+        values:
+          degrees_fahrenheit: degrees-farenheit
+    run_command:
+      present_value: points.run_command.present-value
+      states:
+        'OFF': inactive
+        'ON': active
+  type: HVAC/VAV_SD_CSP
+
+# Update field value mappings
+2768f729-b389-4ebd-8c43-4eb25c46cdf3:
+  cloud_device_id: "254190134410565"
+  code: VAV-7
+  etag: 1234567
+  translation:
+    zone_air_temperature_sensor:
+      present_value: zone_air_temperature_sensor.present_value
+      units:
+        key: zone_air_temperature_sensor.units
+        values:
+          degrees_fahrenheit: degrees-farenheit
+    zone_air_temperature_setpoint:
+      present_value: zone_air_temperature_setpoint.present_value
+      units:
+        # Update unit path
+        key: points.zone_air_temperature_setpoint.units
+        values:
+          degrees_fahrenheit: degrees-farenheit
+    run_command:
+      present_value: points.run_command.present-value
+      states:
+        'OFF': inactive
+        'ON': active
+  type: HVAC/VAV_SD_CSP
+
+# Update field value mappings
+e49b0687-e409-4a24-95d6-4629ed42e7b7:
+  cloud_device_id: "254190134410566"
+  code: VAV-8
+  etag: 1234567
+  translation:
+    zone_air_temperature_sensor:
+      present_value: zone_air_temperature_sensor.present_value
+      units:
+        key: zone_air_temperature_sensor.units
+        values:
+          degrees_fahrenheit: degrees-farenheit
+    # Field goes from MISSING to not MISSING
+    zone_air_temperature_setpoint:
+      present_value: zone_air_temperature_setpoint.present_value
+      units:
+        key: zone_air_temperature_setpoint.units
+        values:
+          degrees_fahrenheit: degrees-farenheit
+    run_command:
+      present_value: points.run_command.present-value
+      states:
+        'OFF': inactive
+        'ON': active
+  type: HVAC/VAV_SD_CSP
+
+# Update field value mappings
+585cd867-f66a-4cca-abc1-ba0789abc7f0:
+  cloud_device_id: "254190134410567"
+  code: VAV-9
+  etag: 1234567
+  translation:
+    zone_air_temperature_sensor:
+      present_value: zone_air_temperature_sensor.present_value
+      units:
+        key: zone_air_temperature_sensor.units
+        values:
+          degrees_fahrenheit: degrees-farenheit
+    # Field goes from not MISSING to MISSING
+    zone_air_temperature_setpoint: MISSING
+    run_command:
+      present_value: points.run_command.present-value
+      states:
+        'OFF': inactive
+        'ON': active
+  type: HVAC/VAV_SD_CSP
+
 # Adding an entity
 37fb77f1-4a2a-4ab4-b6bb-771c1cfeaa05:
   operation: ADD
