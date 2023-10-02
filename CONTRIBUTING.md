@@ -6,7 +6,7 @@ just a few small guidelines you need to follow.
 ## Contributor License Agreement
 
 Contributions to this project must be accompanied by a Contributor License
-Agreement. You (or your employer) retain the copyright to your contribution;
+Agreement (CLA). You (or your employer) retain the copyright to your contribution;
 this simply gives us permission to use and redistribute your contributions as
 part of the project. Head over to <https://cla.developers.google.com/> to see
 your current agreements on file or to sign a new one.
@@ -29,13 +29,12 @@ This project follows
 
 ## Pull requests
 
-If you are Google partner, please make sure not to add sensitive data on GitHub when:
-* Extending the ontology types through a pull request 
+If you are Google partner, please make sure not to add sensitive data on GitHub when performing the following actions:
+* Extending the ontology types through a pull request
 * Opening an issue
 * Asking a question
 
-Sensitive data is one of the following:
-* Building names or their locations, same applied for floors, rooms and zones.
-* Identifiers such as project id, subscription names
-* Equipment names and their locations.
-* Others
+Sensitive data is considered anything in any of the following categories:
+* **Buildings:** name, location, street address, information about floors/rooms/zones within the building, etc.
+* **Devices/Equipment:** name, id, location, etc.
+* **Other:** project id, subscription names, etc.

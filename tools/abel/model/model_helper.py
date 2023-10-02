@@ -17,6 +17,7 @@ from typing import List
 
 from model import entity
 from model import entity_enumerations
+from model import entity_field as ef
 from model import entity_operation
 from model import model_builder as mb
 from validate import field_translation as ft
@@ -46,10 +47,15 @@ def _GetLinkScore(
   return link_score
 
 
-def DetermineReportingEntityUpdateMask(current_entity, updated_entity):
+def DetermineReportingEntityUpdateMask(
+    current_model, updated_model, current_entity, updated_entity
+):
   """Returns a list with EntityUpdateMaskAttribute for a reporting entity.
 
   Args:
+    current_model: Model instance parsed from a building config exported from DB
+      API.
+    updated_model: Model instance parsed from an updated building config.
     current_entity: An Entity instance from a building config exported from DB
       API.
     updated_entity: An Entity instance from an updated building config.
@@ -68,17 +74,57 @@ def DetermineReportingEntityUpdateMask(current_entity, updated_entity):
   if set(updated_entity.translations).intersection(
       set(current_entity.translations)
   ) != set(current_entity.translations):
-    if updated_entity.code == 'VAV-3':
-      print(set(updated_entity.translations))
-      print(set(current_entity.translations))
-      print(
-          set(updated_entity.translations).intersection(
-              set(current_entity.translations)
-          )
-      )
     update_mask.append(
         entity_enumerations.EntityUpdateMaskAttribute.TRANSLATION
     )
+  else:
+    for updated_field in updated_entity.translations:
+      curent_translations = {
+          field.std_field_name: field for field in current_entity.translations
+      }
+      current_field = curent_translations.get(updated_field.std_field_name)
+      if isinstance(current_field, ef.DimensionalValueField) and isinstance(
+          updated_field, ef.DimensionalValueField
+      ):
+        # Unit mapping could change
+        if current_field.units != updated_field.units:
+          update_mask.append(
+              entity_enumerations.EntityUpdateMaskAttribute.TRANSLATION
+          )
+      elif isinstance(current_field, ef.MultistateValueField) and isinstance(
+          updated_field, ef.MultistateValueField
+      ):
+        # state mappings could change
+        current_states = current_model.GetStates(
+            current_field.reporting_entity_guid, current_field.std_field_name
+        )
+        updated_states = updated_model.GetStates(
+            updated_field.reporting_entity_guid, updated_field.std_field_name
+        )
+
+        if sorted(
+            current_states, key=lambda state: state.reporting_entity_guid
+        ) != sorted(
+            updated_states, key=lambda state: state.reporting_entity_guid
+        ):
+          update_mask.append(
+              entity_enumerations.EntityUpdateMaskAttribute.TRANSLATION
+          )
+
+      elif isinstance(current_field, ef.MissingField) and not isinstance(
+          updated_field, ef.MissingField
+      ):
+        # field was missing and now is not missing
+        update_mask.append(
+            entity_enumerations.EntityUpdateMaskAttribute.TRANSLATION
+        )
+      elif not isinstance(current_field, ef.MissingField) and isinstance(
+          updated_field, ef.MissingField
+      ):
+        # field was being reported but is now missing
+        update_mask.append(
+            entity_enumerations.EntityUpdateMaskAttribute.TRANSLATION
+        )
   return update_mask
 
 
@@ -156,7 +202,7 @@ def DetermineEntityOperations(
         export_entity, entity.ReportingEntity
     ):
       update_mask = DetermineReportingEntityUpdateMask(
-          export_entity, import_entity
+          current_model, updated_model, export_entity, import_entity
       )
     else:
       raise TypeError(

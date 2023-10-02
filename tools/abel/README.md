@@ -82,10 +82,8 @@ cd abel
 
 ## Using ABEL
 ABEL has a few pieces of core functionality, they are:
-1. Modify a spreadsheet or a building config for an existing building to produce an [UPDATE building config](../../ontology/docs/building_config.md#update)
-  * [Update Workflow](#update-workflow)
-2. Create a [Building Config](../../ontology/docs/building_config.md) from an [ABEL spreadsheet](../../tools/abel/validators/README.md) for a new building 
-  * [Initialization workflow](#initialization-workflow)
+* Ingest an [ABEL spreadsheet](../../tools/abel/validators/README.md) and export a valid [Building Config](../../ontology/docs/building_config.md) file
+* Ingest a [Building Config](../../ontology/docs/building_config.md) and export an [ABEL spreadsheet](../../tools/abel/validators/README.md)
 
 ### Command-line arguments for ABEL:
 `-c` or `--credential` absolute or relative path to a gcp OAuth client
@@ -97,7 +95,7 @@ against Google Sheets service.
   * A Google Sheets ID is found embedded into the spreadsheet's url. Required when ABEL is creating a building config from a Google spreadsheet.
   e.g. `https://docs/google/com/spreadsheets/d/<spreadsheet_id>/edit#gid=123467`
 
-`-b` or `--building_config` absolute o relative path to a local building configuration
+`-b` or `--building_config` absolute path to a local building configuration
 file. Only required for the `Building Config -> Spreadsheet` workflow.
   * [Building Configuration Docs](../../ontology/docs/building_config.md)
 
@@ -120,39 +118,9 @@ Config](../../ontology/docs/building_config.md).
 
 Please see the [ABEL spreadsheet docs](../../tools/abel/validators/README.md) for detailed instructions on how to create your own spreadsheet.
 
-### Update Workflow
+### Spreadsheet -> Building Config
 
-If you would like to create a building config to update an already onboarded building, then there are two options:
-1. Update an exported building config.
-
-  The process for using a building config to generate an ABEL spreadsheet is as
-  follows:
-
-  1. In `digitalbuildings/tools/abel` run ABEL with the command:
-  ```
-  python3 abel.py -c /path/to/credential.json -b absolute/path/to/building/config
-  ```
-
-2. Generate a building config from an already updated spreadsheet.
-
-  1. In `digitalbuildings/tools/abel` run ABEL with the command:
-  ```
-  python3 abel.py -s <input_spreadsheet_id> -c <path/to/client_credential.json> -d <path/to/output/directory>
-  ```
-  2. If your spreadsheet does not pass the validation criteria found in the
-    [spreadsheet docs](../../tools/abel/validators/README.md) then ABEL will fast
-    fail and a validation
-    report will be created in your current directory with the name,
-    `spreadsheet_validation_<todays_date_and_time>.log`
-  3. The resulting Building Config and instance validation report will be written
-    to the current directory with names:
-    * `bc_export_<today_date_and_time>.yaml`
-    * `instance_validation_<today_date_and_time>.log`
-
-### Initialization workflow
-If you would like create a building configuration file under the initialization operation
-
-The process for using an ABEL spreadsheet to generate a new Building Config is as
+The process for using an ABEL spreadsheet to generate a Building Config is as
 follows:
 
 1. Create a spreadsheet for ABEL from [ABEL Spreadsheet template](https://docs.google.com/spreadsheets/d/1tcLjFnHiXUT-xh5C1hRKiUVaUH_CzgSI8zFQ_B8q7vs/copy#gid=980240783)
@@ -160,7 +128,7 @@ follows:
    spreadsheet can be found in the [spreadsheet docs](../../tools/abel/validators/README.md)
 3. In `digitalbuildings/tools/abel` run ABEL with the command:
 ```
-python3 abel.py -s <input_spreadsheet_id> -c <path/to/client_credential.json> -d <path/to/output/directory>
+python3 abel.py -c <path/to/credential.json> -s <input_spreadsheet_id>
 ```
 4. If your spreadsheet does not pass the validation criteria found in the
    [spreadsheet docs](../../tools/abel/validators/README.md) then ABEL will fast
@@ -170,3 +138,13 @@ python3 abel.py -s <input_spreadsheet_id> -c <path/to/client_credential.json> -d
    to the same directory with names:
    * `bc_export_<today_date_and_time>.yaml`
    * `instance_validation_<today_date_and_time>.log`
+
+### Building Config -> Spreadsheet
+
+The process for generating an ABEL spreadsheet from a building config is as
+follows:
+
+1. In `digitalbuildings/tools/abel` run ABEL with the command:
+```
+python3 abel.py -c /path/to/credential.json -b absolute/path/to/building/config
+```

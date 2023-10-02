@@ -1,8 +1,9 @@
 CONFIG_METADATA:
-  operation: INITIALIZE
+  operation: EXPORT
 
 c773b86d-b0c0-46fc-bd3f-d726fadd5f1e:
   code: VAV-1
+  etag: 1234567
   links:
     0a85029e-96c5-48a0-afa8-23139f6eda67:
       zone_air_temperature_sensor: zone_air_temperature_sensor
@@ -13,6 +14,7 @@ c773b86d-b0c0-46fc-bd3f-d726fadd5f1e:
 
 4931e096-dea5-4b81-86ad-234c6d07b978:
   code: VAV-2
+  etag: 1234567
   connections:
     c773b86d-b0c0-46fc-bd3f-d726fadd5f1e:
     - FEEDS
@@ -27,6 +29,7 @@ c773b86d-b0c0-46fc-bd3f-d726fadd5f1e:
 0a85029e-96c5-48a0-afa8-23139f6eda67:
   cloud_device_id: "2541901344105616"
   code: GTWY-1
+  etag: 1234567
   translation:
     zone_air_temperature_sensor:
       present_value: zone_air_temperature_sensor.present_value
@@ -45,6 +48,7 @@ c773b86d-b0c0-46fc-bd3f-d726fadd5f1e:
 547a33c5-0ce4-4dfb-9924-5169a3475c89:
   cloud_device_id: "2541901344105618"
   code: GTWY-2
+  etag: 1234567
   translation:
     supply_air_flowrate_sensor_1:
       present_value: supply_air_flowrate_sensor.present_value
@@ -63,6 +67,7 @@ c773b86d-b0c0-46fc-bd3f-d726fadd5f1e:
 2b152e08-3440-4358-9067-3f2acc58c982:
   cloud_device_id: "2541901344105617"
   code: GTWY-3
+  etag: 1234567
   translation:
     zone_air_temperature_sensor:
       present_value: zone_air_temperature_sensor.present_value
@@ -81,6 +86,146 @@ c773b86d-b0c0-46fc-bd3f-d726fadd5f1e:
 8318f346-10b4-44f0-ac0b-bf7659510bfa:
   cloud_device_id: "2541901344105619"
   code: VAV-3
+  etag: 1234567
+  translation:
+    zone_air_temperature_sensor:
+      present_value: zone_air_temperature_sensor.present_value
+      units:
+        key: zone_air_temperature_sensor.units
+        values:
+          degrees_fahrenheit: degrees-farenheit
+    zone_air_temperature_setpoint:
+      present_value: zone_air_temperature_setpoint.present_value
+      units:
+        key: zone_air_temperature_setpoint.units
+        values:
+          degrees_fahrenheit: degrees-farenheit
+    run_command:
+      present_value: points.run_command.present-value
+      states:
+        'OFF': inactive
+        'ON': active
+  type: HVAC/VAV_SD_CSP
+
+15aa5434-3edc-47a9-8464-c01856d98db2:
+  cloud_device_id: "2541901344105622"
+  code: VAV-4
+  etag: 1234567
+  translation:
+    zone_air_temperature_sensor:
+      present_value: zone_air_temperature_sensor.present_value
+      units:
+        key: zone_air_temperature_sensor.units
+        values:
+          degrees_fahrenheit: degrees-farenheit
+    zone_air_temperature_setpoint:
+      present_value: zone_air_temperature_setpoint.present_value
+      units:
+        key: zone_air_temperature_setpoint.units
+        values:
+          degrees_fahrenheit: degrees-farenheit
+    run_command:
+      present_value: points.run_command.present-value
+      states:
+        'OFF': inactive
+        'ON': active
+  type: HVAC/VAV_SD_CSP
+
+fb2d9f0d-a2b7-4a9b-beb9-3bade8ebda17:
+  cloud_device_id: "2541901344105623"
+  code: VAV-5
+  etag: 1234567
+  translation:
+    zone_air_temperature_sensor:
+      present_value: zone_air_temperature_sensor.present_value
+      units:
+        key: zone_air_temperature_sensor.units
+        values:
+          degrees_fahrenheit: degrees-farenheit
+    zone_air_temperature_setpoint:
+      present_value: zone_air_temperature_setpoint.present_value
+      units:
+        key: zone_air_temperature_setpoint.units
+        values:
+          degrees_fahrenheit: degrees-farenheit
+    run_command:
+      present_value: points.run_command.present-value
+      states:
+        'OFF': inactive
+        'ON': active
+  type: HVAC/VAV_SD_CSP
+
+138d05e2-b7af-435c-9b6b-58c1af1adcbb:
+  cloud_device_id: "2541901344105624"
+  code: VAV-6
+  etag: 1234567
+  translation:
+    zone_air_temperature_sensor:
+      present_value: zone_air_temperature_sensor.present_value
+      units:
+        key: zone_air_temperature_sensor.units
+        values:
+          degrees_fahrenheit: degrees-farenheit
+    zone_air_temperature_setpoint:
+      present_value: zone_air_temperature_setpoint.present_value
+      units:
+        key: zone_air_temperature_setpoint.units
+        values:
+          degrees_fahrenheit: degrees-farenheit
+    run_command:
+      present_value: points.run_command.present-value
+      states:
+        'OFF': inactive
+        'ON': active
+  type: HVAC/VAV_SD_CSP
+
+2768f729-b389-4ebd-8c43-4eb25c46cdf3:
+  cloud_device_id: "254190134410565"
+  code: VAV-7
+  etag: 1234567
+  translation:
+    zone_air_temperature_sensor:
+      present_value: zone_air_temperature_sensor.present_value
+      units:
+        key: zone_air_temperature_sensor.units
+        values:
+          degrees_fahrenheit: degrees-farenheit
+    zone_air_temperature_setpoint:
+      present_value: zone_air_temperature_setpoint.present_value
+      units:
+        key: zone_air_temperature_setpoint.units
+        values:
+          degrees_fahrenheit: degrees-farenheit
+    run_command:
+      present_value: points.run_command.present-value
+      states:
+        'OFF': inactive
+        'ON': active
+  type: HVAC/VAV_SD_CSP
+
+e49b0687-e409-4a24-95d6-4629ed42e7b7:
+  cloud_device_id: "254190134410566"
+  code: VAV-8
+  etag: 1234567
+  translation:
+    zone_air_temperature_sensor:
+      present_value: zone_air_temperature_sensor.present_value
+      units:
+        key: zone_air_temperature_sensor.units
+        values:
+          degrees_fahrenheit: degrees-farenheit
+    zone_air_temperature_setpoint: MISSING
+    run_command:
+      present_value: points.run_command.present-value
+      states:
+        'OFF': inactive
+        'ON': active
+  type: HVAC/VAV_SD_CSP
+
+585cd867-f66a-4cca-abc1-ba0789abc7f0:
+  cloud_device_id: "254190134410567"
+  code: VAV-9
+  etag: 1234567
   translation:
     zone_air_temperature_sensor:
       present_value: zone_air_temperature_sensor.present_value
@@ -103,4 +248,5 @@ c773b86d-b0c0-46fc-bd3f-d726fadd5f1e:
 
 c2ba089b-3a5e-4c56-bdeb-748a9d1b0e99:
   code: TEST_BUILDING
+  etag: 1234567
   type: FACILITIES/BUILDING

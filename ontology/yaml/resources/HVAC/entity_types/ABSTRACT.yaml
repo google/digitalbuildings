@@ -6793,6 +6793,16 @@ OAQM:
   implements:
   - MONITORING
 
+UDEC:
+  guid: "8755e46b-4e3a-40a1-8abb-778bf309c8f8"
+  description: "Up and down extension control for shades."
+  is_abstract: true
+  uses:
+  - shade_up_command
+  - shade_down_command
+  opt_uses:
+  - shade_extent_percentage_sensor
+
 VSMC:
   guid: "6ff088d6-002e-4842-85a1-c40d3aef52a3"
   description: "Variable speed control mode."
@@ -6805,3 +6815,4 @@ VSMC:
   - low_speed_status
   - high_speed_status
   - schedule_run_command
+
