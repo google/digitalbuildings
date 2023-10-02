@@ -6794,6 +6794,7 @@ OAQM:
   - MONITORING
 
 UDEC:
+  guid: "8755e46b-4e3a-40a1-8abb-778bf309c8f8"
   description: "Up and down extension control for shades."
   is_abstract: true
   uses:
