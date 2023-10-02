@@ -6789,7 +6789,7 @@ OAQM:
   - MONITORING
 
 UDEC:
-  guid: "956f1afb-04b1-4d4d-afb9-4aff1ac51b20"
+  guid: "8755e46b-4e3a-40a1-8abb-778bf309c8f8"
   description: "Up and down extension control for shades."
   is_abstract: true
   uses:
@@ -6810,4 +6810,3 @@ VSMC:
   - low_speed_status
   - high_speed_status
   - schedule_run_command
-
