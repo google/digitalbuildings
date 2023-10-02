@@ -239,20 +239,20 @@ The following example shows a building with one floor and one room:
 
 ``` yaml
 # Building
-UK-LON-S2:
+A-BUILDING-CODE:
   type: FACILITIES/BUILDING
 
 # Floor
-UK-LON-S2-1:
+A-BUILDING-CODE-FLOOR1:
   type: FACILITIES/FLOOR
   connections:
-    UK-LON-S2: CONTAINS
+    A-BUILDING-CODE: CONTAINS
 
 # Room
-UK-LON-S2-1-1C3G:
+A-BUILDING-CODE-FLOOR1-ROOM123:
   type: FACILITIES/ROOM
   connections:
-    UK-LON-S2-1: CONTAINS
+    A-BUILDING-CODE-FLOOR1: CONTAINS
 
 ```
 
@@ -707,6 +707,9 @@ This mode, with an entity operation of `UPDATE`, introduces another attribute
 to the entity blocks keyed by `update_mask`. This is shown in the example for
 an entity coded as E4, showing all possible entity attributes, where
 `update_mask` is given with fields of `translation` and `cloud_device_id`.
+
+Note that `etag` is required for `UPDATE` and `DELETE` but not for `ADD`
+operations.
 
 ``` yaml
 CONFIG_METADATA:

@@ -15,6 +15,7 @@
 
 from typing import Any, Optional
 
+# pylint: disable=g-importing-member
 from googleapiclient.errors import HttpError
 
 
@@ -22,17 +23,17 @@ class SpreadsheetAuthorizationError(HttpError):
   """Extension of HttpError that adds a custom error message."""
 
   def __init__(self,
-               spreadsheet_id: str,
                resp: Any,
                content: Any,
-               uri: Optional[Any] = None):
+               uri: Optional[Any] = None,
+               spreadsheet_id: Optional[str] = None):
     """Init.
 
     Args:
-      spreadsheet_id: alpha-numerical id for a Google Sheets spreadsheet.
       resp: Http response.
       content: Bytes instances for http response content.
       uri: Http request uri.
+      spreadsheet_id: alpha-numerical id for a Google Sheets spreadsheet.
     """
     super().__init__(resp=resp, content=content)
     self.spreadsheet_id = spreadsheet_id

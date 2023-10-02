@@ -1,19 +1,36 @@
-# Digital Buildings Toolkit
+# Digital Buildings Tools
+
+Various tools have been developed to support the use of the Digital Buildings Ontology and Building Configuration files. 
+
+The tools are:
+  * [ABEL](./abel/README.md) generates from/to Google spreadsheet/[Building Configuration](../ontology/docs/building_config.md).
+  * [Explorer](./explorer/README.md) allows users to explorer the ontology types and their associated fields.
+  * [Instance Validator](./validators/instance_validator/README.md) which allows to validate the yaml ontology upon a change or an extension.
+    * A sub function of the Instance Validator is to also [validate telemetry messages](./validators/instance_validator/README.md#telemetry-validation) 
+    corresponding to entity blocks in a building configuration file.
+  * [Ontology Validator](./validators/ontology_validator/README.md) which allows to validate the yaml ontology upon a change or an extension.
+
+## Digital Buildings Toolkit
 
 The Digital Buildings Toolkit provides a centralized
 method for interfacing with all of the tools contained within the Digital
 Buildings Repository.
 
-## Install
+### Toolkit Web Application
+
+The [web-based toolkit application](dbo-toolkit-app.azurewebsites.net) also exists to provide a user-friendly interface to all of the Digital Buildings tools. 
+Only the Instance Validator is currently supported, but other tools are planned to be added in the near future.
+
+### Install
 
 To install please follow the instructions below.
 
-### First create a virtual env
+#### First create a virtual env
 
-Create the virtual environment with `virtualenv` followed by the environment name, in this example: `tooling`
+Create the virtual environment with `venv` followed by the environment name, in this example: `tooling`, in the digitalbuildings repository.
 
 ```
-virtualenv tooling
+python -m venv tooling
 ```
 
 
@@ -32,12 +49,12 @@ tooling\Scripts\activate
 
 Then you can either use pip or setuptools.
 
-### Pip
+#### Pip
 1. Run `python3 -m pip install --upgrade pip` to ensure that your Python package management tools are up-to-date.
 
 2. Run `bash pip_install.sh` or `pip_install.bat` (windows) from the following directory digitalbuildings/tools.
 
-### Docker
+#### Docker
 
 1. Install [Docker Desktop](https://docs.docker.com/desktop/)
 2. Run `./tools/docker_run.sh` to build the docker image.
@@ -46,13 +63,13 @@ Then you can either use pip or setuptools.
 $ ./tools/docker_run.sh abel
 ```
 
-### Setup (to be deprecated)
+#### Setup (to be deprecated)
 
 1. Follow setup instructions for the [Instance Validator](./validators/instance_validator).
 2. Follow setup instructions for the [GUID Generator](./guid_generator).
 3. Run `sudo python setup.py` for this directory.
 
-## Toolkit Workflow
+### Toolkit Workflow
 
 Run `python toolkit.py` and provide the following arguments:
 
@@ -68,7 +85,7 @@ Run `python toolkit.py` and provide the following arguments:
 
   * `-s/--subscription` The fully-qualified path to a Google Cloud Pubsub subscription, e.g. projects/google.com:your-project/subscriptions/your-subscription.
 
-  * `-a/--service-account` The fully-qualified path to a service account key file corresponding to an account that has permission to pull messages from the subscription.
+  * `--credential` or `-c`: Should be an absolute or relative path to an OAuth client credential JSON file.
 
   * `-t/--timeout` **[Optional]** The timeout duration in seconds for the telemetry validation test. The default value is 600 seconds, or 10 minutes. If this time limit is exceeded before the validator receives a test pubsub message for each of the entities configured in the given instance config file, the test will fail with an error and report the entities that were not heard from.
 
@@ -76,12 +93,12 @@ Run `python toolkit.py` and provide the following arguments:
 
   `python instance_validator.py -i input.yaml` validates a building config against the udmi standard.
 
-  * **NOTE:** The service account key and subscription are provided by the Google team. Please reach out to your IoT TPM for guidance.
+  * **NOTE:** The OAuth credential and subscription are provided by the Google team. Please reach out to your IoT TPM for guidance.
 
-6. `-d/--report-directory` To write instance validation (instance_validation_report.txt) and telemetry validation (telemetry_validation_report.json) reports to the report-directory; otherwise writes instance validation to console and telemetry validation to current working directory. 
+6. `-d/--report-directory` To write instance validation (instance_validation_report.txt) and telemetry validation (telemetry_validation_report.json) reports to the report-directory; otherwise writes instance validation to console and telemetry validation to current working directory.
 
 For example:
-`python toolkit.py -i //path/to/file -g -v -s subscription-name -a service-account-name -d //path/to/report-directory`
+`python toolkit.py -i //path/to/file -g -v -s subscription-name -c //path/to/oauth/cred.json -d //path/to/report-directory`
 1. Takes in a building configuration file.
 2. Generates guids for every entity instance.
 3. Re-writes building config in the new format.

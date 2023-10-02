@@ -17,17 +17,18 @@ from unittest import mock
 
 from absl.testing import absltest
 
-from model.constants import BC_GUID
-from model.constants import ENTITY_CODE
-from model.constants import MISSING
-from model.constants import RAW_FIELD_NAME
-from model.constants import RAW_UNIT_PATH
-from model.constants import RAW_UNIT_VALUE
-from model.constants import REPORTING_ENTITY_CODE
-from model.constants import REPORTING_ENTITY_FIELD_NAME
-from model.constants import REPORTING_ENTITY_GUID
-from model.constants import STANDARD_FIELD_NAME
-from model.constants import STANDARD_UNIT_VALUE
+# pylint: disable=g-importing-member
+from model.constants import CONDITION
+from model.constants import CONDITION_TYPE
+from model.constants import DATA_VALIDATION
+from model.constants import MISSING_FALSE
+from model.constants import MISSING_TRUE
+from model.constants import ONE_OF_LIST
+from model.constants import SHOW_CUSTOM_UI
+from model.constants import STRICT_VALIDATION
+from model.constants import STRING_VALUE
+from model.constants import USER_ENTERED_VALUE
+from model.constants import VALUES
 from model.entity_field import DimensionalValueField
 from model.entity_field import MissingField
 from model.entity_field import MultistateValueField
@@ -76,22 +77,63 @@ class MissingFieldTest(absltest.TestCase):
     )
     self.assertEqual(test_missing_field.entity_guid, TEST_REPORTING_GUID)
 
+  def testMissingFieldEquality(self):
+    test_missing_field_1 = MissingField.FromDict(TEST_MISSING_FIELD_DICT)
+    test_missing_field_2 = MissingField.FromDict(TEST_MISSING_FIELD_DICT)
+
+    self.assertEqual(test_missing_field_1, test_missing_field_2)
+
+  def testMissingFieldInequality(self):
+    test_missing_field_1 = MissingField.FromDict(TEST_MISSING_FIELD_DICT)
+    test_missing_field_2 = MissingField.FromDict(TEST_MISSING_FIELD_DICT)
+    test_missing_field_2.std_field_name = 'bad_name'
+
+    self.assertNotEqual(test_missing_field_1, test_missing_field_2)
+
+  def testMissingFieldEqualityRaisesTypeError(self):
+    test_missing_field = MissingField.FromDict(TEST_MISSING_FIELD_DICT)
+
+    # pylint: disable=unnecessary-dunder-call
+    with self.assertRaises(TypeError):
+      test_missing_field.__eq__('not a field')
+
   @mock.patch.object(GuidToEntityMap, 'GetEntityCodeByGuid')
   def testMissingFieldGetSpreadsheetRowMapping(self, test_get_code):
     test_get_code.return_value = TEST_REPORTING_ENTITY_CODE
     test_missing_field = MissingField.FromDict(TEST_MISSING_FIELD_DICT)
+    test_guid_to_entity_map = GuidToEntityMap()
     expected_row_mapping = {
-        STANDARD_FIELD_NAME: TEST_MISSING_STANDARD_FIELD_NAME,
-        RAW_FIELD_NAME: '',
-        ENTITY_CODE: TEST_REPORTING_ENTITY_CODE,
-        REPORTING_ENTITY_FIELD_NAME: TEST_MISSING_STANDARD_FIELD_NAME,
-        REPORTING_ENTITY_CODE: TEST_REPORTING_ENTITY_CODE,
-        REPORTING_ENTITY_GUID: TEST_REPORTING_GUID,
-        BC_GUID: TEST_REPORTING_GUID,
-        MISSING: 'TRUE',
+        VALUES: [
+            {
+                USER_ENTERED_VALUE: {
+                    STRING_VALUE: TEST_MISSING_STANDARD_FIELD_NAME
+                }
+            },
+            {USER_ENTERED_VALUE: {STRING_VALUE: ''}},
+            {USER_ENTERED_VALUE: {STRING_VALUE: TEST_REPORTING_ENTITY_CODE}},
+            {USER_ENTERED_VALUE: {STRING_VALUE: TEST_REPORTING_GUID}},
+            {USER_ENTERED_VALUE: {STRING_VALUE: TEST_REPORTING_ENTITY_CODE}},
+            {USER_ENTERED_VALUE: {STRING_VALUE: TEST_REPORTING_GUID}},
+            {
+                USER_ENTERED_VALUE: {STRING_VALUE: MISSING_TRUE},
+                DATA_VALIDATION: {
+                    CONDITION: {
+                        CONDITION_TYPE: ONE_OF_LIST,
+                        VALUES: [
+                            {USER_ENTERED_VALUE: MISSING_TRUE},
+                            {USER_ENTERED_VALUE: MISSING_FALSE},
+                        ],
+                    },
+                    STRICT_VALIDATION: True,
+                    SHOW_CUSTOM_UI: True,
+                },
+            },
+        ]
     }
 
-    actual_row_mapping = test_missing_field.GetSpreadsheetRowMapping()
+    actual_row_mapping = test_missing_field.GetSpreadsheetRowMapping(
+        guid_to_entity_map=test_guid_to_entity_map
+    )
 
     self.assertEqual(expected_row_mapping, actual_row_mapping)
 
@@ -163,19 +205,49 @@ class MultistateValueFieldTest(absltest.TestCase):
     multi_state_value_field_instance = MultistateValueField.FromDict(
         TEST_MULTISTATE_VALUE_FIELD_DICT
     )
+    test_guid_to_entity_map = GuidToEntityMap()
     expected_row_mapping = {
-        STANDARD_FIELD_NAME: TEST_MULTISTATE_STANDARD_FIELD_NAME,
-        RAW_FIELD_NAME: TEST_MULTISTATE_RAW_FIELD_NAME,
-        MISSING: 'FALSE',
-        ENTITY_CODE: TEST_REPORTING_ENTITY_CODE,
-        REPORTING_ENTITY_FIELD_NAME: TEST_MULTISTATE_REPORTING_FIELD_NAME,
-        REPORTING_ENTITY_CODE: TEST_REPORTING_ENTITY_CODE,
-        REPORTING_ENTITY_GUID: TEST_REPORTING_GUID,
-        BC_GUID: TEST_REPORTING_GUID,
+        VALUES: [
+            {
+                USER_ENTERED_VALUE: {
+                    STRING_VALUE: TEST_MULTISTATE_STANDARD_FIELD_NAME
+                }
+            },
+            {
+                USER_ENTERED_VALUE: {
+                    STRING_VALUE: TEST_MULTISTATE_RAW_FIELD_NAME
+                }
+            },
+            {
+                USER_ENTERED_VALUE: {
+                    STRING_VALUE: TEST_MULTISTATE_REPORTING_FIELD_NAME
+                }
+            },
+            {USER_ENTERED_VALUE: {STRING_VALUE: TEST_REPORTING_ENTITY_CODE}},
+            {USER_ENTERED_VALUE: {STRING_VALUE: TEST_REPORTING_GUID}},
+            {USER_ENTERED_VALUE: {STRING_VALUE: TEST_REPORTING_ENTITY_CODE}},
+            {USER_ENTERED_VALUE: {STRING_VALUE: TEST_REPORTING_GUID}},
+            {
+                USER_ENTERED_VALUE: {STRING_VALUE: MISSING_FALSE},
+                DATA_VALIDATION: {
+                    CONDITION: {
+                        CONDITION_TYPE: ONE_OF_LIST,
+                        VALUES: [
+                            {USER_ENTERED_VALUE: MISSING_TRUE},
+                            {USER_ENTERED_VALUE: MISSING_FALSE},
+                        ],
+                    },
+                    STRICT_VALIDATION: True,
+                    SHOW_CUSTOM_UI: True,
+                },
+            },
+        ]
     }
 
     actual_row_mapping = (
-        multi_state_value_field_instance.GetSpreadsheetRowMapping()
+        multi_state_value_field_instance.GetSpreadsheetRowMapping(
+            guid_to_entity_map=test_guid_to_entity_map
+        )
     )
 
     self.assertEqual(expected_row_mapping, actual_row_mapping)
@@ -273,22 +345,58 @@ class DimensionalValueFieldTest(absltest.TestCase):
     test_dimensional_value_field_instance = DimensionalValueField.FromDict(
         TEST_DIMENSIONAL_VALUE_FIELD_DICT
     )
+    test_guid_to_entity_map = GuidToEntityMap()
     expected_row_mapping = {
-        STANDARD_FIELD_NAME: TEST_DIMENSIONAL_VALUE_STANDARD_FIELD_NAME,
-        RAW_FIELD_NAME: TEST_DIMENSIONAL_VALUE_RAW_FIELD_NAME,
-        MISSING: 'FALSE',
-        REPORTING_ENTITY_FIELD_NAME: TEST_DIMENSIONAL_REPORTING_FIELD_NAME,
-        ENTITY_CODE: TEST_VIRTUAL_ENTITY_CODE,
-        BC_GUID: TEST_VIRTUAL_GUID,
-        REPORTING_ENTITY_CODE: TEST_REPORTING_ENTITY_CODE,
-        REPORTING_ENTITY_GUID: TEST_REPORTING_GUID,
-        RAW_UNIT_PATH: 'points.filter_differential_pressure_setpoint.units',
-        STANDARD_UNIT_VALUE: 'pascals',
-        RAW_UNIT_VALUE: 'Pa',
+        VALUES: [
+            {
+                USER_ENTERED_VALUE: {
+                    STRING_VALUE: TEST_DIMENSIONAL_VALUE_STANDARD_FIELD_NAME
+                }
+            },
+            {
+                USER_ENTERED_VALUE: {
+                    STRING_VALUE: TEST_DIMENSIONAL_VALUE_RAW_FIELD_NAME
+                }
+            },
+            {
+                USER_ENTERED_VALUE: {
+                    STRING_VALUE: TEST_DIMENSIONAL_REPORTING_FIELD_NAME
+                }
+            },
+            {USER_ENTERED_VALUE: {STRING_VALUE: TEST_VIRTUAL_ENTITY_CODE}},
+            {USER_ENTERED_VALUE: {STRING_VALUE: TEST_VIRTUAL_GUID}},
+            {USER_ENTERED_VALUE: {STRING_VALUE: TEST_REPORTING_ENTITY_CODE}},
+            {USER_ENTERED_VALUE: {STRING_VALUE: TEST_REPORTING_GUID}},
+            {
+                USER_ENTERED_VALUE: {STRING_VALUE: MISSING_FALSE},
+                DATA_VALIDATION: {
+                    CONDITION: {
+                        CONDITION_TYPE: ONE_OF_LIST,
+                        VALUES: [
+                            {USER_ENTERED_VALUE: MISSING_TRUE},
+                            {USER_ENTERED_VALUE: MISSING_FALSE},
+                        ],
+                    },
+                    STRICT_VALIDATION: True,
+                    SHOW_CUSTOM_UI: True,
+                },
+            },
+            {
+                USER_ENTERED_VALUE: {
+                    STRING_VALUE: (
+                        'points.filter_differential_pressure_setpoint.units'
+                    )
+                }
+            },
+            {USER_ENTERED_VALUE: {STRING_VALUE: 'pascals'}},
+            {USER_ENTERED_VALUE: {STRING_VALUE: 'Pa'}},
+        ]
     }
 
     actual_row_mapping = (
-        test_dimensional_value_field_instance.GetSpreadsheetRowMapping()
+        test_dimensional_value_field_instance.GetSpreadsheetRowMapping(
+            guid_to_entity_map=test_guid_to_entity_map
+        )
     )
 
     self.assertEqual(expected_row_mapping, actual_row_mapping)
