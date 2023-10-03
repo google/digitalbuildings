@@ -170,3 +170,14 @@ python3 abel.py -s <input_spreadsheet_id> -c <path/to/client_credential.json> -d
    to the same directory with names:
    * `bc_export_<today_date_and_time>.yaml`
    * `instance_validation_<today_date_and_time>.log`
+
+### Split Functionality
+To split a building config file on a certain namespace:
+
+1. Run abel with a json credential and a building config:
+    ```
+    python3 abel.py -c /path/to/credential.json -b absolute/path/to/building/config
+    ```
+2. Select option 3: `Split a building config`
+3. ABEL will generate a new building config split on the desired namespace
+   along with any dependencies. Provide the `-d` argument if you would like ABEL to write to a specific directory.
