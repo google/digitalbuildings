@@ -1603,16 +1603,16 @@ literals:
   - OPEN
   - CLOSED
 
-- low_smoke_alarm: # for aspirating type smoke detectors
+- low_smoke_intensity_alarm: # for aspirating type smoke detectors
   - ACTIVE
   - INACTIVE
-- medium_smoke_alarm: # for aspirating type smoke detectors
+- medium_smoke_intensity_alarm: # for aspirating type smoke detectors
   - ACTIVE
   - INACTIVE
 - high_zone_air_h2_concentration_alarm:
   - ACTIVE
   - INACTIVE
-- gas_release_status:
+- gas_release_valve_status:
   - OPEN
   - CLOSED
 

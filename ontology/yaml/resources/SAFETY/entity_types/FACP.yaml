@@ -57,7 +57,7 @@ FACP_ASD:
   implements:
   - FACP
   opt_uses:
-  - low_smoke_alarm
-  - medium_smoke_alarm
+  - low_smoke_intensity_alarm
+  - medium_smoke_intensity_alarm
   - fire_alarm
   - master_alarm

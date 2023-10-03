@@ -33,4 +33,4 @@ FSS_FA2X_GS:
   - FA2X
   uses:
   - master_alarm
-  - gas_release_status
+  - gas_release_valve_status
