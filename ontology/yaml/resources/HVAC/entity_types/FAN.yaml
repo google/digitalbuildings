@@ -771,6 +771,7 @@ FAN_SS_MSM:
   - MSM
 
 FAN_SS_SRC:
+  guid: "44c1a03d-8639-446e-ab61-9f7b98016304"
   description: "Basic fan with start/stop and schedule run command."
   is_canonical: true
   implements:
