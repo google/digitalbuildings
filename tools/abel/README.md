@@ -87,6 +87,8 @@ ABEL has a few pieces of core functionality, they are:
   * [Update Workflow](#update-workflow)
 2. Create a [Building Config](../../ontology/docs/building_config.md) from an [ABEL spreadsheet](../../tools/abel/validators/README.md) for a new building 
   * [Initialization workflow](#initialization-workflow)
+3. Split a building configuration file on a namespace
+  * [Split Workflow](#split-functionality)
 
 ### Command-line arguments for ABEL:
 `-c` or `--credential` absolute or relative path to a gcp OAuth client
