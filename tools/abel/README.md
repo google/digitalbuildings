@@ -18,10 +18,11 @@ Total setup process should only take about 15 minutes.
 Before starting the setup and installation process, please ensure that the
 dependencies are met:
 1. You are running **Python 3.9** or higher
-3. You have installed [virtualenv](https://pypi.org/project/virtualenv/)
 2. you have installed the [Google Cloud CLI](https://cloud.google.com/sdk/docs/install)
 
 ### Set up a tooling environment
+
+If environment is already set up then the following steps can be ignored.
 
 1. Clone the Digital Buildings repository
 
@@ -59,7 +60,7 @@ dependencies are met:
 
 * Linux/MacOs:
   ```
-  bash pip_install.sh
+  ./pip_install.sh
   ```
 
 * Windows:
@@ -111,7 +112,7 @@ Validator](../validators/ontology_validator) will surface validation results
 from the modified ontology, and Building Configuration files will be validated
 against the modified ontology.
 
-`-d` or `--output-dir` fully qualified or relative file path to a directory which ABEL can write validation logs to. ABEL must have write access to this directory or else an error will be raised.
+`-d` or `--output-dir` fully qualified or relative file path to a directory which ABEL can write files to. ABEL must have write access to this directory or else an error will be raised.
 
 ### The ABEL Spreadsheet
 The ABEL spreadsheet serves as a user-friendly interface for ABEL and is what
@@ -176,7 +177,7 @@ To split a building config file on a certain namespace:
 
 1. Run abel with a json credential and a building config:
     ```
-    python3 abel.py -c /path/to/credential.json -b absolute/path/to/building/config
+    python3 abel.py -c </path/to/credential.json> -b </path/to/building/config>
     ```
 2. Select option 3: `Split a building config`
 3. ABEL will generate a new building config split on the desired namespace
