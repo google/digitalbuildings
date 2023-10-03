@@ -192,7 +192,7 @@ class VirtualEntity(Entity):
     virtual_entity_instance = cls(
         code=entity_dict[ENTITY_CODE],
         bc_guid=entity_dict[BC_GUID],
-        namespace=entity_dict[NAMESPACE],
+        namespace=EntityNamespace(entity_dict.get(NAMESPACE).upper()),
         type_name=entity_dict[TYPE_NAME],
     )
     if ETAG in entity_dict.keys():
@@ -246,7 +246,7 @@ class VirtualEntity(Entity):
             },
             {USER_ENTERED_VALUE: {STRING_VALUE: None}},
             {
-                USER_ENTERED_VALUE: {STRING_VALUE: self.namespace},
+                USER_ENTERED_VALUE: {STRING_VALUE: self.namespace.value},
                 DATA_VALIDATION: {
                     CONDITION: {
                         CONDITION_TYPE: ONE_OF_LIST,
@@ -323,7 +323,7 @@ class ReportingEntity(Entity):
     reporting_entity_instance = cls(
         code=entity_dict[ENTITY_CODE],
         bc_guid=entity_dict[BC_GUID],
-        namespace=entity_dict[NAMESPACE],
+        namespace=EntityNamespace(entity_dict.get(NAMESPACE).upper()),
         type_name=entity_dict[TYPE_NAME],
         cloud_device_id=entity_dict[CLOUD_DEVICE_ID],
     )
@@ -379,7 +379,7 @@ class ReportingEntity(Entity):
             },
             {USER_ENTERED_VALUE: {STRING_VALUE: self.cloud_device_id}},
             {
-                USER_ENTERED_VALUE: {STRING_VALUE: self.namespace},
+                USER_ENTERED_VALUE: {STRING_VALUE: self.namespace.value},
                 DATA_VALIDATION: {
                     CONDITION: {
                         CONDITION_TYPE: ONE_OF_LIST,
