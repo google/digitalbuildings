@@ -164,7 +164,7 @@ class ModelBuilderTest(absltest.TestCase):
     self.assertIsInstance(
         model.guid_to_entity_map.GetEntityByGuid(model.site.guid), Site
     )
-    self.assertEqual(model.site.code, 'TEST_BUILDING')
+    self.assertEqual(model.site.code, 'US_SEA_BLDG1')
     self.assertLen(model.entities, 6)
     self.assertLen(model.fields, 9)
     self.assertLen(model.connections, 1)
