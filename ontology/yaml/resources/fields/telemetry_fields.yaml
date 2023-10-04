@@ -36,6 +36,9 @@ literals:
 - chilled_supply_water_temperature_setpoint:
     flexible_min: 255.9259259
     flexible_max: 308.1481481
+- chilled_return_water_temperature_setpoint:
+    flexible_min: 255.9259259
+    flexible_max: 308.1481481  
 - chilled_water_bypass_valve_percentage_command:
     fixed_min: 0.0
     fixed_max: 100.0
@@ -3187,6 +3190,26 @@ literals:
   - INACTIVE
 
 - low_discharge_air_static_pressure_alarm:
+  - ACTIVE
+  - INACTIVE
+
+- soundpressurelevel_sensor:
+    fixed_min: -60
+    flexible_max: 200
+
+- zone_occupancy_count:
+    fixed_min: 0
+    flexible_max: 1000
+
+- zone_air_voc_aqi_sensor:
+    fixed_min: 0
+    flexible_max: 500
+
+- zone_air_smoke_aqi_sensor:
+    fixed_min: 0
+    flexible_max: 80
+
+- tamper_alarm:
   - ACTIVE
   - INACTIVE
 
