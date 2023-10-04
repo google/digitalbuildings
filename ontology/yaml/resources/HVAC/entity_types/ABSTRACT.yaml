@@ -5098,6 +5098,7 @@ SWTM:
 
 
 RWTM:
+  guid: "a0554d1c-6ad6-4794-bb99-d7926918be8c"
   description: "Return water temperature monitoring."
   is_abstract: true
   implements:
