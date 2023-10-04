@@ -257,6 +257,7 @@ SENSOR_ZTM_ZHM_CO2M_VOCM_PMM:
   - PMM
 
 SENSOR_ZTM_ZHM_ZOC:
+  guid: "2d00aa65-3d2f-45da-b1fb-a064b708b30c"
   description: "Zone occupant counter with zone temperature & humidity monitoring."
   is_canonical: true
   implements:
@@ -266,6 +267,7 @@ SENSOR_ZTM_ZHM_ZOC:
   - ZOC
 
 SENSOR_ZTM_ZHM_CO2M_VOCM_PMDM_SPLM_ZAQIM:
+  guid: "bb571111-5441-496d-8de1-d73ebed9a5c1"
   description: "Indoor Air Quality sensor with temperature, humidity, CO2, VOC, particulates (density), illuminance and sound monitoring."
   is_canonical: true
   implements:
@@ -292,6 +294,7 @@ SENSOR_ZTM_ZHM_CO2M_VOCM_PMDM:
   - PMDM
 
 SENSOR_ZTM_ZHM_CO2M_SPLM_PMDM_COM_ZSPM_VOCM_ZAQIM_MS_TMPR:
+  guid: "7a9fdffb-c8b1-4fa0-905d-fc13c54561cf"
   description: "Indoor Air Quality sensor with temperature, humidity, CO2, CO, sound, particulates (density), illuminance, formaldehyde, pressure sensors with air quality, vape, TVOC indexes and motion & tamper detection."
   is_canonical: true
   implements:
@@ -311,6 +314,7 @@ SENSOR_ZTM_ZHM_CO2M_SPLM_PMDM_COM_ZSPM_VOCM_ZAQIM_MS_TMPR:
   - tamper_alarm
 
 SENSOR_ZOC:
+  guid: "8b55199e-c756-430a-b424-17e408ed2ec0"
   description: "Zone occupant counter sensor."
   is_canonical: true
   implements:
