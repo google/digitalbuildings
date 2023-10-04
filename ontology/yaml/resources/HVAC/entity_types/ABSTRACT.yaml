@@ -3000,6 +3000,10 @@ HT2SWC:
   - heating_thermal_power_capacity
   - high_supply_water_temperature_alarm
   - low_supply_water_temperature_alarm
+  - heater_run_status_1
+  - heater_run_status_2
+  - failed_alarm_1
+  - failed_alarm_2
   uses:
   - heater_run_command_1
   - heater_run_command_2
@@ -5089,6 +5093,20 @@ SWTM:
   - low_supply_water_temperature_alarm
   uses:
   - supply_water_temperature_sensor
+
+
+RWTM:
+  description: "Return water temperature monitoring."
+  is_abstract: true
+  implements:
+  - MONITORING
+  opt_uses:
+  - cooling_request_count
+  - heating_request_count
+  - high_return_water_temperature_alarm
+  - low_return_water_temperature_alarm
+  uses:
+  - return_water_temperature_sensor
 
 
 CWDPM:
