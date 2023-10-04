@@ -168,6 +168,27 @@ class Model(object):
 
       return model_builder, operations
 
+    @classmethod
+    def FromEntities(cls, site: Site, entities: List[Entity]) -> ...:
+      """Returns a Model instance built from a list of entity instances.
+
+      The Build method does not need to be called after this class method
+      because the entities being loaded into this method are pre-built. Meaning,
+      These entities already have their links, translations, or states connected
+      to them.
+
+      Args:
+        site: Site instance for a model.
+        entities: List of Entity instances to be a part of a Model instance.
+
+      Returns: A Model instance.
+      """
+      model_builder = cls(site)
+      model_builder.entities = entities
+      for entity in entities:
+        model_builder.guid_to_entity_map.AddEntity(entity)
+      return Model(model_builder)
+
     def Build(self) -> ...:
       """Connects ABEL graph with Guids as edges.
 
@@ -215,6 +236,16 @@ class Model(object):
     self._states = builder.states
     self._connections = builder.connections
     self._guid_to_entity_map = builder.guid_to_entity_map
+
+  def __eq__(self, other):
+    if not isinstance(other, Model):
+      return False
+    if self.site != other.site:
+      return False
+    for entity in self.entities:
+      if entity != other.GetEntity(entity.bc_guid):
+        return False
+    return True
 
   @property
   def site(self) -> Site:
