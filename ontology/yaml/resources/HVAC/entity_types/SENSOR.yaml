@@ -255,3 +255,64 @@ SENSOR_ZTM_ZHM_CO2M_VOCM_PMM:
   - CO2M
   - VOCM
   - PMM
+
+SENSOR_ZTM_ZHM_ZOC:
+  description: "Zone occupant counter with zone temperature & humidity monitoring."
+  is_canonical: true
+  implements:
+  - /SENSOR
+  - ZTM
+  - ZHM
+  - ZOC
+
+SENSOR_ZTM_ZHM_CO2M_VOCM_PMDM_SPLM_ZAQIM:
+  description: "Indoor Air Quality sensor with temperature, humidity, CO2, VOC, particulates (density), illuminance and sound monitoring."
+  is_canonical: true
+  implements:
+  - /SENSOR
+  - ZTM
+  - ZHM
+  - CO2M
+  - VOCM
+  - PMDM
+  - SPLM
+  - ZAQIM
+  uses:
+  - illuminance_sensor
+
+SENSOR_ZTM_ZHM_CO2M_VOCM_PMDM:
+  description: "Indoor Air Quality sensor with temperature, humidity, CO2, VOC, particulates (density) monitoring."
+  is_canonical: true
+  implements:
+  - /SENSOR
+  - ZTM
+  - ZHM
+  - CO2M
+  - VOCM
+  - PMDM
+
+SENSOR_ZTM_ZHM_CO2M_SPLM_PMDM_COM_ZSPM_VOCM_ZAQIM_MS_TMPR:
+  description: "Indoor Air Quality sensor with temperature, humidity, CO2, CO, sound, particulates (density), illuminance, formaldehyde, pressure sensors with air quality, vape, TVOC indexes and motion & tamper detection."
+  is_canonical: true
+  implements:
+  - /SENSOR
+  - ZTM
+  - ZHM
+  - CO2M
+  - SPLM
+  - PMDM
+  - COM
+  - ZSPM
+  - VOCM
+  - ZAQIM
+  uses:
+  - illuminance_sensor
+  - motion_status
+  - tamper_alarm
+
+SENSOR_ZOC:
+  description: "Zone occupant counter sensor."
+  is_canonical: true
+  implements:
+  - /SENSOR
+  - ZOC
