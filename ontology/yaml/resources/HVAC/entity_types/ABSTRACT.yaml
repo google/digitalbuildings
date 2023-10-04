@@ -1126,6 +1126,18 @@ SCHWTC:
   - chilled_supply_water_temperature_sensor
   - chilled_supply_water_temperature_setpoint
 
+RCHWTC:
+  description: "Return chilled water temperature control."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  opt_uses:
+  - chilled_supply_water_temperature_sensor
+  - cooling_percentage_command
+  - cooling_request_count
+  uses:
+  - chilled_return_water_temperature_sensor
+  - chilled_return_water_temperature_setpoint
 
 WDPC:
   guid: "86b2c846-0cc3-4828-8648-88c2082c900e"
