@@ -97,6 +97,7 @@ CH_SS_SCHWTC_CWDT:
   - CWDT
 
 CH_SS_RCHWTC_CWDT:
+  guid: "3af118e1-0281-4a4b-bf9b-4ca754cb945b"
   description: "Simple water cooled chiller, return water temperature control."
   is_canonical: true
   implements:
