@@ -66,7 +66,7 @@ class Site(object):
 
   def __eq__(self, other: ...) -> bool:
     if not isinstance(other, Site):
-      raise TypeError('Other object is not a Site instance.')
+      return False
     return self.code == other.code and self.guid == other.guid
 
   @classmethod

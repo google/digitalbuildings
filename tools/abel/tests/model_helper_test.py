@@ -7,11 +7,15 @@ from absl.testing import absltest
 
 from model import import_helper
 from model import model_helper
+from model.entity_enumerations import EntityNamespace
 from model.entity_enumerations import EntityOperationType
 from model.entity_enumerations import EntityUpdateMaskAttribute
 from model.model_builder import Model
 from tests.test_constants import TEST_RESOURCES
 
+_GOOD_TEST_BUILDING_CONFIG = os.path.join(
+    TEST_RESOURCES, 'good_test_building_config.yaml'
+)
 _GOOD_TEST_BUILDING_CONFIG_EXPORT = os.path.join(
     TEST_RESOURCES, 'good_test_building_config_export.yaml'
 )
@@ -20,6 +24,9 @@ _GOOD_TEST_UPDATED_BUILDING_CONFIG = os.path.join(
 )
 _BAD_TEST_UPDATED_BUILDING_CONFIG = os.path.join(
     TEST_RESOURCES, 'bad_test_building_config_update.yaml'
+)
+_GOOD_PRE_SPLIT_CONFIG = os.path.join(
+    TEST_RESOURCES, 'good_building_config_pre_split.yaml'
 )
 
 
@@ -180,6 +187,33 @@ class ModelHelperTest(absltest.TestCase):
     )
 
     self.assertEqual(actual_updated_mask, expected_updated_mask)
+
+  def testSplit(self):
+    pre_split_building_config = import_helper.DeserializeBuildingConfiguration(
+        _GOOD_PRE_SPLIT_CONFIG
+    )
+    post_split_building_config = import_helper.DeserializeBuildingConfiguration(
+        _GOOD_TEST_BUILDING_CONFIG
+    )
+    unbuilt_pre_split_model, pre_split_operations = (
+        Model.Builder.FromBuildingConfig(
+            pre_split_building_config[0], pre_split_building_config[1]
+        )
+    )
+    unbuilt_post_split_model, pre_split_operations = (
+        Model.Builder.FromBuildingConfig(
+            post_split_building_config[0], post_split_building_config[1]
+        )
+    )
+
+    built_pre_split_model = unbuilt_pre_split_model.Build()
+    built_post_split_model = unbuilt_post_split_model.Build()
+
+    actual_split_model = model_helper.Split(
+        built_pre_split_model, pre_split_operations, EntityNamespace.HVAC
+    )[0]
+
+    self.assertEqual(actual_split_model, built_post_split_model)
 
 
 if __name__ == '__main__':

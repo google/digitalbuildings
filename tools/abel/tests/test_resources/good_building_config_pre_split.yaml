@@ -101,6 +101,24 @@ c773b86d-b0c0-46fc-bd3f-d726fadd5f1e:
         'ON': active
   type: HVAC/VAV_SD_DSP
 
+ffa889a4-0f47-458c-bd89-894d2f6ee381:
+  cloud_device_id: "2541901344105621"
+  code: LGRP-1
+  translation:
+    brightness_percentage_sensor:
+      present_value: brightness_percentage_sensor.present_value
+      units:
+        key: brightness_percentage_sensor.units
+        values:
+          lumens: lumens
+    brightness_percentage_command:
+      present_value: brightness_percentage_command.present_value
+      units:
+        key: brightness_percentage_command.units
+        values:
+          lumens: lumens
+  type: LIGHTING/LGRP_DC
+
 guid123:
   code: US_SEA_BLDG1
   type: FACILITIES/BUILDING
