@@ -142,6 +142,7 @@ descriptor:
   inlet: "Area of media entrance."
   inhibit: "Prohibit from executing a function or starting an operation."
   input: "The input to a system."
+  intensity: "The relative magnitude or strength of something (i.e., high_intensity_* indicates something is strong or forceful)."
   inter: "Represents something in between references (e.g. average_inter_line_voltage, the average voltage between lines)."
   isolation: "Process of isolating one component or process from another."
   leak: "Media leaving the system abnormally."

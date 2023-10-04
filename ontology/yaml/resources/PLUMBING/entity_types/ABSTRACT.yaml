@@ -34,4 +34,11 @@ LVLM:
   - level_status
   opt_uses:
   - percentage_sensor
+
+WVCM:
+  description: "Water valve control and monitoring."
+  is_abstract: true
+  uses:
+  - valve_command
+  - valve_status
   

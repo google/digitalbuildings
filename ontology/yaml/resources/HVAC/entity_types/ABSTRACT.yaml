@@ -51,7 +51,6 @@ RDM:
   implements:
   - MONITORING
 
-
 DD:
   guid: "5b09f1bd-f526-4d77-b1a3-1fceda2ba041"
   description: "Dual duct flow control (hot deck, cold deck)."
@@ -330,6 +329,7 @@ COC:
   - high_zone_air_co_concentration_alarm
 
 COM:
+  guid: "bd9a1e2d-0710-4c58-8a56-3890af55f6b3"
   description: "Carbon monoxide monitoring."
   is_abstract: true
   implements:
@@ -1127,6 +1127,7 @@ SCHWTC:
   - chilled_supply_water_temperature_setpoint
 
 RCHWTC:
+  guid: "6babdc1e-edae-49b3-98e4-ca0b675b7f0f"
   description: "Return chilled water temperature control."
   is_abstract: true
   implements:
@@ -4495,7 +4496,6 @@ WDPM:
   - high_differential_pressure_alarm
   - low_differential_pressure_alarm
 
-
 CHWDPM:
   guid: "dcdb66fc-576b-4475-a1cd-f143e16edcde"
   description: "Differential pressure monitoring for chilled water."
@@ -4582,7 +4582,6 @@ CHDXVSC:
   - compressor_lost_power_alarm
   - failed_compressor_alarm
   - overload_compressor_alarm
-
 
 CDWFRM:
   guid: "b4cd6a63-df02-4c7b-bf81-3902cd827241"
@@ -5096,6 +5095,7 @@ SWTM:
 
 
 RWTM:
+  guid: "c317c88d-f090-4cd9-9289-6e03e24e496f"
   description: "Return water temperature monitoring."
   is_abstract: true
   implements:
@@ -6481,7 +6481,6 @@ SWCM:
   - valve_command
   - valve_status
 
-
 SCRSS:
   guid: "636b1262-b08b-4e1b-b130-e1a510b79a0c"
   description: "Scurbber start stop monitoring."
@@ -6578,7 +6577,6 @@ CO2M6X:
   - zone_air_co2_concentration_sensor_6
   implements:
   - MONITORING
-
 
 MIPCVM:
   guid: "17630266-40d3-4bc5-a9cd-9d70f10ef839"
@@ -6867,6 +6865,7 @@ VSMC:
   - schedule_run_command
 
 ZOC:
+  guid: "822b78b6-1eb4-4d4b-9f4e-089ef57011aa"
   description: "Occupancy counter monitoring"
   is_abstract: true
   uses:
@@ -6875,6 +6874,7 @@ ZOC:
   - MONITORING
 
 SPLM:
+  guid: "d92998e1-1091-4291-a1f9-b8cc0e3aa334"
   description: "Sound pressure level monitoring"
   is_abstract: true
   uses:
@@ -6883,6 +6883,7 @@ SPLM:
   - MONITORING
 
 ZAQIM:
+  guid: "3ce06a65-9e5c-4862-9571-a2d59792c86a"
   description: "Zone air quality indexes monitoring"
   is_abstract: true
   uses:
@@ -6894,6 +6895,7 @@ ZAQIM:
   - MONITORING  
 
 PMDM:
+  guid: "8247354f-bedb-4ccd-8f62-238c025277bc"
   description: "Particulate matter density monitoring"
   is_abstract: true
   uses:

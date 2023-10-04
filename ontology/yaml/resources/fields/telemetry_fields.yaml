@@ -1605,6 +1605,20 @@ literals:
 - valve_status:
   - OPEN
   - CLOSED
+
+- low_smoke_intensity_alarm: # for aspirating type smoke detectors
+  - ACTIVE
+  - INACTIVE
+- medium_smoke_intensity_alarm: # for aspirating type smoke detectors
+  - ACTIVE
+  - INACTIVE
+- high_zone_air_h2_concentration_alarm:
+  - ACTIVE
+  - INACTIVE
+- gas_release_valve_status:
+  - OPEN
+  - CLOSED
+
 - emergency_release_status:
   - ACTIVE
   - INACTIVE
@@ -2102,8 +2116,11 @@ literals:
   - OPEN
   - CLOSED
 
-# Damper status
+# Dampers
 - damper_status:
+  - OPEN
+  - CLOSED
+- damper_command:
   - OPEN
   - CLOSED
 - lighting_percentage_sensor: # For relative ranged illuminance inputs.
