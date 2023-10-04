@@ -330,6 +330,7 @@ COC:
   - high_zone_air_co_concentration_alarm
 
 COM:
+  guid: "892c0017-53a2-44b5-a5fd-44e6c1810823"
   description: "Carbon monoxide monitoring."
   is_abstract: true
   implements:
@@ -6868,6 +6869,7 @@ VSMC:
   - schedule_run_command
 
 ZOC:
+  guid: "c2a3c154-e42a-4393-b306-3c4eb4c502c6"
   description: "Occupancy counter monitoring"
   is_abstract: true
   uses:
@@ -6876,6 +6878,7 @@ ZOC:
   - MONITORING
 
 SPLM:
+  guid: "74beeb76-b3d2-4acf-995c-de18bd652e12"
   description: "Sound pressure level monitoring"
   is_abstract: true
   uses:
@@ -6884,6 +6887,7 @@ SPLM:
   - MONITORING
 
 ZAQIM:
+  guid: "1d850f8a-cb2a-4fae-8c5c-c0052c03cdec"
   description: "Zone air quality indexes monitoring"
   is_abstract: true
   uses:
@@ -6895,6 +6899,7 @@ ZAQIM:
   - MONITORING  
 
 PMDM:
+  guid: "05e80722-11fc-4b2a-a7d8-fc3d29593e70"
   description: "Particulate matter density monitoring"
   is_abstract: true
   uses:
