@@ -328,6 +328,13 @@ COC:
   opt_uses:
   - high_zone_air_co_concentration_alarm
 
+COM:
+  description: "Carbon monoxide monitoring."
+  is_abstract: true
+  implements:
+  - MONITORING
+  uses:
+  - zone_air_co_concentration_sensor
 
 BPC:
   guid: "8199ef48-de0b-4112-bf7a-15876a4acaff"
@@ -1118,6 +1125,18 @@ SCHWTC:
   - chilled_supply_water_temperature_sensor
   - chilled_supply_water_temperature_setpoint
 
+RCHWTC:
+  description: "Return chilled water temperature control."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  opt_uses:
+  - chilled_supply_water_temperature_sensor
+  - cooling_percentage_command
+  - cooling_request_count
+  uses:
+  - chilled_return_water_temperature_sensor
+  - chilled_return_water_temperature_setpoint
 
 WDPC:
   guid: "86b2c846-0cc3-4828-8648-88c2082c900e"
@@ -1471,6 +1490,8 @@ VOCM:
   is_abstract: true
   uses:
   - zone_air_voc_concentration_sensor
+  opt_uses:
+  - zone_air_formaldehyde_concentration_sensor
   implements:
   - MONITORING
 
@@ -2978,6 +2999,10 @@ HT2SWC:
   - heating_thermal_power_capacity
   - high_supply_water_temperature_alarm
   - low_supply_water_temperature_alarm
+  - heater_run_status_1
+  - heater_run_status_2
+  - failed_alarm_1
+  - failed_alarm_2
   uses:
   - heater_run_command_1
   - heater_run_command_2
@@ -5067,6 +5092,20 @@ SWTM:
   - supply_water_temperature_sensor
 
 
+RWTM:
+  description: "Return water temperature monitoring."
+  is_abstract: true
+  implements:
+  - MONITORING
+  opt_uses:
+  - cooling_request_count
+  - heating_request_count
+  - high_return_water_temperature_alarm
+  - low_return_water_temperature_alarm
+  uses:
+  - return_water_temperature_sensor
+
+
 CWDPM:
   guid: "d71e1e0d-35d6-4b53-a570-2e12959c951b"
   description: "Differential pressure monitoring for condenser water."
@@ -6821,3 +6860,40 @@ VSMC:
   - low_speed_status
   - high_speed_status
   - schedule_run_command
+
+ZOC:
+  description: "Occupancy counter monitoring"
+  is_abstract: true
+  uses:
+  - zone_occupancy_count
+  implements:
+  - MONITORING
+
+SPLM:
+  description: "Sound pressure level monitoring"
+  is_abstract: true
+  uses:
+  - soundpressurelevel_sensor
+  implements:
+  - MONITORING
+
+ZAQIM:
+  description: "Zone air quality indexes monitoring"
+  is_abstract: true
+  uses:
+  - zone_air_aqi_sensor
+  opt_uses:
+  - zone_air_voc_aqi_sensor
+  - zone_air_smoke_aqi_sensor
+  implements:
+  - MONITORING  
+
+PMDM:
+  description: "Particulate matter density monitoring"
+  is_abstract: true
+  uses:
+  - zone_air_pm2pt5_density_sensor
+  - zone_air_pm10pt0_density_sensor
+  implements:
+  - MONITORING
+
