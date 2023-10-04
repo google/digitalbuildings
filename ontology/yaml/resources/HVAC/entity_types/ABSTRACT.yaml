@@ -1127,6 +1127,7 @@ SCHWTC:
   - chilled_supply_water_temperature_setpoint
 
 RCHWTC:
+  guid: "c1e68cd5-327c-4650-846d-a34589c473ef"
   description: "Return chilled water temperature control."
   is_abstract: true
   implements:
