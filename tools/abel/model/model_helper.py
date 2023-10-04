@@ -15,7 +15,7 @@
 
 from typing import List
 
-from model import entity
+from model import entity as entity_lib
 from model import entity_enumerations
 from model import entity_field as ef
 from model import entity_operation
@@ -192,14 +192,14 @@ def DetermineEntityOperations(
       continue
 
     export_entity = current_model.GetEntity(import_entity.bc_guid)
-    if isinstance(import_entity, entity.VirtualEntity) and isinstance(
-        export_entity, entity.VirtualEntity
+    if isinstance(import_entity, entity_lib.VirtualEntity) and isinstance(
+        export_entity, entity_lib.VirtualEntity
     ):
       update_mask = DetermineVirtualEntityUpdateMask(
           export_entity, import_entity
       )
-    elif isinstance(import_entity, entity.ReportingEntity) and isinstance(
-        export_entity, entity.ReportingEntity
+    elif isinstance(import_entity, entity_lib.ReportingEntity) and isinstance(
+        export_entity, entity_lib.ReportingEntity
     ):
       update_mask = DetermineReportingEntityUpdateMask(
           current_model, updated_model, export_entity, import_entity
@@ -270,3 +270,84 @@ def ReconcileOperations(
     else:
       return_operations.append(generated_operation)
   return return_operations
+
+
+def Split(
+    model: mb.Model,
+    operations: List[entity_operation.EntityOperation],
+    namespace: entity_enumerations.EntityNamespace,
+) -> mb.Model:
+  """Method to split a model on namespace.
+
+  A model is split on a namesapce such that the resulting subset contains only
+  entities in the desired namesapce AND dependencies for those entities. e.g.
+  facilities entities like floors and rooms.
+
+  Args:
+    model: A Model instance to be split.
+    operations: List of EntityOperation instances for a Model instance.
+    namespace: An EntityNamespace enumeration.
+
+  Returns:
+    A Model instance containing the subset of entities.
+  """
+
+  def GetConnectionDependencies(entity, dependencies, split_entities):
+    """Helper method to recursively get connection dependencies.
+
+    Args:
+      entity: Entity instance.
+      dependencies: ...
+      split_entities: Entities who already have been visited.
+
+    Returns:
+      A list of entities connected to entity.
+    """
+    split_entities.append(entity)
+    if not entity.connections and entity not in split_entities:
+      dependencies.append(entity)
+      return dependencies
+    else:
+      for connection in entity.connections:
+        entity = model.GetEntity(connection.source_entity_guid)
+        if entity not in split_entities:
+          dependencies += GetConnectionDependencies(
+              entity, dependencies, split_entities
+          )
+          dependencies.append(entity)
+      return dependencies
+
+  def GetLinkDependencies(entity, all_entities) -> List[entity_lib.Entity]:
+    """Helper method to iteratively get link dependencies.
+
+    Args:
+      entity: An Entity instance.
+      all_entities: List of Entity Instances which are already dependencies for
+        other entities.
+
+    Returns:
+      Dependencies for entity.
+    """
+    dependencies = []
+    if isinstance(entity, entity_lib.VirtualEntity) and entity.links:
+      for link in entity.links:
+        entity = model.GetEntity(link.reporting_entity_guid)
+        if entity not in all_entities and entity not in dependencies:
+          dependencies.append(entity)
+    return dependencies
+
+  all_entities = []
+  for e in [
+      operation.entity
+      for operation in operations
+      if operation.entity.namespace == namespace
+  ]:
+    all_entities += GetConnectionDependencies(e, [], all_entities)
+    all_entities += GetLinkDependencies(e, all_entities)
+  split_operations = [
+      operation for operation in operations if operation.entity in all_entities
+  ]
+  return (
+      mb.Model.Builder.FromEntities(model.site, all_entities),
+      split_operations,
+  )
