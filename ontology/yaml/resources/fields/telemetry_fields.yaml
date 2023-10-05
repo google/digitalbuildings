@@ -3184,7 +3184,7 @@ literals:
 
 - purge_command:
   - ON
-  - OFF 
+  - OFF
 
 - high_discharge_air_temperature_alarm:
   - ACTIVE
