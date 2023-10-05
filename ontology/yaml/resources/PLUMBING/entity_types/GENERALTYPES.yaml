@@ -40,4 +40,19 @@ RO:
   is_abstract: true
   implements:
   - EQUIPMENT
-  
+
+VLV:
+  guid: "396ab9cc-500d-4e0a-b09c-be249cb3e420"
+  description: "Tag for valves. Valves are devices which control the flow of water. "
+  is_abstract: true
+  opt_uses:
+  - failed_communication_alarm
+  implements:
+  - EQUIPMENT
+
+WSR:
+  guid: "178274c8-ec3d-4c5a-b2f3-f5ae7cb894dc"
+  description: "Water softener"
+  is_abstract: true
+  implements:
+  - EQUIPMENT

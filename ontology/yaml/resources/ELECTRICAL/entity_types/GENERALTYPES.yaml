@@ -44,14 +44,9 @@ GEN:
 ATS:
   guid: "f2e50348-ce8d-4c2e-9e82-0d6056d4c89c"
   description: "Tag for automatic transfer switch (ATS) units."
-
   is_abstract: true
   implements:
   - EQUIPMENT
-
-
-
-
 
 CB:
   guid: "245e084f-a577-441d-a88e-662fd8396271"
