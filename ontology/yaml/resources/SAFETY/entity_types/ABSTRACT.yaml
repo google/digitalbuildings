@@ -81,7 +81,7 @@ FA2X:
   uses:
   - fire_alarm_1
   - fire_alarm_2
-    
+
 WLS:
   guid: "16a99ce4-3298-4f9a-9ba8-41edec6a48c8"
   description: "Water leak location monitoring."
