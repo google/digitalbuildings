@@ -38,7 +38,7 @@ literals:
     flexible_max: 308.1481481
 - chilled_return_water_temperature_setpoint:
     flexible_min: 255.9259259
-    flexible_max: 308.1481481  
+    flexible_max: 308.1481481
 - chilled_water_bypass_valve_percentage_command:
     fixed_min: 0.0
     fixed_max: 100.0
@@ -2116,7 +2116,6 @@ literals:
   - OPEN
   - CLOSED
 
-# Dampers
 - damper_status:
   - OPEN
   - CLOSED
