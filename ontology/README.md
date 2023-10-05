@@ -1,12 +1,12 @@
 # Digitalbuildings Ontology
 
-This section of the digitalbuildings tree contains configuration files and documentation for the digitalbuildings model. 
+This section of the digitalbuildings tree contains configuration files and documentation for the digitalbuildings model.
 
-The model is provided in the following file formats: 
+The model is provided in the following file formats:
 *    A [yaml](/ontology/yaml/README.md) version, which is the primary configuration source
 *    A [RDF](/ontology/rdf/README.md) version that is generated from the yaml version using the [RDF Generator](/tools/rdf_generator/README.md)
 
-Documentation for the model can be found in the [docs](docs/) folder.  
+Documentation for the model can be found in the [docs](docs/) folder.
 *   [**Ontology Overview**](/ontology/docs/ontology.md)**:** provides an overview of the structure and first principles of the ontology
 *   [**Ontology Configuration**](/ontology/docs/ontology_config.md)**:** explains how to write and validate the .yaml configuration files
 *   [**Model**](/ontology/docs/model.md)**:** describes the conventions used in the provided abstract model
@@ -14,9 +14,8 @@ Documentation for the model can be found in the [docs](docs/) folder.
         * [**AHU**](/ontology/docs/hvac_ahu.md)**:** example of the model applied to an air handling unit (AHU)
         * [**CHWS**](/ontology/docs/hvac_chws.md)**:** example of the model applied to a chilled water system (CHWS)
         * [**FCU**](/ontology/docs/hvac_fcu.md)**:** example of the model applied to a fan coil unit (FCU)
-        * [**HWS**](/ontology/docs/hvac_hws.md)**:** example of the model applied to a heating water system (HWS)       
-*   [**Building Configuration**](/ontology/docs/building_config.md)**:** describes the configuration format for mapping concrete assets to a model and 
-validating the mapping
+        * [**HWS**](/ontology/docs/hvac_hws.md)**:** example of the model applied to a heating water system (HWS)
+*   [**Building Configuration**](/ontology/docs/building_config.md)**:** describes the configuration format for mapping concrete assets to a model and validating the mapping
 * [**Frequenty Asked Questions**](/ontology/docs/faq.md)**:** centralized answers to frequently asked questions regarding the ontology
 
 ## Learning Modules

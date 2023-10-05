@@ -34,8 +34,6 @@ PANEL:
   is_abstract: true
   implements:
   - EQUIPMENT
-
-
   
 GEN:
   guid: "c935c4f5-019c-4eb7-9f81-8dcf47e7a594"
