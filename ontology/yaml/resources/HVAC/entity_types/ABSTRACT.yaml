@@ -6892,7 +6892,7 @@ ZAQIM:
   - zone_air_voc_aqi_sensor
   - zone_air_smoke_aqi_sensor
   implements:
-  - MONITORING  
+  - MONITORING
 
 PMDM:
   guid: "8247354f-bedb-4ccd-8f62-238c025277bc"
