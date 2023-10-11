@@ -14,6 +14,7 @@
 """Module to import google sheets or Building Configurations into ABEL."""
 
 import os
+import uuid
 from typing import Any, Dict, List
 
 # pylint: disable=g-importing-member
@@ -128,5 +129,5 @@ def DeserializeBuildingConfiguration(filepath: str) -> Dict[str, Any]:
       if instance.type_name == SITE_TYPE_NAME:
         site = instance
     del deserialized_bc[site.guid]
-    abel_site = Site(code=site.code, guid=site.guid, etag=site.etag)
+    abel_site = Site(code=site.code, guid=uuid.UUID(site.guid), etag=site.etag)
     return (abel_site, deserialized_bc)

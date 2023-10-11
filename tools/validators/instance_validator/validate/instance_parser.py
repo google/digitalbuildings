@@ -19,11 +19,13 @@ import collections
 import enum
 import re
 import sys
+import uuid
 from typing import Callable, Dict, List, Optional, Type, TypeVar
 import warnings
 
 import ruamel
 import strictyaml as syaml
+import yaml
 
 #### Program constants ####
 # Size of entity block to send to the syntax validator
@@ -264,7 +266,7 @@ class InstanceParser:
   def __init__(self):
     self._queued_entity_blocks = collections.deque()
     self._config_mode = None
-    self._validated_entities = {}
+    self._validated_entities = {} # type: dict[uuid.UUID, dict]
     self._is_final = False
 
   def Finalize(self) -> None:
@@ -276,7 +278,7 @@ class InstanceParser:
     self._ProcessEntities()
     self._is_final = True
 
-  def GetEntities(self) -> syaml.YAML:
+  def GetEntities(self) -> dict[uuid.UUID]:
     """Returns the YAML object derived from parsing the input files.
 
     Raises:
@@ -305,8 +307,18 @@ class InstanceParser:
     entity_instance_block = ''
     found_entities = 0
     in_config = False
+    total_lines = 0
     with open(filename, encoding='utf-8') as file:
+      for _ in file:
+        total_lines += 1
+    print(f"[Instance Parser] Parsing started...")
+    with open(filename, encoding='utf-8') as file:
+      line_count = 0
       for line in file:
+        line_count += 1
+        if (line_count % 5) == 0:
+          percentage = '{:.3%}'.format(line_count / total_lines)
+          print(f"[Instance Parser] ({line_count}/{total_lines}) {percentage}% parsed")
         if _IGNORE_PATTERN.match(line):
           continue
 
@@ -340,6 +352,7 @@ class InstanceParser:
 
         entity_instance_block = entity_instance_block + line
 
+    print(f"[Instance Parser] Parsed all lines")
     # handle the singleton case
     if in_config:
       # parse the config block
@@ -355,6 +368,7 @@ class InstanceParser:
     if not self._config_mode:
       return
 
+    print(f"[Instance Parser] Processing entities...")
     # Validate all queued blocks
     while True:
       try:
@@ -433,11 +447,13 @@ class InstanceParser:
     Raises:
       ValueError: if block contains a key that has already been found.
     """
-    for key in block.keys():
-      if key in self._validated_entities:
-        raise ValueError('Duplicate key {key}')
+    data = block.data
+    for key in data:
+      guid = uuid.UUID(key)
+      # if guid in self._validated_entities:
+      #   raise ValueError(f'Duplicate key {guid}')
       self._ValidateEntityContent(block.get(key))
-    self._validated_entities.update(block.data)
+      self._validated_entities[guid] = data[key]
 
   def _ValidateBlock(
       self, unvalidated_block: str, validation_fn: Callable[[syaml.YAML], None]

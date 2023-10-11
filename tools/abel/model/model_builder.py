@@ -14,6 +14,7 @@
 """Helper module for concrete model construction."""
 
 import datetime
+import uuid
 from typing import Dict, List, Optional
 
 # pylint: disable=g-importing-member
@@ -271,13 +272,13 @@ class Model(object):
   def guid_to_entity_map(self) -> GuidToEntityMap:
     return self._guid_to_entity_map
 
-  def GetEntity(self, entity_guid: str) -> Entity:
+  def GetEntity(self, entity_guid: uuid.UUID) -> Entity:
     """Helper function to get an Entity instance for a guid."""
     return self.guid_to_entity_map.GetEntityByGuid(entity_guid)
 
   def GetStates(
       self,
-      entity_guid: str,
+      entity_guid: uuid.UUID,
       std_field_name: str,
   ) -> List[State]:
     """Helper function to get State instances for a field name and guid."""

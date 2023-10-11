@@ -20,6 +20,7 @@ import datetime
 import json
 import os
 import sys
+import uuid
 from typing import Dict, List, Tuple
 
 from validate import constants
@@ -73,7 +74,7 @@ def GetDefaultOperation(
 def Deserialize(
     yaml_files: List[str],
 ) -> Tuple[
-    Dict[str, entity_instance.EntityInstance], instance_parser.ConfigMode
+    Dict[uuid.UUID, entity_instance.EntityInstance], instance_parser.ConfigMode
 ]:
   """Parses a yaml configuration file and deserializes it.
 
@@ -98,7 +99,7 @@ def Deserialize(
   for entity_key, entity_yaml in parser.GetEntities().items():
     try:
       entity = entity_instance.EntityInstance.FromYaml(
-          entity_key, entity_yaml, default_entity_operation
+          str(entity_key), entity_yaml, default_entity_operation
       )
       entities[entity.guid] = entity
     except ValueError as ex:

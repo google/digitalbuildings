@@ -12,20 +12,26 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 """Mapping of guids to Entity instances."""
-
+import uuid
 from typing import Dict
 
+GUID_MAP_SHARDS = 64
 
 class GuidToEntityMap(object):
   """Container for mapping of Entity instances by entity guids.
 
-  Attributes: guid_to_entity_map(class variable): Mapping of entity guids
+  Attributes: guid_to_entity_map: Mapping of entity guids
   to Entity instances.
   """
 
+  def _submap(self, key: uuid.UUID) -> dict[uuid.UUID, object]:
+    shard = key.int % GUID_MAP_SHARDS
+    return self._shards[shard]
+
   def __init__(self):
     """Init."""
-    self._guid_to_entity_map = {}
+    self._shards = [{} for i in range(0, GUID_MAP_SHARDS)]
+    self._guid_code_map = None
 
   def AddSite(self, site: ...) -> None:
     """Adds a site by guid to the mapping.
@@ -44,11 +50,14 @@ class GuidToEntityMap(object):
     """
     if not site.guid:
       raise AttributeError(f'{site.code}: guid missing')
-    elif site.guid not in self._guid_to_entity_map:
-      self._guid_to_entity_map.update({site.guid: site})
+
+    shard = self._submap(site.guid)
+    if site.guid not in shard:
+      shard[site.guid] = site
     else:
       raise KeyError(
-          f'{site.guid} maps to {self._guid_to_entity_map[site.guid]}')
+          f'{site.guid} maps to {shard[site.guid]}')
+    self._guid_code_map = None
 
   def AddEntity(self, entity: ...) -> None:
     """Adds an entity by guid to the mapping.
@@ -67,14 +76,16 @@ class GuidToEntityMap(object):
       raise ValueError('Cannot add None values to the guid to entity map.')
     if not entity.bc_guid:
       raise AttributeError(f'{entity.code}: guid missing')
-    if entity.bc_guid not in self._guid_to_entity_map:
-      self._guid_to_entity_map[entity.bc_guid] = entity
+    shard = self._submap(entity.bc_guid)
+    if entity.bc_guid not in shard:
+      shard[entity.bc_guid] = entity
+      self._guid_code_map = None
     else:
       raise KeyError(
-          f'{entity.bc_guid} maps to {self._guid_to_entity_map[entity.bc_guid]}'
+          f'{entity.bc_guid} maps to {shard[entity.bc_guid]}'
       )
 
-  def GetEntityByGuid(self, guid: str) ->...:
+  def GetEntityByGuid(self, guid: uuid.UUID) ->...:
     """Gets an Entity instance mapped to the input guid.
 
     Args:
@@ -86,12 +97,12 @@ class GuidToEntityMap(object):
     Raises:
       KeyError: When guid is not a valid key in the map.
     """
-    entity = self._guid_to_entity_map.get(guid)
+    entity = self._submap(guid).get(guid)
     if entity is None:
       raise KeyError(f'{guid} is not a valid guid in the guid to entity map')
     return entity
 
-  def GetEntityCodeByGuid(self, guid: str) -> str:
+  def GetEntityCodeByGuid(self, guid: uuid.UUID) -> str:
     """Gets an entity code mapped by guid.
 
     Args:
@@ -102,7 +113,16 @@ class GuidToEntityMap(object):
     """
     return self.GetEntityByGuid(guid).code
 
-  def GetEntityGuidByCode(self, code: str) -> str:
+  def _GuidCodeMap(self) -> dict[str, uuid.UUID]:
+    if self._guid_code_map is not None:
+      return self._guid_code_map
+    guid_by_code = {}
+    for shard in self._shards:
+      for guid, entity in shard.items():
+        guid_by_code[entity.code] = guid
+    return guid_by_code
+
+  def GetEntityGuidByCode(self, code: str) -> uuid.UUID:
     """Returns entity code mapped by guid in the guid to entity mapping.
 
     Args:
@@ -115,16 +135,14 @@ class GuidToEntityMap(object):
       AttributeError: If code is not an entity code contained in
       self._guid_to_entity_map
     """
-    guid_by_code = {
-        entity.code: guid for guid, entity in self._guid_to_entity_map.items()
-    }
+    guid_by_code = self._GuidCodeMap()
     guid = guid_by_code.get(code)
     if not guid:
       raise AttributeError(f'{code} is not a valid entity code.')
     else:
       return guid
 
-  def RemoveEntity(self, guid: str) -> None:
+  def RemoveEntity(self, guid: uuid.UUID) -> None:
     """Removes a guid and entity pair from guid to entity mapping.
 
     Args:
@@ -134,9 +152,10 @@ class GuidToEntityMap(object):
       The removed Entity instance.
     """
 
-    return self._guid_to_entity_map.pop(guid)
+    self._submap(guid).pop(guid)
+    self._guid_code_map = None
 
-  def UpdateEntityMapping(self, guid: str, entity: ...) -> None:
+  def UpdateEntityMapping(self, guid: uuid.UUID, entity: ...) -> None:
     """Maps existing guid key to new Entity instance.
 
     Args:
@@ -147,19 +166,26 @@ class GuidToEntityMap(object):
       KeyError: When guid is not a valid key in the guid to entity map.
       ValueError: When entity is not an Entity instance.
     """
-    if not self._guid_to_entity_map.get(guid):
+    shard = self._submap(guid)
+    if not shard.get(guid):
       raise KeyError(f'{guid} is not a valid guid in the guid to entity map')
     elif not entity:
       raise ValueError(f'{guid} cannot map to object of type None')
-    self._guid_to_entity_map.update({guid: entity})
+    shard[guid] = entity
+    self._guid_code_map = None
 
-  def GetGuidToEntityMap(self) -> Dict[str, object]:
+  def GetGuidToEntityMap(self) -> Dict[uuid.UUID, object]:
     """Returns mapping of guids to Entity instances."""
-    return self._guid_to_entity_map
+    full_map = {}
+    for shard in self._shards:
+      full_map.update(shard)
+    return full_map
 
   def Clear(self) -> None:
     """Clears global guid mapping.
 
     Adding for testing purposes.
     """
-    self._guid_to_entity_map.clear()
+    for shard in self._shards:
+      shard.clear()
+    self._guid_code_map = None

@@ -25,6 +25,7 @@ from model.constants import STRING_VALUE
 from model.constants import USER_ENTERED_VALUE
 from model.constants import VALUES
 from model.entity import Entity
+import uuid
 
 
 # TODO(b/247621096): Combine site namespace and type name into one attribute.
@@ -41,11 +42,11 @@ class Site(object):
     namespace: A site's standardized DBO namespace.
     type_name: A site's standardized DBO entity type id.
     guid: A globally unique identifier(uuid4) for a site.
-    entities: A list of GUIDs for entities cointained in a site.
+    entities: A list of GUIDs for entities contained in a site.
   """
 
   def __init__(
-      self, code: str, etag: Optional[str], guid: Optional[str] = None
+      self, code: str, etag: Optional[str], guid: Optional[uuid.UUID] = None
   ) -> None:
     """Init.
 
@@ -71,15 +72,18 @@ class Site(object):
 
   @classmethod
   def FromDict(cls, site_dict: Dict[str, object]) -> ...:
+    etag = site_dict.get(ETAG)
+    if isinstance(etag, list) and len(etag) == 0:
+      etag = ""
     site_instance = cls(
         code=site_dict.get(BUILDING_CODE),
-        etag=site_dict.get(ETAG),
-        guid=site_dict.get(BC_GUID),
+        etag=etag,
+        guid=uuid.UUID(site_dict.get(BC_GUID)),
     )
     return site_instance
 
   @property
-  def entities(self) -> List[str]:
+  def entities(self) -> List[uuid.UUID]:
     """Returns a list of entity guids contained in a site."""
     return self._entities
 
@@ -102,12 +106,12 @@ class Site(object):
     self._entities.append(entity.bc_guid)
 
   # pylint: disable=unused-argument
-  def GetSpreadsheetRowMapping(self, *args) -> Dict[str, str]:
+  def GetSpreadsheetRowMapping(self, *args) -> Dict[str, any]:
     """Returns a dictionary of Site attributes by spreadsheet headers."""
     return {
         VALUES: [
             {USER_ENTERED_VALUE: {STRING_VALUE: self.code}},
-            {USER_ENTERED_VALUE: {STRING_VALUE: self.guid}},
+            {USER_ENTERED_VALUE: {STRING_VALUE: str(self.guid)}},
             {USER_ENTERED_VALUE: {STRING_VALUE: self.etag}},
         ]
     }

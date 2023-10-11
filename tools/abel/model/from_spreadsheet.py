@@ -45,7 +45,7 @@ from validate.field_translation import FieldTranslation
 
 
 def LoadEntitiesFromSpreadsheet(
-    entity_entries: List[Dict[str, str]], guid_to_entity_map: GuidToEntityMap
+    entity_entries: List[Dict[str, any]], guid_to_entity_map: GuidToEntityMap
 ) -> List[Entity]:
   """Loads a list of entity maps into Entity instances.
 
@@ -64,7 +64,7 @@ def LoadEntitiesFromSpreadsheet(
     else:
       new_entity = VirtualEntity.FromDict(entity_entry)
     if not new_entity.bc_guid:
-      new_entity.bc_guid = str(uuid.uuid4())
+      new_entity.bc_guid = uuid.uuid4()
     guid_to_entity_map.AddEntity(new_entity)
     parsed_entities.append(new_entity)
 
@@ -92,14 +92,14 @@ def LoadFieldsFromSpreadsheet(
   """
   fields = []
   for entity_field_entry in entity_field_entries:
-    entity_field_entry[BC_GUID] = guid_to_entity_map.GetEntityGuidByCode(
+    entity_field_entry[BC_GUID] = str(guid_to_entity_map.GetEntityGuidByCode(
         entity_field_entry[ENTITY_CODE]
-    )
+    ))
     if entity_field_entry[REPORTING_ENTITY_CODE]:
       entity_field_entry[REPORTING_ENTITY_GUID] = (
-          guid_to_entity_map.GetEntityGuidByCode(
+          str(guid_to_entity_map.GetEntityGuidByCode(
               entity_field_entry[REPORTING_ENTITY_CODE]
-          )
+          ))
       )
     if entity_field_entry[MISSING].upper() == MISSING_TRUE:
       fields.append(MissingField.FromDict(entity_field_entry))
@@ -128,9 +128,9 @@ def LoadStatesFromSpreadsheet(
   states = []
 
   for state_entry in state_entries:
-    state_entry[BC_GUID] = guid_to_entity_map.GetEntityGuidByCode(
+    state_entry[BC_GUID] = str(guid_to_entity_map.GetEntityGuidByCode(
         state_entry[REPORTING_ENTITY_CODE]
-    )
+    ))
     states.append(State.FromDict(states_dict=state_entry))
 
   return states
@@ -155,14 +155,14 @@ def LoadConnectionsFromSpreadsheet(
 
   for connection_entry in connection_entries:
     connection_entry[SOURCE_ENTITY_GUID] = (
-        guid_to_entity_map.GetEntityGuidByCode(
+        str(guid_to_entity_map.GetEntityGuidByCode(
             connection_entry[SOURCE_ENTITY_CODE]
-        )
+        ))
     )
     connection_entry[TARGET_ENTITY_GUID] = (
-        guid_to_entity_map.GetEntityGuidByCode(
+        str(guid_to_entity_map.GetEntityGuidByCode(
             connection_entry[TARGET_ENTITY_CODE]
-        )
+        ))
     )
     connections.append(ABELConnection.FromDict(connection_entry))
 
@@ -170,7 +170,7 @@ def LoadConnectionsFromSpreadsheet(
 
 
 def LoadOperationsFromSpreadsheet(
-    entity_entries: Dict[str, str], guid_to_entity_map: GuidToEntityMap
+    entity_entries: Dict[str, any], guid_to_entity_map: GuidToEntityMap
 ) -> List[EntityOperation]:
   """loads a list of entity dicitionary mappings into EntityOperation instances.
 
