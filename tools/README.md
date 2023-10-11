@@ -109,3 +109,5 @@ For example:
 **NOTE:** The new building configuration format switches entities being keyed by codes
 to being keyed by guids, and Ids are removed. To convert from old format to the
 new format, run your building configuration file(.yaml) through the [guid generator](https://github.com/google/digitalbuildings/tree/master/tools/guid_generator).
+
+Any questions or concerns can be emailed to **BOS-GPS@google.com**
