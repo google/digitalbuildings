@@ -126,17 +126,14 @@ Please see the [ABEL spreadsheet docs](../../tools/abel/validators/README.md) fo
 ### Update Workflow
 
 If you would like to create a building config to update an already onboarded building, then there are two options:
-1. Update an exported building config.
 
-  The process for using a building config to generate an ABEL spreadsheet is as
-  follows:
+Generate an ABEL spreadsheet from an exported building config.
 
   1. In `digitalbuildings/tools/abel` run ABEL with the command:
       ```
       python3 abel.py -c /path/to/credential.json -b absolute/path/to/building/config
       ```
-
-2. Generate a building config from an already updated spreadsheet.
+To generate a building config from an already updated spreadsheet.
 
   1. In `digitalbuildings/tools/abel` run ABEL with the command:
       ```
