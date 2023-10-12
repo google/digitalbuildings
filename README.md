@@ -12,55 +12,57 @@ The Digital Buildings project originated from the need to manage a very large, h
 
 In creating the Digital Buildings project, we have considered the following:
 
-* Human Readability
+* Human readability
 * Machine readability and interpretation
 * Composable functionality
-* Dimensional Analysis
+* Dimensional analysis
 * Correctness validation
-* Cross compatibility
+* Cross-compatibility
 
 ## Project Structure
 
 This project is structured as follows:
-*  An [**ontology**](./ontology/README.md) that defines the parameters of the semantic data model (Terminology box) and tools for building, validating, and associating real equipment with a specific model. It contains the following formats:
+*  An [ontology](./ontology/README.md) that defines the parameters of the semantic data model ("Terminology box") and tools for building, validating, and associating real equipment with a specific model. It contains the following formats:
    * [Yaml format](./ontology/yaml/README.md)
    * [RDF/OWL format](./ontology/rdf/README.md)
-* [Building Configuration](./ontology/docs/building_config.md) which contains a mapping between the ontology and the "raw" data. Building Config is the Assertion Box.
-* Tools that allow the following:
-  * [ABEL](./tools/abel/README.md) generates from/to Google spreadsheet/[Building Configuration](./ontology/docs/building_config.md).
-  * [Explorer](./tools/explorer/README.md) allows users to explorer the ontology types and their associated fields.
-  * [Yaml Validator](./tools/validators/ontology_validator/README.md) which allows to validate the yaml ontology upon a change or an extension.
-  * [RDF/OWL Generator](./tools/rdf_generator/README.md) which allows to generate an RDF version from the yaml ontology files.
-* [Internal Building Representation](./ibr/README.md) (IBR) File Format to represent data from different verticals such as spatial, assets.
+
+* A [model instance configuration](./ontology/docs/building_config.md) (a.k.a building configuration file) that contains a mapping between the ontology and the "raw" data. Building configuration files are the "Assertion box."
+* Tools that enable the following:
+  * [**ABEL**](./tools/abel/README.md)**:** facilitates easier building configration construction by converting from a templatized Google Sheet to a [building configuration file](./ontology/docs/building_config.md) (and from a building configuration file back to a Google Sheet).
+  * [**Explorer**](./tools/explorer/README.md)**:** allows users to explore ontology type fields and compare ontology types to each other.
+  * [**Instance Validator**](./tools/validators/ontology_validator/README.md) which allows to validate the yaml ontology upon a change or an extension.
+  * [**Ontology Validator**](./tools/validators/ontology_validator/README.md)**:** validates the ontology upon a change or an extension (currently only for the Yaml format).
+  * [**RDF/OWL Generator**](./tools/rdf_generator/README.md)**:** generates an RDF version from the yaml ontology files.
+* An [Internal Building Representation (IBR)](./ibr/README.md) file format to represent data from different verticals such as spatial or assets.
 
 ## Learning Modules
-The learning modules provide an overview of:
-* The main concepts of the Digital Buildings Ontology.
-* How to model and extend types.
-* The Building configuration file concepts.
-* The validation tools for the Building Configuration file.
+The learning modules provide an overview of the following key concepts:
+* The main concepts and components of the Digital Buildings Ontology
+* How to model entities and extend types in the ontology
+* The components of building configuration files
+* How to use the validation tools for ontology extensions and building configuration files
 
 ### Module 1: Digital Buildings Ontology (DBO)
 In this module, you’ll fully explore the core modeling and organizational concepts of the DBO. These are essential concepts for data modeling and creating building configuration files.
 
 
 * [Lesson 1: Introduction to the DBO](./ontology/docs/learning/Module_1_Lesson_1_Introduction_to_the_DBO.pdf)
-* [Lesson 2: Conceptual Model](./ontology/docs/learning/Module_1_Lesson_2_Conceptual_model.pdf)
+* [Lesson 2: Conceptual model](./ontology/docs/learning/Module_1_Lesson_2_Conceptual_model.pdf)
 * [Lesson 3: Subfields](./ontology/docs/learning/Module_1_Lesson_3_Subfields.pdf)
 * [Lesson 4: Fields](./ontology/docs/learning/Module_1_Lesson_4_Fields.pdf)
-* [Lesson 5: States and Multi-states](./ontology/docs/learning/Module_1_Lesson_5_States_and_multistates.pdf)
-* [Lesson 6: Entity Types](./ontology/docs/learning/Module_1_Lesson_6_Entity_types.pdf)
+* [Lesson 5: States and multi-states](./ontology/docs/learning/Module_1_Lesson_5_States_and_multistates.pdf)
+* [Lesson 6: Entity types](./ontology/docs/learning/Module_1_Lesson_6_Entity_types.pdf)
 * [Lesson 7: Mappings](./ontology/docs/learning/Module_1_Lesson_7_Mappings.pdf)
 * [Lesson 8: Connections](./ontology/docs/learning/Module_1_Lesson_8_Connections.pdf)
 * [Lesson 9: Namespaces](./ontology/docs/learning/Module_1_Lesson_9_Namespaces.pdf)
 
 
-### Module 2: Module 2: Data Modeling with the DBO
+### Module 2: Data Modeling with the DBO
 
 In this module, you’ll deepen your understanding of the DBO and practice applying it. Through several hands-on activities, you'll walk through the recommended workflow for creating a building configuration file
 
 
-* [Lesson 1: Get Ready to data model](./ontology/docs/learning/Module_2_Lesson_1_Get_ready_to_data_model.pdf)
+* [Lesson 1: Get ready to data model](./ontology/docs/learning/Module_2_Lesson_1_Get_ready_to_data_model.pdf)
 * [Lesson 2: Determine which devices need to be modeled](./ontology/docs/learning/Module_2_Lesson_2_Determine_which_devices_need_to_be_modeled.pdf)
 * [Lesson 3: Determine which data points are required](./ontology/docs/learning/Module_2_Lesson_3_Determine_which_data_points_are_required.pdf)
 * [Lesson 4: Name each data point using the DBO](./ontology/docs/learning/Module_2_Lesson_4_Name_each_data_point_using_the_DBO.pdf)
@@ -70,16 +72,16 @@ In this module, you’ll deepen your understanding of the DBO and practice apply
 
 
 ## Issues
-Please post issues in [Issues](https://github.com/google/digitalbuildings/issues) section.
+Please post issues in the [Issues](https://github.com/google/digitalbuildings/issues) section.
 
 ## Discussion
-Open mailing list to discuss Google's Digital Building effort. The discussion could include general questions, standards, APIs, and more. [google-digital-building-discuss@googlegroups.com](mailto:google-digital-building-discuss@googlegroups.com)
+Our team has created an open mailing list to discuss Google's Digital Building effort. The discussion could include general questions, standards, APIs, and more. Join the discussion here: [google-digital-building-discuss@googlegroups.com](mailto:google-digital-building-discuss@googlegroups.com).
 
-Members are expected to adhere to this code of conduct: [https://opensource.google.com/conduct](https://opensource.google.com/conduct)
+Members are expected to adhere to this code of conduct: [https://opensource.google.com/conduct](https://opensource.google.com/conduct).
 
 ## How to Contribute
 
-Please see the [contribution section](CONTRIBUTING.md)
+Please see the [contribution](CONTRIBUTING.md) section.
 
 ## License
 ```
