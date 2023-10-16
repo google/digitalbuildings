@@ -13,6 +13,7 @@
 # limitations under the License.
 """Helper module for exporting a valid Building Configuration or spreadsheet."""
 
+import enum
 from typing import Any, Dict, List, Optional
 
 # pylint: disable=g-importing-member
@@ -51,6 +52,13 @@ from model.model_builder import Model
 from model.model_error import SpreadsheetAuthorizationError
 from validate.field_translation import FieldTranslation
 
+class ConfigMode(enum.Enum):
+
+  # config mode for a building config being updated.
+  UPDATE = 'UPDATE'
+
+  # config mode for a building being initialized.
+  INITIALIZE = 'INITIALIZE'
 
 class GoogleSheetExport(object):
   """Class to help write ABEL data types to a Google Sheets spreadsheet.
@@ -112,7 +120,7 @@ class BuildingConfigExport(object):
     """
     self.model = model
 
-  def ExportUpdateBuildingConfiguration(
+  def ExportBuildingConfiguration(
       self, filepath: str, operations: List[EntityOperation]
   ) -> Dict[str, Any]:
     """Exports a building Config under the UPDATE operation.
@@ -126,14 +134,17 @@ class BuildingConfigExport(object):
       Dictionary mapping of a building config under the update operation.
     """
     site = self.model.site
-    entity_yaml_dict = {CONFIG_METADATA: {CONFIG_OPERATION: 'UPDATE'}}
+    config_mode = ConfigMode.UPDATE
+    if not site.etag:
+      config_mode = ConfigMode.INITIALIZE
+    entity_yaml_dict = {CONFIG_METADATA: {CONFIG_OPERATION: config_mode.value}}
     for operation in operations:
       entity = operation.entity
       if isinstance(entity, ReportingEntity):
         entity_yaml_dict.update(
             {
                 entity.bc_guid: self._GetReportingEntityBuildingConfigBlock(
-                    entity, operation
+                    entity, config_mode, operation
                 )
             }
         )
@@ -141,7 +152,7 @@ class BuildingConfigExport(object):
         entity_yaml_dict.update(
             {
                 entity.bc_guid: self._GetVirtualEntityBuildingConfigBlock(
-                    entity, operation
+                    entity, config_mode, operation
                 )
             }
         )
@@ -151,10 +162,11 @@ class BuildingConfigExport(object):
             site.guid: {
                 CONFIG_CODE: site.code,
                 CONFIG_TYPE: site.namespace + '/' + site.type_name,
-                CONFIG_ETAG: site.etag,
             }
         }
     )
+    if site.etag:
+      entity_yaml_dict.get(site.guid).update({CONFIG_ETAG: site.etag})
     try:
       with open(filepath, WRITE, encoding=UTF_8) as file:
         for key, value in entity_yaml_dict.items():
@@ -165,56 +177,6 @@ class BuildingConfigExport(object):
     return entity_yaml_dict
 
   # TODO(b/233756557) Allow user to set config_metadata operation.
-  def ExportInitBuildingConfiguration(self, filepath: str) -> Dict[str, Any]:
-    """Exports an ABEL concrete model graph to a Building Config file.
-
-    Args:
-      filepath: Absolute export path for a Building Config.
-
-    Returns:
-      A dictionary model of the exported building config.
-
-    Raises:
-      PermissionError: When ABEL is denied access to filepath.
-    """
-    site = self.model.site
-    entity_yaml_dict = {CONFIG_METADATA: {CONFIG_OPERATION: CONFIG_INITIALIZE}}
-    for entity_guid in site.entities:
-      entity = self.model.guid_to_entity_map.GetEntityByGuid(entity_guid)
-      if isinstance(entity, ReportingEntity):
-        entity_yaml_dict.update(
-            {
-                entity.bc_guid: self._GetReportingEntityBuildingConfigBlock(
-                    entity=entity,
-                    operation=None,
-                )
-            }
-        )
-      elif isinstance(entity, VirtualEntity):
-        entity_yaml_dict.update(
-            {
-                entity.bc_guid: self._GetVirtualEntityBuildingConfigBlock(
-                    entity=entity, operation=None
-                )
-            }
-        )
-
-    entity_yaml_dict.update(
-        {
-            site.guid: {
-                CONFIG_CODE: site.code,
-                CONFIG_TYPE: site.namespace + '/' + site.type_name,
-            }
-        }
-    )
-    try:
-      with open(filepath, WRITE, encoding=UTF_8) as file:
-        for key, value in entity_yaml_dict.items():
-          file.write(as_document({key: value}).as_yaml())
-          file.write('\n')
-    except PermissionError:
-      print(f'Permission denied when writing to {filepath}')
-    return entity_yaml_dict
 
   def _AddOperationToBlock(
       self, operation: EntityOperation
@@ -229,13 +191,14 @@ class BuildingConfigExport(object):
     return update_dict
 
   def _GetReportingEntityBuildingConfigBlock(
-      self, entity: ReportingEntity, operation: Optional[EntityOperation]
+      self, entity: ReportingEntity, config_mode: ConfigMode, operation: Optional[EntityOperation]
   ) -> Dict[str, object]:
     """Returns a Building Config formatted reporting entity block dictionary.
 
     Args:
       entity: A ReportingEntity instance.
-      operation:
+      operation: The operation acting on the entity...
+      config_mode: ConfigMode instance representing a building config's metadata config mode.
 
     Returns:
       A dictionary in Building Config format ready to be parsed into yaml.
@@ -273,12 +236,12 @@ class BuildingConfigExport(object):
     reporting_entity_yaml.update(
         {CONFIG_TYPE: entity.namespace.value + '/' + str(entity.type_name)}
     )
-    if operation:
+    if operation and not operation.operation == EntityOperationType.EXPORT and config_mode == ConfigMode.UPDATE:
       reporting_entity_yaml.update(self._AddOperationToBlock(operation))
     return reporting_entity_yaml
 
   def _GetVirtualEntityBuildingConfigBlock(
-      self, entity: VirtualEntity, operation: Optional[EntityOperation]
+      self, entity: VirtualEntity, config_mode: ConfigMode, operation: Optional[EntityOperation]
   ) -> Dict[str, object]:
     """Returns a Building Config formatted virtual entity block dictionary.
 
@@ -298,7 +261,7 @@ class BuildingConfigExport(object):
     virtual_entity_yaml.update(
         {CONFIG_TYPE: entity.namespace.value + '/' + str(entity.type_name)}
     )
-    if operation:
+    if operation and not operation.operation == EntityOperationType.EXPORT and config_mode == ConfigMode.UPDATE:
       virtual_entity_yaml.update(self._AddOperationToBlock(operation))
     return virtual_entity_yaml
 
