@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 """Module for concrete model connections."""
-
+import uuid
 from typing import Dict
 
 # pylint: disable=g-importing-member
@@ -44,8 +44,8 @@ class Connection(object):
 
   def __init__(
       self,
-      source_entity_guid: str,
-      target_entity_guid: str,
+      source_entity_guid: uuid.UUID,
+      target_entity_guid: uuid.UUID,
       connection_type: ConnectionType,
   ) -> None:
     """Init.
@@ -91,8 +91,8 @@ class Connection(object):
       An instance of Connection class.
     """
     return cls(
-        source_entity_guid=connection_dict[SOURCE_ENTITY_GUID],
-        target_entity_guid=connection_dict[TARGET_ENTITY_GUID],
+        source_entity_guid=uuid.UUID(connection_dict[SOURCE_ENTITY_GUID]),
+        target_entity_guid=uuid.UUID(connection_dict[TARGET_ENTITY_GUID]),
         connection_type=ConnectionType[connection_dict[CONNECTION_TYPE]],
     )
 
@@ -114,7 +114,7 @@ class Connection(object):
 
   def GetSpreadsheetRowMapping(
       self, guid_to_entity_map: GuidToEntityMap
-  ) -> Dict[str, str]:
+  ) -> Dict[str, any]:
     """Returns a dictionary of Connection attributes by spreadsheet headers."""
     return {
         VALUES: [
@@ -125,7 +125,7 @@ class Connection(object):
                     )
                 }
             },
-            {USER_ENTERED_VALUE: {STRING_VALUE: self.source_entity_guid}},
+            {USER_ENTERED_VALUE: {STRING_VALUE: str(self.source_entity_guid)}},
             {
                 USER_ENTERED_VALUE: {STRING_VALUE: self.connection_type.name},
                 DATA_VALIDATION: {
@@ -147,6 +147,6 @@ class Connection(object):
                     )
                 }
             },
-            {USER_ENTERED_VALUE: {STRING_VALUE: self.target_entity_guid}},
+            {USER_ENTERED_VALUE: {STRING_VALUE: str(self.target_entity_guid)}},
         ]
     }

@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 """Module for concrete model states."""
-
+import uuid
 from typing import Dict
 
 # pylint: disable=g-importing-member
@@ -39,7 +39,7 @@ class State(object):
 
   def __init__(
       self,
-      reporting_entity_guid: str,
+      reporting_entity_guid: uuid.UUID,
       std_field_name: str,
       standard_state: str,
       raw_state: str,
@@ -76,7 +76,7 @@ class State(object):
   @classmethod
   def FromDict(cls, states_dict: Dict[str, str]) -> ...:
     return cls(
-        reporting_entity_guid=states_dict[REPORTING_ENTITY_GUID],
+        reporting_entity_guid=uuid.UUID(states_dict[REPORTING_ENTITY_GUID]),
         std_field_name=states_dict[REPORTING_ENTITY_FIELD_NAME],
         standard_state=states_dict[STANDARD_STATE],
         raw_state=states_dict[RAW_STATE],
@@ -84,7 +84,7 @@ class State(object):
 
   def GetSpreadsheetRowMapping(
       self, guid_to_entity_map: GuidToEntityMap
-  ) -> Dict[str, str]:
+  ) -> Dict[str, any]:
     """Returns a dictionary of State attributes by spreadsheet headers."""
     return {
         VALUES: [
@@ -95,7 +95,7 @@ class State(object):
                     )
                 }
             },
-            {USER_ENTERED_VALUE: {STRING_VALUE: self.reporting_entity_guid}},
+            {USER_ENTERED_VALUE: {STRING_VALUE: str(self.reporting_entity_guid)}},
             {USER_ENTERED_VALUE: {STRING_VALUE: self.std_field_name}},
             {USER_ENTERED_VALUE: {STRING_VALUE: self.standard_state}},
             {USER_ENTERED_VALUE: {STRING_VALUE: self.raw_state}},

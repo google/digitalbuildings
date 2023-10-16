@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 """Helper module for exporting a valid Building Configuration or spreadsheet."""
-
+import uuid
 from typing import Any, Dict, List, Optional
 
 # pylint: disable=g-importing-member
@@ -132,7 +132,7 @@ class BuildingConfigExport(object):
       if isinstance(entity, ReportingEntity):
         entity_yaml_dict.update(
             {
-                entity.bc_guid: self._GetReportingEntityBuildingConfigBlock(
+                str(entity.bc_guid): self._GetReportingEntityBuildingConfigBlock(
                     entity, operation
                 )
             }
@@ -140,7 +140,7 @@ class BuildingConfigExport(object):
       elif isinstance(entity, VirtualEntity):
         entity_yaml_dict.update(
             {
-                entity.bc_guid: self._GetVirtualEntityBuildingConfigBlock(
+                str(entity.bc_guid): self._GetVirtualEntityBuildingConfigBlock(
                     entity, operation
                 )
             }
@@ -148,7 +148,7 @@ class BuildingConfigExport(object):
 
     entity_yaml_dict.update(
         {
-            site.guid: {
+            str(site.guid): {
                 CONFIG_CODE: site.code,
                 CONFIG_TYPE: site.namespace + '/' + site.type_name,
                 CONFIG_ETAG: site.etag,
@@ -184,7 +184,7 @@ class BuildingConfigExport(object):
       if isinstance(entity, ReportingEntity):
         entity_yaml_dict.update(
             {
-                entity.bc_guid: self._GetReportingEntityBuildingConfigBlock(
+                str(entity.bc_guid): self._GetReportingEntityBuildingConfigBlock(
                     entity=entity,
                     operation=None,
                 )
@@ -193,7 +193,7 @@ class BuildingConfigExport(object):
       elif isinstance(entity, VirtualEntity):
         entity_yaml_dict.update(
             {
-                entity.bc_guid: self._GetVirtualEntityBuildingConfigBlock(
+                str(entity.bc_guid): self._GetVirtualEntityBuildingConfigBlock(
                     entity=entity, operation=None
                 )
             }
@@ -201,7 +201,7 @@ class BuildingConfigExport(object):
 
     entity_yaml_dict.update(
         {
-            site.guid: {
+            str(site.guid): {
                 CONFIG_CODE: site.code,
                 CONFIG_TYPE: site.namespace + '/' + site.type_name,
             }
@@ -302,11 +302,11 @@ class BuildingConfigExport(object):
       virtual_entity_yaml.update(self._AddOperationToBlock(operation))
     return virtual_entity_yaml
 
-  def _GetConnections(self, entity: Entity) -> Dict[str, List[str]]:
+  def _GetConnections(self, entity: Entity) -> Dict[str, any]:
     if entity.connections:
       return {
           CONFIG_CONNECTIONS: {
-              c.source_entity_guid: [c.connection_type.name]
+              str(c.source_entity_guid): [c.connection_type.name]
               for c in entity.connections
           }
       }
@@ -335,11 +335,11 @@ class BuildingConfigExport(object):
         if not field_value:
           field_value = field.std_field_name
         if field.reporting_entity_guid not in link_map:
-          link_map[field.reporting_entity_guid] = {
+          link_map[str(field.reporting_entity_guid)] = {
               field.std_field_name: field_value
           }
         else:
-          link_map.get(field.reporting_entity_guid).update(
+          link_map.get(str(field.reporting_entity_guid)).update(
               {field.std_field_name: field_value}
           )
     return link_map

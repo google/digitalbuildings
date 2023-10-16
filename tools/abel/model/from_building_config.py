@@ -12,14 +12,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 """Helper module for model_builder class."""
-
+import uuid
 from typing import List, Tuple
 
 # pylint: disable=g-importing-member
 from model.connection import Connection as ABELConnection
-from model.constants import CONNECTION_TYPE
-from model.constants import SOURCE_ENTITY_GUID
-from model.constants import TARGET_ENTITY_GUID
 from model.entity import Entity
 from model.entity import ReportingEntity
 from model.entity import VirtualEntity
@@ -60,14 +57,14 @@ def EntityInstanceToEntity(
   connections = []
   entity_operation = None
   enumerated_namespace = EntityNamespace(entity_instance.namespace.upper())
-
+  entity_guid = uuid.UUID(entity_instance.guid)
   if not entity_instance.cloud_device_id:
     entity = VirtualEntity(
         code=entity_instance.code,
         namespace=enumerated_namespace,
         etag=entity_instance.etag,
         type_name=entity_instance.type_name,
-        bc_guid=entity_instance.guid,
+        bc_guid=entity_guid,
     )
   else:
     entity = ReportingEntity(
@@ -76,33 +73,33 @@ def EntityInstanceToEntity(
         cloud_device_id=entity_instance.cloud_device_id,
         etag=entity_instance.etag,
         type_name=entity_instance.type_name,
-        bc_guid=entity_instance.guid,
+        bc_guid=entity_guid,
     )
     if entity_instance.translation:
       for field in entity_instance.translation.values():
         if isinstance(field, DimensionalValue):
           fields.append(
               _DimensionalValueToDimensionalValueField(
-                  reporting_entity_guid=entity_instance.guid, field=field
+                  reporting_entity_guid=entity_guid, field=field
               )
           )
         elif isinstance(field, MultiStateValue):
           this_field, this_states = _MultistateValueToMultistateValueField(
-              reporting_entity_guid=entity_instance.guid, field=field
+              reporting_entity_guid=entity_guid, field=field
           )
           fields.append(this_field)
           states.extend(this_states)
         elif isinstance(field, IVUndefinedField):
           fields.append(
               _UndefinedFieldToUndefinedField(
-                  reporting_entity_guid=entity_instance.guid, field=field
+                  reporting_entity_guid=entity_guid, field=field
               )
           )
 
   if entity_instance.connections:
     for connection in entity_instance.connections:
       connections.append(
-          _TranslateConnectionsToABEL(entity_instance.guid, connection)
+          _TranslateConnectionsToABEL(entity_guid, connection)
       )
   if entity_instance.operation:
     operation = EntityOperationType(entity_instance.operation.value)
@@ -117,7 +114,7 @@ def EntityInstanceToEntity(
 
 
 def _DimensionalValueToDimensionalValueField(
-    reporting_entity_guid: str, field: DimensionalValue
+    reporting_entity_guid: uuid.UUID, field: DimensionalValue
 ) -> DimensionalValueField:
   """Maps DimensionalValue attributes to ABEL DimensionalValueField instance.
 
@@ -144,7 +141,7 @@ def _DimensionalValueToDimensionalValueField(
 
 
 def _MultistateValueToMultistateValueField(
-    reporting_entity_guid: str, field: MultiStateValue
+    reporting_entity_guid: uuid.UUID, field: MultiStateValue
 ) -> Tuple[MultistateValueField, List[State]]:
   """Maps MultiStateValue attributes to ABEL MultistateValueField instances.
 
@@ -169,7 +166,7 @@ def _MultistateValueToMultistateValueField(
 
 
 def _TranslateStatesToABEL(
-    entity_guid: str, field: MultiStateValue
+    entity_guid: uuid.UUID, field: MultiStateValue
 ) -> List[State]:
   """Maps MultiStateValue state attributes to ABEL State instance.
 
@@ -196,7 +193,7 @@ def _TranslateStatesToABEL(
 
 
 def _UndefinedFieldToUndefinedField(
-    reporting_entity_guid: str, field: IVUndefinedField
+    reporting_entity_guid: uuid.UUID, field: IVUndefinedField
 ) -> MissingField:
   """Maps IV UndefinedField attributes to ABEL UndefinedField instances.
 
@@ -215,7 +212,7 @@ def _UndefinedFieldToUndefinedField(
 
 
 def _TranslateConnectionsToABEL(
-    entity_guid: str, connection: IVConnection
+    entity_guid: uuid.UUID, connection: IVConnection
 ) -> ABELConnection:
   """Maps Instance Validator Connection attributes to ABEL Connection object.
 
@@ -226,11 +223,11 @@ def _TranslateConnectionsToABEL(
   Returns:
     ABELConnection instance
   """
-  return ABELConnection.FromDict({
-      SOURCE_ENTITY_GUID: connection.source,
-      CONNECTION_TYPE: connection.ctype,
-      TARGET_ENTITY_GUID: entity_guid,
-  })
+  return ABELConnection(
+    source_entity_guid=connection.source,
+    target_entity_guid=entity_guid,
+    connection_type=connection.ctype
+  )
 
 
 def AddReportingEntitiesFromEntityInstance(

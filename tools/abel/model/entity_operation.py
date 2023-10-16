@@ -86,7 +86,7 @@ class EntityOperation(object):
       self, guid_to_entity_map: GuidToEntityMap
   ) -> Dict[str, str]:
     """Returns map of entity attributes wih operation by spreadsheet headers."""
-    entity_row_map = self.entity.GetSpreadsheetRowMapping(guid_to_entity_map)
+    entity_row_map = self.entity.GetSpreadsheetRowMapping()
     operation_row_map = {
         VALUES: [
             {

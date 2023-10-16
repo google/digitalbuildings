@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 """Module to hold EntityField class."""
-
+import uuid
 from typing import Dict, List, Optional
 
 # pylint: disable=g-importing-member
@@ -64,8 +64,8 @@ class MissingField(field_translation.UndefinedField):
   def __init__(
       self,
       std_field_name: str,
-      entity_guid: str,
-      reporting_entity_guid: Optional[str] = None,
+      entity_guid: uuid.UUID,
+      reporting_entity_guid: Optional[uuid.UUID] = None,
       reporting_entity_field_name: Optional[str] = None,
       metadata: Optional[Dict[str, str]] = None,
   ):
@@ -120,8 +120,8 @@ class MissingField(field_translation.UndefinedField):
         reporting_entity_field_name=missing_field_dict[
             REPORTING_ENTITY_FIELD_NAME
         ],
-        entity_guid=missing_field_dict[BC_GUID],
-        reporting_entity_guid=missing_field_dict[REPORTING_ENTITY_GUID],
+        entity_guid=uuid.UUID(missing_field_dict.get(BC_GUID)),
+        reporting_entity_guid=uuid.UUID(missing_field_dict.get(REPORTING_ENTITY_GUID)),
     )
     missing_field_instance.metadata = {
         k[len(METADATA) + 1 :]: v
@@ -145,7 +145,7 @@ class MissingField(field_translation.UndefinedField):
                     )
                 }
             },
-            {USER_ENTERED_VALUE: {STRING_VALUE: self.entity_guid}},
+            {USER_ENTERED_VALUE: {STRING_VALUE: str(self.entity_guid)}},
             {
                 USER_ENTERED_VALUE: {
                     STRING_VALUE: guid_to_entity_map.GetEntityCodeByGuid(
@@ -153,7 +153,7 @@ class MissingField(field_translation.UndefinedField):
                     )
                 }
             },
-            {USER_ENTERED_VALUE: {STRING_VALUE: self.reporting_entity_guid}},
+            {USER_ENTERED_VALUE: {STRING_VALUE: str(self.reporting_entity_guid)}},
             {
                 USER_ENTERED_VALUE: {STRING_VALUE: MISSING_TRUE},
                 DATA_VALIDATION: {
@@ -187,8 +187,8 @@ class MultistateValueField(field_translation.DefinedField):
       self,
       std_field_name: str,
       raw_field_name: str,
-      entity_guid: str,
-      reporting_entity_guid: Optional[str] = None,
+      entity_guid: uuid.UUID,
+      reporting_entity_guid: Optional[uuid.UUID] = None,
       reporting_entity_field_name: Optional[str] = None,
       metadata: Optional[Dict[str, str]] = None,
   ):
@@ -266,8 +266,8 @@ class MultistateValueField(field_translation.DefinedField):
         reporting_entity_field_name=multistate_field_dict[
             REPORTING_ENTITY_FIELD_NAME
         ],
-        entity_guid=multistate_field_dict[BC_GUID],
-        reporting_entity_guid=multistate_field_dict[REPORTING_ENTITY_GUID],
+        entity_guid=uuid.UUID(multistate_field_dict[BC_GUID]),
+        reporting_entity_guid=uuid.UUID(multistate_field_dict[REPORTING_ENTITY_GUID]),
     )
     multi_state_value_field_instance.metadata = {
         k[len(METADATA) + 1 :]: v
@@ -313,7 +313,7 @@ class MultistateValueField(field_translation.DefinedField):
                     )
                 }
             },
-            {USER_ENTERED_VALUE: {STRING_VALUE: self.entity_guid}},
+            {USER_ENTERED_VALUE: {STRING_VALUE: str(self.entity_guid)}},
             {
                 USER_ENTERED_VALUE: {
                     STRING_VALUE: guid_to_entity_map.GetEntityCodeByGuid(
@@ -321,7 +321,7 @@ class MultistateValueField(field_translation.DefinedField):
                     )
                 }
             },
-            {USER_ENTERED_VALUE: {STRING_VALUE: self.reporting_entity_guid}},
+            {USER_ENTERED_VALUE: {STRING_VALUE: str(self.reporting_entity_guid)}},
             {
                 USER_ENTERED_VALUE: {STRING_VALUE: MISSING_FALSE},
                 DATA_VALIDATION: {
@@ -365,8 +365,8 @@ class DimensionalValueField(field_translation.DefinedField):
       self,
       std_field_name: str,
       raw_field_name: str,
-      entity_guid: str,
-      reporting_entity_guid: Optional[str] = None,
+      entity_guid: uuid.UUID,
+      reporting_entity_guid: Optional[uuid.UUID] = None,
       reporting_entity_field_name: Optional[str] = None,
       metadata: Optional[Dict[str, str]] = None,
   ):
@@ -438,8 +438,8 @@ class DimensionalValueField(field_translation.DefinedField):
         reporting_entity_field_name=dimensional_field_dict[
             REPORTING_ENTITY_FIELD_NAME
         ],
-        entity_guid=dimensional_field_dict[BC_GUID],
-        reporting_entity_guid=dimensional_field_dict[REPORTING_ENTITY_GUID],
+        entity_guid=uuid.UUID(dimensional_field_dict[BC_GUID]),
+        reporting_entity_guid=uuid.UUID(dimensional_field_dict[REPORTING_ENTITY_GUID]),
     )
     # Create a units instance from a spreadsheet and to a Dimensional Field
     # instance.
@@ -495,7 +495,7 @@ class DimensionalValueField(field_translation.DefinedField):
                     )
                 }
             },
-            {USER_ENTERED_VALUE: {STRING_VALUE: self.entity_guid}},
+            {USER_ENTERED_VALUE: {STRING_VALUE: str(self.entity_guid)}},
             {
                 USER_ENTERED_VALUE: {
                     STRING_VALUE: guid_to_entity_map.GetEntityCodeByGuid(
@@ -503,7 +503,7 @@ class DimensionalValueField(field_translation.DefinedField):
                     )
                 }
             },
-            {USER_ENTERED_VALUE: {STRING_VALUE: self.reporting_entity_guid}},
+            {USER_ENTERED_VALUE: {STRING_VALUE: str(self.reporting_entity_guid)}},
             {
                 USER_ENTERED_VALUE: {STRING_VALUE: MISSING_FALSE},
                 DATA_VALIDATION: {
