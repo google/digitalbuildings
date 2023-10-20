@@ -79,11 +79,6 @@ class Site(object):
     return site_instance
 
   @property
-  def bc_guid(self) -> str:
-    """Returns the BC GUID for a site."""
-    return self.guid
-
-  @property
   def entities(self) -> List[str]:
     """Returns a list of entity guids contained in a site."""
     return self._entities
@@ -109,14 +104,10 @@ class Site(object):
   # pylint: disable=unused-argument
   def GetSpreadsheetRowMapping(self, *args) -> Dict[str, str]:
     """Returns a dictionary of Site attributes by spreadsheet headers."""
-    site_row_mapping = {
+    return {
         VALUES: [
             {USER_ENTERED_VALUE: {STRING_VALUE: self.code}},
             {USER_ENTERED_VALUE: {STRING_VALUE: self.guid}},
+            {USER_ENTERED_VALUE: {STRING_VALUE: self.etag}},
         ]
     }
-    if self.etag:
-      site_row_mapping.get(VALUES).append(
-          {USER_ENTERED_VALUE: {STRING_VALUE: self.etag}}
-      )
-    return site_row_mapping
