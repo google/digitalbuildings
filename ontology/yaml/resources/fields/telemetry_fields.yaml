@@ -3182,6 +3182,10 @@ literals:
     fixed_min: 0.0
     flexible_max: 2000.0
 
+- electriccharge_sensor:
+    fixed_min: 0.0
+    flexible_max: 27777.77778
+
 - purge_command:
   - ON
   - OFF

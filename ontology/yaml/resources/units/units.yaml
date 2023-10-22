@@ -104,6 +104,14 @@ distance:
     offset: 0
 electriccapacitance:
   farads: STANDARD
+electriccharge:
+  coulomb: STANDARD
+  milliampere_hours: 
+    multiplier: 0.277778
+    offset: 0
+  ampere_hours:
+    multiplier: 0.000277778
+    offset: 0
 electricconductance:
   siemens: STANDARD
 electricconductivity:
