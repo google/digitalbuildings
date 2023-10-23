@@ -1,0 +1,22 @@
+{
+  "$id": "entity-export-schema.schema.json",
+  "type": "object",
+  "properties": {
+    "etag": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string"
+    },
+    "operation": {
+      "const": "EXPORT"
+    }
+  },
+  "allOf": [
+    {
+      "$ref": "entity-base-schema.schema.json"
+    }
+  ],
+  "required": [    "operation"],
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

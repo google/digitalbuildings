@@ -1,0 +1,16 @@
+{
+  "$id": "entity-add-schema.schema.json",
+  "type": "object",
+  "properties": {
+    "operation": {
+      "const": "ADD"
+    }
+  },
+  "required":  ["operation"],
+  "allOf": [
+    {
+      "$ref": "entity-base-schema.schema.json"
+    }
+  ],
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

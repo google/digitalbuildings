@@ -57,11 +57,13 @@ class ParserTest(absltest.TestCase):
           [path.join(_TESTCASE_PATH, 'BAD', 'duplicate_keys.yaml')])
       del parser
 
+  # Migrated
   def testInstanceValidator_DetectMissingColon_Fails(self):
     with self.assertRaises(SystemExit):
       parser = _Helper([path.join(_TESTCASE_PATH, 'BAD', 'missing_colon.yaml')])
       del parser
 
+  # Migrated
   def testInstanceValidator_DetectImproperSpacing_Fails(self):
     with self.assertRaises(SystemExit):
       parser = _Helper([path.join(_TESTCASE_PATH, 'BAD', 'spacing.yaml')])
@@ -72,6 +74,8 @@ class ParserTest(absltest.TestCase):
       parser = _Helper([path.join(_TESTCASE_PATH, 'BAD', 'tabbing.yaml')])
       del parser
 
+  # Don't think the following test case should be handled by parser...Maybe?
+  # Come back to it
   def testInstanceValidator_ParseProperFormat_Success(self):
     parser = _Helper([path.join(_TESTCASE_PATH, 'GOOD', 'building_type.yaml')])
     del parser

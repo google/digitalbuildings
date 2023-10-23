@@ -21,16 +21,22 @@ import json
 import os
 import sys
 import uuid
-from typing import Dict, List, Tuple
+from typing import Dict, List, Tuple, Any
 
+import yaml
 from validate import constants
 from validate import entity_instance
+from validate import enumerations
 from validate import generate_universe
-from validate import instance_parser
+from validate import parser as p
 from validate import subscriber
 from validate import telemetry_validation_report as tvr
 from validate import telemetry_validator
 from yamlformat.validator import presubmit_validate_types_lib as pvt
+try:
+  from yaml import CLOader as Loader, CDumper as Dumper
+except ImportError:
+  from yaml import Loader, Dumper
 
 
 INSTANCE_VALIDATION_FILENAME = 'instance_validation_report.txt'
@@ -56,27 +62,12 @@ def FileNameEnumerationHelper(filename: str) -> str:
   ))
 
 
-def GetDefaultOperation(
-    config_mode: instance_parser.ConfigMode,
-) -> instance_parser.EntityOperation:
-  """Returns the default EntityOperation for the ConfigMode."""
-  if config_mode == instance_parser.ConfigMode.INITIALIZE:
-    return instance_parser.EntityOperation.ADD
-  # we default to export for a config update when no operation is specified
-  elif config_mode == instance_parser.ConfigMode.UPDATE:
-    return instance_parser.EntityOperation.EXPORT
-  elif config_mode == instance_parser.ConfigMode.EXPORT:
-    return instance_parser.EntityOperation.EXPORT
-  else:
-    raise LookupError
-
-
 def Deserialize(
     yaml_files: List[str],
 ) -> Tuple[
-    Dict[uuid.UUID, entity_instance.EntityInstance], instance_parser.ConfigMode
+    Dict[uuid.UUID, entity_instance.EntityInstance], enumerations.ConfigMode
 ]:
-  """Parses a yaml configuration file and deserializes it.
+  """Wrapper function to parse a yaml configuration file and deserializes it.
 
   Args:
     yaml_files: list of building configuration files.
@@ -86,39 +77,8 @@ def Deserialize(
     ConfigMode: INITIALIZE or UPDATE
   """
 
-  print('[INFO]\tStarting syntax validation.')
-  parser = instance_parser.InstanceParser()
-  for yaml_file in yaml_files:
-    print(f'[INFO]\tOpening file: {yaml_file}.')
-    parser.AddFile(yaml_file)
-  parser.Finalize()
-
-  default_entity_operation = GetDefaultOperation(parser.GetConfigMode())
-
-  entities = {}
-  for entity_key, entity_yaml in parser.GetEntities().items():
-    try:
-      entity = entity_instance.EntityInstance.FromYaml(
-          str(entity_key), entity_yaml, default_entity_operation
-      )
-      entities[entity.guid] = entity
-    except ValueError as ex:
-      print(
-          '[ERROR]\tInvalid Entity syntax found for this entity: '
-          f'{entity_key} and this content: "{entity_yaml}" and with error'
-          f': "{ex}"'
-      )
-      raise ex
-    except KeyError as ex:
-      print(
-          '[ERROR]\tInvalid Entity syntax found for this entity: '
-          f'{entity_key} and this content: "{entity_yaml}" and with error'
-          f': "{ex}"'
-      )
-      raise ex
-
-  return entities, parser.GetConfigMode()
-
+  parser = p.Parser()
+  return parser.Deserialize(yaml_files=yaml_files)
 
 def _ValidateConfig(
     filenames: List[str], universe: pvt.ConfigUniverse, is_udmi
@@ -379,7 +339,7 @@ class EntityHelper(object):
   def Validate(
       self,
       entities: Dict[str, entity_instance.EntityInstance],
-      config_mode: instance_parser.ConfigMode,
+      config_mode: enumerations.ConfigMode,
       is_udmi: bool = True,
   ) -> Dict[str, entity_instance.EntityInstance]:
     """Validates entity instances that are already deserialized.
@@ -413,7 +373,7 @@ class EntityHelper(object):
             'than 2 operations; one being EXPORT.'
         )
       if (
-          current_entity.operation is not instance_parser.EntityOperation.DELETE
+          current_entity.operation is not enumerations.EntityOperation.DELETE
           and current_entity.type_name.lower() == 'building'
       ):
         building_found = True
@@ -447,7 +407,7 @@ class AlphaInterdependencyHelper(object):
     return self.__validation_state
 
   def ValidateAndUpdateState(
-      self, entity_operation: instance_parser.EntityOperation
+      self, entity_operation: enumerations.EntityOperation
   ) -> bool:
     """Validates entity instance operation against v1 Alpha Milestones.
 
@@ -461,7 +421,7 @@ class AlphaInterdependencyHelper(object):
       True if entities seen thus far conform to v1 Alpha constraint; False o.w.
     """
     # first branch by EXPORT
-    if entity_operation == instance_parser.EntityOperation.EXPORT:
+    if entity_operation == enumerations.EntityOperation.EXPORT:
       return self.GetValidationState()
     # either: ADD, DELETE, UPDATE
     # an entity operation of the three has been detected

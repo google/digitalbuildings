@@ -19,9 +19,6 @@ SDC_EXT-17-GUID:
   etag: a12345
   code: SDC_EXT-17
 
-CONFIG_METADATA:
-  operation: EXPORT
-
 US-SEA-BLDG1-GUID:
   type: FACILITIES/BUILDING
   etag: b23456

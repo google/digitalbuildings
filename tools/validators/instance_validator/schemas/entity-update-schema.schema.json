@@ -1,0 +1,31 @@
+{
+  "$id": "entity-update-schema.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "allOf": [
+    {
+      "$ref": "entity-base-schema.schema.json"
+    }
+  ],
+  "dependentRequired": {
+    "update_mask": [
+      "operation"
+    ]
+  },
+  "properties": {
+    "etag": {
+      "type": "string"
+    },
+    "operation": {
+      "const": "UPDATE"
+    },
+    "update_mask": {
+      "type": "array",
+      "uniqueItems": true
+    }
+  },
+  "required": [
+    "etag",
+    "operation"
+  ],
+  "type": "object"
+}

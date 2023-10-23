@@ -79,7 +79,7 @@ def _OrRegex(values: List[str]) -> syaml.Regex:
 
 E = TypeVar('E', bound=enum.Enum)
 
-
+# WHY? What's the purpose of the below function.
 def EnumToRegex(
     enum_type: Optional[Type[E]] = None,
     omit: Optional[List[E]] = None,
@@ -465,6 +465,7 @@ class InstanceParser:
       validation_fn: a validation function that takes YAML as an argument
     """
     try:
+
       validated = syaml.load(
           unvalidated_block, syaml.MapPattern(syaml.Str(), syaml.Any())
       )
