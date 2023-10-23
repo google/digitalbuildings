@@ -20,7 +20,6 @@ from model import entity_enumerations
 from model import entity_field as ef
 from model import entity_operation
 from model import model_builder as mb
-from model import site as site_lib
 from validate import field_translation as ft
 
 
@@ -305,9 +304,7 @@ def Split(
       A list of entities connected to entity.
     """
     split_entities.append(entity)
-    if isinstance(entity, site_lib.Site):
-      return dependencies
-    elif not entity.connections and entity not in split_entities:
+    if not entity.connections and entity not in split_entities:
       dependencies.append(entity)
       return dependencies
     else:
