@@ -3217,10 +3217,6 @@ literals:
     flexible_min: 0.00005
     flexible_max: 0.005
 
-- high_average_zone_air_co2_concentration_alarm:
-  - ACTIVE
-  - INACTIVE
-
 - soundpressurelevel_sensor:
     fixed_min: -60
     flexible_max: 200
