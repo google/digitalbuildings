@@ -110,3 +110,10 @@ HDS:
   is_abstract: true
   implements:
   - /SENSOR
+
+EHT:
+  guid: "700c69bb-8d37-4e5f-806f-ae64d007cf35"
+  description: "Tag for a heat tracer. A heat tracer is typically a heated coil that is wound around pipes to prevent the liquid inside from freezing."
+  is_abstract: true
+  implements:
+  - EQUIPMENT

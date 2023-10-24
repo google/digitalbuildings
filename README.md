@@ -51,7 +51,7 @@ In this module, you’ll fully explore the core modeling and organizational conc
 * [Lesson 3: Subfields](./ontology/docs/learning/Module_1_Lesson_3_Subfields.pdf)
 * [Lesson 4: Fields](./ontology/docs/learning/Module_1_Lesson_4_Fields.pdf)
 * [Lesson 5: States and multi-states](./ontology/docs/learning/Module_1_Lesson_5_States_and_multistates.pdf)
-* [Lesson 6: Entity yypes](./ontology/docs/learning/Module_1_Lesson_6_Entity_types.pdf)
+* [Lesson 6: Entity types](./ontology/docs/learning/Module_1_Lesson_6_Entity_types.pdf)
 * [Lesson 7: Mappings](./ontology/docs/learning/Module_1_Lesson_7_Mappings.pdf)
 * [Lesson 8: Connections](./ontology/docs/learning/Module_1_Lesson_8_Connections.pdf)
 * [Lesson 9: Namespaces](./ontology/docs/learning/Module_1_Lesson_9_Namespaces.pdf)

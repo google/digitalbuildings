@@ -1199,8 +1199,8 @@ FCU_DFSS_DXRC_RHDHC_AL:
   opt_uses:
   - filter_alarm
   - master_alarm
-  - failed_heat_exchange_alarm 
-  - water_leak_alarm 
+  - failed_heat_exchange_alarm
+  - water_leak_alarm
 
 FCU_DFVSC_CHWRC_FDPSM2X:
   guid: "26ec8491-3ccd-42f6-86e7-9d69afeb87bd"
@@ -1442,7 +1442,7 @@ FCU_NONCANONICAL_1:
   - zone_occupancy_status_1
   - zone_occupancy_status_2
   - zone_occupancy_status_3
-  
+
 FCU_DFSS_CSP_ZHC_DXZC_NONCANONICAL_1:
   guid: "0bca6899-fa9a-40ff-a3bd-8828991b39c1"
   description: "Non-standard type."
@@ -1761,3 +1761,32 @@ FCU_DFVSC_RTM_CO2M_HWZTC_CHWZTC:
   - CO2M
   - HWZTC
   - CHWZTC
+
+
+FCU_DXZTC_DFSS:
+  guid: "5688519e-f88e-4620-8bd5-89d91467028d"
+  description: "FCU with SS, discharge temp sensors, zone control and sensor, filter change"
+  is_canonical: true
+  implements:
+  - FCU
+  - DXZTC
+  - DFSS
+  opt_uses:
+  - failed_alarm
+  - filter_alarm
+
+FCU_RHDHS_DXDC_DFSS_RTM_DSPM_DFM:
+  guid: "f60a2563-da8f-4360-b2d9-f471c065356c"
+  description: "FCU with temperature & pressure monitor, humidity monitor and water leak & status alarm."
+  is_canonical: true
+  implements:
+  - FCU
+  - RHDHS
+  - DXDC
+  - DFSS
+  - RTM
+  - DSPM
+  - DFM
+  opt_uses:
+  - water_leak_alarm
+  - failed_alarm
