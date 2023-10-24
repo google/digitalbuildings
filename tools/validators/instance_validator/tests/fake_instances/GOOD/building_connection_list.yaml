@@ -12,12 +12,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+CONFIG_METADATA:
+  operation: INITIALIZE
+
 # Building
-US-SEA-BLDG1-GUID:
+3cf600dc-0e48-40ad-9807-ba98018e9946:
   type: FACILITIES/BUILDING
   code: US-SEA-BLDG1
   connections:
     # Listed entities are sources on connections
-    ANOTHER-ENTITY-GUID:
+    d5568a44-f78f-4704-a3f8-d8c9ecf6111a:
     - FEEDS
     - CONTAINS

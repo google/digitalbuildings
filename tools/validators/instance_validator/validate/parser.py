@@ -82,7 +82,7 @@ class Parser(object):
       print(ve)
       return False
     except ValueError:
-      print('CONFIG_METADATA operation invalid. Operation must be one of INITLIAZE, EXPORT, UPDATE')
+      print('CONFIG_METADATA operation invalid. Operation must be one of INITIALIZE, EXPORT, UPDATE')
       return False
     return True
 
@@ -136,7 +136,7 @@ class Parser(object):
         self._ValidateMetadataSchema(metadata_block)
         del yaml_dict[_CONFIG_METADATA_KEY]
 
-      with open(os.path.abspath(os.path.join(self.schema_folder, 'entity-block-schema.schema.json')), 'r') as f:
+      with open(os.path.abspath(os.path.join(self.schema_folder, 'entity-noop-schema.schema.json')), 'r') as f:
         entity_block_schema = json.loads(f.read())
       try:
         jsonschema.Draft202012Validator.check_schema(schema=entity_block_schema)

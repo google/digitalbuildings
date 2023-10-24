@@ -12,7 +12,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-SDC_EXT-17-GUID:
+CONFIG_METADATA:
+  operation: INITIALIZE
+
+eb15ee68-795f-430a-bb1f-8e70eaf2e66a:
   type: HVAC/SDC_EXT
   code: SDC_EXT-17
   translation:
@@ -23,6 +26,6 @@ SDC_EXT-17-GUID:
         values:
           percent: "%"
 
-US-SEA-BLDG1-GUID:
+135d08f4-8df0-46ae-86cb-16b953870aeb:
   type: FACILITIES/BUILDING
   code: US-SEA-BLDG1

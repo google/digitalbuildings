@@ -12,17 +12,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# This config file is invalid because it fails to pass the syntax expectations
-# for translation. The devices listed in translation need to follow specific
-# formats, and `invalid_key` is not a valid part of any of them.
+CONFIG_METADATA:
+  operation: INITIALIZE
 
-US-SEA-BLDG1-GUID:
+# Building
+3cf600dc-0e48-40ad-9807-ba98018e9946:
   type: FACILITIES/BUILDING
   code: US-SEA-BLDG1
-  translation:
-    zone_air_temperature_sensor:
-      present_value: "temp_1"
-      units:
-        key: "units"
-        values:
-          degrees_celsius: "degC"
+  connections:
+    # Listed entities are sources on connections
+    62b81ce8-f8bf-47e6-86b8-20870f9712e3: FEEDS
+    8dff2e92-b619-4259-a683-c946bd0ff612: CONTAINS
+  blah: bad additional property

@@ -16,9 +16,8 @@ CONFIG_METADATA:
   operation: INITIALIZE
 
 # Building
-US-SEA-BLDG1-GUID:
+3cf600dc-0e48-40ad-9807-ba98018e9946:
   type: FACILITIES/BUILDING
-  etag: 123456
   code: US-SEA-BLDG1
   connections:
     # Listed entities are sources on connections

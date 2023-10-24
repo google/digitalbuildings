@@ -69,6 +69,7 @@ class ParserTest(absltest.TestCase):
       parser = _Helper([path.join(_TESTCASE_PATH, 'BAD', 'spacing.yaml')])
       del parser
 
+  # Migrated
   def testInstanceValidator_DetectImproperTabbing_Fails(self):
     with self.assertRaises(SystemExit):
       parser = _Helper([path.join(_TESTCASE_PATH, 'BAD', 'tabbing.yaml')])
@@ -80,11 +81,13 @@ class ParserTest(absltest.TestCase):
     parser = _Helper([path.join(_TESTCASE_PATH, 'GOOD', 'building_type.yaml')])
     del parser
 
+  # Migrated
   def testInstanceValidator_ParseProperConnections_Success(self):
     parser = _Helper(
         [path.join(_TESTCASE_PATH, 'GOOD', 'building_connections.yaml')])
     del parser
 
+  # Migrated
   def testInstanceValidator_ParseProperConnectionList_Success(self):
     parser = _Helper(
         [path.join(_TESTCASE_PATH, 'GOOD', 'building_connection_list.yaml')])
@@ -99,12 +102,14 @@ class ParserTest(absltest.TestCase):
     self.assertIn('FCU-1-GUID', parser.keys())
     self.assertIn('FCU-10-GUID', parser.keys())
 
+  # Migrated
   def testInstanceValidator_DetectImproperTranslationCompliance(self):
     with self.assertRaises(SystemExit):
       parser = _Helper(
           [path.join(_TESTCASE_PATH, 'BAD', 'translation_compliant.yaml')])
       del parser
 
+  # Migrated
   def testInstanceValidator_DetectImproperTranslationKeys(self):
     with self.assertRaises(SystemExit):
       parser = _Helper(
@@ -117,6 +122,7 @@ class ParserTest(absltest.TestCase):
           [path.join(_TESTCASE_PATH, 'BAD', 'translation_units_format.yaml')])
       del parser
 
+  # Migrated
   def testInstanceValidator_CloudDeviceIdNotSetWithTranslation(self):
     with self.assertRaises(KeyError):
       parser = _Helper([
@@ -125,23 +131,28 @@ class ParserTest(absltest.TestCase):
       ])
       del parser
 
+  #Don't think parser should test for below...
   def testInstanceValidator_DetectDuplicateEntityKeys(self):
     with self.assertRaises(SystemExit):
       parser = _Helper([path.join(_TESTCASE_PATH, 'BAD', 'duplicate_key.yaml')])
       del parser
 
+  # Don't know if I need this either
   def testInstanceValidator_DetectDuplicateMetadata(self):
     with self.assertRaises(SystemExit):
       parser = _Helper(
           [path.join(_TESTCASE_PATH, 'BAD', 'duplicate_metadata.yaml')])
       del parser
 
+  # Not yet
+  # Need to add validation for having entity operations under INITIALIZE config mode
   def testInstanceValidator_RejectsOperationOnInitialize(self):
     with self.assertRaises(SystemExit):
       parser = _Helper(
           [path.join(_TESTCASE_PATH, 'BAD', 'entity_operation.yaml')])
       del parser
 
+  # Add validation for this
   def testInstanceValidator_RejectsMaskOnInitialize(self):
     with self.assertRaises(SystemExit):
       parser = _Helper([path.join(_TESTCASE_PATH, 'BAD', 'entity_mask.yaml')])

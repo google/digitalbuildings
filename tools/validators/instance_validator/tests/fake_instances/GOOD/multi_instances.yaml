@@ -14,17 +14,18 @@
 
 # Multiple instances aiming to test the parsing of several entities in a file.
 
-AHU-11-GUID:
-  connections:
-    FARSR-1: FEEDS
+CONFIG_METADATA:
+  operation: INITIALIZE
+
+37bc3537-9c19-42f9-968e-893d2ce1c6b6:
   code: AHU-11
   type: FACILITIES/BUILDING
 
-FCU-1-GUID:
+9fe360c5-3ee2-4ca5-a395-fd818f2d9fe:
   connections:
-    VLV-1: CONTROLS
-    VLV-2: CONTROLS
-    ZONE-G00: FEEDS
+    135d08f4-8df0-46ae-86cb-16b953870aeb: CONTROLS
+    04e831e8-7e08-4c68-a920-b23065e41e5e: CONTROLS
+    709e5ed6-d1a9-49c3-b6b1-b9bd6099b028: FEEDS
   code: FCU-1
   cloud_device_id: "1234567890123456"
   translation:
@@ -142,10 +143,10 @@ FCU-1-GUID:
           degrees_celsius: degC
   type: HVAC/FCU_DFSS_DFVSC_ZTC_ZHC_CHWDC_HWDC_FDPM_RMM
 
-FCU-10-GUID:
+2778562f-8600-4c55-bb36-0802cdf63956:
   connections:
-    VLV-17: CONTROLS
-    ZONE-G03: FEEDS
+    71965f14-9690-4218-9c9e-cb9550b8a07f: CONTROLS
+    1f3f9c94-0e3b-4389-b1ad-bdbd5ea1a927: FEEDS
   code: FCU-10
   cloud_device_id: "1234567890123457"
   translation:

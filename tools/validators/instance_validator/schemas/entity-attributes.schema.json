@@ -21,8 +21,7 @@
             }
           ]
         }
-      },
-      "additionalProperties": false
+      }
     },
     "links": {
       "type": "object",

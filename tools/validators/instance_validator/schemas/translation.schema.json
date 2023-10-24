@@ -11,23 +11,24 @@
         ".*": {
           "type": "string"
         }
-      },
-      "units": {
-        "type": "object",
-        "properties": {
-          "key": {
-            "type": "string"
-          },
-          "values": {
-            "type": "object",
-            "properties": {
-              ".*": {
-                "type": "string"
-              }
+      }
+    },
+    "units": {
+      "type": "object",
+      "properties": {
+        "key": {
+          "type": "string"
+        },
+        "values": {
+          "type": "object",
+          "properties": {
+            ".*": {
+              "type": "string"
             }
           }
         }
-      }
+      },
+      "required": ["key", "values"]
     }
   },
   "required": [
