@@ -3193,3 +3193,10 @@ literals:
   - ACTIVE
   - INACTIVE
 
+- average_zone_air_co2_concentration_setpoint:
+    flexible_min: 0.00005
+    flexible_max: 0.005
+
+- high_average_zone_air_co2_concentration_alarm:
+  - ACTIVE
+  - INACTIVE

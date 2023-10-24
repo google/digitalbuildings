@@ -6847,4 +6847,12 @@ EDM2X:
   - exhaust_air_damper_status_1
   - exhaust_air_damper_status_2
 
+ACO2C:
+  description: "Average Co2."
+  is_abstract: true
+  opt_uses:
+  - high_average_zone_air_co2_concentration_alarm
+  uses:
+  - average_zone_air_co2_concentration_sensor
+  - average_zone_air_co2_concentration_setpoint
 
