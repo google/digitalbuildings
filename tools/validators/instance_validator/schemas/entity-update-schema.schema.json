@@ -1,11 +1,6 @@
 {
   "$id": "entity-update-schema.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "allOf": [
-    {
-      "$ref": "entity-base-schema.schema.json"
-    }
-  ],
   "dependentRequired": {
     "update_mask": [
       "operation"
@@ -21,8 +16,18 @@
     "update_mask": {
       "type": "array",
       "uniqueItems": true
-    }
+    },
+    "code": true,
+    "connections": true,
+    "links": true,
+    "translation": true,
+    "cloud_device_id": true
   },
+  "allOf": [
+    {
+      "$ref": "entity-base-schema.schema.json"
+    }
+  ],
   "required": [
     "etag",
     "operation"

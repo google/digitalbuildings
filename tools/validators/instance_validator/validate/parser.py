@@ -136,7 +136,7 @@ class Parser(object):
         self._ValidateMetadataSchema(metadata_block)
         del yaml_dict[_CONFIG_METADATA_KEY]
 
-      with open(os.path.abspath(os.path.join(self.schema_folder, 'entity-noop-schema.schema.json')), 'r') as f:
+      with open(os.path.abspath(os.path.join(self.schema_folder, 'entity-block-schema.schema.json')), 'r') as f:
         entity_block_schema = json.loads(f.read())
       try:
         jsonschema.Draft202012Validator.check_schema(schema=entity_block_schema)
@@ -147,8 +147,7 @@ class Parser(object):
       return_dict = {}
       for guid, entity_yaml in yaml_dict.items():
         if guid == _CONFIG_METADATA_KEY:
-          print('Cannot have more than one config metadata block')
-          continue
+          raise jsonschema.ValidationError('Cannot have more than one config metadata block!')
         default_entity_operation = self.GetDefaultEntityOperation()
         is_valid = False
         try:
@@ -164,4 +163,3 @@ class Parser(object):
           )
           return_dict.update({valid_uuid: entity})
       return return_dict, self.config_mode
-

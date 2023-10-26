@@ -169,18 +169,21 @@ class ParserTest(absltest.TestCase):
       parser = _Helper([path.join(_TESTCASE_PATH, 'BAD', 'entity_etag.yaml')])
       del parser
 
+  # Don't need this
   def testInstanceValidator_ReadsMetadata_Success(self):
     parser = _ParserHelper(
         [path.join(_TESTCASE_PATH, 'GOOD', 'with_metadata.yaml')])
     self.assertLen(parser.GetEntities().keys(), 2)
     self.assertEqual(parser.GetConfigMode(), instance_parser.ConfigMode.UPDATE)
 
+  # Don't need this
   def testInstanceValidator_ReadsMetadataAtEnd_Success(self):
     parser = _ParserHelper(
         [path.join(_TESTCASE_PATH, 'GOOD', 'with_metadata_at_end.yaml')])
     self.assertLen(parser.GetEntities().keys(), 2)
     self.assertEqual(parser.GetConfigMode(), instance_parser.ConfigMode.UPDATE)
 
+  # won't migrate
   def testInstanceValidator_HandlesUpdateMode_Success(self):
     parser = _ParserHelper([
         path.join(_TESTCASE_PATH, 'GOOD',
@@ -202,12 +205,14 @@ class ParserTest(absltest.TestCase):
     self.assertEqual(parser.GetConfigMode(),
                      instance_parser.ConfigMode.Default())
 
+  # File configmode.yaml not found
   def testInstanceValidator_InvalidConfigModeExport_RaisesKeyError(self):
     with self.assertWarns(Warning):
       parser = _ParserHelper(
           [path.join(_TESTCASE_PATH, 'BAD', 'configmode.yaml')])
       del parser
 
+  # Won't Migrate
   def testEntityBlock_NewFormatSingleton_Success(self):
     parser = _ParserHelper(
         [path.join(_TESTCASE_PATH, 'GOOD', 'new_format_singleton.yaml')])
@@ -215,23 +220,27 @@ class ParserTest(absltest.TestCase):
         list(parser.GetEntities().keys()).pop(),
         '9a86a19b-b687-4db1-888e-2cf34d04b74c')
 
+  # This test doesn't make sense
   def testEntityBlock_CodeWithSpace_Success(self):
     parser = _ParserHelper(
         [path.join(_TESTCASE_PATH, 'GOOD', 'code_with_spaces.yaml')])
     self.assertEqual(
         list(parser.GetEntities().keys()).pop(), 'SDC_EXT 2-1 / Rm 2D2-GUID')
 
+  # Migrated
   def testEntityBlock_ValidUpdateMaskValueTypes_Success(self):
     parser = _ParserHelper(
         [path.join(_TESTCASE_PATH, 'GOOD', 'update_mask.yaml')])
     self.assertLen(parser.GetEntities().keys(), 1)
 
+  #Migrated
   def testEntityBlock_InvalidUpdateMaskInconsistentTypes_Fails(self):
     with self.assertRaises(SystemExit):
       parser = _Helper(
           [path.join(_TESTCASE_PATH, 'BAD', 'update_mask_value.yaml')])
       del parser
 
+  #Migrated
   def testEntityBlock_ValidUpdateMaskValue_Success(self):
     parser = _ParserHelper(
         [path.join(_TESTCASE_PATH, 'GOOD', 'update_mask.yaml')])
@@ -261,6 +270,7 @@ class ParserTest(absltest.TestCase):
     self.assertLen(parser.GetEntities().keys(), 1)
     self.assertEqual(parser.GetEntities(), expected)
 
+  # Migrated
   def testGoodEntity_DefaultExportOperationParses_Success(self):
     parser = _ParserHelper(
         [path.join(_TESTCASE_PATH, 'GOOD', 'entity_export_operation.yaml')])
@@ -274,12 +284,14 @@ class ParserTest(absltest.TestCase):
     self.assertLen(parser.GetEntities().keys(), 1)
     self.assertEqual(default_operation, instance_parser.EntityOperation.EXPORT)
 
+ # Migrated
   def testEntityBlock_InvalidExportOperation_Fails(self):
     with self.assertRaises(SystemExit):
       parser = _Helper(
           [path.join(_TESTCASE_PATH, 'BAD', 'entity_export_operation.yaml')])
       del parser
 
+  # Migrated
   def testEntityBlock_InvalidUpdateMaskAndOperation_Fails(self):
     with self.assertRaises(SystemExit):
       parser = _Helper(

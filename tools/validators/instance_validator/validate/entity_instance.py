@@ -1316,9 +1316,7 @@ def _ParseOperationAndUpdateMask(
         )
         != parse.EntityOperation.UPDATE
     ):
-      raise ValueError(
-          'Only specify UPDATE operation when "update_mask" is present.'
-      )
+      print(f'[ERROR]\t{entity_yaml.get("code")} Only specify UPDATE operation when "update_mask" is present.')
     update_mask = entity_yaml[parse.UPDATE_MASK_KEY]
     operation = parse.EntityOperation.UPDATE
   # case 2: update_mask implies update operation

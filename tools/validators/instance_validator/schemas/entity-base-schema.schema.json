@@ -12,7 +12,8 @@
       "type": "string"
     },
     "type": {
-      "type": "string"
+      "type": "string",
+      "pattern": "^(.*\/.*)"
     },
     "connections": true,
     "links": true,
@@ -23,7 +24,6 @@
       "$ref": "entity-attributes.schema.json"
     }
   ],
-  "additionalProperties": false,
   "required": ["type"],
   "dependentRequired": {"translation":  ["cloud_device_id"]},
   "$schema": "https://json-schema.org/draft/2020-12/schema"

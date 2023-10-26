@@ -17,11 +17,12 @@
 CONFIG_METADATA:
   operation: UPDATE
 
-SDC_EXT-17-GUID:
+71965f14-9690-4218-9c9e-cb9550b8a07f:
   type: HVAC/SDC_EXT
   code: SDC_EXT-17
   cloud_device_id: "1234567890123456"
   etag: a56789
+  operation: UPDATE
   update_mask:
     - translation
     - connection
@@ -32,4 +33,3 @@ SDC_EXT-17-GUID:
         key: "points.shade_extent_percentage_command.units"
         values:
           percent: "%"
-          type: HVAC/SDC_EXT
