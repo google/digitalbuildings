@@ -139,6 +139,11 @@ class MissingField(field_translation.UndefinedField):
             {USER_ENTERED_VALUE: {STRING_VALUE: self.std_field_name}},
             {USER_ENTERED_VALUE: {STRING_VALUE: ''}},
             {
+              USER_ENTERED_VALUE: {
+                STRING_VALUE: self.reporting_entity_field_name
+              }
+            },
+            {
                 USER_ENTERED_VALUE: {
                     STRING_VALUE: guid_to_entity_map.GetEntityCodeByGuid(
                         self.entity_guid
