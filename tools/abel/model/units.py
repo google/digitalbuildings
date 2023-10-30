@@ -51,7 +51,7 @@ class Units(object):
         and self.standard_to_raw_unit_map == other.standard_to_raw_unit_map
     )
 
-  def GetSpreadsheetRowMapping(self) -> Dict[str, any]:
+  def GetSpreadsheetRowMapping(self) -> Dict[str, str]:
     """Returns a dictionary of EntityField attributes by spreadsheet headers.
 
     Corresponds to a single row in a concrete model spreadsheet.

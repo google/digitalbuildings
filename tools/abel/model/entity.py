@@ -14,7 +14,6 @@
 """Module for concrete model entities."""
 
 import abc
-import uuid
 from typing import Dict, List, Optional
 
 # pylint: disable=g-importing-member
@@ -62,10 +61,10 @@ class Entity(object):
   def __init__(
       self,
       code: str,
-      namespace: EntityNamespace,
+      namespace: str,
       etag: Optional[str] = None,
       type_name: Optional[str] = None,
-      bc_guid: Optional[uuid.UUID] = None,
+      bc_guid: Optional[str] = None,
       metadata: Optional[Dict[str, str]] = None,
   ):
     """Init.
@@ -86,8 +85,6 @@ class Entity(object):
     self._connections = []
     self.type_name = type_name
     self.metadata = metadata
-    if bc_guid is not None and not isinstance(bc_guid, uuid.UUID):
-      raise Exception("Entity created with a string GUID")
 
   def __hash__(self):
     return hash((self.code, self.etag, self.bc_guid))
@@ -155,10 +152,10 @@ class VirtualEntity(Entity):
   def __init__(
       self,
       code: str,
-      namespace: EntityNamespace,
+      namespace: str,
       etag: Optional[str] = None,
       type_name: Optional[str] = None,
-      bc_guid: Optional[uuid.UUID] = None,
+      bc_guid: Optional[str] = None,
       metadata: Optional[Dict[str, str]] = None,
   ):
     """Init.
@@ -194,15 +191,12 @@ class VirtualEntity(Entity):
     # TODO(b/228973208) Add support for key errors for keys not in entity_dict.
     virtual_entity_instance = cls(
         code=entity_dict[ENTITY_CODE],
-        bc_guid=uuid.UUID(entity_dict[BC_GUID]),
+        bc_guid=entity_dict[BC_GUID],
         namespace=EntityNamespace(entity_dict.get(NAMESPACE).upper()),
         type_name=entity_dict[TYPE_NAME],
     )
     if ETAG in entity_dict.keys():
-      etag = entity_dict[ETAG]
-      if isinstance(etag, list) and len(etag) == 0:
-        etag = ""
-      virtual_entity_instance.etag = etag
+      virtual_entity_instance.etag = entity_dict[ETAG]
     # Merge all metadata cells in a row into one dictionary
     return virtual_entity_instance
 
@@ -229,12 +223,12 @@ class VirtualEntity(Entity):
     self._links.append(new_link)
 
   # pylint: disable=unused-argument
-  def GetSpreadsheetRowMapping(self, *args) -> Dict[str, any]:
+  def GetSpreadsheetRowMapping(self, *args) -> Dict[str, str]:
     """Returns map of virtual entity attributes by spreadsheet headers."""
     row_map_object = {
         VALUES: [
             {USER_ENTERED_VALUE: {STRING_VALUE: self.code}},
-            {USER_ENTERED_VALUE: {STRING_VALUE: str(self.bc_guid)}},
+            {USER_ENTERED_VALUE: {STRING_VALUE: self.bc_guid}},
             {USER_ENTERED_VALUE: {STRING_VALUE: self.etag}},
             {
                 USER_ENTERED_VALUE: {STRING_VALUE: IS_REPORTING_FALSE},
@@ -283,11 +277,11 @@ class ReportingEntity(Entity):
   def __init__(
       self,
       code: str,
-      namespace: EntityNamespace,
+      namespace: str,
       cloud_device_id: Optional[str] = None,
       etag: Optional[str] = None,
       type_name: Optional[str] = None,
-      bc_guid: Optional[uuid.UUID] = None,
+      bc_guid: Optional[str] = None,
       metadata: Optional[Dict[str, str]] = None,
   ):
     """Init.
@@ -328,15 +322,12 @@ class ReportingEntity(Entity):
     # TODO(b/228973208) Add support for key errors for keys not in entity_dict.
     reporting_entity_instance = cls(
         code=entity_dict[ENTITY_CODE],
-        bc_guid=uuid.UUID(entity_dict[BC_GUID]),
+        bc_guid=entity_dict[BC_GUID],
         namespace=EntityNamespace(entity_dict.get(NAMESPACE).upper()),
         type_name=entity_dict[TYPE_NAME],
         cloud_device_id=entity_dict[CLOUD_DEVICE_ID],
     )
     if ETAG in entity_dict.keys():
-      etag = entity_dict[ETAG]
-      if isinstance(etag, list) and len(etag) == 0:
-        etag = ""
       reporting_entity_instance.etag = entity_dict[ETAG]
     return reporting_entity_instance
 
@@ -365,12 +356,12 @@ class ReportingEntity(Entity):
     self._translations.append(new_translation)
 
   # pylint: disable=unused-argument
-  def GetSpreadsheetRowMapping(self, *args) -> Dict[str, any]:
+  def GetSpreadsheetRowMapping(self, *args) -> Dict[str, str]:
     """Returns map of reporting entity attributes by spreadsheet headers."""
     row_map_object = {
         VALUES: [
             {USER_ENTERED_VALUE: {STRING_VALUE: self.code}},
-            {USER_ENTERED_VALUE: {STRING_VALUE: str(self.bc_guid)}},
+            {USER_ENTERED_VALUE: {STRING_VALUE: self.bc_guid}},
             {USER_ENTERED_VALUE: {STRING_VALUE: self.etag}},
             {
                 USER_ENTERED_VALUE: {STRING_VALUE: IS_REPORTING_TRUE},

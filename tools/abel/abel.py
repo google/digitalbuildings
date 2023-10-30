@@ -19,9 +19,10 @@ import sys
 from model.arg_parser import ParseArgs
 from model.workflow import Workflow
 
+
 def main(parsed_args: ParseArgs) -> None:
   print(
-      '\nHow would you like to use ABEL?\n'""
+      '\nHow would you like to use ABEL?\n'
       + '1: Modify a spreadsheet/building config for an existing building\n'
       + '2: Create a spreadsheet for a new building\n'
       + '3: Split a building config\n'
