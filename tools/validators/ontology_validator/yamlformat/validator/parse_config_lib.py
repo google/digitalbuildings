@@ -126,7 +126,6 @@ def _CreateFolder(folderpath, global_namespace, create_folder_fn, file_tuples):
   """Creates a ConfigFolder for the given folderpath."""
   folder = create_folder_fn(folderpath, global_namespace)
   for ft in file_tuples:
-    print(f"ontology open {os.path.join(ft.root, ft.relative_path)}")
     with open(os.path.join(ft.root, ft.relative_path),
               'r', encoding='utf-8') as f:
       try:
