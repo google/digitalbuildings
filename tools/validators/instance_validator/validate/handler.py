@@ -21,9 +21,8 @@ import json
 import os
 import sys
 import uuid
-from typing import Dict, List, Tuple, Any
+from typing import Dict, List, Tuple
 
-import yaml
 from validate import constants
 from validate import entity_instance
 from validate import enumerations
@@ -33,18 +32,15 @@ from validate import subscriber
 from validate import telemetry_validation_report as tvr
 from validate import telemetry_validator
 from yamlformat.validator import presubmit_validate_types_lib as pvt
-try:
-  from yaml import CLOader as Loader, CDumper as Dumper
-except ImportError:
-  from yaml import Loader, Dumper
 
 
 INSTANCE_VALIDATION_FILENAME = 'instance_validation_report.txt'
 TELEMETRY_VALIDATION_FILENAME = 'telemetry_validation_report.json'
+SCHEMA_FOLDER = 'schemas'
 
 
 def FileNameEnumerationHelper(filename: str) -> str:
-  """Adds an UTC timestamp enurmation prefix to the filename.
+  """Adds a UTC timestamp enumeration prefix to the filename.
 
   Args:
     filename: string representing the filename to be enumerated with a local
@@ -53,7 +49,7 @@ def FileNameEnumerationHelper(filename: str) -> str:
   Returns:
     the filename enumerated as <timestamp>_<filename>. example:
     2020_10_15T17_21_59Z_instance_validation_report.txt where the timestamp
-    is given as year_month_dayThour_min_secondZ and the filename as
+    is given as year_month_day_hour_min_secondZ and the filename as
     instance_validation_report.txt
   """
   return '_'.join((
@@ -77,12 +73,12 @@ def Deserialize(
     ConfigMode: INITIALIZE or UPDATE
   """
 
-  parser = p.Parser()
+  parser = p.Parser(schema_folder=SCHEMA_FOLDER)
   return parser.Deserialize(yaml_files=yaml_files)
 
 def _ValidateConfig(
     filenames: List[str], universe: pvt.ConfigUniverse, is_udmi
-) -> List[entity_instance.EntityInstance]:
+) -> Dict[uuid.UUID, entity_instance.EntityInstance]:
   """Runs all config validation checks."""
   print(f'[INFO]\tLoading config files: {filenames}')
   entities, config_mode = Deserialize(filenames)
@@ -116,7 +112,7 @@ def RunValidation(
     report_directory: str = None,
     timeout: int = constants.DEFAULT_TIMEOUT,
     is_udmi: bool = True,
-) -> None:
+) -> str:
   """Top level runner for all validations.
 
   Args:
@@ -136,7 +132,7 @@ def RunValidation(
     Report file name or None if no report file is generated.
   """
   saved_stdout = sys.stdout
-  report_file = None
+  report_file = ''
 
   print('[INFO]\tStarting validation process.')
   if report_directory:
@@ -190,9 +186,8 @@ def RunValidation(
       report_file.close()
       print(f'[INFO]\tInstance validation report generated: {report_file.name}')
     print('[INFO]\tInstance validation completed.')
-  if report_file:
-    return report_file.name
-  return None
+  return report_file.name
+
 
 
 class TelemetryHelper(object):
@@ -200,7 +195,6 @@ class TelemetryHelper(object):
 
   Attributes:
     subscription: resource string referencing the subscription to check
-    service_account_file: path to file with service account information
     report_directory: fully qualified path to report output directory
   """
 
@@ -341,7 +335,7 @@ class EntityHelper(object):
       entities: Dict[str, entity_instance.EntityInstance],
       config_mode: enumerations.ConfigMode,
       is_udmi: bool = True,
-  ) -> Dict[str, entity_instance.EntityInstance]:
+  ) -> Tuple[Dict[str, entity_instance.EntityInstance], bool]:
     """Validates entity instances that are already deserialized.
 
     Args:
