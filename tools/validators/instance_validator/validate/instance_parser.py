@@ -25,7 +25,6 @@ import warnings
 
 import ruamel
 import strictyaml as syaml
-import yaml
 
 #### Program constants ####
 # Size of entity block to send to the syntax validator
@@ -311,14 +310,16 @@ class InstanceParser:
     with open(filename, encoding='utf-8') as file:
       for _ in file:
         total_lines += 1
-    print(f"[Instance Parser] Parsing started...")
+    print('[Instance Parser] Parsing started...')
     with open(filename, encoding='utf-8') as file:
       line_count = 0
       for line in file:
         line_count += 1
+        # pylint: disable=consider-using-f-string
         if (line_count % 5) == 0:
           percentage = '{:.3%}'.format(line_count / total_lines)
-          print(f"[Instance Parser] ({line_count}/{total_lines}) {percentage}% parsed")
+          # pylint: disable=line-too-long
+          print(f'[Instance Parser] ({line_count}/{total_lines}) {percentage}% parsed')
         if _IGNORE_PATTERN.match(line):
           continue
 
@@ -352,7 +353,7 @@ class InstanceParser:
 
         entity_instance_block = entity_instance_block + line
 
-    print(f"[Instance Parser] Parsed all lines")
+    print('[Instance Parser] Parsed all lines')
     # handle the singleton case
     if in_config:
       # parse the config block
@@ -368,7 +369,7 @@ class InstanceParser:
     if not self._config_mode:
       return
 
-    print(f"[Instance Parser] Processing entities...")
+    print('[Instance Parser] Processing entities...')
     # Validate all queued blocks
     while True:
       try:

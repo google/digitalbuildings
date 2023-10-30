@@ -144,8 +144,6 @@ class ParserTest(absltest.TestCase):
           [path.join(_TESTCASE_PATH, 'BAD', 'duplicate_metadata.yaml')])
       del parser
 
-  # Not yet
-  # Need to add validation for having entity operations under INITIALIZE config mode
   def testInstanceValidator_RejectsOperationOnInitialize(self):
     with self.assertRaises(SystemExit):
       parser = _Helper(
