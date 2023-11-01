@@ -2858,10 +2858,6 @@ literals:
     fixed_min: 0.0
     fixed_max: 100.0
 
-#Telemetry addition for MAU#
-
-
-#Telemetry fields for APU(MAU)#
 - dc_voltage_sensor:
     flexible_min: 0.0
     flexible_max: 500.0
@@ -2878,12 +2874,10 @@ literals:
   - AUTO
   - MANUAL
 
-# Addition of telemetry for outside sensors
 - outside_air_co2_concentration_sensor:
     flexible_min: 0.00005
     flexible_max: 0.005
 
-#Addition of new fields for Tanks##
 - level_status:
   - LOW
   - MEDIUM
@@ -2924,8 +2918,6 @@ literals:
 - exhaust_fan_speed_mode:
   - BYPASS
   - VFD
-
-## New fields for EM##
 - electricalgrid_energy_accumulator:
     fixed_min: 0.0
     flexible_max: 4000000.0
@@ -2938,8 +2930,6 @@ literals:
 - electricalgrid_run_time_accumulator:
     fixed_min: 0.0
     flexible_max: 1.25
-
-## New fields for fans##
 - discharge_fan_energy_accumulator:
     fixed_min: 0.0
     flexible_max: 100000.0
@@ -2958,20 +2948,15 @@ literals:
 - total_failed_communication_counter:
     fixed_min: 0.0
     flexible_max: 10000000.0
-
-## New field for AHU
 - mixed_air_damper_percentage_command:
     fixed_min: 0.0
     fixed_max: 100.0
 - mixed_air_damper_percentage_sensor:
     fixed_min: 0.0
     fixed_max: 100.0
-
-## New fields for seismic detector
 - seismic_alarm:
   - ACTIVE
   - INACTIVE
-
 - lighting_color_cie_xvalue_sensor:
     flexible_min: 0.0
     flexible_max: 500.0
@@ -3042,26 +3027,18 @@ literals:
   - DAY_NIGHT
   - THERMAL
   - WINDOW_OPEN
-  
-## New fields for RO water system
 - water_totaldissolvedsolids_concentration_sensor:
     flexible_min: 0.0
     flexible_max: 0.001
-
-## New field for VAV
 - high_limit_zone_air_co2_concentration_setpoint:
     flexible_min: 0.00005
     flexible_max: 0.005
 - low_limit_zone_air_co2_concentration_setpoint:
     flexible_min: 0.00005
     flexible_max: 0.005
-
-## New field for SDC
 - shade_extent_percentage_sensor:
     fixed_min: 0.0
     fixed_max: 100.0
-
-## New alarms added 1/25/23
 - failed_circulation_pump_alarm:
   - ACTIVE
   - INACTIVE
@@ -3212,7 +3189,6 @@ literals:
   - ACTIVE
   - INACTIVE
 
-
 - average_zone_air_co2_concentration_setpoint:
     flexible_min: 0.00005
     flexible_max: 0.005
@@ -3236,5 +3212,3 @@ literals:
 - tamper_alarm:
   - ACTIVE
   - INACTIVE
-
-
