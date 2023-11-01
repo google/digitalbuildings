@@ -6865,6 +6865,7 @@ VSMC:
   - schedule_run_command
 
 SDM2X:
+  guid: "b56e4a52-c988-448a-847d-25710ae4aaef"
   description: "Supply air damper monitoring, dual status fields."
   is_abstract: true
   opt_uses:
@@ -6875,6 +6876,7 @@ SDM2X:
   - supply_air_damper_status_2
 
 EDM2X:
+  guid: "101126df-f75d-4346-9aa7-d0b1f84fb22d"
   description: "Exhaust air damper monitoring, dual status fields."
   is_abstract: true
   opt_uses:
@@ -6885,7 +6887,8 @@ EDM2X:
   - exhaust_air_damper_status_2
 
 ACO2C:
-  description: "Average Co2 control."
+  guid: "155dae96-5a12-4062-a9e4-ba911d17d036"
+  description: "Average CO2 control."
   is_abstract: true
   uses:
   - average_zone_air_co2_concentration_sensor
@@ -6930,5 +6933,3 @@ PMDM:
   - zone_air_pm10pt0_density_sensor
   implements:
   - MONITORING
-
-
