@@ -3134,6 +3134,9 @@ literals:
 - low_supply_air_static_pressure_alarm:
   - ACTIVE
   - INACTIVE
+- low_exhaust_air_static_pressure_alarm:
+  - ACTIVE
+  - INACTIVE
 - low_supply_air_temperature_alarm:
   - ACTIVE
   - INACTIVE
@@ -3209,6 +3212,11 @@ literals:
   - ACTIVE
   - INACTIVE
 
+
+- average_zone_air_co2_concentration_setpoint:
+    flexible_min: 0.00005
+    flexible_max: 0.005
+
 - soundpressurelevel_sensor:
     fixed_min: -60
     flexible_max: 200
@@ -3228,4 +3236,5 @@ literals:
 - tamper_alarm:
   - ACTIVE
   - INACTIVE
+
 

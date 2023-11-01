@@ -6864,6 +6864,33 @@ VSMC:
   - high_speed_status
   - schedule_run_command
 
+SDM2X:
+  description: "Supply air damper monitoring, dual status fields."
+  is_abstract: true
+  opt_uses:
+  - low_supply_air_static_pressure_alarm
+  uses:
+  - supply_air_damper_command
+  - supply_air_damper_status_1
+  - supply_air_damper_status_2
+
+EDM2X:
+  description: "Exhaust air damper monitoring, dual status fields."
+  is_abstract: true
+  opt_uses:
+  - low_exhaust_air_static_pressure_alarm
+  uses:
+  - exhaust_air_damper_command
+  - exhaust_air_damper_status_1
+  - exhaust_air_damper_status_2
+
+ACO2C:
+  description: "Average Co2 control."
+  is_abstract: true
+  uses:
+  - average_zone_air_co2_concentration_sensor
+  - average_zone_air_co2_concentration_setpoint
+
 ZOC:
   guid: "822b78b6-1eb4-4d4b-9f4e-089ef57011aa"
   description: "Occupancy counter monitoring"
@@ -6903,4 +6930,5 @@ PMDM:
   - zone_air_pm10pt0_density_sensor
   implements:
   - MONITORING
+
 
