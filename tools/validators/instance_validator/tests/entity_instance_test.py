@@ -849,23 +849,31 @@ class EntityInstanceTest(absltest.TestCase):
         combination_validator.Validate(entity_instances.get('ENTITY-NAME-GUID'))
     )
 
-  def testInstance_ValidLinkEntityName_Success(self):
+  def testInstance_TypeInstanceWithNoFields_Fails(self):
     parsed, default_operation = _Helper(
-        [path.join(_TESTCASE_PATH, 'GOOD', 'links.yaml')]
+      [path.join(_TESTCASE_PATH, 'BAD', 'type_expecting_fields.yaml')]
     )
 
     entity_instances = {}
     for entity_guid, entity_parsed in parsed.items():
       entity = entity_instance.EntityInstance.FromYaml(
-          entity_guid, entity_parsed, default_operation=default_operation
+        entity_guid, entity_parsed, default_operation=default_operation
       )
       entity_instances[entity.guid] = entity
-    combination_validator = entity_instance.CombinationValidator(
-        self.config_universe, _INIT_CFG, entity_instances
+
+      self.assertFalse(self.init_validator.Validate(entity))
+
+  def testInstance_ValidLinkEntityName_Success(self):
+    parsed, default_operation = _Helper(
+        [path.join(_TESTCASE_PATH, 'GOOD', 'links.yaml')]
     )
 
-    for _, instance in entity_instances.items():
-      self.assertTrue(combination_validator.Validate(instance))
+    entity_guid, entity = next(iter(parsed.items()))
+    instance = entity_instance.EntityInstance.FromYaml(
+      entity_guid, entity, default_operation=default_operation
+    )
+
+    self.assertFalse(self.init_validator.Validate(instance))
 
   def testInstance_ValidGoodLinkWithIncrementEntityName_Success(self):
     parsed, default_operation = _Helper(
