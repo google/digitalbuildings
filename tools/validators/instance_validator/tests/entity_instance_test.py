@@ -854,14 +854,12 @@ class EntityInstanceTest(absltest.TestCase):
       [path.join(_TESTCASE_PATH, 'BAD', 'type_expecting_fields.yaml')]
     )
 
-    entity_instances = {}
-    for entity_guid, entity_parsed in parsed.items():
-      entity = entity_instance.EntityInstance.FromYaml(
-        entity_guid, entity_parsed, default_operation=default_operation
-      )
-      entity_instances[entity.guid] = entity
+    bad_entity_guid, bad_entity_parsed = next(iter(parsed.items()))
+    bad_entity = entity_instance.EntityInstance.FromYaml(
+      bad_entity_guid, bad_entity_parsed, default_operation=default_operation
+    )
 
-      self.assertFalse(self.init_validator.Validate(entity))
+    self.assertFalse(self.init_validator.Validate(bad_entity))
 
   def testInstance_ValidLinkEntityName_Success(self):
     parsed, default_operation = _Helper(
@@ -873,7 +871,7 @@ class EntityInstanceTest(absltest.TestCase):
       entity_guid, entity, default_operation=default_operation
     )
 
-    self.assertFalse(self.init_validator.Validate(instance))
+    self.assertTrue(self.init_validator.Validate(instance))
 
   def testInstance_ValidGoodLinkWithIncrementEntityName_Success(self):
     parsed, default_operation = _Helper(

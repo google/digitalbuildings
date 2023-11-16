@@ -1069,12 +1069,13 @@ class InstanceValidator(object):
     entity_type = self.universe.GetEntityType(
       entity.namespace, entity.type_name
     )
-    if entity_type.GetAllFields():
-      if not entity.translation and not entity.links:
-        print(f'[ERROR]\tEntity ({entity.guid}: {entity.code}) Has a type '
-              'which has defined fields but this instance has neither links '
-              'nor a translation.')
-        is_valid = False
+    if entity_type:
+      if entity_type.GetAllFields():
+        if not entity.translation and not entity.links:
+          print(f'[ERROR]\tEntity ({entity.guid}: {entity.code}) Has a type '
+                'which has defined fields but this instance has neither links '
+                'nor a translation.')
+          is_valid = False
 
     if not self._EntityOperationAndConfigModeValid(entity):
       is_valid = False
