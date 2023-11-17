@@ -17,12 +17,12 @@
 ########################
 
 ### Single Zone Units ###
-AHU_HTWLSTC_SFM_SFVSC_FDPM_CREFM_SDM_SFMSC_SSPC_SWCM:
+AHU_HTWHLSTC_SFM_SFVSC_FDPM_CREFM_SDM_SFMSC_SSPC_SWCM:
   description: "Supply Only AHU."
   is_canonical: true
   implements:
   - AHU
-  - HTWLSTC
+  - HTWHLSTC
   - SFM
   - SFVSC
   - FDPM
