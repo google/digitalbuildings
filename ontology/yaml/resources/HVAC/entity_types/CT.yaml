@@ -227,6 +227,7 @@ CT_SS_CWDT_OA_VSFC_CSWIVS_CRWIVS_CSWTC:
   - lost_power_alarm
 
 CT_SS_VSC_SWTM_RWISOVM_SWISOVM_FSISOVM_FRISOVM:
+  guid: "9ca0256a-9d7f-4b4d-8289-e321e487a2a1"
   description: "Cooling tower with variable speed control, supply and return isolation valves and supply temp monitoring, supply and return filter isolation valves and supply water temperature monitoring."
   is_canonical: true
   implements:

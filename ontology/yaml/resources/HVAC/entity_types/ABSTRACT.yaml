@@ -6962,6 +6962,7 @@ PMDM:
   - MONITORING
 
 HSWTC:
+  guid: "d9cf672c-8081-4e2b-9bba-599d8ac2bbd2"
   description: "Heating water valve monitoring on supply water side."
   is_abstract: true
   opt_uses:
@@ -6976,6 +6977,7 @@ HSWTC:
   - CONTROL
 
 WSEBYPVPM:
+  guid: "70e5c471-4b14-4d81-8bf2-ec8dcfbb29dd"
   description: "Water side economizer bypass valve monitoring."
   is_abstract: true
   opt_uses:
@@ -6987,6 +6989,7 @@ WSEBYPVPM:
   - MONITORING
 
 FSISOVM:
+  guid: "58f0a5fb-fc3e-4384-91b1-ba7db225ec6c"
   description: "Filtration supply isolation valve monitoring."
   is_abstract: true
   uses:
@@ -6995,6 +6998,7 @@ FSISOVM:
   - MONITORING
 
 FRISOVM:
+  guid: "6d8a9548-5879-493a-a991-cd3ed3eb80ac"
   description: "Filtration return isolation valve monitoring."
   is_abstract: true
   uses:
@@ -7003,6 +7007,7 @@ FRISOVM:
   - MONITORING
 
 PRWFRM:
+  guid: "d24ca9da-2897-42ba-9010-59b65971613d"
   description: "Primary supply water flowrate monitoring"
   uses:
   - primary_supply_water_flowrate_sensor
@@ -7010,6 +7015,7 @@ PRWFRM:
   - MONITORING
 
 SEWFRM:
+  guid: "de0de0fc-e634-4bbc-8ecc-4d413614c84d"
   description: "Secondary supply water flowrate monitoring"
   uses:
   - secondary_supply_water_flowrate_sensor
@@ -7017,6 +7023,7 @@ SEWFRM:
   - MONITORING
 
 MWFRM:
+  guid: "c7683a09-8379-4951-aa1e-e5edc4e098cb"
   description: "Make-up water flowrate monitoring."
   is_abstract: true
   opt_uses:
@@ -7027,6 +7034,7 @@ MWFRM:
   - MONITORING
 
 BWFRM:
+  guid: "2be49785-9467-4ddb-8aa8-9c2b77277d29"
   description: "Blowdown water flowrate monitoring."
   is_abstract: true
   opt_uses:
@@ -7037,6 +7045,7 @@ BWFRM:
   - MONITORING
 
 DX3SCHWC:
+  guid: "917e4514-ed4d-468c-8a81-44d29a143935"
   description: "Three compressor run control on chilled supply water side."
   is_abstract: true
   uses:
@@ -7052,6 +7061,7 @@ DX3SCHWC:
   - CONTROL
 
 CWBYPVPM:
+  guid: "88212fc0-0ddb-4cd9-99a3-e646dd20d528"
   description: "Condensing water bypass valve percentage monitoring."
   is_abstract: true
   opt_uses:
@@ -7063,6 +7073,7 @@ CWBYPVPM:
   - MONITORING
   
 HWBYPVPM:
+  guid: "38b01712-d458-4e5c-bf41-71107ebe8ecd"
   description: "Heating water bypass valve percentage monitoring."
   is_abstract: true
   opt_uses:
@@ -7074,6 +7085,7 @@ HWBYPVPM:
   - MONITORING
 
 HWBYPVM:
+  guid: "c4a7009c-1ccb-4162-8761-fd1e0acc5169"
   description: "Heating water bypass valve monitoring."
   is_abstract: true
   opt_uses:
@@ -7085,6 +7097,7 @@ HWBYPVM:
   - MONITORING
 
 HWDPC:
+  guid: "46009d2e-eee4-4e0a-a775-157fa7193983"
   description: "Heating water differential pressure control."
   is_abstract: true
   uses:
@@ -7094,6 +7107,7 @@ HWDPC:
   - OPERATIONAL
 
 HP6SWC:
+  guid: "5d2c6d94-ad64-41ef-bce0-78a9b40532b1"
   description: "Six-compressor heat pump control on supply water side."
   is_abstract: true
   opt_uses:
@@ -7120,6 +7134,7 @@ HP6SWC:
   - CONTROL
 
 CPC2X:
+  guid: "a45b771d-0bc2-49a4-8a4f-5e3287f65ff0"
   description: "Circulation control for 2 pumps."
   is_abstract: true
   uses:
@@ -7129,6 +7144,7 @@ CPC2X:
   - circulation_pump_run_status_2
 
 SDHC:
+  guid: "de065843-b1a9-4d2e-b751-31d7af8e8991"
   description: "Supply dehumidification control with a temperature setpoint."
   is_abstract: true
   opt_uses:
@@ -7144,6 +7160,7 @@ SDHC:
   - CONTROL
 
 FPHC:
+  guid: "bdd89332-3303-420d-a13c-ee38c398d9ff"
   description: "Four pipe heating and cooling control for radiant panels."
   is_abstract: true
   opt_uses:

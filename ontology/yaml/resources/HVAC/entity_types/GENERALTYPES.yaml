@@ -216,6 +216,7 @@ CDWS:
   - failed_communication_alarm
 
 ASHP:
+  guid: "548532cf-e175-47e5-b6a1-82ac92362d38"
   description: "Tag for air-source heat pumps."
   is_abstract: true
   opt_uses:
