@@ -109,3 +109,11 @@ DMP_BPC_NONCANONICAL_1:
   uses:
   - east_exhaust_air_damper_percentage_command
   - west_exhaust_air_damper_percentage_command
+
+DMP_ZSPC_EFM:
+  description: "Stand-alone zone pressure control damper with exhaust air flowrate monitoring."
+  is_canonical: true
+  implements:
+  - DMP
+  - ZSPC
+  - EFM

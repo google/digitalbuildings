@@ -59,3 +59,44 @@ RP_CAM_DPHC4_ZTC:
   - DPHC4
   - ZTC
 
+RP_DSP_CHWVM:
+  description: "Cooling-only radiant panel, one pipe installation."
+  is_canonical: true
+  implements:
+  - RP
+  - DSP
+  - CHWVM
+
+RP_DSP_HWVM:
+  description: "Heating-only radiant panel, one pipe installation."
+  is_canonical: true
+  implements:
+  - RP
+  - DSP
+  - HWVM
+
+RP_DSP_CHWVM_CAM:
+  description: "Cooling-only one-pipe radiant panel with condensate monitoring."
+  is_canonical: true
+  implements:
+  - RP
+  - DSP
+  - CHWVM
+  - CAM
+
+RP_DSP_FPHC:
+  description: "Four-pipe radiant panel for room heating and cooling."
+  is_canonical: true
+  implements:
+  - RP
+  - DSP
+  - FPHC
+
+RP_DSP_FPHC_CAM:
+  description: "Four-pipe radiant panel for room heating and cooling with condensate monitoring."
+  is_canonical: true
+  implements:
+  - RP
+  - DSP
+  - FPHC
+  - CAM

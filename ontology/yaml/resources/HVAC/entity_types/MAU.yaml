@@ -855,3 +855,20 @@ MAU_SFSS_SFVSC_HTSC_BPC_SHM_NONCANONICAL_2:
   uses:
   - humidification_run_command
 
+MAU_SFSS2X_SFVSC2X_CHWSC_HWSC_SSPC_VOADM_FDPM_ZSPM_OAFM:
+  description: "Multi-zone chilled water and heating water MAU with supply air static pressure control, variable outside air damper and outside airflow monitoring, 
+                filter differential pressure monitoring, zone static pressure monitoring."
+  is_canonical: true
+  implements:
+  - MAU
+  - SFSS2X
+  - SFVSC2X
+  - CHWSC
+  - HWSC
+  - SSPC
+  - VOADM
+  - FDPM
+  - ZSPM
+  - OAFM
+  opt_uses:
+  - smoke_alarm

@@ -349,3 +349,21 @@ HWS_SWTC_CPC:
   - circulation_pump_speed_percentage_setpoint
   - failed_alarm
   
+HWS_SWTC_WDPM_WFRM:
+  description: "Simple heating water system with supply temp, differential pressure monitoring and water flowrate monitoring."
+  is_canonical: true
+  implements:
+  - HWS
+  - SWTC
+  - WDPM
+  - WFRM
+
+HWS_SWTC_WDPC_WFRM_HWTTC:
+  description: "Simple heating water system with supply temp and differential pressure control and hot water tank temperature control."
+  is_canonical: true
+  implements:
+  - HWS
+  - SWTC
+  - WDPC
+  - WFRM
+  - HWTTC

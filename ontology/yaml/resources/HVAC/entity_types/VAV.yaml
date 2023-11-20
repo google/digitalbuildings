@@ -109,6 +109,7 @@ VAV_SD_DSP_HWZC:
   - DSP
   - HWZC
 
+
 VAV_SD_DSP_HTZC:
   guid: "47b47e69-d873-4976-b578-a07cb3d85176"
   description: "Single duct reheat VAV with electric heat."
@@ -597,3 +598,84 @@ VAV_CO2C_NONCANONICAL_1:
   uses:
   - supply_air_damper_percentage_sensor
   - supply_air_flowrate_sensor
+
+VAV_CSP_DFSS_DFVSC_SFM:
+  description: "Fan powered cooling only VAV with fan speed control and supply airflow monitoring."
+  is_canonical: true
+  implements:
+  - VAV
+  - CSP
+  - DFSS
+  - DFVSC
+  - SFM
+
+VAV_ED_ZSPC:
+  description: "Exhaust air zone pressure control VAV."
+  is_canonical: true
+  implements:
+  - VAV
+  - ED
+  - ZSPC
+
+VAV_DSP_PDSCV:
+  description: "VAV with pressure dependent supply valve control."
+  is_canonical: true
+  implements:
+  - VAV
+  - DSP
+  - PDSCV
+
+VAV_DSP_PDSCV_FPHC:
+  description: "VAV with pressure dependent supply valve control, paired with a four-pipe radiant panel."
+  is_canonical: true
+  implements:
+  - VAV
+  - DSP
+  - PDSCV
+  - FPHC
+
+VAV_DSP_PDSCV_CO2C:
+  description: "VAV with pressure dependent supply valve control and CO2 control."
+  is_canonical: true
+  implements:
+  - VAV
+  - DSP
+  - PDSCV
+  - CO2C
+
+VAV_DSP_PDSCV_HTZC:
+  description: "Reheat VAV with pressure dependent supply damper control."
+  is_canonical: true
+  implements:
+  - VAV
+  - DSP
+  - PDSCV
+  - HTZC
+
+VAV_DSP_PDSCV_FPHC_CAM:
+  description: "VAV with pressure dependent supply valve control and condensate monitoring, paired with a four-pipe radiant panel."
+  is_canonical: true
+  implements:
+  - VAV
+  - DSP
+  - PDSCV
+  - FPHC
+  - CAM
+
+VAV_DSP_PDSCV_HTZC_CO2C:
+  description: "Reheat VAV with pressure dependent supply damper control and CO2 control."
+  is_canonical: true
+  implements:
+  - VAV
+  - DSP
+  - PDSCV
+  - HTZC
+  - CO2C
+
+VAV_PDSCV_WDPC2X:
+  description: "VAV with pressure-dependent supply damper control and dual sensor differential pressure control."
+  is_canonical: true
+  implements:
+  - VAV
+  - PDSCV
+  - WDPC2X

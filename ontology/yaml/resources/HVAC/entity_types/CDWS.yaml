@@ -163,3 +163,14 @@ CDWS_NONCANONICAL_1:
   - return_water_isolation_valve_status_3
   - supply_water_isolation_valve_status_4
   - return_water_isolation_valve_status_4
+
+CDWS_SWTC_BYPVPM_WFRM_MWFRM_BWFRM:
+  description: "Condensing water system (temp control) with bypass control, flow monitoring and basin water system"
+  is_canonical: true
+  implements:
+  - CDWS
+  - SWTC
+  - BYPVPM
+  - WFRM
+  - MWFRM
+  - BWFRM

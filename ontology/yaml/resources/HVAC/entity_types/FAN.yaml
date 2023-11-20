@@ -796,3 +796,12 @@ FAN_VSMC:
   - FAN
   - VSMC
 
+FAN_SS_CSP_VSC_REFM:
+  description: "Cooling fan with variable speed command (no feedback) and refrigerant monitoring."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - CSP
+  - VSC
+  - REFM

@@ -1790,3 +1790,23 @@ FCU_RHDHS_DXDC_DFSS_RTM_DSPM_DFM:
   opt_uses:
   - water_leak_alarm
   - failed_alarm
+
+FCU_DFSS_DFMSC_CSP_CHWZC:
+  description: "Chilled water FCU with cooling-only (zone control) and discharge fan multi-speed control."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - DFMSC
+  - CSP
+  - CHWZC
+
+FCU_DFSS_CSP_DXZC_RAIDC:
+  description: "Typical DX FCU with cooling-only (discharge control) with return air isolation damper control."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - CSP
+  - DXZC
+  - RAIDC

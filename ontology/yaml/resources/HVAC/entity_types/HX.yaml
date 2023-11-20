@@ -165,3 +165,23 @@ HX_RWISOVM:
   implements:
   - HX
   - RWISOVM
+
+HX_CWDT_CHWDT_CWBYPVPM_CHWBYPVPM:
+  description: "Condenser and chilled water heat exchanger."
+  is_canonical: true
+  implements:
+  - HX
+  - CWDT
+  - CHWDT
+  - CWBYPVPM
+  - CHWBYPVPM
+
+HX_CWDT_HSWTC_HWDPC_HWBYPVPM:
+  description: "Condenser and heating water heat exchanger with heating water bypass valve, heating supply water valve control and heating water temperature differentioal control."
+  is_canonical: true
+  implements:
+  - HX
+  - CWDT
+  - HSWTC 
+  - HWDPC
+  - HWBYPVPM
