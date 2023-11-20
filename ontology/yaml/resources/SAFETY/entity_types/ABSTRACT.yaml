@@ -35,6 +35,8 @@ H2M:
   is_abstract: true
   uses:
   - zone_air_h2_concentration_sensor
+  opt_uses:
+  - high_zone_air_h2_concentration_alarm
 
 WLDS:
   guid: "6530f835-51a6-45c0-9130-382c297c2a01"
@@ -79,18 +81,17 @@ FA2X:
   uses:
   - fire_alarm_1
   - fire_alarm_2
-    
+
 WLS:
   guid: "16a99ce4-3298-4f9a-9ba8-41edec6a48c8"
   description: "Water leak location monitoring."
   is_abstract: true
   uses:
   - water_leak_cable_distance_sensor
-  
+
 LM:
   guid: "25887ceb-f2d8-4b25-be80-36e8b37f5ae9"
   description: "Tank level monitoring."
   is_abstract: true
   uses:
-  - level_status 
-
+  - level_status

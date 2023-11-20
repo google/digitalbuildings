@@ -16,11 +16,10 @@
 ### Canonical Types  ###
 ########################
 
-
-HDS_H2M:
-  guid: "c433b9fa-2e3c-42a9-9574-d601941e23c9"
-  description: "Zone air hydrogen level used for monitoring in battery rooms."
+VLV_WVCM:
+  guid: "63e9ccb7-67f6-4547-aff8-d3cf30d1ab40"
+  description: "Solenoid water valve control and monitoring."
   is_canonical: true
   implements:
-  - HDS
-  - H2M
+  - VLV
+  - WVCM

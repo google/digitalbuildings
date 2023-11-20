@@ -35,8 +35,6 @@ PANEL:
   implements:
   - EQUIPMENT
 
-
-  
 GEN:
   guid: "c935c4f5-019c-4eb7-9f81-8dcf47e7a594"
   description: "Tag for all Electricity generating equipments."
@@ -44,14 +42,9 @@ GEN:
 ATS:
   guid: "f2e50348-ce8d-4c2e-9e82-0d6056d4c89c"
   description: "Tag for automatic transfer switch (ATS) units."
-
   is_abstract: true
   implements:
   - EQUIPMENT
-
-
-
-
 
 CB:
   guid: "245e084f-a577-441d-a88e-662fd8396271"

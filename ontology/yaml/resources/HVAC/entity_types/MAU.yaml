@@ -668,6 +668,19 @@ MAU_DFSS_DFVSC_HWDDC_DX2DDC_ZTM_DFM:
   - ZTM
   - DFM
 
+MAU_SFSS_SFVSC_HWSC_CHWSC_FDPM2X:
+  guid: "de7d7b2b-5acb-4ea5-9918-aae92b6bd974"
+  description: "Makeup air unit with heating and cooling."
+  is_canonical: true
+  implements:
+  - MAU
+  - SFSS
+  - SFVSC
+  - HWSC
+  - CHWSC
+  - FDPM2X
+
+
 ############################
 ###   Remap These Types  ###
 ############################
@@ -841,3 +854,4 @@ MAU_SFSS_SFVSC_HTSC_BPC_SHM_NONCANONICAL_2:
   - DEPRECATED
   uses:
   - humidification_run_command
+

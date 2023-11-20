@@ -66,7 +66,7 @@ class Site(object):
 
   def __eq__(self, other: ...) -> bool:
     if not isinstance(other, Site):
-      raise TypeError('Other object is not a Site instance.')
+      return False
     return self.code == other.code and self.guid == other.guid
 
   @classmethod
@@ -77,6 +77,11 @@ class Site(object):
         guid=site_dict.get(BC_GUID),
     )
     return site_instance
+
+  @property
+  def bc_guid(self) -> str:
+    """Returns the BC GUID for a site."""
+    return self.guid
 
   @property
   def entities(self) -> List[str]:
@@ -104,10 +109,14 @@ class Site(object):
   # pylint: disable=unused-argument
   def GetSpreadsheetRowMapping(self, *args) -> Dict[str, str]:
     """Returns a dictionary of Site attributes by spreadsheet headers."""
-    return {
+    site_row_mapping = {
         VALUES: [
             {USER_ENTERED_VALUE: {STRING_VALUE: self.code}},
             {USER_ENTERED_VALUE: {STRING_VALUE: self.guid}},
-            {USER_ENTERED_VALUE: {STRING_VALUE: self.etag}},
         ]
     }
+    if self.etag:
+      site_row_mapping.get(VALUES).append(
+          {USER_ENTERED_VALUE: {STRING_VALUE: self.etag}}
+      )
+    return site_row_mapping

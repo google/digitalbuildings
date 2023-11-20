@@ -38,6 +38,9 @@ aqi:
   uba: # Umwelt Bundesamt, German air quality standard
     multiplier: 1
     offset: 0
+  awair: # Awair Air Quality Score
+    multiplier: 1
+    offset: 0
 area:
   square_meters: STANDARD
   square_centimeters:
@@ -144,6 +147,12 @@ energy:
     multiplier: 105480400
     offset: 0
   kilovolt_ampere_hours:
+    multiplier: 3600000
+    offset: 0
+  kilovolt_ampere_apparent_hours:
+    multiplier: 3600000
+    offset: 0
+  kilovolt_ampere_reactive_hours:
     multiplier: 3600000
     offset: 0
   ton_hours:
@@ -429,6 +438,8 @@ resistance:
     offset: 0
 rotationalvelocity:
   revolutions_per_minute: STANDARD
+soundpressurelevel:
+  decibels: STANDARD
 specificenergy:
   joules_per_kilogram_kelvin: STANDARD
 specificenthalpy:

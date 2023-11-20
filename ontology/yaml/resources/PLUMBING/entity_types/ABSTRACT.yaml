@@ -25,7 +25,6 @@ SS:
   - lost_power_alarm
   - control_mode
 
-
 LVLM:
   guid: "288e9cfb-952e-404c-8bfa-586caf1b340b"
   description: "Level Monitoring for tanks."
@@ -34,4 +33,11 @@ LVLM:
   - level_status
   opt_uses:
   - percentage_sensor
-  
+
+WVCM:
+  guid: "2e7ee11e-a205-4ade-b46c-5721ef0a7746"
+  description: "Water valve control and monitoring."
+  is_abstract: true
+  uses:
+  - valve_command
+  - valve_status

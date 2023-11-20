@@ -39,6 +39,7 @@ FAN:
   - failed_communication_alarm
   - failed_exhaust_air_temperature_alarm
   - failed_smoke_detection_alarm
+  - lost_power_alarm
   implements:
   - EQUIPMENT
 

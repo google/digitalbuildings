@@ -498,7 +498,6 @@ class InstanceValidator(object):
     Returns:
       Returns true when the translation is valid on a reporting entity.
     """
-
     if entity.translation is None:
       return True
 
@@ -1067,6 +1066,17 @@ class InstanceValidator(object):
       )
       is_valid = False
 
+    entity_type = self.universe.GetEntityType(
+      entity.namespace, entity.type_name
+    )
+    if entity_type:
+      if entity_type.GetAllFields():
+        if not entity.translation and not entity.links:
+          print(f'[ERROR]\tEntity ({entity.guid}: {entity.code}) Has a type '
+                'which has defined fields but this instance has neither links '
+                'nor a translation.')
+          is_valid = False
+
     if not self._EntityOperationAndConfigModeValid(entity):
       is_valid = False
 
@@ -1084,8 +1094,6 @@ class InstanceValidator(object):
 
     if not self._IsFaciltitiesEntitiesMatchPattern(entity):
       is_valid = False
-
-    # TODO(berkoben): ADD entity needs transl'n or links if type has fields
 
     return is_valid
 
