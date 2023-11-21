@@ -8,7 +8,7 @@ The tools and their functions are summarized below:
   * [Instance Validator](./validators/instance_validator/README.md) allows users to validate a concrete ontology application (i.e., a building configuration file).
     * A sub-function of the Instance Validator is to also [validate telemetry messages](./validators/instance_validator/README.md#telemetry-validation) 
     corresponding to entity blocks in a building configuration file.
-  * [Ontology Validator](./validators/ontology_validator/README.md) which allows to validate the YAML ontology upon a change or an extension.
+  * [Ontology Validator](./validators/ontology_validator/README.md) allows users to validate a local version of the YAML ontology upon a change or an extension.
 
 ## Digital Buildings Toolkit
 
