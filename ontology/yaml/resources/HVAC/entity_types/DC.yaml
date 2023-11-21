@@ -24,3 +24,13 @@ DC_SS_SWTC:
   - DC
   - SS
   - SWTC
+
+DC_SS_SWTC_CDWISOVM:
+  description: "Typical dry-cooler (closed loop sensible cooler)."
+  is_canonical: true
+  implements:
+  - DC
+  - SS
+  - SWTC
+  - CDWISOVM
+  
