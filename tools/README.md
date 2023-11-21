@@ -56,7 +56,7 @@ Next, you can either use pip or setuptools (to be deprecated) to install the nec
 python3 -m pip install --upgrade pip
 ```
 
-2. Run `bash pip_install.sh` or `pip_install.bat` (windows) from the following directory: `digitalbuildings/tools`.
+2. Run `bash pip_install.sh` (MacOS / Linux) or `pip_install.bat` (Windows) from the following directory: `digitalbuildings/tools`.
 
 ##### Install Docker (Optional)
 
