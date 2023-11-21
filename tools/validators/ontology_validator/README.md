@@ -41,11 +41,11 @@ The validator is Python-based and takes the following parameters:
 * `--modified-ontology-types` or `-m` **[Optional]**: An absolute or relative path to the modified files of the ontology.
 * `--interactive` or `-i` **[Optional]**: Enables interactive mode.
 
-The validator can be run as follows: `python3 validator.py -o Users/foo/ontology/` or `python3 validator.py --original Users/foo/ontology/`
+The validator can be run as follows: `python3 validator.py -o=Users/foo/ontology/` or `python3 validator.py --original=Users/foo/ontology/`
 
 ### Ontology Types Extended
 
-If you have extended the ontology by adding new types to your local ontology, run the following: `python3 validator.py --original Users/foo/ontology/ --modified-ontology-types path/to/modified/ontology/types/folder`
+If you have extended the ontology by adding new types to your local ontology, run the following: `python3 validator.py --original=Users/foo/ontology/ --modified-ontology-types=path/to/modified/ontology/types/folder`
 
 When using a modified ontology, ensure you follow the folder-naming convention: `digitalbuildings/ontology/yaml`.
 
