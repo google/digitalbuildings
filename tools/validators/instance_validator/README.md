@@ -1,6 +1,6 @@
 # Instance Validator
 
-The Instance Validator allows validation of YAML instance files to make sure they conform to the given ontology model.
+The Instance Validator allows validation of concrete DBO instances (i.e., building configuration files) to ensure they conform to the given ontology model, are formatted correctly, and contain all required fields.
 
 ## Install
 
@@ -56,35 +56,13 @@ To validate multiple input files at the same time, you can provide the "`-i/--in
 
 If the optional `-r/--report-filename` parameter is provided, the validation results will be written to this report file. Otherwise, the results will be written to stdout.
 
-### Ontology Types extended
+### Ontology Types Extended
 
 If you have extended the ontology by adding new types to your local ontology, run the following: `python3 instance_validator.py --input path/to/YOUR_BUILDING_CONFIG.yaml --modified-ontology-types path/to/modified/ontology/types/folder`
 
 When using a modified ontology, ensure you follow the folder-naming convention: `digitalbuildings/ontology/yaml`. This will allow the instance validator to rely on the new types in the ontology.
 
 Note: as of the current development stage, you must clone the entire repository and run this instance validator script from this directory.
-
-### Telemetry validation
-
-The validator supports a telemetry validation mode. When this mode is enabled, the validator will listen on a provided pubsub subscription for telemetry messages, and validate the message contents against the instance configuration. It is recommended that you first use the instance validator with telemetry validation mode disabled, and then enable it after that passes.
-
-#### Authentication
-
-If you would like to use the telemetry validation mode, you must provide the `--subscription` or `-s` parameter and the `--credential` or `-c` parameter.
-
-**NOTE** The GCP OAuth client credential and subscription are provided by the Google team. Please reach out to your IoT TPM for guidance.
-
-`--credential` or `-c`: Should be an absolute or relative path to an OAuth client credential JSON file.
-
-`--subscription` or `-s`: Should be a fully-qualified path to a Google Cloud Pubsub subscription, e.g. projects/google.com:your-project/subscriptions/your-subscription.
-
-Optional parameter for the telemetry validation mode are:
-
-`--timeout` or `-t`: The timeout duration in seconds for the telemetry validation test. The default value is 600 seconds, or 10 minutes. If this time limit is exceeded before the validator receives a test pubsub message for each of the entities configured in the given instance config file, the test will fail with an error and report the entities that were not heard from.
-
-`--report_directory` or `-d`: If provided, instance validation and telemetry validation reports (named instance_validation_report.txt and telemetry_validation_report.json) will be written to this directory. Otherwise, the instance validation report will be written to the console and the telemetry validation report to the current working directory.
-
-Running telemetry validation will also output a machine-readable log of the validation performed on a set of devices. This log will be output as `telemetry_validation_log.json` in the current working directory.
 
 ### Instance Validator Workflow
 
@@ -94,21 +72,31 @@ Run `python instance_validator.py` and provide the following arguments:
 
 2. `-m/--modified-types-filepath` **[Optional]** Validate entity types in the building configuration file against a modified ontology that is not in the main repository. Default is the [Digital Buildings Ontology](https://github.com/google/digitalbuildings/tree/master/ontology/yaml).
 
-3. After a building configuration's entity types are validated, validation must also be run on the telemetry payload using:
-
-  * `--credential` or `-c`: Should be an absolute or relative path to an OAuth client credential JSON file.
-
-  * `--subscription` or `-c`: The fully-qualified path to a Google Cloud Pubsub subscription, e.g. projects/google.com:your-project/subscriptions/your-subscription.
-
-  * `--timeout` or `-c` **[Optional]** The timeout duration in seconds for the telemetry validation test. The default value is 600 seconds, or 10 minutes. If this time limit is exceeded before the validator receives a test pubsub message for each of the entities configured in the given instance config file, the test will fail with an error and report the entities that were not heard from.
-
-  * `--udmi` **[Optional]** Treat message stream on PubSub subscription as [UDMI](https://github.com/faucetsdn/udmi/). **NOTE:** This is required for telemetry validation when devices implement the UDMI specification. Set to true by default.
-
-4. `-d/--report-directory` To write instance validation (instance_validation_report.txt) and telemetry validation (telemetry_validation_report.json) reports to the report-directory; otherwise writes instance validation to console and telemetry validation to current working directory.
-
 **NOTE** The GCP OAuth client credential and subscription are provided by the Google team. Please reach out to your IoT TPM for guidance. If a GCP Oauth client credential is not provided, then application default credentials will be used to authenticate against Google APIs.
 
 Running telemetry validation will also output a machine-readable log of the validation performed on a set of devices. This log will be output as `telemetry_validation_log.json` in the current working directory.
+
+#### Telemetry Validation
+
+The validator supports a telemetry validation mode. When this mode is enabled, the validator will listen on a provided pubsub subscription for telemetry messages, and validate the message contents against the instance configuration. It is recommended that you first use the instance validator with telemetry validation mode disabled, and then enable it after that passes.
+
+##### Authentication
+
+If you would like to use the telemetry validation mode, you must provide the `--subscription` parameter and the `--credential` parameter. Running telemetry validation will also output a machine-readable log of the validation performed on a set of devices. This log will be output as `telemetry_validation_log.json` in the current working directory, unless otherwise specefied using the `--report_directory` parameter.
+
+**NOTE** The GCP OAuth client credential and subscription are provided by the Google team. Please reach out to your IoT TPM for guidance.
+
+`-c/--credential`: An absolute or relative path to an OAuth client credential JSON file.
+
+`-s/--subscription`: A fully-qualified path to a Google Cloud Pubsub subscription, e.g. projects/google.com:your-project/subscriptions/your-subscription.
+
+**Optional** parameters for the telemetry validation mode are:
+
+`-t/--timeout`: The timeout duration in seconds for the telemetry validation test. The default value is 600 seconds, or 10 minutes. If this time limit is exceeded before the validator receives a test pubsub message for each of the entities configured in the given instance config file, the test will fail with an error and report the entities that were not heard from.
+
+`-d/--report_directory`: If provided, instance validation and telemetry validation reports (named instance_validation_report.txt and telemetry_validation_report.json) will be written to this directory. Otherwise, the instance validation report will be written to the console and the telemetry validation report to the current working directory.
+
+`--udmi` **[Optional]**: Treat message stream on PubSub subscription as [UDMI](https://github.com/faucetsdn/udmi/). **NOTE:** This is required for telemetry validation when devices implement the UDMI specification. Set to true by default.
 
 For example:
 `python instance_validator.py.py -i //path/to/file -s subscription-name -c //path/to/client/cred.json -d //path/to/report-directory`
