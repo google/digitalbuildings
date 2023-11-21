@@ -1,6 +1,6 @@
-# Validator
+# Ontology Validator
 
-The Ontology Validator allows you to extend the ontology and then validate it to make sure it is conform to guidelines.
+The Ontology Validator allows you validate a local set of ontology YAML files (i.e., new ontology extensions or modification) to ensure your extensions/modifications conform to DBO guidelines. Ontology Validator is also run on all pull requests that are opened within the DBO repository.
 
 ## Install requirements
 
