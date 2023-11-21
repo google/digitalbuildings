@@ -6988,7 +6988,7 @@ WSEBYPVPM:
   implements:
   - MONITORING
 
-FSISOVM:
+FSWISOVM:
   guid: "58f0a5fb-fc3e-4384-91b1-ba7db225ec6c"
   description: "Filtration supply isolation valve monitoring."
   is_abstract: true
@@ -6997,7 +6997,7 @@ FSISOVM:
   implements:
   - MONITORING
 
-FRISOVM:
+FRWISOVM:
   guid: "6d8a9548-5879-493a-a991-cd3ed3eb80ac"
   description: "Filtration return isolation valve monitoring."
   is_abstract: true

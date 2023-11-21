@@ -226,7 +226,7 @@ CT_SS_CWDT_OA_VSFC_CSWIVS_CRWIVS_CSWTC:
   - run_mode
   - lost_power_alarm
 
-CT_SS_VSC_SWTM_RWISOVM_SWISOVM_FSISOVM_FRISOVM:
+CT_SS_VSC_SWTM_RWISOVM_SWISOVM_FSWISOVM_FRWISOVM:
   guid: "9ca0256a-9d7f-4b4d-8289-e321e487a2a1"
   description: "Cooling tower with variable speed control, supply and return isolation valves and supply temp monitoring, supply and return filter isolation valves and supply water temperature monitoring."
   is_canonical: true
@@ -237,8 +237,8 @@ CT_SS_VSC_SWTM_RWISOVM_SWISOVM_FSISOVM_FRISOVM:
   - SWTM
   - RWISOVM
   - SWISOVM
-  - FSISOVM
-  - FRISOVM
+  - FSWISOVM
+  - FRWISOVM
   opt_uses:
   - high_water_level_alarm
   - low_water_level_alarm

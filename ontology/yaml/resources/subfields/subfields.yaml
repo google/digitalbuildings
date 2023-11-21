@@ -117,7 +117,7 @@ descriptor:
   panel: "An interface to control a device."
   fabric: "Textile material."
   failed: "Indicates that a point is not operating as intended or is incapable of operating."
-  filtration: "Component used for removing dust and other particulate matter from the air."
+  filtration: "Process of filtering contaminating elements from equipment or a system."
   fire: "a potential to cause physical damage through burning"
   floor: "Lower surface of a room or zone."
   flue: "Chimney for conveying exhaust gas."
