@@ -47,7 +47,7 @@ Windows
 tooling\Scripts\activate
 ```
 #### Install packages
-Next, you can either use pip or setuptools (to be deprecated) to install the necessary packages and dependencies.
+Next, you can either use pip or setup (to be deprecated) to install the necessary packages and dependencies.
 
 ##### Install Pip
 1. Run the following command to ensure that your Python package management tools are up-to-date.
@@ -86,14 +86,13 @@ Run `python toolkit.py` and provide the following arguments:
 4. `--validate` or `-v`: Runs instance validator to validate the building configuration file.
 
 5. [Optional] Telemetry Validation: After a building configuration's entity types are validated, validation must also be run on the telemetry payload using the following parameters. **NOTE:** The OAuth credential (`-c`) and subscription (`-s`) are provided by the Google team. Please reach out to your IoT TPM for guidance.
-
-  * `--subscription` or `-s`: The fully-qualified path to a Google Cloud Pubsub subscription (e.g., `projects/google.com:your-project/subscriptions/your-subscription`).
-
-  * `--credential` or `-c`: An absolute or relative path to an OAuth client credential JSON file.
-
-  * `--timeout` or `-t` **[Optional]**: The timeout duration in seconds for the telemetry validation test. The default value is 600 seconds, or 10 minutes. If this time limit is exceeded before the validator receives a test pubsub message for each of the entities configured in the given instance config file, the test will fail with an error and report the entities that were not heard from.
-
-  * `--udmi` **[Optional]**: Validates entity metadata as [UDMI](https://github.com/faucetsdn/udmi/). Flag is set to `True` by default; change this parameter to `--udmi=False` when not validating against UDMI.
+   * `--subscription` or `-s`: The fully-qualified path to a Google Cloud Pubsub subscription (e.g., `projects/google.com:your-project/subscriptions/your-subscription`).
+ 
+   * `--credential` or `-c`: An absolute or relative path to an OAuth client credential JSON file.
+ 
+   * `--timeout` or `-t` **[Optional]**: The timeout duration in seconds for the telemetry validation test. The default value is 600 seconds, or 10 minutes. If this time limit is exceeded before the validator receives a test pubsub message for each of the entities configured in the given instance config file, the test will fail with an error and report the entities that were not heard from.
+ 
+   * `--udmi` **[Optional]**: Validates entity metadata as [UDMI](https://github.com/faucetsdn/udmi/). Flag is set to `True` by default; change this parameter to `--udmi=False` when not validating against UDMI.
 
 6. `--report-directory` or `-d`: Writes instance validation (instance_validation_report.txt) and telemetry validation (telemetry_validation_report.json) reports to the specified `report-directory`. By default, writes instance validation output to the console and telemetry validation output to the current working directory.
 
