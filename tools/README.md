@@ -20,7 +20,7 @@ There are currently two methods for interacting with the Toolkit: the Toolkit We
 ### Toolkit Web Application
 
 The [web-based toolkit application](dbo-toolkit-app.azurewebsites.net) exists to provide a user-friendly interface to all of the Digital Buildings tools. 
-**Note:** Curently, the Toolkit Web Application only supports the Instance Validatr. The team plans to support other tools in the near future.
+**Note:** Curently, the Toolkit Web Application only supports the Instance Validator. The team plans to support other tools in the near future.
 
 ### Toolkit CLI Installation
 
@@ -46,10 +46,10 @@ Windows
 ```
 tooling\Scripts\activate
 ```
+#### Install packages
+Next, you can either use pip or setuptools (to be deprecated) to install the necessary packages and dependencies.
 
-Then, you can either use pip or setuptools (to be deprecated).
-
-#### Install Pip
+##### Install Pip
 1. Run the following command to ensure that your Python package management tools are up-to-date.
 
 ```
@@ -58,7 +58,7 @@ python3 -m pip install --upgrade pip
 
 2. Run `bash pip_install.sh` or `pip_install.bat` (windows) from the following directory: `digitalbuildings/tools`.
 
-#### Install Docker (Optional)
+##### Install Docker (Optional)
 
 1. Install [Docker Desktop](https://docs.docker.com/desktop/)
 2. Run `./tools/docker_run.sh` to build the docker image.
@@ -67,7 +67,7 @@ python3 -m pip install --upgrade pip
 $ ./tools/docker_run.sh abel
 ```
 
-#### Run Setup (to be deprecated)
+##### Run Setup (to be deprecated)
 
 1. Follow setup instructions for the [Instance Validator](./validators/instance_validator).
 2. Follow setup instructions for the [GUID Generator](./guid_generator).
