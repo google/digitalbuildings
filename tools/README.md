@@ -2,13 +2,13 @@
 
 Various tools have been developed to support the use of the Digital Buildings Ontology and Building Configuration files. 
 
-The tools are:
+The tools and their functions are summarized below:
   * [ABEL](./abel/README.md) generates from/to Google spreadsheet/[Building Configuration](../ontology/docs/building_config.md).
   * [Explorer](./explorer/README.md) allows users to explorer the ontology types and their associated fields.
-  * [Instance Validator](./validators/instance_validator/README.md) which allows to validate the yaml ontology upon a change or an extension.
-    * A sub function of the Instance Validator is to also [validate telemetry messages](./validators/instance_validator/README.md#telemetry-validation) 
+  * [Instance Validator](./validators/instance_validator/README.md) allows users to validate a concrete ontology application (i.e., a building configuration file).
+    * A sub-function of the Instance Validator is to also [validate telemetry messages](./validators/instance_validator/README.md#telemetry-validation) 
     corresponding to entity blocks in a building configuration file.
-  * [Ontology Validator](./validators/ontology_validator/README.md) which allows to validate the yaml ontology upon a change or an extension.
+  * [Ontology Validator](./validators/ontology_validator/README.md) which allows to validate the YAML ontology upon a change or an extension.
 
 ## Digital Buildings Toolkit
 
@@ -85,13 +85,13 @@ Run `python toolkit.py` and provide the following arguments:
 
   * `-s/--subscription` The fully-qualified path to a Google Cloud Pubsub subscription, e.g. projects/google.com:your-project/subscriptions/your-subscription.
 
-  * `--credential` or `-c`: Should be an absolute or relative path to an OAuth client credential JSON file.
+  * `-c/--credential` An absolute or relative path to an OAuth client credential JSON file.
 
   * `-t/--timeout` **[Optional]** The timeout duration in seconds for the telemetry validation test. The default value is 600 seconds, or 10 minutes. If this time limit is exceeded before the validator receives a test pubsub message for each of the entities configured in the given instance config file, the test will fail with an error and report the entities that were not heard from.
 
-  * `--udmi` **[Optional]** Validates entity metadata as [UDMI](https://github.com/faucetsdn/udmi/). Flag is set to `True` by default and include `--udmi=False` when not validating against udmi.
+  * `--udmi` **[Optional]** Validates entity metadata as [UDMI](https://github.com/faucetsdn/udmi/). Flag is set to `True` by default and include `--udmi=False` when not validating against UDMI.
 
-  `python instance_validator.py -i input.yaml` validates a building config against the udmi standard.
+  `python instance_validator.py -i input.yaml` validates a building config against the UDMI standard.
 
   * **NOTE:** The OAuth credential and subscription are provided by the Google team. Please reach out to your IoT TPM for guidance.
 
