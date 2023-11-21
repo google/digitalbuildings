@@ -1255,6 +1255,14 @@ FCU_DFSS_DFVSC_FDPM_CHWDC_SRC_DFRMM:
   - SRC
   - DFRMM
 
+FCU_DFSS_CHWRC:
+  description: "CRAC unit with discharge fan and return temperature control."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - CHWRC
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
