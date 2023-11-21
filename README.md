@@ -30,9 +30,9 @@ This project is structured as follows:
 * Tools that enable the following:
   * [**ABEL**](./tools/abel/README.md)**:** facilitates easier building configration construction by converting from a templatized Google Sheet to a [building configuration file](./ontology/docs/building_config.md) (and from a building configuration file back to a Google Sheet).
   * [**Explorer**](./tools/explorer/README.md)**:** allows users to explore ontology type fields and compare ontology types to each other.
-  * [**Instance Validator**](./tools/validators/ontology_validator/README.md) which allows to validate the yaml ontology upon a change or an extension.
-  * [**Ontology Validator**](./tools/validators/ontology_validator/README.md)**:** validates the ontology upon a change or an extension (currently only for the Yaml format).
-  * [**RDF/OWL Generator**](./tools/rdf_generator/README.md)**:** generates an RDF version from the yaml ontology files.
+  * [**Instance Validator**](./tools/validators/ontology_validator/README.md)**:** validates a concrete application (instance) of DBO (i.e., a building configuration file) with optional telemetry validation.
+  * [**Ontology Validator**](./tools/validators/ontology_validator/README.md)**:** validates the ontology upon a change or an extension (currently supports YAML format only).
+  * [**RDF/OWL Generator**](./tools/rdf_generator/README.md)**:** generates an RDF version from the YAML ontology files.
 * An [Internal Building Representation (IBR)](./ibr/README.md) file format to represent data from different verticals such as spatial or assets.
 
 ## Learning Modules
