@@ -60,7 +60,11 @@ Navigate to `digitalbuildings/tools/validators/instance_validator` and run `pyth
     * When using a modified ontology, ensure you follow the folder-naming convention: `digitalbuildings/ontology/yaml`. This will allow the instance validator to rely on the new types in the ontology.
     * **Note:** as of the current development stage, you must clone the entire repository and run this instance validator script from this directory.
 
-3. `--report-filename` or `-r` **[Optional]**: Writes validation results to the specified report file. Otherwise, the results will be written to stdout.
+3. `--report-filename` or `-r` **[Optional]**: Writes instance validation results to the specified report file. Otherwise, the results will be written to stdout.
+
+4. `--report-directory` or `-d` **[Optional]**: Writes instance validation (instance_validation_report.txt) and telemetry validation (telemetry_validation_report.json) reports to the specified `report-directory`. By default, writes instance validation output to the console and telemetry validation output to the current working directory.
+
+5. `--udmi` **[Optional]**: Validates entity metadata as [UDMI](https://github.com/faucetsdn/udmi/). Flag is set to `True` by default; change this parameter to `--udmi=False` when not validating against UDMI.
 
 ### Telemetry Validation
 
@@ -73,10 +77,6 @@ If you would like to use the telemetry validation mode, you must provide the `--
 2. `--subscription` or `-s`: The fully-qualified path to a Google Cloud Pubsub subscription (e.g., `projects/google.com:your-project/subscriptions/your-subscription`).
 
 3. `--timeout` or `-t` **[Optional]**: The timeout duration in seconds for the telemetry validation test. The default value is 600 seconds, or 10 minutes. If this time limit is exceeded before the validator receives a test pubsub message for each of the entities configured in the given instance config file, the test will fail with an error and report the entities that were not heard from.
-
-4. `--report-directory` or `-d` **[Optional]**: Writes instance validation (instance_validation_report.txt) and telemetry validation (telemetry_validation_report.json) reports to the specified `report-directory`. By default, writes instance validation output to the console and telemetry validation output to the current working directory.
-
-5. `--udmi` **[Optional]**: Validates entity metadata as [UDMI](https://github.com/faucetsdn/udmi/). Flag is set to `True` by default; change this parameter to `--udmi=False` when not validating against UDMI.
 
 For example, the following input
 ```
