@@ -54,7 +54,7 @@ python3 -m pip install --upgrade pip
 
 Navigate to `digitalbuildings/tools/validators/instance_validator` and run `python instance_validator.py` with the following parameters:
 
-1. `--input` or `-i`: The absolute filepath of a building configuration file(.yaml). To validate multiple input files at the same time, you can provide the `-i` parameter multiple times.
+1. `--input` or `-i`: The absolute filepath of a building configuration file(.yaml). To validate multiple input files at the same time, you can provide the `-input` parameter multiple times.
 
 2. `--modified-types-filepath` or `-m` **[Optional]**: Validate entity types in the building configuration file against a modified ontology that is not in the main repository. Default is the [Digital Buildings Ontology](https://github.com/google/digitalbuildings/tree/master/ontology/yaml).
     * When using a modified ontology, ensure you follow the folder-naming convention: `digitalbuildings/ontology/yaml`. This will allow the instance validator to rely on the new types in the ontology.
@@ -66,11 +66,7 @@ Navigate to `digitalbuildings/tools/validators/instance_validator` and run `pyth
 
 The validator supports a telemetry validation mode. When this mode is enabled, the validator will listen on a provided pubsub subscription for telemetry messages, and validate the message contents against the instance configuration. **It is recommended that you first use the instance validator with telemetry validation mode disabled, and then enable it after that passes.**
 
-#### Authentication
-
-If you would like to use the telemetry validation mode, you must provide the `--subscription` parameter and the `--credential` parameter. Running telemetry validation will also output a machine-readable log of the validation performed on a set of devices. This log will be output as `telemetry_validation_log.json` in the current working directory, unless otherwise specefied using the `--report_directory` parameter.
-
-**NOTE:** The OAuth credential (`-c`) and subscription (`-s`) are provided by the Google team. Please reach out to your IoT TPM for guidance. If a GCP Oauth client credential is not provided, then application default credentials will be used to authenticate against Google APIs.
+If you would like to use the telemetry validation mode, you must provide the `--subscription` parameter and the `--credential` parameter. **NOTE:** The OAuth credential and subscription are provided by the Google team. Please reach out to your IoT TPM for guidance. If a GCP Oauth client credential is not provided, then application default credentials will be used to authenticate against Google APIs. Running telemetry validation will also output a machine-readable log of the validation performed on a set of devices. This log will be output as `telemetry_validation_log.json` in the current working directory, unless otherwise specefied using the `--report_directory` parameter.
 
 1. `--credential` or `-c`: An absolute or relative path to an OAuth client credential JSON file.
 
