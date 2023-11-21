@@ -628,16 +628,6 @@ VAV_DSP_PDSCV:
   - DSP
   - PDSCV
 
-VAV_DSP_PDSCV_FPHC:
-  guid: "fc5ffbfb-5245-41d5-bf44-9c5a4e0111ec"
-  description: "VAV with pressure dependent supply valve control, paired with a four-pipe radiant panel."
-  is_canonical: true
-  implements:
-  - VAV
-  - DSP
-  - PDSCV
-  - FPHC
-
 VAV_DSP_PDSCV_CO2C:
   guid: "8e9bb69a-459c-474f-9d35-494b0eb3fd40"
   description: "VAV with pressure dependent supply valve control and CO2 control."
@@ -657,17 +647,6 @@ VAV_DSP_PDSCV_HTZC:
   - DSP
   - PDSCV
   - HTZC
-
-VAV_DSP_PDSCV_FPHC_CAM:
-  guid: "7a035aa6-0bf3-45ec-80a7-2be5485968bc"
-  description: "VAV with pressure dependent supply valve control and condensate monitoring, paired with a four-pipe radiant panel."
-  is_canonical: true
-  implements:
-  - VAV
-  - DSP
-  - PDSCV
-  - FPHC
-  - CAM
 
 VAV_DSP_PDSCV_HTZC_CO2C:
   guid: "47431504-17c4-4b83-ae95-811f4b45bc76"
