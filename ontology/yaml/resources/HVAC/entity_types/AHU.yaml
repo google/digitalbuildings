@@ -919,7 +919,7 @@ AHU_DFSS_CHWDT_DTM_RTC_RWISOVPC_OAFC_FDPSM2X:
   - FDPSM2X
 
 AHU_SFSS_SFVSC_EFSS_EFVSC_HTWHLZTC_HWZTC_CHWZTC_SSPC_RSPC_CO2DSPMADC_MTM_FDPM3X:
-  description: "Single zone AHU."
+  description: "AHU that serves multiple dampers all feeding a single zone."
   is_canonical: true
   implements:
   - AHU
