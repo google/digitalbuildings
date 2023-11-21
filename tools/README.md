@@ -19,7 +19,7 @@ There are currently two methods for interacting with the Toolkit: the Toolkit We
 
 ### Toolkit Web Application
 
-The [web-based toolkit application](dbo-toolkit-app.azurewebsites.net) also exists to provide a user-friendly interface to all of the Digital Buildings tools. 
+The [web-based toolkit application](dbo-toolkit-app.azurewebsites.net) exists to provide a user-friendly interface to all of the Digital Buildings tools. 
 **Note:** Curently, the Toolkit Web Application only supports the Instance Validatr. The team plans to support other tools in the near future.
 
 ### Toolkit CLI Installation
