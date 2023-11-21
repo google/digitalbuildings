@@ -6963,7 +6963,7 @@ PMDM:
 
 HSWTC:
   guid: "d9cf672c-8081-4e2b-9bba-599d8ac2bbd2"
-  description: "Heating water valve monitoring on supply water side."
+  description: "Heating supply water temperature control."
   is_abstract: true
   opt_uses:
   - heating_supply_water_valve_percentage_sensor

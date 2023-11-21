@@ -217,10 +217,13 @@ CDWS:
 
 ASHP:
   guid: "548532cf-e175-47e5-b6a1-82ac92362d38"
-  description: "Tag for air-source heat pumps."
+  description: "Tag for air-source heat pumps. An ASHP is a device that transfers heat from the surrounding air into
+    a heating water system through the use of a reversed refrigeration cycle."
   is_abstract: true
   opt_uses:
   - failed_communication_alarm
+  implements:
+  - EQUIPMENT
 
 CT:
   guid: "d3872cf4-a6c7-4baf-9115-4cbd92d62e64"
