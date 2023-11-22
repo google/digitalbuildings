@@ -4932,3 +4932,21 @@ AHU_CHWSC_EFSS_EFVSC_FDPM3X_HTWHLSTC_HWSC_RCO2M_RSPC_SFM_SFSS_SFVSC_SSPC_VOADM_V
   - SSPC
   - VOADM
   - VMADC
+
+AHU_CHWSC_ECON_FDPM_HWSC_SFSS_SFVSC_SSPC_SDHC_RTM:
+  guid: "cff73d74-717b-4656-808e-95365ce9ad9b"
+  description: "Multi-zone AHU with dehumidifier and return temperature monitoring"
+  is_canonical: true
+  implements:
+  - AHU
+  - CHWSC
+  - ECON
+  - FDPM
+  - HWSC
+  - SFSS
+  - SFVSC
+  - SSPC
+  - SDHC
+  - RTM
+  opt_uses:
+  - smoke_alarm
