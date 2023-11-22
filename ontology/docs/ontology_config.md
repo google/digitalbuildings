@@ -9,6 +9,8 @@ with earlier versions.
 *   For an explanation of the existing abstract model see [model](model.md)
 *   For a conceptual explanation of the ontology see [ontology](ontology.md)
 
+## Table of Contents
+
 - [Digital Buildings Ontology Configuration](#digital-buildings-ontology-configuration)
   * [Namespaces and File Structure](#namespaces-and-file-structure)
   * [Namespace-aware Components](#namespace-aware-components)
@@ -42,7 +44,7 @@ for the purposes of constructing the ontology. All files in all
 folders under a reserved folder will be read and consolidated into the model as
 if they had been defined in a single file.
 
-## Namespace-aware Components
+## Namespace-Aware Components
 
 Fields, EntityTypes and MultiStates all carry explicit namespaces. That is, if a
 user defines any of these components in a namespace and it cannot be
@@ -55,7 +57,7 @@ namespace is required is when a user is referring to a non-elevated field in
 another namespace. This imposes a few constraints on components, which will be
 discussed later.
 
-## Namespace Agnostic Components
+## Namespace-Agnostic Components
 
 **Subfields**: Unlike other components, are Subfields are not namespace aware.
 As a result, they are always used verbatim and should be defined in the global
@@ -130,9 +132,9 @@ preference for definition at the top level or in namespaces (since fields are
 elevated whenever possible). The parser should automatically sort fields into
 the global or local namespace depending on whether or not they can be elevated.
 
-Fields are added in fully constructed form using the `"literals"` tag[^5].
+Fields are added in fully constructed form using the `"literals"` tag.[^5]
 
-```
+```yaml
 literals:
 - zone_air_temperature_mode:
   - AUTO
@@ -204,7 +206,7 @@ any state that is likely to be reusable.
 reside in.** They are listed in a file called "states". Configuration is a
 simple key:value pairing of the name and the definition:
 
-```
+```yaml
 ON: This thing is running
 OFF: This thing is not running
 ```
@@ -215,7 +217,7 @@ Validation enforces:
 *   Keys begin with a alpha-character
 *   A test description is provided
 
-### EntityTypes
+### Entity Types
 
 Entity types are described in a folder with the name `entity_types`. Entity
 types are the most often namespaced component. Each Entity Type specifies the
@@ -223,9 +225,9 @@ fields and inherited types that compose it. Entity Types are namespaced like
 fields and can used both locally and globally namespaced fields and types in
 their construction.
 
-A typical construction looks like this:
+A typical entity type construction looks like this:
 
-```
+```yaml
 AHU_DFSS_DTC_DFVSFC_CHWVM_RTM:
   guid: '4d68ac84-786f-425c-9a65-097b1fb04c91' // auto-generated UUID v4 GUID
   description: this is a really common HVAC device
@@ -292,7 +294,7 @@ intended to grow infrequently.
 
 Connections are defined by name with an associated description[^6]:
 
-```
+```yaml
 FEEDS:
   description: Source sends physical media (air, water, etc.) to Target
 CONTAINS:
@@ -309,7 +311,7 @@ Validation enforces:
 Units are described in a folder with the name `units`. They are **only** defined
 in the global namespace and are grouped by measurement subfield. For example:
 
-```
+```yaml
 concentration:
   parts_per_million: STANDARD
 current:
@@ -339,7 +341,7 @@ If a subfield needs to use the same set of units as another subfield, it is
 defined as an alias by providing the other subfield name instead of a list of
 units. For example:
 
-```
+```yaml
 distance:
   meters: STANDARD
   feet:
