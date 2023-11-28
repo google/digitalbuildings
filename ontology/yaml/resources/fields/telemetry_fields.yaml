@@ -873,9 +873,6 @@ literals:
 - chilled_water_flowrate_sensor:
     flexible_min: -0.000315451
     flexible_max: 0.315451
-- chilled_water_temperature_sensor:
-    flexible_min: 274.8148148
-    flexible_max: 299.8148148
 - compressor_speed_frequency_sensor:
     flexible_min: -0.5
     flexible_max: 65.0
