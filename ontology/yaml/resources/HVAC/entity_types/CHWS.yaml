@@ -306,6 +306,12 @@ CHWS_WDPC_SWISOVPM_BYPVPM_WSEBYPVPM_PWDT_PRWFRM_SEWTM_SEWFRM_CLPM:
   - WDPC
   - SWISOVPM
   - BYPVPM
+  - WSEBYPVPM
+  - PWDT
+  - PRWFRM
+  - SEWTM
+  - SEWFRM
+  - CLPM
 
 ###################################
 ### Existing Non-standard Types ###
@@ -356,9 +362,3 @@ CHWS_SWTC_WDPC_BYPVPM_WFRM_NONCANONICAL_1:
   uses:
   - production_differential_pressure_sensor
   - supply_water_flowrate_sensor # Need to rename to flowrate_sensor
-  - WSEBYPVPM
-  - PWDT
-  - PRWFRM
-  - SEWTM
-  - SEWFRM
-  - CLPM
