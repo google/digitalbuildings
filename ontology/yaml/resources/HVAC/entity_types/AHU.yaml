@@ -19,7 +19,7 @@
 ### Single Zone Units ###
 
 AHU_HTWHLSTC_SFM_SFVSC_FDPM_CREFM_SDM_SFMSC_SSPC_SWCM:
-  description: "Supply Only AHU."
+  description: "Supply only AHU with pressure control and heating only."
   is_canonical: true
   implements:
   - AHU
