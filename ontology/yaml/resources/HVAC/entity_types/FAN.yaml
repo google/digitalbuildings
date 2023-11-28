@@ -796,3 +796,13 @@ FAN_VSMC:
   - FAN
   - VSMC
 
+FAN_SS_CSP_VSC_REFM:
+  guid: "8ad25499-4813-4634-91e0-cb77beaee01d"
+  description: "Cooling fan with variable speed command (no feedback) and refrigerant monitoring."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - CSP
+  - VSC
+  - REFM
