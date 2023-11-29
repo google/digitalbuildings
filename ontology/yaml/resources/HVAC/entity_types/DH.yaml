@@ -16,6 +16,19 @@
 ### Canonical Types  ###
 ########################
 
+DH_RTM_DFSS2X_CHWZTC_SFVSC2X_HWZTC_STC_EFFC:
+  description: "Trench Heater "
+  is_canonical: true
+  implements:
+  - DH
+  - RTM
+  - DFSS2X
+  - CHWZTC
+  - SFVSC2X
+  - HWZTC
+  - STC
+  - EFFC
+
 DH_SS_HWSC:
   guid: "074d5458-87d9-4397-914e-c25fd95243a3"
   description: "Hydronic duct heater."
