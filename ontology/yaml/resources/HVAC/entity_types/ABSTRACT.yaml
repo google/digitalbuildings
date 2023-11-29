@@ -7171,3 +7171,13 @@ FPHC:
   uses:
   - heating_water_valve_percentage_command
   - chilled_water_valve_percentage_command
+
+CWSWC:
+  description: Condensing water valve monitoring to control water temperature on supply side for steam exchanger.
+  is_abstract: true
+  opt_uses:
+  - condensing_water_valve_percentage_sensor
+  uses:
+  - condensing_water_valve_percentage_command
+  - heating_supply_water_temperature_sensor
+  - heating_supply_water_temperature_setpoint
