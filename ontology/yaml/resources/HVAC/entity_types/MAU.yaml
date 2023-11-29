@@ -16,6 +16,21 @@
 ### Canonical Types  ###
 ########################
 
+MAU_STC_SFM_SFVSC_FDPM_FDPSM_CREFM_SDM_SSPC_HWVM:
+  description: "Make-up air unit with heating control using wet coil to maintain air flowrate."
+  is_canonical: true
+  implements:
+  - MAU
+  - STC
+  - SFM
+  - SFVSC
+  - FDPM
+  - FDPSM
+  - CREFM
+  - SDM
+  - SSPC
+  - HWVM
+
 MAU_SFSS_STM:
   guid: "9532ed28-f40c-472b-90aa-4a679911ef17"
   description: "Simple make-up air unit."

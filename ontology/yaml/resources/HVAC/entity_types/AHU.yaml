@@ -18,21 +18,6 @@
 
 ### Single Zone Units ###
 
-AHU_STC_SFM_SFVSC_FDPM_FDPSM_CREFM_SDM_SSPC_HWVM:
-  description: "Supply only AHU with heating control using wet coil to maintain air flowrate."
-  is_canonical: true
-  implements:
-  - AHU
-  - STC
-  - SFM
-  - SFVSC
-  - FDPM
-  - FDPSM
-  - CREFM
-  - SDM
-  - SSPC
-  - HWVM
-
 AHU_CSP_DFSS_DX2ZC_ECONZ:
   guid: "f0e116a8-ab2c-4303-a782-2a9a47005372"
   description: "Single zone AHU."
