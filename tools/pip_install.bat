@@ -39,14 +39,14 @@ CD ..
 :dbo_explorer_setup
 ECHO 'Starting DBO Explorer"
 CD explorer
-START py setup.py install
+START py -m pip install .
 ECHO "Finished DBO Explorer setup"
 CD ..
 
 :building_config_scoring_setup
 ECHO "Starting scoring setup"
 CD Scoring
-START py setup.py install
+START py -m pip install .
 ECHO "Finished scoring setup"
 
 ECHO "Setup finished!"
