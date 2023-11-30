@@ -1317,8 +1317,8 @@ FCU_DFVSC_CHWZC_CSP_RTM_WDT:
   - CHWZC
   - CSP
   - RTM
-  - WDT 
-  uses: 
+  - WDT
+  uses:
   - master_alarm
   - run_mode
 
@@ -1333,7 +1333,7 @@ FCU_DFSS_CHWDC_CSP_RTM_DXZC:
   - CSP
   - RTM
   - DXZC
-  uses: 
+  uses:
   - master_alarm
   - filter_alarm
   - run_mode
