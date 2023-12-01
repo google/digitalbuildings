@@ -12,15 +12,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-########################
-### Canonical Types  ###
-########################
+a3c2fe35-aa03-48f1-a1ef-426203a74177:
+  type: HVAC/FAN_SS
+  code: FAN_1
+  connections:
+    46033ce6-7070-4434-98ab-0d8e6a463d46: CONTAINS
 
-
-HDS_H2M:
-  guid: "c433b9fa-2e3c-42a9-9574-d601941e23c9"
-  description: "Zone air hydrogen level used for monitoring in battery rooms."
-  is_canonical: true
-  implements:
-  - HDS
-  - H2M
+# Building
+46033ce6-7070-4434-98ab-0d8e6a463d46:
+  type: FACILITIES/BUILDING
+  code: US-SEA-BLDG1

@@ -1,4 +1,4 @@
-# Copyright 2023 Google LLC
+# Copyright 2022 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the License);
 # you may not use this file except in compliance with the License.
@@ -12,15 +12,16 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-########################
-### Canonical Types  ###
-########################
+### CANONICAL TYPES
 
-
-HDS_H2M:
-  guid: "c433b9fa-2e3c-42a9-9574-d601941e23c9"
-  description: "Zone air hydrogen level used for monitoring in battery rooms."
+WSR_STD:
+  guid: "c406cac4-2e0c-4396-8963-db72b7f1ccb6"
+  description: "Standard water softener."
   is_canonical: true
   implements:
-  - HDS
-  - H2M
+  - WSR
+  - /SS
+  uses:
+  - water_flowrate_status
+  opt_uses:
+  - lost_power_alarm

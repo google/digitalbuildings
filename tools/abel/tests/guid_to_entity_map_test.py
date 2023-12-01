@@ -83,10 +83,13 @@ class GuidToEntityMapTest(absltest.TestCase):
     _TEST_REPORTING_ENTITY.bc_guid = TEST_REPORTING_GUID
 
   def testAddEntityRaisesKeyError(self):
+    """Test adding a different entity with a already existing guid."""
     self.guid_to_entity_map.AddEntity(_TEST_REPORTING_ENTITY)
+    test_virtual_entity = VirtualEntity.FromDict(TEST_VIRTUAL_ENTITY_DICT)
+    test_virtual_entity.bc_guid = TEST_REPORTING_GUID
 
     with self.assertRaises(KeyError):
-      self.guid_to_entity_map.AddEntity(_TEST_REPORTING_ENTITY)
+      self.guid_to_entity_map.AddEntity(test_virtual_entity)
 
   def testGetEntityByGuidRaisesKeyError(self):
     with self.assertRaises(KeyError):

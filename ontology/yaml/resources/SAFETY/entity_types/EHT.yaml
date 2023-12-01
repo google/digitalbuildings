@@ -1,4 +1,4 @@
-# Copyright 2023 Google LLC
+# Copyright 2022 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the License);
 # you may not use this file except in compliance with the License.
@@ -17,10 +17,10 @@
 ########################
 
 
-HDS_H2M:
-  guid: "c433b9fa-2e3c-42a9-9574-d601941e23c9"
-  description: "Zone air hydrogen level used for monitoring in battery rooms."
+EHT_SS:
+  guid: "fd135e80-a15b-4c3f-8fa8-31c0641933a3"
+  description: "Basic heat tracer with start/stop"
   is_canonical: true
   implements:
-  - HDS
-  - H2M
+  - EHT
+  - SS

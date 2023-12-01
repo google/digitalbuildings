@@ -89,4 +89,3 @@ ASYNCHRONOUS: "Mode of operation of inverter where either the bypass supply fail
 SOFTSTART: "Mode of operation of rectifier where the input power supply is gradually turned on to avoid overloading"
 NORMAL: "Function, state or flow which is an ideal or expected condition."
 REVERSED: "Function, state or flow which is opposed to the expected or normal condition."
-

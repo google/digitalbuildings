@@ -23,6 +23,7 @@ from model.constants import TARGET_ENTITY_GUID
 from model.entity import Entity
 from model.entity import ReportingEntity
 from model.entity import VirtualEntity
+from model.entity_enumerations import EntityNamespace
 from model.entity_enumerations import EntityOperationType
 from model.entity_enumerations import EntityUpdateMaskAttribute
 from model.entity_field import DimensionalValueField
@@ -58,11 +59,12 @@ def EntityInstanceToEntity(
   states = []
   connections = []
   entity_operation = None
+  enumerated_namespace = EntityNamespace(entity_instance.namespace.upper())
 
   if not entity_instance.cloud_device_id:
     entity = VirtualEntity(
         code=entity_instance.code,
-        namespace=entity_instance.namespace,
+        namespace=enumerated_namespace,
         etag=entity_instance.etag,
         type_name=entity_instance.type_name,
         bc_guid=entity_instance.guid,
@@ -70,7 +72,7 @@ def EntityInstanceToEntity(
   else:
     entity = ReportingEntity(
         code=entity_instance.code,
-        namespace=entity_instance.namespace,
+        namespace=enumerated_namespace,
         cloud_device_id=entity_instance.cloud_device_id,
         etag=entity_instance.etag,
         type_name=entity_instance.type_name,

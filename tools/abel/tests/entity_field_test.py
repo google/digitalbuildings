@@ -110,6 +110,9 @@ class MissingFieldTest(absltest.TestCase):
                 }
             },
             {USER_ENTERED_VALUE: {STRING_VALUE: ''}},
+            {USER_ENTERED_VALUE: {
+              STRING_VALUE: TEST_MISSING_STANDARD_FIELD_NAME}
+            },
             {USER_ENTERED_VALUE: {STRING_VALUE: TEST_REPORTING_ENTITY_CODE}},
             {USER_ENTERED_VALUE: {STRING_VALUE: TEST_REPORTING_GUID}},
             {USER_ENTERED_VALUE: {STRING_VALUE: TEST_REPORTING_ENTITY_CODE}},

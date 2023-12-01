@@ -319,6 +319,28 @@ HWS_HWSWC:
   - HWS
   - HWSWC
 
+HWS_SWTC_WDPM_WFRM:
+  guid: "9f75791e-f814-4724-bd22-ba6538ce00d7"
+  description: "Simple heating water system with supply temp, differential pressure monitoring and water flowrate monitoring."
+  is_canonical: true
+  implements:
+  - HWS
+  - SWTC
+  - WDPM
+  - WFRM
+
+HWS_SWTC_WDPC_WFRM_HWTTC:
+  guid: "4601c41e-fe72-46fd-bde2-34f15a1e7730"
+  description: "Simple heating water system with supply temp and differential pressure control and hot water tank temperature control."
+  is_canonical: true
+  implements:
+  - HWS
+  - SWTC
+  - WDPC
+  - WFRM
+  - HWTTC
+
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
@@ -354,4 +376,3 @@ HWS_SWTC_CPC:
   - circulation_pump_speed_percentage_command
   - circulation_pump_speed_percentage_setpoint
   - failed_alarm
-

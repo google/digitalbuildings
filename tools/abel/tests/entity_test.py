@@ -61,7 +61,9 @@ class EntityTest(absltest.TestCase):
 
     self.assertEqual(test_virtual_entity.code, TEST_VIRTUAL_ENTITY_CODE)
     self.assertEqual(test_virtual_entity.bc_guid, TEST_VIRTUAL_GUID)
-    self.assertEqual(test_virtual_entity.namespace, TEST_NAMESPACE)
+    self.assertEqual(
+        test_virtual_entity.namespace, EntityNamespace(TEST_NAMESPACE)
+    )
     self.assertEqual(test_virtual_entity.type_name, TEST_TYPE_NAME)
 
   def testReportingEntityInstantiatesFromDict(self):
@@ -69,7 +71,9 @@ class EntityTest(absltest.TestCase):
 
     self.assertEqual(test_reporting_entity.code, TEST_REPORTING_ENTITY_CODE)
     self.assertEqual(test_reporting_entity.bc_guid, TEST_REPORTING_GUID)
-    self.assertEqual(test_reporting_entity.namespace, TEST_NAMESPACE)
+    self.assertEqual(
+        test_reporting_entity.namespace, EntityNamespace(TEST_NAMESPACE)
+    )
     self.assertEqual(test_reporting_entity.type_name, TEST_TYPE_NAME)
     self.assertEqual(
         test_reporting_entity.cloud_device_id, TEST_CLOUD_DEVICE_ID
