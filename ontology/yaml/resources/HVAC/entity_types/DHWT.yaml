@@ -16,12 +16,12 @@
 ### Canonical Types  ###
 ########################
 
-DWHT_HTWRC_HWTTC_CPC_HWSWC:
+DWHT_HTZTC_HWTTC_CPC_HWSWC:
   description: "Standard calorifier with return pump."
   is_canonical: true
   implements:
   - DHWT
-  - HTWRC
+  - HTZTC
   - HWTTC
   - CPC
   - HWSWC
