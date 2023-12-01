@@ -611,6 +611,14 @@ VAV_DSP_PDSCV:
   - DSP
   - PDSCV
 
+VAV_RDC_CO2C:
+  description: "Return control VAV with CO2 regulation and damper percentage monitoring"
+  is_canonical: true
+  implements:
+  - VAV
+  - RDC
+  - CO2C
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
