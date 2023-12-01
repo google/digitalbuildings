@@ -7071,7 +7071,7 @@ CWBYPVPM:
   - condensing_water_bypass_valve_percentage_sensor
   implements:
   - MONITORING
-  
+
 HWBYPVPM:
   guid: "38b01712-d458-4e5c-bf41-71107ebe8ecd"
   description: "Heating water bypass valve percentage monitoring."
