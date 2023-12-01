@@ -44,7 +44,7 @@ def main(parsed_args: argparse.ArgumentParser):
   print('Starting Yaml Validator!')
   external_file_lib.Validate(
       filter_text,
-      path.expanduser(args.original),
+      path.expanduser(parsed_args.original),
       modified_types_filepath,
       interactive=ast.literal_eval(parsed_args.interactive),
       require_type_guids=not parsed_args.allow_missing_type_guids)
