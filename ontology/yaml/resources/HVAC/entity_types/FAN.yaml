@@ -562,6 +562,15 @@ FAN_SS_FDPM_VSC_SRC:
   - VSC
   - SRC
 
+FAN_HLC_COC2DSP_NO2C2DSP:
+  description: "Two-speed fan (low/high) with CO concentration dual setpoint control and NO2 concentration dual setpoint control with 2 sensors."
+  is_canonical: true
+  implements:
+  - FAN
+  - HLC
+  - COC2DSP
+  - NO2C2DSP
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
