@@ -698,6 +698,22 @@ MAU_SFSS2X_SFVSC2X_CHWSC_HWSC_SSPC_VOADM_FDPM_ZSPM_OAFM:
   opt_uses:
   - smoke_alarm
 
+MAU_DFSS_DFVSC_DSP_CHWDC_HWDC_OADM_ZSPM_OA:
+  description: "Single zone heating and cooling make-up air unit with zone static pressure control and outside air temperature monitoring."
+  is_canonical: true
+  implements:
+  - MAU
+  - DFSS
+  - DFVSC
+  - DSP
+  - CHWDC
+  - HWDC
+  - OADM
+  - ZSPM
+  - OA
+  opt_uses:
+  - smoke_alarm
+
 ############################
 ###   Remap These Types  ###
 ############################

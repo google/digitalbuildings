@@ -609,6 +609,36 @@ CH_SS_DX3SCHWC_CWSISOVM_CWRISOVM_CHWSWISOVM_CHWDPM_CWDT_CHWDT_RCKTM:
   - CHWDT
   - RCKTM
 
+CH_SS_DX4SWC_RWTM_REFSM2X_REFPM2X_CPC:
+  description: "Four stage air cooled chiller with return water temperature monitoring, circulation pump monitoring and two circuit refrigerant monitoring."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - DX4SWC
+  - RWTM
+  - REFSM2X
+  - REFPM2X
+  - CPC
+
+CH_SS_DX2SWC_CHDXVSC2X_RWTM_MWDPC_RWISOVM_REFSM2X_REFPM2X_CPC_INVIPWM2X_INVOPWM2X:
+  description: "Two stage air cooled chiller with dual compressor variable speed control, return water isolation valve, minimum differential pressure control, 
+                return water temperature monitoring, two circuit refrigerant monitoring, circulation pump monitoring and input/output inverter power monitoring."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - DX2SWC
+  - CHDXVSC2X
+  - RWTM
+  - MWDPC
+  - RWISOVM
+  - REFSM2X
+  - REFPM2X
+  - CPC
+  - INVIPWM2X
+  - INVOPWM2X
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################

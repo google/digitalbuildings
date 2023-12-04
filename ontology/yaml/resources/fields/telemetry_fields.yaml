@@ -113,6 +113,9 @@ literals:
 - differential_pressure_setpoint:
     flexible_min: -34473.78945
     flexible_max: 344737.8945
+- low_limit_differential_pressure_setpoint:
+    flexible_min: -34473.78945
+    flexible_max: 344737.8945
 - discharge_air_cooling_temperature_setpoint:
     flexible_min: 255.9259259
     flexible_max: 310.9259259
@@ -792,6 +795,9 @@ literals:
     flexible_min: 68947.5789
     flexible_max: 2068427.367
 - chilled_water_valve_command:
+  - OPEN
+  - CLOSED
+- drain_water_valve_command:
   - OPEN
   - CLOSED
 - heating_percentage_command:
@@ -1492,6 +1498,9 @@ literals:
   - ACTIVE
   - INACTIVE
 - failed_supply_fan_alarm:
+  - ACTIVE
+  - INACTIVE
+- failed_return_fan_alarm:
   - ACTIVE
   - INACTIVE
 - smoke_alarm:
@@ -2653,6 +2662,9 @@ literals:
 - input_inverter_frequency_sensor:
     flexible_min: -0.5
     flexible_max: 65.0
+- input_inverter_power_sensor:
+    flexible_min: 0.0
+    flexible_max: 10000000.0
 - output_inverter_power_sensor:
     flexible_min: 0.0
     flexible_max: 10000000.0
@@ -2990,6 +3002,9 @@ literals:
 - failed_exhaust_air_temperature_alarm:
   - ACTIVE
   - INACTIVE
+- failed_supply_air_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
 - failed_bypass_valve_alarm:
   - ACTIVE
   - INACTIVE
@@ -3071,6 +3086,15 @@ literals:
 - high_return_water_temperature_alarm:
   - ACTIVE
   - INACTIVE
+- high_process_return_water_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
+- high_process_supply_water_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
+- high_process_water_differential_pressure_alarm:
+  - ACTIVE
+  - INACTIVE
 - high_zone_air_co2_concentration_alarm:
   - ACTIVE
   - INACTIVE
@@ -3114,6 +3138,15 @@ literals:
   - ACTIVE
   - INACTIVE
 - low_return_water_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
+- low_process_water_differential_pressure_alarm:
+  - ACTIVE
+  - INACTIVE
+- low_process_supply_water_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
+- low_process_return_water_temperature_alarm:
   - ACTIVE
   - INACTIVE
 - low_zone_air_static_pressure_alarm:

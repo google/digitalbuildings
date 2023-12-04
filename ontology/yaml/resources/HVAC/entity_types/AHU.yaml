@@ -4139,6 +4139,87 @@ AHU_CHWSC_ECON_FDPM_HWSC_SFSS_SFVSC_SSPC_SDHC_RTM:
   opt_uses:
   - smoke_alarm
 
+AHU_SFSS4X_SFVSC4X_RFSS3X_RFVSC3X_CHWSC_HWSC_ECON_EDBPC_SARC_SSPC_RD_OAFMC_EFM:
+  description: "Cooling and heating AHU with 4 supply and 3 return fans, supply air reset control, 
+                building and supply static pressure control, return damper flow control and exhaust flow monitoring."
+  is_canonical: true
+  implements:
+  - AHU
+  - SFSS4X
+  - SFVSC4X
+  - RFSS3X
+  - RFVSC3X
+  - CHWSC
+  - HWSC
+  - ECON
+  - EDBPC
+  - SARC
+  - SSPC
+  - RD
+  - OAFMC
+  - EFM
+  opt_uses:
+  - smoke_alarm
+
+AHU_SFSS4X_SFVSC4X_RFSS3X_RFVSC3X_CHWSC_HWSC_ECON_EDBPC_SARC_SSPC_RD_OAFMC:
+  description: "Cooling and heating AHU with 4 supply and 3 return fans, supply air reset control, 
+                building and supply static pressure control and return damper flow control."
+  is_canonical: true
+  implements:
+  - AHU
+  - SFSS4X
+  - SFVSC4X
+  - RFSS3X
+  - RFVSC3X
+  - CHWSC
+  - HWSC
+  - ECON
+  - EDBPC
+  - SARC
+  - SSPC
+  - RD
+  - OAFMC
+  opt_uses:
+  - smoke_alarm
+
+AHU_SFSS2X_SFVSC2X_RFSS2X_RFVSC2X_CHWSC_HWSC_ECON_EDBPC_SARC_SSPC_RD_OAFMC:
+  description: "Cooling and heating AHU with 2 supply and 2 return fans, supply air reset control, 
+                building and supply static pressure control and return damper flow control."
+  is_canonical: true
+  implements:
+  - AHU
+  - SFSS2X
+  - SFVSC2X
+  - RFSS2X
+  - RFVSC2X
+  - CHWSC
+  - HWSC
+  - ECON
+  - EDBPC
+  - SARC
+  - SSPC
+  - RD
+  - OAFMC
+  opt_uses:
+  - smoke_alarm
+
+AHU_SFSS_SFVSC_EFSS_EFVSC_CHWSC_HWSC_ECON_EDBPC_SARC_SSPC_OAFMC:
+  description: "Multi-zone cooling and heatinfg AHU with supply air reset control and supply static pressure control."
+  is_canonical: true
+  implements:
+  - AHU
+  - SFSS
+  - SFVSC
+  - EFSS
+  - EFVSC
+  - CHWSC
+  - HWSC
+  - ECON
+  - EDBPC
+  - SARC
+  - SSPC
+  - OAFMC
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
