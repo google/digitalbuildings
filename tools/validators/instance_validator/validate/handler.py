@@ -37,7 +37,7 @@ TELEMETRY_VALIDATION_FILENAME = 'telemetry_validation_report.json'
 
 
 def FileNameEnumerationHelper(filename: str) -> str:
-  """Adds an UTC timestamp enurmation prefix to the filename.
+  """Adds a UTC timestamp enumeration prefix to the filename.
 
   Args:
     filename: string representing the filename to be enumerated with a local

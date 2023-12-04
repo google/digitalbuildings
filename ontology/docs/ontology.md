@@ -108,7 +108,7 @@ Subfields are grouped into categories that add structure to field composition (n
   <tr>
    <td><p style="text-align: right">Aggregation Descriptor</p></td>
    <td>
-     A subfield that modifies aggregations to explicitly differentiate temporal aggregation (e.g., daily max) from spatial aggregation (e.g., the max of 3 zone temperature sensors in a space). Note that windowing specifics are added into this subfield, and omitting them implies a fixed window (e.g., the max over the day boundary if `daily` is used). (Note: the window time is always spelled out to avoid subfield validation errors.) This subfield can only used when accompanied by an aggregation subfield. 
+     A subfield that modifies aggregations to explicitly differentiate temporal aggregation (e.g., daily max) from spatial aggregation (e.g., the max of 3 zone temperature sensors in a space). Note that windowing specifics are added into this subfield, and omitting them implies a fixed window (e.g., the max over the day boundary if `daily` is used). (Note: the window time is always spelled out to avoid subfield validation errors.) This subfield can only used when accompanied by an aggregation subfield.
    </td>
    <td>daily, fivesecond, fivesecondrolling</td>
    <td>1</td>
@@ -129,7 +129,7 @@ Subfields are grouped into categories that add structure to field composition (n
    </td>
    <td>Discharge, Return, Zone, Primary, Chilled etc...</td>
    <td>10</td>
-   <td>Optional</td>   
+   <td>Optional</td>
   </tr>
   <tr>
    <td><p style="text-align: right">Component</p></td>
@@ -137,7 +137,7 @@ Subfields are grouped into categories that add structure to field composition (n
 </td>
    <td>Valve, fan, damper...</td>
    <td>10</td>
-   <td>Optional</td>   
+   <td>Optional</td>
   </tr>
   <tr>
    <td><p style="text-align: right">Measurement Descriptor</p></td>
@@ -146,7 +146,7 @@ Subfields are grouped into categories that add structure to field composition (n
    </td>
    <td>Differential, relative, static</td>
    <td>1</td>
-   <td>Optional</td>   
+   <td>Optional</td>
   </tr>
   <tr>
    <td><p style="text-align: right">Measurement</p></td>
@@ -154,7 +154,7 @@ Subfields are grouped into categories that add structure to field composition (n
    </td>
    <td>Temperature, flowrate, flowvolume</td>
    <td>1</td>
-   <td>Optional</td>   
+   <td>Optional</td>
   </tr>
   <tr>
    <td><p style="text-align: right">Point Type</p></td>
@@ -162,7 +162,7 @@ Subfields are grouped into categories that add structure to field composition (n
    </td>
    <td>Sensor, Setpoint, Status, Command, Count, Accumulator</td>
    <td>1</td>
-   <td>Required</td>   
+   <td>Required</td>
   </tr>
 </table>
 

@@ -1,4 +1,4 @@
-# Copyright 2023 Google LLC
+# Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the License);
 # you may not use this file except in compliance with the License.
@@ -16,11 +16,18 @@
 ### Canonical Types  ###
 ########################
 
-
-HDS_H2M:
-  guid: "c433b9fa-2e3c-42a9-9574-d601941e23c9"
-  description: "Zone air hydrogen level used for monitoring in battery rooms."
+ASHP_SS_HP6SWC_CPC2X_RWISOVM:
+  guid: "11ecef31-d11d-496b-9d39-f35fe9307a82"
+  description: "Six-stage air source heat pump with 2 circulation pumps and return isolation valve."
   is_canonical: true
   implements:
-  - HDS
-  - H2M
+  - ASHP
+  - SS
+  - HP6SWC
+  - CPC2X
+  - RWISOVM
+  opt_uses:
+  - low_refrigerant_pressure_alarm_1
+  - low_refrigerant_pressure_alarm_2
+  - high_refrigerant_pressure_alarm_1
+  - high_refrigerant_pressure_alarm_2
