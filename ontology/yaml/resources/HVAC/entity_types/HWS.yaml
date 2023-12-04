@@ -313,11 +313,12 @@ HWS_SS_HWTTC_PWDPM2X:
   opt_uses:
   - compressor_run_status
 
-HWS_HWSWC:
+HWS_SWTC_HWVM:
   description: Supply water temperature control with valve control
   implements:
   - HWS
-  - HWSWC
+  - SWTC
+  - HWVM
 
 ###################################
 ### Existing Non-standard Types ###
