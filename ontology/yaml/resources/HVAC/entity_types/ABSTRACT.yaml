@@ -1166,6 +1166,7 @@ WDPC:
   - differential_pressure_setpoint
 
 MWDPC:
+  guid: "80c5dfcc-c555-42ed-90ff-6807feca1f5f"
   description: "Minimum water differential pressure control."
   is_abstract: true
   uses:
@@ -4642,6 +4643,7 @@ CHDXVSC:
   - overload_compressor_alarm
 
 CHDXVSC2X:
+  guid: "cddb43aa-3122-44e2-96f7-906259bb3e8c"
   description: "Dual compressor variable speed control."
   is_abstract: true
   uses:
@@ -6427,6 +6429,7 @@ INVOPWM:
 
 
 INVOPWM2X:
+  guid: "14d07b5f-bb1e-43ca-be08-d3a59454e49e"
   description: "Dual inverter (VFD) output power monitoring."
   is_abstract: true
   implements:
@@ -6442,6 +6445,7 @@ INVOPWM2X:
 
 
 INVIPWM2X:
+  guid: "9fd6b127-7925-427e-ae1b-3736fbec1e21"
   description: "Dual inverter (VFD) input power monitoring."
   is_abstract: true
   implements:
@@ -6762,6 +6766,7 @@ RFSS2X:
   - OPERATIONAL
 
 RFSS3X:
+  guid: "f5b9e0b4-e561-469e-a74f-99e849747191"
   description: "Return fan start-stop and feedback with three fans."
   is_abstract: true
   opt_uses:
@@ -6825,6 +6830,7 @@ RFVSC2X:
   - OPERATIONAL
 
 RFVSC3X:
+  guid: "01199f72-169f-4a2d-a53e-068b52070f31"
   description: "Return fan variable speed control with feedback and sensoring for three fans."
   is_abstract: true
   opt_uses:
