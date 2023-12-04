@@ -135,12 +135,14 @@ literals:
 - discharge_fan_speed_mode:
   - AUTO
   - LOW
-  - VERY_LOW
   - MEDIUM
   - HIGH
-  - VERY_HIGH
   - OFF
   - VFD
+  - 20_PERCENT
+  - 40_PERCENT
+  - 60_PERCENT
+  - 80_PERCENT
 - discharge_fan_speed_percentage_command:
     fixed_min: 0.0
     fixed_max: 100.0

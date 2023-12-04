@@ -18,17 +18,19 @@ AUTO: Running under automatic control.
 MANUAL: "Running under manual (hand) control."
 OPEN: Open position, typically for a valve or other pass-though.
 CLOSED: Closed position, typically for a valve or other pass-though.
-VERY_LOW : Very low speed or output setting.
 LOW: Low speed or output setting.
 MEDIUM: Medium speed or output setting.
 HIGH: High speed or output setting.
-VERY_HIGH: Very high speed or output setting.
 OCCUPIED: Occupied sensor state or operation mode.
 UNOCCUPIED: Unoccupied sensor state or operation mode.
 VFD: Discrete speed (frequency) control
 BYPASS: Bypassing an element or entity.
 DEHUMIDIFY: Modes of operation in DX unit where the unit acts as a dehumidifier by removing moisture from air
 FAN_ONLY: Modes of operation in DX unit where only fan runs and heating/cooling is disabled
+20_PERCENT: Speed of 20 percent of the maximum
+40_PERCENT: Speed of 40 percent of the maximum
+60_PERCENT: Speed of 60 percent of the maximum
+80_PERCENT: Speed of 80 percent of the maximum
 
 # Moved from HVAC namespace because all fields are currently global in DL.
 COMMISSIONING: The fan speed and valve positions are set to preconfigured parameters.
