@@ -20,8 +20,8 @@ DHWT_HTSWC_HWTTC_CPC_HWSWC:
   description: "Standard calorifier with return pump."
   is_canonical: true
   implements:
-  - HTSWC
   - DHWT
+  - HTSWC
   - HWTTC
   - CPC
   - HWSWC
