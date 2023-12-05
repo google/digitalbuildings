@@ -313,12 +313,12 @@ HWS_SS_HWTTC_PWDPM2X:
   opt_uses:
   - compressor_run_status
 
-HWS_SWTC_HWVM:
-  description: Supply water temperature control with valve control
+HWS_SWTC_MXVPM:
+  description: "Supply water temperature control with mixing valve control."
   implements:
   - HWS
   - SWTC
-  - HWVM
+  - MXVPM
 
 HWS_SWTC_WDPM_WFRM:
   guid: "9f75791e-f814-4724-bd22-ba6538ce00d7"
