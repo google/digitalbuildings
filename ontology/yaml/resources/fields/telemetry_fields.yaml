@@ -145,6 +145,10 @@ literals:
   - HIGH
   - OFF
   - VFD
+  - TWENTY_PERCENT
+  - FORTY_PERCENT
+  - SIXTY_PERCENT
+  - EIGHTY_PERCENT
 - discharge_fan_speed_percentage_command:
     fixed_min: 0.0
     fixed_max: 100.0
