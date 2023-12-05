@@ -1255,6 +1255,14 @@ FCU_DFSS_DFVSC_FDPM_CHWDC_SRC_DFRMM:
   - SRC
   - DFRMM
 
+FCU_DFSS_CHWRC:
+  description: "CRAC unit with discharge fan and return temperature control."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - CHWRC
+
 FCU_DXZTC_DFSS:
   guid: "5688519e-f88e-4620-8bd5-89d91467028d"
   description: "FCU with SS, discharge temp sensors, zone control and sensor, filter change"
@@ -1337,6 +1345,16 @@ FCU_DFSS_CHWDC_CSP_RTM_DXZC:
   - master_alarm
   - filter_alarm
   - run_mode
+
+FCU_SS_HTRC_DTM_ZTM:
+  description: "FCU with return temperature control, discharge temperature monitoring, zone temperature monitorning and start/stop control."
+  is_canonical: true
+  implements:
+  - FCU
+  - SS
+  - HTRC
+  - DTM
+  - ZTM
 
 ###################################
 ### Existing Non-standard Types ###

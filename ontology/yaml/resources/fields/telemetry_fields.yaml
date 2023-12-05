@@ -3182,6 +3182,18 @@ literals:
 - low_discharge_air_static_pressure_alarm:
   - ACTIVE
   - INACTIVE
+- mixed_air_damper_open_command:
+  - ON
+  - OFF
+- mixed_air_damper_closed_command:
+  - ON
+  - OFF
+- low_limit_return_air_co2_concentration_setpoint:
+    flexible_min: 0.00005
+    flexible_max: 0.005
+- high_limit_return_air_co2_concentration_setpoint:
+    flexible_min: 0.00005
+    flexible_max: 0.005
 - average_zone_air_co2_concentration_setpoint:
     flexible_min: 0.00005
     flexible_max: 0.005
