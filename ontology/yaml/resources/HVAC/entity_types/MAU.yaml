@@ -699,6 +699,7 @@ MAU_SFSS2X_SFVSC2X_CHWSC_HWSC_SSPC_VOADM_FDPM_ZSPM_OAFM:
   - smoke_alarm
 
 MAU_DFSS_DFVSC_DSP_CHWDC_HWDC_OADM_ZSPM_OA:
+  guid: "9ba6dc9b-1b5b-4f05-8be2-2ff4b0bb7390"
   description: "Single zone heating and cooling make-up air unit with zone static pressure control and outside air temperature monitoring."
   is_canonical: true
   implements:
