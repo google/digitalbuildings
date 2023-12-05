@@ -16,6 +16,19 @@
 ### Canonical Types  ###
 ########################
 
+MAU_HWSC_SFM_SFVSC_FDPM_FDPSM_SDM_SSPC:
+  description: "Make-up air unit with heating control"
+  is_canonical: true
+  implements:
+  - MAU
+  - HWSC
+  - SFM
+  - SFVSC
+  - FDPM
+  - FDPSM
+  - SDM
+  - SSPC
+
 MAU_SFSS_STM:
   guid: "9532ed28-f40c-472b-90aa-4a679911ef17"
   description: "Simple make-up air unit."
