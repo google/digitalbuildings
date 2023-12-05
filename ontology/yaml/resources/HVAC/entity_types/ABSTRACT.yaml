@@ -7215,6 +7215,7 @@ FPHC:
   - chilled_water_valve_percentage_command
 
 SSTC:
+  guid: "3aefe568-b8eb-485e-a3d9-38ac3bb9906d"
   description: "Supply steam valve monitoring to control water temperature on supply side for steam exchanger."
   is_abstract: true
   opt_uses:
