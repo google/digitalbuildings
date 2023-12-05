@@ -7142,6 +7142,9 @@ CPC2X:
   - circulation_pump_run_status_1
   - circulation_pump_run_command_2
   - circulation_pump_run_status_2
+  opt_uses:
+  - failed_circulation_pump_alarm_1
+  - failed_circulation_pump_alarm_2
 
 SDHC:
   guid: "de065843-b1a9-4d2e-b751-31d7af8e8991"
