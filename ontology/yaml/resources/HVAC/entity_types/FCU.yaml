@@ -1810,6 +1810,14 @@ FCU_DSP_DFVSC_DTM_RTM:
   - DTM
   - RTM
 
+FCU_DFSS_DFSMC_HWRC:
+  description: "Warm air curtain with return air temperature control."
+  implements:
+  - FCU
+  - DFSS
+  - DFSMC
+  - HWRC
+
 FCU_DFVSC_RTM_CO2M_HWZTC_CHWZTC:
   guid: "6f6fd049-576c-4f0a-894d-a6433575b8dd"
   description: "Fan coil unit with zone temperature control, heating water and chilled water valve monitoring."

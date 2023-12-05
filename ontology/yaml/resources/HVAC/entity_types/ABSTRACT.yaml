@@ -7214,6 +7214,16 @@ FPHC:
   - heating_water_valve_percentage_command
   - chilled_water_valve_percentage_command
 
+SSTC:
+  description: "Supply steam valve monitoring to control water temperature on supply side for steam exchanger."
+  is_abstract: true
+  opt_uses:
+  - supply_steam_valve_percentage_sensor
+  uses:
+  - supply_steam_valve_percentage_command
+  - heating_supply_water_temperature_sensor
+  - heating_supply_water_temperature_setpoint
+
 COC2XDSP:
   guid: "fa7cba8d-be4d-4968-a5bf-f55429006b77"
   description: "Dual setpoint CO concentration control with 2 sensors."

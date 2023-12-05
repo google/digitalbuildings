@@ -187,3 +187,11 @@ HX_CWDT_HSWTC_HWDPC_HWBYPVPM:
   - HSWTC
   - HWDPC
   - HWBYPVPM
+
+HX_SSTC_SSSPC:
+  description: "Steam exchanger with heating water temperature control and steam static pressure control on supply side."
+  is_canonical: true
+  implements:
+  - HX
+  - SSTC
+  - SSSPC

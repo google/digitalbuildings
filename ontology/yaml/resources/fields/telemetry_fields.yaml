@@ -145,6 +145,10 @@ literals:
   - HIGH
   - OFF
   - VFD
+  - TWENTY_PERCENT
+  - FORTY_PERCENT
+  - SIXTY_PERCENT
+  - EIGHTY_PERCENT
 - discharge_fan_speed_percentage_command:
     fixed_min: 0.0
     fixed_max: 100.0
@@ -3212,6 +3216,12 @@ literals:
 - tamper_alarm:
   - ACTIVE
   - INACTIVE
+- supply_steam_valve_percentage_command:
+    fixed_min: 0.0
+    fixed_max: 100.0
+- supply_steam_valve_percentage_sensor:
+    fixed_min: 0.0
+    fixed_max: 100.0
 - high_limit_zone_air_no2_concentration_setpoint:
     fixed_min: 0.0
     flexible_max: 0.0005
