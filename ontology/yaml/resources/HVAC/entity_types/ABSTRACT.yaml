@@ -3645,6 +3645,8 @@ MXVPM:
   guid: "4bb25777-d661-4fd3-9f8f-a84b349ada87"
   description: "Mixing valve percent monitoring."
   is_abstract: true
+  opt_uses:
+  - mixing_valve_percentage_sensor
   uses:
   - mixing_valve_percentage_command
   implements:
