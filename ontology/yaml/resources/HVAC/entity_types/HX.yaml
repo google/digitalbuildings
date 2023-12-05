@@ -189,6 +189,7 @@ HX_CWDT_HSWTC_HWDPC_HWBYPVPM:
   - HWBYPVPM
 
 HX_SSTC_SSSPC:
+  guid: "02c3c81d-241c-4868-b260-9c580c29379b"
   description: "Steam exchanger with heating water temperature control and steam static pressure control on supply side."
   is_canonical: true
   implements:
