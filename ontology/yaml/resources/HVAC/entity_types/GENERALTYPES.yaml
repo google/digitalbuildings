@@ -183,7 +183,7 @@ CU:
 HWS:
   guid: "548fd420-92cb-47e1-926e-d5e2500bd3c7"
   description: "Tag for heating water systems. This tag represents the system itself, and fields are mapped
-    to it when they don't belong to another device within that system (e.g. supply_water_temperature_sensor 
+    to it when they don't belong to another device within that system (e.g. supply_water_temperature_sensor
     for the supply header belongs to the system, not to any single device)."
   is_abstract: true
   opt_uses:
@@ -206,7 +206,7 @@ CHWS:
 
 CDWS:
   guid: "d659edeb-607d-4c03-9f17-bb5159c0c48d"
-  description: "Tag for condensing water systems. Distinct from chilled water systems in that they provide a 
+  description: "Tag for condensing water systems. Distinct from chilled water systems in that they provide a
     water-side condensing source for other devices (such as water-cooled chillers, water-condensing heat pumps,
     etc.). "
   is_abstract: true
@@ -215,9 +215,19 @@ CDWS:
   - differential_pressure_specification
   - failed_communication_alarm
 
+ASHP:
+  guid: "548532cf-e175-47e5-b6a1-82ac92362d38"
+  description: "Tag for air-source heat pumps. An ASHP is a device that transfers heat from the surrounding air into
+    a heating water system through the use of a reversed refrigeration cycle."
+  is_abstract: true
+  opt_uses:
+  - failed_communication_alarm
+  implements:
+  - EQUIPMENT
+
 CT:
   guid: "d3872cf4-a6c7-4baf-9115-4cbd92d62e64"
-  description: "Tag for cooling tower. Cooling towers are devices which cool incoming fluid through the 
+  description: "Tag for cooling tower. Cooling towers are devices which cool incoming fluid through the
     evaporation of air. The tag applies to open- and closed-loop cooling towers. They are distinct from
     dry coolers, which utilize sensible cooling only. "
   is_abstract: true
@@ -237,7 +247,7 @@ ZONE:
 
 DC:  # Proposed in v2.3 naming standard
   guid: "cb5301aa-fa83-4e0b-9d28-fb6f4f7e8acc"
-  description: "Tag for dry coolers (sensible, closed-loop coolers). Distinct from cooling towers, which 
+  description: "Tag for dry coolers (sensible, closed-loop coolers). Distinct from cooling towers, which
     utilize latent cooling. "
   is_abstract: true
   implements:

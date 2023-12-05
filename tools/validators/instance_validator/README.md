@@ -1,6 +1,6 @@
 # Instance Validator
 
-The Instance Validator allows validation of YAML instance files to make sure they conform to the given ontology model.
+The Instance Validator allows validation of concrete DBO instances (i.e., building configuration files) to ensure they conform to the given ontology model, are formatted correctly, and contain all required fields. There is also optional functionality to validate telemetry messages for all reporting entities in the building configuration using Telemetry Validator.
 
 ## Install
 
@@ -12,17 +12,16 @@ Installing and using the Instance Validator requires Python 3.9, and the specifi
 
 You can run the command with just the version flag (e.g. `python --version`) to verify that the result is `Python 3.*`.
 
+### Create a Virtual Environment
 
-### First create a virtual env
-
-Create the virtual environment with `venv` followed by the environment name, in this example: `tooling`
+First, create a virtual environment with `venv` followed by the environment name (in this example: `tooling`) in the digitalbuildings repository.
 
 ```
-python3 -m venv tooling
+python -m venv tooling
 ```
 
 
-Activate the virtual environment
+### Activate the Virtual Environment
 
 Mac OS / Linux:
 ```
@@ -33,101 +32,70 @@ Windows
 ```
 tooling\Scripts\activate
 ```
+## Install Packages
+Next, you can either use pip or setuptools (to be deprecated) to install the necessary packages and dependencies.
 
+### Install Pip
+1. Run the following command to ensure that your Python package management tools are up-to-date.
 
-Then you can either use pip or setuptools.
+```
+python3 -m pip install --upgrade pip
+```
 
-### PIP
+2. Run `bash pip_install.sh` (MacOS / Linux) or `pip_install.bat` (Windows) from the following directory: `digitalbuildings/tools`.
 
-1. Run `python3 -m pip install --upgrade pip` to ensure that your Python package management tools are up-to-date.
-2. Run `python3 -m pip install . ` from digitalbuildings/tools/validators/instance_validator.
-
-### SetUpTools (to be deprecated)
+### Setuptools (to be deprecated)
 
 1. Run `python3 -m pip install --upgrade pip setuptools` to ensure that your Python package management tools are up-to-date.
-2. Run `python3 setup.py install` from digitalbuildings/tools/validators/ontology_validator.
-3. Run `python3 setup.py install` from digitalbuildings/tools/validators/instance_validator.
+2. Run `python3 setup.py install` from the following directory: digitalbuildings/tools/validators/ontology_validator.
+3. Run `python3 setup.py install` from the following directory: digitalbuildings/tools/validators/instance_validator.
 
-## Usage
+## Instance Validator Workflow
 
-Navigate to digitalbuildings/tools/validators/instance_validator and run `python3 instance_validator.py --input path/to/YOUR_BUILDING_CONFIG.yaml` to validate your input file using the ontology defined in this repository.
+Navigate to `digitalbuildings/tools/validators/instance_validator` and run `python instance_validator.py` with the following parameters:
 
-To validate multiple input files at the same time, you can provide the "`-i/--input` parameter multiple times.
+1. `--input` or `-i`: The absolute filepath of a building configuration file(.yaml). To validate multiple input files at the same time, you can provide the `-input` parameter multiple times.
 
-If the optional `-r/--report-filename` parameter is provided, the validation results will be written to this report file. Otherwise, the results will be written to stdout.
+2. `--modified-types-filepath` or `-m` **[Optional]**: Validate entity types in the building configuration file against a modified ontology that is not in the main repository. Default is the [Digital Buildings Ontology](https://github.com/google/digitalbuildings/tree/master/ontology/yaml).
+    * When using a modified ontology, ensure you follow the folder-naming convention: `digitalbuildings/ontology/yaml`. This will allow the instance validator to rely on the new types in the ontology.
+    * **Note:** as of the current development stage, you must clone the entire repository and run this instance validator script from this directory.
 
-### Ontology Types extended
+3. `--report-filename` or `-r` **[Optional]**: Writes instance validation results to the specified report file. Otherwise, the results will be written to stdout.
 
-If you have extended the ontology by adding new types to your local ontology, run the following: `python3 instance_validator.py --input path/to/YOUR_BUILDING_CONFIG.yaml --modified-ontology-types path/to/modified/ontology/types/folder`
+4. `--report-directory` or `-d` **[Optional]**: Writes instance validation (instance_validation_report.txt) and telemetry validation (telemetry_validation_report.json) reports to the specified `report-directory`. By default, writes instance validation output to the console and telemetry validation output to the current working directory.
 
-When using a modified ontology, ensure you follow the folder-naming convention: `digitalbuildings/ontology/yaml`. This will allow the instance validator to rely on the new types in the ontology.
+5. `--udmi` **[Optional]**: Validates entity metadata as [UDMI](https://github.com/faucetsdn/udmi/). Flag is set to `True` by default; change this parameter to `--udmi=False` when not validating against UDMI.
 
-Note: as of the current development stage, you must clone the entire repository and run this instance validator script from this directory.
+### Telemetry Validation
 
-### Telemetry validation
+The validator supports a telemetry validation mode. When this mode is enabled, the validator will listen on a provided pubsub subscription for telemetry messages, and validate the message contents against the instance configuration. **It is recommended that you first use the instance validator with telemetry validation mode disabled, and then enable it after that passes.**
 
-The validator supports a telemetry validation mode. When this mode is enabled, the validator will listen on a provided pubsub subscription for telemetry messages, and validate the message contents against the instance configuration. It is recommended that you first use the instance validator with telemetry validation mode disabled, and then enable it after that passes.
+If you would like to use the telemetry validation mode, you must provide the `--subscription` parameter and the `--credential` parameter. **NOTE:** The OAuth credential and subscription are provided by the Google team. Please reach out to your IoT TPM for guidance. If a GCP Oauth client credential is not provided, then application default credentials will be used to authenticate against Google APIs. Running telemetry validation will also output a machine-readable log of the validation performed on a set of devices. This log will be output as `telemetry_validation_log.json` in the current working directory, unless otherwise specefied using the `--report_directory` parameter.
 
-#### Authentication
+1. `--credential` or `-c`: An absolute or relative path to an OAuth client credential JSON file.
 
-If you would like to use the telemetry validation mode, you must provide the `--subscription` or `-s` parameter and the `--credential` or `-c` parameter.
+2. `--subscription` or `-s`: The fully-qualified path to a Google Cloud Pubsub subscription (e.g., `projects/google.com:your-project/subscriptions/your-subscription`).
 
-**NOTE** The GCP OAuth client credential and subscription are provided by the Google team. Please reach out to your IoT TPM for guidance.
+3. `--timeout` or `-t` **[Optional]**: The timeout duration in seconds for the telemetry validation test. The default value is 600 seconds, or 10 minutes. If this time limit is exceeded before the validator receives a test pubsub message for each of the entities configured in the given instance config file, the test will fail with an error and report the entities that were not heard from.
 
-`--credential` or `-c`: Should be an absolute or relative path to an OAuth client credential JSON file.
+For example, the following input
+```
+python instance_validator.py.py -i //path/to/file -s subscription-name -c //path/to/client/cred.json -d //path/to/report-directory
+```
+results in these actions:
+1. Ingests a building configuration file.
+2. Validates the building configuration file with the instance validator (using the default ontology master brach).
+3. Validates the telemetry payloads for each reporting entity in the building configuration file.
+4. Writes instance and telemetry validation results to the report directory as `//path/to/report-directory/instance_validation_report.txt` and `//path/to/report-directory/telemetry_validation_report.json`.
 
-`--subscription` or `-s`: Should be a fully-qualified path to a Google Cloud Pubsub subscription, e.g. projects/google.com:your-project/subscriptions/your-subscription.
-
-Optional parameter for the telemetry validation mode are:
-
-`--timeout` or `-t`: The timeout duration in seconds for the telemetry validation test. The default value is 600 seconds, or 10 minutes. If this time limit is exceeded before the validator receives a test pubsub message for each of the entities configured in the given instance config file, the test will fail with an error and report the entities that were not heard from.
-
-`--report_directory` or `-d`: If provided, instance validation and telemetry validation reports (named instance_validation_report.txt and telemetry_validation_report.json) will be written to this directory. Otherwise, the instance validation report will be written to the console and the telemetry validation report to the current working directory.
-
-Running telemetry validation will also output a machine-readable log of the validation performed on a set of devices. This log will be output as `telemetry_validation_log.json` in the current working directory.
-
-### Instance Validator Workflow
-
-Run `python instance_validator.py` and provide the following arguments:
-
-1. `-i/--input` The absolute filepath of a building configuration file(.yaml).
-
-2. `-m/--modified-types-filepath` **[Optional]** Validate entity types in the building configuration file against a modified ontology that is not in the main repository. Default is the [Digital Buildings Ontology](https://github.com/google/digitalbuildings/tree/master/ontology/yaml).
-
-3. After a building configuration's entity types are validated, validation must also be run on the telemetry payload using:
-
-  * `--credential` or `-c`: Should be an absolute or relative path to an OAuth client credential JSON file.
-
-  * `--subscription` or `-c`: The fully-qualified path to a Google Cloud Pubsub subscription, e.g. projects/google.com:your-project/subscriptions/your-subscription.
-
-  * `--timeout` or `-c` **[Optional]** The timeout duration in seconds for the telemetry validation test. The default value is 600 seconds, or 10 minutes. If this time limit is exceeded before the validator receives a test pubsub message for each of the entities configured in the given instance config file, the test will fail with an error and report the entities that were not heard from.
-
-  * `--udmi` **[Optional]** Treat message stream on PubSub subscription as [UDMI](https://github.com/faucetsdn/udmi/). **NOTE:** This is required for telemetry validation when devices implement the UDMI specification. Set to true by default.
-
-4. `-d/--report-directory` To write instance validation (instance_validation_report.txt) and telemetry validation (telemetry_validation_report.json) reports to the report-directory; otherwise writes instance validation to console and telemetry validation to current working directory.
-
-**NOTE** The GCP OAuth client credential and subscription are provided by the Google team. Please reach out to your IoT TPM for guidance. If a GCP Oauth client credential is not provided, then application default credentials will be used to authenticate against Google APIs.
-
-Running telemetry validation will also output a machine-readable log of the validation performed on a set of devices. This log will be output as `telemetry_validation_log.json` in the current working directory.
-
-For example:
-`python instance_validator.py.py -i //path/to/file -s subscription-name -c //path/to/client/cred.json -d //path/to/report-directory`
-1. Takes in an building configuration file.
-2. Validates the building configuration.
-3. Validates telemetry payload.
-4. Writes validation results to the report directory as //path/to/report-directory/instance_validation_report.txt and //path/to/report-directory/telemetry_validation_report.json for instance validation and telemetry validation respectfully.
-
-**NOTE:** The new Building Config format switches entities being keyed by codes
-to being keyed by guids and Ids are removed. To convert the old format to the
-new format, run your config.yaml through the [guid generator](https://github.com/google/digitalbuildings/tree/master/tools/guid_generator).
+**NOTE:** The new building configuration format requires that entities are keyed by Version 4 UUIDs (referred to as guids) instead of the code. To convert from old format to the new format, run your building configuration file(.yaml) through the [guid generator](https://github.com/google/digitalbuildings/tree/master/tools/guid_generator).
 
 ### Warnings and Errors
 
-The Instance Validator has two types of outputs, **Warnings** and **Errors**. In short, errors are exposed when a Building Config is not readable by the instance validator while warnings are exposed when a Building Config is readable but
-its contents may not be valid.
+The Instance Validator has two types of outputs: **Warnings** and **Errors**. In short, errors are exposed when a Building Config is not readable by the instance validator while warnings are exposed when a Building Config is readable but its contents may not be valid.
 
-**Errors** cause the validator to exit prematurely with some kind of exception. For example, An error could be caused by an entity block not containing a `GUID`. This would raise an exception in the
-validation logic and cause the validator to exit prematurely because the instance validator expects every entity block in a Building Config to have an associated `GUID`, either as a key or an entity block element. The [guid generator](https://github.com/google/digitalbuildings/tree/master/tools/guid_generator) must be used to generate guids for a Building Configuration file. Other entity block elements are `type` and `code`.
+#### Errors
+Errors cause the validator to exit prematurely with some kind of exception. For example, An error could be caused by an entity block not containing a `GUID`. This would raise an exception in the validation logic and cause the validator to exit prematurely because the instance validator expects every entity block in a Building Config to have an associated `GUID`. The [GUID generator](https://github.com/google/digitalbuildings/tree/master/tools/guid_generator) must be used to generate GUIDs for a Building Configuration file. Other entity block elements are `type` and `code`.
 
     The following entity block would throw an error because it does not contain a type nor a code.
 
@@ -141,7 +109,8 @@ validation logic and cause the validator to exit prematurely because the instanc
               degrees_celsius: "degC"
               degrees_fahrenheit: "degF"
 
-**Warnings** on the other hand expose inconsistencies in the content of an entity block but do not cause the validator to fail since the core elements of what make an entity block readable are still present. For example, if the fields defined in `translation` or `links` do not align with the fields for the entity's type as defined in [Digital Buildings Ontology](https://github.com/google/digitalbuildings/tree/master/ontology/yaml), then the validator will warn the user it is not a valid entity.
+#### Warnings
+Warnings, on the other hand, expose inconsistencies in the content of an entity block but do not cause the validator to fail since the core elements of what make an entity block readable are still present. For example, if the fields defined in `translation` or `links` do not align with the fields for the entity's type as defined in [Digital Buildings Ontology](https://github.com/google/digitalbuildings/tree/master/ontology/yaml), then the validator will warn the user it is not a valid entity.
 
     The following entity block would only expose a warning because these are not the fields for VAV_SD_DSP as defined in DBO:
 

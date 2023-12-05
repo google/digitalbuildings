@@ -287,6 +287,32 @@ CHWS_WDT_CWDT_CICHVISOVM3X:
   uses:
   - flowrate_sensor
 
+CHWS_SWTC_WDPM_WFRM:
+  guid: "26cc124e-80f4-4602-ad4c-ea41a92c2e6c"
+  description: "Chilled water system with supply temperature, differential pressure monitoring and water flowrate monitoring."
+  is_canonical: true
+  implements:
+  - CHWS
+  - SWTC
+  - WDPM
+  - WFRM
+
+CHWS_WDPC_SWISOVPM_BYPVPM_WSEBYPVPM_PWDT_PRWFRM_SEWTM_SEWFRM_CLPM:
+  guid: "2ddb95f1-5fd1-449a-b528-9ab4f744d9e2"
+  description: "Chilled water system with water differential pressure control, bypass valve, water side economizer bypass valve, primary water temperature differential monitoring, primary and secondary loop flow monitoring and cooling thermal power monitoring."
+  is_canonical: true
+  implements:
+  - CHWS
+  - WDPC
+  - SWISOVPM
+  - BYPVPM
+  - WSEBYPVPM
+  - PWDT
+  - PRWFRM
+  - SEWTM
+  - SEWFRM
+  - CLPM
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
