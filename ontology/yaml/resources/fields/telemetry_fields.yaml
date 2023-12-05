@@ -3200,3 +3200,9 @@ literals:
 - tamper_alarm:
   - ACTIVE
   - INACTIVE
+- supply_steam_valve_percentage_command:
+    fixed_min: 0.0
+    fixed_max: 100.0
+- supply_steam_valve_percentage_sensor:
+    fixed_min: 0.0
+    fixed_max: 100.0
