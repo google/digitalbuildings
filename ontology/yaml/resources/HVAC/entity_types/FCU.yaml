@@ -1811,6 +1811,7 @@ FCU_DSP_DFVSC_DTM_RTM:
   - RTM
 
 FCU_DFSS_DFSMC_HWRC:
+  guid: "1388eea8-a039-4b33-8613-24ae9de719dd"
   description: "Warm air curtain with return air temperature control."
   implements:
   - FCU
