@@ -65,10 +65,13 @@ class GuidToEntityMap(object):
     """
     if entity is None:
       raise ValueError('Cannot add None values to the guid to entity map.')
-    if not entity.bc_guid:
+    elif not entity.bc_guid:
       raise AttributeError(f'{entity.code}: guid missing')
-    if entity.bc_guid not in self._guid_to_entity_map:
+    elif entity.bc_guid not in list(self._guid_to_entity_map):
       self._guid_to_entity_map[entity.bc_guid] = entity
+    elif self._guid_to_entity_map.get(entity.bc_guid) == entity:
+      # Do nothing, this mapping already exists
+      pass
     else:
       raise KeyError(
           f'{entity.bc_guid} maps to {self._guid_to_entity_map[entity.bc_guid]}'

@@ -233,8 +233,8 @@ SENSOR_ZA_CO2M_PMM_HCHO:
   - CO2M
   - PMM
   uses:
-  - zone_air_formaldehyde_concentration_sensor  
-  
+  - zone_air_formaldehyde_concentration_sensor
+
 SENSOR_CO2M_VOCM:
   guid: "3eca4fc4-0a66-4a12-bbc1-88fedeb9ede5"
   description: "CO2 and VOC concentration monitoring."
@@ -255,3 +255,69 @@ SENSOR_ZTM_ZHM_CO2M_VOCM_PMM:
   - CO2M
   - VOCM
   - PMM
+
+SENSOR_ZTM_ZHM_ZOC:
+  guid: "cf04e900-0c65-4bb5-b769-6926f88c88dc"
+  description: "Zone occupant counter with zone temperature & humidity monitoring."
+  is_canonical: true
+  implements:
+  - /SENSOR
+  - ZTM
+  - ZHM
+  - ZOC
+
+SENSOR_ZTM_ZHM_CO2M_VOCM_PMDM_SPLM_ZAQIM:
+  guid: "d1abcda3-d6a1-477d-b690-a993d7a3947f"
+  description: "Indoor Air Quality sensor with temperature, humidity, CO2, VOC, particulates (density), illuminance and sound monitoring."
+  is_canonical: true
+  implements:
+  - /SENSOR
+  - ZTM
+  - ZHM
+  - CO2M
+  - VOCM
+  - PMDM
+  - SPLM
+  - ZAQIM
+  uses:
+  - illuminance_sensor
+
+SENSOR_ZTM_ZHM_CO2M_VOCM_PMDM:
+  guid: "f96985ff-f152-4053-8453-85d557fd534b"
+  description: "Indoor Air Quality sensor with temperature, humidity, CO2, VOC, particulates (density) monitoring."
+  is_canonical: true
+  implements:
+  - /SENSOR
+  - ZTM
+  - ZHM
+  - CO2M
+  - VOCM
+  - PMDM
+
+SENSOR_ZTM_ZHM_CO2M_SPLM_PMDM_COM_ZSPM_VOCM_ZAQIM_MS_TMPR:
+  guid: "ba5e0fb0-b20c-4bb8-a178-3c57ef261ed7"
+  description: "Indoor Air Quality sensor with temperature, humidity, CO2, CO, sound, particulates (density), illuminance, formaldehyde, pressure sensors with air quality, vape, TVOC indexes and motion & tamper detection."
+  is_canonical: true
+  implements:
+  - /SENSOR
+  - ZTM
+  - ZHM
+  - CO2M
+  - SPLM
+  - PMDM
+  - COM
+  - ZSPM
+  - VOCM
+  - ZAQIM
+  uses:
+  - illuminance_sensor
+  - motion_status
+  - tamper_alarm
+
+SENSOR_ZOC:
+  guid: "29e14ea6-4bdc-40b7-8af2-98ffe12ecc4c"
+  description: "Zone occupant counter sensor."
+  is_canonical: true
+  implements:
+  - /SENSOR
+  - ZOC

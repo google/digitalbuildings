@@ -1,16 +1,33 @@
-# Digital Buildings Toolkit
+# Digital Buildings Tools
+
+Various tools have been developed to support the use of the Digital Buildings Ontology and Building Configuration files. 
+
+The tools are:
+  * [ABEL](./abel/README.md) generates from/to Google spreadsheet/[Building Configuration](../ontology/docs/building_config.md).
+  * [Explorer](./explorer/README.md) allows users to explorer the ontology types and their associated fields.
+  * [Instance Validator](./validators/instance_validator/README.md) which allows to validate the yaml ontology upon a change or an extension.
+    * A sub function of the Instance Validator is to also [validate telemetry messages](./validators/instance_validator/README.md#telemetry-validation) 
+    corresponding to entity blocks in a building configuration file.
+  * [Ontology Validator](./validators/ontology_validator/README.md) which allows to validate the yaml ontology upon a change or an extension.
+
+## Digital Buildings Toolkit
 
 The Digital Buildings Toolkit provides a centralized
 method for interfacing with all of the tools contained within the Digital
 Buildings Repository.
 
-## Install
+### Toolkit Web Application
+
+The [web-based toolkit application](dbo-toolkit-app.azurewebsites.net) also exists to provide a user-friendly interface to all of the Digital Buildings tools. 
+Only the Instance Validator is currently supported, but other tools are planned to be added in the near future.
+
+### Install
 
 To install please follow the instructions below.
 
-### First create a virtual env
+#### First create a virtual env
 
-Create the virtual environment with `venv` followed by the environment name, in this example: `tooling`
+Create the virtual environment with `venv` followed by the environment name, in this example: `tooling`, in the digitalbuildings repository.
 
 ```
 python -m venv tooling
@@ -32,12 +49,12 @@ tooling\Scripts\activate
 
 Then you can either use pip or setuptools.
 
-### Pip
+#### Pip
 1. Run `python3 -m pip install --upgrade pip` to ensure that your Python package management tools are up-to-date.
 
 2. Run `bash pip_install.sh` or `pip_install.bat` (windows) from the following directory digitalbuildings/tools.
 
-### Docker
+#### Docker
 
 1. Install [Docker Desktop](https://docs.docker.com/desktop/)
 2. Run `./tools/docker_run.sh` to build the docker image.
@@ -46,13 +63,13 @@ Then you can either use pip or setuptools.
 $ ./tools/docker_run.sh abel
 ```
 
-### Setup (to be deprecated)
+#### Setup (to be deprecated)
 
 1. Follow setup instructions for the [Instance Validator](./validators/instance_validator).
 2. Follow setup instructions for the [GUID Generator](./guid_generator).
 3. Run `sudo python setup.py` for this directory.
 
-## Toolkit Workflow
+### Toolkit Workflow
 
 Run `python toolkit.py` and provide the following arguments:
 
@@ -92,3 +109,5 @@ For example:
 **NOTE:** The new building configuration format switches entities being keyed by codes
 to being keyed by guids, and Ids are removed. To convert from old format to the
 new format, run your building configuration file(.yaml) through the [guid generator](https://github.com/google/digitalbuildings/tree/master/tools/guid_generator).
+
+Any questions or concerns can be emailed to **BOS-GPS@google.com**

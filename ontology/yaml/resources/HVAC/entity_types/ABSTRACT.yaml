@@ -51,7 +51,6 @@ RDM:
   implements:
   - MONITORING
 
-
 DD:
   guid: "5b09f1bd-f526-4d77-b1a3-1fceda2ba041"
   description: "Dual duct flow control (hot deck, cold deck)."
@@ -329,6 +328,14 @@ COC:
   opt_uses:
   - high_zone_air_co_concentration_alarm
 
+COM:
+  guid: "bd9a1e2d-0710-4c58-8a56-3890af55f6b3"
+  description: "Carbon monoxide monitoring."
+  is_abstract: true
+  implements:
+  - MONITORING
+  uses:
+  - zone_air_co_concentration_sensor
 
 BPC:
   guid: "8199ef48-de0b-4112-bf7a-15876a4acaff"
@@ -1119,6 +1126,19 @@ SCHWTC:
   - chilled_supply_water_temperature_sensor
   - chilled_supply_water_temperature_setpoint
 
+RCHWTC:
+  guid: "6babdc1e-edae-49b3-98e4-ca0b675b7f0f"
+  description: "Return chilled water temperature control."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  opt_uses:
+  - chilled_supply_water_temperature_sensor
+  - cooling_percentage_command
+  - cooling_request_count
+  uses:
+  - chilled_return_water_temperature_sensor
+  - chilled_return_water_temperature_setpoint
 
 WDPC:
   guid: "86b2c846-0cc3-4828-8648-88c2082c900e"
@@ -1472,6 +1492,8 @@ VOCM:
   is_abstract: true
   uses:
   - zone_air_voc_concentration_sensor
+  opt_uses:
+  - zone_air_formaldehyde_concentration_sensor
   implements:
   - MONITORING
 
@@ -2979,6 +3001,10 @@ HT2SWC:
   - heating_thermal_power_capacity
   - high_supply_water_temperature_alarm
   - low_supply_water_temperature_alarm
+  - heater_run_status_1
+  - heater_run_status_2
+  - failed_alarm_1
+  - failed_alarm_2
   uses:
   - heater_run_command_1
   - heater_run_command_2
@@ -4470,7 +4496,6 @@ WDPM:
   - high_differential_pressure_alarm
   - low_differential_pressure_alarm
 
-
 CHWDPM:
   guid: "dcdb66fc-576b-4475-a1cd-f143e16edcde"
   description: "Differential pressure monitoring for chilled water."
@@ -4557,7 +4582,6 @@ CHDXVSC:
   - compressor_lost_power_alarm
   - failed_compressor_alarm
   - overload_compressor_alarm
-
 
 CDWFRM:
   guid: "b4cd6a63-df02-4c7b-bf81-3902cd827241"
@@ -5068,6 +5092,21 @@ SWTM:
   - low_supply_water_temperature_alarm
   uses:
   - supply_water_temperature_sensor
+
+
+RWTM:
+  guid: "c317c88d-f090-4cd9-9289-6e03e24e496f"
+  description: "Return water temperature monitoring."
+  is_abstract: true
+  implements:
+  - MONITORING
+  opt_uses:
+  - cooling_request_count
+  - heating_request_count
+  - high_return_water_temperature_alarm
+  - low_return_water_temperature_alarm
+  uses:
+  - return_water_temperature_sensor
 
 
 CWDPM:
@@ -6442,7 +6481,6 @@ SWCM:
   - valve_command
   - valve_status
 
-
 SCRSS:
   guid: "636b1262-b08b-4e1b-b130-e1a510b79a0c"
   description: "Scurbber start stop monitoring."
@@ -6539,7 +6577,6 @@ CO2M6X:
   - zone_air_co2_concentration_sensor_6
   implements:
   - MONITORING
-
 
 MIPCVM:
   guid: "17630266-40d3-4bc5-a9cd-9d70f10ef839"
@@ -6776,6 +6813,17 @@ VMADC:
   implements:
   - CONTROL
 
+MDSDC:
+  guid: "1ee9e02c-1ad9-4451-aa55-7b6655bfdc50"
+  description: "Motion-dependent supply damper control."
+  is_abstract: true
+  uses:
+  - motion_status
+  - supply_air_damper_percentage_command
+  - supply_air_damper_percentage_sensor
+  implements:
+  - CONTROL
+
 OAQM:
   guid: "99e4f482-278e-40ee-9524-9f687c41ba22"
   description: "Outside air quality monitoring (particulates and gases)"
@@ -6792,6 +6840,16 @@ OAQM:
   - outside_air_co2_concentration_sensor
   implements:
   - MONITORING
+
+UDEC:
+  guid: "8755e46b-4e3a-40a1-8abb-778bf309c8f8"
+  description: "Up and down extension control for shades."
+  is_abstract: true
+  uses:
+  - shade_up_command
+  - shade_down_command
+  opt_uses:
+  - shade_extent_percentage_sensor
 
 VSMC:
   guid: "6ff088d6-002e-4842-85a1-c40d3aef52a3"
@@ -6840,3 +6898,73 @@ HTWHLZTC:
   - outside_air_temperature_sensor
   - zone_air_temperature_sensor
   - zone_air_temperature_setpoint
+
+SDM2X:
+  guid: "b56e4a52-c988-448a-847d-25710ae4aaef"
+  description: "Supply air damper monitoring, dual status fields."
+  is_abstract: true
+  opt_uses:
+  - low_supply_air_static_pressure_alarm
+  uses:
+  - supply_air_damper_command
+  - supply_air_damper_status_1
+  - supply_air_damper_status_2
+
+EDM2X:
+  guid: "101126df-f75d-4346-9aa7-d0b1f84fb22d"
+  description: "Exhaust air damper monitoring, dual status fields."
+  is_abstract: true
+  opt_uses:
+  - low_exhaust_air_static_pressure_alarm
+  uses:
+  - exhaust_air_damper_command
+  - exhaust_air_damper_status_1
+  - exhaust_air_damper_status_2
+
+ACO2C:
+  guid: "155dae96-5a12-4062-a9e4-ba911d17d036"
+  description: "Average CO2 control."
+  is_abstract: true
+  uses:
+  - average_zone_air_co2_concentration_sensor
+  - average_zone_air_co2_concentration_setpoint
+
+ZOC:
+  guid: "822b78b6-1eb4-4d4b-9f4e-089ef57011aa"
+  description: "Occupancy counter monitoring"
+  is_abstract: true
+  uses:
+  - zone_occupancy_count
+  implements:
+  - MONITORING
+
+SPLM:
+  guid: "d92998e1-1091-4291-a1f9-b8cc0e3aa334"
+  description: "Sound pressure level monitoring"
+  is_abstract: true
+  uses:
+  - soundpressurelevel_sensor
+  implements:
+  - MONITORING
+
+ZAQIM:
+  guid: "3ce06a65-9e5c-4862-9571-a2d59792c86a"
+  description: "Zone air quality indexes monitoring"
+  is_abstract: true
+  uses:
+  - zone_air_aqi_sensor
+  opt_uses:
+  - zone_air_voc_aqi_sensor
+  - zone_air_smoke_aqi_sensor
+  implements:
+  - MONITORING
+
+PMDM:
+  guid: "8247354f-bedb-4ccd-8f62-238c025277bc"
+  description: "Particulate matter density monitoring"
+  is_abstract: true
+  uses:
+  - zone_air_pm2pt5_density_sensor
+  - zone_air_pm10pt0_density_sensor
+  implements:
+  - MONITORING
