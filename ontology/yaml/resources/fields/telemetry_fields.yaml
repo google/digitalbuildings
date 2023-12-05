@@ -3212,3 +3212,9 @@ literals:
 - tamper_alarm:
   - ACTIVE
   - INACTIVE
+- high_limit_zone_air_no2_concentration_setpoint:
+    fixed_min: 0.0
+    flexible_max: 0.0005
+- low_limit_zone_air_no2_concentration_setpoint:
+    fixed_min: 0.0
+    flexible_max: 0.0005

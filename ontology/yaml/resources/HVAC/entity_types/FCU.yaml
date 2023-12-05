@@ -1346,6 +1346,16 @@ FCU_DFSS_CHWDC_CSP_RTM_DXZC:
   - filter_alarm
   - run_mode
 
+FCU_SS_HTRC_DTM_ZTM:
+  description: "FCU with return temperature control, discharge temperature monitoring, zone temperature monitorning and start/stop control."
+  is_canonical: true
+  implements:
+  - FCU
+  - SS
+  - HTRC
+  - DTM
+  - ZTM
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
