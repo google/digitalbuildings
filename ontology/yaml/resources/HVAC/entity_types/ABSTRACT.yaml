@@ -6892,6 +6892,7 @@ VSMC:
   - schedule_run_command
 
 CO2DSPMADC:
+  guid: "316d6473-f187-45ce-9b0e-35b8149e83ce"
   description: "Dual setpoint CO2 control with mixed air damper (for recirculated air in AHU)."
   is_abstract: true
   uses:
@@ -6904,6 +6905,7 @@ CO2DSPMADC:
   - CONTROL
 
 HTWHLZTC:
+  guid: "0d063fbc-57cc-4678-9516-d9372e9ccf15"
   description: "Heat wheel which controls zone temperature using speed control."
   is_abstract: true
   implements:
