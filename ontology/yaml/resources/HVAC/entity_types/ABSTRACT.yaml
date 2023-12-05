@@ -7172,7 +7172,7 @@ FPHC:
   - heating_water_valve_percentage_command
   - chilled_water_valve_percentage_command
 
-COC2DSP:
+COC2XDSP:
   description: "Dual setpoint CO concentration control with 2 sensors."
   is_abstract: true
   uses:
@@ -7183,7 +7183,7 @@ COC2DSP:
   implements:
   - CONTROL
 
-NO2C2DSP:
+NO2C2XDSP:
   description: "Dual setpoint NO2 concentration control with 2 sensors."
   is_abstract: true
   uses:
