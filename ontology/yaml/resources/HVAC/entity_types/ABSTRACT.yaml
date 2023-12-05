@@ -7215,6 +7215,7 @@ FPHC:
   - chilled_water_valve_percentage_command
 
 COC2XDSP:
+  guid: "fa7cba8d-be4d-4968-a5bf-f55429006b77"
   description: "Dual setpoint CO concentration control with 2 sensors."
   is_abstract: true
   uses:
@@ -7226,6 +7227,7 @@ COC2XDSP:
   - CONTROL
 
 NO2C2XDSP:
+  guid: "7a76fa65-88d2-4cea-8297-3bdb4ca507e4"
   description: "Dual setpoint NO2 concentration control with 2 sensors."
   is_abstract: true
   uses:
