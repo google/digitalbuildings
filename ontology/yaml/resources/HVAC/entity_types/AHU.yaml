@@ -918,6 +918,25 @@ AHU_DFSS_CHWDT_DTM_RTC_RWISOVPC_OAFC_FDPSM2X:
   - OAFC
   - FDPSM2X
 
+AHU_SFSS_SFVSC_EFSS_EFVSC_HTWHLZTC_HWZTC_CHWZTC_SSPC_RSPC_CO2DSPMADC_MTM_ECONZ_FDPM3X:
+  description: "AHU that serves multiple dampers all feeding a single zone."
+  is_canonical: true
+  implements:
+  - AHU
+  - SFSS
+  - SFVSC
+  - EFSS
+  - EFVSC
+  - HTWHLZTC
+  - HWZTC
+  - CHWZTC
+  - SSPC
+  - RSPC
+  - CO2DSPMADC
+  - MTM
+  - ECONZ
+  - FDPM3X
+
 ### Multi-zone Units ###
 
 AHU_DXSC_ECON_EFSS_SFSS:
