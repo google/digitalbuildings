@@ -533,6 +533,84 @@ VAV_HWZTC_CHWZTC_DTM:
     - CHWZTC
     - DTM
 
+VAV_MDSDC:
+  guid: "2a74ea42-38ec-4832-ba83-cfa2d29486b1"
+  description: "A zone VAV with ventilation control based on a motion sensor."
+  is_canonical: true
+  implements:
+    - VAV
+    - MDSDC
+
+
+VAV_DSP_PDSCV_CO2C:
+  guid: "8e9bb69a-459c-474f-9d35-494b0eb3fd40"
+  description: "VAV with pressure dependent supply valve control and CO2 control."
+  is_canonical: true
+  implements:
+  - VAV
+  - DSP
+  - PDSCV
+  - CO2C
+
+VAV_DSP_PDSCV_HTZC:
+  guid: "3d727b03-e945-4af3-822e-b8da662a26f6"
+  description: "Reheat VAV with pressure dependent supply damper control."
+  is_canonical: true
+  implements:
+  - VAV
+  - DSP
+  - PDSCV
+  - HTZC
+
+VAV_DSP_PDSCV_HTZC_CO2C:
+  guid: "47431504-17c4-4b83-ae95-811f4b45bc76"
+  description: "Reheat VAV with pressure dependent supply damper control and CO2 control."
+  is_canonical: true
+  implements:
+  - VAV
+  - DSP
+  - PDSCV
+  - HTZC
+  - CO2C
+
+VAV_PDSCV_WDPC2X:
+  guid: "cd3a50ce-83bf-4521-b67f-376eb8a2f336"
+  description: "VAV with pressure-dependent supply damper control and dual sensor differential pressure control."
+  is_canonical: true
+  implements:
+  - VAV
+  - PDSCV
+  - WDPC2X
+
+VAV_CSP_DFSS_DFVSC_SFM:
+  guid: "2f04436e-1df5-45a3-93b8-1975085cdbbc"
+  description: "Fan powered cooling only VAV with fan speed control and supply airflow monitoring."
+  is_canonical: true
+  implements:
+  - VAV
+  - CSP
+  - DFSS
+  - DFVSC
+  - SFM
+
+VAV_ED_ZSPC:
+  guid: "dd8d4eb7-7f29-408d-896e-42717a777a75"
+  description: "Exhaust air zone pressure control VAV."
+  is_canonical: true
+  implements:
+  - VAV
+  - ED
+  - ZSPC
+
+VAV_DSP_PDSCV:
+  guid: "26c15f25-e80a-4229-970b-3d3265ac65ad"
+  description: "VAV with pressure dependent supply valve control."
+  is_canonical: true
+  implements:
+  - VAV
+  - DSP
+  - PDSCV
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################

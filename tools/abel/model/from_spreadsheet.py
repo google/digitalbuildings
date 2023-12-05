@@ -128,7 +128,7 @@ def LoadStatesFromSpreadsheet(
   states = []
 
   for state_entry in state_entries:
-    state_entry[BC_GUID] = guid_to_entity_map.GetEntityGuidByCode(
+    state_entry[REPORTING_ENTITY_GUID] = guid_to_entity_map.GetEntityGuidByCode(
         state_entry[REPORTING_ENTITY_CODE]
     )
     states.append(State.FromDict(states_dict=state_entry))

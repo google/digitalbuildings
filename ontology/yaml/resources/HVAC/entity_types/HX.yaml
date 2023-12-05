@@ -165,3 +165,33 @@ HX_RWISOVM:
   implements:
   - HX
   - RWISOVM
+
+HX_CWDT_CHWDT_CWBYPVPM_CHWBYPVPM:
+  guid: "750775f1-b955-4224-a3b8-e5a1386399d0"
+  description: "Condenser and chilled water heat exchanger."
+  is_canonical: true
+  implements:
+  - HX
+  - CWDT
+  - CHWDT
+  - CWBYPVPM
+  - CHWBYPVPM
+
+HX_CWDT_HSWTC_HWDPC_HWBYPVPM:
+  guid: "909f4f23-f71d-4504-8052-efb435356e29"
+  description: "Condenser and heating water heat exchanger with heating water bypass valve, heating supply water valve control and heating water temperature differentioal control."
+  is_canonical: true
+  implements:
+  - HX
+  - CWDT
+  - HSWTC
+  - HWDPC
+  - HWBYPVPM
+
+HX_SSTC_SSSPC:
+  description: "Steam exchanger with heating water temperature control and steam static pressure control on supply side."
+  is_canonical: true
+  implements:
+  - HX
+  - SSTC
+  - SSSPC
