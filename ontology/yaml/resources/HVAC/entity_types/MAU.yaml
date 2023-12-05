@@ -17,6 +17,7 @@
 ########################
 
 MAU_HWSC_SFM_SFVSC_FDPM_FDPSM_SDM_SSPC:
+  guid: "5d055bc2-ea29-4d1e-beb9-e082f7bea4c7"
   description: "Make-up air unit with heating control"
   is_canonical: true
   implements:
