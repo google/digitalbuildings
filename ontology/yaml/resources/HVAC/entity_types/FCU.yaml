@@ -1256,6 +1256,7 @@ FCU_DFSS_DFVSC_FDPM_CHWDC_SRC_DFRMM:
   - DFRMM
 
 FCU_DFSS_CHWRC:
+  guid: "854f3eff-07db-4324-a4b3-84e19f6a8639"
   description: "CRAC unit with discharge fan and return temperature control."
   is_canonical: true
   implements:
@@ -1347,6 +1348,7 @@ FCU_DFSS_CHWDC_CSP_RTM_DXZC:
   - run_mode
 
 FCU_SS_HTRC_DTM_ZTM:
+  guid: "3d9b6b87-0770-4ae6-9bfc-8f729341ccac"
   description: "FCU with return temperature control, discharge temperature monitoring, zone temperature monitorning and start/stop control."
   is_canonical: true
   implements:
