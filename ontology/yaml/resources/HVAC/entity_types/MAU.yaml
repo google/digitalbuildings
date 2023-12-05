@@ -693,6 +693,23 @@ MAU_SFSS_SFVSC_HWSC_CHWSC_FDPM2X:
   - CHWSC
   - FDPM2X
 
+MAU_SFSS2X_SFVSC2X_CHWSC_HWSC_SSPC_VOADM_FDPM_ZSPM_OAFM:
+  guid: "32d6b258-48c1-4b2c-b6c9-f94430f763d2"
+  description: "Multi-zone chilled water and heating water MAU with supply air static pressure control, variable outside air damper and outside airflow monitoring, filter differential pressure monitoring, zone static pressure monitoring."
+  is_canonical: true
+  implements:
+  - MAU
+  - SFSS2X
+  - SFVSC2X
+  - CHWSC
+  - HWSC
+  - SSPC
+  - VOADM
+  - FDPM
+  - ZSPM
+  - OAFM
+  opt_uses:
+  - smoke_alarm
 
 ############################
 ###   Remap These Types  ###
@@ -867,4 +884,3 @@ MAU_SFSS_SFVSC_HTSC_BPC_SHM_NONCANONICAL_2:
   - DEPRECATED
   uses:
   - humidification_run_command
-
