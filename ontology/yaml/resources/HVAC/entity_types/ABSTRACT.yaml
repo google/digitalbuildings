@@ -7173,7 +7173,7 @@ FPHC:
   - chilled_water_valve_percentage_command
 
 SSTC:
-  description: Supply steam valve monitoring to control water temperature on supply side for steam exchanger.
+  description: "Supply steam valve monitoring to control water temperature on supply side for steam exchanger."
   is_abstract: true
   opt_uses:
   - supply_steam_valve_percentage_sensor
