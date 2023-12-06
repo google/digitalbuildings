@@ -6894,6 +6894,7 @@ VSMC:
   - schedule_run_command
 
 CO2DSPMADC:
+  guid: "316d6473-f187-45ce-9b0e-35b8149e83ce"
   description: "Dual setpoint CO2 control with mixed air damper (for recirculated air in AHU)."
   is_abstract: true
   uses:
@@ -6906,6 +6907,7 @@ CO2DSPMADC:
   - CONTROL
 
 HTWHLZTC:
+  guid: "0d063fbc-57cc-4678-9516-d9372e9ccf15"
   description: "Heat wheel which controls zone temperature using speed control."
   is_abstract: true
   implements:
@@ -7213,6 +7215,7 @@ FPHC:
   - chilled_water_valve_percentage_command
 
 SSTC:
+  guid: "3aefe568-b8eb-485e-a3d9-38ac3bb9906d"
   description: "Supply steam valve monitoring to control water temperature on supply side for steam exchanger."
   is_abstract: true
   opt_uses:
@@ -7223,6 +7226,7 @@ SSTC:
   - heating_supply_water_temperature_setpoint
 
 COC2XDSP:
+  guid: "fa7cba8d-be4d-4968-a5bf-f55429006b77"
   description: "Dual setpoint CO concentration control with 2 sensors."
   is_abstract: true
   uses:
@@ -7234,6 +7238,7 @@ COC2XDSP:
   - CONTROL
 
 NO2C2XDSP:
+  guid: "7a76fa65-88d2-4cea-8297-3bdb4ca507e4"
   description: "Dual setpoint NO2 concentration control with 2 sensors."
   is_abstract: true
   uses:
