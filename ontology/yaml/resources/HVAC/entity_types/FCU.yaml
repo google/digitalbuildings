@@ -20,7 +20,7 @@
 # They must also include some control scheme (e.g. ZTC, DSP, etc.).
 
 FCU_RTM_DFSS2X_CHWZTC_SFVSC2X_HWZTC_STC_EFFC:
-  description: "FCU in a trench, with heating and cooling valves, and two fans"
+  description: "FCU in a trench, with heating and cooling valves, and two fans."
   is_canonical: true
   implements:
   - FCU
