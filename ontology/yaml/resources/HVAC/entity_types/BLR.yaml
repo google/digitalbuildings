@@ -282,6 +282,15 @@ BLR_SS_RWTC_HTRWC:
   - RWTC
   - HTRWC
 
+BLR_HT2SWC_RWTM:
+  guid: "e72cfc15-8544-4a9c-bc0a-89f33384ebeb"
+  description: "Two-stage boiler with supply control, return temperature monitoring."
+  is_canonical: true
+  implements:
+  - BLR
+  - HT2SWC
+  - RWTM
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################

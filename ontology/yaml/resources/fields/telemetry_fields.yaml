@@ -15,6 +15,9 @@
 # Original Field set
 
 literals:
+- blowdown_water_flowrate_sensor:
+    flexible_min: -0.000315451
+    flexible_max: 0.315451
 - building_air_static_pressure_sensor:
     flexible_min: -249.080024
     flexible_max: 249.080024
@@ -34,6 +37,9 @@ literals:
     flexible_min: 255.9259259
     flexible_max: 308.1481481
 - chilled_supply_water_temperature_setpoint:
+    flexible_min: 255.9259259
+    flexible_max: 308.1481481
+- chilled_return_water_temperature_setpoint:
     flexible_min: 255.9259259
     flexible_max: 308.1481481
 - chilled_water_bypass_valve_percentage_command:
@@ -139,6 +145,10 @@ literals:
   - HIGH
   - OFF
   - VFD
+  - TWENTY_PERCENT
+  - FORTY_PERCENT
+  - SIXTY_PERCENT
+  - EIGHTY_PERCENT
 - discharge_fan_speed_percentage_command:
     fixed_min: 0.0
     fixed_max: 100.0
@@ -195,6 +205,18 @@ literals:
 - heater_run_command:
   - ON
   - OFF
+- heating_water_bypass_valve_command:
+  - OPEN
+  - CLOSED
+- heating_water_bypass_valve_status:
+  - OPEN
+  - CLOSED
+- heating_water_bypass_valve_percentage_command:
+    fixed_min: 0
+    fixed_max: 100
+- heating_water_bypass_valve_percentage_sensor:
+    fixed_min: 0
+    fixed_max: 100
 - heating_water_valve_percentage_command:
     fixed_min: 0.0
     fixed_max: 100.0
@@ -437,6 +459,9 @@ literals:
 - zone_air_temperature_sensor:
     flexible_min: 255.9259259
     flexible_max: 322.037037
+- zone_air_dewpoint_temperature_sensor:
+    flexible_min: 255.9259259
+    flexible_max: 310.9259259
 - outside_air_co_concentration_sensor:
     flexible_min: 0.00035
     flexible_max: 0.0015
@@ -473,8 +498,6 @@ literals:
 - outside_air_so2_density_sensor:
     flexible_min: 0.0
     flexible_max: 0.002
-
-# Additional fields added to cover first hundred buildings
 - bypass_air_damper_percentage_command:
     fixed_min: 0.0
     fixed_max: 100.0
@@ -484,6 +507,12 @@ literals:
 - bypass_valve_percentage_sensor:
     fixed_min: 0.0
     fixed_max: 100.0
+- economizer_bypass_valve_percentage_command:
+    fixed_min: 0
+    fixed_max: 100
+- economizer_bypass_valve_percentage_sensor:
+    fixed_min: 0
+    fixed_max: 100
 - chilled_water_isolation_valve_status:
   - OPEN
   - CLOSED
@@ -514,6 +543,9 @@ literals:
 - cooling_air_flowrate_setpoint:
     flexible_min: 0.0
     flexible_max: 4.719474432
+- dehumidification_percentage_command:
+    fixed_min: 0
+    fixed_max: 100
 - dehumidification_run_command:
   - ON
   - OFF
@@ -545,6 +577,12 @@ literals:
     flexible_min: -996.320096
     flexible_max: 996.320096
 - filter_differential_pressure_sensor:
+    flexible_min: -249.080024
+    flexible_max: 2490.80024
+- discharge_air_filter_differential_pressure_sensor:
+    flexible_min: -249.080024
+    flexible_max: 2490.80024
+- exhaust_air_filter_differential_pressure_sensor:
     flexible_min: -249.080024
     flexible_max: 2490.80024
 - flowrate_setpoint:
@@ -667,6 +705,9 @@ literals:
 - secondary_supply_water_temperature_sensor:
     flexible_min: 255.9259259
     flexible_max: 380.3703704
+- secondary_supply_water_flowrate_sensor:
+    flexible_min: -0.000315451
+    flexible_max: 0.315451
 - shade_extent_percentage_command:
     fixed_min: 0.0
     fixed_max: 100.0
@@ -727,8 +768,6 @@ literals:
 - zone_air_temperature_setpoint:
     flexible_min: 255.9259259
     flexible_max: 308.1481481
-
-## added on 10/13/2018
 - condensing_water_isolation_valve_command:
   - OPEN
   - CLOSED
@@ -738,8 +777,6 @@ literals:
 - condensing_water_isolation_valve_percentage_sensor:
     fixed_min: 0.0
     fixed_max: 100.0
-
-## Added on 10/25/2018
 - compressor_speed_percentage_command:
     fixed_min: 0.0
     fixed_max: 100.0
@@ -764,8 +801,6 @@ literals:
 - heating_percentage_command:
     fixed_min: 0.0
     fixed_max: 100.0
-
-## Added on 10/30
 - thermal_power_sensor:
     flexible_min: 0.0
     flexible_max: 3517000.0
@@ -775,9 +810,6 @@ literals:
 - exercise_mode:
   - ON
   - OFF
-
-# Alarms updated to convert the alarm subfield to a point type from measurement descriptor.
-
 - run_mode:
   - COMMISSIONING
   - FLUSHING
@@ -800,11 +832,16 @@ literals:
 
 # INACTIVE indicates the device is being overridden to not run, irrespective of occupancy status.
 
-## Added on 12/12
 - leaving_cooling_coil_temperature_sensor:
     flexible_min: 255.9259259
     flexible_max: 338.7037037
 - leaving_cooling_coil_temperature_setpoint:
+    flexible_min: 255.9259259
+    flexible_max: 338.7037037
+- leaving_dehumidifier_temperature_sensor:
+    flexible_min: 255.9259259
+    flexible_max: 338.7037037
+- leaving_dehumidifier_temperature_setpoint:
     flexible_min: 255.9259259
     flexible_max: 338.7037037
 - heating_water_valve_command:
@@ -819,8 +856,6 @@ literals:
 - exhaust_air_damper_command:
   - OPEN
   - CLOSED
-
-## Added on 2019/02/19
 - heating_stage_run_command:
   - ON
   - OFF
@@ -833,8 +868,6 @@ literals:
 - condensing_fan_speed_percentage_command:
     fixed_min: 0.0
     fixed_max: 100.0
-
-## Added on 2019/02/27
 - boost_fan_run_command:
   - ON
   - OFF
@@ -844,6 +877,9 @@ literals:
 - chilled_water_flowrate_sensor:
     flexible_min: -0.000315451
     flexible_max: 0.315451
+- chilled_water_temperature_sensor:
+    flexible_min: 274.8148148
+    flexible_max: 299.8148148
 - compressor_speed_frequency_sensor:
     flexible_min: -0.5
     flexible_max: 65.0
@@ -941,19 +977,18 @@ literals:
 - return_air_voc_concentration_setpoint:
     flexible_min: 0.0001
     flexible_max: 0.0015
-
-## Added on 2019/03/12
 - cooling_percentage_command:
     fixed_min: 0.0
     fixed_max: 100.0
 - primary_supply_water_temperature_sensor:
     flexible_min: 255.9259259
     flexible_max: 380.3703704
+- primary_supply_water_flowrate_sensor:
+    flexible_min: -0.000315451
+    flexible_max: 0.315451
 - supply_air_isolation_damper_status:
   - OPEN
   - CLOSED
-
-## Added on 2019/03/19
 - cooling_thermal_power_sensor:
     flexible_min: 0.0
     flexible_max: 3517000.0
@@ -990,8 +1025,6 @@ literals:
 - leaving_air_preheating_coil_temperature_sensor:
     flexible_min: 255.9259259
     flexible_max: 310.9259259
-
-## Added on 2019/03/20
 - cooling_stage_run_count:
     fixed_min: 0.0
     flexible_max: 500.0
@@ -1028,13 +1061,9 @@ literals:
 - process_water_valve_percentage_command:
     fixed_min: 0.0
     fixed_max: 100.0
-
-## Added on 2019/03/26
 - zone_air_refrigerant_concentration_setpoint:
     flexible_min: 0.00035
     flexible_max: 0.0015
-
-# Added on 2019/06/03
 - apparent_power_sensor:
     fixed_min: 0.0
     flexible_max: 10000000.0
@@ -1110,13 +1139,9 @@ literals:
 - phase3_reactive_power_sensor:
     flexible_min: -30000.0
     flexible_max: 30000.0
-
-# Added on 2019/06/27 for Enlighted
 - dimmer_percentage_command: # Should be adjusted to brightness_percentage_command
     fixed_min: 0.0
     fixed_max: 100.0
-
-# Added on 2019/08/13 primarily for GVC
 - calendar_sync_status:
   - ACCESS_FAILED
   - CALENDAR_STARTUP
@@ -1143,8 +1168,6 @@ literals:
 - user_occupancy_override_status:
   - DISABLED
   - ENABLED
-
-# Added on 2019/09/12 for Enlighted: generic light level sensor
 - illuminance_sensor:
     flexible_min: 0.0
     flexible_max: 5000.0
@@ -1156,7 +1179,7 @@ literals:
     fixed_min: 0.0
     fixed_max: 100.0
 
-- heater_run_status: # Added 10/2/2019
+- heater_run_status:
   - ON
   - OFF
 - discharge_fan_power_sensor:
@@ -1186,8 +1209,6 @@ literals:
 - supply_air_damper_status:
   - OPEN
   - CLOSED
-
-# Added 11/6/2019
 - low_limit_flowrate_setpoint:
     flexible_min: 0.0
     flexible_max: 0.315451
@@ -1197,9 +1218,6 @@ literals:
 - return_water_valve_percentage_command:
     fixed_min: 0.0
     fixed_max: 100.0
-
-# Added 11/12/2019
-
 - gas_flowrate_sensor:
     fixed_min: 0.0
     flexible_max: 0.003932896
@@ -1215,8 +1233,6 @@ literals:
 - volume_accumulator:
     flexible_min: 0
     flexible_max: 318000
-
-# Added 12/17/2019
 - cooling_water_valve_percentage_command:
     fixed_min: 0.0
     fixed_max: 100.0
@@ -1226,23 +1242,19 @@ literals:
 - cooling_water_flowrate_sensor:
     flexible_min: -0.000315451
     flexible_max: 0.315451
-- heating_water_flowrate_sensor:
-    flexible_min: -0.000315451
-    flexible_max: 0.0315451
 - zone_air_offset_temperature_setpoint:
     flexible_min: 254.8148148
     flexible_max: 283.1481481
-
-# Added 1/16/2020
 - discharge_air_damper_percentage_command:
     fixed_min: 0.0
     fixed_max: 100.0
-
-# Added 2/10/2020
 - supply_water_isolation_valve_command:
   - OPEN
   - CLOSED
 - supply_water_isolation_valve_status:
+  - OPEN
+  - CLOSED
+- filtration_supply_water_isolation_valve_command:
   - OPEN
   - CLOSED
 - return_water_isolation_valve_command:
@@ -1252,6 +1264,9 @@ literals:
   - OPEN
   - CLOSED
 - chilled_return_water_isolation_valve_command:
+  - OPEN
+  - CLOSED
+- filtration_return_water_isolation_valve_command:
   - OPEN
   - CLOSED
 - condensing_return_water_isolation_valve_percentage_command:
@@ -1266,13 +1281,9 @@ literals:
 - chilled_return_water_isolation_valve_status:
   - OPEN
   - CLOSED
-
-# Added 2/11/2020
 - discharge_air_static_pressure_sensor:
     flexible_min: -124.540012
     flexible_max: 996.320096
-    
-# Added 2/12/2020
 - heat_exchange_supply_water_isolation_valve_command:
   - OPEN
   - CLOSED
@@ -1306,8 +1317,6 @@ literals:
 - chilled_return_water_isolation_valve_percentage_command:
     fixed_min: 0.0
     fixed_max: 100.0
-
-# Added 2/24/2020
 - chilled_supply_water_isolation_valve_percentage_sensor:
     fixed_min: 0.0
     fixed_max: 100.0
@@ -1332,13 +1341,9 @@ literals:
 - condensing_supply_water_isolation_valve_command:
   - OPEN
   - CLOSED
-
-# Added 4/12/20
 - supply_air_damper_percentage_sensor:
     fixed_min: 0.0
     fixed_max: 100.0
-
-# Added 6/4/20
 - ventilation_request_count:
     fixed_min: 0.0
     flexible_max: 500.0
@@ -1442,8 +1447,6 @@ literals:
 - discharge_air_linearvelocity_setpoint:
     fixed_min: 0.0
     flexible_max: 25.4000508
-
-# New usage of status as an override for the measurement.
 - chilled_water_flowrate_status:
   - PRESENT
   - ABSENT
@@ -1481,6 +1484,12 @@ literals:
   - ACTIVE
   - INACTIVE
 - filter_alarm:
+  - ACTIVE
+  - INACTIVE
+- discharge_air_filter_alarm:
+  - ACTIVE
+  - INACTIVE
+- exhaust_air_filter_alarm:
   - ACTIVE
   - INACTIVE
 - master_alarm:
@@ -1525,14 +1534,15 @@ literals:
 - failed_humidifier_alarm:
   - ACTIVE
   - INACTIVE
+- failed_dehumidifier_alarm:
+  - ACTIVE
+  - INACTIVE
 - failed_heat_exchange_alarm:
   - ACTIVE
   - INACTIVE
 - failed_compressor_alarm:
   - ACTIVE
   - INACTIVE
-
-# New fields for lighting and fire systems.
 - motion_status:
   - PRESENT
   - ABSENT
@@ -1561,8 +1571,6 @@ literals:
 - brightness_percentage_command:
     fixed_min: 0.0
     fixed_max: 100.0
-
-# New fields for emergency systems
 - emergency_alarm:
   - ACTIVE
   - INACTIVE
@@ -1590,6 +1598,20 @@ literals:
 - valve_status:
   - OPEN
   - CLOSED
+
+- low_smoke_intensity_alarm: # for aspirating type smoke detectors
+  - ACTIVE
+  - INACTIVE
+- medium_smoke_intensity_alarm: # for aspirating type smoke detectors
+  - ACTIVE
+  - INACTIVE
+- high_zone_air_h2_concentration_alarm:
+  - ACTIVE
+  - INACTIVE
+- gas_release_valve_status:
+  - OPEN
+  - CLOSED
+
 - emergency_release_status:
   - ACTIVE
   - INACTIVE
@@ -1642,8 +1664,6 @@ literals:
 - phase3_apparent_power_sensor:
     flexible_min: 0.0
     flexible_max: 10000000.0
-
-# Added for Automatic transfer switch
 - source1_phase1_phase2_voltage_sensor:
     flexible_min: 0.0
     flexible_max: 500.0
@@ -1752,7 +1772,13 @@ literals:
 - cooling_run_status:
   - ON
   - OFF
+- high_refrigerant_pressure_alarm:
+  - ACTIVE
+  - INACTIVE
 - high_return_air_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
+- low_refrigerant_pressure_alarm:
   - ACTIVE
   - INACTIVE
 - low_return_air_temperature_alarm:
@@ -1797,8 +1823,6 @@ literals:
 - return_air_co2_concentration_setpoint:
     flexible_min: 0.00005
     flexible_max: 0.005
-
-# Added for Machine Learning Pilot
 - supervisor_control_mode:
   - ENABLED
   - DISABLED
@@ -1881,6 +1905,12 @@ literals:
 - heating_supply_water_isolation_valve_percentage_sensor:
     fixed_min: 0.0
     fixed_max: 100.0
+- heating_supply_water_valve_percentage_command:
+    fixed_min: 0
+    fixed_max: 100
+- heating_supply_water_valve_percentage_sensor:
+    fixed_min: 0
+    fixed_max: 100
 - heating_return_water_isolation_valve_percentage_sensor:
     fixed_min: 0.0
     fixed_max: 100.0
@@ -2019,21 +2049,15 @@ literals:
 - heating_supply_water_temperature_setpoint:
     flexible_min: 255.9259259
     flexible_max: 380.3703704
-
-#Discharge air flow control
 - discharge_air_flowrate_setpoint:
     flexible_min: 0.0
     flexible_max: 94.38948864
-
-#Electrical meter fields
 - neutral_line_current_sensor: # A measure of current on the neutral line
     fixed_min: 0.0
     flexible_max: 10000.0
 - apparent_energy_accumulator:
     fixed_min: 0.0
     flexible_max: 10000000.0
-
-#Electrical panel fields
 - circuitbreaker_status:
   - ON
   - OFF
@@ -2043,21 +2067,15 @@ literals:
 - reactive_energy_accumulator:
     flexible_min: -30000000.0
     flexible_max: 30000000.0
-
-#Lighting controller battery status
 - emergency_battery_status:
   - ON
   - OFF
-
-# Condensing water monitoring
 - condensing_water_differential_pressure_sensor:
     flexible_min: -34473.78945
     flexible_max: 344737.8945
 - condensing_water_differential_pressure_setpoint:
     flexible_min: -34473.78945
     flexible_max: 344737.8945
-
-# Heat Wheel Telemetry Fields
 - heat_wheel_speed_percentage_sensor:
     fixed_min: 0.0
     fixed_max: 100.0
@@ -2070,16 +2088,12 @@ literals:
 - heat_wheel_run_status:
   - ON
   - OFF
-
-# Outside air Isolation Dampers
 - outside_air_isolation_damper_command:
   - OPEN
   - CLOSED
 - outside_air_isolation_damper_status:
   - OPEN
   - CLOSED
-
-# Exhaust air Isolation Dampers
 - exhaust_air_isolation_damper_command:
   - OPEN
   - CLOSED
@@ -2087,15 +2101,15 @@ literals:
   - OPEN
   - CLOSED
 
-# Damper status
 - damper_status:
+  - OPEN
+  - CLOSED
+- damper_command:
   - OPEN
   - CLOSED
 - lighting_percentage_sensor: # For relative ranged illuminance inputs.
     fixed_min: 0.0
     fixed_max: 100.0
-
-# Air Quality Data
 - outside_air_aqi_sensor:
     fixed_min: 0.0
     fixed_max: 500.0
@@ -2195,8 +2209,6 @@ literals:
 - zone_air_pm10pt0_volumetricconcentration_sensor:
     flexible_min: 0.0
     flexible_max: 0.001
-
-## New fields for IoT vibration sensor pilot
 - fivesecondrolling_max_xaxis_linearacceleration_sensor:
     flexible_min: 0.0
     flexible_max: 0.980665
@@ -2227,16 +2239,12 @@ literals:
 - local_air_temperature_sensor:
     flexible_min: 283.15
     flexible_max: 353.15
-
-# New fields for ERV bypass
 - bypass_air_damper_command:
   - OPEN
   - CLOSED
 - bypass_air_damper_status:
   - OPEN
   - CLOSED
-
-## New fields for IoT Vibration devices
 - tenminutefixed_max_xaxis_linearvelocity_sensor:
     flexible_min: 0.0
     flexible_max: 0.1
@@ -2267,8 +2275,6 @@ literals:
 - min_zone_air_relative_humidity_setpoint:
     fixed_min: 0.0
     fixed_max: 100.0
-
-## New fields for air quality sensors
 - thirtysecondrolling_average_zone_air_co_concentration_sensor:
     flexible_min: 0.00035
     flexible_max: 0.0015
@@ -2281,8 +2287,6 @@ literals:
 - zone_air_no2_ozone_concentration_sensor:
     flexible_min: 0.0
     flexible_max: 0.0001
-
-#added for new Pre-action Fire Supression system
 - supervisor_alarm:
   - ACTIVE
   - INACTIVE
@@ -2292,12 +2296,9 @@ literals:
 - air_pressure_status:
   - ACTIVE
   - INACTIVE
-  
-# added for WM_WFR
 - water_flowrate_sensor:
     flexible_min: -0.000315451
     flexible_max: 0.315451
-# added for FAN_ST
 - air_pressure_sensor:
     flexible_min: 500.0
     flexible_max: 200000.0
@@ -2370,8 +2371,6 @@ literals:
 - potable_hot_leaving_water_temperature_setpoint:
     flexible_min: 255.9259259
     flexible_max: 380.3703704
-
-## New fields for electrical system additions
 - voltage_sensor:
     flexible_min: 0.0
     flexible_max: 1000.0
@@ -2468,8 +2467,6 @@ literals:
 - failed_inverter_alarm:
   - ACTIVE
   - INACTIVE
-
-## Refrigerant monitoring fields for AHUs
 - condensing_fan_current_sensor:
     fixed_min: 0.0
     flexible_max: 100.0
@@ -2506,14 +2503,10 @@ literals:
 - compressor_current_sensor:
     fixed_min: 0.0
     flexible_max: 100.0
-
-## Water Level status
 - water_level_status:
   - HIGH
   - MEDIUM
   - LOW
-
-## New fields for steam/water heat exchanger
 - supply_steam_static_pressure_sensor:
     flexible_min: 0.0
     flexible_max: 2068428.0
@@ -2523,8 +2516,6 @@ literals:
 - steam_valve_percentage_command:
     fixed_min: 0.0
     fixed_max: 100.0
-
-# Open-loop CDW system
 - outside_condensing_loop_return_water_isolation_valve_status:
   - OPEN
   - CLOSED
@@ -2540,27 +2531,27 @@ literals:
 - outside_condensing_loop_return_water_temperature_sensor:
     flexible_min: 255.9259259
     flexible_max: 308.1481481
-
-# Rodent Repellent system
 - transducer_failed_alarm:
   - ACTIVE
   - INACTIVE
-
-# Buffer tanks with temperature sensors
-- chilled_water_temperature_sensor:
-    flexible_min: 274.8148148
-    flexible_max: 299.8148148
 - heating_water_temperature_sensor:
     flexible_min: 255.9259259
     flexible_max: 380.3703704
+- heating_water_flowrate_sensor:
+    flexible_min: -0.000315451
+    flexible_max: 0.0315451
+- heating_water_differential_pressure_sensor:
+    flexible_min: -34473.78945
+    flexible_max: 344737.8945
+- heating_water_differential_pressure_setpoint:
+    flexible_min: -34473.78945
+    flexible_max: 344737.8945
 - leaving_water_tank_temperature_sensor:
     flexible_min: 255.9259259
     flexible_max: 380.3703704
 - entering_water_tank_temperature_sensor:
     flexible_min: 255.9259259
     flexible_max: 380.3703704
-
-# Tank level
 - percentage_sensor:
     fixed_min: 0.0
     fixed_max: 100.0
@@ -2603,11 +2594,6 @@ literals:
 - ground_temperature_sensor:
     flexible_min: 255.9259259
     flexible_max: 299.8148148
-
-
-## Addition of new fields#
-
-## New fields for Freezer (Walk in Cold room)
 - defrost_run_status:
   - ON
   - OFF
@@ -2713,8 +2699,6 @@ literals:
 - heating_side_ground_supply_water_isolation_valve_command:
   - OPEN
   - CLOSED
-
-## New fields for Fresh Air Fan With VFD
 - output_voltage_sensor:
     flexible_min: 0.0
     flexible_max: 500.0
@@ -2724,8 +2708,6 @@ literals:
 - motor_temperature_sensor:
     flexible_min: 255.9259259
     flexible_max: 422.037037
-
-# Addition of telemetry for parking exhaust fan
 - low_limit_zone_air_co_concentration_setpoint:
     flexible_min: 0.00035
     flexible_max: 0.0015
@@ -2744,6 +2726,9 @@ literals:
 - low_exhaust_fan_speed_command:
   - ON
   - OFF
+- high_exhaust_air_static_pressure_alarm:
+  - ACTIVE
+  - INACTIVE
 - high_exhaust_fan_speed_command:
   - ON
   - OFF
@@ -2753,8 +2738,6 @@ literals:
 - high_exhaust_fan_speed_status:
   - ON
   - OFF
-
-# Addition of telemetry for UPS battery monitoring
 - battery_status:
   - ACTIVE
   - INACTIVE
@@ -2779,8 +2762,6 @@ literals:
 - inverter_status:
   - OFF
   - ON
-
-# Addition of telemetry for scrubber
 - scrubber_run_mode:
   - AUTO
   - MANUAL
@@ -2790,19 +2771,19 @@ literals:
 - scrubber_run_status:
   - ON
   - OFF
-
-# telemetry fields for exhaust fan#
 - speed_mode:
   - VFD
   - BYPASS
+  - AUTO
+  - LOW
+  - HIGH
+  - OFF
 - high_discharge_fan_speed_status:
   - ON
   - OFF
 - low_discharge_fan_speed_status:
   - ON
   - OFF
-
-##Fields for generator##
 - oil_temperature_sensor:
     flexible_min: 255.9259259
     flexible_max: 422.037037
@@ -2823,10 +2804,6 @@ literals:
     fixed_min: 0.0
     fixed_max: 100.0
 
-#Telemetry addition for MAU#
-
-
-#Telemetry fields for APU(MAU)#
 - dc_voltage_sensor:
     flexible_min: 0.0
     flexible_max: 500.0
@@ -2843,12 +2820,10 @@ literals:
   - AUTO
   - MANUAL
 
-# Addition of telemetry for outside sensors
 - outside_air_co2_concentration_sensor:
     flexible_min: 0.00005
     flexible_max: 0.005
 
-#Addition of new fields for Tanks##
 - level_status:
   - LOW
   - MEDIUM
@@ -2889,8 +2864,6 @@ literals:
 - exhaust_fan_speed_mode:
   - BYPASS
   - VFD
-
-## New fields for EM##
 - electricalgrid_energy_accumulator:
     fixed_min: 0.0
     flexible_max: 4000000.0
@@ -2903,8 +2876,6 @@ literals:
 - electricalgrid_run_time_accumulator:
     fixed_min: 0.0
     flexible_max: 1.25
-
-## New fields for fans##
 - discharge_fan_energy_accumulator:
     fixed_min: 0.0
     flexible_max: 100000.0
@@ -2923,20 +2894,15 @@ literals:
 - total_failed_communication_counter:
     fixed_min: 0.0
     flexible_max: 10000000.0
-
-## New field for AHU
 - mixed_air_damper_percentage_command:
     fixed_min: 0.0
     fixed_max: 100.0
 - mixed_air_damper_percentage_sensor:
     fixed_min: 0.0
     fixed_max: 100.0
-
-## New fields for seismic detector
 - seismic_alarm:
   - ACTIVE
   - INACTIVE
-
 - lighting_color_cie_xvalue_sensor:
     flexible_min: 0.0
     flexible_max: 500.0
@@ -3007,26 +2973,18 @@ literals:
   - DAY_NIGHT
   - THERMAL
   - WINDOW_OPEN
-  
-## New fields for RO water system
 - water_totaldissolvedsolids_concentration_sensor:
     flexible_min: 0.0
     flexible_max: 0.001
-
-## New field for VAV
 - high_limit_zone_air_co2_concentration_setpoint:
     flexible_min: 0.00005
     flexible_max: 0.005
 - low_limit_zone_air_co2_concentration_setpoint:
     flexible_min: 0.00005
     flexible_max: 0.005
-
-## New field for SDC
 - shade_extent_percentage_sensor:
     fixed_min: 0.0
     fixed_max: 100.0
-
-## New alarms added 1/25/23
 - failed_circulation_pump_alarm:
   - ACTIVE
   - INACTIVE
@@ -3036,16 +2994,61 @@ literals:
 - failed_exhaust_air_temperature_alarm:
   - ACTIVE
   - INACTIVE
+- failed_bypass_valve_alarm:
+  - ACTIVE
+  - INACTIVE
+- failed_condensing_water_bypass_valve_alarm:
+  - ACTIVE
+  - INACTIVE
+- failed_chilled_water_bypass_valve_alarm:
+  - ACTIVE
+  - INACTIVE
+- failed_heating_water_bypass_valve_alarm:
+  - ACTIVE
+  - INACTIVE
+- failed_economizer_bypass_valve_alarm:
+  - ACTIVE
+  - INACTIVE
 - failed_heating_water_valve_alarm:
+  - ACTIVE
+  - INACTIVE
+- failed_heating_supply_water_valve_alarm:
   - ACTIVE
   - INACTIVE
 - failed_isolation_valve_alarm:
   - ACTIVE
   - INACTIVE
+- failed_supply_water_isolation_valve_alarm:
+  - ACTIVE
+  - INACTIVE
+- failed_chilled_supply_water_isolation_valve_alarm:
+  - ACTIVE
+  - INACTIVE
+- failed_condensing_supply_water_isolation_valve_alarm:
+  - ACTIVE
+  - INACTIVE
+- failed_return_water_isolation_valve_alarm:
+  - ACTIVE
+  - INACTIVE
+- failed_condensing_return_water_isolation_valve_alarm:
+  - ACTIVE
+  - INACTIVE
 - failed_mixed_air_temperature_alarm:
   - ACTIVE
   - INACTIVE
+- failed_outside_air_damper_alarm:
+  - ACTIVE
+  - INACTIVE
+- failed_outside_air_flowrate_alarm:
+  - ACTIVE
+  - INACTIVE
 - failed_return_air_isolation_damper_alarm:
+  - ACTIVE
+  - INACTIVE
+- failed_blowdown_water_flowrate_alarm:
+  - ACTIVE
+  - INACTIVE
+- failed_makeup_water_flowrate_alarm:
   - ACTIVE
   - INACTIVE
 - failed_smoke_detection_alarm:
@@ -3075,10 +3078,16 @@ literals:
 - high_zone_air_co2_concentration_alarm:
   - ACTIVE
   - INACTIVE
+- high_zone_air_refrigerant_concentration_alarm:
+  - ACTIVE
+  - INACTIVE
 - high_zone_air_static_pressure_alarm:
   - ACTIVE
   - INACTIVE
 - high_zone_air_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
+- high_zone_air_relative_humidity_alarm:
   - ACTIVE
   - INACTIVE
 - local_alarm:
@@ -3099,6 +3108,9 @@ literals:
 - low_supply_air_static_pressure_alarm:
   - ACTIVE
   - INACTIVE
+- low_exhaust_air_static_pressure_alarm:
+  - ACTIVE
+  - INACTIVE
 - low_supply_air_temperature_alarm:
   - ACTIVE
   - INACTIVE
@@ -3112,6 +3124,9 @@ literals:
   - ACTIVE
   - INACTIVE
 - low_zone_air_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
+- low_zone_air_relative_humidity_alarm:
   - ACTIVE
   - INACTIVE
 - failed_communication_alarm:
@@ -3138,23 +3153,78 @@ literals:
 - low_speed_status:
   - ON
   - OFF
-
 - high_water_temperature_alarm:
   - ACTIVE
   - INACTIVE
-
+- high_water_level_alarm:
+  - ACTIVE
+  - INACTIVE
+- low_water_level_alarm:
+  - ACTIVE
+  - INACTIVE
 - ultraviolet_irradiance_sensor:
     fixed_min: 0.0
     flexible_max: 2000.0
-
 - purge_command:
   - ON
-  - OFF 
-
+  - OFF
 - high_discharge_air_temperature_alarm:
   - ACTIVE
   - INACTIVE
-
 - low_discharge_air_temperature_alarm:
   - ACTIVE
   - INACTIVE
+- shade_up_command:
+  - ON
+  - OFF
+- shade_down_command:
+  - ON
+  - OFF
+- high_discharge_air_static_pressure_alarm:
+  - ACTIVE
+  - INACTIVE
+- low_discharge_air_static_pressure_alarm:
+  - ACTIVE
+  - INACTIVE
+- mixed_air_damper_open_command:
+  - ON
+  - OFF
+- mixed_air_damper_closed_command:
+  - ON
+  - OFF
+- low_limit_return_air_co2_concentration_setpoint:
+    flexible_min: 0.00005
+    flexible_max: 0.005
+- high_limit_return_air_co2_concentration_setpoint:
+    flexible_min: 0.00005
+    flexible_max: 0.005
+- average_zone_air_co2_concentration_setpoint:
+    flexible_min: 0.00005
+    flexible_max: 0.005
+- soundpressurelevel_sensor:
+    fixed_min: -60
+    flexible_max: 200
+- zone_occupancy_count:
+    fixed_min: 0
+    flexible_max: 1000
+- zone_air_voc_aqi_sensor:
+    fixed_min: 0
+    flexible_max: 500
+- zone_air_smoke_aqi_sensor:
+    fixed_min: 0
+    flexible_max: 80
+- tamper_alarm:
+  - ACTIVE
+  - INACTIVE
+- supply_steam_valve_percentage_command:
+    fixed_min: 0.0
+    fixed_max: 100.0
+- supply_steam_valve_percentage_sensor:
+    fixed_min: 0.0
+    fixed_max: 100.0
+- high_limit_zone_air_no2_concentration_setpoint:
+    fixed_min: 0.0
+    flexible_max: 0.0005
+- low_limit_zone_air_no2_concentration_setpoint:
+    fixed_min: 0.0
+    flexible_max: 0.0005

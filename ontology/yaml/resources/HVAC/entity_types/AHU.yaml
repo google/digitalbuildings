@@ -918,6 +918,26 @@ AHU_DFSS_CHWDT_DTM_RTC_RWISOVPC_OAFC_FDPSM2X:
   - OAFC
   - FDPSM2X
 
+AHU_SFSS_SFVSC_EFSS_EFVSC_HTWHLZTC_HWZTC_CHWZTC_SSPC_RSPC_CO2DSPMADC_MTM_ECONZ_FDPM3X:
+  guid: "d1f96a1d-3c49-49c9-8ff7-aa60f1f7e10b"
+  description: "AHU that serves multiple dampers all feeding a single zone."
+  is_canonical: true
+  implements:
+  - AHU
+  - SFSS
+  - SFVSC
+  - EFSS
+  - EFVSC
+  - HTWHLZTC
+  - HWZTC
+  - CHWZTC
+  - SSPC
+  - RSPC
+  - CO2DSPMADC
+  - MTM
+  - ECONZ
+  - FDPM3X
+
 ### Multi-zone Units ###
 
 AHU_DXSC_ECON_EFSS_SFSS:
@@ -4100,6 +4120,44 @@ AHU_CHWSC_HWSC_ECON_EDBPC_RFSS2X_RFVSC2X_SFSS2X_SFVSC2X_SSPC:
   - SFVSC2X
   - SSPC
 
+AHU_CHWSC_EFSS_EFVSC_FDPM3X_HTWHLSTC_HWSC_RCO2M_RSPC_SFM_SFSS_SFVSC_SSPC_VOADM_VMADC:
+  guid: "f53a0828-f284-490f-aa56-e150de3d0ddf"
+  description: "Complex multi zone AHU with heat recovery wheel and recirculated air control."
+  is_canonical: true
+  implements:
+  - AHU
+  - CHWSC
+  - EFSS
+  - EFVSC
+  - FDPM3X
+  - HTWHLSTC
+  - HWSC
+  - RCO2M
+  - RSPC
+  - SFM
+  - SFSS
+  - SFVSC
+  - SSPC
+  - VOADM
+  - VMADC
+
+AHU_CHWSC_ECON_FDPM_HWSC_SFSS_SFVSC_SSPC_SDHC_RTM:
+  guid: "cff73d74-717b-4656-808e-95365ce9ad9b"
+  description: "Multi-zone AHU with dehumidifier and return temperature monitoring"
+  is_canonical: true
+  implements:
+  - AHU
+  - CHWSC
+  - ECON
+  - FDPM
+  - HWSC
+  - SFSS
+  - SFVSC
+  - SSPC
+  - SDHC
+  - RTM
+  opt_uses:
+  - smoke_alarm
 
 ###################################
 ### Existing Non-standard Types ###
@@ -4911,24 +4969,3 @@ AHU_BSPC_DX4SC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC_RHHC_NONCANONICAL_1:
   - heating_water_valve_percentage_command
   - min_zone_air_relative_humidity_sensor
   - min_zone_air_relative_humidity_setpoint
-
-AHU_CHWSC_EFSS_EFVSC_FDPM3X_HTWHLSTC_HWSC_RCO2M_RSPC_SFM_SFSS_SFVSC_SSPC_VOADM_VMADC:
-  guid: "f53a0828-f284-490f-aa56-e150de3d0ddf"
-  description: "Complex multi zone AHU with heat recovery wheel and recirculated air control."
-  is_canonical: true
-  implements:
-  - AHU
-  - CHWSC
-  - EFSS
-  - EFVSC
-  - FDPM3X
-  - HTWHLSTC
-  - HWSC
-  - RCO2M
-  - RSPC
-  - SFM
-  - SFSS
-  - SFVSC
-  - SSPC
-  - VOADM
-  - VMADC

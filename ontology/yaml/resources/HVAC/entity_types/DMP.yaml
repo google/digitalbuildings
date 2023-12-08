@@ -23,6 +23,13 @@ DMP_EDBPC:
   implements:
   - DMP
   - EDBPC
+  opt_uses:
+  - high_building_air_static_pressure_alarm_1
+  - high_building_air_static_pressure_alarm_2
+  - high_building_air_static_pressure_alarm_3
+  - low_building_air_static_pressure_alarm_1
+  - low_building_air_static_pressure_alarm_2
+  - low_building_air_static_pressure_alarm_3
 
 DMP_EDM:
   guid: "a79e39e1-8b39-4fa7-8ce5-437e867eda34"
@@ -83,6 +90,14 @@ DMP_EDBPC_ZTM:
   - EDBPC
   - ZTM
 
+DMP_ZSPC_EFM:
+  guid: "18dc78f6-6054-450f-b265-80d25f31b545"
+  description: "Stand-alone zone pressure control damper with exhaust air flowrate monitoring."
+  is_canonical: true
+  implements:
+  - DMP
+  - ZSPC
+  - EFM
 
 ###################################
 ### Existing Non-standard Types ###
