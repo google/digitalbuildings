@@ -562,6 +562,16 @@ FAN_SS_FDPM_VSC_SRC:
   - VSC
   - SRC
 
+FAN_HLC_COC2XDSP_NO2C2XDSP:
+  guid: "69a67398-f2d7-4fc7-b60a-945be99012b2"
+  description: "Two-speed fan (low/high) with CO concentration dual setpoint control and NO2 concentration dual setpoint control with 2 sensors."
+  is_canonical: true
+  implements:
+  - FAN
+  - HLC
+  - COC2XDSP
+  - NO2C2XDSP
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################

@@ -3645,6 +3645,8 @@ MXVPM:
   guid: "4bb25777-d661-4fd3-9f8f-a84b349ada87"
   description: "Mixing valve percent monitoring."
   is_abstract: true
+  opt_uses:
+  - mixing_valve_percentage_sensor
   uses:
   - mixing_valve_percentage_command
   implements:
@@ -6891,6 +6893,43 @@ VSMC:
   - high_speed_status
   - schedule_run_command
 
+CO2DSPMADC:
+  guid: "316d6473-f187-45ce-9b0e-35b8149e83ce"
+  description: "Dual setpoint CO2 control with mixed air damper (for recirculated air in AHU)."
+  is_abstract: true
+  uses:
+  - mixed_air_damper_open_command
+  - mixed_air_damper_closed_command
+  - low_limit_return_air_co2_concentration_setpoint
+  - high_limit_return_air_co2_concentration_setpoint
+  - return_air_co2_concentration_sensor
+  implements:
+  - CONTROL
+
+HTWHLZTC:
+  guid: "0d063fbc-57cc-4678-9516-d9372e9ccf15"
+  description: "Heat wheel which controls zone temperature using speed control."
+  is_abstract: true
+  implements:
+  - CONTROL
+  opt_uses:
+  - exhaust_air_temperature_sensor
+  - heat_wheel_speed_percentage_sensor
+  - return_air_temperature_sensor
+  - supply_air_temperature_sensor
+  - failed_exhaust_air_temperature_alarm
+  - high_return_air_temperature_alarm
+  - high_supply_air_temperature_alarm
+  - low_return_air_temperature_alarm
+  - low_supply_air_temperature_alarm
+  uses:
+  - heat_wheel_run_command
+  - heat_wheel_run_status
+  - heat_wheel_speed_percentage_command
+  - outside_air_temperature_sensor
+  - zone_air_temperature_sensor
+  - zone_air_temperature_setpoint
+
 SDM2X:
   guid: "b56e4a52-c988-448a-847d-25710ae4aaef"
   description: "Supply air damper monitoring, dual status fields."
@@ -7142,6 +7181,9 @@ CPC2X:
   - circulation_pump_run_status_1
   - circulation_pump_run_command_2
   - circulation_pump_run_status_2
+  opt_uses:
+  - failed_circulation_pump_alarm_1
+  - failed_circulation_pump_alarm_2
 
 SDHC:
   guid: "de065843-b1a9-4d2e-b751-31d7af8e8991"
@@ -7171,3 +7213,38 @@ FPHC:
   uses:
   - heating_water_valve_percentage_command
   - chilled_water_valve_percentage_command
+
+SSTC:
+  guid: "3aefe568-b8eb-485e-a3d9-38ac3bb9906d"
+  description: "Supply steam valve monitoring to control water temperature on supply side for steam exchanger."
+  is_abstract: true
+  opt_uses:
+  - supply_steam_valve_percentage_sensor
+  uses:
+  - supply_steam_valve_percentage_command
+  - heating_supply_water_temperature_sensor
+  - heating_supply_water_temperature_setpoint
+
+COC2XDSP:
+  guid: "fa7cba8d-be4d-4968-a5bf-f55429006b77"
+  description: "Dual setpoint CO concentration control with 2 sensors."
+  is_abstract: true
+  uses:
+  - high_limit_zone_air_co_concentration_setpoint
+  - low_limit_zone_air_co_concentration_setpoint
+  - zone_air_co_concentration_sensor_1
+  - zone_air_co_concentration_sensor_2
+  implements:
+  - CONTROL
+
+NO2C2XDSP:
+  guid: "7a76fa65-88d2-4cea-8297-3bdb4ca507e4"
+  description: "Dual setpoint NO2 concentration control with 2 sensors."
+  is_abstract: true
+  uses:
+  - high_limit_zone_air_no2_concentration_setpoint
+  - low_limit_zone_air_no2_concentration_setpoint
+  - zone_air_no2_concentration_sensor_1
+  - zone_air_no2_concentration_sensor_2
+  implements:
+  - CONTROL
