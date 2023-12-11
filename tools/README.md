@@ -3,8 +3,8 @@
 Various tools have been developed to support the use of the Digital Buildings Ontology and Building Configuration files. 
 
 The tools and their functions are summarized below:
-  * [ABEL](./abel/README.md) generates from/to Google spreadsheet/[Building Configuration](../ontology/docs/building_config.md).
-  * [Explorer](./explorer/README.md) allows users to explorer the ontology types and their associated fields.
+  * [ABEL](./abel/README.md) generates from a Google Sheets spreadsheet to a [Building Configuration YAML file](../ontology/docs/building_config.md) (and vice versa).
+  * [Explorer](./explorer/README.md) allows users to explore the ontology types and their associated fields.
   * [Instance Validator](./validators/instance_validator/README.md) allows users to validate a concrete instance of the ontology (i.e., a building configuration file).
     * A sub-function of the Instance Validator is to also validate telemetry messages for each reporting entity in the building configuration file using [Telemetry Validator](./validators/instance_validator/README.md#telemetry-validation).
   * [Ontology Validator](./validators/ontology_validator/README.md) allows users to validate a local version of the YAML ontology upon a change or an extension.
@@ -12,7 +12,7 @@ The tools and their functions are summarized below:
 ## Digital Buildings Toolkit
 
 The Digital Buildings Toolkit provides a centralized method for interfacing with the following Digital Buildings tools:
-  * Instance Validator (with optional Telemetry Validator)
+  * Instance Validator (with optional telemetry validation)
   * GUID generator
 
 There are currently two methods for interacting with the Toolkit: the Toolkit Web Application (currently in alpha) and the Toolkit Command Line Interface (CLI).
@@ -29,7 +29,7 @@ To install please follow the instructions below.
 
 #### Create a Virtual Environment
 
-First, create a virtual environment with `venv` followed by the environment name (in this example: `tooling`) in the digitalbuildings repository.
+First, create a virtual environment with `venv` followed by the environment name (in this example: `tooling`) in the `digitalbuildings` repository.
 
 ```
 python -m venv tooling
@@ -47,6 +47,7 @@ Windows
 ```
 tooling\Scripts\activate
 ```
+
 #### Install Packages
 Next, you can either use pip or setup (to be deprecated) to install the necessary packages and dependencies.
 
