@@ -16,7 +16,7 @@
 # need to be members of the states ontology. `INVALID_STATE` is not.
 
 PMP1-GUID:
-  cloud_device_id: "foobar"
+  cloud_device_id: 0123456789012345
   type: HVAC/PMP_SS
   code: PMP-101
   translation:
