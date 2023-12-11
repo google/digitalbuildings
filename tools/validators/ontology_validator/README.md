@@ -2,10 +2,14 @@
 
 The Ontology Validator allows users validate a local set of ontology YAML files (i.e., new ontology extensions or modifications) to ensure all extensions/modifications conform to DBO guidelines. Ontology Validator is also run on all pull requests that are opened within the DBO repository.
 
-## Install requirements
+## Table of Contents
+* [Installation](#installation)
+* [Ontology Validator Workflow](#ontology-validator-workflow)
+
+## Installation
 ### Create a Virtual Environment
 
-First, create a virtual environment with `venv` followed by the environment name (in this example: `tooling`) in the digitalbuildings repository.
+First, create a virtual environment with `venv` followed by the environment name (in this example: `tooling`) in the `digitalbuildings` repository.
 
 ```
 python -m venv tooling

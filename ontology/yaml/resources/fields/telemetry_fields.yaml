@@ -148,6 +148,10 @@ literals:
   - HIGH
   - OFF
   - VFD
+  - TWENTY_PERCENT
+  - FORTY_PERCENT
+  - SIXTY_PERCENT
+  - EIGHTY_PERCENT
 - discharge_fan_speed_percentage_command:
     fixed_min: 0.0
     fixed_max: 100.0
@@ -3215,6 +3219,18 @@ literals:
 - low_discharge_air_static_pressure_alarm:
   - ACTIVE
   - INACTIVE
+- mixed_air_damper_open_command:
+  - ON
+  - OFF
+- mixed_air_damper_closed_command:
+  - ON
+  - OFF
+- low_limit_return_air_co2_concentration_setpoint:
+    flexible_min: 0.00005
+    flexible_max: 0.005
+- high_limit_return_air_co2_concentration_setpoint:
+    flexible_min: 0.00005
+    flexible_max: 0.005
 - average_zone_air_co2_concentration_setpoint:
     flexible_min: 0.00005
     flexible_max: 0.005
@@ -3233,3 +3249,15 @@ literals:
 - tamper_alarm:
   - ACTIVE
   - INACTIVE
+- supply_steam_valve_percentage_command:
+    fixed_min: 0.0
+    fixed_max: 100.0
+- supply_steam_valve_percentage_sensor:
+    fixed_min: 0.0
+    fixed_max: 100.0
+- high_limit_zone_air_no2_concentration_setpoint:
+    fixed_min: 0.0
+    flexible_max: 0.0005
+- low_limit_zone_air_no2_concentration_setpoint:
+    fixed_min: 0.0
+    flexible_max: 0.0005
