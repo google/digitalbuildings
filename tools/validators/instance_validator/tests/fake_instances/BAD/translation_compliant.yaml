@@ -17,5 +17,17 @@
 
 US-SEA-BLDG1-GUID:
   type: FACILITIES/BUILDING
-  translation: COMPLIANT_INVALID
   code: US-SEA-BLDG1
+
+
+ENTITY_GUID:
+  cloud_device_id: 0123456789012345
+  code: LGRP-1
+  translation:
+    BRIGHTNESS_PERCENTAGE_COMMAND:
+      present_value: points.brightness_percentage_command.present_value
+      units:
+        key: pointset.points.brightness_percentage_command.units
+        values:
+          percent: '%'
+  type: LIGHTING/LGRP_DC
