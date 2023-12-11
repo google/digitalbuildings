@@ -15,13 +15,19 @@
 # This config file is invalid because the subkeys of the `states` key
 # need to be members of the states ontology. `INVALID_STATE` is not.
 
-US-SEA-BLDG1-GUID:
-  type: FACILITIES/BUILDING
-  code: US-SEA-BLDG1
+PMP1-GUID:
   cloud_device_id: "foobar"
+  type: HVAC/PMP_SS
+  code: PMP-101
   translation:
-    supply_air_isolation_damper_command:
-      present_value: "points.damper_1.present_value"
+    failed_alarm:
+      present_value: points.failed_alarm.present_value
       states:
-        OPEN: "1"
+        ACTIVE: true
         INVALID_STATE: "2"
+    run_status:
+      present_value: points.run_status.present_value
+      states:
+        ON: true
+        OFF: false
+    run_command: MISSING
