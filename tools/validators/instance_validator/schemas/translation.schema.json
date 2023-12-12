@@ -1,0 +1,39 @@
+{
+  "$id": "translation.schema.json",
+  "type": "object",
+  "properties": {
+    "present_value": {
+      "type": "string"
+    },
+    "states": {
+      "type": "object",
+      "patternProperties": {
+        ".*": {
+          "type": "string"
+        }
+      }
+    },
+    "units": {
+      "type": "object",
+      "properties": {
+        "key": {
+          "type": "string"
+        },
+        "values": {
+          "type": "object",
+          "properties": {
+            ".*": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "required": ["key", "values"]
+    }
+  },
+  "required": [
+    "present_value"
+  ],
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

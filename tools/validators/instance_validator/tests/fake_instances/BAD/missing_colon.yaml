@@ -13,6 +13,10 @@
 # limitations under the License.
 
 # Building
+CONFIG_MODE:
+  operation: EXPORT
+
 US-SEA-BLDG1-GUID:
   type: FACILITIES/BUILDING
+  etag: 123456
   code US-SEA-BLDG1

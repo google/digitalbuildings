@@ -19,6 +19,7 @@ import collections
 import enum
 import re
 import sys
+import uuid
 from typing import Callable, Dict, List, Optional, Type, TypeVar
 import warnings
 
@@ -77,7 +78,7 @@ def _OrRegex(values: List[str]) -> syaml.Regex:
 
 E = TypeVar('E', bound=enum.Enum)
 
-
+# WHY? What's the purpose of the below function.
 def EnumToRegex(
     enum_type: Optional[Type[E]] = None,
     omit: Optional[List[E]] = None,
@@ -264,7 +265,7 @@ class InstanceParser:
   def __init__(self):
     self._queued_entity_blocks = collections.deque()
     self._config_mode = None
-    self._validated_entities = {}
+    self._validated_entities = {} # type: dict[uuid.UUID, dict]
     self._is_final = False
 
   def Finalize(self) -> None:
@@ -276,7 +277,7 @@ class InstanceParser:
     self._ProcessEntities()
     self._is_final = True
 
-  def GetEntities(self) -> syaml.YAML:
+  def GetEntities(self) -> dict[uuid.UUID]:
     """Returns the YAML object derived from parsing the input files.
 
     Raises:
@@ -305,8 +306,20 @@ class InstanceParser:
     entity_instance_block = ''
     found_entities = 0
     in_config = False
+    total_lines = 0
     with open(filename, encoding='utf-8') as file:
+      for _ in file:
+        total_lines += 1
+    print('[Instance Parser] Parsing started...')
+    with open(filename, encoding='utf-8') as file:
+      line_count = 0
       for line in file:
+        line_count += 1
+        # pylint: disable=consider-using-f-string
+        if (line_count % 5) == 0:
+          percentage = '{:.3%}'.format(line_count / total_lines)
+          # pylint: disable=line-too-long
+          print(f'[Instance Parser] ({line_count}/{total_lines}) {percentage}% parsed')
         if _IGNORE_PATTERN.match(line):
           continue
 
@@ -340,6 +353,7 @@ class InstanceParser:
 
         entity_instance_block = entity_instance_block + line
 
+    print('[Instance Parser] Parsed all lines')
     # handle the singleton case
     if in_config:
       # parse the config block
@@ -355,6 +369,7 @@ class InstanceParser:
     if not self._config_mode:
       return
 
+    print('[Instance Parser] Processing entities...')
     # Validate all queued blocks
     while True:
       try:
@@ -433,11 +448,13 @@ class InstanceParser:
     Raises:
       ValueError: if block contains a key that has already been found.
     """
-    for key in block.keys():
-      if key in self._validated_entities:
-        raise ValueError('Duplicate key {key}')
+    data = block.data
+    for key in data:
+      guid = uuid.UUID(key)
+      # if guid in self._validated_entities:
+      #   raise ValueError(f'Duplicate key {guid}')
       self._ValidateEntityContent(block.get(key))
-    self._validated_entities.update(block.data)
+      self._validated_entities[guid] = data[key]
 
   def _ValidateBlock(
       self, unvalidated_block: str, validation_fn: Callable[[syaml.YAML], None]
@@ -449,6 +466,7 @@ class InstanceParser:
       validation_fn: a validation function that takes YAML as an argument
     """
     try:
+
       validated = syaml.load(
           unvalidated_block, syaml.MapPattern(syaml.Str(), syaml.Any())
       )

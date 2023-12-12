@@ -13,6 +13,9 @@
 # limitations under the License.
 
 # Cannot have update mask on an ADD operation
+CONFIG_METADATA:
+  operation: UPDATE
+
 SDC_EXT-17-GUID:
   type: HVAC/SDC_EXT
   code: SDC_EXT-17

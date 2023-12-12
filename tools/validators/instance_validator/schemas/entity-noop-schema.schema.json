@@ -1,0 +1,20 @@
+{
+  "$id": "entity-noop-schema.schema.json",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "entity-base-schema.schema.json"
+    }
+  ],
+  "properties": {
+    "code": true,
+    "connections": true,
+    "type": true,
+    "links": true,
+    "translation": true,
+    "etag": true,
+    "cloud_device_id": true
+  },
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

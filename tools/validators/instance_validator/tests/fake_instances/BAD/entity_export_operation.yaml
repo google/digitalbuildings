@@ -15,9 +15,9 @@
 # Bad entity export operation missing etag
 
 CONFIG_METADATA:
-  operation: UPDATE
+  operation: EXPORT
 
-SDC_EXT-19-GUID:
+04e831e8-7e08-4c68-a920-b23065e41e5e:
   type: HVAC/SDC_EXT
   code: SDC_EXT-19
   cloud_device_id: "baz"

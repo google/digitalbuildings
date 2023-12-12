@@ -16,7 +16,10 @@
 # for translation. The devices listed in translation need to follow specific
 # formats, and `invalid_key` is not a valid part of any of them.
 
-US-SEA-BLDG1-GUID:
+CONFIG_METADATA:
+  operation: INITIALIZE
+
+eb15ee68-795f-430a-bb1f-8e70eaf2e66a:
   type: FACILITIES/BUILDING
   code: US-SEA-BLDG1
   cloud_device_id: "foobar"

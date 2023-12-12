@@ -1,0 +1,20 @@
+{
+  "$id": "config-metadata.schema.json",
+  "type": "object",
+  "properties": {
+    "operation": {
+      "oneOf": [
+        {
+          "const": "UPDATE"
+        },
+        {
+          "const": "INITIALIZE"
+        },
+        {
+          "const": "EXPORT"
+        }
+      ]
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

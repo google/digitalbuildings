@@ -17,7 +17,7 @@
 CONFIG_METADATA:
   operation: UPDATE
 
-SDC_EXT-19-GUID:
+eb15ee68-795f-430a-bb1f-8e70eaf2e66a:
   type: HVAC/SDC_EXT
   code: SDC_EXT-19
   cloud_device_id: "baz"

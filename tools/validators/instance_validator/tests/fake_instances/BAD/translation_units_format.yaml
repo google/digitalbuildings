@@ -12,7 +12,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-US-SEA-BLDG1-GUID:
+CONFIG_METADATA:
+  operation: INITIALIZE
+
+135d08f4-8df0-46ae-86cb-16b953870aeb:
   type: FACILITIES/BUILDING
   code: US-SEA-BLDG1
   translation:

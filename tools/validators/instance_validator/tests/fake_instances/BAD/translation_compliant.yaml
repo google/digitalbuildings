@@ -15,6 +15,9 @@
 # This is an invalid config file because the content of translation needs to
 # case-sensitive match the string `COMPLIANT` if the translation is compliant.
 
+CONFIG_METADATA:
+  operation: INITIALIZE
+
 US-SEA-BLDG1-GUID:
   type: FACILITIES/BUILDING
   translation: COMPLIANT_INVALID

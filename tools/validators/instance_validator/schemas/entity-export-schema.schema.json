@@ -1,0 +1,28 @@
+{
+  "$id": "entity-export-schema.schema.json",
+  "type": "object",
+  "properties": {
+    "etag": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string"
+    },
+    "operation": {
+      "const": "EXPORT"
+    },
+    "code": true,
+    "connections": true,
+    "links": true,
+    "translation": true,
+    "cloud_device_id": true
+  },
+  "allOf": [
+    {
+      "$ref": "entity-base-schema.schema.json"
+    }
+  ],
+  "required": ["operation", "etag"],
+  "additionProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

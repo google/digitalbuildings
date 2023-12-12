@@ -1,0 +1,18 @@
+{
+  "$id": "entity-delete-schema.schema.json",
+  "type": "object",
+  "properties": {
+    "operation": {
+      "const": "DELETE"
+    },
+    "code": true
+  },
+  "allOf": [
+    {
+      "$ref": "entity-base-schema.schema.json"
+    }
+  ],
+    "required":  ["operation"],
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

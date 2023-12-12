@@ -13,7 +13,10 @@
 # limitations under the License.
 
 # Cannot have operation when config is in INITIALIZE mode
-US-SEA-BLDG1-GUID:
+CONFIG_MODE:
+  operation: INITIALIZE
+
+eb15ee68-795f-430a-bb1f-8e70eaf2e66a:
   type: FACILITIES/BUILDING
   operation: DELETE
   code: US-SEA-BLDG1

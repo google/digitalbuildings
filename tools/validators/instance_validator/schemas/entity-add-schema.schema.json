@@ -1,0 +1,23 @@
+{
+  "$id": "entity-add-schema.schema.json",
+  "type": "object",
+  "properties": {
+    "operation": {
+      "const": "ADD"
+    },
+    "code": true,
+    "connections": true,
+    "type": true,
+    "links": true,
+    "translation": true,
+    "cloud_device_id": true
+  },
+  "required":  ["operation"],
+  "allOf": [
+    {
+      "$ref": "entity-base-schema.schema.json"
+    }
+  ],
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

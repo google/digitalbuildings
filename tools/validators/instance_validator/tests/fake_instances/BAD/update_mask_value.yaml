@@ -18,13 +18,13 @@
 CONFIG_METADATA:
   operation: UPDATE
 
-SDC_EXT-19-GUID:
+709e5ed6-d1a9-49c3-b6b1-b9bd6099b028:
   type: HVAC/SDC_EXT
   code: SDC_EXT-19
   cloud_device_id: "baz"
   etag: a56790
   update_mask:
-    translation
+    - translation
     - connection
   translation:
     shade_extent_percentage_command:

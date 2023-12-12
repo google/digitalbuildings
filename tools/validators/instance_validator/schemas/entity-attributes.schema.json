@@ -1,0 +1,47 @@
+{
+  "$id": "entity-attributes.schema.json",
+  "type": "object",
+  "properties": {
+    "code": {
+      "type": "string"
+    },
+    "connections": {
+      "type": "object",
+      "patternProperties": {
+        "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "type": "string"
+            }
+          ]
+        }
+      }
+    },
+    "links": {
+      "type": "object",
+      "patternProperties": {
+        "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$": {
+          "patternProperties": {
+            ".*": {"type": "string"}
+          }
+        }
+      }
+    },
+    "translation": {
+      "type": "object",
+      "patternProperties": {
+        ".*": {"$ref": "translation.schema.json"}
+      }
+    },
+    "type": {
+      "type": "string"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

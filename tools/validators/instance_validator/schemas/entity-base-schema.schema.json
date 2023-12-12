@@ -1,0 +1,30 @@
+{
+  "$id": "entity-base-schema.schema.json",
+  "type": "object",
+  "properties": {
+    "cloud_device_id": {
+      "type": "string"
+    },
+    "code": {
+      "type": "string"
+    },
+    "guid": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string",
+      "pattern": "^(.*\/.*)"
+    },
+    "connections": true,
+    "links": true,
+    "translation": true
+  },
+  "allOf": [
+    {
+      "$ref": "entity-attributes.schema.json"
+    }
+  ],
+  "required": ["type"],
+  "dependentRequired": {"translation":  ["cloud_device_id"]},
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}
