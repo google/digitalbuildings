@@ -5767,6 +5767,7 @@ HWDDC:
   - heating_thermal_power_capacity
   - heating_water_flowrate_sensor
   - heating_water_valve_percentage_sensor
+  - failed_discharge_air_temperature_alarm
   uses:
   - discharge_air_heating_temperature_setpoint
   - discharge_air_temperature_sensor
