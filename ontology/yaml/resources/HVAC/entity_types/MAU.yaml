@@ -729,6 +729,7 @@ MAU_DFSS_DFVSC_DSP_CHWDC_HWDC_OADM_ZSPM:
   - smoke_alarm
 
 MAU_DFSS_DFVSC_DSP_HWDDC_CHWDDC_OADM:
+  guid: "95e9e8ec-92a1-4cd9-b940-03370ea8728d"
   description: "Makeup air unit with heating and cooling."
   is_canonical: true
   implements:
