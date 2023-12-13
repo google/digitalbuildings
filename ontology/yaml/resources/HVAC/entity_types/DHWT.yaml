@@ -17,6 +17,7 @@
 ########################
 
 DHWT_HTSWC_HWTTC_CPC_HWSWC:
+  guid: "cad40df4-ac4b-413b-a2e4-88294fd7a72b"
   description: "Standard calorifier with return pump."
   is_canonical: true
   implements:
