@@ -725,7 +725,6 @@ MAU_DFSS_DFVSC_DSP_CHWDC_HWDC_OADM_ZSPM:
   - HWDC
   - OADM
   - ZSPM
-  - OA
   opt_uses:
   - smoke_alarm
 
