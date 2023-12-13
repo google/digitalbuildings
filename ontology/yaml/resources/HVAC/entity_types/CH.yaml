@@ -640,6 +640,23 @@ CH_SS_DX2SWC_CHDXVSC2X_RWTM_MWDPC_RWISOVM_REFSM2X_REFPM2X_CPC_INVIPWM2X_INVOPWM2
   - INVIPWM2X
   - INVOPWM2X
 
+CH_SS_DX2SWC_CHDXVSC2X_RWTM_MWDPC_REFSM2X_REFPM2X_CPC_INVIPWM2X_INVOPWM2X:
+  guid: "315ae36a-c828-4c22-a82a-40be34d0cfe9"
+  description: "Two stage air cooled chiller with dual compressor variable speed control, minimum differential pressure control, return water temperature monitoring, two circuit refrigerant monitoring, circulation pump monitoring and input/output inverter power monitoring."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - DX2SWC
+  - CHDXVSC2X
+  - RWTM
+  - MWDPC
+  - REFSM2X
+  - REFPM2X
+  - CPC
+  - INVIPWM2X
+  - INVOPWM2X
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
