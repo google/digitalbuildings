@@ -37,6 +37,14 @@ FAN_SS_VSC:
   - SS
   - VSC
 
+FAN_SS_WDPM:
+  description: "Fan with start/stop and differential pressure monitoring."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - WDPM
+
 FAN_SS_RMM:
   guid: "917a9051-01dc-4f41-ad4c-5fcb45fe2f0e"
   description: "Fan with start/stop status and run mode monitoring"
