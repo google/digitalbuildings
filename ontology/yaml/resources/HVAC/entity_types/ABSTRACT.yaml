@@ -5767,36 +5767,13 @@ HWDDC:
   - heating_thermal_power_capacity
   - heating_water_flowrate_sensor
   - heating_water_valve_percentage_sensor
-  - high_discharge_air_temperature_alarm
-  - low_discharge_air_temperature_alarm
-  - failed_discharge_air_temperature_alarm
   uses:
   - discharge_air_heating_temperature_setpoint
   - discharge_air_temperature_sensor
   - heating_water_valve_percentage_command
   implements:
   - CONTROL
-
-
-CHWDDC:
-  guid: "99f887ba-5cf1-4930-8cb1-69be1d84155e"
-  description: "Chilled water valve with dual setpoint control on discharge side."
-  is_abstract: true
-  opt_uses:
-  - discharge_air_relative_humidity_sensor
-  - cooling_thermal_power_capacity
-  - chilled_water_flowrate_sensor
-  - chilled_water_valve_percentage_sensor
-  - high_discharge_air_temperature_alarm
-  - low_discharge_air_temperature_alarm
-  - failed_discharge_air_temperature_alarm
-  uses:
-  - discharge_air_cooling_temperature_setpoint
-  - discharge_air_temperature_sensor
-  - chilled_water_valve_percentage_command
-  implements:
-  - CONTROL
-
+  
 
 CFDPM:
   guid: "be3e3bc0-e927-46a1-9b63-62717fa740ca"
