@@ -5774,7 +5774,7 @@ HWDDC:
   - heating_water_valve_percentage_command
   implements:
   - CONTROL
-  
+
 
 CFDPM:
   guid: "be3e3bc0-e927-46a1-9b63-62717fa740ca"
