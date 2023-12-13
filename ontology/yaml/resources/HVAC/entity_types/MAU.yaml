@@ -729,7 +729,7 @@ MAU_DFSS_DFVSC_DSP_CHWDC_HWDC_OADM_ZSPM:
   - smoke_alarm
 
 MAU_DFSS_DFVSC_DSP_HWDDC_CHWDDC_OADM:
-  description: "Makeup air unit with dual-setpoint heating and cooling water valve control on discharge side."
+  description: "Makeup air unit with heating and cooling."
   is_canonical: true
   implements:
   - MAU
