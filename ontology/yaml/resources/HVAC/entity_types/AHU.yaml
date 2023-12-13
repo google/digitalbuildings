@@ -4141,8 +4141,7 @@ AHU_CHWSC_ECON_FDPM_HWSC_SFSS_SFVSC_SSPC_SDHC_RTM:
 
 AHU_SFSS4X_SFVSC4X_RFSS3X_RFVSC3X_CHWSC_HWSC_ECON_EDBPC_SARC_SSPC_RD_OAFMC_EFM:
   guid: "187ad041-6b1e-4ee5-aabb-69dc8c287bdd"
-  description: "Cooling and heating AHU with 4 supply and 3 return fans, supply air reset control, 
-                building and supply static pressure control, return damper flow control and exhaust flow monitoring."
+  description: "Cooling and heating AHU with 4 supply and 3 return fans, supply air reset control, building and supply static pressure control, return damper flow control and exhaust flow monitoring."
   is_canonical: true
   implements:
   - AHU
@@ -4164,8 +4163,7 @@ AHU_SFSS4X_SFVSC4X_RFSS3X_RFVSC3X_CHWSC_HWSC_ECON_EDBPC_SARC_SSPC_RD_OAFMC_EFM:
 
 AHU_SFSS4X_SFVSC4X_RFSS3X_RFVSC3X_CHWSC_HWSC_ECON_EDBPC_SARC_SSPC_RD_OAFMC:
   guid: "dca00b39-6816-4d59-b3b6-2b3a429edf8b"
-  description: "Cooling and heating AHU with 4 supply and 3 return fans, supply air reset control, 
-                building and supply static pressure control and return damper flow control."
+  description: "Cooling and heating AHU with 4 supply and 3 return fans, supply air reset control, building and supply static pressure control and return damper flow control."
   is_canonical: true
   implements:
   - AHU
@@ -4186,8 +4184,7 @@ AHU_SFSS4X_SFVSC4X_RFSS3X_RFVSC3X_CHWSC_HWSC_ECON_EDBPC_SARC_SSPC_RD_OAFMC:
 
 AHU_SFSS2X_SFVSC2X_RFSS2X_RFVSC2X_CHWSC_HWSC_ECON_EDBPC_SARC_SSPC_RD_OAFMC:
   guid: "5a3034e7-0a17-416c-b974-55072d52d3e4"
-  description: "Cooling and heating AHU with 2 supply and 2 return fans, supply air reset control, 
-                building and supply static pressure control and return damper flow control."
+  description: "Cooling and heating AHU with 2 supply and 2 return fans, supply air reset control, building and supply static pressure control and return damper flow control."
   is_canonical: true
   implements:
   - AHU
@@ -4208,7 +4205,7 @@ AHU_SFSS2X_SFVSC2X_RFSS2X_RFVSC2X_CHWSC_HWSC_ECON_EDBPC_SARC_SSPC_RD_OAFMC:
 
 AHU_SFSS_SFVSC_EFSS_EFVSC_CHWSC_HWSC_ECON_EDBPC_SARC_SSPC_OAFMC:
   guid: "36c1740d-1eaa-4bae-8779-269cdfc0c5a0"
-  description: "Multi-zone cooling and heatinfg AHU with supply air reset control and supply static pressure control."
+  description: "Multi-zone cooling and heating AHU with supply air reset control and supply static pressure control."
   is_canonical: true
   implements:
   - AHU

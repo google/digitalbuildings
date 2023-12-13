@@ -797,9 +797,6 @@ literals:
 - chilled_water_valve_command:
   - OPEN
   - CLOSED
-- drain_water_valve_command:
-  - OPEN
-  - CLOSED
 - heating_percentage_command:
     fixed_min: 0.0
     fixed_max: 100.0

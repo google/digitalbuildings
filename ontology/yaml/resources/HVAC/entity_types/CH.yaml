@@ -624,8 +624,7 @@ CH_SS_DX4SWC_RWTM_REFSM2X_REFPM2X_CPC:
 
 CH_SS_DX2SWC_CHDXVSC2X_RWTM_MWDPC_RWISOVM_REFSM2X_REFPM2X_CPC_INVIPWM2X_INVOPWM2X:
   guid: "cf101310-f825-4637-9948-f036ecbb4210"
-  description: "Two stage air cooled chiller with dual compressor variable speed control, return water isolation valve, minimum differential pressure control, 
-                return water temperature monitoring, two circuit refrigerant monitoring, circulation pump monitoring and input/output inverter power monitoring."
+  description: "Two stage air cooled chiller with dual compressor variable speed control, return water isolation valve, minimum differential pressure control, return water temperature monitoring, two circuit refrigerant monitoring, circulation pump monitoring and input/output inverter power monitoring."
   is_canonical: true
   implements:
   - CH
