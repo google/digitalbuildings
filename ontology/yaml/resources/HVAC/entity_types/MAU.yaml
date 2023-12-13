@@ -730,7 +730,7 @@ MAU_DFSS_DFVSC_DSP_CHWDC_HWDC_OADM_ZSPM:
 
 MAU_DFSS_DFVSC_DSP_HWDDC_CHWDDC_OADM:
   guid: "95e9e8ec-92a1-4cd9-b940-03370ea8728d"
-  description: "Makeup air unit with heating and cooling."
+  description: "Makeup air unit with dual-setpoint heating and cooling water valve control on discharge side."
   is_canonical: true
   implements:
   - MAU
