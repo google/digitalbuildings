@@ -16,6 +16,16 @@
 ### Canonical Types  ###
 ########################
 
+DHWT_HTSWC_HWTTC_CPC_HWSWC:
+  description: "Standard calorifier with return pump."
+  is_canonical: true
+  implements:
+  - DHWT
+  - HTSWC
+  - HWTTC
+  - CPC
+  - HWSWC
+
 DHWT_HWTTC:
   guid: "f5a086bf-d2ca-4cbb-a433-1a1f9ec92ecf"
   description: "Domestic hot water tank."
