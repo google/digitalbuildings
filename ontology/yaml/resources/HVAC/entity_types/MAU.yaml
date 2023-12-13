@@ -728,6 +728,20 @@ MAU_DFSS_DFVSC_DSP_CHWDC_HWDC_OADM_ZSPM:
   opt_uses:
   - smoke_alarm
 
+MAU_DFSS_DFVSC_DSP_HWDDC_CHWDDC_OADM:
+  description: "Makeup air unit with heating and cooling."
+  is_canonical: true
+  implements:
+  - MAU
+  - DFSS
+  - DFVSC
+  - DSP
+  - HWDDC
+  - CHWDDC
+  - OADM
+  opt_uses:
+  - smoke_alarm
+
 ############################
 ###   Remap These Types  ###
 ############################

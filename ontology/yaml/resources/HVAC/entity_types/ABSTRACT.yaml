@@ -161,6 +161,8 @@ CSP:
   - OPERATIONAL
   opt_uses:
   - discharge_air_temperature_sensor
+  - high_discharge_air_temperature_alarm
+  - low_discharge_air_temperature_alarm
   - zone_air_relative_humidity_sensor
   - zone_occupancy_status
   - failed_discharge_air_temperature_alarm
@@ -2037,6 +2039,8 @@ DXZC:
   - high_zone_air_temperature_alarm
   - low_zone_air_temperature_alarm
   - overload_compressor_alarm
+  - high_discharge_air_temperature_alarm
+  - low_discharge_air_temperature_alarm
   uses:
   - compressor_run_command
   - compressor_run_status
@@ -5763,11 +5767,32 @@ HWDDC:
   - heating_thermal_power_capacity
   - heating_water_flowrate_sensor
   - heating_water_valve_percentage_sensor
+  - high_discharge_air_temperature_alarm
+  - low_discharge_air_temperature_alarm
   - failed_discharge_air_temperature_alarm
   uses:
   - discharge_air_heating_temperature_setpoint
   - discharge_air_temperature_sensor
   - heating_water_valve_percentage_command
+  implements:
+  - CONTROL
+
+
+CHWDDC:
+  description: "Chilled water valve with dual setpoint control on discharge side."
+  is_abstract: true
+  opt_uses:
+  - discharge_air_relative_humidity_sensor
+  - cooling_thermal_power_capacity
+  - chilled_water_flowrate_sensor
+  - chilled_water_valve_percentage_sensor
+  - high_discharge_air_temperature_alarm
+  - low_discharge_air_temperature_alarm
+  - failed_discharge_air_temperature_alarm
+  uses:
+  - discharge_air_cooling_temperature_setpoint
+  - discharge_air_temperature_sensor
+  - chilled_water_valve_percentage_command
   implements:
   - CONTROL
 
