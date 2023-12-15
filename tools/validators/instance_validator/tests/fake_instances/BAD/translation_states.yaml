@@ -17,7 +17,7 @@
 
 DMPR1-GUID:
   type: HVAC/DMP_EDM
-  code: US-SEA-BLDG1
+  code: US-SEA-DMPR1
   cloud_device_id: "1234567891234567"
   translation:
     exhaust_air_damper_command:
