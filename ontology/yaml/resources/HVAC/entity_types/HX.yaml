@@ -196,3 +196,13 @@ HX_SSTC_SSSPC:
   - HX
   - SSTC
   - SSSPC
+
+HX_CHWDT_PRWDT_CHWDPM_PWDPM:
+  description: "Chilled/process water heat exchanger with differential pressure monitoring."
+  is_canonical: true
+  implements:
+  - HX
+  - CHWDT
+  - PRWDT
+  - CHWDPM
+  - PWDPM
