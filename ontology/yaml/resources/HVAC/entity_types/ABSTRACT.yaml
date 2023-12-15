@@ -3626,6 +3626,7 @@ HXRWISOVM:
   - MONITORING
 
 PWECVC:
+  guid: "c7d64d95-0215-4c9a-b422-a4fb7004f3e3"
   description: "Process water electricconductivity drain valve control."
   is_abstract: true
   uses:
@@ -3654,6 +3655,7 @@ PWVPM:
   - MONITORING
 
 PWDVPM:
+  guid: "2a424fbc-d5d8-4675-842a-996996344180"
   description: "Process water diverting valve percentage monitoring."
   is_abstract: true
   opt_uses:
@@ -4343,6 +4345,7 @@ SWISOVM:
   - local_override_isolation_valve_alarm
 
 SWDVPM:
+  guid: "4a848219-0fdd-4f99-ae7d-5604cbf27bd9"
   description: "Supply water diverting valve monitoring."
   is_abstract: true
   opt_uses:
