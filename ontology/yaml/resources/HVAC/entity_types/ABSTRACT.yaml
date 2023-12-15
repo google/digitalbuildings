@@ -101,6 +101,9 @@ MOAFC:
   is_abstract: true
   opt_uses:
   - economizer_mode
+  - ventilation_request_count
+  - low_ventilation_outside_air_flowrate_alarm
+  - failed_ventilation_outside_air_flowrate_alarm
   uses:
   - ventilation_outside_air_damper_percentage_command
   - ventilation_outside_air_flowrate_sensor
@@ -1085,6 +1088,7 @@ SWTC:
   - high_return_water_temperature_alarm
   - run_command
   - cooling_percentage_command
+  - heating_percentage_command
   - high_supply_water_temperature_alarm
   - low_supply_water_temperature_alarm
   uses:
@@ -1124,7 +1128,6 @@ PSWTC:
   implements:
   - OPERATIONAL
 
-
 SCHWTC:
   guid: "d2af9b79-4eb2-4b63-a03a-dc5483372690"
   description: "Supply chilled water temperature control."
@@ -1135,9 +1138,31 @@ SCHWTC:
   - chilled_return_water_temperature_sensor
   - cooling_percentage_command
   - cooling_request_count
+  - cooling_run_command
+  - failed_cooling_alarm
+  - high_chilled_supply_water_temperature_alarm
+  - low_chilled_supply_water_temperature_alarm
   uses:
   - chilled_supply_water_temperature_sensor
   - chilled_supply_water_temperature_setpoint
+
+SHWTC:
+  guid: "e2231929-0104-4109-aa8a-ce276a82f8a6"
+  description: "Supply heating water temperature control."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  opt_uses:
+  - heating_return_water_temperature_sensor
+  - heating_percentage_command
+  - heating_request_count
+  - heating_run_command
+  - failed_heating_alarm
+  - high_heating_supply_water_temperature_alarm
+  - low_heating_supply_water_temperature_alarm
+  uses:
+  - heating_supply_water_temperature_sensor
+  - heating_supply_water_temperature_setpoint
 
 RCHWTC:
   guid: "6babdc1e-edae-49b3-98e4-ca0b675b7f0f"
@@ -3256,7 +3281,6 @@ ECONM:
   implements:
   - CONTROL
 
-
 ECONM2X:
   guid: "ebde3e58-1637-466e-9737-934e07bcd807"
   description: "Economizer mode control"
@@ -3272,6 +3296,9 @@ ECONM2X:
   - high_supply_air_temperature_alarm
   - low_return_air_temperature_alarm
   - low_supply_air_temperature_alarm
+  - average_mixed_air_temperature_sensor
+  - failed_mixed_air_temperature_alarm_1
+  - failed_mixed_air_temperature_alarm_2
   uses:
   - economizer_mode
   - mixed_air_temperature_sensor_1
@@ -4420,6 +4447,8 @@ CHWRWISOVM:
   guid: "e9680821-b425-4b3f-bef2-b89795524460"
   description: "Return side isolation valve monitoring."
   is_abstract: true
+  opt_uses:
+  - failed_chilled_return_water_isolation_valve_alarm
   uses:
   - chilled_return_water_isolation_valve_command
   - chilled_return_water_isolation_valve_status
@@ -6182,6 +6211,8 @@ HWRWISOVM:
   guid: "a2ca0c24-c44d-44ea-95cb-728da67d7c78"
   description: "Heating return side isolation valve monitoring."
   is_abstract: true
+  opt_uses:
+  - failed_heating_return_water_isolation_valve_alarm
   uses:
   - heating_return_water_isolation_valve_command
   - heating_return_water_isolation_valve_status
@@ -6827,6 +6858,35 @@ RFSS3X:
   implements:
   - OPERATIONAL
 
+RFSS4X:
+  guid: "e8713c4f-b156-4158-99c6-2ad49702fd80"
+  description: "Return fan start-stop and feedback with four fans."
+  is_abstract: true
+  opt_uses:
+  - return_fan_current_sensor_1
+  - return_fan_current_sensor_2
+  - return_fan_current_sensor_3
+  - return_fan_current_sensor_4
+  - return_fan_power_sensor_1
+  - return_fan_power_sensor_2
+  - return_fan_power_sensor_3
+  - return_fan_power_sensor_4
+  - failed_return_fan_alarm_1
+  - failed_return_fan_alarm_2
+  - failed_return_fan_alarm_3
+  - failed_return_fan_alarm_4
+  uses:
+  - return_fan_run_command_1
+  - return_fan_run_command_2
+  - return_fan_run_command_3
+  - return_fan_run_command_4
+  - return_fan_run_status_1
+  - return_fan_run_status_2
+  - return_fan_run_status_3
+  - return_fan_run_status_4
+  implements:
+  - OPERATIONAL
+
 RFVSC:
   guid: "e36cc2ed-5694-4171-94b0-d32a94bb271c"
   description: "Variable speed control for a return fan."
@@ -6894,6 +6954,43 @@ RFVSC3X:
   - return_fan_speed_percentage_command_1
   - return_fan_speed_percentage_command_2
   - return_fan_speed_percentage_command_3
+  implements:
+  - OPERATIONAL
+
+RFVSC4X:
+  guid: "9083ed68-61cb-4261-bea4-b62dd617904c"
+  description: "Return fan variable speed control with feedback and sensoring for four fans."
+  is_abstract: true
+  opt_uses:
+  - return_fan_current_sensor_1
+  - return_fan_current_sensor_2
+  - return_fan_current_sensor_3
+  - return_fan_current_sensor_4
+  - return_fan_power_sensor_1
+  - return_fan_power_sensor_2
+  - return_fan_power_sensor_3
+  - return_fan_power_sensor_4
+  - return_fan_speed_frequency_sensor_1
+  - return_fan_speed_frequency_sensor_2
+  - return_fan_speed_frequency_sensor_3
+  - return_fan_speed_frequency_sensor_4
+  - return_fan_speed_percentage_sensor_1
+  - return_fan_speed_percentage_sensor_2
+  - return_fan_speed_percentage_sensor_3
+  - return_fan_speed_percentage_sensor_4
+  uses:
+  - return_fan_run_command_1
+  - return_fan_run_command_2
+  - return_fan_run_command_3
+  - return_fan_run_command_4
+  - return_fan_run_status_1
+  - return_fan_run_status_2
+  - return_fan_run_status_3
+  - return_fan_run_status_4
+  - return_fan_speed_percentage_command_1
+  - return_fan_speed_percentage_command_2
+  - return_fan_speed_percentage_command_3
+  - return_fan_speed_percentage_command_4
   implements:
   - OPERATIONAL
 
@@ -7418,3 +7515,23 @@ NO2C2XDSP:
   - zone_air_no2_concentration_sensor_2
   implements:
   - CONTROL
+
+HCPC2X:
+  guid: "67a960f5-65e7-400f-b64e-ab4ef1ae9035"
+  description: "Circulation control for 2 onboard heating water pumps."
+  is_abstract: true
+  uses:
+  - heating_water_circulation_pump_run_status_1
+  - heating_water_circulation_pump_run_status_2
+  - heating_water_circulation_pump_run_command_1
+  - heating_water_circulation_pump_run_command_2
+
+CHCPC2X:
+  guid: "688f6f6a-c79a-4f1f-8a1e-4463d610276d"
+  description: "Circulation control for 2 onboard chilled water pumps."
+  is_abstract: true
+  uses:
+  - chilled_water_circulation_pump_run_status_1
+  - chilled_water_circulation_pump_run_status_2
+  - chilled_water_circulation_pump_run_command_1
+  - chilled_water_circulation_pump_run_command_2
