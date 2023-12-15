@@ -253,6 +253,7 @@ HWS_SWTM_WDPC_BYPVPM:
   - BYPVPM
 
 HWS_SWTM_RWTM:
+  guid: "91d467d7-cf98-4493-9408-f727ac08f847"
   description: "Heating water system with supply and return water temperature monitoring."
   implements:
   - HWS
