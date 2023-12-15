@@ -1128,7 +1128,6 @@ PSWTC:
   implements:
   - OPERATIONAL
 
-
 SCHWTC:
   guid: "d2af9b79-4eb2-4b63-a03a-dc5483372690"
   description: "Supply chilled water temperature control."
@@ -6955,7 +6954,6 @@ RFVSC3X:
   - OPERATIONAL
 
 RFVSC4X:
-  guid: "3326bd01-506e-4dba-a410-9a34252b2d59"
   description: "Return fan variable speed control with feedback and sensoring for two fans."
   is_abstract: true
   opt_uses:

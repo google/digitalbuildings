@@ -33,13 +33,13 @@ CHWS_SWTC:
   - SWTC
 
 CHWS_SWTC_WFRM:
-  guid: "69ebb826-7163-472a-81e5-86d473ea7b8f"
   description: "Chilled water system with basic supply water temperature control and flowrate sensor. "
   is_canonical: true
   implements:
   - CHWS
   - SWTC
   - WFRM
+  
 CHWS_SWTC_WDPC:
   guid: "eb566702-f5f0-4f31-808c-320a61956fc7"
   description: "Chilled water system with supply temperature and differential pressure control."
