@@ -33,6 +33,7 @@ ASHP_SS_HP6SWC_CPC2X_RWISOVM:
   - high_refrigerant_pressure_alarm_2
 
 ASHP_SHWTC_SCHWTC_HWRWISOVM_CHWRWISOVM_HCPC2X_CHCPC2X:
+  guid: "8f9741a1-1066-406b-86fa-6ca239e215f4"
   description: "Air source heat pump for a hydronic system providing chilled and heating water."
   is_canonical: true
   implements:

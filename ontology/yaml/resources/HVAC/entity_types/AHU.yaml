@@ -4121,6 +4121,7 @@ AHU_CHWSC_HWSC_ECON_EDBPC_RFSS2X_RFVSC2X_SFSS2X_SFVSC2X_SSPC:
   - SSPC
 
 AHU_CHWSC_HWSC_MOAFC_ECON_EDBPC_RFSS2X_RFVSC2X_SFSS2X_SFVSC2X_SSPC_LCC:
+  guid: "e69e6631-e2d3-4392-9659-411d5a260e1b"
   description: "Multi-zone chilled water and heating water AHU with supply air static pressure control, building static pressure control, minimum OA damper control, and economizer control."
   is_canonical: true
   implements:
@@ -4138,6 +4139,7 @@ AHU_CHWSC_HWSC_MOAFC_ECON_EDBPC_RFSS2X_RFVSC2X_SFSS2X_SFVSC2X_SSPC_LCC:
   - LCC
 
 AHU_CHWSC_HWSC_MOAFC_ECON_EDBPC_RFSS4X_RFVSC4X_SFSS4X_SFVSC4X_SSPC_LCC:
+  guid: "99914671-cc04-47cf-9133-c58d0478f791"
   description: "Multi-zone chilled water and heating water AHU with supply air static pressure control, building static pressure control, minimum OA damper control, and economizer control."
   is_canonical: true
   implements:

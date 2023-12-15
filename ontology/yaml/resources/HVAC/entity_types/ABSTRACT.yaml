@@ -1147,6 +1147,7 @@ SCHWTC:
   - chilled_supply_water_temperature_setpoint
 
 SHWTC:
+  guid: "e2231929-0104-4109-aa8a-ce276a82f8a6"
   description: "Supply heating water temperature control."
   is_abstract: true
   implements:
@@ -3281,6 +3282,7 @@ ECONM:
   - CONTROL
 
 ECON2X:
+  guid: "e786498e-5619-4be3-93ac-8f8a270ce429"
   description: "Economizer mode control for two mixed air temperature sensors"
   is_abstract: true
   opt_uses:
@@ -6856,6 +6858,7 @@ RFSS3X:
   - OPERATIONAL
 
 RFSS4X:
+  guid: "e8713c4f-b156-4158-99c6-2ad49702fd80"
   description: "Return fan start-stop and feedback with two fan."
   is_abstract: true
   opt_uses:
@@ -7512,6 +7515,7 @@ NO2C2XDSP:
   - CONTROL
 
 HCPC2X:
+  guid: "67a960f5-65e7-400f-b64e-ab4ef1ae9035"
   description: "Circulation control for 2 heating water pumps part of a hydronic plant."
   is_abstract: true
   uses:
@@ -7521,6 +7525,7 @@ HCPC2X:
   - heating_water_circulation_pump_run_command_2
 
 CHCPC2X:
+  guid: "688f6f6a-c79a-4f1f-8a1e-4463d610276d"
   description: "Circulation control for 2 chilled water pumps part of a hydronic plant."
   is_abstract: true
   uses:
