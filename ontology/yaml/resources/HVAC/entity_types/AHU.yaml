@@ -4120,6 +4120,41 @@ AHU_CHWSC_HWSC_ECON_EDBPC_RFSS2X_RFVSC2X_SFSS2X_SFVSC2X_SSPC:
   - SFVSC2X
   - SSPC
 
+AHU_CHWSC_HWSC_MOAFC_ECONM_EDBPC_RFSS2X_RFVSC2X_SFSS2X_SFVSC2X_SSPC_LCC:
+  guid: "e69e6631-e2d3-4392-9659-411d5a260e1b"
+  description: "Multi-zone chilled water and heating water AHU with supply air static pressure control, building static pressure control, minimum OA damper control, and economizer monitoring."
+  is_canonical: true
+  implements:
+  - AHU
+  - CHWSC
+  - HWSC
+  - MOAFC
+  - ECONM
+  - EDBPC
+  - RFSS2X
+  - RFVSC2X
+  - SFSS2X
+  - SFVSC2X
+  - SSPC
+  - LCC
+
+AHU_CHWSC_HWSC_MOAFC_ECONM2X_EDBPC_RFSS4X_RFVSC4X_SFSS4X_SFVSC4X_SSPC_LCC:
+  guid: "99914671-cc04-47cf-9133-c58d0478f791"
+  description: "Multi-zone chilled water and heating water AHU with supply air static pressure control, building static pressure control, minimum OA damper control, and economizer control."
+  is_canonical: true
+  implements:
+  - AHU
+  - CHWSC
+  - HWSC
+  - MOAFC
+  - ECONM2X
+  - EDBPC
+  - RFSS4X
+  - RFVSC4X
+  - SFSS4X
+  - SFVSC4X
+  - SSPC
+  - LCC
 AHU_CHWSC_EFSS_EFVSC_FDPM3X_HTWHLSTC_HWSC_RCO2M_RSPC_SFM_SFSS_SFVSC_SSPC_VOADM_VMADC:
   guid: "f53a0828-f284-490f-aa56-e150de3d0ddf"
   description: "Complex multi zone AHU with heat recovery wheel and recirculated air control."

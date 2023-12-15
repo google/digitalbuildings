@@ -1299,6 +1299,9 @@ literals:
 - chilled_return_water_isolation_valve_status:
   - OPEN
   - CLOSED
+- failed_chilled_return_water_isolation_valve_alarm:
+  - ACTIVE
+  - INACTIVE
 - discharge_air_static_pressure_sensor:
     flexible_min: -124.540012
     flexible_max: 996.320096
@@ -1416,6 +1419,9 @@ literals:
 # Status fields must be distinguished from alarms in that status is an objective qualitative state (flowing/not) whereas alarms are judgmental interpretations of such statuses to draww a conclusion about function (alarm/normal)
 
 - average_supply_air_temperature_sensor:
+    flexible_min: 255.9259259
+    flexible_max: 338.7037037
+- average_mixed_air_temperature_sensor:
     flexible_min: 255.9259259
     flexible_max: 338.7037037
 - average_supply_air_static_pressure_sensor:
@@ -1923,6 +1929,9 @@ literals:
 - heating_return_water_isolation_valve_status:
   - OPEN
   - CLOSED
+- failed_heating_return_water_isolation_valve_alarm:
+  - ACTIVE
+  - INACTIVE
 - cooling_supply_water_isolation_valve_command:
   - OPEN
   - CLOSED
@@ -3285,3 +3294,46 @@ literals:
 - low_limit_zone_air_no2_concentration_setpoint:
     fixed_min: 0.0
     flexible_max: 0.0005
+- heating_water_circulation_pump_run_status:
+  - ON
+  - OFF
+- heating_water_circulation_pump_run_command:
+  - ON
+  - OFF
+- chilled_water_circulation_pump_run_status:
+  - ON
+  - OFF
+- chilled_water_circulation_pump_run_command:
+  - ON
+  - OFF
+# Four fields below are for ASHP.
+- heating_run_command:
+  - ON
+  - OFF
+- cooling_run_command:
+  - ON
+  - OFF
+- failed_heating_alarm:
+  - ACTIVE
+  - INACTIVE
+- failed_cooling_alarm:
+  - ACTIVE
+  - INACTIVE
+- failed_ventilation_outside_air_flowrate_alarm:
+  - ACTIVE
+  - INACTIVE
+- low_ventilation_outside_air_flowrate_alarm:
+  - ACTIVE
+  - INACTIVE
+- high_chilled_supply_water_temperature_alarm:
+  - ACTIVE 
+  - INACTIVE
+- high_heating_supply_water_temperature_alarm:
+  - ACTIVE 
+  - INACTIVE
+- low_chilled_supply_water_temperature_alarm:
+  - ACTIVE 
+  - INACTIVE
+- low_heating_supply_water_temperature_alarm:
+  - ACTIVE 
+  - INACTIVE
