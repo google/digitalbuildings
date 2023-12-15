@@ -6957,6 +6957,7 @@ RFVSC3X:
   - OPERATIONAL
 
 RFVSC4X:
+  guid: "9083ed68-61cb-4261-bea4-b62dd617904c"
   description: "Return fan variable speed control with feedback and sensoring for two fans."
   is_abstract: true
   opt_uses:
