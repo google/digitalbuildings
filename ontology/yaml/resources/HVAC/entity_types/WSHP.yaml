@@ -16,11 +16,12 @@
 ### Canonical Types  ###
 ########################
 
-WSHP_VSFC_HWDT_PHWRMSC:
+WSHP_SS_VSFC_HWDT_PHWRMSC:
   description: "Water source heat pump that allows transfer between hot water system and domestic hot water system, using domestic supply water temperature control."
   is_canonical: true
   implements:
   - WSHP
+  - SS
   - VSFC
   - HWDT
   - PHWRMSC
