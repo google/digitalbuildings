@@ -4346,7 +4346,7 @@ SWISOVM:
 
 SWDVPM:
   guid: "4a848219-0fdd-4f99-ae7d-5604cbf27bd9"
-  description: "Supply water diverting valve monitoring."
+  description: "Supply water diverting valve percentage monitoring."
   is_abstract: true
   opt_uses:
   - failed_supply_water_diverting_valve_alarm
