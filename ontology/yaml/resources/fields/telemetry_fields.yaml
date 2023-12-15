@@ -804,9 +804,6 @@ literals:
 - heating_percentage_command:
     fixed_min: 0.0
     fixed_max: 100.0
-- heating_percentage_sensor:
-    fixed_min: 0.0
-    fixed_max: 100.0
 - thermal_power_sensor:
     flexible_min: 0.0
     flexible_max: 3517000.0
