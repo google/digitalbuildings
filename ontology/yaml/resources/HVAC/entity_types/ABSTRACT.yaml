@@ -5140,6 +5140,14 @@ DRSM8X:
   implements:
   - MONITORING
 
+DRSM2X:
+  description: "Dryer status monitoring."
+  is_abstract: true
+  uses:
+  - dryer_run_status_1
+  - dryer_run_status_2
+  implements:
+  - MONITORING
 
 AHAC:
   guid: "f34854e7-cf5e-4477-baaa-e72f80a28bcd"
@@ -7417,11 +7425,4 @@ PHWRMSC:
   implements:
   - CONTROL
 
-DRSM2X:
-  description: "Dryer status monitoring."
-  is_abstract: true
-  uses:
-  - dryer_run_status_1
-  - dryer_run_status_2
-  implements:
-  - MONITORING
+
