@@ -33,6 +33,7 @@ CHWS_SWTC:
   - SWTC
 
 CHWS_SWTC_WFRM:
+  guid: "9ec2ed3a-7ff6-4273-b4d5-a680dec5c5df"
   description: "Chilled water system with basic supply water temperature control and flowrate sensor. "
   is_canonical: true
   implements:
@@ -320,6 +321,22 @@ CHWS_WDPC_SWISOVPM_BYPVPM_WSEBYPVPM_PWDT_PRWFRM_SEWTM_SEWFRM_CLPM:
   - SEWTM
   - SEWFRM
   - CLPM
+
+CHWS_SWTC_WDPC_PSWTC_PWDPC_PWFRM_PWECVC_SWDVPM_PWDVPM:
+  guid: "a6394e94-4120-4562-8d34-5fa6101972a7"
+  description: "Chilled and process water system with process water electricconductivity drain valve control and diverting valves on both sides."
+  is_canonical: true
+  implements:
+  - CHWS
+  - SWTC
+  - WDPC
+  - PSWTC
+  - PWDPC
+  - PWFRM
+  - PWECVC
+  - SWDVPM
+  - PWDVPM
+
 
 ###################################
 ### Existing Non-standard Types ###
