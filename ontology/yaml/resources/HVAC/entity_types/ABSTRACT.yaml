@@ -3625,6 +3625,16 @@ HXRWISOVM:
   implements:
   - MONITORING
 
+PWECVC:
+  guid: "c7d64d95-0215-4c9a-b422-a4fb7004f3e3"
+  description: "Process water electricconductivity drain valve control."
+  is_abstract: true
+  uses:
+  - drain_water_valve_command
+  - process_water_electricconductivity_sensor
+  - process_water_electricconductivity_setpoint
+  implements:
+  - OPERATIONAL
 
 PWISOVM:
   guid: "f4ea38d8-031e-48cd-be80-43883419ed55"
@@ -3635,7 +3645,6 @@ PWISOVM:
   implements:
   - MONITORING
 
-
 PWVPM:
   guid: "2335c3b8-b27f-4ef0-b15b-7df5e8d25e4a"
   description: "Process water valve percentage monitoring."
@@ -3645,6 +3654,17 @@ PWVPM:
   implements:
   - MONITORING
 
+PWDVPM:
+  guid: "2a424fbc-d5d8-4675-842a-996996344180"
+  description: "Process water diverting valve percentage monitoring."
+  is_abstract: true
+  opt_uses:
+  - failed_process_water_diverting_valve_alarm
+  uses:
+  - process_water_diverting_valve_percentage_command
+  - process_water_diverting_valve_percentage_sensor
+  implements:
+  - MONITORING
 
 CHWBZC:
   guid: "cbdecbaf-5ddb-4f77-b85f-2fbd92970a70"
@@ -4324,6 +4344,17 @@ SWISOVM:
   - failed_supply_water_isolation_valve_alarm
   - local_override_isolation_valve_alarm
 
+SWDVPM:
+  guid: "4a848219-0fdd-4f99-ae7d-5604cbf27bd9"
+  description: "Supply water diverting valve percentage monitoring."
+  is_abstract: true
+  opt_uses:
+  - failed_supply_water_diverting_valve_alarm
+  uses:
+  - supply_water_diverting_valve_percentage_command
+  - supply_water_diverting_valve_percentage_sensor
+  implements:
+  - MONITORING
 
 SWISOVPM:
   guid: "33856563-ebe5-42ee-a928-e8b46d81772d"
