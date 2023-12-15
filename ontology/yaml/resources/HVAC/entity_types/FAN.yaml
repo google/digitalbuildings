@@ -581,6 +581,16 @@ FAN_HLC_COC2XDSP_NO2C2XDSP:
   - COC2XDSP
   - NO2C2XDSP
 
+FAN_SS_VSC_FDPM_DRSM3X:
+  description: "Fan with exhaust air temp sensor and 3 dryer_run_status points."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - VSC
+  - FDPM
+  - DRSM3X
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
