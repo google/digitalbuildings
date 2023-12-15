@@ -17,5 +17,19 @@
 
 US-SEA-BLDG1-GUID:
   type: FACILITIES/BUILDING
-  translation: COMPLIANT_INVALID
   code: US-SEA-BLDG1
+
+ENTITY-GUID:
+  type: HVAC/FAN_SS
+  code: FAN1
+  translation:
+    RUN_COMMAND:
+      present_value: points.run_command.present_value
+      states:
+        'ON': '1'
+        'OFF': '0'
+    run_status:
+      present_value: points.run_status.present_value
+      states:
+        'ON': '1'
+        'OFF': '0'
