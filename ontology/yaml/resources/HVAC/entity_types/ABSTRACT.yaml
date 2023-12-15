@@ -6859,7 +6859,7 @@ RFSS3X:
 
 RFSS4X:
   guid: "e8713c4f-b156-4158-99c6-2ad49702fd80"
-  description: "Return fan start-stop and feedback with two fan."
+  description: "Return fan start-stop and feedback with four fans."
   is_abstract: true
   opt_uses:
   - return_fan_current_sensor_1
@@ -6958,7 +6958,7 @@ RFVSC3X:
 
 RFVSC4X:
   guid: "9083ed68-61cb-4261-bea4-b62dd617904c"
-  description: "Return fan variable speed control with feedback and sensoring for two fans."
+  description: "Return fan variable speed control with feedback and sensoring for four fans."
   is_abstract: true
   opt_uses:
   - return_fan_current_sensor_1
