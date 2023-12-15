@@ -1841,3 +1841,25 @@ FCU_DFVSC_RTM_CO2M_HWZTC_CHWZTC:
   - HWZTC
   - CHWZTC
 
+FCU_DFSS_CSP_DXZC_RAIDC:
+  description: "Typical DX FCU with cooling-only (discharge control), and return air isolation damper control."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - CSP
+  - DXZC
+  - RAIDC
+
+FCU_DFSS_CSP_RTM_DXZC:
+  description: "Simple FCU DX with cooling zone control, and return temperature monoitoring."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - CSP
+  - RTM
+  - DXZC
+  opt_uses:
+  - water_leak_alarm
+  - failed_alarm

@@ -181,3 +181,11 @@ PMP_SS_VSC_NONCANONICAL_2:
   - mixing_valve_percentage_command
   - chilled_supply_water_temperature_setpoint
   - chilled_supply_water_temperature_sensor
+
+PMP_SS_SWTM_RWTM:
+  description: "Typical pump with supply and return water temperature monitoring."
+  implements:
+  - PMP
+  - SS
+  - SWTM
+  - RWTM

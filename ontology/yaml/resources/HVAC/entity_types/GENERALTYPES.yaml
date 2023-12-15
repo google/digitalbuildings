@@ -457,3 +457,11 @@ CRREF:
   - failed_communication_alarm
   implements:
   - EQUIPMENT
+
+WSHP:
+  description: "Tag for water source heat pumps.WSHP serves as a heating or cooling system using water as a heat exchange medium. In contrast to chillers that centralize cooling production and distribute chilled water, WSHPs operate locally, offering isolated control by using water from a nearby source for both heating and cooling functions within a building."
+  is_abstract: true
+  implements:
+  - EQUIPMENT
+  opt_uses:
+  - failed_communication_alarm

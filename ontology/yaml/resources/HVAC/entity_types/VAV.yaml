@@ -667,3 +667,83 @@ VAV_CO2C_NONCANONICAL_1:
   uses:
   - supply_air_damper_percentage_sensor
   - supply_air_flowrate_sensor
+
+VAV_CSP_DFVSC_DAIDC:
+  description: "VAV with cooling, discharge fan control, and supply damper monitoring."
+  is_canonical: true
+  implements:
+  - VAV
+  - CSP
+  - DFVSC
+  - DAIDC
+
+VAV_SD_DSP_HTDC_CO2C:
+  description: "Single duct reheat VAV with electric heat, discharge temperature control, and co2 control."
+  is_canonical: true
+  implements:
+  - VAV
+  - SD
+  - DSP
+  - HTDC
+  - CO2C
+
+VAV_DSP_PDSCV:
+  description: "Supply control VAV with dual setpoint damper percentage monitoring. "
+  is_canonical: true
+  implements:
+  - VAV
+  - DSP
+  - PDSCV
+
+VAV_DSP_PDSCV_CO2C:
+  description: "Supply control VAV with dual setpoint damper percentage monitoring, and CO2 control."
+  is_canonical: true
+  implements:
+  - VAV
+  - DSP
+  - PDSCV
+  - CO2C
+
+VAV_DSP_PDSCV_HTZC:
+  description: "Supply control VAV with dual setpoint damper percentage monitoring, and electic duct reheat."
+  is_canonical: true
+  implements:
+  - VAV
+  - DSP
+  - PDSCV
+  - HTZC
+
+VAV_DSP_PDSCV_CO2C_HTZC:
+  description: "Supply control VAV with dual setpoint damper percentage monitoring, CO2 control, and electic reheat."
+  is_canonical: true
+  implements:
+  - VAV
+  - DSP
+  - PDSCV
+  - CO2C
+  - HTZC
+
+VAV_DSP_PDSCV_WDPC:
+  description: "Supply control VAV with dual setpoint damper percentage monitoring, and differential pressure control."
+  is_canonical: true
+  implements:
+  - VAV
+  - DSP
+  - PDSCV
+  - WDPC
+
+VAV_PDSCV_WDPC:
+  description: "Supply control VAV with damper percentage monitoring, and differential pressure control."
+  is_canonical: true
+  implements:
+  - VAV
+  - PDSCV
+  - WDPC
+
+VAV_SD_DTM:
+  description: "Simple single duct VAV with discharge temperature monitoring."
+  is_canonical: true
+  implements:
+  - VAV
+  - SD
+  - DTM

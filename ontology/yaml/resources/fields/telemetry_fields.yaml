@@ -3258,3 +3258,18 @@ literals:
 - low_limit_zone_air_no2_concentration_setpoint:
     fixed_min: 0.0
     flexible_max: 0.0005
+- high_supply_air_flowrate_alarm:
+  - ACTIVE
+  - INACTIVE
+- low_supply_air_flowrate_alarm:
+  - ACTIVE
+  - INACTIVE
+- failed_heater_alarm:
+  - ACTIVE
+  - INACTIVE
+- low_potable_supply_water_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
+- potable_hot_supply_water_temperature_setpoint:
+    flexible_min: 255.9259259
+    flexible_max: 380.3703704

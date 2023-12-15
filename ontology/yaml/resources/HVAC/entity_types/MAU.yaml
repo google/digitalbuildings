@@ -916,3 +916,14 @@ MAU_SFSS_SFVSC_HTSC_BPC_SHM_NONCANONICAL_2:
   - DEPRECATED
   uses:
   - humidification_run_command
+
+MAU_DF2XSS_DFVSC2X_CHWZC_HWZC_VOADM:
+  description: "Multi-zone MAU with chilled water and heating water control and outside air monitoring."
+  is_canonical: true
+  implements:
+  - MAU
+  - DF2XSS
+  - DFVSC2X
+  - CHWZC
+  - HWZC
+  - VOADM
