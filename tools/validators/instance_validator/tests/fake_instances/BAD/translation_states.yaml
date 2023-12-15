@@ -15,13 +15,18 @@
 # This config file is invalid because the subkeys of the `states` key
 # need to be members of the states ontology. `INVALID_STATE` is not.
 
-US-SEA-BLDG1-GUID:
-  type: FACILITIES/BUILDING
+DMPR1-GUID:
+  type: HVAC/DMP_EDM
   code: US-SEA-BLDG1
-  cloud_device_id: "foobar"
+  cloud_device_id: "1234567891234567"
   translation:
-    supply_air_isolation_damper_command:
+    exhaust_air_damper_command:
       present_value: "points.damper_1.present_value"
       states:
         OPEN: "1"
         INVALID_STATE: "2"
+    exhaust_air_damper_status:
+      present_value: "points.damper_2.present_value"
+      states:
+        OPEN: "1"
+        CLOSED: "0"
