@@ -7517,7 +7517,7 @@ NO2C2XDSP:
 
 HCPC2X:
   guid: "67a960f5-65e7-400f-b64e-ab4ef1ae9035"
-  description: "Circulation control for 2 heating water pumps part of a hydronic plant."
+  description: "Circulation control for 2 onboard heating water pumps."
   is_abstract: true
   uses:
   - heating_water_circulation_pump_run_status_1
@@ -7527,7 +7527,7 @@ HCPC2X:
 
 CHCPC2X:
   guid: "688f6f6a-c79a-4f1f-8a1e-4463d610276d"
-  description: "Circulation control for 2 chilled water pumps part of a hydronic plant."
+  description: "Circulation control for 2 onboard chilled water pumps."
   is_abstract: true
   uses:
   - chilled_water_circulation_pump_run_status_1
