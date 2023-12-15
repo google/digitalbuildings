@@ -171,8 +171,6 @@ CSP:
   - failed_zone_air_temperature_alarm
   - high_zone_air_temperature_alarm
   - low_zone_air_temperature_alarm
-  - low_discharge_air_temperature_alarm
-  - high_discharge_air_temperature_alarm
   uses:
   - zone_air_cooling_temperature_setpoint
   - zone_air_temperature_sensor

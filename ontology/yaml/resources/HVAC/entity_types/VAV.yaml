@@ -630,14 +630,6 @@ VAV_SD_DSP_HTDC_CO2C:
   - HTDC
   - CO2C
 
-VAV_DSP_PDSCV:
-  description: "Supply control VAV with dual setpoint damper percentage monitoring. "
-  is_canonical: true
-  implements:
-  - VAV
-  - DSP
-  - PDSCV
-
 VAV_DSP_PDSCV_CO2C:
   description: "Supply control VAV with dual setpoint damper percentage monitoring, and CO2 control."
   is_canonical: true
