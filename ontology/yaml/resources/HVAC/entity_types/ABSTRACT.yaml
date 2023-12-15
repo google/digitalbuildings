@@ -5141,6 +5141,7 @@ DRSM8X:
   - MONITORING
 
 DRSM2X:
+  guid: "60984796-4324-4f1f-9afb-fbb69f86a91c"
   description: "Dryer status monitoring."
   is_abstract: true
   uses:
@@ -7414,6 +7415,7 @@ NO2C2XDSP:
   - CONTROL
 
 PHWRMSC:
+  guid: "ef91c1f1-cc85-4690-b4dd-69a4678f7cb3"
   description: "Potable hot water with return monitoring and supply water control."
   is_abstract: true
   opt_uses:
