@@ -1842,7 +1842,7 @@ FCU_DFVSC_RTM_CO2M_HWZTC_CHWZTC:
   - CHWZTC
 
 FCU_DFSS_CSP_DXZC_RAIDC:
-  description: "Typical DX FCU with cooling-only (discharge control), and return air isolation damper control."
+  description: "Typical DX FCU with single cooling setpoint control, and return air isolation damper control."
   is_canonical: true
   implements:
   - FCU

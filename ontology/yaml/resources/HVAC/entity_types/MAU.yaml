@@ -802,12 +802,12 @@ MAU_NONCANONICAL_4:
   - supply_fan_run_status
   - supply_fan_speed_percentage_command
 
-MAU_DF2XSS_DFVSC2X_CHWZC_HWZC_VOADM:
+MAU_DFSS2X_DFVSC2X_CHWZC_HWZC_VOADM:
   description: "Multi-zone MAU with chilled water and heating water control and outside air monitoring."
   is_canonical: true
   implements:
   - MAU
-  - DF2XSS
+  - DFSS2X
   - DFVSC2X
   - CHWZC
   - HWZC

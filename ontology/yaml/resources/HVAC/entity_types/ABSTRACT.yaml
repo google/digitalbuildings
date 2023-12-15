@@ -512,8 +512,6 @@ VSFC:
   description: "Variable speed control or monitor in frequency"
   is_abstract: true
   opt_uses:
-  - run_status
-  - run_command
   - failed_alarm
   uses:
   - speed_frequency_command
@@ -749,7 +747,10 @@ DFSS2X:
   description: "Two discharge fan run command and status (start/stop). With dampers"
   is_abstract: true
   implements:
+  opt_uses:
   - OPERATIONAL
+  - failed_discharge_fan_alarm_1
+  - failed_discharge_fan_alarm_2
   uses:
   - discharge_fan_run_command_1
   - discharge_fan_run_command_2
@@ -4001,8 +4002,6 @@ DF2XSS:
   - discharge_fan_current_sensor
   - discharge_fan_power_sensor
   - discharge_fan_lost_power_alarm
-  - failed_discharge_fan_alarm_1
-  - failed_discharge_fan_alarm_2
   uses:
   - discharge_fan_run_command_1
   - discharge_fan_run_command_2
@@ -7418,8 +7417,8 @@ PHWRMSC:
   is_abstract: true
   opt_uses:
   - low_potable_supply_water_temperature_alarm
-  uses:
   - potable_hot_return_water_temperature_sensor
+  uses:
   - potable_hot_supply_water_temperature_sensor
   - potable_hot_supply_water_temperature_setpoint
   implements:
