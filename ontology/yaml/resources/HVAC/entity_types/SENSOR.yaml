@@ -321,3 +321,10 @@ SENSOR_ZOC:
   implements:
   - /SENSOR
   - ZOC
+
+SENSOR_SFM:
+  description: "Standalone duct supply air flowrate sensor."
+  is_canonical: true
+  implements:
+  - /SENSOR
+  - SFM
