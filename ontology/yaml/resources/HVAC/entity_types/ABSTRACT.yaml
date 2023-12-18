@@ -5170,6 +5170,7 @@ DX6SWC:
 
 
 DRSM3X:
+  guid: "c944d990-d8a9-4e04-a9f0-d0490fe5bce4"
   description: "Dryer status monitoring with 3 dryer_run_status points."
   is_abstract: true
   uses:
