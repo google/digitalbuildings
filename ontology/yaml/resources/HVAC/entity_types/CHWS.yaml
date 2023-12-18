@@ -40,7 +40,7 @@ CHWS_SWTC_WFRM:
   - CHWS
   - SWTC
   - WFRM
-  
+
 CHWS_SWTC_WDPC:
   guid: "eb566702-f5f0-4f31-808c-320a61956fc7"
   description: "Chilled water system with supply temperature and differential pressure control."
