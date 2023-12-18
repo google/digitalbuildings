@@ -918,6 +918,26 @@ AHU_DFSS_CHWDT_DTM_RTC_RWISOVPC_OAFC_FDPSM2X:
   - OAFC
   - FDPSM2X
 
+AHU_SFSS_SFVSC_EFSS_EFVSC_HTWHLZTC_HWZTC_CHWZTC_SSPC_RSPC_CO2DSPMADC_MTM_ECONZ_FDPM3X:
+  guid: "d1f96a1d-3c49-49c9-8ff7-aa60f1f7e10b"
+  description: "AHU that serves multiple dampers all feeding a single zone."
+  is_canonical: true
+  implements:
+  - AHU
+  - SFSS
+  - SFVSC
+  - EFSS
+  - EFVSC
+  - HTWHLZTC
+  - HWZTC
+  - CHWZTC
+  - SSPC
+  - RSPC
+  - CO2DSPMADC
+  - MTM
+  - ECONZ
+  - FDPM3X
+
 ### Multi-zone Units ###
 
 AHU_DXSC_ECON_EFSS_SFSS:
@@ -4100,6 +4120,161 @@ AHU_CHWSC_HWSC_ECON_EDBPC_RFSS2X_RFVSC2X_SFSS2X_SFVSC2X_SSPC:
   - SFVSC2X
   - SSPC
 
+AHU_CHWSC_HWSC_MOAFC_ECONM_EDBPC_RFSS2X_RFVSC2X_SFSS2X_SFVSC2X_SSPC_LCC:
+  guid: "e69e6631-e2d3-4392-9659-411d5a260e1b"
+  description: "Multi-zone chilled water and heating water AHU with supply air static pressure control, building static pressure control, minimum OA damper control, and economizer monitoring."
+  is_canonical: true
+  implements:
+  - AHU
+  - CHWSC
+  - HWSC
+  - MOAFC
+  - ECONM
+  - EDBPC
+  - RFSS2X
+  - RFVSC2X
+  - SFSS2X
+  - SFVSC2X
+  - SSPC
+  - LCC
+
+AHU_CHWSC_HWSC_MOAFC_ECONM2X_EDBPC_RFSS4X_RFVSC4X_SFSS4X_SFVSC4X_SSPC_LCC:
+  guid: "99914671-cc04-47cf-9133-c58d0478f791"
+  description: "Multi-zone chilled water and heating water AHU with supply air static pressure control, building static pressure control, minimum OA damper control, and economizer control."
+  is_canonical: true
+  implements:
+  - AHU
+  - CHWSC
+  - HWSC
+  - MOAFC
+  - ECONM2X
+  - EDBPC
+  - RFSS4X
+  - RFVSC4X
+  - SFSS4X
+  - SFVSC4X
+  - SSPC
+  - LCC
+AHU_CHWSC_EFSS_EFVSC_FDPM3X_HTWHLSTC_HWSC_RCO2M_RSPC_SFM_SFSS_SFVSC_SSPC_VOADM_VMADC:
+  guid: "f53a0828-f284-490f-aa56-e150de3d0ddf"
+  description: "Complex multi zone AHU with heat recovery wheel and recirculated air control."
+  is_canonical: true
+  implements:
+  - AHU
+  - CHWSC
+  - EFSS
+  - EFVSC
+  - FDPM3X
+  - HTWHLSTC
+  - HWSC
+  - RCO2M
+  - RSPC
+  - SFM
+  - SFSS
+  - SFVSC
+  - SSPC
+  - VOADM
+  - VMADC
+
+AHU_CHWSC_ECON_FDPM_HWSC_SFSS_SFVSC_SSPC_SDHC_RTM:
+  guid: "cff73d74-717b-4656-808e-95365ce9ad9b"
+  description: "Multi-zone AHU with dehumidifier and return temperature monitoring"
+  is_canonical: true
+  implements:
+  - AHU
+  - CHWSC
+  - ECON
+  - FDPM
+  - HWSC
+  - SFSS
+  - SFVSC
+  - SSPC
+  - SDHC
+  - RTM
+  opt_uses:
+  - smoke_alarm
+
+AHU_SFSS4X_SFVSC4X_RFSS3X_RFVSC3X_CHWSC_HWSC_ECON_EDBPC_SARC_SSPC_RD_OAFMC_EFM:
+  guid: "187ad041-6b1e-4ee5-aabb-69dc8c287bdd"
+  description: "Cooling and heating AHU with 4 supply and 3 return fans, supply air reset control, building and supply static pressure control, return damper flow control and exhaust flow monitoring."
+  is_canonical: true
+  implements:
+  - AHU
+  - SFSS4X
+  - SFVSC4X
+  - RFSS3X
+  - RFVSC3X
+  - CHWSC
+  - HWSC
+  - ECON
+  - EDBPC
+  - SARC
+  - SSPC
+  - RD
+  - OAFMC
+  - EFM
+  opt_uses:
+  - smoke_alarm
+
+AHU_SFSS4X_SFVSC4X_RFSS3X_RFVSC3X_CHWSC_HWSC_ECON_EDBPC_SARC_SSPC_RD_OAFMC:
+  guid: "dca00b39-6816-4d59-b3b6-2b3a429edf8b"
+  description: "Cooling and heating AHU with 4 supply and 3 return fans, supply air reset control, building and supply static pressure control and return damper flow control."
+  is_canonical: true
+  implements:
+  - AHU
+  - SFSS4X
+  - SFVSC4X
+  - RFSS3X
+  - RFVSC3X
+  - CHWSC
+  - HWSC
+  - ECON
+  - EDBPC
+  - SARC
+  - SSPC
+  - RD
+  - OAFMC
+  opt_uses:
+  - smoke_alarm
+
+AHU_SFSS2X_SFVSC2X_RFSS2X_RFVSC2X_CHWSC_HWSC_ECON_EDBPC_SARC_SSPC_RD_OAFMC:
+  guid: "5a3034e7-0a17-416c-b974-55072d52d3e4"
+  description: "Cooling and heating AHU with 2 supply and 2 return fans, supply air reset control, building and supply static pressure control and return damper flow control."
+  is_canonical: true
+  implements:
+  - AHU
+  - SFSS2X
+  - SFVSC2X
+  - RFSS2X
+  - RFVSC2X
+  - CHWSC
+  - HWSC
+  - ECON
+  - EDBPC
+  - SARC
+  - SSPC
+  - RD
+  - OAFMC
+  opt_uses:
+  - smoke_alarm
+
+AHU_SFSS_SFVSC_EFSS_EFVSC_CHWSC_HWSC_ECON_EDBPC_SARC_SSPC_OAFMC:
+  guid: "36c1740d-1eaa-4bae-8779-269cdfc0c5a0"
+  description: "Multi-zone cooling and heating AHU with supply air reset control and supply static pressure control."
+  is_canonical: true
+  implements:
+  - AHU
+  - SFSS
+  - SFVSC
+  - EFSS
+  - EFVSC
+  - CHWSC
+  - HWSC
+  - ECON
+  - EDBPC
+  - SARC
+  - SSPC
+  - OAFMC
 
 ###################################
 ### Existing Non-standard Types ###
@@ -4911,42 +5086,3 @@ AHU_BSPC_DX4SC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC_RHHC_NONCANONICAL_1:
   - heating_water_valve_percentage_command
   - min_zone_air_relative_humidity_sensor
   - min_zone_air_relative_humidity_setpoint
-
-AHU_CHWSC_EFSS_EFVSC_FDPM3X_HTWHLSTC_HWSC_RCO2M_RSPC_SFM_SFSS_SFVSC_SSPC_VOADM_VMADC:
-  guid: "f53a0828-f284-490f-aa56-e150de3d0ddf"
-  description: "Complex multi zone AHU with heat recovery wheel and recirculated air control."
-  is_canonical: true
-  implements:
-  - AHU
-  - CHWSC
-  - EFSS
-  - EFVSC
-  - FDPM3X
-  - HTWHLSTC
-  - HWSC
-  - RCO2M
-  - RSPC
-  - SFM
-  - SFSS
-  - SFVSC
-  - SSPC
-  - VOADM
-  - VMADC
-
-AHU_CHWSC_ECON_FDPM_HWSC_SFSS_SFVSC_SSPC_SDHC_RTM:
-  guid: "cff73d74-717b-4656-808e-95365ce9ad9b"
-  description: "Multi-zone AHU with dehumidifier and return temperature monitoring"
-  is_canonical: true
-  implements:
-  - AHU
-  - CHWSC
-  - ECON
-  - FDPM
-  - HWSC
-  - SFSS
-  - SFVSC
-  - SSPC
-  - SDHC
-  - RTM
-  opt_uses:
-  - smoke_alarm

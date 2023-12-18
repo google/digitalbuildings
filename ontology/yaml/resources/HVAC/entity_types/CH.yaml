@@ -576,6 +576,87 @@ CH_SS_SCHWTC_CDWFRM_CHWSWISOVM_CWSISOVM_CHWDPM_CHWFRM_CWDT_REFPM_IGM_DXSWC:
   - IGM
   - DXSWC
 
+CH_SS_VSC_CHDXSC_SCHWTC_CWSISOVPM_CHWSWISOVM_CHWDPM_CWDT_REFPM_REFSM:
+  guid: "9fd7c871-3378-4a48-898d-3b47fb19d34c"
+  description: "Water cooled chiller with condensing and chilled supply water isolation valves, condensing water temperature differential monitoring, chilled water differential pressure monitoring and single circuit refrigerant pressure and temperature monitoring."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - VSC
+  - CHDXSC
+  - SCHWTC
+  - CWSISOVPM
+  - CHWSWISOVM
+  - CHWDPM
+  - CWDT
+  - REFPM
+  - REFSM
+
+CH_SS_DX3SCHWC_CWSISOVM_CWRISOVM_CHWSWISOVM_CHWDPM_CWDT_CHWDT_RCKTM:
+  guid: "8a648fa7-d065-4ff4-b524-626b4a23c238"
+  description: "Water cooled chiller with three compressors, refrigeration circuit monitoring, condensing supply and return water isolation valve, chilled supply water islation valve, chilled and condensing water differential pressure monitoring and condensing water temperature differential monitoring."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - DX3SCHWC
+  - CWSISOVM
+  - CWRISOVM
+  - CHWSWISOVM
+  - CHWDPM
+  - CWDT
+  - CHWDT
+  - RCKTM
+
+CH_SS_DX4SWC_RWTM_REFSM2X_REFPM2X_CPC:
+  guid: "6de8a9fd-87c5-4190-b4e2-402ede91900d"
+  description: "Four stage air cooled chiller with return water temperature monitoring, circulation pump monitoring and two circuit refrigerant monitoring."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - DX4SWC
+  - RWTM
+  - REFSM2X
+  - REFPM2X
+  - CPC
+
+CH_SS_DX2SWC_CHDXVSC2X_RWTM_MWDPC_RWISOVM_REFSM2X_REFPM2X_CPC_INVIPWM2X_INVOPWM2X:
+  guid: "cf101310-f825-4637-9948-f036ecbb4210"
+  description: "Two stage air cooled chiller with dual compressor variable speed control, return water isolation valve, minimum differential pressure control, return water temperature monitoring, two circuit refrigerant monitoring, circulation pump monitoring and input/output inverter power monitoring."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - DX2SWC
+  - CHDXVSC2X
+  - RWTM
+  - MWDPC
+  - RWISOVM
+  - REFSM2X
+  - REFPM2X
+  - CPC
+  - INVIPWM2X
+  - INVOPWM2X
+
+CH_SS_DX2SWC_CHDXVSC2X_RWTM_MWDPC_REFSM2X_REFPM2X_CPC_INVIPWM2X_INVOPWM2X:
+  guid: "315ae36a-c828-4c22-a82a-40be34d0cfe9"
+  description: "Two stage air cooled chiller with dual compressor variable speed control, minimum differential pressure control, return water temperature monitoring, two circuit refrigerant monitoring, circulation pump monitoring and input/output inverter power monitoring."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - DX2SWC
+  - CHDXVSC2X
+  - RWTM
+  - MWDPC
+  - REFSM2X
+  - REFPM2X
+  - CPC
+  - INVIPWM2X
+  - INVOPWM2X
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
@@ -661,38 +742,3 @@ CH_SS_CHWSWISOVM_CWSISOVM_CWRISOVM_CHWRWISOVM_CHWDT:
   opt_uses:
   - lost_power_alarm
   - run_mode
-
-CH_SS_VSC_CHDXSC_SCHWTC_CWSISOVPM_CHWSWISOVM_CHWDPM_CWDT_REFPM_REFSM:
-  guid: "9fd7c871-3378-4a48-898d-3b47fb19d34c"
-  description: "Water cooled chiller with condensing and chilled supply water isolation valves, condensing water temperature differential monitoring,
-                chilled water differential pressure monitoring and single circuit refrigerant pressure and temperature monitoring."
-  is_canonical: true
-  implements:
-  - CH
-  - SS
-  - VSC
-  - CHDXSC
-  - SCHWTC
-  - CWSISOVPM
-  - CHWSWISOVM
-  - CHWDPM
-  - CWDT
-  - REFPM
-  - REFSM
-
-CH_SS_DX3SCHWC_CWSISOVM_CWRISOVM_CHWSWISOVM_CHWDPM_CWDT_CHWDT_RCKTM:
-  guid: "8a648fa7-d065-4ff4-b524-626b4a23c238"
-  description: "Water cooled chiller with three compressors, refrigeration circuit monitoring, condensing supply and return water isolation valve, 
-                chilled supply water islation valve, chilled and condensing water differential pressure monitoring and condensing water temperature differential monitoring."
-  is_canonical: true
-  implements:
-  - CH
-  - SS
-  - DX3SCHWC
-  - CWSISOVM
-  - CWRISOVM
-  - CHWSWISOVM
-  - CHWDPM
-  - CWDT
-  - CHWDT
-  - RCKTM
