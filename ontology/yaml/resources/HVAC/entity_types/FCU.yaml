@@ -19,7 +19,7 @@
 # This file defines fan-coil unit types. Valid types must include a fan and a coil of some type.
 # They must also include some control scheme (e.g. ZTC, DSP, etc.).
 
-FCU_SS_CO2M_ZTC_STC_RTM:
+FCU_SS_CO2M_ZTC_STM_RTM:
   description: "AC unit with heating and cooling (zone temp control)"
   is_canonical: true
   implements:
@@ -27,7 +27,7 @@ FCU_SS_CO2M_ZTC_STC_RTM:
   - SS
   - CO2M
   - ZTC
-  - STC
+  - STM
   - RTM
 
 FCU_DFSS_CSP_CHWDC:
