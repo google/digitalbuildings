@@ -825,3 +825,14 @@ FAN_SS_MSM:
   implements:
   - FAN
   - MSM
+
+FAN_SS_VSC_FDPM_DRSM2X:
+  description: "Fan with start/stop status and open-loop speed control as well as filter pressure and dryer status monitoring."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - VSC
+  - FDPM
+  - DRSM2X
+
