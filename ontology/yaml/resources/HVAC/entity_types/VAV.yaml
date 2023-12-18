@@ -611,6 +611,50 @@ VAV_DSP_PDSCV:
   - DSP
   - PDSCV
 
+VAV_CSP_DFVSC_DAIDC:
+  description: "VAV with cooling, discharge fan control, and supply damper monitoring."
+  is_canonical: true
+  implements:
+  - VAV
+  - CSP
+  - DFVSC
+  - DAIDC
+
+VAV_SD_DSP_HTDC_CO2C:
+  description: "Single duct reheat VAV with electric heat, discharge temperature control, and co2 control."
+  is_canonical: true
+  implements:
+  - VAV
+  - SD
+  - DSP
+  - HTDC
+  - CO2C
+
+VAV_DSP_PDSCV_WDPC:
+  description: "Supply control VAV with dual setpoint damper percentage monitoring, and differential pressure control."
+  is_canonical: true
+  implements:
+  - VAV
+  - DSP
+  - PDSCV
+  - WDPC
+
+VAV_PDSCV_WDPC:
+  description: "Supply control VAV with damper percentage monitoring, and differential pressure control."
+  is_canonical: true
+  implements:
+  - VAV
+  - PDSCV
+  - WDPC
+
+VAV_SD_DTM:
+  description: "Simple single duct VAV with discharge temperature monitoring."
+  is_canonical: true
+  implements:
+  - VAV
+  - SD
+  - DTM
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
