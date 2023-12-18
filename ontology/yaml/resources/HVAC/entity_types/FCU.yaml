@@ -1842,6 +1842,7 @@ FCU_DFVSC_RTM_CO2M_HWZTC_CHWZTC:
   - CHWZTC
 
 FCU_DFSS_CSP_DXZC_RAIDC:
+  guid: "c34fe2c5-917f-42bf-96c3-35dfb185a09e"
   description: "Typical DX FCU with single cooling setpoint control, and return air isolation damper control."
   is_canonical: true
   implements:
@@ -1852,6 +1853,7 @@ FCU_DFSS_CSP_DXZC_RAIDC:
   - RAIDC
 
 FCU_DFSS_CSP_RTM_DXZC:
+  guid: "541f06cc-7806-4b90-98a9-39f43315c433"
   description: "Simple FCU DX with cooling zone control, and return temperature monoitoring."
   is_canonical: true
   implements:

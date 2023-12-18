@@ -827,6 +827,7 @@ FAN_SS_MSM:
   - MSM
 
 FAN_SS_VSC_FDPM_DRSM2X:
+  guid: "ba26cc73-b4f1-4eda-ba27-1ad07d763c46"
   description: "Fan with start/stop status and open-loop speed control as well as filter pressure and dryer status monitoring."
   is_canonical: true
   implements:
