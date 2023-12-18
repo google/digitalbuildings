@@ -34,6 +34,8 @@ SD:
   - high_supply_air_temperature_alarm
   - low_supply_air_temperature_alarm
   - purge_command
+  - high_supply_air_flowrate_alarm
+  - low_supply_air_flowrate_alarm
   uses:
   - supply_air_damper_percentage_command
   - supply_air_flowrate_sensor
@@ -512,6 +514,8 @@ VSFC:
   guid: "8dcdc4b0-af94-4468-8346-d28442447f84"
   description: "Variable speed control or monitor in frequency"
   is_abstract: true
+  opt_uses:
+  - failed_alarm
   uses:
   - speed_frequency_command
   - speed_frequency_sensor
@@ -747,6 +751,9 @@ DFSS2X:
   is_abstract: true
   implements:
   - OPERATIONAL
+  opt_uses:
+  - failed_discharge_fan_alarm_1
+  - failed_discharge_fan_alarm_2
   uses:
   - discharge_fan_run_command_1
   - discharge_fan_run_command_2
@@ -2768,6 +2775,8 @@ HWZC:
   - high_zone_air_temperature_alarm
   - low_zone_air_temperature_alarm
   - failed_heating_water_valve_alarm
+  - high_discharge_air_temperature_alarm
+  - low_discharge_air_temperature_alarm
   uses:
   - heating_water_valve_percentage_command
   - zone_air_heating_temperature_setpoint
@@ -2854,6 +2863,9 @@ HTDC:
   - heating_percentage_command
   - heating_thermal_power_capacity
   - failed_discharge_air_temperature_alarm
+  - failed_heater_alarm
+  - low_discharge_air_temperature_alarm
+  - high_discharge_air_temperature_alarm
   uses:
   - discharge_air_temperature_sensor
   - discharge_air_temperature_setpoint
@@ -2952,6 +2964,7 @@ HTZC:
   - failed_zone_air_temperature_alarm
   - high_zone_air_temperature_alarm
   - low_zone_air_temperature_alarm
+  - failed_heater_alarm
   uses:
   - heater_run_command
   - zone_air_heating_temperature_setpoint
@@ -3455,6 +3468,9 @@ SFM:
   guid: "3dcbf69b-ae92-46e8-9b06-4bbb2b16a71f"
   description: "Supply air flow monitoring."
   is_abstract: true
+  opt_uses:
+  - high_supply_air_flowrate_alarm
+  - low_supply_air_flowrate_alarm
   uses:
   - supply_air_flowrate_sensor
   implements:
@@ -5194,6 +5210,15 @@ DRSM8X:
   implements:
   - MONITORING
 
+DRSM2X:
+  guid: "60984796-4324-4f1f-9afb-fbb69f86a91c"
+  description: "Dryer status monitoring."
+  is_abstract: true
+  uses:
+  - dryer_run_status_1
+  - dryer_run_status_2
+  implements:
+  - MONITORING
 
 AHAC:
   guid: "f34854e7-cf5e-4477-baaa-e72f80a28bcd"
@@ -7524,6 +7549,19 @@ NO2C2XDSP:
   - low_limit_zone_air_no2_concentration_setpoint
   - zone_air_no2_concentration_sensor_1
   - zone_air_no2_concentration_sensor_2
+  implements:
+  - CONTROL
+
+POTHWSC:
+  guid: "ef91c1f1-cc85-4690-b4dd-69a4678f7cb3"
+  description: "Potable hot water with return monitoring and supply water control."
+  is_abstract: true
+  opt_uses:
+  - low_potable_supply_water_temperature_alarm
+  - potable_hot_return_water_temperature_sensor
+  uses:
+  - potable_hot_supply_water_temperature_sensor
+  - potable_hot_supply_water_temperature_setpoint
   implements:
   - CONTROL
 
