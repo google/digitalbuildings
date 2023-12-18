@@ -5169,6 +5169,17 @@ DX6SWC:
   - CONTROL
 
 
+DRSM3X:
+  description: "Dryer status monitoring with 3 dryer_run_status points."
+  is_abstract: true
+  uses:
+  - dryer_run_status_1
+  - dryer_run_status_2
+  - dryer_run_status_3
+  implements:
+  - MONITORING
+
+
 DRSM5X:
   guid: "24163e23-9488-4804-9d07-9a40ae3f693e"
   description: "Dryer status monitoring."
