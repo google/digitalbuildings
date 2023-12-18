@@ -601,6 +601,7 @@ FAN_SS_VSC_FDPM_DRSM2X:
   - SS
   - VSC
   - FDPM
+  - DRSM2X
 
 ###################################
 ### Existing Non-standard Types ###
@@ -846,6 +847,4 @@ FAN_SS_MSM:
   implements:
   - FAN
   - MSM
-
-  - DRSM2X
 
