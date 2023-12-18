@@ -803,7 +803,7 @@ MAU_NONCANONICAL_4:
   - supply_fan_speed_percentage_command
 
 MAU_DFSS2X_DFVSC2X_CHWZC_HWZC_VOADM:
-  description: "Multi-zone MAU with chilled water and heating water control and outside air monitoring."
+  description: "Single zone MAU with chilled water control, heating water control, and outside air monitoring."
   is_canonical: true
   implements:
   - MAU

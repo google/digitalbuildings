@@ -750,8 +750,8 @@ DFSS2X:
   description: "Two discharge fan run command and status (start/stop). With dampers"
   is_abstract: true
   implements:
-  opt_uses:
   - OPERATIONAL
+  opt_uses:
   - failed_discharge_fan_alarm_1
   - failed_discharge_fan_alarm_2
   uses:
@@ -7541,7 +7541,7 @@ NO2C2XDSP:
   implements:
   - CONTROL
 
-PHWRMSC:
+POTHWSC:
   guid: "ef91c1f1-cc85-4690-b4dd-69a4678f7cb3"
   description: "Potable hot water with return monitoring and supply water control."
   is_abstract: true
