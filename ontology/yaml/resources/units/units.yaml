@@ -108,6 +108,9 @@ electricconductance:
   siemens: STANDARD
 electricconductivity:
   siemens_per_meter: STANDARD
+  microsiemens_per_centimeter:
+    multiplier: 0.0001
+    offset: 0
 electriccurrentdensity:
   amperes_per_square_meter: STANDARD
 electricfield:

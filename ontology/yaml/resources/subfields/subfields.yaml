@@ -98,6 +98,7 @@ descriptor:
   detection: "Process of identifying conditions."
   direction: "Direction in which particular entity is moving or is present."
   discharge: "Media leaving system to enter ambient conditioned space. Typically applies only to air-side systems."
+  diverting: "Controlling the flow of fluids or gases by diverting the flow from one pathway to another."
   dutycycle: "The fraction of one period in which a signal or system is active."
   defrost: "De-freezing ice from a surface."
   drain: "Media drained from system, typically applied to water-side system "
