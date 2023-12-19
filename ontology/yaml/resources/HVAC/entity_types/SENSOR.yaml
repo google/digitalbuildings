@@ -323,6 +323,7 @@ SENSOR_ZOC:
   - ZOC
 
 SENSOR_SFM:
+  guid: "cff50a85-cca7-4185-9925-2dbfb3d404ee"
   description: "Standalone duct supply air flowrate sensor."
   is_canonical: true
   implements:

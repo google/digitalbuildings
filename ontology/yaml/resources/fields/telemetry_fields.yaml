@@ -3341,14 +3341,14 @@ literals:
   - ACTIVE
   - INACTIVE
 - high_chilled_supply_water_temperature_alarm:
-  - ACTIVE 
+  - ACTIVE
   - INACTIVE
 - high_heating_supply_water_temperature_alarm:
-  - ACTIVE 
+  - ACTIVE
   - INACTIVE
 - low_chilled_supply_water_temperature_alarm:
-  - ACTIVE 
+  - ACTIVE
   - INACTIVE
 - low_heating_supply_water_temperature_alarm:
-  - ACTIVE 
+  - ACTIVE
   - INACTIVE
