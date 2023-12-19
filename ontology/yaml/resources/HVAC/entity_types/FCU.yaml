@@ -1369,6 +1369,31 @@ FCU_SS_HTRC_DTM_ZTM:
   - DTM
   - ZTM
 
+FCU_DFSS_CSP_DXZC_RAIDC:
+  guid: "620d9e16-0b76-4790-8c97-d9dd878254dd"
+  description: "Typical DX FCU with single cooling setpoint control, and return air isolation damper control."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - CSP
+  - DXZC
+  - RAIDC
+
+FCU_DFSS_CSP_RTM_DXZC:
+  guid: "70e4ec9c-bfdc-4123-8cf0-84f37942c9ba"
+  description: "Simple FCU DX with cooling zone control, and return temperature monoitoring."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - CSP
+  - RTM
+  - DXZC
+  opt_uses:
+  - water_leak_alarm
+  - failed_alarm
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
@@ -1840,4 +1865,3 @@ FCU_DFVSC_RTM_CO2M_HWZTC_CHWZTC:
   - CO2M
   - HWZTC
   - CHWZTC
-

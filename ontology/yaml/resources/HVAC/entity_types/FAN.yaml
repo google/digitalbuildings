@@ -581,6 +581,28 @@ FAN_HLC_COC2XDSP_NO2C2XDSP:
   - COC2XDSP
   - NO2C2XDSP
 
+FAN_SS_VSC_FDPM_DRSM3X:
+  guid: "e2dfe79a-54cc-4cdd-a4a6-1bb43ca703a3"
+  description: "Fan with exhaust air temp sensor and 3 dryer_run_status points."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - VSC
+  - FDPM
+  - DRSM3X
+
+FAN_SS_VSC_FDPM_DRSM2X:
+  guid: "ba26cc73-b4f1-4eda-ba27-1ad07d763c46"
+  description: "Fan with start/stop status and open-loop speed control as well as filter pressure and dryer status monitoring."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - VSC
+  - FDPM
+  - DRSM2X
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
@@ -825,3 +847,4 @@ FAN_SS_MSM:
   implements:
   - FAN
   - MSM
+
