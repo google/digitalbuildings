@@ -18,6 +18,11 @@ OFF: "Powered off."
 AUTO: "Running under automatic control."
 MANUAL: "Running under manual (hand) control."
 
+TWENTY_PERCENT: Speed of 20 percent of the maximum
+FORTY_PERCENT: Speed of 40 percent of the maximum
+SIXTY_PERCENT: Speed of 60 percent of the maximum
+EIGHTY_PERCENT: Speed of 80 percent of the maximum
+
 OPEN: "Open position; typically for a valve, damper, or other pass-though."
 CLOSED: "Closed position; typically for a valve, damper, or other pass-though."
 
@@ -30,6 +35,7 @@ INACTIVE: "An action, activity, event, or operation is not currently hapenning."
 ENABLED: "Something is enabled."
 DISABLED: "Something is disabled."
 
+# Added for measured statues (e.g. flowrate_status)
 PRESENT: "Something is currently materialized physically (e.g., flowrate_status is present)."
 ABSENT: "Something is currently not materialized (e.g., flowrate_status is absent)."
 
@@ -89,10 +95,10 @@ SYNCHRONOUS: "Mode of operation of inverter where inverter operation is in line 
 ASYNCHRONOUS: "Mode of operation of inverter where either the bypass supply fails or the inverter is not in line bypass voltage and frequency"
 SOFTSTART: "Mode of operation of rectifier where the input power supply is gradually turned on to avoid overloading"
 
-
 ## LIGHTING
 FADING: "An operation mode of a lighting dimmer: dimming speed based on a duration to dim from minimum to maximum."
 RAMPING: "An operation mode of a lighting dimmer: dimming speed defined in percent per second."
 DIMMING: "Operation mode where the dimmer is operated by setting a constant dimming setpoint."
 CONSTANT_LIGHT_CONTROL: "Operation mode where the dimmer controls the room illuminance."
 SCENE_CONTROL: "Operation mode where the dimmer activates scene presets."
+

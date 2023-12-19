@@ -43,6 +43,22 @@ CU_DFSS_DFVSC_CHWZTC_HWZTC_RTM_ZHM:
   - RTM
   - ZHM
 
+CU_DFSS_DFVSC_CHWZTC_HWZTC_RTM_ZHM_CO2CDSP_PDSCV_RDC:
+  guid: "a87cc63c-9cea-4889-b3fe-e56a1554a57e"
+  description: "Compartment unit on discharge side with start/stop, status, cooling and heating (zone temp control), CO2 control with supply and return dampers."
+  is_canonical: true
+  implements:
+  - CU
+  - DFSS
+  - DFVSC
+  - CHWZTC
+  - HWZTC
+  - RTM
+  - ZHM
+  - CO2CDSP
+  - PDSCV
+  - RDC
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################

@@ -5,9 +5,9 @@ The Digital Buildings Ontology defines both
 and concrete constructions of these primitives to model physical spaces and
 equipment. The sections below outline the conceptual model of the ontology.
 
-*   For an explanation of the existing abstract model see [model](model.md)
+*   For an explanation of the existing abstract model see [model](model.md).
 *   For an explanation of the model configuration files see
-    [config](ontology_config.md)
+    [config](ontology_config.md).
 
 - [Digital Buildings Ontology](#digital-buildings-ontology)
   * [Overview](#overview)
@@ -45,8 +45,8 @@ equipment. The sections below outline the conceptual model of the ontology.
 
 The Digital Buildings project is concerned with modeling the characteristics and
 telemetry of **entities**, and their relationships with each other. An entity is
-any instance of a "thing" in the model. The ontology is concerned with
-"describing the thing".
+any instance of a "thing" in the model; for example a building, a floor, or a piece of equipment (like an energy meter). The ontology is concerned with
+"describing the thing."
 
 The ontology describes entities using **entity types**. An entity type indicates
 both a place within the ontology's composable taxonomy and a set of semantically
@@ -56,8 +56,8 @@ meaning.
 
 Relationships between entities are defined by directed, named **connections**.
 
-Other components of the model stack, such as translations and links are
-discussed in [onboarding](building_config.md)
+Other components of the model stack, such as translations and links, are
+discussed in [onboarding](building_config.md).
 
 ## Namespaces
 
@@ -78,25 +78,24 @@ consists of a single or compounded word[^5] with a very specific human-readable
 definition. Subfields are largely analogous to the concept of a "tag" in Brick
 or Haystack, but with a few more constraints.
 
-Subfields:
+Subfields have the following attributes:
 
-*   are typically globally defined
-*   are uniquely named in their namespace (typically the global namespace)
-*   each have a unique and specific meaning.
-*   may be camelCased for readability, but are not case sensitive.
-*   should be used nearly universally across different namespaces and
+*   Subfields are typically globally defined (i.e., defined in the global namespace).
+*   Subfields must be unique within their namespace (typically the global namespace).
+*   Each subfield have a unique and specific meaning.
+*   Subfield names may be camelCased for readability, but are not case sensitive.
+*   Subfields should be used nearly universally across different namespaces and
     applications.
-*   cannot be referred to with a namespace identifier.
-*   are grouped into categories that dictate their grouping with each other.
-*   are combined into sets to form fields.
+*   Subfields cannot be referred to with a namespace identifier (e.g., HVAC/subfield is not a valid reference).
+*   Subfields are grouped into categories that dictate their grouping with each other when they are combined into sets to form fields.
 
 There is no explicit namespacing for subfields, so an individual field's
-namespace can only use one definition of a subfield[^6]. It is expected that the
+namespace can only use one definition of a subfield.[^6] It is expected that the
 vast majority of subfields will be defined in the global namespace. Defining a
 subfield locally prevents any field using it from being elevated to the global
-namespace[^7].
+namespace.[^7]
 
-Subfields are grouped into categories that add structure to field composition (note that the ordering of this table reflects the expected ordering of subfields in field construction):
+Subfields are grouped into categories that add structure to field composition (note that the ordering of this table reflects the expected ordering of subfields in field construction).
 
 <table>
   <tr>
@@ -109,7 +108,7 @@ Subfields are grouped into categories that add structure to field composition (n
   <tr>
    <td><p style="text-align: right">Aggregation Descriptor</p></td>
    <td>
-     A subfield that modifies aggregations to explicitly differentiate temporal aggregation (e.g. daily max) from spatial aggregation (max of 3 zone temperature sensors in a space). Note that windowing specifics are added into this subfield, and omitting them implies fixed window (e.g. the max over the day boundary if `daily` is used). Cannot be used except with an aggregation. (Note: the window time is always spelled out to avoid subfield validation errors).
+     A subfield that modifies aggregations to explicitly differentiate temporal aggregation (e.g., daily max) from spatial aggregation (e.g., the max of 3 zone temperature sensors in a space). Note that windowing specifics are added into this subfield, and omitting them implies a fixed window (e.g., the max over the day boundary if `daily` is used). (Note: the window time is always spelled out to avoid subfield validation errors.) This subfield can only used when accompanied by an aggregation subfield.
    </td>
    <td>daily, fivesecond, fivesecondrolling</td>
    <td>1</td>
@@ -118,7 +117,7 @@ Subfields are grouped into categories that add structure to field composition (n
   <tr>
    <td><p style="text-align: right">Aggregation</p></td>
    <td>
-     An aggregation such as minimum, maximum, rootmeansquare, etc. It is implied that aggregations are spatial (e.g. max of 3 zone temperature sensors in a space), except when accompanied by a defined aggregation descriptor. In any case, this is not the same as an operating limit (e.g. the max flowrate for a valve); these are treated separately (see note below).
+     An aggregation such as minimum, maximum, rootmeansquare, etc. It is implied that aggregations are spatial (e.g., the max of 3 zone temperature sensors in a space) except when accompanied by a defined aggregation descriptor. In any case, this is not the same as an operating limit (e.g., the max flowrate for a valve); these are treated separately (see note below).
    </td>
    <td>Average, Max, Min</td>
    <td>1</td>
@@ -130,15 +129,15 @@ Subfields are grouped into categories that add structure to field composition (n
    </td>
    <td>Discharge, Return, Zone, Primary, Chilled etc...</td>
    <td>10</td>
-   <td>Optional</td>   
+   <td>Optional</td>
   </tr>
   <tr>
    <td><p style="text-align: right">Component</p></td>
-   <td>Specifies the specific subcomponent of the entity being represented (e.g. the fan of a fan-coil unit). As with descriptors, context drives necessity; supply_fan_run_command is necessary for an AHU because it routinely will have an exhaust_fan_run_command that needs to be distinguished from, but it is clear from the context of a FAN (that’s all it is) that run_command applies to the fan, and therefore no component subfield is necessary to describe it.
+   <td>Specifies the specific subcomponent of the entity being represented (e.g., the fan of a fan-coil unit). As with descriptors, context drives necessity; supply_fan_run_command is necessary for an AHU because there will routinely be an exhaust_fan_run_command that it needs to be distinguished from, but it is clear from the context of a FAN (that’s all it is) that run_command applies to the fan, and therefore no component subfield is necessary to describe it.
 </td>
    <td>Valve, fan, damper...</td>
    <td>10</td>
-   <td>Optional</td>   
+   <td>Optional</td>
   </tr>
   <tr>
    <td><p style="text-align: right">Measurement Descriptor</p></td>
@@ -147,23 +146,23 @@ Subfields are grouped into categories that add structure to field composition (n
    </td>
    <td>Differential, relative, static</td>
    <td>1</td>
-   <td>Optional</td>   
+   <td>Optional</td>
   </tr>
   <tr>
    <td><p style="text-align: right">Measurement</p></td>
-   <td>A field that implies the type of measurement being performed. Each measurement is exclusive to a particular physical quantity (e.g. temperature), but which may have multiple valid units of measurement (*F, R, *C, K).  This subfield is required for any numeric field with a point type other than `count`.
+   <td>A field that implies the type of measurement being performed. Each measurement is exclusive to a particular physical quantity (e.g., temperature), but which may have multiple valid units of measurement (*F, R, *C, K). This subfield is required for any numeric field with a point type other than `count`.
    </td>
    <td>Temperature, flowrate, flowvolume</td>
    <td>1</td>
-   <td>Optional</td>   
+   <td>Optional</td>
   </tr>
   <tr>
    <td><p style="text-align: right">Point Type</p></td>
-   <td>Defines the function of the point, across several layers of context: directionality (input/output), reading type (analog, input, multistate), telemetric versus static data (label and capacity being static; sensor and setpoint being active), etc. This is the one component that is required for every field.
+   <td>Defines the function of the point across several layers of context: directionality (input/output), reading type (analog, input, multistate), telemetric versus static data (label and capacity being static; sensor and setpoint being active), etc. This is the one component that is required for every field.
    </td>
    <td>Sensor, Setpoint, Status, Command, Count, Accumulator</td>
    <td>1</td>
-   <td>Required</td>   
+   <td>Required</td>
   </tr>
 </table>
 
@@ -175,29 +174,28 @@ Fields are constructed by combining subfields in a structured way to define very
 specific semantic concepts. Field names are intended to read naturally and be
 self-describing based on the composition of subfield definitions.
 
-A field:
+A field adheres to the following rules:
 
-*   is unique within its namespace
-*   has subfields used in their correct locations based on their categories.
-*   follows the construction format
-*   has each subfield used no more than once
-*   does not have the same set of subfields as another field with different
-    ordering
-*   specifies a measurement subfield for any numeric point unless point type is
-    `count`
+*   The field must be unique within its namespace.
+*   The field's subfields must used in their correct locations based on their categories (i.e., the complete field name must follow the construction format).
+*   Each subfield can be used no more than once in the field name.
+*   The field cannot have the same set of subfields as another field with different
+    ordering.
+*   The field must specify a measurement subfield for any numeric point (unless the point type is
+    `count`).
 
-The format of a field is a follows:
+The format of a field is as follows:
 
 `(<agg_desc>_)?(<agg>_)?(<descr>_)*(<component>_)?(<meas.
 descr>_)?(<meas>_)?<pointtype>(_<num> )*`[^13]
 
-Ex: `max_discharge_air_temperature_setpoint`
+Example: `max_discharge_air_temperature_setpoint`
 
 #### Equivalence
 
 While the ordering of subfields within a field has value in communicating the
 field's semantic meaning to a human reader, we enforce that it is only the set
-of contained subfields that is necessary for equivalence testing[^14].
+of contained subfields that is necessary for equivalence testing.[^14]
 Applications should depend on the field set, not the string value.
 
 #### Namespace Elevation
@@ -207,24 +205,24 @@ This means that any field using only globally defined subfields and multistate
 values can be referenced by any namespace as if it is global, even if it is
 defined in a child namespace. Identically defined fields in different child
 namespaces are therefore equivalent[^23] (equivalence is defined by the subfield
-set)
+set).
 
 #### Enumeration
 
 In some cases a device may have two points with semantically identical meaning
-(ex: if a device has two identical zone temperature sensors). In this case, the
+(i.e., if a device has two identical zone temperature sensors). In this case, the
 two sensors must use the same field name. To differentiate them we allow a
-numeric increment to be added to the name, ex: `<field>_1`. Multiple increments
-are allowed to indicate subgrouping as well, ex: `<field>_2_1`.
+numeric increment to be added to the name, i.e., `<field>_1`. Multiple increments
+are allowed to indicate subgrouping as well, i.e., `<field>_2_1`.
 
 NB: Modelers should be careful with applying enumerations, as the analysis
 applied will be unable to apply meaningful distinctions to such fields. This
 shouldn't be a problem normally since, if two points are functionally different,
-they shouldn't have the same name (e.g. if supply_air_temperature_sensor_1 is
+they shouldn't have the same name. For example, if supply_air_temperature_sensor_1 is
 the real control sensor while supply_air_temperature_sensor_2 is redundant for
-monitoring, they should have separate names; for ease of integration, omission
+monitoring, they should have separate names. For ease of integration, omission
 of the redundant point is acceptable, but if that is not desired an additional
-descriptor should be added).
+descriptor should be added.
 
 #### Structural Flexibility and Ambiguity
 
@@ -250,22 +248,22 @@ extend on multiple axes, forming a graph of related concepts. This graph can be
 used to navigate related concepts with different names. For instance, a search
 engine could use the graph to fan out the search for `zone_air_temperature` out
 across all fields that have a superset of the tags `zone`, `air` and
-`temperature`[^18].
+`temperature`.[^18]
 
 #### Alternate Approaches and Future Extensions
 
 ##### Equipment Composition
 
 As with most systems models, the decision of how to draw boundaries around
-entities is subjective, and to some degree arbitrary. In building the ontology,
+entities is subjective and, to some degree, arbitrary. In building the ontology,
 we face the common trade off between a flatter graph with fewer, more complex
 entities or a deep graph of simpler interconnected ones. The former results in a
-smaller, easier to manage set of components and relationships. The latter
-encourages smaller, more easily comparable components.
+smaller and easier to manage set of components and relationships. The latter
+encourages smaller and more easily comparable components.
 
 In the Digital Buildings model, this decision applies to how we model complex
 equipment. For instance. If a device has two identical fans with different
-purposes (supply and exhaust) the model needs to somehow differentiate them. In
+purposes (e.g., supply and exhaust) the model needs to somehow differentiate them. In
 a flat approach, we could represent this device as a single entity type with
 fields for both fans and add descriptors to all the fan fields such that
 everything for each fan has the same descriptor prefix (`supply_`, `exhaust_`).
@@ -273,8 +271,8 @@ Alternately, we could model this device as a graph that includes two identical
 fans connected to a parent entity via relationships (minimally `HAS_PART`, in
 this case).
 
-In the former model we end up with a larger fan-out of field names (ex:
-`supply_fan_run_status` and `exhaust_fan_run_status` vs `fan_run_status`), but a
+In the former model we end up with a larger fan-out of field names (e.g.,
+`supply_fan_run_status` and `exhaust_fan_run_status` vs. just `fan_run_status`), but a
 smaller number of entities to represent the device (one instead of three in this
 case) and lower expressivity requirements for relationships.
 
@@ -298,7 +296,7 @@ unwieldy for the user.
 
 In the ontology, measurement subfields identify what dimensional units apply to
 a field. the measurement subfield must be provided any time a field describes a
-numeric value, unless the point type is `count`
+numeric value (unless the point type is `count`).
 
 Each measurement subfield maps to one and only one quantity kind. For instance
 data for a field with the `temperature` subfield could be assigned units of
@@ -346,30 +344,28 @@ global namespace.
 
 An entity type is a grouping of fields with a specific description that
 represents a "thing" in the building model. Obvious examples include a room, an
-air conditioner or a camera. It is also possible to define an entity that maps
+air conditioner, or a camera. It is also possible to define an entity that maps
 to a defined functionality that is a subset of a complete device. For instance,
 we might want to define the fields needed for high/low setpoint temperature
 control as its own entity type in the ontology.
 
-Entities have:
+Entity types can have any of the following attributes:
 
-*   name
-*   description
-*   abstract flag
-*   allow undefined fields flag
-*   canonical flag
-*   list of zero or more parent types
-*   GUID
-*   required fields
-*   optional fields
-*   Required Relationships (Coming soon)
+*   A name (e.g., VAV_SD_DSP), which is the visible identifier for the type but has no structural meaning.
+*   A UUID4 GUID, which is version-independent and is automatically set by the system.
+*   A description giving a short and human-readable summary of the type and its meaning.
+*   An abstract or canonical flag.
+*   An allow undefined fields flag.
+*   A list of zero or more parent types.
+*   Required and/or optional fields (if the fields are not already inherited by one of the parent types).
+*   Required Relationships (coming soon).
 
-A type has meaning beyond its defined fields. For instance an entity of type X
+A type has meaning beyond its defined fields. For instance, an entity of type X
 and type Y, both having field A are distinguishable from each other, even though
 they have the exact same fields.
 
 #### GUIDs
-Each type has a GUID (UUID4) that is version independent.
+Each type has a GUID (UUID4) that is version-independent.
 
 #### Type names
 
@@ -377,7 +373,7 @@ Type names have no structural meaning in the ontology, but because this is the
 most visible identifier of the type, the concrete types adhere to the
 convention of starting with a general type (TODO: structurally define how
 general types are identified) followed by an `_` separated list of parent
-types[^24]. Type names my change from version to version independent of
+types.[^24] Type names may change from version to version, independent of
 [GUID](#guid).
 
 #### Field Definitions
@@ -392,22 +388,22 @@ that are used for analysis.
 #### Inheritance
 
 Types in the ontology can inherit field associations from other types. Multiple
-inheritance is allowed with the following combination rules:
+inheritance is allowed with the following combination rules.
 
 *   A field inherited from multiple parents is considered to exist only once in
-    the child
+    the child.
 *   If a field is associated to a type directly or through inheritance as both
     required and optional, the resulting definition shows the field as required.
 *   Field increments are preserved and same fields with different increments are
-    considered unique
+    considered unique.
 *   Relationship requirements are additive, with the strictest requirement
-    prevailing
-*   Conflicting relationships constraints are construction errors
-*   attributes (`description`, `guid`, `is_canonical`, `is_abstract`) are not
+    prevailing.
+*   Conflicting relationships constraints are construction errors.
+*   Attributes (`description`, `guid`, `is_canonical`, `is_abstract`) are not
     inherited.
 
-As with individual types, inheritance trees are meaningful independent of
-resulting field set. For instance Type X, inheriting from V and W is
+As with individual types, inheritance trees are meaningfully independent of
+the resulting field set. For instance, Type X inheriting from V and W is
 distinguishable from type Y inheriting from only V, even if both types only have
 field A.
 
@@ -462,7 +458,7 @@ NB: This functionality is still in development.
 
 The ontology supports named relationships between entities called connections.
 Each relationship has a specific definition that defines the how the two
-entities are connected. This may be a physical (ex: `FEEDS`) or logical (ex:
+entities are connected. This may be a physical (e.g., `FEEDS`) or logical (e.g.,
 `HAS_PART`). Connections are always global. Connections and their descriptions
 can be found here. **TODO add link**.
 
