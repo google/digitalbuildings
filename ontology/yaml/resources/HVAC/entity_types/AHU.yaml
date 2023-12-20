@@ -757,6 +757,20 @@ AHU_DFSS_DSP_DXZC_ECOND_HTZC:
   - ECOND
   - HTZC
 
+AHU_ECOND_DFSS_DFVSC_DSP_CHWDC_HWDC_CO2C:
+  guid: "67d4ec22-42d3-45c5-8f51-ac4bfb7e789f"
+  description: "Single Zone AHU with economizer and CO2 control"
+  is_canonical: true
+  implements:
+  - AHU
+  - ECOND
+  - DFSS
+  - DFVSC
+  - DSP
+  - CHWDC
+  - HWDC
+  - CO2C
+  
 AHU_CO2C_DFSS_DSP_DXZC_ECONZ_EFSS_HTZC:
   guid: "06019e28-c9e1-448f-8d11-775cbba3bf67"
   description: "Single zone AHU."
