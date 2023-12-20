@@ -1784,16 +1784,10 @@ class EntityInstanceTest(absltest.TestCase):
     )
     entity_iter = iter(parsed.items())
     entity_1_guid, entity_1_block = next(entity_iter)
-    entity_2_guid, entity_2_block = next(entity_iter)
 
     entity_1 = entity_instance.EntityInstance.FromYaml(
         entity_1_guid, entity_1_block, default_operation=default_operation
     )
-    print([name for name in entity_1.translation])
-    entity_2 = entity_instance.EntityInstance.FromYaml(
-        entity_2_guid, entity_2_block, default_operation=default_operation
-    )
-
     self.assertFalse(self.init_validator.Validate(entity_1))
 
   def testPrivateFieldTranslationIsValid_BaseDefinedFieldNotCoveredByValidation_Fails(
