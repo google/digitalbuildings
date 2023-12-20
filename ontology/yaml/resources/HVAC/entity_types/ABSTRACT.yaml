@@ -2654,6 +2654,7 @@ HPZC:
   - CONTROL
 
 HPHCZC:
+  guid: "3108c18d-afd1-464a-a12a-a80e72e0da18"
   description: "Zone temperature cooling and heating heat pump control."
   is_abstract: true
   opt_uses:

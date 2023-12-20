@@ -158,6 +158,7 @@ FCU_DFSS_DSP_HP2ZC:
   - HP2ZC
 
 FCU_DFSS_DSP_HPHCZC:
+  guid: "75716115-2bf7-44b0-95d3-3ed9c3307e62"
   description: "Heating and cooling control heat pump FCU (zone control)."
   is_canonical: true
   implements:
