@@ -20,6 +20,7 @@
 # They must also include some control scheme (e.g. ZTC, DSP, etc.).
 
 FCU_RTM_DFVSC2X_CHWZTC_HWZTC_DTM:
+  guid: "d5c05501-528f-47ea-be30-54e9c53f41ca"
   description: "FCU in a trench, with heating and cooling valves, and two fans."
   is_canonical: true
   implements:
@@ -74,6 +75,7 @@ FCU_DFSS_DFVSC_DXRC_DFRMM:
   - DFRMM
 
 FCU_DFSS_DFVSC_DSP_CHWDC_HWDC_CO2M:
+  guid: "36584730-85fd-409e-b0ce-556ecf707ed9"
   description: "Hydronic variable speed fan coil with heating and cooling (zone control, discharge coil control and CO2 monitoring)."
   is_canonical: true
   implements:
@@ -86,6 +88,7 @@ FCU_DFSS_DFVSC_DSP_CHWDC_HWDC_CO2M:
   - CO2M
 
 FCU_DFSS_DFVSC_DSP_CHWDC_CO2M:
+  guid: "b020d2ce-f96b-4dd7-b431-32f417548f4d"
   description: "Hydronic variable speed fan coil with cooling (zone temp control, discharge coil control and CO2 monitoring)."
   is_canonical: true
   implements:
@@ -190,6 +193,16 @@ FCU_DFSS_DSP_HP2ZC:
   - DFSS
   - DSP
   - HP2ZC
+
+FCU_DFSS_DSP_HPHCZC:
+  guid: "75716115-2bf7-44b0-95d3-3ed9c3307e62"
+  description: "Heating and cooling control heat pump FCU (zone control)."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - DSP
+  - HPHCZC
 
 FCU_DFSS_DFMSC_HPDSPRTC:
   guid: "eb4c0175-8340-4d03-97b5-e4f088cd914b"
