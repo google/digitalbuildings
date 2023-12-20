@@ -1,8 +1,14 @@
 # Instance Validator
 
-The Instance Validator allows validation of concrete DBO instances (i.e., building configuration files) to ensure they conform to the given ontology model, are formatted correctly, and contain all required fields. There is also optional functionality to validate telemetry messages for all reporting entities in the building configuration using Telemetry Validator.
+The Instance Validator allows validation of concrete DBO instances (i.e., building configuration files) to ensure they conform to the given ontology model, are formatted correctly, and contain all required components. There is also optional functionality to validate telemetry messages for all reporting entities in the building configuration using temeletry validation (requires a valid Pub/Sub subscription and OAuth credential). **The recommended workflow is to first use the Instance Validator without telemetry validation. Once your building configuration file produces a clean Instance Validation report, then use Instance Validator with telemetry validation enabled.**
 
-## Install
+## Table of Contents
+* [Installation](#installation)
+* [Instance Validator Workflow](#instance-validator-workflow)
+   * [Telemetry Validation](#telemetry-validation)
+* [Warnings and Errors](#warnings-and-errors)
+
+## Installation
 
 Installing and using the Instance Validator requires Python 3.9, and the specific Python command to run may vary depending on your operating system and the presence of Python 2. Use the appropriate command listed below when the instructions call for `python3`:
 
@@ -14,7 +20,7 @@ You can run the command with just the version flag (e.g. `python --version`) to 
 
 ### Create a Virtual Environment
 
-First, create a virtual environment with `venv` followed by the environment name (in this example: `tooling`) in the digitalbuildings repository.
+First, create a virtual environment with `venv` followed by the environment name (in this example: `tooling`) in the `digitalbuildings` repository.
 
 ```
 python -m venv tooling
@@ -32,10 +38,10 @@ Windows
 ```
 tooling\Scripts\activate
 ```
-## Install Packages
+### Install Packages
 Next, you can either use pip or setuptools (to be deprecated) to install the necessary packages and dependencies.
 
-### Install Pip
+#### Install Pip
 1. Run the following command to ensure that your Python package management tools are up-to-date.
 
 ```
@@ -44,7 +50,7 @@ python3 -m pip install --upgrade pip
 
 2. Run `bash pip_install.sh` (MacOS / Linux) or `pip_install.bat` (Windows) from the following directory: `digitalbuildings/tools`.
 
-### Setuptools (to be deprecated)
+#### Setuptools (to be deprecated)
 
 1. Run `python3 -m pip install --upgrade pip setuptools` to ensure that your Python package management tools are up-to-date.
 2. Run `python3 setup.py install` from the following directory: digitalbuildings/tools/validators/ontology_validator.
@@ -90,40 +96,40 @@ results in these actions:
 
 **NOTE:** The new building configuration format requires that entities are keyed by Version 4 UUIDs (referred to as guids) instead of the code. To convert from old format to the new format, run your building configuration file(.yaml) through the [guid generator](https://github.com/google/digitalbuildings/tree/master/tools/guid_generator).
 
-### Warnings and Errors
+## Warnings and Errors
 
 The Instance Validator has two types of outputs: **Warnings** and **Errors**. In short, errors are exposed when a Building Config is not readable by the instance validator while warnings are exposed when a Building Config is readable but its contents may not be valid.
 
-#### Errors
+### Errors
 Errors cause the validator to exit prematurely with some kind of exception. For example, An error could be caused by an entity block not containing a `GUID`. This would raise an exception in the validation logic and cause the validator to exit prematurely because the instance validator expects every entity block in a Building Config to have an associated `GUID`. The [GUID generator](https://github.com/google/digitalbuildings/tree/master/tools/guid_generator) must be used to generate GUIDs for a Building Configuration file. Other entity block elements are `type` and `code`.
 
-    The following entity block would throw an error because it does not contain a type nor a code.
-
-    8318f346-10b4-44f0-ac0b-bf7659510bfa:
-      translation:
-        zone_air_temperature_sensor:
-          present_value: "temp_1"
-          units:
-            key: "units"
-            values:
-              degrees_celsius: "degC"
-              degrees_fahrenheit: "degF"
-
-#### Warnings
+The following entity block would throw an error because it does not contain a type or a code.
+```yaml
+ 8318f346-10b4-44f0-ac0b-bf7659510bfa:
+   translation:
+     zone_air_temperature_sensor:
+       present_value: "temp_1"
+       units:
+         key: "units"
+         values:
+           degrees_celsius: "degC"
+           degrees_fahrenheit: "degF"
+```
+### Warnings
 Warnings, on the other hand, expose inconsistencies in the content of an entity block but do not cause the validator to fail since the core elements of what make an entity block readable are still present. For example, if the fields defined in `translation` or `links` do not align with the fields for the entity's type as defined in [Digital Buildings Ontology](https://github.com/google/digitalbuildings/tree/master/ontology/yaml), then the validator will warn the user it is not a valid entity.
 
-    The following entity block would only expose a warning because these are not the fields for VAV_SD_DSP as defined in DBO:
-
-    4931e096-dea5-4b81-86ad-234c6d07b978:
-      code: VAV-2
-      connections:
-        c773b86d-b0c0-46fc-bd3f-d726fadd5f1e:
-        - FEEDS
-      links:
-        547a33c5-0ce4-4dfb-9924-5169a3475c89:
-          supply_air_flowrate_sensor: supply_air_flowrate_sensor_2
-        2b152e08-3440-4358-9067-3f2acc58c982:
-          zone_air_temperature_sensor: zone_air_temperature_sensor
-          zone_air_temperature_setpoint: zone_air_temperature_setpoint
-      type: HVAC/VAV_SD_CSP
-
+The following entity block would only expose a warning because these are not the correct fields for VAV_SD_DSP as defined in DBO.
+```yaml
+ 4931e096-dea5-4b81-86ad-234c6d07b978:
+   code: VAV-2
+   connections:
+     c773b86d-b0c0-46fc-bd3f-d726fadd5f1e:
+     - FEEDS
+   links:
+     547a33c5-0ce4-4dfb-9924-5169a3475c89:
+       supply_air_flowrate_sensor: supply_air_flowrate_sensor_2
+     2b152e08-3440-4358-9067-3f2acc58c982:
+       zone_air_temperature_sensor: zone_air_temperature_sensor
+       zone_air_temperature_setpoint: zone_air_temperature_setpoint
+   type: HVAC/VAV_SD_CSP
+```
