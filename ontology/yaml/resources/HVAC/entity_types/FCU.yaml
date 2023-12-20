@@ -19,6 +19,17 @@
 # This file defines fan-coil unit types. Valid types must include a fan and a coil of some type.
 # They must also include some control scheme (e.g. ZTC, DSP, etc.).
 
+FCU_RTM_DFVSC2X_CHWZTC_HWZTC_DTM:
+  description: "FCU in a trench, with heating and cooling valves, and two fans."
+  is_canonical: true
+  implements:
+  - FCU
+  - RTM
+  - DFVSC2X
+  - CHWZTC
+  - HWZTC
+  - DTM
+
 FCU_DFSS_CSP_CHWDC:
   guid: "e0270205-c4be-4c74-9c54-a79afd332a9c"
   description: "Typical chilled water FCU with cooling-only (discharge control)."
