@@ -493,7 +493,7 @@ class InstanceValidator(object):
     """
     enumeration_map = {}
     is_valid = True
-    for written_field_name, ft in entity_translation.items():
+    for written_field_name in entity_translation:
       field_enumeration_pattern = r'(?:.(?!\_))[1-9]+$'
       try:
         enumeration = re.search(field_enumeration_pattern,

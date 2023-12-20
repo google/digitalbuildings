@@ -1776,7 +1776,7 @@ class EntityInstanceTest(absltest.TestCase):
         entity_2.entity_id,
         parsed['US-SEA-BLDG1-GUID'].get(instance_parser.ENTITY_ID_KEY),
     )
-    
+
   def testValidateTranslationWithInvalidEnumerations(self):
     parsed, default_operation = _Helper(
         [path.join(_TESTCASE_PATH, 'BAD',
