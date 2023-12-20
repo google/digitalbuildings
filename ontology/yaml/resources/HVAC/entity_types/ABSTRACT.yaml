@@ -2653,6 +2653,27 @@ HPZC:
   implements:
   - CONTROL
 
+HPHCZC:
+  description: "Zone temperature cooling and heating heat pump control."
+  is_abstract: true
+  opt_uses:
+  - discharge_air_temperature_sensor
+  - failed_discharge_air_temperature_alarm
+  - high_discharge_air_temperature_alarm
+  - low_discharge_air_temperature_alarm
+  - failed_compressor_alarm
+  - failed_zone_air_temperature_alarm
+  - high_zone_air_temperature_alarm
+  - low_zone_air_temperature_alarm
+  uses:
+  - cooling_run_command
+  - heating_run_command
+  - compressor_run_status
+  - zone_air_cooling_temperature_setpoint
+  - zone_air_heating_temperature_setpoint
+  - zone_air_temperature_sensor
+  implements:
+  - CONTROL
 
 HP2ZC:
   guid: "d0e2eb84-4844-4c2a-a8a8-20c40ee94284"
