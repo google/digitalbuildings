@@ -23,4 +23,4 @@ US-SEA-BLDG1-GUID:
 
 SDC_EXT-18-GUID:
   code: SDC_EXT-18
-  operation: DELETE
+  operation: UPDATE

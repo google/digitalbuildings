@@ -1,4 +1,4 @@
-# Copyright 2023 Google LLC
+# Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the License);
 # you may not use this file except in compliance with the License.
@@ -12,17 +12,18 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Update operation with partial entities specified
+########################
+### Canonical Types  ###
+########################
 
-SDC_EXT-17-GUID:
-  type: HVAC/SDC_EXT
-  etag: a12345
-  code: SDC_EXT-17
+WSHP_SS_VSFC_HWDT_POTHWSC:
+  guid: "43ee55f8-f366-4aec-8fbc-b1b57bd317ab"
+  description: "Water source heat pump that allows transfer between hot water system and domestic hot water system, using domestic supply water temperature control."
+  is_canonical: true
+  implements:
+  - WSHP
+  - SS
+  - VSFC
+  - HWDT
+  - POTHWSC
 
-CONFIG_METADATA:
-  operation: EXPORT
-
-US-SEA-BLDG1-GUID:
-  type: FACILITIES/BUILDING
-  etag: b23456
-  code: US-SEA-BLDG1
