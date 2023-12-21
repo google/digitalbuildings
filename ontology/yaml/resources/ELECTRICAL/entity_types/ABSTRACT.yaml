@@ -15,7 +15,7 @@
 
 SS:
   guid: "bcb655b9-7adf-4c58-82c3-d8d8bf42720d"
-  description: "Basic combination of run command and status (start/stop); indicates the light is active or inactive."
+  description: "Basic combination of run command and status (start/stop); indicates if the device is active or inactive."
   is_abstract: true
   implements:
   - /SS
@@ -97,7 +97,7 @@ RDM:
   
 TKLS:  
   guid: "a759f985-e858-431f-a9f9-d4eaaa711aa4"
-  description: "Very basic tank level status monitoring for Electrical generator equipments."
+  description: "Very basic tank level status monitoring for electrical generator equipment."
   is_abstract: true
   uses:
   - tank_level_status
@@ -114,7 +114,7 @@ PPWM:
 
 BATM:
   guid: "445a7a7f-9da2-4b56-99cd-9890cdf6fea1"
-  description: "Battery typically used with UPS"
+  description: "Battery charge and voltage monitoring, typically used with UPS"
   is_abstract: true
   uses:
   - battery_voltage_sensor
@@ -170,7 +170,7 @@ SRC1:
 
 SRC2:
   guid: "c0342f5a-2778-48b2-b70a-ae96571f7fc7"
-  description: "Source 1 parameters typically for ATS"
+  description: "Source 2 parameters typically for ATS"
   is_abstract: true
   uses:
   - source2_phase1_phase2_voltage_sensor
