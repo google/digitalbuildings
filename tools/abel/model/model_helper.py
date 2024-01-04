@@ -138,15 +138,15 @@ def DetermineVirtualEntityUpdateMask(current_entity, updated_entity):
       API.
     updated_entity: An Entity instance from an updated building config.
   """
-  update_mask = []
+  update_mask = set()
   if updated_entity.code != current_entity.code:
-    update_mask.append(entity_enumerations.EntityUpdateMaskAttribute.CODE)
+    update_mask.add(entity_enumerations.EntityUpdateMaskAttribute.CODE)
   if updated_entity.type_name != current_entity.type_name:
-    update_mask.append(entity_enumerations.EntityUpdateMaskAttribute.TYPE)
+    update_mask.add(entity_enumerations.EntityUpdateMaskAttribute.TYPE)
   if set(updated_entity.connections).difference(
       set(current_entity.connections)
   ):
-    update_mask.append(
+    update_mask.add(
         entity_enumerations.EntityUpdateMaskAttribute.CONNECTIONS
     )
   # Facilities entities don't have links but are virtual so do the following
@@ -162,7 +162,7 @@ def DetermineVirtualEntityUpdateMask(current_entity, updated_entity):
           < 0.9
       )
   ):
-    update_mask.append(entity_enumerations.EntityUpdateMaskAttribute.LINKS)
+    update_mask.add(entity_enumerations.EntityUpdateMaskAttribute.LINKS)
   return update_mask
 
 

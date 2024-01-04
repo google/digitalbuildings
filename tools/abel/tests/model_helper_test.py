@@ -82,11 +82,11 @@ class ModelHelperTest(absltest.TestCase):
     current_entity = self.current_model.GetEntity(entity_guid)
     updated_entity = self.updated_model.GetEntity(entity_guid)
 
-    expected_updated_mask = [
+    expected_updated_mask = {
         EntityUpdateMaskAttribute.TYPE,
         EntityUpdateMaskAttribute.CONNECTIONS,
         EntityUpdateMaskAttribute.TRANSLATION,
-    ]
+    }
 
     actual_updated_mask = model_helper.DetermineReportingEntityUpdateMask(
         self.current_model, self.updated_model, current_entity, updated_entity
@@ -99,7 +99,7 @@ class ModelHelperTest(absltest.TestCase):
     current_entity = self.current_model.GetEntity(vav_4_guid)
     updated_entity = self.updated_model.GetEntity(vav_4_guid)
 
-    expected_updated_mask = [EntityUpdateMaskAttribute.TRANSLATION]
+    expected_updated_mask = {EntityUpdateMaskAttribute.TRANSLATION}
 
     actual_updated_mask = model_helper.DetermineReportingEntityUpdateMask(
         self.current_model, self.updated_model, current_entity, updated_entity
@@ -112,7 +112,7 @@ class ModelHelperTest(absltest.TestCase):
     current_entity = self.current_model.GetEntity(vav_5_guid)
     updated_entity = self.updated_model.GetEntity(vav_5_guid)
 
-    expected_updated_mask = [EntityUpdateMaskAttribute.TRANSLATION]
+    expected_updated_mask = {EntityUpdateMaskAttribute.TRANSLATION}
 
     actual_updated_mask = model_helper.DetermineReportingEntityUpdateMask(
         self.current_model, self.updated_model, current_entity, updated_entity
@@ -125,7 +125,7 @@ class ModelHelperTest(absltest.TestCase):
     current_entity = self.current_model.GetEntity(vav_6_guid)
     updated_entity = self.updated_model.GetEntity(vav_6_guid)
 
-    expected_updated_mask = [EntityUpdateMaskAttribute.TRANSLATION]
+    expected_updated_mask = {EntityUpdateMaskAttribute.TRANSLATION}
 
     actual_updated_mask = model_helper.DetermineReportingEntityUpdateMask(
         self.current_model, self.updated_model, current_entity, updated_entity
@@ -138,7 +138,7 @@ class ModelHelperTest(absltest.TestCase):
     current_entity = self.current_model.GetEntity(vav_7_guid)
     updated_entity = self.updated_model.GetEntity(vav_7_guid)
 
-    expected_updated_mask = [EntityUpdateMaskAttribute.TRANSLATION]
+    expected_updated_mask = {EntityUpdateMaskAttribute.TRANSLATION}
 
     actual_updated_mask = model_helper.DetermineReportingEntityUpdateMask(
         self.current_model, self.updated_model, current_entity, updated_entity
@@ -151,7 +151,7 @@ class ModelHelperTest(absltest.TestCase):
     current_entity = self.current_model.GetEntity(vav_8_guid)
     updated_entity = self.updated_model.GetEntity(vav_8_guid)
 
-    expected_updated_mask = [EntityUpdateMaskAttribute.TRANSLATION]
+    expected_updated_mask = {EntityUpdateMaskAttribute.TRANSLATION}
 
     actual_updated_mask = model_helper.DetermineReportingEntityUpdateMask(
         self.current_model, self.updated_model, current_entity, updated_entity
@@ -164,7 +164,7 @@ class ModelHelperTest(absltest.TestCase):
     current_entity = self.current_model.GetEntity(vav_9_guid)
     updated_entity = self.updated_model.GetEntity(vav_9_guid)
 
-    expected_updated_mask = [EntityUpdateMaskAttribute.TRANSLATION]
+    expected_updated_mask = {EntityUpdateMaskAttribute.TRANSLATION}
 
     actual_updated_mask = model_helper.DetermineReportingEntityUpdateMask(
         self.current_model, self.updated_model, current_entity, updated_entity
@@ -176,11 +176,11 @@ class ModelHelperTest(absltest.TestCase):
     entity_guid = '4931e096-dea5-4b81-86ad-234c6d07b978'
     current_entity = self.current_model.GetEntity(entity_guid)
     updated_entity = self.updated_model.GetEntity(entity_guid)
-    expected_updated_mask = [
+    expected_updated_mask = {
         EntityUpdateMaskAttribute.TYPE,
         EntityUpdateMaskAttribute.CONNECTIONS,
         EntityUpdateMaskAttribute.LINKS,
-    ]
+    }
 
     actual_updated_mask = model_helper.DetermineVirtualEntityUpdateMask(
         current_entity, updated_entity
