@@ -172,6 +172,19 @@ class ModelHelperTest(absltest.TestCase):
 
     self.assertEqual(actual_updated_mask, expected_updated_mask)
 
+  def testDetermineReportingEntityUpdateMask_AddTranslation(self):
+    vav_10_guid = 'f318a105-a8c8-4157-bf0f-9745ac11fbfc'
+    current_entity = self.current_model.GetEntity(vav_10_guid)
+    updated_entity = self.updated_model.GetEntity(vav_10_guid)
+
+    expected_updated_mask = {EntityUpdateMaskAttribute.TRANSLATION}
+
+    actual_updated_mask = model_helper.DetermineReportingEntityUpdateMask(
+      self.current_model, self.updated_model, current_entity, updated_entity
+    )
+
+    self.assertEqual(actual_updated_mask, expected_updated_mask)
+
   def testDetermineVirtualEntityUpdateMask(self):
     entity_guid = '4931e096-dea5-4b81-86ad-234c6d07b978'
     current_entity = self.current_model.GetEntity(entity_guid)
