@@ -26,7 +26,7 @@ DC_SS_SWTC:
   - SWTC
 
 DC_SS_SWTC_RWISOVM:
-  description: "Typical dry-cooler (closed loop sensible cooler)."
+  description: "Typical dry-cooler (dry air cooler with isolation valve on the return side)."
   is_canonical: true
   implements:
   - DC
