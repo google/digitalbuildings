@@ -19,6 +19,18 @@
 # This file defines fan-coil unit types. Valid types must include a fan and a coil of some type.
 # They must also include some control scheme (e.g. ZTC, DSP, etc.).
 
+FCU_RTM_DFVSC2X_CHWZTC_HWZTC_DTM:
+  guid: "d5c05501-528f-47ea-be30-54e9c53f41ca"
+  description: "FCU in a trench, with heating and cooling valves, and two fans."
+  is_canonical: true
+  implements:
+  - FCU
+  - RTM
+  - DFVSC2X
+  - CHWZTC
+  - HWZTC
+  - DTM
+
 FCU_DFSS_CSP_CHWDC:
   guid: "e0270205-c4be-4c74-9c54-a79afd332a9c"
   description: "Typical chilled water FCU with cooling-only (discharge control)."
@@ -61,6 +73,31 @@ FCU_DFSS_DFVSC_DXRC_DFRMM:
   - DFVSC
   - DXRC
   - DFRMM
+
+FCU_DFSS_DFVSC_DSP_CHWDC_HWDC_CO2M:
+  guid: "36584730-85fd-409e-b0ce-556ecf707ed9"
+  description: "Hydronic variable speed fan coil with heating and cooling (zone control, discharge coil control and CO2 monitoring)."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - DFVSC
+  - DSP
+  - CHWDC
+  - HWDC
+  - CO2M
+
+FCU_DFSS_DFVSC_DSP_CHWDC_CO2M:
+  guid: "b020d2ce-f96b-4dd7-b431-32f417548f4d"
+  description: "Hydronic variable speed fan coil with cooling (zone temp control, discharge coil control and CO2 monitoring)."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - DFVSC
+  - DSP
+  - CHWDC
+  - CO2M
 
 FCU_DFSS_CSP_DX2ZC:
   guid: "1e95273d-598a-41ae-88a4-021f8320444c"
@@ -156,6 +193,16 @@ FCU_DFSS_DSP_HP2ZC:
   - DFSS
   - DSP
   - HP2ZC
+
+FCU_DFSS_DSP_HPHCZC:
+  guid: "75716115-2bf7-44b0-95d3-3ed9c3307e62"
+  description: "Heating and cooling control heat pump FCU (zone control)."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - DSP
+  - HPHCZC
 
 FCU_DFSS_DFMSC_HPDSPRTC:
   guid: "eb4c0175-8340-4d03-97b5-e4f088cd914b"
@@ -590,6 +637,17 @@ FCU_DFSS_CSP_DXZC_DAIDC:
   - FCU
   - DFSS
   - CSP
+  - DXZC
+  - DAIDC
+
+FCU_DFSS_DSP_DXZC_DAIDC:
+  guid: "660d5103-1bb0-4a59-ac97-93aa02d1d07b"
+  description: "DX dual-setpoint fan coil with discharge isolation damper control."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - DSP
   - DXZC
   - DAIDC
 
@@ -1358,6 +1416,31 @@ FCU_SS_HTRC_DTM_ZTM:
   - DTM
   - ZTM
 
+FCU_DFSS_CSP_DXZC_RAIDC:
+  guid: "620d9e16-0b76-4790-8c97-d9dd878254dd"
+  description: "Typical DX FCU with single cooling setpoint control, and return air isolation damper control."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - CSP
+  - DXZC
+  - RAIDC
+
+FCU_DFSS_CSP_RTM_DXZC:
+  guid: "70e4ec9c-bfdc-4123-8cf0-84f37942c9ba"
+  description: "Simple FCU DX with cooling zone control, and return temperature monoitoring."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - CSP
+  - RTM
+  - DXZC
+  opt_uses:
+  - water_leak_alarm
+  - failed_alarm
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
@@ -1829,4 +1912,3 @@ FCU_DFVSC_RTM_CO2M_HWZTC_CHWZTC:
   - CO2M
   - HWZTC
   - CHWZTC
-
