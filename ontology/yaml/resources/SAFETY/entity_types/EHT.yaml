@@ -1,4 +1,4 @@
-# Copyright 2023 Google LLC
+# Copyright 2022 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the License);
 # you may not use this file except in compliance with the License.
@@ -12,17 +12,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Update operation with partial entities specified
+########################
+### Canonical Types  ###
+########################
 
-SDC_EXT-17-GUID:
-  type: HVAC/SDC_EXT
-  etag: a12345
-  code: SDC_EXT-17
 
-CONFIG_METADATA:
-  operation: EXPORT
-
-US-SEA-BLDG1-GUID:
-  type: FACILITIES/BUILDING
-  etag: b23456
-  code: US-SEA-BLDG1
+EHT_SS:
+  guid: "fd135e80-a15b-4c3f-8fa8-31c0641933a3"
+  description: "Basic heat tracer with start/stop"
+  is_canonical: true
+  implements:
+  - EHT
+  - SS

@@ -1,4 +1,4 @@
-# Copyright 2023 Google LLC
+# Copyright 2022 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the License);
 # you may not use this file except in compliance with the License.
@@ -12,17 +12,16 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# This config file is invalid because it fails to pass the syntax expectations
-# for translation. The devices listed in translation need to follow specific
-# formats, and `invalid_key` is not a valid part of any of them.
+### CANONICAL TYPES
 
-US-SEA-BLDG1-GUID:
-  type: FACILITIES/BUILDING
-  code: US-SEA-BLDG1
-  translation:
-    zone_air_temperature_sensor:
-      present_value: "temp_1"
-      units:
-        key: "units"
-        values:
-          degrees_celsius: "degC"
+WSR_STD:
+  guid: "c406cac4-2e0c-4396-8963-db72b7f1ccb6"
+  description: "Standard water softener."
+  is_canonical: true
+  implements:
+  - WSR
+  - /SS
+  uses:
+  - water_flowrate_status
+  opt_uses:
+  - lost_power_alarm

@@ -102,6 +102,6 @@ c773b86d-b0c0-46fc-bd3f-d726fadd5f1e:
   type: HVAC/VAV_SD_DSP
 
 guid123:
-  code: TEST_BUILDING
+  code: US_SEA_BLDG1
   type: FACILITIES/BUILDING
 

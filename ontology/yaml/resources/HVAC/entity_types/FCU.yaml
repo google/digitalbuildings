@@ -19,6 +19,18 @@
 # This file defines fan-coil unit types. Valid types must include a fan and a coil of some type.
 # They must also include some control scheme (e.g. ZTC, DSP, etc.).
 
+FCU_RTM_DFVSC2X_CHWZTC_HWZTC_DTM:
+  guid: "d5c05501-528f-47ea-be30-54e9c53f41ca"
+  description: "FCU in a trench, with heating and cooling valves, and two fans."
+  is_canonical: true
+  implements:
+  - FCU
+  - RTM
+  - DFVSC2X
+  - CHWZTC
+  - HWZTC
+  - DTM
+
 FCU_DFSS_CSP_CHWDC:
   guid: "e0270205-c4be-4c74-9c54-a79afd332a9c"
   description: "Typical chilled water FCU with cooling-only (discharge control)."
@@ -61,6 +73,31 @@ FCU_DFSS_DFVSC_DXRC_DFRMM:
   - DFVSC
   - DXRC
   - DFRMM
+
+FCU_DFSS_DFVSC_DSP_CHWDC_HWDC_CO2M:
+  guid: "36584730-85fd-409e-b0ce-556ecf707ed9"
+  description: "Hydronic variable speed fan coil with heating and cooling (zone control, discharge coil control and CO2 monitoring)."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - DFVSC
+  - DSP
+  - CHWDC
+  - HWDC
+  - CO2M
+
+FCU_DFSS_DFVSC_DSP_CHWDC_CO2M:
+  guid: "b020d2ce-f96b-4dd7-b431-32f417548f4d"
+  description: "Hydronic variable speed fan coil with cooling (zone temp control, discharge coil control and CO2 monitoring)."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - DFVSC
+  - DSP
+  - CHWDC
+  - CO2M
 
 FCU_DFSS_CSP_DX2ZC:
   guid: "1e95273d-598a-41ae-88a4-021f8320444c"
@@ -156,6 +193,16 @@ FCU_DFSS_DSP_HP2ZC:
   - DFSS
   - DSP
   - HP2ZC
+
+FCU_DFSS_DSP_HPHCZC:
+  guid: "75716115-2bf7-44b0-95d3-3ed9c3307e62"
+  description: "Heating and cooling control heat pump FCU (zone control)."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - DSP
+  - HPHCZC
 
 FCU_DFSS_DFMSC_HPDSPRTC:
   guid: "eb4c0175-8340-4d03-97b5-e4f088cd914b"
@@ -346,6 +393,18 @@ FCU_DFSS_DFVSC_RTC_CHWRC:
   - DFSS
   - DFVSC
   - RTC
+  - CHWRC
+
+FCU_DFSS_DFVSC_DTM_RHC_CHWRC:
+  guid: "5d32b824-a099-40d0-bff0-772de1ffe8bb"
+  description: "Hydronic variable speed fan coil with return controlled cooling and humidity control."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - DFVSC
+  - DTM
+  - RHC
   - CHWRC
 
 FCU_DFSS_DFVSC_DSP_HWDC_CHWDC:
@@ -578,6 +637,17 @@ FCU_DFSS_CSP_DXZC_DAIDC:
   - FCU
   - DFSS
   - CSP
+  - DXZC
+  - DAIDC
+
+FCU_DFSS_DSP_DXZC_DAIDC:
+  guid: "660d5103-1bb0-4a59-ac97-93aa02d1d07b"
+  description: "DX dual-setpoint fan coil with discharge isolation damper control."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - DSP
   - DXZC
   - DAIDC
 
@@ -1187,8 +1257,8 @@ FCU_DFSS_DXRC_RHDHC_AL:
   opt_uses:
   - filter_alarm
   - master_alarm
-  - failed_heat_exchange_alarm 
-  - water_leak_alarm 
+  - failed_heat_exchange_alarm
+  - water_leak_alarm
 
 FCU_DFVSC_CHWRC_FDPSM2X:
   guid: "26ec8491-3ccd-42f6-86e7-9d69afeb87bd"
@@ -1242,6 +1312,134 @@ FCU_DFSS_DFVSC_FDPM_CHWDC_SRC_DFRMM:
   - CHWDC
   - SRC
   - DFRMM
+
+FCU_DFSS_CHWRC:
+  guid: "854f3eff-07db-4324-a4b3-84e19f6a8639"
+  description: "CRAC unit with discharge fan and return temperature control."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - CHWRC
+
+FCU_DXZTC_DFSS:
+  guid: "5688519e-f88e-4620-8bd5-89d91467028d"
+  description: "FCU with SS, discharge temp sensors, zone control and sensor, filter change"
+  is_canonical: true
+  implements:
+  - FCU
+  - DXZTC
+  - DFSS
+  opt_uses:
+  - failed_alarm
+  - filter_alarm
+
+FCU_RHDHS_DXDC_DFSS_RTM_DSPM_DFM:
+  guid: "f60a2563-da8f-4360-b2d9-f471c065356c"
+  description: "FCU with temperature & pressure monitor, humidity monitor and water leak & status alarm."
+  is_canonical: true
+  implements:
+  - FCU
+  - RHDHS
+  - DXDC
+  - DFSS
+  - RTM
+  - DSPM
+  - DFM
+  opt_uses:
+  - water_leak_alarm
+  - failed_alarm
+
+FCU_DFSS_DFMSC_CHWZC:
+  guid: "3d8c3cf8-401f-45d4-89b2-b87f52e4efc9"
+  description: "Chilled water FCU with cooling-only (zone control) and discharge fan multi-speed control."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - DFMSC
+  - CHWZC
+
+FCU_RTM_DXZTC_SRC:
+  guid: "5aafdd1c-5740-4953-8d44-1969bb8af965"
+  description: "FCU with SS, supply and return temp sensors, zone control and sensor, schedule run, filter change and general fail alarm"
+  is_canonical: true
+  implements:
+  - FCU
+  - RTM
+  - DXZTC
+  - SRC
+  uses:
+  - filter_alarm
+  - lost_power_alarm
+
+
+FCU_DFVSC_CHWZC_CSP_RTM_WDT:
+  guid: "8c3dc3ea-8344-4a5a-85c1-5f1491f7c256"
+  description: "Hydronic cooling or heating fan coil unit with cooling temperature setpoint control"
+  is_canonical: true
+  implements:
+  - FCU
+  - DFVSC
+  - CHWZC
+  - CSP
+  - RTM
+  - WDT
+  uses:
+  - master_alarm
+  - run_mode
+
+FCU_DFSS_CHWDC_CSP_RTM_DXZC:
+  guid: "fef47d51-3d01-40fd-9499-4f3bd65ed3ec"
+  description: "Typical DX FCU with cooling-only (discharge control)"
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - CHWDC
+  - CSP
+  - RTM
+  - DXZC
+  uses:
+  - master_alarm
+  - filter_alarm
+  - run_mode
+
+FCU_SS_HTRC_DTM_ZTM:
+  guid: "3d9b6b87-0770-4ae6-9bfc-8f729341ccac"
+  description: "FCU with return temperature control, discharge temperature monitoring, zone temperature monitorning and start/stop control."
+  is_canonical: true
+  implements:
+  - FCU
+  - SS
+  - HTRC
+  - DTM
+  - ZTM
+
+FCU_DFSS_CSP_DXZC_RAIDC:
+  guid: "620d9e16-0b76-4790-8c97-d9dd878254dd"
+  description: "Typical DX FCU with single cooling setpoint control, and return air isolation damper control."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - CSP
+  - DXZC
+  - RAIDC
+
+FCU_DFSS_CSP_RTM_DXZC:
+  guid: "70e4ec9c-bfdc-4123-8cf0-84f37942c9ba"
+  description: "Simple FCU DX with cooling zone control, and return temperature monoitoring."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - CSP
+  - RTM
+  - DXZC
+  opt_uses:
+  - water_leak_alarm
+  - failed_alarm
 
 ###################################
 ### Existing Non-standard Types ###
@@ -1430,7 +1628,7 @@ FCU_NONCANONICAL_1:
   - zone_occupancy_status_1
   - zone_occupancy_status_2
   - zone_occupancy_status_3
-  
+
 FCU_DFSS_CSP_ZHC_DXZC_NONCANONICAL_1:
   guid: "0bca6899-fa9a-40ff-a3bd-8828991b39c1"
   description: "Non-standard type."
@@ -1582,19 +1780,6 @@ FCU_CHWZTC2X_HT2XZTC2X_DFVSC2X:
   - HT2XZTC2X
   - DFVSC2X
 
-FCU_RTM_DXZTC_SRC:
-  guid: "5aafdd1c-5740-4953-8d44-1969bb8af965"
-  description: "FCU with SS, supply and return temp sensors, zone control and sensor, schedule run, filter change and general fail alarm"
-  is_canonical: true
-  implements:
-  - FCU
-  - RTM
-  - DXZTC
-  - SRC
-  uses:
-  - filter_alarm
-  - lost_power_alarm
-
 FCU_NON_CANONICAL_TYPE_1:
   guid: "c8343898-b5c4-4540-a792-3630b28e2a16"
   description: "Typical chilled water FCU with cooling-only (discharge control) for MDF rooms,
@@ -1698,37 +1883,6 @@ FCU_RTC_RHDHS_DTM_DFSS:
   - fire_alarm
   - schedule_run_command
 
-FCU_DFVSC_CHWZC_CSP_RTM_WDT:
-  guid: "8c3dc3ea-8344-4a5a-85c1-5f1491f7c256"
-  description: "Hydronic cooling or heating fan coil unit with cooling temperature setpoint control"
-  is_canonical: true
-  implements:
-  - FCU
-  - DFVSC
-  - CHWZC
-  - CSP
-  - RTM
-  - WDT 
-  uses: 
-  - master_alarm
-  - run_mode
-
-FCU_DFSS_CHWDC_CSP_RTM_DXZC:
-  guid: "fef47d51-3d01-40fd-9499-4f3bd65ed3ec"
-  description: "Typical DX FCU with cooling-only (discharge control)"
-  is_canonical: true
-  implements:
-  - FCU
-  - DFSS
-  - CHWDC
-  - CSP
-  - RTM
-  - DXZC
-  uses: 
-  - master_alarm
-  - filter_alarm
-  - run_mode
-
 FCU_DSP_DFVSC_DTM_RTM:
   guid: "ff0b58c2-8446-47f9-913d-068fd3b43ae7"
   description: "Hybrid variable refrigerant flow unit with discharge and return air temperature monitoring, zone cooling and heating setpoints, discharge fan speed command"
@@ -1739,3 +1893,22 @@ FCU_DSP_DFVSC_DTM_RTM:
   - DTM
   - RTM
 
+FCU_DFSS_DFSMC_HWRC:
+  guid: "1388eea8-a039-4b33-8613-24ae9de719dd"
+  description: "Warm air curtain with return air temperature control."
+  implements:
+  - FCU
+  - DFSS
+  - DFSMC
+  - HWRC
+
+FCU_DFVSC_RTM_CO2M_HWZTC_CHWZTC:
+  guid: "6f6fd049-576c-4f0a-894d-a6433575b8dd"
+  description: "Fan coil unit with zone temperature control, heating water and chilled water valve monitoring."
+  implements:
+  - FCU
+  - DFVSC
+  - RTM
+  - CO2M
+  - HWZTC
+  - CHWZTC
