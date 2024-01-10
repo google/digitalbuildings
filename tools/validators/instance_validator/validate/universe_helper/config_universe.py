@@ -26,6 +26,7 @@ from yamlformat.validator import presubmit_validate_types_lib
 from yamlformat.validator import unit_lib
 
 
+# TODO(b/293493583): Simplified universe needs to be updated with new fields.
 def create_simplified_universe() -> presubmit_validate_types_lib.ConfigUniverse:
   """Creates a simplified test universe with minimal configuration for testing.
 

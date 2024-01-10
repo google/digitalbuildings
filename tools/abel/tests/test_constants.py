@@ -15,6 +15,7 @@
 
 from os import path
 
+# pylint: disable=g-importing-member
 from model.constants import APPLICATION_ROOT
 from model.constants import BC_GUID
 from model.constants import BUILDING_CODE
@@ -26,10 +27,10 @@ from model.constants import ENTITY_CODE
 from model.constants import ENTITY_FIELDS
 from model.constants import ETAG
 from model.constants import IS_REPORTING
-from model.constants import METADATA
 from model.constants import MISSING
 from model.constants import NAMESPACE
 from model.constants import NO_UNITS
+from model.constants import OPERATION
 from model.constants import RAW_FIELD_NAME
 from model.constants import RAW_STATE
 from model.constants import RAW_UNIT_PATH
@@ -48,6 +49,7 @@ from model.constants import TARGET_ENTITY_CODE
 from model.constants import TARGET_ENTITY_GUID
 from model.constants import TYPE_NAME
 from model.units import Units
+
 
 # pylint: disable=line-too-long
 
@@ -89,6 +91,7 @@ TEST_ETAG = '1234567'
 TEST_SITE_DICT = {
     BUILDING_CODE: 'UK-LON-S2',
     BC_GUID: 'test_site_guid',
+    ETAG: '1234567'
 }
 
 # Test Entity instances
@@ -105,7 +108,7 @@ TEST_REPORTING_ENTITY_DICT = {
     CLOUD_DEVICE_ID: TEST_CLOUD_DEVICE_ID,
     TYPE_NAME: TEST_TYPE_NAME,
     IS_REPORTING: 'TRUE',
-    METADATA + '.test': 'test metadata',
+    OPERATION: 'ADD',
 }
 
 TEST_REPORTING_ENTITY_DICT_NO_GUID = {
@@ -116,18 +119,18 @@ TEST_REPORTING_ENTITY_DICT_NO_GUID = {
     CLOUD_DEVICE_ID: TEST_CLOUD_DEVICE_ID,
     TYPE_NAME: TEST_TYPE_NAME,
     IS_REPORTING: 'TRUE',
-    METADATA + '.test': 'test metadata',
+    OPERATION: 'ADD',
 }
 
 TEST_VIRTUAL_ENTITY_DICT = {
     ENTITY_CODE: TEST_VIRTUAL_ENTITY_CODE,
     BC_GUID: TEST_VIRTUAL_GUID,
     NAMESPACE: TEST_NAMESPACE,
-    ETAG: None,
+    ETAG: TEST_ETAG,
     CLOUD_DEVICE_ID: None,
     TYPE_NAME: TEST_TYPE_NAME,
     IS_REPORTING: 'FALSE',
-    METADATA + '.test': 'test metadata',
+    OPERATION: 'ADD',
 }
 
 # Test Entity Field instances

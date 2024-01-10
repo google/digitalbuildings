@@ -13,17 +13,18 @@
 # limitations under the License.
 """Helper module for exporting a valid Building Configuration or spreadsheet."""
 
-from typing import Any, Dict, List
+from typing import Any, Dict, List, Optional
 
+# pylint: disable=g-importing-member
 from googleapiclient.discovery import Resource
 from googleapiclient.errors import HttpError
 from strictyaml import as_document
 
 from model.constants import BC_MISSING
-from model.constants import BODY_VALUE_RANGE_KEY
 from model.constants import CONFIG_CLOUD_DEVICE_ID
 from model.constants import CONFIG_CODE
 from model.constants import CONFIG_CONNECTIONS
+from model.constants import CONFIG_ETAG
 from model.constants import CONFIG_INITIALIZE
 from model.constants import CONFIG_LINKS
 from model.constants import CONFIG_METADATA
@@ -36,14 +37,15 @@ from model.constants import CONFIG_UNITS_KEY
 from model.constants import CONFIG_UNITS_PRESENT_VALUE
 from model.constants import CONFIG_UNITS_VALUES
 from model.constants import UTF_8
-from model.constants import VALUE_INPUT_OPTION_RAW
 from model.constants import WRITE
 from model.entity import Entity
 from model.entity import ReportingEntity
 from model.entity import VirtualEntity
+from model.entity_enumerations import EntityOperationType
 from model.entity_field import DimensionalValueField
 from model.entity_field import MissingField
 from model.entity_field import MultistateValueField
+from model.entity_operation import EntityOperation
 from model.guid_to_entity_map import GuidToEntityMap
 from model.model_builder import Model
 from model.model_error import SpreadsheetAuthorizationError
@@ -61,18 +63,14 @@ class GoogleSheetExport(object):
     """Init."""
     self.guid_to_entity_map = GuidToEntityMap()
 
-  def WriteAllSheets(
+  def CreateSpreadsheet(
       self,
-      spreadsheet_range: List[str],
-      spreadsheet_id: str,
       model_dict: Dict[str, Dict[str, str]],
       google_sheets_service: Resource,
   ) -> str:
-    """Translates an ABEL concrete model into a Google Sheets spreadsheet.
+    """Create a new Google Sheets spreadsheet.
 
     Args:
-      spreadsheet_range: A list of table names.
-      spreadsheet_id: Google spreadsheet ID.
       model_dict: Dictionary of internal ABEL model elements to translate to a
         spreadsheet.
       google_sheets_service: A Google Python API Client discovery Resource
@@ -84,23 +82,17 @@ class GoogleSheetExport(object):
     Raises:
       SpreadsheetAuthorizationError: When the Google Sheets API request fails.
     """
-    sheet = google_sheets_service.spreadsheets()
-    for named_range in spreadsheet_range:
-      body_value_range = {BODY_VALUE_RANGE_KEY: model_dict[named_range]}
-      try:
-        sheet.values().update(
-            spreadsheetId=spreadsheet_id,
-            range=named_range,
-            valueInputOption=VALUE_INPUT_OPTION_RAW,
-            body=body_value_range,
-        ).execute()
-      except HttpError as http_error:
-        raise SpreadsheetAuthorizationError(
-            spreadsheet_id=spreadsheet_id,
-            resp=http_error.resp,
-            content=http_error.content,
-        ) from http_error
-    return spreadsheet_id
+
+    try:
+      spreadsheet = google_sheets_service.spreadsheets()
+      create_spreadsheet_request = spreadsheet.create(body=model_dict)
+      response = create_spreadsheet_request.execute()
+    except HttpError as http_error:
+      raise SpreadsheetAuthorizationError(
+          resp=http_error.resp,
+          content=http_error.content,
+      ) from http_error
+    return response
 
 
 class BuildingConfigExport(object):
@@ -119,10 +111,61 @@ class BuildingConfigExport(object):
         Configuration file.
     """
     self.model = model
-    self.guid_to_entity_map = GuidToEntityMap()
+
+  def ExportUpdateBuildingConfiguration(
+      self, filepath: str, operations: List[EntityOperation]
+  ) -> Dict[str, Any]:
+    """Exports a building Config under the UPDATE operation.
+
+    Args:
+      filepath: filepath to write a building config to.
+      operations: List of EntityOperation instances define update operations on
+        entities.
+
+    Returns:
+      Dictionary mapping of a building config under the update operation.
+    """
+    site = self.model.site
+    entity_yaml_dict = {CONFIG_METADATA: {CONFIG_OPERATION: 'UPDATE'}}
+    for operation in operations:
+      entity = operation.entity
+      if isinstance(entity, ReportingEntity):
+        entity_yaml_dict.update(
+            {
+                entity.bc_guid: self._GetReportingEntityBuildingConfigBlock(
+                    entity, operation
+                )
+            }
+        )
+      elif isinstance(entity, VirtualEntity):
+        entity_yaml_dict.update(
+            {
+                entity.bc_guid: self._GetVirtualEntityBuildingConfigBlock(
+                    entity, operation
+                )
+            }
+        )
+
+    entity_yaml_dict.update(
+        {
+            site.guid: {
+                CONFIG_CODE: site.code,
+                CONFIG_TYPE: site.namespace + '/' + site.type_name,
+                CONFIG_ETAG: site.etag,
+            }
+        }
+    )
+    try:
+      with open(filepath, WRITE, encoding=UTF_8) as file:
+        for key, value in entity_yaml_dict.items():
+          file.write(as_document({key: value}).as_yaml())
+          file.write('\n')
+    except PermissionError:
+      print(f'Permission denied when writing to {filepath}')
+    return entity_yaml_dict
 
   # TODO(b/233756557) Allow user to set config_metadata operation.
-  def ExportBuildingConfiguration(self, filepath: str) -> Dict[str, Any]:
+  def ExportInitBuildingConfiguration(self, filepath: str) -> Dict[str, Any]:
     """Exports an ABEL concrete model graph to a Building Config file.
 
     Args:
@@ -137,18 +180,23 @@ class BuildingConfigExport(object):
     site = self.model.site
     entity_yaml_dict = {CONFIG_METADATA: {CONFIG_OPERATION: CONFIG_INITIALIZE}}
     for entity_guid in site.entities:
-      entity = self.guid_to_entity_map.GetEntityByGuid(entity_guid)
+      entity = self.model.guid_to_entity_map.GetEntityByGuid(entity_guid)
       if isinstance(entity, ReportingEntity):
         entity_yaml_dict.update(
             {
                 entity.bc_guid: self._GetReportingEntityBuildingConfigBlock(
-                    entity
+                    entity=entity,
+                    operation=None,
                 )
             }
         )
       elif isinstance(entity, VirtualEntity):
         entity_yaml_dict.update(
-            {entity.bc_guid: self._GetVirtualEntityBuildingConfigBlock(entity)}
+            {
+                entity.bc_guid: self._GetVirtualEntityBuildingConfigBlock(
+                    entity=entity, operation=None
+                )
+            }
         )
 
     entity_yaml_dict.update(
@@ -168,13 +216,26 @@ class BuildingConfigExport(object):
       print(f'Permission denied when writing to {filepath}')
     return entity_yaml_dict
 
+  def _AddOperationToBlock(
+      self, operation: EntityOperation
+  ) -> Dict[str, object]:
+    update_dict = {'operation': operation.operation.name}
+    if operation.operation == EntityOperationType.EXPORT:
+      update_dict = {}
+    if operation.update_mask:
+      update_dict.update(
+          {'update_mask': [x.name for x in operation.update_mask]}
+      )
+    return update_dict
+
   def _GetReportingEntityBuildingConfigBlock(
-      self, entity: ReportingEntity
+      self, entity: ReportingEntity, operation: Optional[EntityOperation]
   ) -> Dict[str, object]:
     """Returns a Building Config formatted reporting entity block dictionary.
 
     Args:
       entity: A ReportingEntity instance.
+      operation:
 
     Returns:
       A dictionary in Building Config format ready to be parsed into yaml.
@@ -183,6 +244,8 @@ class BuildingConfigExport(object):
         CONFIG_CLOUD_DEVICE_ID: str(entity.cloud_device_id),
         CONFIG_CODE: entity.code,
     }
+    if entity.etag:
+      reporting_entity_yaml.update({CONFIG_ETAG: entity.etag})
     reporting_entity_yaml.update(self._GetConnections(entity=entity))
     if entity.translations:
       reporting_entity_yaml[CONFIG_TRANSLATION] = {}
@@ -208,28 +271,35 @@ class BuildingConfigExport(object):
               }
           )
     reporting_entity_yaml.update(
-        {CONFIG_TYPE: entity.namespace + '/' + str(entity.type_name)}
+        {CONFIG_TYPE: entity.namespace.value + '/' + str(entity.type_name)}
     )
+    if operation:
+      reporting_entity_yaml.update(self._AddOperationToBlock(operation))
     return reporting_entity_yaml
 
   def _GetVirtualEntityBuildingConfigBlock(
-      self, entity: VirtualEntity
+      self, entity: VirtualEntity, operation: Optional[EntityOperation]
   ) -> Dict[str, object]:
     """Returns a Building Config formatted virtual entity block dictionary.
 
     Args:
       entity: A VirutalEntity instance.
+      operation: An EntityOperation instance.
 
     Returns:
       A dicitionary formatted for Building Config ready to be parsed into yaml.
     """
     virtual_entity_yaml = {CONFIG_CODE: entity.code}
+    if entity.etag:
+      virtual_entity_yaml.update({CONFIG_ETAG: entity.etag})
     virtual_entity_yaml.update(self._GetConnections(entity=entity))
     if entity.links:
       virtual_entity_yaml.update({CONFIG_LINKS: self._SortLinks(entity)})
     virtual_entity_yaml.update(
-        {CONFIG_TYPE: entity.namespace + '/' + str(entity.type_name)}
+        {CONFIG_TYPE: entity.namespace.value + '/' + str(entity.type_name)}
     )
+    if operation:
+      virtual_entity_yaml.update(self._AddOperationToBlock(operation))
     return virtual_entity_yaml
 
   def _GetConnections(self, entity: Entity) -> Dict[str, List[str]]:
