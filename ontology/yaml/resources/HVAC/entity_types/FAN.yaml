@@ -183,7 +183,7 @@ FAN_SS_VSC_DRI:
   uses:
   - dryer_run_status
 
-FAN_MDRI:
+FAN_SS_VSC_WDPC_DRSM5X:
   guid: "8838183b-c80b-4be0-84c7-3c9976c96d31"
   description: "Fan with multiple interlocked driers."
   is_canonical: true
