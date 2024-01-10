@@ -23,6 +23,8 @@ FACP_STD:
   - FACP
   uses:
   - fire_alarm
+  opt_uses:
+  - master_alarm
 
 FACP_FA2X:
   guid: "a29a1bdd-0f8c-498e-b4ed-d09789f2487c"
@@ -45,3 +47,17 @@ FACP_PAS:
   - supervisor_alarm
   - water_flowrate_status
   - air_pressure_status
+  opt_uses:
+  - master_alarm
+
+FACP_ASD:
+  guid: "3f21bbad-15ad-4253-982d-fed1324543d3"
+  description: "Basic aspirating type, fire detection with alarms."
+  is_canonical: true
+  implements:
+  - FACP
+  opt_uses:
+  - low_smoke_intensity_alarm
+  - medium_smoke_intensity_alarm
+  - fire_alarm
+  - master_alarm

@@ -20,6 +20,7 @@ import re
 from typing import Any, Dict, List, Optional, Set, Tuple
 
 import strictyaml as syaml
+
 from validate import connection
 from validate import field_translation as ft_lib
 from validate import instance_parser as parse
@@ -126,6 +127,8 @@ def _GetAllowedField(
     field_obj = entity_type.GetFieldFromConfigText(as_written_field_name)
     if field_obj:
       return entity_type_lib.BuildQualifiedField(field_obj)
+    else:
+      return None
 
   try:
     namespace, field_name = entity_type_lib.SeparateFieldNamespace(
@@ -404,8 +407,8 @@ class InstanceValidator(object):
         print(
             f'[ERROR]\tEntity {entity.guid} ({entity.code}) has a'
             ' cloud_device_id but is missing a translation. Reporting devices'
-            ' must have a translation when cloud_device_id is present; unless the'
-            ' operation is DELETE'
+            ' must have a translation when cloud_device_id is present; unless'
+            ' the operation is DELETE'
         )
     elif entity.translation and not entity.cloud_device_id:
       print(
@@ -478,6 +481,44 @@ class InstanceValidator(object):
       return True
     return False
 
+  def _ValidateEnumerations(self, entity_translation: Dict[str, Any]) -> bool:
+    """Validate that a translation is properly enumerated.
+
+    Args:
+      entity_translation: Dictionary of written field names to
+          FieldTranslation instances.
+
+    Returns:
+
+    """
+    enumeration_map = {}
+    is_valid = True
+    for written_field_name in entity_translation:
+      field_enumeration_pattern = r'(?:.(?!\_))[1-9]+$'
+      try:
+        enumeration = re.search(field_enumeration_pattern,
+                                written_field_name).group(0)
+        base_field_name = written_field_name[:-len(enumeration)]
+      except AttributeError:
+        enumeration = None
+        base_field_name = written_field_name
+      base_field_mapping = enumeration_map.get(base_field_name)
+      if base_field_mapping and enumeration:
+        enumeration_map[base_field_name][0] += 1
+        enumeration_map[base_field_name][1] += 1
+      elif base_field_mapping and not enumeration:
+        enumeration_map[base_field_name][0] += 1
+      elif not base_field_mapping and enumeration:
+        enumeration_map[base_field_name] = [1, 1]
+      else:
+        enumeration_map[base_field_name] = [1, 0]
+      for base_field_mapping, enum_list in enumeration_map.items():
+        if enum_list[0] > enum_list[1] and enum_list != [1, 0]:
+          print(f'[ERROR]\t field name {base_field_name} is enumerated and '
+                'un-enumerated in the same translation block.')
+          is_valid = False
+    return is_valid
+
   def _ValidateTranslation(
       self, entity: EntityInstance, is_udmi: bool = True
   ) -> bool:
@@ -495,7 +536,6 @@ class InstanceValidator(object):
     Returns:
       Returns true when the translation is valid on a reporting entity.
     """
-
     if entity.translation is None:
       return True
 
@@ -508,7 +548,7 @@ class InstanceValidator(object):
     if self._IsAllMissingFields(entity):
       return False
 
-    is_valid = True
+    is_valid = self._ValidateEnumerations(entity.translation)
     # Check that defined fields are in the type
     for as_written_field_name, ft in entity.translation.items():
       qualified_field_name = _GetAllowedField(
@@ -550,7 +590,6 @@ class InstanceValidator(object):
     found_units = {}
     type_fields = entity_type.GetAllFields()
     for qualified_field_name, ft in found_fields.items():
-
       if not self._FieldTranslationIsValid(qualified_field_name, ft, entity):
         is_valid = False
 
@@ -954,7 +993,7 @@ class InstanceValidator(object):
     """Validates the entity operation and config mode against DBO standards.
 
     The DBO standards allow for a building configuration file to contain a
-    ConfigMode of either INITIALIZE or UPDATE. The entities continued within the
+    ConfigMode of either INITIALIZE or UPDATE. The entites continued within the
     building configuration are each allowed to have operations of either ADD,
     EXPORT, DELETE, or UPDATE. This method validates that the operations
     specified for the entities, in the building configuration, are in alignment
@@ -1005,10 +1044,11 @@ class InstanceValidator(object):
       )
       is_valid = False
 
-    if entity.operation == parse.EntityOperation.DELETE:
-      return is_valid
-
-    if self.config_mode in (_CONFIG_EXPORT, _CONFIG_UPDATE) and not entity.etag:
+    if (
+        self.config_mode in (_CONFIG_EXPORT, _CONFIG_UPDATE)
+        and not entity.etag
+        and entity.operation != parse.EntityOperation.ADD
+    ):
       print(
           f'[ERROR]\tEntity {entity.guid} ({entity.code}) is missing an '
           'etag, which is required for EXPORT or UPDATE operations.'
@@ -1064,6 +1104,17 @@ class InstanceValidator(object):
       )
       is_valid = False
 
+    entity_type = self.universe.GetEntityType(
+      entity.namespace, entity.type_name
+    )
+    if entity_type:
+      if entity_type.GetAllFields():
+        if not entity.translation and not entity.links:
+          print(f'[ERROR]\tEntity ({entity.guid}: {entity.code}) Has a type '
+                'which has defined fields but this instance has neither links '
+                'nor a translation.')
+          is_valid = False
+
     if not self._EntityOperationAndConfigModeValid(entity):
       is_valid = False
 
@@ -1081,8 +1132,6 @@ class InstanceValidator(object):
 
     if not self._IsFaciltitiesEntitiesMatchPattern(entity):
       is_valid = False
-
-    # TODO(berkoben): ADD entity needs transl'n or links if type has fields
 
     return is_valid
 
@@ -1235,7 +1284,7 @@ def _ParseConnections(
 ) -> Set[connection.Connection]:
   """Parses YAML defining connections between one entity and another.
 
-  Entities are identified by GUID.
+  Entites are identified by GUID.
 
   Connections are always defined on the target entity.
 
@@ -1410,7 +1459,7 @@ class EntityInstance(findings_lib.Findings):
         self.entity_id,
         self.update_mask,
         self.namespace,
-        self.type_name
+        self.type_name,
     ))
 
   @classmethod
@@ -1439,8 +1488,6 @@ class EntityInstance(findings_lib.Findings):
     )
 
     # we require that entities be keyed by guid
-    code = None
-    guid = None
     if (
         parse.ENTITY_CODE_KEY in entity_yaml
         and parse.ENTITY_GUID_KEY in entity_yaml

@@ -252,6 +252,14 @@ HWS_SWTM_WDPC_BYPVPM:
   - WDPC
   - BYPVPM
 
+HWS_SWTM_RWTM:
+  guid: "91d467d7-cf98-4493-9408-f727ac08f847"
+  description: "Heating water system with supply and return water temperature monitoring."
+  implements:
+  - HWS
+  - SWTM
+  - RWTM
+
 HWS_SWTC_WDPC_BYPVPM_HWVM:
   guid: "6a7b40e8-b727-4e3a-a9b5-81e4a5f2339b"
   description: "Heating water system with water supply temperature control, differential pressure control, bypass valve control and heating water valve control."
@@ -313,6 +321,27 @@ HWS_SS_HWTTC_PWDPM2X:
   opt_uses:
   - compressor_run_status
 
+HWS_SWTC_WDPM_WFRM:
+  guid: "9f75791e-f814-4724-bd22-ba6538ce00d7"
+  description: "Simple heating water system with supply temp, differential pressure monitoring and water flowrate monitoring."
+  is_canonical: true
+  implements:
+  - HWS
+  - SWTC
+  - WDPM
+  - WFRM
+
+HWS_SWTC_WDPC_WFRM_HWTTC:
+  guid: "4601c41e-fe72-46fd-bde2-34f15a1e7730"
+  description: "Simple heating water system with supply temp and differential pressure control and hot water tank temperature control."
+  is_canonical: true
+  implements:
+  - HWS
+  - SWTC
+  - WDPC
+  - WFRM
+  - HWTTC
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
@@ -348,4 +377,3 @@ HWS_SWTC_CPC:
   - circulation_pump_speed_percentage_command
   - circulation_pump_speed_percentage_setpoint
   - failed_alarm
-  

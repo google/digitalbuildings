@@ -16,6 +16,7 @@
 import argparse
 import os
 
+# pylint: disable=g-importing-member
 from validate.constants import DEFAULT_TIMEOUT
 
 
@@ -42,7 +43,7 @@ def ParseArgs() -> argparse.ArgumentParser:
       '-c',
       '--credential',
       dest='credential',
-      required=False,
+      required=True,
       default=None,
       help='Path to GCP oauth client credential',
   )
@@ -51,7 +52,7 @@ def ParseArgs() -> argparse.ArgumentParser:
       '-s',
       '--spreadsheet-id',
       dest='spreadsheet_id',
-      required=True,
+      required=False,
       help='Google sheets spreadsheet ID.',
       metavar='STRING',
   )
