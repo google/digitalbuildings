@@ -256,16 +256,22 @@ class GraphValidator(object):
       if self.config_mode != _CONFIG_UPDATE:
         source_entity = self.entity_instances[link_inst.source]
         for source_field_name in link_inst.field_map.values():
-          if source_field_name not in source_entity.translation.keys():
-            print(
-                f'[ERROR]\tEntity {entity.guid} ({entity.code}) links to a'
-                f' source entity: {source_entity.guid} ({source_entity.code})'
-                ' that does not have the linked source field: '
-                f'{source_field_name}. Check that this field on source'
-                ' translation exists.'
-            )
-            is_valid = False
-            continue
+          try:
+            if source_field_name not in source_entity.translation.keys():
+              print(
+                  f'[ERROR]\tEntity {entity.guid} ({entity.code}) links to a'
+                  f' source entity: {source_entity.guid} ({source_entity.code})'
+                  ' that does not have the linked source field: '
+                  f'{source_field_name}. Check that this field on source'
+                  ' translation exists.'
+              )
+              is_valid = False
+              continue
+          except AttributeError:
+            print(f'[ERROR]\tentity: {source_entity.guid} '
+                  f'({source_entity.code}) does not contain a translation '
+                  f'even though it is mapped to by links is {entity.guid} ('
+                  f'{entity.code})')
       elif (
           self.entity_instances[link_inst.source].operation
           == parse.EntityOperation.DELETE
