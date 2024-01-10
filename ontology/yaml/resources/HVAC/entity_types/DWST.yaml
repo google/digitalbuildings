@@ -13,7 +13,7 @@
 # limitations under the License.
 
 
-DWST_CHDT_SWTC_CPC:
+DWST_CWDT_SWTC_CPC:
   guid: "0357108f-fddd-46e6-a532-e8550f8bbe54"
   description: "Domestic water system with condensing water heat exhanger without bypass valve"
   implements:
