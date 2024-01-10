@@ -757,6 +757,20 @@ AHU_DFSS_DSP_DXZC_ECOND_HTZC:
   - ECOND
   - HTZC
 
+AHU_ECOND_DFSS_DFVSC_DSP_CHWDC_HWDC_CO2C:
+  guid: "67d4ec22-42d3-45c5-8f51-ac4bfb7e789f"
+  description: "Single Zone AHU with economizer and CO2 control"
+  is_canonical: true
+  implements:
+  - AHU
+  - ECOND
+  - DFSS
+  - DFVSC
+  - DSP
+  - CHWDC
+  - HWDC
+  - CO2C
+
 AHU_CO2C_DFSS_DSP_DXZC_ECONZ_EFSS_HTZC:
   guid: "06019e28-c9e1-448f-8d11-775cbba3bf67"
   description: "Single zone AHU."
@@ -2654,7 +2668,7 @@ AHU_DX4ZC_DFSS_DFVSC_EFSS_EFVSC_DSP_ECONZ:
   - DSP
   - ECONZ
 
-AHU_CO2C_DFSS_DFVSC_EFS_EFVSC_DX2ZC_ECONZ_HTZC:
+AHU_CO2C_DFSS_DFVSC_EFSS_EFVSC_DX2ZC_ECONZ_HTZC:
   guid: "86ce6d35-7fad-4598-aa62-33b5b00e9ca1"
   description: "Single zone AHU."
   is_canonical: true
@@ -2669,7 +2683,7 @@ AHU_CO2C_DFSS_DFVSC_EFS_EFVSC_DX2ZC_ECONZ_HTZC:
   - ECONZ
   - HTZC
 
-AHU_BSPC_DX6SC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSP_SARC:
+AHU_BSPC_DX6SC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC_SARC:
   guid: "e89c239b-2c41-40cf-999e-c8eac8d3ce23"
   description: "Multi-zone AHU."
   is_canonical: true
@@ -2677,6 +2691,22 @@ AHU_BSPC_DX6SC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSP_SARC:
   - AHU
   - BSPC
   - DX6SC
+  - ECON
+  - EFSS
+  - EFVSC
+  - SFSS
+  - SFVSC
+  - SSPC
+  - SARC
+
+AHU_BSPC_DX5SC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC_SARC:
+  guid: "21622d57-a653-4993-a64c-51be725a86d7"
+  description: "Multi-zone AHU."
+  is_canonical: true
+  implements:
+  - AHU
+  - BSPC
+  - DX5SC
   - ECON
   - EFSS
   - EFVSC
@@ -3362,6 +3392,7 @@ AHU_BSPC_DX6SC_ECON_EFSS_EFVSC_HWSC_SARC_SFSS_SFVSC_SSPC:
   description: "Multi-zone AHU with six-stage DX cooling and heating water valve."
   is_canonical: true
   implements:
+  - AHU
   - BSPC
   - DX6SC
   - ECON
