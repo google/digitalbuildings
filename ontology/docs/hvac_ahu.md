@@ -16,7 +16,7 @@ Air handling units are common air-side devices that provide mechanical condition
 - It **must** handle outside air directly.
 - It **must** handle return air from the space.
 
-## Example: Single-Zone AHUs 
+## Example: Single-Zone AHUs
 This version of AHU serves an individual zone as a stand-alone device.
 
 ### BMS Example
@@ -124,7 +124,7 @@ VAV-1:
 ```
 
 
-## Example: AHU as Part of a Dual Duct System 
+## Example: AHU as Part of a Dual Duct System
 This version of AHU serves a group of zones through downstream terminal units (VAVs), and those terminal units are also served by duct furnaces (central air-side heating devices which provide heating via a second set of ductwork known commonly as the "hot deck").
 
 ### BMS Example
