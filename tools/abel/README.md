@@ -158,7 +158,7 @@ During the conversion of the ABEL spreadsheet to a building configuration YAML f
 
 Use the commands below if you do not have an ABEL spreadsheet already created for the entities you would like to onboard. This process will generate a spreadsheet template for you to fill out, then allow you to convert that spreadsheet into a building configuration YAML file once completed. 
 
-Because the building already exists in the cloud, this process requires an initial building configuration file to be passed in for editing in spreadsheet format. Export the configuration file for the building or specific for entities using [DB API](https://docs.google.com/document/d/13dzEmBAwz5Dtcx35qs0GXcKWi1QR4Bitw92wW6H54VE/edit?tab=t.0#heading=h.10pbm1zd8jm8) prior to following the steps below. 
+Because the building already exists in the cloud, this process requires an initial building configuration file to be passed in for editing in spreadsheet format. Export the configuration file for the building or specific for entities prior to following the steps below. 
 
 1. Run the ABEL command with the arguments provided. Note that the arguments in brackets are optional. See the [ABEL Arguments](#abel-arguments) section for details.
 ```
