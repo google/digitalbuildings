@@ -21,8 +21,7 @@ BATT:
 
 UPS:
   guid: "53a1903c-7b32-47da-a7ef-94b047a1aa50"
-  description: "Tag for all uninterruptible power supply (UPS) units. A UPS provides power in the event of grid power failure,
-      protecting critical equipment from damage."
+  description: "Tag for all uninterruptible power supply (UPS) units. A UPS provides power in the event of grid power failure, protecting critical equipment from damage."
   is_abstract: true
   implements:
   - EQUIPMENT
@@ -52,16 +51,14 @@ ATS:
 
 CB:
   guid: "245e084f-a577-441d-a88e-662fd8396271"
-  description: "Tag for all circuit breakers. A circuit breaker is an electrical safety device designed to protect an electrical circuit
-      from damage caused by overcurrent. Its basic function is to interrupt current flow to protect equipment and to prevent the risk of fire."
+  description: "Tag for all circuit breakers. A circuit breaker is an electrical safety device designed to protect an electrical circuit from damage caused by overcurrent. Its basic function is to interrupt current flow to protect equipment and to prevent the risk of fire."
   is_abstract: true
   implements:
   - EQUIPMENT
 
 TXMR:
   guid: "89a9ced0-3ee2-4d12-94b4-84e7179766e6"
-  description: "Tag for transformers, which are devices that transfer electric energy from one alternating-current circuit to one or
-      more other circuits by either increasing (stepping up) or reducing (stepping down) the voltage."
+  description: "Tag for transformers, which are devices that transfer electric energy from one alternating-current circuit to one or more other circuits by either increasing (stepping up) or reducing (stepping down) the voltage."
   is_abstract: true
   implements:
   - EQUIPMENT
