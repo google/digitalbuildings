@@ -4,14 +4,13 @@
 
 ABEL, or **A**utomated **B**uilding **E**ntity **L**oader, is a tool that assists systems integrators (and other DBO users) in efficiently creating and modifying [Building Configuration YAML files](../../ontology/docs/building_config.md) through use of a [spreadsheet](../../tools/abel/validators/README.md).
 
-Building configuration files contain information about equipment, devices, and spaces within a building such as their device type, input and output points (fields) used to control them, and their relationship to one another. Building configuration files are onboarded using [DB API](https://docs.google.com/document/d/13dzEmBAwz5Dtcx35qs0GXcKWi1QR4Bitw92wW6H54VE/edit?tab=t.0#heading=h.10pbm1zd8jm8) in order to create a digital representation of the devices in the cloud and make use of the data coming from their associated fields. Due to the sheer size of building configuration files (a complete building configuration file for a building can contain thousands of devices with tens of thousands of fields), creating or editing one manually in YAML format can be very time consuming and prone to mistakes. ABEL streamlines this process by allowing the systems integrator to create and edit these files in a spreadsheet format to make it quicker and easier to edit multiple entities or fields at once.
+Building configuration files contain information about equipment, devices, and spaces within a building such as their device type, input and output points (fields) used to control them, and their relationship to one another. Building configuration files are onboarded in order to create a digital representation of the devices in the cloud and make use of the data coming from their associated fields. Due to the sheer size of building configuration files (a complete building configuration file for a building can contain thousands of devices with tens of thousands of fields), creating or editing one manually in YAML format can be very time consuming and prone to mistakes. ABEL streamlines this process by allowing the systems integrator to create and edit these files in a spreadsheet format to make it quicker and easier to edit multiple entities or fields at once.
 
 ABEL has the following key features:
 
 * Create and edit a Google Sheet (in the ABEL Spreadsheet Template) and export it to a building configuration file for onboarding.
  * Run Instance Validator (with optional telemetry validation) on the building configuration file during the conversion process to ensure there are no errors in the file prior to attempting onboarding.
 * Convert a building configuration file to a Google Sheet to make edits on.
-* Split a building configuration file to separate out a single namespace to make it easier to focus edits and onboarding processes to a single area as needed.
 
 
 ## User Guide Contents
@@ -27,17 +26,15 @@ ABEL has the following key features:
     *	[Create a Spreadsheet then Convert it to a Building Configuration File](#create-a-spreadsheet-then-convert-it-to-a-building-configuration-file)
     *	[Generate a Building Configuration File from an Existing Spreadsheet](#generate-a-building-configuration-file-from-an-existing-spreadsheet)
   * [Initializing a New Building](#initializing-a-new-building)
-  * [Splitting a Building Configuration File](#splitting-a-building-configuration-file)
 
 
 ## Getting Started
 
 ABEL is a Python tool that must be run in the command line. Before starting the setup and installation process outlined below, please ensure that the following dependencies are met:
 
-* You are running [Python](http://go/swc) 3.9 or higher
-* You have installed the [Google Cloud CLI](https://cloud.google.com/sdk/docs/install)
+* You are running Python 3.9 or higher
 * You have a local clone of the Digital Buildings repository downloaded on your computer
-  * A local clone can be created by running the following in the gCloud CLI:
+  * A local clone can be created by running the following in your CLI:
     
     ```
     git clone https://github.com/google/digitalbuildings.git
@@ -48,7 +45,7 @@ The following steps only need to be done on initial setup. Any steps that must b
 
 ### Set Up a Tooling Environment
 
-A virtual tooling environment ([venv](https://virtualenv.pypa.io/en/latest/)) must be made to create a separate, isolated instance of the Python runtime for a project, with its own packages. To create this environment, follow the following steps:
+A virtual tooling environment ([venv](https://docs.python.org/3/library/venv.html)) must be made to create a separate, isolated instance of the Python runtime for a project, with its own packages. To create this environment, follow the following steps:
 
 1. In the command line, navigate to the Digital Buildings tooling library cloned on your computer. If the Digital Buildings repository is not in your home directory, replace “~” with the folder it exists within.
 ```
@@ -90,12 +87,12 @@ The following commands will make sure the Digital Buildings repository as a whol
   git pull
   ```
 
-3. Navigate to your tooling virtual environment. Replace “tooling” with the name you gave your venv. 
+3. Navigate to the tools folder where your virtual environment was created. 
   ```
   cd /tools/
   ```
 
-4. Activate your virtual environment.
+4. Activate your virtual environment. Replace “tooling” with the name you gave your venv. 
 
     * MacOs/Linux:
       ```
@@ -120,9 +117,16 @@ The following commands will make sure the Digital Buildings repository as a whol
       ```
 
 6. Navigate to the ABEL directory.
-```
-cd /abel/
-```
+
+    * MacOs/Linux:
+      ```
+      cd abel
+      ```
+  
+    * Windows:
+      ```
+      cd /abel/
+      ```
 
 7. Continue to whichever section below matches the action you are trying to perform and follow the instructions provided.
 
@@ -163,10 +167,10 @@ python3 abel.py -c </path/to/credential.json> -b <absolute/path/to/building/conf
 [-d /path/to/desired/output/directory>]
 ```
 
-2. Select option 1, modify a spreadsheet/building config for an existing building, by entering a “1” into the command prompt. This indicates that you are working with an already onboarded building.
+2. Select ```option 1```, modify a spreadsheet/building config for an existing building, by entering a “1” into the command prompt. This indicates that you are working with an already onboarded building.
 
 
-3. Select option 1, edit or update an existing building config, by entering a “1” into the command prompt.This indicates that you do not have an existing spreadsheet and would like to create one off of an initial building configuration file. Note that the building configuration file’s metadata is set to update or initialize for this step to be successful.
+3. Select ```option 1```, edit or update an existing building config, by entering a “1” into the command prompt.This indicates that you do not have an existing spreadsheet and would like to create one off of an initial building configuration file. Note that the building configuration file’s metadata is set to update or initialize for this step to be successful.
 
 
 4. Make any edits or additions to the building entities using the ABEL spreadsheet generated.
@@ -186,10 +190,10 @@ python3 abel.py -s <input_spreadsheet_id>  -c </path/to/credential.json>
 [-d </path/to/desired/output/directory>]
 ```
 
-2. Select option 1, modify a spreadsheet/building config for an existing building, by entering a “1” into the command prompt. This indicates that you are working with an already onboarded building.
+2. Select ```option 1```, modify a spreadsheet/building config for an existing building, by entering a “1” into the command prompt. This indicates that you are working with an already onboarded building.
 
 
-3. Select option 2, create building config from an updated spreadsheet, by entering a “2” into the command prompt. This indicates that you have already created and edited an ABEL spreadsheet and would like to convert it to a building configuration file. Selecting this option will initialize validation and generate a building configuration YAML file.
+3. Select ```option 2```, create building config from an updated spreadsheet, by entering a “2” into the command prompt. This indicates that you have already created and edited an ABEL spreadsheet and would like to convert it to a building configuration file. Selecting this option will initialize validation and generate a building configuration YAML file.
 
 
 ### Initializing a New Building
@@ -212,22 +216,4 @@ python3 abel.py -s <input_spreadsheet_id>  -c </path/to/credential.json>
 [-d </path/to/desired/output/directory>]
 ```
 
-4. Choose option 2, create a spreadsheet for a new building, by entering a “2” into the command prompt. This indicates that you are working with a new building and would like to convert a newly created spreadsheet into a building configuration file. Selecting this option will initialize validation and generate a building configuration YAML file.
-
-
-### Splitting a Building Configuration File
-
-Use the directions in this section when you would like to split a single namespace’s entities out of a master building configuration file. Note that this process will split the namespace into a new building configuration file, not an ABEL spreadsheet. If you would like to make edits in spreadsheet format for the namespace, first split the namespace using the steps below then follow the steps in the [Create a Spreadsheet then Convert it to a Building Configuration File](#create-a-spreadsheet-then-convert-it-to-a-building-configuration-file) section to make the conversion. Make sure you have completed the steps in the [General Use](#general-use) section before continuing to any of the steps below.
-
-The resulting building configuration file will be written to the current or specified directory with the name, “bc_export_<today_date_and_time>.yaml”.
-
-1. Run the ABEL command with the arguments provided. Note that the arguments in brackets are optional. See the [ABEL Arguments](#abel-arguments) section for details.
-```
-python3 abel.py -b <absolute/path/to/building/config>  -c </path/to/credential.json>
-[-p  <projects/google.com:your-project/subscriptions/your-subscription>] [-o <300>] [-m </path/to/ontology>]
-[-d </path/to/desired/output/directory>]
-```
-
-2. Select option 3, split a building config, by entering a “3” into the command prompt.
-
-3. Type the namespace you wish to split out into the command prompt. Note that ABEL can only split out one namespace at a time. ABEL will generate a new building configuration split on the desired namespace along with any dependencies (e.g., a building configuration containing only entities in the DBO METERS namespace).
+4. Choose ```option 2```, create a spreadsheet for a new building, by entering a “2” into the command prompt. This indicates that you are working with a new building and would like to convert a newly created spreadsheet into a building configuration file. Selecting this option will initialize validation and generate a building configuration YAML file.
