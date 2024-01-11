@@ -849,19 +849,31 @@ class EntityInstanceTest(absltest.TestCase):
         combination_validator.Validate(entity_instances.get('ENTITY-NAME-GUID'))
     )
 
+  def testInstance_TypeInstanceWithNoFields_Fails(self):
+    parsed, default_operation = _Helper(
+      [path.join(_TESTCASE_PATH, 'BAD', 'type_expecting_fields.yaml')]
+    )
+
+    bad_entity_guid, bad_entity_parsed = next(iter(parsed.items()))
+    bad_entity = entity_instance.EntityInstance.FromYaml(
+      bad_entity_guid, bad_entity_parsed, default_operation=default_operation
+    )
+
+    self.assertFalse(self.init_validator.Validate(bad_entity))
+
   def testInstance_ValidLinkEntityName_Success(self):
     parsed, default_operation = _Helper(
-        [path.join(_TESTCASE_PATH, 'GOOD', 'links.yaml')]
+      [path.join(_TESTCASE_PATH, 'GOOD', 'links.yaml')]
     )
 
     entity_instances = {}
     for entity_guid, entity_parsed in parsed.items():
       entity = entity_instance.EntityInstance.FromYaml(
-          entity_guid, entity_parsed, default_operation=default_operation
+        entity_guid, entity_parsed, default_operation=default_operation
       )
       entity_instances[entity.guid] = entity
     combination_validator = entity_instance.CombinationValidator(
-        self.config_universe, _INIT_CFG, entity_instances
+      self.config_universe, _INIT_CFG, entity_instances
     )
 
     for _, instance in entity_instances.items():
@@ -1764,6 +1776,19 @@ class EntityInstanceTest(absltest.TestCase):
         entity_2.entity_id,
         parsed['US-SEA-BLDG1-GUID'].get(instance_parser.ENTITY_ID_KEY),
     )
+
+  def testValidateTranslationWithInvalidEnumerations(self):
+    parsed, default_operation = _Helper(
+        [path.join(_TESTCASE_PATH, 'BAD',
+                   'translation_with_invalid_enumeration.yaml')]
+    )
+    entity_iter = iter(parsed.items())
+    entity_1_guid, entity_1_block = next(entity_iter)
+
+    entity_1 = entity_instance.EntityInstance.FromYaml(
+        entity_1_guid, entity_1_block, default_operation=default_operation
+    )
+    self.assertFalse(self.init_validator.Validate(entity_1))
 
   def testPrivateFieldTranslationIsValid_BaseDefinedFieldNotCoveredByValidation_Fails(
       self,
