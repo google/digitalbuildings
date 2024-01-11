@@ -18,10 +18,10 @@ OFF: "Powered off."
 AUTO: "Running under automatic control."
 MANUAL: "Running under manual (hand) control."
 
-TWENTY_PERCENT: Speed of 20 percent of the maximum
-FORTY_PERCENT: Speed of 40 percent of the maximum
-SIXTY_PERCENT: Speed of 60 percent of the maximum
-EIGHTY_PERCENT: Speed of 80 percent of the maximum
+TWENTY_PERCENT: "Speed of 20 percent of the maximum."
+FORTY_PERCENT: "Speed of 40 percent of the maximum."
+SIXTY_PERCENT: "Speed of 60 percent of the maximum."
+EIGHTY_PERCENT: "Speed of 80 percent of the maximum."
 
 OPEN: "Open position; typically for a valve, damper, or other pass-though."
 CLOSED: "Closed position; typically for a valve, damper, or other pass-though."
