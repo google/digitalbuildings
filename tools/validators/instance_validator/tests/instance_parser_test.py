@@ -117,7 +117,7 @@ class ParserTest(absltest.TestCase):
     with self.assertRaises(KeyError):
       parser = _Helper([
           path.join(_TESTCASE_PATH, 'BAD',
-                    'translation_no_cloud_device_id.yaml')
+                    'translation_missing_cloud_device_id.yaml')
       ])
       del parser
 
@@ -190,7 +190,7 @@ class ParserTest(absltest.TestCase):
   def testInstanceValidator_InvalidConfigModeExport_RaisesKeyError(self):
     with self.assertWarns(Warning):
       parser = _ParserHelper(
-          [path.join(_TESTCASE_PATH, 'BAD', 'configmode.yaml')])
+          [path.join(_TESTCASE_PATH, 'BAD', 'type_expecting_fields.yaml')])
       del parser
 
   def testEntityBlock_NewFormatSingleton_Success(self):
