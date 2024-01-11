@@ -267,6 +267,31 @@ e49b0687-e409-4a24-95d6-4629ed42e7b7:
         'ON': active
   type: HVAC/VAV_SD_CSP
 
+f318a105-a8c8-4157-bf0f-9745ac11fbfc:
+  cloud_device_id: "254190134410577"
+  code: VAV-10
+  etag: 1234567
+  # Adding a translation to an already typed entity.
+  translation:
+    zone_air_temperature_sensor:
+      present_value: zone_air_temperature_sensor.present_value
+      units:
+        key: zone_air_temperature_sensor.units
+        values:
+          degrees_fahrenheit: degrees-farenheit
+    zone_air_temperature_setpoint:
+      present_value: zone_air_temperature_setpoint.present_value
+      units:
+        key: zone_air_temperature_setpoint.units
+        values:
+          degrees_fahrenheit: degrees-farenheit
+    run_command:
+      present_value: points.run_command.present-value
+      states:
+        'OFF': inactive
+        'ON': active
+  type: HVAC/VAV_SD_CSP
+
 # Adding an entity
 37fb77f1-4a2a-4ab4-b6bb-771c1cfeaa05:
   operation: ADD
