@@ -66,7 +66,7 @@ CDWS_SWTC_WDPC_MINFC_CLPM:
 
 CDWS_SWTC_WDPC_PWDPC_PRWDT_RWISOVM_PWISOVM:
   guid: "f70bacc1-a512-4e92-98d1-32ccbdf6760d"
-  description: "Condenser water system with condernser supply temperature and differential pressure control and process water temperature and pressure monitoring."
+  description: "Condenser water system with condenser supply temperature and differential pressure control and process water temperature and pressure monitoring."
   is_canonical: true
   implements:
   - CDWS
