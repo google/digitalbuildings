@@ -10,7 +10,7 @@ Hydronic heating water systems (HWS) contain boilers (BLR) to heat the water and
 ## Type Requirements
 - It **must** handle water for the purposes of heating.
 
-## Example: Variable Primary HWS 
+## Example: Variable Primary HWS
 This version of HWS has a single set of variable speed pumps which serve boilers and downstream equipment.
 
 ### BMS Example
