@@ -372,9 +372,9 @@ class BuildingConfigExport(object):
       else:
         config_states = {}
         for state in field.states:
-            if state.standard_state not in config_states:
-              config_states.update({state.standard_state: [state.raw_state]})
-            else:
-              config_states.get(state.standard_state).append(state.raw_state)
+          if state.standard_state not in config_states:
+            config_states.update({state.standard_state: [state.raw_state]})
+          else:
+            config_states.get(state.standard_state).append(state.raw_state)
         return_dict[CONFIG_STATES] = config_states
     return return_dict
