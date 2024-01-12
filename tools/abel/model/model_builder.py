@@ -1,4 +1,4 @@
-# Copyright 2022 Google LLC
+# Copyright 2023 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the License);
 # you may not use this file except in compliance with the License.
@@ -13,335 +13,288 @@
 # limitations under the License.
 """Helper module for concrete model construction."""
 
-from typing import Dict, List
-import uuid
+import datetime
+from typing import Dict, List, Optional
 
+# pylint: disable=g-importing-member
 from model.connection import Connection as ABELConnection
 from model.constants import ALL_CONNECTION_HEADERS
 from model.constants import ALL_ENTITY_HEADERS
 from model.constants import ALL_FIELD_HEADERS
 from model.constants import ALL_SITE_HEADERS
 from model.constants import ALL_STATE_HEADERS
-from model.constants import BC_GUID
-from model.constants import CONNECTION_TYPE
+from model.constants import BACKGROUND_COLOR_STYLE
 from model.constants import CONNECTIONS
+from model.constants import DATA
 from model.constants import ENTITIES
-from model.constants import ENTITY_CODE
 from model.constants import ENTITY_FIELDS
-from model.constants import IS_REPORTING
-from model.constants import REPORTING_ENTITY_CODE
-from model.constants import REPORTING_ENTITY_GUID
+from model.constants import FROZEN_ROW_COUNT
+from model.constants import GRID_PROPERTIES
+from model.constants import PROPERTIES
+from model.constants import RGB_COLOR
+from model.constants import ROW_DATA
+from model.constants import SHEETS
 from model.constants import SITES
-from model.constants import SOURCE_ENTITY_CODE
-from model.constants import SOURCE_ENTITY_GUID
 from model.constants import STATES
-from model.constants import TARGET_ENTITY_CODE
-from model.constants import TARGET_ENTITY_GUID
+from model.constants import STRING_VALUE
+from model.constants import TEXT_FORMAT
+from model.constants import TITLE
+from model.constants import USER_ENTERED_FORMAT
+from model.constants import USER_ENTERED_VALUE
+from model.constants import VALUES
 from model.entity import Entity
 from model.entity import ReportingEntity
 from model.entity import VirtualEntity
-from model.entity_field import EntityField
+from model.entity_field import MultistateValueField
+from model.entity_operation import EntityOperation
+from model.from_building_config import AddReportingEntitiesFromEntityInstance
+from model.from_building_config import EntityInstanceToEntity
+from model.from_spreadsheet import LoadConnectionsFromSpreadsheet
+from model.from_spreadsheet import LoadFieldsFromSpreadsheet
+from model.from_spreadsheet import LoadOperationsFromSpreadsheet
+from model.from_spreadsheet import LoadStatesFromSpreadsheet
 from model.guid_to_entity_map import GuidToEntityMap
 from model.site import Site
 from model.state import State
-from model.units import Units
-from validate.connection import Connection as IVConnection
 from validate.entity_instance import EntityInstance
-from validate.field_translation import DimensionalValue
-from validate.field_translation import MultiStateValue
-from validate.field_translation import UndefinedField
-from validate.link import Link
+from validate.field_translation import FieldTranslation
 
 
-class ModelBuilder(object):
-  """Class to build an ABEL Concrete Model graph.
+class Model(object):
+  """ABEL Concrete Model graph.
 
   ABEL parses a concrete model spreadsheet into a set of standard Python
   dictionaries mapping spreadsheet headers to values. This module takes in those
   dictionaries and parses their data into ABEL model elements.
 
   Attributes:
-    fields: A list of EntityField instances.
+    fields: A list of FieldTranslation instances.
     entities: A list Entity instances.
     site: A list of Site instances.
     states: A list of State instances.
     connections: A list of Connection instances.
-    guid_to_entity_map: A global mapping of GUIDs to Entity instances.
+    guid_to_entity_map: A mapping of GUIDs to Entity instances.
   """
 
-  def __init__(self, site: Site):
-    self.site = site
-    self.fields: List[EntityField] = []
-    self.entities: List[Entity] = []
-    self.states: List[State] = []
-    self.connections: List[ABELConnection] = []
-    self.guid_to_entity_map = GuidToEntityMap()
+  class Builder(object):
+    """Builder for ABEL Concrete Model graph."""
 
-  @classmethod
-  def FromSpreadsheet(cls, spreadsheet_dict: Dict[str, object]) ->...:
-    """Converts a Spreadsheet instance into fields, entities, and sites.
+    def __init__(self, site: Site):
+      self.site = site
+      self.fields: List[FieldTranslation] = []
+      self.entities: List[Entity] = []
+      self.states: List[State] = []
+      self.connections: List[ABELConnection] = []
+      self.guid_to_entity_map = GuidToEntityMap()
+      self.guid_to_entity_map.AddSite(site)
 
-    Args:
-      spreadsheet_dict: A mapping of spreadsheet names to Lists of dictionaries
-        representing cells in a row keyed by column headers.
+    @classmethod
+    def FromSpreadsheet(cls, spreadsheet_dict: Dict[str, object]) -> ...:
+      """Converts a Spreadsheet instance into fields, entities, and sites.
 
-    Returns:
-      An instance of ModelBuilder.
-    """
-    # Currently only supports one site per ABEL instance.
-    site = Site.FromDict(spreadsheet_dict[SITES][0])
-    model_builder = cls(site)
-    model_builder.guid_to_entity_map.AddSite(site)
-    model_builder.LoadEntities(spreadsheet_dict[ENTITIES])
-    model_builder.LoadEntityFields(spreadsheet_dict[ENTITY_FIELDS])
-    model_builder.LoadStates(spreadsheet_dict[STATES])
-    model_builder.LoadConnections(spreadsheet_dict[CONNECTIONS])
-    return model_builder
+      Args:
+        spreadsheet_dict: A mapping of spreadsheet names to Lists of
+          dictionaries representing cells in a row keyed by column headers.
 
-  @classmethod
-  def FromBuildingConfig(cls, site: Site,
-                         building_config_dict: Dict[str, EntityInstance]) ->...:
-    """Converts a yaml document into fields, entities, and sites.
+      Returns:
+        An instance of Model class and a list of EntityOperation intances
+        operating on a Model.
+      """
+      # Currently only supports one site per ABEL instance.
+      site = Site.FromDict(spreadsheet_dict[SITES][0])
+      model_builder = cls(site)
 
-    Iterates through the dictionary returned by Instance validator
-    deserialization. Iterates a second time and fills Reporting entity code,
-    guid and field name values for a field.
+      entity_operations = LoadOperationsFromSpreadsheet(
+          spreadsheet_dict[ENTITIES], model_builder.guid_to_entity_map
+      )
+      model_builder.entities = [
+          operation.entity for operation in entity_operations
+      ]
+      model_builder.fields = LoadFieldsFromSpreadsheet(
+          spreadsheet_dict[ENTITY_FIELDS], model_builder.guid_to_entity_map
+      )
+      model_builder.states = LoadStatesFromSpreadsheet(
+          spreadsheet_dict[STATES], model_builder.guid_to_entity_map
+      )
+      model_builder.connections = LoadConnectionsFromSpreadsheet(
+          spreadsheet_dict[CONNECTIONS], model_builder.guid_to_entity_map
+      )
+      return model_builder, entity_operations
 
-    Args:
-      site: A site instance stripped from a building config.
-      building_config_dict: A dictionary mapping of Instance Validator
-        EntityInstance objects by guid.
+    @classmethod
+    def FromBuildingConfig(
+        cls, site: Site, building_config_dict: Dict[str, EntityInstance]
+    ) -> ...:
+      """Converts a yaml document into fields, entities, and sites.
 
-    Returns:
-      A ModelBuilder instance.
-    """
-    model_builder = cls(site)
-    model_builder.guid_to_entity_map.AddSite(site)
-    for entity_instance in building_config_dict.values():
-      model_builder.EntityInstanceToEntity(entity_instance)
+      Iterates through the dictionary returned by Instance validator
+      deserialization. Iterates a second time and fills Reporting entity code,
+      guid and field name values for a field.
 
-    for entity_instance in building_config_dict.values():
-      model_builder.AddReportingEntitiesFromEntityInstance(entity_instance)
-    return model_builder
+      Args:
+        site: A site instance stripped from a building config.
+        building_config_dict: A dictionary mapping of Instance Validator
+          EntityInstance objects by guid.
 
-  # pylint: disable=line-too-long
-  # TODO(b/234630862) Refactor Build method for readability.
-  def Build(self) -> None:
-    """Connects ABEL graph with Guids as edges.
+      Returns:
+        A Model instance and a list of EntityOperation instances operating on
+        Entities in the model.
+      """
+      model_builder = cls(site)
+      entities = []
+      fields = []
+      states = []
+      connections = []
+      operations = []
 
-    Connects all entities to a site, fields to entities, and entities to
-    entities based on attributes.
-    """
-    self.site.entities = self.entities
-    for guid in self.site.entities:
-      entity = self.guid_to_entity_map.GetEntityByGuid(guid)
-      for connection in self.connections:
-        if connection.target_entity_guid == guid:
-          entity.AddConnection(connection)
-      for field in self.fields:
-        for state in self.states:
-          if state.entity_guid == guid:
-            if state.standard_field_name == field.reporting_entity_field_name:
-              field.AddState(state)
-            elif state.standard_field_name == field.standard_field_name:
-              field.AddState(state)
-        if isinstance(entity, VirtualEntity):
-          if field.entity_guid == guid:
-            entity.AddLink(field)
-        elif isinstance(entity, ReportingEntity):
-          if guid in (field.entity_guid, field.reporting_entity_guid):
-            entity.AddTranslation(field)
+      for entity_instance in building_config_dict.values():
+        this_entity, this_fields, this_states, this_connections, operation = (
+            EntityInstanceToEntity(entity_instance)
+        )
+        model_builder.guid_to_entity_map.AddEntity(this_entity)
+        entities.append(this_entity)
+        fields.extend(this_fields)
+        states.extend(this_states)
+        connections.extend(this_connections)
+        operations.append(operation)
 
-  def LoadEntities(self, entity_entries: List[Dict[str, str]]) -> None:
-    """Loads a list of entity maps into Entity instances and adds to the model.
+      for entity_instance in building_config_dict.values():
+        AddReportingEntitiesFromEntityInstance(entity_instance, fields)
 
-    Args:
-      entity_entries: A list of Python Dictionaries mapping entity attributes
-        names to attribute values.
-    """
-    for entity_entry in entity_entries:
-      if entity_entry[IS_REPORTING].upper() == 'TRUE':
-        new_entity = ReportingEntity.FromDict(entity_entry)
+      model_builder.entities = entities
+      model_builder.fields = fields
+      model_builder.states = states
+      model_builder.connections = connections
+
+      return model_builder, operations
+
+    @classmethod
+    def FromEntities(cls, site: Site, entities: List[Entity]) -> ...:
+      """Returns a Model instance built from a list of entity instances.
+
+      The Build method does not need to be called after this class method
+      because the entities being loaded into this method are pre-built. Meaning,
+      These entities already have their links, translations, or states connected
+      to them.
+
+      Args:
+        site: Site instance for a model.
+        entities: List of Entity instances to be a part of a Model instance.
+
+      Returns: A Model instance.
+      """
+      model_builder = cls(site)
+      model_builder.entities = entities
+      for entity in entities:
+        model_builder.guid_to_entity_map.AddEntity(entity)
+      return Model(model_builder)
+
+    def Build(self) -> ...:
+      """Connects ABEL graph with Guids as edges.
+
+      Guids are used as edges between entities, translations and reporting
+      entities, and links and virtual entities. Reporting field names are used
+      at edges between states and MultiStateValue fields.
+
+      Returns:
+        built Model instance
+      """
+      self.site.entities = self.entities
+      # For each entity, Add connections where entity is the source
+      for guid in self.site.entities:
+        entity = self.guid_to_entity_map.GetEntityByGuid(guid)
+        for connection in self.connections:
+          if connection.target_entity_guid == guid:
+            entity.AddConnection(connection)
+        # For each field in the model
+        for field in self.fields:
+          # For each state in the model
+          for state in self.states:
+            # Create edges between states and their corresponding Multi-state
+            # value field in stances.
+            if state.reporting_entity_guid == guid:
+              if state.std_field_name in (
+                  field.reporting_entity_field_name,
+                  field.std_field_name,
+              ):
+                if isinstance(field, MultistateValueField):
+                  field.AddState(state)
+          # Link field to entity if entity is virtual
+          if isinstance(entity, VirtualEntity):
+            if field.entity_guid == guid:
+              entity.AddLink(field)
+          # Add field as a translation to entity if entity is reporting.
+          elif isinstance(entity, ReportingEntity):
+            if guid in (field.entity_guid, field.reporting_entity_guid):
+              entity.AddTranslation(field)
+      return Model(self)
+
+  def __init__(self, builder: Builder):
+    self._site = builder.site
+    self._fields = builder.fields
+    self._entities = builder.entities
+    self._states = builder.states
+    self._connections = builder.connections
+    self._guid_to_entity_map = builder.guid_to_entity_map
+
+  def __eq__(self, other):
+    if not isinstance(other, Model):
+      return False
+    if self.site != other.site:
+      return False
+    for entity in self.entities:
+      if entity != other.GetEntity(entity.bc_guid):
+        return False
+    return True
+
+  @property
+  def site(self) -> Site:
+    return self._site
+
+  @property
+  def fields(self) -> List[FieldTranslation]:
+    return self._fields
+
+  @property
+  def entities(self) -> List[VirtualEntity]:
+    return self._entities
+
+  @property
+  def states(self) -> List[State]:
+    return self._states
+
+  @property
+  def connections(self) -> List[ABELConnection]:
+    return self._connections
+
+  @property
+  def guid_to_entity_map(self) -> GuidToEntityMap:
+    return self._guid_to_entity_map
+
+  def GetEntity(self, entity_guid: str) -> Entity:
+    """Helper function to get an Entity instance for a guid."""
+    return self.guid_to_entity_map.GetEntityByGuid(entity_guid)
+
+  def GetStates(
+      self,
+      entity_guid: str,
+      std_field_name: str,
+  ) -> List[State]:
+    """Helper function to get State instances for a field name and guid."""
+    state_map = {}
+    for state in self.states:
+      states_hash = hash((state.reporting_entity_guid, state.std_field_name))
+      if state_map.get(states_hash) is None:
+        state_map[states_hash] = [state]
       else:
-        new_entity = VirtualEntity.FromDict(entity_entry)
-      if not new_entity.bc_guid:
-        new_entity.bc_guid = str(uuid.uuid4())
-      self.guid_to_entity_map.AddEntity(new_entity)
-      self.entities.append(new_entity)
+        state_map[states_hash].append(state)
+    return state_map.get(
+        hash((entity_guid, std_field_name))
+    )
 
-  def LoadEntityFields(self, entity_field_entries: List[Dict[str,
-                                                             str]]) -> None:
-    """Loads list of entity field maps into EntityField instances.
-
-    Once the entity field mapping is loaded into an EntityField instance, it
-    is then added to the ABEL internal model.
-
-    Args:
-      entity_field_entries: A list of python dictionaries mapping entity field
-        attribute names to values.
-    """
-    for entity_field_entry in entity_field_entries:
-      entity_field_entry[BC_GUID] = self.guid_to_entity_map.GetEntityGuidByCode(
-          entity_field_entry[ENTITY_CODE])
-      if entity_field_entry[REPORTING_ENTITY_CODE]:
-        entity_field_entry[
-            REPORTING_ENTITY_GUID] = self.guid_to_entity_map.GetEntityGuidByCode(
-                entity_field_entry[REPORTING_ENTITY_CODE])
-      self.fields.append(EntityField.FromDict(entity_field_entry))
-
-  def LoadStates(self, state_entries: List[Dict[str, str]]) -> None:
-    """Loads a list of state dictionary mappings into State instances and adds to the model.
-
-    Args:
-      state_entries: A list of python dictionaries mapping state attribute names
-        to values.
-    """
-    for state_entry in state_entries:
-      state_entry[BC_GUID] = self.guid_to_entity_map.GetEntityGuidByCode(
-          state_entry[ENTITY_CODE])
-      self.states.append(State.FromDict(state_entry))
-
-  def LoadConnections(self, connection_entries: List[Dict[str, str]]) -> None:
-    """Loads a list of connection dictionary mappings into Connection instances and adds to the model.
-
-    Args:
-      connection_entries: A list of python dictionaries mapping connection
-        attribute names to values.
-    """
-    for connection_entry in connection_entries:
-      connection_entry[
-          SOURCE_ENTITY_GUID] = self.guid_to_entity_map.GetEntityGuidByCode(
-              connection_entry[SOURCE_ENTITY_CODE])
-      connection_entry[
-          TARGET_ENTITY_GUID] = self.guid_to_entity_map.GetEntityGuidByCode(
-              connection_entry[TARGET_ENTITY_CODE])
-      self.connections.append(ABELConnection.FromDict(connection_entry))
-
-  def EntityInstanceToEntity(self, entity_instance: EntityInstance) -> None:
-    """Maps EntityInstance attributes to an ABEL Entity instance and adds to the model.
-
-    Args:
-      entity_instance: An Instance Validator EntityInstance.
-    """
-    if not entity_instance.cloud_device_id:
-      entity = VirtualEntity(
-          code=entity_instance.code,
-          namespace=entity_instance.namespace,
-          etag=entity_instance.etag,
-          type_name=entity_instance.type_name,
-          bc_guid=entity_instance.guid)
-    else:
-      entity = ReportingEntity(
-          code=entity_instance.code,
-          namespace=entity_instance.namespace,
-          cloud_device_id=entity_instance.cloud_device_id,
-          etag=entity_instance.etag,
-          type_name=entity_instance.type_name,
-          bc_guid=entity_instance.guid)
-
-      for field in entity_instance.translation.values():
-        if isinstance(field, DimensionalValue):
-          self._DimensionalValueToEntityField(
-              reporting_entity_guid=entity_instance.guid, field=field)
-        elif isinstance(field, MultiStateValue):
-          self._MultistateValueToEntityField(
-              reporting_entity_guid=entity_instance.guid, field=field)
-        elif isinstance(field, UndefinedField):
-          self._UndefinedFieldToEntityField(
-              reporting_entity_guid=entity_instance.guid, field=field)
-
-    self.entities.append(entity)
-    self.guid_to_entity_map.AddEntity(entity)
-
-    if entity_instance.connections:
-      for connection in entity_instance.connections:
-        self._TranslateConnectionsToABEL(entity_instance.guid, connection)
-
-  def _DimensionalValueToEntityField(self, reporting_entity_guid: str,
-                                     field: DimensionalValue) -> None:
-    """Maps DimensionalValue attributes to ABEL EntityField instances and adds to the model.
-
-    Args:
-      reporting_entity_guid: Parent reporting entity guid.
-      field: An Instance Validator DimensionalValue instance.
-    """
-    entity_field = EntityField(
-        standard_field_name=field.std_field_name,
-        raw_field_name=field.raw_field_name,
-        missing=False,
-        entity_guid=reporting_entity_guid,
-        reporting_entity_guid=reporting_entity_guid)
-
-    entity_field.units = Units(
-        raw_unit_path=field.unit_field_name,
-        standard_to_raw_unit_map=field.unit_mappings)
-
-    self.fields.append(entity_field)
-
-  def _MultistateValueToEntityField(self, reporting_entity_guid: str,
-                                    field: MultiStateValue) -> None:
-    """Maps MultiStateValue attributes to ABEL EntityField instances.
-
-    Args:
-      reporting_entity_guid: Parent reporting entity guid.
-      field: An Instance Validator MultiStateValue instance.
-    """
-    self.fields.append(
-        EntityField(
-            standard_field_name=field.std_field_name,
-            raw_field_name=field.raw_field_name,
-            missing=False,
-            entity_guid=reporting_entity_guid,
-            reporting_entity_guid=reporting_entity_guid))
-    self._TranslateStatesToABEL(entity_guid=reporting_entity_guid, field=field)
-
-  def _UndefinedFieldToEntityField(self, reporting_entity_guid: str,
-                                   field: UndefinedField) -> None:
-    """Maps UndefinedField attributes to ABEL EntityField instances.
-
-    Args:
-      reporting_entity_guid: Parent reporting entity guid.
-      field: An Instance Validator UndefinedField instance.
-    """
-    self.fields.append(
-        EntityField(
-            standard_field_name=field.std_field_name,
-            missing=True,
-            entity_guid=reporting_entity_guid,
-            reporting_entity_guid=reporting_entity_guid))
-
-  def _TranslateStatesToABEL(self, entity_guid: str,
-                             field: MultiStateValue) -> None:
-    """Maps MultiStateValue state attributes to ABEL State instance.
-
-    Args:
-      entity_guid: Parent entity guid.
-      field: An Instance Validator MultistateValue instance.
-    """
-    for std_state_value, raw_state_value in field.states.items():
-      self.states.append(
-          State(
-              standard_field_name=field.std_field_name,
-              entity_guid=entity_guid,
-              standard_state=std_state_value,
-              raw_state=raw_state_value))
-
-  def _TranslateConnectionsToABEL(self, entity_guid: str,
-                                  connection: IVConnection) -> None:
-    """Maps Instance Validator Connection attributes to ABEL Connection object.
-
-    Args:
-      entity_guid: Parent entity guid.
-      connection: Instance Validator Connection instance.
-    """
-    self.connections.append(
-        ABELConnection.FromDict({
-            SOURCE_ENTITY_GUID: connection.source,
-            CONNECTION_TYPE: connection.ctype,
-            TARGET_ENTITY_GUID: entity_guid
-        }))
-
-  def ToModelDictionary(self) -> Dict[str, List[List[str]]]:
+  def ToModelDictionary(
+      self, operations: Optional[List[EntityOperation]] = None
+  ) -> Dict[str, List[List[str]]]:
     """Converts a model into a dictionary for parsing into a spreadsheet.
 
     Converts model site, entities, fields, states, and connections into a
@@ -349,66 +302,66 @@ class ModelBuilder(object):
     concrete model into a spreadsheet, abel_elements are internal ABEL model
     instances constructed from a parsed Building config.
 
+    Args:
+      operations: List of EntityOperation instances.
+
     Returns:
       A python dictionary of model values.
     """
-    spreadsheet_dictionary = {}
+
+    if operations:
+      entities = operations
+    else:
+      entities = self.entities
+
     spreadsheet_range = {
         SITES: (ALL_SITE_HEADERS, [self.site]),
-        ENTITIES: (ALL_ENTITY_HEADERS, self.entities),
+        ENTITIES: (ALL_ENTITY_HEADERS, entities),
         ENTITY_FIELDS: (ALL_FIELD_HEADERS, self.fields),
         STATES: (ALL_STATE_HEADERS, self.states),
-        CONNECTIONS: (ALL_CONNECTION_HEADERS, self.connections)
+        CONNECTIONS: (ALL_CONNECTION_HEADERS, self.connections),
     }
+    # pylint: disable=line-too-long
+    title = (
+        f'{self.site.code} {datetime.datetime.strftime(datetime.datetime.now(), "%Y-%m-%d %H:%M")}'
+    )
+    spreadsheet_model = {PROPERTIES: {TITLE: title}, SHEETS: []}
+    # pylint: disable = g-complex-comprehension
     for sheet_name, (headers, abel_element_list) in spreadsheet_range.items():
+      header_row = {
+          VALUES: [
+              {
+                  USER_ENTERED_VALUE: {STRING_VALUE: header},
+                  USER_ENTERED_FORMAT: {
+                      BACKGROUND_COLOR_STYLE: {
+                          RGB_COLOR: {
+                              'red': 227,
+                              'green': 82,
+                              'blue': 125,
+                          }
+                      },
+                      TEXT_FORMAT: {'bold': True},
+                  },
+              }
+              for header in headers
+          ]
+      }
+      sheet_model = {
+          PROPERTIES: {
+              TITLE: sheet_name,
+              GRID_PROPERTIES: {FROZEN_ROW_COUNT: 1},
+          },
+          DATA: {ROW_DATA: [header_row]},
+      }
       if abel_element_list:
-        rows = []
         for abel_element in abel_element_list:
           try:
-            rows.append(list(abel_element.GetSpreadsheetRowMapping().values()))
+            sheet_model.get(DATA).get(ROW_DATA).append(
+                abel_element.GetSpreadsheetRowMapping(self.guid_to_entity_map)
+            )
           except AttributeError as err:
             print(f'sheet_name: {sheet_name}')
             print(f'{abel_element} contains missing attributes.')
             print(err)
-        spreadsheet_dictionary[sheet_name] = [headers] + rows
-      else:
-        spreadsheet_dictionary[sheet_name] = []
-    return spreadsheet_dictionary
-
-  def AddReportingEntitiesFromEntityInstance(
-      self, entity_instance: EntityInstance) -> None:
-    """Adds link attributes to EntityField instances for all virtual entities.
-
-    Determines if an entity has links, and calls this method to fill in
-    entity_guid, reporting_entity_field_name, and standard_field_name for a
-    field.
-
-    Args:
-      entity_instance: An EntityInstance instance from Instance Validator
-        deserialization.
-    """
-    if entity_instance.links:
-      for link in entity_instance.links:
-        self._AddReportingEntitiesFromLinks(
-            link=link, entity_instance=entity_instance)
-
-  def _AddReportingEntitiesFromLinks(self, link: Link,
-                                     entity_instance: EntityInstance) -> None:
-    """Adds reporting entity code, guid and field name to an EntityField instance.
-
-    For each link, iterate through this model's fields and if the links source
-    guid equals the field's reporting_entity_guid and the field's standard field
-    name is the link's mapped field, then add this virtual entity as the
-    entity_guid for a field.
-
-    Args:
-      link: An Instance Validator Link instance.
-      entity_instance: An EntityInstance from Instance Validator
-        deserialization.
-    """
-    for source_field, target_field in link.field_map.items():
-      for field in self.fields:
-        if link.source == field.reporting_entity_guid and field.standard_field_name == target_field:
-          field.entity_guid = entity_instance.guid
-          field.reporting_entity_field_name = target_field
-          field.standard_field_name = source_field
+      spreadsheet_model.get(SHEETS).append(sheet_model)
+    return spreadsheet_model

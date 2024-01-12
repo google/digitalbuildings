@@ -1,4 +1,4 @@
-# Copyright 2020 Google LLC
+# Copyright 2023 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the License);
 # you may not use this file except in compliance with the License.
@@ -117,7 +117,7 @@ class ParserTest(absltest.TestCase):
     with self.assertRaises(KeyError):
       parser = _Helper([
           path.join(_TESTCASE_PATH, 'BAD',
-                    'translation_no_cloud_device_id.yaml')
+                    'translation_missing_cloud_device_id.yaml')
       ])
       del parser
 
@@ -188,9 +188,9 @@ class ParserTest(absltest.TestCase):
                      instance_parser.ConfigMode.Default())
 
   def testInstanceValidator_InvalidConfigModeExport_RaisesKeyError(self):
-    with self.assertRaises(KeyError):
+    with self.assertWarns(Warning):
       parser = _ParserHelper(
-          [path.join(_TESTCASE_PATH, 'BAD', 'configmode.yaml')])
+          [path.join(_TESTCASE_PATH, 'BAD', 'type_expecting_fields.yaml')])
       del parser
 
   def testEntityBlock_NewFormatSingleton_Success(self):
@@ -224,7 +224,7 @@ class ParserTest(absltest.TestCase):
         'SDC_EXT-17-GUID': {
             'type': 'HVAC/SDC_EXT',
             'code': 'SDC_EXT-17',
-            'cloud_device_id': 'foobar',
+            'cloud_device_id': '1234567890123456',
             'etag': 'a56789',
             'update_mask': ['translation', 'connection'],
             'translation': {
@@ -271,6 +271,11 @@ class ParserTest(absltest.TestCase):
           [path.join(_TESTCASE_PATH, 'BAD', 'update_mask_operation.yaml')])
       del parser
 
+  def testInstanceValidator_translationFieldStatesCaseInsensitive_Success(self):
+    parser = _ParserHelper(
+        [path.join(_TESTCASE_PATH, 'GOOD', 'states_case_insensitive.yaml')])
+    self.assertLen(parser.GetEntities().keys(), 2)
+
   def testEntityBlock_EntityWithId_Success(self):
     parser = _ParserHelper(
         [path.join(_TESTCASE_PATH, 'GOOD', 'bc_entity_with_id.yaml')])
@@ -282,7 +287,8 @@ class ParserTest(absltest.TestCase):
 
     self.assertLen(parser.GetEntities().keys(), 2)
     self.assertIsNone(entity_1.get(instance_parser.ENTITY_ID_KEY))
-    self.assertEqual(entity_2.get(instance_parser.ENTITY_ID_KEY),
+    self.assertEqual(
+        entity_2.get(instance_parser.ENTITY_ID_KEY),
         "deprecated-but-doesn't-break")
 
 if __name__ == '__main__':

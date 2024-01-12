@@ -1,0 +1,26 @@
+# Copyright 2020 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the License);
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#    https://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an AS IS BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+FM_STANDARD:
+  guid: "05f00511-9d04-4c98-ac9f-6aba9f0c9fe7"
+  description: "Standard flow meter typically for liquid."
+  implements:
+  - FM
+  is_canonical: true
+  uses:
+  - volume_accumulator
+  - flowrate_sensor
+  opt_uses:
+  - failed_alarm
+

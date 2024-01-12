@@ -1,4 +1,4 @@
-# Copyright 2020 Google LLC
+# Copyright 2023 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the License);
 # you may not use this file except in compliance with the License.
@@ -20,6 +20,7 @@ import enum
 import re
 import sys
 from typing import Callable, Dict, List, Optional, Type, TypeVar
+import warnings
 
 import ruamel
 import strictyaml as syaml
@@ -32,6 +33,7 @@ _ENTITIES_PER_BATCH = 2
 
 class ConfigMode(enum.Enum):
   """Enumerated building config file processing modes."""
+
   INITIALIZE = 'INITIALIZE'
   UPDATE = 'UPDATE'
   EXPORT = 'EXPORT'
@@ -52,6 +54,7 @@ class ConfigMode(enum.Enum):
 
 class EntityOperation(enum.Enum):
   """Enumerated building config entity processing modes."""
+
   UPDATE = 'UPDATE'
   ADD = 'ADD'
   DELETE = 'DELETE'
@@ -75,9 +78,11 @@ def _OrRegex(values: List[str]) -> syaml.Regex:
 E = TypeVar('E', bound=enum.Enum)
 
 
-def EnumToRegex(enum_type: Optional[Type[E]] = None,
-                omit: Optional[List[E]] = None,
-                exactly: Optional[E] = None) -> syaml.Regex:
+def EnumToRegex(
+    enum_type: Optional[Type[E]] = None,
+    omit: Optional[List[E]] = None,
+    exactly: Optional[E] = None,
+) -> syaml.Regex:
   """Returns a regex matching any value of an enum.
 
   Args:
@@ -94,8 +99,10 @@ def EnumToRegex(enum_type: Optional[Type[E]] = None,
   return _OrRegex([v.value for v in list(enum_type) if v not in omit])
 
 
-def _MergeSchemas(first: Dict[syaml.ScalarValidator, syaml.Validator],
-                  second: Dict[syaml.ScalarValidator, syaml.Validator]):
+def _MergeSchemas(
+    first: Dict[syaml.ScalarValidator, syaml.Validator],
+    second: Dict[syaml.ScalarValidator, syaml.Validator],
+):
   """Returns a copy of first, updated with the contents of second."""
   merged = first.copy()
   merged.update(second)
@@ -116,6 +123,7 @@ CONNECTIONS_KEY = 'connections'
 METADATA_KEY = 'metadata'
 PRESENT_VALUE_KEY = 'present_value'
 POINTS = 'points'
+VALUE_RANGE_KEY = 'value_range'
 UNITS_KEY = 'units'
 UNIT_NAME_KEY = 'key'
 UNIT_VALUES_KEY = 'values'
@@ -154,24 +162,28 @@ _TRANSLATION_SCHEMA = syaml.MapPattern(
     syaml.Regex(_FIELD_REGEX),
     # Note: This block is somewhat permissive as the logic was difficult to
     # implement in syaml.  Additional validation occurs in EntityInstance
-    syaml.Str() | syaml.Map({
-        PRESENT_VALUE_KEY:
-            syaml.Str(),
-        syaml.Optional(STATES_KEY):
-            syaml.MapPattern(
-                syaml.Regex(str('^[A-Z][A-Z_]+')),
-                syaml.Str() | syaml.Seq(syaml.Str())),
-        syaml.Optional(UNITS_KEY):
-            syaml.Map({
-                UNIT_NAME_KEY: syaml.Str(),
-                UNIT_VALUES_KEY: syaml.MapPattern(syaml.Str(), syaml.Str())
-            }),
-    }))
+    syaml.Str()
+    | syaml.Map({
+        PRESENT_VALUE_KEY: syaml.Str(),
+        syaml.Optional(STATES_KEY): syaml.MapPattern(
+            syaml.Regex(str('^[a-zA-Z][a-zA-Z_]+')),
+            syaml.Str() | syaml.Seq(syaml.Str()),
+        ),
+        syaml.Optional(UNITS_KEY): syaml.Map({
+            UNIT_NAME_KEY: syaml.Str(),
+            UNIT_VALUES_KEY: syaml.MapPattern(syaml.Str(), syaml.Str()),
+        }),
+        syaml.Optional(VALUE_RANGE_KEY): syaml.Str(),
+    }),
+)
 
-_METADATA_SCHEMA = syaml.Map({
-    syaml.Optional(_CONFIG_MODE_KEY):
-        EnumToRegex(ConfigMode, [ConfigMode.EXPORT])
-})
+_METADATA_SCHEMA = syaml.Map(
+    {
+        syaml.Optional(_CONFIG_MODE_KEY): EnumToRegex(
+            ConfigMode, [ConfigMode.EXPORT]
+        )
+    }
+)
 
 _ENTITY_IDS_SCHEMA = {
     # this is the entity instance global primary key, used to identify instances
@@ -180,66 +192,66 @@ _ENTITY_IDS_SCHEMA = {
     # below we allow for guid and code attributes to be optionally specified
     # as the InstanceParser must be able to parse both; homogeneity validation
     # should be enforced, but not in this subsystem.
-    syaml.Optional(ENTITY_GUID_KEY):
-        syaml.Str(),
+    syaml.Optional(ENTITY_GUID_KEY): syaml.Str(),
     # this is the numeric cloud device id from Cloud IoT
-    syaml.Optional(ENTITY_CLOUD_DEVICE_ID_KEY):
-        syaml.Str(),
+    syaml.Optional(ENTITY_CLOUD_DEVICE_ID_KEY): syaml.Str(),
     # this is deprecated; kept for legacy reasons
-    syaml.Optional(ENTITY_ID_KEY):
-        syaml.Str(),
+    syaml.Optional(ENTITY_ID_KEY): syaml.Str(),
 }
 _ENTITY_ATTRIB_SCHEMA = {
-    syaml.Optional(ENTITY_CODE_KEY):
+    syaml.Optional(ENTITY_CODE_KEY): syaml.Str(),
+    syaml.Optional(CONNECTIONS_KEY): syaml.MapPattern(
+        syaml.Str(), syaml.Str() | syaml.Seq(syaml.Str())
+    ),
+    syaml.Optional(LINKS_KEY): syaml.MapPattern(
         syaml.Str(),
-    syaml.Optional(CONNECTIONS_KEY):
-        syaml.MapPattern(syaml.Str(),
-                         syaml.Str() | syaml.Seq(syaml.Str())),
-    syaml.Optional(LINKS_KEY):
-        syaml.MapPattern(
-            syaml.Str(),
-            syaml.MapPattern(
-                syaml.Regex(_FIELD_REGEX), syaml.Regex(_FIELD_REGEX))),
-    syaml.Optional(TRANSLATION_KEY):
-        _TRANSLATION_SCHEMA,
-    syaml.Optional(METADATA_KEY):
-        syaml.Any()
+        syaml.MapPattern(syaml.Regex(_FIELD_REGEX), syaml.Regex(_FIELD_REGEX)),
+    ),
+    syaml.Optional(TRANSLATION_KEY): _TRANSLATION_SCHEMA,
+    syaml.Optional(METADATA_KEY): syaml.Any(),
 }
 
 _ENTITY_BASE_SCHEMA = _MergeSchemas(_ENTITY_IDS_SCHEMA, _ENTITY_ATTRIB_SCHEMA)
-_ENTITY_INIT_SCHEMA = _MergeSchemas(_ENTITY_BASE_SCHEMA,
-                                    {ENTITY_TYPE_KEY: syaml.Str()})
+_ENTITY_INIT_SCHEMA = _MergeSchemas(
+    _ENTITY_BASE_SCHEMA, {ENTITY_TYPE_KEY: syaml.Str()}
+)
 _ENTITY_UPDATE_SCHEMA = _MergeSchemas(
-    _ENTITY_BASE_SCHEMA, {
-        ETAG_KEY:
-            syaml.Str(),
-        syaml.Optional(ENTITY_TYPE_KEY):
-            syaml.Str(),
-        syaml.Optional(ENTITY_OPERATION_KEY):
-            EnumToRegex(exactly=EntityOperation.UPDATE),
-        UPDATE_MASK_KEY:
-            syaml.UniqueSeq(syaml.Str())
-    })
+    _ENTITY_BASE_SCHEMA,
+    {
+        ETAG_KEY: syaml.Str(),
+        syaml.Optional(ENTITY_TYPE_KEY): syaml.Str(),
+        syaml.Optional(ENTITY_OPERATION_KEY): EnumToRegex(
+            exactly=EntityOperation.UPDATE
+        ),
+        UPDATE_MASK_KEY: syaml.UniqueSeq(syaml.Str()),
+    },
+)
 _ENTITY_ADD_SCHEMA = _MergeSchemas(
-    _ENTITY_BASE_SCHEMA, {
+    _ENTITY_BASE_SCHEMA,
+    {
         ENTITY_TYPE_KEY: syaml.Str(),
-        ENTITY_OPERATION_KEY: EnumToRegex(exactly=EntityOperation.ADD)
-    })
+        ENTITY_OPERATION_KEY: EnumToRegex(exactly=EntityOperation.ADD),
+    },
+)
 _ENTITY_DELETE_SCHEMA = _MergeSchemas(
     _ENTITY_BASE_SCHEMA,
-    {ENTITY_OPERATION_KEY: EnumToRegex(exactly=EntityOperation.DELETE)})
+    {ENTITY_OPERATION_KEY: EnumToRegex(exactly=EntityOperation.DELETE)},
+)
 _ENTITY_EXPORT_SCHEMA = _MergeSchemas(
-    _ENTITY_BASE_SCHEMA, {
-        ETAG_KEY:
-            syaml.Str(),
-        ENTITY_TYPE_KEY:
-            syaml.Str(),
-        syaml.Optional(ENTITY_OPERATION_KEY):
-            EnumToRegex(exactly=EntityOperation.EXPORT)
-    })
+    _ENTITY_BASE_SCHEMA,
+    {
+        ETAG_KEY: syaml.Str(),
+        ENTITY_TYPE_KEY: syaml.Str(),
+        syaml.Optional(ENTITY_OPERATION_KEY): EnumToRegex(
+            exactly=EntityOperation.EXPORT
+        ),
+    },
+)
 
 
-class InstanceParser():
+# TODO(b/234492090): id depreciated and no longer used; remove from syntax and
+# content validation - 05312022
+class InstanceParser:
   """One-shot state machine for parsing and syntax checking YAML config files.
 
   Class facilitates structural syntax validation, including duplication
@@ -279,8 +291,9 @@ class InstanceParser():
     Raises:
       AssertionError: if the config has not been found or default applied.
     """
-    assert self._config_mode, ('Mode unset. If all files are added, call '
-                               'Finalize()')
+    assert (
+        self._config_mode
+    ), 'Mode unset. If all files are added, call Finalize()'
     return self._config_mode
 
   def AddFile(self, filename: str) -> None:
@@ -311,8 +324,9 @@ class InstanceParser():
         if _ENTITY_CODE_PATTERN.match(line) or _ENTITY_GUID_PATTERN.match(line):
           # If the last block was config, send it for parsing
           if in_config:
-            self._ValidateBlock(entity_instance_block,
-                                self._ValidateMetadataContent)
+            self._ValidateBlock(
+                entity_instance_block, self._ValidateMetadataContent
+            )
             entity_instance_block = ''
             in_config = False
 
@@ -344,8 +358,9 @@ class InstanceParser():
     # Validate all queued blocks
     while True:
       try:
-        self._ValidateBlock(self._queued_entity_blocks.popleft(),
-                            self._ValidateEntityBlock)
+        self._ValidateBlock(
+            self._queued_entity_blocks.popleft(), self._ValidateEntityBlock
+        )
       except IndexError:
         break
 
@@ -391,9 +406,15 @@ class InstanceParser():
         else:  # no-op catch all
           raise KeyError(
               f'Entity Operation type: {entity[ENTITY_OPERATION_KEY]} is not',
-              ' valid')
+              ' valid',
+          )
       elif UPDATE_MASK_KEY in entity:
         schema = syaml.Map(_ENTITY_UPDATE_SCHEMA)
+    elif ConfigMode.EXPORT == self._config_mode:
+      warnings.warn(
+          f'Config cannot be onboarded under config mode: {ConfigMode.EXPORT}'
+      )
+      schema = syaml.Map(_ENTITY_EXPORT_SCHEMA)
     else:
       raise KeyError('No valid _config_mode is set')
 
@@ -418,8 +439,9 @@ class InstanceParser():
       self._ValidateEntityContent(block.get(key))
     self._validated_entities.update(block.data)
 
-  def _ValidateBlock(self, unvalidated_block: str,
-                     validation_fn: Callable[[syaml.YAML], None]) -> None:
+  def _ValidateBlock(
+      self, unvalidated_block: str, validation_fn: Callable[[syaml.YAML], None]
+  ) -> None:
     """Validates a yaml-formatted string using the provided function.
 
     Args:
@@ -427,14 +449,18 @@ class InstanceParser():
       validation_fn: a validation function that takes YAML as an argument
     """
     try:
-      validated = syaml.load(unvalidated_block,
-                             syaml.MapPattern(syaml.Str(), syaml.Any()))
+      validated = syaml.load(
+          unvalidated_block, syaml.MapPattern(syaml.Str(), syaml.Any())
+      )
       validation_fn(validated)
 
-    except (ValueError, ruamel.yaml.parser.ParserError,
-            ruamel.yaml.scanner.ScannerError,
-            syaml.exceptions.YAMLValidationError,
-            syaml.exceptions.DuplicateKeysDisallowed,
-            syaml.exceptions.InconsistentIndentationDisallowed) as exception:
+    except (
+        ValueError,
+        ruamel.yaml.parser.ParserError,
+        ruamel.yaml.scanner.ScannerError,
+        syaml.exceptions.YAMLValidationError,
+        syaml.exceptions.DuplicateKeysDisallowed,
+        syaml.exceptions.InconsistentIndentationDisallowed,
+    ) as exception:
       print(exception)
       sys.exit(0)

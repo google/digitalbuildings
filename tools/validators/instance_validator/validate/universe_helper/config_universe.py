@@ -1,4 +1,4 @@
-# Copyright 2021 Google LLC
+# Copyright 2023 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the License);
 # you may not use this file except in compliance with the License.
@@ -26,6 +26,7 @@ from yamlformat.validator import presubmit_validate_types_lib
 from yamlformat.validator import unit_lib
 
 
+# TODO(b/293493583): Simplified universe needs to be updated with new fields.
 def create_simplified_universe() -> presubmit_validate_types_lib.ConfigUniverse:
   """Creates a simplified test universe with minimal configuration for testing.
 
@@ -75,6 +76,8 @@ def create_simplified_universe() -> presubmit_validate_types_lib.ConfigUniverse:
       folderpath='GATEWAYS/entity_types', field_universe=field_universe)
   hvac_type_folder = entity_type_lib.EntityTypeFolder(
       folderpath='HVAC/entity_types', field_universe=field_universe)
+  safety_type_folder = entity_type_lib.EntityTypeFolder(
+      folderpath='SAFETY/entity_types', field_universe=field_universe)
 
   global_type_folder.AddFromConfig(
       config_filename='entity_types/global.yaml',
@@ -95,6 +98,9 @@ def create_simplified_universe() -> presubmit_validate_types_lib.ConfigUniverse:
       config_filename='HVAC/entity_types/CHWS.yaml',
       documents=[types.HVAC_CHWS_TYPES_DOCUMENT])
   hvac_type_folder.AddFromConfig(
+      config_filename='HVAC/entity_types/FAN.yaml',
+      documents=[types.HVAC_FAN_TYPES_DOCUMENT])
+  hvac_type_folder.AddFromConfig(
       config_filename='HVAC/entity_types/GENERALTYPES.yaml',
       documents=[types.HVAC_GENERAL_TYPES_DOCUMENT])
   hvac_type_folder.AddFromConfig(
@@ -103,11 +109,20 @@ def create_simplified_universe() -> presubmit_validate_types_lib.ConfigUniverse:
   hvac_type_folder.AddFromConfig(
       config_filename='HVAC/entity_types/DMP.yaml',
       documents=[types.HVAC_DMP_TYPES_DOCUMENT])
+  safety_type_folder.AddFromConfig(
+      config_filename='SAFETY/entity_types/ABSTRACT.yaml',
+      documents=[types.SAFETY_ABSTRACT_TYPES_DOCUMENT])
+  safety_type_folder.AddFromConfig(
+      config_filename='SAFETY/entity_types/GENERALTYPES.yaml',
+      documents=[types.SAFETY_GENERAL_TYPES_DOCUMENT])
+  safety_type_folder.AddFromConfig(
+      config_filename='SAFETY/entity_types/FACP.yaml',
+      documents=[types.SAFETY_FACP_TYPES_DOCUMENT])
 
   entity_type_universe = entity_type_lib.EntityTypeUniverse(
       entity_type_folders=[
           global_type_folder, facilities_type_folder, gateways_type_folder,
-          hvac_type_folder
+          hvac_type_folder, safety_type_folder
       ])
 
   config_universe = presubmit_validate_types_lib.ConfigUniverse(

@@ -1,4 +1,4 @@
-# Copyright 2020 Google LLC
+# Copyright 2023 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the License);
 # you may not use this file except in compliance with the License.
@@ -20,21 +20,21 @@ US-SEA-BLDG1-GUID:
 FAN-17-GUID:
   type: HVAC/FAN_SS_VSC
   code: FAN-17
-  cloud_device_id: "foobar"
+  cloud_device_id: "1234567890123456"
   translation:
     run_command:
-      present_value: points.run_command.present_value
+      present_value: "points.run_command.present_value"
       states:
         OFF: false
         ON: true
     run_status:
-      present_value: points.run_status.present_value
+      present_value: "points.run_status.present_value"
       states:
         OFF: 0
         ON: 1
     speed_percentage_command:
-      present_value: points.supply_fan_speed_percentage_command.present_value
+      present_value: "points.supply_fan_speed_percentage_command.present_value"
       units:
-        key: pointset.points.supply_fan_speed_percentage_command.units
+        key: "pointset.points.supply_fan_speed_percentage_command.units"
         values:
           percent: '%'

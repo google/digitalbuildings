@@ -13,28 +13,28 @@
 # limitations under the License.
 
 LT:
-  id: "9153673582453194752"
+  guid: "01154366-4062-43ff-b7eb-ffbe7216ea84"
   description: "Luminaire, lighting fixture. The thing that produces light."
   is_abstract: true
   implements:
   - EQUIPMENT
 
 LTGW:
-  id: "16179289001151168512"
+  guid: "30a5aaf1-a30d-41db-8ace-643ce84b170e"
   description: "Lighting gateway."
   is_abstract: true
   implements:
   - EQUIPMENT
 
 LCM:
-  id: "6235341023917113344"
+  guid: "8cdb21a1-2835-43ea-879c-1ca29105ec44"
   description: "Lighting control module, used for controlling one or more luminaires (LT)."
   is_abstract: true
   implements:
   - EQUIPMENT
 
 LKP:
-  id: "885064666600964096"
+  guid: "be286551-98a9-46be-82f0-9c83266cee22"
   description: "Lighting keypad."
   is_abstract: true
   implements:
@@ -42,33 +42,33 @@ LKP:
   - USER_INTERFACE
 
 LTB: # TODO: inherit from common device when a concrete example emerges.
-  id: "11045185425948803072"
+  guid: "f1dcdb9b-6aab-4551-9f44-0385c95d0274"
   description: "Battery that serves lighting devices. "
   is_abstract: true
   implements:
   - EQUIPMENT
 
 LGRP:
-  id: "1191309441262157824"
+  guid: "7b2723ef-361a-40ff-8399-4a907a52c357"
   is_abstract: true
   description: "A group containing one or more luminaires."
 
 LS:
-  id: "15458713060771889152"
+  guid: "768b8a60-ae3f-445e-8169-3b001513e752"
   is_abstract: true
   description: "Lighting system specific sensor."
   implements:
   - SENSOR
 
 ELT:
-  id: "8365482075012202496"
+  guid: "fb78a0b6-b1aa-4779-bde3-8ed76ea6b6ed"
   description: "Lights intended to provide illumination and/or direction during an emergency."
   is_abstract: true
   implements:
   - EQUIPMENT
 
 ZONE:
-  id: "243803097002934272"
+  guid: "4e2fa6d2-3eb3-4df2-bfdd-90551698ea73"
   description: "Lighting system specific location."
   is_abstract: true
   opt_uses:

@@ -1,0 +1,80 @@
+# This workflow adds guids to any newly added entity types in the ontology and validates the ontology
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
+
+name: Ontology Validator
+
+on:
+  push:
+    branches: [ master ]
+    paths:
+      - ontology/yaml/**
+
+  pull_request:
+    branches: [ master ]
+    paths:
+      - ontology/yaml/**
+ 
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout the branch the PR is coming from if PR
+      if: github.event_name == 'pull_request'
+      uses: actions/checkout@v3
+      with:
+        repository: ${{ github.event.pull_request.head.repo.full_name }}
+        ref: ${{ github.event.pull_request.head.ref }}
+
+    - name: Checkout head if push
+      if: github.event_name == 'push'
+      uses: actions/checkout@v3
+
+    - name: Set up Python 3.11
+      uses: actions/setup-python@v1
+      with:
+        python-version: '3.11'
+
+    - name: Install dependencies for ontology YAML validator
+      run: |
+        python setup.py install
+      working-directory: ./tools/validators/ontology_validator
+
+    ### Only generate type guids if triggered by a push ###
+
+    - name: Get modified entity type files
+      id: changed-entity-type-files
+      if: github.event_name == 'push'
+      uses: tj-actions/changed-files@v41
+      with:
+        files: '**/ontology/yaml/**/entity_types/*.yaml'
+
+    - name: Run types GUID generator if any entity types files are changed
+      if: github.event_name == 'push' && steps.changed-entity-type-files.outputs.any_changed == 'true'
+      run: |
+        python setup.py install
+        for file in ${{ steps.changed-entity-type-files.outputs.all_changed_files }}; do
+          python types_guid_generator/types_guid_generator.py -f=../../../$file
+        done
+      working-directory: ./tools/guid_generator/ontology
+
+    - name: Commit files changed by types GUID generator
+      if: github.event_name == 'push' && steps.changed-entity-type-files.outputs.any_changed == 'true'
+      uses: EndBug/add-and-commit@v9
+      with:
+        author_name: db-robot
+        author_email: db-robot@google.com
+        message: 'Add GUIDs to new entity types'
+
+    - name: Run ontology YAML validator with type guid checks if push
+      if: github.event_name == 'push'
+      run: |
+        python validator.py --original=../../../../ontology/yaml/resources  --interactive=False
+      working-directory: ./tools/validators/ontology_validator/yamlformat
+      
+    ### End of type guid generation ###
+
+    - name: Run ontology YAML validator without type guid checks if PR
+      if: github.event_name == 'pull_request'
+      run: |
+        python validator.py --original=../../../../ontology/yaml/resources  --interactive=False  --allow_missing_type_guids
+      working-directory: ./tools/validators/ontology_validator/yamlformat

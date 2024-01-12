@@ -40,7 +40,7 @@ c773b86d-b0c0-46fc-bd3f-d726fadd5f1e:
         key: zone_air_temperature_setpoint.units
         values:
           degrees_fahrenheit: degrees-farenheit
-  type: GATEWAY/PASSTHROUGH
+  type: GATEWAYS/PASSTHROUGH
 
 547a33c5-0ce4-4dfb-9924-5169a3475c89:
   cloud_device_id: "2541901344105618"
@@ -58,7 +58,7 @@ c773b86d-b0c0-46fc-bd3f-d726fadd5f1e:
         key: supply_air_flowrate_sensor.units
         values:
           cubic_feet_per_minute: cubic-feet-per-minute
-  type: GATEWAY/PASSTHROUGH
+  type: GATEWAYS/PASSTHROUGH
 
 2b152e08-3440-4358-9067-3f2acc58c982:
   cloud_device_id: "2541901344105617"
@@ -76,7 +76,7 @@ c773b86d-b0c0-46fc-bd3f-d726fadd5f1e:
         key: zone_air_temperature_setpoint.units
         values:
           degrees_fahrenheit: degrees-farenheit
-  type: GATEWAY/PASSTHROUGH
+  type: GATEWAYS/PASSTHROUGH
 
 8318f346-10b4-44f0-ac0b-bf7659510bfa:
   cloud_device_id: "2541901344105619"
@@ -102,6 +102,6 @@ c773b86d-b0c0-46fc-bd3f-d726fadd5f1e:
   type: HVAC/VAV_SD_DSP
 
 guid123:
-  code: TEST_BUILDING
+  code: US_SEA_BLDG1
   type: FACILITIES/BUILDING
 

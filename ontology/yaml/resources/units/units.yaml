@@ -38,6 +38,9 @@ aqi:
   uba: # Umwelt Bundesamt, German air quality standard
     multiplier: 1
     offset: 0
+  awair: # Awair Air Quality Score
+    multiplier: 1
+    offset: 0
 area:
   square_meters: STANDARD
   square_centimeters:
@@ -105,6 +108,9 @@ electricconductance:
   siemens: STANDARD
 electricconductivity:
   siemens_per_meter: STANDARD
+  microsiemens_per_centimeter:
+    multiplier: 0.0001
+    offset: 0
 electriccurrentdensity:
   amperes_per_square_meter: STANDARD
 electricfield:
@@ -144,6 +150,12 @@ energy:
     multiplier: 105480400
     offset: 0
   kilovolt_ampere_hours:
+    multiplier: 3600000
+    offset: 0
+  kilovolt_ampere_apparent_hours:
+    multiplier: 3600000
+    offset: 0
+  kilovolt_ampere_reactive_hours:
     multiplier: 3600000
     offset: 0
   ton_hours:
@@ -234,7 +246,10 @@ level: distance
 impulse:
   newton_seconds: STANDARD
 irradiance:
-  watt_per_square_metre: STANDARD
+  watts_per_square_meter_irradiance: STANDARD
+  kilowatts_per_square_meter_irradiance:
+    multiplier: 1000
+    offset: 0
 linearacceleration: acceleration
 linearvelocity:
   meters_per_second: STANDARD
@@ -426,6 +441,8 @@ resistance:
     offset: 0
 rotationalvelocity:
   revolutions_per_minute: STANDARD
+soundpressurelevel:
+  decibels: STANDARD
 specificenergy:
   joules_per_kilogram_kelvin: STANDARD
 specificenthalpy:
@@ -515,3 +532,9 @@ volume:
     offset: 0
 volumetricconcentration:
   parts_per_cubic_centimeter: STANDARD # can be approximated using Avogadro
+xvalue:
+  no_units: STANDARD
+yvalue:
+  no_units: STANDARD
+
+

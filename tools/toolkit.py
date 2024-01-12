@@ -23,7 +23,7 @@ from __future__ import print_function
 import argparse
 import sys
 
-from guid_generator import generator
+from guid_generator.instance.instance_guid_generator import generator
 from validate import handler
 
 # Default timeout duration for telemetry validation test
@@ -47,7 +47,7 @@ def _ParseArgs() -> argparse.ArgumentParser:
       action='append',
       dest='filenames',
       required=True,
-      help='Filepath(s) or directory path for Builcing Configurations',
+      help='Filepath(s) or directory path for Building Configurations',
       metavar='FILE')
 
   parser.add_argument(
@@ -84,12 +84,12 @@ def _ParseArgs() -> argparse.ArgumentParser:
       metavar='subscription')
 
   parser.add_argument(
-      '-a',
-      '--service-account',
-      dest='service_account',
+      '-c',
+      '--credential',
+      dest='gcp_credential',
       required=False,
-      help='Service account used to pull messages from the subscription',
-      metavar='service-account')
+      help='gcp credential used to authenticate against pubsub api',
+      metavar='gcp credential')
 
   parser.add_argument(
       '-t',
@@ -101,13 +101,17 @@ def _ParseArgs() -> argparse.ArgumentParser:
       metavar='timeout')
 
   parser.add_argument(
-      '-r',
-      '--report-filename',
-      dest='report_filename',
+      '-d',
+      '--report-directory',
+      dest='report_directory',
       required=False,
       default=None,
-      help='Filename for the validation report',
-      metavar='report-filename')
+      help=(
+          'Directory to output instance validation and telemetry validation'
+          ' reports'
+      ),
+      metavar='report-directory',
+  )
 
   parser.add_argument(
       '--udmi',
@@ -129,8 +133,8 @@ if __name__ == '__main__':
         filenames=args.filenames,
         modified_types_filepath=args.modified_types_filepath,
         subscription=args.subscription,
-        service_account=args.service_account,
-        report_filename=args.report_filename,
+        gcp_credential_path=args.gcp_credential,
+        report_directory=args.report_directory,
         timeout=int(args.timeout),
-        is_udmi=args.udmi)
-
+        is_udmi=args.udmi,
+    )

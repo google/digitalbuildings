@@ -17,7 +17,7 @@
 ########################
 
 HX_SWISOVM:
-  id: "16197317693311811584"
+  guid: "137eeaff-a4d7-4983-972e-a3edea547750"
   description: 'Simple supply water isolating heat exchanger.'
   is_canonical: true
   implements:
@@ -25,7 +25,7 @@ HX_SWISOVM:
   - SWISOVM
 
 HX_HWSWC:
-  id: "1315172724666007552"
+  guid: "ebb96e3e-db9c-40f5-9a46-0711aee439ac"
   description: 'Heating outlet control heat exchanger.'
   is_canonical: true
   implements:
@@ -33,7 +33,7 @@ HX_HWSWC:
   - HWSWC
 
 HX_CHWDT:
-  id: "1209338133422800896"
+  guid: "bbee4414-2904-40cc-a7a7-9765937f3612"
   description: 'Condenser/chilled water heat exchanger.'
   is_canonical: true
   implements:
@@ -41,7 +41,7 @@ HX_CHWDT:
   - CHWDT
 
 HX_CHWDT_PRWDT:
-  id: "5237808000105709568"
+  guid: "5ea281fd-e2ff-45f1-968a-ed3c85ad1ac6"
   description: 'Chilled/process water heat exchanger.'
   is_canonical: true
   implements:
@@ -50,7 +50,7 @@ HX_CHWDT_PRWDT:
   - PRWDT
 
 HX_CHWDT_CHWRWISOVM:
-  id: "7998303465451290624"
+  guid: "fb065fab-e208-4bad-b5fc-a373d8e91566"
   description: 'Chilled water heat exchanger with isolation.'
   is_canonical: true
   implements:
@@ -59,7 +59,7 @@ HX_CHWDT_CHWRWISOVM:
   - CHWRWISOVM
 
 HX_CHWDT_CHWRWISOVPM:
-  id: "11157789710284226560"
+  guid: "29bca835-c90f-4d75-bc1c-e3c6c449f476"
   description: "Chilled water heat exchanger."
   is_canonical: true
   implements:
@@ -68,7 +68,7 @@ HX_CHWDT_CHWRWISOVPM:
   - CHWRWISOVPM
 
 HX_CHWDT_CHWISOVM_CHWRWISOVPM:
-  id: "5926858743093395456"
+  guid: "7d3b85a5-8bab-406c-b264-6d88b4e8c3f2"
   description: 'Chilled and condenser water heat exchanger with isolation.'
   is_canonical: true
   implements:
@@ -78,7 +78,7 @@ HX_CHWDT_CHWISOVM_CHWRWISOVPM:
   - CHWRWISOVPM
 
 HX_CWDT_CHWDT_CWRISOVPM_CHWBYPVPM:
-  id: "14461180036960485376"
+  guid: "893f349c-14c3-4cc0-96f0-db51f31898af"
   description: 'Condenser/chilled water heat exchanger.'
   is_canonical: true
   implements:
@@ -89,7 +89,7 @@ HX_CWDT_CHWDT_CWRISOVPM_CHWBYPVPM:
   - CHWBYPVPM
 
 HX_CHWDT_CWRISOVPM_CHWRWISOVPM:
-  id: "15150230779948171264"
+  guid: "6cb20fa2-2dcf-4d38-8212-d2951fe39b95"
   description: "Chilled and condenser water heat exchangers."
   is_canonical: true
   implements:
@@ -99,7 +99,7 @@ HX_CHWDT_CWRISOVPM_CHWRWISOVPM:
   - CHWRWISOVPM
 
 HX_VSC_SSPC_SFM_STM_RTM_OA_FDPM2X:
-  id: "10905512264849162240"
+  guid: "ef2ce8db-5eff-40df-af23-fe74fb1bf8c9"
   description: "Air to air fan forced heat exchanger with airflow, temperature, and filter monitoring."
   is_canonical: true
   implements:
@@ -111,9 +111,9 @@ HX_VSC_SSPC_SFM_STM_RTM_OA_FDPM2X:
   - RTM
   - OA
   - FDPM2X
-  
+
 HX_VSC_SSPC_SFM_STM_RTM_OA:
-  id: "13515911198863785984"
+  guid: "4a1e2daf-2048-4724-9478-0d934d6e67e7"
   description: "Air to air fan forced heat exchanger with airflow and temperature."
   is_canonical: true
   implements:
@@ -126,7 +126,7 @@ HX_VSC_SSPC_SFM_STM_RTM_OA:
   - OA
 
 HX_HWSWC_SSSPC:
-  id: "6481728385562181632"
+  guid: "80c5ee71-895d-4b91-bf45-27e1273132c0"
   description: "Steam/water heat exchanger with supply temperature control and supply steam pressure control."
   is_canonical: true
   implements:
@@ -135,7 +135,7 @@ HX_HWSWC_SSSPC:
   - SSSPC
 
 HX_CWRWISOVM_TWRWISOVM_CWTWRTM:
-  id: "11201500795046461440"
+  guid: "ba604692-f750-4075-917d-658383ec8a8c"
   description: "Heat exchanger between closed-loop condensing water and open-loop (tower) water."
   is_canonical: true
   implements:
@@ -147,7 +147,7 @@ HX_CWRWISOVM_TWRWISOVM_CWTWRTM:
   - outside_condensing_loop_return_water_temperature_sensor
 
 HX_CWRWISOVPM_TWRWISOVPM_CWTWRTM:
-  id: "4117338581192671232"
+  guid: "0422fc9c-f491-45c0-a70f-d67c8b781b91"
   description: "Heat exchanger between closed-loop condensing water and open-loop (tower) water."
   is_canonical: true
   implements:
@@ -159,9 +159,51 @@ HX_CWRWISOVPM_TWRWISOVPM_CWTWRTM:
   - outside_condensing_loop_return_water_temperature_sensor
 
 HX_RWISOVM:
-  id: "4746505522885165056"
+  guid: "2385f180-c38d-48a1-9604-1d822dfe99ff"
   description: "Simple return water isolating heat exchanger."
   is_canonical: true
   implements:
   - HX
   - RWISOVM
+
+HX_CWDT_CHWDT_CWBYPVPM_CHWBYPVPM:
+  guid: "750775f1-b955-4224-a3b8-e5a1386399d0"
+  description: "Condenser and chilled water heat exchanger."
+  is_canonical: true
+  implements:
+  - HX
+  - CWDT
+  - CHWDT
+  - CWBYPVPM
+  - CHWBYPVPM
+
+HX_CWDT_HSWTC_HWDPC_HWBYPVPM:
+  guid: "909f4f23-f71d-4504-8052-efb435356e29"
+  description: "Condenser and heating water heat exchanger with heating water bypass valve, heating supply water valve control and heating water temperature differentioal control."
+  is_canonical: true
+  implements:
+  - HX
+  - CWDT
+  - HSWTC
+  - HWDPC
+  - HWBYPVPM
+
+HX_SSTC_SSSPC:
+  guid: "02c3c81d-241c-4868-b260-9c580c29379b"
+  description: "Steam exchanger with heating water temperature control and steam static pressure control on supply side."
+  is_canonical: true
+  implements:
+  - HX
+  - SSTC
+  - SSSPC
+
+HX_CHWDT_PRWDT_CHWDPM_PWDPM:
+  guid: "c0b67228-b568-4c51-bdfd-ea5790b78de9"
+  description: "Chilled/process water heat exchanger with differential pressure monitoring."
+  is_canonical: true
+  implements:
+  - HX
+  - CHWDT
+  - PRWDT
+  - CHWDPM
+  - PWDPM

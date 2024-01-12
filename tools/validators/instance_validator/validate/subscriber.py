@@ -1,4 +1,4 @@
-# Copyright 2020 Google LLC
+# Copyright 2023 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the License);
 # you may not use this file except in compliance with the License.
@@ -16,11 +16,16 @@
 from __future__ import print_function
 
 from concurrent import futures
-import json
-from typing import Optional
+import os
 
+# pylint: disable=g-importing-member
 from google import auth
+from google.auth.exceptions import MutualTLSChannelError
 from google.cloud import pubsub_v1
+from google_auth_oauthlib.flow import InstalledAppFlow
+
+
+_SCOPES = ['https://www.googleapis.com/auth/pubsub']
 
 
 class Subscriber(object):
@@ -28,48 +33,58 @@ class Subscriber(object):
 
   Attributes:
     subscription_name: Name of the subscription.
-    service_account_info_json_file: [optional] Service account information from
-      the GCP project. When not provided, appplication default credentials are
-      used.
   """
 
-  def __init__(self,
-               subscription_name: str,
-               service_account_info_json_file: Optional[str] = None):
+  def __init__(
+      self,
+      subscription_name: str,
+  ):
     """Init.
 
     Args:
       subscription_name: Pubsub subscription name.
-      service_account_info_json_file: [optional] Service account information
-        from the GCP project. When not provided, appplication default
-        credentials are used.
     """
 
     super().__init__()
     assert subscription_name
     self.subscription_name = subscription_name
-    self.service_account_info_json_file = service_account_info_json_file
 
-  def Listen(self, callback):
+  def Listen(self, callback, gcp_credential_path: str):
     """Listens to a pubsub subscription.
 
     Args:
       callback: a callback function to handle the message.
+      gcp_credential_path: Path to GCP credential file for authenticating
+        against Google sheets API. This is an OAuth credential as documented.
+        https://developers.google.com/sheets/api/quickstart/python
     """
-    if self.service_account_info_json_file:
-      with open(self.service_account_info_json_file, encoding="utf-8") as f:
-        service_account_info = json.load(f)
-      audience = "https://pubsub.googleapis.com/google.pubsub.v1.Subscriber"
-      credentials = auth.jwt.Credentials.from_service_account_info(
-          service_account_info, audience=audience)
+    if gcp_credential_path:
+      try:
+        flow = InstalledAppFlow.from_client_secrets_file(
+            os.path.abspath(gcp_credential_path), scopes=_SCOPES
+        )
+        credentials = flow.run_local_server(port=0)
+      except FileNotFoundError as err:
+        raise FileNotFoundError(
+            'Oauth client id credential file json file not found. Please check'
+            ' the path provided.'
+        ) from err
+      except MutualTLSChannelError as err:
+        raise MutualTLSChannelError(
+            'ABEL cannot authenticate against Google Sheets API with the'
+            ' provided client credential.'
+        ) from err
     else:
-      print("No service account. Using application default credentials")
+      print(
+          '[INFO]\tNo GCP client credential. Using application default'
+          ' credential'
+      )
       # pylint: disable=unused-variable
       credentials, project_id = auth.default()
 
     sub_client = pubsub_v1.SubscriberClient(credentials=credentials)
     future = sub_client.subscribe(self.subscription_name, callback)
-    print("Listening to pubsub, please wait ...")
+    print('[INFO]\tListening to pub/sub topic. Please wait.')
     # KeyboardInterrupt does not always cause `result` to exit early, so we
     # give the thread a chance to handle that within a reasonable amount of
     # time by repeatedly calling `result` with a short timeout.
@@ -81,6 +96,6 @@ class Subscriber(object):
       except (futures.CancelledError, KeyboardInterrupt):
         future.cancel()
       except Exception as ex:  # pylint: disable=broad-except
-        print(f"PubSub subscription failed with error: {ex}")
+        print(f'[ERROR]\tPub/sub subscription failed with error: {ex}')
         future.cancel()
       break

@@ -18,6 +18,7 @@ import logging
 import re
 from typing import Dict, List
 
+# pylint: disable=g-importing-member
 from model.constants import ALL_CONNECTION_HEADERS
 from model.constants import ALL_ENTITY_HEADERS
 from model.constants import ALL_FIELD_HEADERS
@@ -71,8 +72,9 @@ class SpreadsheetValidator(object):
     self.filepath = filepath
     self.validation_errors = []
 
-  def Validate(self, parsed_spreadsheet: Dict[str, List[Dict[str,
-                                                             str]]]) -> bool:
+  def Validate(
+      self, parsed_spreadsheet: Dict[str, List[Dict[str, str]]]
+  ) -> bool:
     """Performs initial validation on a concrete model spreadsheet.
 
     This method validates the following in order:
@@ -102,24 +104,47 @@ class SpreadsheetValidator(object):
               table=SITES,
               row=2,
               column='',
-              message='Please provide a building code and guid.'))
+              message='Please provide a building code and guid.',
+          )
+      )
 
     validation_parameters = [
-        (SITES, parsed_spreadsheet[SITES], REQUIRED_SITE_HEADERS,
-         ALL_SITE_HEADERS),
-        (ENTITIES, parsed_spreadsheet[ENTITIES], REQUIRED_ENTITY_HEADERS,
-         ALL_ENTITY_HEADERS),
-        (ENTITY_FIELDS, parsed_spreadsheet[ENTITY_FIELDS],
-         REQUIRED_FIELD_HEADERS, ALL_FIELD_HEADERS),
-        (STATES, parsed_spreadsheet[STATES], REQUIRED_STATE_HEADERS,
-         ALL_STATE_HEADERS),
-        (CONNECTIONS, parsed_spreadsheet[CONNECTIONS],
-         REQUIRED_CONNECTION_HEADERS, ALL_CONNECTION_HEADERS)
+        (
+            SITES,
+            parsed_spreadsheet[SITES],
+            REQUIRED_SITE_HEADERS,
+            ALL_SITE_HEADERS,
+        ),
+        (
+            ENTITIES,
+            parsed_spreadsheet[ENTITIES],
+            REQUIRED_ENTITY_HEADERS,
+            ALL_ENTITY_HEADERS,
+        ),
+        (
+            ENTITY_FIELDS,
+            parsed_spreadsheet[ENTITY_FIELDS],
+            REQUIRED_FIELD_HEADERS,
+            ALL_FIELD_HEADERS,
+        ),
+        (
+            STATES,
+            parsed_spreadsheet[STATES],
+            REQUIRED_STATE_HEADERS,
+            ALL_STATE_HEADERS,
+        ),
+        (
+            CONNECTIONS,
+            parsed_spreadsheet[CONNECTIONS],
+            REQUIRED_CONNECTION_HEADERS,
+            ALL_CONNECTION_HEADERS,
+        ),
     ]
     is_valid = True
 
-    self.validation_errors += self._ValidateBuildingCodes(
-        parsed_spreadsheet[SITES])
+    self.validation_errors += self.ValidateBuildingCodes(
+        parsed_spreadsheet[SITES]
+    )
     entities_sheet = parsed_spreadsheet[ENTITIES]
     fields_sheet = parsed_spreadsheet[ENTITY_FIELDS]
     self.validation_errors += self._ValidateEntityCodes(entities_sheet)
@@ -129,7 +154,8 @@ class SpreadsheetValidator(object):
       self.validation_errors += self._ValidateHeaders(
           table=parameter_list[0],
           parsed_sheet=parameter_list[1],
-          column_headers=parameter_list[3])
+          column_headers=parameter_list[3],
+      )
     # Validate spreadsheet contents only after required spreadsheet headers
     # are present.
     if not self.validation_errors:
@@ -137,21 +163,28 @@ class SpreadsheetValidator(object):
         self.validation_errors += self._ValidateContents(
             table=parameter_list[0],
             parsed_sheet=parameter_list[1],
-            col_headers_values=parameter_list[2])
+            col_headers_values=parameter_list[2],
+        )
       self.validation_errors += self._ValidateFieldsAcrossSheets(
-          parsed_spreadsheet)
+          parsed_spreadsheet
+      )
       self.validation_errors += self._ValidateStatesAcrossSheets(
-          parsed_spreadsheet)
+          parsed_spreadsheet
+      )
       self.validation_errors += self._ValidateConnections(
-          parsed_spreadsheet=parsed_spreadsheet)
+          parsed_spreadsheet=parsed_spreadsheet
+      )
     if self.validation_errors:
       self._LogErrors(validation_errors=self.validation_errors)
       is_valid = False
     return is_valid
 
   def _ValidateContents(
-      self, table: str, parsed_sheet: List[Dict[str, str]],
-      col_headers_values: List[str]) -> List[MissingSpreadsheetValueError]:
+      self,
+      table: str,
+      parsed_sheet: List[Dict[str, str]],
+      col_headers_values: List[str],
+  ) -> List[MissingSpreadsheetValueError]:
     """Validates cell values for a given table in a concrete model spreadsheet.
 
     This method does not validate that all cells in a row are not empty. It only
@@ -171,13 +204,15 @@ class SpreadsheetValidator(object):
     validation_errors = []
     for row_number, row in enumerate(parsed_sheet, _ROW_START_INDEX):
       for header in col_headers_values:
-        if not row[header]:
+        if not row.get(header):
           validation_errors.append(
               MissingSpreadsheetValueError(
                   table=table,
                   row=row_number,
                   column=header,
-                  message=f'{table} entry must have a {header}'))
+                  message=f'{table} entry must have a {header} value.',
+              )
+          )
     return validation_errors
 
   def _ValidateFieldsAcrossSheets(
@@ -199,7 +234,6 @@ class SpreadsheetValidator(object):
     entities = parsed_spreadsheet.get(ENTITIES, [])
 
     for row_num, field in enumerate(fields, _ROW_START_INDEX):
-
       field_reporting_entity_code = field.get(REPORTING_ENTITY_CODE)
       field_entity_code = field.get(ENTITY_CODE)
       entity_codes = set(entity.get(ENTITY_CODE) for entity in entities)
@@ -211,7 +245,9 @@ class SpreadsheetValidator(object):
                 target_table=ENTITIES,
                 row=row_num,
                 column=ENTITY_CODE,
-                cell_value=field_entity_code))
+                cell_value=field_entity_code,
+            )
+        )
       if field_reporting_entity_code:
         if field_reporting_entity_code not in entity_codes:
           validation_errors.append(
@@ -220,7 +256,9 @@ class SpreadsheetValidator(object):
                   target_table=ENTITIES,
                   row=row_num,
                   column=REPORTING_ENTITY_CODE,
-                  cell_value=field_reporting_entity_code))
+                  cell_value=field_reporting_entity_code,
+              )
+          )
     return validation_errors
 
   def _ValidateStatesAcrossSheets(
@@ -245,7 +283,7 @@ class SpreadsheetValidator(object):
     fields = parsed_spreadsheet.get(ENTITY_FIELDS, [])
     for row_num, state in enumerate(states, _ROW_START_INDEX):
       reporting_field_name = state.get(REPORTING_ENTITY_FIELD_NAME)
-      entity_code = state.get(ENTITY_CODE)
+      entity_code = state.get(REPORTING_ENTITY_CODE)
       num_dependencies = 0
       for field in fields:
         # If a state's entity code is the same as a field's entity code, then the field is not linked. Check that a state's reporting field name exists in the fields table as a standard field name.
@@ -257,20 +295,25 @@ class SpreadsheetValidator(object):
           if field[REPORTING_ENTITY_FIELD_NAME] == reporting_field_name:
             num_dependencies += 1
 
-      # Length must equal 1 because states should map many:1 with entity fields.
-      if num_dependencies != 1:
+      # There must be at least one corresponding field for a state in the
+      # Entity Fields table
+      if num_dependencies < 1:
         cross_sheet_dependency_error = CrossSheetDependencyError(
             source_table=STATES,
             target_table=ENTITY_FIELDS,
             row=row_num,
             column=REPORTING_ENTITY_FIELD_NAME,
-            cell_value=reporting_field_name)
+            cell_value=reporting_field_name,
+        )
         validation_errors.append(cross_sheet_dependency_error)
     return validation_errors
 
   def _ValidateHeaders(
-      self, table: str, parsed_sheet: List[Dict[str, str]],
-      column_headers: List[str]) -> List[SpreadsheetHeaderError]:
+      self,
+      table: str,
+      parsed_sheet: List[Dict[str, str]],
+      column_headers: List[str],
+  ) -> List[SpreadsheetHeaderError]:
     """Validates that a spreadsheet contains column headers.
 
     Args:
@@ -288,14 +331,17 @@ class SpreadsheetValidator(object):
     for row in parsed_sheet:
       parsed_headers = parsed_headers.union(set(row.keys()))
       header_difference = header_difference.union(
-          set(column_headers).difference(parsed_headers))
+          set(column_headers).difference(parsed_headers)
+      )
     if header_difference:
       for header in header_difference:
         validation_errors.append(
             SpreadsheetHeaderError(
                 table=table,
                 header=header,
-                message=f'{table} missing required column header: {header}'))
+                message=f'{table} missing required column header: {header}',
+            )
+        )
     return validation_errors
 
   def _ValidateConnections(
@@ -321,26 +367,33 @@ class SpreadsheetValidator(object):
     # codes - set of all entity codes present in both the Entities and
     # Sites sheets
     codes = set(row[ENTITY_CODE] for row in entities_sheet).union(
-        set(row[BUILDING_CODE] for row in sites_sheet))
-    for row_number, connection in enumerate(connections_sheet,
-                                            _ROW_START_INDEX):
+        set(row[BUILDING_CODE] for row in sites_sheet)
+    )
+    for row_number, connection in enumerate(
+        connections_sheet, _ROW_START_INDEX
+    ):
       if connection[SOURCE_ENTITY_CODE] not in codes:
         validation_errors.append(
             ConnectionDependencyError(
                 row=row_number,
-                missing_code=connection[SOURCE_ENTITY_CODE],
-                present_code=connection[TARGET_ENTITY_CODE]))
+                missing_code=connection.get(TARGET_ENTITY_CODE),
+                present_code=connection.get(SOURCE_ENTITY_CODE),
+            )
+        )
       if connection[TARGET_ENTITY_CODE] not in codes:
         validation_errors.append(
             ConnectionDependencyError(
                 row=row_number,
                 missing_code=connection[SOURCE_ENTITY_CODE],
-                present_code=connection[TARGET_ENTITY_CODE]))
+                present_code=connection[TARGET_ENTITY_CODE],
+            )
+        )
     return validation_errors
 
   # TODO(b/243387129): Make this function only run for Google users.
   def ValidateFacilitiesEntities(
-      self, sheet: List[Dict[str, str]]) -> List[DuplicateCodeError]:
+      self, sheet: List[Dict[str, str]]
+  ) -> List[DuplicateCodeError]:
     """Validates that Guids are present for all Facilities entities and Facilities entity codes conform to a regex pattern.
 
     Args:
@@ -362,25 +415,34 @@ class SpreadsheetValidator(object):
                   table=ENTITIES,
                   row=row_number,
                   column=BC_GUID,
-                  message=f'{row[ENTITY_CODE]} in {FACILITIES_NAMESPACE} namespace must have a guid obtained through DB API export building config operation.'
-              ))
+                  message=(
+                      f'{row[ENTITY_CODE]} in {FACILITIES_NAMESPACE} namespace'
+                      ' must have a guid obtained through DB API export'
+                      ' building config operation.'
+                  ),
+              )
+          )
         if not re.compile(FACILTITIES_ENTITY_CODE_REGEX).match(
-            row[ENTITY_CODE]):
+            row[ENTITY_CODE]
+        ):
           validation_errors.append(
               InvalidNamingError(
                   table=ENTITIES,
                   row=row_number,
                   column=ENTITY_CODE,
                   invalid_name=row[ENTITY_CODE],
-                  naming_pattern=FACILTITIES_ENTITY_CODE_REGEX))
+                  naming_pattern=FACILTITIES_ENTITY_CODE_REGEX,
+              )
+          )
     return validation_errors
 
   def _ValidateEntityCodes(
-      self, sheet: List[Dict[str, str]]) -> List[DuplicateCodeError]:
+      self, sheet: List[Dict[str, str]]
+  ) -> List[DuplicateCodeError]:
     """Validates that a spreadsheet does not contain duplicate entity codes.
 
     Args:
-      sheet: A sheet to be validated for dulicate codes.
+      sheet: Entities sheet to be validated for dulicate codes.
 
     Returns:
       A list of SpreadsheetError instances for duplicate entity codes.
@@ -388,30 +450,38 @@ class SpreadsheetValidator(object):
     validation_errors = []
     list_of_codes = [row[ENTITY_CODE] for row in sheet]
     duplicates = [
-        code for code, count in collections.Counter(list_of_codes).items()
+        code
+        for code, count in collections.Counter(list_of_codes).items()
         if count > 1
     ]
     for duplicate in duplicates:
       validation_errors.append(
           DuplicateCodeError(
               code=duplicate,
-              message=f'Entity Code: {duplicate} is defined more than once in {ENTITIES} table.'
-          ))
+              message=(
+                  f'Entity Code: {duplicate} is defined more than once in'
+                  f' {ENTITIES} table.'
+              ),
+          )
+      )
     return validation_errors
 
-  def _ValidateBuildingCodes(
-      self, sheet: List[Dict[str, str]]) -> List[MissingSpreadsheetValueError]:
+  def ValidateBuildingCodes(
+      self, sheet: List[Dict[str, str]]
+  ) -> List[MissingSpreadsheetValueError]:
     """Validates a building code conforms to the BUILDING_CODE_REGEX pattern.
 
     Args:
-      sheet: Sheet containing building code.
+      sheet: A Sites Sheet containing building code.
 
     Returns:
       List of SpreadsheetError instances.
     """
     validation_errors = []
-    building_codes = [(row_number, row[BUILDING_CODE])
-                      for row_number, row in enumerate(sheet, _ROW_START_INDEX)]
+    building_codes = [
+        (row_number, row[BUILDING_CODE])
+        for row_number, row in enumerate(sheet, _ROW_START_INDEX)
+    ]
     for row_number, building_code in building_codes:
       if not re.compile(BUILDING_CODE_REGEX).match(building_code):
         validation_errors.append(
@@ -420,11 +490,14 @@ class SpreadsheetValidator(object):
                 row=row_number,
                 column=BUILDING_CODE,
                 invalid_name=building_code,
-                naming_pattern=BUILDING_CODE_REGEX))
+                naming_pattern=BUILDING_CODE_REGEX,
+            )
+        )
     return validation_errors
 
   def _ValidateMissingFields(
-      self, fields_sheet: List[Dict[str, str]]) -> List[MissingFieldError]:
+      self, fields_sheet: List[Dict[str, str]]
+  ) -> List[MissingFieldError]:
     """Validates empty cell values for a Missing field.
 
     If a field is marked as missing then, it cannot have a raw field name or
@@ -439,19 +512,26 @@ class SpreadsheetValidator(object):
     """
     validation_errors = []
     missing_field_headers = [
-        RAW_FIELD_NAME, RAW_UNIT_VALUE, RAW_UNIT_PATH, STANDARD_UNIT_VALUE
+        RAW_FIELD_NAME,
+        RAW_UNIT_VALUE,
+        RAW_UNIT_PATH,
+        STANDARD_UNIT_VALUE,
     ]
     for row_number, field in enumerate(fields_sheet, _ROW_START_INDEX):
       for column_header in missing_field_headers:
-        if field[MISSING].upper() == 'TRUE':
+        if field.get(MISSING) and (field.get(MISSING).upper() == 'TRUE'):
           if field[column_header] and field[column_header] != NO_UNITS:
             validation_errors.append(
                 MissingFieldError(
                     table=ENTITY_FIELDS,
                     row=row_number,
                     column=column_header,
-                    message=f"{column_header} must be blank if a field is missing from an entity's translation."
-                ))
+                    message=(
+                        f'{column_header} must be blank if a field is missing'
+                        " from an entity's translation."
+                    ),
+                )
+            )
     return validation_errors
 
   def _LogErrors(self, validation_errors: List[BaseSpreadsheetError]) -> None:

@@ -1,4 +1,4 @@
-# Copyright 2020 Google LLC
+# Copyright 2023 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the License);
 # you may not use this file except in compliance with the License.
@@ -33,9 +33,11 @@ def BuildUniverse(
   """Generates the ontology universe.
 
   Args:
-    use_simplified_universe: boolean to quick load minimal universe instead of
+    use_simplified_universe: Boolean to quick load minimal universe instead of
       full ontology
-    modified_types_filepath: filepath to the modified ontology types
+    modified_types_filepath: Filepath to the modified ontology types
+    default_types_filepath: Filepath to digitalbuildings ontology or other
+      default ontology.
 
   Returns:
     Generated universe object.
@@ -46,8 +48,10 @@ def BuildUniverse(
   elif modified_types_filepath:
     modified_ontology_exists = path.exists(modified_types_filepath)
     if not modified_ontology_exists:
-      print(f'Specified filepath [{modified_types_filepath}] '
-            'modified ontology does not exist')
+      print(
+          f'[ERROR]\tSpecified filepath [{modified_types_filepath}] does not '
+          'exist.'
+      )
       return None
 
     modified_types_filepath = path.expanduser(modified_types_filepath)
@@ -56,13 +60,18 @@ def BuildUniverse(
         filter_text=None,
         changed_directory=modified_types_filepath,
         original_directory=default_types_filepath,
-        interactive=False)
+        interactive=False,
+    )
     yaml_files = external_file_lib.RecursiveDirWalk(modified_types_filepath)
   else:
+    if default_types_filepath is None:
+      raise TypeError('default_types_filepath cannot be None.')
     default_ontology_exists = path.exists(default_types_filepath)
     if not default_ontology_exists:
-      print(f'Specified filepath [{constants.ONTOLOGY_ROOT}] '
-            'for default ontology does not exist')
+      print(
+          f'[ERROR]\tSpecified filepath [{constants.ONTOLOGY_ROOT}] for '
+          'default ontology does not exist.'
+      )
       return None
     # use default location for ontology files
     yaml_files = external_file_lib.RecursiveDirWalk(default_types_filepath)
@@ -75,7 +84,10 @@ def BuildUniverse(
       universe.GetEntityTypeNamespaces())
 
   if not namespace_validation.IsValid():
-    print('Universe is not valid')
+    print(
+        '[ERROR]\tOntology is not valid. Ensure your current branch of the '
+        'ontology is correct and error-free.'
+    )
     return None
 
   return universe

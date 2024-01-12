@@ -12,9 +12,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+########################
+### Canonical Types  ###
+########################
 
 CU_SFSS_SFVSC_CHWSC_HTSC_SSPC_SARC_MTM:
-  id: "14304102706304778240"
+  guid: "60fc5e98-246f-4ddd-8bd7-b14468680455"
   description: "Exhaust fan with start/stop, status, and flowrate control."
   is_canonical: true
   implements:
@@ -27,9 +30,42 @@ CU_SFSS_SFVSC_CHWSC_HTSC_SSPC_SARC_MTM:
   - SARC
   - MTM
 
-CU_US_NYC_9TH_16TH_1:
-  id: "14637369078730194944"
-  description: "Type to describe ['US-NYC-9TH:CU:AHU-16-1-todd']"
+CU_DFSS_DFVSC_CHWZTC_HWZTC_RTM_ZHM:
+  guid: "e17b91f8-99be-4870-8ee3-50250999e6d6"
+  description: "Compartment unit on discharge side with start/stop, status, cooling and heating (zone temp control)."
+  is_canonical: true
+  implements:
+  - CU
+  - DFSS
+  - DFVSC
+  - CHWZTC
+  - HWZTC
+  - RTM
+  - ZHM
+
+CU_DFSS_DFVSC_CHWZTC_HWZTC_RTM_ZHM_CO2CDSP_PDSCV_RDC:
+  guid: "a87cc63c-9cea-4889-b3fe-e56a1554a57e"
+  description: "Compartment unit on discharge side with start/stop, status, cooling and heating (zone temp control), CO2 control with supply and return dampers."
+  is_canonical: true
+  implements:
+  - CU
+  - DFSS
+  - DFVSC
+  - CHWZTC
+  - HWZTC
+  - RTM
+  - ZHM
+  - CO2CDSP
+  - PDSCV
+  - RDC
+
+###################################
+### Existing Non-standard Types ###
+###################################
+
+CU_NONCANONICAL_1:
+  guid: "15d1f104-7000-4849-9d09-d21c7961aa6c"
+  description: "Non-standard type."
   is_canonical: false
   implements:
   - CU

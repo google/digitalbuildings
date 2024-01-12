@@ -1,4 +1,4 @@
-# Copyright 2020 Google LLC
+# Copyright 2023 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the License);
 # you may not use this file except in compliance with the License.
@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""external_file_lib relies on external pyhton libraries non-dependent on g3.
+"""external_file_lib relies on external python libraries non-dependent on g3.
 
  It contains helper methods to run this validator outside of g3.
 """
@@ -31,7 +31,8 @@ from yamlformat.validator import presubmit_validate_types_lib
 def Validate(filter_text,
              original_directory,
              changed_directory,
-             interactive=True):
+             interactive=True,
+             require_type_guids=True):
   """Validates two directory paths of a diff of ontology versions.
 
   if the user didn't provide a changed directory, treat as a new ontology by
@@ -42,6 +43,11 @@ def Validate(filter_text,
     original_directory: the original directory with ontology yaml files.
     changed_directory: the changed directory with ontology yaml files.
     interactive: flag to run validator in interactive mode or presubmit mode.
+    require_type_guids: whether type guids are required to be present.
+       This is needed to bypass write permission issues on the ontology
+       validator GitHub Action.
+  Raises:
+    Exception: The Ontology is not valid.
   """
   if not changed_directory:
     changed_directory = original_directory
@@ -51,18 +57,23 @@ def Validate(filter_text,
   modified_client = RecursiveDirWalk(changed_directory)
 
   if interactive:
-    presubmit_validate_types_lib.RunInteractive(filter_text, modified_base,
-                                              modified_client)
+    presubmit_validate_types_lib.RunInteractive(filter_text,
+                                                modified_base,
+                                                modified_client,
+                                                require_type_guids)
   else:
     findings = presubmit_validate_types_lib.RunPresubmit([],
                                                          modified_base,
-                                                         modified_client)
+                                                         modified_client,
+                                                         require_type_guids)
     presubmit_validate_types_lib.PrintFindings(findings, '')
-    #TODO(@charbull): add diff files in the presubmit in modified base
+    # TODO(charbelk): add diff files in the presubmit in modified base
     findings_class = findings_lib.Findings()
     findings_class.AddFindings(findings)
     if not findings_class.IsValid():
+      # pylint: disable=broad-exception-raised
       raise Exception('The Ontology is no longer valid.')
+
 
 def RecursiveDirWalk(directory):
   """Walks recursively a directory and returns a list of PathParts.

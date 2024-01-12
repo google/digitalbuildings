@@ -1,0 +1,22 @@
+abc-123-ff6:
+  code: US-SVL-MP2
+  type: FACILITIES/BUILDING
+  id: CDM/123
+
+def-234-ffs:
+  type: HVAC/FAN_SS
+  code: EF-1
+  cloud_device_id: 1234567
+  connections:
+    efg-hij-klm: FEEDS # Guid to a device not defined yet
+  translation:
+    run_command:
+      present_value: "points.fan_ss.present_value"
+      states:
+        ON: "true"
+        OFF: "false"
+    run_status:
+      present_value: "points.fan_sts.present_value"
+      states:
+        OFF: "false"
+        ON: "true"

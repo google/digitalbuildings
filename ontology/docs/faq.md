@@ -47,7 +47,7 @@ It does not have to be translated into the model, but for extensibility purposes
 ## What device data should be modeled?
 **Model what you need for the applications and analytics that are reasonably anticipated.** 
 
-More data can always be added later (as long as it’s exposed in the gateway). The general rule is to model things that describe the device’s general behavior without superfluous detail regarding its low-level configuration; however, anything can be modeled, so if need arises then the ontology can be extended to accommodate. There are a few types of data that devices typically sends:
+More data can always be added later (as long as it’s exposed in the gateway). The general rule is to model things that describe the device’s general behavior without superfluous detail regarding its low-level configuration; however, anything can be modeled, so if the need arises then the ontology can be extended to accommodate. There are a few types of data that devices typically send:
 
 ### Measured Telemetry
 These are sensors associated with the device, such as `supply_air_temperature_sensor` and `chilled_water_valve_percentage_sensor`. They are directly measured (or calculated) by the device and return updated values as the state of the device changes through time. All measured telemetry is normally modeled. *NOTE: we do not consider calculated telemetry differently from raw telemetry.*
@@ -67,7 +67,7 @@ These are internal device points which are used to configure the way in which th
 ## Should alarms or faults be modeled?
 **No, unless there is an explicit need to do so.**
 
-Most alarms can be inferred from the sensor data already available (e.g. `supply_fan_run_command` == ON and `supply_fan_run_status` == OFF shows a fan failure, so an additional point that does that inferrence is redundant). Redundancy should always be minimized.
+Most alarms can be inferred from the sensor data already available (e.g. `supply_fan_run_command` == ON and `supply_fan_run_status` == OFF shows a fan failure, so an additional point that does that inference is redundant). Redundancy should always be minimized.
 
 ## How do you extend the ontology?
 **This depends on what needs to be extended.** 

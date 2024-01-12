@@ -1,15 +1,22 @@
 # Air Handling Units (AHU)
+- [Type Definition](#type-definition)
+- [Type Requirements](#type-requirements)
+- Examples
+  * [Single-Zone AHUs](#example-single-zone-ahus)
+  * [Multi-Zone AHUs](#example-multi-zone-ahus)
+  * [AHU as part of a Dual Duct System](#example-ahu-as-part-of-a-dual-duct-system)
+- [Optional and Future Extensions](#optional-and-future-extensions)
 
 ## Type Definition
-Air handling units are common air-side devices which provide conditioning and ventilation to a space or group of spaces. It must handle outside air directly in order to be considered part of this class. Common terms for AHUs include air conditioning units (AC, ACU, etc.) and rooftop units (RTU); note that the location and other specifics of the device (e.g. using DX cooling instead of chilled water) are not considered relevant to whether a device qualifies as an AHU.
+Air handling units are common air-side devices that provide mechanical conditioning (i.e., heating and/or cooling) and ventilation to a space or group of spaces. Common terms for AHUs include air conditioning units (e.g., AC, ACU, etc.) and rooftop units (RTU). Note that the location and other specifics of the device (e.g., using DX cooling instead of chilled water) are not considered relevant to whether a device qualifies as an AHU.
 
 ## Type Requirements
-- It *must* have a fan.
-- It *must* condition the air in some way.
-- It *must* handle outside air directly.
-- It *must* handle return air from the space.
+- It **must** have a fan.
+- It **must** condition the air in some way.
+- It **must** handle outside air directly.
+- It **must** handle return air from the space.
 
-## Example: Single Zone AHUs 
+## Example: Single-Zone AHUs
 This version of AHU serves an individual zone as a stand-alone device.
 
 ### BMS Example
@@ -117,8 +124,8 @@ VAV-1:
 ```
 
 
-## Example: AHU As Part Of Dual Duct System 
-This version of AHU serves a group of zones through downstream terminal units (VAVs), and those terminal units are also served by duct furnaces (central air-side heating devices which provide heating via a second set of ductwork known commonly as the 'hot deck').
+## Example: AHU as Part of a Dual Duct System
+This version of AHU serves a group of zones through downstream terminal units (VAVs), and those terminal units are also served by duct furnaces (central air-side heating devices which provide heating via a second set of ductwork known commonly as the "hot deck").
 
 ### BMS Example
 ![AHU Multi Zone](./figures/bms_screenshots/ahu_multizone.png)
@@ -203,9 +210,9 @@ VAV-1:
 
 ```
 
-## Optional And Future Extensions
-This section contains some additional features and extensions that could be added in future.
-- While hydronic systems tie equipment together via an explicitly defined entity (the system itself), there is no such concept in the ontology for air-side systems, at least today. This could be added to help describe convoluted systems.
+## Optional and Future Extensions
+This section contains some additional features and extensions that could be added in the future.
+- While hydronic systems tie equipment together via an explicitly defined entity (i.e., the system itself), there is no such concept in the ontology for air-side systems, at least today. This could be added to help describe convoluted systems.
 - Risers do exist in the ontology but are utilized only when data exists specifically for that riser (necessitating the entity) or when the system is convoluted enough to justify it. It is best to omit this type of addition, excepting circumstances where it is absolutely necessary.
 
 

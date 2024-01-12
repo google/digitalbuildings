@@ -1,4 +1,4 @@
-# Copyright 2020 Google LLC
+# Copyright 2023 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the License);
 # you may not use this file except in compliance with the License.
@@ -30,3 +30,6 @@ class Link(object):
     super().__init__()
     self.source = source
     self.field_map = field_map
+
+  def __repr__(self):
+    return f'{self.source}: {self.field_map}'

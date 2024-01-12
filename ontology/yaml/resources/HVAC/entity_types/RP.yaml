@@ -14,7 +14,7 @@
 
 
 RP_CAM_DPHCC_ZTC:
-  id: "13237849106245746688"
+  guid: "389f417a-6113-41ae-bacb-462453c15d5d"
   description: "Radiant panel for room heating and cooling."
   is_canonical: true
   implements:
@@ -24,17 +24,84 @@ RP_CAM_DPHCC_ZTC:
   - ZTC
 
 RSR_HHCDM:
-  id: "11269776069084839936"
+  guid: "c562fd61-d92b-4493-a290-ef35a11f34b8"
   description: "Cooling or heating changeover function for radiant panels or fcu's."
   implements:
   - RSR
   - HHCDM
 
 RP_DPBHCC_FTC:
-  id: "212717704262451200"
+  guid: "c83f158e-a4e5-4e14-ab93-e711e9af7aa5"
   description: "Radiant panel for room heating and cooling, along with floor temperature control."
   is_canonical: true
   implements:
   - RP
   - DPBHCC
   - FTC
+
+RP_CAM_DPHC2_ZTC:
+  guid: "e443f377-cd9c-4ae2-ad92-e31ae79914e3"
+  description: "Radiant panel for room heating and cooling, Two pipe installation."
+  is_canonical: true
+  implements:
+  - RP
+  - CAM
+  - DPHC2
+  - ZTC
+
+RP_CAM_DPHC4_ZTC:
+  guid: "0fba5640-1b66-4bc0-aa62-75a4e71c8ad8"
+  description: "Radiant panel for room heating and cooling, four pipe installation."
+  is_canonical: true
+  implements:
+  - RP
+  - CAM
+  - DPHC4
+  - ZTC
+
+RP_DSP_CHWVM:
+  guid: "08a82f9e-efff-47e5-b418-a5ade24b906a"
+  description: "Cooling-only radiant panel, one pipe installation."
+  is_canonical: true
+  implements:
+  - RP
+  - DSP
+  - CHWVM
+
+RP_DSP_HWVM:
+  guid: "c049cd6d-cf92-44d1-983b-7c04c2a000c3"
+  description: "Heating-only radiant panel, one pipe installation."
+  is_canonical: true
+  implements:
+  - RP
+  - DSP
+  - HWVM
+
+RP_DSP_CHWVM_CAM:
+  guid: "1087d6a8-fa58-4083-89de-12cc6275de35"
+  description: "Cooling-only one-pipe radiant panel with condensate monitoring."
+  is_canonical: true
+  implements:
+  - RP
+  - DSP
+  - CHWVM
+  - CAM
+
+RP_DSP_FPHC:
+  guid: "04bbeedd-75ba-4454-a49c-26bc0b802b86"
+  description: "Four-pipe radiant panel for room heating and cooling."
+  is_canonical: true
+  implements:
+  - RP
+  - DSP
+  - FPHC
+
+RP_DSP_FPHC_CAM:
+  guid: "587a5a45-c7bb-415d-b75d-1b1aae4e09e2"
+  description: "Four-pipe radiant panel for room heating and cooling with condensate monitoring."
+  is_canonical: true
+  implements:
+  - RP
+  - DSP
+  - FPHC
+  - CAM

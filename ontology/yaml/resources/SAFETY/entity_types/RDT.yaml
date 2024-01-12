@@ -15,10 +15,10 @@
 ### ABSTRACT TYPES
 
 RDT_STD:
+  guid: "f60c35f4-9ec9-411d-ba65-b8751d0aa6ab"
   description: "Standard Rodent Repellent."
   is_canonical: true
   implements:
   - RDT
   uses:
   - transducer_failed_alarm
-

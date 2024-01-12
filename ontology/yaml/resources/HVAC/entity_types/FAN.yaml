@@ -19,7 +19,7 @@
 ### FAN RUN CONTROL ###
 
 FAN_SS:
-  id: "4726112880724803584"
+  guid: "ce4b17ab-afbb-4061-b506-085e4116ed9a"
   description: "Basic fan with start/stop and status."
   is_canonical: true
   implements:
@@ -28,10 +28,8 @@ FAN_SS:
   opt_uses:
   - air_pressure_sensor
 
-### FAN SPEED CONTROL ###
-
 FAN_SS_VSC:
-  id: "11689733435802255360"
+  guid: "b58b9431-ff2c-4cc2-adab-a8c51c4ee6ab"
   description: "Fan with start/stop status and open-loop speed control."
   is_canonical: true
   implements:
@@ -39,10 +37,17 @@ FAN_SS_VSC:
   - SS
   - VSC
 
-
+FAN_SS_WDPM:
+  guid: "d12cbe88-243a-40a5-b624-3a2f355e7cfc"
+  description: "Fan with start/stop and differential pressure monitoring."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - WDPM
 
 FAN_SS_RMM:
-  id: "3859028115456000000"
+  guid: "917a9051-01dc-4f41-ad4c-5fcb45fe2f0e"
   description: "Fan with start/stop status and run mode monitoring"
   is_canonical: true
   implements:
@@ -50,22 +55,17 @@ FAN_SS_RMM:
   - SS
   - RMM
 
-
-### ZONE TEMPERATURE CONTROL ###
-
 FAN_SS_ZTM:
-  id: "12256131457688272896"
+  guid: "6e3ec16f-3d25-456b-888b-d87135ccef13"
   description: "Fan with zone temperature monitoring."
   is_canonical: true
   implements:
   - FAN
   - SS
   - ZTM
-  
- 
 
 FAN_SS_CSP:
-  id: "17863112993764540416"
+  guid: "44911f4d-618a-43b6-b6ce-c231c7ec06c0"
   description: "Single cooling setpoint fan."
   is_canonical: true
   implements:
@@ -74,7 +74,7 @@ FAN_SS_CSP:
   - CSP
 
 FAN_SS_DSP:
-  id: "8689280552810840064"
+  guid: "46a90b3f-fed1-4a3e-b205-1d2ff4854618"
   description: "Fan with dual setpoint control."
   is_canonical: true
   implements:
@@ -83,7 +83,7 @@ FAN_SS_DSP:
   - DSP
 
 FAN_SS_REFM:
-  id: "14563848034715697152"
+  guid: "f84747f1-282c-4903-abea-9f1d98748aec"
   description: "Refrigerant monitoring fan."
   is_canonical: true
   implements:
@@ -92,7 +92,7 @@ FAN_SS_REFM:
   - REFM
 
 FAN_SS_VSC_REFM4X:
-  id: "1060590702859124736"
+  guid: "545a4c5b-0f32-4402-8bf4-f5709ed14776"
   description: "Fan with start/stop status and speed control with four (4) refrigerant concentration sensors."
   is_canonical: true
   implements:
@@ -106,7 +106,7 @@ FAN_SS_VSC_REFM4X:
   - zone_air_refrigerant_concentration_sensor_4
 
 FAN_SS_REFC:
-  id: "12258005025502003200"
+  guid: "282fa9eb-2bc0-4240-b0af-6932e5a2f434"
   description: "Refrigerant control fan."
   is_canonical: true
   implements:
@@ -115,7 +115,7 @@ FAN_SS_REFC:
   - REFC
 
 FAN_SS_REFM_ZTM:
-  id: "6707696716767821824"
+  guid: "c52a9d20-a27d-4c03-ab89-5ac448e769c0"
   description: "Refrigerant level and zone temp monitoring fan."
   is_canonical: true
   implements:
@@ -125,7 +125,7 @@ FAN_SS_REFM_ZTM:
   - REFM
 
 FAN_SS_REFM_CSP:
-  id: "7646319007074615296"
+  guid: "7ac456da-c307-49bd-9ace-4c42f67637b4"
   description: "Cooling control fan with refrigerant monitoring."
   is_canonical: true
   implements:
@@ -134,9 +134,8 @@ FAN_SS_REFM_CSP:
   - CSP
   - REFM
 
-
 FAN_SS_CO2C:
-  id: "6546103691856838656"
+  guid: "1731969c-4882-4fd3-b4dc-66f565cb17d0"
   description: "CO2 control fan."
   is_canonical: true
   implements:
@@ -145,7 +144,7 @@ FAN_SS_CO2C:
   - CO2C
 
 FAN_ZTM_ZHM_FDPM:
-  id: "3492587278197325824"
+  guid: "325835df-1090-4925-8d49-150fc4b3a9b7"
   description: "Fan with zone temperature, zone humidity and filter monitoring"
   is_canonical: true
   implements:
@@ -155,18 +154,16 @@ FAN_ZTM_ZHM_FDPM:
   - FDPM
 
 FAN_ZTM_ZHM:
-  id: "17659222856044642304"
+  guid: "32c10dc9-0a7f-449d-844a-f6678d973713"
   description: "Fan with zone temperature and zone humidity monitoring"
   is_canonical: true
   implements:
   - FAN
   - ZTM
   - ZHM
-  
-### INTERLOCKED FANS ###
 
 FAN_SS_DRI:
-  id: "3032759420833497088"
+  guid: "2ea67cea-c406-48fd-aa79-b1a495d6c9af"
   description: "Dryer-interlocked fan."
   is_canonical: true
   implements:
@@ -175,8 +172,19 @@ FAN_SS_DRI:
   uses:
   - dryer_run_status
 
-FAN_MDRI:
-  id: "5757437195392647168"
+FAN_SS_VSC_DRI:
+  guid: "b482f7a1-ee4b-4c7a-aa04-0b8f0a6c80a3"
+  description: "Dryer-interlocked fan with variable speed control"
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - VSC
+  uses:
+  - dryer_run_status
+
+FAN_SS_VSC_WDPC_DRSM5X:
+  guid: "8838183b-c80b-4be0-84c7-3c9976c96d31"
   description: "Fan with multiple interlocked driers."
   is_canonical: true
   implements:
@@ -187,7 +195,7 @@ FAN_MDRI:
   - DRSM5X
 
 FAN_SS_DWI:
-  id: "11319382735195209728"
+  guid: "d3c88ed8-895c-4799-9894-82fcdc6d1000"
   description: "Dishwasher-interlocked fan."
   is_canonical: true
   implements:
@@ -197,7 +205,7 @@ FAN_SS_DWI:
   - dishwasher_run_status
 
 FAN_SS_STM:
-  id: "13082400152310775808"
+  guid: "d34b8a4c-8646-462d-bf79-79299e70a749"
   description: "Basic fan with supply air temperature monitoring."
   is_canonical: true
   implements:
@@ -205,11 +213,8 @@ FAN_SS_STM:
   - SS
   - STM
 
-
-### BUILDING STATIC PRESSURE CONTROL ###
-
 FAN_SS_VSC_BSPC:
-  id: "1881711484040380416"
+  guid: "9e512a95-5a1e-42f1-be74-7ced17ad9848"
   description: "Variable-speed fan for controlling space static pressure."
   is_canonical: true
   implements:
@@ -219,7 +224,7 @@ FAN_SS_VSC_BSPC:
   - BPC
 
 FAN_SS_VSC_EPC:
-  id: "6493397502467768320"
+  guid: "20cc6097-dfc5-4820-a199-d5db3551c68b"
   description: "Fan with exhaust static pressure control."
   is_canonical: true
   implements:
@@ -229,7 +234,7 @@ FAN_SS_VSC_EPC:
   - EPC
 
 FAN_SS_DSP_VSC:
-  id: "15716769539322544128"
+  guid: "660d42d5-15b3-4cb4-9af1-506f31b0aa0e"
   description: "Fan with dual setpoint control and variable speed."
   is_canonical: true
   implements:
@@ -239,7 +244,7 @@ FAN_SS_DSP_VSC:
   - VSC
 
 FAN_SS_CSP_VSC:
-  id: "15931068753622597632"
+  guid: "a89e6c24-8a8c-40ea-a8d0-ffc19a0f60af"
   description: "Cooling fan with variable speed command (no feedback)."
   is_canonical: true
   implements:
@@ -249,7 +254,7 @@ FAN_SS_CSP_VSC:
   - VSC
 
 FAN_SS_VSC_ZTM:
-  id: "4187554493254074368"
+  guid: "ffeecf58-f365-42f2-867a-ecf652189440"
   description: "Fan with zone temp monitoring and independent variable speed control (such as a kitchen hood, where the setpoints may be hidden)."
   is_canonical: true
   implements:
@@ -259,7 +264,7 @@ FAN_SS_VSC_ZTM:
   - VSC
 
 FAN_SS_COC:
-  id: "13410926530108850176"
+  guid: "4e19dd27-0031-407e-880d-deedb9439d8e"
   description: "On/off fan with carbon monoxide control."
   is_canonical: true
   implements:
@@ -268,7 +273,7 @@ FAN_SS_COC:
   - COC
 
 FAN_SS_VSC_COC:
-  id: "8799240511681462272"
+  guid: "95fd08d0-50c3-469b-bdac-c618e261a071"
   description: "Variable speed ventilation fan (for carbon monoxide control)."
   is_canonical: true
   implements:
@@ -278,7 +283,7 @@ FAN_SS_VSC_COC:
   - COC
 
 FAN_SS_VSC_ETM:
-  id: "16878575097881821184"
+  guid: "506ff5b9-c55a-4d4e-8c91-a040871a9b40"
   description: "Fan with exhaust air temp sensor."
   is_canonical: true
   implements:
@@ -288,7 +293,7 @@ FAN_SS_VSC_ETM:
   - ETM
 
 FAN_SS_VSC_ETM4X:
-  id: "4412611329320288256"
+  guid: "833ced90-a487-4a5f-b756-4e1248223c46"
   description: "Fan with 4 exhaust air temp sensors."
   is_canonical: true
   implements:
@@ -298,7 +303,7 @@ FAN_SS_VSC_ETM4X:
   - ETM4X
 
 FAN_SS_VSC_EFC_FDPM:
-  id: "7042713511704657920"
+  guid: "733a4afd-88d3-4f5a-a08e-d337c8598c1d"
   description: "Fan with start/stop status and open-loop speed control."
   is_canonical: true
   implements:
@@ -309,7 +314,7 @@ FAN_SS_VSC_EFC_FDPM:
   - FDPM
 
 FAN_SS_VSC_WDPC_STM_FDPSM4X:
-  id: "5232414895571468288"
+  guid: "64f61c00-9987-4286-8df8-9155053ada33"
   description: "Fan with start/stop status, speed control with EC fan and filter status monitoring for purification"
   is_canonical: true
   implements:
@@ -319,9 +324,9 @@ FAN_SS_VSC_WDPC_STM_FDPSM4X:
   - WDPC
   - STM
   - FDPSM4X
-  
+
 FAN_SS_VSC_EPC_ZSPM:
-  id: "1890595537992810496"
+  guid: "7a19b5c2-6439-489f-9632-e87ce6044d37"
   description: "Fan with exhaust static pressure control."
   is_canonical: true
   implements:
@@ -331,9 +336,8 @@ FAN_SS_VSC_EPC_ZSPM:
   - EPC
   - ZSPM
 
-
 FAN_SS_VSC_FDPM_DRSM5X:
-  id: "13635983366175064064"
+  guid: "49f5fadb-bd92-4388-aab0-7bff419f75e7"
   description: "Fan with exhaust air temp sensor."
   is_canonical: true
   implements:
@@ -343,9 +347,8 @@ FAN_SS_VSC_FDPM_DRSM5X:
   - FDPM
   - DRSM5X
 
-
 FAN_SS_DRSM8X:
-  id: "16266085548559433728"
+  guid: "e579e683-e6f9-4c21-b6c7-be46b10468c6"
   description: "Fan with multiple dryer integration."
   is_canonical: true
   implements:
@@ -354,16 +357,16 @@ FAN_SS_DRSM8X:
   - DRSM8X
 
 FAN_SS_EFVSC:
-  id: "3537623274471030784"
+  guid: "3d61f359-9122-4f91-a21d-600e195e37b0"
   description: "Exhaust fan with variable speed control."
   is_canonical: true
   implements:
   - FAN
   - SS
   - EFVSC
-  
+
 FAN_SS_FDPM:
-  id: "5483178313495085056"
+  guid: "751b226c-cdeb-4a1f-9929-ed4dc7ff972c"
   description: "Exhaust fan with filter monitoring."
   is_canonical: true
   implements:
@@ -372,7 +375,7 @@ FAN_SS_FDPM:
   - FDPM
 
 FAN_SS_DPM_ZHM_ZTM:
-  id: "7854710545398628352"
+  guid: "3e3a2d7e-6d0a-4c91-b237-736f2a344535"
   description: "Fan with sensors (temperature, humidity and low pressure)."
   is_canonical: true
   implements:
@@ -387,9 +390,9 @@ FAN_SS_DPM_ZHM_ZTM:
   - low_differential_pressure_alarm
   - lost_power_alarm
   - control_status
-  
+
 FAN_SS_VSC_SSPM_OAFM_FDPM:
-  id: "12715959315052101632"
+  guid: "662b754d-ec0f-461d-92a2-e874d57f75dc"
   description: "Outside air fan with variable speed control, supply side pressure monitoring, outside air flow monitoring and filter monitoring."
   is_canonical: true
   implements:
@@ -399,9 +402,9 @@ FAN_SS_VSC_SSPM_OAFM_FDPM:
   - SSPM
   - OAFM
   - FDPM
-  
+
 FAN_SS_VSC_SSPM_OAFM:
-  id: "9467175133857710080"
+  guid: "dbac8eec-a694-4cc6-92f4-f07bea27a9e9"
   description: "Outside air fan with variable speed control, supply side pressure monitoring, and outside air flow monitoring."
   is_canonical: true
   implements:
@@ -410,9 +413,9 @@ FAN_SS_VSC_SSPM_OAFM:
   - VSC
   - SSPM
   - OAFM
-  
+
 FAN_SS_VSC_ZTM_EFM:
-  id: "15053327521657389056"
+  guid: "765eef89-bfb3-4785-9021-ca69bbcdb971"
   description: "General exhaust fan with variable speed control, zone temperature monitoring, and exhaust air flow monitoring."
   is_canonical: true
   implements:
@@ -421,9 +424,9 @@ FAN_SS_VSC_ZTM_EFM:
   - VSC
   - ZTM
   - EFM
-  
+
 FAN_SS_VSFC:
-  id: "6340656645672009728"
+  guid: "eb67c56c-02e3-4a3d-8a0b-c958a66177af"
   description: "Fan with frequency command control"
   is_canonical: true
   implements:
@@ -439,7 +442,7 @@ FAN_SS_VSFC:
   - control_status
 
 FAN_SS_ZTC:
-  id: "17048861961233629184"
+  guid: "6482123f-366b-4078-979c-4801da714742"
   description: "Fan zone temperature control"
   is_canonical: true
   implements:
@@ -448,7 +451,7 @@ FAN_SS_ZTC:
   - ZTC
 
 FAN_SS_VSC_EPC_EHHRC:
-  id: "6589814776619073536"
+  guid: "912539e7-a0a9-465e-964d-05d31169b556"
   description: "Fan with exhaust static pressure control and heat recovery coils."
   is_canonical: true
   implements:
@@ -457,9 +460,9 @@ FAN_SS_VSC_EPC_EHHRC:
   - VSC
   - EPC
   - EHHRC
- 
+
 FAN_SS_VSC_EHHRC:
-  id: "17074194709137588224"
+  guid: "34f78ab5-cfe0-46ac-8f66-7823c8f03003"
   description: "Fan with exhaust and heat recovery coils."
   is_canonical: true
   implements:
@@ -467,9 +470,9 @@ FAN_SS_VSC_EHHRC:
   - SS
   - VSC
   - EHHRC
- 
+
 FAN_SS_DWI2X:
-  id: "4175885376348487680"
+  guid: "37a8eec3-885f-4001-a078-44e0ea597a08"
   description: "Dishwasher-interlocked fan."
   is_canonical: true
   implements:
@@ -480,7 +483,7 @@ FAN_SS_DWI2X:
   - dishwasher_run_status_2
 
 FAN_EFHLC_COCDSP_NOCDSP:
-  id: "13969877559739940864"
+  guid: "166362c9-8cdf-4689-a5f0-75b6361c0c03"
   description: "Two-speed exhaust fan (low/high) with CO concentration dual setpoint control and NO concentration dual setpoint control."
   is_canonical: true
   implements:
@@ -489,8 +492,18 @@ FAN_EFHLC_COCDSP_NOCDSP:
   - COCDSP
   - NOCDSP
 
+FAN_HLC_COCDSP_NOCDSP:
+  guid: "b630f2bd-46cb-4cb5-afec-66fa38e0617a"
+  description: "Two-speed fan (low/high) with CO concentration dual setpoint control and NO concentration dual setpoint control."
+  is_canonical: true
+  implements:
+  - FAN
+  - HLC
+  - COCDSP
+  - NOCDSP
+
 FAN_SS_VSC_SCRSS:
-  id: "6171415417878216704"
+  guid: "3696faf3-2a9c-4202-856b-80d48bd19f10"
   description: "Fan with scrubber start/stop and status."
   is_canonical: true
   implements:
@@ -498,13 +511,104 @@ FAN_SS_VSC_SCRSS:
   - SS
   - VSC
   - SCRSS
- 
+
+FAN_SS_VSC_SSPC_FDPSM:
+  guid: "8a4308e9-7357-4316-8ae5-6c4f34c17a40"
+  description: "Fresh air fan with supply air static pressure sensor based VFD Modulation."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - VSC
+  - SSPC
+  - FDPSM
+
+FAN_SS_SRC:
+  guid: "44c1a03d-8639-446e-ab61-9f7b98016304"
+  description: "Basic fan with start/stop and schedule run command."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - SRC
+
+FAN_SS_HLC:
+  guid: "092c2596-8086-4510-9d31-9c1a663ae9bc"
+  description: "Two speed fan control."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - HLC
+
+FAN_VSMC:
+  guid: "189df1f4-81e8-4703-afb6-25628d0f87dc"
+  description: "Basic fan with 2 speed control and schedule run command."
+  is_canonical: true
+  implements:
+  - FAN
+  - VSMC
+
+FAN_SS_CSP_VSC_REFM:
+  guid: "8ad25499-4813-4634-91e0-cb77beaee01d"
+  description: "Cooling fan with variable speed command (no feedback) and refrigerant monitoring."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - CSP
+  - VSC
+  - REFM
+
+FAN_SS_FDPM_VSC_SRC:
+  guid: "df96d0b3-40b9-4d10-9dfc-8a74eccf0bbf"
+  description: "Fan with power, voltage, current, differential pressure and run durating monitoring ."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - FDPM
+  - VSC
+  - SRC
+
+FAN_HLC_COC2XDSP_NO2C2XDSP:
+  guid: "69a67398-f2d7-4fc7-b60a-945be99012b2"
+  description: "Two-speed fan (low/high) with CO concentration dual setpoint control and NO2 concentration dual setpoint control with 2 sensors."
+  is_canonical: true
+  implements:
+  - FAN
+  - HLC
+  - COC2XDSP
+  - NO2C2XDSP
+
+FAN_SS_VSC_FDPM_DRSM3X:
+  guid: "e2dfe79a-54cc-4cdd-a4a6-1bb43ca703a3"
+  description: "Fan with exhaust air temp sensor and 3 dryer_run_status points."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - VSC
+  - FDPM
+  - DRSM3X
+
+FAN_SS_VSC_FDPM_DRSM2X:
+  guid: "ba26cc73-b4f1-4eda-ba27-1ad07d763c46"
+  description: "Fan with start/stop status and open-loop speed control as well as filter pressure and dryer status monitoring."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - VSC
+  - FDPM
+  - DRSM2X
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
 
 FAN_SS_EATC:
-  id: "17912652589665615872"
+  guid: "3096d6f6-a3c8-4091-a838-ab0965fadef6"
   description: "Exhaust air temp control fan (one-off)."
   implements:
   - FAN
@@ -515,46 +619,46 @@ FAN_SS_EATC:
   - heating_water_valve_percentage_command
   - return_air_relative_humidity_sensor
 
-FAN_US_MTV_1950_1:
-  id: "1697530092248367104"
-  description: "Non-standard type for 1950"
+FAN_SS_NONCANONICAL_1:
+  guid: "43c0d698-263b-4acf-be26-979e844bc3e2"
+  description: "Non-standard type."
   implements:
   - FAN_SS
   uses:
   - dryer_run_status_1
   - dryer_run_status_2
 
-FAN_US_MTV_2081_1:
-  id: "4273589079104290816"
-  description: "Non-standard type for 2081"
+FAN_SS_VSC_NONCANONICAL_1:
+  guid: "f5be9a8d-4712-489b-a065-ae39bfd0c87e"
+  description: "Non-standard type."
   implements:
   - FAN_SS_VSC
   uses:
   - exhaust_air_damper_command_1
   - exhaust_air_damper_command_2
 
-FAN_US_MTV_FRC1_2:
-  id: "8479792801393934336"
-  description: "Non-standard type for FRC1 EFs"
+FAN_SS_NONCANONICAL_2:
+  guid: "394c0e2b-ff89-4573-a833-68a890a908c3"
+  description: "Non-standard type."
   implements:
   - FAN_SS
   - INCOMPLETE
   uses:
   - dryer_run_status
 
-FAN_US_PAO_HV5_1:
-  id: "2182792952097538048"
-  description: "Non-standard type for HV5"
+FAN_SS_VSC_BSPC_NONCANONICAL_1:
+  guid: "64a71411-4c55-4f07-9efa-db790c1cf035"
+  description: "Non-standard type."
   implements:
   - FAN_SS_VSC_BSPC
   uses: # Should model as a separate device, not on this fan.
-  - exhaust_air_damper_percentage_command 
+  - exhaust_air_damper_percentage_command
   - exhaust_air_static_pressure_sensor
   - exhaust_air_static_pressure_setpoint
 
-FAN_US_PAO_HV5_3:
-  id: "7722220493763248128"
-  description: "Non-standard type for HV5"
+FAN_SS_VSC_BSPC_NONCANONICAL_2:
+  guid: "6e2993e8-e984-4438-bcae-e9d6cd93c312"
+  description: "Non-standard type."
   implements:
   - FAN_SS_VSC_BSPC
   uses: # Should model as a separate device, not on this fan.
@@ -564,9 +668,9 @@ FAN_US_PAO_HV5_3:
   - exhaust_air_static_pressure_sensor
   - exhaust_air_static_pressure_setpoint
 
-FAN_US_PAO_HV5_8:
-  id: "16945592530618023936"
-  description: "Non-standard type for HV5 EFs"
+FAN_SS_VSC_NONCANONICAL_2:
+  guid: "99352c29-d9b5-483b-b92f-e842cb040df8"
+  description: "Non-standard type."
   implements:
   - FAN_SS_VSC
   uses: # Should model as a separate device, not on this fan.
@@ -574,33 +678,33 @@ FAN_US_PAO_HV5_8:
   - exhaust_air_static_pressure_sensor
   - exhaust_air_static_pressure_setpoint
 
-FAN_US_SVL_BRG1_1:
-  id: "17292369701925552128"
-  description: "Non-standard type for BRG1"
+FAN_SS_NONCANONICAL_3:
+  guid: "af0fa995-f58a-4a4c-8d91-b5661c4fa2dc"
+  description: "Non-standard type."
   implements:
   - FAN_SS
   uses:
   - zone_occupancy_status
 
-FAN_US_SVL_BRG1_2:
-  id: "15710480332811665408"
-  description: "Non-standard type for BRG1"
+FAN_SS_NONCANONICAL_4:
+  guid: "c749ef10-7fd2-41cb-8fc4-d087a901a15e"
+  description: "Non-standard type."
   implements:
   - FAN_SS
   uses:
   - exhaust_air_damper_command
   - exhaust_air_damper_status
 
-FAN_US_SVL_MP1_3:
-  id: "10022275673768329216"
-  description: "Non-standard type for MP1"
+FAN_SS_VSC_FDPM_DRSM5X_NONCANONICAL_1:
+  guid: "848249bd-c6f8-4c96-bb75-6aa6a87ee242"
+  description: "Non-standard type."
   implements:
   - FAN_SS_VSC_FDPM_DRSM5X
   - INCOMPLETE
 
-FAN_US_SVL_MP3_1:
-  id: "7518274280950333440"
-  description: "Non-standard type for MP3"
+FAN_SS_VSC_NONCANONICAL_3:
+  guid: "ae78b835-5cf3-4a1b-b947-3c19b646d847"
+  description: "Non-standard type."
   implements:
   - FAN_SS_VSC
   - INCOMPLETE
@@ -608,9 +712,9 @@ FAN_US_SVL_MP3_1:
   - differential_pressure_sensor
   - discharge_air_temperature_sensor
 
-FAN_US_SVL_MP3_3:
-  id: "2681408281154420736"
-  description: "Non-standard type for MP3"
+FAN_SS_NONCANONICAL_5:
+  guid: "24b0e14b-6492-4ca7-9f05-f73ae1b2bf51"
+  description: "Non-standard type."
   implements:
   - FAN_SS
   - DEPRECATED
@@ -622,34 +726,44 @@ FAN_US_SVL_MP3_3:
   - dryer_run_status_5
   - filter_differential_pressure_sensor
 
-FAN_US_SVL_MP4_3:
-  id: "16746149917432479744"
-  description: "Non-standard type for MP4"
+FAN_SS_NONCANONICAL_6:
+  guid: "6fcbd4dd-a4e4-44a0-824d-2a767cefa2be"
+  description: "Non-canonical fan which uses differential airflow measured in a space to provide pressure balancing."
+  is_canonical: false
+  implements:
+  - FAN_SS
+  uses:
+  - exhaust_air_differential_flowrate_sensor
+  - exhaust_air_differential_flowrate_setpoint
+
+FAN_SS_VSC_BSPC_NONCANONICAL_3:
+  guid: "96ba1ab2-721d-4c3d-b8fa-dbba5a6f29f1"
+  description: "Non-standard type."
   implements:
   - FAN_SS_VSC_BSPC
   uses:
   - exhaust_air_damper_percentage_command_1
   - exhaust_air_damper_percentage_command_2
 
-FAN_US_SVL_MP4_4:
-  id: "9950218079730401280"
-  description: "Hash:b0ca60c549d1ba9493310cb1e832003a645a704cb4e659e28312336fc8048222; Entities: US-SVL-MP4:FAN:KEF-1 SF"
+FAN_SS_VSC_NONCANONICAL_4:
+  guid: "d7f21a56-67d7-4418-8a9e-1935024ea279"
+  description: "Non-standard type."
   implements:
   - FAN_SS_VSC
   uses:
   - discharge_air_temperature_sensor
   - exhaust_air_static_pressure_sensor
 
-FAN_US_SVL_MP5_3:
-  id: "17570308649241280512"
-  description: "Hash:baa9cc8812ae9b36bd430ca2574f7a3a5a003479d6623ff75573535ea8a3a467; Entities: US-SVL-MP5:FAN:EF 1-6"
+FAN_SS_DRSM8X_NONCANONICAL_1:
+  guid: "730ad25c-159f-472f-936b-a130e4a7ddc5"
+  description: "Non-standard type"
   implements:
   - FAN_SS_DRSM8X
   - DEPRECATED
 
-FAN_US_SVL_MP5_4:
-  id: "8806303774378295296"
-  description: "Non-standard type for MP5"
+FAN_SS_VSC_NONCANONICAL_5:
+  guid: "5eae0ece-4b09-4380-a94f-2d50d64aa462"
+  description: "Non-standard type."
   implements:
   - FAN_SS_VSC
   - INCOMPLETE
@@ -657,23 +771,23 @@ FAN_US_SVL_MP5_4:
   - dishwasher_run_status_1
   - dishwasher_run_status_2
 
-FAN_US_SVL_MP5_5:
-  id: "425104867841802240"
-  description: "Non-standard type for MP5"
+FAN_SS_ZTM_NONCANONICAL_1:
+  guid: "cd0e0392-407c-4c8a-8d83-45ae249bc98c"
+  description: "Non-standard type."
   implements:
   - FAN_SS_ZTM
   - INCOMPLETE
 
-FAN_US_SVL_MP7_2:
-  id: "2357149107983745024"
-  description: "Non-standard type for MP7"
+FAN_SS_VSC_NONCANONICAL_6:
+  guid: "4192867c-dcc2-4cea-978d-fb32816c681b"
+  description: "Non-standard type."
   implements:
   - FAN_SS_VSC
   uses:
   - dishwasher_run_status
 
 FAN_SS_AL:
-  id: "17078082582253404160"
+  guid: "e988e0a7-7fb7-43fd-a9c0-f032de21cdf9"
   description: "Basic return fan start/stop only with optional alarms"
   implements:
   - FAN
@@ -687,7 +801,7 @@ FAN_SS_AL:
   - control_status
 
 FAN_SS_VSC_SRC:
-  id: "8961395387034238976"
+  guid: "7fe513e3-303f-4629-8761-60e48427c549"
   description: "Basic Exhaust fan with start/stop, speed sensor, alarms, scheduled run"
   uses:
   - lost_power_alarm
@@ -700,7 +814,7 @@ FAN_SS_VSC_SRC:
   - SRC
 
 FAN_SS_VSC_SRC_DPM:
-  id: "3827291811831873536"
+  guid: "7520e3d2-88f3-4573-ba5c-d09c55833a16"
   description: "Basic Exhaust fan with start/stop, speed sensor, fail alarm, scheduled run, dampers"
   uses:
   - lost_power_alarm
@@ -714,7 +828,7 @@ FAN_SS_VSC_SRC_DPM:
   - DPM
 
 FAN_SS_VSC_EPC_EHHRC_EHHRC3X:
-  id: "13340710618047447040"
+  guid: "0a0d622c-0368-45b3-acd1-c782750b6440"
   description: "Non-standard fan with exhaust static pressure control and heat recovery coils."
   implements:
   - FAN
@@ -727,20 +841,10 @@ FAN_SS_VSC_EPC_EHHRC_EHHRC3X:
   - heat_recovery_water_isolation_valve_command_2
   - heat_recovery_water_isolation_valve_command_3
 
-FAN_SS_FDPM_VSC_SRC: 
-  id: "4892604229937528832"
-  description: "Fan with power, voltage, current, differential pressure and run durating monitoring ."
-  is_canonical: true
-  implements:
-  - FAN
-  - SS
-  - FDPM
-  - VSC
-  - SRC
-
-FAN_SS_MSM:  
-  id: "278666411696455680"
+FAN_SS_MSM:
+  guid: "b37f616a-8d6d-430c-bcfb-6783c2ed80eb"
   description: "Basic fan with speed monitoring (used in jet-fans for ventilation purpose)"
   implements:
   - FAN
   - MSM
+

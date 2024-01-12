@@ -13,7 +13,7 @@
 # limitations under the License.
 
 EQUIPMENT:
-  id: "9693662434551660544"
+  guid: "b3fe24f2-6194-4300-95b1-506941487a19"
   description: "A piece of equipment."
   is_abstract: true
   opt_uses:
@@ -21,43 +21,43 @@ EQUIPMENT:
   - model_label
 
 SENSOR:
-  id: "14503949939769344000"
+  guid: "4fa42531-26a8-4d1f-a0b3-a7f6bb5623e1"
   description: "Stand-alone sensing device. Used to model individual sensors when they don't belong explicitly to one piece of equipment."
   is_abstract: true
   implements:
   - EQUIPMENT
 
 USER_INTERFACE:
-  id: "6019168241803329536"
+  guid: "ec863942-5bda-4f44-b6ab-af80e72a0f2e"
   description: "Generic user interface."
   is_abstract: true
   implements:
   - EQUIPMENT
 
 NO_ANALYSIS:
-  id: "10044943205486559232"
+  guid: "42a7614d-e6c9-4cec-96fb-de868b3985c2"
   description: "Devices which are not useful in and of themselves. Can be ignored by analysis."
   is_abstract: true
 
 DEPRECATED:
-  id: "10951011155518160896"
+  guid: "e6a60084-db86-4e0f-8cd4-881d68785120"
   description: "Used to clean up deprecated types."
   is_abstract: true
 
 REMAP_REQUIRED:
-  id: "9663931640136597504"
+  guid: "1cf12fff-eac5-4b7d-8a8c-c8f31526c2c1"
   description: "A type which requires some remapping in order to convert it to a standard type."
   is_abstract: true
 
 INCOMPLETE:
-  id: "4665780478685478912"
+  guid: "bfc45ea7-8695-4013-bc0a-6ec0732cce6d"
   description: "A known incomplete type."
   is_abstract: true
-  
+
 ##Global namespace for tanks##
 TK:
-  id: "3656366132224327680"
+  guid: "ada23c08-00af-4967-8148-33239e8564f7"
   description: "Device used to store media. Used to model individual tanks when they don't belong explicitly to one piece of equipment."
   is_abstract: true
   implements:
-  - EQUIPMENT  
+  - EQUIPMENT

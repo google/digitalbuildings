@@ -16,42 +16,44 @@
 
 
 GASDET:
-  id: "16611634565378736128"
+  guid: "38f79492-74f8-4a6b-b87f-27bd9a3b8442"
   description: "Basic natural gas leak monitoring."
   is_abstract: true
   uses:
   - gas_leak_detection_alarm
 
 NHDET:
-  id: "12766765548348375040"
+  guid: "828db562-44c2-4c7c-b59b-6dbb45eae334"
   description: "Basic ammonia gas leak monitoring"
   is_abstract: true
   uses:
   - ammonia_leak_detection_alarm
 
 H2M:
-  id: "2296560519735148544"
+  guid: "7101fcfa-3143-467e-88a3-356259be5941"
   description: "Hydrogen gas monitoring"
   is_abstract: true
   uses:
   - zone_air_h2_concentration_sensor
+  opt_uses:
+  - high_zone_air_h2_concentration_alarm
 
 WLDS:
-  id: "1407482223375941632"
-  description: "Basic watre leak monitoring."
+  guid: "6530f835-51a6-45c0-9130-382c297c2a01"
+  description: "Basic water leak monitoring."
   is_abstract: true
   uses:
   - water_leak_detection_alarm
 
 BCM:
-  id: "3767368428118081536"
+  guid: "3a316bed-1a5a-4a36-86bf-32743da1624c"
   description: "Broken cable monitoring."
   is_abstract: true
   uses:
   - broken_cable_alarm
 
 BC2X:
-  id: "12198106930555650048"
+  guid: "5b04410c-62b1-4385-998b-16023b663b14"
   description: "Broken cable monitoring."
   is_abstract: true
   uses:
@@ -59,38 +61,37 @@ BC2X:
   - broken_cable_alarm_2
 
 LPA: 
-  id: "13873445991937474560"
+  guid: "3f8a398c-23f5-43bd-9694-ac06087ffc07"
   description: "Loss of power alarming."
   is_abstract: true
   uses:
   - lost_power_alarm
 
 WLA:
-  id: "10160553554612322304"
+  guid: "32d414a9-a6d0-4f65-969f-a104c8bb4d3b"
   description: "Water leak monitoring."
   is_abstract: true
   uses:
   - water_leak_alarm
 
 FA2X:
-  id: "16519636228459462656"
+  guid: "5010bcf9-f4c8-4884-8f5c-a6261b14699e"
   description: "Fire alarm monitoring."
   is_abstract: true
   uses:
   - fire_alarm_1
   - fire_alarm_2
-    
+
 WLS:
-  id: "944988050314756096"
+  guid: "16a99ce4-3298-4f9a-9ba8-41edec6a48c8"
   description: "Water leak location monitoring."
   is_abstract: true
   uses:
   - water_leak_cable_distance_sensor
-  
+
 LM:
-  id: "15773300929664647168"
+  guid: "25887ceb-f2d8-4b25-be80-36e8b37f5ae9"
   description: "Tank level monitoring."
   is_abstract: true
   uses:
-  - level_status 
-
+  - level_status
