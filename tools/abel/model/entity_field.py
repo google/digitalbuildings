@@ -138,9 +138,6 @@ class MissingField(field_translation.UndefinedField):
         VALUES: [
             {USER_ENTERED_VALUE: {STRING_VALUE: self.std_field_name}},
             {USER_ENTERED_VALUE: {STRING_VALUE: ''}},
-            {USER_ENTERED_VALUE: {
-              STRING_VALUE: self.reporting_entity_field_name
-            }},
             {
               USER_ENTERED_VALUE: {
                 STRING_VALUE: self.reporting_entity_field_name
