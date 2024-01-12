@@ -1,4 +1,4 @@
-# Copyright 2023 Google LLC
+## Copyright 2023 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the License);
 # you may not use this file except in compliance with the License.
@@ -16,7 +16,7 @@
 import os
 from typing import List, Optional
 import webbrowser
-
+from googleapiclient.discovery import build
 # pylint: disable=g-importing-member
 from model import authenticator
 from model import entity_enumerations
@@ -32,6 +32,7 @@ from model.entity_operation import EntityOperation
 from model.model_builder import Model
 from validators.spreadsheet_validator import SpreadsheetValidator
 from validate import handler
+from google.oauth2 import service_account
 
 
 # TODO: b/296067081 - Write unit tests for workflow class.
@@ -46,9 +47,7 @@ class Workflow(object):
   """
 
   def __init__(self, argset: ParseArgs):
-    self.google_sheets_service = (
-        authenticator.GetGoogleSheetsServiceByCredential(argset.credential)
-    )
+    self.google_sheets_service = self.get_google_sheets_service(argset.credential)
     self.subscription = argset.subscription
     self.spreadsheet_id = argset.spreadsheet_id
     if not argset.building_config:
@@ -60,6 +59,13 @@ class Workflow(object):
     self.output_dir = argset.output_dir
     self.bc_model = None
     self.ss_model = None
+
+  def get_google_sheets_service(self, credential_path: str):
+        credentials = service_account.Credentials.from_service_account_file(
+            credential_path,
+            scopes=['https://www.googleapis.com/auth/spreadsheets']  # Adjust the scope based on your needs
+        )
+        return build('sheets', 'v4', credentials=credentials)
 
   def _ImportSpreadsheetAndBuildModel(self, spreadsheet_id) -> Model:
     """Reads a Google Sheets spreadsheet and builds an ABEL model.
