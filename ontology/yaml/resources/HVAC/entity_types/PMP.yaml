@@ -16,6 +16,16 @@
 ### Canonical Types  ###
 ########################
 
+PMP_SS_VSC_WDPC_WDT:
+  description: "Variable speed pump with differential pressure and temperature monitoring."
+  is_canonical: true
+  implements:
+  - PMP
+  - SS
+  - VSC
+  - WDPC
+  - WDT
+
 PMP_SS:
   guid: "82eccf0f-5f19-470d-a27b-cd00e8cbe25e"
   description: "Typical pump."
