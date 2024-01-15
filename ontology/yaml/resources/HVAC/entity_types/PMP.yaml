@@ -158,6 +158,15 @@ PMP_SS_WDPM:
   - SS
   - WDPM
 
+PMP_SS_VSC_HWBYPVM:
+  guid: "aec25b2b-513d-474d-91b3-7cb756fe12ce"
+  description: "Variable speed pump with heating water bypass valve binary control."
+  is_canonical: true
+  implements:
+  - PMP
+  - SS
+  - VSC
+  - HWBYPVM
 
 ###################################
 ### Existing Non-standard Types ###
@@ -181,13 +190,3 @@ PMP_SS_VSC_NONCANONICAL_2:
   - mixing_valve_percentage_command
   - chilled_supply_water_temperature_setpoint
   - chilled_supply_water_temperature_sensor
-
-PMP_SS_VSC_HWBYPVM:
-  guid: "aec25b2b-513d-474d-91b3-7cb756fe12ce"
-  description: "Variable speed pump with heating water bypass valve binary control."
-  is_canonical: true
-  implements:
-  - PMP
-  - SS
-  - VSC
-  - HWBYPVM
