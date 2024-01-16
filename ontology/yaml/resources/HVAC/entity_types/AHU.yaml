@@ -2005,6 +2005,21 @@ AHU_BSPC_DX3SC_ECONM_EFSS_EFVSC_SFSS_SFVSC_SSPC:
   - SFVSC
   - SSPC
 
+AHU_BSPC_DX3SC_ECONM_EFSS_EFVSC_SARC_SFSS_SFVSC_SSPC:
+  description: "Multi-zone AHU with three-stage DX cooling, economizer mode control & supply air reset control."
+  is_canonical: true
+  implements:
+  - AHU
+  - BSPC
+  - DX2SC
+  - ECONM
+  - EFSS
+  - EFVSC
+  - SARC
+  - SFSS
+  - SFVSC
+  - SSPC
+
 AHU_BSPC_DX2SC_ECON_EFSS_SARC_SFM_SFSS_SSPC:
   guid: "f32f304a-40cb-4a7f-a911-8cc09b71d3cf"
   description: "Multi-zone AHU."
