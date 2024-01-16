@@ -3949,6 +3949,16 @@ AHU_CHW2XSC_RFSS2X_RFVSC2X_SFSS2X_SFVSC2X_RFC_EDRPC_RTM_SARC_SFC_SSPC_VOADM2X:
   - SSPC
   - VOADM2X
 
+AHU_CHWDC_DFSS_DSP_ECONMD:
+  description: "Single zone chilled water AHU with economizer mode control."
+  is_canonical: true
+  implements:
+  - AHU
+  - CHWDC
+  - DFSS
+  - DSP
+  - ECONMD  
+
 AHU_CHWDC_DFSS_DFVSC_DSP_ECONZ_EFSS_ZSPC:
   guid: "9cdfd662-3ab3-4c75-b63f-c7020023ebcc"
   description: "Single zone AHU with zone static pressure control."
