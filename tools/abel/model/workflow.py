@@ -20,7 +20,6 @@ import webbrowser
 
 # pylint: disable=g-importing-member
 from model import authenticator
-from model import entity_enumerations
 from model import export_helper
 from model import import_helper
 from model import model_helper
@@ -177,17 +176,17 @@ class Workflow(object):
   def SpreadsheetWorkflow(self) -> None:
     """Workflow to write a Building Config from a spreadsheet
 
-    Can either take just a spreadsheet or a spreadsheet and a building config."""
+    Can either take just a spreadsheet or a spreadsheet and a building config.
+    """
     # If user doesn't exit, write spreadsheet to a building config.
     if not self.bc_model:
       # This case statement will go away once ABEL can call DB API.
       # If a person just wants to create a bc, they shouldn't need to provide
       # a spreadsheet.
-      print("No building config input")
-      #sys.exit(0)
+      print('No building config input')
       pass
     elif not self.ss_model:
-      print("No spreadsheet id input")
+      print('No spreadsheet id input.\nExiting ABEL...')
       sys.exit(0)
 
     self.ss_model, ss_operations = self._ImportSpreadsheetAndBuildModel(
@@ -209,9 +208,9 @@ class Workflow(object):
     """Workflow to create a Google sheets spreadsheet from a building config"""
 
     self.bc_model, bc_operations = self._ImportBCAndBuildModel()
-    spreadsheet_url, spreadsheet_id = self._ExportAndWriteToSpreadsheet(
+    spreadsheet_details = self._ExportAndWriteToSpreadsheet(
         self.bc_model, bc_operations
     )
 
     # Write to spreadsheet
-    webbrowser.open(spreadsheet_url)
+    webbrowser.open(spreadsheet_details[0])

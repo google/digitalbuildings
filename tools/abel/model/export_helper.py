@@ -26,7 +26,6 @@ from model.constants import CONFIG_CLOUD_DEVICE_ID
 from model.constants import CONFIG_CODE
 from model.constants import CONFIG_CONNECTIONS
 from model.constants import CONFIG_ETAG
-from model.constants import CONFIG_INITIALIZE
 from model.constants import CONFIG_LINKS
 from model.constants import CONFIG_METADATA
 from model.constants import CONFIG_OPERATION
@@ -191,14 +190,18 @@ class BuildingConfigExport(object):
     return update_dict
 
   def _GetReportingEntityBuildingConfigBlock(
-      self, entity: ReportingEntity, config_mode: ConfigMode, operation: Optional[EntityOperation]
+      self,
+      entity: ReportingEntity,
+      config_mode: ConfigMode,
+      operation: Optional[EntityOperation]
   ) -> Dict[str, object]:
     """Returns a Building Config formatted reporting entity block dictionary.
 
     Args:
       entity: A ReportingEntity instance.
       operation: The operation acting on the entity...
-      config_mode: ConfigMode instance representing a building config's metadata config mode.
+      config_mode: ConfigMode instance representing a building config's metadata
+        config mode.
 
     Returns:
       A dictionary in Building Config format ready to be parsed into yaml.
@@ -236,12 +239,16 @@ class BuildingConfigExport(object):
     reporting_entity_yaml.update(
         {CONFIG_TYPE: entity.namespace.value + '/' + str(entity.type_name)}
     )
-    if operation and not operation.operation == EntityOperationType.EXPORT and config_mode == ConfigMode.UPDATE:
+    if operation and not operation.operation == EntityOperationType.EXPORT and \
+        config_mode == ConfigMode.UPDATE:
       reporting_entity_yaml.update(self._AddOperationToBlock(operation))
     return reporting_entity_yaml
 
   def _GetVirtualEntityBuildingConfigBlock(
-      self, entity: VirtualEntity, config_mode: ConfigMode, operation: Optional[EntityOperation]
+      self,
+      entity: VirtualEntity,
+      config_mode: ConfigMode,
+      operation: Optional[EntityOperation]
   ) -> Dict[str, object]:
     """Returns a Building Config formatted virtual entity block dictionary.
 
@@ -261,7 +268,8 @@ class BuildingConfigExport(object):
     virtual_entity_yaml.update(
         {CONFIG_TYPE: entity.namespace.value + '/' + str(entity.type_name)}
     )
-    if operation and not operation.operation == EntityOperationType.EXPORT and config_mode == ConfigMode.UPDATE:
+    if operation and not operation.operation == EntityOperationType.EXPORT and \
+        config_mode == ConfigMode.UPDATE:
       virtual_entity_yaml.update(self._AddOperationToBlock(operation))
     return virtual_entity_yaml
 
