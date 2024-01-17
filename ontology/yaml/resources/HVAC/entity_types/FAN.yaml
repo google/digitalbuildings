@@ -37,6 +37,15 @@ FAN_SS_VSC:
   - SS
   - VSC
 
+FAN_SS_WDPM:
+  guid: "d12cbe88-243a-40a5-b624-3a2f355e7cfc"
+  description: "Fan with start/stop and differential pressure monitoring."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - WDPM
+
 FAN_SS_RMM:
   guid: "917a9051-01dc-4f41-ad4c-5fcb45fe2f0e"
   description: "Fan with start/stop status and run mode monitoring"
@@ -174,7 +183,7 @@ FAN_SS_VSC_DRI:
   uses:
   - dryer_run_status
 
-FAN_MDRI:
+FAN_SS_VSC_WDPC_DRSM5X:
   guid: "8838183b-c80b-4be0-84c7-3c9976c96d31"
   description: "Fan with multiple interlocked driers."
   is_canonical: true
@@ -513,7 +522,87 @@ FAN_SS_VSC_SSPC_FDPSM:
   - VSC
   - SSPC
   - FDPSM
-  
+
+FAN_SS_SRC:
+  guid: "44c1a03d-8639-446e-ab61-9f7b98016304"
+  description: "Basic fan with start/stop and schedule run command."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - SRC
+
+FAN_SS_HLC:
+  guid: "092c2596-8086-4510-9d31-9c1a663ae9bc"
+  description: "Two speed fan control."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - HLC
+
+FAN_VSMC:
+  guid: "189df1f4-81e8-4703-afb6-25628d0f87dc"
+  description: "Basic fan with 2 speed control and schedule run command."
+  is_canonical: true
+  implements:
+  - FAN
+  - VSMC
+
+FAN_SS_CSP_VSC_REFM:
+  guid: "8ad25499-4813-4634-91e0-cb77beaee01d"
+  description: "Cooling fan with variable speed command (no feedback) and refrigerant monitoring."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - CSP
+  - VSC
+  - REFM
+
+FAN_SS_FDPM_VSC_SRC:
+  guid: "df96d0b3-40b9-4d10-9dfc-8a74eccf0bbf"
+  description: "Fan with power, voltage, current, differential pressure and run durating monitoring ."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - FDPM
+  - VSC
+  - SRC
+
+FAN_HLC_COC2XDSP_NO2C2XDSP:
+  guid: "69a67398-f2d7-4fc7-b60a-945be99012b2"
+  description: "Two-speed fan (low/high) with CO concentration dual setpoint control and NO2 concentration dual setpoint control with 2 sensors."
+  is_canonical: true
+  implements:
+  - FAN
+  - HLC
+  - COC2XDSP
+  - NO2C2XDSP
+
+FAN_SS_VSC_FDPM_DRSM3X:
+  guid: "e2dfe79a-54cc-4cdd-a4a6-1bb43ca703a3"
+  description: "Fan with exhaust air temp sensor and 3 dryer_run_status points."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - VSC
+  - FDPM
+  - DRSM3X
+
+FAN_SS_VSC_FDPM_DRSM2X:
+  guid: "ba26cc73-b4f1-4eda-ba27-1ad07d763c46"
+  description: "Fan with start/stop status and open-loop speed control as well as filter pressure and dryer status monitoring."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - VSC
+  - FDPM
+  - DRSM2X
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
@@ -752,47 +841,10 @@ FAN_SS_VSC_EPC_EHHRC_EHHRC3X:
   - heat_recovery_water_isolation_valve_command_2
   - heat_recovery_water_isolation_valve_command_3
 
-FAN_SS_FDPM_VSC_SRC:
-  guid: "df96d0b3-40b9-4d10-9dfc-8a74eccf0bbf"
-  description: "Fan with power, voltage, current, differential pressure and run durating monitoring ."
-  is_canonical: true
-  implements:
-  - FAN
-  - SS
-  - FDPM
-  - VSC
-  - SRC
-
 FAN_SS_MSM:
   guid: "b37f616a-8d6d-430c-bcfb-6783c2ed80eb"
   description: "Basic fan with speed monitoring (used in jet-fans for ventilation purpose)"
   implements:
   - FAN
   - MSM
-
-FAN_SS_SRC:
-  guid: "44c1a03d-8639-446e-ab61-9f7b98016304"
-  description: "Basic fan with start/stop and schedule run command."
-  is_canonical: true
-  implements:
-  - FAN
-  - SS
-  - SRC
-
-FAN_SS_HLC:
-  guid: "092c2596-8086-4510-9d31-9c1a663ae9bc"
-  description: "Two speed fan control."
-  is_canonical: true
-  implements:
-  - FAN
-  - SS
-  - HLC
-
-FAN_VSMC:
-  guid: "189df1f4-81e8-4703-afb6-25628d0f87dc"
-  description: "Basic fan with 2 speed control and schedule run command."
-  is_canonical: true
-  implements:
-  - FAN
-  - VSMC
 

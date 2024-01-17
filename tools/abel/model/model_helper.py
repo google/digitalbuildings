@@ -20,6 +20,7 @@ from model import entity_enumerations
 from model import entity_field as ef
 from model import entity_operation
 from model import model_builder as mb
+from model import site as site_lib
 from validate import field_translation as ft
 
 
@@ -60,35 +61,37 @@ def DetermineReportingEntityUpdateMask(
       API.
     updated_entity: An Entity instance from an updated building config.
   """
-  update_mask = []
+  update_mask = set()
+  # updated entity code
   if updated_entity.code != current_entity.code:
-    update_mask.append(entity_enumerations.EntityUpdateMaskAttribute.CODE)
+    update_mask.add(entity_enumerations.EntityUpdateMaskAttribute.CODE)
+  # updated entity type name
   if updated_entity.type_name != current_entity.type_name:
-    update_mask.append(entity_enumerations.EntityUpdateMaskAttribute.TYPE)
+    update_mask.add(entity_enumerations.EntityUpdateMaskAttribute.TYPE)
+  # updated entity connections
   if set(updated_entity.connections).difference(
       set(current_entity.connections)
   ):
-    update_mask.append(
+    update_mask.add(
         entity_enumerations.EntityUpdateMaskAttribute.CONNECTIONS
     )
-  if set(updated_entity.translations).intersection(
-      set(current_entity.translations)
-  ) != set(current_entity.translations):
-    update_mask.append(
+  if (sorted(updated_entity.translations, key=lambda x: x.std_field_name) !=
+      sorted(current_entity.translations, key=lambda x: x.std_field_name)):
+    update_mask.add(
         entity_enumerations.EntityUpdateMaskAttribute.TRANSLATION
     )
   else:
     for updated_field in updated_entity.translations:
-      curent_translations = {
+      current_translation = {
           field.std_field_name: field for field in current_entity.translations
       }
-      current_field = curent_translations.get(updated_field.std_field_name)
+      current_field = current_translation.get(updated_field.std_field_name)
       if isinstance(current_field, ef.DimensionalValueField) and isinstance(
           updated_field, ef.DimensionalValueField
       ):
         # Unit mapping could change
         if current_field.units != updated_field.units:
-          update_mask.append(
+          update_mask.add(
               entity_enumerations.EntityUpdateMaskAttribute.TRANSLATION
           )
       elif isinstance(current_field, ef.MultistateValueField) and isinstance(
@@ -101,13 +104,12 @@ def DetermineReportingEntityUpdateMask(
         updated_states = updated_model.GetStates(
             updated_field.reporting_entity_guid, updated_field.std_field_name
         )
-
         if sorted(
             current_states, key=lambda state: state.reporting_entity_guid
         ) != sorted(
             updated_states, key=lambda state: state.reporting_entity_guid
         ):
-          update_mask.append(
+          update_mask.add(
               entity_enumerations.EntityUpdateMaskAttribute.TRANSLATION
           )
 
@@ -115,14 +117,14 @@ def DetermineReportingEntityUpdateMask(
           updated_field, ef.MissingField
       ):
         # field was missing and now is not missing
-        update_mask.append(
+        update_mask.add(
             entity_enumerations.EntityUpdateMaskAttribute.TRANSLATION
         )
       elif not isinstance(current_field, ef.MissingField) and isinstance(
           updated_field, ef.MissingField
       ):
         # field was being reported but is now missing
-        update_mask.append(
+        update_mask.add(
             entity_enumerations.EntityUpdateMaskAttribute.TRANSLATION
         )
   return update_mask
@@ -136,15 +138,15 @@ def DetermineVirtualEntityUpdateMask(current_entity, updated_entity):
       API.
     updated_entity: An Entity instance from an updated building config.
   """
-  update_mask = []
+  update_mask = set()
   if updated_entity.code != current_entity.code:
-    update_mask.append(entity_enumerations.EntityUpdateMaskAttribute.CODE)
+    update_mask.add(entity_enumerations.EntityUpdateMaskAttribute.CODE)
   if updated_entity.type_name != current_entity.type_name:
-    update_mask.append(entity_enumerations.EntityUpdateMaskAttribute.TYPE)
+    update_mask.add(entity_enumerations.EntityUpdateMaskAttribute.TYPE)
   if set(updated_entity.connections).difference(
       set(current_entity.connections)
   ):
-    update_mask.append(
+    update_mask.add(
         entity_enumerations.EntityUpdateMaskAttribute.CONNECTIONS
     )
   # Facilities entities don't have links but are virtual so do the following
@@ -160,7 +162,7 @@ def DetermineVirtualEntityUpdateMask(current_entity, updated_entity):
           < 0.9
       )
   ):
-    update_mask.append(entity_enumerations.EntityUpdateMaskAttribute.LINKS)
+    update_mask.add(entity_enumerations.EntityUpdateMaskAttribute.LINKS)
   return update_mask
 
 
@@ -312,7 +314,9 @@ def Split(
       A list of entities connected to entity.
     """
     split_entities.append(entity)
-    if not entity.connections and entity not in split_entities:
+    if isinstance(entity, site_lib.Site):
+      return dependencies
+    elif not entity.connections and entity not in split_entities:
       dependencies.append(entity)
       return dependencies
     else:

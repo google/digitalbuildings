@@ -13,7 +13,7 @@
 # limitations under the License.
 """Module to hold EntityField class."""
 
-from typing import Dict, List, Optional
+from typing import Dict, List, Optional, Any
 
 # pylint: disable=g-importing-member
 from model.constants import BC_GUID
@@ -132,12 +132,17 @@ class MissingField(field_translation.UndefinedField):
 
   def GetSpreadsheetRowMapping(
       self, guid_to_entity_map: GuidToEntityMap
-  ) -> Dict[str, str]:
+  ) -> Dict[str, Any]:
     """Returns dictionary of spreadsheet headers to MissingField attributes."""
     missing_field_row_map = {
         VALUES: [
             {USER_ENTERED_VALUE: {STRING_VALUE: self.std_field_name}},
             {USER_ENTERED_VALUE: {STRING_VALUE: ''}},
+            {
+              USER_ENTERED_VALUE: {
+                STRING_VALUE: self.reporting_entity_field_name
+              }
+            },
             {
                 USER_ENTERED_VALUE: {
                     STRING_VALUE: guid_to_entity_map.GetEntityCodeByGuid(

@@ -1,35 +1,43 @@
-# Chilled & Condensing Water Systems (CHWS & CWS)
+# Chilled and Condensing Water Systems (CHWS and CDWS)
+- [Type Definition](#type-definition)
+- [Type Requirements](#type-requirements)
+- [Connection Requirements](#connection-requirements)
+- Examples
+  * [Variable Primary CHWS (Air-Cooled)](#example-variable-primary-chws-air-cooled)
+  * [Variable Primary CHWS (Water-Cooled)](#example-variable-primary-chws-water-cooled)
 
 ## Type Definition
-Hydronic cooling and condensing systems. Chilled water systems cool water mechanically, which circulates to end-use devices; they dump the heat absorbed from the chilled water loop either to atmosphere ('air-cooled') or to another water distribution system ('water-cooled'). Condensing systems serve those mechanical devices which rely on water-source heat rejection.
+Hydronic chilled and condensing water systems are two distinct systems. A typical chilled water system (CHWS) consists of chillers (that use refrigerant to cool a closed loop of circulating water known as the "chilled water") and pumps to distribute the chilled water to other equipment in the building and/or to circulate water through the chillers. Typically, air-side equipment (e.g., AHU, FCU) contains chilled water coils connected to the main CHWS; as air passes over the chilled water coils it is cooled. As chilled water systems cool the chilled water, they must reject the heat absorbed from the chilled water loop. In a CHWS with "air-cooled" chillers, the heat is rejected directly into the atmospehre. In a CHWS with "water-cooled" chillers, the heat is rejected to another water distribution system (typically a condensing water system).
 
-There are many varieties of chilled & condenser water system, but some common examples include:
-- **Constant volume** (predominantly on condensing water systems), where pumps run at constant speeds providing fixed flowrates at given stages.
-- **Variable primary**, where there is one loop between the chillers and the end devices. The pumps operate at variable speed.
-- **Primary/Secondary**, where there are two separate loops, with the primary serving as the production loop and the secondary serving as the distribution loop.
+Condensing water systems (CDWS) serve those mechanical devices which rely on water-source heat rejection. Typical condensing water systems consist of open-air cooling towers (which reject the heat absorbed from the condensing water into the atmosphere) and pumps to circulate the condensing water between the cooling towers and the condenser side of a water-cooled chiller.
+
+There are many different types of chilled and condenser water system configurations; some common examples include the following:
+- **Constant volume:** the system pumps run at a constant speed to provide fixed flowrates at pre-defined stages (predominantly on condensing water systems)
+- **Variable-primary:** there is a single (primary) loop between the chillers and the end-devices and the system pumps operate at variable speed (typically controlling to a differential pressure setpoint)
+- **Primary/Secondary:** there are two separate loops, with the primary loop serving as the "production" loop (the chillers) and the secondary loop serving as the distribution loop (to downstream end-devices).
 
 ## Type Requirements
-- Chillers require the mechanical cooling of water.
+- Chillers (CH) require the mechanical cooling of water.
 - Condensers require that, regardless of their own cooling method (sensible or evaporative), they serve downstream devices which require water as a condensing source.
-- Heat exchangers provide heat transfer between two fluid streams, without intermixing the fluids. They are modeled separately only if they are stand-alone devices. 
+- Heat exchangers (HX) provide heat transfer between two fluid streams, without intermixing the fluids. They are modeled separately only if they are stand-alone devices.
 
 ## Connection Requirements
-- The equipment which is part of each system should be assigned a HAS_PART connection to it.
-- The specific interconnections between equipment in the system can also be defined through feeds connections. In these cases, it is best to feed from the pumps.
+- The equipment which is part of each system should be assigned a `HAS_PART` connection to it.
+- The specific interconnections between equipment in the system can also be defined through `FEEDS` connections. In these cases, it is best to feed from the pumps.
 - To simplify distribution specifics, the system (rather than the system pumps) should be used to feed downstream equipment.
 
-## Example: Variable Primary CHWS (Air-Cooled) 
+## Example: Variable Primary CHWS (Air-Cooled)
 This version of CHWS has a single set of variable speed pumps which serve air-cooled chillers and downstream equipment.
 
 ### BMS Example
 ![CHWS Variable Primary](./figures/bms_screenshots/chw_aircooled.png)
 **Notes:**
-- The fields associated with individual devices (individual chiller commands, for example) get mapped to those devices; system level telemetry gets assigned to the system directly.
+- The fields associated with individual devices (e.g., individual chiller commands) get mapped to those devices; system level telemetry (e.g., the system return water temperature) gets assigned to the system directly.
 
 ### System Diagram and Connections
 ![CHWS Variable Primary](./figures/system_diagrams/chws_aircooled.png)
 
-### Sample Building Config
+### Sample Building Configuration
 ```yaml
 # System definition. Everything that it serves will be fed by it, everything that comprises it will be contained by it.
 CHWSYS-BLDG-1:
@@ -123,10 +131,9 @@ AHU-1:
           percent: '%'
     ...
 
-
 ```
 
-## Example: Variable Primary CHWS (Water-Cooled) 
+## Example: Variable Primary CHWS (Water-Cooled)
 This version of CHWS has a single set of variable speed chilled water pumps serving water-cooled chillers and downstream equipment. The condensing side serves the chillers via two pumps.
 
 ### BMS Example
@@ -137,7 +144,7 @@ This version of CHWS has a single set of variable speed chilled water pumps serv
 ### System Diagram and Connections
 ![CHWS Variable Primary WC](./figures/system_diagrams/chws_watercooled.png)
 
-### Sample Building Config
+### Sample Building Configuration
 ```yaml
 # Chilled water system feeds the equipment, and contains the distribution/production equipment.
 CHWSYS-BLDG-1:
@@ -352,7 +359,6 @@ AHU-1:
         values:
           percent: '%'
     ...
-
 
 ```
 

@@ -471,14 +471,14 @@ Expanding the VAV definition from the previous section, and adding some lights:
 VAV-32:
   type: HVAC/VAV
   connections:
-    UK-LON-6PS-1: CONTAINS
-    AHU-123: FEEDS
+    A-BUILDING-FLOOR-GUID: CONTAINS
+    AN-AHU-GUID: FEEDS
 
 LF-123:
   type: LIGHTING/LIGHTING_FIXTURE
   connections:
-    UK-LON-6PS-1-1A2: CONTAINS
-    LCG-234: HAS_PART
+    A-BUILDING-ROOM-GUID: CONTAINS
+    A-LIGHTING-GROUP-GUID: HAS_PART
 ```
 
 ### Zones and Control Groups
@@ -495,15 +495,15 @@ Here are some examples:
 ZONE-123:
   type: HVAC/ZONE
   connections:
-    UK-LON-6PS-1: CONTAINS
-    VAV-123: FEEDS
+    A-BUILDING-FLOOR-GUID: CONTAINS
+    A-VAV-GUID: FEEDS
 
 # Lighting Control Group
 LCG-234:
   type: LIGHTING/SWITCH_GROUP
   connections:
-    UK-LON-6PS-1: CONTAINS
-    SW-456: CONTROLS
+    A-BUILDING-ROOM-GUID: CONTAINS
+    A-SWITCH-GUID: CONTROLS
 ```
 
 ## Building Configuration Modes
