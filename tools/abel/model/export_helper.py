@@ -120,7 +120,7 @@ class BuildingConfigExport(object):
     self.model = model
 
   def ExportBuildingConfiguration(
-      self, filepath: str, operations: List[EntityOperation]
+      self, filepath: str, operations: List[EntityOperation] = None
   ) -> Dict[str, Any]:
     """Exports a building Config under the UPDATE operation.
 
@@ -134,11 +134,19 @@ class BuildingConfigExport(object):
     """
     site = self.model.site
     config_mode = ConfigMode.UPDATE
+    operations_map = {}
     if not site.etag:
       config_mode = ConfigMode.INITIALIZE
     entity_yaml_dict = {CONFIG_METADATA: {CONFIG_OPERATION: config_mode.value}}
-    for operation in operations:
-      entity = operation.entity
+    if not operations:
+      iterator = [self.model.guid_to_entity_map.GetEntityByGuid(entity_guid)
+                  for entity_guid in site.entities]
+    else:
+      iterator = [operation.entity for operation in operations]
+      operations_map = {operation.entity.bc_guid: operation for operation in
+                        operations}
+    for entity in iterator:
+      operation = operations_map.get(entity.bc_guid)
       if isinstance(entity, ReportingEntity):
         entity_yaml_dict.update(
             {
