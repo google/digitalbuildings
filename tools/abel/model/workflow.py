@@ -174,120 +174,24 @@ class Workflow(object):
     print(f'Instance validator log: {report_name}')
     print(f'Exported Building Configuration: {bc_path}')
 
-  def UpdateWorkflow(self) -> None:
-    """Workflow for generating a building config with update operations.
-
-    STEPS:
-      1. Ingest a building config
-      2. write to a spreadsheet
-      3. Either let the user quit or build an update bc from updated spreadsheet
-      4. If build update BC, ingest modified spreadsheet(same id) and bc(already
-      persisting)
-      5. Create operations with two models.
-      6. Write to building config.
-    """
-
-    print(
-        '\nHow would you like to use ABEL?\n'
-        + '1: Edit or update an existing building config\n'
-        + '2: Create building config from an updated spreadsheet\n'
-        + 'q: quit\n'
-    )
-    function_choice = input('Please select an option: ')
-    if function_choice == '1':
-      # Export BC and build model
-      self.bc_model, bc_operations = self._ImportBCAndBuildModel()
-      spreadsheet_url, spreadsheet_id = self._ExportAndWriteToSpreadsheet(
-          self.bc_model, bc_operations
-      )
-      self.ss_model, ss_operations = self._ImportSpreadsheetAndBuildModel(
-        spreadsheet_id
-      )
-
-      # Write to spreadsheet
-      webbrowser.open(spreadsheet_url)
-
-      # Wait for user to edit spreadsheet
-      input('Edit spreadsheet and press any key when done.')
-
-    elif function_choice == '2':
-      assert self.spreadsheet_id is not None and self.bc_filepath is not None
-      self.bc_model = self._ImportBCAndBuildModel()[0]
-      self.ss_model, ss_operations = self._ImportSpreadsheetAndBuildModel(
-          self.spreadsheet_id
-      )
-    generated_operations = model_helper.DetermineEntityOperations(
-        current_model=self.bc_model, updated_model=self.ss_model
-    )
-    operations_list = model_helper.ReconcileOperations(
-        generated_operations=generated_operations,
-        model_operations=ss_operations,
-    )
-    self._ValidateAndExportBuildingConfig(
-        model=self.ss_model,
-        operations=operations_list,
-    )
-
-  def InitWorkflow(self) -> None:
-    """Workflow for generating a building config under the INITIALIZE operation.
-
-    STEPS:
-      1. Ingest and parse an ABEL spreadsheet.
-      2. Export and validate a building config.
-    """
-    if not self.spreadsheet_id:
-      self.spreadsheet_id = input(
-          'Please provide a Google Sheets spreadsheet id.'
-      )
-    self.ss_model = self._ImportSpreadsheetAndBuildModel(self.spreadsheet_id)[0]
-    self._ValidateAndExportBuildingConfig(model=self.ss_model)
-
-  def SplitWorkflow(self) -> None:
-    """Workflow to take in a building config and split it.
-
-    STEPS:
-      1. ingest building config.
-      2. Split building config.
-      3. Export the split building config.
-    """
-    if not self.bc_filepath:
-      self.bc_filepath = input('Please provide a building config file path.')
-    else:
-      namespace_string = input('Desired namespace: ')
-      namespace = entity_enumerations.EntityNamespace(namespace_string.upper())
-      self.bc_model, bc_operations = self._ImportBCAndBuildModel()
-      split_model, split_operations = model_helper.Split(
-          self.bc_model, bc_operations, namespace
-      )
-      self._ValidateAndExportBuildingConfig(
-          model=split_model, operations=split_operations
-      )
-
   def SpreadsheetWorkflow(self) -> None:
     """Workflow to write a Building Config from a spreadsheet
 
     Can either take just a spreadsheet or a spreadsheet and a building config."""
-    pass
-
-  def ConfigWorkflow(self) -> None:
-    """Workflow to create a Google sheets spreadsheet from a building config"""
-
-    self.bc_model, bc_operations = self._ImportBCAndBuildModel()
-    spreadsheet_url, spreadsheet_id = self._ExportAndWriteToSpreadsheet(
-        self.bc_model, bc_operations
-    )
-
-    # Write to spreadsheet
-    webbrowser.open(spreadsheet_url)
-
-    # Wait for user to edit spreadsheet
-    decision = input('press q to exit or edit spreadsheet and press return to continue.')
-    if decision == 'q':
-      sys.exit()
-
     # If user doesn't exit, write spreadsheet to a building config.
+    if not self.bc_model:
+      # This case statement will go away once ABEL can call DB API.
+      # If a person just wants to create a bc, they shouldn't need to provide
+      # a spreadsheet.
+      print("No building config input")
+      #sys.exit(0)
+      pass
+    elif not self.ss_model:
+      print("No spreadsheet id input")
+      sys.exit(0)
+
     self.ss_model, ss_operations = self._ImportSpreadsheetAndBuildModel(
-      spreadsheet_id
+      self.spreadsheet_id
     )
     generated_operations = model_helper.DetermineEntityOperations(
       current_model=self.bc_model, updated_model=self.ss_model
@@ -300,3 +204,14 @@ class Workflow(object):
       model=self.ss_model,
       operations=operations_list,
     )
+
+  def ConfigWorkflow(self) -> None:
+    """Workflow to create a Google sheets spreadsheet from a building config"""
+
+    self.bc_model, bc_operations = self._ImportBCAndBuildModel()
+    spreadsheet_url, spreadsheet_id = self._ExportAndWriteToSpreadsheet(
+        self.bc_model, bc_operations
+    )
+
+    # Write to spreadsheet
+    webbrowser.open(spreadsheet_url)

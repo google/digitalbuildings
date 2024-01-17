@@ -179,6 +179,14 @@ def DetermineEntityOperations(
     operation which is being performed on it.
   """
   operations = []
+  if not current_model:
+    for entity in updated_model.entities:
+      if not entity.etag:
+        operations.append(entity_operation.EntityOperation(
+          entity,
+          operation=entity_enumerations.EntityOperationType.ADD
+        ))
+    return operations
   for import_entity in updated_model.entities:
     if import_entity.bc_guid not in set(
         entity.bc_guid for entity in current_model.entities

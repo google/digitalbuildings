@@ -26,7 +26,6 @@ def main(parsed_args: ParseArgs) -> None:
       '\nHow would you like to use ABEL?\n'
       + '1: Create a building config yaml file from a spreadsheet.\n'
       + '2: Create a spreadsheet from a building config.\n'
-      + '3: Split a building config\n'
       + 'q: quit\n'
   )
   function_choice = input('Please select an option: ')
@@ -35,8 +34,6 @@ def main(parsed_args: ParseArgs) -> None:
     new_workflow.SpreadsheetWorkflow()
   elif function_choice == '2':
     new_workflow.ConfigWorkflow()
-  elif function_choice == '3':
-    new_workflow.SplitWorkflow()
   elif function_choice == 'q':
     print('Bye bye')
     sys.exit()
