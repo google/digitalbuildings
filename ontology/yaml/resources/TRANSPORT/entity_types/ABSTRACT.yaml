@@ -15,7 +15,7 @@
 
 SS:
   guid: "944c0f2d-9999-4b1b-871b-285a817941bf"
-  description: "Basic combination of run command and status (start/stop); indicates the light is active or inactive."
+  description: "Basic combination of run command and status (start/stop)."
   is_abstract: true
   implements:
   - /SS

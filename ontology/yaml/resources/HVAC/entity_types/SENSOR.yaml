@@ -48,7 +48,7 @@ SENSOR_OA:
 
 SENSOR_CAAT:
   guid: "a953f890-5dc5-4a94-b4b2-9539e2069afd"
-  description: "Cold aisle air sensor (temperature)."
+  description: "Cold aisle air sensor (temperature). Used in data centers or server rooms where there is hot/cold aisle containment."
   is_canonical: true
   implements:
   - /SENSOR # Inherits from global namespace
