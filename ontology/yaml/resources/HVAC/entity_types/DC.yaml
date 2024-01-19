@@ -26,6 +26,7 @@ DC_SS_SWTC:
   - SWTC
 
 DC_SS_SWTC_RWISOVM:
+  guid: "70aab981-f70d-417f-ac7e-692b24fe5908"
   description: "Typical dry-cooler (dry air cooler with isolation valve on the return side)."
   is_canonical: true
   implements:
