@@ -12,8 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
- 
-  
+
 GEN_SS_TKLS_OTPM_PWM_RDM_BTEPM:
   guid: "50c5f475-5999-4186-87e6-df83cfa57783"
   description: "Generator with tank level, oil temperature, pressure, and run duration monitoring."
@@ -23,6 +22,6 @@ GEN_SS_TKLS_OTPM_PWM_RDM_BTEPM:
   - SS
   - TKLS
   - OTPM
-  - PWM  
+  - PWM
   - RDM
   - BTEPM
