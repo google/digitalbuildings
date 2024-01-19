@@ -256,16 +256,22 @@ class GraphValidator(object):
       if self.config_mode != _CONFIG_UPDATE:
         source_entity = self.entity_instances[link_inst.source]
         for source_field_name in link_inst.field_map.values():
-          if source_field_name not in source_entity.translation.keys():
-            print(
-                f'[ERROR]\tEntity {entity.guid} ({entity.code}) links to a'
-                f' source entity: {source_entity.guid} ({source_entity.code})'
-                ' that does not have the linked source field: '
-                f'{source_field_name}. Check that this field on source'
-                ' translation exists.'
-            )
-            is_valid = False
-            continue
+          try:
+            if source_field_name not in source_entity.translation.keys():
+              print(
+                  f'[ERROR]\tEntity {entity.guid} ({entity.code}) links to a'
+                  f' source entity: {source_entity.guid} ({source_entity.code})'
+                  ' that does not have the linked source field: '
+                  f'{source_field_name}. Check that this field on source'
+                  ' translation exists.'
+              )
+              is_valid = False
+              continue
+          except AttributeError:
+            print(f'[ERROR]\tentity: {source_entity.guid} '
+                  f'({source_entity.code}) does not contain a translation '
+                  f'even though it is mapped to by links is {entity.guid} ('
+                  f'{entity.code})')
       elif (
           self.entity_instances[link_inst.source].operation
           == parse.EntityOperation.DELETE
@@ -481,6 +487,44 @@ class InstanceValidator(object):
       return True
     return False
 
+  def _ValidateEnumerations(self, entity_translation: Dict[str, Any]) -> bool:
+    """Validate that a translation is properly enumerated.
+
+    Args:
+      entity_translation: Dictionary of written field names to
+          FieldTranslation instances.
+
+    Returns:
+
+    """
+    enumeration_map = {}
+    is_valid = True
+    for written_field_name in entity_translation:
+      field_enumeration_pattern = r'(?:.(?!\_))[1-9]+$'
+      try:
+        enumeration = re.search(field_enumeration_pattern,
+                                written_field_name).group(0)
+        base_field_name = written_field_name[:-len(enumeration)]
+      except AttributeError:
+        enumeration = None
+        base_field_name = written_field_name
+      base_field_mapping = enumeration_map.get(base_field_name)
+      if base_field_mapping and enumeration:
+        enumeration_map[base_field_name][0] += 1
+        enumeration_map[base_field_name][1] += 1
+      elif base_field_mapping and not enumeration:
+        enumeration_map[base_field_name][0] += 1
+      elif not base_field_mapping and enumeration:
+        enumeration_map[base_field_name] = [1, 1]
+      else:
+        enumeration_map[base_field_name] = [1, 0]
+      for base_field_mapping, enum_list in enumeration_map.items():
+        if enum_list[0] > enum_list[1] and enum_list != [1, 0]:
+          print(f'[ERROR]\t field name {base_field_name} is enumerated and '
+                'un-enumerated in the same translation block.')
+          is_valid = False
+    return is_valid
+
   def _ValidateTranslation(
       self, entity: EntityInstance, is_udmi: bool = True
   ) -> bool:
@@ -510,7 +554,7 @@ class InstanceValidator(object):
     if self._IsAllMissingFields(entity):
       return False
 
-    is_valid = True
+    is_valid = self._ValidateEnumerations(entity.translation)
     # Check that defined fields are in the type
     for as_written_field_name, ft in entity.translation.items():
       qualified_field_name = _GetAllowedField(

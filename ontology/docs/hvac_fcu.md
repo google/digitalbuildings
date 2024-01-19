@@ -1,15 +1,21 @@
 # Fan Coil Units (FCU)
+- [Type Definition](#type-definition)
+- [Type Requirements](#type-requirements)
+- Examples
+  * [Stand-Alone FCUs](#example-stand-alone-fcus)
+  * [FCU and VAV Tandem Zone](#example-fcu-and-vav-tandem-zone)
+  * [FCU with Local Exhaust Control](#example-fcu-with-local-exhaust-control)
 
 ## Type Definition
-Fan coil units are air-side devices which provides conditioning to a space. It must be recirculation only (i.e. no integral fresh air capabilities) in order to be considered part of this class. Note that there is no consideration made for space type (e.g. a CRAC unit that serves a server room would be considered a FCU if it is configured based on the type requirements; there is no special designation for zone, and so if this is wanted the unit should be connected to a zone with the appropriate space type designation). There is also no differentiation between a heat pump and a FCU (excepting a heat pump which utilizes outside air directly, or breaks one of the other rules listed below).
+Fan coil units are air-side devices that provide conditioning to a space. By definition, FCUs must only recirculate air (i.e., no integral fresh air capabilities) in order to be considered part of this class. Note that there is no consideration made for space type (e.g., a CRAC unit that serves a server room would be considered an FCU if it is configured based on the type requirements; there is no special designation for zone, and so if this is wanted the unit should be connected to a zone with the appropriate space type designation). There is also no differentiation between a heat pump and a FCU (excepting a heat pump which utilizes outside air directly, or breaks one of the other type requirements listed below).
 
 ## Type Requirements
-- It *must* have a fan.
-- It *must* condition the air in some way.
-- It *must not* handle outside air directly.
-- It *must* handle return air from the space.
+- It **must** have a fan.
+- It **must** condition the air in some way.
+- It **must not** handle outside air directly.
+- It **must** handle return air from the space.
 
-## Example: Stand-Alone FCUs 
+## Example: Stand-Alone FCUs
 This version of FCU serves an individual zone as a stand-alone device.
 
 ### BMS Example
@@ -53,18 +59,19 @@ FCU-1:
 ```
 
 
-## Example: FCU & VAV Tandem Zone
-This version of FCU serves an individual zone in cooperation with another system (e.g. an IDF room with lead/standby or lead/lag control scheme, perhaps as day-time VAV and night-time FCU).
+## Example: FCU and VAV Tandem Zone
+This version of FCU serves an individual zone in cooperation with another system (e.g., an IDF room with a lead/standby or lead/lag control scheme, perhaps as day-time VAV and night-time FCU).
 
 ### BMS Example
 ![FCU Complex](./figures/bms_screenshots/fcu_complex.png)
 **Notes:**
 - The fact that this FCU uses water-source condensing is irrelevant to its classification as a FCU.
 - The VAV and FCU will share the same zone temperature sensor and cooling setpoint.
-- If there is a single reporting device for this system (i.e. the FCU and VAV are on the same BACnet device) then the model will require virtual types: one for the FCU, and one for the VAV. As noted above, two virtual devices can have common telemetry (e.g. zone temperature sensor and setpoint).
+- If there is a single reporting device for this system (i.e., the FCU and VAV are on the same BACnet device) then the model will require virtual devices: one for the FCU, and one for the VAV. As noted above, two virtual devices can have links to common telemetry from the reporting device (e.g., zone temperature sensor and setpoint).
 
 ### System Diagram and Connections
 ![FCU Complex](./figures/system_diagrams/fcu_complex.png)
+
 ### Sample Building Config
 
 ```yaml
@@ -149,17 +156,18 @@ VAV-1:
 ```
 
 
-## Example: FCU With Local Exhaust Control
-This version of FCU serves an individual zone; the zone is independently temperature controlled by an exhaust fan and transfer damper, which facilitates additional air flow through the zone when cooling load exceeds FCU capacity.
+## Example: FCU with Local Exhaust Control
+This version of an FCU serves an individual zone; the zone is independently temperature controlled by an exhaust fan and transfer damper, which facilitates additional air flow through the zone when cooling load exceeds the FCUs cooling capacity.
 
 ### BMS Example
 ![FCU With Exhaust](./figures/bms_screenshots/fcu_with_local_exh.png)
 **Notes:**
-- The exhaust fan and damper operate in coordination, but the damper is an independent device; therefore it msut be modeled separately.
+- The exhaust fan and damper operate in coordination, but the damper is an independent device; therefore it must be modeled separately.
 - This system uses the fan to pull additional cooling air from adjacent zones for additional high-load control; this is somewhat uncommon, but the model would look identical even if the fan was controlling to pressure rather than temperature (the only differences being the fields available and mapped to each device).
 
 ### System Diagram and Connections
 ![FCU With Exhaust](./figures/system_diagrams/fcu_with_exhaust.png)
+
 ### Sample Building Config
 
 ```yaml
