@@ -85,7 +85,7 @@ LOCAL: "The control is operating locally and independently with the remote syste
 
 
 ## ELECTRICAL
-SOURCEA: "An operation mode having source 1 as priority" 
+SOURCEA: "An operation mode having source 1 as priority"
 NOSOURCE: "An operation mode having no source as priority"
 POSITIONA: "Automatic Transfer switch position 0"
 POSITIONB: "Automatic Transfer switch position 1"
