@@ -16,7 +16,7 @@
 
 ATS_SRC1_SRC2:
   guid: "2b385a36-ee72-49ba-9d12-6731c9c502c1"
-  description: "Standard Automatic Transfer Switches."
+  description: "Standard automatic transfer switch."
   is_canonical: true
   implements:
   - ATS
