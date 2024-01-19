@@ -2,7 +2,7 @@
 
 ### What is ABEL?
 
-ABEL, or **A**utomated **B**uilding **E**ntity **L**oader, is a tool that assists systems integrators (and other DBO users) in efficiently creating and modifying [Building Configuration YAML files](../../ontology/docs/building_config.md) through use of a [spreadsheet](../../tools/abel/validators/README.md).
+ABEL, or **A**utomated **B**uilding **E**ntity **L**oader, is a tool that assists systems integrators (and other DBO users) in efficiently creating and modifying [Building Configuration YAML files](../../ontology/docs/building_config.md) through use of a [spreadsheet](./validators/README.md).
 
 Building configuration files contain information about equipment, devices, and spaces within a building such as their device type, input and output points (fields) used to control them, and their relationship to one another. Building configuration files are onboarded in order to create a digital representation of the devices in the cloud and make use of the data coming from their associated fields. Due to the sheer size of building configuration files (a complete building configuration file for a building can contain thousands of devices with tens of thousands of fields), creating or editing one manually in YAML format can be very time consuming and prone to mistakes. ABEL streamlines this process by allowing the systems integrator to create and edit these files in a spreadsheet format to make it quicker and easier to edit multiple entities or fields at once.
 
@@ -23,7 +23,7 @@ ABEL has the following key features:
     *	[Update your Repository Clone and Activate your Virtual Environment](#update-your-repository-clone-and-activate-your-virtual-environment)
     *	[ABEL Arguments](#abel-arguments)
   * [Updating an Existing Building](#updating-an-existing-building)
-    *	[Create a Spreadsheet then Convert it to a Building Configuration File](#create-a-spreadsheet-then-convert-it-to-a-building-configuration-file)
+    *	[Create a Spreadsheet and Convert it to a Building Configuration File](#create-a-spreadsheet-and-convert-it-to-a-building-configuration-file)
     *	[Generate a Building Configuration File from an Existing Spreadsheet](#generate-a-building-configuration-file-from-an-existing-spreadsheet)
   * [Initializing a New Building](#initializing-a-new-building)
 
@@ -65,7 +65,7 @@ Contact your IoT Technical Program Manager and ask for an OAuth client credentia
 
 ## Using ABEL
 
-When using ABEL there is a set of commands that should be run each time to ensure that the tool and all its requirements are up to date within your local repo. These instructions can be found in the [General Use](#general-use) section. The actual command to run ABEL will use a different set of arguments depending on the action being performed. Please go to the section for the action you are trying to perform to see instructions on which [arguments](#abel-arguments) to pass in.
+When using ABEL there is a set of commands that should be run each time to ensure that the tool and all its requirements are up to date within your local repository. These instructions can be found in the [General Use](#general-use) section. The actual command to run ABEL will use a different set of arguments depending on the action being performed. Please go to the section for the action you are trying to perform to see instructions on which [arguments](#abel-arguments) to pass in.
 
 
 ### General Use
@@ -154,7 +154,7 @@ During the conversion of the ABEL spreadsheet to a building configuration YAML f
 “instance_validation_<today_date_and_time>.log”.
 
 
-#### Create a Spreadsheet then Convert it to a Building Configuration File
+#### Create a Spreadsheet and Convert it to a Building Configuration File
 
 Use the commands below if you do not have an ABEL spreadsheet already created for the entities you would like to onboard. This process will generate a spreadsheet template for you to fill out, then allow you to convert that spreadsheet into a building configuration YAML file once completed. 
 
