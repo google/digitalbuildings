@@ -379,26 +379,6 @@ AHU_DFSS_DSP_ECONZ_HPZC_HT2ZC:
   - HPZC
   - HT2ZC
 
-AHU_DFSS_DSP_ECONMD_HP2ZC:
-  description: "Single zone heat pump AHU with economizer mode control."
-  is_canonical: true
-  implements:
-  - AHU
-  - DFSS
-  - DSP
-  - ECONMD
-  - HP2ZC
-
-AHU_DFSS_DSP_ECONMD_HP3ZC:
-  description: "Single zone heat pump AHU with economizer mode control."
-  is_canonical: true
-  implements:
-  - AHU
-  - DFSS
-  - DSP
-  - ECONMD
-  - HP3ZC  
-
 AHU_DFSS_DSP_DX2ZC_ECONZ_EFSS:
   guid: "ceb87a73-0847-4203-bf37-d6f57619f4fd"
   description: "Single zone AHU."
@@ -1760,22 +1740,6 @@ AHU_BSPC_DX2SC_ECONM_EFSS_EFVSC_SFSS_SFVSC_SSPC_SARC:
   - SSPC
   - SARC
 
-AHU_BSPC_DX2SC_ECONM_EFSS_EFVSC_HT2SC_SARC_SFSS_SFVSC_SSPC:
-  description: "Multi-zone AHU with two-stage DX cooling, two-stage heating, economizer mode control & supply air reset control."
-  is_canonical: true
-  implements:
-  - AHU
-  - BSPC
-  - DX2SC
-  - ECONM
-  - EFSS
-  - EFVSC
-  - HT2SC
-  - SARC
-  - SFSS
-  - SFVSC
-  - SSPC
-
 AHU_BSPC_DXSC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC:
   guid: "d79782e0-ca1a-40ce-afea-802988578518"
   description: "Multi-zone AHU."
@@ -2001,21 +1965,6 @@ AHU_BSPC_DX3SC_ECONM_EFSS_EFVSC_SFSS_SFVSC_SSPC:
   - ECONM
   - EFSS
   - EFVSC
-  - SFSS
-  - SFVSC
-  - SSPC
-
-AHU_BSPC_DX3SC_ECONM_EFSS_EFVSC_SARC_SFSS_SFVSC_SSPC:
-  description: "Multi-zone AHU with three-stage DX cooling, economizer mode control & supply air reset control."
-  is_canonical: true
-  implements:
-  - AHU
-  - BSPC
-  - DX2SC
-  - ECONM
-  - EFSS
-  - EFVSC
-  - SARC
   - SFSS
   - SFVSC
   - SSPC
@@ -2501,19 +2450,6 @@ AHU_BSPC_DX4SC_ECON_EFSS_EFVSC_MOAFC_SFSS_SFVSC_SSPC_STC:
   - SFVSC
   - SSPC
   - STC
-
-AHU_DX2SC_ECONM_EFSS_SARC_SFSS_SFVSC_SSPC:
-  description: "Multi-zone AHU with two-stage DX cooling, economizer mode control & supply air reset control."
-  is_canonical: true
-  implements:
-  - AHU
-  - DX2SC
-  - ECONM
-  - EFSS
-  - SARC
-  - SFSS
-  - SFVSC
-  - SSPC
 
 AHU_DX2SC_ECONM_EFSS_SARC_SFC_SFSS_SFVSC_SSPC:
   guid: "43567299-cca7-4ac0-8259-125609ec6cb3"
@@ -4008,16 +3944,6 @@ AHU_CHW2XSC_RFSS2X_RFVSC2X_SFSS2X_SFVSC2X_RFC_EDRPC_RTM_SARC_SFC_SSPC_VOADM2X:
   - SFC
   - SSPC
   - VOADM2X
-
-AHU_CHWDC_DFSS_DSP_ECONMD:
-  description: "Single zone chilled water AHU with economizer mode control."
-  is_canonical: true
-  implements:
-  - AHU
-  - CHWDC
-  - DFSS
-  - DSP
-  - ECONMD  
 
 AHU_CHWDC_DFSS_DFVSC_DSP_ECONZ_EFSS_ZSPC:
   guid: "9cdfd662-3ab3-4c75-b63f-c7020023ebcc"
