@@ -163,6 +163,7 @@ VAV_SD_DSP_HWDC_VOCC:
   - VOCC
 
 VAV_CO2M_DSP_HWZC_SD:
+  guid: "538ae6a6-54d2-455c-824f-58e3d9171fd7"
   description: "Single duct reheat VAV with CO2 monitoring and temp control."
   is_canonical: true
   implements:
