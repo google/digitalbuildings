@@ -3470,6 +3470,22 @@ AHU_BPC_DXSC_ECON_RFSS_RFVSC_HWSC_SARC_SFSS_SFVSC_SSPC:
   - SFVSC
   - SSPC
 
+AHU_BPC_DXSC_ECONM_RFSS_RFVSC_SARC_SFSS_SFVSC_SSPC:
+  guid: "9c8f30f0-6e32-463c-81cb-721d109ab0f2"
+  description: "Multi-zone AHU with DX cooling, economizing mode control and return air control."
+  is_canonical: true
+  implements:
+  - AHU
+  - BPC
+  - DXSC
+  - ECONM
+  - RFSS
+  - RFVSC
+  - SARC
+  - SFSS
+  - SFVSC
+  - SSPC
+  
 AHU_BSPC_BYPSSPC_DX2SC_ECON_EFSS_HTSC_SFSS:
   guid: "2e387831-935a-4d81-849f-47af7943c0ce"
   description: "Multi-zone AHU with bypass static pressure control, two-stage DX cooling and single-stage heating."

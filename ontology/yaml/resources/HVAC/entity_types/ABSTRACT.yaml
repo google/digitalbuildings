@@ -6864,6 +6864,7 @@ RFSS:
   opt_uses:
   - return_fan_current_sensor
   - return_fan_power_sensor
+  - failed_return_fan_alarm
   uses:
   - return_fan_run_command
   - return_fan_run_status
