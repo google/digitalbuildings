@@ -18,4 +18,4 @@ ELV:
   description: "Tag for elevators."
   is_abstract: true
   implements:
-  - EQUIPMENT  
+  - EQUIPMENT
