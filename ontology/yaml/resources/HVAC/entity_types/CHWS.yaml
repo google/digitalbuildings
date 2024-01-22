@@ -35,7 +35,7 @@ CHWS_WDT:
 
 CHWS_SWTC:
   guid: "69ebb826-7163-472a-81e5-86d473ea7b8f"
-  description: "Chilled water system with basic supply water temperature control. "
+  description: "Chilled water system with basic supply water temperature control."
   is_canonical: true
   implements:
   - CHWS
@@ -61,7 +61,7 @@ CHWS_SWTC_WDPC:
 
 CHWS_SWTC_WDPC_BYPVPM:
   guid: "648a314c-05e7-4004-b19a-266913ee48f2"
-  description: "Chilled water system (temp/pressure control) with bypass control."
+  description: "Chilled water system with supply temperature control, differential pressure control, and a bypass valve."
   is_canonical: true
   implements:
   - CHWS
@@ -71,7 +71,7 @@ CHWS_SWTC_WDPC_BYPVPM:
 
 CHWS_SWTC_WDPC_BYPVPM_WFRM:
   guid: "8777644d-4215-4261-9919-3eeffeb27b1d"
-  description: "Chilled water system (temp/pressure control) with bypass control and flow monitoring."
+  description: "Chilled water system with supply temperature control, differential pressure control, a bypass valve, and flow monitoring."
   is_canonical: true
   implements:
   - CHWS
@@ -82,7 +82,7 @@ CHWS_SWTC_WDPC_BYPVPM_WFRM:
 
 CHWS_SWTC_WDPC2X_BYPVPM_WFRM:
   guid: "e83ac652-c8c1-4e66-bfa6-5ad734aa9902"
-  description: "Chilled water system with dual differential pressure control."
+  description: "Chilled water system with dual differential pressure control, a bypass valve, and flowrate monitoring."
   is_canonical: true
   implements:
   - CHWS
@@ -93,7 +93,7 @@ CHWS_SWTC_WDPC2X_BYPVPM_WFRM:
 
 CHWS_SWTC_WDPC2X_BYPVPM_WFRC:
   guid: "38ae0779-3d12-4c5d-b04f-4c9ff793de6f"
-  description: "Chilled water system with dual differential pressure control."
+  description: "Chilled water system with dual differential pressure control, a bypass valve, and flowrate control."
   is_canonical: true
   implements:
   - CHWS
@@ -104,7 +104,7 @@ CHWS_SWTC_WDPC2X_BYPVPM_WFRC:
 
 CHWS_SWTC_WDPC_CLPM:
   guid: "f95086ea-688c-4bfb-8ba9-49a84760f1ae"
-  description: "Chilled water system with supply temp and pressure control."
+  description: "Chilled water system with supply temperature control, differential pressure control, and thermal load monitoring."
   is_canonical: true
   implements:
   - CHWS
@@ -114,7 +114,7 @@ CHWS_SWTC_WDPC_CLPM:
 
 CHWS_SWTC_WDPC_WFRM:
   guid: "2f7079fe-580b-4c01-90d8-506ef800a835"
-  description: "Chilled water system with supply temp and pressure control."
+  description: "Chilled water system with supply temperature control, differential pressure control, and flowrate monitoring."
   is_canonical: true
   implements:
   - CHWS
@@ -124,7 +124,7 @@ CHWS_SWTC_WDPC_WFRM:
 
 CHWS_SWTC_WDPC_CLPM_WFRM:
   guid: "099d495d-6211-4aa9-b628-af1fb2f45c57"
-  description: "Chilled water system with supply temp, pressure control, and flowrate monitoring."
+  description: "Chilled water system with supply temperature control, differential pressure control, and thermal load and flowrate monitoring."
   is_canonical: true
   implements:
   - CHWS
@@ -135,7 +135,7 @@ CHWS_SWTC_WDPC_CLPM_WFRM:
 
 CHWS_SWTC_WDPC_CLPM_WFRC:
   guid: "be04a7b1-1f2d-48a5-9f76-95e7f32ca1e3"
-  description: "Chilled water system with supply temp and pressure control."
+  description: "Chilled water system with supply temperature, differential pressure, and flowrate control, and thermal load monitoring."
   is_canonical: true
   implements:
   - CHWS
@@ -146,7 +146,7 @@ CHWS_SWTC_WDPC_CLPM_WFRC:
 
 CHWS_SWTC_WDPC_CLPM_WFRM_BYPVPM:
   guid: "54a68bdf-a21c-4ab1-9ff8-bbc84a1f5df8"
-  description: "Chilled water system with supply temp, pressure and bypass control."
+  description: "Chilled water system with supply temperature and differential pressure control and flowrate, thermal load, and bypass valve monitoring."
   is_canonical: true
   implements:
   - CHWS
@@ -158,7 +158,7 @@ CHWS_SWTC_WDPC_CLPM_WFRM_BYPVPM:
 
 CHWS_SWTC_WDPC_CLPM_WFRC_BYPVPM:
   guid: "20c14eb4-763c-437d-9209-c35151e2251b"
-  description: "Chilled water system with supply water temp, pressure, flow and bypass control."
+  description: "Chilled water system with supply temperature, differential pressure, and flowrate control, and thermal load and bypass valve monitoring."
   is_canonical: true
   implements:
   - CHWS
@@ -170,7 +170,7 @@ CHWS_SWTC_WDPC_CLPM_WFRC_BYPVPM:
 
 CHWS_SWTC_WDPC_WFRM_PSWTC_PWVPM_MINFC_CLPM:
   guid: "7626e0e2-1e32-4101-b53b-5fa66af3cdc2"
-  description: "Chilled and process water system."
+  description: "Chilled water system with process water (typically used in lab applications)."
   is_canonical: true
   implements:
   - CHWS
@@ -184,7 +184,7 @@ CHWS_SWTC_WDPC_WFRM_PSWTC_PWVPM_MINFC_CLPM:
 
 CHWS_SWTC_RWISOVM_WDPC_WFRM_PWFRM_PSWTC_PWVPM_MINFC_CLPM_PCLPM:
   guid: "b4de26a9-120d-42a6-9f45-9b9b8edd3ad4"
-  description: "Chilled and process water system."
+  description: "Chilled water system with process water (typically used in lab applications)."
   is_canonical: true
   implements:
   - CHWS
@@ -201,7 +201,7 @@ CHWS_SWTC_RWISOVM_WDPC_WFRM_PWFRM_PSWTC_PWVPM_MINFC_CLPM_PCLPM:
 
 CHWS_SWTC_WDPM:
   guid: "187add27-862d-42c6-8a62-7d75f0371267"
-  description: "Chilled water system with supply temperature and differential pressure monitoring."
+  description: "Chilled water system with supply temperature control and differential pressure monitoring."
   is_canonical: true
   implements:
   - CHWS
@@ -243,7 +243,7 @@ CHWS_RWTC_CHWVM:
 
 CHWS_SWTM_WDPC_BYPVPM:
   guid: "00989b0e-3eac-44c2-a0be-7c28a0e2552c"
-  description: "Chilled water system with supply temperature monitoring, differential pressure control and bypass valve control."
+  description: "Chilled water system with supply temperature monitoring, differential pressure control, and bypass valve monitoring."
   is_canonical: true
   implements:
   - CHWS
@@ -264,7 +264,7 @@ CHWS_CLPM_WFRM_WDPC_WDT:
 
 CHWS_CLPM_RMM_SWTC_WFRC:
   guid: "21893e95-7e50-4fa9-a4e4-27cfc0944494"
-  description: "Chilled water system with run mode monitoring; supply temp control; and thermal power, flowrate, and differential pressure monitoring."
+  description: "Chilled water system with run mode monitoring, supply temperature control, and thermal power, flowrate, and differential pressure monitoring."
   is_canonical: true
   implements:
   - CHWS
@@ -275,7 +275,7 @@ CHWS_CLPM_RMM_SWTC_WFRC:
 
 CHWS_BYPVPM_CLPM_SWTC_TDTM_WFRM:
   guid: "3530b09c-8dae-4da7-b1e5-4e4bcfe5225d"
-  description: "Chilled water system with supply temp control and buffer tank entering/leaving temperature sensors."
+  description: "Chilled water system with supply temperature control and a buffer tank with entering/leaving temperature sensors."
   is_canonical: true
   implements:
   - CHWS
@@ -287,7 +287,7 @@ CHWS_BYPVPM_CLPM_SWTC_TDTM_WFRM:
 
 CHWS_SWTM:
   guid: "78de9ab3-fbe2-4163-95d5-717f31231277"
-  description: "Simple chilled water system with supply water monitoring."
+  description: "Simple chilled water system with supply temperature monitoring."
   is_canonical: true
   implements:
   - CHWS
@@ -295,7 +295,7 @@ CHWS_SWTM:
 
 CHWS_WDT_CWDT_CICHVISOVM3X:
   guid: "13803e63-8fb2-4c5b-bfef-89d6d647d917"
-  description: "Chilled Water system with provision to switch to Hot water system "
+  description: "Chilled water system with provision to switch to a hot water system."
   is_canonical: true
   implements:
   - CHWS
