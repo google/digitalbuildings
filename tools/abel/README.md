@@ -4,7 +4,7 @@
 
 ABEL, or **A**utomated **B**uilding **E**ntity **L**oader, is a tool that assists systems integrators (and other DBO users) in efficiently creating and modifying [Building Configuration YAML files](../../ontology/docs/building_config.md) through use of a [spreadsheet](./validators/README.md).
 
-Building configuration files contain information about equipment, devices, and spaces within a building such as their device type, input and output points (fields) used to control them, and their relationship to one another. Building configuration files are onboarded in order to create a digital representation of the devices in the cloud and make use of the data coming from their associated fields. Due to the sheer size of building configuration files (a complete building configuration file for a building can contain thousands of devices with tens of thousands of fields), creating or editing one manually in YAML format can be very time consuming and prone to mistakes. ABEL streamlines this process by allowing the systems integrator to create and edit these files in a spreadsheet format to make it quicker and easier to edit multiple entities or fields at once.
+Building configuration files are concrete instances of the ontology that contain information about equipment, devices, and spaces within a building such as their device type, input and output points (fields) used to control them, and their relationship to one another. Building configuration files are onboarded in order to create a digital representation of the devices in the cloud and make use of the data coming from their associated fields. Due to the sheer size of building configuration files (a complete building configuration file for a building can contain thousands of devices with tens of thousands of fields), creating or editing one manually in YAML format can be very time consuming and prone to mistakes. ABEL streamlines this process by allowing the systems integrator to create and edit these files in a spreadsheet format to make it quicker and easier to edit multiple entities or fields at once.
 
 ABEL has the following key features:
 
@@ -170,7 +170,7 @@ python3 abel.py -c </path/to/credential.json> -b <absolute/path/to/building/conf
 2. Select ```option 1```, modify a spreadsheet/building config for an existing building, by entering a “1” into the command prompt. This indicates that you are working with an already onboarded building.
 
 
-3. Select ```option 1```, edit or update an existing building config, by entering a “1” into the command prompt.This indicates that you do not have an existing spreadsheet and would like to create one off of an initial building configuration file. Note that the building configuration file’s metadata is set to update or initialize for this step to be successful.
+3. Select ```option 1```, edit or update an existing building config, by entering a “1” into the command prompt. This indicates that you do not have an existing spreadsheet and would like to create one off of an initial building configuration file. Note that the building configuration file’s metadata is set to update or initialize for this step to be successful.
 
 
 4. Make any edits or additions to the building entities using the ABEL spreadsheet generated.
