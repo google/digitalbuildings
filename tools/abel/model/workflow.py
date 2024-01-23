@@ -16,6 +16,7 @@
 import os
 import sys
 from typing import List, Optional
+import warnings
 import webbrowser
 
 # pylint: disable=g-importing-member
@@ -45,21 +46,13 @@ class Workflow(object):
   3: Ingest an exported BC and write to spreadsheet that user can then modify.
   """
 
-  def __init__(self, argset: ParseArgs):
+  def __init__(self, oauth_credential: str, modified_types_filepath: str =
+  None, output_dir: str = None):
     self.google_sheets_service = (
-        authenticator.GetGoogleSheetsServiceByCredential(argset.credential)
+        authenticator.GetGoogleSheetsServiceByCredential(oauth_credential)
     )
-    self.subscription = argset.subscription
-    self.spreadsheet_id = argset.spreadsheet_id
-    if not argset.building_config:
-      self.bc_filepath = None
-    else:
-      self.bc_filepath = os.path.expanduser(argset.building_config)
-    self.timeout = argset.timeout
-    self.modified_types_filepath = argset.modified_types_filepath
-    self.output_dir = argset.output_dir
-    self.bc_model = None
-    self.ss_model = None
+    self.modified_types_filepath = modified_types_filepath
+    self.output_dir = output_dir
 
   def _ImportSpreadsheetAndBuildModel(self, spreadsheet_id) -> Model:
     """Reads a Google Sheets spreadsheet and builds an ABEL model.
@@ -99,14 +92,15 @@ class Workflow(object):
     )
     return unbuilt_model.Build(), operations
 
-  def _ImportBCAndBuildModel(self) -> Model:
+  def _ImportBCAndBuildModel(self, bc_filepath: str) -> Model:
     """Reads a local Building Config YAML file and returns and ABEL Model.
 
     Returns:
       An ABEL model instance and a list of EntityOperation instances.
     """
+    warnings.simplefilter("ignore", UserWarning)
     imported_building_config = import_helper.DeserializeBuildingConfiguration(
-        filepath=self.bc_filepath
+        filepath=bc_filepath
     )
 
     # STEP 2
@@ -146,6 +140,8 @@ class Workflow(object):
       self,
       model: Model,
       operations: list[EntityOperation] = None,
+      subscription: str = None,
+      timeout: str = None
   ) -> None:
     """Helper function for validating and exporting a building config.
 
@@ -161,55 +157,74 @@ class Workflow(object):
         operations=operations,
     )
     # Run instance validator
-    print('Validating Export.')
+    print('Validating building config yaml file export.')
     report_name = handler.RunValidation(
         filenames=[bc_path],
         report_directory=self.output_dir,
         modified_types_filepath=self.modified_types_filepath,
         default_types_filepath=ONTOLOGY_ROOT,
-        subscription=self.subscription,
-        timeout=self.timeout,
+        subscription=subscription,
+        timeout=timeout,
     )
     print(f'Instance validator log: {report_name}')
     print(f'Exported Building Configuration: {bc_path}')
 
-  def SpreadsheetWorkflow(self) -> None:
-    """Workflow to write a Building Config from a spreadsheet
+  def SpreadsheetWorkflow(
+      self,
+      spreadsheet_id: str,
+      bc_filepath: str = None,
+      gcp_subscription: str = None,
+      timeout: int = None
+  ) -> None:
+    """Workflow that Ingests a a spreadsheet and outputs a valid building
+      config.
 
-    Can either take just a spreadsheet or a spreadsheet and a building config.
+    If a building config path is provided to this workflow, then ABEL can
+    compare entities in a spreadsheet to entities in a building config,
+    and determine update operations. If no building config path is provided
+    then the spreadsheet will be treating as an init config.
+
+    Args:
+        spreadsheet_id: Google Sheets spreadsheet ID.
+        bc_filepath: Relative or Absolute filepath to a building config yaml
+          file.
+        gcp_subscription: Path to a GCP PubSub subscription.
+        timeout: Timeout duration in seconds for listening to PubSub.
     """
-    # If user doesn't exit, write spreadsheet to a building config.
-    if not self.bc_model:
-      # This case statement will go away once ABEL can call DB API.
-      # If a person just wants to create a bc, they shouldn't need to provide
-      # a spreadsheet.
+    # TODO: b/
+    if bc_filepath:
+      bc_model, bc_operations = self._ImportBCAndBuildModel(bc_filepath)
+    else:
       print('No building config input')
-      pass
-    elif not self.ss_model:
+      bc_model = None
+
+    if not spreadsheet_id:
       print('No spreadsheet id input.\nExiting ABEL...')
       sys.exit(0)
 
-    self.ss_model, ss_operations = self._ImportSpreadsheetAndBuildModel(
-      self.spreadsheet_id
+    ss_model, ss_operations = self._ImportSpreadsheetAndBuildModel(
+      spreadsheet_id
     )
     generated_operations = model_helper.DetermineEntityOperations(
-      current_model=self.bc_model, updated_model=self.ss_model
+      current_model=bc_model, updated_model=ss_model
     )
     operations_list = model_helper.ReconcileOperations(
       generated_operations=generated_operations,
       model_operations=ss_operations,
     )
     self._ValidateAndExportBuildingConfig(
-      model=self.ss_model,
+      model=ss_model,
       operations=operations_list,
+      subscription=gcp_subscription,
+      timeout=timeout
     )
 
-  def ConfigWorkflow(self) -> None:
+  def ConfigWorkflow(self, bc_filepath: str) -> None:
     """Workflow to create a Google sheets spreadsheet from a building config"""
 
-    self.bc_model, bc_operations = self._ImportBCAndBuildModel()
+    bc_model, bc_operations = self._ImportBCAndBuildModel(bc_filepath)
     spreadsheet_details = self._ExportAndWriteToSpreadsheet(
-        self.bc_model, bc_operations
+        bc_model, bc_operations
     )
 
     # Write to spreadsheet

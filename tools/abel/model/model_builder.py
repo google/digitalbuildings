@@ -14,6 +14,7 @@
 """Helper module for concrete model construction."""
 
 import datetime
+import uuid
 from typing import Dict, List, Optional
 
 # pylint: disable=g-importing-member
@@ -203,8 +204,9 @@ class Model(object):
       # For each entity, Add connections where entity is the source
       for guid in self.site.entities:
         entity = self.guid_to_entity_map.GetEntityByGuid(guid)
+        guid = uuid.UUID(guid)
         for connection in self.connections:
-          if connection.target_entity_guid == guid:
+          if uuid.UUID(connection.target_entity_guid) == guid:
             entity.AddConnection(connection)
         # For each field in the model
         for field in self.fields:
@@ -212,7 +214,7 @@ class Model(object):
           for state in self.states:
             # Create edges between states and their corresponding Multi-state
             # value field in stances.
-            if state.reporting_entity_guid == guid:
+            if uuid.UUID(state.reporting_entity_guid) == guid:
               if state.std_field_name in (
                   field.reporting_entity_field_name,
                   field.std_field_name,

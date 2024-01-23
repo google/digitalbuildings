@@ -29,11 +29,20 @@ def main(parsed_args: ParseArgs) -> None:
       + 'q: quit\n'
   )
   function_choice = input('Please select an option: ')
-  new_workflow = Workflow(parsed_args)
+  new_workflow = Workflow(
+    parsed_args.credential,
+    parsed_args.modified_types_filepath,
+    parsed_args.output_dir
+  )
   if function_choice == '1':
-    new_workflow.SpreadsheetWorkflow()
+    new_workflow.SpreadsheetWorkflow(
+      parsed_args.spreadsheet_id,
+      parsed_args.building_config,
+      parsed_args.subscription,
+      parsed_args.timeout
+    )
   elif function_choice == '2':
-    new_workflow.ConfigWorkflow()
+    new_workflow.ConfigWorkflow(parsed_args.building_config)
   elif function_choice == 'q':
     print('Bye bye')
     sys.exit()
