@@ -16,12 +16,11 @@
 ### Canonical Types  ###
 ########################
 
-CHWS_CWDT_RCHWTC_SCHWDT:
-  description: "Chilled water system with temperature monitoring across condenser and secondary side water."
+CHWS_RCHWTC_SCHWDT:
+  description: "Chilled water system with temperature control and monitoring on secondary side."
   is_canonical: true
   implements:
   - CHWS
-  - CWDT
   - RCHWTC
   - SCHWDT
 
