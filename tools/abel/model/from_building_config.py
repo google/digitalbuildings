@@ -184,14 +184,29 @@ def _TranslateStatesToABEL(
 
   states = []
   for std_state_value, raw_state_value in field.states.items():
-    states.append(
-        State(
+    # Raw state can either be a string or list of strings. ABEL must have a
+    # one to one mapping of standard state to raw state.
+    if isinstance(raw_state_value, str):
+      states.append(
+          State(
+              std_field_name=field.std_field_name,
+              reporting_entity_guid=entity_guid,
+              standard_state=std_state_value,
+              raw_state=raw_state_value,
+          )
+      )
+    elif isinstance(raw_state_value, list):
+      for value in raw_state_value:
+        states.append(
+          State(
             std_field_name=field.std_field_name,
             reporting_entity_guid=entity_guid,
             standard_state=std_state_value,
-            raw_state=raw_state_value,
+            raw_state=value,
+          )
         )
-    )
+    else:
+      pass
   return states
 
 

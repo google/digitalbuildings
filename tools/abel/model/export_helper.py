@@ -370,7 +370,11 @@ class BuildingConfigExport(object):
             ' multi-state value but has no states.'
         )
       else:
-        return_dict[CONFIG_STATES] = {
-            state.standard_state: str(state.raw_state) for state in field.states
-        }
+        config_states = {}
+        for state in field.states:
+          if state.standard_state not in config_states:
+            config_states.update({state.standard_state: [state.raw_state]})
+          else:
+            config_states.get(state.standard_state).append(state.raw_state)
+        return_dict[CONFIG_STATES] = config_states
     return return_dict
