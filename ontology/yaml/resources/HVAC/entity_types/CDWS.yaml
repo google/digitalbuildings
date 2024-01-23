@@ -16,12 +16,12 @@
 ### Canonical Types  ###
 ########################
 
-CDWS_CWDT:
+CDWS_WDT:
   description: "Condenser water system with temperature differential monitoring across condenser water."
   is_canonical: true
   implements:
   - CDWS
-  - CWDT
+  - WDT
 
 CDWS_SWTC:
   guid: "618090ae-c5bb-4a60-8433-c150654e482f"
