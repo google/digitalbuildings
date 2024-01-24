@@ -253,6 +253,15 @@ FAN_SS_CSP_VSC:
   - CSP
   - VSC
 
+FAN_SS_VSC_ZDPC:
+  description: "Fan with start/stop, speed control, and zone differential pressure control."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - VSC
+  - ZDPC
+
 FAN_SS_VSC_ZTM:
   guid: "ffeecf58-f365-42f2-867a-ecf652189440"
   description: "Fan with zone temp monitoring and independent variable speed control (such as a kitchen hood, where the setpoints may be hidden)."
