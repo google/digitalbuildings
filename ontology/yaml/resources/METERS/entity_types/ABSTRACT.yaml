@@ -83,6 +83,13 @@ PWMRDM:
   - generator_run_time_accumulator
   - electricalgrid_run_time_accumulator
 
+TPWM:
+  description: "Thermal power and thermal energy monitoring."
+  is_abstract: true
+    uses:
+    - thermal_energy_accumulator
+    - thermal_power_sensor
+
 VCM:
   guid: "dc4d2839-c00d-4935-bc67-013f7721535f"
   description: "Current and voltage monitoring"
