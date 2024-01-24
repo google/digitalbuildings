@@ -2701,6 +2701,7 @@ HP2ZC:
   - CONTROL
 
 HP3ZC:
+  guid: "bffa568b-5f69-4b08-8d8c-1377cd74d36e"
   description: "Zone temp heat pump control with three compressors."
   is_abstract: true
   opt_uses:
