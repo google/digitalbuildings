@@ -86,7 +86,7 @@ PWMRDM:
 TPWM:
   description: "Thermal power and thermal energy monitoring."
   is_abstract: true
-    uses:
+  uses:
     - thermal_energy_accumulator
     - thermal_power_sensor
 
