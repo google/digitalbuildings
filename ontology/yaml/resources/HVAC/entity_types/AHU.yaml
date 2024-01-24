@@ -391,6 +391,7 @@ AHU_DFSS_DSP_ECONMD_HP2ZC:
   - HP2ZC
 
 AHU_DFSS_DSP_ECONMD_HP3ZC:
+  guid: "f80e10d8-7889-489c-a195-48ee2be843fd"
   description: "Single zone heat pump AHU with economizer mode control."
   is_canonical: true
   implements:
