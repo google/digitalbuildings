@@ -84,6 +84,7 @@ PWMRDM:
   - electricalgrid_run_time_accumulator
 
 TPWM:
+  guid: "141dc3bf-85dd-4fce-9342-9a5462b3c274"
   description: "Thermal power and thermal energy monitoring."
   is_abstract: true
   uses:
