@@ -34,7 +34,7 @@ GM_PULSE:
   - gas_volume_accumulator
 
 GM_TPWM:
-  description: "Gas meter with thermal power and thermal energy monitoring"
+  description: "Gas meter with thermal power and thermal energy monitoring."
   is_canonical: true
   implements:
   - GM
