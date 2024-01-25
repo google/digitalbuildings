@@ -254,6 +254,7 @@ FAN_SS_CSP_VSC:
   - VSC
 
 FAN_SS_VSC_ZDPC:
+  guid: "c12ad743-343c-472b-b610-fd6b4e8e5aa6"
   description: "Fan with start/stop, speed control, and zone differential pressure control."
   is_canonical: true
   implements:
