@@ -16,10 +16,13 @@
 from __future__ import print_function
 
 from concurrent import futures
+import os
 
 # pylint: disable=g-importing-member
 from google import auth
+from google.auth.exceptions import MutualTLSChannelError
 from google.cloud import pubsub_v1
+from google_auth_oauthlib.flow import InstalledAppFlow
 
 
 _SCOPES = ['https://www.googleapis.com/auth/pubsub']
@@ -46,13 +49,37 @@ class Subscriber(object):
     assert subscription_name
     self.subscription_name = subscription_name
 
-  def Listen(self, callback):
+  def Listen(self, callback, gcp_credential_path: str = None):
     """Listens to a pubsub subscription.
 
     Args:
       callback: a callback function to handle the message.
+      gcp_credential_path: Path to GCP credential file for authenticating
+        against Google sheets API. This is an OAuth credential as documented.
+        https://developers.google.com/sheets/api/quickstart/python
     """
-    credentials = auth.default()[0]
+    if gcp_credential_path:
+      try:
+        flow = InstalledAppFlow.from_client_secrets_file(
+            os.path.abspath(gcp_credential_path), scopes=_SCOPES
+        )
+        credentials = flow.run_local_server(port=0)
+      except FileNotFoundError as err:
+        raise FileNotFoundError(
+            'Oauth client id credential file json file not found. Please check'
+            ' the path provided.'
+        ) from err
+      except MutualTLSChannelError as err:
+        raise MutualTLSChannelError(
+            'Instance Validator cannot authenticate against GCP.') from err
+    else:
+      print(
+          '[INFO]\tNo GCP client credential. Using application default'
+          ' credential'
+      )
+      # pylint: disable=unused-variable
+      credentials, project_id = auth.default()
+
     sub_client = pubsub_v1.SubscriberClient(credentials=credentials)
     future = sub_client.subscribe(self.subscription_name, callback)
     print('[INFO]\tListening to pub/sub topic. Please wait.')

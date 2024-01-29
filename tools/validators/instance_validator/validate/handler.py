@@ -135,11 +135,14 @@ def _ValidateTelemetry(
     entities: Dict[str, entity_instance.EntityInstance],
     timeout: int,
     is_udmi: bool,
+    gcp_credential_path: str,
     report_directory: str = None,
 ) -> None:
   """Runs all telemetry validation checks."""
   helper = TelemetryHelper(subscription, report_directory)
-  helper.Validate(entities, timeout, is_udmi)
+  helper.Validate(
+      entities, timeout, is_udmi, gcp_credential_path=gcp_credential_path
+  )
 
 
 def RunValidation(
@@ -148,6 +151,7 @@ def RunValidation(
     modified_types_filepath: str = None,
     default_types_filepath: str = constants.ONTOLOGY_ROOT,
     subscription: str = None,
+    gcp_credential_path: str = None,
     report_directory: str = None,
     timeout: int = constants.DEFAULT_TIMEOUT,
     is_udmi: bool = True,
@@ -160,6 +164,9 @@ def RunValidation(
     modified_types_filepath: Relative path to a modified ontology.
     default_types_filepath: Relative path to the DigitalBuildings ontology.
     subscription: Fully qualified path to a Google Cloud Pubsub subscription.
+    gcp_credential_path: Path to GCP credential file for authenticating against
+      Google sheets API. This is an OAuth credential as documented.
+        https://developers.google.com/sheets/api/quickstart/python
     report_directory: Fully qualified path to validation reports.
     timeout: Timeout duration of the telemetry validator. Default is 60 seconds.
     is_udmi: Telemetry follows UDMI standards.
@@ -200,6 +207,7 @@ def RunValidation(
           entities=entities,
           timeout=timeout,
           is_udmi=is_udmi,
+          gcp_credential_path=gcp_credential_path,
           report_directory=report_directory,
       )
     elif not all_entities_valid:
@@ -245,6 +253,7 @@ class TelemetryHelper(object):
       entities: Dict[str, entity_instance.EntityInstance],
       timeout: int,
       is_udmi: bool,
+      gcp_credential_path: str,
   ) -> None:
     """Validates telemetry payload received from the subscription.
 
@@ -252,6 +261,9 @@ class TelemetryHelper(object):
       entities: EntityInstance dictionary keyed by entity name
       timeout: number of seconds to wait for telemetry
       is_udmi: true/false treat telemetry stream as UDMI; default True.
+      gcp_credential_path: Path to GCP credential file for authenticating
+        against Google sheets API. This is an OAuth credential as documented.
+        https://developers.google.com/sheets/api/quickstart/python
     """
 
     print(f'[INFO]\tConnecting to PubSub subscription {self.subscription}')
@@ -267,7 +279,9 @@ class TelemetryHelper(object):
     validator.StartTimer()
     try:
       print('[INFO]\tStaring to listen to subscription messages.')
-      sub.Listen(validator.ValidateMessage)
+      sub.Listen(
+          validator.ValidateMessage, gcp_credential_path=gcp_credential_path
+      )
     finally:
       print('[INFO]\tStopping subscription listener.')
       validator.StopTimer()
