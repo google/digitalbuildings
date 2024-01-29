@@ -107,7 +107,6 @@ class HandlerTest(absltest.TestCase):
       _RunValidation(
           [input_file],
           use_simplified_universe=True,
-          gcp_credential_path='fake_credential_path',
           report_directory=report_directory,
       )
 
@@ -155,14 +154,11 @@ class HandlerTest(absltest.TestCase):
       _RunValidation(
           [input_file],
           subscription='a',
-          gcp_credential_path='fake_credential_path',
           use_simplified_universe=True,
       )
       mock_subscriber.assert_has_calls([
           mock.call('a'),
-          mock.call().Listen(
-              mock.ANY, gcp_credential_path='fake_credential_path'
-          ),
+          mock.call().Listen(mock.ANY),
       ])
       # TODO(berkoben): Make this assert stricter
       mock_validator.assert_has_calls([
