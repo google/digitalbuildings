@@ -32,3 +32,11 @@ GM_PULSE:
   uses:
   - gas_flowrate_sensor
   - gas_volume_accumulator
+
+GM_TPWM:
+  guid: "223b81fb-9fcf-475b-a2f5-ad5d1364454c"
+  description: "Gas meter with thermal power and thermal energy monitoring."
+  is_canonical: true
+  implements:
+  - GM
+  - TPWM
