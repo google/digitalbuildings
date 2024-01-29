@@ -268,7 +268,6 @@ class HandlerTest(absltest.TestCase):
       _RunValidation(
           [input_file],
           subscription='a',
-          gcp_credential_path='fake_credential_path',
           use_simplified_universe=True,
           report_directory=temp_report_directory,
       )
@@ -278,7 +277,6 @@ class HandlerTest(absltest.TestCase):
           entities=mock.ANY,
           timeout=600,
           is_udmi=True,
-          gcp_credential_path='fake_credential_path',
           report_directory=temp_report_directory,
       )
     except SystemExit:
@@ -293,7 +291,6 @@ class HandlerTest(absltest.TestCase):
       _RunValidation(
           [input_file],
           subscription='a',
-          gcp_credential_path='fake_credential_path',
           use_simplified_universe=True,
       )
 
@@ -302,7 +299,6 @@ class HandlerTest(absltest.TestCase):
           entities=mock.ANY,
           timeout=mock.ANY,
           is_udmi=True,
-          gcp_credential_path='fake_credential_path',
           report_directory=None,
       )
     except SystemExit:

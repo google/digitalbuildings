@@ -26,16 +26,11 @@ class SubscriberTest(absltest.TestCase):
     super().setUp()
     self.subscriber = subscriber.Subscriber(FAKE_SUBSCRIPTION_NAME)
 
-  @mock.patch.object(subscriber, 'InstalledAppFlow')
   @mock.patch.object(subscriber, 'pubsub_v1')
   def test_listen_no_service_account(self, test_pubsub, test_flow):
-    test_flow.from_client_secrets_file.return_value = 'fake_credentials'
     test_pubsub.SubscriberClient.return_value = None
     with self.assertRaises(AttributeError):
-      self.subscriber.Listen(
-          callback=mock_callback, gcp_credential_path='fake_credential_path'
-      )
-    test_flow.from_client_secrets_file.assert_called_once()
+      self.subscriber.Listen(callback=mock_callback)
 
 
 if __name__ == '__main__':

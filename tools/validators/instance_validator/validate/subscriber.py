@@ -52,7 +52,7 @@ class Subscriber(object):
     Args:
       callback: a callback function to handle the message.
     """
-    credentials, project_id = auth.default()
+    credentials = auth.default()[0]
     sub_client = pubsub_v1.SubscriberClient(credentials=credentials)
     future = sub_client.subscribe(self.subscription_name, callback)
     print('[INFO]\tListening to pub/sub topic. Please wait.')
