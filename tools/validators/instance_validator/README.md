@@ -74,11 +74,22 @@ Navigate to `digitalbuildings/tools/validators/instance_validator` and run `pyth
 
 ### Telemetry Validation
 
+#### Authentication
+
+To Authenticate against GCP PubSub for telemetry validation you must install 
+and initialize the [gcloud CLI](https://cloud.google.com/sdk/docs/install). 
+Then, use the 
+[gcloud auth application-default-login](https://cloud.google.com/sdk/gcloud/reference/auth/application-default/login)
+command to create credentials for default logins.
+
+#### Validation
+
 The validator supports a telemetry validation mode. When this mode is enabled, the validator will listen on a provided pubsub subscription for telemetry messages, and validate the message contents against the instance configuration. **It is recommended that you first use the instance validator with telemetry validation mode disabled, and then enable it after that passes.**
 
-If you would like to use the telemetry validation mode, you must provide the `--subscription` parameter and the `--credential` parameter. **NOTE:** The OAuth credential and subscription are provided by the Google team. Please reach out to your IoT TPM for guidance. If a GCP Oauth client credential is not provided, then application default credentials will be used to authenticate against Google APIs. Running telemetry validation will also output a machine-readable log of the validation performed on a set of devices. This log will be output as `telemetry_validation_log.json` in the current working directory, unless otherwise specefied using the `--report_directory` parameter.
-
-1. `--credential` or `-c`: An absolute or relative path to an OAuth client credential JSON file.
+If you would like to use the telemetry validation mode, you must provide the 
+`--subscription` parameter. **NOTE:** The subscription is provided by the 
+Google team. Please reach out to your IoT TPM for guidance. Running 
+telemetry validation will also output a machine-readable log of the validation performed on a set of devices. This log will be output as `telemetry_validation_log.json` in the current working directory, unless otherwise specefied using the `--report_directory` parameter.
 
 2. `--subscription` or `-s`: The fully-qualified path to a Google Cloud Pubsub subscription (e.g., `projects/google.com:your-project/subscriptions/your-subscription`).
 
