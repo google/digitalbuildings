@@ -17,6 +17,7 @@
 ########################
 
 CHWS_RWTC_WDT:
+  guid: "c6b1443d-86c3-4012-8db3-698d133432da"
   description: "Chilled water system with temperature control and monitoring."
   is_canonical: true
   implements:
