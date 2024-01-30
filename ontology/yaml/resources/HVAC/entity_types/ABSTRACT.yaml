@@ -2700,6 +2700,33 @@ HP2ZC:
   implements:
   - CONTROL
 
+HP3ZC:
+  guid: "bffa568b-5f69-4b08-8d8c-1377cd74d36e"
+  description: "Zone temp heat pump control with three compressors."
+  is_abstract: true
+  opt_uses:
+  - compressor_speed_percentage_command
+  - cooling_thermal_power_capacity
+  - discharge_air_temperature_sensor
+  - heating_thermal_power_capacity
+  - failed_discharge_air_temperature_alarm
+  - failed_zone_air_temperature_alarm
+  - high_zone_air_temperature_alarm
+  - low_zone_air_temperature_alarm
+  uses:
+  - compressor_run_command_1
+  - compressor_run_command_2
+  - compressor_run_command_3
+  - compressor_run_status_1
+  - compressor_run_status_2
+  - compressor_run_status_3
+  - reversing_valve_command
+  - zone_air_cooling_temperature_setpoint
+  - zone_air_heating_temperature_setpoint
+  - zone_air_temperature_sensor
+  implements:
+  - CONTROL
+
 
 HWDC:
   guid: "353bd503-92eb-4f72-8a82-ec1a91413f89"
