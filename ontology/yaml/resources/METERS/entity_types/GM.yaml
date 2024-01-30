@@ -40,3 +40,5 @@ GM_TPWM:
   implements:
   - GM
   - TPWM
+  opt_uses:
+  - gas_temperature_sensor
