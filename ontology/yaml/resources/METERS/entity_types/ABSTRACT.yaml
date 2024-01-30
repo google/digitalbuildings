@@ -98,4 +98,3 @@ VCM:
   uses:
   - current_sensor
   - voltage_sensor
-  
