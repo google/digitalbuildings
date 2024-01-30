@@ -17,7 +17,7 @@
 ########################
 
 CHWS_RWTC_WDT:
-  description: "Chilled water system with temperature control and monitoring on secondary side."
+  description: "Chilled water system with temperature control and monitoring."
   is_canonical: true
   implements:
   - CHWS
