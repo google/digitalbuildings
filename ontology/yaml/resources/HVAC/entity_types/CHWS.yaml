@@ -16,6 +16,14 @@
 ### Canonical Types  ###
 ########################
 
+CHWS_RWTC_WDT:
+  description: "Chilled water system with temperature control and monitoring."
+  is_canonical: true
+  implements:
+  - CHWS
+  - RWTC
+  - WDT
+
 CHWS_WDT:
   guid: "b8073a03-10fd-410e-a4d9-c8002181775b"
   description: "Chilled water system with only basic delta-T monitoring."
