@@ -1675,16 +1675,6 @@ DSPM:
   - high_discharge_air_static_pressure_alarm
   - low_discharge_air_static_pressure_alarm
 
-ZDPC:
-  guid: feafa28d-9bee-4c4b-a506-5c372ac9d4eb
-  description: "Zone differential pressure control."
-  is_abstract: true
-  uses:
-  - zone_air_differential_pressure_sensor
-  - zone_air_differential_pressure_setpoint
-  implements:
-  - OPERATIONAL
-
 ZSPC:
   guid: "e7494570-617c-4599-a57e-8e09128e0a07"
   description: "Zone static pressure control."
