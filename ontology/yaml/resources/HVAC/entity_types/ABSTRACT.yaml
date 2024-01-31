@@ -1676,7 +1676,7 @@ DSPM:
   - low_discharge_air_static_pressure_alarm
 
 ZDPC:
-  guid: "feafa28d-9bee-4c4b-a506-5c372ac9d4eb"
+  guid: feafa28d-9bee-4c4b-a506-5c372ac9d4eb
   description: "Zone differential pressure control."
   is_abstract: true
   uses:
