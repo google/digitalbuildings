@@ -204,6 +204,16 @@ FAN_SS_DWI:
   uses:
   - dishwasher_run_status
 
+FAN_SS_VSC_DWI:
+  description: "Fan with start/stop status, variable speed control and dishwasher status monitoring."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - VSC
+  uses:
+  - dishwasher_run_status
+
 FAN_SS_STM:
   guid: "d34b8a4c-8646-462d-bf79-79299e70a749"
   description: "Basic fan with supply air temperature monitoring."
@@ -602,6 +612,33 @@ FAN_SS_VSC_FDPM_DRSM2X:
   - VSC
   - FDPM
   - DRSM2X
+
+FAN_SS_VSC_COM:
+  description: "Fan with start/stop status, variable speed control and CO monitoring."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - VSC
+  - COM
+
+FAN_SS_VSC_IDC:
+  description: "Fan with start/stop status, variable speed control and isolation damper control."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - VSC
+  - IDC
+
+FAN_SS_VSC_REFM: # EF 0-09, SF 0-01
+  description: "Fan with start/stop status, variable speed control and refrigerant monitoring."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - VSC
+  - REFM
 
 ###################################
 ### Existing Non-standard Types ###
