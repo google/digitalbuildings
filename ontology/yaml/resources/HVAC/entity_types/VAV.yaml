@@ -22,6 +22,7 @@
 # should be avoided if possible.
 
 VAV_SD:
+  guid: "43bff1a1-00b1-4dc6-9aa7-3439b66eb214"
   description: "Fan powered CAV."
   is_canonical: true
   implements:
@@ -381,6 +382,7 @@ VAV_PDSCV_CO2C_VOCPC_ZHM_RMM:
   - RMM
 
 VAV_SD_DSP_HWDC_MWDPC_CO2C_ZHM2X:
+  guid: "db3da40b-cc37-4466-b182-7ed5a048b632"
   description: "Single duct reheat VAV with CO2, temp and differential pressure control and zone humidity monitoring."
   is_canonical: true
   implements:
@@ -691,6 +693,7 @@ VAV_SD_DTM:
   - DTM
 
 VAV_DSP_DFSS_DFVSC:
+  guid: "9f4a0f1a-a6e5-4481-bf7c-bd35dcbe2258"
   description: "Fan powered VAV with variable speed control."
   is_canonical: true
   implements:
@@ -700,6 +703,7 @@ VAV_DSP_DFSS_DFVSC:
   - DFVSC
 
 VAV_DSP_HTZC_DFSS_DFVSC:
+  guid: "2d73d3ca-836b-43e2-b474-5262a9cf5e52"
   description: "Fan powered VAV with variable speed control."
   is_canonical: true
   implements:
@@ -720,6 +724,7 @@ VAV_DFSS_DFVSC_DSP_HWZC:
   - HWZC
 
 VAV_DFSS_DFVSC_HWVM:
+  guid: "620b9e72-9e46-4966-8dbd-3bdcce60e8cb"
   description: "Hydronic variable speed fan coil with heating water valve monitoring."
   is_canonical: true
   implements:

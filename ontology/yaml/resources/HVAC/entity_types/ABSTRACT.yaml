@@ -645,6 +645,7 @@ ZHM:
   - zone_air_relative_humidity_sensor
 
 ZHM2X:
+  guid: "c26f5afe-22a7-4243-8c7e-42edc35b8046"
   description: "Dual sensor zone humidity monitoring."
   is_abstract: true
   implements:
@@ -6382,6 +6383,7 @@ VOADC2X:
   - OPERATIONAL
 
 IDC:
+  guid: "24e30710-c527-4fad-8693-8e3e05370efb"
   description: "Isolation damper percentage control."
   is_abstract: true
   uses:

@@ -1442,6 +1442,7 @@ FCU_DFSS_CSP_RTM_DXZC:
   - failed_alarm
 
 FCU_DFSS_DSP_HWZC_CHWZC_CO2M:
+  guid: "305521d3-2ba7-4558-b1fb-b0d2297e5869"
   description: "Hydronic fan coil with heating and cooling (zone temp control) and CO2 monitoring."
   is_canonical: true
   implements:

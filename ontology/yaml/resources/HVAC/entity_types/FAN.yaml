@@ -205,6 +205,7 @@ FAN_SS_DWI:
   - dishwasher_run_status
 
 FAN_SS_VSC_DWI:
+  guid: "92b8a4a8-3c69-42e0-9ced-240f38b163b3"
   description: "Fan with start/stop status, variable speed control and dishwasher status monitoring."
   is_canonical: true
   implements:
@@ -614,6 +615,7 @@ FAN_SS_VSC_FDPM_DRSM2X:
   - DRSM2X
 
 FAN_SS_VSC_COM:
+  guid: "4747b38a-c746-4056-bc04-3920d8734fa5"
   description: "Fan with start/stop status, variable speed control and CO monitoring."
   is_canonical: true
   implements:
@@ -623,6 +625,7 @@ FAN_SS_VSC_COM:
   - COM
 
 FAN_SS_VSC_IDC:
+  guid: "459e5ea9-859e-4bf8-95a5-95c24e4f6af7"
   description: "Fan with start/stop status, variable speed control and isolation damper control."
   is_canonical: true
   implements:
