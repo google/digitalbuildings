@@ -204,17 +204,6 @@ FAN_SS_DWI:
   uses:
   - dishwasher_run_status
 
-FAN_SS_VSC_DWI:
-  guid: "92b8a4a8-3c69-42e0-9ced-240f38b163b3"
-  description: "Fan with start/stop status, variable speed control and dishwasher status monitoring."
-  is_canonical: true
-  implements:
-  - FAN
-  - SS
-  - VSC
-  uses:
-  - dishwasher_run_status
-
 FAN_SS_STM:
   guid: "d34b8a4c-8646-462d-bf79-79299e70a749"
   description: "Basic fan with supply air temperature monitoring."
