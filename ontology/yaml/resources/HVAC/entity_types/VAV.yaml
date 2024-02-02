@@ -22,7 +22,7 @@
 # should be avoided if possible.
 
 VAV_SD:
-  description: "Fan powered CAV."
+  description: "Simple VAV with no damper or temperature control."
   is_canonical: true
   implements:
   - VAV
@@ -700,7 +700,7 @@ VAV_DSP_DFSS_DFVSC:
   - DFVSC
 
 VAV_DSP_HTZC_DFSS_DFVSC:
-  description: "Fan powered VAV with variable speed control."
+  description: "Fan powered VAV with variable speed control and electric heating controlling to dual zone temperature."
   is_canonical: true
   implements:
   - VAV
@@ -709,8 +709,8 @@ VAV_DSP_HTZC_DFSS_DFVSC:
   - DFSS
   - DFVSC
 
-VAV_DFSS_DFVSC_DSP_HWZC: 
-  description: "Hydronic variable speed fan coil with heating (zone temp control)."
+VAV_DFSS_DFVSC_DSP_HWZC:
+  description: "Fan powered VAV with variable speed control and hydronic heating controlling to dual zone temperature." 
   is_canonical: true
   implements:
   - VAV
@@ -720,10 +720,10 @@ VAV_DFSS_DFVSC_DSP_HWZC:
   - HWZC
 
 VAV_DFSS_DFVSC_HWVM:
-  description: "Hydronic variable speed fan coil with heating water valve monitoring."
+  description: "Hydronic variable speed vav with heating water valve monitoring."
   is_canonical: true
   implements:
-  - FCU
+  - VAV
   - DFSS
   - DFVSC
   - HWVM

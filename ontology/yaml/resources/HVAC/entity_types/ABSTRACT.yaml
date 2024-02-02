@@ -36,7 +36,7 @@ SD:
   - purge_command
   - high_supply_air_flowrate_alarm
   - low_supply_air_flowrate_alarm
-  - failed_supply_air_damper_alarm #
+  - failed_supply_air_damper_alarm
   uses:
   - supply_air_damper_percentage_command
   - supply_air_flowrate_sensor
@@ -155,7 +155,6 @@ REFM:
   - MONITORING
   opt_uses:
   - high_zone_air_refrigerant_concentration_alarm
-  - failed_zone_air_refrigerant_concentration_alarm #
   uses:
   - zone_air_refrigerant_concentration_sensor
 
@@ -279,8 +278,8 @@ DSP:
   - high_zone_air_relative_humidity_alarm
   - low_zone_air_relative_humidity_alarm
   - failed_discharge_air_temperature_alarm
-  - low_discharge_air_temperature_alarm #
-  - high_discharge_air_temperature_alarm # 
+  - low_discharge_air_temperature_alarm
+  - high_discharge_air_temperature_alarm
   - failed_zone_air_temperature_alarm
   - high_zone_air_temperature_alarm
   - low_zone_air_temperature_alarm
@@ -345,6 +344,8 @@ COC:
   - zone_air_co_concentration_setpoint
   opt_uses:
   - high_zone_air_co_concentration_alarm
+  - failed_zone_air_co_concentration_alarm
+  - high_zone_air_co_concentration_alarm
 
 COM:
   guid: "bd9a1e2d-0710-4c58-8a56-3890af55f6b3"
@@ -354,9 +355,6 @@ COM:
   - MONITORING
   uses:
   - zone_air_co_concentration_sensor
-  opt_uses:
-  - failed_zone_air_co_concentration_alarm #
-  - high_zone_air_co_concentration_alarm #
 
 BPC:
   guid: "8199ef48-de0b-4112-bf7a-15876a4acaff"
@@ -1220,7 +1218,7 @@ WDPC:
 
 MWDPC:
   guid: "80c5dfcc-c555-42ed-90ff-6807feca1f5f"
-  description: "Minimum water differential pressure control."
+  description: "Minimum differential pressure control in whichever system."
   is_abstract: true
   uses:
   - differential_pressure_sensor
@@ -1507,6 +1505,8 @@ REFC:
   guid: "e043f5e2-fcc4-44b1-818f-0f4e7584adf5"
   description: "Refrigerant leak control."
   is_abstract: true
+  opt_uses: 
+  - failed_zone_air_refrigerant_concentration_alarm
   uses:
   - zone_air_refrigerant_concentration_sensor
   - zone_air_refrigerant_concentration_setpoint
@@ -6381,7 +6381,7 @@ VOADC2X:
   implements:
   - OPERATIONAL
 
-IDC:
+IDPC:
   description: "Isolation damper percentage control."
   is_abstract: true
   uses:
