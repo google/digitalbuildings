@@ -714,6 +714,7 @@ VAV_DSP_HTZC_DFSS_DFVSC:
   - DFVSC
 
 VAV_DFSS_DFVSC_DSP_HWZC:
+  guid: "125690f5-d8e7-4f2b-83bc-619dc1416bd2"
   description: "Fan powered VAV with variable speed control and hydronic heating controlling to dual zone temperature." 
   is_canonical: true
   implements:
