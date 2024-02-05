@@ -345,7 +345,6 @@ COC:
   opt_uses:
   - high_zone_air_co_concentration_alarm
   - failed_zone_air_co_concentration_alarm
-  - high_zone_air_co_concentration_alarm
 
 COM:
   guid: "bd9a1e2d-0710-4c58-8a56-3890af55f6b3"

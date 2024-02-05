@@ -613,16 +613,6 @@ FAN_SS_VSC_FDPM_DRSM2X:
   - FDPM
   - DRSM2X
 
-FAN_SS_VSC_COC:
-  guid: "4747b38a-c746-4056-bc04-3920d8734fa5"
-  description: "Fan with start/stop status, variable speed control and CO control."
-  is_canonical: true
-  implements:
-  - FAN
-  - SS
-  - VSC
-  - COC
-
 FAN_SS_VSC_IDPC:
   guid: "459e5ea9-859e-4bf8-95a5-95c24e4f6af7"
   description: "Fan with start/stop status, variable speed control and isolation damper percentage control."
