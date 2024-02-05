@@ -624,6 +624,7 @@ FAN_SS_VSC_IDPC:
   - IDPC
 
 FAN_SS_VSC_REFC:
+  guid: "59513808-f925-4226-b2b8-a3103721ef10"
   description: "Fan with start/stop status, variable speed control and refrigerant control."
   is_canonical: true
   implements:
