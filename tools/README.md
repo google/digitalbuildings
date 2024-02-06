@@ -104,9 +104,9 @@ Run `python toolkit.py` and provide the following arguments:
  
    * `--timeout` or `-t` **[Optional]**: The timeout duration in seconds for the telemetry validation test. The default value is 600 seconds, or 10 minutes. If this time limit is exceeded before the validator receives a test pubsub message for each of the entities configured in the given instance config file, the test will fail with an error and report the entities that were not heard from.
 
-7. `--report-directory` or `-d` **[Optional]**: Writes instance validation (instance_validation_report.txt) and telemetry validation (telemetry_validation_report.json) reports to the specified `report-directory`. By default, writes instance validation output to the console and telemetry validation output to the current working directory.
+6`--report-directory` or `-d` **[Optional]**: Writes instance validation(instance_validation_report.txt) and telemetry validation (telemetry_validation_report.json) reports to the specified `report-directory`. By default, writes instance validation output to the console and telemetry validation output to the current working directory.
 
-8. `--udmi` **[Optional]**: Validates entity metadata as [UDMI](https://github.com/faucetsdn/udmi/). Flag is set to `True` by default; change this parameter to `--udmi=False` when not validating against UDMI.
+7`--udmi` **[Optional]**: Validates entity metadata as [UDMI](https://github.com/faucetsdn/udmi/). Flag is set to `True` by default; change this parameter to `--udmi=False` when not validating against UDMI.
 
 For example, the following input
 
@@ -118,9 +118,11 @@ results in these actions:
 1. Ingests a building configuration file.
 2. Generates guids for every entity instance in the building configuration 
    file and re-writes building configuration file in the new format.
-4. Validates the building configuration file with the instance validator.
-5. Validates the telemetry payloads for each reporting entity in the building configuration file.
-6. Writes instance and telemetry validation results to the report directory as `//path/to/report-directory/instance_validation_report.txt` and `//path/to/report-directory/telemetry_validation_report.json`.
+3. Validates the building configuration file with the instance validator.
+4. Validates the telemetry payloads for each reporting entity in the building 
+   configuration file.
+5. Writes instance and telemetry validation results to the report directory as 
+   `//path/to/report-directory/instance_validation_report.txt` and `//path/to/report-directory/telemetry_validation_report.json`.
 
 **NOTE:** The new building configuration format requires that entities are keyed by Version 4 UUIDs (referred to as guids) instead of the code. To convert from old format to the new format, run your building configuration file(.yaml) through the [guid generator](https://github.com/google/digitalbuildings/tree/master/tools/guid_generator).
 
