@@ -376,16 +376,16 @@ class SpreadsheetValidator(object):
         validation_errors.append(
             ConnectionDependencyError(
                 row=row_number,
-                missing_code=connection.get(TARGET_ENTITY_CODE),
-                present_code=connection.get(SOURCE_ENTITY_CODE),
+                missing_code=connection.get(SOURCE_ENTITY_CODE),
+                present_code=connection.get(TARGET_ENTITY_CODE),
             )
         )
       if connection[TARGET_ENTITY_CODE] not in codes:
         validation_errors.append(
             ConnectionDependencyError(
                 row=row_number,
-                missing_code=connection[SOURCE_ENTITY_CODE],
-                present_code=connection[TARGET_ENTITY_CODE],
+                missing_code=connection.get(TARGET_ENTITY_CODE),
+                present_code=connection.get(SOURCE_ENTITY_CODE),
             )
         )
     return validation_errors
