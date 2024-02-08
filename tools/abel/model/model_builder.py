@@ -207,7 +207,8 @@ class Model(object):
             # Create edges between states and their corresponding Multi-state
             # value field in stances.
             if state.reporting_entity_guid == field.reporting_entity_guid:
-              if state.std_field_name == field.std_field_name:
+              if state.std_field_name in (field.reporting_entity_field_name,
+                                          field.std_field_name):
                 field.AddState(state)
       self.site.entities = self.entities
       # For each entity, Add connections where entity is the source
