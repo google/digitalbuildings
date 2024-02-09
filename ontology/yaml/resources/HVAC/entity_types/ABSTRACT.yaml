@@ -1721,6 +1721,7 @@ ZSPM:
   - low_zone_air_static_pressure_alarm
 
 MPSPC:
+  guid: "36404142-0857-4222-8078-2e5c01dc34bb"
   description: "Minimum plenum static pressure control."
   is_abstract: true
   opt_uses:
