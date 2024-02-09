@@ -1441,6 +1441,17 @@ FCU_DFSS_CSP_RTM_DXZC:
   - water_leak_alarm
   - failed_alarm
 
+FCU_DFSS_DSP_HWZC_CHWZC_CO2M:
+  description: "Hydronic fan coil with heating and cooling (zone temp control) and CO2 monitoring."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - DSP
+  - HWZC
+  - CHWZC
+  - CO2M
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
