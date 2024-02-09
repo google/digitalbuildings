@@ -381,16 +381,16 @@ VAV_PDSCV_CO2C_VOCPC_ZHM_RMM:
   - ZHM
   - RMM
 
-VAV_SD_DSP_HWDC_MWDPC_CO2C_ZHM2X:
+VAV_SD_DSP_HWDC_MPSPC_CO2C_ZHM2X:
   guid: "db3da40b-cc37-4466-b182-7ed5a048b632"
-  description: "Single duct reheat VAV with CO2, temp and differential pressure control and zone humidity monitoring."
+  description: "Single duct reheat VAV with CO2, temp, minimum plenum static pressure control and zone humidity monitoring."
   is_canonical: true
   implements:
   - VAV
   - SD
   - DSP
   - HWDC
-  - MWDPC
+  - MPSPC
   - CO2C
   - ZHM2X
 
@@ -702,7 +702,7 @@ VAV_DSP_DFSS_DFVSC:
   - DFSS
   - DFVSC
 
-VAV_DSP_HTZC_DFSS_DFVSC:
+VAV_DSP_HTZC_DFSS_DFVSC: 
   guid: "2d73d3ca-836b-43e2-b474-5262a9cf5e52"
   description: "Fan powered VAV with variable speed control and electric heating controlling to dual zone temperature setpoints."
   is_canonical: true

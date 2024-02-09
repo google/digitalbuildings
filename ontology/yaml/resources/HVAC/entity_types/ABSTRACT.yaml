@@ -1218,7 +1218,7 @@ WDPC:
 
 MWDPC:
   guid: "80c5dfcc-c555-42ed-90ff-6807feca1f5f"
-  description: "Minimum differential pressure control in whichever system."
+  description: "Minimum water differential pressure control."
   is_abstract: true
   uses:
   - differential_pressure_sensor
@@ -1708,7 +1708,6 @@ ZSPC:
   implements:
   - OPERATIONAL
 
-
 ZSPM:
   guid: "3c3d1d68-4f41-486e-b38c-ff6309f16f2f"
   description: "Zone static pressure monitoring."
@@ -1720,6 +1719,17 @@ ZSPM:
   opt_uses:
   - high_zone_air_static_pressure_alarm
   - low_zone_air_static_pressure_alarm
+
+MPSPC:
+  description: "Minimum plenum static pressure control."
+  is_abstract: true
+  opt_uses:
+  - low_plenum_static_pressure_alarm
+  uses:
+  - plenum_static_pressure_sensor
+  - low_limit_plenum_static_pressure_setpoint
+  implements:
+  - OPERATIONAL
 
 
 RSPC:
