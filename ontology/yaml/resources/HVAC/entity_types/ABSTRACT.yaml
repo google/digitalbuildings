@@ -384,7 +384,7 @@ BPC2X:
   - OPERATIONAL
 
 
-EDPM: # AHU
+EDPM:
   guid: "6051d016-4a78-42f4-aeaf-3701417b8773"
   description: "Exhaust air damper percentage monitoring."
   is_abstract: true
