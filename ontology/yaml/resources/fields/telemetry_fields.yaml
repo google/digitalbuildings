@@ -2909,6 +2909,38 @@ literals:
 - exhaust_fan_speed_mode:
   - BYPASS
   - VFD
+
+## New fields for EM##
+- electricalgrid_energy_accumulator
+- generator_run_time_accumulator
+- generator_energy_accumulator
+- electricalgrid_run_time_accumulator
+
+## New fields for fans##
+- discharge_fan_energy_accumulator
+- supply_fan_energy_accumulator
+- compressor_run_time_accumulator
+
+- total_lamp_failed_counter
+- total_wireless_device_failed_counter
+- total_communication_failed_counter
+
+## New fields for seismic detector
+- seismic_alarm
+
+## New fields for chilled beams
+- zone_air_occupied_temperature_setpoint
+- zone_air_unoccupied_cooling_temperature_setpoint
+- perimeter_heating_water_valve_percentage_sensor
+- perimeter_heating_water_valve_percentage_command
+- perimeter_heating_supply_water_temperature_sensor
+
+## New fields for RO water system
+- water_totaldissolvedsolids_concentration_sensor
+
+## New field for SDC
+- shade_extent_percentage_sensor
+
 - electricalgrid_energy_accumulator:
     fixed_min: 0.0
     flexible_max: 4000000.0
