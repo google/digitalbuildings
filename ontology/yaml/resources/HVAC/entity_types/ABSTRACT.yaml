@@ -642,6 +642,7 @@ ZHM:
   - zone_air_relative_humidity_sensor
 
 ZHM2X:
+  guid: "1e5c95b5-bbf8-42ab-b68f-08bd3fc7638e"
   description: "Dual sensor zone humidity monitoring."
   is_abstract: true
   implements:
@@ -1720,6 +1721,7 @@ ZSPM:
   - low_zone_air_static_pressure_alarm
 
 MSSPC:
+  guid: "bd480ae4-6184-466e-ba95-3bd8bb2f76f3"
   description: "Minimum supply air static pressure control."
   is_abstract: true
   opt_uses:
@@ -6390,6 +6392,7 @@ VOADC2X:
   - OPERATIONAL
 
 IDPC:
+  guid: "10d271bb-1e25-47a8-ac62-920ba534ca5e"
   description: "Isolation damper percentage control."
   is_abstract: true
   uses:
