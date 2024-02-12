@@ -23,7 +23,7 @@
 
 VAV_SD:
   guid: "7c7d4347-7604-4baf-81fa-b3bbd19f7880"
-  description: "Simple VAV with no damper or temperature control."
+  description: "Simple VAV with basic airflow control and no temperature control."
   is_canonical: true
   implements:
   - VAV
@@ -703,6 +703,7 @@ VAV_DSP_DFSS_DFVSC:
   - DFVSC
 
 VAV_DSP_HTZC_DFSS_DFVSC: 
+guid: "2d73d3ca-836b-43e2-b474-5262a9cf5e52"
   description: "Fan powered VAV with variable speed control and electric heating controlling to dual zone temperature setpoints."
   is_canonical: true
   implements:
@@ -723,15 +724,6 @@ VAV_DFSS_DFVSC_DSP_HWZC:
   - DSP
   - HWZC
 
-VAV_DFSS_DFVSC_HWVM:
-  guid: "918f3857-f10b-4e1f-8d30-de80bfc63a91"
-  description: "Hydronic variable speed vav with heating water valve monitoring."
-  is_canonical: true
-  implements:
-  - VAV
-  - DFSS
-  - DFVSC
-  - HWVM
 ###################################
 ### Existing Non-standard Types ###
 ###################################
