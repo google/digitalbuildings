@@ -395,6 +395,7 @@ EDPM: # AHU
   - exhaust_air_damper_percentage_sensor
 
 EDPM2X:
+  guid: "20f6ee70-f651-4c3b-a528-7750ef5f6001"
   description: "Dual exhaust air damper percentage monitoring."
   is_abstract: true
   opt_uses:
@@ -899,6 +900,7 @@ LCC2X:
 
 
 LHC:
+  guid: "df1b4263-c5c1-4c30-bf64-04de04f8a013"
   description: "Leaving heating coil temperature control."
   is_abstract: true
   uses:
@@ -1456,6 +1458,7 @@ RHDHC:
   - CONTROL
 
 DH2XSDPC:
+  guid: "2e83d32e-360e-4ac2-afa4-5adb333ded0b"
   description: "Supply air dewpoint temperature dehumidification control on dual cooling coil."
   is_abstract: true
   opt_uses:
