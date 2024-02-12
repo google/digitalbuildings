@@ -380,15 +380,15 @@ VAV_PDSCV_CO2C_VOCPC_ZHM_RMM:
   - ZHM
   - RMM
 
-VAV_SD_DSP_HWDC_MPSPC_CO2C_ZHM2X:
-  description: "Single duct reheat VAV with CO2, temp, minimum plenum static pressure control and zone humidity monitoring."
+VAV_SD_DSP_HWDC_MSSPC_CO2C_ZHM2X:
+  description: "Single duct reheat VAV with CO2, temp, minimum supply air static pressure control and zone humidity monitoring."
   is_canonical: true
   implements:
   - VAV
   - SD
   - DSP
   - HWDC
-  - MPSPC
+  - MSSPC
   - CO2C
   - ZHM2X
 

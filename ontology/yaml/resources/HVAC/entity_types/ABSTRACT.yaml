@@ -1719,14 +1719,14 @@ ZSPM:
   - high_zone_air_static_pressure_alarm
   - low_zone_air_static_pressure_alarm
 
-MPSPC:
-  description: "Minimum plenum static pressure control."
+MSSPC:
+  description: "Minimum supply air static pressure control."
   is_abstract: true
   opt_uses:
-  - low_plenum_static_pressure_alarm
+  - low_supply_air_static_pressure_alarm
   uses:
-  - plenum_static_pressure_sensor
-  - low_limit_plenum_static_pressure_setpoint
+  - supply_air_static_pressure_sensor
+  - low_limit_supply_air_static_pressure_setpoint
   implements:
   - OPERATIONAL
 

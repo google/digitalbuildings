@@ -3370,12 +3370,6 @@ literals:
 - failed_supply_air_damper_alarm:
   - ACTIVE
   - INACTIVE
-- plenum_static_pressure_sensor:
+- low_limit_supply_air_static_pressure_setpoint:
     flexible_min: -249.080024
     flexible_max: 249.080024
-- low_limit_plenum_static_pressure_setpoint:
-    flexible_min: -249.080024
-    flexible_max: 249.080024
-- low_plenum_static_pressure_alarm:
-  - ACTIVE
-  - INACTIVE
