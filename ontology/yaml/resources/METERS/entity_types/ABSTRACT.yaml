@@ -62,6 +62,8 @@ PVCM:
   guid: "97b8b9c1-21dd-4201-9424-c776e28de758"
   description: "Phase-level current and voltage monitoring."
   is_abstract: true
+  opt_uses:
+  - neutral_line_current_sensor
   uses:
   - phase1_line_current_sensor
   - phase2_line_current_sensor
@@ -83,6 +85,14 @@ PWMRDM:
   - generator_run_time_accumulator
   - electricalgrid_run_time_accumulator
 
+TPWM:
+  guid: "141dc3bf-85dd-4fce-9342-9a5462b3c274"
+  description: "Thermal power and thermal energy monitoring."
+  is_abstract: true
+  uses:
+    - thermal_energy_accumulator
+    - thermal_power_sensor
+
 VCM:
   guid: "dc4d2839-c00d-4935-bc67-013f7721535f"
   description: "Current and voltage monitoring"
@@ -90,4 +100,3 @@ VCM:
   uses:
   - current_sensor
   - voltage_sensor
-  

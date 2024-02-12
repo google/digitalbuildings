@@ -15,7 +15,7 @@ Fan coil units are air-side devices that provide conditioning to a space. By def
 - It **must not** handle outside air directly.
 - It **must** handle return air from the space.
 
-## Example: Stand-Alone FCUs 
+## Example: Stand-Alone FCUs
 This version of FCU serves an individual zone as a stand-alone device.
 
 ### BMS Example

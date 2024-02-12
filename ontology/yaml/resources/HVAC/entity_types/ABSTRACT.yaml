@@ -79,7 +79,7 @@ DD:
 
 SRC:
   guid: "0b8da138-b5be-42d1-81ad-13d4196f5352"
-  description: "Very basic run scheduling command. "
+  description: "Very basic run scheduling command."
   is_abstract: true
   uses:
   - schedule_run_command
@@ -963,7 +963,7 @@ RTM:
 
 DTC:
   guid: "fa2354f6-694c-4fd6-b5b5-6352eff50fe4"
-  description: "Discharge air temperatore control"
+  description: "Discharge air temperature control"
   is_abstract: true
   implements:
   - OPERATIONAL
@@ -1003,7 +1003,7 @@ RTC:
   - high_return_air_temperature_alarm
   - low_return_air_temperature_alarm
 
-# Rename to OTM
+#TODO: Rename to OTM
 OA:
   guid: "f6ecf533-f838-4f16-84b2-8392cbf0da84"
   description: "Basic weather station (drybulb temp and humidity)."
@@ -1267,7 +1267,7 @@ WDPC2X:
   - differential_pressure_sensor_2
   - differential_pressure_setpoint
 
-# Change to low_limit_flowrate_setpoint
+#TODO: Change to low_limit_flowrate_setpoint
 MINFC:
   guid: "da585ae8-7eda-452c-b0f8-117faaafd85d"
   description: "Minimum flow control for entire loop."
@@ -1281,7 +1281,7 @@ MINFC:
   opt_uses:
   - low_flowrate_alarm
 
-# Rename to CPSS
+#TODO: Rename to CPSS
 CPC:
   guid: "0dfda014-0c9e-4c4c-8be9-2b303c22e141"
   description: "Circulation pump control"
@@ -1292,7 +1292,6 @@ CPC:
   opt_uses:
   - failed_circulation_pump_alarm
 
-### NET NEW TYPES
 ETM:
   guid: "97fcba06-cb9c-4b09-b8f2-d2b44192b1de"
   description: "Basic exhaust temperature monitoring."
@@ -2752,6 +2751,33 @@ HP2ZC:
   - compressor_run_command_2
   - compressor_run_status_1
   - compressor_run_status_2
+  - reversing_valve_command
+  - zone_air_cooling_temperature_setpoint
+  - zone_air_heating_temperature_setpoint
+  - zone_air_temperature_sensor
+  implements:
+  - CONTROL
+
+HP3ZC:
+  guid: "bffa568b-5f69-4b08-8d8c-1377cd74d36e"
+  description: "Zone temp heat pump control with three compressors."
+  is_abstract: true
+  opt_uses:
+  - compressor_speed_percentage_command
+  - cooling_thermal_power_capacity
+  - discharge_air_temperature_sensor
+  - heating_thermal_power_capacity
+  - failed_discharge_air_temperature_alarm
+  - failed_zone_air_temperature_alarm
+  - high_zone_air_temperature_alarm
+  - low_zone_air_temperature_alarm
+  uses:
+  - compressor_run_command_1
+  - compressor_run_command_2
+  - compressor_run_command_3
+  - compressor_run_status_1
+  - compressor_run_status_2
+  - compressor_run_status_3
   - reversing_valve_command
   - zone_air_cooling_temperature_setpoint
   - zone_air_heating_temperature_setpoint
@@ -5660,7 +5686,6 @@ HTWHLSTC:
   - supply_air_temperature_sensor
   - supply_air_temperature_setpoint
 
-#New abstracts for CH ZRH EURD
 CAM:
   guid: "c37a0e19-19c0-4246-8a8b-f376aa089d56"
   description: "ztc alarm monitoring based on moisture sensor on coil or in pan."
@@ -6798,7 +6823,6 @@ SCRSS:
   implements:
   - OPERATIONAL
 
-##Abstracts for sensors
 PCM:
   guid: "b661d7aa-4f70-41c8-817a-7514a74ccebc"
   description: "General particulate matter monitoring."

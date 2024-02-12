@@ -195,8 +195,8 @@ class ExportHelperTest(absltest.TestCase):
         .get('states')
     )
 
-    self.assertIsInstance(multi_state_value_field_states.get('ON'), str)
-    self.assertEqual(multi_state_value_field_states.get('ON'), 'TRUE')
+    self.assertIsInstance(multi_state_value_field_states.get('ON'), list)
+    self.assertEqual(multi_state_value_field_states.get('ON'), ['TRUE'])
 
   def testExportBuildingConfigExportsUnitsCorrectly(self):
     exported_building_config = (
