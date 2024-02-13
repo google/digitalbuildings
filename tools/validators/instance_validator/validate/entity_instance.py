@@ -487,16 +487,16 @@ class InstanceValidator(object):
       return True
     return False
 
-  def _ValidateEnumerations(self, entity_translation: Dict[str, Any]) -> bool:
+  def _ValidateEnumerations(self, entity: EntityInstance) -> bool:
     """Validate that a translation is properly enumerated.
 
     Args:
-      entity_translation: Dictionary of written field names to
-          FieldTranslation instances.
+      entity: Instance of EntityInstance.
 
     Returns:
 
     """
+    entity_translation = entity.translation
     enumeration_map = {}
     is_valid = True
     for written_field_name in entity_translation:
@@ -520,8 +520,9 @@ class InstanceValidator(object):
         enumeration_map[base_field_name] = [1, 0]
       for base_field_mapping, enum_list in enumeration_map.items():
         if enum_list[0] > enum_list[1] and enum_list != [1, 0]:
-          print(f'[ERROR]\t field name {base_field_name} is enumerated and '
-                'un-enumerated in the same translation block.')
+          print(f'[ERROR]\t {entity.guid}: {entity.code} has field name'
+                f' {base_field_name} which is enumerated and '
+                'not enumerated in the same translation block.')
           is_valid = False
     return is_valid
 
@@ -554,7 +555,7 @@ class InstanceValidator(object):
     if self._IsAllMissingFields(entity):
       return False
 
-    is_valid = self._ValidateEnumerations(entity.translation)
+    is_valid = self._ValidateEnumerations(entity)
     # Check that defined fields are in the type
     for as_written_field_name, ft in entity.translation.items():
       qualified_field_name = _GetAllowedField(
