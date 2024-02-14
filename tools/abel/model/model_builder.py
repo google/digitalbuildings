@@ -200,6 +200,17 @@ class Model(object):
       Returns:
         built Model instance
       """
+      # First add states to fields
+      for field in self.fields:
+        # For each state in the model
+        if isinstance(field, MultistateValueField):
+          for state in self.states:
+            # Create edges between states and their corresponding Multi-state
+            # value field in stances.
+            if state.reporting_entity_guid == field.reporting_entity_guid:
+              if state.std_field_name in (field.reporting_entity_field_name,
+                                          field.std_field_name):
+                field.AddState(state)
       self.site.entities = self.entities
       # For each entity, Add connections where entity is the source
       for guid in self.site.entities:
@@ -210,17 +221,6 @@ class Model(object):
             entity.AddConnection(connection)
         # For each field in the model
         for field in self.fields:
-          # For each state in the model
-          for state in self.states:
-            # Create edges between states and their corresponding Multi-state
-            # value field in stances.
-            if uuid.UUID(state.reporting_entity_guid) == guid:
-              if state.std_field_name in (
-                  field.reporting_entity_field_name,
-                  field.std_field_name,
-              ):
-                if isinstance(field, MultistateValueField):
-                  field.AddState(state)
           # Link field to entity if entity is virtual
           if isinstance(entity, VirtualEntity):
             if field.entity_guid == guid:

@@ -86,7 +86,7 @@ class MissingField(field_translation.UndefinedField):
 
   def __eq__(self, other):
     if not isinstance(other, MissingField):
-      raise TypeError(f'{str(other)} must be a MissingField instance')
+      return False
     standard_field_name_eq = self.std_field_name == other.std_field_name
     entity_guid_eq = self.entity_guid == other.entity_guid
     reporting_field_eq = (
@@ -396,7 +396,7 @@ class DimensionalValueField(field_translation.DefinedField):
 
   def __eq__(self, other: ...) -> bool:
     if not isinstance(other, DimensionalValueField):
-      raise TypeError(f'{str(other)} must be an DimensionalValueField instance')
+      return False
     standard_field_name_eq = self.std_field_name == other.std_field_name
     raw_field_name_eq = self.raw_field_name == other.raw_field_name
     entity_guid_eq = self.entity_guid == other.entity_guid

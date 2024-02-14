@@ -204,8 +204,8 @@ ENTITY-CODE:
     represents this entity.
 *   **Code:** The human readable identifier for the entity. This should
     be unique in document scope.
-*   **cloud_device_id:** the cloud device id from the cloud iot registry.
-    This field is mandatory when a translation exists.
+*   **cloud_device_id:** the numeric device id from cloud iot registry.
+    This field is mandatory when a translation exists. Must be a numeric string.
 *   **Connections:** Used to specify connections from other entities (sources)
     pointing to this entity, with connection types. Entities are keys and cannot
     be repeated. Values are one or more connections, specified as a single
