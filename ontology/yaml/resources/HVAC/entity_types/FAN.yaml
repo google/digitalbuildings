@@ -613,6 +613,25 @@ FAN_SS_VSC_FDPM_DRSM2X:
   - FDPM
   - DRSM2X
 
+FAN_SS_VSC_IDPC:
+  guid: "9808ad45-3d7a-4564-9542-8743a9fca8ac"
+  description: "Fan with start/stop status, variable speed control and isolation damper percentage control."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - VSC
+  - IDPC
+
+FAN_SS_VSC_REFC:
+  guid: "1cc110bf-d3a9-4be9-8fb1-8534b270424c"
+  description: "Fan with start/stop status, variable speed control and refrigerant concentration control."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - VSC
+  - REFC
 ###################################
 ### Existing Non-standard Types ###
 ###################################

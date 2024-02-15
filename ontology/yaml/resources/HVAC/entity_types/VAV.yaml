@@ -21,6 +21,14 @@
 # Some exceptions may exist for the control method (e.g. VAV_ED), and
 # should be avoided if possible.
 
+VAV_SD:
+  guid: "7c7d4347-7604-4baf-81fa-b3bbd19f7880"
+  description: "Simple VAV with basic airflow control and no temperature control."
+  is_canonical: true
+  implements:
+  - VAV
+  - SD
+
 VAV_SD_CSP:
   guid: "89fa1c88-ffc3-4b62-a3bf-e185926b1d4f"
   description: "Simple IDF room unit."
@@ -373,6 +381,19 @@ VAV_PDSCV_CO2C_VOCPC_ZHM_RMM:
   - ZHM
   - RMM
 
+VAV_SD_DSP_HWDC_MSSPC_CO2C_ZHM2X:
+  guid: "bfc7f274-0d33-457d-bfb9-6f9eef55de2c"
+  description: "Single duct reheat VAV with CO2, temp, minimum supply air static pressure control and zone humidity monitoring."
+  is_canonical: true
+  implements:
+  - VAV
+  - SD
+  - DSP
+  - HWDC
+  - MSSPC
+  - CO2C
+  - ZHM2X
+
 VAV_ED_RMM:
   guid: "271eb93a-f6f3-4b1e-9cda-a681bc9fb31a"
   description: "Exhaust control VAV."
@@ -670,6 +691,38 @@ VAV_SD_DTM:
   - VAV
   - SD
   - DTM
+
+VAV_DSP_DFSS_DFVSC:
+  guid: "1ebe9a29-9650-4e84-978a-b86b70cb3862"
+  description: "Fan powered VAV with variable speed control and dual zone temperature setpoints."
+  is_canonical: true
+  implements:
+  - VAV
+  - DSP
+  - DFSS
+  - DFVSC
+
+VAV_DSP_HTZC_DFSS_DFVSC: 
+  guid: "2d73d3ca-836b-43e2-b474-5262a9cf5e52"
+  description: "Fan powered VAV with variable speed control and electric heating controlling to dual zone temperature setpoints."
+  is_canonical: true
+  implements:
+  - VAV
+  - DSP
+  - HTZC
+  - DFSS
+  - DFVSC
+
+VAV_DFSS_DFVSC_DSP_HWZC:
+  guid: "e469b8c9-3f77-4fce-afdf-128837dd0941"
+  description: "Fan powered VAV with variable speed control and hydronic heating controlling to dual zone temperature." 
+  is_canonical: true
+  implements:
+  - VAV
+  - DFSS
+  - DFVSC
+  - DSP
+  - HWZC
 
 ###################################
 ### Existing Non-standard Types ###

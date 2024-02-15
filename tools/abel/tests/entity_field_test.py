@@ -94,8 +94,7 @@ class MissingFieldTest(absltest.TestCase):
     test_missing_field = MissingField.FromDict(TEST_MISSING_FIELD_DICT)
 
     # pylint: disable=unnecessary-dunder-call
-    with self.assertRaises(TypeError):
-      test_missing_field.__eq__('not a field')
+    self.assertFalse(test_missing_field.__eq__('not a field'))
 
   @mock.patch.object(GuidToEntityMap, 'GetEntityCodeByGuid')
   def testMissingFieldGetSpreadsheetRowMapping(self, test_get_code):
