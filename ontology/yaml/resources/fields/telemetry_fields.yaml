@@ -2848,7 +2848,9 @@ literals:
 - battery_percentage_sensor:
     fixed_min: 0.0
     fixed_max: 100.0
-
+- remaining_battery_time_sensor:
+    fixed_min: 0.0
+    flexible_max: 1440.0
 - dc_voltage_sensor:
     flexible_min: 0.0
     flexible_max: 500.0
