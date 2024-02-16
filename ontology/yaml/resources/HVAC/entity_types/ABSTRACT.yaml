@@ -278,7 +278,7 @@ DSP:
   - high_zone_air_relative_humidity_alarm
   - low_zone_air_relative_humidity_alarm
   - failed_discharge_air_temperature_alarm
-  - low_discharge_air_temperature_alarm    
+  - low_discharge_air_temperature_alarm
   - high_discharge_air_temperature_alarm
   - failed_zone_air_temperature_alarm
   - high_zone_air_temperature_alarm
@@ -1504,7 +1504,7 @@ REFC:
   guid: "e043f5e2-fcc4-44b1-818f-0f4e7584adf5"
   description: "Refrigerant leak control."
   is_abstract: true
-  opt_uses: 
+  opt_uses:
   - failed_zone_air_refrigerant_concentration_alarm
   uses:
   - zone_air_refrigerant_concentration_sensor
