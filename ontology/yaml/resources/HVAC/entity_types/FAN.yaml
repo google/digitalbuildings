@@ -366,15 +366,6 @@ FAN_SS_DRSM8X:
   - SS
   - DRSM8X
 
-FAN_SS_EFVSC:
-  guid: "3d61f359-9122-4f91-a21d-600e195e37b0"
-  description: "Exhaust fan with variable speed control."
-  is_canonical: true
-  implements:
-  - FAN
-  - SS
-  - EFVSC
-
 FAN_SS_FDPM:
   guid: "751b226c-cdeb-4a1f-9929-ed4dc7ff972c"
   description: "Exhaust fan with filter monitoring."
