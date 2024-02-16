@@ -392,6 +392,8 @@ EDPM:
   guid: "6051d016-4a78-42f4-aeaf-3701417b8773"
   description: "Exhaust air damper percentage monitoring."
   is_abstract: true
+  implements:
+  - MONITORING
   opt_uses:
   - failed_exhaust_air_damper_alarm
   uses:
@@ -402,6 +404,8 @@ EDPM2X:
   guid: "20f6ee70-f651-4c3b-a528-7750ef5f6001"
   description: "Dual exhaust air damper percentage monitoring."
   is_abstract: true
+  implements:
+  - MONITORING
   opt_uses:
   - failed_exhaust_air_damper_alarm_1
   - failed_exhaust_air_damper_alarm_2
@@ -1478,7 +1482,6 @@ DH2XSDPC:
   is_abstract: true
   opt_uses:
   - supply_air_relative_humidity_sensor
-  - failed_dehumidifier_alarm
   uses:
   - dehumidification_run_command
   - chilled_water_valve_percentage_command_1
@@ -7092,7 +7095,6 @@ RFVSC:
   implements:
   - OPERATIONAL
 
-
 RFVSC2X:
   guid: "3326bd01-506e-4dba-a410-9a34252b2d59"
   description: "Return fan variable speed control with feedback and sensoring for two fans."
@@ -7119,7 +7121,6 @@ RFVSC2X:
   - return_fan_speed_percentage_command_2
   implements:
   - OPERATIONAL
-
 
 RFVSC3X:
   guid: "01199f72-169f-4a2d-a53e-068b52070f31"
