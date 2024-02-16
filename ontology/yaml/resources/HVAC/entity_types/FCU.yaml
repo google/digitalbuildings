@@ -254,23 +254,23 @@ FCU_DFSS_DTC_HT2DC:
   - DTC
   - HT2DC
 
-FCU_DF2XSS_DSP_DXZC:
+FCU_DFSS2X_DSP_DXZC:
   guid: "0f451e9f-2c77-4baf-aa09-a25fd94374b9"
   description: "Two-fan DX fan coil with zone temp control."
   is_canonical: true
   implements:
   - FCU
-  - DF2XSS
+  - DFSS2X
   - DSP
   - DXZC
 
-FCU_DF2XSS_RTC_DXRC:
+FCU_DFSS2X_RTC_DXRC:
   guid: "838ae963-a18d-474e-b677-d01fa766486d"
   description: "Two-fan DX fan coil with zone temp control."
   is_canonical: true
   implements:
   - FCU
-  - DF2XSS
+  - DFSS2X
   - RTC
   - DXRC
 
@@ -1565,16 +1565,16 @@ FCU_DFSS_DFVSC_DSP_HWDC_CHWDC_NONCANONICAL_3:
   - zone_air_co2_concentration_setpoint
   - mixed_air_temperature_sensor
 
-FCU_DF2XSS_RTC_DXRC_NONCANONICAL_1:
+FCU_DFSS2X_RTC_DXRC_NONCANONICAL_1:
   guid: "4e7ff576-17dc-4b99-b8ec-76599114e3bd"
   description: "Non-standard type."
   implements:
-  - FCU_DF2XSS_RTC_DXRC
+  - FCU_DFSS2X_RTC_DXRC
   - INCOMPLETE
   uses:
   - discharge_fan_run_command
 
-FCU_DF2XSS_RTC_DXRC_NONCANONICAL_2:
+FCU_DFSS2X_RTC_DXRC_NONCANONICAL_2:
   guid: "228ee623-a396-4939-9264-f5f83dbbc3bd"
   description: "Non-standard type."
   implements:
@@ -1658,11 +1658,11 @@ FCU_DFSS_CSP_DXZC_NONCANONICAL_3:
   uses:
   - condensing_water_isolation_valve_command
 
-FCU_DF2XSS_DSP_DXZC_NONCANONICAL_1:
+FCU_DFSS2X_DSP_DXZC_NONCANONICAL_1:
   guid: "56e8417a-9e15-48c6-97c7-be558b7f38a3"
   description: "Non-standard type."
   implements:
-  - FCU_DF2XSS_DSP_DXZC
+  - FCU_DFSS2X_DSP_DXZC
   - INCOMPLETE
   uses:
   - discharge_fan_run_status
