@@ -4118,23 +4118,6 @@ EFSS4X:
   - OPERATIONAL
 
 
-DF2XSS:
-  guid: "d869bbc9-3715-498f-a923-94f436664cd0"
-  description: "Discharge fan start-stop and feedback (2 pts)."
-  is_abstract: true
-  opt_uses:
-  - discharge_fan_current_sensor
-  - discharge_fan_power_sensor
-  - discharge_fan_lost_power_alarm
-  uses:
-  - discharge_fan_run_command_1
-  - discharge_fan_run_command_2
-  - discharge_fan_run_status_1
-  - discharge_fan_run_status_2
-  implements:
-  - OPERATIONAL
-
-
 SFSS2X:
   guid: "85ace121-6411-41f7-aea0-03440c7d1352"
   description: "Supply fan start-stop and feedback for two fans."
