@@ -657,80 +657,6 @@ FAN_SS_NONCANONICAL_1:
   - dryer_run_status_1
   - dryer_run_status_2
 
-FAN_SS_VSC_NONCANONICAL_1:
-  guid: "f5be9a8d-4712-489b-a065-ae39bfd0c87e"
-  description: "Non-standard type."
-  implements:
-  - FAN_SS_VSC
-  uses:
-  - exhaust_air_damper_command_1
-  - exhaust_air_damper_command_2
-
-FAN_SS_NONCANONICAL_2:
-  guid: "394c0e2b-ff89-4573-a833-68a890a908c3"
-  description: "Non-standard type."
-  implements:
-  - FAN_SS
-  - INCOMPLETE
-  uses:
-  - dryer_run_status
-
-FAN_SS_VSC_BSPC_NONCANONICAL_1:
-  guid: "64a71411-4c55-4f07-9efa-db790c1cf035"
-  description: "Non-standard type."
-  implements:
-  - FAN_SS_VSC_BSPC
-  uses: # Should model as a separate device, not on this fan.
-  - exhaust_air_damper_percentage_command
-  - exhaust_air_static_pressure_sensor
-  - exhaust_air_static_pressure_setpoint
-
-FAN_SS_VSC_BSPC_NONCANONICAL_2:
-  guid: "6e2993e8-e984-4438-bcae-e9d6cd93c312"
-  description: "Non-standard type."
-  implements:
-  - FAN_SS_VSC_BSPC
-  uses: # Should model as a separate device, not on this fan.
-  - exhaust_air_damper_percentage_command_1
-  - exhaust_air_damper_percentage_command_2
-  - exhaust_air_damper_percentage_command_3
-  - exhaust_air_static_pressure_sensor
-  - exhaust_air_static_pressure_setpoint
-
-FAN_SS_VSC_NONCANONICAL_2:
-  guid: "99352c29-d9b5-483b-b92f-e842cb040df8"
-  description: "Non-standard type."
-  implements:
-  - FAN_SS_VSC
-  uses: # Should model as a separate device, not on this fan.
-  - exhaust_air_damper_percentage_command
-  - exhaust_air_static_pressure_sensor
-  - exhaust_air_static_pressure_setpoint
-
-FAN_SS_NONCANONICAL_3:
-  guid: "af0fa995-f58a-4a4c-8d91-b5661c4fa2dc"
-  description: "Non-standard type."
-  implements:
-  - FAN_SS
-  uses:
-  - zone_occupancy_status
-
-FAN_SS_NONCANONICAL_4:
-  guid: "c749ef10-7fd2-41cb-8fc4-d087a901a15e"
-  description: "Non-standard type."
-  implements:
-  - FAN_SS
-  uses:
-  - exhaust_air_damper_command
-  - exhaust_air_damper_status
-
-FAN_SS_VSC_FDPM_DRSM5X_NONCANONICAL_1:
-  guid: "848249bd-c6f8-4c96-bb75-6aa6a87ee242"
-  description: "Non-standard type."
-  implements:
-  - FAN_SS_VSC_FDPM_DRSM5X
-  - INCOMPLETE
-
 FAN_SS_VSC_NONCANONICAL_3:
   guid: "ae78b835-5cf3-4a1b-b947-3c19b646d847"
   description: "Non-standard type."
@@ -765,15 +691,6 @@ FAN_SS_NONCANONICAL_6:
   - exhaust_air_differential_flowrate_sensor
   - exhaust_air_differential_flowrate_setpoint
 
-FAN_SS_VSC_BSPC_NONCANONICAL_3:
-  guid: "96ba1ab2-721d-4c3d-b8fa-dbba5a6f29f1"
-  description: "Non-standard type."
-  implements:
-  - FAN_SS_VSC_BSPC
-  uses:
-  - exhaust_air_damper_percentage_command_1
-  - exhaust_air_damper_percentage_command_2
-
 FAN_SS_VSC_NONCANONICAL_4:
   guid: "d7f21a56-67d7-4418-8a9e-1935024ea279"
   description: "Non-standard type."
@@ -789,23 +706,6 @@ FAN_SS_DRSM8X_NONCANONICAL_1:
   implements:
   - FAN_SS_DRSM8X
   - DEPRECATED
-
-FAN_SS_VSC_NONCANONICAL_5:
-  guid: "5eae0ece-4b09-4380-a94f-2d50d64aa462"
-  description: "Non-standard type."
-  implements:
-  - FAN_SS_VSC
-  - INCOMPLETE
-  uses:
-  - dishwasher_run_status_1
-  - dishwasher_run_status_2
-
-FAN_SS_ZTM_NONCANONICAL_1:
-  guid: "cd0e0392-407c-4c8a-8d83-45ae249bc98c"
-  description: "Non-standard type."
-  implements:
-  - FAN_SS_ZTM
-  - INCOMPLETE
 
 FAN_SS_VSC_NONCANONICAL_6:
   guid: "4192867c-dcc2-4cea-978d-fb32816c681b"
