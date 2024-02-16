@@ -763,7 +763,7 @@ DFSS:
 
 DFSS2X:
   guid: "dddfd3fa-86a8-4cf9-b1ca-8026ab54f991"
-  description: "Two discharge fan run command and status (start/stop). With dampers"
+  description: "Two discharge fan run command and status (start/stop)."
   is_abstract: true
   implements:
   - OPERATIONAL
