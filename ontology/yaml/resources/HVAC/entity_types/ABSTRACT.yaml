@@ -4539,6 +4539,7 @@ SWISOVM:
   - local_override_isolation_valve_alarm
 
 CHWRWDVPM:
+  guid: "ac21d1e5-1e01-4612-af36-e71f0a0b58b2"
   description: "Chilled return water diverting valve percentage monitoring."
   is_abstract: true
   opt_uses:
@@ -5638,6 +5639,7 @@ SWTCSCM:
 
 
 SESWTC:
+  guid: "ac0191bf-f1ba-4dd9-ba81-d31515589c2c"
   description: "Secondary loop supply water temperature control."
   is_abstract: true
   implements:
@@ -5660,6 +5662,7 @@ SESWTC:
 
 
 SEWDPC:
+  guid: "6b3687c0-a8c1-4df4-8f2b-05eaccfbdf45"
   description: "Secondary water loop differential pressure control."
   is_abstract: true
   implements:

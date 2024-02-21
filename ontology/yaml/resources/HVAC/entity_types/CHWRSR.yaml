@@ -19,6 +19,7 @@ CHWRSR_UNDEFINED:
   - CHWRSR
 
 CHWRSR_WDPC:
+  guid: "fd7e9b2a-44f1-4199-be74-72f8cc5f92d8"
   description: "Chilled water distribution riser with differential pressure control."
   is_canonical: true
   implements:

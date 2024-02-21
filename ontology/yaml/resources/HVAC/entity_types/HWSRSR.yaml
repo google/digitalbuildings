@@ -19,6 +19,7 @@ HWSRSR_UNDEFINED:
   - HWSRSR
 
 HWSRSR_WDPC:
+  guid: "afbd880e-7f1d-42b2-ae42-096de0e2d3cf"
   description: "Heating water distribution riser with differential pressure control."
   is_canonical: true
   implements:
