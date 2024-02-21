@@ -36,6 +36,7 @@ SD:
   - purge_command
   - high_supply_air_flowrate_alarm
   - low_supply_air_flowrate_alarm
+  - failed_supply_air_damper_alarm
   uses:
   - supply_air_damper_percentage_command
   - supply_air_flowrate_sensor
@@ -277,6 +278,8 @@ DSP:
   - high_zone_air_relative_humidity_alarm
   - low_zone_air_relative_humidity_alarm
   - failed_discharge_air_temperature_alarm
+  - low_discharge_air_temperature_alarm
+  - high_discharge_air_temperature_alarm
   - failed_zone_air_temperature_alarm
   - high_zone_air_temperature_alarm
   - low_zone_air_temperature_alarm
@@ -341,6 +344,7 @@ COC:
   - zone_air_co_concentration_setpoint
   opt_uses:
   - high_zone_air_co_concentration_alarm
+  - failed_zone_air_co_concentration_alarm
 
 COM:
   guid: "bd9a1e2d-0710-4c58-8a56-3890af55f6b3"
@@ -637,6 +641,18 @@ ZHM:
   uses:
   - zone_air_relative_humidity_sensor
 
+ZHM2X:
+  guid: "1e5c95b5-bbf8-42ab-b68f-08bd3fc7638e"
+  description: "Dual sensor zone humidity monitoring."
+  is_abstract: true
+  implements:
+  - MONITORING
+  opt_uses:
+  - failed_zone_air_relative_humidity_alarm_1
+  - failed_zone_air_relative_humidity_alarm_2
+  uses:
+  - zone_air_relative_humidity_sensor_1
+  - zone_air_relative_humidity_sensor_2
 
 DTM:
   guid: "576e2b80-1711-4bac-abed-c54f2db5351d"
@@ -1488,6 +1504,8 @@ REFC:
   guid: "e043f5e2-fcc4-44b1-818f-0f4e7584adf5"
   description: "Refrigerant leak control."
   is_abstract: true
+  opt_uses:
+  - failed_zone_air_refrigerant_concentration_alarm
   uses:
   - zone_air_refrigerant_concentration_sensor
   - zone_air_refrigerant_concentration_setpoint
@@ -1702,6 +1720,17 @@ ZSPM:
   - high_zone_air_static_pressure_alarm
   - low_zone_air_static_pressure_alarm
 
+MSSPC:
+  guid: "bd480ae4-6184-466e-ba95-3bd8bb2f76f3"
+  description: "Minimum supply air static pressure control."
+  is_abstract: true
+  opt_uses:
+  - low_supply_air_static_pressure_alarm
+  uses:
+  - supply_air_static_pressure_sensor
+  - low_limit_supply_air_static_pressure_setpoint
+  implements:
+  - OPERATIONAL
 
 RSPC:
   guid: "5b27a493-430f-4a61-8604-0a672ce3fd55"
@@ -6362,6 +6391,17 @@ VOADC2X:
   implements:
   - OPERATIONAL
 
+IDPC:
+  guid: "10d271bb-1e25-47a8-ac62-920ba534ca5e"
+  description: "Isolation damper percentage control."
+  is_abstract: true
+  uses:
+  - isolation_damper_percentage_command
+  - isolation_damper_percentage_sensor
+  implements:
+  - MONITORING
+  opt_uses:
+  - failed_isolation_damper_alarm
 
 RAIDC:
   guid: "07b8b6ca-5fb7-471d-a50e-2ad266eb4a31"

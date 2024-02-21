@@ -3352,3 +3352,24 @@ literals:
 - low_heating_supply_water_temperature_alarm:
   - ACTIVE
   - INACTIVE
+- isolation_damper_percentage_command:
+    fixed_min: 0.0
+    fixed_max: 100.0
+- failed_isolation_damper_alarm:
+  - ACTIVE
+  - INACTIVE
+- failed_zone_air_refrigerant_concentration_alarm:
+  - ACTIVE
+  - INACTIVE
+- failed_zone_air_co_concentration_alarm:
+  - ACTIVE
+  - INACTIVE
+- failed_zone_air_relative_humidity_alarm:
+  - ACTIVE
+  - INACTIVE
+- failed_supply_air_damper_alarm:
+  - ACTIVE
+  - INACTIVE
+- low_limit_supply_air_static_pressure_setpoint:
+    flexible_min: -249.080024
+    flexible_max: 249.080024
