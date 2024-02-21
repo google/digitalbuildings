@@ -316,6 +316,9 @@ literals:
 - return_fan_current_sensor:
     fixed_min: 0.0
     flexible_max: 500.0
+- return_fan_voltage_sensor:
+    flexible_min: 0.0
+    flexible_max: 500.0
 - return_fan_power_sensor:
     flexible_min: 0.0
     flexible_max: 100000.0
@@ -642,6 +645,9 @@ literals:
 - leaving_heating_coil_temperature_sensor:
     flexible_min: 255.9259259
     flexible_max: 338.7037037
+- leaving_heating_coil_temperature_setpoint:
+    flexible_min: 255.9259259
+    flexible_max: 338.7037037
 - low_discharge_fan_speed_command:
   - ON
   - OFF
@@ -667,6 +673,9 @@ literals:
   - OPEN
   - CLOSED
 - outside_air_damper_percentage_sensor:
+    fixed_min: 0.0
+    fixed_max: 100.0
+- ventilation_outside_air_damper_percentage_sensor:
     fixed_min: 0.0
     fixed_max: 100.0
 - outside_air_dewpoint_temperature_sensor:
@@ -1815,6 +1824,15 @@ literals:
   - ACTIVE
   - INACTIVE
 - low_return_air_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
+- high_supply_air_relative_humidity_alarm:
+  - ACTIVE
+  - INACTIVE
+- low_supply_air_relative_humidity_alarm:
+  - ACTIVE
+  - INACTIVE
+- failed_supply_air_relative_humidity_alarm:
   - ACTIVE
   - INACTIVE
 - high_return_air_relative_humidity_alarm:
@@ -3042,6 +3060,9 @@ literals:
 - failed_supply_air_temperature_alarm:
   - ACTIVE
   - INACTIVE
+- failed_leaving_cooling_coil_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
 - failed_bypass_valve_alarm:
   - ACTIVE
   - INACTIVE
@@ -3087,6 +3108,15 @@ literals:
 - failed_outside_air_damper_alarm:
   - ACTIVE
   - INACTIVE
+- failed_return_air_damper_alarm:
+  - ACTIVE
+  - INACTIVE
+- failed_exhaust_air_damper_alarm:
+  - ACTIVE
+  - INACTIVE
+- failed_ventilation_outside_air_damper_alarm:
+  - ACTIVE
+  - INACTIVE
 - failed_outside_air_flowrate_alarm:
   - ACTIVE
   - INACTIVE
@@ -3106,6 +3136,9 @@ literals:
   - ACTIVE
   - INACTIVE
 - failed_zone_air_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
+- failed_ultraviolet_lamp_alarm:
   - ACTIVE
   - INACTIVE
 - high_differential_pressure_alarm:

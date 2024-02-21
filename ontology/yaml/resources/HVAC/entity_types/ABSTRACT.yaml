@@ -107,6 +107,8 @@ MOAFC:
   - ventilation_request_count
   - low_ventilation_outside_air_flowrate_alarm
   - failed_ventilation_outside_air_flowrate_alarm
+  - failed_ventilation_outside_air_damper_alarm
+  - ventilation_outside_air_damper_percentage_sensor
   uses:
   - ventilation_outside_air_damper_percentage_command
   - ventilation_outside_air_flowrate_sensor
@@ -390,10 +392,28 @@ EDPM:
   guid: "6051d016-4a78-42f4-aeaf-3701417b8773"
   description: "Exhaust air damper percentage monitoring."
   is_abstract: true
+  implements:
+  - MONITORING
+  opt_uses:
+  - failed_exhaust_air_damper_alarm
   uses:
   - exhaust_air_damper_percentage_command
   - exhaust_air_damper_percentage_sensor
 
+EDPM2X:
+  guid: "20f6ee70-f651-4c3b-a528-7750ef5f6001"
+  description: "Dual exhaust air damper percentage monitoring."
+  is_abstract: true
+  implements:
+  - MONITORING
+  opt_uses:
+  - failed_exhaust_air_damper_alarm_1
+  - failed_exhaust_air_damper_alarm_2
+  uses:
+  - exhaust_air_damper_percentage_command_1
+  - exhaust_air_damper_percentage_command_2
+  - exhaust_air_damper_percentage_sensor_1
+  - exhaust_air_damper_percentage_sensor_2
 
 EDM:
   guid: "e765d413-988e-4524-99b6-9869cff2f02e"
@@ -899,6 +919,18 @@ LCC2X:
   - CONTROL
 
 
+LHC:
+  guid: "df1b4263-c5c1-4c30-bf64-04de04f8a013"
+  description: "Leaving heating coil temperature control."
+  is_abstract: true
+  uses:
+  - heating_water_valve_percentage_command
+  - leaving_heating_coil_temperature_sensor
+  - leaving_heating_coil_temperature_setpoint
+  implements:
+  - CONTROL
+
+
 SFSS:
   guid: "1e8dd2f7-192a-430b-af2c-db6065664deb"
   description: "Basic combination of supply fan run command and status (start/stop)."
@@ -1311,6 +1343,9 @@ RD:
   guid: "0aecbeb0-8b01-44a2-a0b6-027a034fb2a5"
   description: "Return damper flow control."
   is_abstract: true
+  opt_uses:
+  - return_air_damper_percentage_sensor
+  - failed_return_air_damper_alarm
   uses:
   - return_air_damper_percentage_command
   - return_air_flowrate_sensor
@@ -1441,6 +1476,20 @@ RHDHC:
   implements:
   - CONTROL
 
+DH2XSDPC:
+  guid: "2e83d32e-360e-4ac2-afa4-5adb333ded0b"
+  description: "Supply air dewpoint temperature dehumidification control on dual cooling coil."
+  is_abstract: true
+  opt_uses:
+  - supply_air_relative_humidity_sensor
+  uses:
+  - dehumidification_run_command
+  - chilled_water_valve_percentage_command_1
+  - chilled_water_valve_percentage_command_2
+  - supply_air_dewpoint_temperature_sensor
+  - supply_air_dewpoint_temperature_setpoint
+  implements:
+  - CONTROL
 
 ZHDHC:
   guid: "0d8a499a-4934-4860-9d35-277381890e2d"
@@ -1494,6 +1543,10 @@ SHM:
   guid: "9b5089f5-e0a1-420d-bad9-682ac34d2516"
   description: "Supply air relative humidity monitoring."
   is_abstract: true
+  opt_uses:
+  - high_supply_air_relative_humidity_alarm
+  - low_supply_air_relative_humidity_alarm
+  - failed_supply_air_relative_humidity_alarm
   uses:
   - supply_air_relative_humidity_sensor
   implements:
@@ -1870,6 +1923,7 @@ CHWSC:
   - cooling_request_count
   - cooling_thermal_power_capacity
   - leaving_cooling_coil_temperature_sensor
+  - failed_leaving_cooling_coil_temperature_alarm
   - supply_air_relative_humidity_sensor
   - failed_supply_air_temperature_alarm
   - high_supply_air_temperature_alarm
@@ -1906,13 +1960,20 @@ CHW2XSC:
   description: "Two chilled water valves."
   is_abstract: true
   opt_uses:
-  - chilled_supply_water_temperature_sensor
-  - chilled_water_valve_percentage_sensor
   - cooling_request_count
   - cooling_thermal_power_capacity
+  - chilled_supply_water_temperature_sensor
+  - chilled_water_valve_percentage_sensor
+  - chilled_water_valve_percentage_sensor_1
+  - chilled_water_valve_percentage_sensor_2
   - leaving_cooling_coil_temperature_sensor
+  - leaving_cooling_coil_temperature_sensor_1
+  - leaving_cooling_coil_temperature_sensor_2
+  - failed_leaving_cooling_coil_temperature_alarm_1
+  - failed_leaving_cooling_coil_temperature_alarm_2
   - high_supply_air_temperature_alarm
   - low_supply_air_temperature_alarm
+  - failed_supply_air_temperature_alarm
   uses:
   - chilled_water_valve_percentage_command_1
   - chilled_water_valve_percentage_command_2
@@ -4319,6 +4380,10 @@ SFVSC2X:
   - supply_fan_speed_frequency_sensor_2
   - supply_fan_speed_percentage_sensor_1
   - supply_fan_speed_percentage_sensor_2
+  - supply_fan_torque_sensor_1
+  - supply_fan_torque_sensor_2
+  - supply_fan_voltage_sensor_1
+  - supply_fan_voltage_sensor_2
   uses:
   - supply_fan_run_command_1
   - supply_fan_run_command_2
@@ -5393,6 +5458,7 @@ UV:
   is_abstract: true
   opt_uses:
   - ultraviolet_lamp_run_mode
+  - failed_ultraviolet_lamp_alarm
   uses:
   - ultraviolet_lamp_run_command
   - ultraviolet_lamp_run_status
@@ -7018,6 +7084,8 @@ RFVSC:
   opt_uses:
   - return_fan_current_sensor
   - return_fan_power_sensor
+  - return_fan_voltage_sensor
+  - return_fan_torque_sensor
   - return_fan_speed_frequency_sensor
   - return_fan_speed_percentage_sensor
   uses:
@@ -7026,7 +7094,6 @@ RFVSC:
   - return_fan_speed_percentage_command
   implements:
   - OPERATIONAL
-
 
 RFVSC2X:
   guid: "3326bd01-506e-4dba-a410-9a34252b2d59"
@@ -7037,6 +7104,10 @@ RFVSC2X:
   - return_fan_current_sensor_2
   - return_fan_power_sensor_1
   - return_fan_power_sensor_2
+  - return_fan_voltage_sensor_1
+  - return_fan_voltage_sensor_2
+  - return_fan_torque_sensor_1
+  - return_fan_torque_sensor_2
   - return_fan_speed_frequency_sensor_1
   - return_fan_speed_frequency_sensor_2
   - return_fan_speed_percentage_sensor_1
