@@ -430,3 +430,11 @@ WSHP:
   - EQUIPMENT
   opt_uses:
   - failed_communication_alarm
+
+PCU:
+  description: "Tag for pollution control unit. PCUs remove pollutants from exhuast air."
+  is_abstract: true
+  implements:
+  - EQUIPMENT
+  opt_uses:
+  - failed_communication_alarm

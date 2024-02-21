@@ -7743,3 +7743,28 @@ CHCPC2X:
   - chilled_water_circulation_pump_run_status_2
   - chilled_water_circulation_pump_run_command_1
   - chilled_water_circulation_pump_run_command_2
+
+ESPM2X:
+  description: "Dual electrostatic precipitator monitoring."
+  is_abstract: true
+  opt_uses:
+  - failed_electrostatic_precipitator_alarm_1
+  - failed_electrostatic_precipitator_alarm_2
+  uses:
+  - electrostatic_precipitator_run_command_1
+  - electrostatic_precipitator_run_command_2
+  - electrostatic_precipitator_run_status_1
+  - electrostatic_precipitator_run_status_2
+  implements:
+  - MONITORING
+
+DTPM:
+  description: "Detergent pump monitoring."
+  is_abstract: true
+  opt_uses:
+  - low_detergent_level_alarm
+  uses:
+  - detergent_pump_run_status
+  - detergent_pump_run_command
+  implements:
+  - MONITORING

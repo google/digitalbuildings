@@ -3406,3 +3406,21 @@ literals:
 - low_limit_supply_air_static_pressure_setpoint:
     flexible_min: -249.080024
     flexible_max: 249.080024
+- failed_electrostatic_precipitator_alarm:
+  - ACTIVE
+  - INACTIVE
+- electrostatic_precipitator_run_command:
+  - ON
+  - OFF
+- electrostatic_precipitator_run_status:
+  - ON
+  - OFF
+- detergent_pump_run_command:
+  - ON
+  - OFF
+- detergent_pump_run_status:
+  - ON
+  - OFF
+- low_detergent_level_alarm:
+  - ACTIVE
+  - INACTIVE
