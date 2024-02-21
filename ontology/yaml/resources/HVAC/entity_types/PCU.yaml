@@ -17,6 +17,7 @@
 ########################
 
 PCU_EFSS_EFVSC_ESPM2X_DTPM:
+  guid: "9a5e199d-1cf0-411b-8ac0-d3ed4d247089"
   description: "Pollution control unit with exhaust fan variable speed, two electrostatic precipitators, and one detergent pump."
   is_canonical: true
   implements:

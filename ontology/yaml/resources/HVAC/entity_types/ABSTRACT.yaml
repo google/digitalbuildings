@@ -7745,6 +7745,7 @@ CHCPC2X:
   - chilled_water_circulation_pump_run_command_2
 
 ESPM2X:
+  guid: "3d2d7498-e741-4690-aab6-f2e14e11cfeb"
   description: "Dual electrostatic precipitator monitoring."
   is_abstract: true
   opt_uses:
@@ -7759,6 +7760,7 @@ ESPM2X:
   - MONITORING
 
 DTPM:
+  guid: "898b43c5-c051-4fbf-8366-4c1fefda40b6"
   description: "Detergent pump monitoring."
   is_abstract: true
   opt_uses:
