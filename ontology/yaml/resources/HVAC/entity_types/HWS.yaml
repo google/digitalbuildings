@@ -342,6 +342,17 @@ HWS_SWTC_WDPC_WFRM_HWTTC:
   - WFRM
   - HWTTC
 
+HWS_PWDT_PRWFRM_SESWTC_SEWDPC_SEWFRM:
+  description: "Primary/secondary heating water system with secondary loop temperature and differential pressure control and flowrate monitoring."
+  is_canonical: true
+  implements:
+  - HWS
+  - PWDT
+  - PRWFRM
+  - SESWTC
+  - SEWDPC
+  - SEWFRM
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
