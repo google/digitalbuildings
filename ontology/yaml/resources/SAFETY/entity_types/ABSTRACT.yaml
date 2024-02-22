@@ -54,7 +54,7 @@ BCM:
 
 BC2X:
   guid: "5b04410c-62b1-4385-998b-16023b663b14"
-  description: "Broken cable monitoring."
+  description: "Dual broken cable monitoring."
   is_abstract: true
   uses:
   - broken_cable_alarm_1
