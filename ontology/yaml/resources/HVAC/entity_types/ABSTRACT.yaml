@@ -1823,7 +1823,7 @@ PWDT:
   - primary_return_water_temperature_sensor
   - primary_supply_water_temperature_sensor
   opt_uses:
-  - primary_supply_water_heating_thermal_power_sensor
+  - primary_water_heating_thermal_power_sensor
   - high_primary_return_water_temperature_alarm
   - high_primary_supply_water_temperature_alarm
   - low_primary_return_water_temperature_alarm
@@ -5651,11 +5651,9 @@ SESWTC:
   - high_secondary_return_water_temperature_alarm
   - low_secondary_return_water_temperature_alarm
   - run_command
-  - cooling_percentage_command
-  - heating_percentage_command
   - high_secondary_supply_water_temperature_alarm
   - low_secondary_supply_water_temperature_alarm
-  - secondary_supply_water_heating_thermal_power_sensor
+  - secondary_water_heating_thermal_power_sensor
   uses:
   - secondary_supply_water_temperature_sensor
   - secondary_supply_water_temperature_setpoint
