@@ -42,3 +42,9 @@ DHWT_PHWTTC:
   implements:
   - DHWT
   - PHWTTC
+DHWT_SWTM:
+  description: "Domestic hot water tank with supply water temperature monitoring."
+  is_canonical: true
+  implements:
+  - DHWT
+  - SWTM
