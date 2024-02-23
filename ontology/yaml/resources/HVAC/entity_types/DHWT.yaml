@@ -43,6 +43,7 @@ DHWT_PHWTTC:
   - DHWT
   - PHWTTC
 DHWT_SWTM:
+  guid: "0834b5a8-1ca8-464e-89a5-f4e7508bfc62"
   description: "Domestic hot water tank with supply water temperature monitoring."
   is_canonical: true
   implements:
