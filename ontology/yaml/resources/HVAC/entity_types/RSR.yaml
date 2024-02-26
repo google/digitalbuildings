@@ -12,18 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-CHWRSR_UNDEFINED:
-  guid: "17800c9e-afac-4966-88af-d6aa2b1e1f30"
-  description: "Chilled water distribution riser without any data points."
-  implements:
-  - CHWRSR
-
-HWSRSR_UNDEFINED:
-  guid: "037e42ec-3826-49f5-84a2-3b71858b53dc"
-  description: "Heating water distribution riser without any data points."
-  implements:
-  - HWSRSR
-
 FARSR_UNDEFINED:
   guid: "cd83cffe-fb37-4138-9ff0-9da7958eccf2"
   description: "Fresh air distribution riser without any data points."
