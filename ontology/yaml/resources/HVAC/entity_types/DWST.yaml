@@ -26,7 +26,8 @@ DWST_CWDT_SWTC_CPC:
   - potable_water_medium_temperature_sensor
   - potable_water_low_temperature_sensor
 
-DWST_HWDT_CPC_HLPM_SWTC2X_HWFM:
+DWST_HWDT_CPC_SWTC2X_HWFM_HSWPM:
+  guid: "cd74f84e-969a-422c-8c84-d40ca6281352"
   description: "Non-standard domestic water system with two heating water heat exhangers that are manually opened/closed, 
   one circulation pump, and heating water system flow and btu monitoring"
   is_canonical: false
@@ -41,7 +42,8 @@ DWST_HWDT_CPC_HLPM_SWTC2X_HWFM:
   - supply_water_temperature_setpoint
   - heating_water_flowrate_sensor
 
-DWST_HWDT_CPC2X_HLPM_SWTC2X_HWFM_HSWPM:
+DWST_HWDT_CPC2X_SWTC2X_HWFM_HSWPM:
+  guid: "21d3d1b0-ace7-4623-a103-58164929c6b6"
   description: "Non-standard domestic water system with two heating water heat exhangers that are manually opened/closed, 
   two circulation pumps, and heating water system flow and btu monitoring"
   is_canonical: false

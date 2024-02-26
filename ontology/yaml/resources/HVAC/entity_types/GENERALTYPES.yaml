@@ -432,6 +432,7 @@ WSHP:
   - failed_communication_alarm
 
 PCU:
+  guid: "f8fc8268-873f-4ae7-a98f-581052261c7d"
   description: "Tag for pollution control unit. PCUs remove pollutants from exhuast air."
   is_abstract: true
   implements:
