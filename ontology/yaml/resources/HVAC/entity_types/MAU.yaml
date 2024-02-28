@@ -743,6 +743,21 @@ MAU_DFSS_DFVSC_DSP_CHWZC_HWZC_OADM:
   opt_uses:
   - smoke_alarm
 
+MAU_SFSS2X_SFVSC2X_PHWSC_LCC_HWSC_SSPC_UV_SHM:
+  guid: "dc62c78a-d25b-470f-be3a-c40c1e457b6e"
+  description: "Multi-zone MAU with preheating water control, chilled water coil control, heating water valve monitoring, and supply air static pressure control"
+  is_canonical: true
+  implements:
+  - MAU
+  - SFSS2X
+  - SFVSC2X
+  - PHWSC
+  - LCC
+  - HWSC
+  - SSPC
+  - UV
+  - SHM
+
 ############################
 ###   Remap These Types  ###
 ############################

@@ -316,6 +316,9 @@ literals:
 - return_fan_current_sensor:
     fixed_min: 0.0
     flexible_max: 500.0
+- return_fan_voltage_sensor:
+    flexible_min: 0.0
+    flexible_max: 500.0
 - return_fan_power_sensor:
     flexible_min: 0.0
     flexible_max: 100000.0
@@ -642,6 +645,9 @@ literals:
 - leaving_heating_coil_temperature_sensor:
     flexible_min: 255.9259259
     flexible_max: 338.7037037
+- leaving_heating_coil_temperature_setpoint:
+    flexible_min: 255.9259259
+    flexible_max: 338.7037037
 - low_discharge_fan_speed_command:
   - ON
   - OFF
@@ -667,6 +673,9 @@ literals:
   - OPEN
   - CLOSED
 - outside_air_damper_percentage_sensor:
+    fixed_min: 0.0
+    fixed_max: 100.0
+- ventilation_outside_air_damper_percentage_sensor:
     fixed_min: 0.0
     fixed_max: 100.0
 - outside_air_dewpoint_temperature_sensor:
@@ -708,7 +717,16 @@ literals:
 - secondary_return_water_temperature_sensor:
     flexible_min: 255.9259259
     flexible_max: 380.3703704
+- secondary_water_differential_pressure_sensor:
+    flexible_min: -34473.78945
+    flexible_max: 344737.8945
+- secondary_water_differential_pressure_setpoint:
+    flexible_min: -34473.78945
+    flexible_max: 344737.8945
 - secondary_supply_water_temperature_sensor:
+    flexible_min: 255.9259259
+    flexible_max: 380.3703704
+- secondary_supply_water_temperature_setpoint:
     flexible_min: 255.9259259
     flexible_max: 380.3703704
 - secondary_supply_water_flowrate_sensor:
@@ -1073,6 +1091,12 @@ literals:
 - process_water_valve_percentage_command:
     fixed_min: 0.0
     fixed_max: 100.0
+- chilled_return_water_diverting_valve_percentage_command:
+    fixed_min: 0.0
+    fixed_max: 100.0
+- chilled_return_water_diverting_valve_percentage_sensor:
+    fixed_min: 0.0
+    fixed_max: 100.0
 - process_water_diverting_valve_percentage_command:
     fixed_min: 0.0
     fixed_max: 100.0
@@ -1407,6 +1431,9 @@ literals:
 - input_motor_power_status:
   - ON
   - OFF
+- failed_chilled_return_water_diverting_valve_alarm:
+  - ACTIVE
+  - INACTIVE
 - failed_supply_water_diverting_valve_alarm:
   - ACTIVE
   - INACTIVE
@@ -1817,6 +1844,15 @@ literals:
 - low_return_air_temperature_alarm:
   - ACTIVE
   - INACTIVE
+- high_supply_air_relative_humidity_alarm:
+  - ACTIVE
+  - INACTIVE
+- low_supply_air_relative_humidity_alarm:
+  - ACTIVE
+  - INACTIVE
+- failed_supply_air_relative_humidity_alarm:
+  - ACTIVE
+  - INACTIVE
 - high_return_air_relative_humidity_alarm:
   - ACTIVE
   - INACTIVE
@@ -2071,6 +2107,12 @@ literals:
     flexible_min: 255.9259259
     flexible_max: 380.3703704
 - heating_thermal_power_sensor:
+    flexible_min: 0.0
+    flexible_max: 586142.14
+- primary_water_heating_thermal_power_sensor:
+    flexible_min: 0.0
+    flexible_max: 586142.14
+- secondary_water_heating_thermal_power_sensor:
     flexible_min: 0.0
     flexible_max: 586142.14
 - heating_thermal_energy_accumulator:
@@ -3044,6 +3086,9 @@ literals:
 - failed_supply_air_temperature_alarm:
   - ACTIVE
   - INACTIVE
+- failed_leaving_cooling_coil_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
 - failed_bypass_valve_alarm:
   - ACTIVE
   - INACTIVE
@@ -3089,6 +3134,15 @@ literals:
 - failed_outside_air_damper_alarm:
   - ACTIVE
   - INACTIVE
+- failed_return_air_damper_alarm:
+  - ACTIVE
+  - INACTIVE
+- failed_exhaust_air_damper_alarm:
+  - ACTIVE
+  - INACTIVE
+- failed_ventilation_outside_air_damper_alarm:
+  - ACTIVE
+  - INACTIVE
 - failed_outside_air_flowrate_alarm:
   - ACTIVE
   - INACTIVE
@@ -3110,6 +3164,9 @@ literals:
 - failed_zone_air_temperature_alarm:
   - ACTIVE
   - INACTIVE
+- failed_ultraviolet_lamp_alarm:
+  - ACTIVE
+  - INACTIVE
 - high_differential_pressure_alarm:
   - ACTIVE
   - INACTIVE
@@ -3122,7 +3179,25 @@ literals:
 - high_supply_water_temperature_alarm:
   - ACTIVE
   - INACTIVE
+- high_primary_return_water_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
+- high_primary_supply_water_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
+- high_secondary_supply_water_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
+- high_secondary_water_differential_pressure_alarm:
+  - ACTIVE
+  - INACTIVE
+- high_secondary_return_water_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
 - high_return_water_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
+- high_condensing_return_water_temperature_alarm:
   - ACTIVE
   - INACTIVE
 - high_process_return_water_temperature_alarm:
@@ -3176,7 +3251,25 @@ literals:
 - low_supply_water_temperature_alarm:
   - ACTIVE
   - INACTIVE
+- low_primary_return_water_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
+- low_primary_supply_water_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
+- low_secondary_supply_water_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
+- low_secondary_water_differential_pressure_alarm:
+  - ACTIVE
+  - INACTIVE
+- low_secondary_return_water_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
 - low_return_water_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
+- low_condensing_return_water_temperature_alarm:
   - ACTIVE
   - INACTIVE
 - low_process_water_differential_pressure_alarm:
@@ -3352,5 +3445,44 @@ literals:
   - ACTIVE
   - INACTIVE
 - low_heating_supply_water_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
+- isolation_damper_percentage_command:
+    fixed_min: 0.0
+    fixed_max: 100.0
+- failed_isolation_damper_alarm:
+  - ACTIVE
+  - INACTIVE
+- failed_zone_air_refrigerant_concentration_alarm:
+  - ACTIVE
+  - INACTIVE
+- failed_zone_air_co_concentration_alarm:
+  - ACTIVE
+  - INACTIVE
+- failed_zone_air_relative_humidity_alarm:
+  - ACTIVE
+  - INACTIVE
+- failed_supply_air_damper_alarm:
+  - ACTIVE
+  - INACTIVE
+- low_limit_supply_air_static_pressure_setpoint:
+    flexible_min: -249.080024
+    flexible_max: 249.080024
+- failed_electrostatic_scrubber_alarm:
+  - ACTIVE
+  - INACTIVE
+- electrostatic_scrubber_run_command:
+  - ON
+  - OFF
+- electrostatic_scrubber_run_status:
+  - ON
+  - OFF
+- detergent_pump_run_command:
+  - ON
+  - OFF
+- detergent_pump_run_status:
+  - ON
+  - OFF
+- low_detergent_alarm:
   - ACTIVE
   - INACTIVE

@@ -4403,6 +4403,110 @@ AHU_SFSS_SFVSC_EFSS_EFVSC_CHWSC_HWSC_ECON_EDBPC_SARC_SSPC_OAFMC:
   - SSPC
   - OAFMC
 
+AHU_SFSS2X_SFVSC2X_RFSS2X_RFVSC2X_LHC_CHW2XSC_DH2XSDPC_SSPC_SARC_MOAFC_ECON_EDPM2X_RD_UV_SHM:
+  guid: "da6d6f64-ca90-4a5c-bf20-275779b58e23"
+  description: "Multi-zone AHU with dual supply and return fans, dual chilled water coil cooling and dehumidification control, leaving temperature heating water valve control, dual exhaust damper monitoring, minimum ventilation control, return damper flow control, ultraviolet lamp and supply air humidity monitoring."
+  is_canonical: true
+  implements:
+  - AHU
+  - SFSS2X
+  - SFVSC2X
+  - RFSS2X
+  - RFVSC2X
+  - LHC
+  - CHW2XSC
+  - DH2XSDPC
+  - SSPC
+  - SARC
+  - MOAFC
+  - ECON
+  - EDPM2X
+  - RD
+  - UV
+  - SHM
+
+AHU_SFSS2X_SFVSC2X_RFSS2X_RFVSC2X_CHW2XSC_DH2XSDPC_SSPC_SARC_MOAFC_ECON_EDPM2X_RD_UV_SHM:
+  guid: "5acb1bda-0e3f-4f33-8c1f-ee64be72cf1d"
+  description: "Multi-zone AHU with dual supply and return fans, dual chilled water coil cooling and dehumidification control, dual exhaust damper, minimum ventilation control, return damper flow control, ultraviolet lamp and supply air humidity monitoring."
+  is_canonical: true
+  implements:
+  - AHU
+  - SFSS2X
+  - SFVSC2X
+  - RFSS2X
+  - RFVSC2X
+  - CHW2XSC
+  - DH2XSDPC
+  - SSPC
+  - SARC
+  - MOAFC
+  - ECON
+  - EDPM2X
+  - RD
+  - UV
+  - SHM
+
+AHU_SFSS2X_SFVSC2X_RFSS2X_RFVSC2X_LHC_CHW2XSC_DH2XSDPC_SSPC_SARC_MOAFC_ECON_EDPM_RD_UV_SHM:
+  guid: "136897bb-8b58-47cb-aeff-4d1a9518dcc8"
+  description: "Multi-zone AHU with dual supply and return fans, dual chilled water coil cooling and dehumidification control, leaving temperature heating water valve control, exhaust damper monitoring, minimum ventilation control, return damper flow control, ultraviolet lamp and supply air humidity monitoring."
+  is_canonical: true
+  implements:
+  - AHU
+  - SFSS2X
+  - SFVSC2X
+  - RFSS2X
+  - RFVSC2X
+  - LHC
+  - CHW2XSC
+  - DH2XSDPC
+  - SSPC
+  - SARC
+  - MOAFC
+  - ECON
+  - EDPM
+  - RD
+  - UV
+  - SHM
+
+AHU_SFSS_SFVSC_RFSS_RFVSC_HWSC_CHWSC_SSPC_SARC_MOAFC_ECON_EDPM_RD_UV:
+  guid: "db33e650-dda4-43f6-bbc5-1844d6b97a0b"
+  description: "Multi-zone AHU with supply and return fans, chilled and heating water valve control, exhaust damper monitoring, minimum ventilation control, return damper flow control and ultraviolet lamp."
+  is_canonical: true
+  implements:
+  - AHU
+  - SFSS
+  - SFVSC
+  - RFSS
+  - RFVSC
+  - HWSC
+  - CHWSC
+  - SSPC
+  - SARC
+  - MOAFC
+  - ECON
+  - EDPM
+  - RD
+  - UV
+
+AHU_SFSS2X_SFVSC2X_RFSS2X_RFVSC2X_HWSC_CHWSC_SSPC_MOAFC_ECON_EDPM_RD_UV:
+  guid: "09017cb5-0a96-49e6-ba9a-b4a7004eee1f"
+  description: "Multi-zone AHU with dual supply and return fans, chilled and heating water valve control, exhaust damper monitoring, minimum ventilation control, return damper flow control and ultraviolet lamp."
+  is_canonical: true
+  implements:
+  - AHU
+  - SFSS2X
+  - SFVSC2X
+  - RFSS2X
+  - RFVSC2X
+  - HWSC
+  - CHWSC
+  - SSPC
+  - MOAFC
+  - ECON
+  - EDPM
+  - RD
+  - UV
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
