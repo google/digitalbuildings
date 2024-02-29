@@ -3014,6 +3014,12 @@ literals:
 - lighting_color_hsl_hue_angle_setpoint:
     fixed_min: 0.0
     fixed_max: 360.0
+- lighting_color_temperature_setpoint:
+    flexible_min: 0.0
+    flexible_max: 10000.0
+- lighting_color_temperature_sensor:
+    flexible_min: 0.0
+    flexible_max: 10000.0
 - luminaire_alarm:
   - ACTIVE
   - INACTIVE
