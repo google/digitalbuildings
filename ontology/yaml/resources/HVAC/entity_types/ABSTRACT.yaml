@@ -6078,6 +6078,7 @@ HWDDC:
 
 
 CHWDDC:
+  guid: "6361fa56-7585-4bc1-995c-dbd92ccf8834"
   description: "Chilled water valve with dual setpoint control on discharge side."
   is_abstract: true
   opt_uses:
