@@ -6077,6 +6077,25 @@ HWDDC:
   - CONTROL
 
 
+CHWDDC:
+  description: "Chilled water valve with dual setpoint control on discharge side."
+  is_abstract: true
+  opt_uses:
+  - discharge_air_relative_humidity_sensor
+  - cooling_thermal_power_capacity
+  - chilled_water_flowrate_sensor
+  - chilled_water_valve_percentage_sensor
+  - high_discharge_air_temperature_alarm
+  - low_discharge_air_temperature_alarm
+  - failed_discharge_air_temperature_alarm
+  uses:
+  - discharge_air_cooling_temperature_setpoint
+  - discharge_air_temperature_sensor
+  - chilled_water_valve_percentage_command
+  implements:
+  - CONTROL
+
+
 CFDPM:
   guid: "be3e3bc0-e927-46a1-9b63-62717fa740ca"
   description: "Carbon filter pressure monitoring, where specific filter type is required."
