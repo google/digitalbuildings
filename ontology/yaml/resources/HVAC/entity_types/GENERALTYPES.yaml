@@ -56,7 +56,7 @@ FCU:
 
 AHU:
   guid: "02160ac8-659b-489c-9ba4-3a6523cbd6a1"
-  description: "Tag for air-handling units. AHUs are devices which handle air distribution (either to a single space or to multiple via ductwork), and they have the capability of handling both return and outside air, in some combination (0% OA, 100% RA; 50% OA, 50% RA; 100% OA, 0% RA, etc.); that is, they can recirculate or ventilate. They are distinct from other devices in key ways: FCUs, which handle only recirculated air; MAUs, which handle only outside air; and DOAS devices, which handle outside and return air, but which do not recirculate air. "
+  description: "Tag for air-handling units. AHUs are devices which handle air distribution (either to a single space or to multiple via ductwork), and they have the capability of handling both return and outside air, in some combination (0% OA, 100% RA; 50% OA, 50% RA; 100% OA, 0% RA, etc.); that is, they can recirculate or ventilate. They are distinct from other devices in key ways: FCUs, which handle only recirculated air; MAUs, which handle only outside air; and DOAS devices, which handle outside and return air, but which do not recirculate air."
   is_abstract: true
   implements:
   - EQUIPMENT
@@ -85,7 +85,7 @@ PMP:
 
 FRZ:
   guid: "98018a25-3cbc-4cc6-8405-527215394a2c"
-  description: "Tag for Freezers."
+  description: "Tag for freezers."
   is_abstract: true
   opt_uses:
   - failed_communication_alarm
@@ -172,7 +172,7 @@ HWS:
 
 CHWS:
   guid: "40d1831b-1031-4c1e-a0e1-1c38fc973b91"
-  description: "Tag for chilled water systems."
+  description: "Tag for chilled water systems. This tag represents the system itself but not other distinct equipment in the system; chillers and pumps should be modeled as their own standalone entities."
   is_abstract: true
   opt_uses:
   - thermal_power_capacity
@@ -228,7 +228,7 @@ DC:  # Proposed in v2.3 naming standard
 
 SDC:
   guid: "25506deb-aa79-4eb1-9f48-173091472765"
-  description: "Tag for automated window shades."
+  description: "Tag for automated window shades. These shades are typically mechnically controlled and can be protracted or retracted to control the amount of sunlight coming through the windows into a space."
   is_abstract: true
   opt_uses:
   - failed_communication_alarm
@@ -264,7 +264,7 @@ DFR:  # Proposed in v2.3 naming standard
 
 DH:
   guid: "4dfacbae-a63b-4ce0-99d4-17974ebd2648"
-  description: "Tag for duct heater. Similar to a unit heater, but within a supply duct."
+  description: "Tag for duct heater. Similar to a unit heater, but within a supply duct. The duct heacter itself is not responsible for the movement of air."
   is_abstract: true
   opt_uses:
   - failed_communication_alarm
@@ -273,7 +273,7 @@ DH:
 
 HUM:
   guid: "258519e2-fa66-41bc-a68d-f4ed50b5510b"
-  description: "Tag for humidifier. Provides humidification to air, as its primary function."
+  description: "Tag for humidifier. Humidifiers provide humidification to air through the addition of water vapor."
   is_abstract: true
   opt_uses:
   - failed_communication_alarm
@@ -288,7 +288,6 @@ VLV:
   - failed_communication_alarm
   implements:
   - EQUIPMENT
-
 
 RSR:
   guid: "95d5ac12-326d-45d3-94f2-0fac854af027"
@@ -311,21 +310,21 @@ FARSR:
 
 CHWRSR:
   guid: "b5fc5daa-3e22-443a-a206-7b58a20e6cc0"
-  description: "A chilled water distribution riser."
+  description: "Tag for a chilled water distribution riser. These risers provide chilled water to downstream coils in other pieces of equipment (e.g. an FCU)."
   is_abstract: true
   implements:
   - RSR
 
 HWSRSR:
   guid: "118edf5a-1e16-41ee-af5c-a4000be57aba"
-  description: "A heating water distribution riser."
+  description: "Tag for a heating water distribution riser. These risers provide heating water to downstream coils in other pieces of equipment (e.g. an FCU)."
   is_abstract: true
   implements:
   - RSR
 
 ADY:
   guid: "89bed1b6-9963-4883-b913-109953392f27"
-  description: "Air dryer."
+  description: "Tag for air dryer."
   is_abstract: true
   opt_uses:
   - failed_communication_alarm
@@ -334,7 +333,7 @@ ADY:
 
 AION:
   guid: "d533add1-77ce-4644-a1df-2818c742da51"
-  description: "Air ionizer."
+  description: "Tag for air ionizer."
   is_abstract: true
   opt_uses:
   - failed_communication_alarm
@@ -343,17 +342,16 @@ AION:
 
 CMP:
   guid: "bca0b49e-48ec-46b0-ad10-5f7ba935d3b5"
-  description: "Air compressor."
+  description: "Tag for air compressors."
   is_abstract: true
   opt_uses:
   - failed_communication_alarm
   implements:
   - EQUIPMENT
 
-# New General Types for CH ZRH eurd
 RP:
   guid: "9c59bbe5-c58a-4f5f-afa3-a4d027eb0bb7"
-  description: "Radiant panel, consisting of a coil/panel with no fan providing either heating or cooling via primarily radiant heat transfer."
+  description: "Tag for radiant panels. Radient panels consists of a coil/panel with no fan providing either heating or cooling; space conditioning is primarily performed via radiant heat transfer."
   is_abstract: true
   opt_uses:
   - failed_communication_alarm
@@ -362,7 +360,7 @@ RP:
 
 CO:
   guid: "1462ba79-c977-4b29-9463-78e72777d681"
-  description: "Tag for change over equipment which is providing either hot or chilled water for radiant panels in a zone."
+  description: "Tag for change-over equipment. For example, change-over valves control the supply of either hot or chilled water for radiant panels in a zone."
   is_abstract: true
   opt_uses:
   - failed_communication_alarm
@@ -371,7 +369,7 @@ CO:
 
 DWST:
   guid: "60b32fb4-e4c7-46ec-9ff3-0a5456657aef"
-  description: "Domestic water system."
+  description: "Domestic water system. Domestic water systems supply heated water for use in kitchens or bathrooms."
   is_abstract: true
   opt_uses:
   - failed_communication_alarm
@@ -398,7 +396,7 @@ DOAS:
 
 TST:
   guid: "f512be0b-07c4-4829-b89f-6922dc9316ba"
-  description: "Tag for thermal storage tanks."
+  description: "Tag for thermal storage tanks. Thermal storage tanks are often used in water-side systems to hold chilled or heated water for use in space conditioning."
   is_abstract: true
   opt_uses:
   - failed_communication_alarm
@@ -407,7 +405,7 @@ TST:
 
 GTWS:
   guid: "c48b040d-1b7e-4f58-b722-287b6dcbe36f"
-  description: "Tag for geothermal water systems."
+  description: "Tag for geothermal water systems. Geothermal systems reject heat into the ground in cooling applications or source heat from the ground in heating applications."
   is_abstract: true
   opt_uses:
   - thermal_power_capacity
@@ -427,6 +425,15 @@ CRREF:
 WSHP:
   guid: "55c3b629-1018-462d-9e23-fd56a38743ec"
   description: "Tag for water source heat pumps.WSHP serves as a heating or cooling system using water as a heat exchange medium. In contrast to chillers that centralize cooling production and distribute chilled water, WSHPs operate locally, offering isolated control by using water from a nearby source for both heating and cooling functions within a building."
+  is_abstract: true
+  implements:
+  - EQUIPMENT
+  opt_uses:
+  - failed_communication_alarm
+
+PCU:
+  guid: "f8fc8268-873f-4ae7-a98f-581052261c7d"
+  description: "Tag for pollution control unit. PCUs remove pollutants from exhuast air."
   is_abstract: true
   implements:
   - EQUIPMENT

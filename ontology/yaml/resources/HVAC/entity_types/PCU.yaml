@@ -16,19 +16,13 @@
 ### Canonical Types  ###
 ########################
 
-WEATHER_OA:
-  guid: "51b4f69c-e48a-4f0a-b47e-ecbbd11435d5"
-  description: "Typical weather station."
+PCU_EFSS_EFVSC_ESM2X_DTPM:
+  guid: "9a5e199d-1cf0-411b-8ac0-d3ed4d247089"
+  description: "Pollution control unit with exhaust fan variable speed, two electrostatic scrubbers, and one detergent pump."
   is_canonical: true
   implements:
-  - WEATHER
-  - OA
-
-WEATHER_OA_OAQM:
-  guid: "9980bb62-f2e0-4893-8649-e4587e6b096c"
-  description: "Weather station with outside temperature, humidity, and air quality monitoring."
-  is_canonical: true
-  implements:
-    - WEATHER
-    - OA
-    - OAQM
+  - PCU
+  - EFSS
+  - EFVSC
+  - ESM2X
+  - DTPM
