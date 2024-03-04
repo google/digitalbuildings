@@ -17,6 +17,7 @@
 ########################
 
 CDWS_WDT:
+  guid: "0293ed37-4fda-4b4e-8926-488b0de826e1"
   description: "Condenser water system with temperature differential monitoring across condenser water."
   is_canonical: true
   implements:
