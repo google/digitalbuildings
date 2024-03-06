@@ -86,7 +86,7 @@ UPS_SS_UPSBM:
  
 UPS_UPSBM:
   guid: "19625580-f0d7-486e-a054-bb1eecd95b0a"
-  description: "Basic UPS with battery monitoring "
+  description: "Basic UPS with battery monitoring and battery time remaining sensor"
   is_canonical: false
   implements:
   - UPS
