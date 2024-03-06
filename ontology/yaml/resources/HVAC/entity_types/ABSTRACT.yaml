@@ -1124,6 +1124,9 @@ CWDT:
   is_abstract: true
   implements:
   - MONITORING
+  opt_uses:
+  - high_condensing_return_water_temperature_alarm
+  - low_condensing_return_water_temperature_alarm
   uses:
   - condensing_return_water_temperature_sensor
   - condensing_supply_water_temperature_sensor
@@ -1819,6 +1822,12 @@ PWDT:
   uses:
   - primary_return_water_temperature_sensor
   - primary_supply_water_temperature_sensor
+  opt_uses:
+  - primary_water_heating_thermal_power_sensor
+  - high_primary_return_water_temperature_alarm
+  - high_primary_supply_water_temperature_alarm
+  - low_primary_return_water_temperature_alarm
+  - low_primary_supply_water_temperature_alarm
 
 
 CHPM:
@@ -4529,6 +4538,18 @@ SWISOVM:
   - failed_supply_water_isolation_valve_alarm
   - local_override_isolation_valve_alarm
 
+CHWRWDVPM:
+  guid: "ac21d1e5-1e01-4612-af36-e71f0a0b58b2"
+  description: "Chilled return water diverting valve percentage monitoring."
+  is_abstract: true
+  opt_uses:
+  - failed_chilled_return_water_diverting_valve_alarm
+  uses:
+  - chilled_return_water_diverting_valve_percentage_command
+  - chilled_return_water_diverting_valve_percentage_sensor
+  implements:
+  - MONITORING
+
 SWDVPM:
   guid: "4a848219-0fdd-4f99-ae7d-5604cbf27bd9"
   description: "Supply water diverting valve percentage monitoring."
@@ -4571,6 +4592,8 @@ RWISOVPM:
   guid: "a20fce9d-f8c0-4324-9ffd-8aaa3729b32d"
   description: "Return side isolation valve monitoring."
   is_abstract: true
+  opt_uses:
+  - failed_return_water_isolation_valve_alarm
   uses:
   - return_water_isolation_valve_percentage_command
   - return_water_isolation_valve_percentage_sensor
@@ -4592,8 +4615,10 @@ CICHVISOVM3X:
 
 CHWRWISOVPM:
   guid: "0a8333ee-fdc9-440b-9ebc-fb0e19e8cf5c"
-  description: "Return side isolation valve monitoring."
+  description: "Return side isolation valve percentage monitoring."
   is_abstract: true
+  opt_uses:
+  - failed_chilled_return_water_isolation_valve_alarm
   uses:
   - chilled_return_water_isolation_valve_percentage_command
   - chilled_return_water_isolation_valve_percentage_sensor
@@ -4711,8 +4736,10 @@ PWDPM2X:
 
 CWRISOVPM:
   guid: "ec4e3b78-417d-47a3-bbbf-d031f31d2d3d"
-  description: "Condensing water return isolation monitoring."
+  description: "Condensing water return isolation valve percentage monitoring."
   is_abstract: true
+  opt_uses:
+  - failed_condensing_return_water_isolation_valve_alarm
   uses:
   - condensing_return_water_isolation_valve_percentage_command
   - condensing_return_water_isolation_valve_percentage_sensor
@@ -5609,6 +5636,41 @@ SWTCSCM:
   - supply_water_temperature_setpoint
   opt_uses:
   - supervisor_alarm
+
+
+SESWTC:
+  guid: "ac0191bf-f1ba-4dd9-ba81-d31515589c2c"
+  description: "Secondary loop supply water temperature control."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  opt_uses:
+  - cooling_request_count
+  - heating_request_count
+  - secondary_return_water_temperature_sensor
+  - high_secondary_return_water_temperature_alarm
+  - low_secondary_return_water_temperature_alarm
+  - run_command
+  - high_secondary_supply_water_temperature_alarm
+  - low_secondary_supply_water_temperature_alarm
+  - secondary_water_heating_thermal_power_sensor
+  uses:
+  - secondary_supply_water_temperature_sensor
+  - secondary_supply_water_temperature_setpoint
+
+
+SEWDPC:
+  guid: "6b3687c0-a8c1-4df4-8f2b-05eaccfbdf45"
+  description: "Secondary water loop differential pressure control."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  opt_uses:
+  - high_secondary_water_differential_pressure_alarm
+  - low_secondary_water_differential_pressure_alarm
+  uses:
+  - secondary_water_differential_pressure_sensor
+  - secondary_water_differential_pressure_setpoint
 
 
 WDPCSCM:
@@ -7743,3 +7805,30 @@ CHCPC2X:
   - chilled_water_circulation_pump_run_status_2
   - chilled_water_circulation_pump_run_command_1
   - chilled_water_circulation_pump_run_command_2
+
+ESM2X:
+  guid: "3d2d7498-e741-4690-aab6-f2e14e11cfeb"
+  description: "Dual electrostatic scrubber monitoring."
+  is_abstract: true
+  opt_uses:
+  - failed_electrostatic_scrubber_alarm_1
+  - failed_electrostatic_scrubber_alarm_2
+  uses:
+  - electrostatic_scrubber_run_command_1
+  - electrostatic_scrubber_run_command_2
+  - electrostatic_scrubber_run_status_1
+  - electrostatic_scrubber_run_status_2
+  implements:
+  - MONITORING
+
+DTPM:
+  guid: "898b43c5-c051-4fbf-8366-4c1fefda40b6"
+  description: "Detergent pump monitoring."
+  is_abstract: true
+  opt_uses:
+  - low_detergent_alarm
+  uses:
+  - detergent_pump_run_status
+  - detergent_pump_run_command
+  implements:
+  - MONITORING
