@@ -6414,15 +6414,15 @@ TDTM:
   - MONITORING
 
 
-OTKM:
+OTPM:
   guid: "109dc354-15b3-4dc5-86ff-30bb586d7d93"
-  description: "Oil tank temperature and pressure monitoring."
+  description: "Oil temperature and pressure monitoring."
   is_abstract: true
   opt_uses:
-  - oil_tank_differential_pressure_sensor
+  - oil_differential_pressure_sensor
   uses:
-  - oil_tank_temperature_sensor
-  - oil_tank_pressure_sensor
+  - oil_temperature_sensor
+  - oil_pressure_sensor
   implements:
   - MONITORING
 

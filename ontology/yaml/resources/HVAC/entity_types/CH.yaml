@@ -657,7 +657,7 @@ CH_SS_DX2SWC_CHDXVSC2X_RWTM_MWDPC_REFSM2X_REFPM2X_CPC_INVIPWM2X_INVOPWM2X:
   - INVIPWM2X
   - INVOPWM2X
 
-CH_SS_SCHWTC_CWDT_CHWRISOVPM_CWRISOVPM_REFPM_REFSM_MIPVCM_MIPWM_CHCPC_CDCPC_OTKM:
+CH_SS_SCHWTC_CWDT_CHWRISOVPM_CWRISOVPM_REFPM_REFSM_MIPVCM_MIPWM_CHCPC_CDCPC_OTPM:
   guid: "8fcb81b4-c437-4a5b-b725-60bf4884fbec"
   description: "Chiller with supply water temperature monitoring, condenser water temperature delta monitoring, return isolation valves on condenser and chilled side, refrigerant saturation and pressure monitoring, motor input current, voltage and power monitoring, and oil tank temperature and pressure monitoring."
   is_canonical: true
@@ -674,7 +674,7 @@ CH_SS_SCHWTC_CWDT_CHWRISOVPM_CWRISOVPM_REFPM_REFSM_MIPVCM_MIPWM_CHCPC_CDCPC_OTKM
   - MIPWM
   - CHCPC
   - CDCPC
-  - OTKM
+  - OTPM
 
 ###################################
 ### Existing Non-standard Types ###
