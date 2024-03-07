@@ -2877,6 +2877,15 @@ literals:
 - oil_pressure_sensor:
     flexible_min: 0.0
     flexible_max: 1034214.0
+- oil_tank_temperature_sensor:
+  flexible_min: 255.9259259
+  flexible_max: 422.037037
+- oil_tank_pressure_sensor:
+  flexible_min: 0.0
+  flexible_max: 1034214.0
+- oil_tank_differential_pressure_sensor:
+  flexible_min: 0.0
+  flexible_max: 1034214.0
 - tank_level_status:
   - LOW
   - MEDIUM
@@ -3412,6 +3421,12 @@ literals:
   - ON
   - OFF
 - chilled_water_circulation_pump_run_command:
+  - ON
+  - OFF
+- condensing_water_circulation_pump_run_command:
+  - ON
+  - OFF
+- condensing_water_circulation_pump_run_status:
   - ON
   - OFF
 # Four fields below are for ASHP.

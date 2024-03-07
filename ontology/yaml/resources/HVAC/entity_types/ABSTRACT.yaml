@@ -6414,6 +6414,18 @@ TDTM:
   - MONITORING
 
 
+OTKM:
+  description: "Oil tank temperature and pressure monitoring."
+  is_abstract: true
+  opt_uses:
+  - oil_tank_differential_pressure_sensor
+  uses:
+  - oil_tank_temperature_sensor
+  - oil_tank_pressure_sensor
+  implements:
+  - MONITORING
+
+
 HLPM:
   guid: "ae617b98-6deb-4c17-8d63-4504feea2988"
   description: "Heating thermal power sensor."
@@ -7816,6 +7828,13 @@ HCPC2X:
   - heating_water_circulation_pump_run_command_1
   - heating_water_circulation_pump_run_command_2
 
+CHCPC:
+  description: "Circulation control for onboard chilled water pump."
+  is_abstract: true
+  uses:
+  - chilled_water_circulation_pump_run_status
+  - chilled_water_circulation_pump_run_command
+
 CHCPC2X:
   guid: "688f6f6a-c79a-4f1f-8a1e-4463d610276d"
   description: "Circulation control for 2 onboard chilled water pumps."
@@ -7825,6 +7844,13 @@ CHCPC2X:
   - chilled_water_circulation_pump_run_status_2
   - chilled_water_circulation_pump_run_command_1
   - chilled_water_circulation_pump_run_command_2
+
+CDCPC:
+  description: "Circulation control for onboard condenser water pump."
+  is_abstract: true
+  uses:
+  - condensing_water_circulation_pump_run_status
+  - condensing_water_circulation_pump_run_command
 
 ESM2X:
   guid: "3d2d7498-e741-4690-aab6-f2e14e11cfeb"
