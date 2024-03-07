@@ -6415,6 +6415,7 @@ TDTM:
 
 
 OTKM:
+  guid: "109dc354-15b3-4dc5-86ff-30bb586d7d93"
   description: "Oil tank temperature and pressure monitoring."
   is_abstract: true
   opt_uses:
@@ -7829,6 +7830,7 @@ HCPC2X:
   - heating_water_circulation_pump_run_command_2
 
 CHCPC:
+  guid: "ffd344fd-12ad-4633-ace7-79ae3987e9af"
   description: "Circulation control for onboard chilled water pump."
   is_abstract: true
   uses:
@@ -7846,6 +7848,7 @@ CHCPC2X:
   - chilled_water_circulation_pump_run_command_2
 
 CDCPC:
+  guid: "80262436-bf4a-43ef-a037-9ceaccbaaf76"
   description: "Circulation control for onboard condenser water pump."
   is_abstract: true
   uses:
