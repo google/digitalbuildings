@@ -1452,6 +1452,19 @@ FCU_DFSS_DSP_HWZC_CHWZC_CO2M:
   - HWZC
   - CHWZC
   - CO2M
+
+FCU_RTC_RHC_RHDHC_HTRC_DXRC_ZTM:
+  description: "Fan coil with zone temp monitoring, return temp and humidity control, dx cooling, heating, and dehumidication and humidifcation modes."
+  is_canonical: true
+  implements:
+  - FCU
+  - RTC
+  - RHC
+  - RHDHC
+  - HTRC
+  - DXRC
+  - ZTM
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
