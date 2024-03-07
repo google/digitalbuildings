@@ -14,7 +14,7 @@
 
 UPS_SS:
   guid: "70d8719e-db43-4f6f-b44f-7047a4c30a26"
-  description: "Standard UPS unit."
+  description: "Standard UPS unit with start stop."
   is_canonical: true
   implements:
   - UPS
@@ -83,3 +83,17 @@ UPS_SS_UPSBM:
   - UPS
   - SS
   - UPSBM
+
+UPS_UPSBM:
+  guid: "19625580-f0d7-486e-a054-bb1eecd95b0a"
+  description: "Basic UPS with battery monitoring"
+  is_canonical: false
+  implements:
+  - UPS
+  uses:
+  - input_supply_mode
+  - battery_percentage_sensor
+  opt_uses:
+  - remaining_battery_time_sensor
+  - load_percentage_sensor
+  - output_apparent_power_sensor
