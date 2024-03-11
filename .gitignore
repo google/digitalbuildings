@@ -15,4 +15,5 @@ tools/
 tooling/
 styles/
 ibr/
+*.md
 
