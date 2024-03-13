@@ -11,9 +11,6 @@ package-lock.json
 yarn.lock
 venv/
 
-tools/
-tooling/
-styles/
-ibr/
-*.md
-
+*.*
+*
+!/ontology/yaml/resources/*.yaml
