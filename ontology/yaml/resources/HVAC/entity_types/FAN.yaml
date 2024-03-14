@@ -22,7 +22,7 @@ FAN_SS_VSC_WDPM:
   description: "Fan with start/stop, open-loop speed control and differential pressure monitoring."
   is_canonical: true
   implements:
-  - PMP
+  - FAN
   - SS
   - VSC
   - WDPM
