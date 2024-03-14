@@ -1632,7 +1632,6 @@ FCU_NONCANONICAL_1:
   - zone_air_temperature_sensor_1
   - zone_air_temperature_sensor_2
   - zone_air_temperature_sensor_3
-  - zone_air_temperature_setpoint
   - zone_air_temperature_setpoint_1
   - zone_air_temperature_setpoint_2
   - zone_air_temperature_setpoint_3
