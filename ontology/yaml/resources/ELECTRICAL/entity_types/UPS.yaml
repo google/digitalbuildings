@@ -94,6 +94,6 @@ UPS_UPSTR:
   - input_supply_mode
   - battery_percentage_sensor
   opt_uses:
-  - remaining_battery_time_sensor
+  - remaining_battery_discharge_time_sensor
   - load_percentage_sensor
   - output_apparent_power_sensor
