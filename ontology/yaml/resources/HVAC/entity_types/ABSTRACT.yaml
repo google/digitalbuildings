@@ -7888,7 +7888,7 @@ ZDHC:
   is_abstract: true
   uses:
   - zone_air_dewpoint_temperature_sensor
-  - zone_air_dewpoint_setpoint
+  - zone_air_dewpoint_temperature_setpoint
   - chilled_water_valve_percentage_command
   - heating_percentage_command
   opt_uses:
