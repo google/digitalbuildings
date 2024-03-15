@@ -7881,3 +7881,15 @@ DTPM:
   - detergent_pump_run_command
   implements:
   - MONITORING
+
+ZDHC:
+  guid: "d50c12f3-98bf-4da2-bc36-57d44160c789"
+  description: "zone dewpoint control with chilled water cooling and electric reheat"
+  is_abstract: true
+  uses:
+  - zone_air_dewpoint_temperature_sensor
+  - zone_air_dewpoint_setpoint
+  - chilled_water_valve_percentage_command
+  - heating_percentage_command
+  opt_uses:
+  - chilled_water_valve_percentage_sensor
