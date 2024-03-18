@@ -27,3 +27,19 @@ WSHP_SS_VSFC_HWDT_POTHWSC:
   - HWDT
   - POTHWSC
 
+WSHP_FDPM_CWDT_SFVSC_CDCPC_CAM_ZTC_RTM_CWDT_CDWISOVM_STM:
+  guid: "e1b4a911-00a8-42da-abaf-8eff6987ad58"
+  description: "Cooling only water source heat pump using condensor water to carry heat away from the zone.  One filter, condensor water pump control, one compressor, condensate alarm"
+  is_canonical: true
+  implements:
+ - WSHP
+ - FDPM
+ - CWDT
+ - SFVSC
+ - CDCPC
+ - CAM
+ - ZTC
+ - RTM
+ - CWDT
+ - CDWISOVM
+ - STM
