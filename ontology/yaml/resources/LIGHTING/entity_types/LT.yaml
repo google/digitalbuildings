@@ -74,6 +74,7 @@ LT_DM_CHSLM_OM:
   - OM
 
 LT_DC_CTC_OM:
+  guid: "754bc7b3-5544-4a9b-abbf-908c6d433228"
   description: "Standard Lighting fixture with color temperature control and dimming monitoring."
   is_canonical: true
   implements:
