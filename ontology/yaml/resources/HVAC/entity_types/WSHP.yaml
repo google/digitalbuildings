@@ -32,14 +32,15 @@ WSHP_FDPM_CWDT_SFVSC_CDCPC_CAM_ZTC_RTM_CWDT_CDWISOVM_STM:
   description: "Cooling only water source heat pump using condensor water to carry heat away from the zone.  One filter, condensor water pump control, one compressor, condensate alarm"
   is_canonical: true
   implements:
- - WSHP
- - FDPM
- - CWDT
- - SFVSC
- - CDCPC
- - CAM
- - ZTC
- - RTM
- - CWDT
- - CDWISOVM
- - STM
+  - WSHP
+  - FDPM
+  - CWDT
+  - SFVSC
+  - CDCPC
+  - CAM
+  - ZTC
+  - RTM
+  - CWDT
+  - CDWISOVM
+  - STM
+ 
