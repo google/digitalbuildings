@@ -1075,6 +1075,21 @@ WDT:
   - low_supply_water_temperature_alarm
 
 
+CMWDT:
+  description: "Common water temperature differential monitoring."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  uses:
+  - common_supply_water_temperature_sensor
+  - common_return_water_temperature_sensor
+  opt_uses:
+  - high_common_supply_water_temperature_alarm
+  - low_common_supply_water_temperature_alarm
+  - high_common_return_water_temperature_alarm
+  - low_common_return_water_temperature_alarm
+
+
 CHWDT:
   guid: "0960d44f-87ff-43f5-b576-c19f8a7f2b83"
   description: "Temperature differential across chilled water."
@@ -3908,6 +3923,15 @@ WFRM:
   - low_flowrate_alarm
 
 
+CMSWFRM:
+  description: "Common supply water flowrate monitoring."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  uses:
+  - common_supply_water_flowrate_sensor
+
+
 WFRC:
   guid: "55e5d148-7001-40e2-b082-d17cafb3309a"
   description: "Water flowrate control."
@@ -5457,6 +5481,18 @@ RWTM:
   - low_return_water_temperature_alarm
   uses:
   - return_water_temperature_sensor
+
+
+WSERWTM:
+  description: "Water side economizer return water temperature."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  uses:
+  - economizer_return_water_temperature_sensor
+  opt_uses:
+  - high_economizer_return_water_temperature_alarm
+  - low_economizer_return_water_temperature_alarm
 
 
 CWDPM:
@@ -7624,6 +7660,7 @@ MWFRM:
   is_abstract: true
   opt_uses:
   - failed_makeup_water_flowrate_alarm
+  - makeup_water_volume_accumulator
   uses:
   - makeup_water_flowrate_sensor
   implements:
@@ -7639,6 +7676,18 @@ BWFRM:
   - blowdown_water_flowrate_sensor
   implements:
   - MONITORING
+
+BWECVC:
+  description: "Blowdown water electricconductivity drain valve control."
+  is_abstract: true
+  opt_uses:
+  - high_blowdown_water_electricconductivity_alarm
+  uses:
+  - drain_water_valve_command
+  - blowdown_water_electricconductivity_sensor
+  - blowdown_water_electricconductivity_setpoint
+  implements:
+  - OPERATIONAL
 
 DX3SCHWC:
   guid: "917e4514-ed4d-468c-8a81-44d29a143935"

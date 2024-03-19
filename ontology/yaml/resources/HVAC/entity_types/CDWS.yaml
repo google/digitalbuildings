@@ -165,6 +165,18 @@ CDWS_SWTC_BYPVPM_WFRM_MWFRM_BWFRM:
   - MWFRM
   - BWFRM
 
+CDWS_SWTC_CMWDT_BYPVPM_BWECVC_BWFRM_MWFRM:
+  description: "Condensing water system with bypass valve, blowdown water valve electricconductivity control, makeup water flowrate monitoring and common water temperature differential monitoring."
+  is_canonical: true
+  implements:
+  - CDWS
+  - SWTC
+  - CMWDT
+  - BYPVPM
+  - BWECVC
+  - BWFRM
+  - MWFRM
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
