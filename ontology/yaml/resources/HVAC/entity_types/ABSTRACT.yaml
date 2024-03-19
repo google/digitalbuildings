@@ -1078,6 +1078,7 @@ WDT:
 
 
 CMWDT:
+  guid: "b9301a06-a6e4-4964-ac81-d18d5e0f142d"
   description: "Common water temperature differential monitoring."
   is_abstract: true
   implements:
@@ -3926,6 +3927,7 @@ WFRM:
 
 
 CMSWFRM:
+  guid: "cbf519aa-fef1-4cb1-bfb5-6bded3b5dbf6"
   description: "Common supply water flowrate monitoring."
   is_abstract: true
   implements:
@@ -5486,6 +5488,7 @@ RWTM:
 
 
 WSERWTM:
+  guid: "132824f4-213b-4e8f-85f9-fdad8a194146"
   description: "Water side economizer return water temperature monitoring."
   is_abstract: true
   implements:
@@ -7680,6 +7683,7 @@ BWFRM:
   - MONITORING
 
 BWECVC:
+  guid: "2ebf7b84-a26f-4238-90c0-a630c753883b"
   description: "Blowdown water electricconductivity drain valve control."
   is_abstract: true
   opt_uses:
