@@ -1082,7 +1082,7 @@ CMWDT:
   description: "Common water temperature differential monitoring."
   is_abstract: true
   implements:
-  - OPERATIONAL
+  - MONITORING
   uses:
   - common_supply_water_temperature_sensor
   - common_return_water_temperature_sensor
@@ -3931,7 +3931,7 @@ CMSWFRM:
   description: "Common supply water flowrate monitoring."
   is_abstract: true
   implements:
-  - OPERATIONAL
+  - MONITORING
   uses:
   - common_supply_water_flowrate_sensor
 
