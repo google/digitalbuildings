@@ -243,6 +243,7 @@ DX2RC:
   - compressor_speed_percentage_command
   - cooling_percentage_command
   - cooling_thermal_power_capacity
+  - cooling_stage_run_count
   - discharge_air_temperature_sensor
   - leaving_cooling_coil_temperature_sensor
   - failed_discharge_air_temperature_alarm
@@ -805,6 +806,7 @@ HT2RC:
   - discharge_air_temperature_sensor
   - heating_percentage_command
   - heating_thermal_power_capacity
+  - heating_stage_run_count
   - failed_discharge_air_temperature_alarm
   - high_return_air_temperature_alarm
   - low_return_air_temperature_alarm
