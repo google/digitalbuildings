@@ -245,11 +245,7 @@ length: distance
 level: distance
 impulse:
   newton_seconds: STANDARD
-irradiance:
-  watts_per_square_meter_irradiance: STANDARD
-  kilowatts_per_square_meter_irradiance:
-    multiplier: 1000
-    offset: 0
+irradiance: powerflux
 linearacceleration: acceleration
 linearvelocity:
   meters_per_second: STANDARD
@@ -390,6 +386,9 @@ powerflux:
   watts_per_square_meter: STANDARD
   watts_per_square_foot:
     multiplier: 0.092903
+    offset: 0
+  kilowatts_per_square_meter:
+    multiplier: 1000
     offset: 0
 pressure:
   pascals: STANDARD
