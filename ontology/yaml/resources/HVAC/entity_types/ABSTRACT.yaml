@@ -5486,10 +5486,10 @@ RWTM:
 
 
 WSERWTM:
-  description: "Water side economizer return water temperature."
+  description: "Water side economizer return water temperature monitoring."
   is_abstract: true
   implements:
-  - OPERATIONAL
+  - MONITORING
   uses:
   - economizer_return_water_temperature_sensor
   opt_uses:
