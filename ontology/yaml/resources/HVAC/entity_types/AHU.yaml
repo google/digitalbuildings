@@ -4385,7 +4385,7 @@ AHU_SFSS2X_SFVSC2X_RFSS2X_RFVSC2X_CHWSC_HWSC_ECON_EDBPC_SARC_SSPC_RD_OAFMC:
   opt_uses:
   - smoke_alarm
 
-AHU_SFSS_SFVSC_EFSS_EFVSC_CHWSC_HWSC_ECON_EDBPC_SARC_SSPC_OAFMC:
+AHU_SFSS_SFVSC_EFSS_EFVSC_CHWSC_HWSC_ECON_EDM_BSPC_SARC_SSPC_OAFMC:
   guid: "36c1740d-1eaa-4bae-8779-269cdfc0c5a0"
   description: "Multi-zone cooling and heating AHU with supply air reset control and supply static pressure control."
   is_canonical: true
@@ -4398,7 +4398,8 @@ AHU_SFSS_SFVSC_EFSS_EFVSC_CHWSC_HWSC_ECON_EDBPC_SARC_SSPC_OAFMC:
   - CHWSC
   - HWSC
   - ECON
-  - EDBPC
+  - EDM
+  - BSPC
   - SARC
   - SSPC
   - OAFMC
