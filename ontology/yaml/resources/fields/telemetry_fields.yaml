@@ -1285,11 +1285,11 @@ literals:
     fixed_min: 0.0
     flexible_max: 0.003932896
 - water_volume_accumulator:
-    flexible_min: -0.000315451
-    flexible_max: 0.315451
+    flexible_min: 0
+    flexible_max: 10000
 - makeup_water_volume_accumulator:
-    flexible_min: -0.000315451
-    flexible_max: 0.315451
+    flexible_min: 0
+    flexible_max: 10000
 - gas_temperature_sensor:
     flexible_min: 283.1481481
     flexible_max: 533.1481481
