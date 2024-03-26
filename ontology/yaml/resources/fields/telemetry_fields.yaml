@@ -2939,6 +2939,9 @@ literals:
   - LOW
   - MEDIUM
   - HIGH
+- remaining_battery_time_sensor:
+    fixed_min: 0.0
+    flexible_max: 86400.0
 - line_pressure_sensor:
     flexible_min: 0.0
     flexible_max: 689476.0
