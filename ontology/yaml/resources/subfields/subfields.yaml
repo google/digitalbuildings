@@ -13,9 +13,9 @@
 # limitations under the License.
 
 aggregation:
-  average: "Average value (e.g. average_zone_air_temperature_sensor)"
-  max: "Maximum value (e.g. Max_Cooling_Air_Flow_Setpoint)"
-  min: "Minimum value (e.g. Min_Ventilation_Air_Flow_Setpoint)"
+  average: "Average value; the arithmetic mean of a set of numeric values (e.g., average_zone_air_temperature_sensor is a spatial aggregation of multiple zone temperature sensors)."
+  max: "Maximum value; the largest value in a set of numeric values. Can be used for spatial (e.g., max_zone_air_co2_concentration_sensor) or temporal (e.g., tenminutefixed_max_xaxis_frequency_sensor) aggregations."
+  min: "Minimum value; the smallest value in a set of numeric values. Can be used for spatial (e.g., min_zone_air_relative_humidity_sensor) or temporal (e.g., fivesecondrolling_min_xaxis_linearacceleration_sensor) aggregations."
   rootmeansquare: "Square root of the mean square (quadratic mean); measures the magnitude of a set of values."
   total: "Sum total of some set of values (e.g. total_request_heating_count)"
 aggregation_descriptor:
