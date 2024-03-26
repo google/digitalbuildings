@@ -308,3 +308,13 @@ LGRP_SS_OS_IM:
   uses:
   - group_mode
 
+LGRP_OS_DC_DUAL_LC:
+  guid: "ac5f1146-2734-44f8-b3d1-99e4226fc72a"
+  description: "Standard lighting fixture group control with zone occupancy montoring and luminance control"
+  is_canonical: true
+  implements:
+  - LGRP
+  - OS 
+  - LC_DUAL
+  uses:
+  - group_mode
