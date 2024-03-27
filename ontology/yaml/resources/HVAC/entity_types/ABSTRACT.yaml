@@ -5842,7 +5842,7 @@ HTWHLSTC:
 
 CAM:
   guid: "c37a0e19-19c0-4246-8a8b-f376aa089d56"
-  description: "ztc alarm monitoring based on moisture sensor on coil or in pan."
+  description: "Alarm monitoring based on moisture sensor on coil or in pan."
   is_abstract: true
   implements:
   - MONITORING
