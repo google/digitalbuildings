@@ -2844,9 +2844,9 @@ HP3ZC:
   implements:
   - CONTROL
 
-CWSHPZTC:
+CWSHPZC:
   guid: "f976c1eb-4043-4234-b567-e82943653c96"
-  description: "Air-side water-source heat pump (heat rejection to condensing water) with dual-setpoint zone temp control (DSP)."
+  description: "Air-side water-source heat pump (heat rejection to condensing water) with zone temp control."
   is_abstract: true
   opt_uses:
   - cooling_thermal_power_capacity
@@ -2855,12 +2855,12 @@ CWSHPZTC:
   - failed_zone_air_temperature_alarm
   - high_zone_air_temperature_alarm
   - low_zone_air_temperature_alarm
+  - zone_air_heating_temperature_setpoint
   uses:
   - condensing_water_circulation_pump_run_status
   - condensing_water_circulation_pump_run_command
   - zone_air_temperature_sensor
   - zone_air_cooling_temperature_setpoint
-  - zone_air_heating_temperature_setpoint
   implements:
   - CONTROL
 
