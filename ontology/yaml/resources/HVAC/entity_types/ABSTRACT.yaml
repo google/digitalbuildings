@@ -2845,8 +2845,8 @@ HP3ZC:
   - CONTROL
 
 CWSHPZTC:
-  guid: "0506375b-4a48-4d5d-92ba-5bd1e9ef087b"
-  description: "Water-source heat pump (rejection to condensing water) with dual-setpoint zone temp control (DSP)."
+  guid: "f976c1eb-4043-4234-b567-e82943653c96"
+  description: "Air-side water-source heat pump (heat rejection to condensing water) with dual-setpoint zone temp control (DSP)."
   is_abstract: true
   opt_uses:
   - cooling_thermal_power_capacity
