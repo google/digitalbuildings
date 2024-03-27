@@ -66,7 +66,6 @@ component:
 descriptor:
   air: "Atmospheric air, either conditioned or unconditioned."
   aisle: "Passage between two rows of server racks."
-  window: "Transparent part of the facade"
   ac: "Electric charge which periodically reverses direction and changes its magnitude continuously with time."
   ammonia: "Ammonia gas."
   blowdown: "Process of expelling water filled with mineral deposits for the purposes of water treatment."
@@ -257,6 +256,7 @@ descriptor:
   water: "Water in liquid form, conditioned or unconditioned"
   west: "Cardinal direction; opposite of east"
   wind: "Movement of ambient air."
+  window: "Transparent part of the facade"
   winter: "Method or process used during colder weather (i.e. winter season)."
   wireless: "Devices capable of communication wirelessly through electromagnetic fields.(e.g. wireless_sensors) "
   xaxis: "Horizontal axis of a three-dimensional Cartesian coordinate system (abscissa)."
