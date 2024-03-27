@@ -4508,7 +4508,7 @@ AHU_SFSS2X_SFVSC2X_RFSS2X_RFVSC2X_HWSC_CHWSC_SSPC_MOAFC_ECON_EDPM_RD_UV:
   - RD
   - UV
 
-AHU_FDPM_DFVSC_RTM_OADM_CAM_CWSHPZTC_CDCPC_CDWT_CDWISOVM:
+AHU_FDPM_DFVSC_RTM_OADM_CAM_CWSHPZTC_CWDT_CDWISOVM:
   guid: "185ef011-7530-4e27-9981-6c9e2b5221c0"
   description: "Single-zone AHU with water-source heat pump that rejects heat to condesing water."
   is_canonical: true
@@ -4520,7 +4520,7 @@ AHU_FDPM_DFVSC_RTM_OADM_CAM_CWSHPZTC_CDCPC_CDWT_CDWISOVM:
   - OADM
   - CAM
   - CWSHPZTC
-  - CDWT
+  - CWDT
   - CDWISOVM
 
 ###################################
