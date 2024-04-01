@@ -5319,7 +5319,7 @@ AHU_BSPC_DX4SC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC_RHHC_NONCANONICAL_1:
   - min_zone_air_relative_humidity_sensor
   - min_zone_air_relative_humidity_setpoint
 
-AHU_SFSS_SFVSC_EFSS_CHWSC_FDPM2X_SSPC_OAFC_ECON_RHDHC:
+AHU_SFSS_SFVSC_EFSS_CHWSC_FDPM2X_SSPC_OAFC_HTSC_RHDHC:
   guid: "75559dbd-7ef6-4368-b48f-8d34db7fe47d"
   description: "Multi zone AHU with exhaust fan, two prefilters, outside air, electric supply side heating, supply static pressure control and return air dehumidification"
   is_canonical: true
@@ -5329,7 +5329,6 @@ AHU_SFSS_SFVSC_EFSS_CHWSC_FDPM2X_SSPC_OAFC_ECON_RHDHC:
   - EFSS
   - SFVSC
   - CHWSC
-  - ECON
   - FDPM2X
   - SSPC
   - OAFC
