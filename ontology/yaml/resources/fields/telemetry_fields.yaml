@@ -18,6 +18,12 @@ literals:
 - blowdown_water_flowrate_sensor:
     flexible_min: -0.000315451
     flexible_max: 0.315451
+- blowdown_water_electricconductivity_sensor:
+    flexible_min: 0.0
+    flexible_max: 50.0
+- blowdown_water_electricconductivity_setpoint:
+    flexible_min: 0.0
+    flexible_max: 50.0
 - building_air_static_pressure_sensor:
     flexible_min: -249.080024
     flexible_max: 249.080024
@@ -31,6 +37,9 @@ literals:
     flexible_min: 255.9259259
     flexible_max: 308.1481481
 - chilled_supply_water_flowrate_sensor:
+    flexible_min: -0.000315451
+    flexible_max: 0.315451
+- common_supply_water_flowrate_sensor:
     flexible_min: -0.000315451
     flexible_max: 0.315451
 - chilled_supply_water_temperature_sensor:
@@ -347,6 +356,12 @@ literals:
 - return_water_temperature_sensor:
     flexible_min: 255.9259259
     flexible_max: 380.3703704
+- common_return_water_temperature_sensor:
+    flexible_min: 255.9259259
+    flexible_max: 380.3703704
+- economizer_return_water_temperature_sensor:
+    flexible_min: 255.9259259
+    flexible_max: 380.3703704
 - reversing_valve_command:
   - AUTO
   - CLOSED
@@ -421,6 +436,9 @@ literals:
     flexible_min: -0.000315451
     flexible_max: 0.315451
 - supply_water_temperature_sensor:
+    flexible_min: 255.9259259
+    flexible_max: 380.3703704
+- common_supply_water_temperature_sensor:
     flexible_min: 255.9259259
     flexible_max: 380.3703704
 - supply_water_temperature_setpoint:
@@ -1270,8 +1288,11 @@ literals:
     fixed_min: 0.0
     flexible_max: 0.003932896
 - water_volume_accumulator:
-    flexible_min: -0.000315451
-    flexible_max: 0.315451
+    flexible_min: 0
+    flexible_max: 100000
+- makeup_water_volume_accumulator:
+    flexible_min: 0
+    flexible_max: 100000
 - gas_temperature_sensor:
     flexible_min: 283.1481481
     flexible_max: 533.1481481
@@ -3162,6 +3183,9 @@ literals:
 - failed_blowdown_water_flowrate_alarm:
   - ACTIVE
   - INACTIVE
+- high_blowdown_water_electricconductivity_alarm:
+  - ACTIVE
+  - INACTIVE
 - failed_makeup_water_flowrate_alarm:
   - ACTIVE
   - INACTIVE
@@ -3189,6 +3213,9 @@ literals:
 - high_supply_water_temperature_alarm:
   - ACTIVE
   - INACTIVE
+- high_common_supply_water_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
 - high_primary_return_water_temperature_alarm:
   - ACTIVE
   - INACTIVE
@@ -3207,7 +3234,13 @@ literals:
 - high_return_water_temperature_alarm:
   - ACTIVE
   - INACTIVE
+- high_common_return_water_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
 - high_condensing_return_water_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
+- high_economizer_return_water_temperature_alarm:
   - ACTIVE
   - INACTIVE
 - high_process_return_water_temperature_alarm:
@@ -3261,6 +3294,9 @@ literals:
 - low_supply_water_temperature_alarm:
   - ACTIVE
   - INACTIVE
+- low_common_supply_water_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
 - low_primary_return_water_temperature_alarm:
   - ACTIVE
   - INACTIVE
@@ -3279,7 +3315,13 @@ literals:
 - low_return_water_temperature_alarm:
   - ACTIVE
   - INACTIVE
+- low_common_return_water_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
 - low_condensing_return_water_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
+- low_economizer_return_water_temperature_alarm:
   - ACTIVE
   - INACTIVE
 - low_process_water_differential_pressure_alarm:
