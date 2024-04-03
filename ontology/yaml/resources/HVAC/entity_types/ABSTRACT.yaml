@@ -243,6 +243,7 @@ DX2RC:
   - compressor_speed_percentage_command
   - cooling_percentage_command
   - cooling_thermal_power_capacity
+  - cooling_stage_run_count
   - discharge_air_temperature_sensor
   - leaving_cooling_coil_temperature_sensor
   - failed_discharge_air_temperature_alarm
@@ -805,6 +806,7 @@ HT2RC:
   - discharge_air_temperature_sensor
   - heating_percentage_command
   - heating_thermal_power_capacity
+  - heating_stage_run_count
   - failed_discharge_air_temperature_alarm
   - high_return_air_temperature_alarm
   - low_return_air_temperature_alarm
@@ -1073,6 +1075,22 @@ WDT:
   opt_uses:
   - high_supply_water_temperature_alarm
   - low_supply_water_temperature_alarm
+
+
+CMWDT:
+  guid: "b9301a06-a6e4-4964-ac81-d18d5e0f142d"
+  description: "Common water temperature differential monitoring."
+  is_abstract: true
+  implements:
+  - MONITORING
+  uses:
+  - common_supply_water_temperature_sensor
+  - common_return_water_temperature_sensor
+  opt_uses:
+  - high_common_supply_water_temperature_alarm
+  - low_common_supply_water_temperature_alarm
+  - high_common_return_water_temperature_alarm
+  - low_common_return_water_temperature_alarm
 
 
 CHWDT:
@@ -3908,6 +3926,16 @@ WFRM:
   - low_flowrate_alarm
 
 
+CMSWFRM:
+  guid: "cbf519aa-fef1-4cb1-bfb5-6bded3b5dbf6"
+  description: "Common supply water flowrate monitoring."
+  is_abstract: true
+  implements:
+  - MONITORING
+  uses:
+  - common_supply_water_flowrate_sensor
+
+
 WFRC:
   guid: "55e5d148-7001-40e2-b082-d17cafb3309a"
   description: "Water flowrate control."
@@ -5457,6 +5485,19 @@ RWTM:
   - low_return_water_temperature_alarm
   uses:
   - return_water_temperature_sensor
+
+
+WSERWTM:
+  guid: "132824f4-213b-4e8f-85f9-fdad8a194146"
+  description: "Water side economizer return water temperature monitoring."
+  is_abstract: true
+  implements:
+  - MONITORING
+  uses:
+  - economizer_return_water_temperature_sensor
+  opt_uses:
+  - high_economizer_return_water_temperature_alarm
+  - low_economizer_return_water_temperature_alarm
 
 
 CWDPM:
@@ -7624,6 +7665,7 @@ MWFRM:
   is_abstract: true
   opt_uses:
   - failed_makeup_water_flowrate_alarm
+  - makeup_water_volume_accumulator
   uses:
   - makeup_water_flowrate_sensor
   implements:
@@ -7639,6 +7681,19 @@ BWFRM:
   - blowdown_water_flowrate_sensor
   implements:
   - MONITORING
+
+BWECVC:
+  guid: "2ebf7b84-a26f-4238-90c0-a630c753883b"
+  description: "Blowdown water electricconductivity drain valve control."
+  is_abstract: true
+  opt_uses:
+  - high_blowdown_water_electricconductivity_alarm
+  uses:
+  - drain_water_valve_command
+  - blowdown_water_electricconductivity_sensor
+  - blowdown_water_electricconductivity_setpoint
+  implements:
+  - OPERATIONAL
 
 DX3SCHWC:
   guid: "917e4514-ed4d-468c-8a81-44d29a143935"
