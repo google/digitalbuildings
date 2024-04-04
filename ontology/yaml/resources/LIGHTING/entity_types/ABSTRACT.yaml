@@ -197,7 +197,7 @@ ENM:
   is_abstract: true
   uses:
   - energy_accumulator
-  
+
 CTC:
   guid: "30ed8ab4-8df7-493f-a3fc-b4da7f28c8fe"
   is_abstract: true
