@@ -157,6 +157,7 @@ REFM:
   - MONITORING
   opt_uses:
   - high_zone_air_refrigerant_concentration_alarm
+  - failed_zone_air_refrigerant_concentration_alarm
   uses:
   - zone_air_refrigerant_concentration_sensor
 
@@ -1580,6 +1581,7 @@ REFC:
   is_abstract: true
   opt_uses:
   - failed_zone_air_refrigerant_concentration_alarm
+  - high_zone_air_refrigerant_concentration_alarm 
   uses:
   - zone_air_refrigerant_concentration_sensor
   - zone_air_refrigerant_concentration_setpoint
@@ -4821,6 +4823,8 @@ CHWRISOVPM:
   uses:
   - chilled_return_water_isolation_valve_percentage_command
   - chilled_return_water_isolation_valve_percentage_sensor
+  opt_uses:
+  - failed_chilled_return_water_isolation_valve_alarm
   implements:
   - MONITORING
 
@@ -6245,11 +6249,13 @@ DPCHWHRWSC:
   implements:
   - CONTROL
 
-
 CPVSC2X:
   guid: "1be3e1ba-1a25-4b9a-9784-e4bbd9313db5"
   description: "Circulation pump variable speed control with 2 circulation pumps."
   is_abstract: true
+  opt_uses:
+  - circulation_pump_speed_frequency_sensor_1
+  - circulation_pump_speed_frequency_sensor_2
   uses:
   - circulation_pump_run_command_1
   - circulation_pump_run_command_2
@@ -6259,7 +6265,6 @@ CPVSC2X:
   - circulation_pump_speed_percentage_command_2
   implements:
   - OPERATIONAL
-
 
 HWTTC:
   guid: "141c33da-9691-4e45-a572-3b06402a54d7"
