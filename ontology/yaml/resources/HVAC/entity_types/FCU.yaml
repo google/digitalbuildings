@@ -20,8 +20,8 @@
 # They must also include some control scheme (e.g. ZTC, DSP, etc.).
 
 FCU_DFMSC_DSP_ZTC:
-  description: "Variable refrigerant flow unit with zone cooling and heating control, discharge fan speed modes"
   guid: "9a03ce8b-40af-4243-a867-e2c94f615753"
+  description: "Variable refrigerant flow unit with zone cooling and heating control, discharge fan speed modes"
   is_canonical: true
   implements:
   - FCU
