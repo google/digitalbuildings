@@ -37,6 +37,16 @@ FAN_SS_VSC:
   - SS
   - VSC
 
+FAN_SS_VSC_EFM:
+  guid: "b8fd64cb-f012-46ee-95e0-cd2fd27f4c92"
+  description: "Fan with start/stop status, open-loop speed control and exhaust air flowrate monitoring."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - VSC
+  - EFM
+
 FAN_SS_VSC_ZSPC:
   guid: "b9f968cc-211b-4b25-915d-525216aebc4e"
   description: "Fan with start/stop status, open-loop speed control & zone static pressure control."
@@ -99,6 +109,16 @@ FAN_SS_REFM:
   implements:
   - FAN
   - SS
+  - REFM
+
+FAN_SS_VSC_REFM:
+  guid: "7544775f-1a32-4784-bac3-9474016a1186"
+  description: "Refrigerant monitoring fan with variable speed control."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - VSC
   - REFM
 
 FAN_SS_VSC_REFM4X:
