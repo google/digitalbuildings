@@ -19,7 +19,7 @@
 # This file defines fan-coil unit types. Valid types must include a fan and a coil of some type.
 # They must also include some control scheme (e.g. ZTC, DSP, etc.).
 
-FCU_DFMSC_DSP_ZTC:
+FCU_DFMSC_DSP_DXZTC:
   guid: "9a03ce8b-40af-4243-a867-e2c94f615753"
   description: "Variable refrigerant flow unit with zone cooling and heating control, discharge fan speed modes"
   is_canonical: true
@@ -27,7 +27,7 @@ FCU_DFMSC_DSP_ZTC:
   - FCU
   - DFMSC
   - DSP
-  - ZTC
+  - DXZTC
 
 FCU_RTM_DFVSC2X_CHWZTC_HWZTC_DTM:
   guid: "d5c05501-528f-47ea-be30-54e9c53f41ca"
