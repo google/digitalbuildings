@@ -70,14 +70,6 @@ def _ParseArgs() -> argparse.ArgumentParser:
       metavar='subscription')
 
   parser.add_argument(
-      '-c',
-      '--credential',
-      dest='gcp_credential',
-      required=False,
-      help='gcp credential used to authenticate against pubsub api',
-      metavar='gcp credential')
-
-  parser.add_argument(
       '-t',
       '--timeout',
       dest='timeout',
@@ -114,7 +106,6 @@ if __name__ == '__main__':
       filenames=args.filenames,
       modified_types_filepath=args.modified_types_filepath,
       subscription=args.subscription,
-      gcp_credential_path=args.gcp_credential,
       report_directory=args.report_directory,
       timeout=int(args.timeout),
       is_udmi=is_udmi,

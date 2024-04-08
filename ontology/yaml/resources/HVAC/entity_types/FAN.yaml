@@ -18,6 +18,16 @@
 
 ### FAN RUN CONTROL ###
 
+FAN_SS_VSC_WDPM:
+  guid: "b8c8b02f-367b-40f5-94ab-a9c19eca03aa"
+  description: "Fan with start/stop, open-loop speed control and differential pressure monitoring."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - VSC
+  - WDPM
+
 FAN_SS:
   guid: "ce4b17ab-afbb-4061-b506-085e4116ed9a"
   description: "Basic fan with start/stop and status."
@@ -36,6 +46,26 @@ FAN_SS_VSC:
   - FAN
   - SS
   - VSC
+
+FAN_SS_VSC_EFM:
+  guid: "b8fd64cb-f012-46ee-95e0-cd2fd27f4c92"
+  description: "Fan with start/stop status, open-loop speed control and exhaust air flowrate monitoring."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - VSC
+  - EFM
+
+FAN_SS_VSC_ZSPC:
+  guid: "b9f968cc-211b-4b25-915d-525216aebc4e"
+  description: "Fan with start/stop status, open-loop speed control & zone static pressure control."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - VSC
+  - ZSPC
 
 FAN_SS_WDPM:
   guid: "d12cbe88-243a-40a5-b624-3a2f355e7cfc"
@@ -89,6 +119,16 @@ FAN_SS_REFM:
   implements:
   - FAN
   - SS
+  - REFM
+
+FAN_SS_VSC_REFM:
+  guid: "7544775f-1a32-4784-bac3-9474016a1186"
+  description: "Refrigerant monitoring fan with variable speed control."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - VSC
   - REFM
 
 FAN_SS_VSC_REFM4X:
@@ -603,6 +643,25 @@ FAN_SS_VSC_FDPM_DRSM2X:
   - FDPM
   - DRSM2X
 
+FAN_SS_VSC_IDPC:
+  guid: "9808ad45-3d7a-4564-9542-8743a9fca8ac"
+  description: "Fan with start/stop status, variable speed control and isolation damper percentage control."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - VSC
+  - IDPC
+
+FAN_SS_VSC_REFC:
+  guid: "1cc110bf-d3a9-4be9-8fb1-8534b270424c"
+  description: "Fan with start/stop status, variable speed control and refrigerant concentration control."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - VSC
+  - REFC
 ###################################
 ### Existing Non-standard Types ###
 ###################################

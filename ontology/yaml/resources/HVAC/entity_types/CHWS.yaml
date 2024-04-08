@@ -16,6 +16,15 @@
 ### Canonical Types  ###
 ########################
 
+CHWS_RWTC_WDT:
+  guid: "c6b1443d-86c3-4012-8db3-698d133432da"
+  description: "Chilled water system with temperature control and monitoring."
+  is_canonical: true
+  implements:
+  - CHWS
+  - RWTC
+  - WDT
+
 CHWS_WDT:
   guid: "b8073a03-10fd-410e-a4d9-c8002181775b"
   description: "Chilled water system with only basic delta-T monitoring."
@@ -336,6 +345,21 @@ CHWS_SWTC_WDPC_PSWTC_PWDPC_PWFRM_PWECVC_SWDVPM_PWDVPM:
   - PWECVC
   - SWDVPM
   - PWDVPM
+
+
+CHWS_SWTC_WDPC_WFRM_CMSWFRM_BYPVPM_WSEBYPVPM_WSERWTM:
+  guid: "a50e908f-be3f-4e29-a284-21cc0a7fa332"
+  description: "Chilled water system with supply water temperature and differential pressure control, flowrate monitoring, common chiller supply water flowrate monitoring, bypass valve and water side economizer bypass valve."
+  is_canonical: true
+  implements:
+  - CHWS
+  - SWTC
+  - WDPC
+  - WFRM
+  - CMSWFRM
+  - BYPVPM
+  - WSEBYPVPM
+  - WSERWTM
 
 
 ###################################
