@@ -37,6 +37,7 @@ CRREF_CREFM:
   - CREFM
 
 CRREF_CREFM_NONCANONICAL_1:
+  guid: "5d84e3d2-bbc1-45c0-84bd-090f8bf5bc06"
   description: "Noncanonical coldroom refigrator monitoring with 3 compressor alarms."
   is_canonical: true
   implements:
@@ -47,6 +48,7 @@ CRREF_CREFM_NONCANONICAL_1:
   - failed_compressor_alarm_3
 
 CRREF_CREFM_NONCANONICAL_2:
+  guid: "587b32a8-c822-4125-acac-be289c2a59ee"
   description: "Noncanonical coldroom refigrator monitoring with 2 compressor alarms."
   is_canonical: true
   implements:
