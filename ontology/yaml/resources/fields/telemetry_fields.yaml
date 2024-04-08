@@ -3544,3 +3544,6 @@ literals:
 - low_detergent_alarm:
   - ACTIVE
   - INACTIVE
+- circulation_pump_speed_frequency_sensor:
+    flexible_min: -0.5
+    flexible_max: 65.0
