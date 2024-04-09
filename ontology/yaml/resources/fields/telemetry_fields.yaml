@@ -3544,7 +3544,7 @@ literals:
 - low_detergent_alarm:
   - ACTIVE
   - INACTIVE
-- low_refrigerant_alarm:
+- low_refrigerant_level_alarm:
   - ACTIVE
   - INACTIVE
 - circulation_pump_speed_frequency_sensor:

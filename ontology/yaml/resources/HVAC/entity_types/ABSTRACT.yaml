@@ -1595,7 +1595,6 @@ CREFM:
   is_abstract: true
   opt_uses:
   - compressor_run_status
-  - run_command
   - run_status
   - run_time_accumulator
   - compressor_lost_power_alarm
@@ -1607,7 +1606,7 @@ CREFM:
   - low_zone_air_temperature_alarm
   - failed_zone_air_temperature_alarm
   - overload_compressor_alarm
-  - low_refrigerant_alarm
+  - low_refrigerant_level_alarm
   uses:
   - defrost_temperature_sensor
   - zone_air_temperature_sensor
