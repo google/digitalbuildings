@@ -16,6 +16,14 @@
 ### Canonical Types  ###
 ########################
 
+TK_LVLHL_SWTM:
+  guid: "f14a9538-b90b-4079-b087-ee1d4883d89b"
+  description: "Tank with supply water temperature monitoring with high and low water level monitoring"
+  is_canonical: true
+  implements:
+  - LVLHL
+  - SWTM
+  
 TK_SWTC_PHWTC:
   guid: "afec4cde-0aa9-4f75-9cf8-1fa1512fd49a"
   description: "Tank with supply water temperature control and potable water temperature monitoring."

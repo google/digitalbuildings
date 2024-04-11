@@ -7044,6 +7044,13 @@ LM:
   - level_status
   - percentage_sensor
 
+LVLHL:
+  guid: "647a4576-b503-43cd-b3b7-e1a9c6856695"
+  description: "High and Low Level Monitoring for tanks."
+  is_abstract: true
+  uses:
+  - water_high_level_status
+  - water_low_level_status
 
 PLPM:
   guid: "87da5960-a441-49a1-8f80-05acdbf32426"
