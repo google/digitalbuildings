@@ -29,7 +29,7 @@ RO_STD:
   - line_pressure_sensor
   - water_totaldissolvedsolids_concentration_sensor
 RO_SS:
-  description: "Standard reverse osmosis (RO) Run Status and command monitoring"
+  description: "Standard reverse osmosis (RO) basic Run Status and command monitoring"
   is_canonical: true
   implements:
   - RO
