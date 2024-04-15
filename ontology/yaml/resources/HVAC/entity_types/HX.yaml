@@ -207,3 +207,14 @@ HX_CHWDT_PRWDT_CHWDPM_PWDPM:
   - PRWDT
   - CHWDPM
   - PWDPM
+
+HX_CWRISOVPM_CHWRWDVPM_CWDT_CHWDT:
+  guid: "993e124b-b666-46ee-95ee-e958423ada9e"
+  description: "Heat exchanger with condensing return isolation valve, chilled return diverting valve, and chilled and condensing temperature differential monitoring."
+  is_canonical: true
+  implements:
+  - HX
+  - CWRISOVPM
+  - CHWRWDVPM
+  - CWDT
+  - CHWDT

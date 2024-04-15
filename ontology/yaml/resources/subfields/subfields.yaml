@@ -13,9 +13,9 @@
 # limitations under the License.
 
 aggregation:
-  average: "Average value (e.g. average_zone_air_temperature_sensor)"
-  max: "Maximum value (e.g. Max_Cooling_Air_Flow_Setpoint)"
-  min: "Minimum value (e.g. Min_Ventilation_Air_Flow_Setpoint)"
+  average: "Average value; the arithmetic mean of a set of numeric values (e.g., average_zone_air_temperature_sensor is a spatial aggregation of multiple zone temperature sensors)."
+  max: "Maximum value; the largest value in a set of numeric values. Can be used for spatial (e.g., max_zone_air_co2_concentration_sensor) or temporal (e.g., tenminutefixed_max_xaxis_frequency_sensor) aggregations."
+  min: "Minimum value; the smallest value in a set of numeric values. Can be used for spatial (e.g., min_zone_air_relative_humidity_sensor) or temporal (e.g., fivesecondrolling_min_xaxis_linearacceleration_sensor) aggregations."
   rootmeansquare: "Square root of the mean square (quadratic mean); measures the magnitude of a set of values."
   total: "Sum total of some set of values (e.g. total_request_heating_count)"
 aggregation_descriptor:
@@ -69,7 +69,7 @@ descriptor:
   ac: "Electric charge which periodically reverses direction and changes its magnitude continuously with time."
   ammonia: "Ammonia gas."
   blowdown: "Process of expelling water filled with mineral deposits for the purposes of water treatment."
-  blue: "blue light fracture of ambient light."
+  blue: "Blue light fracture of ambient light."
   boost: "Component used to boost pressure."
   broken: "A state of disrepair; fractured or segmented."
   building: "Applies to the entire building or group of zones within building (e.g. Building_Air_Static_Pressure_Sensor)."
@@ -86,6 +86,7 @@ descriptor:
   cogeneration: "Associated with a cogeneration process."
   cold: "Associated with cold area or process."
   color: "Physical perceptual property of light deriving from the electromagnetic spectrum."
+  common: "Aggregate or collective measurement of substance coming from multiple sources."
   communication: "Actual transmit and recieve of data or connectivity between devices."
   condensate: "Indicates moisture on surfaces"
   condensing: "Process of gaseous refrigerant changing to liquid."
@@ -96,6 +97,7 @@ descriptor:
   dc: "Unidirectional flow of Electric Charge"
   dehumidification: "Process of removing moisture from air."
   detection: "Process of identifying conditions."
+  detergent: "Water-soluble cleansing agent."
   direction: "Direction in which particular entity is moving or is present."
   discharge: "Media leaving system to enter ambient conditioned space. Typically applies only to air-side systems."
   diverting: "Controlling the flow of fluids or gases by diverting the flow from one pathway to another."
