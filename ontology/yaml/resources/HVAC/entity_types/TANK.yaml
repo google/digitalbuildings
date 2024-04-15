@@ -16,28 +16,30 @@
 ### Canonical Types  ###
 ########################
 
-TK_SS_LVLHL:
+TK_LHLM:
   guid: "f6beac97-8d0b-4668-a7a4-0352b7205ba2"
   description: "Tank with high and low water level monitoring."
   is_canonical: true
   implements:
-  - SS
-  - LVLHL
+  - TK
+  - LHLM
   
-TK_LVLHL_WDT:
+TK_LHLM_WDT:
   guid: "c40eb02a-188a-4440-a88e-bb67f8b9c3d5"
   description: "Tank with temperature differential monitoring with high and low water level monitoring."
   is_canonical: true
   implements:
-  - LVLHL
+  - TK
+  - LHLM
   - WDT
 
-TK_LVLHL_SWTM:
+TK_LHLM_SWTM:
   guid: "f14a9538-b90b-4079-b087-ee1d4883d89b"
   description: "Tank with supply water temperature monitoring with high and low water level monitoring."
   is_canonical: true
   implements:
-  - LVLHL
+  - TK
+  - LHLM
   - SWTM
   
 TK_SWTC_PHWTC:
