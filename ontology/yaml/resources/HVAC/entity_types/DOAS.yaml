@@ -19,7 +19,7 @@
 DOAS_HTWHLSTC_SFVSC_EFVSC_EDM_SDM_RFC_SFC_FDPM2X_RTM:
   guid: "e0627d5a-99cd-4edd-824b-636428427980"
   description: "DOAS with supply and return fans, heatwheel and fan speed flowrate control"
-  is_canonical: temperature
+  is_canonical: true
   implements:
   - DOAS
   - HTWHLSTC
