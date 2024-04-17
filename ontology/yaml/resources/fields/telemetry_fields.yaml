@@ -33,6 +33,18 @@ literals:
 - bypass_valve_percentage_command:
     fixed_min: 0.0
     fixed_max: 100.0
+- failed_chilled_supply_water_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
+- failed_chilled_return_water_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
+- high_chilled_return_water_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
+- low_chilled_return_water_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
 - chilled_return_water_temperature_sensor:
     flexible_min: 255.9259259
     flexible_max: 308.1481481
@@ -3162,6 +3174,12 @@ literals:
 - failed_mixed_air_temperature_alarm:
   - ACTIVE
   - INACTIVE
+- high_mixed_air_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
+- low_mixed_air_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
 - failed_outside_air_damper_alarm:
   - ACTIVE
   - INACTIVE
@@ -3202,6 +3220,9 @@ literals:
   - ACTIVE
   - INACTIVE
 - high_differential_pressure_alarm:
+  - ACTIVE
+  - INACTIVE
+- failed_supply_air_static_pressure_alarm:
   - ACTIVE
   - INACTIVE
 - high_supply_air_static_pressure_alarm:
@@ -3250,6 +3271,9 @@ literals:
   - ACTIVE
   - INACTIVE
 - high_process_water_differential_pressure_alarm:
+  - ACTIVE
+  - INACTIVE
+- failed_zone_air_co2_concentration_alarm:
   - ACTIVE
   - INACTIVE
 - high_zone_air_co2_concentration_alarm:
