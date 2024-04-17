@@ -125,6 +125,8 @@ OAFC:
   - economizer_mode
   - mixed_air_temperature_sensor
   - failed_mixed_air_temperature_alarm
+  - high_mixed_air_temperature_alarm
+  - low_mixed_air_temperature_alarm
   uses:
   - outside_air_damper_percentage_command
   - outside_air_flowrate_sensor
@@ -321,6 +323,7 @@ CO2C:
   - zone_air_co2_concentration_setpoint
   opt_uses:
   - high_zone_air_co2_concentration_alarm
+  - failed_zone_air_co2_concentration_alarm
 
 
 CO2CDSP:
@@ -335,6 +338,7 @@ CO2CDSP:
   - zone_air_co2_concentration_sensor
   opt_uses:
   - high_zone_air_co2_concentration_alarm
+  - failed_zone_air_co2_concentration_alarm
   
 
 COC:
@@ -723,6 +727,7 @@ SSPC:
   - supply_fan_speed_frequency_sensor
   - supply_fan_speed_percentage_command
   - failed_supply_fan_alarm
+  - failed_supply_air_static_pressure_alarm
   - high_supply_air_static_pressure_alarm
   - low_supply_air_static_pressure_alarm
   uses:
@@ -1217,6 +1222,7 @@ SCHWTC:
   - cooling_request_count
   - cooling_run_command
   - failed_cooling_alarm
+  - failed_chilled_supply_water_temperature_alarm
   - high_chilled_supply_water_temperature_alarm
   - low_chilled_supply_water_temperature_alarm
   uses:
@@ -1251,6 +1257,9 @@ RCHWTC:
   - chilled_supply_water_temperature_sensor
   - cooling_percentage_command
   - cooling_request_count
+  - failed_chilled_return_water_temperature_alarm
+  - high_chilled_return_water_temperature_alarm
+  - low_chilled_return_water_temperature_alarm
   uses:
   - chilled_return_water_temperature_sensor
   - chilled_return_water_temperature_setpoint
@@ -1384,6 +1393,8 @@ MTM:
   - mixed_air_dewpoint_temperature_sensor
   - mixed_air_relative_humidity_sensor
   - failed_mixed_air_temperature_alarm
+  - high_mixed_air_temperature_alarm
+  - low_mixed_air_temperature_alarm
   uses:
   - mixed_air_temperature_sensor
   implements:
@@ -1401,6 +1412,8 @@ MTC:
   - OPERATIONAL
   opt_uses:
   - failed_mixed_air_temperature_alarm
+  - high_mixed_air_temperature_alarm
+  - low_mixed_air_temperature_alarm
 
 
 STM:
@@ -1636,6 +1649,7 @@ CO2M:
   - MONITORING
   opt_uses:
   - high_zone_air_co2_concentration_alarm
+  - failed_zone_air_co2_concentration_alarm
 
 
 VOCM:
@@ -1754,6 +1768,7 @@ SSPM:
   implements:
   - MONITORING
   opt_uses:
+  - failed_supply_air_static_pressure_alarm
   - high_supply_air_static_pressure_alarm
   - low_supply_air_static_pressure_alarm
 
@@ -3394,6 +3409,8 @@ ECON:
   - return_air_damper_percentage_command
   - supply_air_temperature_sensor
   - failed_mixed_air_temperature_alarm
+  - high_mixed_air_temperature_alarm
+  - low_mixed_air_temperature_alarm
   - high_return_air_temperature_alarm
   - high_supply_air_temperature_alarm
   - low_return_air_temperature_alarm
@@ -3423,6 +3440,8 @@ ECOND:
   - return_air_temperature_sensor
   - failed_discharge_air_temperature_alarm
   - failed_mixed_air_temperature_alarm
+  - high_mixed_air_temperature_alarm
+  - low_mixed_air_temperature_alarm
   - high_return_air_temperature_alarm
   - low_return_air_temperature_alarm
   uses:
@@ -3447,6 +3466,8 @@ ECONM:
   - return_air_damper_percentage_command
   - supply_air_temperature_sensor
   - failed_mixed_air_temperature_alarm
+  - high_mixed_air_temperature_alarm
+  - low_mixed_air_temperature_alarm
   - high_return_air_temperature_alarm
   - high_supply_air_temperature_alarm
   - low_return_air_temperature_alarm
@@ -3479,6 +3500,10 @@ ECONM2X:
   - average_mixed_air_temperature_sensor
   - failed_mixed_air_temperature_alarm_1
   - failed_mixed_air_temperature_alarm_2
+  - high_mixed_air_temperature_alarm_1
+  - low_mixed_air_temperature_alarm_1
+  - high_mixed_air_temperature_alarm_2
+  - low_mixed_air_temperature_alarm_2
   uses:
   - economizer_mode
   - mixed_air_temperature_sensor_1
@@ -3505,6 +3530,8 @@ ECONMD:
   - return_air_temperature_sensor
   - failed_discharge_air_temperature_alarm
   - failed_mixed_air_temperature_alarm
+  - high_mixed_air_temperature_alarm
+  - low_mixed_air_temperature_alarm
   - high_return_air_temperature_alarm
   - low_return_air_temperature_alarm
   uses:
@@ -3533,6 +3560,8 @@ ECONZ:
   - return_air_temperature_sensor
   - failed_discharge_air_temperature_alarm
   - failed_mixed_air_temperature_alarm
+  - high_mixed_air_temperature_alarm
+  - low_mixed_air_temperature_alarm
   - failed_zone_air_temperature_alarm
   - high_return_air_temperature_alarm
   - high_zone_air_temperature_alarm
@@ -3558,6 +3587,8 @@ VOADM:
   - mixed_air_temperature_sensor
   - outside_air_damper_percentage_sensor
   - failed_mixed_air_temperature_alarm
+  - high_mixed_air_temperature_alarm
+  - low_mixed_air_temperature_alarm
   - failed_outside_air_damper_alarm
   uses:
   - outside_air_damper_percentage_command
@@ -3598,6 +3629,8 @@ OAFMC:
   - economizer_mode
   - mixed_air_temperature_sensor
   - failed_mixed_air_temperature_alarm
+  - high_mixed_air_temperature_alarm
+  - low_mixed_air_temperature_alarm
   - ventilation_request_count
   uses:
   - outside_air_damper_percentage_command
@@ -4522,6 +4555,7 @@ BYPSSPC:
   opt_uses:
   - supply_air_flowrate_sensor
   - failed_supply_fan_alarm
+  - failed_supply_air_static_pressure_alarm
   - high_supply_air_static_pressure_alarm
   - low_supply_air_static_pressure_alarm
   uses:
@@ -4541,6 +4575,7 @@ BYPSSPC2X: # Consider virtual point for instances where dampers control to same 
   opt_uses:
   - supply_air_flowrate_sensor
   - failed_supply_fan_alarm
+  - failed_supply_air_static_pressure_alarm
   - high_supply_air_static_pressure_alarm
   - low_supply_air_static_pressure_alarm
   uses:
@@ -4982,6 +5017,7 @@ SDBPC:
   is_abstract: true
   opt_uses:
   - supply_air_flowrate_sensor
+  - failed_supply_air_static_pressure_alarm
   - high_supply_air_static_pressure_alarm
   - low_supply_air_static_pressure_alarm
   uses:
@@ -6003,6 +6039,7 @@ CO2DFVSC:
   - CONTROL
   opt_uses:
   - high_zone_air_co2_concentration_alarm
+  - failed_zone_air_co2_concentration_alarm
 
 
 CO2EFVSC:
@@ -6012,6 +6049,7 @@ CO2EFVSC:
   opt_uses:
   - exhaust_fan_speed_percentage_sensor
   - high_zone_air_co2_concentration_alarm
+  - failed_zone_air_co2_concentration_alarm
   uses:
   - exhaust_fan_speed_percentage_command
   - zone_air_co2_concentration_sensor
@@ -6165,6 +6203,8 @@ VOADM2X:
   - outside_air_flowrate_sensor_1
   - outside_air_flowrate_sensor_2
   - failed_mixed_air_temperature_alarm
+  - high_mixed_air_temperature_alarm
+  - low_mixed_air_temperature_alarm
   uses:
   - outside_air_damper_percentage_command_1
   - outside_air_damper_percentage_command_2
