@@ -26,6 +26,7 @@ PWM:
   - line_frequency_sensor
   - apparent_energy_accumulator
   - reactive_energy_accumulator
+  - recieved_energy_accumulator
   uses:
   - power_sensor
   - energy_accumulator
