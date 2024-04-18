@@ -3547,6 +3547,6 @@ literals:
 - circulation_pump_speed_frequency_sensor:
     flexible_min: -0.5
     flexible_max: 65.0
-- recieved_energy_accumulator:
+- received_energy_accumulator:
     fixed_min: 0.0
     flexible_max: 10000000.0
