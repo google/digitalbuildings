@@ -1613,12 +1613,13 @@ CREFM:
   - compressor_lost_power_alarm
   - failed_alarm
   - failed_compressor_alarm
-  - failed_zone_air_temperature_alarm
   - frost_alarm
-  - high_zone_air_temperature_alarm
   - local_override_alarm
+  - high_zone_air_temperature_alarm
   - low_zone_air_temperature_alarm
+  - failed_zone_air_temperature_alarm
   - overload_compressor_alarm
+  - low_refrigerant_level_alarm
   uses:
   - defrost_temperature_sensor
   - zone_air_temperature_sensor
