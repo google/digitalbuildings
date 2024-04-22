@@ -339,7 +339,7 @@ CO2CDSP:
   opt_uses:
   - high_zone_air_co2_concentration_alarm
   - failed_zone_air_co2_concentration_alarm
-  
+
 
 COC:
   guid: "dee7cc87-51cb-460e-8202-eff4001319db"
@@ -735,7 +735,7 @@ SSPC:
   - supply_air_static_pressure_setpoint
   implements:
   - OPERATIONAL
-  
+
 
 SPSS:
   guid: "0b1c2a43-53d8-4349-883c-8bde722fccb5"
