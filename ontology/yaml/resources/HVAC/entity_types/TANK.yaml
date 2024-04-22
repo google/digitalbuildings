@@ -23,7 +23,7 @@ TK_LHLM:
   implements:
   - TK
   - LHLM
-  
+
 TK_LHLM_WDT:
   guid: "c40eb02a-188a-4440-a88e-bb67f8b9c3d5"
   description: "Tank with temperature differential monitoring with high and low water level monitoring."
@@ -41,7 +41,7 @@ TK_LHLM_SWTM:
   - TK
   - LHLM
   - SWTM
-  
+
 TK_SWTC_PHWTC:
   guid: "afec4cde-0aa9-4f75-9cf8-1fa1512fd49a"
   description: "Tank with supply water temperature control and potable water temperature monitoring."
