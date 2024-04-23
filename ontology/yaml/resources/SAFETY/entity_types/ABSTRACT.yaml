@@ -75,7 +75,7 @@ WLA:
   - water_leak_alarm
 
 WLA2X:
-  description: "Water leak monitoring."
+  description: "Double water leak monitoring."
   is_abstract: true
   uses:
   - water_leak_alarm_1
