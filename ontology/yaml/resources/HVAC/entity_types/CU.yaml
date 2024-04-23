@@ -60,7 +60,7 @@ CU_DFSS_DFVSC_CHWZTC_HWZTC_RTM_ZHM_CO2CDSP_PDSCV_RDC:
   - RDC
 
 CU_SFSS_SFVSC_CHWSC_HTSC_SSPC_SARC_MTC_FDPM_CAM:
-  description: "Compartment unit on supply side with start/stop, status, cooling and heating (supply temp control)."
+  description: "Chilled water compartment unit on supply side with start/stop, status, cooling and heating (supply temp control)."
   is_canonical: true
   implements:
   - CU
@@ -75,7 +75,7 @@ CU_SFSS_SFVSC_CHWSC_HTSC_SSPC_SARC_MTC_FDPM_CAM:
   - CAM
 
 CU_SFSS_SFVSC_CHWSC_CHWDT_HTSC_SSPC_SARC_MTM_RTM_FDPM:
-  description: "Compartment unit on supply side with start/stop, status, cooling and heating (supply temp control)."
+  description: "Chilled water compartment unit on supply side with start/stop, status, cooling and heating (supply temp control), and differential temperature monitoring."
   is_canonical: true
   implements:
   - CU
