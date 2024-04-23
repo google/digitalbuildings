@@ -3123,6 +3123,9 @@ literals:
 - failed_discharge_air_temperature_alarm:
   - ACTIVE
   - INACTIVE
+- failed_outside_air_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
 - failed_exhaust_air_temperature_alarm:
   - ACTIVE
   - INACTIVE
