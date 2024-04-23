@@ -1053,7 +1053,6 @@ RTC:
   opt_uses:
   - high_return_air_temperature_alarm
   - low_return_air_temperature_alarm
-  - zone_air_temperature_sensor
 
 #TODO: Rename to OTM
 OA:
@@ -1519,7 +1518,6 @@ RHC:
   - failed_humidifier_alarm
   - high_return_air_relative_humidity_alarm
   - low_return_air_relative_humidity_alarm
-  - zone_air_relative_humidity_sensor
   uses:
   - return_air_relative_humidity_sensor
   - return_air_relative_humidity_setpoint
