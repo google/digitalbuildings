@@ -98,6 +98,7 @@ MAU:
   is_abstract: true
   opt_uses:
   - failed_communication_alarm
+  - failed_alarm
   implements:
   - EQUIPMENT
 
@@ -156,6 +157,8 @@ CU:
   is_abstract: true
   opt_uses:
   - failed_communication_alarm
+  - emergency_alarm
+  - master_alarm
   implements:
   - EQUIPMENT
 

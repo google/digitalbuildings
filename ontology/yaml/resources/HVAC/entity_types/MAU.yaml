@@ -498,6 +498,25 @@ MAU_DFSS_DFVSC_HTDC_ZTM:
   - HTDC
   - ZTM
 
+MAU_DFSS_DFVSC_HTDC_CO2CMAX:
+  description: "Mechanical room heating make-up air unit."
+  is_canonical: true
+  implements:
+  - MAU
+  - DFSS
+  - DFVSC
+  - HTDC
+  - CO2CMAX
+
+MAU_DFSS_DFVSC_CO2CMAX:
+  description: "Mechanical room make-up air unit."
+  is_canonical: true
+  implements:
+  - MAU
+  - DFSS
+  - DFVSC
+  - CO2CMAX
+
 MAU_DFSS_DFVSC_DX2DDC_HTDDC_OAFC_ZTM:
   guid: "9a47c443-d806-48b8-a951-168a8bc2cbc2"
   description: "Single zone with dual discharge setpoint control for heating and cooling."

@@ -87,6 +87,13 @@ LDS_WLA:
   - LDS
   - WLA
 
+LDS_WLA2X:
+  description: "Water Leak sensing device with two sensors."
+  is_canonical: true
+  implements:
+  - LDS
+  - WLA2X
+
 LDS_WLA_BCM:
   guid: "83a30f4d-8999-4b8e-ae4e-bd4eec29271d"
   description: "Water Leak sensing and broken cable sensing device."

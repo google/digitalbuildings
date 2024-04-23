@@ -37,6 +37,7 @@ SD:
   - high_supply_air_flowrate_alarm
   - low_supply_air_flowrate_alarm
   - failed_supply_air_damper_alarm
+  - pressurization_request_count
   uses:
   - supply_air_damper_percentage_command
   - supply_air_flowrate_sensor
@@ -290,6 +291,8 @@ DSP:
   - high_zone_air_temperature_alarm
   - low_zone_air_temperature_alarm
   - zone_occupancy_status
+  - cooling_request_count
+  - heating_request_count
   uses:
   - zone_air_cooling_temperature_setpoint
   - zone_air_heating_temperature_setpoint
@@ -325,6 +328,18 @@ CO2C:
   - high_zone_air_co2_concentration_alarm
   - failed_zone_air_co2_concentration_alarm
 
+
+CO2CMAX:
+  description: "Carbon dioxide control."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  uses:
+  - max_zone_air_co2_concentration_sensor
+  - zone_air_co2_concentration_setpoint
+  opt_uses:
+  - high_zone_air_co2_concentration_alarm
+  - failed_zone_air_co2_concentration_alarm
 
 CO2CDSP:
   guid: "668a3a75-e78d-4755-a360-b370bceda3c5"
@@ -569,6 +584,7 @@ SFVSC:
   - supply_fan_voltage_sensor
   - failed_supply_fan_alarm
   - supply_fan_lost_power_alarm
+  - failed_inverter_alarm
   uses:
   - supply_fan_run_command
   - supply_fan_run_status
@@ -595,6 +611,7 @@ DFVSC:
   - discharge_fan_lost_power_alarm
   - failed_discharge_fan_alarm
   - discharge_air_flowrate_sensor
+  - failed_inverter_alarm
   uses:
   - discharge_fan_run_command
   - discharge_fan_run_status
@@ -783,6 +800,7 @@ DFSS:
   - discharge_fan_lost_power_alarm
   - failed_discharge_fan_alarm
   - overload_discharge_fan_alarm
+  - local_override_alarm
   uses:
   - discharge_fan_run_command
   - discharge_fan_run_status
@@ -954,6 +972,7 @@ SFSS:
   - supply_fan_run_time_accumulator
   - failed_supply_fan_alarm
   - supply_fan_lost_power_alarm
+  - local_override_alarm
   uses:
   - supply_fan_run_command
   - supply_fan_run_status
@@ -1473,6 +1492,9 @@ ZHC:
   uses:
   - zone_air_relative_humidity_sensor
   - zone_air_relative_humidity_setpoint
+  opt_uses:
+  - failed_zone_air_relative_humidity_alarm
+  - high_zone_air_relative_humidity_alarm
   implements:
   - OPERATIONAL
 
@@ -1973,6 +1995,10 @@ CHWSC:
   - failed_supply_air_temperature_alarm
   - high_supply_air_temperature_alarm
   - low_supply_air_temperature_alarm
+  - water_leak_alarm
+  - water_leak_alarm_1
+  - water_leak_alarm_2
+  - water_leak_alarm_3
   uses:
   - chilled_water_valve_percentage_command
   - supply_air_temperature_sensor
@@ -2092,6 +2118,7 @@ CHWZTC:
   - high_zone_air_temperature_alarm
   - low_zone_air_temperature_alarm
   - zone_air_deadband_temperature_setpoint
+  - water_leak_alarm
   uses:
   - chilled_water_valve_percentage_command
   - zone_air_temperature_sensor
@@ -4061,6 +4088,8 @@ CLPM:
   is_abstract: true
   uses:
   - cooling_thermal_power_sensor
+  opt_uses:
+  - cooling_thermal_energy_accumulator
   implements:
   - MONITORING
 

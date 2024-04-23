@@ -74,6 +74,13 @@ WLA:
   uses:
   - water_leak_alarm
 
+WLA2X:
+  description: "Water leak monitoring."
+  is_abstract: true
+  uses:
+  - water_leak_alarm_1
+  - water_leak_alarm_2
+
 FA2X:
   guid: "5010bcf9-f4c8-4884-8f5c-a6261b14699e"
   description: "Fire alarm monitoring."

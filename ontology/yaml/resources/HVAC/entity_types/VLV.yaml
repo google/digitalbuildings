@@ -34,7 +34,16 @@ VLV_HWVM: # If we want to keep this, should match CHW valve (i.e. add RTM and DT
   - VLV
   - HWVM
 
-VLV_CHWPVM:
+VLV_CHWVM_CHWDT_CLPM:
+  description: "Chilled water pressure control valve."
+  is_canonical: true
+  implements:
+  - VLV
+  - CHWVM
+  - CHWDT
+  - CLPM
+
+VLV_CHWPVM_:
   guid: "4222857f-3f92-4663-83ac-0bb11550f568"
   description: "Chilled water pressure control valve."
   is_canonical: true

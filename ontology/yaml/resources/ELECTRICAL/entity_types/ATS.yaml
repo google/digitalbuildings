@@ -29,3 +29,12 @@ ATS_SRC1_SRC2:
   opt_uses:
   - generator_status
   - fire_alarm
+
+ATS_NONCANONICAL1:
+  description: "Power monitoring automatic transfer switch."
+  is_canonical: true #make non-canonical
+  implements:
+  - ATS
+  uses:
+  - power_status
+  - switch_position_mode
