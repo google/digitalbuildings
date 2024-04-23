@@ -465,6 +465,34 @@ FCU_DFSS_RTC_RHC_RHDHC_DXRC:
   - RHDHC
   - DXRC
 
+FCU_DFSS_RTC_RHC_RHDHC_DXRC_HTRC_FDPM:
+  description: "DX fan coil with return temp and humidification control."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - RTC
+  - RHC
+  - RHDHC
+  - DXRC
+  - HTRC
+  - FDPM
+
+FCU_DFSS_RTC_RHC_RHDHC_DXRC_ZTM_ZHM_HTRC_FDPM:
+  description: "DX fan coil with return temp and humidification control, and zone monitoring."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - RTC
+  - RHC
+  - RHDHC
+  - DXRC
+  - ZTM
+  - ZHM
+  - HTRC
+  - FDPM
+
 FCU_DFSS_RTC_RHC_RHDHC_HTRC_DXRC:
   guid: "9460568b-550a-43d4-a63f-bb0d98ed6a3e"
   description: "DX fan coil with reheat and return temp and humidity control."
@@ -1158,10 +1186,6 @@ FCU_DFSS_CHWZTC_CHWDT_CAM_ZHC:
   - CHWDT
   - CAM
   - ZHC
-  opt_uses:
-  - schedule_run_command
-  - lost_power_alarm
-  - smoke_alarm
 
 FCU_DFSS_ZTC:
   guid: "62c81f76-c539-461d-837d-d01b89a4e9da"

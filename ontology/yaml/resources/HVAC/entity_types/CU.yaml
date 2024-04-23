@@ -73,12 +73,22 @@ CU_SFSS_SFVSC_CHWSC_HTSC_SSPC_SARC_MTC_FDPM_CAM:
   - MTC
   - FDPM
   - CAM
-  uses:
-  - filter_alarm_1
-  - filter_alarm_2
-  - filter_alarm_3
-  - frost_alarm
-  - average_zone_air_temperature_sensor
+
+CU_SFSS_SFVSC_CHWSC_CHWDT_HTSC_SSPC_SARC_MTM_RTM_FDPM:
+  description: "Compartment unit on supply side with start/stop, status, cooling and heating (supply temp control)."
+  is_canonical: true
+  implements:
+  - CU
+  - SFSS
+  - SFVSC
+  - CHWSC
+  - HTSC
+  - SSPC
+  - SARC
+  - MTM
+  - RTM
+  - FDPM
+  - CHWDT
 
 ###################################
 ### Existing Non-standard Types ###

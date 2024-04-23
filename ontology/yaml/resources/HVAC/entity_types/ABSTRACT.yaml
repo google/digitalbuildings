@@ -683,6 +683,9 @@ ZHM:
   - MONITORING
   uses:
   - zone_air_relative_humidity_sensor
+  opt_uses:
+  - failed_zone_air_relative_humidity_alarm
+  - high_zone_air_relative_humidity_alarm
 
 ZHM2X:
   guid: "1e5c95b5-bbf8-42ab-b68f-08bd3fc7638e"
@@ -1049,6 +1052,7 @@ RTC:
   opt_uses:
   - high_return_air_temperature_alarm
   - low_return_air_temperature_alarm
+  - zone_air_temperature_sensor
 
 #TODO: Rename to OTM
 OA:
@@ -1127,7 +1131,13 @@ CHWDT:
   uses:
   - chilled_return_water_temperature_sensor
   - chilled_supply_water_temperature_sensor
-
+  opt_uses:
+  - failed_chilled_supply_water_temperature_alarm
+  - failed_chilled_return_water_temperature_alarm
+  - high_chilled_return_water_temperature_alarm
+  - high_chilled_supply_water_temperature_alarm
+  - low_chilled_return_water_temperature_alarm
+  - low_chilled_supply_water_temperature_alarm
 
 CHWDPSC:
   guid: "16555397-2e6c-401c-bb6e-3b93affe444e"
@@ -1508,6 +1518,7 @@ RHC:
   - failed_humidifier_alarm
   - high_return_air_relative_humidity_alarm
   - low_return_air_relative_humidity_alarm
+  - zone_air_relative_humidity_sensor
   uses:
   - return_air_relative_humidity_sensor
   - return_air_relative_humidity_setpoint
@@ -1921,6 +1932,11 @@ FDPM:
   is_abstract: true
   uses:
   - filter_differential_pressure_sensor
+  opt_uses:
+  - filter_alarm
+  - filter_alarm_1
+  - filter_alarm_2
+  - filter_alarm_3
   implements:
   - MONITORING
 
@@ -1999,6 +2015,8 @@ CHWSC:
   - water_leak_alarm_1
   - water_leak_alarm_2
   - water_leak_alarm_3
+  - average_zone_air_temperature_sensor
+  - frost_alarm
   uses:
   - chilled_water_valve_percentage_command
   - supply_air_temperature_sensor
