@@ -14,7 +14,6 @@
 
 ### ABSTRACT TYPES
 
-
 GASDET:
   guid: "38f79492-74f8-4a6b-b87f-27bd9a3b8442"
   description: "Basic natural gas leak monitoring."
