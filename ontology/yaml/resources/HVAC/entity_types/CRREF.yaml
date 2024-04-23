@@ -18,7 +18,7 @@
 
 CRREF_DXZTC_DFSS:
   guid: "2b1ae7c9-4b27-4e45-830e-46d1d413fd18"
-  description: "Typical coldroom refigrator."
+  description: "Typical coldroom refrigerator."
   is_canonical: true
   implements:
   - CRREF
@@ -30,8 +30,38 @@ CRREF_DXZTC_DFSS:
 
 CRREF_CREFM:
   guid: "dd9e8925-2d93-40ef-9344-05c5a725714b"
-  description: "Typical coldroom refigrator monitoring."
+  description: "Typical coldroom refrigerator monitoring."
   is_canonical: true
   implements:
   - CRREF
   - CREFM
+
+CRREF_SS_CREFM:
+  guid: "d5111ded-9762-46e2-8ab0-59be2ac8a9f3"
+  description: "Coldroom refrigerator with start/stop."
+  is_canonical: true
+  implements:
+  - CRREF
+  - SS
+  - CREFM
+
+CRREF_SS_CREFM_NONCANONICAL_1:
+  guid: "5d84e3d2-bbc1-45c0-84bd-090f8bf5bc06"
+  description: "Noncanonical coldroom refrigerator monitoring with start-stop and 3 compressor alarms."
+  is_canonical: false
+  implements:
+  - CRREF_SS_CREFM
+  uses:
+  - failed_compressor_alarm_1
+  - failed_compressor_alarm_2
+  - failed_compressor_alarm_3
+
+CRREF_SS_CREFM_NONCANONICAL_2:
+  guid: "587b32a8-c822-4125-acac-be289c2a59ee"
+  description: "Noncanonical coldroom refrigerator monitoring with start-stop and 2 compressor alarms."
+  is_canonical: false
+  implements:
+  - CRREF_SS_CREFM
+  uses:
+  - failed_compressor_alarm_1
+  - failed_compressor_alarm_2
