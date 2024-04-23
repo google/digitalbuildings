@@ -330,7 +330,7 @@ CO2C:
 
 
 CO2CMAX:
-  description: "Carbon dioxide control."
+  description: "Multi-zone carbon dioxide control to the maximum zone concentration."
   is_abstract: true
   implements:
   - OPERATIONAL
