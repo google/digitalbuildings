@@ -74,6 +74,7 @@ WLA:
   - water_leak_alarm
 
 WLA2X:
+  guid: "56b8fea6-c32a-40a2-af68-4b34913f25c0"
   description: "Double water leak monitoring."
   is_abstract: true
   uses:
