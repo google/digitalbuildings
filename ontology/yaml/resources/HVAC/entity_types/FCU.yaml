@@ -466,7 +466,7 @@ FCU_DFSS_RTC_RHC_RHDHC_DXRC:
   - DXRC
 
 FCU_DFSS_RTC_RHC_RHDHC_DXRC_HTRC_FDPM:
-  description: "DX fan coil with return temp and humidification control."
+  description: "DX fan coil with return temp and humidification control, and filter monitoring."
   is_canonical: true
   implements:
   - FCU
@@ -479,7 +479,7 @@ FCU_DFSS_RTC_RHC_RHDHC_DXRC_HTRC_FDPM:
   - FDPM
 
 FCU_DFSS_RTC_RHC_RHDHC_DXRC_ZTM_ZHM_HTRC_FDPM:
-  description: "DX fan coil with return temp and humidification control, and zone monitoring."
+  description: "DX fan coil with return temp and humidification control, filter monitoring, and zone monitoring."
   is_canonical: true
   implements:
   - FCU
