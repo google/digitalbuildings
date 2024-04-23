@@ -499,7 +499,7 @@ MAU_DFSS_DFVSC_HTDC_ZTM:
   - ZTM
 
 MAU_DFSS_DFVSC_HTDC_CO2CMAX:
-  description: "Mechanical room heating make-up air unit."
+  description: "Mechanical room heating make-up air unit with multi-zone co2 control."
   is_canonical: true
   implements:
   - MAU
