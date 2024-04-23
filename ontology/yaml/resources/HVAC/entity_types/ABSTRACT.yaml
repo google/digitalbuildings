@@ -330,6 +330,7 @@ CO2C:
 
 
 CO2CMAX:
+  guid: "6ce30064-7249-44be-8e6b-0f05f1f41715"
   description: "Multi-zone carbon dioxide control to the maximum zone concentration."
   is_abstract: true
   implements:
