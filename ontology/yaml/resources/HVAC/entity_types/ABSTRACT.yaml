@@ -1996,12 +1996,9 @@ CHWSC:
   - high_supply_air_temperature_alarm
   - low_supply_air_temperature_alarm
   - water_leak_alarm
-<<<<<<< Updated upstream
   - water_leak_alarm_1
   - water_leak_alarm_2
   - water_leak_alarm_3
-=======
->>>>>>> Stashed changes
   uses:
   - chilled_water_valve_percentage_command
   - supply_air_temperature_sensor
