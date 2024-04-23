@@ -16,6 +16,22 @@
 ### Canonical Types  ###
 ########################
 
+DOAS_HTWHLSTC_SFVSC_EFVSC_EDM_SDM_RFC_SFC_FDPM2X_RTM:
+  guid: "e0627d5a-99cd-4edd-824b-636428427980"
+  description: "DOAS with supply and return fans, heatwheel and fan speed flowrate control"
+  is_canonical: true
+  implements:
+  - DOAS
+  - HTWHLSTC
+  - SFVSC
+  - EFVSC
+  - EDM
+  - SDM
+  - RFC
+  - SFC
+  - FDPM2X
+  - RTM
+
 DOAS_EFM_EFSS_EFVSC_OAFM_PHRU_SFSS_SFVSC:
   guid: "e54a75b3-85ca-4b8a-80a5-9a575e91138e"
   description: "DOAS heat recovery with fan speed control."
