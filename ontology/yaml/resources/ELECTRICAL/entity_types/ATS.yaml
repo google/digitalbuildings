@@ -32,7 +32,7 @@ ATS_SRC1_SRC2:
 
 ATS_NONCANONICAL1:
   description: "Power monitoring automatic transfer switch."
-  is_canonical: true #make non-canonical
+  is_canonical: false
   implements:
   - ATS
   uses:
