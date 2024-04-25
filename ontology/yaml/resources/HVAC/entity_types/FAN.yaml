@@ -18,6 +18,16 @@
 
 ### FAN RUN CONTROL ###
 
+FAN_SS_VSC_WDPM:
+  guid: "b8c8b02f-367b-40f5-94ab-a9c19eca03aa"
+  description: "Fan with start/stop, open-loop speed control and differential pressure monitoring."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - VSC
+  - WDPM
+
 FAN_SS:
   guid: "ce4b17ab-afbb-4061-b506-085e4116ed9a"
   description: "Basic fan with start/stop and status."
