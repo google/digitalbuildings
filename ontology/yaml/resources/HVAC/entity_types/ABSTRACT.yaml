@@ -804,7 +804,6 @@ DFSS:
   - discharge_fan_lost_power_alarm
   - failed_discharge_fan_alarm
   - overload_discharge_fan_alarm
-  - local_override_alarm
   uses:
   - discharge_fan_run_command
   - discharge_fan_run_status
@@ -976,7 +975,6 @@ SFSS:
   - supply_fan_run_time_accumulator
   - failed_supply_fan_alarm
   - supply_fan_lost_power_alarm
-  - local_override_alarm
   uses:
   - supply_fan_run_command
   - supply_fan_run_status
@@ -1931,11 +1929,6 @@ FDPM:
   is_abstract: true
   uses:
   - filter_differential_pressure_sensor
-  opt_uses:
-  - filter_alarm
-  - filter_alarm_1
-  - filter_alarm_2
-  - filter_alarm_3
   implements:
   - MONITORING
 
@@ -2010,12 +2003,6 @@ CHWSC:
   - failed_supply_air_temperature_alarm
   - high_supply_air_temperature_alarm
   - low_supply_air_temperature_alarm
-  - water_leak_alarm
-  - water_leak_alarm_1
-  - water_leak_alarm_2
-  - water_leak_alarm_3
-  - average_zone_air_temperature_sensor
-  - frost_alarm
   uses:
   - chilled_water_valve_percentage_command
   - supply_air_temperature_sensor
