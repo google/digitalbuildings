@@ -33,6 +33,18 @@ literals:
 - bypass_valve_percentage_command:
     fixed_min: 0.0
     fixed_max: 100.0
+- failed_chilled_supply_water_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
+- failed_chilled_return_water_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
+- high_chilled_return_water_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
+- low_chilled_return_water_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
 - chilled_return_water_temperature_sensor:
     flexible_min: 255.9259259
     flexible_max: 308.1481481
@@ -248,7 +260,7 @@ literals:
     fixed_min: 0.0
     flexible_max: 10000.0
 - line_powerfactor_sensor:
-    fixed_min: 0.0
+    fixed_min: -1.0
     fixed_max: 1.0
 - loop_chilled_water_differential_pressure_sensor:
     flexible_min: -34473.78945
@@ -1129,7 +1141,7 @@ literals:
     flexible_max: 10000000.0
 - energy_accumulator:
     fixed_min: 0.0
-    flexible_max: 10000000.0
+    flexible_max: 36000000000000000000.0
 - average_line_current_sensor:
     fixed_min: 0.0
     flexible_max: 2000.0
@@ -1155,8 +1167,8 @@ literals:
     flexible_min: 0.0
     flexible_max: 10000000.0
 - phase1_powerfactor_sensor:
-    flexible_min: -1.5
-    flexible_max: 1.5
+    fixed_min: -1.0
+    fixed_max: 1.0
 - phase2_line_current_sensor:
     fixed_min: 0.0
     flexible_max: 2000.0
@@ -1170,8 +1182,8 @@ literals:
     flexible_min: 0.0
     flexible_max: 10000000.0
 - phase2_powerfactor_sensor:
-    flexible_min: -1.5
-    flexible_max: 1.5
+    fixed_min: -1.0
+    fixed_max: 1.0
 - phase3_line_current_sensor:
     fixed_min: 0.0
     flexible_max: 2000.0
@@ -1182,11 +1194,11 @@ literals:
     flexible_min: 0.0
     flexible_max: 10000000.0
 - phase3_powerfactor_sensor:
-    flexible_min: -1.5
-    flexible_max: 1.5
+    fixed_min: -1.0
+    fixed_max: 1.0
 - powerfactor_sensor:
-    flexible_min: -1.5
-    flexible_max: 100.0
+    fixed_min: -1.0
+    fixed_max: 1.0
 - reactive_power_sensor:
     flexible_min: -30000000.0
     flexible_max: 30000000.0
@@ -2162,7 +2174,7 @@ literals:
     flexible_max: 10000.0
 - apparent_energy_accumulator:
     fixed_min: 0.0
-    flexible_max: 10000000.0
+    flexible_max: 36000000000000000000.0
 - circuitbreaker_status:
   - ON
   - OFF
@@ -2170,8 +2182,8 @@ literals:
   - ACTIVE
   - INACTIVE
 - reactive_energy_accumulator:
-    flexible_min: -30000000.0
-    flexible_max: 30000000.0
+    flexible_min: -36000000000000000000.0
+    flexible_max: 36000000000000000000.0
 - emergency_battery_status:
   - ON
   - OFF
@@ -2721,7 +2733,7 @@ literals:
     flexible_min: 0.0
     flexible_max: 10000000.0
 - motor_powerfactor_sensor:
-    fixed_min: 0.0
+    fixed_min: -1.0
     fixed_max: 1.0
 - average_input_inter_line_motor_voltage_sensor:
     flexible_min: 0.0
@@ -2939,6 +2951,9 @@ literals:
   - LOW
   - MEDIUM
   - HIGH
+- remaining_battery_time_sensor:
+    fixed_min: 0.0
+    flexible_max: 86400.0
 - line_pressure_sensor:
     flexible_min: 0.0
     flexible_max: 689476.0
@@ -2977,22 +2992,22 @@ literals:
   - VFD
 - electricalgrid_energy_accumulator:
     fixed_min: 0.0
-    flexible_max: 4000000.0
+    flexible_max: 36000000000000.0
 - generator_run_time_accumulator:
     fixed_min: 0.0
     flexible_max: 1.25
 - generator_energy_accumulator:
     fixed_min: 0.0
-    flexible_max: 4000000.0
+    flexible_max: 36000000000000.0
 - electricalgrid_run_time_accumulator:
     fixed_min: 0.0
     flexible_max: 1.25
 - discharge_fan_energy_accumulator:
     fixed_min: 0.0
-    flexible_max: 100000.0
+    flexible_max: 36000000000000.0
 - supply_fan_energy_accumulator:
     fixed_min: 0.0
-    flexible_max: 100000.0
+    flexible_max: 36000000000000.0
 - compressor_run_time_accumulator:
     fixed_min: 0.0
     flexible_max: 1.25
@@ -3108,6 +3123,9 @@ literals:
 - failed_discharge_air_temperature_alarm:
   - ACTIVE
   - INACTIVE
+- failed_outside_air_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
 - failed_exhaust_air_temperature_alarm:
   - ACTIVE
   - INACTIVE
@@ -3159,6 +3177,12 @@ literals:
 - failed_mixed_air_temperature_alarm:
   - ACTIVE
   - INACTIVE
+- high_mixed_air_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
+- low_mixed_air_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
 - failed_outside_air_damper_alarm:
   - ACTIVE
   - INACTIVE
@@ -3199,6 +3223,9 @@ literals:
   - ACTIVE
   - INACTIVE
 - high_differential_pressure_alarm:
+  - ACTIVE
+  - INACTIVE
+- failed_supply_air_static_pressure_alarm:
   - ACTIVE
   - INACTIVE
 - high_supply_air_static_pressure_alarm:
@@ -3247,6 +3274,9 @@ literals:
   - ACTIVE
   - INACTIVE
 - high_process_water_differential_pressure_alarm:
+  - ACTIVE
+  - INACTIVE
+- failed_zone_air_co2_concentration_alarm:
   - ACTIVE
   - INACTIVE
 - high_zone_air_co2_concentration_alarm:
@@ -3539,6 +3569,9 @@ literals:
   - ON
   - OFF
 - low_detergent_alarm:
+  - ACTIVE
+  - INACTIVE
+- low_refrigerant_level_alarm:
   - ACTIVE
   - INACTIVE
 - circulation_pump_speed_frequency_sensor:
