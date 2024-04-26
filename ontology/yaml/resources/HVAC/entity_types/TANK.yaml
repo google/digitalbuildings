@@ -21,7 +21,7 @@ TK_LHLM:
   description: "Tank with high and low water level monitoring."
   is_canonical: true
   implements:
-  - TK
+  - /TK # Inherits from global namespace
   - LHLM
 
 TK_LHLM_WDT:
@@ -29,7 +29,7 @@ TK_LHLM_WDT:
   description: "Tank with temperature differential monitoring with high and low water level monitoring."
   is_canonical: true
   implements:
-  - TK
+  - /TK # Inherits from global namespace
   - LHLM
   - WDT
 
@@ -38,7 +38,7 @@ TK_LHLM_SWTM:
   description: "Tank with supply water temperature monitoring with high and low water level monitoring."
   is_canonical: true
   implements:
-  - TK
+  - /TK # Inherits from global namespace
   - LHLM
   - SWTM
 
