@@ -315,6 +315,6 @@ LGRP_OS_AWIC:
   implements:
   - LGRP
   - OS 
-  - LC_AWIC
+  - AWIC
   uses:
   - group_mode
