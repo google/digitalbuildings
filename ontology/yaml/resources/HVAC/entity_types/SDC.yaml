@@ -24,6 +24,7 @@ SDC_EXT:
   - SDC
   opt_uses:
   - shade_extent_percentage_sensor
+  - failed_alarm
   uses:
   - shade_extent_percentage_command
 
