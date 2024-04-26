@@ -161,7 +161,6 @@ CU:
   opt_uses:
   - failed_communication_alarm
   - emergency_alarm
-  - master_alarm
   - fire_alarm
   implements:
   - EQUIPMENT
