@@ -2012,15 +2012,6 @@ CHWSC:
   implements:
   - CONTROL
 
-WLA3X:
-  guid: "c5d8b050-5aff-4cd7-81b0-03d5ba746e9b"
-  description: "Triple water leak alarm monitoring."
-  is_abstract: true
-  uses:
-  - water_leak_alarm_1
-  - water_leak_alarm_2  
-  - water_leak_alarm_3
-
 CHWSDC:
   guid: "291c8966-a4c3-4329-9d9a-89226e3bb571"
   description: "Chilled water valve monitoring on supply side."
