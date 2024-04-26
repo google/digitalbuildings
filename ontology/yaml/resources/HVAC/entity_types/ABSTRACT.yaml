@@ -5861,8 +5861,6 @@ HTWHLSTC:
   - high_supply_air_temperature_alarm
   - low_return_air_temperature_alarm
   - low_supply_air_temperature_alarm
-  - heating_percentage_command
-  - cooling_percentage_command
   - failed_outside_air_temperature_alarm
   uses:
   - heat_wheel_run_command
