@@ -2013,6 +2013,7 @@ CHWSC:
   - CONTROL
 
 WLA3X:
+  guid: "c5d8b050-5aff-4cd7-81b0-03d5ba746e9b"
   description: "Triple water leak alarm monitoring."
   is_abstract: true
   uses:
