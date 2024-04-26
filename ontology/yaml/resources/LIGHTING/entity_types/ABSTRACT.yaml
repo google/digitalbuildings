@@ -30,7 +30,7 @@ DC:
   uses:
   - brightness_percentage_command
 
-LC_AWIC:
+AWIC:
   guid: "58b91ab7-a475-4800-bf15-f918fa95f829"
   description: "Luminance control with separate aisle and window brightness command."
   is_abstract: true
