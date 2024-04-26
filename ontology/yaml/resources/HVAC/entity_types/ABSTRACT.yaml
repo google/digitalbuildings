@@ -2004,9 +2004,6 @@ CHWSC:
   - high_supply_air_temperature_alarm
   - low_supply_air_temperature_alarm  
   - water_leak_alarm
-  - water_leak_alarm_1
-  - water_leak_alarm_2
-  - water_leak_alarm_3
   - frost_alarm
   uses:
   - chilled_water_valve_percentage_command
@@ -2015,6 +2012,13 @@ CHWSC:
   implements:
   - CONTROL
 
+WLA3X:
+  description: "Triple water leak alarm monitoring."
+  is_abstract: true
+  uses:
+  - water_leak_alarm_1
+  - water_leak_alarm_2  
+  - water_leak_alarm_3
 
 CHWSDC:
   guid: "291c8966-a4c3-4329-9d9a-89226e3bb571"
