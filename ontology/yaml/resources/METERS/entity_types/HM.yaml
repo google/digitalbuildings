@@ -40,9 +40,8 @@ HM_CHW:
   - cooling_thermal_energy_accumulator # TODO: justify if `cooling` needs to be specified here, if not implement TPWM
   opt_uses:
   - differential_temperature_sensor
-  - failed_alarm # TODO: define this on the general type
 
-HM_CHW_WAC:
+HM_CHW_WVAM:
   guid: "441029f3-1324-42c5-aca2-74138500917a"
   description: "Cooling load heat meter with total chilled water volume accumulator."
   is_canonical: true
