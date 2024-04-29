@@ -12,27 +12,26 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-WM_STANDARD:
+WM_WVAM:
   guid: "7cbdf4a9-82f0-4dd5-991f-14984cbce4cb"
-  description: "Standard building water meter."
+  description: "Standard building water meter with volume monitoring."
+  is_canonical: true
   implements:
   - WM
-  is_canonical: true
-  uses:
-  - water_volume_accumulator
+  - WVAM
   opt_uses:
-  - failed_alarm
-  - flowrate_sensor
+  - failed_alarm # TODO: remove this and add directly to GENERALTYPE
+  - flowrate_sensor # TODO: remove this and rely on optional usage of `water_flowrate_sensor` in the WVAM type
 
 WM_WF:
   guid: "df942136-4b98-4da7-9e68-acc210d6cf03"
   description: "Water supply flow rate meter with counter."
+  is_canonical: true
   implements:
   - WM
-  is_canonical: true
   uses:
-  - supply_water_flowrate_sensor
+  - supply_water_flowrate_sensor # TODO: examine why `supply` is needed
   opt_uses:
-  - supply_water_volume_accumulator
-  - water_linearvelocity_sensor
-  - water_volume_accumulator
+  - supply_water_volume_accumulator # TODO: examine why `supply` is needed
+  - water_linearvelocity_sensor # TODO: remove and rely on optional usage in WVAM type
+  - water_volume_accumulator # TODO: remove and rely on optional usage in WVAM type
