@@ -102,6 +102,15 @@ VCM:
   - current_sensor
   - voltage_sensor
 
+VAM:
+  guid: "8f73213c-b12d-45e3-954d-6c876ddb12fc"
+  description: "Volume accumulator monitoring."
+  is_abstract: true
+  opt_uses:
+  - flowrate_sensor
+  uses:
+  - volume_accumulator
+
 WVAM:
   guid: "a9b16412-be29-4dd8-815f-544bf72a8fae"
   description: "Water volume accumulator monitoring."
