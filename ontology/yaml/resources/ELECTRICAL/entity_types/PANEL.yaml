@@ -12,6 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+## TODO: rename this type to match precedent (PANEL_XXX)
 SWITCHBOARD:
   guid: "c2479a54-aafe-4bc4-9886-dc9361ab6de6"
   description: "Standard panel for holding electrical switching gear."
