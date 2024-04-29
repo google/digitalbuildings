@@ -20,14 +20,13 @@
 # This document specific types for lighting system sensors (LS). These are used when sensors are not
 # tied directly to an individual luminaire and must be modeled as stand-alone devices.
 
-LS_LPS:
+LS_IM:
   guid: "8ad90cb4-3c19-4c41-81ab-22b192073539"
   description: "Lighting system photocell sensor."
   is_canonical: true
   implements:
   - LS
-  uses:
-  - illuminance_sensor
+  - IM
 
 LS_LMS:
   guid: "62961442-f3b8-47e1-9b53-ac658cd2cf61"
@@ -37,24 +36,22 @@ LS_LMS:
   - LS
   - MS
 
-
-LS_MTS:
+LS_IM_ZTM:
   guid: "8bc3943d-da3e-406b-b3d4-c1b0874e2052"
   description: "Lighting multi-sensor, for temperature and brightness."
   is_canonical: true
   implements:
   - LS
-  uses:
-  - illuminance_sensor
-  - zone_air_temperature_sensor
+  - IM
+  - HVAC/ZTM # inherits from HVAC namespace
 
-LS_IS_OS:
+LS_IM_OS:
   guid: "144f310a-7848-428a-ba09-24439d26d7d6"
   description: "Illuminance sensing and zone occupancy monitoring"
   is_canonical: true
   implements:
   - LS
-  - IS
+  - IM
   - OS
 
 LS_OS:
@@ -65,32 +62,31 @@ LS_OS:
   - LS
   - OS
 
+# TODO: deprecate type and use LS_OS (currently implemented by entities)
 LS_LOS:
   guid: "f9589a72-3122-4b44-b31c-c37a17751590"
   description: "Lighting system motion sensor."
   is_canonical: true
   implements:
-  - LS
-  - OS
+  - LS_OS
 
-LS_MS_IS:
+LS_MS_IM:
   guid: "caf4990c-fdb2-47cb-ab7c-a8743cf855b6"
   description: "lighting multi-sensor for motion and illuminance."
   is_canonical: true
   implements:
   - LS
   - MS
-  - IS
+  - IM
 
-LS_OS_IS_MTS:
+LS_OS_IM_ZTM_ZHM:
   guid: "a63a45d8-dbfc-4a48-b8ad-0879c15eb3b2"
   description: "Ceiling mounted multi sensor for zone occupancy monitoring, brightness- and temperature control"
   is_canonical: true
   implements:
   - LS
   - OS
-  - IS
-  uses:
-  - zone_air_temperature_sensor
-  - zone_air_relative_humidity_sensor
+  - IM
+  - HVAC/ZTM
+  - HVAC/ZHM
 
