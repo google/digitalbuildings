@@ -54,7 +54,7 @@ INCOMPLETE:
   description: "A known incomplete type."
   is_abstract: true
 
-## Global namespace definition for tanks ##
+## Global namespace definition for specific equipment ##
 TK:
   guid: "ada23c08-00af-4967-8148-33239e8564f7"
   description: "Device used to store media. Used to model individual tanks when they don't belong explicitly to one piece of equipment."
@@ -63,8 +63,17 @@ TK:
   - EQUIPMENT
 
 VLV:
-  guid: "3b576a44-4ab8-4e9b-ad8f-65f1b9f08238"
+  guid: "62143611-c796-4520-903b-244df381094a"
   description: "Valves are devices which control the flow of water. Used to model stand-alone valves when they don't belong explicitly to one piece of equipment."
+  is_abstract: true
+  opt_uses:
+  - failed_communication_alarm
+  implements:
+  - EQUIPMENT
+
+PMP:
+  guid: "c9fbf9c8-6999-48cf-a835-94c35b06d04b"
+  description: "Tag for pumps. Pumps move liquid (water, glycol, liquid CO2, etc.) from one part of a system to another."
   is_abstract: true
   opt_uses:
   - failed_communication_alarm
