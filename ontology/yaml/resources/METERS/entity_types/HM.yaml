@@ -18,12 +18,10 @@ HM_STANDARD:
   is_canonical: true
   implements:
   - HM
+  - TWPM
+  - HVAC/WDT
   uses:
   - flowrate_sensor
-  - supply_water_temperature_sensor
-  - return_water_temperature_sensor
-  - thermal_power_sensor
-  - thermal_energy_accumulator
   opt_uses:
   - water_volume_accumulator
 
