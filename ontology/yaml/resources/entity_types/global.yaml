@@ -61,3 +61,12 @@ TK:
   is_abstract: true
   implements:
   - EQUIPMENT
+
+VLV:
+  guid: "3b576a44-4ab8-4e9b-ad8f-65f1b9f08238"
+  description: "Valves are devices which control the flow of water. Used to model stand-alone valves when they don't belong explicitly to one piece of equipment."
+  is_abstract: true
+  opt_uses:
+  - failed_communication_alarm
+  implements:
+  - EQUIPMENT
