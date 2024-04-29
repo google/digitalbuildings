@@ -12,12 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-TK:
-  guid: "26a8e189-fba3-4b4c-8df1-9e3bd638547f"
-  description: "Tank water system used to store water"
-  is_abstract: true
-  implements:
-  - EQUIPMENT
 
 WSTC:
   guid: "743edd10-ec99-42fd-b2e2-00357ab89c01"
