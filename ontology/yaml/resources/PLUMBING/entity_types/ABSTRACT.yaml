@@ -1,4 +1,4 @@
-# Copyright 2020 Google LLC
+m# Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the License);
 # you may not use this file except in compliance with the License.
@@ -27,12 +27,12 @@ SS:
 
 LVLM:
   guid: "288e9cfb-952e-404c-8bfa-586caf1b340b"
-  description: "Level Monitoring for tanks."
+  description: "Level monitoring for tanks."
   is_abstract: true
   uses:
   - level_status
   opt_uses:
-  - percentage_sensor
+  - percentage_sensor # TODO: make this more clear, what does this represent?
 
 WVCM:
   guid: "2e7ee11e-a205-4ade-b46c-5721ef0a7746"
