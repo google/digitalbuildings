@@ -12,7 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-### CANONICAL TYPES
+########################
+### Canonical Types  ###
+########################
 
 WSR_STD:
   guid: "c406cac4-2e0c-4396-8963-db72b7f1ccb6"
