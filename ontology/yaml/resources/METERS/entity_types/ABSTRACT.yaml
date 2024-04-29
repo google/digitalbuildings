@@ -75,9 +75,10 @@ PVCM:
   - phase2_neutral_line_voltage_sensor
   - phase3_neutral_line_voltage_sensor
   
+# TODO: rename to make this more intuitive
 PWMRDM:
   guid: "4bfb27f6-0a27-48d9-8830-81c84d95c8ab"
-  description: "Energy monitoring from Electrical Grid and Generator with run hours monitoring."
+  description: "Energy monitoring from electrical grid and generator with run hours monitoring."
   is_abstract: true
   uses:
   - generator_energy_accumulator
@@ -87,7 +88,7 @@ PWMRDM:
 
 TPWM:
   guid: "141dc3bf-85dd-4fce-9342-9a5462b3c274"
-  description: "Thermal power and thermal energy monitoring."
+  description: "Thermal power and thermal energy monitoring (typically used for heat meters)."
   is_abstract: true
   uses:
     - thermal_energy_accumulator
@@ -95,7 +96,7 @@ TPWM:
 
 VCM:
   guid: "dc4d2839-c00d-4935-bc67-013f7721535f"
-  description: "Current and voltage monitoring"
+  description: "Current and voltage monitoring."
   is_abstract: true
   uses:
   - current_sensor
