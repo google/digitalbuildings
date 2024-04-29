@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-
+# TODO: re-examine the use of `power_status`
 SS:
   guid: "bcb655b9-7adf-4c58-82c3-d8d8bf42720d"
   description: "Basic combination of run command and status (start/stop); indicates the light is active or inactive."
@@ -24,12 +24,13 @@ SS:
   - lost_power_alarm
   - power_status
 
+# TODO: re-name this to [XX]PVCM (3-phase voltage and current monitoring) to match naming precedent in the METERS/ABSTRACT 
 IOBM:
   guid: "d5c39e44-20c7-4193-9914-5f1b9225fffa"
   description: "Input, output, and bypass electrical monitoring, typically for a UPS."
   is_abstract: true
   uses:
-  - input_phase1_phase2_voltage_sensor
+  - input_phase1_phase2_voltage_sensor # TODO: promote all input_ fields to a new abstract type (IPVCM)
   - input_phase2_phase3_voltage_sensor
   - input_phase3_phase1_voltage_sensor
   - input_phase1_neutral_voltage_sensor
@@ -38,7 +39,7 @@ IOBM:
   - input_phase1_current_sensor
   - input_phase2_current_sensor
   - input_phase3_current_sensor
-  - output_phase1_phase2_voltage_sensor
+  - output_phase1_phase2_voltage_sensor # TODO: promote all output_ fields to a new abstract type (OPVCM)
   - output_phase2_phase3_voltage_sensor
   - output_phase3_phase1_voltage_sensor
   - output_phase1_neutral_voltage_sensor
@@ -47,21 +48,21 @@ IOBM:
   - output_phase1_current_sensor
   - output_phase2_current_sensor
   - output_phase3_current_sensor
-  - bypass_phase1_neutral_voltage_sensor
+  - bypass_phase1_neutral_voltage_sensor # TODO: promote all bypass_ fields to a new abstract type (BPVCM)
   - bypass_phase2_neutral_voltage_sensor
   - bypass_phase3_neutral_voltage_sensor
   opt_uses:
-  - input_frequency_sensor
-  - output_frequency_sensor
-  - bypass_frequency_sensor
+  - input_frequency_sensor # TODO: promote to new abstract (IPWM), rename to input_line_frequency_sensor to match precendent in METERS
+  - output_frequency_sensor # TODO: promote to new abstract (OPWM), rename to output_line_frequency_sensor to match precendent in METERS
+  - bypass_frequency_sensor # TODO: promote to new abstract (BPWM), rename to bypass_line_frequency_sensor to match precendent in METERS
   - failed_alarm
-  - output_power_sensor
-  - output_apparent_power_sensor
-  - bypass_status
+  - output_power_sensor # TODO: promote to a new abstract (OPWM)
+  - output_apparent_power_sensor # TODO: promote to a new abstract (OPWM)
+  - bypass_status # TODO: promote to a new abstract type (BYPM)
   - overload_alarm
   - lost_power_alarm
   - load_percentage_sensor
-  - bypass_phase_status
+  - bypass_phase_status # TODO: promote to a new abstract type (BYPM)
 
 PWM:
   guid: "fd2b653c-cb42-4158-8322-34421d1cf5bb"
@@ -70,8 +71,8 @@ PWM:
   uses:
   - power_sensor
   - energy_accumulator
-  - powerfactor_sensor 
-  - apparent_power_sensor 
+  - powerfactor_sensor # TODO: demote to `opt_uses` to match precedent in METERS/ABSTRACT 
+  - apparent_power_sensor # TODO: demote to `opt_uses` to match precedent in METERS/ABSTRACT
 
 RMM:
   guid: "322b2898-cb04-453b-8171-4e50d65e844f"
@@ -87,7 +88,8 @@ OTPM:
   uses:
   - oil_temperature_sensor
   - oil_pressure_sensor
-  
+
+# TODO: justify keeping this type or demoting this field to opt_uses in `SS`
 RDM:
   guid: "e1e402a7-fd60-4905-84d7-d926db979fc5"
   description: "Very basic system run duration monitoring."
@@ -97,14 +99,15 @@ RDM:
   
 TKLS:  
   guid: "a759f985-e858-431f-a9f9-d4eaaa711aa4"
-  description: "Very basic tank level status monitoring for Electrical generator equipments."
+  description: "Fuel tank level status monitoring for electrical generator equipment."
   is_abstract: true
   uses:
   - tank_level_status
 
+# TODO: model after PLPM in METERS/ABSTRACT (demote apparent_power to opt_uses and add regular power fields)
 PPWM:
   guid: "aab62bba-a92f-47bf-bf14-dcb8e61ac7a8"
-  description: "Phase power monitoring"
+  description: "Three phase power monitoring"
   is_abstract: true
   uses:
   - phase1_apparent_power_sensor
@@ -112,6 +115,7 @@ PPWM:
   - phase3_apparent_power_sensor
   - line_frequency_sensor 
 
+# TODO: re-factor this to model the battery charge monitoring only (BATCHM)
 BATM:
   guid: "445a7a7f-9da2-4b56-99cd-9890cdf6fea1"
   description: "Battery typically used with UPS"
@@ -124,6 +128,7 @@ BATM:
   - failed_inverter_alarm
   - line_frequency_sensor
 
+# TODO: rename to BATVCM, demote line_frequency_sensor to opt_uses
 BTEPM:
   guid: "dca372d2-3626-4f2d-90fc-30402aee90a6"
   description: "Basic battery electrical parameter monitoring"
@@ -133,13 +138,14 @@ BTEPM:
   - battery_current_sensor
   - line_frequency_sensor  
 
+# TODO: deprecate this type
 UPSBM:
   guid: "71050ae3-45e3-49f2-b7e2-12059dd8f049"
   description: "UPS battery monitoring points"
   is_abstract: true
   opt_uses:
   - failed_exhaust_fan_alarm
-  - battery_percentage_sensor
+  - battery_percentage_sensor # TODO: justify the need for both this field and `battery_charge_percentage_sensor`
   - rectifier_mode
   - inverter_status
   - inverter_mode
@@ -150,11 +156,11 @@ UPSBM:
   - battery_voltage_sensor
   - battery_status
   - input_supply_mode
-  - battery_test_status
+  - battery_test_status # TODO: justify the need for this field
 
 SRC1:
   guid: "2705008d-a8ca-452c-bc3e-38364812f894"
-  description: "Source 1 parameters typically for ATS"
+  description: "Source 1 parameters, typically for ATS"
   is_abstract: true
   uses:
   - source1_phase1_phase2_voltage_sensor
@@ -170,7 +176,7 @@ SRC1:
 
 SRC2:
   guid: "c0342f5a-2778-48b2-b70a-ae96571f7fc7"
-  description: "Source 1 parameters typically for ATS"
+  description: "Source 2 parameters, typically for ATS"
   is_abstract: true
   uses:
   - source2_phase1_phase2_voltage_sensor
