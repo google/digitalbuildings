@@ -15,12 +15,7 @@
 FM_STANDARD:
   guid: "05f00511-9d04-4c98-ac9f-6aba9f0c9fe7"
   description: "Standard flow meter typically for liquid."
+  is_canonical: true
   implements:
   - FM
-  is_canonical: true
-  uses:
-  - volume_accumulator
-  - flowrate_sensor
-  opt_uses:
-  - failed_alarm
-
+  - VAM
