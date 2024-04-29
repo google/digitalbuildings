@@ -73,6 +73,7 @@ IM:
   uses:
   - illuminance_sensor
 
+# TODO: justify use of this (identical usage as DC)
 DPC:
   guid: "af54bb0b-795c-4b3e-bb74-b3a77d61eae2"
   description: " Dimmer control."
