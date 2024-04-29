@@ -59,7 +59,7 @@ CU_DFSS_DFVSC_CHWZTC_HWZTC_RTM_ZHM_CO2CDSP_PDSCV_RDC:
   - PDSCV
   - RDC
 
-CU_SFSS_SFVSC_CHWSC_HTSC_SSPC_SARC_MTC_FDPM_CAM:
+CU_SFSS_SFVSC_CHWSC_HTSC_SSPC_SARC_MTM_FDPM_CAM:
   guid: "9b820d7b-ab93-4fde-aee9-f92ecd41cb0b"
   description: "Chilled water compartment unit on supply side with start/stop, status, cooling and heating (supply temp control)."
   is_canonical: true
@@ -71,7 +71,7 @@ CU_SFSS_SFVSC_CHWSC_HTSC_SSPC_SARC_MTC_FDPM_CAM:
   - HTSC
   - SSPC
   - SARC
-  - MTC
+  - MTM
   - FDPM
   - CAM
 
