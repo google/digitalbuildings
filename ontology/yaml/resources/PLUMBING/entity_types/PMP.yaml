@@ -17,13 +17,10 @@
 ### Canonical Types  ###
 ########################
 
-
 PMP_SS:
   guid: "75f16a18-aebc-4abc-92f6-294b0dd48f8c"
   description: "Basic water pump."
   is_canonical: true
   implements:
-  - PMP
+  - /PMP # inherits from GLOBAL namespace
   - SS  
-
-
