@@ -43,7 +43,7 @@ LKP:
 
 LTB: # TODO: inherit from common device when a concrete example emerges.
   guid: "f1dcdb9b-6aab-4551-9f44-0385c95d0274"
-  description: "Battery that serves lighting devices. "
+  description: "Battery that serves lighting devices."
   is_abstract: true
   implements:
   - EQUIPMENT
