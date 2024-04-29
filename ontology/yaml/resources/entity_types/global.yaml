@@ -54,7 +54,7 @@ INCOMPLETE:
   description: "A known incomplete type."
   is_abstract: true
 
-##Global namespace for tanks##
+## Global namespace definition for tanks ##
 TK:
   guid: "ada23c08-00af-4967-8148-33239e8564f7"
   description: "Device used to store media. Used to model individual tanks when they don't belong explicitly to one piece of equipment."
