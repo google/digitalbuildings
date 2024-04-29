@@ -19,34 +19,44 @@ MTR:
   is_abstract: true
   implements:
   - EQUIPMENT
+  opt_uses:
+  - failed_alarm
 
 EM:
   guid: "cba37f53-9e19-4498-80d1-6053d993f4ac"
   description: "Tag for all the electrical meter types."
+  is_abstract: true
   implements:
   - MTR
-  is_abstract: true
+  opt_uses:
+  - failed_alarm
 
 GM:
   guid: "919ece3f-2f6f-4c9d-adcf-2a77eed49185"
   description: "Tag for all gas meters."
+  is_abstract: true
   implements:
   - MTR
-  is_abstract: true
+  opt_uses:
+  - failed_alarm
 
 FM:
   guid: "e89d919e-ecfb-4852-aeab-c087b0fabf6d"
   description: "Tag for all closed-loop system flow meters. Distinct from water meters which are open-loop systems."
   is_abstract: true
   implements:
-  - MTR  
+  - MTR
+  opt_uses:
+  - failed_alarm  
 
 WM:
   guid: "c1df623f-c71b-45a1-89eb-2bc7c82f291a"
   description: "Tag for all water meters (open-loop), such as the main building water consumption meter."
+  is_abstract: true
   implements:
   - MTR
-  is_abstract: true
+  opt_uses:
+  - failed_alarm
 
 HM:
   guid: "9496631b-c154-4d86-857d-c2ffff88ffe4"
@@ -54,3 +64,5 @@ HM:
   is_abstract: true
   implements:
   - MTR
+  opt_uses:
+  - failed_alarm
