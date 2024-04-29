@@ -17,7 +17,6 @@
 ### Canonical Types  ###
 ########################
 
-
 WSTC_SS:
   guid: "5cbe76a6-f279-4126-a64b-02910a475acd"
   description: "Basic waste compactor system."
@@ -25,5 +24,3 @@ WSTC_SS:
   implements:
   - WSTC
   - SS  
-
-
