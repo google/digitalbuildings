@@ -101,3 +101,29 @@ VCM:
   uses:
   - current_sensor
   - voltage_sensor
+
+WVAM:
+  guid: "a9b16412-be29-4dd8-815f-544bf72a8fae"
+  description: "Water volume accumulator monitoring."
+  is_abstract: true
+  opt_uses:
+  - water_flowrate_sensor
+  - water_linearvelocity_sensor
+  uses:
+  - water_volume_accumulator
+
+GVAM:
+  guid: "c7761aab-7560-4c62-9095-e9931b0f4c81"
+  description: "Gas volume accumulator monitoring."
+  is_abstract: true
+  opt_uses:
+  - gas_flowrate_sensor
+  uses:
+  - gas_volume_accumulator
+
+GTM:
+  guid: "011225da-4eb3-4875-a1df-0f3cc3a2a7a0"
+  description: "Gas temperature monitoring."
+  is_abstract: true
+  uses:
+  - gas_temperature_sensor
