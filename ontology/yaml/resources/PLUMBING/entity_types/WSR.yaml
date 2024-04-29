@@ -23,5 +23,3 @@ WSR_STD:
   - /SS
   uses:
   - water_flowrate_status
-  opt_uses:
-  - lost_power_alarm
