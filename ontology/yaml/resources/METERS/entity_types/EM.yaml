@@ -53,9 +53,6 @@ EM_PWM_PVCM:
   - EM
   - PWM
   - PVCM
-  opt_uses:
-  - reactive_energy_accumulator # TODO: promote to PWM abstract
-  - apparent_energy_accumulator # TODO: promote to PWM abstract
 
 EM_PWM_AVCM:
   guid: "441a3b57-05e7-426d-bed9-061f28f21b3a"
