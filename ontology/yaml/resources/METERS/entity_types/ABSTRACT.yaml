@@ -91,8 +91,8 @@ TPWM:
   description: "Thermal power and thermal energy monitoring (typically used for heat meters)."
   is_abstract: true
   uses:
-    - thermal_energy_accumulator
-    - thermal_power_sensor
+  - thermal_energy_accumulator
+  - thermal_power_sensor
 
 VCM:
   guid: "dc4d2839-c00d-4935-bc67-013f7721535f"
