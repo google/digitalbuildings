@@ -18,7 +18,7 @@ WM_WVAM:
   is_canonical: true
   implements:
   - WM
-  - WVAM
+  - WVAM # TODO: we are creating tech debt to model it like this (in theory we should not need to specify `water` and could simply use `volume_accumulator`)
   opt_uses:
   - failed_alarm # TODO: remove this and add directly to GENERALTYPE
   - flowrate_sensor # TODO: remove this and rely on optional usage of `water_flowrate_sensor` in the WVAM type
