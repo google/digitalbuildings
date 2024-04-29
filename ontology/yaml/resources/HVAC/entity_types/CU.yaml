@@ -93,7 +93,6 @@ CU_SFSS_SFVSC_CHWSC_CHWDT_HTSC_SSPC_SARC_MTM_RTM_FDPM:
   - CHWDT
 
 CU_SFSS_SFVSC_CHWSC_CHWDT_HTSC_SSPC_SARC_MTM_RTM:
-  guid: "1585a9f0-aa1a-477b-94d2-a91a4b607307"
   description: "Chilled water compartment unit on supply side with start/stop, status, cooling and heating (supply temp control), and differential temperature monitoring."
   is_canonical: true
   implements:
