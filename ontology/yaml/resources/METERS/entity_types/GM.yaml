@@ -12,26 +12,22 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-GM_STANDARD:
+GM_GVAM_GTM:
   guid: "96de90c9-fb62-4557-b29c-aa723e255a8f"
-  description: "The typical building gas meter."
+  description: "Gas meter that measures volume and temperature."
+  is_canonical: true
   implements:
   - GM
-  is_canonical: true
-  uses:
-  - gas_flowrate_sensor
-  - gas_volume_accumulator
-  - gas_temperature_sensor
+  - GVAM
+  - GTM
 
-GM_PULSE:
+GM_GVAM:
   guid: "0b74bcd2-f3c6-42b2-9a91-88f34c5d472d"
-  description: "Gas meter that operates by counting pulses, interpreted into flow and accumulated volume."
+  description: "Gas meter that measures volume accumulated (e.g., pulse meter)."
+  is_canonical: true
   implements:
   - GM
-  is_canonical: true
-  uses:
-  - gas_flowrate_sensor
-  - gas_volume_accumulator
+  - GVAM
 
 GM_TPWM:
   guid: "223b81fb-9fcf-475b-a2f5-ad5d1364454c"
@@ -41,4 +37,4 @@ GM_TPWM:
   - GM
   - TPWM
   opt_uses:
-  - gas_temperature_sensor
+  - gas_temperature_sensor # TODO: examine optional usage of this (remove and implement GTM, if possible)
