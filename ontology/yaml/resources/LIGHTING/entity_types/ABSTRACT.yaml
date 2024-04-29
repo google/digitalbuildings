@@ -187,6 +187,7 @@ OM:
   - run_time_accumulator # TODO: add as opt_uses to SS
   - luminaire_alarm # TODO: understand this alarm's purpose (does it indicate failure? If so, add failed_alarm to general type)
 
+# TODO: jutify this type, very similar control to DC
 DM:
   guid: "0e3ab3d7-a378-4c72-91ca-32a1290c6d84"
   description: "Brightness dimming monitoring."
