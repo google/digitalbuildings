@@ -12,21 +12,22 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# TODO: rename to match eventual types implemented
 BATT_STD:
   guid: "d5b5721e-1194-4b1b-8e0e-ed24bc1fab70"
   description: "Standard battery."
   implements:
   - BATT
   uses:
-  - voltage_sensor
-  - current_sensor
+  - voltage_sensor # TODO: promote to new abstract type (VCM) 
+  - current_sensor # TODO: promote to new abstract type (VCM)
   opt_uses:
-  - remaining_charge_time_sensor
-  - local_air_temperature_sensor
-  - max_battery_temperature_sensor
-  - max_battery_voltage_sensor
-  - min_battery_temperature_sensor
-  - min_battery_voltage_sensor
-  - battery_charge_status
-  - battery_charge_percentage_sensor
-  - failed_battery_alarm
+  - remaining_charge_time_sensor # TODO: implement via abstract type
+  - local_air_temperature_sensor # TODO: justify the use of this field
+  - max_battery_temperature_sensor # TODO: implement via abstract type
+  - max_battery_voltage_sensor # TODO: implement via abstract type
+  - min_battery_temperature_sensor # TODO: implement via abstract type
+  - min_battery_voltage_sensor # TODO: implement via abstract type
+  - battery_charge_status # TODO: implement via abstract type
+  - battery_charge_percentage_sensor # TODO: implement via abstract type
+  - failed_battery_alarm # TODO: replace with `failed_alarm`
