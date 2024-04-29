@@ -19,8 +19,8 @@ LGRP_DC:
   description: "Lighting group control module with brightness control."
   is_canonical: true
   implements:
-    - LGRP
-    - DC
+  - LGRP
+  - DC
 
 LGRP_DC_OS_SC:
   guid: "96e4ec5a-6a0d-4460-9065-8efa3cdfbcb4"
