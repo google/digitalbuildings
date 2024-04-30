@@ -12,16 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-LT:
-  guid: "01154366-4062-43ff-b7eb-ffbe7216ea84"
-  description: "Luminaire, lighting fixture. The thing that produces light."
-  is_abstract: true
-  implements:
-  - EQUIPMENT
-
-LTGW:
-  guid: "30a5aaf1-a30d-41db-8ace-643ce84b170e"
-  description: "Lighting gateway."
+ELT:
+  guid: "fb78a0b6-b1aa-4779-bde3-8ed76ea6b6ed"
+  description: "Lights intended to provide illumination and/or direction during an emergency."
   is_abstract: true
   implements:
   - EQUIPMENT
@@ -33,6 +26,11 @@ LCM:
   implements:
   - EQUIPMENT
 
+LGRP:
+  guid: "7b2723ef-361a-40ff-8399-4a907a52c357"
+  is_abstract: true
+  description: "A group containing one or more luminaires."
+
 LKP:
   guid: "be286551-98a9-46be-82f0-9c83266cee22"
   description: "Lighting keypad."
@@ -41,18 +39,6 @@ LKP:
   - EQUIPMENT
   - USER_INTERFACE
 
-LTB: # TODO: inherit from common device when a concrete example emerges.
-  guid: "f1dcdb9b-6aab-4551-9f44-0385c95d0274"
-  description: "Battery that serves lighting devices."
-  is_abstract: true
-  implements:
-  - EQUIPMENT
-
-LGRP:
-  guid: "7b2723ef-361a-40ff-8399-4a907a52c357"
-  is_abstract: true
-  description: "A group containing one or more luminaires."
-
 LS:
   guid: "768b8a60-ae3f-445e-8169-3b001513e752"
   is_abstract: true
@@ -60,9 +46,23 @@ LS:
   implements:
   - SENSOR
 
-ELT:
-  guid: "fb78a0b6-b1aa-4779-bde3-8ed76ea6b6ed"
-  description: "Lights intended to provide illumination and/or direction during an emergency."
+LT:
+  guid: "01154366-4062-43ff-b7eb-ffbe7216ea84"
+  description: "Luminaire, lighting fixture. The thing that produces light."
+  is_abstract: true
+  implements:
+  - EQUIPMENT
+
+LTB: # TODO: inherit from common device when a concrete example emerges.
+  guid: "f1dcdb9b-6aab-4551-9f44-0385c95d0274"
+  description: "Battery that serves lighting devices."
+  is_abstract: true
+  implements:
+  - EQUIPMENT
+
+LTGW:
+  guid: "30a5aaf1-a30d-41db-8ace-643ce84b170e"
+  description: "Lighting gateway."
   is_abstract: true
   implements:
   - EQUIPMENT
