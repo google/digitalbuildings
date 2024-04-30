@@ -11,15 +11,16 @@ m# Copyright 2020 Google LLC
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-### ABSTRACT TYPES
 
+
+### ABSTRACT TYPES
 
 SS:
   guid: "fe3b4469-bbbb-4f02-ac8c-926ad057945b"
   description: "Basic combination of run command and status (start/stop); indicates the equipment is active or inactive."
   is_abstract: true
   implements:
-  - /SS
+  - /SS # inherits from GLOBAL namespace
   opt_uses:
   - failed_alarm
   - lost_power_alarm
