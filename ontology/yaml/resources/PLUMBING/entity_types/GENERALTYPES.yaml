@@ -12,6 +12,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+##############################################################
+#### GENERAL TYPES (BROAD CATEGORIES OF COMMON EQUIPMENT) ####
+####                See model.md for context              ####
+##############################################################
+
 RO:
   guid: "9f9b8144-df6c-4b20-bbbb-110f718c1cb1"
   description: "Reverse osmosis is a water purification process that uses a semi-permeable membrane (synthetic lining) to filter out unwanted molecules and large particles such as contaminants and sediments like chlorine, salt, and dirt from drinking water."
