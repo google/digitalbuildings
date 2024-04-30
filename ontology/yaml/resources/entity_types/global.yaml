@@ -12,6 +12,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+DEPRECATED:
+  guid: "e6a60084-db86-4e0f-8cd4-881d68785120"
+  description: "Used to clean up deprecated types."
+  is_abstract: true
+
 EQUIPMENT:
   guid: "b3fe24f2-6194-4300-95b1-506941487a19"
   description: "A piece of equipment."
@@ -20,9 +25,47 @@ EQUIPMENT:
   - manufacturer_label
   - model_label
 
+INCOMPLETE:
+  guid: "bfc45ea7-8695-4013-bc0a-6ec0732cce6d"
+  description: "A known incomplete type."
+  is_abstract: true
+
+NO_ANALYSIS:
+  guid: "42a7614d-e6c9-4cec-96fb-de868b3985c2"
+  description: "Devices which are not useful in and of themselves. Can be ignored by analysis."
+  is_abstract: true
+
+REMAP_REQUIRED:
+  guid: "1cf12fff-eac5-4b7d-8a8c-c8f31526c2c1"
+  description: "A type which requires some remapping in order to convert it to a standard type."
+  is_abstract: true
+
+
+## Global namespace definition for specific equipment ##
+##############################################################
+#### GENERAL TYPES (BROAD CATEGORIES OF COMMON EQUIPMENT) ####
+####                See model.md for context              ####
+##############################################################
+
+PMP:
+  guid: "c9fbf9c8-6999-48cf-a835-94c35b06d04b"
+  description: "Tag for pumps. Pumps move liquid (water, glycol, liquid CO2, etc.) from one part of a system to another."
+  is_abstract: true
+  opt_uses:
+  - failed_communication_alarm
+  implements:
+  - EQUIPMENT
+
 SENSOR:
   guid: "4fa42531-26a8-4d1f-a0b3-a7f6bb5623e1"
   description: "Stand-alone sensing device. Used to model individual sensors when they don't belong explicitly to one piece of equipment."
+  is_abstract: true
+  implements:
+  - EQUIPMENT
+
+TK:
+  guid: "ada23c08-00af-4967-8148-33239e8564f7"
+  description: "Device used to store media. Used to model individual tanks when they don't belong explicitly to one piece of equipment."
   is_abstract: true
   implements:
   - EQUIPMENT
@@ -34,46 +77,9 @@ USER_INTERFACE:
   implements:
   - EQUIPMENT
 
-NO_ANALYSIS:
-  guid: "42a7614d-e6c9-4cec-96fb-de868b3985c2"
-  description: "Devices which are not useful in and of themselves. Can be ignored by analysis."
-  is_abstract: true
-
-DEPRECATED:
-  guid: "e6a60084-db86-4e0f-8cd4-881d68785120"
-  description: "Used to clean up deprecated types."
-  is_abstract: true
-
-REMAP_REQUIRED:
-  guid: "1cf12fff-eac5-4b7d-8a8c-c8f31526c2c1"
-  description: "A type which requires some remapping in order to convert it to a standard type."
-  is_abstract: true
-
-INCOMPLETE:
-  guid: "bfc45ea7-8695-4013-bc0a-6ec0732cce6d"
-  description: "A known incomplete type."
-  is_abstract: true
-
-## Global namespace definition for specific equipment ##
-TK:
-  guid: "ada23c08-00af-4967-8148-33239e8564f7"
-  description: "Device used to store media. Used to model individual tanks when they don't belong explicitly to one piece of equipment."
-  is_abstract: true
-  implements:
-  - EQUIPMENT
-
 VLV:
   guid: "62143611-c796-4520-903b-244df381094a"
   description: "Valves are devices which control the flow of water. Used to model stand-alone valves when they don't belong explicitly to one piece of equipment."
-  is_abstract: true
-  opt_uses:
-  - failed_communication_alarm
-  implements:
-  - EQUIPMENT
-
-PMP:
-  guid: "c9fbf9c8-6999-48cf-a835-94c35b06d04b"
-  description: "Tag for pumps. Pumps move liquid (water, glycol, liquid CO2, etc.) from one part of a system to another."
   is_abstract: true
   opt_uses:
   - failed_communication_alarm
