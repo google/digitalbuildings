@@ -19,6 +19,7 @@ ELT:
   implements:
   - EQUIPMENT
 
+# TODO: justify the difference between LCM and LGRP
 LCM:
   guid: "8cdb21a1-2835-43ea-879c-1ca29105ec44"
   description: "Lighting control module, used for controlling one or more luminaires (LT)."
