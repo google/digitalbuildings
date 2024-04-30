@@ -23,14 +23,14 @@ SS:
 
 SRC:
   guid: "2483cfe4-4196-42a4-b18f-f67f258a0220"
-  description: "Basic run scheduling "
+  description: "Basic run scheduling."
   is_abstract: true
   uses:
   - schedule_run_command
 
 RC:
   guid: "4bd721fa-c80b-469f-ba59-4e201464b527"
-  description: "Relay or switch to switch a socket or power supply for lumiaires or other devices"
+  description: "Relay or switch to switch a socket or power supply for lumiaires or other devices."
   is_abstract: true
   uses:
   - switch_command
@@ -67,7 +67,7 @@ ROS:
   uses:
   - room_occupancy_status
 
-### Brightness types ###
+### Illuminance types ###
 
 IM:
   guid: "13d6cfcb-8aa0-487e-a8b3-9f0f02ad63c6"
@@ -84,6 +84,7 @@ IS:
   uses:
   - illuminance_sensor
 
+# TODO: rename to IC (illuminance control) to match precedent
 LC:
   guid: "fa06c1cc-0240-4e55-8956-300ec6f3e095"
   description: "Luminance control."
@@ -92,7 +93,9 @@ LC:
   - illuminance_setpoint
   - illuminance_sensor
 
-# TODO: justify use of this (identical usage as DC)
+### Dimmer and brightness types ###
+
+# TODO: justify use of this (modeling similar behavior as DC)
 DPC:
   guid: "af54bb0b-795c-4b3e-bb74-b3a77d61eae2"
   description: " Dimmer control."
@@ -109,13 +112,13 @@ DC:
   uses:
   - brightness_percentage_command
 
-# TODO: jutify this type, very similar control to DC
+# TODO: jutify this type, very similar control to DC (combine with DC, if possible)
 DM:
   guid: "0e3ab3d7-a378-4c72-91ca-32a1290c6d84"
   description: "Brightness dimming monitoring."
   is_abstract: true
   opt_uses:
-  - dimmer_run_status # TODO: justify this field name
+  - dimmer_run_status # TODO: justify this field name, similar meaning as lighting_switch_status
   - power_sensor # TODO: remove from this type, implement PWM on the canonical instead
   uses:
   - brightness_percentage_sensor
@@ -134,7 +137,7 @@ SCZ:
   is_abstract: true
   description: "Scene control for a device and zone."
   opt_uses:
-  - scene_command # TODO: justify the need for this
+  - scene_command # TODO: justify the need for this (because zone_scene_command is also implemented)
   - scene_index_command
   uses:
   - zone_scene_command
@@ -171,8 +174,7 @@ BM:
   uses:
   - battery_charge_status
  
-
-# TODO: deprecate and inherit from METERS
+# TODO: deprecate and inherit from METERS (or promote PWM to global and inherit from there)
 # TODO: combine with ENM
 PWM:
   guid: "fc70bbb6-5000-4f83-9e79-862f60ececfe"
