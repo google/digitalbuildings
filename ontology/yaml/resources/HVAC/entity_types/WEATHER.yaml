@@ -29,6 +29,6 @@ WEATHER_OA_OAQM:
   description: "Weather station with outside temperature, humidity, and air quality monitoring."
   is_canonical: true
   implements:
-    - WEATHER
-    - OA
-    - OAQM
+  - WEATHER
+  - OA
+  - OAQM
