@@ -107,6 +107,8 @@ MOAFC:
   - ventilation_request_count
   - low_ventilation_outside_air_flowrate_alarm
   - failed_ventilation_outside_air_flowrate_alarm
+  - failed_ventilation_outside_air_damper_alarm
+  - ventilation_outside_air_damper_percentage_sensor
   uses:
   - ventilation_outside_air_damper_percentage_command
   - ventilation_outside_air_flowrate_sensor
@@ -123,6 +125,8 @@ OAFC:
   - economizer_mode
   - mixed_air_temperature_sensor
   - failed_mixed_air_temperature_alarm
+  - high_mixed_air_temperature_alarm
+  - low_mixed_air_temperature_alarm
   uses:
   - outside_air_damper_percentage_command
   - outside_air_flowrate_sensor
@@ -155,6 +159,7 @@ REFM:
   - MONITORING
   opt_uses:
   - high_zone_air_refrigerant_concentration_alarm
+  - failed_zone_air_refrigerant_concentration_alarm
   uses:
   - zone_air_refrigerant_concentration_sensor
 
@@ -241,6 +246,7 @@ DX2RC:
   - compressor_speed_percentage_command
   - cooling_percentage_command
   - cooling_thermal_power_capacity
+  - cooling_stage_run_count
   - discharge_air_temperature_sensor
   - leaving_cooling_coil_temperature_sensor
   - failed_discharge_air_temperature_alarm
@@ -317,6 +323,7 @@ CO2C:
   - zone_air_co2_concentration_setpoint
   opt_uses:
   - high_zone_air_co2_concentration_alarm
+  - failed_zone_air_co2_concentration_alarm
 
 
 CO2CDSP:
@@ -331,7 +338,8 @@ CO2CDSP:
   - zone_air_co2_concentration_sensor
   opt_uses:
   - high_zone_air_co2_concentration_alarm
-  
+  - failed_zone_air_co2_concentration_alarm
+
 
 COC:
   guid: "dee7cc87-51cb-460e-8202-eff4001319db"
@@ -390,10 +398,28 @@ EDPM:
   guid: "6051d016-4a78-42f4-aeaf-3701417b8773"
   description: "Exhaust air damper percentage monitoring."
   is_abstract: true
+  implements:
+  - MONITORING
+  opt_uses:
+  - failed_exhaust_air_damper_alarm
   uses:
   - exhaust_air_damper_percentage_command
   - exhaust_air_damper_percentage_sensor
 
+EDPM2X:
+  guid: "20f6ee70-f651-4c3b-a528-7750ef5f6001"
+  description: "Dual exhaust air damper percentage monitoring."
+  is_abstract: true
+  implements:
+  - MONITORING
+  opt_uses:
+  - failed_exhaust_air_damper_alarm_1
+  - failed_exhaust_air_damper_alarm_2
+  uses:
+  - exhaust_air_damper_percentage_command_1
+  - exhaust_air_damper_percentage_command_2
+  - exhaust_air_damper_percentage_sensor_1
+  - exhaust_air_damper_percentage_sensor_2
 
 EDM:
   guid: "e765d413-988e-4524-99b6-9869cff2f02e"
@@ -701,6 +727,7 @@ SSPC:
   - supply_fan_speed_frequency_sensor
   - supply_fan_speed_percentage_command
   - failed_supply_fan_alarm
+  - failed_supply_air_static_pressure_alarm
   - high_supply_air_static_pressure_alarm
   - low_supply_air_static_pressure_alarm
   uses:
@@ -708,7 +735,7 @@ SSPC:
   - supply_air_static_pressure_setpoint
   implements:
   - OPERATIONAL
-  
+
 
 SPSS:
   guid: "0b1c2a43-53d8-4349-883c-8bde722fccb5"
@@ -785,6 +812,7 @@ HT2RC:
   - discharge_air_temperature_sensor
   - heating_percentage_command
   - heating_thermal_power_capacity
+  - heating_stage_run_count
   - failed_discharge_air_temperature_alarm
   - high_return_air_temperature_alarm
   - low_return_air_temperature_alarm
@@ -895,6 +923,18 @@ LCC2X:
   - chilled_water_valve_percentage_command_2
   - leaving_cooling_coil_temperature_sensor
   - leaving_cooling_coil_temperature_setpoint
+  implements:
+  - CONTROL
+
+
+LHC:
+  guid: "df1b4263-c5c1-4c30-bf64-04de04f8a013"
+  description: "Leaving heating coil temperature control."
+  is_abstract: true
+  uses:
+  - heating_water_valve_percentage_command
+  - leaving_heating_coil_temperature_sensor
+  - leaving_heating_coil_temperature_setpoint
   implements:
   - CONTROL
 
@@ -1043,6 +1083,22 @@ WDT:
   - low_supply_water_temperature_alarm
 
 
+CMWDT:
+  guid: "b9301a06-a6e4-4964-ac81-d18d5e0f142d"
+  description: "Common water temperature differential monitoring."
+  is_abstract: true
+  implements:
+  - MONITORING
+  uses:
+  - common_supply_water_temperature_sensor
+  - common_return_water_temperature_sensor
+  opt_uses:
+  - high_common_supply_water_temperature_alarm
+  - low_common_supply_water_temperature_alarm
+  - high_common_return_water_temperature_alarm
+  - low_common_return_water_temperature_alarm
+
+
 CHWDT:
   guid: "0960d44f-87ff-43f5-b576-c19f8a7f2b83"
   description: "Temperature differential across chilled water."
@@ -1092,6 +1148,9 @@ CWDT:
   is_abstract: true
   implements:
   - MONITORING
+  opt_uses:
+  - high_condensing_return_water_temperature_alarm
+  - low_condensing_return_water_temperature_alarm
   uses:
   - condensing_return_water_temperature_sensor
   - condensing_supply_water_temperature_sensor
@@ -1163,6 +1222,7 @@ SCHWTC:
   - cooling_request_count
   - cooling_run_command
   - failed_cooling_alarm
+  - failed_chilled_supply_water_temperature_alarm
   - high_chilled_supply_water_temperature_alarm
   - low_chilled_supply_water_temperature_alarm
   uses:
@@ -1197,6 +1257,9 @@ RCHWTC:
   - chilled_supply_water_temperature_sensor
   - cooling_percentage_command
   - cooling_request_count
+  - failed_chilled_return_water_temperature_alarm
+  - high_chilled_return_water_temperature_alarm
+  - low_chilled_return_water_temperature_alarm
   uses:
   - chilled_return_water_temperature_sensor
   - chilled_return_water_temperature_setpoint
@@ -1311,6 +1374,9 @@ RD:
   guid: "0aecbeb0-8b01-44a2-a0b6-027a034fb2a5"
   description: "Return damper flow control."
   is_abstract: true
+  opt_uses:
+  - return_air_damper_percentage_sensor
+  - failed_return_air_damper_alarm
   uses:
   - return_air_damper_percentage_command
   - return_air_flowrate_sensor
@@ -1327,6 +1393,8 @@ MTM:
   - mixed_air_dewpoint_temperature_sensor
   - mixed_air_relative_humidity_sensor
   - failed_mixed_air_temperature_alarm
+  - high_mixed_air_temperature_alarm
+  - low_mixed_air_temperature_alarm
   uses:
   - mixed_air_temperature_sensor
   implements:
@@ -1344,6 +1412,8 @@ MTC:
   - OPERATIONAL
   opt_uses:
   - failed_mixed_air_temperature_alarm
+  - high_mixed_air_temperature_alarm
+  - low_mixed_air_temperature_alarm
 
 
 STM:
@@ -1441,6 +1511,20 @@ RHDHC:
   implements:
   - CONTROL
 
+DH2XSDPC:
+  guid: "2e83d32e-360e-4ac2-afa4-5adb333ded0b"
+  description: "Supply air dewpoint temperature dehumidification control on dual cooling coil."
+  is_abstract: true
+  opt_uses:
+  - supply_air_relative_humidity_sensor
+  uses:
+  - dehumidification_run_command
+  - chilled_water_valve_percentage_command_1
+  - chilled_water_valve_percentage_command_2
+  - supply_air_dewpoint_temperature_sensor
+  - supply_air_dewpoint_temperature_setpoint
+  implements:
+  - CONTROL
 
 ZHDHC:
   guid: "0d8a499a-4934-4860-9d35-277381890e2d"
@@ -1494,6 +1578,10 @@ SHM:
   guid: "9b5089f5-e0a1-420d-bad9-682ac34d2516"
   description: "Supply air relative humidity monitoring."
   is_abstract: true
+  opt_uses:
+  - high_supply_air_relative_humidity_alarm
+  - low_supply_air_relative_humidity_alarm
+  - failed_supply_air_relative_humidity_alarm
   uses:
   - supply_air_relative_humidity_sensor
   implements:
@@ -1506,6 +1594,7 @@ REFC:
   is_abstract: true
   opt_uses:
   - failed_zone_air_refrigerant_concentration_alarm
+  - high_zone_air_refrigerant_concentration_alarm
   uses:
   - zone_air_refrigerant_concentration_sensor
   - zone_air_refrigerant_concentration_setpoint
@@ -1524,12 +1613,13 @@ CREFM:
   - compressor_lost_power_alarm
   - failed_alarm
   - failed_compressor_alarm
-  - failed_zone_air_temperature_alarm
   - frost_alarm
-  - high_zone_air_temperature_alarm
   - local_override_alarm
+  - high_zone_air_temperature_alarm
   - low_zone_air_temperature_alarm
+  - failed_zone_air_temperature_alarm
   - overload_compressor_alarm
+  - low_refrigerant_level_alarm
   uses:
   - defrost_temperature_sensor
   - zone_air_temperature_sensor
@@ -1560,6 +1650,7 @@ CO2M:
   - MONITORING
   opt_uses:
   - high_zone_air_co2_concentration_alarm
+  - failed_zone_air_co2_concentration_alarm
 
 
 VOCM:
@@ -1678,6 +1769,7 @@ SSPM:
   implements:
   - MONITORING
   opt_uses:
+  - failed_supply_air_static_pressure_alarm
   - high_supply_air_static_pressure_alarm
   - low_supply_air_static_pressure_alarm
 
@@ -1766,6 +1858,12 @@ PWDT:
   uses:
   - primary_return_water_temperature_sensor
   - primary_supply_water_temperature_sensor
+  opt_uses:
+  - primary_water_heating_thermal_power_sensor
+  - high_primary_return_water_temperature_alarm
+  - high_primary_supply_water_temperature_alarm
+  - low_primary_return_water_temperature_alarm
+  - low_primary_supply_water_temperature_alarm
 
 
 CHPM:
@@ -1870,6 +1968,7 @@ CHWSC:
   - cooling_request_count
   - cooling_thermal_power_capacity
   - leaving_cooling_coil_temperature_sensor
+  - failed_leaving_cooling_coil_temperature_alarm
   - supply_air_relative_humidity_sensor
   - failed_supply_air_temperature_alarm
   - high_supply_air_temperature_alarm
@@ -1906,13 +2005,20 @@ CHW2XSC:
   description: "Two chilled water valves."
   is_abstract: true
   opt_uses:
-  - chilled_supply_water_temperature_sensor
-  - chilled_water_valve_percentage_sensor
   - cooling_request_count
   - cooling_thermal_power_capacity
+  - chilled_supply_water_temperature_sensor
+  - chilled_water_valve_percentage_sensor
+  - chilled_water_valve_percentage_sensor_1
+  - chilled_water_valve_percentage_sensor_2
   - leaving_cooling_coil_temperature_sensor
+  - leaving_cooling_coil_temperature_sensor_1
+  - leaving_cooling_coil_temperature_sensor_2
+  - failed_leaving_cooling_coil_temperature_alarm_1
+  - failed_leaving_cooling_coil_temperature_alarm_2
   - high_supply_air_temperature_alarm
   - low_supply_air_temperature_alarm
+  - failed_supply_air_temperature_alarm
   uses:
   - chilled_water_valve_percentage_command_1
   - chilled_water_valve_percentage_command_2
@@ -3304,10 +3410,13 @@ ECON:
   - return_air_damper_percentage_command
   - supply_air_temperature_sensor
   - failed_mixed_air_temperature_alarm
+  - high_mixed_air_temperature_alarm
+  - low_mixed_air_temperature_alarm
   - high_return_air_temperature_alarm
   - high_supply_air_temperature_alarm
   - low_return_air_temperature_alarm
   - low_supply_air_temperature_alarm
+  - failed_outside_air_temperature_alarm
   uses:
   - economizer_mode
   - mixed_air_temperature_sensor
@@ -3333,8 +3442,11 @@ ECOND:
   - return_air_temperature_sensor
   - failed_discharge_air_temperature_alarm
   - failed_mixed_air_temperature_alarm
+  - high_mixed_air_temperature_alarm
+  - low_mixed_air_temperature_alarm
   - high_return_air_temperature_alarm
   - low_return_air_temperature_alarm
+  - failed_outside_air_temperature_alarm
   uses:
   - discharge_air_temperature_sensor
   - discharge_air_temperature_setpoint
@@ -3357,10 +3469,13 @@ ECONM:
   - return_air_damper_percentage_command
   - supply_air_temperature_sensor
   - failed_mixed_air_temperature_alarm
+  - high_mixed_air_temperature_alarm
+  - low_mixed_air_temperature_alarm
   - high_return_air_temperature_alarm
   - high_supply_air_temperature_alarm
   - low_return_air_temperature_alarm
   - low_supply_air_temperature_alarm
+  - failed_outside_air_temperature_alarm
   uses:
   - economizer_mode
   - mixed_air_temperature_sensor
@@ -3389,6 +3504,11 @@ ECONM2X:
   - average_mixed_air_temperature_sensor
   - failed_mixed_air_temperature_alarm_1
   - failed_mixed_air_temperature_alarm_2
+  - high_mixed_air_temperature_alarm_1
+  - low_mixed_air_temperature_alarm_1
+  - high_mixed_air_temperature_alarm_2
+  - low_mixed_air_temperature_alarm_2
+  - failed_outside_air_temperature_alarm
   uses:
   - economizer_mode
   - mixed_air_temperature_sensor_1
@@ -3415,8 +3535,11 @@ ECONMD:
   - return_air_temperature_sensor
   - failed_discharge_air_temperature_alarm
   - failed_mixed_air_temperature_alarm
+  - high_mixed_air_temperature_alarm
+  - low_mixed_air_temperature_alarm
   - high_return_air_temperature_alarm
   - low_return_air_temperature_alarm
+  - failed_outside_air_temperature_alarm
   uses:
   - economizer_mode
   - mixed_air_temperature_sensor
@@ -3443,11 +3566,14 @@ ECONZ:
   - return_air_temperature_sensor
   - failed_discharge_air_temperature_alarm
   - failed_mixed_air_temperature_alarm
+  - high_mixed_air_temperature_alarm
+  - low_mixed_air_temperature_alarm
   - failed_zone_air_temperature_alarm
   - high_return_air_temperature_alarm
   - high_zone_air_temperature_alarm
   - low_return_air_temperature_alarm
   - low_zone_air_temperature_alarm
+  - failed_outside_air_temperature_alarm
   uses:
   - economizer_mode
   - outside_air_damper_percentage_command
@@ -3468,7 +3594,10 @@ VOADM:
   - mixed_air_temperature_sensor
   - outside_air_damper_percentage_sensor
   - failed_mixed_air_temperature_alarm
+  - high_mixed_air_temperature_alarm
+  - low_mixed_air_temperature_alarm
   - failed_outside_air_damper_alarm
+  - failed_outside_air_temperature_alarm
   uses:
   - outside_air_damper_percentage_command
   - outside_air_temperature_sensor
@@ -3508,6 +3637,8 @@ OAFMC:
   - economizer_mode
   - mixed_air_temperature_sensor
   - failed_mixed_air_temperature_alarm
+  - high_mixed_air_temperature_alarm
+  - low_mixed_air_temperature_alarm
   - ventilation_request_count
   uses:
   - outside_air_damper_percentage_command
@@ -3836,6 +3967,16 @@ WFRM:
   - MONITORING
   opt_uses:
   - low_flowrate_alarm
+
+
+CMSWFRM:
+  guid: "cbf519aa-fef1-4cb1-bfb5-6bded3b5dbf6"
+  description: "Common supply water flowrate monitoring."
+  is_abstract: true
+  implements:
+  - MONITORING
+  uses:
+  - common_supply_water_flowrate_sensor
 
 
 WFRC:
@@ -4319,6 +4460,10 @@ SFVSC2X:
   - supply_fan_speed_frequency_sensor_2
   - supply_fan_speed_percentage_sensor_1
   - supply_fan_speed_percentage_sensor_2
+  - supply_fan_torque_sensor_1
+  - supply_fan_torque_sensor_2
+  - supply_fan_voltage_sensor_1
+  - supply_fan_voltage_sensor_2
   uses:
   - supply_fan_run_command_1
   - supply_fan_run_command_2
@@ -4418,6 +4563,7 @@ BYPSSPC:
   opt_uses:
   - supply_air_flowrate_sensor
   - failed_supply_fan_alarm
+  - failed_supply_air_static_pressure_alarm
   - high_supply_air_static_pressure_alarm
   - low_supply_air_static_pressure_alarm
   uses:
@@ -4437,6 +4583,7 @@ BYPSSPC2X: # Consider virtual point for instances where dampers control to same 
   opt_uses:
   - supply_air_flowrate_sensor
   - failed_supply_fan_alarm
+  - failed_supply_air_static_pressure_alarm
   - high_supply_air_static_pressure_alarm
   - low_supply_air_static_pressure_alarm
   uses:
@@ -4463,6 +4610,18 @@ SWISOVM:
   - failed_isolation_valve_alarm
   - failed_supply_water_isolation_valve_alarm
   - local_override_isolation_valve_alarm
+
+CHWRWDVPM:
+  guid: "ac21d1e5-1e01-4612-af36-e71f0a0b58b2"
+  description: "Chilled return water diverting valve percentage monitoring."
+  is_abstract: true
+  opt_uses:
+  - failed_chilled_return_water_diverting_valve_alarm
+  uses:
+  - chilled_return_water_diverting_valve_percentage_command
+  - chilled_return_water_diverting_valve_percentage_sensor
+  implements:
+  - MONITORING
 
 SWDVPM:
   guid: "4a848219-0fdd-4f99-ae7d-5604cbf27bd9"
@@ -4506,6 +4665,8 @@ RWISOVPM:
   guid: "a20fce9d-f8c0-4324-9ffd-8aaa3729b32d"
   description: "Return side isolation valve monitoring."
   is_abstract: true
+  opt_uses:
+  - failed_return_water_isolation_valve_alarm
   uses:
   - return_water_isolation_valve_percentage_command
   - return_water_isolation_valve_percentage_sensor
@@ -4527,8 +4688,10 @@ CICHVISOVM3X:
 
 CHWRWISOVPM:
   guid: "0a8333ee-fdc9-440b-9ebc-fb0e19e8cf5c"
-  description: "Return side isolation valve monitoring."
+  description: "Return side isolation valve percentage monitoring."
   is_abstract: true
+  opt_uses:
+  - failed_chilled_return_water_isolation_valve_alarm
   uses:
   - chilled_return_water_isolation_valve_percentage_command
   - chilled_return_water_isolation_valve_percentage_sensor
@@ -4646,8 +4809,10 @@ PWDPM2X:
 
 CWRISOVPM:
   guid: "ec4e3b78-417d-47a3-bbbf-d031f31d2d3d"
-  description: "Condensing water return isolation monitoring."
+  description: "Condensing water return isolation valve percentage monitoring."
   is_abstract: true
+  opt_uses:
+  - failed_condensing_return_water_isolation_valve_alarm
   uses:
   - condensing_return_water_isolation_valve_percentage_command
   - condensing_return_water_isolation_valve_percentage_sensor
@@ -4701,6 +4866,8 @@ CHWRISOVPM:
   uses:
   - chilled_return_water_isolation_valve_percentage_command
   - chilled_return_water_isolation_valve_percentage_sensor
+  opt_uses:
+  - failed_chilled_return_water_isolation_valve_alarm
   implements:
   - MONITORING
 
@@ -4858,6 +5025,7 @@ SDBPC:
   is_abstract: true
   opt_uses:
   - supply_air_flowrate_sensor
+  - failed_supply_air_static_pressure_alarm
   - high_supply_air_static_pressure_alarm
   - low_supply_air_static_pressure_alarm
   uses:
@@ -5367,6 +5535,19 @@ RWTM:
   - return_water_temperature_sensor
 
 
+WSERWTM:
+  guid: "132824f4-213b-4e8f-85f9-fdad8a194146"
+  description: "Water side economizer return water temperature monitoring."
+  is_abstract: true
+  implements:
+  - MONITORING
+  uses:
+  - economizer_return_water_temperature_sensor
+  opt_uses:
+  - high_economizer_return_water_temperature_alarm
+  - low_economizer_return_water_temperature_alarm
+
+
 CWDPM:
   guid: "d71e1e0d-35d6-4b53-a570-2e12959c951b"
   description: "Differential pressure monitoring for condenser water."
@@ -5393,6 +5574,7 @@ UV:
   is_abstract: true
   opt_uses:
   - ultraviolet_lamp_run_mode
+  - failed_ultraviolet_lamp_alarm
   uses:
   - ultraviolet_lamp_run_command
   - ultraviolet_lamp_run_status
@@ -5545,6 +5727,41 @@ SWTCSCM:
   - supervisor_alarm
 
 
+SESWTC:
+  guid: "ac0191bf-f1ba-4dd9-ba81-d31515589c2c"
+  description: "Secondary loop supply water temperature control."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  opt_uses:
+  - cooling_request_count
+  - heating_request_count
+  - secondary_return_water_temperature_sensor
+  - high_secondary_return_water_temperature_alarm
+  - low_secondary_return_water_temperature_alarm
+  - run_command
+  - high_secondary_supply_water_temperature_alarm
+  - low_secondary_supply_water_temperature_alarm
+  - secondary_water_heating_thermal_power_sensor
+  uses:
+  - secondary_supply_water_temperature_sensor
+  - secondary_supply_water_temperature_setpoint
+
+
+SEWDPC:
+  guid: "6b3687c0-a8c1-4df4-8f2b-05eaccfbdf45"
+  description: "Secondary water loop differential pressure control."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  opt_uses:
+  - high_secondary_water_differential_pressure_alarm
+  - low_secondary_water_differential_pressure_alarm
+  uses:
+  - secondary_water_differential_pressure_sensor
+  - secondary_water_differential_pressure_setpoint
+
+
 WDPCSCM:
   guid: "40d1d42d-50b9-4c13-8213-fa836e3069de"
   description: "Water differential pressure control for supervisor control (Machine learning)."
@@ -5644,6 +5861,7 @@ HTWHLSTC:
   - high_supply_air_temperature_alarm
   - low_return_air_temperature_alarm
   - low_supply_air_temperature_alarm
+  - failed_outside_air_temperature_alarm
   uses:
   - heat_wheel_run_command
   - heat_wheel_run_status
@@ -5830,6 +6048,7 @@ CO2DFVSC:
   - CONTROL
   opt_uses:
   - high_zone_air_co2_concentration_alarm
+  - failed_zone_air_co2_concentration_alarm
 
 
 CO2EFVSC:
@@ -5839,6 +6058,7 @@ CO2EFVSC:
   opt_uses:
   - exhaust_fan_speed_percentage_sensor
   - high_zone_air_co2_concentration_alarm
+  - failed_zone_air_co2_concentration_alarm
   uses:
   - exhaust_fan_speed_percentage_command
   - zone_air_co2_concentration_sensor
@@ -5949,6 +6169,26 @@ HWDDC:
   - CONTROL
 
 
+CHWDDC:
+  guid: "6361fa56-7585-4bc1-995c-dbd92ccf8834"
+  description: "Chilled water valve with dual setpoint control on discharge side."
+  is_abstract: true
+  opt_uses:
+  - discharge_air_relative_humidity_sensor
+  - cooling_thermal_power_capacity
+  - chilled_water_flowrate_sensor
+  - chilled_water_valve_percentage_sensor
+  - high_discharge_air_temperature_alarm
+  - low_discharge_air_temperature_alarm
+  - failed_discharge_air_temperature_alarm
+  uses:
+  - discharge_air_cooling_temperature_setpoint
+  - discharge_air_temperature_sensor
+  - chilled_water_valve_percentage_command
+  implements:
+  - CONTROL
+
+
 CFDPM:
   guid: "be3e3bc0-e927-46a1-9b63-62717fa740ca"
   description: "Carbon filter pressure monitoring, where specific filter type is required."
@@ -5972,6 +6212,9 @@ VOADM2X:
   - outside_air_flowrate_sensor_1
   - outside_air_flowrate_sensor_2
   - failed_mixed_air_temperature_alarm
+  - high_mixed_air_temperature_alarm
+  - low_mixed_air_temperature_alarm
+  - failed_outside_air_temperature_alarm
   uses:
   - outside_air_damper_percentage_command_1
   - outside_air_damper_percentage_command_2
@@ -6056,11 +6299,13 @@ DPCHWHRWSC:
   implements:
   - CONTROL
 
-
 CPVSC2X:
   guid: "1be3e1ba-1a25-4b9a-9784-e4bbd9313db5"
   description: "Circulation pump variable speed control with 2 circulation pumps."
   is_abstract: true
+  opt_uses:
+  - circulation_pump_speed_frequency_sensor_1
+  - circulation_pump_speed_frequency_sensor_2
   uses:
   - circulation_pump_run_command_1
   - circulation_pump_run_command_2
@@ -6070,7 +6315,6 @@ CPVSC2X:
   - circulation_pump_speed_percentage_command_2
   implements:
   - OPERATIONAL
-
 
 HWTTC:
   guid: "141c33da-9691-4e45-a572-3b06402a54d7"
@@ -6262,6 +6506,19 @@ TDTM:
   uses:
   - entering_water_tank_temperature_sensor
   - leaving_water_tank_temperature_sensor
+  implements:
+  - MONITORING
+
+
+OTPM:
+  guid: "109dc354-15b3-4dc5-86ff-30bb586d7d93"
+  description: "Oil temperature and pressure monitoring."
+  is_abstract: true
+  opt_uses:
+  - oil_differential_pressure_sensor
+  uses:
+  - oil_temperature_sensor
+  - oil_pressure_sensor
   implements:
   - MONITORING
 
@@ -6837,6 +7094,13 @@ LM:
   - level_status
   - percentage_sensor
 
+LHLM:
+  guid: "647a4576-b503-43cd-b3b7-e1a9c6856695"
+  description: "High and Low Level Monitoring for tanks."
+  is_abstract: true
+  uses:
+  - water_high_level_status
+  - water_low_level_status
 
 PLPM:
   guid: "87da5960-a441-49a1-8f80-05acdbf32426"
@@ -7018,6 +7282,8 @@ RFVSC:
   opt_uses:
   - return_fan_current_sensor
   - return_fan_power_sensor
+  - return_fan_voltage_sensor
+  - return_fan_torque_sensor
   - return_fan_speed_frequency_sensor
   - return_fan_speed_percentage_sensor
   uses:
@@ -7026,7 +7292,6 @@ RFVSC:
   - return_fan_speed_percentage_command
   implements:
   - OPERATIONAL
-
 
 RFVSC2X:
   guid: "3326bd01-506e-4dba-a410-9a34252b2d59"
@@ -7037,6 +7302,10 @@ RFVSC2X:
   - return_fan_current_sensor_2
   - return_fan_power_sensor_1
   - return_fan_power_sensor_2
+  - return_fan_voltage_sensor_1
+  - return_fan_voltage_sensor_2
+  - return_fan_torque_sensor_1
+  - return_fan_torque_sensor_2
   - return_fan_speed_frequency_sensor_1
   - return_fan_speed_frequency_sensor_2
   - return_fan_speed_percentage_sensor_1
@@ -7313,6 +7582,7 @@ HTWHLZTC:
   - high_supply_air_temperature_alarm
   - low_return_air_temperature_alarm
   - low_supply_air_temperature_alarm
+  - failed_outside_air_temperature_alarm
   uses:
   - heat_wheel_run_command
   - heat_wheel_run_status
@@ -7458,6 +7728,7 @@ MWFRM:
   is_abstract: true
   opt_uses:
   - failed_makeup_water_flowrate_alarm
+  - makeup_water_volume_accumulator
   uses:
   - makeup_water_flowrate_sensor
   implements:
@@ -7473,6 +7744,19 @@ BWFRM:
   - blowdown_water_flowrate_sensor
   implements:
   - MONITORING
+
+BWECVC:
+  guid: "2ebf7b84-a26f-4238-90c0-a630c753883b"
+  description: "Blowdown water electricconductivity drain valve control."
+  is_abstract: true
+  opt_uses:
+  - high_blowdown_water_electricconductivity_alarm
+  uses:
+  - drain_water_valve_command
+  - blowdown_water_electricconductivity_sensor
+  - blowdown_water_electricconductivity_setpoint
+  implements:
+  - OPERATIONAL
 
 DX3SCHWC:
   guid: "917e4514-ed4d-468c-8a81-44d29a143935"
@@ -7663,6 +7947,14 @@ HCPC2X:
   - heating_water_circulation_pump_run_command_1
   - heating_water_circulation_pump_run_command_2
 
+CHCPC:
+  guid: "ffd344fd-12ad-4633-ace7-79ae3987e9af"
+  description: "Circulation control for onboard chilled water pump."
+  is_abstract: true
+  uses:
+  - chilled_water_circulation_pump_run_status
+  - chilled_water_circulation_pump_run_command
+
 CHCPC2X:
   guid: "688f6f6a-c79a-4f1f-8a1e-4463d610276d"
   description: "Circulation control for 2 onboard chilled water pumps."
@@ -7672,3 +7964,38 @@ CHCPC2X:
   - chilled_water_circulation_pump_run_status_2
   - chilled_water_circulation_pump_run_command_1
   - chilled_water_circulation_pump_run_command_2
+
+CDCPC:
+  guid: "80262436-bf4a-43ef-a037-9ceaccbaaf76"
+  description: "Circulation control for onboard condenser water pump."
+  is_abstract: true
+  uses:
+  - condensing_water_circulation_pump_run_status
+  - condensing_water_circulation_pump_run_command
+
+ESM2X:
+  guid: "3d2d7498-e741-4690-aab6-f2e14e11cfeb"
+  description: "Dual electrostatic scrubber monitoring."
+  is_abstract: true
+  opt_uses:
+  - failed_electrostatic_scrubber_alarm_1
+  - failed_electrostatic_scrubber_alarm_2
+  uses:
+  - electrostatic_scrubber_run_command_1
+  - electrostatic_scrubber_run_command_2
+  - electrostatic_scrubber_run_status_1
+  - electrostatic_scrubber_run_status_2
+  implements:
+  - MONITORING
+
+DTPM:
+  guid: "898b43c5-c051-4fbf-8366-4c1fefda40b6"
+  description: "Detergent pump monitoring."
+  is_abstract: true
+  opt_uses:
+  - low_detergent_alarm
+  uses:
+  - detergent_pump_run_status
+  - detergent_pump_run_command
+  implements:
+  - MONITORING

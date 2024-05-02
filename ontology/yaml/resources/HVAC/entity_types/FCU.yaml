@@ -19,6 +19,16 @@
 # This file defines fan-coil unit types. Valid types must include a fan and a coil of some type.
 # They must also include some control scheme (e.g. ZTC, DSP, etc.).
 
+FCU_DFMSC_DSP_DXZTC:
+  guid: "9a03ce8b-40af-4243-a867-e2c94f615753"
+  description: "Variable refrigerant flow unit with zone cooling and heating control, discharge fan speed modes"
+  is_canonical: true
+  implements:
+  - FCU
+  - DFMSC
+  - DSP
+  - DXZTC
+
 FCU_RTM_DFVSC2X_CHWZTC_HWZTC_DTM:
   guid: "d5c05501-528f-47ea-be30-54e9c53f41ca"
   description: "FCU in a trench, with heating and cooling valves, and two fans."
@@ -1452,6 +1462,19 @@ FCU_DFSS_DSP_HWZC_CHWZC_CO2M:
   - HWZC
   - CHWZC
   - CO2M
+
+FCU_DFSS_RHDHC_HT2RC_DX2RC_ZTM:
+  guid: "cc4f57f8-2fa4-4ac1-b32b-76ce5671dd0d"
+  description: "Fan coil with zone temp monitoring, return temp and humidity control, dx cooling with two stages, heating with two stages, and dehumidication and humidifcation modes."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - RHDHC
+  - HT2RC
+  - DX2RC
+  - ZTM
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
@@ -1632,7 +1655,6 @@ FCU_NONCANONICAL_1:
   - zone_air_temperature_sensor_1
   - zone_air_temperature_sensor_2
   - zone_air_temperature_sensor_3
-  - zone_air_temperature_setpoint
   - zone_air_temperature_setpoint_1
   - zone_air_temperature_setpoint_2
   - zone_air_temperature_setpoint_3

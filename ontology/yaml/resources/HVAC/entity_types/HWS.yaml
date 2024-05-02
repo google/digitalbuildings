@@ -231,7 +231,7 @@ HWS_SS_RWTC_SWTC:
   - run_mode
   - lost_power_alarm
 
-HWS_SWTC_BYPVPM_WDPC_WFRM:
+HWS_SWTC_BYPVPM_WDPC_WFRC:
   guid: "09460cb6-7641-4e8f-843e-1e4aa4287c3b"
   description: "Heating water system (temp/pressure control) with bypass control and flow monitoring."
   is_canonical: true
@@ -341,6 +341,18 @@ HWS_SWTC_WDPC_WFRM_HWTTC:
   - WDPC
   - WFRM
   - HWTTC
+
+HWS_PWDT_PRWFRM_SESWTC_SEWDPC_SEWFRM:
+  guid: "f90cf897-105e-413e-b12a-97d2d7b6d6df"
+  description: "Primary/secondary heating water system with secondary loop temperature and differential pressure control and flowrate monitoring."
+  is_canonical: true
+  implements:
+  - HWS
+  - PWDT
+  - PRWFRM
+  - SESWTC
+  - SEWDPC
+  - SEWFRM
 
 ###################################
 ### Existing Non-standard Types ###
