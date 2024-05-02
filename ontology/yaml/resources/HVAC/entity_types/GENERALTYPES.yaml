@@ -74,15 +74,6 @@ HX:
   implements:
   - EQUIPMENT
 
-PMP:
-  guid: "0984adbd-943c-4bf8-9b4e-af51c24c2736"
-  description: "Tag for pumps. Pumps move liquid (water, glycol, liquid CO2, etc.) from one part of a system to another."
-  is_abstract: true
-  opt_uses:
-  - failed_communication_alarm
-  implements:
-  - EQUIPMENT
-
 FRZ:
   guid: "98018a25-3cbc-4cc6-8405-527215394a2c"
   description: "Tag for freezers."
@@ -274,15 +265,6 @@ DH:
 HUM:
   guid: "258519e2-fa66-41bc-a68d-f4ed50b5510b"
   description: "Tag for humidifier. Humidifiers provide humidification to air through the addition of water vapor."
-  is_abstract: true
-  opt_uses:
-  - failed_communication_alarm
-  implements:
-  - EQUIPMENT
-
-VLV:
-  guid: "3b576a44-4ab8-4e9b-ad8f-65f1b9f08238"
-  description: "Tag for valves. Valves are devices which control the flow of water."
   is_abstract: true
   opt_uses:
   - failed_communication_alarm

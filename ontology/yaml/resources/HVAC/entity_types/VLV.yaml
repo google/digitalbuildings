@@ -16,12 +16,12 @@
 ### Canonical Types  ###
 ########################
 
-VLV_CHWVM_RTM_DTM:
+VLV_CHWVM_RTM_DTM: # TODO: remodel this, it is redudant to implement an abstract with `valve` fields
   guid: "b2223a12-07e8-455b-8ae4-eed3942df5a8"
   description: "Chilled water valve with discharge and return temperature monitoring."
   is_canonical: true
   implements:
-  - VLV
+  - /VLV # inherits from global namespace
   - CHWVM
   - RTM
   - DTM
@@ -31,37 +31,37 @@ VLV_HWVM: # If we want to keep this, should match CHW valve (i.e. add RTM and DT
   description: "Heating water valve."
   is_canonical: true
   implements:
-  - VLV
+  - /VLV # inherits from global namespace
   - HWVM
 
-VLV_CHWPVM:
+VLV_CHWPVM: # TODO: remodel this, it is redudant to implement an abstract with `valve` fields
   guid: "4222857f-3f92-4663-83ac-0bb11550f568"
   description: "Chilled water pressure control valve."
   is_canonical: true
   implements:
-  - VLV
+  - /VLV # inherits from global namespace
   - CHWPVM
 
-VLV_HWPVM:
+VLV_HWPVM: # TODO: remodel this, it is redudant to implement an abstract with `valve` fields
   guid: "8ead3ca8-7f64-421c-9293-fcbf440bcc4f"
   description: "Heating water pressure control valve."
   is_canonical: true
   implements:
-  - VLV
+  - /VLV # inherits from global namespace
   - HWPVM
 
-VLV_CDWPVM:
+VLV_CDWPVM: # TODO: remodel this, it is redudant to implement an abstract with `valve` fields
   guid: "f656bec8-3061-4e60-b7d2-00f754bad5af"
   description: "Condensing water pressure control valve."
   is_canonical: true
   implements:
-  - VLV
+  - /VLV # inherits from global namespace
   - CDWPVM
 
-VLV_SWCM:
+VLV_SWCM: # TODO: remodel this, it is redudant to implement an abstract with `valve` fields
   guid: "e0552cad-7620-462c-9571-b832cda303f5"
   description: "Solenoid water valve control and monitoring."
   is_canonical: true
   implements:
-  - VLV
+  - /VLV # inherits from global namespace
   - SWCM
