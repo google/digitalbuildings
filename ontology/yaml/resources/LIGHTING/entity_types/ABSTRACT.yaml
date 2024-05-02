@@ -12,23 +12,38 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-### ABSTRACT TYPES
+### ABSTRACT TYPES ###
 
 SS:
   guid: "71ad241a-b4d5-413a-b86a-6102117feb8e"
   description: "Basic combination of run command and status (start/stop); indicates the light is active or inactive."
   is_abstract: true
   implements:
-  - /SS
+  - /SS # inherits from GLOBAL namespace
 
-DC:
-  guid: "f00c5ccb-1549-4620-9a2f-ba13a73a5aaf"
-  description: "Brightness dimming control."
+SRC:
+  guid: "2483cfe4-4196-42a4-b18f-f67f258a0220"
+  description: "Basic run scheduling."
   is_abstract: true
-  opt_uses:
-  - brightness_percentage_sensor
   uses:
-  - brightness_percentage_command
+  - schedule_run_command
+
+RC:
+  guid: "4bd721fa-c80b-469f-ba59-4e201464b527"
+  description: "Relay or switch to switch a socket or power supply for lumiaires or other devices."
+  is_abstract: true
+  uses:
+  - switch_command
+
+# TODO: understand the difference between this and RC (combine functionality, if possible)
+LSC:
+  guid: "e0fa76a9-1bd3-4844-914e-ed66eef7fcfb"
+  description: "Lighting switch control."
+  is_abstract: true
+  uses:
+  - lighting_switch_status
+
+### Zone monitoring types ###
 
 MS:
   guid: "d5244d01-e5e9-4592-8c76-bf3a7e196a28"
@@ -37,6 +52,7 @@ MS:
   uses:
   - motion_status
 
+# TODO: rename to ZOM (zone occupancy monitoring)
 OS:
   guid: "42e7e1d7-2da6-4be6-9d21-2d3e93e5af1c"
   is_abstract: true
@@ -51,19 +67,7 @@ ROS:
   uses:
   - room_occupancy_status
 
-SC:
-  guid: "84c2b591-fbd8-47e1-982b-45bef8211bdb"
-  is_abstract: true
-  description: "Scene control for a device or group of devices."
-  uses:
-  - scene_index_command
-
-BM:
-  guid: "b2da7457-74d3-4ec3-95a5-6f272e67a48d"
-  description: " Battery power status monitoring."
-  is_abstract: true
-  uses:
-  - battery_charge_status
+### Illuminance types ###
 
 IM:
   guid: "13d6cfcb-8aa0-487e-a8b3-9f0f02ad63c6"
@@ -72,23 +76,7 @@ IM:
   uses:
   - illuminance_sensor
 
-DPC:
-  guid: "af54bb0b-795c-4b3e-bb74-b3a77d61eae2"
-  description: " Dimmer control."
-  is_abstract: true
-  uses:
-  - dimmer_percentage_command
-
-SCZ:
-  guid: "e61e393c-370e-4917-bdb4-2554e0d47f0b"
-  is_abstract: true
-  description: "Scene control for a device and zone."
-  opt_uses:
-  - scene_command
-  - scene_index_command
-  uses:
-  - zone_scene_command
-
+# TODO: delete this type (duplicate of IM)
 IS:
   guid: "5c46b19e-f238-4299-baac-4bd6db5c1cc7"
   is_abstract: true
@@ -96,7 +84,64 @@ IS:
   uses:
   - illuminance_sensor
 
-  #Abstract types for CH ZRH EURD
+# TODO: rename to IC (illuminance control) to match precedent
+LC:
+  guid: "fa06c1cc-0240-4e55-8956-300ec6f3e095"
+  description: "Luminance control."
+  is_abstract: true
+  uses:
+  - illuminance_setpoint
+  - illuminance_sensor
+
+### Dimmer and brightness types ###
+
+# TODO: justify use of this (modeling similar behavior as DC)
+DPC:
+  guid: "af54bb0b-795c-4b3e-bb74-b3a77d61eae2"
+  description: " Dimmer control."
+  is_abstract: true
+  uses:
+  - dimmer_percentage_command
+
+DC:
+  guid: "f00c5ccb-1549-4620-9a2f-ba13a73a5aaf"
+  description: "Brightness dimming control."
+  is_abstract: true
+  opt_uses:
+  - brightness_percentage_sensor
+  uses:
+  - brightness_percentage_command
+
+# TODO: jutify this type, very similar control to DC (combine with DC, if possible)
+DM:
+  guid: "0e3ab3d7-a378-4c72-91ca-32a1290c6d84"
+  description: "Brightness dimming monitoring."
+  is_abstract: true
+  opt_uses:
+  - dimmer_run_status # TODO: justify this field name, similar meaning as lighting_switch_status
+  - power_sensor # TODO: remove from this type, implement PWM on the canonical instead
+  uses:
+  - brightness_percentage_sensor
+
+### Scene types ###
+
+SC:
+  guid: "84c2b591-fbd8-47e1-982b-45bef8211bdb"
+  is_abstract: true
+  description: "Scene control for a device or group of devices."
+  uses:
+  - scene_index_command
+
+SCZ:
+  guid: "e61e393c-370e-4917-bdb4-2554e0d47f0b"
+  is_abstract: true
+  description: "Scene control for a device and zone."
+  opt_uses:
+  - scene_command # TODO: justify the need for this (because zone_scene_command is also implemented)
+  - scene_index_command
+  uses:
+  - zone_scene_command
+
 VADC:
   guid: "dd477164-19aa-4b48-ad31-115c086cfc1e"
   description: "Variable dimmer control for standard luminaires."
@@ -109,7 +154,7 @@ VADC:
 
 VADCRGB:
   guid: "338fb60b-963b-4489-bf94-6796bb19d367"
-  description: "Variable dimmer control for RGB luminaires."
+  description: "Variable dimmer control for red-green-blue (RGB) luminaires."
   is_abstract: true
   uses:
   - scene_dimmer_percentage_command
@@ -120,41 +165,43 @@ VADCRGB:
   - green_scene_dimmer_percentage_command
   - blue_scene_dimmer_percentage_command
 
-RC:
-  guid: "4bd721fa-c80b-469f-ba59-4e201464b527"
-  description: "Relay or switch to switch a socket or power supply for lumiaires or other devices"
+### Power and energy types ###
+
+BM:
+  guid: "b2da7457-74d3-4ec3-95a5-6f272e67a48d"
+  description: " Battery power status monitoring."
   is_abstract: true
   uses:
-  - switch_command
-
-LSC:
-  guid: "e0fa76a9-1bd3-4844-914e-ed66eef7fcfb"
-  description: "Lighting switch control."
-  is_abstract: true
-  uses:
-  - lighting_switch_status
-
-LC:
-  guid: "fa06c1cc-0240-4e55-8956-300ec6f3e095"
-  description: "Luminance control."
-  is_abstract: true
-  uses:
-  - illuminance_setpoint
-  - illuminance_sensor
-
-SRC:
-  guid: "2483cfe4-4196-42a4-b18f-f67f258a0220"
-  description: "Basic run scheduling "
-  is_abstract: true
-  uses:
-  - schedule_run_command 
-
+  - battery_charge_status
+ 
+# TODO: deprecate and inherit from METERS (or promote PWM to global and inherit from there)
+# TODO: combine with ENM
 PWM:
   guid: "fc70bbb6-5000-4f83-9e79-862f60ececfe"
   description: "Basic power monitoring "
   is_abstract: true
   uses:
   - power_sensor  
+
+# TODO: deprecate and combine with PWM
+ENM:
+  guid: "2f548e52-a2b3-492c-acd8-747f0ce4f8a9"
+  description: "Basic energy monitoring "
+  is_abstract: true
+  uses:
+  - energy_accumulator
+
+# TODO: deprecate and replace with new, targeted abstract types
+OM:
+  guid: "54221319-0bab-4aa9-aea0-d667419bee11"
+  description: "Operation monitoring for lighting fixtures"
+  is_abstract: true
+  uses:
+  - energy_accumulator # TODO: covered by PWM
+  - run_time_accumulator # TODO: add as opt_uses to SS
+  - luminaire_alarm # TODO: understand this alarm's purpose (does it indicate failure? If so, add failed_alarm to general type)
+
+### Lighting color types ###
 
 CCIEM:
   guid: "d2755279-6ccd-4d9e-838a-371ab23c022d"
@@ -172,37 +219,11 @@ CHSLM:
   - lighting_color_hsl_saturation_percentage_sensor
   - lighting_color_hsl_hue_angle_sensor
 
-OM:
-  guid: "54221319-0bab-4aa9-aea0-d667419bee11"
-  description: "Operation monitoring for lighting fixtures"
-  is_abstract: true
-  uses:
-  - energy_accumulator
-  - run_time_accumulator
-  - luminaire_alarm
-
-DM:
-  guid: "0e3ab3d7-a378-4c72-91ca-32a1290c6d84"
-  description: "Brightness dimming monitoring."
-  is_abstract: true
-  opt_uses:
-  - dimmer_run_status
-  - power_sensor
-  uses:
-  - brightness_percentage_sensor
-
-ENM:
-  guid: "2f548e52-a2b3-492c-acd8-747f0ce4f8a9"
-  description: "Basic energy monitoring "
-  is_abstract: true
-  uses:
-  - energy_accumulator
-
 CTC:
   guid: "30ed8ab4-8df7-493f-a3fc-b4da7f28c8fe"
   is_abstract: true
   description: "Scene control for a device and zone."
   opt_uses:
-  - lighting_color_temperature_sensor
+  - lighting_color_temperature_sensor # TODO: promote to uses
   uses:
   - lighting_color_temperature_setpoint

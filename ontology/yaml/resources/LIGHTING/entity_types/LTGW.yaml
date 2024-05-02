@@ -12,6 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+########################
+### Canonical Types  ###
+########################
 # Canonical types for Lighting Gateways
 
 LTGW_BS:
@@ -20,7 +23,9 @@ LTGW_BS:
   implements:
   - LTGW
 
-# Non-Canonical types for Lighting Gateways
+###################################
+### Existing Non-standard Types ###
+###################################
 
 LTGW_NONCANONICAL_1: 
   guid: "fe48016c-e9cc-4599-9056-fa44d3b01df6"

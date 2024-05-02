@@ -12,10 +12,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+########################
+### Canonical Types  ###
+########################
 
 LT_SS:
   guid: "75cb78f1-63d6-4442-9e05-2ee0d9b24360"
-  description: "Standard light."
+  description: "Standard light with start/stop."
   is_canonical: true
   implements:
   - LT
@@ -23,7 +26,7 @@ LT_SS:
 
 LT_DC:
   guid: "5eee1cd9-5a5c-4daf-8211-4a413bcdff5d"
-  description: "Even more standaard light with dimming control."
+  description: "Standard light with dimming control."
   is_canonical: true
   implements:
   - LT
@@ -31,7 +34,7 @@ LT_DC:
 
 LT_DC_SC:
   guid: "ec914daa-b767-4034-a072-cf33c6e4d60b"
-  description: "Standard light with dimming control and scene control."
+  description: "Light with dimming control and scene control."
   is_canonical: true
   implements:
   - LT
@@ -45,13 +48,6 @@ LT_DPC:
   implements:
   - LT
   - DPC
-
-ELT_GENERIC:
-  guid: "93b0205f-5a69-45e9-8af8-7d2a862037af"
-  description: "Generic, non-canonical emergency light"
-  is_canonical: false
-  implements:
-  - ELT
 
 LT_DM_CCIEM_OM:
   guid: "b0a36e56-d06d-4418-9636-cb1a3d9b5bab"
@@ -82,3 +78,14 @@ LT_DC_CTC_OM:
   - DC
   - CTC
   - OM
+
+###################################
+### Existing Non-standard Types ###
+###################################
+
+ELT_GENERIC:
+  guid: "93b0205f-5a69-45e9-8af8-7d2a862037af"
+  description: "Generic, non-canonical emergency light"
+  is_canonical: false
+  implements:
+  - ELT

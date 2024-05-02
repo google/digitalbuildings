@@ -21,12 +21,8 @@
 
 LTB_SS:
   guid: "b162ff3b-1f5e-48bd-b68d-ec0349572241"
-  description: "Lighting battery with basic feedback. "
+  description: "Lighting battery with basic feedback."
   is_canonical: true
   implements:
   - ELECTRICAL/BATT
   - SS
-
-
-
-

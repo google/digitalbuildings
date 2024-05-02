@@ -12,11 +12,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+########################
+### Canonical Types  ###
+########################
 # Canonical types for Lighting Keypads
 
 LKP_SCZ_DC:
   guid: "eee9591f-b34d-4ec7-8885-4fbf2a0047ce"
-  description: "Lighting to control brightness with scene command."
+  description: "Lighting keypad to control brightness with scene command."
   is_canonical: true
   implements:
   - LKP
