@@ -162,22 +162,3 @@ PMP_SS_VSC_HWBYPVM:
 ###################################
 ### Existing Non-standard Types ###
 ###################################
-
-PMP_SS_VSC_NONCANONICAL_1:
-  guid: "026231f9-fae5-4250-8d4b-c8b33948dc5d"
-  description: "Non-standard variable speed pump."
-  implements:
-  - PMP_SS_VSC
-  - INCOMPLETE
-  uses:
-  - speed_frequency_command
-
-PMP_SS_VSC_NONCANONICAL_2:
-  guid: "f9ffc542-75a0-4159-9b19-2b72fd1b4396"
-  description: "One-off pump that performs chilled water blending."
-  implements:
-  - PMP_SS_VSC
-  uses:
-  - mixing_valve_percentage_command
-  - chilled_supply_water_temperature_setpoint
-  - chilled_supply_water_temperature_sensor
