@@ -680,31 +680,6 @@ CH_SS_SCHWTC_CWDT_CHWRISOVPM_CWRISOVPM_REFPM_REFSM_MIPVCM_MIPWM_CHCPC_CDCPC_OTPM
 ### Existing Non-standard Types ###
 ###################################
 
-CH_SS_SWTC_DX4SWC_SWISOVPM_NONCANONICAL_1:
-  guid: "d4bef12c-c41b-4ba8-9d06-035e9e9ba431"
-  description: "Non-standard type."
-  implements:
-  - CH_SS_SWTC_DX4SWC_SWISOVPM
-  - INCOMPLETE
-
-CH_SS_SWTC_NONCANONICAL_1:
-  guid: "ae202987-6078-455c-8ee0-dfe43e223329"
-  description: "Non-standard type."
-  implements:
-  - CH_SS_SWTC
-  - INCOMPLETE
-  uses:
-  - cooling_percentage_sensor
-
-CH_SS_SCHWTC_CWDT_NONCANONICAL_1:
-  guid: "30db6609-b1e4-40ac-8d03-12d38d41a64d"
-  description: "Non-standard type."
-  implements:
-  - CH_SS_SCHWTC_CWDT
-  - INCOMPLETE
-  uses:
-  - cooling_percentage_sensor
-
 CH_SS_CHWDT_CWDT_CWDPM_CHWDPM_REFM:
   guid: "48f951c0-42ca-4714-a3ef-e384fa1485d2"
   description: "Non-standard type."
