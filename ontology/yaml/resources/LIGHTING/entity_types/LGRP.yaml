@@ -12,6 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+########################
+### Canonical Types  ###
+########################
 # Lighting device group
 
 LGRP_DC:
@@ -273,17 +276,6 @@ LGRP_SS_DC_MS:
   - DC
   - MS
 
-#Noncanonical types
-LGRP_DC_MS_IM:
-  guid: "5a1e9a7c-0b8d-4eb4-9e97-6abfc696e382"
-  description: "Non-canonical lighting groups with brightness, motion sensing and illuminance monitoring"
-  is_canonical: false
-  implements:
-  - LGRP
-  - DC
-  - MS
-  - IM
-
 LGRP_OS_LC:
   guid: "c6296635-f9e9-4dc4-b963-0a3d517e7d44"
   description: "Standard lighting fixture group control with zone occupancy montoring and luminance control"
@@ -307,4 +299,19 @@ LGRP_SS_OS_IM:
   - IM
   uses:
   - group_mode
+
+###################################
+### Existing Non-standard Types ###
+###################################
+
+LGRP_DC_MS_IM:
+  guid: "5a1e9a7c-0b8d-4eb4-9e97-6abfc696e382"
+  description: "Non-canonical lighting groups with brightness, motion sensing and illuminance monitoring"
+  is_canonical: false
+  implements:
+  - LGRP
+  - DC
+  - MS
+  - IM
+
 
