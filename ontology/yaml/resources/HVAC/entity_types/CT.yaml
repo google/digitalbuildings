@@ -209,25 +209,6 @@ CT_SS_VSC_SWTM_RWISOVM_SWISOVM_FSWISOVM_FRWISOVM:
 ### Existing Non-standard Types ###
 ###################################
 
-CT_SS_SWTC_NONCANONICAL_1:
-  guid: "1a4475ad-f918-40e7-bb50-a3a688c80e80"
-  description: "Non-standard type."
-  implements:
-  - CT_SS_SWTC
-  - INCOMPLETE
-  uses:
-  - fan_speed_mode
-
-CT_SS_VSC_SWTC_NONCANONICAL_1:
-  guid: "0eee9ffb-cad6-408a-b1ef-85ac2cf3e1e9"
-  description: "Non-standard type."
-  implements:
-  - CT_SS_VSC_SWTC
-  - INCOMPLETE
-  uses:
-  - speed_frequency_command
-
-
 CT_SS_VSC_SWTM:
   guid: "cb5d9702-fdf0-44be-9857-21ef98ad5739"
   description: "Cooling tower with variable speed control and supply water temperature monitoring"
