@@ -368,16 +368,6 @@ HWS_SWTC_WDPC2X_NONCANONICAL_1:
   - return_water_temperature_sensor_1
   - return_water_temperature_sensor_2
 
-HWS_RWTC_MXVPM_NONCANONICAL_1:
-  guid: "5c99f349-15ce-4908-b3b2-185e758ca0ad"
-  description: "Non-standard type."
-  implements:
-  - HWS_RWTC_MXVPM
-  - DEPRECATED
-  uses:
-  - mixing_valve_percentage_command
-  - heat_exchange_supply_water_isolation_valve_command
-
 HWS_SWTC_CPC:
   guid: "e8ea2064-a575-4c7d-957b-948f83edc8a8"
   description: "Simple hot water system with circulation pump"
