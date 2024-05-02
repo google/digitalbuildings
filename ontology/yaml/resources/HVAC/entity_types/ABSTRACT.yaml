@@ -1172,20 +1172,6 @@ SWTC:
   - supply_water_temperature_sensor
   - supply_water_temperature_setpoint
 
-# Rename SFN TOTAL_
-SATC:
-  guid: "a62c192a-514c-4442-aa39-a0a82d7150f9"
-  description: "Supply air temperature control."
-  is_abstract: true
-  implements:
-  - OPERATIONAL
-  opt_uses:
-  - cooling_percentage_command
-  - heating_percentage_command
-  uses:
-  - supply_air_temperature_sensor
-  - supply_air_temperature_setpoint
-
 RWTC:
   guid: "e6ef58f6-fbda-421d-ac06-d573b093aecd"
   description: "Return water temperature control."
