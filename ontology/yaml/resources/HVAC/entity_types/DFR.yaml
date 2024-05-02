@@ -64,16 +64,6 @@ DFR_SFSS_SFVSC_BYPSSPC_HTSC:
 ### Existing Non-standard Types ###
 ###################################
 
-DFR_SFSS_BYPSSPC_HT2SC_RTM_NONCANONICAL_1:
-  guid: "0539ecd5-d85c-4abd-9d1f-855b0180dbaf"
-  description: "Non-standard type."
-  implements:
-  - DFR_SFSS_BYPSSPC_HT2SC_RTM
-  - DEPRECATED
-  uses:
-  - heating_percentage_command_1
-  - heating_percentage_command_2
-
 DFR_SFSS_BYPSSPC_HT2SC_RTM_NONCANONICAL_2:
   guid: "34afae9b-41bc-4432-87ca-fe59c74413bc"
   description: "Non-standard type."
