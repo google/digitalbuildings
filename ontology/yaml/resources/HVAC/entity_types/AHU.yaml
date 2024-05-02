@@ -4515,66 +4515,6 @@ AHU_SFSS2X_SFVSC2X_RFSS2X_RFVSC2X_HWSC_CHWSC_SSPC_MOAFC_ECON_EDPM_RD_UV:
 # TODO: Every AHU must have outside_air_temperature_sensor, so almost every AHU is currently incomplete.
 #       See b/148117417 for details
 
-AHU_UNDEFINED:
-  guid: "7d70f11b-ad04-4576-b974-bc3df9c9109e"
-  description: "An AHU with no telemetry data. Note this is non-canonical, as it is typically expected that telemetry will normally be available."
-  implements:
-  - AHU
-
-AHU_NON_CANONICAL_TYPE_1:
-  guid: "48831bff-5e24-4920-a961-f0d14845ea87"
-  description: "Datapoint from for Ahu's on Landlords side."
-  implements:
-  - AHU
-  - LANDLORD
-  uses:
-  - run_command
-  - supply_air_temperature_setpoint
-  - master_alarm
-  - run_status
-  - supply_air_temperature_sensor
-
-AHU_NON_CANONICAL_TYPE_2:
-  guid: "c963f0f3-c19a-4447-b768-0d6b948864b7"
-  description: "Ahu with variable speed supply and exhaust air fans, air cooler, hair heater, and hru."
-  implements:
-  - AHU
-  - VOADM
-  - SFVSC
-  - SSPC
-  - SFSS
-  - STC
-  - HHRU
-  - HWSC
-  - CHWSC
-  - EFVSC
-  - ESPC
-  - EDPM
-  - EFSS
-  - RTM
-  - ZHM
-
-AHU_NON_CANONICAL_TYPE_3:
-  guid: "84559bca-4a3e-4f13-9801-8e9632703e4f"
-  description: "Ahu with variable speed supply and exhaust air fans, air cooler, hair heater, and hru.-Incomplete"
-  implements:
-  - AHU
-  - INCOMPLETE
-  - VOADM
-  - SFVSC
-  - SSPC
-  - SFSS
-  - STC
-  - PHRU
-  - HWSC
-  - CHWSC
-  - EFVSC
-  - ESPC
-  - EDPM
-  - EFSS
-  - RTM
-  - ZHM
-
 AHU_NON_CANONICAL_TYPE_4:
   guid: "372a3f62-36b6-439f-b2d6-8d2c3968d361"
   description: "Non-standard type 4"
@@ -4590,27 +4530,6 @@ AHU_NON_CANONICAL_TYPE_4:
   - supply_fan_run_status
   - zone_air_cooling_temperature_setpoint
   - zone_air_temperature_sensor
-
-AHU_NON_CANONICAL_TYPE_5:
-  guid: "64d9c1dd-7322-47eb-ad07-c529941939a4"
-  description: "Non-standard type 5"
-  implements:
-  - AHU_BSPC_DX4SC_ECON_EFSS_SFSS_SFVSC_SSPC
-  - INCOMPLETE
-  uses:
-  - zone_air_temperature_sensor
-  - zone_air_cooling_temperature_setpoint
-  - zone_air_heating_temperature_setpoint
-
-AHU_NON_CANONICAL_TYPE_6:
-  guid: "c76dfc36-ac54-4f85-93d6-ded0b563a679"
-  description: "Non-standard type 6"
-  implements:
-  - AHU_BSPC_DX4SC_ECON_EFSS_SFSS_SFVSC_SSPC
-  - INCOMPLETE
-  uses:
-  - supply_air_damper_command
-  - supply_air_damper_status
 
 AHU_NON_CANONICAL_TYPE_7:
   guid: "58e4ffc1-f4ee-4401-9070-34897ff82ed6"
@@ -4687,24 +4606,6 @@ AHU_NON_CANONICAL_TYPE_14:
   - supply_air_static_pressure_setpoint # Remove
   - supply_air_static_pressure_sensor # Remove
 
-AHU_NON_CANONICAL_TYPE_15:
-  guid: "ae903e3a-4438-460d-af4c-58eff89780e1"
-  description: "Non-standard type 15"
-  implements:
-  - AHU_BYPSSPC_DXSC_ECON_HP2SC_SFSS
-  - INCOMPLETE
-  uses:
-  - zone_air_co2_concentration_setpoint
-
-AHU_NON_CANONICAL_TYPE_16:
-  guid: "25f1eda5-8c88-4bc2-aa3e-6a083ec968c8"
-  description: "Non-standard type 16"
-  implements:
-  - AHU_BYPSSPC_ECON_HP2SC_HT2SC_SFSS
-  - INCOMPLETE
-  uses:
-  - zone_air_co2_concentration_setpoint # Remove
-
 AHU_NON_CANONICAL_TYPE_17:
   guid: "71a21aca-2d0b-4d17-a2d4-9cd33738fbbb"
   description: "Non-standard type 17"
@@ -4713,112 +4614,6 @@ AHU_NON_CANONICAL_TYPE_17:
   - INCOMPLETE
   uses:
   - zone_air_temperature_sensor
-
-AHU_NON_CANONICAL_TYPE_18:
-  guid: "d1c35f45-fd26-4f4e-be91-9fec3d7e92ef"
-  description: "Non-standard type 18"
-  implements:
-  - AHU_BSPC_CHWSC_ECON_EFSS_EFVSC_HWSC_PHWSC_SFSS_SFVSC_SSPC
-  - INCOMPLETE
-  uses:
-  - supply_air_damper_percentage_command
-
-AHU_NON_CANONICAL_TYPE_19:
-  guid: "9a984218-f71d-4267-b470-90c65f089285"
-  description: "Non-standard type 19"
-  implements:
-  - AHU_BSPC_CHWSC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC
-  - INCOMPLETE
-  uses:
-  - supply_air_damper_percentage_command
-
-AHU_NON_CANONICAL_TYPE_20:
-  guid: "3e24e23d-dbf9-421e-9f65-93b0d4cbfe52"
-  description: "Non-standard type 20"
-  implements:
-  - AHU_BSPC_DX4SC_ECONM_EFSS_EFVSC_SFSS2X_SFVSC_SSPC
-  - INCOMPLETE
-  uses:
-  - supply_air_damper_command
-  - supply_air_damper_status
-
-AHU_NON_CANONICAL_TYPE_21:
-  guid: "599ec1ea-7930-479c-a239-c5cf20e041a5"
-  description: "Non-standard type 21"
-  implements:
-  - AHU_CHWSC_ECON_HWSC_SFSS_SFVSC_SSPC
-  - INCOMPLETE
-  uses:
-  - zone_air_relative_humidity_sensor_1
-  - zone_air_relative_humidity_sensor_2
-
-AHU_NON_CANONICAL_TYPE_22:
-  guid: "8d873d00-689a-47da-ac14-d2f8205ae098"
-  description: "Non-standard type 22"
-  implements:
-  - AHU_CHWSC_ECON_SFC_SFSS_SFVSC_SSPC
-  - INCOMPLETE
-  uses:
-  - outside_air_damper_command
-
-AHU_NON_CANONICAL_TYPE_23:
-  guid: "b1f99eb9-b7f4-4863-be07-5c4cb0f823b5"
-  description: "Non-standard type 23"
-  implements:
-  - AHU_BSPC_CHWSC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC
-  - INCOMPLETE
-  uses:
-  - zone_air_temperature_sensor
-  - zone_air_cooling_temperature_setpoint
-  - zone_air_heating_temperature_setpoint
-  - exhaust_air_flowrate_sensor
-  - supply_air_damper_percentage_command
-
-AHU_NON_CANONICAL_TYPE_24:
-  guid: "33716ad8-3d76-4767-a309-a624f25f7245"
-  description: "Non-standard type 24"
-  implements:
-  - AHU_BSPC_DXSC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC
-  - INCOMPLETE
-  uses:
-  - compressor_speed_percentage_command
-
-AHU_NON_CANONICAL_TYPE_25:
-  guid: "19c1edc6-1584-4694-a139-cff5914765a4"
-  description: "Non-standard type 25"
-  implements:
-  - AHU_BSPC_CHWSC_ECON_EFSS_HWSC_SFSS_SSPC
-  - INCOMPLETE
-  uses:
-  - zone_air_cooling_temperature_setpoint
-
-AHU_NON_CANONICAL_TYPE_26:
-  guid: "d61f1e83-fe50-40f8-8fc3-7cffa11d3db9"
-  description: "Non-standard type 26"
-  implements:
-  - AHU_CHWZC_DFSS_DSP_ECONZ
-  - INCOMPLETE
-  uses:
-  - exhaust_air_damper_percentage_command
-
-AHU_NON_CANONICAL_TYPE_27:
-  guid: "6f2107b2-0299-4f4d-bb76-a21d88863e8f"
-  description: "Non-standard type 27"
-  implements:
-  - AHU_BSPC_CHWSC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC
-  - INCOMPLETE
-  uses:
-  - zone_air_temperature_sensor
-
-AHU_NON_CANONICAL_TYPE_28:
-  guid: "5ade27ec-a2a1-4699-a881-d68dffde8c05"
-  description: "Non-standard type 28"
-  implements:
-  - AHU_BSPC_DX4SC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC
-  - INCOMPLETE
-  uses:
-  - zone_air_temperature_sensor
-  - zone_air_cooling_temperature_setpoint
 
 AHU_NON_CANONICAL_TYPE_29:
   guid: "9d73460d-d4aa-46ec-82ab-323774ab3013"
@@ -4831,16 +4626,6 @@ AHU_NON_CANONICAL_TYPE_29:
   - supply_fan_run_status
   - supply_air_temperature_sensor
 
-AHU_NON_CANONICAL_TYPE_30:
-  guid: "013a1f35-c3dd-4a14-a5f7-cf4fd7312329"
-  description: "Non-standard type 30"
-  implements:
-  - AHU_DSP_DFSS_DXZC_ECONMD
-  - INCOMPLETE
-  uses:
-  - outside_air_temperature_sensor
-  - ventilation_outside_air_damper_percentage_command
-
 AHU_NON_CANONICAL_TYPE_31:
   guid: "b258e547-4315-45a0-8cf8-a39dfc160e9d"
   description: "Non-standard type 31"
@@ -4850,18 +4635,6 @@ AHU_NON_CANONICAL_TYPE_31:
   uses:
   - zone_air_temperature_sensor
   - outside_air_damper_command
-
-AHU_NON_CANONICAL_TYPE_32:
-  guid: "5867ea9c-4357-49d8-9e92-779d775c99ee"
-  description: "Non-standard type 32"
-  implements:
-  - AHU_BSPC_DXSC_ECON_EFSS_EFVSC_FDPM_SFSS3X_SFVSC2X_SSPC
-  - INCOMPLETE
-  uses:
-  - condensing_fan_speed_percentage_command_1
-  - compressor_speed_percentage_command_1
-  - condensing_fan_speed_percentage_command_2
-  - compressor_speed_percentage_command_2
 
 AHU_NON_CANONICAL_TYPE_33:
   guid: "46dd8e55-bbaf-4daf-9dbb-40a73bdddaf8"
@@ -4901,16 +4674,6 @@ AHU_NON_CANONICAL_TYPE_35:
   - supply_fan_run_command
   - supply_fan_run_status
 
-AHU_NON_CANONICAL_TYPE_36:
-  guid: "42dc8beb-76a0-4bee-a913-1d37f89dc34d"
-  description: "Non-standard type 36"
-  implements:
-  - AHU_DFSS_DSP_DX2ZC_ECONZ
-  - INCOMPLETE
-  uses:
-  - zone_air_temperature_sensor_1
-  - zone_air_temperature_sensor_2
-
 AHU_NON_CANONICAL_TYPE_37:
   guid: "1e34b20e-77b1-4985-ad65-32ef6085e172"
   description: "Non-standard type 37"
@@ -4919,22 +4682,6 @@ AHU_NON_CANONICAL_TYPE_37:
   uses:
   - supply_fan_current_sensor_1
   - supply_fan_current_sensor_2
-
-AHU_NON_CANONICAL_TYPE_38:
-  guid: "649cc471-16a4-490a-a366-90744b5fd43b"
-  description: "Non-standard type 38"
-  implements:
-  - REMAP_REQUIRED
-  uses:
-  - supply_fan_run_status
-
-AHU_NON_CANONICAL_TYPE_39:
-  guid: "84342497-9ed0-49c6-86d3-eb55e005f03e"
-  description: "Non-standard type 39"
-  implements:
-  - REMAP_REQUIRED
-  uses:
-  - outside_air_damper_percentage_command
 
 AHU_NON_CANONICAL_TYPE_40:
   guid: "1ffb1601-cfa6-43b5-b512-f5a7f4783beb"
@@ -5040,33 +4787,6 @@ AHU_NON_CANONICAL_TYPE_50:
   uses:
   - discharge_air_damper_command
 
-AHU_NON_CANONICAL_TYPE_51:
-  guid: "533ed589-adbf-4151-9afb-b4455313b58f"
-  description: "Non-standard type 51"
-  implements:
-  - AHU_CHWSC_ECONM2X_MOAFC_SFSS_SFVSC_SSPC
-  - INCOMPLETE
-  uses:
-  - return_air_flowrate_sensor
-
-AHU_NON_CANONICAL_TYPE_52:
-  guid: "ffc90d01-7f05-4f78-b3c6-9207469df92e"
-  description: "Non-standard type 52"
-  implements:
-  - AHU_CHWSC_ECON_FDPM_SFSS_SFVSC_SSPC
-  - INCOMPLETE
-  uses:
-  - outside_air_damper_command
-
-AHU_NON_CANONICAL_TYPE_53:
-  guid: "f4770c34-4186-4ba8-8301-10f99e11f815"
-  description: "Non-standard type 53"
-  implements:
-  - AHU_CHWSC_ECON_EFSS_EFVSC_FDPM_RFC_SFSS_SFVSC_SSPC
-  - INCOMPLETE
-  uses:
-  - outside_air_damper_command
-
 AHU_NON_CANONICAL_TYPE_54:
   guid: "cd258658-29ee-404e-939d-fdbc05ca5ce8"
   description: "Non-standard type 54"
@@ -5075,24 +4795,6 @@ AHU_NON_CANONICAL_TYPE_54:
   - INCOMPLETE
   uses:
   - run_command
-
-AHU_NON_CANONICAL_TYPE_55:
-  guid: "6804e5f9-627c-4a81-a277-353086b8d1f4"
-  description: "Non-standard type 55"
-  implements:
-  - AHU_DX4ZC_ECON_EFSS_HT3ZC_SFSS_SFVSC_ZHC
-  - INCOMPLETE
-  uses:
-  - zone_air_dehumidification_relative_humidity_setpoint
-
-AHU_NON_CANONICAL_TYPE_56:
-  guid: "89de4191-2deb-479d-b3cf-0ecdc851576d"
-  description: "Non-standard type 56"
-  implements:
-  - AHU_DFSS_DFVSC_DX4ZC_ECONZ_HT3ZC_ZHM
-  - INCOMPLETE
-  uses:
-  - zone_air_dehumidification_relative_humidity_setpoint
 
 AHU_NON_CANONICAL_TYPE_57:
   guid: "bc8f9357-22cd-4b9e-becd-9d1949aec990"
@@ -5189,16 +4891,6 @@ AHU_NON_CANONICAL_TYPE_65:
   - zone_air_heating_temperature_setpoint
   - zone_air_temperature_sensor
 
-AHU_NON_CANONICAL_TYPE_66:
-  guid: "fe969bce-99b8-46cb-8880-4ba91ca83e39"
-  description: "Non-standard type 66"
-  implements:
-  - AHU_BPC_CHWSC_ECONM_EFSS4X_EFVSC4X_FDPM_HWSC_MOAFC_SFSS2X_SFVSC2X_SSPC
-  - INCOMPLETE
-  uses:
-  - heating_water_valve_status
-  - chilled_water_valve_command
-
 AHU_NON_CANONICAL_TYPE_67:
   guid: "a1ca7b56-7cb7-4c05-8a4e-fc118acc55c5"
   description: "Non-standard type 67"
@@ -5253,16 +4945,6 @@ AHU_NON_CANONICAL_TYPE_69:
   - zone_air_temperature_sensor
   - zone_air_temperature_setpoint
 
-AHU_NON_CANONICAL_TYPE_70:
-  guid: "f87c0b51-f63c-4125-b044-c97d0fbe6b87"
-  description: "Non-standard type 70"
-  implements:
-  - AHU_BSPC_ECON_EFSS_SARC_SFSS_SFVSC_SSPC
-  - INCOMPLETE
-  uses:
-  - supply_fan_speed_frequency_command
-  - ventilation_outside_air_flowrate_setpoint
-
 AHU_NON_CANONICAL_TYPE_71:
   guid: "06ba3a10-2c56-4ed6-b306-f6a7a4b20dcf"
   description: "Non-standard type 71"
@@ -5286,26 +4968,6 @@ AHU_NON_CANONICAL_TYPE_71:
   - supply_fan_speed_frequency_sensor
   - supply_fan_speed_percentage_command
   - supply_air_flowrate_sensor
-
-AHU_STDSPC_SSPC_EFFC_EFVSC_FDPM3X_HTWHLSTC_RHM_ETM:
-  guid: "dbe00902-c2da-4efd-b8f2-2069ddd674c3"
-  description: "Non-Standard (Swegon) Multi-Zone AHU with heat wheel, isolation damper and filter pressure monitoring"
-  implements:
-  - AHU
-  - STDSPC
-  - SSPC
-  - EFFC
-  - EFVSC
-  - FDPM3X
-  - HTWHLSTC
-  - RHM
-  - ETM
-  uses:
-  - compressor_speed_percentage_sensor
-  - outside_air_isolation_damper_command
-  - outside_air_isolation_damper_status
-  - exhaust_air_isolation_damper_command
-  - exhaust_air_isolation_damper_status
 
 AHU_BSPC_DX4SC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC_RHHC_NONCANONICAL_1:
   guid: "4f641024-9959-4ab3-9869-97fdf93ed47b"
