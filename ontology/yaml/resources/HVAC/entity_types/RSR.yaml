@@ -12,6 +12,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+RSR_HHCDM:
+  guid: "c562fd61-d92b-4493-a290-ef35a11f34b8"
+  description: "Cooling or heating changeover function for radiant panels or fcu's."
+  implements:
+  - RSR
+  - HHCDM
+  
 FARSR_UNDEFINED:
   guid: "cd83cffe-fb37-4138-9ff0-9da7958eccf2"
   description: "Fresh air distribution riser without any data points."
