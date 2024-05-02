@@ -737,32 +737,6 @@ VAV_DFSS_DFVSC_DSP_HWZC:
 ### Existing Non-standard Types ###
 ###################################
 
-VAV_SD_DSP_HWDC_NONCANONICAL_1:
-  guid: "9b2cd4b7-3a7b-470c-abe5-66f51f84bc88"
-  description: "Non-standard type."
-  implements:
-  - VAV_SD_DSP_HWDC
-  - INCOMPLETE
-  uses:
-  - heating_percentage_command
-
-VAV_SD_DSP_HTDC_NONCANONICAL_1:
-  guid: "93c44e94-464c-40c5-bc02-7e21e40dc564"
-  description: "Non-standard type."
-  implements:
-  - VAV_SD_DSP_HTDC
-  - INCOMPLETE
-  uses:
-  - heating_percentage_command
-
-VAV_SD_CSP_NONCANONICAL_1:
-  guid: "ca0001c2-e4b1-46cf-95c3-d7c1d1420b4a"
-  description: "Non-standard type."
-  implements:
-  - VAV_SD_CSP
-  uses:
-  - discharge_air_temperature_setpoint # Needs to be removed from this device. Then deprecate.
-
 VAV_SD_CSP_NONCANONICAL_2:
   guid: "949df16e-ff6d-4aac-846e-682b755b6364"
   description: "Non-standard type."
@@ -770,15 +744,6 @@ VAV_SD_CSP_NONCANONICAL_2:
   - VAV_SD_CSP
   uses:
   - supply_air_isolation_damper_command
-
-VAV_SD_DDSP_NONCANONICAL_1:
-  guid: "9dda1f6d-eac3-416e-8d3f-00edb1abbf5b"
-  description: "Non-standard type."
-  implements:
-  - VAV
-  - SD
-  - DDSP
-  - INCOMPLETE
 
 VAV_CO2C_NONCANONICAL_1:
   guid: "3b852c32-e7d5-4e1e-b0f8-2762a6e6d8e1"
