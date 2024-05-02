@@ -412,12 +412,6 @@ VAV_ED_RMM:
   - ED
   - RMM
 
-VAV_UNDEFINED:
-  guid: "ef0afedd-fe0d-43fd-b0e0-f1c3c1310d87"
-  description: "VAV with no defined fields. Note this is non-canonical, as it is typically expected that telemetry will normally be available."
-  implements:
-  - VAV
-
 VAV_SD_DSP_HWDC_DSPZDHC:
   guid: "00ca117a-0405-41d8-a73c-639457644db4"
   description: "Single duct reheat VAV with dual setpoint temperature and humidity control."
