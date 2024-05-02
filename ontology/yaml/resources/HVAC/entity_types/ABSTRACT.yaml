@@ -5519,6 +5519,26 @@ SWTM:
   uses:
   - supply_water_temperature_sensor
 
+SWTM2X:
+  guid: "5fe10f00-bfb6-4493-b8bd-0d58f47a88b4"
+  description: "Dual supply water temperature monitoring."
+  is_abstract: true
+  implements:
+  - MONITORING
+  opt_uses:
+  - cooling_request_count_1
+  - heating_request_count_1
+  - return_water_temperature_sensor_1
+  - high_supply_water_temperature_alarm_1
+  - low_supply_water_temperature_alarm_1
+  - cooling_request_count_2
+  - heating_request_count_2
+  - return_water_temperature_sensor_2
+  - high_supply_water_temperature_alarm_2
+  - low_supply_water_temperature_alarm_2
+  uses:
+  - supply_water_temperature_sensor_1
+  - supply_water_temperature_sensor_2
 
 RWTM:
   guid: "c317c88d-f090-4cd9-9289-6e03e24e496f"
@@ -7094,6 +7114,7 @@ LM:
   - level_status
   - percentage_sensor
 
+
 LHLM:
   guid: "647a4576-b503-43cd-b3b7-e1a9c6856695"
   description: "High and Low Level Monitoring for tanks."
@@ -7101,6 +7122,18 @@ LHLM:
   uses:
   - water_high_level_status
   - water_low_level_status
+
+
+LHLM2X:
+  guid: "dbd0f972-f56f-4455-a8e5-4a4cb99c9a0a"
+  description: "Dual High and Low Level Monitoring for tanks."
+  is_abstract: true
+  uses:
+  - water_high_level_status_1
+  - water_low_level_status_1
+  - water_high_level_status_2
+  - water_low_level_status_2
+
 
 PLPM:
   guid: "87da5960-a441-49a1-8f80-05acdbf32426"
