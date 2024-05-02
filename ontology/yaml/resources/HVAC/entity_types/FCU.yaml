@@ -1517,38 +1517,7 @@ FCU_DFS_CH_RTC_RRHM_HMDHMM:
   - humidification_run_status
   - dehumidification_run_status
   - return_air_relative_humidity_sensor
-
-FCU_DFSS_DTC_CHWDC_NONCANONICAL_1:
-  guid: "5b507a68-810c-4584-81fa-f82ea371074a"
-  description: "Non-standard type."
-  implements:
-  - FCU_DFSS_DTC_CHWDC
-  - INCOMPLETE
-  uses:
-  - discharge_air_cooling_temperature_setpoint
-  - discharge_air_heating_temperature_setpoint
-
-FCU_DFSS_ZTC_ZHDHC_DXZTC_NONCANONICAL_1:
-  guid: "10052149-6aa4-4b6f-aef7-236df7d05e95"
-  description: "Non-standard type."
-  implements:
-  - FCU_DFSS_ZTC_ZHDHC_DXZTC
-  - INCOMPLETE
-  uses:
-  - economizer_mode
-
-FCU_DFSS_DSP_HWZC_CHWZC_NONCANONICAL_1:
-  guid: "75d41b44-a33f-4c47-a1a8-5d1cb3438db2"
-  description: "Non-standard type."
-  implements:
-  - FCU_DFSS_DSP_HWZC_CHWZC
-  - INCOMPLETE
-  uses:
-  - discharge_air_temperature_sensor_1
-  - discharge_air_temperature_sensor_2
-  - discharge_air_temperature_sensor_3
-  - discharge_air_temperature_sensor_4
-
+  
 FCU_DFSS_CSP_DXZC_NONCANONICAL_1:
   guid: "16c44e1d-4a63-4fcf-a762-ff16d823f04c"
   description: "Non-standard type."
@@ -1586,15 +1555,6 @@ FCU_DFSS_DFVSC_RTC_RHC_RHDHC_DXRC_NONCANONICAL_1:
   uses:
   - humidification_percentage_command
 
-FCU_DFSS_DFVSC_DSP_HWDC_CHWDC_NONCANONICAL_1:
-  guid: "ed15a187-3d25-4c34-a571-95a90c404387"
-  description: "Non-standard type."
-  implements:
-  - FCU_DFSS_DFVSC_DSP_HWDC_CHWDC
-  uses:
-  - heating_water_valve_status
-  - chilled_water_valve_command
-
 FCU_DFSS_DFVSC_DSP_HWDC_CHWDC_NONCANONICAL_2:
   guid: "99823266-a32c-4f51-bf3c-ecc5b24ee7ea"
   description: "Non-standard type."
@@ -1615,25 +1575,6 @@ FCU_DFSS_DFVSC_DSP_HWDC_CHWDC_NONCANONICAL_3:
   - zone_air_co2_concentration_sensor
   - zone_air_co2_concentration_setpoint
   - mixed_air_temperature_sensor
-
-FCU_DF2XSS_RTC_DXRC_NONCANONICAL_1:
-  guid: "4e7ff576-17dc-4b99-b8ec-76599114e3bd"
-  description: "Non-standard type."
-  implements:
-  - FCU_DF2XSS_RTC_DXRC
-  - INCOMPLETE
-  uses:
-  - discharge_fan_run_command
-
-FCU_DF2XSS_RTC_DXRC_NONCANONICAL_2:
-  guid: "228ee623-a396-4939-9264-f5f83dbbc3bd"
-  description: "Non-standard type."
-  implements:
-  - FCU_DFSS_RTC_DXRC
-  - INCOMPLETE
-  uses:
-  - discharge_air_temperature_setpoint
-  - zone_air_relative_humidity_sensor
 
 FCU_DFSS_DFVSC_ZTC_CHWZTC_HWZTC_NONCANONICAL_1:
   guid: "b7d8e6c6-454a-4d40-bc45-9589620b5617"
@@ -1662,34 +1603,6 @@ FCU_DFSS_DFVSC_ZTC_CHWZTC_HWZTC_NONCANONICAL_2:
   - run_mode
   - exercise_mode
 
-
-FCU_NONCANONICAL_1:
-  guid: "45cd4430-5899-47f3-9319-8f942c5c1ddb"
-  description: "Non-standard type."
-  implements:
-  - FCU
-  uses:
-  - chilled_water_valve_percentage_command
-  - discharge_fan_speed_percentage_command_1
-  - discharge_fan_speed_percentage_command_2
-  - discharge_fan_speed_percentage_command_3
-  - exercise_mode
-  - fabric_protection_alarm
-  - filter_alarm
-  - heating_water_valve_percentage_command
-  - master_alarm
-  - discharge_fan_run_command
-  - run_mode
-  - zone_air_temperature_sensor_1
-  - zone_air_temperature_sensor_2
-  - zone_air_temperature_sensor_3
-  - zone_air_temperature_setpoint_1
-  - zone_air_temperature_setpoint_2
-  - zone_air_temperature_setpoint_3
-  - zone_occupancy_status_1
-  - zone_occupancy_status_2
-  - zone_occupancy_status_3
-
 FCU_DFSS_CSP_ZHC_DXZC_NONCANONICAL_1:
   guid: "0bca6899-fa9a-40ff-a3bd-8828991b39c1"
   description: "Non-standard type."
@@ -1698,24 +1611,6 @@ FCU_DFSS_CSP_ZHC_DXZC_NONCANONICAL_1:
   - INCOMPLETE
   uses:
   - zone_air_relative_humidity_setpoint
-
-FCU_DFSS_CSP_DXZC_NONCANONICAL_3:
-  guid: "23258e44-88e6-4ff4-93d0-65cd0445a8a1"
-  description: "Non-standard type."
-  implements:
-  - FCU_DFSS_CSP_DXZC
-  - INCOMPLETE
-  uses:
-  - condensing_water_isolation_valve_command
-
-FCU_DF2XSS_DSP_DXZC_NONCANONICAL_1:
-  guid: "56e8417a-9e15-48c6-97c7-be558b7f38a3"
-  description: "Non-standard type."
-  implements:
-  - FCU_DF2XSS_DSP_DXZC
-  - INCOMPLETE
-  uses:
-  - discharge_fan_run_status
 
 FCU_DFSS_CSP_DXZC_NONCANONICAL_4:
   guid: "c4a459f4-2d26-4300-91fa-c08b5105197c"
@@ -1747,64 +1642,6 @@ FCU_NONCANONICAL_2: # Weird dehumidification unit. Complete one-off.
   - zone_air_cooling_temperature_setpoint
   - zone_air_heating_temperature_setpoint
   - zone_air_temperature_sensor
-
-FCU_NONCANONICAL_3:
-  guid: "8c41b0a5-c0a0-40bf-8367-13887fb04064"
-  description: "Non-standard type."
-  implements:
-  - FCU
-  uses:
-  - chilled_water_valve_percentage_command
-  - discharge_air_flowrate_sensor_1
-  - discharge_air_flowrate_sensor_2
-  - discharge_air_flowrate_sensor_3
-  - discharge_air_temperature_sensor_1
-  - discharge_air_temperature_sensor_2
-  - discharge_air_temperature_sensor_3
-  - discharge_fan_run_status_1
-  - discharge_fan_run_status_2
-  - discharge_fan_run_status_3
-  - discharge_fan_speed_percentage_command_1
-  - discharge_fan_speed_percentage_command_2
-  - discharge_fan_speed_percentage_command_3
-  - heating_water_valve_percentage_command
-  - return_air_temperature_sensor
-  - thermal_power_sensor_1
-  - thermal_power_sensor_2
-  - thermal_power_sensor_3
-  - zone_air_occupied_deadband_temperature_setpoint_1
-  - zone_air_occupied_deadband_temperature_setpoint_2
-  - zone_air_occupied_deadband_temperature_setpoint_3
-  - zone_air_temperature_sensor_1
-  - zone_air_temperature_sensor_2
-  - zone_air_temperature_sensor_3
-  - zone_air_temperature_setpoint_1
-  - zone_air_temperature_setpoint_2
-  - zone_air_temperature_setpoint_3
-  - zone_air_unoccupied_deadband_temperature_setpoint_1
-  - zone_air_unoccupied_deadband_temperature_setpoint_2
-  - zone_air_unoccupied_deadband_temperature_setpoint_3
-  - zone_occupancy_status_1
-  - zone_occupancy_status_2
-  - zone_occupancy_status_3
-  
-FCU_DFSS_RTC_CHWRC_RHC_NONCANONICAL_1:
-  guid: "025c2764-2de6-4839-ade6-0cf8551cd91c"
-  description: "Non-standard type."
-  implements:
-  - FCU_DFSS_RTC_CHWRC_RHC
-  - INCOMPLETE
-  uses:
-  - compressor_run_command
-
-FCU_DFSS_DSPRTC_DXDSPRTC_NONCANONICAL_1:
-  guid: "e040dc00-cc9b-4166-a887-592cf13d5649"
-  description: "Non-standard type."
-  implements:
-  - FCU_DFSS_DSPRTC_DXDSPRTC
-  - INCOMPLETE
-  uses:
-  - cooling_stage_run_count
 
 FCU_RHC_DFVSC_RTC:
   guid: "251b58f5-dfee-4123-a528-b03d97403e66"
