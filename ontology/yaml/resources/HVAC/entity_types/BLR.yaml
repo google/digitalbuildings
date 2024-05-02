@@ -295,29 +295,11 @@ BLR_HT2SWC_RWTM:
 ### Existing Non-standard Types ###
 ###################################
 
-BLR_SS_SWTC_NONCANONICAL_1:
-  guid: "bf45f546-498d-422e-bf6f-15242360e3af"
-  description: "Non-standard type."
-  implements:
-  - BLR_SS_SWTC
-  - INCOMPLETE
-  uses:
-  - bypass_valve_percentage_command
-
 BLR_SS_SWTC_NONCANONICAL_2:
   guid: "19af4bb1-af89-4aef-a63a-a2729bb4ee6a"
   description: "Non-standard type."
   implements:
   - BLR_SS_SWTC
-  - INCOMPLETE
-  uses:
-  - heating_stage_run_count
-
-BLR_SS_SWTC_SWISOVM_NONCANONICAL_1:
-  guid: "7dcb33d4-70ee-4f0a-9ba3-2cb4f66f83b2"
-  description: "Non-standard type."
-  implements:
-  - BLR_SS_SWTC_SWISOVM
   - INCOMPLETE
   uses:
   - heating_stage_run_count
