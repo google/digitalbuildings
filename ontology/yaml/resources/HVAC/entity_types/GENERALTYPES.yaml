@@ -51,6 +51,9 @@ FCU:
   - failed_communication_alarm
   - master_alarm
   - filter_alarm
+  - lost_power_alarm
+  - smoke_alarm
+  - failed_alarm
   implements:
   - EQUIPMENT
 
@@ -89,6 +92,7 @@ MAU:
   is_abstract: true
   opt_uses:
   - failed_communication_alarm
+  - failed_alarm
   implements:
   - EQUIPMENT
 
@@ -147,6 +151,8 @@ CU:
   is_abstract: true
   opt_uses:
   - failed_communication_alarm
+  - emergency_alarm
+  - fire_alarm
   implements:
   - EQUIPMENT
 
