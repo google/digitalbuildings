@@ -783,41 +783,6 @@ MAU_SFSS2X_SFVSC2X_PHWSC_LCC_HWSC_SSPC_UV_SHM:
 ###   Remap These Types  ###
 ############################
 
-MAU_NONCANONICAL_1:
-  guid: "58a4d4ec-c0c3-4623-8f59-5dcb2298db53"
-  description: "Non-standard type."
-  implements:
-  - REMAP_REQUIRED # Actually an AHU.
-  uses:
-  - building_air_static_pressure_setpoint
-  - compressor_run_command_1
-  - compressor_run_command_2
-  - compressor_run_command_3
-  - compressor_run_command_4
-  - economizer_mode
-  - exhaust_fan_run_status
-  - return_air_temperature_sensor
-  - supply_air_static_pressure_sensor
-  - supply_fan_run_command
-  - supply_fan_run_status
-  - supply_air_flowrate_sensor
-
-MAU_NONCANONICAL_2:
-  guid: "f0419402-555b-47a3-8f68-b9fbf8e40965"
-  description: "Non-standard type."
-  implements:
-  - REMAP_REQUIRED
-  uses:
-  - exhaust_fan_run_status
-
-MAU_NONCANONICAL_3:
-  guid: "4cd8493e-0917-4485-b0e3-f5875e3245db"
-  description: "Non-standard type."
-  implements:
-  - REMAP_REQUIRED
-  uses:
-  - supply_fan_run_status
-
 MAU_NONCANONICAL_4:
   guid: "c8be4225-c20c-4c54-86b0-9a153825a84a"
   description: "Non-standard type."
@@ -854,34 +819,6 @@ MAU_DFSS2X_DFVSC2X_CHWZC_HWZC_VOADM:
 ### Existing Non-standard Types ###
 ###################################
 
-MAU_DFSS_DFVSC_BPC_DXDC_HTDC_DSP_NONCANONICAL_1:
-  guid: "9821db96-8384-4139-81f7-c3890ecf8202"
-  description: "Non-standard type."
-  implements:
-  - MAU_DFSS_DFVSC_BPC_DXDC_HTDC_DSP
-  - INCOMPLETE
-  uses:
-  - outside_air_damper_percentage_command
-
-MAU_DFSS_DFVSC_DSP_CHWZC_HWZC_NONCANONICAL_1:
-  guid: "e97a8505-bd80-4935-9057-9aee241bb146"
-  description: "Non-standard type."
-  implements:
-  - MAU_DFSS_DFVSC_DSP_CHWZC_HWZC
-  - DEPRECATED
-  uses:
-  - discharge_air_flowrate_sensor
-  - discharge_air_static_pressure_sensor
-
-MAU_SFSS_SFVSC_HWSC_DX2SC_HT4SC_SSPC_NONCANONICAL_1:
-  guid: "f2c4cc02-e86a-43d1-8c9c-7cc0a9a26ae7"
-  description: "Non-standard type."
-  implements:
-  - MAU_SFSS_SFVSC_HWSC_DX2SC_HT4SC_SSPC
-  - INCOMPLETE
-  uses:
-  - zone_air_temperature_sensor
-
 MAU_SFSS_SFVSC_DXSC_SSPC_HTSC_NONCANONICAL_1:
   guid: "33a0a938-a15c-467f-9cf2-3e0bb8139aa0"
   description: "Non-standard type."
@@ -900,24 +837,6 @@ MAU_SFSS_SFVSC_DXSC_HTSC_NONCANONICAL_2:
   uses:
   - outside_air_damper_percentage_command
 
-MAU_SFSS_CHWSC_HT4SC_NONCANONICAL_1:
-  guid: "e3767b30-7299-44ed-b879-cfd22a1ee656"
-  description: "Non-standard type."
-  implements:
-  - MAU_SFSS_CHWSC_HT4SC
-  - INCOMPLETE
-  uses:
-  - zone_air_temperature_sensor
-
-MAU_DFSS_DFVSC_DSP_HTSC_NONCANONICAL_1:
-  guid: "adbab15e-0fc6-4df4-bd48-bb6359c40d5b"
-  description: "Non-standard type."
-  implements:
-  - MAU_DFSS_DFVSC_DSP_HTSC
-  - INCOMPLETE
-  uses:
-  - spray_pump_run_command
-
 MAU_SFSS_SFVSC_HTSC_BPC_NONCANONICAL_1:
   guid: "f5fe11ba-0947-4021-86b0-d7955ab40093"
   description: "Non-standard type."
@@ -926,16 +845,6 @@ MAU_SFSS_SFVSC_HTSC_BPC_NONCANONICAL_1:
   - INCOMPLETE
   uses:
   - evaporative_cooler_run_command
-
-MAU_SFSS_SFVSC_SSPC_HT2SC_DX2SC_NONCANONICAL_1:
-  guid: "c80e09ab-0518-47f2-9055-dc10aa250599"
-  description: "Non-standard type."
-  implements:
-  - MAU_SFSS_SFVSC_SSPC_HT2SC_DX2SC
-  - INCOMPLETE
-  uses:
-  - zone_air_temperature_sensor
-  - zone_air_temperature_setpoint # Has static control
 
 MAU_SFSS_SFVSC_HTSC_DX2SC_SSPC_NONCANONICAL_1:
   guid: "14a26393-4f00-48a2-a916-8fb80fe0cfd8"
