@@ -367,15 +367,3 @@ HWS_SWTC_WDPC2X_NONCANONICAL_1:
   uses:
   - return_water_temperature_sensor_1
   - return_water_temperature_sensor_2
-
-HWS_SWTC_CPC:
-  guid: "e8ea2064-a575-4c7d-957b-948f83edc8a8"
-  description: "Simple hot water system with circulation pump"
-  implements:
-  - HWS
-  - SWTC
-  - CPC
-  uses:
-  - circulation_pump_speed_percentage_command
-  - circulation_pump_speed_percentage_setpoint
-  - failed_alarm
