@@ -29,6 +29,7 @@ from __future__ import print_function
 import argparse
 import sys
 
+# pylint: disable=g-importing-member
 from validate import handler
 from validate.constants import DEFAULT_TIMEOUT
 
@@ -69,14 +70,6 @@ def _ParseArgs() -> argparse.ArgumentParser:
       metavar='subscription')
 
   parser.add_argument(
-      '-a',
-      '--service-account',
-      dest='service_account',
-      required=False,
-      help='Service account used to pull messages from the subscription',
-      metavar='service-account')
-
-  parser.add_argument(
       '-t',
       '--timeout',
       dest='timeout',
@@ -113,7 +106,6 @@ if __name__ == '__main__':
       filenames=args.filenames,
       modified_types_filepath=args.modified_types_filepath,
       subscription=args.subscription,
-      service_account=args.service_account,
       report_directory=args.report_directory,
       timeout=int(args.timeout),
       is_udmi=is_udmi,

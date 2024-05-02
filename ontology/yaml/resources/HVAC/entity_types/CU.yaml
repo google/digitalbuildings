@@ -18,7 +18,7 @@
 
 CU_SFSS_SFVSC_CHWSC_HTSC_SSPC_SARC_MTM:
   guid: "60fc5e98-246f-4ddd-8bd7-b14468680455"
-  description: "Exhaust fan with start/stop, status, and flowrate control."
+  description: "Compartment unit with a chilled water valve, heater, and mixed air temperature monitoring."
   is_canonical: true
   implements:
   - CU
@@ -42,6 +42,22 @@ CU_DFSS_DFVSC_CHWZTC_HWZTC_RTM_ZHM:
   - HWZTC
   - RTM
   - ZHM
+
+CU_DFSS_DFVSC_CHWZTC_HWZTC_RTM_ZHM_CO2CDSP_PDSCV_RDC:
+  guid: "a87cc63c-9cea-4889-b3fe-e56a1554a57e"
+  description: "Compartment unit on discharge side with start/stop, status, cooling and heating (zone temp control), CO2 control with supply and return dampers."
+  is_canonical: true
+  implements:
+  - CU
+  - DFSS
+  - DFVSC
+  - CHWZTC
+  - HWZTC
+  - RTM
+  - ZHM
+  - CO2CDSP
+  - PDSCV
+  - RDC
 
 ###################################
 ### Existing Non-standard Types ###

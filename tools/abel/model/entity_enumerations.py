@@ -34,6 +34,9 @@ class EntityOperationType(enum.Enum):
 class EntityUpdateMaskAttribute(enum.Enum):
   """possible values for an entity update mask."""
 
+  # An entity's human readable code or name.
+  CODE = 'code'
+
   # An entity's DBO entity type name.
   TYPE = 'type'
 
@@ -45,3 +48,20 @@ class EntityUpdateMaskAttribute(enum.Enum):
 
   # A virtual entity's links.
   LINKS = 'links'
+
+
+class EntityNamespace(enum.Enum):
+  """Possible values for an entity namespace."""
+
+  HVAC = 'HVAC'
+  FACILTIES = 'FACILITIES'
+  ELECTRICAL = 'ELECTRICAL'
+  GATEWAYS = 'GATEWAYS'
+  INFO_TECH = 'INFO_TECH'
+  LIGHTING = 'LIGHTING'
+  METERS = 'METERS'
+  PHYSICAL_SECURITY = 'PHYSICAL_SECURITY'
+  PLUMBING = 'PLUMBING'
+  SAFETY = 'SAFETY'
+  TRANSPORT = 'TRANSPORT'
+  UNTYPED = 'UNTYPED'

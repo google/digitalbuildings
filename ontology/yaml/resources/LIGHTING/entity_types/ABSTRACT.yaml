@@ -25,6 +25,8 @@ DC:
   guid: "f00c5ccb-1549-4620-9a2f-ba13a73a5aaf"
   description: "Brightness dimming control."
   is_abstract: true
+  opt_uses:
+  - brightness_percentage_sensor
   uses:
   - brightness_percentage_command
 
@@ -195,4 +197,12 @@ ENM:
   is_abstract: true
   uses:
   - energy_accumulator
-    
+
+CTC:
+  guid: "30ed8ab4-8df7-493f-a3fc-b4da7f28c8fe"
+  is_abstract: true
+  description: "Scene control for a device and zone."
+  opt_uses:
+  - lighting_color_temperature_sensor
+  uses:
+  - lighting_color_temperature_setpoint

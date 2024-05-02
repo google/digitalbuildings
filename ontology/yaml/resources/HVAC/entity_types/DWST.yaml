@@ -13,7 +13,7 @@
 # limitations under the License.
 
 
-DWST_CHDT_SWTC_CPC:
+DWST_CWDT_SWTC_CPC:
   guid: "0357108f-fddd-46e6-a532-e8550f8bbe54"
   description: "Domestic water system with condensing water heat exhanger without bypass valve"
   implements:
@@ -39,6 +39,26 @@ DWST_SWTC_CPC_BYPVPM:
   - potable_water_medium_temperature_sensor
   - potable_water_low_temperature_sensor
 
+DWST_PWDT:
+  guid: "a537d6c5-8187-4868-9918-18ed74052a26"
+  description: "Domestic water system with primary side delta-T monitoring."
+  is_canonical: true
+  implements:
+  - DWST
+  - PWDT
+
+DWST_WDT:
+  guid: "f14e1dfa-9d12-4b6d-8ba3-262e3a62cd13"
+  description: "Domestic water system with delta-T monitoring."
+  is_canonical: true
+  implements:
+  - DWST
+  - WDT
+
+###################################
+### Existing Non-standard Types ###
+###################################
+
 # TODO: remove if we get more examples of water-to-water heat pumps
 DWST_SWTC_CPVSC2X_WSHP2X:
   guid: "7f92f630-cd94-40a0-aa48-9d702bc50b30"
@@ -57,22 +77,6 @@ DWST_SWTC_CPVSC2X_WSHP2X:
   - potable_hot_leaving_water_temperature_sensor_2
   - potable_hot_leaving_water_temperature_setpoint
 
-DWST_PWDT:
-  guid: "a537d6c5-8187-4868-9918-18ed74052a26"
-  description: "Domestic water system with primary side delta-T monitoring."
-  is_canonical: true
-  implements:
-  - DWST
-  - PWDT
-
-DWST_WDT:
-  guid: "f14e1dfa-9d12-4b6d-8ba3-262e3a62cd13"
-  description: "Domestic water system with delta-T monitoring."
-  is_canonical: true
-  implements:
-  - DWST
-  - WDT
-
 DWST_SS_PWDT_HWTTC_SEWTM:
   guid: "bbde1c7a-fd21-410f-969a-65ebcf65234d"
   description: "DWST with primary, secondary temperature monitoring, tank temperature sensor"
@@ -84,3 +88,37 @@ DWST_SS_PWDT_HWTTC_SEWTM:
   - SEWTM
   uses:
   - heater_run_command
+
+DWST_HWDT_CPC_SWTC2X_HWFM_HSWPM:
+  guid: "cd74f84e-969a-422c-8c84-d40ca6281352"
+  description: "Non-standard domestic water system with two heating water heat exhangers that are manually opened/closed, 
+  one circulation pump, and heating water system flow and btu monitoring"
+  is_canonical: false
+  implements:
+  - DWST
+  - HWDT
+  - CPC
+  - HLPM
+  uses:
+  - supply_water_temperature_sensor_1
+  - supply_water_temperature_sensor_2
+  - supply_water_temperature_setpoint
+  - heating_water_flowrate_sensor
+
+DWST_HWDT_CPC2X_SWTC2X_HWFM_HSWPM:
+  guid: "21d3d1b0-ace7-4623-a103-58164929c6b6"
+  description: "Non-standard domestic water system with two heating water heat exhangers that are manually opened/closed, 
+  two circulation pumps, and heating water system flow and btu monitoring"
+  is_canonical: false
+  implements:
+  - DWST
+  - HWDT
+  - CPC2X
+  - HLPM
+  uses:
+  - return_water_temperature_sensor
+  - supply_water_temperature_sensor
+  - supply_water_temperature_sensor_1
+  - supply_water_temperature_sensor_2
+  - supply_water_temperature_setpoint
+  - heating_water_flowrate_sensor

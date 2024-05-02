@@ -15,6 +15,7 @@
 
 from typing import List, Tuple
 
+# pylint: disable=g-importing-member
 from model.connection import Connection as ABELConnection
 from model.constants import CONNECTION_TYPE
 from model.constants import SOURCE_ENTITY_GUID
@@ -22,9 +23,13 @@ from model.constants import TARGET_ENTITY_GUID
 from model.entity import Entity
 from model.entity import ReportingEntity
 from model.entity import VirtualEntity
+from model.entity_enumerations import EntityNamespace
+from model.entity_enumerations import EntityOperationType
+from model.entity_enumerations import EntityUpdateMaskAttribute
 from model.entity_field import DimensionalValueField
 from model.entity_field import MissingField
 from model.entity_field import MultistateValueField
+from model.entity_operation import EntityOperation
 from model.state import State
 from model.units import Units
 from validate.connection import Connection as IVConnection
@@ -53,11 +58,13 @@ def EntityInstanceToEntity(
   fields = []
   states = []
   connections = []
+  entity_operation = None
+  enumerated_namespace = EntityNamespace(entity_instance.namespace.upper())
 
   if not entity_instance.cloud_device_id:
     entity = VirtualEntity(
         code=entity_instance.code,
-        namespace=entity_instance.namespace,
+        namespace=enumerated_namespace,
         etag=entity_instance.etag,
         type_name=entity_instance.type_name,
         bc_guid=entity_instance.guid,
@@ -65,7 +72,7 @@ def EntityInstanceToEntity(
   else:
     entity = ReportingEntity(
         code=entity_instance.code,
-        namespace=entity_instance.namespace,
+        namespace=enumerated_namespace,
         cloud_device_id=entity_instance.cloud_device_id,
         etag=entity_instance.etag,
         type_name=entity_instance.type_name,
@@ -97,8 +104,16 @@ def EntityInstanceToEntity(
       connections.append(
           _TranslateConnectionsToABEL(entity_instance.guid, connection)
       )
+  if entity_instance.operation:
+    operation = EntityOperationType(entity_instance.operation.value)
+    entity_operation = EntityOperation(operation=operation, entity=entity)
+    if entity_instance.update_mask:
+      entity_operation.update_mask = [
+          EntityUpdateMaskAttribute(mask_element)
+          for mask_element in entity_instance.update_mask
+      ]
 
-  return entity, fields, states, connections
+  return entity, fields, states, connections, entity_operation
 
 
 def _DimensionalValueToDimensionalValueField(
@@ -169,14 +184,29 @@ def _TranslateStatesToABEL(
 
   states = []
   for std_state_value, raw_state_value in field.states.items():
-    states.append(
-        State(
+    # Raw state can either be a string or list of strings. ABEL must have a
+    # one to one mapping of standard state to raw state.
+    if isinstance(raw_state_value, str):
+      states.append(
+          State(
+              std_field_name=field.std_field_name,
+              reporting_entity_guid=entity_guid,
+              standard_state=std_state_value,
+              raw_state=raw_state_value,
+          )
+      )
+    elif isinstance(raw_state_value, list):
+      for value in raw_state_value:
+        states.append(
+          State(
             std_field_name=field.std_field_name,
             reporting_entity_guid=entity_guid,
             standard_state=std_state_value,
-            raw_state=raw_state_value,
+            raw_state=value,
+          )
         )
-    )
+    else:
+      pass
   return states
 
 

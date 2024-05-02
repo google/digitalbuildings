@@ -1,4 +1,4 @@
-# Copyright 2023 Google LLC
+# Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the License);
 # you may not use this file except in compliance with the License.
@@ -12,17 +12,17 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# This config file is invalid because it fails to pass the syntax expectations
-# for translation. The devices listed in translation need to follow specific
-# formats, and `invalid_key` is not a valid part of any of them.
+########################
+### Canonical Types  ###
+########################
 
-US-SEA-BLDG1-GUID:
-  type: FACILITIES/BUILDING
-  code: US-SEA-BLDG1
-  translation:
-    zone_air_temperature_sensor:
-      present_value: "temp_1"
-      units:
-        key: "units"
-        values:
-          degrees_celsius: "degC"
+PCU_EFSS_EFVSC_ESM2X_DTPM:
+  guid: "9a5e199d-1cf0-411b-8ac0-d3ed4d247089"
+  description: "Pollution control unit with exhaust fan variable speed, two electrostatic scrubbers, and one detergent pump."
+  is_canonical: true
+  implements:
+  - PCU
+  - EFSS
+  - EFVSC
+  - ESM2X
+  - DTPM
