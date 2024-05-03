@@ -779,6 +779,26 @@ MAU_SFSS2X_SFVSC2X_PHWSC_LCC_HWSC_SSPC_UV_SHM:
   - UV
   - SHM
 
+MAU_SFSS_SFVSC_CHWSC_CHCPC_CHWISOVM_PHSC_SSSC_SSPC_OADM_OA_ZTM_ZHM_CO2M_CAM:
+  description: "Multi-zone MAU with preheating steam control, chilled water control, heating steam control, and supply air static pressure control"
+  is_canonical: true
+  implements:
+  - MAU
+  - SFSS
+  - SFVSC
+  - CHWSC
+  - CHCPC
+  - CHWISOVM
+  - PHSC
+  - SSSC
+  - SSPC
+  - OADM
+  - OA
+  - ZTM
+  - ZHM
+  - CO2M
+  - CAM
+
 ############################
 ###   Remap These Types  ###
 ############################

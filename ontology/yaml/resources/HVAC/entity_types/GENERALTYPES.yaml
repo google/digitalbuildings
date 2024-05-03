@@ -102,6 +102,7 @@ MAU:
   opt_uses:
   - failed_communication_alarm
   - failed_alarm
+  - emergency_alarm
   implements:
   - EQUIPMENT
 

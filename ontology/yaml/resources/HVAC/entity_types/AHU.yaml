@@ -4508,6 +4508,33 @@ AHU_SFSS2X_SFVSC2X_RFSS2X_RFVSC2X_HWSC_CHWSC_SSPC_MOAFC_ECON_EDPM_RD_UV:
   - RD
   - UV
 
+AHU_SFSS_SFVSC_EFSS_EFVSC_CHW2XSC_SSSC_CO2CMAX_ECON_SSPC:
+  description: "Multi-zone AHU with supply and exhaust fans, co2 control, two chilled water and one steam valve control to supply air, and economizing."
+  is_canonical: true
+  implements:
+  - AHU
+  - SFSS
+  - SFVSC
+  - EFSS
+  - EFVSC
+  - CHW2XSC
+  - SSSC
+  - CO2CMAX
+  - ECON
+  - SSPC
+
+AHU_SFSS_SFVSC_CHW2XSC_SSSC_ECON_SSPC:
+  description: "Multi-zone AHU with supply fan control, two chilled water and one steam valve control to supply air, and economizing."
+  is_canonical: true
+  implements:
+  - AHU
+  - SFSS
+  - SFVSC
+  - CHW2XSC
+  - SSSC
+  - ECON
+  - SSPC
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################

@@ -90,7 +90,47 @@ CU_SFSS_SFVSC_CHWSC_CHWDT_HTSC_SSPC_SARC_MTM_RTM:
   - MTM
   - RTM
   - CHWDT
-  
+
+CU_SFSS_SFVSC_CHWSC_HTSC_SSPC_MTM_RTM:
+  description: "Chilled water compartment unit on supply side with start/stop, status, cooling and heating (supply temp control)."
+  is_canonical: true
+  implements:
+  - CU
+  - SFSS
+  - SFVSC
+  - CHWSC
+  - HTSC
+  - SSPC
+  - MTM
+  - RTM
+
+CU_SFSS_SFVSC_CHWSC_CHWDT_HTSC_SSPC_SARC_MTM:
+  description: "Chilled water compartment unit on supply side with start/stop, status, cooling and heating (supply temp control), and differential temperature monitoring."
+  is_canonical: true
+  implements:
+  - CU
+  - SFSS
+  - SFVSC
+  - CHWSC
+  - CHWDT
+  - HTSC
+  - SSPC
+  - SARC
+  - MTM
+
+CU_SFSS2X_SFVSC2X_CHWSC_CHWDT_HTSC_SSPC2X_MTM:
+  description: "Chilled water compartment unit on supply side with two fan start/stop, status, cooling and heating (supply temp control), and differential temperature monitoring."
+  is_canonical: true
+  implements:
+  - CU
+  - SFSS2X
+  - SFVSC2X
+  - CHWSC
+  - CHWDT
+  - HTSC
+  - SSPC2X
+  - MTM
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
