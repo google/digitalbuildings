@@ -104,6 +104,7 @@ SDC_EXT_TLT_NORTH:
   - north_wind_linearvelocity_sensor
 
 SDC_EXT_TLT_SOUTH:
+  guid: "426eace1-f4c8-49d0-acef-0fad52d9cc44"
   description: "Directional shade (South)."
   is_canonical: true
   implements:
