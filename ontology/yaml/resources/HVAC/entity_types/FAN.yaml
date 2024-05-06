@@ -664,6 +664,7 @@ FAN_SS_VSC_REFC:
   - REFC
 
 FAN_SS_VSC_WDPC:
+  guid: "a6cba83f-9a44-4856-afb4-041ef20f538b"
   description: "Fan with start/stop, open-loop speed control and differential pressure control."
   is_canonical: true
   implements:

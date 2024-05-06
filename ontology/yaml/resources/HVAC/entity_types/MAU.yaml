@@ -780,6 +780,7 @@ MAU_SFSS2X_SFVSC2X_PHWSC_LCC_HWSC_SSPC_UV_SHM:
   - SHM
 
 MAU_SFSS2X_SFVSC2X_DXSC_HWSC:
+  guid: "7132bf0f-160a-4b3d-aaed-ad313787fe61"
   description: "Variable speed with two supply fans, hydronic heating and dx cooling make-up air unit."
   is_canonical: true
   implements:
