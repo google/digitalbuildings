@@ -662,6 +662,15 @@ FAN_SS_VSC_REFC:
   - SS
   - VSC
   - REFC
+
+FAN_SS_VSC_WDPC:
+  description: "Fan with start/stop, open-loop speed control and differential pressure control."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - VSC
+  - WDPC
 ###################################
 ### Existing Non-standard Types ###
 ###################################

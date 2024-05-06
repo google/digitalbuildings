@@ -4508,6 +4508,38 @@ AHU_SFSS2X_SFVSC2X_RFSS2X_RFVSC2X_HWSC_CHWSC_SSPC_MOAFC_ECON_EDPM_RD_UV:
   - RD
   - UV
 
+AHU_BSPC_DX5SC_ECONM_EDM_EFSS_EFVSC_SFSS4X_SFVSC4X_SSPC_SARC:
+  description: "Multi-zone AHU with 5 compressors, exhaust damper monitoring, economizer controlling to MAT setpoint, four supply fans, and variable speed exhaust and supply fans."
+  is_canonical: true
+  implements:
+  - AHU
+  - BSPC
+  - DX5SC
+  - ECONM
+  - EDM
+  - EFSS
+  - EFVSC
+  - SFSS4X
+  - SFVSC4X
+  - SSPC
+  - SARC
+
+AHU_BSPC_DX5SC_ECONM_EDM_EFSS_EFVSC_SFSS_SFVSC_SSPC_SARC:
+  description: "Multi-zone AHU with 5 compressors, exhaust damper monitoring, economizer controlling to MAT setpoint, and variable speed exhaust and supply fans."
+  is_canonical: true
+  implements:
+  - AHU
+  - BSPC
+  - DX5SC
+  - ECONM
+  - EDM
+  - EFSS
+  - EFVSC
+  - SFSS
+  - SFVSC
+  - SSPC
+  - SARC
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################

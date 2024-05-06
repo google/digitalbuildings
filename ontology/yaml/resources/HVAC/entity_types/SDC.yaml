@@ -93,3 +93,21 @@ SDC_UDEC:
   implements:
   - SDC
   - UDEC
+
+SDC_EXT_TLT_NORTH:
+  description: "Directional shade (North)."
+  is_canonical: true
+  implements:
+  - SDC_EXT_TLT
+  uses:
+  - north_wind_linearvelocity_sensor
+
+SDC_EXT_TLT_SOUTH:
+  guid: "f58363bf-c149-4456-9448-18bf6a8cc920"
+  description: "Directional shade (South)."
+  is_canonical: true
+  implements:
+  - SDC_EXT_TLT
+  uses:
+  - south_illuminance_sensor
+  - south_wind_linearvelocity_sensor
