@@ -12,7 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-
 SS:
   guid: "bcb655b9-7adf-4c58-82c3-d8d8bf42720d"
   description: "Basic combination of run command and status (start/stop); indicates the light is active or inactive."
