@@ -4526,6 +4526,7 @@ AHU_BSPC_DX5SC_ECONM_EDM_EFSS_EFVSC_SFSS4X_SFVSC4X_SSPC_SARC:
   - SARC
 
 AHU_BSPC_DX4SC_ECONM_EDM_EFSS_EFVSC_SFSS_SFVSC_SSPC_SARC:
+  guid: "2de3849a-ad73-426b-b4e6-91a09c28b0ad"
   description: "Multi-zone AHU with 4 compressors, exhaust damper monitoring, economizer controlling to MAT setpoint, and variable speed exhaust and supply fans."
   is_canonical: true
   implements:
