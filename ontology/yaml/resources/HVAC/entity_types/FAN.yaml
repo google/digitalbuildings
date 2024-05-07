@@ -67,6 +67,15 @@ FAN_SS_VSC_ZSPC:
   - VSC
   - ZSPC
 
+FAN_SS_VSC_ZSPM:
+  description: "Fan with start/stop status, open-loop speed control & zone static pressure monitoring."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - VSC
+  - ZSPM
+
 FAN_SS_WDPM:
   guid: "d12cbe88-243a-40a5-b624-3a2f355e7cfc"
   description: "Fan with start/stop and differential pressure monitoring."
@@ -663,15 +672,6 @@ FAN_SS_VSC_REFC:
   - VSC
   - REFC
 
-FAN_SS_VSC_WDPC:
-  guid: "a6cba83f-9a44-4856-afb4-041ef20f538b"
-  description: "Fan with start/stop, open-loop speed control and differential pressure control."
-  is_canonical: true
-  implements:
-  - FAN
-  - SS
-  - VSC
-  - WDPC
 ###################################
 ### Existing Non-standard Types ###
 ###################################

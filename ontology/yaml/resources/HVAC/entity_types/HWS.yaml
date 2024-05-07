@@ -242,16 +242,15 @@ HWS_SWTC_BYPVPM_WDPC_WFRC:
   - WDPC
   - WFRC
 
-HWS_SWTC_BYPVPM_WDPC_WFRM:
+HWS_SWTC_WDPC_MINFC:
   guid: "f13b4124-8003-4a9c-8730-edf62d83f614"
   description: "Heating water system (temp/pressure control) with bypass control and flow monitoring."
   is_canonical: true
   implements:
   - HWS
   - SWTC
-  - BYPVPM
   - WDPC
-  - WFRM
+  - MINFC
 
 HWS_SWTM_WDPC_BYPVPM:
   guid: "5cc7fe32-46bc-429c-b6d0-c2c41799be80"
