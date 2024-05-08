@@ -16,7 +16,7 @@
 ### Canonical Types  ###
 ########################
 
-DOAS_HTWHLSTC_SFVSC_EFVSC_EDM_SDM_RFC_SFC_FDPM2X_RTM_FPHC:
+DOAS_HTWHLSTC_SFVSC_EFVSC_EDM_SDM_RFC_SFC_FDPM2X_RTM_HWSC_CHWSC:
   guid: "f669b241-06bd-40ba-bc14-98a08989695a"
   description: "DOAS with supply and return fans, heatwheel and heating and cooling valves."
   is_canonical: true
@@ -31,7 +31,8 @@ DOAS_HTWHLSTC_SFVSC_EFVSC_EDM_SDM_RFC_SFC_FDPM2X_RTM_FPHC:
   - SFC
   - FDPM2X
   - RTM
-  - FPHC
+  - HWSC
+  - CHWSC
 
 DOAS_HTWHLSTC_SFVSC_EFVSC_EDM_SDM_RFC_SFC_FDPM2X_RTM:
   guid: "e0627d5a-99cd-4edd-824b-636428427980"
