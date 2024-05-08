@@ -96,7 +96,7 @@ SDC_UDEC:
 
 SDC_EXT_TLT_NORTH:
   guid: "bb69d3c2-5063-425c-90c4-636f31d03a57"
-  description: "Directional shade (North)."
+  description: "Directional shade (North). Illuminance not required due to minimal heat gain from solar loads on the northern side of a building."
   is_canonical: true
   implements:
   - SDC_EXT_TLT
