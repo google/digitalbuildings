@@ -17,23 +17,6 @@
 ########################
 
 ### Single Zone Units ###
-AHU_HWSC_SFVSC_EFVSC_EDM_SDM_RFC_SFC_FDPM2X_RTM:
-  guid: "ead4d2b6-96f8-44c5-8038-c8114e0da78e"
-  description: "AHU with supply and return fans, fan speed flowrate control heating valve and cooling from DX Unit"
-  is_canonical: true
-  implements:
-  - AHU
-  - HWSC
-  - SFVSC
-  - EFVSC
-  - EDM
-  - SDM
-  - RFC
-  - SFC
-  - FDPM2X
-  - RTM
-  opt_uses:
-  - cooling_percentage_command
 
 AHU_CSP_DFSS_DX2ZC_ECONZ:
   guid: "f0e116a8-ab2c-4303-a782-2a9a47005372"
