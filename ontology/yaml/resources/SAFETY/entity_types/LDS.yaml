@@ -12,7 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-
 LDS_WLDS:
   guid: "b1cbee31-2314-470b-900f-0543bd8b9021"
   description: "Basic leak detection device."
@@ -86,6 +85,14 @@ LDS_WLA:
   implements:
   - LDS
   - WLA
+
+LDS_WLA2X:
+  guid: "60f43913-fff2-4d92-adcd-892ebea5e85d"
+  description: "Water Leak sensing device with two sensors."
+  is_canonical: true
+  implements:
+  - LDS
+  - WLA2X
 
 LDS_WLA_BCM:
   guid: "83a30f4d-8999-4b8e-ae4e-bd4eec29271d"
