@@ -18,12 +18,13 @@
 
 ### Single Zone Units ###
 
-AHU_HWSC_ETM_SFM_FDPSM_SFVSC_EFVSC_SDM_EDM_CPC_WDPM_VSC:
+AHU_ECON_HWSC_ETM_SFM_FDPSM_SFVSC_EFVSC_SDM_EDM:
   guid: "06e2e862-e9c2-46ec-91cd-d4b43cb44449"
-  description: "Single zone AHU with supply and return fans, with supply heating from run around coil and differential pressure monitoring across circulation pump."
+  description: "Single zone AHU with supply and return fans, with supply heating from run around coil."
   is_canonical: true
   implements:
   - AHU
+  - ECON
   - HWSC
   - ETM
   - SFM
@@ -32,9 +33,6 @@ AHU_HWSC_ETM_SFM_FDPSM_SFVSC_EFVSC_SDM_EDM_CPC_WDPM_VSC:
   - EFVSC
   - SDM
   - EDM
-  - CPC
-  - WDPM
-  - VSC
 
 AHU_CSP_DFSS_DX2ZC_ECONZ:
   guid: "f0e116a8-ab2c-4303-a782-2a9a47005372"
