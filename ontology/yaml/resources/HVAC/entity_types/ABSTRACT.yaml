@@ -37,6 +37,7 @@ SD:
   - high_supply_air_flowrate_alarm
   - low_supply_air_flowrate_alarm
   - failed_supply_air_damper_alarm
+  - pressurization_request_count
   uses:
   - supply_air_damper_percentage_command
   - supply_air_flowrate_sensor
@@ -290,6 +291,8 @@ DSP:
   - high_zone_air_temperature_alarm
   - low_zone_air_temperature_alarm
   - zone_occupancy_status
+  - cooling_request_count
+  - heating_request_count
   uses:
   - zone_air_cooling_temperature_setpoint
   - zone_air_heating_temperature_setpoint
@@ -325,6 +328,19 @@ CO2C:
   - high_zone_air_co2_concentration_alarm
   - failed_zone_air_co2_concentration_alarm
 
+
+CO2CMAX:
+  guid: "6ce30064-7249-44be-8e6b-0f05f1f41715"
+  description: "Multi-zone carbon dioxide control to the maximum zone concentration."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  uses:
+  - max_zone_air_co2_concentration_sensor
+  - zone_air_co2_concentration_setpoint
+  opt_uses:
+  - high_zone_air_co2_concentration_alarm
+  - failed_zone_air_co2_concentration_alarm
 
 CO2CDSP:
   guid: "668a3a75-e78d-4755-a360-b370bceda3c5"
@@ -569,6 +585,7 @@ SFVSC:
   - supply_fan_voltage_sensor
   - failed_supply_fan_alarm
   - supply_fan_lost_power_alarm
+  - failed_inverter_alarm
   uses:
   - supply_fan_run_command
   - supply_fan_run_status
@@ -595,6 +612,7 @@ DFVSC:
   - discharge_fan_lost_power_alarm
   - failed_discharge_fan_alarm
   - discharge_air_flowrate_sensor
+  - failed_inverter_alarm
   uses:
   - discharge_fan_run_command
   - discharge_fan_run_status
@@ -666,6 +684,9 @@ ZHM:
   - MONITORING
   uses:
   - zone_air_relative_humidity_sensor
+  opt_uses:
+  - failed_zone_air_relative_humidity_alarm
+  - high_zone_air_relative_humidity_alarm
 
 ZHM2X:
   guid: "1e5c95b5-bbf8-42ab-b68f-08bd3fc7638e"
@@ -1108,7 +1129,13 @@ CHWDT:
   uses:
   - chilled_return_water_temperature_sensor
   - chilled_supply_water_temperature_sensor
-
+  opt_uses:
+  - failed_chilled_supply_water_temperature_alarm
+  - failed_chilled_return_water_temperature_alarm
+  - high_chilled_return_water_temperature_alarm
+  - high_chilled_supply_water_temperature_alarm
+  - low_chilled_return_water_temperature_alarm
+  - low_chilled_supply_water_temperature_alarm
 
 CHWDPSC:
   guid: "16555397-2e6c-401c-bb6e-3b93affe444e"
@@ -1473,6 +1500,9 @@ ZHC:
   uses:
   - zone_air_relative_humidity_sensor
   - zone_air_relative_humidity_setpoint
+  opt_uses:
+  - failed_zone_air_relative_humidity_alarm
+  - high_zone_air_relative_humidity_alarm
   implements:
   - OPERATIONAL
 
@@ -1972,14 +2002,15 @@ CHWSC:
   - supply_air_relative_humidity_sensor
   - failed_supply_air_temperature_alarm
   - high_supply_air_temperature_alarm
-  - low_supply_air_temperature_alarm
+  - low_supply_air_temperature_alarm  
+  - water_leak_alarm
+  - frost_alarm
   uses:
   - chilled_water_valve_percentage_command
   - supply_air_temperature_sensor
   - supply_air_temperature_setpoint
   implements:
   - CONTROL
-
 
 CHWSDC:
   guid: "291c8966-a4c3-4329-9d9a-89226e3bb571"
@@ -2044,6 +2075,7 @@ CHWRC:
   - high_return_air_temperature_alarm
   - low_return_air_relative_humidity_alarm
   - low_return_air_temperature_alarm
+  - water_leak_alarm
   uses:
   - chilled_water_valve_percentage_command
   - return_air_temperature_sensor
@@ -2092,6 +2124,7 @@ CHWZTC:
   - high_zone_air_temperature_alarm
   - low_zone_air_temperature_alarm
   - zone_air_deadband_temperature_setpoint
+  - water_leak_alarm
   uses:
   - chilled_water_valve_percentage_command
   - zone_air_temperature_sensor
@@ -3466,9 +3499,12 @@ ECONM:
   - outside_air_damper_percentage_sensor
   - outside_air_flowrate_sensor
   - outside_air_flowrate_setpoint
+  - outside_air_relative_humidity_sensor
+  - outside_air_specificenthalpy_sensor
   - return_air_damper_percentage_command
   - supply_air_temperature_sensor
   - failed_mixed_air_temperature_alarm
+  - failed_outside_air_damper_alarm
   - high_mixed_air_temperature_alarm
   - low_mixed_air_temperature_alarm
   - high_return_air_temperature_alarm
@@ -4061,6 +4097,8 @@ CLPM:
   is_abstract: true
   uses:
   - cooling_thermal_power_sensor
+  opt_uses:
+  - cooling_thermal_energy_accumulator
   implements:
   - MONITORING
 

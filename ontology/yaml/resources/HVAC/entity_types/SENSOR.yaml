@@ -84,52 +84,52 @@ SENSOR_LA3A:
   description: "Three-axis linear acceleration (vibration) sensor with optional temperature and battery monitoring."
   is_canonical: true
   implements:
-    - /SENSOR # Inherits from global namespace
+  - /SENSOR # Inherits from global namespace
   opt_uses:
-    - local_air_temperature_sensor
-    - battery_charge_percentage_sensor
-    - signal_strength_percentage_sensor
+  - local_air_temperature_sensor
+  - battery_charge_percentage_sensor
+  - signal_strength_percentage_sensor
   uses:
-    - fivesecondrolling_max_xaxis_linearacceleration_sensor
-    - fivesecondrolling_max_yaxis_linearacceleration_sensor
-    - fivesecondrolling_max_zaxis_linearacceleration_sensor
-    - fivesecondrolling_min_xaxis_linearacceleration_sensor
-    - fivesecondrolling_min_yaxis_linearacceleration_sensor
-    - fivesecondrolling_min_zaxis_linearacceleration_sensor
-    - fivesecondrolling_rootmeansquare_xaxis_linearacceleration_sensor
-    - fivesecondrolling_rootmeansquare_yaxis_linearacceleration_sensor
-    - fivesecondrolling_rootmeansquare_zaxis_linearacceleration_sensor
+  - fivesecondrolling_max_xaxis_linearacceleration_sensor
+  - fivesecondrolling_max_yaxis_linearacceleration_sensor
+  - fivesecondrolling_max_zaxis_linearacceleration_sensor
+  - fivesecondrolling_min_xaxis_linearacceleration_sensor
+  - fivesecondrolling_min_yaxis_linearacceleration_sensor
+  - fivesecondrolling_min_zaxis_linearacceleration_sensor
+  - fivesecondrolling_rootmeansquare_xaxis_linearacceleration_sensor
+  - fivesecondrolling_rootmeansquare_yaxis_linearacceleration_sensor
+  - fivesecondrolling_rootmeansquare_zaxis_linearacceleration_sensor
 
 SENSOR_LV3A:
   guid: "cadb4caf-51ec-4554-a03a-a5f45a5c2908"
   description: "Three-axis linear velocity (vibration) sensor with optional temperature and battery monitoring."
   is_canonical: true
   implements:
-    - /SENSOR # Inherits from global namespace
+  - /SENSOR # Inherits from global namespace
   opt_uses:
-    - local_air_temperature_sensor
-    - battery_charge_percentage_sensor
-    - signal_strength_percentage_sensor
+  - local_air_temperature_sensor
+  - battery_charge_percentage_sensor
+  - signal_strength_percentage_sensor
   uses:
-    - tenminutefixed_max_xaxis_linearvelocity_sensor
-    - tenminutefixed_max_yaxis_linearvelocity_sensor
-    - tenminutefixed_max_zaxis_linearvelocity_sensor
-    - tenminutefixed_max_xaxis_frequency_sensor
-    - tenminutefixed_max_yaxis_frequency_sensor
-    - tenminutefixed_max_zaxis_frequency_sensor
-    - dutycycle_percentage_sensor
+  - tenminutefixed_max_xaxis_linearvelocity_sensor
+  - tenminutefixed_max_yaxis_linearvelocity_sensor
+  - tenminutefixed_max_zaxis_linearvelocity_sensor
+  - tenminutefixed_max_xaxis_frequency_sensor
+  - tenminutefixed_max_yaxis_frequency_sensor
+  - tenminutefixed_max_zaxis_frequency_sensor
+  - dutycycle_percentage_sensor
 
 SENSOR_FDPM:
   guid: "dcfd79e1-638d-447a-bdda-be3852e30c07"
   description: "Filter differential pressure sensor with optional temperature monitoring."
   is_canonical: true
   implements:
-    - /SENSOR # Inherits from global namespace
-    - FDPM
+  - /SENSOR # Inherits from global namespace
+  - FDPM
   opt_uses:
-    - local_air_temperature_sensor
-    - battery_charge_percentage_sensor
-    - signal_strength_percentage_sensor
+  - local_air_temperature_sensor
+  - battery_charge_percentage_sensor
+  - signal_strength_percentage_sensor
 
 SENSOR_ZA_CO_CO2:
   guid: "dcc9a7c9-ff7a-4513-912b-54d8bf2a09d8"
@@ -222,7 +222,7 @@ SENSOR_PCM:
   - /SENSOR
   - PCM
 
-SENSOR_ZA_CO2M_PMM_HCHO:
+SENSOR_ZTM_ZHM_CO2M_PMM_HCHO:
   guid: "9e1b054e-3ae8-4c8c-9393-ba2c855dc8b6"
   description: "Sensor with zone temperature, humidity, CO2, HCHO and particulate matter monitoring"
   is_canonical: true
