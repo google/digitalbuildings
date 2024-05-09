@@ -93,3 +93,22 @@ SDC_UDEC:
   implements:
   - SDC
   - UDEC
+
+SDC_EXT_TLT_NORTH:
+  guid: "bb69d3c2-5063-425c-90c4-636f31d03a57"
+  description: "Directional shade (North). Illuminance sensor not required due to minimal heat gain from solar loads on the northern side of a building."
+  is_canonical: true
+  implements:
+  - SDC_EXT_TLT
+  uses:
+  - north_wind_linearvelocity_sensor
+
+SDC_EXT_TLT_SOUTH:
+  guid: "426eace1-f4c8-49d0-acef-0fad52d9cc44"
+  description: "Directional shade (South)."
+  is_canonical: true
+  implements:
+  - SDC_EXT_TLT
+  uses:
+  - south_illuminance_sensor
+  - south_wind_linearvelocity_sensor
