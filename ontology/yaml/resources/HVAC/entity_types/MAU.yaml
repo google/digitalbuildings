@@ -16,6 +16,19 @@
 ### Canonical Types  ###
 ########################
 
+MAU_HWSC_SFC_SFVSC_SDM_FDPSM2X_SSPC:
+  guid: "042048f2-fde9-4330-a858-7d405e4996a0"
+  description: "Make-up air unit with heating control and filter pressure status monitoring"
+  is_canonical: true
+  implements:
+  - MAU
+  - HWSC
+  - SFC
+  - SFVSC
+  - SDM
+  - FDPSM2X
+  - SSPC
+
 MAU_HWSC_SFM_SFVSC_FDPM_FDPSM_SDM_SSPC:
   guid: "5d055bc2-ea29-4d1e-beb9-e082f7bea4c7"
   description: "Make-up air unit with heating control"
@@ -778,6 +791,17 @@ MAU_SFSS2X_SFVSC2X_PHWSC_LCC_HWSC_SSPC_UV_SHM:
   - SSPC
   - UV
   - SHM
+
+MAU_DFSS2X_DFVSC2X_DXDC_HWDC:
+  guid: "7132bf0f-160a-4b3d-aaed-ad313787fe61"
+  description: "Variable speed with two discharge fans, hydronic heating and dx cooling make-up air unit."
+  is_canonical: true
+  implements:
+  - MAU
+  - DFSS2X
+  - DFVSC2X
+  - DXDC
+  - HWDC
 
 ############################
 ###   Remap These Types  ###
