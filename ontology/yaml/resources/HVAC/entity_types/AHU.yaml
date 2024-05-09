@@ -18,13 +18,12 @@
 
 ### Single Zone Units ###
 
-AHU_SS_HWSC_ETM_SFM_FDPSM_SFVSC_EFVSC_SDM_EDM_WDPM_VSC:
+AHU_HWSC_ETM_SFM_FDPSM_SFVSC_EFVSC_SDM_EDM_CPC_WDPM_VSC:
   guid: "06e2e862-e9c2-46ec-91cd-d4b43cb44449"
   description: "Single zone AHU with supply and return fans, with supply heating from run around coil and differential pressure monitoring."
   is_canonical: true
   implements:
   - AHU
-  - SS
   - HWSC
   - ETM
   - SFM
@@ -33,6 +32,7 @@ AHU_SS_HWSC_ETM_SFM_FDPSM_SFVSC_EFVSC_SDM_EDM_WDPM_VSC:
   - EFVSC
   - SDM
   - EDM
+  - CPC
   - WDPM
   - VSC
 
