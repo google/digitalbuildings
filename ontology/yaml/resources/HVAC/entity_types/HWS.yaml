@@ -231,7 +231,7 @@ HWS_SS_RWTC_SWTC:
   - run_mode
   - lost_power_alarm
 
-HWS_SWTC_BYPVPM_WDPC_WFRM:
+HWS_SWTC_BYPVPM_WDPC_WFRC:
   guid: "09460cb6-7641-4e8f-843e-1e4aa4287c3b"
   description: "Heating water system (temp/pressure control) with bypass control and flow monitoring."
   is_canonical: true
@@ -241,6 +241,16 @@ HWS_SWTC_BYPVPM_WDPC_WFRM:
   - BYPVPM
   - WDPC
   - WFRC
+
+HWS_SWTC_WDPC_MINFC:
+  guid: "f13b4124-8003-4a9c-8730-edf62d83f614"
+  description: "Heating water system (temp/pressure control) with bypass controlling to minimum flow sensor and setpoint."
+  is_canonical: true
+  implements:
+  - HWS
+  - SWTC
+  - WDPC
+  - MINFC
 
 HWS_SWTM_WDPC_BYPVPM:
   guid: "5cc7fe32-46bc-429c-b6d0-c2c41799be80"

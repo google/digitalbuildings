@@ -47,6 +47,15 @@ VAV_SD_DSP:
   - SD
   - DSP
 
+VAV_SD_HLSAFS:
+  guid: "c7ea23bd-8511-42be-be58-aa6d3739e93d"
+  description: "Single duct VAV with flowrate control."
+  is_canonical: true
+  implements:
+  - VAV
+  - SD
+  - HLSAFS
+
 VAV_SD_CSP_HLSAFS:
   guid: "ea3a576a-08af-40b2-ae0b-59451e0b88a4"
   description: "Simple cooling only VAV with occupancy."
