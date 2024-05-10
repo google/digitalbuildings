@@ -2002,7 +2002,7 @@ CHWSC:
   - supply_air_relative_humidity_sensor
   - failed_supply_air_temperature_alarm
   - high_supply_air_temperature_alarm
-  - low_supply_air_temperature_alarm  
+  - low_supply_air_temperature_alarm
   - water_leak_alarm
   - frost_alarm
   uses:
