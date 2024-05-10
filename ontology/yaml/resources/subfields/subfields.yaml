@@ -195,7 +195,7 @@ descriptor:
   pm2pt5: "Particulate of diameter 2.5 micrometers or less."
   pm4pt0: "Particulate of diameter 4.0 micrometers or less."
   pm10pt0: "Particulate of diameter 10.0 micrometers or less."
-  potable: "Used to describe water that is of high enough quality and is safe for human consumption." 
+  potable: "Used to describe water that is of high enough quality and is safe for human consumption."
   preheating: "Process of heating media before another process; for example, outside air is pre-heated before being discharged to the space."
   pressurization: "Relating to the level of pressure in a system or vessel."
   primary: "Associated with the primary (production) loop of a production process."
