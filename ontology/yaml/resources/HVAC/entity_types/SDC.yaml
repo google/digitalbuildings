@@ -94,21 +94,43 @@ SDC_UDEC:
   - SDC
   - UDEC
 
-SDC_EXT_TLT_NORTH:
+SDC_EXT_TLT_NORTH_WIND2X:
   guid: "bb69d3c2-5063-425c-90c4-636f31d03a57"
-  description: "Directional shade (North). Illuminance sensor not required due to minimal heat gain from solar loads on the northern side of a building."
+  description: "Directional shade (North) with two wind sensors. Illuminance sensor not required due to minimal heat gain from solar loads on the northern side of a building."
   is_canonical: true
   implements:
   - SDC_EXT_TLT
   uses:
-  - north_wind_linearvelocity_sensor
-
-SDC_EXT_TLT_SOUTH:
+  - north_wind_linearvelocity_sensor_1
+  - north_wind_linearvelocity_sensor_2
+  
+SDC_EXT_TLT_SOUTH_WIND2X:
   guid: "426eace1-f4c8-49d0-acef-0fad52d9cc44"
-  description: "Directional shade (South)."
+  description: "Directional shade (South) with two wind sensors."
   is_canonical: true
   implements:
   - SDC_EXT_TLT
   uses:
   - south_illuminance_sensor
-  - south_wind_linearvelocity_sensor
+  - south_wind_linearvelocity_sensor_1
+  - south_wind_linearvelocity_sensor_2
+
+SDC_EXT_TLT_EAST_WIND2X:
+  description: "Directional shade (East) with two wind sensors."
+  is_canonical: true
+  implements:
+  - SDC_EXT_TLT
+  uses:
+  - east_illuminance_sensor
+  - east_wind_linearvelocity_sensor_1
+  - east_wind_linearvelocity_sensor_2
+
+SDC_EXT_TLT_WEST:
+  description: "Directional shade (West) with two wind sensors."
+  is_canonical: true
+  implements:
+  - SDC_EXT_TLT
+  uses:
+  - west_illuminance_sensor
+  - west_wind_linearvelocity_sensor_1
+  - west_wind_linearvelocity_sensor_2
