@@ -116,6 +116,7 @@ SDC_EXT_TLT_SOUTH_WIND2X:
   - south_wind_linearvelocity_sensor_2
 
 SDC_EXT_TLT_EAST_WIND2X:
+  guid: "6b19b0bf-889d-45d6-92de-ac54bd1e6e17"
   description: "Directional shade (East) with two wind sensors."
   is_canonical: true
   implements:
@@ -126,6 +127,7 @@ SDC_EXT_TLT_EAST_WIND2X:
   - east_wind_linearvelocity_sensor_2
 
 SDC_EXT_TLT_WEST_WIND2X:
+  guid: "55ccff7c-80b6-4428-a398-134692f4d505"
   description: "Directional shade (West) with two wind sensors."
   is_canonical: true
   implements:
