@@ -23,4 +23,4 @@ HAS_PART:
 HAS_RANGE:
   description: "Source has a coverage or detection range defined by Target."
 MEASURES:
-  description: "Source provides data that is representative of Target load."
+  description: "Source quantifies attributes of the Target."
