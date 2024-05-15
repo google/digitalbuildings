@@ -85,3 +85,7 @@ dde-453:
         values: 
           kilowatts: "kW"
 ```
+
+Example full building meter load layout:
+
+![image](https://github.com/shambergoldstein/digitalbuildings/assets/124837286/ab33a420-9d6d-4e6d-b075-a4312c79c53b)
