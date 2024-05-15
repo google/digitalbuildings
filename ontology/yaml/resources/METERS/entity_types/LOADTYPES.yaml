@@ -17,17 +17,21 @@
 # This defines abstract load types that are measured by meters. They are not necessarily specific to any type of meter.
 
 LOADTYPE_MAIN:
+  guid: "1fa18a32-1461-45e8-ad4c-e5d030afb827"
   description: "Represents the main load for a building, encompassing everything within the building."
   is_abstract: true
 
 LOADTYPE_HVAC:
+  guid: "dcb2fb34-c89f-4243-803c-3cda0e957c10"
   description: "Represents an HVAC load for a building."
   is_abstract: true
 
 LOADTYPE_PLUG:
+  guid: "01fa84ff-0fe0-4d75-8570-6aea5ceeb53f"
   description: "Represents a plug load for a building."
   is_abstract: true
 
 LOADTYPE_LIGHTING:
+  guid: "1bf8a921-b52e-4745-acf2-ac1001f5302a"
   description: "Represents a lighting load for a building."
   is_abstract: true
