@@ -883,9 +883,6 @@ literals:
   - UNKNOWN
   - UNOCCUPIED
   - INACTIVE
-- emergency_power_status:
-  - PRESENT
-  - ABSENT
 
 # INACTIVE indicates the device is being overridden to not run, irrespective of occupancy status.
 
