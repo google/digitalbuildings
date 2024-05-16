@@ -102,6 +102,7 @@ PMP_SS_CHWISOVPM_VSFC:
   - chilled_water_differential_pressure_setpoint
 
 PMP_SS_CHWISOVPM_VSC:
+  guid: "6ee2c381-b2f1-455a-9d0c-59b48cab5b4c"
   description: "PMP device with chilled water valve and pump speed percentage control"
   is_canonical: true
   implements:
