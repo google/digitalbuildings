@@ -4535,6 +4535,21 @@ AHU_SFSS_SFVSC_CHW2XSC_SSSC_ECON_SSPC:
   - ECON
   - SSPC
 
+AHU_SFSS_SFVSC_CHWSC_HTSC_SARC_SSPC_FDPM_MTM_ZTM:
+  description: "Multi-zone AHU with supply fan control, chilled water and electric heater control to supply air, and mixed air and zone air temperature monitoring."
+  is_canonical: true
+  implements:
+  - AHU
+  - SFSS
+  - SFVSC
+  - CHWSC
+  - HTSC
+  - SARC
+  - SSPC
+  - FDPM
+  - MTM
+  - ZTM
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################

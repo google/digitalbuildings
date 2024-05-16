@@ -799,6 +799,25 @@ MAU_SFSS_SFVSC_CHWSC_CHCPC_CHWISOVM_PHSC_SSSC_SSPC_OADM_OA_ZTM_ZHM_CO2M_CAM:
   - CO2M
   - CAM
 
+MAU_DSP_DFSS_DFVSC_CHW2XDC_CHCPC_CHWISOVM_HTDC_FDPM_OADM_OA_DSPM_ZHC_CAM:
+  description: "Multi-zone MAU with preheating steam control, chilled water control, heating steam control, and supply air static pressure control"
+  is_canonical: true
+  implements:
+  - MAU
+  - DSP
+  - DFSS
+  - DFVSC
+  - CHW2XDC
+  - CHCPC
+  - CHWISOVM
+  - HTDC
+  - FDPM
+  - OADM
+  - OA
+  - DSPM
+  - ZHC
+  - CAM
+
 ############################
 ###   Remap These Types  ###
 ############################

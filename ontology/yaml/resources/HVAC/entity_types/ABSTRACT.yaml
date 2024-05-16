@@ -764,6 +764,25 @@ SSPC:
   implements:
   - OPERATIONAL
 
+DSPC:
+  description: "Discharge static pressure control via discharge fan speed"
+  is_abstract: true
+  opt_uses:
+  - discharge_air_damper_percentage_command
+  - discharge_air_flowrate_sensor
+  - discharge_fan_run_command
+  - discharge_fan_run_status
+  - discharge_fan_speed_frequency_sensor
+  - discharge_fan_speed_percentage_command
+  - failed_discharge_fan_alarm
+  - failed_discharge_air_static_pressure_alarm
+  - high_discharge_air_static_pressure_alarm
+  - low_discharge_air_static_pressure_alarm
+  uses:
+  - discharge_air_static_pressure_sensor
+  - discharge_air_static_pressure_setpoint
+  implements:
+  - OPERATIONAL
 
 SPSS:
   guid: "0b1c2a43-53d8-4349-883c-8bde722fccb5"
