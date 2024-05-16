@@ -793,6 +793,7 @@ MAU_SFSS2X_SFVSC2X_PHWSC_LCC_HWSC_SSPC_UV_SHM:
   - SHM
 
 MAU_SFSS_SFVSC_CHWSC_CHCPC_CHWISOVM_PHSC_SSSC_SSPC_OADM_OA_ZTM_ZHM_CO2M_CAM:
+  guid: "d50d41d6-f7bf-4ec2-937f-b7e72ce56b4c"
   description: "Multi-zone MAU with preheating steam control, chilled water control, heating steam control, and supply air static pressure control"
   is_canonical: true
   implements:
@@ -813,6 +814,7 @@ MAU_SFSS_SFVSC_CHWSC_CHCPC_CHWISOVM_PHSC_SSSC_SSPC_OADM_OA_ZTM_ZHM_CO2M_CAM:
   - CAM
 
 MAU_DSP_DFSS_DFVSC_CHW2XDC_CHCPC_CHWISOVM_HTDC_FDPM_OADM_OA_DSPM_ZHC_CAM:
+  guid: "32dd1642-fcd5-4e1f-a422-42a5dacb6e0e"
   description: "Multi-zone MAU with preheating steam control, chilled water control, heating steam control, and supply air static pressure control"
   is_canonical: true
   implements:
