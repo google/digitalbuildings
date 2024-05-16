@@ -3587,11 +3587,11 @@ literals:
     flexible_min: 0.0
     flexible_max: 44.704
 - switch_position_status: 
-    - NORMAL 
-    - EMERGENCY 	
+  - NORMAL 
+  - EMERGENCY 	
 - line_power_status: 
-    - PRESENT 
-    - ABSENT	
+  - PRESENT 
+  - ABSENT	
 - emergency_power_status:
-    - PRESENT 
-    - ABSENT 
+  - PRESENT 
+  - ABSENT 
