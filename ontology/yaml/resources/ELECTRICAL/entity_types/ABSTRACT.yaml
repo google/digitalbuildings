@@ -183,11 +183,11 @@ SRC2:
   - source2_over_voltage_status
   - source2_lost_power_alarm
 
-SPM: 
+SPM:
   guid: "ff13347e-e823-4adc-a2e4-c02cbae45a84"
   description: "ATS switch position monitoring."
   is_abstract: true
   uses:
   - switch_position_status
   - line_power_status
-  - emergency_power_status
+  - emergency_power_status
