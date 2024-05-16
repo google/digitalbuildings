@@ -765,6 +765,7 @@ SSPC:
   - OPERATIONAL
 
 DSPC:
+  guid: "e95c6b69-3bec-4021-8db8-07b530aaa54d"
   description: "Discharge static pressure control via discharge fan speed"
   is_abstract: true
   opt_uses:
@@ -2100,7 +2101,8 @@ CHW2XSC:
   - CONTROL
 
 CHW2XDC:
-  description: "Two chilled water valves."
+  guid: "bf683a14-2a3b-4d4a-bcf5-ef3dab34dd15"
+  description: "Dual chilled water valve control to discharge air temperatures."
   is_abstract: true
   opt_uses:
   - discharge_air_relative_humidity_sensor
@@ -3136,7 +3138,8 @@ PHWSC:
   - CONTROL
 
 PHSC:
-  description: "Preheating steam control."
+  guid: "9fd93443-7815-4f71-a8b7-cbb864b2b14b"
+  description: "Preheating steam control to leaving coil air temperature."
   is_abstract: true
   opt_uses:
   - failed_leaving_air_preheating_coil_temperature_alarm
@@ -8048,6 +8051,7 @@ SSTC:
   - heating_supply_water_temperature_setpoint
 
 SSSC:
+  guid: "cb7bb427-b108-478f-97b5-3a8b925acec0"
   description: "Steam valve control to supply air temperature."
   is_abstract: true
   opt_uses:
