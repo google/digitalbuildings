@@ -38,5 +38,4 @@ ATS_SPM:
   - ATS
   - SPM
   opt_uses:
-  - generator_status
   - fire_alarm
