@@ -1910,6 +1910,9 @@ literals:
 - failed_supply_air_relative_humidity_alarm:
   - ACTIVE
   - INACTIVE
+- failed_discharge_air_static_pressure_alarm:
+  - ACTIVE
+  - INACTIVE
 - high_return_air_relative_humidity_alarm:
   - ACTIVE
   - INACTIVE
