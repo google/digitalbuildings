@@ -506,6 +506,7 @@ FCU_DFSS_ZTC_ZHDHC_DXZTC:
   - DXZTC
 
 FCU_DFSS_CHWZTC_CHWDT_HTZTC_ZHDHC:
+  guid: "98df75a0-f985-4b76-a78d-3a2e9d3b791c"
   description: "Chilled water fan coil with zone humidity and temp control."
   is_canonical: true
   implements:
@@ -1188,6 +1189,7 @@ FCU_DFSS_CHWZTC_CHWDT_CAM_ZHC:
   - ZHC
 
 FCU_DFSS_CHWZTC_CHWDT_ZHC_DTM_RTM:
+  guid: "e1d8907d-d1f6-4492-bf6f-bc5e38601b36"
   description: "Chilled water FCU with zone temperature control and chilled water valve control"
   is_canonical: true
   implements:
@@ -1200,6 +1202,7 @@ FCU_DFSS_CHWZTC_CHWDT_ZHC_DTM_RTM:
   - RTM
 
 FCU_DFSS2X_CHWZC_CHWDT_ZHM_DTM_RTM:
+  guid: "ea6137f5-0218-479e-83fb-3ab2efca7d29"
   description: "Chilled water FCU with zone temperature control and chilled water valve control"
   is_canonical: true
   implements:
