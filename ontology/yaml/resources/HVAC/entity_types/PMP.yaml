@@ -33,6 +33,15 @@ PMP_SS_VSC:
   - SS
   - VSC
 
+PMP_SS_SWTM:
+  guid: "d0b32b26-b10a-4963-849e-4f213e0ee293"
+  description: "Pump with supply water temperature monitoring."
+  is_canonical: true
+  implements:
+  - PMP
+  - SS
+  - SWTM
+
 PMP_DRPM:
   guid: "d88d7308-a688-4b7a-9b94-ed9bd0b04266"
   description: "Pump implemented with drain pump monitoring ."
