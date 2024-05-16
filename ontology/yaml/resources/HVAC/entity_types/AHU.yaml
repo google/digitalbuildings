@@ -4525,6 +4525,7 @@ AHU_SFSS2X_SFVSC2X_RFSS2X_RFVSC2X_HWSC_CHWSC_SSPC_MOAFC_ECON_EDPM_RD_UV:
   - UV
 
 AHU_SFSS_SFVSC_EFSS_EFVSC_CHW2XSC_SSSC_CO2CMAX_ECON_SSPC:
+  guid: "7bde22a0-19c3-4755-b9d4-a41fd4b54a8e"
   description: "Multi-zone AHU with supply and exhaust fans, co2 control, two chilled water and one steam valve control to supply air, and economizing."
   is_canonical: true
   implements:
@@ -4540,6 +4541,7 @@ AHU_SFSS_SFVSC_EFSS_EFVSC_CHW2XSC_SSSC_CO2CMAX_ECON_SSPC:
   - SSPC
 
 AHU_SFSS_SFVSC_CHW2XSC_SSSC_ECON_SSPC:
+  guid: "4520481a-167e-4767-9e3e-cd5a21624776"
   description: "Multi-zone AHU with supply fan control, two chilled water and one steam valve control to supply air, and economizing."
   is_canonical: true
   implements:
@@ -4552,6 +4554,7 @@ AHU_SFSS_SFVSC_CHW2XSC_SSSC_ECON_SSPC:
   - SSPC
 
 AHU_SFSS_SFVSC_CHWSC_HTSC_SARC_SSPC_FDPM_MTM_ZTM:
+  guid: "b270b104-aed8-40c3-80b5-bd991e3ed102"
   description: "Multi-zone AHU with supply fan control, chilled water and electric heater control to supply air, and mixed air and zone air temperature monitoring."
   is_canonical: true
   implements:
