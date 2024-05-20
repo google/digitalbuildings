@@ -68,7 +68,7 @@ PMP_SS_LHLM:
   implements:
   - PMP
   - SS
-  - LVLHL
+  - LHLM
 
 PMP_SS_VSFC:
   guid: "08683c47-596a-4e52-8545-5079201b55df"
