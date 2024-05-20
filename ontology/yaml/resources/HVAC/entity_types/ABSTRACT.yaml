@@ -2002,7 +2002,7 @@ CHWSC:
   - supply_air_relative_humidity_sensor
   - failed_supply_air_temperature_alarm
   - high_supply_air_temperature_alarm
-  - low_supply_air_temperature_alarm  
+  - low_supply_air_temperature_alarm
   - water_leak_alarm
   - frost_alarm
   uses:
@@ -3499,9 +3499,12 @@ ECONM:
   - outside_air_damper_percentage_sensor
   - outside_air_flowrate_sensor
   - outside_air_flowrate_setpoint
+  - outside_air_relative_humidity_sensor
+  - outside_air_specificenthalpy_sensor
   - return_air_damper_percentage_command
   - supply_air_temperature_sensor
   - failed_mixed_air_temperature_alarm
+  - failed_outside_air_damper_alarm
   - high_mixed_air_temperature_alarm
   - low_mixed_air_temperature_alarm
   - high_return_air_temperature_alarm
