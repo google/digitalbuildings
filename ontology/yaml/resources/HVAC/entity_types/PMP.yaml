@@ -61,6 +61,15 @@ PMP_SS_VSC_WDPC:
   - VSC
   - WDPC
 
+PMP_SS_LHLM:
+  guid: "0c3cc1e4-6710-4dab-a0bc-35708f9c2b91"
+  description: "Sump Pump with water level monitoring."
+  is_canonical: true
+  implements:
+  - PMP
+  - SS
+  - LVLHL
+
 PMP_SS_VSFC:
   guid: "08683c47-596a-4e52-8545-5079201b55df"
   description: "PMP device with pump frequency control"
