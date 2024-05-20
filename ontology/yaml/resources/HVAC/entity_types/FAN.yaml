@@ -676,7 +676,7 @@ FAN_SS_VSC_REFC:
 FAN_SS_VSC_ZSPM_DWI:
   guid: "a1148f7d-4aa0-4560-b2cb-53b8eb949278"
   description: "Dishwasher-interlocked fan with start/stop status, open-loop speed control, and zone static pressure monitoring."
-  is_canonical: true
+  is_canonical: false
   implements:
   - FAN
   - SS
