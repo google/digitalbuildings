@@ -673,6 +673,17 @@ FAN_SS_VSC_REFC:
   - VSC
   - REFC
 
+FAN_SS_VSC_ZSPM_DWI:
+  description: "Dishwasher-interlocked fan with start/stop status, open-loop speed control, and zone static pressure monitoring."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - VSC
+  - ZSPM
+  uses:
+  - dishwasher_run_status
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
