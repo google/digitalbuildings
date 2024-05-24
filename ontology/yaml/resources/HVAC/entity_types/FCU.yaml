@@ -951,6 +951,7 @@ FCU_SFSS_SFVSC_CHWSC_SSPC_RTM:
   - RTM
 
 FCU_SFSS_SFVSC_CHWSC_HTSC_SSPC_FDPM_RTM_CAM:
+  guid: "b22e70a5-b94a-460b-bcae-5569ff78ee3b"
   description: "Multi-zone FCU with chilled water"
   is_canonical: true
   implements:
