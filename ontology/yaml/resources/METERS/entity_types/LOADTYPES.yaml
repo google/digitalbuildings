@@ -1,0 +1,77 @@
+# Copyright 2020 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the License);
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#    https://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an AS IS BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+### LOAD TYPES
+
+# This defines abstract load types that are measured by meters. They are not necessarily specific to any type of meter.
+
+LOADTYPE_MAIN:
+  guid: "1fa18a32-1461-45e8-ad4c-e5d030afb827"
+  description: "Represents the main load for a building, encompassing everything within the building."
+  is_abstract: true
+
+LOADTYPE_MECHANICAL:
+  guid: "dcb2fb34-c89f-4243-803c-3cda0e957c10"
+  description: "Represents an mechanical (HVAC) load within a building."
+  is_abstract: true
+
+LOADTYPE_PLUG:
+  guid: "01fa84ff-0fe0-4d75-8570-6aea5ceeb53f"
+  description: "Represents a plug (outlet) load within a building."
+  is_abstract: true
+
+LOADTYPE_LIGHTING:
+  guid: "1bf8a921-b52e-4745-acf2-ac1001f5302a"
+  description: "Represents a lighting fixture and infrastructure load within a building."
+  is_abstract: true
+
+LOADTYPE_CAFE:
+  guid: "168b157e-4de7-4c13-b466-35da0e056642"
+  description: "Represents a cafe and kitchen load within a building."
+  is_abstract: true
+
+LOADTYPE_SPARE:
+  guid: "ff156f0e-ec9c-488e-8b67-2e75e6d20f39"
+  description: "Represents an unassigned breaker load within a building."
+  is_abstract: true
+
+LOADTYPE_XFMR:
+  guid: "fa66332f-0274-4c7f-97c9-3e73c4f26c84"
+  description: "Represents a transformer load within a building."
+  is_abstract: true
+
+LOADTYPE_DIST:
+  guid: "71d483ca-233f-4b99-803b-a8c74994ef6c"
+  description: "Represents a general distribution load within a building. Used when multiple downstream categories are served."
+  is_abstract: true
+
+LOADTYPE_ATS:
+  guid: "47406858-faf0-4100-a3d2-9b40d1b01bc5"
+  description: "Represents an automatic transfer switch load within a building."
+  is_abstract: true
+
+LOADTYPE_PV:
+  guid: "e7f0dc78-9b03-4163-ab87-32281f342aeb"
+  description: "Represents a photovoltaic load within a building."
+  is_abstract: true
+
+LOADTYPE_EMERGENCY:
+  guid: "f360b259-b6cf-49ef-b828-629d596fb25c"
+  description: "Represents an emergency load within a building."
+  is_abstract: true
+
+LOADTYPE_MISC:
+  guid: "81411471-4235-4b9e-8f19-0366f94ebaee"
+  description: "Represents a miscellaneous load within a building."
+  is_abstract: true

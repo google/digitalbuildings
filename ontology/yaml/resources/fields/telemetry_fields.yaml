@@ -1229,6 +1229,12 @@ literals:
 - dimmer_percentage_command: # Should be adjusted to brightness_percentage_command
     fixed_min: 0.0
     fixed_max: 100.0
+- aisle_brightness_percentage_command:
+    fixed_min: 0.0
+    fixed_max: 100.0
+- window_brightness_percentage_command:
+    fixed_min: 0.0
+    fixed_max: 100.0
 - calendar_sync_status:
   - ACCESS_FAILED
   - CALENDAR_STARTUP
