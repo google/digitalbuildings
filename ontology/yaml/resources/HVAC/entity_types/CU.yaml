@@ -76,6 +76,7 @@ CU_SFSS_SFVSC_CHWSC_HTSC_SSPC_SARC_MTM_FDPM_CAM:
   - CAM
 
 CU_SFSS_SFVSC_CHWSDC_HTSDC_SSPC_RTM:
+  guid: "cc27b007-3427-4d17-b07b-31f4cdcbf700"
   description: "Chilled water compartment unit on supply side with start/stop, status, cooling and heating (dual setpoint supply temp control)."
   is_canonical: true
   implements:
