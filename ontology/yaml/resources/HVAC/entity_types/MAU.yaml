@@ -502,7 +502,7 @@ MAU_DFSS_DSP_FDPM_HT2ZC_OAFC:
 
 MAU_DFSS_DFVSC_HTDC_ZTM:
   guid: "80381ee4-6ab6-4a26-bf96-6cb809f3a600"
-  description: "Single zone heating make-up air unit."
+  description: "Single zone heating make-up air unit with zone temperature monitoring."
   is_canonical: true
   implements:
   - MAU
@@ -510,6 +510,23 @@ MAU_DFSS_DFVSC_HTDC_ZTM:
   - DFVSC
   - HTDC
   - ZTM
+
+MAU_DFSS_DFVSC_HTDC:
+  description: "Single zone heating make-up air unit."
+  is_canonical: true
+  implements:
+  - MAU
+  - DFSS
+  - DFVSC
+  - HTDC
+
+MAU_DFSS_HTDC:
+  description: "Single zone heating make-up air unit with start/stop control."
+  is_canonical: true
+  implements:
+  - MAU
+  - DFSS
+  - HTDC
 
 MAU_DFSS_DFVSC_HTDC_CO2CMAX:
   guid: "9eff969b-9cff-46c0-be0a-1ee317d6987b"

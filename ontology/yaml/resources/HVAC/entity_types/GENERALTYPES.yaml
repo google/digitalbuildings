@@ -54,6 +54,8 @@ FCU:
   - lost_power_alarm
   - smoke_alarm
   - failed_alarm
+  - emergency_alarm
+  - fire_alarm
   implements:
   - EQUIPMENT
 

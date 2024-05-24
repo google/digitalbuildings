@@ -2057,9 +2057,12 @@ CHWSDC:
   opt_uses:
   - chilled_water_valve_percentage_sensor
   - cooling_thermal_power_capacity
+  - cooling_request_count
   - leaving_cooling_coil_temperature_sensor
   - high_supply_air_temperature_alarm
   - low_supply_air_temperature_alarm
+  - water_leak_alarm
+  - frost_alarm
   uses:
   - chilled_water_valve_percentage_command
   - supply_air_cooling_temperature_setpoint
@@ -3227,6 +3230,7 @@ HTSDC:
   opt_uses:
   - heater_run_status
   - heating_percentage_command
+  - heating_request_count
   - heating_thermal_power_capacity
   - high_supply_air_temperature_alarm
   - low_supply_air_temperature_alarm
