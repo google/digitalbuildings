@@ -67,6 +67,16 @@ FAN_SS_VSC_ZSPC:
   - VSC
   - ZSPC
 
+FAN_SS_VSC_ZSPM:
+  guid: "9936851f-f434-407a-8671-941630a02883"
+  description: "Fan with start/stop status, open-loop speed control & zone static pressure monitoring."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - VSC
+  - ZSPM
+
 FAN_SS_WDPM:
   guid: "d12cbe88-243a-40a5-b624-3a2f355e7cfc"
   description: "Fan with start/stop and differential pressure monitoring."
@@ -662,6 +672,19 @@ FAN_SS_VSC_REFC:
   - SS
   - VSC
   - REFC
+
+FAN_SS_VSC_ZSPM_DWI:
+  guid: "a1148f7d-4aa0-4560-b2cb-53b8eb949278"
+  description: "Dishwasher-interlocked fan with start/stop status, open-loop speed control, and zone static pressure monitoring."
+  is_canonical: false
+  implements:
+  - FAN
+  - SS
+  - VSC
+  - ZSPM
+  uses:
+  - dishwasher_run_status
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
