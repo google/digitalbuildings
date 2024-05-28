@@ -196,9 +196,6 @@ flowrate:
   liters_per_hour:
     multiplier: 0.000000277777777778
     offset: 0
-  gallons_per_minute:
-    multiplier: 0.0000630901964
-    offset: 0
   imperial_gallons_per_minute:
     multiplier: 0.000075768166666667
     offset: 0
