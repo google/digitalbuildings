@@ -297,9 +297,6 @@ mass:
   pounds_mass:
     multiplier: 453.592
     offset: 0
-  tons:
-    multiplier: 907184
-    offset: 0
   metric_tons:
     multiplier: 1000000
     offset: 0
@@ -323,9 +320,6 @@ massflow:
     offset: 0
   kilograms_per_second:
     multiplier: 1000
-    offset: 0
-  tons_per_hour:
-    multiplier: 251.996
     offset: 0
   metric_tons_per_hour:
     multiplier: 277.777777778
