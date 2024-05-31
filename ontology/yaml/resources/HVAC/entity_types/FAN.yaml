@@ -405,6 +405,16 @@ FAN_SS_EFVSC:
   - SS
   - EFVSC
 
+FAN_SS_EFVSC_ZTM:
+  guid: "fd195953-7123-4414-ae9f-bb51bbc1eda8"
+  description: "Exhaust fan with variable speed control and zone temperature monitoring."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - EFVSC
+  - ZTM
+
 FAN_SS_FDPM:
   guid: "751b226c-cdeb-4a1f-9929-ed4dc7ff972c"
   description: "Exhaust fan with filter monitoring."
