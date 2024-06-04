@@ -94,6 +94,7 @@ BATTERY: "Operation mode or input power is via Battery"
 SYNCHRONOUS: "Mode of operation of inverter where inverter operation is in line with the bypass voltage and frequency"
 ASYNCHRONOUS: "Mode of operation of inverter where either the bypass supply fails or the inverter is not in line bypass voltage and frequency"
 SOFTSTART: "Mode of operation of rectifier where the input power supply is gradually turned on to avoid overloading"
+EMERGENCY: "Power source or mode of operation in critical situations when the primary power source or typical mode of operation fails."
 
 ## LIGHTING
 FADING: "An operation mode of a lighting dimmer: dimming speed based on a duration to dim from minimum to maximum."
