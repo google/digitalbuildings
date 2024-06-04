@@ -764,27 +764,6 @@ SSPC:
   implements:
   - OPERATIONAL
 
-DSPC:
-  guid: "e95c6b69-3bec-4021-8db8-07b530aaa54d"
-  description: "Discharge static pressure control via discharge fan speed"
-  is_abstract: true
-  opt_uses:
-  - discharge_air_damper_percentage_command
-  - discharge_air_flowrate_sensor
-  - discharge_fan_run_command
-  - discharge_fan_run_status
-  - discharge_fan_speed_frequency_sensor
-  - discharge_fan_speed_percentage_command
-  - failed_discharge_fan_alarm
-  - failed_discharge_air_static_pressure_alarm
-  - high_discharge_air_static_pressure_alarm
-  - low_discharge_air_static_pressure_alarm
-  uses:
-  - discharge_air_static_pressure_sensor
-  - discharge_air_static_pressure_setpoint
-  implements:
-  - OPERATIONAL
-
 SPSS:
   guid: "0b1c2a43-53d8-4349-883c-8bde722fccb5"
   description: "Spray pump start stop monitoring."
@@ -794,7 +773,6 @@ SPSS:
   - spray_pump_run_status
   implements:
   - OPERATIONAL
-
 
 EFSS:
   guid: "1df2cdc8-ef3c-472a-ace0-c85d501e121e"
@@ -8087,7 +8065,7 @@ SSTC:
   - heating_supply_water_temperature_sensor
   - heating_supply_water_temperature_setpoint
 
-SSSC:
+SSC:
   guid: "cb7bb427-b108-478f-97b5-3a8b925acec0"
   description: "Steam valve control to supply air temperature."
   is_abstract: true
