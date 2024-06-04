@@ -83,7 +83,7 @@ SDC_EXTOR:
   - SDC
   - EXTOR
   opt_uses:
-  - shade_orientation_specification
+  - shade_orientation_mode
   - shade_mode
 
 SDC_UDEC:
