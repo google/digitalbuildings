@@ -42,6 +42,15 @@ TK_LHLM_SWTM:
   - LHLM
   - SWTM
 
+TK_LHLM2X_SWTM2X:
+  guid: "e50038e9-60fc-4604-a632-5300043f93cc"
+  description: "Dual section Tank with supply water temperature monitoring with high and low water level monitoring."
+  is_canonical: true
+  implements:
+  - /TK # Inherits from global namespace
+  - LHLM2X
+  - SWTM2X  
+
 TK_SWTC_PHWTC:
   guid: "afec4cde-0aa9-4f75-9cf8-1fa1512fd49a"
   description: "Tank with supply water temperature control and potable water temperature monitoring."
