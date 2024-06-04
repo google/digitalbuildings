@@ -133,7 +133,7 @@ CU_SFSS_SFVSC_CHWSC_CHWDT_HTSC_SSPC_SARC_MTM:
   - SARC
   - MTM
 
-CU_SFSS2X_SFVSC2X_CHWSC_CHWDT_HTSC_SSPC2X_MTM:
+CU_SFSS2X_SFVSC2X_CHWSC_CHWDT_HTSC_SSPC_MTM:
   guid: "bccd555b-864f-4b66-a084-fa29ce28e770"
   description: "Chilled water compartment unit with two fan start/stop, status, cooling and heating (supply temp control), and differential temperature monitoring."
   is_canonical: true
@@ -144,7 +144,7 @@ CU_SFSS2X_SFVSC2X_CHWSC_CHWDT_HTSC_SSPC2X_MTM:
   - CHWSC
   - CHWDT
   - HTSC
-  - SSPC2X
+  - SSPC
   - MTM
 
 CU_DSP_DFSS_DFVSC_CHW2XDC_HTDC_FDPM_MTM_CAM_CO2M:
