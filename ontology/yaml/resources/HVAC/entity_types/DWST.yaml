@@ -77,18 +77,6 @@ DWST_SWTC_CPVSC2X_WSHP2X:
   - potable_hot_leaving_water_temperature_sensor_2
   - potable_hot_leaving_water_temperature_setpoint
 
-DWST_SS_PWDT_HWTTC_SEWTM:
-  guid: "bbde1c7a-fd21-410f-969a-65ebcf65234d"
-  description: "DWST with primary, secondary temperature monitoring, tank temperature sensor"
-  is_canonical: false
-  implements:
-  - SS
-  - PWDT
-  - HWTTC
-  - SEWTM
-  uses:
-  - heater_run_command
-
 DWST_HWDT_CPC_SWTC2X_HWFM_HSWPM:
   guid: "cd74f84e-969a-422c-8c84-d40ca6281352"
   description: "Non-standard domestic water system with two heating water heat exhangers that are manually opened/closed, 
