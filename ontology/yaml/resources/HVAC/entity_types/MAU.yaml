@@ -834,7 +834,7 @@ MAU_SFSS_SFVSC_CHWSC_CHCPC_CHWISOVM_PHSC_SSSC_SSPC_OADM_OA_ZTM_ZHM_CO2M_CAM:
 
 MAU_DSP_DFSS_DFVSC_CHW2XDC_CHCPC_CHWISOVM_HTDC_FDPM_OADM_OA_DSPM_ZHC_CAM:
   guid: "32dd1642-fcd5-4e1f-a422-42a5dacb6e0e"
-  description: "Multi-zone MAU with preheating steam control, chilled water control, heating steam control, and supply air static pressure control"
+  description: "Single zone MAU with dual zone temperture setpoint control, heating valve and dual chilled water valve control on the discharge side, and variable speed discharge fan control."
   is_canonical: true
   implements:
   - MAU
