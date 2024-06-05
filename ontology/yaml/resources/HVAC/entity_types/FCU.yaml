@@ -950,21 +950,6 @@ FCU_SFSS_SFVSC_CHWSC_SSPC_RTM:
   - SSPC
   - RTM
 
-FCU_SFSS_SFVSC_CHWSC_HTSC_SSPC_FDPM_RTM_CAM:
-  guid: "b22e70a5-b94a-460b-bcae-5569ff78ee3b"
-  description: "Multi-zone FCU with chilled water"
-  is_canonical: true
-  implements:
-  - FCU
-  - SFSS
-  - SFVSC
-  - CHWSC
-  - HTSC
-  - SSPC
-  - FDPM
-  - RTM
-  - CAM
-
 FCU_DFSS_DFVSC_SSPC_DTC_CHWDC:
   guid: "3609bf02-9dc4-44cb-b8a4-3a14607d74bf"
   description: "Discharge temperature control FCU with chilled water."
