@@ -103,7 +103,7 @@ SDC_EXT_TLT_NORTH_WIND2X:
   uses:
   - north_wind_linearvelocity_sensor_1
   - north_wind_linearvelocity_sensor_2
-  
+
 SDC_EXT_TLT_SOUTH_WIND2X:
   guid: "426eace1-f4c8-49d0-acef-0fad52d9cc44"
   description: "Directional shade (South) with two wind sensors."
