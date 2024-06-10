@@ -49,7 +49,7 @@ TK_LHLM2X_SWTM2X:
   implements:
   - /TK # Inherits from global namespace
   - LHLM2X
-  - SWTM2X  
+  - SWTM2X
 
 TK_SWTC_PHWTC:
   guid: "afec4cde-0aa9-4f75-9cf8-1fa1512fd49a"
