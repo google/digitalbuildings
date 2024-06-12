@@ -1973,3 +1973,11 @@ FCU_DFVSC_RTM_CO2M_HWZTC_CHWZTC:
   - CO2M
   - HWZTC
   - CHWZTC
+
+FCU_DFMSC_CHWZTC:
+  guid: "2b7cde44-9553-405b-b186-0fdf126a9a8c"
+  description: "Fan coil unit with Chilled water valve monitoring on zone side (ZTC) and discharge fan multi-speed control."
+  implements:
+  - FCU
+  - DFMSC
+  - CHWZTC
