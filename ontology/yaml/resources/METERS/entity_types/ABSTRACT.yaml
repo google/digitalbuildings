@@ -75,9 +75,10 @@ PVCM:
   - phase2_neutral_line_voltage_sensor
   - phase3_neutral_line_voltage_sensor
   
+# TODO: rename to make this more intuitive
 PWMRDM:
   guid: "4bfb27f6-0a27-48d9-8830-81c84d95c8ab"
-  description: "Energy monitoring from Electrical Grid and Generator with run hours monitoring."
+  description: "Energy monitoring from electrical grid and generator with run hours monitoring."
   is_abstract: true
   uses:
   - generator_energy_accumulator
@@ -87,16 +88,51 @@ PWMRDM:
 
 TPWM:
   guid: "141dc3bf-85dd-4fce-9342-9a5462b3c274"
-  description: "Thermal power and thermal energy monitoring."
+  description: "Thermal power and thermal energy monitoring (typically used for heat meters)."
   is_abstract: true
   uses:
-    - thermal_energy_accumulator
-    - thermal_power_sensor
+  - thermal_energy_accumulator
+  - thermal_power_sensor
 
 VCM:
   guid: "dc4d2839-c00d-4935-bc67-013f7721535f"
-  description: "Current and voltage monitoring"
+  description: "Current and voltage monitoring."
   is_abstract: true
   uses:
   - current_sensor
   - voltage_sensor
+
+VAM:
+  guid: "8f73213c-b12d-45e3-954d-6c876ddb12fc"
+  description: "Volume accumulator monitoring."
+  is_abstract: true
+  opt_uses:
+  - flowrate_sensor
+  uses:
+  - volume_accumulator
+
+WVAM:
+  guid: "a9b16412-be29-4dd8-815f-544bf72a8fae"
+  description: "Water volume accumulator monitoring."
+  is_abstract: true
+  opt_uses:
+  - water_flowrate_sensor
+  - water_linearvelocity_sensor
+  uses:
+  - water_volume_accumulator
+
+GVAM:
+  guid: "c7761aab-7560-4c62-9095-e9931b0f4c81"
+  description: "Gas volume accumulator monitoring."
+  is_abstract: true
+  opt_uses:
+  - gas_flowrate_sensor
+  uses:
+  - gas_volume_accumulator
+
+GTM:
+  guid: "011225da-4eb3-4875-a1df-0f3cc3a2a7a0"
+  description: "Gas temperature monitoring."
+  is_abstract: true
+  uses:
+  - gas_temperature_sensor

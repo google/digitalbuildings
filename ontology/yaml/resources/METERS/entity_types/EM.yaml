@@ -53,9 +53,6 @@ EM_PWM_PVCM:
   - EM
   - PWM
   - PVCM
-  opt_uses:
-  - reactive_energy_accumulator
-  - apparent_energy_accumulator
 
 EM_PWM_AVCM:
   guid: "441a3b57-05e7-426d-bed9-061f28f21b3a"
@@ -127,6 +124,7 @@ EM_ION:
   - EM_PWM_AVCM_PLPM_PVCM
   - DEPRECATED
 
+# TODO: fully delete this type (duplicate of EM_PWM_NONCANONICAL_2 and not implemented by any entities)
 EM_PWM_NONCANONICAL_1:
   guid: "5063ee14-dd44-4d34-a17c-9b0d4f5cff43"
   description: "Non-standard type."
@@ -154,6 +152,7 @@ EM_PWM_NONCANONICAL_2:
   - average_line_current_sensor
   - average_inter_line_voltage_sensor
 
+# TODO: fully delete this type (not implemented by any entities)
 EM_PWM_PLPM_PVCM_NONCANONICAL_2:
   guid: "867a7be3-2023-49c2-a1da-4805abfaf9a0"
   description: "SE PM5100 Meter"

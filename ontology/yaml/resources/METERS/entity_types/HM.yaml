@@ -12,55 +12,51 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+
+# TODO: rename this type
 HM_STANDARD:
   guid: "7f96b71e-3f47-4872-b770-71a4b8021677"
   description: "General water-side thermal load heat meter."
   is_canonical: true
   implements:
   - HM
+  - TPWM
+  - HVAC/WDT # inherits from HVAC namespace
   uses:
-  - flowrate_sensor
-  - supply_water_temperature_sensor
-  - return_water_temperature_sensor
-  - thermal_power_sensor
-  - thermal_energy_accumulator
+  - flowrate_sensor # TODO: change to water_flowrate_sensor (for continuity) and implement WVAM
   opt_uses:
-  - water_volume_accumulator
+  - water_volume_accumulator # TODO: determine if this can be promoted to `uses` (if so, implement WVAM)
 
 HM_CHW:
   guid: "4439f98a-c52b-4fff-8765-84e689862423"
   description: "Cooling load heat meter."
+  is_canonical: true 
   implements:
   - HM
-  is_canonical: true
+  - HVAC/CHWDT # inherits from HVAC namespace
+  - HVAC/CHWFRM # inherits from HVAC namespace
   uses:
-  - chilled_water_flowrate_sensor
-  - chilled_supply_water_temperature_sensor
-  - chilled_return_water_temperature_sensor
-  - cooling_thermal_power_sensor
-  - cooling_thermal_energy_accumulator
+  - cooling_thermal_power_sensor # TODO: justify if `cooling` needs to be specified here, if not implement TPWM
+  - cooling_thermal_energy_accumulator # TODO: justify if `cooling` needs to be specified here, if not implement TPWM
   opt_uses:
   - differential_temperature_sensor
-  - failed_alarm
 
-HM_CHW_WAC:
+HM_CHW_WVAM:
   guid: "441029f3-1324-42c5-aca2-74138500917a"
   description: "Cooling load heat meter with total chilled water volume accumulator."
+  is_canonical: true
   implements:
   - HM_CHW
-  is_canonical: true
-  uses:
-  - water_volume_accumulator
+  - WVAM
 
 HM_HW:
   guid: "12427c9d-7d96-4551-b5de-e7d78a7d3674"
   description: "Heating load heat meter."
+  is_canonical: true  
   implements:
   - HM
-  is_canonical: true
+  - HVAC/HWDT # inherits from HVAC namespace
   uses:
-  - heating_water_flowrate_sensor
-  - heating_supply_water_temperature_sensor
-  - heating_return_water_temperature_sensor
-  - heating_thermal_power_sensor
-  - heating_thermal_energy_accumulator
+  - heating_water_flowrate_sensor # TODO: justify if `heating` needs to be specified here
+  - heating_thermal_power_sensor # TODO: justify if `heating` needs to be specified here, if not implement TPWM
+  - heating_thermal_energy_accumulator # TODO: justify if `heating` needs to be specified here, if not implement TPWM
