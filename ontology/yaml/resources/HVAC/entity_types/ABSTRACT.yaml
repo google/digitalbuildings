@@ -8076,10 +8076,10 @@ ETM3X:
   description: "Basic exhaust temperature monitoring with three sensor."
   is_abstract: true
   opt_uses:
-  - failed_exhaust_air_temperature_alarm_1
-  - failed_exhaust_air_temperature_alarm_2
+  - failed_exhaust_air_temperature_alarm_1
+  - failed_exhaust_air_temperature_alarm_2
   - failed_exhaust_air_temperature_alarm_3
-  uses:
+  uses:
   - exhaust_air_temperature_sensor_1
   - exhaust_air_temperature_sensor_2
   - exhaust_air_temperature_sensor_3
