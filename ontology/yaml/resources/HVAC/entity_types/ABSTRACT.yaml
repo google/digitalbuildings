@@ -8070,7 +8070,7 @@ DTPM:
   - detergent_pump_run_command
   implements:
   - MONITORING
-
+  
 ETM3X:
   guid: "4e9f481d-25d2-419f-974b-88aa7d6fd20e"
   description: "Basic exhaust temperature monitoring with three sensor."
@@ -8087,9 +8087,9 @@ ETM3X:
   - MONITORING
 
 EFM3X:
-  guid: "8de8cf27-f721-4ce8-91cd-9481ac103477"
-  description: "Exhaust air flow monitoring with three sensors."
-  is_abstract: true
+  guid: "8de8cf27-f721-4ce8-91cd-9481ac103477"
+  description: "Exhaust air flow monitoring with three sensors."
+  is_abstract: true
   uses:
   - exhaust_air_flowrate_sensor_1
   - exhaust_air_flowrate_sensor_2
@@ -8098,9 +8098,9 @@ EFM3X:
   - MONITORING
 
 EDPM3X:
-  guid: "4cf314cb-1695-450c-aa4f-ab4542935509"
-  description: "Triple exhaust air damper percentage monitoring."
-  is_abstract: true
+  guid: "4cf314cb-1695-450c-aa4f-ab4542935509"
+  description: "Triple exhaust air damper percentage monitoring."
+  is_abstract: true
   uses:
   - exhaust_air_damper_percentage_sensor_1
   - exhaust_air_damper_percentage_sensor_2
