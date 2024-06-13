@@ -314,7 +314,7 @@ LGRP_OS_AWIC:
   is_canonical: true
   implements:
   - LGRP
-  - OS 
+  - OS
   - AWIC
   uses:
   - group_mode
