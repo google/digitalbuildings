@@ -4553,9 +4553,9 @@ AHU_SFSS_SFVSC_CHW2XSC_SSC_ECON_SSPC:
   - ECON
   - SSPC
 
-AHU_SFSS_SFVSC_CHWSC_HTSC_ECON_SARC_SSPC_FDPM:
+AHU_SFSS_SFVSC_CHWSC_HTSC_ECON_SARC_SSPC_FDPM_ZTM:
   guid: "b270b104-aed8-40c3-80b5-bd991e3ed102"
-  description: "Multi-zone AHU with supply fan control, chilled water and electric heater control to supply air, economizing, and filter differential pressure monitoring."
+  description: "Multi-zone AHU with supply fan control, chilled water and electric heater control to supply air, economizing, filter differential pressure and zone temperature monitoring."
   is_canonical: true
   implements:
   - AHU
@@ -4567,6 +4567,7 @@ AHU_SFSS_SFVSC_CHWSC_HTSC_ECON_SARC_SSPC_FDPM:
   - SARC
   - SSPC
   - FDPM
+  - ZTM
 
 AHU_BSPC_DX5SC_ECONM_EDM_EFSS_EFVSC_SFSS4X_SFVSC4X_SSPC_SARC:
   guid: "befd596e-5a4b-4c64-b045-7f546ada3e96"
