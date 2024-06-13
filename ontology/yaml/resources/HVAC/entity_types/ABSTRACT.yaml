@@ -8080,30 +8080,30 @@ ETM3X:
   - failed_exhaust_air_temperature_alarm_2
   - failed_exhaust_air_temperature_alarm_3
   uses:
-  - exhaust_air_temperature_sensor_1
+  - exhaust_air_temperature_sensor_1
   - exhaust_air_temperature_sensor_2
   - exhaust_air_temperature_sensor_3
-  implements:
-  - MONITORING
+  implements:
+  - MONITORING
 
 EFM3X:
   guid: "8de8cf27-f721-4ce8-91cd-9481ac103477"
   description: "Exhaust air flow monitoring with three sensors."
   is_abstract: true
-  uses:
-  - exhaust_air_flowrate_sensor_1
+  uses:
+  - exhaust_air_flowrate_sensor_1
   - exhaust_air_flowrate_sensor_2
   - exhaust_air_flowrate_sensor_3
-  implements:
-  - MONITORING
+  implements:
+  - MONITORING
 
 EDPM3X:
   guid: "4cf314cb-1695-450c-aa4f-ab4542935509"
   description: "Triple exhaust air damper percentage monitoring."
   is_abstract: true
-  uses:
-  - exhaust_air_damper_percentage_sensor_1
+  uses:
+  - exhaust_air_damper_percentage_sensor_1
   - exhaust_air_damper_percentage_sensor_2
   - exhaust_air_damper_percentage_sensor_3
-  implements:
-  - MONITORING
+  implements:
+  - MONITORING
