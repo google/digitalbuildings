@@ -8081,8 +8081,8 @@ ETM3X:
   - failed_exhaust_air_temperature_alarm_3
   uses:
   - exhaust_air_temperature_sensor_1
-  - exhaust_air_temperature_sensor_2
-  - exhaust_air_temperature_sensor_3
+  - exhaust_air_temperature_sensor_2
+  - exhaust_air_temperature_sensor_3
   implements:
   - MONITORING
 
@@ -8092,8 +8092,8 @@ EFM3X:
   is_abstract: true
   uses:
   - exhaust_air_flowrate_sensor_1
-  - exhaust_air_flowrate_sensor_2
-  - exhaust_air_flowrate_sensor_3
+  - exhaust_air_flowrate_sensor_2
+  - exhaust_air_flowrate_sensor_3
   implements:
   - MONITORING
 
@@ -8103,7 +8103,7 @@ EDPM3X:
   is_abstract: true
   uses:
   - exhaust_air_damper_percentage_sensor_1
-  - exhaust_air_damper_percentage_sensor_2
-  - exhaust_air_damper_percentage_sensor_3
+  - exhaust_air_damper_percentage_sensor_2
+  - exhaust_air_damper_percentage_sensor_3
   implements:
   - MONITORING
