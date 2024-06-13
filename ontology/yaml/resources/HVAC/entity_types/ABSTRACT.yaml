@@ -8074,21 +8074,21 @@ DTPM:
 ETM3X:
   guid: "4e9f481d-25d2-419f-974b-88aa7d6fd20e"
   description: "Basic exhaust temperature monitoring with three sensor."
-  is_abstract: true
+  is_abstract: true  
+  opt_uses:
+  - failed_exhaust_air_temperature_alarm_1
+  - failed_exhaust_air_temperature_alarm_2
+  - failed_exhaust_air_temperature_alarm_3
   uses:
   - exhaust_air_temperature_sensor_1
   - exhaust_air_temperature_sensor_2
   - exhaust_air_temperature_sensor_3
   implements:
   - MONITORING
-  opt_uses:
-  - failed_exhaust_air_temperature_alarm_1
-  - failed_exhaust_air_temperature_alarm_2
-  - failed_exhaust_air_temperature_alarm_3
 
 EFM3X:
   guid: "8de8cf27-f721-4ce8-91cd-9481ac103477"
-  description: "Exhaust air flow monitoring with three sensors"
+  description: "Exhaust air flow monitoring with three sensors."
   is_abstract: true
   uses:
   - exhaust_air_flowrate_sensor_1
