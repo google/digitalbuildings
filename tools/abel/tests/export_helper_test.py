@@ -150,7 +150,8 @@ class ExportHelperTest(absltest.TestCase):
 
   def testExportBuildingConfigExportsVirtualEntityKeysCorrectly(self):
     exported_building_config = (
-        self.export_helper.ExportInitBuildingConfiguration(self.export_filepath)
+        self.export_helper.ExportBuildingConfiguration(
+          self.export_filepath)
     )
     expected_keys = ['code', 'etag', 'connections', 'links', 'type']
     exported_keys = list(
@@ -163,7 +164,8 @@ class ExportHelperTest(absltest.TestCase):
 
   def testExportBuildingConfigExportsReportingEntityKeysCorrectly(self):
     exported_building_config = (
-        self.export_helper.ExportInitBuildingConfiguration(self.export_filepath)
+        self.export_helper.ExportBuildingConfiguration(
+          self.export_filepath)
     )
     expected_keys = ['cloud_device_id', 'code', 'etag', 'translation', 'type']
     exported_keys = list(
@@ -174,7 +176,8 @@ class ExportHelperTest(absltest.TestCase):
 
   def testExportBuildingConfigExportsCloudDeviceIDAsString(self):
     exported_building_config = (
-        self.export_helper.ExportInitBuildingConfiguration(self.export_filepath)
+        self.export_helper.ExportBuildingConfiguration(
+          self.export_filepath)
     )
     expected_cdid = '2541901344105616'
     exported_cdid = exported_building_config.get('test_reporting_guid').get(
@@ -186,7 +189,8 @@ class ExportHelperTest(absltest.TestCase):
 
   def testExportBuildingConfigExportsMultiStateValueFieldStates(self):
     exported_building_config = (
-        self.export_helper.ExportInitBuildingConfiguration(self.export_filepath)
+        self.export_helper.ExportBuildingConfiguration(
+          self.export_filepath)
     )
     multi_state_value_field_states = (
         exported_building_config.get('test_reporting_guid')
@@ -200,7 +204,8 @@ class ExportHelperTest(absltest.TestCase):
 
   def testExportBuildingConfigExportsUnitsCorrectly(self):
     exported_building_config = (
-        self.export_helper.ExportInitBuildingConfiguration(self.export_filepath)
+        self.export_helper.ExportBuildingConfiguration(
+          self.export_filepath)
     )
     exported_units = (
         exported_building_config.get('test_reporting_guid')
@@ -215,7 +220,7 @@ class ExportHelperTest(absltest.TestCase):
 
   def testExportBuildingConfigExportsLinksCorrectly(self):
     exported_building_config = (
-        self.export_helper.ExportInitBuildingConfiguration(self.export_filepath)
+        self.export_helper.ExportBuildingConfiguration(self.export_filepath)
     )
     exported_links = exported_building_config.get('test_virtual_guid').get(
         'links'
@@ -245,7 +250,7 @@ class ExportHelperTest(absltest.TestCase):
     export_helper = BuildingConfigExport(model)
 
     with self.assertRaises(ValueError):
-      export_helper.ExportInitBuildingConfiguration(self.export_filepath)
+      export_helper.ExportBuildingConfiguration(self.export_filepath, [])
 
 
 if __name__ == '__main__':
