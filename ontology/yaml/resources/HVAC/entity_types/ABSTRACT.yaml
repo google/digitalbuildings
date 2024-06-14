@@ -325,6 +325,7 @@ CO2C:
   - zone_air_co2_concentration_sensor
   - zone_air_co2_concentration_setpoint
   opt_uses:
+  - failed_alarm
   - high_zone_air_co2_concentration_alarm
   - failed_zone_air_co2_concentration_alarm
 
