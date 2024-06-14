@@ -545,25 +545,25 @@ MAU_DFSS_DFVSC_DX2DDC_HTDDC_OAFC_ZTM:
   - OAFC
   - ZTM
 
-MAU_DF2XSS_DFVSC2X_HP2ZC_HTZC_OAFC:
+MAU_DFSS2X_DFVSC2X_HP2ZC_HTZC_OAFC:
   guid: "c20f2186-66bd-41cd-a19f-08b20045d91c"
   description: "Single zone with dual zone setpoint control for heating and cooling."
   is_canonical: true
   implements:
   - MAU
-  - DF2XSS
+  - DFSS2X
   - DFVSC2X
   - HP2ZC
   - HTZC
   - OAFC
 
-MAU_DF2XSS_DFVSC2X_DSP_HTZC:
+MAU_DFSS2X_DFVSC2X_DSP_HTZC:
   guid: "889b1215-4f1a-4962-a0b9-928a80b57737"
   description: "Single zone with dual zone setpoint control."
   is_canonical: true
   implements:
   - MAU
-  - DF2XSS
+  - DFSS2X
   - DFVSC2X
   - DSP
   - HTZC

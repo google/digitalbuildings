@@ -811,7 +811,7 @@ DFSS:
 
 DFSS2X:
   guid: "dddfd3fa-86a8-4cf9-b1ca-8026ab54f991"
-  description: "Two discharge fan run command and status (start/stop). With dampers"
+  description: "Two discharge fan run command and status (start/stop)."
   is_abstract: true
   implements:
   - OPERATIONAL
@@ -4293,23 +4293,6 @@ EFSS4X:
   - exhaust_fan_run_status_2
   - exhaust_fan_run_status_3
   - exhaust_fan_run_status_4
-  implements:
-  - OPERATIONAL
-
-
-DF2XSS:
-  guid: "d869bbc9-3715-498f-a923-94f436664cd0"
-  description: "Discharge fan start-stop and feedback (2 pts)."
-  is_abstract: true
-  opt_uses:
-  - discharge_fan_current_sensor
-  - discharge_fan_power_sensor
-  - discharge_fan_lost_power_alarm
-  uses:
-  - discharge_fan_run_command_1
-  - discharge_fan_run_command_2
-  - discharge_fan_run_status_1
-  - discharge_fan_run_status_2
   implements:
   - OPERATIONAL
 
