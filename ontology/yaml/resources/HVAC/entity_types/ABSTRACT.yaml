@@ -1012,6 +1012,7 @@ RTM:
 
 
 HATM2X:
+  guid: "9e1b1915-866a-4a9d-b4e2-cc74071f84b7"
   description: "Dual sensor hot aisle temperature monitoring"
   is_abstract: true
   implements:
@@ -1025,6 +1026,7 @@ HATM2X:
 
 
 CATM2X:
+  guid: "35cd8ffc-f4c5-433e-9c42-b0127ad841da"
   description: "Dual sensor cold aisle temperature monitoring"
   is_abstract: true
   implements:
@@ -7847,6 +7849,7 @@ BWFRM:
   - MONITORING
 
 BWECM:
+  guid: "e1608433-a4f7-4088-8bb7-ab6a63d67c80"
   description: "Blowdown water electricconductivity monitoring."
   is_abstract: true
   opt_uses:

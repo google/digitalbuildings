@@ -1504,6 +1504,7 @@ FCU_DFSS_RHDHC_HT2RC_DX2RC_ZTM:
   - ZTM
 
 FCU_DFSS_CSP_DX4ZC_RTM_CATM2X_HATM2X:
+  guid: "398c7f4f-a895-4788-a6af-b3a3eaf65acf"
   description: "Fan coil with 4-stage compressor, cold and hot aisle temperature monitoring and return temperature monitoring."
   is_canonical: true
   implements:
