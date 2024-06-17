@@ -363,12 +363,8 @@ CHWS_SWTC_WDPC_WFRM_CMSWFRM_BYPVPM_WSEBYPVPM_WSERWTM:
 
 
 CHWS_SWTC_WDPC_BYPVPM_WSEBYPVPM:
-<<<<<<< HEAD
-  description: "Chilled water system with bypass valve, water side economizer bypass valve and differential pressure control."
-=======
   guid: "cb8bd909-4be3-46a4-8802-30d177901bff"
-  description: "."
->>>>>>> d250dca0b4bb4ecb0df75d67986a0075b227cad3
+  description: "Chilled water system with bypass valve, water side economizer bypass valve and differential pressure control."
   implements:
   - CHWS
   - SWTC
