@@ -3141,6 +3141,12 @@ literals:
 - failed_leaving_cooling_coil_temperature_alarm:
   - ACTIVE
   - INACTIVE
+- failed_hot_aisle_air_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
+- failed_cold_aisle_air_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
 - failed_bypass_valve_alarm:
   - ACTIVE
   - INACTIVE
@@ -3178,6 +3184,9 @@ literals:
   - ACTIVE
   - INACTIVE
 - failed_condensing_return_water_isolation_valve_alarm:
+  - ACTIVE
+  - INACTIVE
+- failed_return_air_temperature_sensor:
   - ACTIVE
   - INACTIVE
 - failed_mixed_air_temperature_alarm:

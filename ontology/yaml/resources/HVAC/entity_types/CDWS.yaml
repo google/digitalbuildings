@@ -178,6 +178,15 @@ CDWS_SWTC_CMWDT_BYPVPM_BWECVC_BWFRM_MWFRM:
   - BWFRM
   - MWFRM
 
+CDWS_SWTC_WSEBYPVPM_BWECM:
+  description: "Condensing water system with ."
+  is_canonical: true
+  implements:
+  - CDWS
+  - SWTC
+  - WSEBYPVPM
+  - BWECM
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################

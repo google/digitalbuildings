@@ -1503,6 +1503,18 @@ FCU_DFSS_RHDHC_HT2RC_DX2RC_ZTM:
   - DX2RC
   - ZTM
 
+FCU_DFSS_CSP_DX4ZC_RTM_CATM2X_HATM2X:
+  description: "Fan coil with 4-stage compressor, cold and hot aisle temperature monitoring and return temperature monitoring."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - CSP
+  - DX4ZC
+  - RTM
+  - CATM2X
+  - HATM2X
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################

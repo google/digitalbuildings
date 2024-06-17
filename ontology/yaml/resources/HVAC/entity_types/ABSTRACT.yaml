@@ -1000,6 +1000,7 @@ RTM:
   implements:
   - MONITORING
   opt_uses:
+  - failed_return_air_temperature_sensor
   - return_air_relative_humidity_sensor
   - return_air_specificenthalpy_sensor
   - high_return_air_relative_humidity_alarm
@@ -1008,6 +1009,32 @@ RTM:
   - low_return_air_temperature_alarm
   uses:
   - return_air_temperature_sensor
+
+
+HATM2X:
+  description: "Dual sensor hot aisle temperature monitoring"
+  is_abstract: true
+  implements:
+  - MONITORING
+  opt_uses:
+  - failed_hot_aisle_air_temperature_alarm_1
+  - failed_hot_aisle_air_temperature_alarm_2
+  uses:
+  - hot_aisle_air_temperature_sensor_1
+  - hot_aisle_air_temperature_sensor_2
+
+
+CATM2X:
+  description: "Dual sensor cold aisle temperature monitoring"
+  is_abstract: true
+  implements:
+  - MONITORING
+  opt_uses:
+  - failed_cold_aisle_air_temperature_alarm_1
+  - failed_cold_aisle_air_temperature_alarm_2
+  uses:
+  - cold_aisle_air_temperature_sensor_1
+  - cold_aisle_air_temperature_sensor_2
 
 
 DTC:
@@ -4754,6 +4781,8 @@ CHWSWISOVPM:
   guid: "5f1963bf-1148-4881-8c6f-a20b39600e7e"
   description: "Supply side isolation valve monitoring."
   is_abstract: true
+  opt_uses:
+  - failed_chilled_supply_water_isolation_valve_alarm
   uses:
   - chilled_supply_water_isolation_valve_percentage_command
   - chilled_supply_water_isolation_valve_percentage_sensor
@@ -7752,6 +7781,7 @@ WSEBYPVPM:
   description: "Water side economizer bypass valve monitoring."
   is_abstract: true
   opt_uses:
+  - economizer_mode
   - economizer_bypass_valve_percentage_sensor
   - failed_economizer_bypass_valve_alarm
   uses:
@@ -7813,6 +7843,17 @@ BWFRM:
   - failed_blowdown_water_flowrate_alarm
   uses:
   - blowdown_water_flowrate_sensor
+  implements:
+  - MONITORING
+
+BWECM:
+  description: "Blowdown water electricconductivity monitoring."
+  is_abstract: true
+  opt_uses:
+  - high_blowdown_water_electricconductivity_alarm
+  uses:
+  - blowdown_water_electricconductivity_sensor
+  - blowdown_water_electricconductivity_setpoint
   implements:
   - MONITORING
 
