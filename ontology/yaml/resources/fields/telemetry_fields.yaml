@@ -3186,7 +3186,7 @@ literals:
 - failed_condensing_return_water_isolation_valve_alarm:
   - ACTIVE
   - INACTIVE
-- failed_return_air_temperature_sensor:
+- failed_return_air_temperature_alarm:
   - ACTIVE
   - INACTIVE
 - failed_mixed_air_temperature_alarm:

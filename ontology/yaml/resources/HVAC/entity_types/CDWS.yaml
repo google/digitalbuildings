@@ -179,7 +179,7 @@ CDWS_SWTC_CMWDT_BYPVPM_BWECVC_BWFRM_MWFRM:
   - MWFRM
 
 CDWS_SWTC_WSEBYPVPM_BWECM:
-  description: "Condensing water system with ."
+  description: "Condensing water system with bypass valve and water suide ecopnomizer bypass valve."
   is_canonical: true
   implements:
   - CDWS
