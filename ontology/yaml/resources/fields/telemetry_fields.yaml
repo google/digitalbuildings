@@ -3601,3 +3601,6 @@ literals:
 - emergency_power_status:
   - PRESENT
   - ABSENT
+- expansion_valve_percentage_command:
+    fixed_min: 0.0
+    fixed_max: 100.0
