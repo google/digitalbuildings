@@ -116,6 +116,9 @@ literals:
 - condensing_supply_water_temperature_setpoint:
     flexible_min: 255.9259259
     flexible_max: 308.1481481
+- condensing_water_sump_temperature_sensor:
+    flexible_min: 255.9259259
+    flexible_max: 308.1481481    
 - condensing_water_flowrate_sensor:
     flexible_min: -0.000315451
     flexible_max: 0.315451
@@ -410,6 +413,9 @@ literals:
 - supply_air_static_pressure_setpoint:
     flexible_min: -124.540012
     flexible_max: 2490.80024
+- supply_air_dynamic_pressure_sensor:
+    flexible_min: -124.540012
+    flexible_max: 2490.80024
 - supply_air_temperature_sensor:
     flexible_min: 255.9259259
     flexible_max: 338.7037037
@@ -613,6 +619,9 @@ literals:
     flexible_min: -996.320096
     flexible_max: 996.320096
 - exhaust_air_static_pressure_setpoint:
+    flexible_min: -996.320096
+    flexible_max: 996.320096
+- exhaust_air_dynamic_pressure_sensor:
     flexible_min: -996.320096
     flexible_max: 996.320096
 - filter_differential_pressure_sensor:
@@ -1001,6 +1010,9 @@ literals:
 - return_air_static_pressure_setpoint:
     flexible_min: -996.320096
     flexible_max: 996.320096
+- return_air_dynamic_pressure_sensor:
+    flexible_min: -996.320096
+    flexible_max: 996.320096
 - supply_air_dehumidification_relative_humidity_setpoint:
     fixed_min: 0.0
     fixed_max: 100.0
@@ -1381,6 +1393,9 @@ literals:
   - ACTIVE
   - INACTIVE
 - discharge_air_static_pressure_sensor:
+    flexible_min: -124.540012
+    flexible_max: 996.320096
+- discharge_air_dynamic_pressure_sensor:
     flexible_min: -124.540012
     flexible_max: 996.320096
 - heat_exchange_supply_water_isolation_valve_command:
@@ -3631,3 +3646,6 @@ literals:
 - emergency_power_status:
   - PRESENT
   - ABSENT
+- expansion_valve_percentage_command:
+    fixed_min: 0.0
+    fixed_max: 100.0
