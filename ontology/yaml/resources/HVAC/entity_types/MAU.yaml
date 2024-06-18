@@ -811,7 +811,7 @@ MAU_SFSS2X_SFVSC2X_PHWSC_LCC_HWSC_SSPC_UV_SHM:
   - UV
   - SHM
 
-MAU_DFSS_DFVSC_CHWDC_CHCPC_CHWISOVM_PHSC_SVDC_OADM_OA_ZTM_ZHM_CO2M_CAM:
+MAU_DFSS_DFVSC_CHWDC_CHCPC_CHWISOVM_PHSC_DSVC_OADM_OA_ZTM_ZHM_CO2M_CAM:
   guid: "d50d41d6-f7bf-4ec2-937f-b7e72ce56b4c"
   description: "Single-zone MAU with preheating steam control, chilled water control, and heating steam control"
   is_canonical: true
@@ -823,7 +823,7 @@ MAU_DFSS_DFVSC_CHWDC_CHCPC_CHWISOVM_PHSC_SVDC_OADM_OA_ZTM_ZHM_CO2M_CAM:
   - CHCPC
   - CHWISOVM
   - PHSC
-  - SVDC
+  - DSVC
   - OADM
   - OA
   - ZTM
