@@ -8068,9 +8068,22 @@ SSTC:
   - supply_steam_valve_percentage_command
   - heating_supply_water_temperature_sensor
   - heating_supply_water_temperature_setpoint
-
-SVDC:
+  
+SSVC:
   guid: "cb7bb427-b108-478f-97b5-3a8b925acec0"
+  description: "Steam valve control to supply air temperature."
+  is_abstract: true
+  opt_uses:
+  - heating_request_count
+  uses:
+  - steam_valve_percentage_command
+  - supply_air_temperature_sensor
+  - supply_air_temperature_setpoint
+  implements:
+  - CONTROL
+  
+DSVC:
+  guid: "45b08e9e-d8a1-49a1-b182-c245edc543cc"
   description: "Steam valve control to discharge air temperature."
   is_abstract: true
   uses:
