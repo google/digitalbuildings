@@ -25,6 +25,16 @@ CH_SS_SWTC:
   - SS
   - SWTC
 
+CH_SS_SWTC_WDPM:
+  guid: "619f27ca-5e68-44e2-a037-07c0fbccf29e"
+  description: "Simple air-cooled chiller with differential pressure monitoring."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - SWTC
+  - WDPM
+
 CH_SS_SCHWTC_RWISOVPM:
   guid: "69ac8219-82ca-46d1-88dc-7fc8ce0f16d3"
   description: "Simple water-cooled chiller with condenser isolation."
