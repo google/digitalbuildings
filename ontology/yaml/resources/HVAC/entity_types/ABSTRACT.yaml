@@ -7848,18 +7848,6 @@ BWFRM:
   implements:
   - MONITORING
 
-BWECM:
-  guid: "e1608433-a4f7-4088-8bb7-ab6a63d67c80"
-  description: "Blowdown water electricconductivity monitoring."
-  is_abstract: true
-  opt_uses:
-  - high_blowdown_water_electricconductivity_alarm
-  uses:
-  - blowdown_water_electricconductivity_sensor
-  - blowdown_water_electricconductivity_setpoint
-  implements:
-  - MONITORING
-
 BWECVC:
   guid: "2ebf7b84-a26f-4238-90c0-a630c753883b"
   description: "Blowdown water electricconductivity drain valve control."
