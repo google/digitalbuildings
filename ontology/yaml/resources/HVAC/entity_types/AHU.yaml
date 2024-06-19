@@ -5355,7 +5355,7 @@ AHU_NON_CANONICAL_TYPE_71:
   - supply_air_flowrate_sensor
   
 AHU_SFSS_NON_CANONICAL_72:
-  description: “Landlord system that only receives status/command and alarm”
+  description: "Landlord system that only receives status/command and alarm"
   implements:
   - AHU
   - SFSS
