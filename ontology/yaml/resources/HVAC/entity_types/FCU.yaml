@@ -1981,3 +1981,13 @@ FCU_DFMSC_CHWZTC:
   - FCU
   - DFMSC
   - CHWZTC
+
+FCU_DFSS_DFRMM_CSP_CHWDC:
+  description: "Typical chilled water FCU with cooling-only (discharge control) and Run mode monitoring."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - DFRMM
+  - CSP
+  - CHWDC

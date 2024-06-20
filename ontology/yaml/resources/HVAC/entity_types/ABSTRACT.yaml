@@ -804,7 +804,6 @@ DFSS:
   - discharge_fan_lost_power_alarm
   - failed_discharge_fan_alarm
   - overload_discharge_fan_alarm
-  - discharge_fan_run_mode
   uses:
   - discharge_fan_run_command
   - discharge_fan_run_status
