@@ -1986,16 +1986,6 @@ FCU_RTC_RHDHS_DTM_DFSS:
   - fire_alarm
   - schedule_run_command
 
-FCU_DSP_DFVSC_DTM_RTM:
-  guid: "ff0b58c2-8446-47f9-913d-068fd3b43ae7"
-  description: "Hybrid variable refrigerant flow unit with discharge and return air temperature monitoring, zone cooling and heating setpoints, discharge fan speed command"
-  implements:
-  - FCU
-  - DSP
-  - DFVSC
-  - DTM
-  - RTM
-
 FCU_DFSS_DFSMC_HWRC:
   guid: "1388eea8-a039-4b33-8613-24ae9de719dd"
   description: "Warm air curtain with return air temperature control."
