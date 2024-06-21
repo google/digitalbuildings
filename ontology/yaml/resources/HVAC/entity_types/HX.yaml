@@ -134,7 +134,7 @@ HX_HWSWC_SSSPC:
   - HWSWC
   - SSSPC
 
-HX_CWRWISOVM_TWRWISOVM_CWTWRTM:
+HX_CWRWISOVM_OCWRWISOVM:
   guid: "ba604692-f750-4075-917d-658383ec8a8c"
   description: "Heat exchanger between closed-loop condensing water and open-loop (tower) water."
   is_canonical: true
@@ -146,7 +146,7 @@ HX_CWRWISOVM_TWRWISOVM_CWTWRTM:
   - condensing_return_water_temperature_sensor
   - outside_condensing_loop_return_water_temperature_sensor
 
-HX_CWRWISOVPM_TWRWISOVPM_CWTWRTM:
+HX_CWRWISOVPM_OCWRWISOVPM:
   guid: "0422fc9c-f491-45c0-a70f-d67c8b781b91"
   description: "Heat exchanger between closed-loop condensing water and open-loop (tower) water."
   is_canonical: true
