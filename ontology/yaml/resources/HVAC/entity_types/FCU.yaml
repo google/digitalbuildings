@@ -1503,6 +1503,48 @@ FCU_DFSS_RHDHC_HT2RC_DX2RC_ZTM:
   - DX2RC
   - ZTM
 
+FCU_DSP_DFVSC_DTM_RTM:
+  is_canonical: true
+  guid: "ff0b58c2-8446-47f9-913d-068fd3b43ae7"
+  description: "Hybrid variable refrigerant flow unit with discharge and return air temperature monitoring, zone cooling and heating setpoints, discharge fan speed command"
+  implements:
+  - FCU
+  - DSP
+  - DFVSC
+  - DTM
+  - RTM
+
+FCU_DFSS_DFSMC_HWRC:
+  is_canonical: true
+  guid: "1388eea8-a039-4b33-8613-24ae9de719dd"
+  description: "Warm air curtain with return air temperature control."
+  implements:
+  - FCU
+  - DFSS
+  - DFSMC
+  - HWRC
+
+FCU_DFVSC_RTM_CO2M_HWZTC_CHWZTC:
+  is_canonical: true
+  guid: "6f6fd049-576c-4f0a-894d-a6433575b8dd"
+  description: "Fan coil unit with zone temperature control, heating water and chilled water valve monitoring."
+  implements:
+  - FCU
+  - DFVSC
+  - RTM
+  - CO2M
+  - HWZTC
+  - CHWZTC
+
+FCU_DFMSC_CHWZTC:
+  is_canonical: true
+  guid: "2b7cde44-9553-405b-b186-0fdf126a9a8c"
+  description: "Fan coil unit with chilled water valve monitoring on zone side (ZTC) and discharge fan multi-speed control."
+  implements:
+  - FCU
+  - DFMSC
+  - CHWZTC
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
@@ -1943,41 +1985,3 @@ FCU_RTC_RHDHS_DTM_DFSS:
   - water_leak_alarm
   - fire_alarm
   - schedule_run_command
-
-FCU_DSP_DFVSC_DTM_RTM:
-  guid: "ff0b58c2-8446-47f9-913d-068fd3b43ae7"
-  description: "Hybrid variable refrigerant flow unit with discharge and return air temperature monitoring, zone cooling and heating setpoints, discharge fan speed command"
-  implements:
-  - FCU
-  - DSP
-  - DFVSC
-  - DTM
-  - RTM
-
-FCU_DFSS_DFSMC_HWRC:
-  guid: "1388eea8-a039-4b33-8613-24ae9de719dd"
-  description: "Warm air curtain with return air temperature control."
-  implements:
-  - FCU
-  - DFSS
-  - DFSMC
-  - HWRC
-
-FCU_DFVSC_RTM_CO2M_HWZTC_CHWZTC:
-  guid: "6f6fd049-576c-4f0a-894d-a6433575b8dd"
-  description: "Fan coil unit with zone temperature control, heating water and chilled water valve monitoring."
-  implements:
-  - FCU
-  - DFVSC
-  - RTM
-  - CO2M
-  - HWZTC
-  - CHWZTC
-
-FCU_DFMSC_CHWZTC:
-  guid: "2b7cde44-9553-405b-b186-0fdf126a9a8c"
-  description: "Fan coil unit with Chilled water valve monitoring on zone side (ZTC) and discharge fan multi-speed control."
-  implements:
-  - FCU
-  - DFMSC
-  - CHWZTC
