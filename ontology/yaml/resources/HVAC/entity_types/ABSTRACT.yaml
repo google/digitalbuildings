@@ -8068,7 +8068,7 @@ SSTC:
   - supply_steam_valve_percentage_command
   - heating_supply_water_temperature_sensor
   - heating_supply_water_temperature_setpoint
- 
+
 SSVC:
   guid: "cb7bb427-b108-478f-97b5-3a8b925acec0"
   description: "Steam valve control to supply air temperature."
