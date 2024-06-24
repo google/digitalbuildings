@@ -300,6 +300,15 @@ mass:
   tons:
     multiplier: 907184
     offset: 0
+  metric_tons:
+    multiplier: 1000000
+    offset: 0
+  uk_tons:
+    multiplier: 1016046.9088
+    offset: 0
+  us_tons:
+    multiplier: 907184.74
+    offset: 0
 massconcentration: concentration
 massflow:
   grams_per_second: STANDARD
@@ -317,6 +326,15 @@ massflow:
     offset: 0
   tons_per_hour:
     multiplier: 251.996
+    offset: 0
+  metric_tons_per_hour:
+    multiplier: 277.777777778
+    offset: 0
+  uk_tons_per_hour:
+    multiplier: 282.235252444
+    offset: 0
+  us_tons_per_hour:
+    multiplier: 251.995761111
     offset: 0
   pounds_mass_per_hour:
     multiplier: 0.125998
