@@ -2023,3 +2023,14 @@ FCU_RTC_RHDHS_DTM_DFSS:
   - water_leak_alarm
   - fire_alarm
   - schedule_run_command
+
+FCU_DFSS_DFRMM_CSP_CHWDC:
+  guid: "c03c0745-9d98-41e7-abfa-c6c0ef164f5d"
+  description: "Typical chilled water FCU with cooling-only (discharge control) and Run mode monitoring."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - DFRMM
+  - CSP
+  - CHWDC
