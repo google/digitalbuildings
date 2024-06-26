@@ -1006,7 +1006,6 @@ RTM:
   implements:
   - MONITORING
   opt_uses:
-  - failed_return_air_temperature_alarm
   - return_air_relative_humidity_sensor
   - return_air_specificenthalpy_sensor
   - high_return_air_relative_humidity_alarm
