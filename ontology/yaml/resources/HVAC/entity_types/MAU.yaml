@@ -502,7 +502,7 @@ MAU_DFSS_DSP_FDPM_HT2ZC_OAFC:
 
 MAU_DFSS_DFVSC_HTDC_ZTM:
   guid: "80381ee4-6ab6-4a26-bf96-6cb809f3a600"
-  description: "Single zone heating make-up air unit."
+  description: "Single zone heating make-up air unit with zone temperature monitoring."
   is_canonical: true
   implements:
   - MAU
@@ -510,6 +510,25 @@ MAU_DFSS_DFVSC_HTDC_ZTM:
   - DFVSC
   - HTDC
   - ZTM
+
+MAU_DFSS_DFVSC_HTDC:
+  guid: "6d2519ce-ede3-4bbd-ba18-0084bfd7cbf7"
+  description: "Single zone heating make-up air unit."
+  is_canonical: true
+  implements:
+  - MAU
+  - DFSS
+  - DFVSC
+  - HTDC
+
+MAU_DFSS_HTDC:
+  guid: "f23aed1d-0043-49c3-b793-9b08f8273bbd"
+  description: "Single zone heating make-up air unit with start/stop control."
+  is_canonical: true
+  implements:
+  - MAU
+  - DFSS
+  - HTDC
 
 MAU_DFSS_DFVSC_HTDC_CO2CMAX:
   guid: "9eff969b-9cff-46c0-be0a-1ee317d6987b"
@@ -791,6 +810,46 @@ MAU_SFSS2X_SFVSC2X_PHWSC_LCC_HWSC_SSPC_UV_SHM:
   - SSPC
   - UV
   - SHM
+
+MAU_DFSS_DFVSC_CHWDC_CHCPC_CHWISOVM_PHSC_DSVC_OADM_OA_ZTM_ZHM_CO2M_CAM:
+  guid: "d50d41d6-f7bf-4ec2-937f-b7e72ce56b4c"
+  description: "Single-zone MAU with preheating steam control, chilled water control, and heating steam control"
+  is_canonical: true
+  implements:
+  - MAU
+  - DFSS
+  - DFVSC
+  - CHWDC
+  - CHCPC
+  - CHWISOVM
+  - PHSC
+  - DSVC
+  - OADM
+  - OA
+  - ZTM
+  - ZHM
+  - CO2M
+  - CAM
+
+MAU_DSP_DFSS_DFVSC_CHW2XDC_CHCPC_CHWISOVM_HTDC_FDPM_OADM_OA_DSPM_ZHC_CAM:
+  guid: "32dd1642-fcd5-4e1f-a422-42a5dacb6e0e"
+  description: "Single zone MAU with dual zone temperture setpoint control, heating valve and dual chilled water valve control on the discharge side, and variable speed discharge fan control."
+  is_canonical: true
+  implements:
+  - MAU
+  - DSP
+  - DFSS
+  - DFVSC
+  - CHW2XDC
+  - CHCPC
+  - CHWISOVM
+  - HTDC
+  - FDPM
+  - OADM
+  - OA
+  - DSPM
+  - ZHC
+  - CAM
 
 MAU_DFSS2X_DFVSC2X_DXDC_HWDC:
   guid: "7132bf0f-160a-4b3d-aaed-ad313787fe61"

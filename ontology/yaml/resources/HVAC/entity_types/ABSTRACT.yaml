@@ -233,6 +233,8 @@ DFMSS:
   - discharge_fan_power_capacity
   - discharge_fan_power_sensor
   - discharge_fan_lost_power_alarm
+  - failed_discharge_fan_alarm_1
+  - failed_discharge_fan_alarm_2
   uses:
   - discharge_fan_run_command
   - discharge_fan_run_status_1
@@ -252,6 +254,7 @@ DX2RC:
   - leaving_cooling_coil_temperature_sensor
   - failed_discharge_air_temperature_alarm
   - high_return_air_temperature_alarm
+  - failed_return_air_temperature_alarm
   - low_return_air_temperature_alarm
   uses:
   - compressor_run_command_1
@@ -282,6 +285,7 @@ DSP:
   opt_uses:
   - discharge_air_temperature_sensor
   - zone_air_relative_humidity_sensor
+  - failed_zone_air_relative_humidity_alarm
   - high_zone_air_relative_humidity_alarm
   - low_zone_air_relative_humidity_alarm
   - failed_discharge_air_temperature_alarm
@@ -528,6 +532,7 @@ VSC:
   - local_override_alarm
   - lost_power_alarm
   - master_alarm
+  - failed_inverter_alarm
   uses:
   - run_command
   - run_status
@@ -709,6 +714,8 @@ DTM:
   - discharge_air_relative_humidity_sensor
   - discharge_air_specificenthalpy_sensor
   - failed_discharge_air_temperature_alarm
+  - high_discharge_air_temperature_alarm
+  - low_discharge_air_temperature_alarm
   uses:
   - discharge_air_temperature_sensor
   implements:
@@ -757,7 +764,6 @@ SSPC:
   implements:
   - OPERATIONAL
 
-
 SPSS:
   guid: "0b1c2a43-53d8-4349-883c-8bde722fccb5"
   description: "Spray pump start stop monitoring."
@@ -767,7 +773,6 @@ SPSS:
   - spray_pump_run_status
   implements:
   - OPERATIONAL
-
 
 EFSS:
   guid: "1df2cdc8-ef3c-472a-ace0-c85d501e121e"
@@ -836,6 +841,7 @@ HT2RC:
   - heating_stage_run_count
   - failed_discharge_air_temperature_alarm
   - high_return_air_temperature_alarm
+  - failed_return_air_temperature_alarm
   - low_return_air_temperature_alarm
   uses:
   - heater_run_command_1
@@ -1004,6 +1010,7 @@ RTM:
   - return_air_specificenthalpy_sensor
   - high_return_air_relative_humidity_alarm
   - high_return_air_temperature_alarm
+  - failed_return_air_temperature_alarm
   - low_return_air_relative_humidity_alarm
   - low_return_air_temperature_alarm
   uses:
@@ -1078,6 +1085,7 @@ RTC:
   - return_air_temperature_setpoint
   opt_uses:
   - high_return_air_temperature_alarm
+  - failed_return_air_temperature_alarm
   - low_return_air_temperature_alarm
 
 #TODO: Rename to OTM
@@ -1511,6 +1519,7 @@ DSPRTC:
   - failed_discharge_air_temperature_alarm
   - high_return_air_relative_humidity_alarm
   - high_return_air_temperature_alarm
+  - failed_return_air_temperature_alarm
   - low_return_air_relative_humidity_alarm
   - low_return_air_temperature_alarm
   uses:
@@ -1531,6 +1540,7 @@ ZHC:
   opt_uses:
   - failed_zone_air_relative_humidity_alarm
   - high_zone_air_relative_humidity_alarm
+  - low_zone_air_relative_humidity_alarm
   implements:
   - OPERATIONAL
 
@@ -2004,10 +2014,15 @@ CHWDC:
   - chilled_water_valve_percentage_sensor
   - cooling_thermal_power_capacity
   - leaving_cooling_coil_temperature_sensor
+  - failed_leaving_cooling_coil_temperature_alarm
+  - high_leaving_cooling_coil_temperature_alarm
+  - low_leaving_cooling_coil_temperature_alarm
   - failed_discharge_air_temperature_alarm
   - failed_chilled_water_valve_alarm
   - high_discharge_air_temperature_alarm
   - low_discharge_air_temperature_alarm
+  - water_leak_alarm
+  - frost_alarm
   uses:
   - chilled_water_valve_percentage_command
   - discharge_air_temperature_sensor
@@ -2022,11 +2037,16 @@ CHWSC:
   is_abstract: true
   opt_uses:
   - chilled_supply_water_temperature_sensor
+  - failed_chilled_supply_water_temperature_alarm
+  - high_chilled_supply_water_temperature_alarm
+  - low_chilled_supply_water_temperature_alarm
   - chilled_water_valve_percentage_sensor
   - cooling_request_count
   - cooling_thermal_power_capacity
   - leaving_cooling_coil_temperature_sensor
   - failed_leaving_cooling_coil_temperature_alarm
+  - high_leaving_cooling_coil_temperature_alarm
+  - low_leaving_cooling_coil_temperature_alarm
   - supply_air_relative_humidity_sensor
   - failed_supply_air_temperature_alarm
   - high_supply_air_temperature_alarm
@@ -2047,9 +2067,12 @@ CHWSDC:
   opt_uses:
   - chilled_water_valve_percentage_sensor
   - cooling_thermal_power_capacity
+  - cooling_request_count
   - leaving_cooling_coil_temperature_sensor
   - high_supply_air_temperature_alarm
   - low_supply_air_temperature_alarm
+  - water_leak_alarm
+  - frost_alarm
   uses:
   - chilled_water_valve_percentage_command
   - supply_air_cooling_temperature_setpoint
@@ -2071,6 +2094,8 @@ CHW2XSC:
   - chilled_water_valve_percentage_sensor_1
   - chilled_water_valve_percentage_sensor_2
   - leaving_cooling_coil_temperature_sensor
+  - high_leaving_cooling_coil_temperature_alarm
+  - low_leaving_cooling_coil_temperature_alarm
   - leaving_cooling_coil_temperature_sensor_1
   - leaving_cooling_coil_temperature_sensor_2
   - failed_leaving_cooling_coil_temperature_alarm_1
@@ -2078,6 +2103,8 @@ CHW2XSC:
   - high_supply_air_temperature_alarm
   - low_supply_air_temperature_alarm
   - failed_supply_air_temperature_alarm
+  - frost_alarm
+  - water_leak_alarm
   uses:
   - chilled_water_valve_percentage_command_1
   - chilled_water_valve_percentage_command_2
@@ -2086,6 +2113,36 @@ CHW2XSC:
   implements:
   - CONTROL
 
+CHW2XDC:
+  guid: "bf683a14-2a3b-4d4a-bcf5-ef3dab34dd15"
+  description: "Dual chilled water valve control to discharge air temperatures."
+  is_abstract: true
+  opt_uses:
+  - discharge_air_relative_humidity_sensor
+  - cooling_thermal_power_capacity
+  - chilled_supply_water_temperature_sensor
+  - chilled_water_valve_percentage_sensor
+  - chilled_water_valve_percentage_sensor_1
+  - chilled_water_valve_percentage_sensor_2
+  - leaving_cooling_coil_temperature_sensor
+  - high_leaving_cooling_coil_temperature_alarm
+  - low_leaving_cooling_coil_temperature_alarm
+  - leaving_cooling_coil_temperature_sensor_1
+  - leaving_cooling_coil_temperature_sensor_2
+  - failed_leaving_cooling_coil_temperature_alarm_1
+  - failed_leaving_cooling_coil_temperature_alarm_2
+  - high_discharge_air_temperature_alarm
+  - low_discharge_air_temperature_alarm
+  - failed_discharge_air_temperature_alarm
+  - frost_alarm
+  - water_leak_alarm
+  uses:
+  - chilled_water_valve_percentage_command_1
+  - chilled_water_valve_percentage_command_2
+  - discharge_air_temperature_sensor
+  - discharge_air_temperature_setpoint
+  implements:
+  - CONTROL
 
 CHWRC:
   guid: "f9bc8b36-ea88-4318-ab5c-703945fcb465"
@@ -2101,9 +2158,11 @@ CHWRC:
   - failed_discharge_air_temperature_alarm
   - high_return_air_relative_humidity_alarm
   - high_return_air_temperature_alarm
+  - failed_return_air_temperature_alarm
   - low_return_air_relative_humidity_alarm
   - low_return_air_temperature_alarm
   - water_leak_alarm
+  - frost_alarm
   uses:
   - chilled_water_valve_percentage_command
   - return_air_temperature_sensor
@@ -2129,6 +2188,8 @@ CHWZC:
   - failed_chilled_water_valve_alarm
   - high_zone_air_temperature_alarm
   - low_zone_air_temperature_alarm
+  - water_leak_alarm
+  - frost_alarm
   uses:
   - chilled_water_valve_percentage_command
   - zone_air_cooling_temperature_setpoint
@@ -2153,6 +2214,7 @@ CHWZTC:
   - low_zone_air_temperature_alarm
   - zone_air_deadband_temperature_setpoint
   - water_leak_alarm
+  - frost_alarm
   uses:
   - chilled_water_valve_percentage_command
   - zone_air_temperature_sensor
@@ -2291,6 +2353,7 @@ DXDSPRTC:
   - failed_compressor_alarm
   - failed_discharge_air_temperature_alarm
   - high_return_air_temperature_alarm
+  - failed_return_air_temperature_alarm
   - low_return_air_temperature_alarm
   - overload_compressor_alarm
   uses:
@@ -2645,6 +2708,7 @@ DXRC:
   - failed_compressor_alarm
   - failed_discharge_air_temperature_alarm
   - high_return_air_temperature_alarm
+  - failed_return_air_temperature_alarm
   - low_return_air_temperature_alarm
   - overload_compressor_alarm
   uses:
@@ -2955,6 +3019,7 @@ HWRC:
   - heating_water_flowrate_sensor
   - heating_water_valve_percentage_sensor
   - high_return_air_temperature_alarm
+  - failed_return_air_temperature_alarm
   - low_return_air_temperature_alarm
   uses:
   - heating_water_valve_percentage_command
@@ -3085,6 +3150,20 @@ PHWSC:
   implements:
   - CONTROL
 
+PHSC:
+  guid: "9fd93443-7815-4f71-a8b7-cbb864b2b14b"
+  description: "Preheating steam control to leaving coil air temperature."
+  is_abstract: true
+  opt_uses:
+  - failed_leaving_air_preheating_coil_temperature_alarm
+  - high_leaving_air_preheating_coil_temperature_alarm
+  - low_leaving_air_preheating_coil_temperature_alarm
+  uses:
+  - preheating_steam_valve_percentage_command
+  - leaving_air_preheating_coil_temperature_sensor
+  - leaving_air_preheating_coil_temperature_setpoint
+  implements:
+  - CONTROL
 
 HWPVM:
   guid: "0a51d47f-2d53-4a3b-aa9a-f218394b55a7"
@@ -3154,7 +3233,6 @@ HTSC:
   implements:
   - CONTROL
 
-
 HTSDC:
   guid: "d394c55c-af3d-4956-a3b4-9324e4f32ae9"
   description: "Gas or electric heater control on supply side."
@@ -3162,6 +3240,7 @@ HTSDC:
   opt_uses:
   - heater_run_status
   - heating_percentage_command
+  - heating_request_count
   - heating_thermal_power_capacity
   - high_supply_air_temperature_alarm
   - low_supply_air_temperature_alarm
@@ -3186,6 +3265,7 @@ HTRC:
   - heating_thermal_power_capacity
   - failed_discharge_air_temperature_alarm
   - high_return_air_temperature_alarm
+  - failed_return_air_temperature_alarm
   - low_return_air_temperature_alarm
   uses:
   - heater_run_command
@@ -3474,6 +3554,7 @@ ECON:
   - high_mixed_air_temperature_alarm
   - low_mixed_air_temperature_alarm
   - high_return_air_temperature_alarm
+  - failed_return_air_temperature_alarm
   - high_supply_air_temperature_alarm
   - low_return_air_temperature_alarm
   - low_supply_air_temperature_alarm
@@ -3506,6 +3587,7 @@ ECOND:
   - high_mixed_air_temperature_alarm
   - low_mixed_air_temperature_alarm
   - high_return_air_temperature_alarm
+  - failed_return_air_temperature_alarm
   - low_return_air_temperature_alarm
   - failed_outside_air_temperature_alarm
   uses:
@@ -3536,6 +3618,7 @@ ECONM:
   - high_mixed_air_temperature_alarm
   - low_mixed_air_temperature_alarm
   - high_return_air_temperature_alarm
+  - failed_return_air_temperature_alarm
   - high_supply_air_temperature_alarm
   - low_return_air_temperature_alarm
   - low_supply_air_temperature_alarm
@@ -3562,6 +3645,7 @@ ECONM2X:
   - return_air_damper_percentage_command
   - supply_air_temperature_sensor
   - high_return_air_temperature_alarm
+  - failed_return_air_temperature_alarm
   - high_supply_air_temperature_alarm
   - low_return_air_temperature_alarm
   - low_supply_air_temperature_alarm
@@ -3602,6 +3686,7 @@ ECONMD:
   - high_mixed_air_temperature_alarm
   - low_mixed_air_temperature_alarm
   - high_return_air_temperature_alarm
+  - failed_return_air_temperature_alarm
   - low_return_air_temperature_alarm
   - failed_outside_air_temperature_alarm
   uses:
@@ -3634,6 +3719,7 @@ ECONZ:
   - low_mixed_air_temperature_alarm
   - failed_zone_air_temperature_alarm
   - high_return_air_temperature_alarm
+  - failed_return_air_temperature_alarm
   - high_zone_air_temperature_alarm
   - low_return_air_temperature_alarm
   - low_zone_air_temperature_alarm
@@ -4362,7 +4448,6 @@ SFSS2X:
   - supply_fan_run_status_2
   implements:
   - OPERATIONAL
-
 
 SFSS3X:
   guid: "e1fba819-60f4-459e-ad37-5da8828618dd"
@@ -5127,6 +5212,7 @@ CHWVM:
   - chilled_water_flowrate_sensor
   - cooling_thermal_power_capacity
   - failed_chilled_water_valve_alarm
+  - frost_alarm
   uses:
   - chilled_water_valve_percentage_command
   - chilled_water_valve_percentage_sensor
@@ -5387,6 +5473,7 @@ DX2DSPRTC:
   - cooling_thermal_power_capacity
   - leaving_cooling_coil_temperature_sensor
   - high_return_air_temperature_alarm
+  - failed_return_air_temperature_alarm
   - low_return_air_temperature_alarm
   uses:
   - compressor_run_command_1
@@ -5414,6 +5501,7 @@ HPDSPRTC:
   - failed_compressor_alarm
   - failed_discharge_air_temperature_alarm
   - high_return_air_temperature_alarm
+  - failed_return_air_temperature_alarm
   - low_return_air_temperature_alarm
   - overload_compressor_alarm
   uses:
@@ -5696,6 +5784,7 @@ CHWBRC:
   opt_uses:
   - failed_chilled_water_valve_alarm
   - high_return_air_temperature_alarm
+  - failed_return_air_temperature_alarm
   - low_return_air_temperature_alarm
 
 
@@ -5946,6 +6035,7 @@ HTWHLSTC:
   - return_air_temperature_sensor
   - failed_exhaust_air_temperature_alarm
   - high_return_air_temperature_alarm
+  - failed_return_air_temperature_alarm
   - high_supply_air_temperature_alarm
   - low_return_air_temperature_alarm
   - low_supply_air_temperature_alarm
@@ -6029,6 +6119,7 @@ HHRU:
   - outside_air_temperature_sensor
   - failed_exhaust_air_temperature_alarm
   - high_return_air_temperature_alarm
+  - failed_return_air_temperature_alarm
   - high_supply_air_temperature_alarm
   - high_supply_water_temperature_alarm
   - low_return_air_temperature_alarm
@@ -6055,6 +6146,7 @@ PHRU:
   - outside_air_temperature_sensor
   - failed_exhaust_air_temperature_alarm
   - high_return_air_temperature_alarm
+  - failed_return_air_temperature_alarm
   - high_supply_air_temperature_alarm
   - low_return_air_temperature_alarm
   - low_supply_air_temperature_alarm
@@ -6078,6 +6170,7 @@ PHRUD:
   - outside_air_temperature_sensor
   - failed_exhaust_air_temperature_alarm
   - high_return_air_temperature_alarm
+  - failed_return_air_temperature_alarm
   - high_discharge_air_temperature_alarm
   - low_return_air_temperature_alarm
   - low_discharge_air_temperature_alarm
@@ -6885,6 +6978,10 @@ SSPC2X:
   - supply_fan_speed_frequency_sensor
   - supply_fan_speed_percentage_command
   - failed_supply_fan_alarm
+  - failed_supply_air_static_pressure_alarm_1
+  - failed_supply_air_static_pressure_alarm_2
+  - high_supply_air_static_pressure_alarm_1
+  - high_supply_air_static_pressure_alarm_2
   uses:
   - supply_air_static_pressure_sensor_1
   - supply_air_static_pressure_sensor_2
@@ -7680,6 +7777,7 @@ HTWHLZTC:
   - supply_air_temperature_sensor
   - failed_exhaust_air_temperature_alarm
   - high_return_air_temperature_alarm
+  - failed_return_air_temperature_alarm
   - high_supply_air_temperature_alarm
   - low_return_air_temperature_alarm
   - low_supply_air_temperature_alarm
@@ -8002,6 +8100,30 @@ SSTC:
   - heating_supply_water_temperature_sensor
   - heating_supply_water_temperature_setpoint
 
+SSVC:
+  guid: "cb7bb427-b108-478f-97b5-3a8b925acec0"
+  description: "Steam valve control to supply air temperature."
+  is_abstract: true
+  opt_uses:
+  - heating_request_count
+  uses:
+  - steam_valve_percentage_command
+  - supply_air_temperature_sensor
+  - supply_air_temperature_setpoint
+  implements:
+  - CONTROL
+
+DSVC:
+  guid: "45b08e9e-d8a1-49a1-b182-c245edc543cc"
+  description: "Steam valve control to discharge air temperature."
+  is_abstract: true
+  uses:
+  - steam_valve_percentage_command
+  - discharge_air_temperature_sensor
+  - discharge_air_temperature_setpoint
+  implements:
+  - CONTROL
+
 COC2XDSP:
   guid: "fa7cba8d-be4d-4968-a5bf-f55429006b77"
   description: "Dual setpoint CO concentration control with 2 sensors."
@@ -8053,6 +8175,8 @@ CHCPC:
   guid: "ffd344fd-12ad-4633-ace7-79ae3987e9af"
   description: "Circulation control for onboard chilled water pump."
   is_abstract: true
+  opt_uses:
+  - failed_chilled_water_circulation_pump_alarm
   uses:
   - chilled_water_circulation_pump_run_status
   - chilled_water_circulation_pump_run_command
