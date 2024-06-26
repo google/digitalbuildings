@@ -1907,9 +1907,6 @@ literals:
 - high_refrigerant_pressure_alarm:
   - ACTIVE
   - INACTIVE
-- failed_return_air_temperature_alarm:
-  - ACTIVE
-  - INACTIVE
 - high_return_air_temperature_alarm:
   - ACTIVE
   - INACTIVE
@@ -3184,6 +3181,8 @@ literals:
   - ACTIVE
   - INACTIVE
 - failed_cold_aisle_air_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
 - high_leaving_cooling_coil_temperature_alarm:
   - ACTIVE
   - INACTIVE
