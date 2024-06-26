@@ -1017,6 +1017,34 @@ RTM:
   - return_air_temperature_sensor
 
 
+HATM2X:
+  guid: "9e1b1915-866a-4a9d-b4e2-cc74071f84b7"
+  description: "Dual sensor hot aisle temperature monitoring"
+  is_abstract: true
+  implements:
+  - MONITORING
+  opt_uses:
+  - failed_hot_aisle_air_temperature_alarm_1
+  - failed_hot_aisle_air_temperature_alarm_2
+  uses:
+  - hot_aisle_air_temperature_sensor_1
+  - hot_aisle_air_temperature_sensor_2
+
+
+CATM2X:
+  guid: "35cd8ffc-f4c5-433e-9c42-b0127ad841da"
+  description: "Dual sensor cold aisle temperature monitoring"
+  is_abstract: true
+  implements:
+  - MONITORING
+  opt_uses:
+  - failed_cold_aisle_air_temperature_alarm_1
+  - failed_cold_aisle_air_temperature_alarm_2
+  uses:
+  - cold_aisle_air_temperature_sensor_1
+  - cold_aisle_air_temperature_sensor_2
+
+
 DTC:
   guid: "fa2354f6-694c-4fd6-b5b5-6352eff50fe4"
   description: "Discharge air temperature control"
@@ -4839,6 +4867,8 @@ CHWSWISOVPM:
   guid: "5f1963bf-1148-4881-8c6f-a20b39600e7e"
   description: "Supply side isolation valve monitoring."
   is_abstract: true
+  opt_uses:
+  - failed_chilled_supply_water_isolation_valve_alarm
   uses:
   - chilled_supply_water_isolation_valve_percentage_command
   - chilled_supply_water_isolation_valve_percentage_sensor
@@ -7850,6 +7880,7 @@ WSEBYPVPM:
   description: "Water side economizer bypass valve monitoring."
   is_abstract: true
   opt_uses:
+  - economizer_mode
   - economizer_bypass_valve_percentage_sensor
   - failed_economizer_bypass_valve_alarm
   uses:

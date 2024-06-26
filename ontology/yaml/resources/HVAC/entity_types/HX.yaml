@@ -177,6 +177,23 @@ HX_CWDT_CHWDT_CWBYPVPM_CHWBYPVPM:
   - CWBYPVPM
   - CHWBYPVPM
 
+HX_CWDT_SCHWTC_CHWFRM_CWSISOVPM_CWBYPVPM_CHWSWISOVPM_CHWBYPVPM_CWDPM_CLPM:
+  guid: "4eb4279c-338f-481f-96ec-b280b520670d"
+  description: "Condenser and chilled water heat exchanger with isolation and bypass valves, chilled supply water temperature control, chilled water flowrate monitoring and condensing water differential pressure monitoring."
+  is_canonical: true
+  implements:
+  - HX
+  - CWDT
+  - SCHWTC
+  - CHWFRM
+  - CWSISOVPM
+  - CWBYPVPM
+  - CHWSWISOVPM
+  - CHWBYPVPM
+  - CWDPM
+  - CLPM
+  
+
 HX_CWDT_HSWTC_HWDPC_HWBYPVPM:
   guid: "909f4f23-f71d-4504-8052-efb435356e29"
   description: "Condenser and heating water heat exchanger with heating water bypass valve, heating supply water valve control and heating water temperature differentioal control."
