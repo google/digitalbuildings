@@ -88,6 +88,33 @@ CU_SFSS_SFVSC_CHWSDC_HTSDC_SSPC_RTM:
   - SSPC
   - RTM
 
+CU_SFSS_SFVSC_CHWSDC_HTSDC_SSPC_DSARC_FDPM3X_MTM:
+  description: "Chilled water compartment unit on supply side with start/stop, status, cooling and heating (dual setpoint supply temp control), and tri-sensor filter differential pressure monitoring."
+  is_canonical: true
+  implements:
+  - CU
+  - SFSS
+  - SFVSC
+  - CHWSDC
+  - HTSDC
+  - SSPC
+  - DSARC
+  - FDPM3X
+  - MTM
+
+CU_SFSS_SFVSC_CHWSDC_HTSDC_SSPC_DSARC_MTM:
+  description: "Chilled water compartment unit on supply side with start/stop, status, cooling and heating (dual setpoint supply temp control)."
+  is_canonical: true
+  implements:
+  - CU
+  - SFSS
+  - SFVSC
+  - CHWSDC
+  - HTSDC
+  - SSPC
+  - DSARC
+  - MTM
+
 CU_SFSS_SFVSC_CHWSC_CHWDT_HTSC_SSPC_SARC_MTM_RTM:
   guid: "15e39197-05fa-4b52-9473-5e0bccb883e5"
   description: "Chilled water compartment unit on supply side with start/stop, status, cooling and heating (supply temp control), and differential temperature monitoring."
@@ -133,6 +160,36 @@ CU_SFSS_SFVSC_CHWSC_CHWDT_HTSC_SSPC_SARC_MTM:
   - SARC
   - MTM
 
+CU_SFSS_SFVSC_CHWSC_HT3SC_FDPM_SSPC_SARC_MTM_CAM:
+  description: "Chilled water compartment unit on supply side with start/stop, status, cooling and three stage heating (supply temp control), and filter differential pressure monitoring."
+  is_canonical: true
+  implements:
+  - CU
+  - SFSS
+  - SFVSC
+  - CHWSC
+  - HT3SC
+  - FDPM
+  - SSPC
+  - SARC
+  - MTM
+  - CAM
+
+CU_SFSS_SFVSC_CHWSC_HT4SC_FDPM_SSPC_SARC_MTM_CAM:
+  description: "Chilled water compartment unit on supply side with start/stop, status, cooling and four stage heating (supply temp control), and filter differential pressure monitoring."
+  is_canonical: true
+  implements:
+  - CU
+  - SFSS
+  - SFVSC
+  - CHWSC
+  - HT4SC
+  - FDPM
+  - SSPC
+  - SARC
+  - MTM
+  - CAM
+
 CU_SFSS2X_SFVSC2X_CHWSC_CHWDT_HTSC_SSPC_MTM:
   guid: "bccd555b-864f-4b66-a084-fa29ce28e770"
   description: "Chilled water compartment unit with two fan start/stop, status, cooling and heating (supply temp control), and differential temperature monitoring."
@@ -146,6 +203,77 @@ CU_SFSS2X_SFVSC2X_CHWSC_CHWDT_HTSC_SSPC_MTM:
   - HTSC
   - SSPC
   - MTM
+
+CU_SFSS2X_SFVSC2X_CHWSC_CHWDT_HTSC_SSPC_SARC_MTM:
+  description: "Chilled water compartment unit with two fan start/stop, status, cooling and heating (supply temp control), and differential temperature monitoring."
+  is_canonical: true
+  implements:
+  - CU
+  - SFSS2X
+  - SFVSC2X
+  - CHWSC
+  - CHWDT
+  - HTSC
+  - SSPC
+  - SARC
+  - MTM
+
+CU_SFSS_SFVSC_CHW2XSC_HTSC_SSPC_SARC_FDPM3X_MTM_CAM:
+  description: "Chilled water compartment unit with two fan start/stop and speed control, heating and two valve cooling (supply temp control), and tri-sensor filter differential pressure monitoring."
+  is_canonical: true
+  implements:
+  - CU
+  - SFSS
+  - SFVSC
+  - CHW2XSC
+  - HTSC
+  - SSPC
+  - SARC
+  - FDPM3X
+  - MTM
+  - CAM
+
+CU_SFSS_SFVSC_CHW2XSC_HTSC_SSPC_FDPM_MTM_CAM:
+  description: "Chilled water compartment unit with two fan start/stop and speed control, heating and two valve cooling (supply temp control), and filter differential pressure monitoring."
+  is_canonical: true
+  implements:
+  - CU
+  - SFSS
+  - SFVSC
+  - CHW2XSC
+  - HTSC
+  - SSPC
+  - FDPM
+  - MTM
+  - CAM
+
+CU_SFSS2X_SFVSC2X_CHW2XSC_HTSC_SSPC_RTM_RHM_SHM:
+  description: "Chilled water compartment unit with two fan start/stop and speed control, heating and two valve cooling (supply temp control)."
+  is_canonical: true
+  implements:
+  - CU
+  - SFSS2X
+  - SFVSC2X
+  - CHW2XSC
+  - HTSC
+  - SSPC
+  - RTM
+  - RHM
+  - SHM
+
+CU_SFSS_SFVSC_CHW2XSC_SSC_SSPC_FDPM_MTM_CAM_CO2M:
+  description: "Multi zone chilled water compartment unit with start/stop, speed control, cooling and electric and steam heating (supply temp control)."
+  is_canonical: true
+  implements:
+  - CU
+  - SFSS
+  - SFVSC
+  - CHW2XSC
+  - SSC
+  - SSPC
+  - FDPM
+  - MTM
+  - CAM
 
 CU_DSP_DFSS_DFVSC_CHW2XDC_HTDC_FDPM_MTM_CAM_CO2M:
   guid: "8af7abce-3d69-4380-bb90-d8690050b238"
@@ -164,7 +292,7 @@ CU_DSP_DFSS_DFVSC_CHW2XDC_HTDC_FDPM_MTM_CAM_CO2M:
   - CO2M
 
 CU_DSP_DFSS_DFVSC_CHWDC_HTDC_RTM_CO2M:
-  description: "Single zone chilled water compartment unit with start/stop, status, cooling and heating (discharge temp control)."
+  description: "Single zone chilled water compartment unit with start/stop, status, cooling and heating (discharge temp control), and co2 monitoring."
   is_canonical: true
   implements:
   - CU
@@ -175,6 +303,35 @@ CU_DSP_DFSS_DFVSC_CHWDC_HTDC_RTM_CO2M:
   - HTDC
   - RTM
   - CO2M
+
+CU_DSP_DFSS_DFVSC_CHWDC_HTDC_FDPM_MTM_CAM_VMADC:
+  description: "Single zone chilled water compartment unit with start/stop, status, cooling and heating (discharge temp control), and mixed air damper control."
+  is_canonical: true
+  implements:
+  - CU
+  - DSP
+  - DFSS
+  - DFVSC
+  - CHWDC
+  - HTDC
+  - FDPM
+  - MTM
+  - CAM
+  - VMADC
+
+CU_DFSS_DFVSC_CHWDC_HTDC_FDPM_RTM_MTM_CAM:
+  description: "Single zone chilled water compartment unit with start/stop, status, cooling and heating (discharge temp control)."
+  is_canonical: true
+  implements:
+  - CU
+  - DFSS
+  - DFVSC
+  - CHWDC
+  - HTDC
+  - FDPM
+  - RTM
+  - MTM
+  - CAM
 
 ###################################
 ### Existing Non-standard Types ###
