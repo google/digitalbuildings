@@ -1541,6 +1541,19 @@ FCU_DFSS_RHDHC_HT2RC_DX2RC_ZTM:
   - DX2RC
   - ZTM
 
+FCU_DFSS_CSP_DX4ZC_RTM_CATM2X_HATM2X:
+  guid: "398c7f4f-a895-4788-a6af-b3a3eaf65acf"
+  description: "Fan coil with 4-stage compressor, cold and hot aisle temperature monitoring and return temperature monitoring."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - CSP
+  - DX4ZC
+  - RTM
+  - CATM2X
+  - HATM2X
+
 FCU_DSP_DFVSC_DTM_RTM:
   is_canonical: true
   guid: "ff0b58c2-8446-47f9-913d-068fd3b43ae7"
@@ -2023,3 +2036,14 @@ FCU_RTC_RHDHS_DTM_DFSS:
   - water_leak_alarm
   - fire_alarm
   - schedule_run_command
+
+FCU_DFSS_DFRMM_CSP_CHWDC:
+  guid: "c03c0745-9d98-41e7-abfa-c6c0ef164f5d"
+  description: "Typical chilled water FCU with cooling-only (discharge control) and Run mode monitoring."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - DFRMM
+  - CSP
+  - CHWDC

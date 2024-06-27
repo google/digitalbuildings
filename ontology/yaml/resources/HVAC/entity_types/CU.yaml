@@ -293,6 +293,7 @@ CU_DSP_DFSS_DFVSC_CHW2XDC_HTDC_FDPM_MTM_CAM_CO2M:
 
 CU_DSP_DFSS_DFVSC_CHWDC_HTDC_RTM_CO2M:
   description: "Single zone chilled water compartment unit with start/stop, status, cooling and heating (discharge temp control), and co2 monitoring."
+  guid: "9d20f63b-05c4-45f9-bde4-fe206013eb73"
   is_canonical: true
   implements:
   - CU
