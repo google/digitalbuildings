@@ -269,7 +269,7 @@ CU_SFSS2X_SFVSC2X_CHW2XSC_HTSC_SSPC_RTM_RHM_SHM:
   - RHM
   - SHM
 
-CU_SFSS_SFVSC_CHW2XSC_SSC_SSPC_FDPM_MTM_CAM_CO2M:
+CU_SFSS_SFVSC_CHW2XSC_SSVC_SSPC_FDPM_MTM_CAM_CO2M:
   guid: "9d6f64e7-6850-4bcc-9159-eb6976ca00d7"
   description: "Multi zone chilled water compartment unit with start/stop, speed control, cooling and electric and steam heating (supply temp control)."
   is_canonical: true
@@ -278,7 +278,7 @@ CU_SFSS_SFVSC_CHW2XSC_SSC_SSPC_FDPM_MTM_CAM_CO2M:
   - SFSS
   - SFVSC
   - CHW2XSC
-  - SSC
+  - SSVC
   - SSPC
   - FDPM
   - MTM
