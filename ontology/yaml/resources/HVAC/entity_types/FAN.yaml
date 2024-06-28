@@ -354,7 +354,7 @@ FAN_SS_VSC_ETM4X:
 
 FAN_SS_VSC_EFC_FDPM:
   guid: "733a4afd-88d3-4f5a-a08e-d337c8598c1d"
-  description: "Fan with start/stop status and open-loop speed control."
+  description: "Fan with start/stop status, open-loop speed control, and filter differential pressure monitoring."
   is_canonical: true
   implements:
   - FAN
@@ -362,6 +362,15 @@ FAN_SS_VSC_EFC_FDPM:
   - VSC
   - EFC
   - FDPM
+
+FAN_SS_VSC_EFC:
+  description: "Fan with start/stop status and open-loop speed control."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - VSC
+  - EFC
 
 FAN_SS_VSC_WDPC_STM_FDPSM4X:
   guid: "64f61c00-9987-4286-8df8-9155053ada33"
@@ -590,6 +599,14 @@ FAN_SS_HLC:
   - FAN
   - SS
   - HLC
+
+FAN_SS_HMLC:
+  description: "Fan control with three speed control."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - HMLC
 
 FAN_VSMC:
   guid: "189df1f4-81e8-4703-afb6-25628d0f87dc"

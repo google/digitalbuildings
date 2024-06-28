@@ -3444,10 +3444,16 @@ literals:
 - low_speed_command:
   - ON
   - OFF
+- medium_speed_command:
+  - ON
+  - OFF
 - high_speed_status:
   - ON
   - OFF
 - low_speed_status:
+  - ON
+  - OFF
+- medium_speed_status:
   - ON
   - OFF
 - high_water_temperature_alarm:

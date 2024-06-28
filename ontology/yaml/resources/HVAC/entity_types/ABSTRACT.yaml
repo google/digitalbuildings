@@ -680,6 +680,19 @@ DFMSC:
   - schedule_run_command
   - failed_discharge_fan_alarm
 
+DFMSC2X:
+  description: "Dual discharge fan multi-speed control."
+  is_abstract: true
+  uses:
+  - discharge_fan_run_command_1
+  - discharge_fan_run_command_2
+  - discharge_fan_speed_mode_1
+  - discharge_fan_speed_mode_2
+  - discharge_fan_run_status_1
+  - discharge_fan_run_status_2
+  opt_uses:
+  - failed_discharge_fan_alarm_1
+  - failed_discharge_fan_alarm_2
 
 ZHM:
   guid: "2832f316-151a-489e-9bd5-0ab159edb0d2"
@@ -2105,6 +2118,7 @@ CHW2XSC:
   - failed_supply_air_temperature_alarm
   - frost_alarm
   - water_leak_alarm
+  - supply_air_relative_humidity_sensor
   uses:
   - chilled_water_valve_percentage_command_1
   - chilled_water_valve_percentage_command_2
@@ -7211,6 +7225,20 @@ HLC:
   uses:
   - high_speed_command
   - low_speed_command
+  implements:
+  - OPERATIONAL
+
+HMLC:
+  description: "Three-speed motor (high/medium/low)."
+  is_abstract: true
+  opt_uses:
+  - high_speed_status
+  - low_speed_status
+  - medium_speed_status
+  uses:
+  - high_speed_command
+  - low_speed_command
+  - medium_speed_command
   implements:
   - OPERATIONAL
 
