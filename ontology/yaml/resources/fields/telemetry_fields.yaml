@@ -1907,9 +1907,6 @@ literals:
 - high_refrigerant_pressure_alarm:
   - ACTIVE
   - INACTIVE
-- failed_return_air_temperature_alarm:
-  - ACTIVE
-  - INACTIVE
 - high_return_air_temperature_alarm:
   - ACTIVE
   - INACTIVE
@@ -2635,6 +2632,9 @@ literals:
 - discharge_air_specificenthalpy_sensor:
     flexible_min: 11630.0
     flexible_max: 81410.0
+- supply_air_specificenthalpy_sensor:
+    flexible_min: 11630.0
+    flexible_max: 81410.0
 - refrigerant_discharge_pressure_sensor:
     flexible_min: -34500.0
     flexible_max: 344737.8945
@@ -3180,6 +3180,12 @@ literals:
 - failed_leaving_cooling_coil_temperature_alarm:
   - ACTIVE
   - INACTIVE
+- failed_hot_aisle_air_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
+- failed_cold_aisle_air_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
 - high_leaving_cooling_coil_temperature_alarm:
   - ACTIVE
   - INACTIVE
@@ -3223,6 +3229,9 @@ literals:
   - ACTIVE
   - INACTIVE
 - failed_condensing_return_water_isolation_valve_alarm:
+  - ACTIVE
+  - INACTIVE
+- failed_return_air_temperature_alarm:
   - ACTIVE
   - INACTIVE
 - failed_mixed_air_temperature_alarm:
