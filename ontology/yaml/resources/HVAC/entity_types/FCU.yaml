@@ -235,6 +235,7 @@ FCU_DFSS_ZTC_DXZTC:
   - DXZTC
 
 FCU_DFSS_ZTC_DXZTC_CAM:
+  guid: "1a310cc4-4f44-4249-8a3c-9b97fc94725d"
   description: "Typical DX FCU (zone control) with condensate water alarm."
   is_canonical: true
   implements:
@@ -465,6 +466,7 @@ FCU_DFSS_DFVSC_ZTC_CHWZTC_HWZTC:
 
 
 FCU_DFSS_DFVSC_DSP_CHWZC_CHWDT_RTM_DTM_ZHM:
+  guid: "88fffcae-916a-44c2-b79f-e2b9c93002c5"
   description: "Hydronic variable speed fan coil with cooling (zone temp control), return and discharge temp monitoring, and zone relative humidity monitoring."
   is_canonical: true
   implements:
@@ -772,6 +774,7 @@ FCU_DFSS_DFHLC_DSP_CHWDC:
   - CHWDC
 
 FCU_DFSS_DFHMLC_DSP_CHWDC_CO2M:
+  guid: "8da4e90e-8dd7-4e18-aad3-d98afb525590"
   description: "Hydronic cooling-only fan coil with multi-speed control (zone control) and zone air co2 concentration monitoring."
   is_canonical: true
   implements:
@@ -1202,6 +1205,7 @@ FCU_DFSS_DXZTC:
   - schedule_run_command
 
 FCU_DFSS_DXZTC_HTZTC_ZHDHC_RHM_RTM_CAM:
+  guid: "bbb232a1-325b-4e18-83a2-c59d754124c3"
   description: "Single zone unit with zone air temperature control (heating and cooling) and zone air relative humidity control"
   is_canonical: true
   implements:
@@ -1264,6 +1268,7 @@ FCU_DFSS2X_CHWZC_CHWDT_ZHM_DTM_RTM:
   - RTM
 
 FCU_DSP_DFSS2X_DFMSC2X_CHWZC_CHWDT_ZHM_DTM_RTM:
+  guid: "43dc1c8b-d1b7-4031-9bd5-0a557d6e79fd"
   description: "Chilled water FCU with zone temperature control and multi-speed fan control"
   is_canonical: true
   implements:
@@ -1660,8 +1665,9 @@ FCU_DFMSC_CHWZTC:
   - CHWZTC
 
 FCU_DFSS_RHDHC_HT2RC_DX2RC:
-  description: "Fan coil with return temp and humidity control, dx cooling with two stages, heating with two stages, and dehumidication and humidifcation modes."
   is_canonical: true
+  guid: "b831101e-76b7-467f-afd7-a60c45cd0199"
+  description: "Fan coil with return temp and humidity control, dx cooling with two stages, heating with two stages, and dehumidication and humidifcation modes."
   implements:
   - FCU
   - DFSS
