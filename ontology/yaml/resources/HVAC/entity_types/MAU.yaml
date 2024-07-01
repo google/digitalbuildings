@@ -400,6 +400,7 @@ MAU_DFSS_DFVSC_HTDC_CO2C:
   - CO2C
 
 MAU_DFSS_DFVSC_DFFC_HTDC:
+  guid: "6026ada7-49e6-48ba-a0ce-ef65fc7aee48"
   description: "MAU with with start/stop, variable speed, discharge control heating, and discharge air flowrate control."
   is_canonical: true
   implements:
@@ -552,6 +553,7 @@ MAU_DFSS_DFVSC_HTDC_CO2CMAX:
   - CO2CMAX
 
 MAU_DFSS_DFVSC_HTDC_CO2CMAX_ZTM:
+  guid: "39afdc39-04c3-47b1-9aa2-d87a32be1ebd"
   description: "Mechanical room heating make-up air unit with multi-zone co2 control and zone air temperature monitoring."
   is_canonical: true
   implements:
