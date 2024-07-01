@@ -1687,26 +1687,6 @@ AHU_BSPC_DX4SC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC_RHM_RCKTM2X_CFCM6X:
   - RCKTM2X
   - CFCM6X
 
-AHU_BSPC_DX4SC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC_RHM_RCKTM2X_CFCM6X_RTM_STM:
-  guid: "59dc915c-8084-4fac-80df-31fe02004d4d"
-  description: "Multi-zone AHU with return air humidity monitoring, condenser fan current monitoring, 2-circuit refrigeration monitoring, retun and supply air condition monitoring."
-  is_canonical: true
-  implements:
-  - AHU
-  - BSPC
-  - DX4SC
-  - ECON
-  - EFSS
-  - EFVSC
-  - SFSS
-  - SFVSC
-  - SSPC
-  - RHM
-  - RCKTM2X
-  - CFCM6X
-  - RTM
-  - STM
-
 AHU_DX2SC_ECON_EFSS_EFVSC_HTSC_SFSS_SFVSC_SSPC:
   guid: "d3d965e0-47d9-4194-b1a6-d2fffa088a87"
   description: "Multi-zone AHU."
@@ -1922,26 +1902,6 @@ AHU_BSPC_DX4SC_ECON_EFSS_OAFMC_SFSS_SFVSC_SSPC_RHM_RCKTM2X_CFCM6X:
   - RHM
   - RCKTM2X
   - CFCM6X
-
-AHU_BSPC_DX4SC_ECON_EFSS_OAFMC_SFSS_SFVSC_SSPC_RHM_RCKTM2X_CFCM6X_RTM_STM:
-  guid: "e7c5748a-5595-4687-b7a4-e28ebc6d25b0"
-  description: "Multi-zone AHU with return air humidity monitoring, 2-circuit refrigeration monitoring, condenser fan current monitoring, return and supply air condition monitoring."
-  is_canonical: true
-  implements:
-  - AHU
-  - BSPC
-  - DX4SC
-  - ECON
-  - EFSS
-  - OAFMC
-  - SFSS
-  - SFVSC
-  - SSPC
-  - RHM
-  - RCKTM2X
-  - CFCM6X
-  - RTM
-  - STM
 
 AHU_BSPC_DX2SC_ECON_EFSS_HWSC_SFSS_SFVSC_SSPC:
   guid: "ce6690b6-f809-4fbf-ac5d-4ae57e733f3c"
@@ -2229,28 +2189,6 @@ AHU_BSPC_DX3SC_ECON_EFSS_EFVSC_SARC_SFSS_SFVSC_SSPC_EDM_RHM_RCKTM2X_CFCM4X:
   - RHM
   - RCKTM2X
   - CFCM4X
-
-AHU_BSPC_DX3SC_ECON_EFSS_EFVSC_SARC_SFSS_SFVSC_SSPC_EDM_RHM_RCKTM2X_CFCM4X_RTM_STM:
-  guid: "1f4b647e-d2a3-420e-9354-6ef20f6ba62c"
-  description: "Multi-zone AHU with exhaust air damper monitoring, return air humidity monitoring, 2-circuit refrigerant monitoring, condenser fan monitoring, return and supply air condition monitoring"
-  is_canonical: true
-  implements:
-  - AHU
-  - BSPC
-  - DX3SC
-  - ECON
-  - EFSS
-  - EFVSC
-  - SARC
-  - SFSS
-  - SFVSC
-  - SSPC
-  - EDM
-  - RHM
-  - RCKTM2X
-  - CFCM4X
-  - RTM
-  - STM
 
 AHU_BSPC_DX4SC_ECON_EFSS_EFVSC_HWSC_SFSS_SFVSC_SSPC:
   guid: "980f6cbc-80ec-4a38-8e06-d38478ff3bdb"
@@ -4681,23 +4619,6 @@ AHU_BSPC_DX5SC_ECONM_EDM_EFSS_EFVSC_SFSS_SFVSC_SSPC_SARC:
   - SFVSC
   - SSPC
   - SARC
-
-AHU_DFSS_DSP_DX2ZC_ECONZ_HT2ZC_RHM_RCKTM2X_CFCM_RTM_DTM:
-  guid: "c7c0150f-5443-4b2a-94c0-114108bf3ab8"  
-  description: "Single zone AHU with return air humidity monitoring, 2-circuit refrigeration monitoring, condenser fan current monitoring, return and discharge air condition monitoring."
-  is_canonical: true
-  implements:
-  - AHU
-  - DFSS
-  - DSP
-  - DX2ZC
-  - ECONZ
-  - HT2ZC
-  - RHM
-  - RCKTM2X
-  - CFCM
-  - RTM
-  - DTM
 
 ###################################
 ### Existing Non-standard Types ###
