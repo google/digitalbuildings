@@ -364,6 +364,7 @@ FAN_SS_VSC_EFC_FDPM:
   - FDPM
 
 FAN_SS_VSC_EFC:
+  guid: "194aa465-9a35-4b31-8eda-e5630f528615"
   description: "Fan with start/stop status and open-loop speed control."
   is_canonical: true
   implements:
@@ -601,6 +602,7 @@ FAN_SS_HLC:
   - HLC
 
 FAN_SS_HMLC:
+  guid: "be12aafb-9d52-403b-af8b-3d12eb6d8baf"
   description: "Fan control with three speed control."
   is_canonical: true
   implements:
