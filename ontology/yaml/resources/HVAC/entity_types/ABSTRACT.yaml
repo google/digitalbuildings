@@ -2380,6 +2380,8 @@ DX2ZC:
   - failed_zone_air_temperature_alarm
   - high_zone_air_temperature_alarm
   - low_zone_air_temperature_alarm
+  - discharge_air_specificenthalpy_sensor
+  - return_air_specificenthalpy_sensor
   uses:
   - compressor_run_command_1
   - compressor_run_command_2
@@ -2529,6 +2531,8 @@ DX3SC:
   - leaving_cooling_coil_temperature_sensor
   - high_supply_air_temperature_alarm
   - low_supply_air_temperature_alarm
+  - supply_air_specificenthalpy_sensor
+  - return_air_specificenthalpy_sensor
   uses:
   - compressor_run_command_1
   - compressor_run_command_2
@@ -2554,6 +2558,8 @@ DX4SC:
   - leaving_cooling_coil_temperature_sensor
   - high_supply_air_temperature_alarm
   - low_supply_air_temperature_alarm
+  - supply_air_specificenthalpy_sensor
+  - return_air_specificenthalpy_sensor
   uses:
   - compressor_run_command_1
   - compressor_run_command_2
