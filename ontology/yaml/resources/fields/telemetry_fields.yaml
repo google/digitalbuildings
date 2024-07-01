@@ -2632,6 +2632,9 @@ literals:
 - discharge_air_specificenthalpy_sensor:
     flexible_min: 11630.0
     flexible_max: 81410.0
+- supply_air_specificenthalpy_sensor:
+    flexible_min: 11630.0
+    flexible_max: 81410.0
 - refrigerant_discharge_pressure_sensor:
     flexible_min: -34500.0
     flexible_max: 344737.8945

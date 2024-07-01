@@ -346,7 +346,7 @@ measurement_descriptor:
   dewpoint: "The thermodynamic point at which water condenses from standing air."
   differential: "Measured difference between two reference points (e.g. differential_water_pressure)"
   down: "The direction of a spatial movement, opposite of up."
-  dynamic: "Describing a system which is instable or constantly changing (e.g. supply_air_dynamic_pressure_sensor)."
+  dynamic: "Describing a system which is unstable or constantly changing (e.g. supply_air_dynamic_pressure_sensor)."
   efficiency: "The ratio of required input to actual output. "
   end: "Indicates a final part of something, especially a period of time."
   extent: "The range over which something has spread."
