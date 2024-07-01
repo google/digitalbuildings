@@ -4620,6 +4620,23 @@ AHU_BSPC_DX5SC_ECONM_EDM_EFSS_EFVSC_SFSS_SFVSC_SSPC_SARC:
   - SSPC
   - SARC
 
+AHU_DFSS_DSP_DX2ZC_ECONZ_HT2ZC_RHM_RCKTM2X_CFCM_RTM_DTM:
+  guid: "c7c0150f-5443-4b2a-94c0-114108bf3ab8"  
+  description: "Single zone AHU with return air humidity monitoring, 2-circuit refrigeration monitoring, condenser fan current monitoring, return and discharge air condition monitoring."
+  is_canonical: true
+  implements:
+  - AHU
+  - DFSS
+  - DSP
+  - DX2ZC
+  - ECONZ
+  - HT2ZC
+  - RHM
+  - RCKTM2X
+  - CFCM
+  - RTM
+  - DTM
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
