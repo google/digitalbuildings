@@ -1490,7 +1490,6 @@ STM:
   opt_uses:
   - high_supply_air_temperature_alarm
   - low_supply_air_temperature_alarm
-  - supply_air_specificenthalpy_sensor
 
 STDSPC:
   guid: "8d61249d-297a-471d-aa62-dda04e1fe8c7"
