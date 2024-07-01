@@ -681,6 +681,7 @@ DFMSC:
   - failed_discharge_fan_alarm
 
 DFMSC2X:
+  guid: "779eda39-c031-4f09-8fc7-9f95f6338115"
   description: "Dual discharge fan multi-speed control."
   is_abstract: true
   uses:
@@ -7229,6 +7230,7 @@ HLC:
   - OPERATIONAL
 
 HMLC:
+  guid: "4a29db5c-6391-4c48-b9a4-73899b24ac88"
   description: "Three-speed motor (high/medium/low)."
   is_abstract: true
   opt_uses:
