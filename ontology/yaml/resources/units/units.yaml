@@ -119,8 +119,6 @@ electricinductance:
   henrys: STANDARD
 electricphasedifference:
   degrees_phase: STANDARD
-electricfieldstrength:
-  amperes_per_meter: STANDARD
 electricresistivity:
   ohm_meters: STANDARD
 energy:
@@ -150,9 +148,6 @@ energy:
     multiplier: 105480400
     offset: 0
   kilovolt_ampere_hours:
-    multiplier: 3600000
-    offset: 0
-  kilovolt_ampere_apparent_hours:
     multiplier: 3600000
     offset: 0
   kilovolt_ampere_reactive_hours:
@@ -283,6 +278,8 @@ luminousflux:
   lumens: STANDARD
 luminousintensity:
   candelas: STANDARD
+magneticfieldstrength:
+  amperes_per_meter: STANDARD
 magneticflux:
   webers: STANDARD
 magneticinduction:
@@ -393,13 +390,7 @@ power:
   megavolt_amperes_reactive:
     multiplier: 1000000
     offset: 0
-  volt_amperes_apparent:
-    multiplier: 1
-    offset: 0
-  kilovolt_amperes_apparent:
-    multiplier: 1000
-    offset: 0
-  megavolt_amperes_apparent:
+  megavolt_amperes:
     multiplier: 1000000
     offset: 0
 powerfactor:
@@ -461,8 +452,6 @@ rotationalvelocity:
   revolutions_per_minute: STANDARD
 soundpressurelevel:
   decibels: STANDARD
-specificenergy:
-  joules_per_kilogram_kelvin: STANDARD
 specificenthalpy:
   joules_per_kilogram: STANDARD
   btus_per_pound_dry_air:
@@ -477,6 +466,8 @@ specificenthalpy:
   megajoules_per_kilogram_dry_air:
     multiplier: 1000000
     offset: 0
+specificentropy:
+  joules_per_kilogram_kelvin: STANDARD
 temperature:
   kelvin: STANDARD
   degrees_celsius:
