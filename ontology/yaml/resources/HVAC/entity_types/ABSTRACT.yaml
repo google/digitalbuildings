@@ -2448,6 +2448,7 @@ DX4ZC:
   - failed_zone_air_temperature_alarm
   - high_zone_air_temperature_alarm
   - low_zone_air_temperature_alarm
+  - discharge_air_relative_humidity_sensor
   uses:
   - compressor_run_command_1
   - compressor_run_command_2
@@ -2547,6 +2548,7 @@ DX3SC:
   - low_supply_air_temperature_alarm
   - supply_air_specificenthalpy_sensor
   - return_air_specificenthalpy_sensor
+  - supply_air_relative_humidity_sensor
   uses:
   - compressor_run_command_1
   - compressor_run_command_2
@@ -2574,6 +2576,7 @@ DX4SC:
   - low_supply_air_temperature_alarm
   - supply_air_specificenthalpy_sensor
   - return_air_specificenthalpy_sensor
+  - supply_air_relative_humidity_sensor
   uses:
   - compressor_run_command_1
   - compressor_run_command_2
