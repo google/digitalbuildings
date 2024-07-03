@@ -2396,6 +2396,7 @@ DX2ZC:
   - low_zone_air_temperature_alarm
   - discharge_air_specificenthalpy_sensor
   - return_air_specificenthalpy_sensor
+  - discharge_air_relative_humidity_sensor
   uses:
   - compressor_run_command_1
   - compressor_run_command_2
