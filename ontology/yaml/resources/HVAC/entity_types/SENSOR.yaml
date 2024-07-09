@@ -21,7 +21,7 @@ SENSOR_SS_ZTM2X:
   description: "Dual zone air temperature sensor."
   is_canonical: true
   implements:
-  - SENSOR 
+  - /SENSOR # Inherits from global namespace
   - SS
   - ZTM2x
  
