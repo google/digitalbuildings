@@ -16,7 +16,15 @@
 ### Canonical Types  ###
 ########################
 
-
+SENSOR_SS_ZTM2X:
+  guid: "fbb1219d-e7b4-4bb9-93b4-c41b5c393b65"
+  description: "Dual zone air temperature sensor."
+  is_canonical: true
+  implements:
+  - SENSOR 
+  - SS
+  - ZTM2x
+ 
 SENSOR_ZTM_ZHM_CO2M:
   guid: "bacb5335-16de-46d3-9d8f-da503ea38f8a"
   description: "Zone air property sensor (humidity, temperature, CO2 level)."
