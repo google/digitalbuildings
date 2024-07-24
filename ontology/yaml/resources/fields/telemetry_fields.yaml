@@ -294,7 +294,7 @@ literals:
     fixed_max: 100.0
 - outside_air_specificenthalpy_sensor:
     flexible_min: 11630.0
-    flexible_max: 81410.0
+    flexible_max: 93040.0
 - outside_air_flowrate_sensor:
     flexible_min: -0.002359737216
     flexible_max: 47.19474432
@@ -2631,16 +2631,16 @@ literals:
     flexible_max: 100.0
 - discharge_air_specificenthalpy_sensor:
     flexible_min: 11630.0
-    flexible_max: 81410.0
+    flexible_max: 93040.0
 - supply_air_specificenthalpy_sensor:
     flexible_min: 11630.0
-    flexible_max: 81410.0
+    flexible_max: 93040.0
 - refrigerant_discharge_pressure_sensor:
     flexible_min: -34500.0
-    flexible_max: 344737.8945
+    flexible_max: 2757902.9173
 - refrigerant_liquid_pressure_sensor:
     flexible_min: -34473.78945
-    flexible_max: 344737.8945
+    flexible_max: 2757902.9173
 - refrigerant_liquid_temperature_sensor:
     flexible_min: 255.9259259
     flexible_max: 422.037037
@@ -2652,7 +2652,7 @@ literals:
     flexible_max: 366.4814815
 - refrigerant_suction_pressure_sensor:
     flexible_min: -34473.78945
-    flexible_max: 344737.8945
+    flexible_max: 2757902.9173
 - refrigerant_suction_saturation_temperature_sensor:
     flexible_min: 255.9259259
     flexible_max: 422.037037
@@ -2661,7 +2661,7 @@ literals:
     flexible_max: 422.037037
 - return_air_specificenthalpy_sensor:
     flexible_min: 11630.0
-    flexible_max: 81410.0
+    flexible_max: 93040.0
 - compressor_current_sensor:
     fixed_min: 0.0
     flexible_max: 100.0
