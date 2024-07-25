@@ -17,7 +17,7 @@
 ########################
 VLV_HWZTC:
   guid: "49817fa9-042d-4a1f-b715-130423d5d840"
-  description: "Heating water valve with zone temperature monitoring."
+  description: "Heating water valve with zone temperature control."
   is_canonical: true
   implements:
   - VLV
