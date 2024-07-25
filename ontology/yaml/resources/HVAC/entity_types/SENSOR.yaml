@@ -23,7 +23,7 @@ SENSOR_SS_ZTM2X:
   implements:
   - /SENSOR # Inherits from global namespace
   - SS
-  - ZTM2x
+  - ZTM2X
  
 SENSOR_ZTM_ZHM_CO2M:
   guid: "bacb5335-16de-46d3-9d8f-da503ea38f8a"
