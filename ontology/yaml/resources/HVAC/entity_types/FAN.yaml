@@ -930,3 +930,50 @@ FAN_SS_MSM:
   - FAN
   - MSM
 
+#TW-NTC-TPKE
+FAN_SS_DICM2X:
+  description: "Basic fan with start/stop and status with dual dampers monitoring."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - DICM2X
+  opt_uses:
+  - supply_air_flowrate_status
+
+
+FAN_SS_DICM:
+  description: "Basic fan with start/stop and status with damper monitoring."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - DICM
+  opt_uses:
+  - supply_air_flowrate_status
+
+
+FAN_SS_VSC_INVOPWM:
+  description: "Basic fan with start/stop and status with inverter monitoring."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - VSC
+  - INVOPWM
+  opt_uses:
+  - supply_air_flowrate_status
+  - load_percentage_sensor
+
+FAN_SS_VSC_NONCANONICAL_7:
+  description: "Basic fan with start/stop and status with carbon monoxide monitoring."
+  implements:
+  - FAN
+  - SS
+  - VSC
+  opt_uses:
+  - supply_air_flowrate_status
+  - zone_air_co_concentration_sensor_1
+  - zone_air_co_concentration_sensor_2
+  - zone_air_co_concentration_sensor_3
+  - zone_air_co_concentration_sensor_4

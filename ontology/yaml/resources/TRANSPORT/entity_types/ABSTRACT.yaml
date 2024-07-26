@@ -23,3 +23,21 @@ SS:
   - failed_alarm
   - lost_power_alarm
 
+# TW-NTC-TPKE
+EOM:
+  description: "Elevator operation monitoring."
+  is_abstract: true
+  opt_uses:
+  - maintenance_alarm
+  - control_status
+  - fire_alarm
+  uses:
+  - level_sensor
+  - position_status
+
+EDM:
+  description: "Elevator direction monitoring."
+  is_abstract: true
+  uses:
+  - direction_up_mode
+  - direction_down_mode

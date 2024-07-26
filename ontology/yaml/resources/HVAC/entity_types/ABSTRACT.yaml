@@ -8070,3 +8070,15 @@ DTPM:
   - detergent_pump_run_command
   implements:
   - MONITORING
+
+#TW-NTC-TPKE
+DICM2X:
+  description: "Damper isolation control and monitoring. "
+  is_abstract: true
+  uses:
+  - supply_air_isolation_damper_closed_status_1
+  - supply_air_isolation_damper_open_status_1
+  - supply_air_isolation_damper_closed_status_2
+  - supply_air_isolation_damper_open_status_2
+  - supply_air_isolation_damper_command_1
+  - supply_air_isolation_damper_command_2

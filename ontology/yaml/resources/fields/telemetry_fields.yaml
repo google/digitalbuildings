@@ -3601,3 +3601,14 @@ literals:
 - emergency_power_status:
   - PRESENT
   - ABSENT
+
+# TW-NTC-TPKE
+- level_sensor:
+    flexible_min: -3
+    flexible_max: 14
+- direction_up_mode:
+  - UP
+  - DOWN
+- direction_down_mode:
+  - UP
+  - DOWN

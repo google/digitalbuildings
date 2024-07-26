@@ -20,3 +20,12 @@ ELV_SS:
   - ELV
   - SS  
 
+#TW-NTC-TPKE
+ELV_SS_EOM_EDM:
+  description: "Elevator operation and direction mode monitoring."
+  is_canonical: true
+  implements:
+    - ELV
+    - SS
+    - EOM
+    - EDM

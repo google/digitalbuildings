@@ -5385,3 +5385,110 @@ AHU_BSPC_DX4SC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC_RHHC_NONCANONICAL_1:
   - heating_water_valve_percentage_command
   - min_zone_air_relative_humidity_sensor
   - min_zone_air_relative_humidity_setpoint
+
+# TW-NTC-TPKE
+AHU_DSPM_DFVSC_DTM_RDC_OAMC_OA_CHWRC_RCO2M:
+  description: "AHU with discharge air/fan, chilled water valve operation, humidity monitoring with dual dampers monitoring and control ."
+  is_canonical: true
+  implements:
+  - AHU
+  - DSPM
+  - DFVSC
+  - DTM
+  - RDC
+  - OAMC
+  - OA
+  - CHWRC
+  - RCO2M
+  opt_uses:
+    - filter_alarm
+    - low_differential_pressure_alarm
+
+AHU_DFVSC_HWDC_UV_OAFM_MTM_CHWPVM_RDC_RCO2M_RTM:
+  description: "AHU with discharge air/fan, UV, chilled water valve and return air temperature monitoring with dual dampers monitoring."
+  is_canonical: true
+  implements:
+  - AHU
+  - DFVSC
+  - HWDC
+  - OAFM
+  - MTM
+  - CHWPVM
+  - RCO2M
+  - RTM
+  opt_uses:
+    - filter_alarm
+    - discharge_air_flowrate_status
+    - return_air_damper_percentage_sensor
+    - ultraviolet_lamp_run_status
+
+
+AHU_DFVSC_CHWPVM_RTM:
+  description: "AHU with discharge air/fan, chilled water valve and return air temperature monitoring."
+  is_canonical: true
+  implements:
+  - AHU
+  - DFVSC
+  - CHWPVM
+  - RTM
+  opt_uses:
+    - filter_alarm
+    - discharge_air_flowrate_status
+
+
+AHU_DFSS_CHWPVM_ZTC:
+  description: "AHU with discharge air/fan, chilled water valve and zone air temperature control."
+  is_canonical: true
+  implements:
+  - AHU
+  - DFSS
+  - CHWPVM
+  - ZTC
+  opt_uses:
+    - filter_alarm
+    - control_mode
+    - discharge_air_flowrate_status
+
+
+AHU_DFSS_DFVSC_CHWDC_ZTC_CO2M:
+  description: "AHU with discharge air/fan, chilled water valve and zone air temperature monitoring."
+  is_canonical: true
+  implements:
+  - AHU
+  - DFSS
+  - DFVSC
+  - CHWDC
+  - ZTC
+  - CO2M
+  opt_uses:
+    - filter_alarm
+    - discharge_air_flowrate_status
+
+
+AHU_DFSS_DFVSC_HWDC_ZTC_OAFM_CHWPVM:
+  description: "AHU with discharge air/fan, UV, chilled water valve and 5x co2 concentration monitoring with 5x dampers monitoring."
+  is_canonical: true
+  implements:
+  - AHU
+  - DFSS
+  - DFVSC
+  - HWDC
+  - ZTC
+  - OAFM
+  - CHWPVM
+  opt_uses:
+    - filter_alarm
+    - discharge_air_flowrate_status
+    - return_air_damper_percentage_sensor
+    - ultraviolet_lamp_run_status
+    - zone_air_co2_concentration_sensor_1
+    - zone_air_co2_concentration_sensor_2
+    - zone_air_co2_concentration_sensor_3
+    - zone_air_co2_concentration_sensor_4
+    - zone_air_co2_concentration_sensor_5
+    - supply_air_damper_percentage_sensor_1
+    - supply_air_damper_percentage_sensor_2
+    - supply_air_damper_percentage_sensor_3
+    - supply_air_damper_percentage_sensor_4
+
+
