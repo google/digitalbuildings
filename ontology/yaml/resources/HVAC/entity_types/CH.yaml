@@ -761,3 +761,33 @@ CH_SS_CHWSWISOVM_CWSISOVM_CWRISOVM_CHWRWISOVM_CHWDT:
   opt_uses:
   - lost_power_alarm
   - run_mode
+
+# TW-NTC-TPKE
+CH_SS_SCHWTC_CWDT_REFSM_CHWFRSM_CDWFRSM_CHDXSC_IGM:
+  description: "Simple water-cooled chiller with supply temperature control with refrigerant monitoring, chilled and condenser water flowrate status monitoring."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - SCHWTC
+  - CWDT
+  - REFSM
+  - CHWFRSM
+  - CDWFRSM
+  - CHDXSC
+  - IGM
+  opt_uses:
+  - compressor_run_time_accumulator
+
+CH_SS_CC2XM_REFSM2X_REFPM2X:
+  description: "Simple water-cooled chiller with 2 circuit refrigerant monitoring and compressor current monitoring."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - CC2XM
+  - REFSM2X
+  - REFPM2X
+  opt_uses:
+  - water_flowrate_status_1
+  - water_flowrate_status_2

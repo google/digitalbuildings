@@ -938,9 +938,6 @@ FAN_SS_DICM2X:
   - FAN
   - SS
   - DICM2X
-  opt_uses:
-  - supply_air_flowrate_status
-
 
 FAN_SS_DICM:
   description: "Basic fan with start/stop and status with damper monitoring."
@@ -949,8 +946,6 @@ FAN_SS_DICM:
   - FAN
   - SS
   - DICM
-  opt_uses:
-  - supply_air_flowrate_status
 
 
 FAN_SS_VSC_INVOPWM:
@@ -962,7 +957,6 @@ FAN_SS_VSC_INVOPWM:
   - VSC
   - INVOPWM
   opt_uses:
-  - supply_air_flowrate_status
   - load_percentage_sensor
 
 FAN_SS_VSC_NONCANONICAL_7:
@@ -972,7 +966,6 @@ FAN_SS_VSC_NONCANONICAL_7:
   - SS
   - VSC
   opt_uses:
-  - supply_air_flowrate_status
   - zone_air_co_concentration_sensor_1
   - zone_air_co_concentration_sensor_2
   - zone_air_co_concentration_sensor_3

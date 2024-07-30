@@ -411,3 +411,11 @@ CHWS_SWTC_WDPC_BYPVPM_WFRM_NONCANONICAL_1:
   uses:
   - production_differential_pressure_sensor
   - supply_water_flowrate_sensor # Need to rename to flowrate_sensor
+
+# TW-NTC-TPKE
+CHWS_RWTM:
+  description: "Simple chilled water system with return temperature monitoring."
+  is_canonical: true
+  implements:
+  - CHWS
+  - RWTM

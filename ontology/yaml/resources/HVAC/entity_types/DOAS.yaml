@@ -221,7 +221,7 @@ DOAS_SFVSC_EFVSC_HTWHLSTC_CHWVM_HWVM_SFM_FDPSM_ACO2C_SDM2X_EDM2X:
 
 #TW-NTC-TPKE
 DOAS_DFVSC_CHWDDC_OAMC_OA:
-  description: "Multi-zone chilled water and heating water DOAS with heat wheel, supply, exhaust fan speed control."
+  description: "Single zone DOAS with damper and discharge fan speed control."
   is_canonical: true
   implements:
   - DOAS

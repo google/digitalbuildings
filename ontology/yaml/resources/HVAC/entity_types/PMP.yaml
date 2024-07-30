@@ -199,3 +199,22 @@ PMP_SS_VSC_NONCANONICAL_2:
   - mixing_valve_percentage_command
   - chilled_supply_water_temperature_setpoint
   - chilled_supply_water_temperature_sensor
+
+
+# TW-NTC-TPKE
+PMP_SS_CHWFRSM:
+  description: "Typical pump with chilled water flowrate status monitoring."
+  is_canonical: true
+  implements:
+  - PMP
+  - SS
+  - CHWFRSM
+
+PMP_SS_VSC_CHWFRSM:
+  description: "Typical variable speed pump with chilled water flowrate status monitoring."
+  is_canonical: true
+  implements:
+  - PMP
+  - SS
+  - VSC
+  - CHWFRSM

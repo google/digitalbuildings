@@ -5418,7 +5418,6 @@ AHU_DFVSC_HWDC_UV_OAFM_MTM_CHWPVM_RDC_RCO2M_RTM:
   - RTM
   opt_uses:
     - filter_alarm
-    - discharge_air_flowrate_status
     - return_air_damper_percentage_sensor
     - ultraviolet_lamp_run_status
 
@@ -5433,7 +5432,7 @@ AHU_DFVSC_CHWPVM_RTM:
   - RTM
   opt_uses:
     - filter_alarm
-    - discharge_air_flowrate_status
+    - ultraviolet_lamp_run_status
 
 
 AHU_DFSS_CHWPVM_ZTC:
@@ -5447,7 +5446,6 @@ AHU_DFSS_CHWPVM_ZTC:
   opt_uses:
     - filter_alarm
     - control_mode
-    - discharge_air_flowrate_status
 
 
 AHU_DFSS_DFVSC_CHWDC_ZTC_CO2M:
@@ -5462,7 +5460,7 @@ AHU_DFSS_DFVSC_CHWDC_ZTC_CO2M:
   - CO2M
   opt_uses:
     - filter_alarm
-    - discharge_air_flowrate_status
+    - ultraviolet_lamp_run_status
 
 
 AHU_DFSS_DFVSC_HWDC_ZTC_OAFM_CHWPVM:
@@ -5478,17 +5476,15 @@ AHU_DFSS_DFVSC_HWDC_ZTC_OAFM_CHWPVM:
   - CHWPVM
   opt_uses:
     - filter_alarm
-    - discharge_air_flowrate_status
-    - return_air_damper_percentage_sensor
     - ultraviolet_lamp_run_status
     - zone_air_co2_concentration_sensor_1
     - zone_air_co2_concentration_sensor_2
     - zone_air_co2_concentration_sensor_3
     - zone_air_co2_concentration_sensor_4
     - zone_air_co2_concentration_sensor_5
+    - zone_air_co2_concentration_sensor_6
     - supply_air_damper_percentage_sensor_1
     - supply_air_damper_percentage_sensor_2
     - supply_air_damper_percentage_sensor_3
     - supply_air_damper_percentage_sensor_4
-
-
+    - supply_air_damper_percentage_sensor_5
