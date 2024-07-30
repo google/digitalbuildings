@@ -3139,6 +3139,18 @@ HWZTC:
   implements:
   - CONTROL
 
+HWZTVC:
+  guid: "5e92815b-5fe8-485c-ad47-1749aa085bf6"
+  description: "Heating water valve command on zone side (ZTC)."
+  is_abstract: true
+  opt_uses:
+  - heating_water_valve_status
+  uses:
+  - heating_water_valve_command
+  - zone_air_temperature_sensor
+  - zone_air_temperature_setpoint
+  implements:
+  - CONTROL
 
 HWSWC:
   guid: "9e892876-39ed-40ac-befb-c68d96bbb81b"
