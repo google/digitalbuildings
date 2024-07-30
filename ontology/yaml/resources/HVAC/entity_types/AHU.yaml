@@ -36,16 +36,6 @@ AHU_CSP_DFSS_DX2ZC_ECONZ:
   - DFSS
   - DX2ZC
   - ECONZ
-AHU_CSP_DFSS_DX2ZC_ECONZ:
-  guid: "f0e116a8-ab2c-4303-a782-2a9a47005372"
-  description: "Single zone AHU."
-  is_canonical: true
-  implements:
-  - AHU
-  - CSP
-  - DFSS
-  - DX2ZC
-  - ECONZ
 
 AHU_CSP_DFSS_DX2ZC_ECONMD:
   guid: "39dd2cf1-b5c0-4b3b-942a-e02620eed5c3"
