@@ -26,3 +26,12 @@ PCU_EFSS_EFVSC_ESM2X_DTPM:
   - EFVSC
   - ESM2X
   - DTPM
+
+PCU_EFSS_DTPM:
+  guid: "766bc88a-f43c-453b-9dea-d0db652cd3d4"
+  description: "Pollution control unit with single speed exhaust fan and one detergent pump."
+  is_canonical: true
+  implements:
+  - PCU
+  - EFSS
+  - DTPM
