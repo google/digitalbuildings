@@ -1993,6 +1993,7 @@ FCU_DFSS_DSPRTC_DXDSPRTC_NONCANONICAL_1:
 FCU_RHC_DFVSC_RTC:
   guid: "251b58f5-dfee-4123-a528-b03d97403e66"
   description: "CRAC with return air temp/humidity control and discharge/cooling fan monitor."
+  is_canonical: true
   implements:
   - FCU
   - RHC
@@ -2138,3 +2139,25 @@ FCU_DFSS_DFRMM_CSP_CHWDC:
   - DFRMM
   - CSP
   - CHWDC
+
+FCU_DFVSC_RTM_CO2M_HWZTC_CHWZTC:
+  guid: "6f6fd049-576c-4f0a-894d-a6433575b8dd"
+  description: "Fan coil unit with zone temperature control, heating water and chilled water valve monitoring."
+  implements:
+  - FCU
+  - DFVSC
+  - RTM
+  - CO2M
+  - HWZTC
+  - CHWZTC
+
+# TW-NTC-TPKE
+FCU_DFSS_ZTC_CHWISOVM:
+  description: "Chilled water FCU with zone temperature control and chilled water valve monitoring"
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - ZTC
+  - CHWISOVM
+

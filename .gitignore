@@ -10,3 +10,6 @@
 package-lock.json
 yarn.lock
 venv/
+.idea/
+scratch/
+tools/*
