@@ -5429,6 +5429,7 @@ AHU_STDSPC_SSPC_EFFC_EFVSC_FDPM3X_HTWHLSTC_RHM_ETM:
   - exhaust_air_isolation_damper_status
 
 AHU_SFSS_SFVSC_EFSS_EFVSC_EDBPC_DX2SC_ECON_SSPC_SARC:
+  guid: "0df5aeb5-fe49-43f7-84f6-b0ddb1156c31"
   description: "AHU with supply and exhaust fans, two stage compressor, building pressure control"
   implements:
   - AHU
@@ -5443,6 +5444,7 @@ AHU_SFSS_SFVSC_EFSS_EFVSC_EDBPC_DX2SC_ECON_SSPC_SARC:
   - SARC
 
 AHU_SFSS2X_SFVSC2X_EFSS2X_EFVSC2X_DX4SC_EDBPC_SSPC_SARC_ECON_HTWHLSS:
+  guid: "a3451f6d-f562-4715-85be-2d169b4dc3cb"
   description: "AHU with dual supply and exhaust fans, four stage compressor, building pressure control and energy recovery wheel"
   implements:
   - AHU

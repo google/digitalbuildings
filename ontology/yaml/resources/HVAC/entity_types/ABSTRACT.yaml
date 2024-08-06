@@ -6057,6 +6057,7 @@ HTWHLSTC:
   - supply_air_temperature_setpoint
 
 HTWHLSS:
+  guid: "8cdae157-c3a8-4f71-8e27-b1a74a71a96b"
   description: "Heat wheel with simply start/stop control."
   is_abstract: true
   implements:
