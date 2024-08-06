@@ -2500,6 +2500,8 @@ DX2SC:
   is_abstract: true
   opt_uses:
   - compressor_speed_percentage_command
+  - compressor_speed_percentage_command_1
+  - compressor_speed_percentage_command_2
   - cooling_percentage_command
   - cooling_request_count
   - cooling_thermal_power_capacity
@@ -2548,6 +2550,10 @@ DX4SC:
   is_abstract: true
   opt_uses:
   - compressor_speed_percentage_command
+  - compressor_speed_percentage_command_1
+  - compressor_speed_percentage_command_2
+  - compressor_speed_percentage_command_3
+  - compressor_speed_percentage_command_4
   - cooling_percentage_command
   - cooling_request_count
   - cooling_thermal_power_capacity
@@ -4350,6 +4356,8 @@ EFSS2X:
   - exhaust_fan_power_capacity
   - exhaust_fan_power_sensor_1
   - exhaust_fan_power_sensor_2
+  - failed_exhaust_fan_alarm_1
+  - failed_exhaust_fan_alarm_2
   uses:
   - exhaust_fan_run_command_1
   - exhaust_fan_run_command_2
@@ -6047,6 +6055,15 @@ HTWHLSTC:
   - outside_air_temperature_sensor
   - supply_air_temperature_sensor
   - supply_air_temperature_setpoint
+
+HTWHLSS:
+  description: "Heat wheel with simply start/stop control."
+  is_abstract: true
+  implements:
+  - CONTROL
+  uses:
+  - heat_wheel_run_command
+  - heat_wheel_run_status
 
 CAM:
   guid: "c37a0e19-19c0-4246-8a8b-f376aa089d56"
