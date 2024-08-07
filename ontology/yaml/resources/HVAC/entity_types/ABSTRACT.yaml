@@ -6080,16 +6080,6 @@ HTWHLSTC:
   - supply_air_temperature_sensor
   - supply_air_temperature_setpoint
 
-HTWHLSS:
-  guid: "8cdae157-c3a8-4f71-8e27-b1a74a71a96b"
-  description: "Heat wheel with simply start/stop control."
-  is_abstract: true
-  implements:
-  - CONTROL
-  uses:
-  - heat_wheel_run_command
-  - heat_wheel_run_status
-
 CAM:
   guid: "c37a0e19-19c0-4246-8a8b-f376aa089d56"
   description: "ztc alarm monitoring based on moisture sensor on coil or in pan."
