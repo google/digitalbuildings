@@ -680,6 +680,20 @@ DFMSC:
   - schedule_run_command
   - failed_discharge_fan_alarm
 
+DFMSC2X:
+  guid: "779eda39-c031-4f09-8fc7-9f95f6338115"
+  description: "Dual discharge fan multi-speed control."
+  is_abstract: true
+  uses:
+  - discharge_fan_run_command_1
+  - discharge_fan_run_command_2
+  - discharge_fan_speed_mode_1
+  - discharge_fan_speed_mode_2
+  - discharge_fan_run_status_1
+  - discharge_fan_run_status_2
+  opt_uses:
+  - failed_discharge_fan_alarm_1
+  - failed_discharge_fan_alarm_2
 
 ZHM:
   guid: "2832f316-151a-489e-9bd5-0ab159edb0d2"
@@ -1491,7 +1505,6 @@ STM:
   - high_supply_air_temperature_alarm
   - low_supply_air_temperature_alarm
 
-
 STDSPC:
   guid: "8d61249d-297a-471d-aa62-dda04e1fe8c7"
   description: "Supply temperature control dual setpoint."
@@ -2105,6 +2118,7 @@ CHW2XSC:
   - failed_supply_air_temperature_alarm
   - frost_alarm
   - water_leak_alarm
+  - supply_air_relative_humidity_sensor
   uses:
   - chilled_water_valve_percentage_command_1
   - chilled_water_valve_percentage_command_2
@@ -2380,6 +2394,9 @@ DX2ZC:
   - failed_zone_air_temperature_alarm
   - high_zone_air_temperature_alarm
   - low_zone_air_temperature_alarm
+  - discharge_air_specificenthalpy_sensor
+  - return_air_specificenthalpy_sensor
+  - discharge_air_relative_humidity_sensor
   uses:
   - compressor_run_command_1
   - compressor_run_command_2
@@ -2432,6 +2449,7 @@ DX4ZC:
   - failed_zone_air_temperature_alarm
   - high_zone_air_temperature_alarm
   - low_zone_air_temperature_alarm
+  - discharge_air_relative_humidity_sensor
   uses:
   - compressor_run_command_1
   - compressor_run_command_2
@@ -2531,6 +2549,9 @@ DX3SC:
   - leaving_cooling_coil_temperature_sensor
   - high_supply_air_temperature_alarm
   - low_supply_air_temperature_alarm
+  - supply_air_specificenthalpy_sensor
+  - return_air_specificenthalpy_sensor
+  - supply_air_relative_humidity_sensor
   uses:
   - compressor_run_command_1
   - compressor_run_command_2
@@ -2560,6 +2581,9 @@ DX4SC:
   - leaving_cooling_coil_temperature_sensor
   - high_supply_air_temperature_alarm
   - low_supply_air_temperature_alarm
+  - supply_air_specificenthalpy_sensor
+  - return_air_specificenthalpy_sensor
+  - supply_air_relative_humidity_sensor
   uses:
   - compressor_run_command_1
   - compressor_run_command_2
@@ -7229,6 +7253,21 @@ HLC:
   uses:
   - high_speed_command
   - low_speed_command
+  implements:
+  - OPERATIONAL
+
+HMLC:
+  guid: "4a29db5c-6391-4c48-b9a4-73899b24ac88"
+  description: "Three-speed motor (high/medium/low)."
+  is_abstract: true
+  opt_uses:
+  - high_speed_status
+  - low_speed_status
+  - medium_speed_status
+  uses:
+  - high_speed_command
+  - low_speed_command
+  - medium_speed_command
   implements:
   - OPERATIONAL
 
