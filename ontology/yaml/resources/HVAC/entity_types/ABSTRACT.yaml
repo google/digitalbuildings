@@ -6062,6 +6062,9 @@ HTWHLSTC:
   implements:
   - CONTROL
   opt_uses:
+  - leaving_heat_wheel_temperature_sensor
+  - high_leaving_heat_wheel_temperature_alarm
+  - low_leaving_heat_wheel_temperature_alarm
   - exhaust_air_temperature_sensor
   - heat_wheel_speed_percentage_sensor
   - return_air_temperature_sensor
