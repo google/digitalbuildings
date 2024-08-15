@@ -99,6 +99,14 @@ DMP_ZSPC_EFM:
   - ZSPC
   - EFM
 
+DMP_RAIDC:
+  guid: "6e70b2b3-542c-458e-8169-9820919853b2"
+  description: "Controlling and monitoring return air isolation damper system."
+  is_canonical: true
+  implements:
+  - DMP
+  - RAIDC
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
