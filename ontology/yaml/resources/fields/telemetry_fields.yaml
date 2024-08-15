@@ -2247,6 +2247,15 @@ literals:
 - heat_wheel_run_status:
   - ON
   - OFF
+- leaving_heat_wheel_temperature_sensor:
+    flexible_min: 255.9259259
+    flexible_max: 338.7037037
+- high_leaving_heat_wheel_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
+- low_leaving_heat_wheel_temperature_alarm:
+  - ACTIVE
+  - INACTIVE
 - outside_air_isolation_damper_command:
   - OPEN
   - CLOSED
