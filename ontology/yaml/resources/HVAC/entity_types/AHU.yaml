@@ -5431,6 +5431,7 @@ AHU_STDSPC_SSPC_EFFC_EFVSC_FDPM3X_HTWHLSTC_RHM_ETM:
 AHU_SFSS_SFVSC_EFSS_EFVSC_EDBPC_DX2SC_ECON_SSPC_SARC:
   guid: "0df5aeb5-fe49-43f7-84f6-b0ddb1156c31"
   description: "AHU with supply and exhaust fans, two stage compressor, building pressure control"
+  is_canonical: true
   implements:
   - AHU
   - SFSS
