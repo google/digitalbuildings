@@ -5428,6 +5428,22 @@ AHU_STDSPC_SSPC_EFFC_EFVSC_FDPM3X_HTWHLSTC_RHM_ETM:
   - exhaust_air_isolation_damper_command
   - exhaust_air_isolation_damper_status
 
+AHU_SFSS_SFVSC_EFSS_EFVSC_EDBPC_DX2SC_ECON_SSPC_SARC:
+  guid: "0df5aeb5-fe49-43f7-84f6-b0ddb1156c31"
+  description: "AHU with supply and exhaust fans, two stage compressor, building pressure control"
+  is_canonical: true
+  implements:
+  - AHU
+  - SFSS
+  - SFVSC
+  - EFSS
+  - EFVSC
+  - EDBPC
+  - DX2SC
+  - ECON
+  - SSPC
+  - SARC
+
 AHU_BSPC_DX4SC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC_RHHC_NONCANONICAL_1:
   guid: "4f641024-9959-4ab3-9869-97fdf93ed47b"
   description: "Non-Standard AHU with humidification and heating water coils on return duct."
