@@ -2518,6 +2518,8 @@ DX2SC:
   is_abstract: true
   opt_uses:
   - compressor_speed_percentage_command
+  - compressor_speed_percentage_command_1
+  - compressor_speed_percentage_command_2
   - cooling_percentage_command
   - cooling_request_count
   - cooling_thermal_power_capacity
@@ -2569,6 +2571,10 @@ DX4SC:
   is_abstract: true
   opt_uses:
   - compressor_speed_percentage_command
+  - compressor_speed_percentage_command_1
+  - compressor_speed_percentage_command_2
+  - compressor_speed_percentage_command_3
+  - compressor_speed_percentage_command_4
   - cooling_percentage_command
   - cooling_request_count
   - cooling_thermal_power_capacity
@@ -4386,6 +4392,8 @@ EFSS2X:
   - exhaust_fan_power_capacity
   - exhaust_fan_power_sensor_1
   - exhaust_fan_power_sensor_2
+  - failed_exhaust_fan_alarm_1
+  - failed_exhaust_fan_alarm_2
   uses:
   - exhaust_fan_run_command_1
   - exhaust_fan_run_command_2
@@ -6066,6 +6074,9 @@ HTWHLSTC:
   implements:
   - CONTROL
   opt_uses:
+  - leaving_heat_wheel_temperature_sensor
+  - high_leaving_heat_wheel_temperature_alarm
+  - low_leaving_heat_wheel_temperature_alarm
   - exhaust_air_temperature_sensor
   - heat_wheel_speed_percentage_sensor
   - return_air_temperature_sensor
