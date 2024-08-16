@@ -15,13 +15,6 @@
 ########################
 ### Canonical Types  ###
 ########################
-VLV_HWZTVC:
-  guid: "49817fa9-042d-4a1f-b715-130423d5d840"
-  description: "Heating water valve with zone temperature control."
-  is_canonical: true
-  implements:
-  - VLV
-  - HWZTVC
 
 VLV_CHWVM_RTM_DTM:
   guid: "b2223a12-07e8-455b-8ae4-eed3942df5a8"
