@@ -5386,105 +5386,86 @@ AHU_BSPC_DX4SC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC_RHHC_NONCANONICAL_1:
   - min_zone_air_relative_humidity_sensor
   - min_zone_air_relative_humidity_setpoint
 
-# TW-NTC-TPKE
-AHU_DSPM_DFVSC_DTM_RDC_OAMC_OA_CHWRC_RCO2M:
+AHU_DFVSC_DSPM_ECOND_DTM_OA_RDC_RHM_RCO2M_CHWVM:
+  guid: "8ef1a26a-fe8f-468a-ba96-ffd0f987c043"
   description: "AHU with discharge air/fan, chilled water valve operation, humidity monitoring with dual dampers monitoring and control ."
   is_canonical: true
   implements:
   - AHU
-  - DSPM
   - DFVSC
+  - DSPM
+  - ECOND
   - DTM
-  - RDC
-  - OAMC
   - OA
-  - CHWRC
+  - RDC
+  - RTM
   - RCO2M
+  - CHWVM
   opt_uses:
     - filter_alarm
-    - low_differential_pressure_alarm
 
-AHU_DFVSC_HWDC_UV_OAFM_MTM_CHWPVM_RDC_RCO2M_RTM:
+AHU_DFVSC_ECOND_HWDC_CHWPVM_RDC_RCO2M_RTM_UV:
+  guid: "005172cf-d29a-4c10-94d2-2a5fb6fad51f"
   description: "AHU with discharge air/fan, UV, chilled water valve and return air temperature monitoring with dual dampers monitoring."
   is_canonical: true
   implements:
   - AHU
   - DFVSC
+  - ECOND
   - HWDC
-  - OAFM
-  - MTM
   - CHWPVM
+  - RDC
   - RCO2M
   - RTM
+  - UV
   opt_uses:
     - filter_alarm
-    - return_air_damper_percentage_sensor
-    - ultraviolet_lamp_run_status
 
-
-AHU_DFVSC_CHWPVM_RTM:
+AHU_DFVSC_ECOND_HWDC_CHWPVM_RTM_UV:
+  guid: "f7579d91-707a-4e48-af46-9a86d8d31b94"
   description: "AHU with discharge air/fan, chilled water valve and return air temperature monitoring."
   is_canonical: true
   implements:
   - AHU
   - DFVSC
+  - ECOND
+  - HWDC
   - CHWPVM
   - RTM
+  - UV
   opt_uses:
     - filter_alarm
-    - ultraviolet_lamp_run_status
 
-
-AHU_DFSS_CHWPVM_ZTC:
-  description: "AHU with discharge air/fan, chilled water valve and zone air temperature control."
-  is_canonical: true
-  implements:
-  - AHU
-  - DFSS
-  - CHWPVM
-  - ZTC
-  opt_uses:
-    - filter_alarm
-    - control_mode
-
-
-AHU_DFSS_DFVSC_CHWDC_ZTC_CO2M:
+AHU_DFSS_DFVSC_ECOND_CHWDC_ZTC_CO2M_UV:
+  guid: "2389a986-5591-422c-8a13-f31c262ecee7"
   description: "AHU with discharge air/fan, chilled water valve and zone air temperature monitoring."
   is_canonical: true
   implements:
   - AHU
   - DFSS
   - DFVSC
-  - CHWDC
-  - ZTC
+  - ECOND
+  - CHWPVM
+  - ZA
   - CO2M
+  - UV
   opt_uses:
     - filter_alarm
-    - ultraviolet_lamp_run_status
 
-
-AHU_DFSS_DFVSC_HWDC_ZTC_OAFM_CHWPVM:
+AHU_DFSS_DFVSC_ECOND_HWDC_CHWPVM_ZA_UV_CO2M6X_PDSCV5X:
+  guid: "627f4d5b-932c-4e4e-8ee3-61bff7aa0b8f"
   description: "AHU with discharge air/fan, UV, chilled water valve and 5x co2 concentration monitoring with 5x dampers monitoring."
   is_canonical: true
   implements:
   - AHU
   - DFSS
   - DFVSC
+  - ECOND
   - HWDC
-  - ZTC
-  - OAFM
   - CHWPVM
+  - ZA
+  - UV
+  - CO2M6X
+  - PDSCV5X
   opt_uses:
     - filter_alarm
-    - ultraviolet_lamp_run_status
-    - zone_air_co2_concentration_sensor_1
-    - zone_air_co2_concentration_sensor_2
-    - zone_air_co2_concentration_sensor_3
-    - zone_air_co2_concentration_sensor_4
-    - zone_air_co2_concentration_sensor_5
-    - zone_air_co2_concentration_sensor_6
-    - supply_air_damper_percentage_sensor_1
-    - supply_air_damper_percentage_sensor_2
-    - supply_air_damper_percentage_sensor_3
-    - supply_air_damper_percentage_sensor_4
-    - supply_air_damper_percentage_sensor_5

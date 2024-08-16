@@ -3607,8 +3607,8 @@ literals:
     flexible_min: -3
     flexible_max: 14
 - direction_up_mode:
-  - UP
-  - DOWN
+  - ENABLED
+  - DISABLED
 - direction_down_mode:
-  - UP
-  - DOWN
+  - ENABLED
+  - DISABLED

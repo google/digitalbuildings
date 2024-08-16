@@ -932,6 +932,7 @@ FAN_SS_MSM:
 
 #TW-NTC-TPKE
 FAN_SS_DICM2X:
+  guid: "32703a5c-7cad-4eb6-9605-08e92f1d2cdd"
   description: "Basic fan with start/stop and status with dual dampers monitoring."
   is_canonical: true
   implements:
@@ -940,6 +941,7 @@ FAN_SS_DICM2X:
   - DICM2X
 
 FAN_SS_DICM:
+  guid: "812965c4-c9cf-4a1a-af34-225ff7de5159"
   description: "Basic fan with start/stop and status with damper monitoring."
   is_canonical: true
   implements:
@@ -947,8 +949,8 @@ FAN_SS_DICM:
   - SS
   - DICM
 
-
 FAN_SS_VSC_INVOPWM:
+  guid: "1c48e087-c973-4907-8d6e-93417da15d5b"
   description: "Basic fan with start/stop and status with inverter monitoring."
   is_canonical: true
   implements:
@@ -959,14 +961,12 @@ FAN_SS_VSC_INVOPWM:
   opt_uses:
   - load_percentage_sensor
 
-FAN_SS_VSC_NONCANONICAL_7:
+FAN_SS_VSC_COM4X:
+  guid: "47942605-0c52-4308-9f55-33b5930d27ac"
   description: "Basic fan with start/stop and status with carbon monoxide monitoring."
+  is_canonical: true
   implements:
   - FAN
   - SS
   - VSC
-  opt_uses:
-  - zone_air_co_concentration_sensor_1
-  - zone_air_co_concentration_sensor_2
-  - zone_air_co_concentration_sensor_3
-  - zone_air_co_concentration_sensor_4
+  - COM4X

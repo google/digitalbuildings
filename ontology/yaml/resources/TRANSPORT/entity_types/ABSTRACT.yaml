@@ -23,8 +23,8 @@ SS:
   - failed_alarm
   - lost_power_alarm
 
-# TW-NTC-TPKE
 EOM:
+  guid: "51760cac-2f64-4f03-8a39-0f2d8125d8dd"
   description: "Elevator operation monitoring."
   is_abstract: true
   opt_uses:
@@ -36,6 +36,7 @@ EOM:
   - position_status
 
 EDM:
+  guid: "883ebb66-315f-44a4-9d2a-e7524195f1dd"
   description: "Elevator direction monitoring."
   is_abstract: true
   uses:

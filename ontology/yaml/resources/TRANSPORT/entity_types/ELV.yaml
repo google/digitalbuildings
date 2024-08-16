@@ -20,8 +20,8 @@ ELV_SS:
   - ELV
   - SS  
 
-#TW-NTC-TPKE
 ELV_SS_EOM_EDM:
+  guid: "ab16e280-5ac6-4342-87dd-272161370d19"
   description: "Elevator operation and direction mode monitoring."
   is_canonical: true
   implements:
