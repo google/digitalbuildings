@@ -4524,6 +4524,51 @@ AHU_SFSS2X_SFVSC2X_RFSS2X_RFVSC2X_HWSC_CHWSC_SSPC_MOAFC_ECON_EDPM_RD_UV:
   - RD
   - UV
 
+AHU_SFSS_SFVSC_EFSS_EFVSC_CHW2XSC_SSVC_CO2CMAX_ECON_SSPC:
+  guid: "7bde22a0-19c3-4755-b9d4-a41fd4b54a8e"
+  description: "Multi-zone AHU with supply and exhaust fans, co2 control, two chilled water and one steam valve control to supply air, and economizing."
+  is_canonical: true
+  implements:
+  - AHU
+  - SFSS
+  - SFVSC
+  - EFSS
+  - EFVSC
+  - CHW2XSC
+  - SSVC
+  - CO2CMAX
+  - ECON
+  - SSPC
+
+AHU_SFSS_SFVSC_CHW2XSC_SSVC_ECON_SSPC:
+  guid: "4520481a-167e-4767-9e3e-cd5a21624776"
+  description: "Multi-zone AHU with supply fan control, two chilled water and one steam valve control to supply air, and economizing."
+  is_canonical: true
+  implements:
+  - AHU
+  - SFSS
+  - SFVSC
+  - CHW2XSC
+  - SSVC
+  - ECON
+  - SSPC
+
+AHU_SFSS_SFVSC_CHWSC_HTSC_ECON_SARC_SSPC_FDPM_ZTM:
+  guid: "b270b104-aed8-40c3-80b5-bd991e3ed102"
+  description: "Multi-zone AHU with supply fan control, chilled water and electric heater control to supply air, economizing, filter differential pressure and zone temperature monitoring."
+  is_canonical: true
+  implements:
+  - AHU
+  - SFSS
+  - SFVSC
+  - CHWSC
+  - HTSC
+  - ECON
+  - SARC
+  - SSPC
+  - FDPM
+  - ZTM
+
 AHU_BSPC_DX5SC_ECONM_EDM_EFSS_EFVSC_SFSS4X_SFVSC4X_SSPC_SARC:
   guid: "befd596e-5a4b-4c64-b045-7f546ada3e96"
   description: "Multi-zone AHU with 5 compressors, exhaust damper monitoring, economizer controlling to MAT setpoint, and variable speed exhaust and four supply fans."
@@ -5354,6 +5399,15 @@ AHU_NON_CANONICAL_TYPE_71:
   - supply_fan_speed_percentage_command
   - supply_air_flowrate_sensor
 
+AHU_SFSS_NON_CANONICAL_72:
+  guid: "3473e1f2-390c-401f-ae2d-b2cdeb575fdd"
+  description: "Landlord system that only receives status/command and alarm"
+  implements:
+  - AHU
+  - SFSS
+  opt_uses:
+  - lost_power_alarm
+
 AHU_STDSPC_SSPC_EFFC_EFVSC_FDPM3X_HTWHLSTC_RHM_ETM:
   guid: "dbe00902-c2da-4efd-b8f2-2069ddd674c3"
   description: "Non-Standard (Swegon) Multi-Zone AHU with heat wheel, isolation damper and filter pressure monitoring"
@@ -5454,7 +5508,7 @@ AHU_DFSS_DFVSC_ECOND_CHWDC_ZTC_CO2M_UV:
 
 AHU_DFSS_DFVSC_ECOND_HWDC_CHWPVM_ZA_UV_CO2M6X_PDSCV5X:
   guid: "627f4d5b-932c-4e4e-8ee3-61bff7aa0b8f"
-  description: "AHU with discharge air/fan, UV, chilled water valve and 5x co2 concentration monitoring with 5x dampers monitoring."
+  description: "AHU with discharge air/fan, UV, chilled water valve and 6x co2 concentration monitoring with 5x dampers monitoring."
   is_canonical: true
   implements:
   - AHU
