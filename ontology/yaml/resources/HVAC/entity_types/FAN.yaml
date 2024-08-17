@@ -949,7 +949,6 @@ FAN_SS_MSM:
   - FAN
   - MSM
 
-#TW-NTC-TPKE
 FAN_SS_DICM2X:
   guid: "32703a5c-7cad-4eb6-9605-08e92f1d2cdd"
   description: "Basic fan with start/stop and status with dual dampers monitoring."
@@ -989,3 +988,13 @@ FAN_SS_VSC_COM4X:
   - SS
   - VSC
   - COM4X
+
+FAN_SS_VSC_SSPM:
+  guid: "28e19a83-a3ce-429e-951f-34cdecd036f3"
+  description: "Basic fan with variable speed control and supply side pressure monitoring."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - VSC
+  - SSPM

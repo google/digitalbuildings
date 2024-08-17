@@ -27,3 +27,8 @@ def Generate(filenames: List[str]) -> None:
   for filename in filenames:
     print(f'Generating GUIDs for {filename}')
     GuidGenerator.GenerateGuids(filename)
+
+
+Generate(
+  [r"D:\ontology_github_repos\tpke\digitalbuildings\tools\guid_generator\instance"
+   r"\tw-ntc-tpke-configuration-v1.0.1723892053042-beta.yaml"])
