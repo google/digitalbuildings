@@ -22,8 +22,7 @@ description: "DOAS with supply and return fans, fan speed flowrate control heati
   implements:
   - DOAS
   - SS
-  - HWSC
-  - DXSC
+  - HTWHLSTC
   - SFVSC
   - EFVSC
   - EDM
@@ -33,6 +32,8 @@ description: "DOAS with supply and return fans, fan speed flowrate control heati
   - EFDPM
   - DFDPM
   - RTM
+  - HWSC
+  - CHWSC
   
 DOAS_HWSC_DXSC_SFVSC_EFVSC_EDM_SDM_RFC_SFC_FDPM2X_RTM:
   guid: "ead4d2b6-96f8-44c5-8038-c8114e0da78e"
