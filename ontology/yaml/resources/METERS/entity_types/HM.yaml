@@ -26,7 +26,6 @@ HM_STANDARD:
   - thermal_energy_accumulator
   opt_uses:
   - water_volume_accumulator
-  - failed_communication_alarm
 
 HM_CHW:
   guid: "4439f98a-c52b-4fff-8765-84e689862423"
