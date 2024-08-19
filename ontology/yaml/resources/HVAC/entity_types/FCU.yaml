@@ -2138,3 +2138,13 @@ FCU_DFSS_DFRMM_CSP_CHWDC:
   - DFRMM
   - CSP
   - CHWDC
+
+FCU_DFSS_DFRMM_CHWBZC:
+  guid: "4854810e-4bb1-4fcf-8138-faf8e4074612"
+  description: "Typical chilled water FCU with cooling-only (zone control) and Run mode monitoring."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - DFRMM
+  - CHWBZC
