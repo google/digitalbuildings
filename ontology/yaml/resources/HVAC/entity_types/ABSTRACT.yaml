@@ -754,7 +754,6 @@ SS:
   - failed_alarm
   - local_override_alarm
   - lost_power_alarm
-  - failed_communication_alarm
 
 
 SSPC:
