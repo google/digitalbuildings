@@ -16,6 +16,23 @@
 ### Canonical Types  ###
 ########################
 
+SENSOR_ZTM_ZHM_CO2M_VOCM_PMDM_SPLM_ZAQIM_APM_WVDM:
+  guid: "ba372b9c-3b31-45af-ad7c-f5e5605f4746"
+  description: "Indoor Air Quality sensor with temperature, humidity, CO2, VOC, PM 1, 2.5, 4, 10, illuminance, air pressure and sound monitoring."
+  is_canonical: true
+  implements:
+  - /SENSOR
+  - ZTM
+  - ZHM
+  - CO2M
+  - VOCM
+  - PMDM
+  - SPLM
+  - ZAQIM
+  - APM
+  - WVDM
+  uses:
+  - illuminance_sensor
 
 SENSOR_ZTM_ZHM_CO2M:
   guid: "bacb5335-16de-46d3-9d8f-da503ea38f8a"

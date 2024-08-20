@@ -7886,6 +7886,7 @@ ZAQIM:
   opt_uses:
   - zone_air_voc_aqi_sensor
   - zone_air_smoke_aqi_sensor
+  - zone_air_nox_aqi_sensor
   implements:
   - MONITORING
 
@@ -7896,6 +7897,9 @@ PMDM:
   uses:
   - zone_air_pm2pt5_density_sensor
   - zone_air_pm10pt0_density_sensor
+  opt_uses:
+  - zone_air_pm1pt0_density_sensor
+  - zone_air_pm4pt0_density_sensor
   implements:
   - MONITORING
 
@@ -8262,5 +8266,21 @@ DTPM:
   uses:
   - detergent_pump_run_status
   - detergent_pump_run_command
+  implements:
+  - MONITORING
+
+APM:
+  guid: "db162c18-9976-4e80-9aa4-6dd61d0c6970"
+  description: "Atmospheric pressure monitoring"
+  uses:
+  - air_pressure_sensor
+  implements:
+  - MONITORING
+
+WVDM:
+  guid: "58921c49-ae96-48f9-a3fb-faa389d37322"
+  description: "Water vapor density monitoring, equivalent to absolute humidity monitoring"
+  uses:
+  - zone_air_water_vapor_density_sensor
   implements:
   - MONITORING

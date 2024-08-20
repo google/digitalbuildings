@@ -3516,6 +3516,9 @@ literals:
 - zone_air_voc_aqi_sensor:
     fixed_min: 0
     flexible_max: 500
+- zone_air_nox_aqi_sensor:
+    fixed_min: 0
+    flexible_max: 500    
 - zone_air_smoke_aqi_sensor:
     fixed_min: 0
     flexible_max: 80
