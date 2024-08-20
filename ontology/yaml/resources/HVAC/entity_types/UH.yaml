@@ -21,7 +21,7 @@ UH_HWBZC:
   is_canonical: true
   implements:
   - UH
-  - HWZTVC
+  - HWBZC
 
 UH_SS_DSP_HWZC:
   guid: "d0df8758-bb8c-492a-b471-7654ddcfcbcc"
