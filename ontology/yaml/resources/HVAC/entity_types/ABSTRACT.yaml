@@ -3145,7 +3145,7 @@ HWZTC:
   implements:
   - CONTROL
 
-HWZTVC:
+HWBZC:
   guid: "5e92815b-5fe8-485c-ad47-1749aa085bf6"
   description: "Heating water valve command on zone side (ZTC)."
   is_abstract: true
