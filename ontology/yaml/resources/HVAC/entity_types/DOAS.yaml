@@ -16,6 +16,23 @@
 ### Canonical Types  ###
 ########################
 
+
+DOAS_HWSC_DXSC_SSPC_EFVSC_EDM_SDM_RFC_FDPM2X_RTM:
+  guid: "217d48e0-3041-4ceb-902b-b06e5feb12d9"
+  description: "DOAS with supply and return fans, supply air static pressure control, heating valve and cooling from DX Unit"
+  is_canonical: true
+  implements:
+  - DOAS
+  - HWSC
+  - DXSC
+  - SSPC
+  - EFVSC
+  - EDM
+  - SDM
+  - RFC
+  - FDPM2X
+  - RTM
+
 DOAS_HWSC_DXSC_SFVSC_EFVSC_EDM_SDM_RFC_SFC_FDPM2X_RTM:
   guid: "ead4d2b6-96f8-44c5-8038-c8114e0da78e"
   description: "DOAS with supply and return fans, fan speed flowrate control heating valve and cooling from DX Unit"
