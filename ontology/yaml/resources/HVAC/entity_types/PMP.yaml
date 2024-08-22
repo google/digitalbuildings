@@ -60,6 +60,15 @@ PMP_SS_VSC_WDPM:
   - VSC
   - WDPM
 
+PMP_SWTM_CPVSC2X:
+  guid: "dfeaaee6-31cc-4cf9-a0c3-3182d6dbc826"
+  description: "Dual pumps with variable speed control and supply water temperature monitoring."
+  is_canonical: true
+  implements:
+  - PMP
+  - CPVSC2X
+  - SWTM
+
 PMP_SS_VSC_WDPC:
   guid: "8ea16672-10b9-4ca4-bf5b-bc6c1e10b065"
   description: "Pump with variable speed control and differential pressure control"
