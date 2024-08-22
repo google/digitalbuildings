@@ -41,6 +41,15 @@ HWS_SWTC_WDPC:
   - SWTC
   - WDPC
 
+HWS_HTSWC_HWSWC:
+  guid: "646c663b-c335-49e1-a657-0f7f5d18c7b7"
+  description: "heating water system with heating water valve monitoring and supply temperature control."
+  is_canonical: true
+  implements:
+  - HWS
+  - HTSWC
+  - HWSWC
+
 HWS_SWTC_WDPC_WFRM:
   guid: "dd3f6f24-5533-4285-b29a-6fc84e60f65d"
   description: "Simple heating water system with supply temp and differential pressure control."
