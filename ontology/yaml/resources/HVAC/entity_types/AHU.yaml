@@ -17,15 +17,6 @@
 ########################
 
 ### Single Zone Units ###
-AHU_SS_SDM:
-  guid: "d289ff35-4b60-42ba-b32e-00a679add978"
-  description: "AHU with supply air damper monitoring."
-  is_canonical: true
-  implements:
-  - AHU
-  - SS
-  - SDM
-
 AHU_CSP_DFSS_DX2ZC_ECONZ:
   guid: "f0e116a8-ab2c-4303-a782-2a9a47005372"
   description: "Single zone AHU."
