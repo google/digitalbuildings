@@ -42,6 +42,8 @@ HM_CHW:
   opt_uses:
   - differential_temperature_sensor
   - failed_alarm
+  - failed_chilled_return_water_temperature_alarm
+  - failed_chilled_supply_water_temperature_alarm
 
 HM_CHW_WAC:
   guid: "441029f3-1324-42c5-aca2-74138500917a"
