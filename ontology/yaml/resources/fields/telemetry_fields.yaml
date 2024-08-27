@@ -3673,3 +3673,6 @@ literals:
 - expansion_valve_percentage_command:
     fixed_min: 0.0
     fixed_max: 100.0
+- supply_fan_rotationalvelocity_sensor:
+    flexible_min: 0.0
+    flexible_max: 4000.0
