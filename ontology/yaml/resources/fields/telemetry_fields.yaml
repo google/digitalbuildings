@@ -3673,3 +3673,9 @@ literals:
 - expansion_valve_percentage_command:
     fixed_min: 0.0
     fixed_max: 100.0
+- cell_temperature_sensor:
+    flexible_min: 253.15
+    flexible_max: 333.15
+- cell_voltage_sensor:
+    flexible_min: 0.0
+    flexible_max: 50.0

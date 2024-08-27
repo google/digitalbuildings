@@ -62,3 +62,11 @@ TXMR:
   is_abstract: true
   implements:
   - EQUIPMENT
+
+LIIONC:
+  guid: "2cfb6b5d-dd91-4b3f-bb07-78a310084235"
+  description: "A Lithium-Ion (Li-ion) cell is a rechargeable cell that stores and delivers electrical energy using lithium ions."
+  is_abstract: true
+  implements:
+  - EQUIPMENT
+

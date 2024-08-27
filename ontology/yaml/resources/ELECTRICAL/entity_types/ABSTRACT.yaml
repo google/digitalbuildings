@@ -191,3 +191,17 @@ SPM:
   - switch_position_status
   - line_power_status
   - emergency_power_status
+
+CVM:
+  guid: "39e83903-eee0-4988-b8da-464a79cc60c3"
+  description: "Cell voltage Monitoring."
+  is_abstract: true
+  uses:
+  - cell_voltage_sensor
+
+CTM:
+  guid: "9f5c78a4-4048-4cd3-924c-627422115f3f"
+  description: "Cell Temperature Monitoring."
+  is_abstract: true
+  uses:
+  - cell_temperature_sensor
