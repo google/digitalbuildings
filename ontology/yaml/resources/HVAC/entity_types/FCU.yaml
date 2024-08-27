@@ -29,6 +29,16 @@ FCU_DFMSC_DSP_DXZTC:
   - DSP
   - DXZTC
 
+FCU_DFVSC2X_CHWZTC_HWZTC:
+  guid: "678cad15-19cf-499e-b906-0c37c2414fc5"
+  description: "FCU with 2 discharge fans, and heating and cooling valves."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFVSC2X
+  - CHWZTC
+  - HWZTC
+
 FCU_RTM_DFVSC2X_CHWZTC_HWZTC_DTM:
   guid: "d5c05501-528f-47ea-be30-54e9c53f41ca"
   description: "FCU in a trench, with heating and cooling valves, and two fans."
