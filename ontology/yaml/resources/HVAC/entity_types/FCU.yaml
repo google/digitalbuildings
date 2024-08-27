@@ -2148,3 +2148,15 @@ FCU_DFSS_DFRMM_CHWBZC:
   - DFSS
   - DFRMM
   - CHWBZC
+
+FCU_DFSS_DFRMM_CHWBZC_DAIDC_RAIDC:
+  guid: "547e7af0-7158-44c4-beca-c1ad1309c3fe"
+  description: "Typical chilled water FCU with cooling-only zone control, run mode monitoring, and discharge and return damper command and status monitoring.."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - DFRMM
+  - CHWBZC
+  - DAIDC
+  - RAIDC
