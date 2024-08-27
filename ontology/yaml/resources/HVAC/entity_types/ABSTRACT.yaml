@@ -3175,6 +3175,22 @@ HWSWC:
   implements:
   - CONTROL
 
+HWRWC:
+  guid: "1805f8ee-1425-4b51-9a3d-563be38c7c13"
+  description: "Heating water valve monitoring on return water side."
+  is_abstract: true
+  opt_uses:
+  - heating_thermal_power_capacity
+  - heating_water_valve_percentage_sensor
+  - supply_water_temperature_sensor
+  - high_return_water_temperature_alarm
+  - low_return_water_temperature_alarm
+  uses:
+  - heating_water_valve_percentage_command
+  - return_water_temperature_sensor
+  - return_water_temperature_setpoint
+  implements:
+  - CONTROL
 
 PHWSC:
   guid: "0f2f9a53-6aab-4c9c-801f-bb11b021e42a"
