@@ -7959,6 +7959,7 @@ WSEBYPVPM:
   is_abstract: true
   opt_uses:
   - economizer_mode
+  - sync_economizer_mechanical_cooling_mode
   - economizer_bypass_valve_percentage_sensor
   - failed_economizer_bypass_valve_alarm
   uses:
