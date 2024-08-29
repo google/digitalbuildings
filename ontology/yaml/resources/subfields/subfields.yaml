@@ -165,7 +165,7 @@ descriptor:
   manufacturer: "The company which produces the asset or device."
   matched: "A collection of things that are put together as being equal, similar, or complementary."
   master: "Highest priority (or primary control) device, sensor, etc."
-  mechanical: "A process driven by mechanical work; specifically applied to cooling processes (e. g. mechanical cooling)."
+  mechanical: "A process driven by machinery; specifically applied to cooling processes (e. g. using a refrigeration cycle for cooling)."
   medium: "Level of control or measurement; between high and low."
   message: "A communication sent to or left for a recipient."
   mixed: "Process or component used to mix multiple streams of air."
