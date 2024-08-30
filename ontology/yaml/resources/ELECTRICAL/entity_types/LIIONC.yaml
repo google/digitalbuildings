@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-LIION_CVM_CTM:
+LIIONC_CVM_CTM:
   guid: "41b5e9ad-7f3b-41f1-915e-e236940ea7a7"
   description: "Lithium-Ion Cell with monitoring of cell voltage and temperature."
   is_canonical: true
