@@ -17,6 +17,6 @@ LIIONC_CVM_CTM:
   description: "Lithium-Ion Cell with monitoring of cell voltage and temperature."
   is_canonical: true
   implements:
-  - LIION
+  - LIIONC
   - CVM
   - CTM
