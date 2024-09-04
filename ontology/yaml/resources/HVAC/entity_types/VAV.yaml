@@ -76,6 +76,16 @@ VAV_SD_DSP_CO2C:
   - DSP
   - CO2C
 
+VAV_SD_CSP_CO2C:
+  guid: "8103c7f4-d4db-4012-b01b-ca7dec97953a"
+  description: "CO2 control VAV with cooling setpoint."
+  is_canonical: true
+  implements:
+  - VAV
+  - SD
+  - CSP
+  - CO2C
+
 VAV_SD_DSP_VOCC:
   guid: "15b095f3-098a-43d9-9271-d0215423479c"
   description: "Single duct cooling-only VAV with dual setpoint and VOC control."

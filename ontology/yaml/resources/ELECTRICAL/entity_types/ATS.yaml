@@ -29,3 +29,13 @@ ATS_SRC1_SRC2:
   opt_uses:
   - generator_status
   - fire_alarm
+
+ATS_SPM:
+  guid: "7d1b371e-cdbe-439d-9a35-f5ace7f6dcbb"
+  description: "Automatic transfer switch with switch position monitoring."
+  is_canonical: true
+  implements:
+  - ATS
+  - SPM
+  opt_uses:
+  - fire_alarm
