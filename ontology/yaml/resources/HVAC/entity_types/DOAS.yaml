@@ -33,6 +33,24 @@ DOAS_HWSC_DXSC_SFVSC_EFVSC_EDM_SDM_RFC_SFC_FDPM2X_RTM:
   - FDPM2X
   - RTM
 
+DOAS_HWSC_DXSC_SFVSC_EFVSC_EDM_SDM_RFC_SFC_FDPM2X_RTM_SSPC:
+  guid: "17a42103-2777-4971-b8bb-c5c955771009"
+  description: "DOAS with supply and return fans, supply static pressure controlled via supply fan speed, heating valve and cooling from DX Unit"
+  is_canonical: true
+  implements:
+  - DOAS
+  - HWSC
+  - DXSC
+  - SFVSC
+  - EFVSC
+  - EDM
+  - SDM
+  - RFC
+  - SFC
+  - FDPM2X
+  - RTM
+  - SSPC
+
 DOAS_HTWHLSTC_SFVSC_EFVSC_EDM_SDM_RFC_SFC_FDPM2X_RTM_HWSC_CHWSC:
   guid: "f669b241-06bd-40ba-bc14-98a08989695a"
   description: "DOAS with supply and return fans, heatwheel and heating and cooling valves."
@@ -202,9 +220,25 @@ DOAS_CHWDC_EFSS_EFVSC_EFDPM_PHRUD_HWDC_DFSS_DFVSC_DSPM_DFDPM:
   - DSPM
   - DFDPM
 
+DOAS_SFVSC_EFVSC_HTWHLSTC_CHWVM_HWVM_SFM_FDPSM_SDM2X_EDM2X:
+  guid: "0e439bb6-0782-45ec-9357-52637aeefb7b"
+  description: "Multi-zone chilled water and heating water DOAS with heat wheel, supply, exhaust fan speed control."
+  is_canonical: true
+  implements:
+  - DOAS
+  - SFVSC
+  - EFVSC
+  - HTWHLSTC
+  - CHWVM
+  - HWVM
+  - SFM
+  - FDPSM
+  - SDM2X
+  - EDM2X
+  
 DOAS_SFVSC_EFVSC_HTWHLSTC_CHWVM_HWVM_SFM_FDPSM_ACO2C_SDM2X_EDM2X:
   guid: "6aa6246a-c6f8-4798-b27c-2170216c7cd0"
-  description: "Multi-zone chilled water and heating water DOAS with heat wheel, supply, exhaust fan speed control."
+  description: "Multi-zone chilled water and heating water DOAS with heat wheel, average CO2 zone control,supply, exhaust fan speed control."
   is_canonical: true
   implements:
   - DOAS
@@ -233,3 +267,21 @@ DOAS_DFVSC_CHWDDC_OAMC_OA:
   opt_uses:
     - smoke_alarm
     - filter_alarm
+
+DOAS_SFSS2X_SFVSC2X_EFSS2X_EFVSC2X_DX4SC_EDBPC_SSPC_SARC_VOADM_HTWHLSTC:
+  guid: "a3451f6d-f562-4715-85be-2d169b4dc3cb"
+  description: "DOAS with dual supply and exhaust fans, four stage compressor, building pressure control and energy recovery wheel"
+  is_canonical: true
+  implements:
+  - DOAS
+  - SFSS2X
+  - SFVSC2X
+  - EFSS2X
+  - EFVSC2X
+  - EDBPC
+  - DX4SC
+  - SSPC
+  - SARC
+  - VOADM
+  - HTWHLSTC
+

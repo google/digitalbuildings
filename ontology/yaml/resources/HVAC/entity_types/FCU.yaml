@@ -29,6 +29,16 @@ FCU_DFMSC_DSP_DXZTC:
   - DSP
   - DXZTC
 
+FCU_DFVSC2X_CHWZTC_HWZTC:
+  guid: "678cad15-19cf-499e-b906-0c37c2414fc5"
+  description: "FCU with 2 discharge fans, and heating and cooling valves."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFVSC2X
+  - CHWZTC
+  - HWZTC
+
 FCU_RTM_DFVSC2X_CHWZTC_HWZTC_DTM:
   guid: "d5c05501-528f-47ea-be30-54e9c53f41ca"
   description: "FCU in a trench, with heating and cooling valves, and two fans."
@@ -2145,9 +2155,19 @@ FCU_DFSS_ZTC_CHWISOVM:
   is_canonical: true
   implements:
   - FCU
-  - DFSS
+  - DFSS  
   - ZTC
   - CHWISOVM
+
+FCU_DFSS_DFRMM_CHWBZC:
+  guid: "4854810e-4bb1-4fcf-8138-faf8e4074612"
+  description: "Typical chilled water FCU with cooling-only (zone control) and Run mode monitoring."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - DFRMM
+  - CHWBZC
 
 FCU_SS_DFSS_ZTC:
   guid: "d2b3f37b-d69f-4631-b8d2-d71243821e1c"
@@ -2160,3 +2180,16 @@ FCU_SS_DFSS_ZTC:
   - ZTC
   uses:
   - chilled_water_valve_command
+
+FCU_DFSS_DFRMM_CHWBZC_DAIDC_RAIDC:
+  guid: "547e7af0-7158-44c4-beca-c1ad1309c3fe"
+  description: "Typical chilled water FCU with cooling-only zone control, run mode monitoring, and discharge and return damper command and status monitoring."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - DFRMM
+  - CHWBZC
+  - DAIDC
+  - RAIDC
+

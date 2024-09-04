@@ -976,7 +976,7 @@ AHU_SFSS_SFVSC_EFSS_EFVSC_HTWHLZTC_HWZTC_CHWZTC_SSPC_RSPC_CO2DSPMADC_MTM_ECONZ_F
 
 ### Multi-zone Units ###
 
-AHU_ECON_HWSC_ETM_SFM_FDPSM_SFVSC_EFVSC_SDM_EDM:
+AHU_ECON_HWSC_ETM_SFM_FDPSM2X_SFVSC_EFVSC_SDM_EDM:
   guid: "06e2e862-e9c2-46ec-91cd-d4b43cb44449"
   description: "AHU with supply and return fans, with supply heating from run around coil."
   is_canonical: true
@@ -986,7 +986,7 @@ AHU_ECON_HWSC_ETM_SFM_FDPSM_SFVSC_EFVSC_SDM_EDM:
   - HWSC
   - ETM
   - SFM
-  - FDPSM
+  - FDPSM2X
   - SFVSC
   - EFVSC
   - SDM
@@ -5427,6 +5427,22 @@ AHU_STDSPC_SSPC_EFFC_EFVSC_FDPM3X_HTWHLSTC_RHM_ETM:
   - outside_air_isolation_damper_status
   - exhaust_air_isolation_damper_command
   - exhaust_air_isolation_damper_status
+
+AHU_SFSS_SFVSC_EFSS_EFVSC_EDBPC_DX2SC_ECON_SSPC_SARC:
+  guid: "0df5aeb5-fe49-43f7-84f6-b0ddb1156c31"
+  description: "AHU with supply and exhaust fans, two stage compressor, building pressure control"
+  is_canonical: true
+  implements:
+  - AHU
+  - SFSS
+  - SFVSC
+  - EFSS
+  - EFVSC
+  - EDBPC
+  - DX2SC
+  - ECON
+  - SSPC
+  - SARC
 
 AHU_BSPC_DX4SC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC_RHHC_NONCANONICAL_1:
   guid: "4f641024-9959-4ab3-9869-97fdf93ed47b"
