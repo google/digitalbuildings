@@ -253,6 +253,21 @@ DOAS_SFVSC_EFVSC_HTWHLSTC_CHWVM_HWVM_SFM_FDPSM_ACO2C_SDM2X_EDM2X:
   - SDM2X
   - EDM2X
 
+DOAS_DFVSC_CHWDDC_OAMC_OA:
+  guid: "1a52f54a-6e0f-4565-83cf-90be0d8f4d3c"
+  description: "Single zone DOAS with damper and discharge fan speed control."
+  is_canonical: true
+  implements:
+  - DOAS
+  - DFVSC
+  - DSPM
+  - CHWDDC
+  - OAMC
+  - OA
+  opt_uses:
+    - smoke_alarm
+    - filter_alarm
+
 DOAS_SFSS2X_SFVSC2X_EFSS2X_EFVSC2X_DX4SC_EDBPC_SSPC_SARC_VOADM_HTWHLSTC:
   guid: "a3451f6d-f562-4715-85be-2d169b4dc3cb"
   description: "DOAS with dual supply and exhaust fans, four stage compressor, building pressure control and energy recovery wheel"
@@ -269,3 +284,4 @@ DOAS_SFSS2X_SFVSC2X_EFSS2X_EFVSC2X_DX4SC_EDBPC_SSPC_SARC_VOADM_HTWHLSTC:
   - SARC
   - VOADM
   - HTWHLSTC
+
