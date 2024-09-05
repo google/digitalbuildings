@@ -1786,6 +1786,33 @@ FCU_DFSS_DFVSC_ZTC_CHWZTC_HWZTC_NONCANONICAL_2:
   - run_mode
   - exercise_mode
 
+FCU_NONCANONICAL_1:
+  guid: "45cd4430-5899-47f3-9319-8f942c5c1ddb"
+  description: "Non-standard type."
+  implements:
+  - FCU
+  uses:
+  - chilled_water_valve_percentage_command
+  - discharge_fan_speed_percentage_command_1
+  - discharge_fan_speed_percentage_command_2
+  - discharge_fan_speed_percentage_command_3
+  - exercise_mode
+  - fabric_protection_alarm
+  - filter_alarm
+  - heating_water_valve_percentage_command
+  - master_alarm
+  - discharge_fan_run_command
+  - run_mode
+  - zone_air_temperature_sensor_1
+  - zone_air_temperature_sensor_2
+  - zone_air_temperature_sensor_3
+  - zone_air_temperature_setpoint_1
+  - zone_air_temperature_setpoint_2
+  - zone_air_temperature_setpoint_3
+  - zone_occupancy_status_1
+  - zone_occupancy_status_2
+  - zone_occupancy_status_3
+
 FCU_DFSS_CSP_ZHC_DXZC_NONCANONICAL_1:
   guid: "0bca6899-fa9a-40ff-a3bd-8828991b39c1"
   description: "Non-standard type."
