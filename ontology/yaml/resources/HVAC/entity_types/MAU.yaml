@@ -29,19 +29,17 @@ MAU_HWSC_SFC_SFVSC_SDM_FDPSM2X_SSPC:
   - FDPSM2X
   - SSPC
 
-MAU_HWSC_SFM_SFVSC_FDPM_FDPSM_SDM_SSPC:
+MAU_HWSC_SFC_SFVSC_FDPSM_SDM:
   guid: "5d055bc2-ea29-4d1e-beb9-e082f7bea4c7"
   description: "Make-up air unit with heating control"
   is_canonical: true
   implements:
   - MAU
   - HWSC
-  - SFM
+  - SFC
   - SFVSC
-  - FDPM
   - FDPSM
   - SDM
-  - SSPC
 
 MAU_SFSS_STM:
   guid: "9532ed28-f40c-472b-90aa-4a679911ef17"
