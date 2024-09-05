@@ -7925,6 +7925,7 @@ ZAQIM:
   opt_uses:
   - zone_air_voc_aqi_sensor
   - zone_air_smoke_aqi_sensor
+  - zone_air_nox_aqi_sensor
   implements:
   - MONITORING
 
@@ -7935,6 +7936,9 @@ PMDM:
   uses:
   - zone_air_pm2pt5_density_sensor
   - zone_air_pm10pt0_density_sensor
+  opt_uses:
+  - zone_air_pm1pt0_density_sensor
+  - zone_air_pm4pt0_density_sensor
   implements:
   - MONITORING
 
@@ -7959,6 +7963,7 @@ WSEBYPVPM:
   is_abstract: true
   opt_uses:
   - economizer_mode
+  - sync_economizer_mechanical_cooling_mode
   - economizer_bypass_valve_percentage_sensor
   - failed_economizer_bypass_valve_alarm
   uses:
@@ -8301,5 +8306,13 @@ DTPM:
   uses:
   - detergent_pump_run_status
   - detergent_pump_run_command
+  implements:
+  - MONITORING
+
+ZWVDM:
+  guid: "58921c49-ae96-48f9-a3fb-faa389d37322"
+  description: "Water vapor density monitoring, equivalent to absolute humidity monitoring"
+  uses:
+  - zone_air_water_vapor_density_sensor
   implements:
   - MONITORING
