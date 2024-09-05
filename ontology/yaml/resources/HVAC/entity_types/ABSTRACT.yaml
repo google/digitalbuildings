@@ -8309,15 +8309,7 @@ DTPM:
   implements:
   - MONITORING
 
-APM:
-  guid: "db162c18-9976-4e80-9aa4-6dd61d0c6970"
-  description: "Atmospheric pressure monitoring"
-  uses:
-  - air_pressure_sensor
-  implements:
-  - MONITORING
-
-WVDM:
+ZWVDM:
   guid: "58921c49-ae96-48f9-a3fb-faa389d37322"
   description: "Water vapor density monitoring, equivalent to absolute humidity monitoring"
   uses:
