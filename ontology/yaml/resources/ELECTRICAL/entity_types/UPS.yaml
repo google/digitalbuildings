@@ -20,7 +20,6 @@ UPS_SS:
   - UPS
   - SS
 
-
 UPS_IOBM:
   guid: "5588b9bb-a6be-4b7b-b41d-301bbd2986cb"
   description: "UPS with input and output electrical monitoring"
@@ -83,3 +82,17 @@ UPS_SS_UPSBM:
   - UPS
   - SS
   - UPSBM
+
+UPS_UPSTR:
+  guid: "19625580-f0d7-486e-a054-bb1eecd95b0a"
+  description: "Basic UPS with battery monitoring"
+  is_canonical: false
+  implements:
+  - UPS
+  uses:
+  - input_supply_mode
+  - battery_percentage_sensor
+  opt_uses:
+  - remaining_battery_time_sensor
+  - load_percentage_sensor
+  - output_apparent_power_sensor
