@@ -51,6 +51,11 @@ FCU:
   - failed_communication_alarm
   - master_alarm
   - filter_alarm
+  - lost_power_alarm
+  - smoke_alarm
+  - failed_alarm
+  - emergency_alarm
+  - fire_alarm
   implements:
   - EQUIPMENT
 
@@ -64,6 +69,7 @@ AHU:
   - outside_air_flowrate_requirement # Included at AHU because, regardless of avaiable data for OAD, it will have ventilation requirements.
   - failed_communication_alarm
   - smoke_alarm
+  - emergency_alarm
 
 HX:
   guid: "9aa0dd1a-851c-4d4e-90da-6804c4f8b9f9"
@@ -98,6 +104,8 @@ MAU:
   is_abstract: true
   opt_uses:
   - failed_communication_alarm
+  - failed_alarm
+  - emergency_alarm
   implements:
   - EQUIPMENT
 
@@ -156,6 +164,8 @@ CU:
   is_abstract: true
   opt_uses:
   - failed_communication_alarm
+  - emergency_alarm
+  - fire_alarm
   implements:
   - EQUIPMENT
 
@@ -425,6 +435,15 @@ CRREF:
 WSHP:
   guid: "55c3b629-1018-462d-9e23-fd56a38743ec"
   description: "Tag for water source heat pumps.WSHP serves as a heating or cooling system using water as a heat exchange medium. In contrast to chillers that centralize cooling production and distribute chilled water, WSHPs operate locally, offering isolated control by using water from a nearby source for both heating and cooling functions within a building."
+  is_abstract: true
+  implements:
+  - EQUIPMENT
+  opt_uses:
+  - failed_communication_alarm
+
+PCU:
+  guid: "f8fc8268-873f-4ae7-a98f-581052261c7d"
+  description: "Tag for pollution control unit. PCUs remove pollutants from exhuast air."
   is_abstract: true
   implements:
   - EQUIPMENT

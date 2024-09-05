@@ -49,7 +49,7 @@ class Subscriber(object):
     assert subscription_name
     self.subscription_name = subscription_name
 
-  def Listen(self, callback, gcp_credential_path: str):
+  def Listen(self, callback, gcp_credential_path: str = None):
     """Listens to a pubsub subscription.
 
     Args:
@@ -71,9 +71,7 @@ class Subscriber(object):
         ) from err
       except MutualTLSChannelError as err:
         raise MutualTLSChannelError(
-            'ABEL cannot authenticate against Google Sheets API with the'
-            ' provided client credential.'
-        ) from err
+            'Instance Validator cannot authenticate against GCP.') from err
     else:
       print(
           '[INFO]\tNo GCP client credential. Using application default'

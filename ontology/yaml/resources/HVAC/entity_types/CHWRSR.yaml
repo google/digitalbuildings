@@ -12,15 +12,16 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-CONTAINS:
-  description: "Source physically encapsulates at least part of Target."
-CONTROLS:
-  description: "Source determines or affects the internal state or behavior of Target."
-FEEDS:
-  description: "Source provides some media (ex: water or air) to Target."
-HAS_PART:
-  description: "Source has some component or part defined by Target."
-HAS_RANGE:
-  description: "Source has a coverage or detection range defined by Target."
-MEASURES:
-  description: "Source quantifies attributes of the Target."
+CHWRSR_UNDEFINED:
+  guid: "17800c9e-afac-4966-88af-d6aa2b1e1f30"
+  description: "Chilled water distribution riser without any data points."
+  implements:
+  - CHWRSR
+
+CHWRSR_WDPC:
+  guid: "fd7e9b2a-44f1-4199-be74-72f8cc5f92d8"
+  description: "Chilled water distribution riser with differential pressure control."
+  is_canonical: true
+  implements:
+  - CHWRSR
+  - WDPC

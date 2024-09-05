@@ -12,7 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-
 SS:
   guid: "bcb655b9-7adf-4c58-82c3-d8d8bf42720d"
   description: "Basic combination of run command and status (start/stop); indicates if the device is active or inactive."
@@ -176,10 +175,19 @@ SRC2:
   - source2_phase1_phase2_voltage_sensor
   - source2_phase2_phase3_voltage_sensor
   - source2_phase3_phase1_voltage_sensor
-  - source2_frequency_sensor 
+  - source2_frequency_sensor
   opt_uses:
   - source2_phase1_phase2_over_voltage_status
   - source2_phase2_phase3_over_voltage_status
   - source2_phase3_phase1_over_voltage_status
   - source2_over_voltage_status
   - source2_lost_power_alarm
+
+SPM:
+  guid: "ff13347e-e823-4adc-a2e4-c02cbae45a84"
+  description: "ATS switch position monitoring."
+  is_abstract: true
+  uses:
+  - switch_position_status
+  - line_power_status
+  - emergency_power_status

@@ -30,6 +30,18 @@ DC:
   uses:
   - brightness_percentage_command
 
+AWIC:
+  guid: "58b91ab7-a475-4800-bf15-f918fa95f829"
+  description: "Luminance control with separate aisle and window brightness command."
+  is_abstract: true
+  opt_uses:
+  - brightness_percentage_sensor
+  uses:
+  - illuminance_sensor
+  - illuminance_setpoint
+  - aisle_brightness_percentage_command
+  - window_brightness_percentage_command
+
 MS:
   guid: "d5244d01-e5e9-4592-8c76-bf3a7e196a28"
   description: "Motion sensing monitoring."
@@ -197,4 +209,12 @@ ENM:
   is_abstract: true
   uses:
   - energy_accumulator
-    
+
+CTC:
+  guid: "30ed8ab4-8df7-493f-a3fc-b4da7f28c8fe"
+  is_abstract: true
+  description: "Scene control for a device and zone."
+  opt_uses:
+  - lighting_color_temperature_sensor
+  uses:
+  - lighting_color_temperature_setpoint
