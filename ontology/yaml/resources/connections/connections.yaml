@@ -22,3 +22,5 @@ HAS_PART:
   description: "Source has some component or part defined by Target."
 HAS_RANGE:
   description: "Source has a coverage or detection range defined by Target."
+MEASURES:
+  description: "Source quantifies attributes of the Target."

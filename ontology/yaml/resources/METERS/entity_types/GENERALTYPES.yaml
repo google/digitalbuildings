@@ -54,3 +54,5 @@ HM:
   is_abstract: true
   implements:
   - MTR
+  opt_uses:
+  - failed_communication_alarm
