@@ -26,6 +26,7 @@ SENSOR:
   is_abstract: true
   opt_uses:
   - failed_alarm
+  - failed_communication_alarm
   implements:
   - EQUIPMENT
 
