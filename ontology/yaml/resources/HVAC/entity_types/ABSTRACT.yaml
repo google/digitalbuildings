@@ -3175,6 +3175,22 @@ HWSWC:
   implements:
   - CONTROL
 
+HWRWC:
+  guid: "1805f8ee-1425-4b51-9a3d-563be38c7c13"
+  description: "Heating water valve monitoring on return water side."
+  is_abstract: true
+  opt_uses:
+  - heating_thermal_power_capacity
+  - heating_water_valve_percentage_sensor
+  - supply_water_temperature_sensor
+  - high_return_water_temperature_alarm
+  - low_return_water_temperature_alarm
+  uses:
+  - heating_water_valve_percentage_command
+  - return_water_temperature_sensor
+  - return_water_temperature_setpoint
+  implements:
+  - CONTROL
 
 PHWSC:
   guid: "0f2f9a53-6aab-4c9c-801f-bb11b021e42a"
@@ -7909,6 +7925,7 @@ ZAQIM:
   opt_uses:
   - zone_air_voc_aqi_sensor
   - zone_air_smoke_aqi_sensor
+  - zone_air_nox_aqi_sensor
   implements:
   - MONITORING
 
@@ -7919,6 +7936,9 @@ PMDM:
   uses:
   - zone_air_pm2pt5_density_sensor
   - zone_air_pm10pt0_density_sensor
+  opt_uses:
+  - zone_air_pm1pt0_density_sensor
+  - zone_air_pm4pt0_density_sensor
   implements:
   - MONITORING
 
@@ -7943,6 +7963,7 @@ WSEBYPVPM:
   is_abstract: true
   opt_uses:
   - economizer_mode
+  - sync_economizer_mechanical_cooling_mode
   - economizer_bypass_valve_percentage_sensor
   - failed_economizer_bypass_valve_alarm
   uses:
@@ -8285,5 +8306,13 @@ DTPM:
   uses:
   - detergent_pump_run_status
   - detergent_pump_run_command
+  implements:
+  - MONITORING
+
+ZWVDM:
+  guid: "58921c49-ae96-48f9-a3fb-faa389d37322"
+  description: "Water vapor density monitoring, equivalent to absolute humidity monitoring"
+  uses:
+  - zone_air_water_vapor_density_sensor
   implements:
   - MONITORING
