@@ -235,7 +235,7 @@ DOAS_SFVSC_EFVSC_HTWHLSTC_CHWVM_HWVM_SFM_FDPSM_SDM2X_EDM2X:
   - FDPSM
   - SDM2X
   - EDM2X
-  
+
 DOAS_SFVSC_EFVSC_HTWHLSTC_CHWVM_HWVM_SFM_FDPSM_ACO2C_SDM2X_EDM2X:
   guid: "6aa6246a-c6f8-4798-b27c-2170216c7cd0"
   description: "Multi-zone chilled water and heating water DOAS with heat wheel, average CO2 zone control,supply, exhaust fan speed control."
