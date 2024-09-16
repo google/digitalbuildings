@@ -189,6 +189,9 @@ literals:
   - ON
   - OFF
   - AUTO
+- sync_economizer_mechanical_cooling_mode:
+  - ON
+  - OFF
 - evaporator_pressure_sensor:
     flexible_min: 0.0
     flexible_max: 2068427.367
@@ -3547,6 +3550,9 @@ literals:
     fixed_min: 0
     flexible_max: 1000
 - zone_air_voc_aqi_sensor:
+    fixed_min: 0
+    flexible_max: 500
+- zone_air_nox_aqi_sensor:
     fixed_min: 0
     flexible_max: 500
 - zone_air_smoke_aqi_sensor:

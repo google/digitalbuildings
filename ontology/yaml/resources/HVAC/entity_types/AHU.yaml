@@ -976,7 +976,7 @@ AHU_SFSS_SFVSC_EFSS_EFVSC_HTWHLZTC_HWZTC_CHWZTC_SSPC_RSPC_CO2DSPMADC_MTM_ECONZ_F
 
 ### Multi-zone Units ###
 
-AHU_ECON_HWSC_ETM_SFM_FDPSM_SFVSC_EFVSC_SDM_EDM:
+AHU_ECON_HWSC_ETM_SFM_FDPSM2X_SFVSC_EFVSC_SDM_EDM:
   guid: "06e2e862-e9c2-46ec-91cd-d4b43cb44449"
   description: "AHU with supply and return fans, with supply heating from run around coil."
   is_canonical: true
@@ -986,7 +986,7 @@ AHU_ECON_HWSC_ETM_SFM_FDPSM_SFVSC_EFVSC_SDM_EDM:
   - HWSC
   - ETM
   - SFM
-  - FDPSM
+  - FDPSM2X
   - SFVSC
   - EFVSC
   - SDM
