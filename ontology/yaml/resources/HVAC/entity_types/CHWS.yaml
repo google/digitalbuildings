@@ -373,6 +373,18 @@ CHWS_SWTC_WDPC_BYPVPM_WSEBYPVPM:
   - BYPVPM
   - WSEBYPVPM
 
+CHWS_SEWDPC_PRWFRM_SESWTC_SERWFRM_PWDT:
+  description: "Chilled water system with secondary loop supply water temperature and differential pressure control, primary and secondary flowrate monitoring."
+  is_canonical: true
+  implements:
+  - CHWS
+  - SEWDPC
+  - PRWFRM
+  - SESWTC
+  - SERWFRM
+  - PWDT
+  
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################

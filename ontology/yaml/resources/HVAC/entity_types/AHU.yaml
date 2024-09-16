@@ -5444,6 +5444,23 @@ AHU_SFSS_SFVSC_EFSS_EFVSC_EDBPC_DX2SC_ECON_SSPC_SARC:
   - SSPC
   - SARC
 
+AHU_ECON_RFSS_EDBPC_RFVSC_SFSS_SFVSC_CHWSC_HWSC_SDM_RDC_SSPC:
+  description: "AHU with supply and return fans, chill water and hor water, building pressure control"
+  is_canonical: true
+  implements:
+  - AHU
+  - ECON
+  - RFSS
+  - RFVSC
+  - EDBPC
+  - SFSS
+  - SFVSC
+  - CHWSC
+  - HWSC
+  - SDM
+  - RDC
+  - SSPC
+
 AHU_BSPC_DX4SC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC_RHHC_NONCANONICAL_1:
   guid: "4f641024-9959-4ab3-9869-97fdf93ed47b"
   description: "Non-Standard AHU with humidification and heating water coils on return duct."

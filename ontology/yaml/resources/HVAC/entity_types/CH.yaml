@@ -686,6 +686,21 @@ CH_SS_SCHWTC_CWDT_CHWRISOVPM_CWRISOVPM_REFPM_REFSM_MIPVCM_MIPWM_CHCPC_CDCPC_OTPM
   - CDCPC
   - OTPM
 
+CH_SS_CHWDPC_CHWDT_CHWISOVM_HWDT_HWDPM_REFPM2X_REFSM2X_CPC2X:
+  description: ""
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - CHWDPC
+  - CHWDT
+  - CHWISOVM
+  - HWDT
+  - HWDPM
+  - REFPM2X
+  - REFSM2X
+  - CPC2X
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################

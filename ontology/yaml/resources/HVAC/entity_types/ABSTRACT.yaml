@@ -1,6 +1,6 @@
 # Copyright 2020 Google LLC
 #
-# Licensed under the Apache License, Version 2.0 (the License);
+# Licensed under the SSpache License, Version 2.0 (the License);
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
 #
@@ -456,6 +456,7 @@ EDBPC:
   is_abstract: true
   opt_uses:
   - exhaust_air_damper_percentage_sensor
+  - failed_exhaust_air_damper_alarm
   - exhaust_air_differential_pressure_sensor
   - high_building_air_static_pressure_alarm
   - low_building_air_static_pressure_alarm
@@ -3579,6 +3580,7 @@ ECON:
   - outside_air_relative_humidity_sensor
   - outside_air_specificenthalpy_sensor
   - return_air_damper_percentage_command
+  - return_air_damper_percentage_sensor
   - supply_air_temperature_sensor
   - failed_mixed_air_temperature_alarm
   - high_mixed_air_temperature_alarm
@@ -5074,6 +5076,12 @@ CHWDPM:
   uses:
   - chilled_water_differential_pressure_sensor
 
+CHWDPC:
+  description: "Differential pressure control for chilled water."
+  is_abstract: true
+  uses:
+  - chilled_water_differential_pressure_sensor
+  - chilled_water_differential_pressure_setpoint
 
 CHDX4SC:
   guid: "52c7a4a2-d587-46d5-96c9-d1bdf60daa81"
@@ -5404,6 +5412,8 @@ SDM:
   guid: "40dc57c7-1efd-483d-a2c0-46077595b2b8"
   description: "Supply air damper monitoring."
   is_abstract: true
+  opt_uses:
+  - failed_supply_air_damper_alarm
   uses:
   - supply_air_damper_command
   - supply_air_damper_status
@@ -7429,6 +7439,8 @@ RDC:
   guid: "ca7914b6-f639-4d67-a6fc-22f5a4e613ff"
   description: "Return air damper percentage monitoring"
   is_abstract: true
+  opt_uses:
+  - failed_return_air_damper_alarm
   uses:
   - return_air_damper_percentage_command
   - return_air_damper_percentage_sensor
@@ -7972,6 +7984,13 @@ SEWFRM:
   implements:
   - MONITORING
 
+SERWFRM:
+  description: "Secondary return water flowrate monitoring"
+  uses:
+  - secondary_return_water_flowrate_sensor
+  implements:
+  - MONITORING
+
 MWFRM:
   guid: "c7683a09-8379-4951-aa1e-e5edc4e098cb"
   description: "Make-up water flowrate monitoring."
@@ -8067,6 +8086,14 @@ HWDPC:
   uses:
   - heating_water_differential_pressure_sensor
   - heating_water_differential_pressure_setpoint
+  implements:
+  - OPERATIONAL
+
+HWDPM:
+  description: "Heating water differential pressure monitoring."
+  is_abstract: true
+  uses:
+  - heating_water_differential_pressure_sensor
   implements:
   - OPERATIONAL
 
@@ -8275,3 +8302,30 @@ DTPM:
   - detergent_pump_run_command
   implements:
   - MONITORING
+
+CFVSC:
+  description: "Variable speed control for condensing fan."
+  is_abstract: true
+  uses:
+  - condensing_fan_run_command
+  - condensing_fan_run_status
+  - condensing_fan_speed_percentage_command
+
+RVINJM2X:
+  description: "Refrigerant vapor injection monitoring for two circuits."
+  is_abstract: true
+  uses:
+  - refrigerant_condenser_pressure_sensor_1
+  - refrigerant_condenser_pressure_sensor_2
+  - refrigerant_discharge_temperature_sensor_1
+  - refrigerant_discharge_temperature_sensor_2
+  - refrigerant_evaporator_pressure_sensor_1
+  - refrigerant_evaporator_pressure_sensor_2
+  - refrigerant_injection_pressure_sensor_1
+  - refrigerant_injection_pressure_sensor_2
+  - refrigerant_injection_suction_superheat_temperature_sensor_1
+  - refrigerant_injection_suction_superheat_temperature_sensor_2
+  - refrigerant_injection_suction_temperature_sensor_1
+  - refrigerant_injection_suction_temperature_sensor_2
+  - refrigerant_liquid_temperature_sensor_1
+  - refrigerant_liquid_temperature_sensor_2
