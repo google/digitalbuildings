@@ -5105,6 +5105,7 @@ CHWDPM:
   - chilled_water_differential_pressure_sensor
 
 CHWDPC:
+  guid: "ea883ebb-51f0-4ea3-9f6c-e3dae016e325"
   description: "Differential pressure control for chilled water."
   is_abstract: true
   uses:
@@ -8018,6 +8019,7 @@ SEWFRM:
   - MONITORING
 
 SERWFRM:
+  guid: "f2e172dd-e0f5-46e5-97ee-6510610b0794"
   description: "Secondary return water flowrate monitoring"
   uses:
   - secondary_return_water_flowrate_sensor
@@ -8123,6 +8125,7 @@ HWDPC:
   - OPERATIONAL
 
 HWDPM:
+  guid: "7931fcc6-6dee-4f8c-8da9-af8ad4a77561"
   description: "Heating water differential pressure monitoring."
   is_abstract: true
   uses:
@@ -8337,6 +8340,7 @@ DTPM:
   - MONITORING
 
 CFVSC:
+  guid: "b4aa442f-e7fa-4bc6-811a-fe2925e7255f"
   description: "Variable speed control for condensing fan."
   is_abstract: true
   uses:
@@ -8345,6 +8349,7 @@ CFVSC:
   - condensing_fan_speed_percentage_command
 
 RVINJM2X:
+  guid: "4bcc49eb-6a3c-450a-8357-5dd1f5a8ce4d"
   description: "Refrigerant vapor injection monitoring for two circuits."
   is_abstract: true
   uses:
