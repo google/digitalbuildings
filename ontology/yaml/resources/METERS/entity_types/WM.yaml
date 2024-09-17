@@ -38,6 +38,7 @@ WM_WF:
   - water_volume_accumulator
 
 WM_STORM:
+  guid: "ed623d59-c0a5-4839-92cf-fb593dbd697d"
   description: "Rainwater treatment system meter."
   implements:
   - WM
@@ -48,6 +49,7 @@ WM_STORM:
   - mixing_tank_level_sensor
 
 WM_WASTE:
+  guid: "d7e4e751-bc3c-4fa6-bf6c-7c1a37843204"
   description: "Wastewater treatment system meter."
   implements:
   - WM
