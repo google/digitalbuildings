@@ -373,15 +373,16 @@ CHWS_SWTC_WDPC_BYPVPM_WSEBYPVPM:
   - BYPVPM
   - WSEBYPVPM
 
-CHWS_SEWDPC_PRWFRM_SESWTC_SERWFRM_PWDT:
+CHWS_SEWDPC_SESWTC_SERWFRM_PRWFRM_PWDT:
+  guid: "3461657c-4b79-4207-9c9b-fcc15a17049d"
   description: "Chilled water system with secondary loop supply water temperature and differential pressure control, primary and secondary flowrate monitoring."
   is_canonical: true
   implements:
   - CHWS
   - SEWDPC
-  - PRWFRM
   - SESWTC
   - SERWFRM
+  - PRWFRM
   - PWDT
   
 

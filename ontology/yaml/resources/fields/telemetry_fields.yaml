@@ -777,9 +777,6 @@ literals:
 - secondary_return_water_flowrate_sensor:
     flexible_min: -0.000315451
     flexible_max: 0.315451
-- secondary_return_water_flowrate_sensor:
-    flexible_min: -0.000315451
-    flexible_max: 0.315451
 - shade_extent_percentage_command:
     fixed_min: 0.0
     fixed_max: 100.0
@@ -946,9 +943,6 @@ literals:
 - condensing_fan_run_status:
   - ON
   - OFF
-- condensing_fan_speed_percentage_command:
-    fixed_min: 0.0
-    fixed_max: 100.0
 - boost_fan_run_command:
   - ON
   - OFF
