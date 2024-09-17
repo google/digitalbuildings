@@ -1338,6 +1338,21 @@ literals:
 - makeup_water_volume_accumulator:
     flexible_min: 0
     flexible_max: 100000
+- rain_water_volume_accumulator:
+    flexible_min: 0
+    flexible_max: 100000
+- potable_water_volume_accumulator:
+    flexible_min: 0
+    flexible_max: 100000
+- mixing_tank_water_volume_accumulator:
+    flexible_min: 0
+    flexible_max: 100000
+- waste_water_volume_accumulator:
+    flexible_min: 0
+    flexible_max: 100000
+- recirculation_water_volume_accumulator:
+    flexible_min: 0
+    flexible_max: 100000
 - gas_temperature_sensor:
     flexible_min: 283.1481481
     flexible_max: 533.1481481
@@ -2974,6 +2989,9 @@ literals:
   - LOW
   - MEDIUM
   - HIGH
+- mixing_tank_level_sensor:
+    fixed_min: 0.0
+    flexible_max: 50.0
 - battery_voltage_sensor:
     flexible_min: 0.0
     flexible_max: 15.0

@@ -36,3 +36,23 @@ WM_WF:
   - supply_water_volume_accumulator
   - water_linearvelocity_sensor
   - water_volume_accumulator
+
+WM_STORM:
+  description: "Rainwater treatment system meter."
+  implements:
+  - WM
+  uses:
+  - water_volume_accumulator
+  - rain_water_volume_accumulator
+  - potable_water_volume_accumulator
+  - mixing_tank_level_sensor
+
+WM_WASTE:
+  description: "Wastewater treatment system meter."
+  implements:
+  - WM
+  uses:
+  - water_volume_accumulator
+  - mixing_tank_water_volume_accumulator
+  - waste_water_volume_accumulator
+  - recirculation_water_volume_accumulator
