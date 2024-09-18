@@ -688,7 +688,7 @@ CH_SS_SCHWTC_CWDT_CHWRISOVPM_CWRISOVPM_REFPM_REFSM_MIPVCM_MIPWM_CHCPC_CDCPC_OTPM
 
 CH_SS_CHWDPC_CHWDT_CHWISOVM_HWDT_HWDPM_REFPM2X_REFSM2X_CPC2X:
   guid: "aa1f0cf1-759d-4645-8cda-18e2b2639e4f"
-  description: "Temperature differential across heating water for heat recovery chiller, differential pressure control with chill and heat water, isolation valve monitoring for chill water, and refrigerant pressure and temperature monitoring."
+  description: "Temperature differential across heating water for heat recovery chiller, differential pressure control with chilled and heating water, isolation valve monitoring for chilling water, and refrigerant pressure and temperature monitoring."
   is_canonical: true
   implements:
   - CH

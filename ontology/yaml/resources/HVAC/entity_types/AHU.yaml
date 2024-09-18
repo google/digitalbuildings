@@ -5444,15 +5444,15 @@ AHU_SFSS_SFVSC_EFSS_EFVSC_EDBPC_DX2SC_ECON_SSPC_SARC:
   - SSPC
   - SARC
 
-AHU_ECON_RFSS_EDBPC_RFVSC_SFSS_SFVSC_CHWSC_HWSC_SDM_RDC_SSPC:
+AHU_ECON_EDBPC_RFSS_RFVSC_SFSS_SFVSC_CHWSC_HWSC_SDM_RDC_SSPC:
   guid: "68c643a4-5cf2-4ef4-beb1-7ffb9fced0c9"
-  description: "AHU with supply and return fans, chill water and hot water, building pressure control"
+  description: "AHU with supply and return fans, chilled water and hot water, building pressure control"
   is_canonical: true
   implements:
   - AHU
   - ECON
-  - RFSS
   - EDBPC
+  - RFSS
   - RFVSC
   - SFSS
   - SFVSC
