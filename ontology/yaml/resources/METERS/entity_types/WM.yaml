@@ -49,7 +49,7 @@ WM_STORM:
   - potable_water_volume_accumulator
   - mixing_tank_level_sensor
 
-WM_WASTE:
+WM_WASTE_NONCANONICAL_1:
   guid: "d7e4e751-bc3c-4fa6-bf6c-7c1a37843204"
   description: "Wastewater treatment system meter."
   implements:
@@ -57,6 +57,6 @@ WM_WASTE:
   is_canonical: false
   uses:
   - water_volume_accumulator
-  - mixing_tank_water_volume_accumulator
+  - mixing_water_tank_volume_accumulator
   - waste_water_volume_accumulator
   - recirculation_water_volume_accumulator

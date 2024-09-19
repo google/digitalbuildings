@@ -1344,7 +1344,7 @@ literals:
 - potable_water_volume_accumulator:
     flexible_min: 0
     flexible_max: 100000
-- mixing_tank_water_volume_accumulator:
+- mixing_water_tank_volume_accumulator:
     flexible_min: 0
     flexible_max: 100000
 - waste_water_volume_accumulator:
