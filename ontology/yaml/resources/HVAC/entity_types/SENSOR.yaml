@@ -322,6 +322,14 @@ SENSOR_ZOC:
   - /SENSOR
   - ZOC
 
+SENSOR_SWTM:
+  guid: "44ba8224-d1af-4231-aed5-4c330c8bd101"
+  description: "Supply water temperature sensor."
+  is_canonical: true
+  implements:
+  - /SENSOR
+  - SWTM
+
 SENSOR_SFM:
   guid: "cff50a85-cca7-4185-9925-2dbfb3d404ee"
   description: "Standalone duct supply air flowrate sensor."
