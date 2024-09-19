@@ -8316,3 +8316,12 @@ ZWVDM:
   - zone_air_water_vapor_density_sensor
   implements:
   - MONITORING
+
+WTM:
+  guid: "ca4109bc-cfb6-424f-9ff5-ad232c448dd4"
+  description: "Basic water temperature monitoring."
+  is_abstract: true
+  implements:
+  - MONITORING
+  uses:
+  - water_temperature_sensor
