@@ -42,6 +42,7 @@ WM_STORM:
   description: "Rainwater treatment system meter."
   implements:
   - WM
+  is_canonical: true
   uses:
   - water_volume_accumulator
   - rain_water_volume_accumulator
@@ -53,6 +54,7 @@ WM_WASTE:
   description: "Wastewater treatment system meter."
   implements:
   - WM
+  is_canonical: false
   uses:
   - water_volume_accumulator
   - mixing_tank_water_volume_accumulator
