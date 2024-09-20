@@ -364,6 +364,19 @@ HWS_PWDT_PRWFRM_SESWTC_SEWDPC_SEWFRM:
   - SEWDPC
   - SEWFRM
 
+HWS_SEWDPC_SESWTC_SERWFRM_PRWFRM_PWDT_BYPVPM:
+  guid: "cee39637-6b7b-404e-80a6-a5787ab4dff8"
+  description: "Heating water system with secondary loop supply water temperature and differential pressure control, primary and secondary flowrate monitoring."
+  is_canonical: true
+  implements:
+  - HWS
+  - SEWDPC
+  - SESWTC
+  - SERWFRM
+  - PRWFRM
+  - PWDT
+  - BYPVPM
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
