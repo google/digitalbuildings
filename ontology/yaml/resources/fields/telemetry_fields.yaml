@@ -3718,4 +3718,9 @@ literals:
 - water_temperature_sensor:
     flexible_min: 255.9259259
     flexible_max: 380.3703704
-
+-motor_rotationalvelocity_sensor:
+    fixed_mind: 0.0
+    flexible_max: 3000
+-motor_rotationalvelocity_setpoint:
+    fixed_mind: 0.0
+    flexible_max: 3000
