@@ -1422,6 +1422,9 @@ literals:
 - discharge_air_static_pressure_sensor:
     flexible_min: -124.540012
     flexible_max: 996.320096
+- discharge_air_static_pressure_setpoint:
+    flexible_min: -124.540012
+    flexible_max: 2490.80024
 - discharge_air_dynamic_pressure_sensor:
     flexible_min: -124.540012
     flexible_max: 996.320096
