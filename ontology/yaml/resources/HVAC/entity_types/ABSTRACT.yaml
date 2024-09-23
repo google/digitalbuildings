@@ -199,6 +199,7 @@ ZTC:
   - high_zone_air_temperature_alarm
   - low_zone_air_temperature_alarm
   - zone_occupancy_status
+  - zone_air_specificenthalpy_sensor
   uses:
   - zone_air_temperature_sensor
   - zone_air_temperature_setpoint
@@ -875,6 +876,7 @@ HTZTC:
   - discharge_air_temperature_sensor
   - heater_run_status
   - heating_percentage_command
+  - heating_percentage_sensor
   - heating_thermal_power_capacity
   - failed_discharge_air_temperature_alarm
   - failed_zone_air_temperature_alarm
@@ -1318,6 +1320,7 @@ SHWTC:
   - heating_percentage_command
   - heating_request_count
   - heating_run_command
+  - heating_run_status
   - failed_heating_alarm
   - high_heating_supply_water_temperature_alarm
   - low_heating_supply_water_temperature_alarm
@@ -1352,6 +1355,7 @@ WDPC:
   - pressurization_request_count
   - high_differential_pressure_alarm
   - low_differential_pressure_alarm
+  - suction_pressure_sensor
   uses:
   - differential_pressure_sensor
   - differential_pressure_setpoint
