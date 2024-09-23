@@ -36,3 +36,27 @@ WM_WF:
   - supply_water_volume_accumulator
   - water_linearvelocity_sensor
   - water_volume_accumulator
+
+WM_STORM:
+  guid: "ed623d59-c0a5-4839-92cf-fb593dbd697d"
+  description: "Rainwater treatment system meter."
+  implements:
+  - WM
+  is_canonical: true
+  uses:
+  - water_volume_accumulator
+  - rain_water_volume_accumulator
+  - potable_water_volume_accumulator
+  - mixing_tank_level_sensor
+
+WM_WASTE_NONCANONICAL_1:
+  guid: "d7e4e751-bc3c-4fa6-bf6c-7c1a37843204"
+  description: "Wastewater treatment system meter."
+  implements:
+  - WM
+  is_canonical: false
+  uses:
+  - water_volume_accumulator
+  - mixing_water_tank_volume_accumulator
+  - waste_water_volume_accumulator
+  - recirculation_water_volume_accumulator
