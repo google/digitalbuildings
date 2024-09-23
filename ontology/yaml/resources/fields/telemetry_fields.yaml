@@ -1338,6 +1338,9 @@ literals:
 - gas_flowrate_sensor:
     fixed_min: 0.0
     flexible_max: 0.003932896
+- gas_flowrate_counter:
+    fixed_min: 0.0
+    flexible_max: 10000000.0
 - gas_volume_accumulator:
     fixed_min: 0.0
     flexible_max: 0.003932896
