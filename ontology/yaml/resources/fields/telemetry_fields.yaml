@@ -774,6 +774,9 @@ literals:
 - secondary_supply_water_flowrate_sensor:
     flexible_min: -0.000315451
     flexible_max: 0.315451
+- secondary_return_water_flowrate_sensor:
+    flexible_min: -0.000315451
+    flexible_max: 0.315451
 - shade_extent_percentage_command:
     fixed_min: 0.0
     fixed_max: 100.0
@@ -934,6 +937,12 @@ literals:
 - condensing_fan_speed_percentage_command:
     fixed_min: 0.0
     fixed_max: 100.0
+- condensing_fan_run_command:
+  - ON
+  - OFF    
+- condensing_fan_run_status:
+  - ON
+  - OFF
 - boost_fan_run_command:
   - ON
   - OFF
@@ -1468,6 +1477,9 @@ literals:
     flexible_min: 0.0
     flexible_max: 2068427.367
 - refrigerant_condenser_pressure_sensor:
+    flexible_min: 0.0
+    flexible_max: 2068427.367
+- refrigerant_injection_pressure_sensor:
     flexible_min: 0.0
     flexible_max: 2068427.367
 - refrigerant_suction_temperature_sensor:
@@ -2671,6 +2683,12 @@ literals:
 - refrigerant_suction_superheat_temperature_sensor:
     flexible_min: 255.9259259
     flexible_max: 422.037037
+- refrigerant_injection_suction_superheat_temperature_sensor:
+    flexible_min: 255.9259259
+    flexible_max: 422.037037
+- refrigerant_injection_suction_temperature_sensor:
+    flexible_min: 255.9259259
+    flexible_max: 422.037037
 - return_air_specificenthalpy_sensor:
     flexible_min: 11630.0
     flexible_max: 93040.0
@@ -3528,6 +3546,9 @@ literals:
 - zone_air_voc_aqi_sensor:
     fixed_min: 0
     flexible_max: 500
+- zone_air_nox_aqi_sensor:
+    fixed_min: 0
+    flexible_max: 500
 - zone_air_smoke_aqi_sensor:
     fixed_min: 0
     flexible_max: 80
@@ -3679,3 +3700,6 @@ literals:
 - supply_fan_rotationalvelocity_sensor:
     flexible_min: 0.0
     flexible_max: 4000.0
+- water_temperature_sensor:
+    flexible_min: 255.9259259
+    flexible_max: 380.3703704
