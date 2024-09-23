@@ -2765,6 +2765,12 @@ literals:
 - heating_water_differential_pressure_setpoint:
     flexible_min: -34473.78945
     flexible_max: 344737.8945
+- heating_water_differential_temperature_sensor:
+    flexible_min: 254.8148148
+    flexible_max: 380.3703704
+- heating_water_differential_temperature_setpoint:
+    flexible_min: 254.8148148
+    flexible_max: 380.3703704
 - leaving_water_tank_temperature_sensor:
     flexible_min: 255.9259259
     flexible_max: 380.3703704
