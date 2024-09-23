@@ -541,6 +541,12 @@ VSC:
   implements:
   - OPERATIONAL
 
+MRVC:
+description: "Rotational velocity control for motors."
+is_abstract: true
+uses:
+- motor_rotationalvelocity_sensor
+- motor_rotationalvelocity_setpoint
 
 EFVSC:
   guid: "dab0bc02-db86-4b2d-be8d-36a4232ef7c0"
@@ -571,7 +577,6 @@ VSFC:
   uses:
   - speed_frequency_command
   - speed_frequency_sensor
-
 
 SFVSC:
   guid: "ac42c5d1-24d5-4433-b5e5-4ae8843e9ca8"
