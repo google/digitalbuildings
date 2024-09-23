@@ -5116,7 +5116,7 @@ CHWDTC:
   description: "Differential temperature control for chilled water."
   is_abstract: true
   implements:
-    - CONTROL
+  - CONTROL
   uses:
   - chilled_water_differential_temperature_sensor
   - chilled_water_differential_temperature_setpoint
