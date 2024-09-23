@@ -5112,6 +5112,13 @@ CHWDPC:
   - chilled_water_differential_pressure_sensor
   - chilled_water_differential_pressure_setpoint
 
+CHWDTC:
+description: "Differential temperature control for chilled water."
+  is_abstract: true
+  uses:
+  - chilled_water_differential_temperature_sensor
+  - chilled_water_differential_temperature_setpoint
+
 CHDX4SC:
   guid: "52c7a4a2-d587-46d5-96c9-d1bdf60daa81"
   description: "Chiller control."
