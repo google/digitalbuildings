@@ -8150,6 +8150,15 @@ HWDPM:
   implements:
   - OPERATIONAL
 
+HWDTC:
+  description: "Differential temperature control for heating water."
+  is_abstract: true
+  implements:
+  - CONTROL
+  uses:
+  - heating_water_differential_temperature_sensor
+  - heating_water_differential_temperature_setpoint
+
 HP6SWC:
   guid: "5d2c6d94-ad64-41ef-bce0-78a9b40532b1"
   description: "Six-compressor heat pump control on supply water side."
