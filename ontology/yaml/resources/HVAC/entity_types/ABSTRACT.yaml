@@ -756,6 +756,7 @@ SS:
   - failed_alarm
   - local_override_alarm
   - lost_power_alarm
+  - efficiency_percentage_sensor
 
 DSPC:
   guid: "3f288511-32ca-47ae-a4e0-391620026420"
