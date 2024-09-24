@@ -942,7 +942,7 @@ literals:
     fixed_max: 100.0
 - condensing_fan_run_command:
   - ON
-  - OFF    
+  - OFF
 - condensing_fan_run_status:
   - ON
   - OFF
