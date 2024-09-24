@@ -876,6 +876,9 @@ literals:
 - heating_percentage_command:
     fixed_min: 0.0
     fixed_max: 100.0
+- heating_percentage_sensor:
+    fixed_min: 0.0
+    fixed_max: 100.0
 - thermal_power_sensor:
     flexible_min: 0.0
     flexible_max: 3517000.0
@@ -2686,6 +2689,9 @@ literals:
 - supply_air_specificenthalpy_sensor:
     flexible_min: 11630.0
     flexible_max: 93040.0
+- zone_air_specificenthalpy_sensor:
+    flexible_min: 11630.0
+    flexible_max: 93040.0
 - refrigerant_discharge_pressure_sensor:
     flexible_min: -34500.0
     flexible_max: 2757902.9173
@@ -3736,4 +3742,9 @@ literals:
 - water_temperature_sensor:
     flexible_min: 255.9259259
     flexible_max: 380.3703704
-
+- heating_run_status:
+    - ON
+    - OFF
+- suction_pressure_sensor:
+    flexible_min: -34473.78945
+    flexible_max: 344737.8945
