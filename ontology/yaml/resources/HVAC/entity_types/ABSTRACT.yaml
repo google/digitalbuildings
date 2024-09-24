@@ -7782,6 +7782,7 @@ RCO2M:
   - MONITORING
 
 ECO2M:
+  guid: "1cc242b5-427b-416a-b9be-4bdc706415db"
   description: "Return air co2 monitoring"
   is_abstract: true
   uses:
