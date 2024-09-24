@@ -7838,6 +7838,15 @@ RCO2M:
   implements:
   - MONITORING
 
+ECO2M:
+  guid: "1cc242b5-427b-416a-b9be-4bdc706415db"
+  description: "Exhaust air co2 monitoring"
+  is_abstract: true
+  uses:
+  - exhaust_air_co2_concentration_sensor
+  implements:
+  - MONITORING
+
 VMADC:
   guid: "796e1551-7648-40cf-962d-9bbb28c8056b"
   description: "Variable mixed air damper monitoring (for recirculated air in AHU)."
