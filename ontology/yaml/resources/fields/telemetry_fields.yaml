@@ -3781,3 +3781,6 @@ literals:
 - suction_pressure_sensor:
     flexible_min: -34473.78945
     flexible_max: 344737.8945
+- efficiency_percentage_sensor:
+    fixed_min: 0.0
+    fixed_max: 100.0
