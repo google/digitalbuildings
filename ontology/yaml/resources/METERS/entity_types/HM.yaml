@@ -68,6 +68,7 @@ HM_HW:
   - heating_thermal_energy_accumulator
 
 HM_STEAM:
+  guid: "430d69cc-4c54-41b6-87f5-bcda7c81dec3"
   description: "Steam load heat meter."
   implements:
   - HM
