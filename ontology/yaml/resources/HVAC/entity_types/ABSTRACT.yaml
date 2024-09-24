@@ -8387,7 +8387,7 @@ RVINJM2X:
   - refrigerant_injection_suction_temperature_sensor_2
   - refrigerant_liquid_temperature_sensor_1
   - refrigerant_liquid_temperature_sensor_2
-  
+
 ZWVDM:
   guid: "58921c49-ae96-48f9-a3fb-faa389d37322"
   description: "Water vapor density monitoring, equivalent to absolute humidity monitoring"
