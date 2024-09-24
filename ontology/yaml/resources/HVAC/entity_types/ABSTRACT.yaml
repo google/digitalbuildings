@@ -620,6 +620,7 @@ DFVSC:
   - failed_discharge_fan_alarm
   - discharge_air_flowrate_sensor
   - failed_inverter_alarm
+  - high_discharge_air_flowrate_alarm
   uses:
   - discharge_fan_run_command
   - discharge_fan_run_status
