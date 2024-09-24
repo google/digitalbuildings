@@ -4146,6 +4146,7 @@ CHWBZC:
   - failed_zone_air_temperature_alarm
   - high_zone_air_temperature_alarm
   - low_zone_air_temperature_alarm
+  - chilled_water_valve_status
 
 CHWBYPVPM:
   guid: "68cd5104-bf2e-48f3-8b88-c12192509393"
