@@ -5116,6 +5116,16 @@ CHWDPC:
   - chilled_water_differential_pressure_sensor
   - chilled_water_differential_pressure_setpoint
 
+CHWDTC:
+  guid: "0ebb5fa0-c205-4238-8f73-296667e7169c"
+  description: "Differential temperature control for chilled water."
+  is_abstract: true
+  implements:
+  - CONTROL
+  uses:
+  - chilled_water_differential_temperature_sensor
+  - chilled_water_differential_temperature_setpoint
+
 CHDX4SC:
   guid: "52c7a4a2-d587-46d5-96c9-d1bdf60daa81"
   description: "Chiller control."
@@ -5808,6 +5818,15 @@ CWDPM:
   uses:
   - condensing_water_differential_pressure_sensor
 
+CWDTC:
+  guid: "a9c672e6-0a06-4b6b-a67f-557288ba38cc"
+  description: "Differential temperature control for condenser water."
+  is_abstract: true
+  implements:
+  - CONTROL
+  uses:
+  - condensing_water_differential_temperature_sensor
+  - condensing_water_differential_temperature_setpoint
 
 DICM:
   guid: "0c42ee3c-eb6c-4624-a4ab-4f8f0f483778"
@@ -8136,6 +8155,16 @@ HWDPM:
   - heating_water_differential_pressure_sensor
   implements:
   - OPERATIONAL
+
+HWDTC:
+  guid: "2a057240-61ba-46d5-b5d6-66d847218d43"
+  description: "Differential temperature control for heating water."
+  is_abstract: true
+  implements:
+  - CONTROL
+  uses:
+  - heating_water_differential_temperature_sensor
+  - heating_water_differential_temperature_setpoint
 
 HP6SWC:
   guid: "5d2c6d94-ad64-41ef-bce0-78a9b40532b1"
