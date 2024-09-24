@@ -69,6 +69,12 @@ literals:
 - chilled_water_bypass_valve_percentage_sensor:
     fixed_min: 0.0
     fixed_max: 100.0
+- chilled_water_bypass_valve_command:
+  - OPEN
+  - CLOSED
+- chilled_water_bypass_valve_status:
+  - OPEN
+  - CLOSED
 - chilled_water_differential_pressure_sensor:
     flexible_min: -34473.78945
     flexible_max: 344737.8945
@@ -867,6 +873,9 @@ literals:
 - chilled_water_valve_command:
   - OPEN
   - CLOSED
+- chilled_water_valve_status:
+  - OPEN
+  - CLOSED
 - heating_percentage_command:
     fixed_min: 0.0
     fixed_max: 100.0
@@ -1298,6 +1307,12 @@ literals:
 - condensing_water_valve_percentage_command:
     fixed_min: 0.0
     fixed_max: 100.0
+- condensing_water_bypass_valve_command:
+  - OPEN
+  - CLOSED
+- condensing_water_bypass_valve_status:
+  - OPEN
+  - CLOSED
 
 - heater_run_status:
   - ON
