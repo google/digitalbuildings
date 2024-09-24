@@ -4160,6 +4160,17 @@ CHWBYPVPM:
   implements:
   - MONITORING
 
+CHWBYPVBRC:
+  guid: "38064bbf-cd53-430d-af16-bf77d7e565a1"
+  description: "Chilled water bypass valve binary (open/closed) control."
+  is_abstract: true
+  implements: 
+  - OPERATIONAL
+  opt_uses:
+  - chilled_water_bypass_valve_status
+  uses:
+  - chilled_water_bypass_valve_command
+
 MXVPM:
   guid: "4bb25777-d661-4fd3-9f8f-a84b349ada87"
   description: "Mixing valve percent monitoring."
@@ -8094,6 +8105,17 @@ CWBYPVPM:
   - condensing_water_bypass_valve_percentage_sensor
   implements:
   - MONITORING
+
+CWBYPVBRC:
+  guid: "2cf8239f-7da4-4df7-8125-8f70e5962def"
+  description: "Condensing water bypass valve binary (open/closed) control."
+  is_abstract: true
+  implements: 
+  - OPERATIONAL
+  opt_uses:
+  - condensing_water_bypass_valve_status
+  uses:
+  - condensing_water_bypass_valve_command
 
 HWBYPVPM:
   guid: "38b01712-d458-4e5c-bf41-71107ebe8ecd"
