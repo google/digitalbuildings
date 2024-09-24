@@ -3965,7 +3965,7 @@ CHWISOVM:
   opt_uses:
   - run_command
   uses:
-  - chilled_water_isolation_valve_percentage_command
+  - chilled_water_isolation_valve_command
   - chilled_water_isolation_valve_status
   implements:
   - MONITORING
