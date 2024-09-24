@@ -62,7 +62,7 @@ WM_WASTE_NONCANONICAL_1:
   - recirculation_water_volume_accumulator
 
 WM_PULSE:
-guid: "0d030780-2212-41e0-8b7e-664db9f4caf2"
+  guid: "0d030780-2212-41e0-8b7e-664db9f4caf2"
   description: "Water meter that operates by counting pulses, interpreted into flow and accumulated volume."
   implements:
   - WM
