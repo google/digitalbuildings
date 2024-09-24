@@ -1307,7 +1307,8 @@ SCHWTC:
   - chilled_supply_water_temperature_sensor
   - chilled_supply_water_temperature_setpoint
 
-  SCHWFRC:
+SCHWFRC:
+  guid: "511e9480-619d-4d46-a353-8f0ab45e57b1"  
   description: "Supply chilled water flowrate control."
   is_abstract: true
   implements:
