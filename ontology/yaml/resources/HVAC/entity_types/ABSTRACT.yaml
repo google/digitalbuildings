@@ -199,6 +199,7 @@ ZTC:
   - high_zone_air_temperature_alarm
   - low_zone_air_temperature_alarm
   - zone_occupancy_status
+  - zone_air_specificenthalpy_sensor
   uses:
   - zone_air_temperature_sensor
   - zone_air_temperature_setpoint
@@ -757,6 +758,27 @@ SS:
   - local_override_alarm
   - lost_power_alarm
 
+DSPC:
+  guid: "3f288511-32ca-47ae-a4e0-391620026420"
+  description: "Discharge static pressure control via discharge fan speed"
+  is_abstract: true
+  opt_uses:
+  - pressurization_request_count
+  - discharge_air_damper_percentage_command
+  - discharge_air_flowrate_sensor
+  - discharge_fan_run_command
+  - discharge_fan_run_status
+  - discharge_fan_speed_frequency_sensor
+  - discharge_fan_speed_percentage_command
+  - failed_discharge_fan_alarm
+  - failed_discharge_air_static_pressure_alarm
+  - high_discharge_air_static_pressure_alarm
+  - low_discharge_air_static_pressure_alarm
+  uses:
+  - discharge_air_static_pressure_sensor
+  - discharge_air_static_pressure_setpoint
+  implements:
+  - OPERATIONAL
 
 SSPC:
   guid: "7e0a30ec-8a1d-486c-b9f2-96ae60e695cd"
@@ -876,6 +898,7 @@ HTZTC:
   - discharge_air_temperature_sensor
   - heater_run_status
   - heating_percentage_command
+  - heating_percentage_sensor
   - heating_thermal_power_capacity
   - failed_discharge_air_temperature_alarm
   - failed_zone_air_temperature_alarm
@@ -1308,6 +1331,18 @@ SCHWTC:
   - chilled_supply_water_temperature_sensor
   - chilled_supply_water_temperature_setpoint
 
+SCHWFRC:
+  guid: "511e9480-619d-4d46-a353-8f0ab45e57b1"  
+  description: "Supply chilled water flowrate control."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  opt_uses:
+  - chilled_return_water_flowrate_sensor
+  uses:
+  - chilled_supply_water_flowrate_sensor
+  - chilled_supply_water_flowrate_setpoint
+
 SHWTC:
   guid: "e2231929-0104-4109-aa8a-ce276a82f8a6"
   description: "Supply heating water temperature control."
@@ -1319,6 +1354,7 @@ SHWTC:
   - heating_percentage_command
   - heating_request_count
   - heating_run_command
+  - heating_run_status
   - failed_heating_alarm
   - high_heating_supply_water_temperature_alarm
   - low_heating_supply_water_temperature_alarm
@@ -1353,6 +1389,7 @@ WDPC:
   - pressurization_request_count
   - high_differential_pressure_alarm
   - low_differential_pressure_alarm
+  - suction_pressure_sensor
   uses:
   - differential_pressure_sensor
   - differential_pressure_setpoint
@@ -5113,6 +5150,16 @@ CHWDPC:
   - chilled_water_differential_pressure_sensor
   - chilled_water_differential_pressure_setpoint
 
+CHWDTC:
+  guid: "0ebb5fa0-c205-4238-8f73-296667e7169c"
+  description: "Differential temperature control for chilled water."
+  is_abstract: true
+  implements:
+  - CONTROL
+  uses:
+  - chilled_water_differential_temperature_sensor
+  - chilled_water_differential_temperature_setpoint
+
 CHDX4SC:
   guid: "52c7a4a2-d587-46d5-96c9-d1bdf60daa81"
   description: "Chiller control."
@@ -5805,6 +5852,15 @@ CWDPM:
   uses:
   - condensing_water_differential_pressure_sensor
 
+CWDTC:
+  guid: "a9c672e6-0a06-4b6b-a67f-557288ba38cc"
+  description: "Differential temperature control for condenser water."
+  is_abstract: true
+  implements:
+  - CONTROL
+  uses:
+  - condensing_water_differential_temperature_sensor
+  - condensing_water_differential_temperature_setpoint
 
 DICM:
   guid: "0c42ee3c-eb6c-4624-a4ab-4f8f0f483778"
@@ -8133,6 +8189,16 @@ HWDPM:
   - heating_water_differential_pressure_sensor
   implements:
   - OPERATIONAL
+
+HWDTC:
+  guid: "2a057240-61ba-46d5-b5d6-66d847218d43"
+  description: "Differential temperature control for heating water."
+  is_abstract: true
+  implements:
+  - CONTROL
+  uses:
+  - heating_water_differential_temperature_sensor
+  - heating_water_differential_temperature_setpoint
 
 HP6SWC:
   guid: "5d2c6d94-ad64-41ef-bce0-78a9b40532b1"
