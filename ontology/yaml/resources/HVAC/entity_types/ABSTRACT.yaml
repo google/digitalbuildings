@@ -542,11 +542,12 @@ VSC:
   - OPERATIONAL
 
 MRVC:
-description: "Rotational velocity control for motors."
-is_abstract: true
-uses:
-- motor_rotationalvelocity_sensor
-- motor_rotationalvelocity_setpoint
+  guid: "5d4ec788-3c4a-47ca-a02b-c9e47ea3a782"
+  description: "Rotational velocity control for motors."
+  is_abstract: true
+  uses:
+  - motor_rotationalvelocity_sensor
+  - motor_rotationalvelocity_setpoint
 
 EFVSC:
   guid: "dab0bc02-db86-4b2d-be8d-36a4232ef7c0"
