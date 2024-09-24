@@ -1997,6 +1997,9 @@ literals:
 - return_air_co2_concentration_setpoint:
     flexible_min: 0.00005
     flexible_max: 0.005
+- exhaust_air_co2_concentration_sensor:
+    flexible_min: 0.00005
+    flexible_max: 0.005    
 - supervisor_control_mode:
   - ENABLED
   - DISABLED
