@@ -2265,6 +2265,12 @@ literals:
 - heating_supply_water_temperature_setpoint:
     flexible_min: 255.9259259
     flexible_max: 380.3703704
+- heating_supply_water_flowrate_sensor:
+    flexible_min: -0.000315451
+    flexible_max: 0.315451
+- heating_supply_water_flowrate_setpoint:
+    flexible_min: -0.000315451
+    flexible_max: 0.315451
 - discharge_air_flowrate_setpoint:
     flexible_min: 0.0
     flexible_max: 94.38948864
