@@ -4197,7 +4197,7 @@ CHWBYPVPM:
   implements:
   - MONITORING
 
-CHWBYPVBRC:
+CHWBYPVBC:
   guid: "38064bbf-cd53-430d-af16-bf77d7e565a1"
   description: "Chilled water bypass valve binary (open/closed) control."
   is_abstract: true
@@ -8170,7 +8170,7 @@ CWBYPVPM:
   implements:
   - MONITORING
 
-CWBYPVBRC:
+CWBYPVBC:
   guid: "2cf8239f-7da4-4df7-8125-8f70e5962def"
   description: "Condensing water bypass valve binary (open/closed) control."
   is_abstract: true
