@@ -1341,7 +1341,7 @@ SCHWTC:
   - chilled_supply_water_temperature_setpoint
 
 SCHWFRC:
-  guid: "511e9480-619d-4d46-a353-8f0ab45e57b1"  
+  guid: "511e9480-619d-4d46-a353-8f0ab45e57b1"
   description: "Supply chilled water flowrate control."
   is_abstract: true
   implements:
@@ -1372,7 +1372,7 @@ SHWTC:
   - heating_supply_water_temperature_setpoint
 
 SHWFRC:
-  guid: "0f41e9b6-5558-4102-952c-21055a275a03"  
+  guid: "0f41e9b6-5558-4102-952c-21055a275a03"
   description: "Supply heating water flowrate control."
   is_abstract: true
   implements:
@@ -4217,7 +4217,7 @@ CHWBYPVBC:
   guid: "38064bbf-cd53-430d-af16-bf77d7e565a1"
   description: "Chilled water bypass valve binary (open/closed) control."
   is_abstract: true
-  implements: 
+  implements:
   - OPERATIONAL
   uses:
   - chilled_water_bypass_valve_command
@@ -8190,7 +8190,7 @@ CWBYPVBC:
   guid: "2cf8239f-7da4-4df7-8125-8f70e5962def"
   description: "Condensing water bypass valve binary (open/closed) control."
   is_abstract: true
-  implements: 
+  implements:
   - OPERATIONAL
   uses:
   - condensing_water_bypass_valve_command
