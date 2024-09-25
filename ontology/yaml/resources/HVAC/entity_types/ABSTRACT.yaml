@@ -626,6 +626,7 @@ DFVSC:
   - failed_discharge_fan_alarm
   - discharge_air_flowrate_sensor
   - failed_inverter_alarm
+  - high_discharge_air_flowrate_alarm
   uses:
   - discharge_fan_run_command
   - discharge_fan_run_status
@@ -762,6 +763,7 @@ SS:
   - failed_alarm
   - local_override_alarm
   - lost_power_alarm
+  - efficiency_percentage_sensor
 
 DSPC:
   guid: "3f288511-32ca-47ae-a4e0-391620026420"
@@ -7840,6 +7842,15 @@ RCO2M:
   is_abstract: true
   uses:
   - return_air_co2_concentration_sensor
+  implements:
+  - MONITORING
+
+ECO2M:
+  guid: "1cc242b5-427b-416a-b9be-4bdc706415db"
+  description: "Exhaust air co2 monitoring"
+  is_abstract: true
+  uses:
+  - exhaust_air_co2_concentration_sensor
   implements:
   - MONITORING
 

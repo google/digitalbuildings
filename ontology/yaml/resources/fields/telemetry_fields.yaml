@@ -1353,6 +1353,9 @@ literals:
 - gas_flowrate_sensor:
     fixed_min: 0.0
     flexible_max: 0.003932896
+- gas_flowrate_counter:
+    fixed_min: 0.0
+    flexible_max: 10000000.0
 - gas_volume_accumulator:
     fixed_min: 0.0
     flexible_max: 0.003932896
@@ -2015,6 +2018,9 @@ literals:
 - return_air_co2_concentration_setpoint:
     flexible_min: 0.00005
     flexible_max: 0.005
+- exhaust_air_co2_concentration_sensor:
+    flexible_min: 0.00005
+    flexible_max: 0.005    
 - supervisor_control_mode:
   - ENABLED
   - DISABLED
@@ -2521,6 +2527,9 @@ literals:
 - water_flowrate_sensor:
     flexible_min: -0.000315451
     flexible_max: 0.315451
+- water_flowrate_counter:
+    fixed_min: 0.0
+    flexible_max: 10000000.0
 - air_pressure_sensor:
     flexible_min: 500.0
     flexible_max: 200000.0
@@ -3636,6 +3645,9 @@ literals:
 - low_supply_air_flowrate_alarm:
   - ACTIVE
   - INACTIVE
+- high_discharge_air_flowrate_alarm:
+  - ACTIVE
+  - INACTIVE
 - failed_heater_alarm:
   - ACTIVE
   - INACTIVE
@@ -3775,3 +3787,6 @@ literals:
 - suction_pressure_sensor:
     flexible_min: -34473.78945
     flexible_max: 344737.8945
+- efficiency_percentage_sensor:
+    fixed_min: 0.0
+    fixed_max: 100.0
