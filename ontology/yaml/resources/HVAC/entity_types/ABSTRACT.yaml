@@ -4166,10 +4166,9 @@ CHWBYPVBRC:
   is_abstract: true
   implements: 
   - OPERATIONAL
-  opt_uses:
-  - chilled_water_bypass_valve_status
   uses:
   - chilled_water_bypass_valve_command
+  - chilled_water_bypass_valve_status
 
 MXVPM:
   guid: "4bb25777-d661-4fd3-9f8f-a84b349ada87"
@@ -8131,10 +8130,9 @@ CWBYPVBRC:
   is_abstract: true
   implements: 
   - OPERATIONAL
-  opt_uses:
-  - condensing_water_bypass_valve_status
   uses:
   - condensing_water_bypass_valve_command
+  - condensing_water_bypass_valve_status
 
 HWBYPVPM:
   guid: "38b01712-d458-4e5c-bf41-71107ebe8ecd"
