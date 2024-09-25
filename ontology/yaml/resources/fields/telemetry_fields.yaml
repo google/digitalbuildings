@@ -3809,8 +3809,8 @@ literals:
     fixed_min: 0.0
     flexible_max: 3000
 - heating_run_status:
-    - ON
-    - OFF
+  - ON
+  - OFF
 - suction_pressure_sensor:
     flexible_min: -34473.78945
     flexible_max: 344737.8945
