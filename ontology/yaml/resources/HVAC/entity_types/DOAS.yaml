@@ -230,6 +230,3 @@ DOAS_DFVSC_CHWDDC_OAMC_OA:
   - CHWDDC
   - OAMC
   - OA
-  opt_uses:
-    - smoke_alarm
-    - filter_alarm

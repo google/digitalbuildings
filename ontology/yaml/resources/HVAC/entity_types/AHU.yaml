@@ -5440,25 +5440,23 @@ AHU_BSPC_DX4SC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC_RHHC_NONCANONICAL_1:
   - min_zone_air_relative_humidity_sensor
   - min_zone_air_relative_humidity_setpoint
 
-AHU_DFVSC_DSPM_ECOND_DTM_OA_RDC_RHM_RCO2M_CHWVM:
+AHU_DFSS_DFVSC_ECOND_CHWDC_DTM_OA_RDC_RHM_RCO2M:
   guid: "8ef1a26a-fe8f-468a-ba96-ffd0f987c043"
   description: "AHU with discharge air/fan, chilled water valve operation, humidity monitoring with dual dampers monitoring and control ."
   is_canonical: true
   implements:
   - AHU
+  - DFSS
   - DFVSC
-  - DSPM
   - ECOND
+  - CHWDC
   - DTM
   - OA
   - RDC
   - RTM
   - RCO2M
-  - CHWVM
-  opt_uses:
-    - filter_alarm
 
-AHU_DFVSC_ECOND_HWDC_CHWPVM_RDC_RCO2M_RTM_UV:
+AHU_DFVSC_ECOND_HWDC_CHWDC_RDC_RCO2M_RTM_UV:
   guid: "005172cf-d29a-4c10-94d2-2a5fb6fad51f"
   description: "AHU with discharge air/fan, UV, chilled water valve and return air temperature monitoring with dual dampers monitoring."
   is_canonical: true
@@ -5467,30 +5465,26 @@ AHU_DFVSC_ECOND_HWDC_CHWPVM_RDC_RCO2M_RTM_UV:
   - DFVSC
   - ECOND
   - HWDC
-  - CHWPVM
+  - CHWDC
   - RDC
   - RCO2M
   - RTM
   - UV
-  opt_uses:
-    - filter_alarm
 
-AHU_DFVSC_ECOND_HWDC_CHWPVM_RTM_UV:
+AHU_DFVSC_ECOND_HWDC_CHWDC_RTM_UV:
   guid: "f7579d91-707a-4e48-af46-9a86d8d31b94"
-  description: "AHU with discharge air/fan, chilled water valve and return air temperature monitoring."
+  description: "AHU with discharge air/fan, heater, chilled water valve and return air temperature monitoring."
   is_canonical: true
   implements:
   - AHU
   - DFVSC
   - ECOND
   - HWDC
-  - CHWPVM
+  - CHWDC
   - RTM
   - UV
-  opt_uses:
-    - filter_alarm
 
-AHU_DFSS_DFVSC_ECOND_CHWDC_ZTC_CO2M_UV:
+AHU_DFSS_DFVSC_ECOND_CHWDC_ZA_CO2M_UV:
   guid: "2389a986-5591-422c-8a13-f31c262ecee7"
   description: "AHU with discharge air/fan, chilled water valve and zone air temperature monitoring."
   is_canonical: true
@@ -5499,14 +5493,12 @@ AHU_DFSS_DFVSC_ECOND_CHWDC_ZTC_CO2M_UV:
   - DFSS
   - DFVSC
   - ECOND
-  - CHWPVM
+  - CHWDC
   - ZA
   - CO2M
   - UV
-  opt_uses:
-    - filter_alarm
 
-AHU_DFSS_DFVSC_ECOND_HWDC_CHWPVM_ZA_UV_CO2M6X_PDSCV5X:
+AHU_DFSS_DFVSC_ECOND_HWDC_CHWDC_ZA_UV_CO2M6X_PDSCV5X:
   guid: "627f4d5b-932c-4e4e-8ee3-61bff7aa0b8f"
   description: "AHU with discharge air/fan, UV, chilled water valve and 6x co2 concentration monitoring with 5x dampers monitoring."
   is_canonical: true
@@ -5516,10 +5508,8 @@ AHU_DFSS_DFVSC_ECOND_HWDC_CHWPVM_ZA_UV_CO2M6X_PDSCV5X:
   - DFVSC
   - ECOND
   - HWDC
-  - CHWPVM
+  - CHWDC
   - ZA
   - UV
   - CO2M6X
   - PDSCV5X
-  opt_uses:
-    - filter_alarm

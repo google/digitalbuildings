@@ -2149,14 +2149,13 @@ FCU_DFSS_ZTC_CHWISOVM:
   - ZTC
   - CHWISOVM
 
-FCU_SS_DFSS_ZTC:
+FCU_DFVSC_ZTC:
   guid: "d2b3f37b-d69f-4631-b8d2-d71243821e1c"
   description: "FCU with discharge fan and zone temperature control"
-  is_canonical: true
+  is_canonical: false
   implements:
   - FCU
-  - SS
-  - DFSS
+  - DFVSC
   - ZTC
   uses:
   - chilled_water_valve_command
