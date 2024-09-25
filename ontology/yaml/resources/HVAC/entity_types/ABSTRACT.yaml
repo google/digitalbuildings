@@ -555,6 +555,7 @@ EFVSC:
   - exhaust_fan_speed_mode
   - exhaust_fan_speed_percentage_sensor
   - failed_exhaust_fan_alarm
+  - exhaust_fan_voltage_sensor
   uses:
   - exhaust_fan_run_command
   - exhaust_fan_run_status
@@ -620,6 +621,7 @@ DFVSC:
   - failed_discharge_fan_alarm
   - discharge_air_flowrate_sensor
   - failed_inverter_alarm
+  - high_discharge_air_flowrate_alarm
   uses:
   - discharge_fan_run_command
   - discharge_fan_run_status
@@ -756,7 +758,30 @@ SS:
   - failed_alarm
   - local_override_alarm
   - lost_power_alarm
+  - communication_status
+  - efficiency_percentage_sensor
 
+DSPC:
+  guid: "3f288511-32ca-47ae-a4e0-391620026420"
+  description: "Discharge static pressure control via discharge fan speed"
+  is_abstract: true
+  opt_uses:
+  - pressurization_request_count
+  - discharge_air_damper_percentage_command
+  - discharge_air_flowrate_sensor
+  - discharge_fan_run_command
+  - discharge_fan_run_status
+  - discharge_fan_speed_frequency_sensor
+  - discharge_fan_speed_percentage_command
+  - failed_discharge_fan_alarm
+  - failed_discharge_air_static_pressure_alarm
+  - high_discharge_air_static_pressure_alarm
+  - low_discharge_air_static_pressure_alarm
+  uses:
+  - discharge_air_static_pressure_sensor
+  - discharge_air_static_pressure_setpoint
+  implements:
+  - OPERATIONAL
 
 SSPC:
   guid: "7e0a30ec-8a1d-486c-b9f2-96ae60e695cd"
@@ -1308,6 +1333,18 @@ SCHWTC:
   uses:
   - chilled_supply_water_temperature_sensor
   - chilled_supply_water_temperature_setpoint
+
+SCHWFRC:
+  guid: "511e9480-619d-4d46-a353-8f0ab45e57b1"  
+  description: "Supply chilled water flowrate control."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  opt_uses:
+  - chilled_return_water_flowrate_sensor
+  uses:
+  - chilled_supply_water_flowrate_sensor
+  - chilled_supply_water_flowrate_setpoint
 
 SHWTC:
   guid: "e2231929-0104-4109-aa8a-ce276a82f8a6"
@@ -7812,6 +7849,15 @@ RCO2M:
   is_abstract: true
   uses:
   - return_air_co2_concentration_sensor
+  implements:
+  - MONITORING
+
+ECO2M:
+  guid: "1cc242b5-427b-416a-b9be-4bdc706415db"
+  description: "Exhaust air co2 monitoring"
+  is_abstract: true
+  uses:
+  - exhaust_air_co2_concentration_sensor
   implements:
   - MONITORING
 

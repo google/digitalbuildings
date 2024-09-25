@@ -48,7 +48,13 @@ literals:
 - chilled_return_water_temperature_sensor:
     flexible_min: 255.9259259
     flexible_max: 308.1481481
+- chilled_return_water_flowrate_sensor:
+    flexible_min: -0.000315451
+    flexible_max: 0.315451
 - chilled_supply_water_flowrate_sensor:
+    flexible_min: -0.000315451
+    flexible_max: 0.315451
+- chilled_supply_water_flowrate_setpoint:
     flexible_min: -0.000315451
     flexible_max: 0.315451
 - common_supply_water_flowrate_sensor:
@@ -222,6 +228,9 @@ literals:
 - exhaust_fan_power_sensor:
     flexible_min: 0.0
     flexible_max: 100000.0
+- exhaust_fan_voltage_sensor:
+    flexible_min: 0.0
+    flexible_max: 500.0
 - exhaust_fan_run_command:
   - ON
   - OFF
@@ -1362,6 +1371,9 @@ literals:
 - gas_flowrate_sensor:
     fixed_min: 0.0
     flexible_max: 0.003932896
+- gas_flowrate_counter:
+    fixed_min: 0.0
+    flexible_max: 10000000.0
 - gas_volume_accumulator:
     fixed_min: 0.0
     flexible_max: 0.003932896
@@ -1446,6 +1458,9 @@ literals:
 - discharge_air_static_pressure_sensor:
     flexible_min: -124.540012
     flexible_max: 996.320096
+- discharge_air_static_pressure_setpoint:
+    flexible_min: -124.540012
+    flexible_max: 2490.80024
 - discharge_air_dynamic_pressure_sensor:
     flexible_min: -124.540012
     flexible_max: 996.320096
@@ -2021,6 +2036,9 @@ literals:
 - return_air_co2_concentration_setpoint:
     flexible_min: 0.00005
     flexible_max: 0.005
+- exhaust_air_co2_concentration_sensor:
+    flexible_min: 0.00005
+    flexible_max: 0.005    
 - supervisor_control_mode:
   - ENABLED
   - DISABLED
@@ -2527,6 +2545,9 @@ literals:
 - water_flowrate_sensor:
     flexible_min: -0.000315451
     flexible_max: 0.315451
+- water_flowrate_counter:
+    fixed_min: 0.0
+    flexible_max: 10000000.0
 - air_pressure_sensor:
     flexible_min: 500.0
     flexible_max: 200000.0
@@ -2756,6 +2777,18 @@ literals:
 - steam_valve_percentage_command:
     fixed_min: 0.0
     fixed_max: 100.0
+- supply_steam_flowrate_sensor:
+    flexible_min: -0.000315451
+    flexible_max: 0.315451
+- steam_massflow_sensor:
+    flexible_min: 0.0
+    flexible_max: 5000
+- supply_steam_temperature_sensor:
+    flexible_min: 255.9259259
+    flexible_max: 533.1481481
+- steam_volume_accumulator:
+    flexible_min: 0.0
+    flexible_max: 318000
 - outside_condensing_loop_return_water_isolation_valve_status:
   - OPEN
   - CLOSED
@@ -3516,6 +3549,9 @@ literals:
 - low_zone_air_relative_humidity_alarm:
   - ACTIVE
   - INACTIVE
+- communication_status:
+  - ON
+  - OFF
 - failed_communication_alarm:
   - ACTIVE
   - INACTIVE
@@ -3628,6 +3664,9 @@ literals:
   - ACTIVE
   - INACTIVE
 - low_supply_air_flowrate_alarm:
+  - ACTIVE
+  - INACTIVE
+- high_discharge_air_flowrate_alarm:
   - ACTIVE
   - INACTIVE
 - failed_heater_alarm:
@@ -3763,3 +3802,6 @@ literals:
 - suction_pressure_sensor:
     flexible_min: -34473.78945
     flexible_max: 344737.8945
+- efficiency_percentage_sensor:
+    fixed_min: 0.0
+    fixed_max: 100.0
