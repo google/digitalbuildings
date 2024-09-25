@@ -1371,6 +1371,16 @@ SHWTC:
   - heating_supply_water_temperature_sensor
   - heating_supply_water_temperature_setpoint
 
+SHWFRC:
+  guid: "0f41e9b6-5558-4102-952c-21055a275a03"  
+  description: "Supply heating water flowrate control."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  uses:
+  - heating_supply_water_flowrate_sensor
+  - heating_supply_water_flowrate_setpoint
+
 RCHWTC:
   guid: "6babdc1e-edae-49b3-98e4-ca0b675b7f0f"
   description: "Return chilled water temperature control."
