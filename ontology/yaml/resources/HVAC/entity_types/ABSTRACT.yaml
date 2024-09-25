@@ -555,6 +555,7 @@ EFVSC:
   - exhaust_fan_speed_mode
   - exhaust_fan_speed_percentage_sensor
   - failed_exhaust_fan_alarm
+  - exhaust_fan_voltage_sensor
   uses:
   - exhaust_fan_run_command
   - exhaust_fan_run_status
@@ -757,6 +758,7 @@ SS:
   - failed_alarm
   - local_override_alarm
   - lost_power_alarm
+  - communication_status
   - efficiency_percentage_sensor
 
 DSPC:
