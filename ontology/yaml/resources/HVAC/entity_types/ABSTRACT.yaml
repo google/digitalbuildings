@@ -3259,6 +3259,7 @@ PHWSC:
   - leaving_air_preheating_coil_temperature_sensor
   - high_supply_air_temperature_alarm
   - low_supply_air_temperature_alarm
+  - preheating_run_command
   uses:
   - preheating_water_valve_percentage_command
   - supply_air_temperature_sensor
