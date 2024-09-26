@@ -3817,6 +3817,9 @@ literals:
 - efficiency_percentage_sensor:
     fixed_min: 0.0
     fixed_max: 100.0
+- zone_air_differential_pressure_sensor:
+    flexible_min: -249.080024
+    flexible_max: 2490.80024
 - preheating_run_command:
   - ON
   - OFF
