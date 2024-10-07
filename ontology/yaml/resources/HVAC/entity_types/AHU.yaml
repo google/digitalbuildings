@@ -537,6 +537,7 @@ AHU_DFSS_DSP_ECONZ_HP2ZC_HT2ZC:
   - HT2ZC
 
 AHU_DFSS_DSP_HP2ZC_HT2ZC:
+  guid: "183f2dda-425f-4aeb-bc28-44743c202440"
   description: "Single zone AHU with discharge fan binary control, dual setpoint control, zone controlled two stage heat pump and two stage electric heater, and internally controlled economizing."
   is_canonical: true
   implements:
@@ -1061,13 +1062,24 @@ AHU_BYPSSPC_DX2SC_ECON_HT2SC_SFSS:
 
 AHU_BYPSSPC_DXSC_ECON_HTSC_SFSS:
   guid: "0067dcd1-b00a-4715-8b2c-b35565a36176"
-  description: "Multi-zone AHU with bypass static control."
+  description: "Multi-zone AHU with bypass static control, supply temp controlled cooling and electric heating, and economizing."
   is_canonical: true
   implements:
   - AHU
   - BYPSSPC
   - DXSC
   - ECON
+  - HTSC
+  - SFSS
+
+AHU_BYPSSPC_DXSC_HTSC_SFSS:
+  guid: "af2632a8-ae33-4ec6-8ebb-f2ab49cbfc5a"
+  description: "Multi-zone AHU with bypass static control, supply temp controlled cooling and electric heating, and an internally controlled economizer."
+  is_canonical: true
+  implements:
+  - AHU
+  - BYPSSPC
+  - DXSC
   - HTSC
   - SFSS
 
