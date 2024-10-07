@@ -526,7 +526,7 @@ AHU_CO2C2X_DFSS_DSP_DXZC_ECONZ_HTZC:
 
 AHU_DFSS_DSP_ECONZ_HP2ZC_HT2ZC:
   guid: "8e478bcb-79c6-4750-babc-ebde0ee72307"
-  description: "Single zone AHU"
+  description: "Single zone AHU with discharge fan binary control, dual setpoint control, and zone controlled economizing, two stage heat pump, and two stage electric heater. "
   is_canonical: true
   implements:
   - AHU
@@ -536,7 +536,16 @@ AHU_DFSS_DSP_ECONZ_HP2ZC_HT2ZC:
   - HP2ZC
   - HT2ZC
 
-
+AHU_DFSS_DSP_HP2ZC_HT2ZC:
+  description: "Single zone AHU with discharge fan binary control, dual setpoint control, zone controlled two stage heat pump and two stage electric heater, and internally controlled economizing."
+  is_canonical: true
+  implements:
+  - AHU
+  - DFSS
+  - DSP
+  - HP2ZC
+  - HT2ZC
+  
 AHU_DFSS_DSP_DX2ZC_ECONZ_EFSS_HTZC:
   guid: "d0827748-2f6b-42ea-84d3-cca5d25ff267"
   description: "Single zone AHU."
