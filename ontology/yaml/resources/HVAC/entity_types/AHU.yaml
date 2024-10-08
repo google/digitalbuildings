@@ -526,7 +526,7 @@ AHU_CO2C2X_DFSS_DSP_DXZC_ECONZ_HTZC:
 
 AHU_DFSS_DSP_ECONZ_HP2ZC_HT2ZC:
   guid: "8e478bcb-79c6-4750-babc-ebde0ee72307"
-  description: "Single zone AHU with discharge fan binary control, dual setpoint control, and zone controlled economizing, two stage heat pump, and two stage electric heater. "
+  description: "Single zone AHU"
   is_canonical: true
   implements:
   - AHU
@@ -536,17 +536,7 @@ AHU_DFSS_DSP_ECONZ_HP2ZC_HT2ZC:
   - HP2ZC
   - HT2ZC
 
-AHU_DFSS_DSP_HP2ZC_HT2ZC:
-  guid: "183f2dda-425f-4aeb-bc28-44743c202440"
-  description: "Single zone AHU with discharge fan binary control, dual setpoint control, zone controlled two stage heat pump and two stage electric heater, and internally controlled economizing."
-  is_canonical: true
-  implements:
-  - AHU
-  - DFSS
-  - DSP
-  - HP2ZC
-  - HT2ZC
-  
+
 AHU_DFSS_DSP_DX2ZC_ECONZ_EFSS_HTZC:
   guid: "d0827748-2f6b-42ea-84d3-cca5d25ff267"
   description: "Single zone AHU."
@@ -1062,24 +1052,13 @@ AHU_BYPSSPC_DX2SC_ECON_HT2SC_SFSS:
 
 AHU_BYPSSPC_DXSC_ECON_HTSC_SFSS:
   guid: "0067dcd1-b00a-4715-8b2c-b35565a36176"
-  description: "Multi-zone AHU with bypass static control, supply temp controlled cooling and electric heating, and economizing."
+  description: "Multi-zone AHU with bypass static control."
   is_canonical: true
   implements:
   - AHU
   - BYPSSPC
   - DXSC
   - ECON
-  - HTSC
-  - SFSS
-
-AHU_BYPSSPC_DXSC_HTSC_SFSS:
-  guid: "af2632a8-ae33-4ec6-8ebb-f2ab49cbfc5a"
-  description: "Multi-zone AHU with bypass static control, supply temp controlled cooling and electric heating, and an internally controlled economizer."
-  is_canonical: true
-  implements:
-  - AHU
-  - BYPSSPC
-  - DXSC
   - HTSC
   - SFSS
 
@@ -1536,7 +1515,7 @@ AHU_DX2SC_ECON_EFSS_HT2SC_SFSS_SFVSC_SSPC:
 
 AHU_DXSC_ECON_EFSS_HTSC_SFSS_SFVSC_SSPC:
   guid: "06d0e12e-6678-4cc4-968d-bed801a36e3c"
-  description: "Multi-zone AHU with electric heating and variable speed supply fan."
+  description: "Multi-zone AHU."
   is_canonical: true
   implements:
   - AHU
@@ -1546,19 +1525,6 @@ AHU_DXSC_ECON_EFSS_HTSC_SFSS_SFVSC_SSPC:
   - HTSC
   - SFSS
   - SFVSC
-  - SSPC
-
-AHU_DXSC_ECON_EFSS_HTSC_SFSS_SSPC:
-  guid: "1bdf4896-6006-48f4-8faf-392d688ad4dc"
-  description: "Multi-zone AHU with electric heating and single speed supply fan."
-  is_canonical: true
-  implements:
-  - AHU
-  - DXSC
-  - ECON
-  - EFSS
-  - HTSC
-  - SFSS
   - SSPC
 
 AHU_BYPSSPC_DXSC_ECON_EFSS_HTSC_SFSS_SFVSC:
