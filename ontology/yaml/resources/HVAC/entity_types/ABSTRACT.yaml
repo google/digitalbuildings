@@ -1291,6 +1291,7 @@ SWTC:
   - supply_water_temperature_setpoint
 
 SWCHVVM:
+  guid: "c2b7fef9-dd97-4a80-aa70-cdd1ca4bd269"
   description: "Supply changeover water valve monitoring on supply side."
   is_abstract: true
   opt_uses:
@@ -1320,6 +1321,7 @@ RWTC:
 
 
 RWCHVVM:
+  guid: "d17af339-3fbe-447e-9355-9c08a716de40"
   description: "Return changeover water valve monitoring on return side."
   is_abstract: true
   opt_uses:
@@ -1332,6 +1334,7 @@ RWCHVVM:
   - MONITORING
 
 PWRFM:
+  guid: "71556a89-b498-433a-9ecf-5a6d56b2d6f6"
   description: "Primary return water flowrate monitoring"
   is_abstract: true
   uses:
@@ -1340,6 +1343,7 @@ PWRFM:
   - MONITORING
 
 CONWSC:
+  guid: "c88d3223-2a56-4a58-84c1-fb19c930af8b"
   description: "Conditioning water valve control on supply air side."
   is_abstract: true
   opt_uses:
@@ -1352,6 +1356,7 @@ CONWSC:
   - CONTROL
 
 CONDPC:
+  guid: "116f1d90-4677-4c74-afc0-fb087a269dec"
   description: "Conditioning water differential pressure control."
   is_abstract: true
   opt_uses:
@@ -7070,6 +7075,7 @@ IDPC:
   - failed_isolation_damper_alarm
 
 DIDPC:
+  guid: "45f04010-0a4c-4f08-9a77-e02dc94402ff"
   description: "Discharge air isolation damper percentage control."
   is_abstract: true
   uses:
