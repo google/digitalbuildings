@@ -557,7 +557,8 @@ EFVSC:
   is_abstract: true
   opt_uses:
   - exhaust_fan_current_sensor
-  - exhaust_fan_power_sensor
+  - exhaust_fan_power_sensor 
+  - exhaust_fan_torque_sensor 
   - exhaust_fan_run_mode
   - exhaust_fan_speed_frequency_sensor
   - exhaust_fan_speed_mode
@@ -1289,6 +1290,18 @@ SWTC:
   - supply_water_temperature_sensor
   - supply_water_temperature_setpoint
 
+SWCHVVM:
+  description: "Supply changeover water valve monitoring on supply side."
+  is_abstract: true
+  opt_uses:
+  - failed_supply_water_changeover_valve_alarm
+  - supply_water_changeover_valve_percentage_sensor
+  uses:
+  - supply_water_changeover_valve_command
+  - supply_water_changeover_valve_status
+  implements:
+  - MONITORING  
+
 
 RWTC:
   guid: "e6ef58f6-fbda-421d-ac06-d573b093aecd"
@@ -1304,6 +1317,51 @@ RWTC:
   uses:
   - return_water_temperature_sensor
   - return_water_temperature_setpoint
+
+
+RWCHVVM:
+  description: "Return changeover water valve monitoring on return side."
+  is_abstract: true
+  opt_uses:
+  - failed_return_water_changeover_valve_alarm
+  - return_water_changeover_valve_percentage_sensor
+  uses:
+  - return_water_changeover_valve_command
+  - return_water_changeover_valve_status
+  implements:
+  - MONITORING
+
+PWRFM:
+  description: "Primary return water flowrate monitoring"
+  is_abstract: true
+  uses:
+  - primary_return_water_flowrate_sensor
+  implements:
+  - MONITORING
+
+CONWSC:
+  description: "Conditioning water valve control on supply air side."
+  is_abstract: true
+  opt_uses:
+  - failed_supply_air_temperature_alarm
+  uses:
+  - supply_air_temperature_sensor
+  - supply_air_temperature_setpoint
+  - conditioning_water_valve_percentage_command
+  implements:
+  - CONTROL
+
+CONDPC:
+  description: "Conditioning water differential pressure control."
+  is_abstract: true
+  opt_uses:
+  - high_conditioning_water_differential_pressure_alarm
+  - low_conditioning_water_differential_pressure_alarm
+  uses:
+  - conditioning_water_differential_pressure_sensor
+  - conditioning_water_differential_pressure_setpoint
+  implements:
+  - OPERATIONAL
 
 
 PSWTC:
@@ -2456,6 +2514,8 @@ DX2ZC:
   - discharge_air_specificenthalpy_sensor
   - return_air_specificenthalpy_sensor
   - discharge_air_relative_humidity_sensor
+  - high_discharge_air_temperature_alarm
+  - low_discharge_air_temperature_alarm
   uses:
   - compressor_run_command_1
   - compressor_run_command_2
@@ -4988,6 +5048,7 @@ CHWRWISOVM:
   is_abstract: true
   opt_uses:
   - failed_chilled_return_water_isolation_valve_alarm
+  - chilled_return_water_isolation_valve_percentage_sensor
   uses:
   - chilled_return_water_isolation_valve_command
   - chilled_return_water_isolation_valve_status
@@ -5014,6 +5075,7 @@ CHWSWISOVM:
   is_abstract: true
   opt_uses:
   - failed_chilled_supply_water_isolation_valve_alarm
+  - chilled_supply_water_isolation_valve_percentage_sensor
   uses:
   - chilled_supply_water_isolation_valve_command
   - chilled_supply_water_isolation_valve_status
@@ -6927,6 +6989,7 @@ HWRWISOVM:
   is_abstract: true
   opt_uses:
   - failed_heating_return_water_isolation_valve_alarm
+  - heating_return_water_isolation_valve_percentage_sensor
   uses:
   - heating_return_water_isolation_valve_command
   - heating_return_water_isolation_valve_status
@@ -6938,6 +7001,8 @@ HWSWISOVM:
   guid: "1f0a45f0-b5fd-47b3-a870-bd11dccb7239"
   description: "Heating supply side isolation valve monitoring."
   is_abstract: true
+  opt_uses:
+  - heating_supply_water_isolation_valve_percentage_sensor
   uses:
   - heating_supply_water_isolation_valve_command
   - heating_supply_water_isolation_valve_status
@@ -7003,6 +7068,17 @@ IDPC:
   - MONITORING
   opt_uses:
   - failed_isolation_damper_alarm
+
+DIDPC:
+  description: "Discharge air isolation damper percentage control."
+  is_abstract: true
+  uses:
+  - discharge_air_isolation_damper_percentage_command
+  - discharge_air_isolation_damper_percentage_sensor
+  implements:
+  - MONITORING
+  opt_uses:
+  - failed_discharge_air_isolation_damper_alarm
 
 RAIDC:
   guid: "07b8b6ca-5fb7-471d-a50e-2ad266eb4a31"

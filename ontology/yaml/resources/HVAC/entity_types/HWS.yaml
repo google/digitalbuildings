@@ -377,6 +377,21 @@ HWS_SEWDPC_SESWTC_SERWFRM_PRWFRM_PWDT_BYPVPM:
   - PWDT
   - BYPVPM
 
+HWS_CONDPC_RWCHVVM_SWCHVVM_PWDT_SESWTC_PWRFM_SEWDPC_RWISOVPM_SWISOVPM:
+  description: "The heating water system with changeover valves for heating and cooling, with primary supply temperature and flowrate monitoring, boiler supply and return isolation valves, and differential pressure monitoring."
+  is_canonical: true
+  implements:
+  - HWS
+  - CONDPC
+  - RWCHVVM
+  - SWCHVVM
+  - PWDT
+  - SESWTC
+  - PWRFM
+  - SEWDPC
+  - RWISOVPM
+  - SWISOVPM
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################

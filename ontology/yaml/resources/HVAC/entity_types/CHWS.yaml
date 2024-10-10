@@ -449,3 +449,15 @@ CHWS_SWTC_WDPC_BYPVPM_WFRM_NONCANONICAL_1:
   uses:
   - production_differential_pressure_sensor
   - supply_water_flowrate_sensor # Need to rename to flowrate_sensor
+
+CHWS_CONDPC_RWCHVVM_SWCHVVM_PWDT_SESWTC_PWRFM:
+  description: "Chilled water system with changover valves for heating and cooling and primary supply temeprature and flowrate monitoring, and differential pressure monitoring."
+  is_canonical: true
+  implements:
+  - CHWS
+  - CONDPC
+  - RWCHVVM
+  - SWCHVVM
+  - PWDT
+  - SESWTC
+  - PWRFM

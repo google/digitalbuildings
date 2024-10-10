@@ -305,6 +305,17 @@ FCU_DF2XSS_RTC_DXRC:
   - RTC
   - DXRC
 
+FCU_DFSS_DSP_HTZC_DXZC_DFVSC:
+  description: "DX fan coil with reheat (zone temp control), and discharge fan control."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - DSP
+  - HTZC
+  - DXZC
+  - DFVSC
+
 FCU_DFSS_DSP_HT2ZC_HP2ZC:
   guid: "3e30856e-873c-4aca-b3f9-714c4cb227dd"
   description: "Heat pump fan coil with reheat (zone temp control)."
