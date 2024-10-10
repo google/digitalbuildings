@@ -51,6 +51,9 @@ literals:
 - chilled_supply_water_flowrate_sensor:
     flexible_min: -0.000315451
     flexible_max: 0.315451
+- primary_return_water_flowrate_sensor:
+    flexible_min: -0.000315451
+    flexible_max: 0.315451
 - common_supply_water_flowrate_sensor:
     flexible_min: -0.000315451
     flexible_max: 0.315451
@@ -85,6 +88,12 @@ literals:
   - OPEN
   - CLOSED
 - chilled_water_valve_percentage_command:
+    fixed_min: 0.0
+    fixed_max: 100.0
+- conditioning_water_valve_percentage_command:
+    fixed_min: 0.0
+    fixed_max: 100.0
+- conditioning_water_valve_percentage_sensor:
     fixed_min: 0.0
     fixed_max: 100.0
 - circulation_pump_run_status:
@@ -131,6 +140,9 @@ literals:
 - current_sensor:
     fixed_min: 0.0
     flexible_max: 200.0
+- exhaust_fan_torque_sensor:
+    fixed_min: 0.0
+    flexible_max: 678.0
 - torque_sensor:
     fixed_min: 0.0
     flexible_max: 678.0
@@ -807,6 +819,18 @@ literals:
 - supply_water_valve_command:
   - OPEN
   - CLOSED
+- supply_water_changeover_valve_command:
+  - OPEN
+  - CLOSED
+- supply_water_changeover_valve_status:
+  - OPEN
+  - CLOSED
+- supply_water_changeover_valve_percentage_sensor:
+    fixed_min: 0.0
+    fixed_max: 100.0
+- failed_supply_water_changeover_valve_alarm:
+  - ACTIVE
+  - INACTIVE
 - supply_water_isolation_valve_percentage_command:
     fixed_min: 0.0
     fixed_max: 100.0
@@ -849,6 +873,9 @@ literals:
 - compressor_voltage_sensor:
     flexible_min: 0.0
     flexible_max: 500.0
+- exhaust_fan_voltage_sensor:
+    flexible_min: 0.0
+    flexible_max: 500.0    
 - compressor_lost_power_alarm:
   - ACTIVE
   - INACTIVE
@@ -1326,6 +1353,18 @@ literals:
 - return_water_valve_percentage_command:
     fixed_min: 0.0
     fixed_max: 100.0
+- return_water_changeover_valve_command:
+  - OPEN
+  - CLOSED
+- return_water_changeover_valve_status:
+  - OPEN
+  - CLOSED
+- return_water_changeover_valve_percentage_sensor:
+    fixed_min: 0.0
+    fixed_max: 100.0
+- failed_return_water_changeover_valve_alarm:
+  - ACTIVE
+  - INACTIVE
 - gas_flowrate_sensor:
     fixed_min: 0.0
     flexible_max: 0.003932896
@@ -2232,6 +2271,12 @@ literals:
 - emergency_battery_status:
   - ON
   - OFF
+- conditioning_water_differential_pressure_sensor:
+    flexible_min: -34473.78945
+    flexible_max: 344737.8945
+- conditioning_water_differential_pressure_setpoint:
+    flexible_min: -34473.78945
+    flexible_max: 344737.8945
 - condensing_water_differential_pressure_sensor:
     flexible_min: -34473.78945
     flexible_max: 344737.8945
@@ -3321,6 +3366,9 @@ literals:
 - high_secondary_supply_water_temperature_alarm:
   - ACTIVE
   - INACTIVE
+- high_conditioning_water_differential_pressure_alarm:
+  - ACTIVE
+  - INACTIVE
 - high_secondary_water_differential_pressure_alarm:
   - ACTIVE
   - INACTIVE
@@ -3406,6 +3454,9 @@ literals:
   - ACTIVE
   - INACTIVE
 - low_secondary_water_differential_pressure_alarm:
+  - ACTIVE
+  - INACTIVE
+- low_conditioning_water_differential_pressure_alarm:
   - ACTIVE
   - INACTIVE
 - low_secondary_return_water_temperature_alarm:
@@ -3614,6 +3665,12 @@ literals:
   - ACTIVE
   - INACTIVE
 - isolation_damper_percentage_command:
+    fixed_min: 0.0
+    fixed_max: 100.0
+- discharge_air_isolation_damper_percentage_command:
+    fixed_min: 0.0
+    fixed_max: 100.0
+- discharge_air_isolation_damper_percentage_sensor:
     fixed_min: 0.0
     fixed_max: 100.0
 - failed_isolation_damper_alarm:

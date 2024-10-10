@@ -327,6 +327,17 @@ FCU_DFSS_DSP_HTZC_DXZC:
   - HTZC
   - DXZC
 
+FCU_DFSS_DSP_HTZC_DXZC_DFVSC:
+  description: "DX fan coil with reheat (zone temp control), and discharge fan control."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - DSP
+  - HTZC
+  - DXZC
+  - DFVSC
+
 FCU_DFSS_DSP_HTZC_DXZC_DFSMC:
   guid: "6974d102-b079-4af6-86c3-10f5980df7cc"
   description: "DX fan coil with reheat (zone temp control)."

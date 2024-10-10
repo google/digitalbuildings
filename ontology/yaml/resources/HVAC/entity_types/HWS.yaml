@@ -155,6 +155,21 @@ HWS_SWTC_WDPC_BYPVPM_MXVPM:
   - BYPVPM
   - MXVPM
 
+HWS_CONDPC_RWCHVVM_SWCHVVM_PWDT_SESWTC_PWRFM_SEWDPC_RWISOVPM_SWISOVPM:
+  description: "The heating water system with changeover valves for heating and cooling, with primary supply temperature and flowrate monitoring, boiler supply and return isolation valves, and differential pressure monitoring."
+  is_canonical: true
+  implements:
+  - HWS
+  - CONDPC
+  - RWCHVVM
+  - SWCHVVM
+  - PWDT
+  - SESWTC
+  - PWRFM
+  - SEWDPC
+  - RWISOVPM
+  - SWISOVPM
+
 HWS_SWTC_SWISOVPM_RWISOVPM:
   guid: "0efcd72f-a232-412a-ac49-5ddaf0dfbe79"
   description: "Simple heating water system with supply temp control and return/supply isolation."

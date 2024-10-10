@@ -45,3 +45,19 @@ ASHP_SS_SHWTC_SCHWTC_HWRWISOVM_CHWRWISOVM_HCPC2X_CHCPC2X:
   - CHWRWISOVM
   - HCPC2X
   - CHCPC2X
+
+ASHP_SS_SWTC_DX4SWC_HWRWISOVM_HWSWISOVM_CHWRWISOVM_CHWSWISOVM_RCKTM2X_HWDPM:
+  description: "Air source heat pump for a hydronic system providing chilled and heating water, supply water temperature control."
+  is_canonical: true
+  implements:
+  - ASHP
+  - SS
+  - SWTC
+  - DX4SWC
+  - HWSWISOVM
+  - HWRWISOVM
+  - CHWRWISOVM
+  - CHWSWISOVM
+  - RCKTM2X
+  - HWDPM
+

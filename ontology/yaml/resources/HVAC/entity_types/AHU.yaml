@@ -202,6 +202,28 @@ AHU_DFSS_DXZC_ECONM:
   - DXZC
   - ECONM
 
+AHU_DXZC_ECONM_EFSS_DFSS_DIDPC: ##
+  description: "Single zone AHU."
+  is_canonical: true
+  implements:
+  - AHU
+  - DXZC
+  - ECONM
+  - EFSS
+  - DFSS
+  - DIDPC
+
+AHU_DX2ZC_ECONM_EFSS_DFSS_DIDPC: ##
+  description: "Single zone AHU."
+  is_canonical: true
+  implements:
+  - AHU
+  - DX2ZC
+  - ECONM
+  - EFSS
+  - DFSS
+  - DIDPC
+
 AHU_DFSS_DSP_DX2ZC_ECONZ_HTZC:
   guid: "8b064238-63ae-4100-bafe-154ea86bef72"
   description: "Single zone AHU."
@@ -4243,6 +4265,21 @@ AHU_CHWSC_ECON_EDBPC_RFSS_RFVSC_SFSS_SFVSC_SSPC:
   - EDBPC
   - RFSS
   - RFVSC
+  - SFSS
+  - SFVSC
+  - SSPC
+
+AHU_STC_CONWSC_ECON_EDBPC_EFSS_EFVSC_SFSS_SFVSC_SSPC:
+  description: "Multi-zone AHU with changeover heating and cooling valve, supply air static pressure control, and building static pressure control."
+  is_canonical: true
+  implements:
+  - AHU
+  - STC
+  - CONWSC
+  - ECON
+  - EDBPC
+  - EFSS
+  - EFVSC
   - SFSS
   - SFVSC
   - SSPC
