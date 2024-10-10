@@ -2006,6 +2006,7 @@ PWDT:
   - low_primary_supply_water_temperature_alarm
 
 PRRWTM:
+  guid: "b20f4336-94e8-40cf-85ef-5c6ef837e60b"
   description: "Primary return water temperature monitoring."
   is_abstract: true
   uses:

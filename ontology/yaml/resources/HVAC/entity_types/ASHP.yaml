@@ -33,6 +33,7 @@ ASHP_SS_HP6SWC_CPC2X_RWISOVM:
   - high_refrigerant_pressure_alarm_2
 
 ASHP_SS_HP6SWC_CPC2X_RWISOVM_WDT_WDPC:
+  guid: "20764e8d-0c69-4bf7-ae58-8921504fed16"
   description: "Six-stage air source heat pump with 2 circulation pumps, return isolation valve, water temperature differential monitoring and differential pressure control."
   is_canonical: true
   implements:
