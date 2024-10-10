@@ -2005,6 +2005,11 @@ PWDT:
   - low_primary_return_water_temperature_alarm
   - low_primary_supply_water_temperature_alarm
 
+PRRWTM:
+  description: "Primary return water temperature monitoring."
+  is_abstract: true
+  uses:
+  - primary_return_water_temperature_sensor
 
 CHPM:
   guid: "83b25b74-a334-4297-89b3-30ce005e12fe"

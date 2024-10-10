@@ -377,6 +377,17 @@ HWS_SEWDPC_SESWTC_SERWFRM_PRWFRM_PWDT_BYPVPM:
   - PWDT
   - BYPVPM
 
+HWS_PRRWTM_SESWTC_SEWDPC_SERWFRM_SEWTM:
+  description: "Heating water system with primary return water temperature monitoring, secondary loop supply water temperature and differential pressure control, and secondary flowrate monitoring."
+  is_canonical: true
+  implements:
+  - HWS
+  - PRRWTM
+  - SESWTC
+  - SEWDPC
+  - SERWFRM
+  - SEWTM
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
