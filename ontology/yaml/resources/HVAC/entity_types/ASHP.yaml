@@ -47,6 +47,7 @@ ASHP_SS_SHWTC_SCHWTC_HWRWISOVM_CHWRWISOVM_HCPC2X_CHCPC2X:
   - CHCPC2X
 
 ASHP_SS_SWTC_DX4SWC_HWRWISOVM_HWSWISOVM_CHWRWISOVM_CHWSWISOVM_RCKTM2X_HWDPM:
+  guid: "9a0b13f8-e8e0-42f4-8bf8-1e68ac145fc0"
   description: "Air source heat pump for a hydronic system providing chilled and heating water, supply water temperature control."
   is_canonical: true
   implements:

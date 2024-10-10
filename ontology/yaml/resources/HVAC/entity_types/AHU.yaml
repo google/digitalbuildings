@@ -4270,6 +4270,7 @@ AHU_CHWSC_ECON_EDBPC_RFSS_RFVSC_SFSS_SFVSC_SSPC:
   - SSPC
 
 AHU_STC_CONWSC_ECON_EDBPC_EFSS_EFVSC_SFSS_SFVSC_SSPC:
+  guid: "83500918-beca-497e-bdb1-58a7d2353d4d"
   description: "Multi-zone AHU with changeover heating and cooling valve, supply air static pressure control, and building static pressure control."
   is_canonical: true
   implements:

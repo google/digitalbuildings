@@ -542,6 +542,7 @@ VSC:
 
 
 EFVSC:
+  guid: "805534ed-f5da-4967-8cee-0ab264a29f1d"
   description: "Variable speed control for exhaust fans."
   is_abstract: true
   opt_uses:
@@ -2436,6 +2437,7 @@ DXDSPRTC:
 
 
 DX2ZC:
+  guid: "fe0d52bb-768c-4b06-8797-880f4f95df97"
   description: "Two compressor run control on zone side (DSP, CSP)."
   is_abstract: true
   opt_uses:
@@ -6963,6 +6965,7 @@ IDPC:
   - failed_isolation_damper_alarm
 
 DIDPC:
+  guid: "93234dbc-5298-4eab-a941-553d94f205ab"
   description: "Discharge air isolation damper percentage control."
   is_abstract: true
   uses:
@@ -8173,6 +8176,7 @@ HWDPC:
   - OPERATIONAL
 
 HWDPM:
+  guid: "512aba1b-febf-436c-a3ab-2899b1500f49"
   description: "Heating water differential pressure monitoring."
   is_abstract: true
   uses:

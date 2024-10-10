@@ -42,6 +42,7 @@ CHWS_SWTC:
   - SWTC
 
 CHWS_CONDPC_RWCHVVM_SWCHVVM_PWDT_SESWTC_PWRFM:
+  guid: "e97c86b2-0004-45b9-8f0f-dfc666b473ad"
   description: "Chilled water system with changover valves for heating and cooling and primary supply temeprature and flowrate monitoring, and differential pressure monitoring."
   is_canonical: true
   implements:
