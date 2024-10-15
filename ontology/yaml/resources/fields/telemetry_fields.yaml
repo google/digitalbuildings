@@ -81,6 +81,12 @@ literals:
 - chilled_water_bypass_valve_status:
   - OPEN
   - CLOSED
+- conditioning_water_differential_pressure_sensor:
+    flexible_min: -34473.78945
+    flexible_max: 344737.8945
+- conditioning_water_differential_pressure_setpoint:
+    flexible_min: -34473.78945
+    flexible_max: 344737.8945
 - chilled_water_differential_pressure_sensor:
     flexible_min: -34473.78945
     flexible_max: 344737.8945
@@ -1094,6 +1100,9 @@ literals:
 - primary_supply_water_flowrate_sensor:
     flexible_min: -0.000315451
     flexible_max: 0.315451
+- primary_return_water_flowrate_sensor:
+    flexible_min: -0.000315451
+    flexible_max: 0.315451
 - supply_air_isolation_damper_status:
   - OPEN
   - CLOSED
@@ -1185,6 +1194,12 @@ literals:
   - OPEN
   - CLOSED
 - process_water_valve_percentage_command:
+    fixed_min: 0.0
+    fixed_max: 100.0
+- conditioning_water_valve_percentage_command:
+    fixed_min: 0.0
+    fixed_max: 100.0
+- conditioning_water_valve_percentage_sensor:
     fixed_min: 0.0
     fixed_max: 100.0
 - chilled_return_water_diverting_valve_percentage_command:
@@ -1353,6 +1368,9 @@ literals:
 - discharge_fan_torque_sensor:
     fixed_min: 0.0
     flexible_max: 678.0
+- exhaust_fan_torque_sensor:
+    fixed_min: 0.0
+    flexible_max: 678.0
 - supply_air_damper_command:
   - OPEN
   - CLOSED
@@ -1419,6 +1437,15 @@ literals:
 - discharge_air_damper_percentage_command:
     fixed_min: 0.0
     fixed_max: 100.0
+- supply_water_changeover_valve_command:
+  - OPEN
+  - CLOSED
+- supply_water_changeover_valve_status:
+  - OPEN
+  - CLOSED
+- supply_water_changeover_valve_percentage_sensor:
+    fixed_min: 0.0
+    fixed_max: 100.0
 - supply_water_isolation_valve_command:
   - OPEN
   - CLOSED
@@ -1453,6 +1480,12 @@ literals:
   - OPEN
   - CLOSED
 - failed_chilled_return_water_isolation_valve_alarm:
+  - ACTIVE
+  - INACTIVE
+- failed_supply_water_changeover_valve_alarm:
+  - ACTIVE
+  - INACTIVE
+- failed_return_water_changeover_valve_alarm:
   - ACTIVE
   - INACTIVE
 - discharge_air_static_pressure_sensor:
@@ -1706,6 +1739,12 @@ literals:
   - ACTIVE
   - INACTIVE
 - low_differential_pressure_alarm:
+  - ACTIVE
+  - INACTIVE
+- high_conditioning_water_differential_pressure_alarm:
+  - ACTIVE
+  - INACTIVE
+- low_conditioning_water_differential_pressure_alarm:
   - ACTIVE
   - INACTIVE
 - lost_power_alarm:
@@ -2629,6 +2668,9 @@ literals:
 - voltage_sensor:
     flexible_min: 0.0
     flexible_max: 1000.0
+- exhaust_fan_voltage_sensor:
+    flexible_min: 0.0
+    flexible_max: 500.0
 - input_frequency_sensor:
     flexible_min: -0.5
     flexible_max: 65.0
@@ -2987,6 +3029,15 @@ literals:
 - heating_side_ground_supply_water_isolation_valve_command:
   - OPEN
   - CLOSED
+- return_water_changeover_valve_command:
+  - OPEN
+  - CLOSED
+- return_water_changeover_valve_status:
+  - OPEN
+  - CLOSED
+- return_water_changeover_valve_percentage_sensor:
+    fixed_min: 0.0
+    fixed_max: 100.0
 - output_voltage_sensor:
     flexible_min: 0.0
     flexible_max: 500.0
@@ -3734,6 +3785,12 @@ literals:
   - ACTIVE
   - INACTIVE
 - isolation_damper_percentage_command:
+    fixed_min: 0.0
+    fixed_max: 100.0
+- discharge_air_isolation_damper_percentage_command:
+    fixed_min: 0.0
+    fixed_max: 100.0
+- discharge_air_isolation_damper_percentage_sensor:
     fixed_min: 0.0
     fixed_max: 100.0
 - failed_isolation_damper_alarm:
