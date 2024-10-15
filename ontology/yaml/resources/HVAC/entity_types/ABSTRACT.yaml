@@ -8502,3 +8502,38 @@ WTM:
   - MONITORING
   uses:
   - water_temperature_sensor
+
+SWPC:
+  guid: "0344cf63-8ac8-48d1-80d3-f54a0c49d8be"
+  description: "Water Pressure Control."
+  is_abstract: true
+  implements:
+  - CONTROL
+  opt_uses:
+  - return_water_pressure_sensor
+  uses:
+  - supply_water_pressure_sensor
+  - supply_water_pressure_setpoint
+
+CHWPM:
+  guid: "03ecc605-9f20-48ea-9f0b-0ac97a48e225"
+  description: "Chilled Water Pressure Monitoring."
+  is_abstract: true
+  implements:
+  - CONTROL
+  opt_uses:
+  - chilled_return_water_pressure_sensor
+  uses:
+  - chilled_supply_water_pressure_sensor
+ 
+HWPM:
+  guid: "635287df-7305-4620-8346-22d69136bf40"
+  description: "Hot Water Pressure Monitoring."
+  is_abstract: true
+  implements:
+  - CONTROL
+  opt_uses:
+  - heating_return_water_pressure_sensor
+  uses:
+  - heating_supply_water_pressure_sensor
+ 
