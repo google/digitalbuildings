@@ -8530,7 +8530,7 @@ HWPM:
   description: "Hot Water Pressure Monitoring."
   is_abstract: true
   implements:
-  - CONTROL
+  - OPERATIONAL
   opt_uses:
   - heating_return_water_pressure_sensor
   uses:
