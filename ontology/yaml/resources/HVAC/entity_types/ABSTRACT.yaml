@@ -8470,7 +8470,7 @@ DTPM:
   - detergent_pump_run_status
   - detergent_pump_run_command
   implements:
-  - MONITOR
+  - MONITORING
   
 CFVSC:
   guid: "b4aa442f-e7fa-4bc6-811a-fe2925e7255f"
