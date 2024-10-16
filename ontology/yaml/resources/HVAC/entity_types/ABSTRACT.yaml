@@ -1353,6 +1353,18 @@ SCHWFRC:
   - chilled_supply_water_flowrate_sensor
   - chilled_supply_water_flowrate_setpoint
 
+SCWFRC:
+  guid: "0b3a93ba-1bbb-42a0-b179-92ceab4f1d90"
+  description: "Supply condensing water flowrate control."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  opt_uses:
+  - condensing_return_water_flowrate_sensor
+  uses:
+  - condensing_supply_water_flowrate_sensor
+  - condensing_supply_water_flowrate_setpoint
+
 SHWTC:
   guid: "e2231929-0104-4109-aa8a-ce276a82f8a6"
   description: "Supply heating water temperature control."
