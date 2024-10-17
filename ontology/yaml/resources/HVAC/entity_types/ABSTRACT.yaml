@@ -5549,10 +5549,6 @@ REFPM2X:
   opt_uses:
   - refrigerant_differential_pressure_sensor_1
   - refrigerant_differential_pressure_sensor_2
-  - refrigerant_liquid_temperature_sensor_2
-  - refrigerant_suction_temperature_sensor_2
-  - refrigerant_suction_temperature_sensor_1
-  - refrigerant_liquid_temperature_sensor_1
   uses:
   - refrigerant_condenser_pressure_sensor_1
   - refrigerant_condenser_pressure_sensor_2
