@@ -502,6 +502,22 @@ FCU_DFSS_RTC_RHC_RHDHC_DXRC:
   - RHDHC
   - DXRC
 
+FCU_DFSS_RTC_RHC_RHDHC_DXRC_ZTM_ZHM_HTRC_FDPM:
+  guid: "e6497455-2cbd-4d11-a693-6cee3984b9bb"
+  description: "DX fan coil with return temp and humidification control, heating, and zone monitoring."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - RTC
+  - RHC
+  - RHDHC
+  - DXRC
+  - ZTM
+  - ZHM
+  - HTRC
+  - FDPM
+
 FCU_DFSS_RTC_RHC_RHDHC_CHWRC_ZTM_ZHM_HTRC_FDPM:
   guid: "390eec9b-7912-4583-8272-91be66131d5c"
   description: "Chilled water fan coil with return temp and humidification control, filter monitoring, and zone monitoring."
