@@ -4957,6 +4957,7 @@ SWISOVM:
   opt_uses:
   - failed_isolation_valve_alarm
   - failed_supply_water_isolation_valve_alarm
+  - supply_water_isolation_valve_percentage_sensor
   - local_override_isolation_valve_alarm
 
 CHWRWDVPM:
@@ -5002,6 +5003,7 @@ RWISOVM:
   is_abstract: true
   opt_uses:
   - failed_return_water_isolation_valve_alarm
+  - return_water_isolation_valve_percentage_sensor
   uses:
   - return_water_isolation_valve_command
   - return_water_isolation_valve_status
