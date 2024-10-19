@@ -2466,6 +2466,7 @@ DXZC:
   - overload_compressor_alarm
   - high_discharge_air_temperature_alarm
   - low_discharge_air_temperature_alarm
+  - cooling_request_count
   uses:
   - compressor_run_command
   - compressor_run_status
@@ -2521,6 +2522,7 @@ DX2ZC:
   - discharge_air_relative_humidity_sensor
   - high_discharge_air_temperature_alarm
   - low_discharge_air_temperature_alarm
+  - cooling_request_count
   uses:
   - compressor_run_command_1
   - compressor_run_command_2
