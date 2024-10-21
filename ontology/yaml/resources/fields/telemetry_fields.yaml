@@ -81,10 +81,10 @@ literals:
 - chilled_water_bypass_valve_status:
   - OPEN
   - CLOSED
-- conditioning_water_differential_pressure_sensor:
+- thermally_conditioned_water_differential_pressure_sensor:
     flexible_min: -34473.78945
     flexible_max: 344737.8945
-- conditioning_water_differential_pressure_setpoint:
+- thermally_conditioned_water_differential_pressure_setpoint:
     flexible_min: -34473.78945
     flexible_max: 344737.8945
 - chilled_water_differential_pressure_sensor:
@@ -1196,7 +1196,7 @@ literals:
 - process_water_valve_percentage_command:
     fixed_min: 0.0
     fixed_max: 100.0
-- conditioning_water_valve_percentage_command:
+- thermally_conditioned_water_valve_percentage_command:
     fixed_min: 0.0
     fixed_max: 100.0
 - chilled_return_water_diverting_valve_percentage_command:
@@ -1738,10 +1738,10 @@ literals:
 - low_differential_pressure_alarm:
   - ACTIVE
   - INACTIVE
-- high_conditioning_water_differential_pressure_alarm:
+- high_thermally_conditioned_water_differential_pressure_alarm:
   - ACTIVE
   - INACTIVE
-- low_conditioning_water_differential_pressure_alarm:
+- low_thermally_conditioned_water_differential_pressure_alarm:
   - ACTIVE
   - INACTIVE
 - lost_power_alarm:
