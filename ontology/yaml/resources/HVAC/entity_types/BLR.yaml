@@ -65,6 +65,16 @@ BLR_SS_SWTC_SWISOVM:
   - SWTC
   - SWISOVM
 
+BLR_SS_SWTC_SWISOVM_WDPM:
+  description: "Simple boiler with supply control, binary supply isolation, and differential pressure monitoring."
+  is_canonical: true
+  implements:
+  - BLR
+  - SS
+  - SWTC
+  - SWISOVM
+  - WDPM
+
 BLR_CPC_SS_SWTC_SWISOVM:
   guid: "98a97286-b59a-43f0-852e-25c7d736408f"
   description: "Simple boiler with supply control, binary supply isolation, and an onboard circulation pump."
