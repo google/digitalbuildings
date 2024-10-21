@@ -182,6 +182,7 @@ CSP:
   - failed_zone_air_temperature_alarm
   - high_zone_air_temperature_alarm
   - low_zone_air_temperature_alarm
+  - cooling_request_count
   uses:
   - zone_air_cooling_temperature_setpoint
   - zone_air_temperature_sensor
@@ -1342,9 +1343,9 @@ PWRFM:
   implements:
   - MONITORING
 
-CONWSC:
+THCWSC:
   guid: "c88d3223-2a56-4a58-84c1-fb19c930af8b"
-  description: "Conditioning water valve control on supply air side."
+  description: "Thermally conditioned water valve control on supply air side."
   is_abstract: true
   opt_uses:
   - failed_supply_air_temperature_alarm
@@ -1355,9 +1356,9 @@ CONWSC:
   implements:
   - CONTROL
 
-CONDPC:
+THCWDPC:
   guid: "116f1d90-4677-4c74-afc0-fb087a269dec"
-  description: "Conditioning water differential pressure control."
+  description: "Thermally conditioned water differential pressure control."
   is_abstract: true
   opt_uses:
   - high_conditioning_water_differential_pressure_alarm
@@ -2466,7 +2467,6 @@ DXZC:
   - overload_compressor_alarm
   - high_discharge_air_temperature_alarm
   - low_discharge_air_temperature_alarm
-  - cooling_request_count
   uses:
   - compressor_run_command
   - compressor_run_status
@@ -2522,7 +2522,6 @@ DX2ZC:
   - discharge_air_relative_humidity_sensor
   - high_discharge_air_temperature_alarm
   - low_discharge_air_temperature_alarm
-  - cooling_request_count
   uses:
   - compressor_run_command_1
   - compressor_run_command_2
