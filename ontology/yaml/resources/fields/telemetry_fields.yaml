@@ -3835,3 +3835,26 @@ literals:
 - preheating_run_command:
   - ON
   - OFF
+- supply_water_pressure_sensor:
+    flexible_min: -34473.78945
+    flexible_max: 344737.8945
+- supply_water_pressure_setpoint:
+    flexible_min: -34473.78945
+    flexible_max: 344737.8945
+- chilled_supply_water_pressure_sensor:
+    flexible_min: -34473.78945
+    flexible_max: 344737.8945
+- heating_supply_water_pressure_sensor:
+    flexible_min: -34473.78945
+    flexible_max: 344737.8945
+- return_water_pressure_sensor:
+    flexible_min: -34473.78945
+    flexible_max: 344737.8945
+- chilled_return_water_pressure_sensor:
+    flexible_min: -34473.78945
+    flexible_max: 344737.8945
+- heating_return_water_pressure_sensor:
+    flexible_min: -34473.78945
+    flexible_max: 344737.8945
+
+    
