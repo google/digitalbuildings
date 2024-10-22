@@ -4821,10 +4821,22 @@ SFVSC4X:
   - supply_fan_current_sensor_2
   - supply_fan_current_sensor_3
   - supply_fan_current_sensor_4
+  - supply_fan_voltage_sensor_1
+  - supply_fan_voltage_sensor_2
+  - supply_fan_voltage_sensor_3
+  - supply_fan_voltage_sensor_4
   - supply_fan_power_sensor_1
   - supply_fan_power_sensor_2
   - supply_fan_power_sensor_3
   - supply_fan_power_sensor_4
+  - supply_fan_energy_accumulator_1
+  - supply_fan_energy_accumulator_2
+  - supply_fan_energy_accumulator_3
+  - supply_fan_energy_accumulator_4
+  - supply_fan_run_time_accumulator_1
+  - supply_fan_run_time_accumulator_2
+  - supply_fan_run_time_accumulator_3
+  - supply_fan_run_time_accumulator_4
   - supply_fan_speed_frequency_sensor_1
   - supply_fan_speed_frequency_sensor_2
   - supply_fan_speed_frequency_sensor_3
@@ -4833,6 +4845,10 @@ SFVSC4X:
   - supply_fan_speed_percentage_sensor_2
   - supply_fan_speed_percentage_sensor_3
   - supply_fan_speed_percentage_sensor_4
+  - supply_fan_rotationalvelocity_sensor_1
+  - supply_fan_rotationalvelocity_sensor_2
+  - supply_fan_rotationalvelocity_sensor_3
+  - supply_fan_rotationalvelocity_sensor_4
   uses:
   - supply_fan_run_command_1
   - supply_fan_run_command_2
@@ -8467,7 +8483,7 @@ DTPM:
   - detergent_pump_run_command
   implements:
   - MONITORING
-
+  
 CFVSC:
   guid: "b4aa442f-e7fa-4bc6-811a-fe2925e7255f"
   description: "Variable speed control for condensing fan."
