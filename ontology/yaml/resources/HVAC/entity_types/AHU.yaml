@@ -4620,13 +4620,13 @@ AHU_BSPC_DX5SC_ECONM_EDM_EFSS_EFVSC_SFSS_SFVSC_SSPC_SARC:
   - SSPC
   - SARC
 
-AHU_SFSS4X_ECONZ_SFVSC4X_CHWRC_SSPC_FDPSM::
+AHU_SFSS4X_ECON_SFVSC4X_CHWRC_SSPC_FDPSM::
   guid: "9307679c-0d7b-4d41-a36c-a02e99e7e25e"
   description: "AHU with static pressure-based EC fan speed control, return air temperature-based chilled water valve modulation, filter status monitoring, and four EC fan parameter monitoring."
   is_canonical: true
   implements:
   - AHU
-  - ECONZ
+  - ECON
   - SFSS4X
   - SFVSC4X
   - CHWRC
