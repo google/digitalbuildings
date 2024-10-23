@@ -273,7 +273,7 @@ CHWS_CLPM_RMM_SWTC_WFRC:
   - SWTC
   - WFRC
 
-CHWS_BYPVPM_CLPM_SWTC_TDTM_WFRM_WDPC:
+CHWS_BYPVPM_CLPM_SWTC_WDPC_TDTM_WFRM:
   guid: "3530b09c-8dae-4da7-b1e5-4e4bcfe5225d"
   description: "Chilled water system with supply temperature and differential pressure control, and a buffer tank with entering/leaving temperature sensors."
   is_canonical: true
@@ -282,9 +282,9 @@ CHWS_BYPVPM_CLPM_SWTC_TDTM_WFRM_WDPC:
   - BYPVPM
   - CLPM
   - SWTC
+  - WDPC
   - TDTM
   - WFRM
-  - WDPC
 
 CHWS_SWTM:
   guid: "78de9ab3-fbe2-4163-95d5-717f31231277"
