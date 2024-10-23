@@ -7186,7 +7186,7 @@ MIPVCM:
   opt_uses:
   - average_input_inter_line_motor_voltage_sensor
   - average_input_line_motor_current_sensor
-  # - current_percentage_sensor
+  - load_percentage_sensor
 
 
 MIPWM:

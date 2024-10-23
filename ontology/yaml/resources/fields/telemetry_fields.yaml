@@ -149,9 +149,6 @@ literals:
 - current_sensor:
     fixed_min: 0.0
     flexible_max: 200.0
-# - current_percentage_sensor:
-#     fixed_min: 0.0
-#     fixed_max: 100.0
 - torque_sensor:
     fixed_min: 0.0
     flexible_max: 678.0
