@@ -134,6 +134,15 @@ literals:
 - condensing_supply_water_temperature_setpoint:
     flexible_min: 255.9259259
     flexible_max: 308.1481481
+- condensing_return_water_flowrate_sensor:
+    flexible_min: -0.000315451
+    flexible_max: 0.315451
+- condensing_supply_water_flowrate_sensor:
+    flexible_min: -0.000315451
+    flexible_max: 0.315451
+- condensing_supply_water_flowrate_setpoint:
+    flexible_min: -0.000315451
+    flexible_max: 0.315451
 - condensing_water_sump_temperature_sensor:
     flexible_min: 255.9259259
     flexible_max: 308.1481481
@@ -3802,6 +3811,9 @@ literals:
 - expansion_valve_percentage_command:
     fixed_min: 0.0
     fixed_max: 100.0
+- supply_fan_rotationalvelocity_sensor:
+    flexible_min: 0.0
+    flexible_max: 4000.0
 - water_temperature_sensor:
     flexible_min: 255.9259259
     flexible_max: 380.3703704
@@ -3826,3 +3838,26 @@ literals:
 - preheating_run_command:
   - ON
   - OFF
+- supply_water_pressure_sensor:
+    flexible_min: -34473.78945
+    flexible_max: 344737.8945
+- supply_water_pressure_setpoint:
+    flexible_min: -34473.78945
+    flexible_max: 344737.8945
+- chilled_supply_water_pressure_sensor:
+    flexible_min: -34473.78945
+    flexible_max: 344737.8945
+- heating_supply_water_pressure_sensor:
+    flexible_min: -34473.78945
+    flexible_max: 344737.8945
+- return_water_pressure_sensor:
+    flexible_min: -34473.78945
+    flexible_max: 344737.8945
+- chilled_return_water_pressure_sensor:
+    flexible_min: -34473.78945
+    flexible_max: 344737.8945
+- heating_return_water_pressure_sensor:
+    flexible_min: -34473.78945
+    flexible_max: 344737.8945
+
+    
