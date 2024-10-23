@@ -4343,7 +4343,7 @@ CLPM:
   - cooling_thermal_power_sensor
   opt_uses:
   - cooling_thermal_energy_accumulator
-  - cooling_thermal_efficiency_sensor
+  - cooling_thermalefficiency_sensor
   - power_sensor
   implements:
   - MONITORING
@@ -7186,7 +7186,7 @@ MIPVCM:
   opt_uses:
   - average_input_inter_line_motor_voltage_sensor
   - average_input_line_motor_current_sensor
-  - current_percentage_sensor
+  # - current_percentage_sensor
 
 
 MIPWM:
