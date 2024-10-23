@@ -203,6 +203,7 @@ literals:
   - FORTY_PERCENT
   - SIXTY_PERCENT
   - EIGHTY_PERCENT
+  - UNKNOWN
 - discharge_fan_speed_percentage_command:
     fixed_min: 0.0
     fixed_max: 100.0
