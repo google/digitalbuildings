@@ -275,7 +275,7 @@ CHWS_CLPM_RMM_SWTC_WFRC:
 
 CHWS_BYPVPM_CLPM_SWTC_WDPC_TDTM_WFRM:
   guid: "3530b09c-8dae-4da7-b1e5-4e4bcfe5225d"
-  description: "Chilled water system with supply temperature and differential pressure control, and a buffer tank with entering/leaving temperature sensors."
+  description: "Chilled water system with supply temperature and differential pressure control, and a buffer tank with entering/leaving temperature sensors"
   is_canonical: true
   implements:
   - CHWS
