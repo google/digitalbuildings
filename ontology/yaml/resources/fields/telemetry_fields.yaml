@@ -3914,9 +3914,3 @@ literals:
 - exhaust_air_relative_humidity_setpoint:
     fixed_min: 0.0
     fixed_max: 100.0
-- entering_dehumidifier_temperature_sensor:
-    flexible_min: 255.9259259
-    flexible_max: 338.7037037
-- entering_dehumidifier_temperature_setpoint:
-    flexible_min: 255.9259259
-    flexible_max: 338.7037037
