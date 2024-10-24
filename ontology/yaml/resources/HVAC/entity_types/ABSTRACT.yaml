@@ -1417,6 +1417,18 @@ SCHWFRC:
   - chilled_supply_water_flowrate_sensor
   - chilled_supply_water_flowrate_setpoint
 
+SCWFRC:
+  guid: "0b3a93ba-1bbb-42a0-b179-92ceab4f1d90"
+  description: "Supply condensing water flowrate control."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  opt_uses:
+  - condensing_return_water_flowrate_sensor
+  uses:
+  - condensing_supply_water_flowrate_sensor
+  - condensing_supply_water_flowrate_setpoint
+
 SHWTC:
   guid: "e2231929-0104-4109-aa8a-ce276a82f8a6"
   description: "Supply heating water temperature control."
@@ -2068,7 +2080,6 @@ PWDT:
   - high_primary_supply_water_temperature_alarm
   - low_primary_return_water_temperature_alarm
   - low_primary_supply_water_temperature_alarm
-
 
 CHPM:
   guid: "83b25b74-a334-4297-89b3-30ce005e12fe"
@@ -4876,10 +4887,22 @@ SFVSC4X:
   - supply_fan_current_sensor_2
   - supply_fan_current_sensor_3
   - supply_fan_current_sensor_4
+  - supply_fan_voltage_sensor_1
+  - supply_fan_voltage_sensor_2
+  - supply_fan_voltage_sensor_3
+  - supply_fan_voltage_sensor_4
   - supply_fan_power_sensor_1
   - supply_fan_power_sensor_2
   - supply_fan_power_sensor_3
   - supply_fan_power_sensor_4
+  - supply_fan_energy_accumulator_1
+  - supply_fan_energy_accumulator_2
+  - supply_fan_energy_accumulator_3
+  - supply_fan_energy_accumulator_4
+  - supply_fan_run_time_accumulator_1
+  - supply_fan_run_time_accumulator_2
+  - supply_fan_run_time_accumulator_3
+  - supply_fan_run_time_accumulator_4
   - supply_fan_speed_frequency_sensor_1
   - supply_fan_speed_frequency_sensor_2
   - supply_fan_speed_frequency_sensor_3
@@ -4888,6 +4911,10 @@ SFVSC4X:
   - supply_fan_speed_percentage_sensor_2
   - supply_fan_speed_percentage_sensor_3
   - supply_fan_speed_percentage_sensor_4
+  - supply_fan_rotationalvelocity_sensor_1
+  - supply_fan_rotationalvelocity_sensor_2
+  - supply_fan_rotationalvelocity_sensor_3
+  - supply_fan_rotationalvelocity_sensor_4
   uses:
   - supply_fan_run_command_1
   - supply_fan_run_command_2
@@ -8541,7 +8568,7 @@ DTPM:
   - detergent_pump_run_command
   implements:
   - MONITORING
-
+  
 CFVSC:
   guid: "b4aa442f-e7fa-4bc6-811a-fe2925e7255f"
   description: "Variable speed control for condensing fan."
@@ -8587,3 +8614,38 @@ WTM:
   - MONITORING
   uses:
   - water_temperature_sensor
+
+SWPC:
+  guid: "0344cf63-8ac8-48d1-80d3-f54a0c49d8be"
+  description: "Water Pressure Control."
+  is_abstract: true
+  implements:
+  - CONTROL
+  opt_uses:
+  - return_water_pressure_sensor
+  uses:
+  - supply_water_pressure_sensor
+  - supply_water_pressure_setpoint
+
+CHWPM:
+  guid: "03ecc605-9f20-48ea-9f0b-0ac97a48e225"
+  description: "Chilled Water Pressure Monitoring."
+  is_abstract: true
+  implements:
+  - CONTROL
+  opt_uses:
+  - chilled_return_water_pressure_sensor
+  uses:
+  - chilled_supply_water_pressure_sensor
+ 
+HWPM:
+  guid: "635287df-7305-4620-8346-22d69136bf40"
+  description: "Hot Water Pressure Monitoring."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  opt_uses:
+  - heating_return_water_pressure_sensor
+  uses:
+  - heating_supply_water_pressure_sensor
+ 
