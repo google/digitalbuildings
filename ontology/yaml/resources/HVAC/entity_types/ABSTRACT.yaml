@@ -7214,7 +7214,7 @@ MIPVCM:
   opt_uses:
   - average_input_inter_line_motor_voltage_sensor
   - average_input_line_motor_current_sensor
-
+  - load_percentage_sensor
 
 
 MIPWM:
@@ -7228,7 +7228,6 @@ MIPWM:
   opt_uses:
   - input_motor_frequency_sensor
   - motor_powerfactor_sensor
-  - load_percentage_sensor
 
 MSM:
   guid: "6994d3a0-7a74-44df-b5d6-88ea384fa22a"
