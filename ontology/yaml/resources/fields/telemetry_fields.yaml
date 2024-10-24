@@ -917,8 +917,8 @@ literals:
     flexible_min: 0.0
     flexible_max: 3517000.0
 - cooling_thermalefficiency_sensor:
-    fixed_min: 0.0
-    flexible_max: 100.0
+    flexible_min: 0.0
+    flexible_max: 10.0
 - discharge_air_flowrate_sensor:
     flexible_min: -0.002359737216
     flexible_max: 94.38948864
