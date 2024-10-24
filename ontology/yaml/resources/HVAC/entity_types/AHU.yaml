@@ -1003,6 +1003,48 @@ AHU_DXSC_ECON_EFSS_SFSS:
   - EFSS
   - SFSS
 
+AHU_CSP_DXZC_ECONZ_EFSS_DFSS_DAIDPC:
+  guid: "fab797a6-3607-410d-af07-22ad1fec322f"
+  description: "Single zone AHU."
+  is_canonical: true
+  implements:
+  - AHU
+  - CSP
+  - DXZC
+  - ECONZ
+  - EFSS
+  - DFSS
+  - DAIDPC
+
+AHU_CSP_DX2ZC_ECONZ_EFSS_DFSS_DAIDPC:
+  guid: "0d7f5a82-c804-44dc-87ac-5b390530ca36"
+  description: "Single zone AHU."
+  is_canonical: true
+  implements:
+  - AHU
+  - CSP
+  - DX2ZC
+  - ECONZ
+  - EFSS
+  - DFSS
+  - DAIDPC
+
+AHU_THCWSC_ECON_EDBPC_EFSS_EFVSC_SFSS_SFVSC_SSPC_SARC:
+  guid: "b9c13f51-6c80-4507-948c-d0e82927c218"
+  description: "Multi-zone AHU with thermally conditioned water valve, supply air static pressure control, and building static pressure control."
+  is_canonical: true
+  implements:
+  - AHU
+  - THCWSC
+  - ECON
+  - EDBPC
+  - EFSS
+  - EFVSC
+  - SFSS
+  - SFVSC
+  - SSPC
+  - SARC
+
 AHU_DXSC_ECON_HTSC_SFSS:
   guid: "742c5306-cc94-4a2d-8660-fe8a2bd0d4a2"
   description: "Single zone AHU."
@@ -4619,6 +4661,19 @@ AHU_BSPC_DX5SC_ECONM_EDM_EFSS_EFVSC_SFSS_SFVSC_SSPC_SARC:
   - SFVSC
   - SSPC
   - SARC
+
+AHU_SFSS4X_ECON_SFVSC4X_CHWRC_SSPC_FDPSM:
+  guid: "9307679c-0d7b-4d41-a36c-a02e99e7e25e"
+  description: "AHU with static pressure-based EC fan speed control, return air temperature-based chilled water valve modulation, filter status monitoring, and four EC fan parameter monitoring."
+  is_canonical: true
+  implements:
+  - AHU
+  - SFSS4X
+  - ECON
+  - SFVSC4X
+  - CHWRC
+  - SSPC
+  - FDPSM
 
 ###################################
 ### Existing Non-standard Types ###
