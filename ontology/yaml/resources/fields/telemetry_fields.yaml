@@ -3911,5 +3911,3 @@ literals:
 - heating_return_water_pressure_sensor:
     flexible_min: -34473.78945
     flexible_max: 344737.8945
-
-    
