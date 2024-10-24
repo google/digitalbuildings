@@ -558,8 +558,8 @@ EFVSC:
   is_abstract: true
   opt_uses:
   - exhaust_fan_current_sensor
-  - exhaust_fan_power_sensor 
-  - exhaust_fan_torque_sensor 
+  - exhaust_fan_power_sensor
+  - exhaust_fan_torque_sensor
   - exhaust_fan_run_mode
   - exhaust_fan_speed_frequency_sensor
   - exhaust_fan_speed_mode
@@ -1302,8 +1302,7 @@ SWCHVVM:
   - supply_water_changeover_valve_command
   - supply_water_changeover_valve_status
   implements:
-  - MONITORING  
-
+  - MONITORING
 
 RWTC:
   guid: "e6ef58f6-fbda-421d-ac06-d573b093aecd"
@@ -1319,7 +1318,6 @@ RWTC:
   uses:
   - return_water_temperature_sensor
   - return_water_temperature_setpoint
-
 
 RWCHVVM:
   guid: "d17af339-3fbe-447e-9355-9c08a716de40"
@@ -8571,7 +8569,7 @@ DTPM:
   - detergent_pump_run_command
   implements:
   - MONITORING
-  
+
 CFVSC:
   guid: "b4aa442f-e7fa-4bc6-811a-fe2925e7255f"
   description: "Variable speed control for condensing fan."
@@ -8640,7 +8638,7 @@ CHWPM:
   - chilled_return_water_pressure_sensor
   uses:
   - chilled_supply_water_pressure_sensor
- 
+
 HWPM:
   guid: "635287df-7305-4620-8346-22d69136bf40"
   description: "Hot Water Pressure Monitoring."
@@ -8651,4 +8649,3 @@ HWPM:
   - heating_return_water_pressure_sensor
   uses:
   - heating_supply_water_pressure_sensor
- 
