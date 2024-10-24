@@ -4163,6 +4163,7 @@ BYPVPM:
   opt_uses:
   - bypass_valve_percentage_sensor
   - failed_bypass_valve_alarm
+  - economizer_mode
   uses:
   - bypass_valve_percentage_command
   implements:
@@ -4420,6 +4421,8 @@ CLPM:
   - cooling_thermal_power_sensor
   opt_uses:
   - cooling_thermal_energy_accumulator
+  - cooling_thermalefficiency_sensor
+  - power_sensor
   implements:
   - MONITORING
 
@@ -7296,6 +7299,7 @@ MIPVCM:
   opt_uses:
   - average_input_inter_line_motor_voltage_sensor
   - average_input_line_motor_current_sensor
+  - load_percentage_sensor
 
 
 MIPWM:
@@ -7309,7 +7313,6 @@ MIPWM:
   opt_uses:
   - input_motor_frequency_sensor
   - motor_powerfactor_sensor
-
 
 MSM:
   guid: "6994d3a0-7a74-44df-b5d6-88ea384fa22a"
