@@ -3960,6 +3960,16 @@ BYPDM:
   - MONITORING
 
 
+BYPDVM:
+  guid: "c8e52e6d-1d4e-447c-ad36-044219ea89ec"
+  description: "Bypass damper voltage monitoring."
+  is_abstract: true
+  uses:
+  - bypass_air_damper_voltage_command
+  implements:
+  - MONITORING
+
+
 OAFM:
   guid: "4d6c951b-f9a2-445d-93d7-a8ab2aa523ad"
   description: "Outside air flow monitoring"
