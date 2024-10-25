@@ -4199,6 +4199,15 @@ HXSWISOVPM:
   implements:
   - MONITORING
 
+HXSWISOVVM:
+  guid: "f1c95b51-7b96-4bf9-a4e4-b47e72f9834f"
+  description: "Heat exchanger supply isolation water valve voltage monitoring."
+  is_abstract: true
+  uses:
+  - heat_exchange_supply_water_isolation_valve_voltage_command
+  - heat_exchange_supply_water_isolation_valve_voltage_sensor
+  implements:
+  - MONITORING 
 
 HXRWISOVPM:
   guid: "789cd63d-8168-43fe-9245-c54a8527482c"
