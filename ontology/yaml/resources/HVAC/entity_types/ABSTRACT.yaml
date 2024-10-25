@@ -8501,6 +8501,13 @@ FPHC:
   - heating_water_valve_percentage_command
   - chilled_water_valve_percentage_command
 
+SVVM:
+  guid: "9b702772-2303-4648-bc88-4f23d97c0349"
+  description: "Steam valve voltage monitoring."
+  is_abstract: true
+  uses:
+  - steam_valve_voltage_command
+
 SSTC:
   guid: "3aefe568-b8eb-485e-a3d9-38ac3bb9906d"
   description: "Supply steam valve monitoring to control water temperature on supply side for steam exchanger."
