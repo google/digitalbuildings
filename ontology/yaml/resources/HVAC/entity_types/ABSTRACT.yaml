@@ -5470,6 +5470,17 @@ HWVM:
   implements:
   - OPERATIONAL
 
+HWVVM:
+  guid: "3e193668-77e3-454e-9153-fdc3475d9012"
+  description: "Heating water valve voltage monitoring."
+  is_abstract: true
+  opt_uses:
+  - heating_water_flowrate_sensor
+  - heating_water_valve_percentage_sensor
+  uses:
+  - heating_water_valve_percentage_command
+  implements:
+  - OPERATIONAL
 
 CHWVM:
   guid: "73411f3e-5c42-40cb-8d6c-82f1e2358844"
