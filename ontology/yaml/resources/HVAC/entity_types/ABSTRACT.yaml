@@ -334,6 +334,7 @@ CO2C:
   opt_uses:
   - high_zone_air_co2_concentration_alarm
   - failed_zone_air_co2_concentration_alarm
+  - zone_air_co2_deadband_concentration_setpoint
 
 
 CO2CMAX:
