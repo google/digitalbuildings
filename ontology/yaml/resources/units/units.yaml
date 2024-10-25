@@ -102,6 +102,8 @@ distance:
   inches:
     multiplier: 0.0254
     offset: 0
+thermalefficiency:
+  kilowatts_per_ton: STANDARD
 electriccapacitance:
   farads: STANDARD
 electricconductance:

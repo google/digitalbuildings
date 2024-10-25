@@ -273,15 +273,16 @@ CHWS_CLPM_RMM_SWTC_WFRC:
   - SWTC
   - WFRC
 
-CHWS_BYPVPM_CLPM_SWTC_TDTM_WFRM:
+CHWS_BYPVPM_CLPM_SWTC_WDPC_TDTM_WFRM:
   guid: "3530b09c-8dae-4da7-b1e5-4e4bcfe5225d"
-  description: "Chilled water system with supply temperature control and a buffer tank with entering/leaving temperature sensors."
+  description: "Chilled water system with supply temperature and differential pressure control, and a buffer tank with entering/leaving temperature sensors"
   is_canonical: true
   implements:
   - CHWS
   - BYPVPM
   - CLPM
   - SWTC
+  - WDPC
   - TDTM
   - WFRM
 
@@ -347,19 +348,20 @@ CHWS_SWTC_WDPC_PSWTC_PWDPC_PWFRM_PWECVC_SWDVPM_PWDVPM:
   - PWDVPM
 
 
-CHWS_SWTC_WDPC_WFRM_CMSWFRM_BYPVPM_WSEBYPVPM_WSERWTM:
+CHWS_SWTC_WDPC_WFRC_CMSWFRM_BYPVPM_WSEBYPVPM_WSERWTM_CLPM:
   guid: "a50e908f-be3f-4e29-a284-21cc0a7fa332"
-  description: "Chilled water system with supply water temperature and differential pressure control, flowrate monitoring, common chiller supply water flowrate monitoring, bypass valve and water side economizer bypass valve."
+  description: "Chilled water system with supply water temperature and differential pressure control, flowrate control, common chiller supply water flowrate monitoring, cooling thermal monitoring, bypass valve and water side economizer bypass valve."
   is_canonical: true
   implements:
   - CHWS
   - SWTC
   - WDPC
-  - WFRM
+  - WFRC
   - CMSWFRM
   - BYPVPM
   - WSEBYPVPM
   - WSERWTM
+  - CLPM
 
 
 CHWS_SWTC_WDPC_BYPVPM_WSEBYPVPM:
@@ -449,3 +451,16 @@ CHWS_SWTC_WDPC_BYPVPM_WFRM_NONCANONICAL_1:
   uses:
   - production_differential_pressure_sensor
   - supply_water_flowrate_sensor # Need to rename to flowrate_sensor
+
+CHWS_THCWDPC_RWCHVVM_SWCHVVM_PWDT_SESWTC_PWRFM:
+  guid: "e3f6366d-4383-48f4-9ce4-a3b7107603ac"
+  description: "Chilled water system with thermally conditioned water valve, primary supply temeprature and flowrate monitoring, and differential pressure monitoring."
+  is_canonical: true
+  implements:
+  - CHWS
+  - THCWDPC
+  - RWCHVVM
+  - SWCHVVM
+  - PWDT
+  - SESWTC
+  - PWRFM
