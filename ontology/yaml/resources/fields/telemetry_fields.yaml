@@ -517,6 +517,9 @@ literals:
 - zone_air_co2_concentration_setpoint:
     flexible_min: 0.00005
     flexible_max: 0.005
+- zone_air_co2_deadband_concentration_setpoint:
+    flexible_min: 0.00005
+    flexible_max: 0.005
 - max_zone_air_co2_concentration_sensor:
     flexible_min: 0.00005
     flexible_max: 0.005
