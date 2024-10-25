@@ -4167,6 +4167,17 @@ BYPVPM:
   implements:
   - MONITORING
 
+BYPVVM:
+  guid: "043e2922-f9df-4442-9bc0-b1e68eb41008"
+  description: "Bypass water valve voltage monitoring."
+  is_abstract: true
+  opt_uses:
+  - bypass_valve_voltage_sensor
+  - failed_bypass_valve_alarm
+  uses:
+  - bypass_valve_voltage_command
+  implements:
+  - MONITORING
 
 MWVPM:
   guid: "bd83e820-585d-4e03-9142-7d4355b41574"
