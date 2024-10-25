@@ -1777,9 +1777,15 @@ EHC:
   description: "Exhaust air relative humidity control."
   is_abstract: true
   opt_uses:
-  - exhaust_air_relative_humidity_sensor
+  - humidification_percentage_command
+  - failed_humidifier_alarm
   uses:
+  - dehumidification_run_command
+  - humidification_run_command
+  - exhaust_air_relative_humidity_sensor
   - exhaust_air_relative_humidity_setpoint
+  implements:
+  - OPERATIONAL
 
 SHC:
   guid: "c27f33dc-19bc-47f4-937a-eab3293b920f"
