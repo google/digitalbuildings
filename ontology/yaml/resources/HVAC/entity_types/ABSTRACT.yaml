@@ -8649,3 +8649,47 @@ HWPM:
   - heating_return_water_pressure_sensor
   uses:
   - heating_supply_water_pressure_sensor
+
+ODVM:
+  guid: "9da76ec7-d839-4e6a-905c-eaedcd7796b1"
+  description: "Outside Air Damper Voltage Monitoring."
+  is_abstract: true
+  opt_uses:
+  - outside_air_damper_voltage_sensor
+  uses:
+  - outside_air_damper_voltage_command
+  implements:
+  - MONITORING
+  
+EDVM:
+  guid: "7bf2a5f7-1674-4e81-85cf-98752835499b"
+  description: "Exhaust Air Damper Voltage Monitoring."
+  is_abstract: true
+  opt_uses:
+  - exhaust_air_damper_voltage_sensor
+  uses:
+  - exhaust_air_damper_voltage_command
+  implements:
+  - MONITORING  
+
+RDVM:
+  guid: "00667556-8a75-46ff-a46d-b33e336fef54"
+  description: "Return Air Damper Voltage Monitoring."
+  is_abstract: true
+  opt_uses:
+  - return_air_damper_voltage_sensor
+  uses:
+  - return_air_damper_voltage_command
+  implements:
+  - MONITORING
+
+SDVM:
+  guid: "27e4aeb8-9805-41d6-879f-7e0e28d42cba"
+  description: "Supply Air Damper Voltage Monitoring."
+  is_abstract: true
+  opt_uses:
+  - supply_air_damper_voltage_sensor
+  uses:
+  - supply_air_damper_voltage_command
+  implements:
+  - MONITORING
