@@ -4187,7 +4187,15 @@ MWVPM:
   - makeup_water_valve_percentage_command
   implements:
   - MONITORING
-
+  
+MWVVM:
+  guid: "0e4215df-3401-4cf0-bdfe-9e03d6c69a48"
+  description: "Make-up water valve voltage monitoring."
+  is_abstract: true
+  uses:
+  - makeup_water_valve_voltage_command
+  implements:
+  - MONITORING
 
 HXSWISOVPM:
   guid: "04a7805d-e8ff-4b53-9513-d88ede4635ff"
