@@ -1389,7 +1389,7 @@ PSWTC:
 SGTC:
   guid: "8ead3288-04f5-49d0-9d96-0a85688a923a"
   description: "Supply glycol temperature control."
-  is_abstract: ture
+  is_abstract: true
   implements:
   - OPERATIONAL
   opt_uses:
