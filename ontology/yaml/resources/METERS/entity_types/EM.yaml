@@ -127,15 +127,6 @@ EM_ION:
   - EM_PWM_AVCM_PLPM_PVCM
   - DEPRECATED
 
-EM_PWM_NONCANONICAL_1:
-  guid: "5063ee14-dd44-4d34-a17c-9b0d4f5cff43"
-  description: "Non-standard type."
-  implements:
-  - EM_PWM
-  uses:
-  - average_line_current_sensor
-  - average_inter_line_voltage_sensor
-
 EM_PWM_PLPM_PVCM_NONCANONICAL_1:
   guid: "8036dad1-17e1-4570-9649-4408a0b5358f"
   description: "Non-standard type."
@@ -153,12 +144,3 @@ EM_PWM_NONCANONICAL_2:
   uses:
   - average_line_current_sensor
   - average_inter_line_voltage_sensor
-
-EM_PWM_PLPM_PVCM_NONCANONICAL_2:
-  guid: "867a7be3-2023-49c2-a1da-4805abfaf9a0"
-  description: "SE PM5100 Meter"
-  uses:
-  - neutral_line_current_sensor
-  - apparent_energy_accumulator
-  implements:
-  - EM_PWM_PLPM_PVCM

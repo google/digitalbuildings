@@ -32,6 +32,24 @@ ASHP_SS_HP6SWC_CPC2X_RWISOVM:
   - high_refrigerant_pressure_alarm_1
   - high_refrigerant_pressure_alarm_2
 
+ASHP_SS_HP6SWC_CPC2X_RWISOVM_WDT_WDPC:
+  guid: "20764e8d-0c69-4bf7-ae58-8921504fed16"
+  description: "Six-stage air source heat pump with 2 circulation pumps, return isolation valve, water temperature differential monitoring and differential pressure control."
+  is_canonical: true
+  implements:
+  - ASHP
+  - SS
+  - HP6SWC
+  - CPC2X
+  - RWISOVM
+  - WDT
+  - WDPC
+  opt_uses:
+  - low_refrigerant_pressure_alarm_1
+  - low_refrigerant_pressure_alarm_2
+  - high_refrigerant_pressure_alarm_1
+  - high_refrigerant_pressure_alarm_2
+
 ASHP_SS_SHWTC_SCHWTC_HWRWISOVM_CHWRWISOVM_HCPC2X_CHCPC2X:
   guid: "8f9741a1-1066-406b-86fa-6ca239e215f4"
   description: "Air source heat pump for a hydronic system providing chilled and heating water."
@@ -45,3 +63,45 @@ ASHP_SS_SHWTC_SCHWTC_HWRWISOVM_CHWRWISOVM_HCPC2X_CHCPC2X:
   - CHWRWISOVM
   - HCPC2X
   - CHCPC2X
+
+ASHP_SS_CHWRISOVPM_CHWDT_CHDX2SC_CFVSC_RVINJM2X_CPC2X_CHWDPC_HWDPM_SHWTC_HWRWISOVPM:
+  guid: "d14e8ca6-9f28-45a0-9d16-97fe9c9b4c72"
+  description: "Air source heat pump with return side isolation valve percentage control for chilled and heating water, temperature differential accross chilled water, refrigerant vapor injection monitoring, differential pressure monitoring for heating water, and supply heating water temperature control."
+  is_canonical: true
+  implements:
+  - ASHP
+  - SS
+  - CHWRISOVPM
+  - CHWDT
+  - CHDX2SC
+  - CFVSC
+  - RVINJM2X
+  - CPC2X
+  - HWDPM
+  - CHWDPC
+  - SHWTC
+  - HWRWISOVPM
+
+
+ASHP_SS_SWTC_DX4SWC_HWRWISOVM_HWSWISOVM_CHWRWISOVM_CHWSWISOVM_HWDPM_REFPM2X:
+  guid: "99952149-9f05-4c79-a8d1-cfeabfe09134"
+  description: "Air source heat pump for a hydronic system providing chilled and heating water, supply water temperature control."
+  is_canonical: true
+  implements:
+  - ASHP
+  - SS
+  - SWTC
+  - DX4SWC
+  - HWSWISOVM
+  - HWRWISOVM
+  - CHWRWISOVM
+  - CHWSWISOVM
+  - HWDPM
+  - REFPM2X
+  opt_uses:
+  - refrigerant_liquid_temperature_sensor_1
+  - refrigerant_liquid_temperature_sensor_2
+  - refrigerant_suction_temperature_sensor_1
+  - refrigerant_suction_temperature_sensor_2
+
+
