@@ -334,6 +334,7 @@ CO2C:
   opt_uses:
   - high_zone_air_co2_concentration_alarm
   - failed_zone_air_co2_concentration_alarm
+  - zone_air_co2_deadband_concentration_setpoint
 
 
 CO2CMAX:
@@ -558,8 +559,8 @@ EFVSC:
   is_abstract: true
   opt_uses:
   - exhaust_fan_current_sensor
-  - exhaust_fan_power_sensor 
-  - exhaust_fan_torque_sensor 
+  - exhaust_fan_power_sensor
+  - exhaust_fan_torque_sensor
   - exhaust_fan_run_mode
   - exhaust_fan_speed_frequency_sensor
   - exhaust_fan_speed_mode
@@ -1302,8 +1303,7 @@ SWCHVVM:
   - supply_water_changeover_valve_command
   - supply_water_changeover_valve_status
   implements:
-  - MONITORING  
-
+  - MONITORING
 
 RWTC:
   guid: "e6ef58f6-fbda-421d-ac06-d573b093aecd"
@@ -1319,7 +1319,6 @@ RWTC:
   uses:
   - return_water_temperature_sensor
   - return_water_temperature_setpoint
-
 
 RWCHVVM:
   guid: "d17af339-3fbe-447e-9355-9c08a716de40"
@@ -1385,6 +1384,18 @@ PSWTC:
   - process_supply_water_temperature_setpoint
   implements:
   - OPERATIONAL
+
+SGTC:
+  guid: "8ead3288-04f5-49d0-9d96-0a85688a923a"
+  description: "Supply glycol temperature control."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  opt_uses:
+  - return_glycol_temperature_sensor
+  uses:
+  - supply_glycol_temperature_sensor
+  - supply_glycol_temperature_setpoint
 
 SCHWTC:
   guid: "d2af9b79-4eb2-4b63-a03a-dc5483372690"
@@ -5281,6 +5292,15 @@ WDPM:
   - high_differential_pressure_alarm
   - low_differential_pressure_alarm
 
+GDPM:
+  guid: "5b7cc033-05fc-473c-832a-6164a82059dd"
+  description: "Differential pressure monitoring for glycol."
+  is_abstract: true
+  uses:
+  - glycol_differential_pressure_sensor
+  opt_uses:
+  - supply_glycol_pressure_sensor
+
 CHWDPM:
   guid: "dcdb66fc-576b-4475-a1cd-f143e16edcde"
   description: "Differential pressure monitoring for chilled water."
@@ -8585,7 +8605,7 @@ DTPM:
   - detergent_pump_run_command
   implements:
   - MONITORING
-  
+
 CFVSC:
   guid: "b4aa442f-e7fa-4bc6-811a-fe2925e7255f"
   description: "Variable speed control for condensing fan."
@@ -8654,7 +8674,7 @@ CHWPM:
   - chilled_return_water_pressure_sensor
   uses:
   - chilled_supply_water_pressure_sensor
- 
+
 HWPM:
   guid: "635287df-7305-4620-8346-22d69136bf40"
   description: "Hot Water Pressure Monitoring."
@@ -8665,4 +8685,3 @@ HWPM:
   - heating_return_water_pressure_sensor
   uses:
   - heating_supply_water_pressure_sensor
- 

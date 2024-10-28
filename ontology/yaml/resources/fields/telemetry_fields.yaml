@@ -517,6 +517,9 @@ literals:
 - zone_air_co2_concentration_setpoint:
     flexible_min: 0.00005
     flexible_max: 0.005
+- zone_air_co2_deadband_concentration_setpoint:
+    flexible_min: 0.00005
+    flexible_max: 0.005
 - max_zone_air_co2_concentration_sensor:
     flexible_min: 0.00005
     flexible_max: 0.005
@@ -3917,3 +3920,18 @@ literals:
 - exhaust_air_relative_humidity_setpoint:
     fixed_min: 0.0
     fixed_max: 100.0
+- glycol_differential_pressure_sensor:
+    flexible_min: -34473.78945
+    flexible_max: 344737.8945
+- supply_glycol_pressure_sensor:
+    flexible_min: -34473.78945
+    flexible_max: 344737.8945
+- return_glycol_temperature_sensor:
+    flexible_min: 255.9259259
+    flexible_max: 380.3703704
+- supply_glycol_temperature_sensor:
+    flexible_min: 255.9259259
+    flexible_max: 380.3703704
+- supply_glycol_temperature_setpoint:
+    flexible_min: 255.9259259
+    flexible_max: 380.3703704

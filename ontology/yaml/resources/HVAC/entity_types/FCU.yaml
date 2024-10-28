@@ -1075,6 +1075,15 @@ FCU_SS_ZTM:
   - SS
   - ZTM
 
+FCU_SS_ZTC:
+  guid: "e8752dd2-24fe-4fab-b9c5-0592162e4f5c"
+  description: "FCU with zone temperature controol and start/stop."
+  is_canonical: true
+  implements:
+  - FCU
+  - SS
+  - ZTC
+
 FCU_HPZTC_CO2C_FDPM:
   guid: "29f39ffb-a724-4d8d-acd2-d422e79fac05"
   description: "Heat pump with zone temperature and CO2 control and filter monitoring."
