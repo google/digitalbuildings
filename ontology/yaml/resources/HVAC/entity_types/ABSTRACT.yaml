@@ -7041,6 +7041,7 @@ OCWRWISOVPM:
   - MONITORING
 
 OCWSWISOVPM:
+  guid: "751499e7-56c7-4ec2-8edd-d642c8e9d653"
   description: "Open-loop CDW supply side isolation valve percentage control."
   is_abstract: true
   uses:
@@ -8435,6 +8436,7 @@ CPC2X:
   - failed_circulation_pump_alarm_2
 
 OCWCPC2X:
+  guid: "c1a4812d-d458-48ae-9fb9-cb92048ab6c9"
   description: "Circulation control for 2 open loop condenser water pumps."
   is_abstract: true
   uses:
