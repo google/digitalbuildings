@@ -3941,4 +3941,18 @@ literals:
 - supply_air_damper_voltage_sensor:
     flexible_min: 0.0
     flexible_max: 120.0
- 
+- glycol_differential_pressure_sensor:
+    flexible_min: -34473.78945
+    flexible_max: 344737.8945
+- supply_glycol_pressure_sensor:
+    flexible_min: -34473.78945
+    flexible_max: 344737.8945
+- return_glycol_temperature_sensor:
+    flexible_min: 255.9259259
+    flexible_max: 380.3703704
+- supply_glycol_temperature_sensor:
+    flexible_min: 255.9259259
+    flexible_max: 380.3703704
+- supply_glycol_temperature_setpoint:
+    flexible_min: 255.9259259
+    flexible_max: 380.3703704
