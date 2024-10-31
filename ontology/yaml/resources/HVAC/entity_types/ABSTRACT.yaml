@@ -7040,6 +7040,14 @@ OCWRWISOVPM:
   implements:
   - MONITORING
 
+OCWSWISOVPM:
+  description: "Open-loop CDW supply side isolation valve percentage control."
+  is_abstract: true
+  uses:
+  - outside_condensing_loop_supply_water_isolation_valve_percentage_command
+  - outside_condensing_loop_supply_water_isolation_valve_percentage_sensor
+  implements:
+  - MONITORING
 
 HWRWISOVM:
   guid: "a2ca0c24-c44d-44ea-95cb-728da67d7c78"
@@ -8425,6 +8433,15 @@ CPC2X:
   opt_uses:
   - failed_circulation_pump_alarm_1
   - failed_circulation_pump_alarm_2
+
+OCWCPC2X:
+  description: "Circulation control for 2 open loop condenser water pumps."
+  is_abstract: true
+  uses:
+  - outside_condensing_loop_water_circulation_pump_run_command_1
+  - outside_condensing_loop_water_circulation_pump_run_command_2
+  - outside_condensing_loop_water_circulation_pump_run_status_1
+  - outside_condensing_loop_water_circulation_pump_run_status_2
 
 SDHC:
   guid: "de065843-b1a9-4d2e-b751-31d7af8e8991"
