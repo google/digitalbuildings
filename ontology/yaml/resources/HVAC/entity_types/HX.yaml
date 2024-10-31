@@ -159,6 +159,7 @@ HX_CWRWISOVPM_OCWRWISOVPM_CWTWRTM:
   - outside_condensing_loop_return_water_temperature_sensor
 
 HX_CWSWISOVPM_OCWSWISOVPM_CWBYPVPM_OCWCPC2X_CWTWSTM:
+  guid: "c6982fd1-9301-4c91-b4a9-1b359ff1b17c"
   description: "Heat exchanger between closed-loop condensing water and open-loop (tower) water with circulation pumps."
   is_canonical: true
   implements:
