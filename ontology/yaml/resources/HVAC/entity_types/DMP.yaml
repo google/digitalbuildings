@@ -100,6 +100,7 @@ DMP_ZSPC_EFM:
   - EFM
 
 DMP_OAFC:
+  guid: "35d72afa-47e3-48ba-8f59-51c74ebbbddd"
   description: "Stand-alone damper with outside air flowrate control."
   is_canonical: true
   implements:
