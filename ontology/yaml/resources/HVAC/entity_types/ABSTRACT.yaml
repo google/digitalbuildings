@@ -5528,11 +5528,11 @@ CHWVVM:
   description: "Chilled water valve voltage monitoring."
   is_abstract: true
   opt_uses:
-  - chilled_water_flowrate_sensor
   - chilled_water_valve_voltage_sensor
   - failed_chilled_water_valve_alarm
   uses:
   - chilled_water_valve_voltage_command
+  - chilled_water_flowrate_sensor
   implements:
   - OPERATIONAL
   
