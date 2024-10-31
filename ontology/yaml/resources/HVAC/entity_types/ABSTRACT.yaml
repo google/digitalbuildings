@@ -1783,9 +1783,9 @@ RHHC:
   - return_air_relative_humidity_sensor
   - return_air_relative_humidity_setpoint
 
-EHC:
+EDHC:
   guid: "d15d63a4-9fea-49f9-a0eb-9399012cbe93"
-  description: "Exhaust air relative humidity control."
+  description: "Exhaust air humidification/dehumidification control."
   is_abstract: true
   opt_uses:
   - humidification_percentage_command
