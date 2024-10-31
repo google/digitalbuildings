@@ -54,6 +54,8 @@ FCU:
   - lost_power_alarm
   - smoke_alarm
   - failed_alarm
+  - emergency_alarm
+  - fire_alarm
   implements:
   - EQUIPMENT
 
@@ -67,6 +69,7 @@ AHU:
   - outside_air_flowrate_requirement # Included at AHU because, regardless of avaiable data for OAD, it will have ventilation requirements.
   - failed_communication_alarm
   - smoke_alarm
+  - emergency_alarm
 
 HX:
   guid: "9aa0dd1a-851c-4d4e-90da-6804c4f8b9f9"
@@ -102,6 +105,7 @@ MAU:
   opt_uses:
   - failed_communication_alarm
   - failed_alarm
+  - emergency_alarm
   implements:
   - EQUIPMENT
 
