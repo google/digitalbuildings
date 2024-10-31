@@ -3916,34 +3916,34 @@ literals:
     flexible_max: 344737.8945
 - bypass_valve_voltage_command:
     flexible_min: 0.0
-    flexible_max: 10.0
+    flexible_max: 120.0
 - bypass_valve_voltage_sensor:
     flexible_min: 0.0
-    flexible_max: 10.0
+    flexible_max: 120.0
 - chilled_water_valve_voltage_command:
     flexible_min: 0.0
-    flexible_max: 10.0
+    flexible_max: 120.0
 - chilled_water_valve_voltage_sensor:
     flexible_min: 0.0
-    flexible_max: 10.0
+    flexible_max: 120.0
 - heat_exchange_supply_water_isolation_valve_voltage_command:
     flexible_min: 0.0
-    flexible_max: 10.0
+    flexible_max: 120.0
 - heat_exchange_supply_water_isolation_valve_voltage_sensor:
     flexible_min: 0.0
-    flexible_max: 10.0
+    flexible_max: 120.0
 - heating_water_valve_voltage_command:
     flexible_min: 0.0
-    flexible_max: 10.0
+    flexible_max: 120.0
 - heating_water_valve_voltage_sensor:
     flexible_min: 0.0
-    flexible_max: 10.0
+    flexible_max: 120.0
 - makeup_water_valve_voltage_command:
     flexible_min: 0.0
-    flexible_max: 10.0
+    flexible_max: 120.0
 - preheating_water_valve_voltage_command:
     flexible_min: 0.0
-    flexible_max: 10.0
+    flexible_max: 120.0
 - steam_valve_voltage_command:
     flexible_min: 0.0
-    flexible_max: 10.0
+    flexible_max: 120.0
