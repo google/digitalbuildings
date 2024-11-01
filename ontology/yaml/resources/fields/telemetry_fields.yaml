@@ -2862,6 +2862,15 @@ literals:
 - outside_condensing_loop_return_water_temperature_sensor:
     flexible_min: 255.9259259
     flexible_max: 308.1481481
+- outside_condensing_loop_supply_water_isolation_valve_percentage_command:
+    fixed_min: 0.0
+    fixed_max: 100.0
+- outside_condensing_loop_supply_water_isolation_valve_percentage_sensor:
+    fixed_min: 0.0
+    fixed_max: 100.0
+- outside_condensing_loop_supply_water_temperature_sensor:
+    flexible_min: 255.9259259
+    flexible_max: 308.1481481
 - transducer_failed_alarm:
   - ACTIVE
   - INACTIVE
@@ -3761,6 +3770,12 @@ literals:
   - ON
   - OFF
 - condensing_water_circulation_pump_run_status:
+  - ON
+  - OFF
+- outside_condensing_loop_water_circulation_pump_run_command:
+  - ON
+  - OFF
+- outside_condensing_loop_water_circulation_pump_run_status:
   - ON
   - OFF
 # Four fields below are for ASHP.
