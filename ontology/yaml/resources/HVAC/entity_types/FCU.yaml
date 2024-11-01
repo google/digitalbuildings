@@ -2171,23 +2171,20 @@ FCU_DFSS_DFRMM_CHWBZC_DAIDC_RAIDC:
   - DAIDC
   - RAIDC
 
-FCU_DFSS_ZTC_CHWISOVM:
+FCU_DFSS_CHWBZTC:
   guid: "50fbaebd-ed83-4109-84d8-713dd4b54099"
-  description: "Chilled water FCU with chilled water valve monitoring , discharge fan and zone temperature control"
+  description: "Chilled water FCU with chilled water valve open/close monitoring , discharge fan and zone temperature control"
   is_canonical: true
   implements:
   - FCU
   - DFSS
-  - ZTC
-  - CHWISOVM
+  - CHWBZTC
 
-FCU_DFVSC_ZTC:
+FCU_DFVSC_CHWBZTC:
   guid: "d2b3f37b-d69f-4631-b8d2-d71243821e1c"
   description: "FCU with discharge fan and zone temperature control"
   is_canonical: false
   implements:
   - FCU
   - DFVSC
-  - ZTC
-  uses:
-  - chilled_water_valve_command
+  - CHWBZTC

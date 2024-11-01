@@ -8346,3 +8346,19 @@ COM4X:
   - zone_air_co_concentration_sensor_2
   - zone_air_co_concentration_sensor_3
   - zone_air_co_concentration_sensor_4
+
+CHWBZTC:
+  guid: "cbdecbaf-5ddb-4f77-b85f-2fbd92970a70"
+  description: "Chilled water valve binary (open/closed) control."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  uses:
+  - chilled_water_valve_command
+  - zone_air_temperature_sensor
+  - zone_air_temperature_setpoint
+  opt_uses:
+  - failed_chilled_water_valve_alarm
+  - failed_zone_air_temperature_alarm
+  - high_zone_air_temperature_alarm
+  - low_zone_air_temperature_alarm
