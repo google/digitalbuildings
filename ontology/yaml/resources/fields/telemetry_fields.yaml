@@ -3929,6 +3929,12 @@ literals:
 - heating_return_water_pressure_sensor:
     flexible_min: -34473.78945
     flexible_max: 344737.8945
+- exhaust_air_relative_humidity_sensor:
+    fixed_min: 0.0
+    fixed_max: 100.0
+- exhaust_air_relative_humidity_setpoint:
+    fixed_min: 0.0
+    fixed_max: 100.0
 - glycol_differential_pressure_sensor:
     flexible_min: -34473.78945
     flexible_max: 344737.8945

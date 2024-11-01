@@ -1783,6 +1783,20 @@ RHHC:
   - return_air_relative_humidity_sensor
   - return_air_relative_humidity_setpoint
 
+EDHC:
+  guid: "d15d63a4-9fea-49f9-a0eb-9399012cbe93"
+  description: "Exhaust air humidification/dehumidification control."
+  is_abstract: true
+  opt_uses:
+  - humidification_percentage_command
+  - failed_humidifier_alarm
+  uses:
+  - dehumidification_run_command
+  - humidification_run_command
+  - exhaust_air_relative_humidity_sensor
+  - exhaust_air_relative_humidity_setpoint
+  implements:
+  - OPERATIONAL
 
 SHC:
   guid: "c27f33dc-19bc-47f4-937a-eab3293b920f"
@@ -8459,7 +8473,7 @@ SDHC:
   - leaving_dehumidifier_temperature_sensor
   - leaving_dehumidifier_temperature_setpoint
   implements:
-  - CONTROL
+  - CONTROL  
 
 FPHC:
   guid: "bdd89332-3303-420d-a13c-ee38c398d9ff"
