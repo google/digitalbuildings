@@ -1783,6 +1783,20 @@ RHHC:
   - return_air_relative_humidity_sensor
   - return_air_relative_humidity_setpoint
 
+EDHC:
+  guid: "d15d63a4-9fea-49f9-a0eb-9399012cbe93"
+  description: "Exhaust air humidification/dehumidification control."
+  is_abstract: true
+  opt_uses:
+  - humidification_percentage_command
+  - failed_humidifier_alarm
+  uses:
+  - dehumidification_run_command
+  - humidification_run_command
+  - exhaust_air_relative_humidity_sensor
+  - exhaust_air_relative_humidity_setpoint
+  implements:
+  - OPERATIONAL
 
 SHC:
   guid: "c27f33dc-19bc-47f4-937a-eab3293b920f"
@@ -7051,6 +7065,15 @@ OCWRWISOVPM:
   implements:
   - MONITORING
 
+OCWSWISOVPM:
+  guid: "751499e7-56c7-4ec2-8edd-d642c8e9d653"
+  description: "Open-loop CDW supply side isolation valve percentage control."
+  is_abstract: true
+  uses:
+  - outside_condensing_loop_supply_water_isolation_valve_percentage_command
+  - outside_condensing_loop_supply_water_isolation_valve_percentage_sensor
+  implements:
+  - MONITORING
 
 HWRWISOVM:
   guid: "a2ca0c24-c44d-44ea-95cb-728da67d7c78"
@@ -8437,6 +8460,16 @@ CPC2X:
   - failed_circulation_pump_alarm_1
   - failed_circulation_pump_alarm_2
 
+OCWCPC2X:
+  guid: "c1a4812d-d458-48ae-9fb9-cb92048ab6c9"
+  description: "Circulation control for 2 open loop condenser water pumps."
+  is_abstract: true
+  uses:
+  - outside_condensing_loop_water_circulation_pump_run_command_1
+  - outside_condensing_loop_water_circulation_pump_run_command_2
+  - outside_condensing_loop_water_circulation_pump_run_status_1
+  - outside_condensing_loop_water_circulation_pump_run_status_2
+
 SDHC:
   guid: "de065843-b1a9-4d2e-b751-31d7af8e8991"
   description: "Supply dehumidification control with a temperature setpoint."
@@ -8451,7 +8484,7 @@ SDHC:
   - leaving_dehumidifier_temperature_sensor
   - leaving_dehumidifier_temperature_setpoint
   implements:
-  - CONTROL
+  - CONTROL  
 
 FPHC:
   guid: "bdd89332-3303-420d-a13c-ee38c398d9ff"
