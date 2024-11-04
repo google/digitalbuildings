@@ -8509,6 +8509,7 @@ SVVM:
   is_abstract: true
   uses:
   - steam_valve_voltage_command
+  - steam_valve_voltage_sensor
 
 SSTC:
   guid: "3aefe568-b8eb-485e-a3d9-38ac3bb9906d"
