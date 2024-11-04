@@ -789,7 +789,7 @@ CH_SS_SCHWTC_CWDT_REFSM_CHWFRSM_CDWFRSM_CHDXSC_IGM:
   opt_uses:
   - compressor_run_time_accumulator
 
-CH_SS_CC2XM_REFSM2X_REFPM2X:
+CH_SS_CHWFRSM_CDWFRSM_CC2XM_REFSTC2X_REFPM2X:
   guid: "da643f7f-dbc6-41a7-9030-60115b8c406f"
   description: "Simple water-cooled chiller with 2 circuit refrigerant monitoring and compressor current monitoring."
   is_canonical: true
@@ -799,5 +799,5 @@ CH_SS_CC2XM_REFSM2X_REFPM2X:
   - CHWFRSM
   - CDWFRSM
   - CC2XM
-  - REFSM2X
+  - REFSTC2X
   - REFPM2X

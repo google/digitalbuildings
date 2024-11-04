@@ -8362,3 +8362,21 @@ CHWBZTC:
   - failed_zone_air_temperature_alarm
   - high_zone_air_temperature_alarm
   - low_zone_air_temperature_alarm
+
+REFSTC2X:
+  guid: "4690aaf5-e70c-43e0-aabb-38d209b8c2aa"
+  description: "Refrigerant temperature temp control for 2 circuits."
+  is_abstract: true
+  opt_uses:
+  - refrigerant_discharge_temperature_sensor_1
+  - refrigerant_discharge_temperature_sensor_2
+  - refrigerant_suction_temperature_sensor_1
+  - refrigerant_suction_temperature_sensor_2
+  uses:
+  - refrigerant_condenser_saturation_temperature_sensor_1
+  - refrigerant_condenser_saturation_temperature_sensor_2
+  - refrigerant_evaporator_saturation_temperature_sensor_1
+  - refrigerant_evaporator_saturation_temperature_sensor_2
+  - refrigerant_condenser_saturation_temperature_setpoint_1
+  implements:
+  - MONITORING

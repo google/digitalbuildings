@@ -107,6 +107,9 @@ literals:
 - refrigerant_condenser_saturation_temperature_sensor:
     flexible_min: 255.9259259
     flexible_max: 422.037037
+- refrigerant_condenser_saturation_temperature_setpoint:
+    flexible_min: 255.9259259
+    flexible_max: 422.037037
 - condensing_return_water_temperature_sensor:
     flexible_min: 255.9259259
     flexible_max: 308.1481481
