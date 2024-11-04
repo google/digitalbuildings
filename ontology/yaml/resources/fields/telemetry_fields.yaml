@@ -3950,3 +3950,6 @@ literals:
 - steam_valve_voltage_command:
     flexible_min: 0.0
     flexible_max: 120.0
+- steam_valve_voltage_sensor:
+    flexible_min: 0.0
+    flexible_max: 120.0
