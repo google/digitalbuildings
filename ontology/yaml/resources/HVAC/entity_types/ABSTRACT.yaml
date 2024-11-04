@@ -4212,6 +4212,7 @@ MWVVM:
   is_abstract: true
   uses:
   - makeup_water_valve_voltage_command
+  - makeup_water_valve_voltage_sensor
   implements:
   - MONITORING
 
