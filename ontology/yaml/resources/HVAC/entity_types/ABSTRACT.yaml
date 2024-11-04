@@ -5502,9 +5502,9 @@ HWVVM:
   is_abstract: true
   opt_uses:
   - heating_water_flowrate_sensor
-  - heating_water_valve_percentage_sensor
+  - heating_water_valve_voltage_sensor
   uses:
-  - heating_water_valve_percentage_command
+  - heating_water_valve_voltage_command
   implements:
   - OPERATIONAL
 
