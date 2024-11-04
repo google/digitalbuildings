@@ -3917,6 +3917,9 @@ literals:
 - bypass_air_damper_voltage_command:
     flexible_min: 0.0
     flexible_max: 120.0
+- bypass_air_damper_voltage_sensor:
+    flexible_min: 0.0
+    flexible_max: 120.0
 - outside_air_damper_voltage_command:
     flexible_min: 0.0
     flexible_max: 120.0
