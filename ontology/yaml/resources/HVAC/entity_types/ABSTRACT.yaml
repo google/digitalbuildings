@@ -3978,6 +3978,7 @@ BYPDVM:
   is_abstract: true
   uses:
   - bypass_air_damper_voltage_command
+  - bypass_air_damper_voltage_sensor
   implements:
   - MONITORING
 
