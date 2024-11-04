@@ -3941,6 +3941,9 @@ literals:
 - makeup_water_valve_voltage_command:
     flexible_min: 0.0
     flexible_max: 120.0
+- makeup_water_valve_voltage_sensor:
+    flexible_min: 0.0
+    flexible_max: 120.0    
 - preheating_water_valve_voltage_command:
     flexible_min: 0.0
     flexible_max: 120.0
