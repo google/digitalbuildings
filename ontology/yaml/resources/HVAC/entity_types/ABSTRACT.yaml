@@ -4216,9 +4216,10 @@ BYPVVM:
   description: "Bypass water valve voltage monitoring."
   is_abstract: true
   opt_uses:
-  - bypass_valve_voltage_sensor
+
   - failed_bypass_valve_alarm
   uses:
+  - bypass_valve_voltage_sensor
   - bypass_valve_voltage_command
   implements:
   - MONITORING
@@ -5538,8 +5539,8 @@ HWVVM:
   is_abstract: true
   opt_uses:
   - heating_water_flowrate_sensor
-  - heating_water_valve_voltage_sensor
   uses:
+  - heating_water_valve_voltage_sensor
   - heating_water_valve_voltage_command
   implements:
   - OPERATIONAL
