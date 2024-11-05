@@ -8377,6 +8377,6 @@ REFSTC2X:
   - refrigerant_condenser_saturation_temperature_sensor_2
   - refrigerant_evaporator_saturation_temperature_sensor_1
   - refrigerant_evaporator_saturation_temperature_sensor_2
-  - refrigerant_condenser_saturation_temperature_setpoint_1
+  - refrigerant_condenser_saturation_temperature_setpoint
   implements:
   - MONITORING
