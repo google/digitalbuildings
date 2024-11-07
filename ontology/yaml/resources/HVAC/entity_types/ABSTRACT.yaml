@@ -1122,6 +1122,7 @@ SCHWTC:
   - chilled_return_water_temperature_sensor
   - cooling_percentage_command
   - cooling_request_count
+  - cooling_run_status
   uses:
   - chilled_supply_water_temperature_sensor
   - chilled_supply_water_temperature_setpoint
