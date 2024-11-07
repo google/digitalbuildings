@@ -8,7 +8,7 @@
 
 The Digital Buildings project is an open-source, Apache-licensed effort to create a uniform schema and toolset for representing structured information about buildings and building-installed equipment. A version of the Digital Buildings ontology and toolset is currently being used by Google to manage buildings in its portfolio. 
 
-The Digital Buildings project originated from the need to manage a very large, heterogeneous building portfolio in a scalable way. The project aims to enable management applications/analyses that are trivially portable between buildings.  This goal is achieved through a combination of semantically-expressive abstract modeling, an easy-to-use configuration language, and robust validation tooling.  Digital Buildings work has been inspired by [Project Haystack](https://project-haystack.org/tag) and [BrickSchema](https://brickschema.org/) and maintains cross-compatibility and/or convergence as a long-term objective.
+The Digital Buildings project originated from the need to manage a very large and heterogeneous building portfolio in a scalable way. The project aims to enable management applications and analyses that are trivially portable between buildings. This goal is achieved through a combination of semantically-expressive abstract modeling, an easy-to-use configuration language, and robust validation tooling. Digital Buildings work has been inspired by [Project Haystack](https://project-haystack.org/tag) and [BrickSchema](https://brickschema.org/) and maintains cross-compatibility and/or convergence as a long-term objective.
 
 In creating the Digital Buildings project, we have considered the following:
 
@@ -23,16 +23,16 @@ In creating the Digital Buildings project, we have considered the following:
 
 This project is structured as follows:
 *  An [ontology](./ontology/README.md) that defines the parameters of the semantic data model ("Terminology box") and tools for building, validating, and associating real equipment with a specific model. It contains the following formats:
-   * [Yaml format](./ontology/yaml/README.md)
+   * [YAML format](./ontology/yaml/README.md)
    * [RDF/OWL format](./ontology/rdf/README.md)
 
-* A [model instance configuration](./ontology/docs/building_config.md) (a.k.a building configuration file) that contains a mapping between the ontology and the "raw" data. Building configuration files are the "Assertion box."
+* A [model instance configuration](./ontology/docs/building_config.md) (a.k.a building configuration file) that contains a mapping between the ontology and the "raw" real-world data. Building configuration files are the "Assertion box."
 * Tools that enable the following:
   * [**ABEL**](./tools/abel/README.md)**:** facilitates easier building configration construction by converting from a templatized Google Sheet to a [building configuration file](./ontology/docs/building_config.md) (and from a building configuration file back to a Google Sheet).
   * [**Explorer**](./tools/explorer/README.md)**:** allows users to explore ontology type fields and compare ontology types to each other.
-  * [**Instance Validator**](./tools/validators/ontology_validator/README.md) which allows to validate the yaml ontology upon a change or an extension.
-  * [**Ontology Validator**](./tools/validators/ontology_validator/README.md)**:** validates the ontology upon a change or an extension (currently only for the Yaml format).
-  * [**RDF/OWL Generator**](./tools/rdf_generator/README.md)**:** generates an RDF version from the yaml ontology files.
+  * [**Instance Validator**](./tools/validators/ontology_validator/README.md)**:** validates a concrete application (instance) of DBO (i.e., a building configuration file) with optional telemetry validation.
+  * [**Ontology Validator**](./tools/validators/ontology_validator/README.md)**:** validates the ontology upon a change or an extension (currently supports YAML format only).
+  * [**RDF/OWL Generator**](./tools/rdf_generator/README.md)**:** generates an RDF version from the YAML ontology files.
 * An [Internal Building Representation (IBR)](./ibr/README.md) file format to represent data from different verticals such as spatial or assets.
 
 ## Learning Modules

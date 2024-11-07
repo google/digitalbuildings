@@ -1,4 +1,4 @@
-# Copyright 2023 Google LLC
+# Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the License);
 # you may not use this file except in compliance with the License.
@@ -12,17 +12,18 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# This config file is invalid because it fails to pass the syntax expectations
-# for translation. The devices listed in translation need to follow specific
-# formats, and `invalid_key` is not a valid part of any of them.
+########################
+### Canonical Types  ###
+########################
 
-US-SEA-BLDG1-GUID:
-  type: FACILITIES/BUILDING
-  code: US-SEA-BLDG1
-  translation:
-    zone_air_temperature_sensor:
-      present_value: "temp_1"
-      units:
-        key: "units"
-        values:
-          degrees_celsius: "degC"
+HOOD_EFSS3X_EFVSC3X_ETM3X_EFM3X_EDPM3X:
+  guid: "13dc65c9-67af-45ad-a7b5-2e412514374d"
+  description: "Hood with three variable speed exhaust fans and variable position dampers. Temperature and flowrate monitoring for each"
+  is_canonical: true
+  implements:
+  - HOOD
+  - EFSS3X
+  - EFVSC3X
+  - ETM3X
+  - EFM3X
+  - EDPM3X

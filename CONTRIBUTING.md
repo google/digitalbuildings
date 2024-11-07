@@ -27,7 +27,7 @@ information on using pull requests.
 This project follows
 [Google's Open Source Community Guidelines](https://opensource.google/conduct/).
 
-## Pull requests
+## Pull Requests
 
 If you are Google partner, please make sure not to add sensitive data on GitHub when performing the following actions:
 * Extending the ontology types through a pull request
@@ -38,3 +38,14 @@ Sensitive data is considered anything in any of the following categories:
 * **Buildings:** name, location, street address, information about floors/rooms/zones within the building, etc.
 * **Devices/Equipment:** name, id, location, etc.
 * **Other:** project id, subscription names, etc.
+
+### Enabling Auto-GUID Generation for PRs
+1. In your individual fork, navigate to `Settings > Actions > General` and ensure your settings under each header are as follows:
+    * Under “Actions Permissions,” please select “Allow all actions and reusable workflows”
+    * Under “Workflow Permissions,” please select “Read and write permissions” and check the box next to “Allow GitHub Actions to create and approve pull requests”
+
+2. Click the gray “Save” button at the bottom of the page to preserve the changes
+
+3. Once your Settings are saved, in your individual fork, navigate to `Actions`
+    * Click the green button that says “I understand my workflows, go ahead and enable them” to fully enable (if you do not see this button, it is likely the workflows are already enabled and no further action is required)
+
