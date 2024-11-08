@@ -33,6 +33,15 @@ PMP_SS_VSC:
   - SS
   - VSC
 
+PMP_SS_SWTM:
+  guid: "d0b32b26-b10a-4963-849e-4f213e0ee293"
+  description: "Pump with supply water temperature monitoring."
+  is_canonical: true
+  implements:
+  - PMP
+  - SS
+  - SWTM
+
 PMP_DRPM:
   guid: "d88d7308-a688-4b7a-9b94-ed9bd0b04266"
   description: "Pump implemented with drain pump monitoring ."
@@ -60,6 +69,15 @@ PMP_SS_VSC_WDPC:
   - SS
   - VSC
   - WDPC
+
+PMP_SS_LHLM:
+  guid: "0c3cc1e4-6710-4dab-a0bc-35708f9c2b91"
+  description: "Sump Pump with water level monitoring."
+  is_canonical: true
+  implements:
+  - PMP
+  - SS
+  - LHLM
 
 PMP_SS_VSFC:
   guid: "08683c47-596a-4e52-8545-5079201b55df"
@@ -91,6 +109,16 @@ PMP_SS_CHWISOVPM_VSFC:
   - lost_power_alarm
   - low_differential_pressure_alarm
   - chilled_water_differential_pressure_setpoint
+
+PMP_SS_CHWISOVPM_VSC:
+  guid: "6ee2c381-b2f1-455a-9d0c-59b48cab5b4c"
+  description: "PMP device with chilled water valve and pump speed percentage control"
+  is_canonical: true
+  implements:
+  - PMP
+  - SS
+  - CHWISOVPM
+  - VSC
 
 PMP_SS_VSC_WDPC_WFRC:
   guid: "626cf14c-537c-4dbf-85e1-1ed6d68d5aa3"
@@ -149,6 +177,15 @@ PMP_SS_WDPM:
   - SS
   - WDPM
 
+PMP_SS_VSC_HWBYPVM:
+  guid: "aec25b2b-513d-474d-91b3-7cb756fe12ce"
+  description: "Variable speed pump with heating water bypass valve binary control."
+  is_canonical: true
+  implements:
+  - PMP
+  - SS
+  - VSC
+  - HWBYPVM
 
 ###################################
 ### Existing Non-standard Types ###

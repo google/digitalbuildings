@@ -20,9 +20,8 @@
 
 TK_LVLM:
   guid: "428168a1-a50b-42cc-935e-694bd8bd8045"
-  description: "Standard Tank level monitoring."
+  description: "Standard tank with level monitoring."
   is_canonical: true
   implements:
-  - TK
+  - TK #TODO: make this inherit from the GLOBAL namespace
   - LVLM
-  

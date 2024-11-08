@@ -134,7 +134,7 @@ HX_HWSWC_SSSPC:
   - HWSWC
   - SSSPC
 
-HX_CWRWISOVM_TWRWISOVM_CWTWRTM:
+HX_CWRWISOVM_OCWRWISOVM_CWTWRTM:
   guid: "ba604692-f750-4075-917d-658383ec8a8c"
   description: "Heat exchanger between closed-loop condensing water and open-loop (tower) water."
   is_canonical: true
@@ -146,7 +146,7 @@ HX_CWRWISOVM_TWRWISOVM_CWTWRTM:
   - condensing_return_water_temperature_sensor
   - outside_condensing_loop_return_water_temperature_sensor
 
-HX_CWRWISOVPM_TWRWISOVPM_CWTWRTM:
+HX_CWRWISOVPM_OCWRWISOVPM_CWTWRTM:
   guid: "0422fc9c-f491-45c0-a70f-d67c8b781b91"
   description: "Heat exchanger between closed-loop condensing water and open-loop (tower) water."
   is_canonical: true
@@ -158,6 +158,20 @@ HX_CWRWISOVPM_TWRWISOVPM_CWTWRTM:
   - condensing_return_water_temperature_sensor
   - outside_condensing_loop_return_water_temperature_sensor
 
+HX_CWSWISOVPM_OCWSWISOVPM_CWBYPVPM_OCWCPC2X_CWTWSTM:
+  guid: "c6982fd1-9301-4c91-b4a9-1b359ff1b17c"
+  description: "Heat exchanger between closed-loop condensing water and open-loop (tower) water with circulation pumps."
+  is_canonical: true
+  implements:
+  - HX
+  - CWSWISOVPM
+  - OCWSWISOVPM
+  - CWBYPVPM
+  - OCWCPC2X
+  uses:
+  - condensing_supply_water_temperature_sensor
+  - outside_condensing_loop_supply_water_temperature_sensor
+
 HX_RWISOVM:
   guid: "2385f180-c38d-48a1-9604-1d822dfe99ff"
   description: "Simple return water isolating heat exchanger."
@@ -165,3 +179,72 @@ HX_RWISOVM:
   implements:
   - HX
   - RWISOVM
+
+HX_CWDT_CHWDT_CWBYPVPM_CHWBYPVPM:
+  guid: "750775f1-b955-4224-a3b8-e5a1386399d0"
+  description: "Condenser and chilled water heat exchanger."
+  is_canonical: true
+  implements:
+  - HX
+  - CWDT
+  - CHWDT
+  - CWBYPVPM
+  - CHWBYPVPM
+
+HX_CWDT_SCHWTC_CHWFRM_CWSISOVPM_CWBYPVPM_CHWSWISOVPM_CHWBYPVPM_CWDPM_CLPM:
+  guid: "4eb4279c-338f-481f-96ec-b280b520670d"
+  description: "Condenser and chilled water heat exchanger with isolation and bypass valves, chilled supply water temperature control, chilled water flowrate monitoring and condensing water differential pressure monitoring."
+  is_canonical: true
+  implements:
+  - HX
+  - CWDT
+  - SCHWTC
+  - CHWFRM
+  - CWSISOVPM
+  - CWBYPVPM
+  - CHWSWISOVPM
+  - CHWBYPVPM
+  - CWDPM
+  - CLPM
+
+HX_CWDT_HSWTC_HWDPC_HWBYPVPM:
+  guid: "909f4f23-f71d-4504-8052-efb435356e29"
+  description: "Condenser and heating water heat exchanger with heating water bypass valve, heating supply water valve control and heating water temperature differentioal control."
+  is_canonical: true
+  implements:
+  - HX
+  - CWDT
+  - HSWTC
+  - HWDPC
+  - HWBYPVPM
+
+HX_SSTC_SSSPC:
+  guid: "02c3c81d-241c-4868-b260-9c580c29379b"
+  description: "Steam exchanger with heating water temperature control and steam static pressure control on supply side."
+  is_canonical: true
+  implements:
+  - HX
+  - SSTC
+  - SSSPC
+
+HX_CHWDT_PRWDT_CHWDPM_PWDPM:
+  guid: "c0b67228-b568-4c51-bdfd-ea5790b78de9"
+  description: "Chilled/process water heat exchanger with differential pressure monitoring."
+  is_canonical: true
+  implements:
+  - HX
+  - CHWDT
+  - PRWDT
+  - CHWDPM
+  - PWDPM
+
+HX_CWRISOVPM_CHWRWDVPM_CWDT_CHWDT:
+  guid: "993e124b-b666-46ee-95ee-e958423ada9e"
+  description: "Heat exchanger with condensing return isolation valve, chilled return diverting valve, and chilled and condensing temperature differential monitoring."
+  is_canonical: true
+  implements:
+  - HX
+  - CWRISOVPM
+  - CHWRWDVPM
+  - CWDT
+  - CHWDT

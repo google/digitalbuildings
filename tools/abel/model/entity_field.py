@@ -13,7 +13,7 @@
 # limitations under the License.
 """Module to hold EntityField class."""
 
-from typing import Dict, List, Optional
+from typing import Dict, List, Optional, Any
 
 # pylint: disable=g-importing-member
 from model.constants import BC_GUID
@@ -86,7 +86,7 @@ class MissingField(field_translation.UndefinedField):
 
   def __eq__(self, other):
     if not isinstance(other, MissingField):
-      raise TypeError(f'{str(other)} must be a MissingField instance')
+      return False
     standard_field_name_eq = self.std_field_name == other.std_field_name
     entity_guid_eq = self.entity_guid == other.entity_guid
     reporting_field_eq = (
@@ -132,7 +132,7 @@ class MissingField(field_translation.UndefinedField):
 
   def GetSpreadsheetRowMapping(
       self, guid_to_entity_map: GuidToEntityMap
-  ) -> Dict[str, str]:
+  ) -> Dict[str, Any]:
     """Returns dictionary of spreadsheet headers to MissingField attributes."""
     missing_field_row_map = {
         VALUES: [
@@ -396,7 +396,7 @@ class DimensionalValueField(field_translation.DefinedField):
 
   def __eq__(self, other: ...) -> bool:
     if not isinstance(other, DimensionalValueField):
-      raise TypeError(f'{str(other)} must be an DimensionalValueField instance')
+      return False
     standard_field_name_eq = self.std_field_name == other.std_field_name
     raw_field_name_eq = self.raw_field_name == other.raw_field_name
     entity_guid_eq = self.entity_guid == other.entity_guid

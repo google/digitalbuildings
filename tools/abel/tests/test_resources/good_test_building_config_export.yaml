@@ -246,6 +246,12 @@ e49b0687-e409-4a24-95d6-4629ed42e7b7:
         'ON': active
   type: HVAC/VAV_SD_CSP
 
+f318a105-a8c8-4157-bf0f-9745ac11fbfc:
+  cloud_device_id: "254190134410577"
+  code: VAV-10
+  etag: 1234567
+  type: HVAC/VAV_SD_CSP
+
 c2ba089b-3a5e-4c56-bdeb-748a9d1b0e99:
   code: TEST_BUILDING
   etag: 1234567

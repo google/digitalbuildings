@@ -94,8 +94,7 @@ class MissingFieldTest(absltest.TestCase):
     test_missing_field = MissingField.FromDict(TEST_MISSING_FIELD_DICT)
 
     # pylint: disable=unnecessary-dunder-call
-    with self.assertRaises(TypeError):
-      test_missing_field.__eq__('not a field')
+    self.assertFalse(test_missing_field.__eq__('not a field'))
 
   @mock.patch.object(GuidToEntityMap, 'GetEntityCodeByGuid')
   def testMissingFieldGetSpreadsheetRowMapping(self, test_get_code):
@@ -104,15 +103,13 @@ class MissingFieldTest(absltest.TestCase):
     test_guid_to_entity_map = GuidToEntityMap()
     expected_row_mapping = {
         VALUES: [
-            {
-                USER_ENTERED_VALUE: {
-                    STRING_VALUE: TEST_MISSING_STANDARD_FIELD_NAME
-                }
-            },
+            {USER_ENTERED_VALUE: {
+              STRING_VALUE: TEST_MISSING_STANDARD_FIELD_NAME
+            }},
             {USER_ENTERED_VALUE: {STRING_VALUE: ''}},
             {USER_ENTERED_VALUE: {
-              STRING_VALUE: TEST_MISSING_STANDARD_FIELD_NAME}
-            },
+              STRING_VALUE: TEST_MISSING_STANDARD_FIELD_NAME
+            }},
             {USER_ENTERED_VALUE: {STRING_VALUE: TEST_REPORTING_ENTITY_CODE}},
             {USER_ENTERED_VALUE: {STRING_VALUE: TEST_REPORTING_GUID}},
             {USER_ENTERED_VALUE: {STRING_VALUE: TEST_REPORTING_ENTITY_CODE}},
@@ -137,7 +134,6 @@ class MissingFieldTest(absltest.TestCase):
     actual_row_mapping = test_missing_field.GetSpreadsheetRowMapping(
         guid_to_entity_map=test_guid_to_entity_map
     )
-
     self.assertEqual(expected_row_mapping, actual_row_mapping)
 
 

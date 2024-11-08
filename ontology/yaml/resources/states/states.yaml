@@ -12,80 +12,94 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-ON: Powered on.
-OFF: Powered off.
-AUTO: Running under automatic control.
+ON: "Powered on."
+OFF: "Powered off."
+
+AUTO: "Running under automatic control."
 MANUAL: "Running under manual (hand) control."
-OPEN: Open position, typically for a valve or other pass-though.
-CLOSED: Closed position, typically for a valve or other pass-though.
-LOW: Low speed or output setting.
-MEDIUM: Medium speed or output setting.
-HIGH: High speed or output setting.
-OCCUPIED: Occupied sensor state or operation mode.
-UNOCCUPIED: Unoccupied sensor state or operation mode.
-VFD: Discrete speed (frequency) control
-BYPASS: Bypassing an element or entity.
-DEHUMIDIFY: Modes of operation in DX unit where the unit acts as a dehumidifier by removing moisture from air
-FAN_ONLY: Modes of operation in DX unit where only fan runs and heating/cooling is disabled
 
-# Moved from HVAC namespace because all fields are currently global in DL.
-COMMISSIONING: The fan speed and valve positions are set to preconfigured parameters.
-FLUSHING: The heating and cooling valves are fully open.
-HEATING: The valve is in a heating configuration.
-COOLING: The valve is in a cooling configuration.
-NEUTRAL: Neither the heating valve nor cooling valve is open.
+TWENTY_PERCENT: "Speed of 20 percent of the maximum."
+FORTY_PERCENT: "Speed of 40 percent of the maximum."
+SIXTY_PERCENT: "Speed of 60 percent of the maximum."
+EIGHTY_PERCENT: "Speed of 80 percent of the maximum."
 
-# Added for VC units
-ACCESS_FAILED: The failure to access a resource.
-ACTIVE: An action, activity, event, or operation is currently hapenning.
-CALENDAR_STARTUP: The calendar events synchronization is starting up.
-CALENDAR_SUCCESS: The calendar events synchronization was successful.
-DISABLED: Something is disabled.
-DOES_NOT_MATCH: Two or more things do not match.
-ENABLED: Something is enabled.
-INACTIVE: An action, activity, event, or operation is not currently hapenning.
-MATCHES: Two or more things match.
-SUBSCRIPTION_FAILED: The calendar events subscription has failed.
-UNKNOWN: The state is unknown.
-WAITING_FOR_RESPONSE: The calendar events synchronization process is awaiting response.
+OPEN: "Open position; typically for a valve, damper, or other pass-though."
+CLOSED: "Closed position; typically for a valve, damper, or other pass-though."
+
+OCCUPIED: "Occupied sensor state or operation mode."
+UNOCCUPIED: "Unoccupied sensor state or operation mode."
+
+ACTIVE: "An action, activity, event, or operation is currently hapenning."
+INACTIVE: "An action, activity, event, or operation is not currently hapenning."
+
+ENABLED: "Something is enabled."
+DISABLED: "Something is disabled."
 
 # Added for measured statues (e.g. flowrate_status)
-PRESENT: "Something is currently materialized physically (e.g. flowrate_status is present)."
-ABSENT: "Something is currently not materialized (e.g. flowrate_status is absent). "
+PRESENT: "Something is currently materialized physically (e.g., flowrate_status is present)."
+ABSENT: "Something is currently not materialized (e.g., flowrate_status is absent)."
 
-CHARGING: "The act of storing (e.g. energy stored in a battery)."
-DISCHARGING: "Release of something built up or retained for later use."
-STANDBY: "Waiting in a prepared state."
+NORMAL: "Function, state or flow which is an ideal or expected condition."
+REVERSED: "Function, state or flow which is opposed to the expected or normal condition."
 
-REMOTE: "The control is operated remotely."
-LOCAL: "The control is operating locally and independently with the remote system."
+UNKNOWN: "The state is unknown."
 
-#New states for CH ZRH eurd
-FADING: "An operation mode of a lighting dimmer: dimming speed based on a duration to dim from minimum to maximum"
-RAMPING: "An operation mode of a lighting dimmer: dimming speed defined in percent per second"
+LOW: "Low speed or output setting."
+MEDIUM: "Medium speed or output setting."
+HIGH: "High speed or output setting."
 
-#FOR ATS
-SOURCEA: "An operation mode having source 1 as priority" 
-NOSOURCE: "An operation mode having no source as priority"
-POSITIONA: "Automatic Transfer switch position 0"
-POSITIONB: "Automatic Transfer switch position 1"
-POSITIONC: "Automatic Transfer switch position 2"
+NORTH: "Cardinal direction; opposite of south."
+SOUTH: "Cardinal direction; opposite of north."
+EAST: "Cardinal direction; opposite of west."
+WEST: "Cardinal direction; opposite of east."
 
-DIMMING: "Dimmer is operated by setting a constant dimming setpoint"
-CONSTANT_LIGHT_CONTROL: "Dimmer controls the room illuminance"
-SCENE_CONTROL: "Dimmer activates scene presets"
-NORTH: "Cardinal direction; opposite of south"
-SOUTH: "Cardinal direction; opposite of north"
-EAST: "Cardinal direction; opposite of west"
-WEST: "Cardinal direction; opposite of east"
+
+## HVAC
+VFD: "Discrete mode in which speed is controlled by a variable frequency drive."
+BYPASS: "Bypassing an element or entity."
+DEHUMIDIFY: "Modes of operation in direct-expansion (DX) compressors where the unit acts as a dehumidifier by removing moisture from air."
+FAN_ONLY: "Modes of operation in direct-expansion (DX) compressors where only the fan runs and heating/cooling is disabled."
+COMMISSIONING: "Operating mode where the fan speed and valve positions are set to preconfigured parameters. Typically used as part of HVAC system testing after equipment installation."
+FLUSHING: "Operating mode where the heating and/or cooling valves are fully open. Typically used in HVAC systems to clear (flush) the system of sediments."
+HEATING: "Operating mode where the valve is in a heating configuration."
+COOLING: "Operating mode where the valve is in a cooling configuration."
+NEUTRAL: "Operating mode where neither the heating nor cooling valve is open."
 DAY_NIGHT: "Operation mode for blinds: Drives the blinds to predefined positions for either day- and nighttime"
 THERMAL: "Operation mode for blinds: Drives the binds in order support the room climate control based on the inside temperature and the outside brightness"
 WINDOW_OPEN: "Operation mode for blinds: Stops the blinds from operating when a window opening sensor is activated"
 
-#FOR UPS
+
+## INFO_TECH
+ACCESS_FAILED: "The failure to access a resource."
+SUBSCRIPTION_FAILED: "The calendar events subscription has failed."
+CALENDAR_STARTUP: "The calendar events synchronization is starting up."
+CALENDAR_SUCCESS: "The calendar events synchronization was successful."
+WAITING_FOR_RESPONSE: "The calendar events synchronization process is awaiting response."
+MATCHES: "Two or more things match."
+DOES_NOT_MATCH: "Two or more things do not match."
+CHARGING: "The act of storing (e.g. energy stored in a battery)."
+DISCHARGING: "Release of something built up or retained for later use."
+STANDBY: "Waiting in a prepared state."
+REMOTE: "The control is operated remotely."
+LOCAL: "The control is operating locally and independently with the remote system."
+
+
+## ELECTRICAL
+SOURCEA: "An operation mode having source 1 as priority"
+NOSOURCE: "An operation mode having no source as priority"
+POSITIONA: "Automatic Transfer switch position 0"
+POSITIONB: "Automatic Transfer switch position 1"
+POSITIONC: "Automatic Transfer switch position 2"
 BATTERY: "Operation mode or input power is via Battery"
 SYNCHRONOUS: "Mode of operation of inverter where inverter operation is in line with the bypass voltage and frequency"
 ASYNCHRONOUS: "Mode of operation of inverter where either the bypass supply fails or the inverter is not in line bypass voltage and frequency"
 SOFTSTART: "Mode of operation of rectifier where the input power supply is gradually turned on to avoid overloading"
-NORMAL: "Function, state or flow which is an ideal or expected condition."
-REVERSED: "Function, state or flow which is opposed to the expected or normal condition."
+EMERGENCY: "Power source or mode of operation in critical situations when the primary power source or typical mode of operation fails."
+
+## LIGHTING
+FADING: "An operation mode of a lighting dimmer: dimming speed based on a duration to dim from minimum to maximum."
+RAMPING: "An operation mode of a lighting dimmer: dimming speed defined in percent per second."
+DIMMING: "Operation mode where the dimmer is operated by setting a constant dimming setpoint."
+CONSTANT_LIGHT_CONTROL: "Operation mode where the dimmer controls the room illuminance."
+SCENE_CONTROL: "Operation mode where the dimmer activates scene presets."
+

@@ -14,7 +14,6 @@
 
 ### ABSTRACT TYPES
 
-
 GASDET:
   guid: "38f79492-74f8-4a6b-b87f-27bd9a3b8442"
   description: "Basic natural gas leak monitoring."
@@ -54,7 +53,7 @@ BCM:
 
 BC2X:
   guid: "5b04410c-62b1-4385-998b-16023b663b14"
-  description: "Broken cable monitoring."
+  description: "Dual broken cable monitoring."
   is_abstract: true
   uses:
   - broken_cable_alarm_1
@@ -73,6 +72,14 @@ WLA:
   is_abstract: true
   uses:
   - water_leak_alarm
+
+WLA2X:
+  guid: "56b8fea6-c32a-40a2-af68-4b34913f25c0"
+  description: "Double water leak monitoring."
+  is_abstract: true
+  uses:
+  - water_leak_alarm_1
+  - water_leak_alarm_2
 
 FA2X:
   guid: "5010bcf9-f4c8-4884-8f5c-a6261b14699e"

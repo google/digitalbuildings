@@ -18,6 +18,16 @@
 
 ### FAN RUN CONTROL ###
 
+FAN_SS_VSC_WDPM:
+  guid: "b8c8b02f-367b-40f5-94ab-a9c19eca03aa"
+  description: "Fan with start/stop, open-loop speed control and differential pressure monitoring."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - VSC
+  - WDPM
+
 FAN_SS:
   guid: "ce4b17ab-afbb-4061-b506-085e4116ed9a"
   description: "Basic fan with start/stop and status."
@@ -36,6 +46,45 @@ FAN_SS_VSC:
   - FAN
   - SS
   - VSC
+
+FAN_SS_VSC_EFM:
+  guid: "b8fd64cb-f012-46ee-95e0-cd2fd27f4c92"
+  description: "Fan with start/stop status, open-loop speed control and exhaust air flowrate monitoring."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - VSC
+  - EFM
+
+FAN_SS_VSC_ZSPC:
+  guid: "b9f968cc-211b-4b25-915d-525216aebc4e"
+  description: "Fan with start/stop status, open-loop speed control & zone static pressure control."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - VSC
+  - ZSPC
+
+FAN_SS_VSC_ZSPM:
+  guid: "9936851f-f434-407a-8671-941630a02883"
+  description: "Fan with start/stop status, open-loop speed control & zone static pressure monitoring."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - VSC
+  - ZSPM
+
+FAN_SS_WDPM:
+  guid: "d12cbe88-243a-40a5-b624-3a2f355e7cfc"
+  description: "Fan with start/stop and differential pressure monitoring."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - WDPM
 
 FAN_SS_RMM:
   guid: "917a9051-01dc-4f41-ad4c-5fcb45fe2f0e"
@@ -80,6 +129,16 @@ FAN_SS_REFM:
   implements:
   - FAN
   - SS
+  - REFM
+
+FAN_SS_VSC_REFM:
+  guid: "7544775f-1a32-4784-bac3-9474016a1186"
+  description: "Refrigerant monitoring fan with variable speed control."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - VSC
   - REFM
 
 FAN_SS_VSC_REFM4X:
@@ -174,7 +233,7 @@ FAN_SS_VSC_DRI:
   uses:
   - dryer_run_status
 
-FAN_MDRI:
+FAN_SS_VSC_WDPC_DRSM5X:
   guid: "8838183b-c80b-4be0-84c7-3c9976c96d31"
   description: "Fan with multiple interlocked driers."
   is_canonical: true
@@ -295,7 +354,7 @@ FAN_SS_VSC_ETM4X:
 
 FAN_SS_VSC_EFC_FDPM:
   guid: "733a4afd-88d3-4f5a-a08e-d337c8598c1d"
-  description: "Fan with start/stop status and open-loop speed control."
+  description: "Fan with start/stop status, open-loop speed control, and filter differential pressure monitoring."
   is_canonical: true
   implements:
   - FAN
@@ -303,6 +362,16 @@ FAN_SS_VSC_EFC_FDPM:
   - VSC
   - EFC
   - FDPM
+
+FAN_SS_VSC_EFC:
+  guid: "194aa465-9a35-4b31-8eda-e5630f528615"
+  description: "Fan with start/stop status and open-loop speed control."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - VSC
+  - EFC
 
 FAN_SS_VSC_WDPC_STM_FDPSM4X:
   guid: "64f61c00-9987-4286-8df8-9155053ada33"
@@ -513,7 +582,128 @@ FAN_SS_VSC_SSPC_FDPSM:
   - VSC
   - SSPC
   - FDPSM
-  
+
+FAN_SS_SRC:
+  guid: "44c1a03d-8639-446e-ab61-9f7b98016304"
+  description: "Basic fan with start/stop and schedule run command."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - SRC
+
+FAN_SS_HLC:
+  guid: "092c2596-8086-4510-9d31-9c1a663ae9bc"
+  description: "Two speed fan control."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - HLC
+
+FAN_SS_HMLC:
+  guid: "be12aafb-9d52-403b-af8b-3d12eb6d8baf"
+  description: "Fan control with three speed control."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - HMLC
+
+FAN_VSMC:
+  guid: "189df1f4-81e8-4703-afb6-25628d0f87dc"
+  description: "Basic fan with 2 speed control and schedule run command."
+  is_canonical: true
+  implements:
+  - FAN
+  - VSMC
+
+FAN_SS_CSP_VSC_REFM:
+  guid: "8ad25499-4813-4634-91e0-cb77beaee01d"
+  description: "Cooling fan with variable speed command (no feedback) and refrigerant monitoring."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - CSP
+  - VSC
+  - REFM
+
+FAN_SS_FDPM_VSC_SRC:
+  guid: "df96d0b3-40b9-4d10-9dfc-8a74eccf0bbf"
+  description: "Fan with power, voltage, current, differential pressure and run durating monitoring ."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - FDPM
+  - VSC
+  - SRC
+
+FAN_HLC_COC2XDSP_NO2C2XDSP:
+  guid: "69a67398-f2d7-4fc7-b60a-945be99012b2"
+  description: "Two-speed fan (low/high) with CO concentration dual setpoint control and NO2 concentration dual setpoint control with 2 sensors."
+  is_canonical: true
+  implements:
+  - FAN
+  - HLC
+  - COC2XDSP
+  - NO2C2XDSP
+
+FAN_SS_VSC_FDPM_DRSM3X:
+  guid: "e2dfe79a-54cc-4cdd-a4a6-1bb43ca703a3"
+  description: "Fan with exhaust air temp sensor and 3 dryer_run_status points."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - VSC
+  - FDPM
+  - DRSM3X
+
+FAN_SS_VSC_FDPM_DRSM2X:
+  guid: "ba26cc73-b4f1-4eda-ba27-1ad07d763c46"
+  description: "Fan with start/stop status and open-loop speed control as well as filter pressure and dryer status monitoring."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - VSC
+  - FDPM
+  - DRSM2X
+
+FAN_SS_VSC_IDPC:
+  guid: "9808ad45-3d7a-4564-9542-8743a9fca8ac"
+  description: "Fan with start/stop status, variable speed control and isolation damper percentage control."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - VSC
+  - IDPC
+
+FAN_SS_VSC_REFC:
+  guid: "1cc110bf-d3a9-4be9-8fb1-8534b270424c"
+  description: "Fan with start/stop status, variable speed control and refrigerant concentration control."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - VSC
+  - REFC
+
+FAN_SS_VSC_ZSPM_DWI:
+  guid: "a1148f7d-4aa0-4560-b2cb-53b8eb949278"
+  description: "Dishwasher-interlocked fan with start/stop status, open-loop speed control, and zone static pressure monitoring."
+  is_canonical: false
+  implements:
+  - FAN
+  - SS
+  - VSC
+  - ZSPM
+  uses:
+  - dishwasher_run_status
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
@@ -752,47 +942,10 @@ FAN_SS_VSC_EPC_EHHRC_EHHRC3X:
   - heat_recovery_water_isolation_valve_command_2
   - heat_recovery_water_isolation_valve_command_3
 
-FAN_SS_FDPM_VSC_SRC:
-  guid: "df96d0b3-40b9-4d10-9dfc-8a74eccf0bbf"
-  description: "Fan with power, voltage, current, differential pressure and run durating monitoring ."
-  is_canonical: true
-  implements:
-  - FAN
-  - SS
-  - FDPM
-  - VSC
-  - SRC
-
 FAN_SS_MSM:
   guid: "b37f616a-8d6d-430c-bcfb-6783c2ed80eb"
   description: "Basic fan with speed monitoring (used in jet-fans for ventilation purpose)"
   implements:
   - FAN
   - MSM
-
-FAN_SS_SRC:
-  guid: "44c1a03d-8639-446e-ab61-9f7b98016304"
-  description: "Basic fan with start/stop and schedule run command."
-  is_canonical: true
-  implements:
-  - FAN
-  - SS
-  - SRC
-
-FAN_SS_HLC:
-  guid: "092c2596-8086-4510-9d31-9c1a663ae9bc"
-  description: "Two speed fan control."
-  is_canonical: true
-  implements:
-  - FAN
-  - SS
-  - HLC
-
-FAN_VSMC:
-  guid: "189df1f4-81e8-4703-afb6-25628d0f87dc"
-  description: "Basic fan with 2 speed control and schedule run command."
-  is_canonical: true
-  implements:
-  - FAN
-  - VSMC
 

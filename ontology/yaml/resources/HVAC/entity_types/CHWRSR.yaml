@@ -1,4 +1,4 @@
-# Copyright 2023 Google LLC
+# Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the License);
 # you may not use this file except in compliance with the License.
@@ -12,15 +12,16 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Update operation that changes no data in the device (no-op)
-CONFIG_METADATA:
-  operation: INITIALIZE
+CHWRSR_UNDEFINED:
+  guid: "17800c9e-afac-4966-88af-d6aa2b1e1f30"
+  description: "Chilled water distribution riser without any data points."
+  implements:
+  - CHWRSR
 
-US-SEA-BLDG1-GUID:
-  operation: ADD
-  type: FACILITIES/BUILDING
-  code: US-SEA-BLDG1
-
-SDC_EXT-18-GUID:
-  code: SDC_EXT-18
-  operation: UPDATE
+CHWRSR_WDPC:
+  guid: "fd7e9b2a-44f1-4199-be74-72f8cc5f92d8"
+  description: "Chilled water distribution riser with differential pressure control."
+  is_canonical: true
+  implements:
+  - CHWRSR
+  - WDPC

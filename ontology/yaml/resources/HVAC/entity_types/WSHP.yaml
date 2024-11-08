@@ -1,4 +1,4 @@
-# Copyright 2023 Google LLC
+# Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the License);
 # you may not use this file except in compliance with the License.
@@ -12,15 +12,18 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Update operation that changes no data in the device (no-op)
-CONFIG_METADATA:
-  operation: INITIALIZE
+########################
+### Canonical Types  ###
+########################
 
-US-SEA-BLDG1-GUID:
-  operation: ADD
-  type: FACILITIES/BUILDING
-  code: US-SEA-BLDG1
+WSHP_SS_VSFC_HWDT_POTHWSC:
+  guid: "43ee55f8-f366-4aec-8fbc-b1b57bd317ab"
+  description: "Water source heat pump that allows transfer between hot water system and domestic hot water system, using domestic supply water temperature control."
+  is_canonical: true
+  implements:
+  - WSHP
+  - SS
+  - VSFC
+  - HWDT
+  - POTHWSC
 
-SDC_EXT-18-GUID:
-  code: SDC_EXT-18
-  operation: UPDATE

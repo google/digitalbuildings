@@ -14,7 +14,7 @@
 
 TXMR_SS:
   guid: "cefc8ed9-edc8-42a8-b88e-29742c4ff7e1"
-  description: "Typical standard Transformer ."
+  description: "Standard transformer."
   is_canonical: true
   implements:
   - TXMR
