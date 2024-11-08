@@ -1733,6 +1733,23 @@ FCU_DFSS_RHDHC_HT2RC_DX2RC:
   - HT2RC
   - DX2RC
 
+FCU_DFVSC_RTM_CO2M_ZTC_CHWZTC_CHWSDC_VSC_SHWTC_SCHWTC:
+  guid: "4afab249-c713-4fea-8df1-e45a61af2f6e"
+  description: "Fan coil unit with zone temperature control, CO2 and humidity monitoring, heating water and chilled water valve monitoring."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFVSC
+  - RTM
+  - CO2M
+  - ZTC
+  - CHWZTC
+  - CHWSDC
+  - VSC
+  - SHWTC
+  - SCHWTC
+
+  
 ###################################
 ### Existing Non-standard Types ###
 ###################################
