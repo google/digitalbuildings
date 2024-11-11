@@ -8475,7 +8475,7 @@ SDHC:
   - leaving_dehumidifier_temperature_sensor
   - leaving_dehumidifier_temperature_setpoint
   implements:
-  - CONTROL  
+  - CONTROL
 
 FPHC:
   guid: "bdd89332-3303-420d-a13c-ee38c398d9ff"
