@@ -265,7 +265,7 @@ CH_SS_SCHWTC_CHPM_REFSM_DXSWC_CHWRWISOVM_IGM:
 
 CH_SS_SCHWTC_CHWDT_WDPM_REFSM_REFPM_CHDXSC_CHWRWISOVM_IGM:
   guid: "74bda35f-625f-4472-947e-b9d10a4d2d3f"
-  description: "Water-cooled chiller with pressure and refrigerant temperature and pressure monitoring."
+  description: "Water-cooled chiller with refrigerant pressure and temperature monitoring."
   is_canonical: true
   implements:
   - CH
@@ -420,7 +420,7 @@ CH_SS_CHWRWISOVPM_SCHWTC_CHWDPM_CDWISOVPM_CWDT_REFPM_REFSM_IGM_DXSWC:
 
 CH_SS_CHWRWISOVPM_SCHWTC_CHWDPM_CDWISOVPM_CWDT_REFPM_REFSM_IGM_CHDXSC:
   guid: "01d59f6f-3ed5-444d-8245-fe2d5ebb1f8c"
-  description: "Complex water-cooled chiller."
+  description: "Complex water-cooled chiller with refrigerant pressure and temperature monitoring."
   is_canonical: true
   implements:
   - CH

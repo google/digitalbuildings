@@ -8258,7 +8258,7 @@ MCBYPVPM:
 
 BYPVFRC:
   guid: "5c93b3ee-21bb-423c-8c84-9a22ffa1f931"
-  description: "Mechanical cooling bypass valve monitoring."
+  description: "Bypass valve flowrate control."
   is_abstract: true
   opt_uses:
   - bypass_valve_percentage_sensor
