@@ -5533,6 +5533,8 @@ EFC:
   guid: "12587490-2e23-4c9c-9b4f-6980f855ed41"
   description: "Exhaust air flow control."
   is_abstract: true
+  opt_uses:
+  - exhaust_air_linearvelocity_sensor
   uses:
   - exhaust_air_flowrate_sensor
   - exhaust_air_flowrate_setpoint
@@ -8474,7 +8476,7 @@ SDHC:
   - leaving_dehumidifier_temperature_sensor
   - leaving_dehumidifier_temperature_setpoint
   implements:
-  - CONTROL  
+  - CONTROL
 
 FPHC:
   guid: "bdd89332-3303-420d-a13c-ee38c398d9ff"
