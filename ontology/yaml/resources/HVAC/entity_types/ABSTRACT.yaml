@@ -770,6 +770,7 @@ SS:
   - lost_power_alarm
   - communication_status
   - efficiency_percentage_sensor
+  - load_percentage_sensor
 
 DSPC:
   guid: "3f288511-32ca-47ae-a4e0-391620026420"
@@ -8241,6 +8242,30 @@ WSEBYPVPM:
   - economizer_bypass_valve_percentage_command
   implements:
   - MONITORING
+
+MCBYPVPM:
+  description: "Mechanical cooling bypass valve monitoring."
+  is_abstract: true
+  opt_uses:
+  - economizer_mode
+  - sync_economizer_mechanical_cooling_mode
+  - mechanical_cooling_bypass_valve_percentage_sensor
+  uses:
+  - mechanical_cooling_bypass_valve_percentage_command
+  implements:
+  - MONITORING
+
+BYPVFRC:
+  description: "Mechanical cooling bypass valve monitoring."
+  is_abstract: true
+  opt_uses:
+  - bypass_valve_percentage_sensor
+  uses:
+  - bypass_valve_percentage_command
+  - flowrate_sensor
+  - flowrate_setpoint
+  implements:
+  - CONTROL
 
 FSWISOVM:
   guid: "58f0a5fb-fc3e-4384-91b1-ba7db225ec6c"

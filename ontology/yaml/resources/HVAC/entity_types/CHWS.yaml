@@ -156,6 +156,17 @@ CHWS_SWTC_WDPC_CLPM_WFRM_BYPVPM:
   - WFRM
   - BYPVPM
 
+CHWS_SWTC_WDPC_BYPVFRC_MCBYPVPM_CLPM:
+  description: "Chilled water system with supply temperature and differential pressure control, bypass valve flowrate control, mechanical cooling bypass valve monitoring and thermal load monitoring."
+  is_canonical: true
+  implements:
+  - CHWS
+  - SWTC
+  - WDPC
+  - BYPVFRC
+  - MCBYPVPM
+  - CLPM
+
 CHWS_SWTC_WDPC_CLPM_WFRC_BYPVPM:
   guid: "20c14eb4-763c-437d-9209-c35151e2251b"
   description: "Chilled water system with supply temperature, differential pressure, and flowrate control, and thermal load and bypass valve monitoring."
@@ -230,6 +241,16 @@ CHWS_SWTC_WDPC2X_BYPVPM_WFRM_CLPM:
   - WDPC2X
   - BYPVPM
   - WFRM
+  - CLPM
+
+CHWS_SWTC_WDPC2X_BYPVFRC_CLPM:
+  description: "Chilled water system with dual differential pressure control, bypass valve flowrate control and cooling thermal monitoring."
+  is_canonical: true
+  implements:
+  - CHWS
+  - SWTC
+  - WDPC2X
+  - BYPVFRC
   - CLPM
 
 CHWS_RWTC_CHWVM:
