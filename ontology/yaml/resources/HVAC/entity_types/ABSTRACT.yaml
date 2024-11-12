@@ -8244,6 +8244,7 @@ WSEBYPVPM:
   - MONITORING
 
 MCBYPVPM:
+  guid: "ba06a118-c604-44e8-9ad7-aa5d7cad5e43"
   description: "Mechanical cooling bypass valve monitoring."
   is_abstract: true
   opt_uses:
@@ -8256,6 +8257,7 @@ MCBYPVPM:
   - MONITORING
 
 BYPVFRC:
+  guid: "5c93b3ee-21bb-423c-8c84-9a22ffa1f931"
   description: "Mechanical cooling bypass valve monitoring."
   is_abstract: true
   opt_uses:
