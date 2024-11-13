@@ -110,6 +110,16 @@ CDWS_SWTC_WDPM_SWPSS:
   - WDPM
   - SWPSS
 
+CDWS_SWTC_WDPM_CLPM:
+  guid: "04503d61-feb3-43b1-9eea-57c2570610e3"
+  description: "Condenser water system with differential pressure monitoring and cooling thermal monitoring."
+  is_canonical: true
+  implements:
+  - CDWS
+  - SWTC
+  - WDPM
+  - CLPM
+
 CDWS_CLPM_SWTC_WDPM_WFRC:
   guid: "571a238d-3540-4f4d-ba11-5b61e43e9b3b"
   description: "Condensing water system with supply temperature and flowrate control as well as thermal power and differential pressure monitoring."
