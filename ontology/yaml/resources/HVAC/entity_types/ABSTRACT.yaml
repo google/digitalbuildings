@@ -8305,18 +8305,6 @@ DTPM:
   implements:
   - MONITORING
 
-DICM2X:
-  guid: "2fd7a31d-3c34-4455-a458-0e30fe207cea"
-  description: "Damper isolation control and monitoring. "
-  is_abstract: true
-  uses:
-  - supply_air_isolation_damper_closed_status_1
-  - supply_air_isolation_damper_open_status_1
-  - supply_air_isolation_damper_closed_status_2
-  - supply_air_isolation_damper_open_status_2
-  - supply_air_isolation_damper_command_1
-  - supply_air_isolation_damper_command_2
-
 PDSCV5X:
   guid: "58a33a88-c7a9-426a-a820-8db1a99cbd0e"
   description: "5 Pressure-dependent supply damper control for ventilation purposes (CO2 or VOC)."
@@ -8348,7 +8336,7 @@ COM4X:
   - zone_air_co_concentration_sensor_4
 
 CHWBZTC:
-  guid: "cbdecbaf-5ddb-4f77-b85f-2fbd92970a70"
+  guid: "b52fcafe-d276-4b08-b147-77b065f5a890"
   description: "Chilled water valve binary (open/closed) control."
   is_abstract: true
   implements:
@@ -8364,7 +8352,7 @@ CHWBZTC:
   - low_zone_air_temperature_alarm
 
 REFSTC2X:
-  guid: "4690aaf5-e70c-43e0-aabb-38d209b8c2aa"
+  guid: "82a2f713-a6b8-4b0b-814d-e75c5b1d0df1"
   description: "Refrigerant temperature temp control for 2 circuits."
   is_abstract: true
   opt_uses:

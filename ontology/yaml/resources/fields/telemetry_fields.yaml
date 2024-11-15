@@ -1898,6 +1898,12 @@ literals:
 - supply_air_isolation_damper_open_status:
   - OPEN
   - CLOSED
+- discharge_air_isolation_damper_closed_status:
+  - OPEN
+  - CLOSED
+- discharge_air_isolation_damper_open_status:
+  - OPEN
+  - CLOSED
 - control_status:
   - REMOTE
   - LOCAL
