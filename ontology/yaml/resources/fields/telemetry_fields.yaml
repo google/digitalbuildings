@@ -601,6 +601,12 @@ literals:
 - economizer_bypass_valve_percentage_sensor:
     fixed_min: 0
     fixed_max: 100
+- mechanical_cooling_bypass_valve_percentage_command:
+    fixed_min: 0
+    fixed_max: 100
+- mechanical_cooling_bypass_valve_percentage_sensor:
+    fixed_min: 0
+    fixed_max: 100
 - chilled_water_isolation_valve_status:
   - OPEN
   - CLOSED

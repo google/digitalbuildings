@@ -215,6 +215,20 @@ FCU_DFSS_DSP_HPZC:
   - DSP
   - HPZC
 
+FCU_DFSS_DSP_HPZC_RCKTM_DTM_RTM_OA:
+  guid: "c64fd4d7-d205-4364-9db0-11cc7b178a71"
+  description: "Typical heat pump FCU (zone control) with refrigerant circuit and outside air monitoring."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - DSP
+  - HPZC
+  - RCKTM
+  - DTM
+  - RTM
+  - OA
+
 FCU_DFSS_DSP_HP2ZC:
   guid: "f1785580-c69d-4627-b8ce-a4b7ee79b254"
   description: "Typical heat pump FCU (zone control)."

@@ -43,6 +43,7 @@ def BuildUniverse(
     Generated universe object.
   """
   if use_simplified_universe:
+    print('Using simplified universe for testing purposes.')
     yaml_files = None
     universe = universe_helper.create_simplified_universe()
   elif modified_types_filepath:
@@ -55,6 +56,7 @@ def BuildUniverse(
       return None
 
     modified_types_filepath = path.expanduser(modified_types_filepath)
+    print(f'Validating modified universe from [{modified_types_filepath}]...')
 
     external_file_lib.Validate(
         filter_text=None,
@@ -62,6 +64,7 @@ def BuildUniverse(
         original_directory=default_types_filepath,
         interactive=False,
     )
+    print(f'Using modified universe from [{modified_types_filepath}].')
     yaml_files = external_file_lib.RecursiveDirWalk(modified_types_filepath)
   else:
     if default_types_filepath is None:
@@ -73,7 +76,7 @@ def BuildUniverse(
           'default ontology does not exist.'
       )
       return None
-    # use default location for ontology files
+    print(f'Using default universe from [{default_types_filepath}].')
     yaml_files = external_file_lib.RecursiveDirWalk(default_types_filepath)
 
   if yaml_files:
