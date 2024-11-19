@@ -2182,7 +2182,7 @@ FCU_DFSS_CHWBZTC:
 
 FCU_DFVSC_CHWBZTC:
   guid: "d2b3f37b-d69f-4631-b8d2-d71243821e1c"
-  description: "FCU with discharge fan and zone temperature control"
+  description: "FCU with discharge fan variable speed control and chilled water valve control"
   is_canonical: true
   implements:
   - FCU
