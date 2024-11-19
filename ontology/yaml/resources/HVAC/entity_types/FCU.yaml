@@ -1753,14 +1753,13 @@ FCU_DFVSC_RTM_CO2C_HWZTC_CHWZTC_ZHM:
   is_canonical: true
   implements:
   - FCU
-  - DFVSC 
+  - DFVSC
   - RTM
   - CO2C
-  - HWZTC 
+  - HWZTC
   - CHWZTC
   - ZHM
 
-  
 ###################################
 ### Existing Non-standard Types ###
 ###################################
