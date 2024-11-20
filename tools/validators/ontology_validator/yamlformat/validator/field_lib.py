@@ -667,7 +667,10 @@ class Field(findings_lib.Findings):
     if self.name == 'scene_index_command':
       return True
     if 'command' in self.subfields and not (
-        'percentage_command' in self.name or 'frequency_command' in self.name):
+        'percentage_command' in self.name or 'frequency_command' in self.name or 'voltage_command' in self.name):
+      return False
+    if 'specification' in self.subfields and (
+        'orientation_specification' in self.name):
       return False
     if has_measurement_subfield:
       return True
