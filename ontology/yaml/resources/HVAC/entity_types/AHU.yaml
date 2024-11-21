@@ -5474,7 +5474,7 @@ AHU_DFSS_DFVSC_ECOND_CHWDC_DTM_OA_RDC_RHM_RCO2M:
 
 AHU_DFVSC_ECOND_HWDC_CHWDC_RDC_RCO2M_RTM_UV:
   guid: "005172cf-d29a-4c10-94d2-2a5fb6fad51f"
-  description: "AHU with discharge air/fan, UV,  heating water, chilled water valve and return air temperature monitoring with dual dampers monitoring."
+  description: "AHU with discharge air/fan, UV, heating water, chilled water valve and return air temperature monitoring with dual dampers monitoring."
   is_canonical: true
   implements:
   - AHU
@@ -5516,7 +5516,7 @@ AHU_DFSS_DFVSC_ECOND_CHWDC_ZA_CO2M_UV:
 
 AHU_DFSS_DFVSC_ECOND_HWDC_CHWDC_ZA_UV_CO2M6X_PDSCV5X:
   guid: "627f4d5b-932c-4e4e-8ee3-61bff7aa0b8f"
-  description: "AHU with discharge air/fan, UV, chilled water valve and 6x co2 concentration monitoring with 5x dampers monitoring."
+  description: "AHU with discharge air/fan, UV, heating water, chilled water valve and 6x co2 concentration monitoring with 5x dampers monitoring."
   is_canonical: true
   implements:
   - AHU
