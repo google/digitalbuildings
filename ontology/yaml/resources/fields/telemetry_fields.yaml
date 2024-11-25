@@ -1034,6 +1034,12 @@ literals:
 - exhaust_air_differential_flowrate_setpoint:
     flexible_min: 0.0
     flexible_max: 23.59737216
+- fan_run_command:
+    - ON
+    - OFF
+- fan_run_status:
+    - ON
+    - OFF
 - fan_speed_mode:
   - OFF
   - LOW
