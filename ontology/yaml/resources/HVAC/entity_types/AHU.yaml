@@ -5456,7 +5456,7 @@ AHU_BSPC_DX4SC_ECON_EFSS_EFVSC_SFSS_SFVSC_SSPC_RHHC_NONCANONICAL_1:
   - min_zone_air_relative_humidity_sensor
   - min_zone_air_relative_humidity_setpoint
 
-AHU_DFSS_DFVSC_ECOND_CHWDC_DTM_OA_RDC_RHM_RCO2M:
+AHU_DFSS_DFVSC_ECOND_CHWDC_DTM_DSPM_OA_RDC_RHM_RCO2M:
   guid: "8ef1a26a-fe8f-468a-ba96-ffd0f987c043"
   description: "AHU with discharge air/fan, chilled water valve operation, humidity monitoring with dual dampers monitoring and control ."
   is_canonical: true
@@ -5467,9 +5467,10 @@ AHU_DFSS_DFVSC_ECOND_CHWDC_DTM_OA_RDC_RHM_RCO2M:
   - ECOND
   - CHWDC
   - DTM
+  - DSPM
   - OA
   - RDC
-  - RTM
+  - RHM
   - RCO2M
 
 AHU_DFVSC_ECOND_HWDC_CHWDC_RDC_RCO2M_RTM_UV:
