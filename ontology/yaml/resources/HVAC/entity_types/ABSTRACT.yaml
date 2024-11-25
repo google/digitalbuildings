@@ -586,6 +586,7 @@ VSFC:
   - speed_frequency_sensor
 
 FSS:
+  guid: "73a049b2-274c-4dcc-b2ca-4126c2485b51"
   description: "Start/stop for four fans."
   is_abstract: true
   implements:
@@ -602,6 +603,7 @@ FSS:
 
 
 FVSC4X:
+  guid: "10267aa0-4a96-4894-af3c-d44eda0ce31f"
   description: "Variable speed control for four fans."
   is_abstract: true
   implements:

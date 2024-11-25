@@ -181,6 +181,7 @@ CHWS_SWTC_WDPC_CLPM_WFRC_BYPVPM:
   - BYPVPM
 
 CHWS_SWTC_WDPC_BYPVFRC:
+  guid: "1eb7c5c6-205b-409e-8e0a-2944e2994434"
   description: "Chilled water system with supply temperature, differential pressure and bypass valve flowrate control."
   is_canonical: true
   implements:

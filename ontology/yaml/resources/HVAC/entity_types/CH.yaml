@@ -311,6 +311,7 @@ CH_SS_SCHWTC_CHPM_REFSM_IGM_DXSWC_CHWSWISOVM_CHWDPM:
   - CHWDPM
 
 CH_SS_SCHWTC_CHPM_REFSM_IGM_CHDXSC_CHWSWISOVM_CHWDPM_CWDT:
+  guid: "1f62d2f7-76e4-455b-b6cc-6689aa47e90d"
   description: "Water-cooled chiller."
   is_canonical: true
   implements:

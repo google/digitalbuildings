@@ -26,6 +26,7 @@ DC_SS_SWTC:
   - SWTC
 
 DC_SS_FSS4X_FVSC4X_SWTC_WDPM:
+  guid: "1e1ddaf9-d9e7-46c2-8026-964c183a22c4"
   description: "Closed loop sensible cooler with four fans and differential pressure monitoring."
   is_canonical: true
   implements:
