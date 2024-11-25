@@ -585,6 +585,7 @@ VSFC:
   - speed_frequency_command
   - speed_frequency_sensor
 
+<<<<<<< HEAD
 FSS:
   guid: "73a049b2-274c-4dcc-b2ca-4126c2485b51"
   description: "Start/stop for four fans."
