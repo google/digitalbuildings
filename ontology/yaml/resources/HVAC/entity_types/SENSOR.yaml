@@ -34,6 +34,24 @@ SENSOR_ZTM_ZHM_CO2M_VOCM_PMDM_SPLM_ZAQIM_ZSPM_ZWVDM:
   uses:
   - illuminance_sensor
 
+  SENSOR_ZTM_ZHM_CO2M_VOCM_PMDM_SPLM_ZAQIM_ZSPM_ZOC:
+  guid: "e9bc10ea-cfe6-4f90-9860-0f81a9672dd2"
+  description: "Indoor Air Quality sensor with temperature, humidity, CO2, VOC, PM 1, 2.5, 4, 10, illuminance, air pressure, sound monitoring and occupant counter."
+  is_canonical: true
+  implements:
+  - /SENSOR
+  - ZTM
+  - ZHM
+  - CO2M
+  - VOCM
+  - PMDM
+  - SPLM 
+  - ZAQIM
+  - ZSPM
+  - ZOC
+  uses:
+  - illuminance_sensor
+
 SENSOR_ZTM_ZHM_CO2M:
   guid: "bacb5335-16de-46d3-9d8f-da503ea38f8a"
   description: "Zone air property sensor (humidity, temperature, CO2 level)."
