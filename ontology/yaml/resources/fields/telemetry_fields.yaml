@@ -263,12 +263,12 @@ literals:
 - exhaust_fan_speed_percentage_sensor:
     fixed_min: 0.0
     fixed_max: 100.0
-- fan_run_status:
-  - ON
-  - OFF
 - fan_speed_percentage_command:
     fixed_min: 0.0
     fixed_max: 100.0
+- fan_speed_frequency_sensor:
+    flexible_min: -0.5
+    flexible_max: 65
 - flowrate_sensor:
     flexible_min: -0.000315451
     flexible_max: 0.315451
@@ -1034,6 +1034,12 @@ literals:
 - exhaust_air_differential_flowrate_setpoint:
     flexible_min: 0.0
     flexible_max: 23.59737216
+- fan_run_command:
+  - ON
+  - OFF
+- fan_run_status:
+  - ON
+  - OFF
 - fan_speed_mode:
   - OFF
   - LOW
