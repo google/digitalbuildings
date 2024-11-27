@@ -431,6 +431,18 @@ CHWS_SEWDPC_SESWTC_SERWFRM_PRWFRM_PWDT:
   - PRWFRM
   - PWDT
 
+CHWS_SEWDPC_SESWTC_SERWFRM_PRWFRM_PWDPC_PWDT:
+  description: "Chilled water system with secondary loop supply water temperature control, primary and secondary differential pressure control, primary and secondary flowrate monitoring."
+  is_canonical: true
+  implements:
+  - CHWS
+  - SEWDPC
+  - SESWTC
+  - SERWFRM
+  - PRWFRM
+  - PWDPC
+  - PWDT
+
 
 ###################################
 ### Existing Non-standard Types ###

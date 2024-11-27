@@ -805,6 +805,12 @@ literals:
 - secondary_return_water_temperature_sensor:
     flexible_min: 255.9259259
     flexible_max: 380.3703704
+- primary_water_differential_pressure_sensor:
+    flexible_min: -34473.78945
+    flexible_max: 344737.8945
+- primary_water_differential_pressure_setpoint:
+    flexible_min: -34473.78945
+    flexible_max: 344737.8945
 - secondary_water_differential_pressure_sensor:
     flexible_min: -34473.78945
     flexible_max: 344737.8945
@@ -1135,6 +1141,12 @@ literals:
   - OPEN
   - CLOSED
 - cooling_thermal_power_sensor:
+    flexible_min: 0.0
+    flexible_max: 3517000.0
+- primary_water_cooling_thermal_power_sensor:
+    flexible_min: 0.0
+    flexible_max: 3517000.0
+- secondary_water_cooling_thermal_power_sensor:
     flexible_min: 0.0
     flexible_max: 3517000.0
 - cooling_percentage_sensor:
