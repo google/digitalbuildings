@@ -752,6 +752,21 @@ CH_SS_CHWDPC_CHWDT_CHWRISOVPM_HWDT_HWDPM_REFPM2X_REFSM2X_CPC2X:
   - REFSM2X
   - CPC2X
 
+CH_SS_CHWDPC_SCHWTC_CHWRISOVPM_HWDT_HWDPM_REFPM2X_REFSM2X_CPC2X:
+  description: "Temperature differential across heating water for heat recovery chiller, differential pressure control with chilled and heating water, isolation valve monitoring for chilled water, and refrigerant pressure and temperature monitoring."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - CHWDPC
+  - SCHWTC
+  - CHWRISOVPM
+  - HWDT
+  - HWDPM
+  - REFPM2X
+  - REFSM2X
+  - CPC2X
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################

@@ -6260,7 +6260,7 @@ SESWTC:
   - secondary_supply_water_temperature_setpoint
 
 
-PWDPC:
+PRWDPC:
   description: "Primary water loop differential pressure control."
   is_abstract: true
   implements:
