@@ -6261,6 +6261,7 @@ SESWTC:
 
 
 PRWDPC:
+  guid: "3279876b-0bcd-4fc1-8e9a-273cff67c69e"
   description: "Primary water loop differential pressure control."
   is_abstract: true
   implements:
