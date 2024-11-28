@@ -373,6 +373,14 @@ CHWS_SWTC_WDPC_BYPVPM_WSEBYPVPM:
   - BYPVPM
   - WSEBYPVPM
 
+CHWS_RWTM:
+  guid: "74ef88cc-ffc7-40ec-b4ac-5978a8746a09"
+  description: "Simple chilled water system with return temperature monitoring."
+  is_canonical: true
+  implements:
+  - CHWS
+  - RWTM
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
@@ -436,11 +444,3 @@ CHWS_SWTC_WDPC_BYPVPM_WFRM_NONCANONICAL_1:
   uses:
   - production_differential_pressure_sensor
   - supply_water_flowrate_sensor # Need to rename to flowrate_sensor
-
-CHWS_RWTM:
-  guid: "74ef88cc-ffc7-40ec-b4ac-5978a8746a09"
-  description: "Simple chilled water system with return temperature monitoring."
-  is_canonical: true
-  implements:
-  - CHWS
-  - RWTM

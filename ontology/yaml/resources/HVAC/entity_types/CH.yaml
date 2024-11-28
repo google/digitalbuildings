@@ -686,6 +686,36 @@ CH_SS_SCHWTC_CWDT_CHWRISOVPM_CWRISOVPM_REFPM_REFSM_MIPVCM_MIPWM_CHCPC_CDCPC_OTPM
   - CDCPC
   - OTPM
 
+CH_SS_SCHWTC_CWDT_REFSM_CHWFRSM_CDWFRSM_CHDXSC_IGM:
+  guid: "38027ed7-d703-4971-a958-5c125fd41fce"
+  description: "Simple water-cooled chiller with supply temperature control with refrigerant monitoring, chilled and condenser water flowrate status monitoring."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - SCHWTC
+  - CWDT
+  - REFSM
+  - CHWFRSM
+  - CDWFRSM
+  - CHDXSC
+  - IGM
+  opt_uses:
+  - compressor_run_time_accumulator
+
+CH_SS_CHWFRSM_CDWFRSM_CC2XM_REFSTC2X_REFPM2X:
+  guid: "da643f7f-dbc6-41a7-9030-60115b8c406f"
+  description: "Simple water-cooled chiller with 2 circuit refrigerant monitoring and compressor current monitoring."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - CHWFRSM
+  - CDWFRSM
+  - CC2XM
+  - REFSTC2X
+  - REFPM2X
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
@@ -771,33 +801,3 @@ CH_SS_CHWSWISOVM_CWSISOVM_CWRISOVM_CHWRWISOVM_CHWDT:
   opt_uses:
   - lost_power_alarm
   - run_mode
-
-CH_SS_SCHWTC_CWDT_REFSM_CHWFRSM_CDWFRSM_CHDXSC_IGM:
-  guid: "38027ed7-d703-4971-a958-5c125fd41fce"
-  description: "Simple water-cooled chiller with supply temperature control with refrigerant monitoring, chilled and condenser water flowrate status monitoring."
-  is_canonical: true
-  implements:
-  - CH
-  - SS
-  - SCHWTC
-  - CWDT
-  - REFSM
-  - CHWFRSM
-  - CDWFRSM
-  - CHDXSC
-  - IGM
-  opt_uses:
-  - compressor_run_time_accumulator
-
-CH_SS_CHWFRSM_CDWFRSM_CC2XM_REFSTC2X_REFPM2X:
-  guid: "da643f7f-dbc6-41a7-9030-60115b8c406f"
-  description: "Simple water-cooled chiller with 2 circuit refrigerant monitoring and compressor current monitoring."
-  is_canonical: true
-  implements:
-  - CH
-  - SS
-  - CHWFRSM
-  - CDWFRSM
-  - CC2XM
-  - REFSTC2X
-  - REFPM2X
