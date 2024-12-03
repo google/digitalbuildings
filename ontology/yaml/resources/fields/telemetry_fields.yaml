@@ -131,6 +131,9 @@ literals:
 - refrigerant_condenser_saturation_temperature_sensor:
     flexible_min: 255.9259259
     flexible_max: 422.037037
+- refrigerant_condenser_saturation_temperature_setpoint:
+    flexible_min: 255.9259259
+    flexible_max: 422.037037
 - condensing_return_water_temperature_sensor:
     flexible_min: 255.9259259
     flexible_max: 308.1481481
@@ -2037,6 +2040,12 @@ literals:
 - supply_air_isolation_damper_open_status:
   - OPEN
   - CLOSED
+- discharge_air_isolation_damper_closed_status:
+  - OPEN
+  - CLOSED
+- discharge_air_isolation_damper_open_status:
+  - OPEN
+  - CLOSED
 - control_status:
   - REMOTE
   - LOCAL
@@ -3902,6 +3911,15 @@ literals:
 - emergency_power_status:
   - PRESENT
   - ABSENT
+- level_sensor:
+    flexible_min: -3
+    flexible_max: 14
+- direction_up_mode:
+  - ENABLED
+  - DISABLED
+- direction_down_mode:
+  - ENABLED
+  - DISABLED
 - expansion_valve_percentage_command:
     fixed_min: 0.0
     fixed_max: 100.0

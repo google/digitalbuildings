@@ -736,6 +736,23 @@ CH_SS_SCHWTC_CWDT_CHWRISOVPM_CWRISOVPM_REFPM_REFSM_MIPVCM_MIPWM_CHCPC_CDCPC_OTPM
   - CDCPC
   - OTPM
 
+CH_SS_SCHWTC_CWDT_REFSM_CHWFRSM_CDWFRSM_CHDXSC_IGM:
+  guid: "38027ed7-d703-4971-a958-5c125fd41fce"
+  description: "Simple water-cooled chiller with supply temperature control with refrigerant monitoring, chilled and condenser water flowrate status monitoring."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - SCHWTC
+  - CWDT
+  - REFSM
+  - CHWFRSM
+  - CDWFRSM
+  - CHDXSC
+  - IGM
+  opt_uses:
+  - compressor_run_time_accumulator
+
 CH_SS_CHWDPC_CHWDT_CHWRISOVPM_HWDT_HWDPM_REFPM2X_REFSM2X_CPC2X:
   guid: "aa1f0cf1-759d-4645-8cda-18e2b2639e4f"
   description: "Temperature differential across heating water for heat recovery chiller, differential pressure control with chilled and heating water, isolation valve monitoring for chilled water, and refrigerant pressure and temperature monitoring."
@@ -767,6 +784,19 @@ CH_SS_CHWDPC_SCHWTC_CHWRISOVPM_HWDT_HWDPM_REFPM2X_REFSM2X_CPC2X:
   - REFPM2X
   - REFSM2X
   - CPC2X
+
+CH_SS_CHWFRSM_CDWFRSM_CC2XM_REFSTC2X_REFPM2X:
+  guid: "da643f7f-dbc6-41a7-9030-60115b8c406f"
+  description: "Simple water-cooled chiller with 2 circuit refrigerant monitoring and compressor current monitoring."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - CHWFRSM
+  - CDWFRSM
+  - CC2XM
+  - REFSTC2X
+  - REFPM2X
 
 ###################################
 ### Existing Non-standard Types ###

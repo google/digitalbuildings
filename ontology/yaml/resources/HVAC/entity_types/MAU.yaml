@@ -954,6 +954,18 @@ MAU_DFSS2X_DFVSC2X_CHWZC_HWZC_VOADM:
   - HWZC
   - VOADM
 
+MAU_DFVSC_DSPM_CHWDDC_OAMC_OA:
+  guid: "1a52f54a-6e0f-4565-83cf-90be0d8f4d3c"
+  description: "Single zone MAU with damper, chilled water valve and discharge fan speed control."
+  is_canonical: true
+  implements:
+  - MAU
+  - DFVSC
+  - DSPM
+  - CHWDDC
+  - OAMC
+  - OA
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
