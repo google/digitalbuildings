@@ -704,6 +704,38 @@ FAN_SS_VSC_ZSPM_DWI:
   uses:
   - dishwasher_run_status
 
+FAN_SS_VSC_INVOPWM:
+  guid: "1c48e087-c973-4907-8d6e-93417da15d5b"
+  description: "Basic fan with start/stop and status with inverter monitoring."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - VSC
+  - INVOPWM
+  opt_uses:
+  - load_percentage_sensor
+
+FAN_SS_VSC_COM4X:
+  guid: "47942605-0c52-4308-9f55-33b5930d27ac"
+  description: "Basic fan with start/stop and status with carbon monoxide monitoring."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - VSC
+  - COM4X
+
+FAN_SS_VSC_DSPM:
+  guid: "28e19a83-a3ce-429e-951f-34cdecd036f3"
+  description: "Basic fan with variable speed control and discharge static pressure monitoring."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - VSC
+  - DSPM
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
@@ -949,3 +981,25 @@ FAN_SS_MSM:
   - FAN
   - MSM
 
+FAN_SS_NONCANONICAL_7:
+  guid: "32703a5c-7cad-4eb6-9605-08e92f1d2cdd"
+  description: "Non-standard type."
+  implements:
+    - FAN_SS
+  uses:
+  - discharge_air_isolation_damper_closed_status_1
+  - discharge_air_isolation_damper_open_status_1
+  - discharge_air_isolation_damper_closed_status_2
+  - discharge_air_isolation_damper_open_status_2
+  - discharge_air_isolation_damper_command_1
+  - discharge_air_isolation_damper_command_2
+
+FAN_SS_NONCANONICAL_8:
+  guid: "812965c4-c9cf-4a1a-af34-225ff7de5159"
+  description: "Non-standard type."
+  implements:
+    - FAN_SS
+  uses:
+  - discharge_air_isolation_damper_closed_status
+  - discharge_air_isolation_damper_command
+  - discharge_air_isolation_damper_open_status

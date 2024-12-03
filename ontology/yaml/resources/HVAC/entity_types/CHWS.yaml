@@ -391,7 +391,6 @@ CHWS_SWTC_WDPC_PSWTC_PWDPC_PWFRM_PWECVC_SWDVPM_PWDVPM:
   - SWDVPM
   - PWDVPM
 
-
 CHWS_SWTC_WDPC_WFRC_CMSWFRM_BYPVPM_WSEBYPVPM_WSERWTM_CLPM:
   guid: "a50e908f-be3f-4e29-a284-21cc0a7fa332"
   description: "Chilled water system with supply water temperature and differential pressure control, flowrate control, common chiller supply water flowrate monitoring, cooling thermal monitoring, bypass valve and water side economizer bypass valve."
@@ -407,7 +406,6 @@ CHWS_SWTC_WDPC_WFRC_CMSWFRM_BYPVPM_WSEBYPVPM_WSERWTM_CLPM:
   - WSERWTM
   - CLPM
 
-
 CHWS_SWTC_WDPC_BYPVPM_WSEBYPVPM:
   guid: "cb8bd909-4be3-46a4-8802-30d177901bff"
   description: "Chilled water system with bypass valve, water side economizer bypass valve and differential pressure control."
@@ -418,6 +416,14 @@ CHWS_SWTC_WDPC_BYPVPM_WSEBYPVPM:
   - WDPC
   - BYPVPM
   - WSEBYPVPM
+
+CHWS_RWTM:
+  guid: "74ef88cc-ffc7-40ec-b4ac-5978a8746a09"
+  description: "Simple chilled water system with return temperature monitoring."
+  is_canonical: true
+  implements:
+  - CHWS
+  - RWTM
 
 CHWS_SEWDPC_SESWTC_SERWFRM_PRWFRM_PWDT:
   guid: "3461657c-4b79-4207-9c9b-fcc15a17049d"
@@ -431,6 +437,18 @@ CHWS_SEWDPC_SESWTC_SERWFRM_PRWFRM_PWDT:
   - PRWFRM
   - PWDT
 
+CHWS_THCWDPC_RWCHVVM_SWCHVVM_PWDT_SESWTC_PWRFM:
+  guid: "e3f6366d-4383-48f4-9ce4-a3b7107603ac"
+  description: "Chilled water system with thermally conditioned water valve, primary supply temeprature and flowrate monitoring, and differential pressure monitoring."
+  is_canonical: true
+  implements:
+  - CHWS
+  - THCWDPC
+  - RWCHVVM
+  - SWCHVVM
+  - PWDT
+  - SESWTC
+  - PWRFM
 
 ###################################
 ### Existing Non-standard Types ###
@@ -495,16 +513,3 @@ CHWS_SWTC_WDPC_BYPVPM_WFRM_NONCANONICAL_1:
   uses:
   - production_differential_pressure_sensor
   - supply_water_flowrate_sensor # Need to rename to flowrate_sensor
-
-CHWS_THCWDPC_RWCHVVM_SWCHVVM_PWDT_SESWTC_PWRFM:
-  guid: "e3f6366d-4383-48f4-9ce4-a3b7107603ac"
-  description: "Chilled water system with thermally conditioned water valve, primary supply temeprature and flowrate monitoring, and differential pressure monitoring."
-  is_canonical: true
-  implements:
-  - CHWS
-  - THCWDPC
-  - RWCHVVM
-  - SWCHVVM
-  - PWDT
-  - SESWTC
-  - PWRFM
