@@ -263,6 +263,23 @@ CH_SS_SCHWTC_CHPM_REFSM_DXSWC_CHWRWISOVM_IGM:
   - CHWRWISOVM
   - IGM
 
+
+CH_SS_SCHWTC_CWDT_WDPM_REFSM_REFPM_CHDXSC_CHWRWISOVM_IGM:
+  guid: "74bda35f-625f-4472-947e-b9d10a4d2d3f"
+  description: "Water-cooled chiller with refrigerant pressure and temperature monitoring."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - SCHWTC
+  - CWDT
+  - WDPM
+  - REFSM
+  - REFPM
+  - CHDXSC
+  - CHWRWISOVM
+  - IGM
+
 CH_SS_SCHWTC_CHWRWISOVPM_CWRISOVPM_CHPM_CWDT_REFSM_CHWDPM:
   guid: "bca8842a-ad65-4ddc-925f-e97129f5c2d9"
   description: "Water-cooled chiller."
@@ -292,6 +309,22 @@ CH_SS_SCHWTC_CHPM_REFSM_IGM_DXSWC_CHWSWISOVM_CHWDPM:
   - DXSWC # TODO: this is inconsistent with the rest of the type
   - CHWSWISOVM
   - CHWDPM
+
+CH_SS_SCHWTC_CHPM_REFSM_IGM_CHDXSC_CHWSWISOVM_CHWDPM_CWDT:
+  guid: "1f62d2f7-76e4-455b-b6cc-6689aa47e90d"
+  description: "Water-cooled chiller."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - SCHWTC
+  - CHPM
+  - REFSM
+  - IGM
+  - CHDXSC
+  - CHWSWISOVM
+  - CHWDPM
+  - CWDT
 
 CH_SS_SCHWTC_DXSWC_IGM_CWDT_CHWRWISOVPM_CWRISOVPM_CHPM_REFSM:
   guid: "17092e52-d7cf-4b7e-a353-2f94bdde3844"
@@ -401,6 +434,23 @@ CH_SS_CHWRWISOVPM_SCHWTC_CHWDPM_CDWISOVPM_CWDT_REFPM_REFSM_IGM_DXSWC:
   - REFSM
   - IGM
   - DXSWC
+
+CH_SS_CHWRWISOVPM_SCHWTC_CHWDPM_CDWISOVPM_CWDT_REFPM_REFSM_IGM_CHDXSC:
+  guid: "01d59f6f-3ed5-444d-8245-fe2d5ebb1f8c"
+  description: "Complex water-cooled chiller with refrigerant pressure and temperature monitoring."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - CHWRWISOVPM
+  - SCHWTC
+  - CHWDPM
+  - CDWISOVPM
+  - CWDT
+  - REFPM
+  - REFSM
+  - IGM
+  - CHDXSC
 
 CH_SS_SCHWTC_CHWSWISOVM_CHWDPM_CWDT_REFSM_REFPM_IGM_DXSWC:
   guid: "e3e3ff1b-4d52-4234-aac0-1692fac0ee77"
@@ -702,6 +752,22 @@ CH_SS_SCHWTC_CWDT_REFSM_CHWFRSM_CDWFRSM_CHDXSC_IGM:
   - IGM
   opt_uses:
   - compressor_run_time_accumulator
+
+CH_SS_CHWDPC_CHWDT_CHWRISOVPM_HWDT_HWDPM_REFPM2X_REFSM2X_CPC2X:
+  guid: "aa1f0cf1-759d-4645-8cda-18e2b2639e4f"
+  description: "Temperature differential across heating water for heat recovery chiller, differential pressure control with chilled and heating water, isolation valve monitoring for chilled water, and refrigerant pressure and temperature monitoring."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - CHWDPC
+  - CHWDT
+  - CHWRISOVPM
+  - HWDT
+  - HWDPM
+  - REFPM2X
+  - REFSM2X
+  - CPC2X
 
 CH_SS_CHWFRSM_CDWFRSM_CC2XM_REFSTC2X_REFPM2X:
   guid: "da643f7f-dbc6-41a7-9030-60115b8c406f"

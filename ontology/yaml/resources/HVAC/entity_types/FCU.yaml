@@ -19,6 +19,17 @@
 # This file defines fan-coil unit types. Valid types must include a fan and a coil of some type.
 # They must also include some control scheme (e.g. ZTC, DSP, etc.).
 
+FCU_DFVSC_HWDC_CHWDC_RTM:
+  guid: "bf496697-3e88-42c7-95f9-a93bc8417684"
+  description: "FCU with discharge fan, heating and cooling valve control."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFVSC
+  - HWDC
+  - CHWDC
+  - RTM
+
 FCU_DFMSC_DSP_DXZTC:
   guid: "9a03ce8b-40af-4243-a867-e2c94f615753"
   description: "Variable refrigerant flow unit with zone cooling and heating control, discharge fan speed modes"
@@ -203,6 +214,20 @@ FCU_DFSS_DSP_HPZC:
   - DFSS
   - DSP
   - HPZC
+
+FCU_DFSS_DSP_HPZC_RCKTM_DTM_RTM_OA:
+  guid: "c64fd4d7-d205-4364-9db0-11cc7b178a71"
+  description: "Typical heat pump FCU (zone control) with refrigerant circuit and outside air monitoring."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - DSP
+  - HPZC
+  - RCKTM
+  - DTM
+  - RTM
+  - OA
 
 FCU_DFSS_DSP_HP2ZC:
   guid: "f1785580-c69d-4627-b8ce-a4b7ee79b254"
@@ -501,6 +526,22 @@ FCU_DFSS_RTC_RHC_RHDHC_DXRC:
   - RHC
   - RHDHC
   - DXRC
+
+FCU_DFSS_RTC_RHC_RHDHC_DXRC_ZTM_ZHM_HTRC_FDPM:
+  guid: "e6497455-2cbd-4d11-a693-6cee3984b9bb"
+  description: "DX fan coil with return temp and humidification control, heating, and zone monitoring."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - RTC
+  - RHC
+  - RHDHC
+  - DXRC
+  - ZTM
+  - ZHM
+  - HTRC
+  - FDPM
 
 FCU_DFSS_RTC_RHC_RHDHC_CHWRC_ZTM_ZHM_HTRC_FDPM:
   guid: "390eec9b-7912-4583-8272-91be66131d5c"
@@ -1047,6 +1088,15 @@ FCU_SS_ZTM:
   - FCU
   - SS
   - ZTM
+
+FCU_SS_ZTC:
+  guid: "e8752dd2-24fe-4fab-b9c5-0592162e4f5c"
+  description: "FCU with zone temperature controol and start/stop."
+  is_canonical: true
+  implements:
+  - FCU
+  - SS
+  - ZTC
 
 FCU_HPZTC_CO2C_FDPM:
   guid: "29f39ffb-a724-4d8d-acd2-d422e79fac05"
@@ -1696,6 +1746,19 @@ FCU_DFSS_RHDHC_HT2RC_DX2RC:
   - RHDHC
   - HT2RC
   - DX2RC
+
+FCU_DFVSC_RTM_CO2C_HWZTC_CHWZTC_ZHM:
+  guid: "b6dada06-f2bf-4cc6-9d58-5106759ab029"
+  description: "Fan coil unit with zone temperature control, CO2 and humidity monitoring, heating water and chilled water valve monitoring."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFVSC
+  - RTM
+  - CO2C
+  - HWZTC
+  - CHWZTC
+  - ZHM
 
 ###################################
 ### Existing Non-standard Types ###
