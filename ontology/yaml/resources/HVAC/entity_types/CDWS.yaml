@@ -41,6 +41,15 @@ CDWS_SWTC_WDPC:
   - SWTC
   - WDPC
 
+CDWS_SWTC_WDPC_BWFRM:
+  description: "Condenser water system with supply temperature, differential pressure control and blowdown water flowrate monitoring."
+  is_canonical: true
+  implements:
+  - CDWS
+  - SWTC
+  - WDPC
+  - BWFRM
+
 CDWS_SWTC_BYPVPM:
   guid: "ce74369f-a6b2-4624-bf0f-543b8e00fb8b"
   description: "Condenser water system with supply temperature control and a bypass valve."

@@ -258,3 +258,12 @@ HX_CWRISOVPM_CHWRWDVPM_CWDT_CHWDT:
   - CHWRWDVPM
   - CWDT
   - CHWDT
+
+HX_PSWTC_CHWDT_CHWRWISOVPM:
+  description: "."
+  is_canonical: true
+  implements:
+    - HX
+    - PSWTC
+    - CHWDT
+    - CHWRWISOVPM

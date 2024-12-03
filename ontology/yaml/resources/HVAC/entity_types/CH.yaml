@@ -785,6 +785,7 @@ CH_SS_CHWDPC_SCHWTC_CHWRISOVPM_HWDT_HWDPM_REFPM2X_REFSM2X_CPC2X:
   - REFSM2X
   - CPC2X
 
+<<<<<<< HEAD
 CH_SS_CHWFRSM_CDWFRSM_CC2XM_REFSTC2X_REFPM2X:
   guid: "da643f7f-dbc6-41a7-9030-60115b8c406f"
   description: "Simple water-cooled chiller with 2 circuit refrigerant monitoring and compressor current monitoring."
@@ -797,6 +798,21 @@ CH_SS_CHWFRSM_CDWFRSM_CC2XM_REFSTC2X_REFPM2X:
   - CC2XM
   - REFSTC2X
   - REFPM2X
+=======
+
+CH_SS_SCHWTC_CHDX2SC_CHWSWISOVM_CDWISOVPM_CHWDPM_CWDT:
+  description: ""
+  is_canonical: true
+  implements:
+    - CH
+    - SS
+    - SCHWTC
+    - CHDX2SC
+    - CHWSWISOVM
+    - CDWISOVPM
+    - CHWDPM
+    - CWDT
+>>>>>>> b37b0fd2 (hydronic: new canonical types for CDWS, CHWS, CH, HX)
 
 ###################################
 ### Existing Non-standard Types ###
