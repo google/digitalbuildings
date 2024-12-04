@@ -2350,9 +2350,6 @@ literals:
 - heating_thermal_power_sensor:
     flexible_min: 0.0
     flexible_max: 586142.14
-- heating_thermal_power_capacity:
-    flexible_min: 0.0
-    flexible_max: 586142.14
 - primary_water_heating_thermal_power_sensor:
     flexible_min: 0.0
     flexible_max: 586142.14
