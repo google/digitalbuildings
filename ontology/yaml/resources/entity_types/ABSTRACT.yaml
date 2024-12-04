@@ -5,3 +5,5 @@ SS:
   uses:
   - run_command
   - run_status
+  opt_uses:
+  - run_request_status
