@@ -226,6 +226,9 @@ literals:
   - ON
   - OFF
   - AUTO
+- economizer_override_mode:
+  - ON
+  - OFF
 - sync_economizer_mechanical_cooling_mode:
   - ON
   - OFF
@@ -432,6 +435,9 @@ literals:
   - ON
   - OFF
   - STANDBY
+- run_request_status:
+  - ON
+  - OFF
 - speed_frequency_sensor:
     flexible_min: -0.5
     flexible_max: 65.0
@@ -1144,6 +1150,9 @@ literals:
   - OPEN
   - CLOSED
 - cooling_thermal_power_sensor:
+    flexible_min: 0.0
+    flexible_max: 3517000.0
+- economizer_thermal_power_sensor:
     flexible_min: 0.0
     flexible_max: 3517000.0
 - primary_water_cooling_thermal_power_sensor:
@@ -2339,6 +2348,9 @@ literals:
     flexible_min: 255.9259259
     flexible_max: 380.3703704
 - heating_thermal_power_sensor:
+    flexible_min: 0.0
+    flexible_max: 586142.14
+- heating_thermal_power_capacity:
     flexible_min: 0.0
     flexible_max: 586142.14
 - primary_water_heating_thermal_power_sensor:
