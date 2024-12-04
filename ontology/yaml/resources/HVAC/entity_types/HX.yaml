@@ -258,3 +258,13 @@ HX_CWRISOVPM_CHWRWDVPM_CWDT_CHWDT:
   - CHWRWDVPM
   - CWDT
   - CHWDT
+
+HX_PSWTC_CHWDT_CHWRWISOVPM:
+  guid: "aee0a0be-f0fe-458a-9d70-d37eba78e401"
+  description: "Chilled/process water heat exchanger with isolation valve on chilled return water side."
+  is_canonical: true
+  implements:
+    - HX
+    - PSWTC
+    - CHWDT
+    - CHWRWISOVPM

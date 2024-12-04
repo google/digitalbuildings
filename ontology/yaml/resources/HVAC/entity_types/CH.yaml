@@ -798,6 +798,19 @@ CH_SS_CHWFRSM_CDWFRSM_CC2XM_REFSTC2X_REFPM2X:
   - REFSTC2X
   - REFPM2X
 
+CH_SS_SCHWTC_CHDX2SC_CHWSWISOVM_CDWISOVPM_CWDT:
+  guid: "8340bb1e-2bc6-482f-8b48-b54be0010ec5"
+  description: "Water cooled chiller with chilled and condensing water isolation valves."
+  is_canonical: true
+  implements:
+    - CH
+    - SS
+    - SCHWTC
+    - CHDX2SC
+    - CHWSWISOVM
+    - CDWISOVPM
+    - CWDT
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
