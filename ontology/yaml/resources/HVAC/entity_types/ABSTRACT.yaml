@@ -1350,6 +1350,7 @@ RWTC:
   - OPERATIONAL
   opt_uses:
   - run_command
+  - heating_request_count
   - supply_water_temperature_sensor
   - high_supply_water_temperature_alarm
   - low_supply_water_temperature_alarm
@@ -6035,6 +6036,17 @@ RWTM:
   uses:
   - return_water_temperature_sensor
 
+WSEM:
+  guid: "77f156c3-3748-4a3e-942f-1ff17b173cb3"
+  description: "Water side economizer monitoring."
+  is_abstract: true
+  implements:
+  - MONITORING
+  uses:
+  - economizer_mode
+  opt_uses:
+  - economizer_thermal_power_sensor
+  - economizer_override_mode
 
 WSERWTM:
   guid: "132824f4-213b-4e8f-85f9-fdad8a194146"
@@ -7057,6 +7069,8 @@ HLPM:
   guid: "ae617b98-6deb-4c17-8d63-4504feea2988"
   description: "Heating thermal power sensor."
   is_abstract: true
+  opt_uses:
+  - heating_thermal_power_capacity
   uses:
   - heating_thermal_power_sensor
   implements:
