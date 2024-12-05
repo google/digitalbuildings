@@ -4210,6 +4210,14 @@ CDWPVM:
   implements:
   - OPERATIONAL
 
+WFRSM:
+  guid: "08d4248b-2ef7-42e8-b56a-98aad618b6bc"
+  description: "Water flowrate status monitoring."
+  is_abstract: true
+  uses:
+  - water_flowrate_status
+  implements:
+  - OPERATIONAL
 
 CDWFRSM:
   guid: "2a153a56-29ae-403e-9b4d-9b16b3a4794c"
@@ -4219,7 +4227,6 @@ CDWFRSM:
   - condensing_water_flowrate_status
   implements:
   - OPERATIONAL
-
 
 BYPVPM:
   guid: "57766034-a856-4dfe-b070-fd65673d8dd0"
