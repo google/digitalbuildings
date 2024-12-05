@@ -38,6 +38,8 @@ SD:
   - low_supply_air_flowrate_alarm
   - failed_supply_air_damper_alarm
   - pressurization_request_count
+  - flowrate_requirement
+  - unoccupied_flowrate_requirement
   uses:
   - supply_air_damper_percentage_command
   - supply_air_flowrate_sensor
@@ -181,6 +183,7 @@ CSP:
   - failed_zone_air_temperature_alarm
   - high_zone_air_temperature_alarm
   - low_zone_air_temperature_alarm
+  - cooling_request_count
   uses:
   - zone_air_cooling_temperature_setpoint
   - zone_air_temperature_sensor
@@ -1389,6 +1392,8 @@ ED:
   opt_uses:
   - exhaust_air_damper_percentage_sensor
   - exhaust_air_static_pressure_sensor
+  - run_command
+  - schedule_run_command
   uses:
   - exhaust_air_damper_percentage_command
   - exhaust_air_flowrate_sensor
