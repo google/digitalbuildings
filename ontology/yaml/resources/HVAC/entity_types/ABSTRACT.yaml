@@ -6913,6 +6913,7 @@ HWTTC:
   is_abstract: true
   opt_uses:
   - high_water_temperature_alarm
+  - return_water_temperature_sensor
   uses:
   - hot_water_tank_temperature_sensor
   - hot_water_tank_temperature_setpoint
