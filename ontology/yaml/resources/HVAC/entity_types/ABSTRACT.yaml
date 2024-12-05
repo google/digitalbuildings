@@ -5356,6 +5356,17 @@ CHWDPC:
   - chilled_water_differential_pressure_sensor
   - chilled_water_differential_pressure_setpoint
 
+CHWHRDPC:
+  guid: "54ad7c4b-917d-4194-b888-954bf6553838"
+  description: "Heat recovery differential pressure control for chilled water."
+  is_abstract: true
+  implements:
+  - MONITORING
+  uses:
+  - chilled_water_differential_pressure_sensor
+  - heat_recovery_chilled_water_differential_pressure_setpoint
+  - heat_recovery_run_command
+
 CHWDTC:
   guid: "0ebb5fa0-c205-4238-8f73-296667e7169c"
   description: "Differential temperature control for chilled water."
@@ -6061,7 +6072,6 @@ WSERWTM:
   - high_economizer_return_water_temperature_alarm
   - low_economizer_return_water_temperature_alarm
 
-
 CWDPM:
   guid: "d71e1e0d-35d6-4b53-a570-2e12959c951b"
   description: "Differential pressure monitoring for condenser water."
@@ -6070,6 +6080,27 @@ CWDPM:
   - MONITORING
   uses:
   - condensing_water_differential_pressure_sensor
+
+CWDPC:
+  guid: "426c8ede-626d-4c84-bbba-ba1707ba202a"
+  description: "Differential pressure control for condenser water."
+  is_abstract: true
+  implements:
+  - MONITORING
+  uses:
+  - condensing_water_differential_pressure_sensor
+  - condensing_water_differential_pressure_setpoint
+
+CWHRDPC:
+  guid: "ddd40420-3034-4289-9f34-103934540f58"
+  description: "Heat recovery differential pressure control for condenser water."
+  is_abstract: true
+  implements:
+  - MONITORING
+  uses:
+  - condensing_water_differential_pressure_sensor
+  - heat_recovery_condensing_water_differential_pressure_setpoint
+  - heat_recovery_run_command
 
 CWDTC:
   guid: "a9c672e6-0a06-4b6b-a67f-557288ba38cc"
