@@ -807,6 +807,7 @@ SS:
   - communication_status
   - efficiency_percentage_sensor
   - load_percentage_sensor
+  - request_run_status
 
 DSPC:
   guid: "3f288511-32ca-47ae-a4e0-391620026420"
