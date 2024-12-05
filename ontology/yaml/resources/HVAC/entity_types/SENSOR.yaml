@@ -16,6 +16,41 @@
 ### Canonical Types  ###
 ########################
 
+SENSOR_ZTM_ZHM_CO2M_VOCM_PMDM_SPLM_ZAQIM_ZSPM_ZWVDM:
+  guid: "ba372b9c-3b31-45af-ad7c-f5e5605f4746"
+  description: "Indoor Air Quality sensor with temperature, humidity, CO2, VOC, PM 1, 2.5, 4, 10, illuminance, air pressure and sound monitoring."
+  is_canonical: true
+  implements:
+  - /SENSOR
+  - ZTM
+  - ZHM
+  - CO2M
+  - VOCM
+  - PMDM
+  - SPLM
+  - ZAQIM
+  - ZSPM
+  - ZWVDM
+  uses:
+  - illuminance_sensor
+
+SENSOR_ZTM_ZHM_CO2M_VOCM_PMDM_SPLM_ZAQIM_ZSPM_ZOC:
+  guid: "e9bc10ea-cfe6-4f90-9860-0f81a9672dd2"
+  description: "Indoor Air Quality sensor with temperature, humidity, CO2, VOC, PM 1, 2.5, 4, 10, illuminance, air pressure, sound monitoring and occupant counter."
+  is_canonical: true
+  implements:
+  - /SENSOR
+  - ZTM
+  - ZHM
+  - CO2M
+  - VOCM
+  - PMDM
+  - SPLM
+  - ZAQIM
+  - ZSPM
+  - ZOC
+  uses:
+  - illuminance_sensor
 
 SENSOR_ZTM_ZHM_CO2M:
   guid: "bacb5335-16de-46d3-9d8f-da503ea38f8a"
@@ -321,6 +356,14 @@ SENSOR_ZOC:
   implements:
   - /SENSOR
   - ZOC
+
+SENSOR_WTM:
+  guid: "44ba8224-d1af-4231-aed5-4c330c8bd101"
+  description: "Water temperature sensor."
+  is_canonical: true
+  implements:
+  - /SENSOR
+  - WTM
 
 SENSOR_SFM:
   guid: "cff50a85-cca7-4185-9925-2dbfb3d404ee"

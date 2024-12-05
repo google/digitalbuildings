@@ -12,15 +12,18 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-CONTAINS:
-  description: "Source physically encapsulates at least part of Target."
-CONTROLS:
-  description: "Source determines or affects the internal state or behavior of Target."
-FEEDS:
-  description: "Source provides some media (ex: water or air) to Target."
-HAS_PART:
-  description: "Source has some component or part defined by Target."
-HAS_RANGE:
-  description: "Source has a coverage or detection range defined by Target."
-MEASURES:
-  description: "Source quantifies attributes of the Target."
+########################
+### Canonical Types  ###
+########################
+
+HOOD_EFSS3X_EFVSC3X_ETM3X_EFM3X_EDPM3X:
+  guid: "13dc65c9-67af-45ad-a7b5-2e412514374d"
+  description: "Hood with three variable speed exhaust fans and variable position dampers. Temperature and flowrate monitoring for each"
+  is_canonical: true
+  implements:
+  - HOOD
+  - EFSS3X
+  - EFVSC3X
+  - ETM3X
+  - EFM3X
+  - EDPM3X

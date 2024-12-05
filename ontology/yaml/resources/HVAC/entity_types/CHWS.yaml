@@ -156,6 +156,18 @@ CHWS_SWTC_WDPC_CLPM_WFRM_BYPVPM:
   - WFRM
   - BYPVPM
 
+CHWS_SWTC_WDPC_BYPVFRC_MCBYPVPM_CLPM:
+  guid: "553497fb-0c57-441c-bf74-3c7b0d713f9f"
+  description: "Chilled water system with supply temperature and differential pressure control, bypass valve flowrate control, mechanical cooling bypass valve monitoring and cooling thermal monitoring."
+  is_canonical: true
+  implements:
+  - CHWS
+  - SWTC
+  - WDPC
+  - BYPVFRC
+  - MCBYPVPM
+  - CLPM
+
 CHWS_SWTC_WDPC_CLPM_WFRC_BYPVPM:
   guid: "20c14eb4-763c-437d-9209-c35151e2251b"
   description: "Chilled water system with supply temperature, differential pressure, and flowrate control, and thermal load and bypass valve monitoring."
@@ -167,6 +179,37 @@ CHWS_SWTC_WDPC_CLPM_WFRC_BYPVPM:
   - CLPM
   - WFRC
   - BYPVPM
+
+CHWS_SWTC_WDPC_BYPVFRC:
+  guid: "1eb7c5c6-205b-409e-8e0a-2944e2994434"
+  description: "Chilled water system with supply temperature, differential pressure and bypass valve flowrate control."
+  is_canonical: true
+  implements:
+  - CHWS
+  - SWTC
+  - WDPC
+  - BYPVFRC
+
+CHWS_SWTC_WDPC_WFRC:
+  guid: "8d2b1b65-b42c-4597-a4dd-89ae49e886e8"
+  description: "Chilled water system with supply temperature, differential pressure and water flowrate control."
+  is_canonical: true
+  implements:
+  - CHWS
+  - SWTC
+  - WDPC
+  - WFRC
+
+CHWS_SWTC_WDPC_BYPVFRC_CLPM:
+  guid: "2b835b66-3db9-499e-97f4-1e22540df676"
+  description: "Chilled water system with supply temperature, differential pressure, bypass valve flowrate control, and cooling thermal monitoring."
+  is_canonical: true
+  implements:
+  - CHWS
+  - SWTC
+  - WDPC
+  - BYPVFRC
+  - CLPM
 
 CHWS_SWTC_WDPC_WFRM_PSWTC_PWVPM_MINFC_CLPM:
   guid: "7626e0e2-1e32-4101-b53b-5fa66af3cdc2"
@@ -232,6 +275,17 @@ CHWS_SWTC_WDPC2X_BYPVPM_WFRM_CLPM:
   - WFRM
   - CLPM
 
+CHWS_SWTC_WDPC2X_BYPVFRC_CLPM:
+  guid: "3a3fea1e-7f64-4ed9-9b18-bd1c62d53af2"
+  description: "Chilled water system with dual differential pressure control, bypass valve flowrate control and cooling thermal monitoring."
+  is_canonical: true
+  implements:
+  - CHWS
+  - SWTC
+  - WDPC2X
+  - BYPVFRC
+  - CLPM
+
 CHWS_RWTC_CHWVM:
   guid: "40d0d1a2-b819-4d1b-b01a-e7b900af0d8d"
   description: "Chilled water system with return temperature control and chilled water valve monitoring."
@@ -273,15 +327,16 @@ CHWS_CLPM_RMM_SWTC_WFRC:
   - SWTC
   - WFRC
 
-CHWS_BYPVPM_CLPM_SWTC_TDTM_WFRM:
+CHWS_BYPVPM_CLPM_SWTC_WDPC_TDTM_WFRM:
   guid: "3530b09c-8dae-4da7-b1e5-4e4bcfe5225d"
-  description: "Chilled water system with supply temperature control and a buffer tank with entering/leaving temperature sensors."
+  description: "Chilled water system with supply temperature and differential pressure control, and a buffer tank with entering/leaving temperature sensors"
   is_canonical: true
   implements:
   - CHWS
   - BYPVPM
   - CLPM
   - SWTC
+  - WDPC
   - TDTM
   - WFRM
 
@@ -346,21 +401,77 @@ CHWS_SWTC_WDPC_PSWTC_PWDPC_PWFRM_PWECVC_SWDVPM_PWDVPM:
   - SWDVPM
   - PWDVPM
 
-
-CHWS_SWTC_WDPC_WFRM_CMSWFRM_BYPVPM_WSEBYPVPM_WSERWTM:
+CHWS_SWTC_WDPC_WFRC_CMSWFRM_BYPVPM_WSEBYPVPM_WSERWTM_CLPM:
   guid: "a50e908f-be3f-4e29-a284-21cc0a7fa332"
-  description: "Chilled water system with supply water temperature and differential pressure control, flowrate monitoring, common chiller supply water flowrate monitoring, bypass valve and water side economizer bypass valve."
+  description: "Chilled water system with supply water temperature and differential pressure control, flowrate control, common chiller supply water flowrate monitoring, cooling thermal monitoring, bypass valve and water side economizer bypass valve."
   is_canonical: true
   implements:
   - CHWS
   - SWTC
   - WDPC
-  - WFRM
+  - WFRC
   - CMSWFRM
   - BYPVPM
   - WSEBYPVPM
   - WSERWTM
+  - CLPM
 
+CHWS_SWTC_WDPC_BYPVPM_WSEBYPVPM:
+  guid: "cb8bd909-4be3-46a4-8802-30d177901bff"
+  description: "Chilled water system with bypass valve, water side economizer bypass valve and differential pressure control."
+  is_canonical: true
+  implements:
+  - CHWS
+  - SWTC
+  - WDPC
+  - BYPVPM
+  - WSEBYPVPM
+
+CHWS_RWTM:
+  guid: "74ef88cc-ffc7-40ec-b4ac-5978a8746a09"
+  description: "Simple chilled water system with return temperature monitoring."
+  is_canonical: true
+  implements:
+  - CHWS
+  - RWTM
+
+CHWS_SEWDPC_SESWTC_SERWFRM_PRWFRM_PWDT:
+  guid: "3461657c-4b79-4207-9c9b-fcc15a17049d"
+  description: "Chilled water system with secondary loop supply water temperature and differential pressure control, primary and secondary flowrate monitoring."
+  is_canonical: true
+  implements:
+  - CHWS
+  - SEWDPC
+  - SESWTC
+  - SERWFRM
+  - PRWFRM
+  - PWDT
+
+CHWS_SEWDPC_SESWTC_SERWFRM_PRWFRM_PRWDPC_PWDT:
+  guid: "fe148047-bc3a-48be-96e8-c1d589e2d4e6"
+  description: "Chilled water system with secondary loop supply water temperature control, primary and secondary differential pressure control, primary and secondary flowrate monitoring."
+  is_canonical: true
+  implements:
+  - CHWS
+  - SEWDPC
+  - SESWTC
+  - SERWFRM
+  - PRWFRM
+  - PRWDPC
+  - PWDT
+
+CHWS_THCWDPC_RWCHVVM_SWCHVVM_PWDT_SESWTC_PWRFM:
+  guid: "e3f6366d-4383-48f4-9ce4-a3b7107603ac"
+  description: "Chilled water system with thermally conditioned water valve, primary supply temeprature and flowrate monitoring, and differential pressure monitoring."
+  is_canonical: true
+  implements:
+  - CHWS
+  - THCWDPC
+  - RWCHVVM
+  - SWCHVVM
+  - PWDT
+  - SESWTC
+  - PWRFM
 
 ###################################
 ### Existing Non-standard Types ###
@@ -371,6 +482,20 @@ CHWS_SWTC_WDPC_BYPVPM_NONCANONICAL_1:
   description: "Non-standard type."
   implements:
   - CHWS_SWTC_WDPC_BYPVPM
+  - INCOMPLETE
+  uses:
+  - west_supply_water_temperature_sensor
+  - east_supply_water_temperature_sensor
+  - west_differential_pressure_sensor
+  - east_differential_pressure_sensor
+  - west_flowrate_sensor
+  - east_flowrate_sensor
+
+CHWS_SWTC_WDPC_BYPVPM_WSEBYPVPM_NONCANONICAL_1:
+  guid: "d7794334-b7fb-46f1-a21f-ea96528a5611"
+  description: "Non-standard type."
+  implements:
+  - CHWS_SWTC_WDPC_BYPVPM_WSEBYPVPM
   - INCOMPLETE
   uses:
   - west_supply_water_temperature_sensor
