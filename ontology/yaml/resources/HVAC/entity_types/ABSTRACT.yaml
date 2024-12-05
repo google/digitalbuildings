@@ -8496,6 +8496,7 @@ HP6SWC:
   - heating_thermal_power_capacity
   - high_supply_water_temperature_alarm
   - low_supply_water_temperature_alarm
+  - return_water_temperature_sensor
   uses:
   - compressor_run_command_1
   - compressor_run_command_2
