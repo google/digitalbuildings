@@ -131,7 +131,8 @@ def LoadStatesFromSpreadsheet(
     state_entry[REPORTING_ENTITY_GUID] = guid_to_entity_map.GetEntityGuidByCode(
         state_entry[REPORTING_ENTITY_CODE]
     )
-    states.append(State.FromDict(states_dict=state_entry))
+    new_state = State.FromDict(states_dict=state_entry)
+    states.append(new_state)
 
   return states
 
@@ -172,7 +173,7 @@ def LoadConnectionsFromSpreadsheet(
 def LoadOperationsFromSpreadsheet(
     entity_entries: Dict[str, str], guid_to_entity_map: GuidToEntityMap
 ) -> List[EntityOperation]:
-  """loads a list of entity dicitionary mappings into EntityOperation instances.
+  """loads a list of entity dictionary mappings into EntityOperation instances.
 
   Args:
     entity_entries: A list of Python Dictionaries mapping entity attributes
@@ -192,8 +193,10 @@ def LoadOperationsFromSpreadsheet(
       new_entity.bc_guid = str(uuid.uuid4())
     guid_to_entity_map.AddEntity(new_entity)
     operation = entity_entry.get(OPERATION)
-    if not operation:
+    if not operation and new_entity.etag:
       operation = EntityOperationType.EXPORT
+    elif not operation and not new_entity.etag:
+      operation = EntityOperationType.ADD
     operation_instance = EntityOperation(
         entity=new_entity, operation=EntityOperationType(operation)
     )
