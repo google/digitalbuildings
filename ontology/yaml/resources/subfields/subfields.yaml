@@ -262,6 +262,7 @@ descriptor:
   ventilation: "Process used to provide fresh (typically atmospheric) air into a system or zone."
   waste: "An undesirable substance gathered in a fluid as it goes through deliberate applications or processes."
   voc: "Abbreviation for volatile organic componds, which are groups of chemicals emitted by many household objects like furniture and paint."
+  warmup: "Process, measured effect or requirement for heating; used following building unoccupied periods and in optimal start applications."
   water: "Water in liquid form, conditioned or unconditioned."
   west: "Cardinal direction; opposite of east"
   wind: "Movement of ambient air."
