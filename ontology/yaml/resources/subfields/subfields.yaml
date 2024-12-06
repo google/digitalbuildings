@@ -360,6 +360,7 @@ measurement_descriptor:
   extent: "The range over which something has spread."
   fade: "Descending change of a value (e.g., lighting fade)."
   hue: "Number on a color wheel from 0 to 360°."
+  idle: "State of being inactive or not operating."
   lost: "Indicates that a point has lost some quality or quantity inadvertently."
   match: "A function that matches something against others."
   motion: "Detectable movement of a thing."
