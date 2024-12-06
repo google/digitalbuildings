@@ -807,6 +807,7 @@ SS:
   - communication_status
   - efficiency_percentage_sensor
   - load_percentage_sensor
+  - idle_command
 
 DSPC:
   guid: "3f288511-32ca-47ae-a4e0-391620026420"
@@ -1873,6 +1874,7 @@ REFC:
   opt_uses:
   - failed_zone_air_refrigerant_concentration_alarm
   - high_zone_air_refrigerant_concentration_alarm
+  - refrigerant_leak_detection_status
   uses:
   - zone_air_refrigerant_concentration_sensor
   - zone_air_refrigerant_concentration_setpoint
@@ -2263,6 +2265,8 @@ CHWSC:
   - low_supply_air_temperature_alarm
   - water_leak_alarm
   - frost_alarm
+  - supply_air_cooling_temperature_setpoint
+  - supply_air_heating_temperature_setpoint
   uses:
   - chilled_water_valve_percentage_command
   - supply_air_temperature_sensor
@@ -3271,6 +3275,8 @@ HWSC:
   - failed_supply_air_temperature_alarm
   - high_supply_air_temperature_alarm
   - low_supply_air_temperature_alarm
+  - warmup_request_count
+  - warmup_run_command
   uses:
   - heating_water_valve_percentage_command
   - supply_air_temperature_sensor
@@ -4007,6 +4013,8 @@ VOADM:
   - low_mixed_air_temperature_alarm
   - failed_outside_air_damper_alarm
   - failed_outside_air_temperature_alarm
+  - outside_air_flowrate_sensor
+  - ventilation_request_count
   uses:
   - outside_air_damper_percentage_command
   - outside_air_temperature_sensor
@@ -8496,6 +8504,7 @@ HP6SWC:
   - heating_thermal_power_capacity
   - high_supply_water_temperature_alarm
   - low_supply_water_temperature_alarm
+  - return_water_temperature_sensor
   uses:
   - compressor_run_command_1
   - compressor_run_command_2
