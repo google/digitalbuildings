@@ -1874,6 +1874,7 @@ REFC:
   opt_uses:
   - failed_zone_air_refrigerant_concentration_alarm
   - high_zone_air_refrigerant_concentration_alarm
+  - refrigerant_leak_detection_status
   uses:
   - zone_air_refrigerant_concentration_sensor
   - zone_air_refrigerant_concentration_setpoint
