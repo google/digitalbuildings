@@ -1603,6 +1603,9 @@ literals:
 - ventilation_request_count:
     fixed_min: 0.0
     flexible_max: 500.0
+- warmup_request_count:
+    fixed_min: 0.0
+    flexible_max: 500.0
 - refrigerant_evaporator_pressure_sensor:
     flexible_min: 0.0
     flexible_max: 2068427.367
