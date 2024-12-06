@@ -235,7 +235,7 @@ literals:
   - ON
   - OFF
   - AUTO
-- economizer_override_mode:
+- economizer_disable_mode:
   - ON
   - OFF
 - sync_economizer_mechanical_cooling_mode:
