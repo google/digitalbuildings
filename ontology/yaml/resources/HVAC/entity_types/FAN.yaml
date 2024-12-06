@@ -38,6 +38,15 @@ FAN_SS:
   opt_uses:
   - air_pressure_sensor
 
+FAN_SS_SRC:
+  guid: "465f4dbb-38c2-4058-93d4-a55bd1212762"
+  description: "Basic fan with start/stop and schedule run control."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - SRC
+
 FAN_SS_VSC:
   guid: "b58b9431-ff2c-4cc2-adab-a8c51c4ee6ab"
   description: "Fan with start/stop status and open-loop speed control."
@@ -102,6 +111,16 @@ FAN_SS_ZTM:
   implements:
   - FAN
   - SS
+  - ZTM
+
+FAN_SS_SRC_ZTM:
+  guid: "61ab8764-284f-44d0-b17d-b243e1d869ff"
+  description: "Fan with schedule run control and zone temperature monitoring."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - SRC
   - ZTM
 
 FAN_SS_CSP:
