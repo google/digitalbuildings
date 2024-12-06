@@ -1872,6 +1872,9 @@ literals:
 - water_leak_detection_alarm:
   - ACTIVE
   - INACTIVE
+- refrigerant_leak_detection_status:
+  - ACTIVE
+  - INACTIVE
 - fire_alarm:
   - ACTIVE
   - INACTIVE
