@@ -16,33 +16,14 @@
 ### Canonical Types  ###
 ########################
 
-DC_SS_SWTC:
-  guid: "c52ba68c-f685-40c6-b2e2-baa5cd75e049"
-  description: "Typical dry-cooler (closed loop sensible cooler)."
+HOOD_EFSS3X_EFVSC3X_ETM3X_EFM3X_EDPM3X:
+  guid: "13dc65c9-67af-45ad-a7b5-2e412514374d"
+  description: "Hood with three variable speed exhaust fans and variable position dampers. Temperature and flowrate monitoring for each"
   is_canonical: true
   implements:
-  - DC
-  - SS
-  - SWTC
-
-DC_SS_FSS4X_FVSC4X_SWTC_WDPM:
-  guid: "1e1ddaf9-d9e7-46c2-8026-964c183a22c4"
-  description: "Closed loop sensible cooler with four fans and differential pressure monitoring."
-  is_canonical: true
-  implements:
-  - DC
-  - SS
-  - FSS4X
-  - FVSC4X
-  - SWTC
-  - WDPM
-
-DC_SS_SWTC_RWISOVM:
-  guid: "70aab981-f70d-417f-ac7e-692b24fe5908"
-  description: "Typical dry-cooler (dry air cooler with isolation valve on the return side)."
-  is_canonical: true
-  implements:
-  - DC
-  - SS
-  - SWTC
-  - RWISOVM
+  - HOOD
+  - EFSS3X
+  - EFVSC3X
+  - ETM3X
+  - EFM3X
+  - EDPM3X

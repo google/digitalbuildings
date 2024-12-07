@@ -48,7 +48,13 @@ literals:
 - chilled_return_water_temperature_sensor:
     flexible_min: 255.9259259
     flexible_max: 308.1481481
+- chilled_return_water_flowrate_sensor:
+    flexible_min: -0.000315451
+    flexible_max: 0.315451
 - chilled_supply_water_flowrate_sensor:
+    flexible_min: -0.000315451
+    flexible_max: 0.315451
+- chilled_supply_water_flowrate_setpoint:
     flexible_min: -0.000315451
     flexible_max: 0.315451
 - common_supply_water_flowrate_sensor:
@@ -69,12 +75,30 @@ literals:
 - chilled_water_bypass_valve_percentage_sensor:
     fixed_min: 0.0
     fixed_max: 100.0
+- chilled_water_bypass_valve_command:
+  - OPEN
+  - CLOSED
+- chilled_water_bypass_valve_status:
+  - OPEN
+  - CLOSED
+- thermally_conditioned_water_differential_pressure_sensor:
+    flexible_min: -34473.78945
+    flexible_max: 344737.8945
+- thermally_conditioned_water_differential_pressure_setpoint:
+    flexible_min: -34473.78945
+    flexible_max: 344737.8945
 - chilled_water_differential_pressure_sensor:
     flexible_min: -34473.78945
     flexible_max: 344737.8945
 - chilled_water_differential_pressure_setpoint:
     flexible_min: -34473.78945
     flexible_max: 344737.8945
+- chilled_water_differential_temperature_sensor:
+    flexible_min: 254.8148148
+    flexible_max: 380.3703704
+- chilled_water_differential_temperature_setpoint:
+    flexible_min: 254.8148148
+    flexible_max: 380.3703704
 - chilled_water_isolation_valve_percentage_command:
     fixed_min: 0.0
     fixed_max: 100.0
@@ -119,6 +143,15 @@ literals:
 - condensing_supply_water_temperature_setpoint:
     flexible_min: 255.9259259
     flexible_max: 308.1481481
+- condensing_return_water_flowrate_sensor:
+    flexible_min: -0.000315451
+    flexible_max: 0.315451
+- condensing_supply_water_flowrate_sensor:
+    flexible_min: -0.000315451
+    flexible_max: 0.315451
+- condensing_supply_water_flowrate_setpoint:
+    flexible_min: -0.000315451
+    flexible_max: 0.315451
 - condensing_water_sump_temperature_sensor:
     flexible_min: 255.9259259
     flexible_max: 308.1481481
@@ -182,6 +215,7 @@ literals:
   - FORTY_PERCENT
   - SIXTY_PERCENT
   - EIGHTY_PERCENT
+  - UNKNOWN
 - discharge_fan_speed_percentage_command:
     fixed_min: 0.0
     fixed_max: 100.0
@@ -213,6 +247,9 @@ literals:
 - exhaust_fan_power_sensor:
     flexible_min: 0.0
     flexible_max: 100000.0
+- exhaust_fan_voltage_sensor:
+    flexible_min: 0.0
+    flexible_max: 500.0
 - exhaust_fan_run_command:
   - ON
   - OFF
@@ -229,12 +266,12 @@ literals:
 - exhaust_fan_speed_percentage_sensor:
     fixed_min: 0.0
     fixed_max: 100.0
-- fan_run_status:
-  - ON
-  - OFF
 - fan_speed_percentage_command:
     fixed_min: 0.0
     fixed_max: 100.0
+- fan_speed_frequency_sensor:
+    flexible_min: -0.5
+    flexible_max: 65
 - flowrate_sensor:
     flexible_min: -0.000315451
     flexible_max: 0.315451
@@ -483,6 +520,9 @@ literals:
 - zone_air_co2_concentration_setpoint:
     flexible_min: 0.00005
     flexible_max: 0.005
+- zone_air_co2_deadband_concentration_setpoint:
+    flexible_min: 0.00005
+    flexible_max: 0.005
 - max_zone_air_co2_concentration_sensor:
     flexible_min: 0.00005
     flexible_max: 0.005
@@ -562,6 +602,12 @@ literals:
     fixed_min: 0
     fixed_max: 100
 - economizer_bypass_valve_percentage_sensor:
+    fixed_min: 0
+    fixed_max: 100
+- mechanical_cooling_bypass_valve_percentage_command:
+    fixed_min: 0
+    fixed_max: 100
+- mechanical_cooling_bypass_valve_percentage_sensor:
     fixed_min: 0
     fixed_max: 100
 - chilled_water_isolation_valve_status:
@@ -777,6 +823,9 @@ literals:
 - secondary_supply_water_flowrate_sensor:
     flexible_min: -0.000315451
     flexible_max: 0.315451
+- secondary_return_water_flowrate_sensor:
+    flexible_min: -0.000315451
+    flexible_max: 0.315451
 - shade_extent_percentage_command:
     fixed_min: 0.0
     fixed_max: 100.0
@@ -867,12 +916,21 @@ literals:
 - chilled_water_valve_command:
   - OPEN
   - CLOSED
+- chilled_water_valve_status:
+  - OPEN
+  - CLOSED
 - heating_percentage_command:
+    fixed_min: 0.0
+    fixed_max: 100.0
+- heating_percentage_sensor:
     fixed_min: 0.0
     fixed_max: 100.0
 - thermal_power_sensor:
     flexible_min: 0.0
     flexible_max: 3517000.0
+- cooling_thermalefficiency_sensor:
+    flexible_min: 0.0
+    flexible_max: 10.0
 - discharge_air_flowrate_sensor:
     flexible_min: -0.002359737216
     flexible_max: 94.38948864
@@ -937,6 +995,12 @@ literals:
 - condensing_fan_speed_percentage_command:
     fixed_min: 0.0
     fixed_max: 100.0
+- condensing_fan_run_command:
+  - ON
+  - OFF
+- condensing_fan_run_status:
+  - ON
+  - OFF
 - boost_fan_run_command:
   - ON
   - OFF
@@ -973,6 +1037,12 @@ literals:
 - exhaust_air_differential_flowrate_setpoint:
     flexible_min: 0.0
     flexible_max: 23.59737216
+- fan_run_command:
+  - ON
+  - OFF
+- fan_run_status:
+  - ON
+  - OFF
 - fan_speed_mode:
   - OFF
   - LOW
@@ -1059,6 +1129,9 @@ literals:
     flexible_min: 255.9259259
     flexible_max: 380.3703704
 - primary_supply_water_flowrate_sensor:
+    flexible_min: -0.000315451
+    flexible_max: 0.315451
+- primary_return_water_flowrate_sensor:
     flexible_min: -0.000315451
     flexible_max: 0.315451
 - supply_air_isolation_damper_status:
@@ -1152,6 +1225,9 @@ literals:
   - OPEN
   - CLOSED
 - process_water_valve_percentage_command:
+    fixed_min: 0.0
+    fixed_max: 100.0
+- thermally_conditioned_water_valve_percentage_command:
     fixed_min: 0.0
     fixed_max: 100.0
 - chilled_return_water_diverting_valve_percentage_command:
@@ -1289,6 +1365,12 @@ literals:
 - condensing_water_valve_percentage_command:
     fixed_min: 0.0
     fixed_max: 100.0
+- condensing_water_bypass_valve_command:
+  - OPEN
+  - CLOSED
+- condensing_water_bypass_valve_status:
+  - OPEN
+  - CLOSED
 
 - heater_run_status:
   - ON
@@ -1314,6 +1396,9 @@ literals:
 - discharge_fan_torque_sensor:
     fixed_min: 0.0
     flexible_max: 678.0
+- exhaust_fan_torque_sensor:
+    fixed_min: 0.0
+    flexible_max: 678.0
 - supply_air_damper_command:
   - OPEN
   - CLOSED
@@ -1332,6 +1417,9 @@ literals:
 - gas_flowrate_sensor:
     fixed_min: 0.0
     flexible_max: 0.003932896
+- gas_flowrate_counter:
+    fixed_min: 0.0
+    flexible_max: 10000000.0
 - gas_volume_accumulator:
     fixed_min: 0.0
     flexible_max: 0.003932896
@@ -1339,6 +1427,21 @@ literals:
     flexible_min: 0
     flexible_max: 100000
 - makeup_water_volume_accumulator:
+    flexible_min: 0
+    flexible_max: 100000
+- rain_water_volume_accumulator:
+    flexible_min: 0
+    flexible_max: 100000
+- potable_water_volume_accumulator:
+    flexible_min: 0
+    flexible_max: 100000
+- mixing_water_tank_volume_accumulator:
+    flexible_min: 0
+    flexible_max: 100000
+- waste_water_volume_accumulator:
+    flexible_min: 0
+    flexible_max: 100000
+- recirculation_water_volume_accumulator:
     flexible_min: 0
     flexible_max: 100000
 - gas_temperature_sensor:
@@ -1360,6 +1463,15 @@ literals:
     flexible_min: 254.8148148
     flexible_max: 283.1481481
 - discharge_air_damper_percentage_command:
+    fixed_min: 0.0
+    fixed_max: 100.0
+- supply_water_changeover_valve_command:
+  - OPEN
+  - CLOSED
+- supply_water_changeover_valve_status:
+  - OPEN
+  - CLOSED
+- supply_water_changeover_valve_percentage_sensor:
     fixed_min: 0.0
     fixed_max: 100.0
 - supply_water_isolation_valve_command:
@@ -1398,9 +1510,18 @@ literals:
 - failed_chilled_return_water_isolation_valve_alarm:
   - ACTIVE
   - INACTIVE
+- failed_supply_water_changeover_valve_alarm:
+  - ACTIVE
+  - INACTIVE
+- failed_return_water_changeover_valve_alarm:
+  - ACTIVE
+  - INACTIVE
 - discharge_air_static_pressure_sensor:
     flexible_min: -124.540012
     flexible_max: 996.320096
+- discharge_air_static_pressure_setpoint:
+    flexible_min: -124.540012
+    flexible_max: 2490.80024
 - discharge_air_dynamic_pressure_sensor:
     flexible_min: -124.540012
     flexible_max: 996.320096
@@ -1471,6 +1592,9 @@ literals:
     flexible_min: 0.0
     flexible_max: 2068427.367
 - refrigerant_condenser_pressure_sensor:
+    flexible_min: 0.0
+    flexible_max: 2068427.367
+- refrigerant_injection_pressure_sensor:
     flexible_min: 0.0
     flexible_max: 2068427.367
 - refrigerant_suction_temperature_sensor:
@@ -1643,6 +1767,12 @@ literals:
   - ACTIVE
   - INACTIVE
 - low_differential_pressure_alarm:
+  - ACTIVE
+  - INACTIVE
+- high_thermally_conditioned_water_differential_pressure_alarm:
+  - ACTIVE
+  - INACTIVE
+- low_thermally_conditioned_water_differential_pressure_alarm:
   - ACTIVE
   - INACTIVE
 - lost_power_alarm:
@@ -1979,6 +2109,9 @@ literals:
 - return_air_co2_concentration_setpoint:
     flexible_min: 0.00005
     flexible_max: 0.005
+- exhaust_air_co2_concentration_sensor:
+    flexible_min: 0.00005
+    flexible_max: 0.005
 - supervisor_control_mode:
   - ENABLED
   - DISABLED
@@ -2220,6 +2353,12 @@ literals:
 - heating_supply_water_temperature_setpoint:
     flexible_min: 255.9259259
     flexible_max: 380.3703704
+- heating_supply_water_flowrate_sensor:
+    flexible_min: -0.000315451
+    flexible_max: 0.315451
+- heating_supply_water_flowrate_setpoint:
+    flexible_min: -0.000315451
+    flexible_max: 0.315451
 - discharge_air_flowrate_setpoint:
     flexible_min: 0.0
     flexible_max: 94.38948864
@@ -2247,6 +2386,12 @@ literals:
 - condensing_water_differential_pressure_setpoint:
     flexible_min: -34473.78945
     flexible_max: 344737.8945
+- condensing_water_differential_temperature_sensor:
+    flexible_min: 254.8148148
+    flexible_max: 380.3703704
+- condensing_water_differential_temperature_setpoint:
+    flexible_min: 254.8148148
+    flexible_max: 380.3703704
 - heat_wheel_speed_percentage_sensor:
     fixed_min: 0.0
     fixed_max: 100.0
@@ -2479,6 +2624,9 @@ literals:
 - water_flowrate_sensor:
     flexible_min: -0.000315451
     flexible_max: 0.315451
+- water_flowrate_counter:
+    fixed_min: 0.0
+    flexible_max: 10000000.0
 - air_pressure_sensor:
     flexible_min: 500.0
     flexible_max: 200000.0
@@ -2656,6 +2804,9 @@ literals:
 - supply_air_specificenthalpy_sensor:
     flexible_min: 11630.0
     flexible_max: 93040.0
+- zone_air_specificenthalpy_sensor:
+    flexible_min: 11630.0
+    flexible_max: 93040.0
 - refrigerant_discharge_pressure_sensor:
     flexible_min: -34500.0
     flexible_max: 2757902.9173
@@ -2680,6 +2831,12 @@ literals:
 - refrigerant_suction_superheat_temperature_sensor:
     flexible_min: 255.9259259
     flexible_max: 422.037037
+- refrigerant_injection_suction_superheat_temperature_sensor:
+    flexible_min: 255.9259259
+    flexible_max: 422.037037
+- refrigerant_injection_suction_temperature_sensor:
+    flexible_min: 255.9259259
+    flexible_max: 422.037037
 - return_air_specificenthalpy_sensor:
     flexible_min: 11630.0
     flexible_max: 93040.0
@@ -2699,6 +2856,18 @@ literals:
 - steam_valve_percentage_command:
     fixed_min: 0.0
     fixed_max: 100.0
+- supply_steam_flowrate_sensor:
+    flexible_min: -0.000315451
+    flexible_max: 0.315451
+- steam_massflow_sensor:
+    flexible_min: 0.0
+    flexible_max: 5000
+- supply_steam_temperature_sensor:
+    flexible_min: 255.9259259
+    flexible_max: 533.1481481
+- steam_volume_accumulator:
+    flexible_min: 0.0
+    flexible_max: 318000
 - outside_condensing_loop_return_water_isolation_valve_status:
   - OPEN
   - CLOSED
@@ -2712,6 +2881,15 @@ literals:
     fixed_min: 0.0
     fixed_max: 100.0
 - outside_condensing_loop_return_water_temperature_sensor:
+    flexible_min: 255.9259259
+    flexible_max: 308.1481481
+- outside_condensing_loop_supply_water_isolation_valve_percentage_command:
+    fixed_min: 0.0
+    fixed_max: 100.0
+- outside_condensing_loop_supply_water_isolation_valve_percentage_sensor:
+    fixed_min: 0.0
+    fixed_max: 100.0
+- outside_condensing_loop_supply_water_temperature_sensor:
     flexible_min: 255.9259259
     flexible_max: 308.1481481
 - transducer_failed_alarm:
@@ -2729,6 +2907,12 @@ literals:
 - heating_water_differential_pressure_setpoint:
     flexible_min: -34473.78945
     flexible_max: 344737.8945
+- heating_water_differential_temperature_sensor:
+    flexible_min: 254.8148148
+    flexible_max: 380.3703704
+- heating_water_differential_temperature_setpoint:
+    flexible_min: 254.8148148
+    flexible_max: 380.3703704
 - leaving_water_tank_temperature_sensor:
     flexible_min: 255.9259259
     flexible_max: 380.3703704
@@ -2885,6 +3069,15 @@ literals:
 - heating_side_ground_supply_water_isolation_valve_command:
   - OPEN
   - CLOSED
+- return_water_changeover_valve_command:
+  - OPEN
+  - CLOSED
+- return_water_changeover_valve_status:
+  - OPEN
+  - CLOSED
+- return_water_changeover_valve_percentage_sensor:
+    fixed_min: 0.0
+    fixed_max: 100.0
 - output_voltage_sensor:
     flexible_min: 0.0
     flexible_max: 500.0
@@ -2983,6 +3176,9 @@ literals:
   - LOW
   - MEDIUM
   - HIGH
+- mixing_tank_level_sensor:
+    fixed_min: 0.0
+    flexible_max: 50.0
 - battery_voltage_sensor:
     flexible_min: 0.0
     flexible_max: 15.0
@@ -3450,6 +3646,9 @@ literals:
 - low_zone_air_relative_humidity_alarm:
   - ACTIVE
   - INACTIVE
+- communication_status:
+  - ON
+  - OFF
 - failed_communication_alarm:
   - ACTIVE
   - INACTIVE
@@ -3537,6 +3736,9 @@ literals:
 - zone_air_voc_aqi_sensor:
     fixed_min: 0
     flexible_max: 500
+- zone_air_nox_aqi_sensor:
+    fixed_min: 0
+    flexible_max: 500
 - zone_air_smoke_aqi_sensor:
     fixed_min: 0
     flexible_max: 80
@@ -3559,6 +3761,9 @@ literals:
   - ACTIVE
   - INACTIVE
 - low_supply_air_flowrate_alarm:
+  - ACTIVE
+  - INACTIVE
+- high_discharge_air_flowrate_alarm:
   - ACTIVE
   - INACTIVE
 - failed_heater_alarm:
@@ -3586,6 +3791,12 @@ literals:
   - ON
   - OFF
 - condensing_water_circulation_pump_run_status:
+  - ON
+  - OFF
+- outside_condensing_loop_water_circulation_pump_run_command:
+  - ON
+  - OFF
+- outside_condensing_loop_water_circulation_pump_run_status:
   - ON
   - OFF
 # Four fields below are for ASHP.
@@ -3620,6 +3831,12 @@ literals:
   - ACTIVE
   - INACTIVE
 - isolation_damper_percentage_command:
+    fixed_min: 0.0
+    fixed_max: 100.0
+- discharge_air_isolation_damper_percentage_command:
+    fixed_min: 0.0
+    fixed_max: 100.0
+- discharge_air_isolation_damper_percentage_sensor:
     fixed_min: 0.0
     fixed_max: 100.0
 - failed_isolation_damper_alarm:
@@ -3694,4 +3911,75 @@ literals:
 - expansion_valve_percentage_command:
     fixed_min: 0.0
     fixed_max: 100.0
-
+- supply_fan_rotationalvelocity_sensor:
+    flexible_min: 0.0
+    flexible_max: 4000.0
+- water_temperature_sensor:
+    flexible_min: 255.9259259
+    flexible_max: 380.3703704
+- motor_rotationalvelocity_sensor:
+    fixed_min: 0.0
+    flexible_max: 3000
+- motor_rotationalvelocity_setpoint:
+    fixed_min: 0.0
+    flexible_max: 3000
+- heating_run_status:
+  - ON
+  - OFF
+- suction_pressure_sensor:
+    flexible_min: -34473.78945
+    flexible_max: 344737.8945
+- efficiency_percentage_sensor:
+    fixed_min: 0.0
+    fixed_max: 100.0
+- zone_air_differential_pressure_sensor:
+    flexible_min: -249.080024
+    flexible_max: 2490.80024
+- preheating_run_command:
+  - ON
+  - OFF
+- supply_water_pressure_sensor:
+    flexible_min: -34473.78945
+    flexible_max: 344737.8945
+- supply_water_pressure_setpoint:
+    flexible_min: -34473.78945
+    flexible_max: 344737.8945
+- chilled_supply_water_pressure_sensor:
+    flexible_min: -34473.78945
+    flexible_max: 344737.8945
+- heating_supply_water_pressure_sensor:
+    flexible_min: -34473.78945
+    flexible_max: 344737.8945
+- return_water_pressure_sensor:
+    flexible_min: -34473.78945
+    flexible_max: 344737.8945
+- chilled_return_water_pressure_sensor:
+    flexible_min: -34473.78945
+    flexible_max: 344737.8945
+- heating_return_water_pressure_sensor:
+    flexible_min: -34473.78945
+    flexible_max: 344737.8945
+- exhaust_air_relative_humidity_sensor:
+    fixed_min: 0.0
+    fixed_max: 100.0
+- exhaust_air_relative_humidity_setpoint:
+    fixed_min: 0.0
+    fixed_max: 100.0
+- glycol_differential_pressure_sensor:
+    flexible_min: -34473.78945
+    flexible_max: 344737.8945
+- supply_glycol_pressure_sensor:
+    flexible_min: -34473.78945
+    flexible_max: 344737.8945
+- return_glycol_temperature_sensor:
+    flexible_min: 255.9259259
+    flexible_max: 380.3703704
+- supply_glycol_temperature_sensor:
+    flexible_min: 255.9259259
+    flexible_max: 380.3703704
+- supply_glycol_temperature_setpoint:
+    flexible_min: 255.9259259
+    flexible_max: 380.3703704
+- exhaust_air_linearvelocity_sensor:
+    fixed_min: 0.0
+    flexible_max: 25.4000508

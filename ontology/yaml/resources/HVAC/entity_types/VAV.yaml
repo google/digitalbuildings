@@ -56,6 +56,16 @@ VAV_SD_HLSAFS:
   - SD
   - HLSAFS
 
+VAV_SD_HLSAFS_CO2C:
+  guid: "d9619dab-e8e8-4703-9d80-16eaad50a75e"
+  description: "Single duct VAV with CO2 concentration control."
+  is_canonical: true
+  implements:
+  - VAV
+  - SD
+  - HLSAFS
+  - CO2C
+
 VAV_SD_CSP_HLSAFS:
   guid: "ea3a576a-08af-40b2-ae0b-59451e0b88a4"
   description: "Simple cooling only VAV with occupancy."
