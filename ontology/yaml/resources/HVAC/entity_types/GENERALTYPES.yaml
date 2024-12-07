@@ -107,6 +107,8 @@ MAU:
   - failed_communication_alarm
   - failed_alarm
   - emergency_alarm
+  - smoke_alarm
+  - filter_alarm
   implements:
   - EQUIPMENT
 
@@ -402,8 +404,6 @@ DOAS:
   is_abstract: true
   opt_uses:
   - failed_communication_alarm
-  - smoke_alarm
-  - filter_alarm
   implements:
   - EQUIPMENT
 
