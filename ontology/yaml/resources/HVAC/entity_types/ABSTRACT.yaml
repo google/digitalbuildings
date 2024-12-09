@@ -1055,7 +1055,6 @@ LHC:
   implements:
   - CONTROL
 
-
 SFSS:
   guid: "1e8dd2f7-192a-430b-af2c-db6065664deb"
   description: "Basic combination of supply fan run command and status (start/stop)."
@@ -1075,6 +1074,23 @@ SFSS:
   - supply_fan_run_command
   - supply_fan_run_status
 
+SFFM:
+  guid: "81a4d943-661e-4d61-aae7-ba009a481f78"
+  description: "Supply air flowrate monitoring for individual supply fans within an array."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  opt_uses:
+  - supply_air_flowrate_sensor_1
+  - supply_air_flowrate_sensor_2
+  - supply_air_flowrate_sensor_3
+  - supply_air_flowrate_sensor_4
+  - supply_air_flowrate_sensor_5
+  - supply_air_flowrate_sensor_6
+  - supply_air_flowrate_sensor_7
+  - supply_air_flowrate_sensor_8
+  uses:
+  - total_supply_air_flowrate_sensor
 
 RHM:
   guid: "9b13e30c-52b7-45d1-9798-f7c754e959e9"
@@ -2267,6 +2283,7 @@ CHWSC:
   - frost_alarm
   - supply_air_cooling_temperature_setpoint
   - supply_air_heating_temperature_setpoint
+  - cooldown_run_command
   uses:
   - chilled_water_valve_percentage_command
   - supply_air_temperature_sensor
