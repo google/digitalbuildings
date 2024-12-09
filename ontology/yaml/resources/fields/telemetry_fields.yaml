@@ -275,6 +275,9 @@ literals:
 - flowrate_sensor:
     flexible_min: -0.000315451
     flexible_max: 0.315451
+- cooldown_run_command:
+  - ON
+  - OFF
 - warmup_run_command:
   - ON
   - OFF
