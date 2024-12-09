@@ -275,6 +275,12 @@ literals:
 - flowrate_sensor:
     flexible_min: -0.000315451
     flexible_max: 0.315451
+- cooldown_run_command:
+  - ON
+  - OFF
+- warmup_run_command:
+  - ON
+  - OFF
 - heater_run_command:
   - ON
   - OFF
@@ -428,6 +434,9 @@ literals:
 - run_command:
   - ON
   - OFF
+- idle_command:
+  - ON
+  - OFF
 - run_status:
   - ON
   - OFF
@@ -445,6 +454,9 @@ literals:
     fixed_min: 0.0
     fixed_max: 100.0
 - supply_air_flowrate_sensor:
+    flexible_min: -0.002359737216
+    flexible_max: 94.38948864
+- total_supply_air_flowrate_sensor:
     flexible_min: -0.002359737216
     flexible_max: 94.38948864
 - supply_air_flowrate_setpoint:
@@ -1600,6 +1612,9 @@ literals:
 - ventilation_request_count:
     fixed_min: 0.0
     flexible_max: 500.0
+- warmup_request_count:
+    fixed_min: 0.0
+    flexible_max: 500.0
 - refrigerant_evaporator_pressure_sensor:
     flexible_min: 0.0
     flexible_max: 2068427.367
@@ -1864,6 +1879,9 @@ literals:
   - ACTIVE
   - INACTIVE
 - water_leak_detection_alarm:
+  - ACTIVE
+  - INACTIVE
+- refrigerant_leak_detection_status:
   - ACTIVE
   - INACTIVE
 - fire_alarm:
