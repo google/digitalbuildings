@@ -4411,6 +4411,28 @@ AHU_CHWSC_ECON_FDPM_HWSC_SFSS_SFVSC_SSPC_SDHC_RTM:
   opt_uses:
   - smoke_alarm
 
+AHU_SS_SRC_CHWSC_ECON_VOADM_FDPM_HWSC_SFSS_SFVSC_SFFM_SSPC_SDHC_RTM:
+  guid: "68f0f604-9e65-44b2-b8e9-ea93bf118665"
+  description: "Multi-zone AHU with schedule run control, multi-supply fan flowrate monitoring, dehumidifier and return temperature monitoring"
+  is_canonical: true
+  implements:
+  - AHU
+  - SS
+  - SRC
+  - CHWSC
+  - ECON
+  - VOADM
+  - FDPM
+  - HWSC
+  - SFSS
+  - SFVSC
+  - SFFM
+  - SSPC
+  - SDHC
+  - RTM
+  opt_uses:
+  - smoke_alarm
+
 AHU_SFSS4X_SFVSC4X_RFSS3X_RFVSC3X_CHWSC_HWSC_ECON_EDBPC_SARC_SSPC_RD_OAFMC_EFM:
   guid: "187ad041-6b1e-4ee5-aabb-69dc8c287bdd"
   description: "Cooling and heating AHU with 4 supply and 3 return fans, supply air reset control, building and supply static pressure control, return damper flow control and exhaust flow monitoring."
