@@ -456,6 +456,9 @@ literals:
 - supply_air_flowrate_sensor:
     flexible_min: -0.002359737216
     flexible_max: 94.38948864
+- total_supply_air_flowrate_sensor:
+    flexible_min: -0.002359737216
+    flexible_max: 94.38948864
 - supply_air_flowrate_setpoint:
     flexible_min: 0.0
     flexible_max: 94.38948864
