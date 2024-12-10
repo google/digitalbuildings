@@ -8408,6 +8408,15 @@ PRWFRM:
   implements:
   - MONITORING
 
+PRWFRC:
+  guid: "71821a9c-2600-4123-b474-dbe2816e8f6c"
+  description: "Primary supply water flowrate control"
+  uses:
+  - primary_supply_water_flowrate_sensor
+  - primary_supply_water_flowrate_setpoint
+  implements:
+  - MONITORING
+
 SEWFRM:
   guid: "de0de0fc-e634-4bbc-8ecc-4d413614c84d"
   description: "Secondary supply water flowrate monitoring"
