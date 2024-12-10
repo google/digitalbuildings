@@ -1152,6 +1152,9 @@ literals:
 - primary_supply_water_flowrate_sensor:
     flexible_min: -0.000315451
     flexible_max: 0.315451
+- primary_supply_water_flowrate_setpoint:
+    flexible_min: -0.000315451
+    flexible_max: 0.315451
 - primary_return_water_flowrate_sensor:
     flexible_min: -0.000315451
     flexible_max: 0.315451
