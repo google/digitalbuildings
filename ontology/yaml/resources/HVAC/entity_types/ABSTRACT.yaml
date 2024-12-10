@@ -6066,6 +6066,7 @@ WSEM:
   opt_uses:
   - economizer_thermal_power_sensor
   - economizer_disable_mode
+  - sync_economizer_mechanical_cooling_mode
 
 WSERWTM:
   guid: "132824f4-213b-4e8f-85f9-fdad8a194146"
