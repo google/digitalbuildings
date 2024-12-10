@@ -496,12 +496,13 @@ CHWS_SRC_SWTC_WDPC_CLPM_WFRM:
   - CLPM
   - WFRM
 
-CHWS_SS_SRC_WDPC_SWISOVPM_BYPVPM_WSEM_WSEBYPVPM_PWDT_PRWFRM_SEWTM_SEWFRM_CLPM:
+CHWS_SS_SRC_WDPC_SWISOVPM_BYPVPM_WSEM_WSEBYPVPM_PWDT_PRWFRC_SEWTC_SEWFRM_CLPM:
   guid: "49477bff-e5f7-42bc-b498-8965f4ed3e41"
-  description: "Chilled water system with schedule run command, cooling thermal power monitoring, primary and secondary water monitoring, and water side economizing."
+  description: "Chilled water system with schedule run command, cooling thermal power monitoring, primary and secondary water control, and water side economizing."
   is_canonical: true
   implements:  
   - CHWS
+  - SS
   - SRC
   - WDPC
   - SWISOVPM
@@ -509,8 +510,8 @@ CHWS_SS_SRC_WDPC_SWISOVPM_BYPVPM_WSEM_WSEBYPVPM_PWDT_PRWFRM_SEWTM_SEWFRM_CLPM:
   - WSEM
   - WSEBYPVPM
   - PWDT
-  - PRWFRM
-  - SEWTM
+  - PRWFRC
+  - SEWTC
   - SEWFRM
   - CLPM
 
