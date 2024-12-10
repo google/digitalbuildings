@@ -465,6 +465,18 @@ FCU_DFSS_DFVSC_CSP_CHWDC:
   - CSP
   - CHWDC
 
+FCU_SRC_DFSS_DFVSC_CSP_CHWDC:
+  guid: "bd8617d2-4a99-488b-a208-7e1268bdea67"
+  description: "Hydronic variable speed fan coil with schedule run control and cooling (zone temp control)."
+  is_canonical: true
+  implements:
+  - FCU
+  - SRC
+  - DFSS
+  - DFVSC
+  - CSP
+  - CHWDC
+
 FCU_DFSS_DFVSC_DSP_CHWDC:
   guid: "1b1040f6-7e8b-4531-8a5c-f199411baf9d"
   description: "Hydronic variable speed fan coil with cooling (zone temp control)."
@@ -1628,6 +1640,17 @@ FCU_DFSS_DFMSC_CHWZC:
   is_canonical: true
   implements:
   - FCU
+  - DFSS
+  - DFMSC
+  - CHWZC
+
+FCU_SRC_DFSS_DFMSC_CHWZC:
+  guid: "16ae2042-260e-45c7-a742-27bab29995e8"
+  description: "Chilled water FCU with schedule run control, cooling-only (zone control) and discharge fan multi-speed control."
+  is_canonical: true
+  implements:
+  - FCU
+  - SRC
   - DFSS
   - DFMSC
   - CHWZC
