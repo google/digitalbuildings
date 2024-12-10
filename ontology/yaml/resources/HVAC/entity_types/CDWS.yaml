@@ -186,7 +186,7 @@ CDWS_SWTC_BYPVPM_WFRM_MWFRM_BWFRM:
   - MWFRM
   - BWFRM
 
-CDWS_SS_SRC_SWTC_BYPVPM_WFRM_MWFRM_BWFRM_BCWDPC:
+CDWS_SS_SRC_SWTC_WSEM_BYPVPM_WFRM_MWFRM_BWFRM_BCWDPC:
   guid: "27d51584-886f-4142-8e8a-17af27aa9fec"
   description: "Multi-building condensing water system (temp control) with bypass control, flow monitoring and basin water system"
   is_canonical: true
@@ -195,6 +195,7 @@ CDWS_SS_SRC_SWTC_BYPVPM_WFRM_MWFRM_BWFRM_BCWDPC:
   - SS
   - SRC
   - SWTC
+  - WSEM
   - BYPVPM
   - WFRM
   - MWFRM
