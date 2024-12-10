@@ -8050,17 +8050,6 @@ SEWTM:
   implements:
   - MONITORING
 
-SESWTC:
-  guid: "041a299f-657c-4b77-8138-ac4679452498"
-  description: "Secondary water temperature control"
-  opt_uses:
-  - secondary_return_water_temperature_sensor
-  uses:
-  - secondary_supply_water_temperature_sensor
-  - secondary_supply_water_temperature_setpoint
-  implements:
-  - MONITORING
-
 EXTOR:
   guid: "6f650a5a-06d3-4316-af26-7d4b8241aecf"
   description: "shade control with extension monitoring based on outside illuminance"
