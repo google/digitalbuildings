@@ -229,7 +229,7 @@ literals:
   - ON
   - OFF
   - AUTO
-- economizer_disable_mode:
+- economizer_disable_command:
   - ON
   - OFF
 - sync_economizer_mechanical_cooling_mode:
