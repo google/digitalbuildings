@@ -485,6 +485,47 @@ CHWS_THCWDPC_RWCHVVM_SWCHVVM_PWDT_SESWTC_PWRFM:
   - SESWTC
   - PWRFM
 
+CHWS_SWTC_WDPM_CLPM_WFRM:
+  guid: "7422cbbc-92ec-420b-9dcb-f7f40502fba5"
+  description: "Chilled water system with cooling thermal power monitoring, supply water temperature control, differential pressure and flowrate monitoring."
+  is_canonical: true
+  implements:  
+  - CHWS
+  - SWTC
+  - WDPC
+  - CLPM
+  - WFRM
+
+CHWS_SRC_SWTC_WDPC_CLPM_WFRM:
+  guid: "8448f024-bfc7-46e9-9d91-19949aef2477"
+  description: "Chilled water system with schedule run command, cooling thermal power monitoring, supply water temperature control, differential pressure control and flowrate monitoring."
+  is_canonical: true
+  implements:  
+  - CHWS
+  - SRC
+  - SWTC
+  - WDPC
+  - CLPM
+  - WFRM
+
+CHWS_SS_SRC_WDPC_SWISOVPM_BYPVPM_WSEBYPVPM_PWDT_PRSWFRC_SESWTC_SEWFRM_CLPM:
+  guid: "49477bff-e5f7-42bc-b498-8965f4ed3e41"
+  description: "Chilled water system with schedule run command, cooling thermal power monitoring, primary and secondary water control, and water side economizing."
+  is_canonical: true
+  implements:  
+  - CHWS
+  - SS
+  - SRC
+  - WDPC
+  - SWISOVPM
+  - BYPVPM
+  - WSEBYPVPM
+  - PWDT
+  - PRSWFRC
+  - SESWTC
+  - SEWFRM
+  - CLPM
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
