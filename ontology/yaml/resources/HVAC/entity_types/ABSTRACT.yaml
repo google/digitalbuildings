@@ -6099,16 +6099,6 @@ CWDPC:
   - condensing_water_differential_pressure_sensor
   - condensing_water_differential_pressure_setpoint
 
-BCWDPC:
-  guid: "598e4a89-9535-43fb-aa4b-0006dfccae5e"
-  description: "Differential pressure control for condenser water supplying chillers at one of multiple buildings."
-  is_abstract: true
-  implements:
-  - MONITORING
-  uses:
-  - building_condensing_loop_water_differential_pressure_sensor
-  - building_condensing_loop_water_differential_pressure_setpoint
-
 CWHRDPC:
   guid: "ddd40420-3034-4289-9f34-103934540f58"
   description: "Heat recovery differential pressure control for condenser water."
