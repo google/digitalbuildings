@@ -6055,19 +6055,6 @@ RWTM:
   uses:
   - return_water_temperature_sensor
 
-WSEM:
-  guid: "77f156c3-3748-4a3e-942f-1ff17b173cb3"
-  description: "Water side economizer monitoring."
-  is_abstract: true
-  implements:
-  - MONITORING
-  uses:
-  - economizer_mode
-  opt_uses:
-  - economizer_thermal_power_sensor
-  - economizer_disable_command
-  - sync_economizer_mechanical_cooling_mode
-
 WSERWTM:
   guid: "132824f4-213b-4e8f-85f9-fdad8a194146"
   description: "Water side economizer return water temperature monitoring."
@@ -8342,6 +8329,8 @@ WSEBYPVPM:
   - sync_economizer_mechanical_cooling_mode
   - economizer_bypass_valve_percentage_sensor
   - failed_economizer_bypass_valve_alarm
+  - economizer_thermal_power_sensor
+  - economizer_disable_command
   uses:
   - economizer_bypass_valve_percentage_command
   implements:
