@@ -190,6 +190,18 @@ CH_SS_SWTC_DX2SWC_SWISOVM:
   - DX2SWC
   - SWISOVM
 
+CH_SS_SWTC_DX2SWC_SWISOVM_REFPM2X:
+  guid: "e64f0b0a-dfb1-43f9-908b-0a039ffa7bdf"
+  description: "Two-stage air-cooled chiller with supply temperature control, supply isolation valve and two circuit refrigerant pressure monitoring."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - SWTC
+  - DX2SWC
+  - SWISOVM
+  - REFPM2X
+
 CH_SS_CHWRWISOVPM_SCHWTC_CHWDPM:
   guid: "6bf879c5-ec1b-478f-9fac-8318b285bd9c"
   description: "Simple air-cooled chiller."
@@ -554,6 +566,20 @@ CH_SS_SWTC_DX4SWC_SWISOVPM_REFSM2X_REFPM2X:
   - CH
   - SS
   - SWTC
+  - DX4SWC
+  - SWISOVPM
+  - REFSM2X
+  - REFPM2X
+
+CH_SS_SWTC_WDPM_DX4SWC_SWISOVPM_REFSM2X_REFPM2X:
+  guid: "c2c25a1f-44cb-4c3e-9e49-18735d656431"
+  description: "Four-stage air-cooled chiller with differential pressure monitoring and two-circuit refrigerant temperature and pressure monitoring."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - SWTC
+  - WDPM
   - DX4SWC
   - SWISOVPM
   - REFSM2X

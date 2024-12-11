@@ -46,3 +46,14 @@ DC_SS_SWTC_RWISOVM:
   - SS
   - SWTC
   - RWISOVM
+
+DC_SS_VSC_SWTC_SWISOVM:
+  guid: "6f384455-0b46-4f86-a7b3-fc08dda6fe11"
+  description: "Dry air cooler with isolation valve on the supply side."
+  is_canonical: true
+  implements:
+  - DC
+  - SS
+  - VSC
+  - SWTC
+  - SWISOVM
