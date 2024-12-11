@@ -8388,7 +8388,7 @@ PRWFRM:
   implements:
   - MONITORING
 
-PRWFRC:
+PRSWFRC:
   guid: "71821a9c-2600-4123-b474-dbe2816e8f6c"
   description: "Primary supply water flowrate control"
   uses:
