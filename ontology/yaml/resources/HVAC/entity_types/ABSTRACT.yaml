@@ -6065,7 +6065,7 @@ WSEM:
   - economizer_mode
   opt_uses:
   - economizer_thermal_power_sensor
-  - economizer_disable_mode
+  - economizer_disable_command
   - sync_economizer_mechanical_cooling_mode
 
 WSERWTM:
