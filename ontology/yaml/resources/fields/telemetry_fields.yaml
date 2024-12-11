@@ -434,7 +434,7 @@ literals:
 - run_command:
   - ON
   - OFF
-- idle_command:
+- optimal_stop_command:
   - ON
   - OFF
 - run_status:
