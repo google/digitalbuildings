@@ -786,7 +786,7 @@ MAU_SFSS2X_SFVSC2X_CHWSC_HWSC_SSPC_VOADM_FDPM_ZSPM_OAFM:
   opt_uses:
   - smoke_alarm
 
-MAU_SS_SRC_SFSS2X_SFVSC2X_CHWSC_HWSC_SSPC_VOADM_FDPM_ZSPM_OAFM:
+MAU_SS_SRC_SFSS2X_SFVSC2X_SFFM_CHWSC_HWSC_SSPC_VOADM_FDPM_ZSPM_OAFM:
   guid: "9b0256de-6e1d-4fc0-abc2-c751c4e209c8"
   description: "Multi-zone chilled water and heating water MAU with schedule run control, supply air static pressure control, variable outside air damper and outside airflow monitoring, filter differential pressure monitoring, zone static pressure monitoring."
   is_canonical: true
@@ -796,6 +796,7 @@ MAU_SS_SRC_SFSS2X_SFVSC2X_CHWSC_HWSC_SSPC_VOADM_FDPM_ZSPM_OAFM:
   - SRC
   - SFSS2X
   - SFVSC2X
+  - SFFM
   - CHWSC
   - HWSC
   - SSPC
