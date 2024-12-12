@@ -2280,7 +2280,7 @@ AHU_CHWSC_ECON_EFSS_EFVSC_FDPM_RFC_SFSS_SFVSC_SSPC:
   - SFVSC
   - SSPC
 
-AHU_CHWSC_ECONM_EFSS_EFVSC_FDPM_RFC_SFSS_SFVSC_SSPC_RFSS_RFVSC:
+AHU_CHWSC_ECONM_EFSS_EFVSC_FDPM_RFC_SFSS_SFVSC_SSPC_RFSS_RFVSC_DSARC:
   guid: "691e5aa7-4ba6-4aa1-a023-ff875c8fd35a"
   description: "Multi-zone AHU with variable speed supply, exhaust, and return fans."
   is_canonical: true
@@ -2297,6 +2297,7 @@ AHU_CHWSC_ECONM_EFSS_EFVSC_FDPM_RFC_SFSS_SFVSC_SSPC_RFSS_RFVSC:
   - SSPC
   - RFSS
   - RFVSC
+  - DSARC
 
 AHU_BSPC_DX4SC_ECONM_EFSS_EFVSC_OAFMC_SFSS_SFVSC_SSPC:
   guid: "4a9f69bb-5f8b-41aa-aa92-3e4f85dd5bf8"
@@ -2656,7 +2657,7 @@ AHU_CHWSC_ECONM_FDPM_HWSC_SFSS_STC:
   - SFSS
   - STC
 
-AHU_SRC_CHWSC_ECONM_FDPM_HWSC_SFSS_STC:
+AHU_SRC_CHWSC_ECONM_FDPM_HWSC_SFSS_STC_DSARC:
   guid: "b636cac2-6985-4a8e-b962-448c686c64b7"
   description: "Multi-zone AHU with schedule run control."
   is_canonical: true
@@ -2669,6 +2670,7 @@ AHU_SRC_CHWSC_ECONM_FDPM_HWSC_SFSS_STC:
   - HWSC
   - SFSS
   - STC
+  - DSARC
 
 AHU_CHWSC_ECONM_FDPM_HWSC_SFSS_SFVSC_SSPC_SARC:
   guid: "2f8c18be-23c4-4fdc-a7af-4a90e9a93e9d"
@@ -2685,6 +2687,20 @@ AHU_CHWSC_ECONM_FDPM_HWSC_SFSS_SFVSC_SSPC_SARC:
   - SSPC
   - SARC
 
+AHU_CHWSC_ECONM_FDPM_HWSC_SFSS_SFVSC_SSPC_DSARC:
+  guid: "f72e1b2b-c110-4e6a-90b8-6a046296c8ed"
+  description: "Multi-zone AHU."
+  is_canonical: true
+  implements:
+  - AHU
+  - CHWSC
+  - ECONM
+  - FDPM
+  - HWSC
+  - SFSS
+  - SFVSC
+  - SSPC
+  - DSARC
 
 AHU_EDBPC_DX4SC_ECONM_EFSS_EFVSC_SFSS_SFVSC_SARC_SSPC:
   guid: "9d123538-8cb1-4ad7-b712-4cce9693caaf"
@@ -4411,7 +4427,7 @@ AHU_CHWSC_ECON_FDPM_HWSC_SFSS_SFVSC_SSPC_SDHC_RTM:
   opt_uses:
   - smoke_alarm
 
-AHU_SS_SRC_CHWSC_ECON_VOADM_FDPM_HWSC_SFSS_SFVSC_SFFM_SSPC_SDHC_RTM:
+AHU_SS_SRC_CHWSC_ECON_VOADM_FDPM_HWSC_SFSS_SFVSC_SFFM_SSPC_SDHC_RTM_DSARC:
   guid: "68f0f604-9e65-44b2-b8e9-ea93bf118665"
   description: "Multi-zone AHU with schedule run control, multi-supply fan flowrate monitoring, dehumidifier and return temperature monitoring"
   is_canonical: true
@@ -4430,6 +4446,7 @@ AHU_SS_SRC_CHWSC_ECON_VOADM_FDPM_HWSC_SFSS_SFVSC_SFFM_SSPC_SDHC_RTM:
   - SSPC
   - SDHC
   - RTM
+  - DSARC
   opt_uses:
   - smoke_alarm
 
