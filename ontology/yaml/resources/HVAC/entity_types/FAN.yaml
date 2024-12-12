@@ -735,6 +735,16 @@ FAN_SS_VSC_REFC:
   - VSC
   - REFC
 
+FAN_SS_HLC_REFC:
+  guid: "b0ad4fce-417b-420c-afad-49dcd2268521"
+  description: "Fan with start/stop status, high/low speed control and refrigerant concentration control."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - HLC
+  - REFC
+
 FAN_SS_VSC_ZSPM_DWI:
   guid: "a1148f7d-4aa0-4560-b2cb-53b8eb949278"
   description: "Dishwasher-interlocked fan with start/stop status, open-loop speed control, and zone static pressure monitoring."
