@@ -2293,8 +2293,6 @@ CHWSC:
   - low_supply_air_temperature_alarm
   - water_leak_alarm
   - frost_alarm
-  - supply_air_cooling_temperature_setpoint
-  - supply_air_heating_temperature_setpoint
   - cooldown_run_command
   uses:
   - chilled_water_valve_percentage_command
