@@ -447,6 +447,18 @@ CHWS_SEWDPC_SESWTC_SERWFRM_PRWFRM_PWDT:
   - PRWFRM
   - PWDT
 
+CHWS_PRSWTC_PRWFRM_SEWDPC_SEWTM_SEWFRM:
+  guid: "3d55637e-976c-4ff5-b86d-f99f7f910ab9"
+  description: "Chilled water system with primary loop supply water temperature control and flowrate monitoring, secondary loop water temperature and flow monitoring and differential pressure control."
+  is_canonical: true
+  implements:
+  - CHWS
+  - PRSWTC
+  - PRWFRM
+  - SEWDPC
+  - SEWTM
+  - SEWFRM
+
 CHWS_SEWDPC_SESWTC_SERWFRM_PRWFRM_PRWDPC_PWDT:
   guid: "fe148047-bc3a-48be-96e8-c1d589e2d4e6"
   description: "Chilled water system with secondary loop supply water temperature control, primary and secondary differential pressure control, primary and secondary flowrate monitoring."
@@ -472,6 +484,46 @@ CHWS_THCWDPC_RWCHVVM_SWCHVVM_PWDT_SESWTC_PWRFM:
   - PWDT
   - SESWTC
   - PWRFM
+
+CHWS_SWTC_WDPM_CLPM_WFRM:
+  guid: "7422cbbc-92ec-420b-9dcb-f7f40502fba5"
+  description: "Chilled water system with cooling thermal power monitoring, supply water temperature control, differential pressure and flowrate monitoring."
+  is_canonical: true
+  implements:  
+  - CHWS
+  - SWTC
+  - WDPC
+  - CLPM
+  - WFRM
+
+CHWS_SS_SWTC_WDPC_CLPM_WFRM:
+  guid: "8448f024-bfc7-46e9-9d91-19949aef2477"
+  description: "Chilled water system with run command, cooling thermal power monitoring, supply water temperature control, differential pressure control and flowrate monitoring."
+  is_canonical: true
+  implements:  
+  - CHWS
+  - SS
+  - SWTC
+  - WDPC
+  - CLPM
+  - WFRM
+
+CHWS_SS_WDPC_SWISOVPM_BYPVPM_WSEBYPVPM_PWDT_PRSWFRC_SESWTC_SEWFRM_CLPM:
+  guid: "49477bff-e5f7-42bc-b498-8965f4ed3e41"
+  description: "Chilled water system with run command, cooling thermal power monitoring, primary and secondary water control, and water side economizing."
+  is_canonical: true
+  implements:  
+  - CHWS
+  - SS
+  - WDPC
+  - SWISOVPM
+  - BYPVPM
+  - WSEBYPVPM
+  - PWDT
+  - PRSWFRC
+  - SESWTC
+  - SEWFRM
+  - CLPM
 
 ###################################
 ### Existing Non-standard Types ###

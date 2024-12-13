@@ -186,6 +186,19 @@ CDWS_SWTC_BYPVPM_WFRM_MWFRM_BWFRM:
   - MWFRM
   - BWFRM
 
+CDWS_SS_SWTC_BYPVPM_WFRM_MWFRM_BWFRM:
+  guid: "27d51584-886f-4142-8e8a-17af27aa9fec"
+  description: "Condensing water system (temp control) with bypass control, flow monitoring and basin water system"
+  is_canonical: true
+  implements:
+  - CDWS
+  - SS
+  - SWTC
+  - BYPVPM
+  - WFRM
+  - MWFRM
+  - BWFRM
+
 CDWS_SWTC_CMWDT_BYPVPM_BWECVC_BWFRM_MWFRM:
   guid: "6454dd88-5857-4920-b438-fe8cb7f5a3bd"
   description: "Condensing water system with bypass valve, blowdown water valve electricconductivity control, makeup water flowrate monitoring and common water temperature differential monitoring."

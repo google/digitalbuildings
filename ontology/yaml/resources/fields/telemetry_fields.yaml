@@ -93,6 +93,9 @@ literals:
 - chilled_water_differential_pressure_setpoint:
     flexible_min: -34473.78945
     flexible_max: 344737.8945
+- heat_recovery_chilled_water_differential_pressure_setpoint:
+    flexible_min: -34473.78945
+    flexible_max: 344737.8945
 - chilled_water_differential_temperature_sensor:
     flexible_min: 254.8148148
     flexible_max: 380.3703704
@@ -226,6 +229,9 @@ literals:
   - ON
   - OFF
   - AUTO
+- economizer_disable_command:
+  - ON
+  - OFF
 - sync_economizer_mechanical_cooling_mode:
   - ON
   - OFF
@@ -275,6 +281,12 @@ literals:
 - flowrate_sensor:
     flexible_min: -0.000315451
     flexible_max: 0.315451
+- cooldown_run_command:
+  - ON
+  - OFF
+- warmup_run_command:
+  - ON
+  - OFF
 - heater_run_command:
   - ON
   - OFF
@@ -428,10 +440,16 @@ literals:
 - run_command:
   - ON
   - OFF
+- optimal_stop_command:
+  - ON
+  - OFF
 - run_status:
   - ON
   - OFF
   - STANDBY
+- request_run_command:
+  - ON
+  - OFF
 - speed_frequency_sensor:
     flexible_min: -0.5
     flexible_max: 65.0
@@ -445,6 +463,9 @@ literals:
     fixed_min: 0.0
     fixed_max: 100.0
 - supply_air_flowrate_sensor:
+    flexible_min: -0.002359737216
+    flexible_max: 94.38948864
+- total_supply_air_flowrate_sensor:
     flexible_min: -0.002359737216
     flexible_max: 94.38948864
 - supply_air_flowrate_setpoint:
@@ -1134,7 +1155,13 @@ literals:
 - primary_supply_water_temperature_sensor:
     flexible_min: 255.9259259
     flexible_max: 380.3703704
+- primary_supply_water_temperature_setpoint:
+    flexible_min: 255.9259259
+    flexible_max: 380.3703704
 - primary_supply_water_flowrate_sensor:
+    flexible_min: -0.000315451
+    flexible_max: 0.315451
+- primary_supply_water_flowrate_setpoint:
     flexible_min: -0.000315451
     flexible_max: 0.315451
 - primary_return_water_flowrate_sensor:
@@ -1144,6 +1171,9 @@ literals:
   - OPEN
   - CLOSED
 - cooling_thermal_power_sensor:
+    flexible_min: 0.0
+    flexible_max: 3517000.0
+- economizer_thermal_power_sensor:
     flexible_min: 0.0
     flexible_max: 3517000.0
 - primary_water_cooling_thermal_power_sensor:
@@ -1600,6 +1630,9 @@ literals:
 - ventilation_request_count:
     fixed_min: 0.0
     flexible_max: 500.0
+- warmup_request_count:
+    fixed_min: 0.0
+    flexible_max: 500.0
 - refrigerant_evaporator_pressure_sensor:
     flexible_min: 0.0
     flexible_max: 2068427.367
@@ -1864,6 +1897,9 @@ literals:
   - ACTIVE
   - INACTIVE
 - water_leak_detection_alarm:
+  - ACTIVE
+  - INACTIVE
+- refrigerant_leak_detection_status:
   - ACTIVE
   - INACTIVE
 - fire_alarm:
@@ -2396,6 +2432,9 @@ literals:
     flexible_min: -34473.78945
     flexible_max: 344737.8945
 - condensing_water_differential_pressure_setpoint:
+    flexible_min: -34473.78945
+    flexible_max: 344737.8945
+- heat_recovery_condensing_water_differential_pressure_setpoint:
     flexible_min: -34473.78945
     flexible_max: 344737.8945
 - condensing_water_differential_temperature_sensor:
