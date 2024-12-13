@@ -82,34 +82,12 @@ FCU_DFSS_CSP_CHWZC:
   - CSP
   - CHWZC
 
-FCU_SRC_DFSS_CSP_CHWZC:
-  guid: "2c7689a0-07d0-49db-b10d-83360d469565"
-  description: "Typical chilled water FCU with cooling-only (zone control) and schedule run control."
-  is_canonical: true
-  implements:
-  - FCU
-  - SRC
-  - DFSS
-  - CSP
-  - CHWZC
-
 FCU_DFSS_CSP_DXZC:
   guid: "c11786df-af5d-4459-88b2-b1483fdb3e24"
   description: "Typical DX FCU with cooling-only (discharge control)."
   is_canonical: true
   implements:
   - FCU
-  - DFSS
-  - CSP
-  - DXZC
-
-FCU_SRC_DFSS_CSP_DXZC:
-  guid: "8e4b3452-958a-4144-8008-6149ed0850c9"
-  description: "Typical DX FCU with cooling-only (discharge control) and schedule run control."
-  is_canonical: true
-  implements:
-  - FCU
-  - SRC
   - DFSS
   - CSP
   - DXZC
@@ -207,17 +185,6 @@ FCU_DFSS_DSP_CHWZC:
   - DSP
   - CHWZC
 
-FCU_SRC_DFSS_DSP_CHWZC:
-  guid: "f7823523-f7aa-4bc3-af39-a6f39b7b57e8"
-  description: "Typical chilled water FCU (zone control) with schedule run control."
-  is_canonical: true
-  implements:
-  - FCU
-  - SRC
-  - DFSS
-  - DSP
-  - CHWZC
-
 FCU_SRC_DFSS_DFVSC_DSP_CHWZC:
   guid: "4fdcaaee-6fcd-4bfb-8631-fed1bd53742b"
   description: "Typical chilled water FCU (zone control) with schedule run control and variable speed fan control."
@@ -236,17 +203,6 @@ FCU_DFSS_DSP_DXZC:
   is_canonical: true
   implements:
   - FCU
-  - DFSS
-  - DSP
-  - DXZC
-
-FCU_SRC_DFSS_DSP_DXZC:
-  guid: "31bbab30-a9b3-4a43-824a-fb85bc4b37fe"
-  description: "Typical DX water FCU (zone control) with schedule run control."
-  is_canonical: true
-  implements:
-  - FCU
-  - SRC
   - DFSS
   - DSP
   - DXZC
@@ -431,18 +387,6 @@ FCU_DFSS_DSP_HTZC_HPZC:
   - HTZC
   - HPZC
 
-FCU_SRC_DFSS_DSP_HTZC_HPZC:
-  guid: "9eea009e-3ddb-4510-bc8e-4df52bfeaafb"
-  description: "Heat pump fan coil with reheat (zone temp control) and schedule run control."
-  is_canonical: true
-  implements:
-  - FCU
-  - SRC
-  - DFSS
-  - DSP
-  - HTZC
-  - HPZC
-
 FCU_DFSS_DSP_HWZC_CHWZC:
   guid: "4a475416-c721-4c2c-b271-83dc7360b02e"
   description: "Hydronic fan coil with heating and cooling (zone temp control)."
@@ -460,18 +404,6 @@ FCU_DFSS_DFVSC_CSP_CHWDC:
   is_canonical: true
   implements:
   - FCU
-  - DFSS
-  - DFVSC
-  - CSP
-  - CHWDC
-
-FCU_SRC_DFSS_DFVSC_CSP_CHWDC:
-  guid: "bd8617d2-4a99-488b-a208-7e1268bdea67"
-  description: "Hydronic variable speed fan coil with schedule run control and cooling (zone temp control)."
-  is_canonical: true
-  implements:
-  - FCU
-  - SRC
   - DFSS
   - DFVSC
   - CSP
@@ -1640,17 +1572,6 @@ FCU_DFSS_DFMSC_CHWZC:
   is_canonical: true
   implements:
   - FCU
-  - DFSS
-  - DFMSC
-  - CHWZC
-
-FCU_SRC_DFSS_DFMSC_CHWZC:
-  guid: "16ae2042-260e-45c7-a742-27bab29995e8"
-  description: "Chilled water FCU with schedule run control, cooling-only (zone control) and discharge fan multi-speed control."
-  is_canonical: true
-  implements:
-  - FCU
-  - SRC
   - DFSS
   - DFMSC
   - CHWZC
