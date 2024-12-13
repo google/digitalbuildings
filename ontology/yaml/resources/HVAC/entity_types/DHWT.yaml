@@ -18,13 +18,51 @@
 
 DHWT_HWTTC_CPC_HWRWC:
   guid: "cdf9abad-348f-4969-a00b-426bbf67eb21"
-  description: "Standard calorifier with return pump."
+  description: "Standard calorifier with return pump and valve control."
   is_canonical: true
   implements:
   - DHWT
   - HWTTC
   - CPC
   - HWRWC
+
+DHWT_SS_HWTTC_CPC:
+  guid: "0aab25ad-58e1-48df-ae95-a12804b7c765"
+  description: "Standard calorifier with run control and return pump."
+  is_canonical: true
+  implements:
+  - DHWT
+  - SS
+  - HWTTC
+  - CPC
+
+DHWT_HWTTC_CPC:
+  guid: "7d6ed448-6d11-457b-8158-0d939dd8e679"
+  description: "Standard calorifier with return pump."
+  is_canonical: true
+  implements:
+  - DHWT
+  - HWTTC
+  - CPC
+
+DHWT_HWTTC_CPC2X:
+  guid: "7af57375-2409-4e33-a1a0-a486df5c4fb1"
+  description: "Standard calorifier with two return pumps."
+  is_canonical: true
+  implements:
+  - DHWT
+  - HWTTC
+  - CPC2X
+
+DHWT_HWTTC_CPC2X_WFRSM:
+  guid: "6f368134-fd59-4e63-aa5d-e815596ae257"
+  description: "Standard calorifier with two return pumps and flowrate monitoring."
+  is_canonical: true
+  implements:
+  - DHWT
+  - HWTTC
+  - CPC2X
+  - WFRSM
 
 DHWT_HTSWC_HWTTC_CPC_HWSWC:
   guid: "a7075251-5beb-41da-9a05-61496f6fcb4e"
