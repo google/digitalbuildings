@@ -1073,6 +1073,7 @@ SFSS:
   - failed_supply_fan_alarm
   - supply_fan_lost_power_alarm
   - schedule_run_command
+  - optimal_stop_command
   uses:
   - supply_fan_run_command
   - supply_fan_run_status
