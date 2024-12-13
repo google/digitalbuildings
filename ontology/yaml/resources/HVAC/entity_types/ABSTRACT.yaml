@@ -809,6 +809,7 @@ SS:
   - load_percentage_sensor
   - optimal_stop_command
   - request_run_command
+  - schedule_run_command
 
 DSPC:
   guid: "3f288511-32ca-47ae-a4e0-391620026420"
@@ -1071,6 +1072,7 @@ SFSS:
   - supply_fan_run_time_accumulator
   - failed_supply_fan_alarm
   - supply_fan_lost_power_alarm
+  - schedule_run_command
   uses:
   - supply_fan_run_command
   - supply_fan_run_status
