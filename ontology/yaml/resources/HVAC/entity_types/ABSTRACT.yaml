@@ -40,6 +40,7 @@ SD:
   - low_supply_air_flowrate_alarm
   - failed_supply_air_damper_alarm
   - pressurization_request_count
+  - zone_air_differential_pressure_sensor
   - flowrate_requirement
   - unoccupied_flowrate_requirement
   uses:
