@@ -283,6 +283,17 @@ FAN_SS_VSC_EPC:
   - VSC
   - EPC
 
+FAN_SS_VSC_EPC_EDPM:
+  guid: "450f5cba-4c92-4aaf-b068-628a0cd7400d"
+  description: "Fan with run control, exhaust static pressure control and exhaust damper monitoring."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - VSC
+  - EPC
+  - EDPM
+
 FAN_SS_DSP_VSC:
   guid: "660d42d5-15b3-4cb4-9af1-506f31b0aa0e"
   description: "Fan with dual setpoint control and variable speed."
@@ -690,6 +701,16 @@ FAN_SS_VSC_REFC:
   - FAN
   - SS
   - VSC
+  - REFC
+
+FAN_SS_HLC_REFC:
+  guid: "b0ad4fce-417b-420c-afad-49dcd2268521"
+  description: "Fan with start/stop status, high/low speed control and refrigerant concentration control."
+  is_canonical: true
+  implements:
+  - FAN
+  - SS
+  - HLC
   - REFC
 
 FAN_SS_VSC_ZSPM_DWI:

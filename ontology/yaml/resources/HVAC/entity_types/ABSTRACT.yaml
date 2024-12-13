@@ -807,7 +807,9 @@ SS:
   - communication_status
   - efficiency_percentage_sensor
   - load_percentage_sensor
+  - optimal_stop_command
   - request_run_command
+  - schedule_run_command
 
 DSPC:
   guid: "3f288511-32ca-47ae-a4e0-391620026420"
@@ -1055,7 +1057,6 @@ LHC:
   implements:
   - CONTROL
 
-
 SFSS:
   guid: "1e8dd2f7-192a-430b-af2c-db6065664deb"
   description: "Basic combination of supply fan run command and status (start/stop)."
@@ -1071,10 +1072,29 @@ SFSS:
   - supply_fan_run_time_accumulator
   - failed_supply_fan_alarm
   - supply_fan_lost_power_alarm
+  - schedule_run_command
+  - optimal_stop_command
   uses:
   - supply_fan_run_command
   - supply_fan_run_status
 
+SFFM:
+  guid: "81a4d943-661e-4d61-aae7-ba009a481f78"
+  description: "Supply air flowrate monitoring for individual supply fans within an array."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  opt_uses:
+  - supply_air_flowrate_sensor_1
+  - supply_air_flowrate_sensor_2
+  - supply_air_flowrate_sensor_3
+  - supply_air_flowrate_sensor_4
+  - supply_air_flowrate_sensor_5
+  - supply_air_flowrate_sensor_6
+  - supply_air_flowrate_sensor_7
+  - supply_air_flowrate_sensor_8
+  uses:
+  - total_supply_air_flowrate_sensor
 
 RHM:
   guid: "9b13e30c-52b7-45d1-9798-f7c754e959e9"
@@ -1887,6 +1907,7 @@ REFC:
   opt_uses:
   - failed_zone_air_refrigerant_concentration_alarm
   - high_zone_air_refrigerant_concentration_alarm
+  - refrigerant_leak_detection_status
   uses:
   - zone_air_refrigerant_concentration_sensor
   - zone_air_refrigerant_concentration_setpoint
@@ -2277,6 +2298,7 @@ CHWSC:
   - low_supply_air_temperature_alarm
   - water_leak_alarm
   - frost_alarm
+  - cooldown_run_command
   uses:
   - chilled_water_valve_percentage_command
   - supply_air_temperature_sensor
@@ -3285,6 +3307,8 @@ HWSC:
   - failed_supply_air_temperature_alarm
   - high_supply_air_temperature_alarm
   - low_supply_air_temperature_alarm
+  - warmup_request_count
+  - warmup_run_command
   uses:
   - heating_water_valve_percentage_command
   - supply_air_temperature_sensor
@@ -4021,6 +4045,8 @@ VOADM:
   - low_mixed_air_temperature_alarm
   - failed_outside_air_damper_alarm
   - failed_outside_air_temperature_alarm
+  - outside_air_flowrate_sensor
+  - ventilation_request_count
   uses:
   - outside_air_damper_percentage_command
   - outside_air_temperature_sensor
@@ -8561,6 +8587,7 @@ HP6SWC:
   - heating_thermal_power_capacity
   - high_supply_water_temperature_alarm
   - low_supply_water_temperature_alarm
+  - return_water_temperature_sensor
   uses:
   - compressor_run_command_1
   - compressor_run_command_2
