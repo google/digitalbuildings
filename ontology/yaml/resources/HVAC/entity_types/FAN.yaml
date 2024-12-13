@@ -38,15 +38,6 @@ FAN_SS:
   opt_uses:
   - air_pressure_sensor
 
-FAN_SS_SRC:
-  guid: "465f4dbb-38c2-4058-93d4-a55bd1212762"
-  description: "Basic fan with start/stop and schedule run control."
-  is_canonical: true
-  implements:
-  - FAN
-  - SS
-  - SRC
-
 FAN_SS_VSC:
   guid: "b58b9431-ff2c-4cc2-adab-a8c51c4ee6ab"
   description: "Fan with start/stop status and open-loop speed control."
@@ -55,27 +46,6 @@ FAN_SS_VSC:
   - FAN
   - SS
   - VSC
-
-FAN_SS_SRC_VSC:
-  guid: "b4d31e15-65f8-49f2-acc8-cfa130d02a95"
-  description: "Fan with start/stop status, schedule run control, and open-loop speed control."
-  is_canonical: true
-  implements:
-  - FAN
-  - SS
-  - SRC
-  - VSC
-
-FAN_SS_SRC_VSC_BSPC:
-  guid: "19019c6b-f324-4a78-bcb6-8604be53c454"
-  description: "Fan with start/stop status, schedule run control, open-loop speed control, and building static pressure control."
-  is_canonical: true
-  implements:
-  - FAN
-  - SS
-  - SRC
-  - VSC
-  - BSPC
 
 FAN_SS_VSC_EFM:
   guid: "b8fd64cb-f012-46ee-95e0-cd2fd27f4c92"
@@ -132,16 +102,6 @@ FAN_SS_ZTM:
   implements:
   - FAN
   - SS
-  - ZTM
-
-FAN_SS_SRC_ZTM:
-  guid: "61ab8764-284f-44d0-b17d-b243e1d869ff"
-  description: "Fan with schedule run control and zone temperature monitoring."
-  is_canonical: true
-  implements:
-  - FAN
-  - SS
-  - SRC
   - ZTM
 
 FAN_SS_CSP:
@@ -323,14 +283,13 @@ FAN_SS_VSC_EPC:
   - VSC
   - EPC
 
-FAN_SS_SRC_VSC_EPC_EDPM:
+FAN_SS_VSC_EPC_EDPM:
   guid: "450f5cba-4c92-4aaf-b068-628a0cd7400d"
   description: "Fan with schedule run control, exhaust static pressure control and exhaust damper monitoring."
   is_canonical: true
   implements:
   - FAN
   - SS
-  - SRC
   - VSC
   - EPC
   - EDPM
