@@ -356,6 +356,7 @@ measurement_descriptor:
   deadband: "Represents a range in which the controller does not do anything."
   dewpoint: "The thermodynamic point at which water condenses from standing air."
   differential: "Measured difference between two reference points (e.g. differential_water_pressure)"
+  disable: "State of being unable to be active or operating."
   down: "The direction of a spatial movement, opposite of up."
   dynamic: "Describing a system which is unstable or constantly changing (e.g. supply_air_dynamic_pressure_sensor)."
   efficiency: "The ratio of required input to actual output. "
