@@ -185,18 +185,6 @@ FCU_DFSS_DSP_CHWZC:
   - DSP
   - CHWZC
 
-FCU_SRC_DFSS_DFVSC_DSP_CHWZC:
-  guid: "4fdcaaee-6fcd-4bfb-8631-fed1bd53742b"
-  description: "Typical chilled water FCU (zone control) with schedule run control and variable speed fan control."
-  is_canonical: true
-  implements:
-  - FCU
-  - SRC
-  - DFSS
-  - DFVSC
-  - DSP
-  - CHWZC
-
 FCU_DFSS_DSP_DXZC:
   guid: "eddff9da-507f-4350-8613-ffb61d39cba4"
   description: "Typical DX water FCU (zone control)."
