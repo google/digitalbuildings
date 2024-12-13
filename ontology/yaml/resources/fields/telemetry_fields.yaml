@@ -3995,9 +3995,15 @@ literals:
 - exhaust_air_linearvelocity_sensor:
     fixed_min: 0.0
     flexible_max: 25.4000508
-zone_air_dewpoint_temperature_setpoint:
+- zone_air_dewpoint_temperature_setpoint:
     flexible_min: 255.9259259
     flexible_max: 310.9259259
-warmup_run_command:
+- warmup_run_command:
   - ON
   - OFF
+- max_exhaust_air_percentage_sensor:
+    fixed_min: 0.0
+    fixed_max: 100.0
+- warmup_request_count:
+    fixed_min: 0.0
+    flexible_max: 250.0

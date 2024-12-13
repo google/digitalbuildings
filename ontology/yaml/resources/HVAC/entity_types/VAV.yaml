@@ -116,6 +116,16 @@ VAV_SD_DSP_HWDC:
   - DSP
   - HWDC
 
+VAV_SD_DSP_HWDC_ZHM:
+  description: "Single duct reheat VAV with dual setpoint control and zone humidity monitoring."
+  is_canonical: true
+  implements:
+  - VAV
+  - SD
+  - DSP
+  - HWDC
+  - ZHM
+
 VAV_SD_DSP_CO2M:
   guid: "0de6754a-9094-4f93-a32a-af2ccee4f495"
   description: "VAV with zone CO2 monitoring."
@@ -187,6 +197,17 @@ VAV_SD_DSP_HWDC_CO2C:
   - DSP
   - HWDC
   - CO2C
+
+VAV_SD_DSP_HWDC_CO2C_ZHM:
+  description: "Single duct reheat VAV with CO2, temp control, and humidity monitoring."
+  is_canonical: true
+  implements:
+  - VAV
+  - SD
+  - DSP
+  - HWDC
+  - CO2C
+  - ZHM
 
 VAV_SD_DSP_HWDC_VOCC:
   guid: "f79768d5-31aa-4f42-a814-c0f901e36999"
@@ -613,6 +634,16 @@ VAV_DSP_PDSCV_CO2C:
   - PDSCV
   - CO2C
 
+VAV_DSP_PDSCV_CO2C_ZHM:
+  description: "VAV with pressure dependent supply valve control, CO2 control and zone humidity monitoring."
+  is_canonical: true
+  implements:
+  - VAV
+  - DSP
+  - PDSCV
+  - CO2C
+  - ZHM
+
 VAV_DSP_PDSCV_HTZC:
   guid: "3d727b03-e945-4af3-822e-b8da662a26f6"
   description: "Reheat VAV with pressure dependent supply damper control."
@@ -633,6 +664,17 @@ VAV_DSP_PDSCV_HTZC_CO2C:
   - PDSCV
   - HTZC
   - CO2C
+
+VAV_DSP_PDSCV_HTZC_CO2C_ZHM:
+  description: "Reheat VAV with pressure dependent supply valve control, CO2 control and zone humidity monitoring."
+  is_canonical: true
+  implements:
+  - VAV
+  - DSP
+  - PDSCV
+  - HTZC
+  - CO2C
+  - ZHM
 
 VAV_PDSCV_WDPC2X:
   guid: "cd3a50ce-83bf-4521-b67f-376eb8a2f336"
@@ -671,6 +713,15 @@ VAV_DSP_PDSCV:
   - VAV
   - DSP
   - PDSCV
+
+VAV_DSP_PDSCV_ZHM:
+  description: "VAV with pressure dependent supply valve control and zone humidity monitoring."
+  is_canonical: true
+  implements:
+  - VAV
+  - DSP
+  - PDSCV
+  - ZHM
 
 VAV_CSP_DFVSC_DAIDC:
   guid: "b7389975-b755-4a4f-aa7a-b80031990ee2"

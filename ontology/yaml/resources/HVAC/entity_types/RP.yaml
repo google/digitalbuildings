@@ -68,6 +68,15 @@ RP_DSP_CHWVM:
   - DSP
   - CHWVM
 
+RP_DSP_CHWVM_ZHM:
+  description: "Cooling-only radiant panel, one pipe installation and with zone humidity monitoring."
+  is_canonical: true
+  implements:
+  - RP
+  - DSP
+  - CHWVM
+  - ZHM
+
 RP_DSP_HWVM:
   guid: "c049cd6d-cf92-44d1-983b-7c04c2a000c3"
   description: "Heating-only radiant panel, one pipe installation."
@@ -76,6 +85,15 @@ RP_DSP_HWVM:
   - RP
   - DSP
   - HWVM
+
+RP_DSP_HWVM_ZHM:
+  description: "Heating-only radiant panel, one pipe installation and zone humidity monitoring."
+  is_canonical: true
+  implements:
+  - RP
+  - DSP
+  - HWVM
+  - ZHM
 
 RP_DSP_CHWVM_CAM:
   guid: "1087d6a8-fa58-4083-89de-12cc6275de35"
@@ -87,6 +105,16 @@ RP_DSP_CHWVM_CAM:
   - CHWVM
   - CAM
 
+RP_DSP_CHWVM_CAM_ZHM:
+  description: "Cooling-only one-pipe radiant panel with condensate monitoring and zone humidity monitoring."
+  is_canonical: true
+  implements:
+  - RP
+  - DSP
+  - CHWVM
+  - CAM
+  - ZHM
+
 RP_DSP_FPHC:
   guid: "04bbeedd-75ba-4454-a49c-26bc0b802b86"
   description: "Four-pipe radiant panel for room heating and cooling."
@@ -95,6 +123,15 @@ RP_DSP_FPHC:
   - RP
   - DSP
   - FPHC
+
+RP_DSP_FPHC_ZHM:
+  description: "Four-pipe radiant panel for room heating and cooling and with zone humidity monitoring."
+  is_canonical: true
+  implements:
+  - RP
+  - DSP
+  - FPHC
+  - ZHM
 
 RP_DSP_FPHC_CAM:
   guid: "587a5a45-c7bb-415d-b75d-1b1aae4e09e2"
@@ -105,3 +142,13 @@ RP_DSP_FPHC_CAM:
   - DSP
   - FPHC
   - CAM
+
+RP_DSP_FPHC_CAM_ZHM:
+  description: "Four-pipe radiant panel for room heating and cooling with condensate monitoring and zone humidity monitoring."
+  is_canonical: true
+  implements:
+  - RP
+  - DSP
+  - FPHC
+  - CAM
+  - ZHM
