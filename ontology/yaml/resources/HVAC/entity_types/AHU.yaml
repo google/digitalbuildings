@@ -2657,13 +2657,12 @@ AHU_CHWSC_ECONM_FDPM_HWSC_SFSS_STC:
   - SFSS
   - STC
 
-AHU_SRC_CHWSC_ECONM_FDPM_HWSC_SFSS_STC_DSARC:
+AHU_CHWSC_ECONM_FDPM_HWSC_SFSS_STC_DSARC:
   guid: "b636cac2-6985-4a8e-b962-448c686c64b7"
   description: "Multi-zone AHU with schedule run control."
   is_canonical: true
   implements:
   - AHU
-  - SRC
   - CHWSC
   - ECONM
   - FDPM
@@ -4427,14 +4426,13 @@ AHU_CHWSC_ECON_FDPM_HWSC_SFSS_SFVSC_SSPC_SDHC_RTM:
   opt_uses:
   - smoke_alarm
 
-AHU_SS_SRC_CHWSC_ECON_VOADM_FDPM_HWSC_SFSS_SFVSC_SFFM_SSPC_SDHC_RTM_DSARC:
+AHU_SS_CHWSC_ECON_VOADM_FDPM_HWSC_SFSS_SFVSC_SFFM_SSPC_SDHC_RTM:
   guid: "68f0f604-9e65-44b2-b8e9-ea93bf118665"
   description: "Multi-zone AHU with schedule run control, multi-supply fan flowrate monitoring, dehumidifier and return temperature monitoring"
   is_canonical: true
   implements:
   - AHU
   - SS
-  - SRC
   - CHWSC
   - ECON
   - VOADM
@@ -4446,7 +4444,6 @@ AHU_SS_SRC_CHWSC_ECON_VOADM_FDPM_HWSC_SFSS_SFVSC_SFFM_SSPC_SDHC_RTM_DSARC:
   - SSPC
   - SDHC
   - RTM
-  - DSARC
   opt_uses:
   - smoke_alarm
 
