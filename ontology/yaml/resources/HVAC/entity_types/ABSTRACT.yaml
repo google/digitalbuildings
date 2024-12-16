@@ -8391,6 +8391,19 @@ WSEBYPVPM:
   implements:
   - MONITORING
 
+WSEBYPVM:
+  description: "Water side economizer bypass valve monitoring."
+  is_abstract: true
+  opt_uses:
+  - economizer_mode
+  - sync_economizer_mechanical_cooling_mode
+  - economizer_bypass_valve_status
+  - failed_economizer_bypass_valve_alarm
+  uses:
+  - economizer_bypass_valve_command
+  implements:
+  - MONITORING
+
 MCBYPVPM:
   guid: "ba06a118-c604-44e8-9ad7-aa5d7cad5e43"
   description: "Mechanical cooling bypass valve monitoring."

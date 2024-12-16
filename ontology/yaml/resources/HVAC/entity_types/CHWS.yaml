@@ -525,6 +525,17 @@ CHWS_SS_WDPC_SWISOVPM_BYPVPM_WSEBYPVPM_PWDT_PRSWFRC_SESWTC_SEWFRM_CLPM:
   - SEWFRM
   - CLPM
 
+CHWS_PWDT_SESWTC_SEWDPC_SERWFRM_WSEBYPVM:
+  description: "Chilled water system with primary water temperature differential monitoring, secondary ssupply water temperature and dirrefertial pressure control and water flowrate monitoring, and waterside economizer bypass valve."
+  is_canonical: true
+  implements:
+  - CHWS
+  - PWDT
+  - SESWTC
+  - SEWDPC
+  - SERWFRM
+  - WSEBYPVM
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################

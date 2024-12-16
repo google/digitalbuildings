@@ -58,6 +58,26 @@ HX_CHWDT_CHWRWISOVM:
   - CHWDT
   - CHWRWISOVM
 
+HX_CHWDT_CWRISOVM_CHWRWISOVM_CLPM:
+  description: 'Chilled water heat exchanger with isolation on condensing and chilled return side, and cooling thermal power monitoring.'
+  is_canonical: true
+  implements:
+  - HX
+  - CHWDT
+  - CWRISOVM
+  - CHWRWISOVM
+  - CLPM
+
+HX_CHWDT_CWDT_CHWRWISOVM_CLPM:
+  description: 'Chilled water heat exchanger with chilled and condensing water temperature differential monitoring, isolation on chilled return side, and cooling thermal power monitoring.'
+  is_canonical: true
+  implements:
+  - HX
+  - CHWDT
+  - CWDT
+  - CHWRWISOVM
+  - CLPM
+
 HX_CHWDT_CHWRWISOVPM:
   guid: "29bca835-c90f-4d75-bc1c-e3c6c449f476"
   description: "Chilled water heat exchanger."
