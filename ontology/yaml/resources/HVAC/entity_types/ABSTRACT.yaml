@@ -765,7 +765,6 @@ ZHM:
   - high_zone_air_relative_humidity_alarm
   - zone_air_dewpoint_temperature_sensor
   - zone_air_dewpoint_temperature_setpoint
-  
 
 ZHM2X:
   guid: "1e5c95b5-bbf8-42ab-b68f-08bd3fc7638e"
