@@ -26,6 +26,8 @@ SD:
   opt_uses:
   - cooling_thermal_power_capacity
   - run_command
+  - warmup_run_command
+  - schedule_run_command
   - supply_air_cooling_flowrate_capacity
   - supply_air_damper_percentage_sensor
   - supply_air_heating_flowrate_capacity
@@ -39,6 +41,8 @@ SD:
   - failed_supply_air_damper_alarm
   - pressurization_request_count
   - zone_air_differential_pressure_sensor
+  - flowrate_requirement
+  - unoccupied_flowrate_requirement
   uses:
   - supply_air_damper_percentage_command
   - supply_air_flowrate_sensor
@@ -183,6 +187,8 @@ CSP:
   - high_zone_air_temperature_alarm
   - low_zone_air_temperature_alarm
   - cooling_request_count
+  - heating_request_count
+  - warmup_request_count
   uses:
   - zone_air_cooling_temperature_setpoint
   - zone_air_temperature_sensor
@@ -300,6 +306,7 @@ DSP:
   - zone_occupancy_status
   - cooling_request_count
   - heating_request_count
+  - warmup_request_count
   uses:
   - zone_air_cooling_temperature_setpoint
   - zone_air_heating_temperature_setpoint
@@ -756,6 +763,9 @@ ZHM:
   opt_uses:
   - failed_zone_air_relative_humidity_alarm
   - high_zone_air_relative_humidity_alarm
+  - zone_air_dewpoint_temperature_sensor
+  - zone_air_dewpoint_temperature_setpoint
+  
 
 ZHM2X:
   guid: "1e5c95b5-bbf8-42ab-b68f-08bd3fc7638e"
@@ -1656,6 +1666,8 @@ ED:
   opt_uses:
   - exhaust_air_damper_percentage_sensor
   - exhaust_air_static_pressure_sensor
+  - run_command
+  - schedule_run_command
   uses:
   - exhaust_air_damper_percentage_command
   - exhaust_air_flowrate_sensor
@@ -1771,6 +1783,8 @@ ZHC:
   - failed_zone_air_relative_humidity_alarm
   - high_zone_air_relative_humidity_alarm
   - low_zone_air_relative_humidity_alarm
+  - zone_air_dewpoint_temperature_sensor
+  - zone_air_dewpoint_temperature_setpoint
   implements:
   - OPERATIONAL
 
@@ -5544,6 +5558,10 @@ PDSCV:
   guid: "b1eac019-247c-4669-bd66-f70f262f9af7"
   description: "Pressure-dependent supply damper control for ventilation purposes (CO2 or VOC)."
   is_abstract: true
+  opt_uses:
+  - run_command
+  - schedule_run_command
+  - warmup_run_command
   uses:
   - supply_air_damper_percentage_command
   - supply_air_damper_percentage_sensor
