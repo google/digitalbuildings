@@ -8327,7 +8327,7 @@ ZOC:
 
 MS:
   guid: "04d281a6-d5cb-4cdc-b229-90fc5e756271"
-  description: "Motion sensing monitoring. For occupancy status (occupied and unoccupied space/seat)"
+  description: "Motion sensing monitoring. For occupancy status (occupied and unoccupied space and desk/seat)"
   is_abstract: true
   uses:
   - motion_status  
