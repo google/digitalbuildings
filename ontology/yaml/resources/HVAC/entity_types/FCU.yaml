@@ -215,6 +215,20 @@ FCU_DFSS_DSP_HPZC:
   - DSP
   - HPZC
 
+FCU_DFSS_DSP_HPZC_RCKTM_DTM_RTM_OA:
+  guid: "c64fd4d7-d205-4364-9db0-11cc7b178a71"
+  description: "Typical heat pump FCU (zone control) with refrigerant circuit and outside air monitoring."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - DSP
+  - HPZC
+  - RCKTM
+  - DTM
+  - RTM
+  - OA
+
 FCU_DFSS_DSP_HP2ZC:
   guid: "f1785580-c69d-4627-b8ce-a4b7ee79b254"
   description: "Typical heat pump FCU (zone control)."
@@ -1733,6 +1747,19 @@ FCU_DFSS_RHDHC_HT2RC_DX2RC:
   - HT2RC
   - DX2RC
 
+FCU_DFVSC_RTM_CO2C_HWZTC_CHWZTC_ZHM:
+  guid: "b6dada06-f2bf-4cc6-9d58-5106759ab029"
+  description: "Fan coil unit with zone temperature control, CO2 and humidity monitoring, heating water and chilled water valve monitoring."
+  is_canonical: true
+  implements:
+  - FCU
+  - DFVSC
+  - RTM
+  - CO2C
+  - HWZTC
+  - CHWZTC
+  - ZHM
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
@@ -2206,3 +2233,21 @@ FCU_DFSS_DFRMM_CHWBZC_DAIDC_RAIDC:
   - CHWBZC
   - DAIDC
   - RAIDC
+
+FCU_DFSS_CHWBZTC:
+  guid: "50fbaebd-ed83-4109-84d8-713dd4b54099"
+  description: "Chilled water FCU with chilled water valve open/close monitoring, discharge fan and zone temperature control"
+  is_canonical: true
+  implements:
+  - FCU
+  - DFSS
+  - CHWBZTC
+
+FCU_DFVSC_CHWBZTC:
+  guid: "d2b3f37b-d69f-4631-b8d2-d71243821e1c"
+  description: "FCU with discharge fan variable speed control and chilled water valve control"
+  is_canonical: true
+  implements:
+  - FCU
+  - DFVSC
+  - CHWBZTC

@@ -91,8 +91,9 @@ def _ParseArgs() -> argparse.ArgumentParser:
       '--udmi',
       dest='udmi',
       required=False,
-      default='True',
-      help='Parse messages as UDMI')
+      default='False',
+      help='Parse messages as UDMI',
+  )
 
   return parser
 
