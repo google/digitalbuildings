@@ -8325,6 +8325,13 @@ ZOC:
   implements:
   - MONITORING
 
+MS:
+  guid: "04d281a6-d5cb-4cdc-b229-90fc5e756271"
+  description: "Motion sensing monitoring. For occupancy status (occupied and unoccupied space/seat)"
+  is_abstract: true
+  uses:
+  - motion_status  
+
 SPLM:
   guid: "d92998e1-1091-4291-a1f9-b8cc0e3aa334"
   description: "Sound pressure level monitoring"
