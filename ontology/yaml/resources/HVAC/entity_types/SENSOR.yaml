@@ -372,3 +372,11 @@ SENSOR_SFM:
   implements:
   - /SENSOR
   - SFM
+
+SENSOR_MS:
+  guid: "51314277-425a-4fd1-baa7-b71bdf8b65c9"
+  description: "Motion sensor. Space and desk/seat occupancy monitoring (occupied/unoccupied)"
+  is_canonical: true
+  implements:
+  - /SENSOR
+  - MS
