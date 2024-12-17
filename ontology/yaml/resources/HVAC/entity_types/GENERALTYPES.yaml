@@ -404,6 +404,8 @@ DOAS:
   is_abstract: true
   opt_uses:
   - failed_communication_alarm
+  - smoke_alarm
+  - filter_alarm
   implements:
   - EQUIPMENT
 
