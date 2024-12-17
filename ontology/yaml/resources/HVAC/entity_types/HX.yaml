@@ -288,3 +288,12 @@ HX_PSWTC_CHWDT_CHWRWISOVPM:
     - PSWTC
     - CHWDT
     - CHWRWISOVPM
+
+HX_PSWTC_CHWDT_CHWRWISOVM:
+  description: "Chilled/process water heat exchanger with isolation valve on chilled return water side."
+  is_canonical: true
+  implements:
+    - HX
+    - PSWTC
+    - CHWDT
+    - CHWRWISOVPM
