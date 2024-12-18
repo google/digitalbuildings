@@ -60,6 +60,14 @@ CDWS_SWTC_BYPVPM:
   - SWTC
   - BYPVPM
 
+CDWS_SWTC_WSEBYPVM:
+  description: "Condenser water system with supply temperature control and waterside economizing bypass."
+  is_canonical: true
+  implements:
+  - CDWS
+  - SWTC
+  - WSEBYPVM
+
 CDWS_SWTC_WDPC_WFRC_HXSWISOVPM:
   guid: "6f9f09c8-9ccf-4204-a3c8-e24efea95dde"
   description: "Condenser water system with supply temperature control and isolation valves connected to a heat exchanger."

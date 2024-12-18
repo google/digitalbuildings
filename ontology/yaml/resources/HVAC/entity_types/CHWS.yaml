@@ -547,6 +547,39 @@ CHWS_PWDT_SESWTC_SEWDPC_SERWFRM_WSEBYPVM:
   - SERWFRM
   - WSEBYPVM
 
+CHWS_SWTC_WDPC_BYPVFRC_WSEBYPVM_MCBYPVM_CLPM:
+  description: "Chilled water system with differential control, mechanical cooling bypass, waterside economizer bypass and cooling thermal power monitoring."
+  is_canonical: true
+  implements:
+  - CHWS
+  - SWTC
+  - WDPC
+  - BYPVFRC
+  - WSEBYPVM
+  - MCBYPVM
+  - CLPM
+
+CHWS_SWTC_WDPC_BYPVFRC_WSEBYPVM_MCBYPVM:
+  description: "Chilled water system with differential control, mechanical cooling bypass and waterside economizer bypass."
+  is_canonical: true
+  implements:
+  - CHWS
+  - SWTC
+  - WDPC
+  - BYPVFRC
+  - WSEBYPVM
+  - MCBYPVM
+
+CHWS_SESWTC_SEWDPC_WSEBYPVM:
+  description: "Chilled water system with secondary supply water temperature and differential pressure control and waterside economizer bypass."
+  is_canonical: true
+  implements:
+  - CHWS
+  - SESWTC
+  - SEWDPC
+  - SEWFRM
+  - WSEBYPVM
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################

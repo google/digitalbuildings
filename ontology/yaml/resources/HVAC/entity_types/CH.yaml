@@ -106,6 +106,18 @@ CH_SS_SCHWTC_CWDT:
   - SCHWTC
   - CWDT
 
+CH_SS_SCHWTC_CHWDPC_CWDT_REFPM_REFSM:
+  description: "Simple water-cooled chiller with supply temperature and differential control, condensing water temperature monitoring and refrigerant temperature and pressure monitoring."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - SCHWTC
+  - CHWDPC
+  - CWDT
+  - REFPM
+  - REFSM
+
 CH_SS_RCHWTC_CWDT:
   guid: "1f0accb9-f2d8-4258-a048-8d3c7a7510d0"
   description: "Simple water cooled chiller, return water temperature control."
@@ -463,6 +475,20 @@ CH_SS_CHWRWISOVPM_SCHWTC_CHWDPM_CDWISOVPM_CWDT_REFPM_REFSM_IGM_CHDXSC:
   - REFSM
   - IGM
   - CHDXSC
+
+CH_SS_SCHWTC_CHDXSC_CHWDPC_CWDT_REFPM_REFSM_IGM:
+  description: "Complex water-cooled chiller with refrigerant pressure and temperature monitoring."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - SCHWTC
+  - CHDXSC
+  - CHWDPC
+  - CWDT
+  - REFPM
+  - REFSM
+  - IGM
 
 CH_SS_SCHWTC_CHWSWISOVM_CHWDPM_CWDT_REFSM_REFPM_IGM_DXSWC:
   guid: "e3e3ff1b-4d52-4234-aac0-1692fac0ee77"
@@ -891,6 +917,32 @@ CH_SS_SCHWTC_CHDX2SC_CHWSWISOVM_CDWISOVPM_CWDT:
     - CHWSWISOVM
     - CDWISOVPM
     - CWDT
+
+CH_SS_SWTC_DX2SWC_WDPC_RWISOVM_REFSM_REFPM:
+  description: "Two-stage air-cooled chiller with differential pressure control and refrigerant monitoring."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - SWTC
+  - DX2SWC
+  - WDPC
+  - RWISOVM
+  - REFSM
+  - REFPM
+
+CH_SS_SWTC_DX2SWC_WDPM_RWISOVM_REFSM_REFPM:
+  description: "Two-stage air-cooled chiller with differential pressure and refrigerant monitoring."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - SWTC
+  - DX2SWC
+  - WDPM
+  - RWISOVM
+  - REFSM
+  - REFPM
 
 ###################################
 ### Existing Non-standard Types ###

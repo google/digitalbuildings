@@ -8417,6 +8417,18 @@ MCBYPVPM:
   implements:
   - MONITORING
 
+MCBYPVM:
+  description: "Mechanical cooling bypass valve monitoring."
+  is_abstract: true
+  opt_uses:
+  - economizer_mode
+  - sync_economizer_mechanical_cooling_mode
+  - mechanical_cooling_bypass_valve_status
+  uses:
+  - mechanical_cooling_bypass_valve_command
+  implements:
+  - MONITORING
+
 BYPVFRC:
   guid: "5c93b3ee-21bb-423c-8c84-9a22ffa1f931"
   description: "Bypass valve flowrate control."
