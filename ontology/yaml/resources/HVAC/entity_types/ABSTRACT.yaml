@@ -7034,7 +7034,7 @@ CFCM:
   is_abstract: true
   uses:
   - condensing_fan_current_sensor
-  
+
 CFCM4X:
   guid: "3b5df213-0616-400f-a025-69e72cda4d7b"
   description: "Condenser fan current monitoring for 4 fans."
