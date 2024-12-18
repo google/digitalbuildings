@@ -61,6 +61,7 @@ CDWS_SWTC_BYPVPM:
   - BYPVPM
 
 CDWS_SWTC_WSEBYPVM:
+  guid: "ba9bfbcf-43b2-42ef-ac60-0fff9a4f4a13"
   description: "Condenser water system with supply temperature control and waterside economizing bypass."
   is_canonical: true
   implements:

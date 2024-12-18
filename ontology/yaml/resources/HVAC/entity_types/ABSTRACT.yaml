@@ -8392,6 +8392,7 @@ WSEBYPVPM:
   - MONITORING
 
 WSEBYPVM:
+  guid: "2df125a6-6d00-439d-9aef-4fa3ac6a88c8"
   description: "Water side economizer bypass valve monitoring."
   is_abstract: true
   opt_uses:
@@ -8418,6 +8419,7 @@ MCBYPVPM:
   - MONITORING
 
 MCBYPVM:
+  guid: "46a9421b-3902-457f-842c-4849dd45e1dd"
   description: "Mechanical cooling bypass valve monitoring."
   is_abstract: true
   opt_uses:
