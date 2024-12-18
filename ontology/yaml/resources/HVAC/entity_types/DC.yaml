@@ -25,6 +25,17 @@ DC_SS_SWTC:
   - SS
   - SWTC
 
+DC_SS_VSC_SWTC_RWISOVM:
+  guid: "49987aa9-de99-4ff2-94a8-eca95b39ea3b"
+  description: "Typical dry-cooler (closed loop sensible cooler) with isolation on return side."
+  is_canonical: true
+  implements:
+  - DC
+  - SS
+  - VSC
+  - SWTC
+  - RWISOVM
+
 DC_SS_FSS4X_FVSC4X_SWTC_WDPM:
   guid: "1e1ddaf9-d9e7-46c2-8026-964c183a22c4"
   description: "Closed loop sensible cooler with four fans and differential pressure monitoring."

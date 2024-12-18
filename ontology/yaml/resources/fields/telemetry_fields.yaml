@@ -625,6 +625,18 @@ literals:
 - economizer_bypass_valve_percentage_sensor:
     fixed_min: 0
     fixed_max: 100
+- economizer_bypass_valve_command:
+  - OPEN
+  - CLOSED
+- economizer_bypass_valve_status:
+  - OPEN
+  - CLOSED
+- mechanical_cooling_bypass_valve_command:
+  - OPEN
+  - CLOSED
+- mechanical_cooling_bypass_valve_status:
+  - OPEN
+  - CLOSED
 - mechanical_cooling_bypass_valve_percentage_command:
     fixed_min: 0
     fixed_max: 100
