@@ -108,7 +108,7 @@ CH_SS_SCHWTC_CWDT:
 
 CH_SS_SCHWTC_CHWDPC_CWDT_REFPM_REFSM:
   guid: "af499208-82b6-43d3-9f2a-a69facd684c1"
-  description: "Simple water-cooled chiller with supply temperature and differential control, condensing water temperature monitoring and refrigerant temperature and pressure monitoring."
+  description: "Water-cooled chiller with supply temperature and differential pressure control, condensing water temperature monitoring and refrigerant temperature and pressure monitoring."
   is_canonical: true
   implements:
   - CH
@@ -479,7 +479,7 @@ CH_SS_CHWRWISOVPM_SCHWTC_CHWDPM_CDWISOVPM_CWDT_REFPM_REFSM_IGM_CHDXSC:
 
 CH_SS_SCHWTC_CHDXSC_CHWDPC_CWDT_REFPM_REFSM_IGM:
   guid: "9c8f75a7-8545-46da-91cf-c7da53652f10"
-  description: "Complex water-cooled chiller with refrigerant pressure and temperature monitoring."
+  description: "Water-cooled chiller with with supply temperature and differential pressure control, condensing water temperature monitoring, and refrigerant temperature and pressure monitoring."
   is_canonical: true
   implements:
   - CH
