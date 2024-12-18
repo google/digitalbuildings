@@ -43,9 +43,9 @@ CT_SS_VSC_SWTC:
   - VSC
   - SWTC
 
-CT_SS_VSC_RWTM_SPSS:
+CT_SS_VSC_SPSS:
   guid: "ca45be7c-2ac7-45b1-804a-d7160bd5a0e2"
-  description: "Variable speed cooling tower with return water temperature monitoring ans onboard spray pump."
+  description: "Variable speed cooling tower with onboard spray pump."
   is_canonical: true
   implements:
   - CT
