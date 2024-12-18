@@ -41,6 +41,16 @@ CDWS_SWTC_WDPC:
   - SWTC
   - WDPC
 
+CDWS_SWTC_WDPC_BWFRM:
+  guid: "bf61bd11-b95e-4d94-98db-f0942b3b4987"
+  description: "Condenser water system with supply temperature, differential pressure control and blowdown water flowrate monitoring."
+  is_canonical: true
+  implements:
+  - CDWS
+  - SWTC
+  - WDPC
+  - BWFRM
+
 CDWS_SWTC_BYPVPM:
   guid: "ce74369f-a6b2-4624-bf0f-543b8e00fb8b"
   description: "Condenser water system with supply temperature control and a bypass valve."
@@ -49,6 +59,15 @@ CDWS_SWTC_BYPVPM:
   - CDWS
   - SWTC
   - BYPVPM
+
+CDWS_SWTC_WSEBYPVM:
+  guid: "ba9bfbcf-43b2-42ef-ac60-0fff9a4f4a13"
+  description: "Condenser water system with supply temperature control and waterside economizing bypass."
+  is_canonical: true
+  implements:
+  - CDWS
+  - SWTC
+  - WSEBYPVM
 
 CDWS_SWTC_WDPC_WFRC_HXSWISOVPM:
   guid: "6f9f09c8-9ccf-4204-a3c8-e24efea95dde"
@@ -176,6 +195,19 @@ CDWS_SWTC_BYPVPM_WFRM_MWFRM_BWFRM:
   - MWFRM
   - BWFRM
 
+CDWS_SS_SWTC_BYPVPM_WFRM_MWFRM_BWFRM:
+  guid: "27d51584-886f-4142-8e8a-17af27aa9fec"
+  description: "Condensing water system (temp control) with bypass control, flow monitoring and basin water system"
+  is_canonical: true
+  implements:
+  - CDWS
+  - SS
+  - SWTC
+  - BYPVPM
+  - WFRM
+  - MWFRM
+  - BWFRM
+
 CDWS_SWTC_CMWDT_BYPVPM_BWECVC_BWFRM_MWFRM:
   guid: "6454dd88-5857-4920-b438-fe8cb7f5a3bd"
   description: "Condensing water system with bypass valve, blowdown water valve electricconductivity control, makeup water flowrate monitoring and common water temperature differential monitoring."
@@ -197,6 +229,18 @@ CDWS_SWTC_WSEBYPVPM:
   - CDWS
   - SWTC
   - WSEBYPVPM
+
+CDWS_SWTC_WDPC_CLPM_WFRM_MWFRM:
+  guid: "35a284ef-332d-4e2f-b3f2-4eb94ce3d274"
+  description: "Chilled water system with supply temperature control, differential pressure control, and thermal load, flowrate and makeup water flowrate monitoring."
+  is_canonical: true
+  implements:
+  - CDWS
+  - SWTC
+  - WDPC
+  - CLPM
+  - WFRM
+  - MWFRM
 
 ###################################
 ### Existing Non-standard Types ###

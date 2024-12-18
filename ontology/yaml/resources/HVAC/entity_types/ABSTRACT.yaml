@@ -26,6 +26,8 @@ SD:
   opt_uses:
   - cooling_thermal_power_capacity
   - run_command
+  - warmup_run_command
+  - schedule_run_command
   - supply_air_cooling_flowrate_capacity
   - supply_air_damper_percentage_sensor
   - supply_air_heating_flowrate_capacity
@@ -39,6 +41,8 @@ SD:
   - failed_supply_air_damper_alarm
   - pressurization_request_count
   - zone_air_differential_pressure_sensor
+  - flowrate_requirement
+  - unoccupied_flowrate_requirement
   uses:
   - supply_air_damper_percentage_command
   - supply_air_flowrate_sensor
@@ -183,6 +187,8 @@ CSP:
   - high_zone_air_temperature_alarm
   - low_zone_air_temperature_alarm
   - cooling_request_count
+  - heating_request_count
+  - warmup_request_count
   uses:
   - zone_air_cooling_temperature_setpoint
   - zone_air_temperature_sensor
@@ -300,6 +306,7 @@ DSP:
   - zone_occupancy_status
   - cooling_request_count
   - heating_request_count
+  - warmup_request_count
   uses:
   - zone_air_cooling_temperature_setpoint
   - zone_air_heating_temperature_setpoint
@@ -756,6 +763,8 @@ ZHM:
   opt_uses:
   - failed_zone_air_relative_humidity_alarm
   - high_zone_air_relative_humidity_alarm
+  - zone_air_dewpoint_temperature_sensor
+  - zone_air_dewpoint_temperature_setpoint
 
 ZHM2X:
   guid: "1e5c95b5-bbf8-42ab-b68f-08bd3fc7638e"
@@ -807,6 +816,9 @@ SS:
   - communication_status
   - efficiency_percentage_sensor
   - load_percentage_sensor
+  - optimal_stop_command
+  - request_run_command
+  - schedule_run_command
 
 DSPC:
   guid: "3f288511-32ca-47ae-a4e0-391620026420"
@@ -1054,7 +1066,6 @@ LHC:
   implements:
   - CONTROL
 
-
 SFSS:
   guid: "1e8dd2f7-192a-430b-af2c-db6065664deb"
   description: "Basic combination of supply fan run command and status (start/stop)."
@@ -1070,10 +1081,29 @@ SFSS:
   - supply_fan_run_time_accumulator
   - failed_supply_fan_alarm
   - supply_fan_lost_power_alarm
+  - schedule_run_command
+  - optimal_stop_command
   uses:
   - supply_fan_run_command
   - supply_fan_run_status
 
+SFFM:
+  guid: "81a4d943-661e-4d61-aae7-ba009a481f78"
+  description: "Supply air flowrate monitoring for individual supply fans within an array."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  opt_uses:
+  - supply_air_flowrate_sensor_1
+  - supply_air_flowrate_sensor_2
+  - supply_air_flowrate_sensor_3
+  - supply_air_flowrate_sensor_4
+  - supply_air_flowrate_sensor_5
+  - supply_air_flowrate_sensor_6
+  - supply_air_flowrate_sensor_7
+  - supply_air_flowrate_sensor_8
+  uses:
+  - total_supply_air_flowrate_sensor
 
 RHM:
   guid: "9b13e30c-52b7-45d1-9798-f7c754e959e9"
@@ -1350,6 +1380,7 @@ RWTC:
   - OPERATIONAL
   opt_uses:
   - run_command
+  - heating_request_count
   - supply_water_temperature_sensor
   - high_supply_water_temperature_alarm
   - low_supply_water_temperature_alarm
@@ -1419,6 +1450,18 @@ PSWTC:
   uses:
   - process_supply_water_temperature_sensor
   - process_supply_water_temperature_setpoint
+  implements:
+  - OPERATIONAL
+
+PRSWTC:
+  guid: "26e7feb6-34d7-4eca-8118-ad200649161c"
+  description: "Primary loop water temperature control."
+  is_abstract: true
+  opt_uses:
+  - primary_return_water_temperature_sensor
+  uses:
+  - primary_supply_water_temperature_sensor
+  - primary_supply_water_temperature_setpoint
   implements:
   - OPERATIONAL
 
@@ -1622,6 +1665,8 @@ ED:
   opt_uses:
   - exhaust_air_damper_percentage_sensor
   - exhaust_air_static_pressure_sensor
+  - run_command
+  - schedule_run_command
   uses:
   - exhaust_air_damper_percentage_command
   - exhaust_air_flowrate_sensor
@@ -1737,6 +1782,8 @@ ZHC:
   - failed_zone_air_relative_humidity_alarm
   - high_zone_air_relative_humidity_alarm
   - low_zone_air_relative_humidity_alarm
+  - zone_air_dewpoint_temperature_sensor
+  - zone_air_dewpoint_temperature_setpoint
   implements:
   - OPERATIONAL
 
@@ -1873,6 +1920,7 @@ REFC:
   opt_uses:
   - failed_zone_air_refrigerant_concentration_alarm
   - high_zone_air_refrigerant_concentration_alarm
+  - refrigerant_leak_detection_status
   uses:
   - zone_air_refrigerant_concentration_sensor
   - zone_air_refrigerant_concentration_setpoint
@@ -2138,6 +2186,7 @@ PWDT:
   - primary_supply_water_temperature_sensor
   opt_uses:
   - primary_water_heating_thermal_power_sensor
+  - primary_water_cooling_thermal_power_sensor
   - high_primary_return_water_temperature_alarm
   - high_primary_supply_water_temperature_alarm
   - low_primary_return_water_temperature_alarm
@@ -2262,6 +2311,7 @@ CHWSC:
   - low_supply_air_temperature_alarm
   - water_leak_alarm
   - frost_alarm
+  - cooldown_run_command
   uses:
   - chilled_water_valve_percentage_command
   - supply_air_temperature_sensor
@@ -3270,6 +3320,8 @@ HWSC:
   - failed_supply_air_temperature_alarm
   - high_supply_air_temperature_alarm
   - low_supply_air_temperature_alarm
+  - warmup_request_count
+  - warmup_run_command
   uses:
   - heating_water_valve_percentage_command
   - supply_air_temperature_sensor
@@ -4006,6 +4058,8 @@ VOADM:
   - low_mixed_air_temperature_alarm
   - failed_outside_air_damper_alarm
   - failed_outside_air_temperature_alarm
+  - outside_air_flowrate_sensor
+  - ventilation_request_count
   uses:
   - outside_air_damper_percentage_command
   - outside_air_temperature_sensor
@@ -4207,6 +4261,14 @@ CDWPVM:
   implements:
   - OPERATIONAL
 
+WFRSM:
+  guid: "08d4248b-2ef7-42e8-b56a-98aad618b6bc"
+  description: "Water flowrate status monitoring."
+  is_abstract: true
+  uses:
+  - water_flowrate_status
+  implements:
+  - OPERATIONAL
 
 CDWFRSM:
   guid: "2a153a56-29ae-403e-9b4d-9b16b3a4794c"
@@ -4216,7 +4278,6 @@ CDWFRSM:
   - condensing_water_flowrate_status
   implements:
   - OPERATIONAL
-
 
 BYPVPM:
   guid: "57766034-a856-4dfe-b070-fd65673d8dd0"
@@ -5353,6 +5414,17 @@ CHWDPC:
   - chilled_water_differential_pressure_sensor
   - chilled_water_differential_pressure_setpoint
 
+CHWHRDPC:
+  guid: "54ad7c4b-917d-4194-b888-954bf6553838"
+  description: "Heat recovery differential pressure control for chilled water."
+  is_abstract: true
+  implements:
+  - MONITORING
+  uses:
+  - chilled_water_differential_pressure_sensor
+  - heat_recovery_chilled_water_differential_pressure_setpoint
+  - heat_recovery_run_command
+
 CHWDTC:
   guid: "0ebb5fa0-c205-4238-8f73-296667e7169c"
   description: "Differential temperature control for chilled water."
@@ -5485,6 +5557,10 @@ PDSCV:
   guid: "b1eac019-247c-4669-bd66-f70f262f9af7"
   description: "Pressure-dependent supply damper control for ventilation purposes (CO2 or VOC)."
   is_abstract: true
+  opt_uses:
+  - run_command
+  - schedule_run_command
+  - warmup_run_command
   uses:
   - supply_air_damper_percentage_command
   - supply_air_damper_percentage_sensor
@@ -6034,7 +6110,6 @@ RWTM:
   uses:
   - return_water_temperature_sensor
 
-
 WSERWTM:
   guid: "132824f4-213b-4e8f-85f9-fdad8a194146"
   description: "Water side economizer return water temperature monitoring."
@@ -6047,7 +6122,6 @@ WSERWTM:
   - high_economizer_return_water_temperature_alarm
   - low_economizer_return_water_temperature_alarm
 
-
 CWDPM:
   guid: "d71e1e0d-35d6-4b53-a570-2e12959c951b"
   description: "Differential pressure monitoring for condenser water."
@@ -6056,6 +6130,27 @@ CWDPM:
   - MONITORING
   uses:
   - condensing_water_differential_pressure_sensor
+
+CWDPC:
+  guid: "426c8ede-626d-4c84-bbba-ba1707ba202a"
+  description: "Differential pressure control for condenser water."
+  is_abstract: true
+  implements:
+  - MONITORING
+  uses:
+  - condensing_water_differential_pressure_sensor
+  - condensing_water_differential_pressure_setpoint
+
+CWHRDPC:
+  guid: "ddd40420-3034-4289-9f34-103934540f58"
+  description: "Heat recovery differential pressure control for condenser water."
+  is_abstract: true
+  implements:
+  - MONITORING
+  uses:
+  - condensing_water_differential_pressure_sensor
+  - heat_recovery_condensing_water_differential_pressure_setpoint
+  - heat_recovery_run_command
 
 CWDTC:
   guid: "a9c672e6-0a06-4b6b-a67f-557288ba38cc"
@@ -6253,9 +6348,21 @@ SESWTC:
   - high_secondary_supply_water_temperature_alarm
   - low_secondary_supply_water_temperature_alarm
   - secondary_water_heating_thermal_power_sensor
+  - secondary_water_cooling_thermal_power_sensor
   uses:
   - secondary_supply_water_temperature_sensor
   - secondary_supply_water_temperature_setpoint
+
+
+PRWDPC:
+  guid: "3279876b-0bcd-4fc1-8e9a-273cff67c69e"
+  description: "Primary water loop differential pressure control."
+  is_abstract: true
+  implements:
+  - OPERATIONAL
+  uses:
+  - primary_water_differential_pressure_sensor
+  - primary_water_differential_pressure_setpoint
 
 
 SEWDPC:
@@ -6839,6 +6946,7 @@ HWTTC:
   is_abstract: true
   opt_uses:
   - high_water_temperature_alarm
+  - return_water_temperature_sensor
   uses:
   - hot_water_tank_temperature_sensor
   - hot_water_tank_temperature_setpoint
@@ -6926,7 +7034,7 @@ CFCM:
   is_abstract: true
   uses:
   - condensing_fan_current_sensor
-  
+
 CFCM4X:
   guid: "3b5df213-0616-400f-a025-69e72cda4d7b"
   description: "Condenser fan current monitoring for 4 fans."
@@ -7044,6 +7152,8 @@ HLPM:
   guid: "ae617b98-6deb-4c17-8d63-4504feea2988"
   description: "Heating thermal power sensor."
   is_abstract: true
+  opt_uses:
+  - heating_thermal_power_capacity
   uses:
   - heating_thermal_power_sensor
   implements:
@@ -8274,8 +8384,24 @@ WSEBYPVPM:
   - sync_economizer_mechanical_cooling_mode
   - economizer_bypass_valve_percentage_sensor
   - failed_economizer_bypass_valve_alarm
+  - economizer_thermal_power_sensor
+  - economizer_disable_command
   uses:
   - economizer_bypass_valve_percentage_command
+  implements:
+  - MONITORING
+
+WSEBYPVM:
+  guid: "2df125a6-6d00-439d-9aef-4fa3ac6a88c8"
+  description: "Water side economizer bypass valve monitoring."
+  is_abstract: true
+  opt_uses:
+  - economizer_mode
+  - sync_economizer_mechanical_cooling_mode
+  - economizer_bypass_valve_status
+  - failed_economizer_bypass_valve_alarm
+  uses:
+  - economizer_bypass_valve_command
   implements:
   - MONITORING
 
@@ -8289,6 +8415,19 @@ MCBYPVPM:
   - mechanical_cooling_bypass_valve_percentage_sensor
   uses:
   - mechanical_cooling_bypass_valve_percentage_command
+  implements:
+  - MONITORING
+
+MCBYPVM:
+  guid: "46a9421b-3902-457f-842c-4849dd45e1dd"
+  description: "Mechanical cooling bypass valve monitoring."
+  is_abstract: true
+  opt_uses:
+  - economizer_mode
+  - sync_economizer_mechanical_cooling_mode
+  - mechanical_cooling_bypass_valve_status
+  uses:
+  - mechanical_cooling_bypass_valve_command
   implements:
   - MONITORING
 
@@ -8328,6 +8467,15 @@ PRWFRM:
   description: "Primary supply water flowrate monitoring"
   uses:
   - primary_supply_water_flowrate_sensor
+  implements:
+  - MONITORING
+
+PRSWFRC:
+  guid: "71821a9c-2600-4123-b474-dbe2816e8f6c"
+  description: "Primary supply water flowrate control"
+  uses:
+  - primary_supply_water_flowrate_sensor
+  - primary_supply_water_flowrate_setpoint
   implements:
   - MONITORING
 
@@ -8483,6 +8631,7 @@ HP6SWC:
   - heating_thermal_power_capacity
   - high_supply_water_temperature_alarm
   - low_supply_water_temperature_alarm
+  - return_water_temperature_sensor
   uses:
   - compressor_run_command_1
   - compressor_run_command_2

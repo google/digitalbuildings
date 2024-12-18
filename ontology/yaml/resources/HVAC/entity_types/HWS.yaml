@@ -105,6 +105,16 @@ HWS_RWTC_MXVPM:
   - RWTC
   - MXVPM
 
+HWS_SS_RWTC_MXVPM:
+  guid: "a78c552b-667d-43eb-9418-afe7486a7ee2"
+  description: "Heating water system with run control and mixed return temp control."
+  is_canonical: true
+  implements:
+  - HWS
+  - SS
+  - RWTC
+  - MXVPM
+
 HWS_SWTC_BYPVPM:
   guid: "8d8652a9-6814-413e-9aa1-8772a831d6a3"
   description: "Heating water system with supply temp control and bypass."
@@ -404,6 +414,30 @@ HWS_PWDT_SESWTC_SEWDPC_SERWFRM_SEWTM:
   - SEWDPC
   - SERWFRM
   - SEWTM
+
+HWS_SS_SWTC_WDPC_WFRM_HWTTC_HLPM:
+  guid: "b203359c-877b-4c46-903e-57c4c5b4d634"
+  description: "Heating water system with schedule run command, heating thermal power monitoring, supply water temperature control, differential pressure control, flowrate monitoring, and hot water tank temperature control."
+  is_canonical: true
+  implements:
+  - HWS
+  - SS
+  - SWTC
+  - WDPC
+  - WFRM
+  - HWTTC
+  - HLPM
+
+HWS_SWTC_WDPM_WFRM_HLPM:
+  guid: "20f843b3-d602-411a-921a-4bb4b8f05b67"
+  description: "Heating water system with heating thermal power monitoring, supply water temperature control, differential pressure control, and flowrate monitoring."
+  is_canonical: true
+  implements:
+  - HWS
+  - SWTC
+  - WDPM
+  - WFRM
+  - HLPM
 
 ###################################
 ### Existing Non-standard Types ###

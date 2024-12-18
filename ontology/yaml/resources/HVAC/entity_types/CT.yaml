@@ -43,6 +43,16 @@ CT_SS_VSC_SWTC:
   - VSC
   - SWTC
 
+CT_SS_VSC_SPSS:
+  guid: "ca45be7c-2ac7-45b1-804a-d7160bd5a0e2"
+  description: "Variable speed cooling tower with onboard spray pump."
+  is_canonical: true
+  implements:
+  - CT
+  - SS
+  - VSC
+  - SPSS
+
 CT_SS_SPSS_SWTC_RWISOVM:
   guid: "2fc17f81-1b4f-43ed-a5ac-b728527dd2b0"
   description: "Evaporative cooler with onboard spray pump."
@@ -176,6 +186,17 @@ CT_SS_RWISOVM_SWISOVM_SWTM:
   opt_uses:
   - low_level_status
 
+CT_SS_VSC_SWTC_SPSS:
+  guid: "ad3c6e1b-1a16-4564-a8b6-a56168daceaa"
+  description: "Cooling tower with onboard spray pump and variable speed control."
+  is_canonical: true
+  implements:
+  - CT
+  - SS
+  - VSC
+  - SWTC
+  - SPSS
+
 CT_SS_VSC_SPSS_SWTC_RWISOVM:
   guid: "226b9d4e-cdf7-4106-bfd4-4b8a5e5a55c4"
   description: "Cooling tower with onboard spray pump and variable speed control."
@@ -187,6 +208,19 @@ CT_SS_VSC_SPSS_SWTC_RWISOVM:
   - SPSS
   - SWTC
   - RWISOVM
+
+CT_SS_VSC_SPSS_SWTC_SWISOVM_BWFRM:
+  guid: "368e7cef-75e2-407c-ac2b-3904a357b825"
+  description: "Cooling tower with onboard spray pump, variable speed control, isolation on supply side and blowdown water flow monitoring."
+  is_canonical: true
+  implements:
+  - CT
+  - SS
+  - VSC
+  - SPSS
+  - SWTC
+  - SWISOVM
+  - BWFRM
 
 CT_SS_VSC_SWTM_RWISOVM_SWISOVM_FSWISOVM_FRWISOVM:
   guid: "9ca0256a-9d7f-4b4d-8289-e321e487a2a1"

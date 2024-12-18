@@ -190,6 +190,16 @@ CHWS_SWTC_WDPC_BYPVFRC:
   - WDPC
   - BYPVFRC
 
+CHWS_SWTC_WDPC_WFRC:
+  guid: "8d2b1b65-b42c-4597-a4dd-89ae49e886e8"
+  description: "Chilled water system with supply temperature, differential pressure and water flowrate control."
+  is_canonical: true
+  implements:
+  - CHWS
+  - SWTC
+  - WDPC
+  - WFRC
+
 CHWS_SWTC_WDPC_BYPVFRC_CLPM:
   guid: "2b835b66-3db9-499e-97f4-1e22540df676"
   description: "Chilled water system with supply temperature, differential pressure, bypass valve flowrate control, and cooling thermal monitoring."
@@ -437,6 +447,31 @@ CHWS_SEWDPC_SESWTC_SERWFRM_PRWFRM_PWDT:
   - PRWFRM
   - PWDT
 
+CHWS_PRSWTC_PRWFRM_SEWDPC_SEWTM_SEWFRM:
+  guid: "3d55637e-976c-4ff5-b86d-f99f7f910ab9"
+  description: "Chilled water system with primary loop supply water temperature control and flowrate monitoring, secondary loop water temperature and flow monitoring and differential pressure control."
+  is_canonical: true
+  implements:
+  - CHWS
+  - PRSWTC
+  - PRWFRM
+  - SEWDPC
+  - SEWTM
+  - SEWFRM
+
+CHWS_SEWDPC_SESWTC_SERWFRM_PRWFRM_PRWDPC_PWDT:
+  guid: "fe148047-bc3a-48be-96e8-c1d589e2d4e6"
+  description: "Chilled water system with secondary loop supply water temperature control, primary and secondary differential pressure control, primary and secondary flowrate monitoring."
+  is_canonical: true
+  implements:
+  - CHWS
+  - SEWDPC
+  - SESWTC
+  - SERWFRM
+  - PRWFRM
+  - PRWDPC
+  - PWDT
+
 CHWS_THCWDPC_RWCHVVM_SWCHVVM_PWDT_SESWTC_PWRFM:
   guid: "e3f6366d-4383-48f4-9ce4-a3b7107603ac"
   description: "Chilled water system with thermally conditioned water valve, primary supply temeprature and flowrate monitoring, and differential pressure monitoring."
@@ -449,6 +484,94 @@ CHWS_THCWDPC_RWCHVVM_SWCHVVM_PWDT_SESWTC_PWRFM:
   - PWDT
   - SESWTC
   - PWRFM
+
+CHWS_SWTC_WDPM_CLPM_WFRM:
+  guid: "7422cbbc-92ec-420b-9dcb-f7f40502fba5"
+  description: "Chilled water system with cooling thermal power monitoring, supply water temperature control, differential pressure and flowrate monitoring."
+  is_canonical: true
+  implements:
+  - CHWS
+  - SWTC
+  - WDPC
+  - CLPM
+  - WFRM
+
+CHWS_SS_SWTC_WDPC_CLPM_WFRM:
+  guid: "8448f024-bfc7-46e9-9d91-19949aef2477"
+  description: "Chilled water system with run command, cooling thermal power monitoring, supply water temperature control, differential pressure control and flowrate monitoring."
+  is_canonical: true
+  implements:
+  - CHWS
+  - SS
+  - SWTC
+  - WDPC
+  - CLPM
+  - WFRM
+
+CHWS_SS_WDPC_SWISOVPM_BYPVPM_WSEBYPVPM_PWDT_PRSWFRC_SESWTC_SEWFRM_CLPM:
+  guid: "49477bff-e5f7-42bc-b498-8965f4ed3e41"
+  description: "Chilled water system with run command, cooling thermal power monitoring, primary and secondary water control, and water side economizing."
+  is_canonical: true
+  implements:
+  - CHWS
+  - SS
+  - WDPC
+  - SWISOVPM
+  - BYPVPM
+  - WSEBYPVPM
+  - PWDT
+  - PRSWFRC
+  - SESWTC
+  - SEWFRM
+  - CLPM
+
+CHWS_PWDT_SESWTC_SEWDPC_SERWFRM_WSEBYPVM:
+  guid: "2b33f2bf-5b2f-4d73-b8ee-1f35cc08ceb8"
+  description: "Chilled water system with primary water temperature differential monitoring, secondary supply water temperature and dirrefertial pressure control and water flowrate monitoring, and waterside economizer bypass valve."
+  is_canonical: true
+  implements:
+  - CHWS
+  - PWDT
+  - SESWTC
+  - SEWDPC
+  - SERWFRM
+  - WSEBYPVM
+
+CHWS_SWTC_WDPC_BYPVFRC_WSEBYPVM_MCBYPVM_CLPM:
+  guid: "dc89a367-2774-4564-864f-c66da0ab8a86"
+  description: "Chilled water system with differential pressure control, mechanical cooling bypass, waterside economizer bypass and cooling thermal power monitoring."
+  is_canonical: true
+  implements:
+  - CHWS
+  - SWTC
+  - WDPC
+  - BYPVFRC
+  - WSEBYPVM
+  - MCBYPVM
+  - CLPM
+
+CHWS_SWTC_WDPC_BYPVFRC_WSEBYPVM_MCBYPVM:
+  guid: "36602528-dfbb-4922-aeae-ba756be83d55"
+  description: "Chilled water system with differential pressure control, mechanical cooling bypass and waterside economizer bypass."
+  is_canonical: true
+  implements:
+  - CHWS
+  - SWTC
+  - WDPC
+  - BYPVFRC
+  - WSEBYPVM
+  - MCBYPVM
+
+CHWS_SESWTC_SEWDPC_SEWFRM_WSEBYPVM:
+  guid: "503d5173-65a9-422a-9788-c7c00f2196a2"
+  description: "Chilled water system with secondary supply water temperature and differential pressure control and waterside economizer bypass."
+  is_canonical: true
+  implements:
+  - CHWS
+  - SESWTC
+  - SEWDPC
+  - SEWFRM
+  - WSEBYPVM
 
 ###################################
 ### Existing Non-standard Types ###
