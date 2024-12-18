@@ -230,6 +230,18 @@ CDWS_SWTC_WSEBYPVPM:
   - SWTC
   - WSEBYPVPM
 
+CDWS_SWTC_WDPC_CLPM_WFRM_MWFRM:
+  guid: "35a284ef-332d-4e2f-b3f2-4eb94ce3d274"
+  description: "Chilled water system with supply temperature control, differential pressure control, and thermal load, flowrate and makeup water flowrate monitoring."
+  is_canonical: true
+  implements:
+  - CDWS
+  - SWTC
+  - WDPC
+  - CLPM
+  - WFRM
+  - MWFRM
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################

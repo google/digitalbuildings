@@ -133,18 +133,6 @@ CHWS_SWTC_WDPC_CLPM_WFRM:
   - CLPM
   - WFRM
 
-CHWS_SWTC_WDPC_CLPM_WFRM_MWFRM:
-  guid: "35a284ef-332d-4e2f-b3f2-4eb94ce3d274"
-  description: "Chilled water system with supply temperature control, differential pressure control, and thermal load, flowrate and makeup water flowrate monitoring."
-  is_canonical: true
-  implements:
-  - CHWS
-  - SWTC
-  - WDPC
-  - CLPM
-  - WFRM
-  - MWFRM
-
 CHWS_SWTC_WDPC_CLPM_WFRC:
   guid: "be04a7b1-1f2d-48a5-9f76-95e7f32ca1e3"
   description: "Chilled water system with supply temperature, differential pressure, and flowrate control, and thermal load monitoring."
@@ -574,7 +562,7 @@ CHWS_SWTC_WDPC_BYPVFRC_WSEBYPVM_MCBYPVM:
   - WSEBYPVM
   - MCBYPVM
 
-CHWS_SESWTC_SEWDPC_WSEBYPVM:
+CHWS_SESWTC_SEWDPC_SEWFRM_WSEBYPVM:
   guid: "503d5173-65a9-422a-9788-c7c00f2196a2"
   description: "Chilled water system with secondary supply water temperature and differential pressure control and waterside economizer bypass."
   is_canonical: true
