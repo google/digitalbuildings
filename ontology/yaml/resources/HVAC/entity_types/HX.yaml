@@ -58,15 +58,14 @@ HX_CHWDT_CHWRWISOVM:
   - CHWDT
   - CHWRWISOVM
 
-HX_CHWDT_CWRISOVM_CHWRWISOVM_CLPM:
+HX_CHWDT_CWRISOVM_CLPM:
   guid: "c1035031-6ab6-4501-b600-bd89deafd83b"
-  description: 'Chilled water heat exchanger with isolation on condensing and chilled return side, and cooling thermal power monitoring.'
+  description: 'Chilled water heat exchanger with isolation on condensing return side, and cooling thermal power monitoring.'
   is_canonical: true
   implements:
   - HX
   - CHWDT
   - CWRISOVM
-  - CHWRWISOVM
   - CLPM
 
 HX_CHWDT_CWDT_CLPM:
