@@ -3962,7 +3962,7 @@ literals:
 - emergency_power_status:
   - PRESENT
   - ABSENT
-- level_sensor:
+- floor_count:
     flexible_min: -3
     flexible_max: 14
 - direction_up_mode:
