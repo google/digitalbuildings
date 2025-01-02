@@ -866,13 +866,36 @@ CH_SS_SCHWTC_CHDX2SC_CHWSWISOVM_CDWISOVPM_CWDT:
   description: "Water cooled chiller with chilled and condensing water isolation valves."
   is_canonical: true
   implements:
-    - CH
-    - SS
-    - SCHWTC
-    - CHDX2SC
-    - CHWSWISOVM
-    - CDWISOVPM
-    - CWDT
+  - CH
+  - SS
+  - SCHWTC
+  - CHDX2SC
+  - CHWSWISOVM
+  - CDWISOVPM
+  - CWDT
+
+CH_SS_SWTC_DX2SWC_REFPM:
+  description: "Two stage water cooled chiller with supply water temperature control and refrigerant pressure monitoring."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - SWTC
+  - DX2SWC
+  - REFPM
+
+CH_SS_SCHWTC_CHDX2SC_CWRISOVPM_CHWRWISOVPM_REFSM_REFPM:
+  description: "Water cool chiller with chilled and condensing water isolation valve, with refrigerant saturation and pressure monitoring."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - SCHWTC
+  - CHDX2SC
+  - CWRISOVPM
+  - CHWRWISOVPM
+  - REFSM
+  - REFPM
 
 ###################################
 ### Existing Non-standard Types ###

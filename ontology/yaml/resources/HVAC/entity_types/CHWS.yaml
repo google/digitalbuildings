@@ -525,6 +525,18 @@ CHWS_SS_WDPC_SWISOVPM_BYPVPM_WSEBYPVPM_PWDT_PRSWFRC_SESWTC_SEWFRM_CLPM:
   - SEWFRM
   - CLPM
 
+CHWS_PWDT_PRWFRM_SESWTC_SEWDPC_SEWFRM:
+  description: "Chilled water system wit primary loop supply water flowrate and temperature monitoring, secondary loop supply water temperature and pressure control with flowrate monitoring."
+  is_canonical: true
+  implements:
+  - CHWS
+  - PWDT
+  - PRWFRM
+  - SESWTC
+  - SEWDPC
+  - SEWFRM
+
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
