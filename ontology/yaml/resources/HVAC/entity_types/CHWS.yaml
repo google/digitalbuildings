@@ -527,7 +527,7 @@ CHWS_SS_WDPC_SWISOVPM_BYPVPM_WSEBYPVPM_PWDT_PRSWFRC_SESWTC_SEWFRM_CLPM:
 
 CHWS_PWDT_PRWFRM_SESWTC_SEWDPC_SEWFRM:
   guid: "273f1e69-8e00-4df4-8c4d-5045deb2b4fb"
-  description: "Chilled water system wit primary loop supply water flowrate and temperature monitoring, secondary loop supply water temperature and pressure control with flowrate monitoring."
+  description: "Chilled water system with primary loop supply water flowrate and temperature monitoring, secondary loop supply water temperature and pressure control with flowrate monitoring."
   is_canonical: true
   implements:
   - CHWS

@@ -876,7 +876,7 @@ CH_SS_SCHWTC_CHDX2SC_CHWSWISOVM_CDWISOVPM_CWDT:
 
 CH_SS_SWTC_DX2SWC_REFPM:
   guid: "c5465ea9-4eb0-4d06-9555-91f7b29fde7f"
-  description: "Two stage water cooled chiller with supply water temperature control and refrigerant pressure monitoring."
+  description: "Two stage air cooled chiller with supply water temperature control and refrigerant pressure monitoring."
   is_canonical: true
   implements:
   - CH
