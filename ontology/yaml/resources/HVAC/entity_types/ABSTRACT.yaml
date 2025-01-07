@@ -1492,6 +1492,8 @@ SCHWTC:
   - failed_chilled_supply_water_temperature_alarm
   - high_chilled_supply_water_temperature_alarm
   - low_chilled_supply_water_temperature_alarm
+  - high_chilled_return_water_temperature_alarm
+  - low_chilled_return_water_temperature_alarm
   uses:
   - chilled_supply_water_temperature_sensor
   - chilled_supply_water_temperature_setpoint
@@ -7111,7 +7113,7 @@ PCHWDT:
   uses:
   - primary_chilled_return_water_temperature_sensor
   - primary_chilled_supply_water_temperature_sensor
-
+  
 
 PHWDT:
   guid: "06e84e2c-8935-4c9a-80cb-f08890005f4a"
