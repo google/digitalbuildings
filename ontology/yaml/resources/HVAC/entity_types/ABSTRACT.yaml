@@ -1492,6 +1492,8 @@ SCHWTC:
   - failed_chilled_supply_water_temperature_alarm
   - high_chilled_supply_water_temperature_alarm
   - low_chilled_supply_water_temperature_alarm
+  - high_chilled_return_water_temperature_alarm
+  - low_chilled_return_water_temperature_alarm
   uses:
   - chilled_supply_water_temperature_sensor
   - chilled_supply_water_temperature_setpoint
@@ -7034,7 +7036,7 @@ CFCM:
   is_abstract: true
   uses:
   - condensing_fan_current_sensor
-  
+
 CFCM4X:
   guid: "3b5df213-0616-400f-a025-69e72cda4d7b"
   description: "Condenser fan current monitoring for 4 fans."
@@ -7111,7 +7113,7 @@ PCHWDT:
   uses:
   - primary_chilled_return_water_temperature_sensor
   - primary_chilled_supply_water_temperature_sensor
-
+  
 
 PHWDT:
   guid: "06e84e2c-8935-4c9a-80cb-f08890005f4a"
@@ -8400,6 +8402,20 @@ WSEBYPVPM:
   implements:
   - MONITORING
 
+WSEBYPVM:
+  guid: "2df125a6-6d00-439d-9aef-4fa3ac6a88c8"
+  description: "Water side economizer bypass valve monitoring."
+  is_abstract: true
+  opt_uses:
+  - economizer_mode
+  - sync_economizer_mechanical_cooling_mode
+  - economizer_bypass_valve_status
+  - failed_economizer_bypass_valve_alarm
+  uses:
+  - economizer_bypass_valve_command
+  implements:
+  - MONITORING
+
 MCBYPVPM:
   guid: "ba06a118-c604-44e8-9ad7-aa5d7cad5e43"
   description: "Mechanical cooling bypass valve monitoring."
@@ -8410,6 +8426,19 @@ MCBYPVPM:
   - mechanical_cooling_bypass_valve_percentage_sensor
   uses:
   - mechanical_cooling_bypass_valve_percentage_command
+  implements:
+  - MONITORING
+
+MCBYPVM:
+  guid: "46a9421b-3902-457f-842c-4849dd45e1dd"
+  description: "Mechanical cooling bypass valve monitoring."
+  is_abstract: true
+  opt_uses:
+  - economizer_mode
+  - sync_economizer_mechanical_cooling_mode
+  - mechanical_cooling_bypass_valve_status
+  uses:
+  - mechanical_cooling_bypass_valve_command
   implements:
   - MONITORING
 
