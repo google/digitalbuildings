@@ -8325,12 +8325,14 @@ ZOC:
   implements:
   - MONITORING
 
-MS:
-  guid: "04d281a6-d5cb-4cdc-b229-90fc5e756271"
-  description: "Motion sensing monitoring. For occupancy status (occupied and unoccupied space and desk/seat)"
+ZOS:
+  guid: "afaa65e7-ae33-482b-8f55-ef9907cd68cb"
+  description: "Occupancy status monitoring. For space/desk/seat occupancy status (occupied and unoccupied)"
   is_abstract: true
   uses:
-  - motion_status  
+  - zone_occupancy_status
+  implements:
+  - MONITORING
 
 SPLM:
   guid: "d92998e1-1091-4291-a1f9-b8cc0e3aa334"
