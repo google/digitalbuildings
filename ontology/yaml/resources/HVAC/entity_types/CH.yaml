@@ -106,6 +106,19 @@ CH_SS_SCHWTC_CWDT:
   - SCHWTC
   - CWDT
 
+CH_SS_SCHWTC_CHWDPC_CWDT_REFPM_REFSM:
+  guid: "af499208-82b6-43d3-9f2a-a69facd684c1"
+  description: "Water-cooled chiller with supply temperature and differential pressure control, condensing water temperature monitoring and refrigerant temperature and pressure monitoring."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - SCHWTC
+  - CHWDPC
+  - CWDT
+  - REFPM
+  - REFSM
+
 CH_SS_RCHWTC_CWDT:
   guid: "1f0accb9-f2d8-4258-a048-8d3c7a7510d0"
   description: "Simple water cooled chiller, return water temperature control."
@@ -464,6 +477,21 @@ CH_SS_CHWRWISOVPM_SCHWTC_CHWDPM_CDWISOVPM_CWDT_REFPM_REFSM_IGM_CHDXSC:
   - IGM
   - CHDXSC
 
+CH_SS_SCHWTC_CHDXSC_CHWDPC_CWDT_REFPM_REFSM_IGM:
+  guid: "9c8f75a7-8545-46da-91cf-c7da53652f10"
+  description: "Water-cooled chiller with with supply temperature and differential pressure control, condensing water temperature monitoring, and refrigerant temperature and pressure monitoring."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - SCHWTC
+  - CHDXSC
+  - CHWDPC
+  - CWDT
+  - REFPM
+  - REFSM
+  - IGM
+
 CH_SS_SCHWTC_CHWSWISOVM_CHWDPM_CWDT_REFSM_REFPM_IGM_DXSWC:
   guid: "e3e3ff1b-4d52-4234-aac0-1692fac0ee77"
   description: "Complex water-cooled chiller."
@@ -662,6 +690,25 @@ CH_SS_SCHWTC_CDWFRM_CHWSWISOVM_CWSISOVM_CHWDPM_CHWFRM_CWDT_REFPM_IGM_DXSWC:
   - IGM
   - DXSWC
 
+
+CH_SS_SCHWTC_CHDXSC_CHWDPM_CHWFRM_CHWRWISOVM_CWDT_CDWFRM_CWRISOVM_REFPM_IGM:
+  guid: "661834a3-a83f-4f31-94a6-08b0c82992f5"
+  description: "Complex water-cooled chiller."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - SCHWTC
+  - CHDXSC
+  - CHWDPM
+  - CHWFRM
+  - CHWRWISOVM
+  - CWDT
+  - CDWFRM
+  - CWRISOVM
+  - REFPM
+  - IGM
+
 CH_SS_VSC_CHDXSC_SCHWTC_CWSISOVPM_CHWSWISOVM_CHWDPM_CWDT_REFPM_REFSM:
   guid: "9fd7c871-3378-4a48-898d-3b47fb19d34c"
   description: "Water cooled chiller with condensing and chilled supply water isolation valves, condensing water temperature differential monitoring, chilled water differential pressure monitoring and single circuit refrigerant pressure and temperature monitoring."
@@ -698,7 +745,7 @@ CH_SS_VSC_CHDXSC_SCHWTC_CWSISOVPM_CHWSWISOVM_CHWDPC_CWDPC_CWDT_REFPM_REFSM:
   - REFSM
 
 CH_SS_DX3SCHWC_CWSISOVM_CWRISOVM_CHWSWISOVM_CHWDPM_CWDT_CHWDT_RCKTM:
-  guid: "6a4312c9-6d4c-4aa9-be3c-aad990f41ca4"
+  guid: "8a648fa7-d065-4ff4-b524-626b4a23c238"
   description: "Water cooled chiller with three compressors, refrigeration circuit monitoring, condensing supply and return water isolation valve, chilled supply water islation valve, chilled water differential pressure monitoring and condensing water temperature differential monitoring."
   is_canonical: true
   implements:
@@ -714,7 +761,7 @@ CH_SS_DX3SCHWC_CWSISOVM_CWRISOVM_CHWSWISOVM_CHWDPM_CWDT_CHWDT_RCKTM:
   - RCKTM
 
 CH_SS_DX3SCHWC_CWSISOVM_CWRISOVM_CHWSWISOVM_CHWDPC_CWDPC_CHWHRDPC_CWHRDPC_CWDT_CHWDT_RCKTM:
-  guid: "8a648fa7-d065-4ff4-b524-626b4a23c238"
+  guid: "b660c55d-d96b-4d86-97e9-58a4c3342c2c"
   description: "Water cooled chiller with run control, three compressors, refrigeration circuit monitoring, condensing supply and return water isolation valve, chilled supply water islation valve, chilled and condensing water differential pressure control, heat recovery, and condensing water temperature differential monitoring."
   is_canonical: true
   implements:
@@ -896,6 +943,34 @@ CH_SS_SCHWTC_CHDX2SC_CWRISOVPM_CHWRWISOVPM_REFSM_REFPM:
   - CHDX2SC
   - CWRISOVPM
   - CHWRWISOVPM
+  - REFSM
+  - REFPM
+
+CH_SS_SWTC_DX2SWC_WDPC_RWISOVM_REFSM_REFPM:
+  guid: "216b01fc-afac-480f-8fc8-130629715587"
+  description: "Two-stage air-cooled chiller with differential pressure control and refrigerant monitoring."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - SWTC
+  - DX2SWC
+  - WDPC
+  - RWISOVM
+  - REFSM
+  - REFPM
+
+CH_SS_SWTC_DX2SWC_WDPM_RWISOVM_REFSM_REFPM:
+  guid: "6df19046-b117-4523-bd61-518ee6e07e29"
+  description: "Two-stage air-cooled chiller with differential pressure and refrigerant monitoring."
+  is_canonical: true
+  implements:
+  - CH
+  - SS
+  - SWTC
+  - DX2SWC
+  - WDPM
+  - RWISOVM
   - REFSM
   - REFPM
 
