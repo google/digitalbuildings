@@ -2320,9 +2320,6 @@ literals:
 - failed_dimmer_alarm:
   - ACTIVE
   - INACTIVE
-- power_command:
-  - ON
-  - OFF
 - switch_command:
   - ON
   - OFF
@@ -3419,7 +3416,7 @@ literals:
 - outside_illuminance_sensor:
     flexible_min: 0.0
     flexible_max: 5000.0
-- shade_orientation_specification:
+- shade_orientation_command:
   - NORTH
   - SOUTH
   - EAST
