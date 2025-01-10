@@ -1596,6 +1596,16 @@ MWDPC:
   - low_flowrate_alarm
   - low_differential_pressure_alarm
 
+MMCWDPC:
+  guid: "71874ee4-5596-4e90-ad14-8716a6b6de3a"
+  description: "Minimum water differential pressure control for mechanical cooling in a hydronic system."
+  is_abstract: true
+  uses:
+  - low_limit_mechanical_cooling_differential_pressure_sensor
+  - low_limit_mechanical_cooling_differential_pressure_setpoint
+  implements:
+  - OPERATIONAL
+
 CGRWTC:
   guid: "1672a49a-ab80-4989-9ec6-c300d0f44a9e"
   description: "Cogeneration return water temperature control."
@@ -2910,6 +2920,8 @@ DX2SWC:
   - cooling_thermal_power_capacity
   - high_supply_water_temperature_alarm
   - low_supply_water_temperature_alarm
+  - load_percentage_sensor_1
+  - load_percentage_sensor_2
   uses:
   - compressor_run_command_1
   - compressor_run_command_2
