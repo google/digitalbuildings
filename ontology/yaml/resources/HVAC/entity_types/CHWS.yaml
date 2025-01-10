@@ -492,7 +492,7 @@ CHWS_SWTC_WDPM_CLPM_WFRM:
   implements:
   - CHWS
   - SWTC
-  - WDPC
+  - WDPM
   - CLPM
   - WFRM
 
