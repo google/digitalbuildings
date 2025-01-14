@@ -4559,7 +4559,7 @@ CLPM:
   opt_uses:
   - cooling_thermal_energy_accumulator
   - cooling_thermalefficiency_sensor
-  - power_sensor
+  - cooling_thermal_power_capacity
   implements:
   - MONITORING
 
