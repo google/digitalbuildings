@@ -464,6 +464,15 @@ AHU_DFSS_DSP_DXZC_ECONZ_ZHC:
   - ECONZ
   - ZHC
 
+AHU_CSP_DX2ZC_ZHC:
+  description: "Single zone AHU."
+  is_canonical: true
+  implements:
+  - AHU
+  - CSP
+  - DX2ZC
+  - ZHC
+
 AHU_CO2M_DFSS_DSP_ECONZ_HP2ZC:
   guid: "f71c404f-ee4e-43f6-b79c-ddd086630c5a"
   description: "Single zone AHU."
@@ -2629,6 +2638,23 @@ AHU_BSPC_DX4SC_ECONM_EDPM_EFSS_EFVSC_SFSS_SFVSC_SSPC_STC:
   - SSPC
   - STC
 
+AHU_BSPC_DX4SC_ECONM_EDPM_EFSS_EFVSC_SFSS_SFVSC_SSPC_STC_ZSPC:
+  description: "Multi-zone AHU with exhaust damper monitoring"
+  is_canonical: true
+  implements:
+  - AHU
+  - BSPC
+  - DX4SC
+  - ECONM
+  - EDPM
+  - EFSS
+  - EFVSC
+  - SFSS
+  - SFVSC
+  - SSPC
+  - STC
+  - ZSPC
+
 AHU_CHWSC_ECONM_FDPM_MOAFC_SFSS2X_SFVSC2X_SSPC_SARC:
   guid: "c93df86e-2592-480a-92aa-806eab3d2a20"
   description: "Multi-zone AHU with dual fans, static control and filter monitoring."
@@ -2798,6 +2824,17 @@ AHU_DFSS_DSP_DX3ZC_ECONZ:
   - AHU
   - DFSS
   - DSP
+  - DX3ZC
+  - ECONZ
+
+AHU_DFVSC_EFSS_CSP_DX3ZC_ECONZ:
+  description: "Single zone AHU."
+  is_canonical: true
+  implements:
+  - AHU
+  - EFSS
+  - DFVSC
+  - CSP
   - DX3ZC
   - ECONZ
 
@@ -3919,6 +3956,17 @@ AHU_DX3SC_ECON_HTSC_SFSS_SFVSC_SHM_SSPC:
   - SFVSC
   - SHM
   - SSPC
+
+AHU_DX3ZC_ECONZ_STM_SFSS_SFVSC:
+  description: "Multi zone AHU."
+  is_canonical: true
+  implements:
+  - AHU
+  - DX3ZC
+  - ECONZ
+  - STM
+  - SFSS
+  - SFVSC
 
 AHU_DFSS_DFVSC_DX2DC_ECOND_EFSS_EFVSC_HWDC_ZHM:
   guid: "c247ffc2-c5ff-4c04-aaf4-e264e40afe1c"

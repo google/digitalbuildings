@@ -32,6 +32,14 @@ CDWS_SWTC:
   - CDWS
   - SWTC
 
+CDWS_SWTC_WFRM:
+  description: "Condenser water system with basic supply water temperature control and flowrate sensor. "
+  is_canonical: true
+  implements:
+  - CDWS
+  - SWTC
+  - WFRM
+
 CDWS_SWTC_WDPC:
   guid: "5bc2261e-6294-498a-b690-d673afb6da2e"
   description: "Condenser water system with supply temperature and differential pressure control."
@@ -149,6 +157,17 @@ CDWS_CLPM_SWTC_WDPM_WFRC:
   - SWTC
   - WDPM
   - WFRC
+
+CDWS_SWTC_WDPC_WFRC_MWFRM_MWVPM:
+  description: "Condensing water system with supply temperature and flowrate control as well as thermal power and differential pressure control."
+  is_canonical: true
+  implements:
+  - CDWS
+  - SWTC
+  - WDPC
+  - WFRC
+  - MWFRM
+  - MWVPM
 
 CDWS_SWTC_WFRC_CLPM_WDT:
   guid: "1dc03a2c-5bfd-4edc-ab95-97ebba7a716b"

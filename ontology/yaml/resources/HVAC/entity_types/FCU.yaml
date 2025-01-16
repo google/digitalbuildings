@@ -1775,6 +1775,17 @@ FCU_DFS_CH_RTC_RRHM_HMDHMM:
   - dehumidification_run_status
   - return_air_relative_humidity_sensor
 
+FCU_CSP_DFSS_RMM_NONCANONICAL_1:
+  description: "Non-standard type."
+  implements:
+  - FCU
+  - CSP
+  - DFSS
+  - RMM
+  uses:
+  - discharge_air_temperature_sensor
+  - discharge_air_cooling_temperature_setpoint
+
 FCU_DFSS_DTC_CHWDC_NONCANONICAL_1:
   guid: "5b507a68-810c-4584-81fa-f82ea371074a"
   description: "Non-standard type."
