@@ -7067,6 +7067,7 @@ CC2XM:
   - compressor_run_command_2
 
 CP2XM:
+  guid: "350ad77f-5f4f-44cd-bd9f-ea45bec43d3a"
   description: "Compressor power monitoring for 2 compressors."
   is_abstract: true
   uses:
@@ -8489,6 +8490,7 @@ MCBYPVM:
   - MONITORING
 
 MCSFPVM:
+  guid: "1ec7d8ae-503c-4efb-aeae-5a64354b225d"
   description: "Mechanical cooling supply flow monitoring."
   is_abstract: true
   uses:
@@ -8529,6 +8531,7 @@ FRWISOVM:
   - MONITORING
 
 FWISOVM:
+  guid: "56ccdbe7-f974-4b6e-b28d-89e46401e17e"
   description: "Generic filtration isolation valve monitoring."
   is_abstract: true
   opt_uses:

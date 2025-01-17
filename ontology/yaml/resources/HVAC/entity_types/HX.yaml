@@ -119,6 +119,7 @@ HX_CWDT_CHWDT_CWRISOVPM:
   - CWRISOVPM
 
 HX_CWDT_CHWDT_CWSISOVPM_CWBYPVBC:
+  guid: "6f180176-dde9-4321-a198-9f1ab3d637de"
   description: 'Condenser/chilled water heat exchanger.'
   is_canonical: true
   implements:
@@ -129,6 +130,7 @@ HX_CWDT_CHWDT_CWSISOVPM_CWBYPVBC:
   - CWBYPVBC
 
 HX_CWDT_CHWDT_CHWSWISOVM_HWBYPVBC_WFRM:
+  guid: "d00f86c0-b52c-4958-a846-3375da68f26b"
   description: 'Condenser/chilled water heat exchanger with flow monitioring.'
   is_canonical: true
   implements:

@@ -587,6 +587,7 @@ CHWS_SWTC_WDPC_BYPVFRC_WSEBYPVM_MCBYPVM:
   - MCBYPVM
 
 CHWS_SWTC_WDPC_BYPVFRC_MCBYPVM_MCSFPVM:
+  guid: "a8689543-c41a-4de2-af1f-2005bcb65172"
   description: "Chilled water system with differential pressure control, mechanical cooling bypass and waterside economizer bypass."
   is_canonical: true
   implements:
