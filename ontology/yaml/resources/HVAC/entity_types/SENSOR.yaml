@@ -372,3 +372,11 @@ SENSOR_SFM:
   implements:
   - /SENSOR
   - SFM
+
+SENSOR_ZOS:
+  guid: "5fd2fbbf-0076-48f3-ac34-a1dc07628847"
+  description: "Zone occupant status sensor."
+  is_canonical: true
+  implements:
+  - /SENSOR
+  - ZOS
