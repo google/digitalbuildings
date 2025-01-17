@@ -32,7 +32,7 @@ EOM:
   - control_status
   - fire_alarm
   uses:
-  - level_sensor
+  - floor_count
   - position_status
 
 EDM:

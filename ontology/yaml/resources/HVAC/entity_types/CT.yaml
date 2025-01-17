@@ -251,6 +251,16 @@ CT_SS_VSC_SWTM_RWISOVM_SWISOVM_FSWISOVM_FRWISOVM:
   - high_water_level_alarm
   - low_water_level_alarm
 
+CT_SS_SWTC_CWBYPVPM:
+  guid: "a72576f6-3f22-41c0-9a0b-1b473ce63f79"
+  description: "Simple supply temperature controlling cooling tower with condensing water bypass valve percentage monitoring."
+  is_canonical: true
+  implements:
+  - CT
+  - SS
+  - SWTC
+  - CWBYPVPM
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
