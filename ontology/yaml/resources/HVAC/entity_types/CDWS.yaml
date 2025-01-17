@@ -33,7 +33,7 @@ CDWS_SWTC:
   - SWTC
 
 CDWS_SWTC_WFRM:
-  description: "Condenser water system with basic supply water temperature control and flowrate sensor. "
+  description: "Condenser water system with basic supply water temperature control and flowrate sensor."
   is_canonical: true
   implements:
   - CDWS
