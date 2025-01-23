@@ -102,7 +102,16 @@ OADM:
   - failed_outside_air_damper_alarm
   uses:
   - outside_air_damper_command
+  - outside_air_damper_status
 
+RADM:
+  description: "Return air damper monitoring."
+  is_abstract: true
+  opt_uses:
+  - failed_return_air_damper_alarm
+  uses:
+  - return_air_damper_command
+  - return_air_damper_status
 
 MOAFC:
   guid: "76994bbd-4395-4a19-914f-d5c9a21fc99b"
@@ -1796,6 +1805,8 @@ ZHC:
   - low_zone_air_relative_humidity_alarm
   - zone_air_dewpoint_temperature_sensor
   - zone_air_dewpoint_temperature_setpoint
+  - dehumidification_run_command
+  - dehumidification_run_status
   implements:
   - OPERATIONAL
 
@@ -1921,6 +1932,19 @@ SHM:
   - failed_supply_air_relative_humidity_alarm
   uses:
   - supply_air_relative_humidity_sensor
+  implements:
+  - MONITORING
+
+
+DHM:
+  description: "Discharge air relative humidity monitoring."
+  is_abstract: true
+  opt_uses:
+  - high_discharge_air_relative_humidity_alarm
+  - low_discharge_air_relative_humidity_alarm
+  - failed_discharge_air_relative_humidity_alarm
+  uses:
+  - discharge_air_relative_humidity_sensor
   implements:
   - MONITORING
 
@@ -3217,6 +3241,8 @@ HPHCZC:
   - failed_zone_air_temperature_alarm
   - high_zone_air_temperature_alarm
   - low_zone_air_temperature_alarm
+  - cooling_request_count
+  - heating_request_count
   uses:
   - cooling_run_command
   - heating_run_command

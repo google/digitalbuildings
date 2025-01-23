@@ -4834,6 +4834,23 @@ AHU_SFSS4X_ECON_SFVSC4X_CHWRC_SSPC_FDPSM:
   - SSPC
   - FDPSM
 
+AHU_DFMSC_DHM_EFSS_HPHCZC_MTM_OA_OADM_RADM_RMM_RTM_ZHC:
+  description: ""
+  is_canonical: true
+  implements:
+  - AHU
+  - DFMSC
+  - DHM
+  - EFSS
+  - HPHCZC
+  - MTM
+  - OA
+  - OADM
+  - RADM
+  - RMM
+  - RTM
+  - ZHC
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################

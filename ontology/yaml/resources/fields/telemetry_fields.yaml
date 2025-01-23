@@ -2127,10 +2127,19 @@ literals:
 - high_supply_air_relative_humidity_alarm:
   - ACTIVE
   - INACTIVE
+- high_discharge_air_relative_humidity_alarm:
+  - ACTIVE
+  - INACTIVE
 - low_supply_air_relative_humidity_alarm:
   - ACTIVE
   - INACTIVE
+- low_discharge_air_relative_humidity_alarm:
+  - ACTIVE
+  - INACTIVE
 - failed_supply_air_relative_humidity_alarm:
+  - ACTIVE
+  - INACTIVE
+- failed_discharge_air_relative_humidity_alarm:
   - ACTIVE
   - INACTIVE
 - failed_discharge_air_static_pressure_alarm:
