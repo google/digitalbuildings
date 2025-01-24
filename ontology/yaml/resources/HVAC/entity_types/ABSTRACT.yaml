@@ -1945,6 +1945,7 @@ DHM:
   - high_discharge_air_relative_humidity_alarm
   - low_discharge_air_relative_humidity_alarm
   - failed_discharge_air_relative_humidity_alarm
+  - discharge_air_dewpoint_temperature_sensor
   uses:
   - discharge_air_relative_humidity_sensor
   implements:

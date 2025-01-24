@@ -4836,7 +4836,7 @@ AHU_SFSS4X_ECON_SFVSC4X_CHWRC_SSPC_FDPSM:
 
 AHU_DFMSC_DHM_EFSS_HPHCZC_MTM_OA_OADM_RADM_RMM_RTM_ZHC:
   guid: "08bce8b9-2b68-431c-854f-84142a2906ce"
-  description: ""
+  description: "Single zone AHU with multi speed discharge fan controlling to zone humidity for a room with a pool and uses a WSHP for chilled or heating water which controls to zone temperature with dual setpoint. Contains monitoring points for MAT, RAT, OAD, RAD, discharge air humiditiy, and an exhuast fan with start/stop"
   is_canonical: true
   implements:
   - AHU
