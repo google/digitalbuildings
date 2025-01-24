@@ -439,16 +439,6 @@ HWS_SWTC_WDPM_WFRM_HLPM:
   - WFRM
   - HLPM
 
-HWS_PRSWTC_PRWDPC_WFRC_BYPVPM:
-  description: "Simple hot water system with supply water temperature control, differential pressure and flow control"
-  is_canonical: true
-  implements:
-  - HWS
-  - PRSWTC
-  - PRWDPC
-  - WFRC
-  - BYPVPM
-
 ###################################
 ### Existing Non-standard Types ###
 ###################################

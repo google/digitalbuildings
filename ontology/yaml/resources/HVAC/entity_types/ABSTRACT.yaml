@@ -764,6 +764,7 @@ ZHM:
   opt_uses:
   - failed_zone_air_relative_humidity_alarm
   - high_zone_air_relative_humidity_alarm
+  - low_zone_air_relative_humidity_alarm
   - zone_air_dewpoint_temperature_sensor
   - zone_air_dewpoint_temperature_setpoint
 
@@ -4478,6 +4479,7 @@ WFRM:
   - MONITORING
   opt_uses:
   - low_flowrate_alarm
+  - failed_flowrate_alarm
 
 
 CMSWFRM:
@@ -5375,13 +5377,13 @@ CWRISOVM:
   implements:
   - MONITORING
 
-
 CWSISOVPM:
   guid: "3221aa75-8df4-4964-82dd-9a5c59c3a73b"
   description: "Condensing water supply isolation valve percentage control."
   is_abstract: true
   opt_uses:
   - failed_condensing_supply_water_isolation_valve_alarm
+  - condensing_supply_water_isolation_valve_status
   uses:
   - condensing_supply_water_isolation_valve_percentage_command
   - condensing_supply_water_isolation_valve_percentage_sensor
@@ -5960,6 +5962,10 @@ DX4DC:
   - cooling_thermal_power_capacity
   - leaving_cooling_coil_temperature_sensor
   - failed_discharge_air_temperature_alarm
+  - low_discharge_air_temperature_alarm
+  - high_discharge_air_temperature_alarm
+  - heating_request_count
+  - cooling_request_count
   uses:
   - compressor_run_command_1
   - compressor_run_command_2
@@ -8489,7 +8495,7 @@ MCBYPVM:
   implements:
   - MONITORING
 
-MCSFPVM:
+MCSWFRM:
   guid: "1ec7d8ae-503c-4efb-aeae-5a64354b225d"
   description: "Mechanical cooling supply flow monitoring."
   is_abstract: true

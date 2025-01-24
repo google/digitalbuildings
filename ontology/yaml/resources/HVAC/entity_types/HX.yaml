@@ -118,16 +118,39 @@ HX_CWDT_CHWDT_CWRISOVPM:
   - CHWDT
   - CWRISOVPM
 
-HX_CWDT_CHWDT_CWSISOVPM_CWBYPVBC:
+HX_CWDT_PRWDT_CWSISOVPM:
   guid: "6f180176-dde9-4321-a198-9f1ab3d637de"
   description: 'Condenser/chilled water heat exchanger.'
   is_canonical: true
   implements:
   - HX
   - CWDT
-  - CHWDT
+  - PRWDT
   - CWSISOVPM
-  - CWBYPVBC
+
+HX_CWDT_PRWDT_CWSISOVPM_CWBYPVPM :
+  description: 'Condenser/chilled water heat exchanger.'
+  is_canonical: true
+  implements:
+  - HX
+  - CWDT
+  - PRWDT
+  - CWSISOVPM
+  - CWBYPVPM
+
+HX_CWDT_CHWDT_SCHWFRC_CWRISOVPM_CHWSWISOVM_CHWBYPVBC_CHWDPM_CWDPM:
+  description: 'Condenser/chilled water heat exchanger.'
+  is_canonical: true
+  implements:
+  - HX
+  - CWDT
+  - CHWDT
+  - SCHWFRC
+  - CWRISOVPM
+  - CHWSWISOVM
+  - CHWBYPVBC
+  - CHWDPM
+  - CWDPM
 
 HX_CWDT_CHWDT_CHWSWISOVM_HWBYPVBC_WFRM:
   guid: "d00f86c0-b52c-4958-a846-3375da68f26b"

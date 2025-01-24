@@ -1760,6 +1760,15 @@ FCU_DFVSC_RTM_CO2C_HWZTC_CHWZTC_ZHM:
   - CHWZTC
   - ZHM
 
+FCU_CSP_DX2ZC_ZHC:
+  description: "Single zone FCU."
+  is_canonical: true
+  implements:
+  - FCU
+  - CSP
+  - DX2ZC
+  - ZHC
+
 ###################################
 ### Existing Non-standard Types ###
 ###################################
