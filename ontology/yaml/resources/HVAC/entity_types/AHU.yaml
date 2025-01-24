@@ -4835,6 +4835,7 @@ AHU_SFSS4X_ECON_SFVSC4X_CHWRC_SSPC_FDPSM:
   - FDPSM
 
 AHU_DFMSC_DHM_EFSS_HPHCZC_MTM_OA_OADM_RADM_RMM_RTM_ZHC:
+  guid: "08bce8b9-2b68-431c-854f-84142a2906ce"
   description: ""
   is_canonical: true
   implements:

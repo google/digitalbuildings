@@ -105,6 +105,7 @@ OADM:
   - outside_air_damper_status
 
 RADM:
+  guid: "2819ae14-dc0c-4c73-8bdf-fdf12fa13f52"
   description: "Return air damper monitoring."
   is_abstract: true
   opt_uses:
@@ -1937,6 +1938,7 @@ SHM:
 
 
 DHM:
+  guid: "3436956c-47df-4312-bcc3-9730f479c757"
   description: "Discharge air relative humidity monitoring."
   is_abstract: true
   opt_uses:
