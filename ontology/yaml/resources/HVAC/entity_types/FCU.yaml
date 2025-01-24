@@ -1761,6 +1761,7 @@ FCU_DFVSC_RTM_CO2C_HWZTC_CHWZTC_ZHM:
   - ZHM
 
 FCU_CSP_DX2ZC_ZHC:
+  guid: "4f6dbf06-0b03-4537-9d53-78855aabea49"
   description: "Single zone FCU."
   is_canonical: true
   implements:
@@ -1785,6 +1786,7 @@ FCU_DFS_CH_RTC_RRHM_HMDHMM:
   - return_air_relative_humidity_sensor
 
 FCU_CSP_DFSS_RMM_NONCANONICAL_1:
+  guid: "0f38ea51-b5aa-43ba-ae33-317160f7f248"
   description: "Non-standard type."
   implements:
   - FCU

@@ -26,6 +26,7 @@ CHWS_RWTC_WDT:
   - WDT
 
 CHWS_WDPC_WFRM:
+  guid: "67b010a2-9b4e-43b4-86ff-396834e13d54"
   description: "Chilled water system with only basic flowrate monitoring, and pressure control."
   is_canonical: true
   implements:
@@ -68,6 +69,7 @@ CHWS_SWTC_WDPC:
   - WDPC
 
 CHWS_SWTC_WDPC_SWISOVM:
+  guid: "373aebfb-62b1-43ff-8698-4dba9fac8643"
   description: "Chilled water system with supply temperature, differential pressure control, and supply water isolation valve monitoring."
   is_canonical: true
   implements:
