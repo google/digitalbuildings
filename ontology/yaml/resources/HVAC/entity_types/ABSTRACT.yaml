@@ -100,9 +100,9 @@ OADM:
   is_abstract: true
   opt_uses:
   - failed_outside_air_damper_alarm
+  - outside_air_damper_status
   uses:
   - outside_air_damper_command
-  - outside_air_damper_status
 
 RADM:
   guid: "2819ae14-dc0c-4c73-8bdf-fdf12fa13f52"
