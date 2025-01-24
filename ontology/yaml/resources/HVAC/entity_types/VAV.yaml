@@ -167,15 +167,6 @@ VAV_SD_DSP_HWZC_ZSPM:
   - HWZC
   - ZSPM
 
-VAV_SD_DSP_HTZTC:
-  description: "Single duct reheat VAV with electric heat."
-  is_canonical: true
-  implements:
-  - VAV
-  - SD
-  - DSP
-  - HTZTC
-
 VAV_SD_DSP_HTZC:
   guid: "47b47e69-d873-4976-b578-a07cb3d85176"
   description: "Single duct reheat VAV with electric heat."
