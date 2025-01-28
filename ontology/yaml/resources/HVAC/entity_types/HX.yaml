@@ -58,6 +58,26 @@ HX_CHWDT_CHWRWISOVM:
   - CHWDT
   - CHWRWISOVM
 
+HX_CHWDT_CWRISOVM_CLPM:
+  guid: "c1035031-6ab6-4501-b600-bd89deafd83b"
+  description: 'Chilled water heat exchanger with isolation on condensing return side, and cooling thermal power monitoring.'
+  is_canonical: true
+  implements:
+  - HX
+  - CHWDT
+  - CWRISOVM
+  - CLPM
+
+HX_CHWDT_CWDT_CLPM:
+  guid: "1f7f5457-22a3-4889-9101-1b82fdf44edf"
+  description: 'Chilled water heat exchanger with chilled and condensing water temperature differential monitoring, and cooling thermal power monitoring.'
+  is_canonical: true
+  implements:
+  - HX
+  - CHWDT
+  - CWDT
+  - CLPM
+
 HX_CHWDT_CHWRWISOVPM:
   guid: "29bca835-c90f-4d75-bc1c-e3c6c449f476"
   description: "Chilled water heat exchanger."
@@ -87,6 +107,16 @@ HX_CWDT_CHWDT_CWRISOVPM_CHWBYPVPM:
   - CHWDT
   - CWRISOVPM
   - CHWBYPVPM
+
+HX_CWDT_CHWDT_CWRISOVPM:
+  guid: "7d22f3c3-30be-46f9-bd13-1f88b374923c"
+  description: 'Condenser/chilled water heat exchanger.'
+  is_canonical: true
+  implements:
+  - HX
+  - CWDT
+  - CHWDT
+  - CWRISOVPM
 
 HX_CHWDT_CWRISOVPM_CHWRWISOVPM:
   guid: "6cb20fa2-2dcf-4d38-8212-d2951fe39b95"
@@ -248,3 +278,23 @@ HX_CWRISOVPM_CHWRWDVPM_CWDT_CHWDT:
   - CHWRWDVPM
   - CWDT
   - CHWDT
+
+HX_PSWTC_CHWDT_CHWRWISOVPM:
+  guid: "aee0a0be-f0fe-458a-9d70-d37eba78e401"
+  description: "Chilled/process water heat exchanger with isolation valve on chilled return water side."
+  is_canonical: true
+  implements:
+    - HX
+    - PSWTC
+    - CHWDT
+    - CHWRWISOVPM
+
+HX_PSWTC_CHWDT_CHWRWISOVM:
+  guid: "aacf282a-0d24-4c00-9ad9-91988d0b80a3"
+  description: "Chilled/process water heat exchanger with isolation valve on chilled return water side."
+  is_canonical: true
+  implements:
+    - HX
+    - PSWTC
+    - CHWDT
+    - CHWRWISOVPM
