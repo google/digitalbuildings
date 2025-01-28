@@ -4120,6 +4120,17 @@ BYPDM:
   - MONITORING
 
 
+BYPDVM:
+  guid: "c8e52e6d-1d4e-447c-ad36-044219ea89ec"
+  description: "Bypass damper voltage monitoring."
+  is_abstract: true
+  uses:
+  - bypass_air_damper_voltage_command
+  - bypass_air_damper_voltage_sensor
+  implements:
+  - MONITORING
+
+
 OAFM:
   guid: "4d6c951b-f9a2-445d-93d7-a8ab2aa523ad"
   description: "Outside air flow monitoring"
@@ -9072,3 +9083,43 @@ HWPM:
   - heating_return_water_pressure_sensor
   uses:
   - heating_supply_water_pressure_sensor
+
+ODVM:
+  guid: "9da76ec7-d839-4e6a-905c-eaedcd7796b1"
+  description: "Outside Air Damper Voltage Monitoring."
+  is_abstract: true
+  uses:
+  - outside_air_damper_voltage_command
+  - outside_air_damper_voltage_sensor
+  implements:
+  - MONITORING
+  
+EDVM:
+  guid: "7bf2a5f7-1674-4e81-85cf-98752835499b"
+  description: "Exhaust Air Damper Voltage Monitoring."
+  is_abstract: true
+  uses:
+  - exhaust_air_damper_voltage_command
+  - exhaust_air_damper_voltage_sensor
+  implements:
+  - MONITORING  
+
+RDVM:
+  guid: "00667556-8a75-46ff-a46d-b33e336fef54"
+  description: "Return Air Damper Voltage Monitoring."
+  is_abstract: true
+  uses:
+  - return_air_damper_voltage_command
+  - return_air_damper_voltage_sensor
+  implements:
+  - MONITORING
+
+SDVM:
+  guid: "27e4aeb8-9805-41d6-879f-7e0e28d42cba"
+  description: "Supply Air Damper Voltage Monitoring."
+  is_abstract: true
+  uses:
+  - supply_air_damper_voltage_command
+  - supply_air_damper_voltage_sensor
+  implements:
+  - MONITORING

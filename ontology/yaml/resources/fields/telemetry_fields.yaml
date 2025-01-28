@@ -4034,6 +4034,36 @@ literals:
 - heating_return_water_pressure_sensor:
     flexible_min: -34473.78945
     flexible_max: 344737.8945
+- bypass_air_damper_voltage_command:
+    flexible_min: 0.0
+    flexible_max: 120.0
+- bypass_air_damper_voltage_sensor:
+    flexible_min: 0.0
+    flexible_max: 120.0
+- outside_air_damper_voltage_command:
+    flexible_min: 0.0
+    flexible_max: 120.0
+- outside_air_damper_voltage_sensor:
+    flexible_min: 0.0
+    flexible_max: 120.0
+- exhaust_air_damper_voltage_command:
+    flexible_min: 0.0
+    flexible_max: 120.0
+- exhaust_air_damper_voltage_sensor:
+    flexible_min: 0.0
+    flexible_max: 120.0
+- return_air_damper_voltage_command:
+    flexible_min: 0.0
+    flexible_max: 120.0
+- return_air_damper_voltage_sensor:
+    flexible_min: 0.0
+    flexible_max: 120.0
+- supply_air_damper_voltage_command:
+    flexible_min: 0.0
+    flexible_max: 120.0
+- supply_air_damper_voltage_sensor:
+    flexible_min: 0.0
+    flexible_max: 120.0
 - exhaust_air_relative_humidity_sensor:
     fixed_min: 0.0
     fixed_max: 100.0
