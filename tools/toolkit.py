@@ -71,9 +71,10 @@ def _ParseArgs() -> argparse.ArgumentParser:
       '--modified-ontology-types',
       dest='modified_types_filepath',
       required=False,
-      default=DEFAULT_ONTOLOGY_PATH,
+      default=None,
       help='Filepath to modified type filepaths',
-      metavar='MODIFIED_TYPE_FILEPATHS')
+      metavar='MODIFIED_TYPE_FILEPATHS',
+  )
 
   parser.add_argument(
       '-s',
@@ -132,6 +133,7 @@ if __name__ == '__main__':
     handler.RunValidation(
         filenames=args.filenames,
         modified_types_filepath=args.modified_types_filepath,
+        default_types_filepath=DEFAULT_ONTOLOGY_PATH,
         subscription=args.subscription,
         gcp_credential_path=args.gcp_credential,
         report_directory=args.report_directory,

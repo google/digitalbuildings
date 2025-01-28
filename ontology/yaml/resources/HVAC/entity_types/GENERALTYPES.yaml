@@ -70,6 +70,7 @@ AHU:
   - failed_communication_alarm
   - smoke_alarm
   - emergency_alarm
+  - filter_alarm
 
 HX:
   guid: "9aa0dd1a-851c-4d4e-90da-6804c4f8b9f9"
@@ -106,6 +107,8 @@ MAU:
   - failed_communication_alarm
   - failed_alarm
   - emergency_alarm
+  - smoke_alarm
+  - filter_alarm
   implements:
   - EQUIPMENT
 
@@ -401,6 +404,8 @@ DOAS:
   is_abstract: true
   opt_uses:
   - failed_communication_alarm
+  - smoke_alarm
+  - filter_alarm
   implements:
   - EQUIPMENT
 
