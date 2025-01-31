@@ -21,8 +21,8 @@ jobs:
       matrix:
         os: [macos-latest, ubuntu-latest, windows-latest]
     steps:
-    - uses: actions/checkout@v2
-    - uses: dorny/paths-filter@v2
+    - uses: actions/checkout@v4
+    - uses: dorny/paths-filter@v3
       id: changes
       with:
         filters: |
@@ -43,7 +43,7 @@ jobs:
           scoring:
             - 'tools/scoring/**'
     - name: Set up Python 3.11
-      uses: actions/setup-python@v1
+      uses: actions/setup-python@v5
       with:
         python-version: '3.11'
     - name: Install Pylint
